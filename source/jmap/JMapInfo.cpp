@@ -1,5 +1,7 @@
 #include "jmap/JMapInfo.h"
 
+#include "jgadget/hash.h"
+
 JMapInfo::JMapInfo()
 {
     this->mMap = 0;
@@ -15,7 +17,7 @@ bool JMapInfo::attach(const void *src)
 {
     if (src)
     {
-        this->mMap = (void*)src;
+        this->mMap = src;
         return true;
     }
     else
@@ -25,5 +27,15 @@ bool JMapInfo::attach(const void *src)
 
 void JMapInfo::setName(const char *name)
 {
-    this->mName = (char*)name;
+    this->mName = name;
+}
+
+const char* JMapInfo::getName() const
+{
+    return this->mName;
+}
+
+s32 JMapInfo::searchItemInfo(const char *name) const
+{
+    /* TODO */
 }

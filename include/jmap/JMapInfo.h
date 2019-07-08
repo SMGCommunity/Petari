@@ -10,10 +10,10 @@ public:
 
     bool attach(const void *);
     void setName(const char *);
-    char* getName() const;
+    const char* getName() const;
     s32 searchItemInfo(const char *) const;
     char getValueType(const char *) const;
 
-    void* mMap;
-    char* mName;
+    const void* mMap;
+    const char* mName;
 };
