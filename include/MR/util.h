@@ -1,8 +1,10 @@
 #pragma once
 
+#include "actor/NameObj.h"
 #include "types.h"
 
 namespace MR
 {
-    static void notifyRequestNameObjMovementOnOff();
+    void requestMovementOn(NameObj *);
+    void notifyRequestNameObjMovementOnOff();
 };

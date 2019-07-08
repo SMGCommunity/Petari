@@ -143,3 +143,39 @@ void NameObjRegister::setCurrentHolder(NameObjHolder* holder)
 {
     this->mHolder = holder;
 }
+
+void NameObjGroup::NameObjGroup(const char *name, s32 len) : NameObj(name)
+{
+    this->mNumObjs = 0;
+    this->_10 = 0;
+    this->mObjs = 0;
+
+    this->initObjArray(len);
+}
+
+void NameObjGroup::registerObj(NameObj *obj)
+{
+    // TODO
+}
+
+void NameObjGroup::pauseOffAll() const
+{
+    s32 curIdx = 0;
+
+    while(curIdx < this->mNumObjs)
+    {
+        NameObj* obj = this->mObjs[curIdx];
+        MR::requestMovementOn(obj);
+        curIdx++;
+    }
+}
+
+void NameObjGroup::initObjArray(s32 len)
+{
+    this->mNumObjs = len;
+
+    NameObj* objs = new NameObj[len];
+    this->mObjs = objs;
+
+    // TODO; finish
+}
