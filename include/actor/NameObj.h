@@ -35,8 +35,21 @@ public:
     static void requestMovementOff(NameObj *);
 };
 
+class NameObjHolder
+{
+public:
+    NameObjHolder();
+
+    void add(NameObj *);
+};
+
 class NameObjRegister
 {
 public:
+    NameObjRegister();
+
     void add(NameObj *);
+    void setCurrentHolder(NameObjHolder *);
+
+    NameObjHolder* mHolder;
 };
