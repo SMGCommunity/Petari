@@ -10,6 +10,14 @@ NameObjAdaptor::NameObjAdaptor(const char *name) : NameObj(name)
     this->mDrawFunctor = temp;
 }
 
+void NameObjAdaptor::movement()
+{
+    if (this->mMovementFunctor == 0)
+        return;
+
+    this->mMovementFunctor->operator();
+}
+
 void NameObjAdaptor::connectToMovement(MR::FunctorBase const &functor)
 {
     this->mMovementFunctor = functor.clone(0);

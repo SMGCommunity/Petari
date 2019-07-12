@@ -14,7 +14,7 @@ public:
     void pauseOffAll() const;
     void initObjArray(s32);
 
-    s32 mNumObjs; // _C
-    u32 _10;
+    u32 _C;
+    s32 mNumObjs; // _10
     NameObj* mObjs; // _14
 };
