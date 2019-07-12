@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 flags = "-i . -I- -i include -nostdinc -Cpp_exceptions off -O4 -proc gekko -fp hard -enum int -sdata 0 -sdata2 0 -g"
-as_flags = "-I . -I- -I. -nostdinc -proc gekko -d __MWERKS__"
+as_flags = "-i . -I- -nostdinc -proc gekko -d __MWERKS__"
 
 if not os.path.isdir("tools"):
     print("tool directory not found")
@@ -41,5 +41,5 @@ for f in assembly_files:
 	
     print(f"Assembling {file_name}.s...")
 
-    if subprocess.call(f"mwcceppc.exe {as_flags} -c -o build/{file_name}.o {f}", shell=True) == 1:
+    if subprocess.call(f"mwasmeppc.exe {as_flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
