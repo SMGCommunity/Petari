@@ -15,14 +15,11 @@ JMapInfo::~JMapInfo()
 
 bool JMapInfo::attach(const void *src)
 {
-    if (src)
-    {
-        this->mMap = src;
-        return true;
-    }
-    else
-        return false;
+    if (src == 0)
+        return 0;
     
+    this->mMap = src;
+    return 1;
 }
 
 void JMapInfo::setName(const char *name)
@@ -33,9 +30,4 @@ void JMapInfo::setName(const char *name)
 const char* JMapInfo::getName() const
 {
     return this->mName;
-}
-
-s32 JMapInfo::searchItemInfo(const char *name) const
-{
-    /* TODO */
 }

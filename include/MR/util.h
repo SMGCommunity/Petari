@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/NameObj.h"
+#include "actor/nameobj/NameObj.h"
 #include "types.h"
 
 namespace MR
