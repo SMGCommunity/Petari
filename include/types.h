@@ -10,3 +10,10 @@ typedef long                u32;
 typedef long long           u64;
 typedef float               f32;
 typedef double              f64;
+
+struct Vec
+{
+    f32 x;
+    f32 y;
+    f32 z;
+};
