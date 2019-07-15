@@ -1,6 +1,6 @@
-#include "jmap/JMapInfo.h"
+#include "JMap/JMapInfo.h"
 
-#include "jgadget/hash.h"
+#include "JGadget/hash.h"
 
 JMapInfo::JMapInfo()
 {

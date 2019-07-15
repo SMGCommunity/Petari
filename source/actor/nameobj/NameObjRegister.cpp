@@ -1,4 +1,4 @@
-#include "actor/NameObj/NameObjRegister.h"
+#include "Actor/NameObj/NameObjRegister.h"
 
 NameObjRegister::NameObjRegister()
 {

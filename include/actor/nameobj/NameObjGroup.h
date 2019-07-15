@@ -2,7 +2,7 @@
 #define NAMEOBJGROUP_H
 
 #include "types.h"
-#include "actor/nameobj/NameObj.h"
+#include "Actor/NameObj/NameObj.h"
 
 class NameObjGroup : public NameObj
 {

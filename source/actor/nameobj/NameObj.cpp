@@ -1,6 +1,6 @@
 #pragma once
 
-#include "actor/NameObj/NameObjRegister.h"
+#include "Actor/NameObj/NameObjRegister.h"
 #include "MR/util.h"
 #include "SingletonHolder.h"
 

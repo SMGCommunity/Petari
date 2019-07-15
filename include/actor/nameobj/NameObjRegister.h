@@ -2,8 +2,8 @@
 #define NAMEOBJREGISTER_H
 
 #include "types.h"
-#include "actor/nameobj/NameObj.h"
-#include "actor/nameobj/NameObjHolder.h"
+#include "Actor/NameObj/NameObj.h"
+#include "Actor/NameObj/NameObjHolder.h"
 
 class NameObjRegister
 {

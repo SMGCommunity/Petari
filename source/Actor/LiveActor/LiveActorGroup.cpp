@@ -1,4 +1,4 @@
-#include "actor/LiveActor/LiveActorGroup.h"
+#include "Actor/LiveActor/LiveActorGroup.h"
 
 LiveActorGroup::LiveActorGroup(const char *name, s32 numObjs) : NameObjGroup(name, numObjs) { }
 

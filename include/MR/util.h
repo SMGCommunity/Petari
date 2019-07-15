@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include "actor/nameobj/NameObj.h"
+#include "Actor/NameObj/NameObj.h"
 #include "types.h"
 
 namespace MR

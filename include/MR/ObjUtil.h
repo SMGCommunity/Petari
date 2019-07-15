@@ -1,7 +1,7 @@
 #ifndef OBJUTIL_H
 #define OBJUTIL_H
 
-#include "actor/NameObj/NameObj.h"
+#include "Actor/NameObj/NameObj.h"
 
 namespace MR
 {

@@ -2,8 +2,8 @@
 #define NAMEOBJADAPTOR_H
 
 #include "types.h"
-#include "actor/nameobj/NameObj.h"
-#include "MR/functor/Functor.h"
+#include "Actor/NameObj/NameObj.h"
+#include "MR/Functor/Functor.h"
 
 class NameObjAdaptor : public NameObj
 {

@@ -1,4 +1,4 @@
-#include "actor/NameObj/NameObjAdaptor.h"
+#include "Actor/NameObj/NameObjAdaptor.h"
 
 NameObjAdaptor::NameObjAdaptor(const char *name) : NameObj(name)
 {
