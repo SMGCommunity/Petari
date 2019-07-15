@@ -23,4 +23,10 @@ public:
     ClippingGroupHolder* mGroupHolder; // _14
 };
 
+namespace MR
+{
+    ClippingDirector* getClippingDirector();
+    void addToClippingTarget(LiveActor *);
+};
+
 #endif // CLIPPINGDIRECTOR_H
