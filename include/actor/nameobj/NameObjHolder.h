@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NAMEOBJHOLDER_H
+#define NAMEOBJHOLDER_H
 
 #include "types.h"
 #include "actor/nameobj/NameObj.h"
@@ -22,3 +23,5 @@ public:
     u8 _C[0x4C-0x0C];
     u32 _4C;
 };
+
+#endif // NAMEOBJHOLDER_H

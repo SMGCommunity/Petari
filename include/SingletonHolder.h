@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SINGLETONHOLDER_H
+#define SINGLETONHOLDER_H
 
 template<typename T>
 class SingletonHolder 
@@ -6,3 +7,5 @@ class SingletonHolder
 public:
     static T* sInstance;
 };
+
+#endif // SINGLETONHOLDER_H

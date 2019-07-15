@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUNCTOR_H
+#define FUNCTOR_H
 
 #include "MR/functor/FunctorBase.h"
 
@@ -14,3 +15,5 @@ namespace MR
         virtual FunctorV0M<T, T2>* clone(JKRHeap *) const;
     };
 };
+
+#endif // FUNCTOR_H

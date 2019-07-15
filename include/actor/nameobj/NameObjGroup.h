@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NAMEOBJGROUP_H
+#define NAMEOBJGROUP_H
 
 #include "types.h"
 #include "actor/nameobj/NameObj.h"
@@ -18,3 +19,5 @@ public:
     s32 mNumObjs; // _10
     NameObj** mObjs; // _14
 };
+
+#endif // NAMEOBJGROUP_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TYPES_H
+#define TYPES_H
 
 typedef signed char         s8;
 typedef signed short        s16;
@@ -17,3 +18,5 @@ struct Vec
     f32 y;
     f32 z;
 };
+
+#endif // TYPES_H

@@ -4,7 +4,7 @@ import sys
 import os
 from pathlib import Path
 
-flags = "-i . -I- -i include -nostdinc -Cpp_exceptions off -O4 -proc gekko -fp hard -enum int -sdata 0 -sdata2 0 -g"
+flags = "-i . -I- -i include -nostdinc -Cpp_exceptions off -O2 -proc gekko -fp hard -enum int -sdata 0 -sdata2 0 -g"
 as_flags = "-i . -I- -nostdinc -proc gekko -d __MWERKS__"
 
 if not os.path.isdir("tools"):

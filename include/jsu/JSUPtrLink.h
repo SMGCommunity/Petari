@@ -1,4 +1,5 @@
-#pragma once
+#ifndef JSUPTRLINK_H
+#define JSUPTRLINK_H
 
 #include "types.h"
 
@@ -15,3 +16,5 @@ public:
     u32 _8;
     u32 _C;
 };
+
+#endif // JSUPTRLINK_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NAMEOBJADAPTOR_H
+#define NAMEOBJADAPTOR_H
 
 #include "types.h"
 #include "actor/nameobj/NameObj.h"
@@ -26,3 +27,5 @@ public:
     MR::FunctorBase* _14;
     MR::FunctorBase* mDrawFunctor; // _18
 };
+
+#endif // NAMEOBJADAPTOR_H

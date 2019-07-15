@@ -1,3 +1,6 @@
+#ifndef GPR_H
+#define GPR_H
+
 #ifdef __cplusplus
 extern "C"  {
 #endif
@@ -13,3 +16,5 @@ extern void _restgpr_31();
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GPR_H

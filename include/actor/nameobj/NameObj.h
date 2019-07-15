@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NAMEOBJ_H
+#define NAMEOBJ_H
 
 #include "types.h"
 #include "JMap/JMapInfoIter.h"
@@ -34,3 +35,5 @@ public:
     static void requestMovementOn(NameObj *);
     static void requestMovementOff(NameObj *);
 };
+
+#endif // NAMEOBJ_H

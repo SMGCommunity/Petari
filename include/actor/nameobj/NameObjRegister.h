@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NAMEOBJREGISTER_H
+#define NAMEOBJREGISTER_H
 
 #include "types.h"
 #include "actor/nameobj/NameObj.h"
@@ -14,3 +15,5 @@ public:
 
     NameObjHolder* mHolder;
 };
+
+#endif // NAMEOBJREGISTER_H

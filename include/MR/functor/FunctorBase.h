@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUNCTORBASE_H
+#define FUNCTORBASE_H
 
 #include "types.h"
 
@@ -18,3 +19,5 @@ namespace MR
         u32 _10;
     };
 };
+
+#endif // FUNCTORBASE_H

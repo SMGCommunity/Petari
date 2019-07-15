@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTIL_H
+#define UTIL_H
 
 #include "actor/nameobj/NameObj.h"
 #include "types.h"
@@ -11,3 +12,5 @@ namespace MR
 
     s32 getHashCode(const char *);
 };
+
+#endif // UTIL_H
