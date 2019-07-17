@@ -8,7 +8,7 @@ namespace JGeometry
     public:
         TVec3();
         TVec3(const TVec3<T> &);
-        TVec3(f32, f32, f32);
+        TVec3(T, T, T);
 
         void set(TVec3<T> const &);
         void zero();
