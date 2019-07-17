@@ -15,4 +15,9 @@ public:
     u32 _18;
 };
 
+namespace MR
+{
+    AllLiveActorGroup* getAllLiveActorGroup();
+};
+
 #endif // ALLLIVEACTORGROUP_H

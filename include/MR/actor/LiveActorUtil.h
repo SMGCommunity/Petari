@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIVEACTORUTIL_H
+#define LIVEACTORUTIL_H
 
 class LiveActor;
 
@@ -9,4 +10,12 @@ namespace MR
     void showModel(LiveActor *);
     void hideModel(LiveActor *);
     void hideModelAndOnCalcAnim(LiveActor *);
+
+    bool isClipped(const LiveActor *);
+    bool isNoEntryDrawBuffer(const LiveActor *);
+
+    void validateCollisionParts(LiveActor *);
+    void invalidateCollisionParts(LiveActor *);
 };
+
+#endif // LIVEACTORUTIL_H
