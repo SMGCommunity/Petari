@@ -7,6 +7,8 @@
 #include "Actor/Nerve/Spine.h"
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
+#include "Collision/Binder.h"
+#include "Effect/EffectKeeper.h"
 #include "JGeometry/TVec3.h"
 
 class LiveActor : public NameObj
@@ -44,9 +46,9 @@ public:
     u32* _4C; // ActorAnimKeeper*
     Spine* mSpine; // _50
     HitSensorKeeper* mSensorKeeper; //_54
-    u32* _58; // Binder*
+    Binder* mBinder; // _58
     u32* _5C; // RailRider*
-    u32* _60; // EffectKeeper*
+    EffectKeeper* mEffectKeeper; // _60
     u32* _64; // AudSoundObject*
     LiveActorFlag mFlags; // _68
     u32* _74; // ShadowController*

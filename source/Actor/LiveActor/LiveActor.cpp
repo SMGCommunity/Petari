@@ -35,9 +35,9 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->_4C = 0;
     this->mSpine = 0;
     this->mSensorKeeper = 0;
-    this->_58 = 0;
+    this->mBinder = 0;
     this->_5C = 0;
-    this->_60 = 0;
+    this->mEffectKeeper = 0;
     this->_64 = 0;
 
     LiveActorFlag flags;
@@ -125,14 +125,14 @@ void LiveActor::makeActorDead()
         this->mSensorKeeper->invalidateBySystem();
     }
 
-    if (this->_58 != 0)
+    if (this->mBinder != 0)
     {
-        // this->_58->clear()
+        this->mBinder->clear();
     }
 
-    if (this->_60 != 0)
+    if (this->mEffectKeeper != 0)
     {
-        // this->_60->clear()
+        this->mEffectKeeper->clear();
     }
 
     if (this->_78 != 0)
