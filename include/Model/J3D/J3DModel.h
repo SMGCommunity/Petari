@@ -1,8 +1,8 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
-#include "J3DModelData.h"
-#include "mtx.h"
+#include "Model/J3D/J3DModelData.h"
+#include "os/mtx.h"
 
 class J3DModel
 {
@@ -22,7 +22,6 @@ public:
     void lock();
     void unlock();
     void makeDL();
-    void calcMaterial();
     void calcAnmMtx();
     void calcWeightEnvelopeMtx();
     void calcBBoardMtx();
@@ -35,7 +34,7 @@ public:
     u32 _C;
     u32 _10;
     u32 _14;
-    const Vec mBaseScale; // _18
+    Vec mBaseScale; // _18
     Mtx _24;
     Mtx _54;
     u32* _84; // J3DMtxBuffer*
@@ -48,5 +47,7 @@ public:
     u32 _D4;
     u32 _D8;
 };
+
+const static f32 J3DDefaultScale = 1.0f;
 
 #endif // J3DMODEL_H
