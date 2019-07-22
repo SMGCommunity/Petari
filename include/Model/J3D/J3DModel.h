@@ -1,19 +1,52 @@
-#ifndef J3DMODELDATA_H
-#define J3DMODELDATA_H
+#ifndef J3DMODEL_H
+#define J3DMODEL_H
 
-#include "types.h"
+#include "J3DModelData.h"
+#include "mtx.h"
 
-class J3DModelData
+class J3DModel
 {
 public:
-    J3DModelData();
+    virtual void update();
+    virtual void entry();
+    virtual void calc();
+    virtual void calcMaterial();
+    virtual void calcDiffTexMtx();
+    virtual void viewCalc();
+    virtual ~J3DModel();
 
-    virtual ~J3DModelData();
+    void initialize();
+    void entryModelData(J3DModelData *, u64, u64);
+    void createShapePacket(J3DModelData *);
+    void createMatPacket(J3DModelData *, u64);
+    void lock();
+    void unlock();
+    void makeDL();
+    void calcMaterial();
+    void calcAnmMtx();
+    void calcWeightEnvelopeMtx();
+    void calcBBoardMtx();
+    void prepareShapePackets();
+    Mtx33* getDrawMtxPtr();
+    void setBaseScale(const Vec &);
 
-    u16 _7C;
-    u16 _7E;
-    u32 _80;
-    u32 _84;
+    u32 _4;
+    u32 _8;
+    u32 _C;
+    u32 _10;
+    u32 _14;
+    const Vec mBaseScale; // _18
+    Mtx _24;
+    Mtx _54;
+    u32* _84; // J3DMtxBuffer*
+    J3DVertexBuffer mVertexBuffer; // _88
+    u32* _C0; // J3DMatPacket*
+    u32 _C4;
+    u32 _C8;
+    u32 _CC;
+    u32 _D0;
+    u32 _D4;
+    u32 _D8;
 };
 
-#endif // J3DMODELDATA_H
+#endif // J3DMODEL_H

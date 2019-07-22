@@ -14,7 +14,7 @@ typedef double              f64;
 
 struct Vec
 {
-    void operator=(const Vec &in);
+    //void operator=(const Vec &in);
 
     f32 x;
     f32 y;
@@ -22,6 +22,7 @@ struct Vec
 };
 
 typedef f32 Mtx[3][4];
+typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
 
 #endif // TYPES_H
