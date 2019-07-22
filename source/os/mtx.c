@@ -4,17 +4,17 @@ void PSMTXIdentity(Mtx matrix)
 {
     __asm
     {
-		lfs f0, (mtx_zero)(r2)
-		lfs f1, (mtx_one)(r2)
-		psq_st f0, 8(r3), 0, 0
-		ps_merge10 f2, f1, f0
-		ps_merge01 f1, f0, f1
-		psq_st f0, 0x18(r3), 0, 0
-		psq_st f0, 0x20(r3), 0, 0
-		psq_st f1, 0x10(r3), 0, 0
-		psq_st f2, 0(r3), 0, 0
-		psq_st f2, 0x28(r3), 0, 0
-		blr
+        lfs f0, (mtx_zero)(r2)
+        lfs f1, (mtx_one)(r2)
+        psq_st f0, 8(r3), 0, 0
+        ps_merge10 f2, f1, f0
+        ps_merge01 f1, f0, f1
+        psq_st f0, 0x18(r3), 0, 0
+        psq_st f0, 0x20(r3), 0, 0
+        psq_st f1, 0x10(r3), 0, 0
+        psq_st f2, 0(r3), 0, 0
+        psq_st f2, 0x28(r3), 0, 0
+        blr
     }
 }
 
