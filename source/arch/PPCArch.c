@@ -80,6 +80,7 @@ void PPCHalt()
     while(1)
     {
         asm("nop");
+        // this is optimized out
         asm("li r3, 0");
         asm("nop");
     }

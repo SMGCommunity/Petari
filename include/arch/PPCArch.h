@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-const char* hid4ErrStr = "H4A should not be cleared because of Broadway errata.\n";
-
 #ifdef __cplusplus
 extern "C" {
 #endif
