@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 numFilesCompiled = 0
+forceCompile = False
 
 def isCmdAvailable(cmd):
     test_cmd = "which" if platform.system() != "Windows" else "where"
@@ -70,6 +71,9 @@ def checkAndPerformAppend(filename):
 
     return False
 
+if "-force" in sys.argv:
+    forceCompile = True
+
 flags = "-i . -I- -i include -nostdinc -Cpp_exceptions off -O2 -proc gekko -fp hard -enum int -sdata 0 -sdata2 0 -g"
 as_flags = "-i . -I- -nostdinc -proc gekko -d __MWERKS__"
 
@@ -98,7 +102,7 @@ assembly_files = [f for f in glob.glob(path + "**/*.s", recursive=True)]
 for f in cpp_files:
     file_name = Path(f).stem
 
-    if checkAndPerformAppend(f):
+    if checkAndPerformAppend(f) and forceCompile == False:
         continue
 	
     print(f"Compiling {file_name}.cpp...")
@@ -111,7 +115,7 @@ for f in cpp_files:
 for f in c_files:
     file_name = Path(f).stem
     
-    if checkAndPerformAppend(f):
+    if checkAndPerformAppend(f) and forceCompile == False:
         continue
 	
     print(f"Compiling {file_name}.c...")
@@ -124,7 +128,7 @@ for f in c_files:
 for f in assembly_files:
     file_name = Path(f).stem
 
-    if checkAndPerformAppend(f):
+    if checkAndPerformAppend(f) and forceCompile == False:
         continue
 	
     print(f"Assembling {file_name}.s...")
