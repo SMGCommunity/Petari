@@ -19,9 +19,7 @@ NameObjHolder::NameObjHolder(s32 a1)
 
 void NameObjHolder::add(NameObj *obj)
 {
-    s32 count = this->_8;
-    this->_8 = count + 1;
-    this->mObjs[count] = obj;
+    this->mObjs[this->_8++] = obj;
 }
 
 void NameObjHolder::suspendAllObj()
