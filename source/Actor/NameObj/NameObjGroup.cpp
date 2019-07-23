@@ -13,7 +13,7 @@ NameObjGroup::NameObjGroup(const char *name, s32 len) : NameObj(name)
 
 void NameObjGroup::registerObj(NameObj *obj)
 {
-    *(NameObj**)(this->mObjs + this->mNumObjs) = obj;
+    this->mObjs[this->mNumObjs] = obj;
     this->mNumObjs++;
 }
 
