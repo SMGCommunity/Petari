@@ -8,4 +8,6 @@ Ensure you have CodeWarrior in your $PATH enviornment. After you have it, just r
 python build.py
 ```
 
+If you do not have CodeWarrior in $PATH, stick the executables into a folder on the root named "tools".
+
 If it successfully builds, all of the binaries are located in the "build" folder.
