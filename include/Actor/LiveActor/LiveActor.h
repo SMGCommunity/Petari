@@ -1,6 +1,7 @@
 #ifndef LIVEACTOR_H
 #define LIVEACTOR_H
 
+#include "Actor/Camera/ActorPadAndCameraCtrl.h"
 #include "Actor/Light/ActorLightCtrl.h"
 #include "Actor/LiveActor/LiveActorFlag.h"
 #include "Actor/NameObj/NameObj.h"
@@ -56,7 +57,7 @@ public:
     u32* _7C; // StageSwitchCtrl*
     u32* _80; // StarPointerTarget*
     ActorLightCtrl* mLightCtrl; // _84
-    u32* _88; // ActorPadAndCameraCtrl*
+    ActorPadAndCameraCtrl* mCameraCtrl; // _88
 
     const static f32 zero;
     const static f32 one;

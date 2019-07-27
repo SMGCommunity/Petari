@@ -14,6 +14,7 @@ namespace MR
     bool isClipped(const LiveActor *);
     bool isNoEntryDrawBuffer(const LiveActor *);
 
+    void setCollisionMtx(LiveActor *);
     void validateCollisionParts(LiveActor *);
     void invalidateCollisionParts(LiveActor *);
     
