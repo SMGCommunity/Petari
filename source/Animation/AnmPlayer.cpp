@@ -3,12 +3,38 @@
 
 void AnmPlayerBase::update()
 {
-    if (this->mSrc == 0)
+    if (this->mJ3DAnmBase == 0)
     {
         return;
     }
 
     this->mFrameCtrl.update();
+}
+
+void AnmPlayerBase::reflectFrame()
+{
+    if (this->mJ3DAnmBase == 0)
+    {
+        return;
+    }
+    
+    this->mJ3DAnmBase->_8 = this->mFrameCtrl._10;
+}
+
+void AnmPlayerBase::start(const char *anmName)
+{
+    J3DAnmBase* res = (J3DAnmBase*)this->mResourceTable->getRes(anmName);
+
+    if (res != this->mJ3DAnmBase)
+    {
+        this->changeAnimation(res);
+        this->mJ3DAnmBase = res;
+    }
+
+    this->mFrameCtrl.init(this->mJ3DAnmBase->_6);
+    this->mFrameCtrl._4 = this->mJ3DAnmBase->_4;
+    this->mFrameCtrl._10 = AnmPlayerBase::one;
+    this->mFrameCtrl._C = AnmPlayerBase::zero;
 }
 
 void AnmPlayerBase::stop()
@@ -20,9 +46,9 @@ void AnmPlayerBase::stop()
 
 bool AnmPlayerBase::isPlaying(const char *anmName) const
 {
-    if (this->mSrc != 0)
+    if (this->mJ3DAnmBase != 0)
     {
-        const char* name = this->mResourceTable->getResName(this->mSrc);
+        const char* name = this->mResourceTable->getResName(this->mJ3DAnmBase);
 
         if (MR::isEqualStringCase(anmName, name) != 0)
         {

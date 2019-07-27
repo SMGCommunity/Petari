@@ -18,13 +18,15 @@ public:
     void stop();
     bool isPlaying(const char *) const;
 
-    const void* mSrc; // _4
+    J3DAnmBase* mJ3DAnmBase; // _4
     const ResTable* mResourceTable; // _8
     J3DFrameCtrl mFrameCtrl; // _C
 
     const static f32 zero;
+    const static f32 one;
 };
 
 const f32 AnmPlayerBase::zero = 0.0f;
+const f32 AnmPlayerBase::one = 1.0f;
 
 #endif // ANMPLAYER_H
