@@ -1,4 +1,5 @@
-#pragma once
+#ifndef JKRDISPOSER_H
+#define JKRDISPOSER_H
 
 #include "jsu/JSUPtrLink.h"
 
@@ -14,3 +15,5 @@ public:
     JKRHeap* mRootHeap; // _4
     JSUPtrLink mPointerLinks; // _8
 };
+
+#endif // JKRDISPOSER_H

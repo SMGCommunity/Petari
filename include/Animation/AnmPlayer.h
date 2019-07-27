@@ -1,8 +1,9 @@
 #ifndef ANMPLAYER_H
 #define ANMPLAYER_H
 
-#include "System/ResourceInfo.h"
+#include "System/Resource/ResourceInfo.h"
 #include "Model/J3D/J3DAnimation.h"
+#include "Model/J3D/J3DModelData.h"
 
 class AnmPlayerBase
 {
@@ -24,6 +25,17 @@ public:
 
     const static f32 zero;
     const static f32 one;
+};
+
+class MaterialAnmPlayerBase : public AnmPlayerBase
+{
+public:
+    MaterialAnmPlayerBase(const ResTable *, J3DModelData *);
+
+    void beginDiff();
+    void endDiff();
+
+    J3DModelData* mModelData; // _20
 };
 
 const f32 AnmPlayerBase::zero = 0.0f;

@@ -2,6 +2,7 @@
 #define OBJUTIL_H
 
 #include "Actor/NameObj/NameObj.h"
+#include "System/Resource/ResourceHolder.h"
 
 namespace MR
 {
@@ -11,6 +12,8 @@ namespace MR
     void requestMovementOff(NameObj *);
     void notifyRequestNameObjMovementOnOff();
 
+    ResourceHolder* createAndAddResourceHolder(const char *);
+    void* loadResourceFromArc(const char *, const char *);
 };
 
 #endif // OBJUTIL_H
