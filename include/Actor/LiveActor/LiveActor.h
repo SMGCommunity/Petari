@@ -1,7 +1,9 @@
 #ifndef LIVEACTOR_H
 #define LIVEACTOR_H
 
+#include "Actor/Animation/ActorAnimKeeper.h"
 #include "Actor/Camera/ActorPadAndCameraCtrl.h"
+#include "Actor/Effect/EffectKeeper.h"
 #include "Actor/Light/ActorLightCtrl.h"
 #include "Actor/LiveActor/LiveActorFlag.h"
 #include "Actor/NameObj/NameObj.h"
@@ -9,8 +11,8 @@
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
 #include "Collision/Binder.h"
-#include "Effect/EffectKeeper.h"
 #include "JGeometry/TVec3.h"
+#include "Model/ModelManager.h"
 
 class LiveActor : public NameObj
 {
@@ -37,14 +39,16 @@ public:
     virtual void updateHitSensor(HitSensor *);
 
     HitSensor* getSensor(const char *) const;
+    void updateBinder();
+    void calcAnmMtx();
 
     JGeometry::TVec3<f32> mTranslation; // _C
     JGeometry::TVec3<f32> mRotation; // _18
     JGeometry::TVec3<f32> mScale; // _24
     JGeometry::TVec3<f32> mVelocity; // _30
     JGeometry::TVec3<f32> mGravity; // _3C
-    u32* _48; // ModelManager*
-    u32* _4C; // ActorAnimKeeper*
+    ModelManager* mModelManager; // _48
+    ActorAnimKeeper* mAnimKeeper; // _4C
     Spine* mSpine; // _50
     HitSensorKeeper* mSensorKeeper; //_54
     Binder* mBinder; // _58

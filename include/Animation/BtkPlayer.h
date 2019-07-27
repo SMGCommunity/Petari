@@ -12,6 +12,6 @@ public:
 
     virtual void attach(J3DAnmBase *, J3DModelData *);
     virtual void detach(J3DAnmBase *, J3DModelData *);
-}
+};
 
 #endif // BTKPLAYER_H

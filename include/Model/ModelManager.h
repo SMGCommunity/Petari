@@ -27,7 +27,6 @@ public:
     void updateDL();
 
     void initMaterialAnm();
-    void calc();
     ResourceHolder* getResourceHolder() const;
     J3DModel* getJ3DModel() const;
 

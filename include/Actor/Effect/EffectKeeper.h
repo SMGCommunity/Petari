@@ -24,6 +24,8 @@ public:
     void enableSort();
     void finalizeSort();
 
+    void update();
+
     u8 _0[0x18];
     u32* _18; // HashSortTable*
     u32 _1C;

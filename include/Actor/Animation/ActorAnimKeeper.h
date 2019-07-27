@@ -1,7 +1,7 @@
 #ifndef ACTORANIMKEEPER_H
 #define ACTORANIMKEEPER_H
 
-#include "Actor/LiveActor/LiveActor.h"
+class LiveActor;
 
 class ActorAnimKeeper
 {

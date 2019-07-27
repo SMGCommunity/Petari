@@ -2,8 +2,11 @@
 #include "Actor/LiveActor/AllLiveActorGroup.h"
 #include "Actor/Clipping/ClippingDirector.h"
 #include "Actor/NameObj/NameObjExecuteHolder.h"
+#include "Actor/Shadow/ShadowController.h"
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
+#include "MR/ModelUtil.h"
+#include "MR/SoundUtil.h"
 
 LiveActor::LiveActor(const char *name) : NameObj(name)
 {
@@ -31,8 +34,8 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->mGravity.y = neg_one;
     this->mGravity.z = zero;
 
-    this->_48 = 0;
-    this->_4C = 0;
+    this->mModelManager = 0;
+    this->mAnimKeeper = 0;
     this->mSpine = 0;
     this->mSensorKeeper = 0;
     this->mBinder = 0;
@@ -48,7 +51,7 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->_7C = 0;
     this->_80 = 0;
     this->mLightCtrl = 0;
-    this->_88 = 0;
+    this->mCameraCtrl = 0;
 
     AllLiveActorGroup* group = MR::getAllLiveActorGroup();
     group->registerActor(this);
@@ -60,7 +63,6 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
 void LiveActor::init(const JMapInfoIter &iter) 
 { 
     return;
-
 }
 
 void LiveActor::appear()
@@ -145,5 +147,105 @@ void LiveActor::makeActorDead()
     MR::removeFromClippingTarget(this);
     MR::disconnectToSceneTemporarily(this);
     MR::disconnectToDrawTemporarily(this);
+}
 
+void LiveActor::movement()
+{
+    if (this->mModelManager != 0)
+    {
+        if (this->mFlags.mIsNotReleasedAnimFrame)
+        {
+            this->mModelManager->update();
+
+            if (this->mAnimKeeper != 0)
+            {
+                this->mAnimKeeper->update();
+            }
+        }
+    }
+
+    if (MR::isCalcGravity(this))
+    {
+        MR::calcGravity(this);
+    }
+
+    if (this->mSensorKeeper != 0)
+    {
+        this->mSensorKeeper->doObjCol();
+    }
+
+    if (!this->mFlags.mIsDead)
+    {
+        if (this->mSpine != 0)
+        {
+            this->mSpine->update();
+        }
+
+        if (!this->mFlags.mIsDead)
+        {
+            this->control();
+
+            if (!this->mFlags.mIsDead)
+            {
+                this->updateBinder();
+
+                if (this->mEffectKeeper != 0)
+                {
+                    this->mEffectKeeper->update();
+                }
+
+                if (this->mCameraCtrl != 0)
+                {
+                    this->mCameraCtrl->update();
+                }
+
+                if (this->mLightCtrl != 0)
+                {
+                    MR::updateLightCtrl(this);
+                }
+
+                MR::tryUpdateHitSensorsAll(this);
+                MR::actorSoundMovement(this);
+                MR::requestCalcActorShadow(this);
+            }
+        }
+    }
+}
+
+void LiveActor::calcAnim()
+{
+    if (!this->mFlags.mIsOnCalcAnim)
+    {
+        this->calcAnmMtx();
+    }
+
+    if (this->_78 != 0)
+    {
+        MR::setCollisionMtx(this);
+    }
+}
+
+void LiveActor::calcAnmMtx()
+{
+    if (this->mModelManager != 0)
+    {
+        J3DModel* model = MR::getJ3DModel(this);
+        model->setBaseScale((Vec &)mScale);
+
+        this->calcAndSetBaseMtx();
+        this->mModelManager->calcAnim();
+    }
+}
+
+// for some reason, the compiler emits "cr1" for this specific function
+// todo -- figure out why
+void LiveActor::calcViewAndEntry()
+{
+    if (this->mFlags.mIsNoCalcView)
+    {
+        if (this->mModelManager != 0)
+        {
+            this->mModelManager->calcView();
+        }
+    }
 }
