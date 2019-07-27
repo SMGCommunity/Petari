@@ -16,6 +16,12 @@ namespace MR
 
     void validateCollisionParts(LiveActor *);
     void invalidateCollisionParts(LiveActor *);
+    
+    bool isCalcGravity(const LiveActor *);
+
+    void calcGravity(const LiveActor *);
+
+    void updateLightCtrl(LiveActor *);
 };
 
 #endif // LIVEACTORUTIL_H

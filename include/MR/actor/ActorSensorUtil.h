@@ -5,7 +5,7 @@ class LiveActor;
 
 namespace MR
 {
-    bool tryUpdateHitSensorAll(LiveActor *);
+    bool tryUpdateHitSensorsAll(LiveActor *);
     void clearHitSensors(LiveActor *);
 };
 

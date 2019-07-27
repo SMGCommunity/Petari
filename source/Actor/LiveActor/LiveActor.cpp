@@ -95,7 +95,7 @@ void LiveActor::makeActorAppeared()
         this->mLightCtrl->reset();
     }
 
-    MR::tryUpdateHitSensorAll(this);
+    MR::tryUpdateHitSensorsAll(this);
     MR::addToClippingTarget(this);
     MR::connectToSceneTemporarily(this);
     
