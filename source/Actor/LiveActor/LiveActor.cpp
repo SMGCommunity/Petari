@@ -249,3 +249,8 @@ void LiveActor::calcViewAndEntry()
         }
     }
 }
+
+void LiveActor::setNerve(const Nerve *nerve)
+{
+    this->mSpine->setNerve(nerve);
+}

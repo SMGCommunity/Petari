@@ -41,6 +41,7 @@ public:
     HitSensor* getSensor(const char *) const;
     void updateBinder();
     void calcAnmMtx();
+    void setNerve(const Nerve *);
 
     JGeometry::TVec3<f32> mTranslation; // _C
     JGeometry::TVec3<f32> mRotation; // _18
