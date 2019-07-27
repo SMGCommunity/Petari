@@ -2,13 +2,14 @@
 
 namespace MR
 {
-    s32 getHashCode(const char *str)
+    s32 getHashCode(char *str)
     {
         s32 hash = 0;
 
-        while(*str)
+        while (*str)
         {
-            hash = (hash * 0x1F) + *str++;
+            hash = (hash * 0x1F) + *str;
+            str++;
         }
 
         return hash;
