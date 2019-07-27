@@ -2,7 +2,7 @@
 
 namespace MR
 {
-    s32 getHashCode(char *str)
+    s32 getHashCode(const char *str)
     {
         s32 hash = 0;
 
