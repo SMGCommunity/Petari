@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Actor/NameObj/NameObjRegister.h"
-#include "MR/util.h"
+#include "MR/ObjUtil.h"
 #include "SingletonHolder.h"
 
 NameObj::NameObj(const char *name)
