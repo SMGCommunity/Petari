@@ -1,6 +1,8 @@
 #ifndef LIVEACTORUTIL_H
 #define LIVEACTORUTIL_H
 
+#include "types.h"
+
 class LiveActor;
 
 namespace MR
@@ -23,6 +25,7 @@ namespace MR
     void calcGravity(const LiveActor *);
 
     void updateLightCtrl(LiveActor *);
+    void setBaseTRMtx(LiveActor *, Mtx);
 };
 
 #endif // LIVEACTORUTIL_H

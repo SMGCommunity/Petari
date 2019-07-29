@@ -5,6 +5,7 @@
 #include "Actor/Shadow/ShadowController.h"
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
+#include "MR/actor/LiveActorUtil.h"
 #include "MR/ModelUtil.h"
 #include "MR/SoundUtil.h"
 
@@ -250,7 +251,112 @@ void LiveActor::calcViewAndEntry()
     }
 }
 
+s32 LiveActor::receiveMessage(u32 msg, HitSensor *taking, HitSensor *taken)
+{
+    if (msg == 0x29)
+    {
+        return this->receiveMsgPush(taking, taken);
+    }
+
+    s32 flag = 0;
+
+    if (msg != 0)
+    {
+        if (msg < 0x4A)
+        {
+            flag = 1;
+        }
+    }
+
+    if (flag != 0)
+    {
+        return this->receiveMsgPlayerAttack(msg, taking, taken);
+    }
+
+    flag = 0;
+
+    if (flag < 0x65)
+    {
+        flag = 1;
+    }
+
+    if (flag != 0)
+    {
+        return this->receiveMsgEnemyAttack(msg, taking, taken);
+    }
+
+    if (msg == 0x1E)
+    {
+        return this->receiveMsgTake(taking, taken);
+    }
+
+    if (msg == 0x1F)
+    {
+        return this->receiveMsgTaken(taking, taken);
+    }
+
+    if (msg == 0x22)
+    {
+        return this->receiveMsgThrow(taking, taken);
+    }
+
+    if (msg == 0x21)
+    {
+        return this->receiveMsgApart(taking, taken);
+    }
+
+    return this->receiveMsgOtherMsg(msg, taking, taken);
+}
+
+void LiveActor::calcAndSetBaseMtx()
+{
+    if (MR::getTaken(this) != 0)
+    {
+        HitSensor* taken = MR::getTaken(this);
+        Mtx* takenMtx = taken->mActor->getBaseMtx();
+        MR::setBaseTRMtx(this, *takenMtx);
+    }
+    else
+    {
+        Mtx mtx;
+
+        if ((this->mRotation.x == LiveActor::zero) && this->mRotation.z == LiveActor::zero)
+        {
+            MR::makeMtxTransRotateY(mtx, this);   
+        }
+        else
+        {
+            MR::makeMtxTR(mtx, this);
+        }
+
+        // todo -- there's a setmtx call here
+    }
+    
+}
+
+Mtx* LiveActor::getTakingMtx() const
+{
+    return this->getBaseMtx();
+}
+
 void LiveActor::setNerve(const Nerve *nerve)
 {
     this->mSpine->setNerve(nerve);
+}
+
+// LiveActor::isNerve()
+
+u32 LiveActor::getNerveStep() const
+{
+    return this->mSpine->mNerveStep;
+}
+
+HitSensor* LiveActor::getSensor(const char *sensorName) const
+{
+    if (this->mSensorKeeper != 0)
+    {
+        return this->mSensorKeeper->getSensor(sensorName);
+    }
+
+    return 0;
 }

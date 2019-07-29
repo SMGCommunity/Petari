@@ -29,19 +29,30 @@ public:
     virtual void makeActorAppeared();
     virtual void kill();
     virtual void makeActorDead();
-    virtual void recieveMessage(u64, HitSensor *, HitSensor *);
-    virtual f32* getBaseMtx() const;
-    virtual f32* getTakingMtx() const;
+    virtual u32 receiveMessage(u32, HitSensor *, HitSensor *);
+    virtual Mtx* getBaseMtx() const;
+    virtual Mtx* getTakingMtx() const;
     virtual void startClipped();
     virtual void endClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual void updateHitSensor(HitSensor *);
+    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgPush(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveMsgTake(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgTaken(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgThrow(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
-    HitSensor* getSensor(const char *) const;
     void updateBinder();
     void calcAnmMtx();
     void setNerve(const Nerve *);
+    bool isNerve(const Nerve *) const;
+    u32 getNerveStep() const;
+    HitSensor* getSensor(const char *) const;
 
     JGeometry::TVec3<f32> mTranslation; // _C
     JGeometry::TVec3<f32> mRotation; // _18
