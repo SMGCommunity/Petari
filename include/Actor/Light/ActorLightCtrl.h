@@ -25,6 +25,7 @@ public:
     u32* _10; // AreaLightInfo*
     ZoneLightID mZoneLightID; // _14
     u32 _1C;
+    u8 _20[0x58-0x20];
 };
 
 #endif // ACTORLIGHTCTRL_H

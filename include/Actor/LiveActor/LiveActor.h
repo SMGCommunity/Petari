@@ -10,6 +10,8 @@
 #include "Actor/Nerve/Spine.h"
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
+#include "Actor/StarPointer/StarPointerTarget.h"
+#include "Actor/Switch/StageSwitch.h"
 #include "Collision/Binder.h"
 #include "JGeometry/TVec3.h"
 #include "Model/ModelManager.h"
@@ -47,7 +49,6 @@ public:
     virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
     virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
-    void updateBinder();
     void calcAnmMtx();
     void setNerve(const Nerve *);
     bool isNerve(const Nerve *) const;
@@ -57,6 +58,12 @@ public:
     void initNerve(const Nerve *);
     void initHitSensor(s32);
     void initBinder(f32, f32, u32);
+
+    void initStageSwitch(const JMapInfoIter &);
+    void initActorStarPointerTarget(f32, const JGeometry::TVec3<f32> *, Mtx *, JGeometry::TVec3<f32>);
+    void initActorLightCtrl();
+    void addToSoundObjHolder();
+    void updateBinder();
 
     JGeometry::TVec3<f32> mTranslation; // _C
     JGeometry::TVec3<f32> mRotation; // _18
@@ -74,8 +81,8 @@ public:
     LiveActorFlag mFlags; // _68
     u32* _74; // ShadowController*
     u32* _78; // CollisionParts*
-    u32* _7C; // StageSwitchCtrl*
-    u32* _80; // StarPointerTarget*
+    StageSwitchCtrl* mStageSwitchCtrl; // _7C
+    StarPointerTarget* mPointerTarget; // _80
     ActorLightCtrl* mLightCtrl; // _84
     ActorPadAndCameraCtrl* mCameraCtrl; // _88
 

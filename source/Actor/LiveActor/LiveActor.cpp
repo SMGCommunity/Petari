@@ -49,8 +49,8 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
 
     this->_74 = 0;
     this->_78 = 0;
-    this->_7C = 0;
-    this->_80 = 0;
+    this->mStageSwitchCtrl = 0;
+    this->mPointerTarget = 0;
     this->mLightCtrl = 0;
     this->mCameraCtrl = 0;
 
@@ -447,4 +447,54 @@ void LiveActor::initBinder(f32 a1, f32 a2, u32 a3)
     {
         this->mEffectKeeper->setBinder(this->mBinder);
     }
+}
+
+void LiveActor::initStageSwitch(const JMapInfoIter &iter)
+{
+    this->mStageSwitchCtrl = MR::createStageSwitchCtrl(this, iter);
+}
+
+void LiveActor::initActorStarPointerTarget(f32 a1, const JGeometry::TVec3<f32> *a2, Mtx *a3, JGeometry::TVec3<f32> a4)
+{
+    this->mPointerTarget = new StarPointerTarget(a1, a2, a3, a4);
+}
+
+void LiveActor::initActorLightCtrl()
+{
+    this->mLightCtrl = new ActorLightCtrl(this);
+}
+
+void LiveActor::attackSensor(HitSensor* taking, HitSensor* taken)
+{
+    return;
+}
+
+u32 LiveActor::receiveMsgApart(HitSensor* taking, HitSensor* taken)
+{
+    MR::setHitSensorApart(taking, taken);
+    return 1;
+}
+
+// LiveActor::addToSoundObjHolder()
+
+void LiveActor::updateBinder()
+{
+    if (this->mBinder == 0)
+    {
+        this->mTranslation += this->mGravity;
+    }
+    else
+    {
+        if (this->mFlags.mIsOnBind != 0)
+        {
+            this->mTranslation += this->mGravity;
+            this->mBinder->clear();
+        }
+        else
+        {
+            JGeometry::TVec3<f32> what;
+            Binder::bind(what, this->mBinder, this->mGravity);
+            this->mTranslation += what;
+        }
+    }  
 }

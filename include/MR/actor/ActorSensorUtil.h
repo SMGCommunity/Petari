@@ -10,6 +10,8 @@ namespace MR
     void clearHitSensors(LiveActor *);
     HitSensor* getTaken(const LiveActor *);
     HitSensor* getTaking(const LiveActor *);
+
+    u32 setHitSensorApart(HitSensor *, HitSensor *);
 };
 
 #endif // ACTORSENSORUTIL_H
