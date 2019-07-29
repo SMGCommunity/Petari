@@ -17,6 +17,9 @@ public:
     void addEffect(const char *, LiveActor *);
     void registerEffect(const char *, Mtx *, const char *, const char *);
 
+    void updateAttributeEffect();
+    void stopEmitterOnClipped();
+    void playEmitterOffClipped();
     void clear();
     void changeBck();
     void onDraw();

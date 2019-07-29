@@ -360,3 +360,54 @@ HitSensor* LiveActor::getSensor(const char *sensorName) const
 
     return 0;
 }
+
+// LiveActor::getBaseMtx()
+
+void LiveActor::startClipped()
+{
+    bool flag = 1;
+    HitSensorKeeper* keeper = this->mSensorKeeper;
+    this->mFlags._7 = flag;
+
+    if (keeper != 0)
+    {
+        this->mSensorKeeper->invalidateBySystem();
+    }
+
+    if (this->mEffectKeeper != 0)
+    {
+        this->mEffectKeeper->stopEmitterOnClipped();
+    }
+
+    MR::disconnectToSceneTemporarily(this);
+
+    if (MR::isNoEntryDrawBuffer(this) == 0)
+    {
+        MR::disconnectToDrawTemporarily(this);
+    }
+}
+
+void LiveActor::endClipped()
+{
+    bool flag = 0;
+    HitSensorKeeper* keeper = this->mSensorKeeper;
+    this->mFlags._7 = flag;
+
+    if (keeper != 0)
+    {
+        this->mSensorKeeper->validateBySystem();
+        MR::updateHitSensorsAll(this);
+    }
+
+    if (this->mEffectKeeper != 0)
+    {
+        this->mEffectKeeper->playEmitterOffClipped();
+    }
+
+    MR::connectToSceneTemporarily(this);
+
+    if (MR::isNoEntryDrawBuffer(this) == 0)
+    {
+        MR::connectToDrawTemporarily(this);
+    }
+}

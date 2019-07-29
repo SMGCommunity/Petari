@@ -6,6 +6,7 @@
 namespace MR
 {
     bool tryUpdateHitSensorsAll(LiveActor *);
+    void updateHitSensorsAll(LiveActor *);
     void clearHitSensors(LiveActor *);
     HitSensor* getTaken(const LiveActor *);
     HitSensor* getTaking(const LiveActor *);
