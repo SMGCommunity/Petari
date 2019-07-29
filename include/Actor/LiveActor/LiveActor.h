@@ -10,6 +10,7 @@
 #include "Actor/Nerve/Spine.h"
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
+#include "Actor/Shadow/ShadowController.h"
 #include "Actor/StarPointer/StarPointerTarget.h"
 #include "Actor/Switch/StageSwitch.h"
 #include "Collision/Binder.h"
@@ -59,6 +60,7 @@ public:
     void initHitSensor(s32);
     void initBinder(f32, f32, u32);
 
+    void initShadowControllerList(u32);
     void initStageSwitch(const JMapInfoIter &);
     void initActorStarPointerTarget(f32, const JGeometry::TVec3<f32> *, Mtx *, JGeometry::TVec3<f32>);
     void initActorLightCtrl();
@@ -79,7 +81,7 @@ public:
     EffectKeeper* mEffectKeeper; // _60
     u32* _64; // AudSoundObject*
     LiveActorFlag mFlags; // _68
-    u32* _74; // ShadowController*
+    ShadowControllerList* mShadowController; // _74
     u32* _78; // CollisionParts*
     StageSwitchCtrl* mStageSwitchCtrl; // _7C
     StarPointerTarget* mPointerTarget; // _80

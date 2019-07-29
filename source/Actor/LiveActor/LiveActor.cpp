@@ -47,7 +47,7 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     LiveActorFlag flags;
     this->mFlags = flags;
 
-    this->_74 = 0;
+    this->mShadowController = 0;
     this->_78 = 0;
     this->mStageSwitchCtrl = 0;
     this->mPointerTarget = 0;
@@ -447,6 +447,11 @@ void LiveActor::initBinder(f32 a1, f32 a2, u32 a3)
     {
         this->mEffectKeeper->setBinder(this->mBinder);
     }
+}
+
+void LiveActor::initShadowControllerList(u32 listNum)
+{
+    this->mShadowController = new ShadowControllerList(this, listNum);
 }
 
 void LiveActor::initStageSwitch(const JMapInfoIter &iter)
