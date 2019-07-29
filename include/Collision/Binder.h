@@ -7,7 +7,7 @@
 class Binder
 {
 public:
-    Binder(f32 *[4], const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> *, f32, f32, u64);
+    Binder(Mtx *, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> *, f32, f32, u64);
 
     void clear();
 

@@ -9,6 +9,7 @@ class ActorPadAndCameraCtrl
 public:
     ActorPadAndCameraCtrl(const ModelManager *, const JGeometry::TVec3<f32> *);
 
+    static ActorPadAndCameraCtrl* tryCreate(const ModelManager *, const JGeometry::TVec3<f32> *);
     void update();
 
     ModelManager* mModelManager; // _0

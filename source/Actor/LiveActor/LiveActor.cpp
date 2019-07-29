@@ -411,3 +411,40 @@ void LiveActor::endClipped()
         MR::connectToDrawTemporarily(this);
     }
 }
+
+void LiveActor::initModelManagerWithAnm(const char *a1, const char *a2, bool a3)
+{
+    ModelManager* manager = new ModelManager();
+    this->mModelManager = manager;
+    mModelManager->init(a1, a2, a3);
+    
+    J3DModel* model = MR::getJ3DModel(this);
+    model->setBaseScale((Vec&)this->mScale);
+    this->calcAndSetBaseMtx();
+    MR::calcJ3DModel(this);
+
+    this->mAnimKeeper = ActorAnimKeeper::tryCreate(this);
+    this->mCameraCtrl = ActorPadAndCameraCtrl::tryCreate(this->mModelManager, &this->mTranslation);
+}
+
+void LiveActor::initNerve(const Nerve *nerve)
+{
+    this->mSpine = new Spine(this, nerve);
+}
+
+void LiveActor::initHitSensor(s32 numSensors)
+{
+    this->mSensorKeeper = new HitSensorKeeper(numSensors);
+}
+
+void LiveActor::initBinder(f32 a1, f32 a2, u32 a3)
+{
+    Mtx* baseMtx = this->getBaseMtx();
+    this->mBinder = new Binder(baseMtx, &this->mTranslation, &this->mGravity, a1, a2, a3);
+    MR::onBind(this);
+
+    if (this->mEffectKeeper != 0)
+    {
+        this->mEffectKeeper->setBinder(this->mBinder);
+    }
+}

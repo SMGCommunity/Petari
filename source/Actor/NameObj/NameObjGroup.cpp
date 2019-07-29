@@ -19,8 +19,6 @@ void NameObjGroup::registerObj(NameObj *obj)
 
 void NameObjGroup::pauseOffAll() const
 {
-    _savegpr_29();
-
     u32 curObjIdx = 0;
 
     while (curObjIdx < this->mNumObjs)
@@ -28,8 +26,6 @@ void NameObjGroup::pauseOffAll() const
         MR::requestMovementOn(this->mObjs[curObjIdx]);
         curObjIdx++;
     }
-
-    _restgpr_29();
 }
 
 void NameObjGroup::initObjArray(s32 numObjs)

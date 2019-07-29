@@ -53,6 +53,10 @@ public:
     bool isNerve(const Nerve *) const;
     u32 getNerveStep() const;
     HitSensor* getSensor(const char *) const;
+    void initModelManagerWithAnm(const char *, const char *, bool);
+    void initNerve(const Nerve *);
+    void initHitSensor(s32);
+    void initBinder(f32, f32, u32);
 
     JGeometry::TVec3<f32> mTranslation; // _C
     JGeometry::TVec3<f32> mRotation; // _18
