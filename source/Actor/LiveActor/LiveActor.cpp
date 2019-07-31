@@ -40,7 +40,7 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->mSpine = 0;
     this->mSensorKeeper = 0;
     this->mBinder = 0;
-    this->_5C = 0;
+    this->mRailRider = 0;
     this->mEffectKeeper = 0;
     this->_64 = 0;
 
@@ -448,6 +448,33 @@ void LiveActor::initBinder(f32 a1, f32 a2, u32 a3)
         this->mEffectKeeper->setBinder(this->mBinder);
     }
 }
+
+void LiveActor::initRailRider(const JMapInfoIter &iter)
+{
+    this->mRailRider = new RailRider(iter);
+}
+
+void LiveActor::initEffectKeeper(s32 effectCount, const char *resName, bool enableSort)
+{
+    const char* objName = this->mName;
+    ResourceHolder* holder = MR::getModelResourceHolder(this);
+    EffectKeeper* effectKeeper = new EffectKeeper(objName, holder, effectCount, resName);
+    this->mEffectKeeper = effectKeeper;
+
+    if (enableSort)
+    {
+        effectKeeper->enableSort();
+    }
+    
+    this->mEffectKeeper->init(this);
+
+    if (this->mBinder != 0)
+    {
+        this->mEffectKeeper->setBinder(this->mBinder);
+    }
+}
+
+// LiveActor::initSound()
 
 void LiveActor::initShadowControllerList(u32 listNum)
 {

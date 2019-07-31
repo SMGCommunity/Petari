@@ -2,6 +2,7 @@
 #define LIVEACTORUTIL_H
 
 #include "types.h"
+#include "System/Resource/ResourceHolder.h"
 
 class LiveActor;
 
@@ -29,6 +30,8 @@ namespace MR
 
     void updateLightCtrl(LiveActor *);
     void setBaseTRMtx(LiveActor *, Mtx);
+
+    ResourceHolder* getModelResourceHolder(const LiveActor *);
 };
 
 #endif // LIVEACTORUTIL_H

@@ -8,6 +8,7 @@
 #include "Actor/LiveActor/LiveActorFlag.h"
 #include "Actor/NameObj/NameObj.h"
 #include "Actor/Nerve/Spine.h"
+#include "Actor/Rail/RailRider.h"
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
 #include "Actor/Shadow/ShadowController.h"
@@ -59,7 +60,9 @@ public:
     void initNerve(const Nerve *);
     void initHitSensor(s32);
     void initBinder(f32, f32, u32);
-
+    void initRailRider(const JMapInfoIter &);
+    void initEffectKeeper(s32, const char *, bool);
+    void initSound(s32, bool);
     void initShadowControllerList(u32);
     void initStageSwitch(const JMapInfoIter &);
     void initActorStarPointerTarget(f32, const JGeometry::TVec3<f32> *, Mtx *, JGeometry::TVec3<f32>);
@@ -77,7 +80,7 @@ public:
     Spine* mSpine; // _50
     HitSensorKeeper* mSensorKeeper; //_54
     Binder* mBinder; // _58
-    u32* _5C; // RailRider*
+    RailRider* mRailRider; // _5C
     EffectKeeper* mEffectKeeper; // _60
     u32* _64; // AudSoundObject*
     LiveActorFlag mFlags; // _68
