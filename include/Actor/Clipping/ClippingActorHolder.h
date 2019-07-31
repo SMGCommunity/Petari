@@ -3,6 +3,7 @@
 
 #include "Actor/Clipping/ClippingActorInfo.h"
 #include "Actor/LiveActor/LiveActor.h"
+#include "Actor/LOD/LodCtrl.h"
 #include "Actor/NameObj/NameObj.h"
 
 class ClippingActorHolder : public NameObj
@@ -14,6 +15,7 @@ public:
     virtual void movement();
 
     void initViewGroupTable();
+    void entryLodCtrl(LodCtrl *, const JMapInfoIter &);
     void registerActor(LiveActor *);
     void initSystemInfo(LiveActor *, const JMapInfoIter &);
 

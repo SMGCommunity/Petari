@@ -60,3 +60,8 @@ void ClippingDirector::joinToGroupClipping(LiveActor *actor, const JMapInfoIter 
     ClippingActorInfo* info = this->mActorHolder->startGroupClipping(actor, iter);
     this->mGroupHolder->createAndAdd(info, iter, unk1);
 }
+
+void ClippingDirector::entryLodCtrl(LodCtrl* lodCtrl, const JMapInfoIter &iter)
+{
+    this->mActorHolder->entryLodCtrl(lodCtrl, iter);
+}
