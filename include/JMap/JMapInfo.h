@@ -1,5 +1,6 @@
 #pragma once
 
+#include "bcsv.h"
 #include "types.h"
 
 class JMapInfo
@@ -14,6 +15,6 @@ public:
     s32 searchItemInfo(const char *) const;
     char getValueType(const char *) const;
 
-    const void* mMap;
+    const BCSVHeader* mMap;
     const char* mName;
 };
