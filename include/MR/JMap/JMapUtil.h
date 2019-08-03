@@ -9,6 +9,7 @@ bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);
 
 namespace MR
 {
+    bool isValidInfo(const JMapInfoIter &);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, bool *);

@@ -32,6 +32,11 @@ bool getJMapInfoArgNoInit(const JMapInfoIter &iter, const char *name, s32 *out)
 
 namespace MR
 {
+    bool isValidInfo(const JMapInfoIter &iter)
+    {
+        return iter.isValid();
+    }
+
     bool getJMapInfoArg0NoInit(const JMapInfoIter &iter, s32 *out)
     {
         return getJMapInfoArgNoInit(iter, "Obj_arg0", out);
