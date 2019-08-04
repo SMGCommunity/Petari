@@ -20,9 +20,7 @@ void Spine::update()
 void Spine::setNerve(const Nerve *nerve)
 {
     if (this->mNerveStep > 0)
-    {
         this->mCurState->executeOnEnd(this);
-    }
 
     this->mNextState = nerve;
     this->mNerveStep = -1;
@@ -31,9 +29,7 @@ void Spine::setNerve(const Nerve *nerve)
 const Nerve* Spine::getCurrentNerve() const
 {
     if (this->mNextState == 0)
-    {
         return this->mCurState;
-    }
 
     return this->mNextState;
 }
@@ -41,9 +37,7 @@ const Nerve* Spine::getCurrentNerve() const
 void Spine::changeNerve()
 {
     if (this->mNextState == 0)
-    {
         return;
-    }
 
     if (this->mStateKeeper != 0)
     {

@@ -22,9 +22,7 @@ LiveActor* LiveActorGroup::getDeadActor() const
         if (curObjIdx < this->mNumObjs)
         {
             if (!MR::isDead((LiveActor*)this->mObjs[curObjIdx]))
-            {
                 curObjIdx++;
-            }
             else
             {
                 actor = (LiveActor*)this->mObjs[curObjIdx];
@@ -49,9 +47,7 @@ s32 LiveActorGroup::getLivingActorNum() const
     while(curObjIdx < this->mNumObjs)
     {
         if (MR::isDead((LiveActor*)this->mObjs[curObjIdx]) == 0)
-        {
             actorNum++;
-        }
 
         curObjIdx++;
     }

@@ -3,6 +3,7 @@
 #include "Actor/Clipping/ClippingDirector.h"
 #include "Actor/NameObj/NameObjExecuteHolder.h"
 #include "Actor/Shadow/ShadowController.h"
+#include "defines.h"
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
 #include "MR/actor/LiveActorUtil.h"
@@ -124,19 +125,13 @@ void LiveActor::makeActorDead()
     MR::clearHitSensors(this);
 
     if (this->mSensorKeeper != 0)
-    {
         this->mSensorKeeper->invalidateBySystem();
-    }
 
     if (this->mBinder != 0)
-    {
         this->mBinder->clear();
-    }
 
     if (this->mEffectKeeper != 0)
-    {
         this->mEffectKeeper->clear();
-    }
 
     if (this->_78 != 0)
     {
@@ -159,16 +154,12 @@ void LiveActor::movement()
             this->mModelManager->update();
 
             if (this->mAnimKeeper != 0)
-            {
                 this->mAnimKeeper->update();
-            }
         }
     }
 
     if (MR::isCalcGravity(this))
-    {
         MR::calcGravity(this);
-    }
 
     if (this->mSensorKeeper != 0)
     {
@@ -178,9 +169,7 @@ void LiveActor::movement()
     if (!this->mFlags.mIsDead)
     {
         if (this->mSpine != 0)
-        {
             this->mSpine->update();
-        }
 
         if (!this->mFlags.mIsDead)
         {
@@ -191,19 +180,13 @@ void LiveActor::movement()
                 this->updateBinder();
 
                 if (this->mEffectKeeper != 0)
-                {
                     this->mEffectKeeper->update();
-                }
 
                 if (this->mCameraCtrl != 0)
-                {
                     this->mCameraCtrl->update();
-                }
 
                 if (this->mLightCtrl != 0)
-                {
                     MR::updateLightCtrl(this);
-                }
 
                 MR::tryUpdateHitSensorsAll(this);
                 MR::actorSoundMovement(this);
@@ -216,9 +199,7 @@ void LiveActor::movement()
 void LiveActor::calcAnim()
 {
     if (!this->mFlags.mIsOnCalcAnim)
-    {
         this->calcAnmMtx();
-    }
 
     if (this->_78 != 0)
     {
@@ -245,65 +226,45 @@ void LiveActor::calcViewAndEntry()
     if (this->mFlags.mIsNoCalcView)
     {
         if (this->mModelManager != 0)
-        {
             this->mModelManager->calcView();
-        }
     }
 }
 
 s32 LiveActor::receiveMessage(u32 msg, HitSensor *taking, HitSensor *taken)
 {
     if (msg == 0x29)
-    {
         return this->receiveMsgPush(taking, taken);
-    }
 
     s32 flag = 0;
 
     if (msg != 0)
     {
         if (msg < 0x4A)
-        {
             flag = 1;
-        }
     }
 
     if (flag != 0)
-    {
         return this->receiveMsgPlayerAttack(msg, taking, taken);
-    }
 
     flag = 0;
 
     if (flag < 0x65)
-    {
         flag = 1;
-    }
 
     if (flag != 0)
-    {
         return this->receiveMsgEnemyAttack(msg, taking, taken);
-    }
 
     if (msg == 0x1E)
-    {
         return this->receiveMsgTake(taking, taken);
-    }
 
     if (msg == 0x1F)
-    {
         return this->receiveMsgTaken(taking, taken);
-    }
 
     if (msg == 0x22)
-    {
         return this->receiveMsgThrow(taking, taken);
-    }
 
     if (msg == 0x21)
-    {
         return this->receiveMsgApart(taking, taken);
-    }
 
     return this->receiveMsgOtherMsg(msg, taking, taken);
 }
@@ -321,13 +282,9 @@ void LiveActor::calcAndSetBaseMtx()
         Mtx mtx;
 
         if ((this->mRotation.x == LiveActor::zero) && this->mRotation.z == LiveActor::zero)
-        {
             MR::makeMtxTransRotateY(mtx, this);   
-        }
         else
-        {
             MR::makeMtxTR(mtx, this);
-        }
 
         // todo -- there's a setmtx call here
     }
@@ -344,7 +301,14 @@ void LiveActor::setNerve(const Nerve *nerve)
     this->mSpine->setNerve(nerve);
 }
 
-// LiveActor::isNerve()
+bool LiveActor::isNerve(const Nerve *nerve) const
+{
+    // this adds some weird instructions
+    const Nerve* curNerve = this->mSpine->getCurrentNerve();
+    s32 what = curNerve - nerve;
+    s32 blah = __cntlzw(what);
+    return blah >> 5;
+}
 
 u32 LiveActor::getNerveStep() const
 {
@@ -354,9 +318,7 @@ u32 LiveActor::getNerveStep() const
 HitSensor* LiveActor::getSensor(const char *sensorName) const
 {
     if (this->mSensorKeeper != 0)
-    {
         return this->mSensorKeeper->getSensor(sensorName);
-    }
 
     return 0;
 }
@@ -370,21 +332,15 @@ void LiveActor::startClipped()
     this->mFlags._7 = flag;
 
     if (keeper != 0)
-    {
         this->mSensorKeeper->invalidateBySystem();
-    }
 
     if (this->mEffectKeeper != 0)
-    {
         this->mEffectKeeper->stopEmitterOnClipped();
-    }
 
     MR::disconnectToSceneTemporarily(this);
 
     if (MR::isNoEntryDrawBuffer(this) == 0)
-    {
         MR::disconnectToDrawTemporarily(this);
-    }
 }
 
 void LiveActor::endClipped()
@@ -400,16 +356,12 @@ void LiveActor::endClipped()
     }
 
     if (this->mEffectKeeper != 0)
-    {
         this->mEffectKeeper->playEmitterOffClipped();
-    }
 
     MR::connectToSceneTemporarily(this);
 
     if (MR::isNoEntryDrawBuffer(this) == 0)
-    {
         MR::connectToDrawTemporarily(this);
-    }
 }
 
 void LiveActor::initModelManagerWithAnm(const char *a1, const char *a2, bool a3)
@@ -444,9 +396,7 @@ void LiveActor::initBinder(f32 a1, f32 a2, u32 a3)
     MR::onBind(this);
 
     if (this->mEffectKeeper != 0)
-    {
         this->mEffectKeeper->setBinder(this->mBinder);
-    }
 }
 
 void LiveActor::initRailRider(const JMapInfoIter &iter)
@@ -462,16 +412,12 @@ void LiveActor::initEffectKeeper(s32 effectCount, const char *resName, bool enab
     this->mEffectKeeper = effectKeeper;
 
     if (enableSort)
-    {
         effectKeeper->enableSort();
-    }
     
     this->mEffectKeeper->init(this);
 
     if (this->mBinder != 0)
-    {
         this->mEffectKeeper->setBinder(this->mBinder);
-    }
 }
 
 // LiveActor::initSound()
@@ -512,9 +458,7 @@ u32 LiveActor::receiveMsgApart(HitSensor* taking, HitSensor* taken)
 void LiveActor::updateBinder()
 {
     if (this->mBinder == 0)
-    {
         this->mTranslation += this->mGravity;
-    }
     else
     {
         if (this->mFlags.mIsOnBind != 0)

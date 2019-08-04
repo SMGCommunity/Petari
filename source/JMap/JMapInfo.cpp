@@ -40,9 +40,7 @@ s32 JMapInfo::searchItemInfo(const char *name) const
     const BCSVHeader* header = this->mMap;
 
     if (header == 0x0)
-    {
        return -1; 
-    }
     else
     {
         if (header != 0)

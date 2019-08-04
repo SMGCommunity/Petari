@@ -14,9 +14,7 @@ public:
     u16 _E;
     u16 _10;
     u16 _12; // padding?
-    f32 _14;
-    f32 _18;
-    f32 _1C;
+    JGeometry::TVec3<f32> mPosition; // _14
 };
 
 void J3DScaleNrmMtx(Mtx44 *, const Vec &);

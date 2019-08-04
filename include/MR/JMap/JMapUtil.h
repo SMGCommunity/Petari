@@ -44,6 +44,9 @@ namespace MR
     bool isConnectedWithRail(const JMapInfoIter &);
     bool isExistStageSwitchA(const JMapInfoIter &);
     bool isExistStageSwitchB(const JMapInfoIter &);
+    bool isExistStageSwitchAppear(const JMapInfoIter &);
+    bool isExistStageSwitchDead(const JMapInfoIter &);
+    bool isExistStageSwitchSleep(const JMapInfoIter &);
 };
 
 bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s64 *);
