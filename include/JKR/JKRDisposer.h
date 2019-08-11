@@ -1,7 +1,7 @@
 #ifndef JKRDISPOSER_H
 #define JKRDISPOSER_H
 
-#include "jsu/JSUPtrLink.h"
+#include "JSU/JSUList.h"
 
 class JKRHeap;
 
@@ -13,7 +13,7 @@ public:
     virtual ~JKRDisposer();
 
     JKRHeap* mRootHeap; // _4
-    JSUPtrLink mPointerLinks; // _8
+    JSULink<JKRDisposer> mPointerLinks; // _8
 };
 
 #endif // JKRDISPOSER_H
