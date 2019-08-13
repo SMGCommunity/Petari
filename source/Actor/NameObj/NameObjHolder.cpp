@@ -1,6 +1,5 @@
 #include "actor/NameObj/NameObjHolder.h"
 #include "MR/ObjUtil.h"
-#include "os/gpr.h"
 
 NameObjHolder::NameObjHolder(s32 a1)
 {
