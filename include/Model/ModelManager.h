@@ -28,7 +28,9 @@ public:
 
     void initMaterialAnm();
     ResourceHolder* getResourceHolder() const;
+    ResourceHolder* getModelResourceHolder() const;
     J3DModel* getJ3DModel() const;
+    J3DModelData* getJ3DModelData() const;
 
     BtkPlayer* mBTKPlayer; // _0
     BrkPlayer* mBRKPlayer; // _4

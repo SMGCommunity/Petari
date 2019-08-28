@@ -9,6 +9,7 @@ class ResourceHolder
 public:
     ResourceHolder(JKRArchive &);
 
+    const char* getResName(u32) const;
     bool isExistMaterialAnim();
 
     ResTable* mResourceTable; // _0

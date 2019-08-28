@@ -12,6 +12,7 @@
 #include "Actor/Sensor/HitSensor.h"
 #include "Actor/Sensor/HitSensorKeeper.h"
 #include "Actor/Shadow/ShadowController.h"
+#include "Actor/Sound/AudAnmSoundObject.h"
 #include "Actor/StarPointer/StarPointerTarget.h"
 #include "Actor/Switch/StageSwitch.h"
 #include "Collision/Binder.h"
@@ -82,7 +83,7 @@ public:
     Binder* mBinder; // _58
     RailRider* mRailRider; // _5C
     EffectKeeper* mEffectKeeper; // _60
-    u32* _64; // AudSoundObject*
+    AudAnmSoundObject* mSoundObj; // _64
     LiveActorFlag mFlags; // _68
     ShadowControllerList* mShadowController; // _74
     u32* _78; // CollisionParts*

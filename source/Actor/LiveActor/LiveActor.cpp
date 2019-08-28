@@ -7,6 +7,7 @@
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
 #include "MR/actor/LiveActorUtil.h"
+#include "MR/MemoryUtil.h"
 #include "MR/ModelUtil.h"
 #include "MR/SoundUtil.h"
 
@@ -43,7 +44,7 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->mBinder = 0;
     this->mRailRider = 0;
     this->mEffectKeeper = 0;
-    this->_64 = 0;
+    this->mSoundObj = 0;
 
     LiveActorFlag flags;
     this->mFlags = flags;
@@ -55,13 +56,16 @@ LiveActor::LiveActor(const char *name) : NameObj(name)
     this->mLightCtrl = 0;
     this->mCameraCtrl = 0;
 
+    // register our actor to the "live" actor group, since each actor, when spawned, is technically "alive"
     AllLiveActorGroup* group = MR::getAllLiveActorGroup();
     group->registerActor(this);
 
+    // register our actor to the clipping director for drawing
     ClippingDirector* director = MR::getClippingDirector();
     director->registerActor(this);
 }
 
+// nullsub
 void LiveActor::init(const JMapInfoIter &iter) 
 { 
     return;
@@ -74,16 +78,19 @@ void LiveActor::appear()
 
 void LiveActor::makeActorAppeared()
 {
+    // if there is a sensor keeper, validate it for use
     if (this->mSensorKeeper != 0)
     {
         this->mSensorKeeper->validateBySystem();
     }
 
+    // if the actor is currently clipped, end it
     if (MR::isClipped(this))
     {
         this->endClipped();
     }
 
+    // validate our collision parts, and mark our actor as alive
     u32* colParts = this->_78;
     this->mFlags.mIsDead = 0;
 
@@ -92,13 +99,16 @@ void LiveActor::makeActorAppeared()
         MR::validateCollisionParts(this);
     }
 
+    // reset to default position
     MR::resetPosition(this);
 
+    // reset the light control
     if (this->mLightCtrl != 0)
     {
         this->mLightCtrl->reset();
     }
 
+    // update hit sensors to our new position, add to clipping targets, and connect to the scene
     MR::tryUpdateHitSensorsAll(this);
     MR::addToClippingTarget(this);
     MR::connectToSceneTemporarily(this);
@@ -122,8 +132,10 @@ void LiveActor::makeActorDead()
     this->mVelocity.y = zero;
     this->mVelocity.x = zero;
 
+    // clear all of our hit sensors
     MR::clearHitSensors(this);
 
+    // invalidate our sensor, binder, and effect keepers
     if (this->mSensorKeeper != 0)
         this->mSensorKeeper->invalidateBySystem();
 
@@ -133,13 +145,17 @@ void LiveActor::makeActorDead()
     if (this->mEffectKeeper != 0)
         this->mEffectKeeper->clear();
 
+    // remove collision
     if (this->_78 != 0)
     {
         MR::invalidateCollisionParts(this);
     }
 
+    // mark our actor as dead
     this->mFlags.mIsDead = 1;
 
+    // remove from clipping targets, and remove from the scene
+    // we don't remove this fully as the game can spawn the actor again
     MR::removeFromClippingTarget(this);
     MR::disconnectToSceneTemporarily(this);
     MR::disconnectToDrawTemporarily(this);
@@ -147,6 +163,7 @@ void LiveActor::makeActorDead()
 
 void LiveActor::movement()
 {
+    // if we have a model manager, update our model and the animation keeper
     if (this->mModelManager != 0)
     {
         if (this->mFlags.mIsNotReleasedAnimFrame)
@@ -158,6 +175,7 @@ void LiveActor::movement()
         }
     }
 
+    // if we need to calculate the new gravity, do so
     if (MR::isCalcGravity(this))
         MR::calcGravity(this);
 
@@ -235,6 +253,7 @@ s32 LiveActor::receiveMessage(u32 msg, HitSensor *taking, HitSensor *taken)
     if (msg == 0x29)
         return this->receiveMsgPush(taking, taken);
 
+    // this flag is used to describe certain messages
     s32 flag = 0;
 
     if (msg != 0)
@@ -298,6 +317,7 @@ Mtx* LiveActor::getTakingMtx() const
 
 void LiveActor::setNerve(const Nerve *nerve)
 {
+    // set the current nerve for the actor state
     this->mSpine->setNerve(nerve);
 }
 
@@ -323,7 +343,15 @@ HitSensor* LiveActor::getSensor(const char *sensorName) const
     return 0;
 }
 
-// LiveActor::getBaseMtx()
+Mtx* LiveActor::getBaseMtx() const
+{
+    if (MR::getJ3DModel(this) != 0)
+    {
+        return &MR::getJ3DModel(this)->_24;
+    }
+
+    return 0;
+}
 
 void LiveActor::startClipped()
 {
@@ -364,11 +392,11 @@ void LiveActor::endClipped()
         MR::connectToDrawTemporarily(this);
 }
 
-void LiveActor::initModelManagerWithAnm(const char *a1, const char *a2, bool a3)
+void LiveActor::initModelManagerWithAnm(const char *modelName, const char *a2, bool a3)
 {
     ModelManager* manager = new ModelManager();
     this->mModelManager = manager;
-    mModelManager->init(a1, a2, a3);
+    mModelManager->init(modelName, a2, a3);
     
     J3DModel* model = MR::getJ3DModel(this);
     model->setBaseScale((Vec&)this->mScale);
@@ -420,7 +448,19 @@ void LiveActor::initEffectKeeper(s32 effectCount, const char *resName, bool enab
         this->mEffectKeeper->setBinder(this->mBinder);
 }
 
-// LiveActor::initSound()
+void LiveActor::initSound(s32 a1, bool ignoreActorPosition)
+{
+    if (ignoreActorPosition != 0)
+    {
+        AudAnmSoundObject* soundObj = new AudAnmSoundObject(&this->mTranslation, ignoreActorPosition, MR::getCurrentHeap());
+        this->mSoundObj = soundObj;
+    }
+    else
+    {
+        AudAnmSoundObject* soundObj = new AudAnmSoundObject(0, ignoreActorPosition, MR::getCurrentHeap());
+        this->mSoundObj = soundObj;
+    }
+}
 
 void LiveActor::initShadowControllerList(u32 listNum)
 {
