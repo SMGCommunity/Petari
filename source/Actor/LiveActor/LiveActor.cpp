@@ -493,7 +493,10 @@ u32 LiveActor::receiveMsgApart(HitSensor* taking, HitSensor* taken)
     return 1;
 }
 
-// LiveActor::addToSoundObjHolder()
+void LiveActor::addToSoundObjHolder()
+{
+    this->mSoundObj->addToSoundObjHolder();
+}
 
 void LiveActor::updateBinder()
 {
