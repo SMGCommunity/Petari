@@ -14,8 +14,10 @@ namespace JGeometry
         void set(TVec3<T> const &);
         void zero();
 
+        TVec3<T> operator =(const TVec3<T> &);
         TVec3<T> operator +=(const TVec3<T> &);
         TVec3<T> operator -(const TVec3<T> &);
+        TVec3<T> operator -=(const TVec3<T> &);
 
         T x; // _0
         T y; // _4

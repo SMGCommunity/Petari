@@ -12,15 +12,6 @@ typedef long long           u64;
 typedef float               f32;
 typedef double              f64;
 
-struct Vec
-{
-    //void operator=(const Vec &in);
-
-    f32 x;
-    f32 y;
-    f32 z;
-};
-
 typedef f32 Mtx[3][4];
 typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
