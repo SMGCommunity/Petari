@@ -28,7 +28,7 @@ public:
 class LinearRailPart
 {
 public:
-    inline LinearRailPart();
+    inline LinearRailPart() { }
 
     void set(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
     f32 getNearestParam(const JGeometry::TVec3<f32> &) const;
