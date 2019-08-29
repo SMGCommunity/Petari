@@ -2,6 +2,27 @@
 #include "Map/Rail/RailPart.h"
 #include "OS/vec.h"
 
+RailPart::RailPart()
+{
+    this->mLinearRailPart = 0;
+    this->mBezierRailPart = 0;
+}
+
+void RailPart::init(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2, const JGeometry::TVec3<f32> &a3, const JGeometry::TVec3<f32> &a4)
+{
+    if (a1.epsilonEquals(a2, 0.1f) != 0)
+    {
+        if (a4.epsilonEquals(a3, 0.1f) != 0)
+        {
+            this->mLinearRailPart = new LinearRailPart();
+            this->mLinearRailPart->set(a1, a2);
+            return;
+        }
+    }
+
+    this->initForBezier(a1, a2, a3, a4);
+}
+
 void RailPart::initForBezier(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2, const JGeometry::TVec3<f32> &a3, const JGeometry::TVec3<f32> &a4)
 {
     // todo -- omit constructor here

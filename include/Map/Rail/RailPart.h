@@ -12,8 +12,8 @@ class RailPart
 public:
     RailPart();
 
+    void init(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
     void initForBezier(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
-
     void calcPos(JGeometry::TVec3<f32> *, f32) const;
     void calcVelocity(JGeometry::TVec3<f32> *, f32) const;
     f32 getLength(f32, f32, s32) const;
@@ -28,6 +28,8 @@ public:
 class LinearRailPart
 {
 public:
+    inline LinearRailPart();
+
     void set(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
     f32 getNearestParam(const JGeometry::TVec3<f32> &) const;
 
