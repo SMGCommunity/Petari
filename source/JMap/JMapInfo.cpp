@@ -3,7 +3,7 @@
 
 JMapInfo::JMapInfo()
 {
-    this->mMap = 0;
+    this->_0 = 0;
     this->mName = "Undifined";
 }
 
@@ -12,14 +12,16 @@ JMapInfo::~JMapInfo()
     delete this;
 }
 
+/*
 bool JMapInfo::attach(const void *src)
 {
     if (src == 0)
         return 0;
     
-    this->mMap = (BCSVHeader*)src;
+    this->_0 = src;
     return 1;
 }
+*/
 
 void JMapInfo::setName(const char *name)
 {
@@ -31,8 +33,7 @@ const char* JMapInfo::getName() const
     return this->mName;
 }
 
-// this will yield the same results, but does not match
-// TODO -- change this
+/*
 s32 JMapInfo::searchItemInfo(const char *name) const
 {
     u32 fieldCount;
@@ -76,3 +77,4 @@ s32 JMapInfo::searchItemInfo(const char *name) const
 
     return -1;
 }
+*/

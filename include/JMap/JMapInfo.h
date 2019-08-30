@@ -15,6 +15,6 @@ public:
     s32 searchItemInfo(const char *) const;
     char getValueType(const char *) const;
 
-    const BCSVHeader* mMap;
-    const char* mName;
+    u32 _0;
+    const char* mName; // _4
 };
