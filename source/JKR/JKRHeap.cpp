@@ -79,23 +79,15 @@ void JKRHeap::resize(void *src, u32 a2)
     this->do_resize(src, a2);
 }
 
-void JKRHeap::copyMemory(void* dest, void* src, u32 len)
-{
-    __asm
-    {
-        addi r0, r5, 3
-        srwi. r0, r0, 2
-        mtctr r0
-        beqlr
+void JKRHeap::copyMemory(void *dest, void *src, u32 len)
+{	
+    len = (len + 3) / sizeof(u32);
 
-    loop:
-        lwz r0, 0(r4)
-        addi r4, r4, 4
-        stw r0, 0(r3)
-        addi r3, r3, 4
-        bdnz loop
-        blr
-    }
+    u32 *cSrc = (u32 *)src;
+    u32 *cDest = (u32 *)dest;
+
+    while (len--)
+        *cDest++ = *cSrc++;
 }
 
 void JKRDefaultMemoryErrorRoutine(void *src, u32 a2, s32 a3)
