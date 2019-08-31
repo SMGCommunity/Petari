@@ -4,6 +4,31 @@
 #include "MR/SceneUtil.h"
 #include "defines.h"
 
+RailRider::RailRider(const JMapInfoIter &iter)
+{
+    this->mBezierRail = 0;
+    this->mTotalLength = 0.0f;
+    this->mSpeed = 0.0f;
+    this->_C = 1;
+    this->_10.x = 0.0f;
+    this->_10.y = 0.0f;
+    this->_10.z = 0.0f;
+    this->_1C.x = 1.0f;
+    this->_1C.y = 0.0f;
+    this->_1C.z = 0.0f;
+    this->_28.x = 0.0f;
+    this->_28.y = 0.0f;
+    this->_28.z = 0.0f;
+    this->_34.x = 0.0f;
+    this->_34.y = 0.0f;
+    this->_34.z = 0.0f;
+
+    const JMapInfo info(0);
+    JMapInfoIter tempIter(0, -1);
+    MR::getRailInfo(&tempIter, (const JMapInfo**)&info, iter);
+    this->initBezierRail(tempIter, &info);
+}
+
 RailRider::RailRider(s32 a1, s32 a2)
 {
     this->mBezierRail = 0;
