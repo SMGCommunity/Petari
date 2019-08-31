@@ -49,9 +49,7 @@ void NameObj::calcViewAndEntry()
 
 void NameObj::initWithoutIter()
 {
-    JMapInfoIter tempIter;
-    tempIter._0 = 0;
-    tempIter._4 = -1;
+    JMapInfoIter tempIter(0, -1);
 
     this->init(tempIter);
 }

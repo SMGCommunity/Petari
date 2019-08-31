@@ -7,7 +7,8 @@ class JMapInfo
 {
 public:
     JMapInfo();
-    ~JMapInfo();
+    JMapInfo(u32 val) : _0(val) { }
+    ~JMapInfo() { }
 
     bool attach(const void *);
     void setName(const char *);

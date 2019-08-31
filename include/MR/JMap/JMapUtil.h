@@ -1,6 +1,7 @@
 #ifndef JMAPUTIL_H
 #define JMAPUTIL_H
 
+#include "JGeometry/TVec3.h"
 #include "JMap/JMapInfoIter.h"
 
 bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
@@ -47,6 +48,8 @@ namespace MR
     bool isExistStageSwitchAppear(const JMapInfoIter &);
     bool isExistStageSwitchDead(const JMapInfoIter &);
     bool isExistStageSwitchSleep(const JMapInfoIter &);
+
+    void getRailPointPos0(const JMapInfoIter &, JGeometry::TVec3<f32> *);
 };
 
 bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s64 *);

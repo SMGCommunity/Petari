@@ -26,13 +26,22 @@ public:
     bool isReachedEdge() const;
     void setCoord(f32);
     void setSpeed(f32);
+    bool getRailArgWithInit(const char *, s32 *) const;
+    bool getRailArgNoInit(const char *, s32 *) const;
     f32 getNextPointCoord() const;
     f32 getCurrentPointCoord() const;
     s32 getPointNum() const;
-
+    void copyPointPos(JGeometry::TVec3<f32> *, s32) const;
+    f32 getPointCoord(s32) const;
     void initBezierRail(const JMapInfoIter &, const JMapInfo *);
-    void syncPosDir();
+    bool getPointArgS32NoInit(const char *, s32 *, s32) const;
+    bool getPointArgS32WithInit(const char *, s32 *, s32) const;
+    bool getCurrentPointArgS32NoInit(const char *, s32 *) const;
+    bool getCurrentPointArgS32WithInit(const char *, s32 *) const;
+    bool getNextPointArgS32NoInit(const char *, s32 *) const;
+    bool getNextPointArgS32WithInit(const char *, s32 *) const;
     s32 getNextPointNo() const;
+    void syncPosDir();
 
     BezierRail* mBezierRail; // _0
     f32 mTotalLength; // _4
@@ -45,7 +54,7 @@ public:
     JGeometry::TVec3<f32> _1C;
     JGeometry::TVec3<f32> _28;
     JGeometry::TVec3<f32> _34;
-    s32 _40;
+    s32 mCurPoint; // _40
 };
 
 #endif // RAILRIDER_H

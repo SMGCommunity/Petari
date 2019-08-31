@@ -7,11 +7,6 @@ JMapInfo::JMapInfo()
     this->mName = "Undifined";
 }
 
-JMapInfo::~JMapInfo()
-{
-    delete this;
-}
-
 /*
 bool JMapInfo::attach(const void *src)
 {

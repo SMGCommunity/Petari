@@ -7,9 +7,9 @@ namespace JGeometry
     class TVec3
     {
     public:
-        TVec3();
+        TVec3() { }
         TVec3(const TVec3<T> &);
-        TVec3(T, T, T);
+        TVec3(T a, T b, T c) : x(a), y(b), z(c) { }
 
         void set(TVec3<T> const &);
         void zero();

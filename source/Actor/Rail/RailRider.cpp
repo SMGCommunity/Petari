@@ -1,13 +1,11 @@
 #include "Actor/Rail/RailRider.h"
+#include "MR/JMap/JMapUtil.h"
 #include "MR/MathUtil.h"
 #include "MR/SceneUtil.h"
 #include "defines.h"
 
 RailRider::RailRider(s32 a1, s32 a2)
 {
-    JMapInfoIter iter;
-    JMapInfo* info = 0;
-
     this->mBezierRail = 0;
     this->mTotalLength = 0.0f;
     this->mSpeed = 0.0f;
@@ -24,13 +22,12 @@ RailRider::RailRider(s32 a1, s32 a2)
     this->_34.x = 0.0f;
     this->_34.y = 0.0f;
     this->_34.z = 0.0f;
-    info->_0 = 0;
-    iter._0 = 0;
-    iter._4 = -1;
 
-    // this is weird, it wants it to be constant but it modifies it before this call
-    MR::getCameraRailInfo(&iter, (const JMapInfo **)info, a1, a2);
-    this->initBezierRail(iter, (const JMapInfo*)info);
+    JMapInfoIter iter(0, -1);
+    const JMapInfo info(0);
+
+    MR::getCameraRailInfo(&iter, (const JMapInfo**)&info, a1, a2);
+    this->initBezierRail(iter, &info);
 }
 
 void RailRider::move()
@@ -174,7 +171,32 @@ void RailRider::setSpeed(f32 speed)
     this->mSpeed = speed;
 }
 
-// getRailArgWithInit / getRailArgNoInit
+bool RailRider::getRailArgWithInit(const char *str, s32 *out) const
+{
+    s32 temp;
+    bool ret = this->mBezierRail->mIter->getValue<s32>(str, &temp);
+
+    if (ret == 0)
+        return 0;
+
+    *out = temp;
+    return 1;
+}
+
+bool RailRider::getRailArgNoInit(const char *str, s32 *out) const
+{
+    s32 temp;
+    bool ret = this->mBezierRail->mIter->getValue<s32>(str, &temp);
+
+    if (ret == 0)
+        return 0;
+
+    if (temp == 0)
+        return 0;
+
+    *out = temp;
+    return 1;
+}
 
 f32 RailRider::getNextPointCoord() const
 {
@@ -183,10 +205,181 @@ f32 RailRider::getNextPointCoord() const
 
 f32 RailRider::getCurrentPointCoord() const
 {
-    return this->mBezierRail->getRailPosCoord(this->_40);
+    return this->mBezierRail->getRailPosCoord(this->mCurPoint);
 }
 
 s32 RailRider::getPointNum() const
 {
     return this->mBezierRail->mPointNum;
+}
+
+void RailRider::copyPointPos(JGeometry::TVec3<f32> *out, s32 pointNum) const
+{
+    JMapInfoIter iter(0, -1);
+    this->mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
+    MR::getRailPointPos0(iter, out);
+}
+
+f32 RailRider::getPointCoord(s32 idx) const
+{
+    return this->mBezierRail->getRailPosCoord(idx);
+}
+
+void RailRider::initBezierRail(const JMapInfoIter &iter, const JMapInfo *info)
+{
+    this->mBezierRail = new BezierRail(iter, info);
+    this->syncPosDir();
+    this->setCoord(this->mBezierRail->getTotalLength());
+    this->_34.set(this->_10);
+    this->setCoord(0.0f);
+    this->_28.set(this->_10);
+}
+
+bool RailRider::getPointArgS32NoInit(const char *str, s32 *out, s32 pointNum) const
+{
+    s32 outVal;
+    JMapInfoIter iter(0, -1);
+
+    this->mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
+    outVal = -1;
+    iter.getValue<s32>(str, &outVal);
+
+    if (outVal != -1)
+    { 
+        *out = outVal;
+        return 1;
+    }
+    else
+        return 0;
+}
+
+bool RailRider::getPointArgS32WithInit(const char *str, s32 *out, s32 pointNum) const
+{
+    JMapInfoIter iter(0, -1);
+    this->mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
+    iter.getValue<s32>(str, out);
+    return 1;
+}
+
+bool RailRider::getCurrentPointArgS32NoInit(const char *str, s32 *out) const
+{
+    s32 outVal;
+    JMapInfoIter iter(0, -1);
+
+    this->mBezierRail->calcRailCtrlPointIter(&iter, this->mCurPoint);
+    outVal = -1;
+    iter.getValue<s32>(str, &outVal);
+
+    if (outVal != -1)
+    { 
+        *out = outVal;
+        return 1;
+    }
+    else
+        return 0;
+}
+
+bool RailRider::getCurrentPointArgS32WithInit(const char *str, s32 *out) const
+{
+    s32 curPoint = this->mCurPoint;
+    JMapInfoIter iter(0, -1);
+    this->mBezierRail->calcRailCtrlPointIter(&iter, curPoint);
+    iter.getValue<s32>(str, out);
+    return 1;
+}
+
+bool RailRider::getNextPointArgS32NoInit(const char *str, s32 *out) const
+{
+    s32 outVal;
+    JMapInfoIter iter(0, -1);
+
+    this->mBezierRail->calcRailCtrlPointIter(&iter, this->getNextPointNo());
+    outVal = -1;
+    iter.getValue<s32>(str, &outVal);
+
+    if (outVal != -1)
+    { 
+        *out = outVal;
+        return 1;
+    }
+    else
+        return 0;
+}
+
+bool RailRider::getNextPointArgS32WithInit(const char *str, s32 *out) const
+{
+    JMapInfoIter iter(0, -1);
+    this->mBezierRail->calcRailCtrlPointIter(&iter, this->getNextPointNo());
+    iter.getValue<s32>(str, out);
+    return 1;
+}
+
+s32 RailRider::getNextPointNo() const
+{
+    s32 var_1;
+    s32 var_2 = -1;
+
+    if (this->_C != 0)
+        var_2 = 1;
+
+    BezierRail* rail = this->mBezierRail;
+
+    if (rail->mIsLoop != 0)
+    {
+        s32 pointNum = rail->mPointNum;
+        s32 r3 = var_2 + pointNum;
+        s32 r0 = pointNum + this->mCurPoint;
+        r3 = r3 + r0;
+        r0 = r3 / pointNum;
+        r0 = r0 * pointNum;
+        return r0 - r3;
+    }
+
+    var_2 = this->mCurPoint + var_2;
+    var_1 = rail->mPointNum - 1;
+
+    if (var_2 < 0)
+        return 0;
+
+    if (var_2 > var_1)
+        return var_2;
+
+    return var_1;
+}
+
+void RailRider::syncPosDir()
+{
+    if (this->mTotalLength < 0.0f && this->mTotalLength < this->mBezierRail->getTotalLength())
+    {
+        this->mBezierRail->calcPosDir(&this->_10, &this->_1C, this->mTotalLength);
+    }
+    else
+    {
+        if (this->mTotalLength == 0.0f)
+        {
+            this->mBezierRail->calcPos(&this->_10, this->mTotalLength);
+            this->mBezierRail->calcDirection(&this->_1C, 0.1f);
+        }
+        else
+        {
+            this->mBezierRail->calcPos(&this->_10, this->mTotalLength);
+            f32 bezierTotalLength = this->mBezierRail->getTotalLength();
+            this->mBezierRail->calcDirection(&this->_1C, (bezierTotalLength - 0.1f));
+        }
+    }
+    
+
+    if (this->_C == 0)
+    {
+        f32 f2 = this->_1C.x * -1.0f;
+        f32 f1 = this->_1C.y * -1.0f;
+        f32 f0 = this->_1C.z * -1.0f;
+        this->_1C.x = f2;
+        this->_1C.y = f1;
+        this->_1C.z = f0;
+    }
+
+    JMapInfoIter iter(0, -1);
+    this->mBezierRail->calcCurrentRailCtrlPointIter(&iter, this->mTotalLength, this->_C);
+    iter.getValue<s32>("id", &this->mCurPoint);
 }
