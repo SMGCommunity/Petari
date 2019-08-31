@@ -15,6 +15,7 @@ public:
     const char* getName() const;
     s32 searchItemInfo(const char *) const;
     char getValueType(const char *) const;
+    s32 getValueFast(s32, s32, const char **) const;
 
     u32 _0;
     const char* mName; // _4

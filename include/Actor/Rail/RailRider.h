@@ -50,10 +50,10 @@ public:
     u8 _D;
     u8 _E;
     u8 _F;
-    JGeometry::TVec3<f32> _10;
-    JGeometry::TVec3<f32> _1C;
-    JGeometry::TVec3<f32> _28;
-    JGeometry::TVec3<f32> _34;
+    JGeometry::TVec3<f32> mCurrentPos; // _10
+    JGeometry::TVec3<f32> mCurrentDirection; // _1C
+    JGeometry::TVec3<f32> mStartPos; // _28
+    JGeometry::TVec3<f32> mEndPos; // _34
     s32 mCurPoint; // _40
 };
 

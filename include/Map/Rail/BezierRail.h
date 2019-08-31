@@ -28,10 +28,11 @@ public:
     u8 _2;
     u8 _3;
     s32 mPointNum; // _4
-    u32 _8;
-    u32 _C;
-    u32 _10;
+    s32 mPointNumLoop; // _8
+    RailPart* mRailParts; // _C
+    f32* mSegLengths; // _10
     JMapInfoIter* mIter; // _14
+    const JMapInfo* mMapInfo; // _18
 };
 
 #endif // BEZIERRAIL_H

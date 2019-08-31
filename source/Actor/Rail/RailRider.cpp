@@ -10,18 +10,18 @@ RailRider::RailRider(const JMapInfoIter &iter)
     this->mTotalLength = 0.0f;
     this->mSpeed = 0.0f;
     this->_C = 1;
-    this->_10.x = 0.0f;
-    this->_10.y = 0.0f;
-    this->_10.z = 0.0f;
-    this->_1C.x = 1.0f;
-    this->_1C.y = 0.0f;
-    this->_1C.z = 0.0f;
-    this->_28.x = 0.0f;
-    this->_28.y = 0.0f;
-    this->_28.z = 0.0f;
-    this->_34.x = 0.0f;
-    this->_34.y = 0.0f;
-    this->_34.z = 0.0f;
+    this->mCurrentPos.x = 0.0f;
+    this->mCurrentPos.y = 0.0f;
+    this->mCurrentPos.z = 0.0f;
+    this->mCurrentDirection.x = 1.0f;
+    this->mCurrentDirection.y = 0.0f;
+    this->mCurrentDirection.z = 0.0f;
+    this->mStartPos.x = 0.0f;
+    this->mStartPos.y = 0.0f;
+    this->mStartPos.z = 0.0f;
+    this->mEndPos.x = 0.0f;
+    this->mEndPos.y = 0.0f;
+    this->mEndPos.z = 0.0f;
 
     const JMapInfo info(0);
     JMapInfoIter tempIter(0, -1);
@@ -35,18 +35,18 @@ RailRider::RailRider(s32 a1, s32 a2)
     this->mTotalLength = 0.0f;
     this->mSpeed = 0.0f;
     this->_C = 1;
-    this->_10.x = 0.0f;
-    this->_10.y = 0.0f;
-    this->_10.z = 0.0f;
-    this->_1C.x = 1.0f;
-    this->_1C.y = 0.0f;
-    this->_1C.z = 0.0f;
-    this->_28.x = 0.0f;
-    this->_28.y = 0.0f;
-    this->_28.z = 0.0f;
-    this->_34.x = 0.0f;
-    this->_34.y = 0.0f;
-    this->_34.z = 0.0f;
+    this->mCurrentPos.x = 0.0f;
+    this->mCurrentPos.y = 0.0f;
+    this->mCurrentPos.z = 0.0f;
+    this->mCurrentDirection.x = 1.0f;
+    this->mCurrentDirection.y = 0.0f;
+    this->mCurrentDirection.z = 0.0f;
+    this->mStartPos.x = 0.0f;
+    this->mStartPos.y = 0.0f;
+    this->mStartPos.z = 0.0f;
+    this->mEndPos.x = 0.0f;
+    this->mEndPos.y = 0.0f;
+    this->mEndPos.z = 0.0f;
 
     JMapInfoIter iter(0, -1);
     const JMapInfo info(0);
@@ -72,7 +72,23 @@ void RailRider::moveToNearestPos(const JGeometry::TVec3<f32> &pos)
     this->syncPosDir();
 }
 
-// RailRider::moveToNearestPoint()
+void RailRider::moveToNearestPoint(const JGeometry::TVec3<f32> &src)
+{
+    s32 r31 = 0;
+    s32 curPoint = 0;
+    
+    while (curPoint < this->mBezierRail->mPointNum)
+    {
+        JGeometry::TVec3<f32> vec;
+        this->copyPointPos(&vec, curPoint);
+        
+        // TODO -- paired single operations here
+        curPoint++;
+    }
+
+    this->mTotalLength = this->mBezierRail->getRailPosCoord(r31);
+    this->syncPosDir();
+}
 
 void RailRider::moveToNextPoint()
 {
@@ -255,9 +271,9 @@ void RailRider::initBezierRail(const JMapInfoIter &iter, const JMapInfo *info)
     this->mBezierRail = new BezierRail(iter, info);
     this->syncPosDir();
     this->setCoord(this->mBezierRail->getTotalLength());
-    this->_34.set(this->_10);
+    this->mEndPos.set(this->mCurrentPos);
     this->setCoord(0.0f);
-    this->_28.set(this->_10);
+    this->mStartPos.set(this->mCurrentPos);
 }
 
 bool RailRider::getPointArgS32NoInit(const char *str, s32 *out, s32 pointNum) const
@@ -376,32 +392,32 @@ void RailRider::syncPosDir()
 {
     if (this->mTotalLength < 0.0f && this->mTotalLength < this->mBezierRail->getTotalLength())
     {
-        this->mBezierRail->calcPosDir(&this->_10, &this->_1C, this->mTotalLength);
+        this->mBezierRail->calcPosDir(&this->mCurrentPos, &this->mCurrentDirection, this->mTotalLength);
     }
     else
     {
         if (this->mTotalLength == 0.0f)
         {
-            this->mBezierRail->calcPos(&this->_10, this->mTotalLength);
-            this->mBezierRail->calcDirection(&this->_1C, 0.1f);
+            this->mBezierRail->calcPos(&this->mCurrentPos, this->mTotalLength);
+            this->mBezierRail->calcDirection(&this->mCurrentDirection, 0.1f);
         }
         else
         {
-            this->mBezierRail->calcPos(&this->_10, this->mTotalLength);
+            this->mBezierRail->calcPos(&this->mCurrentPos, this->mTotalLength);
             f32 bezierTotalLength = this->mBezierRail->getTotalLength();
-            this->mBezierRail->calcDirection(&this->_1C, (bezierTotalLength - 0.1f));
+            this->mBezierRail->calcDirection(&this->mCurrentDirection, (bezierTotalLength - 0.1f));
         }
     }
     
 
     if (this->_C == 0)
     {
-        f32 f2 = this->_1C.x * -1.0f;
-        f32 f1 = this->_1C.y * -1.0f;
-        f32 f0 = this->_1C.z * -1.0f;
-        this->_1C.x = f2;
-        this->_1C.y = f1;
-        this->_1C.z = f0;
+        f32 f2 = this->mCurrentDirection.x * -1.0f;
+        f32 f1 = this->mCurrentDirection.y * -1.0f;
+        f32 f0 = this->mCurrentDirection.z * -1.0f;
+        this->mCurrentDirection.x = f2;
+        this->mCurrentDirection.y = f1;
+        this->mCurrentDirection.z = f0;
     }
 
     JMapInfoIter iter(0, -1);

@@ -50,6 +50,8 @@ namespace MR
     bool isExistStageSwitchSleep(const JMapInfoIter &);
 
     void getRailPointPos0(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    void getRailPointPos1(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    void getRailPointPos2(const JMapInfoIter &, JGeometry::TVec3<f32> *);
 };
 
 bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s64 *);

@@ -18,3 +18,5 @@ public:
     const JMapInfo* mInfo; // _0
     s32 mPos; // _4
 };
+
+static char* unk_str = 0;
