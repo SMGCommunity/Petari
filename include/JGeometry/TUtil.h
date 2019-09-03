@@ -8,8 +8,10 @@ namespace JGeometry
     template<typename T>
     class TUtil
     {
+    public:
         bool epsilonEquals(f32, f32, f32);
         f32 sqrt(f32);
+        static f32 clamp(T, T, T);
     };
 };
 

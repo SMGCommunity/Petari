@@ -82,14 +82,14 @@ f32 RailPart::getParam(f32 a1) const
     return this->mBezierRailPart->getParam(a1);
 }
 
-f32 RailPart::getNearestParam(const JGeometry::TVec3<f32> &pos) const
+f32 RailPart::getNearestParam(const JGeometry::TVec3<f32> &pos, f32 a2) const
 {
     if (this->mLinearRailPart != 0)
     {
-        return this->mLinearRailPart->getNearestParam(pos);
+        return this->mLinearRailPart->getNearestParam(pos, a2);
     }
 
-    return this->mBezierRailPart->getNearestParam(pos);
+    return this->mBezierRailPart->getNearestParam(pos, a2);
 }
 
 void LinearRailPart::set(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2)

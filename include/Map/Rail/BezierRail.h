@@ -12,16 +12,19 @@ public:
 
     f32 normalizePos(f32, s32) const;
     f32 getRailPosCoord(s32) const;
-    f32 getNearestRailPosCoord(JGeometry::TVec3<f32> const &);
+    f32 getNearestRailPosCoord(const JGeometry::TVec3<f32> &) const;
     void calcPos(JGeometry::TVec3<f32> *, f32) const;
     void calcDirection(JGeometry::TVec3<f32> *, f32) const;
     void calcNearestPos(JGeometry::TVec3<f32> *, f32) const;
     f32 getTotalLength() const;
-    s32 getPartLength(s32) const;
+    f32 getPartLength(s32) const;
     void calcRailCtrlPointIter(JMapInfoIter *, s32) const;
 
-    void calcPosDir(JGeometry::TVec3<f32> *, JGeometry::TVec3<f32> *, f32);
+    void calcPosDir(JGeometry::TVec3<f32> *, JGeometry::TVec3<f32> *, f32) const;
     void calcCurrentRailCtrlPointIter(JMapInfoIter *, f32, bool) const;
+    static void calcRailDirection(JGeometry::TVec3<f32> *, const RailPart *, f32);
+    void getIncludedSection(const RailPart **, f32 *, f32, s32) const;
+    s32 getCurrentCtrlPointIndex(f32, bool) const;
 
     bool mIsLoop; // _0
     u8 _1;
