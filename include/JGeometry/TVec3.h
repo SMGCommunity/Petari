@@ -17,7 +17,7 @@ namespace JGeometry
         bool epsilonEquals(const TVec3<T> &, T) const;
 
         void sub(const TVec3<T> &);
-        f32 squared() const;
+        T squared() const;
 
         TVec3<T> operator =(const TVec3<T> &);
         TVec3<T> operator +=(const TVec3<T> &);

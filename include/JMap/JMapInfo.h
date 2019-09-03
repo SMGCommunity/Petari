@@ -17,6 +17,9 @@ public:
     char getValueType(const char *) const;
     s32 getValueFast(s32, s32, const char **) const;
 
+    template<typename T>
+    void getValue(s32, const char *, T *) const;
+
     u32 _0;
     const char* mName; // _4
 };
