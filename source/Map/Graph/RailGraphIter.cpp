@@ -29,8 +29,8 @@ void RailGraphIter::setNode(s32 nextNode)
 void RailGraphIter::watchStartEdge()
 {
     const RailGraph* graph = this->mGraph;
-    s32 nextNode = this->mCurrentNode;
-    RailGraphNode* node = graph->getNode(nextNode);
+    s32 curNode = this->mCurrentNode;
+    RailGraphNode* node = graph->getNode(curNode);
     this->mNextEdge = node->_C;
 }
 
