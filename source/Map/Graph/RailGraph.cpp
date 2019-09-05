@@ -80,3 +80,25 @@ bool RailGraph::isValidEdge(s32 idx) const
 
     return ret;
 }
+
+void RailGraph::connectEdgeToNode(s32 a1, s32 a2)
+{
+    s32 val = this->mNodes[a1]._C;
+
+    if (val == -1)
+        this->mNodes[a1]._C = a2;
+    else
+    {
+        s32 nextEdge = this->mEdges[val].getNextEdge(a1);
+        
+        while (nextEdge != -1)
+        {
+            val = nextEdge;
+            nextEdge = this->mEdges[nextEdge].getNextEdge(a1);
+        }
+        
+        this->mEdges[val].setNextEdge(a2, a1);
+    }
+
+    this->mNodes[a1]._10++;
+}
