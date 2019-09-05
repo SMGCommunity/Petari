@@ -2,6 +2,7 @@
 #define RAILGRAPH_H
 
 #include "Map/Graph/RailGraphEdge.h"
+#include "Map/Graph/RailGraphIter.h"
 #include "Map/Graph/RailGraphNode.h"
 
 class RailGraph

@@ -6,6 +6,7 @@
 class RailGraphIter
 {
 public:
+    inline RailGraphIter() { }
     RailGraphIter(const RailGraph *);
 
     void moveNodeNext();
