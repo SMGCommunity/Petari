@@ -2,6 +2,7 @@
 #define RAILGRAPHNODE_H
 
 #include "JGeometry/TVec3.h"
+#include "types.h"
 
 class RailGraphNode
 {
