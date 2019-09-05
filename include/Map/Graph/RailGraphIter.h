@@ -24,10 +24,10 @@ public:
     RailGraphEdge* getWatchEdge() const;
 
     const RailGraph* mGraph; // _0
-    s32 mNextNode; // _4
+    s32 mCurrentNode; // _4
     s32 mSelectedEdge; // _8
     s32 mNextEdge; // _C
-    s32 mCurrentNode; // _10
+    s32 mNextNode; // _10
 };
 
 #endif // RAILGRAPHITER_H
