@@ -2,9 +2,9 @@
 
 RailGraphEdge::RailGraphEdge()
 {
-    this->_0 = 0.0f;
-    this->_4 = -1;
-    this->_8 = -1;
+    this->mDistance = 0.0f;
+    this->mPrev = -1;
+    this->mNext = -1;
     this->_C = -1;
     this->_10 = -1;
     this->mPointArg0 = -1;
@@ -19,30 +19,30 @@ RailGraphEdge::RailGraphEdge()
 
 void RailGraphEdge::clearConnectInfo()
 {
-    this->_0 = 0.0f;
-    this->_4 = -1;
-    this->_8 = -1;
+    this->mDistance = 0.0f;
+    this->mPrev = -1;
+    this->mNext = -1;
     this->_C = -1;
     this->_10 = -1;
 }
 
 s32 RailGraphEdge::getNextNode(s32 a1) const
 {
-    if (this->_4 == a1)
-        return this->_8;
+    if (this->mPrev == a1)
+        return this->mNext;
 
-    if (this->_8 != a1)
+    if (this->mNext != a1)
         return -1;
 
-    return this->_4;
+    return this->mPrev;
 }
 
 s32 RailGraphEdge::getNextEdge(s32 a1) const
 {
-    if (this->_4 == a1)
+    if (this->mPrev == a1)
         return this->_C;
 
-    if (this->_8 == a1)
+    if (this->mPrev == a1)
         return this->_10;
 
     return -1;
@@ -50,10 +50,10 @@ s32 RailGraphEdge::getNextEdge(s32 a1) const
 
 void RailGraphEdge::setNextEdge(s32 a1, s32 a2)
 {
-    if (this->_4 == a2)
+    if (this->mPrev == a2)
         this->_C = a1;
 
-    if (this->_8 == a2)
+    if (this->mNext == a2)
         return;
 
     this->_10 = a1;

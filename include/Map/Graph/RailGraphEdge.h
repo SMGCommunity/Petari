@@ -15,9 +15,9 @@ public:
     void setNextEdge(s32, s32);
     void setArgs(const JMapInfo *, s32);
 
-    f32 _0;
-    s32 _4;
-    s32 _8;
+    f32 mDistance; // _0
+    s32 mNext; // _4
+    s32 mPrev; // _8
     s32 _C;
     s32 _10;
     s32 mPointArg0; // _14

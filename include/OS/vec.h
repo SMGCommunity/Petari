@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 f32 C_VECMag(const Vec *);
+f32 PSVECDistance(const Vec *, const Vec *);
 
 #ifdef __cplusplus
 }
