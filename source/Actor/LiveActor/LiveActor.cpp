@@ -293,7 +293,7 @@ void LiveActor::calcAndSetBaseMtx()
     if (MR::getTaken(this) != 0)
     {
         HitSensor* taken = MR::getTaken(this);
-        Mtx* takenMtx = taken->mActor->getBaseMtx();
+        Mtx* takenMtx = taken->mParentActor->getBaseMtx();
         MR::setBaseTRMtx(this, *takenMtx);
     }
     else
