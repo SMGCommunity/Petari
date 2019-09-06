@@ -1,6 +1,5 @@
 #include "Actor/LiveActor/AllLiveActorGroup.h"
-
-#include "Actor/Clipping/ClippingDirector.h"
+#include "MR/ClippingUtil.h"
 
 AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00)
 {

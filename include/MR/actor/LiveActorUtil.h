@@ -31,6 +31,8 @@ namespace MR
     void updateLightCtrl(LiveActor *);
     void setBaseTRMtx(LiveActor *, Mtx);
 
+    void copyTransRotateScale(const LiveActor *, LiveActor *);
+
     ResourceHolder* getModelResourceHolder(const LiveActor *);
 };
 
