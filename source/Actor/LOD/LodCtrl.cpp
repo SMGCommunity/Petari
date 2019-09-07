@@ -1,6 +1,8 @@
 #include "Actor/LOD/LodCtrl.h"
+#include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorShadowUtil.h"
 #include "MR/actor/LiveActorUtil.h"
+#include "MR/CameraUtil.h"
 #include "MR/ClippingUtil.h"
 
 LodCtrl::LodCtrl(LiveActor *actor, const JMapInfoIter &iter)
@@ -176,4 +178,22 @@ bool LodCtrl::isShowLowModel() const
 void LodCtrl::setDistanceToMiddle(f32 dist)
 {
     this->mDistToMiddle = dist;
+}
+
+f32 LodCtrl::calcDistanceToCamera() const
+{
+    if (!this->_1B)
+        return MR::calcDistanceToPlayer(this->_C);
+    else
+        return MR::calcCameraDistanceZ(this->_C->mTranslation);
+}
+void LodCtrl::setDistanceToLow(f32 dist)
+{
+    this->mDistToLow = dist;
+}
+
+void LodCtrl::setDistanceToMiddleAndLow(f32 mid, f32 low)
+{
+    this->mDistToMiddle = mid;
+    this->mDistToLow = low;
 }

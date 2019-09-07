@@ -10,6 +10,8 @@ namespace MR
     void resetPosition(LiveActor *);
     void makeMtxTransRotateY(Mtx, const LiveActor *);
     void makeMtxTR(Mtx, const LiveActor *);
+
+    f32 calcDistanceToPlayer(const LiveActor *);
 };
 
 #endif // ACTORMOVEMENTUTIL_H
