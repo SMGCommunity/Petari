@@ -1,34 +1,7 @@
 #include "JMap/JMapInfoIter.h"
+#include "arch/printf.h"
 #include "MR/JMap/JMapUtil.h"
-
-/*
-// TODO -- this, for some reason, just won't invoke use of the stack
-bool getJMapInfoArgNoInit(const JMapInfoIter &iter, const char *name, s32 *out)
-{
-    s32* val = out;
-    bool valRes = iter.getValue<s32>(name, *val);
-
-    bool ret;
-
-    if (valRes == 0)
-    {
-        ret = 0;
-    }
-    else
-    {
-        if (*val != -1)
-        {
-            out = val;
-            ret = 1;
-        }
-        else
-        {
-            ret = 0;
-        }
-    }
-
-    return ret;
-}*/
+#include "MR/StringUtil.h"
 
 namespace MR
 {
@@ -155,5 +128,148 @@ namespace MR
     bool getJMapInfoArg7NoInit(const JMapInfoIter &iter, bool *out)
     {
         return getJMapInfoArgNoInit(iter, "Obj_arg7", out);
+    }
+
+    bool isEqualObjectName(const JMapInfoIter &iter, const char *name)
+    {
+        const char* in;
+        MR::getObjectName(&in, iter);
+        return MR::isEqualStringCase(in, name);
+    }
+
+    s32 getDemoGroupID(const JMapInfoIter &iter)
+    {
+        s32 ret = -1;
+        iter.getValue<s32>("DemoGroupId", &ret);
+        return ret;
+    }
+
+    s32 getDemoGroupLinkID(const JMapInfoIter &iter)
+    {
+        s32 ret = -1;
+        iter.getValue<s32>("l_id", &ret);
+        return ret;
+    }
+
+    s32 getJMapInfoRailArg(const JMapInfoIter &iter, const char *railParam, s32 *out)
+    {
+        s32 ret;
+        bool success = iter.getValue<s32>(railParam, &ret);
+
+        if (!success)
+            return 0;
+
+        if (ret != -1)
+        {
+            *out = ret;
+            return 1;
+        }
+
+        return 0;
+    }
+
+    s32 getJMapInfoRailArg0NoInit(const JMapInfoIter &iter, s32 *out)
+    {
+        return getJMapInfoRailArg(iter, "path_arg0", out);
+    }
+
+    s32 getRailId(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "CommonPath_ID", out);
+    }
+
+    bool getObjectName(const char **name, const JMapInfoIter &iter)
+    {
+        if (!iter.isValid())
+            return 0;
+
+        bool ret = iter.getValue<const char *>("type", name);
+
+        if (ret)
+            return 1;
+
+        return iter.getValue<const char *>("name", name);
+    }
+
+    bool isExistJMapArg(const JMapInfoIter &iter)
+    {
+        if (!iter.isValid())
+            return 0;
+
+        s32 temp;
+        return iter.getValue<s32>("Obj_arg0", &temp);
+    }
+
+    bool getJMapInfoShapeIdWithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        return iter.getValue<s32>("ShapeModelNo", out);
+    }
+
+    bool getJMapInfoTransLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *out)
+    {
+        bool ret = iter.getValue<f32>("pos_x", &out->x);
+
+        if (!ret)
+            return 0;
+
+        ret = iter.getValue<f32>("pos_y", &out->y);
+
+        if (!ret)
+            return 0;
+
+        return iter.getValue<f32>("pos_z", &out->z);
+    }
+
+    bool getJMapInfoRotateLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *out)
+    {
+        bool ret = iter.getValue<f32>("dir_x", &out->x);
+
+        if (!ret)
+            return 0;
+
+        ret = iter.getValue<f32>("dir_y", &out->y);
+
+        if (!ret)
+            return 0;
+
+        return iter.getValue<f32>("dir_z", &out->z);
+    }
+
+    bool getJMapInfoScaleLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *out)
+    {
+        bool ret = iter.getValue<f32>("scale_x", &out->x);
+
+        if (!ret)
+            return 0;
+
+        ret = iter.getValue<f32>("scale_y", &out->y);
+
+        if (!ret)
+            return 0;
+
+        return iter.getValue<f32>("scale_z", &out->z);
+    }
+
+    bool getJMapInfoV3f(const JMapInfoIter &iter, const char *identifier, JGeometry::TVec3<f32> *out)
+    {
+        char formattedStr;
+        sprintf(&formattedStr, "%sX", identifier);
+
+        bool ret = iter.getValue<f32>(&formattedStr, &out->x);
+
+        if (!ret)
+            return 0;
+
+        sprintf(&formattedStr, "%sY", identifier);
+
+        ret = iter.getValue<f32>(&formattedStr, &out->y);
+
+        if (!ret)
+            return 0;
+
+        sprintf(&formattedStr, "%sZ", identifier);
+
+        return iter.getValue<f32>(&formattedStr, &out->z);
     }
 };

@@ -11,6 +11,7 @@ bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);
 namespace MR
 {
     bool isValidInfo(const JMapInfoIter &);
+    bool isObjectName(const JMapInfoIter &, const char *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, bool *);
@@ -35,12 +36,23 @@ namespace MR
     bool getJMapInfoArg7NoInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg7NoInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg7NoInit(const JMapInfoIter &, bool *);
-
+    bool isEqualObjectName(const JMapInfoIter &, const char *);
+    s32 getDemoGroupID(const JMapInfoIter &);
+    s32 getDemoGroupLinkID(const JMapInfoIter &);
+    s32 getJMapInfoRailArg(const JMapInfoIter &, const char *, s32 *);
+    s32 getJMapInfoRailArg0NoInit(const JMapInfoIter &, s32 *);
+    s32 getRailId(const JMapInfoIter &, s32 *);
     bool getObjectName(const char **, const JMapInfoIter &);
+    bool isExistJMapArg(const JMapInfoIter &);
+    bool getJMapInfoShapeIdWithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoScaleLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoV3f(const JMapInfoIter &, const char *, JGeometry::TVec3<f32> *);
 
-    void getJMapInfoClippingGroupID(const JMapInfoIter &, s64 *);
-    void getJMapInfoDemoGroupID(const JMapInfoIter &, s64 *);
-    void getJMapInfoLinkID(const JMapInfoIter &, s64 *);
+    void getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
+    void getJMapInfoDemoGroupID(const JMapInfoIter &, s32 *);
+    void getJMapInfoLinkID(const JMapInfoIter &, s32 *);
 
     bool isConnectedWithRail(const JMapInfoIter &);
     bool isExistStageSwitchA(const JMapInfoIter &);
@@ -54,7 +66,7 @@ namespace MR
     void getRailPointPos2(const JMapInfoIter &, JGeometry::TVec3<f32> *);
 };
 
-bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s64 *);
+bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
 
 template<typename T>
 void getValue(const JMapInfoIter &, const char *, T *);
