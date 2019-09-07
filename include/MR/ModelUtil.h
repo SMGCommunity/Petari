@@ -14,6 +14,10 @@ namespace MR
     ResourceHolder* getModelResourceHolder(const LiveActor *);
 
     const char* getModelResName(const LiveActor *);
+
+    void syncJointAnimation(LiveActor *, const LiveActor *);
+
+    void syncMaterialAnimation(LiveActor *, const LiveActor *);
 }
 
 #endif // MODELUTIL_H

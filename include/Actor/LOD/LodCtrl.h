@@ -1,7 +1,7 @@
 #ifndef LODCTRL_H
 #define LODCTRL_H
 
-#include "Actor/LiveActor/LiveActor.h"
+#include "Actor/Model/ModelObj.h"
 #include "JMap/JMapInfoIter.h"
 
 class ActorLightCtrl;
@@ -22,18 +22,26 @@ public:
     f32 calcDistanceToCamera() const;
     void setDistanceToLow(f32);
     void setDistanceToMiddleAndLow(f32, f32);
-
+    void setClippingTypeSphereContainsModelBoundingBox(f32);
+    void setFarClipping(f32);
+    void invalidateClipping();
     void showHighModel();
     void showMiddleModel();
     void showLowModel();
     void hideAllModel();
+    void setViewCtrlPtr(const bool *, const bool *, const bool *, const bool *);
+    void createLodModel(s32, s32, s32);
+    void syncMaterialAnimation();
+    void syncJointAnimation();
+    void initLightCtrl();
+    ModelObj* initLodModel(s32, s32, s32, bool) const;
 
     f32 mDistToMiddle; // _0
     f32 mDistToLow; // _4
-    LiveActor* _8;
-    LiveActor* _C;
-    LiveActor* mModelObjMiddle; // ModelObj* (_10)
-    LiveActor* mModelObjLow; // ModelObj* (_14)
+    ModelObj* mCurrentActiveObj; // _8
+    LiveActor* mModelActor; // _C
+    ModelObj* mModelObjMiddle; // _10
+    ModelObj* mModelObjLow; // // _14
     bool mIsValid; // _18
     u8 _19;
     u8 _1A;
@@ -46,6 +54,17 @@ public:
     u16 _2E;
     ActorLightCtrl* mLightCtrl; // _30
 };
+
+class LodCtrlFunction
+{
+public:
+    static bool isExistLodLowModel(const char *);
+};
+
+template<typename T>
+void LodFuntionCall(LodCtrl *, void(*)(LiveActor *, f32), T);
+
+void LodFuntionCall(LodCtrl *, void(*)(LiveActor *));
 
 static const bool* val_zero = 0;
 
