@@ -44,7 +44,7 @@ public:
     ModelObj* mModelObjLow; // // _14
     bool mIsValid; // _18
     u8 _19;
-    u8 _1A;
+    u8 mIsShadowVisible; // _1A
     u8 _1B;
     const bool* _1C;
     const bool* _20;

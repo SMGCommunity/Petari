@@ -17,7 +17,7 @@ LodCtrl::LodCtrl(LiveActor *actor, const JMapInfoIter &iter)
     this->mModelObjLow = 0;
     this->mIsValid = 0;
     this->_19 = 0;
-    this->_1A = 1;
+    this->mIsShadowVisible = 1;
     this->_1B = 0;
     this->_2C = -1;
     this->mLightCtrl = 0;
@@ -26,16 +26,20 @@ LodCtrl::LodCtrl(LiveActor *actor, const JMapInfoIter &iter)
     this->_24 = val_zero;
     this->_28 = val_zero;
 
+    // assign our LodCtrl to the clipping director
     MR::getClippingDirector()->entryLodCtrl(this, iter);
+    // assign the source model actor's light control to this
     this->mLightCtrl = this->mModelActor->mLightCtrl;
 }
 
+// turn off syncing shadows, and set the respective flag
 void LodCtrl::offSyncShadowHost()
 {
     MR::offShadowVisibleSyncHostAll(this->mModelActor);
-    this->_1A = 0;
+    this->mIsShadowVisible = 0;
 }
 
+// makes the model actor, light, and all of the model objects appear if they exist
 void LodCtrl::appear()
 {
     MR::showModel(this->mModelActor);
@@ -52,7 +56,7 @@ void LodCtrl::appear()
         if (!MR::isDead(this->mModelObjLow))
             this->mModelObjLow->makeActorDead();
 
-        if (!this->_1A)
+        if (!this->mIsShadowVisible)
             MR::offShadowVisibleSyncHostAll(this->mModelActor);
    }
 }
@@ -73,7 +77,7 @@ void LodCtrl::kill()
             this->mModelObjLow->makeActorDead();
     }
 
-    if (!this->_1A)
+    if (!this->mIsShadowVisible)
         MR::onShadowVisibleSyncHostAll(this->mModelActor);
 
     this->mLightCtrl = 0;
