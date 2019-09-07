@@ -49,10 +49,18 @@ namespace MR
     bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
     bool getJMapInfoScaleLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
     bool getJMapInfoV3f(const JMapInfoIter &, const char *, JGeometry::TVec3<f32> *);
-
-    void getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
-    void getJMapInfoDemoGroupID(const JMapInfoIter &, s32 *);
-    void getJMapInfoLinkID(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg1WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg2WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg3WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg4WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg5WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg6WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoArg7WithInit(const JMapInfoIter &, s32 *);
+    bool getJMapInfoFollowID(const JMapInfoIter &, s32 *);
+    bool getJMapInfoGroupID(const JMapInfoIter &, s32 *);
+    bool getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
+    bool getJMapInfoDemoGroupID(const JMapInfoIter &, s32 *);
+    bool getJMapInfoLinkID(const JMapInfoIter &, s32 *);
 
     bool isConnectedWithRail(const JMapInfoIter &);
     bool isExistStageSwitchA(const JMapInfoIter &);

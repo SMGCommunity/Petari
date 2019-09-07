@@ -272,4 +272,64 @@ namespace MR
 
         return iter.getValue<f32>(&formattedStr, &out->z);
     }
+
+    bool getJMapInfoArg1WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg1", out);
+    }
+
+    bool getJMapInfoArg2WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg2", out);
+    }
+
+    bool getJMapInfoArg3WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg3", out);
+    }
+
+    bool getJMapInfoArg4WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg4", out);
+    }
+
+    bool getJMapInfoArg5WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg5", out);
+    }
+
+    bool getJMapInfoArg6WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg6", out);
+    }
+
+    bool getJMapInfoArg7WithInit(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "Obj_arg7", out);
+    }
+
+    bool getJMapInfoFollowID(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "FollowId", out);
+    }
+
+    bool getJMapInfoGroupID(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+
+        bool ret = getJMapInfoArgNoInit(iter, "GroupId", out);
+
+        if (ret)
+            return 1;
+
+        return getJMapInfoClippingGroupID(iter, out);
+    }
 };
