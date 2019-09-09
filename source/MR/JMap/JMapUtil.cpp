@@ -332,4 +332,35 @@ namespace MR
 
         return getJMapInfoClippingGroupID(iter, out);
     }
+
+    bool getJMapInfoClippingGroupID(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "ClippingGroupID", out);
+    }
+
+    bool getJMapInfoDemoGroupID(const JMapInfoIter &iter, s32 *out)
+    {
+        *out = -1;
+        return getJMapInfoArgNoInit(iter, "DemoGroupID", out);
+    }
+
+    bool getJMapInfoLinkID(const JMapInfoIter &iter, s32 *out)
+    {
+        return iter.getValue<s32>("l_id", out);
+    }
+
+    bool isConnectedWithRail(const JMapInfoIter &iter)
+    {
+        if (!iter.isValid())
+            return 0;
+
+        s32 out = -1;
+        bool ret = getJMapInfoArgNoInit(iter, "CommonPath_ID", &out);
+
+       if (!ret)
+            return 0;
+        else
+            return out;
+    }
 };

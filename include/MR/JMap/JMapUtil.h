@@ -61,7 +61,6 @@ namespace MR
     bool getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
     bool getJMapInfoDemoGroupID(const JMapInfoIter &, s32 *);
     bool getJMapInfoLinkID(const JMapInfoIter &, s32 *);
-
     bool isConnectedWithRail(const JMapInfoIter &);
     bool isExistStageSwitchA(const JMapInfoIter &);
     bool isExistStageSwitchB(const JMapInfoIter &);

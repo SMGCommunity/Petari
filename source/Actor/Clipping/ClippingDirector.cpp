@@ -47,15 +47,13 @@ void ClippingDirector::initActorSystemInfo(LiveActor *actor, const JMapInfoIter 
 
 void ClippingDirector::joinToGroupClipping(LiveActor *actor, const JMapInfoIter &iter, s32 unk1)
 {
-    s64 groupID = -1;
+    s32 groupID = -1;
 
     MR::getJMapInfoClippingGroupID(iter, &groupID);
 
     // for some reason this assembles to some weird algorithm
     if (groupID < 0)
-    {
         return;
-    }
 
     ClippingActorInfo* info = this->mActorHolder->startGroupClipping(actor, iter);
     this->mGroupHolder->createAndAdd(info, iter, unk1);
