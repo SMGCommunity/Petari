@@ -94,5 +94,3 @@ s32 ResTable::getResIndex(const char *name) const
 
     return -1;
 }
-
-// ResTable::findResName

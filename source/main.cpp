@@ -1,1 +1,1 @@
-extern "C" void start() { }
+extern "C" void __start() { }

@@ -91,14 +91,6 @@ public:
     StarPointerTarget* mPointerTarget; // _80
     ActorLightCtrl* mLightCtrl; // _84
     ActorPadAndCameraCtrl* mCameraCtrl; // _88
-
-    const static f32 zero;
-    const static f32 one;
-    const static f32 neg_one;
 };
-
-const f32 LiveActor::zero = 0.0f;
-const f32 LiveActor::one = 1.0f;
-const f32 LiveActor::neg_one = -1.0f;
 
 #endif // LIVEACTOR_H

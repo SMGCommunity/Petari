@@ -33,15 +33,15 @@ void AnmPlayerBase::start(const char *anmName)
 
     this->mFrameCtrl.init(this->mJ3DAnmBase->_6);
     this->mFrameCtrl._4 = this->mJ3DAnmBase->_4;
-    this->mFrameCtrl._10 = AnmPlayerBase::one;
-    this->mFrameCtrl._C = AnmPlayerBase::zero;
+    this->mFrameCtrl._10 = 1.0f;
+    this->mFrameCtrl._C = 0.0f;
 }
 
 void AnmPlayerBase::stop()
 {
     this->stopAnimation();
 
-    this->mFrameCtrl._C = AnmPlayerBase::zero;
+    this->mFrameCtrl._C = 0.0f;
 }
 
 bool AnmPlayerBase::isPlaying(const char *anmName) const

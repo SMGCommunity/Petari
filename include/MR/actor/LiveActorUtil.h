@@ -8,6 +8,8 @@ class LiveActor;
 
 namespace MR
 {
+    void initDefaultPos(LiveActor *, const JMapInfoIter &);
+
     bool isDead(const LiveActor *);
     bool isHiddenModel(const LiveActor *);
     void showModel(LiveActor *);
@@ -33,6 +35,8 @@ namespace MR
 
     void calcGravity(const LiveActor *);
 
+    bool isValidDraw(const LiveActor *);
+
     void initLightCtrl(LiveActor *);
     void updateLightCtrl(LiveActor *);
     void setBaseTRMtx(LiveActor *, Mtx);
@@ -40,8 +44,13 @@ namespace MR
     void copyTransRotateScale(const LiveActor *, LiveActor *);
 
     ResourceHolder* getModelResourceHolder(const LiveActor *);
-
+    void setClippingFar50m(LiveActor *);
+    void setClippingFar100m(LiveActor *);
+    void setClippingFar200m(LiveActor *);
+    void setClippingFar300m(LiveActor *);
+    void setClippingFarMax(LiveActor *);
     void setClippingFar(LiveActor *, f32);
+    void setClippingTypeSphere(LiveActor *, f32, const JGeometry::TVec3<f32> &);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
 
     const char* createLowModelObjName(const LiveActor *);

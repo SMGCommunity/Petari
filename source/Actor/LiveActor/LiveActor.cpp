@@ -13,29 +13,25 @@
 
 LiveActor::LiveActor(const char *name) : NameObj(name)
 {
-    f32 zero = LiveActor::zero;
-    f32 one = LiveActor::one;
-    f32 neg = LiveActor::neg_one;
+    this->mTranslation.x = 0.0f;
+    this->mTranslation.y = 0.0f;
+    this->mTranslation.z = 0.0f;
 
-    this->mTranslation.x = zero;
-    this->mTranslation.y = zero;
-    this->mTranslation.z = zero;
+    this->mRotation.x = 0.0f;
+    this->mRotation.y = 0.0f;
+    this->mRotation.z = 0.0f;
 
-    this->mRotation.x = zero;
-    this->mRotation.y = zero;
-    this->mRotation.z = zero;
+    this->mScale.x = 1.0f;
+    this->mScale.y = 1.0f;
+    this->mScale.z = 1.0f;
 
-    this->mScale.x = one;
-    this->mScale.y = one;
-    this->mScale.z = one;
+    this->mVelocity.x = 0.0f;
+    this->mVelocity.y = 0.0f;
+    this->mVelocity.z = 0.0f;
 
-    this->mVelocity.x = zero;
-    this->mVelocity.y = zero;
-    this->mVelocity.z = zero;
-
-    this->mGravity.x = zero;
-    this->mGravity.y = neg_one;
-    this->mGravity.z = zero;
+    this->mGravity.x = 0.0f;
+    this->mGravity.y = -1.0f;
+    this->mGravity.z = 0.0f;
 
     this->mModelManager = 0;
     this->mAnimKeeper = 0;
@@ -126,11 +122,9 @@ void LiveActor::kill()
 
 void LiveActor::makeActorDead()
 {
-    f32 zero = LiveActor::zero;
-
-    this->mVelocity.z = zero;
-    this->mVelocity.y = zero;
-    this->mVelocity.x = zero;
+    this->mVelocity.z = 0.0f;
+    this->mVelocity.y = 0.0f;
+    this->mVelocity.x = 0.0f;
 
     // clear all of our hit sensors
     MR::clearHitSensors(this);
@@ -300,7 +294,7 @@ void LiveActor::calcAndSetBaseMtx()
     {
         Mtx mtx;
 
-        if ((this->mRotation.x == LiveActor::zero) && this->mRotation.z == LiveActor::zero)
+        if ((this->mRotation.x == 0.0f) && this->mRotation.z == 0.0f)
             MR::makeMtxTransRotateY(mtx, this);   
         else
             MR::makeMtxTR(mtx, this);

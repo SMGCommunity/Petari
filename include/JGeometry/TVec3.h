@@ -11,6 +11,9 @@ namespace JGeometry
         TVec3(const TVec3<T> &);
         TVec3(T a, T b, T c) : x(a), y(b), z(c) { }
 
+        template<typename T>
+        void set(const TVec3<T> &);
+
         void set(TVec3<T> const &);
         void zero();
 
@@ -23,6 +26,8 @@ namespace JGeometry
         TVec3<T> operator +=(const TVec3<T> &);
         TVec3<T> operator -(const TVec3<T> &);
         TVec3<T> operator -=(const TVec3<T> &);
+
+        void scale(T);
 
         T x; // _0
         T y; // _4

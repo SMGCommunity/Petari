@@ -1,7 +1,7 @@
 #ifndef ACTORSENSORUTIL_H
 #define ACTORSENSORUTIL_H
 
-#include "Actor/LiveActor/LiveActor.h"
+class LiveActor;
 
 namespace MR
 {
@@ -11,7 +11,16 @@ namespace MR
     HitSensor* getTaken(const LiveActor *);
     HitSensor* getTaking(const LiveActor *);
 
+    void validateHitSensors(LiveActor *);
+    void invalidateHitSensors(LiveActor *);
+    bool isSensor(const HitSensor *, const char *);
+    bool isSensorPlayer(const HitSensor *);
+
     u32 setHitSensorApart(HitSensor *, HitSensor *);
+
+    void sendMsgEnemyAttackElectric(HitSensor *, HitSensor *);
+
+    void addHitSensorPosMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
 };
 
 #endif // ACTORSENSORUTIL_H
