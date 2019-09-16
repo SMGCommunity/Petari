@@ -19,6 +19,7 @@ public:
     static void registerRail(const LiveActor *, ElectricRailType);
 
     static f32 getHitSensorRadius();
+    static s32 calcDisplayListSize(u32, s32);
 };
 
 #endif // ELECTRICRAILHOLDER_H

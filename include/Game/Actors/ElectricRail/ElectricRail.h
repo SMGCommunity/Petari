@@ -99,7 +99,7 @@ public:
     u8 _8D;
 };
 
-class ElectricRailSeparator : public LiveActor
+class ElectricRailSeparator
 {
 public:
     ElectricRailSeparator();

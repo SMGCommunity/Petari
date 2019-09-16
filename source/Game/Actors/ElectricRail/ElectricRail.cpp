@@ -11,7 +11,11 @@
 #include "MR/ObjUtil.h"
 #include "MR/PlayerUtil.h"
 #include "MR/RailUtil.h"
+#include "MR/SchedulerUtil.h"
+#include "OS/OSCache.h"
+#include "OS/GD/GDBase.h"
 #include "OS/GX/GXDisplayList.h"
+#include "defines.h"
 
 const char * ElectricRail::cSensorNameTable[8] =
 {
@@ -270,3 +274,44 @@ void ElectricRail::initPoints()
         curPoint++;
     }
 }
+
+void ElectricRail::initSeparators()
+{
+    f32 railTotalLen = MR::getRailTotalLength(this);
+    f64 separatorCountF64 = railTotalLen / 200.0f;
+    s32 separatorCountS32 = (s32)separatorCountF64;
+    separatorCountS32++;
+    this->mSeparatorCount = separatorCountS32;
+    this->mSeparators = new ElectricRailSeparator[separatorCountS32];
+
+    // todo -- finish
+}
+
+void ElectricRail::initDisplayList()
+{
+    MR::ProhibitSchedulerAndInterrupts prohibitScheduler(0);
+
+    this->mDLLength = ElectricRailFunction::calcDisplayListSize(0x14, ((this->mSeparatorCount << 2) * this->mRailHeight));
+
+    void* shit = new u8[0x20];
+    this->_A0 = shit;
+
+    GDLObj obj;
+    GDInitGDLObj(&obj, shit, this->mDLLength);
+    __GDCurrentDL = &obj;
+
+    this->drawPlane(30.0, 30.0, -30.0, -30.0);
+    this->drawPlane(-30.0, 30.0, 30.0, -30.0);
+    GDPadCurr32();
+    this->mDLLength = obj.mStart - obj.mPtr;
+    DCStoreRange(this->_A0, this->mDLLength);
+}
+
+void ElectricRail::drawRailGX(f32 a1) const
+{
+    this->drawPlaneGX(a1, a1, -a1, -a1);
+    this->drawPlaneGX(-a1, a1, a1, -a1);
+}
+
+// ElectricRail::drawPlane()
+// ElectricRail::drawPlaneGX()
