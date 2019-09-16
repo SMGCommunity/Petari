@@ -1,20 +1,18 @@
-#pragma once
-
 #include "Actor/NameObj/NameObjRegister.h"
 #include "MR/ObjUtil.h"
 #include "SingletonHolder.h"
 
-NameObj::NameObj(const char *name)
+NameObj::NameObj(const char *pName)
 {
     u32 temp = 0;
     s16 temp2 = -1;
 
-    this->mName = name;
-    this->mFlags = temp;
-    this->_A = temp2;
+    mName = pName;
+    mFlags = temp;
+    _A = temp2;
 
-    NameObjRegister* reg = SingletonHolder<NameObjRegister>::sInstance;
-    reg->add(this);
+    NameObjRegister* pReg = SingletonHolder<NameObjRegister>::sInstance;
+    pReg->add(this);
 }
 
 void NameObj::init(const JMapInfoIter &infoIter)
@@ -51,71 +49,75 @@ void NameObj::initWithoutIter()
 {
     JMapInfoIter tempIter(0, -1);
 
-    this->init(tempIter);
+    init(tempIter);
 }
 
 void NameObj::setName(const char* name)
 {
-    this->mName = name;
+    mName = name;
 }
 
 void NameObj::executeMovement()
 {
-    if ((this->mFlags & 0x1) == 0x1)
+    if ((mFlags & 0x1) == 0x1)
+    {    
         return;
+    }
 
-    this->movement();
+    movement();
 }
 
 void NameObj::requestSuspend()
 {
-    u32 flags = this->mFlags & 0x4;
+    u32 flags = mFlags & 0x4;
 
     if (flags == 4)
     {
-        u32 moreFlags = this->mFlags;
+        u32 moreFlags = mFlags;
         moreFlags &= 0xFFFFFFFB;
-        this->mFlags = moreFlags;
+        mFlags = moreFlags;
     }
 
-    this->mFlags |= 0x2;
+    mFlags |= 0x2;
 }
 
 void NameObj::requestResume()
 {
-    u32 flags = this->mFlags & 0x2;
+    u32 flags = mFlags & 0x2;
 
     if (flags == 0x2)
     {
-        u32 moreFlags = this->mFlags;
+        u32 moreFlags = mFlags;
         moreFlags &= 0xFFFFFFF9;
-        this->mFlags = moreFlags;
+        mFlags = moreFlags;
     }
 
-    this->mFlags |= 0x4;
+    mFlags |= 0x4;
 }
 
 void NameObj::syncWithFlags()
 {
-    u32 flags = this->mFlags & 0x2;
+    u32 flags = mFlags & 0x2;
 
     if (flags == 0x2)
     {
-        u32 moreFlags = this->mFlags;
+        u32 moreFlags = mFlags;
         moreFlags &= 0xFFFFFFFD;
         moreFlags |= 0x1;
-        this->mFlags = moreFlags;
+        mFlags = moreFlags;
     }
 
-    u32 evenMoreFlags = this->mFlags;
+    u32 evenMoreFlags = mFlags;
     evenMoreFlags &= 0x4;
     
     if (evenMoreFlags != 0x4)
+    {
         return;
+    }
 
-    evenMoreFlags = this->mFlags;
+    evenMoreFlags = mFlags;
     evenMoreFlags = (evenMoreFlags & 0xFFFFFFF9) & 0xFFFE;
-    this->mFlags = evenMoreFlags;
+    mFlags = evenMoreFlags;
 }
 
 void NameObjFunction::requestMovementOn(NameObj *obj)

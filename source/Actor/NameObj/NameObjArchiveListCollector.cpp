@@ -3,16 +3,16 @@
 
 NameObjArchiveListCollector::NameObjArchiveListCollector()
 {
-    this->mNumArchives = 0;
+    mNumArchives = 0;
 }
 
-void NameObjArchiveListCollector::addArchive(const char *archive)
+void NameObjArchiveListCollector::addArchive(const char *pArchive)
 {
-    MR::copyString(this->mArchives[this->mNumArchives], archive, 0x40);
-    this->mNumArchives++;
+    MR::copyString(mArchives[mNumArchives], pArchive, 0x40);
+    mNumArchives++;
 }
 
 const char* NameObjArchiveListCollector::getArchive(u32 idx) const
 {
-    return this->mArchives[idx];
+    return mArchives[idx];
 }

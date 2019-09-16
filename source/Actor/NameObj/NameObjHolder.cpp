@@ -4,30 +4,30 @@
 NameObjHolder::NameObjHolder(s32 a1)
 {
     s32 temp = 0;
-    this->mObjs = 0;
-    this->_4 = 0;
-    this->_8 = 0;
-    this->_4C = 0;
+    mObjs = 0;
+    _4 = 0;
+    _8 = 0;
+    _4C = 0;
 
     s16 size = a1 << 2;
-    NameObj** arr = new NameObj*[size];
-    this->mObjs = arr;
+    NameObj** pArr = new NameObj*[size];
+    mObjs = pArr;
 
-    this->_4 = a1;
+    _4 = a1;
 }
 
-void NameObjHolder::add(NameObj *obj)
+void NameObjHolder::add(NameObj *pObj)
 {
-    this->mObjs[this->_8++] = obj;
+    mObjs[_8++] = pObj;
 }
 
 void NameObjHolder::suspendAllObj()
 {
     u32 curObjIdx = 0;
 
-    while (curObjIdx < this->_8)
+    while (curObjIdx < _8)
     {
-        MR::requestMovementOff(this->mObjs[curObjIdx]);
+        MR::requestMovementOff(mObjs[curObjIdx]);
         curObjIdx++;
     }
 }
@@ -36,9 +36,9 @@ void NameObjHolder::resumeAllObj()
 {
     u32 curObjIdx = 0;
 
-    while (curObjIdx < this->_8)
+    while (curObjIdx < _8)
     {
-        MR::requestMovementOn(this->mObjs[curObjIdx]);
+        MR::requestMovementOn(mObjs[curObjIdx]);
         curObjIdx++;
     }
 }
@@ -48,6 +48,6 @@ void NameObjHolder::resumeAllObj()
 void NameObjHolder::clearArray()
 {
     u32 temp = 0;
-    this->_8 = 0;
-    this->_4C = 0;
+    _8 = 0;
+    _4C = 0;
 }

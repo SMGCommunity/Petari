@@ -1,42 +1,42 @@
 #include "Actor/LiveActor/LiveActorGroup.h"
 
-LiveActorGroup::LiveActorGroup(const char *name, s32 numObjs) : NameObjGroup(name, numObjs) { }
+LiveActorGroup::LiveActorGroup(const char *pName, s32 numObjs) : NameObjGroup(pName, numObjs) { }
 
-void LiveActorGroup::registerActor(LiveActor *actor)
+void LiveActorGroup::registerActor(LiveActor *pActor)
 {
-    this->registerObj(actor);
+    registerObj(pActor);
 }
 
 LiveActor* LiveActorGroup::getActor(s32 idx) const
 {
-    return (LiveActor*)this->mObjs[idx];
+    return (LiveActor*)mObjs[idx];
 }
 
 LiveActor* LiveActorGroup::getDeadActor() const
 {
     u32 curObjIdx = 0;
-    LiveActor* actor;
+    LiveActor *pActor;
 
     while(true)
     {
-        if (curObjIdx < this->mNumObjs)
+        if (curObjIdx < mNumObjs)
         {
-            if (!MR::isDead((LiveActor*)this->mObjs[curObjIdx]))
+            if (!MR::isDead((LiveActor*)mObjs[curObjIdx]))
                 curObjIdx++;
             else
             {
-                actor = (LiveActor*)this->mObjs[curObjIdx];
+                pActor = (LiveActor*)mObjs[curObjIdx];
                 break;
             }
         }
         else
         {
-            actor = 0;
+            pActor = 0;
             break;
         }
     }
 
-    return actor;
+    return pActor;
 }
 
 s32 LiveActorGroup::getLivingActorNum() const
@@ -44,10 +44,12 @@ s32 LiveActorGroup::getLivingActorNum() const
     s32 actorNum = 0;
     u32 curObjIdx = 0;
 
-    while(curObjIdx < this->mNumObjs)
+    while(curObjIdx < mNumObjs)
     {
-        if (MR::isDead((LiveActor*)this->mObjs[curObjIdx]) == 0)
+        if (MR::isDead((LiveActor*)mObjs[curObjIdx]) == 0)
+        {
             actorNum++;
+        }
 
         curObjIdx++;
     }
@@ -59,12 +61,12 @@ void LiveActorGroup::appearAll()
 {
     u32 curObjIdx = 0;
 
-    while(curObjIdx < this->mNumObjs)
+    while(curObjIdx < mNumObjs)
     {
-        if (MR::isDead((LiveActor*)this->mObjs[curObjIdx]) != 0)
+        if (MR::isDead((LiveActor*)mObjs[curObjIdx]) != 0)
         {
-            LiveActor* actor = (LiveActor*)this->mObjs[curObjIdx];
-            actor->appear();
+            LiveActor *pActor = (LiveActor*)mObjs[curObjIdx];
+            pActor->appear();
         }
 
         curObjIdx++;
@@ -75,10 +77,10 @@ void LiveActorGroup::killAll()
 {
     u32 curObjIdx = 0;
 
-    while(curObjIdx < this->mNumObjs)
+    while(curObjIdx < mNumObjs)
     {
-        LiveActor* actor = (LiveActor*)this->mObjs[curObjIdx];
-        actor->makeActorDead();
+        LiveActor *pActor = (LiveActor*)mObjs[curObjIdx];
+        pActor->makeActorDead();
 
         curObjIdx++;
     }

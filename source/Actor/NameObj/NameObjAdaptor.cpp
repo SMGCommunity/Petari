@@ -1,34 +1,34 @@
 #include "Actor/NameObj/NameObjAdaptor.h"
 
-NameObjAdaptor::NameObjAdaptor(const char *name) : NameObj(name)
+NameObjAdaptor::NameObjAdaptor(const char *pName) : NameObj(pName)
 {
-    MR::FunctorBase* temp = 0;
+    MR::FunctorBase* pTemp = 0;
 
-    this->mMovementFunctor = temp;
-    this->mCalcAnimFunctor = temp;
-    this->_14 = temp;
-    this->mDrawFunctor = temp;
+    mMovementFunctor = pTemp;
+    mCalcAnimFunctor = pTemp;
+    _14 = pTemp;
+    mDrawFunctor = pTemp;
 }
 
 void NameObjAdaptor::movement()
 {
-    if (this->mMovementFunctor == 0)
+    if (mMovementFunctor == 0)
         return;
 
-    this->mMovementFunctor->operator();
+    mMovementFunctor->operator();
 }
 
 void NameObjAdaptor::connectToMovement(MR::FunctorBase const &functor)
 {
-    this->mMovementFunctor = functor.clone(0);
+    mMovementFunctor = functor.clone(0);
 }
 
 void NameObjAdaptor::connectToCalcAnim(MR::FunctorBase const &functor)
 {
-    this->mCalcAnimFunctor = functor.clone(0);
+    mCalcAnimFunctor = functor.clone(0);
 }
 
 void NameObjAdaptor::connectToDraw(MR::FunctorBase const &functor)
 {
-    this->mDrawFunctor = functor.clone(0);
+    mDrawFunctor = functor.clone(0);
 }

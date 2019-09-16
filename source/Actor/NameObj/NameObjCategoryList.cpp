@@ -3,30 +3,30 @@
 
 NameObjCategoryList::CategoryInfo::CategoryInfo()
 {
-    this->mArr.mContent = 0;
-    this->mArr.mCount = 0;
-    this->_8 = 0;
+    mArr.mContent = 0;
+    mArr.mCount = 0;
+    _8 = 0;
 }
 
 // todo -- finish
-void NameObjCategoryList::initTable(u32 numEntries, const CategoryListInitialTable *table)
+void NameObjCategoryList::initTable(u32 numEntries, const CategoryListInitialTable *pTable)
 {
     CategoryInfo* cat = new CategoryInfo[numEntries];
-    this->mCategoryInfo = cat;
-    this->_4 = numEntries;
+    mCategoryInfo = cat;
+    _4 = numEntries;
 
-    while(cat != this->mCategoryInfo + this->_4)
+    while(cat != mCategoryInfo + _4)
     {
         cat->_C = 0;
         cat++;
     }
 
-    while(table->mIndex != -1)
+    while(pTable->mIndex != -1)
     {
-        if (this->_D == 0)
+        if (_D == 0)
         {
 
-            this->_C = 1;
+            _C = 1;
         }
     }
 

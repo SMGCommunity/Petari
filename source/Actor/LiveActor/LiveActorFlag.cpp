@@ -2,13 +2,13 @@
 
 LiveActorFlag::LiveActorFlag()
 {
-    this->mIsDead = 1;
-    this->mIsNotReleasedAnimFrame = 0;
-    this->mIsOnCalcAnim = 0;
-    this->mIsNoCalcView = 0;
-    this->mIsNoEntryDrawBuffer = 0;
-    this->mIsOnBind = 1;
-    this->mIsCalcGravity = 0;
-    this->_7 = 0;
-    this->_8 = 0;
+    mIsDead = 1;
+    mIsNotReleasedAnimFrame = 0;
+    mIsOnCalcAnim = 0;
+    mIsNoCalcView = 0;
+    mIsNoEntryDrawBuffer = 0;
+    mIsOnBind = 1;
+    mIsCalcGravity = 0;
+    _7 = 0;
+    _8 = 0;
 }

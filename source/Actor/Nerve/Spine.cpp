@@ -1,58 +1,62 @@
 #include "Actor/Nerve/Spine.h"
 
-Spine::Spine(void *unk1, const Nerve *nerve)
+Spine::Spine(void *unk1, const Nerve *pNerve)
 {
-    this->_0 = unk1;
-    this->mCurState = nerve;
-    this->mNextState = 0;
-    this->mNextState = 0;
-    this->mStateKeeper = 0;
+    _0 = unk1;
+    mCurState = pNerve;
+    mNextState = 0;
+    mNextState = 0;
+    mStateKeeper = 0;
 }
 
 void Spine::update()
 {
-    this->changeNerve();
-    this->mCurState->execute(this);
-    this->mNerveStep++;
-    this->changeNerve();
+    changeNerve();
+    mCurState->execute(this);
+    mNerveStep++;
+    changeNerve();
 }
 
-void Spine::setNerve(const Nerve *nerve)
+void Spine::setNerve(const Nerve *pNerve)
 {
-    if (this->mNerveStep > 0)
-        this->mCurState->executeOnEnd(this);
+    if (mNerveStep > 0)
+    {
+        mCurState->executeOnEnd(this);
+    }
 
-    this->mNextState = nerve;
-    this->mNerveStep = -1;
+    mNextState = pNerve;
+    mNerveStep = -1;
 }
 
 const Nerve* Spine::getCurrentNerve() const
 {
-    if (this->mNextState == 0)
-        return this->mCurState;
+    if (mNextState == 0)
+        return mCurState;
 
-    return this->mNextState;
+    return mNextState;
 }
 
 void Spine::changeNerve()
 {
-    if (this->mNextState == 0)
-        return;
-
-    if (this->mStateKeeper != 0)
+    if (mNextState == 0)
     {
-        this->mStateKeeper->endState(this->mCurState);
-        this->mStateKeeper->startState(this->mNextState);
+        return;
     }
 
-    const Nerve* nextState = this->mNextState;
-    this->mNerveStep = 0;
-    this->mCurState = nextState;
-    this->mNextState = 0;
+    if (mStateKeeper != 0)
+    {
+        mStateKeeper->endState(mCurState);
+        mStateKeeper->startState(mNextState);
+    }
+
+    const Nerve* pNextState = mNextState;
+    mNerveStep = 0;
+    mCurState = pNextState;
+    mNextState = 0;
 }
 
 void Spine::initStateKeeper(s32 unk1)
 {
-    ActorStateKeeper* keeper = new ActorStateKeeper(unk1);
-    this->mStateKeeper = keeper;
+    ActorStateKeeper* pKeeper = new ActorStateKeeper(unk1);
+    mStateKeeper = pKeeper;
 }

@@ -2,15 +2,15 @@
 
 NameObjRegister::NameObjRegister()
 {
-    this->mHolder = 0;
+    mHolder = 0;
 }
 
-void NameObjRegister::add(NameObj* obj)
+void NameObjRegister::add(NameObj *pObj)
 {
-    this->mHolder->add(obj);
+    mHolder->add(pObj);
 }
 
-void NameObjRegister::setCurrentHolder(NameObjHolder* holder)
+void NameObjRegister::setCurrentHolder(NameObjHolder *pHolder)
 {
-    this->mHolder = holder;
+   mHolder = pHolder;
 }

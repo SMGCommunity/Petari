@@ -1,44 +1,44 @@
 #include "Actor/NameObj/NameObjGroup.h"
 #include "MR/ObjUtil.h"
 
-NameObjGroup::NameObjGroup(const char *name, s32 len) : NameObj(name)
+NameObjGroup::NameObjGroup(const char *pName, s32 len) : NameObj(pName)
 {
-    this->_C = 0;
-    this->mNumObjs = 0;
-    this->mObjs = 0;
+    _C = 0;
+    mNumObjs = 0;
+    mObjs = 0;
 
-    this->initObjArray(len);
+    initObjArray(len);
 }
 
-void NameObjGroup::registerObj(NameObj *obj)
+void NameObjGroup::registerObj(NameObj *pObj)
 {
-    this->mObjs[this->mNumObjs] = obj;
-    this->mNumObjs++;
+    mObjs[mNumObjs] = pObj;
+    mNumObjs++;
 }
 
 void NameObjGroup::pauseOffAll() const
 {
     u32 curObjIdx = 0;
 
-    while (curObjIdx < this->mNumObjs)
+    while (curObjIdx < mNumObjs)
     {
-        MR::requestMovementOn(this->mObjs[curObjIdx]);
+        MR::requestMovementOn(mObjs[curObjIdx]);
         curObjIdx++;
     }
 }
 
 void NameObjGroup::initObjArray(s32 numObjs)
 {
-    this->_C = numObjs;
+    _C = numObjs;
     s16 size = numObjs << 2;
-    NameObj** arr = new NameObj*[size];
-    this->mObjs = arr;
+    NameObj** pArr = new NameObj*[size];
+    mObjs = pArr;
 
     u32 curObjIdx = 0;
 
-    while (curObjIdx < this->_C)
+    while (curObjIdx < _C)
     {
         curObjIdx++;
-        this->mObjs[curObjIdx] = 0;
+        mObjs[curObjIdx] = 0;
     }
 }

@@ -2,64 +2,66 @@
 #include "MR/ObjUtil.h"
 #include "MR/JMap/JMapUtil.h"
 
-ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮")
+ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮") 
 {
-    this->mJudge = 0;
-    this->mActorHolder = 0;
-    this->mGroupHolder = 0;
+    mJudge = 0;
+    mActorHolder = 0;
+    mGroupHolder = 0;
 
-    ClippingJudge* judge = new ClippingJudge("クリッピング判定者");
-    this->mJudge = judge;
-    judge->initWithoutIter();
+    ClippingJudge* pJudge = new ClippingJudge("クリッピング判定者");
+    mJudge = pJudge;
+    pJudge->initWithoutIter();
 
-    ClippingActorHolder* actorHolder = new ClippingActorHolder();
-    this->mActorHolder = actorHolder;
-    actorHolder->initWithoutIter();
+    ClippingActorHolder* pActorHolder = new ClippingActorHolder();
+    mActorHolder = pActorHolder;
+    pActorHolder->initWithoutIter();
 
-    ClippingGroupHolder* groupHolder = new ClippingGroupHolder();
-    this->mGroupHolder = groupHolder;
-    groupHolder->initWithoutIter();
+    ClippingGroupHolder* pGroupHolder = new ClippingGroupHolder();
+    mGroupHolder = pGroupHolder;
+    pGroupHolder->initWithoutIter();
 
     MR::connectToScene(this, 4, -1, -1, -1);
 }
 
-void ClippingDirector::endInitActorSystemInfo()
+void ClippingDirector::endInitActorSystemInfo() 
 {
-    this->mActorHolder->initViewGroupTable();
+    mActorHolder->initViewGroupTable();
 }
 
-void ClippingDirector::movement()
+void ClippingDirector::movement() 
 {
-    this->mJudge->movement();
-    this->mActorHolder->movement();
-    this->mGroupHolder->movement();
+    mJudge->movement();
+    mActorHolder->movement();
+    mGroupHolder->movement();
 }
 
-void ClippingDirector::registerActor(LiveActor *actor)
+void ClippingDirector::registerActor(LiveActor *pActor) 
 {
-    this->mActorHolder->registerActor(actor);
+    mActorHolder->registerActor(pActor);
 }
 
-void ClippingDirector::initActorSystemInfo(LiveActor *actor, const JMapInfoIter &iter)
+void ClippingDirector::initActorSystemInfo(LiveActor *pActor, const JMapInfoIter &iter) 
 {
-    this->mActorHolder->initSystemInfo(actor, iter);
+    mActorHolder->initSystemInfo(pActor, iter);
 }
 
-void ClippingDirector::joinToGroupClipping(LiveActor *actor, const JMapInfoIter &iter, s32 unk1)
+void ClippingDirector::joinToGroupClipping(LiveActor *pActor, const JMapInfoIter &iter, s32 unk1) 
 {
     s32 groupID = -1;
 
     MR::getJMapInfoClippingGroupID(iter, &groupID);
 
     // for some reason this assembles to some weird algorithm
-    if (groupID < 0)
+    if (groupID < 0) 
+    {
         return;
+    }
 
-    ClippingActorInfo* info = this->mActorHolder->startGroupClipping(actor, iter);
-    this->mGroupHolder->createAndAdd(info, iter, unk1);
+    ClippingActorInfo* pInfo = mActorHolder->startGroupClipping(pActor, iter);
+    mGroupHolder->createAndAdd(pInfo, iter, unk1);
 }
 
-void ClippingDirector::entryLodCtrl(LodCtrl* lodCtrl, const JMapInfoIter &iter)
+void ClippingDirector::entryLodCtrl(LodCtrl *pLodCtrl, const JMapInfoIter &iter) 
 {
-    this->mActorHolder->entryLodCtrl(lodCtrl, iter);
+    mActorHolder->entryLodCtrl(pLodCtrl, iter);
 }

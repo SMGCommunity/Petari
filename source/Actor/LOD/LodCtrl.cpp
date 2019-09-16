@@ -8,175 +8,215 @@
 #include "MR/FileUtil.h"
 #include "MR/ModelUtil.h"
 
-LodCtrl::LodCtrl(LiveActor *actor, const JMapInfoIter &iter)
+LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &iter)
 {
-    this->mDistToMiddle = 3000.0f;
-    this->mDistToLow = 2000.0f;
-    this->mModelActor = actor;
-    this->mModelObjMiddle = 0;
-    this->mModelObjLow = 0;
-    this->mIsValid = 0;
-    this->_19 = 0;
-    this->mIsShadowVisible = 1;
-    this->_1B = 0;
-    this->_2C = -1;
-    this->mLightCtrl = 0;
-    this->_1C = val_zero;
-    this->_20 = val_zero;
-    this->_24 = val_zero;
-    this->_28 = val_zero;
+    mDistToMiddle = 3000.0f;
+    mDistToLow = 2000.0f;
+    mModelActor = pActor;
+    mModelObjMiddle = 0;
+    mModelObjLow = 0;
+    mIsValid = 0;
+    _19 = 0;
+    mIsShadowVisible = 1;
+    _1B = 0;
+    _2C = -1;
+    mLightCtrl = 0;
+    _1C = val_zero;
+    _20 = val_zero;
+    _24 = val_zero;
+    _28 = val_zero;
 
     // assign our LodCtrl to the clipping director
     MR::getClippingDirector()->entryLodCtrl(this, iter);
     // assign the source model actor's light control to this
-    this->mLightCtrl = this->mModelActor->mLightCtrl;
+    mLightCtrl = mModelActor->mLightCtrl;
 }
 
 // turn off syncing shadows, and set the respective flag
 void LodCtrl::offSyncShadowHost()
 {
-    MR::offShadowVisibleSyncHostAll(this->mModelActor);
-    this->mIsShadowVisible = 0;
+    MR::offShadowVisibleSyncHostAll(mModelActor);
+    mIsShadowVisible = 0;
 }
 
 // makes the model actor, light, and all of the model objects appear if they exist
 void LodCtrl::appear()
 {
-    MR::showModel(this->mModelActor);
-    this->mLightCtrl = this->mModelActor->mLightCtrl;
+    MR::showModel(mModelActor);
+    mLightCtrl = mModelActor->mLightCtrl;
 
-    if (this->mModelObjMiddle)
+    if (mModelObjMiddle)
     {
-        if (!MR::isDead(this->mModelObjMiddle))
-            this->mModelObjMiddle->makeActorDead();
+        if (!MR::isDead(mModelObjMiddle))
+        {
+            mModelObjMiddle->makeActorDead();
+        }
     }
 
-    if (this->mModelObjLow)
+    if (mModelObjLow)
     {
-        if (!MR::isDead(this->mModelObjLow))
-            this->mModelObjLow->makeActorDead();
+        if (!MR::isDead(mModelObjLow))
+        {
+            mModelObjLow->makeActorDead();
+        }
 
-        if (!this->mIsShadowVisible)
-            MR::offShadowVisibleSyncHostAll(this->mModelActor);
+        if (!mIsShadowVisible)
+        {
+            MR::offShadowVisibleSyncHostAll(mModelActor);
+        }
    }
 }
 
 void LodCtrl::kill()
 {
-    MR::showModel(this->mModelActor);
+    MR::showModel(mModelActor);
 
-    if (this->mModelObjMiddle)
+    if (mModelObjMiddle)
     {
-        if (!MR::isDead(this->mModelObjMiddle))
-            this->mModelObjMiddle->makeActorDead();
+        if (!MR::isDead(mModelObjMiddle))
+        {
+            mModelObjMiddle->makeActorDead();
+        }
     }
 
-    if (this->mModelObjLow)
+    if (mModelObjLow)
     {
-        if (!MR::isDead(this->mModelObjLow))
-            this->mModelObjLow->makeActorDead();
+        if (!MR::isDead(mModelObjLow))
+        {
+            mModelObjLow->makeActorDead();
+        }
     }
 
-    if (!this->mIsShadowVisible)
-        MR::onShadowVisibleSyncHostAll(this->mModelActor);
+    if (!mIsShadowVisible)
+    {
+        MR::onShadowVisibleSyncHostAll(mModelActor);
+    }
 
-    this->mLightCtrl = 0;
+    mLightCtrl = 0;
 }
 
 void LodCtrl::validate()
 {
-    this->appear();
-    this->mIsValid = 1;
+    appear();
+    mIsValid = 1;
 }
 
 void LodCtrl::invalidate()
 {
-    this->kill();
-    this->mIsValid = 0;
+    kill();
+    mIsValid = 0;
 }
 
 void LodCtrl::update()
 {
-    if (MR::isDead(this->mModelActor))
+    if (MR::isDead(mModelActor))
+    {
         return;
+    }
 
-    if (this->mIsValid)
+    if (mIsValid)
     {
         bool flag = 0;
 
-        if (this->mModelObjMiddle || this->mModelObjLow)
+        if (mModelObjMiddle || mModelObjLow)
+        {
             flag = 1;
+        }
 
         if (flag)
         {
-            f32 distToCamera = this->calcDistanceToCamera();
-            bool val = *this->_28;
-            f32 distToMiddle = this->mDistToMiddle;
-            f32 distToLow = this->mDistToLow;
+            f32 distToCamera = calcDistanceToCamera();
+            bool val = *_28;
+            f32 distToMiddle = mDistToMiddle;
+            f32 distToLow = mDistToLow;
 
             if (!val)
             {
-                if (!*this->_1C)
+                if (!*_1C)
                 {
-                    if (this->mModelObjMiddle || !*this->_20)
+                    if (mModelObjMiddle || !*_20)
                     {
-                        if (this->mModelObjLow || !*this->_24)
+                        if (mModelObjLow || !*_24)
                         {
                             if (distToCamera >= distToMiddle)
                             {
-                                if (this->mModelObjMiddle || distToCamera >= distToLow)
+                                if (mModelObjMiddle || distToCamera >= distToLow)
                                 {
-                                    if (!this->mModelObjMiddle || distToCamera >= distToLow)
+                                    if (!mModelObjMiddle || distToCamera >= distToLow)
                                     {
-                                        if (this->mModelObjLow)
-                                            this->showLowModel();
+                                        if (mModelObjLow)
+                                        {
+                                            showLowModel();
+                                        }
                                     }
                                     else
-                                        this->showMiddleModel();
+                                    {
+                                        showMiddleModel();
+                                    }
                                 }
                                 else
-                                    this->showHighModel();
+                                {
+                                    showHighModel();
+                                }
                             }
                             else
-                                this->showHighModel();
+                            {
+                                showHighModel();
+                            }
                         }
                         else
-                            this->showLowModel();
+                        {
+                            showLowModel();
+                        }
                     }
                     else
-                        this->showMiddleModel();
+                    {
+                        showMiddleModel();
+                    }
                 }
                 else
-                    this->showHighModel();
+                {
+                    showHighModel();
+                }
             }
             else
-                this->hideAllModel();
-
-            if (this->mCurrentActiveObj)
             {
-                if (this->mCurrentActiveObj != this->mModelActor)
-                    MR::copyTransRotateScale(this->mCurrentActiveObj, this->mModelActor);
+                hideAllModel();
+            }
+
+            if (mCurrentActiveObj)
+            {
+                if (mCurrentActiveObj != mModelActor)
+                {
+                    MR::copyTransRotateScale(mCurrentActiveObj, mModelActor);
+                }
             }
         }
         else
         {
-            if (*this->_28)
-                this->hideAllModel();
+            if (*_28)
+            {
+                hideAllModel();
+            }
             else
-                this->showHighModel();
+            {
+                showHighModel();
+            }
         }
     }
 }
 
 bool LodCtrl::isShowLowModel() const
 {
-    LiveActor* modelObj = this->mModelObjLow;
+    LiveActor *pModelObj = mModelObjLow;
     bool ret = 0;
 
-    if (modelObj)
+    if (pModelObj)
     {
-        if (modelObj == this->mCurrentActiveObj)
+        if (pModelObj == mCurrentActiveObj)
+        {
             ret = 1;
+        }
     }
 
     return ret;
@@ -184,37 +224,45 @@ bool LodCtrl::isShowLowModel() const
 
 void LodCtrl::setDistanceToMiddle(f32 dist)
 {
-    this->mDistToMiddle = dist;
+    mDistToMiddle = dist;
 }
 
 f32 LodCtrl::calcDistanceToCamera() const
 {
-    if (!this->_1B)
-        return MR::calcDistanceToPlayer(this->mModelActor);
+    if (!_1B)
+    {
+        return MR::calcDistanceToPlayer(mModelActor);
+    }
     else
-        return MR::calcCameraDistanceZ(this->mModelActor->mTranslation);
+    {
+        return MR::calcCameraDistanceZ(mModelActor->mTranslation);
+    }
 }
 void LodCtrl::setDistanceToLow(f32 dist)
 {
-    this->mDistToLow = dist;
+    mDistToLow = dist;
 }
 
 void LodCtrl::setDistanceToMiddleAndLow(f32 mid, f32 low)
 {
-    this->mDistToMiddle = mid;
-    this->mDistToLow = low;
+    mDistToMiddle = mid;
+    mDistToLow = low;
 }
 
 template<typename T>
-void LodFuntionCall(LodCtrl *ctrl, void(*func)(LiveActor *, f32), T a3)
+void LodFuntionCall(LodCtrl *pCtrl, void(*pFunc)(LiveActor *, f32), T a3)
 {
-    func(ctrl->mModelActor, a3);
+    pFunc(pCtrl->mModelActor, a3);
 
-    if (ctrl->mModelObjMiddle)
-        func(ctrl->mModelObjMiddle, a3);
+    if (pCtrl->mModelObjMiddle)
+    {
+        pFunc(pCtrl->mModelObjMiddle, a3);
+    }
 
-    if (ctrl->mModelObjLow)
-        func(ctrl->mModelObjLow, a3);    
+    if (pCtrl->mModelObjLow)
+    {
+        pFunc(pCtrl->mModelObjLow, a3);
+    } 
 }
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 arg)
@@ -236,194 +284,238 @@ void LodCtrl::invalidateClipping()
 
 void LodCtrl::showHighModel()
 {
-    if (MR::isHiddenModel(this->mModelActor))
+    if (MR::isHiddenModel(mModelActor))
     {
-        if (this->mLightCtrl)
-            this->mModelActor->mLightCtrl->copy(this->mLightCtrl);
+        if (mLightCtrl)
+        {
+            mModelActor->mLightCtrl->copy(mLightCtrl);
+        }
 
-        this->mLightCtrl = this->mModelActor->mLightCtrl;
-        MR::showModel(this->mModelActor);
+        mLightCtrl = mModelActor->mLightCtrl;
+        MR::showModel(mModelActor);
     }
     else
     {
-        if (this->mModelObjMiddle)
+        if (mModelObjMiddle)
         {
-            if (!MR::isDead(this->mModelObjMiddle))
-                this->mModelObjMiddle->makeActorDead();
+            if (!MR::isDead(mModelObjMiddle))
+            {
+                mModelObjMiddle->makeActorDead();
+            }
         }
 
-        if(this->mModelObjLow)
+        if(mModelObjLow)
         {
-            if (!MR::isDead(this->mModelObjLow))
-                this->mModelObjLow->makeActorDead();
+            if (!MR::isDead(mModelObjLow))
+            {
+                mModelObjLow->makeActorDead();
+            }
         }
     }
 
-    this->mCurrentActiveObj = (ModelObj*)this->mModelActor;
+    mCurrentActiveObj = (ModelObj*)mModelActor;
 }
 
 void LodCtrl::showMiddleModel()
 {
-    if (MR::isDead(this->mModelObjMiddle))
+    if (MR::isDead(mModelObjMiddle))
     {
-        if (this->mLightCtrl)
-            this->mModelObjMiddle->mLightCtrl->copy(this->mLightCtrl);
+        if (mLightCtrl)
+        {
+            mModelObjMiddle->mLightCtrl->copy(mLightCtrl);
+        }
 
-        this->mLightCtrl = this->mModelObjMiddle->mLightCtrl;
-        this->mModelObjMiddle->makeActorAppeared();
-        MR::calcAnimDirect(this->mModelObjMiddle);
+        mLightCtrl = mModelObjMiddle->mLightCtrl;
+        mModelObjMiddle->makeActorAppeared();
+        MR::calcAnimDirect(mModelObjMiddle);
     }
     else
     {
-        if (!MR::isHiddenModel(this->mModelActor))
-            MR::hideModelAndOnCalcAnim(this->mModelActor);
-
-        if(this->mModelObjLow)
+        if (!MR::isHiddenModel(mModelActor))
         {
-            if (!MR::isDead(this->mModelObjLow))
-                this->mModelObjLow->makeActorDead();
+            MR::hideModelAndOnCalcAnim(mModelActor);
+        }
+
+        if(mModelObjLow)
+        {
+            if (!MR::isDead(mModelObjLow))
+            {
+                mModelObjLow->makeActorDead();
+            }
         }
     }
 
-    this->mCurrentActiveObj = this->mModelObjMiddle;
+    mCurrentActiveObj = mModelObjMiddle;
 }
 
 void LodCtrl::showLowModel()
 {
-    if (MR::isDead(this->mModelObjLow))
+    if (MR::isDead(mModelObjLow))
     {
-        if (this->mLightCtrl)
-            this->mModelObjLow->mLightCtrl->copy(this->mLightCtrl);
+        if (mLightCtrl)
+        {
+            mModelObjLow->mLightCtrl->copy(mLightCtrl);
+        }
 
-        this->mLightCtrl = this->mModelObjLow->mLightCtrl;
-        this->mModelObjLow->makeActorAppeared();
-        MR::calcAnimDirect(this->mModelObjLow);
+        mLightCtrl = mModelObjLow->mLightCtrl;
+        mModelObjLow->makeActorAppeared();
+        MR::calcAnimDirect(mModelObjLow);
     }
     else
     {
-        if (!MR::isHiddenModel(this->mModelActor))
-            MR::hideModelAndOnCalcAnim(this->mModelActor);
-
-        if(this->mModelObjMiddle)
+        if (!MR::isHiddenModel(mModelActor))
         {
-            if (!MR::isDead(this->mModelObjMiddle))
-                this->mModelObjMiddle->makeActorDead();
+            MR::hideModelAndOnCalcAnim(mModelActor);
+        }
+
+        if(mModelObjMiddle)
+        {
+            if (!MR::isDead(mModelObjMiddle))
+            {
+                mModelObjMiddle->makeActorDead();
+            }
         }
     }
 
-    this->mCurrentActiveObj = this->mModelObjLow;
+    mCurrentActiveObj = mModelObjLow;
 }
 
 void LodCtrl::hideAllModel()
 {
-    if (!MR::isHiddenModel(this->mModelActor))
-        MR::hideModelAndOnCalcAnim(this->mModelActor);
-
-    if (this->mModelObjMiddle)
+    if (!MR::isHiddenModel(mModelActor))
     {
-        if (!MR::isDead(this->mModelObjMiddle))
-            this->mModelObjMiddle->makeActorDead();
+        MR::hideModelAndOnCalcAnim(mModelActor);
     }
 
-    if (this->mModelObjLow)
+    if (mModelObjMiddle)
     {
-        if (!MR::isDead(this->mModelObjLow))
-            this->mModelObjLow->makeActorDead();
+        if (!MR::isDead(mModelObjMiddle))
+        {
+            mModelObjMiddle->makeActorDead();
+        }
     }
 
-    this->mCurrentActiveObj = 0;
+    if (mModelObjLow)
+    {
+        if (!MR::isDead(mModelObjLow))
+        {
+            mModelObjLow->makeActorDead();
+        }
+    }
+
+    mCurrentActiveObj = 0;
 }
 
-void LodCtrl::setViewCtrlPtr(const bool *a1, const bool *a2, const bool *a3, const bool *a4)
+void LodCtrl::setViewCtrlPtr(const bool *p1, const bool *p2, const bool *p3, const bool *p4)
 {
-    this->_1C = a1;
-    this->_20 = a2;
-    this->_24 = a3;
-    this->_28 = a4;
+    _1C = p1;
+    _20 = p2;
+    _24 = p3;
+    _28 = p4;
 }
 
 void LodCtrl::createLodModel(s32 a1, s32 a2, s32 a3)
 {
-    this->mModelObjMiddle = this->initLodModel(a1, a2, a3, 0);
-    this->mModelObjLow = this->initLodModel(a1, a2, a3, 1);
+    mModelObjMiddle = initLodModel(a1, a2, a3, 0);
+    mModelObjLow = initLodModel(a1, a2, a3, 1);
 
-    if (this->mModelObjMiddle && this->mModelObjLow)
+    if (mModelObjMiddle && mModelObjLow)
     {
-        this->appear();
-        this->mIsValid = 1;
+        appear();
+        mIsValid = 1;
     }
     else
     {
-        this->kill();
-        this->mIsValid = 0;
+        kill();
+        mIsValid = 0;
     }
 }
 
 void LodCtrl::syncMaterialAnimation()
 {
-    if (this->mModelObjMiddle)
-        MR::syncMaterialAnimation(this->mModelObjMiddle, this->mModelActor);
+    if (mModelObjMiddle)
+    {
+        MR::syncMaterialAnimation(mModelObjMiddle, mModelActor);
+    }
 
-    if (this->mModelObjLow)
-        MR::syncMaterialAnimation(this->mModelObjLow, this->mModelActor);
+    if (mModelObjLow)
+    {
+        MR::syncMaterialAnimation(mModelObjLow, mModelActor);
+    }
 }
 
 void LodCtrl::syncJointAnimation()
 {
-    if (this->mModelObjMiddle)
-        MR::syncJointAnimation(this->mModelObjMiddle, this->mModelActor);
+    if (mModelObjMiddle)
+    {
+        MR::syncJointAnimation(mModelObjMiddle, mModelActor);
+    }
 
-    if (this->mModelObjLow)
-        MR::syncJointAnimation(this->mModelObjLow, this->mModelActor);
+    if (mModelObjLow)
+    {
+        MR::syncJointAnimation(mModelObjLow, mModelActor);
+    }
 }
 
 void LodCtrl::initLightCtrl()
 {
-    if (this->mModelObjMiddle)
-        MR::initLightCtrl(this->mModelObjMiddle);
+    if (mModelObjMiddle)
+    {    
+        MR::initLightCtrl(mModelObjMiddle);
+    }
 
-    if (this->mModelObjLow)
-        MR::initLightCtrl(this->mModelObjLow);
+    if (mModelObjLow)
+    {
+        MR::initLightCtrl(mModelObjLow);
+    }
 }
 
 ModelObj* LodCtrl::initLodModel(s32 a1, s32 a2, s32 a3, bool a4) const
 {
-    const char* objName;
-    char* type = "Middle";
-    const char* modelName = MR::getModelResName(this->mModelActor);
+    const char* pObjName;
+    char* pType = "Middle";
+    const char* pModelName = MR::getModelResName(mModelActor);
 
     if (!a4)
-        type = "Low";
+    {
+        pType = "Low";
+    }
 
     char in;
-    snprintf(&in, 0x100, "/ObjectData/%s%s.arc", modelName, type);
+    snprintf(&in, 0x100, "/ObjectData/%s%s.arc", pModelName, pType);
 
     if (!MR::isFileExist(&in, 0))
+    {
         return 0;
+    }
     else
     {
         if (!a4)
-            objName = MR::createMiddleModelObjName(this->mModelActor);
+        {
+            pObjName = MR::createMiddleModelObjName(mModelActor);
+        }
         else
-            objName = MR::createLowModelObjName(this->mModelActor);
+        {
+            pObjName = MR::createLowModelObjName(mModelActor);
+        }
 
-        snprintf(&in, 0x100, "%s%s", modelName, type);
+        snprintf(&in, 0x100, "%s%s", pModelName, pType);
 
         // todo -- placed improperly
-        Mtx* mtx = this->mModelActor->getBaseMtx();
-        ModelObj* obj = new ModelObj(objName, &in, mtx, a1, a2, a3, 0);
-        obj->initWithoutIter();
-        obj->makeActorAppeared();
-        MR::setClippingTypeSphereContainsModelBoundingBox(obj, 100.0f);
-        MR::copyTransRotateScale(this->mModelActor, obj);
+        Mtx* pMtx = mModelActor->getBaseMtx();
+        ModelObj* pObj = new ModelObj(pObjName, &in, pMtx, a1, a2, a3, 0);
+        pObj->initWithoutIter();
+        pObj->makeActorAppeared();
+        MR::setClippingTypeSphereContainsModelBoundingBox(pObj, 100.0f);
+        MR::copyTransRotateScale(mModelActor, pObj);
 
-        return obj;
+        return pObj;
     }
 }
 
-bool LodCtrlFunction::isExistLodLowModel(const char *name)
+bool LodCtrlFunction::isExistLodLowModel(const char *pName)
 {
     char in;
-    snprintf(&in, 0x100, "/ObjectData/%sLow.arc", name);
+    snprintf(&in, 0x100, "/ObjectData/%sLow.arc", pName);
     return MR::isFileExist(&in, 0);
 }
