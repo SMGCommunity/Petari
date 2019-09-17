@@ -15,4 +15,4 @@ If you do not have CodeWarrior in $PATH, stick the executables into a folder on 
 If it successfully builds, all of the binaries are located in the "build" folder.
 
 # Contributing
-All contributions are welcome, just as long as they follow the current coding style. Look at any source file to ese the general style. Also, before contributing, be sure that the code matches 1:1 COMPLETELY to the original game.
+All contributions are welcome, just as long as they follow the current coding style. Look at any source file to see the general style. Also, before contributing, be sure that the code matches 1:1 COMPLETELY to the original game.
