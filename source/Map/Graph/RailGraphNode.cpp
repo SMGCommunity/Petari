@@ -2,9 +2,9 @@
 
 RailGraphNode::RailGraphNode()
 {
-    this->_C = -1;
-    this->mPosition.x = 0.0f;
-    this->mPosition.y = 0.0f;
-    this->mPosition.z = 0.0f;
-    this->_10 = 0;
+    _C = -1;
+    mPosition.x = 0.0f;
+    mPosition.y = 0.0f;
+    mPosition.z = 0.0f;
+    _10 = 0;
 }

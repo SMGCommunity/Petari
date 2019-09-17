@@ -4,56 +4,62 @@
 #include "MR/MathUtil.h"
 #include "MR/StringUtil.h"
 
-BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *info)
+BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *pInfo)
 {
     f32 f0, f29;
 
-    this->mMapInfo = info;
-    this->mIter = new JMapInfoIter(iter.mInfo, iter.mPos);
+    mMapInfo = pInfo;
+    mIter = new JMapInfoIter(iter.mInfo, iter.mPos);
 
-    const char* unk = unk_str;
-    const JMapInfo* temp_info = iter.mInfo;
+    const char *pUnk = unk_str;
+    const JMapInfo *pTemp_info = iter.mInfo;
     s32 position = iter.mPos;
 
-    s32 res = temp_info->searchItemInfo("closed");
+    s32 res = pTemp_info->searchItemInfo("closed");
 
     if (res >= 0)
     {
-        temp_info->getValueFast(position, res, &unk);
+        pTemp_info->getValueFast(position, res, &pUnk);
     }
 
-    this->mIsLoop = MR::isEqualString(unk, "CLOSE");
+    mIsLoop = MR::isEqualString(pUnk, "CLOSE");
     s32 inf;
 
     // this check screws up some stuff, adds some useless math
-    if (info->_0 != 0)
-        inf = info->_0;
+    if (pInfo->_0 != 0)
+    {
+        inf = pInfo->_0;
+    }
     else
+    {
         inf = 0;
+    }
 
     s32 val = inf - 1;
-    this->mPointNum = inf;    
-    this->mPointNumLoop = val;
+    mPointNum = inf;    
+    mPointNumLoop = val;
 
-    if (this->mIsLoop != 0)
-        this->mPointNumLoop = ++val;
+    if (mIsLoop != 0)
+    {
+        mPointNumLoop = ++val;
+    }
 
     f32 f31 = 0.0f;
     f32 f30 = f31;
 
-    this->mRailParts = new RailPart[this->mPointNumLoop];
-    this->mSegLengths = new f32[this->mPointNumLoop];
+    mRailParts = new RailPart[mPointNumLoop];
+    mSegLengths = new f32[mPointNumLoop];
 
     s32 curPoint = 0;
 
-    while(curPoint < this->mPointNumLoop)
+    while(curPoint < mPointNumLoop)
     {
         JMapInfoIter tempIter_0 = iter;
         s32 r6 = curPoint + 1;
         tempIter_0.mPos = curPoint;
-        s32 r0 = (r6 / this->mPointNum);
+        s32 r0 = (r6 / mPointNum);
         JMapInfoIter tempIter_1 = iter;
-        r0 = r0 * this->mPointNum;
+        r0 = r0 * mPointNum;
         r0 = r0 - r6;
         tempIter_1.mPos = r0;
 
@@ -67,13 +73,13 @@ BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *info)
         MR::getRailPointPos1(tempIter_1, &vec_2);
         MR::getRailPointPos0(tempIter_1, &vec_3);
 
-        this->mRailParts[curPoint].init(vec_0, vec_1, vec_2, vec_3);
+        mRailParts[curPoint].init(vec_0, vec_1, vec_2, vec_3);
         f29 = f31;
-        f32 partTotalLength = this->mRailParts[curPoint].getTotalLength();
+        f32 partTotalLength = mRailParts[curPoint].getTotalLength();
         f30 = f30 + partTotalLength;
         f31 = f31 + f30;
         f0 = f31 - f29;
-        this->mSegLengths[curPoint] = f31;
+        mSegLengths[curPoint] = f31;
         f30 = f30 - f0;
         curPoint++;
     }
@@ -83,76 +89,80 @@ f32 BezierRail::normalizePos(f32 a1 ,s32 a2) const
 {
     f32 val;
 
-    if (this->mIsLoop)
+    if (mIsLoop)
     {
-        val = MR::mod(a1, this->getTotalLength());
+        val = MR::mod(a1, getTotalLength());
 
         if (a2 < 0)
         {
             if (MR::isNearZero(val, 0.001f))
-                val = this->getTotalLength();
+            {
+                val = getTotalLength();
+            }
         }
 
         if (val < 0.0f)
-            val += this->getTotalLength();
+        {
+            val += getTotalLength();
+        }
 
         return val;
     }
     else
     {
-        val = this->getTotalLength();
+        val = getTotalLength();
         return JGeometry::TUtil<f32>::clamp(a1, 0.0f, val);
     }
 }
 
 f32 BezierRail::getTotalLength() const
 {
-    return this->mSegLengths[this->mPointNumLoop - 1];
+    return mSegLengths[mPointNumLoop - 1];
 }
 
 f32 BezierRail::getPartLength(s32 idx) const
 {
-    return this->mRailParts[idx].getTotalLength();
+    return mRailParts[idx].getTotalLength();
 }
 
-void BezierRail::calcPos(JGeometry::TVec3<f32> *out, f32 a2) const
+void BezierRail::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
 {
-    const RailPart* part;
+    const RailPart *pPart;
     f32 param_2;
-    this->getIncludedSection(&part, &param_2, a2, 1);
-    f32 partParam = part->getParam(param_2);
-    part->calcPos(out, partParam);
+    getIncludedSection(&pPart, &param_2, a2, 1);
+    f32 partParam = pPart->getParam(param_2);
+    pPart->calcPos(pOut, partParam);
 }
 
-void BezierRail::calcDirection(JGeometry::TVec3<f32> *out, f32 a2) const
+void BezierRail::calcDirection(JGeometry::TVec3<f32> *pOut, f32 a2) const
 {
-    const RailPart* part;
+    const RailPart *pPart;
     f32 param_2;
-    this->getIncludedSection(&part, &param_2, a2, 1);
-    f32 partParam = part->getParam(param_2);
-    BezierRail::calcRailDirection(out, part, partParam);   
+    getIncludedSection(&pPart, &param_2, a2, 1);
+    f32 partParam = pPart->getParam(param_2);
+    BezierRail::calcRailDirection(pOut, pPart, partParam);   
 }
 
-void BezierRail::calcPosDir(JGeometry::TVec3<f32> *pos, JGeometry::TVec3<f32> *dir, f32 a3) const
+void BezierRail::calcPosDir(JGeometry::TVec3<f32> *pPos, JGeometry::TVec3<f32> *pDir, f32 a3) const
 {
-    const RailPart* part;
+    const RailPart *pPart;
     f32 param_2;
-    this->getIncludedSection(&part, &param_2, a3, 1);
-    f32 partParam = part->getParam(param_2);
-    part->calcPos(pos, partParam); 
-    BezierRail::calcRailDirection(dir, part, partParam); 
+    getIncludedSection(&pPart, &param_2, a3, 1);
+    f32 partParam = pPart->getParam(param_2);
+    pPart->calcPos(pPos, partParam); 
+    BezierRail::calcRailDirection(pDir, pPart, partParam); 
 }
 
 // doesn't match very well, yet. fix me
 f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3<f32> &coord) const
 {
-    RailPart* rootPart = this->mRailParts;
+    RailPart *pRootPart = mRailParts;
     s32 curLargest = 0;
-    f32 railPartTotalLen = rootPart->getTotalLength();
-    f32 railPartNearParam = rootPart->getNearestParam(coord, (100.0f / railPartTotalLen));
+    f32 railPartTotalLen = pRootPart->getTotalLength();
+    f32 railPartNearParam = pRootPart->getNearestParam(coord, (100.0f / railPartTotalLen));
 
     JGeometry::TVec3<f32> railPartPos;
-    rootPart->calcPos(&railPartPos, railPartNearParam);
+    pRootPart->calcPos(&railPartPos, railPartNearParam);
     railPartPos.sub(coord);
     f32 rootRailPartSqr = railPartPos.squared();
     f32 baseSize = 100.0f;
@@ -160,14 +170,14 @@ f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3<f32> &coord) const
     s32 anotherIdx = 1;
     f32 f30;
 
-    while (anotherIdx < this->mPointNumLoop)
+    while (anotherIdx < mPointNumLoop)
     {
-        RailPart* curPart = &this->mRailParts[anotherIdx];
-        f32 curRailTotalLen = curPart->getTotalLength();
-        f32 curParam = curPart->getNearestParam(coord, (baseSize / curRailTotalLen));
+        RailPart *pCurPart = &mRailParts[anotherIdx];
+        f32 curRailTotalLen = pCurPart->getTotalLength();
+        f32 curParam = pCurPart->getNearestParam(coord, (baseSize / curRailTotalLen));
 
         JGeometry::TVec3<f32> curRailPos;
-        curPart->calcPos(&curRailPos, curParam);
+        pCurPart->calcPos(&curRailPos, curParam);
         curRailPos.sub(coord);
         f32 railPartSqr = curRailPos.squared();
 
@@ -182,38 +192,44 @@ f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3<f32> &coord) const
     f32 len;
 
     if (curLargest != 0)
-        len = this->mSegLengths[curLargest - 1];
+    {
+        len = mSegLengths[curLargest - 1];
+    }
     else
+    {
         len = 0.0f;
+    }
 
-    f32 railPartLen = this->mRailParts[curLargest].getLength(0.0f, f30, 0xA);
+    f32 railPartLen = mRailParts[curLargest].getLength(0.0f, f30, 0xA);
     return len + railPartLen;
 }
 
 f32 BezierRail::getRailPosCoord(s32 idx) const
 {
     if (idx == 0)
+    {
         return 0.0f;
+    }
 
-    if (!(this->mIsLoop == 0) && !(idx == this->mPointNum - 1))
+    if (!(mIsLoop == 0) && !(idx == mPointNum - 1))
     {
         idx--;
-        return this->mSegLengths[idx];
+        return mSegLengths[idx];
     }
         
-    return this->getTotalLength();
+    return getTotalLength();
 }
 
-void BezierRail::calcCurrentRailCtrlPointIter(JMapInfoIter *iter, f32 a2, bool a3) const
+void BezierRail::calcCurrentRailCtrlPointIter(JMapInfoIter *pIter, f32 a2, bool a3) const
 {
-    s32 idx = this->getCurrentCtrlPointIndex(a2, a3);
-    this->calcRailCtrlPointIter(iter, idx);
+    s32 idx = getCurrentCtrlPointIndex(a2, a3);
+    calcRailCtrlPointIter(pIter, idx);
 }
 
 // this uses one more ldw than it needs to...why?
-void BezierRail::calcRailCtrlPointIter(JMapInfoIter *iter, s32 idx) const
+void BezierRail::calcRailCtrlPointIter(JMapInfoIter *pIter, s32 idx) const
 {
-    const JMapInfo* info = this->mIter->mInfo;
-    iter->mPos = idx;
-    iter->mInfo = info;
+    const JMapInfo *pInfo = mIter->mInfo;
+    pIter->mPos = idx;
+    pIter->mInfo = pInfo;
 }

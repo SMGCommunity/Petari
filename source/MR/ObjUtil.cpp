@@ -3,77 +3,77 @@
 
 namespace MR
 {
-    void connectToScene(LiveActor *actor, s32 movementType, s32 calcAnimType, s32 drawBufType, s32 drawType)
+    void connectToScene(LiveActor *pActor, s32 movementType, s32 calcAnimType, s32 drawBufType, s32 drawType)
     {
-        MR::registerNameObjToExecuteHolder(actor, movementType, calcAnimType, drawBufType, drawType);
+        MR::registerNameObjToExecuteHolder(pActor, movementType, calcAnimType, drawBufType, drawType);
     }
 
-    void connectToScene(NameObj *actor, s32 movementType, s32 calcAnimType, s32 drawBufType, s32 drawType)
+    void connectToScene(NameObj *pActor, s32 movementType, s32 calcAnimType, s32 drawBufType, s32 drawType)
     {
-        MR::registerNameObjToExecuteHolder(actor, movementType, calcAnimType, drawBufType, drawType);
-        MR::connectToSceneTemporarily(actor);
-        MR::connectToDrawTemporarily(actor);
+        MR::registerNameObjToExecuteHolder(pActor, movementType, calcAnimType, drawBufType, drawType);
+        MR::connectToSceneTemporarily(pActor);
+        MR::connectToDrawTemporarily(pActor);
     }
 
-    void connectToSceneCollisionMapObj(LiveActor *actor)
+    void connectToSceneCollisionMapObj(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1E, 2, 8, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1E, 2, 8, -1);
     }
 
-    void connectToSceneCollisionMapObjMovementCalcAnim(LiveActor *actor)
+    void connectToSceneCollisionMapObjMovementCalcAnim(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1E, 2, -1, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1E, 2, -1, -1);
     }
 
-    void connectToSceneCollisionMapObjWeakLight(LiveActor *actor)
+    void connectToSceneCollisionMapObjWeakLight(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1E, 2, 9, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1E, 2, 9, -1);
     }
 
-    void connectToSceneCollisionMapObjStrongLight(LiveActor *actor)
+    void connectToSceneCollisionMapObjStrongLight(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1E, 2, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1E, 2, 0xA, -1);
     }
 
-    void connectToSceneCollisionEnemy(LiveActor *actor)
+    void connectToSceneCollisionEnemy(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1F, 3, 0x12, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1F, 3, 0x12, -1);
     }
 
-    void connectToSceneCollisionEnemyMovement(NameObj *actor)
+    void connectToSceneCollisionEnemyMovement(NameObj *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1F, -1, -1, -1);
-        MR::connectToSceneTemporarily(actor);
-        MR::connectToDrawTemporarily(actor);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1F, -1, -1, -1);
+        MR::connectToSceneTemporarily(pActor);
+        MR::connectToDrawTemporarily(pActor);
     }
 
-    void connectToSceneCollisionEnemyStrongLight(LiveActor *actor)
+    void connectToSceneCollisionEnemyStrongLight(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1F, 3, 0xA, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1F, 3, 0xA, -1);
     }
 
-    void connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(LiveActor *actor)
+    void connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x1F, 3, 0xC, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x1F, 3, 0xC, -1);
     }
 
-    void connectToSceneNpc(LiveActor *actor)
+    void connectToSceneNpc(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x28, 6, 0x10, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x28, 6, 0x10, -1);
     }
 
-    void connectToSceneNpcMovement(LiveActor *actor)
+    void connectToSceneNpcMovement(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x28, -1, -1, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x28, -1, -1, -1);
     }
 
-    void connectToSceneRide(LiveActor *actor)
+    void connectToSceneRide(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x29, 7, 0x11, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x29, 7, 0x11, -1);
     }
 
-    void connectToSceneEnemy(LiveActor *actor)
+    void connectToSceneEnemy(LiveActor *pActor)
     {
-        MR::registerNameObjToExecuteHolder(actor, 0x2A, 8, 0x12, -1);
+        MR::registerNameObjToExecuteHolder(pActor, 0x2A, 8, 0x12, -1);
     }
 };

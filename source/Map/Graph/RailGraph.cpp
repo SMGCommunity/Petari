@@ -3,17 +3,17 @@
 
 RailGraph::RailGraph()
 {
-    this->mNodes = 0;
-    this->_4 = 0;
-    this->mNodeCount = 0;
-    this->mEdges = 0;
-    this->_10 = 0;
-    this->mEdgeCount = 0;
+    mNodes = 0;
+    _4 = 0;
+    mNodeCount = 0;
+    mEdges = 0;
+    _10 = 0;
+    mEdgeCount = 0;
 
-    this->mNodes = new RailGraphNode[0x100];
-    this->_4 = 0x100;
-    this->mEdges = new RailGraphEdge[0x100];
-    this->_10 = 0x200;
+    mNodes = new RailGraphNode[0x100];
+    _4 = 0x100;
+    mEdges = new RailGraphEdge[0x100];
+    _10 = 0x200;
 }
 
 s32 RailGraph::addNode(const JGeometry::TVec3<f32> &pos)
@@ -23,9 +23,9 @@ s32 RailGraph::addNode(const JGeometry::TVec3<f32> &pos)
     node.mPosition.y = pos.y;
     node.mPosition.z = pos.z;
 
-    s32 numNodes = this->mNodeCount;
-    this->mNodeCount = numNodes++;
-    RailGraphNode* curNode = &this->mNodes[numNodes];
+    s32 numNodes = mNodeCount;
+    mNodeCount = numNodes++;
+    RailGraphNode* curNode = &mNodes[numNodes];
 
     // load and store our X and Y positions to our new node
     __asm("psq_l f0, 8(r1), 0, 0");
@@ -34,38 +34,38 @@ s32 RailGraph::addNode(const JGeometry::TVec3<f32> &pos)
     curNode->_C = node._C;
     curNode->_10 = node._10;
 
-    return this->mNodeCount - 1;
+    return mNodeCount - 1;
 }
 
-void RailGraph::connectNodeTwoWay(s32 next, s32 prev, const RailGraphEdge *edge)
+void RailGraph::connectNodeTwoWay(s32 next, s32 prev, const RailGraphEdge *pEdge)
 {
     RailGraphEdge newEdge;
     
-    if (edge != 0)
-        newEdge = *edge;
+    if (pEdge != 0)
+        newEdge = *pEdge;
 
     newEdge.clearConnectInfo();
     newEdge.mNext = next;
     newEdge.mPrev = prev;
 
-    newEdge.mDistance = PSVECDistance(&this->mNodes[next].mPosition, &this->mNodes[prev].mPosition);
-    s32 numEdges = this->mEdgeCount;
-    this->mEdgeCount = numEdges--;
+    newEdge.mDistance = PSVECDistance(&mNodes[next].mPosition, &mNodes[prev].mPosition);
+    s32 numEdges = mEdgeCount;
+    mEdgeCount = numEdges--;
 
-    this->mEdges[numEdges] = newEdge;
-    s32 lastEdge = this->mEdgeCount - 1;
-    this->connectEdgeToNode(next, lastEdge);
-    this->connectEdgeToNode(prev, lastEdge);
+    mEdges[numEdges] = newEdge;
+    s32 lastEdge = mEdgeCount - 1;
+    connectEdgeToNode(next, lastEdge);
+    connectEdgeToNode(prev, lastEdge);
 }
 
 RailGraphNode* RailGraph::getNode(s32 idx) const
 {
-    return &this->mNodes[idx];
+    return &mNodes[idx];
 }
 
 RailGraphEdge* RailGraph::getEdge(s32 idx) const
 {
-    return &this->mEdges[idx];
+    return &mEdges[idx];
 }
 
 bool RailGraph::isValidEdge(s32 idx) const
@@ -74,7 +74,7 @@ bool RailGraph::isValidEdge(s32 idx) const
 
     if (idx >= 0)
     {
-        if (idx < this->mEdgeCount)
+        if (idx < mEdgeCount)
             ret = 1;
     }
 
@@ -83,22 +83,22 @@ bool RailGraph::isValidEdge(s32 idx) const
 
 void RailGraph::connectEdgeToNode(s32 a1, s32 a2)
 {
-    s32 val = this->mNodes[a1]._C;
+    s32 val = mNodes[a1]._C;
 
     if (val == -1)
-        this->mNodes[a1]._C = a2;
+        mNodes[a1]._C = a2;
     else
     {
-        s32 nextEdge = this->mEdges[val].getNextEdge(a1);
+        s32 nextEdge = mEdges[val].getNextEdge(a1);
         
         while (nextEdge != -1)
         {
             val = nextEdge;
-            nextEdge = this->mEdges[nextEdge].getNextEdge(a1);
+            nextEdge = mEdges[nextEdge].getNextEdge(a1);
         }
         
-        this->mEdges[val].setNextEdge(a2, a1);
+        mEdges[val].setNextEdge(a2, a1);
     }
 
-    this->mNodes[a1]._10++;
+    mNodes[a1]._10++;
 }

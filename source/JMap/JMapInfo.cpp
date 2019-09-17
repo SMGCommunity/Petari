@@ -3,8 +3,8 @@
 
 JMapInfo::JMapInfo()
 {
-    this->_0 = 0;
-    this->mName = "Undifined";
+    _0 = 0;
+    mName = "Undifined";
 }
 
 /*
@@ -18,14 +18,14 @@ bool JMapInfo::attach(const void *src)
 }
 */
 
-void JMapInfo::setName(const char *name)
+void JMapInfo::setName(const char *pName)
 {
-    this->mName = name;
+    mName = pName;
 }
 
 const char* JMapInfo::getName() const
 {
-    return this->mName;
+    return mName;
 }
 
 /*

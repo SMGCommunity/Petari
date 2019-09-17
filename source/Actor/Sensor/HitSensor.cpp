@@ -4,30 +4,30 @@
 #include "MR/SensorUtil.h"
 #include "defines.h"
 
-HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *actor)
+HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *pActor)
 {
     // todo -- missing clrlwi on second arg
-    this->mSensorType = type;
-    this->_4 = 0.0f;
-    this->_8 = 0.0f;
-    this->_C = 0.0f;
-    this->_10 = a3;
-    this->mNumSensors = 0;
-    this->_16 = a2;
-    this->mSensors = 0;
-    this->mSensorGroup = 0;
-    this->_20 = 0;
-    this->_21 = 1;
-    this->mParentActor = actor;
+    mSensorType = type;
+    _4 = 0.0f;
+    _8 = 0.0f;
+    _C = 0.0f;
+    _10 = a3;
+    mNumSensors = 0;
+    _16 = a2;
+    mSensors = 0;
+    mSensorGroup = 0;
+    _20 = 0;
+    _21 = 1;
+    mParentActor = pActor;
 
     if (a2 != 0)
     {
-        this->mSensors = (HitSensor**)new HitSensor[a2];
+        mSensors = (HitSensor**)new HitSensor[a2];
         s32 curSensor = 0;
 
-        while(curSensor < this->_16)
+        while(curSensor < _16)
         {
-            this->mSensors[curSensor] = 0;
+            mSensors[curSensor] = 0;
             curSensor++;
         }
     }
@@ -35,25 +35,25 @@ HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *actor)
     MR::initHitSensorGroup(this);
 }
 
-u32 HitSensor::recieveMessage(u32 msg, HitSensor *other)
+u32 HitSensor::recieveMessage(u32 msg, HitSensor *pOther)
 {
-    return this->mParentActor->receiveMessage(msg, other, this);
+    return mParentActor->receiveMessage(msg, pOther, this);
 }
 
 void HitSensor::setType(u32 type)
 {
     bool wasRemoved = 0;
 
-    u8 val = this->_20;
-    this->mSensorType = type;
+    u8 val = _20;
+    mSensorType = type;
 
     if (val != 0)
     {
-        if (this->_16 != 0)
+        if (_16 != 0)
         {
-            if (this->_21 != 0)
+            if (_21 != 0)
             {
-                this->mSensorGroup->remove(this);
+                mSensorGroup->remove(this);
                 wasRemoved = true;
             }
         }
@@ -63,92 +63,100 @@ void HitSensor::setType(u32 type)
 
     if (wasRemoved != 0)
     {
-        this->mSensorGroup->add(this);
+        mSensorGroup->add(this);
     }
 
-    this->mNumSensors = 0;
+    mNumSensors = 0;
 }
 
 u32 HitSensor::isType(u32 type) const
 {
-    return __cntlzw(this->mSensorType - type) >> 5;
+    return __cntlzw(mSensorType - type) >> 5;
 }
 
 void HitSensor::validate()
 {
-    if (this->_21)
+    if (_21)
+    {
         return;
+    }
 
-    this->_21 = 1;
+    _21 = 1;
 
-    if (!this->_16)
+    if (!_16)
+    {
         return;
+    }
 
-    if (!this->_20)
+    if (!_20)
+    {
         return;
+    }
 
-    this->mSensorGroup->add(this);
+    mSensorGroup->add(this);
 }
 
 void HitSensor::invalidate()
 {
-    if (this->_21)
+    if (_21)
     {
-        this->_21 = 0;
+        _21 = 0;
 
-        if (this->_16)
+        if (_16)
         {
-            if (this->_20)
+            if (_20)
             {
-                this->mSensorGroup->remove(this);
+                mSensorGroup->remove(this);
             }
         }
     }
 
-    this->mNumSensors = 0;
+    mNumSensors = 0;
 }
 
 void HitSensor::validateBySystem()
 {
-    if (!this->_20)
+    if (!_20)
     {
-        if (this->_16)
+        if (_16)
         {
-            if (this->_21)
+            if (_21)
             {
-                this->mSensorGroup->add(this);
+                mSensorGroup->add(this);
             }
         }
 
-        this->_20 = 1;
+        _20 = 1;
     }
 }
 
 void HitSensor::invalidateBySystem()
 {
-    if (!this->_20)
+    if (!_20)
     {
-        if (this->_16)
+        if (_16)
         {
-            if (this->_21)
+            if (_21)
             {
-                this->mSensorGroup->remove(this);
+                mSensorGroup->remove(this);
             }
         }
 
-        this->_20 = 0;
-        this->mNumSensors = 0;
+        _20 = 0;
+        mNumSensors = 0;
     }
 }
 
 void HitSensor::addHitSensor(HitSensor *sensor)
 {
-    u16 val = this->mNumSensors;
-    u16 val2 = this->_16;
+    u16 val = mNumSensors;
+    u16 val2 = _16;
 
     if (val >= val2)
+    {
         return;
+    }
 
-    this->mSensors[val] = sensor;
-    this->mNumSensors++;
+    mSensors[val] = sensor;
+    mNumSensors++;
 }

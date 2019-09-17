@@ -3,76 +3,76 @@
 
 namespace MR
 {
-    void moveNextNode(RailGraphIter *iter)
+    void moveNextNode(RailGraphIter *pIter)
     {
-        iter->moveNodeNext();
+        pIter->moveNodeNext();
     }
 
-    void selectReverseEdge(RailGraphIter *iter)
+    void selectReverseEdge(RailGraphIter *pIter)
     {
-        s32 edge = iter->mSelectedEdge;
-        iter->moveNodeNext();
-        iter->selectEdge(edge);
+        s32 edge = pIter->mSelectedEdge;
+        pIter->moveNodeNext();
+        pIter->selectEdge(edge);
     }
 
-    bool isSelectedEdge(const RailGraphIter *iter)
+    bool isSelectedEdge(const RailGraphIter *pIter)
     {
-        return iter->isSelectedEdge();
+        return pIter->isSelectedEdge();
     }
 
-    bool isWatchedPrevEdge(const RailGraphIter *iter)
+    bool isWatchedPrevEdge(const RailGraphIter *pIter)
     {
-        return iter->isWatchedPrevEdge();
+        return pIter->isWatchedPrevEdge();
     }
 
-    RailGraphNode* getCurrentNodePosition(const RailGraphIter *iter)
+    RailGraphNode* getCurrentNodePosition(const RailGraphIter *pIter)
     {
-        return iter->getCurrentNode();
+        return pIter->getCurrentNode();
     }
 
-    RailGraphNode* getNextNodePosition(const RailGraphIter *iter)
+    RailGraphNode* getNextNodePosition(const RailGraphIter *pIter)
     {
-        return iter->getNextNode();
+        return pIter->getNextNode();
     }
 
-    void calcWatchEdgeVector(const RailGraphIter *iter, JGeometry::TVec3<f32> *out)
+    void calcWatchEdgeVector(const RailGraphIter *pIter, JGeometry::TVec3<f32> *pOut)
     {
-        RailGraphNode* curNode = iter->getCurrentNode();
-        RailGraphNode* watchNode = iter->getWatchNode();
+        RailGraphNode *pCurNode = pIter->getCurrentNode();
+        RailGraphNode *pWatchNode = pIter->getWatchNode();
 
         JGeometry::TVec3<f32> temp;
-        temp = watchNode->mPosition - curNode->mPosition;
-        out->set(temp);
+        temp = pWatchNode->mPosition - pCurNode->mPosition;
+        pOut->set(temp);
     }
 
-    void calcWatchEdgeDirection(const RailGraphIter *iter, JGeometry::TVec3<f32> *out)
+    void calcWatchEdgeDirection(const RailGraphIter *pIter, JGeometry::TVec3<f32> *pOut)
     {
-        calcWatchEdgeVector(iter, out);
-        MR::normalize(out);
+        calcWatchEdgeVector(pIter, pOut);
+        MR::normalize(pOut);
     }
 
-    s32 getSelectEdgeArg0(const RailGraphIter *iter)
+    s32 getSelectEdgeArg0(const RailGraphIter *pIter)
     {
-        return iter->getCurrentEdge()->mPointArg0;
+        return pIter->getCurrentEdge()->mPointArg0;
     }
 
-    s32 getSelectEdgeArg1(const RailGraphIter *iter)
+    s32 getSelectEdgeArg1(const RailGraphIter *pIter)
     {
-        return iter->getCurrentEdge()->mPointArg1;
+        return pIter->getCurrentEdge()->mPointArg1;
     }
 
-    s32 getSelectEdgeArg2(const RailGraphIter *iter)
+    s32 getSelectEdgeArg2(const RailGraphIter *pIter)
     {
-        return iter->getCurrentEdge()->mPointArg2;
+        return pIter->getCurrentEdge()->mPointArg2;
     }
 
-    s32 getSelectEdgeArg3(const RailGraphIter *iter)
+    s32 getSelectEdgeArg3(const RailGraphIter *pIter)
     {
-        return iter->getCurrentEdge()->mPointArg3;
+        return pIter->getCurrentEdge()->mPointArg3;
     }
 
-    s32 getSelectEdgeArg7(const RailGraphIter *iter)
+    s32 getSelectEdgeArg7(const RailGraphIter *pIter)
     {
-        return iter->getCurrentEdge()->mPointArg7;
+        return pIter->getCurrentEdge()->mPointArg7;
     }
 };

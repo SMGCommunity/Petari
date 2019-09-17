@@ -3,37 +3,37 @@
 
 JKRHeap* JKRHeap::becomeSystemHeap()
 {
-    JKRHeap* instance = this;
-    JKRHeap* curSystemHeap = JKRHeap::sSystemHeap;
-    JKRHeap::sSystemHeap = instance;
-    return curSystemHeap;
+    JKRHeap* pInstance = this;
+    JKRHeap* pCurSystemHeap = JKRHeap::sSystemHeap;
+    JKRHeap::sSystemHeap = pInstance;
+    return pCurSystemHeap;
 }
 
 JKRHeap* JKRHeap::becomeCurrentHeap()
 {
-    JKRHeap* instance = this;
-    JKRHeap* curHeap = JKRHeap::sCurrentHeap;
-    JKRHeap::sCurrentHeap = instance;
-    return curHeap;
+    JKRHeap* pInstance = this;
+    JKRHeap* pCurHeap = JKRHeap::sCurrentHeap;
+    JKRHeap::sCurrentHeap = pInstance;
+    return pCurHeap;
 }
 
-void JKRHeap::destroy(JKRHeap* heap)
+void JKRHeap::destroy(JKRHeap *pHeap)
 {
-    this->do_destroy();
+    do_destroy();
 }
 
-JKRHeap* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *heap)
+JKRHeap* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
 {
-    if (heap != 0)
+    if (pHeap != 0)
     {
-        return heap->alloc(a1, a2);
+        return pHeap->alloc(a1, a2);
     }
 
-    JKRHeap* curHeap = JKRHeap::sCurrentHeap;
+    JKRHeap *pCurHeap = JKRHeap::sCurrentHeap;
 
-    if (curHeap != 0)
+    if (pCurHeap != 0)
     {
-        return curHeap->alloc(a1, a2);
+        return pCurHeap->alloc(a1, a2);
     }
 
     return 0;
@@ -41,45 +41,45 @@ JKRHeap* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *heap)
 
 JKRHeap* JKRHeap::alloc(u32 a1, s32 a2)
 {
-    return this->do_alloc(a1, a2);
+    return do_alloc(a1, a2);
 }
 
-void JKRHeap::free(void *src, JKRHeap *heap)
+void JKRHeap::free(void *pSrc, JKRHeap *pHeap)
 {
-    if (heap == 0)
+    if (pHeap == 0)
     {
-        heap = JKRHeap::findFromRoot(src);
+        pHeap = JKRHeap::findFromRoot(pSrc);
 
-        if (heap == 0)
+        if (pHeap == 0)
         {
             return;
         }
     }
 
-    heap->do_free(src);
+    pHeap->do_free(pSrc);
 }
 
-void JKRHeap::free(void *src)
+void JKRHeap::free(void *pSrc)
 {
-    this->do_free(src);
+    do_free(pSrc);
 }
 
 void JKRHeap::freeAll()
 {
-    this->do_freeAll();
+    do_freeAll();
 }
 
 void JKRHeap::freeTail()
 {
-    this->do_freeTail();
+    do_freeTail();
 }
 
-void JKRHeap::resize(void *src, u32 a2)
+void JKRHeap::resize(void *pSrc, u32 a2)
 {
-    this->do_resize(src, a2);
+    do_resize(pSrc, a2);
 }
 
-void JKRHeap::copyMemory(void* dest, void* src, u32 len)
+void JKRHeap::copyMemory(void *pDest, void *pSrc, u32 len)
 {
     __asm
     {
@@ -98,7 +98,7 @@ void JKRHeap::copyMemory(void* dest, void* src, u32 len)
     }
 }
 
-void JKRDefaultMemoryErrorRoutine(void *src, u32 a2, s32 a3)
+void JKRDefaultMemoryErrorRoutine(void *mSrc, u32 a2, s32 a3)
 {
     JUTException::panic_f("JKRHeap.cpp", 0x355, "%s", "abort\n");
 }
@@ -110,7 +110,7 @@ void* JKRHeap::setErrorHandler(void (*err)(void *, u32, s32))
         err = (void (*)(void *, u32, s32))(*JKRDefaultMemoryErrorRoutine);
     }
 
-    void* curErrHandler = JKRHeap::sErrorHandler;
+    void *pCurErrHandler = JKRHeap::sErrorHandler;
     JKRHeap::sErrorHandler = err;
-    return curErrHandler;
+    return pCurErrHandler;
 }

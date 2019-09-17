@@ -4,22 +4,22 @@
 void J3DModel::initialize()
 {
     f32 defaultScale = J3DDefaultScale;
-    this->_4 = 0;
-    this->_8 = 0;
-    this->_C = 0;
-    this->_10 = 0;
-    this->_14 = 0;
-    this->mBaseScale.x = defaultScale;
-    this->mBaseScale.y = defaultScale;
-    this->mBaseScale.z = defaultScale;
-    PSMTXIdentity(this->_24);
-    PSMTXIdentity(this->_54);
-    this->_84 = 0;
-    this->_C0 = 0;
-    this->_C4 = 0;
-    this->_C8 = 0;
-    this->_CC = 0;
-    this->_D0 = 0;
-    this->_D4 = 0;
-    this->_D8 = 0;
+    _4 = 0;
+    _8 = 0;
+    _C = 0;
+    _10 = 0;
+    _14 = 0;
+    mBaseScale.x = defaultScale;
+    mBaseScale.y = defaultScale;
+    mBaseScale.z = defaultScale;
+    PSMTXIdentity(_24);
+    PSMTXIdentity(_54);
+    _84 = 0;
+    _C0 = 0;
+    _C4 = 0;
+    _C8 = 0;
+    _CC = 0;
+    _D0 = 0;
+    _D4 = 0;
+    _D8 = 0;
 }

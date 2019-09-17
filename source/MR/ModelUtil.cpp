@@ -2,59 +2,59 @@
 
 namespace MR
 {
-    void updateModelManager(LiveActor *actor)
+    void updateModelManager(LiveActor *pActor)
     {
-        actor->mModelManager->update();
+        pActor->mModelManager->update();
     }
 
-    void calcAnimModelManager(LiveActor *actor)
+    void calcAnimModelManager(LiveActor *pActor)
     {
-        actor->mModelManager->calcAnim();
+        pActor->mModelManager->calcAnim();
     }
 
-    J3DModel* getJ3DModel(const LiveActor *actor)
+    J3DModel* getJ3DModel(const LiveActor *pActor)
     {
-        if (actor->mModelManager == 0)
+        if (pActor->mModelManager == 0)
         {
             return 0;
         }
 
-        return actor->mModelManager->getJ3DModel();
+        return pActor->mModelManager->getJ3DModel();
     }
 
-    J3DModelData* getJ3DModelData(const LiveActor* actor)
+    J3DModelData* getJ3DModelData(const LiveActor *pActor)
     {
-        if (actor->mModelManager == 0)
+        if (pActor->mModelManager == 0)
         {
             return 0;
         }
 
-        return actor->mModelManager->getJ3DModelData();
+        return pActor->mModelManager->getJ3DModelData();
     }
 
-    ResourceHolder* getResourceHolder(const LiveActor *actor)
+    ResourceHolder* getResourceHolder(const LiveActor *pActor)
     {
-        if (actor->mModelManager != 0)
+        if (pActor->mModelManager != 0)
         {
-            return actor->mModelManager->getResourceHolder();
+            return pActor->mModelManager->getResourceHolder();
         }
 
         return 0;
     }
 
-    ResourceHolder* getModelResourceHolder(const LiveActor *actor)
+    ResourceHolder* getModelResourceHolder(const LiveActor *pActor)
     {
-        if (actor->mModelManager != 0)
+        if (pActor->mModelManager != 0)
         {
-            return actor->mModelManager->getModelResourceHolder();
+            return pActor->mModelManager->getModelResourceHolder();
         }
 
         return 0;
     }
 
-    const char* getModelResName(const LiveActor *actor)
+    const char* getModelResName(const LiveActor *pActor)
     {
-        ResourceHolder* holder = MR::getModelResourceHolder(actor);
+        ResourceHolder* holder = MR::getModelResourceHolder(pActor);
         return holder->getResName(0);
     }
 };

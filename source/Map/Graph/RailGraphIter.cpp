@@ -1,97 +1,97 @@
 #include "Map/Graph/RailGraphIter.h"
 #include "defines.h"
 
-RailGraphIter::RailGraphIter(const RailGraph *graph)
+RailGraphIter::RailGraphIter(const RailGraph *pGraph)
 {
-    this->mGraph = graph;
-    this->mCurrentNode = -1;
-    this->mSelectedEdge = -1;
-    this->mNextEdge = -1;
-    this->mNextNode = -1;
+    mGraph = pGraph;
+    mCurrentNode = -1;
+    mSelectedEdge = -1;
+    mNextEdge = -1;
+    mNextNode = -1;
 }
 
 void RailGraphIter::moveNodeNext()
 {
-    s32 selectedEdge = this->mSelectedEdge;
-    this->mNextNode = this->mCurrentNode;
-    RailGraphEdge* edge = this->mGraph->getEdge(selectedEdge);
-    this->mCurrentNode = edge->getNextNode(this->mNextNode);
+    s32 selectedEdge = mSelectedEdge;
+    mNextNode = mCurrentNode;
+    RailGraphEdge *pEdge = mGraph->getEdge(selectedEdge);
+    mCurrentNode = pEdge->getNextNode(mNextNode);
 }
 
 void RailGraphIter::setNode(s32 nextNode)
 {
-    this->mCurrentNode = nextNode;
-    this->mNextNode = -1;
-    this->mSelectedEdge = -1;
-    this->mNextEdge = -1;
+    mCurrentNode = nextNode;
+    mNextNode = -1;
+    mSelectedEdge = -1;
+    mNextEdge = -1;
 }
 
 void RailGraphIter::watchStartEdge()
 {
-    const RailGraph* graph = this->mGraph;
-    s32 curNode = this->mCurrentNode;
-    RailGraphNode* node = graph->getNode(curNode);
-    this->mNextEdge = node->_C;
+    const RailGraph *pGraph = mGraph;
+    s32 curNode = mCurrentNode;
+    RailGraphNode* node = pGraph->getNode(curNode);
+    mNextEdge = node->_C;
 }
 
 void RailGraphIter::watchNextEdge()
 {
-    RailGraphEdge* edge = this->mGraph->getEdge(this->mNextEdge);
-    this->mNextEdge = edge->getNextEdge(this->mCurrentNode);
+    RailGraphEdge *pEdge = mGraph->getEdge(mNextEdge);
+    mNextEdge = pEdge->getNextEdge(mCurrentNode);
 }
 
 bool RailGraphIter::isWatchEndEdge() const
 {
-    return (bool)(__cntlzw(this->mNextEdge + 1) >> 5);
+    return (bool)(__cntlzw(mNextEdge + 1) >> 5);
 }
 
 void RailGraphIter::selectEdge()
 {
-   this->mSelectedEdge = this->mNextEdge; 
+   mSelectedEdge = mNextEdge; 
 }
 
 void RailGraphIter::selectEdge(s32 edge)
 {
-    this->mSelectedEdge = edge;
+    mSelectedEdge = edge;
 }
 
 bool RailGraphIter::isWatchedPrevEdge() const
 {
-    RailGraphEdge* edge = this->mGraph->getEdge(this->mNextEdge);
-    s32 nextNode = edge->getNextNode(this->mCurrentNode);
-    return __cntlzw(nextNode - this->mNextNode) >> 5; 
+    RailGraphEdge *pEdge = mGraph->getEdge(mNextEdge);
+    s32 nextNode = pEdge->getNextNode(mCurrentNode);
+    return __cntlzw(nextNode - mNextNode) >> 5; 
 }
 
 bool RailGraphIter::isSelectedEdge() const
 {
-    return this->mGraph->isValidEdge(this->mSelectedEdge);
+    return mGraph->isValidEdge(mSelectedEdge);
 }
 
 RailGraphNode* RailGraphIter::getCurrentNode() const
 {
-    return this->mGraph->getNode(this->mCurrentNode);
+    return mGraph->getNode(mCurrentNode);
 }
 
 RailGraphNode* RailGraphIter::getNextNode() const
 {
-    RailGraphEdge* edge = this->mGraph->getEdge(this->mSelectedEdge);
-    s32 nextNodeIdx = edge->getNextNode(this->mCurrentNode);
-    return this->mGraph->getNode(nextNodeIdx);
+    RailGraphEdge *pEdge = mGraph->getEdge(mSelectedEdge);
+    s32 nextNodeIdx = pEdge->getNextNode(mCurrentNode);
+    return mGraph->getNode(nextNodeIdx);
 }
 
 RailGraphNode* RailGraphIter::getWatchNode() const
 {
-    RailGraphEdge* edge = this->mGraph->getEdge(this->mNextEdge);
-    s32 nodeIdx = edge->getNextNode(this->mCurrentNode);
-    return this->mGraph->getNode(nodeIdx);
+    RailGraphEdge *pEdge = mGraph->getEdge(mNextEdge);
+    s32 nodeIdx = pEdge->getNextNode(mCurrentNode);
+    return mGraph->getNode(nodeIdx);
 }
 
 RailGraphEdge* RailGraphIter::getCurrentEdge() const
 {
-    return this->mGraph->getEdge(this->mSelectedEdge);
+    return mGraph->getEdge(mSelectedEdge);
 }
 
 RailGraphEdge* RailGraphIter::getWatchEdge() const
 {
-    return this->mGraph->getEdge(this->mNextEdge);
+    return mGraph->getEdge(mNextEdge);
 }

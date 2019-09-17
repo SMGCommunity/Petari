@@ -1,21 +1,21 @@
 #include "JSU/JSUList.h"
 
-JSUPtrLink::JSUPtrLink(void* ptr)
+JSUPtrLink::JSUPtrLink(void *pPtr)
 {
     u32 val = 0;
-    this->mPtr = ptr;
-    this->mPtrList = 0;
-    this->_8 = 0;
-    this->_C = 0;
+    mPtr = pPtr;
+    mPtrList = 0;
+    _8 = 0;
+    _C = 0;
 }
 
 JSUPtrLink::~JSUPtrLink()
 {
     if (!this)
     {
-        if (this->mPtrList != 0)
+        if (mPtrList != 0)
         {
-            this->mPtrList->remove(this);
+            mPtrList->remove(this);
         }
     }
 }
@@ -24,7 +24,7 @@ JSUPtrList::JSUPtrList(bool hasBeenInit)
 {
     if (hasBeenInit != 0)
     {
-        this->initiate();
+        initiate();
     }
 }
 
@@ -32,32 +32,32 @@ JSUPtrList::~JSUPtrList()
 {
     if (this != 0)
     {
-        JSUPtrLink* curLink = this->mFirst;
+        JSUPtrLink *pCurLink = mFirst;
         u32 curIdx = 0;
 
-        while(curIdx < this->mNumPtrs)
+        while(curIdx < mNumPtrs)
         {
-            curLink->mPtrList = 0;
+            pCurLink->mPtrList = 0;
             curIdx++;
-            curLink = curLink->_C;
+            pCurLink = pCurLink->_C;
         }
     }
 }
 
 void JSUPtrList::initiate()
 {
-    this->mFirst = 0;
-    this->mNext = 0;
-    this->mNumPtrs = 0;
+    mFirst = 0;
+    mNext = 0;
+    mNumPtrs = 0;
 }
 
-void JSUPtrList::setFirst(JSUPtrLink *link)
+void JSUPtrList::setFirst(JSUPtrLink *pLink)
 {
-    link->mPtrList = this;
+    pLink->mPtrList = this;
     u32 defaultCount = 1;
-    link->_8 = 0;
-    link->_C = 0;
-    this->mNext = link;
-    this->mFirst = link;
-    this->mNumPtrs = defaultCount;
+    pLink->_8 = 0;
+    pLink->_C = 0;
+    mNext = pLink;
+    mFirst = pLink;
+    mNumPtrs = defaultCount;
 }

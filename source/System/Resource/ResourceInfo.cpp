@@ -22,14 +22,14 @@ void ResTable::newFileInfoTable(u32 numEntries)
     this->mFileInfo = new ResFileInfo[numEntries];
 }
 
-ResFileInfo* ResTable::add(const char *name, void *res, bool a3)
+ResFileInfo* ResTable::add(const char *pName, void *pRes, bool a3)
 {
-    ResFileInfo* inf = &this->mFileInfo[this->mResCount];
-    this->mFileInfo[this->mResCount].mRes = res;
-    inf->setName(name, a3);
+    ResFileInfo *pInf = &this->mFileInfo[this->mResCount];
+    this->mFileInfo[this->mResCount].mRes = pRes;
+    pInf->setName(pName, a3);
     s32 curCount = this->mResCount;
     this->mResCount = curCount + 1;
-    return inf;
+    return pInf;
 }
 
 const char* ResTable::getResName(u32 idx) const
@@ -42,17 +42,19 @@ void* ResTable::getRes(u32 idx) const
     return this->mFileInfo[idx].mRes;
 }
 
-void* ResTable::getRes(const char *name) const
+void* ResTable::getRes(const char *pName) const
 {
-    return this->findRes(name);
+    return this->findRes(pName);
 }
 
-ResFileInfo* ResTable::findFileInfo(const char *name) const
+ResFileInfo* ResTable::findFileInfo(const char *pName) const
 {
-    s32 resIndex = this->getResIndex(name);
+    s32 resIndex = this->getResIndex(pName);
     
     if (resIndex == -1)
+    {
         return 0;
+    }
 
     return &this->mFileInfo[resIndex];
 }
@@ -62,24 +64,26 @@ ResFileInfo* ResTable::getFileInfo(u32 idx) const
     return &this->mFileInfo[idx];
 }
 
-bool ResTable::isExistRes(const char *name) const
+bool ResTable::isExistRes(const char *pName) const
 {
-    return this->getResIndex(name);
+    return this->getResIndex(pName);
 }
 
-void* ResTable::findRes(const char *name) const
+void* ResTable::findRes(const char *pName) const
 {
-    s32 resIndex = this->getResIndex(name);
+    s32 resIndex = this->getResIndex(pName);
 
     if (resIndex == -1)
+    {
         return 0;
+    }
 
     return this->mFileInfo[resIndex].mRes;
 }
 
-s32 ResTable::getResIndex(const char *name) const
+s32 ResTable::getResIndex(const char *pName) const
 {
-    s32 nameHash = MR::getHashCodeLower(name);
+    s32 nameHash = MR::getHashCodeLower(pName);
     s32 curIdx = 0;
 
     while(curIdx <= this->mResCount)
@@ -87,7 +91,9 @@ s32 ResTable::getResIndex(const char *name) const
         s32 hash = this->mFileInfo[curIdx].mHashCode;
 
         if (hash == nameHash)
+        {
             return curIdx;
+        }
 
         curIdx++;
     }

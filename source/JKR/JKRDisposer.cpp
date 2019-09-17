@@ -3,12 +3,12 @@
 
 JKRDisposer::JKRDisposer() : mPointerLinks(this)
 {
-    JKRHeap* heap = JKRHeap::findFromRoot(this);
-    this->mRootHeap = heap;
+    JKRHeap* pHeap = JKRHeap::findFromRoot(this);
+    mRootHeap = pHeap;
 
-    if (heap != 0)
+    if (pHeap != 0)
     {
-        heap->mPtrList.append(&this->mPointerLinks);
+        pHeap->mPtrList.append(&mPointerLinks);
     }
 }
 
@@ -16,11 +16,11 @@ JKRDisposer::~JKRDisposer()
 {
     if (this)
     {
-        JKRHeap* heap = this->mRootHeap;
+        JKRHeap* pHeap = mRootHeap;
 
-        if (heap != 0)
+        if (pHeap != 0)
         {
-            heap->mPtrList.remove(&this->mPointerLinks);
+            pHeap->mPtrList.remove(&mPointerLinks);
         }
     }
 }

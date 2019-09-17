@@ -120,14 +120,14 @@ void NameObj::syncWithFlags()
     mFlags = evenMoreFlags;
 }
 
-void NameObjFunction::requestMovementOn(NameObj *obj)
+void NameObjFunction::requestMovementOn(NameObj *pObj)
 {
-    obj->requestResume();
+    pObj->requestResume();
     MR::notifyRequestNameObjMovementOnOff();
 }
 
-void NameObjFunction::requestMovementOff(NameObj *obj)
+void NameObjFunction::requestMovementOff(NameObj *pObj)
 {
-    obj->requestSuspend();
+    pObj->requestSuspend();
     MR::notifyRequestNameObjMovementOnOff();
 }
