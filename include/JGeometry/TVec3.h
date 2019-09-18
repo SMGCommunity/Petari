@@ -1,6 +1,10 @@
 #ifndef TVEC3_H
 #define TVEC3_H
 
+#include "types.h"
+
+struct Vec;
+
 namespace JGeometry
 {
     template<typename T>
@@ -10,6 +14,9 @@ namespace JGeometry
         TVec3() { }
         TVec3(const TVec3<T> &);
         TVec3(T a, T b, T c) : x(a), y(b), z(c) { }
+
+        template<typename T>
+        TVec3(T, T, T);
 
         template<typename T>
         void set(const TVec3<T> &);
@@ -34,5 +41,7 @@ namespace JGeometry
         T z; // _8
     };
 };
+
+static const Vec gZeroVec;
 
 #endif // TVEC3_H

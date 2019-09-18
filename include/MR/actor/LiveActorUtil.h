@@ -41,6 +41,13 @@ namespace MR
     void updateLightCtrl(LiveActor *);
     void setBaseTRMtx(LiveActor *, Mtx);
 
+    bool isStep(const LiveActor *, s32);
+    bool isFirstStep(const LiveActor *);
+    bool isLessStep(const LiveActor *, s32);
+    bool isLessEqualStep(const LiveActor *, s32);
+
+    f32 calcNerveEaseInValue(const LiveActor *, s32, f32, f32);
+
     void copyTransRotateScale(const LiveActor *, LiveActor *);
 
     ResourceHolder* getModelResourceHolder(const LiveActor *);

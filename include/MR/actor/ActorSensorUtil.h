@@ -18,7 +18,11 @@ namespace MR
 
     u32 setHitSensorApart(HitSensor *, HitSensor *);
 
+    void sendMsgPush(HitSensor *, HitSensor *);
+
     void sendMsgEnemyAttackElectric(HitSensor *, HitSensor *);
+
+    void addHitSensorMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
 
     void addHitSensorPosMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
 };

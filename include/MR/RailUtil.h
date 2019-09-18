@@ -33,6 +33,11 @@ namespace MR
     bool getRailPointArg0NoInit(const LiveActor *, s32, s32 *);
 
     void calcRailPointPos(JGeometry::TVec3<f32> *, const LiveActor *, s32);
+
+    void calcRailStartPos(JGeometry::TVec3<f32> *, const LiveActor *);
+    void calcRailEndPos(JGeometry::TVec3<f32> *, const LiveActor *);
+
+    f32 calcNearestRailPos(JGeometry::TVec3<f32> *, const LiveActor *, const JGeometry::TVec3<f32> &);
 };
 
 #endif // RAILUTIL_H

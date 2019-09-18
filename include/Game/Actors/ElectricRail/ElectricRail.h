@@ -58,7 +58,7 @@ namespace NrvElectricRail
     class ElectricRailNrvWait : public Nerve
     {
     public:
-        ElectricRailNrvWait();
+        ElectricRailNrvWait() { }
 
         virtual void execute(Spine *) const;
 
@@ -68,7 +68,7 @@ namespace NrvElectricRail
     class ElectricRailNrvDisappear : public Nerve
     {
     public:
-        ElectricRailNrvDisappear();
+        ElectricRailNrvDisappear() { }
 
         virtual void execute(Spine *) const;
 
@@ -78,7 +78,7 @@ namespace NrvElectricRail
     class ElectricRailNrvDisappeared : public Nerve
     {
     public:
-        ElectricRailNrvDisappeared();
+        ElectricRailNrvDisappeared() { }
 
         virtual void execute(Spine *) const;
 

@@ -24,6 +24,8 @@ namespace MR
 
     void connectToSceneMapObjMovement(NameObj *);
 
+    void connectToSceneMapObjDecoration(LiveActor *);
+
     void requestMovementOn(NameObj *);
     void requestMovementOff(NameObj *);
     void notifyRequestNameObjMovementOnOff();
