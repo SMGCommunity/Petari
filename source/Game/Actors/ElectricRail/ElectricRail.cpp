@@ -475,7 +475,7 @@ namespace NrvElectricRail
 {
     void ElectricRailNrvDisappeared::execute(Spine *pSpine) const
     {
-        LiveActor *pActor = (LiveActor*)pSpine->_0;
+        LiveActor *pActor = (LiveActor*)pSpine->mExecutor;
         if (MR::isFirstStep(pActor))
         {
             MR::hideModel(pActor);
@@ -484,13 +484,13 @@ namespace NrvElectricRail
 
     void ElectricRailNrvDisappear::execute(Spine *pSpine) const
     {
-        ElectricRail *pRail = (ElectricRail*)pSpine->_0;
+        ElectricRail *pRail = (ElectricRail*)pSpine->mExecutor;
         pRail->exeDisappear();
     }
 
     void ElectricRailNrvWait::execute(Spine *pSpine) const
     {
-        ElectricRail *pRail = (ElectricRail*)pSpine->_0;
+        ElectricRail *pRail = (ElectricRail*)pSpine->mExecutor;
         pRail->updateHitSensorPos();
         MR::startLevelSound(pRail, "SE_OJ_LV_ELEC_RAIL_HAM", -1, -1, -1);
     }

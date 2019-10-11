@@ -9,7 +9,7 @@ class NerveExecutor
 public:
     NerveExecutor(const char *);
 
-    virtual ~NerveExecutor();
+    virtual ~NerveExecutor() { }
 
     void initNerve(const Nerve *);
     void updateNerve();

@@ -1,8 +1,9 @@
 #include "Actor/Nerve/Spine.h"
+#include "Actor/State/ActorStateKeeper.h"
 
-Spine::Spine(void *unk1, const Nerve *pNerve)
+Spine::Spine(void *pExecutor, const Nerve *pNerve)
 {
-    _0 = unk1;
+    mExecutor = pExecutor;
     mCurState = pNerve;
     mNextState = 0;
     mNextState = 0;
