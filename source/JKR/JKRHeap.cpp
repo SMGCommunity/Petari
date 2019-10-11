@@ -22,7 +22,7 @@ void JKRHeap::destroy(JKRHeap *pHeap)
     do_destroy();
 }
 
-JKRHeap* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
+void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
 {
     if (pHeap != 0)
     {

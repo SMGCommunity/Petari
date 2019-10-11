@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-struct Vec;
-
 namespace JGeometry
 {
     template<typename T>
@@ -41,7 +39,5 @@ namespace JGeometry
         T z; // _8
     };
 };
-
-static const Vec gZeroVec;
 
 #endif // TVEC3_H

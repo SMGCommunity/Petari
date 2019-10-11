@@ -30,7 +30,6 @@ public:
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
     void destroy(JKRHeap*);
-    static JKRHeap* alloc(u32, s32, JKRHeap *);
     JKRHeap* alloc(u32, s32);
     static void free(void *, JKRHeap *);
     void free(void *);
@@ -40,6 +39,8 @@ public:
     static JKRHeap* findFromRoot(void *);
     static void copyMemory(void *dest, void *src, u32 len);
     static void* setErrorHandler(void (*)(void *, u32, s32));
+
+    static void* alloc(u32, s32, JKRHeap *);
     
     u8 _C[0x5C-0xC];
     JSUPtrList mPtrList; // _5C
@@ -51,5 +52,12 @@ public:
 };
 
 void JKRDefaultMemoryErrorRoutine(void *, u32, s32);
+
+// for some reason these are illegal?
+/*
+void* operator new[](s32 size);
+void* operator new[](s32 size, s32 align);
+void* operator new[](s32 size, JKRHeap* heap, s32 align);
+*/
 
 #endif // JKRHEAP_H
