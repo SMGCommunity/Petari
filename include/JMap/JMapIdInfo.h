@@ -5,11 +5,17 @@
 class JMapIdInfo
 {
 public:
-    JMapIdInfo(s64, const JMapInfoIter &);
-    JMapIdInfo(s64, s64);
+    JMapIdInfo() { }
+    JMapIdInfo(s32 param1, s32 zoneID)
+    {
+        _0 = param1;
+        mZoneId = zoneID;
+    }
+
+    JMapIdInfo(s32, const JMapInfoIter &);
     JMapIdInfo(const JMapIdInfo &);
 
-    void initialize(s64, const JMapInfoIter &);
+    void initialize(s32, const JMapInfoIter &);
 
     void operator=(const JMapIdInfo &);
     bool operator==(const JMapIdInfo &);
