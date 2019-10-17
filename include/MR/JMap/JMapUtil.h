@@ -12,6 +12,11 @@ namespace MR
 {
     bool isValidInfo(const JMapInfoIter &);
     bool isObjectName(const JMapInfoIter &, const char *);
+    bool getJMapInfoTrans(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *);
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg0NoInit(const JMapInfoIter &, bool *);
@@ -75,8 +80,6 @@ namespace MR
     bool getJMapInfoArg1WithInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg2WithInit(const JMapInfoIter &, f32 *);
 };
-
-bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
 
 template<typename T>
 void getValue(const JMapInfoIter &, const char *, T *);
