@@ -74,8 +74,8 @@ def checkAndPerformAppend(filename):
 if "-force" in sys.argv:
     forceCompile = True
 
-flags = "-i . -I- -i include -nostdinc -Cpp_exceptions off -O4,s -proc gekko -fp hard -enum int"
-as_flags = "-i . -I- -nostdinc -proc gekko -d __MWERKS__"
+flags = "-i . -I- -i include -Cpp_exceptions off -O4,s -proc gekko -fp hard -enum int"
+as_flags = "-i . -I- -proc gekko -d __MWERKS__"
 
 req_commands = ['mwcceppc', 'mwasmeppc']
 

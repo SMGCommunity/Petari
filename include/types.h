@@ -1,6 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#define offsetof(type, member) ((size_t) & (((type *) 0)->member))
+
 typedef signed char         s8;
 typedef signed short        s16;
 typedef signed long         s32;
@@ -22,5 +24,6 @@ typedef f32 Mtx33[3][3];
 typedef f32 Mtx44[4][4];
 
 typedef u32 size_t;
+typedef s32 PtrDiff;
 
 #endif // TYPES_H
