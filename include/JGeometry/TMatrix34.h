@@ -7,13 +7,18 @@
 namespace JGeometry
 {
     template<typename T>
-    class SMatrix34C;
+    class SMatrix34C
+    {
+    public:
+        /* empty */
+    };
 
+    template<typename T>
     class TMatrix34
     {
     public:
-        void mult(JGeometry::SMatrix34C<f32>, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> &);
-        void concat(JGeometry::SMatrix34C<f32>, const JGeometry::SMatrix34C<f32> &, const JGeometry::SMatrix34C<f32> &);
+        void mult(const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> &);
+        void concat(const JGeometry::SMatrix34C<f32> &, const JGeometry::SMatrix34C<f32> &);
     };
 };
 

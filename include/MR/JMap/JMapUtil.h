@@ -13,7 +13,8 @@ namespace MR
     bool isValidInfo(const JMapInfoIter &);
     bool isObjectName(const JMapInfoIter &, const char *);
     bool getJMapInfoTrans(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    
+    bool getJMapInfoRotate(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *);
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);
@@ -72,6 +73,9 @@ namespace MR
     bool isExistStageSwitchAppear(const JMapInfoIter &);
     bool isExistStageSwitchDead(const JMapInfoIter &);
     bool isExistStageSwitchSleep(const JMapInfoIter &);
+
+    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
 
     void getRailPointPos0(const JMapInfoIter &, JGeometry::TVec3<f32> *);
     void getRailPointPos1(const JMapInfoIter &, JGeometry::TVec3<f32> *);

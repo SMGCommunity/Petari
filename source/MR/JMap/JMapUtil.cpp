@@ -1,6 +1,8 @@
 #include "JMap/JMapInfoIter.h"
 #include "arch/printf.h"
 #include "MR/JMap/JMapUtil.h"
+#include "MR/MtxUtil.h"
+#include "MR/SceneUtil.h"
 #include "MR/StringUtil.h"
 
 namespace MR
@@ -73,6 +75,41 @@ namespace MR
         else
         {
             *pOut = 0;
+        }
+
+        return 1;
+    }
+
+    bool getJMapInfoTrans(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    {
+        bool ret = MR::getJMapInfoTransLocal(iter, pOut);
+
+        if (!ret)
+        {
+            return 0;
+        }
+
+        if (MR::isPlacementLocalStage())
+        {
+            JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> const>* mtx = MR::getZonePlacementMtx(iter);
+            mtx->mult(*pOut, *pOut);
+        }
+
+        return 1;
+    }
+
+    bool getJMapInfoRotate(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    {
+        bool ret = MR::getJMapInfoRotateLocal(iter, pOut);
+
+        if (!ret)
+        {
+            return 0;
+        }
+
+        if (MR::isPlacementLocalStage())
+        {
+            /* some type mismatching here -- todo, fix */
         }
 
         return 1;
