@@ -1,5 +1,7 @@
 #include "System/Galaxy/GalaxyCometScheduler.h"
+#include "MR/StringUtil.h"
 #include "System/Game/GameDataFunction.h"
+#include "System/Galaxy/GalaxyStatusAccessor.h"
 
 const GalaxyCometTimePaper sCometTimeTableGrandGalaxy1[16] =
 {
@@ -191,6 +193,29 @@ void GalaxyCometScheduler::setScheduleMostForwardCometAppear()
 {
     if (isHideAll())
     {
-        /* todo */
+        if (mNumTables > 0)
+        {
+            
+        }
     }
+}
+
+bool GalaxyCometScheduler::isCometLand(const char *pUnk) const
+{
+    bool ret;
+
+    s32 curIdx = 0;
+    while (curIdx < mNumTables)
+    {
+        GalaxyCometTimeTable* table = mCometTables[curIdx];
+
+        if (table->isLand() && MR::isEqualString(table->mPapers[table->_8].mName, pUnk))
+        {
+            return 1;
+        }
+
+        curIdx++;
+    }
+
+    return 0;
 }
