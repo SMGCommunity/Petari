@@ -2,7 +2,7 @@
 #define AUDANMSOUNDOBJECT_H
 
 #include "Actor/Sound/AudSoundObject.h"
-#include "JKR/JKRHeap.h"
+#include "JKernel/JKRHeap.h"
 
 class AudAnmSoundObject : public AudSoundObject
 {

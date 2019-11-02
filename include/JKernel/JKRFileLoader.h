@@ -1,7 +1,7 @@
 #ifndef JKRFILELOADER_H
 #define JKRFILELOADER_H
 
-#include "JKR/JKRDisposer.h"
+#include "JKernel/JKRDisposer.h"
 
 class JKRFileLoader : public JKRDisposer
 {

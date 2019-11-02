@@ -1,7 +1,7 @@
 #ifndef JKRARCHIVEPRI_H
 #define JKRARCHIVEPRI_H
 
-#include "JKR/JKRFileLoader.h"
+#include "JKernel/JKRFileLoader.h"
 
 class JKRArchive : public JKRFileLoader
 {

@@ -1,5 +1,5 @@
-#include "JKR/JKRHeap.h"
-#include "JUT/JUTException.h"
+#include "JKernel/JKRHeap.h"
+#include "JUtility/JUTException.h"
 
 JKRHeap* JKRHeap::becomeSystemHeap()
 {

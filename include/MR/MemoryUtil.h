@@ -2,7 +2,7 @@
 #define MEMORYUTIL_H
 
 #include "types.h"
-#include "JKR/JKRHeap.h"
+#include "JKernel/JKRHeap.h"
 
 namespace MR
 {

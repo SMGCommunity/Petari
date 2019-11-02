@@ -1,7 +1,7 @@
 #ifndef RESOURCEHOLDER_H
 #define RESOURCEHOLDER_H
 
-#include "JKR/JKRArchivePri.h"
+#include "JKernel/JKRArchivePri.h"
 #include "System/Resource/ResourceInfo.h"
 
 class ResourceHolder

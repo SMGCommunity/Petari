@@ -2,7 +2,7 @@
 #define OSTHREADWRAPPER_H
 
 #include "types.h"
-#include "JKR/JKRHeap.h"
+#include "JKernel/JKRHeap.h"
 #include "OS/OSMessage.h"
 #include "OS/OSThread.h"
 

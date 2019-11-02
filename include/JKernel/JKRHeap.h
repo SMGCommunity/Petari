@@ -1,8 +1,8 @@
 #ifndef JKRHEAP_H
 #define JKRHEAP_H
 
-#include "JKR/JKRDisposer.h"
-#include "JSU/JSUList.h"
+#include "JKernel/JKRDisposer.h"
+#include "JSupport/JSUList.h"
 
 class JKRHeap : public JKRDisposer
 {

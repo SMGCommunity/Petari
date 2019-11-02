@@ -1,5 +1,5 @@
-#include "JKR/JKRDisposer.h"
-#include "JKR/JKRHeap.h"
+#include "JKernel/JKRDisposer.h"
+#include "JKernel/JKRHeap.h"
 
 JKRDisposer::JKRDisposer() : mPointerLinks(this)
 {
