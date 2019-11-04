@@ -1,4 +1,4 @@
-#include "Game/Actors/StarPiece/StarPieceGroup.h"
+#include "Game/MapObj/StarPiece/StarPieceGroup.h"
 #include "MR/actor/ActorMovementUtil.h"
 
 void StarPieceGroup::placementAllPiece()

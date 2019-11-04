@@ -2,7 +2,7 @@
 #define STARPIECE_H
 
 #include "types.h"
-#include "Game/Actors/StarPiece/StarPieceGroup.h"
+#include "Game/MapObj/StarPiece/StarPieceGroup.h"
 
 class StarPiece : public StarPieceGroup
 {

@@ -1,5 +1,5 @@
-#include "Game/Actors/ElectricRail/ElectricRail.h"
-#include "Game/MapObj/ElectricRailHolder.h"
+#include "Game/MapObj/ElectricRail/ElectricRail.h"
+#include "Game/MapObj/ElectricRail/ElectricRailHolder.h"
 #include "JMath/JMath.h"
 #include "MR/actor/LiveActorUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
