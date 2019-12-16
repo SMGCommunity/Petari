@@ -23,18 +23,19 @@ BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *pInfo)
     }
 
     mIsLoop = MR::isEqualString(pUnk, "CLOSE");
-    s32 inf;
+    s32 inf = 0;
 
-    // this check screws up some stuff, adds some useless math
-    if (pInfo->_0 != 0)
+    /*
+    if (pInfo->mData != 0)
     {
-        inf = pInfo->_0;
+        inf = pInfo->mData;
     }
     else
     {
         inf = 0;
     }
 
+*/
     s32 val = inf - 1;
     mPointNum = inf;    
     mPointNumLoop = val;

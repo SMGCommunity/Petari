@@ -3,20 +3,18 @@
 
 JMapInfo::JMapInfo()
 {
-    _0 = 0;
+    mData = nullptr;
     mName = "Undifined";
 }
 
-/*
 bool JMapInfo::attach(const void *src)
 {
-    if (src == 0)
-        return 0;
+    if (!src)
+        return false;
     
-    this->_0 = src;
-    return 1;
+    mData = static_cast<const JMapData*>(src);
+	return true;
 }
-*/
 
 void JMapInfo::setName(const char *pName)
 {
@@ -28,48 +26,39 @@ const char* JMapInfo::getName() const
     return mName;
 }
 
-/*
-s32 JMapInfo::searchItemInfo(const char *name) const
+s32 JMapInfo::searchItemInfo(const char* pPath) const
 {
-    u32 fieldCount;
+    JMapDataPtr jmp(mData);
 
-    const BCSVHeader* header = this->mMap;
+    const bool valid = jmp.valid();
 
-    if (header == 0x0)
-       return -1; 
-    else
+    if (!valid)
     {
-        if (header != 0)
-        {
-            fieldCount = header->mFieldCount;
-        }
-        else
-        {
-            fieldCount = 0;
-        }
-        
-        u16 argHashCode = (u32)JGadget::getHashCode(name);
-        s32 curIdx = 0;
-
-        // we loop until we find our index based on the given string
-        // if not, we return -1
-        if (0 < fieldCount)
-        {
-            while(fieldCount != 0)
-            {
-                BCSVEntry* entry = this->mMap->mEntries[curIdx];
-
-                if (entry->mNameHash == argHashCode)
-                {
-                    return curIdx;
-                }
-
-                curIdx++;
-                fieldCount--;
-            }
-        }
+        return -1;
     }
 
+    const int numData = mData->mNumData;
+    const u32 hash  = JGadget::getHashCode(pPath);
+
+    for (int i = 0; i < numData; ++i) 
+    {
+        if (hash == mData->mItems[i].mHash)
+        {
+            return i;
+        }
+    }
+    
     return -1;
 }
-*/
+
+s32 JMapInfo::getValueType(const char *pPath) const
+{
+    s32 idx = searchItemInfo(pPath);
+
+    if (idx < 0)
+    {
+        return 7;
+    }
+
+    return mData->mItems[idx].mType;
+}
