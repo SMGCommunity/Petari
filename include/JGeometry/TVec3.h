@@ -18,6 +18,8 @@ namespace JGeometry
 
         template<typename T>
         void set(const TVec3<T> &);
+        template<typename T>
+        void set(T, T, T);
 
         void set(TVec3<T> const &);
         void zero();
