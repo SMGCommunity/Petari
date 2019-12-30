@@ -14,13 +14,10 @@ JKRDisposer::JKRDisposer() : mPointerLinks(this)
 
 JKRDisposer::~JKRDisposer()
 {
-    if (this)
-    {
-        JKRHeap* pHeap = mRootHeap;
+    JKRHeap* pHeap = mRootHeap;
 
-        if (pHeap != 0)
-        {
-            pHeap->mPtrList.remove(&mPointerLinks);
-        }
+    if (pHeap != 0)
+    {
+        pHeap->mPtrList.remove(&mPointerLinks);
     }
 }
