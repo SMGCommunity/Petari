@@ -255,12 +255,16 @@ void LiveActor::calcAnmMtx()
 // todo -- figure out why
 void LiveActor::calcViewAndEntry()
 {
-    if (mFlags.mIsNoCalcView)
+    u8 cond = mFlags.mIsNoCalcView != 0;
+
+    if (cond)
     {
-        if (mModelManager != 0)
-        {
-            mModelManager->calcView();
-        }
+        return;
+    }
+
+    if (mModelManager != 0)
+    {
+        mModelManager->calcView();
     }
 }
 
@@ -358,13 +362,10 @@ void LiveActor::setNerve(const Nerve *pNerve)
     mSpine->setNerve(pNerve);
 }
 
-bool LiveActor::isNerve(const Nerve *pNerve) const
+u8 LiveActor::isNerve(const Nerve *pNerve) const
 {
-    // this adds some weird instructions
     const Nerve* curNerve = mSpine->getCurrentNerve();
-    s32 what = curNerve - pNerve;
-    s32 blah = __cntlzw(what);
-    return blah >> 5;
+    return __cntlzw((u32)pNerve - (u32)curNerve) >> 5;
 }
 
 u32 LiveActor::getNerveStep() const
