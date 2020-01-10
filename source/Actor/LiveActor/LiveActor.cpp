@@ -42,8 +42,7 @@ LiveActor::LiveActor(const char *pName) : NameObj(pName)
     mEffectKeeper = 0;
     mSoundObj = 0;
 
-    LiveActorFlag flags;
-    mFlags = flags;
+    LiveActorFlag mFlags();
 
     mShadowController = 0;
     _78 = 0;

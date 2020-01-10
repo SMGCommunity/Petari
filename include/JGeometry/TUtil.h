@@ -9,8 +9,8 @@ namespace JGeometry
     class TUtil
     {
     public:
-        bool epsilonEquals(f32, f32, f32);
-        f32 sqrt(f32);
+        static bool epsilonEquals(T, T, T);
+        static f32 sqrt(T);
         static f32 clamp(T, T, T);
     };
 };

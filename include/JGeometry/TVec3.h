@@ -10,6 +10,7 @@ namespace JGeometry
     {
     public:
         TVec3() { }
+        TVec3(T);
         TVec3(const TVec3<T> &);
         TVec3(T a, T b, T c) : x(a), y(b), z(c) { }
 
@@ -18,6 +19,7 @@ namespace JGeometry
 
         template<typename T>
         void set(const TVec3<T> &);
+    
         template<typename T>
         void set(T, T, T);
 

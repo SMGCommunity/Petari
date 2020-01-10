@@ -3,9 +3,9 @@
 
 #include "types.h"
 
-static inline s32 __cntlzw(s32 val)
+static inline u32 __cntlzw(u32 val)
 {
-    s32 ret;
+    u32 ret;
     __asm("cntlzw %0, %1" : "=r"(ret) : "r"(val));
     return ret;
 }
