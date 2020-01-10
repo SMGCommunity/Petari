@@ -231,11 +231,11 @@ void LiveActor::calcAnim()
     if (!mFlags.mIsOnCalcAnim)
     {
         calcAnmMtx();
-    }
 
-    if (_78 != 0)
-    {
-        MR::setCollisionMtx(this);
+        if (_78 != 0)
+        {
+            MR::setCollisionMtx(this);
+        }
     }
 }
 
