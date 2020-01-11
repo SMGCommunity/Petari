@@ -3,6 +3,7 @@
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "Model/J3D/J3DModel.h"
+#include "OS/OSMutex.h"
 
 namespace MR
 {
@@ -10,6 +11,8 @@ namespace MR
     void calcAnimModelManager(LiveActor *);
     J3DModel* getJ3DModel(const LiveActor *);
     void calcJ3DModel(LiveActor *);
+    s16 getBckFrameMax(const LiveActor *, const char *);
+
     ResourceHolder* getResourceHolder(const LiveActor *);
     ResourceHolder* getModelResourceHolder(const LiveActor *);
 
@@ -18,6 +21,13 @@ namespace MR
     void syncJointAnimation(LiveActor *, const LiveActor *);
 
     void syncMaterialAnimation(LiveActor *, const LiveActor *);
+
+    template<int T>
+    class MutexHolder
+    {
+    public:
+        static OSMutex sMutex;
+    };
 }
 
 #endif // MODELUTIL_H

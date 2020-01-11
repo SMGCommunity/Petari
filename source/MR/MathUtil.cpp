@@ -11,4 +11,15 @@ namespace MR
     {
         return (a2 + (a1 / a4) * (a3 - a2));
     }
+
+    f32 getRandom(f32 min, f32 max)
+    {
+        return min + ((max - min) * getRandom());
+    }
+
+    f32 getRandomDegree()
+    {
+        // todo -- figure out why 0.0f get omitted
+        return 0.0f + (360.0f * getRandom());
+    }
 };

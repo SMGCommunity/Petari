@@ -12,6 +12,11 @@ namespace MR
     bool isNearZero(const JGeometry::TVec3<f32> &, f32);
     f32 mod(f32, f32);
     void normalize(JGeometry::TVec3<f32> *);
+
+    f32 getRandom();
+    f32 getRandom(f32, f32);
+    f32 getRandom(s32, s32);
+    f32 getRandomDegree();
 };
 
 #endif // MATHUTIL_H

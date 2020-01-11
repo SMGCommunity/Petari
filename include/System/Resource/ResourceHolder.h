@@ -13,7 +13,8 @@ public:
     bool isExistMaterialAnim();
 
     ResTable* mResourceTable; // _0
-    u8 _4[0x38-0x4];
+    ResTable* _4;
+    u8 _8[0x38-0x8];
     u32 _38;
     u32 _3C;
     u32 _40;

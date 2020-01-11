@@ -1,4 +1,5 @@
 #include "MR/ModelUtil.h"
+#include "Animation/BckCtrl.h"
 
 namespace MR
 {
@@ -22,6 +23,13 @@ namespace MR
         return pActor->mModelManager->getJ3DModel();
     }
 
+    void calcJ3DModel(LiveActor *pActor)
+    {
+        OSLockMutex(&MR::MutexHolder<0>::sMutex);
+        MR::getJ3DModel(pActor)->calc();
+        OSUnlockMutex(&MR::MutexHolder<0>::sMutex);
+    }
+
     J3DModelData* getJ3DModelData(const LiveActor *pActor)
     {
         if (pActor->mModelManager == 0)
@@ -30,6 +38,12 @@ namespace MR
         }
 
         return pActor->mModelManager->getJ3DModelData();
+    }
+
+    s16 getBckFrameMax(const LiveActor *pActor, const char *pBck)
+    {
+        BckCtrlData* data = (BckCtrlData*)MR::getResourceHolder(pActor)->_4->getRes(pBck);
+        return data->_6;
     }
 
     ResourceHolder* getResourceHolder(const LiveActor *pActor)
