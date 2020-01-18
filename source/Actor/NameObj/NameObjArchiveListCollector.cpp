@@ -1,10 +1,7 @@
 #include "Actor/NameObj/NameObjArchiveListCollector.h"
 #include "MR/StringUtil.h"
 
-NameObjArchiveListCollector::NameObjArchiveListCollector()
-{
-    mNumArchives = 0;
-}
+NameObjArchiveListCollector::NameObjArchiveListCollector() : mNumArchives(0) { }
 
 void NameObjArchiveListCollector::addArchive(const char *pArchive)
 {
