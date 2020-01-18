@@ -7,13 +7,6 @@
 
 namespace MR
 {
-    template<s32 T>
-    class MutexHolder
-    {
-    public:
-        static OSMutex sMutex;
-    };
-
     class CurrentHeapRestorer
     {
     public:

@@ -2,6 +2,7 @@
 #define J3DMODEL_H
 
 #include "Model/J3D/J3DModelData.h"
+#include "Model/J3D/J3DMtxBuffer.h"
 #include "os/mtx.h"
 
 class J3DModel
@@ -16,9 +17,9 @@ public:
     virtual ~J3DModel();
 
     void initialize();
-    void entryModelData(J3DModelData *, u64, u64);
-    void createShapePacket(J3DModelData *);
-    void createMatPacket(J3DModelData *, u64);
+    u8 entryModelData(J3DModelData *, u32, u32);
+    u8 createShapePacket(J3DModelData *);
+    u8 createMatPacket(J3DModelData *, u32);
     void lock();
     void unlock();
     void makeDL();
@@ -37,7 +38,7 @@ public:
     Vec mBaseScale; // _18
     Mtx _24;
     Mtx _54;
-    u32* _84; // J3DMtxBuffer*
+    J3DMtxBuffer* mBuffer; // _84
     J3DVertexBuffer mVertexBuffer; // _88
     u32* _C0; // J3DMatPacket*
     u32 _C4;

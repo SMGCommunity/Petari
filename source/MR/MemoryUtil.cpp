@@ -1,4 +1,5 @@
 #include "MR/MemoryUtil.h"
+#include "MR/ModelUtil.h"
 
 namespace MR
 {

@@ -7,6 +7,10 @@
 class J3DMtxBuffer
 {
 public:
+    inline J3DMtxBuffer() { }
+
+    virtual ~J3DMtxBuffer();
+
     void initialize();
     void create(J3DModelData *, u64);
     void createAnmMtx(J3DModelData *);

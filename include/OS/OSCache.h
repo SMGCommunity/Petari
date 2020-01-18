@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+void DCFlushRange(void *, u32);
 void DCStoreRange(void *, u32);
 
 #ifdef __cplusplus

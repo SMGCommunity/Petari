@@ -7,18 +7,19 @@
 extern "C" {
 #endif
 
-typedef struct GDLObj 
+typedef struct _GDLObj 
 {
     u8* mStart; // _0
     u32 mLength; // _4
     u8* mPtr; // _8
     u8* mTop; // _C
-};
+} GDLObj;
 
 extern GDLObj*__GDCurrentDL;
 
 void GDInitGDLObj(GDLObj *, void *, u32);
 
+void GDFlushCurrToMem();
 void GDPadCurr32();
 
 #ifdef __cplusplus

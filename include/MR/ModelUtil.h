@@ -2,7 +2,6 @@
 #define MODELUTIL_H
 
 #include "Actor/LiveActor/LiveActor.h"
-#include "Model/J3D/J3DModel.h"
 #include "OS/OSMutex.h"
 
 namespace MR
