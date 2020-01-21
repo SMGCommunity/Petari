@@ -15,28 +15,30 @@ LiveActor* LiveActorGroup::getActor(s32 idx) const
 LiveActor* LiveActorGroup::getDeadActor() const
 {
     u32 curObjIdx = 0;
-    LiveActor *pActor;
+    LiveActor *pDeadActors;
 
     while(true)
     {
         if (curObjIdx < mNumObjs)
         {
             if (!MR::isDead((LiveActor*)mObjs[curObjIdx]))
+            {
                 curObjIdx++;
+            }
             else
             {
-                pActor = (LiveActor*)mObjs[curObjIdx];
+                pDeadActors = (LiveActor*)mObjs[curObjIdx];
                 break;
             }
         }
         else
         {
-            pActor = 0;
+            pDeadActors = 0;
             break;
         }
     }
 
-    return pActor;
+    return pDeadActors;
 }
 
 s32 LiveActorGroup::getLivingActorNum() const
