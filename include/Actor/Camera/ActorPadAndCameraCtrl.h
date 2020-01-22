@@ -1,7 +1,7 @@
 #ifndef ACTORPADANDCAMERACTRL_H
 #define ACTORPADANDCAMERACTRL_H
 
-#include "Model/ModelManager.h"
+#include "Actor/Model/ModelManager.h"
 #include "JGeometry/TVec3.h"
 
 class ActorPadAndCameraCtrl

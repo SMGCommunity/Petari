@@ -17,7 +17,7 @@
 #include "Actor/Switch/StageSwitch.h"
 #include "Collision/Binder.h"
 #include "JGeometry/TVec3.h"
-#include "Model/ModelManager.h"
+#include "Actor/Model/ModelManager.h"
 
 class LiveActor : public NameObj
 {

@@ -1,7 +1,7 @@
 #ifndef DISPLAYLISTMAKER_H
 #define DISPLAYLISTMAKER_H
 
-#include "Model/J3D/J3DModel.h"
+#include "J3DGraphBase/J3DModel.h"
 #include "System/Resource/ResourceHolder.h"
 
 class DisplayListMaker

@@ -2,7 +2,7 @@
 #define J3DMTXBUFFER_H
 
 #include "types.h"
-#include "Model/J3D/J3DModelData.h"
+#include "J3DGraphBase/J3DModelData.h"
 
 class J3DMtxBuffer
 {

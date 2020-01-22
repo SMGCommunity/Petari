@@ -2,8 +2,8 @@
 #define ANMPLAYER_H
 
 #include "System/Resource/ResourceInfo.h"
-#include "Model/J3D/J3DAnimation.h"
-#include "Model/J3D/J3DModelData.h"
+#include "J3DGraphBase/J3DAnimation.h"
+#include "J3DGraphBase/J3DModelData.h"
 
 class AnmPlayerBase
 {

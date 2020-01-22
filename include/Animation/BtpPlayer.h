@@ -2,7 +2,7 @@
 #define BTPPLAYER_H
 
 #include "Animation/AnmPlayer.h"
-#include "Model/J3D/J3DModel.h"
+#include "J3DGraphBase/J3DModel.h"
 #include "System/Resource/ResourceHolder.h"
 
 class BtpPlayer : public MaterialAnmPlayerBase

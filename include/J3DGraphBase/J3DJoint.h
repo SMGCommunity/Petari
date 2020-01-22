@@ -2,7 +2,7 @@
 #define J3DJOINT_H
 
 #include "types.h"
-#include "Model/J3D/J3DTransform.h"
+#include "J3DGraphBase/J3DTransform.h"
 
 class J3DJoint
 {

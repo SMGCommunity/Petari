@@ -18,7 +18,7 @@ namespace JGeometry
     {
     public:
         void identity();
-        void mult(const JGeometry::TVec3<T> &, JGeometry::TVec3<T> &);
+        void mult(const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> &);
         void concat(const T &);
 
         operator Mtx*() { return reinterpret_cast<Mtx*>(this); }

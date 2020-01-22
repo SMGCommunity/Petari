@@ -1,8 +1,8 @@
 #ifndef J3DMODEL_H
 #define J3DMODEL_H
 
-#include "Model/J3D/J3DModelData.h"
-#include "Model/J3D/J3DMtxBuffer.h"
+#include "J3DGraphBase/J3DModelData.h"
+#include "J3DGraphBase/J3DMtxBuffer.h"
 #include "os/mtx.h"
 
 class J3DModel

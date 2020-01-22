@@ -1,4 +1,4 @@
-#include "Model/J3D/J3DSys.h"
+#include "J3DGraphBase/J3DSys.h"
 
 void J3DSys::loadPosMtxIndx(s32 unk1, u16 unk2) const
 {

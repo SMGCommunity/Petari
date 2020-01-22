@@ -1,7 +1,7 @@
 #ifndef J3DPACKET_H
 #define J3DPACKET_H
 
-#include "Model/J3D/J3DDrawBuffer.h"
+#include "J3DGraphBase/J3DDrawBuffer.h"
 #include "OS/GD/GDBase.h"
 #include "types.h"
 

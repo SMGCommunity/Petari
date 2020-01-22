@@ -2,9 +2,9 @@
 #define J3DMODELDATA_H
 
 #include "types.h"
-#include "Model/J3D/J3DJointTree.h"
-#include "Model/J3D/J3DMaterialAttach.h"
-#include "Model/J3D/J3DVertex.h"
+#include "J3DGraphBase/J3DJointTree.h"
+#include "J3DGraphBase/J3DMaterialAttach.h"
+#include "J3DGraphBase/J3DVertex.h"
 
 class J3DShapeTable
 {

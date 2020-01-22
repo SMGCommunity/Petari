@@ -7,8 +7,8 @@
 #include "Animation/BtkPlayer.h"
 #include "Animation/BtpPlayer.h"
 #include "Animation/BvaPlayer.h"
-#include "Model/DisplayList/DisplayListMaker.h"
-#include "Model/J3D/J3DModel.h"
+#include "Actor/Model/DisplayListMaker.h"
+#include "J3DGraphBase/J3DModel.h"
 #include "System/Resource/ResourceHolder.h"
 
 class ModelManager

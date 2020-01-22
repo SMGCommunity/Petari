@@ -1,4 +1,4 @@
-#include "Model/J3D/J3DModel.h"
+#include "J3DGraphBase/J3DModel.h"
 #include "os/mtx.h"
 
 void J3DModel::initialize()

@@ -2,7 +2,7 @@
 #define BVAPLAYER_H
 
 #include "Animation/AnmPlayer.h"
-#include "Model/J3D/J3DModel.h"
+#include "J3DGraphBase/J3DModel.h"
 
 class BvaPlayer : public AnmPlayerBase
 {
