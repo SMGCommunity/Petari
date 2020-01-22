@@ -17,8 +17,13 @@ namespace JGeometry
     class TMatrix34
     {
     public:
-        void mult(const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> &);
-        void concat(const JGeometry::SMatrix34C<f32> &, const JGeometry::SMatrix34C<f32> &);
+        void identity();
+        void mult(const JGeometry::TVec3<T> &, JGeometry::TVec3<T> &);
+        void concat(const T &);
+
+        operator Mtx*() { return reinterpret_cast<Mtx*>(this); }
+    
+        T val[3][4];
     };
 };
 

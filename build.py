@@ -140,3 +140,8 @@ for f in assembly_files:
 
 if numFilesCompiled == 0:
     print("No changes to compile.")
+
+if forceCompile == True:
+    print(f"{numFilesCompiled} files. [{len(cpp_files)} C++, {len(c_files)} C, {len(assembly_files)} assembly]...")
+else:
+    print("Complete.")
