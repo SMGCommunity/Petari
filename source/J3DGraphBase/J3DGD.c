@@ -15,7 +15,7 @@ void J3DGDWrite_u32(u32 val)
     *__GDCurrentDL->mPtr++ = val & 0xFF;
 }
 
-void J3DGDWriteXFCmdHdr(u16 addr, u8 length);
+void J3DGDWriteXFCmdHdr(u16 addr, u8 length)
 {
     u16 val = length - 1;
     *__GDCurrentDL->mPtr++ = 0x10;
