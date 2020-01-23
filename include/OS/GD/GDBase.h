@@ -22,6 +22,8 @@ void GDInitGDLObj(GDLObj *, void *, u32);
 void GDFlushCurrToMem();
 void GDPadCurr32();
 
+void GDOverflowCheck_7(u32);
+
 #ifdef __cplusplus
 }
 #endif
