@@ -8,7 +8,7 @@ void J3DGDSetTexImgPtrRaw(GXTexMapID texMapID, u32 imageAddr)
     GDOverflowCheck_7(5);
     // we create the command by taking the image address and then inserting our command
     J3DGDWriteBPCmd(imageAddr | commandTokens_TexImgPtrWrite[texMapID] << 24);
-} 
+}
 
 void J3DGDWriteBPCmd(u32 register_val)
 {
