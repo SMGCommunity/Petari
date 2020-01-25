@@ -80,6 +80,7 @@ void OSYieldThread();
 
 void OSCancelThread(OSThread *);
 void OSDetachThread(OSThread *);
+void OSResumeThread(OSThread *);
 
 s32 OSCreateThread(OSThread *thread, void* (*startFunc)(void *), void *param, void *stack, u32 stackSize, OSPriority priority, u16 attribute);
 
