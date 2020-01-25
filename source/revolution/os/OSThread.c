@@ -1,4 +1,4 @@
-#include "OS/OSThread.h"
+#include "revolution/os/OSThread.h"
 
 // slightly inaccurate
 s32 OSIsThreadSuspended(OSThread* thread)

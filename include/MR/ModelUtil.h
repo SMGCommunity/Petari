@@ -2,7 +2,7 @@
 #define MODELUTIL_H
 
 #include "Actor/LiveActor/LiveActor.h"
-#include "OS/OSMutex.h"
+#include "revolution/os/OSMutex.h"
 
 namespace MR
 {

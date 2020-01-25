@@ -2,7 +2,7 @@
 #define OSMESSAGE_H
 
 #include "types.h"
-#include "OS/OSThread.h"
+#include "revolution/os/OSThread.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,5 +1,5 @@
 #include "arch/PPCArch.h"
-#include "os/OSError.h"
+#include "revolution/os/OSError.h"
 
 u32 PPCMfmsr()
 {

@@ -1,5 +1,5 @@
 #include "J3DGraphBase/J3DGD.h"
-#include "OS/GD/GDBase.h"
+#include "revolution/GD/GDBase.h"
  
 const u8 commandTokens_TexImgPtrWrite[7] = { 0x94, 0x95, 0x96, 0xB4, 0xB5, 0xB6, 0xB7 };
 

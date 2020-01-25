@@ -1,7 +1,7 @@
 #ifndef OSMUTEX_H
 #define OSMUTEX_H
 
-#include "OS/OSThread.h"
+#include "revolution/os/OSThread.h"
 
 #ifdef __cplusplus
 extern "C" {

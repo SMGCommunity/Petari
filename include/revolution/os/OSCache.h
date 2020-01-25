@@ -7,6 +7,9 @@
 extern "C" {
 #endif
 
+void DCEnable();
+void DCInvalidateRange(void *, u32);
+
 void DCFlushRange(void *, u32);
 void DCStoreRange(void *, u32);
 

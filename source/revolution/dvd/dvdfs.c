@@ -1,4 +1,4 @@
-#include "OS/dvd.h"
+#include "revolution/dvd.h"
 
 // fix me later
 /*s32 DVDFastOpen(s32 entryNum, DVDFileInfo *info)

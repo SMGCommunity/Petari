@@ -1,7 +1,7 @@
 #ifndef COLOR8_H
 #define COLOR8_H
 
-#include "OS/GX/GXStruct.h"
+#include "revolution/gx/GXStruct.h"
 
 class Color8
 {

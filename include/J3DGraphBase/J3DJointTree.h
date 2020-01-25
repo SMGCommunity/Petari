@@ -2,7 +2,7 @@
 #define J3DJOINTTREE_H
 
 #include "types.h"
-#include "OS/vec.h"
+#include "revolution/vec.h"
 
 class J3DMtxBuffer;
 

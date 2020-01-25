@@ -1,4 +1,4 @@
-#include "OS/OSAlloc.h"
+#include "revolution/os/OSAlloc.h"
 
 s32 OSSetCurrentHeap(s32 heap)
 {

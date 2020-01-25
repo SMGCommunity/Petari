@@ -2,7 +2,7 @@
 #define OSTHREAD_H
 
 #include "types.h"
-#include "OS/OSContext.h"
+#include "revolution/os/OSContext.h"
 
 #ifdef __cplusplus
 extern "C" {

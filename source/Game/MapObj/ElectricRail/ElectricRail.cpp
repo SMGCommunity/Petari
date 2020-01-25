@@ -14,9 +14,9 @@
 #include "MR/RailUtil.h"
 #include "MR/SchedulerUtil.h"
 #include "MR/SoundUtil.h"
-#include "OS/OSCache.h"
-#include "OS/GD/GDBase.h"
-#include "OS/GX/GXDisplayList.h"
+#include "revolution/os/OSCache.h"
+#include "revolution/GD/GDBase.h"
+#include "revolution/gx/GXDisplayList.h"
 #include "defines.h"
 
 ElectricRailPoint::ElectricRailPoint(const char *pName) : LiveActor(pName)

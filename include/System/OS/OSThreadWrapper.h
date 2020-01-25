@@ -3,8 +3,8 @@
 
 #include "types.h"
 #include "JKernel/JKRHeap.h"
-#include "OS/OSMessage.h"
-#include "OS/OSThread.h"
+#include "revolution/os/OSMessage.h"
+#include "revolution/os/OSThread.h"
 
 class OSThreadWrapper
 {

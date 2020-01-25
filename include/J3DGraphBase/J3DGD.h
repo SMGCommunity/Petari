@@ -2,7 +2,7 @@
 #define J3DGD_H
 
 #include "types.h"
-#include "OS/GX/GXEnum.h"
+#include "revolution/gx/GXEnum.h"
 
 void J3DGDSetTexImgPtrRaw(GXTexMapID, u32);
 void J3DGDWriteCPCmd(u8, u32);

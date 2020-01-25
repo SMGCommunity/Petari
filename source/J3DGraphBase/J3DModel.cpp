@@ -1,5 +1,5 @@
 #include "J3DGraphBase/J3DModel.h"
-#include "os/mtx.h"
+#include "revolution/mtx.h"
 
 void J3DModel::initialize()
 {

@@ -1,5 +1,5 @@
-#include "OS/OS.h"
-#include "OS/OSError.h"
+#include "revolution/os.h"
+#include "revolution/os/OSError.h"
 
 void OSRegisterVersion(const char *versionStr)
 {

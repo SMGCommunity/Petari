@@ -1,6 +1,6 @@
 #include "J3DGraphBase/J3DPacket.h"
-#include "OS/OSInterrupt.h"
-#include "OS/GX/GXDisplayList.h"
+#include "revolution/os/OSInterrupt.h"
+#include "revolution/gx/GXDisplayList.h"
 
 void J3DDisplayListObj::callDL()
 {

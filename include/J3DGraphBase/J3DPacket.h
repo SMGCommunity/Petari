@@ -2,7 +2,7 @@
 #define J3DPACKET_H
 
 #include "J3DGraphBase/J3DDrawBuffer.h"
-#include "OS/GD/GDBase.h"
+#include "revolution/GD/GDBase.h"
 #include "types.h"
 
 class J3DShapePacket;

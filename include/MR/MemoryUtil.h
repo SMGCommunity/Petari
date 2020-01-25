@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "JKernel/JKRHeap.h"
-#include "OS/OSMutex.h"
+#include "revolution/os/OSMutex.h"
 
 namespace MR
 {
