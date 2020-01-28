@@ -11,6 +11,9 @@ extern "C" {
 typedef struct OSMessageQueue OSMessageQueue;
 typedef void* OSMessage;
 
+#define OS_MESSAGE_NOBLOCK  0
+#define OS_MESSAGE_BLOCK    1
+
 struct OSMessageQueue
 {
     OSThreadQueue mQueueSend; // _0

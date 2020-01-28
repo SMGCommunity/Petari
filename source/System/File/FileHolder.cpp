@@ -23,7 +23,7 @@ void FileHolderFileEntry::waitReadDone()
     if (_C != 2)
     {
         OSMessage msg;
-        OSReceiveMessage(&mQueue, &msg, 1);
+        OSReceiveMessage(&mQueue, &msg, OS_MESSAGE_BLOCK);
         _C = 2;
     }
 }
@@ -32,7 +32,7 @@ void FileHolderFileEntry::setContext(void *pSrc, JKRHeap *pHeap)
 {
     mSource = pSrc;
     mHeap = pHeap;
-    OSSendMessage(&mQueue, 0, 0);
+    OSSendMessage(&mQueue, 0, OS_MESSAGE_NOBLOCK);
     _C = 1;
 }
 
