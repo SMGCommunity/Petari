@@ -23,6 +23,7 @@ struct OSMessageQueue
 
 void OSInitMessageQueue(OSMessageQueue *, OSMessage *, s32);
 s32 OSSendMessage(OSMessageQueue *, OSMessage, s32);
+s32 OSReceiveMessage(OSMessageQueue *, OSMessage *, s32);
 
 #ifdef __cplusplus
 }
