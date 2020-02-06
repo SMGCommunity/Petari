@@ -5,47 +5,47 @@ GhostPacket::GhostPacket(void *pSrc, u32 unk)
     : mSource(pSrc), mCurPos(0), _C(unk)
 { }
 
-void GhostPacket::read(u8 *out, u32 numBytes)
+void GhostPacket::read(u8 *pOut, u32 numBytes)
 {
     for (u32 i = 0; i < numBytes; i++)
     {
-        *out++ = static_cast<s8*>(mSource)[mCurPos];
+        *pOut++ = static_cast<s8*>(mSource)[mCurPos];
         mCurPos++;
     }
 }
 
-void GhostPacket::read(u32 *out)
+void GhostPacket::read(u32 *pOut)
 {
-    read((u8*)out, 4);
+    read((u8*)pOut, 4);
 }
 
-void GhostPacket::read(s16 *out)
+void GhostPacket::read(s16 *pOut)
 {
-    read((u8*)out, 4);
+    read((u8*)pOut, 4);
 }
 
-void GhostPacket::read(char **out)
+void GhostPacket::read(char **pOut)
 {
-    *out = static_cast<char*>(mSource) + mCurPos;
-    s32 length = strlen(*out) + 1; // add one for the null terminator
+    *pOut = static_cast<char*>(mSource) + mCurPos;
+    s32 length = strlen(*pOut) + 1; // add one for the null terminator
     mCurPos = length + mCurPos;
 }
 
-void GhostPacket::read(s8 *out)
+void GhostPacket::read(s8 *pOut)
 {
-    read(out);
+    read(pOut);
 }
 
-void GhostPacket::read(JGeometry::TVec3<s8> *out)
+void GhostPacket::read(JGeometry::TVec3<s8> *pOut)
 {
-    read((u8*)&out->x, 1);
-    read((u8*)&out->y, 1);
-    read((u8*)&out->z, 1);
+    read((u8*)&pOut->x, 1);
+    read((u8*)&pOut->y, 1);
+    read((u8*)&pOut->z, 1);
 }
 
-void GhostPacket::read(JGeometry::TVec3<s16> *out)
+void GhostPacket::read(JGeometry::TVec3<s16> *pOut)
 {
-    read((u8*)&out->x, 2);
-    read((u8*)&out->y, 2);
-    read((u8*)&out->z, 2);
+    read((u8*)&pOut->x, 2);
+    read((u8*)&pOut->y, 2);
+    read((u8*)&pOut->z, 2);
 }
