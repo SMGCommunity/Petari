@@ -1,7 +1,7 @@
 #ifndef CAMERAPARAMCHUNK_H
 #define CAMERAPARAMCHUNK_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 #include "System/Camera/DotCamParams.h"
 #include "System/Camera/CameraHolder.h"

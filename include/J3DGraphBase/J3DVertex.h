@@ -1,7 +1,7 @@
 #ifndef J3DVERTEX_H
 #define J3DVERTEX_H
 
-#include "types.h"
+#include <revolution.h>
 
 class J3DVertexData
 {

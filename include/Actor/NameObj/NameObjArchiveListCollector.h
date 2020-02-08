@@ -1,7 +1,7 @@
 #ifndef NAMEOBJARCHIVELISTCOLLECTOR_H
 #define NAMEOBJARCHIVELISTCOLLECTOR_H
 
-#include "types.h"
+#include <revolution.h>
 
 class NameObjArchiveListCollector
 {

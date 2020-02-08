@@ -1,7 +1,7 @@
 #ifndef GAMEDATAFUNCTION_H
 #define GAMEDATAFUNCTION_H
 
-#include "types.h"
+#include <revolution.h>
 
 class GameDataFunction
 {

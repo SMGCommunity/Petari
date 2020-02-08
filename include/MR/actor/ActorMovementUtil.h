@@ -1,7 +1,7 @@
 #ifndef ACTORMOVEMENTUTIL_H
 #define ACTORMOVEMENTUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LiveActor;
 

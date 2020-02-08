@@ -1,5 +1,5 @@
 #include "Actor/LOD/LodCtrl.h"
-#include "arch/printf.h"
+#include <stdio.h>
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorShadowUtil.h"
 #include "MR/actor/LiveActorUtil.h"

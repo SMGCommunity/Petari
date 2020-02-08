@@ -1,7 +1,7 @@
 #ifndef MATHUTIL_H
 #define MATHUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 
 namespace MR

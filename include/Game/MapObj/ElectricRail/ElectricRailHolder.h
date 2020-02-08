@@ -1,7 +1,7 @@
 #ifndef ELECTRICRAILHOLDER_H
 #define ELECTRICRAILHOLDER_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LiveActor;
 

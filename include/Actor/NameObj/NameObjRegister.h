@@ -1,7 +1,7 @@
 #ifndef NAMEOBJREGISTER_H
 #define NAMEOBJREGISTER_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 #include "Actor/NameObj/NameObjHolder.h"
 

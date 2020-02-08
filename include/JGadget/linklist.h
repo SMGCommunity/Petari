@@ -1,7 +1,7 @@
 #ifndef LINKLIST_H
 #define LINKLIST_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace JGadget
 {

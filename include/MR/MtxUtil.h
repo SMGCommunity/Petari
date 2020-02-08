@@ -1,7 +1,7 @@
 #ifndef MTXUTIL_H
 #define MTXUTIL_H
 
-#include "types.h"
+#include <revolution/mtx.h>
 #include "JGeometry/TVec3.h"
 
 namespace MR

@@ -2,7 +2,6 @@
 #include "Actor/LiveActor/AllLiveActorGroup.h"
 #include "Actor/NameObj/NameObjExecuteHolder.h"
 #include "Actor/Shadow/ShadowController.h"
-#include "defines.h"
 #include "MR/actor/ActorMovementUtil.h"
 #include "MR/actor/ActorSensorUtil.h"
 #include "MR/ClippingUtil.h"
@@ -10,6 +9,8 @@
 #include "MR/MemoryUtil.h"
 #include "MR/ModelUtil.h"
 #include "MR/SoundUtil.h"
+
+extern int __cntlzw (int);
 
 LiveActor::LiveActor(const char *pName) : NameObj(pName) 
 {
@@ -362,11 +363,11 @@ void LiveActor::setNerve(const Nerve *pNerve)
     mSpine->setNerve(pNerve);
 }
 
-u8 LiveActor::isNerve(const Nerve *pNerve) const
+/*u8 LiveActor::isNerve(const Nerve *pNerve) const
 {
     const Nerve* curNerve = mSpine->getCurrentNerve();
-    return __cntlzw((u32)pNerve - (u32)curNerve) >> 5;
-}
+    return __cntlzw(pNerve - curNerve) >> 5;
+}*/
 
 u32 LiveActor::getNerveStep() const
 {

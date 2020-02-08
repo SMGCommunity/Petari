@@ -1,7 +1,7 @@
 #ifndef COLLISIONPARTS_H
 #define COLLISIONPARTS_H
 
-#include "types.h"
+#include <revolution.h>
 
 class KCollisionServer;
 

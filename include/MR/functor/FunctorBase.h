@@ -1,7 +1,7 @@
 #ifndef FUNCTORBASE_H
 #define FUNCTORBASE_H
 
-#include "types.h"
+#include <revolution.h>
 
 class JKRHeap;
 

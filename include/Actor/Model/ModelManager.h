@@ -1,7 +1,7 @@
 #ifndef MODELMANAGER_H
 #define MODELMANAGER_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Animation/BpkPlayer.h"
 #include "Animation/BrkPlayer.h"
 #include "Animation/BtkPlayer.h"

@@ -1,7 +1,7 @@
 #ifndef STARPOINTERTARGET_H
 #define STARPOINTERTARGET_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec2.h"
 #include "JGeometry/TVec3.h"
 

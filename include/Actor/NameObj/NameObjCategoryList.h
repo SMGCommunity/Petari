@@ -1,7 +1,7 @@
 #ifndef NAMEOBJCATEGORYLIST_H
 #define NAMEOBJCATEGORYLIST_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 #include "MR/AssignableArray.h"
 

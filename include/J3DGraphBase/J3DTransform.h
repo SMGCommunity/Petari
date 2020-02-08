@@ -2,7 +2,7 @@
 #define J3DTRANSFORM_H
 
 #include "JGeometry/TVec3.h"
-#include "types.h"
+#include <revolution.h>
 
 class J3DTransformInfo
 {

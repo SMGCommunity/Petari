@@ -1,7 +1,7 @@
 #ifndef STARPIECEGROUP_H
 #define STARPIECEGROUP_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/LiveActor/LiveActor.h"
 
 class StarPiece;

@@ -1,7 +1,7 @@
 #ifndef NAMEOBJHOLDER_H
 #define NAMEOBJHOLDER_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 
 class NameObjHolder

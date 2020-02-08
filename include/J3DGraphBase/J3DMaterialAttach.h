@@ -1,7 +1,7 @@
 #ifndef J3DMATERIALATTACH_H
 #define J3DMATERIALATTACH_H
 
-#include "types.h"
+#include <revolution.h>
 
 class J3DMaterialTable
 {

@@ -1,7 +1,7 @@
 #ifndef LIVEACTORFLAG_H
 #define LIVEACTORFLAG_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LiveActorFlag
 {

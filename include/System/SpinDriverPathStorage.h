@@ -1,7 +1,7 @@
 #ifndef SPINDRIVERPATHSTORAGE_H
 #define SPINDRIVERPATHSTORAGE_H
 
-#include "types.h"
+#include <revolution.h>
 
 class SpinDriverPathStorageOne
 {

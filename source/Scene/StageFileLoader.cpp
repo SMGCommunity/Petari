@@ -2,7 +2,7 @@
 #include "MR/MemoryUtil.h"
 #include "MR/FileUtil.h"
 #include "System/Galaxy/GalaxyStatusAccessor.h"
-#include "arch/printf.h"
+#include <stdio.h>
 
 void StageFileLoader::startLoadingStageFile()
 {

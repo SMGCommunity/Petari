@@ -1,7 +1,7 @@
 #ifndef EFFECTKEEPER_H
 #define EFFECTKEEPER_H
 
-#include "types.h"
+#include <revolution.h>
 
 class ResourceHolder;
 

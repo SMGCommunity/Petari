@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include <revolution.h>
 #include "JMap/JMapInfo.h"
 
 class JMapInfoIter

@@ -1,7 +1,7 @@
 #ifndef KCOLLISIONSERVER_H
 #define KCOLLISIONSERVER_H
 
-#include "types.h"
+#include <revolution.h>
 
 class KCollisionServer
 {

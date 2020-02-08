@@ -1,5 +1,4 @@
 #include "J3DGraphBase/J3DModel.h"
-#include "revolution/mtx.h"
 
 void J3DModel::initialize()
 {
@@ -15,7 +14,7 @@ void J3DModel::initialize()
     PSMTXIdentity(_54);
     mBuffer = 0;
     _C0 = 0;
-    _C4 = 0;
+    _C4 = 0; 
     _C8 = 0;
     _CC = 0;
     _D0 = 0;

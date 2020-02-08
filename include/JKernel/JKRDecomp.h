@@ -2,7 +2,6 @@
 #define JKRDECOMP_H
 
 #include "JKernel/JKRThread.h"
-#include "revolution/os/OSMessage.h"
 
 class JKRDecompCommand;
 

@@ -1,7 +1,7 @@
 #ifndef NAMEOBJADAPTOR_H
 #define NAMEOBJADAPTOR_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 #include "MR/Functor/Functor.h"
 

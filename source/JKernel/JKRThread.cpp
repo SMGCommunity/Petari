@@ -39,7 +39,7 @@ void JKRThread::setCommon_mesgQueue(JKRHeap *pHeap, s32 msgCount)
     _78 = 0;
 }
 
-void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 stackSize, u32 threadPriority)
+void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 stackSize, s32 threadPriority)
 {
     // todo
 }

@@ -1,7 +1,7 @@
 #ifndef HASHCODE_H
 #define HASHCODE_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace JGadget
 {

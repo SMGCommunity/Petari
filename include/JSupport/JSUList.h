@@ -1,7 +1,7 @@
 #ifndef JSULIST_H
 #define JSULIST_H
 
-#include "types.h"
+#include <revolution.h>
 
 class JSUPtrLink;
 

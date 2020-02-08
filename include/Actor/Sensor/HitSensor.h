@@ -1,7 +1,7 @@
 #ifndef HITSENSOR_H
 #define HITSENSOR_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LiveActor;
 class SensorGroup;

@@ -1,7 +1,7 @@
 #ifndef GHOSTPACKET_H
 #define GHOSTPACKET_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 
 class GhostPacket

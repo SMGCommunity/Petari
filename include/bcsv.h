@@ -1,7 +1,7 @@
 #ifndef BCSV_H
 #define BCSV_H
 
-#include "types.h"
+#include <revolution.h>
 
 struct BCSVEntry
 {

@@ -1,7 +1,7 @@
 #ifndef STAGESWITCHCTRL_H
 #define STAGESWITCHCTRL_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 #include "JMap/JMapInfoIter.h"
 

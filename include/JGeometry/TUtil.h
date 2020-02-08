@@ -1,7 +1,7 @@
 #ifndef TUTIL_H
 #define TUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace JGeometry
 {

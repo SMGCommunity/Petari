@@ -1,7 +1,7 @@
 #ifndef ACTORSENSORUTIL_H
 #define ACTORSENSORUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 
 class LiveActor;

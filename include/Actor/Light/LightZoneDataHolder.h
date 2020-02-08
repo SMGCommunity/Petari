@@ -1,7 +1,7 @@
 #ifndef LIGHTZONEDATAHOLDER_H
 #define LIGHTZONEDATAHOLDER_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LightArea;
 

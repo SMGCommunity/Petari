@@ -1,5 +1,6 @@
 #include "JMap/JMapInfoIter.h"
-#include "arch/printf.h"
+#include <stdio.h>
+#include <revolution/mtx.h>
 #include "MR/JMap/JMapUtil.h"
 #include "MR/MtxUtil.h"
 #include "MR/SceneUtil.h"

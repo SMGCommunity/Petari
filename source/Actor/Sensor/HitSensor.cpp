@@ -2,7 +2,8 @@
 #include "Actor/Sensor/SensorGroup.h"
 #include "Actor/LiveActor/LiveActor.h"
 #include "MR/SensorUtil.h"
-#include "defines.h"
+
+extern int __cntlwz(int);
 
 HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *pActor)
 {

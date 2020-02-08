@@ -1,7 +1,7 @@
 #ifndef LIVEACTORUTIL_H
 #define LIVEACTORUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 #include "System/Resource/ResourceHolder.h"
 
 class LiveActor;

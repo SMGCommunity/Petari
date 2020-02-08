@@ -1,7 +1,7 @@
 #ifndef TCOLOR_H
 #define TCOLOR_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace JUtility
 {

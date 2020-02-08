@@ -3,7 +3,7 @@
 
 #include "J3DGraphBase/J3DDrawBuffer.h"
 #include "revolution/GD/GDBase.h"
-#include "types.h"
+#include <revolution.h>
 
 class J3DShapePacket;
 

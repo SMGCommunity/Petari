@@ -1,7 +1,7 @@
 #ifndef RAILPART_H
 #define RAILPART_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 
 class LinearRailPart;

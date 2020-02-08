@@ -1,7 +1,7 @@
 #ifndef ITEMGENERATOR_H
 #define ITEMGENERATOR_H
 
-#include "types.h"
+#include <revolution.h>
 
 class LiveActor;
 

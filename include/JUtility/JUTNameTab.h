@@ -1,7 +1,7 @@
 #ifndef JUTNAMETAB_H
 #define JUTNAMETAB_H
 
-#include "types.h"
+#include <revolution.h>
 
 struct ResNTAB
 {

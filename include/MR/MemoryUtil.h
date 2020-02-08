@@ -1,7 +1,7 @@
 #ifndef MEMORYUTIL_H
 #define MEMORYUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JKernel/JKRHeap.h"
 #include "revolution/os/OSMutex.h"
 

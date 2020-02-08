@@ -1,7 +1,7 @@
 #ifndef SENSORGROUP_H
 #define SENSORGROUP_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/Sensor/HitSensor.h"
 
 class SensorGroup

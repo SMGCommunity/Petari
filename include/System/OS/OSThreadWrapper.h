@@ -1,7 +1,7 @@
 #ifndef OSTHREADWRAPPER_H
 #define OSTHREADWRAPPER_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JKernel/JKRHeap.h"
 #include "revolution/os/OSMessage.h"
 #include "revolution/os/OSThread.h"

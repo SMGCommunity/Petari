@@ -2,7 +2,6 @@
 #define NERVEEXECUTOR_H
 
 #include "Actor/Nerve/Spine.h"
-#include "types.h"
 
 class NerveExecutor
 {

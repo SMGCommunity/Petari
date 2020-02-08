@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bcsv.h"
-#include "types.h"
+#include <revolution.h>
 
 struct JMapData
 {

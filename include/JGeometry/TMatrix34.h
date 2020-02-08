@@ -1,8 +1,8 @@
 #ifndef TMATRIX34_H
 #define TMATRIX34_H
 
-#include "types.h"
 #include "JGeometry/TVec3.h"
+#include <revolution/mtx.h>
 
 namespace JGeometry
 {

@@ -1,7 +1,7 @@
 #ifndef NAMEOBJGROUP_H
 #define NAMEOBJGROUP_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
 
 class NameObjGroup : public NameObj

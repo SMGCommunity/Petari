@@ -1,7 +1,6 @@
 #ifndef J3DMODELDATA_H
 #define J3DMODELDATA_H
 
-#include "types.h"
 #include "J3DGraphBase/J3DJointTree.h"
 #include "J3DGraphBase/J3DMaterialAttach.h"
 #include "J3DGraphBase/J3DVertex.h"

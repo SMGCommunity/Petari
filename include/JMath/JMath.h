@@ -1,7 +1,7 @@
 #ifndef JMATH_H
 #define JMATH_H
 
-#include "revolution/vec.h"
+#include <revolution/mtx.h>
 
 void JMAVECScaleAdd(const Vec *, const Vec *, Vec *, f32);
 

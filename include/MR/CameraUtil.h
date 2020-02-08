@@ -2,7 +2,7 @@
 #define CAMERAUTIL_H
 
 #include "JGeometry/TVec3.h"
-#include "types.h"
+#include <revolution.h>
 
 namespace MR
 {

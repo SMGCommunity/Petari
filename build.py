@@ -1,12 +1,18 @@
 import glob
-import hashlib
 import subprocess
 import sys
 import os
 from pathlib import Path
 
-numFilesCompiled = 0
-forceCompile = False
+def getPath(var):
+    with open("sources.txt", "r") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        if line.split("=")[0] == var:
+            return line.split("=")[1].strip("\n\r")
+    
+    return ""
 
 def isCmdAvailable(cmd):
     test_cmd = "which" if platform.system() != "Windows" else "where"
@@ -17,67 +23,78 @@ def isCmdAvailable(cmd):
     except:
         return False
 
-# create our md5 hash storage if it doesn't exist
-if not os.path.exists("files_md5.txt"):
-    f = open("files_md5.txt", "w+")
+numFilesCompiled = 0
 
-def getMD5(path):
-    return hashlib.md5(open(path, "rb").read()).hexdigest()
+SDK_ROOT_PATH = getPath("SDK_PATH")
 
-def checkIfFileIsStored(filename):
-    with open("files_md5.txt", "r") as f:
-        lines = f.readlines()
+if SDK_ROOT_PATH == "":
+    print("SDK_PATH variable not defined.")
+    sys.exit(1)
 
-    for line in lines:
-        if line.split("=")[0] == filename:
-            return True
+SDK_BASE_PATH = f"{SDK_ROOT_PATH}/RVL_SDK/RVL"
+SDK_LIB_PATH = f"{SDK_BASE_PATH}/RVL/lib"
+SDK_INC_PATH = f"{SDK_ROOT_PATH}/RVL_SDK/include"
 
-    return False
+NW_BASE_PATH = f"{SDK_ROOT_PATH}/NintendoWare/Revolution/Library"
+NW_INC_PATH = f"{NW_BASE_PATH}/include"
+NW_LIB_PATH = f"{NW_BASE_PATH}/lib/RVL/Release/"
 
-def checkIfHashIsStored(hash):
-    with open("files_md5.txt", "r") as f:
-        lines = f.readlines()
+MW_BASE_PATH = getPath("MW_BASE_PATH")
 
-    for line in lines:
-        if line.split("=")[1].strip("\n") == hash:
-            return True
+if MW_BASE_PATH == "":
+    print("MW_BASE_PATH variable not defined.")
+    sys.exit(1)
 
-    return False
+MW_BIN_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_TOOLS/Command_Line_Tools"
+MW_LIB_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_Support"
+MW_TOOLS_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_Tools/Command_Line_Tools"
 
-def appendFilename(filename):
-    with open("files_md5.txt", "a") as w:
-        w.write(f"{filename}={getMD5(filename)}\n")
+MW_LIBS =   [
+                f"{MW_LIB_PATH}/MSL/MSL_C/PPC_EABI/Lib/MSL_C.PPCEABI.bare.H.a",
+                f"{MW_LIB_PATH}/MetroTRK/TRK_Hollywood_Revolution.a",
+                f"{MW_LIB_PATH}/Runtime/Lib/Runtime.PPCEABI.H.a"
+            ]
 
-def checkAndPerformAppend(filename):
-    if checkIfFileIsStored(filename):
-        if checkIfHashIsStored(getMD5(filename)):
-            return True
+SDK_LIBS =  [
+                f"{SDK_ROOT_PATH}/NDEV/lib/NdevExi2A.a"
+            ]
+    
+NW_LIBS =   [
+                f"{NW_LIB_PATH}/libnw4r_db.a",
+                f"{NW_LIB_PATH}/libnw4r_dw.a",
+                f"{NW_LIB_PATH}/libnw4r_ef.a",
+                f"{NW_LIB_PATH}/libnw4r_g3d.a",
+                f"{NW_LIB_PATH}/libnw4r_lyt.a",
+                f"{NW_LIB_PATH}/libnw4r_math.a",
+                f"{NW_LIB_PATH}/libnw4r_mcs",
+                f"{NW_LIB_PATH}/libnw4r_snd.a",
+                f"{NW_LIB_PATH}/libnw4r_ut.a"
+            ]
 
-    # this file already has an entry but our hash is different
-    # we have to remove this and add the new one
-    # todo -- find better solution
-    if checkIfFileIsStored(filename):
-        with open("files_md5.txt", "r+") as f:
-            lines = f.readlines()
+MW_INC =    [
+                f"-ir {MW_LIB_PATH}/MetroTRK",
+                f"-ir {MW_LIB_PATH}/Runtime/Include",
+                f"-ir {MW_LIB_PATH}/MSL/MSL_C",
+                f"-ir {SDK_INC_PATH}",
+                f"-ir {NW_INC_PATH}"
+            ]
 
-        os.remove("files_md5.txt")
+rootPath = os.path.dirname(os.path.realpath(__file__))
+path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 
-        with open("files_md5.txt", "w") as w:
-            for line in lines:
-                if line.split("=")[0] != filename:
-                    w.write(line)
+flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
+includes = "-i . -I- -i include "
 
-    appendFilename(filename)
+for inc in MW_INC:
+    includes += f"{inc} "
 
-    return False
+flags += f"{includes} -nosyspath"
 
-if "-force" in sys.argv:
-    forceCompile = True
-
-flags = "-i . -I- -i include -Cpp_exceptions off -O4,s -proc gekko -fp hard -enum int"
+ld_flags = f"-nodefaults -fp hard -proc gekko -map out.map -lcf {rootPath}/linker/linker.lcf"
+ld_flags += f" -lr {SDK_LIB_PATH} -lr {MW_LIB_PATH} -lr {NW_LIB_PATH} -lr {rootPath}/build"
 as_flags = "-i . -I- -proc gekko -d __MWERKS__"
 
-req_commands = ['mwcceppc', 'mwasmeppc']
+req_commands = ['mwcceppc', 'mwasmeppc', 'mwldeppc']
 
 # first check our tools folder
 if not os.path.isdir("tools"):
@@ -88,12 +105,9 @@ if not os.path.isdir("tools"):
         else:
              print(f"Command {cmd} is not available!")
              sys.exit(1)
-        
 
 if not os.path.isdir("build"):
     os.mkdir("build")
-
-path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 
 c_files = [f for f in glob.glob(path + "**/*.c", recursive=True)]
 cpp_files = [f for f in glob.glob(path + "**/*.cpp", recursive=True)]
@@ -102,12 +116,9 @@ assembly_files = [f for f in glob.glob(path + "**/*.s", recursive=True)]
 for f in cpp_files:
     file_name = Path(f).stem
 
-    if checkAndPerformAppend(f) and forceCompile == False:
-        continue
-	
     print(f"Compiling {file_name}.cpp...")
 
-    if subprocess.call(f"mwcceppc.exe {flags} -c -o build/{file_name}.o {f}", shell=True) == 1:
+    if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
 
     numFilesCompiled += 1
@@ -115,12 +126,9 @@ for f in cpp_files:
 for f in c_files:
     file_name = Path(f).stem
     
-    if checkAndPerformAppend(f) and forceCompile == False:
-        continue
-	
     print(f"Compiling {file_name}.c...")
 
-    if subprocess.call(f"mwcceppc.exe {flags} -c -o build/{file_name}.o {f}", shell=True) == 1:
+    if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
 
     numFilesCompiled += 1
@@ -128,12 +136,9 @@ for f in c_files:
 for f in assembly_files:
     file_name = Path(f).stem
 
-    if checkAndPerformAppend(f) and forceCompile == False:
-        continue
-	
     print(f"Assembling {file_name}.s...")
 
-    if subprocess.call(f"mwasmeppc.exe {as_flags} -o build/{file_name}.o {f}", shell=True) == 1:
+    if subprocess.call(f"{MW_TOOLS_PATH}/mwasmeppc.exe {as_flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
 
     numFilesCompiled += 1
@@ -141,7 +146,40 @@ for f in assembly_files:
 if numFilesCompiled == 0:
     print("No changes to compile.")
 
-if forceCompile == True:
-    print(f"{numFilesCompiled} files. [{len(cpp_files)} C++, {len(c_files)} C, {len(assembly_files)} assembly]...")
-else:
-    print("Complete.")
+archives = ""
+
+with open("archives.txt", "r") as f:
+    lines = f.readlines()
+
+for line in lines:
+    split = line.split("=")
+    archive = split[0]
+    objs = split[1].split(" ")
+
+    out = ""
+
+    for obj in objs:
+        out += f"build/{obj} "
+
+    print(f"Creating {archive}.a...")
+
+    if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe -library -l, {out} -o {archive}.a", shell=True) == 1:
+        sys.exit(1)
+
+    archives += f"{archive}.a "
+
+dirs = os.listdir(os.getcwd())
+
+for dire in dirs:
+    if dire.endswith(".d"):
+        os.remove(os.path.join(os.getcwd(), dire))
+
+if "-nolink" in sys.argv:
+    sys.exit(1)
+
+print("Linking...")
+
+if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe {ld_flags} output.a -o Petari", shell=True) == 1:
+    sys.exit(1)
+
+print("Complete.")

@@ -1,7 +1,7 @@
 #ifndef TVEC3_H
 #define TVEC3_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace JGeometry
 {

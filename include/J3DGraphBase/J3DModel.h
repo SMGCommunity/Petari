@@ -3,7 +3,7 @@
 
 #include "J3DGraphBase/J3DModelData.h"
 #include "J3DGraphBase/J3DMtxBuffer.h"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 class J3DModel
 {

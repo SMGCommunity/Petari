@@ -3,7 +3,7 @@
 
 JMapInfo::JMapInfo()
 {
-    mData = nullptr;
+    mData = NULL;
     mName = "Undifined";
 }
 

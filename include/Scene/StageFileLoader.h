@@ -1,7 +1,7 @@
 #ifndef STAGEFILELOADER_H
 #define STAGEFILELOADER_H
 
-#include "types.h"
+#include <revolution.h>
 
 class StageFileLoader
 {

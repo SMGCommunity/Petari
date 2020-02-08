@@ -1,7 +1,7 @@
 #ifndef JUTEXCEPTION_H
 #define JUTEXCEPTION_H
 
-#include "types.h"
+#include <revolution.h>
 
 class JUTException
 {

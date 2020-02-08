@@ -1,5 +1,6 @@
 #include "MR/actor/ActorSensorUtil.h"
-#include "defines.h"
+
+extern int __cntlwz(int);
 
 namespace MR
 {

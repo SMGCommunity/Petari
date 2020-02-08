@@ -1,7 +1,7 @@
 #ifndef BCKCTRL_H
 #define BCKCTRL_H
 
-#include "types.h"
+#include <revolution.h>
 
 class BckCtrlData
 {

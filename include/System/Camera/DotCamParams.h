@@ -1,7 +1,7 @@
 #ifndef DOTCAMPARAMS_H
 #define DOTCAMPARAMS_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JGeometry/TVec3.h"
 
 class DotCamReader

@@ -2,7 +2,8 @@
 #include "MR/JMap/JMapUtil.h"
 #include "MR/MathUtil.h"
 #include "MR/SceneUtil.h"
-#include "defines.h"
+
+extern f32 frsp(f32);
 
 RailRider::RailRider(const JMapInfoIter &iter)
 {

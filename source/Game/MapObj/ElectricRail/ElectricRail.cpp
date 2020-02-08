@@ -14,10 +14,10 @@
 #include "MR/RailUtil.h"
 #include "MR/SchedulerUtil.h"
 #include "MR/SoundUtil.h"
-#include "revolution/os/OSCache.h"
-#include "revolution/GD/GDBase.h"
-#include "revolution/gx/GXDisplayList.h"
-#include "defines.h"
+#include <revolution/gd.h>
+#include <revolution/gx.h>
+
+extern int __cntlwz(int);
 
 ElectricRailPoint::ElectricRailPoint(const char *pName) : LiveActor(pName)
 {
@@ -293,7 +293,7 @@ void ElectricRail::initPoints()
                 while(curHeight < mRailHeight)
                 {
                     ElectricRailPoint* curPointInRail = &mPoints[curPointIdx];
-                    JMathInlineVEC::PSVECAdd(&temp, &outGrav, &temp);
+                    //JMathInlineVEC::PSVECAdd(&temp, &outGrav, &temp);
                     curPointInRail->mTranslation.set<f32>(temp);
                     curPointInRail->_8C = flag;
                     curPointIdx++;
@@ -342,7 +342,7 @@ void ElectricRail::initDisplayList()
     drawPlane(30.0, 30.0, -30.0, -30.0);
     drawPlane(-30.0, 30.0, 30.0, -30.0);
     GDPadCurr32();
-    mDLLength = obj.mStart - obj.mPtr;
+    mDLLength = obj.start - obj.ptr;
     DCStoreRange(_A0, mDLLength);
 }
 
@@ -423,7 +423,7 @@ void ElectricRail::updateHitSensorPos()
 
         while (curIdx < mRailHeight)
         {
-            JMathInlineVEC::PSVECAdd(&_94[curIdx - 1], &gravity, &_94[curIdx]);
+            //JMathInlineVEC::PSVECAdd(&_94[curIdx - 1], &gravity, &_94[curIdx]);
             curIdx++;
         }
     }

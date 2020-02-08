@@ -4,7 +4,7 @@
 #include "Actor/LiveActor/LiveActor.h"
 #include "Collision/Binder.h"
 #include "System/Resource/ResourceHolder.h"
-#include "types.h"
+#include <revolution.h>
 
 class EffectKeeper
 {

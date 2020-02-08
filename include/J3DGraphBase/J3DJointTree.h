@@ -1,8 +1,7 @@
 #ifndef J3DJOINTTREE_H
 #define J3DJOINTTREE_H
 
-#include "types.h"
-#include "revolution/vec.h"
+#include <revolution/mtx.h>
 
 class J3DMtxBuffer;
 

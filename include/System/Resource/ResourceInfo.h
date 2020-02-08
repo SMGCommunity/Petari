@@ -1,7 +1,7 @@
 #ifndef RESOURCEINFO_H
 #define RESOURCEINFO_H
 
-#include "types.h"
+#include <revolution.h>
 
 class ResFileInfo
 {

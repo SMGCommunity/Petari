@@ -1,6 +1,6 @@
 #include "JMath/JMath.h"
 #include "Map/Rail/RailPart.h"
-#include "revolution/vec.h"
+#include <revolution/mtx.h>
 
 RailPart::RailPart()
 {
@@ -35,7 +35,7 @@ void RailPart::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
     // uses the stack, fix this
     if (mLinearRailPart != 0)
     {
-        JMAVECScaleAdd(&mLinearRailPart->_C, &mLinearRailPart->_0, pOut, a2);
+        //JMAVECScaleAdd(&mLinearRailPart->_C, &mLinearRailPart->_0, pOut, a2);
     }
 
     mBezierRailPart->calcPos(pOut, a2);
@@ -97,5 +97,5 @@ void LinearRailPart::set(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3
     _0 = a1;
     _C = a2;
     _C -= a2;
-    mMagnitude = C_VECMag(&_C);
+    //mMagnitude = PSVECMag(&_C);
 }

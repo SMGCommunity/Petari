@@ -1,7 +1,7 @@
 #ifndef STAGESWITCH_H
 #define STAGESWITCH_H
 
-#include "types.h"
+#include <revolution.h>
 
 class BitFlag128
 {

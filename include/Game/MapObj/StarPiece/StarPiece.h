@@ -1,7 +1,7 @@
 #ifndef STARPIECE_H
 #define STARPIECE_H
 
-#include "types.h"
+#include <revolution.h>
 #include "Game/MapObj/StarPiece/StarPieceGroup.h"
 
 class StarPiece : public StarPieceGroup

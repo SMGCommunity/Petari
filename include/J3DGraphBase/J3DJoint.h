@@ -1,7 +1,6 @@
 #ifndef J3DJOINT_H
 #define J3DJOINT_H
 
-#include "types.h"
 #include "J3DGraphBase/J3DTransform.h"
 
 class J3DJoint

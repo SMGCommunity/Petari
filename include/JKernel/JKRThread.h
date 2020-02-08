@@ -2,8 +2,7 @@
 #define JKRTHREAD_H
 
 #include "JKernel/JKRDisposer.h"
-#include "revolution/os/OSMessage.h"
-#include "revolution/os/OSThread.h"
+#include <revolution/os.h>
 
 class JKRThread : public JKRDisposer
 {

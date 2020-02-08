@@ -2,7 +2,7 @@
 #define SPINE_H
 
 #include "Actor/Nerve/Nerve.h"
-#include "types.h"
+#include <revolution.h>
 
 class ActorStateKeeper;
 

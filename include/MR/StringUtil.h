@@ -1,7 +1,7 @@
 #ifndef STRINGUTIL_H
 #define STRINGUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace MR
 {

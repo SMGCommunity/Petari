@@ -1,7 +1,7 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
-#include "types.h"
+#include <revolution.h>
 
 const s32 GPU_FIFO_ADDR = 0xCC008000;
 

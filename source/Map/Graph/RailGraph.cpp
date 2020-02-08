@@ -1,5 +1,5 @@
 #include "Map/Graph/RailGraph.h"
-#include "revolution/vec.h"
+#include <revolution/mtx.h>
 
 RailGraph::RailGraph()
 {
@@ -48,7 +48,7 @@ void RailGraph::connectNodeTwoWay(s32 next, s32 prev, const RailGraphEdge *pEdge
     newEdge.mNext = next;
     newEdge.mPrev = prev;
 
-    newEdge.mDistance = PSVECDistance(&mNodes[next].mPosition, &mNodes[prev].mPosition);
+    //newEdge.mDistance = C_VECDistance(&mNodes[next].mPosition, &mNodes[prev].mPosition);
     s32 numEdges = mEdgeCount;
     mEdgeCount = numEdges--;
 

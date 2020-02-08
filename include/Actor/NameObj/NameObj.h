@@ -1,7 +1,7 @@
 #ifndef NAMEOBJ_H
 #define NAMEOBJ_H
 
-#include "types.h"
+#include <revolution.h>
 #include "JMap/JMapInfoIter.h"
 
 class NameObj

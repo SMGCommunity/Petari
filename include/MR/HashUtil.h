@@ -1,7 +1,7 @@
 #ifndef HASHUTIL_H
 #define HASHUTIL_H
 
-#include "types.h"
+#include <revolution.h>
 
 namespace MR
 {

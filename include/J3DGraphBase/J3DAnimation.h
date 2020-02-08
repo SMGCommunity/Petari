@@ -1,7 +1,7 @@
 #ifndef J3DANIMATION_H
 #define J3DANIMATION_H
 
-#include "types.h"
+#include <revolution.h>
 
 class J3DAnmBase
 {

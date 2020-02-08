@@ -1,5 +1,5 @@
 #include "Actor/NameObj/NameObjCategoryList.h"
-#include "arch/NMWException.h"
+#include <NMWException.h>
 
 NameObjCategoryList::CategoryInfo::CategoryInfo()
 {

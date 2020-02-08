@@ -8,5 +8,7 @@
 *.id2
 *.nam
 *.til
-*.txt
 *.o
+*.a
+*.d
+*.map

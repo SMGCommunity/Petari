@@ -1,5 +1,6 @@
 #include "Map/Graph/RailGraphIter.h"
-#include "defines.h"
+
+extern int __cntlwz(int);
 
 RailGraphIter::RailGraphIter(const RailGraph *pGraph)
 {

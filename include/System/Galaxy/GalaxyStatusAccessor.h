@@ -1,7 +1,7 @@
 #ifndef GALAXYSTATUSACCESSOR_H
 #define GALAXYSTATUSACCESSOR_H
 
-#include "types.h"
+#include <revolution.h>
 
 class GalaxyStatusAccessor
 {

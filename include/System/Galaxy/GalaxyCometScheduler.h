@@ -1,7 +1,7 @@
 #ifndef GALAXYCOMETSCHEDULER_H
 #define GALAXYCOMETSCHEDULER_H
 
-#include "types.h"
+#include <revolution.h>
 #include "System/Galaxy/GalaxyCometState.h"
 
 struct GalaxyCometTimePaper

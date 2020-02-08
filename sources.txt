@@ -1,0 +1,2 @@
+SDK_PATH=C:/Users/shibbo/Hacking/Wii/SDK4.5
+MW_BASE_PATH=C:/Users/shibbo/Hacking/Wii/CW
