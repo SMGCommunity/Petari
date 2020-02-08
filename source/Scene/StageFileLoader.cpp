@@ -28,23 +28,6 @@ void StageFileLoader::waitLoadedStageFile()
     }
 }
 
-/*void StageFileLoader::makeStageArchiveNameList()
-{
-    GalaxyStatusAccessor* accessor = MR::makeCurrentGalaxyStatusAccessor();
-    mZoneNum = accessor->getZoneNum();
-
-    s32 curZoneIdx = 0;
-
-    while(mZoneNum > curZoneIdx)
-    {
-        const char* zoneName = accessor->getZoneName(curZoneIdx);
-
-        char fullName;
-        snprintf(&fullName, 0x100, "/StageData/%s.arc", zoneName);
-        mNames[curZoneIdx] = &fullName;
-    }
-}*/
-
 void StageFileLoader::makeStageArchiveName(char *pOut, u32 len, const char *pStageName)
 {
     snprintf(pOut, len, "/StageData/%s.arc", pStageName);

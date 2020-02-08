@@ -3,14 +3,6 @@
 
 #include "types.h"
 
-class GalaxyStatusAccessor;
-
-namespace MR
-{
-    static GalaxyStatusAccessor* makeGalaxyStatusAcessor(const char *);
-    static GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor();
-};
-
 class GalaxyStatusAccessor
 {
 public:
@@ -20,6 +12,14 @@ public:
     u32 getZoneId(const char *) const;
     const char* getZoneName(s32) const;
     const char* getCometName(s32) const;
+    
+    u32* _0; // ScenarioData*
+};
+
+namespace MR
+{
+    static GalaxyStatusAccessor* makeGalaxyStatusAcessor(const char *);
+    static void* makeCurrentGalaxyStatusAccessor();
 };
 
 #endif // GALAXYSTATUSACCESSOR_H
