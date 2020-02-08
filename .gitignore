@@ -9,6 +9,9 @@
 *.nam
 *.til
 *.o
+*.out
+*.elf
+*.dol
 *.a
 *.d
 *.map

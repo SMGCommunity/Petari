@@ -32,12 +32,12 @@ if SDK_ROOT_PATH == "":
     sys.exit(1)
 
 SDK_BASE_PATH = f"{SDK_ROOT_PATH}/RVL_SDK/RVL"
-SDK_LIB_PATH = f"{SDK_BASE_PATH}/RVL/lib"
+SDK_LIB_PATH = f"{SDK_BASE_PATH}/lib"
 SDK_INC_PATH = f"{SDK_ROOT_PATH}/RVL_SDK/include"
 
 NW_BASE_PATH = f"{SDK_ROOT_PATH}/NintendoWare/Revolution/Library"
 NW_INC_PATH = f"{NW_BASE_PATH}/include"
-NW_LIB_PATH = f"{NW_BASE_PATH}/lib/RVL/Release/"
+NW_LIB_PATH = f"{NW_BASE_PATH}/lib/RVL/Release"
 
 MW_BASE_PATH = getPath("MW_BASE_PATH")
 
@@ -54,10 +54,61 @@ MW_LIBS =   [
                 f"{MW_LIB_PATH}/MetroTRK/TRK_Hollywood_Revolution.a",
                 f"{MW_LIB_PATH}/Runtime/Lib/Runtime.PPCEABI.H.a"
             ]
+        
+mw_libs_str = ""
+
+for lib in MW_LIBS:
+    mw_libs_str += f"{lib} "
 
 SDK_LIBS =  [
-                f"{SDK_ROOT_PATH}/NDEV/lib/NdevExi2A.a"
+                f"{SDK_ROOT_PATH}/NDEV/lib/NdevExi2A.a",
+                f"{SDK_LIB_PATH}/ai.a",
+                f"{SDK_LIB_PATH}/arc.a",
+                f"{SDK_LIB_PATH}/ax.a",
+                f"{SDK_LIB_PATH}/axfx.a",
+                f"{SDK_LIB_PATH}/base.a",
+                f"{SDK_LIB_PATH}/bte.a",
+                f"{SDK_LIB_PATH}/card.a",
+                f"{SDK_LIB_PATH}/cx.a",
+                f"{SDK_LIB_PATH}/db.a",
+                f"{SDK_LIB_PATH}/demo.a",
+                f"{SDK_LIB_PATH}/dsp.a",
+                f"{SDK_LIB_PATH}/dvd.a",
+                f"{SDK_LIB_PATH}/enc.a",
+                f"{SDK_LIB_PATH}/esp.a",
+                f"{SDK_LIB_PATH}/euart.a",
+                f"{SDK_LIB_PATH}/exi.a",
+                f"{SDK_LIB_PATH}/fnt.a",
+                f"{SDK_LIB_PATH}/fs.a",
+                f"{SDK_LIB_PATH}/gd.a",
+                f"{SDK_LIB_PATH}/gx.a",
+                f"{SDK_LIB_PATH}/hio2.a",
+                f"{SDK_LIB_PATH}/ipc.a",
+                f"{SDK_LIB_PATH}/kbd.a",
+                f"{SDK_LIB_PATH}/kpad.a",
+                f"{SDK_LIB_PATH}/kpadOld.a",
+                f"{SDK_LIB_PATH}/kpr.a",
+                f"{SDK_LIB_PATH}/mem.a",
+                f"{SDK_LIB_PATH}/midi.a",
+                f"{SDK_LIB_PATH}/mix.a",
+                f"{SDK_LIB_PATH}/mtx.a",
+                f"{SDK_LIB_PATH}/nand.a",
+                f"{SDK_LIB_PATH}/os.a",
+                f"{SDK_LIB_PATH}/pad.a",
+                f"{SDK_LIB_PATH}/perf.a",
+                f"{SDK_LIB_PATH}/rso.a",
+                f"{SDK_LIB_PATH}/sc.a",
+                f"{SDK_LIB_PATH}/si.a",
+                f"{SDK_LIB_PATH}/sp.a",
+                f"{SDK_LIB_PATH}/vi.a",
+                f"{SDK_LIB_PATH}/wpad.a",
+                f"{SDK_LIB_PATH}/tpl.a"
             ]
+
+sdk_libs_str = ""
+
+for lib in SDK_LIBS:
+    sdk_libs_str += f"{lib} "
     
 NW_LIBS =   [
                 f"{NW_LIB_PATH}/libnw4r_db.a",
@@ -66,10 +117,15 @@ NW_LIBS =   [
                 f"{NW_LIB_PATH}/libnw4r_g3d.a",
                 f"{NW_LIB_PATH}/libnw4r_lyt.a",
                 f"{NW_LIB_PATH}/libnw4r_math.a",
-                f"{NW_LIB_PATH}/libnw4r_mcs",
+                f"{NW_LIB_PATH}/libnw4r_mcs.a",
                 f"{NW_LIB_PATH}/libnw4r_snd.a",
                 f"{NW_LIB_PATH}/libnw4r_ut.a"
             ]
+
+nw_libs_str = ""
+
+for lib in NW_LIBS:
+    nw_libs_str += f"{lib} "
 
 MW_INC =    [
                 f"-ir {MW_LIB_PATH}/MetroTRK",
@@ -82,7 +138,7 @@ MW_INC =    [
 rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 
-flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
+flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
 includes = "-i . -I- -i include "
 
 for inc in MW_INC:
@@ -90,8 +146,8 @@ for inc in MW_INC:
 
 flags += f"{includes} -nosyspath"
 
-ld_flags = f"-nodefaults -fp hard -proc gekko -map out.map -lcf {rootPath}/linker/linker.lcf"
-ld_flags += f" -lr {SDK_LIB_PATH} -lr {MW_LIB_PATH} -lr {NW_LIB_PATH} -lr {rootPath}/build"
+ld_flags = f"-nostdlib -fp hard -proc gekko -map out.map -m main -lcf {rootPath}/linker/linker.lcf"
+ld_flags += f" -l, {sdk_libs_str} {mw_libs_str} {nw_libs_str} -lr {rootPath}/build"
 as_flags = "-i . -I- -proc gekko -d __MWERKS__"
 
 req_commands = ['mwcceppc', 'mwasmeppc', 'mwldeppc']
@@ -179,7 +235,12 @@ if "-nolink" in sys.argv:
 
 print("Linking...")
 
-if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe {ld_flags} output.a -o Petari", shell=True) == 1:
+if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe {ld_flags} {archives} -o Petari.elf", shell=True) == 1:
+    sys.exit(1)
+
+print("ELF => DOL...")
+
+if subprocess.call(f"{SDK_ROOT_PATH}/RVL_SDK/X86/bin/makedol.exe -f Petari.elf -d Petari.dol") == 1:
     sys.exit(1)
 
 print("Complete.")
