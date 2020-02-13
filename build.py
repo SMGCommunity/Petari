@@ -128,7 +128,7 @@ for lib in NW_LIBS:
     nw_libs_str += f"{lib} "
 
 MW_INC =    [
-                f"-ir {MW_LIB_PATH}/MetroTRK",
+                f"-ir {MW_LIB_PATH}",
                 f"-ir {MW_LIB_PATH}/Runtime/Include",
                 f"-ir {MW_LIB_PATH}/MSL/MSL_C",
                 f"-ir {SDK_INC_PATH}",
@@ -146,7 +146,7 @@ for inc in MW_INC:
 
 flags += f"{includes} -nosyspath"
 
-ld_flags = f"-nostdlib -fp hard -proc gekko -map out.map -m main -lcf {rootPath}/linker/linker.lcf"
+ld_flags = f"-nostdlib -fp hard -proc gekko -map out.map -m __start -lcf {rootPath}/linker/linker.lcf"
 ld_flags += f" -l, {sdk_libs_str} {mw_libs_str} {nw_libs_str} -lr {rootPath}/build"
 as_flags = "-i . -I- -proc gekko -d __MWERKS__"
 

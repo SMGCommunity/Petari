@@ -28,6 +28,9 @@ SECTIONS {
 
 	_db_stack_addr = (_stack_addr + 0x2000);
 	_db_stack_end  = _stack_addr;
+
+	__ArenaLo      = ((_db_stack_addr + 0x1F) & ~0x1F);
+	__ArenaHi      = 0x81700000;
 }
 
 // -------------------------------------------------------------------------- //
