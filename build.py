@@ -15,13 +15,7 @@ def getPath(var):
     return ""
 
 def isCmdAvailable(cmd):
-    test_cmd = "which" if platform.system() != "Windows" else "where"
-
-    try:
-        rc = subprocess.call([test_cmd, cmd], stdout=open(os.devnull, 'wb'), stderr=open(os.devnull, 'wb'))
-        return rc == 0
-    except:
-        return False
+    return True
 
 numFilesCompiled = 0
 
@@ -49,84 +43,6 @@ MW_BIN_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_TOOLS/Command_Line_Tools"
 MW_LIB_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_Support"
 MW_TOOLS_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_Tools/Command_Line_Tools"
 
-MW_LIBS =   [
-                f"{MW_LIB_PATH}/MSL/MSL_C/PPC_EABI/Lib/MSL_C.PPCEABI.bare.H.a",
-                f"{MW_LIB_PATH}/MetroTRK/TRK_Hollywood_Revolution.a",
-                f"{MW_LIB_PATH}/Runtime/Lib/Runtime.PPCEABI.H.a"
-            ]
-        
-mw_libs_str = ""
-
-for lib in MW_LIBS:
-    mw_libs_str += f"{lib} "
-
-SDK_LIBS =  [
-                f"{SDK_ROOT_PATH}/NDEV/lib/NdevExi2A.a",
-                f"{SDK_LIB_PATH}/ai.a",
-                f"{SDK_LIB_PATH}/arc.a",
-                f"{SDK_LIB_PATH}/ax.a",
-                f"{SDK_LIB_PATH}/axfx.a",
-                f"{SDK_LIB_PATH}/base.a",
-                f"{SDK_LIB_PATH}/bte.a",
-                f"{SDK_LIB_PATH}/card.a",
-                f"{SDK_LIB_PATH}/cx.a",
-                f"{SDK_LIB_PATH}/db.a",
-                f"{SDK_LIB_PATH}/demo.a",
-                f"{SDK_LIB_PATH}/dsp.a",
-                f"{SDK_LIB_PATH}/dvd.a",
-                f"{SDK_LIB_PATH}/enc.a",
-                f"{SDK_LIB_PATH}/esp.a",
-                f"{SDK_LIB_PATH}/euart.a",
-                f"{SDK_LIB_PATH}/exi.a",
-                f"{SDK_LIB_PATH}/fnt.a",
-                f"{SDK_LIB_PATH}/fs.a",
-                f"{SDK_LIB_PATH}/gd.a",
-                f"{SDK_LIB_PATH}/gx.a",
-                f"{SDK_LIB_PATH}/hio2.a",
-                f"{SDK_LIB_PATH}/ipc.a",
-                f"{SDK_LIB_PATH}/kbd.a",
-                f"{SDK_LIB_PATH}/kpad.a",
-                f"{SDK_LIB_PATH}/kpadOld.a",
-                f"{SDK_LIB_PATH}/kpr.a",
-                f"{SDK_LIB_PATH}/mem.a",
-                f"{SDK_LIB_PATH}/midi.a",
-                f"{SDK_LIB_PATH}/mix.a",
-                f"{SDK_LIB_PATH}/mtx.a",
-                f"{SDK_LIB_PATH}/nand.a",
-                f"{SDK_LIB_PATH}/os.a",
-                f"{SDK_LIB_PATH}/pad.a",
-                f"{SDK_LIB_PATH}/perf.a",
-                f"{SDK_LIB_PATH}/rso.a",
-                f"{SDK_LIB_PATH}/sc.a",
-                f"{SDK_LIB_PATH}/si.a",
-                f"{SDK_LIB_PATH}/sp.a",
-                f"{SDK_LIB_PATH}/vi.a",
-                f"{SDK_LIB_PATH}/wpad.a",
-                f"{SDK_LIB_PATH}/tpl.a"
-            ]
-
-sdk_libs_str = ""
-
-for lib in SDK_LIBS:
-    sdk_libs_str += f"{lib} "
-    
-NW_LIBS =   [
-                f"{NW_LIB_PATH}/libnw4r_db.a",
-                f"{NW_LIB_PATH}/libnw4r_dw.a",
-                f"{NW_LIB_PATH}/libnw4r_ef.a",
-                f"{NW_LIB_PATH}/libnw4r_g3d.a",
-                f"{NW_LIB_PATH}/libnw4r_lyt.a",
-                f"{NW_LIB_PATH}/libnw4r_math.a",
-                f"{NW_LIB_PATH}/libnw4r_mcs.a",
-                f"{NW_LIB_PATH}/libnw4r_snd.a",
-                f"{NW_LIB_PATH}/libnw4r_ut.a"
-            ]
-
-nw_libs_str = ""
-
-for lib in NW_LIBS:
-    nw_libs_str += f"{lib} "
-
 MW_INC =    [
                 f"-ir {MW_LIB_PATH}",
                 f"-ir {MW_LIB_PATH}/Runtime/Include",
@@ -146,8 +62,6 @@ for inc in MW_INC:
 
 flags += f"{includes} -nosyspath"
 
-ld_flags = f"-nostdlib -fp hard -proc gekko -map out.map -m __start -lcf {rootPath}/linker/linker.lcf"
-ld_flags += f" -l, {sdk_libs_str} {mw_libs_str} {nw_libs_str} -lr {rootPath}/build"
 as_flags = "-i . -I- -proc gekko -d __MWERKS__"
 
 req_commands = ['mwcceppc', 'mwasmeppc', 'mwldeppc']
@@ -229,18 +143,5 @@ dirs = os.listdir(os.getcwd())
 for dire in dirs:
     if dire.endswith(".d"):
         os.remove(os.path.join(os.getcwd(), dire))
-
-if "-nolink" in sys.argv:
-    sys.exit(1)
-
-print("Linking...")
-
-if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe {ld_flags} {archives} -o Petari.elf", shell=True) == 1:
-    sys.exit(1)
-
-print("ELF => DOL...")
-
-if subprocess.call(f"{SDK_ROOT_PATH}/RVL_SDK/X86/bin/makedol.exe -f Petari.elf -d Petari.dol") == 1:
-    sys.exit(1)
 
 print("Complete.")

@@ -27,7 +27,7 @@ public:
     void calcWeightEnvelopeMtx();
     void calcBBoardMtx();
     void prepareShapePackets();
-    Mtx33* getDrawMtxPtr();
+    Mtx* getDrawMtxPtr();
     void setBaseScale(const Vec &);
 
     u32 _4;

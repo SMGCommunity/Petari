@@ -1,2 +1,2 @@
-SDK_PATH=C:/Users/shibbo/Hacking/Wii/SDK4.5
-MW_BASE_PATH=C:/Users/shibbo/Hacking/Wii/CW
+SDK_PATH=C:/Users/14106/Downloads/Revolution
+MW_BASE_PATH=C:/CodeWarrior
