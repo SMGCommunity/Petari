@@ -91,8 +91,6 @@ for f in cpp_files:
     if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
 
-    numFilesCompiled += 1
-
 for f in c_files:
     file_name = Path(f).stem
     
@@ -101,8 +99,6 @@ for f in c_files:
     if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
 
-    numFilesCompiled += 1
-
 for f in assembly_files:
     file_name = Path(f).stem
 
@@ -110,33 +106,6 @@ for f in assembly_files:
 
     if subprocess.call(f"{MW_TOOLS_PATH}/mwasmeppc.exe {as_flags} -o build/{file_name}.o {f}", shell=True) == 1:
         sys.exit(1)
-
-    numFilesCompiled += 1
-
-if numFilesCompiled == 0:
-    print("No changes to compile.")
-
-archives = ""
-
-with open("archives.txt", "r") as f:
-    lines = f.readlines()
-
-for line in lines:
-    split = line.split("=")
-    archive = split[0]
-    objs = split[1].split(" ")
-
-    out = ""
-
-    for obj in objs:
-        out += f"build/{obj} "
-
-    print(f"Creating {archive}.a...")
-
-    if subprocess.call(f"{MW_TOOLS_PATH}/mwldeppc.exe -library -l, {out} -o {archive}.a", shell=True) == 1:
-        sys.exit(1)
-
-    archives += f"{archive}.a "
 
 dirs = os.listdir(os.getcwd())
 

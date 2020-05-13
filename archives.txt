@@ -1,3 +1,0 @@
-NameObj=NameObj.o NameObjGroup.o NameObjAdaptor.o NameObjArchiveListCollector.o NameObjCategoryList.o
-LiveActor=LiveActor.o LiveActorFlag.o LiveActorGroup.o LodCtrl.o
-System=GameSystem.o
