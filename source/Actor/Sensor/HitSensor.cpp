@@ -3,8 +3,6 @@
 #include "Actor/LiveActor/LiveActor.h"
 #include "MR/SensorUtil.h"
 
-extern int __cntlwz(int);
-
 HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *pActor)
 {
     // todo -- missing clrlwi on second arg
@@ -70,9 +68,9 @@ void HitSensor::setType(u32 type)
     mNumSensors = 0;
 }
 
-u32 HitSensor::isType(u32 type) const
+bool HitSensor::isType(u32 type) const
 {
-    return __cntlzw(mSensorType - type) >> 5;
+    return !(type - mSensorType);
 }
 
 void HitSensor::validate()

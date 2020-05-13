@@ -1,7 +1,5 @@
 #include "Actor/Nerve/NerveExecutor.h"
 
-extern int __cntlzw (int);
-
 NerveExecutor::NerveExecutor(const char* pName) : mSpine(0) { }
 
 void NerveExecutor::initNerve(const Nerve* pNerve)
@@ -22,12 +20,12 @@ void NerveExecutor::setNerve(const Nerve* pNerve)
     mSpine->setNerve(pNerve);
 }
 
-/*bool NerveExecutor::isNerve(const Nerve* pNerve) const
+bool NerveExecutor::isNerve(const Nerve* pNerve) const
 {
     const Nerve* nerve = mSpine->getCurrentNerve();
     // todo -- this isn't properly assembled
-    return __cntlzw(nerve - pNerve) >> 5;
-}*/
+    return !(nerve - pNerve);
+}
 
 u32 NerveExecutor::getNerveStep() const
 {

@@ -17,8 +17,6 @@
 #include <revolution/gd.h>
 #include <revolution/gx.h>
 
-extern int __cntlwz(int);
-
 ElectricRailPoint::ElectricRailPoint(const char *pName) : LiveActor(pName)
 {
     _8C = 1;

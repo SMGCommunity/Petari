@@ -1,6 +1,5 @@
 #include "Map/Graph/RailGraphIter.h"
 
-extern int __cntlwz(int);
 
 RailGraphIter::RailGraphIter(const RailGraph *pGraph)
 {
@@ -43,7 +42,7 @@ void RailGraphIter::watchNextEdge()
 
 bool RailGraphIter::isWatchEndEdge() const
 {
-    return (bool)(__cntlzw(mNextEdge + 1) >> 5);
+    return !(mNextEdge + 1);
 }
 
 void RailGraphIter::selectEdge()
@@ -60,7 +59,7 @@ bool RailGraphIter::isWatchedPrevEdge() const
 {
     RailGraphEdge *pEdge = mGraph->getEdge(mNextEdge);
     s32 nextNode = pEdge->getNextNode(mCurrentNode);
-    return __cntlzw(nextNode - mNextNode) >> 5; 
+    return !(nextNode - mNextNode); 
 }
 
 bool RailGraphIter::isSelectedEdge() const

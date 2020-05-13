@@ -10,8 +10,6 @@
 #include "MR/ModelUtil.h"
 #include "MR/SoundUtil.h"
 
-extern int __cntlzw (int);
-
 LiveActor::LiveActor(const char *pName) : NameObj(pName) 
 {
     mTranslation.x = 0.0f;
@@ -363,11 +361,11 @@ void LiveActor::setNerve(const Nerve *pNerve)
     mSpine->setNerve(pNerve);
 }
 
-/*u8 LiveActor::isNerve(const Nerve *pNerve) const
+bool LiveActor::isNerve(const Nerve *pNerve) const
 {
-    const Nerve* curNerve = mSpine->getCurrentNerve();
-    return __cntlzw(pNerve - curNerve) >> 5;
-}*/
+    // todo -- figure out why there are two unneeded instructions here
+    return !(pNerve - mSpine->getCurrentNerve());
+}
 
 u32 LiveActor::getNerveStep() const
 {

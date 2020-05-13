@@ -31,7 +31,7 @@ public:
 
     u32 recieveMessage(u32, HitSensor *);
     void setType(u32);
-    u32 isType(u32) const;
+    bool isType(u32) const;
     void validate();
     void invalidate();
     void validateBySystem();

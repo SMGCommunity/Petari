@@ -31,7 +31,7 @@ namespace MR
     void addHitSensorPosMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
 
     u8 isMsgPlayerHitAll(u32);
-    u8 isMsgPlayerSpinAttack(u32);
+    bool isMsgPlayerSpinAttack(u32);
 };
 
 #endif // ACTORSENSORUTIL_H

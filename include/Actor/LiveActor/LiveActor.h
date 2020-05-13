@@ -54,7 +54,7 @@ public:
 
     void calcAnmMtx();
     void setNerve(const Nerve *);
-    u8 isNerve(const Nerve *) const;
+    bool isNerve(const Nerve *) const;
     u32 getNerveStep() const;
     HitSensor* getSensor(const char *) const;
     void initModelManagerWithAnm(const char *, const char *, bool);
