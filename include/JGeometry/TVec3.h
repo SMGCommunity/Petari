@@ -16,9 +16,7 @@ namespace JGeometry
 
         template<typename T>
         TVec3(T, T, T);
-
-        void negateInternal(const f32 *, f32 *);
-
+        
         template<typename T>
         void set(const TVec3<T> &);
     
