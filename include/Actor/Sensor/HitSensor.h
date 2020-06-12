@@ -2,6 +2,7 @@
 #define HITSENSOR_H
 
 #include <revolution.h>
+#include "JGeometry/TVec3.h"
 
 class LiveActor;
 class SensorGroup;
@@ -39,9 +40,7 @@ public:
     void addHitSensor(HitSensor *);
 
     u32 mSensorType; // _0
-    f32 _4;
-    f32 _8;
-    f32 _C;
+    JGeometry::TVec3<f32> _4;
     f32 _10;
     u16 mNumSensors; // _14
     u16 _16;

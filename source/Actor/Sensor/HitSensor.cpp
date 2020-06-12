@@ -7,9 +7,9 @@ HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *pActor)
 {
     // todo -- missing clrlwi on second arg
     mSensorType = type;
-    _4 = 0.0f;
-    _8 = 0.0f;
-    _C = 0.0f;
+    _4.x = 0.0f;
+    _4.y = 0.0f;
+    _4.z = 0.0f;
     _10 = a3;
     mNumSensors = 0;
     _16 = a2;

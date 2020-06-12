@@ -15,3 +15,4 @@
 *.a
 *.d
 *.map
+build
