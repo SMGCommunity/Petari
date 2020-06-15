@@ -51,12 +51,12 @@ ResFileInfo* ResTable::findFileInfo(const char *pName) const
 {
     s32 resIndex = getResIndex(pName);
     
-    if (resIndex == -1)
+    if (resIndex != -1)
     {
-        return 0;
+        return &mFileInfo[resIndex];
     }
 
-    return &mFileInfo[resIndex];
+    return NULL;
 }
 
 ResFileInfo* ResTable::getFileInfo(u32 idx) const
@@ -66,19 +66,19 @@ ResFileInfo* ResTable::getFileInfo(u32 idx) const
 
 bool ResTable::isExistRes(const char *pName) const
 {
-    return getResIndex(pName);
+    return getResIndex(pName) + 1;
 }
 
 void* ResTable::findRes(const char *pName) const
 {
     s32 resIndex = getResIndex(pName);
 
-    if (resIndex == -1)
+    if (resIndex != -1)
     {
-        return 0;
+        return mFileInfo[resIndex].mRes;
     }
 
-    return mFileInfo[resIndex].mRes;
+    return NULL;
 }
 
 s32 ResTable::getResIndex(const char *pName) const
@@ -86,7 +86,7 @@ s32 ResTable::getResIndex(const char *pName) const
     s32 nameHash = MR::getHashCodeLower(pName);
     s32 curIdx = 0;
 
-    while(curIdx <= mResCount)
+    while(curIdx < mResCount)
     {
         s32 hash = mFileInfo[curIdx].mHashCode;
 
@@ -99,4 +99,28 @@ s32 ResTable::getResIndex(const char *pName) const
     }
 
     return -1;
+}
+
+const char* ResTable::findResName(const void *pSource) const
+{
+    s32 curIdx = 0;
+
+    while(curIdx < mResCount)
+    {
+        ResFileInfo* inf = &mFileInfo[curIdx];
+
+        if (inf->mRes == pSource)
+        {
+            return inf->mResName;
+        }
+
+        curIdx++;
+    }
+
+    return NULL;
+}
+
+const char* ResTable::getResName(const void *pSource) const
+{
+    return findResName(pSource);
 }
