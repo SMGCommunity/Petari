@@ -126,12 +126,12 @@ void RailRider::calcDirectionAtCoord(JGeometry::TVec3<f32> *pOut, f32 a2) const
     mBezierRail->calcDirection(pOut, a2);
 }
 
-void RailRider::calcNearestPos(const JGeometry::TVec3<f32> &a1) const
+f32 RailRider::calcNearestPos(const JGeometry::TVec3<f32> &pos) const
 {
-    mBezierRail->getNearestRailPosCoord(a1);
+    return mBezierRail->getNearestRailPosCoord(pos);
 }
 
-s32 RailRider::getTotalLength() const
+f32 RailRider::getTotalLength() const
 {
     return mBezierRail->getTotalLength();
 }

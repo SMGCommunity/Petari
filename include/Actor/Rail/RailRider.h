@@ -18,8 +18,8 @@ public:
     void reverse();
     void calcPosAtCoord(JGeometry::TVec3<f32> *, f32) const;
     void calcDirectionAtCoord(JGeometry::TVec3<f32> *, f32) const;
-    void calcNearestPos(const JGeometry::TVec3<f32> &) const;
-    s32 getTotalLength() const;
+    f32 calcNearestPos(const JGeometry::TVec3<f32> &) const;
+    f32 getTotalLength() const;
     s32 getPartLength(s32) const;
     bool isLoop() const;
     bool isReachedGoal() const;

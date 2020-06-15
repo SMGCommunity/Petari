@@ -408,8 +408,8 @@ void ElectricRail::initShadow(const JMapInfoIter &iter)
 
 void ElectricRail::updateHitSensorPos()
 {
-    JGeometry::TVec3<f32> playerCenterPos = MR::getPlayerCenterPos();
-    MR::calcNearestRailPos(_94, this, playerCenterPos);
+    JGeometry::TVec3<f32>* playerCenterPos = MR::getPlayerCenterPos();
+    MR::calcNearestRailPos(_94, this, *playerCenterPos);
 
     if (mRailHeight > 1)
     {

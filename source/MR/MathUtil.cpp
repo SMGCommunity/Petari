@@ -22,4 +22,16 @@ namespace MR
         // todo -- figure out why 0.0f get omitted
         return 0.0f + (360.0f * getRandom());
     }
+
+    f32 min(f32 val_0, f32 val_1)
+    {
+        f32 ret = (val_0 >= val_1) ? val_1 : val_0;
+        return ret;
+    }
+
+    f32 max(f32 val_0, f32 val_1)
+    {
+        f32 ret = (val_0 >= val_1) ? val_0 : val_1;
+        return ret;
+    }
 };

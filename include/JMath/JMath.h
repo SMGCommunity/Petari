@@ -4,11 +4,13 @@
 #include <revolution/mtx.h>
 
 void JMAVECScaleAdd(const Vec *, const Vec *, Vec *, f32);
+void JMAVECLerp(const Vec *, const Vec *, Vec *, f32);
+void JMAMTXApplyScale(const Mtx *, Mtx *, f32, f32, f32);
 
-class JMathInlineVEC
+namespace JMathInlineVEC
 {
-public:
-    static void PSVECAdd(const Vec *, const Vec *, Vec *);
+    void PSVECAdd(const Vec *, const Vec *, Vec *);
+    void PSVECSubtract(const Vec *, const Vec *, Vec *);
 };
 
 #endif // JMATH_H

@@ -17,6 +17,11 @@ namespace MR
     f32 getRandom(f32, f32);
     f32 getRandom(s32, s32);
     f32 getRandomDegree();
+
+    f32 min(f32, f32);
+    f32 max(f32, f32);
+
+    void vecKillElement(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *);
 };
 
 #endif // MATHUTIL_H
