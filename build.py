@@ -46,7 +46,7 @@ MW_TOOLS_PATH = f"{MW_BASE_PATH}/PowerPC_EABI_Tools/Command_Line_Tools"
 MW_INC =    [
                 f"-ir {MW_LIB_PATH}",
                 f"-ir {MW_LIB_PATH}/Runtime/Include",
-                f"-ir {MW_LIB_PATH}/MSL/MSL_C",
+                f"-ir {MW_LIB_PATH}/MSL/MSL_C/MSL_Common/Include",
                 f"-ir {SDK_INC_PATH}",
                 f"-ir {NW_INC_PATH}"
             ]
@@ -54,7 +54,7 @@ MW_INC =    [
 rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 
-flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
+flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -sdata 4 -sdata2 4 -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
 includes = "-i . -I- -i include "
 
 for inc in MW_INC:
