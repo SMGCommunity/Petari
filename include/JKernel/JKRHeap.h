@@ -27,6 +27,8 @@ public:
     virtual s32 do_getMaxFreeBlock() = 0;
     virtual s32 do_getTotalFreeSize() = 0;
 
+    u32 initArena(char **, u32 *, s32);
+
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
     void destroy(JKRHeap*);
@@ -44,6 +46,12 @@ public:
     
     u8 _C[0x5C-0xC];
     JSUPtrList mPtrList; // _5C
+
+    static void* mCodeStart;
+    static void* mCodeEnd;
+    static void* mUserRamStart;
+    static void* mUserRamEnd;
+    static s32 mMemorySize;
 
     static JKRHeap* sSystemHeap;
     static JKRHeap* sCurrentHeap;
