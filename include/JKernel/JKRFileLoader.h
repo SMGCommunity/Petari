@@ -2,6 +2,7 @@
 #define JKRFILELOADER_H
 
 #include "JKernel/JKRDisposer.h"
+#include <revolution/os.h>
 
 class JKRFileLoader : public JKRDisposer
 {
@@ -11,11 +12,16 @@ public:
     virtual ~JKRFileLoader();
     virtual void unmount();
 
+    void initializeVolumeList();
+
     JSUPtrLink _18;
     u32 _28;
     u32 _2C;
     u32 _30;
     u32 _34;
+
+    static JSUPtrList sVolumeList;
+    static OSMutex sVolumeListMutex;
 };
 
 #endif // JKRFILELOADER_H

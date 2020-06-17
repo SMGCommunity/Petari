@@ -22,6 +22,14 @@ public:
     u32 mNumPtrs; // _8
 };
 
+template<typename T>
+class JSUList : public JSUPtrList
+{
+public:
+    JSUList();
+    ~JSUList();
+};
+
 class JSUPtrLink
 {
 public:

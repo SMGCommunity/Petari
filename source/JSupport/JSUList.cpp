@@ -61,3 +61,9 @@ void JSUPtrList::setFirst(JSUPtrLink *pLink)
     mFirst = pLink;
     mNumPtrs = defaultCount;
 }
+
+template<typename T>
+JSULink<T>::~JSULink()
+{
+
+}
