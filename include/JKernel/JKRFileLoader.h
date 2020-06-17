@@ -13,6 +13,8 @@ public:
     virtual void unmount();
 
     void initializeVolumeList();
+    void prependVolumeList(JSULink<JKRFileLoader> *);
+    void removeVolumeList(JSULink<JKRFileLoader> *);
 
     JSUPtrLink _18;
     u32 _28;
