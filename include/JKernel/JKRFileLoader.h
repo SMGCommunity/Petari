@@ -12,7 +12,7 @@ public:
     virtual ~JKRFileLoader();
     virtual void unmount();
 
-    void initializeVolumeList();
+    static void initializeVolumeList();
     void prependVolumeList(JSULink<JKRFileLoader> *);
     void removeVolumeList(JSULink<JKRFileLoader> *);
 
