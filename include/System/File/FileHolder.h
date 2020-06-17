@@ -25,6 +25,9 @@ public:
 class FileHolder
 {
 public:
+    FileHolder();
+
+    void add(const char *, JKRHeap *, void *);
     bool isExist(const char *) const;
     void* getContext(const char *) const;
 

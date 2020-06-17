@@ -18,6 +18,7 @@ namespace MR
 
     void becomeCurrentHeap(JKRHeap *);
     JKRHeap* getCurrentHeap();
+    bool isEqualCurrentHeap(JKRHeap *);
 
     void zeroMemory(void *, u32);
     s32 calcCheckSum(const void *, u32);

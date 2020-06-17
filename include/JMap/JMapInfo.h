@@ -1,6 +1,6 @@
-#pragma once
+#ifndef JMAPINFO_H
+#define JMAPINFO_H
 
-#include "bcsv.h"
 #include <revolution.h>
 
 struct JMapData
@@ -57,3 +57,5 @@ public:
     const JMapData* mData; // _0
     const char* mName; // _4
 };
+
+#endif // JMAPINFO_H

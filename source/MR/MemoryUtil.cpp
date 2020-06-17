@@ -15,4 +15,9 @@ namespace MR
         MR::becomeCurrentHeap(mPreviousHeap);
         OSUnlockMutex(&MutexHolder<1>::sMutex);
     }
+
+    JKRHeap* getCurrentHeap()
+    {
+        return JKRHeap::sCurrentHeap;
+    }
 };
