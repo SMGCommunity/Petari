@@ -21,6 +21,21 @@ class GameSystem : public NerveExecutor
 {
 public:
     GameSystem();
+
+    void* mFIFOBase; // _8
+    u32* _C; // GameSequenceDirector*
+    u32* _10; // GameSystemDimmingWatcher*
+    u32* _14; // GameSystemErrorWatcher*
+    u32* _18; // GameSystemFontHolder*
+    u32* _1C; // GameSystemFrameControl*
+    u32* _20; // GameSystemObjHolder*
+    u32* _24; // GameSystemSceneController*
+    u32* _28; // GameSystemStationedArchiveLoader*
+    u32* _2C; // HomeButtonLayout*
+    u32* _30; // SystemWipeHolder*
+    u32* _34; // HomeButtonStateNotifier*
+
+    bool mIsLoadingSystemArchive; // _38
 };
 
 #endif // GAMESYSTEM_H

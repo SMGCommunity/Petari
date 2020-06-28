@@ -11,8 +11,7 @@ NameObj::NameObj(const char *pName)
     mFlags = temp;
     _A = temp2;
 
-    NameObjRegister* pReg = SingletonHolder<NameObjRegister>::sInstance;
-    pReg->add(this);
+    SingletonHolder<NameObjRegister>::sInstance->add(this);
 }
 
 void NameObj::init(const JMapInfoIter &infoIter)

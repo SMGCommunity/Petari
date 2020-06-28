@@ -1,10 +1,15 @@
 #include "System/Game/GameSystem.h"
+#include "MR/ModelUtil.h"
+#include <revolution/os.h>
 
 void main()
 {
+    OSInitFastCast();
     DVDInit();
     VIInit();
-
-    // blah blah mutex
+    // HeapMemoryWatcher::createRootHeap()
+    OSInitMutex(&MR::MutexHolder<0>::sMutex);
+    OSInitMutex(&MR::MutexHolder<1>::sMutex);
+    OSInitMutex(&MR::MutexHolder<2>::sMutex);
     nw4r::lyt::LytInit();
 }
