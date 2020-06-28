@@ -2,6 +2,7 @@
 #define LIVEACTORUTIL_H
 
 #include <revolution.h>
+#include "JGeometry/TVec3.h"
 #include "JMap/JMapInfoIter.h"
 #include "System/Resource/ResourceHolder.h"
 
