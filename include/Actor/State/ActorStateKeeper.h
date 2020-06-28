@@ -2,7 +2,7 @@
 #define ACTORSTATEKEEPER_H
 
 #include "Actor/Nerve/Nerve.h"
-#include "Actor/State/ActorStateBaseInterface.h"
+#include "Actor/State/ActorStateBase.h"
 
 class ActorStateKeeper
 {
@@ -14,7 +14,7 @@ public:
     void startState(const Nerve *);
     void endState(const Nerve *);
 
-    u32 _0;
+    s32 mStateCount; // _0
     u32 _4;
     u32 _8;
     u32 _C;
