@@ -12,7 +12,7 @@ public:
     virtual bool update();
     virtual void control();
 
-    u8 _8;
+    u8 mIsDead; // _8
 };
 
 #endif // ACTORSTATEBASE_H
