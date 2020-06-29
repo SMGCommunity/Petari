@@ -1,6 +1,8 @@
 #ifndef ASSIGNABLEARRAY_H
 #define ASSIGNABLEARRAY_H
 
+#include <revolution.h>
+
 namespace MR
 {
     template<typename T>

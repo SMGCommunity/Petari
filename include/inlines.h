@@ -1,6 +1,8 @@
 #ifndef INLINES_H
 #define INLINES_H
 
+#include <revolution.h>
+
 static inline f32 fabs(f32 src)
 {
     f32 ret;
