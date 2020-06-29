@@ -3,6 +3,16 @@
 #include "Actor/NameObj/NameObjExecuteHolder.h"
 #include "Actor/LiveActor/AllLiveActorGroup.h"
 
+SceneObjHolder::SceneObjHolder()
+{
+    s32 curIdx = 0;
+
+    while(curIdx != 0x7B)
+    {
+        mObjs[curIdx++] = NULL;
+    }
+}
+
 NameObj* SceneObjHolder::create(s32 type)
 {
     if (mObjs[type] != 0)
