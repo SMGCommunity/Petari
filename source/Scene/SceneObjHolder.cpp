@@ -2,6 +2,7 @@
 #include "Actor/NameObj/NameObjGroup.h"
 #include "Actor/NameObj/NameObjExecuteHolder.h"
 #include "Actor/LiveActor/AllLiveActorGroup.h"
+#include "smg.h"
 
 SceneObjHolder::SceneObjHolder()
 {
@@ -9,7 +10,7 @@ SceneObjHolder::SceneObjHolder()
 
     while(curIdx != 0x7B)
     {
-        mObjs[curIdx++] = NULL;
+        mObjs[curIdx++] = nullptr;
     }
 }
 

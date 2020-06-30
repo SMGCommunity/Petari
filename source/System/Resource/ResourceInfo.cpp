@@ -1,5 +1,6 @@
 #include "System/Resource/ResourceInfo.h"
 #include "MR/HashUtil.h"
+#include "smg.h"
 
 ResFileInfo::ResFileInfo()
 {
@@ -56,7 +57,7 @@ ResFileInfo* ResTable::findFileInfo(const char *pName) const
         return &mFileInfo[resIndex];
     }
 
-    return NULL;
+    return nullptr;
 }
 
 ResFileInfo* ResTable::getFileInfo(u32 idx) const
@@ -78,7 +79,7 @@ void* ResTable::findRes(const char *pName) const
         return mFileInfo[resIndex].mRes;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 s32 ResTable::getResIndex(const char *pName) const
@@ -117,7 +118,7 @@ const char* ResTable::findResName(const void *pSource) const
         curIdx++;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 const char* ResTable::getResName(const void *pSource) const

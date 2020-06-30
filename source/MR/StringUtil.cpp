@@ -1,4 +1,5 @@
 #include "MR/StringUtil.h"
+#include "smg.h"
 #include <cstring>
 #include <wchar.h>
 #include <stdio.h>
@@ -35,7 +36,7 @@ namespace MR
         const char* cur = pName;
         const char* res = std::strrchr(pName, '/');
 
-        if (res != NULL)
+        if (res != nullptr)
         {
             cur = res++;
         }

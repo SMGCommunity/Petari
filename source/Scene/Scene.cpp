@@ -1,10 +1,11 @@
 #include "Scene/Scene.h"
+#include "smg.h"
 
 Scene::Scene(const char *pSceneName) : NerveExecutor(pSceneName)
 {
-    mExecutor = NULL;
+    mExecutor = nullptr;
     _C = 0;
-    mObjHolder =  NULL;
+    mObjHolder =  nullptr;
 }
 
 Scene::~Scene()

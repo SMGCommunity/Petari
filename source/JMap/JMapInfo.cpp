@@ -1,9 +1,10 @@
 #include "JMap/JMapInfo.h"
 #include "JGadget/hashcode.h"
+#include "smg.h"
 
 JMapInfo::JMapInfo()
 {
-    mData = NULL;
+    mData = nullptr;
     mName = "Undifined";
 }
 
