@@ -1,5 +1,4 @@
-#ifndef OSTHREADWRAPPER_H
-#define OSTHREADWRAPPER_H
+#pragma once
 
 #include <revolution.h>
 #include "JKernel/JKRHeap.h"
@@ -26,5 +25,3 @@ public:
     void* mStack; // _34
     s32 stackSize; // _38
 };
-
-#endif // OSTHREADWRAPPER_H

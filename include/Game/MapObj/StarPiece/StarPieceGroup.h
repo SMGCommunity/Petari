@@ -1,5 +1,4 @@
-#ifndef STARPIECEGROUP_H
-#define STARPIECEGROUP_H
+#pragma once
 
 #include <revolution.h>
 #include "Actor/LiveActor/LiveActor.h"
@@ -49,5 +48,3 @@ public:
     f32 _B0;
     f32 _B4;
 };
-
-#endif // STARPIECEGROUP_H

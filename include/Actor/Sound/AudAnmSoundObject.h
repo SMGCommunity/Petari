@@ -1,5 +1,4 @@
-#ifndef AUDANMSOUNDOBJECT_H
-#define AUDANMSOUNDOBJECT_H
+#pragma once
 
 #include "Actor/Sound/AudSoundObject.h"
 #include "JKernel/JKRHeap.h"
@@ -11,5 +10,3 @@ public:
 
     u8 _48[0x74-0x48];
 };
-
-#endif // AUDANMSOUNDOBJECT_H

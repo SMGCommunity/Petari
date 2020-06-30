@@ -1,5 +1,4 @@
-#ifndef ELECTRICRAILHOLDER_H
-#define ELECTRICRAILHOLDER_H
+#pragma once
 
 #include <revolution.h>
 
@@ -21,5 +20,3 @@ public:
     static f32 getHitSensorRadius();
     static s32 calcDisplayListSize(u32, s32);
 };
-
-#endif // ELECTRICRAILHOLDER_H

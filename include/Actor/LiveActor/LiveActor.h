@@ -1,5 +1,4 @@
-#ifndef LIVEACTOR_H
-#define LIVEACTOR_H
+#pragma once
 
 #include "Actor/Animation/ActorAnimKeeper.h"
 #include "Actor/Camera/ActorPadAndCameraCtrl.h"
@@ -92,5 +91,3 @@ public:
     ActorLightCtrl* mLightCtrl; // _84
     ActorPadAndCameraCtrl* mCameraCtrl; // _88
 };
-
-#endif // LIVEACTOR_H

@@ -1,5 +1,4 @@
-#ifndef FUNCTORBASE_H
-#define FUNCTORBASE_H
+#pragma once
 
 #include <revolution.h>
 
@@ -14,5 +13,3 @@ namespace MR
         virtual FunctorBase* clone(JKRHeap *) const = 0;
     };
 };
-
-#endif // FUNCTORBASE_H

@@ -1,5 +1,4 @@
-#ifndef TVEC3_H
-#define TVEC3_H
+#pragma once
 
 #include <revolution.h>
 
@@ -46,5 +45,3 @@ namespace JGeometry
         T z; // _8
     };
 };
-
-#endif // TVEC3_H

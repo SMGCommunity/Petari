@@ -1,5 +1,4 @@
-#ifndef J3DSYS_H
-#define J3DSYS_H
+#pragma once
 
 #include <revolution.h>
 
@@ -11,5 +10,3 @@ public:
     void loadPosMtxIndx(s32, u16) const;
     void loadNrmMtxIndx(s32, u16) const;
 };
-
-#endif // J3DSYS_H

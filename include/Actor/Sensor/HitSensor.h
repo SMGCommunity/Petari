@@ -1,5 +1,4 @@
-#ifndef HITSENSOR_H
-#define HITSENSOR_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -52,5 +51,3 @@ public:
     u8 _23;
     LiveActor* mParentActor; // _24
 };
-
-#endif // HITSENSOR_H

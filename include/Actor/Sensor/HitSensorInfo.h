@@ -1,5 +1,4 @@
-#ifndef HITSENSORINFO_H
-#define HITSENSORINFO_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -22,5 +21,3 @@ public:
     Mtx* _1C;
     bool _20;
 };
-
-#endif // HITSENSORINFO_H

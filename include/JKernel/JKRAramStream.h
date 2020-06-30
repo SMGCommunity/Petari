@@ -1,5 +1,4 @@
-#ifndef JKRARAMSTREAM_H
-#define JKRARAMSTREAM_H
+#pragma once
 
 #include "JKernel/JKRThread.h"
 
@@ -13,5 +12,3 @@ public:
 
     static JKRAramStream* create(s32);
 };
-
-#endif // JKRARAMSTREAM_H

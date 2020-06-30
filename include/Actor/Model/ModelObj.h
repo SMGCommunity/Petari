@@ -1,5 +1,4 @@
-#ifndef MODELOBJ_H
-#define MODELOBJ_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 
@@ -14,5 +13,3 @@ public:
 
     Mtx* _8C;
 };
-
-#endif // MODELOBJ_H

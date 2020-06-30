@@ -1,5 +1,4 @@
-#ifndef JKRTHREAD_H
-#define JKRTHREAD_H
+#pragma once
 
 #include "JKernel/JKRDisposer.h"
 #include <revolution/os.h>
@@ -50,7 +49,3 @@ public:
 
     static JSUPtrList* sThreadList;
 };
-
-
-
-#endif // JKRTHREAD_H

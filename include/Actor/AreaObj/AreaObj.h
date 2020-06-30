@@ -1,5 +1,4 @@
-#ifndef AREAOBJ_H
-#define AREAOBJ_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 
@@ -24,5 +23,3 @@ public:
     s32 _34; // obj_arg7
     u32* _38; // StageSwitchCtrl*
 };
-
-#endif // AREAOBJ_H

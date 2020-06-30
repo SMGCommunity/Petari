@@ -1,5 +1,4 @@
-#ifndef AUDSOUNDOBJECT_H
-#define AUDSOUNDOBJECT_H
+#pragma once
 
 #include "Actor/Sound/JAUSoundObject.h"
 
@@ -11,5 +10,3 @@ public:
     void addToSoundObjHolder();
     void setTrans(JGeometry::TVec3<f32> *);
 };
-
-#endif // AUDSOUNDOBJECT_H

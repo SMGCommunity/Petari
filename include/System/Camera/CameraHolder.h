@@ -1,5 +1,4 @@
-#ifndef CAMERAHOLDER_H
-#define CAMERAHOLDER_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 
@@ -12,5 +11,3 @@ public:
 
     s32 getIndexOfDefault() const;
 };
-
-#endif // CAMERAHOLDER_H

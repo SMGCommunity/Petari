@@ -1,5 +1,4 @@
-#ifndef MSGSHAREDGROUP_H
-#define MSGSHAREDGROUP_H
+#pragma once
 
 #include "JMap/JMapInfoIter.h"
 #include "Actor/LiveActor/LiveActorGroup.h"
@@ -19,5 +18,3 @@ public:
     u32 _20; // HitSensor*
     const char* mSensorName; // _24
 };
-
-#endif // MSGSHAREDGROUP_H

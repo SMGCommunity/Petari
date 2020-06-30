@@ -1,5 +1,4 @@
-#ifndef DOTCAMPARAMS_H
-#define DOTCAMPARAMS_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -31,5 +30,3 @@ public:
     virtual void getValueVec(const char *, JGeometry::TVec3<f32> *);
     virtual bool getValueString(const char *, const char **);
 };
-
-#endif // DOTCAMPARAMS_H

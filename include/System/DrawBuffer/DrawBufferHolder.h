@@ -1,5 +1,4 @@
-#ifndef DRAWBUFFERHOLDER_H
-#define DRAWBUFFERHOLDER_H
+#pragma once
 
 #include <revolution.h>
 #include "System/DrawBuffer/DrawBufferGroup.h"
@@ -15,5 +14,3 @@ public:
 
     DrawBufferGroup* mGroups; // _0
 };
-
-#endif // DRAWBUFFERHOLDER_H

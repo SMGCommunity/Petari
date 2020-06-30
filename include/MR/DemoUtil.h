@@ -1,5 +1,4 @@
-#ifndef DEMOUTIL_H
-#define DEMOUTIL_H
+#pragma once
 
 #include "JMap/JMapInfoIter.h"
 
@@ -12,5 +11,3 @@ namespace MR
 
     void registerDemoActionNerve(const LiveActor *, const Nerve *, const char *);
 };
-
-#endif // DEMOUTIL_H

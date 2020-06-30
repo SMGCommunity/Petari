@@ -1,5 +1,4 @@
-#ifndef TUTIL_H
-#define TUTIL_H
+#pragma once
 
 #include <revolution.h>
 
@@ -14,5 +13,3 @@ namespace JGeometry
         static f32 clamp(T, T, T);
     };
 };
-
-#endif // TUTIL_H

@@ -1,5 +1,4 @@
-#ifndef GAMESYSTEMERRORWATCHER_H
-#define GAMESYSTEMERRORWATCHER_H
+#pragma once
 
 #include "Actor/Nerve/NerveExecutor.h"
 
@@ -14,5 +13,3 @@ public:
     bool isWarning() const;
     void setPermissionUpdateWiiRemoteStatus(bool);
 };
-
-#endif // GAMESYSTEMERROROWATCHER_H

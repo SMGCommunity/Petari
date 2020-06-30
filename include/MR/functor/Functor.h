@@ -1,5 +1,4 @@
-#ifndef FUNCTOR_H
-#define FUNCTOR_H
+#pragma once
 
 #include "MR/functor/FunctorBase.h"
 
@@ -22,5 +21,3 @@ namespace MR
         T2 mFuncPtr; // _10
     };
 };
-
-#endif // FUNCTOR_H

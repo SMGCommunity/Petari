@@ -1,5 +1,4 @@
-#ifndef ACTORSWITCHUTIL_H
-#define ACTORSWITCHUTIL_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "JMap/JMapInfoIter.h"
@@ -31,5 +30,3 @@ namespace MR
 
     void listenStageSwitchOnA(LiveActor *, const MR::FunctorBase &);
 };
-
-#endif // ACTORSWITCHUTIL_H

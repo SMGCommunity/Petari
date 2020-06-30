@@ -1,10 +1,7 @@
-#ifndef CLIPPINGACTORINFO_H
-#define CLIPPINGACTORINFO_H
+#pragma once
 
 class ClippingActorInfo
 {
 public:
     ClippingActorInfo();
 };
-
-#endif // CLIPPINGACTORINFO_H

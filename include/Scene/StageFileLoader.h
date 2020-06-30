@@ -1,5 +1,4 @@
-#ifndef STAGEFILELOADER_H
-#define STAGEFILELOADER_H
+#pragma once
 
 #include <revolution.h>
 
@@ -17,5 +16,3 @@ public:
     const char* mNames[0x18]; // _0
     u32 mZoneNum; // _60
 };
-
-#endif // STAGEFILELOADER_H

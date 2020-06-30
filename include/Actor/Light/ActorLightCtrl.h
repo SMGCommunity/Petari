@@ -1,5 +1,4 @@
-#ifndef ACTORLIGHTCTRL_H
-#define ACTORLIGHTCTRL_H
+#pragma once
 
 #include "Actor/Light/LightZoneDataHolder.h"
 
@@ -27,5 +26,3 @@ public:
     u32 _1C;
     u8 _20[0x58-0x20];
 };
-
-#endif // ACTORLIGHTCTRL_H

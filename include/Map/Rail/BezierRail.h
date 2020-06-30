@@ -1,5 +1,4 @@
-#ifndef BEZIERRAIL_H
-#define BEZIERRAIL_H
+#pragma once
 
 #include "JMap/JMapInfo.h"
 #include "JMap/JMapInfoIter.h"
@@ -37,5 +36,3 @@ public:
     JMapInfoIter* mIter; // _14
     const JMapInfo* mMapInfo; // _18
 };
-
-#endif // BEZIERRAIL_H

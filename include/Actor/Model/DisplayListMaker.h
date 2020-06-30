@@ -1,5 +1,4 @@
-#ifndef DISPLAYLISTMAKER_H
-#define DISPLAYLISTMAKER_H
+#pragma once
 
 #include "J3DGraphBase/J3DModel.h"
 #include "System/Resource/ResourceHolder.h"
@@ -18,5 +17,3 @@ public:
 
     static bool isExistDiffMaterial(const J3DModelData *);
 };
-
-#endif // DISPLAYLISTMAKER_H

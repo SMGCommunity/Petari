@@ -1,5 +1,4 @@
-#ifndef INLINES_H
-#define INLINES_H
+#pragma once
 
 #include <revolution.h>
 
@@ -16,5 +15,3 @@ static inline f32 fneg(f32 src)
     __asm("fneg %0, %1" : "=f"(ret) : "f"(src));
     return ret;
 }
-
-#endif // INLINES_H

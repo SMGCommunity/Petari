@@ -1,5 +1,4 @@
-#ifndef SCENEOBJHOLDER_H
-#define SCENEOBJHOLDER_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 
@@ -40,5 +39,3 @@ public:
 
     NameObj* mObjs[0x7B]; // _0
 };
-
-#endif // SCENEOBJHOLDER_H

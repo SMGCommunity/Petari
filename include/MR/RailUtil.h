@@ -1,5 +1,4 @@
-#ifndef RAILUTIL_H
-#define RAILUTIL_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include "JGeometry/TBox3.h"
@@ -83,5 +82,3 @@ namespace MR
 
     
 };
-
-#endif // RAILUTIL_H

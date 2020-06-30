@@ -1,5 +1,4 @@
-#ifndef ALLLIVEACTORGROUP_H
-#define ALLLIVEACTORGROUP_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActorGroup.h"
 
@@ -19,5 +18,3 @@ namespace MR
 {
     AllLiveActorGroup* getAllLiveActorGroup();
 };
-
-#endif // ALLLIVEACTORGROUP_H

@@ -1,5 +1,4 @@
-#ifndef GHOSTPACKET_H
-#define GHOSTPACKET_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -22,5 +21,3 @@ public:
     u32 mCurPos; // _8
     u32 _C;
 };
-
-#endif // GHOSTPACKET_H

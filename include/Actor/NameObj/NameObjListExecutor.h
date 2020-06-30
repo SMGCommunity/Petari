@@ -1,5 +1,4 @@
-#ifndef NAMEOBJLISTEXECUTOR_H
-#define NAMEOBJLISTEXECUTOR_H
+#pragma once
 
 #include "Actor/NameObj/NameObjCategoryList.h"
 #include "System/DrawBuffer/DrawBufferHolder.h"
@@ -26,5 +25,3 @@ public:
     NameObjCategoryList* mCalcAnimList; //_C
     NameObjCategoryList* mDrawList; // _10
 };
-
-#endif // NAMEOBJLISTEXECUTOR_H

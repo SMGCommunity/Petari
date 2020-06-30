@@ -1,5 +1,4 @@
-#ifndef KCOLLISIONSERVER_H
-#define KCOLLISIONSERVER_H
+#pragma once
 
 #include <revolution.h>
 
@@ -10,5 +9,3 @@ public:
 
     u8 _0[0xC];
 };
-
-#endif // KCOLLISIONSERVER_H

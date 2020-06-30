@@ -1,5 +1,4 @@
-#ifndef CLIPPINGDIRECTOR_H
-#define CLIPPINGDIRECTOR_H
+#pragma once
 
 #include "Actor/Clipping/ClippingActorHolder.h"
 #include "Actor/Clipping/ClippingGroupHolder.h"
@@ -24,5 +23,3 @@ public:
     ClippingActorHolder* mActorHolder; // _10
     ClippingGroupHolder* mGroupHolder; // _14
 };
-
-#endif // CLIPPINGDIRECTOR_H

@@ -1,5 +1,4 @@
-#ifndef JUTNAMETAB_H
-#define JUTNAMETAB_H
+#pragma once
 
 #include <revolution.h>
 
@@ -25,5 +24,3 @@ public:
     u32 _8;
     u16 mIdxCount; // _C
 };
-
-#endif // JUTNAMETAB_H

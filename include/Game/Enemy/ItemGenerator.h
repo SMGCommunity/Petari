@@ -1,5 +1,4 @@
-#ifndef ITEMGENERATOR_H
-#define ITEMGENERATOR_H
+#pragma once
 
 #include <revolution.h>
 
@@ -19,5 +18,3 @@ public:
     s32 mItemCount; // _0
     u8 mType; // _4
 };
-
-#endif // ITEMGENERATOR_H

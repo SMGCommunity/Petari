@@ -1,5 +1,4 @@
-#ifndef SOUNDUTIL_H
-#define SOUNDUTIL_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 
@@ -10,5 +9,3 @@ namespace MR
 
     void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
 };
-
-#endif // SOUNDUTIL_H

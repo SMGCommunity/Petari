@@ -1,5 +1,4 @@
-#ifndef LODCTRL_H
-#define LODCTRL_H
+#pragma once
 
 #include "Actor/Model/ModelObj.h"
 #include "JMap/JMapInfoIter.h"
@@ -67,5 +66,3 @@ void LodFuntionCall(LodCtrl *, void(*)(LiveActor *, f32), T);
 void LodFuntionCall(LodCtrl *, void(*)(LiveActor *));
 
 static const bool* val_zero = 0;
-
-#endif // LODCTRL_H

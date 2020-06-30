@@ -1,5 +1,4 @@
-#ifndef TCOLOR_H
-#define TCOLOR_H
+#pragma once
 
 #include <revolution.h>
 
@@ -17,5 +16,3 @@ namespace JUtility
         u8 alpha; // _3
     };
 };
-
-#endif // TCOLOR_H

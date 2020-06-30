@@ -1,5 +1,4 @@
-#ifndef RAILGRAPH_H
-#define RAILGRAPH_H
+#pragma once
 
 #include "Map/Graph/RailGraphEdge.h"
 #include "Map/Graph/RailGraphNode.h"
@@ -23,5 +22,3 @@ public:
     u32 _10;
     u32 mEdgeCount; // _14
 };
-
-#endif // RAILGRAPH_H

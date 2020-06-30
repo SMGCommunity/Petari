@@ -1,5 +1,4 @@
-#ifndef RAILGRAPHNODE_H
-#define RAILGRAPHNODE_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -13,5 +12,3 @@ public:
     s32 _C;
     u32 _10;
 };
-
-#endif // RAILGRAPHNODE_H

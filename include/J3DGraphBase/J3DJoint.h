@@ -1,5 +1,4 @@
-#ifndef J3DJOINT_H
-#define J3DJOINT_H
+#pragma once
 
 #include "J3DGraphBase/J3DTransform.h"
 
@@ -30,5 +29,3 @@ public:
 };
 
 bool checkScaleOne(const Vec &);
-
-#endif // J3DJOINT_H

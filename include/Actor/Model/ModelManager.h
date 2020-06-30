@@ -1,5 +1,4 @@
-#ifndef MODELMANAGER_H
-#define MODELMANAGER_H
+#pragma once
 
 #include <revolution.h>
 #include "Animation/BpkPlayer.h"
@@ -43,5 +42,3 @@ public:
     ResourceHolder* mResourceHolder; // _20
     DisplayListMaker* mDLMaker; // _24
 };
-
-#endif // MODELMANAGER_H

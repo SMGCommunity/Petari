@@ -1,5 +1,4 @@
-#ifndef J3DPACKET_H
-#define J3DPACKET_H
+#pragma once
 
 #include "J3DGraphBase/J3DDrawBuffer.h"
 #include "revolution/GD/GDBase.h"
@@ -95,5 +94,3 @@ public:
 
     u8 _28[0x3C-0x28];
 };
-
-#endif // J3DPACKET_H

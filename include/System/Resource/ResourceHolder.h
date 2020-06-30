@@ -1,5 +1,4 @@
-#ifndef RESOURCEHOLDER_H
-#define RESOURCEHOLDER_H
+#pragma once
 
 #include "JKernel/JKRArchivePri.h"
 #include "System/Resource/ResourceInfo.h"
@@ -22,5 +21,3 @@ public:
     u32* _48; // JKRHeap*
     u32 _4C;
 };
-
-#endif // RESOURCEHOLDER_H

@@ -1,5 +1,4 @@
-#ifndef GALAXYCOMETSCHEDULER_H
-#define GALAXYCOMETSCHEDULER_H
+#pragma once
 
 #include <revolution.h>
 #include "System/Galaxy/GalaxyCometState.h"
@@ -65,5 +64,3 @@ public:
     s32 mNumTables; // _4
     bool mIsActive; // _8
 };
-
-#endif // GALAXYCOMETSCHEDULER_H

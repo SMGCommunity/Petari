@@ -1,5 +1,4 @@
-#ifndef FILEUTIL_H
-#define FILEUTIL_H
+#pragma once
 
 #include "JKernel/JKRHeap.h"
 
@@ -12,5 +11,3 @@ namespace MR
     void recieveFile(const char *);
     void mountAsyncArchive(const char *, JKRHeap *);
 };
-
-#endif // FILEUTIL_H

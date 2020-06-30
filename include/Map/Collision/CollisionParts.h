@@ -1,5 +1,4 @@
-#ifndef COLLISIONPARTS_H
-#define COLLISIONPARTS_H
+#pragma once
 
 #include <revolution.h>
 
@@ -30,5 +29,3 @@ public:
     s32 _E0;
     u32 _E4;
 };
-
-#endif // COLLISIONPARTS_H

@@ -1,5 +1,4 @@
-#ifndef TMATRIX34_H
-#define TMATRIX34_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution/mtx.h>
@@ -26,5 +25,3 @@ namespace JGeometry
         T val[3][4];
     };
 };
-
-#endif // TMATRIX34_H

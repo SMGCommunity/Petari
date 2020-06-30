@@ -1,5 +1,4 @@
-#ifndef ACTORSTATEKEEPER_H
-#define ACTORSTATEKEEPER_H
+#pragma once
 
 #include "Actor/Nerve/Nerve.h"
 #include "Actor/State/ActorStateBase.h"
@@ -19,5 +18,3 @@ public:
     u32 _8;
     u32 _C;
 };
-
-#endif // ACTORSTATEKEEPER_H

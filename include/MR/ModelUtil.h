@@ -1,5 +1,4 @@
-#ifndef MODELUTIL_H
-#define MODELUTIL_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "revolution/os/OSMutex.h"
@@ -27,6 +26,4 @@ namespace MR
     public:
         static OSMutex sMutex;
     };
-}
-
-#endif // MODELUTIL_H
+};

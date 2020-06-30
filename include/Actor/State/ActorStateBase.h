@@ -1,5 +1,4 @@
-#ifndef ACTORSTATEBASE_H
-#define ACTORSTATEBASE_H
+#pragma once
 
 #include "Actor/Nerve/NerveExecutor.h"
 
@@ -14,5 +13,3 @@ public:
 
     u8 mIsDead; // _8
 };
-
-#endif // ACTORSTATEBASE_H

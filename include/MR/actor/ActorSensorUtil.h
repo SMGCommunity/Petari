@@ -1,5 +1,4 @@
-#ifndef ACTORSENSORUTIL_H
-#define ACTORSENSORUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -235,5 +234,3 @@ namespace MR
     bool tryForceKillIfMsgStarPowerStarGet(LiveActor *, u32);
     void addBodyMessageSensor(LiveActor *, u32);
 };
-
-#endif // ACTORSENSORUTIL_H

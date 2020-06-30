@@ -1,5 +1,4 @@
-#ifndef CLIPPINGACTORHOLDER_H
-#define CLIPPINGACTORHOLDER_H
+#pragma once
 
 #include "Actor/Clipping/ClippingActorInfo.h"
 #include "Actor/LiveActor/LiveActor.h"
@@ -28,5 +27,3 @@ public:
     u32* _1C; // ^^
     u32 _20;
 };
-
-#endif // CLIPPINGACTORHOLDER_H

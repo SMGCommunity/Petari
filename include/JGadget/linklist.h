@@ -1,5 +1,4 @@
-#ifndef LINKLIST_H
-#define LINKLIST_H
+#pragma once
 
 #include <revolution.h>
 
@@ -21,5 +20,3 @@ namespace JGadget
     public:
     };
 };
-
-#endif // LINKLIST_H

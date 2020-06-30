@@ -1,5 +1,4 @@
-#ifndef COLOR8_H
-#define COLOR8_H
+#pragma once
 
 #include "revolution/gx/GXStruct.h"
 
@@ -21,5 +20,3 @@ public:
         struct { u8 r, g, b, a; };
     };
 };
-
-#endif // COLOR8_H

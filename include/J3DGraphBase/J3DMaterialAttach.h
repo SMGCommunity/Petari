@@ -1,5 +1,4 @@
-#ifndef J3DMATERIALATTACH_H
-#define J3DMATERIALATTACH_H
+#pragma once
 
 #include <revolution.h>
 
@@ -14,5 +13,3 @@ public:
     u32** _8; // J3DMaterial**
     u32 _C;
 };
-
-#endif // J3DMATERIALATTACH_H

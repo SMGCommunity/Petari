@@ -1,5 +1,4 @@
-#ifndef CAMERAPARAMCHUNK_H
-#define CAMERAPARAMCHUNK_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -40,5 +39,3 @@ public:
     f32 mVPanAxisY; // _58
     f32 mVPanAxisZ; // _5C
 };
-
-#endif // CAMERAPARAMCHUNK_H

@@ -1,5 +1,4 @@
-#ifndef ACTORMOVEMENTUTIL_H
-#define ACTORMOVEMENTUTIL_H
+#pragma once
 
 #include <revolution.h>
 
@@ -15,5 +14,3 @@ namespace MR
 
     f32 calcDistanceToPlayer(const LiveActor *);
 };
-
-#endif // ACTORMOVEMENTUTIL_H

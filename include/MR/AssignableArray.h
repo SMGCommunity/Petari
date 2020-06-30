@@ -1,5 +1,4 @@
-#ifndef ASSIGNABLEARRAY_H
-#define ASSIGNABLEARRAY_H
+#pragma once
 
 #include <revolution.h>
 
@@ -13,5 +12,3 @@ namespace MR
         s32 mCount; // _4
     };
 };
-
-#endif // ASSIGNABLEARRAY_H

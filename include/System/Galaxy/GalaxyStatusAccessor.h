@@ -1,5 +1,4 @@
-#ifndef GALAXYSTATUSACCESSOR_H
-#define GALAXYSTATUSACCESSOR_H
+#pragma once
 
 #include <revolution.h>
 
@@ -21,5 +20,3 @@ namespace MR
     static GalaxyStatusAccessor* makeGalaxyStatusAcessor(const char *);
     static void* makeCurrentGalaxyStatusAccessor();
 };
-
-#endif // GALAXYSTATUSACCESSOR_H

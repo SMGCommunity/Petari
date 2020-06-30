@@ -1,5 +1,4 @@
-#ifndef STAGESWITCHCTRL_H
-#define STAGESWITCHCTRL_H
+#pragma once
 
 #include <revolution.h>
 #include "Actor/NameObj/NameObj.h"
@@ -17,5 +16,3 @@ namespace MR
 {
     StageSwitchCtrl* createStageSwitchCtrl(NameObj *, const JMapInfoIter &);
 };
-
-#endif // STAGESWITCHCTRL_H

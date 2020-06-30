@@ -1,5 +1,4 @@
-#ifndef RAILGRAPHEDGE_H
-#define RAILGRAPHEDGE_H
+#pragma once
 
 #include "JMap/JMapInfo.h"
 
@@ -29,5 +28,3 @@ public:
     s32 mPointArg6; // _2C
     s32 mPointArg7; // _30
 };
-
-#endif // RAILGRAPHEDGE_H

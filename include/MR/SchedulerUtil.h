@@ -1,5 +1,4 @@
-#ifndef SCHEDULERUTIL_H
-#define SCHEDULERUTIL_H
+#pragma once
 
 namespace MR
 {
@@ -10,5 +9,3 @@ namespace MR
         ~ProhibitSchedulerAndInterrupts();
     };
 };
-
-#endif // SCHEDULERUTIL_H

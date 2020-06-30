@@ -1,5 +1,4 @@
-#ifndef TBOX3_H
-#define TBOX3_H
+#pragma once
 
 namespace JGeometry
 {
@@ -15,5 +14,3 @@ namespace JGeometry
         T _14;
     };
 };
-
-#endif // TBOX3_H

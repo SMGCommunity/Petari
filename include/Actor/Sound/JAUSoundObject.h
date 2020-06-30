@@ -1,5 +1,4 @@
-#ifndef JAUSOUNDOBJECT_H
-#define JAUSOUNDOBJECT_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -14,5 +13,3 @@ public:
     u32 _10;
     JGeometry::TVec3<f32>* _14;
 };
-
-#endif // JAUSOUNDOBJECT_H

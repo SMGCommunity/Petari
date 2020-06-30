@@ -1,5 +1,4 @@
-#ifndef SCENEUTIL_H
-#define SCENEUTIL_H
+#pragma once
 
 #include "JGeometry/TMatrix34.h"
 #include "JMap/JMapInfo.h"
@@ -18,5 +17,3 @@ namespace MR
     bool isPlacementLocalStage();
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> const>* getZonePlacementMtx(const JMapInfoIter &);
 };
-
-#endif // SCENEUTIL_H

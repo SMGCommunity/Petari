@@ -1,5 +1,4 @@
-#ifndef STRING_H
-#define STRING_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,5 +10,3 @@ int strlen(const char *);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // STRING_H

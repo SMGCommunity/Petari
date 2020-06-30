@@ -1,5 +1,4 @@
-#ifndef DRAWBUFFERGROUP_H
-#define DRAWBUFFERGROUP_H
+#pragma once
 
 #include "MR/AssignableArray.h"
 #include "MR/Vector.h"
@@ -17,5 +16,3 @@ public:
     s32 _1C; // light related
     s32 _20; // ^^
 };
-
-#endif // DRAWBUFFERGROUP_H

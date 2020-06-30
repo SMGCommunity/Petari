@@ -1,5 +1,4 @@
-#ifndef GALAXYCOMETSTATE_H
-#define GALAXYCOMETSTATE_H
+#pragma once
 
 #include "Actor/Nerve/NerveExecutor.h"
 
@@ -36,5 +35,3 @@ public:
 
     static GalaxyCometStateHide* sInstance;
 };
-
-#endif // GALAXYCOMETSTATE_H

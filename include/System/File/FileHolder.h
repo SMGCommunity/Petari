@@ -1,5 +1,4 @@
-#ifndef FILEHOLDER_H
-#define FILEHOLDER_H
+#pragma once
 
 #include "JKernel/JKRHeap.h"
 #include "revolution/os/OSMessage.h"
@@ -33,5 +32,3 @@ public:
 
     FileHolderFileEntry* findEntry(const char *) const;
 };
-
-#endif // FILEHOLDER_H

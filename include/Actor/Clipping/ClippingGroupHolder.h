@@ -1,5 +1,4 @@
-#ifndef CLIPPINGGROUPHOLDER_H
-#define CLIPPINGGROUPHOLDER_H
+#pragma once
 
 #include "Actor/Clipping/ClippingActorInfo.h"
 #include "Actor/NameObj/NameObj.h"
@@ -16,5 +15,3 @@ public:
 
     u8 _0[0x8];
 };
-
-#endif // CLIPPINGGROUPHOLDER_H

@@ -1,5 +1,4 @@
-#ifndef MEMORYUTIL_H
-#define MEMORYUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "JKernel/JKRHeap.h"
@@ -25,5 +24,3 @@ namespace MR
 
     JKRHeap* getAproposHeapForSceneArchive(f32);
 };
-
-#endif // MEMORYUTIL_H

@@ -1,5 +1,4 @@
-#ifndef COLLISIONCATEGORIZEDKEEPER_H
-#define COLLISIONCATEGORIZEDKEEPER_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 #include "Map/Collision/Triangle.h"
@@ -46,5 +45,3 @@ public:
     u8 _4[0x804-0x4];
     u32 mPartsCount; // _804
 };
-
-#endif // COLLISIONCATEGORIEDKEEPER_H

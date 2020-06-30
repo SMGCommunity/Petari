@@ -1,5 +1,4 @@
-#ifndef CLIPPINGJUDGE_H
-#define CLIPPINGJUDGE_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 
@@ -14,5 +13,3 @@ public:
 
     u8 _0[0x380];
 };
-
-#endif // CLIPPINGJUDGE_H

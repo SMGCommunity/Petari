@@ -1,5 +1,4 @@
-#ifndef SENSORGROUP_H
-#define SENSORGROUP_H
+#pragma once
 
 #include <revolution.h>
 #include "Actor/Sensor/HitSensor.h"
@@ -18,5 +17,3 @@ public:
     HitSensor* mSensors; // _8
 
 };
-
-#endif // SENSORGROUP_H

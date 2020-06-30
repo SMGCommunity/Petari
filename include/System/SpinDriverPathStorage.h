@@ -1,5 +1,4 @@
-#ifndef SPINDRIVERPATHSTORAGE_H
-#define SPINDRIVERPATHSTORAGE_H
+#pragma once
 
 #include <revolution.h>
 
@@ -33,5 +32,3 @@ public:
     u32 mPathCount; // _4
     u32 _8;
 };
-
-#endif // SPINDRIVERPATHSTORAGE_H

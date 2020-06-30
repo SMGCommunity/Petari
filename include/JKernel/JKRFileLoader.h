@@ -1,5 +1,4 @@
-#ifndef JKRFILELOADER_H
-#define JKRFILELOADER_H
+#pragma once
 
 #include "JKernel/JKRDisposer.h"
 #include <revolution/os.h>
@@ -25,5 +24,3 @@ public:
     static JSUPtrList sVolumeList;
     static OSMutex sVolumeListMutex;
 };
-
-#endif // JKRFILELOADER_H

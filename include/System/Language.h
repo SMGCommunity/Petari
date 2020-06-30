@@ -1,5 +1,4 @@
-#ifndef LANGUAGE_H
-#define LANGUAGE_H
+#pragma once
 
 #include <revolution.h>
 
@@ -39,6 +38,4 @@ namespace MR
     const char* getCurrentRegionPrefix();
     u32 getLanguageNum();
     const char* getLanguagePrefixByIndex(u32);
-}
-
-#endif // LANGUAGE_H
+};

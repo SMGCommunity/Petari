@@ -1,5 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 namespace MR
 {
@@ -17,5 +16,3 @@ namespace MR
         u32 _8;
     };
 };
-
-#endif // VECTOR_H

@@ -1,5 +1,4 @@
-#ifndef STAGESWITCH_H
-#define STAGESWITCH_H
+#pragma once
 
 #include <revolution.h>
 
@@ -19,5 +18,3 @@ public:
 
     BitFlag128 mFlags;
 };
-
-#endif // STAGESWITCH_H

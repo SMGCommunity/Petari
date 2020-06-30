@@ -1,5 +1,4 @@
-#ifndef EFFECTKEEPER_H
-#define EFFECTKEEPER_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "Collision/Binder.h"
@@ -38,5 +37,3 @@ public:
     u32 _2C;
     u32 _30;
 };
-
-#endif // EFFECTKEEPER_H

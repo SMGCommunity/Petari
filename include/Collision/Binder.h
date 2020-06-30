@@ -1,5 +1,4 @@
-#ifndef BINDER_H
-#define BINDER_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -14,5 +13,3 @@ public:
 
     u8 _0[0x1F0];
 };
-
-#endif // BINDER_H

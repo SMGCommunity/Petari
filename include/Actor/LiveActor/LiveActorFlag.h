@@ -1,5 +1,4 @@
-#ifndef LIVEACTORFLAG_H
-#define LIVEACTORFLAG_H
+#pragma once
 
 #include <revolution.h>
 
@@ -18,5 +17,3 @@ public:
     bool _7;
     bool _8;
 };
-
-#endif // LIVEACTORFLAG_H

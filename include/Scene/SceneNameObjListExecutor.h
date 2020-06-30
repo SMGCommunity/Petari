@@ -1,5 +1,4 @@
-#ifndef SCENENAMEOBJLISTEXECUTOR_H
-#define SCENENAMEOBJLISTEXECUTOR_H
+#pragma once
 
 #include "Actor/NameObj/NameObjListExecutor.h"
 
@@ -69,5 +68,3 @@ public:
     virtual void initCalcViewAndEntryList();
     virtual void initDrawList();
 };
-
-#endif // SCENENAMEOBJLISTEXECUTOR_H

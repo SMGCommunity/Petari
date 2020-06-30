@@ -1,5 +1,4 @@
-#ifndef RESOURCEINFO_H
-#define RESOURCEINFO_H
+#pragma once
 
 #include <revolution.h>
 
@@ -39,5 +38,3 @@ public:
     ResFileInfo* mFileInfo; // _0
     u32 mResCount; // _4
 };
-
-#endif // RESOURCEINFO_H

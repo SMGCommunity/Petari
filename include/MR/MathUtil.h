@@ -1,5 +1,4 @@
-#ifndef MATHUTIL_H
-#define MATHUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -23,5 +22,3 @@ namespace MR
 
     void vecKillElement(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *);
 };
-
-#endif // MATHUTIL_H

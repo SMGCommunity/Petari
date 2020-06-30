@@ -1,5 +1,4 @@
-#ifndef JMAPINFO_H
-#define JMAPINFO_H
+#pragma once
 
 #include <revolution.h>
 
@@ -57,5 +56,3 @@ public:
     const JMapData* mData; // _0
     const char* mName; // _4
 };
-
-#endif // JMAPINFO_H

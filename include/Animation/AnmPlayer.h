@@ -1,5 +1,4 @@
-#ifndef ANMPLAYER_H
-#define ANMPLAYER_H
+#pragma once
 
 #include "System/Resource/ResourceInfo.h"
 #include "J3DGraphBase/J3DAnimation.h"
@@ -34,5 +33,3 @@ public:
 
     J3DModelData* mModelData; // _20
 };
-
-#endif // ANMPLAYER_H

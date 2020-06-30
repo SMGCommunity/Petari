@@ -1,5 +1,4 @@
-#ifndef ACTORPADANDCAMERACTRL_H
-#define ACTORPADANDCAMERACTRL_H
+#pragma once
 
 #include "Actor/Model/ModelManager.h"
 #include "JGeometry/TVec3.h"
@@ -17,5 +16,3 @@ public:
     ResourceHolder* mResourceHolder; // _8
     u8 _C[0x18-0xC];
 };
-
-#endif // ACTORPADANDCAMERACTRL_H

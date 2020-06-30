@@ -1,5 +1,4 @@
-#ifndef J3DVERTEX_H
-#define J3DVERTEX_H
+#pragma once
 
 #include <revolution.h>
 
@@ -23,5 +22,3 @@ public:
 
     u8 _0[0x38];
 };
-
-#endif // J3DVERTEX_H

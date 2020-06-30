@@ -1,5 +1,4 @@
-#ifndef CLIPPINGUTIL_H
-#define CLIPPINGUTIL_H
+#pragma once
 
 #include "Actor/Clipping/ClippingDirector.h"
 
@@ -9,5 +8,3 @@ namespace MR
     void addToClippingTarget(LiveActor *);
     void removeFromClippingTarget(LiveActor *);
 };
-
-#endif // CLIPPINGUTIL_H

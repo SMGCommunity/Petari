@@ -1,5 +1,4 @@
-#ifndef HITSENSORKEEPER_H
-#define HITSENSORKEEPER_H
+#pragma once
 
 #include "Actor/Sensor/HitSensor.h"
 
@@ -24,5 +23,3 @@ public:
     u32 _C;
     u32 _10;
 };
-
-#endif // HITSENSORKEEPER_H

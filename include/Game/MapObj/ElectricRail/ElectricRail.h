@@ -1,5 +1,4 @@
-#ifndef ELECTRICRAIL_H
-#define ELECTRICRAIL_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "Actor/Nerve/Nerve.h"
@@ -118,5 +117,3 @@ class ElectricRailShadowDrawer
 public:
     ElectricRailShadowDrawer(const LiveActor *, ElectricRailSeparator *, s32);
 };
-
-#endif // ELECTRICRAIL_H

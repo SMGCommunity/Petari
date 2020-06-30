@@ -1,5 +1,4 @@
-#ifndef BRKPLAYER_H
-#define BRKPLAYER_H
+#pragma once
 
 #include "Animation/AnmPlayer.h"
 #include "J3DGraphBase/J3DModel.h"
@@ -13,5 +12,3 @@ public:
     virtual void attach(J3DAnmBase *, J3DModelData *);
     virtual void detach(J3DAnmBase *, J3DModelData *);
 };
-
-#endif // BRKPLAYER_H

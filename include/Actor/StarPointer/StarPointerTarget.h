@@ -1,5 +1,4 @@
-#ifndef STARPOINTERTARGET_H
-#define STARPOINTERTARGET_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec2.h"
@@ -12,5 +11,3 @@ public:
 
     u8 _0[0x1C];
 };
-
-#endif // STARPOINTERTARGET_H

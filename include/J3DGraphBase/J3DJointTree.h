@@ -1,5 +1,4 @@
-#ifndef J3DJOINTTREE_H
-#define J3DJOINTTREE_H
+#pragma once
 
 #include <revolution/mtx.h>
 
@@ -22,5 +21,3 @@ public:
     u32** mJoints; // J3DJoint** (_18)
     u8 _1C[0x48-0x1C];
 };
-
-#endif // J3DJOINTTREE_H

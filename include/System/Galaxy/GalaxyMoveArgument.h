@@ -1,5 +1,4 @@
-#ifndef GALAXYMOVEARGUMENT_H
-#define GALAXYMOVEARGUMENT_H
+#pragma once
 
 #include "JMap/JMapIdInfo.h"
 
@@ -17,5 +16,3 @@ public:
     s32 _C;
     JMapIdInfo mStartInfo; // _10
 };
-
-#endif // GALAXYMOVEARGUMENT_H

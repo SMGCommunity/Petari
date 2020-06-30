@@ -1,5 +1,4 @@
-#ifndef GRAVITYUTIL_H
-#define GRAVITYUTIL_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -12,5 +11,3 @@ namespace MR
     bool calcDropShadowVector(const NameObj *, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *, GravityInfo *, u32);
     bool calcGravityVectorOrZero(const NameObj *, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *, GravityInfo *, u32);
 };
-
-#endif // GRAVITYUTIL_H

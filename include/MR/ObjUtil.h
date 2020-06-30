@@ -1,5 +1,4 @@
-#ifndef OBJUTIL_H
-#define OBJUTIL_H
+#pragma once
 
 #include "Actor/LiveActor/LiveActor.h"
 #include "Actor/NameObj/NameObj.h"
@@ -36,5 +35,3 @@ namespace MR
     void appearCoinPopToDirection(const NameObj *, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, s32);
     void appearStarPieceToDirection(const NameObj *, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, s32, f32, f32, bool);
 };
-
-#endif // OBJUTIL_H

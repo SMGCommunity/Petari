@@ -1,5 +1,4 @@
-#ifndef EFFECTKEEPER_H
-#define EFFECTKEEPER_H
+#pragma once
 
 #include <revolution.h>
 
@@ -12,5 +11,3 @@ public:
 
     void clear();
 };
-
-#endif // EFFECTKEEPER_H

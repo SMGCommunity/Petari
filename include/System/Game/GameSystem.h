@@ -1,5 +1,4 @@
-#ifndef GAMESYSTEM_H
-#define GAMESYSTEM_H
+#pragma once
 
 #include "Actor/Nerve/NerveExecutor.h"
 
@@ -37,5 +36,3 @@ public:
 
     bool mIsLoadingSystemArchive; // _38
 };
-
-#endif // GAMESYSTEM_H

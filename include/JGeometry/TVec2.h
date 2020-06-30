@@ -1,5 +1,4 @@
-#ifndef TVEC2_H
-#define TVEC2_H
+#pragma once
 
 namespace JGeometry
 {
@@ -13,5 +12,3 @@ namespace JGeometry
         T y; // _4
     };
 };
-
-#endif // TVEC2_H

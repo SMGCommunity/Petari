@@ -1,5 +1,4 @@
-#ifndef JMATH_H
-#define JMATH_H
+#pragma once
 
 #include <revolution/mtx.h>
 
@@ -12,5 +11,3 @@ namespace JMathInlineVEC
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
 };
-
-#endif // JMATH_H

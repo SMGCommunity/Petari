@@ -1,5 +1,4 @@
-#ifndef GAMEDATAFUNCTION_H
-#define GAMEDATAFUNCTION_H
+#pragma once
 
 #include <revolution.h>
 
@@ -12,5 +11,3 @@ public:
     static void updateGalaxyCometStatus(s32, s16, u16);
     static void restoreGalaxyCometStatus(s32, u16 *, u16 *);
 };
-
-#endif // GAMEDATAFUNCTION_H

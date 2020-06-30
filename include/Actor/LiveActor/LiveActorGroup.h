@@ -1,5 +1,4 @@
-#ifndef LIVEACTORGROUP_H
-#define LIVEACTORGROUP_H
+#pragma once
 
 #include "Actor/NameObj/NameObjGroup.h"
 #include "Actor/LiveActor/LiveActor.h"
@@ -19,5 +18,3 @@ public:
     void appearAll();
     void killAll();
 };
-
-#endif // LIVEACTORGROUP_H

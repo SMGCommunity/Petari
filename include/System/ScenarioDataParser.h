@@ -1,10 +1,7 @@
-#ifndef SCENARIODATAPARSER_H
-#define SCENARIODATAPARSER_H
+#pragma once
 
 class ScenarioData
 {
 public:
     ScenarioData(const char *);
 };
-
-#endif // SCENARIODATAPARSER_H

@@ -1,5 +1,4 @@
-#ifndef JMAPUTIL_H
-#define JMAPUTIL_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include "JMap/JMapInfoIter.h"
@@ -87,5 +86,3 @@ namespace MR
 
 template<typename T>
 void getValue(const JMapInfoIter &, const char *, T *);
-
-#endif // JMAPUTIL_H

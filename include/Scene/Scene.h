@@ -1,5 +1,4 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 
 #include "Actor/Nerve/NerveExecutor.h"
 #include "Scene/SceneNameObjListExecutor.h"
@@ -24,5 +23,3 @@ public:
     u32 _C;
     SceneObjHolder* mObjHolder; // _10
 };
-
-#endif // SCENE_H

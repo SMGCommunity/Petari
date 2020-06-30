@@ -1,5 +1,4 @@
-#ifndef NERVEEXECUTOR_H
-#define NERVEEXECUTOR_H
+#pragma once
 
 #include "Actor/Nerve/Spine.h"
 
@@ -18,5 +17,3 @@ public:
 
     Spine* mSpine; // _4
 };
-
-#endif // NERVEEXECUTOR_H

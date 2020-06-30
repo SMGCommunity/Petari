@@ -1,5 +1,4 @@
-#ifndef RAILRIDER_H
-#define RAILRIDER_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include "JMap/JMapInfoIter.h"
@@ -56,5 +55,3 @@ public:
     JGeometry::TVec3<f32> mEndPos; // _34
     s32 mCurPoint; // _40
 };
-
-#endif // RAILRIDER_H

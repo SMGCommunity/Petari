@@ -1,5 +1,4 @@
-#ifndef LIVEACTORGROUPARRAY_H
-#define LIVEACTORGROUPARRAY_H
+#pragma once
 
 #include "Actor/NameObj/NameObj.h"
 #include "Actor/LiveActor/LiveActorGroup.h"
@@ -13,5 +12,3 @@ public:
 
     LiveActorGroup* getLiveActorGroup(LiveActor const *) const;
 };
-
-#endif // LIVEACTORGROUPARRAY_H

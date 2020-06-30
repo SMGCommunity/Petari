@@ -1,5 +1,4 @@
-#ifndef RAILGRAPHITER_H
-#define RAILGRAPHITER_H
+#pragma once
 
 #include "Map/Graph/RailGraph.h"
 
@@ -30,5 +29,3 @@ public:
     s32 mNextEdge; // _C
     s32 mNextNode; // _10
 };
-
-#endif // RAILGRAPHITER_H

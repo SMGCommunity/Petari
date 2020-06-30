@@ -1,5 +1,4 @@
-#ifndef FILELOADERTHREAD_H
-#define FILELOADERTHREAD_H
+#pragma once
 
 #include "System/OS/OSThreadWrapper.h"
 
@@ -13,5 +12,3 @@ public:
     virtual ~FileLoaderThread();
     virtual s32 run();
 };
-
-#endif // FILELOADERTHREAD_H

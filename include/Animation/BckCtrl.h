@@ -1,5 +1,4 @@
-#ifndef BCKCTRL_H
-#define BCKCTRL_H
+#pragma once
 
 #include <revolution.h>
 
@@ -16,5 +15,3 @@ public:
     s16 _C;
     u16 _E;
 };
-
-#endif // BCKCTRL_H

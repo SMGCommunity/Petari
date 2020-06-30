@@ -1,5 +1,4 @@
-#ifndef SPINE_H
-#define SPINE_H
+#pragma once
 
 #include "Actor/Nerve/Nerve.h"
 #include <revolution.h>
@@ -23,5 +22,3 @@ public:
     u32 mNerveStep; // _C
     ActorStateKeeper* mStateKeeper; // _10
 };
-
-#endif // SPINE_H

@@ -1,5 +1,4 @@
-#ifndef STRINGUTIL_H
-#define STRINGUTIL_H
+#pragma once
 
 #include <revolution.h>
 
@@ -33,5 +32,3 @@ namespace MR
     
     const char* extractString(char *, const char *, u32, u32);
 };
-
-#endif // STRINGUTIL_H

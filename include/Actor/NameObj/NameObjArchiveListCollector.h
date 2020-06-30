@@ -1,5 +1,4 @@
-#ifndef NAMEOBJARCHIVELISTCOLLECTOR_H
-#define NAMEOBJARCHIVELISTCOLLECTOR_H
+#pragma once
 
 #include <revolution.h>
 
@@ -14,5 +13,3 @@ public:
     char mArchives[0x20][0x40]; // _0
     s32 mNumArchives; // _800
 };
-
-#endif // NAMEOBJARCHIVELISTCOLLECTOR_H

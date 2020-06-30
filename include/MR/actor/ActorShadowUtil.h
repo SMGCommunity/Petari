@@ -1,5 +1,4 @@
-#ifndef ACTORSHADOWUTIL_H
-#define ACTORSHADOWUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -40,5 +39,3 @@ namespace MR
     void onShadowVisibleSyncHostAll(LiveActor *);
     void offShadowVisibleSyncHostAll(LiveActor *);
 };
-
-#endif // ACTORSHADOWUTIL_H

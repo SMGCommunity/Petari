@@ -1,5 +1,4 @@
-#ifndef LIVEACTORUTIL_H
-#define LIVEACTORUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -65,5 +64,3 @@ namespace MR
     const char* createLowModelObjName(const LiveActor *);
     const char* createMiddleModelObjName(const LiveActor *);
 };
-
-#endif // LIVEACTORUTIL_H

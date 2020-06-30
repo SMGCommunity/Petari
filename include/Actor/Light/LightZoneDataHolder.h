@@ -1,5 +1,4 @@
-#ifndef LIGHTZONEDATAHOLDER_H
-#define LIGHTZONEDATAHOLDER_H
+#pragma once
 
 #include <revolution.h>
 
@@ -28,5 +27,3 @@ public:
     u32 _0;
     u32 _4;
 };
-
-#endif // LIGHTZONEDATAHOLDER_H

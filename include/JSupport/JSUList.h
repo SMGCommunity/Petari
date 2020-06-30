@@ -1,5 +1,4 @@
-#ifndef JSULIST_H
-#define JSULIST_H
+#pragma once
 
 #include <revolution.h>
 
@@ -50,5 +49,3 @@ public:
 
     ~JSULink();
 };
-
-#endif // JSULIST_H

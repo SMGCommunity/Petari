@@ -1,5 +1,4 @@
-#ifndef JKRARAM_H
-#define JKRARAM_H
+#pragma once
 
 #include "JKernel/JKRThread.h"
 
@@ -12,5 +11,3 @@ public:
 
     static JKRAram* sAramObject;
 };
-
-#endif // JKRARAM_H

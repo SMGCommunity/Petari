@@ -1,5 +1,4 @@
-#ifndef J3DANIMATION_H
-#define J3DANIMATION_H
+#pragma once
 
 #include <revolution.h>
 
@@ -33,5 +32,3 @@ public:
     f32 _C;
     f32 _10;
 };
-
-#endif // J3DANIMATION_H

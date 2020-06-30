@@ -1,5 +1,4 @@
-#ifndef JKRHEAP_H
-#define JKRHEAP_H
+#pragma once
 
 #include "JKernel/JKRDisposer.h"
 #include "JSupport/JSUList.h"
@@ -67,5 +66,3 @@ void* operator new[](s32 size);
 void* operator new[](s32 size, s32 align);
 void* operator new[](s32 size, JKRHeap* heap, s32 align);
 */
-
-#endif // JKRHEAP_H

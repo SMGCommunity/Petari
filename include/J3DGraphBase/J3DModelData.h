@@ -1,5 +1,4 @@
-#ifndef J3DMODELDATA_H
-#define J3DMODELDATA_H
+#pragma once
 
 #include "J3DGraphBase/J3DJointTree.h"
 #include "J3DGraphBase/J3DMaterialAttach.h"
@@ -35,5 +34,3 @@ public:
     J3DShapeTable mShapeTable; // _78
     J3DVertexData mVertexData; // _88
 };
-
-#endif // J3DMODELDATA_H

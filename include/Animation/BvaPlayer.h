@@ -1,5 +1,4 @@
-#ifndef BVAPLAYER_H
-#define BVAPLAYER_H
+#pragma once
 
 #include "Animation/AnmPlayer.h"
 #include "J3DGraphBase/J3DModel.h"
@@ -12,5 +11,3 @@ public:
     void calc();
     bool getAnmVisibility();
 };
-
-#endif // BVAPLAYER_H

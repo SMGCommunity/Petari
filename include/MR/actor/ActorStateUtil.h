@@ -1,5 +1,4 @@
-#ifndef ACTORSTATEUTIL_H
-#define ACTORSTATEUTIL_H
+#pragma once
 
 #include <revolution.h>
 #include "Actor/Nerve/NerveExecutor.h"
@@ -15,5 +14,3 @@ namespace MR
     bool updateActorStateAndNextNerve(LiveActor *, ActorStateBaseInterface *, const Nerve *);
     bool updateActorState(NerveExecutor *);
 };
-
-#endif // ACTORSTATEUTIL_H

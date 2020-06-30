@@ -1,5 +1,4 @@
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -36,5 +35,3 @@ public:
     JGeometry::TVec3<f32> _7C;
     u8 _88;
 };
-
-#endif // TRIANGLE_H

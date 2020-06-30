@@ -1,5 +1,4 @@
-#ifndef J3DMODEL_H
-#define J3DMODEL_H
+#pragma once
 
 #include "J3DGraphBase/J3DModelData.h"
 #include "J3DGraphBase/J3DMtxBuffer.h"
@@ -50,5 +49,3 @@ public:
 };
 
 const static f32 J3DDefaultScale = 1.0f;
-
-#endif // J3DMODEL_H

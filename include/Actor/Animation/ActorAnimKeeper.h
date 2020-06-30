@@ -1,5 +1,4 @@
-#ifndef ACTORANIMKEEPER_H
-#define ACTORANIMKEEPER_H
+#pragma once
 
 class LiveActor;
 
@@ -14,5 +13,3 @@ public:
     bool isPlaying(const char *) const;
     void initAnimData();
 };
-
-#endif // ACTORANIMKEEPER_H

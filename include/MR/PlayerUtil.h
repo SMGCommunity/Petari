@@ -1,5 +1,4 @@
-#ifndef PLAYERUTIL_H
-#define PLAYERUTIL_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 
@@ -10,5 +9,3 @@ namespace MR
     JGeometry::TVec3<f32>* getPlayerCenterPos();
     JGeometry::TVec3<f32>* getPlayerPos();
 };
-
-#endif // PLAYERUTIL_H

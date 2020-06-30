@@ -1,5 +1,4 @@
-#ifndef J3DMTXBUFFER_H
-#define J3DMTXBUFFER_H
+#pragma once
 
 #include "J3DGraphBase/J3DModelData.h"
 
@@ -32,5 +31,3 @@ public:
     u32 _30;
     u32 _34;
 };
-
-#endif // J3DMTXBUFFER_H

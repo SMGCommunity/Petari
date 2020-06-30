@@ -1,5 +1,4 @@
-#ifndef J3DTRANSFORM_H
-#define J3DTRANSFORM_H
+#pragma once
 
 #include "JGeometry/TVec3.h"
 #include <revolution.h>
@@ -25,5 +24,3 @@ void J3DPSMTxArrayConcat(Mtx44 *, Mtx44 *, Mtx44 *, u64);
 const static J3DTransformInfo j3dDefaultTransformInfo;
 const static JGeometry::TVec3<f32> j3dDefaultScale;
 const static Mtx j3dDefaultMtx;
-
-#endif // J3DTRANSFORM_H

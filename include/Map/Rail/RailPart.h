@@ -1,5 +1,4 @@
-#ifndef RAILPART_H
-#define RAILPART_H
+#pragma once
 
 #include <revolution.h>
 #include "JGeometry/TVec3.h"
@@ -56,5 +55,3 @@ public:
     const JGeometry::TVec3<f32> _24;
     f32 mLength; // _30
 };
-
-#endif // RAILPART_H

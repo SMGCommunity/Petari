@@ -1,5 +1,4 @@
-#ifndef JKRDECOMP_H
-#define JKRDECOMP_H
+#pragma once
 
 #include "JKernel/JKRThread.h"
 
@@ -41,5 +40,3 @@ public:
     OSMessageQueue _28;
     OSMessage _48;
 };
-
-#endif // JKRDECOMP_H

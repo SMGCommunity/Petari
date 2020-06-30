@@ -1,5 +1,4 @@
-#ifndef RAILGRAPHUTIL_H
-#define RAILGRAPHUTIL_H
+#pragma once
 
 #include "Map/Graph/RailGraphIter.h"
 
@@ -21,5 +20,3 @@ namespace MR
     s32 getSelectEdgeArg3(const RailGraphIter *);
     s32 getSelectEdgeArg7(const RailGraphIter *);
 };
-
-#endif // RAILGRAPHUTIL_H

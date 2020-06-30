@@ -1,5 +1,4 @@
-#ifndef J3DGD_H
-#define J3DGD_H
+#pragma once
 
 #include <revolution.h>
 #include "revolution/gx/GXEnum.h"
@@ -21,5 +20,3 @@ void J3DGDWriteBPCmd(u32);
 void J3DGDWrite_u32(u32);
 void J3DGDWriteXFCmdHdr(u16, u8);
 void J3DGDWrite_u16(u16);
-
-#endif // J3DGD_H
