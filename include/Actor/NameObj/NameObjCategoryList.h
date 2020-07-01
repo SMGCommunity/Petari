@@ -32,6 +32,10 @@ public:
     ~NameObjCategoryList();
 
     void execute(s32);
+    void incrementCheck(NameObj *, s32);
+    void allocateBuffer();
+    void add(NameObj *, s32);
+    void remove(NameObj *, s32);
 
     void initTable(u32, const CategoryListInitialTable *);
 

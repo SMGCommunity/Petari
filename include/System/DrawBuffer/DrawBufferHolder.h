@@ -12,5 +12,7 @@ public:
 
     void registerDrawBuffer(LiveActor *, s32);
 
+    void allocateActorListBuffer();
+
     DrawBufferGroup* mGroups; // _0
 };
