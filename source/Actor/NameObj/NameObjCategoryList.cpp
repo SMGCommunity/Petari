@@ -1,5 +1,4 @@
 #include "Actor/NameObj/NameObjCategoryList.h"
-#include <NMWException.h>
 
 NameObjCategoryList::CategoryInfo::CategoryInfo()
 {
@@ -31,4 +30,15 @@ void NameObjCategoryList::initTable(u32 numEntries, const CategoryListInitialTab
     }
 
     return;
+}
+
+void NameObjCategoryList::incrementCheck(NameObj *pObj, s32 idx)
+{
+    mCategoryInfo[idx].mChecks++;
+}
+
+void NameObjCategoryList::add(NameObj *pObj, s32 idx)
+{
+    mCategoryInfo[idx]._8++;
+    // some other array store
 }

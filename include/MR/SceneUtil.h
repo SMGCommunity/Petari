@@ -16,4 +16,6 @@ namespace MR
 
     bool isPlacementLocalStage();
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> const>* getZonePlacementMtx(const JMapInfoIter &);
+
+    s32 getPlacedZoneId(const JMapInfoIter &);
 };

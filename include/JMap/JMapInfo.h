@@ -49,6 +49,8 @@ public:
     s32 searchItemInfo(const char *) const;
     s32 getValueType(const char *) const;
     s32 getValueFast(s32, s32, const char **) const;
+    s32 getvalueFast(s32, s32, u32 *) const;
+    s32 getvalueFast(s32, s32, s32 *) const;
 
     template<typename T>
     void getValue(s32, const char *, T *) const;
