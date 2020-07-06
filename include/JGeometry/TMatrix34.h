@@ -5,14 +5,7 @@
 
 namespace JGeometry
 {
-    template<typename T>
-    class SMatrix34C
-    {
-    public:
-        /* empty */
-    };
-
-    template<typename T>
+    template<class T>
     class TMatrix34
     {
     public:
@@ -23,5 +16,12 @@ namespace JGeometry
         operator Mtx*() { return reinterpret_cast<Mtx*>(this); }
     
         T val[3][4];
+    };
+    
+    template<typename T>
+    class SMatrix34C
+    {
+    public:
+        /* empty */
     };
 };
