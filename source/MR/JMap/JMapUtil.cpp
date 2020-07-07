@@ -458,15 +458,27 @@ namespace MR
 
     bool isConnectedWithRail(const JMapInfoIter &iter)
     {
+        bool ret;
+
         if (!iter.isValid())
-            return 0;
-
-        s32 out = -1;
-        bool ret = MR::getJMapInfoArgNoInit(iter, "CommonPath_ID", &out);
-
-       if (!ret)
-            return 0;
+        {
+            ret = false;
+        }
         else
-            return out;
+        {
+            s32 path_id = -1;
+            bool res = MR::getJMapInfoArgNoInit(iter, "CommonPath_ID", &path_id);
+
+            if (res)
+            {
+                ret = path_id + 1;
+            }
+            else
+            {
+                ret = false;
+            } 
+        }
+
+        return ret;
     }
 };

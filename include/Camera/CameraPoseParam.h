@@ -15,6 +15,7 @@ public:
     JGeometry::TVec3<f32> _C;
     JGeometry::TVec3<f32> _18;
     JGeometry::TVec3<f32> _24;
+    f32 _30;
     JGeometry::TVec3<f32> _34;
     JGeometry::TVec3<f32> _40;
     f32 _4C;
