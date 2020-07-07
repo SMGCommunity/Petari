@@ -6,19 +6,6 @@
 #include "Camera/DotCamParams.h"
 #include "JGeometry/TVec3.h"
 
-namespace
-{
-    const char* sFlagName[0x6] =
-    {
-        "flag.noreset",
-        "flag.nofovy",
-        "flag.lofserpoff",
-        "flag.antibluroff",
-        "flag.collisionoff",
-        "flag.subjectiveoff"
-    };
-};
-
 class CameraGeneralParam
 {
 public:
@@ -89,5 +76,22 @@ public:
     CameraParamChunkID* mChunk; // _4
     s8 mDefaultCamera; // _8
     CameraParamChunk::ExParam mParams; // _C
-    CameraGeneralParam mGeneralParams; // _60
+    CameraGeneralParam* mGeneralParams; // _60
+    u8 _64;
+};
+
+namespace
+{
+    static CameraParamChunk::ExParam sUndoExParam;
+    static CameraGeneralParam sUndoParam;
+
+    const char* sFlagName[0x6] =
+    {
+        "flag.noreset",
+        "flag.nofovy",
+        "flag.lofserpoff",
+        "flag.antibluroff",
+        "flag.collisionoff",
+        "flag.subjectiveoff"
+    };
 };

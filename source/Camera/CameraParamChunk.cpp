@@ -2,6 +2,15 @@
 #include "MR/MathUtil.h"
 #include "string.h"
 
+CameraParamChunk::CameraParamChunk(CameraHolder *pHolder, const CameraParamChunkID &chunk)
+{
+    mChunk = new CameraParamChunkID(chunk);
+    mDefaultCamera = pHolder->getIndexOfDefault();
+    mGeneralParams = new CameraGeneralParam();
+    _64 = 0;
+    mParams.init();
+}
+
 bool CameraParamChunk::isOnNoReset() const
 {
     return mParams.mFlags & 0x1;
@@ -80,5 +89,5 @@ void CameraParamChunk::initiate()
 {
     mParams.init();
     CameraGeneralParam params;
-    mGeneralParams = params;
+    mGeneralParams = &params;
 }
