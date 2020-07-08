@@ -1,6 +1,7 @@
 #include "Camera/CameraParamChunk.h"
 #include "MR/MathUtil.h"
 #include "string.h"
+#include "smg.h"
 
 CameraParamChunk::CameraParamChunk(CameraHolder *pHolder, const CameraParamChunkID &chunk)
 {
@@ -87,14 +88,14 @@ void CameraParamChunk::setCollisionOff(bool flag)
 
 void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder)
 {
-    const char* camType;
+    const char* camType = nullptr;
     pReader->getValueString("camtype", &camType);
     u32 version = pReader->getVersion();
     arrangeCamTypeName(version, &camType);
 
-    bool isType = !(strcmp(camType, "CAM_TYPE_PLANET"));
+    bool isTypePlanet = !(strcmp(camType, "CAM_TYPE_PLANET"));
 
-    s8 idx = pHolder->getIndexOf(camType);
+    s32 idx = pHolder->getIndexOf(camType);
 
     if (idx == -1)
     {
@@ -102,7 +103,7 @@ void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder)
     }
     else
     {
-        mDefaultCamera = idx;
+        mDefaultCamera = (s8)idx;
     }
 
     pReader->getValueVec("woffset", &mParams.mWOffset);
@@ -115,6 +116,46 @@ void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder)
     pReader->getValueFloat("lower", &mParams.mLower);
     pReader->getValueInt("gndint", &mParams.mGNDInt);
     pReader->getValueFloat("uplay", &mParams.mUPlay);
+    pReader->getValueFloat("lplay", &mParams.mLPlay);
+    pReader->getValueInt("pushdelay", &mParams.mPushDelay);
+    pReader->getValueInt("pushdelaylow", &mParams.mPushDelayLow);
+    pReader->getValueInt("udown", &mParams.mUDown);
+    pReader->getValueInt("vpanuse", &mParams.mVPanUse);
+    pReader->getValueVec("vpanaxis", &mParams.mPanAxis);
+
+    for (s32 i = 0; i < 6; i++)
+    {
+        s32 val;
+        bool ret = pReader->getValueInt(sFlagName[i], &val);
+
+        if (ret)
+        {
+            mParams.mFlags = (mParams.mFlags | (val << i));
+        }
+    }
+
+    pReader->getValueFloat("dist", &mGeneralParams->mDist);
+    pReader->getValueVec("axis", &mGeneralParams->mAxis);
+    pReader->getValueVec("wpoint", &mGeneralParams->mWPoint);
+    pReader->getValueVec("up", &mGeneralParams->mUp);
+    bool ret = pReader->getValueFloat("angleA", &mGeneralParams->mAngleA);
+
+    if (!ret && isTypePlanet)
+    {
+        mGeneralParams->mAngleA = 30.0f;
+    }
+
+    pReader->getValueFloat("angleB", &mGeneralParams->mAngleB);
+    pReader->getValueInt("num1", &mGeneralParams->mNum1);
+    pReader->getValueInt("num2", &mGeneralParams->mNum2);
+
+    const char* name;
+    s32 res = pReader->getValueString("string", &name);
+
+    if (res)
+    {
+        mGeneralParams->mString.setCharPtr(name);
+    }
 }
 
 void CameraParamChunk::initiate()
@@ -122,4 +163,49 @@ void CameraParamChunk::initiate()
     mParams.init();
     CameraGeneralParam params;
     mGeneralParams = &params;
+}
+
+void CameraParamChunk::arrangeCamTypeName(u32 cameraVersion, const char **pName)
+{
+    if (cameraVersion < 0x30004)
+    {
+        if (!strcmp(*pName, "CAM_TYPE_DONKETSU_TEST"))
+        {
+            *pName = "CAM_TYPE_BOSS_DONKETSU";
+        }
+    }
+    else
+    {
+        if (cameraVersion < 0x30006)
+        {
+            if (!strcmp(*pName, "CAM_TYPE_BEHIND_DEBUG"))
+            {
+                *pName = "CAM_TYPE_SLIDER";
+            }
+            else
+            {
+                if (!strcmp(*pName, "CAM_TYPE_INWARD_TOWER_TEST"))
+                {
+                    *pName = "CAM_TYPE_INWARD_TOWER";
+                }
+                else
+                {
+                    if (!strcmp(*pName, "CAM_TYPE_EYE_FIXED_THERE_TEST"))
+                    {
+                        *pName = "CAM_TYPE_EYEPOS_FIX_THERE";
+                    }
+                }   
+            }
+        }
+        else
+        {
+            if (cameraVersion < 0x30009)
+            {
+                if (!strcmp(*pName, "CAM_TYPE_ICECUBE_PLANET"))
+                {
+                    *pName = "CAM_TYPE_CUBE_PLANET";
+                }
+            }
+        }
+    }
 }

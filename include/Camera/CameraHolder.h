@@ -19,9 +19,9 @@ class CameraHolder : public NameObj
 public:
     CameraHolder(const char *);
 
-    s8 getIndexOf(const char *) const;
+    s32 getIndexOf(const char *) const;
     Camera* getDefaultCamera();
-    s8 getIndexOfDefault() const;
+    s32 getIndexOfDefault() const;
 
     s8 mDefaultCameraIdx; // _C
 };

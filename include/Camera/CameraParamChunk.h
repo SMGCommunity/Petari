@@ -13,15 +13,15 @@ public:
 
     CameraGeneralParam* operator=(const CameraGeneralParam &);
 
-    f32 _0;
-    JGeometry::TVec3<f32> _4;
-    JGeometry::TVec3<f32> _10;
-    JGeometry::TVec3<f32> _1C;
-    f32 _28;
-    f32 _2C;
-    u32 _30;
-    u32 _34;
-    CameraParamString mStringParam; // _38
+    f32 mDist; // _0
+    JGeometry::TVec3<f32> mAxis; // _4
+    JGeometry::TVec3<f32> mWPoint; // _10
+    JGeometry::TVec3<f32> mUp; // _1C
+    f32 mAngleA; // _28
+    f32 mAngleB; // _2C
+    s32 mNum1; // _30
+    s32 mNum2; // _34
+    CameraParamString mString; // _38
 };
 
 class CameraParamChunk
