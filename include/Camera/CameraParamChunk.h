@@ -43,13 +43,13 @@ public:
         u16 mFlags; // _20
         f32 mUpper; // _24
         f32 mLower; // _28
-        u32 mGNDInt; // _2C
+        s32 mGNDInt; // _2C
         f32 mUPlay; // _30
         f32 mLPlay; // _34
-        u32 mPushDelay; // _38
-        u32 mPushDelayLow; // _3C
-        u32 mUDown; // _40
-        u32 mVPanUse; // _44
+        s32 mPushDelay; // _38
+        s32 mPushDelayLow; // _3C
+        s32 mUDown; // _40
+        s32 mVPanUse; // _44
         JGeometry::TVec3<f32> mPanAxis; // _48
     };
 
@@ -60,6 +60,7 @@ public:
     virtual void initiate();
     virtual const char* getClassName() const;
 
+    void arrangeCamTypeName(u32, const char **);
     s32 getZoneID() const;
     bool isOnNoReset() const;
     bool isOnUseFovy() const;

@@ -44,7 +44,7 @@ s32 DotCamReaderInBin::getValueString(const char *pName, const char **pOut)
     }
 }
 
-s32 DotCamReaderInBin::getVersion() const
+u32 DotCamReaderInBin::getVersion() const
 {
     return mVersion;
 }

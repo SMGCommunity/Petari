@@ -85,6 +85,38 @@ void CameraParamChunk::setCollisionOff(bool flag)
     }
 }
 
+void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder)
+{
+    const char* camType;
+    pReader->getValueString("camtype", &camType);
+    u32 version = pReader->getVersion();
+    arrangeCamTypeName(version, &camType);
+
+    bool isType = !(strcmp(camType, "CAM_TYPE_PLANET"));
+
+    s8 idx = pHolder->getIndexOf(camType);
+
+    if (idx == -1)
+    {
+       mDefaultCamera = pHolder->getIndexOfDefault();
+    }
+    else
+    {
+        mDefaultCamera = idx;
+    }
+
+    pReader->getValueVec("woffset", &mParams.mWOffset);
+    pReader->getValueFloat("loffset", &mParams.mLOffset);
+    pReader->getValueFloat("loffsetv", &mParams.mLOffsetV);
+    pReader->getValueFloat("roll", &mParams.mRoll);
+    pReader->getValueFloat("fovy", &mParams.mFovy);
+    pReader->getValueInt("camint", &mParams.mCamInt);
+    pReader->getValueFloat("upper", &mParams.mUpper);
+    pReader->getValueFloat("lower", &mParams.mLower);
+    pReader->getValueInt("gndint", &mParams.mGNDInt);
+    pReader->getValueFloat("uplay", &mParams.mUPlay);
+}
+
 void CameraParamChunk::initiate()
 {
     mParams.init();

@@ -7,7 +7,7 @@ class DotCamReader
 {
 public:
     virtual ~DotCamReader();
-    virtual s32 getVersion() const = 0;
+    virtual u32 getVersion() const = 0;
     virtual bool hasMoreChunk() const = 0;
     virtual void nextToChunk() = 0;
     virtual bool getValueInt(const char *, s32 *) = 0;
@@ -21,7 +21,7 @@ class DotCamReaderInBin : public DotCamReader
 public:
     DotCamReaderInBin(const void *);
 
-    virtual s32 getVersion() const;
+    virtual u32 getVersion() const;
     virtual bool hasMoreChunk() const;
     virtual void nextToChunk();
     virtual bool getValueInt(const char *, s32 *);
@@ -31,7 +31,7 @@ public:
 
     void init(const void *);
 
-    s32 mVersion; // _4
+    u32 mVersion; // _4
     u32 _8;
     JMapInfo mInfo; // _C
     JMapInfoIter mIter; // _14
