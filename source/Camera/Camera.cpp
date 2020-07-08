@@ -8,6 +8,11 @@ Camera::Camera(const char *pName) : NameObj(pName)
     mMtx.identity();
 }
 
+void Camera::reset()
+{
+    
+}
+
 bool Camera::isInterpolationOff() const
 {
     return false;
