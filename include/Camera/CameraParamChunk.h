@@ -60,7 +60,6 @@ public:
     virtual void initiate();
     virtual const char* getClassName() const;
 
-    void arrangeCamTypeName(u32, const char **);
     s32 getZoneID() const;
     bool isOnNoReset() const;
     bool isOnUseFovy() const;
@@ -69,10 +68,11 @@ public:
     bool isCollisionOff() const;
     bool isSubjectiveCameraOff() const;
     void getVPanAxis(JGeometry::TVec3<f32> *) const;
-
+    void setCameraType(const char *, const CameraHolder *);
     void setUseFovy(bool);
     void setLOFsErpOff(bool);
     void setCollisionOff(bool);
+    void arrangeCamTypeName(u32, const char **);
 
     CameraParamChunkID* mChunk; // _4
     s8 mDefaultCamera; // _8

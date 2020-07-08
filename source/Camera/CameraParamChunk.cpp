@@ -12,6 +12,11 @@ CameraParamChunk::CameraParamChunk(CameraHolder *pHolder, const CameraParamChunk
     mParams.init();
 }
 
+s32 CameraParamChunk::getZoneID() const
+{
+    return mChunk->mChunkLength;
+}
+
 bool CameraParamChunk::isOnNoReset() const
 {
     return mParams.mFlags & 0x1;
@@ -54,6 +59,11 @@ void CameraParamChunk::getVPanAxis(JGeometry::TVec3<f32> *out) const
     }
 
     MR::normalize(out);
+}
+
+void CameraParamChunk::setCameraType(const char *pName, const CameraHolder *pHolder)
+{
+    mDefaultCamera = pHolder->getIndexOf(pName);
 }
 
 void CameraParamChunk::setUseFovy(bool flag)
@@ -163,6 +173,11 @@ void CameraParamChunk::initiate()
     mParams.init();
     CameraGeneralParam params;
     mGeneralParams = &params;
+}
+
+const char* CameraParamChunk::getClassName() const
+{
+    return "Base";
 }
 
 void CameraParamChunk::arrangeCamTypeName(u32 cameraVersion, const char **pName)
