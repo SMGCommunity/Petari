@@ -54,7 +54,7 @@ MW_INC =    [
 rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 
-flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -sdata 4 -sdata2 4 -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
+flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -O4,s -fp hard -enum int -sdata 4 -sdata2 4 -inline on -pragma \"always_inline on\" -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -MMD -rtti off "
 includes = "-i . -I- -i include "
 
 for inc in MW_INC:

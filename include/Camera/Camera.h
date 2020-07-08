@@ -40,11 +40,10 @@ public:
 class CamTranslatorDummy
 {
 public:
-    inline CamTranslatorDummy(Camera *pCamera)
-        : mCamera(pCamera)  { }
+    inline CamTranslatorDummy(Camera *pCamera) : mCamera(pCamera) { }
 
     virtual void setParam(const CameraParamChunk *);
-    virtual void getCamera() const;
+    virtual Camera* getCamera() const;
 
     Camera* mCamera; // _4
 };
