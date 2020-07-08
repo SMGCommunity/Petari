@@ -103,7 +103,7 @@ void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder)
     }
     else
     {
-        mDefaultCamera = (s8)idx;
+        mDefaultCamera = idx;
     }
 
     pReader->getValueVec("woffset", &mParams.mWOffset);
