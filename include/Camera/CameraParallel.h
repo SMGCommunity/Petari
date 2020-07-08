@@ -6,4 +6,6 @@ class CameraParallel : public Camera
 {
 public:
     CameraParallel(const char *);
+
+    virtual s32 calc();
 };

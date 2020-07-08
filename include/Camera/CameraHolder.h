@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Actor/NameObj/NameObj.h"
 #include "Camera/Camera.h"
 #include "Camera/CameraParallel.h"
-#include "Actor/NameObj/NameObj.h"
 
 #include <revolution.h>
 
@@ -19,11 +19,18 @@ class CameraHolder : public NameObj
 public:
     CameraHolder(const char *);
 
+    CamTranslatorDummy* getTranslator(s32);
     s32 getIndexOf(const char *) const;
     Camera* getDefaultCamera();
     s32 getIndexOfDefault() const;
+    s32 getIndexOf(Camera *) const;
+    void createCameras();
+    Camera* getCameraInner(s32) const;
 
-    s8 mDefaultCameraIdx; // _C
+    s32 mDefaultCameraIdx; // _C
+    Camera** mCameras; // _10
+    CamTranslatorDummy** mTranslators; // _14
+    Camera* mDefaultCamera;
 };
 
 namespace
