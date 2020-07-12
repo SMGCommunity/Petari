@@ -1,5 +1,7 @@
 #include "Camera/Camera.h"
 
+#include <revolution/wpad.h>
+
 Camera::Camera(const char *pName) : NameObj(pName)
 {
     mParams = new CameraPoseParam();

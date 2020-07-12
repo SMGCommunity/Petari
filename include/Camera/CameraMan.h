@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Actor/NameObj/NameObj.h"
+#include "Camera/CameraDirector.h"
 #include "JGeometry/TMatrix34.h"
 
 class CameraPoseParam;
@@ -27,8 +28,15 @@ public:
     virtual void roundLeft();
     virtual void roundRight();
 
+    void owned(CameraDirector *);
+    void released(CameraDirector *);
+    void activate(CameraDirector *);
+    void deactivate(CameraDirector *);
+
+    CameraDirector* mDirector; // _C
     CameraPoseParam* mParams; // _10
-    u8 _14;
+    bool mIsActive; // _14
     u8 _15;
+    u16 _16;
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> > mMtx; // _18
 };
