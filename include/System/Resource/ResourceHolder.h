@@ -3,6 +3,27 @@
 #include "JKernel/JKRArchivePri.h"
 #include "System/Resource/ResourceInfo.h"
 
+namespace
+{
+    static const char* sModelExt[0x2] =
+    {
+        ".bdl",
+        ".bmd"
+    };
+
+    static const char* sMotionExt = ".bck";
+    static const char* sBcaExt = ".bca"; // unused
+    static const char* sBtkExt = ".btk";
+    static const char* sBpkExt = ".bpk";
+    static const char* sBtpExt = ".btp";
+    static const char* sBlkExt = ".blk";
+    static const char* sBrkExt = ".brk";
+    static const char* sBasExt = ".bas";
+    static const char* sBmtExt = ".bmt";
+    static const char* sBvaExt = ".bva";
+    static const char* sBamntExt = ".bamnt";
+};
+
 class ResourceHolder
 {
 public:
