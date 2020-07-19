@@ -27,7 +27,7 @@ public:
     u32 _C;
 
     static u32 sInterruptFlag;
-    static GDLObj* sGDLObj;
+    static GDLObj sGDLObj;
 };
 
 class J3DPacket

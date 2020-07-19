@@ -11,15 +11,15 @@ void J3DDisplayListObj::beginDL()
 {
     swapBuffer();
     J3DDisplayListObj::sInterruptFlag = OSDisableInterrupts();
-    GDInitGDLObj(J3DDisplayListObj::sGDLObj, mList, _C);
-    __GDCurrentDL = J3DDisplayListObj::sGDLObj;
+    GDInitGDLObj(&J3DDisplayListObj::sGDLObj, mList, _C);
+    __GDCurrentDL = &J3DDisplayListObj::sGDLObj;
 }
 
 u32 J3DDisplayListObj::endDL()
 {
     GDPadCurr32();
     OSRestoreInterrupts(J3DDisplayListObj::sInterruptFlag);
-    // todo -- some logic missing here
+    mListSize = J3DDisplayListObj::sGDLObj.ptr - J3DDisplayListObj::sGDLObj.start;
     GDFlushCurrToMem();
     __GDCurrentDL = 0;
     return mListSize;
