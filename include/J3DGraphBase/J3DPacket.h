@@ -4,6 +4,28 @@
 #include "revolution/GD/GDBase.h"
 #include <revolution.h>
 
+const u32 sDifferedRegister[0x7] =
+{
+    0x1,
+    0x2,
+    0x1000000,
+    0x10000000,
+    0x20000000,
+    0x2000000,
+    0x8000000
+};
+
+const u32 sSizeOfDiffered[0x7] = 
+{
+    0xD,
+    0x15,
+    0x78,
+    0x37,
+    0xF,
+    0x13,
+    0x2D
+};
+
 class J3DShapePacket;
 
 class J3DDisplayListObj
@@ -73,7 +95,7 @@ public:
     void addShapePacket(J3DShapePacket *);
     void beginDiff();
     void endDiff();
-    u32 isSame(J3DMatPacket *) const;
+    bool isSame(J3DMatPacket *) const;
 
     J3DMatPacket* _28;
     J3DShapePacket* mShapePacket; // _2C

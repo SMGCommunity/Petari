@@ -143,9 +143,18 @@ void J3DMatPacket::endDiff()
     _28->mDLObj->endDL();
 }
 
-u32 J3DMatPacket::isSame(J3DMatPacket *pPacket) const
+/*bool J3DMatPacket::isSame(J3DMatPacket *pPacket) const
 {
-    // todo
-    return 0;
-}
+    if (_34 != pPacket->_34)
+    {
+        return false;
+    }
+
+    if (_34)
+    {
+        return false;
+    }
+
+    return true;
+}*/
 
