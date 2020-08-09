@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JKernel/JKRArchivePri.h"
+#include "JKernel/JKRArchive.h"
 #include "System/Resource/ResourceInfo.h"
 
 namespace

@@ -9,6 +9,6 @@ LiveActorFlag::LiveActorFlag()
     mIsNoEntryDrawBuffer = 0;
     mIsOnBind = 1;
     mIsCalcGravity = 0;
-    _7 = 0;
-    _8 = 0;
+    mIsClipped = 0;
+    mIsClippingInvalid = 0;
 }

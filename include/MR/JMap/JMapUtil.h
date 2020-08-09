@@ -14,6 +14,8 @@ namespace MR
     bool getJMapInfoTrans(const JMapInfoIter &, JGeometry::TVec3<f32> *);
     bool getJMapInfoRotate(const JMapInfoIter &, JGeometry::TVec3<f32> *);
 
+    bool getJMapInfoScale(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *);
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);

@@ -4,6 +4,11 @@
 #include "JKernel/JKRFileLoader.h"
 #include <revolution.h>
 
+enum JKRMemBreakFlag
+{
+    
+};
+
 class JKRArchive : public JKRFileLoader
 {
 public:
@@ -13,6 +18,11 @@ public:
         ARAM = 0x2,
         DVD = 0x3,
         CMP = 0x4
+    };
+
+    enum EMountDirection
+    {
+
     };
 
     struct SDIFileEntry
@@ -49,6 +59,7 @@ public:
     u8 _3E;
     u8 _3F;
     s32 _40;
+    u8 _44[0x64-0x44];
 
     static u32 sCurrentDirID;
 };

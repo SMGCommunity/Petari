@@ -9,7 +9,16 @@ class LiveActor;
 
 namespace MR
 {
+    void copyTransRotateScale(const LiveActor *, LiveActor *);
+
+
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
+    void initDefaultPosNoRepeat(LiveActor *, const JMapInfoIter *);
+    bool isValidMovement(const LiveActor *);
+    bool isValidCalcAnim(const LiveActor *);
+    bool isValidCalcViewAndEntry(const LiveActor *);
+    bool isValidDraw(const LiveActor *);
+    void calcAnimDirect(LiveActor *);
 
     bool isDead(const LiveActor *);
     bool isHiddenModel(const LiveActor *);

@@ -1,2 +1,2 @@
-SDK_PATH=C:/Users/xarf9/Hacking/Wii/Revolution
-MW_BASE_PATH=C:/Users/xarf9/Hacking/Wii/CodeWarrior
+SDK_PATH=D:/Hacking/Wii/Revolution
+MW_BASE_PATH=D:/Hacking/Wii/CodeWarrior

@@ -396,7 +396,7 @@ void LiveActor::startClipped()
 {
     bool flag = 1;
     HitSensorKeeper* pKeeper = mSensorKeeper;
-    mFlags._7 = flag;
+    mFlags.mIsClipped = flag;
 
     if (pKeeper != 0)
     {
@@ -420,7 +420,7 @@ void LiveActor::endClipped()
 {
     bool flag = 0;
     HitSensorKeeper* pKeeper = mSensorKeeper;
-    mFlags._7 = flag;
+    mFlags.mIsClipped = flag;
 
     if (pKeeper != 0)
     {

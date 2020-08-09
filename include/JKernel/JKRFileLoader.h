@@ -11,6 +11,7 @@ public:
     virtual ~JKRFileLoader();
     virtual void unmount();
 
+    static void* getGlbResource(const char *, JKRFileLoader *);
     static void initializeVolumeList();
     void prependVolumeList(JSULink<JKRFileLoader> *);
     void removeVolumeList(JSULink<JKRFileLoader> *);
@@ -24,7 +25,7 @@ public:
     u8 _33;
     u32 _34;
 
-    static JSUPtrList sVolumeList;
+    static JSUList<JKRFileLoader> sVolumeList;
     static OSMutex sVolumeListMutex;
     
     static const char* sCurrentVolume;

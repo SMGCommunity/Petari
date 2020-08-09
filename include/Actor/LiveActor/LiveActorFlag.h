@@ -14,6 +14,6 @@ public:
     bool mIsNoEntryDrawBuffer; // _4
     bool mIsOnBind; // _5
     bool mIsCalcGravity; // _6
-    bool _7;
-    bool _8;
+    bool mIsClipped; // _7
+    bool mIsClippingInvalid; // _8
 };
