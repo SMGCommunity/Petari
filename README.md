@@ -1,4 +1,5 @@
 # Petari
+# Project has been moved to [here!](https://github.com/doldecomp/smg)
 A decompilation of Super Mario Galaxy 1. The end goal is to be as close to 1:1 to the original code as possible.
 
 # Compiling
