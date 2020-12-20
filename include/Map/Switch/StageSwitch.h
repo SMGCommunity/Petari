@@ -8,7 +8,7 @@ public:
     bool get(s32) const;
     void set(s32, bool);
 
-    s32 mFlags[0x4];
+    u8 mFlags[0x32];
 };
 
 class ZoneSwitch

@@ -34,4 +34,19 @@ namespace MR
         f32 ret = (val_0 >= val_1) ? val_0 : val_1;
         return ret;
     }
+
+    void vecScaleAdd(const register JGeometry::TVec3<f32> *pVecOut, const register JGeometry::TVec3<f32> *pVecIn, register f32 scale)
+    {
+        __asm
+        {
+            psq_l f0, 0(pVecOut), 0, 0
+            psq_l f3, 0(pVecIn), 0, 0
+            psq_l f2, 8(pVecOut), 1, 0
+            psq_l f4, 8(pVecIn), 1, 0
+            ps_madds0 f0, f3, scale, f0
+            ps_madds0 f2, f4, scale, f2
+            psq_st f0, 0(pVecOut), 0, 0
+            psq_st f2, 8(pVecOut), 1, 0
+        }
+    }
 };
