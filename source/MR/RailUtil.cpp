@@ -4,7 +4,6 @@
 #include "MR/PlayerUtil.h"
 #include "Actor/LiveActor/LiveActor.h"
 #include "JMath/JMath.h"
-#include "inlines.h"
 
 #include <revolution.h>
 
@@ -22,7 +21,7 @@ namespace MR
 
     void moveCoord(LiveActor *pActor, f32 speed)
     {
-        pActor->mRailRider->setSpeed(fabs(speed));
+        pActor->mRailRider->setSpeed(__fabs(speed));
         pActor->mRailRider->move();
     }
 
@@ -38,7 +37,7 @@ namespace MR
     s32 moveCoordAndCheckPassPointNo(LiveActor *pActor, f32 speed)
     {
         s32 nextPointBeforeMove = pActor->mRailRider->getNextPointNo();
-        pActor->mRailRider->setSpeed(fabs(speed));
+        pActor->mRailRider->setSpeed(__fabs(speed));
         pActor->mRailRider->move();
         s32 nextPointAfterMove = pActor->mRailRider->getNextPointNo();
         s32 ret = -1;

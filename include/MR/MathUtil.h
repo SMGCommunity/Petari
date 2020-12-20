@@ -22,4 +22,5 @@ namespace MR
 
     void vecKillElement(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *);
     void vecScaleAll(const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> *, f32);
+    void PSvecBlend(const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> *, JGeometry::TVec3<f32> *, f32, f32);
 };

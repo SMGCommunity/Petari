@@ -49,4 +49,21 @@ namespace MR
             psq_st f2, 8(pVecOut), 1, 0
         }
     }
+
+    void PSvecBlend(const register JGeometry::TVec3<f32> *pVec_0, const register JGeometry::TVec3<f32> *pVec_1, register JGeometry::TVec3<f32> *pOut, register f32 _f1, register f32 _f2)
+    {
+        __asm
+        {
+            psq_l f0, 0(pVec_0), 0, 0
+            psq_l f3, 8(pVec_0), 1, 0
+            ps_muls0 f4, f0, _f1
+            psq_l f0, 0(pVec_1), 0, 0
+            ps_muls0 f3, f3, _f1
+            psq_l f1, 8(pVec_1), 1, 0
+            ps_madds0 f4, f0, _f2, f4
+            ps_madds0 f3, f1, _f2, f3
+            psq_st f4, 0(pOut), 0, 0
+            psq_st f3, 8(pOut), 1, 0
+        }
+    }
 };
