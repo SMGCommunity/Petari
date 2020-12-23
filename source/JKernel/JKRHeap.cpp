@@ -1,6 +1,59 @@
 #include "JKernel/JKRHeap.h"
 #include "JUtility/JUTException.h"
 
+const u8 JKRHeap::_unk_0 = 1;
+
+JKRHeap::JKRHeap(void *ptr, u32 size, JKRHeap *pHeap, bool setErrHandler) : JKRDisposer(), mTree(this), mPtrList()
+{
+    OSInitMutex(&mMutex);
+    
+    _38 = size;
+    _30 = ptr;
+    _34 = static_cast<u8*>(ptr) + size;
+
+    if (!pHeap)
+    {
+        JKRHeap::sSystemHeap = this;
+        JKRHeap::sCurrentHeap = this;
+    }
+    else
+    {
+        JSUTree<JKRHeap>* tree = &mTree;
+
+        if (tree)
+        {
+            tree = (JSUTree<JKRHeap>*)&tree->mLink;
+        }
+
+        mTree.append((JSUPtrLink*)tree);
+
+        if (JKRHeap::sSystemHeap == JKRHeap::sRootHeap)
+        {
+            JKRHeap::sSystemHeap = this;
+        }
+
+        if (JKRHeap::sCurrentHeap == JKRHeap::sRootHeap)
+        {
+            JKRHeap::sCurrentHeap = this;
+        }
+    }
+
+    _68 = setErrHandler;
+
+    // missing clrlwi for some reason
+    if (setErrHandler == 1)
+    {
+        if (!JKRHeap::mErrorHandler)
+        {
+            JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
+        }
+    }
+    
+    _3C = JKRHeap::_unk_0;
+    _3D = JKRHeap::_unk_1;
+    _69 = 0;
+}
+
 JKRHeap* JKRHeap::becomeSystemHeap()
 {
     JKRHeap* pInstance = this;
@@ -110,7 +163,7 @@ void* JKRHeap::setErrorHandler(void (*err)(void *, u32, s32))
         err = (void (*)(void *, u32, s32))(*JKRDefaultMemoryErrorRoutine);
     }
 
-    void *pCurErrHandler = JKRHeap::sErrorHandler;
-    JKRHeap::sErrorHandler = err;
+    void *pCurErrHandler = JKRHeap::mErrorHandler;
+    JKRHeap::mErrorHandler = err;
     return pCurErrHandler;
 }

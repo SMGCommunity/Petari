@@ -2,6 +2,9 @@
 
 #include "JKernel/JKRDisposer.h"
 #include "JSupport/JSUList.h"
+#include "JSupport/JSUTree.h"
+
+#include <revolution/os.h>
 
 class JKRHeap : public JKRDisposer
 {
@@ -43,8 +46,18 @@ public:
 
     static void* alloc(u32, s32, JKRHeap *);
     
-    u8 _C[0x5C-0xC];
+    OSMutex mMutex; // _18
+    void* _30;
+    void* _34;
+    u32 _38;
+    u8 _3C;
+    u8 _3D;
+    u8 _3E;
+    u8 _3F;
+    JSUTree<JKRHeap> mTree; // _40
     JSUPtrList mPtrList; // _5C
+    bool _68;
+    bool _69;
 
     static void* mCodeStart;
     static void* mCodeEnd;
@@ -55,7 +68,10 @@ public:
     static JKRHeap* sSystemHeap;
     static JKRHeap* sCurrentHeap;
     static JKRHeap* sRootHeap;
-    static void* sErrorHandler;
+    static void* mErrorHandler;
+
+    const static u8 _unk_0;
+    const static u8 _unk_1;
 };
 
 void JKRDefaultMemoryErrorRoutine(void *, u32, s32);
