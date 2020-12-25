@@ -40,8 +40,7 @@ JKRHeap::JKRHeap(void *ptr, u32 size, JKRHeap *pHeap, bool setErrHandler) : JKRD
 
     _68 = setErrHandler;
 
-    // missing clrlwi for some reason
-    if (setErrHandler == 1)
+    if ((u8)setErrHandler == 1)
     {
         if (!JKRHeap::mErrorHandler)
         {
