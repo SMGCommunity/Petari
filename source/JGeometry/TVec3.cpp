@@ -26,18 +26,18 @@ namespace JGeometry
     }
 
     template<typename T>
-    void TVec3<T>::add(const JGeometry::TVec3<T> &src) const
+    void TVec3<T>::add(register const JGeometry::TVec3<T> &src) const
     {
         __asm
         {
             psq_l f3, 0(r3), 0, 0
-            psq_l f2, 0(r4), 0, 0
+            psq_l f2, 0(src), 0, 0
             psq_l f1, 8(r3), 1, 0
-            psq_l f0, 8(r4), 1, 0
+            psq_l f0, 8(src), 1, 0
             ps_add f2, f3, f2
             ps_add f0, f1, f0
-            psq_st f2, 0(r3), 0, 0
-            psq_st f0, 8(r3), 1, 0
+            psq_st f2, 0(src), 0, 0
+            psq_st f0, 8(src), 1, 0
         }
     }
 };

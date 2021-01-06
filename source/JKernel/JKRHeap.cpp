@@ -1,12 +1,16 @@
 #include "JKernel/JKRHeap.h"
 #include "JUtility/JUTException.h"
+#include "smg.h"
+
+#include<revolution/os.h>
 
 const u8 JKRHeap::_unk_0 = 1;
 
 JKRHeap::JKRHeap(void *ptr, u32 size, JKRHeap *pHeap, bool setErrHandler) : JKRDisposer(), mTree(this), mPtrList()
 {
     OSInitMutex(&mMutex);
-    
+
+    // todo -- cmpwi and add are swapped
     _38 = size;
     _30 = ptr;
     _34 = static_cast<u8*>(ptr) + size;
@@ -53,6 +57,35 @@ JKRHeap::JKRHeap(void *ptr, u32 size, JKRHeap *pHeap, bool setErrHandler) : JKRD
     _69 = 0;
 }
 
+bool JKRHeap::initArena(s8 **pRamStart, u32 *pRamSize, s32 maxHeaps)
+{
+    void* arenaLo = OSGetArenaLo();
+    void* arenaHi = OSGetArenaHi();
+    OSReport("original arenaLo = %p arenaHi = %p\n", arenaLo, arenaHi);
+
+    if (arenaLo == arenaHi)
+    {
+        return false;
+    }
+
+    void* data = OSInitAlloc(arenaLo, arenaHi, maxHeaps);
+    u32 ramEnd = (u32)arenaHi & 0xFFFFFFE0;
+    u32 ramStart = ((u32)data + 0x1F) & 0xFFFFFFE0;
+
+    JKRHeap::mCodeStart = (void*)0x80000000;
+    JKRHeap::mCodeEnd = (void*)ramStart;
+    JKRHeap::mUserRamStart = (void*)ramStart;
+    JKRHeap::mUserRamEnd = (void*)ramEnd;
+    JKRHeap::mMemorySize = *(u32*)0x80000028;
+
+    OSSetArenaLo((void*)ramEnd);
+    OSSetArenaHi((void*)ramEnd);
+
+    *pRamStart = (s8*)ramStart;
+    *pRamSize = ramEnd - ramStart;
+    return true;
+}
+
 JKRHeap* JKRHeap::becomeSystemHeap()
 {
     JKRHeap* pInstance = this;
@@ -74,7 +107,7 @@ void JKRHeap::destroy(JKRHeap *pHeap)
     do_destroy();
 }
 
-void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
+NO_INLINE void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
 {
     if (pHeap != 0)
     {
@@ -91,12 +124,12 @@ void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
     return 0;
 }
 
-JKRHeap* JKRHeap::alloc(u32 a1, s32 a2)
+void* JKRHeap::alloc(u32 a1, s32 a2)
 {
     return do_alloc(a1, a2);
 }
 
-void JKRHeap::free(void *pSrc, JKRHeap *pHeap)
+NO_INLINE void JKRHeap::free(void *pSrc, JKRHeap *pHeap)
 {
     if (pHeap == 0)
     {
@@ -116,6 +149,22 @@ void JKRHeap::free(void *pSrc)
     do_free(pSrc);
 }
 
+void JKRHeap::callAllDisposer()
+{
+    while (true)
+    {
+        JSUPtrLink* link = mPtrList.mFirst;
+
+        if (!link)
+        {
+            break;
+        }
+
+        // destructor seems to be a virtual function?
+        link->~JSUPtrLink();
+    }
+}
+
 void JKRHeap::freeAll()
 {
     do_freeAll();
@@ -131,24 +180,25 @@ void JKRHeap::resize(void *pSrc, u32 a2)
     do_resize(pSrc, a2);
 }
 
-void JKRHeap::copyMemory(void *pDest, void *pSrc, u32 len)
+/*JKRHeap* JKRHeap::findFromRoot(void *pHeap)
 {
-    __asm
+    if (!JKRHeap::sRootHeap)
     {
-        addi r0, r5, 3
-        srwi. r0, r0, 2
-        mtctr r0
-        beqlr
-
-    loop:
-        lwz r0, 0(r4)
-        addi r4, r4, 4
-        stw r0, 0(r3)
-        addi r3, r3, 4
-        bdnz loop
-        blr
+        return 0;
     }
-}
+
+    if (JKRHeap::sRootHeap->_30 > pHeap)
+    {
+        return JKRHeap::sRootHeap->findAllHeap(pHeap);
+    }
+
+    if (pHeap >= JKRHeap::sRootHeap->_34)
+    {
+        return JKRHeap::sRootHeap->findAllHeap(pHeap);
+    }
+
+    return JKRHeap::sRootHeap->findAllHeap(pHeap);
+}*/
 
 void JKRDefaultMemoryErrorRoutine(void *mSrc, u32 a2, s32 a3)
 {
@@ -165,4 +215,50 @@ void* JKRHeap::setErrorHandler(void (*err)(void *, u32, s32))
     void *pCurErrHandler = JKRHeap::mErrorHandler;
     JKRHeap::mErrorHandler = err;
     return pCurErrHandler;
+}
+
+s32 JKRHeap::getMaxAllocatableSize(s32 arg1)
+{
+    s32 maxFreeBlock = getMaxFreeBlock();
+    return ~(arg1 - 1) & (getFreeSize() - ((arg1 - 1) & (arg1 - (maxFreeBlock & 0xF))));
+}
+
+void* operator new(size_t size)
+{
+    return JKRHeap::alloc(size, 4, 0);
+}
+
+void* operator new(size_t size, s32 arg2)
+{
+    return JKRHeap::alloc(size, arg2, 0);
+}
+
+void* operator new(size_t size, JKRHeap *pHeap, s32 arg3)
+{
+    return JKRHeap::alloc(size, arg3, pHeap);
+}
+
+void* operator new[](size_t size)
+{
+    return JKRHeap::alloc(size, 4, 0);
+}
+
+void* operator new[](size_t size, s32 arg2)
+{
+    return JKRHeap::alloc(size, arg2, 0);
+}
+
+void* operator new[](size_t size, JKRHeap *pHeap, s32 arg3)
+{
+    return JKRHeap::alloc(size, arg3, pHeap);
+}
+
+void operator delete(void *ptr)
+{
+    JKRHeap::free(ptr, 0);
+}
+
+void operator delete[](void *ptr)
+{
+    JKRHeap::free(ptr, 0);
 }

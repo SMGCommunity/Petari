@@ -4,6 +4,7 @@
 #include "JSupport/JSUList.h"
 #include "JSupport/JSUTree.h"
 
+#include <stddef.h>
 #include <revolution/os.h>
 
 class JKRHeap : public JKRDisposer
@@ -29,12 +30,13 @@ public:
     virtual s32 do_getMaxFreeBlock() = 0;
     virtual s32 do_getTotalFreeSize() = 0;
 
-    u32 initArena(char **, u32 *, s32);
+    static bool initArena(s8 **, u32 *, s32);
 
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
     void destroy(JKRHeap*);
-    JKRHeap* alloc(u32, s32);
+    static void* alloc(u32, s32, JKRHeap *);
+    void* alloc(u32, s32);
     static void free(void *, JKRHeap *);
     void free(void *);
     void freeAll();
@@ -43,8 +45,11 @@ public:
     static JKRHeap* findFromRoot(void *);
     static void copyMemory(void *dest, void *src, u32 len);
     static void* setErrorHandler(void (*)(void *, u32, s32));
-
-    static void* alloc(u32, s32, JKRHeap *);
+    JKRHeap* findAllHeap(void *) const;
+    JKRHeap* find(void *) const;
+    s32 getMaxAllocatableSize(s32);
+    s32 getMaxFreeBlock();
+    s32 getFreeSize();
     
     OSMutex mMutex; // _18
     void* _30;
@@ -75,6 +80,17 @@ public:
 };
 
 void JKRDefaultMemoryErrorRoutine(void *, u32, s32);
+
+void* operator new(size_t size);
+void* operator new(size_t, s32);
+void* operator new(size_t, JKRHeap *, s32);
+
+void* operator new[](size_t);
+void* operator new[](size_t, s32);
+void* operator new[](size_t, JKRHeap *, s32);
+
+void operator delete(void *);
+void operator delete[](void *);
 
 // for some reason these are illegal?
 /*
