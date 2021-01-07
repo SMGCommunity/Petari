@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/NameObj/NameObj.h"
+#include "NameObj/NameObj.h"
 #include "Camera/Camera.h"
 #include "Camera/CameraParallel.h"
 

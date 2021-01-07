@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/Sensor/HitSensor.h"
+#include "LiveActor/Sensor/HitSensor.h"
 
 namespace MR
 {

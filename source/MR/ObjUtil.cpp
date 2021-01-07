@@ -1,5 +1,5 @@
 #include "MR/ObjUtil.h"
-#include "Actor/NameObj/NameObjExecuteHolder.h"
+#include "NameObj/NameObjExecuteHolder.h"
 
 namespace MR
 {

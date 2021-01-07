@@ -1,7 +1,7 @@
 #include "Scene/SceneObjHolder.h"
-#include "Actor/NameObj/NameObjGroup.h"
-#include "Actor/NameObj/NameObjExecuteHolder.h"
-#include "Actor/LiveActor/AllLiveActorGroup.h"
+#include "NameObj/NameObjGroup.h"
+#include "NameObj/NameObjExecuteHolder.h"
+#include "LiveActor/AllLiveActorGroup.h"
 #include "smg.h"
 
 SceneObjHolder::SceneObjHolder()

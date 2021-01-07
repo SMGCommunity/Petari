@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/NameObj/NameObj.h"
+#include "NameObj/NameObj.h"
 
 class CameraDirector : public NameObj
 {

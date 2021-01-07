@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/Clipping/ClippingDirector.h"
+#include "LiveActor/Clipping/ClippingDirector.h"
 
 namespace MR
 {

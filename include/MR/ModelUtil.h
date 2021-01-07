@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/LiveActor/LiveActor.h"
+#include "LiveActor/LiveActor.h"
 #include "revolution/os/OSMutex.h"
 
 namespace MR

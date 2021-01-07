@@ -1,8 +1,8 @@
 #include "MR/MathUtil.h"
 #include "MR/RailUtil.h"
-#include "MR/actor/LiveActorUtil.h"
+#include "MR/LiveActorUtil.h"
 #include "MR/PlayerUtil.h"
-#include "Actor/LiveActor/LiveActor.h"
+#include "LiveActor/LiveActor.h"
 #include "JMath/JMath.h"
 
 #include <revolution.h>

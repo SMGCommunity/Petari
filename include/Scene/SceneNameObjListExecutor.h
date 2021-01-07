@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actor/NameObj/NameObjListExecutor.h"
+#include "NameObj/NameObjListExecutor.h"
 
 namespace
 {

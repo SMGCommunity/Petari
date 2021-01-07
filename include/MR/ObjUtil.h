@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Actor/LiveActor/LiveActor.h"
-#include "Actor/NameObj/NameObj.h"
+#include "LiveActor/LiveActor.h"
+#include "NameObj/NameObj.h"
 #include "System/Resource/ResourceHolder.h"
 
 namespace MR

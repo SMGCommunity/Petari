@@ -1,6 +1,6 @@
 #include "Map/Rail/BezierRail.h"
 #include "JGeometry/TUtil.h"
-#include "MR/JMap/JMapUtil.h"
+#include "MR/JMapUtil.h"
 #include "MR/MathUtil.h"
 #include "MR/StringUtil.h"
 

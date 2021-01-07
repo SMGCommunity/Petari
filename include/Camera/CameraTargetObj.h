@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Actor/AreaObj/AreaObj.h"
-#include "Actor/NameObj/NameObj.h"
+#include "AreaObj/AreaObj.h"
+#include "NameObj/NameObj.h"
 #include "Gravity/GravityInfo.h"
 #include "JGeometry/TVec3.h"
 

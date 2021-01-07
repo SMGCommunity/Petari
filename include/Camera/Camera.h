@@ -3,7 +3,7 @@
 
 #include "Camera/CameraPoseParam.h"
 #include "JGeometry/TMatrix34.h"
-#include "Actor/NameObj/NameObj.h"
+#include "NameObj/NameObj.h"
 
 class CamTranslatorDummy;
 class CameraParamChunk;
