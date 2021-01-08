@@ -1,6 +1,6 @@
 #pragma once
 
-#include "J3DGraphBase/J3DModelData.h"
+#include "J3DGraphAnimator/J3DModelData.h"
 #include "J3DGraphBase/J3DMtxBuffer.h"
 #include <revolution/mtx.h>
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "J3DGraphBase/J3DJointTree.h"
-#include "J3DGraphBase/J3DMaterialAttach.h"
+#include "J3DGraphAnimator/J3DJointTree.h"
+#include "J3DGraphAnimator/J3DMaterialAttach.h"
 #include "J3DGraphBase/J3DVertex.h"
 
 class J3DShapeTable

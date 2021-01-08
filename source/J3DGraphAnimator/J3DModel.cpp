@@ -1,4 +1,4 @@
-#include "J3DGraphBase/J3DModel.h"
+#include "J3DGraphAnimator/J3DModel.h"
 
 void J3DModel::initialize()
 {
