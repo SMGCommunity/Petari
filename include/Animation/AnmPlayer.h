@@ -1,8 +1,8 @@
 #pragma once
 
 #include "System/Resource/ResourceInfo.h"
-#include "J3DGraphBase/J3DAnimation.h"
-#include "J3DGraphBase/J3DModelData.h"
+#include "J3DGraphAnimator/J3DAnimation.h"
+#include "J3DGraphAnimator/J3DModelData.h"
 
 class AnmPlayerBase
 {
