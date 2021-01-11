@@ -2,6 +2,7 @@
 
 
 #include "Camera/CameraPoseParam.h"
+#include "Camera/CameraHeightArrange.h"
 #include "JGeometry/TMatrix34.h"
 #include "NameObj/NameObj.h"
 
@@ -29,10 +30,11 @@ public:
     virtual CamTranslatorDummy* createTranslator();
 
     void setZoneMtx(s32);
+    void createVPanObj();
 
     u32 _C;
     CameraPoseParam* mParams; // _10
-    u32 _14;
+    CameraHeightArrange* mHeightArrangeCamera; // _14
     u32 _18;
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> > mMtx; // _1C
 };

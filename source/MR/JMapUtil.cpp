@@ -92,7 +92,7 @@ namespace MR
 
         if (MR::isPlacementLocalStage())
         {
-            JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> const>* mtx = MR::getZonePlacementMtx(iter);
+            JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> >* mtx = MR::getZonePlacementMtx(iter);
             mtx->mult(*pOut, *pOut);
         }
 
