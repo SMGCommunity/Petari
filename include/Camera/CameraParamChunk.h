@@ -6,12 +6,14 @@
 #include "Camera/DotCamParams.h"
 #include "JGeometry/TVec3.h"
 
+#include "smg.h"
+
 class CameraGeneralParam
 {
 public:
     CameraGeneralParam();
 
-    CameraGeneralParam* operator=(const CameraGeneralParam &);
+    CameraGeneralParam& operator=(const CameraGeneralParam &);
 
     f32 mDist; // _0
     JGeometry::TVec3<f32> mAxis; // _4
@@ -79,6 +81,44 @@ public:
     CameraParamChunk::ExParam mParams; // _C
     CameraGeneralParam* mGeneralParams; // _60
     u8 _64;
+};
+
+class CameraParamChunkGame : public CameraParamChunk
+{
+public:
+    CameraParamChunkGame(CameraHolder *, const CameraParamChunkID &);
+
+    virtual void copy(const CameraParamChunk *);
+    virtual void load(DotCamReader *, CameraHolder *);
+    virtual void initiate();
+    virtual const char* getClassName() const;
+
+    s8 mGameFlagThru; // _65
+    s8 mEnabledEndErpFrame; // _66
+    s8 _67;
+    s32 mCamEndInt; // _68
+};
+
+class CameraParamChunkEvent : public CameraParamChunk
+{
+public:
+    CameraParamChunkEvent(CameraHolder *, const CameraParamChunkID &);
+
+    virtual void copy(const CameraParamChunk *);
+    virtual void load(DotCamReader *, CameraHolder *);
+    virtual void initiate();
+    virtual const char* getClassName() const;
+
+    s8 mEnableErpFrame; // _65
+    u8 _66;
+    u8 _67;
+    s32 mEVFrm; // _68
+    s8 mEnableEndErpFrame; // _6C
+    u8 _6D;
+    u8 _6E;
+    u8 _6F;
+    s32 mCamEndInt; // _70
+    s32 mEventPriority; // _74
 };
 
 namespace

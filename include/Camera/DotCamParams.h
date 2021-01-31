@@ -6,7 +6,7 @@
 class DotCamReader
 {
 public:
-    virtual ~DotCamReader();
+    inline virtual ~DotCamReader();
     virtual u32 getVersion() const = 0;
     virtual bool hasMoreChunk() const = 0;
     virtual void nextToChunk() = 0;
@@ -21,6 +21,7 @@ class DotCamReaderInBin : public DotCamReader
 public:
     DotCamReaderInBin(const void *);
 
+    virtual ~DotCamReaderInBin();
     virtual u32 getVersion() const;
     virtual bool hasMoreChunk() const;
     virtual void nextToChunk();

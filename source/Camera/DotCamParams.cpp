@@ -1,6 +1,8 @@
 #include "Camera/DotCamParams.h"
 #include "smg.h"
 
+DotCamReader::~DotCamReader() { }
+
 DotCamReaderInBin::DotCamReaderInBin(const void *pData)
     : mVersion(0)
 {
@@ -9,6 +11,8 @@ DotCamReaderInBin::DotCamReaderInBin(const void *pData)
     mIter.mPos = -1;
     init(pData);
 }
+
+DotCamReaderInBin::~DotCamReaderInBin() { }
 
 void DotCamReaderInBin::nextToChunk()
 {

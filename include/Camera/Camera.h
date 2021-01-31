@@ -6,6 +6,8 @@
 #include "JGeometry/TMatrix34.h"
 #include "NameObj/NameObj.h"
 
+#include "smg.h"
+
 class CamTranslatorDummy;
 class CameraParamChunk;
 
@@ -42,7 +44,7 @@ public:
 class CamTranslatorDummy
 {
 public:
-    inline CamTranslatorDummy(Camera *pCamera) : mCamera(pCamera) { }
+    __inline CamTranslatorDummy(Camera *pCamera) : mCamera(pCamera) { }
 
     virtual void setParam(const CameraParamChunk *);
     virtual Camera* getCamera() const;

@@ -3,6 +3,14 @@
 #include "string.h"
 #include "smg.h"
 
+CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam &rhs)
+{
+    mDist = rhs.mDist;
+    mAngleA = rhs.mAngleA;
+    mAngleB = rhs.mAngleB;
+    return *this;
+}
+
 CameraParamChunk::CameraParamChunk(CameraHolder *pHolder, const CameraParamChunkID &chunk)
 {
     mChunk = new CameraParamChunkID(chunk);
@@ -172,7 +180,7 @@ void CameraParamChunk::initiate()
 {
     mParams.init();
     CameraGeneralParam params;
-    mGeneralParams = &params;
+    *mGeneralParams = params;
 }
 
 const char* CameraParamChunk::getClassName() const
@@ -223,4 +231,118 @@ void CameraParamChunk::arrangeCamTypeName(u32 cameraVersion, const char **pName)
             }
         }
     }
+}
+
+CameraParamChunkGame::CameraParamChunkGame(CameraHolder *pHolder, const CameraParamChunkID &rChunk)
+    : CameraParamChunk(pHolder, rChunk)
+{
+    mGameFlagThru = 1;
+    mEnabledEndErpFrame = 0;
+    mCamEndInt = 0x78;
+}
+
+void CameraParamChunkGame::load(DotCamReader *pReader, CameraHolder *pHolder)
+{
+    CameraParamChunk::load(pReader, pHolder);
+
+    s32 temp;
+    bool ret = pReader->getValueInt("gflag.thru", &temp);
+
+    if (ret)
+    {
+        mGameFlagThru = temp;
+    }
+    else
+    {
+        mGameFlagThru = 0;
+    }
+
+    ret = pReader->getValueInt("gflag.enableEndErpFrame", &temp);
+
+    if (ret)
+    {
+        mEnabledEndErpFrame = temp;
+    }
+
+    ret = pReader->getValueInt("gflag.camendint", &temp);
+
+    if (ret)
+    {
+        mCamEndInt = temp;
+    }
+}
+
+void CameraParamChunkGame::initiate()
+{
+    mParams.init();
+
+    CameraGeneralParam params;
+
+    *mGeneralParams = params;
+    mGameFlagThru = 0;
+    mEnabledEndErpFrame = 0;
+}
+
+void CameraParamChunkGame::copy(const CameraParamChunk *pChunk)
+{
+    CameraParamChunk::copy(pChunk);
+}
+
+CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder *pHolder, const CameraParamChunkID &rChunk)
+    : CameraParamChunk(pHolder, rChunk)
+{
+    mEnableErpFrame = 0;
+    mEVFrm = 0;
+    mEnableEndErpFrame = 0;
+    mCamEndInt = 0x78;
+    mEventPriority = 1;
+}
+
+void CameraParamChunkEvent::load(DotCamReader *pReader, CameraHolder *pHolder)
+{
+    CameraParamChunk::load(pReader, pHolder);
+
+    s32 temp;
+
+    if (pReader->getValueInt("eflag.enableErpFrame", &temp))
+    {
+        mEnableErpFrame = temp;
+    }
+
+    if (pReader->getValueInt("eflag.enableEndErpFrame", &temp))
+    {
+        mEnableEndErpFrame = temp;
+    }
+
+    if (pReader->getValueInt("camendint", &temp))
+    {
+        mCamEndInt = temp;
+    }
+
+    if (pReader->getValueInt("evfrm", &temp))
+    {
+        mEVFrm = temp;
+    }
+
+    if (pReader->getValueInt("evpriority", &temp))
+    {
+        mEventPriority = temp;
+    }
+}
+
+void CameraParamChunkEvent::initiate()
+{
+    mParams.init();
+
+    CameraGeneralParam param;
+    *mGeneralParams = param;
+
+    mEnableErpFrame = 0;
+    mEnableEndErpFrame = 0;
+    mEventPriority = 1;
+}
+
+void CameraParamChunkEvent::copy(const CameraParamChunk *pChunk)
+{
+    CameraParamChunk::copy(pChunk);
 }
