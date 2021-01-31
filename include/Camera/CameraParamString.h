@@ -5,7 +5,7 @@ class CameraParamString
 public:
     CameraParamString();
 
-    CameraParamString* operator=(const CameraParamString &);
+    CameraParamString& operator=(const CameraParamString &);
     void setCharPtr(const char *);
     const char* getCharPtr() const;
     void copy(const char *);

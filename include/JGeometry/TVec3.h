@@ -33,7 +33,20 @@ namespace JGeometry
         void sub(const TVec3<T> &);
         T squared() const;
 
-        void operator =(const TVec3<T> &);
+        TVec3<T>& operator =(const register TVec3<T> &rhs)
+        {
+            const register TVec3<T>* lhs = this;
+            asm
+            {
+                psq_l f1, 0(rhs), 0, 0
+                lfs f0, 8(rhs)
+                psq_st f1, 0(lhs), 0, 0
+                stfs f0, 8(lhs)
+            }
+
+            return *this;
+        };
+
         TVec3<T> operator +=(const TVec3<T> &);
         TVec3<T> operator -(const TVec3<T> &);
         TVec3<T> operator -=(const TVec3<T> &);

@@ -8,10 +8,10 @@ CameraParamString::CameraParamString()
     mCharPtr = nullptr;
 }
 
-CameraParamString* CameraParamString::operator=(const CameraParamString &otherParam)
+CameraParamString& CameraParamString::operator=(const CameraParamString &otherParam)
 {
     copy(otherParam.mCharPtr);
-    return this;
+    return *this;
 }
 
 void CameraParamString::setCharPtr(const char *pCharPtr)

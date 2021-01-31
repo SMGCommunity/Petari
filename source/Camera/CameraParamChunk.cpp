@@ -5,9 +5,22 @@
 
 CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam &rhs)
 {
+    // todo -- scheduling
     mDist = rhs.mDist;
-    mAngleA = rhs.mAngleA;
-    mAngleB = rhs.mAngleB;
+    mAxis = rhs.mAxis;
+    mWPoint = rhs.mWPoint;
+    mUp = rhs.mUp;
+
+    f32 angleA = rhs.mAngleA;
+    f32 angleB = rhs.mAngleB;
+    s32 num1 = rhs.mNum1;
+    s32 num2 = rhs.mNum2;
+
+    mAngleA = angleA;
+    mAngleB = angleB;
+    mNum1 = num1;
+    mNum2 = num2;
+    mString = rhs.mString;
     return *this;
 }
 
