@@ -40,4 +40,21 @@ namespace JGeometry
             psq_st f0, 8(src), 1, 0
         }
     }
+
+    template<typename T>
+    bool TVec3<T>::operator==(const JGeometry::TVec3<T> &rhs)
+    {
+        if (epsilonEquals(x, rhs.x, 0.0000038146973f))
+        {
+            if (epsilonEquals(y, rhs.y, 0.0000038146973f))
+            {
+                if (epsilonEquals(z, rhs.z, 0.0000038146973f))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 };

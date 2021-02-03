@@ -50,6 +50,7 @@ namespace JGeometry
         TVec3<T> operator +=(const TVec3<T> &);
         TVec3<T> operator -(const TVec3<T> &);
         TVec3<T> operator -=(const TVec3<T> &);
+        bool operator==(const TVec3<T> &);
 
         void scale(T);
 
