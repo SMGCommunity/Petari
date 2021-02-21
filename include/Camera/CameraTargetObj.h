@@ -151,9 +151,9 @@ public:
     virtual AreaObj* getCubeCameraArea() const;
     virtual u32* getGroundTriangle() const;
 
-    LiveActor* mActor; // _10
+    const LiveActor* mActor; // _10
     JGeometry::TVec3<f32> mUp; // _14
     JGeometry::TVec3<f32> mFront; // _20
     JGeometry::TVec3<f32> mSide; // _2C
-    AreaObj* mmCubeCameraArea; // _38
+    AreaObj* mCubeCameraArea; // _38
 };
