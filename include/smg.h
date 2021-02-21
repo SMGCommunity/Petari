@@ -4,5 +4,6 @@
 
 #define nullptr NULL
 
-#define NO_INLINE __declspec(noinline)
 #define FORCE_INLINE __inline
+
+#define NO_INLINE _Pragma("push") _Pragma("dont_inline on")
