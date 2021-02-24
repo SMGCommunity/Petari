@@ -4,13 +4,10 @@
 
 #include<revolution/os.h>
 
-const u8 JKRHeap::_unk_0 = 1;
-
 JKRHeap::JKRHeap(void *ptr, u32 size, JKRHeap *pHeap, bool setErrHandler) : JKRDisposer(), mTree(this), mPtrList()
 {
     OSInitMutex(&mMutex);
 
-    // todo -- cmpwi and add are swapped
     _38 = size;
     _30 = ptr;
     _34 = static_cast<u8*>(ptr) + size;
@@ -107,7 +104,7 @@ void JKRHeap::destroy(JKRHeap *pHeap)
     do_destroy();
 }
 
-NO_INLINE void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
+void* JKRHeap::alloc(u32 a1, s32 a2, JKRHeap *pHeap)
 {
     if (pHeap != 0)
     {
@@ -129,7 +126,7 @@ void* JKRHeap::alloc(u32 a1, s32 a2)
     return do_alloc(a1, a2);
 }
 
-NO_INLINE void JKRHeap::free(void *pSrc, JKRHeap *pHeap)
+void JKRHeap::free(void *pSrc, JKRHeap *pHeap)
 {
     if (pHeap == 0)
     {

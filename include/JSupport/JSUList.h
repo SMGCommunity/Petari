@@ -7,7 +7,7 @@ class JSUPtrLink;
 class JSUPtrList
 {
 public:
-    inline JSUPtrList()
+    __inline JSUPtrList()
     {
         initiate();
     }
@@ -50,7 +50,7 @@ template<typename T>
 class JSULink : public JSUPtrLink
 {
 public:
-    inline JSULink(void* ptr) : JSUPtrLink(ptr) { }
+    __inline JSULink(void* ptr) : JSUPtrLink(ptr) { }
 
     ~JSULink();
 };

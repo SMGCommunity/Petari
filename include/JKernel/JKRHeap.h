@@ -75,7 +75,7 @@ public:
     static JKRHeap* sRootHeap;
     static void* mErrorHandler;
 
-    const static u8 _unk_0;
+    const static u8 _unk_0 = 1;
     const static u8 _unk_1;
 };
 
