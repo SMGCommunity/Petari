@@ -8,13 +8,11 @@ public:
     bool get(s32) const;
     void set(s32, bool);
 
-    u8 mFlags[0x32];
+    u32 mFlags[0x4];
 };
 
-class ZoneSwitch
+class ZoneSwitch : public BitFlag128
 {
 public:
     ZoneSwitch();
-
-    BitFlag128 mFlags;
 };
