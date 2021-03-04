@@ -10,6 +10,6 @@ namespace JGeometry
     public:
         static bool epsilonEquals(T, T, T);
         static f32 sqrt(T);
-        static f32 clamp(T, T, T);
+        static T clamp(T, T, T);
     };
 };

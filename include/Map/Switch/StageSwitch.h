@@ -5,6 +5,11 @@
 class BitFlag128
 {
 public:
+    inline BitFlag128()
+    {
+        
+    }
+
     bool get(s32) const;
     void set(s32, bool);
 

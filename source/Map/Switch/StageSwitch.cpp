@@ -19,3 +19,8 @@ void BitFlag128::set(s32 bit_index, bool setTrue)
         flag &= ~(1 << (bit_index % 32));
     }
 }
+
+ZoneSwitch::ZoneSwitch() : BitFlag128()
+{
+
+}

@@ -28,4 +28,16 @@ namespace JGeometry
         val = (val * ((0.5f * sqrt) * (3.0f - (val * (sqrt * sqrt)))));
         return val;
     }
+
+    template<typename T>
+    T TUtil<T>::clamp(T arg1, T arg2, T arg3)
+    {
+        if (arg1 < arg2)
+            return arg2;
+        
+        if (arg1 > arg3)
+            return arg3;
+
+        return arg3;
+    }
 };
