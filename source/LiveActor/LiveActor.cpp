@@ -352,8 +352,7 @@ void LiveActor::setNerve(const Nerve *pNerve)
 
 bool LiveActor::isNerve(const Nerve *pNerve) const
 {
-    // todo -- figure out why there are two unneeded instructions here
-    return !(pNerve - mSpine->getCurrentNerve());
+    return (mSpine->getCurrentNerve() == pNerve);
 }
 
 u32 LiveActor::getNerveStep() const
