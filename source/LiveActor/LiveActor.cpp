@@ -250,21 +250,10 @@ void LiveActor::calcAnmMtx()
     }
 }
 
-// for some reason, the compiler emits "cr1" for this specific function
-// todo -- figure out why
 void LiveActor::calcViewAndEntry()
 {
-    u8 cond = mFlags.mIsNoCalcView != 0;
-
-    if (cond)
-    {
-        return;
-    }
-
-    if (mModelManager != 0)
-    {
+    if (!mFlags.mIsNoCalcView && mModelManager && !mFlags.mIsNoCalcView)
         mModelManager->calcView();
-    }
 }
 
 s32 LiveActor::receiveMessage(u32 msg, HitSensor *pTaking, HitSensor *pTaken)
