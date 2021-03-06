@@ -6,15 +6,8 @@ namespace JMath
     template<s32 Len, typename T>
     TAtanTable<Len, T>::TAtanTable()
     {
-        s32 curIdx = 0;
-        s32 curTblIdx = 0;
-
-        do
-        {
-            mTable[curTblIdx] = atan(curIdx / 1024.0);
-            curIdx++;
-            curTblIdx++;
-        } while (curIdx < 0x400);
+        for (int i = 0; i < Len; ++i)
+            mTable[i] = atan(i / static_cast<f64>(Len));
         
         mTable[0] = 0.0f;
         _1000 = 0.78539819f;
@@ -23,15 +16,8 @@ namespace JMath
     template<s32 Len, typename T>
     TAsinAcosTable<Len, T>::TAsinAcosTable()
     {
-        s32 curIdx = 0;
-        s32 curTblIdx = 0;
-
-        do
-        {
-            mTable[curTblIdx] = asin(curIdx / 1024.0);
-            curIdx++;
-            curTblIdx++;
-        } while (curIdx < 0x400);
+        for (int i = 0; i < Len; ++i)
+            mTable[i] = asin(i / static_cast<f64>(Len));
         
         mTable[0] = 0.0f;
         _1000 = 0.78539819f;
@@ -45,6 +31,6 @@ namespace JMath
             return 0.0f;
         }
 
-        return mTable[(0.5f + (1024.0f * arg1) / arg2)];
+        return mTable[(0.5f + (static_cast<f32>(Len) * arg1) / arg2)];
     }
 };

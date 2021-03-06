@@ -3,6 +3,18 @@
 namespace JGeometry
 {
     template<typename T>
+    T TUtil<T>::inv_sqrt(T val)
+    {
+        if (val <= 0.0f)
+        {
+            return 0.0f;
+        }
+
+        f32 sqrt = __frsqrte(val);
+        return ((0.5f * sqrt) * (3.0f - (val * (sqrt * sqrt))));
+    }
+
+    template<typename T>
     bool TUtil<T>::epsilonEquals(T arg1, T arg2, T arg3)
     {
         f32 diff = arg1 - arg2;

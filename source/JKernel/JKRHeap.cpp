@@ -197,6 +197,22 @@ void JKRHeap::resize(void *pSrc, u32 a2)
     return JKRHeap::sRootHeap->findAllHeap(pHeap);
 }*/
 
+void JKRHeap::copyMemory(void *pDest, void *pSrc, u32 size)
+{
+    u32 cnt = (size + 3) / 4;
+
+    u32* dst = static_cast<u32*>(pDest);
+    u32* src = static_cast<u32*>(pSrc);
+
+    while (cnt > 0)
+    {
+        *dst = *src;
+        dst++;
+        src++;
+        cnt--;
+    }
+}
+
 void JKRDefaultMemoryErrorRoutine(void *mSrc, u32 a2, s32 a3)
 {
     JUTException::panic_f("JKRHeap.cpp", 0x355, "%s", "abort\n");

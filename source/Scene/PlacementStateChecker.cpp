@@ -2,7 +2,6 @@
 
 PlacementStateChecker::PlacementStateChecker(const char *pName) : NameObj(pName)
 {
-    // todo -- scheduling issue
     mCurrentPlacementZoneId = -1;
 }
 

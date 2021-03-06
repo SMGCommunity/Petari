@@ -19,8 +19,7 @@ namespace MR
 
     f32 getRandomDegree()
     {
-        // todo -- figure out why 0.0f get omitted
-        return 0.0f + (360.0f * getRandom());
+        return (0.0f + (360.0f * MR::getRandom()));
     }
 
     f32 min(f32 val_0, f32 val_1)
