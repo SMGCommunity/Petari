@@ -25,6 +25,7 @@ namespace MR
 
     const char* getBasename(const char *);
 
+    bool strcasecmp(const char *, const char *);
     bool isEqualString(const char *, const char *);
     bool isEqualStringCase(const char *, const char *);
     bool isEqualSubString(const char *, const char *);
