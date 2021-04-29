@@ -8,7 +8,7 @@ namespace MR
     class AssignableArray
     {
     public:
-        void* mContent; // _0
+        T* mContent; // _0
         s32 mCount; // _4
     };
 };

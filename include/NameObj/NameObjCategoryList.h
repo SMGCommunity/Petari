@@ -14,13 +14,12 @@ struct CategoryListInitialTable
 class NameObjCategoryList
 {
 public:
-    class CategoryInfo
+    class CategoryInfo : public MR::AssignableArray<NameObj*>
     {
     public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::AssignableArray<NameObj *> mArr; // _0
         u32 _8;
         u8 _C;
         u8 _D;
