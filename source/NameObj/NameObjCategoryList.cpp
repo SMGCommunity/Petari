@@ -1,20 +1,30 @@
 #include "NameObj/NameObjCategoryList.h"
 
-NameObjCategoryList::CategoryInfo::CategoryInfo()
+NameObjCategoryList::~NameObjCategoryList()
 {
-    mContent = 0;
-    mCount = 0;
-    _8 = 0;
+
 }
 
 void NameObjCategoryList::incrementCheck(NameObj *pObj, s32 idx)
 {
-    mCategoryInfo[idx].mChecks++;
+    mCategoryInfo.mContent[idx]->mChecks++;
 }
 
 void NameObjCategoryList::add(NameObj *pObj, s32 idx)
 {
-    CategoryInfo* info = &mCategoryInfo[idx];
+    CategoryInfo* info = mCategoryInfo.mContent[idx];
     int val = info->_8++;
-    info->mContent[val] = pObj;
+    info->mArr.mContent[val] = pObj;
+}
+
+NameObjCategoryList::CategoryInfo::CategoryInfo()
+{
+    mArr.mContent = 0;
+    mArr.mCount = 0;
+    _8 = 0;
+}
+
+NameObjCategoryList::CategoryInfo::~CategoryInfo()
+{
+    
 }

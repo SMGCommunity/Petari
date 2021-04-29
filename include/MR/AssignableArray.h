@@ -8,6 +8,8 @@ namespace MR
     class AssignableArray
     {
     public:
+        ~AssignableArray();
+
         T* mContent; // _0
         s32 mCount; // _4
     };

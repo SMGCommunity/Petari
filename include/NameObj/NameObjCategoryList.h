@@ -14,12 +14,13 @@ struct CategoryListInitialTable
 class NameObjCategoryList
 {
 public:
-    class CategoryInfo : public MR::AssignableArray<NameObj*>
+    class CategoryInfo
     {
     public:
         CategoryInfo();
         ~CategoryInfo();
 
+        MR::AssignableArray<NameObj*> mArr; // _0
         u32 _8;
         u8 _C;
         u8 _D;
@@ -38,8 +39,7 @@ public:
 
     void initTable(u32, const CategoryListInitialTable *);
 
-    NameObjCategoryList::CategoryInfo* mCategoryInfo; // _0
-    u32 _4;
+    MR::AssignableArray<NameObjCategoryList::CategoryInfo*> mCategoryInfo; // _0
     u32* _8; // NameObjRealDelegator*
     u8 _C;
     u8 _D;
