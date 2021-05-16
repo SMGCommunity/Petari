@@ -2,7 +2,7 @@
 
 #include "LiveActor/LiveActor.h"
 #include "LiveActor/Sensor/HitSensor.h"
-#include "MR/LiveActorUtil.h"
+#include "Util/LiveActorUtil.h"
 
 #include <revolution/mtx.h>
 

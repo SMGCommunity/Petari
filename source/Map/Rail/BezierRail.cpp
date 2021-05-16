@@ -1,8 +1,8 @@
 #include "Map/Rail/BezierRail.h"
 #include "JGeometry/TUtil.h"
-#include "MR/JMapUtil.h"
-#include "MR/MathUtil.h"
-#include "MR/StringUtil.h"
+#include "Util/JMapUtil.h"
+#include "Util/MathUtil.h"
+#include "Util/StringUtil.h"
 
 BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *pInfo)
 {

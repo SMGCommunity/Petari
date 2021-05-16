@@ -1,5 +1,5 @@
-#include "MR/ActorSwitchUtil.h"
-#include "MR/JMapUtil.h"
+#include "Util/ActorSwitchUtil.h"
+#include "Util/JMapUtil.h"
 
 namespace MR
 {

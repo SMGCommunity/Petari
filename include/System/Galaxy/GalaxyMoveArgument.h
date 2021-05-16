@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MR/JMapIdInfo.h"
+#include "Util/JMapIdInfo.h"
 
 class GalaxyMoveArgument
 {

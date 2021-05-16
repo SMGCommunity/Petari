@@ -1,12 +1,12 @@
 #include "LiveActor/LOD/LodCtrl.h"
 #include <stdio.h>
-#include "MR/ActorMovementUtil.h"
-#include "MR/ActorShadowUtil.h"
-#include "MR/LiveActorUtil.h"
-#include "MR/CameraUtil.h"
-#include "MR/ClippingUtil.h"
-#include "MR/FileUtil.h"
-#include "MR/ModelUtil.h"
+#include "Util/ActorMovementUtil.h"
+#include "Util/ActorShadowUtil.h"
+#include "Util/LiveActorUtil.h"
+#include "Util/CameraUtil.h"
+#include "Util/ClippingUtil.h"
+#include "Util/FileUtil.h"
+#include "Util/ModelUtil.h"
 
 LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &iter)
 {

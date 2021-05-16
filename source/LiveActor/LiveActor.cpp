@@ -2,13 +2,13 @@
 #include "LiveActor/AllLiveActorGroup.h"
 #include "NameObj/NameObjExecuteHolder.h"
 #include "LiveActor/Shadow/ShadowController.h"
-#include "MR/ActorMovementUtil.h"
-#include "MR/ActorSensorUtil.h"
-#include "MR/ClippingUtil.h"
-#include "MR/LiveActorUtil.h"
-#include "MR/MemoryUtil.h"
-#include "MR/ModelUtil.h"
-#include "MR/SoundUtil.h"
+#include "Util/ActorMovementUtil.h"
+#include "Util/ActorSensorUtil.h"
+#include "Util/ClippingUtil.h"
+#include "Util/LiveActorUtil.h"
+#include "Util/MemoryUtil.h"
+#include "Util/ModelUtil.h"
+#include "Util/SoundUtil.h"
 
 LiveActor::LiveActor(const char *pName) : NameObj(pName) 
 {

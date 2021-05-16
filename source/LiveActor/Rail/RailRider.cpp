@@ -1,7 +1,7 @@
 #include "LiveActor/Rail/RailRider.h"
-#include "MR/JMapUtil.h"
-#include "MR/MathUtil.h"
-#include "MR/SceneUtil.h"
+#include "Util/JMapUtil.h"
+#include "Util/MathUtil.h"
+#include "Util/SceneUtil.h"
 
 extern f32 frsp(f32);
 

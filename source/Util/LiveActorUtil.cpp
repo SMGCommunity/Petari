@@ -1,5 +1,5 @@
-#include "MR/LiveActorUtil.h"
-#include "MR/JMapUtil.h"
+#include "Util/LiveActorUtil.h"
+#include "Util/JMapUtil.h"
 #include "LiveActor/LiveActor.h"
 
 #include <math.h>

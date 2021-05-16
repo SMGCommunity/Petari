@@ -1,6 +1,6 @@
 #include "JMap/JMapLinkInfo.h"
-#include "MR/SceneUtil.h"
-#include "MR/StringUtil.h"
+#include "Util/SceneUtil.h"
+#include "Util/StringUtil.h"
 
 JMapLinkInfo::JMapLinkInfo(const JMapInfoIter &rIter, bool isLinked)
     : mID(-1), mZoneID(-1), _8(-1)

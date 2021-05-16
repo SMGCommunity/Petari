@@ -2,7 +2,7 @@
 
 #include "LiveActor/LiveActor.h"
 #include "JMap/JMapInfoIter.h"
-#include "MR/FunctorBase.h"
+#include "Util/FunctorBase.h"
 
 namespace MR
 {

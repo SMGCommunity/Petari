@@ -3,7 +3,37 @@
 
 #include <revolution.h>
 #include "NameObj/NameObj.h"
-#include "MR/AssignableArray.h"
+#include "Util/AssignableArray.h"
+
+// debug maps tell us this class exists and we can assume that the RealDelegator inherits from this
+class NameObjDelegator
+{
+public:
+    virtual void operator()(NameObj *) = 0;
+};
+
+namespace
+{
+    template<typename T>
+    class NameObjRealDelegator : public NameObjDelegator
+    {
+    public:
+        NameObjRealDelegator(T funcPtr)
+        {
+            mFunctionPtr = funcPtr;
+        }
+
+        void operator()(NameObj *pObj)
+        {
+            (pObj->*mFunctionPtr)(pObj, this);
+        }
+
+        T mFunctionPtr; // _4
+    };
+};
+
+typedef void (NameObj::*TNameObjFunc)(const void *, void *);
+typedef void (NameObj::*TNameObjConstFunc)(const void *, const void *);
 
 struct CategoryListInitialTable
 {
@@ -29,6 +59,9 @@ public:
         s32 mChecks; // _10
     };
 
+    NameObjCategoryList(u32, const CategoryListInitialTable *, TNameObjFunc, bool, const char *);
+    NameObjCategoryList(u32, const CategoryListInitialTable *, TNameObjConstFunc, bool, const char *);
+
     ~NameObjCategoryList();
 
     void execute(s32);
@@ -40,7 +73,7 @@ public:
     void initTable(u32, const CategoryListInitialTable *);
 
     MR::AssignableArray<NameObjCategoryList::CategoryInfo*> mCategoryInfo; // _0
-    u32* _8; // NameObjRealDelegator*
+    NameObjDelegator* mDelegator; // _8
     u8 _C;
     u8 _D;
 };

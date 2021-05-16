@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MR/FunctorBase.h"
+#include "Util/FunctorBase.h"
 
 class JKRHeap;
 

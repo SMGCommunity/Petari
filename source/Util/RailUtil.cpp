@@ -1,7 +1,7 @@
-#include "MR/MathUtil.h"
-#include "MR/RailUtil.h"
-#include "MR/LiveActorUtil.h"
-#include "MR/PlayerUtil.h"
+#include "Util/MathUtil.h"
+#include "Util/RailUtil.h"
+#include "Util/LiveActorUtil.h"
+#include "Util/PlayerUtil.h"
 #include "LiveActor/LiveActor.h"
 #include "JMath/JMath.h"
 

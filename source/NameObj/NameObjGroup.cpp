@@ -1,5 +1,5 @@
 #include "NameObj/NameObjGroup.h"
-#include "MR/ObjUtil.h"
+#include "Util/ObjUtil.h"
 
 NameObjGroup::NameObjGroup(const char *pName, s32 len) : NameObj(pName)
 {

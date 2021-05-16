@@ -1,5 +1,5 @@
-#include "MR/FileUtil.h"
-#include "MR/StringUtil.h"
+#include "Util/FileUtil.h"
+#include "Util/StringUtil.h"
 #include "System/Language.h"
 #include <revolution/dvd.h>
 #include <stdio.h>

@@ -1,5 +1,5 @@
 #include "System/Resource/ResourceInfo.h"
-#include "MR/HashUtil.h"
+#include "Util/HashUtil.h"
 #include "smg.h"
 
 ResFileInfo::ResFileInfo()

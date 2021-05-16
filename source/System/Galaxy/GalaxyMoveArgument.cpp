@@ -1,6 +1,6 @@
 #include "System/Galaxy/GalaxyMoveArgument.h"
-#include "MR/SceneUtil.h"
-#include "MR/StringUtil.h"
+#include "Util/SceneUtil.h"
+#include "Util/StringUtil.h"
 
 GalaxyMoveArgument::GalaxyMoveArgument(u32 p1, const char* pStage, s32 pScenarioNo, const JMapIdInfo* pInfo)
 {

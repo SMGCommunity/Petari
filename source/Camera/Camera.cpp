@@ -1,6 +1,6 @@
 #include "Camera/Camera.h"
 
-#include "MR/SceneUtil.h"
+#include "Util/SceneUtil.h"
 
 #include <revolution/wpad.h>
 

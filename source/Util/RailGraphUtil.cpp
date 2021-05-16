@@ -1,5 +1,5 @@
-#include "MR/RailGraphUtil.h"
-#include "MR/MathUtil.h"
+#include "Util/RailGraphUtil.h"
+#include "Util/MathUtil.h"
 
 namespace MR
 {

@@ -1,7 +1,7 @@
 #include "Enemy/ItemGenerator.h"
-#include "MR/ObjUtil.h"
-#include "MR/SceneUtil.h"
-#include "MR/SoundUtil.h"
+#include "Util/ObjUtil.h"
+#include "Util/SceneUtil.h"
+#include "Util/SoundUtil.h"
 
 ItemGenerator::ItemGenerator()
     : mItemCount(1), mType(1)

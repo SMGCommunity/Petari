@@ -1,5 +1,5 @@
 #include "System/Language.h"
-#include "MR/StringUtil.h"
+#include "Util/StringUtil.h"
 #include <revolution/sc.h>
 
 namespace MR

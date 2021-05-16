@@ -1,7 +1,7 @@
 #include "LiveActor/Sensor/HitSensor.h"
 #include "LiveActor/Sensor/SensorGroup.h"
 #include "LiveActor/LiveActor.h"
-#include "MR/SensorUtil.h"
+#include "Util/SensorUtil.h"
 
 HitSensor::HitSensor(u32 type, u16 a2, f32 a3, LiveActor *pActor)
 {

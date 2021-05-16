@@ -1,5 +1,5 @@
 #include "LiveActor/AllLiveActorGroup.h"
-#include "MR/ClippingUtil.h"
+#include "Util/ClippingUtil.h"
 
 AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00) {
     this->_18 = 0;

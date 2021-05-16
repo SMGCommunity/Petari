@@ -1,6 +1,6 @@
 #include "Scene/StageFileLoader.h"
-#include "MR/MemoryUtil.h"
-#include "MR/FileUtil.h"
+#include "Util/MemoryUtil.h"
+#include "Util/FileUtil.h"
 #include "System/Galaxy/GalaxyStatusAccessor.h"
 #include <stdio.h>
 

@@ -2,7 +2,7 @@
 
 #include <revolution.h>
 #include "NameObj/NameObj.h"
-#include "MR/Functor.h"
+#include "Util/Functor.h"
 
 class NameObjAdaptor : public NameObj
 {

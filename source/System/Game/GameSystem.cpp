@@ -1,5 +1,5 @@
 #include "System/Game/GameSystem.h"
-#include "MR/ModelUtil.h"
+#include "Util/ModelUtil.h"
 #include <revolution/os.h>
 
 void main()

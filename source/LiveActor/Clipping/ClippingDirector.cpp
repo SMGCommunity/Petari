@@ -1,6 +1,6 @@
 #include "LiveActor/Clipping/ClippingDirector.h"
-#include "MR/ObjUtil.h"
-#include "MR/JMapUtil.h"
+#include "Util/ObjUtil.h"
+#include "Util/JMapUtil.h"
 
 ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮") 
 {

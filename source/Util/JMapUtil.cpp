@@ -3,10 +3,10 @@
 #include <revolution/mtx.h>
 #include "JGeometry/TVec3.h"
 #include "JGeometry/TMatrix34.h"
-#include "MR/JMapUtil.h"
-#include "MR/MtxUtil.h"
-#include "MR/SceneUtil.h"
-#include "MR/StringUtil.h"
+#include "Util/JMapUtil.h"
+#include "Util/MtxUtil.h"
+#include "Util/SceneUtil.h"
+#include "Util/StringUtil.h"
 
 namespace MR
 {
