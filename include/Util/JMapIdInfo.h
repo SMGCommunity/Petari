@@ -6,9 +6,9 @@ class JMapIdInfo
 {
 public:
     JMapIdInfo() { }
-    JMapIdInfo(s32 scenarioNo, s32 zoneID)
+    JMapIdInfo(s32 data, s32 zoneID)
     {
-        mScenarioNo = scenarioNo;
+        mData = data;
         mZoneId = zoneID;
     }
 
@@ -20,6 +20,6 @@ public:
     void operator=(const JMapIdInfo &);
     bool operator==(const JMapIdInfo &);
 
-    s32 mScenarioNo; // _0
+    s32 mData; // _0
     s32 mZoneId; // _4
 };

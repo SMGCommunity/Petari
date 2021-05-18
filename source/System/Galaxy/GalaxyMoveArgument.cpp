@@ -9,7 +9,7 @@ GalaxyMoveArgument::GalaxyMoveArgument(u32 p1, const char* pStage, s32 pScenario
     mScenarioNo = pScenarioNo;
     _C = -1;
 
-    mStartInfo.mScenarioNo = -1;
+    mStartInfo.mData = -1;
     mStartInfo.mZoneId = -1;
 
     if (pInfo != 0)
