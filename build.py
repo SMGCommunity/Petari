@@ -17,6 +17,13 @@ def getPath(var):
 def isCmdAvailable(cmd):
     return True
 
+def deleteDFiles():
+    dirs = os.listdir(os.getcwd())
+
+    for dire in dirs:
+        if dire.endswith(".d"):
+            os.remove(os.path.join(os.getcwd(), dire))
+
 numFilesCompiled = 0
 
 SDK_ROOT_PATH = getPath("SDK_PATH")
@@ -89,6 +96,7 @@ for f in cpp_files:
     print(f"Compiling {file_name}.cpp...")
 
     if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
+        deleteDFiles()
         sys.exit(1)
 
 for f in c_files:
@@ -97,6 +105,7 @@ for f in c_files:
     print(f"Compiling {file_name}.c...")
 
     if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
+        deleteDFiles()
         sys.exit(1)
 
 for f in assembly_files:
@@ -105,12 +114,9 @@ for f in assembly_files:
     print(f"Assembling {file_name}.s...")
 
     if subprocess.call(f"{MW_TOOLS_PATH}/mwasmeppc.exe {as_flags} -o build/{file_name}.o {f}", shell=True) == 1:
+        deleteDFiles()
         sys.exit(1)
 
-dirs = os.listdir(os.getcwd())
-
-for dire in dirs:
-    if dire.endswith(".d"):
-        os.remove(os.path.join(os.getcwd(), dire))
+deleteDFiles()
 
 print("Complete.")
