@@ -14,7 +14,7 @@ SceneObjHolder::SceneObjHolder()
     }
 }
 
-NameObj* SceneObjHolder::create(s32 type)
+NameObj* SceneObjHolder::create(int type)
 {
     if (mObjs[type] != 0)
     {
@@ -27,17 +27,17 @@ NameObj* SceneObjHolder::create(s32 type)
     return obj;
 }
 
-NameObj* SceneObjHolder::getObj(s32 type) const
+NameObj* SceneObjHolder::getObj(int type) const
 {
     return mObjs[type];
 }
 
-bool SceneObjHolder::isExist(s32 type) const
+bool SceneObjHolder::isExist(int type) const
 {
     return mObjs[type];
 }
 
-NameObj* SceneObjHolder::newEachObj(s32 type)
+NameObj* SceneObjHolder::newEachObj(int type)
 {
     NameObj* obj;
 

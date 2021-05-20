@@ -4,6 +4,8 @@
 #include "JMap/JMapInfo.h"
 #include "JMap/JMapInfoIter.h"
 
+class SceneObjHolder;
+
 class JMapIdInfo;
 
 namespace MR
@@ -19,4 +21,6 @@ namespace MR
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> >* getZonePlacementMtx(const JMapInfoIter &);
 
     s32 getPlacedZoneId(const JMapInfoIter &);
+
+    SceneObjHolder* getSceneObjHolder();
 };

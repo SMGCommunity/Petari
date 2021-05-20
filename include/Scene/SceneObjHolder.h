@@ -32,10 +32,10 @@ class SceneObjHolder
 public:
     SceneObjHolder();
 
-    NameObj* create(s32);
-    bool isExist(s32) const;
-    NameObj* getObj(s32) const;
-    NameObj* newEachObj(s32);
+    NameObj* create(int);
+    bool isExist(int) const;
+    NameObj* getObj(int) const;
+    NameObj* newEachObj(int);
 
     NameObj* mObjs[0x7B]; // _0
 };
