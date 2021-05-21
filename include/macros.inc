@@ -1,0 +1,2 @@
+.set _SDA_BASE_, 0x806B9620
+.set _SDA2_BASE_, 0x806BFC20

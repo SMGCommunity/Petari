@@ -60,6 +60,7 @@ MW_INC =    [
 
 rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
+asm_path = os.path.dirname(os.path.realpath(__file__)) + "\\asm\\"
 
 flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -gccinc -O4,s -fp hardware -enum int -sdata 4 -sdata2 4 -lang=c99 -align powerpc -inline all,auto -W noimplicitconv -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -MMD -rtti off -ipa file "
 includes = "-i . -I- -i include "
@@ -69,7 +70,7 @@ for inc in MW_INC:
 
 flags += f"{includes} -nosyspath"
 
-as_flags = "-i . -I- -proc gekko -d __MWERKS__"
+as_flags = "-c -i . -I- -i include -proc gekko -d __MWERKS__"
 
 req_commands = ['mwcceppc', 'mwasmeppc', 'mwldeppc']
 
@@ -88,7 +89,7 @@ if not os.path.isdir("build"):
 
 c_files = [f for f in glob.glob(path + "**/*.c", recursive=True)]
 cpp_files = [f for f in glob.glob(path + "**/*.cpp", recursive=True)]
-assembly_files = [f for f in glob.glob(path + "**/*.s", recursive=True)]
+assembly_files = [f for f in glob.glob(asm_path + "**/*.s", recursive=True)]
 
 for f in cpp_files:
     file_name = Path(f).stem

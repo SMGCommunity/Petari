@@ -34,6 +34,67 @@ namespace MR
         return ret;
     }
 
+    // todo -- nonmatching
+    #ifdef NON_MATCHING
+    bool isSameDirection(const JGeometry::TVec3<f32> &vec1, const JGeometry::TVec3<f32> &vec2, f32 angle)
+    {
+        f32 val = (vec1.y * vec2.z) - (vec1.z * vec2.y);
+
+        if (__fabs(val) > angle)
+            return false;
+
+        f32 another_val = (vec1.z * vec2.x) - (vec1.x * vec2.z);
+
+        if (__fabs(another_val) >= angle)
+        {
+            return !(__fabs(((vec1.x * vec2.y) - (vec1.y * vec2.x))) > angle);
+        }
+
+        return false;
+    }
+    #else
+    bool isSameDirection(const JGeometry::TVec3<f32> &vec1, const JGeometry::TVec3<f32> &vec2, f32 angle)
+    {
+        __asm 
+        {
+            lfs f7, 4(r3)
+            lfs f6, 8(r4)
+            lfs f3, 8(r3)
+            lfs f5, 4(r4)
+            fmuls f2, f7, f6
+            fmuls f0, f3, f5
+            fsubs f0, f2, f0
+            fabs f0, f0
+        	fcmpo cr0, f0, f1
+            ble lbl_803E5870
+            li r3, 0
+            blr 
+        lbl_803E5870:
+            lfs f4, 0(r4)
+            lfs f2, 0(r3)
+            fmuls f3, f3, f4
+            fmuls f0, f2, f6
+            fsubs f0, f3, f0
+            fabs f0, f0
+            fcmpo cr0, f0, f1
+            ble lbl_803E5898
+            li r3, 0
+            blr 
+        lbl_803E5898:
+            fmuls f2, f2, f5
+            fmuls f0, f7, f4
+            fsubs f0, f2, f0
+            fabs f0, f0
+            fcmpo cr0, f0, f1
+            mfcr r0
+            rlwinm r0, r0, 2, 0x1f, 0x1f
+            cntlzw r0, r0
+            srwi r3, r0, 5
+            blr
+        }
+    }
+    #endif
+
     void vecScaleAdd(const register JGeometry::TVec3<f32> *pVecOut, const register JGeometry::TVec3<f32> *pVecIn, register f32 scale)
     {
         __asm

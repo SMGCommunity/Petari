@@ -1,0 +1,15 @@
+.extern OSResetSystem
+.extern InitMetroTRK
+.extern TRKInterruptHandler
+.extern DBInit
+.extern lbl_806AB280
+.extern lbl_806A4CA0
+.extern exit
+.extern __init_user
+.extern OSInit
+.extern __OSPSInit
+.extern __OSFPRInit
+.extern __OSCacheInit
+.extern TRK_fill_mem
+.extern InitMetroTRK_BBA
+.extern main

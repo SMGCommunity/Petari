@@ -31,7 +31,35 @@ namespace JGeometry
         bool epsilonEquals(const TVec3<T> &, T) const;
 
         void sub(const TVec3<T> &);
-        T squared() const;
+
+        void negate() const
+        {
+            const register TVec3<T>* vec = this;
+            asm
+            {
+                psq_l f1, 0(vec), 0, 0
+                lfs f0, 8(vec)
+                ps_neg f1, f1
+                fneg f0, f0
+                psq_st f1, 0(vec), 0, 0
+                stfs f0, 8(vec)
+                blr
+            }
+        }
+
+        T squared() const
+        {
+            const register TVec3<T>* vec = this;
+            asm
+            {
+                psq_l f2, 0(vec), 0, 0
+                lfs f0, 8(vec)
+                ps_mul f2, f2, f2
+                ps_madd f1, f0, f0, f2
+                ps_sum0 f1, f1, f2, f2
+                blr
+            }
+        }
 
         TVec3<T>& operator =(const register TVec3<T> &rhs)
         {

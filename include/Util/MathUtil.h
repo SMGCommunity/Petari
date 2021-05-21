@@ -7,6 +7,9 @@ namespace MR
 {
     f32 getInterpolatevalue(f32, f32, f32);
     f32 getLinerValue(f32, f32, f32, f32);
+
+    bool isSameDirection(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, f32);
+
     bool isNearZero(f32, f32);
     bool isNearZero(const JGeometry::TVec3<f32> &, f32);
     f32 mod(f32, f32);
