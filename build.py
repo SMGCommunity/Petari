@@ -63,12 +63,14 @@ path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 asm_path = os.path.dirname(os.path.realpath(__file__)) + "\\asm\\"
 
 flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -gccinc -O4,s -fp hardware -enum int -sdata 4 -sdata2 4 -lang=c99 -align powerpc -inline all,auto -W noimplicitconv -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -MMD -rtti off -ipa file "
+nw4r_flags = "-nodefaults -proc gekko -DRELEASE -Cpp_exceptions off -gccinc -O4,p -fp hardware -enum int -sdata 4 -sdata2 4 -lang=c99 -align powerpc -inline all,auto -W noimplicitconv -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -MMD -rtti off -ipa file "
 includes = "-i . -I- -i include "
 
 for inc in MW_INC:
     includes += f"{inc} "
 
 flags += f"{includes} -nosyspath"
+nw4r_flags += f"{includes} -nosyspath"
 
 as_flags = "-c -i . -I- -i include -proc gekko -d __MWERKS__"
 
@@ -96,9 +98,14 @@ for f in cpp_files:
 
     print(f"Compiling {file_name}.cpp...")
 
-    if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
-        deleteDFiles()
-        sys.exit(1)
+    if "nw4r" in f:
+        if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {nw4r_flags} -o build/{file_name}.o {f}", shell=True) == 1:
+            deleteDFiles()
+            sys.exit(1)
+    else:
+        if subprocess.call(f"{MW_TOOLS_PATH}/mwcceppc.exe {flags} -o build/{file_name}.o {f}", shell=True) == 1:
+                deleteDFiles()
+                sys.exit(1)
 
 for f in c_files:
     file_name = Path(f).stem
