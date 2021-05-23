@@ -49,6 +49,12 @@ s32 SwitchIdInfo::getSwitchNo() const
     return mIDInfo->mData;
 }
 
+StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ")
+{
+    mCount = 0;
+    mGlobalSwitches = new ZoneSwitch();
+}
+
 void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo)
 {
     if (findZoneSwitchFromTable(rInfo))
