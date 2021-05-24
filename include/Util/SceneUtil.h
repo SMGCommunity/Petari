@@ -14,6 +14,8 @@ namespace MR
     void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
     void getCameraRailInfo(JMapInfoIter *, const JMapInfo **, s32, s32);
 
+    const char* getCurrentStageName();
+
     bool isEqualStageName(const char *);
 
     bool isPlacementLocalStage();
