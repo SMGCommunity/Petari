@@ -1,6 +1,6 @@
 #pragma once
 
-#include "System/Galaxy/ScenarioDataParser.h"
+#include "System/ScenarioDataParser.h"
 
 class GalaxyStatusAccessor
 {
