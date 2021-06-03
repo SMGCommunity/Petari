@@ -25,6 +25,7 @@ namespace MR
     void showModel(LiveActor *);
     void hideModel(LiveActor *);
     void hideModelAndOnCalcAnim(LiveActor *);
+    void showModelIfHidden(LiveActor *);
 
     const char* getModelResName(const LiveActor *);
 
@@ -42,7 +43,9 @@ namespace MR
     void invalidateCollisionParts(LiveActor *);
     
     bool isCalcGravity(const LiveActor *);
-
+    void onCalcGravity(const LiveActor *);
+    void offCalcGravity(const LiveActor *);
+    
     void calcGravity(const LiveActor *);
 
     bool isValidDraw(const LiveActor *);
@@ -57,6 +60,9 @@ namespace MR
     bool isLessEqualStep(const LiveActor *, s32);
 
     f32 calcNerveEaseInValue(const LiveActor *, s32, f32, f32);
+
+    void onEntryDrawBuffer(LiveActor *);
+    void offEntryDrawBuffer(LiveActor *);
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
 

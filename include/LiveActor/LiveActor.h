@@ -13,7 +13,7 @@
 #include "LiveActor/Shadow/ShadowController.h"
 #include "LiveActor/Sound/AudAnmSoundObject.h"
 #include "LiveActor/StarPointer/StarPointerTarget.h"
-#include "LiveActor/Switch/StageSwitch.h"
+#include "Map/Switch/StageSwitch.h"
 #include "Collision/Binder.h"
 #include "JGeometry/TVec3.h"
 #include "LiveActor/Model/ModelManager.h"

@@ -113,58 +113,58 @@ namespace MR
 
     HitSensor* getMessageSensor();
 
-    void sendArbitraryMsg(u32, HitSensor *, HitSensor *);
-    void sendMsgPush(HitSensor *, HitSensor *);
-    void sendMsgPlayerTrample(HitSensor *, HitSensor *);
-    void sendMsgPlayerPunch(HitSensor *, HitSensor *);
-    void sendMsgJump(HitSensor *, HitSensor *);
-    void sendMsgTouchJump(HitSensor *, HitSensor *);
-    void sendMsgTaken(HitSensor *, HitSensor *);
-    void sendMsgKick(HitSensor *, HitSensor *);
-    void sendMsgAwayJump(HitSensor *, HitSensor *);
+    bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
+    bool sendMsgPush(HitSensor *, HitSensor *);
+    bool sendMsgPlayerTrample(HitSensor *, HitSensor *);
+    bool sendMsgPlayerPunch(HitSensor *, HitSensor *);
+    bool sendMsgJump(HitSensor *, HitSensor *);
+    bool sendMsgTouchJump(HitSensor *, HitSensor *);
+    bool sendMsgTaken(HitSensor *, HitSensor *);
+    bool sendMsgKick(HitSensor *, HitSensor *);
+    bool sendMsgAwayJump(HitSensor *, HitSensor *);
 
-    void sendMsgEnemyAttackMsgToDir(u32, HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
-    void sendMsgEnemyAttackFlipWeak(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlipWeakJump(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlip(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlipToDir(HitSensor *, HitSensor *, JGeometry::TVec3<f32> &);
-    void sendMsgEnemyAttackFlipJump(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlipRot(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlipMaximum(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFlipMaximumToDir(HitSensor *, HitSensor *, JGeometry::TVec3<f32> &);
-    void sendMsgEnemyAttack(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackStrong(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackStrongToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
-    void sendMsgEnemyAttackFire(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFireStrong(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackElectric(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackFreeze(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackHeatBeam(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackExplosion(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackCounterSpin(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackCounterHipDrop(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackMsgToDir(u32, HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackFlipWeak(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlipWeakJump(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlip(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlipToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackFlipJump(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlipRot(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlipMaximum(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttack(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackStrong(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackStrongToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackFire(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFireStrong(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackElectric(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackFreeze(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackHeatBeam(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackExplosion(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackCounterSpin(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackCounterHipDrop(HitSensor *, HitSensor *);
 
-    void sendMsgLockOnStarPieceShoot(HitSensor *, HitSensor *);
-    void sendMsgStarPieceAttack(HitSensor *, HitSensor *);
-    void sendMsgStarPieceGift(HitSensor *, HitSensor *);
+    bool sendMsgLockOnStarPieceShoot(HitSensor *, HitSensor *);
+    bool sendMsgStarPieceAttack(HitSensor *, HitSensor *);
+    bool sendMsgStarPieceGift(HitSensor *, HitSensor *, u32);
 
-    void sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
-    void sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
-    void sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
-    void sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
+    bool sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
+    bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
+    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
 
-    void sendSimpleMsgToActor(u32, LiveActor *);
-    void sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
-    void sendMsgToBindedSensor(u32, HitSensor *);
-    void sendMsgToGroundSensor(u32, HitSensor *);
-    void sendMsgToWallSensor(u32, HitSensor *);
+    bool sendSimpleMsgToActor(u32, LiveActor *);
+    bool sendMsgToBindedSensor(u32, LiveActor *, HitSensor *);
+    bool sendMsgToBindedSensor(u32, HitSensor *);
+    bool sendMsgToGroundSensor(u32, HitSensor *);
+    bool sendMsgToWallSensor(u32, HitSensor *);
 
-    void sendMsgStartDemo(LiveActor *);
-    void sendMsgToEnemyAttackShockWave(HitSensor *, HitSensor *);
+    bool sendMsgStartDemo(LiveActor *);
+    bool sendMsgToEnemyAttackShockWave(HitSensor *, HitSensor *);
 
-    void sendMsgToAllLiveActor(u32, LiveActor *);
-    void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
-    void sendMsgExplosionToNearActor(HitSensor *, f32);
+    bool sendMsgToAllLiveActor(u32, LiveActor *);
+    bool sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
+    bool sendMsgExplosionToNearActor(HitSensor *, f32);
     
     bool isInSpinStormRange(u32, HitSensor *, HitSensor *, f32);
     bool recieveItemShowMsg(u32, HitSensor *, HitSensor *);

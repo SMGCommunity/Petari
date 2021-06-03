@@ -6,6 +6,7 @@ class GalaxyStatusAccessor
 {
 public:
 	GalaxyStatusAccessor(ScenarioData *);
+	
     u32 getScenarioNum() const;
     u32 getPowerStarNum() const;
     u32 getZoneNum() const;
@@ -29,7 +30,6 @@ public:
 	bool isValidCoin100(s32) const;
 	bool isHiddenStar(s32) const;
 
-    
     ScenarioData* mScenarioData; // _0
 };
 

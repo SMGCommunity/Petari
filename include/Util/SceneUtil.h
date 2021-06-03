@@ -3,8 +3,7 @@
 #include "JGeometry/TMatrix34.h"
 #include "JMap/JMapInfo.h"
 #include "JMap/JMapInfoIter.h"
-
-class SceneObjHolder;
+#include "Scene/Scene.h"
 
 class JMapIdInfo;
 
