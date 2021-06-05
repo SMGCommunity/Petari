@@ -29,16 +29,16 @@ u32 GalaxyStatusAccessor::getZoneId(const char *pZone) const
     return mScenarioData->getZoneId(pZone);
 }
 
-const char* GalaxyStatusAccessor::getZoneName(s32 Id) const
+const char* GalaxyStatusAccessor::getZoneName(s32 zoneId) const
 {
-    return mScenarioData->getZoneName(Id);
+    return mScenarioData->getZoneName(zoneId);
 }
 
-const char* GalaxyStatusAccessor::getCometName(s32 Scenario) const
+const char* GalaxyStatusAccessor::getCometName(s32 scenario) const
 {
     const char *pCometName = NULL;
 
-    if (mScenarioData->getValueString("Comet", Scenario, &pCometName))
+    if (mScenarioData->getValueString("Comet", scenario, &pCometName))
     {
         return pCometName;
     }
@@ -48,11 +48,11 @@ const char* GalaxyStatusAccessor::getCometName(s32 Scenario) const
     }
 }
 
-bool GalaxyStatusAccessor::isValidNormalComet(s32 Scenario) const
+bool GalaxyStatusAccessor::isValidNormalComet(s32 scenario) const
 {
     bool ret = false;
 
-    if (isExistAnyComet() && Scenario == getNormalCometScenarioNo())
+    if (isExistAnyComet() && scenario == getNormalCometScenarioNo())
     {
         ret = true;
     }
@@ -60,11 +60,11 @@ bool GalaxyStatusAccessor::isValidNormalComet(s32 Scenario) const
     return ret;
 }
 
-bool GalaxyStatusAccessor::isCometStar(s32 Scenario) const
+bool GalaxyStatusAccessor::isCometStar(s32 scenario) const
 {
     bool ret = false;
 
-    if (isExistAnyComet() && Scenario == getNormalCometScenarioNo() || isValidCoin100(Scenario))
+    if (isExistAnyComet() && scenario == getNormalCometScenarioNo() || isValidCoin100(scenario))
     {
         ret = true;
     }
@@ -212,30 +212,34 @@ bool GalaxyStatusAccessor::isCompleted() const
 s32 GalaxyStatusAccessor::getPowerStarNumOwned() const
 {
     if (!mScenarioData->getPowerStarNum())
+    {
         return GameDataFunction::getPowerStarNumOwned(mScenarioData->_4);
+    }
     else
+    {
         return 0;
+    }
 }
 
 s32 GalaxyStatusAccessor::getNormalScenarioNum() const
 {
-    const char *cometName;
+    const char *pCometName;
     s32 scenarioNum = 0;
 
     for (s32 i = 0; i < mScenarioData->getScenarioNum(); i++)
     {
-        const char *scenarioComet = NULL;
+        const char *pScenarioComet = NULL;
 
-        if (mScenarioData->getValueString("Comet", i + 1, &scenarioComet))
+        if (mScenarioData->getValueString("Comet", i + 1, &pScenarioComet))
         {
-            cometName = scenarioComet;
+            pCometName = pScenarioComet;
         }
         else    
         {
-            cometName = NULL;
+            pCometName = NULL;
         }
         
-        if (!cometName)
+        if (!pCometName)
         {
             scenarioNum++;
         }
@@ -262,11 +266,11 @@ const char* GalaxyStatusAccessor::getAppearPowerStarObjName(s32 scenario) const
     return 0;
 }
 
-u32 GalaxyStatusAccessor::getActivePowerStarId(s32 Scenario) const
+u32 GalaxyStatusAccessor::getActivePowerStarId(s32 scenario) const
 {
     u32 powerStarId;
 
-    if (mScenarioData->getValueU32("PowerStarId", Scenario, &powerStarId))
+    if (mScenarioData->getValueU32("PowerStarId", scenario, &powerStarId))
     {
         return powerStarId;
     }
@@ -313,14 +317,14 @@ namespace MR
 {
     GalaxyStatusAccessor* makeGalaxyStatusAccessor(const char *pGalaxy)
     {
-        ScenarioDataParser* parser = ScenarioDataFunction::getScenarioDataParser();
-        return parser->makeAccessor(pGalaxy);
+        ScenarioDataParser* pScenarioDataParser = ScenarioDataFunction::getScenarioDataParser();
+        return pScenarioDataParser->makeAccessor(pGalaxy);
     }
 
     GalaxyStatusAccessor* makeCurrentGalaxyStatusAccessor()
     {
-        const char *Galaxy = MR::getCurrentStageName();
-        ScenarioDataParser* parser = ScenarioDataFunction::getScenarioDataParser();
-        return parser->makeAccessor(Galaxy);
+        const char *pGalaxy = MR::getCurrentStageName();
+        ScenarioDataParser* pScenarioDataParser = ScenarioDataFunction::getScenarioDataParser();
+        return pScenarioDataParser->makeAccessor(pGalaxy);
     }
 };

@@ -292,7 +292,9 @@ namespace MR
         bool ret = false;
 
         if (playerMsg <= 0xA && ((1 << playerMsg) & 0x6B1) != 0)
+        {
             ret = true;
+        }
 
         return ret;
     }
@@ -562,7 +564,9 @@ namespace MR
         bool ret = false;
 
         if (msg >= 0xF && msg <= 0x19)
+        {
             ret = true;
+        }
 
         return ret;
     }

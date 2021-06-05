@@ -76,6 +76,8 @@ namespace MR
     void setClippingTypeSphere(LiveActor *, f32, const JGeometry::TVec3<f32> &);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
 
+    bool isExistIndirectTexture(const LiveActor *);
+
     const char* createLowModelObjName(const LiveActor *);
     const char* createMiddleModelObjName(const LiveActor *);
 };
