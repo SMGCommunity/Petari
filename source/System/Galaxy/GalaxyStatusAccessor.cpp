@@ -253,14 +253,14 @@ s32 GalaxyStatusAccessor::getNormalScenarioNum() const
 const char* GalaxyStatusAccessor::getAppearPowerStarObjName(s32 scenario) const
 {
     const char *pObjName;
-    const char *pAppearPowerStarObj = mScenarioData->getValueString("AppearPowerStarObj", scenario, &pObjName);
+    bool ret = mScenarioData->getValueString("AppearPowerStarObj", scenario, &pObjName);
 
     if (isValidCoin100(scenario))
     {
         return "１００枚コイン";
     }
 
-    if (pAppearPowerStarObj)
+    if (ret)
     {
         return pObjName;
     }
@@ -287,7 +287,7 @@ bool GalaxyStatusAccessor::isValidCoin100(s32 scenario) const
     // very close 
     const char *pPurpleComet;
     const char *pCometName = NULL;
-    
+
     if (mScenarioData->getValueString("Comet", scenario, &pCometName))
     {
         pPurpleComet = pCometName;
@@ -297,14 +297,7 @@ bool GalaxyStatusAccessor::isValidCoin100(s32 scenario) const
         pPurpleComet = NULL;
     }
 
-    bool ret = false;
-
-    if (pPurpleComet && MR::isEqualString(pPurpleComet, "Purple") || MR::isEqualString(pPurpleComet, "Black"))
-    {
-        ret = true;
-    }
-
-    return ret;
+    return (pPurpleComet && MR::isEqualString(pPurpleComet, "Purple") || MR::isEqualString(pPurpleComet, "Black"));
 }
 
 bool GalaxyStatusAccessor::isHiddenStar(s32 scenario) const

@@ -13,7 +13,7 @@ public:
     
     s32 getScenarioNum() const;
     s32 getPowerStarNum() const;
-    const char* getValueString(const char *, s32, const char **) const;
+    bool getValueString(const char *, s32, const char **) const;
     const char* getZoneName(s32) const;
     JMapInfo* getScenarioDataIter(s32) const;
     u32 getValueU32(const char *, s32, u32 *) const;
