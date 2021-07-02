@@ -13,6 +13,12 @@ namespace MR
     bool useStageSwitchWriteA(LiveActor *, const JMapInfoIter &);
     bool useStageSwitchWriteB(LiveActor *, const JMapInfoIter &);
     bool useStageSwitchWriteDead(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchReadA(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchReadB(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchReadAppear(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchWriteA(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchWriteB(LiveActor *, const JMapInfoIter &);
+    bool needStageSwitchWriteDead(LiveActor *, const JMapInfoIter &);
 
     bool isValidSwitchA(const LiveActor *);
     bool isValidSwitchB(const LiveActor *);

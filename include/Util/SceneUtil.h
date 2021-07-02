@@ -3,8 +3,7 @@
 #include "JGeometry/TMatrix34.h"
 #include "JMap/JMapInfo.h"
 #include "JMap/JMapInfoIter.h"
-
-class SceneObjHolder;
+#include "Scene/Scene.h"
 
 class JMapIdInfo;
 
@@ -13,6 +12,8 @@ namespace MR
     JMapIdInfo* getInitializeStartIdInfo();
     void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
     void getCameraRailInfo(JMapInfoIter *, const JMapInfo **, s32, s32);
+
+    const char* getCurrentStageName();
 
     bool isEqualStageName(const char *);
 
