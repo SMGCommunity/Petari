@@ -1,9 +1,10 @@
 #pragma once
 
-#include "System/Galaxy/GalaxyStatusAccessor.h"
 #include "NameObj/NameObj.h"
 #include "JMap/JMapInfo.h"
 #include <revolution.h>
+
+class GalaxyStatusAccessor;
 
 class ScenarioData 
 {

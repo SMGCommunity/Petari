@@ -4,6 +4,8 @@
 #include "Util/SceneUtil.h"
 #include "Util/StringUtil.h"
 
+#include "System/ScenarioDataParser.h"
+
 GalaxyStatusAccessor::GalaxyStatusAccessor(ScenarioData *pScenarioData)
 {
     mScenarioData = pScenarioData;

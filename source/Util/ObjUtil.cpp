@@ -238,13 +238,6 @@ namespace MR
         MR::connectToDrawTemporarily(pActor);               
     }
 
-    void connectToSceneLayout(NameObj *pActor)
-    {
-        MR::registerNameObjToExecuteHolder(pActor, 0xE, 0xD, -1, 0x3C);
-        MR::connectToSceneTemporarily(pActor);
-        MR::connectToDrawTemporarily(pActor);               
-    }
-
     void connectToSceneLayoutMovementCalcAnim(NameObj *pActor)
     {
         MR::registerNameObjToExecuteHolder(pActor, 0xE, 0xD, -1, -1);

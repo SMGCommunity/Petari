@@ -173,32 +173,32 @@ namespace MR
 
     bool needStageSwitchReadA(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchReadA(pActor, iter);
+        return useStageSwitchReadA(pActor, iter);
     } 
 
     bool needStageSwitchReadB(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchReadB(pActor, iter);
+        return useStageSwitchReadB(pActor, iter);
     } 
 
     bool needStageSwitchReadAppear(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchReadAppear(pActor, iter);
+        return useStageSwitchReadAppear(pActor, iter);
     } 
 
     bool needStageSwitchWriteA(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchWriteA(pActor, iter);
+        return useStageSwitchWriteA(pActor, iter);
     } 
 
     bool needStageSwitchWriteB(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchWriteA(pActor, iter);
+        return useStageSwitchWriteA(pActor, iter);
     } 
 
     bool needStageSwitchWriteDead(LiveActor *pActor, const JMapInfoIter &iter)
     {
-        useStageSwitchWriteDead(pActor, iter);
+        return useStageSwitchWriteDead(pActor, iter);
     } 
 
     bool isValidSwitchA(const LiveActor *pActor)
@@ -251,17 +251,17 @@ namespace MR
 
     bool isOnSwitchA(const LiveActor *pActor)
     {
-        pActor->mStageSwitchCtrl->isOnSwitchA();
+        return pActor->mStageSwitchCtrl->isOnSwitchA();
     }
 
     bool isOnSwitchB(const LiveActor *pActor)
     {
-        pActor->mStageSwitchCtrl->isOnSwitchA();
+        return pActor->mStageSwitchCtrl->isOnSwitchA();
     }
 
     bool isOnSwitchAppear(const LiveActor *pActor)
     {
-        pActor->mStageSwitchCtrl->isOnSwitchA();
+        return pActor->mStageSwitchCtrl->isOnSwitchA();
     }
 
     void onSwitchA(LiveActor *pActor)

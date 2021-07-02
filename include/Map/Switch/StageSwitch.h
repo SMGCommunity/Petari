@@ -102,3 +102,9 @@ public:
     u8 _13;
     SwitchIdInfo* mSW_Param; // _14
 };
+
+
+namespace MR
+{
+    StageSwitchCtrl* createStageSwitchCtrl(NameObj *, const JMapInfoIter &);
+};

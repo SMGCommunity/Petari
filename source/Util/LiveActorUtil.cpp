@@ -141,7 +141,7 @@ namespace MR
 
     void hideModelAndOnCalcAnim(LiveActor *pActor)
     {
-        hideModel(pActor);
+        MR::hideModel(pActor);
 
         pActor->mFlags.mIsOnCalcAnim = false;
     }
@@ -150,7 +150,7 @@ namespace MR
     {
         if (pActor->mFlags.mIsNoEntryDrawBuffer)
         {
-            showModel(pActor);
+            MR::showModel(pActor);
         }
     }
 
@@ -191,7 +191,7 @@ namespace MR
         return pActor->mFlags.mIsCalcGravity;
     }
 
-    bool onCalcGravity(LiveActor *pActor)
+    void onCalcGravity(LiveActor *pActor)
     {
         if (!pActor->mFlags.mIsDead)
         {
@@ -201,7 +201,7 @@ namespace MR
         pActor->mFlags.mIsCalcGravity = true;
     }
 
-    bool offCalcGravity(LiveActor *pActor)
+    void offCalcGravity(LiveActor *pActor)
     {
         pActor->mFlags.mIsCalcGravity = false;
     }

@@ -102,57 +102,57 @@ namespace MR
 
     bool isSensorPlayer(const HitSensor *pSensor, const char*pSensorName)
     {
-        pSensor->isType(1);
+        return pSensor->isType(1);
     }
 
     bool isSensorBinder(const HitSensor *pSensor, const char*pSensorName)
     {
-        pSensor->isType(0x61);
+        return pSensor->isType(0x61);
     }
 
     bool sendArbitraryMsg(u32 msg, HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(msg, pHit2);
+        return  pHit1->recieveMessage(msg, pHit2);
     }
 
     bool sendMsgPush(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x29, pHit2);
+        return pHit1->recieveMessage(0x29, pHit2);
     }
 
     bool sendMsgPlayerTrample(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x2, pHit2);
+        return pHit1->recieveMessage(0x2, pHit2);
     }
 
     bool sendMsgPlayerPunch(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x1, pHit2);
+        return pHit1->recieveMessage(0x1, pHit2);
     }
 
     bool sendMsgJump(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x2C, pHit2);
+        return pHit1->recieveMessage(0x2C, pHit2);
     }
 
     bool sendMsgTouchJump(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x2D, pHit2);
+        return pHit1->recieveMessage(0x2D, pHit2);
     }
 
     bool sendMsgTaken(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x1F, pHit2);
+        return pHit1->recieveMessage(0x1F, pHit2);
     }
 
     bool sendMsgKick(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x2B, pHit2);
+        return pHit1->recieveMessage(0x2B, pHit2);
     }
 
     bool sendMsgAwayJump(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x2F, pHit2);
+        return pHit1->recieveMessage(0x2F, pHit2);
     }
 
     bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
@@ -168,122 +168,122 @@ namespace MR
 
     bool sendMsgEnemyAttackFlipWeak(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x4D, pHit2);
+        return pHit1->recieveMessage(0x4D, pHit2);
     }
 
     bool sendMsgEnemyAttackFlipWeakJump(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x4E, pHit2);
+        return pHit1->recieveMessage(0x4E, pHit2);
     }
 
     bool sendMsgEnemyAttackFlip(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x50, pHit2);
+        return pHit1->recieveMessage(0x50, pHit2);
     }
 
     bool sendMsgEnemyAttackFlipToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
     {
-        sendMsgEnemyAttackMsgToDir(0x50, pHit1, pHit2, dir);
+        return sendMsgEnemyAttackMsgToDir(0x50, pHit1, pHit2, dir);
     }
     
     bool sendMsgEnemyAttackFlipJump(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x4F, pHit2);
+        return pHit1->recieveMessage(0x4F, pHit2);
     }
 
     bool sendMsgEnemyAttackFlipRot(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x51, pHit2);
+        return pHit1->recieveMessage(0x51, pHit2);
     }
 
     bool sendMsgEnemyAttackFlipMaximum(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x52, pHit2);
+        return pHit1->recieveMessage(0x52, pHit2);
     }
 
     bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
     {
-        sendMsgEnemyAttackMsgToDir(0x52, pHit1, pHit2, dir);
+        return sendMsgEnemyAttackMsgToDir(0x52, pHit1, pHit2, dir);
     }
 
     bool sendMsgEnemyAttack(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x53, pHit2);
+        return pHit1->recieveMessage(0x53, pHit2);
     }
 
     bool sendMsgEnemyAttackStrong(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x54, pHit2);
+        return pHit1->recieveMessage(0x54, pHit2);
     }
 
     bool sendMsgEnemyAttackStrongToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
     {
-        sendMsgEnemyAttackMsgToDir(0x54, pHit1, pHit2, dir);
+        return sendMsgEnemyAttackMsgToDir(0x54, pHit1, pHit2, dir);
     }
 
     bool sendMsgEnemyAttackFire(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x58, pHit2);
+        return pHit1->recieveMessage(0x58, pHit2);
     }
 
     bool sendMsgEnemyAttackFireStrong(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x59, pHit2);
+        return pHit1->recieveMessage(0x59, pHit2);
     }
 
     bool sendMsgEnemyAttackElectric(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x5A, pHit2);
+        return pHit1->recieveMessage(0x5A, pHit2);
     }
 
     bool sendMsgEnemyAttackFreeze(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x5D, pHit2);
+        return pHit1->recieveMessage(0x5D, pHit2);
     }
 
     bool sendMsgEnemyAttackHeatBeam(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x5B, pHit2);
+        return pHit1->recieveMessage(0x5B, pHit2);
     }
 
     bool sendMsgEnemyAttackExplosion(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x56, pHit2);
+        return pHit1->recieveMessage(0x56, pHit2);
     }
 
     bool sendMsgEnemyCounterSpin(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x60, pHit2);
+        return pHit1->recieveMessage(0x60, pHit2);
     }
 
     bool sendMsgEnemyAttackCounterHipDrop(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x61, pHit2);
+        return pHit1->recieveMessage(0x61, pHit2);
     }
 
     bool sendMsgLockOnStarPieceShoot(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0xE, pHit2);
+        return pHit1->recieveMessage(0xE, pHit2);
     }
 
     bool sendMsgStarPieceAttack(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0xC, pHit2);
+        return pHit1->recieveMessage(0xC, pHit2);
     }
 
     bool sendMsgStarPieceGift(HitSensor *pHit1, HitSensor *pHit2, u32 msg)
     {
-        pHit1->recieveMessage(msg + 14, pHit2);
+        return pHit1->recieveMessage(msg + 14, pHit2);
     }
 
     bool sendMsgEnemyattackMaximum(HitSensor *pHit1, HitSensor *pHit2)
     {
-        pHit1->recieveMessage(0x55, pHit2);
+        return pHit1->recieveMessage(0x55, pHit2);
     }
 
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
     {
-        sendMsgEnemyAttackMsgToDir(0x55, pHit1, pHit2, dir);
+        return sendMsgEnemyAttackMsgToDir(0x55, pHit1, pHit2, dir);
     }
 
     bool isMsgPlayerHitAll(u32 msg)
