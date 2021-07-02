@@ -2,6 +2,7 @@
 #include "LiveActor/AllLiveActorGroup.h"
 #include "NameObj/NameObjExecuteHolder.h"
 #include "LiveActor/Shadow/ShadowController.h"
+#include "LiveActor/Switch/StageSwitch.h"
 #include "Util/ActorMovementUtil.h"
 #include "Util/ActorSensorUtil.h"
 #include "Util/ClippingUtil.h"
