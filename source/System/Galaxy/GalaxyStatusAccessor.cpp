@@ -284,7 +284,6 @@ u32 GalaxyStatusAccessor::getActivePowerStarId(s32 scenario) const
 
 bool GalaxyStatusAccessor::isValidCoin100(s32 scenario) const
 {
-    // very close 
     const char *pPurpleComet;
     const char *pCometName = NULL;
 
