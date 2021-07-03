@@ -1,4 +1,115 @@
 #include "JKernel/JKRDecomp.h"
+#include "JKernel/JKRHeap.h"
+
+JKRDecomp* JKRDecomp::create(s32 a1)
+{
+    if (!JKRDecomp::sDecompObject)
+    {
+        JKRDecomp::sDecompObject = new(JKRHeap::sSystemHeap, 0)JKRDecomp(a1);
+    }
+
+    return JKRDecomp::sDecompObject;
+}
+
+JKRDecomp::JKRDecomp(s32 a1) : JKRThread(0x4000, 0x10, a1)
+{
+    OSResumeThread(mThread);
+}
+
+JKRDecomp::~JKRDecomp()
+{
+
+}
+
+s32 JKRDecomp::run()
+{
+    OSInitMessageQueue(&JKRDecomp::sMessageQueue, &JKRDecomp::sMessageBuffer, 8);
+
+    while (1)
+    {
+        OSMessage msg;
+
+        OSReceiveMessage(&JKRDecomp::sMessageQueue, &msg, 1);
+
+        JKRDecompCommand* cmd = static_cast<JKRDecompCommand*>(msg);
+        JKRDecomp::decode(cmd->_4, cmd->_8, cmd->_C, cmd->_10);
+
+        if (cmd->_20 != 0)
+        {
+            if (cmd->_20 == 1)
+            {
+                JKRAramPiece::sendCommand(cmd->_24);
+            }
+
+            continue;
+        }
+
+        if (cmd->_14)
+        {
+            cmd->_14((u32)cmd);
+            continue;
+        }
+
+        if (cmd->_1C)
+        {
+            OSSendMessage(cmd->_1C, (OSMessage)1, 0);
+        }
+        else
+        {
+            OSSendMessage(&cmd->_28, (OSMessage)1, 0);
+        }
+        
+    }
+}
+
+JKRDecompCommand* JKRDecomp::prepareCommand(u8 *a1, u8 *a2, u32 a3, u32 a4, JKRDecompCommand::AsyncCallback cb)
+{
+    JKRDecompCommand* cmd = new(JKRHeap::sSystemHeap, -4)JKRDecompCommand();
+    cmd->_4 = a1;
+    cmd->_8 = a2;
+    cmd->_C = a3;
+    cmd->_10 = a4;
+    cmd->_14 = cb;
+
+    return cmd;
+}
+
+void JKRDecomp::sendCommand(JKRDecompCommand *pCmd)
+{
+    OSSendMessage(&JKRDecomp::sMessageQueue, pCmd, 0);
+}
+
+bool JKRDecomp::sync(JKRDecompCommand *pCmd, int type)
+{
+    OSMessage msg;
+    bool ret;
+
+    if (type == 0)
+    {
+        OSReceiveMessage(&pCmd->_28, &msg, 1);
+        ret = 1;
+    }
+    else
+    {
+        ret = OSReceiveMessage(&pCmd->_28, &msg, 0);
+    }
+    
+    return ret;
+}
+
+bool JKRDecomp::orderSync(u8 *a1, u8 *a2, u32 a3, u32 a4)
+{
+    JKRDecompCommand* cmd = JKRDecomp::prepareCommand(a1, a2, a3, a4, 0);
+    OSSendMessage(&JKRDecomp::sMessageQueue, cmd, 0);
+    bool sync = JKRDecomp::sync(cmd, 0);
+    
+    if (cmd)
+    {
+        delete cmd;
+    }
+
+    return sync;
+}
 
 void JKRDecomp::decode(u8 *pIn, u8 *pOut, u32 unk1, u32 unk2)
 {
@@ -133,4 +244,13 @@ s32 JKRDecomp::checkCompressed(u8 *pSrc)
     }
     
     return 0;
+}
+
+JKRDecompCommand::JKRDecompCommand()
+{
+    OSInitMessageQueue(&_28, &_48, 1);
+    _18 = this;
+    _14 = 0;
+    _1C = 0;
+    _20 = 0;
 }
