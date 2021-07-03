@@ -12,15 +12,11 @@ fullSize = 0
 dataSize = 0
 
 for o_file in o_files:
-    # we can skip init.o since its another section
-    if "init.o" in o_file:
-        continue
-
     with open(o_file, 'rb') as f:
         elfFile = ELFFile(f)
 
         for section in elfFile.iter_sections():
-            if section.name == ".text":
+            if section.name == ".text" or section.name == ".init":
                 fullSize += section['sh_size']
             elif section.name in dataSections:
                 dataSize += section['sh_size']
