@@ -30,8 +30,15 @@ template<typename T>
 class JSUList : public JSUPtrList
 {
 public:
-    JSUList();
-    ~JSUList();
+    JSUList()
+    {
+        initiate();
+    }
+
+    ~JSUList()
+    {
+        
+    }
 };
 
 class JSUPtrLink
