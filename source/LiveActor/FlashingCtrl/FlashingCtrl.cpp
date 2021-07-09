@@ -82,7 +82,7 @@ bool FlashingCtrl::isNowFlashing() const
 // TODO: I think it matches logically but code wise is a no 
 bool FlashingCtrl::isNowOn() const
 {
-    return ((mTimer / getCurrentInterval()) | 1) % 2  == 0;
+    return ((mTimer / getCurrentInterval()) | 0) % 2  == 0;
 }
 
 void FlashingCtrl::updateFlashing()
