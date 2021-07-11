@@ -79,7 +79,6 @@ bool FlashingCtrl::isNowFlashing() const
     return mTimer <= mFlashStartTime;
 }
 
-// TODO: I think it matches logically but code wise is a no 
 bool FlashingCtrl::isNowOn() const
 {
     return ((mTimer / getCurrentInterval()) | 0) % 2  == 0;
