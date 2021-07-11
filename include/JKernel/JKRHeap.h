@@ -34,7 +34,7 @@ public:
 
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
-    void destroy(JKRHeap*);
+    void destroy(JKRHeap *pHeap = NULL);
     static void* alloc(u32, s32, JKRHeap *);
     void* alloc(u32, s32);
     static void free(void *, JKRHeap *);
@@ -50,6 +50,9 @@ public:
     s32 getMaxAllocatableSize(s32);
     s32 getMaxFreeBlock();
     s32 getFreeSize();
+
+    static void setAltAramStartAdr(u32);
+    static u32 getAltAramStartAdr();
     
     OSMutex mMutex; // _18
     void* _30;

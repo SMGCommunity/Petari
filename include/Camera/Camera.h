@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Camera/CameraPoseParam.h"
 #include "Camera/CameraHeightArrange.h"
 #include "JGeometry/TMatrix34.h"
