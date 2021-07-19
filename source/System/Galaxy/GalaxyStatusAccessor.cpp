@@ -23,7 +23,7 @@ u32 GalaxyStatusAccessor::getPowerStarNum() const
 
 u32 GalaxyStatusAccessor::getZoneNum() const 
 {
-    return mScenarioData->getPowerStarNum();
+    return mScenarioData->getZoneNum();
 }
 
 u32 GalaxyStatusAccessor::getZoneId(const char *pZone) const
