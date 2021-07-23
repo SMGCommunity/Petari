@@ -8,6 +8,11 @@ JMapInfo::JMapInfo()
     mName = "Undifined";
 }
 
+JMapInfo::~JMapInfo()
+{
+
+}
+
 bool JMapInfo::attach(const void *src)
 {
     if (!src)
@@ -62,4 +67,22 @@ s32 JMapInfo::getValueType(const char *pPath) const
     }
 
     return mData->mItems[idx].mType;
+}
+
+s32 JMapInfo::getValueFast(int a1, int a2, const char **pOut) const
+{
+    const char* data = (char*)mData + mData->mDataOffset + (a1 * mData->_C) + mData->mItems[a2].mOffsetData;
+    const JMapData::JMapItem& inf = mData->mItems[a2];
+
+    switch (inf.mType)
+    {
+        case 6:
+            *pOut = (const char*)mData + calcDataElementOffset() + *(u32*)data;
+            break;
+        default:
+            *pOut = (const char*)data;
+            break;
+    }
+
+    return 1;    
 }
