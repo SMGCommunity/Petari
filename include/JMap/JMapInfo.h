@@ -42,20 +42,31 @@ public:
     JMapInfo();
     JMapInfo(u32 val);
 
-    ~JMapInfo() { }
+    ~JMapInfo();
 
     bool attach(const void *);
     void setName(const char *);
     const char* getName() const;
     s32 searchItemInfo(const char *) const;
     s32 getValueType(const char *) const;
-    s32 getValueFast(s32, s32, const char **) const;
-    s32 getValueFast(s32, s32, u32 *) const;
-    s32 getValueFast(s32, s32, s32 *) const;
+    s32 getValueFast(int, int, const char **) const;
+    s32 getValueFast(int, int, u32 *) const;
+    s32 getValueFast(int, int, s32 *) const;
 
     template<typename T>
     void getValue(s32, const char *, T *) const;
 
     const JMapData* mData; // _0
     const char* mName; // _4
+
+protected:
+    	inline int calcDataElementOffset(int idx) const
+		{
+			return static_cast<int>(mData->mDataOffset + (((volatile JMapData*)mData)->_C * idx));
+		}
+
+		inline int calcDataElementOffset() const
+		{
+			return calcDataElementOffset(mData ? mData->_0 : 0);
+		}
 };
