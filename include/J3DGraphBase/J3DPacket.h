@@ -36,6 +36,8 @@ public:
     u32 newDisplayList(u32);
     u32 newSingleDisplayList(u32);
 
+    u32 single_To_Double();
+    void setSingleDisplayList(void *, u32);
     void swapBuffer();
     void callDL();
     void beginDL();
@@ -44,7 +46,7 @@ public:
     u32 endPatch();
 
     void* mList; // _0
-    u32 _4;
+    void* _4;
     u32 mListSize; // _8
     u32 _C;
 
