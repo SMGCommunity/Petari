@@ -57,7 +57,7 @@ class J3DPacket
 public:
     virtual u32 entry(J3DDrawBuffer *);
 
-    void addChildPacket(J3DPacket *);
+    void addChildPacket(J3DPacket *pChild);
 
     J3DPacket* mParent; // _4
     J3DPacket* mChild; // _8

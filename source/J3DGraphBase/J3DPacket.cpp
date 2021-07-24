@@ -44,13 +44,13 @@ u32 J3DPacket::entry(J3DDrawBuffer *pBuffer)
 
 void J3DPacket::addChildPacket(J3DPacket *pPacket)
 {
-    if (mChild == 0)
+    if (!mChild)
     {
         mChild = pPacket;
     }
     else
     {
-        mParent = mChild;
+        pPacket->mParent = mChild;
         mChild = pPacket;
     }
 }
@@ -143,18 +143,16 @@ void J3DMatPacket::endDiff()
     _28->mDLObj->endDL();
 }
 
-/*bool J3DMatPacket::isSame(J3DMatPacket *pPacket) const
+bool J3DMatPacket::isSame(J3DMatPacket *pPacket) const
 {
-    if (_34 != pPacket->_34)
+    u32 thing = _34;
+
+    bool ret = false;
+
+    if (thing == pPacket->_34 && thing >> 31)
     {
-        return false;
+        ret = true;
     }
 
-    if (_34)
-    {
-        return false;
-    }
-
-    return true;
-}*/
-
+    return ret;
+}
