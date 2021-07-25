@@ -2,6 +2,63 @@
 #include <revolution/os.h>
 #include <revolution/gx.h>
 
+#include "JKernel/JKRHeap.h"
+
+#include "MSL_C/string.h"
+
+u32 J3DDisplayListObj::newDisplayList(u32 a1)
+{
+    u32 size = (a1 + 31) & 0xFFFFFFE0;
+    _C = size;
+
+    mList = new (0x20)char[size];
+    _4 = new (0x20)char[_C];
+
+    // todo -- scheduling issue
+    mListSize = 0;
+    return 0;
+}
+
+u32 J3DDisplayListObj::newSingleDisplayList(u32 a1)
+{
+    u32 size = (a1 + 31) & 0xFFFFFFE0;
+    _C = size;
+
+    void* disp = new (0x20)char[size];
+    mList = disp;
+    _4 = disp;
+    mListSize = 0;
+
+    return 0;
+}
+
+u32 J3DDisplayListObj::single_To_Double()
+{
+    if (mList == _4)
+    {
+        _4 = new (0x20)char[_C];
+        memcpy(_4, mList, _C);
+        DCStoreRange(_4, _C);
+    }
+
+    return 0;
+}
+
+void J3DDisplayListObj::setSingleDisplayList(void *pDisp, u32 a2)
+{
+    mList = pDisp;
+    _C = (a2 + 0x1F) & 0xFFFFFFE0;
+    _4 = pDisp;
+    mListSize = a2;
+}
+
+void J3DDisplayListObj::swapBuffer()
+{
+    void* list = mList;
+    mList = _4;
+    _4 = list;
+}
+
 void J3DDisplayListObj::callDL()
 {
     GXCallDisplayList(mList, mListSize);
@@ -44,13 +101,13 @@ u32 J3DPacket::entry(J3DDrawBuffer *pBuffer)
 
 void J3DPacket::addChildPacket(J3DPacket *pPacket)
 {
-    if (mChild == 0)
+    if (!mChild)
     {
         mChild = pPacket;
     }
     else
     {
-        mParent = mChild;
+        pPacket->mParent = mChild;
         mChild = pPacket;
     }
 }
@@ -143,18 +200,16 @@ void J3DMatPacket::endDiff()
     _28->mDLObj->endDL();
 }
 
-/*bool J3DMatPacket::isSame(J3DMatPacket *pPacket) const
+bool J3DMatPacket::isSame(J3DMatPacket *pPacket) const
 {
-    if (_34 != pPacket->_34)
+    u32 thing = _34;
+
+    bool ret = false;
+
+    if (thing == pPacket->_34 && thing >> 31)
     {
-        return false;
+        ret = true;
     }
 
-    if (_34)
-    {
-        return false;
-    }
-
-    return true;
-}*/
-
+    return ret;
+}
