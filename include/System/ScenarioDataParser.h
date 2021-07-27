@@ -1,7 +1,7 @@
 #pragma once
 
 #include "NameObj/NameObj.h"
-#include "JMap/JMapInfo.h"
+#include "JSystem/JMap/JMapInfo.h"
 #include <revolution.h>
 
 class GalaxyStatusAccessor;

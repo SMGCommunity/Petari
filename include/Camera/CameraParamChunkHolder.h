@@ -3,7 +3,7 @@
 #include "Camera/CameraHolder.h"
 #include "Camera/CameraParamChunk.h"
 #include "NameObj/NameObj.h"
-#include "JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 class CameraParamChunkHolder : public NameObj
 {

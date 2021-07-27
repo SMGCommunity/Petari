@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "JGeometry/TVec3.h"
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JGeometry/TVec3.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "System/Resource/ResourceHolder.h"
 
 class LiveActor;

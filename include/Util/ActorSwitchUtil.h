@@ -1,7 +1,7 @@
 #pragma once
 
 #include "LiveActor/LiveActor.h"
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "Util/FunctorBase.h"
 
 namespace MR

@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 #include "NameObj/NameObj.h"
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "Util/JMapIdInfo.h"
 
 class BitFlag128

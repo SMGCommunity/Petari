@@ -1,8 +1,8 @@
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include <stdio.h>
 #include <revolution/mtx.h>
-#include "JGeometry/TVec3.h"
-#include "JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TMatrix34.h"
 #include "Util/JMapUtil.h"
 #include "Util/MtxUtil.h"
 #include "Util/SceneUtil.h"

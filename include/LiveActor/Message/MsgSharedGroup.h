@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "LiveActor/LiveActorGroup.h"
 
 class MsgSharedGroup : public LiveActorGroup

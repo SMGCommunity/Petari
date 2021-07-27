@@ -3,7 +3,7 @@
 #include "Util/LiveActorUtil.h"
 #include "Util/PlayerUtil.h"
 #include "LiveActor/LiveActor.h"
-#include "JMath/JMath.h"
+#include "JSystem/JMath/JMath.h"
 
 #include <revolution.h>
 

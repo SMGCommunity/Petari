@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TVec3.h"
 #include <revolution.h>
 
 class Binder

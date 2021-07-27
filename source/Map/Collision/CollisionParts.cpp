@@ -1,6 +1,6 @@
 #include "Map/Collision/CollisionParts.h"
 #include "Map/Collision/KCollisionServer.h"
-#include "JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TMatrix34.h"
 
 CollisionParts::CollisionParts()
 {

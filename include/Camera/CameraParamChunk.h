@@ -4,7 +4,7 @@
 #include "Camera/CameraParamChunkID.h"
 #include "Camera/CameraParamString.h"
 #include "Camera/DotCamParams.h"
-#include "JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TVec3.h"
 
 #include "smg.h"
 

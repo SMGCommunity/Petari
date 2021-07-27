@@ -1,6 +1,6 @@
 #include "MapObj/ElectricRail/ElectricRail.h"
 #include "MapObj/ElectricRail/ElectricRailHolder.h"
-#include "JMath/JMath.h"
+#include "JSystem/JMath/JMath.h"
 #include "Util/LiveActorUtil.h"
 #include "Util/ActorSensorUtil.h"
 #include "Util/ActorShadowUtil.h"

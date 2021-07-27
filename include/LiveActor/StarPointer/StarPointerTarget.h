@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "JGeometry/TVec2.h"
-#include "JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TVec2.h"
+#include "JSystem/JGeometry/TVec3.h"
 
 class StarPointerTarget
 {

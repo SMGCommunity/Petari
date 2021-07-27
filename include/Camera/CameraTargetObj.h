@@ -4,8 +4,8 @@
 #include "LiveActor/LiveActor.h"
 #include "NameObj/NameObj.h"
 #include "Gravity/GravityInfo.h"
-#include "JGeometry/TMatrix34.h"
-#include "JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TVec3.h"
 
 #include <revolution/mtx.h>
 

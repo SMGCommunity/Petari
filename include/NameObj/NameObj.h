@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 
 class NameObj
 {

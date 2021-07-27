@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution/mtx.h>
-#include "JGeometry/TVec3.h"
-#include "JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TMatrix34.h"
 
 namespace MR
 {

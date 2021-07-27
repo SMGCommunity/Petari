@@ -2,7 +2,7 @@
 
 #include "NameObj/NameObj.h"
 #include "Camera/CameraDirector.h"
-#include "JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TMatrix34.h"
 
 class CameraPoseParam;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "LiveActor/Model/ModelManager.h"
-#include "JGeometry/TVec3.h"
+#include "JSystem/JGeometry/TVec3.h"
 
 class ActorPadAndCameraCtrl
 {

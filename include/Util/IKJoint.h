@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JGeometry/TMatrix34.h"
+#include "JSystem/JGeometry/TMatrix34.h"
 #include "smg.h"
 
 class IKJoint

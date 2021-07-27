@@ -1,8 +1,8 @@
 #pragma once
 
-#include "JGeometry/TMatrix34.h"
-#include "JMap/JMapInfo.h"
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JGeometry/TMatrix34.h"
+#include "JSystem/JMap/JMapInfo.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "Scene/Scene.h"
 
 class JMapIdInfo;

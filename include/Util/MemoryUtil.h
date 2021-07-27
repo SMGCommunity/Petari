@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "revolution/os/OSMutex.h"
 #include "revolution/mem.h"
 

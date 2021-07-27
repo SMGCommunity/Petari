@@ -1,8 +1,8 @@
 #pragma once
 
 #include "smg.h"
-#include "JKernel/JKRExpHeap.h"
-#include "JKernel/JKRSolidHeap.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 
 class HeapMemoryWatcher
 {

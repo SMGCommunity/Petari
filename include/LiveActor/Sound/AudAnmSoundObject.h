@@ -1,7 +1,7 @@
 #pragma once
 
 #include "LiveActor/Sound/AudSoundObject.h"
-#include "JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 class AudAnmSoundObject : public AudSoundObject
 {

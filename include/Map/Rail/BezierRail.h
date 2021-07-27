@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JMap/JMapInfo.h"
-#include "JMap/JMapInfoIter.h"
+#include "JSystem/JMap/JMapInfo.h"
+#include "JSystem/JMap/JMapInfoIter.h"
 #include "Map/Rail/RailPart.h"
 
 class BezierRail

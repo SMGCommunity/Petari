@@ -1,7 +1,7 @@
 #include "Util/ActorSensorUtil.h"
 #include "Util/SceneUtil.h"
 #include "LiveActor/LiveActor.h"
-#include "JMath/JMath.h"
+#include "JSystem/JMath/JMath.h"
 
 namespace MR
 {

@@ -1,5 +1,5 @@
 #include "Map/Rail/BezierRail.h"
-#include "JGeometry/TUtil.h"
+#include "JSystem/JGeometry/TUtil.h"
 #include "Util/JMapUtil.h"
 #include "Util/MathUtil.h"
 #include "Util/StringUtil.h"

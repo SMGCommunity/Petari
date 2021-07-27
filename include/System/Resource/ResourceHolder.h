@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.h"
 #include "System/Resource/ResourceInfo.h"
 
 namespace

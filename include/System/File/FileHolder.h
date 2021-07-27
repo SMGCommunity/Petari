@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "revolution/os/OSMessage.h"
 
 class FileHolderFileEntry
