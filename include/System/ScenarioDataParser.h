@@ -21,9 +21,9 @@ public:
     s32 getZoneNum() const;
     s32 getZoneId(const char *) const;
 
-    JMapInfo *mScenarioInfo; // _0
-    const char *_4; // possibly ScenarioName? 
-    bool **_8;
+    JMapInfo* mScenarioData; // _0
+    const char* mGalaxyName; // _4
+    JMapInfo* mZoneList; // _8
 };
 
 class ScenarioDataParser : public NameObj
