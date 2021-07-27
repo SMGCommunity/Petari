@@ -96,3 +96,8 @@ void FlashingCtrl::updateFlashing()
         MR::onEntryDrawBuffer(mActor);
     }
 }
+
+FlashingCtrl::~FlashingCtrl() 
+{
+    
+}
