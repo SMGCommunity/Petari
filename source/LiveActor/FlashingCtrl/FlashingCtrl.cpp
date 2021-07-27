@@ -3,10 +3,10 @@
 #include "Util/ObjUtil.h"
 #include "Util/DemoUtil.h"
 
-FlashingCtrl::FlashingCtrl(LiveActor *pActor, bool a3) : NameObj("点滅")
+FlashingCtrl::FlashingCtrl(LiveActor *pActor, bool toggleDraw) : NameObj("点滅")
 {
     mActor = pActor;
-    mToggleDraw = a3;
+    mToggleDraw = toggleDraw;
     mIsEnded = true;
     mOverrideInterval = 0;
     mTimer = 0;
