@@ -23,7 +23,7 @@ u32 GalaxyStatusAccessor::getPowerStarNum() const
 
 u32 GalaxyStatusAccessor::getZoneNum() const 
 {
-    return mScenarioData->getPowerStarNum();
+    return mScenarioData->getZoneNum();
 }
 
 u32 GalaxyStatusAccessor::getZoneId(const char *pZone) const
@@ -78,7 +78,7 @@ bool GalaxyStatusAccessor::isExistGrandStar() const
 {
     for (s32 i = 1; i <= mScenarioData->getPowerStarNum(); i++)
     {
-        if (GameDataConst::isGrandStar(mScenarioData->_4, i))
+        if (GameDataConst::isGrandStar(mScenarioData->mGalaxyName, i))
         {
             return true;
         }
@@ -119,11 +119,11 @@ s32 GalaxyStatusAccessor::getNormalCometScenarioNo() const
 
     for (s32 i = 1; i <= mScenarioData->getScenarioNum(); i++)
     {
-        const char *_8 = NULL;
+        const char *pIsNormal = NULL;
 
-        if (mScenarioData->getValueString("Comet", i, &_8))
+        if (mScenarioData->getValueString("Comet", i, &pIsNormal))
         {
-            pNormal = _8;
+            pNormal = pIsNormal;
         }
         else
         {
@@ -169,7 +169,7 @@ bool GalaxyStatusAccessor::canOpen() const
 {
     if (mScenarioData->getPowerStarNum())
     {
-        return GameDataFunction::canOnGameEventFlag(mScenarioData->_4);
+        return GameDataFunction::canOnGameEventFlag(mScenarioData->mGalaxyName);
     }
     else
     {
@@ -185,7 +185,7 @@ bool GalaxyStatusAccessor::isOpened() const
     }
     else
     {
-        return GameDataFunction::isOnGameEventFlag(mScenarioData->_4);
+        return GameDataFunction::isOnGameEventFlag(mScenarioData->mGalaxyName);
     }
 }
 
@@ -197,7 +197,7 @@ bool GalaxyStatusAccessor::hasPowerStar(s32 Scenario) const
     }
     else
     {
-        return GameDataFunction::hasPowerStar(mScenarioData->_4, Scenario);
+        return GameDataFunction::hasPowerStar(mScenarioData->mGalaxyName, Scenario);
     }
 }
 
@@ -215,7 +215,7 @@ s32 GalaxyStatusAccessor::getPowerStarNumOwned() const
 {
     if (!mScenarioData->getPowerStarNum())
     {
-        return GameDataFunction::getPowerStarNumOwned(mScenarioData->_4);
+        return GameDataFunction::getPowerStarNumOwned(mScenarioData->mGalaxyName);
     }
     else
     {
