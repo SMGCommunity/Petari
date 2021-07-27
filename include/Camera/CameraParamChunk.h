@@ -16,9 +16,9 @@ public:
     CameraGeneralParam& operator=(const CameraGeneralParam &);
 
     f32 mDist; // _0
-    JGeometry::TVec3<f32> mAxis; // _4
-    JGeometry::TVec3<f32> mWPoint; // _10
-    JGeometry::TVec3<f32> mUp; // _1C
+    JGeometry::TVec3f mAxis; // _4
+    JGeometry::TVec3f mWPoint; // _10
+    JGeometry::TVec3f mUp; // _1C
     f32 mAngleA; // _28
     f32 mAngleB; // _2C
     s32 mNum1; // _30
@@ -36,7 +36,7 @@ public:
 
         void init();
 
-        JGeometry::TVec3<f32> mWOffset; // _0
+        JGeometry::TVec3f mWOffset; // _0
         f32 mLOffset; // _C
         f32 mLOffsetV; // _10
         f32 mRoll; // _14
@@ -52,7 +52,7 @@ public:
         s32 mPushDelayLow; // _3C
         s32 mUDown; // _40
         s32 mVPanUse; // _44
-        JGeometry::TVec3<f32> mPanAxis; // _48
+        JGeometry::TVec3f mPanAxis; // _48
     };
 
     CameraParamChunk(CameraHolder *, const CameraParamChunkID &);
@@ -69,7 +69,7 @@ public:
     bool isAntiBlurOff() const;
     bool isCollisionOff() const;
     bool isSubjectiveCameraOff() const;
-    void getVPanAxis(JGeometry::TVec3<f32> *) const;
+    void getVPanAxis(JGeometry::TVec3f *) const;
     void setCameraType(const char *, const CameraHolder *);
     void setUseFovy(bool);
     void setLOFsErpOff(bool);

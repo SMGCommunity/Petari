@@ -35,17 +35,17 @@ namespace MR
         return pIter->getNextNode();
     }
 
-    void calcWatchEdgeVector(const RailGraphIter *pIter, JGeometry::TVec3<f32> *pOut)
+    void calcWatchEdgeVector(const RailGraphIter *pIter, JGeometry::TVec3f *pOut)
     {
         RailGraphNode *pCurNode = pIter->getCurrentNode();
         RailGraphNode *pWatchNode = pIter->getWatchNode();
 
-        JGeometry::TVec3<f32> temp;
+        JGeometry::TVec3f temp;
         temp = pWatchNode->mPosition - pCurNode->mPosition;
         pOut->set(temp);
     }
 
-    void calcWatchEdgeDirection(const RailGraphIter *pIter, JGeometry::TVec3<f32> *pOut)
+    void calcWatchEdgeDirection(const RailGraphIter *pIter, JGeometry::TVec3f *pOut)
     {
         calcWatchEdgeVector(pIter, pOut);
         MR::normalize(pOut);

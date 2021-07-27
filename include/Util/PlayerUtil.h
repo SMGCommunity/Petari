@@ -6,6 +6,6 @@ namespace MR
 {
     bool isPlayerSquat();
 
-    JGeometry::TVec3<f32>* getPlayerCenterPos();
-    JGeometry::TVec3<f32>* getPlayerPos();
+    JGeometry::TVec3f* getPlayerCenterPos();
+    JGeometry::TVec3f* getPlayerPos();
 };

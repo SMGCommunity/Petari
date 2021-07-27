@@ -83,7 +83,7 @@ namespace MR
         return 1;
     }
 
-    bool getJMapInfoTrans(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoTrans(const JMapInfoIter &iter, JGeometry::TVec3f *pOut)
     {
         bool ret = MR::getJMapInfoTransLocal(iter, pOut);
 
@@ -101,7 +101,7 @@ namespace MR
         return 1;
     }
 
-    bool getJMapInfoRotate(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoRotate(const JMapInfoIter &iter, JGeometry::TVec3f *pOut)
     {
         bool ret = MR::getJMapInfoRotateLocal(iter, pOut);
 
@@ -314,7 +314,7 @@ namespace MR
         return iter.getValue<s32>("ShapeModelNo", pOut);
     }
 
-    bool getJMapInfoTransLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoTransLocal(const JMapInfoIter &iter, JGeometry::TVec3f *pOut)
     {
         bool ret = iter.getValue<f32>("pos_x", &pOut->x);
 
@@ -329,7 +329,7 @@ namespace MR
         return iter.getValue<f32>("pos_z", &pOut->z);
     }
 
-    bool getJMapInfoRotateLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoRotateLocal(const JMapInfoIter &iter, JGeometry::TVec3f *pOut)
     {
         bool ret = iter.getValue<f32>("dir_x", &pOut->x);
 
@@ -344,7 +344,7 @@ namespace MR
         return iter.getValue<f32>("dir_z", &pOut->z);
     }
 
-    bool getJMapInfoScaleLocal(const JMapInfoIter &iter, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoScaleLocal(const JMapInfoIter &iter, JGeometry::TVec3f *pOut)
     {
         bool ret = iter.getValue<f32>("scale_x", &pOut->x);
 
@@ -359,7 +359,7 @@ namespace MR
         return iter.getValue<f32>("scale_z", &pOut->z);
     }
 
-    bool getJMapInfoV3f(const JMapInfoIter &iter, const char *identifier, JGeometry::TVec3<f32> *pOut)
+    bool getJMapInfoV3f(const JMapInfoIter &iter, const char *identifier, JGeometry::TVec3f *pOut)
     {
         char formattedStr;
         sprintf(&formattedStr, "%sX", identifier);

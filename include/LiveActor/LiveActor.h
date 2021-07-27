@@ -65,16 +65,16 @@ public:
     void initSound(s32, bool);
     void initShadowControllerList(u32);
     void initStageSwitch(const JMapInfoIter &);
-    void initActorStarPointerTarget(f32, const JGeometry::TVec3<f32> *, Mtx *, JGeometry::TVec3<f32>);
+    void initActorStarPointerTarget(f32, const JGeometry::TVec3f *, Mtx *, JGeometry::TVec3f);
     void initActorLightCtrl();
     void addToSoundObjHolder();
     void updateBinder();
 
-    JGeometry::TVec3<f32> mTranslation; // _C
-    JGeometry::TVec3<f32> mRotation; // _18
-    JGeometry::TVec3<f32> mScale; // _24
-    JGeometry::TVec3<f32> mVelocity; // _30
-    JGeometry::TVec3<f32> mGravity; // _3C
+    JGeometry::TVec3f mTranslation; // _C
+    JGeometry::TVec3f mRotation; // _18
+    JGeometry::TVec3f mScale; // _24
+    JGeometry::TVec3f mVelocity; // _30
+    JGeometry::TVec3f mGravity; // _3C
     ModelManager* mModelManager; // _48
     ActorAnimKeeper* mAnimKeeper; // _4C
     Spine* mSpine; // _50

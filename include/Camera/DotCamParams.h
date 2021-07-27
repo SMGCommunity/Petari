@@ -12,7 +12,7 @@ public:
     virtual void nextToChunk() = 0;
     virtual bool getValueInt(const char *, s32 *) = 0;
     virtual bool getValueFloat(const char *, f32 *) = 0;
-    virtual void getValueVec(const char *, JGeometry::TVec3<f32> *) = 0;
+    virtual void getValueVec(const char *, JGeometry::TVec3f *) = 0;
     virtual s32 getValueString(const char *, const char **) = 0;
 };
 
@@ -27,7 +27,7 @@ public:
     virtual void nextToChunk();
     virtual bool getValueInt(const char *, s32 *);
     virtual bool getValueFloat(const char *, f32 *);
-    virtual void getValueVec(const char *, JGeometry::TVec3<f32> *);
+    virtual void getValueVec(const char *, JGeometry::TVec3f *);
     virtual s32 getValueString(const char *, const char **);
 
     void init(const void *);

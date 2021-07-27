@@ -36,7 +36,7 @@ void ElectricRailPoint::init(const JMapInfoIter &iter)
     }
 
     initHitSensor(1);
-    JGeometry::TVec3<f32> pos(0.0f, 0.0f, 0.0f);
+    JGeometry::TVec3f pos(0.0f, 0.0f, 0.0f);
     MR::addHitSensorMapObj(this, "body", 8, 35.0f, pos);
 
     makeActorAppeared();
@@ -225,13 +225,13 @@ void ElectricRail::initSensor()
 {
     initHitSensor(mRailHeight);
 
-    _94 = new JGeometry::TVec3<f32>[mRailHeight];
+    _94 = new JGeometry::TVec3f[mRailHeight];
 
     s32 curSensor = 0;
 
     while (curSensor < mRailHeight)
     {
-        JGeometry::TVec3<f32> temp(0.0f, 0.0f, 0.0f);
+        JGeometry::TVec3f temp(0.0f, 0.0f, 0.0f);
         
         f32 hitSensorRadius = ElectricRailFunction::getHitSensorRadius();
         MR::addHitSensorPosMapObj(this, ElectricRail::cSensorNameTable[curSensor], 8, hitSensorRadius, &_94[curSensor], temp);
@@ -275,14 +275,14 @@ void ElectricRail::initPoints()
         if (!ret)
         {
             ElectricRailPoint* point = &mPoints[curPointIdx];
-            JGeometry::TVec3<f32> temp;
+            JGeometry::TVec3f temp;
             MR::calcRailPointPos(&temp, this, curRailPoint);
             point->mTranslation.set<f32>(temp);
             curPointIdx++;
 
             if (mRailHeight > 1)
             {
-                JGeometry::TVec3<f32> outGrav;
+                JGeometry::TVec3f outGrav;
                 calcGravity(&outGrav, temp);
                 outGrav.scale(-100.0f);
 
@@ -380,10 +380,10 @@ void ElectricRail::initShadow(const JMapInfoIter &iter)
         MR::addShadowVolumeCylinder(this, "start", 20.0);
         MR::addShadowVolumeCylinder(this, "end", 20.0);
 
-        JGeometry::TVec3<f32> startPos;
+        JGeometry::TVec3f startPos;
         MR::calcRailStartPos(&startPos, this);
 
-        JGeometry::TVec3<f32> endPos;
+        JGeometry::TVec3f endPos;
         MR::calcRailEndPos(&endPos, this);
 
         MR::setShadowDropPosition(this, "start", startPos);
@@ -408,12 +408,12 @@ void ElectricRail::initShadow(const JMapInfoIter &iter)
 
 void ElectricRail::updateHitSensorPos()
 {
-    JGeometry::TVec3<f32>* playerCenterPos = MR::getPlayerCenterPos();
+    JGeometry::TVec3f* playerCenterPos = MR::getPlayerCenterPos();
     MR::calcNearestRailPos(_94, this, *playerCenterPos);
 
     if (mRailHeight > 1)
     {
-        JGeometry::TVec3<f32> gravity;
+        JGeometry::TVec3f gravity;
         calcGravity(&gravity, *_94);
         gravity.scale(-100.0);
 
@@ -427,7 +427,7 @@ void ElectricRail::updateHitSensorPos()
     }
 }
 
-void ElectricRail::calcGravity(JGeometry::TVec3<f32> *pOut, const JGeometry::TVec3<f32> &a2) const
+void ElectricRail::calcGravity(JGeometry::TVec3f *pOut, const JGeometry::TVec3f &a2) const
 {
     if (_B4)
     {

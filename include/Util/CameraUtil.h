@@ -5,5 +5,5 @@
 
 namespace MR
 {
-    f32 calcCameraDistanceZ(const JGeometry::TVec3<f32> &);
+    f32 calcCameraDistanceZ(const JGeometry::TVec3f &);
 };

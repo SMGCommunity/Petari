@@ -8,6 +8,6 @@ class NameObj;
 
 namespace MR
 {
-    bool calcDropShadowVector(const NameObj *, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *, GravityInfo *, u32);
-    bool calcGravityVectorOrZero(const NameObj *, const JGeometry::TVec3<f32> &, JGeometry::TVec3<f32> *, GravityInfo *, u32);
+    bool calcDropShadowVector(const NameObj *, const JGeometry::TVec3f &, JGeometry::TVec3f *, GravityInfo *, u32);
+    bool calcGravityVectorOrZero(const NameObj *, const JGeometry::TVec3f &, JGeometry::TVec3f *, GravityInfo *, u32);
 };

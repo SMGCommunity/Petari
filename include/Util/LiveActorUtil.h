@@ -73,7 +73,7 @@ namespace MR
     void setClippingFar300m(LiveActor *);
     void setClippingFarMax(LiveActor *);
     void setClippingFar(LiveActor *, f32);
-    void setClippingTypeSphere(LiveActor *, f32, const JGeometry::TVec3<f32> &);
+    void setClippingTypeSphere(LiveActor *, f32, const JGeometry::TVec3f &);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
 
     bool isExistIndirectTexture(const LiveActor *);

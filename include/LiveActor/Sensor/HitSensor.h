@@ -39,7 +39,7 @@ public:
     void addHitSensor(HitSensor *);
 
     u32 mSensorType; // _0
-    JGeometry::TVec3<f32> _4;
+    JGeometry::TVec3f _4;
     f32 _10;
     u16 mNumSensors; // _14
     u16 _16;

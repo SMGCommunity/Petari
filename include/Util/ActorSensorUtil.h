@@ -8,44 +8,44 @@ class HitSensor;
 
 namespace MR
 {
-    void addHitSensor(LiveActor *, const char *, u32, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorTransferableBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorPriorBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorRide(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorMapObjPress(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorMapObjSimple(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorMapObjMoveCollision(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorEnemy(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorEnemySimple(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorEnemyAttack(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorNpc(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorEye(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorPush(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
+    void addHitSensor(LiveActor *, const char *, u32, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorTransferableBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorPriorBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorRide(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorMapObjPress(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorMapObjSimple(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorMapObjMoveCollision(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorEnemy(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorEnemySimple(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorEnemyAttack(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorNpc(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorEye(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorPush(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f &);
     
-    void addHitSensorPosBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
-    void addHitSensorPosRide(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
-    void addHitSensorPosMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
-    void addHitSensorPosEye(LiveActor *, const char *, u16, f32, const JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
+    void addHitSensorPosBinder(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f *, const JGeometry::TVec3f &);
+    void addHitSensorPosRide(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f *, const JGeometry::TVec3f &);
+    void addHitSensorPosMapObj(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f *, const JGeometry::TVec3f &);
+    void addHitSensorPosEye(LiveActor *, const char *, u16, f32, const JGeometry::TVec3f *, const JGeometry::TVec3f &);
     
-    void addHitSensorMtx(LiveActor *, const char *, u32, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxRide(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxMapObj(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxEnemy(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxEnemyAttack(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxNpc(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
-    void addHitSensorMtxAnimal(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3<f32> &);
+    void addHitSensorMtx(LiveActor *, const char *, u32, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxRide(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxMapObj(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxEnemy(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxEnemyAttack(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxNpc(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
+    void addHitSensorMtxAnimal(LiveActor *, const char *, u16, Mtx *, const JGeometry::TVec3f &);
     
-    void addHitSensorAtJoint(LiveActor *, const char *, const char *, u32, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointRide(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointMapObj(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointMapObjSimple(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointEnemy(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointEnemySimple(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointEnemyAttack(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointNpc(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
-    void addHitSensorAtJointEye(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3<f32> &);
+    void addHitSensorAtJoint(LiveActor *, const char *, const char *, u32, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointRide(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointMapObj(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointMapObjSimple(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointEnemy(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointEnemySimple(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointEnemyAttack(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointNpc(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
+    void addHitSensorAtJointEye(LiveActor *, const char *, const char *, u16, f32, const JGeometry::TVec3f &);
     
     void addHitSensorCallback(LiveActor *, const char *, const char *, u32, u16, f32);
     void addHitSensorCallbackBinder(LiveActor *, const char *, const char *, u16, f32);
@@ -75,8 +75,8 @@ namespace MR
     HitSensor* getTaking(const LiveActor *);
     HitSensor* getTaken(const LiveActor *);
 
-    void setSensorPos(HitSensor *, const JGeometry::TVec3<f32> &);
-    void setSensorOffset(LiveActor *, const char *, JGeometry::TVec3<f32> &);
+    void setSensorPos(HitSensor *, const JGeometry::TVec3f &);
+    void setSensorOffset(LiveActor *, const char *, JGeometry::TVec3f &);
     void setSensorRadius(LiveActor *, const char *, f32);
     void setHitSensorApart(HitSensor *, HitSensor *);
 
@@ -106,10 +106,10 @@ namespace MR
     bool isSensorItem(const HitSensor *);
     bool tryGetItem(HitSensor *, HitSensor *);
 
-    JGeometry::TVec3<f32> getSensorPos(const HitSensor *);
-    void calcSensorDirection(JGeometry::TVec3<f32> *, const HitSensor *, const HitSensor *);
-    void calcSensorDirectionNormalize(JGeometry::TVec3<f32> *, const HitSensor *, const HitSensor *);
-    void calcSensorHorizonNormalize(JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &, const HitSensor *, const HitSensor *);
+    JGeometry::TVec3f getSensorPos(const HitSensor *);
+    void calcSensorDirection(JGeometry::TVec3f *, const HitSensor *, const HitSensor *);
+    void calcSensorDirectionNormalize(JGeometry::TVec3f *, const HitSensor *, const HitSensor *);
+    void calcSensorHorizonNormalize(JGeometry::TVec3f *, const JGeometry::TVec3f &, const HitSensor *, const HitSensor *);
 
     HitSensor* getMessageSensor();
 
@@ -123,18 +123,18 @@ namespace MR
     bool sendMsgKick(HitSensor *, HitSensor *);
     bool sendMsgAwayJump(HitSensor *, HitSensor *);
 
-    bool sendMsgEnemyAttackMsgToDir(u32, HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackMsgToDir(u32, HitSensor *, HitSensor *, const JGeometry::TVec3f &);
     bool sendMsgEnemyAttackFlipWeak(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackFlipWeakJump(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackFlip(HitSensor *, HitSensor *);
-    bool sendMsgEnemyAttackFlipToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackFlipToDir(HitSensor *, HitSensor *, const JGeometry::TVec3f &);
     bool sendMsgEnemyAttackFlipJump(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackFlipRot(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackFlipMaximum(HitSensor *, HitSensor *);
-    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3f &);
     bool sendMsgEnemyAttack(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackStrong(HitSensor *, HitSensor *);
-    bool sendMsgEnemyAttackStrongToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackStrongToDir(HitSensor *, HitSensor *, const JGeometry::TVec3f &);
     bool sendMsgEnemyAttackFire(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackFireStrong(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackElectric(HitSensor *, HitSensor *);
@@ -149,7 +149,7 @@ namespace MR
     bool sendMsgStarPieceGift(HitSensor *, HitSensor *, u32);
 
     bool sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
-    bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3<f32> &);
+    bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const JGeometry::TVec3f &);
     bool sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
     bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
 
@@ -230,7 +230,7 @@ namespace MR
     bool isMsgStarPieceGift(u32);
     u32 getNumStarPieceGift(u32);
 
-    void calcPosBetweenSensors(JGeometry::TVec3<f32> *, const HitSensor *, const HitSensor *, f32);
+    void calcPosBetweenSensors(JGeometry::TVec3f *, const HitSensor *, const HitSensor *, f32);
     bool tryForceKillIfMsgStarPowerStarGet(LiveActor *, u32);
     void addBodyMessageSensor(LiveActor *, u32);
 };

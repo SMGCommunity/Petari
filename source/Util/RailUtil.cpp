@@ -72,7 +72,7 @@ namespace MR
         rider->setCoord(coord);
     }
 
-    void moveCoordToNearestPos(LiveActor *pActor, const JGeometry::TVec3<f32> &point)
+    void moveCoordToNearestPos(LiveActor *pActor, const JGeometry::TVec3f &point)
     {
         pActor->mRailRider->moveToNearestPos(point);
     }
@@ -101,7 +101,7 @@ namespace MR
         pActor->mTranslation.set<f32>(pActor->mRailRider->mCurrentPos);
     }
 
-    void moveCoordAndTransToNearestRailPos(LiveActor *pActor, const JGeometry::TVec3<f32> &pos)
+    void moveCoordAndTransToNearestRailPos(LiveActor *pActor, const JGeometry::TVec3f &pos)
     {
         pActor->mRailRider->moveToNearestPos(pos);
         pActor->mTranslation.set<f32>(pActor->mRailRider->mCurrentPos);
@@ -188,7 +188,7 @@ namespace MR
         }
     }
 
-    void setRailDirectionCloseToNearestPos(LiveActor *pActor, const JGeometry::TVec3<f32> &pos)
+    void setRailDirectionCloseToNearestPos(LiveActor *pActor, const JGeometry::TVec3f &pos)
     {
         f32 nearestCoord = pActor->mRailRider->calcNearestPos(pos);
         MR::setRailDirectionCloseToCoord(pActor, nearestCoord);
@@ -200,10 +200,10 @@ namespace MR
     }
 
     // todo -- needs some work
-    f32 calcMovingDirectionAlongRail(LiveActor *pActor, JGeometry::TVec3<f32> *pVec, const JGeometry::TVec3<f32> &otherVec, f32 unk, bool unkbool, bool *pBool)
+    f32 calcMovingDirectionAlongRail(LiveActor *pActor, JGeometry::TVec3f *pVec, const JGeometry::TVec3f &otherVec, f32 unk, bool unkbool, bool *pBool)
     {
-        JGeometry::TVec3<f32> railPosition;
-        JGeometry::TVec3<f32> railDirection;
+        JGeometry::TVec3f railPosition;
+        JGeometry::TVec3f railDirection;
         f32 coord = MR::calcNearestRailPosAndDirection(&railPosition, &railDirection, pActor, otherVec);
         pActor->mRailRider->setCoord(coord);
 
@@ -229,7 +229,7 @@ namespace MR
 
         if (!pActor->mRailRider->_C)
         {
-            JGeometry::TVec3<f32> positionNeg;
+            JGeometry::TVec3f positionNeg;
 
             // takes X, Y, and Z from the position, and then negates it
             __asm
@@ -245,7 +245,7 @@ namespace MR
             railPosition = positionNeg;
         }
 
-        JGeometry::TVec3<f32> position(railPosition);
+        JGeometry::TVec3f position(railPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&position, (Vec*)&otherVec, (Vec*)&position);
 
         if (unkbool)
@@ -260,47 +260,47 @@ namespace MR
         position.y *= f4;
         position.z *= f4;
 
-        JGeometry::TVec3<f32> vec(position);
+        JGeometry::TVec3f vec(position);
         vec.add(railDirection);
         pVec->set<f32>(vec);
         MR::normalize(pVec);
         return ret;
     }
 
-    f32 calcMovingDirectionAlongRailH(LiveActor *pActor, JGeometry::TVec3<f32> *direction, const JGeometry::TVec3<f32> &vec, f32 unk, bool *ptr)
+    f32 calcMovingDirectionAlongRailH(LiveActor *pActor, JGeometry::TVec3f *direction, const JGeometry::TVec3f &vec, f32 unk, bool *ptr)
     {
         return MR::calcMovingDirectionAlongRail(pActor, direction, vec, unk, 1, ptr);
     }
 
     // calcRailClippingInfo
 
-    void initAndSetRailClipping(JGeometry::TVec3<f32> *vecPtr, LiveActor *pActor, f32 unk1, f32 unk2)
+    void initAndSetRailClipping(JGeometry::TVec3f *vecPtr, LiveActor *pActor, f32 unk1, f32 unk2)
     {
         f32 clippingDist = 0.0f;
         MR::calcRailClippingInfo(vecPtr, &clippingDist, pActor, unk1, unk2);
         MR::setClippingTypeSphere(pActor, clippingDist, *vecPtr);
     }
 
-    f32 calcNearestRailCoord(const LiveActor *pActor, const JGeometry::TVec3<f32> &vec)
+    f32 calcNearestRailCoord(const LiveActor *pActor, const JGeometry::TVec3f &vec)
     {
         return pActor->mRailRider->calcNearestPos(vec);
     }
 
-    f32 calcNearestRailPos(JGeometry::TVec3<f32> *pOut, const LiveActor *pActor, const JGeometry::TVec3<f32> &pos)
+    f32 calcNearestRailPos(JGeometry::TVec3f *pOut, const LiveActor *pActor, const JGeometry::TVec3f &pos)
     {
         f32 railPos = pActor->mRailRider->calcNearestPos(pos);
         pActor->mRailRider->calcPosAtCoord(pOut, railPos);
         return railPos;
     }
 
-    f32 calcNearestRailDirection(JGeometry::TVec3<f32> *pOut, const LiveActor *pActor, const JGeometry::TVec3<f32> &pos)
+    f32 calcNearestRailDirection(JGeometry::TVec3f *pOut, const LiveActor *pActor, const JGeometry::TVec3f &pos)
     {
         f32 nearestPos = pActor->mRailRider->calcNearestPos(pos);
         pActor->mRailRider->calcDirectionAtCoord(pOut, nearestPos);
         return nearestPos;
     }
 
-    f32 calcNearestRailPosAndDirection(JGeometry::TVec3<f32> *pPosition, JGeometry::TVec3<f32> *pDirection, const LiveActor *pActor, const JGeometry::TVec3<f32> &pos)
+    f32 calcNearestRailPosAndDirection(JGeometry::TVec3f *pPosition, JGeometry::TVec3f *pDirection, const LiveActor *pActor, const JGeometry::TVec3f &pos)
     {
         f32 nearestPos = pActor->mRailRider->calcNearestPos(pos);
         pActor->mRailRider->calcDirectionAtCoord(pDirection, nearestPos);
@@ -308,9 +308,9 @@ namespace MR
         return nearestPos;
     }
     
-    f32 calcRailPosNearestPlayer(JGeometry::TVec3<f32> *pPosition, const LiveActor *pActor)
+    f32 calcRailPosNearestPlayer(JGeometry::TVec3f *pPosition, const LiveActor *pActor)
     {
-        JGeometry::TVec3<f32>* playerPos = MR::getPlayerPos();
+        JGeometry::TVec3f* playerPos = MR::getPlayerPos();
         return MR::calcNearestRailPos(pPosition, pActor, *playerPos);
     }
 };

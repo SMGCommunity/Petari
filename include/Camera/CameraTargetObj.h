@@ -18,13 +18,13 @@ public:
 
     virtual void init(const JMapInfoIter &);
     virtual void movement() = 0;
-    virtual JGeometry::TVec3<f32>& getPosition() const = 0;
-    virtual JGeometry::TVec3<f32>& getUpVec() const = 0;
-    virtual JGeometry::TVec3<f32>& getFrontVec() const = 0;
-    virtual JGeometry::TVec3<f32>& getSideVec() const = 0;
-    virtual JGeometry::TVec3<f32>& getLastMove() const = 0;
-    virtual JGeometry::TVec3<f32>& getGroundPos() const = 0;
-    virtual JGeometry::TVec3<f32>& getGravityVector() const = 0;
+    virtual JGeometry::TVec3f& getPosition() const = 0;
+    virtual JGeometry::TVec3f& getUpVec() const = 0;
+    virtual JGeometry::TVec3f& getFrontVec() const = 0;
+    virtual JGeometry::TVec3f& getSideVec() const = 0;
+    virtual JGeometry::TVec3f& getLastMove() const = 0;
+    virtual JGeometry::TVec3f& getGroundPos() const = 0;
+    virtual JGeometry::TVec3f& getGravityVector() const = 0;
     virtual f32 getRadius() const;
     virtual bool isTurning() const;
     virtual bool isJumping() const;
@@ -59,24 +59,24 @@ public:
 
     virtual void movement();
 
-    virtual JGeometry::TVec3<f32>& getPosition() const;
-    virtual JGeometry::TVec3<f32>& getUpVec() const;
-    virtual JGeometry::TVec3<f32>& getFrontVec() const;
-    virtual JGeometry::TVec3<f32>& getSideVec() const;
-    virtual JGeometry::TVec3<f32>& getLastMove() const;
-    virtual JGeometry::TVec3<f32>& getGroundPos() const;
-    virtual JGeometry::TVec3<f32>& getGravityVector() const;
+    virtual JGeometry::TVec3f& getPosition() const;
+    virtual JGeometry::TVec3f& getUpVec() const;
+    virtual JGeometry::TVec3f& getFrontVec() const;
+    virtual JGeometry::TVec3f& getSideVec() const;
+    virtual JGeometry::TVec3f& getLastMove() const;
+    virtual JGeometry::TVec3f& getGroundPos() const;
+    virtual JGeometry::TVec3f& getGravityVector() const;
 
     virtual AreaObj* getCubeCameraArea() const;
     virtual u32* getGroundTriangle() const;
 
     JGeometry::TMatrix34<JGeometry::SMatrix34C<f32> > mMtx; // _10
-    JGeometry::TVec3<f32> mPosition; // _40
-    JGeometry::TVec3<f32> mLastMove; // _4C
-    JGeometry::TVec3<f32> mGravity; // _58
-    JGeometry::TVec3<f32> mUpVec; // _64
-    JGeometry::TVec3<f32> mFrontVec; // _70
-    JGeometry::TVec3<f32> mSideVec; // _7C
+    JGeometry::TVec3f mPosition; // _40
+    JGeometry::TVec3f mLastMove; // _4C
+    JGeometry::TVec3f mGravity; // _58
+    JGeometry::TVec3f mUpVec; // _64
+    JGeometry::TVec3f mFrontVec; // _70
+    JGeometry::TVec3f mSideVec; // _7C
     bool mIsLastMoveValid; // _88
     u8 _89;
     u16 _8A;
@@ -92,13 +92,13 @@ public:
 
     virtual void movement();
 
-    virtual JGeometry::TVec3<f32>& getPosition() const;
-    virtual JGeometry::TVec3<f32>& getUpVec() const;
-    virtual JGeometry::TVec3<f32>& getFrontVec() const;
-    virtual JGeometry::TVec3<f32>& getSideVec() const;
-    virtual JGeometry::TVec3<f32>& getLastMove() const;
-    virtual JGeometry::TVec3<f32>& getGroundPos() const;
-    virtual JGeometry::TVec3<f32>& getGravityVector() const;
+    virtual JGeometry::TVec3f& getPosition() const;
+    virtual JGeometry::TVec3f& getUpVec() const;
+    virtual JGeometry::TVec3f& getFrontVec() const;
+    virtual JGeometry::TVec3f& getSideVec() const;
+    virtual JGeometry::TVec3f& getLastMove() const;
+    virtual JGeometry::TVec3f& getGroundPos() const;
+    virtual JGeometry::TVec3f& getGravityVector() const;
 
     virtual bool isTurning() const;
     virtual bool isJumping() const;
@@ -119,11 +119,11 @@ public:
     virtual Mtx* getMapBaseMtx() const;
 
     LiveActor* mPlayerActor; // _10
-    JGeometry::TVec3<f32> mSideVec; // _14
-    JGeometry::TVec3<f32> mUpVec; // _20
-    JGeometry::TVec3<f32> mFrontVec; // _2C
-    JGeometry::TVec3<f32> mGravityVec; // _38
-    JGeometry::TVec3<f32> mGroundPos; // _44
+    JGeometry::TVec3f mSideVec; // _14
+    JGeometry::TVec3f mUpVec; // _20
+    JGeometry::TVec3f mFrontVec; // _2C
+    JGeometry::TVec3f mGravityVec; // _38
+    JGeometry::TVec3f mGroundPos; // _44
     u32 _50;
     u32 _54;
     u16 _58;
@@ -139,21 +139,21 @@ public:
 
     virtual void movement();
 
-    virtual JGeometry::TVec3<f32>& getPosition() const;
-    virtual JGeometry::TVec3<f32>& getUpVec() const;
-    virtual JGeometry::TVec3<f32>& getFrontVec() const;
-    virtual JGeometry::TVec3<f32>& getSideVec() const;
-    virtual JGeometry::TVec3<f32>& getLastMove() const;
-    virtual JGeometry::TVec3<f32>& getGroundPos() const;
-    virtual JGeometry::TVec3<f32>& getGravityVector() const;
+    virtual JGeometry::TVec3f& getPosition() const;
+    virtual JGeometry::TVec3f& getUpVec() const;
+    virtual JGeometry::TVec3f& getFrontVec() const;
+    virtual JGeometry::TVec3f& getSideVec() const;
+    virtual JGeometry::TVec3f& getLastMove() const;
+    virtual JGeometry::TVec3f& getGroundPos() const;
+    virtual JGeometry::TVec3f& getGravityVector() const;
     virtual f32 getRadius() const;
 
     virtual AreaObj* getCubeCameraArea() const;
     virtual u32* getGroundTriangle() const;
 
     const LiveActor* mActor; // _10
-    JGeometry::TVec3<f32> mUp; // _14
-    JGeometry::TVec3<f32> mFront; // _20
-    JGeometry::TVec3<f32> mSide; // _2C
+    JGeometry::TVec3f mUp; // _14
+    JGeometry::TVec3f mFront; // _20
+    JGeometry::TVec3f mSide; // _2C
     AreaObj* mCubeCameraArea; // _38
 };

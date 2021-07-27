@@ -7,8 +7,8 @@ class HitSensorKeeper
 public:
     HitSensorKeeper(s32);
 
-    void add(const char *, u32, u16, f32, LiveActor *, const JGeometry::TVec3<f32> &);
-    void addPos(const char *, u32, u16, f32, LiveActor *, JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &);
+    void add(const char *, u32, u16, f32, LiveActor *, const JGeometry::TVec3f &);
+    void addPos(const char *, u32, u16, f32, LiveActor *, JGeometry::TVec3f *, const JGeometry::TVec3f &);
 
     HitSensor* getSensor(const char *) const;
     void update();

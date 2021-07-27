@@ -31,12 +31,12 @@ public:
     void drawPlaneGX(f32, f32, f32, f32) const;
     void initShadow(const JMapInfoIter &);
     void updateHitSensorPos();
-    void calcGravity(JGeometry::TVec3<f32> *, const JGeometry::TVec3<f32> &) const;
+    void calcGravity(JGeometry::TVec3f *, const JGeometry::TVec3f &) const;
     void exeDisappear();
 
     ElectricRailPoint* mPoints; // _8C
     s32 mPointCount; // _90
-    JGeometry::TVec3<f32>* _94;
+    JGeometry::TVec3f* _94;
     ElectricRailSeparator* mSeparators; // _98
     s32 mSeparatorCount; // _9C
     void* _A0;
@@ -103,13 +103,13 @@ class ElectricRailSeparator
 public:
     ElectricRailSeparator();
 
-    void setup(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
+    void setup(const JGeometry::TVec3f &, const JGeometry::TVec3f &, const JGeometry::TVec3f &);
 
-    JGeometry::TVec3<f32> _0;
-    JGeometry::TVec3<f32> _C;
-    JGeometry::TVec3<f32> _18;
-    JGeometry::TVec3<f32> _24;
-    JGeometry::TVec3<f32> _30;
+    JGeometry::TVec3f _0;
+    JGeometry::TVec3f _C;
+    JGeometry::TVec3f _18;
+    JGeometry::TVec3f _24;
+    JGeometry::TVec3f _30;
 };
 
 class ElectricRailShadowDrawer

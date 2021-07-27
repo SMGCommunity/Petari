@@ -71,20 +71,20 @@ void RailRider::move()
     syncPosDir();
 }
 
-void RailRider::moveToNearestPos(const JGeometry::TVec3<f32> &pos)
+void RailRider::moveToNearestPos(const JGeometry::TVec3f &pos)
 {
     mTotalLength = mBezierRail->getNearestRailPosCoord(pos);
     syncPosDir();
 }
 
-void RailRider::moveToNearestPoint(const JGeometry::TVec3<f32> &src)
+void RailRider::moveToNearestPoint(const JGeometry::TVec3f &src)
 {
     s32 r31 = 0;
     s32 curPoint = 0;
     
     while (curPoint < mBezierRail->mPointNum)
     {
-        JGeometry::TVec3<f32> vec;
+        JGeometry::TVec3f vec;
         copyPointPos(&vec, curPoint);
         
         // TODO -- paired single operations here
@@ -116,17 +116,17 @@ void RailRider::reverse()
     syncPosDir();
 }
 
-void RailRider::calcPosAtCoord(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void RailRider::calcPosAtCoord(JGeometry::TVec3f *pOut, f32 a2) const
 {
     mBezierRail->calcPos(pOut, a2);
 }
 
-void RailRider::calcDirectionAtCoord(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void RailRider::calcDirectionAtCoord(JGeometry::TVec3f *pOut, f32 a2) const
 {
     mBezierRail->calcDirection(pOut, a2);
 }
 
-f32 RailRider::calcNearestPos(const JGeometry::TVec3<f32> &pos) const
+f32 RailRider::calcNearestPos(const JGeometry::TVec3f &pos) const
 {
     return mBezierRail->getNearestRailPosCoord(pos);
 }
@@ -281,7 +281,7 @@ s32 RailRider::getPointNum() const
     return mBezierRail->mPointNum;
 }
 
-void RailRider::copyPointPos(JGeometry::TVec3<f32> *pOut, s32 pointNum) const
+void RailRider::copyPointPos(JGeometry::TVec3f *pOut, s32 pointNum) const
 {
     JMapInfoIter iter(0, -1);
     mBezierRail->calcRailCtrlPointIter(&iter, pointNum);

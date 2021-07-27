@@ -7,7 +7,7 @@
 class StarPointerTarget
 {
 public:
-    StarPointerTarget(f32, const JGeometry::TVec3<f32> *, Mtx *, JGeometry::TVec3<f32>);
+    StarPointerTarget(f32, const JGeometry::TVec3f *, Mtx *, JGeometry::TVec3f);
 
     u8 _0[0x1C];
 };

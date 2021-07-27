@@ -11,10 +11,10 @@ namespace MR
 {
     bool isValidInfo(const JMapInfoIter &);
     bool isObjectName(const JMapInfoIter &, const char *);
-    bool getJMapInfoTrans(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    bool getJMapInfoRotate(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoTrans(const JMapInfoIter &, JGeometry::TVec3f *);
+    bool getJMapInfoRotate(const JMapInfoIter &, JGeometry::TVec3f *);
 
-    bool getJMapInfoScale(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoScale(const JMapInfoIter &, JGeometry::TVec3f *);
 
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
     bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *);
@@ -52,10 +52,10 @@ namespace MR
     bool getObjectName(const char **, const JMapInfoIter &);
     bool isExistJMapArg(const JMapInfoIter &);
     bool getJMapInfoShapeIdWithInit(const JMapInfoIter &, s32 *);
-    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    bool getJMapInfoScaleLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    bool getJMapInfoV3f(const JMapInfoIter &, const char *, JGeometry::TVec3<f32> *);
+    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3f *);
+    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3f *);
+    bool getJMapInfoScaleLocal(const JMapInfoIter &, JGeometry::TVec3f *);
+    bool getJMapInfoV3f(const JMapInfoIter &, const char *, JGeometry::TVec3f *);
     bool getJMapInfoArg1WithInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg2WithInit(const JMapInfoIter &, s32 *);
     bool getJMapInfoArg3WithInit(const JMapInfoIter &, s32 *);
@@ -75,12 +75,12 @@ namespace MR
     bool isExistStageSwitchDead(const JMapInfoIter &);
     bool isExistStageSwitchSleep(const JMapInfoIter &);
 
-    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    bool getJMapInfoTransLocal(const JMapInfoIter &, JGeometry::TVec3f *);
+    bool getJMapInfoRotateLocal(const JMapInfoIter &, JGeometry::TVec3f *);
 
-    void getRailPointPos0(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    void getRailPointPos1(const JMapInfoIter &, JGeometry::TVec3<f32> *);
-    void getRailPointPos2(const JMapInfoIter &, JGeometry::TVec3<f32> *);
+    void getRailPointPos0(const JMapInfoIter &, JGeometry::TVec3f *);
+    void getRailPointPos1(const JMapInfoIter &, JGeometry::TVec3f *);
+    void getRailPointPos2(const JMapInfoIter &, JGeometry::TVec3f *);
 
     bool getJMapInfoArg1WithInit(const JMapInfoIter &, f32 *);
     bool getJMapInfoArg2WithInit(const JMapInfoIter &, f32 *);

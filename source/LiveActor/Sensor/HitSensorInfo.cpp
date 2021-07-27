@@ -8,7 +8,7 @@
 
 /*void HitSensorInfo::update()
 {
-    JGeometry::TVec3<f32> temp;
+    JGeometry::TVec3f temp;
 
     if (!_20)
     {

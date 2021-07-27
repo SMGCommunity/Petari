@@ -510,7 +510,7 @@ void LiveActor::initStageSwitch(const JMapInfoIter &iter)
     mStageSwitchCtrl = MR::createStageSwitchCtrl(this, iter);
 }
 
-void LiveActor::initActorStarPointerTarget(f32 a1, const JGeometry::TVec3<f32> *p2, Mtx *p3, JGeometry::TVec3<f32> a4)
+void LiveActor::initActorStarPointerTarget(f32 a1, const JGeometry::TVec3f *p2, Mtx *p3, JGeometry::TVec3f a4)
 {
     mPointerTarget = new StarPointerTarget(a1, p2, p3, a4);
 }
@@ -549,7 +549,7 @@ void LiveActor::updateBinder()
         }
         else
         {
-            JGeometry::TVec3<f32> what;
+            JGeometry::TVec3f what;
             Binder::bind(what, mBinder, mGravity);
             mTranslation += what;
         }

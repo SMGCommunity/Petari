@@ -68,7 +68,7 @@ bool CameraParamChunk::isSubjectiveCameraOff() const
     return (mParams.mFlags >> 5) & 0x1;
 }
 
-void CameraParamChunk::getVPanAxis(JGeometry::TVec3<f32> *out) const
+void CameraParamChunk::getVPanAxis(JGeometry::TVec3f *out) const
 {
     out->x = mParams.mPanAxis.x;
     out->y = mParams.mPanAxis.y;

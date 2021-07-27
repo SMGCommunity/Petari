@@ -11,5 +11,5 @@ public:
     u32 _8;
     u32 _C;
     u32 _10;
-    JGeometry::TVec3<f32>* _14;
+    JGeometry::TVec3f* _14;
 };

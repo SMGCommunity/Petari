@@ -36,7 +36,7 @@ namespace MR
 
     // todo -- nonmatching
     #ifdef NON_MATCHING
-    bool isSameDirection(const JGeometry::TVec3<f32> &vec1, const JGeometry::TVec3<f32> &vec2, f32 angle)
+    bool isSameDirection(const JGeometry::TVec3f &vec1, const JGeometry::TVec3f &vec2, f32 angle)
     {
         f32 val = (vec1.y * vec2.z) - (vec1.z * vec2.y);
 
@@ -53,7 +53,7 @@ namespace MR
         return false;
     }
     #else
-    bool isSameDirection(const JGeometry::TVec3<f32> &vec1, const JGeometry::TVec3<f32> &vec2, f32 angle)
+    bool isSameDirection(const JGeometry::TVec3f &vec1, const JGeometry::TVec3f &vec2, f32 angle)
     {
         __asm 
         {
@@ -95,7 +95,7 @@ namespace MR
     }
     #endif
 
-    void vecScaleAdd(const register JGeometry::TVec3<f32> *pVecOut, const register JGeometry::TVec3<f32> *pVecIn, register f32 scale)
+    void vecScaleAdd(const register JGeometry::TVec3f *pVecOut, const register JGeometry::TVec3f *pVecIn, register f32 scale)
     {
         __asm
         {
@@ -110,7 +110,7 @@ namespace MR
         }
     }
 
-    void PSvecBlend(const register JGeometry::TVec3<f32> *pVec_0, const register JGeometry::TVec3<f32> *pVec_1, register JGeometry::TVec3<f32> *pOut, register f32 _f1, register f32 _f2)
+    void PSvecBlend(const register JGeometry::TVec3f *pVec_0, const register JGeometry::TVec3f *pVec_1, register JGeometry::TVec3f *pOut, register f32 _f1, register f32 _f2)
     {
         __asm
         {

@@ -11,13 +11,13 @@ public:
     RailRider(s32, s32);
 
     void move();
-    void moveToNearestPos(const JGeometry::TVec3<f32> &);
-    void moveToNearestPoint(const JGeometry::TVec3<f32> &);
+    void moveToNearestPos(const JGeometry::TVec3f &);
+    void moveToNearestPoint(const JGeometry::TVec3f &);
     void moveToNextPoint();
     void reverse();
-    void calcPosAtCoord(JGeometry::TVec3<f32> *, f32) const;
-    void calcDirectionAtCoord(JGeometry::TVec3<f32> *, f32) const;
-    f32 calcNearestPos(const JGeometry::TVec3<f32> &) const;
+    void calcPosAtCoord(JGeometry::TVec3f *, f32) const;
+    void calcDirectionAtCoord(JGeometry::TVec3f *, f32) const;
+    f32 calcNearestPos(const JGeometry::TVec3f &) const;
     f32 getTotalLength() const;
     s32 getPartLength(s32) const;
     bool isLoop() const;
@@ -30,7 +30,7 @@ public:
     f32 getNextPointCoord() const;
     f32 getCurrentPointCoord() const;
     s32 getPointNum() const;
-    void copyPointPos(JGeometry::TVec3<f32> *, s32) const;
+    void copyPointPos(JGeometry::TVec3f *, s32) const;
     f32 getPointCoord(s32) const;
     void initBezierRail(const JMapInfoIter &, const JMapInfo *);
     bool getPointArgS32NoInit(const char *, s32 *, s32) const;
@@ -49,9 +49,9 @@ public:
     u8 _D;
     u8 _E;
     u8 _F;
-    JGeometry::TVec3<f32> mCurrentPos; // _10
-    JGeometry::TVec3<f32> mCurrentDirection; // _1C
-    JGeometry::TVec3<f32> mStartPos; // _28
-    JGeometry::TVec3<f32> mEndPos; // _34
+    JGeometry::TVec3f mCurrentPos; // _10
+    JGeometry::TVec3f mCurrentDirection; // _1C
+    JGeometry::TVec3f mStartPos; // _28
+    JGeometry::TVec3f mEndPos; // _34
     s32 mCurPoint; // _40
 };

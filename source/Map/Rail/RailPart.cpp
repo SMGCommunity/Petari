@@ -8,7 +8,7 @@ RailPart::RailPart()
     mBezierRailPart = 0;
 }
 
-void RailPart::init(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2, const JGeometry::TVec3<f32> &a3, const JGeometry::TVec3<f32> &a4)
+void RailPart::init(const JGeometry::TVec3f &a1, const JGeometry::TVec3f &a2, const JGeometry::TVec3f &a3, const JGeometry::TVec3f &a4)
 {
     if (a1.epsilonEquals(a2, 0.1f) != 0)
     {
@@ -23,14 +23,14 @@ void RailPart::init(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32>
     initForBezier(a1, a2, a3, a4);
 }
 
-void RailPart::initForBezier(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2, const JGeometry::TVec3<f32> &a3, const JGeometry::TVec3<f32> &a4)
+void RailPart::initForBezier(const JGeometry::TVec3f &a1, const JGeometry::TVec3f &a2, const JGeometry::TVec3f &a3, const JGeometry::TVec3f &a4)
 {
     // todo -- omit constructor here
     mBezierRailPart = new BezierRailPart();
     mBezierRailPart->set(a1, a2, a3, a4);
 }
 
-void RailPart::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void RailPart::calcPos(JGeometry::TVec3f *pOut, f32 a2) const
 {
     // uses the stack, fix this
     if (mLinearRailPart != 0)
@@ -41,7 +41,7 @@ void RailPart::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
     mBezierRailPart->calcPos(pOut, a2);
 }
 
-void RailPart::calcVelocity(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void RailPart::calcVelocity(JGeometry::TVec3f *pOut, f32 a2) const
 {
     if (mLinearRailPart != 0)
     {
@@ -82,7 +82,7 @@ f32 RailPart::getParam(f32 a1) const
     return mBezierRailPart->getParam(a1);
 }
 
-f32 RailPart::getNearestParam(const JGeometry::TVec3<f32> &pos, f32 a2) const
+f32 RailPart::getNearestParam(const JGeometry::TVec3f &pos, f32 a2) const
 {
     if (mLinearRailPart != 0)
     {
@@ -92,7 +92,7 @@ f32 RailPart::getNearestParam(const JGeometry::TVec3<f32> &pos, f32 a2) const
     return mBezierRailPart->getNearestParam(pos, a2);
 }
 
-void LinearRailPart::set(const JGeometry::TVec3<f32> &a1, const JGeometry::TVec3<f32> &a2)
+void LinearRailPart::set(const JGeometry::TVec3f &a1, const JGeometry::TVec3f &a2)
 {
     _0 = a1;
     _C = a2;

@@ -6,13 +6,13 @@
 
 namespace MR
 {
-    void makeMtxSideUp(TPosition3Mtxf *, const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &);
+    void makeMtxSideUp(TPosition3Mtxf *, const JGeometry::TVec3f &, const JGeometry::TVec3f &);
 
-    void makeMtxRotate(Mtx *, const JGeometry::TVec3<f32> &);
+    void makeMtxRotate(Mtx *, const JGeometry::TVec3f &);
 
-    void extractMtxTrans(Mtx *, JGeometry::TVec3<f32> *);
+    void extractMtxTrans(Mtx *, JGeometry::TVec3f *);
     bool isSameMtx(Mtx *, Mtx *);
 
-    void extractMtxXDir(Mtx *, JGeometry::TVec3<f32> *);
-    void extractMtxYDir(Mtx *, JGeometry::TVec3<f32> *);
+    void extractMtxXDir(Mtx *, JGeometry::TVec3f *);
+    void extractMtxYDir(Mtx *, JGeometry::TVec3f *);
 };

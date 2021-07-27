@@ -11,8 +11,8 @@ namespace MR
     bool isWatchedPrevEdge(const RailGraphIter *);
     RailGraphNode* getCurrentNodePosition(const RailGraphIter *);
     RailGraphNode* getNextNodePosition(const RailGraphIter *);
-    void calcWatchEdgeVector(const RailGraphIter *, JGeometry::TVec3<f32> *);
-    void calcWatchEdgeDirection(const RailGraphIter *, JGeometry::TVec3<f32> *);
+    void calcWatchEdgeVector(const RailGraphIter *, JGeometry::TVec3f *);
+    void calcWatchEdgeDirection(const RailGraphIter *, JGeometry::TVec3f *);
 
     s32 getSelectEdgeArg0(const RailGraphIter *);
     s32 getSelectEdgeArg1(const RailGraphIter *);

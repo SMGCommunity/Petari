@@ -8,7 +8,7 @@ class RailGraph
 public:
     RailGraph();
 
-    s32 addNode(const JGeometry::TVec3<f32> &);
+    s32 addNode(const JGeometry::TVec3f &);
     void connectNodeTwoWay(s32, s32, const RailGraphEdge *);
     RailGraphNode* getNode(s32) const;
     RailGraphEdge* getEdge(s32) const;

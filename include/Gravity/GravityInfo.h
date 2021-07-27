@@ -9,7 +9,7 @@ public:
 
     void init();
 
-    JGeometry::TVec3<f32> _0;
+    JGeometry::TVec3f _0;
     s32 _C;
     u32 _10;
 };

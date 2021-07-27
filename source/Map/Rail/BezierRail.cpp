@@ -64,10 +64,10 @@ BezierRail::BezierRail(const JMapInfoIter &iter, const JMapInfo *pInfo)
         r0 = r0 - r6;
         tempIter_1.mPos = r0;
 
-        JGeometry::TVec3<f32> vec_0;
-        JGeometry::TVec3<f32> vec_1;
-        JGeometry::TVec3<f32> vec_2;
-        JGeometry::TVec3<f32> vec_3;
+        JGeometry::TVec3f vec_0;
+        JGeometry::TVec3f vec_1;
+        JGeometry::TVec3f vec_2;
+        JGeometry::TVec3f vec_3;
 
         MR::getRailPointPos0(tempIter_0, &vec_0);
         MR::getRailPointPos2(tempIter_0, &vec_1);
@@ -126,7 +126,7 @@ f32 BezierRail::getPartLength(s32 idx) const
     return mRailParts[idx].getTotalLength();
 }
 
-void BezierRail::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void BezierRail::calcPos(JGeometry::TVec3f *pOut, f32 a2) const
 {
     const RailPart *pPart;
     f32 param_2;
@@ -135,7 +135,7 @@ void BezierRail::calcPos(JGeometry::TVec3<f32> *pOut, f32 a2) const
     pPart->calcPos(pOut, partParam);
 }
 
-void BezierRail::calcDirection(JGeometry::TVec3<f32> *pOut, f32 a2) const
+void BezierRail::calcDirection(JGeometry::TVec3f *pOut, f32 a2) const
 {
     const RailPart *pPart;
     f32 param_2;
@@ -144,7 +144,7 @@ void BezierRail::calcDirection(JGeometry::TVec3<f32> *pOut, f32 a2) const
     BezierRail::calcRailDirection(pOut, pPart, partParam);   
 }
 
-void BezierRail::calcPosDir(JGeometry::TVec3<f32> *pPos, JGeometry::TVec3<f32> *pDir, f32 a3) const
+void BezierRail::calcPosDir(JGeometry::TVec3f *pPos, JGeometry::TVec3f *pDir, f32 a3) const
 {
     const RailPart *pPart;
     f32 param_2;
@@ -155,14 +155,14 @@ void BezierRail::calcPosDir(JGeometry::TVec3<f32> *pPos, JGeometry::TVec3<f32> *
 }
 
 // doesn't match very well, yet. fix me
-f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3<f32> &coord) const
+f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3f &coord) const
 {
     RailPart *pRootPart = mRailParts;
     s32 curLargest = 0;
     f32 railPartTotalLen = pRootPart->getTotalLength();
     f32 railPartNearParam = pRootPart->getNearestParam(coord, (100.0f / railPartTotalLen));
 
-    JGeometry::TVec3<f32> railPartPos;
+    JGeometry::TVec3f railPartPos;
     pRootPart->calcPos(&railPartPos, railPartNearParam);
     railPartPos.sub(coord);
     f32 rootRailPartSqr = railPartPos.squared();
@@ -177,7 +177,7 @@ f32 BezierRail::getNearestRailPosCoord(const JGeometry::TVec3<f32> &coord) const
         f32 curRailTotalLen = pCurPart->getTotalLength();
         f32 curParam = pCurPart->getNearestParam(coord, (baseSize / curRailTotalLen));
 
-        JGeometry::TVec3<f32> curRailPos;
+        JGeometry::TVec3f curRailPos;
         pCurPart->calcPos(&curRailPos, curParam);
         curRailPos.sub(coord);
         f32 railPartSqr = curRailPos.squared();

@@ -14,13 +14,13 @@ public:
     CollisionParts* mColParts; // _0
     s32 mIndex; // _4
     HitSensor* mSensor; // _8
-    JGeometry::TVec3<f32> mFaceNormal; // _C
-    JGeometry::TVec3<f32> mEdgeNormal_1;
-    JGeometry::TVec3<f32> mEdgeNormal_2;
-    JGeometry::TVec3<f32> mEdgeNormal_3;
-    JGeometry::TVec3<f32> _3C;
-    JGeometry::TVec3<f32> _48;
-    JGeometry::TVec3<f32> _54;
+    JGeometry::TVec3f mFaceNormal; // _C
+    JGeometry::TVec3f mEdgeNormal_1;
+    JGeometry::TVec3f mEdgeNormal_2;
+    JGeometry::TVec3f mEdgeNormal_3;
+    JGeometry::TVec3f _3C;
+    JGeometry::TVec3f _48;
+    JGeometry::TVec3f _54;
 
 };
 
@@ -30,8 +30,8 @@ public:
     HitInfo();
 
     f32 _60;
-    JGeometry::TVec3<f32> _64;
-    JGeometry::TVec3<f32> _70;
-    JGeometry::TVec3<f32> _7C;
+    JGeometry::TVec3f _64;
+    JGeometry::TVec3f _70;
+    JGeometry::TVec3f _7C;
     u8 _88;
 };

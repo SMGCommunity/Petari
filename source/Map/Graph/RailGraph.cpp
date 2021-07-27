@@ -16,7 +16,7 @@ RailGraph::RailGraph()
     _10 = 0x200;
 }
 
-s32 RailGraph::addNode(const JGeometry::TVec3<f32> &pos)
+s32 RailGraph::addNode(const JGeometry::TVec3f &pos)
 {
     RailGraphNode node;
     node.mPosition.x = pos.x;

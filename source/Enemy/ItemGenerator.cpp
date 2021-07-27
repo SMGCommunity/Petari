@@ -32,7 +32,7 @@ void ItemGenerator::generate(const LiveActor *pActor)
     {
         if (mType == 2)
         {
-            JGeometry::TVec3<f32> temp;
+            JGeometry::TVec3f temp;
             temp = temp - pActor->mGravity;
             MR::appearStarPieceToDirection(pActor, pActor->mTranslation, temp, mItemCount, 10.0f, 40.0f, false);
         
@@ -51,7 +51,7 @@ void ItemGenerator::generate(const LiveActor *pActor)
             {
                 if (mType >= 1)
                 {
-                    JGeometry::TVec3<f32> temp;
+                    JGeometry::TVec3f temp;
                     temp = temp - pActor->mGravity;
                     MR::appearCoinPopToDirection(pActor, pActor->mTranslation, temp, mItemCount);
                 }

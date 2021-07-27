@@ -5,97 +5,97 @@
 
 namespace MR
 {
-    void addHitSensor(LiveActor *pActor, const char *pSensorName, u32 msg, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensor(LiveActor *pActor, const char *pSensorName, u32 msg, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, msg, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x61, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorTransferableBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorTransferableBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x62, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorPriorBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorPriorBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x63, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorRide(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorRide(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x5, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorMapObj(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorMapObj(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x46, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorMapObjPress(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorMapObjPress(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x76, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorMapObjSimple(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorMapObjSimple(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x47, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorMapObjMoveCollision(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x48, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorEnemy(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorEnemy(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x14, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorEnemySimple(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorEnemySimple(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x15, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorEnemyAttack(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorEnemyAttack(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x16, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorNpc(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorNpc(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x5, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorEye(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorEye(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x7F, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorPush(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3<f32> &unk3)
+    void addHitSensorPush(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, const JGeometry::TVec3f &unk3)
     {
         pActor->mSensorKeeper->add(pSensorName, 0x80, unk1, unk2, pActor, unk3);
     }
 
-    void addHitSensorPosBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3<f32> *unk3, const JGeometry::TVec3<f32> &unk4)
+    void addHitSensorPosBinder(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3f *unk3, const JGeometry::TVec3f &unk4)
     {
         pActor->mSensorKeeper->addPos(pSensorName, 0x61, unk1, unk2, pActor, unk3, unk4);
     }
 
-    void addHitSensorPosRide(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3<f32> *unk3, const JGeometry::TVec3<f32> &unk4)
+    void addHitSensorPosRide(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3f *unk3, const JGeometry::TVec3f &unk4)
     {
         pActor->mSensorKeeper->addPos(pSensorName, 0x9, unk1, unk2, pActor, unk3, unk4);
     }
 
-    void addHitSensorPosMapObj(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3<f32> *unk3, const JGeometry::TVec3<f32> &unk4)
+    void addHitSensorPosMapObj(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3f *unk3, const JGeometry::TVec3f &unk4)
     {
         pActor->mSensorKeeper->addPos(pSensorName, 0x46, unk1, unk2, pActor, unk3, unk4);
     }
 
-    void addHitSensorPosEye(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3<f32> *unk3, const JGeometry::TVec3<f32> &unk4)
+    void addHitSensorPosEye(LiveActor *pActor, const char *pSensorName, u16 unk1, f32 unk2, JGeometry::TVec3f *unk3, const JGeometry::TVec3f &unk4)
     {
         pActor->mSensorKeeper->addPos(pSensorName, 0x7F, unk1, unk2, pActor, unk3, unk4);
     }
@@ -155,9 +155,9 @@ namespace MR
         return pHit1->recieveMessage(0x2F, pHit2);
     }
 
-    bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
+    bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3f &dir)
     {
-        JGeometry::TVec3<f32> _8(pHit2->_4);       
+        JGeometry::TVec3f _8(pHit2->_4);       
         JMathInlineVEC::PSVECSubtract((Vec *)&pHit1->_4, (Vec *)&dir, (Vec *)&pHit2->_4);
 
         bool ret = pHit1->recieveMessage(msg, pHit2);
@@ -181,7 +181,7 @@ namespace MR
         return pHit1->recieveMessage(0x50, pHit2);
     }
 
-    bool sendMsgEnemyAttackFlipToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
+    bool sendMsgEnemyAttackFlipToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3f &dir)
     {
         return sendMsgEnemyAttackMsgToDir(0x50, pHit1, pHit2, dir);
     }
@@ -201,7 +201,7 @@ namespace MR
         return pHit1->recieveMessage(0x52, pHit2);
     }
 
-    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
+    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3f &dir)
     {
         return sendMsgEnemyAttackMsgToDir(0x52, pHit1, pHit2, dir);
     }
@@ -216,7 +216,7 @@ namespace MR
         return pHit1->recieveMessage(0x54, pHit2);
     }
 
-    bool sendMsgEnemyAttackStrongToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
+    bool sendMsgEnemyAttackStrongToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3f &dir)
     {
         return sendMsgEnemyAttackMsgToDir(0x54, pHit1, pHit2, dir);
     }
@@ -281,7 +281,7 @@ namespace MR
         return pHit1->recieveMessage(0x55, pHit2);
     }
 
-    bool sendMsgEnemyAttackMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3<f32> &dir)
+    bool sendMsgEnemyAttackMaximumToDir(HitSensor *pHit1, HitSensor *pHit2, const JGeometry::TVec3f &dir)
     {
         return sendMsgEnemyAttackMsgToDir(0x55, pHit1, pHit2, dir);
     }

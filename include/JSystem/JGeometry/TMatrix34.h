@@ -32,7 +32,7 @@ namespace JGeometry
             this->val[0][0] = 1.0f;
         }*/
 
-        void mult(const JGeometry::TVec3<f32> &srcVec, JGeometry::TVec3<f32> &destVec)
+        void mult(const JGeometry::TVec3f &srcVec, JGeometry::TVec3f &destVec)
         {
             destVec.set<f32>
             (
