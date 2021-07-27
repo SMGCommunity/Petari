@@ -94,10 +94,3 @@ void* operator new[](size_t, JKRHeap *, int);
 
 void operator delete(void *);
 void operator delete[](void *);
-
-// for some reason these are illegal?
-/*
-void* operator new[](s32 size);
-void* operator new[](s32 size, s32 align);
-void* operator new[](s32 size, JKRHeap* heap, s32 align);
-*/
