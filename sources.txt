@@ -1,2 +1,0 @@
-SDK_PATH=D:/Hacking/Wii/Revolution
-MW_BASE_PATH=D:/Hacking/Wii/CodeWarrior

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "smg.h"
+#include "types.h"
 
 namespace nw4r
 {
