@@ -2,14 +2,11 @@
 
 #include "types.h"
 
-namespace JGeometry
-{
+namespace JGeometry {
     template<typename T>
-    class TVec3
-    {
+    class TVec3 {
     public:
-        TVec3(T val)
-        {
+        TVec3(T val) {
             x = T;
             y = T;
             z = T;
@@ -26,12 +23,9 @@ namespace JGeometry
     };
 
     template<typename T>
-    class TVec4
-    {
+    class TVec4 {
     public:
-
-        void set<T>(T _x, T _y, T _z, T _h)
-        {
+        void set<T>(T _x, T _y, T _z, T _h) {
             x = _x;
             y = _y;
             z = _z;

@@ -8,8 +8,7 @@ extern "C" {
 
 typedef struct DVDDiskID DVDDiskID;
 
-struct DVDDiskID
-{
+struct DVDDiskID {
     char mName[0x4]; // _0
     char mCompany[0x2]; // _4
     u8 mDiskNum; // _6

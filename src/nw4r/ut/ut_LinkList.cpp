@@ -1,13 +1,9 @@
 #include "nw4r/ut/ut_LinkList.h"
 
-namespace nw4r
-{
-    namespace ut
-    {
-        namespace detail
-        {
-            LinkListImpl::Iterator LinkListImpl::Erase(LinkListNode *pNode) 
-            {
+namespace nw4r {
+    namespace ut {
+        namespace detail {
+            LinkListImpl::Iterator LinkListImpl::Erase(LinkListNode *pNode) {
                 LinkListNode* next = pNode->mNext;
                 LinkListNode* prev = pNode->mPrev;
 

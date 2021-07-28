@@ -2,8 +2,7 @@
 
 #include "types.h"
 
-class AlreadyDoneInfo
-{
+class AlreadyDoneInfo {
 public:
     AlreadyDoneInfo();
 

@@ -1,6 +1,5 @@
 #pragma once
 
-namespace MR
-{
+namespace MR {
     u32 getHashCode(const char *);
 };

@@ -1,29 +1,23 @@
 #pragma once
 
-namespace JGeometry
-{
+namespace JGeometry {
     template<typename T>
-    class TUtil
-    {
+    class TUtil {
     public:
-        static int epsilonEquals(T a1, T a2, T a3)
-        {
+        static int epsilonEquals(T a1, T a2, T a3) {
             int ret = 0;
 
             a1 -= a2;
 
-            if (-a3 <= a1 && a1 <= a3)
-            {
+            if (-a3 <= a1 && a1 <= a3) {
                 ret = 1;
             }
 
             return ret;
         }
 
-        static T sqrt(T val)
-        {
-            if (val <= 0.0f)
-            {
+        static T sqrt(T val) {
+            if (val <= 0.0f) {
                 return;
             }
 

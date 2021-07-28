@@ -2,8 +2,7 @@
 
 #include "RVL/dvd.h"
 
-typedef struct OSBootInfo_
-{
+typedef struct OSBootInfo_ {
     DVDDiskID mDiskID; // _0
     u32 mMagic;        // _20
     u32 mVersion;      // _24
