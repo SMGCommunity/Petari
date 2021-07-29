@@ -15,6 +15,5 @@
 *.dol
 *.a
 *.d
-*.map
 build
 compiler
