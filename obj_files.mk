@@ -24,6 +24,10 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/game/Animation/XanimeCore.o \
     $(BUILD_DIR)/asm/game/Animation/XanimePlayer.o \
     $(BUILD_DIR)/asm/game/Animation/XanimeResource.o \
+    $(BUILD_DIR)/asm/game/AreaObj/AreaForm.o    \
+    $(BUILD_DIR)/asm/game/AreaObj/AreaFormDrawer.o    \
+    $(BUILD_DIR)/asm/game/AreaObj/AreaObj.o    \
+    $(BUILD_DIR)/asm/game/AreaObj/AreaObjContainer.o    \
 	$(BUILD_DIR)/asm/text1.o                        \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
