@@ -69,3 +69,11 @@ srwi r3, r0, 5
 This is the result of a !(expr) used as a return value in a BOOLEAN function.
 
 * If the destructor of a class is called with r4 being `-1`, it means that the class destructor that is being called is stored in the class, and is not inherited. However, if r4 is `0`, that means the class being destructed is what the current class is inheriting.
+
+## Conversions
+
+If you ever see this behavior:
+
+![double to integer conversion](http://shibboleet.us.to/smg_decomp_imgs/doubletoint.png)
+
+This is the result of converting a floating point value to a integer. In simpiler words, it's `f32` to `s32` or `u32`.
