@@ -50,3 +50,10 @@ If you have any questions or concerns, please join [our Discord server](https://
 * Functions for classes must be put in this order: constructor, destructor, operators, virtual functions, member functions
     * If the virtual functions are not in the order that they are in the vtable, then the rule above can be ignored as these functions must be placed in order
 * When referencing a class member, do not use `this->`, unless it is required for compilation
+
+
+### Nonmatching Code
+If your code does NOT match, use the `NONMATCHING` macro and include the assembly file and explain in a comment why it does not match.
+
+### Types
+If the function arguments in the symbol use `int`, do NOT use `s32`, you have to use `int`, as they do not mangle to the same symbol.
