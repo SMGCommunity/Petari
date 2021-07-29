@@ -12,7 +12,8 @@ if (something)
 else
 {
     // some other code
-}```
+}
+```
 
 ⬇️
 
@@ -24,7 +25,8 @@ if (!something)
 else
 {
     // some code
-}```
+}
+```
 
 * Be sure to pay attention on the `beq` / `ble` etc instructions
 
@@ -38,7 +40,8 @@ if (something == 5)
 else
 {
     variable = 10;
-}```
+}
+```
 
 ⬇️
 
