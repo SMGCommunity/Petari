@@ -1,0 +1,21 @@
+.text
+
+.include "macros.inc"
+
+.global TRK_flush_cache
+TRK_flush_cache:
+/* 80529948 00524E88  3C A0 FF FF */	lis r5, 0xFFFFFFF1@h
+/* 8052994C 00524E8C  60 A5 FF F1 */	ori r5, r5, 0xFFFFFFF1@l
+/* 80529950 00524E90  7C A5 18 38 */	and r5, r5, r3
+/* 80529954 00524E94  7C 65 18 50 */	subf r3, r5, r3
+/* 80529958 00524E98  7C 84 1A 14 */	add r4, r4, r3
+lbl_8052995C:
+/* 8052995C 00524E9C  7C 00 28 6C */	dcbst 0, r5
+/* 80529960 00524EA0  7C 00 28 AC */	dcbf 0, r5
+/* 80529964 00524EA4  7C 00 04 AC */	sync 0
+/* 80529968 00524EA8  7C 00 2F AC */	icbi 0, r5
+/* 8052996C 00524EAC  30 A5 00 08 */	addic r5, r5, 8
+/* 80529970 00524EB0  34 84 FF F8 */	addic. r4, r4, -8
+/* 80529974 00524EB4  40 80 FF E8 */	bge lbl_8052995C
+/* 80529978 00524EB8  4C 00 01 2C */	isync 
+/* 8052997C 00524EBC  4E 80 00 20 */	blr 

@@ -1,25 +1,20 @@
 #pragma once
 
-#include "smg.h"
+#include "types.h"
 
-namespace nw4r
-{
-    namespace ut
-    {
-        class LinkListNode
-        {
+namespace nw4r {
+    namespace ut {
+        class LinkListNode {
         public:
             LinkListNode()
                 : mNext(nullptr), mPrev(nullptr)
             { }
 
-            LinkListNode* GetNextNode() const
-            {
+            LinkListNode* GetNextNode() const {
                 return mNext;
             }
 
-            LinkListNode* GetPreviousNode() const
-            {
+            LinkListNode* GetPreviousNode() const {
                 return mPrev;
             }
 
@@ -27,27 +22,22 @@ namespace nw4r
             LinkListNode* mPrev; // _4
         };
 
-        namespace detail
-        {
-            class LinkListImpl
-            {
+        namespace detail {
+            class LinkListImpl {
             public:
 
                 ~LinkListImpl();
 
-                class Iterator
-                {
+                class Iterator {
                 public:
                     Iterator(LinkListNode *pNode) : mNode(pNode) { }
 
-                    Iterator &operator++()
-                    {
+                    Iterator &operator++() {
                         mNode = mNode->GetNextNode();
                         return *this;
                     }
 
-                    Iterator operator++(int)
-                    {
+                    Iterator operator++(int) {
                         Iterator iter(*this);
                         ++*this;
                         return iter;

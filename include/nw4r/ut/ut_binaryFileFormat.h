@@ -2,12 +2,9 @@
 
 #include "types.h"
 
-namespace nw4r
-{
-    namespace ut
-    {
-        struct BinaryFileHeader
-        {
+namespace nw4r {
+    namespace ut {
+        struct BinaryFileHeader {
             u32 mMagic; // _0
             u16 mByteOrder; // _4
             u16 mVersion; // _6
@@ -16,8 +13,7 @@ namespace nw4r
             u16 mBlockCount; // _E
         };
 
-        struct BinaryBlockHeader
-        {
+        struct BinaryBlockHeader {
             u32 mType; // _0
             u32 mSize; // _4
         };

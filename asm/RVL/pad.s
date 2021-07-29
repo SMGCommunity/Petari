@@ -1,0 +1,30 @@
+.text
+
+.include "macros.inc"
+
+.global __PADDisableRecalibration
+__PADDisableRecalibration:
+/* 804D5658 004D0B98  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 804D565C 004D0B9C  7C 08 02 A6 */	mflr r0
+/* 804D5660 004D0BA0  90 01 00 14 */	stw r0, 0x14(r1)
+/* 804D5664 004D0BA4  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 804D5668 004D0BA8  7C 7F 1B 78 */	mr r31, r3
+/* 804D566C 004D0BAC  4B FD 2A 7D */	bl OSDisableInterrupts
+/* 804D5670 004D0BB0  3C A0 80 00 */	lis r5, 0x800030E3@ha
+/* 804D5674 004D0BB4  2C 1F 00 00 */	cmpwi r31, 0
+/* 804D5678 004D0BB8  88 85 30 E3 */	lbz r4, 0x800030E3@l(r5)
+/* 804D567C 004D0BBC  54 80 06 B0 */	rlwinm r0, r4, 0, 0x1a, 0x18
+/* 804D5680 004D0BC0  54 9F D7 FE */	rlwinm r31, r4, 0x1a, 0x1f, 0x1f
+/* 804D5684 004D0BC4  98 05 30 E3 */	stb r0, 0x30e3(r5)
+/* 804D5688 004D0BC8  41 82 00 10 */	beq lbl_804D5698
+/* 804D568C 004D0BCC  88 05 30 E3 */	lbz r0, 0x30e3(r5)
+/* 804D5690 004D0BD0  60 00 00 40 */	ori r0, r0, 0x40
+/* 804D5694 004D0BD4  98 05 30 E3 */	stb r0, 0x30e3(r5)
+lbl_804D5698:
+/* 804D5698 004D0BD8  4B FD 2A 79 */	bl OSRestoreInterrupts
+/* 804D569C 004D0BDC  7F E3 FB 78 */	mr r3, r31
+/* 804D56A0 004D0BE0  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 804D56A4 004D0BE4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 804D56A8 004D0BE8  7C 08 03 A6 */	mtlr r0
+/* 804D56AC 004D0BEC  38 21 00 10 */	addi r1, r1, 0x10
+/* 804D56B0 004D0BF0  4E 80 00 20 */	blr 

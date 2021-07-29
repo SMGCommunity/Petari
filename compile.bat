@@ -1,2 +1,0 @@
-python build.py
-pause

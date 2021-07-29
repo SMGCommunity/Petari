@@ -1,0 +1,22 @@
+.text
+
+.include "macros.inc"
+
+.global scalbn
+scalbn:
+/* 80522DA4 0051E2E4  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 80522DA8 0051E2E8  7C 08 02 A6 */	mflr r0
+/* 80522DAC 0051E2EC  90 01 00 24 */	stw r0, 0x24(r1)
+/* 80522DB0 0051E2F0  93 E1 00 1C */	stw r31, 0x1c(r1)
+/* 80522DB4 0051E2F4  7C 7F 1B 78 */	mr r31, r3
+/* 80522DB8 0051E2F8  38 61 00 08 */	addi r3, r1, 8
+/* 80522DBC 0051E2FC  48 00 3D 15 */	bl frexp
+/* 80522DC0 0051E300  80 01 00 08 */	lwz r0, 8(r1)
+/* 80522DC4 0051E304  7C 60 FA 14 */	add r3, r0, r31
+/* 80522DC8 0051E308  90 61 00 08 */	stw r3, 8(r1)
+/* 80522DCC 0051E30C  48 00 3D 8D */	bl ldexp
+/* 80522DD0 0051E310  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 80522DD4 0051E314  83 E1 00 1C */	lwz r31, 0x1c(r1)
+/* 80522DD8 0051E318  7C 08 03 A6 */	mtlr r0
+/* 80522DDC 0051E31C  38 21 00 20 */	addi r1, r1, 0x20
+/* 80522DE0 0051E320  4E 80 00 20 */	blr 
