@@ -1,5 +1,11 @@
 .include "macros.inc"
 
+.data
+
+.global lbl_805504C8
+lbl_805504C8:
+	.incbin "baserom.dol", 0x54C5C8, 0x10
+
 .text
 
 .global func_80017E28
