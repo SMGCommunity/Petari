@@ -12,6 +12,18 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/nw4r/libnw4r_db.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_math.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_lyt.o   \
+    $(BUILD_DIR)/asm/game/Animation/AnmPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/BckCtrl.o \
+    $(BUILD_DIR)/asm/game/Animation/BpkPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/BrkPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/BtkPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/BtpPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/BvaPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/LayoutAnmPlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/MaterialAnmBuffer.o \
+    $(BUILD_DIR)/asm/game/Animation/XanimeCore.o \
+    $(BUILD_DIR)/asm/game/Animation/XanimePlayer.o \
+    $(BUILD_DIR)/asm/game/Animation/XanimeResource.o \
 	$(BUILD_DIR)/asm/text1.o                        \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
