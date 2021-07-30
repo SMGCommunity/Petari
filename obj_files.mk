@@ -28,6 +28,39 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaFormDrawer.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaObj.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaObjContainer.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/AreaObjFollower.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/AstroChangeStageCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/AudioEffectArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/BgmProhibitArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/BigBubbleCameraArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/BigBubbleGoalArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/BloomArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/CameraRepulsiveArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/ChangeBgmCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/CollisionArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/CubeCamera.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/DeathArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/DepthOfFieldArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/FollowCollisionArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/GlaringLightArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/HazeCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/ImageEffectArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/LightArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/LightAreaHolder.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/MercatorTransformCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/MessageArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/PlayerSeArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/QuakeEffectArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/RestartCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/ScreenBlurArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SimpleBloomArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SoundEmitterCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SoundEmitterSphere.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SpinGuidanceArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SunLightArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/SwitchArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/WarpCube.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/WaterArea.o    \
 	$(BUILD_DIR)/asm/text1.o                        \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
