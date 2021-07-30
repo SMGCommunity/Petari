@@ -34,6 +34,7 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/RevoEx \
 			asm/Game/Animation \
 			asm/Game/AreaObj \
+			asm/Game/AudioLib \
 			asm/Game/JAudio2 \
 			asm/nw4r  \
 			asm/Game/J2D \

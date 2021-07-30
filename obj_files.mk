@@ -61,6 +61,38 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/AreaObj/SwitchArea.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/WarpCube.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/WaterArea.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSystem.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSystemVolumeController.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudAudience.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundInfo.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudWrap.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundObject.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundObject_Kawamura.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundObject_Takezawa.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundObject_Gohara.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudAnmSoundObject.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgm.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgmKeeper.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgmMgr.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgmRhythmStrategy.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgmSetting.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudBgmVolumeController.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudEffector.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudFader.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudLimitedSound.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudMeNameConverter.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudMicWrap.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudRemixMgr.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudRemixSequencer.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSceneMgr.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSeStrategy.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundNameConverter.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSoundObjHolder.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudSpeakerWrap.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudTrackController.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/AudUtil.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/OverwriteJAudio.o    \
+    $(BUILD_DIR)/asm/Game/AudioLib/CSSoundNameConverter.o    \
 	$(BUILD_DIR)/asm/text1.o                        \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
