@@ -35,6 +35,10 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/Game/Animation \
 			asm/Game/AreaObj \
 			asm/Game/AudioLib \
+			asm/Game/Boss \
+			asm/Game/Boss/BossBegoman \
+			asm/Game/Boss/BossKameck \
+			asm/Game/Boss/BossStinkBug \
 			asm/Game/JAudio2 \
 			asm/nw4r  \
 			asm/Game/J2D \

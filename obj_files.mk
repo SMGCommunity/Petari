@@ -93,6 +93,32 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/AudioLib/AudUtil.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/OverwriteJAudio.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/CSSoundNameConverter.o    \
+    $(BUILD_DIR)/asm/Game/Boss/BossAccessor.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossBegoman/BossBegoman.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossBegoman/BossBegomanHead.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameck.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckAction.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckBarrier.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckBattleDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckBattlePattarn.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckSequencer.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckMoveRail.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckVs1.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckVs2.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossKameck/BossKameckStateBattle.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBug.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugActionBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugActionFlyHigh.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugActionFlyLow.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugActionGround.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugActionSequencer.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugAngryDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugBomb.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugBombHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFinishDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFlyDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFunction.o \
+    $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugOpeningDemo.o \
 	$(BUILD_DIR)/asm/text1.o                        \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
