@@ -1,4 +1,3 @@
-
  0001:80004000       __check_pad3
  0001:80004028       __set_debug_bba
  0001:80004034       __get_debug_bba
@@ -342,7 +341,7 @@
  0002:80017B70       reflectBckCtrlData__15BckCtrlFunctionFRC11BckCtrlDataP12XanimePlayer
  0002:80017CBC       __ct__11BckCtrlDataFv
  0002:80017CE8       __ct__9BpkPlayerFPC14ResourceHolderP12J3DModelData
- 0002:80017D28       detach__9BtpPlayerFP10J3DAnmBaseP12J3DModelData
+ 0002:80017D28       attach__9BpkPlayerFP10J3DAnmBaseP12J3DModelData
  0002:80017D30       detach__9BpkPlayerFP10J3DAnmBaseP12J3DModelData
  0002:80017D38       __ct__9BrkPlayerFPC14ResourceHolderP12J3DModelData
  0002:80017D78       attach__9BrkPlayerFP10J3DAnmBaseP12J3DModelData
@@ -351,17 +350,18 @@
  0002:80017DC8       attach__9BtkPlayerFP10J3DAnmBaseP12J3DModelData
  0002:80017DD0       detach__9BtkPlayerFP10J3DAnmBaseP12J3DModelData
  0002:80017DD8       __ct__9BtpPlayerFPC14ResourceHolderP12J3DModelData
+ 0002:80017E18       attach__9BtpPlayerFP10J3DAnmBaseP12J3DModelData
+ 0002:80017E20       detach__9BtpPlayerFP10J3DAnmBaseP12J3DModelData
+ 0002:80017E28       __ct__9BvaPlayerFPC8ResTableP8J3DModel
  0002:80017E74       calc__9BvaPlayerFv
  0002:80017F48       getAnmVisibility__9BvaPlayerFv
  0002:80017F5C       __ct__15LayoutAnmPlayerFPC13LayoutManager
  0002:80017FB8       movement__15LayoutAnmPlayerFv
- 0002:80017FC4       stop__14SwingRopePointFv
  0002:80017FD0       reflectFrame__15LayoutAnmPlayerFv
  0002:80017FE8       start__15LayoutAnmPlayerFPCc
  0002:80018084       stop__15LayoutAnmPlayerFv
  0002:80018090       __ct__17MaterialAnmBufferFPC14ResourceHolderP12J3DModelDatab
  0002:8001815C       getDiffFlag__17MaterialAnmBufferCFl
- 0002:80018160       getSamples__15SpkMixingBufferCFl
  0002:8001816C       getAllocMaterialAnmNum__17MaterialAnmBufferCFP12J3DModelDatab
  0002:80018180       searchUpdateMaterialID__17MaterialAnmBufferFPC14ResourceHolderP12J3DModelData
  0002:80018274       setDiffFlag__17MaterialAnmBufferFPC14ResourceHolder
@@ -388,6 +388,7 @@
  0002:800188A4       __ct__11J3DTexNoAnmFv
  0002:800189B8       __dt__14J3DMaterialAnmFv
  0002:80018A80       calc__11J3DTexNoAnmCFPUs
+ 0002:80018A94       __ct__Q29JGeometry8TVec3<f>Fv
  0002:80018A98       zero__Q29JGeometry8TVec3<f>Fv
  0002:80018AAC       __as__14XtransformInfoFRC14XtransformInfo
  0002:80018B28       __ml__Q29JGeometry8TVec3<f>CFf
@@ -422,12 +423,17 @@
  0002:8001A990       freezeCopy__10XanimeCoreFP12J3DModelDataP10XanimeCoreUlUl
  0002:8001AA7C       initT__10XanimeCoreFP12J3DModelData
  0002:8001AB64       fixT__10XanimeCoreFPQ29JGeometry8TVec3<f>
+ 0002:8001ABAC       __dt__10XanimeCoreFv
  0002:8001ABEC       __ct__14XtransformInfoFv
  0002:8001AC3C       calc__10XanimeCoreFv
  0002:8001AD60       init__10XanimeCoreFRC3VecRA3_A4_Cf
  0002:8001AD74       init__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf
  0002:8001AD84       __as__16J3DTransformInfoFRC16J3DTransformInfo
  0002:8001ADB8       getDSPMixerLevel__6JASDspFv
+ 0002:8001ADC0       getAnmTransform__10J3DMtxCalcFv
+ 0002:8001ADC8       getAnmTransform__10J3DMtxCalcFUc
+ 0002:8001ADD0       setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+ 0002:8001ADD4       setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
  0002:8001ADDC       fastReciprocal__5JMathFf
  0002:8001ADE4       init__12XanimePlayerFv
  0002:8001AE90       __ct__12XanimePlayerFP8J3DModelP19XanimeResourceTable
@@ -475,6 +481,7 @@
  0002:8001C044       duplicateSimpleGroup__12XanimePlayerFv
  0002:8001C0B8       __ct__15XanimeFrameCtrlFv
  0002:8001C114       changeCurrentAnimation__12XanimePlayerFPC15XanimeGroupInfo
+ 0002:8001C130       __dt__15XanimeFrameCtrlFv
  0002:8001C170       init__19XanimeResourceTableFv
  0002:8001C1A4       getGroupInfo__19XanimeResourceTableCFPCc
  0002:8001C260       getSimpleIndex__19XanimeResourceTableCFPCc
@@ -534,58 +541,85 @@
  0002:8001DFF8       init__7AreaObjFRC12JMapInfoIter
  0002:8001E1A0       isInVolume__7AreaObjCFRCQ29JGeometry8TVec3<f>
  0002:8001E210       isValidSwitchB__7AreaObjCFv
+ 0002:8001E220       isOnSwitchA__7AreaObjCFv
+ 0002:8001E230       isValidSwitchA__7AreaObjCFv
  0002:8001E240       setFollowMtx__7AreaObjFPCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>
  0002:8001E24C       getFollowMtx__7AreaObjCFv
  0002:8001E258       __ct__10AreaObjMgrFlPCc
- 0002:8001E2B8       __dt__Q28JASTrack5TListFv
+ 0002:8001E2B8       __dt__Q22MR41Vector<Q22MR26AssignableArray<P7AreaObj>>Fv
  0002:8001E310       entry__10AreaObjMgrFP7AreaObj
  0002:8001E37C       find_in__10AreaObjMgrCFRCQ29JGeometry8TVec3<f>
- 0002:8001E458       setBGEnable__Q22MR11SendMailObjFv
- 0002:8001E464       setBGDisable__Q22MR11SendMailObjFv
- 0002:8001E478       Functor<20GameSequenceDirector>__2MRFP20GameSequenceDirectorM20GameSequenceDirectorFPCvPv_v_Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>
- 0002:8001E4B8       __cl__Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>CFv
- 0002:8001E4E8       clone__Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>CFP7JKRHeap
- 0002:8001E5A8       __dt__26MoviePlayingSequenceHolderFv
- 0002:8001E610       __dt__Q22MR38AssignableArray<P18BaseMatrixFollower>Fv
- 0002:8001E670       createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
+ 0002:8001E458       validate__7AreaObjFv
+ 0002:8001E464       invalidate__7AreaObjFv
+ 0002:8001E470       getManagerName__7AreaObjCFv
+ 0002:8001E478       Functor<7AreaObj>__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>
+ 0002:8001E4B8       __cl__Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>CFv
+ 0002:8001E4E8       clone__Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>CFP7JKRHeap
+ 0002:8001E550       __dt__7AreaObjFv
+ 0002:8001E5A8       __dt__10AreaObjMgrFv
+ 0002:8001E610       __dt__Q22MR26AssignableArray<P7AreaObj>Fv
+ 0002:8001E670       createManager<10AreaObjMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
+ 0002:8001E6C0       createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
  0002:8001E710       createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
+ 0002:8001E77C       createManager<12WaterAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
+ 0002:8001E7CC       createManager<19GlaringLightAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr
  0002:8001E8BC       __ct__16AreaObjContainerFPCc
  0002:8001E900       init__16AreaObjContainerFRC12JMapInfoIter
  0002:8001E9A8       getManager__16AreaObjContainerCFPCc
  0002:8001EA40       setEffectHostMtx__2MRFP11LayoutActorPCcPA4_f
  0002:8001EA74       getAreaObjContainer__2MRFv
+ 0002:8001EA9C       __dt__16AreaObjContainerFv
+ 0002:8001EAF4       __dt__11WarpCubeMgrFv
  0002:8001EB4C       __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter
  0002:8001EBAC       update__15AreaObjFollowerFv
  0002:8001EC1C       addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter
- 0002:8001EC8C       nullsub_101
+ 0002:8001EC8C       setGravityFollowHost__18BaseMatrixFollowerFPC7NameObj
  0002:8001EC90       __ct__20AstroChangeStageCubeFiPCc
  0002:8001ECDC       init__20AstroChangeStageCubeFRC12JMapInfoIter
  0002:8001ED50       isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f>
- 0002:8001EE40       __dt__22JAUBankTableDictionaryFv
+ 0002:8001EE40       __dt__20AstroChangeStageCubeFv
  0002:8001EE9C       movement__20AstroChangeStageCubeFv
- 0002:8001F0A0       __ct__14CubeCameraAreaFiPCc
+ 0002:8001F0A0       __ct__15AudioEffectAreaFiPCc
  0002:8001F0E8       init__15AudioEffectAreaFRC12JMapInfoIter
  0002:8001F13C       movement__15AudioEffectAreaFv
- 0002:8001F27C       __ntd_get_allocated_mem_size
+ 0002:8001F220       __dt__15AudioEffectAreaFv
+ 0002:8001F27C       getManagerName__15AudioEffectAreaCFv
+ 0002:8001F288       __dt__15BgmProhibitAreaFv
  0002:8001F2E4       findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc
  0002:8001F358       __ct__15BgmProhibitAreaFiPCc
- 0002:8001F3B0       stop__8JAISoundFv
+ 0002:8001F3B0       init__15BgmProhibitAreaFRC12JMapInfoIter
  0002:8001F3E4       movement__15BgmProhibitAreaFv
- 0002:8001F4FC       getGameDataHolder__20GameSequenceDirectorFv
- 0002:8001F5F0       isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3<f>
+ 0002:8001F54C       getManagerName__15BgmProhibitAreaCFv
+ 0002:8001F558       __ct__19BigBubbleCameraAreaFiPCc
+ 0002:8001F594       __dt__14CubeCameraAreaFv
+ 0002:8001F5F0       isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3<f>
+ 0002:8001F6DC       isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3<f>
+ 0002:8001F730       __dt__19BigBubbleCameraAreaFv
+ 0002:8001F788       __dt__19BigBubbleSwitchAreaFv
+ 0002:8001F7E0       getManagerName__19BigBubbleSwitchAreaCFv
+ 0002:8001F7EC       getManagerName__19BigBubbleCameraAreaCFv
  0002:8001F7F8       __ct__17BigBubbleGoalAreaFiPCc
  0002:8001F854       init__17BigBubbleGoalAreaFRC12JMapInfoIter
  0002:8001F8E8       addBubble__17BigBubbleGoalAreaFP9BigBubble
  0002:8001F95C       movement__17BigBubbleGoalAreaFv
  0002:8001F9F4       draw__17BigBubbleGoalAreaCFv
  0002:8001FB10       checkBigBubbleGoal__2MRFP9BigBubble
+ 0002:8001FB64       getManagerName__17BigBubbleGoalAreaCFv
+ 0002:8001FB70       __dt__17BigBubbleGoalAreaFv
  0002:8001FBCC       __ct__9BloomAreaFiPCc
  0002:8001FC34       __dt__15ImageEffectAreaFv
  0002:8001FC90       init__9BloomAreaFRC12JMapInfoIter
- 0002:8001FD6C       __amu__Q29JGeometry8TVec3<f>Ff
+ 0002:8001FD00       __dt__9BloomAreaFv
+ 0002:8001FD58       isSyncWithPlayer__15ImageEffectAreaCFv
+ 0002:8001FD60       getManagerName__9BloomAreaCFv
+ 0002:8001FD6C       scale__Q29JGeometry8TVec3<f>Ff
  0002:8001FD94       __ami__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>
+ 0002:8001FDB8       __dt__19CameraRepulsiveAreaFv
+ 0002:8001FE14       __dt__21CameraRepulsiveSphereFv
+ 0002:8001FE6C       __dt__23CameraRepulsiveCylinderFv
  0002:8001FEC4       getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f>
  0002:8001FED8       getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f>
+ 0002:8001FFD4       getManagerName__19CameraRepulsiveAreaCFv
  0002:8001FFE0       __ct__13ChangeBgmCubeFiPCc
  0002:800200B4       movement__13ChangeBgmCubeFv
  0002:8002044C       setLength__Q29JGeometry8TVec3<f>Ff
@@ -602,23 +636,39 @@
  0002:80021194       setSurfaceAndSync__11AreaPolygonFl
  0002:800211DC       setSurface__11AreaPolygonFl
  0002:800216CC       initAfterPlacement__12PTimerSwitchFv
+ 0002:800216DC       __dt__11AreaPolygonFv
  0002:80021790       isValid__7AreaObjCFv
  0002:800217C4       __ct__11AreaPolygonFv
+ 0002:8002181C       __dt__19DynamicCollisionObjFv
  0002:80021878       init__11AreaPolygonFRC12JMapInfoIter
- 0002:80021A48       nullsub_81
- 0002:80021A4C       nullsub_96
+ 0002:80021A10       receiveOtherMsg__9LiveActorFUlP9HitSensorP9HitSensor
+ 0002:80021A18       receiveMsgThrow__9LiveActorFP9HitSensorP9HitSensor
+ 0002:80021A20       receiveMsgTaken__9LiveActorFP9HitSensorP9HitSensor
+ 0002:80021A28       receiveMsgTake__9LiveActorFP9HitSensorP9HitSensor
+ 0002:80021A30       receiveMsgEnemyAttack__9LiveActorFUlP9HitSensorP9HitSensor
+ 0002:80021A38       receiveMsgPlayerAttack__9LiveActorFUlP9HitSensorP9HitSensor
+ 0002:80021A40       receiveMsgPush__9LiveActorFP9HitSensorP9HitSensor
+ 0002:80021A48       updateHitSensor__9LiveActorFP9HitSensor
+ 0002:80021A4C       control__9LiveActorFv
+ 0002:80021A50       __ct__14CubeCameraAreaFiPCc
  0002:80021A98       init__14CubeCameraAreaFRC12JMapInfoIter
  0002:80021C14       movement__14CubeCameraAreaFv
  0002:80021CC4       isValidCameraID__14CubeCameraAreaCFv
  0002:80021CD4       getCameraID__14CubeCameraAreaCFv
  0002:80021CE0       isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3<f>
  0002:80021D2C       setCurrentCategory__14CubeCameraAreaFl
- 0002:80021D3C       getSensorHost__2MRFPC9HitSensor
+ 0002:80021D3C       getCategoryArg__14CubeCameraAreaCFv
  0002:80021D44       __ct__13CubeCameraMgrFlPCc
+ 0002:80021D88       initAfterLoad__13CubeCameraMgrFv
  0002:80021D8C       sort__13CubeCameraMgrFv
+ 0002:80021E38       __dt__13CubeCameraMgrFv
+ 0002:80021E90       __ct__9DeathAreaFiPCc
+ 0002:80021ECC       init__9DeathAreaFRC12JMapInfoIter
  0002:80021F00       movement__9DeathAreaFv
  0002:80021F64       isInVolume__9DeathAreaCFRCQ29JGeometry8TVec3<f>
  0002:80021FC8       getDeathType__9DeathAreaCFv
+ 0002:80021FE0       __dt__9DeathAreaFv
+ 0002:8002203C       getManagerName__9DeathAreaCFv
  0002:80022048       __ct__16DepthOfFieldAreaFiPCc
  0002:8002209C       init__16DepthOfFieldAreaFRC12JMapInfoIter
  0002:800220E0       getIntensity__16DepthOfFieldAreaCFv
@@ -631,18 +681,30 @@
  0002:800221FC       __ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>PA4_ff
  0002:800222DC       movement__19FollowCollisionAreaFv
  0002:800224A8       hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>
+ 0002:80022BF8       __ct__19GlaringLightAreaMgrFlPCc
  0002:80022C34       __ct__16GlaringLightAreaFiPCc
  0002:80022C88       init__16GlaringLightAreaFRC12JMapInfoIter
  0002:80022DE0       movement__16GlaringLightAreaFv
+ 0002:80022E80       getManagerName__16GlaringLightAreaCFv
  0002:80022E8C       __ct__8HazeCubeFiPCc
  0002:80022ED0       init__8HazeCubeFRC12JMapInfoIter
+ 0002:80022F34       __dt__8HazeCubeFv
+ 0002:80022F90       getManagerName__8HazeCubeCFv
  0002:80022F9C       __ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc
+ 0002:80022FF0       __ct__18ImageEffectAreaMgrFlPCc
+ 0002:8002302C       initAfterPlacement__18ImageEffectAreaMgrFv
  0002:80023030       sort__18ImageEffectAreaMgrFv
- 0002:80023134       __ct__23TripodBossStepStartAreaFiPCc
- 0002:80023178       init__11MessageAreaFRC12JMapInfoIter
+ 0002:800230DC       __dt__18ImageEffectAreaMgrFv
+ 0002:80023134       __ct__9LightAreaFiPCc
+ 0002:80023178       init__9LightAreaFRC12JMapInfoIter
+ 0002:800231BC       __dt__9LightAreaFv
+ 0002:80023218       getManagerName__9LightAreaCFv
  0002:80023224       __ct__15LightAreaHolderFlPCc
  0002:80023268       tryFindLightID__15LightAreaHolderCFRCQ29JGeometry8TVec3<f>P11ZoneLightID
+ 0002:80023308       initAfterPlacement__15LightAreaHolderFv
  0002:8002330C       sort__15LightAreaHolderFv
+ 0002:800233AC       __dt__15LightAreaHolderFv
+ 0002:80023404       __amu__Q29JGeometry8TVec3<f>Ff
  0002:8002342C       __ct__21MercatorTransformCubeFiPCc
  0002:80023470       init__21MercatorTransformCubeFRC12JMapInfoIter
  0002:800234E0       convertTransAndRotate__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>b
@@ -664,26 +726,50 @@
  0002:800244DC       max__2MRFff
  0002:800244F0       getMercatorCube__35@unnamed@MercatorTransformCube_cpp@Fv
  0002:80024520       getEuler__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>
- 0002:80024740       init__23TripodBossStepStartAreaFRC12JMapInfoIter
+ 0002:80024620       __ct__11MessageAreaFiPCc
+ 0002:80024664       init__11MessageAreaFRC12JMapInfoIter
+ 0002:800246A8       __dt__11MessageAreaFv
+ 0002:80024704       __ct__12PlayerSeAreaFiPCc
+ 0002:80024740       init__12PlayerSeAreaFRC12JMapInfoIter
+ 0002:8002477C       __dt__12PlayerSeAreaFv
  0002:800247D8       movement__12PlayerSeAreaFv
+ 0002:80024850       getManagerName__12PlayerSeAreaCFv
  0002:8002485C       __ct__15QuakeEffectAreaFiPCc
  0002:8002490C       __ct__11RestartCubeFiPCc
  0002:80024960       init__11RestartCubeFRC12JMapInfoIter
  0002:800249D0       updatePlayerRestartIdInfo__11RestartCubeFv
+ 0002:80024A44       __dt__11RestartCubeFv
  0002:80024AA0       changeBgm__11RestartCubeFv
  0002:80024C40       __ct__14ScreenBlurAreaFiPCc
+ 0002:80024C94       init__14ScreenBlurAreaFRC12JMapInfoIter
+ 0002:80024CD8       __dt__14ScreenBlurAreaFv
+ 0002:80024D30       isSyncWithPlayer__14ScreenBlurAreaCFv
+ 0002:80024D38       getManagerName__14ScreenBlurAreaCFv
  0002:80024D44       __ct__15SimpleBloomAreaFiPCc
  0002:80024DA8       init__15SimpleBloomAreaFRC12JMapInfoIter
+ 0002:80024E0C       __dt__15SimpleBloomAreaFv
+ 0002:80024E64       getManagerName__15SimpleBloomAreaCFv
+ 0002:80024E70       __dt__16SoundEmitterCubeFv
  0002:80024ECC       __ct__16SoundEmitterCubeFiPCc
  0002:80024F24       init__16SoundEmitterCubeFRC12JMapInfoIter
  0002:80024FB4       movement__16SoundEmitterCubeFv
  0002:800251BC       extend__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>FRCQ29JGeometry8TVec3<f>
+ 0002:80025250       __dt__18SoundEmitterSphereFv
  0002:800252AC       __ct__18SoundEmitterSphereFiPCc
  0002:80025308       init__18SoundEmitterSphereFRC12JMapInfoIter
  0002:8002539C       movement__18SoundEmitterSphereFv
+ 0002:800254F8       __ct__16SpinGuidanceAreaFiPCc
+ 0002:80025534       __dt__16SpinGuidanceAreaFv
  0002:80025590       init__16SpinGuidanceAreaFRC12JMapInfoIter
+ 0002:80025638       __ct__12SunLightAreaFiPCc
+ 0002:80025674       __dt__12SunLightAreaFv
+ 0002:800256D0       getManagerName__12SunLightAreaCFv
+ 0002:800256DC       __ct__10SwitchAreaFiPCc
+ 0002:80025718       init__10SwitchAreaFRC12JMapInfoIter
  0002:8002574C       movement__10SwitchAreaFv
  0002:80025814       isUpdate__10SwitchAreaCFv
+ 0002:80025898       getManagerName__10SwitchAreaCFv
+ 0002:800258A4       __dt__8WarpCubeFv
  0002:80025900       getPairCube__11WarpCubeMgrFPC7AreaObj
  0002:80025988       setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs
  0002:80025998       startEventCamera__11WarpCubeMgrFPC7AreaObj
@@ -693,6 +779,9 @@
  0002:80025C10       init__8WarpCubeFRC12JMapInfoIter
  0002:80025D18       __ct__9WaterAreaFiPCc
  0002:80025D5C       init__9WaterAreaFRC12JMapInfoIter
+ 0002:80025E00       __ct__12WaterAreaMgrFlPCc
+ 0002:80025E3C       __dt__9WaterAreaFv
+ 0002:80025E98       __dt__12WaterAreaMgrFv
  0002:80025EF0       __dt__7JASHeapFv
  0002:80025F8C       set__Q29JGeometry13SMatrix34C<f>FRCQ29JGeometry13SMatrix34C<f>
  0002:80025FC0       AudNewAudSystem___FP14JAUSectionHeapP10JKRArchiveP10JKRArchiveP10JKRArchivei
@@ -761,6 +850,7 @@
  0002:80028BE4       mixChannelOut__98AudAudience_<4,20AudDopplerAudible<4>,23AudDopplerAudienceState,31AudAudience_withSetting_doppler>FRC14JASSoundParamsP10JAIAudiblei
  0002:800290EC       getOuterParams__74AudGenericAudible_<4,24JAUDopplerAudibleChannel,23JAUDopplerAudibleAbsPos>Fi
  0002:80029108       calc__74AudGenericAudible_<4,24JAUDopplerAudibleChannel,23JAUDopplerAudibleAbsPos>Fv
+ 0002:8002914C       __dt__8AudFaderFv
  0002:8002918C       __dt__11AudMultiBgmFv
  0002:80029264       __dt__11AudMeHandleFv
  0002:800292B8       __dt__12AudSingleBgmFv
@@ -805,6 +895,8 @@
  0002:8002A4FC       isFanfareSe__12AudSoundInfoCF10JAISoundID
  0002:8002A5B4       isUseFxMix__12AudSoundInfoCF10JAISoundID
  0002:8002A650       isUseLpf__12AudSoundInfoCF10JAISoundID
+ 0002:8002A6EC       getSystem__7AudWrapFv
+ 0002:8002A6F4       getSoundInfo__7AudWrapFv
  0002:8002A6FC       getSceneMgr__7AudWrapFv
  0002:8002A708       getBgmMgr__7AudWrapFv
  0002:8002A714       getStageBgm__7AudWrapFv
@@ -851,7 +943,8 @@
  0002:8002B388       setMapCodeToPort__14AudSoundObjectFP14JAISoundHandle10JAISoundID
  0002:8002B490       setCutoffToPort__14AudSoundObjectFP14JAISoundHandle10JAISoundID
  0002:8002B608       convertSoundIdFromSeVersion__14AudSoundObjectCF10JAISoundID
- 0002:8002B7DC       GKI_init_timer_list
+ 0002:8002B7AC       __ct__19AudSoundObjHashDataFv
+ 0002:8002B7DC       init__19AudSoundObjHashDataFv
  0002:8002B7F0       str_80279110
  0002:8002B7F8       modifySe_Kawamura__14AudSoundObjectFP14JAISoundHandlel
  0002:8002C0D4       modifyLimitedSound_Kawamura__14AudSoundObjectF10JAISoundID
@@ -971,16 +1064,18 @@
  0002:80030BC0       __ct__8AudFaderFv
  0002:80030BD8       set__8AudFaderFfl
  0002:80030C30       update__8AudFaderFv
- 0002:80030C8C       __ct__Q227@unnamed@PowerStarList_cpp@8ListItemFv
+ 0002:80030C8C       __ct__19AudLimitedSoundInfoFv
+ 0002:80030CA0       init__19AudLimitedSoundInfoFv
  0002:80030CB4       set__19AudLimitedSoundInfoF10JAISoundIDl
  0002:80030CC4       update__19AudLimitedSoundInfoFv
  0002:80030CF8       isFree__19AudLimitedSoundInfoFv
- 0002:80030D0C       __ct__26GameEventFlagTableInstanceFv
+ 0002:80030D0C       __ct__18AudMeNameConverterFv
  0002:80030D48       getMeID__18AudMeNameConverterCFPCc
  0002:80030DDC       init__18AudMeNameConverterFv
- 0002:80030F18       getAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f>
+ 0002:80030E84       __sinit__AudMeNameConverter_cpp
+ 0002:80030F18       setMicMtx__10AudMicWrapFPA4_fl
  0002:80030F5C       setMicEnv__10AudMicWrapFv
- 0002:80030FE8       isStarPointerModeHomeButton__2MRFv
+ 0002:80030FE8       getMicPos__10AudMicWrapFv
  0002:80031010       __ct__11AudRemixMgrFP7JKRHeap
  0002:80031028       init__11AudRemixMgrFv
  0002:8003109C       isExistNextNode__2MRFPC15TalkMessageCtrl
@@ -1033,11 +1128,12 @@
  0002:800328BC       addSectionInfo__21AudSoundNameConverterFPC17JAUSoundNameTableUc
  0002:8003292C       getSoundNameTableNumItem_inSection__21AudSoundNameConverterFPC17JAUSoundNameTableUc
  0002:80032A14       __ct__17AudSoundObjHolderFP7JKRHeapl
- 0002:80032A5C       resumeAllObj__13NameObjHolderFv
+ 0002:80032A5C       update__17AudSoundObjHolderFv
  0002:80032AB8       add__17AudSoundObjHolderFP14AudSoundObject
  0002:80032AE4       remove__17AudSoundObjHolderFP14AudSoundObject
  0002:80032B70       moveOver__17AudSoundObjHolderFll
- 0002:80032BAC       DVDGetCurrentDiskID
+ 0002:80032BA0       getResName__14AudSpeakerWrapFv
+ 0002:80032BAC       getRequiredHeapSize__14AudSpeakerWrapFv
  0002:80032BB4       start__14AudSpeakerWrapFll
  0002:80032C4C       isPlayable__14AudSpeakerWrapFl
  0002:80032C94       __sinit__AudSpeakerWrap_cpp
@@ -1056,11 +1152,13 @@
  0002:800334EC       channelStart__8JASTrackFPQ28JASTrack11TChannelMgrUlUlUl
  0002:8003379C       load__10JASWaveArcFP7JASHeap
  0002:8003385C       __ct__12JASInstParamFv
+ 0002:80033928       __dt__38JASMemPool_MultiThreaded<10JASChannel>Fv
+ 0002:80033980       __ct__20CSSoundNameConverterFv
  0002:800339BC       getSoundID__20CSSoundNameConverterCFPCc
  0002:80033A50       init__20CSSoundNameConverterFv
  0002:80033A9C       initDataTable__20CSSoundNameConverterFPC8SpkTable
  0002:80033B1C       makeDataTable__20CSSoundNameConverterFPC8SpkTable
- 0002:80033B98       __ct__11MarioHolderFv
+ 0002:80033B98       __ct__12BossAccessorFv
  0002:80033BE4       setBossAccessorKoopa__10BossAccessFP5Koopa
  0002:80033C24       getBossAccessorKoopa__10BossAccessFv
  0002:80033C4C       endBNKList__17JAUAudioArcLoaderFv
@@ -1125,7 +1223,9 @@
  0002:80036F98       execute__Q214NrvRunawayTico18RunawayTicoNrvWaitCFP5Spine
  0002:800370B0       calcJointMatrix__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo
  0002:80037118       calcJointMatrixAfterChild__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo
+ 0002:80037180       __dt__15BossBegomanHeadFv
  0002:800371D8       set<i>__Q29JGeometry8TVec3<f>Fiii_v
+ 0002:80037238       __dt__9LiveActorFv
  0002:80037290       __ct__10BossKameckFPCcPCc
  0002:8003738C       getMoveRail__10BossKameckFl
  0002:800373CC       startSequence__10BossKameckFv
@@ -1178,7 +1278,7 @@
  0002:800394F0       __ct__23BossKameckBattlePattarnFPlb
  0002:80039538       initPattarn__23BossKameckBattlePattarnFPl
  0002:80039570       goNextPattarn__23BossKameckBattlePattarnFv
- 0002:800395A4       __ct__5SceneFPCc
+ 0002:800395A4       __ct__19BossKameckSequencerFPCc
  0002:800395F0       init__19BossKameckSequencerFP10BossKameckRC12JMapInfoIter
  0002:8003965C       j_updateNerve__13NerveExecutorFv_5
  0002:80039660       attackSensor__19DinoPackunSequencerFP9HitSensorP9HitSensor
@@ -1189,11 +1289,12 @@
  0002:800396C8       receiveMsgPush__19DinoPackunSequencerFP9HitSensorP9HitSensor
  0002:800396EC       receiveOtherMsg__19DinoPackunSequencerFUlP9HitSensorP9HitSensor
  0002:800396F8       freeTail__7JKRHeapFv
- 0002:80039768       __ct__9FluffWindFPCc
+ 0002:80039768       __ct__18BossKameckMoveRailFPCc
  0002:800397B0       init__18BossKameckMoveRailFRC12JMapInfoIter
  0002:80039868       getMapPartsArgMoveTimeToNextPoint__2MRFPlPC9LiveActor
  0002:80039878       calcRandomIndex__18BossKameckMoveRailCFl
  0002:800398E0       calcRandomStoppableIndex__18BossKameckMoveRailCFl
+ 0002:800399AC       __dt__18BossKameckMoveRailFv
  0002:80039A08       __ct__13BossKameckVs1Fv
  0002:80039A54       init__13BossKameckVs1FP10BossKameckRC12JMapInfoIter
  0002:80039AD8       attackSensor__13BossKameckVs2FP9HitSensorP9HitSensor
@@ -1290,6 +1391,7 @@
  0002:8003D660       calcIIRCutOff__22BossStinkBugActionBaseCFv
  0002:8003D6C0       updateSound__22BossStinkBugActionBaseFv
  0002:8003D76C       updateSoundFly__22BossStinkBugActionBaseFv
+ 0002:8003D828       __dt__22BossStinkBugActionBaseFv
  0002:8003D880       updateGroundRegainRail__22BossStinkBugActionBaseFf
  0002:8003D938       updateGroundFind__22BossStinkBugActionBaseFv
  0002:8003D9BC       updateGroundShakeOff__22BossStinkBugActionBaseFv
@@ -1363,11 +1465,12 @@
  0002:80040F68       exeAngryDemo__27BossStinkBugActionSequencerFv
  0002:80040FB4       exeFlyHigh__27BossStinkBugActionSequencerFv
  0002:8004100C       exeFinishDemo__27BossStinkBugActionSequencerFv
- 0002:800411E4       __ct__19BossStinkBugFlyDemoFP12BossStinkBugRC12JMapInfoIter
+ 0002:800411E4       __ct__21BossStinkBugAngryDemoFP12BossStinkBugRC12JMapInfoIter
  0002:80041278       appear__23BossStinkBugOpeningDemoFv
  0002:800412CC       exeDemo__21BossStinkBugAngryDemoFv
- 0002:800414EC       __sinit__GalaxyCometState_cpp
- 0002:80041544       __ct__12BombBirdBombFPCc
+ 0002:80041494       __dt__21BossStinkBugAngryDemoFv
+ 0002:800414EC       __sinit__BossStinkBugAngryDemo_cpp
+ 0002:80041544       __ct__16BossStinkBugBombFPCc
  0002:800415A4       init__16BossStinkBugBombFRC12JMapInfoIter
  0002:800416D8       control__12BombBirdBombFv
  0002:80041704       calcBrightInfo__9BrightObjFUsRC13BrightCamInfo
@@ -1378,9 +1481,13 @@
  0002:8004190C       exeWait__16BossStinkBugBombFv
  0002:80041AB4       exeExplosion__16BossStinkBugBombFv
  0002:80041C78       __ct__22BossStinkBugBombHolderFP9LiveActor
+ 0002:80041E2C       __ct__22BossStinkBugFinishDemoFP12BossStinkBugRC12JMapInfoIter
+ 0002:80041EC0       appear__22BossStinkBugFinishDemoFv
  0002:80041F14       exeDemo__22BossStinkBugFinishDemoFv
  0002:80042004       exeAppearPowerStar__22BossStinkBugFinishDemoFv
  0002:80042164       __sinit__SaveDataBannerCreator_cpp
+ 0002:800421DC       __ct__19BossStinkBugFlyDemoFP12BossStinkBugRC12JMapInfoIter
+ 0002:80042270       appear__19BossStinkBugFlyDemoFv
  0002:800422C4       exeDemo__19BossStinkBugFlyDemoFv
  0002:800425C4       addHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>PC12BossStinkBugf
  0002:80042654       addLocalHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>P12BossStinkBugf
@@ -1396,6 +1503,7 @@
  0002:80042D38       isExistPlayerBack__20BossStinkBugFunctionFPC12BossStinkBugf
  0002:80042DD8       __ct__23BossStinkBugOpeningDemoFP12BossStinkBugRC12JMapInfoIter
  0002:80042EC0       exeDemo__23BossStinkBugOpeningDemoFv
+ 0002:80043080       set<f>__Q29JGeometry8TVec4<f>FRCQ29JGeometry8TVec4<f>_v
  0002:800430A4       __ct__Q224@unnamed@DinoPackun_cpp@15DinoPackunParamFv
  0002:80043114       __ct__10DinoPackunFPCc
  0002:800431E0       init__10DinoPackunFRC12JMapInfoIter
@@ -2275,6 +2383,8 @@
  0002:80069894       init__17KoopaSwitchKeeperFRC12JMapInfoIter
  0002:80069904       j_registerKoopaSwitchKeeper__13KoopaFunctionFP9LiveActor
  0002:800699F8       j_registerKoopaViewSwitchKeeper__13KoopaFunctionFP9LiveActor
+ 0002:80069B34       __dt__10FireBubbleFv
+ 0002:80069B90       set__Q29JGeometry8TVec3<f>FRC3Vec
  0002:80069BAC       __ct__7OtaKingFPCc
  0002:80069C6C       init__7OtaKingFRC12JMapInfoIter
  0002:80069E08       movement__7OtaKingFv
@@ -3311,7 +3421,6 @@
  0002:800988D0       __ct__10CameraDeadFPCc
  0002:80098924       reset__10CameraDeadFv
  0002:80098B44       calc__10CameraDeadFv
- 0002:80098DEC       createActorCameraInfo__2MRFRC12JMapInfoIter
  0002:80098E98       __ct__14CameraDirectorFPCc
  0002:800991C0       movement__14CameraDirectorFv
  0002:80099294       isCompleteMarioAndLuigi__14GameDataHolderCFv
@@ -4001,6 +4110,7 @@
  0002:800BB6FC       j_pause__12DemoExecutorFv
  0002:800BB700       j_resume__12DemoExecutorFv
  0002:800BB704       isPauseTimeKeepDemo__20DemoExecutorFunctionFPC12DemoExecutor
+ 0002:800BB708       isDead__2MRFPC11LayoutActor
  0002:800BB710       getDemoDirector__12DemoFunctionFv
  0002:800BB738       getDemoCastSubGroupHolder__12DemoFunctionFv
  0002:800BB764       registerDemoSimpleCastAllFunction__12DemoFunctionFP7NameObj
@@ -4065,7 +4175,6 @@
  0002:800BD37C       registerActor__20DemoSimpleCastHolderFP11LayoutActor
  0002:800BD398       registerNameObj__20DemoSimpleCastHolderFP7NameObj
  0002:800BD3B4       movementOnAllCasts__20DemoSimpleCastHolderFv
- 0002:800BD468       __dt__Q22MR26AssignableArray<P7NameObj>Fv
  0002:800BD4C8       __ct__13DemoSoundInfoFv
  0002:800BD4EC       __ct__15DemoSoundKeeperFP12DemoExecutor
  0002:800BD634       update__15DemoSoundKeeperFv
@@ -5489,7 +5598,6 @@
  0002:801082BC       isEnableAttack__12KameckTurtleCFv
  0002:80108308       appearJetTurtle__12KameckTurtleFb
  0002:8010845C       getRunAwayBreakTimeRandom__20@unnamed@Kanina_cpp@Fv
- 0002:801084AC       createNormalBloom__2MRFv
  0002:801084EC       __ct__6KaninaFPCc
  0002:8010859C       init__6KaninaFRC12JMapInfoIter
  0002:80108808       j_trySetMoveLimitCollision__2MRFP9LiveActor_3
@@ -7050,8 +7158,17 @@
  0002:8015B9F4       initAnimData__15ActorAnimKeeperFv
  0002:8015BB30       findAnimInfo__15ActorAnimKeeperCFPCc
  0002:8015BBAC       __ct__15ActorCameraInfoFRC12JMapInfoIter
- 0002:8015BC20       NWC24Data_SetDataP
+ 0002:8015BC20       __ct__15ActorCameraInfoFll
  0002:8015BC2C       __ct__14ActorJointCtrlFP9LiveActor
+ 0002:8015BCD0       startDynamicCtrl__14ActorJointCtrlFPCcl
+ 0002:8015BCD8       endDynamicCtrl__14ActorJointCtrlFPCcl
+ 0002:8015BCE0       resetDynamicCtrl__14ActorJointCtrlFv
+ 0002:8015BCE8       startFaceCtrl__14ActorJointCtrlFl
+ 0002:8015BCF0       endFaceCtrl__14ActorJointCtrlFl
+ 0002:8015BCF8       setIKEndPosition__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3<f>f
+ 0002:8015BD00       setIKEndDirection__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3<f>f
+ 0002:8015BD08       endIKCtrlAll__14ActorJointCtrlFv
+ 0002:8015BD10       update__14ActorJointCtrlFv
  0002:8015BD44       startUpdate__14ActorJointCtrlFv
  0002:8015BDA8       endUpdate__14ActorJointCtrlFv
  0002:8015BE0C       setCallBackFunction__14ActorJointCtrlFv
@@ -7094,8 +7211,6 @@
  0002:8015CFD4       exeWait__21AnimationRandomPlayerFv
  0002:8015D03C       exePlay__21AnimationRandomPlayerFv
  0002:8015D168       __ct__6BinderFPA4_fPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>ffUl
- 0002:8015D268       setTriangleFilter__6BinderFP18TriangleFilterBase
- 0002:8015D270       setCollisionPartsFilter__6BinderFP24CollisionPartsFilterBase
  0002:8015D278       clear__6BinderFv
  0002:8015D298       getPlane__6BinderCFi
  0002:8015D2A8       copyPlaneArrayAndSortingSensor__6BinderFPP7HitInfoUl
@@ -7124,7 +7239,6 @@
  0002:8015EBA4       addToClippingTarget__19ClippingActorHolderFP9LiveActor
  0002:8015EC4C       removeFromClippingTarget__19ClippingActorHolderFP9LiveActor
  0002:8015ECE4       startGroupClipping__19ClippingActorHolderFP9LiveActorRC12JMapInfoIter
- 0002:8015EDD0       setEndDirection__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3<f>f
  0002:8015EE14       setFarClipLevel__19ClippingActorHolderFP9LiveActorl
  0002:8015EE44       find__19ClippingActorHolderCFPC9LiveActor
  0002:8015EF24       __ct__17ClippingActorInfoFP9LiveActor
@@ -7203,7 +7317,10 @@
  0002:801617F0       setCallBackFunction__16DynamicJointCtrlFv
  0002:80161854       __ct__22DynamicJointCtrlKeeperFP9LiveActor
  0002:80161A38       updatePos__22SpiderThreadRadialLineFv
- 0002:80161AF0       endCtrl__22DynamicJointCtrlKeeperFPCcl
+ 0002:80161A94       setCallBackFunction__22DynamicJointCtrlKeeperFv
+ 0002:80161AF0       startCtrl__22DynamicJointCtrlKeeperFPCcl
+ 0002:80161B28       endCtrl__22DynamicJointCtrlKeeperFPCcl
+ 0002:80161B60       reset__22DynamicJointCtrlKeeperFv
  0002:80161BBC       findJointCtrl__22DynamicJointCtrlKeeperFPCc
  0002:80161D50       makeAttibuteEffectBaseName__26@unnamed@EffectKeeper_cpp@FPcUlPCc
  0002:80161DCC       __ct__12EffectKeeperFPCcP14ResourceHolderiPCc
@@ -7235,8 +7352,9 @@
  0002:80162DF4       isTypeAttributeEffect__12EffectKeeperCFPCc
  0002:80162F18       __ct__13FaceJointCtrlFP9LiveActor
  0002:80162F90       init__13FaceJointCtrlFv
- 0002:801630F8       endCtrl__13FaceJointCtrlFl
+ 0002:8016313C       endCtrl__13FaceJointCtrlFl
  0002:80163180       update__13FaceJointCtrlFv
+ 0002:80163198       setCallBackFunction__13FaceJointCtrlFv
  0002:801631AC       updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo
  0002:80163398       __ct__12FlashingCtrlFP9LiveActorb
  0002:80163424       movement__12FlashingCtrlFv
@@ -7285,6 +7403,8 @@
  0002:80164A0C       __ct__17IKJointCtrlHolderFP9LiveActorUl
  0002:80164A70       addCtrl__17IKJointCtrlHolderFRC16IKJointCtrlParam
  0002:80164AF8       startUpdate__17IKJointCtrlHolderFv
+ 0002:80164B64       setEndPosition__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3<f>f
+ 0002:80164BA8       setEndDirection__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3<f>f
  0002:80164BEC       endUpdate__17IKJointCtrlHolderFv
  0002:80164C60       allocateActorListBuffer__15DrawBufferGroupFv
  0002:80164CC4       setCallBackFunction__17IKJointCtrlHolderFv
@@ -7295,7 +7415,9 @@
  0002:80165184       enableCallBack__11IKJointCtrlFv
  0002:80165204       __ct__9LiveActorFPCc
  0002:801652EC       nullsub_5
+ 0002:801652F0       appear__9LiveActorFv
  0002:80165300       makeActorAppeared__9LiveActorFv
+ 0002:801653C4       kill__9LiveActorFv
  0002:801653D4       makeActorDead__9LiveActorFv
  0002:80165478       movement__9LiveActorFv
  0002:80165594       calcAnim__9LiveActorFv
@@ -7304,6 +7426,7 @@
  0002:80165660       receiveMessage__9LiveActorFUlP9HitSensorP9HitSensor
  0002:80165760       setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
  0002:80165770       calcAndSetBaseMtx__9LiveActorFv
+ 0002:80165814       getTakingMtx__9LiveActorCFv
  0002:80165824       setNerve__9LiveActorFPC5Nerve
  0002:8016582C       isNerve__9LiveActorCFPC5Nerve
  0002:80165868       getNerveStep__9LiveActorCFv
@@ -7323,7 +7446,7 @@
  0002:80165ECC       initStageSwitch__9LiveActorFRC12JMapInfoIter
  0002:80165EFC       initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f>
  0002:80165F84       initActorLightCtrl__9LiveActorFv
- 0002:80165FC8       nullsub_82
+ 0002:80165FC8       attackSensor__9LiveActorFP9HitSensorP9HitSensor
  0002:80165FCC       receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor
  0002:80165FF8       addToSoundObjHolder__9LiveActorFv
  0002:80166000       updateBinder__9LiveActorFv
@@ -8473,7 +8596,6 @@
  0002:8019CB3C       isPointingTarget__22SphereSelectorFunctionFPC9LiveActor
  0002:8019CB80       getPointingTarget__22SphereSelectorFunctionFv
  0002:8019CBAC       getSelectedTarget__22SphereSelectorFunctionFv
- 0002:8019CBD8       getPlayerPos__2MRFv
  0002:8019CBFC       calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:8019CDCC       execute__Q217NrvSphereSelector26SphereSelectorNrvConfirmedCFP5Spine
  0002:8019CE3C       execute__Q217NrvSphereSelector28SphereSelectorNrvSelectStartCFP5Spine
@@ -11987,10 +12109,8 @@
  0002:80261920       remove__19NameObjCategoryListFP7NameObji
  0002:8026198C       registerExecuteBeforeFunction__19NameObjCategoryListFRCQ22MR11FunctorBasei
  0002:802619DC       initTable__19NameObjCategoryListFUlPC24CategoryListInitialTable
- 0002:80261AD0       __ct__Q219NameObjCategoryList12CategoryInfoFv
- 0002:80261AE4       __dt__Q219NameObjCategoryList12CategoryInfoFv
- 0002:80261B40       __cl__Q233@unnamed@NameObjCategoryList_cpp@40NameObjRealDelegator<M7NameObjFPCvPCv_v>FP7NameObj
- 0002:80261B70       __cl__Q233@unnamed@NameObjCategoryList_cpp@39NameObjRealDelegator<M7NameObjFPCvPv_v>FP7NameObj
+ 0002:80261AE4       __dt__29SpinDriverPathStorageScenarioFv
+ 0002:80261B40       __cl__Q233@unnamed@NameObjCategoryList_cpp@39NameObjRealDelegator<M7NameObjFPCvPv_v>FP7NameObj
  0002:80261BA0       __dt__Q22MR26AssignableArray<8JMapInfo>Fv
  0002:80261C08       __ct__18NameObjExecuteInfoFv
  0002:80261C34       setConnectInfo__18NameObjExecuteInfoFP7NameObjiiii
@@ -12002,8 +12122,7 @@
  0002:80261E68       executeRequirementConnectDraw__18NameObjExecuteInfoFv
  0002:80261E7C       executeRequirementDisconnectDraw__18NameObjExecuteInfoFv
  0002:80261E90       executeRequirementDisconnectDrawDelay__18NameObjExecuteInfoFv
- 0002:80261EA4       requestMovementOn__18NameObjExecuteInfoFi
- 0002:80261EC4       requestMovementOff__18NameObjExecuteInfoFi
+ 0002:80261EA4       requestMovementOff__18NameObjExecuteInfoFi
  0002:80261EE4       findLightInfo__18NameObjExecuteInfoCFv
  0002:80261F2C       connectToScene__18NameObjExecuteInfoFv
  0002:80261FA8       disconnectToScene__18NameObjExecuteInfoFv
@@ -12021,23 +12140,11 @@
  0002:80262414       executeRequirementConnectDraw__20NameObjExecuteHolderFv
  0002:80262484       executeRequirementDisconnectDraw__20NameObjExecuteHolderFv
  0002:802624F4       executeRequirementDisconnectDrawDelay__20NameObjExecuteHolderFv
- 0002:80262564       requestMovementOn__20NameObjExecuteHolderFi
- 0002:802625C8       requestMovementOff__20NameObjExecuteHolderFi
+ 0002:80262564       requestMovementOff__20NameObjExecuteHolderFi
  0002:8026262C       getConnectToSceneInfo__20NameObjExecuteHolderCFPC7NameObj
  0002:80262650       registerNameObjToExecuteHolder__2MRFP7NameObjiiii
- 0002:802626B4       initConnectting__2MRFv
- 0002:802626E0       connectToSceneTemporarily__2MRFP7NameObj
- 0002:8026271C       disconnectToSceneTemporarily__2MRFP7NameObj
- 0002:80262758       connectToDrawTemporarily__2MRFP7NameObj
- 0002:80262794       disconnectToDrawTemporarily__2MRFP7NameObj
- 0002:802627D0       isConnectToDrawTemporarily__2MRFPC7NameObj
- 0002:8026280C       executeRequirementConnectMovement__2MRFv
- 0002:80262838       executeRequirementDisconnectMovement__2MRFv
- 0002:80262864       executeRequirementConnectDraw__2MRFv
- 0002:80262890       executeRequirementDisconnectDraw__2MRFv
- 0002:802628BC       executeRequirementDisconnectDrawDelay__2MRFv
- 0002:802628E8       requestMovementOnWithCategory__2MRFi
- 0002:80262924       requestMovementOffWithCategory__2MRFi
+ 0002:802626B4       executeRequirementDisconnectDrawDelay__2MRFv
+ 0002:802626E0       requestMovementOffWithCategory__2MRFi
  0002:80262960       findActorLightInfo__2MRFPC9LiveActor
  0002:802629A0       __ct__20NameObjExecuteHolderFi
  0002:80262A94       createBaseOriginCube<16SpinGuidanceArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
@@ -12180,16 +12287,7 @@
  0002:8026BE44       __dt__19NameObjListExecutorFv
  0002:8026BF10       __dt__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv
  0002:8026BF74       init__19NameObjListExecutorFv
- 0002:8026BFE8       registerDrawBuffer__19NameObjListExecutorFP9LiveActori
  0002:8026BFF0       allocateDrawBufferActorList__19NameObjListExecutorFv
- 0002:8026C040       findLightInfo__19NameObjListExecutorCFP9LiveActorii
- 0002:8026C048       incrementCheckMovement__19NameObjListExecutorFP7NameObji
- 0002:8026C050       incrementCheckCalcAnim__19NameObjListExecutorFP7NameObji
- 0002:8026C058       incrementCheckDraw__19NameObjListExecutorFP7NameObji
- 0002:8026C060       addToMovement__19NameObjListExecutorFP7NameObji
- 0002:8026C068       addToCalcAnim__19NameObjListExecutorFP7NameObji
- 0002:8026C080       removeToMovement__19NameObjListExecutorFP7NameObji
- 0002:8026C088       removeToCalcAnim__19NameObjListExecutorFP7NameObji
  0002:8026C0B0       setCreated__8UserFileFv
  0002:8026C0BC       entryDrawBuffer3D__19NameObjListExecutorFv
  0002:8026C0C8       entryDrawBufferMirror__19NameObjListExecutorFv
@@ -15529,6 +15627,7 @@
  0002:80341A44       isActive__14PlayTimerSceneCFv
  0002:80341A80       isEndGlobalTimer__14PlayTimerSceneCFv
  0002:80341AC4       stop__14PlayTimerSceneFv
+ 0002:80341B18       startTimeUp__14PlayTimerSceneFv
  0002:80341B20       exeTimeUp__14PlayTimerSceneFv
  0002:80341BB0       exeFadeoutAfterTimeUp__14PlayTimerSceneFv
  0002:80341D04       execute__Q225NrvGalaxySelectBackButton31GalaxySelectBackButtonNrvAppearCFP5Spine
@@ -15614,13 +15713,12 @@
  0002:803447EC       allocateDrawBufferActorList__13SceneFunctionFv
  0002:8034481C       drawXlu__12CategoryListFQ22MR14DrawBufferType
  0002:803448D0       entryDrawBufferMirror__12CategoryListFv
- 0002:803449CC       j_requestMovementOnWithCategory__2MRFi
- 0002:803449D0       j_requestMovementOffWithCategory__2MRFi
  0002:803449D4       nullsub_23
  0002:803449D8       __ct__14SceneObjHolderFv
  0002:803449F8       create__14SceneObjHolderFi
  0002:80344A54       getObj__14SceneObjHolderCFi
  0002:80344A60       isExist__14SceneObjHolderCFi
+ 0002:80344A74       createSceneObj__2MRFi
  0002:80344AA8       getSceneObjHolder__2MRFv
  0002:80344AB4       isExistSceneObj__2MRFi
  0002:80344B14       newEachObj__14SceneObjHolderFi
@@ -15737,6 +15835,7 @@
  0002:80349FA8       postDraw__11BloomEffectCFv
  0002:8034A364       getIntensity1Default__11BloomEffectCFv
  0002:8034A36C       getIntensity2Default__11BloomEffectCFv
+ 0002:8034A374       isForEachModel__11BloomEffectCFv
  0002:8034A37C       initDraw__11BloomEffectCFv
  0002:8034A5C8       drawTexture__11BloomEffectCFP10JUTTexturellUcQ211BloomEffect19BLOOM_TEX_DRAW_TYPE
  0002:8034A85C       blurTexture__11BloomEffectCFP10JUTTexturePA3_A4_fllUlfUlPCf
@@ -16206,6 +16305,7 @@
  0002:80361294       __ct__21GameSceneLayoutHolderFv
  0002:80361450       createPurpleCoinCounter__21GameSceneLayoutHolderFv
  0002:8036149C       movement__21GameSceneLayoutHolderFv
+ 0002:8036151C       requestPowerUpHPMeter__21GameSceneLayoutHolderFv
  0002:8036152C       startMiss__21GameSceneLayoutHolderFv
  0002:8036156C       isMissAnimEnd__21GameSceneLayoutHolderCFv
  0002:80361598       activateDefaultGameLayout__21GameSceneLayoutHolderFv
@@ -16258,6 +16358,10 @@
  0002:803635A8       turnOff__19ImageEffectDirectorFv
  0002:803635B8       forceOff__19ImageEffectDirectorFv
  0002:80363614       turnOnDOFInSubjective__19ImageEffectDirectorFv
+ 0002:80363620       setNormalBloomIntensity__19ImageEffectDirectorFUc
+ 0002:80363628       setNormalBloomThreshold__19ImageEffectDirectorFUc
+ 0002:80363630       setNormalBloomBlurIntensity1__19ImageEffectDirectorFUc
+ 0002:80363638       setNormalBloomBlurIntensity2__19ImageEffectDirectorFUc
  0002:80363648       updateManual__19ImageEffectDirectorFv
  0002:803636E4       setState__19ImageEffectDirectorFP16ImageEffectState
  0002:8036370C       setBloomNormalParams__19ImageEffectDirectorFP15ImageEffectArea
@@ -16294,7 +16398,6 @@
  0002:803650C4       setIntensity1Default__Q220ImageEffectStateImpl16StateBloomNormalFv
  0002:80365104       VFiPFFAT_SetHint
  0002:8036510C       setIntensity2Default__Q220ImageEffectStateImpl16StateBloomNormalFv
- 0002:8036514C       createSimpleBloom__2MRFv
  0002:80365154       getEffect__Q220ImageEffectStateImpl16StateBloomSimpleCFv
  0002:8036517C       setMaskFilterAll__Q220ImageEffectStateImpl16StateBloomSimpleFv
  0002:803651AC       setMaskFilterRed__Q220ImageEffectStateImpl16StateBloomSimpleFv
@@ -16302,7 +16405,6 @@
  0002:8036520C       setMaskFilterBlue__Q220ImageEffectStateImpl16StateBloomSimpleFv
  0002:8036523C       setThreshold__Q220ImageEffectStateImpl16StateBloomSimpleFUc
  0002:80365274       setIntensity__Q220ImageEffectStateImpl16StateBloomSimpleFf
- 0002:803652AC       createScreenBlur__2MRFv
  0002:803652B4       getEffect__Q220ImageEffectStateImpl15StateScreenBlurCFv
  0002:803652DC       setIntensity__Q220ImageEffectStateImpl15StateScreenBlurFf
  0002:8036531C       getEffect__Q220ImageEffectStateImpl17StateDepthOfFieldCFv
@@ -16463,7 +16565,6 @@
  0002:8036AFEC       __ct__8Manual2PFPCc
  0002:8036B050       init__8Manual2PFRC12JMapInfoIter
  0002:8036B1A8       appear__8Manual2PFv
- 0002:8036B22C       j_isDead__2MRFPC11LayoutActor
  0002:8036B230       exeAppear__8Manual2PFv
  0002:8036B2E4       exeWait__8Manual2PFv
  0002:8036B4E0       exeScrollRightAfter__8Manual2PFv
@@ -17274,7 +17375,7 @@
  0002:803926C0       setInformationMessage__11YesNoLayoutFPCc
  0002:803926D4       setSelectMessage__11YesNoLayoutFPCcPCc
  0002:80392738       exeSelecting__11YesNoLayoutFv
- 0002:8039281C       WPADEnableMotor
+ 0002:8039281C       setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer
  0002:80392850       setup__14SpkSpeakerCtrlFv
  0002:80392944       connect__14SpkSpeakerCtrlFl
  0002:803929C4       disconnect__14SpkSpeakerCtrlFl
@@ -17785,6 +17886,7 @@
  0002:803A28E4       __dt__13NerveExecutorFv
  0002:803A2948       initNerve__13NerveExecutorFPC5Nerve
  0002:803A299C       updateNerve__13NerveExecutorFv
+ 0002:803A29B0       setNerve__13NerveExecutorFPC5Nerve
  0002:803A29B8       isNerve__13NerveExecutorCFPC5Nerve
  0002:803A2A00       __ct__15OSThreadWrapperFUliiP7JKRHeap
  0002:803A2A74       __dt__15OSThreadWrapperFv
@@ -18160,7 +18262,6 @@
  0002:803B0034       updateStorageSpinDriverPathDrawRange__16GameDataFunctionFPCciif
  0002:803B0198       followStoryEventByName__16GameDataFunctionFPCc
  0002:803B02DC       resetStageResultSequenceParam__20GameSequenceFunctionFv
- 0002:803B02EC       setPlayerRestartIdInfo__2MRFRC10JMapIdInfo
  0002:803B0314       getLast1upStarPieceNum__16GameDataFunctionFv
  0002:803B0328       getUserName__16GameDataFunctionFv
  0002:803B04D8       isEqualJustPowerStarNum__16GameDataFunctionFi
@@ -18318,7 +18419,6 @@
  0002:803B4E30       startCopyUserFileSequence__20GameSequenceFunctionFii
  0002:803B4E7C       startSetMiiOrIconIdUserFileSequence__20GameSequenceFunctionFiPCvPCUl
  0002:803B4FA8       isSuccessSaveDataHandleSequence__20GameSequenceFunctionFv
- 0002:803B50F8       isPlayerDead__2MRFv
  0002:803B5148       storeSceneStartGameDataHolder__20GameSequenceFunctionFv
  0002:803B5190       updateGameDataAndSequenceAfterStageResultSequence__20GameSequenceFunctionFv
  0002:803B51FC       startGameDataSaveSequence__20GameSequenceFunctionFbb
@@ -18531,6 +18631,7 @@
  0002:803BC438       createActorCameraName__29@unnamed@ActorCameraUtil_cpp@FPcUlPC9LiveActorPC15ActorCameraInfo
  0002:803BC474       createMultiActorCameraName__29@unnamed@ActorCameraUtil_cpp@FPcUlPC9LiveActorPC15ActorCameraInfoPCc
  0002:803BC4B0       initAnimCamera__2MRFPC9LiveActorPC15ActorCameraInfoPCc
+ 0002:803BC548       createActorCameraInfo__2MRFRC12JMapInfoIter
  0002:803BC588       createActorCameraInfoIfExist__2MRFRC12JMapInfoIterPP15ActorCameraInfo
  0002:803BC5FC       initActorCamera__2MRFPC9LiveActorRC12JMapInfoIterPP15ActorCameraInfo
  0002:803BC604       initMultiActorCamera__2MRFPC9LiveActorRC12JMapInfoIterPP15ActorCameraInfoPCc
@@ -18999,6 +19100,7 @@
  0002:803C89CC       getCameraWatchPos__2MRFv
  0002:803C8A3C       j_isCameraInWaterForCameraUtil__17WaterAreaFunctionFv
  0002:803C8A40       resetCameraLocalOffset__2MRFv
+ 0002:803C8A68       overlayWithPreviousScreen__2MRFUl
  0002:803C8A9C       isSubjectiveCameraOnForObjClipping__2MRFv
  0002:803C8ACC       cleanEventCameraTarget_temporally__2MRFv
  0002:803C8B00       j_setTarget__15CameraTargetArgCFv
@@ -19019,6 +19121,7 @@
  0002:803C914C       j_tryStartDemoRegistered__12DemoFunctionFP9LiveActorPCc
  0002:803C9150       j_tryStartDemoRegisteredMarioPuppetable__12DemoFunctionFP9LiveActorPCc
  0002:803C9154       j_registerDemoSimpleCastAllFunction__12DemoFunctionFP7NameObj
+ 0002:803C915C       registerDemoSimpleCastAll__2MRFP7NameObj
  0002:803C9160       isDemoCast__2MRFPC9LiveActorPCc
  0002:803C91D0       tryStartDemo__2MRFP11LayoutActorPCc
  0002:803C92B0       tryStartDemoWithoutCinemaFrame__2MRFP9LiveActorPCc
@@ -19065,6 +19168,7 @@
  0002:803CA234       j_getDemoPartTotalStepFunction__12DemoFunctionFPCc
  0002:803CA238       calcDemoPartStepRate__2MRFPCc
  0002:803CA2B0       j_getDemoPartStepFunction__12DemoFunctionFPCc
+ 0002:803CA2BC       isPowerStarGetDemoActive__2MRFv
  0002:803CA2C0       j_getCurrentDemoPartNameMain__12DemoFunctionFPCc
  0002:803CA2C4       startTalkingSequenceWithoutCinemaFrame__2MRFP7NameObj
  0002:803CA2E8       endTalkingSequence__2MRFP7NameObj
@@ -19134,6 +19238,7 @@
  0002:803CC5B0       j_explainSpin__27InformationObserverFunctionFP9LiveActor
  0002:803CC6D4       isOnGameEventFlagChildsRoom__2MRFv
  0002:803CC708       isOnGameEventFlagLibraryRoom__2MRFv
+ 0002:803CC734       isOnGameEventFlagRosettaTalkAboutTicoInTower__2MRFv
  0002:803CC740       isKinopioExplorerTalkGetGrandStar6__2MRFv
  0002:803CC818       j_setupAlreadyDoneFlag__16GameDataFunctionFPCcRC12JMapInfoIterPUl
  0002:803CC81C       j_updateAlreadyDoneFlag__16GameDataFunctionFiUl
@@ -19442,19 +19547,17 @@
  0002:803D7BE0       isStep__2MRFPC13NerveExecutorl
  0002:803D7C18       isFirstStep__2MRFPC11LayoutActor
  0002:803D7C20       isLessStep__2MRFPC11LayoutActorl
- 0002:803D7C7C       isGreaterStep__2MRFPC11LayoutActorl
- 0002:803D7CBC       isGreaterEqualStep__2MRFPC11LayoutActorl
- 0002:803D7CF8       isIntervalStep__2MRFPC11LayoutActorl
- 0002:803D7D38       isNewNerve__2MRFPC11LayoutActor
- 0002:803D7D5C       calcNerveRate__2MRFPC11LayoutActorl
- 0002:803D7DDC       calcNerveRate__2MRFPC11LayoutActorll
- 0002:803D7E6C       calcNerveEaseInRate__2MRFPC11LayoutActorl
- 0002:803D7EFC       calcNerveEaseInValue__2MRFPC11LayoutActorllff
- 0002:803D7FC4       setNerveAtStep__2MRFP11LayoutActorPC5Nervel
+ 0002:803D7CBC       isGreaterEqualStep__2MRFPC13NerveExecutorl
+ 0002:803D7CF8       isIntervalStep__2MRFPC13NerveExecutorl
+ 0002:803D7D38       isNewNerve__2MRFPC13NerveExecutor
+ 0002:803D7D5C       calcNerveRate__2MRFPC13NerveExecutorl
+ 0002:803D7DDC       calcNerveRate__2MRFPC9LiveActorll
+ 0002:803D7E6C       calcNerveEaseOutRate__2MRFPC13NerveExecutorl
+ 0002:803D7EFC       calcNerveEaseInOutValue__2MRFPC13NerveExecutorllff
+ 0002:803D7FC4       setNerveAtStep__2MRFP13NerveExecutorPC5Nervel
  0002:803D8014       setNerveAtAnimStopped__2MRFP11LayoutActorPC5NerveUl
  0002:803D8074       setNerveAtPaneAnimStopped__2MRFP11LayoutActorPCcPC5NerveUl
  0002:803D80D8       killAtAnimStopped__2MRFP11LayoutActorUl
- 0002:803D813C       isDead__2MRFPC11LayoutActor
  0002:803D8144       isHiddenLayout__2MRFPC11LayoutActor
  0002:803D814C       showLayout__2MRFP11LayoutActor
  0002:803D815C       hideLayout__2MRFP11LayoutActor
@@ -19566,6 +19669,7 @@
  0002:803DAD90       setAllAnimFrameAndStop__2MRFPC9LiveActorPCcf
  0002:803DAE88       setAllAnimFrameAtEnd__2MRFPC9LiveActorPCc
  0002:803DB040       isAnyAnimOneTimeAndStopped__2MRFPC9LiveActorPCc
+ 0002:803DB2B0       isBckStopped__2MRFPC9LiveActor
  0002:803DB2F0       isBckLooped__2MRFPC9LiveActor
  0002:803DB31C       checkPassBckFrame__2MRFPC9LiveActorf
  0002:803DB360       setBckFrameAtRandom__2MRFPC9LiveActor
@@ -19607,29 +19711,9 @@
  0002:803DC644       calcLightPos1__2MRFPQ29JGeometry8TVec3<f>PC9LiveActor
  0002:803DC684       getLightAmbientColor__2MRFPC9LiveActor
  0002:803DC6AC       getLightCtrl__2MRFPC9LiveActor
- 0002:803DC6B4       isStep__2MRFPC9LiveActorl
- 0002:803DC6EC       isFirstStep__2MRFPC9LiveActor
- 0002:803DC6F4       isLessStep__2MRFPC13NerveExecutorl
  0002:803DC734       isLessEqualStep__2MRFPC13NerveExecutorl
- 0002:803DC770       isGreaterStep__2MRFPC9LiveActorl
- 0002:803DC7B0       isGreaterEqualStep__2MRFPC9LiveActorl
- 0002:803DC7EC       isIntervalStep__2MRFPC9LiveActorl
- 0002:803DC82C       isNewNerve__2MRFPC9LiveActor
- 0002:803DC850       calcNerveRate__2MRFPC9LiveActorl
- 0002:803DC8D0       calcNerveRate__2MRFPC9LiveActorll
- 0002:803DC960       calcNerveEaseInRate__2MRFPC9LiveActorl
- 0002:803DC9F0       calcNerveEaseOutRate__2MRFPC9LiveActorl
- 0002:803DCA80       calcNerveEaseOutRate__2MRFPC9LiveActorll
- 0002:803DCB20       calcNerveEaseInOutRate__2MRFPC9LiveActorl
- 0002:803DCBB0       calcNerveEaseInOutRate__2MRFPC9LiveActorll
- 0002:803DCC50       calcNerveValue__2MRFPC9LiveActorlff
- 0002:803DCD08       calcNerveValue__2MRFPC9LiveActorllff
- 0002:803DCDD0       calcNerveEaseInValue__2MRFPC9LiveActorlff
- 0002:803DCE88       calcNerveEaseInValue__2MRFPC9LiveActorllff
- 0002:803DCF50       calcNerveEaseOutValue__2MRFPC9LiveActorlff
- 0002:803DD008       calcNerveEaseInOutValue__2MRFPC9LiveActorlff
- 0002:803DD0C0       calcNerveEaseInOutValue__2MRFPC9LiveActorllff
- 0002:803DD188       setNerveAtStep__2MRFP9LiveActorPC5Nervel
+ 0002:803DCA80       calcNerveEaseInOutRate__2MRFPC9LiveActorll
+ 0002:803DCC50       calcNerveEaseInOutValue__2MRFPC13NerveExecutorlff
  0002:803DD1D8       setNerveAtBckStopped__2MRFP9LiveActorPC5Nerve
  0002:803DD228       trySetNerve__2MRFP9LiveActorPC5Nerve
  0002:803DD280       getGroundNormal__2MRFPC9LiveActor
@@ -19653,9 +19737,8 @@
  0002:803DD5DC       setBinderIgnoreMovingCollision__2MRFP9LiveActor
  0002:803DD5F0       validateExCollisionParts__2MRFP9LiveActor
  0002:803DD604       invalidateExCollisionParts__2MRFP9LiveActor
- 0002:803DD618       setBinderCollisionPartsFilter__2MRFP9LiveActorP24CollisionPartsFilterBase
+ 0002:803DD618       setBindTriangleFilter__2MRFP9LiveActorP18TriangleFilterBase
  0002:803DD620       setBinderExceptActor__2MRFP9LiveActorPC9LiveActor
- 0002:803DD680       setBindTriangleFilter__2MRFP9LiveActorP18TriangleFilterBase
  0002:803DD688       isExistBinder__2MRFPC9LiveActor
  0002:803DD698       onEntryDrawBuffer__2MRFP9LiveActor
  0002:803DD6F0       offEntryDrawBuffer__2MRFP9LiveActor
@@ -20122,6 +20205,9 @@
  0002:803EC424       startCamera__16MultiEventCameraFv
  0002:803EC498       endCamera__16MultiEventCameraFl
  0002:803EC53C       changeTarget__16MultiEventCameraFRC15CameraTargetArg
+ 0002:803EC5E0       isFirstStep__2MRFPC13NerveExecutor
+ 0002:803EC5E8       isLessStep__2MRFPC13NerveExecutorl
+ 0002:803EC664       isGreaterStep__2MRFPC13NerveExecutorl
  0002:803ECB6C       j_getNPCItemData__11NPCFunctionFP12NPCActorIteml
  0002:803ECBB4       initDefaultPose__2MRFP8NPCActorRC12JMapInfoIter
  0002:803ECBFC       turnPlayerToActor__2MRFPC9LiveActorf
@@ -20313,11 +20399,15 @@
  0002:803F1C5C       calcDirection__13ParabolicPathCFPQ29JGeometry8TVec3<f>ff
  0002:803F1D14       getLength__13ParabolicPathCFffl
  0002:803F1E20       calcPathSpeedFromAverageSpeed__13ParabolicPathCFf
+ 0002:803F1E64       isOnGroundPlayer__2MRFv
+ 0002:803F1E74       forceKillPlayerByAbyss__2MRFv
  0002:803F1E80       forceKillPlayerByWaterRace__2MRFv
  0002:803F1E8C       forceKillPlayerByGroundRace__2MRFv
  0002:803F1E98       forceKillPlayerByGhostRace__2MRFv
+ 0002:803F1EA4       isPlayerDead__2MRFv
  0002:803F1EF4       j_isTeresaDisappear__11MarioAccessFv
  0002:803F1EF8       isPlayerInAreaObj__2MRFPCc
+ 0002:803F1F34       getPlayerPos__2MRFv
  0002:803F1F58       getPlayerCenterPos__2MRFv
  0002:803F1F7C       j_getTakePos__11MarioAccessFPQ29JGeometry8TVec3<f>
  0002:803F1FBC       getPlayerRotate__2MRFv
@@ -20384,6 +20474,7 @@
  0002:803F2864       j_isSkating__11MarioAccessFv
  0002:803F2868       j_changeItemStatus__11MarioAccessFl
  0002:803F2874       j_isParalyzing__11MarioAccessFv
+ 0002:803F28E8       isPlayerJumpRising__2MRFv
  0002:803F290C       j_validateSensor__11MarioAccessFv
  0002:803F2910       j_isInRush__11MarioAccessFv_0
  0002:803F2914       endBindAndPlayerWait__2MRFP9LiveActor
@@ -20427,6 +20518,7 @@
  0002:803F331C       j_onControl__11MarioAccessFb
  0002:803F3320       j_isOffControl__11MarioAccessFv
  0002:803F3324       unlockPlayerAnimation__2MRFv
+ 0002:803F3398       setPlayerBaseMtx__2MRFPA4_f
  0002:803F339C       j_getBaseMtx__11MarioAccessFv
  0002:803F33C8       j_readyDemo__11MarioAccessFv
  0002:803F33CC       j_onFollowDemo__11MarioAccessFv
@@ -20598,12 +20690,23 @@
  0002:803F730C       closeSystemWipeFadeWithCaptureScreen__2MRFl
  0002:803F7364       setWipeCircleCenterPos__2MRFRCQ29JGeometry8TVec3<f>
  0002:803F7374       requestMovementOnImageEffect__2MRFv
+ 0002:803F754C       createNormalBloom__2MRFv
  0002:803F7554       isNormalBloomOn__2MRFv
  0002:803F75C8       isNormalBloomForEachModel__2MRFv
+ 0002:803F7620       setNormalBloomIntensity__2MRFUc
+ 0002:803F7654       setNormalBloomThreshold__2MRFUc
+ 0002:803F7688       setNormalBloomBlurIntensity1__2MRFUc
+ 0002:803F76BC       setNormalBloomBlurIntensity2__2MRFUc
+ 0002:803F76F0       createSimpleBloom__2MRFv
+ 0002:803F76F8       createScreenBlur__2MRFv
  0002:803F7700       createDepthOfFieldBlur__2MRFv
  0002:803F773C       createCenterScreenBlur__2MRFv
  0002:803F7744       startCenterScreenBlur__2MRFlfUcll
- 0002:803F77B0       nullsub_28
+ 0002:803F77B0       startGlobalTimer__2MRFv
+ 0002:803F77B4       resetGlobalTimer__2MRFv
+ 0002:803F77D8       isGlobalTimerEnd__2MRFv
+ 0002:803F77FC       startGlobalTimerTimeUp__2MRFv
+ 0002:803F7820       requestPowerUpHPMeter__2MRFv
  0002:803F78F8       isActiveDefaultGameLayout__2MRFv
  0002:803F791C       forceAppearDefaultGameLayout__2MRFv
  0002:803F7988       isStopCinemaFrame__2MRFv
@@ -20668,7 +20771,7 @@
  0002:803F92D0       getRemixMelodyNoteNum__2MRFl
  0002:803F9358       startSubBGM__2MRFPCcb
  0002:803F939C       startStageBGMFromStageName__2MRFPCcPCcl
- 0002:803F941C       stopSubBGM__2MRFUl
+ 0002:803F941C       stopStageBGM__2MRFUl
  0002:803F9464       unlockStageBGM__2MRFv
  0002:803F949C       isStopOrFadeoutBgmName__2MRFPCc
  0002:803F94D0       moveVolumeSubBGM__2MRFfUl
@@ -20680,6 +20783,7 @@
  0002:803F978C       isPreparedStageBgm__2MRFv
  0002:803F97CC       setStageBGMState__2MRFlUl
  0002:803F9824       setStageBGMStateBit__2MRFUl
+ 0002:803F98AC       stopSubBGM__2MRFUl
  0002:803F99D4       playLevelMarioPinchBGM__2MRFb
  0002:803F9A24       stopMarioPinchBGMSoon__2MRFv
  0002:803F9A58       submitTrigSE__2MRFv
@@ -20852,6 +20956,7 @@
  0002:803FDF28       stopAllSound__2MRFUl
  0002:803FDF3C       __stdio_atexit
  0002:803FDF78       getPlayerRestartIdInfo__2MRFv
+ 0002:803FDF8C       setPlayerRestartIdInfo__2MRFRC10JMapIdInfo
  0002:803FDFA0       j_registerBranchFunc__15TalkMessageCtrlFRC19TalkMessageFuncBase
  0002:803FDFA4       j_registerEventFunc__15TalkMessageCtrlFRC19TalkMessageFuncBase
  0002:803FDFA8       j_registerAnimeFunc__15TalkMessageCtrlFRC19TalkMessageFuncBase
@@ -20895,9 +21000,11 @@
  0002:803FEB18       getWaterAreaInfo__2MRFP9WaterInfoRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b
  0002:803FF154       j_tryInWhirlPoolAccelerator__17WaterAreaFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>
  0002:803FF168       calcCubeAxisZ__2MRFPC7AreaObjPQ29JGeometry8TVec3<f>
- 0002:803FF1C4       calcCylinderUpVec__2MRFPQ29JGeometry8TVec3<f>PC7AreaObj
  0002:803FF1D4       getCubeLocalBox__2MRFPC7AreaObj
+ 0002:803FF1F0       calcSpherePos__2MRFPQ29JGeometry8TVec3<f>PC7AreaObj
  0002:803FF200       getSphereRadius__2MRFPC7AreaObj
+ 0002:803FF20C       calcCylinderPos__2MRFPQ29JGeometry8TVec3<f>PC7AreaObj
+ 0002:803FF22C       calcCylinderUpVec__2MRFPQ29JGeometry8TVec3<f>PC7AreaObj
  0002:803FF23C       getCylinderRadius__2MRFPC7AreaObj
  0002:803FF248       tryToUpdatePlayerRestartIdInfo__2MRFRCQ29JGeometry8TVec3<f>
  0002:803FF29C       getWaterAreaObj__2MRFP9WaterInfoRCQ29JGeometry8TVec3<f>
@@ -20933,9 +21040,7 @@
  0002:80400314       drawTrianglePatchPosST__13BezierSurfaceCFv
  0002:80400440       drawTrianglePatchPosNormST__13BezierSurfaceCFv
  0002:804005D4       __ct__10JSUPtrLinkFPv
- 0002:804005EC       __dt__10JSUPtrLinkFv
  0002:80400650       __ct__10JSUPtrListFb
- 0002:80400688       __dt__10JSUPtrListFv
  0002:80400708       setFirst__10JSUPtrListFP10JSUPtrLink
  0002:8040072C       append__10JSUPtrListFP10JSUPtrLink
  0002:804007D0       remove__10JSUPtrListFP10JSUPtrLink
@@ -21010,6 +21115,7 @@
  0002:804048B4       getMinLimitDistance__7IKJointCFv
  0002:804048C8       getMaxLimitDistance__7IKJointCFv
  0002:804048D8       __ct__10JMapIdInfoFlRC12JMapInfoIter
+ 0002:8040491C       __ct__10JMapIdInfoFll
  0002:80404928       initialize__10JMapIdInfoFlRC12JMapInfoIter
  0002:80404960       createJMapIdInfoFromClippingGroupId__2MRFRC12JMapInfoIter
  0002:80404A08       __ct__8JMapInfoFv
@@ -21395,6 +21501,8 @@
  0002:80415370       decodeSZS__9JKRDecompFPUcPUcUlUl
  0002:80415454       checkCompressed__9JKRDecompFPUc
  0002:804154CC       __ct__16JKRDecompCommandFv
+ 0002:80415534       __dt__10JSUPtrLinkFv
+ 0002:804155D0       __dt__10JSUPtrListFv
  0002:80415718       prepend__10JSUPtrListFP10JSUPtrLink
  0002:804157BC       insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink
  0002:8041592C       read__14JSUInputStreamFPvl
@@ -25785,11 +25893,11 @@
  0002:805174B0       __restore_fpr
  0002:805174FC       __save_gpr
  0002:8051752C       _savegpr_26
+ 0002:80517530       _savegpr_27
  0002:80517534       _savegpr_28
  0002:80517538       _savegpr_29
  0002:80517548       __restore_gpr
  0002:80517578       _restgpr_26
- 0002:8051757C       _restgpr_27
  0002:80517580       _restgpr_28
  0002:80517584       _restgpr_29
  0002:80517594       __div2u
@@ -26083,6 +26191,7 @@
  0002:8052D190       __DBEXIWriteRam
  0006:8052D280       _ctors
  0007:8052DEE0       _dtors
+ 0008:8052DF30       cCreateTable__30@unnamed@AreaObjContainer_cpp@
  0008:8052F8B8       aAudioresSpkres
  0008:8053A020       aSystemResult00
  0008:8053A031       aSystemResult00_0
@@ -26187,13 +26296,22 @@
  0009:80550443       aStartFrame
  0009:8055044F       aEndFrame
  0009:80550459       aAttribute
+ 0009:80550468       __vt__9BpkPlayer
+ 0009:80550480       __vt__9BrkPlayer
+ 0009:80550498       __vt__9BtkPlayer
  0009:805504B0       __vt__9BtpPlayer
+ 0009:805504C8       __vt__9BvaPlayer
+ 0009:805504D8       __vt__15LayoutAnmPlayer
+ 0009:805504F0       __vt__11J3DTexNoAnm
+ 0009:80550500       __vt__10XanimeCore
  0009:80550530       aNull
  0009:80550535       aDupNonGroup
+ 0009:80550544       __vt__15XanimeFrameCtrl
  0009:80550550       aNonGroup
  0009:8055055A       aNotInitialized
  0009:80550570       aScaleX
  0009:80550578       aScaleY
+ 0009:80550618       __vt__7AreaObj
  0009:80550648       aSwitcharea
  0009:80550653       aRacejudgecube
  0009:80550661       aNinforcewindcu
@@ -26261,56 +26379,92 @@
  0009:80550A56       aMirrorarea
  0009:80550A61       aDarkmattercube
  0009:80550A70       aDarkmattercyli
+ 0009:80550A84       __vt__11WarpCubeMgr
+ 0009:80550AA8       __vt__16AreaObjContainer
+ 0009:80550AD0       __vt__15AreaObjFollower
  0009:80550AE0       aSeDmAstroWipeO
  0009:80550AF5       aSeDmAstroWipeI
  0009:80550B09       aAstrogalaxy_4
  0009:80550B15       aHeavensdoorgal_5
  0009:80550B27       aLibraryroom_2
+ 0009:80550B34       __vt__20AstroChangeStageCube
+ 0009:80550B60       __vt__15AudioEffectArea
  0009:80550B8C       aAudioeffectare_0
  0009:80550BA0       aOceanphantomca
  0009:80550BB7       aSoundmapcodete
+ 0009:80550BC8       sBgmMuteSet__29@unnamed@BgmProhibitArea_cpp@
+ 0009:80550BE0       __vt__15BgmProhibitArea
  0009:80550C0C       aBgmprohibitare_0
+ 0009:80550C20       __vt__19BigBubbleSwitchArea
+ 0009:80550C4C       __vt__19BigBubbleCameraArea
  0009:80550C7C       aSwitcharea_0
  0009:80550C87       aCubecamera_0
  0009:80550C98       aBigbubblegoala_0
+ 0009:80550CAC       __vt__17BigBubbleGoalArea
  0009:80550CD8       aBigbubblegoala_1
+ 0009:80550CF0       __vt__9BloomArea
  0009:80550D20       aImageeffectare_0
  0009:80550D90       aCamerarepulsiv_0
  0009:80550DA8       aReversekingdom_4
  0009:80550DBD       aCannonfleetgal_4
  0009:80550DCF       aBattleshipgala_3
+ 0009:80550DE0       __vt__13ChangeBgmCube
  0009:80550E1F       aBody_67
+ 0009:80550E50       __vt__11AreaPolygon
  0009:80550EC8       aValidity
  0009:80550ED1       aInvalid
+ 0009:80550EDC       __vt__13CubeCameraMgr
+ 0009:80550F30       __vt__9DeathArea
  0009:80550F5C       aDeatharea_0
+ 0009:80550F68       __vt__16DepthOfFieldArea
  0009:80550F98       aImageeffectare_1
  0009:80550FE8       aSeOjRayStart
+ 0009:80550FF8       __vt__19GlaringLightAreaMgr
+ 0009:8055101C       __vt__16GlaringLightArea
  0009:80551048       aGlaringlightar_1
+ 0009:80551060       __vt__8HazeCube
  0009:8055108C       aHazecube_0
+ 0009:80551098       __vt__18ImageEffectAreaMgr
+ 0009:805510BC       __vt__15ImageEffectArea
+ 0009:805510F0       __vt__9LightArea
  0009:8055111C       aLightarea_0
+ 0009:80551128       __vt__15LightAreaHolder
  0009:80551150       aMercatorcube_1
+ 0009:80551160       __vt__21MercatorTransformCube
+ 0009:80551190       __vt__11MessageArea
  0009:805511C0       aSePmLvLongFall
+ 0009:805511D4       __vt__12PlayerSeArea
  0009:80551200       aPlayersearea_0
+ 0009:80551210       __vt__15QuakeEffectArea
  0009:80551240       aReversekingdom_5
  0009:80551255       aCannonfleetgal_5
  0009:80551267       aBattleshipgala_4
+ 0009:80551278       __vt__11RestartCube
+ 0009:805512A8       __vt__14ScreenBlurArea
  0009:805512D8       aImageeffectare_2
+ 0009:805512E8       __vt__15SimpleBloomArea
  0009:80551318       aImageeffectare_3
  0009:80551328       aSeAtLvGrave
  0009:80551337       aSeAtLvKoopaWin
  0009:8055134B       aSeAtLvWindDese
  0009:80551360       aSeAtLvWindIceM
+ 0009:8055138C       __vt__16SoundEmitterCube
  0009:805513B8       aSeAtLvMagmaAmb
  0009:805513CF       aSeOjLvFloating
  0009:805513E6       aSeAtLvWindDese_0
  0009:805513FB       aSeAtLvMagmaWin
  0009:80551417       aSeAtLvKoopaFlo
  0009:80551431       aSeAtLvWindRabb
+ 0009:8055144C       cSoundNameTable__32@unnamed@SoundEmitterSphere_cpp@
+ 0009:80551464       __vt__18SoundEmitterSphere
  0009:80551490       aSpinguidancecu_0
  0009:805514A1       aTamakoromovegu_0
  0009:805514BA       aTamakorojumpgu_0
+ 0009:805514D4       __vt__16SpinGuidanceArea
+ 0009:80551500       __vt__12SunLightArea
  0009:8055152C       aSunlightarea_0
  0009:80551540       aSwitcharea_1
+ 0009:8055154C       __vt__10SwitchArea
  0009:80551608       aAudioresSmrSzs
  0009:8055161A       aAudioresSeqsJa
  0009:80551634       aAudioresInfoJa
@@ -26322,6 +26476,9 @@
  0009:80551908       aIndexOutOfRang_0
  0009:8055192B       aIndexOutOfRang_1
  0009:8055194D       aIndexOutOfRang
+ 0009:80551998       __vt__14AudSoundObject
+ 0009:80551AE8       __vt__6AudBgm
+ 0009:80551B48       __vt__20AudBgmRhythmStrategy
  0009:80551BD8       aSeRsRemixNoteG
  0009:80551BF2       aSeRsRemixNoteG_0
  0009:80551C0C       aSeRsRemixNoteG_1
@@ -26436,6 +26593,7 @@
  0009:8055249E       aSeBmLvBbegoRot_0
  0009:805524B6       aSeBmLvBbegoRot_1
  0009:805524D0       aSeBmLvBbegoRot_2
+ 0009:805524EC       __vt__11BossBegoman
  0009:805526FB       aBossbegomanhea
  0009:80552718       aEdge
  0009:8055271D       aDemowait
@@ -26478,7 +26636,12 @@
  0009:80552CAE       aSeSyPowStarApp
  0009:80552CC4       aMarioposition
  0009:80552CD2       aKameckposition
+ 0009:80552E20       __vt__19BossKameckSequencer
+ 0009:80552EF0       aVs1
+ 0009:80552F00       __vt__13BossKameckVs1
+ 0009:80552FB8       aVs2
  0009:80552FD7       aBosskameckbarr
+ 0009:80552FEC       __vt__13BossKameckVs2
  0009:8055309D       aHitmarknormal
  0009:805530AB       aPowerstarc
  0009:805530B6       aWait_24
@@ -26508,6 +26671,7 @@
  0009:8055324F       aRecover_1
  0009:80553257       aSeBmKameckReco
  0009:8055326C       aGuard_0
+ 0009:80553274       __vt__21BossKameckStateBattle
  0009:80553380       aBody_1
  0009:80553385       aBodyhipdrop
  0009:8055339C       aBodyground
@@ -26574,13 +26738,18 @@
  0009:80553840       aSeBmLvBossBugF_5
  0009:8055385B       aSeBmLvBossBugF_6
  0009:80553878       aSeBmLvBossBugF_7
+ 0009:80553894       __vt__22BossStinkBugActionBase
  0009:805538FB       aOpen_1
  0009:80553900       aSeSyVsBossLast_0
+ 0009:80553918       __vt__25BossStinkBugActionFlyHigh
  0009:80553A83       aOpen_2
  0009:80553A88       aSeSyVsBossDama_0
+ 0009:80553AA0       __vt__24BossStinkBugActionFlyLow
  0009:80553B8B       aClose_0
  0009:80553B91       aGround_0
  0009:80553B98       aSeSyVsBossDama_1
+ 0009:80553BB0       __vt__24BossStinkBugActionGround
+ 0009:80553CA4       __vt__27BossStinkBugActionSequencer
  0009:80553D49       aBossstinkbugde
  0009:80553D5A       aAngrydemo
  0009:80553D79       aBattlewait_0
@@ -26602,6 +26771,7 @@
  0009:80553EDB       aSeBmBossBugBom_3
  0009:80553EF6       aSeBmBossBugBom_4
  0009:80553F0F       aSeBmBossBugBom_5
+ 0009:80553F30       __vt__16BossStinkBugBomb
  0009:80554021       aBossstinkbugde_0
  0009:80554032       aFinishdemo
  0009:80554052       aBattlewait_1
@@ -38501,7 +38671,6 @@
  0009:805CD91C       aWater_2
  0009:805CD922       aAreamovesphere_0
  0009:805CD931       aAstrooverlooka_0
- 0009:805D2300       __vt__25CollisionPartsFilterActor
  0009:805D2318       aSBcsv_6
  0009:805D2320       aJointname_3
  0009:805D232A       aTrans
@@ -40023,10 +40192,12 @@
  0003:8069E4B8       sAssertionConsole__Q24nw4r2db
  0003:8069E4C0       typeInfo__Q34nw4r3lyt4Pane
  0003:8069E4C8       mspAllocator__Q34nw4r3lyt6Layout
+ 0003:8069E508       sCubeCategory__14CubeCameraArea
+ 0003:8069E6C8       sInstance__Q227NrvBossStinkBugActionFlyLow30BossStinkBugActionFlyLowNrvFly
+ 0003:8069E6F4       sInstance__Q227NrvBossStinkBugGroundBattle31BossStinkBugActionGroundNrvWalk
  0003:806A0608       sInstance__Q212NrvCoinGroup18CoinGroupNrvAppear
  0003:806A0610       sInstance__Q212NrvCoinGroup22CoinGroupNrvDemoAppear
  0003:806A067C       sInstance__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvStop
- 0003:806A1228       sInstance__29SingletonHolder<10GameSystem>
  0003:806A1E18       sInstance__Q223@unnamed@GalaxyMap_cpp@13GalaxyMapIdle
  0003:806A1E24       sInstance__Q223@unnamed@GalaxyMap_cpp@24GalaxyMapFadeinGalaxyMap
  0003:806A1E28       sInstance__Q223@unnamed@GalaxyMap_cpp@23GalaxyMapFadeinAstroMap

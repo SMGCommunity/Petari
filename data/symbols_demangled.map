@@ -341,7 +341,7 @@
  0002:80017B70       BckCtrlFunction::reflectBckCtrlData((BckCtrlData const &,XanimePlayer *))
  0002:80017CBC       BckCtrlData::BckCtrlData((void))
  0002:80017CE8       BpkPlayer::BpkPlayer((ResourceHolder const *,J3DModelData *))
- 0002:80017D28       BtpPlayer::detach((J3DAnmBase *,J3DModelData *))
+ 0002:80017D28       BpkPlayer::attach((J3DAnmBase *,J3DModelData *))
  0002:80017D30       BpkPlayer::detach((J3DAnmBase *,J3DModelData *))
  0002:80017D38       BrkPlayer::BrkPlayer((ResourceHolder const *,J3DModelData *))
  0002:80017D78       BrkPlayer::attach((J3DAnmBase *,J3DModelData *))
@@ -350,17 +350,18 @@
  0002:80017DC8       BtkPlayer::attach((J3DAnmBase *,J3DModelData *))
  0002:80017DD0       BtkPlayer::detach((J3DAnmBase *,J3DModelData *))
  0002:80017DD8       BtpPlayer::BtpPlayer((ResourceHolder const *,J3DModelData *))
+ 0002:80017E18       BtpPlayer::attach((J3DAnmBase *,J3DModelData *))
+ 0002:80017E20       BtpPlayer::detach((J3DAnmBase *,J3DModelData *))
+ 0002:80017E28       BvaPlayer::BvaPlayer((ResTable const *,J3DModel *))
  0002:80017E74       BvaPlayer::calc((void))
  0002:80017F48       BvaPlayer::getAnmVisibility((void))
  0002:80017F5C       LayoutAnmPlayer::LayoutAnmPlayer((LayoutManager const *))
  0002:80017FB8       LayoutAnmPlayer::movement((void))
- 0002:80017FC4       SwingRopePoint::stop((void))
  0002:80017FD0       LayoutAnmPlayer::reflectFrame((void))
  0002:80017FE8       LayoutAnmPlayer::start((char const *))
  0002:80018084       LayoutAnmPlayer::stop((void))
  0002:80018090       MaterialAnmBuffer::MaterialAnmBuffer((ResourceHolder const *,J3DModelData *,bool))
  0002:8001815C       MaterialAnmBuffer::getDiffFlag(const(long))
- 0002:80018160       SpkMixingBuffer::getSamples(const(long))
  0002:8001816C       MaterialAnmBuffer::getAllocMaterialAnmNum(const(J3DModelData *,bool))
  0002:80018180       MaterialAnmBuffer::searchUpdateMaterialID((ResourceHolder const *,J3DModelData *))
  0002:80018274       MaterialAnmBuffer::setDiffFlag((ResourceHolder const *))
@@ -387,6 +388,7 @@
  0002:800188A4       J3DTexNoAnm::J3DTexNoAnm((void))
  0002:800189B8       J3DMaterialAnm::~J3DMaterialAnm((void))
  0002:80018A80       J3DTexNoAnm::calc(const(ushort *))
+ 0002:80018A94       JGeometry::TVec3<f>::TVec3<f>((void))
  0002:80018A98       JGeometry::TVec3<f>::zero((void))
  0002:80018AAC       XtransformInfo::__as((XtransformInfo const &))
  0002:80018B28       JGeometry::TVec3<f>::__ml(const(float))
@@ -421,12 +423,17 @@
  0002:8001A990       XanimeCore::freezeCopy((J3DModelData *,XanimeCore *,ulong,ulong))
  0002:8001AA7C       XanimeCore::initT((J3DModelData *))
  0002:8001AB64       XanimeCore::fixT((JGeometry::TVec3<f> *))
+ 0002:8001ABAC       XanimeCore::~XanimeCore((void))
  0002:8001ABEC       XtransformInfo::XtransformInfo((void))
  0002:8001AC3C       XanimeCore::calc((void))
  0002:8001AD60       XanimeCore::init((Vec const &,float const (&)[3][4]))
  0002:8001AD74       J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>::init((Vec const &,float const (&)[3][4]))
  0002:8001AD84       J3DTransformInfo::__as((J3DTransformInfo const &))
  0002:8001ADB8       JASDsp::getDSPMixerLevel((void))
+ 0002:8001ADC0       J3DMtxCalc::getAnmTransform((void))
+ 0002:8001ADC8       J3DMtxCalc::getAnmTransform((uchar))
+ 0002:8001ADD0       J3DMtxCalc::setAnmTransform((J3DAnmTransform *))
+ 0002:8001ADD4       J3DMtxCalc::setAnmTransform((uchar,J3DAnmTransform *))
  0002:8001ADDC       JMath::fastReciprocal((float))
  0002:8001ADE4       XanimePlayer::init((void))
  0002:8001AE90       XanimePlayer::XanimePlayer((J3DModel *,XanimeResourceTable *))
@@ -474,6 +481,7 @@
  0002:8001C044       XanimePlayer::duplicateSimpleGroup((void))
  0002:8001C0B8       XanimeFrameCtrl::XanimeFrameCtrl((void))
  0002:8001C114       XanimePlayer::changeCurrentAnimation((XanimeGroupInfo const *))
+ 0002:8001C130       XanimeFrameCtrl::~XanimeFrameCtrl((void))
  0002:8001C170       XanimeResourceTable::init((void))
  0002:8001C1A4       XanimeResourceTable::getGroupInfo(const(char const *))
  0002:8001C260       XanimeResourceTable::getSimpleIndex(const(char const *))
@@ -533,58 +541,85 @@
  0002:8001DFF8       AreaObj::init((JMapInfoIter const &))
  0002:8001E1A0       AreaObj::isInVolume(const(JGeometry::TVec3<f> const &))
  0002:8001E210       AreaObj::isValidSwitchB(const(void))
+ 0002:8001E220       AreaObj::isOnSwitchA(const(void))
+ 0002:8001E230       AreaObj::isValidSwitchA(const(void))
  0002:8001E240       AreaObj::setFollowMtx((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const *))
  0002:8001E24C       AreaObj::getFollowMtx(const(void))
  0002:8001E258       AreaObjMgr::AreaObjMgr((long,char const *))
- 0002:8001E2B8       JASTrack::TList::~TList((void))
+ 0002:8001E2B8       MR::Vector<Q22MR26AssignableArray<P7AreaObj>>::~Vector<Q22MR26AssignableArray<P7AreaObj>>((void))
  0002:8001E310       AreaObjMgr::entry((AreaObj *))
  0002:8001E37C       AreaObjMgr::find_in(const(JGeometry::TVec3<f> const &))
- 0002:8001E458       MR::SendMailObj::setBGEnable((void))
- 0002:8001E464       MR::SendMailObj::setBGDisable((void))
- 0002:8001E478       MR::Functor<20GameSequenceDirector>(MR::FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v> (GameSequenceDirector *,void (GameSequenceDirector::)(void const *,void *)))
- 0002:8001E4B8       MR::FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>::__cl(const(void))
- 0002:8001E4E8       MR::FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>::clone(const(JKRHeap *))
- 0002:8001E5A8       MoviePlayingSequenceHolder::~MoviePlayingSequenceHolder((void))
- 0002:8001E610       MR::AssignableArray<P18BaseMatrixFollower>::~AssignableArray<P18BaseMatrixFollower>((void))
- 0002:8001E670       @unnamed@AreaObjContainer_cpp@::createManager<18ImageEffectAreaMgr>(AreaObjMgr *(long,char const *))
+ 0002:8001E458       AreaObj::validate((void))
+ 0002:8001E464       AreaObj::invalidate((void))
+ 0002:8001E470       AreaObj::getManagerName(const(void))
+ 0002:8001E478       MR::Functor<7AreaObj>(MR::FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v> (AreaObj *,void (AreaObj::)(void const *,void *)))
+ 0002:8001E4B8       MR::FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>::__cl(const(void))
+ 0002:8001E4E8       MR::FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>::clone(const(JKRHeap *))
+ 0002:8001E550       AreaObj::~AreaObj((void))
+ 0002:8001E5A8       AreaObjMgr::~AreaObjMgr((void))
+ 0002:8001E610       MR::AssignableArray<P7AreaObj>::~AssignableArray<P7AreaObj>((void))
+ 0002:8001E670       @unnamed@AreaObjContainer_cpp@::createManager<10AreaObjMgr>(AreaObjMgr *(long,char const *))
+ 0002:8001E6C0       @unnamed@AreaObjContainer_cpp@::createManager<13CubeCameraMgr>(AreaObjMgr *(long,char const *))
  0002:8001E710       @unnamed@AreaObjContainer_cpp@::createManager<11WarpCubeMgr>(AreaObjMgr *(long,char const *))
+ 0002:8001E77C       @unnamed@AreaObjContainer_cpp@::createManager<12WaterAreaMgr>(AreaObjMgr *(long,char const *))
+ 0002:8001E7CC       @unnamed@AreaObjContainer_cpp@::createManager<19GlaringLightAreaMgr>(AreaObjMgr *(long,char const *))
  0002:8001E8BC       AreaObjContainer::AreaObjContainer((char const *))
  0002:8001E900       AreaObjContainer::init((JMapInfoIter const &))
  0002:8001E9A8       AreaObjContainer::getManager(const(char const *))
  0002:8001EA40       MR::setEffectHostMtx((LayoutActor *,char const *,float *[4]))
  0002:8001EA74       MR::getAreaObjContainer((void))
+ 0002:8001EA9C       AreaObjContainer::~AreaObjContainer((void))
+ 0002:8001EAF4       WarpCubeMgr::~WarpCubeMgr((void))
  0002:8001EB4C       AreaObjFollower::AreaObjFollower((AreaObj *,JMapInfoIter const &))
  0002:8001EBAC       AreaObjFollower::update((void))
  0002:8001EC1C       MR::addBaseMatrixFollowerAreaObj((AreaObj *,JMapInfoIter const &))
- 0002:8001EC8C       nullsub_101
+ 0002:8001EC8C       BaseMatrixFollower::setGravityFollowHost((NameObj const *))
  0002:8001EC90       AstroChangeStageCube::AstroChangeStageCube((int,char const *))
  0002:8001ECDC       AstroChangeStageCube::init((JMapInfoIter const &))
  0002:8001ED50       AstroChangeStageCube::isInVolume(const(JGeometry::TVec3<f> const &))
- 0002:8001EE40       JAUBankTableDictionary::~JAUBankTableDictionary((void))
+ 0002:8001EE40       AstroChangeStageCube::~AstroChangeStageCube((void))
  0002:8001EE9C       AstroChangeStageCube::movement((void))
- 0002:8001F0A0       CubeCameraArea::CubeCameraArea((int,char const *))
+ 0002:8001F0A0       AudioEffectArea::AudioEffectArea((int,char const *))
  0002:8001F0E8       AudioEffectArea::init((JMapInfoIter const &))
  0002:8001F13C       AudioEffectArea::movement((void))
- 0002:8001F27C       __ntd_get_allocated_mem_size
+ 0002:8001F220       AudioEffectArea::~AudioEffectArea((void))
+ 0002:8001F27C       AudioEffectArea::getManagerName(const(void))
+ 0002:8001F288       BgmProhibitArea::~BgmProhibitArea((void))
  0002:8001F2E4       @unnamed@BgmProhibitArea_cpp@::findDataElement((char const *))
  0002:8001F358       BgmProhibitArea::BgmProhibitArea((int,char const *))
- 0002:8001F3B0       JAISound::stop((void))
+ 0002:8001F3B0       BgmProhibitArea::init((JMapInfoIter const &))
  0002:8001F3E4       BgmProhibitArea::movement((void))
- 0002:8001F4FC       GameSequenceDirector::getGameDataHolder((void))
- 0002:8001F5F0       BigBubbleSwitchArea::isInVolume(const(JGeometry::TVec3<f> const &))
+ 0002:8001F54C       BgmProhibitArea::getManagerName(const(void))
+ 0002:8001F558       BigBubbleCameraArea::BigBubbleCameraArea((int,char const *))
+ 0002:8001F594       CubeCameraArea::~CubeCameraArea((void))
+ 0002:8001F5F0       BigBubbleCameraArea::isInVolume(const(JGeometry::TVec3<f> const &))
+ 0002:8001F6DC       BigBubbleSwitchArea::isInVolume(const(JGeometry::TVec3<f> const &))
+ 0002:8001F730       BigBubbleCameraArea::~BigBubbleCameraArea((void))
+ 0002:8001F788       BigBubbleSwitchArea::~BigBubbleSwitchArea((void))
+ 0002:8001F7E0       BigBubbleSwitchArea::getManagerName(const(void))
+ 0002:8001F7EC       BigBubbleCameraArea::getManagerName(const(void))
  0002:8001F7F8       BigBubbleGoalArea::BigBubbleGoalArea((int,char const *))
  0002:8001F854       BigBubbleGoalArea::init((JMapInfoIter const &))
  0002:8001F8E8       BigBubbleGoalArea::addBubble((BigBubble *))
  0002:8001F95C       BigBubbleGoalArea::movement((void))
  0002:8001F9F4       BigBubbleGoalArea::draw(const(void))
  0002:8001FB10       MR::checkBigBubbleGoal((BigBubble *))
+ 0002:8001FB64       BigBubbleGoalArea::getManagerName(const(void))
+ 0002:8001FB70       BigBubbleGoalArea::~BigBubbleGoalArea((void))
  0002:8001FBCC       BloomArea::BloomArea((int,char const *))
  0002:8001FC34       ImageEffectArea::~ImageEffectArea((void))
  0002:8001FC90       BloomArea::init((JMapInfoIter const &))
- 0002:8001FD6C       JGeometry::TVec3<f>::__amu((float))
+ 0002:8001FD00       BloomArea::~BloomArea((void))
+ 0002:8001FD58       ImageEffectArea::isSyncWithPlayer(const(void))
+ 0002:8001FD60       BloomArea::getManagerName(const(void))
+ 0002:8001FD6C       JGeometry::TVec3<f>::scale((float))
  0002:8001FD94       JGeometry::TVec3<f>::__ami((JGeometry::TVec3<f> const &))
+ 0002:8001FDB8       CameraRepulsiveArea::~CameraRepulsiveArea((void))
+ 0002:8001FE14       CameraRepulsiveSphere::~CameraRepulsiveSphere((void))
+ 0002:8001FE6C       CameraRepulsiveCylinder::~CameraRepulsiveCylinder((void))
  0002:8001FEC4       CameraRepulsiveSphere::getRepulsion((JGeometry::TVec3<f> const &))
  0002:8001FED8       CameraRepulsiveCylinder::getRepulsion((JGeometry::TVec3<f> const &))
+ 0002:8001FFD4       CameraRepulsiveArea::getManagerName(const(void))
  0002:8001FFE0       ChangeBgmCube::ChangeBgmCube((int,char const *))
  0002:800200B4       ChangeBgmCube::movement((void))
  0002:8002044C       JGeometry::TVec3<f>::setLength((float))
@@ -601,23 +636,39 @@
  0002:80021194       AreaPolygon::setSurfaceAndSync((long))
  0002:800211DC       AreaPolygon::setSurface((long))
  0002:800216CC       PTimerSwitch::initAfterPlacement((void))
+ 0002:800216DC       AreaPolygon::~AreaPolygon((void))
  0002:80021790       AreaObj::isValid(const(void))
  0002:800217C4       AreaPolygon::AreaPolygon((void))
+ 0002:8002181C       DynamicCollisionObj::~DynamicCollisionObj((void))
  0002:80021878       AreaPolygon::init((JMapInfoIter const &))
- 0002:80021A48       nullsub_81
- 0002:80021A4C       nullsub_96
+ 0002:80021A10       LiveActor::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
+ 0002:80021A18       LiveActor::receiveMsgThrow((HitSensor *,HitSensor *))
+ 0002:80021A20       LiveActor::receiveMsgTaken((HitSensor *,HitSensor *))
+ 0002:80021A28       LiveActor::receiveMsgTake((HitSensor *,HitSensor *))
+ 0002:80021A30       LiveActor::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
+ 0002:80021A38       LiveActor::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
+ 0002:80021A40       LiveActor::receiveMsgPush((HitSensor *,HitSensor *))
+ 0002:80021A48       LiveActor::updateHitSensor((HitSensor *))
+ 0002:80021A4C       LiveActor::control((void))
+ 0002:80021A50       CubeCameraArea::CubeCameraArea((int,char const *))
  0002:80021A98       CubeCameraArea::init((JMapInfoIter const &))
  0002:80021C14       CubeCameraArea::movement((void))
  0002:80021CC4       CubeCameraArea::isValidCameraID(const(void))
  0002:80021CD4       CubeCameraArea::getCameraID(const(void))
  0002:80021CE0       CubeCameraArea::isInVolume(const(JGeometry::TVec3<f> const &))
  0002:80021D2C       CubeCameraArea::setCurrentCategory((long))
- 0002:80021D3C       MR::getSensorHost((HitSensor const *))
+ 0002:80021D3C       CubeCameraArea::getCategoryArg(const(void))
  0002:80021D44       CubeCameraMgr::CubeCameraMgr((long,char const *))
+ 0002:80021D88       CubeCameraMgr::initAfterLoad((void))
  0002:80021D8C       CubeCameraMgr::sort((void))
+ 0002:80021E38       CubeCameraMgr::~CubeCameraMgr((void))
+ 0002:80021E90       DeathArea::DeathArea((int,char const *))
+ 0002:80021ECC       DeathArea::init((JMapInfoIter const &))
  0002:80021F00       DeathArea::movement((void))
  0002:80021F64       DeathArea::isInVolume(const(JGeometry::TVec3<f> const &))
  0002:80021FC8       DeathArea::getDeathType(const(void))
+ 0002:80021FE0       DeathArea::~DeathArea((void))
+ 0002:8002203C       DeathArea::getManagerName(const(void))
  0002:80022048       DepthOfFieldArea::DepthOfFieldArea((int,char const *))
  0002:8002209C       DepthOfFieldArea::init((JMapInfoIter const &))
  0002:800220E0       DepthOfFieldArea::getIntensity(const(void))
@@ -630,18 +681,30 @@
  0002:800221FC       FollowCollisionArea::FollowCollisionArea((JGeometry::TVec3<f> const &,float *[4],float))
  0002:800222DC       FollowCollisionArea::movement((void))
  0002:800224A8       FollowCollisionArea::hitCheck((JGeometry::TVec3<f> const &,float,JGeometry::TVec3<f> *,JGeometry::TVec3<f> *))
+ 0002:80022BF8       GlaringLightAreaMgr::GlaringLightAreaMgr((long,char const *))
  0002:80022C34       GlaringLightArea::GlaringLightArea((int,char const *))
  0002:80022C88       GlaringLightArea::init((JMapInfoIter const &))
  0002:80022DE0       GlaringLightArea::movement((void))
+ 0002:80022E80       GlaringLightArea::getManagerName(const(void))
  0002:80022E8C       HazeCube::HazeCube((int,char const *))
  0002:80022ED0       HazeCube::init((JMapInfoIter const &))
+ 0002:80022F34       HazeCube::~HazeCube((void))
+ 0002:80022F90       HazeCube::getManagerName(const(void))
  0002:80022F9C       ImageEffectArea::ImageEffectArea((ImageEffectArea::EImageEffectType,int,char const *))
+ 0002:80022FF0       ImageEffectAreaMgr::ImageEffectAreaMgr((long,char const *))
+ 0002:8002302C       ImageEffectAreaMgr::initAfterPlacement((void))
  0002:80023030       ImageEffectAreaMgr::sort((void))
- 0002:80023134       TripodBossStepStartArea::TripodBossStepStartArea((int,char const *))
- 0002:80023178       MessageArea::init((JMapInfoIter const &))
+ 0002:800230DC       ImageEffectAreaMgr::~ImageEffectAreaMgr((void))
+ 0002:80023134       LightArea::LightArea((int,char const *))
+ 0002:80023178       LightArea::init((JMapInfoIter const &))
+ 0002:800231BC       LightArea::~LightArea((void))
+ 0002:80023218       LightArea::getManagerName(const(void))
  0002:80023224       LightAreaHolder::LightAreaHolder((long,char const *))
  0002:80023268       LightAreaHolder::tryFindLightID(const(JGeometry::TVec3<f> const &,ZoneLightID *))
+ 0002:80023308       LightAreaHolder::initAfterPlacement((void))
  0002:8002330C       LightAreaHolder::sort((void))
+ 0002:800233AC       LightAreaHolder::~LightAreaHolder((void))
+ 0002:80023404       JGeometry::TVec3<f>::__amu((float))
  0002:8002342C       MercatorTransformCube::MercatorTransformCube((int,char const *))
  0002:80023470       MercatorTransformCube::init((JMapInfoIter const &))
  0002:800234E0       MercatorTransformCube::convertTransAndRotate(const(JGeometry::TVec3<f> *,JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JGeometry::TVec3<f> const &,bool))
@@ -663,26 +726,50 @@
  0002:800244DC       MR::max((float,float))
  0002:800244F0       @unnamed@MercatorTransformCube_cpp@::getMercatorCube((void))
  0002:80024520       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::getEuler(const(JGeometry::TVec3<f> &))
- 0002:80024740       TripodBossStepStartArea::init((JMapInfoIter const &))
+ 0002:80024620       MessageArea::MessageArea((int,char const *))
+ 0002:80024664       MessageArea::init((JMapInfoIter const &))
+ 0002:800246A8       MessageArea::~MessageArea((void))
+ 0002:80024704       PlayerSeArea::PlayerSeArea((int,char const *))
+ 0002:80024740       PlayerSeArea::init((JMapInfoIter const &))
+ 0002:8002477C       PlayerSeArea::~PlayerSeArea((void))
  0002:800247D8       PlayerSeArea::movement((void))
+ 0002:80024850       PlayerSeArea::getManagerName(const(void))
  0002:8002485C       QuakeEffectArea::QuakeEffectArea((int,char const *))
  0002:8002490C       RestartCube::RestartCube((int,char const *))
  0002:80024960       RestartCube::init((JMapInfoIter const &))
  0002:800249D0       RestartCube::updatePlayerRestartIdInfo((void))
+ 0002:80024A44       RestartCube::~RestartCube((void))
  0002:80024AA0       RestartCube::changeBgm((void))
  0002:80024C40       ScreenBlurArea::ScreenBlurArea((int,char const *))
+ 0002:80024C94       ScreenBlurArea::init((JMapInfoIter const &))
+ 0002:80024CD8       ScreenBlurArea::~ScreenBlurArea((void))
+ 0002:80024D30       ScreenBlurArea::isSyncWithPlayer(const(void))
+ 0002:80024D38       ScreenBlurArea::getManagerName(const(void))
  0002:80024D44       SimpleBloomArea::SimpleBloomArea((int,char const *))
  0002:80024DA8       SimpleBloomArea::init((JMapInfoIter const &))
+ 0002:80024E0C       SimpleBloomArea::~SimpleBloomArea((void))
+ 0002:80024E64       SimpleBloomArea::getManagerName(const(void))
+ 0002:80024E70       SoundEmitterCube::~SoundEmitterCube((void))
  0002:80024ECC       SoundEmitterCube::SoundEmitterCube((int,char const *))
  0002:80024F24       SoundEmitterCube::init((JMapInfoIter const &))
  0002:80024FB4       SoundEmitterCube::movement((void))
  0002:800251BC       JGeometry::TBox<Q29JGeometry8TVec3<f>>::extend((JGeometry::TVec3<f> const &))
+ 0002:80025250       SoundEmitterSphere::~SoundEmitterSphere((void))
  0002:800252AC       SoundEmitterSphere::SoundEmitterSphere((int,char const *))
  0002:80025308       SoundEmitterSphere::init((JMapInfoIter const &))
  0002:8002539C       SoundEmitterSphere::movement((void))
+ 0002:800254F8       SpinGuidanceArea::SpinGuidanceArea((int,char const *))
+ 0002:80025534       SpinGuidanceArea::~SpinGuidanceArea((void))
  0002:80025590       SpinGuidanceArea::init((JMapInfoIter const &))
+ 0002:80025638       SunLightArea::SunLightArea((int,char const *))
+ 0002:80025674       SunLightArea::~SunLightArea((void))
+ 0002:800256D0       SunLightArea::getManagerName(const(void))
+ 0002:800256DC       SwitchArea::SwitchArea((int,char const *))
+ 0002:80025718       SwitchArea::init((JMapInfoIter const &))
  0002:8002574C       SwitchArea::movement((void))
  0002:80025814       SwitchArea::isUpdate(const(void))
+ 0002:80025898       SwitchArea::getManagerName(const(void))
+ 0002:800258A4       WarpCube::~WarpCube((void))
  0002:80025900       WarpCubeMgr::getPairCube((AreaObj const *))
  0002:80025988       WarpCubeMgr::setInvalidateTimer((AreaObj *,ushort))
  0002:80025998       WarpCubeMgr::startEventCamera((AreaObj const *))
@@ -692,6 +779,9 @@
  0002:80025C10       WarpCube::init((JMapInfoIter const &))
  0002:80025D18       WaterArea::WaterArea((int,char const *))
  0002:80025D5C       WaterArea::init((JMapInfoIter const &))
+ 0002:80025E00       WaterAreaMgr::WaterAreaMgr((long,char const *))
+ 0002:80025E3C       WaterArea::~WaterArea((void))
+ 0002:80025E98       WaterAreaMgr::~WaterAreaMgr((void))
  0002:80025EF0       JASHeap::~JASHeap((void))
  0002:80025F8C       JGeometry::SMatrix34C<f>::set((JGeometry::SMatrix34C<f> const &))
  0002:80025FC0       AudNewAudSystem_(JAUSectionHeap *,JKRArchive *,JKRArchive *,JKRArchive *,int)
@@ -760,6 +850,7 @@
  0002:80028BE4       AudAudience_<4,20AudDopplerAudible<4>,23AudDopplerAudienceState,31AudAudience_withSetting_doppler>::mixChannelOut((JASSoundParams const &,JAIAudible *,int))
  0002:800290EC       AudGenericAudible_<4,24JAUDopplerAudibleChannel,23JAUDopplerAudibleAbsPos>::getOuterParams((int))
  0002:80029108       AudGenericAudible_<4,24JAUDopplerAudibleChannel,23JAUDopplerAudibleAbsPos>::calc((void))
+ 0002:8002914C       AudFader::~AudFader((void))
  0002:8002918C       AudMultiBgm::~AudMultiBgm((void))
  0002:80029264       AudMeHandle::~AudMeHandle((void))
  0002:800292B8       AudSingleBgm::~AudSingleBgm((void))
@@ -804,6 +895,8 @@
  0002:8002A4FC       AudSoundInfo::isFanfareSe(const(JAISoundID))
  0002:8002A5B4       AudSoundInfo::isUseFxMix(const(JAISoundID))
  0002:8002A650       AudSoundInfo::isUseLpf(const(JAISoundID))
+ 0002:8002A6EC       AudWrap::getSystem((void))
+ 0002:8002A6F4       AudWrap::getSoundInfo((void))
  0002:8002A6FC       AudWrap::getSceneMgr((void))
  0002:8002A708       AudWrap::getBgmMgr((void))
  0002:8002A714       AudWrap::getStageBgm((void))
@@ -850,7 +943,8 @@
  0002:8002B388       AudSoundObject::setMapCodeToPort((JAISoundHandle *,JAISoundID))
  0002:8002B490       AudSoundObject::setCutoffToPort((JAISoundHandle *,JAISoundID))
  0002:8002B608       AudSoundObject::convertSoundIdFromSeVersion(const(JAISoundID))
- 0002:8002B7DC       GKI_init_timer_list
+ 0002:8002B7AC       AudSoundObjHashData::AudSoundObjHashData((void))
+ 0002:8002B7DC       AudSoundObjHashData::init((void))
  0002:8002B7F0       str_80279110
  0002:8002B7F8       AudSoundObject::modifySe_Kawamura((JAISoundHandle *,long))
  0002:8002C0D4       AudSoundObject::modifyLimitedSound_Kawamura((JAISoundID))
@@ -970,16 +1064,18 @@
  0002:80030BC0       AudFader::AudFader((void))
  0002:80030BD8       AudFader::set((float,long))
  0002:80030C30       AudFader::update((void))
- 0002:80030C8C       @unnamed@PowerStarList_cpp@::ListItem::ListItem((void))
+ 0002:80030C8C       AudLimitedSoundInfo::AudLimitedSoundInfo((void))
+ 0002:80030CA0       AudLimitedSoundInfo::init((void))
  0002:80030CB4       AudLimitedSoundInfo::set((JAISoundID,long))
  0002:80030CC4       AudLimitedSoundInfo::update((void))
  0002:80030CF8       AudLimitedSoundInfo::isFree((void))
- 0002:80030D0C       GameEventFlagTableInstance::GameEventFlagTableInstance((void))
+ 0002:80030D0C       AudMeNameConverter::AudMeNameConverter((void))
  0002:80030D48       AudMeNameConverter::getMeID(const(char const *))
  0002:80030DDC       AudMeNameConverter::init((void))
- 0002:80030F18       MR::getAreaObj((char const *,JGeometry::TVec3<f> const &))
+ 0002:80030E84       __sinit(char ()[udMeNameConverter],**)
+ 0002:80030F18       AudMicWrap::setMicMtx((float *[4],long))
  0002:80030F5C       AudMicWrap::setMicEnv((void))
- 0002:80030FE8       MR::isStarPointerModeHomeButton((void))
+ 0002:80030FE8       AudMicWrap::getMicPos((void))
  0002:80031010       AudRemixMgr::AudRemixMgr((JKRHeap *))
  0002:80031028       AudRemixMgr::init((void))
  0002:8003109C       MR::isExistNextNode((TalkMessageCtrl const *))
@@ -1032,11 +1128,12 @@
  0002:800328BC       AudSoundNameConverter::addSectionInfo((JAUSoundNameTable const *,uchar))
  0002:8003292C       AudSoundNameConverter::getSoundNameTableNumItem_inSection((JAUSoundNameTable const *,uchar))
  0002:80032A14       AudSoundObjHolder::AudSoundObjHolder((JKRHeap *,long))
- 0002:80032A5C       NameObjHolder::resumeAllObj((void))
+ 0002:80032A5C       AudSoundObjHolder::update((void))
  0002:80032AB8       AudSoundObjHolder::add((AudSoundObject *))
  0002:80032AE4       AudSoundObjHolder::remove((AudSoundObject *))
  0002:80032B70       AudSoundObjHolder::moveOver((long,long))
- 0002:80032BAC       DVDGetCurrentDiskID
+ 0002:80032BA0       AudSpeakerWrap::getResName((void))
+ 0002:80032BAC       AudSpeakerWrap::getRequiredHeapSize((void))
  0002:80032BB4       AudSpeakerWrap::start((long,long))
  0002:80032C4C       AudSpeakerWrap::isPlayable((long))
  0002:80032C94       __sinit(char ()[udSpeakerWrap],**)
@@ -1055,11 +1152,13 @@
  0002:800334EC       JASTrack::channelStart((JASTrack::TChannelMgr *,ulong,ulong,ulong))
  0002:8003379C       JASWaveArc::load((JASHeap *))
  0002:8003385C       JASInstParam::JASInstParam((void))
+ 0002:80033928       JASMemPool_MultiThreaded<10JASChannel>::~JASMemPool_MultiThreaded<10JASChannel>((void))
+ 0002:80033980       CSSoundNameConverter::CSSoundNameConverter((void))
  0002:800339BC       CSSoundNameConverter::getSoundID(const(char const *))
  0002:80033A50       CSSoundNameConverter::init((void))
  0002:80033A9C       CSSoundNameConverter::initDataTable((SpkTable const *))
  0002:80033B1C       CSSoundNameConverter::makeDataTable((SpkTable const *))
- 0002:80033B98       MarioHolder::MarioHolder((void))
+ 0002:80033B98       BossAccessor::BossAccessor((void))
  0002:80033BE4       BossAccess::setBossAccessorKoopa((Koopa *))
  0002:80033C24       BossAccess::getBossAccessorKoopa((void))
  0002:80033C4C       JAUAudioArcLoader::endBNKList((void))
@@ -1124,7 +1223,9 @@
  0002:80036F98       NrvRunawayTico::RunawayTicoNrvWait::execute(const(Spine *))
  0002:800370B0       JointControlDelegator<8Tamakoro>::calcJointMatrix((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:80037118       JointControlDelegator<8Tamakoro>::calcJointMatrixAfterChild((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
+ 0002:80037180       BossBegomanHead::~BossBegomanHead((void))
  0002:800371D8       JGeometry::TVec3<f>::set<i>(void (int,int,int))
+ 0002:80037238       LiveActor::~LiveActor((void))
  0002:80037290       BossKameck::BossKameck((char const *,char const *))
  0002:8003738C       BossKameck::getMoveRail((long))
  0002:800373CC       BossKameck::startSequence((void))
@@ -1177,7 +1278,7 @@
  0002:800394F0       BossKameckBattlePattarn::BossKameckBattlePattarn((long *,bool))
  0002:80039538       BossKameckBattlePattarn::initPattarn((long *))
  0002:80039570       BossKameckBattlePattarn::goNextPattarn((void))
- 0002:800395A4       Scene::Scene((char const *))
+ 0002:800395A4       BossKameckSequencer::BossKameckSequencer((char const *))
  0002:800395F0       BossKameckSequencer::init((BossKameck *,JMapInfoIter const &))
  0002:8003965C       NerveExecutor::updateNerve((void))
  0002:80039660       DinoPackunSequencer::attackSensor((HitSensor *,HitSensor *))
@@ -1188,11 +1289,12 @@
  0002:800396C8       DinoPackunSequencer::receiveMsgPush((HitSensor *,HitSensor *))
  0002:800396EC       DinoPackunSequencer::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:800396F8       JKRHeap::freeTail((void))
- 0002:80039768       FluffWind::FluffWind((char const *))
+ 0002:80039768       BossKameckMoveRail::BossKameckMoveRail((char const *))
  0002:800397B0       BossKameckMoveRail::init((JMapInfoIter const &))
  0002:80039868       MR::getMapPartsArgMoveTimeToNextPoint((long *,LiveActor const *))
  0002:80039878       BossKameckMoveRail::calcRandomIndex(const(long))
  0002:800398E0       BossKameckMoveRail::calcRandomStoppableIndex(const(long))
+ 0002:800399AC       BossKameckMoveRail::~BossKameckMoveRail((void))
  0002:80039A08       BossKameckVs1::BossKameckVs1((void))
  0002:80039A54       BossKameckVs1::init((BossKameck *,JMapInfoIter const &))
  0002:80039AD8       BossKameckVs2::attackSensor((HitSensor *,HitSensor *))
@@ -1289,6 +1391,7 @@
  0002:8003D660       BossStinkBugActionBase::calcIIRCutOff(const(void))
  0002:8003D6C0       BossStinkBugActionBase::updateSound((void))
  0002:8003D76C       BossStinkBugActionBase::updateSoundFly((void))
+ 0002:8003D828       BossStinkBugActionBase::~BossStinkBugActionBase((void))
  0002:8003D880       BossStinkBugActionBase::updateGroundRegainRail((float))
  0002:8003D938       BossStinkBugActionBase::updateGroundFind((void))
  0002:8003D9BC       BossStinkBugActionBase::updateGroundShakeOff((void))
@@ -1362,11 +1465,12 @@
  0002:80040F68       BossStinkBugActionSequencer::exeAngryDemo((void))
  0002:80040FB4       BossStinkBugActionSequencer::exeFlyHigh((void))
  0002:8004100C       BossStinkBugActionSequencer::exeFinishDemo((void))
- 0002:800411E4       BossStinkBugFlyDemo::BossStinkBugFlyDemo((BossStinkBug *,JMapInfoIter const &))
+ 0002:800411E4       BossStinkBugAngryDemo::BossStinkBugAngryDemo((BossStinkBug *,JMapInfoIter const &))
  0002:80041278       BossStinkBugOpeningDemo::appear((void))
  0002:800412CC       BossStinkBugAngryDemo::exeDemo((void))
- 0002:800414EC       __sinit__GalaxyCometState_cpp
- 0002:80041544       BombBirdBomb::BombBirdBomb((char const *))
+ 0002:80041494       BossStinkBugAngryDemo::~BossStinkBugAngryDemo((void))
+ 0002:800414EC       __sinit__BossStinkBugAngryDemo_cpp
+ 0002:80041544       BossStinkBugBomb::BossStinkBugBomb((char const *))
  0002:800415A4       BossStinkBugBomb::init((JMapInfoIter const &))
  0002:800416D8       BombBirdBomb::control((void))
  0002:80041704       BrightObj::calcBrightInfo((ushort,BrightCamInfo const &))
@@ -1377,9 +1481,13 @@
  0002:8004190C       BossStinkBugBomb::exeWait((void))
  0002:80041AB4       BossStinkBugBomb::exeExplosion((void))
  0002:80041C78       BossStinkBugBombHolder::BossStinkBugBombHolder((LiveActor *))
+ 0002:80041E2C       BossStinkBugFinishDemo::BossStinkBugFinishDemo((BossStinkBug *,JMapInfoIter const &))
+ 0002:80041EC0       BossStinkBugFinishDemo::appear((void))
  0002:80041F14       BossStinkBugFinishDemo::exeDemo((void))
  0002:80042004       BossStinkBugFinishDemo::exeAppearPowerStar((void))
  0002:80042164       __sinit__SaveDataBannerCreator_cpp
+ 0002:800421DC       BossStinkBugFlyDemo::BossStinkBugFlyDemo((BossStinkBug *,JMapInfoIter const &))
+ 0002:80042270       BossStinkBugFlyDemo::appear((void))
  0002:800422C4       BossStinkBugFlyDemo::exeDemo((void))
  0002:800425C4       BossStinkBugFunction::addHeightOffset((JGeometry::TVec3<f> *,BossStinkBug const *,float))
  0002:80042654       BossStinkBugFunction::addLocalHeightOffset((JGeometry::TVec3<f> *,BossStinkBug *,float))
@@ -1395,6 +1503,7 @@
  0002:80042D38       BossStinkBugFunction::isExistPlayerBack((BossStinkBug const *,float))
  0002:80042DD8       BossStinkBugOpeningDemo::BossStinkBugOpeningDemo((BossStinkBug *,JMapInfoIter const &))
  0002:80042EC0       BossStinkBugOpeningDemo::exeDemo((void))
+ 0002:80043080       JGeometry::TVec4<f>::set<f>(void (JGeometry::TVec4<f> const &))
  0002:800430A4       @unnamed@DinoPackun_cpp@::DinoPackunParam::DinoPackunParam((void))
  0002:80043114       DinoPackun::DinoPackun((char const *))
  0002:800431E0       DinoPackun::init((JMapInfoIter const &))
@@ -2274,6 +2383,8 @@
  0002:80069894       KoopaSwitchKeeper::init((JMapInfoIter const &))
  0002:80069904       KoopaFunction::registerKoopaSwitchKeeper((LiveActor *))
  0002:800699F8       KoopaFunction::registerKoopaViewSwitchKeeper((LiveActor *))
+ 0002:80069B34       FireBubble::~FireBubble((void))
+ 0002:80069B90       JGeometry::TVec3<f>::set((Vec const &))
  0002:80069BAC       OtaKing::OtaKing((char const *))
  0002:80069C6C       OtaKing::init((JMapInfoIter const &))
  0002:80069E08       OtaKing::movement((void))
@@ -3310,7 +3421,6 @@
  0002:800988D0       CameraDead::CameraDead((char const *))
  0002:80098924       CameraDead::reset((void))
  0002:80098B44       CameraDead::calc((void))
- 0002:80098DEC       MR::createActorCameraInfo((JMapInfoIter const &))
  0002:80098E98       CameraDirector::CameraDirector((char const *))
  0002:800991C0       CameraDirector::movement((void))
  0002:80099294       GameDataHolder::isCompleteMarioAndLuigi(const(void))
@@ -4000,6 +4110,7 @@
  0002:800BB6FC       DemoExecutor::pause((void))
  0002:800BB700       DemoExecutor::resume((void))
  0002:800BB704       DemoExecutorFunction::isPauseTimeKeepDemo((DemoExecutor const *))
+ 0002:800BB708       MR::isDead((LayoutActor const *))
  0002:800BB710       DemoFunction::getDemoDirector((void))
  0002:800BB738       DemoFunction::getDemoCastSubGroupHolder((void))
  0002:800BB764       DemoFunction::registerDemoSimpleCastAllFunction((NameObj *))
@@ -4064,7 +4175,6 @@
  0002:800BD37C       DemoSimpleCastHolder::registerActor((LayoutActor *))
  0002:800BD398       DemoSimpleCastHolder::registerNameObj((NameObj *))
  0002:800BD3B4       DemoSimpleCastHolder::movementOnAllCasts((void))
- 0002:800BD468       MR::AssignableArray<P7NameObj>::~AssignableArray<P7NameObj>((void))
  0002:800BD4C8       DemoSoundInfo::DemoSoundInfo((void))
  0002:800BD4EC       DemoSoundKeeper::DemoSoundKeeper((DemoExecutor *))
  0002:800BD634       DemoSoundKeeper::update((void))
@@ -5488,7 +5598,6 @@
  0002:801082BC       KameckTurtle::isEnableAttack(const(void))
  0002:80108308       KameckTurtle::appearJetTurtle((bool))
  0002:8010845C       @unnamed@Kanina_cpp@::getRunAwayBreakTimeRandom((void))
- 0002:801084AC       MR::createNormalBloom((void))
  0002:801084EC       Kanina::Kanina((char const *))
  0002:8010859C       Kanina::init((JMapInfoIter const &))
  0002:80108808       MR::trySetMoveLimitCollision((LiveActor *))
@@ -7049,8 +7158,17 @@
  0002:8015B9F4       ActorAnimKeeper::initAnimData((void))
  0002:8015BB30       ActorAnimKeeper::findAnimInfo(const(char const *))
  0002:8015BBAC       ActorCameraInfo::ActorCameraInfo((JMapInfoIter const &))
- 0002:8015BC20       NWC24Data_SetDataP
+ 0002:8015BC20       ActorCameraInfo::ActorCameraInfo((long,long))
  0002:8015BC2C       ActorJointCtrl::ActorJointCtrl((LiveActor *))
+ 0002:8015BCD0       ActorJointCtrl::startDynamicCtrl((char const *,long))
+ 0002:8015BCD8       ActorJointCtrl::endDynamicCtrl((char const *,long))
+ 0002:8015BCE0       ActorJointCtrl::resetDynamicCtrl((void))
+ 0002:8015BCE8       ActorJointCtrl::startFaceCtrl((long))
+ 0002:8015BCF0       ActorJointCtrl::endFaceCtrl((long))
+ 0002:8015BCF8       ActorJointCtrl::setIKEndPosition((char const *,JGeometry::TVec3<f> const &,float))
+ 0002:8015BD00       ActorJointCtrl::setIKEndDirection((char const *,JGeometry::TVec3<f> const &,float))
+ 0002:8015BD08       ActorJointCtrl::endIKCtrlAll((void))
+ 0002:8015BD10       ActorJointCtrl::update((void))
  0002:8015BD44       ActorJointCtrl::startUpdate((void))
  0002:8015BDA8       ActorJointCtrl::endUpdate((void))
  0002:8015BE0C       ActorJointCtrl::setCallBackFunction((void))
@@ -7093,8 +7211,6 @@
  0002:8015CFD4       AnimationRandomPlayer::exeWait((void))
  0002:8015D03C       AnimationRandomPlayer::exePlay((void))
  0002:8015D168       Binder::Binder((float *[4],JGeometry::TVec3<f> const *,JGeometry::TVec3<f> const *,float,float,ulong))
- 0002:8015D268       Binder::setTriangleFilter((TriangleFilterBase *))
- 0002:8015D270       Binder::setCollisionPartsFilter((CollisionPartsFilterBase *))
  0002:8015D278       Binder::clear((void))
  0002:8015D298       Binder::getPlane(const(int))
  0002:8015D2A8       Binder::copyPlaneArrayAndSortingSensor((HitInfo **,ulong))
@@ -7123,7 +7239,6 @@
  0002:8015EBA4       ClippingActorHolder::addToClippingTarget((LiveActor *))
  0002:8015EC4C       ClippingActorHolder::removeFromClippingTarget((LiveActor *))
  0002:8015ECE4       ClippingActorHolder::startGroupClipping((LiveActor *,JMapInfoIter const &))
- 0002:8015EDD0       IKJointCtrlHolder::setEndDirection((char const *,JGeometry::TVec3<f> const &,float))
  0002:8015EE14       ClippingActorHolder::setFarClipLevel((LiveActor *,long))
  0002:8015EE44       ClippingActorHolder::find(const(LiveActor const *))
  0002:8015EF24       ClippingActorInfo::ClippingActorInfo((LiveActor *))
@@ -7202,7 +7317,10 @@
  0002:801617F0       DynamicJointCtrl::setCallBackFunction((void))
  0002:80161854       DynamicJointCtrlKeeper::DynamicJointCtrlKeeper((LiveActor *))
  0002:80161A38       SpiderThreadRadialLine::updatePos((void))
- 0002:80161AF0       DynamicJointCtrlKeeper::endCtrl((char const *,long))
+ 0002:80161A94       DynamicJointCtrlKeeper::setCallBackFunction((void))
+ 0002:80161AF0       DynamicJointCtrlKeeper::startCtrl((char const *,long))
+ 0002:80161B28       DynamicJointCtrlKeeper::endCtrl((char const *,long))
+ 0002:80161B60       DynamicJointCtrlKeeper::reset((void))
  0002:80161BBC       DynamicJointCtrlKeeper::findJointCtrl((char const *))
  0002:80161D50       @unnamed@EffectKeeper_cpp@::makeAttibuteEffectBaseName((char *,ulong,char const *))
  0002:80161DCC       EffectKeeper::EffectKeeper((char const *,ResourceHolder *,int,char const *))
@@ -7234,8 +7352,9 @@
  0002:80162DF4       EffectKeeper::isTypeAttributeEffect(const(char const *))
  0002:80162F18       FaceJointCtrl::FaceJointCtrl((LiveActor *))
  0002:80162F90       FaceJointCtrl::init((void))
- 0002:801630F8       FaceJointCtrl::endCtrl((long))
+ 0002:8016313C       FaceJointCtrl::endCtrl((long))
  0002:80163180       FaceJointCtrl::update((void))
+ 0002:80163198       FaceJointCtrl::setCallBackFunction((void))
  0002:801631AC       FaceJointCtrl::updateJointMtxCallBack((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:80163398       FlashingCtrl::FlashingCtrl((LiveActor *,bool))
  0002:80163424       FlashingCtrl::movement((void))
@@ -7284,6 +7403,8 @@
  0002:80164A0C       IKJointCtrlHolder::IKJointCtrlHolder((LiveActor *,ulong))
  0002:80164A70       IKJointCtrlHolder::addCtrl((IKJointCtrlParam const &))
  0002:80164AF8       IKJointCtrlHolder::startUpdate((void))
+ 0002:80164B64       IKJointCtrlHolder::setEndPosition((char const *,JGeometry::TVec3<f> const &,float))
+ 0002:80164BA8       IKJointCtrlHolder::setEndDirection((char const *,JGeometry::TVec3<f> const &,float))
  0002:80164BEC       IKJointCtrlHolder::endUpdate((void))
  0002:80164C60       DrawBufferGroup::allocateActorListBuffer((void))
  0002:80164CC4       IKJointCtrlHolder::setCallBackFunction((void))
@@ -7294,7 +7415,9 @@
  0002:80165184       IKJointCtrl::enableCallBack((void))
  0002:80165204       LiveActor::LiveActor((char const *))
  0002:801652EC       nullsub_5
+ 0002:801652F0       LiveActor::appear((void))
  0002:80165300       LiveActor::makeActorAppeared((void))
+ 0002:801653C4       LiveActor::kill((void))
  0002:801653D4       LiveActor::makeActorDead((void))
  0002:80165478       LiveActor::movement((void))
  0002:80165594       LiveActor::calcAnim((void))
@@ -7303,6 +7426,7 @@
  0002:80165660       LiveActor::receiveMessage((ulong,HitSensor *,HitSensor *))
  0002:80165760       J2DPane::setAnimationVF((J2DAnmVisibilityFull *))
  0002:80165770       LiveActor::calcAndSetBaseMtx((void))
+ 0002:80165814       LiveActor::getTakingMtx(const(void))
  0002:80165824       LiveActor::setNerve((Nerve const *))
  0002:8016582C       LiveActor::isNerve(const(Nerve const *))
  0002:80165868       LiveActor::getNerveStep(const(void))
@@ -7322,7 +7446,7 @@
  0002:80165ECC       LiveActor::initStageSwitch((JMapInfoIter const &))
  0002:80165EFC       LiveActor::initActorStarPointerTarget((float,JGeometry::TVec3<f> const *,float *[4],JGeometry::TVec3<f>))
  0002:80165F84       LiveActor::initActorLightCtrl((void))
- 0002:80165FC8       nullsub_82
+ 0002:80165FC8       LiveActor::attackSensor((HitSensor *,HitSensor *))
  0002:80165FCC       LiveActor::receiveMsgApart((HitSensor *,HitSensor *))
  0002:80165FF8       LiveActor::addToSoundObjHolder((void))
  0002:80166000       LiveActor::updateBinder((void))
@@ -8472,7 +8596,6 @@
  0002:8019CB3C       SphereSelectorFunction::isPointingTarget((LiveActor const *))
  0002:8019CB80       SphereSelectorFunction::getPointingTarget((void))
  0002:8019CBAC       SphereSelectorFunction::getSelectedTarget((void))
- 0002:8019CBD8       MR::getPlayerPos((void))
  0002:8019CBFC       SphereSelectorFunction::calcOffsetPos((JGeometry::TVec3<f> *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:8019CDCC       NrvSphereSelector::SphereSelectorNrvConfirmed::execute(const(Spine *))
  0002:8019CE3C       NrvSphereSelector::SphereSelectorNrvSelectStart::execute(const(Spine *))
@@ -11986,10 +12109,8 @@
  0002:80261920       NameObjCategoryList::remove((NameObj *,int))
  0002:8026198C       NameObjCategoryList::registerExecuteBeforeFunction((MR::FunctorBase const &,int))
  0002:802619DC       NameObjCategoryList::initTable((ulong,CategoryListInitialTable const *))
- 0002:80261AD0       NameObjCategoryList::CategoryInfo::CategoryInfo((void))
- 0002:80261AE4       NameObjCategoryList::CategoryInfo::~CategoryInfo((void))
- 0002:80261B40       @unnamed@NameObjCategoryList_cpp@::NameObjRealDelegator<M7NameObjFPCvPCv_v>::__cl((NameObj *))
- 0002:80261B70       @unnamed@NameObjCategoryList_cpp@::NameObjRealDelegator<M7NameObjFPCvPv_v>::__cl((NameObj *))
+ 0002:80261AE4       SpinDriverPathStorageScenario::~SpinDriverPathStorageScenario((void))
+ 0002:80261B40       @unnamed@NameObjCategoryList_cpp@::NameObjRealDelegator<M7NameObjFPCvPv_v>::__cl((NameObj *))
  0002:80261BA0       MR::AssignableArray<8JMapInfo>::~AssignableArray<8JMapInfo>((void))
  0002:80261C08       NameObjExecuteInfo::NameObjExecuteInfo((void))
  0002:80261C34       NameObjExecuteInfo::setConnectInfo((NameObj *,int,int,int,int))
@@ -12001,8 +12122,7 @@
  0002:80261E68       NameObjExecuteInfo::executeRequirementConnectDraw((void))
  0002:80261E7C       NameObjExecuteInfo::executeRequirementDisconnectDraw((void))
  0002:80261E90       NameObjExecuteInfo::executeRequirementDisconnectDrawDelay((void))
- 0002:80261EA4       NameObjExecuteInfo::requestMovementOn((int))
- 0002:80261EC4       NameObjExecuteInfo::requestMovementOff((int))
+ 0002:80261EA4       NameObjExecuteInfo::requestMovementOff((int))
  0002:80261EE4       NameObjExecuteInfo::findLightInfo(const(void))
  0002:80261F2C       NameObjExecuteInfo::connectToScene((void))
  0002:80261FA8       NameObjExecuteInfo::disconnectToScene((void))
@@ -12020,23 +12140,11 @@
  0002:80262414       NameObjExecuteHolder::executeRequirementConnectDraw((void))
  0002:80262484       NameObjExecuteHolder::executeRequirementDisconnectDraw((void))
  0002:802624F4       NameObjExecuteHolder::executeRequirementDisconnectDrawDelay((void))
- 0002:80262564       NameObjExecuteHolder::requestMovementOn((int))
- 0002:802625C8       NameObjExecuteHolder::requestMovementOff((int))
+ 0002:80262564       NameObjExecuteHolder::requestMovementOff((int))
  0002:8026262C       NameObjExecuteHolder::getConnectToSceneInfo(const(NameObj const *))
  0002:80262650       MR::registerNameObjToExecuteHolder((NameObj *,int,int,int,int))
- 0002:802626B4       MR::initConnectting((void))
- 0002:802626E0       MR::connectToSceneTemporarily((NameObj *))
- 0002:8026271C       MR::disconnectToSceneTemporarily((NameObj *))
- 0002:80262758       MR::connectToDrawTemporarily((NameObj *))
- 0002:80262794       MR::disconnectToDrawTemporarily((NameObj *))
- 0002:802627D0       MR::isConnectToDrawTemporarily((NameObj const *))
- 0002:8026280C       MR::executeRequirementConnectMovement((void))
- 0002:80262838       MR::executeRequirementDisconnectMovement((void))
- 0002:80262864       MR::executeRequirementConnectDraw((void))
- 0002:80262890       MR::executeRequirementDisconnectDraw((void))
- 0002:802628BC       MR::executeRequirementDisconnectDrawDelay((void))
- 0002:802628E8       MR::requestMovementOnWithCategory((int))
- 0002:80262924       MR::requestMovementOffWithCategory((int))
+ 0002:802626B4       MR::executeRequirementDisconnectDrawDelay((void))
+ 0002:802626E0       MR::requestMovementOffWithCategory((int))
  0002:80262960       MR::findActorLightInfo((LiveActor const *))
  0002:802629A0       NameObjExecuteHolder::NameObjExecuteHolder((int))
  0002:80262A94       @unnamed@NameObjFactory_cpp@::createBaseOriginCube<16SpinGuidanceArea>(NameObj *(char const *))
@@ -12179,16 +12287,7 @@
  0002:8026BE44       NameObjListExecutor::~NameObjListExecutor((void))
  0002:8026BF10       MR::Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>::~Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>((void))
  0002:8026BF74       NameObjListExecutor::init((void))
- 0002:8026BFE8       NameObjListExecutor::registerDrawBuffer((LiveActor *,int))
  0002:8026BFF0       NameObjListExecutor::allocateDrawBufferActorList((void))
- 0002:8026C040       NameObjListExecutor::findLightInfo(const(LiveActor *,int,int))
- 0002:8026C048       NameObjListExecutor::incrementCheckMovement((NameObj *,int))
- 0002:8026C050       NameObjListExecutor::incrementCheckCalcAnim((NameObj *,int))
- 0002:8026C058       NameObjListExecutor::incrementCheckDraw((NameObj *,int))
- 0002:8026C060       NameObjListExecutor::addToMovement((NameObj *,int))
- 0002:8026C068       NameObjListExecutor::addToCalcAnim((NameObj *,int))
- 0002:8026C080       NameObjListExecutor::removeToMovement((NameObj *,int))
- 0002:8026C088       NameObjListExecutor::removeToCalcAnim((NameObj *,int))
  0002:8026C0B0       UserFile::setCreated((void))
  0002:8026C0BC       NameObjListExecutor::entryDrawBuffer3D((void))
  0002:8026C0C8       NameObjListExecutor::entryDrawBufferMirror((void))
@@ -15528,6 +15627,7 @@
  0002:80341A44       PlayTimerScene::isActive(const(void))
  0002:80341A80       PlayTimerScene::isEndGlobalTimer(const(void))
  0002:80341AC4       PlayTimerScene::stop((void))
+ 0002:80341B18       PlayTimerScene::startTimeUp((void))
  0002:80341B20       PlayTimerScene::exeTimeUp((void))
  0002:80341BB0       PlayTimerScene::exeFadeoutAfterTimeUp((void))
  0002:80341D04       NrvGalaxySelectBackButton::GalaxySelectBackButtonNrvAppear::execute(const(Spine *))
@@ -15613,13 +15713,12 @@
  0002:803447EC       SceneFunction::allocateDrawBufferActorList((void))
  0002:8034481C       CategoryList::drawXlu((MR::DrawBufferType))
  0002:803448D0       CategoryList::entryDrawBufferMirror((void))
- 0002:803449CC       MR::requestMovementOnWithCategory((int))
- 0002:803449D0       MR::requestMovementOffWithCategory((int))
  0002:803449D4       nullsub_23
  0002:803449D8       SceneObjHolder::SceneObjHolder((void))
  0002:803449F8       SceneObjHolder::create((int))
  0002:80344A54       SceneObjHolder::getObj(const(int))
  0002:80344A60       SceneObjHolder::isExist(const(int))
+ 0002:80344A74       MR::createSceneObj((int))
  0002:80344AA8       MR::getSceneObjHolder((void))
  0002:80344AB4       MR::isExistSceneObj((int))
  0002:80344B14       SceneObjHolder::newEachObj((int))
@@ -15736,6 +15835,7 @@
  0002:80349FA8       BloomEffect::postDraw(const(void))
  0002:8034A364       BloomEffect::getIntensity1Default(const(void))
  0002:8034A36C       BloomEffect::getIntensity2Default(const(void))
+ 0002:8034A374       BloomEffect::isForEachModel(const(void))
  0002:8034A37C       BloomEffect::initDraw(const(void))
  0002:8034A5C8       BloomEffect::drawTexture(const(JUTTexture *,long,long,uchar,BloomEffect::BLOOM_TEX_DRAW_TYPE))
  0002:8034A85C       BloomEffect::blurTexture(const(JUTTexture *,float *[3][4],long,long,ulong,float,ulong,float const *))
@@ -16205,6 +16305,7 @@
  0002:80361294       GameSceneLayoutHolder::GameSceneLayoutHolder((void))
  0002:80361450       GameSceneLayoutHolder::createPurpleCoinCounter((void))
  0002:8036149C       GameSceneLayoutHolder::movement((void))
+ 0002:8036151C       GameSceneLayoutHolder::requestPowerUpHPMeter((void))
  0002:8036152C       GameSceneLayoutHolder::startMiss((void))
  0002:8036156C       GameSceneLayoutHolder::isMissAnimEnd(const(void))
  0002:80361598       GameSceneLayoutHolder::activateDefaultGameLayout((void))
@@ -16257,6 +16358,10 @@
  0002:803635A8       ImageEffectDirector::turnOff((void))
  0002:803635B8       ImageEffectDirector::forceOff((void))
  0002:80363614       ImageEffectDirector::turnOnDOFInSubjective((void))
+ 0002:80363620       ImageEffectDirector::setNormalBloomIntensity((uchar))
+ 0002:80363628       ImageEffectDirector::setNormalBloomThreshold((uchar))
+ 0002:80363630       ImageEffectDirector::setNormalBloomBlurIntensity1((uchar))
+ 0002:80363638       ImageEffectDirector::setNormalBloomBlurIntensity2((uchar))
  0002:80363648       ImageEffectDirector::updateManual((void))
  0002:803636E4       ImageEffectDirector::setState((ImageEffectState *))
  0002:8036370C       ImageEffectDirector::setBloomNormalParams((ImageEffectArea *))
@@ -16293,7 +16398,6 @@
  0002:803650C4       ImageEffectStateImpl::StateBloomNormal::setIntensity1Default((void))
  0002:80365104       VFiPFFAT_SetHint
  0002:8036510C       ImageEffectStateImpl::StateBloomNormal::setIntensity2Default((void))
- 0002:8036514C       MR::createSimpleBloom((void))
  0002:80365154       ImageEffectStateImpl::StateBloomSimple::getEffect(const(void))
  0002:8036517C       ImageEffectStateImpl::StateBloomSimple::setMaskFilterAll((void))
  0002:803651AC       ImageEffectStateImpl::StateBloomSimple::setMaskFilterRed((void))
@@ -16301,7 +16405,6 @@
  0002:8036520C       ImageEffectStateImpl::StateBloomSimple::setMaskFilterBlue((void))
  0002:8036523C       ImageEffectStateImpl::StateBloomSimple::setThreshold((uchar))
  0002:80365274       ImageEffectStateImpl::StateBloomSimple::setIntensity((float))
- 0002:803652AC       MR::createScreenBlur((void))
  0002:803652B4       ImageEffectStateImpl::StateScreenBlur::getEffect(const(void))
  0002:803652DC       ImageEffectStateImpl::StateScreenBlur::setIntensity((float))
  0002:8036531C       ImageEffectStateImpl::StateDepthOfField::getEffect(const(void))
@@ -16462,7 +16565,6 @@
  0002:8036AFEC       Manual2P::Manual2P((char const *))
  0002:8036B050       Manual2P::init((JMapInfoIter const &))
  0002:8036B1A8       Manual2P::appear((void))
- 0002:8036B22C       MR::isDead((LayoutActor const *))
  0002:8036B230       Manual2P::exeAppear((void))
  0002:8036B2E4       Manual2P::exeWait((void))
  0002:8036B4E0       Manual2P::exeScrollRightAfter((void))
@@ -17273,7 +17375,7 @@
  0002:803926C0       YesNoLayout::setInformationMessage((char const *))
  0002:803926D4       YesNoLayout::setSelectMessage((char const *,char const *))
  0002:80392738       YesNoLayout::exeSelecting((void))
- 0002:8039281C       WPADEnableMotor
+ 0002:8039281C       SpkSpeakerCtrl::setMixingBuffer((SpkMixingBuffer *))
  0002:80392850       SpkSpeakerCtrl::setup((void))
  0002:80392944       SpkSpeakerCtrl::connect((long))
  0002:803929C4       SpkSpeakerCtrl::disconnect((long))
@@ -17784,6 +17886,7 @@
  0002:803A28E4       NerveExecutor::~NerveExecutor((void))
  0002:803A2948       NerveExecutor::initNerve((Nerve const *))
  0002:803A299C       NerveExecutor::updateNerve((void))
+ 0002:803A29B0       NerveExecutor::setNerve((Nerve const *))
  0002:803A29B8       NerveExecutor::isNerve(const(Nerve const *))
  0002:803A2A00       OSThreadWrapper::OSThreadWrapper((ulong,int,int,JKRHeap *))
  0002:803A2A74       OSThreadWrapper::~OSThreadWrapper((void))
@@ -18159,7 +18262,6 @@
  0002:803B0034       GameDataFunction::updateStorageSpinDriverPathDrawRange((char const *,int,int,float))
  0002:803B0198       GameDataFunction::followStoryEventByName((char const *))
  0002:803B02DC       GameSequenceFunction::resetStageResultSequenceParam((void))
- 0002:803B02EC       MR::setPlayerRestartIdInfo((JMapIdInfo const &))
  0002:803B0314       GameDataFunction::getLast1upStarPieceNum((void))
  0002:803B0328       GameDataFunction::getUserName((void))
  0002:803B04D8       GameDataFunction::isEqualJustPowerStarNum((int))
@@ -18317,7 +18419,6 @@
  0002:803B4E30       GameSequenceFunction::startCopyUserFileSequence((int,int))
  0002:803B4E7C       GameSequenceFunction::startSetMiiOrIconIdUserFileSequence((int,void const *,ulong const *))
  0002:803B4FA8       GameSequenceFunction::isSuccessSaveDataHandleSequence((void))
- 0002:803B50F8       MR::isPlayerDead((void))
  0002:803B5148       GameSequenceFunction::storeSceneStartGameDataHolder((void))
  0002:803B5190       GameSequenceFunction::updateGameDataAndSequenceAfterStageResultSequence((void))
  0002:803B51FC       GameSequenceFunction::startGameDataSaveSequence((bool,bool))
@@ -18530,6 +18631,7 @@
  0002:803BC438       @unnamed@ActorCameraUtil_cpp@::createActorCameraName((char *,ulong,LiveActor const *,ActorCameraInfo const *))
  0002:803BC474       @unnamed@ActorCameraUtil_cpp@::createMultiActorCameraName((char *,ulong,LiveActor const *,ActorCameraInfo const *,char const *))
  0002:803BC4B0       MR::initAnimCamera((LiveActor const *,ActorCameraInfo const *,char const *))
+ 0002:803BC548       MR::createActorCameraInfo((JMapInfoIter const &))
  0002:803BC588       MR::createActorCameraInfoIfExist((JMapInfoIter const &,ActorCameraInfo **))
  0002:803BC5FC       MR::initActorCamera((LiveActor const *,JMapInfoIter const &,ActorCameraInfo **))
  0002:803BC604       MR::initMultiActorCamera((LiveActor const *,JMapInfoIter const &,ActorCameraInfo **,char const *))
@@ -18998,6 +19100,7 @@
  0002:803C89CC       MR::getCameraWatchPos((void))
  0002:803C8A3C       WaterAreaFunction::isCameraInWaterForCameraUtil((void))
  0002:803C8A40       MR::resetCameraLocalOffset((void))
+ 0002:803C8A68       MR::overlayWithPreviousScreen((ulong))
  0002:803C8A9C       MR::isSubjectiveCameraOnForObjClipping((void))
  0002:803C8ACC       MR::cleanEventCameraTarget_temporally((void))
  0002:803C8B00       CameraTargetArg::setTarget(const(void))
@@ -19018,6 +19121,7 @@
  0002:803C914C       DemoFunction::tryStartDemoRegistered((LiveActor *,char const *))
  0002:803C9150       DemoFunction::tryStartDemoRegisteredMarioPuppetable((LiveActor *,char const *))
  0002:803C9154       DemoFunction::registerDemoSimpleCastAllFunction((NameObj *))
+ 0002:803C915C       MR::registerDemoSimpleCastAll((NameObj *))
  0002:803C9160       MR::isDemoCast((LiveActor const *,char const *))
  0002:803C91D0       MR::tryStartDemo((LayoutActor *,char const *))
  0002:803C92B0       MR::tryStartDemoWithoutCinemaFrame((LiveActor *,char const *))
@@ -19064,6 +19168,7 @@
  0002:803CA234       DemoFunction::getDemoPartTotalStepFunction((char const *))
  0002:803CA238       MR::calcDemoPartStepRate((char const *))
  0002:803CA2B0       DemoFunction::getDemoPartStepFunction((char const *))
+ 0002:803CA2BC       MR::isPowerStarGetDemoActive((void))
  0002:803CA2C0       DemoFunction::getCurrentDemoPartNameMain((char const *))
  0002:803CA2C4       MR::startTalkingSequenceWithoutCinemaFrame((NameObj *))
  0002:803CA2E8       MR::endTalkingSequence((NameObj *))
@@ -19133,6 +19238,7 @@
  0002:803CC5B0       InformationObserverFunction::explainSpin((LiveActor *))
  0002:803CC6D4       MR::isOnGameEventFlagChildsRoom((void))
  0002:803CC708       MR::isOnGameEventFlagLibraryRoom((void))
+ 0002:803CC734       MR::isOnGameEventFlagRosettaTalkAboutTicoInTower((void))
  0002:803CC740       MR::isKinopioExplorerTalkGetGrandStar6((void))
  0002:803CC818       GameDataFunction::setupAlreadyDoneFlag((char const *,JMapInfoIter const &,ulong *))
  0002:803CC81C       GameDataFunction::updateAlreadyDoneFlag((int,ulong))
@@ -19441,19 +19547,17 @@
  0002:803D7BE0       MR::isStep((NerveExecutor const *,long))
  0002:803D7C18       MR::isFirstStep((LayoutActor const *))
  0002:803D7C20       MR::isLessStep((LayoutActor const *,long))
- 0002:803D7C7C       MR::isGreaterStep((LayoutActor const *,long))
- 0002:803D7CBC       MR::isGreaterEqualStep((LayoutActor const *,long))
- 0002:803D7CF8       MR::isIntervalStep((LayoutActor const *,long))
- 0002:803D7D38       MR::isNewNerve((LayoutActor const *))
- 0002:803D7D5C       MR::calcNerveRate((LayoutActor const *,long))
- 0002:803D7DDC       MR::calcNerveRate((LayoutActor const *,long,long))
- 0002:803D7E6C       MR::calcNerveEaseInRate((LayoutActor const *,long))
- 0002:803D7EFC       MR::calcNerveEaseInValue((LayoutActor const *,long,long,float,float))
- 0002:803D7FC4       MR::setNerveAtStep((LayoutActor *,Nerve const *,long))
+ 0002:803D7CBC       MR::isGreaterEqualStep((NerveExecutor const *,long))
+ 0002:803D7CF8       MR::isIntervalStep((NerveExecutor const *,long))
+ 0002:803D7D38       MR::isNewNerve((NerveExecutor const *))
+ 0002:803D7D5C       MR::calcNerveRate((NerveExecutor const *,long))
+ 0002:803D7DDC       MR::calcNerveRate((LiveActor const *,long,long))
+ 0002:803D7E6C       MR::calcNerveEaseOutRate((NerveExecutor const *,long))
+ 0002:803D7EFC       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,long,float,float))
+ 0002:803D7FC4       MR::setNerveAtStep((NerveExecutor *,Nerve const *,long))
  0002:803D8014       MR::setNerveAtAnimStopped((LayoutActor *,Nerve const *,ulong))
  0002:803D8074       MR::setNerveAtPaneAnimStopped((LayoutActor *,char const *,Nerve const *,ulong))
  0002:803D80D8       MR::killAtAnimStopped((LayoutActor *,ulong))
- 0002:803D813C       MR::isDead((LayoutActor const *))
  0002:803D8144       MR::isHiddenLayout((LayoutActor const *))
  0002:803D814C       MR::showLayout((LayoutActor *))
  0002:803D815C       MR::hideLayout((LayoutActor *))
@@ -19565,6 +19669,7 @@
  0002:803DAD90       MR::setAllAnimFrameAndStop((LiveActor const *,char const *,float))
  0002:803DAE88       MR::setAllAnimFrameAtEnd((LiveActor const *,char const *))
  0002:803DB040       MR::isAnyAnimOneTimeAndStopped((LiveActor const *,char const *))
+ 0002:803DB2B0       MR::isBckStopped((LiveActor const *))
  0002:803DB2F0       MR::isBckLooped((LiveActor const *))
  0002:803DB31C       MR::checkPassBckFrame((LiveActor const *,float))
  0002:803DB360       MR::setBckFrameAtRandom((LiveActor const *))
@@ -19606,29 +19711,9 @@
  0002:803DC644       MR::calcLightPos1((JGeometry::TVec3<f> *,LiveActor const *))
  0002:803DC684       MR::getLightAmbientColor((LiveActor const *))
  0002:803DC6AC       MR::getLightCtrl((LiveActor const *))
- 0002:803DC6B4       MR::isStep((LiveActor const *,long))
- 0002:803DC6EC       MR::isFirstStep((LiveActor const *))
- 0002:803DC6F4       MR::isLessStep((NerveExecutor const *,long))
  0002:803DC734       MR::isLessEqualStep((NerveExecutor const *,long))
- 0002:803DC770       MR::isGreaterStep((LiveActor const *,long))
- 0002:803DC7B0       MR::isGreaterEqualStep((LiveActor const *,long))
- 0002:803DC7EC       MR::isIntervalStep((LiveActor const *,long))
- 0002:803DC82C       MR::isNewNerve((LiveActor const *))
- 0002:803DC850       MR::calcNerveRate((LiveActor const *,long))
- 0002:803DC8D0       MR::calcNerveRate((LiveActor const *,long,long))
- 0002:803DC960       MR::calcNerveEaseInRate((LiveActor const *,long))
- 0002:803DC9F0       MR::calcNerveEaseOutRate((LiveActor const *,long))
- 0002:803DCA80       MR::calcNerveEaseOutRate((LiveActor const *,long,long))
- 0002:803DCB20       MR::calcNerveEaseInOutRate((LiveActor const *,long))
- 0002:803DCBB0       MR::calcNerveEaseInOutRate((LiveActor const *,long,long))
- 0002:803DCC50       MR::calcNerveValue((LiveActor const *,long,float,float))
- 0002:803DCD08       MR::calcNerveValue((LiveActor const *,long,long,float,float))
- 0002:803DCDD0       MR::calcNerveEaseInValue((LiveActor const *,long,float,float))
- 0002:803DCE88       MR::calcNerveEaseInValue((LiveActor const *,long,long,float,float))
- 0002:803DCF50       MR::calcNerveEaseOutValue((LiveActor const *,long,float,float))
- 0002:803DD008       MR::calcNerveEaseInOutValue((LiveActor const *,long,float,float))
- 0002:803DD0C0       MR::calcNerveEaseInOutValue((LiveActor const *,long,long,float,float))
- 0002:803DD188       MR::setNerveAtStep((LiveActor *,Nerve const *,long))
+ 0002:803DCA80       MR::calcNerveEaseInOutRate((LiveActor const *,long,long))
+ 0002:803DCC50       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,float,float))
  0002:803DD1D8       MR::setNerveAtBckStopped((LiveActor *,Nerve const *))
  0002:803DD228       MR::trySetNerve((LiveActor *,Nerve const *))
  0002:803DD280       MR::getGroundNormal((LiveActor const *))
@@ -19652,9 +19737,8 @@
  0002:803DD5DC       MR::setBinderIgnoreMovingCollision((LiveActor *))
  0002:803DD5F0       MR::validateExCollisionParts((LiveActor *))
  0002:803DD604       MR::invalidateExCollisionParts((LiveActor *))
- 0002:803DD618       MR::setBinderCollisionPartsFilter((LiveActor *,CollisionPartsFilterBase *))
+ 0002:803DD618       MR::setBindTriangleFilter((LiveActor *,TriangleFilterBase *))
  0002:803DD620       MR::setBinderExceptActor((LiveActor *,LiveActor const *))
- 0002:803DD680       MR::setBindTriangleFilter((LiveActor *,TriangleFilterBase *))
  0002:803DD688       MR::isExistBinder((LiveActor const *))
  0002:803DD698       MR::onEntryDrawBuffer((LiveActor *))
  0002:803DD6F0       MR::offEntryDrawBuffer((LiveActor *))
@@ -20121,6 +20205,9 @@
  0002:803EC424       MultiEventCamera::startCamera((void))
  0002:803EC498       MultiEventCamera::endCamera((long))
  0002:803EC53C       MultiEventCamera::changeTarget((CameraTargetArg const &))
+ 0002:803EC5E0       MR::isFirstStep((NerveExecutor const *))
+ 0002:803EC5E8       MR::isLessStep((NerveExecutor const *,long))
+ 0002:803EC664       MR::isGreaterStep((NerveExecutor const *,long))
  0002:803ECB6C       NPCFunction::getNPCItemData((NPCActorItem *,long))
  0002:803ECBB4       MR::initDefaultPose((NPCActor *,JMapInfoIter const &))
  0002:803ECBFC       MR::turnPlayerToActor((LiveActor const *,float))
@@ -20312,11 +20399,15 @@
  0002:803F1C5C       ParabolicPath::calcDirection(const(JGeometry::TVec3<f> *,float,float))
  0002:803F1D14       ParabolicPath::getLength(const(float,float,long))
  0002:803F1E20       ParabolicPath::calcPathSpeedFromAverageSpeed(const(float))
+ 0002:803F1E64       MR::isOnGroundPlayer((void))
+ 0002:803F1E74       MR::forceKillPlayerByAbyss((void))
  0002:803F1E80       MR::forceKillPlayerByWaterRace((void))
  0002:803F1E8C       MR::forceKillPlayerByGroundRace((void))
  0002:803F1E98       MR::forceKillPlayerByGhostRace((void))
+ 0002:803F1EA4       MR::isPlayerDead((void))
  0002:803F1EF4       MarioAccess::isTeresaDisappear((void))
  0002:803F1EF8       MR::isPlayerInAreaObj((char const *))
+ 0002:803F1F34       MR::getPlayerPos((void))
  0002:803F1F58       MR::getPlayerCenterPos((void))
  0002:803F1F7C       MarioAccess::getTakePos((JGeometry::TVec3<f> *))
  0002:803F1FBC       MR::getPlayerRotate((void))
@@ -20383,6 +20474,7 @@
  0002:803F2864       MarioAccess::isSkating((void))
  0002:803F2868       MarioAccess::changeItemStatus((long))
  0002:803F2874       MarioAccess::isParalyzing((void))
+ 0002:803F28E8       MR::isPlayerJumpRising((void))
  0002:803F290C       MarioAccess::validateSensor((void))
  0002:803F2910       MarioAccess::isInRush((void))
  0002:803F2914       MR::endBindAndPlayerWait((LiveActor *))
@@ -20426,6 +20518,7 @@
  0002:803F331C       MarioAccess::onControl((bool))
  0002:803F3320       MarioAccess::isOffControl((void))
  0002:803F3324       MR::unlockPlayerAnimation((void))
+ 0002:803F3398       MR::setPlayerBaseMtx((float *[4]))
  0002:803F339C       MarioAccess::getBaseMtx((void))
  0002:803F33C8       MarioAccess::readyDemo((void))
  0002:803F33CC       MarioAccess::onFollowDemo((void))
@@ -20597,12 +20690,23 @@
  0002:803F730C       MR::closeSystemWipeFadeWithCaptureScreen((long))
  0002:803F7364       MR::setWipeCircleCenterPos((JGeometry::TVec3<f> const &))
  0002:803F7374       MR::requestMovementOnImageEffect((void))
+ 0002:803F754C       MR::createNormalBloom((void))
  0002:803F7554       MR::isNormalBloomOn((void))
  0002:803F75C8       MR::isNormalBloomForEachModel((void))
+ 0002:803F7620       MR::setNormalBloomIntensity((uchar))
+ 0002:803F7654       MR::setNormalBloomThreshold((uchar))
+ 0002:803F7688       MR::setNormalBloomBlurIntensity1((uchar))
+ 0002:803F76BC       MR::setNormalBloomBlurIntensity2((uchar))
+ 0002:803F76F0       MR::createSimpleBloom((void))
+ 0002:803F76F8       MR::createScreenBlur((void))
  0002:803F7700       MR::createDepthOfFieldBlur((void))
  0002:803F773C       MR::createCenterScreenBlur((void))
  0002:803F7744       MR::startCenterScreenBlur((long,float,uchar,long,long))
- 0002:803F77B0       nullsub_28
+ 0002:803F77B0       MR::startGlobalTimer((void))
+ 0002:803F77B4       MR::resetGlobalTimer((void))
+ 0002:803F77D8       MR::isGlobalTimerEnd((void))
+ 0002:803F77FC       MR::startGlobalTimerTimeUp((void))
+ 0002:803F7820       MR::requestPowerUpHPMeter((void))
  0002:803F78F8       MR::isActiveDefaultGameLayout((void))
  0002:803F791C       MR::forceAppearDefaultGameLayout((void))
  0002:803F7988       MR::isStopCinemaFrame((void))
@@ -20667,7 +20771,7 @@
  0002:803F92D0       MR::getRemixMelodyNoteNum((long))
  0002:803F9358       MR::startSubBGM((char const *,bool))
  0002:803F939C       MR::startStageBGMFromStageName((char const *,char const *,long))
- 0002:803F941C       MR::stopSubBGM((ulong))
+ 0002:803F941C       MR::stopStageBGM((ulong))
  0002:803F9464       MR::unlockStageBGM((void))
  0002:803F949C       MR::isStopOrFadeoutBgmName((char const *))
  0002:803F94D0       MR::moveVolumeSubBGM((float,ulong))
@@ -20679,6 +20783,7 @@
  0002:803F978C       MR::isPreparedStageBgm((void))
  0002:803F97CC       MR::setStageBGMState((long,ulong))
  0002:803F9824       MR::setStageBGMStateBit((ulong))
+ 0002:803F98AC       MR::stopSubBGM((ulong))
  0002:803F99D4       MR::playLevelMarioPinchBGM((bool))
  0002:803F9A24       MR::stopMarioPinchBGMSoon((void))
  0002:803F9A58       MR::submitTrigSE((void))
@@ -20851,6 +20956,7 @@
  0002:803FDF28       MR::stopAllSound((ulong))
  0002:803FDF3C       __stdio_atexit
  0002:803FDF78       MR::getPlayerRestartIdInfo((void))
+ 0002:803FDF8C       MR::setPlayerRestartIdInfo((JMapIdInfo const &))
  0002:803FDFA0       TalkMessageCtrl::registerBranchFunc((TalkMessageFuncBase const &))
  0002:803FDFA4       TalkMessageCtrl::registerEventFunc((TalkMessageFuncBase const &))
  0002:803FDFA8       TalkMessageCtrl::registerAnimeFunc((TalkMessageFuncBase const &))
@@ -20894,9 +21000,11 @@
  0002:803FEB18       MR::getWaterAreaInfo((WaterInfo *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,bool))
  0002:803FF154       WaterAreaFunction::tryInWhirlPoolAccelerator((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> *))
  0002:803FF168       MR::calcCubeAxisZ((AreaObj const *,JGeometry::TVec3<f> *))
- 0002:803FF1C4       MR::calcCylinderUpVec((JGeometry::TVec3<f> *,AreaObj const *))
  0002:803FF1D4       MR::getCubeLocalBox((AreaObj const *))
+ 0002:803FF1F0       MR::calcSpherePos((JGeometry::TVec3<f> *,AreaObj const *))
  0002:803FF200       MR::getSphereRadius((AreaObj const *))
+ 0002:803FF20C       MR::calcCylinderPos((JGeometry::TVec3<f> *,AreaObj const *))
+ 0002:803FF22C       MR::calcCylinderUpVec((JGeometry::TVec3<f> *,AreaObj const *))
  0002:803FF23C       MR::getCylinderRadius((AreaObj const *))
  0002:803FF248       MR::tryToUpdatePlayerRestartIdInfo((JGeometry::TVec3<f> const &))
  0002:803FF29C       MR::getWaterAreaObj((WaterInfo *,JGeometry::TVec3<f> const &))
@@ -20932,9 +21040,7 @@
  0002:80400314       BezierSurface::drawTrianglePatchPosST(const(void))
  0002:80400440       BezierSurface::drawTrianglePatchPosNormST(const(void))
  0002:804005D4       JSUPtrLink::JSUPtrLink((void *))
- 0002:804005EC       JSUPtrLink::~JSUPtrLink((void))
  0002:80400650       JSUPtrList::JSUPtrList((bool))
- 0002:80400688       JSUPtrList::~JSUPtrList((void))
  0002:80400708       JSUPtrList::setFirst((JSUPtrLink *))
  0002:8040072C       JSUPtrList::append((JSUPtrLink *))
  0002:804007D0       JSUPtrList::remove((JSUPtrLink *))
@@ -21009,6 +21115,7 @@
  0002:804048B4       IKJoint::getMinLimitDistance(const(void))
  0002:804048C8       IKJoint::getMaxLimitDistance(const(void))
  0002:804048D8       JMapIdInfo::JMapIdInfo((long,JMapInfoIter const &))
+ 0002:8040491C       JMapIdInfo::JMapIdInfo((long,long))
  0002:80404928       JMapIdInfo::initialize((long,JMapInfoIter const &))
  0002:80404960       MR::createJMapIdInfoFromClippingGroupId((JMapInfoIter const &))
  0002:80404A08       JMapInfo::JMapInfo((void))
@@ -21394,6 +21501,8 @@
  0002:80415370       JKRDecomp::decodeSZS((uchar *,uchar *,ulong,ulong))
  0002:80415454       JKRDecomp::checkCompressed((uchar *))
  0002:804154CC       JKRDecompCommand::JKRDecompCommand((void))
+ 0002:80415534       JSUPtrLink::~JSUPtrLink((void))
+ 0002:804155D0       JSUPtrList::~JSUPtrList((void))
  0002:80415718       JSUPtrList::prepend((JSUPtrLink *))
  0002:804157BC       JSUPtrList::insert((JSUPtrLink *,JSUPtrLink *))
  0002:8041592C       JSUInputStream::read((void *,long))
@@ -25784,11 +25893,11 @@
  0002:805174B0       __restore_fpr
  0002:805174FC       __save_gpr
  0002:8051752C       _savegpr_26
+ 0002:80517530       _savegpr_27
  0002:80517534       _savegpr_28
  0002:80517538       _savegpr_29
  0002:80517548       __restore_gpr
  0002:80517578       _restgpr_26
- 0002:8051757C       _restgpr_27
  0002:80517580       _restgpr_28
  0002:80517584       _restgpr_29
  0002:80517594       __div2u
@@ -26082,6 +26191,7 @@
  0002:8052D190       __DBEXIWriteRam
  0006:8052D280       _ctors
  0007:8052DEE0       _dtors
+ 0008:8052DF30       @unnamed@AreaObjContainer_cpp@::cCreateTable(void)
  0008:8052F8B8       aAudioresSpkres
  0008:8053A020       aSystemResult00
  0008:8053A031       aSystemResult00_0
@@ -26186,13 +26296,22 @@
  0009:80550443       aStartFrame
  0009:8055044F       aEndFrame
  0009:80550459       aAttribute
+ 0009:80550468       _9BpkPlayer::`vtbl'
+ 0009:80550480       _9BrkPlayer::`vtbl'
+ 0009:80550498       _9BtkPlayer::`vtbl'
  0009:805504B0       _9BtpPlayer::`vtbl'
+ 0009:805504C8       _9BvaPlayer::`vtbl'
+ 0009:805504D8       _15LayoutAnmPlayer::`vtbl'
+ 0009:805504F0       _11J3DTexNoAnm::`vtbl'
+ 0009:80550500       _10XanimeCore::`vtbl'
  0009:80550530       aNull
  0009:80550535       aDupNonGroup
+ 0009:80550544       _15XanimeFrameCtrl::`vtbl'
  0009:80550550       aNonGroup
  0009:8055055A       aNotInitialized
  0009:80550570       aScaleX
  0009:80550578       aScaleY
+ 0009:80550618       _7AreaObj::`vtbl'
  0009:80550648       aSwitcharea
  0009:80550653       aRacejudgecube
  0009:80550661       aNinforcewindcu
@@ -26260,56 +26379,92 @@
  0009:80550A56       aMirrorarea
  0009:80550A61       aDarkmattercube
  0009:80550A70       aDarkmattercyli
+ 0009:80550A84       _11WarpCubeMgr::`vtbl'
+ 0009:80550AA8       _16AreaObjContainer::`vtbl'
+ 0009:80550AD0       _15AreaObjFollower::`vtbl'
  0009:80550AE0       aSeDmAstroWipeO
  0009:80550AF5       aSeDmAstroWipeI
  0009:80550B09       aAstrogalaxy_4
  0009:80550B15       aHeavensdoorgal_5
  0009:80550B27       aLibraryroom_2
+ 0009:80550B34       _20AstroChangeStageCube::`vtbl'
+ 0009:80550B60       _15AudioEffectArea::`vtbl'
  0009:80550B8C       aAudioeffectare_0
  0009:80550BA0       aOceanphantomca
  0009:80550BB7       aSoundmapcodete
+ 0009:80550BC8       @unnamed@BgmProhibitArea_cpp@::sBgmMuteSet(void)
+ 0009:80550BE0       _15BgmProhibitArea::`vtbl'
  0009:80550C0C       aBgmprohibitare_0
+ 0009:80550C20       _19BigBubbleSwitchArea::`vtbl'
+ 0009:80550C4C       _19BigBubbleCameraArea::`vtbl'
  0009:80550C7C       aSwitcharea_0
  0009:80550C87       aCubecamera_0
  0009:80550C98       aBigbubblegoala_0
+ 0009:80550CAC       _17BigBubbleGoalArea::`vtbl'
  0009:80550CD8       aBigbubblegoala_1
+ 0009:80550CF0       _9BloomArea::`vtbl'
  0009:80550D20       aImageeffectare_0
  0009:80550D90       aCamerarepulsiv_0
  0009:80550DA8       aReversekingdom_4
  0009:80550DBD       aCannonfleetgal_4
  0009:80550DCF       aBattleshipgala_3
+ 0009:80550DE0       _13ChangeBgmCube::`vtbl'
  0009:80550E1F       aBody_67
+ 0009:80550E50       _11AreaPolygon::`vtbl'
  0009:80550EC8       aValidity
  0009:80550ED1       aInvalid
+ 0009:80550EDC       _13CubeCameraMgr::`vtbl'
+ 0009:80550F30       _9DeathArea::`vtbl'
  0009:80550F5C       aDeatharea_0
+ 0009:80550F68       _16DepthOfFieldArea::`vtbl'
  0009:80550F98       aImageeffectare_1
  0009:80550FE8       aSeOjRayStart
+ 0009:80550FF8       _19GlaringLightAreaMgr::`vtbl'
+ 0009:8055101C       _16GlaringLightArea::`vtbl'
  0009:80551048       aGlaringlightar_1
+ 0009:80551060       _8HazeCube::`vtbl'
  0009:8055108C       aHazecube_0
+ 0009:80551098       _18ImageEffectAreaMgr::`vtbl'
+ 0009:805510BC       _15ImageEffectArea::`vtbl'
+ 0009:805510F0       _9LightArea::`vtbl'
  0009:8055111C       aLightarea_0
+ 0009:80551128       _15LightAreaHolder::`vtbl'
  0009:80551150       aMercatorcube_1
+ 0009:80551160       _21MercatorTransformCube::`vtbl'
+ 0009:80551190       _11MessageArea::`vtbl'
  0009:805511C0       aSePmLvLongFall
+ 0009:805511D4       _12PlayerSeArea::`vtbl'
  0009:80551200       aPlayersearea_0
+ 0009:80551210       _15QuakeEffectArea::`vtbl'
  0009:80551240       aReversekingdom_5
  0009:80551255       aCannonfleetgal_5
  0009:80551267       aBattleshipgala_4
+ 0009:80551278       _11RestartCube::`vtbl'
+ 0009:805512A8       _14ScreenBlurArea::`vtbl'
  0009:805512D8       aImageeffectare_2
+ 0009:805512E8       _15SimpleBloomArea::`vtbl'
  0009:80551318       aImageeffectare_3
  0009:80551328       aSeAtLvGrave
  0009:80551337       aSeAtLvKoopaWin
  0009:8055134B       aSeAtLvWindDese
  0009:80551360       aSeAtLvWindIceM
+ 0009:8055138C       _16SoundEmitterCube::`vtbl'
  0009:805513B8       aSeAtLvMagmaAmb
  0009:805513CF       aSeOjLvFloating
  0009:805513E6       aSeAtLvWindDese_0
  0009:805513FB       aSeAtLvMagmaWin
  0009:80551417       aSeAtLvKoopaFlo
  0009:80551431       aSeAtLvWindRabb
+ 0009:8055144C       @unnamed@SoundEmitterSphere_cpp@::cSoundNameTable(void)
+ 0009:80551464       _18SoundEmitterSphere::`vtbl'
  0009:80551490       aSpinguidancecu_0
  0009:805514A1       aTamakoromovegu_0
  0009:805514BA       aTamakorojumpgu_0
+ 0009:805514D4       _16SpinGuidanceArea::`vtbl'
+ 0009:80551500       _12SunLightArea::`vtbl'
  0009:8055152C       aSunlightarea_0
  0009:80551540       aSwitcharea_1
+ 0009:8055154C       _10SwitchArea::`vtbl'
  0009:80551608       aAudioresSmrSzs
  0009:8055161A       aAudioresSeqsJa
  0009:80551634       aAudioresInfoJa
@@ -26321,6 +26476,9 @@
  0009:80551908       aIndexOutOfRang_0
  0009:8055192B       aIndexOutOfRang_1
  0009:8055194D       aIndexOutOfRang
+ 0009:80551998       _14AudSoundObject::`vtbl'
+ 0009:80551AE8       _6AudBgm::`vtbl'
+ 0009:80551B48       _20AudBgmRhythmStrategy::`vtbl'
  0009:80551BD8       aSeRsRemixNoteG
  0009:80551BF2       aSeRsRemixNoteG_0
  0009:80551C0C       aSeRsRemixNoteG_1
@@ -26435,6 +26593,7 @@
  0009:8055249E       aSeBmLvBbegoRot_0
  0009:805524B6       aSeBmLvBbegoRot_1
  0009:805524D0       aSeBmLvBbegoRot_2
+ 0009:805524EC       _11BossBegoman::`vtbl'
  0009:805526FB       aBossbegomanhea
  0009:80552718       aEdge
  0009:8055271D       aDemowait
@@ -26477,7 +26636,12 @@
  0009:80552CAE       aSeSyPowStarApp
  0009:80552CC4       aMarioposition
  0009:80552CD2       aKameckposition
+ 0009:80552E20       _19BossKameckSequencer::`vtbl'
+ 0009:80552EF0       aVs1
+ 0009:80552F00       _13BossKameckVs1::`vtbl'
+ 0009:80552FB8       aVs2
  0009:80552FD7       aBosskameckbarr
+ 0009:80552FEC       _13BossKameckVs2::`vtbl'
  0009:8055309D       aHitmarknormal
  0009:805530AB       aPowerstarc
  0009:805530B6       aWait_24
@@ -26507,6 +26671,7 @@
  0009:8055324F       aRecover_1
  0009:80553257       aSeBmKameckReco
  0009:8055326C       aGuard_0
+ 0009:80553274       _21BossKameckStateBattle::`vtbl'
  0009:80553380       aBody_1
  0009:80553385       aBodyhipdrop
  0009:8055339C       aBodyground
@@ -26573,13 +26738,18 @@
  0009:80553840       aSeBmLvBossBugF_5
  0009:8055385B       aSeBmLvBossBugF_6
  0009:80553878       aSeBmLvBossBugF_7
+ 0009:80553894       _22BossStinkBugActionBase::`vtbl'
  0009:805538FB       aOpen_1
  0009:80553900       aSeSyVsBossLast_0
+ 0009:80553918       _25BossStinkBugActionFlyHigh::`vtbl'
  0009:80553A83       aOpen_2
  0009:80553A88       aSeSyVsBossDama_0
+ 0009:80553AA0       _24BossStinkBugActionFlyLow::`vtbl'
  0009:80553B8B       aClose_0
  0009:80553B91       aGround_0
  0009:80553B98       aSeSyVsBossDama_1
+ 0009:80553BB0       _24BossStinkBugActionGround::`vtbl'
+ 0009:80553CA4       _27BossStinkBugActionSequencer::`vtbl'
  0009:80553D49       aBossstinkbugde
  0009:80553D5A       aAngrydemo
  0009:80553D79       aBattlewait_0
@@ -26601,6 +26771,7 @@
  0009:80553EDB       aSeBmBossBugBom_3
  0009:80553EF6       aSeBmBossBugBom_4
  0009:80553F0F       aSeBmBossBugBom_5
+ 0009:80553F30       _16BossStinkBugBomb::`vtbl'
  0009:80554021       aBossstinkbugde_0
  0009:80554032       aFinishdemo
  0009:80554052       aBattlewait_1
@@ -38500,7 +38671,6 @@
  0009:805CD91C       aWater_2
  0009:805CD922       aAreamovesphere_0
  0009:805CD931       aAstrooverlooka_0
- 0009:805D2300       _25CollisionPartsFilterActor::`vtbl'
  0009:805D2318       aSBcsv_6
  0009:805D2320       aJointname_3
  0009:805D232A       aTrans
@@ -40022,10 +40192,12 @@
  0003:8069E4B8       nw4r::db::sAssertionConsole(void)
  0003:8069E4C0       nw4r::lyt::Pane::typeInfo(void)
  0003:8069E4C8       nw4r::lyt::Layout::mspAllocator(void)
+ 0003:8069E508       CubeCameraArea::sCubeCategory(void)
+ 0003:8069E6C8       NrvBossStinkBugActionFlyLow::BossStinkBugActionFlyLowNrvFly::sInstance(void)
+ 0003:8069E6F4       NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance(void)
  0003:806A0608       NrvCoinGroup::CoinGroupNrvAppear::sInstance(void)
  0003:806A0610       NrvCoinGroup::CoinGroupNrvDemoAppear::sInstance(void)
  0003:806A067C       NrvSandUpDownTriRock::SandUpDownTriRockNrvStop::sInstance(void)
- 0003:806A1228       SingletonHolder<10GameSystem>::sInstance(void)
  0003:806A1E18       @unnamed@GalaxyMap_cpp@::GalaxyMapIdle::sInstance(void)
  0003:806A1E24       @unnamed@GalaxyMap_cpp@::GalaxyMapFadeinGalaxyMap::sInstance(void)
  0003:806A1E28       @unnamed@GalaxyMap_cpp@::GalaxyMapFadeinAstroMap::sInstance(void)
