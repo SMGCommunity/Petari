@@ -119,7 +119,26 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFlyDemo.o \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFunction.o \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugOpeningDemo.o \
-	$(BUILD_DIR)/asm/text1.o                        \
+    $(BUILD_DIR)/asm/Game/Boss/Boss.o \
+    $(BUILD_DIR)/asm/Game/Camera/Camera.o \
+    $(BUILD_DIR)/asm/Game/Demo/Demo.o \
+    $(BUILD_DIR)/asm/Game/Effect/Effect.o \
+    $(BUILD_DIR)/asm/Game/Enemy/Enemy.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/GameAudio.o \
+    $(BUILD_DIR)/asm/Game/Gravity/Gravity.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/LiveActor.o \
+    $(BUILD_DIR)/asm/Game/Map/Map.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapObj.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObj.o \
+    $(BUILD_DIR)/asm/Game/NPC/NPC.o \
+    $(BUILD_DIR)/asm/Game/Player/Player.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/RhythmLib.o \
+    $(BUILD_DIR)/asm/Game/Ride/Ride.o \
+    $(BUILD_DIR)/asm/Game/Scene/Scene.o \
+    $(BUILD_DIR)/asm/Game/Screen/Screen.o \
+    $(BUILD_DIR)/asm/Game/Speaker/Speaker.o \
+    $(BUILD_DIR)/asm/Game/System/System.o \
+    $(BUILD_DIR)/asm/Game/Util/Util.o \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
     $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
     $(BUILD_DIR)/asm/Game/JSupport/JSupport.o \

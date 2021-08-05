@@ -39,6 +39,12 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/Game/Boss/BossBegoman \
 			asm/Game/Boss/BossKameck \
 			asm/Game/Boss/BossStinkBug \
+			asm/Game/Camera \
+			asm/Game/Demo \
+			asm/Game/Effect \
+			asm/Game/Enemy \
+			asm/Game/GameAudio \
+			asm/Game/Gravity \
 			asm/Game/JAudio2 \
 			asm/nw4r  \
 			asm/Game/J2D \
@@ -49,7 +55,20 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/Game/JParticle \
 			asm/Game/JSupport \
 			asm/Game/JUtility \
-			asm/Game/NWC24
+			asm/Game/LiveActor	\
+			asm/Game/Map	\
+			asm/Game/MapObj	\
+			asm/Game/NameObj	\
+			asm/Game/NPC	\
+			asm/Game/NWC24	\
+			asm/Game/Player	\
+			asm/Game/RhythmLib	\
+			asm/Game/Ride	\
+			asm/Game/Scene	\
+			asm/Game/Screen	\
+			asm/Game/Speaker	\
+			asm/Game/System	\
+			asm/Game/Util	\
 
 # Inputs
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))

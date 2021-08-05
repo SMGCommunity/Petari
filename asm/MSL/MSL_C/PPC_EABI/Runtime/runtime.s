@@ -159,8 +159,8 @@ func_80517528:
 _savegpr_26:
 /* 8051752C 00512A6C  93 4B FF E8 */	stw r26, -0x18(r11)
 
-.global func_80517530
-func_80517530:
+.global _savegpr_27
+_savegpr_27:
 /* 80517530 00512A70  93 6B FF EC */	stw r27, -0x14(r11)
 
 .global func_80517534
