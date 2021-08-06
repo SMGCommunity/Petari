@@ -119,6 +119,29 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFlyDemo.o \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugFunction.o \
     $(BUILD_DIR)/asm/Game/Boss/BossStinkBug/BossStinkBugOpeningDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackun.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunAction.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBall.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBattleEgg.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBattleEggVs2.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBattleVs1Lv1.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBattleVs1Lv2.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunBattleVs2Lv1.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunDemoPosition.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunEggShell.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunFire.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunSequencer.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunStateAwake.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunStateDamage.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunStateFire.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTail.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTailNode.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTailPart.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTailRoot.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTrackFire.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunVs1.o \
+    $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunVs2.o \
     $(BUILD_DIR)/asm/Game/Boss/Boss.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
     $(BUILD_DIR)/asm/Game/Demo/Demo.o \
