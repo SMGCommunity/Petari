@@ -142,6 +142,15 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunTrackFire.o \
     $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunVs1.o \
     $(BUILD_DIR)/asm/Game/Boss/DinoPackun/DinoPackunVs2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/Dodoryu.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuHill.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuMove.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateLv1.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateLv2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateWait.o \
+    $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuUtil.o \
     $(BUILD_DIR)/asm/Game/Boss/Boss.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
     $(BUILD_DIR)/asm/Game/Demo/Demo.o \
