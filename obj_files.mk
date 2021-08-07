@@ -242,6 +242,26 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderThreadAttacher.o \
     $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderVitalSpot.o \
     $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBoss.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossAccesser.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossBaseJointPosition.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossBreakMovement.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossCoin.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossCore.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossFixParts.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossFixPartsBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossGuardWall.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossGuardWallPart.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossKillerGenerater.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossKillerGeneraterCircle.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossKinokoOneUp.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossLeg.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossMovableArea.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossRailMoveParts.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossRotateParts.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossShell.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepPoint.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepSequence.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepStartArea.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
     $(BUILD_DIR)/asm/Game/Demo/Demo.o \
     $(BUILD_DIR)/asm/Game/Effect/Effect.o \
