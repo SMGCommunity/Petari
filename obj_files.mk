@@ -191,7 +191,57 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateJumpAway.o \
     $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSwitchKeeper.o \
     $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaViewSwitchKeeper.o \
-    $(BUILD_DIR)/asm/Game/Boss/Boss.o \
+    $(BUILD_DIR)/asm/Game/Boss/OtaKing/OtaKing.o \
+    $(BUILD_DIR)/asm/Game/Boss/OtaKing/OtaKingLongFoot.o \
+    $(BUILD_DIR)/asm/Game/Boss/OtaKing/OtaKingMagma.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/Polta.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaActionBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaActionSequencer.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaArm.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaBattleLv1.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaBattleLv2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaFunction.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaGroundRock.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaGroundRockHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaRock.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaRockHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaSensorCtrl.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaStateAttackGround.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaStateGenerateRock.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaStateGroundRockAttack.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaStatePunch.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaStateStagger.o \
+    $(BUILD_DIR)/asm/Game/Boss/Polta/PoltaWaitStart.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBaby.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBabyRail.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBabyRailHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBoss.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBossBattleDirector.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBossFunc.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBossInfo.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBossRail.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishBossRailHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishGuard.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishGuardHolder.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishJointCalc.o \
+    $(BUILD_DIR)/asm/Game/Boss/SkeletalFishBoss/SkeletalFishRailControl.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpider.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderAcid.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderAction1st.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderAction2nd.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderActionBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderActionCocoon.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderDemo.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderEnvironment.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderFunction.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderGland.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderParts.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderSensorCtrl.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderStateSwoon.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderThreadAttacher.o \
+    $(BUILD_DIR)/asm/Game/Boss/TombSpider/TombSpiderVitalSpot.o \
+    $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBoss.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
     $(BUILD_DIR)/asm/Game/Demo/Demo.o \
     $(BUILD_DIR)/asm/Game/Effect/Effect.o \

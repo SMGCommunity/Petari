@@ -42,6 +42,11 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/Game/Boss/DinoPackun \
 			asm/Game/Boss/Dodoryu \
 			asm/Game/Boss/Koopa \
+			asm/Game/Boss/OtaKing \
+			asm/Game/Boss/Polta \
+			asm/Game/Boss/SkeletalFishBoss \
+			asm/Game/Boss/TombSpider \
+			asm/Game/Boss/TripodBoss \
 			asm/Game/Camera \
 			asm/Game/Demo \
 			asm/Game/Effect \
