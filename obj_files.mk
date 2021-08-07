@@ -151,6 +151,46 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateLv2.o \
     $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuStateWait.o \
     $(BUILD_DIR)/asm/Game/Boss/Dodoryu/DodoryuUtil.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/Koopa.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleMain.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleStairsBase.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleStairsVs1.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleStairsVs3.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleVs3Lv1.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaBattleVs3Lv2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaDemoPowerUp.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaDemoFallToPlanetVs3Lv2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaDemoFallToPlanetVs3Lv3.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaDemoJumpToPlanet.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaFigureBall.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaFireShort.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaFireStairs.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaFunction.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaParts.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaPowerUpSwitch.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaPlanetShadow.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaRestarterVs3.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaRockBreak.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSensorCtrl.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSequencer.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSubSequenceBattle.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSequencerVs1.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSequencerVs2.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSequencerVs3.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaShockWave.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackFireShort.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackFireLong.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackHipDrop.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackRoll.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackShockWave.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateAttackSpin.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateChaseRoll.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateDamageEscape.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateGuard.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaStateJumpAway.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaSwitchKeeper.o \
+    $(BUILD_DIR)/asm/Game/Boss/Koopa/KoopaViewSwitchKeeper.o \
     $(BUILD_DIR)/asm/Game/Boss/Boss.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
     $(BUILD_DIR)/asm/Game/Demo/Demo.o \
