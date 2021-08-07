@@ -53,6 +53,23 @@ ASM_DIRS := asm asm/runtime_libs/debugger/embedded/MetroTRK/Portable  \
 			asm/Game/Enemy \
 			asm/Game/GameAudio \
 			asm/Game/Gravity \
+			asm/Game/Gravity/ConeGravity \
+			asm/Game/Gravity/CubeGravity \
+			asm/Game/Gravity/JGeometry \
+			asm/Game/Gravity/ParallelGravity \
+			asm/Game/Gravity/DiskGravity \
+			asm/Game/Gravity/DiskTorusGravity \
+			asm/Game/Gravity/MapObjActorInitInfo \
+			asm/Game/Gravity/GlobalGravityObj \
+			asm/Game/Gravity/GravityFollower \
+			asm/Game/Gravity/GravityCreator \
+			asm/Game/Gravity/RailGraphNode \
+			asm/Game/Gravity/GravityInfo \
+			asm/Game/Gravity/PlanetGravity \
+			asm/Game/Gravity/PlanetGravityManager \
+			asm/Game/Gravity/PointGravity \
+			asm/Game/Gravity/SegmentGravity \
+			asm/Game/Gravity/WireGravity \
 			asm/Game/JAudio2 \
 			asm/nw4r  \
 			asm/Game/J2D \
