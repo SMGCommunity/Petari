@@ -376,7 +376,32 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazooka.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazookaCapsule.o \
     $(BUILD_DIR)/asm/Game/GameAudio/GameAudio.o \
-    $(BUILD_DIR)/asm/Game/Gravity/Gravity.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/ConeGravity.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setLocalMatrix.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setEnableBottom.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setTopCutRate.o \
+    $(BUILD_DIR)/asm/Game/Gravity/JGeometry/isZero.o \
+    $(BUILD_DIR)/asm/Game/Gravity/CubeGravity/CubeGravity.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ParallelGravity/setRangeBox.o \
+    $(BUILD_DIR)/asm/Game/Gravity/CubeGravity/CubeGravity_methods.o \
+    $(BUILD_DIR)/asm/Game/Gravity/JGeometry/normalize.o \
+    $(BUILD_DIR)/asm/Game/Gravity/DiskGravity/DiskGravity.o \
+    $(BUILD_DIR)/asm/Game/Gravity/DiskTorusGravity/setPosition.o \
+    $(BUILD_DIR)/asm/Game/Gravity/DiskGravity/DiskGravity_methods.o \
+    $(BUILD_DIR)/asm/Game/Gravity/DiskTorusGravity/DiskTorusGravity.o \
+    $(BUILD_DIR)/asm/Game/Gravity/MapObjActorInitInfo/setupFarClipping.o \
+    $(BUILD_DIR)/asm/Game/Gravity/DiskTorusGravity/DiskTorusGravity_methods.o \
+    $(BUILD_DIR)/asm/Game/Gravity/GlobalGravityObj/GlobalGravityObj_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/GravityFollower/GravityFollower_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/GravityCreator/GravityCreator_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/RailGraphNode/RailGraphNode.o \
+    $(BUILD_DIR)/asm/Game/Gravity/GravityInfo/GravityInfo.o \
+    $(BUILD_DIR)/asm/Game/Gravity/ParallelGravity/ParallelGravity_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/PlanetGravity/PlanetGravity_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/PlanetGravityManager/PlanetGravityManager_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/PointGravity/PointGravity_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/SegmentGravity/SegmentGravity_all.o \
+    $(BUILD_DIR)/asm/Game/Gravity/WireGravity/WireGravity_all.o \
     $(BUILD_DIR)/asm/Game/LiveActor/LiveActor.o \
     $(BUILD_DIR)/asm/Game/Map/Map.o \
     $(BUILD_DIR)/asm/Game/MapObj/MapObj.o \
