@@ -7,11 +7,13 @@ EXTAB_O_FILES :=                                    \
 EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/extabindex.o
 
-TEXT_O_FILES := 					            \
+NW4R_O_FILES := 					            \
     $(BUILD_DIR)/asm/nw4r/libnw4r_ut.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_db.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_math.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_lyt.o   \
+
+GAME_ANIM_O_FILES := \
     $(BUILD_DIR)/asm/Game/Animation/AnmPlayer.o \
     $(BUILD_DIR)/asm/Game/Animation/BckCtrl.o \
     $(BUILD_DIR)/asm/Game/Animation/BpkPlayer.o \
@@ -23,7 +25,9 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Animation/MaterialAnmBuffer.o \
     $(BUILD_DIR)/asm/Game/Animation/XanimeCore.o \
     $(BUILD_DIR)/asm/Game/Animation/XanimePlayer.o \
-    $(BUILD_DIR)/asm/Game/Animation/XanimeResource.o \
+    $(BUILD_DIR)/asm/Game/Animation/XanimeResource.o
+
+AREAOBJ_O_FILES := \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaForm.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaFormDrawer.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaObj.o    \
@@ -60,7 +64,9 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/AreaObj/SunLightArea.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/SwitchArea.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/WarpCube.o    \
-    $(BUILD_DIR)/asm/Game/AreaObj/WaterArea.o    \
+    $(BUILD_DIR)/asm/Game/AreaObj/WaterArea.o 
+
+TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/AudioLib/AudSystem.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/AudSystemVolumeController.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/AudAudience.o    \
@@ -402,7 +408,67 @@ TEXT_O_FILES := 					            \
     $(BUILD_DIR)/asm/Game/Gravity/PointGravity/PointGravity_all.o \
     $(BUILD_DIR)/asm/Game/Gravity/SegmentGravity/SegmentGravity_all.o \
     $(BUILD_DIR)/asm/Game/Gravity/WireGravity/WireGravity_all.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActiveActorList.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorAnimKeeper.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorCameraInfo.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorJointCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorLightCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorPadAndCameraCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorStateBase.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ActorStateKeeper.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/AllLiveActorGroup.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/AnimationRandomPlayer.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Binder.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ClippingActorHolder.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ClippingActorInfo.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ClippingDirector.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ClippingGroupHolder.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ClippingJudge.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/DisplayListMaker.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/DynamicJointCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/EffectKeeper.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/FaceJointCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/FlashingCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/HitSensor.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/HitSensorInfo.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/HitSensorKeeper.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/IKJointCtrl.o \
     $(BUILD_DIR)/asm/Game/LiveActor/LiveActor.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/LiveActorFlag.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/LiveActorGroup.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/LiveActorGroupArray.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/LodCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/MaterialCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/MessageSensorHolder.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/MirrorActor.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/MirrorCamera.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/MirrorReflectionModel.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ModelManager.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ModelObj.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Nerve.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/PartsModel.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/RailRider.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/SensorHitChecker.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowController.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowDrawer.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowSurfaceBox.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowSurfaceCircle.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowSurfaceDrawer.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowSurfaceOval.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeBox.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeCylinder.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeDrawer.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeFlatModel.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeLine.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeModel.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeOval.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeOvalPole.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Shadow/ShadowVolumeSphere.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/SimpleJ3DModelDrawer.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/Spine.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/SpotMarkLight.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/ViewGroupCtrl.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/VolumeModelDrawer.o \
     $(BUILD_DIR)/asm/Game/Map/Map.o \
     $(BUILD_DIR)/asm/Game/MapObj/MapObj.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObj.o \
