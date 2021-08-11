@@ -486,7 +486,21 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjRegister.o \
     $(BUILD_DIR)/asm/Game/NPC/NPC.o \
     $(BUILD_DIR)/asm/Game/Player/Player.o \
-    $(BUILD_DIR)/asm/Game/RhythmLib/RhythmLib.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmSeqParser.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudBgmTempoAdjuster.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeTrack.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeChannelMgr.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeSeqCtrl.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeSeqReader.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeSeqParser.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeTrackCallback.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMePlayer.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmMeSystem.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeHandles.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudMeObject.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudChordInfo.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmHolder.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmWrap.o \
     $(BUILD_DIR)/asm/Game/Ride/Ride.o \
     $(BUILD_DIR)/asm/Game/Scene/Scene.o \
     $(BUILD_DIR)/asm/Game/Screen/Screen.o \
