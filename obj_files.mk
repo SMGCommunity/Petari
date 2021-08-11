@@ -471,7 +471,19 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/LiveActor/VolumeModelDrawer.o \
     $(BUILD_DIR)/asm/Game/Map/Map.o \
     $(BUILD_DIR)/asm/Game/MapObj/MapObj.o \
+    $(BUILD_DIR)/asm/Game/NameObj/ModelChangableObjFactory.o \
+    $(BUILD_DIR)/asm/Game/NameObj/MovementOnOffGroupHolder.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObj.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjAdaptor.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjArchiveListCollector.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjCategoryList.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjExecuteHolder.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjFactory.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjFinder.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjGroup.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjHolder.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjListExecutor.o \
+    $(BUILD_DIR)/asm/Game/NameObj/NameObjRegister.o \
     $(BUILD_DIR)/asm/Game/NPC/NPC.o \
     $(BUILD_DIR)/asm/Game/Player/Player.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/RhythmLib.o \
