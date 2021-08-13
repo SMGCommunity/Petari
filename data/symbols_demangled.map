@@ -5,6 +5,8 @@
  0001:800041A8       __init_registers
  0001:80004238       __init_data
  0001:800042E0       __init_hardware
+ 0001:80004338       memcpy
+ 0001:8000443C       memset
  0001:800044C0       aMetrowerksTarg
  0002:800070A0       nw4r::ut::detail::LinkListImpl::~LinkListImpl((void))
  0002:80007124       nw4r::ut::detail::LinkListImpl::Erase((nw4r::ut::detail::LinkListImpl::Iterator))
@@ -40,7 +42,6 @@
  0002:80007BF8       nw4r::ut::detail::ResFontBase::GetCellHeight(const(void))
  0002:80007C00       TriggerChecker::getLevel(const(void))
  0002:80007C08       nw4r::ut::detail::ResFontBase::GetCellWidth(const(void))
- 0002:80007C10       FileSelectIconID::isMii(const(void))
  0002:80007C18       nw4r::ut::detail::ResFontBase::GetMaxCharWidth(const(void))
  0002:80007C28       nw4r::ut::detail::ResFontBase::GetType(const(void))
  0002:80007C30       nw4r::ut::detail::ResFontBase::GetTextureFormat(const(void))
@@ -147,7 +148,6 @@
  0002:8000D5D0       nw4r::lyt::Layout::SetAnimationEnable((nw4r::lyt::AnimTransform *,bool))
  0002:8000D5F4       nw4r::lyt::Layout::CalculateMtx((nw4r::lyt::DrawInfo const &))
  0002:8000D614       nw4r::lyt::Layout::Draw((nw4r::lyt::DrawInfo const &))
- 0002:8000D620       TombSpiderActionBase::init((void))
  0002:8000D634       nw4r::lyt::Layout::Animate((ulong))
  0002:8000D640       DemoPositionController::control((void))
  0002:8000D654       nw4r::lyt::Layout::GetLayoutRect(const(void))
@@ -236,7 +236,6 @@
  0002:8001212C       MapObjActorInitInfo::setupSound((long))
  0002:80012134       nw4r::lyt::Material::~Material((void))
  0002:800121E0       nw4r::lyt::Material::ReserveGXMem((uchar,uchar,uchar,uchar,bool,uchar,uchar,bool,bool,bool,bool))
- 0002:8001294C       WPadPointer::getEnablePastCount(const(void))
  0002:8001295C       nw4r::lyt::Material::GetTexSRTAry((void))
  0002:80012974       nw4r::lyt::Material::GetTexCoordGenAry((void))
  0002:80012998       nw4r::lyt::Material::GetChanCtrlAry((void))
@@ -316,7 +315,7 @@
  0002:80016FBC       JGeometry::TUtil<f>::sqrt((float))
  0002:80016FF8       JGeometry::SMatrix34C<f>::set((float,float,float,float,float,float,float,float,float,float,float,float))
  0002:8001703C       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::getQuat(const(JGeometry::TQuat4<f> &))
- 0002:80017268       JGeometry::TBox2<f>::set((float,float,float,float))
+ 0002:80017268       JGeometry::TVec4<f>::set<f>(void (float,float,float,float))
  0002:8001727C       JGeometry::TBox2<f>::set((JGeometry::TBox<Q29JGeometry8TVec2<f>> const &))
  0002:800172A0       AnmPlayerBase::AnmPlayerBase((ResTable const *))
  0002:800172F8       AnmPlayerBase::update((void))
@@ -391,6 +390,7 @@
  0002:80018A94       JGeometry::TVec3<f>::TVec3<f>((void))
  0002:80018A98       JGeometry::TVec3<f>::zero((void))
  0002:80018AAC       XtransformInfo::__as((XtransformInfo const &))
+ 0002:80018B14       JGeometry::TVec3<f>::__as((JGeometry::TVec3<f> const &))
  0002:80018B28       JGeometry::TVec3<f>::__ml(const(float))
  0002:80018B8C       JGeometry::TVec3<f>::TVec3<f>((JGeometry::TVec3<f> const &))
  0002:80018BA0       JGeometry::TVec3<f>::__apl((JGeometry::TVec3<f> const &))
@@ -496,14 +496,13 @@
  0002:8001CA44       XanimeResourceTable::XanimeResourceTable((ResourceHolder *,XanimeGroupInfo *,XanimeAuxInfo *,XanimeOfsInfo *,XanimeBckTable *,XanimeBckTable2 *,XanimeBckTable3 *,XanimeBckTable4 *,XanimeSwapTable *))
  0002:8001CB90       XanimeResourceTable::getIndex(const(XanimeDirectory *,char const *))
  0002:8001CC0C       XanimeResourceTable::getGroupInfo(const(char const *,XanimeDirectory *))
- 0002:8001CCE4       MR::changeEventCameraTarget((ActorCameraInfo const *,char const *,CameraTargetArg const &))
  0002:8001CDBC       XanimeResourceTable::createSortTable((void))
  0002:8001CE48       XanimeGroupInfo::init((void))
  0002:8001CE9C       GameDataTemporaryInGalaxy::resetStageResultStarPieceParam((void))
  0002:8001CEAC       XanimeResourceTable::findResMotion(const(char const *))
  0002:8001CF18       XanimeResourceTable::findStringMotion(const(char const *))
  0002:8001CF44       JGeometry::TVec3<f>::dot(const(JGeometry::TVec3<f> const &))
- 0002:8001CF64       Vec::__as((Vec const &))
+ 0002:8001CF64       JGeometry::TVec3<f>::set<f>(void (JGeometry::TVec3<f> const &))
  0002:8001CF80       JGeometry::TVec3<f>::add((JGeometry::TVec3<f> const &))
  0002:8001CFA4       JMAAsinRadian(float)
  0002:8001CFC0       NPCActor::turnToPlayer((void))
@@ -623,7 +622,6 @@
  0002:8001FFE0       ChangeBgmCube::ChangeBgmCube((int,char const *))
  0002:800200B4       ChangeBgmCube::movement((void))
  0002:8002044C       JGeometry::TVec3<f>::setLength((float))
- 0002:80020514       JGeometry::TVec3<f>::negate((JGeometry::TVec3<f> const &))
  0002:80020530       JGeometry::TUtil<f>::inv_sqrt((float))
  0002:80020568       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::getXDir(const(JGeometry::TVec3<f> &))
  0002:80020580       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::getYDir(const(JGeometry::TVec3<f> &))
@@ -720,7 +718,6 @@
  0002:80023DD8       MR::calcRailTotalLengthForMercator((LiveActor const *,float))
  0002:80023F20       MR::getDivideMercatorRailPosition((DivideMercatorRailPosInfo *,LiveActor const *,ulong,float,ulong))
  0002:800242DC       MR::createMapPartsRailMoverForMercator((LiveActor *,JMapInfoIter const &,bool))
- 0002:80024414       JMACosRadian(float)
  0002:80024458       JMASinRadian(float)
  0002:800244C0       MR::min((float,float))
  0002:800244DC       MR::max((float,float))
@@ -783,7 +780,6 @@
  0002:80025E3C       WaterArea::~WaterArea((void))
  0002:80025E98       WaterAreaMgr::~WaterAreaMgr((void))
  0002:80025EF0       JASHeap::~JASHeap((void))
- 0002:80025F8C       JGeometry::SMatrix34C<f>::set((JGeometry::SMatrix34C<f> const &))
  0002:80025FC0       AudNewAudSystem_(JAUSectionHeap *,JKRArchive *,JKRArchive *,JKRArchive *,int)
  0002:80026028       @unnamed@AudSystem_cpp@::init_JAS_JAI_((JKRSolidHeap *))
  0002:80026158       AudNewAudSystem(JKRSolidHeap *,void *,JKRArchive *,JKRArchive *,JKRArchive *,JKRArchive *)
@@ -870,7 +866,10 @@
  0002:80029AEC       JASSoundParams::JASSoundParams((void))
  0002:80029B08       JASLfo::setPitch((float))
  0002:80029B10       __sinit__AudSystem_cpp
- 0002:80029C14       MEMDestroyExpHeap
+ 0002:80029C14       JASMemPool<10AudMeTrack>::JASMemPool<10AudMeTrack>((void))
+ 0002:80029C44       JASMemPool<10AudMeTrack>::~JASMemPool<10AudMeTrack>((void))
+ 0002:80029C9C       JASMemPool<5AudMe>::JASMemPool<5AudMe>((void))
+ 0002:80029CCC       JASMemPool<5AudMe>::~JASMemPool<5AudMe>((void))
  0002:80029E34       str_80492DC8
  0002:80029E44       str_804A2620
  0002:80029E54       str_8036BAF8
@@ -998,7 +997,6 @@
  0002:8002F0A8       AudMultiBgm::changeTrackMuteState((long,long))
  0002:8002F2A8       CameraTargetPlayer::getSideVec(const(void))
  0002:8002F2B8       MR::isExistEffectKeeper((LayoutActor const *))
- 0002:8002F2BC       MR::hasMapPartsShadow((long))
  0002:8002F2C8       AudSingleBgm::pause((bool))
  0002:8002F2E4       NWC24MessengerSub::SendState::isEndSysInfoMini(const(void))
  0002:8002F2FC       AudSingleBgm::isPaused(const(void))
@@ -1224,7 +1222,7 @@
  0002:800370B0       JointControlDelegator<8Tamakoro>::calcJointMatrix((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:80037118       JointControlDelegator<8Tamakoro>::calcJointMatrixAfterChild((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:80037180       BossBegomanHead::~BossBegomanHead((void))
- 0002:800371D8       JGeometry::TVec3<f>::set<i>(void (int,int,int))
+ 0002:800371D8       JGeometry::TVec3<f>::TVec3<f>(void *(int,int,int))
  0002:80037238       LiveActor::~LiveActor((void))
  0002:80037290       BossKameck::BossKameck((char const *,char const *))
  0002:8003738C       BossKameck::getMoveRail((long))
@@ -1333,7 +1331,6 @@
  0002:8003AF44       BossKameckStateBattle::exeHideMove((void))
  0002:8003B080       BossKameckStateBattle::exeHideMoveEnd((void))
  0002:8003B170       BossKameckStateBattle::exeSummonKameckWait((void))
- 0002:8003B1E8       KoopaStateJumpAway::exeJumpStart((void))
  0002:8003B250       BossKameckStateBattle::exeAttackWait((void))
  0002:8003B320       BossKameckStateBattle::exeAttack((void))
  0002:8003B424       BossKameckStateBattle::exeDamage((void))
@@ -1558,6 +1555,7 @@
  0002:80044F8C       DinoPackunAction::updateWalk((long,float,long))
  0002:8004504C       DinoPackunAction::updateChase((long,float,float,float,long,long))
  0002:8004513C       DinoPackunAction::selectTurnDirection((void))
+ 0002:80045184       DinoPackunAction::~DinoPackunAction((void))
  0002:800451DC       DinoPackunAction::updateStart((void))
  0002:80045250       DinoPackunAction::updateFind((long,float))
  0002:80045338       DinoPackunAction::updateCoolDown((long))
@@ -1568,7 +1566,6 @@
  0002:80045748       DinoPackunBall::calcAndSetBaseMtx((void))
  0002:80045784       DinoPackunBall::addNodeVelocity((JGeometry::TVec3<f> const &))
  0002:80045824       DinoPackunBall::setWeakSensor((HitSensor *))
- 0002:8004582C       DinoPackunTailRoot::createJointControllerOwn((LiveActor *,char const *))
  0002:80045908       DemoStarter::update((void))
  0002:80045940       DinoPackunBall::requestUnLockPosition((void))
  0002:80045980       DinoPackunBall::addDodgeTargetVelocity((void))
@@ -1585,6 +1582,19 @@
  0002:80046164       DinoPackunBall::exeReverse((void))
  0002:80046228       DinoPackunBall::exeRebound((void))
  0002:80046298       __sinit__DinoPackunBall_cpp
+ 0002:800462E4       NrvDinoPackunBall::DinoPackunBallNrvWait::DinoPackunBallNrvWait((void))
+ 0002:800462F4       NrvDinoPackunBall::DinoPackunBallNrvShoot::DinoPackunBallNrvShoot((void))
+ 0002:80046304       NrvDinoPackunBall::DinoPackunBallNrvCharge::DinoPackunBallNrvCharge((void))
+ 0002:80046314       NrvDinoPackunBall::DinoPackunBallNrvReverse::DinoPackunBallNrvReverse((void))
+ 0002:80046324       NrvDinoPackunBall::DinoPackunBallNrvRebound::DinoPackunBallNrvRebound((void))
+ 0002:80046334       NrvDinoPackunBall::DinoPackunBallNrvLock::DinoPackunBallNrvLock((void))
+ 0002:80046370       JointControlDelegator<18DinoPackunTailNode>::~JointControlDelegator<18DinoPackunTailNode>((void))
+ 0002:800463B0       JointControlDelegator<18DinoPackunTailNode>::calcJointMatrix((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
+ 0002:80046418       JointControlDelegator<18DinoPackunTailNode>::calcJointMatrixAfterChild((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
+ 0002:80046480       DinoPackunBall::~DinoPackunBall((void))
+ 0002:800464D8       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvTurn::DinoPackunBattleEggNrvTurn((void))
+ 0002:800464E8       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvWalk::DinoPackunBattleEggNrvWalk((void))
+ 0002:800464F8       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvDamage::DinoPackunBattleEggNrvDamage((void))
  0002:80046508       DinoPackunBattleEgg::DinoPackunBattleEgg((DinoPackun *))
  0002:80046560       DinoPackunBattleEgg::init((void))
  0002:800465B0       DinoPackunBattleEgg::appear((void))
@@ -1594,8 +1604,14 @@
  0002:80046828       DinoPackunBattleVs1Lv2::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:800468B8       DinoPackunBattleEgg::exeTurn((void))
  0002:8004696C       DinoPackunBattleEgg::exeWalk((void))
- 0002:80046A48       __sinit__DinoPackunBattleEggVs2_cpp
- 0002:80046A94       NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv3::execute(const(Spine *))
+ 0002:800469F0       DinoPackunBattleEgg::~DinoPackunBattleEgg((void))
+ 0002:80046A48       __sinit__DinoPackunBattleEgg_cpp
+ 0002:80046A94       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvDamage::execute(const(Spine *))
+ 0002:80046AE4       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvWalk::execute(const(Spine *))
+ 0002:80046AEC       NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvTurn::execute(const(Spine *))
+ 0002:80046AF4       NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvTurn::DinoPackunBattleEggVs2NrvTurn((void))
+ 0002:80046B04       NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvWalk::DinoPackunBattleEggVs2NrvWalk((void))
+ 0002:80046B14       NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvDamage::DinoPackunBattleEggVs2NrvDamage((void))
  0002:80046B24       DinoPackunBattleEggVs2::DinoPackunBattleEggVs2((DinoPackun *))
  0002:80046B8C       DinoPackunBattleEggVs2::init((void))
  0002:80046C08       DinoPackunBattleEggVs2::appear((void))
@@ -1656,6 +1672,7 @@
  0002:80049AA4       DinoPackunDemo::exeAngryDemo((void))
  0002:80049C84       DinoPackunDemo::exeDownDemo((void))
  0002:80049DC8       DinoPackunDemo::exeAppearPowerStar((void))
+ 0002:80049FBC       DinoPackunDemoPosition::DinoPackunDemoPosition((char const *))
  0002:80049FF8       DinoPackunDemoPosition::init((JMapInfoIter const &))
  0002:8004A068       DinoPackunDemoPosition::startOpeningDemo((void))
  0002:8004A0BC       DinoPackunDemoPosition::exeOpeningDemo((void))
@@ -1686,6 +1703,7 @@
  0002:8004B024       DinoPackunStateDamage::isDamageMessage(const(ulong))
  0002:8004B034       DinoPackunStateDamage::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:8004B13C       MultiEventCamera::setEndCameraTypeSoon((void))
+ 0002:8004B148       DinoPackunStateDamage::setDamageNormal((void))
  0002:8004B160       DinoPackunStateDamage::exePunched((void))
  0002:8004B220       DinoPackunStateDamage::exePulled((void))
  0002:8004B408       DinoPackunStateDamage::exeEggBroken((void))
@@ -1694,7 +1712,7 @@
  0002:8004B7F0       DinoPackunStateDamage::updateDamage((void))
  0002:8004B8E8       __sinit__DinoPackunStateDamage_cpp
  0002:8004B9E4       NrvDinoPackunStateDamage::DinoPackunStateDamageNrvTryPulledDemo::execute(const(Spine *))
- 0002:8004BA38       OceanRingBloomDrawer::OceanRingBloomDrawer((OceanRing *))
+ 0002:8004BA38       DinoPackunStateFire::DinoPackunStateFire((DinoPackun *))
  0002:8004BA8C       DinoPackunStateFire::init((void))
  0002:8004BAE0       DinoPackunStateFire::exeNormal((void))
  0002:8004BB48       DinoPackunStateFire::exeFireSign((void))
@@ -1719,7 +1737,7 @@
  0002:8004C784       DinoPackunTail::addAccelToBck((void))
  0002:8004C82C       DinoPackunTail::getTailNodePosition(const(JGeometry::TVec3<f> *,long))
  0002:8004C844       DinoPackunTail::getEndTailPosition(const(JGeometry::TVec3<f> *))
- 0002:8004C868       ShadowControllerList::getController(const(ulong))
+ 0002:8004C868       DinoPackunTail::getNode(const(ulong))
  0002:8004C878       DinoPackunTailNode::DinoPackunTailNode((char const *,DinoPackun *))
  0002:8004C928       DinoPackunTailNode::createJointController((LiveActor *,char const *))
  0002:8004CA30       DinoPackunTailNode::resetJoint((void))
@@ -1742,8 +1760,12 @@
  0002:8004D1F8       BegomanBaby::appear((void))
  0002:8004D238       WipeKoopa::forceOpen((void))
  0002:8004D2C0       NrvDinoPackunTailPart::DinoPackunTailPartNrvWait::execute(const(Spine *))
- 0002:8004D3A8       WipeGameOver::forceOpen((void))
+ 0002:8004D36C       DinoPackunTailRoot::DinoPackunTailRoot((char const *,DinoPackun *))
+ 0002:8004D3A8       DinoPackunTailRoot::init((JMapInfoIter const &))
+ 0002:8004D3E8       DinoPackunTailRoot::createJointControllerOwn((LiveActor *,char const *))
  0002:8004D4C4       DinoPackunTailRoot::calcJointDirection((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
+ 0002:8004D588       DinoPackunTailRoot::addNodeVelocity((JGeometry::TVec3<f> const &))
+ 0002:8004D58C       JointControlDelegator<18DinoPackunTailRoot>::~JointControlDelegator<18DinoPackunTailRoot>((void))
  0002:8004D6F4       DinoPackunTrackFireHolder::DinoPackunTrackFireHolder((long))
  0002:8004D7F0       InvisiblePolygonObj::InvisiblePolygonObj((char const *))
  0002:8004D834       DinoPackunTrackFire::init((JMapInfoIter const &))
@@ -1751,8 +1773,8 @@
  0002:8004D9FC       DinoPackunTrackFire::appearAndSetPos((JGeometry::TVec3<f> const &))
  0002:8004DA78       DinoPackunTrackFire::exeWait((void))
  0002:8004DB34       DinoPackunTrackFire::exeGround((void))
- 0002:8004DCA8       TrickRabbitSnowCollect::getBaseMtx(const(void))
- 0002:8004DCB0       DinoPackunVs2::DinoPackunVs2((DinoPackun *))
+ 0002:8004DCA8       DinoPackunTrackFire::getBaseMtx(const(void))
+ 0002:8004DCB0       DinoPackunVs1::DinoPackunVs1((DinoPackun *))
  0002:8004DD0C       DinoPackunVs1::init((void))
  0002:8004DDF8       DemoStarter::start((void))
  0002:8004DE3C       DinoPackunVs2::exeCryDemo((void))
@@ -1760,6 +1782,10 @@
  0002:8004DF30       DinoPackunVs1::exeBattleLv1((void))
  0002:8004DFDC       DinoPackunVs1::exeBattleLv3((void))
  0002:8004E0AC       DinoPackunVs2::exeDownDemo((void))
+ 0002:8004E28C       NrvDinoPackunVs1::DinoPackunVs1NrvWaitStart::execute(const(Spine *))
+ 0002:8004E290       DinoPackunVs1::getVsCount(const(void))
+ 0002:8004E298       DinoPackunVs1::isUseEggShell(const(void))
+ 0002:8004E2A0       DinoPackunVs2::DinoPackunVs2((DinoPackun *))
  0002:8004E2FC       DinoPackunVs2::init((void))
  0002:8004E46C       DinoPackunVs2::exeOpeningDemo((void))
  0002:8004E59C       DinoPackunVs2::exeBattleLv1((void))
@@ -1802,7 +1828,6 @@
  0002:8004F95C       Dodoryu::appearBank((void))
  0002:8004F964       Dodoryu::leaveRabbit((void))
  0002:8004F9A8       Dodoryu::resetRabbit((void))
- 0002:8004F9AC       MR::isSensorPlayer((HitSensor const *))
  0002:8004F9B4       Dodoryu::calcRabbitDir(const(JGeometry::TVec3<f> *))
  0002:8004FA34       Dodoryu::displayRabbitMessage((void))
  0002:8004FA44       Dodoryu::calcAndSetBaseMtx((void))
@@ -1894,7 +1919,6 @@
  0002:800538B4       DodoryuStateBase::calcVerticalizedDir((JGeometry::TVec3<f> *,JGeometry::TVec3<f> const &))
  0002:80053940       JGeometry::negateInternal((float const *,float *))
  0002:8005395C       DodoryuStateLv1::DodoryuStateLv1((Dodoryu *,char const *))
- 0002:800539E0       TombSpiderVitalSpot::init((JMapInfoIter const &))
  0002:80053A2C       DodoryuStateLv1::control((void))
  0002:80053AA8       DodoryuStateLv1::exeHide((void))
  0002:80053BA0       DodoryuStateLv1::exeAppearSign((void))
@@ -2070,10 +2094,13 @@
  0002:8005BD38       KoopaBattleVs3Lv2::attackSensor((HitSensor *,HitSensor *))
  0002:8005BE1C       KoopaBattleVs3Lv2::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
  0002:8005BF34       KoopaBattleVs3Lv2::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
+ 0002:8005C190       KoopaDemoPowerUp::~KoopaDemoPowerUp((void))
+ 0002:8005C1E8       KoopaDemoPowerUp::KoopaDemoPowerUp((Koopa *))
  0002:8005C23C       KoopaDemoPowerUp::init((void))
  0002:8005C2A4       KoopaDemoPowerUp::kill((void))
  0002:8005C304       KoopaDemoPowerUp::exeWaitDemo((void))
  0002:8005C450       KoopaDemoPowerUp::exeDemo((void))
+ 0002:8005C61C       KoopaDemoFallToPlanetVs3Lv2::KoopaDemoFallToPlanetVs3Lv2((Koopa *))
  0002:8005C670       KoopaDemoFallToPlanetVs3Lv3::init((void))
  0002:8005C6C4       KoopaDemoFallToPlanetVs3Lv3::appear((void))
  0002:8005C718       KoopaDemoFallToPlanetVs3Lv3::kill((void))
@@ -2083,16 +2110,19 @@
  0002:8005C8F8       KoopaDemoFallToPlanetVs3Lv2::exeLand((void))
  0002:8005C99C       KoopaDemoJumpToPlanet::exeWaitPlayer((void))
  0002:8005CA6C       __sinit__GameSystem_cpp
+ 0002:8005CB28       KoopaDemoFallToPlanetVs3Lv3::KoopaDemoFallToPlanetVs3Lv3((Koopa *))
  0002:8005CC44       KoopaDemoFallToPlanetVs3Lv3::exeWaitFallDemo((void))
  0002:8005CC9C       KoopaDemoFallToPlanetVs3Lv3::exeFallOutside((void))
  0002:8005CEA0       KoopaDemoFallToPlanetVs3Lv3::exeFallInside((void))
  0002:8005CF14       KoopaDemoFallToPlanetVs3Lv3::exeLand((void))
  0002:8005CFB8       KoopaDemoFallToPlanetVs3Lv3::exeWaitPlayer((void))
+ 0002:8005D13C       KoopaDemoJumpToPlanet::KoopaDemoJumpToPlanet((Koopa *))
  0002:8005D190       KoopaDemoJumpToPlanet::init((void))
  0002:8005D1F8       KoopaDemoJumpToPlanet::kill((void))
  0002:8005D27C       KoopaDemoJumpToPlanet::exeStart((void))
  0002:8005D300       KoopaDemoJumpToPlanet::exeFall((void))
  0002:8005D410       KoopaDemoJumpToPlanet::exeLand((void))
+ 0002:8005D620       KoopaFigureBall::~KoopaFigureBall((void))
  0002:8005D67C       KoopaFigureBall::KoopaFigureBall((char const *,Koopa *,float,MR::ActorMoveParam const *))
  0002:8005D708       KoopaFigureBall::init((JMapInfoIter const &))
  0002:8005D764       KoopaFigureBall::makeActorAppeared((void))
@@ -2112,6 +2142,7 @@
  0002:8005E1DC       KoopaFireShort::attackSensor((HitSensor *,HitSensor *))
  0002:8005E2F8       KoopaFireShort::updateFly((void))
  0002:8005E3BC       KoopaFireShort::updateFrontAndVelocity((void))
+ 0002:8005E500       KoopaFireStairs::~KoopaFireStairs((void))
  0002:8005E55C       KoopaFireStairs::KoopaFireStairs((char const *,bool))
  0002:8005E5E0       KoopaFireStairs::init((JMapInfoIter const &))
  0002:8005E724       KoopaFireStairs::appear((void))
@@ -2120,7 +2151,8 @@
  0002:8005E99C       KoopaFireStairs::exeFly((void))
  0002:8005EC38       KoopaFireStairs::exeBreak((void))
  0002:8005ECB4       KoopaFireStairs::calcAndSetBaseMtx((void))
- 0002:8005ED84       KoopaFunction::createKoopaVs2((char const *))
+ 0002:8005ED84       KoopaFunction::createKoopaVs1((char const *))
+ 0002:8005EDEC       KoopaFunction::createKoopaVs2((char const *))
  0002:8005EE54       KoopaFunction::createKoopaVs3((char const *))
  0002:8005EEBC       RunawayRabbit::setMessage((void))
  0002:8005EEE4       KoopaFunction::registerBattleMapStair((KoopaBattleMapStair *))
@@ -2128,15 +2160,9 @@
  0002:8005F020       KoopaFunction::isKoopaSightPlayer((Koopa const *,MR::ActorSightParam const &))
  0002:8005F038       KoopaFunction::moveAndTurnKoopaToPlayer((Koopa *,MR::ActorMoveParam const &))
  0002:8005F098       KoopaFunction::isKoopaVs1((Koopa const *))
- 0002:8005F0A0       MR::isMapPartsRailSpeedCalcTypeTime((long))
  0002:8005F0B0       KoopaFunction::isKoopaVs2((Koopa const *))
- 0002:8005F0B4       NANDErrorSequence::isResultNoSave(const(void))
- 0002:8005F0B8       MR::isMapPartsRailInitPosTypePoint0((long))
  0002:8005F0C8       KoopaFunction::isKoopaVs3((Koopa const *))
- 0002:8005F0CC       NANDErrorSequence::isResultFileCorrupted(const(void))
- 0002:8005F0D0       MR::isMsgPlayerHipDrop((ulong))
  0002:8005F0E0       KoopaFunction::isKoopaLv1((Koopa const *))
- 0002:8005F0E4       ReceiverTagMail::isDone(const(void))
  0002:8005F0F8       KoopaFunction::isKoopaLv2((Koopa const *))
  0002:8005F110       KoopaFunction::isKoopaLv3((Koopa const *))
  0002:8005F114       MR::isTalkTalking((TalkMessageCtrl const *))
@@ -2181,7 +2207,8 @@
  0002:8005F654       KoopaFunction::registerKoopaPowerUpSwitch((LiveActor *))
  0002:8005F688       KoopaFunction::getKoopaPowerUpSwitch((Koopa *))
  0002:8005F694       @unnamed@KoopaFunction_cpp@::tryStartCameraDemo((Koopa *,char const *,char const *,char const *,bool))
- 0002:8005F76C       PoltaFunction::appearBlackRockCircle((Polta *,JGeometry::TVec3<f> const &,float,long,long))
+ 0002:8005F76C       KoopaFunction::tryStartKoopaAndMarioCameraDemo((Koopa *,char const *,char const *,char const *))
+ 0002:8005F774       KoopaFunction::tryStartKoopaCameraDemo((Koopa *,char const *,char const *,char const *))
  0002:8005F77C       KoopaFunction::tryEndKoopaCameraDemo((Koopa *,char const *,char const *))
  0002:8005F7FC       KoopaFunction::getKoopaDemoPeach((Koopa *))
  0002:8005F808       KoopaFunction::getKoopaDemoKoopaJr((Koopa *))
@@ -2194,7 +2221,8 @@
  0002:8005F83C       JKRSolidHeap::do_getMaxFreeBlock((void))
  0002:8005F844       KoopaFunction::endKoopaDemoMeetPeach((Koopa *))
  0002:8005F8F0       KoopaFunction::invalidateKoopaNpcLod((Koopa *))
- 0002:8005F93C       KoopaFunction::initKoopaAnimCamera((Koopa *,char const *))
+ 0002:8005F93C       KoopaFunction::initKoopaCamera((Koopa *,char const *))
+ 0002:8005F94C       KoopaFunction::initKoopaAnimCamera((Koopa *,char const *))
  0002:8005F95C       KoopaFunction::startKoopaTargetCamera((Koopa *,char const *))
  0002:8005F984       KoopaFunction::startKoopaAnimCamera((Koopa *,char const *,long))
  0002:8005F9A0       KoopaFunction::endKoopaCamera((Koopa *,char const *,bool,long))
@@ -2229,15 +2257,23 @@
  0002:8006073C       KoopaParts::createRollBall((void))
  0002:800607A0       KoopaParts::createCommonParts((void))
  0002:80060928       KoopaParts::createFireStairs((bool))
- 0002:80060A0C       KoopaViewSwitchKeeper::init((JMapInfoIter const &))
- 0002:80060A64       KoopaFunction::registerKoopaPowerUpSwitch((LiveActor *))
+ 0002:800609D0       KoopaPowerUpSwitch::KoopaPowerUpSwitch((char const *))
+ 0002:80060A0C       KoopaPowerUpSwitch::init((JMapInfoIter const &))
+ 0002:80060A64       KoopaPowerUpSwitch::initAfterPlacement((void))
+ 0002:80060A68       KoopaPowerUpSwitch::~KoopaPowerUpSwitch((void))
+ 0002:80060AC4       KoopaPlanetShadow::~KoopaPlanetShadow((void))
  0002:80060B20       KoopaPlanetShadow::KoopaPlanetShadow((Koopa const *))
  0002:80060B7C       KoopaPlanetShadow::init((JMapInfoIter const &))
  0002:80060BF0       KoopaPlanetShadow::calcAndSetBaseMtx((void))
+ 0002:80060CC4       KoopaRestarterVs3::KoopaRestarterVs3((char const *))
  0002:80060D00       KoopaRestarterVs3::init((JMapInfoIter const &))
+ 0002:80060D48       KoopaRestarterVs3::appear((void))
  0002:80060DC8       KoopaRockBreak::KoopaRockBreak((LiveActor *))
  0002:80060E20       KoopaRockBreak::init((JMapInfoIter const &))
- 0002:80060E80       SkeletalFishBossScarFlash::control((void))
+ 0002:80060E80       KoopaRockBreak::control((void))
+ 0002:80060EC8       KoopaRockBreak::~KoopaRockBreak((void))
+ 0002:80060F20       KoopaSensorCtrl::KoopaSensorCtrl((Koopa *))
+ 0002:80060F28       KoopaSensorCtrl::update((HitSensor *))
  0002:80060F2C       KoopaSensorCtrl::initSensor((void))
  0002:80061524       KoopaSequencer::KoopaSequencer((char const *,long))
  0002:80061590       KoopaSequencer::init((Koopa *,JMapInfoIter const &))
@@ -2245,10 +2281,18 @@
  0002:80061618       KoopaSequencer::calcAndSetBaseMtx((void))
  0002:80061624       KoopaSequencer::startBattleLevel2((void))
  0002:80061638       KoopaSequencer::startBattleLevel3((void))
- 0002:800616A4       WalkerStateBlowDamage::WalkerStateBlowDamage((LiveActor *,JGeometry::TVec3<f> *,WalkerStateBlowDamageParam *))
+ 0002:8006164C       KoopaSequencer::~KoopaSequencer((void))
+ 0002:800616A4       KoopaSubSequenceBattle::KoopaSubSequenceBattle((Koopa *,KoopaSequencer *,KoopaBattleBase *))
  0002:80061714       KoopaSubSequenceBattle::kill((void))
- 0002:8006177C       KoopaSubSequenceBattle::exeDemoStartLv3((void))
+ 0002:80061724       KoopaSubSequenceBattle::isDemo(const(void))
+ 0002:8006177C       KoopaSubSequenceBattle::exeDemoStartLv2((void))
+ 0002:800617CC       KoopaSubSequenceBattle::exeDemoStartLv3((void))
+ 0002:8006181C       KoopaSubSequenceBattle::~KoopaSubSequenceBattle((void))
+ 0002:80061874       __sinit__KoopaSubSequenceBattle_cpp
+ 0002:80061908       NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv3::execute(const(Spine *))
  0002:80061960       NrvKoopaSequencerVs3::KoopaSequencerVs3NrvDemoJumpToPlanet::execute(const(Spine *))
+ 0002:80061970       NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv2::execute(const(Spine *))
+ 0002:80061978       NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv1::execute(const(Spine *))
  0002:80061988       KoopaSequencerVs1::KoopaSequencerVs1((void))
  0002:800619DC       KoopaSequencerVs1::init((Koopa *,JMapInfoIter const &))
  0002:80061AEC       KoopaSequencerVs1::exeBattleStairs((void))
@@ -2374,15 +2418,29 @@
  0002:800689A8       KoopaStateDamageEscape::exeDamageTailRunEnd((void))
  0002:80068A4C       KoopaStateDamageEscape::exeDown((void))
  0002:80068C18       KoopaStateDamageEscape::exeDownLand((void))
+ 0002:80068F50       KoopaStateGuard::KoopaStateGuard((Koopa *))
+ 0002:80068FA4       KoopaStateGuard::init((void))
  0002:80068FE8       KoopaStateGuard::tryStart((ulong,HitSensor *,HitSensor *))
  0002:80069108       KoopaStateGuard::exeGuardFace((void))
  0002:800691B4       KoopaStateGuard::exeGuardBody((void))
  0002:80069260       KoopaStateGuard::exeGuardTail((void))
+ 0002:800693CC       KoopaStateJumpAway::KoopaStateJumpAway((Koopa *))
+ 0002:80069420       KoopaStateJumpAway::init((void))
+ 0002:80069464       KoopaStateJumpAway::appear((void))
+ 0002:80069474       KoopaStateJumpAway::exeJumpStart((void))
  0002:800694DC       KoopaStateJumpAway::exeJump((void))
  0002:800696D0       KoopaStateJumpAway::exeLand((void))
+ 0002:80069858       KoopaSwitchKeeper::KoopaSwitchKeeper((char const *))
  0002:80069894       KoopaSwitchKeeper::init((JMapInfoIter const &))
  0002:80069904       KoopaFunction::registerKoopaSwitchKeeper((LiveActor *))
- 0002:800699F8       KoopaFunction::registerKoopaViewSwitchKeeper((LiveActor *))
+ 0002:80069908       KoopaSwitchKeeper::~KoopaSwitchKeeper((void))
+ 0002:80069964       KoopaViewSwitchKeeper::KoopaViewSwitchKeeper((char const *))
+ 0002:800699A0       KoopaViewSwitchKeeper::init((JMapInfoIter const &))
+ 0002:800699F8       KoopaViewSwitchKeeper::initAfterPlacement((void))
+ 0002:800699FC       KoopaViewSwitchKeeper::~KoopaViewSwitchKeeper((void))
+ 0002:80069A58       FireBubble::__defctor((void))
+ 0002:80069A64       FireBall::__defctor((void))
+ 0002:80069A70       CocoNutBall::__defctor((void))
  0002:80069B34       FireBubble::~FireBubble((void))
  0002:80069B90       JGeometry::TVec3<f>::set((Vec const &))
  0002:80069BAC       OtaKing::OtaKing((char const *))
@@ -2461,7 +2519,9 @@
  0002:8006DF00       OtaKingMagma::exeHitBack((void))
  0002:8006DFAC       OtaKingMagma::exeDamage((void))
  0002:8006E0EC       OtaKingMagma::exeEndWait((void))
- 0002:8006E2E0       JGeometry::TVec4<f>::set<i>(void (int,int,int,int))
+ 0002:8006E16C       OtaKingMagma::~OtaKingMagma((void))
+ 0002:8006E1C4       __sinit__OtaKingMagma_cpp
+ 0002:8006E2E0       JGeometry::TQuat4<f>::TQuat4<f>(void *(int,int,int,int))
  0002:8006E350       BombTeresaHolder::BombTeresaHolder((void))
  0002:8006E460       Polta::init((JMapInfoIter const &))
  0002:8006E634       Polta::initArm((void))
@@ -2505,6 +2565,8 @@
  0002:8006F844       PoltaActionSequencer::exeBattleLv1((void))
  0002:8006F900       PoltaActionSequencer::exeBattleLv2((void))
  0002:8006F978       PoltaActionSequencer::exeDownDemo((void))
+ 0002:8006FA1C       __sinit__PoltaActionSequencer_cpp
+ 0002:8006FAF8       PoltaArm::~PoltaArm((void))
  0002:8006FB50       PoltaArm::PoltaArm((char const *,char const *,float *[4]))
  0002:8006FC1C       PoltaArm::init((JMapInfoIter const &))
  0002:8006FCB8       PoltaArm::initPartsModel((void))
@@ -2524,8 +2586,8 @@
  0002:8007046C       PoltaArm::requestStartControll((void))
  0002:800704E8       PoltaArm::requestControlled((char const *))
  0002:8007055C       PoltaArm::appearBreakModel((void))
+ 0002:80070614       __sinit__PoltaArm_cpp
  0002:800706F8       NrvPoltaArm::PoltaArmNrvRepair::executeOnEnd(const(Spine *))
- 0002:800706FC       PoltaFunction::killLeftArm((Polta *))
  0002:8007073C       PoltaBattleLv1::PoltaBattleLv1((Polta *))
  0002:8007082C       PoltaBattleLv1::appear((void))
  0002:800708C4       PoltaBattleLv2::control((void))
@@ -2538,6 +2600,7 @@
  0002:80070D74       PoltaBattleLv1::exeStagger((void))
  0002:80070DE8       PoltaBattleLv1::exeDamageCore((void))
  0002:80070EE8       PoltaBattleLv1::addDamageBody((void))
+ 0002:80070F60       __sinit__PoltaBattleLv1_cpp
  0002:8007102C       NrvPoltaBattleLv2::PoltaBattleLv2NrvStagger::executeOnEnd(const(Spine *))
  0002:80071048       NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageBody::execute(const(Spine *))
  0002:800710AC       NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateGroundRock::execute(const(Spine *))
@@ -2553,11 +2616,12 @@
  0002:80071A00       PoltaBattleLv2::isEnableSensor(const(HitSensor const *))
  0002:80071B20       PoltaBattleLv2::isEnableAttack(const(HitSensor const *))
  0002:80071C74       PoltaBattleLv2::addDamageBody((void))
+ 0002:80071CEC       __sinit__PoltaBattleLv2_cpp
  0002:80071E04       NrvPoltaBattleLv2::PoltaBattleLv2NrvDamageBody::execute(const(Spine *))
  0002:80071E58       NrvPoltaBattleLv2::PoltaBattleLv2NrvGenerateRock::execute(const(Spine *))
  0002:80071E78       NrvPoltaBattleLv2::PoltaBattleLv2NrvAttackGround::execute(const(Spine *))
  0002:80071EBC       NrvPoltaBattleLv2::PoltaBattleLv2NrvPunch::execute(const(Spine *))
- 0002:80071F00       NrvSuperSpinDriver::SuperSpinDriverNrvCoolDown::execute(const(Spine *))
+ 0002:80071F00       NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::execute(const(Spine *))
  0002:80071F48       PoltaDemo::PoltaDemo((Polta *))
  0002:80071FD8       PoltaDemo::startDemoSetting((void))
  0002:80072024       PoltaDemo::startTryDemo((char const *,Nerve const *))
@@ -2565,6 +2629,7 @@
  0002:800720E4       PoltaDemo::exeOpeningDemo((void))
  0002:8007225C       PoltaDemo::exePowerUpDemo((void))
  0002:800724A8       PoltaDemo::exeDownDemo((void))
+ 0002:800725F8       __sinit__PoltaDemo_cpp
  0002:80072694       PoltaFunction::onMovement((Polta *))
  0002:80072718       nullsub_1
  0002:8007271C       J3DTevBlock4::getTevRegOffset(const(void))
@@ -2574,7 +2639,8 @@
  0002:8007282C       PoltaFunction::startAction((Polta *,char const *,bool))
  0002:80072884       MR::startAction((LiveActor const *,char const *))
  0002:80072898       ModelObjNpc::control((void))
- 0002:8007292C       MapObjActorUtil::killBloomModel((MapObjActor *))
+ 0002:80072918       PoltaFunction::killLeftArm((Polta *))
+ 0002:8007292C       PoltaFunction::killRightArm((Polta *))
  0002:80072960       PoltaFunction::isMaxGenerateBombTeresa((Polta *))
  0002:8007298C       PoltaFunction::getCountDeadGroundRock((Polta *))
  0002:800729C0       PoltaFunction::appearGroundRock((Polta *,float,float))
@@ -2583,6 +2649,7 @@
  0002:80072D70       PoltaFunction::appearBombTeresaFromRoot((Polta *,float,float,long))
  0002:80072DE4       PoltaFunction::appearBombTeresaNormal((Polta *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:80072E68       PoltaFunction::setBodyHP((Polta *,long))
+ 0002:80072F6C       DeriveActorGroup<10BombTeresa>::getDeadMember(const(void))
  0002:80072FB0       PoltaGroundRock::PoltaGroundRock((char const *))
  0002:8007301C       PoltaGroundRock::init((JMapInfoIter const &))
  0002:8007316C       PoltaGroundRock::initBreakModel((void))
@@ -2614,7 +2681,9 @@
  0002:800741A4       PoltaRock::exeMove((void))
  0002:80074374       PoltaRock::generateKill((void))
  0002:80074418       PoltaRock::isEnableExplosion(const(void))
- 0002:80074548       KabokuriFireHolder::KabokuriFireHolder((void))
+ 0002:80074548       PoltaRockHolder::PoltaRockHolder((void))
+ 0002:800745E0       DeriveActorGroup<9PoltaRock>::~DeriveActorGroup<9PoltaRock>((void))
+ 0002:8007463C       PoltaRockHolder::~PoltaRockHolder((void))
  0002:80074694       PoltaSensorCtrl::PoltaSensorCtrl((Polta *))
  0002:800746B8       PoltaSensorCtrl::getSensorCount(const(void))
  0002:800746C0       PoltaSensorCtrl::setScreamSensorSize((float))
@@ -2648,7 +2717,7 @@
  0002:800759BC       PoltaStatePunch::isEnableAttack(const(HitSensor const *))
  0002:80075B20       PoltaStateStagger::PoltaStateStagger((Polta *))
  0002:80075BAC       PoltaStateStagger::exeWait((void))
- 0002:80075DF0       KameckHolder::KameckHolder((long))
+ 0002:80075DF0       PoltaWaitStart::PoltaWaitStart((Polta *))
  0002:80075E38       PoltaWaitStart::appear((void))
  0002:80075ED8       JMapInfoIter::isValid(const(void))
  0002:80075F34       SkeletalFishBaby::SkeletalFishBaby((char const *))
@@ -2673,8 +2742,9 @@
  0002:80076BA4       SkeletalFishBaby::isAttackable(const(void))
  0002:80076C18       SkeletalFishBaby::isStarPointerPointing(const(void))
  0002:80076D18       @unnamed@SkeletalFishBaby_cpp@::SkeletalFishBabyNrvBind::executeOnEnd(const(Spine *))
- 0002:80076ED4       MovieStarter::MovieStarter((char const *))
+ 0002:80076ED4       SkeletalFishBabyRail::SkeletalFishBabyRail((char const *))
  0002:80076F18       SkeletalFishBabyRail::init((JMapInfoIter const &))
+ 0002:80076F88       SkeletalFishBabyRail::~SkeletalFishBabyRail((void))
  0002:80076FE4       SkeletalFishBabyRailGroupNode::SkeletalFishBabyRailGroupNode((long))
  0002:80077060       SkeletalFishBabyRailGroupNode::addChild((SkeletalFishBabyRail *))
  0002:800770F8       SkeletalFishBabyRailGroupNode::tidy((void))
@@ -2790,7 +2860,8 @@
  0002:8007BA98       SkeletalFishBossRailHolder::getByID(const(long))
  0002:8007BAD8       MR::getSkeletalFishBossRailHolder((void))
  0002:8007BB00       MR::createSkeletalFishBossRailHolder((void))
- 0002:8007BB60       JGeometry::TQuat4<f>::rotate(const(JGeometry::TVec3<f> &))
+ 0002:8007BB08       SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder((void))
+ 0002:8007BB60       JGeometry::TQuat4<f>::transform(const(JGeometry::TVec3<f> &))
  0002:8007BC84       JGeometry::TVec3<f>::cubic<f>(void (JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,float))
  0002:8007BD90       JGeometry::TVec3<f>::angle(const(JGeometry::TVec3<f> const &))
  0002:8007BE0C       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::setXDir((JGeometry::TVec3<f> const &))
@@ -2874,22 +2945,33 @@
  0002:8007FB4C       TombSpiderAcid::updateEmitAcid((void))
  0002:8007FC50       TombSpiderAcid::updateDeleteAcid((void))
  0002:8007FCF8       TombSpiderAcid::updateGroundMtx((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,float *[4]))
- 0002:8007FE48       TombSpiderActionCocoon::TombSpiderActionCocoon((TombSpider *))
- 0002:8007FE8C       WaterfallCaveCover::~WaterfallCaveCover((void))
- 0002:8007FEEC       TombSpiderAction2nd::init((void))
- 0002:8007FF64       MR::forwardNode((TalkMessageCtrl *))
- 0002:8007FFA0       TombSpiderAction2nd::attackSensor((HitSensor *,HitSensor *))
+ 0002:8007FE48       TombSpiderAction1st::TombSpiderAction1st((TombSpider *))
+ 0002:8007FE8C       TombSpiderActionBase::~TombSpiderActionBase((void))
+ 0002:8007FF64       TombSpiderAction1st::appear((void))
  0002:8008003C       TombSpiderAction2nd::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:800801D0       TombSpiderAction2nd::exeDamageHip((void))
  0002:80080230       TombSpiderAction1st::exeChanceWait((void))
- 0002:800802EC       __sinit__SceneObjHolder_cpp
+ 0002:800802EC       __sinit__TombSpiderAction1st_cpp
  0002:800804A0       NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceDamageLast::execute(const(Spine *))
+ 0002:8008053C       NrvTombSpiderAction1st::TombSpiderAction1stNrvChanceStart::execute(const(Spine *))
+ 0002:80080580       NrvTombSpiderAction1st::TombSpiderAction1stNrvSwoon::execute(const(Spine *))
+ 0002:8008058C       NrvTombSpiderAction1st::TombSpiderAction1stNrvDamageGland::execute(const(Spine *))
+ 0002:800805D0       NrvTombSpiderAction1st::TombSpiderAction1stNrvDamageHip::execute(const(Spine *))
+ 0002:800805D8       NrvTombSpiderAction1st::TombSpiderAction1stNrvDamageEye::execute(const(Spine *))
+ 0002:8008061C       NrvTombSpiderAction1st::TombSpiderAction1stNrvAttackEnd::execute(const(Spine *))
  0002:80080660       NrvTombSpiderAction1st::TombSpiderAction1stNrvAttackLoop::execute(const(Spine *))
+ 0002:800806B4       NrvTombSpiderAction1st::TombSpiderAction1stNrvAttackStart::execute(const(Spine *))
  0002:800806F8       NrvTombSpiderAction1st::TombSpiderAction1stNrvWait::execute(const(Spine *))
+ 0002:80080744       TombSpiderAction2nd::TombSpiderAction2nd((TombSpider *))
+ 0002:80080788       TombSpiderAction2nd::init((void))
+ 0002:80080800       TombSpiderAction2nd::appear((void))
+ 0002:8008083C       TombSpiderAction2nd::attackSensor((HitSensor *,HitSensor *))
  0002:80080ACC       TombSpiderAction2nd::exeChanceWait((void))
+ 0002:80080B88       __sinit__TombSpiderAction2nd_cpp
  0002:80080EFC       NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackLoop::execute(const(Spine *))
  0002:80080F94       NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWait::execute(const(Spine *))
  0002:80080FE0       TombSpiderActionBase::TombSpiderActionBase((TombSpider *,char const *))
+ 0002:800810C4       TombSpiderActionBase::init((void))
  0002:800810D4       TombSpiderActionBase::appear((void))
  0002:800810F4       TombSpiderActionBase::updateChanceEnd((void))
  0002:8008111C       TombSpiderActionBase::tryWaitChanceEndDemo((Nerve const *))
@@ -2906,10 +2988,13 @@
  0002:80081B8C       TombSpiderActionBase::updateChanceDamage((void))
  0002:80081C00       TombSpiderActionBase::updateChanceEndNoDemo((void))
  0002:80081CB0       TombSpiderActionBase::updateChanceEndDemo((void))
+ 0002:80081DB8       TombSpiderActionCocoon::TombSpiderActionCocoon((TombSpider *))
+ 0002:80081DFC       TombSpiderActionCocoon::init((void))
  0002:80081E34       TombSpiderActionCocoon::attackSensor((HitSensor *,HitSensor *))
  0002:80081E80       TombSpiderActionCocoon::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:80081F70       TombSpiderActionCocoon::exeWait((void))
  0002:80081FD0       TombSpiderActionCocoon::exeBreak((void))
+ 0002:800820A0       __sinit__TombSpiderActionCocoon_cpp
  0002:800820FC       TombSpiderDemo::TombSpiderDemo((TombSpider *))
  0002:800821C4       TombSpiderDemo::updateGateOpen((void))
  0002:8008250C       TombSpiderDemo::updateCocoonBreak((void))
@@ -2945,8 +3030,6 @@
  0002:80083138       TombSpiderFunction::tryDamageHip((HitSensor *,HitSensor *))
  0002:800831A0       @unnamed@TombSpiderFunction_cpp@::tryDamageVitalSpotEach((TombSpiderVitalSpot *,ulong,HitSensor *,HitSensor *))
  0002:800832B0       TombSpiderFunction::tryDamageVitalSpot((TombSpider *,HitSensor *,HitSensor *))
- 0002:80083350       MR::connectToScene((NameObj *,int,int,int,int))
- 0002:8008338C       TombSpiderFunction::validateMainPartsSensor((TombSpider *))
  0002:800833F8       TombSpiderFunction::invalidateGlandSensor((TombSpider *))
  0002:8008346C       TombSpiderFunction::validateVitalSpotSensor((TombSpider *))
  0002:800834D0       TombSpiderFunction::invalidateAttackSensor((TombSpider *))
@@ -2967,18 +3050,24 @@
  0002:80083B80       TombSpiderFunction::emitAcidMouth((TombSpider *))
  0002:80083BC0       TombSpiderFunction::emitAcidGland((TombSpider *))
  0002:80083CD4       TombSpiderFunction::tryDamageGland((TombSpider *,HitSensor *,HitSensor *))
+ 0002:80083E30       TombSpiderFunction::validateMainPartsSensor((TombSpider *))
  0002:80083E9C       TombSpiderFunction::validateGlandSensor((TombSpider *))
  0002:80083FC8       TombSpiderFunction::validateAttackSensor((TombSpider *))
- 0002:8008409C       TombSpiderVitalSpot::TombSpiderVitalSpot((LiveActor *,char const *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,char const *))
- 0002:80084164       SpaceInner::disappear((void))
+ 0002:8008409C       TombSpiderGland::TombSpiderGland((LiveActor *,char const *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,char const *))
+ 0002:8008411C       TombSpiderGland::init((JMapInfoIter const &))
+ 0002:80084164       TombSpiderGland::startActive((void))
  0002:8008420C       Syati::exeReachToEnd((void))
- 0002:80084344       @unnamed@MiiConfirmIcon_cpp@::MiiConfirmIconNrvWait::execute(const(Spine *))
+ 0002:800842C8       __sinit__TombSpiderGland_cpp
+ 0002:80084344       NrvTombSpiderGland::TombSpiderGlandNrvDamageWait::execute(const(Spine *))
+ 0002:80084398       NrvTombSpiderGland::TombSpiderGlandNrvActiveWait::execute(const(Spine *))
+ 0002:800843E4       NrvTombSpiderGland::TombSpiderGlandNrvWait::execute(const(Spine *))
  0002:80084430       TombSpiderParts::TombSpiderParts((TombSpider *))
  0002:80084494       TombSpiderParts::appearThreadAttacherAll((void))
  0002:80084548       TombSpiderParts::killThreadAttacherAll((void))
  0002:800845FC       TombSpiderParts::pauseOffThreadAttacherAll((void))
  0002:8008465C       TombSpiderParts::init((void))
  0002:800846A8       TombSpiderParts::initParts((void))
+ 0002:80084C60       TombSpiderSensorCtrl::TombSpiderSensorCtrl((TombSpider *))
  0002:80084C68       TombSpiderSensorCtrl::update((HitSensor *))
  0002:80084CE0       TombSpiderSensorCtrl::updateMainParts((HitSensor *))
  0002:80084DD0       TombSpiderSensorCtrl::updateGland((HitSensor *))
@@ -2986,13 +3075,25 @@
  0002:80085054       @unnamed@TombSpiderSensorCtrl_cpp@::updateAttackSensorPos((HitSensor *,LiveActor const *))
  0002:80085110       TombSpiderSensorCtrl::updateAttackSensor((HitSensor *))
  0002:800852CC       TombSpiderSensorCtrl::initSensor((void))
- 0002:800854D4       LodCtrl::setDistanceToMiddleAndLow((float,float))
+ 0002:800854D4       JGeometry::TVec2<f>::TVec2<f>(void *(float,float))
+ 0002:800854E0       TombSpiderStateSwoon::TombSpiderStateSwoon((TombSpider *))
  0002:800855E8       TombSpiderStateSwoon::exeLoop((void))
+ 0002:8008570C       __sinit__TombSpiderStateSwoon_cpp
  0002:80085788       TombSpiderThreadAttacher::TombSpiderThreadAttacher((LiveActor *,char const *,float,float))
  0002:80085814       MogucchiHill::init((JMapInfoIter const &))
  0002:80085868       TombSpiderThreadAttacher::exeFree((void))
+ 0002:80085914       __sinit__TombSpiderThreadAttacher_cpp
+ 0002:8008596C       TombSpiderVitalSpot::TombSpiderVitalSpot((LiveActor *,char const *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,char const *))
+ 0002:800859EC       TombSpiderVitalSpot::init((JMapInfoIter const &))
+ 0002:80085A38       TombSpiderVitalSpot::startChance((void))
+ 0002:80085A7C       TombSpiderVitalSpot::endChance((void))
+ 0002:80085AC0       TombSpiderVitalSpot::startDamage((void))
+ 0002:80085AC8       TombSpiderVitalSpot::recover((void))
+ 0002:80085AD0       TombSpiderVitalSpot::isDamage(const(void))
+ 0002:80085B28       TombSpiderVitalSpot::exeChanceWait((void))
  0002:80085B80       TombSpiderVitalSpot::exeDamageStart((void))
  0002:80085BF4       Kanina::exeVauntAttackSuccess((void))
+ 0002:80085CC0       __sinit__TombSpiderVitalSpot_cpp
  0002:80085E04       TripodBoss::TripodBoss((char const *))
  0002:80085FBC       TripodBoss::init((JMapInfoIter const &))
  0002:80086288       TripodBoss::initAfterPlacement((void))
@@ -3062,7 +3163,6 @@
  0002:80088D14       MR::createTripod2Boss((char const *))
  0002:80088D94       __sinit__TripodBoss_cpp
  0002:80089088       @unnamed@TripodBossAccesser_cpp@::convertBoneIDToIndex((long))
- 0002:800890A4       RFLGetFavoriteColor
  0002:800890B8       TripodBossAccesser::TripodBossAccesser((char const *))
  0002:80089100       JAISeMgr::setAudience((JAIAudience *))
  0002:80089108       TripodBossAccesser::addTripodBossParts((LiveActor *))
@@ -3087,17 +3187,21 @@
  0002:8008999C       TripodBossBaseJointPosition::init((JMapInfoIter const &))
  0002:80089A2C       TripodBossBaseJointPosition::initAfterPlacement((void))
  0002:80089A78       TripodBossBaseJointPosition::control((void))
+ 0002:80089B34       TripodBossBaseJointPosition::getBaseMtx(const(void))
  0002:80089B3C       TripodBossBreakMovement::TripodBossBreakMovement((char const *))
  0002:80089C40       TripodBossBreakMovement::start((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const &,long))
  0002:80089E20       LiveActor::movement((void))
  0002:80089E24       TripodBossBreakMovement::setBreakDownLevel((long))
  0002:80089EA0       TripodBossBreakMovement::exeStartBreak((void))
  0002:80089F50       TripodBossBreakMovement::exeBreak((void))
+ 0002:8008A09C       __sinit__TripodBossBreakMovement_cpp
  0002:8008A114       TripodBossCoin::TripodBossCoin((char const *))
  0002:8008A16C       TripodBossCoin::init((JMapInfoIter const &))
  0002:8008A208       TripodBossCoin::exeNonActive((void))
  0002:8008A254       TripodBossCoin::exeActive((void))
+ 0002:8008A398       __sinit__TripodBossCoin_cpp
  0002:8008A410       TripodBossCore::TripodBossCore((char const *))
+ 0002:8008A458       TripodBossFixPartsBase::~TripodBossFixPartsBase((void))
  0002:8008A4B4       TripodBossCore::init((JMapInfoIter const &))
  0002:8008A6A4       TripodBossShell::kill((void))
  0002:8008A6E4       Kanina::receiveTrample((HitSensor *,HitSensor *))
@@ -3106,6 +3210,7 @@
  0002:8008A868       TripodBossCore::exeDamageDemo((void))
  0002:8008A92C       TripodBossCore::exeWarning((void))
  0002:8008A9B4       TripodBossCore::exeBreak((void))
+ 0002:8008AB44       __sinit__TripodBossCore_cpp
  0002:8008ABFC       Color8::Color8((_GXColor))
  0002:8008AC38       TripodBossFixParts::TripodBossFixParts((char const *))
  0002:8008AC9C       TripodBossFixParts::init((JMapInfoIter const &))
@@ -3115,6 +3220,7 @@
  0002:8008B0DC       TripodBossFixParts::exeStartDemo((void))
  0002:8008B140       TripodBossFixParts::exeWait((void))
  0002:8008B2AC       TripodBossFixParts::exeBreak((void))
+ 0002:8008B384       __sinit__TripodBossFixParts_cpp
  0002:8008B420       TripodBossFixPartsBase::TripodBossFixPartsBase((char const *))
  0002:8008B49C       TripodBossFixPartsBase::init((JMapInfoIter const &))
  0002:8008B4FC       TripodBossFixPartsBase::initAfterPlacement((void))
@@ -3128,6 +3234,8 @@
  0002:8008B7C4       TripodBossFixPartsBase::updateTripodMatrix((void))
  0002:8008B85C       TripodBossFixPartsBase::initBreakMovement((long))
  0002:8008B8B8       TripodBossGuardWall::TripodBossGuardWall((char const *))
+ 0002:8008B940       TripodBossGuardWallPart::__defctor((void))
+ 0002:8008B94C       TripodBossGuardWallPart::~TripodBossGuardWallPart((void))
  0002:8008B9A8       LiveActor::makeActorAppeared((void))
  0002:8008B9AC       TripodBossGuardWall::makeActorDead((void))
  0002:8008BA10       TripodBossGuardWall::kill((void))
@@ -3141,6 +3249,7 @@
  0002:8008BE88       TripodBossGuardWall::exeRotate((void))
  0002:8008BF28       TripodBossGuardWall::updateMatrix((void))
  0002:8008BF80       TripodBossGuardWall::updateCameraTarget((void))
+ 0002:8008C0A4       __sinit__TripodBossGuardWall_cpp
  0002:8008C130       @unnamed@GameSequenceProgress_cpp@::GameSequenceProgressWaitGoToFirstScene::execute(const(Spine *))
  0002:8008C174       TripodBossGuardWall::getBaseMtx(const(void))
  0002:8008C214       TripodBossGuardWall::~TripodBossGuardWall((void))
@@ -3156,7 +3265,9 @@
  0002:8008C774       Coin::setHostInfo((CoinHostInfo *))
  0002:8008C77C       TripodBossGuardWallPart::setPlacementAngle((float))
  0002:8008C7D8       BigBubble::setHost((LiveActor *))
+ 0002:8008C7E0       __sinit__TripodBossGuardWallPart_cpp
  0002:8008C888       NrvMeteorStrikeLauncher::MeteorStrikeLauncherNrvInterval::execute(const(Spine *))
+ 0002:8008C8D4       JGeometry::SMatrix34C<f>::set((JGeometry::SMatrix34C<f> const &))
  0002:8008C908       TripodBossKillerGenerater::TripodBossKillerGenerater((char const *))
  0002:8008C96C       TripodBossKillerGenerater::init((JMapInfoIter const &))
  0002:8008CB84       RabbitStateWaitStart::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
@@ -3177,7 +3288,9 @@
  0002:8008D288       TripodBossKillerGenerater::exeStop((void))
  0002:8008D320       TripodBossKillerGenerater::exeRestart((void))
  0002:8008D3FC       TripodBossKillerGenerater::exeBreak((void))
+ 0002:8008D4C0       __sinit__TripodBossKillerGenerater_cpp
  0002:8008D60C       NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvHide::execute(const(Spine *))
+ 0002:8008D658       TripodBossKillerGeneraterCircle::~TripodBossKillerGeneraterCircle((void))
  0002:8008D6B0       TripodBossKillerGeneraterCircle::TripodBossKillerGeneraterCircle((char const *))
  0002:8008D720       TripodBossKillerGeneraterCircle::init((JMapInfoIter const &))
  0002:8008D884       TripodBossKillerGeneraterCircle::placementGenerater((void))
@@ -3185,7 +3298,9 @@
  0002:8008DB6C       TripodBossKinokoOneUp::init((JMapInfoIter const &))
  0002:8008DCA4       TripodBossKinokoOneUp::exeActive((void))
  0002:8008DE40       TripodBossKinokoOneUp::getBaseMtx(const(void))
+ 0002:8008DE48       __sinit__TripodBossKinokoOneUp_cpp
  0002:8008DF3C       NrvBenefitItemObj::HostTypeNrvCatch::execute(const(Spine *))
+ 0002:8008DF58       NrvBenefitItemObj::HostTypeNrvWait::execute(const(Spine *))
  0002:8008DF60       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::setXDir((float,float,float))
  0002:8008DF70       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::setYDir((float,float,float))
  0002:8008DF80       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::setZDir((float,float,float))
@@ -3243,13 +3358,15 @@
  0002:8008FBE8       TripodBossLeg::updateAnkleLanding((void))
  0002:8008FC90       TripodBossLeg::updateAnkleShadowMatrix((void))
  0002:8008FDE4       MR::separateMatrixRotateYZX((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const &,JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const &))
- 0002:80090068       __sinit__GameSystemSceneController_cpp
+ 0002:80090068       __sinit__TripodBossLeg_cpp
  0002:800901DC       NrvTripodBossLeg::TripodBossLegNrvHold::execute(const(Spine *))
  0002:80090224       MR::setMtxTrans((float *[4],float,float,float))
  0002:80090234       JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::makeQuat((JGeometry::TQuat4<f> const &))
  0002:800902E4       MR::clamp((float,float,float))
+ 0002:8009030C       JGeometry::TVec3<f>::set<i>(void (int,int,int))
  0002:8009036C       HitResult::HitResult((void))
  0002:800903C8       TripodBossMovableArea::TripodBossMovableArea((void))
+ 0002:80090418       TripodBossMovableArea::setCenter((JGeometry::TVec3<f> const &))
  0002:80090420       TripodBossMovableArea::setBaseAxis((JGeometry::TVec3<f> const &))
  0002:80090458       TripodBossMovableArea::setFrontVector((JGeometry::TVec3<f> const &))
  0002:80090490       ShadowVolumeLine::setToWidth((float))
@@ -3259,22 +3376,26 @@
  0002:80090934       TripodBossMovableArea::calcLandingFront(const(JGeometry::TVec3<f> *,JGeometry::TVec3<f> const &))
  0002:80090A34       __sinit__TripodBossMovableArea_cpp
  0002:80090A9C       MR::sqrt<f>(float (float))
- 0002:80090AD8       TripodBossRotateParts::TripodBossRotateParts((char const *))
+ 0002:80090AD8       TripodBossRailMoveParts::TripodBossRailMoveParts((char const *))
  0002:80090B1C       TripodBossRailMoveParts::init((JMapInfoIter const &))
  0002:80090B90       TripodBossRotateParts::makeActorDead((void))
  0002:80090BFC       TripodBossRailMoveParts::activateTripodBoss((void))
  0002:80090C40       TripodBossRailMoveParts::calcTripodLocalMatrix((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *))
  0002:80090C58       TripodBossRailMoveParts::exeWaitOwn((void))
+ 0002:80090CC4       TripodBossRotateParts::TripodBossRotateParts((char const *))
  0002:80090D08       TripodBossRotateParts::init((JMapInfoIter const &))
  0002:80090DDC       TripodBossRotateParts::activateTripodBoss((void))
  0002:80090E1C       TripodBossRotateParts::calcTripodLocalMatrix((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *))
  0002:80090F34       CameraTargetMtx::getFrontVec(const(void))
  0002:80090F3C       TripodBossRotateParts::exeWaitOwn((void))
+ 0002:80090F94       TripodBossShell::~TripodBossShell((void))
  0002:80090FEC       TripodBossShell::TripodBossShell((char const *))
  0002:80091030       TripodBossShell::init((JMapInfoIter const &))
  0002:80091210       TripodBossShell::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
  0002:80091284       TripodBossShell::activateTripodBoss((void))
  0002:800912D8       TripodBossShell::exeBreak((void))
+ 0002:8009149C       __sinit__TripodBossShell_cpp
+ 0002:80091510       NrvTripodBossShell::TripodBossShellNrvNonActive::execute(const(Spine *))
  0002:80091514       TripodBossStepPoint::TripodBossStepPoint((char const *))
  0002:800915A8       TripodBossStepPoint::init((JMapInfoIter const &))
  0002:80091678       TripodBossStepPoint::initAfterPlacement((void))
@@ -3286,11 +3407,25 @@
  0002:800917F4       TripodBossStepSequence::getCurrentWaitTime(const(void))
  0002:80091808       TripodBossStepSequence::getCurrentStepPoint((void))
  0002:80091818       TripodBossStepSequence::nextStep((void))
- 0002:80091830       TripodBossStepSequence::reset((void))
  0002:8009183C       TripodBossStepSequence::isEmpty(const(void))
+ 0002:80091854       TripodBossStepSequence::reset((void))
+ 0002:80091860       TripodBossStepStartArea::TripodBossStepStartArea((int,char const *))
+ 0002:800918A4       TripodBossStepStartArea::init((JMapInfoIter const &))
  0002:800918E0       TripodBossStepStartArea::movement((void))
+ 0002:80091934       TripodBossStepStartArea::~TripodBossStepStartArea((void))
+ 0002:80091990       TripodBossStepStartArea::getManagerName(const(void))
  0002:8009199C       CamHeliEffector::CamHeliEffector((void))
  0002:800919B0       CamHeliEffector::update((CameraMan *))
+ 0002:80091CCC       CameraTargetObj::isCameraStateOn(const(ulong))
+ 0002:80091CD4       __sinit__CamHeliEffector_cpp
+ 0002:80091D40       NrvMarioActor::MarioActorNrvWait::MarioActorNrvWait((void))
+ 0002:80091D50       NrvMarioActor::MarioActorNrvGameOver::MarioActorNrvGameOver((void))
+ 0002:80091DE0       NrvMarioActor::MarioActorNrvNoRush::execute(const(Spine *))
+ 0002:80091DE8       NrvMarioActor::MarioActorNrvTimeWait::execute(const(Spine *))
+ 0002:80091DF0       NrvMarioActor::MarioActorNrvGameOverSink::execute(const(Spine *))
+ 0002:80091DF8       NrvMarioActor::MarioActorNrvGameOverNonStop::execute(const(Spine *))
+ 0002:80091E30       JMACosRadian(float)
+ 0002:80091E74       CamKarikariEffector::CamKarikariEffector((void))
  0002:80091E80       CamKarikariEffector::update((CameraMan *))
  0002:800922D4       JGeometry::TQuat4<f>::setRotate((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,float))
  0002:800923D0       JGeometry::TQuat4<f>::transform(const(JGeometry::TVec3<f> const &,JGeometry::TVec3<f> &))
@@ -3341,7 +3476,6 @@
  0002:80093B34       CamTranslatorWaterPlanetBoss::setParam((CameraParamChunk const *))
  0002:80093BFC       Camera::Camera((char const *))
  0002:80093C64       Camera::setZoneMtx((long))
- 0002:80093D04       MR::createTriangleFilterFunc((bool (*)(Triangle const *)))
  0002:80093D4C       Camera::createVPanObj((void))
  0002:80093E40       GameCameraCreator::initCameraCodeCollection((char const *,long))
  0002:80093E4C       CamAnmDataAccessor::getPos(const(JGeometry::TVec3<f> *,float))
@@ -4473,13 +4607,17 @@
  0002:800C87A0       MultiEmitterCallBack::setColor((JPABaseEmitter *))
  0002:800C88D0       MultiEmitterCallBack::isFollowSRT(const(MultiEmitterCallBack::FlagSRT *,bool))
  0002:800C8A98       JPABaseEmitter::setGlobalScale((JGeometry::TVec3<f> const &))
- 0002:800C8B28       nullsub_76
- 0002:800C8B2C       nullsub_75
+ 0002:800C8B04       _GXColor::__as((_GXColor const &))
+ 0002:800C8B28       JPAEmitterCallBack::drawAfter((JPABaseEmitter *))
+ 0002:800C8B2C       JPAEmitterCallBack::draw((JPABaseEmitter *))
  0002:800C8B30       nullsub_74
  0002:800C8B34       nullsub_77
  0002:800C8B38       nullsub_78
- 0002:800C8C00       nullsub_80
- 0002:800C8C04       nullsub_79
+ 0002:800C8B3C       MultiEmitterCallBack::~MultiEmitterCallBack((void))
+ 0002:800C8B98       MultiEmitterParticleCallBack::MultiEmitterParticleCallBack((void))
+ 0002:800C8BA8       MultiEmitterParticleCallBack::~MultiEmitterParticleCallBack((void))
+ 0002:800C8C00       JPAParticleCallBack::draw((JPABaseEmitter *,JPABaseParticle *))
+ 0002:800C8C04       JPAParticleCallBack::execute((JPABaseEmitter *,JPABaseParticle *))
  0002:800C8C08       ParticleCalcExecutor::ParticleCalcExecutor((EffectSystem const *,bool))
  0002:800C8C64       ParticleCalcExecutor::movementNormal((void))
  0002:800C8D4C       ParticleCalcExecutor::movementIgnorePause3D((void))
@@ -4487,9 +4625,13 @@
  0002:800C8DF4       ParticleCalcExecutor::movementCheckUpdate((void))
  0002:800C8E00       ParticleCalcExecutor::requestMovementOnPauseIgnore((void))
  0002:800C8E40       ParticleCalcExecutor::initMovementAdaptor((void))
+ 0002:800C9038       MR::Functor<20ParticleCalcExecutor>(MR::FunctorV0M<P20ParticleCalcExecutor,M20ParticleCalcExecutorFPCvPv_v> (ParticleCalcExecutor *,void (ParticleCalcExecutor::)(void const *,void *)))
+ 0002:800C9078       MR::FunctorV0M<P20ParticleCalcExecutor,M20ParticleCalcExecutorFPCvPv_v>::__cl(const(void))
+ 0002:800C90A8       MR::FunctorV0M<P20ParticleCalcExecutor,M20ParticleCalcExecutorFPCvPv_v>::clone(const(JKRHeap *))
  0002:800C9110       @unnamed@ParticleDrawExecutor_cpp@::connectToSceneDrawAdaptor((NameObjAdaptor *,MR::FunctorBase const &,int))
  0002:800C9184       ParticleDrawExecutor::ParticleDrawExecutor((EffectSystem const *,bool))
  0002:800C91EC       ParticleDrawExecutor::initDraw((void))
+ 0002:800C9248       ParticleDrawExecutor::draw3D(const(void))
  0002:800C9280       ParticleDrawExecutor::draw2D(const(void))
  0002:800C9404       ParticleDrawExecutor::drawIndirect(const(void))
  0002:800C94EC       ParticleDrawExecutor::drawFor2DModel(const(void))
@@ -4727,6 +4869,7 @@
  0002:800D4AD0       BegomanAttackPermitter::exeWait((void))
  0002:800D4B18       BegomanAttackPermitter::exeReceive((void))
  0002:800D4BD8       NrvBegomanAttackPermitter::HostTypeNrvPermit::execute(const(Spine *))
+ 0002:800D4DA4       JGeometry::TQuat4<f>::rotate(const(JGeometry::TVec3<f> &))
  0002:800D4EC8       BegomanLauncher::BegomanLauncher((char const *))
  0002:800D4F1C       BegomanLauncher::init((JMapInfoIter const &))
  0002:800D52B8       MR::calcGravity((LiveActor *))
@@ -4814,6 +4957,7 @@
  0002:800DAA84       DarknessRoomDoor::DarknessRoomDoor((char const *))
  0002:800DAB24       BirikyuWithFace::init((JMapInfoIter const &))
  0002:800DAB84       BirikyuWithFace::calcAndSetBaseMtx((void))
+ 0002:800DADC4       BombBird::~BombBird((void))
  0002:800DAE20       BombBird::BombBird((char const *))
  0002:800DAE98       BombBird::init((JMapInfoIter const &))
  0002:800DB240       BombBird::startClipped((void))
@@ -4839,6 +4983,7 @@
  0002:800DC5E4       BombBird::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:800DC680       BombBird::calcAndSetBaseMtx((void))
  0002:800DC918       NrvBombBird::HostTypeNrvBindStarPointer::executeOnEnd(const(Spine *))
+ 0002:800DC998       BombBirdBomb::BombBirdBomb((char const *))
  0002:800DC9F8       BombBirdBomb::init((JMapInfoIter const &))
  0002:800DCBF0       BombBirdBomb::hold((JGeometry::TVec3<f> const &))
  0002:800DCC44       BombBirdBomb::start((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
@@ -5015,6 +5160,9 @@
  0002:800E68D8       CocoSambo::exeBlow((void))
  0002:800E6994       CocoSambo::exeDpdPointing((void))
  0002:800E6A50       CocoSambo::endDpdPointing((void))
+ 0002:800E6E04       NrvCocoSamboHead::CocoSamboHeadNrvHeadConnectedBody::execute(const(Spine *))
+ 0002:800E6E08       MR::Vector<Q22MR36AssignableArray<P16DharmaSamboParts>>::~Vector<Q22MR36AssignableArray<P16DharmaSamboParts>>((void))
+ 0002:800E6E60       MR::Vector<Q22MR33AssignableArray<P13FixedPosition>>::~Vector<Q22MR33AssignableArray<P13FixedPosition>>((void))
  0002:800E6EB8       JGeometry::TVec3<f>::mul((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:800E6EDC       DharmaSambo::DharmaSambo((char const *))
  0002:800E6F6C       DharmaSambo::init((JMapInfoIter const &))
@@ -5055,6 +5203,8 @@
  0002:800E92A8       DharmaSamboParts::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
  0002:800E9654       NrvHanachan::HanachanPartsNrvStarPointerBind::executeOnEnd(const(Spine *))
  0002:800E9748       FixedPosition::copyRotate(const(JGeometry::TVec3<f> *))
+ 0002:800E9868       MR::AssignableArray<P13FixedPosition>::~AssignableArray<P13FixedPosition>((void))
+ 0002:800E98C8       MR::AssignableArray<P16DharmaSamboParts>::~AssignableArray<P16DharmaSamboParts>((void))
  0002:800E9928       DharmaSambo::~DharmaSambo((void))
  0002:800E99FC       Dossun::Dossun((char const *))
  0002:800E9A7C       Dossun::init((JMapInfoIter const &))
@@ -5098,7 +5248,7 @@
  0002:800EB7E4       EyeBeamer::exeGotoPatrol((void))
  0002:800EB82C       EyeBeamer::exePatrol((void))
  0002:800EB948       EyeBeamer::isInBeamRange(const(JGeometry::TVec3<f> const &))
- 0002:800EBCD0       SpringJetWater::SpringJetWater((char const *))
+ 0002:800EBCD0       FireBall::FireBall((char const *))
  0002:800EBD28       FireBall::init((JMapInfoIter const &))
  0002:800EBE78       FireBall::kill((void))
  0002:800EBEE0       FireBall::appearAndThrow((JGeometry::TVec3<f> const &,float,float))
@@ -5111,6 +5261,8 @@
  0002:800EC4C0       FireBall::calcReflectVelocity((void))
  0002:800EC5A8       FireBall::exeThrow((void))
  0002:800EC6B8       FireBall::exeReflect((void))
+ 0002:800EC7BC       NrvFireBall::FireBallNrvThrow::execute(const(Spine *))
+ 0002:800EC7C4       JGeometry::TVec3<f>::negate((JGeometry::TVec3<f> const &))
  0002:800EC7E0       FireBubble::FireBubble((char const *))
  0002:800EC87C       FireBubble::init((JMapInfoIter const &))
  0002:800EC9F8       FireBubble::appear((void))
@@ -5297,6 +5449,8 @@
  0002:800F7CB8       HomingKillerLauncher::init((JMapInfoIter const &))
  0002:800F7DA4       MR::tryForceKillIfMsgStartPowerStarGet((LiveActor *,ulong))
  0002:800F7DA8       HomingKillerLauncher::exeAppearKiller((void))
+ 0002:800F8068       NrvHomingKiller::HomingKillerNrvAppear::execute(const(Spine *))
+ 0002:800F8070       MR::Vector<Q22MR31AssignableArray<P11ThrowingIce>>::~Vector<Q22MR31AssignableArray<P11ThrowingIce>>((void))
  0002:800F80C8       IceMerameraKing::IceMerameraKing((char const *))
  0002:800F81D4       IceMerameraKing::init((JMapInfoIter const &))
  0002:800F8734       IceMerameraKing::initAfterPlacement((void))
@@ -5331,6 +5485,7 @@
  0002:800FA8D4       IceMerameraKingShockWave::attackSensor((HitSensor *,HitSensor *))
  0002:800FA9F4       __sinit__IceMerameraKing_cpp
  0002:800FABE0       NrvIceMerameraKing::HostTypeNrvDeathDemoWait::execute(const(Spine *))
+ 0002:800FADD8       MR::AssignableArray<P11ThrowingIce>::~AssignableArray<P11ThrowingIce>((void))
  0002:800FAE38       IceMerameraKing::~IceMerameraKing((void))
  0002:800FAF00       ItemGenerator::ItemGenerator((void))
  0002:800FAF10       ItemGenerator::setTypeNone((void))
@@ -5389,6 +5544,9 @@
  0002:800FD93C       Jiraira::attackSensor((HitSensor *,HitSensor *))
  0002:800FDA50       Jiraira::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
  0002:800FDB00       Jiraira::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
+ 0002:800FDCB8       NrvJiraira::HostTypeNrvWait::execute(const(Spine *))
+ 0002:800FDCC0       JumpBeamer::JumpBeamer((char const *))
+ 0002:800FDCFC       JumpEmitter::~JumpEmitter((void))
  0002:800FDD58       JumpBeamer::control((void))
  0002:800FDDEC       JumpBeamer::init((JMapInfoIter const &))
  0002:800FE144       SignBoard::attackSensor((HitSensor *,HitSensor *))
@@ -5474,11 +5632,14 @@
  0002:80102DCC       Kabokuri::exeHipDropped((void))
  0002:80102E4C       Kabokuri::exeHitAttacked((void))
  0002:80102F5C       Kabokuri::exeBreak((void))
+ 0002:801033F4       KabokuriFire::KabokuriFire((char const *))
  0002:80103438       KabokuriFire::init((JMapInfoIter const &))
  0002:801034F0       KabokuriFire::start((JGeometry::TVec3<f> const &,bool))
  0002:8010359C       KabokuriFire::attackSensor((HitSensor *,HitSensor *))
  0002:801035C0       KabokuriFire::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:8010363C       KabokuriFire::exeWait((void))
+ 0002:80103750       KabokuriFireHolder::KabokuriFireHolder((void))
+ 0002:801037E8       DeriveActorGroup<12KabokuriFire>::~DeriveActorGroup<12KabokuriFire>((void))
  0002:80103844       KabokuriFireHolderFunc::createHolder((void))
  0002:8010384C       KabokuriFireHolderFunc::getDeadMember((void))
  0002:8010389C       KabokuriFireHolderFunc::generateFire((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,bool))
@@ -5533,7 +5694,8 @@
  0002:80105614       MR::createTurtleBeamKameck((char const *))
  0002:801057F8       NrvKuribo::KuriboNrvBindStarPointer::executeOnEnd(const(Spine *))
  0002:80105810       NrvKuribo::KuriboNrvBindStarPointer::execute(const(Spine *))
- 0002:801059C0       ClipAreaCollisionFilter::ClipAreaCollisionFilter((JGeometry::TVec3<f> const *,float))
+ 0002:801059B0       KameckBeamEventListener::KameckBeamEventListener((void))
+ 0002:801059C0       KameckBeamCollisionFilter::KameckBeamCollisionFilter((JGeometry::TVec3<f> const *,float))
  0002:801059D8       KameckBeamCollisionFilter::isInvalidParts(const(CollisionParts const *))
  0002:80105A60       KameckBeam::KameckBeam((char const *))
  0002:80105B00       KameckBeam::init((JMapInfoIter const &))
@@ -5580,6 +5742,8 @@
  0002:801075B8       KameckFireBall::exeWait((void))
  0002:8010771C       KameckFireBall::exeSweep((void))
  0002:801077DC       __sinit__KameckFireBall_cpp
+ 0002:80107850       KameckHolder::KameckHolder((long))
+ 0002:80107898       DeriveActorGroup<6Kameck>::~DeriveActorGroup<6Kameck>((void))
  0002:801078F4       KameckHolder::startDemoAppear((void))
  0002:80107968       KameckHolder::endDemoAppear((void))
  0002:801079C0       KameckHolder::deadForceAll((void))
@@ -5742,6 +5906,7 @@
  0002:80110D3C       Kiraira::driftOnRail((void))
  0002:80110DA4       Kiraira::explode((void))
  0002:80110FA8       NrvNoteCounter::NoteCounterNrvHide::execute(const(Spine *))
+ 0002:80111000       KirairaChain::~KirairaChain((void))
  0002:8011105C       KirairaChain::KirairaChain((LiveActor const *))
  0002:801112F0       KirairaChain::init((JMapInfoIter const &))
  0002:801113D4       KirairaChain::initPoints((void))
@@ -5795,6 +5960,7 @@
  0002:80113CB0       KoopaJrShip::exeBreak((void))
  0002:80113E88       KoopaJrShip::exeTurnFront((void))
  0002:80114174       NrvKoopaJrShip::HostTypeBreakEnd::execute(const(Spine *))
+ 0002:801142D0       KoopaJrShip::~KoopaJrShip((void))
  0002:8011432C       KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell((char const *))
  0002:801143DC       KoopaJrShipCannonMainShell::init((JMapInfoIter const &))
  0002:80114544       KoopaJrShipCannonMainShell::kill((void))
@@ -5848,7 +6014,7 @@
  0002:80117444       KoteBug::calcJoint((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:8011751C       __sinit__StinkBugParent_cpp
  0002:80117778       NrvKoteBug::HostTypeNrvNoCalcWait::executeOnEnd(const(Spine *))
- 0002:80117930       @unnamed@KuriboMini_cpp@::KuriboMiniParam::KuriboMiniParam((void))
+ 0002:80117930       @unnamed@Kuribo_cpp@::KuriboParam::KuriboParam((void))
  0002:801179E4       Kuribo::Kuribo((char const *))
  0002:80117A80       Kuribo::init((JMapInfoIter const &))
  0002:80117D60       Kuribo::initAfterPlacement((void))
@@ -5934,6 +6100,7 @@
  0002:8011AFF4       __sinit__KuriboChief_cpp
  0002:8011B104       NrvKuriboChief::KuriboChiefNrvBindStarPointer::executeOnEnd(const(Spine *))
  0002:8011B11C       NrvKuriboChief::KuriboChiefNrvBindStarPointer::execute(const(Spine *))
+ 0002:8011B15C       @unnamed@KuriboMini_cpp@::KuriboMiniParam::KuriboMiniParam((void))
  0002:8011B210       KuriboMini::KuriboMini((char const *))
  0002:8011B290       KuriboMini::init((JMapInfoIter const &))
  0002:8011B504       MR::trySetMoveLimitCollision((LiveActor *))
@@ -6180,6 +6347,8 @@
  0002:80128914       MogucchiHill::getDistanceFromReserveMtx(const(void))
  0002:80128958       MogucchiHill::reserveCurrentMtx((void))
  0002:80128A3C       @unnamed@MogucchiHill_cpp@::MogucchiHillNrvWait::execute(const(Spine *))
+ 0002:80128A74       MogucchiRefuseTerritory::~MogucchiRefuseTerritory((void))
+ 0002:80128AD0       MogucchiRefuseTerritory::MogucchiRefuseTerritory((char const *))
  0002:80128B0C       MogucchiRefuseTerritory::init((JMapInfoIter const &))
  0002:80128B98       MogucchiShooter::MogucchiShooter((LiveActor *,char const *))
  0002:80128BF8       MogucchiShooter::init((JMapInfoIter const &))
@@ -6197,6 +6366,7 @@
  0002:80129430       MogucchiShooter::resetDirection((void))
  0002:80129480       MogucchiShooter::faceToMario((void))
  0002:801296C4       NrvTrickRabbit::TrickRabbitNrvFallDownLand::execute(const(Spine *))
+ 0002:8012976C       JGeometry::TVec4<f>::set<i>(void (int,int,int,int))
  0002:801297DC       MoguStone::MoguStone((char const *,char const *))
  0002:8012987C       ThrowingIce::init((JMapInfoIter const &))
  0002:80129994       MoguStone::emit((bool,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,float))
@@ -6253,6 +6423,8 @@
  0002:8012C884       NokonokoLand::exeShellEnd((void))
  0002:8012C974       NokonokoLand::exeBecomeJetTurtle((void))
  0002:8012CD40       NrvNokonokoLand::HostTypeAppearReady::execute(const(Spine *))
+ 0002:8012CE24       NokonokoLand::~NokonokoLand((void))
+ 0002:8012CE80       Onimasu::~Onimasu((void))
  0002:8012CEDC       Onimasu::Onimasu((char const *))
  0002:8012CF94       Onimasu::init((JMapInfoIter const &))
  0002:8012D12C       Onimasu::initAfterPlacement((void))
@@ -6282,8 +6454,8 @@
  0002:8012E4EC       OnimasuJump::calcJumpVelocity((void))
  0002:8012E4F0       OnimasuJump::updatePoseInner((void))
  0002:8012E540       OnimasuJump::getNextPointNo(const(void))
- 0002:8012E548       MR::AssignableArray<24SpinDriverPathStorageOne>::~AssignableArray<24SpinDriverPathStorageOne>((void))
- 0002:8012E5B0       OnimasuPivot::~OnimasuPivot((void))
+ 0002:8012E548       MR::AssignableArray<Q29JGeometry8TVec3<f>>::~AssignableArray<Q29JGeometry8TVec3<f>>((void))
+ 0002:8012E5B0       OnimasuJump::~OnimasuJump((void))
  0002:8012E618       OnimasuPivot::OnimasuPivot((char const *))
  0002:8012E694       OnimasuPivot::initFromRailPoint((void))
  0002:8012E6FC       OnimasuPivot::startMoveInner((void))
@@ -6481,6 +6653,7 @@
  0002:80138008       Pukupuku::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
  0002:801380D0       Pukupuku::calcAndSetBaseMtx((void))
  0002:801383C8       RingBeamShadowDrawer::RingBeamShadowDrawer((LiveActor const *))
+ 0002:80138424       ShadowVolumeDrawer::~ShadowVolumeDrawer((void))
  0002:80138480       ElectricRailShadowDrawer::loadModelDrawMtx(const(void))
  0002:801384D8       RingBeamShadowDrawer::drawShape(const(void))
  0002:80138A1C       RingBeam::RingBeam((char const *,LiveActor *,bool,bool))
@@ -6495,6 +6668,7 @@
  0002:80139040       RingBeam::attackSensor((HitSensor *,HitSensor *))
  0002:80139168       RingBeam::exeSpread((void))
  0002:80139608       GXPosition3f32_27
+ 0002:801396D0       RingBeamer::RingBeamer((char const *))
  0002:80139714       RingBeamer::init((JMapInfoIter const &))
  0002:801399A8       RingBeamer::syncSwitchOffB((void))
  0002:80139A10       RingBeamer::exeWait((void))
@@ -6586,6 +6760,7 @@
  0002:8013EA60       LodCtrl::invalidate((void))
  0002:8013EA94       SpinHitController::execute((LiveActor *))
  0002:8013EBE0       SpinHitController::emitItem((LiveActor *))
+ 0002:8013EC80       StinkBugBase::~StinkBugBase((void))
  0002:8013ECDC       StinkBugBase::StinkBugBase((char const *))
  0002:8013ED5C       StinkBugBase::setDashVelocity((float))
  0002:8013EDDC       StinkBugBase::tryTurnSearch((float))
@@ -6750,6 +6925,7 @@
  0002:801488BC       TakoHei::isFallNextMove(const(void))
  0002:8014893C       TakoHei::isInSightMario(const(void))
  0002:80148A78       __sinit__TakoHei_cpp
+ 0002:80148CEC       TakoHeiInk::TakoHeiInk((char const *))
  0002:80148D28       TakoHeiInk::init((JMapInfoIter const &))
  0002:80148E60       TakoHeiInk::start((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,bool))
  0002:80148EE8       TakoHeiInk::attackSensor((HitSensor *,HitSensor *))
@@ -6830,6 +7006,8 @@
  0002:8014C7FC       TeresaWater::calcAndSetBaseMtx((void))
  0002:8014C898       TeresaWater::attackSensor((HitSensor *,HitSensor *))
  0002:8014C934       TeresaWater::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
+ 0002:8014CB68       NrvTeresaWater::TeresaWaterNrvMove::execute(const(Spine *))
+ 0002:8014CB70       TerritoryMover::TerritoryMover((float))
  0002:8014CB78       TerritoryMover::decideNextTargetPos((LiveActor const *))
  0002:8014CC38       TerritoryMover::isReachedTarget((LiveActor const *,float))
  0002:8014CCDC       Unizo::Unizo((char const *))
@@ -6873,6 +7051,7 @@
  0002:8014F354       NrvUnizo::UnizoNrvPointing::execute(const(Spine *))
  0002:8014F384       NrvUnizo::UnizoNrvCollidePlayer::execute(const(Spine *))
  0002:8014F3F4       Unizo::getBaseMtx(const(void))
+ 0002:8014F3FC       UnizoLauncher::UnizoLauncher((char const *))
  0002:8014F438       UnizoLauncher::init((JMapInfoIter const &))
  0002:8014F590       UnizoLauncher::exeLaunch((void))
  0002:8014F710       NrvUnizoLauncher::UnizoLauncherNrvWait::execute(const(Spine *))
@@ -6880,6 +7059,8 @@
  0002:8014F86C       WalkerStateBindStarPointer::kill((void))
  0002:8014F8F4       WalkerStateBindStarPointer::tryStartPointBind(const(void))
  0002:8014F908       WalkerStateBindStarPointer::exeBind((void))
+ 0002:8014FA78       WalkerStateBlowDamage::WalkerStateBlowDamage((LiveActor *,JGeometry::TVec3<f> *,WalkerStateBlowDamageParam *))
+ 0002:8014FAE8       WalkerStateBlowDamage::appear((void))
  0002:8014FAF8       WalkerStateBlowDamage::exeBlow((void))
  0002:8014FC70       NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlowLand::execute(const(Spine *))
  0002:8014FCC8       WalkerStateChaseParam::WalkerStateChaseParam((void))
@@ -6931,7 +7112,6 @@
  0002:80151C6C       WaterBazooka::receiveMsgPlayerAttack((ulong,HitSensor *,HitSensor *))
  0002:80151D9C       WaterBazooka::receiveMsgEnemyAttack((ulong,HitSensor *,HitSensor *))
  0002:80151E44       WaterBazooka::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
- 0002:80151F74       MoviePlayerSimple::isMoviePlaying(const(void))
  0002:80152024       WaterBazooka::isBazookaPinch(const(void))
  0002:80152040       WaterBazooka::isBazookaLifeOut(const(void))
  0002:80152054       WaterBazooka::exeWaitForBattle((void))
@@ -7103,7 +7283,6 @@
  0002:80159928       SegmentGravityCreator::settingFromJMapArgs((long,long,long))
  0002:80159A6C       WireGravityCreator::createInstance((void))
  0002:80159AAC       WireGravityCreator::settingFromJMapOtherParam((JMapInfoIter const &))
- 0002:80159BBC       RailGraphNode::RailGraphNode((void))
  0002:80159BE0       GravityInfo::init((void))
  0002:80159C04       ParallelGravity::ParallelGravity((void))
  0002:80159CC8       ParallelGravity::calcOwnGravityVector(const(JGeometry::TVec3<f> *,float *,JGeometry::TVec3<f> const &))
@@ -7275,6 +7454,7 @@
  0002:8015FD74       ClippingJudge::isJudgedToClipFrustum(const(JGeometry::TVec3<f> const &,float))
  0002:8015FDA0       ClippingJudge::isJudgedToClipFrustum(const(JGeometry::TVec3<f> const &,float,long))
  0002:8015FDF0       ClippingJudge::calcViewingVolume((JGeometry::THexahedron3<f> *,float))
+ 0002:801600D4       MR::getClippingJudge((void))
  0002:80160150       JGeometry::THexahedron3<f>::mayIntersectBall3(const(JGeometry::TVec3<f> const &,float))
  0002:801601D4       JGeometry::TPartition3<f>::set((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:80160264       JGeometry::TPartition3<f>::set((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
@@ -7322,6 +7502,7 @@
  0002:80161B28       DynamicJointCtrlKeeper::endCtrl((char const *,long))
  0002:80161B60       DynamicJointCtrlKeeper::reset((void))
  0002:80161BBC       DynamicJointCtrlKeeper::findJointCtrl((char const *))
+ 0002:80161CE8       JointControlDelegator<20DynamicJointCtrlNode>::calcJointMatrixAfterChild((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> *,JointControllerInfo const &))
  0002:80161D50       @unnamed@EffectKeeper_cpp@::makeAttibuteEffectBaseName((char *,ulong,char const *))
  0002:80161DCC       EffectKeeper::EffectKeeper((char const *,ResourceHolder *,int,char const *))
  0002:80161E78       EffectKeeper::init((LiveActor *))
@@ -7452,6 +7633,8 @@
  0002:80166000       LiveActor::updateBinder((void))
  0002:80166084       J3DModel::setBaseScale((Vec const &))
  0002:801660A0       LiveActorFlag::LiveActorFlag((void))
+ 0002:801660D0       LiveActorGroup::LiveActorGroup((char const *,int))
+ 0002:8016610C       LiveActorGroup::registerActor((LiveActor *))
  0002:80166120       LiveActorGroup::getDeadActor(const(void))
  0002:80166194       LiveActorGroup::getLivingActorNum(const(void))
  0002:80166204       LiveActorGroup::appearAll((void))
@@ -7484,7 +7667,6 @@
  0002:8016715C       LodCtrl::syncJointAnimation((void))
  0002:80167204       LodCtrl::initLightCtrl((void))
  0002:80167250       LodCtrl::initLodModel(const(int,int,int,bool))
- 0002:801673B4       MR::isNPCItemFileExist((char const *))
  0002:801673F8       MaterialCtrl::MaterialCtrl((J3DModelData *,char const *))
  0002:80167454       MaterialCtrl::update((void))
  0002:801674E4       FogCtrl::FogCtrl((J3DModelData *,bool))
@@ -7510,7 +7692,10 @@
  0002:80168104       TexMtxCtrl::updateMaterial((J3DMaterial *))
  0002:8016819C       nullsub_120
  0002:801681A0       MirrorReflectionMtxSetter::addUpdatingTexMtxFromName((J3DModelData *))
+ 0002:80168224       MessageSensorHolder::MessageSensorHolder((char const *))
  0002:80168260       MessageSensorHolder::init((JMapInfoIter const &))
+ 0002:801682B8       MessageSensorHolder::~MessageSensorHolder((void))
+ 0002:80168314       MirrorActor::~MirrorActor((void))
  0002:80168370       MirrorActor::MirrorActor((LiveActor *,char const *,char const *))
  0002:801683E0       MirrorActor::init((JMapInfoIter const &))
  0002:801684B0       MirrorActor::movement((void))
@@ -7581,7 +7766,7 @@
  0002:80169DD8       ModelObjNpc::init((JMapInfoIter const &))
  0002:80169E70       ModelObjNpc::calcAndSetBaseMtx((void))
  0002:80169F30       ModelObjNpc::ModelObjNpc((char const *,char const *,float *[4]))
- 0002:80169FF8       nullsub_92
+ 0002:80169FF8       Nerve::executeOnEnd(const(Spine *))
  0002:80169FFC       PartsModel::PartsModel((LiveActor *,char const *,char const *,float *[4],int,bool))
  0002:8016A124       PartsModel::makeActorAppeared((void))
  0002:8016A158       PartsModel::makeActorDead((void))
@@ -7606,6 +7791,7 @@
  0002:8016A930       RailRider::isReachedGoal(const(void))
  0002:8016A9F0       RailRider::isReachedEdge(const(void))
  0002:8016AA78       RailRider::setCoord((float))
+ 0002:8016AAC0       RailRider::setSpeed((float))
  0002:8016AAC8       RailRider::getRailArgWithInit(const(char const *,long *))
  0002:8016AB1C       RailRider::getRailArgNoInit(const(char const *,long *))
  0002:8016AB80       GameDataTemporaryInGalaxy::resetPlayerRestartIdInfo((void))
@@ -7621,6 +7807,7 @@
  0002:8016AF2C       RailRider::getNextPointArgS32WithInit(const(char const *,long *))
  0002:8016AF9C       RailRider::getNextPointNo(const(void))
  0002:8016B010       RailRider::syncPosDir((void))
+ 0002:8016B134       SensorGroup::SensorGroup((int,char const *))
  0002:8016B1AC       SensorGroup::add((HitSensor *))
  0002:8016B1D0       SensorGroup::remove((HitSensor *))
  0002:8016B220       SensorGroup::clear(const(void))
@@ -7634,6 +7821,8 @@
  0002:8016B850       SensorHitChecker::SensorHitChecker((char const *))
  0002:8016B978       ShadowControllerHolder::ShadowControllerHolder((void))
  0002:8016BA60       ShadowController::ShadowController((LiveActor *,char const *))
+ 0002:8016BB4C       MR::Vector<Q22MR36AssignableArray<P16ShadowController>>::Vector<Q22MR36AssignableArray<P16ShadowController>>((void))
+ 0002:8016BB60       MR::Vector<Q22MR36AssignableArray<P16ShadowController>>::~Vector<Q22MR36AssignableArray<P16ShadowController>>((void))
  0002:8016BBB8       MR::Vector<Q22MR38AssignableArray<P18DrawBufferExecuter>>::push_back((DrawBufferExecuter *const &))
  0002:8016BBD8       ShadowControllerHolder::updateController((void))
  0002:8016BBDC       ShadowControllerHolder::initAfterPlacement((void))
@@ -7649,6 +7838,7 @@
  0002:8016BF1C       ShadowController::updateFarClipping((float))
  0002:8016BF74       ShadowController::updateDirection((void))
  0002:8016C040       ShadowController::updateProjection((void))
+ 0002:8016C198       ShadowController::getHost(const(void))
  0002:8016C1A0       ShadowController::setShadowDrawer((ShadowDrawer *))
  0002:8016C1B4       ShadowController::getDropPos(const(JGeometry::TVec3<f> *))
  0002:8016C1F4       ShadowController::getDropDir(const(JGeometry::TVec3<f> *))
@@ -7690,26 +7880,39 @@
  0002:8016C758       MR::addShadowController((ShadowController *))
  0002:8016C790       MR::requestCalcActorShadowAppear((LiveActor *))
  0002:8016C7E4       MR::requestCalcActorShadow((LiveActor *))
- 0002:8016C858       BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder((void))
+ 0002:8016C7F8       MR::AssignableArray<P16ShadowController>::~AssignableArray<P16ShadowController>((void))
+ 0002:8016C858       ShadowControllerHolder::~ShadowControllerHolder((void))
+ 0002:8016C8CC       ShadowDrawer::ShadowDrawer((char const *))
+ 0002:8016C910       ShadowDrawer::getController(const(void))
+ 0002:8016C918       ShadowDrawer::setShadowController((ShadowController *))
+ 0002:8016C920       ShadowDrawer::~ShadowDrawer((void))
+ 0002:8016C978       ShadowSurfaceDrawer::~ShadowSurfaceDrawer((void))
+ 0002:8016C9D4       ShadowSurfaceBox::~ShadowSurfaceBox((void))
  0002:8016CA2C       ShadowSurfaceBox::ShadowSurfaceBox((void))
  0002:8016CA80       ShadowSurfaceBox::setSize((JGeometry::TVec3<f> const &))
  0002:8016CA9C       ShadowSurfaceBox::draw(const(void))
+ 0002:8016CEC8       ShadowSurfaceCircle::~ShadowSurfaceCircle((void))
  0002:8016CF20       ShadowSurfaceCircle::ShadowSurfaceCircle((void))
  0002:8016CF74       ShadowSurfaceCircle::draw(const(void))
  0002:8016D0AC       ShadowSurfaceDrawInit::ShadowSurfaceDrawInit((char const *))
  0002:8016D10C       ShadowSurfaceDrawInit::initDraw((void))
  0002:8016D1E0       ShadowSurfaceDrawer::ShadowSurfaceDrawer((char const *))
+ 0002:8016D23C       ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit((void))
  0002:8016D294       ShadowSurfaceOval::ShadowSurfaceOval((void))
  0002:8016D318       ShadowSurfaceOval::setColor((Color8))
  0002:8016D354       ShadowSurfaceOval::setAlpha((uchar))
  0002:8016D35C       ShadowSurfaceOval::setSize((JGeometry::TVec3<f> const &))
  0002:8016D370       ShadowSurfaceOval::draw(const(void))
+ 0002:8016D560       ShadowSurfaceOval::~ShadowSurfaceOval((void))
  0002:8016D5B8       ShadowVolumeBox::ShadowVolumeBox((void))
  0002:8016D63C       ShadowVolumeBox::loadModelDrawMtx(const(void))
  0002:8016D6A8       ShadowVolumeBox::makeVertexBuffer(const(void))
  0002:8016DE30       ShadowVolumeBox::drawShape(const(void))
- 0002:8016E028       ShadowVolumeSphere::ShadowVolumeSphere((void))
- 0002:8016E0E4       ShadowVolumeSphere::setRadius((float))
+ 0002:8016DF78       ShadowVolumeBox::~ShadowVolumeBox((void))
+ 0002:8016DFD0       ShadowVolumeCylinder::~ShadowVolumeCylinder((void))
+ 0002:8016E028       ShadowVolumeCylinder::ShadowVolumeCylinder((void))
+ 0002:8016E084       ShadowVolumeModel::~ShadowVolumeModel((void))
+ 0002:8016E0E4       ShadowVolumeCylinder::setRadius((float))
  0002:8016E0EC       ShadowVolumeCylinder::loadModelDrawMtx(const(void))
  0002:8016E1E4       ShadowVolumeDrawInit::ShadowVolumeDrawInit((void))
  0002:8016E24C       ShadowVolumeDrawer::ShadowVolumeDrawer((char const *))
@@ -7729,11 +7932,19 @@
  0002:8016EB7C       ShadowVolumeLine::drawShape(const(void))
  0002:8016EEBC       ShadowVolumeModel::ShadowVolumeModel((char const *))
  0002:8016EF00       ShadowVolumeModel::initVolumeModel((char const *))
- 0002:8016EF94       ShadowVolumeOvalPole::ShadowVolumeOvalPole((void))
- 0002:8016EFFC       ShadowVolumeSphere::isDraw(const(void))
+ 0002:8016EF34       ShadowVolumeModel::drawShape(const(void))
+ 0002:8016EF3C       ShadowVolumeOval::~ShadowVolumeOval((void))
+ 0002:8016EF94       ShadowVolumeOval::ShadowVolumeOval((void))
+ 0002:8016EFFC       ShadowVolumeOval::isDraw(const(void))
  0002:8016F058       ShadowVolumeOval::loadModelDrawMtx(const(void))
  0002:8016F2DC       ShadowVolumeOvalPole::setSize((JGeometry::TVec3<f> const &))
+ 0002:8016F2F0       ShadowVolumeOvalPole::~ShadowVolumeOvalPole((void))
+ 0002:8016F348       ShadowVolumeOvalPole::ShadowVolumeOvalPole((void))
  0002:8016F3B0       ShadowVolumeOvalPole::loadModelDrawMtx(const(void))
+ 0002:8016F684       ShadowVolumeSphere::~ShadowVolumeSphere((void))
+ 0002:8016F6DC       ShadowVolumeSphere::ShadowVolumeSphere((void))
+ 0002:8016F738       ShadowVolumeSphere::setRadius((float))
+ 0002:8016F740       ShadowVolumeSphere::isDraw(const(void))
  0002:8016F79C       ShadowVolumeSphere::loadModelDrawMtx(const(void))
  0002:8016F874       SimpleJ3DModelDrawer::SimpleJ3DModelDrawer((NameObj *,char const *,char const *,int))
  0002:8016F960       PlantLeafDrawInit::initDraw(const(void))
@@ -7777,6 +7988,7 @@
  0002:80170EBC       PriorDrawAirHolder::add((PriorDrawAir *))
  0002:80170ED8       PriorDrawAirHolder::isExistValidDrawAir(const(void))
  0002:80170F48       MR::isExistPriorDrawAir((void))
+ 0002:80170FE8       MR::Functor<3Air>(MR::FunctorV0M<P3Air,M3AirFPCvPv_v> (Air *,void (Air::)(void const *,void *)))
  0002:80171220       JGeometry::TUtil<f>::clamp((float,float,float))
  0002:80171240       @unnamed@BezierRail_cpp@::calcRailDirection((JGeometry::TVec3<f> *,RailPart const *,float))
  0002:80171310       BezierRailPart::set((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
@@ -7843,6 +8055,7 @@
  0002:80174AD0       CollisionZone::addAndUpdateMinMax((JGeometry::TVec3<f>,JGeometry::TVec3<f>))
  0002:80174BAC       CollisionZone::eraseParts((CollisionParts *))
  0002:80174C78       CollisionParts::getTrans((void))
+ 0002:80174C88       JMapInfoIter::getValue<Ul>(bool const(char const *,ulong *))
  0002:80174CEC       CollisionCode::CollisionCode((void))
  0002:80174D48       CodeTable::CodeTable((ulong))
  0002:80174DB0       CodeTable::add((char const *,ulong))
@@ -7863,7 +8076,8 @@
  0002:801756C8       CollisionCode::getCameraID((JMapInfoIter const &))
  0002:80175728       CollisionDirector::CollisionDirector((void))
  0002:801757FC       CollisionDirector::movement((void))
- 0002:8017585C       MR::isStarPointerModeErrorWindow((void))
+ 0002:8017585C       MR::getCollisionDirector((void))
+ 0002:80175884       CollisionDirector::~CollisionDirector((void))
  0002:801758DC       JGeometry::TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>::getScale(const(JGeometry::TVec3<f> &))
  0002:80175988       CollisionParts::CollisionParts((void))
  0002:80175A34       CollisionParts::init((JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const &,HitSensor *,void const *,void const *,long,bool))
@@ -7904,19 +8118,25 @@
  0002:8017766C       FileSelectCameraController::exeMoveToNearPoint((void))
  0002:80177780       FileSelectCameraController::exeNearPoint((void))
  0002:801777E4       FileSelectCameraController::control((void))
+ 0002:8017794C       @unnamed@FileSelectCameraController_cpp@::FileSelectCameraControllerNrvTitle::execute(const(Spine *))
+ 0002:80177954       FileSelectEffect::FileSelectEffect((char const *))
  0002:80177998       FileSelectEffect::init((JMapInfoIter const &))
  0002:80177A3C       FileSelectEffect::disappear((void))
  0002:80177B28       FileSelectEffect::exeAppear((void))
  0002:80177B98       FileSelectEffect::exeDisappear((void))
  0002:80177C3C       FileSelectEffect::calcAndSetBaseMtx((void))
- 0002:80177E44       bta_dm_link_key_request_cback
+ 0002:80177DE8       FileSelectEffect::~FileSelectEffect((void))
+ 0002:80177E44       FileSelectFunc::getMiiNameBufferSize((void))
  0002:80177E4C       FileSelectFunc::copyMiiName((ushort *,FileSelectIconID const &))
- 0002:80177F08       l2cu_release_rcb
- 0002:80177F18       FileSelectIconID::set((FileSelectIconID const &))
+ 0002:80177F08       FileSelectIconID::FileSelectIconID((void))
+ 0002:80177F18       FileSelectIconID::FileSelectIconID((FileSelectIconID const &))
+ 0002:80177F2C       FileSelectIconID::set((FileSelectIconID const &))
  0002:80177F40       FileSelectIconID::setMiiIndex((ushort))
- 0002:80177F58       FileSelectIconID::getFellowID(const(void))
+ 0002:80177F50       FileSelectIconID::isMii(const(void))
+ 0002:80177F58       FileSelectIconID::getMiiIndex(const(void))
  0002:80177F60       FileSelectIconID::setFellowID((FileSelectIconID::EFellowID))
  0002:80177F70       FileSelectIconID::isFellow(const(void))
+ 0002:80177F80       FileSelectIconID::getFellowID(const(void))
  0002:80177F88       @unnamed@FileSelectItem_cpp@::checkCollisionOfPointAndCylinder((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,float))
  0002:80178064       FileSelectItem::FileSelectItem((long,bool,FileSelectIconID const &,char const *))
  0002:801781BC       FileSelectItem::init((JMapInfoIter const &))
@@ -7964,6 +8184,8 @@
  0002:8017A3E0       FileSelectModel::FileSelectModel((char const *,float *[4],char const *))
  0002:8017A4A4       LiveActor::calcAnim((void))
  0002:8017A608       FileSelectModel::calcAndSetBaseMtx((void))
+ 0002:8017A77C       @unnamed@FileSelectModel_cpp@::FileSelectModelNrvBlinkOnce::execute(const(Spine *))
+ 0002:8017A784       @unnamed@FileSelectModel_cpp@::FileSelectModelNrvOpen::execute(const(Spine *))
  0002:8017A7CC       @unnamed@FileSelector_cpp@::getItemArrayIndex((long))
  0002:8017A80C       FileSelector::FileSelector((char const *))
  0002:8017A9E0       FileSelector::appear((void))
@@ -8055,11 +8277,14 @@
  0002:8017E2F8       __sinit__FileSelector_cpp
  0002:8017E8EC       NrvFileSelector::FileSelectorNrvWaitBind::execute(const(Spine *))
  0002:8017EAB4       FileSelectItemDelegator<12FileSelector>::notify((FileSelectItem *,long))
+ 0002:8017EAE4       FileSelectSky::~FileSelectSky((void))
  0002:8017EB40       FileSelectSky::FileSelectSky((char const *))
  0002:8017EB90       FileSelectSky::init((JMapInfoIter const &))
  0002:8017EC2C       FileSelectSky::calcAnim((void))
  0002:8017EC60       StrayTico::calcAndSetBaseMtx((void))
  0002:8017EC70       FileSelectSky::exeWait((void))
+ 0002:8017EE18       Fish::~Fish((void))
+ 0002:8017EE74       FishGroup::~FishGroup((void))
  0002:8017EED0       Fish::Fish((char const *,FishGroup *,int,bool))
  0002:8017EFD8       Fish::init((JMapInfoIter const &))
  0002:8017F0B4       Fish::exeWander((void))
@@ -8074,6 +8299,7 @@
  0002:8017F9A0       FishGroup::startClipped((void))
  0002:8017FA0C       FishGroup::endClipped((void))
  0002:8017FA78       FishGroup::control((void))
+ 0002:8017FB4C       Flag::~Flag((void))
  0002:8017FBA8       Flag::Flag((char const *))
  0002:8017FCC0       Flag::init((JMapInfoIter const &))
  0002:80180510       Flag::appear((void))
@@ -8088,9 +8314,11 @@
  0002:801815CC       GravityDustParticleCallBack::execute((JPABaseEmitter *,JPABaseParticle *))
  0002:801817C8       GroundChecker::GroundChecker((char const *,float,float))
  0002:8018186C       GroundChecker::bringFriction((float,float))
+ 0002:8018188C       GroundChecker::~GroundChecker((void))
  0002:801818E8       GroupSwitchWatcher::GroupSwitchWatcher((char const *))
  0002:8018193C       GroupSwitchWatcher::init((JMapInfoIter const &))
  0002:801819C4       GroupSwitchWatcher::control((void))
+ 0002:80181ACC       GroupSwitchWatcher::~GroupSwitchWatcher((void))
  0002:80181B28       Halo::Halo((char const *))
  0002:80181BC8       Halo::init((JMapInfoIter const &))
  0002:80181CBC       Halo::appear((void))
@@ -8154,21 +8382,32 @@
  0002:801854DC       KCollisionServer::searchBlock(const(long *,ulong const &,ulong const &,ulong const &))
  0002:80185588       KCollisionServer::V3u::setUsingCast((JGeometry::TVec3<f> const &))
  0002:801855D0       std::find<PP12KC_PrismData,P12KC_PrismData>(KC_PrismData **(KC_PrismData **,KC_PrismData **,KC_PrismData *const &))
+ 0002:801855F4       Fxyz::__as((Fxyz const &))
  0002:80185610       KCollisionServer::isInsideMinMaxInLocalSpace(const(KCollisionServer::V3u const &))
  0002:80185660       KCollisionServer::outCheck(const(JGeometry::TVec3<f> const *,JGeometry::TVec3<f> const *,KCollisionServer::V3u *,KCollisionServer::V3u *))
  0002:80185788       KCollisionServer::objectSpaceToLocalSpace(const(KCollisionServer::V3u *,JGeometry::TVec3<f> const &))
+ 0002:801857EC       KoopaBattleMapCoinPlate::~KoopaBattleMapCoinPlate((void))
+ 0002:80185848       KoopaBattleMapCoinPlate::KoopaBattleMapCoinPlate((char const *))
+ 0002:8018588C       KoopaBattleMapCoinPlate::calcAndSetBaseMtx((void))
  0002:80185894       KoopaBattleMapCoinPlate::init((JMapInfoIter const &))
  0002:801859D4       KoopaBattleMapCoinPlate::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
+ 0002:80185AF4       KoopaBattleMapDamagePlate::KoopaBattleMapDamagePlate((char const *))
  0002:80185B38       KoopaBattleMapDamagePlate::init((JMapInfoIter const &))
  0002:80185CB4       KoopaBattleMapDamagePlate::exeBreak((void))
  0002:80185D3C       KoopaBattleMapDamagePlate::exeRecover((void))
  0002:80185DEC       KoopaBattleMapDamagePlate::attackSensor((HitSensor *,HitSensor *))
  0002:80185E6C       KoopaBattleMapDamagePlate::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
+ 0002:80185FE4       KoopaBattleMapPlanet::~KoopaBattleMapPlanet((void))
  0002:80186040       KoopaBattleMapPlanet::KoopaBattleMapPlanet((char const *,char const *,bool,bool,bool))
  0002:801860D0       KoopaBattleMapPlanet::init((JMapInfoIter const &))
  0002:80186208       KoopaBattleMapPlanet::exeDemoGrandStarAppear((void))
  0002:8018628C       KoopaBattleMapPlanet::createPlate((void))
  0002:80186650       KoopaBattleMapPlanet::control((void))
+ 0002:80186708       NrvKoopaBattleMapPlanet::KoopaBattleMapPlanetNrvWait::execute(const(Spine *))
+ 0002:80186750       KoopaBattleMapPlanet::getBaseMtx(const(void))
+ 0002:80186758       KoopaBattleMapPlate::KoopaBattleMapPlate((char const *))
+ 0002:8018679C       KoopaBattleMapPlate::calcAndSetBaseMtx((void))
+ 0002:801867A4       KoopaBattleMapPlate::~KoopaBattleMapPlate((void))
  0002:80186800       KoopaBattleMapPlate::init((JMapInfoIter const &))
  0002:8018694C       KoopaBattleMapPlate::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:80186A18       KoopaBattleMapStair::KoopaBattleMapStair((char const *))
@@ -8189,12 +8428,14 @@
  0002:8018729C       KoopaBattleMapStair::exeFall((void))
  0002:80187358       KoopaBattleMapStair::exeDisappear((void))
  0002:801874EC       NrvPalmIsland::PalmIslandNrvWait::execute(const(Spine *))
+ 0002:8018753C       LavaShellTower::LavaShellTower((char const *))
  0002:80187578       LavaShellTower::init((JMapInfoIter const &))
  0002:80187634       LavaShellTower::exeDemo((void))
- 0002:801877A4       Banekiti::Banekiti((char const *))
+ 0002:801877A4       LavaSunPlanet::LavaSunPlanet((char const *))
  0002:801877F0       LavaSunPlanet::control((void))
  0002:80187840       LavaSunPlanet::calcAndSetBaseMtx((void))
  0002:801878E4       LavaSunPlanet::init((JMapInfoIter const &))
+ 0002:80187AEC       LightDataHolder::LightDataHolder((void))
  0002:80187AFC       LightDataHolder::initLightData((void))
  0002:80187BC8       LightDataHolder::findAreaLight(const(char const *))
  0002:80187C4C       J3DPEBlockFogOff::countDLSize((void))
@@ -8202,8 +8443,9 @@
  0002:80187CB8       LightDirector::init((JMapInfoIter const &))
  0002:80187D30       LightDirector::initData((void))
  0002:80187D88       LightDirector::loadLightPlayer(const(void))
- 0002:80187DC0       TalkFunction::isComposeTalk((TalkMessageCtrl const *))
- 0002:80187DC4       bta_dm_set_dev_name
+ 0002:80187DC0       LightDirector::loadLightCoin(const(void))
+ 0002:80187DCC       LightDirector::movement((void))
+ 0002:80187DD4       LightDirector::~LightDirector((void))
  0002:80187E2C       LightFunction::initLightRegisterAll((void))
  0002:80187F7C       MR::loadLightPlayer((void))
  0002:80187FE4       LightFunction::createLightDataParser((JMapInfo **))
@@ -8229,12 +8471,14 @@
  0002:80188C5C       LightPointCtrl::update((void))
  0002:80188CCC       PointLightInfo::__as((PointLightInfo const &))
  0002:80188D20       LightPointCtrl::requestPointLight((LiveActor const *,JGeometry::TVec3<f>,Color8,float,long))
+ 0002:80188E04       Vec::__as((Vec const &))
  0002:80188E20       LightPointCtrl::updatePointLight((void))
  0002:80188F34       LightPointCtrl::clearPointLight((PointLightInfo *))
  0002:80188FC8       LightPointCtrl::blendPointLight((PointLightInfo *,PointLightInfo const &,PointLightInfo const &,float))
  0002:801890CC       LightPointCtrl::tryBlendStart((void))
  0002:801890F4       LightPointCtrl::isUpdateCandidateActor(const(LiveActor const *))
- 0002:80189154       ZoneLightID::clear((void))
+ 0002:80189154       ZoneLightID::ZoneLightID((void))
+ 0002:80189164       ZoneLightID::clear((void))
  0002:80189174       ZoneLightID::isTargetArea(const(LightArea const *))
  0002:801891A4       ZoneLightID::isOutOfArea(const(void))
  0002:801891C0       LightZoneInfo::getAreaLightNameInZoneData(const(long))
@@ -8261,7 +8505,10 @@
  0002:8018A61C       OceanBowl::draw(const(void))
  0002:8018A74C       OceanBowl::loadMaterial(const(void))
  0002:8018AE14       OceanBowl::loadMaterialBloom(const(void))
- 0002:8018B268       OceanRingBloomDrawer::init((JMapInfoIter const &))
+ 0002:8018B1A4       OceanBowlBloomDrawer::~OceanBowlBloomDrawer((void))
+ 0002:8018B200       GXPosition3f32
+ 0002:8018B214       OceanBowlBloomDrawer::OceanBowlBloomDrawer((OceanBowl *))
+ 0002:8018B268       OceanBowlBloomDrawer::init((JMapInfoIter const &))
  0002:8018B27C       OceanBowlBloomDrawer::draw(const(void))
  0002:8018B43C       OceanBowlPoint::OceanBowlPoint((JGeometry::TVec3<f> const &))
  0002:8018B494       OceanBowlPoint::updatePos((float,float))
@@ -8291,7 +8538,10 @@
  0002:8018D194       OceanRing::draw(const(void))
  0002:8018D22C       JGeometry::TBox<Q29JGeometry8TVec3<f>>::intersectsPoint(const(JGeometry::TVec3<f> const &))
  0002:8018D29C       OceanRing::getPoint(const(int,int))
+ 0002:8018D2B8       OceanRingBloomDrawer::OceanRingBloomDrawer((OceanRing *))
+ 0002:8018D30C       OceanRingBloomDrawer::init((JMapInfoIter const &))
  0002:8018D320       OceanRingBloomDrawer::draw(const(void))
+ 0002:8018D374       OceanRingBloomDrawer::~OceanRingBloomDrawer((void))
  0002:8018D3CC       OceanRingPartDrawer::OceanRingPartDrawer((OceanRing const *,int,int,bool,float *,float *,float *))
  0002:8018D4F4       OceanRingPartDrawer::initDisplayList((float *,float *,float *))
  0002:8018D5D0       OceanRingPartDrawer::draw(const(void))
@@ -8312,7 +8562,8 @@
  0002:8018F088       GDWrite_f32_6
  0002:8018F110       GDPosition3f32_2
  0002:8018F158       GDColor4u8
- 0002:8018F274       nullsub_123
+ 0002:8018F218       OceanRingPipe::~OceanRingPipe((void))
+ 0002:8018F274       JGeometry::TVec3<s>::TVec3<s>((void))
  0002:8018F278       OceanRingPipe::OceanRingPipe((OceanRing const *,float,float))
  0002:8018F314       OceanRingPipe::init((JMapInfoIter const &))
  0002:8018F534       OceanRingPipe::movement((void))
@@ -8325,6 +8576,7 @@
  0002:8018FE9C       OceanRingPipeInside::loadMaterial(const(void))
  0002:801901EC       OceanRingPipeInside::sendGD(const(void))
  0002:80190430       GDWrite_u16_2
+ 0002:8019048C       GDWrite_f32
  0002:80190514       OceanRingPipeOutside::OceanRingPipeOutside((OceanRingPipe const *))
  0002:80190584       OceanRingPipeOutside::init((JMapInfoIter const &))
  0002:80190664       OceanRingPipeOutside::movement((void))
@@ -8400,13 +8652,18 @@
  0002:801958CC       PlanetMapCreatorFunction::getPlanetMapCreator((char const *))
  0002:80195908       PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected((char const *))
  0002:80195970       PlanetMapCreatorFunction::isRegisteredObj((char const *))
+ 0002:80195A64       PlanetMapFarClippable::getFarClipDistance(const(void))
+ 0002:80195A6C       PlanetMapWithoutHighModel::PlanetMapWithoutHighModel((char const *))
  0002:80195AA8       MR::connectToScenePlanet((LiveActor *))
+ 0002:80195AAC       PlanetMapWithoutHighModel::~PlanetMapWithoutHighModel((void))
  0002:80195B04       PlanetMapWithoutHighModel::init((JMapInfoIter const &))
+ 0002:80195BB4       QuakeEffectGenerator::QuakeEffectGenerator((void))
  0002:80195BF8       QuakeEffectGenerator::init((JMapInfoIter const &))
  0002:80195C4C       QuakeEffectGenerator::exeWaitInArea((void))
  0002:80195CD0       QuakeEffectGenerator::exeQuaking((void))
  0002:80195E44       NrvQuakeEffectGenerator::HostTypeWait::execute(const(Spine *))
- 0002:80195E8C       MiiConfirmIcon::MiiConfirmIcon((char const *))
+ 0002:80195E8C       RaceManagerLayout::RaceManagerLayout((char const *))
+ 0002:80195ECC       LayoutActor::~LayoutActor((void))
  0002:80195F24       RaceManagerLayout::init((JMapInfoIter const &))
  0002:80195FEC       RaceManagerLayout::playCountAndGo((void))
  0002:80196044       RaceManagerLayout::playGo((void))
@@ -8453,6 +8710,7 @@
  0002:80197A74       AbstractRacer::compRacer((AbstractRacer const *,AbstractRacer const *))
  0002:80197F94       RaceManager::exeGoal((void))
  0002:801980C4       nullsub_100
+ 0002:801980C8       RaceRail::RaceRail((char const *))
  0002:80198104       PlayerRacer::PlayerRacer((char const *))
  0002:8019817C       PlayerRacer::init((JMapInfoIter const &))
  0002:8019822C       PlayerRacer::startRacer((void))
@@ -8489,7 +8747,9 @@
  0002:80198EF8       RailGraphIter::getCurrentNode(const(void))
  0002:80198F08       RailGraphIter::getNextNode(const(void))
  0002:80198F50       RailGraphIter::getWatchNode(const(void))
- 0002:80198FA8       TalkTextFormer::updateTalking((void))
+ 0002:80198F98       RailGraphIter::getCurrentEdge(const(void))
+ 0002:80198FA8       RailGraphIter::getWatchEdge(const(void))
+ 0002:80198FB8       RailGraphNode::RailGraphNode((void))
  0002:80198FDC       JGeometry::TVec3<f>::epsilonEquals(const(JGeometry::TVec3<f> const &,float))
  0002:80199088       RailPart::init((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:8019912C       RailPart::initForBezier((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
@@ -8501,6 +8761,7 @@
  0002:8019923C       RailPart::getNearestParam(const(JGeometry::TVec3<f> const &,float))
  0002:80199258       LinearRailPart::set((JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &))
  0002:801992B8       LinearRailPart::getNearestParam(const(JGeometry::TVec3<f> const &,float))
+ 0002:80199360       MultiSceneActor::~MultiSceneActor((void))
  0002:801993B8       ScenarioSelectStar::ScenarioSelectStar((EffectSystem *))
  0002:8019947C       ScenarioSelectStar::calcViewAndEntry((void))
  0002:801994D4       ScenarioSelectStar::appear((void))
@@ -8527,6 +8788,7 @@
  0002:8019A714       SeaGull::calcAndSetBaseMtx((void))
  0002:8019A7F8       SeaGullGroup::init((JMapInfoIter const &))
  0002:8019A9A4       SeaGullGroup::updatePosInfo(const(long *,bool))
+ 0002:8019AB34       Sky::Sky((char const *))
  0002:8019AB7C       Sky::init((JMapInfoIter const &))
  0002:8019ADB0       SpaceInner::calcAnim((void))
  0002:8019AE0C       Sky::control((void))
@@ -8548,6 +8810,7 @@
  0002:8019B654       SleepControlFunc::addSleepControl((LiveActor *,JMapInfoIter const &))
  0002:8019B7BC       AreaObj::awake((void))
  0002:8019B7C8       AreaObj::sleep((void))
+ 0002:8019B904       SpaceInner::SpaceInner((char const *))
  0002:8019B940       SpaceInner::init((JMapInfoIter const &))
  0002:8019BA94       SpaceInner::isAppeared(const(void))
  0002:8019BB84       NrvSpaceInner::HostTypeDisappear::execute(const(Spine *))
@@ -8633,8 +8896,14 @@
  0002:8019E22C       StageSwitchContainer::createAndAddZone((SwitchIdInfo const &))
  0002:8019E2A4       StageSwitchContainer::getZoneSwitch((SwitchIdInfo const &))
  0002:8019E2C0       StageSwitchContainer::findZoneSwitchFromTable((SwitchIdInfo const &))
+ 0002:8019E304       StageSwitchCtrl::onSwitchA((void))
+ 0002:8019E314       StageSwitchCtrl::isOnSwitchA(const(void))
+ 0002:8019E31C       StageSwitchCtrl::isValidSwitchA(const(void))
+ 0002:8019E33C       StageSwitchCtrl::isOnSwitchB(const(void))
  0002:8019E344       StageSwitchCtrl::isValidSwitchB(const(void))
+ 0002:8019E354       StageSwitchCtrl::isOnSwitchAppear(const(void))
  0002:8019E35C       StageSwitchCtrl::isValidSwitchAppear(const(void))
+ 0002:8019E37C       StageSwitchCtrl::isValidSwitchDead(const(void))
  0002:8019E38C       StageSwitchCtrl::isOnAllSwitchAfterB(const(int))
  0002:8019E414       StageSwitchCtrl::isOnAnyOneSwitchAfterB(const(int))
  0002:8019E49C       StageSwitchFunction::createSwitchIdInfo((char const *,JMapInfoIter const &,bool))
@@ -8654,6 +8923,7 @@
  0002:8019EB70       SwitchSynchronizer::SwitchSynchronizer((char const *))
  0002:8019EBBC       SwitchSynchronizer::init((JMapInfoIter const &))
  0002:8019EC04       SwitchSynchronizer::movement((void))
+ 0002:8019ECE4       SwitchSynchronizer::~SwitchSynchronizer((void))
  0002:8019ED3C       SwitchWatcher::SwitchWatcher((StageSwitchCtrl const *))
  0002:8019EDA4       SwitchWatcher::movement((void))
  0002:8019EE44       SwitchWatcher::checkSwitch((SwitchEventListener *,ulong,bool))
@@ -8685,6 +8955,8 @@
  0002:8019FAA4       WaterAreaFunction::getCameraWaterDepth((void))
  0002:8019FAE8       WaterAreaFunction::getCameraWaterInfo((void))
  0002:8019FB2C       WaterAreaFunction::pauseOffWaterArea((void))
+ 0002:8019FB7C       WaterAreaHolder::~WaterAreaHolder((void))
+ 0002:8019FBD4       WaterInfo::WaterInfo((void))
  0002:8019FC04       WaterInfo::isInWater(const(void))
  0002:8019FC44       WaterInfo::clear((void))
  0002:8019FCC4       WaterPlant::WaterPlant((char const *))
@@ -9054,6 +9326,8 @@
  0002:801B5230       BenefitItemObj::exeEscape((void))
  0002:801B5454       BenefitItemObj::calcAndSetBaseMtxInMovement((void))
  0002:801B5660       BenefitItemObj::setFollowMtx((float *[4]))
+ 0002:801B567C       MR::emitEffect((LiveActor *,char const *))
+ 0002:801B5680       MR::deleteEffect((LiveActor *,char const *))
  0002:801B5684       MR::preScaleMtx((float *[4],JGeometry::TVec3<f> const &))
  0002:801B5788       __sinit__BenefitItemObj_cpp
  0002:801B57E4       BigBubbleDrawer::BigBubbleDrawer((void))
@@ -10378,6 +10652,7 @@
  0002:801FC600       MercatorRailMoveParts::calcAndSetBaseMtx((void))
  0002:801FC6BC       MercatorRailMoveParts::updatePose((void))
  0002:801FC73C       MercatorRailMoveParts::init((JMapInfoIter const &))
+ 0002:801FCB04       MercatorRotateParts::MercatorRotateParts((char const *))
  0002:801FCB4C       MercatorRotateParts::initAfterPlacement((void))
  0002:801FCBA8       MercatorRotateParts::receiveOtherMsg((ulong,HitSensor *,HitSensor *))
  0002:801FCBBC       PhantomShipHandle::control((void))
@@ -11068,6 +11343,7 @@
  0002:80226F54       SimpleEnvironmentObj::init((JMapInfoIter const &))
  0002:80226FBC       SimpleTextureSwitchChangeObj::changeTexture((void))
  0002:8022702C       SimpleMirrorObj::init((JMapInfoIter const &))
+ 0002:802274C0       SimpleNormalMapObj::SimpleNormalMapObj((char const *))
  0002:802274FC       SimpleNormalMapObj::init((JMapInfoIter const &))
  0002:80227624       SimpleTimerObj::SimpleTimerObj((char const *))
  0002:80227674       SimpleTimerObj::init((JMapInfoIter const &))
@@ -12064,14 +12340,20 @@
  0002:80260B68       @unnamed@NameObjFactory_cpp@::createNameObj<18SimpleBreakableObj>(NameObj *(char const *))
  0002:80260BE8       @unnamed@NameObjFactory_cpp@::createNameObj<12MovieStarter>(NameObj *(char const *))
  0002:80260C28       @unnamed@NameObjFactory_cpp@::createNameObj<16OceanWaveFloater>(NameObj *(char const *))
+ 0002:80260C68       @unnamed@ModelChangableObjFactory_cpp@::createNameObj<19MercatorRotateParts>(NameObj *(char const *))
+ 0002:80260CA8       @unnamed@ModelChangableObjFactory_cpp@::createNameObj<18TripodBossFixParts>(NameObj *(char const *))
+ 0002:80260CE8       @unnamed@ModelChangableObjFactory_cpp@::createNameObj<23TripodBossRailMoveParts>(NameObj *(char const *))
+ 0002:80260D28       @unnamed@ModelChangableObjFactory_cpp@::createNameObj<21TripodBossRotateParts>(NameObj *(char const *))
  0002:80260D68       @unnamed@NameObjFactory_cpp@::createNameObj<16NormalMapTestObj>(NameObj *(char const *))
  0002:80260DA8       MR::getModelChangableObjCreator((char const *))
  0002:80260E64       MR::requestMountModelChangableObjArchives((char const *,long))
  0002:80260EA0       MR::isReadResourceFromDVDAtModelChangableObj((char const *,long))
+ 0002:80260EF4       MovementOnOffGroupHolder::MovementOnOffGroupHolder((char const *))
  0002:80260F38       MovementOnOffGroupHolder::joinToGroup((char const *,NameObj *,ulong))
  0002:80260FA8       MovementOnOffGroupHolder::onMovementGroup((char const *))
  0002:80261008       MovementOnOffGroupHolder::createGroup((char const *,ulong))
  0002:80261088       MovementOnOffGroupHolder::findGroupFromName(const(char const *))
+ 0002:80261104       MovementOnOffGroupHolder::~MovementOnOffGroupHolder((void))
  0002:8026115C       NameObj::NameObj((char const *))
  0002:802611B4       NameObj::~NameObj((void))
  0002:802611F4       NameObj::init((JMapInfoIter const &))
@@ -12100,7 +12382,8 @@
  0002:80261580       NameObjArchiveListCollector::NameObjArchiveListCollector((void))
  0002:8026158C       NameObjArchiveListCollector::addArchive((char const *))
  0002:802615D4       NameObjArchiveListCollector::getArchive(const(long))
- 0002:802615E0       NameObjCategoryList::NameObjCategoryList((ulong,CategoryListInitialTable const *,void (NameObj::)(void const *,void const *),bool,char const *))
+ 0002:802615E0       NameObjCategoryList::NameObjCategoryList((ulong,CategoryListInitialTable const *,void (NameObj::)(void const *,void *),bool,char const *))
+ 0002:80261698       NameObjCategoryList::NameObjCategoryList((ulong,CategoryListInitialTable const *,void (NameObj::)(void const *,void const *),bool,char const *))
  0002:80261750       NameObjCategoryList::~NameObjCategoryList((void))
  0002:802617B4       NameObjCategoryList::execute((int))
  0002:80261854       NameObjCategoryList::incrementCheck((NameObj *,int))
@@ -12147,8 +12430,9 @@
  0002:802626E0       MR::requestMovementOffWithCategory((int))
  0002:80262960       MR::findActorLightInfo((LiveActor const *))
  0002:802629A0       NameObjExecuteHolder::NameObjExecuteHolder((int))
- 0002:80262A94       @unnamed@NameObjFactory_cpp@::createBaseOriginCube<16SpinGuidanceArea>(NameObj *(char const *))
- 0002:80262AD8       @unnamed@NameObjFactory_cpp@::createSphere<7AreaObj>(NameObj *(char const *))
+ 0002:80262A3C       NameObjExecuteHolder::~NameObjExecuteHolder((void))
+ 0002:80262A94       @unnamed@NameObjFactory_cpp@::createBaseOriginCube<10SwitchArea>(NameObj *(char const *))
+ 0002:80262AD8       @unnamed@NameObjFactory_cpp@::createSphere<10SwitchArea>(NameObj *(char const *))
  0002:80262B1C       @unnamed@NameObjFactory_cpp@::createBaseOriginCylinder<19BigBubbleSwitchArea>(NameObj *(char const *))
  0002:80262B60       @unnamed@NameObjFactory_cpp@::createCenterOriginCube<19BigBubbleCameraArea>(NameObj *(char const *))
  0002:80262BA4       @unnamed@NameObjFactory_cpp@::createBaseOriginCylinder<15AudioEffectArea>(NameObj *(char const *))
@@ -12277,6 +12561,7 @@
  0002:8026B934       NameObjGroup::pauseOffAll(const(void))
  0002:8026B990       NameObjGroup::initObjArray((int))
  0002:8026B9F4       NameObjHolder::NameObjHolder((int))
+ 0002:8026BA50       NameObjHolder::add((NameObj *))
  0002:8026BB24       MR::callAppearAllGroupMember((LiveActor const *))
  0002:8026BB64       NameObjHolder::callMethodAllObj((void (NameObj::)(void const *,void *)))
  0002:8026BBE4       NameObjHolder::clearArray((void))
@@ -12291,6 +12576,14 @@
  0002:8026C0B0       UserFile::setCreated((void))
  0002:8026C0BC       NameObjListExecutor::entryDrawBuffer3D((void))
  0002:8026C0C8       NameObjListExecutor::entryDrawBufferMirror((void))
+ 0002:8026C0E4       NameObjListExecutor::executeDraw((int))
+ 0002:8026C0EC       NameObjListExecutor::initMovementList((void))
+ 0002:8026C0F0       NameObjListExecutor::initCalcAnimList((void))
+ 0002:8026C0F4       NameObjListExecutor::initCalcViewAndEntryList((void))
+ 0002:8026C0F8       NameObjListExecutor::initDrawList((void))
+ 0002:8026C0FC       NameObjRegister::setCurrentHolder((NameObjHolder *))
+ 0002:8026C104       NameObjRegister::add((NameObj *))
+ 0002:8026C10C       NameObjRegister::NameObjRegister((void))
  0002:8026C118       Butler::Butler((char const *))
  0002:8026C1D0       Butler::init((JMapInfoIter const &))
  0002:8026C344       Butler::exeDemo((void))
@@ -12454,7 +12747,9 @@
  0002:80274E08       KinopioAstro::dispLetter(const(LayoutActor *))
  0002:80274E80       KinopioAstro::isDispLetterIcon(const(void))
  0002:80274F00       KinopioAstro::createLetterIcon((JMapInfoIter const &))
+ 0002:80274F5C       KinopioAstro::sendLetter((void))
  0002:80275028       KinopioAstro::branchFunc((ulong))
+ 0002:80275054       KinopioAstro::eventFunc((ulong))
  0002:80275190       KinopioAstro::startDemo((void))
  0002:802751D0       NPCActor::popNerve((void))
  0002:802751D4       KinopioAstro::init((JMapInfoIter const &))
@@ -13405,7 +13700,6 @@
  0002:802A2BDC       TalkStateHolder::getState((TalkMessageCtrl const *))
  0002:802A2C88       TalkStateNormal::prep((TalkMessageCtrl const *))
  0002:802A2D90       TalkStateHolder::TalkStateHolder((void))
- 0002:802A2F2C       JointController::JointController((void))
  0002:802A2F48       TalkStateEvent::TalkStateEvent((void))
  0002:802A2FBC       TalkSupportPlayerWatcher::update((void))
  0002:802A301C       TalkSupportPlayerWatcher::isEnableTalkPlayerStateNormal(const(void))
@@ -14917,11 +15211,12 @@
  0002:803198E0       AudMeSeqCtrl::inherit((AudMeSeqCtrl *))
  0002:803198EC       AudMeSeqCtrl::rhythmProc((AudMeTrack *,long))
  0002:803199D4       __sinit__JASSeqCtrl_cpp
- 0002:80319A60       JASSeqReader::init((void *))
- 0002:80319AA0       JASSeqReader::call((ulong))
- 0002:80319AE0       JASSeqReader::ret((void))
- 0002:80319B14       JASSeqReader::loopStart((ulong))
- 0002:80319B58       JASSeqReader::loopEnd((void))
+ 0002:80319A50       AudMeSeqParser::AudMeSeqParser((void))
+ 0002:80319A60       AudMeSeqReader::init((void *))
+ 0002:80319AA0       AudMeSeqReader::call((ulong))
+ 0002:80319AE0       AudMeSeqReader::ret((void))
+ 0002:80319B14       AudMeSeqReader::loopStart((ushort))
+ 0002:80319B58       AudMeSeqReader::loopEnd((void))
  0002:80319BC4       AudMeSeqParser::cmdBank((AudMeTrack *,ulong *))
  0002:80319BD4       AudMeSeqParser::cmdPrg((AudMeTrack *,ulong *))
  0002:80319BE4       AudMeSeqParser::cmdBProg((AudMeTrack *,ulong *))
@@ -14967,12 +15262,12 @@
  0002:8031A45C       AudMeSeqParser::cmdBasenoteFix((AudMeTrack *,ulong *))
  0002:8031A4E8       AudMeSeqParser::cmdModifyRnd((AudMeTrack *,ulong *))
  0002:8031A568       AudMeSeqParser::parse((AudMeTrack *))
- 0002:8031A6D8       __sinit(char ()[udMeSeqParser],**)
- 0002:8031ABB8       JASCallbackMgr::regist((long (*)(void *),void *))
+ 0002:8031A6D8       __sinit__AudMeSeqParser_cpp
+ 0002:8031ABB8       AudCallback::regist((long (*)(long,long,void *),void *))
  0002:8031AC34       AudCallback::callback((long,long))
  0002:8031ACBC       JASDriver::registerSubFrameCallback((long (*)(void *),void *))
  0002:8031ACF8       JASCallbackMgr::JASCallbackMgr((void))
- 0002:8031AD1C       SpkSoundHandle::releaseSound((void))
+ 0002:8031AD1C       AudMeHandle::releaseMe((void))
  0002:8031AD38       AudMe::AudMe((void))
  0002:8031ADAC       AudMe::~AudMe((void))
  0002:8031AE20       AudMe::requestStart((void *,ulong))
@@ -15006,7 +15301,8 @@
  0002:8031BD0C       AudRhythmMeSystem::update((void))
  0002:8031BD78       AudRhythmMeSystem::setIdle((bool))
  0002:8031BDB8       AudRhythmMeSystem::setUsingRhythmParser((ulong))
- 0002:8031BF28       JAISoundHandles::getHandleUserData((ulong))
+ 0002:8031BF1C       AudMeHandles::AudMeHandles((AudMeHandle *,int))
+ 0002:8031BF28       AudMeHandles::getHandleMeID((ulong))
  0002:8031BF74       AudMeHandles::getFreeHandle((void))
  0002:8031BFB4       AudMeObject::AudMeObject((JGeometry::TVec3<f> *,uchar,JKRHeap *))
  0002:8031C058       AudMeObject::~AudMeObject((void))
@@ -15058,6 +15354,8 @@
  0002:8031D9B0       AudRhythmHolder::copyInfoFromParser((void))
  0002:8031DC04       AudRhythmHolder::init((void))
  0002:8031DC78       AudRhythmHolder::copyInfoFromParserOne((ulong,ulong,ulong,long long))
+ 0002:8031DD18       AudRhythmWrap::rhythmProc((void))
+ 0002:8031DD20       __sinit(char ()[udRhythmWrap],**)
  0002:8031DDB4       BigBubble::BigBubble((char const *))
  0002:8031DF60       BigBubble::init((JMapInfoIter const &))
  0002:8031E0B4       BigBubble::initSensor((void))
@@ -16466,7 +16764,6 @@
  0002:80366A70       LayoutGroupCtrl::LayoutGroupCtrl((LayoutManager *,char const *,ulong))
  0002:80366B20       LayoutGroupCtrl::movement((void))
  0002:80366B88       LayoutGroupCtrl::calcAnim((void))
- 0002:80366BF0       NerveExecutor::getNerveStep(const(void))
  0002:80366BFC       LayoutGroupCtrl::getPane(const(ulong))
  0002:80366CA4       nw4r::ut::LinkList<Q44nw4r3lyt6detail8PaneLink,0>::Iterator::__rf(const(void))
  0002:80366CF4       nw4r::ut::LinkList<Q34nw4r3lyt5Group,4>::Iterator::__pp((int))
@@ -16515,7 +16812,6 @@
  0002:80368D9C       @unnamed@LayoutManager_cpp@::Local::BitFlag<128>::isTrue(const(int))
  0002:80368DD0       nw4r::lyt::DrawInfo::SetLocationAdjustScale((nw4r::math::VEC2 const &))
  0002:80368E04       LayoutPaneCtrl::LayoutPaneCtrl((LayoutManager *,char const *,ulong))
- 0002:80368E60       MR::updateActorState((NerveExecutor *))
  0002:80368EEC       LayoutPaneCtrl::movement((void))
  0002:80368F54       LayoutPaneCtrl::calcAnim((void))
  0002:80368FBC       LayoutPaneCtrl::start((char const *,ulong))
@@ -16685,6 +16981,7 @@
  0002:8036FDF8       MoviePlayerSimple::startMovie((char const *,bool))
  0002:8036FEB4       MoviePlayerSimple::stopMovie((void))
  0002:8036FF00       PowerStarList::isExecCapture(const(void))
+ 0002:8036FFA0       MoviePlayerSimple::isMoviePlaying(const(void))
  0002:8036FFE8       MoviePlayerSimple::getCurrentFrame(const(void))
  0002:80370034       MoviePlayerSimple::setFrameRateDefault((void))
  0002:803700C4       MoviePlayerSimple::setVolume((float,long))
@@ -16713,7 +17010,6 @@
  0002:80370EAC       @unnamed@MoviePlayingSequence_cpp@::getMoviePlayingSequence((int))
  0002:80370EEC       MoviePlayingSequenceHolder::MoviePlayingSequenceHolder((char const *))
  0002:80370FBC       MR::createMoviePlayingSequence((void))
- 0002:80370FC4       MR::appearStarCounter((void))
  0002:80371018       MR::startMovieEpilogueA((void))
  0002:80371058       MR::startMovieEndingA((void))
  0002:80371098       MR::startMovieEndingB((void))
@@ -17241,7 +17537,6 @@
  0002:8038C484       SystemWipeHolder::movement((void))
  0002:8038C5B8       SystemWipeHolder::calcAnim((void))
  0002:8038C654       SystemWipeHolder::draw(const(void))
- 0002:8038C708       MR::setBodySensorType((LiveActor *,ulong))
  0002:8038C744       SystemWipeHolder::startGameScreenCapture((void))
  0002:8038C758       SystemWipeHolder::drawGameScreenCapture(const(void))
  0002:8038C848       SystemWipeHolder::updateWipe((char const *))
@@ -17249,6 +17544,8 @@
  0002:8038C944       @unnamed@THPSimplePlayerWrapper_cpp@::readAsyncCallBackFunc((long,DVDFileInfo *))
  0002:8038CB88       THPSimplePlayerWrapper::quit((void))
  0002:8038CC18       THPSimplePlayerWrapper::close((void))
+ 0002:8038CEC4       THPSimplePlayerWrapper::loadStop((void))
+ 0002:8038D1CC       THPSimplePlayerWrapper::drawCurrentFrame((_GXRenderModeObj *,ulong,ulong,ulong,ulong))
  0002:8038D264       THPSimplePlayerWrapper::getVideoInfo(const(THPVideoInfo *))
  0002:8038D2AC       THPSimplePlayerWrapper::getFrameRate(const(void))
  0002:8038D2C8       THPSimplePlayerWrapper::getTotalFrame(const(void))
@@ -17832,7 +18129,8 @@
  0002:803A0DC8       MessageData::getMessageInfoTool(const(int))
  0002:803A0DF4       MessageHolder::initSceneData((void))
  0002:803A0E0C       MessageSystem::getSystemMessageDirect((TalkMessageInfo *,char const *))
- 0002:803A0E58       MessageSystem::getLayoutMessageDirect((TalkMessageInfo *,char const *))
+ 0002:803A0E58       MessageSystem::getGameMessageDirect((TalkMessageInfo *,char const *))
+ 0002:803A0EA4       MessageSystem::getLayoutMessageDirect((TalkMessageInfo *,char const *))
  0002:803A0EF0       MessageSystem::getSceneMessageData((void))
  0002:803A0F18       MessageData::MessageData((char const *))
  0002:803A106C       MessageData::findMessageIndex(const(char const *))
@@ -17888,6 +18186,7 @@
  0002:803A299C       NerveExecutor::updateNerve((void))
  0002:803A29B0       NerveExecutor::setNerve((Nerve const *))
  0002:803A29B8       NerveExecutor::isNerve(const(Nerve const *))
+ 0002:803A29F4       NerveExecutor::getNerveStep(const(void))
  0002:803A2A00       OSThreadWrapper::OSThreadWrapper((ulong,int,int,JKRHeap *))
  0002:803A2A74       OSThreadWrapper::~OSThreadWrapper((void))
  0002:803A2B14       OSThreadWrapper::initMessageQueue((JKRHeap *,int))
@@ -18102,6 +18401,7 @@
  0002:803AB4E0       WPadHolder::getWPad((long))
  0002:803AB4FC       WPadHolder::setConnectCallback((void))
  0002:803AB558       @unnamed@WPadHolder_cpp@::getWPadHolder((void))
+ 0002:803AB568       MR::getWPad((long))
  0002:803AB5E8       MR::setWPadHolderModeGame((void))
  0002:803AB610       MR::getHBMKPadData((HBMKPadData *,long))
  0002:803AB6AC       MR::setAutoSleepTimeWiiRemote((bool))
@@ -18148,6 +18448,7 @@
  0002:803ACB88       RSO::HBMStartBlackOut((void))
  0002:803ACBE0       HomeButtonStateNotifier::HomeButtonStateNotifier((void))
  0002:803ACBF0       HomeButtonStateNotifier::update((bool))
+ 0002:803ACC54       HomeButtonStateNotifier::registerMoviePlayerSimple((MoviePlayerSimple *))
  0002:803ACC68       HomeButtonStateNotifier::notifyHomeButtonDeactive((void))
  0002:803ACCB4       ConfigDataCreateChunk::ConfigDataCreateChunk((void))
  0002:803ACD18       ConfigDataCreateChunk::serialize(const(uchar *,ulong))
@@ -18251,16 +18552,20 @@
  0002:803AF7FC       @unnamed@GameSequenceFunction_cpp@::getGameSequenceProgress((void))
  0002:803AF80C       GameDataFunction::resetAllGameData((void))
  0002:803AF838       GameDataFunction::addStarPieceGivingToTicoSeed((int,int))
- 0002:803AF884       GameDataFunction::addPlayerLeft((int))
  0002:803AF8C0       GameDataFunction::setGameEventValueForBit((char const *,int,bool))
  0002:803AFA9C       GameDataFunction::getPowerStarNumMax((void))
  0002:803AFC1C       GameDataFunction::isOnJustAppearGalaxy((char const *))
+ 0002:803AFCCC       GameDataFunction::getGameEventValue((char const *))
  0002:803AFDF4       GameDataFunction::setupAlreadyDoneFlag((char const *,JMapInfoIter const &,ulong *))
  0002:803AFE14       GameDataFunction::updateAlreadyDoneFlag((int,ulong))
  0002:803AFE2C       GameDataFunction::restoreGalaxyCometStatus((int,ushort *,ushort *))
+ 0002:803AFF10       GameDataFunction::addMissPoint((int))
+ 0002:803AFFA4       GameDataFunction::incPlayerMissNum((void))
  0002:803AFFD0       GameDataFunction::registerStorageSpinDriverPathDrawRange((char const *,int,int,int,float *))
  0002:803B0034       GameDataFunction::updateStorageSpinDriverPathDrawRange((char const *,int,int,float))
  0002:803B0198       GameDataFunction::followStoryEventByName((char const *))
+ 0002:803B01F0       GameDataFunction::getPlayerLeft((void))
+ 0002:803B021C       GameDataFunction::addPlayerLeft((int))
  0002:803B02DC       GameSequenceFunction::resetStageResultSequenceParam((void))
  0002:803B0314       GameDataFunction::getLast1upStarPieceNum((void))
  0002:803B0328       GameDataFunction::getUserName((void))
@@ -18334,6 +18639,7 @@
  0002:803B23CC       GameDataPlayerStatus::offPlayerLeftSupply((void))
  0002:803B23D8       GameDataPlayerStatus::addStockedStarPiece((int))
  0002:803B2418       GameDataTemporaryInGalaxy::GameDataTemporaryInGalaxy((void))
+ 0002:803B24E8       GameDataTemporaryInGalaxy::setPlayerRestartIdInfo((JMapIdInfo const &))
  0002:803B24F0       GameDataTemporaryInGalaxy::resetRaceBestTime((void))
  0002:803B2500       GameDataTemporaryInGalaxy::isStageCleared(const(void))
  0002:803B2514       GameDataTemporaryInGalaxy::resetStageResultPowerStarParam((void))
@@ -18404,8 +18710,8 @@
  0002:803B45CC       GameSequenceDirector::update((void))
  0002:803B462C       GameSequenceDirector::draw(const(void))
  0002:803B46C0       @unnamed@NWC24Messenger_cpp@::getNWC24Messenger((void))
- 0002:803B4828       MR::getCorePadEnablePastCount((long))
  0002:803B4940       MR::setInformationMessageReplaceString((wchar_t const *,long))
+ 0002:803B49EC       GameSequenceFunction::requestChangeScene((char const *))
  0002:803B4A78       GameSequenceFunction::sendStageResultSequenceParam((char const *,long,int,int))
  0002:803B4AB0       GameSequenceFunction::getClearedStageName((void))
  0002:803B4AC4       GameSequenceFunction::getClearedPowerStarId((void))
@@ -18843,6 +19149,7 @@
  0002:803C27E0       MR::invalidateHitSensor((LiveActor *,char const *))
  0002:803C2830       MR::isValidHitSensor((LiveActor *,char const *))
  0002:803C289C       MR::isSensor((HitSensor const *,char const *))
+ 0002:803C28D8       MR::isSensorPlayer((HitSensor const *))
  0002:803C28E0       MR::isSensorBinder((HitSensor const *))
  0002:803C28E8       MR::isSensorRide((HitSensor const *))
  0002:803C290C       MR::isSensorPlayerOrRide((HitSensor const *))
@@ -18915,6 +19222,7 @@
  0002:803C3498       MR::getRoofSensor((LiveActor const *))
  0002:803C34A4       MR::getWallSensor((LiveActor const *))
  0002:803C34B0       MR::isMsgPlayerHitAll((ulong))
+ 0002:803C34D8       MR::isMsgPlayerSpinAttack((ulong))
  0002:803C3528       MR::isMsgPlayerKick((ulong))
  0002:803C3568       MR::isMsgFreezeAttack((ulong))
  0002:803C3578       MR::isMsgInvincibleAttack((ulong))
@@ -19023,26 +19331,45 @@
  0002:803C6328       MR::getShadowProjectedSensor((LiveActor const *,char const *))
  0002:803C634C       MR::isShadowProjectedAny((LiveActor const *))
  0002:803C63BC       MR::getShadowNearProjectionLength((LiveActor const *))
+ 0002:803C6454       MR::initActorStateKeeper((NerveExecutor *,long))
  0002:803C645C       MR::initActorState((NerveExecutor *,ActorStateBaseInterface *,Nerve const *,char const *))
- 0002:803C64C4       MR::updateActorState((NerveExecutor *,ActorStateBaseInterface *))
- 0002:803C6554       MR::updateActorStateAndNextNerve((NerveExecutor *,ActorStateBaseInterface *,Nerve const *))
+ 0002:803C65AC       MR::updateActorState((NerveExecutor *))
+ 0002:803C65B8       MR::updateActorState((NerveExecutor *,ActorStateBaseInterface *))
  0002:803C6648       MR::updateActorStateAndNextNerve((NerveExecutor *,Nerve const *))
- 0002:803C6700       MR::useStageSwitchWriteDead((LiveActor *,JMapInfoIter const &))
+ 0002:803C66A8       MR::updateActorStateAndNextNerve((NerveExecutor *,ActorStateBaseInterface *,Nerve const *))
+ 0002:803C6700       MR::useStageSwitchReadA((LiveActor *,JMapInfoIter const &))
  0002:803C6780       MR::useStageSwitchReadB((LiveActor *,JMapInfoIter const &))
  0002:803C6800       MR::useStageSwitchReadAppear((LiveActor *,JMapInfoIter const &))
- 0002:803C6880       SleepControlFunc::addSleepControl((LiveActor *,JMapInfoIter const &))
- 0002:803C6A04       MR::useStageSwitchWriteDead((LiveActor *,JMapInfoIter const &))
+ 0002:803C6880       MR::useStageSwitchSleep((LiveActor *,JMapInfoIter const &))
+ 0002:803C6884       MR::useStageSwitchWriteA((LiveActor *,JMapInfoIter const &))
+ 0002:803C6904       MR::useStageSwitchWriteB((LiveActor *,JMapInfoIter const &))
+ 0002:803C6984       MR::useStageSwitchWriteDead((LiveActor *,JMapInfoIter const &))
+ 0002:803C6A04       MR::needStageSwitchReadA((LiveActor *,JMapInfoIter const &))
  0002:803C6A08       MR::useStageSwitchReadB((LiveActor *,JMapInfoIter const &))
  0002:803C6A0C       MR::useStageSwitchReadAppear((LiveActor *,JMapInfoIter const &))
- 0002:803C6A1C       MR::isValidSwitchDead((LiveActor const *))
- 0002:803C6B3C       MR::offSwitchDead((LiveActor *))
+ 0002:803C6A10       MR::useStageSwitchWriteA((LiveActor *,JMapInfoIter const &))
+ 0002:803C6A14       MR::useStageSwitchWriteB((LiveActor *,JMapInfoIter const &))
+ 0002:803C6A18       MR::useStageSwitchWriteDead((LiveActor *,JMapInfoIter const &))
+ 0002:803C6A1C       MR::isValidSwitchA((LiveActor const *))
+ 0002:803C6A64       MR::isValidSwitchB((LiveActor const *))
+ 0002:803C6AAC       MR::isValidSwitchAppear((LiveActor const *))
+ 0002:803C6AF4       MR::isValidSwitchDead((LiveActor const *))
+ 0002:803C6B3C       MR::isOnSwitchA((LiveActor const *))
+ 0002:803C6B44       MR::isOnSwitchB((LiveActor const *))
+ 0002:803C6B4C       MR::isOnSwitchAppear((LiveActor const *))
+ 0002:803C6B54       MR::onSwitchA((LiveActor *))
  0002:803C6B84       MR::syncStageSwitchAppear((LiveActor *))
- 0002:803C6BEC       MR::listenStageSwitchOffB((LiveActor *,MR::FunctorBase const &))
- 0002:803C6BF8       MR::listenStageSwitchOnOffB((LiveActor *,MR::FunctorBase const &,MR::FunctorBase const &))
+ 0002:803C6BEC       MR::listenStageSwitchOnAppear((LiveActor *,MR::FunctorBase const &))
+ 0002:803C6BF8       MR::listenStageSwitchOnOffAppear((LiveActor *,MR::FunctorBase const &,MR::FunctorBase const &))
+ 0002:803C6C0C       MR::listenStageSwitchOnA((LiveActor *,MR::FunctorBase const &))
+ 0002:803C6C18       MR::listenStageSwitchOnOffA((LiveActor *,MR::FunctorBase const &,MR::FunctorBase const &))
  0002:803C6C2C       MR::listenStageSwitchOnB((LiveActor *,MR::FunctorBase const &))
+ 0002:803C6C38       MR::listenStageSwitchOffB((LiveActor *,MR::FunctorBase const &))
+ 0002:803C6C44       MR::listenStageSwitchOnOffB((LiveActor *,MR::FunctorBase const &,MR::FunctorBase const &))
  0002:803C6C58       MR::BitArray::BitArray((int))
  0002:803C6CBC       MR::BitArray::isOn(const(int))
  0002:803C6CE8       MR::BitArray::set((int,bool))
+ 0002:803C6D34       JGeometry::TVec4<f>::TVec4<f>(void *(float,float,float,float))
  0002:803C6D48       @unnamed@CameraUtil_cpp@::calcNormalizedScreenPosToScreenPos((JGeometry::TVec3<f> *,JGeometry::TVec3<f> const &))
  0002:803C6E04       MR::calcScreenPosition((JGeometry::TVec2<f> *,JGeometry::TVec3<f> const &))
  0002:803C6E84       MR::calcScreenPosition((JGeometry::TVec3<f> *,JGeometry::TVec3<f> const &))
@@ -19104,11 +19431,11 @@
  0002:803C8A9C       MR::isSubjectiveCameraOnForObjClipping((void))
  0002:803C8ACC       MR::cleanEventCameraTarget_temporally((void))
  0002:803C8B00       CameraTargetArg::setTarget(const(void))
+ 0002:803C8B04       MR::changeEventCameraTarget((ActorCameraInfo const *,char const *,CameraTargetArg const &))
  0002:803C8B0C       MR::startEventCameraNoTarget((ActorCameraInfo const *,char const *,long))
  0002:803C8B64       MR::startEventCameraTargetPlayer((ActorCameraInfo const *,char const *,long))
  0002:803C8C18       MR::startGlobalEventCameraNoTarget((char const *,long))
  0002:803C8C6C       MR::startGlobalEventCameraTargetPlayer((char const *,long))
- 0002:803C8CC8       MR::tryFindNamePos((char const *,JGeometry::TVec3<f> *,JGeometry::TVec3<f> *))
  0002:803C8D18       MR::startEventCameraAnim((ActorCameraInfo const *,char const *,CameraTargetArg const &,long,float))
  0002:803C8D98       MR::startLauncherCamera((CameraTargetArg const &))
  0002:803C8DD8       MR::startLauncherFlightCamera((long))
@@ -19205,11 +19532,13 @@
  0002:803CBAD8       MR::Effect::requestMovementOnAllEmitters((void))
  0002:803CBADC       MR::addEffect((LiveActor *,char const *))
  0002:803CBAE0       MR::updateEffectFloorCode((LiveActor *,Triangle const *))
+ 0002:803CBB18       MR::emitEffect((LiveActor *,char const *))
  0002:803CBB20       MR::emitEffectWithScale((LiveActor *,char const *,float,long))
  0002:803CBB84       MR::emitEffectWithEmitterCallBack((LiveActor *,char const *,MultiEmitterCallBackBase *))
  0002:803CBBCC       MR::emitEffectWithParticleCallBack((LiveActor *,char const *,MultiEmitterParticleCallBack *))
  0002:803CBC18       MR::tryEmitEffect((LiveActor *,char const *))
  0002:803CBC6C       MR::tryDeleteEffect((LiveActor *,char const *))
+ 0002:803CBCC4       MR::deleteEffect((LiveActor *,char const *))
  0002:803CBCDC       MR::forceDeleteEffectAll((LiveActor *))
  0002:803CBCE4       MR::isRegisteredEffect((LiveActor const *,char const *))
  0002:803CBD04       MR::isEffectValid((LiveActor const *,char const *))
@@ -19228,13 +19557,17 @@
  0002:803CC1F8       MR::updateEffectFloorCodeLineToMap((LiveActor *,float,float))
  0002:803CC2BC       MR::initEffectSyncBck((LiveActor *,char const *,char const *const *))
  0002:803CC368       MR::addEffectHitNormal((LiveActor *,char const *))
+ 0002:803CC3CC       MR::getPlayerLeft((void))
+ 0002:803CC3D0       MR::incPlayerLeft((void))
  0002:803CC3D8       MR::decPlayerLeft((void))
+ 0002:803CC408       MR::isLuigiLeftSupply((void))
  0002:803CC40C       MR::incPlayerGameOverNum((void))
  0002:803CC434       MR::isAnyPlayerLeftSupply((void))
  0002:803CC4A0       MR::offAllPlayerLeftSupply((void))
  0002:803CC4EC       MR::getStarPieceNum((void))
  0002:803CC52C       MR::addStarPiece((int))
  0002:803CC584       GameDataFunction::addStockedStarPiece((int))
+ 0002:803CC588       MR::isPlayerLuigi((void))
  0002:803CC5B0       InformationObserverFunction::explainSpin((LiveActor *))
  0002:803CC6D4       MR::isOnGameEventFlagChildsRoom((void))
  0002:803CC708       MR::isOnGameEventFlagLibraryRoom((void))
@@ -19267,6 +19600,7 @@
  0002:803CD0B4       MR::getCoinBestScore((char const *,long))
  0002:803CD0EC       MR::getCoinBestScore((char const *))
  0002:803CD174       MR::isPlacedCoin((char const *,long))
+ 0002:803CD1FC       MR::onGameEventFlagGetLuigiLetter((void))
  0002:803CD200       MR::isOnLuigiHiding((void))
  0002:803CD26C       MR::isOnLuigiHidingCurrentStage((void))
  0002:803CD310       MR::isLuigiDisappearFromAstroGalaxyOrHiding((void))
@@ -19283,7 +19617,7 @@
  0002:803CD950       MR::onGameEventFlagViewCompleteEnding((void))
  0002:803CD9DC       MR::getPowerStarLeftToDisplayCountDownPlate((void))
  0002:803CDAA8       MR::isKoopaFortressAppearInGalaxy((void))
- 0002:803CDBA8       MR::limitedStarPieceHitSound((void))
+ 0002:803CDBA8       MR::isOnGameEventFlagAstroGalaxyBgmBright((void))
  0002:803CDBB8       MR::isOnMessageAlreadyRead((signed char))
  0002:803CDC08       MR::isFileExist((char const *,bool))
  0002:803CDC40       MR::getFileSize((char const *,bool))
@@ -19296,6 +19630,7 @@
  0002:803CE04C       MR::getMountedArchiveAndHeap((char const *,JKRArchive **,JKRHeap **))
  0002:803CE0E8       MR::removeResourceAndFileHolderIfIsEqualHeap((JKRHeap *))
  0002:803CE128       MR::decompressFileFromArchive((JKRArchive *,char const *,JKRHeap *,int))
+ 0002:803CE1F4       MR::isLoadedFile((char const *))
  0002:803CE2E4       MR::isLoadedObjectOrLayoutArchive((char const *))
  0002:803CE35C       MR::makeObjectArchiveFileName((char *,ulong,char const *))
  0002:803CE420       MR::makeObjectArchiveFileNameFromPrefix((char *,ulong,char const *,bool))
@@ -19315,6 +19650,7 @@
  0002:803CEDBC       FootPrint::getPrintPos(const(ulong))
  0002:803CEDDC       FootPrint::invalidate((ulong))
  0002:803CEE04       FootPrint::isValid(const(ulong))
+ 0002:803CEE30       FootPrint::~FootPrint((void))
  0002:803CEE88       FurBank::check((J3DModelData *,ulong))
  0002:803CEEE0       FurDrawManager::add((FurCtrl *,uchar))
  0002:803CEF18       FurDrawManager::draw(const(void))
@@ -19351,15 +19687,35 @@
  0002:803D1E84       CShader::CLengthMap::refer(const(float,float))
  0002:803D1F9C       CShader::CLengthMap::getTexelOrder(const(ushort,float,_GXTexWrapMode))
  0002:803D2068       CShader::CIndex::CIndex((void))
- 0002:803D207C       MR::getCorePadPointingPos((JGeometry::TVec2<f> *,long))
+ 0002:803D207C       MR::getCorePadPointingPosBasedOnScreen((JGeometry::TVec2<f> *,long))
+ 0002:803D20B8       MR::getCorePadPointingPos((JGeometry::TVec2<f> *,long))
  0002:803D20F4       MR::getCorePadPastPointingPos((JGeometry::TVec2<f> *,long,long))
+ 0002:803D2140       MR::getCorePadEnablePastCount((long))
  0002:803D2168       MR::isCorePadPointInScreen((long))
  0002:803D2190       MR::getCorePadDistanceToDisplay((long))
  0002:803D21B8       MR::getCorePadAcceleration((JGeometry::TVec3<f> *,long))
- 0002:803D21F4       MR::testSubPadReleaseZ((long))
+ 0002:803D21F4       MR::testCorePadButtonUp((long))
+ 0002:803D221C       MR::testCorePadButtonDown((long))
+ 0002:803D2244       MR::testCorePadButtonA((long))
+ 0002:803D226C       MR::testCorePadButtonB((long))
+ 0002:803D2294       MR::testCorePadButtonPlus((long))
+ 0002:803D22BC       MR::testCorePadButtonMinus((long))
+ 0002:803D22E4       MR::testSubPadButtonC((long))
+ 0002:803D230C       MR::testSubPadButtonZ((long))
  0002:803D2334       MR::testPadButtonAnyWithoutHome((long))
+ 0002:803D252C       MR::testCorePadTriggerUp((long))
+ 0002:803D2554       MR::testCorePadTriggerDown((long))
+ 0002:803D257C       MR::testCorePadTriggerLeft((long))
+ 0002:803D25A4       MR::testCorePadTriggerRight((long))
  0002:803D25CC       MR::testCorePadTriggerA((long))
+ 0002:803D25F4       MR::testCorePadTriggerB((long))
+ 0002:803D261C       MR::testCorePadTriggerPlus((long))
+ 0002:803D2644       MR::testCorePadTriggerMinus((long))
  0002:803D266C       MR::testCorePadTriggerAnyWithoutHome((long))
+ 0002:803D2814       MR::testCorePadTriggerHome((long))
+ 0002:803D283C       MR::testSubPadTriggerC((long))
+ 0002:803D2864       MR::testSubPadTriggerZ((long))
+ 0002:803D288C       MR::testSubPadReleaseZ((long))
  0002:803D28B4       MR::isCorePadSwing((long))
  0002:803D28DC       MR::isCorePadSwingTrigger((long))
  0002:803D2904       MR::getSubPadStickX((long))
@@ -19408,7 +19764,7 @@
  0002:803D3BDC       HashSortTable::swap((char const *,char const *))
  0002:803D3C64       MR::getHashCode((char const *))
  0002:803D3C90       MR::getHashCodeLower((char const *))
- 0002:803D3CF0       JMapInfoIter::isValid(const(void))
+ 0002:803D3CF0       MR::isValidInfo((JMapInfoIter const &))
  0002:803D3CF4       MR::isObjectName((JMapInfoIter const &,char const *))
  0002:803D3D54       @unnamed@JMapUtil_cpp@::getJMapInfoRailArg((JMapInfoIter const &,char const *,long *))
  0002:803D3DB0       @unnamed@MapPartsUtil_cpp@::getJMapInfoArgNoInit((JMapInfoIter const &,char const *,float *))
@@ -19420,6 +19776,7 @@
  0002:803D40E8       MR::getJMapInfoArg3WithInit((JMapInfoIter const &,float *))
  0002:803D4100       MR::getJMapInfoArg7WithInit((JMapInfoIter const &,bool *))
  0002:803D41D8       MR::getJMapInfoArg0NoInit((JMapInfoIter const &,long *))
+ 0002:803D41E8       MR::getJMapInfoArg0NoInit((JMapInfoIter const &,float *))
  0002:803D4208       MR::getJMapInfoArg1NoInit((JMapInfoIter const &,long *))
  0002:803D4358       MR::isEqualObjectName((JMapInfoIter const &,char const *))
  0002:803D4398       MR::getDemoCastID((JMapInfoIter const &))
@@ -19438,8 +19795,11 @@
  0002:803D485C       MR::getJMapInfoArg7WithInit((JMapInfoIter const &,long *))
  0002:803D488C       MR::getJMapInfoGroupID((JMapInfoIter const &,long *))
  0002:803D4934       MR::isConnectedWithRail((JMapInfoIter const &))
- 0002:803D49AC       MR::isExistStageSwitchSleep((JMapInfoIter const &))
- 0002:803D4BB4       MR::getJMapInfoMessageID((JMapInfoIter const &,long *))
+ 0002:803D49AC       MR::isExistStageSwitchA((JMapInfoIter const &))
+ 0002:803D4A14       MR::isExistStageSwitchB((JMapInfoIter const &))
+ 0002:803D4A7C       MR::isExistStageSwitchAppear((JMapInfoIter const &))
+ 0002:803D4AE4       MR::isExistStageSwitchDead((JMapInfoIter const &))
+ 0002:803D4BB4       MR::getJMapInfoCameraSetID((JMapInfoIter const &,long *))
  0002:803D4D18       MR::getDemoSheetName((JMapInfoIter const &))
  0002:803D4D98       MR::isEqualRailUsage((JMapInfoIter const &,char const *))
  0002:803D4DE4       MR::getRailPointPos0((JMapInfoIter const &,JGeometry::TVec3<f> *))
@@ -19466,7 +19826,7 @@
  0002:803D5658       MR::getJointTransZ((J3DJoint const *))
  0002:803D5660       MR::searchChildJoint((J3DJoint *,J3DJoint *))
  0002:803D5708       MR::getParentJoint((J3DModelData *,J3DJoint *))
- 0002:803D5774       nw4r::ut::DynamicCast<PQ34nw4r3lyt7Picture,Q34nw4r3lyt4Pane>(nw4r::lyt::Picture *(nw4r::lyt::Pane *))
+ 0002:803D5740       MR::getParentJoint((LiveActor const *,J3DJoint *))
  0002:803D58AC       nw4r::lyt::Pane::SetVisible((bool))
  0002:803D58C0       nw4r::lyt::Pane::SetInfluencedAlpha((bool))
  0002:803D58D8       @unnamed@LayoutUtil_cpp@::showPaneRecursive((nw4r::lyt::Pane *))
@@ -19544,17 +19904,11 @@
  0002:803D7A38       MR::copyLayoutDrawInfoWithAspect((nw4r::lyt::DrawInfo *,LayoutActor const *,bool))
  0002:803D7B18       MR::calcAnimLayoutWithDrawInfo((LayoutActor const *,nw4r::lyt::DrawInfo const &))
  0002:803D7B68       MR::drawLayoutWithDrawInfoWithoutProjectionSetup((LayoutActor const *,nw4r::lyt::DrawInfo const &))
- 0002:803D7BE0       MR::isStep((NerveExecutor const *,long))
  0002:803D7C18       MR::isFirstStep((LayoutActor const *))
  0002:803D7C20       MR::isLessStep((LayoutActor const *,long))
- 0002:803D7CBC       MR::isGreaterEqualStep((NerveExecutor const *,long))
- 0002:803D7CF8       MR::isIntervalStep((NerveExecutor const *,long))
- 0002:803D7D38       MR::isNewNerve((NerveExecutor const *))
  0002:803D7D5C       MR::calcNerveRate((NerveExecutor const *,long))
  0002:803D7DDC       MR::calcNerveRate((LiveActor const *,long,long))
  0002:803D7E6C       MR::calcNerveEaseOutRate((NerveExecutor const *,long))
- 0002:803D7EFC       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,long,float,float))
- 0002:803D7FC4       MR::setNerveAtStep((NerveExecutor *,Nerve const *,long))
  0002:803D8014       MR::setNerveAtAnimStopped((LayoutActor *,Nerve const *,ulong))
  0002:803D8074       MR::setNerveAtPaneAnimStopped((LayoutActor *,char const *,Nerve const *,ulong))
  0002:803D80D8       MR::killAtAnimStopped((LayoutActor *,ulong))
@@ -19632,6 +19986,7 @@
  0002:803D9E98       MR::setClippingFar300m((LiveActor *))
  0002:803D9ED4       MR::setClippingFarMax((LiveActor *))
  0002:803D9F10       MR::setClippingFar((LiveActor *,float))
+ 0002:803DA060       MR::setGroupClipping((LiveActor *,JMapInfoIter const &,int))
  0002:803DA0AC       MR::validateClipping((LiveActor *))
  0002:803DA0F0       MR::invalidateClipping((LiveActor *))
  0002:803DA154       MR::changeShowModelFlagSyncNearClipping((LiveActor *,float))
@@ -19655,6 +20010,7 @@
  0002:803DA780       MR::initDLMakerMatColor0((LiveActor *,char const *,J3DGXColor const *))
  0002:803DA794       MR::initDLMakerChangeTex((LiveActor *,char const *))
  0002:803DA868       MR::startAction((LiveActor const *,char const *))
+ 0002:803DA8C4       MR::isActionEnd((LiveActor const *))
  0002:803DA8CC       MR::isActionStart((LiveActor const *,char const *))
  0002:803DA8E0       MR::isBckPlaying((LiveActor const *,char const *))
  0002:803DA8EC       MR::tryStartAction((LiveActor const *,char const *))
@@ -19674,9 +20030,10 @@
  0002:803DB31C       MR::checkPassBckFrame((LiveActor const *,float))
  0002:803DB360       MR::setBckFrameAtRandom((LiveActor const *))
  0002:803DB3EC       MR::setBtkFrameAtRandom((LiveActor const *))
- 0002:803DB48C       MR::setBvaFrameAndStop((LiveActor const *,float))
+ 0002:803DB644       MR::setBvaFrameAndStop((LiveActor const *,float))
  0002:803DB69C       MR::setBrkFrameEndAndStop((LiveActor const *))
  0002:803DB71C       MR::startBtpAndSetFrameAndStop((LiveActor const *,char const *,float))
+ 0002:803DB814       MR::startBva((LiveActor const *,char const *))
  0002:803DB81C       MR::startBckIfExist((LiveActor const *,char const *))
  0002:803DB8A4       MR::startBtkIfExist((LiveActor const *,char const *))
  0002:803DB908       MR::startBrkIfExist((LiveActor const *,char const *))
@@ -19711,9 +20068,8 @@
  0002:803DC644       MR::calcLightPos1((JGeometry::TVec3<f> *,LiveActor const *))
  0002:803DC684       MR::getLightAmbientColor((LiveActor const *))
  0002:803DC6AC       MR::getLightCtrl((LiveActor const *))
- 0002:803DC734       MR::isLessEqualStep((NerveExecutor const *,long))
+ 0002:803DC6EC       MR::isFirstStep((LiveActor const *))
  0002:803DCA80       MR::calcNerveEaseInOutRate((LiveActor const *,long,long))
- 0002:803DCC50       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,float,float))
  0002:803DD1D8       MR::setNerveAtBckStopped((LiveActor *,Nerve const *))
  0002:803DD228       MR::trySetNerve((LiveActor *,Nerve const *))
  0002:803DD280       MR::getGroundNormal((LiveActor const *))
@@ -19827,9 +20183,12 @@
  0002:803DF5A8       MR::stopSceneAtStep((LiveActor const *,long,long))
  0002:803DF5E4       MR::tryRumblePadAndCameraDistanceMiddle((LiveActor const *,float,float,float))
  0002:803DF7E8       JAUSoundAnimator::setLoopFrame((float,float))
- 0002:803DF888       MR::isBodySensorTypeMapObj((LiveActor const *))
+ 0002:803DF840       MR::getBodySensor((LiveActor *))
+ 0002:803DF84C       MR::setBodySensorType((LiveActor *,ulong))
+ 0002:803DF888       MR::setBodySensorTypeMapObj((LiveActor *))
  0002:803DF8B8       MR::setBodySensorTypePress((LiveActor *))
  0002:803DF8E8       MR::setBodySensorTypeMoveCollision((LiveActor *))
+ 0002:803DF918       MR::isBodySensorTypeMapObj((LiveActor const *))
  0002:803DF948       MR::receiveMapPartsRotateMsg((LiveActor *,ulong,MapPartsRailMover *,MapPartsRailRotator *))
  0002:803DF98C       MR::tryStartMapPartsRotateAtPoint((LiveActor *,MapPartsRailMover *,MapPartsRailRotator *))
  0002:803DFA1C       MR::tryEndMapPartsRotateAtPoint((LiveActor *,MapPartsRailMover *,MapPartsRailRotator *))
@@ -19849,7 +20208,14 @@
  0002:803E0240       MR::isMapPartsSignMotionTypeMoveWait((long))
  0002:803E0260       MR::hasMapPartsMoveStartSignMotion((long))
  0002:803E02A4       MR::hasMapPartsVanishSignMotion((long))
- 0002:803E02D4       MR::isMapPartsRailInitPosTypeRailPos((long))
+ 0002:803E02D4       MR::isMapPartsShadowTypeNone((long))
+ 0002:803E02E0       MR::hasMapPartsShadow((long))
+ 0002:803E02EC       MR::isMoveStartTypeUnconditional((long))
+ 0002:803E02F8       MR::isMoveStartTypePlayerOnStopEnd((long))
+ 0002:803E0308       MR::isMapPartsRailInitPosTypeRailPos((long))
+ 0002:803E0314       MR::isMapPartsRailInitPosTypeRailPoint((long))
+ 0002:803E0324       MR::isMapPartsRailInitPosTypePoint0((long))
+ 0002:803E0334       MR::isMapPartsRailSpeedCalcTypeTime((long))
  0002:803E0344       @unnamed@MapUtil_cpp@::getStrikeInfoNumCategory((long))
  0002:803E0380       @unnamed@MapUtil_cpp@::getFirstPolyOnLineCategory((JGeometry::TVec3<f> *,Triangle *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,TriangleFilterBase const *,CollisionPartsFilterBase const *,long))
  0002:803E04D8       @unnamed@MapUtil_cpp@::getFirstPolyOnLineCategoryExceptActor((JGeometry::TVec3<f> *,Triangle *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,LiveActor const *,long))
@@ -20059,8 +20425,9 @@
  0002:803E76F0       MR::calcCheckSum((void const *,ulong))
  0002:803E7730       MR::allocFromWPadHeap((ulong))
  0002:803E7744       MR::freeFromWPadHeap((void *))
- 0002:803E7788       MR::getLayoutMessageDirect((char const *))
+ 0002:803E7788       MR::getSystemMessageDirect((char const *))
  0002:803E77C8       MR::getGameMessageDirect((char const *))
+ 0002:803E7808       MR::getLayoutMessageDirect((char const *))
  0002:803E7848       MR::getCurrentGalaxyNameOnCurrentLanguage((void))
  0002:803E789C       MR::getCurrentScenarioNameOnCurrentLanguage((void))
  0002:803E7918       MR::getRaceNameOnCurrentLanguage((int))
@@ -20078,8 +20445,8 @@
  0002:803E7F6C       MR::updateModelAnimPlayer((LiveActor *))
  0002:803E7FA8       MR::invalidateMtxCalc((J3DModelData *))
  0002:803E7FDC       MR::invalidateJointCallback((J3DModelData *))
- 0002:803E8010       MR::getJ3DModelData((LiveActor const *))
  0002:803E802C       MR::calcJ3DModel((LiveActor *))
+ 0002:803E8088       MR::getJ3DModelData((LiveActor const *))
  0002:803E80A4       MR::getBckFrameMax((LiveActor const *,char const *))
  0002:803E80E0       MR::getBrkFrameMax((LiveActor const *,char const *))
  0002:803E811C       MR::getBvaFrameMax((LiveActor const *,char const *))
@@ -20205,10 +20572,17 @@
  0002:803EC424       MultiEventCamera::startCamera((void))
  0002:803EC498       MultiEventCamera::endCamera((long))
  0002:803EC53C       MultiEventCamera::changeTarget((CameraTargetArg const &))
+ 0002:803EC5A8       MR::isStep((NerveExecutor const *,long))
  0002:803EC5E0       MR::isFirstStep((NerveExecutor const *))
  0002:803EC5E8       MR::isLessStep((NerveExecutor const *,long))
+ 0002:803EC628       MR::isLessEqualStep((NerveExecutor const *,long))
  0002:803EC664       MR::isGreaterStep((NerveExecutor const *,long))
- 0002:803ECB6C       NPCFunction::getNPCItemData((NPCActorItem *,long))
+ 0002:803EC6A4       MR::isGreaterEqualStep((NerveExecutor const *,long))
+ 0002:803EC99C       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,float,float))
+ 0002:803ECA54       MR::calcNerveEaseInOutValue((NerveExecutor const *,long,long,float,float))
+ 0002:803ECB1C       MR::setNerveAtStep((NerveExecutor *,Nerve const *,long))
+ 0002:803ECB6C       MR::getNPCItemData((NPCActorItem *,long))
+ 0002:803ECB70       MR::isNPCItemFileExist((char const *))
  0002:803ECBB4       MR::initDefaultPose((NPCActor *,JMapInfoIter const &))
  0002:803ECBFC       MR::turnPlayerToActor((LiveActor const *,float))
  0002:803ECE44       MR::decidePose((NPCActor *,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,JGeometry::TVec3<f> const &,float,float,float))
@@ -20247,6 +20621,7 @@
  0002:803EE95C       FadeStarter::exeFade((void))
  0002:803EEADC       DemoStarter::exeFade((void))
  0002:803EEC8C       NrvDemoStarter::DemoStarterNrvWait::execute(const(Spine *))
+ 0002:803EED04       NrvTakeOutStar::TakeOutStarNrvAnim::execute(const(Spine *))
  0002:803EED0C       MR::isJudgedToClipFrustum((JGeometry::TVec3<f> const &,float))
  0002:803EED50       MR::isJudgedToClipFrustum100m((JGeometry::TVec3<f> const &,float))
  0002:803EED98       MR::isJudgedToClipFrustum300m((JGeometry::TVec3<f> const &,float))
@@ -20254,6 +20629,7 @@
  0002:803EEE34       MR::isInWater((JGeometry::TVec3<f> const &))
  0002:803EEE80       MR::isInDarkMatter((JGeometry::TVec3<f> const &))
  0002:803EEEEC       MR::registerNameObjToExecuteHolder((NameObj *,int,int,int,int))
+ 0002:803EEEF0       MR::connectToScene((NameObj *,int,int,int,int))
  0002:803EEF2C       MR::connectToSceneCollisionMapObj((LiveActor *))
  0002:803EEF40       MR::connectToSceneCollisionMapObjMovementCalcAnim((LiveActor *))
  0002:803EEF54       MR::connectToSceneCollisionMapObjWeakLight((LiveActor *))
@@ -20389,6 +20765,7 @@
  0002:803F15DC       MR::tryFindNamePos((char const *,float *[4]))
  0002:803F15E0       gap_btm_cback0
  0002:803F163C       MR::findNamePosOnGround((char const *,float *[4]))
+ 0002:803F1784       MR::tryFindNamePos((char const *,JGeometry::TVec3<f> *,JGeometry::TVec3<f> *))
  0002:803F17D8       MR::tryFindLinkNamePos((NameObj const *,char const *,float *[4]))
  0002:803F18C8       __sinit__ObjUtil_cpp
  0002:803F192C       ParabolicPath::ParabolicPath((void))
@@ -20476,7 +20853,7 @@
  0002:803F2874       MarioAccess::isParalyzing((void))
  0002:803F28E8       MR::isPlayerJumpRising((void))
  0002:803F290C       MarioAccess::validateSensor((void))
- 0002:803F2910       MarioAccess::isInRush((void))
+ 0002:803F2910       MR::isPlayerInBind((void))
  0002:803F2914       MR::endBindAndPlayerWait((LiveActor *))
  0002:803F2974       MR::endBindAndPlayerJump((LiveActor *,JGeometry::TVec3<f> const &,ulong))
  0002:803F29B8       MR::endBindAndPlayerForceJump((LiveActor *,JGeometry::TVec3<f> const &,ulong))
@@ -20589,6 +20966,7 @@
  0002:803F4C30       MR::calcDistanceToCurrentAndNextRailPoint((LiveActor const *,float *,float *))
  0002:803F4D50       MR::calcRailRateToNextPoint((float *,LiveActor const *))
  0002:803F4DD0       MR::isExistRail((LiveActor const *))
+ 0002:803F4DE0       MR::getRailPointNum((LiveActor const *))
  0002:803F4DE8       MR::getCurrentRailPointNo((LiveActor const *))
  0002:803F4E14       MR::getRailPos((LiveActor const *))
  0002:803F4E20       MR::getRailPointPosStart((LiveActor const *))
@@ -20717,15 +21095,28 @@
  0002:803F7D44       MR::setYesNoSelectorSE((char const *,char const *,char const *))
  0002:803F7D98       MR::resetYesNoSelectorSE((void))
  0002:803F7DD0       MR::startMoviePlayer((char const *))
- 0002:803F7E14       MR::getMovieTotalFrame((void))
+ 0002:803F7E14       MR::stopMoviePlayer((void))
  0002:803F7E40       MR::isActiveMoviePlayer((void))
  0002:803F7E84       MR::isMoviePlayerPlaying((void))
  0002:803F7EC4       MR::getMovieCurrentFrame((void))
+ 0002:803F7F04       MR::getMovieTotalFrame((void))
  0002:803F7F30       MR::setMovieVolume((float,long))
+ 0002:803F7F7C       MR::appearStarCounter((void))
+ 0002:803F7FAC       MR::disappearStarCounter((void))
+ 0002:803F7FD0       MR::forceSyncStarPieceCounter((void))
+ 0002:803F7FF4       MR::forceAppearStarPieceCounterForTicoFat((void))
+ 0002:803F801C       MR::disappearStarPieceCounterForTicoFat((void))
+ 0002:803F8044       MR::createPurpleCoinCounter((void))
+ 0002:803F8068       MR::validatePurpleCoinCounter((void))
  0002:803F8090       MR::requestCounterLayoutAppearanceForTicoEat((bool))
- 0002:803F80F8       MR::startDownWipe((void))
+ 0002:803F80C8       MR::openWipeCircle((long))
+ 0002:803F80D8       MR::openWipeFade((long))
+ 0002:803F80E8       MR::openWipeWhiteFade((long))
+ 0002:803F80F8       MR::startGameOverWipe((void))
+ 0002:803F8134       MR::startDownWipe((void))
  0002:803F8170       MR::requestOneUp((void))
- 0002:803F81B0       MR::requestChangeSceneAfterBoot((void))
+ 0002:803F81AC       MR::requestChangeScene((char const *))
+ 0002:803F81B0       MR::requestChangeSceneTitle((void))
  0002:803F81E8       MR::requestChangeStageInGameAfterLoadingGameData((void))
  0002:803F8220       MR::requestChangeStageAfterStageClear((void))
  0002:803F8258       MR::requestChangeStageAfterMiss((void))
@@ -20738,8 +21129,10 @@
  0002:803F8498       GameSequenceFunction::hasRetryGalaxySequence((void))
  0002:803F84DC       MR::requestGoToAstroGalaxy((long))
  0002:803F8528       MR::requestGoToAstroDomeFromAstroGalaxy((long,long))
+ 0002:803F857C       ResourceShare::~ResourceShare((void))
  0002:803F85D4       ResourceShare::ResourceShare((void))
- 0002:803F8638       MR::startSystemLevelSE((JAISoundID,long,long))
+ 0002:803F8638       MR::startSystemSE((JAISoundID,long,long))
+ 0002:803F8688       MR::startSystemLevelSE((char const *,long,long))
  0002:803F8724       MR::limitedSound((char const *,long))
  0002:803F8774       MR::stopSystemSE((JAISoundID,ulong))
  0002:803F87B4       MR::startAtmosphereSE((char const *,long,long))
@@ -20805,6 +21198,7 @@
  0002:803F9F30       MR::start2PJumpAssistSound((void))
  0002:803F9FA8       MR::start2PJumpAssistJustSound((void))
  0002:803FA020       MR::start2PAttackAssistSound((void))
+ 0002:803FA098       MR::limitedStarPieceHitSound((void))
  0002:803FA0A8       MR::startCurrentStageBGM((void))
  0002:803FA0EC       MR::startBossBGM((long))
  0002:803FA240       def_803FA120
@@ -20812,6 +21206,7 @@
  0002:803FA334       MR::startAfterBossBGM((void))
  0002:803FA3D0       JAISound::updateLifeTime((ulong))
  0002:803FA3E4       @unnamed@StarPointerUtil_cpp@::getStarPointerOnOffController((void))
+ 0002:803FA3F8       @unnamed@StarPointerUtil_cpp@::always((long))
  0002:803FA400       @unnamed@StarPointerUtil_cpp@::onReaction((ulong long,long,bool,bool,bool))
  0002:803FA46C       @unnamed@StarPointerUtil_cpp@::checkPointingTarget((@unnamed@StarPointerUtil_cpp@::StarPointerTargetInfo *,JGeometry::TVec3<f> const &,JGeometry::TVec2<f> const &,float,float))
  0002:803FA478       @unnamed@StarPointerUtil_cpp@::checkPointingWithoutCheckZ((@unnamed@StarPointerUtil_cpp@::StarPointerTargetInfo *,JGeometry::TVec3<f> const &,JGeometry::TVec2<f> const &,float,float))
@@ -20874,6 +21269,7 @@
  0002:803FC734       MR::startStarPointerModeEnding((void *))
  0002:803FC76C       MR::startStarPointerModeCommandStream((void *))
  0002:803FC7A4       MR::startStarPointerMode1PInvalid2PValid((void *))
+ 0002:803FC7DC       MR::endStarPointerMode((void *))
  0002:803FC810       MR::requestStarPointerModeErrorWindow((void *))
  0002:803FC848       MR::requestStarPointerModeSaveLoad((void *))
  0002:803FC880       MR::requestStarPointerModePictureBook((void *))
@@ -20930,6 +21326,7 @@
  0002:803FD8C8       MR::scanu8x4((char const *,char const *,uchar *))
  0002:803FD950       MR::scans16x4((char const *,char const *,short *))
  0002:803FD9DC       MR::scanf32x4((char const *,char const *,float *))
+ 0002:803FDA40       SwitchEventFunctorListener::SwitchEventFunctorListener((void))
  0002:803FDA5C       SwitchEventFunctorListener::setOnFunctor((MR::FunctorBase const &))
  0002:803FDAA0       SwitchEventFunctorListener::setOffFunctor((MR::FunctorBase const &))
  0002:803FDAE4       SwitchEventFunctorListener::listenSwitchOnEvent((void))
@@ -20957,10 +21354,10 @@
  0002:803FDF3C       __stdio_atexit
  0002:803FDF78       MR::getPlayerRestartIdInfo((void))
  0002:803FDF8C       MR::setPlayerRestartIdInfo((JMapIdInfo const &))
- 0002:803FDFA0       TalkMessageCtrl::registerBranchFunc((TalkMessageFuncBase const &))
- 0002:803FDFA4       TalkMessageCtrl::registerEventFunc((TalkMessageFuncBase const &))
- 0002:803FDFA8       TalkMessageCtrl::registerAnimeFunc((TalkMessageFuncBase const &))
- 0002:803FDFAC       TalkMessageCtrl::registerKillFunc((TalkMessageFuncBase const &))
+ 0002:803FDFA0       MR::registerBranchFunc((TalkMessageCtrl *,TalkMessageFuncBase const &))
+ 0002:803FDFA4       MR::registerEventFunc((TalkMessageCtrl *,TalkMessageFuncBase const &))
+ 0002:803FDFA8       MR::registerAnimeFunc((TalkMessageCtrl *,TalkMessageFuncBase const &))
+ 0002:803FDFAC       MR::registerKillFunc((TalkMessageCtrl *,TalkMessageFuncBase const &))
  0002:803FDFB0       MR::setMessageArg((TalkMessageCtrl *,int))
  0002:803FDFE0       MR::setMessageArg((TalkMessageCtrl *,wchar_t const *))
  0002:803FE010       MR::createTalkCtrlDirect((LiveActor *,JMapInfoIter const &,char const *,JGeometry::TVec3<f> const &,float *[4]))
@@ -20994,6 +21391,8 @@
  0002:803FE9D0       TalkFunction::isTalkSystemStart((TalkMessageCtrl const *))
  0002:803FE9D4       TalkFunction::isTalkSystemEnd((TalkMessageCtrl const *))
  0002:803FE9D8       TalkMessageCtrl::setMessageArg((CustomTagArg const &))
+ 0002:803FE9EC       MR::getAreaObjManager((char const *))
+ 0002:803FEA20       MR::getAreaObj((char const *,JGeometry::TVec3<f> const &))
  0002:803FEA64       MR::isInAreaObj((char const *,JGeometry::TVec3<f> const &))
  0002:803FEAB0       MR::getAreaObjArg((AreaObj const *,long))
  0002:803FEB10       def_803FEACC
@@ -21029,6 +21428,7 @@
  0002:803FFB58       MR::addBaseMatrixFollower((BaseMatrixFollower *))
  0002:803FFB9C       MR::addBaseMatrixFollowTarget((LiveActor *,JMapInfoIter const &,JGeometry::TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> const *,BaseMatrixFollowValidater *))
  0002:803FFC18       nullsub_102
+ 0002:803FFC7C       BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder((void))
  0002:803FFD50       BezierSurface::BezierSurface((long,ulong))
  0002:803FFEBC       BezierSurface::setST((JGeometry::TVec2<f> const &,JGeometry::TVec2<f> const &,JGeometry::TVec2<f> const &))
  0002:803FFF1C       BezierSurface::calcBuffer((void))
@@ -21039,13 +21439,18 @@
  0002:80400238       BezierSurface::drawTrianglePatchPosNorm(const(void))
  0002:80400314       BezierSurface::drawTrianglePatchPosST(const(void))
  0002:80400440       BezierSurface::drawTrianglePatchPosNormST(const(void))
- 0002:804005D4       JSUPtrLink::JSUPtrLink((void *))
- 0002:80400650       JSUPtrList::JSUPtrList((bool))
- 0002:80400708       JSUPtrList::setFirst((JSUPtrLink *))
- 0002:8040072C       JSUPtrList::append((JSUPtrLink *))
- 0002:804007D0       JSUPtrList::remove((JSUPtrLink *))
+ 0002:804005D4       MR::BothDirPtrLink::BothDirPtrLink((void *))
+ 0002:804005EC       MR::BothDirPtrLink::~BothDirPtrLink((void))
+ 0002:80400650       MR::BothDirPtrList::BothDirPtrList((bool))
+ 0002:80400688       MR::BothDirPtrList::~BothDirPtrList((void))
+ 0002:804006F4       MR::BothDirPtrList::initiate((void))
+ 0002:80400708       MR::BothDirPtrList::setFirst((MR::BothDirPtrLink *))
+ 0002:8040072C       MR::BothDirPtrList::append((MR::BothDirPtrLink *))
+ 0002:804007D0       MR::BothDirPtrList::remove((MR::BothDirPtrLink *))
  0002:8040087C       CollisionPartsFilterSensor::isInvalidParts(const(CollisionParts const *))
  0002:80400894       CollisionPartsFilterActor::isInvalidParts(const(CollisionParts const *))
+ 0002:804008B0       TDDraw::setViewMtx((float *[4]))
+ 0002:804008BC       TDDraw::loadViewMtx((float *[4]))
  0002:804008C4       TDDraw::setModelMtx((float *[4]))
  0002:80400914       TDDraw::resetViewMtx((void))
  0002:80400954       TDDraw::close((void))
@@ -21117,7 +21522,8 @@
  0002:804048D8       JMapIdInfo::JMapIdInfo((long,JMapInfoIter const &))
  0002:8040491C       JMapIdInfo::JMapIdInfo((long,long))
  0002:80404928       JMapIdInfo::initialize((long,JMapInfoIter const &))
- 0002:80404960       MR::createJMapIdInfoFromClippingGroupId((JMapInfoIter const &))
+ 0002:80404960       MR::createJMapIdInfoFromGroupId((JMapInfoIter const &))
+ 0002:804049B4       MR::createJMapIdInfoFromClippingGroupId((JMapInfoIter const &))
  0002:80404A08       JMapInfo::JMapInfo((void))
  0002:80404A20       JMapInfo::~JMapInfo((void))
  0002:80404A60       JMapInfo::attach((void const *))
@@ -21132,6 +21538,7 @@
  0002:80404EEC       JMapLinkInfo::isValid(const(void))
  0002:80404F34       JMapLinkInfo::setLinkedInfo((JMapInfoIter const &))
  0002:80405000       JMapLinkInfo::setLinkInfo((JMapInfoIter const &))
+ 0002:804050D4       JointController::JointController((void))
  0002:80405100       JointController::registerCallBack((void))
  0002:8040511C       JointController::calcJointMatrixAndSetSystem((J3DJoint *))
  0002:804051B0       JointController::calcJointMatrixAfterChildAndSetSystem((J3DJoint *))
@@ -21149,8 +21556,8 @@
  0002:80405AD0       OctahedronBezierSurface::getVertexPtr((long))
  0002:80405AF8       OctahedronBezierSurface::setDivideLevel((long))
  0002:80405B54       OctahedronBezierSurface::calcControlPoint((void))
- 0002:80405B58       OctahedronBezierSurface::draw(const(void))
  0002:80405BAC       OctahedronBezierSurface::calcControlPoint((void))
+ 0002:80406704       OctahedronBezierSurface::draw(const(void))
  0002:80406758       PostureHolder::PostureHolder((LiveActor const *))
  0002:804067B0       PostureHolder::store((LiveActor const *))
  0002:80406804       PostureHolder::restore((LiveActor *))
@@ -21162,6 +21569,7 @@
  0002:80406A9C       SpringValue::SpringValue((void))
  0002:80406AC0       SpringValue::setParam((float,float,float,float,float))
  0002:80406AF0       SpringValue::update((void))
+ 0002:80406B24       MR::createTriangleFilterFunc((bool (*)(Triangle const *)))
  0002:80406B6C       TriangleFilterDangerCode::isInvalidTriangle(const(Triangle const *))
  0002:80406C18       TriggerChecker::TriggerChecker((void))
  0002:80406C28       TriggerChecker::update((bool))
@@ -21233,7 +21641,9 @@
  0002:80409010       JASDSPChannel::free((void))
  0002:80409020       LuigiMailDirector::prepareMessage((void))
  0002:804090A0       ReceiverTagMail::ReceiverTagMail((char const *,char const *,char const *))
+ 0002:8040912C       ReceiverTagMail::send((uchar const *,ulong))
  0002:804091B0       ReceiverTagMail::update((void))
+ 0002:80409210       ReceiverTagMail::isDone(const(void))
  0002:8040922C       JKRHeap::JKRHeap((void *,ulong,JKRHeap *,bool))
  0002:80409344       JSUList<11JKRDisposer>::~JSUList<11JKRDisposer>((void))
  0002:804093A0       JSUTree<7JKRHeap>::~JSUTree<7JKRHeap>((void))
@@ -22675,6 +23085,7 @@
  0002:804489F0       JPAEmitterManager::entryResourceManager((JPAResourceManager *,uchar))
  0002:80448A64       JPABaseEmitter::JPABaseEmitter((void))
  0002:80448B0C       JPABaseEmitter::~JPABaseEmitter((void))
+ 0002:80448B98       JPAEmitterCallBack::~JPAEmitterCallBack((void))
  0002:80448BD8       JPABaseEmitter::createParticle((void))
  0002:80448C68       JPABaseEmitter::createChild((JPABaseParticle *))
  0002:80448CE4       JPABaseEmitter::deleteAllParticle((void))
@@ -22683,6 +23094,7 @@
  0002:80448E2C       JPABaseEmitter::calcEmitterGlobalPosition(const(JGeometry::TVec3<f> *))
  0002:80448EAC       JPAList<15JPABaseParticle>::pop_front((void))
  0002:80448F0C       JPAList<15JPABaseParticle>::pop_back((void))
+ 0002:80448F6C       JPAParticleCallBack::~JPAParticleCallBack((void))
  0002:80448FAC       JPABaseParticle::init_p((JPAEmitterWorkData *))
  0002:80449530       JPABaseParticle::init_c((JPAEmitterWorkData *,JPABaseParticle *))
  0002:804499CC       JPABaseParticle::calc_p((JPAEmitterWorkData *))
@@ -22750,11 +23162,11 @@
  0002:80454D50       TPLBind
  0002:80454E64       TPLGet
  0002:80454E84       WENCGetEncodeData
- 0002:8045515C       nullsub_31
- 0002:80455160       nullsub_32
- 0002:80455164       nullsub_33
- 0002:80455168       nullsub_34
- 0002:8045516C       nullsub_35
+ 0002:8045515C       RSONotifyModuleLoaded
+ 0002:80455160       RSONotifyPreRSOLink
+ 0002:80455164       RSONotifyPostRSOLink
+ 0002:80455168       RSONotifyPreRSOLinkFar
+ 0002:8045516C       RSONotifyPostRSOLinkFar
  0002:80455170       LocateObject
  0002:804554E8       RSOStaticLocateObject
  0002:804557F4       RSOLink
@@ -24175,6 +24587,8 @@
  0002:804A4A6C       Run
  0002:804A4AA8       Callback_1
  0002:804A4AB4       __OSGetExecParams
+ 0002:804A4AD8       callback
+ 0002:804A4AE0       __OSLaunchNextFirmware
  0002:804A514C       __OSLaunchMenu
  0002:804A5210       __OSCheckCompanyCode
  0002:804A5324       __OSCheckTmdSysVersion
@@ -24245,6 +24659,7 @@
  0002:804AAC08       nullsub_57
  0002:804AAC0C       __OSThreadInit
  0002:804AAE90       OSInitThreadQueue
+ 0002:804AAEA0       OSGetCurrentThread
  0002:804AAEAC       OSIsThreadSuspended
  0002:804AAEC0       OSIsThreadTerminated
  0002:804AAEEC       OSDisableScheduler
@@ -25898,6 +26313,7 @@
  0002:80517538       _savegpr_29
  0002:80517548       __restore_gpr
  0002:80517578       _restgpr_26
+ 0002:8051757C       _restgpr_27
  0002:80517580       _restgpr_28
  0002:80517584       _restgpr_29
  0002:80517594       __div2u
@@ -26193,6 +26609,7 @@
  0007:8052DEE0       _dtors
  0008:8052DF30       @unnamed@AreaObjContainer_cpp@::cCreateTable(void)
  0008:8052F8B8       aAudioresSpkres
+ 0008:805338F0       @unnamed@ModelChangableObjFactory_cpp@::cModelChangableObjCreatorTable(void)
  0008:8053A020       aSystemResult00
  0008:8053A031       aSystemResult00_0
  0008:8053A042       aSystemResult00_1
@@ -26849,9 +27266,11 @@
  0009:8055487E       aEggwalk
  0009:80554886       aSeBvDPakkunEgg
  0009:8055489E       aSeBmDPakkunSla_0
+ 0009:805548B4       _19DinoPackunBattleEgg::`vtbl'
  0009:80554936       aEggwalk_0
  0009:8055493E       aSeBvDPakkunEgg_0
  0009:80554956       aSeBmDPakkunSla_1
+ 0009:805549E0       a2_0
  0009:805549E7       aInvalidhitmark_0
  0009:805549F6       aFind_2
  0009:805549FB       aTurnright
@@ -26861,6 +27280,7 @@
  0009:80554A3C       aWalk_2
  0009:80554A41       aChase_0
  0009:80554A47       aSeBvDPakkunCha
+ 0009:80554A5C       _22DinoPackunBattleVs1Lv1::`vtbl'
  0009:80554B27       aInvalidhitmark_1
  0009:80554B36       aFind_3
  0009:80554B3B       aAngrywalk
@@ -27000,6 +27420,7 @@
  0009:805564D2       aStarwait
  0009:805564EC       aDodoryuleadhil_0
  0009:80556508       aDodoryuleadhil
+ 0009:805567D3       aO
  0009:805567E2       aOpeningdemo_5
  0009:80556801       aSeDmMeetBoss_0
  0009:80556811       aBgmPinch3
@@ -27135,6 +27556,7 @@
  0009:80557FDD       aDemokoopapower_0
  0009:80558030       aBattlewait_5
  0009:8055803B       aSeOjStarPieceB_16
+ 0009:805580D8       aDemoLv2
  0009:8055810C       aDemokoopafall
  0009:8055814C       aDeath_10
  0009:8055817C       aJumpsoon
@@ -27142,6 +27564,8 @@
  0009:805581A3       aLand_2
  0009:805581A8       aSeBmKoopaFlipR
  0009:805581C5       aSeBvKoopaLandH
+ 0009:805581DC       _27KoopaDemoFallToPlanetVs3Lv2::`vtbl'
+ 0009:80558290       aDemoLv3
  0009:805582BE       aDemokoopafalls
  0009:80558301       aDeath_11
  0009:80558307       aMbgmBossKoopaF
@@ -27153,6 +27577,7 @@
  0009:805583BA       aLand_3
  0009:805583BF       aSeBmKoopaFlipR_0
  0009:805583DC       aSeBvKoopaLandH_0
+ 0009:805584A8       aDemoN
  0009:80558538       aJumpsoon_1
  0009:8055856B       aSeBmLvKoopaFal_3
  0009:80558589       aLand_4
@@ -27205,8 +27630,10 @@
  0009:80558C2A       aArmorbreakfixp
  0009:80558C44       aKoopathornbrea
  0009:80558C54       aThornbreakfixp
+ 0009:80558CA0       _18KoopaPowerUpSwitch::`vtbl'
  0009:80558D23       aKoopaplanetsha
  0009:80558D35       aHip1
+ 0009:80558DB8       _17KoopaRestarterVs3::`vtbl'
  0009:80558E3D       aKooparockbreak
  0009:80558E4C       aRockbreakfixpo
  0009:80558ED8       aBody_77
@@ -27245,6 +27672,7 @@
  0009:80559001       aReceivertailto
  0009:80559011       aDamageescapebo
  0009:80559022       aDamageescapepu
+ 0009:80559060       aSequence
  0009:80559123       aDemokoopavs1st
  0009:80559148       aDemokoopavs1do
  0009:80559187       aSeAtKoopaFalld
@@ -27277,6 +27705,7 @@
  0009:80559718       aErase_0
  0009:8055971E       aSeBmKoopaSwave
  0009:80559736       aSeBmLvKoopaSwa
+ 0009:805597E8       aState
  0009:805597FE       aAttackfirestar
  0009:8055980E       aAttackfire_2
  0009:805598A2       aAttackfirestar_0
@@ -27508,6 +27937,7 @@
  0009:8055B549       aWait_38
  0009:8055B54E       aHandl_1
  0009:8055B554       aHandr_4
+ 0009:8055B658       a1_0
  0009:8055B664       aSeBmLvPoltaInB_0
  0009:8055B682       aSeBmLvPoltaCor
  0009:8055B69D       aStaggerlv1
@@ -27789,7 +28219,9 @@
  0009:8055D616       aNoctilucafast
  0009:8055D760       aAcidsplash
  0009:8055D78F       aSwoon_1
+ 0009:8055D8A0       a2UI
  0009:8055D8BF       aSwoon_2
+ 0009:8055D8C8       _19TombSpiderAction2nd::`vtbl'
  0009:8055D9D0       aWait_41
  0009:8055D9D5       aEyedamage
  0009:8055D9DF       aSeBmTspiderDam
@@ -27816,6 +28248,9 @@
  0009:8055DBD8       aCocoon
  0009:8055DBDF       aWait_42
  0009:8055DBE4       aSeOjTspiderCoc_0
+ 0009:8055DC48       aONUI
+ 0009:8055DC6F       aOUI
+ 0009:8055DC92       aNUI
  0009:8055DCB3       aAppear_16
  0009:8055DCBA       aBattle2ndstart
  0009:8055DCC9       aDeath_15
@@ -27899,6 +28334,7 @@
  0009:8055E1E9       aVitalSpotL_0
  0009:8055E1F6       aVitalSpotR_0
  0009:8055E203       aCocoon_0
+ 0009:8055E210       aState_0
  0009:8055E21C       aSwoonstart_0
  0009:8055E227       aSwoon_3
  0009:8055E22D       aSwoonend_0
@@ -27934,6 +28370,7 @@
  0009:8055E613       aSeBmTripodKill
  0009:8055E62A       aBody_91
  0009:8055E630       jpt_80088A08
+ 0009:8055E7B8       @unnamed@TripodBossAccesser_cpp@::cJMapBoneIDToBoneIndexTable(void)
  0009:8055EA18       aTripodbosscore
  0009:8055EA27       aBody_92
  0009:8055EA37       aTripodbosscore_0
@@ -28301,6 +28738,9 @@
  0009:80563EA0       jpt_800C5F18
  0009:80563F10       aUniquename
  0009:80563F1B       aGroupname
+ 0009:80563FC8       _28MultiEmitterParticleCallBack::`vtbl'
+ 0009:8056405C       _Q22MR67FunctorV0M<P20ParticleCalcExecutor,M20ParticleCalcExecutorFPCvPv_v>::`vtbl'
+ 0009:8056418C       _Q22MR10FunctorV0F::`vtbl'
  0009:805641C0       aParticlesJpc
  0009:805641CE       aParticlenamesB
  0009:805641E1       aAutoeffectlist
@@ -28642,6 +29082,7 @@
  0009:80566EEF       aSpine2
  0009:80566EF6       aSpine3
  0009:80566EFD       aHead_1
+ 0009:80566F02       aN
  0009:80566F11       aCocosambohead
  0009:80566F1F       aBody_105
  0009:80566F24       aHead_19
@@ -29122,6 +29563,8 @@
  0009:8056A769       aBeamfireburn
  0009:8056A776       aSeBmLvKameckMa_0
  0009:8056A791       aSeBmLvKameckMa_1
+ 0009:8056A7AC       _25KameckBeamCollisionFilter::`vtbl'
+ 0009:8056A7C4       _23KameckBeamEventListener::`vtbl'
  0009:8056A980       aBosskameckfire
  0009:8056A993       aAttack_31
  0009:8056A99A       aSeBmKameckDisa
@@ -29806,6 +30249,7 @@
  0009:8056F7BE       aOpen_9
  0009:8056F7C3       aSeEmLvRingbeam_1
  0009:8056F7DC       aCharge_1
+ 0009:8056F7F4       _10RingBeamer::`vtbl'
  0009:8056F8B0       aSambohead
  0009:8056F8BA       aBody_146
  0009:8056F8BF       aDeath_37
@@ -30257,6 +30701,7 @@
  0009:80572DFC       jpt_80157134
  0009:80572E64       jpt_801574E4
  0009:80573138       aActoranimctrl
+ 0009:80573146       aO_0
  0009:80573151       aSBcsv_5
  0009:80573159       aSname
  0009:80573160       aSstartframe
@@ -30323,9 +30768,15 @@
  0009:80573BC7       aAstrogalaxy_7
  0009:80573BD3       aPeachcastlegar_3
  0009:80573BEB       aPeachcastlefin_2
+ 0009:80573C28       _12ShadowDrawer::`vtbl'
+ 0009:80573CEC       _21ShadowSurfaceDrawInit::`vtbl'
  0009:80573D23       aShadowvolumesp
  0009:80573DC7       aShadowvolumecy
+ 0009:80573E10       aU
+ 0009:80573E60       _20ShadowVolumeDrawInit::`vtbl'
+ 0009:80573E88       aU_0
  0009:80573F6F       aShadowvolumesp_0
+ 0009:80573F84       _16ShadowVolumeOval::`vtbl'
  0009:80573FD1       aShadowvolumecy_0
  0009:8057402D       aShadowvolumesp_1
  0009:80574113       aSpotmarklight
@@ -30409,6 +30860,7 @@
  0009:805749D0       aMiniaturegalax
  0009:805749E6       aAppear_31
  0009:805749ED       aDisappear_3
+ 0009:805749F8       _16FileSelectEffect::`vtbl'
  0009:80574AA0       aSystemFilesele_1
  0009:80574ABA       aSystemFilesele_2
  0009:80574AD4       aSystemFilesele_3
@@ -30570,11 +31022,14 @@
  0009:80576606       aWaterBti
  0009:80576610       aWaterindirectB
  0009:80576622       aMaskBti
+ 0009:805766A8       aONU
+ 0009:805766F0       aON
  0009:80576727       aOceanringplane_1
  0009:80576790       aOceanringArc
  0009:8057679E       aWaterpipeinsid
  0009:805767B2       aSeAtLvOceanRin
  0009:805767C6       aSeAtLvOceanRin_0
+ 0009:80576858       aONN
  0009:805768A0       aWaterwaveArc_0
  0009:805768AE       aWaterBti_0
  0009:805768B8       aWaterindirectB_0
@@ -30710,6 +31165,7 @@
  0009:80577DD8       aChange
  0009:80577DF8       aSummersky
  0009:80577F50       aSwSleep
+ 0009:80577F60       aOE
  0009:80577FF8       aSpaceinner
  0009:80578003       aAppear_33
  0009:8057800A       aDisappear_6
@@ -33259,7 +33715,10 @@
  0009:80593095       aTripodbossrota
  0009:805930AB       aSimplenormalma
  0009:805930BE       aSunshademappar
+ 0009:805930D0       _24MovementOnOffGroupHolder::`vtbl'
+ 0009:805930F8       _7NameObj::`vtbl'
  0009:80593120       _14NameObjAdaptor::`vtbl'
+ 0009:80593148       _Q233@unnamed@NameObjCategoryList_cpp@40NameObjRealDelegator<M7NameObjFPCvPCv_v>::`vtbl'
  0009:80593160       aConnecttoscene
  0009:805931A0       aSwitchcube
  0009:805931AB       aSwitchsphere
@@ -38671,6 +39130,7 @@
  0009:805CD91C       aWater_2
  0009:805CD922       aAreamovesphere_0
  0009:805CD931       aAstrooverlooka_0
+ 0009:805D2204       @unnamed@BezierSurface_cpp@::sTrianglePatchTableGroup(void)
  0009:805D2318       aSBcsv_6
  0009:805D2320       aJointname_3
  0009:805D232A       aTrans
@@ -40084,12 +40544,16 @@
  0009:805F58E0       jpt_80528004
  0009:805F5950       jpt_80528CA0
  0009:805F596C       jpt_80528EE4
+ 0003:805F5AC8       JASPoolAllocObject<10AudMeTrack>::memPool_(void)
  0003:805F5D10       @unnamed@DinoPackunStateDamage_cpp@::sOutPosition(void)
  0003:806504D0       funcs_804A4458
+ 0003:80652080       GPFifo
+ 0003:806520A4       CPUFifo
  0001:8069CCB0       @unnamed@BckCtrl_cpp@::sDefaultPlayDataName(void)
  0001:8069CCB8       aBpk_1
  0001:8069CCBC       aBtp_1
  0001:8069CCC0       aBtk_1
+ 0001:8069CE60       @unnamed@TripodBossAccesser_cpp@::cJMapBoneIDToBoneIndexTableSize(void)
  0001:8069DB98       aS_4
  0001:8069DBA0       aS_5
  0001:8069DBB0       aJp
@@ -40198,6 +40662,8 @@
  0003:806A0608       NrvCoinGroup::CoinGroupNrvAppear::sInstance(void)
  0003:806A0610       NrvCoinGroup::CoinGroupNrvDemoAppear::sInstance(void)
  0003:806A067C       NrvSandUpDownTriRock::SandUpDownTriRockNrvStop::sInstance(void)
+ 0003:806A1220       SingletonHolder<15NameObjRegister>::sInstance(void)
+ 0003:806A1228       SingletonHolder<10GameSystem>::sInstance(void)
  0003:806A1E18       @unnamed@GalaxyMap_cpp@::GalaxyMapIdle::sInstance(void)
  0003:806A1E24       @unnamed@GalaxyMap_cpp@::GalaxyMapFadeinGalaxyMap::sInstance(void)
  0003:806A1E28       @unnamed@GalaxyMap_cpp@::GalaxyMapFadeinAstroMap::sInstance(void)
@@ -40208,6 +40674,9 @@
  0003:806A2480       SingletonHolder<21ResourceHolderManager>::sInstance(void)
  0003:806A26DC       JKRHeap::sCurrentHeap(void)
  0003:806A26E0       JKRHeap::sRootHeap(void)
+ 0003:806A2CD8       DVDLowIntType
+ 0003:806A2EE0       GXOverflowSuspendInProgress
+ 0003:806A2EE4       __GXCurrentThread
  0003:806A30A0       __DSP_init_flag
  0003:806A30A8       __DSP_tmp_task
  0003:806A30AC       __DSP_last_task
