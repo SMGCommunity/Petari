@@ -584,7 +584,31 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmHolder.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmWrap.o \
     $(BUILD_DIR)/asm/Game/Ride/Ride.o \
+    $(BUILD_DIR)/asm/Game/Scene/GameScene.o \
+    $(BUILD_DIR)/asm/Game/Scene/GameSceneFunction.o \
+    $(BUILD_DIR)/asm/Game/Scene/GameScenePauseControl.o \
+    $(BUILD_DIR)/asm/Game/Scene/GameSceneScenarioOpeningCameraState.o \
+    $(BUILD_DIR)/asm/Game/Scene/IntermissionScene.o \
+    $(BUILD_DIR)/asm/Game/Scene/LogoScene.o \
+    $(BUILD_DIR)/asm/Game/Scene/MultiSceneEffectKeeper.o \
+    $(BUILD_DIR)/asm/Game/Scene/MultiSceneActor.o \
+    $(BUILD_DIR)/asm/Game/Scene/PlayTimerScene.o \
+    $(BUILD_DIR)/asm/Game/Scene/PlacementInfoOrdered.o \
+    $(BUILD_DIR)/asm/Game/Scene/PlacementStateChecker.o \
+    $(BUILD_DIR)/asm/Game/Scene/ScenarioSelectScene.o \
     $(BUILD_DIR)/asm/Game/Scene/Scene.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneDataInitializer.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneExecutor.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneFactory.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneFunction.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneObjHolder.o \
+    $(BUILD_DIR)/asm/Game/Scene/ScenePlayingResult.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneNameObjListExecutor.o \
+    $(BUILD_DIR)/asm/Game/Scene/SceneNameObjMovementController.o \
+    $(BUILD_DIR)/asm/Game/Scene/StageDataHolder.o \
+    $(BUILD_DIR)/asm/Game/Scene/StageFileLoader.o \
+    $(BUILD_DIR)/asm/Game/Scene/StageResourceLoader.o \
+    $(BUILD_DIR)/asm/Game/Scene/StopSceneController.o \
     $(BUILD_DIR)/asm/Game/Screen/Screen.o \
     $(BUILD_DIR)/asm/Game/Speaker/Speaker.o \
     $(BUILD_DIR)/asm/Game/System/System.o \
