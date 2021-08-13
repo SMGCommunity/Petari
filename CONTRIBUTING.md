@@ -15,7 +15,7 @@ It is recommended that you have knowledge of the following:
 
 Decompilers such as Hex-Rays (included in IDA Pro) are useful as they can make the decompilation easier to write.
 
-Be sure that all of your submitted code follows the guidelines that are listed below.
+Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. Any pull request that fails to match the DOL checksum will be rejected.
 
 If you have any questions or concerns, please join [our Discord server](https://discord.gg/k7ZKzSDsVq)!
 
