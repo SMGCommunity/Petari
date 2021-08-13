@@ -776,6 +776,11 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/J3D/J3DGraphBase.o \
     $(BUILD_DIR)/asm/Game/J3D/J3DGraphAnimator.o \
     $(BUILD_DIR)/asm/Game/J3D/J3DGraphLoader.o \
+    $(BUILD_DIR)/asm/Game/JMath/JMAEulerToQuat.o \
+    $(BUILD_DIR)/asm/Game/JMath/JMAQuatLerp.o \
+    $(BUILD_DIR)/asm/Game/JMath/JMAVECScaleAdd.o \
+    $(BUILD_DIR)/asm/Game/JMath/JMAVECLerp.o \
+    $(BUILD_DIR)/asm/Game/JMath/JMAMTXApplyScale.o \
     $(BUILD_DIR)/asm/Game/JMath/JMath.o \
     $(BUILD_DIR)/asm/Game/JParticle/JParticle.o \
     $(BUILD_DIR)/asm/RVL/gd.o   \
