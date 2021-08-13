@@ -776,11 +776,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/J2D/J2DOrthoGraph.o \
     $(BUILD_DIR)/asm/Game/J2D/J2DFillBox.o \
     $(BUILD_DIR)/asm/Game/J2D/JUTTexture.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPane.o \
-    $(BUILD_DIR)/asm/Game/J2D/JSUTree.o \
-    $(BUILD_DIR)/asm/Game/J2D/addPos.o \
-    $(BUILD_DIR)/asm/Game/J2D/getNameResource.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPicture.o \
+    $(BUILD_DIR)/asm/Game/J2D/J2DPane_J2DPicture.o \
     $(BUILD_DIR)/asm/Game/J2D/get.o \
     $(BUILD_DIR)/asm/Game/J3D/J3DGraphBase.o \
     $(BUILD_DIR)/asm/Game/J3D/J3DGraphAnimator.o \
