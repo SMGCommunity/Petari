@@ -269,7 +269,35 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepSequence.o \
     $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepStartArea.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
-    $(BUILD_DIR)/asm/Game/Demo/Demo.o \
+    $(BUILD_DIR)/asm/Game/Demo/AstroDemoStarter.o \
+    $(BUILD_DIR)/asm/Game/Demo/AstroDemoFunction.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoActionKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoCameraFunction.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoCameraKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoCastGroup.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoCastGroupHolder.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoCastSubGroup.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoDirector.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoExecutor.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoFunction.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoKoopaJrShip.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoPadRumbler.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoParamCommonDataTable.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoPlayerKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoPositionController.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoSimpleCastHolder.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoSoundKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoStartRequestHolder.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoStartRequestUtil.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoSubPartKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoTalkAnimCtrl.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoTimeKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/DemoWipeKeeper.o \
+    $(BUILD_DIR)/asm/Game/Demo/GrandStarReturnDemoStarter.o \
+    $(BUILD_DIR)/asm/Game/Demo/PrologueDirector.o \
+    $(BUILD_DIR)/asm/Game/Demo/ReturnDemoRailMove.o \
+    $(BUILD_DIR)/asm/Game/Demo/ScenarioStarter.o \
+    $(BUILD_DIR)/asm/Game/Demo/StarReturnDemoStarter.o \
     $(BUILD_DIR)/asm/Game/Effect/Effect.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimScaleController.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimStampController.o \
