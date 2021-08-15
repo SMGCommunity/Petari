@@ -20,7 +20,6 @@ lbl_8052FF6C:
 .global lbl_8052FF70
 lbl_8052FF70:
 	.incbin "baserom.dol", 0x52C070, 0x4
-
 .align 3
 
 .text

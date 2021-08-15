@@ -1,5 +1,752 @@
 .include "macros.inc"
 
+.data
+
+.global lbl_8055F9F8
+lbl_8055F9F8:
+	.incbin "baserom.dol", 0x55BAF8, 0x10
+.global lbl_8055FA08
+lbl_8055FA08:
+	.incbin "baserom.dol", 0x55BB08, 0x10
+.global lbl_8055FA18
+lbl_8055FA18:
+	.incbin "baserom.dol", 0x55BB18, 0x10
+.global lbl_8055FA28
+lbl_8055FA28:
+	.incbin "baserom.dol", 0x55BB28, 0x10
+.global lbl_8055FA38
+lbl_8055FA38:
+	.incbin "baserom.dol", 0x55BB38, 0x10
+.global lbl_8055FA48
+lbl_8055FA48:
+	.incbin "baserom.dol", 0x55BB48, 0x10
+.global lbl_8055FA58
+lbl_8055FA58:
+	.incbin "baserom.dol", 0x55BB58, 0x10
+.global lbl_8055FA68
+lbl_8055FA68:
+	.incbin "baserom.dol", 0x55BB68, 0x10
+.global lbl_8055FA78
+lbl_8055FA78:
+	.incbin "baserom.dol", 0x55BB78, 0x10
+.global lbl_8055FA88
+lbl_8055FA88:
+	.incbin "baserom.dol", 0x55BB88, 0x10
+.global lbl_8055FA98
+lbl_8055FA98:
+	.incbin "baserom.dol", 0x55BB98, 0x10
+.global lbl_8055FAA8
+lbl_8055FAA8:
+	.incbin "baserom.dol", 0x55BBA8, 0x10
+.global lbl_8055FAB8
+lbl_8055FAB8:
+	.incbin "baserom.dol", 0x55BBB8, 0x10
+.global lbl_8055FAC8
+lbl_8055FAC8:
+	.incbin "baserom.dol", 0x55BBC8, 0x10
+.global lbl_8055FAD8
+lbl_8055FAD8:
+	.incbin "baserom.dol", 0x55BBD8, 0x10
+.global lbl_8055FAE8
+lbl_8055FAE8:
+	.incbin "baserom.dol", 0x55BBE8, 0x10
+.global lbl_8055FAF8
+lbl_8055FAF8:
+	.incbin "baserom.dol", 0x55BBF8, 0x10
+.global lbl_8055FB08
+lbl_8055FB08:
+	.incbin "baserom.dol", 0x55BC08, 0x10
+.global lbl_8055FB18
+lbl_8055FB18:
+	.incbin "baserom.dol", 0x55BC18, 0x10
+.global lbl_8055FB28
+lbl_8055FB28:
+	.incbin "baserom.dol", 0x55BC28, 0x10
+.global lbl_8055FB38
+lbl_8055FB38:
+	.incbin "baserom.dol", 0x55BC38, 0x10
+.global lbl_8055FB48
+lbl_8055FB48:
+	.incbin "baserom.dol", 0x55BC48, 0x10
+.global lbl_8055FB58
+lbl_8055FB58:
+	.incbin "baserom.dol", 0x55BC58, 0x10
+.global lbl_8055FB68
+lbl_8055FB68:
+	.incbin "baserom.dol", 0x55BC68, 0x10
+.global lbl_8055FB78
+lbl_8055FB78:
+	.incbin "baserom.dol", 0x55BC78, 0x10
+.global lbl_8055FB88
+lbl_8055FB88:
+	.incbin "baserom.dol", 0x55BC88, 0x10
+.global lbl_8055FB98
+lbl_8055FB98:
+	.incbin "baserom.dol", 0x55BC98, 0x10
+.global lbl_8055FBA8
+lbl_8055FBA8:
+	.incbin "baserom.dol", 0x55BCA8, 0x10
+.global lbl_8055FBB8
+lbl_8055FBB8:
+	.incbin "baserom.dol", 0x55BCB8, 0x10
+.global lbl_8055FBC8
+lbl_8055FBC8:
+	.incbin "baserom.dol", 0x55BCC8, 0x10
+.global lbl_8055FBD8
+lbl_8055FBD8:
+	.incbin "baserom.dol", 0x55BCD8, 0x10
+.global lbl_8055FBE8
+lbl_8055FBE8:
+	.incbin "baserom.dol", 0x55BCE8, 0x10
+.global lbl_8055FBF8
+lbl_8055FBF8:
+	.incbin "baserom.dol", 0x55BCF8, 0x10
+.global lbl_8055FC08
+lbl_8055FC08:
+	.incbin "baserom.dol", 0x55BD08, 0x10
+.global lbl_8055FC18
+lbl_8055FC18:
+	.incbin "baserom.dol", 0x55BD18, 0x10
+.global lbl_8055FC28
+lbl_8055FC28:
+	.incbin "baserom.dol", 0x55BD28, 0x10
+.global lbl_8055FC38
+lbl_8055FC38:
+	.incbin "baserom.dol", 0x55BD38, 0x10
+.global lbl_8055FC48
+lbl_8055FC48:
+	.incbin "baserom.dol", 0x55BD48, 0x10
+.global lbl_8055FC58
+lbl_8055FC58:
+	.incbin "baserom.dol", 0x55BD58, 0x10
+.global lbl_8055FC68
+lbl_8055FC68:
+	.incbin "baserom.dol", 0x55BD68, 0x10
+.global lbl_8055FC78
+lbl_8055FC78:
+	.incbin "baserom.dol", 0x55BD78, 0x10
+.global lbl_8055FC88
+lbl_8055FC88:
+	.incbin "baserom.dol", 0x55BD88, 0x10
+.global lbl_8055FC98
+lbl_8055FC98:
+	.incbin "baserom.dol", 0x55BD98, 0x10
+.global lbl_8055FCA8
+lbl_8055FCA8:
+	.incbin "baserom.dol", 0x55BDA8, 0x10
+.global lbl_8055FCB8
+lbl_8055FCB8:
+	.incbin "baserom.dol", 0x55BDB8, 0x10
+.global lbl_8055FCC8
+lbl_8055FCC8:
+	.incbin "baserom.dol", 0x55BDC8, 0x10
+.global lbl_8055FCD8
+lbl_8055FCD8:
+	.incbin "baserom.dol", 0x55BDD8, 0x10
+.global lbl_8055FCE8
+lbl_8055FCE8:
+	.incbin "baserom.dol", 0x55BDE8, 0x10
+.global lbl_8055FCF8
+lbl_8055FCF8:
+	.incbin "baserom.dol", 0x55BDF8, 0x10
+.global lbl_8055FD08
+lbl_8055FD08:
+	.incbin "baserom.dol", 0x55BE08, 0x10
+.global lbl_8055FD18
+lbl_8055FD18:
+	.incbin "baserom.dol", 0x55BE18, 0x10
+.global lbl_8055FD28
+lbl_8055FD28:
+	.incbin "baserom.dol", 0x55BE28, 0x10
+.global lbl_8055FD38
+lbl_8055FD38:
+	.incbin "baserom.dol", 0x55BE38, 0x10
+.global lbl_8055FD48
+lbl_8055FD48:
+	.incbin "baserom.dol", 0x55BE48, 0x10
+.global lbl_8055FD58
+lbl_8055FD58:
+	.incbin "baserom.dol", 0x55BE58, 0x10
+.global lbl_8055FD68
+lbl_8055FD68:
+	.incbin "baserom.dol", 0x55BE68, 0x58
+.global lbl_8055FDC0
+lbl_8055FDC0:
+	.incbin "baserom.dol", 0x55BEC0, 0x20
+.global lbl_8055FDE0
+lbl_8055FDE0:
+	.incbin "baserom.dol", 0x55BEE0, 0x20
+.global lbl_8055FE00
+lbl_8055FE00:
+	.incbin "baserom.dol", 0x55BF00, 0x58
+.global lbl_8055FE58
+lbl_8055FE58:
+	.incbin "baserom.dol", 0x55BF58, 0x58
+.global lbl_8055FEB0
+lbl_8055FEB0:
+	.incbin "baserom.dol", 0x55BFB0, 0x58
+.global lbl_8055FF08
+lbl_8055FF08:
+	.incbin "baserom.dol", 0x55C008, 0x58
+.global lbl_8055FF60
+lbl_8055FF60:
+	.incbin "baserom.dol", 0x55C060, 0x58
+.global lbl_8055FFB8
+lbl_8055FFB8:
+	.incbin "baserom.dol", 0x55C0B8, 0x4C
+.global lbl_80560004
+lbl_80560004:
+	.incbin "baserom.dol", 0x55C104, 0xC
+.global lbl_80560010
+lbl_80560010:
+	.incbin "baserom.dol", 0x55C110, 0x58
+.global lbl_80560068
+lbl_80560068:
+	.incbin "baserom.dol", 0x55C168, 0x14
+.global lbl_8056007C
+lbl_8056007C:
+	.incbin "baserom.dol", 0x55C17C, 0x24
+.global lbl_805600A0
+lbl_805600A0:
+	.incbin "baserom.dol", 0x55C1A0, 0x7
+.global lbl_805600A7
+lbl_805600A7:
+	.incbin "baserom.dol", 0x55C1A7, 0x15
+.global lbl_805600BC
+lbl_805600BC:
+	.incbin "baserom.dol", 0x55C1BC, 0x24
+.global lbl_805600E0
+lbl_805600E0:
+	.incbin "baserom.dol", 0x55C1E0, 0x58
+.global lbl_80560138
+lbl_80560138:
+	.incbin "baserom.dol", 0x55C238, 0x58
+.global lbl_80560190
+lbl_80560190:
+	.incbin "baserom.dol", 0x55C290, 0x58
+.global lbl_805601E8
+lbl_805601E8:
+	.incbin "baserom.dol", 0x55C2E8, 0xE0
+.global lbl_805602C8
+lbl_805602C8:
+	.incbin "baserom.dol", 0x55C3C8, 0x43
+.global lbl_8056030B
+lbl_8056030B:
+	.incbin "baserom.dol", 0x55C40B, 0xB
+.global lbl_80560316
+lbl_80560316:
+	.incbin "baserom.dol", 0x55C416, 0x12
+.global lbl_80560328
+lbl_80560328:
+	.incbin "baserom.dol", 0x55C428, 0x14
+.global lbl_8056033C
+lbl_8056033C:
+	.incbin "baserom.dol", 0x55C43C, 0xC
+.global lbl_80560348
+lbl_80560348:
+	.incbin "baserom.dol", 0x55C448, 0xC8
+.global lbl_80560410
+lbl_80560410:
+	.incbin "baserom.dol", 0x55C510, 0x18
+.global lbl_80560428
+lbl_80560428:
+	.incbin "baserom.dol", 0x55C528, 0x58
+.global lbl_80560480
+lbl_80560480:
+	.incbin "baserom.dol", 0x55C580, 0x58
+.global lbl_805604D8
+lbl_805604D8:
+	.incbin "baserom.dol", 0x55C5D8, 0x58
+.global lbl_80560530
+lbl_80560530:
+	.incbin "baserom.dol", 0x55C630, 0x58
+.global lbl_80560588
+lbl_80560588:
+	.incbin "baserom.dol", 0x55C688, 0x58
+.global lbl_805605E0
+lbl_805605E0:
+	.incbin "baserom.dol", 0x55C6E0, 0x58
+.global lbl_80560638
+lbl_80560638:
+	.incbin "baserom.dol", 0x55C738, 0x58
+.global lbl_80560690
+lbl_80560690:
+	.incbin "baserom.dol", 0x55C790, 0x58
+.global lbl_805606E8
+lbl_805606E8:
+	.incbin "baserom.dol", 0x55C7E8, 0x14
+.global lbl_805606FC
+lbl_805606FC:
+	.incbin "baserom.dol", 0x55C7FC, 0x5FB
+.global lbl_80560CF7
+lbl_80560CF7:
+	.incbin "baserom.dol", 0x55CDF7, 0xB
+.global lbl_80560D02
+lbl_80560D02:
+	.incbin "baserom.dol", 0x55CE02, 0x9
+.global lbl_80560D0B
+lbl_80560D0B:
+	.incbin "baserom.dol", 0x55CE0B, 0xF
+.global lbl_80560D1A
+lbl_80560D1A:
+	.incbin "baserom.dol", 0x55CE1A, 0x19
+.global lbl_80560D33
+lbl_80560D33:
+	.incbin "baserom.dol", 0x55CE33, 0xF
+.global lbl_80560D42
+lbl_80560D42:
+	.incbin "baserom.dol", 0x55CE42, 0xB
+.global lbl_80560D4D
+lbl_80560D4D:
+	.incbin "baserom.dol", 0x55CE4D, 0xB
+.global lbl_80560D58
+lbl_80560D58:
+	.incbin "baserom.dol", 0x55CE58, 0xD
+.global lbl_80560D65
+lbl_80560D65:
+	.incbin "baserom.dol", 0x55CE65, 0x11
+.global lbl_80560D76
+lbl_80560D76:
+	.incbin "baserom.dol", 0x55CE76, 0xF
+.global lbl_80560D85
+lbl_80560D85:
+	.incbin "baserom.dol", 0x55CE85, 0x1F
+.global lbl_80560DA4
+lbl_80560DA4:
+	.incbin "baserom.dol", 0x55CEA4, 0xF
+.global lbl_80560DB3
+lbl_80560DB3:
+	.incbin "baserom.dol", 0x55CEB3, 0xF
+.global lbl_80560DC2
+lbl_80560DC2:
+	.incbin "baserom.dol", 0x55CEC2, 0xD
+.global lbl_80560DCF
+lbl_80560DCF:
+	.incbin "baserom.dol", 0x55CECF, 0x11
+.global lbl_80560DE0
+lbl_80560DE0:
+	.incbin "baserom.dol", 0x55CEE0, 0x15
+.global lbl_80560DF5
+lbl_80560DF5:
+	.incbin "baserom.dol", 0x55CEF5, 0x13
+.global lbl_80560E08
+lbl_80560E08:
+	.incbin "baserom.dol", 0x55CF08, 0x1D
+.global lbl_80560E25
+lbl_80560E25:
+	.incbin "baserom.dol", 0x55CF25, 0x13
+.global lbl_80560E38
+lbl_80560E38:
+	.incbin "baserom.dol", 0x55CF38, 0xD
+.global lbl_80560E45
+lbl_80560E45:
+	.incbin "baserom.dol", 0x55CF45, 0xB
+.global lbl_80560E50
+lbl_80560E50:
+	.incbin "baserom.dol", 0x55CF50, 0x11
+.global lbl_80560E61
+lbl_80560E61:
+	.incbin "baserom.dol", 0x55CF61, 0x13
+.global lbl_80560E74
+lbl_80560E74:
+	.incbin "baserom.dol", 0x55CF74, 0x14
+.global lbl_80560E88
+lbl_80560E88:
+	.incbin "baserom.dol", 0x55CF88, 0x15
+.global lbl_80560E9D
+lbl_80560E9D:
+	.incbin "baserom.dol", 0x55CF9D, 0xB
+.global lbl_80560EA8
+lbl_80560EA8:
+	.incbin "baserom.dol", 0x55CFA8, 0x1D
+.global lbl_80560EC5
+lbl_80560EC5:
+	.incbin "baserom.dol", 0x55CFC5, 0x1B
+.global lbl_80560EE0
+lbl_80560EE0:
+	.incbin "baserom.dol", 0x55CFE0, 0x19
+.global lbl_80560EF9
+lbl_80560EF9:
+	.incbin "baserom.dol", 0x55CFF9, 0x11
+.global lbl_80560F0A
+lbl_80560F0A:
+	.incbin "baserom.dol", 0x55D00A, 0xD
+.global lbl_80560F17
+lbl_80560F17:
+	.incbin "baserom.dol", 0x55D017, 0x19
+.global lbl_80560F30
+lbl_80560F30:
+	.incbin "baserom.dol", 0x55D030, 0xB
+.global lbl_80560F3B
+lbl_80560F3B:
+	.incbin "baserom.dol", 0x55D03B, 0x11
+.global lbl_80560F4C
+lbl_80560F4C:
+	.incbin "baserom.dol", 0x55D04C, 0xF
+.global lbl_80560F5B
+lbl_80560F5B:
+	.incbin "baserom.dol", 0x55D05B, 0xF
+.global lbl_80560F6A
+lbl_80560F6A:
+	.incbin "baserom.dol", 0x55D06A, 0x1F
+.global lbl_80560F89
+lbl_80560F89:
+	.incbin "baserom.dol", 0x55D089, 0x15
+.global lbl_80560F9E
+lbl_80560F9E:
+	.incbin "baserom.dol", 0x55D09E, 0x15
+.global lbl_80560FB3
+lbl_80560FB3:
+	.incbin "baserom.dol", 0x55D0B3, 0xE
+.global lbl_80560FC1
+lbl_80560FC1:
+	.incbin "baserom.dol", 0x55D0C1, 0xD
+.global lbl_80560FCE
+lbl_80560FCE:
+	.incbin "baserom.dol", 0x55D0CE, 0x15
+.global lbl_80560FE3
+lbl_80560FE3:
+	.incbin "baserom.dol", 0x55D0E3, 0x13
+.global lbl_80560FF6
+lbl_80560FF6:
+	.incbin "baserom.dol", 0x55D0F6, 0x11
+.global lbl_80561007
+lbl_80561007:
+	.incbin "baserom.dol", 0x55D107, 0xD
+.global lbl_80561014
+lbl_80561014:
+	.incbin "baserom.dol", 0x55D114, 0x24
+.global lbl_80561038
+lbl_80561038:
+	.incbin "baserom.dol", 0x55D138, 0x58
+.global lbl_80561090
+lbl_80561090:
+	.incbin "baserom.dol", 0x55D190, 0xC
+.global lbl_8056109C
+lbl_8056109C:
+	.incbin "baserom.dol", 0x55D19C, 0x5C
+.global lbl_805610F8
+lbl_805610F8:
+	.incbin "baserom.dol", 0x55D1F8, 0x58
+.global lbl_80561150
+lbl_80561150:
+	.incbin "baserom.dol", 0x55D250, 0x58
+.global lbl_805611A8
+lbl_805611A8:
+	.incbin "baserom.dol", 0x55D2A8, 0x10
+.global lbl_805611B8
+lbl_805611B8:
+	.incbin "baserom.dol", 0x55D2B8, 0xC7
+.global lbl_8056127F
+lbl_8056127F:
+	.incbin "baserom.dol", 0x55D37F, 0xD
+.global lbl_8056128C
+lbl_8056128C:
+	.incbin "baserom.dol", 0x55D38C, 0x5
+.global lbl_80561291
+lbl_80561291:
+	.incbin "baserom.dol", 0x55D391, 0x16
+.global lbl_805612A7
+lbl_805612A7:
+	.incbin "baserom.dol", 0x55D3A7, 0x10
+.global lbl_805612B7
+lbl_805612B7:
+	.incbin "baserom.dol", 0x55D3B7, 0x15
+.global lbl_805612CC
+lbl_805612CC:
+	.incbin "baserom.dol", 0x55D3CC, 0xE
+.global lbl_805612DA
+lbl_805612DA:
+	.incbin "baserom.dol", 0x55D3DA, 0x1A
+.global lbl_805612F4
+lbl_805612F4:
+	.incbin "baserom.dol", 0x55D3F4, 0xC
+.global lbl_80561300
+lbl_80561300:
+	.incbin "baserom.dol", 0x55D400, 0x58
+.global lbl_80561358
+lbl_80561358:
+	.incbin "baserom.dol", 0x55D458, 0x8
+.global lbl_80561360
+lbl_80561360:
+	.incbin "baserom.dol", 0x55D460, 0x58
+.global lbl_805613B8
+lbl_805613B8:
+	.incbin "baserom.dol", 0x55D4B8, 0xC
+.global lbl_805613C4
+lbl_805613C4:
+	.incbin "baserom.dol", 0x55D4C4, 0x5C
+.global lbl_80561420
+lbl_80561420:
+	.incbin "baserom.dol", 0x55D520, 0x58
+.global lbl_80561478
+lbl_80561478:
+	.incbin "baserom.dol", 0x55D578, 0x58
+.global lbl_805614D0
+lbl_805614D0:
+	.incbin "baserom.dol", 0x55D5D0, 0x58
+.global lbl_80561528
+lbl_80561528:
+	.incbin "baserom.dol", 0x55D628, 0x58
+.global lbl_80561580
+lbl_80561580:
+	.incbin "baserom.dol", 0x55D680, 0x58
+.global lbl_805615D8
+lbl_805615D8:
+	.incbin "baserom.dol", 0x55D6D8, 0x29C
+.global lbl_80561874
+lbl_80561874:
+	.incbin "baserom.dol", 0x55D974, 0x18
+.global lbl_8056188C
+lbl_8056188C:
+	.incbin "baserom.dol", 0x55D98C, 0x18
+.global lbl_805618A4
+lbl_805618A4:
+	.incbin "baserom.dol", 0x55D9A4, 0x18
+.global lbl_805618BC
+lbl_805618BC:
+	.incbin "baserom.dol", 0x55D9BC, 0x6
+.global lbl_805618C2
+lbl_805618C2:
+	.incbin "baserom.dol", 0x55D9C2, 0xE
+.global lbl_805618D0
+lbl_805618D0:
+	.incbin "baserom.dol", 0x55D9D0, 0xD4
+.global lbl_805619A4
+lbl_805619A4:
+	.incbin "baserom.dol", 0x55DAA4, 0x2C
+.global lbl_805619D0
+lbl_805619D0:
+	.incbin "baserom.dol", 0x55DAD0, 0x7
+.global lbl_805619D7
+lbl_805619D7:
+	.incbin "baserom.dol", 0x55DAD7, 0xB
+.global lbl_805619E2
+lbl_805619E2:
+	.incbin "baserom.dol", 0x55DAE2, 0x5
+.global lbl_805619E7
+lbl_805619E7:
+	.incbin "baserom.dol", 0x55DAE7, 0x5
+.global lbl_805619EC
+lbl_805619EC:
+	.incbin "baserom.dol", 0x55DAEC, 0x8
+.global lbl_805619F4
+lbl_805619F4:
+	.incbin "baserom.dol", 0x55DAF4, 0xC
+.global lbl_80561A00
+lbl_80561A00:
+	.incbin "baserom.dol", 0x55DB00, 0x58
+.global lbl_80561A58
+lbl_80561A58:
+	.incbin "baserom.dol", 0x55DB58, 0x58
+.global lbl_80561AB0
+lbl_80561AB0:
+	.incbin "baserom.dol", 0x55DBB0, 0x60
+.global lbl_80561B10
+lbl_80561B10:
+	.incbin "baserom.dol", 0x55DC10, 0x28
+.global lbl_80561B38
+lbl_80561B38:
+	.incbin "baserom.dol", 0x55DC38, 0x88
+.global lbl_80561BC0
+lbl_80561BC0:
+	.incbin "baserom.dol", 0x55DCC0, 0x28
+.global lbl_80561BE8
+lbl_80561BE8:
+	.incbin "baserom.dol", 0x55DCE8, 0x1C
+.global lbl_80561C04
+lbl_80561C04:
+	.incbin "baserom.dol", 0x55DD04, 0x1C
+.global lbl_80561C20
+lbl_80561C20:
+	.incbin "baserom.dol", 0x55DD20, 0x28
+.global lbl_80561C48
+lbl_80561C48:
+	.incbin "baserom.dol", 0x55DD48, 0x58
+.global lbl_80561CA0
+lbl_80561CA0:
+	.incbin "baserom.dol", 0x55DDA0, 0x58
+.global lbl_80561CF8
+lbl_80561CF8:
+	.incbin "baserom.dol", 0x55DDF8, 0x58
+.global lbl_80561D50
+lbl_80561D50:
+	.incbin "baserom.dol", 0x55DE50, 0x58
+.global lbl_80561DA8
+lbl_80561DA8:
+	.incbin "baserom.dol", 0x55DEA8, 0xD
+.global lbl_80561DB5
+lbl_80561DB5:
+	.incbin "baserom.dol", 0x55DEB5, 0xB
+.global lbl_80561DC0
+lbl_80561DC0:
+	.incbin "baserom.dol", 0x55DEC0, 0x10
+.global lbl_80561DD0
+lbl_80561DD0:
+	.incbin "baserom.dol", 0x55DED0, 0xC
+.global lbl_80561DDC
+lbl_80561DDC:
+	.incbin "baserom.dol", 0x55DEDC, 0x94
+.global lbl_80561E70
+lbl_80561E70:
+	.incbin "baserom.dol", 0x55DF70, 0xC
+.global lbl_80561E7C
+lbl_80561E7C:
+	.incbin "baserom.dol", 0x55DF7C, 0x78
+.global lbl_80561EF4
+lbl_80561EF4:
+	.incbin "baserom.dol", 0x55DFF4, 0x94
+.global lbl_80561F88
+lbl_80561F88:
+	.incbin "baserom.dol", 0x55E088, 0x94
+.global lbl_8056201C
+lbl_8056201C:
+	.incbin "baserom.dol", 0x55E11C, 0x94
+.global lbl_805620B0
+lbl_805620B0:
+	.incbin "baserom.dol", 0x55E1B0, 0x60
+.global lbl_80562110
+lbl_80562110:
+	.incbin "baserom.dol", 0x55E210, 0x70
+.global lbl_80562180
+lbl_80562180:
+	.incbin "baserom.dol", 0x55E280, 0x70
+.global lbl_805621F0
+lbl_805621F0:
+	.incbin "baserom.dol", 0x55E2F0, 0x60
+.global lbl_80562250
+lbl_80562250:
+	.incbin "baserom.dol", 0x55E350, 0x58
+.global lbl_805622A8
+lbl_805622A8:
+	.incbin "baserom.dol", 0x55E3A8, 0x58
+.global lbl_80562300
+lbl_80562300:
+	.incbin "baserom.dol", 0x55E400, 0x58
+.global lbl_80562358
+lbl_80562358:
+	.incbin "baserom.dol", 0x55E458, 0x58
+.global lbl_805623B0
+lbl_805623B0:
+	.incbin "baserom.dol", 0x55E4B0, 0x18
+.global lbl_805623C8
+lbl_805623C8:
+	.incbin "baserom.dol", 0x55E4C8, 0x58
+.global lbl_80562420
+lbl_80562420:
+	.incbin "baserom.dol", 0x55E520, 0x58
+.global lbl_80562478
+lbl_80562478:
+	.incbin "baserom.dol", 0x55E578, 0x58
+.global lbl_805624D0
+lbl_805624D0:
+	.incbin "baserom.dol", 0x55E5D0, 0x58
+.global lbl_80562528
+lbl_80562528:
+	.incbin "baserom.dol", 0x55E628, 0x18
+.global lbl_80562540
+lbl_80562540:
+	.incbin "baserom.dol", 0x55E640, 0x50
+.global lbl_80562590
+lbl_80562590:
+	.incbin "baserom.dol", 0x55E690, 0x10
+.global lbl_805625A0
+lbl_805625A0:
+	.incbin "baserom.dol", 0x55E6A0, 0x28
+
+.rodata
+
+.global lbl_80530048
+lbl_80530048:
+	.incbin "baserom.dol", 0x52C148, 0x8
+.global lbl_80530050
+lbl_80530050:
+	.incbin "baserom.dol", 0x52C150, 0x8
+.global lbl_80530058
+lbl_80530058:
+	.incbin "baserom.dol", 0x52C158, 0x8
+.global lbl_80530060
+lbl_80530060:
+	.incbin "baserom.dol", 0x52C160, 0x8
+.global lbl_80530068
+lbl_80530068:
+	.incbin "baserom.dol", 0x52C168, 0x8
+.global lbl_80530070
+lbl_80530070:
+	.incbin "baserom.dol", 0x52C170, 0x8
+.global lbl_80530078
+lbl_80530078:
+	.incbin "baserom.dol", 0x52C178, 0x8
+.global lbl_80530080
+lbl_80530080:
+	.incbin "baserom.dol", 0x52C180, 0x8
+.global lbl_80530088
+lbl_80530088:
+	.incbin "baserom.dol", 0x52C188, 0x8
+.global lbl_80530090
+lbl_80530090:
+	.incbin "baserom.dol", 0x52C190, 0x8
+.global lbl_80530098
+lbl_80530098:
+	.incbin "baserom.dol", 0x52C198, 0x8
+.global lbl_805300A0
+lbl_805300A0:
+	.incbin "baserom.dol", 0x52C1A0, 0x2D0
+.global lbl_80530370
+lbl_80530370:
+	.incbin "baserom.dol", 0x52C470, 0x8
+.global lbl_80530378
+lbl_80530378:
+	.incbin "baserom.dol", 0x52C478, 0x8
+.global lbl_80530380
+lbl_80530380:
+	.incbin "baserom.dol", 0x52C480, 0x8
+.global lbl_80530388
+lbl_80530388:
+	.incbin "baserom.dol", 0x52C488, 0x8
+.global lbl_80530390
+lbl_80530390:
+	.incbin "baserom.dol", 0x52C490, 0x8
+.global lbl_80530398
+lbl_80530398:
+	.incbin "baserom.dol", 0x52C498, 0x8
+.global lbl_805303A0
+lbl_805303A0:
+	.incbin "baserom.dol", 0x52C4A0, 0x8
+.global lbl_805303A8
+lbl_805303A8:
+	.incbin "baserom.dol", 0x52C4A8, 0x1C
+.global lbl_805303C4
+lbl_805303C4:
+	.incbin "baserom.dol", 0x52C4C4, 0xC
+.global lbl_805303D0
+lbl_805303D0:
+	.incbin "baserom.dol", 0x52C4D0, 0x8
+.global lbl_805303D8
+lbl_805303D8:
+	.incbin "baserom.dol", 0x52C4D8, 0x8
+.global lbl_805303E0
+lbl_805303E0:
+	.incbin "baserom.dol", 0x52C4E0, 0x8
+.global lbl_805303E8
+lbl_805303E8:
+	.incbin "baserom.dol", 0x52C4E8, 0x8
+.global lbl_805303F0
+lbl_805303F0:
+	.incbin "baserom.dol", 0x52C4F0, 0x8
+.global lbl_805303F8
+lbl_805303F8:
+	.incbin "baserom.dol", 0x52C4F8, 0x8
+.global lbl_80530400
+lbl_80530400:
+	.incbin "baserom.dol", 0x52C500, 0x8
+.global lbl_80530408
+lbl_80530408:
+	.incbin "baserom.dol", 0x52C508, 0x8
+.global lbl_80530410
+lbl_80530410:
+	.incbin "baserom.dol", 0x52C510, 0x8
+
 .text
 
 .global func_8009199C

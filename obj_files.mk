@@ -28,6 +28,7 @@ GAME_ANIM_O_FILES := \
     $(BUILD_DIR)/asm/Game/Animation/XanimeResource.o
 
 AREAOBJ_O_FILES := \
+    $(BUILD_DIR)/asm/Game/AreaObj/data.o \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaForm.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaFormDrawer.o    \
     $(BUILD_DIR)/asm/Game/AreaObj/AreaObj.o    \
@@ -67,6 +68,7 @@ AREAOBJ_O_FILES := \
     $(BUILD_DIR)/asm/Game/AreaObj/WaterArea.o 
 
 TEXT_O_FILES :=     \
+    $(BUILD_DIR)/asm/Game/AudioLib/data.o \
     $(BUILD_DIR)/asm/Game/AudioLib/AudSystem.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/AudSystemVolumeController.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/AudAudience.o    \
@@ -99,6 +101,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/AudioLib/AudUtil.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/OverwriteJAudio.o    \
     $(BUILD_DIR)/asm/Game/AudioLib/CSSoundNameConverter.o    \
+    $(BUILD_DIR)/asm/Game/Boss/data.o \
     $(BUILD_DIR)/asm/Game/Boss/BossAccessor.o \
     $(BUILD_DIR)/asm/Game/Boss/BossBegoman/BossBegoman.o \
     $(BUILD_DIR)/asm/Game/Boss/BossBegoman/BossBegomanHead.o \
@@ -269,6 +272,8 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepSequence.o \
     $(BUILD_DIR)/asm/Game/Boss/TripodBoss/TripodBossStepStartArea.o \
     $(BUILD_DIR)/asm/Game/Camera/Camera.o \
+    $(BUILD_DIR)/asm/Game/Demo/data.o \
+    $(BUILD_DIR)/asm/Game/Demo/rodata.o \
     $(BUILD_DIR)/asm/Game/Demo/AstroDemoStarter.o \
     $(BUILD_DIR)/asm/Game/Demo/AstroDemoFunction.o \
     $(BUILD_DIR)/asm/Game/Demo/DemoActionKeeper.o \
@@ -298,6 +303,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Demo/ReturnDemoRailMove.o \
     $(BUILD_DIR)/asm/Game/Demo/ScenarioStarter.o \
     $(BUILD_DIR)/asm/Game/Demo/StarReturnDemoStarter.o \
+    $(BUILD_DIR)/asm/Game/Effect/data.o \
     $(BUILD_DIR)/asm/Game/Effect/AstroEffectObj.o \
     $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroup.o \
     $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroupHolder.o \
@@ -320,6 +326,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Effect/SpinPullParticleCallBack.o \
     $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectChecker.o \
     $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectInfo.o \
+    $(BUILD_DIR)/asm/Game/Enemy/data.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimScaleController.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimStampController.o \
     $(BUILD_DIR)/asm/Game/Enemy/BallBeamer.o \
@@ -430,6 +437,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Enemy/WalkerStateWander.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazooka.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazookaCapsule.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/data.o \
     $(BUILD_DIR)/asm/Game/GameAudio/AudCameraWatcher.o \
     $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmWrap.o \
     $(BUILD_DIR)/asm/Game/GameAudio/AudSeKeeper.o \
@@ -438,6 +446,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/GameAudio/AudBgmConductor.o \
     $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmTable.o \
     $(BUILD_DIR)/asm/Game/GameAudio/AudTamakoroBgmCtrl.o \
+    $(BUILD_DIR)/asm/Game/Gravity/data.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/ConeGravity.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setLocalMatrix.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setEnableBottom.o \
@@ -464,6 +473,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Gravity/PointGravity/PointGravity_all.o \
     $(BUILD_DIR)/asm/Game/Gravity/SegmentGravity/SegmentGravity_all.o \
     $(BUILD_DIR)/asm/Game/Gravity/WireGravity/WireGravity_all.o \
+    $(BUILD_DIR)/asm/Game/LiveActor/data.o \
     $(BUILD_DIR)/asm/Game/LiveActor/ActiveActorList.o \
     $(BUILD_DIR)/asm/Game/LiveActor/ActorAnimKeeper.o \
     $(BUILD_DIR)/asm/Game/LiveActor/ActorCameraInfo.o \
@@ -525,6 +535,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/LiveActor/SpotMarkLight.o \
     $(BUILD_DIR)/asm/Game/LiveActor/ViewGroupCtrl.o \
     $(BUILD_DIR)/asm/Game/LiveActor/VolumeModelDrawer.o \
+    $(BUILD_DIR)/asm/Game/Map/data.o \
     $(BUILD_DIR)/asm/Game/Map/ActorAppearSwitchListener.o \
     $(BUILD_DIR)/asm/Game/Map/Air.o \
     $(BUILD_DIR)/asm/Game/Map/BezierRail.o \
@@ -608,6 +619,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Map/WaterPoint.o \
     $(BUILD_DIR)/asm/Game/Map/WaterRoad.o \
     $(BUILD_DIR)/asm/Game/Map/WhirlPoolAccelerator.o \
+    $(BUILD_DIR)/asm/Game/MapObj/data.o \
     $(BUILD_DIR)/asm/Game/MapObj/AirBubble.o \
     $(BUILD_DIR)/asm/Game/MapObj/AirBubbleGenerator.o \
     $(BUILD_DIR)/asm/Game/MapObj/AirBubbleHolder.o \
@@ -925,6 +937,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRotator.o \
     $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsSeesaw1AxisRotator.o \
     $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsSeesaw2AxisRotator.o \
+    $(BUILD_DIR)/asm/Game/NameObj/data.o \
     $(BUILD_DIR)/asm/Game/NameObj/ModelChangableObjFactory.o \
     $(BUILD_DIR)/asm/Game/NameObj/MovementOnOffGroupHolder.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObj.o \
@@ -938,6 +951,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjHolder.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjListExecutor.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjRegister.o \
+    $(BUILD_DIR)/asm/Game/NPC/data.o \
     $(BUILD_DIR)/asm/Game/NPC/Butler.o \
     $(BUILD_DIR)/asm/Game/NPC/ButlerExplain.o \
     $(BUILD_DIR)/asm/Game/NPC/ButlerMap.o \
@@ -1016,6 +1030,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/NPC/TalkSupportPlayerWatcher.o \
     $(BUILD_DIR)/asm/Game/NPC/TalkTextFormer.o \
     $(BUILD_DIR)/asm/Game/NPC/TimeAttackEventKeeper.o \
+    $(BUILD_DIR)/asm/Game/Player/data.o \
     $(BUILD_DIR)/asm/Game/Player/FireMarioBall.o \
     $(BUILD_DIR)/asm/Game/Player/GhostPacket.o \
     $(BUILD_DIR)/asm/Game/Player/GhostPlayer.o \
@@ -1123,6 +1138,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Player/PlayerEventFireDown.o \
     $(BUILD_DIR)/asm/Game/Player/PlayerEventRaceDown.o \
     $(BUILD_DIR)/asm/Game/Player/PlayerEventGhostRaceDown.o \
+    $(BUILD_DIR)/asm/Game/RhythmLib/data.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmSeqParser.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudBgmTempoAdjuster.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudMeTrack.o \
@@ -1138,6 +1154,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudChordInfo.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmHolder.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmWrap.o \
+    $(BUILD_DIR)/asm/Game/Ride/data.o \
     $(BUILD_DIR)/asm/Game/Ride/BigBubble.o \
     $(BUILD_DIR)/asm/Game/Ride/Creeper.o \
     $(BUILD_DIR)/asm/Game/Ride/Fluff.o \
@@ -1160,6 +1177,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Ride/Tamakoro.o \
     $(BUILD_DIR)/asm/Game/Ride/TamakoroTutorial.o \
     $(BUILD_DIR)/asm/Game/Ride/Trapeze.o \
+    $(BUILD_DIR)/asm/Game/Scene/data.o \
     $(BUILD_DIR)/asm/Game/Scene/GameScene.o \
     $(BUILD_DIR)/asm/Game/Scene/GameSceneFunction.o \
     $(BUILD_DIR)/asm/Game/Scene/GameScenePauseControl.o \
