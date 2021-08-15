@@ -1,4 +1,4 @@
-.include "Macros.inc"
+.include "macros.inc"
 
 .text
 .global func_8029CBA0

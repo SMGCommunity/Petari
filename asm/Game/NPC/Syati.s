@@ -1,4 +1,4 @@
-.include "Macros.inc"
+.include "macros.inc"
 
 .text
 
