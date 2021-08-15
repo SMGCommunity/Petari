@@ -1165,27 +1165,27 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Util/TriggerChecker.o \
     $(BUILD_DIR)/asm/Game/Util/ValueControl.o \
     $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
-    $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
-    $(BUILD_DIR)/asm/Game/JSupport/JSupport.o \
-    $(BUILD_DIR)/asm/Game/JGadget/JGadget.o \
-    $(BUILD_DIR)/asm/Game/JUtility/JUtility.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DGraphContext.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DOrthoGraph.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DFillBox.o \
-    $(BUILD_DIR)/asm/Game/J2D/JUTTexture.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPane.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPicture.o \
-    $(BUILD_DIR)/asm/Game/J2D/get.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphBase.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphAnimator.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphLoader.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAEulerToQuat.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAQuatLerp.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAVECScaleAdd.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAVECLerp.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAMTXApplyScale.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMath.o \
-    $(BUILD_DIR)/asm/Game/JParticle/JParticle.o \
+    $(BUILD_DIR)/asm/JSystem/JKernel/JKernel.o \
+    $(BUILD_DIR)/asm/JSystem/JSupport/JSupport.o \
+    $(BUILD_DIR)/asm/JSystem/JGadget/JGadget.o \
+    $(BUILD_DIR)/asm/JSystem/JUtility/JUtility.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DGraphContext.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DOrthoGraph.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DFillBox.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/JUTTexture.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DPane.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DPicture.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/get.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphBase.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphAnimator.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphLoader.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAEulerToQuat.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAQuatLerp.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAVECScaleAdd.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAVECLerp.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAMTXApplyScale.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMath.o \
+    $(BUILD_DIR)/asm/JSystem/JParticle/JParticle.o \
     $(BUILD_DIR)/asm/RVL/gd.o   \
     $(BUILD_DIR)/asm/RVL/kpad.o   \
     $(BUILD_DIR)/asm/RVL/thp.o   \
