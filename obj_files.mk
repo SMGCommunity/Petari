@@ -430,7 +430,14 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Enemy/WalkerStateWander.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazooka.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazookaCapsule.o \
-    $(BUILD_DIR)/asm/Game/GameAudio/GameAudio.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudCameraWatcher.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmWrap.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudSeKeeper.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudTalkSoundData.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudEffectDirector.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudBgmConductor.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmTable.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudTamakoroBgmCtrl.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/ConeGravity.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setLocalMatrix.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setEnableBottom.o \
