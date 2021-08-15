@@ -834,7 +834,69 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/MapObj/SpinDriverPathDrawer.o \
     $(BUILD_DIR)/asm/Game/MapObj/SpinDriverShootPath.o \
     $(BUILD_DIR)/asm/Game/MapObj/SpinDriverUtil.o \
-    $(BUILD_DIR)/asm/Game/MapObj/MapObj.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SpinLeverSwitch.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SpinningBox.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SpringJetWater.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SpringWaterFloaterSpot.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StageEffectDataTable.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPiece.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPieceDirector.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPieceFollowGroup.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPieceGroup.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPieceMother.o \
+    $(BUILD_DIR)/asm/Game/MapObj/StarPieceSpot.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SubmarineSteam.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SubmarineVolcanoBigColumn.o \
+    $(BUILD_DIR)/asm/Game/MapObj/Sun.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SuperSpinDriver.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SurprisedGalaxy.o \
+    $(BUILD_DIR)/asm/Game/MapObj/Swinger.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SwingLight.o \
+    $(BUILD_DIR)/asm/Game/MapObj/SwitchBox.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TimeAppearObj.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TimerMoveWall.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TrampleStar.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TransparentWall.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TreasureBoxCracked.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TreasureSpot.o \
+    $(BUILD_DIR)/asm/Game/MapObj/Tsukidashikun.o \
+    $(BUILD_DIR)/asm/Game/MapObj/TypicalDoor.o \
+    $(BUILD_DIR)/asm/Game/MapObj/UFOBase.o \
+    $(BUILD_DIR)/asm/Game/MapObj/UFOKinoko.o \
+    $(BUILD_DIR)/asm/Game/MapObj/ValveSwitch.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WarpPod.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WatchTowerRotateStep.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaterfallCaveCover.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaterLeakPipe.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaterPressure.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaterPressureBullet.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaterPressureBulletHolder.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WaveFloatingForce.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WhirlPool.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WoodBox.o \
+    $(BUILD_DIR)/asm/Game/MapObj/WormEatenPlanet.o \
+    $(BUILD_DIR)/asm/Game/MapObj/YellowChip.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapParts.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/GeneralMapParts.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/Floater/FloaterFloatingForce.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/Floater/FloaterFloatingForceTypeNormal.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/Floater/FloaterFloatingForceTypeSpring.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/Floater/FloaterFunction.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/LavaHomeSeesawRotator.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsAppearController.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsBreaker.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsFloatingForce.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsFunction.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailGuideDrawer.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailGuideHolder.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailGuidePoint.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailMover.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailPointPassChecker.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailPosture.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRailRotator.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsRotator.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsSeesaw1AxisRotator.o \
+    $(BUILD_DIR)/asm/Game/MapObj/MapParts/MapPartsSeesaw2AxisRotator.o \
     $(BUILD_DIR)/asm/Game/NameObj/ModelChangableObjFactory.o \
     $(BUILD_DIR)/asm/Game/NameObj/MovementOnOffGroupHolder.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObj.o \
