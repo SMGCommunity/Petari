@@ -975,7 +975,13 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Scene/StageResourceLoader.o \
     $(BUILD_DIR)/asm/Game/Scene/StopSceneController.o \
     $(BUILD_DIR)/asm/Game/Screen/Screen.o \
-    $(BUILD_DIR)/asm/Game/Speaker/Speaker.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSpeakerCtrl.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSystem.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkMixingBuffer.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkWave.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkTable.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkData.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSound.o \
     $(BUILD_DIR)/asm/Game/System/System.o \
     $(BUILD_DIR)/asm/Game/Util/ActorCameraUtil.o \
     $(BUILD_DIR)/asm/Game/Util/ActorMovementUtil.o \
