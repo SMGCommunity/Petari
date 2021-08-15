@@ -1192,7 +1192,13 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Util/TriangleFilter.o \
     $(BUILD_DIR)/asm/Game/Util/TriggerChecker.o \
     $(BUILD_DIR)/asm/Game/Util/ValueControl.o \
-    $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24Function.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24Messenger.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24SendThread.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24System.o \
+    $(BUILD_DIR)/asm/Game/NWC24/UTF16Util.o \
+    $(BUILD_DIR)/asm/Game/NWC24/LuigiMailDirector.o \
+    $(BUILD_DIR)/asm/Game/NWC24/ReceiverTagMail.o \
     $(BUILD_DIR)/asm/JSystem/JKernel/JKernel.o \
     $(BUILD_DIR)/asm/JSystem/JSupport/JSupport.o \
     $(BUILD_DIR)/asm/JSystem/JGadget/JGadget.o \
