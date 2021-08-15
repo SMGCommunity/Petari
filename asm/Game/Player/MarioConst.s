@@ -1,0 +1,15 @@
+.include "macros.inc"
+
+.text
+
+.global func_802D4E00
+func_802D4E00:
+/* 802D4E00 002D0340  3C A0 80 5B */	lis r5, lbl_805B0670@ha
+/* 802D4E04 002D0344  3C 80 80 5B */	lis r4, lbl_805B0E14@ha
+/* 802D4E08 002D0348  38 A5 06 70 */	addi r5, r5, lbl_805B0670@l
+/* 802D4E0C 002D034C  38 00 00 00 */	li r0, 0
+/* 802D4E10 002D0350  38 84 0E 14 */	addi r4, r4, lbl_805B0E14@l
+/* 802D4E14 002D0354  90 A3 00 00 */	stw r5, 0(r3)
+/* 802D4E18 002D0358  90 83 00 04 */	stw r4, 4(r3)
+/* 802D4E1C 002D035C  90 03 00 08 */	stw r0, 8(r3)
+/* 802D4E20 002D0360  4E 80 00 20 */	blr 

@@ -298,7 +298,28 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Demo/ReturnDemoRailMove.o \
     $(BUILD_DIR)/asm/Game/Demo/ScenarioStarter.o \
     $(BUILD_DIR)/asm/Game/Demo/StarReturnDemoStarter.o \
-    $(BUILD_DIR)/asm/Game/Effect/Effect.o \
+    $(BUILD_DIR)/asm/Game/Effect/AstroEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroup.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroupHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectInfo.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectObjGravityDust.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectSystem.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectSystemUtil.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterAccess.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterParticleCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleCalcExecutor.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleDrawExecutor.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleEmitterHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleResourceHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/RandomEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/SimpleEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/SingleEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/SpinPullParticleCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectChecker.o \
+    $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectInfo.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimScaleController.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimStampController.o \
     $(BUILD_DIR)/asm/Game/Enemy/BallBeamer.o \
@@ -409,7 +430,14 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Enemy/WalkerStateWander.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazooka.o \
     $(BUILD_DIR)/asm/Game/Enemy/WaterBazookaCapsule.o \
-    $(BUILD_DIR)/asm/Game/GameAudio/GameAudio.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudCameraWatcher.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmWrap.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudSeKeeper.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudTalkSoundData.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudEffectDirector.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudBgmConductor.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudStageBgmTable.o \
+    $(BUILD_DIR)/asm/Game/GameAudio/AudTamakoroBgmCtrl.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/ConeGravity.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setLocalMatrix.o \
     $(BUILD_DIR)/asm/Game/Gravity/ConeGravity/setEnableBottom.o \
@@ -911,7 +939,113 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjListExecutor.o \
     $(BUILD_DIR)/asm/Game/NameObj/NameObjRegister.o \
     $(BUILD_DIR)/asm/Game/NPC/NPC.o \
-    $(BUILD_DIR)/asm/Game/Player/Player.o \
+    $(BUILD_DIR)/asm/Game/Player/FireMarioBall.o \
+    $(BUILD_DIR)/asm/Game/Player/GhostPacket.o \
+    $(BUILD_DIR)/asm/Game/Player/GhostPlayer.o \
+    $(BUILD_DIR)/asm/Game/Player/GroupChecker.o \
+    $(BUILD_DIR)/asm/Game/Player/J3DModelX.o \
+    $(BUILD_DIR)/asm/Game/Player/JetTurtleShadow.o \
+    $(BUILD_DIR)/asm/Game/Player/MarineSnow.o \
+    $(BUILD_DIR)/asm/Game/Player/Mario.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActor.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorDraw.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorPunch.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorCamera.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorClap.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorGameOver.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorGravity.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorHand.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorInit.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorPad.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorParts.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorRush.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorSensor.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorShadow.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorSpecialDraw.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorMatrix.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorMorph.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorEye.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorOffensiveMsg.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorDefensiveMsg.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorRushMsg.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorTakeMsg.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorBlackHole.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioAnimator.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioAnimationEfx.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioWait.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioClimb.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioCollision.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioConst.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioDamage.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioDamageParalyze.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioDamageFreeze.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioDamageStun.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioDamageCrush.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFaint.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFlip.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFrontStep.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioBee.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioBlown.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioEffect.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFlow.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFoo.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioHolder.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioInit.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioJump.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMessenger.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioModule.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMove.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMove2D.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMove25D.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMoveSphere.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioParts.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioPress.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioRabbit.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSearchLight.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSideStep.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSkate.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSound.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSpecial.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSpin.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioState.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioStick.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSukekiyo.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioTalk.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioWall.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioHang.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSwim.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSwimDamage.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioAccess.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSlip.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSlope.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioWalk.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioNullBck.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioRecovery.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioSlider.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioStep.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioBump.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioEnforce.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioTask.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioTeresa.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMagic.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioWarp.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioFpView.o \
+    $(BUILD_DIR)/asm/Game/Player/Mario2D.o \
+    $(BUILD_DIR)/asm/Game/Player/MatrixControl.o \
+    $(BUILD_DIR)/asm/Game/Player/RushEndInfo.o \
+    $(BUILD_DIR)/asm/Game/Player/TornadoMario.o \
+    $(BUILD_DIR)/asm/Game/Player/ModelHolder.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioShadow.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioMapCode.o \
+    $(BUILD_DIR)/asm/Game/Player/MarioActorWipe.o \
+    $(BUILD_DIR)/asm/Game/Player/DrawAdaptor.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEvent.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventGameOver.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventAbyss.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventDown.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventFireDown.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventRaceDown.o \
+    $(BUILD_DIR)/asm/Game/Player/PlayerEventGhostRaceDown.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmSeqParser.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudBgmTempoAdjuster.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudMeTrack.o \
@@ -1107,7 +1241,13 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Screen/WipeRing.o \
     $(BUILD_DIR)/asm/Game/Screen/YesNoController.o \
     $(BUILD_DIR)/asm/Game/Screen/YesNoLayout.o \
-    $(BUILD_DIR)/asm/Game/Speaker/Speaker.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSpeakerCtrl.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSystem.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkMixingBuffer.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkWave.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkTable.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkData.o \
+    $(BUILD_DIR)/asm/Game/Speaker/SpkSound.o \
     $(BUILD_DIR)/asm/Game/System/System.o \
     $(BUILD_DIR)/asm/Game/Util/ActorCameraUtil.o \
     $(BUILD_DIR)/asm/Game/Util/ActorMovementUtil.o \
@@ -1184,28 +1324,34 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Util/TriangleFilter.o \
     $(BUILD_DIR)/asm/Game/Util/TriggerChecker.o \
     $(BUILD_DIR)/asm/Game/Util/ValueControl.o \
-    $(BUILD_DIR)/asm/Game/NWC24/NWC24.o \
-    $(BUILD_DIR)/asm/Game/JKernel/JKernel.o \
-    $(BUILD_DIR)/asm/Game/JSupport/JSupport.o \
-    $(BUILD_DIR)/asm/Game/JGadget/JGadget.o \
-    $(BUILD_DIR)/asm/Game/JUtility/JUtility.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DGraphContext.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DOrthoGraph.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DFillBox.o \
-    $(BUILD_DIR)/asm/Game/J2D/JUTTexture.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPane.o \
-    $(BUILD_DIR)/asm/Game/J2D/J2DPicture.o \
-    $(BUILD_DIR)/asm/Game/J2D/get.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphBase.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphAnimator.o \
-    $(BUILD_DIR)/asm/Game/J3D/J3DGraphLoader.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAEulerToQuat.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAQuatLerp.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAVECScaleAdd.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAVECLerp.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMAMTXApplyScale.o \
-    $(BUILD_DIR)/asm/Game/JMath/JMath.o \
-    $(BUILD_DIR)/asm/Game/JParticle/JParticle.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24Function.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24Messenger.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24SendThread.o \
+    $(BUILD_DIR)/asm/Game/NWC24/NWC24System.o \
+    $(BUILD_DIR)/asm/Game/NWC24/UTF16Util.o \
+    $(BUILD_DIR)/asm/Game/NWC24/LuigiMailDirector.o \
+    $(BUILD_DIR)/asm/Game/NWC24/ReceiverTagMail.o \
+    $(BUILD_DIR)/asm/JSystem/JKernel/JKernel.o \
+    $(BUILD_DIR)/asm/JSystem/JSupport/JSupport.o \
+    $(BUILD_DIR)/asm/JSystem/JGadget/JGadget.o \
+    $(BUILD_DIR)/asm/JSystem/JUtility/JUtility.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DGraphContext.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DOrthoGraph.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DFillBox.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/JUTTexture.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DPane.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/J2DPicture.o \
+    $(BUILD_DIR)/asm/JSystem/J2D/get.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphBase/J3DGraphBase.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphAnimator/J3DGraphAnimator.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphLoader/J3DGraphLoader.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAEulerToQuat.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAQuatLerp.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAVECScaleAdd.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAVECLerp.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMAMTXApplyScale.o \
+    $(BUILD_DIR)/asm/JSystem/JMath/JMath.o \
+    $(BUILD_DIR)/asm/JSystem/JParticle/JParticle.o \
     $(BUILD_DIR)/asm/RVL/gd.o   \
     $(BUILD_DIR)/asm/RVL/kpad.o   \
     $(BUILD_DIR)/asm/RVL/thp.o   \
@@ -1216,7 +1362,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/RevoEx/net.o   \
     $(BUILD_DIR)/asm/RevoEx/nwc24.o   \
     $(BUILD_DIR)/asm/RevoEx/vf.o   \
-    $(BUILD_DIR)/asm/Game/JAudio2/JAudio2.o   \
+    $(BUILD_DIR)/asm/JSystem/JAudio2/JAudio2.o   \
     $(BUILD_DIR)/asm/RVL/aralt.o   \
     $(BUILD_DIR)/asm/RVL/base.o   \
     $(BUILD_DIR)/asm/RVL/os.o   \
