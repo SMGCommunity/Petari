@@ -298,7 +298,28 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Demo/ReturnDemoRailMove.o \
     $(BUILD_DIR)/asm/Game/Demo/ScenarioStarter.o \
     $(BUILD_DIR)/asm/Game/Demo/StarReturnDemoStarter.o \
-    $(BUILD_DIR)/asm/Game/Effect/Effect.o \
+    $(BUILD_DIR)/asm/Game/Effect/AstroEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroup.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectGroupHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/AutoEffectInfo.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectObjGravityDust.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectSystem.o \
+    $(BUILD_DIR)/asm/Game/Effect/EffectSystemUtil.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterAccess.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/MultiEmitterParticleCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleCalcExecutor.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleDrawExecutor.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleEmitterHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/ParticleResourceHolder.o \
+    $(BUILD_DIR)/asm/Game/Effect/RandomEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/SimpleEffectObj.o \
+    $(BUILD_DIR)/asm/Game/Effect/SingleEmitter.o \
+    $(BUILD_DIR)/asm/Game/Effect/SpinPullParticleCallBack.o \
+    $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectChecker.o \
+    $(BUILD_DIR)/asm/Game/Effect/SyncBckEffectInfo.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimScaleController.o \
     $(BUILD_DIR)/asm/Game/Enemy/AnimStampController.o \
     $(BUILD_DIR)/asm/Game/Enemy/BallBeamer.o \
