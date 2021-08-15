@@ -927,7 +927,28 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudChordInfo.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmHolder.o \
     $(BUILD_DIR)/asm/Game/RhythmLib/AudRhythmWrap.o \
-    $(BUILD_DIR)/asm/Game/Ride/Ride.o \
+    $(BUILD_DIR)/asm/Game/Ride/BigBubble.o \
+    $(BUILD_DIR)/asm/Game/Ride/Creeper.o \
+    $(BUILD_DIR)/asm/Game/Ride/Fluff.o \
+    $(BUILD_DIR)/asm/Game/Ride/FluffWind.o \
+    $(BUILD_DIR)/asm/Game/Ride/JumpBranch.o \
+    $(BUILD_DIR)/asm/Game/Ride/Plant.o \
+    $(BUILD_DIR)/asm/Game/Ride/PlantLeaf.o \
+    $(BUILD_DIR)/asm/Game/Ride/PlantStalk.o \
+    $(BUILD_DIR)/asm/Game/Ride/Pole.o \
+    $(BUILD_DIR)/asm/Game/Ride/SledRopePoint.o \
+    $(BUILD_DIR)/asm/Game/Ride/SlingShooter.o \
+    $(BUILD_DIR)/asm/Game/Ride/SpaceCocoon.o \
+    $(BUILD_DIR)/asm/Game/Ride/SphereAccelSensorController.o \
+    $(BUILD_DIR)/asm/Game/Ride/SphereController.o \
+    $(BUILD_DIR)/asm/Game/Ride/SpherePadController.o \
+    $(BUILD_DIR)/asm/Game/Ride/SurfRay.o \
+    $(BUILD_DIR)/asm/Game/Ride/SurfRayTutorial.o \
+    $(BUILD_DIR)/asm/Game/Ride/SwingRope.o \
+    $(BUILD_DIR)/asm/Game/Ride/SwingRopePoint.o \
+    $(BUILD_DIR)/asm/Game/Ride/Tamakoro.o \
+    $(BUILD_DIR)/asm/Game/Ride/TamakoroTutorial.o \
+    $(BUILD_DIR)/asm/Game/Ride/Trapeze.o \
     $(BUILD_DIR)/asm/Game/Scene/GameScene.o \
     $(BUILD_DIR)/asm/Game/Scene/GameSceneFunction.o \
     $(BUILD_DIR)/asm/Game/Scene/GameScenePauseControl.o \
