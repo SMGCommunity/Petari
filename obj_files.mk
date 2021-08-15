@@ -1176,9 +1176,9 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/JSystem/J2D/J2DPane.o \
     $(BUILD_DIR)/asm/JSystem/J2D/J2DPicture.o \
     $(BUILD_DIR)/asm/JSystem/J2D/get.o \
-    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphBase.o \
-    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphAnimator.o \
-    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphLoader.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphBase/J3DGraphBase.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphAnimator/J3DGraphAnimator.o \
+    $(BUILD_DIR)/asm/JSystem/J3D/J3DGraphLoader/J3DGraphLoader.o \
     $(BUILD_DIR)/asm/JSystem/JMath/JMAEulerToQuat.o \
     $(BUILD_DIR)/asm/JSystem/JMath/JMAQuatLerp.o \
     $(BUILD_DIR)/asm/JSystem/JMath/JMAVECScaleAdd.o \
