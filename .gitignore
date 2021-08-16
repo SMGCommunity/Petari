@@ -17,3 +17,4 @@
 *.d
 build
 compiler
+__pycache__

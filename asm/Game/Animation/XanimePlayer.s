@@ -1,24 +1,5 @@
 .include "macros.inc"
 
-.data
-
-.global lbl_80550535
-lbl_80550535:
-	.incbin "baserom.dol", 0x54C635, 0xF
-.global lbl_80550544
-lbl_80550544:
-	.incbin "baserom.dol", 0x54C644, 0xC
-
-.rodata
-
-.global lbl_8052DF18
-lbl_8052DF18:
-	.incbin "baserom.dol", 0x52A018, 0x8
-
-.global lbl_8052DF20
-lbl_8052DF20:
-	.incbin "baserom.dol", 0x52A020, 0x8
-
 .text
 
 .global func_8001ADE4

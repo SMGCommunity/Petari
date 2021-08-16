@@ -1038,7 +1038,7 @@
  0002:80030628       isDominant__20AudBgmRhythmStrategyCFv
  0002:80030710       getMuteState__13AudBgmSettingF10JAISoundIDl
  0002:80030750       getExtraChordNum__13AudBgmSettingF10JAISoundIDl
- 0002:80030798       getRaceName__19RaceManagerFunctionFi
+ 0002:80030798       getSeqIdForMultiBgm__13AudBgmSettingFUl
  0002:800307AC       getStreamIdForMultiBgm__13AudBgmSettingFUl
  0002:800307C4       getBeatMulForMultiBgm__13AudBgmSettingFUl
  0002:800307DC       getRaceMessageId__19RaceManagerFunctionFi
@@ -1272,7 +1272,6 @@
  0002:80038EAC       exeDownVs1__20BossKameckBattleDemoFv
  0002:80039090       exeDownVs2__20BossKameckBattleDemoFv
  0002:80039274       updateCastPose__20BossKameckBattleDemoFv
- 0002:800393B4       __sinit__NPCUtil_cpp
  0002:800394F0       __ct__23BossKameckBattlePattarnFPlb
  0002:80039538       initPattarn__23BossKameckBattlePattarnFPl
  0002:80039570       goNextPattarn__23BossKameckBattlePattarnFv
@@ -1437,7 +1436,6 @@
  0002:8003FBFC       receiveOtherMsg__24BossStinkBugActionFlyLowFUlP9HitSensorP9HitSensor
  0002:8003FCA8       exeFly__24BossStinkBugActionFlyLowFv
  0002:8003FDAC       isNerveTypeEnd__17CrystalCageMovingCFv
- 0002:8003FF0C       __sinit__PlayerUtil_cpp
  0002:800401BC       execute__Q225NrvDinoPackunBattleVs1Lv233DinoPackunBattleVs1Lv2NrvCoolDownCFP5Spine
  0002:80040248       execute__Q222NrvGreenCaterpillarBig31GreenCaterpillarBigNrvEndAdjustCFP5Spine
  0002:80040298       __ct__24BossStinkBugActionGroundFP12BossStinkBug
@@ -1767,7 +1765,6 @@
  0002:8004D588       addNodeVelocity__18DinoPackunTailRootFRCQ29JGeometry8TVec3<f>
  0002:8004D58C       __dt__43JointControlDelegator<18DinoPackunTailRoot>Fv
  0002:8004D6F4       __ct__25DinoPackunTrackFireHolderFl
- 0002:8004D7F0       __ct__19InvisiblePolygonObjFPCc
  0002:8004D834       init__19DinoPackunTrackFireFRC12JMapInfoIter
  0002:8004D92C       control__19DinoPackunTrackFireFv
  0002:8004D9FC       appearAndSetPos__19DinoPackunTrackFireFRCQ29JGeometry8TVec3<f>
@@ -2327,7 +2324,6 @@
  0002:800632A8       receiveMsgPlayerAttack__17KoopaSequencerVs3FUlP9HitSensorP9HitSensor
  0002:800633A8       receiveMsgEnemyAttack__17KoopaSequencerVs3FUlP9HitSensorP9HitSensor
  0002:80063410       receiveOtherMsg__17KoopaSequencerVs3FUlP9HitSensorP9HitSensor
- 0002:80063520       __sinit__NWC24Messenger_cpp
  0002:800636C4       execute__Q220NrvKoopaSequencerVs336KoopaSequencerVs3NrvDemoPowerUpFinalCFP5Spine
  0002:80063724       __ct__14KoopaShockWaveFP5Koopa
  0002:800637C0       init__14KoopaShockWaveFRC12JMapInfoIter
@@ -2527,7 +2523,6 @@
  0002:8006E634       initArm__5PoltaFv
  0002:8006E714       initPartsModel__5PoltaFv
  0002:8006E7E8       initCamera__5PoltaFRC12JMapInfoIter
- 0002:8006E8A0       isGrandStar__13GameDataConstFPCcl
  0002:8006E94C       breakAll__21PoltaGroundRockHolderFv
  0002:8006E9A4       __ct__5PoltaFPCc
  0002:8006EA6C       initSensor__5PoltaFv
@@ -2749,7 +2744,6 @@
  0002:80077060       addChild__29SkeletalFishBabyRailGroupNodeFP20SkeletalFishBabyRail
  0002:800770F8       tidy__29SkeletalFishBabyRailGroupNodeFv
  0002:800771CC       createChild__29SkeletalFishBabyRailGroupNodeFv
- 0002:80077228       __ct__11CoinReplicaFPCc
  0002:8007726C       initAfterPlacement__26SkeletalFishBabyRailHolderFv
  0002:800772AC       add__26SkeletalFishBabyRailHolderFP20SkeletalFishBabyRail
  0002:80077318       createGroup__26SkeletalFishBabyRailHolderFl
@@ -3440,9 +3434,6 @@
  0002:8009283C       setParam__31CamTranslatorCharmedVecRegTowerFPC16CameraParamChunk
  0002:8009293C       setParam__23CamTranslatorCubePlanetFPC16CameraParamChunk
  0002:80092968       setParam__16CamTranslatorDPDFPC16CameraParamChunk
- 0002:800929D0       __ct__9MarioMoveFP10MarioActor
- 0002:800929E4       setParam__17CamTranslatorDeadFPC16CameraParamChunk
- 0002:80092A00       setTexMtxOffset__21J3DTexGenBlockPatchedFUl
  0002:80092A10       setParam__16CamTranslatorFixFPC16CameraParamChunk
  0002:80092AA0       setParam__23CamTranslatorFixedPointFPC16CameraParamChunk
  0002:80092ABC       setParam__23CamTranslatorFixedThereFPC16CameraParamChunk
@@ -4178,18 +4169,18 @@
  0002:800B958C       executeLast__16DemoCameraKeeperFPC14DemoCameraInfo
  0002:800B95E4       endCurrentCamera__16DemoCameraKeeperFv
  0002:800B963C       __ct__16DemoCameraKeeperFP12DemoExecutorRC12JMapInfoIter
- 0002:800B9830       __ct__17PurpleCoinStarterFPCc
+ 0002:800B9830       __ct__13DemoCastGroupFPCc
  0002:800B9878       tryRegisterDemoActor__13DemoCastGroupFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo
  0002:800B98F0       tryRegisterDemoActor__13DemoCastGroupFP9LiveActorPCcRC12JMapInfoIter
  0002:800B99C4       init__13DemoCastGroupFRC12JMapInfoIter
  0002:800B9A68       __eq__10JMapIdInfoCFRC10JMapIdInfo
- 0002:800B9A98       __ct__12BigFanHolderFv
  0002:800B9AE0       tryRegisterDemoActor__19DemoCastGroupHolderCFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo
  0002:800B9B74       tryRegisterDemoActor__19DemoCastGroupHolderCFP9LiveActorPCcRC12JMapInfoIter
  0002:800B9C18       findCastGroup__19DemoCastGroupHolderCFPCc
  0002:800B9CEC       __ct__16DemoCastSubGroupFPCc
- 0002:800B9D30       reserveUserName__20GameSequenceFunctionFPCw
+ 0002:800B9D30       init__16DemoCastSubGroupFRC12JMapInfoIter
  0002:800B9D68       tryRegisterDemoActor__16DemoCastSubGroupFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo
+ 0002:800B9DF8       __dt__16DemoCastSubGroupFv
  0002:800B9E54       __ct__12DemoCtrlBaseFP9LiveActorPCc
  0002:800B9E74       init__12DemoCtrlBaseFRC12JMapInfoIter
  0002:800B9E84       end__12DemoCtrlBaseFv
@@ -4277,7 +4268,6 @@
  0002:800BC2A0       tryRumblePad__2MRFPCvPCcl
  0002:800BC330       loadLightArchive__13LightFunctionFv
  0002:800BC36C       createSheetParser__12DemoFunctionFPC12DemoExecutorPCcPP8JMapInfo
- 0002:800BC404       __ct__9KeySwitchFPCc
  0002:800BC450       init__15DemoKoopaJrShipFRC12JMapInfoIter
  0002:800BC518       appear__15DemoKoopaJrShipFv
  0002:800BC574       exeAppear__15DemoKoopaJrShipFv
@@ -4484,6 +4474,7 @@
  0002:800C46EC       createAndAddAutoEffectGroup__Q22MR6EffectFP21AutoEffectGroupHolderPCc
  0002:800C4764       registerAutoEffectInfos__Q22MR6EffectFP21AutoEffectGroupHolderP22MultiSceneEffectKeeperPC15MultiSceneActorPCc
  0002:800C4854       find_if<PCP15AutoEffectGroup,Q22MR31eq_ptr_case<P15AutoEffectGroup>>__3stdFPCP15AutoEffectGroupPCP15AutoEffectGroupQ22MR31eq_ptr_case<P15AutoEffectGroup>_PCP15AutoEffectGroup
+ 0002:800C48BC       getValue<PCc>__12JMapInfoIterCFPCcPPCc_b
  0002:800C4920       str2Color__28@unnamed@AutoEffectInfo_cpp@FPCc
  0002:800C4950       isValueOnR__28@unnamed@AutoEffectInfo_cpp@FRC12JMapInfoIterPCc
  0002:800C4990       isValueOnS__28@unnamed@AutoEffectInfo_cpp@FRC12JMapInfoIterPCc
@@ -4528,7 +4519,7 @@
  0002:800C5EF0       getEffectAttributeName__Q22MR6EffectFl
  0002:800C5F44       def_800C5F18
  0002:800C5F4C       createAutoEffect__Q22MR6EffectFPCcPCc
- 0002:800C6080       set__Q211TrampleStar7SurfaceFUsUsUs
+ 0002:800C6080       __ct<s>__Q29JGeometry8TVec3<s>Fsss_Pv
  0002:800C6090       __ct__12MultiEmitterFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:800C615C       __ct__12MultiEmitterFPCcPA4_fRCQ29JGeometry8TVec3<f>
  0002:800C6218       __ct__12MultiEmitterFPCcPA4_fPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
@@ -4564,8 +4555,10 @@
  0002:800C7128       createForeverEmitter__12MultiEmitterFv
  0002:800C7214       setGroupID__13SingleEmitterFUc
  0002:800C721C       push_back__Q22MR32Vector<Q22MR17FixedArray<Us,32>>FRCUs
- 0002:800C7238       setGlobalSRTMatrix__12MultiEmitterFPA4_Cfl
+ 0002:800C7238       setGlobalRotation__12MultiEmitterFRCQ29JGeometry8TVec3<s>l
  0002:800C72D4       setGlobalTranslation__12MultiEmitterFRCQ29JGeometry8TVec3<f>l
+ 0002:800C7380       setGlobalScale__12MultiEmitterFRCQ29JGeometry8TVec3<f>l
+ 0002:800C741C       setGlobalSRTMatrix__12MultiEmitterFPA4_Cfl
  0002:800C74B8       setGlobalPrmColor__12MultiEmitterFUcUcUcl
  0002:800C75AC       setGlobalEnvColor__12MultiEmitterFUcUcUcl
  0002:800C76A0       setLocalScale__12MultiEmitterFRCQ29JGeometry8TVec3<f>l
@@ -4666,7 +4659,6 @@
  0002:800CA5B4       getRandomTime__15RandomEffectObjCFv
  0002:800CA63C       control__15RandomEffectObjFv
  0002:800CA7A0       findDataElement__29@unnamed@SimpleEffectObj_cpp@FPCc
- 0002:800CA814       __ct__13FireMarioBallFPCc
  0002:800CA858       init__15SimpleEffectObjFRC12JMapInfoIter
  0002:800CAA94       startClipped__15SimpleEffectObjFv
  0002:800CAAF8       endClipped__15SimpleEffectObjFv
@@ -5583,7 +5575,6 @@
  0002:801000BC       exeInter__11JumpGuarderFv
  0002:8010013C       __ct__11JumpGuarderFPCc
  0002:801001A0       init__11JumpGuarderFRC12JMapInfoIter
- 0002:801004CC       __ct__11NPCDirectorFv
  0002:80100568       attackSensor__11JumpGuarderFP9HitSensorP9HitSensor
  0002:801006AC       enableAttack__11JumpGuarderFv
  0002:80100738       isHit__11JumpGuarderCFPC9LiveActor
@@ -6395,7 +6386,6 @@
  0002:8012AE50       receiveMsgEnemyAttack__12NokonokoLandFUlP9HitSensorP9HitSensor
  0002:8012AFFC       receiveOtherMsg__12NokonokoLandFUlP9HitSensorP9HitSensor
  0002:8012B0BC       initJetTurtle__12NokonokoLandFv
- 0002:8012B120       isDisplayStrapRemineder__9LogoSceneCFv
  0002:8012B2A8       isLookDirRailDirection__12NokonokoLandCFv
  0002:8012B384       tryAttack__12NokonokoLandFP9HitSensorP9HitSensor
  0002:8012B458       tryJetTurtleTouch__12NokonokoLandFv
@@ -7167,6 +7157,10 @@
  0002:801547F0       receiveMsgPlayerAttack__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor
  0002:80154884       receiveMsgEnemyAttack__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor
  0002:80154918       receiveOtherMsg__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor
+ 0002:80154A58       __ct__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvBreakFv
+ 0002:80154A68       execute__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvBreakCFP5Spine
+ 0002:80154A70       execute__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvCrackCFP5Spine
+ 0002:80154A78       execute__Q222NrvWaterBazookaCapsule28WaterBazookaCapsuleNrvNormalCFP5Spine
  0002:80154AC0       __ct__16AudCameraWatcherFv
  0002:80154B0C       playAtmosphereSE__16AudCameraWatcherFv
  0002:80154B74       init__16AudCameraWatcherFRC12JMapInfoIter
@@ -7203,6 +7197,8 @@
  0002:80156254       findDataElement__30@unnamed@AudStageBgmTable_cpp@FPCc
  0002:801562C8       getBgmId__16AudStageBgmTableFPCcl
  0002:80156344       getBgmState__16AudStageBgmTableFPCcl
+ 0002:8015638C       __ct__18AudTamakoroBgmCtrlFv
+ 0002:80156398       init__18AudTamakoroBgmCtrlFv
  0002:801563A4       control__18AudTamakoroBgmCtrlFfbl
  0002:80156534       modifyTempo__18AudTamakoroBgmCtrlFP14JAISoundHandlef
  0002:801565C8       modifyPitch__18AudTamakoroBgmCtrlFP14JAISoundHandlef
@@ -7426,8 +7422,6 @@
  0002:8015F078       isInitializedGameDataHolder__22SaveDataHandleSequenceCFv
  0002:8015F088       setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3<f>
  0002:8015F0AC       setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter
- 0002:8015F110       __ct__22SpiderThreadRadialLineFi
- 0002:8015F188       addPoint__22SpiderThreadRadialLineFP21SpiderThreadMainPoint
  0002:8015F1A8       remove__21ClippingActorInfoListFP9LiveActor
  0002:8015F20C       find__21ClippingActorInfoListCFPC9LiveActorPl
  0002:8015F268       findOrNone__21ClippingActorInfoListCFPC9LiveActor
@@ -7439,7 +7433,6 @@
  0002:8015F4E0       removeFromClippingTarget__2MRFP9LiveActor
  0002:8015F5B8       __ct__17ClippingInfoGroupFPCci
  0002:8015F64C       setGroupNo__17ClippingInfoGroupFRC12JMapInfoIter
- 0002:8015F6CC       registerObj__12NameObjGroupFP7NameObj
  0002:8015F6EC       isClippedNowAll__17ClippingInfoGroupCFv
  0002:8015F794       startClippedAll__17ClippingInfoGroupFv
  0002:8015F838       endClippedAll__17ClippingInfoGroupFv
@@ -7496,7 +7489,6 @@
  0002:80161770       reset__16DynamicJointCtrlFv
  0002:801617F0       setCallBackFunction__16DynamicJointCtrlFv
  0002:80161854       __ct__22DynamicJointCtrlKeeperFP9LiveActor
- 0002:80161A38       updatePos__22SpiderThreadRadialLineFv
  0002:80161A94       setCallBackFunction__22DynamicJointCtrlKeeperFv
  0002:80161AF0       startCtrl__22DynamicJointCtrlKeeperFPCcl
  0002:80161B28       endCtrl__22DynamicJointCtrlKeeperFPCcl
@@ -7565,9 +7557,11 @@
  0002:80163F14       addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3<f>
  0002:80163FD8       addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor
  0002:801640B0       getSensor__15HitSensorKeeperCFPCc
- 0002:80164168       doObjCol__15HitSensorKeeperFv
+ 0002:80164168       update__15HitSensorKeeperFv
+ 0002:801641C4       doObjCol__15HitSensorKeeperFv
  0002:80164220       clear__15HitSensorKeeperFv
- 0002:80164258       invalidateBySystem__15HitSensorKeeperFv
+ 0002:80164258       validate__15HitSensorKeeperFv
+ 0002:801642B8       invalidate__15HitSensorKeeperFv
  0002:801643D8       getGalaxyStorage__24GameDataAllGalaxyStorageFi
  0002:801643E8       getSensorInfo__15HitSensorKeeperCFPCc
  0002:80164410       startToLoadStationedArchivePlayer__32GameSystemStationedArchiveLoaderFb
@@ -8625,7 +8619,6 @@
  0002:80194760       initBloomModel__9PlanetMapFPCc
  0002:801948A0       tryDeleteMyEffect__9PlanetMapFv
  0002:80194940       __ct__13BlueChipGroupFPCc
- 0002:80194A50       initCoinArray__8RailCoinFRC12JMapInfoIter
  0002:80194A94       getLowMovementType__16PlanetMapAnimLowCFv
  0002:80194BAC       makeSubModelName__30@unnamed@PlanetMapCreator_cpp@FPPCcPC8JMapInfolPCcPCc
  0002:80194C70       createNameObj<13HipDropSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
@@ -8892,7 +8885,6 @@
  0002:8019E11C       __ct__10ZoneSwitchFv
  0002:8019E18C       __ct__12SwitchIdInfoFlRC12JMapInfoIter
  0002:8019E204       getSwitchNo__12SwitchIdInfoCFv
- 0002:8019E220       getName__21GameEventFlagAccessorCFv
  0002:8019E22C       createAndAddZone__20StageSwitchContainerFRC12SwitchIdInfo
  0002:8019E2A4       getZoneSwitch__20StageSwitchContainerFRC12SwitchIdInfo
  0002:8019E2C0       findZoneSwitchFromTable__20StageSwitchContainerFRC12SwitchIdInfo
@@ -9024,6 +9016,7 @@
  0002:801A54C0       receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor
  0002:801A5548       receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor
  0002:801A57AC       execute__Q212NrvAirBubble20AirBubbleNrvKillWaitCFP5Spine
+ 0002:801A5814       __dt__18AirBubbleGeneratorFv
  0002:801A5870       __ct__18AirBubbleGeneratorFPCc
  0002:801A58C4       init__18AirBubbleGeneratorFRC12JMapInfoIter
  0002:801A59F0       exeWait__18AirBubbleGeneratorFv
@@ -9091,6 +9084,7 @@
  0002:801A8A14       exeTimer__13AssemblyBlockFv
  0002:801A8AF0       tryStartAssemble__13AssemblyBlockFv
  0002:801A8B58       tryStartReturn__13AssemblyBlockFv
+ 0002:801A8D00       __ct__9AstroCoreFPCc
  0002:801A8D3C       init__9AstroCoreFRC12JMapInfoIter
  0002:801A8E2C       exeGrow__9AstroCoreFv
  0002:801A8ED4       startAnimGrow__9AstroCoreFv
@@ -9104,10 +9098,12 @@
  0002:801A9674       setNumLeftStar__19AstroCountDownPlateFv
  0002:801A96F8       selectNrvWait__19AstroCountDownPlateFv
  0002:801A975C       setupStateWait__19AstroCountDownPlateFv
+ 0002:801A99D4       __ct__9AstroDomeFPCc
  0002:801A9A10       init__9AstroDomeFRC12JMapInfoIter
  0002:801A9BC8       exeAppear__9AstroDomeFv
  0002:801A9C38       control__9AstroDomeFv
  0002:801A9CA8       receiveOtherMsg__9AstroDomeFUlP9HitSensorP9HitSensor
+ 0002:801A9E04       __ct__17AstroDomeAsteroidFPCc
  0002:801A9E48       init__17AstroDomeAsteroidFRC12JMapInfoIter
  0002:801A9EDC       appear__17AstroDomeAsteroidFv
  0002:801A9F10       control__17AstroDomeAsteroidFv
@@ -9156,6 +9152,7 @@
  0002:801ABF20       exeGalaxyConfirmCancel__25AstroDomeCameraControllerFv
  0002:801AC104       __ct__Q225AstroDomeCameraController8PositionFv
  0002:801AC144       reset__Q225AstroDomeCameraController8PositionFRCQ29JGeometry8TVec3<f>
+ 0002:801AC194       __ct__14AstroDomeCometFPCc
  0002:801AC1E0       init__14AstroDomeCometFRC12JMapInfoIter
  0002:801AC398       appear__14AstroDomeCometFv
  0002:801AC488       kill__14AstroDomeCometFv
@@ -9165,7 +9162,9 @@
  0002:801AC658       tryPointing__14AstroDomeCometFv
  0002:801AC6DC       exeSelect__14AstroDomeCometFv
  0002:801AC728       exeConfirm__14AstroDomeCometFv
+ 0002:801AC834       __ct__24AstroDomeDemoAstroGalaxyFPCc
  0002:801AC870       init__24AstroDomeDemoAstroGalaxyFRC12JMapInfoIter
+ 0002:801AC910       __dt__24AstroDomeDemoAstroGalaxyFv
  0002:801AC968       __ct__23AstroDomeGalaxySelectorFPCc
  0002:801AC9BC       init__23AstroDomeGalaxySelectorFRC12JMapInfoIter
  0002:801ACB00       kill__23AstroDomeGalaxySelectorFv
@@ -9203,8 +9202,9 @@
  0002:801AE47C       exeRotateAppear__12AstroDomeSkyFv
  0002:801AE4F0       exeRotateDisappear__12AstroDomeSkyFv
  0002:801AE588       exeDisappear__12AstroDomeSkyFv
+ 0002:801AE89C       __ct__13AstroMapBoardFPCc
  0002:801AE8D8       init__13AstroMapBoardFRC12JMapInfoIter
- 0002:801AE9C8       j_connectToSceneIndirectMapObj__2MRFP9LiveActor
+ 0002:801AE9C8       connectToScene__13AstroMapBoardFRC19MapObjActorInitInfo
  0002:801AE9CC       initAfterPlacement__13AstroMapBoardFv
  0002:801AEA88       __ct__11AstroMapObjFPCc
  0002:801AEAE4       init__11AstroMapObjFRC12JMapInfoIter
@@ -9220,7 +9220,6 @@
  0002:801AF4A8       tryStartAllAnimAndEffect__11AstroMapObjFPCc
  0002:801AF540       isEndRevival__11AstroMapObjCFv
  0002:801AF5A8       isPlayMachineSE__11AstroMapObjCFv
- 0002:801AF624       __ct__11TypicalDoorFPCc
  0002:801AF720       init__14AstroSimpleObjFRC12JMapInfoIter
  0002:801AF778       control__14AstroSimpleObjFv
  0002:801AFA1C       getNumGrandStarForRevival__33@unnamed@AstroMapObjFunction_cpp@FPCcl
@@ -9241,6 +9240,8 @@
  0002:801B0424       initilizePeculiar__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIter
  0002:801B04B0       __ct__16AstroOverlookObjFPCc
  0002:801B0518       control__16AstroOverlookObjFv
+ 0002:801B0574       __dt__16AstroOverlookObjFv
+ 0002:801B05D0       __dt__10BallOpenerFv
  0002:801B062C       __ct__10BallOpenerFPCc
  0002:801B0700       init__10BallOpenerFRC12JMapInfoIter
  0002:801B0814       initAfterPlacement__10BallOpenerFv
@@ -9258,6 +9259,7 @@
  0002:801B14D4       exeRun__8BallRailFv
  0002:801B168C       __ct__13BallRailPointFv
  0002:801B17DC       execute__Q211NrvBallRail17BallRailNrvNoBindCFP5Spine
+ 0002:801B1838       __ct__8BanekitiFPCc
  0002:801B1884       init__8BanekitiFRC12JMapInfoIter
  0002:801B1A68       exeWait__15TicoDomeLectureFv
  0002:801B1ACC       exeRepel__8BanekitiFv
@@ -9267,6 +9269,7 @@
  0002:801B1C24       control__8BanekitiFv
  0002:801B1CD0       receiveMsgPlayerAttack__8BanekitiFUlP9HitSensorP9HitSensor
  0002:801B1D1C       receiveOtherMsg__8BanekitiFUlP9HitSensorP9HitSensor
+ 0002:801B1E84       __ct__18BattleShipElevatorFPCc
  0002:801B1EC0       init__18BattleShipElevatorFRC12JMapInfoIter
  0002:801B1F5C       exeMove__18BattleShipElevatorFv
  0002:801B2044       receiveOtherMsg__18BattleShipElevatorFUlP9HitSensorP9HitSensor
@@ -9289,7 +9292,7 @@
  0002:801B2D50       control__14BeeFlowerHoverFv
  0002:801B2F04       calcAndSetBaseMtx__14BeeFlowerHoverFv
  0002:801B2F8C       receiveOtherMsg__14BeeFlowerHoverFUlP9HitSensorP9HitSensor
- 0002:801B3178       __ct__17BenefitItemLifeUpFPCc
+ 0002:801B3178       __ct__21BenefitItemInvincibleFPCc
  0002:801B31D0       exeCatch__21BenefitItemInvincibleFv
  0002:801B3230       init__21BenefitItemInvincibleFRC12JMapInfoIter
  0002:801B32BC       initModelAndEfx__21BenefitItemInvincibleFv
@@ -9297,10 +9300,14 @@
  0002:801B343C       initEscape__21BenefitItemInvincibleFv
  0002:801B34EC       doEscape__21BenefitItemInvincibleFv
  0002:801B36C8       stopEfx__21BenefitItemInvincibleFPCc
+ 0002:801B3858       __ct__17BenefitItemLifeUpFPCc
  0002:801B38B0       exeCatch__17BenefitItemLifeUpFv
  0002:801B3910       initModelAndEfx__17BenefitItemLifeUpFv
- 0002:801B39AC       stopEfx__17BenefitItemLifeUpFPCc
- 0002:801B3A44       j_init__14BenefitItemObjFRC12JMapInfoIter
+ 0002:801B39AC       runEfx__17BenefitItemLifeUpFPCc
+ 0002:801B39F8       __sinit_\BenefitItemLifeUp_cpp
+ 0002:801B3A44       init__17BenefitItemLifeUpFRC12JMapInfoIter
+ 0002:801B3A48       stopEfx__17BenefitItemLifeUpFPCc
+ 0002:801B3A94       __dt__17BenefitItemLifeUpFv
  0002:801B3AEC       endClipped__15ShadowClipActorFv
  0002:801B3B3C       control__15ShadowClipActorFv
  0002:801B3B84       __ct__14BenefitItemObjFPCcPCc
@@ -9375,6 +9382,9 @@
  0002:801B7480       calcWindInfo__6BigFanFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:801B7670       exeStart__6BigFanFv
  0002:801B7734       exeWait__6BigFanFv
+ 0002:801B792C       __dt__6BigFanFv
+ 0002:801B7988       __ct__12BigFanHolderFv
+ 0002:801B79D0       __dt__25DeriveActorGroup<6BigFan>Fv
  0002:801B7A2C       calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf
  0002:801B7B74       createBigFanHolder__14BigFanFunctionFv
  0002:801B7B7C       calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf
@@ -9424,6 +9434,7 @@
  0002:801BA17C       exeWait__13BreakableCageFv
  0002:801BA24C       exeBreak__13BreakableCageFv
  0002:801BA64C       calcScreenPosition__23@unnamed@BrightObj_cpp@FPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>>
+ 0002:801BA7D8       __ct__10BrightInfoFv
  0002:801BA808       write__10BrightInfoFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>f
  0002:801BA8A8       endRead__10BrightInfoFv
  0002:801BA8D4       reset__10BrightInfoFv
@@ -9452,6 +9463,7 @@
  0002:801BBA9C       getBright__13BrightObjBaseCFv
  0002:801BBAB0       getNowCenter__13BrightObjBaseCFPQ29JGeometry8TVec2<f>
  0002:801BBAC0       init__9BrightSunFRC12JMapInfoIter
+ 0002:801BBB90       __ct__16BumpAppearPlanetFPCc
  0002:801BBBD8       init__16BumpAppearPlanetFRC12JMapInfoIter
  0002:801BBCC4       exeBumpOut__16BumpAppearPlanetFv
  0002:801BBDA8       control__16BumpAppearPlanetFv
@@ -9474,6 +9486,7 @@
  0002:801BCB48       exeFlicker__11CandlestandFv
  0002:801BCD20       execute__Q214NrvCandlestand14HostTypeAttackCFP5Spine
  0002:801BCDAC       nullsub_93
+ 0002:801BCDB0       __ct__23CannonFortressBreakStepFPCc
  0002:801BCDEC       init__23CannonFortressBreakStepFRC12JMapInfoIter
  0002:801BCE90       exeWait__23CannonFortressBreakStepFv
  0002:801BCEEC       exeFall__23CannonFortressBreakStepFv
@@ -9481,7 +9494,7 @@
  0002:801BCFC4       nullsub_94
  0002:801BD044       execute__Q226NrvCannonFortressBreakStep31CannonFortressBreakStepNrvBreakCFP5Spine
  0002:801BD0B0       execute__Q226NrvCannonFortressBreakStep35CannonFortressBreakStepNrvFallStartCFP5Spine
- 0002:801BD204       __ct__10SwingLightFPCc
+ 0002:801BD204       __ct__11CapsuleCageFPCc
  0002:801BD248       init__11CapsuleCageFRC12JMapInfoIter
  0002:801BD2E4       exeStartCamera__11CapsuleCageFv
  0002:801BD348       exeOpen__11CapsuleCageFv
@@ -9621,9 +9634,12 @@
  0002:801C2E08       draw__17ClipFieldFillDrawCFv
  0002:801C2ED8       createClipFieldFillDraw__2MRFPCc
  0002:801C2EE0       createVolumeDrawSpotLight__2MRFPCc
+ 0002:801C2FD4       __ct__17ClipFieldMapPartsFPCc
  0002:801C3010       control__17ClipFieldMapPartsFv
  0002:801C3070       j_connectToClippedMapParts__2MRFP9LiveActor
  0002:801C30CC       init__17ClipFieldMapPartsFRC12JMapInfoIter
+ 0002:801C3128       __dt__15ClipFieldSwitchFv
+ 0002:801C3184       __ct__15ClipFieldSwitchFPCc
  0002:801C31C0       control__15ClipFieldSwitchFv
  0002:801C3274       init__15ClipFieldSwitchFRC12JMapInfoIter
  0002:801C3318       __ct__7CocoNutFPCc
@@ -9669,6 +9685,8 @@
  0002:801C5658       exeMove__7CocoNutFv
  0002:801C5704       exeInWater__7CocoNutFv
  0002:801C57F8       exeBreak__7CocoNutFv
+ 0002:801C5A28       __ct__11CoconutTreeFPCc
+ 0002:801C5A64       __dt__11CoconutTreeFv
  0002:801C5AC0       init__11CoconutTreeFRC12JMapInfoIter
  0002:801C5B6C       __ct__15CoconutTreeLeafFPC20CoconutTreeLeafGroupPA4_fPCQ29JGeometry8TVec3<f>
  0002:801C5CB8       init__15CoconutTreeLeafFRC12JMapInfoIter
@@ -9718,6 +9736,9 @@
  0002:801C7D74       createCoin__2MRFPC7NameObjPCc
  0002:801C7DE0       createDirectSetPurpleCoin__2MRFPCc
  0002:801C7E50       createPurpleCoin__2MRFPC7NameObjPCc
+ 0002:801C8074       __dt__4CoinFv
+ 0002:801C80D0       __ct__7CoinBoxFPCc
+ 0002:801C810C       __dt__7CoinBoxFv
  0002:801C8168       init__7CoinBoxFRC12JMapInfoIter
  0002:801C823C       exeHit__7CoinBoxFv
  0002:801C836C       receiveOtherMsg__7CoinBoxFUlP9HitSensorP9HitSensor
@@ -9750,7 +9771,10 @@
  0002:801C9228       __ct__17JASGenericMemPoolFv
  0002:801C929C       init__10CoinHolderFRC12JMapInfoIter
  0002:801C9314       appearCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lllf
- 0002:801C94E8       deactiveCoin__11CoinReplicaFv
+ 0002:801C94A4       __ct__11CoinReplicaFPCc
+ 0002:801C94E8       activeCoin__11CoinReplicaFv
+ 0002:801C94FC       activeCoinWithGravity__11CoinReplicaFv
+ 0002:801C9510       deactiveCoin__11CoinReplicaFv
  0002:801C9524       removeCoin__11CoinReplicaFv
  0002:801C9570       init__11CoinReplicaFRC12JMapInfoIter
  0002:801C987C       __ct__11CoinRotaterFPCc
@@ -9773,11 +9797,12 @@
  0002:801CA290       control__17SideSpikeMoveStepFv
  0002:801CA2C8       calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo
  0002:801CA3A0       tryDPDStop__13CollapsePlaneFv
- 0002:801CA624       __ct__13StaffRollLineFPCc
+ 0002:801CA624       __ct__14CollectCounterFPCc
  0002:801CA670       init__14CollectCounterFRC12JMapInfoIter
  0002:801CA6E0       j_setPosition__14CollectCounterFv
  0002:801CA6E4       setCount__14CollectCounterFl
  0002:801CA7AC       setPosition__14CollectCounterFv
+ 0002:801CA920       __ct__16CollisionBlockerFPCc
  0002:801CA95C       init__16CollisionBlockerFRC12JMapInfoIter
  0002:801CAA9C       attackSensor__16CollisionBlockerFP9HitSensorP9HitSensor
  0002:801CABE4       __ct__11CrystalCageFPCc
@@ -9825,6 +9850,8 @@
  0002:801CCBD0       calcRotSpeed__13CrystalSwitchFv
  0002:801CCD54       execute__Q216NrvCrystalSwitch24CrystalSwitchNrvSwitchUpCFP5Spine
  0002:801CCDB8       __ct__15CutBushModelObjFPCcPCcbPA4_f
+ 0002:801CCF10       __dt__15CutBushModelObjFv
+ 0002:801CCF6C       __dt__8DashRingFv
  0002:801CCFC8       initCommon__8DashRingFRC12JMapInfoIterPCc
  0002:801CD254       attackSensor__8DashRingFP9HitSensorP9HitSensor
  0002:801CD44C       control__8DashRingFv
@@ -9832,7 +9859,7 @@
  0002:801CD630       calcAxis__8DashRingFv
  0002:801CD6B0       calcSubAxis__8DashRingFv
  0002:801CD748       draw__8DashRingCFv
- 0002:801CD954       __ct__11NeedlePlantFPCc
+ 0002:801CD954       __ct__10DeadLeavesFPCc
  0002:801CD998       init__10DeadLeavesFRC12JMapInfoIter
  0002:801CDA68       exeSpin__10DeadLeavesFv
  0002:801CDB48       receiveOtherMsg__17SandUpDownTriRockFUlP9HitSensorP9HitSensor
@@ -9937,7 +9964,9 @@
  0002:801D33F0       exeAttack__12ElectricBallFv
  0002:801D34E8       for_each<PQ212ElectricBall4Ball,Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>>__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>_Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>
  0002:801D3670       __dt__12ElectricBallFv
- 0002:801D3748       __ct__23ElectricRailMovingPointFPCc
+ 0002:801D36E0       __defctor__17ElectricRailPointFv
+ 0002:801D36EC       __dt__17ElectricRailPointFv
+ 0002:801D3748       __ct__17ElectricRailPointFPCc
  0002:801D3790       init__17ElectricRailPointFRC12JMapInfoIter
  0002:801D3854       attackSensor__23ElectricRailMovingPointFP9HitSensorP9HitSensor
  0002:801D3870       __ct__21ElectricRailSeparatorFv
@@ -9965,6 +9994,8 @@
  0002:801D4FF8       calcGravity__12ElectricRailCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:801D5080       exeDisappear__12ElectricRailFv
  0002:801D51E8       execute__Q215NrvElectricRail19ElectricRailNrvWaitCFP5Spine
+ 0002:801D545C       __dt__24ElectricRailShadowDrawerFv
+ 0002:801D54B4       __dt__12ElectricRailFv
  0002:801D5510       isNearRail__32@unnamed@ElectricRailHolder_cpp@FPC9LiveActorPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>
  0002:801D55D8       __ct__18ElectricRailHolderFPCc
  0002:801D5638       calcAnim__18ElectricRailHolderFv
@@ -9978,6 +10009,8 @@
  0002:801D5A70       init__18ElectricRailHolderFRC12JMapInfoIter
  0002:801D5B0C       registerRail__18ElectricRailHolderFPC9LiveActor16ElectricRailType
  0002:801D5BE8       createModel__18ElectricRailHolderCF16ElectricRailType
+ 0002:801D5E9C       __dt__18ElectricRailHolderFv
+ 0002:801D5EF8       __ct__23ElectricRailMovingPointFPCc
  0002:801D5F40       init__23ElectricRailMovingPointFRC12JMapInfoIter
  0002:801D6010       __ct__18ElectricRailMovingFPCc
  0002:801D60A4       init__18ElectricRailMovingFRC12JMapInfoIter
@@ -10001,7 +10034,7 @@
  0002:801D76DC       exeDisappear__18ElectricRailMovingFv
  0002:801D784C       execute__Q221NrvElectricRailMoving25ElectricRailMovingNrvWaitCFP5Spine
  0002:801D79F8       GDTexCoord2f32
- 0002:801D7B44       createNameObj<12FileSelector>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
+ 0002:801D7B44       createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor
  0002:801D7B84       createNameObj<8Meramera>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
  0002:801D7BC4       __ct__20ExterminationCheckerFPCc
  0002:801D7C28       init__20ExterminationCheckerFRC12JMapInfoIter
@@ -10018,6 +10051,7 @@
  0002:801D869C       calcAndSetBaseMtx__14FallDownBridgeFv
  0002:801D8934       __sinit__FallDownBridge_cpp
  0002:801D8998       execute__Q217NrvFallDownBridge22FallDownBridgeNrvQuakeCFP5Spine
+ 0002:801D89E0       __ct__16FallingSmallRockFPCc
  0002:801D8A1C       init__16FallingSmallRockFRC12JMapInfoIter
  0002:801D8B18       endClipped__14SpringJetWaterFv
  0002:801D8B68       exeMove__16FallingSmallRockFv
@@ -10030,6 +10064,9 @@
  0002:801D9080       draw__16FallOutFieldDrawCFv
  0002:801D93E8       createFallOutFieldDraw__2MRFPCc
  0002:801D93F0       __sinit__FallOutFieldDraw_cpp
+ 0002:801D9514       __dt__16FallOutFieldDrawFv
+ 0002:801D956C       __dt__11FireBarBallFv
+ 0002:801D95C4       __dt__7FireBarFv
  0002:801D9620       __ct__11FireBarBallFP9LiveActor
  0002:801D9690       init__11FireBarBallFRC12JMapInfoIter
  0002:801D97B0       j_calcGravity__2MRFP9LiveActor_0
@@ -10044,6 +10081,7 @@
  0002:801D9D18       updateHitSensor__7FireBarFP9HitSensor
  0002:801D9F3C       initFireBarBall__7FireBarFRC12JMapInfoIter
  0002:801DA0B8       fixFireBarBall__7FireBarFv
+ 0002:801DA224       __dt__12FirePressureFv
  0002:801DA27C       __ct__12FirePressureFPCc
  0002:801DA31C       init__12FirePressureFRC12JMapInfoIter
  0002:801DA360       initBullet__12FirePressureFRC12JMapInfoIter
@@ -10056,6 +10094,7 @@
  0002:801DA74C       exeFly__18FirePressureBulletFv
  0002:801DA884       attackSensor__18FirePressureBulletFP9HitSensorP9HitSensor
  0002:801DA92C       isCrash__18FirePressureBulletCFv
+ 0002:801DA9C4       __ct__24FirePressureBulletHolderFPCc
  0002:801DAA00       callEmptyBullet__24FirePressureBulletHolderFv
  0002:801DAAC0       init__24FirePressureBulletHolderFRC12JMapInfoIter
  0002:801DAB30       __ct__19FirePressureRadiateFPCc
@@ -10110,6 +10149,7 @@
  0002:801DD848       exeComplete__17FlipPanelObserverFv
  0002:801DD910       exeDemoWait__17FlipPanelObserverFv
  0002:801DD9AC       receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor
+ 0002:801DDDC8       __ct__8FountainFPCc
  0002:801DDE20       init__8FountainFRC12JMapInfoIter
  0002:801DE07C       appear__8FountainFv
  0002:801DE0D4       startClipped__8FountainFv
@@ -10223,10 +10263,11 @@
  0002:801E39C0       endClipped__19GreenCaterpillarBigFv
  0002:801E3A88       fixBodyPartsOnRail__19GreenCaterpillarBigFv
  0002:801E3AE8       leaveApple__19GreenCaterpillarBigFv
+ 0002:801E3D70       __ct__16HatchWaterPlanetFPCc
  0002:801E3DB8       init__16HatchWaterPlanetFRC12JMapInfoIter
  0002:801E3F10       exeOpen__16HatchWaterPlanetFv
  0002:801E4000       exeWaitAfterOpen__16HatchWaterPlanetFv
- 0002:801E4118       __ct__12TreasureSpotFPCc
+ 0002:801E4118       __ct__18HeavensDoorDemoObjFPCc
  0002:801E415C       init__18HeavensDoorDemoObjFRC12JMapInfoIter
  0002:801E42BC       exeAppear__18HeavensDoorDemoObjFv
  0002:801E4390       exeVanish__18HeavensDoorDemoObjFv
@@ -10235,6 +10276,9 @@
  0002:801E44B4       connectToScene__18HeavensDoorDemoObjFRC19MapObjActorInitInfo
  0002:801E4514       startInsideCageDemo__18HeavensDoorDemoObjFv
  0002:801E45B8       execute__Q221NrvHeavensDoorDemoObj25HeavensDoorDemoObjNrvWaitCFP5Spine
+ 0002:801E46B4       __dt__18HeavensDoorDemoObjFv
+ 0002:801E470C       __dt__18HipDropDemoMoveObjFv
+ 0002:801E4764       __ct__14HipDropMoveObjFPCc
  0002:801E47A8       init__14HipDropMoveObjFRC12JMapInfoIter
  0002:801E48E0       receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor
  0002:801E4988       exeMove__14HipDropMoveObjFv
@@ -10280,6 +10324,8 @@
  0002:801E6C58       exeSwitchDown__18HitWallTimerSwitchFv
  0002:801E6CB8       exeOn__18HitWallTimerSwitchFv
  0002:801E6D20       exeSwitchUp__18HitWallTimerSwitchFv
+ 0002:801E6E74       __ct__7IceStepFPCc
+ 0002:801E6EB0       __dt__7IceStepFv
  0002:801E6F0C       init__7IceStepFRC12JMapInfoIter
  0002:801E7030       exeWait__7IceStepFv
  0002:801E70F8       setOn__7IceStepFUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
@@ -10291,10 +10337,13 @@
  0002:801E751C       move__21IceVolcanoUpDownPlaneFv
  0002:801E757C       tryCalcNearestPosToPlayer__21IceVolcanoUpDownPlaneCFPQ29JGeometry8TVec3<f>
  0002:801E76D0       getSoundCalcPos__21IceVolcanoUpDownPlaneFv
+ 0002:801E7734       __ct__19InvisiblePolygonObjFPCc
  0002:801E7778       init__19InvisiblePolygonObjFRC12JMapInfoIter
  0002:801E781C       initBaseMtx__19InvisiblePolygonObjFv
  0002:801E78AC       initCollision__19InvisiblePolygonObjFRC12JMapInfoIter
+ 0002:801E7954       __ct__27InvisiblePolygonObjGCaptureFPCc
  0002:801E7990       receiveOtherMsg__27InvisiblePolygonObjGCaptureFUlP9HitSensorP9HitSensor
+ 0002:801E79F8       __ct__15IronCannonShellFPCc
  0002:801E7A34       __ct__23IronCannonLauncherPointFPCc
  0002:801E7A88       init__23IronCannonLauncherPointFRC12JMapInfoIter
  0002:801E7B8C       exeWait__23IronCannonLauncherPointFv
@@ -10306,6 +10355,7 @@
  0002:801E7F38       exeShot__18IronCannonLauncherFv
  0002:801E7F94       initModelAndConnectToScene__18IronCannonLauncherFv
  0002:801E81B0       execute__Q226NrvIronCannonLauncherPoint30IronCannonLauncherPointNrvShotCFP5Spine
+ 0002:801E8218       __ct__15ItemAppearStoneFPCc
  0002:801E8254       init__15ItemAppearStoneFRC12JMapInfoIter
  0002:801E836C       exeWait__15ItemAppearStoneFv
  0002:801E8464       __ct__9ItemBlockFPCc
@@ -10382,6 +10432,8 @@
  0002:801EDEEC       updateBindActorMtx__9JumpStandFv
  0002:801EDFA0       endBindAndShootUp__9JumpStandFfQ29JumpStand8JumpType
  0002:801EE2BC       execute__Q215NrvWipeGameOver18WipeGameOverActiveCFP5Spine
+ 0002:801EE310       __dt__9KeySwitchFv
+ 0002:801EE36C       __ct__9KeySwitchFPCc
  0002:801EE3B8       init__9KeySwitchFRC12JMapInfoIter
  0002:801EE564       initKeySwitchByOwner__9KeySwitchFRC12JMapInfoIter
  0002:801EE5B8       appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3<f>
@@ -10393,6 +10445,7 @@
  0002:801EE8FC       control__9KeySwitchFv
  0002:801EE980       receiveOtherMsg__9KeySwitchFUlP9HitSensorP9HitSensor
  0002:801EEA50       tryAvoid__9KeySwitchFv
+ 0002:801EEBE0       __ct__18KillerGunnerSingleFPCc
  0002:801EEC1C       init__18KillerGunnerSingleFRC12JMapInfoIter
  0002:801EED44       attackSensor__18KillerGunnerSingleFP9HitSensorP9HitSensor
  0002:801EEDD4       exeWait__18KillerGunnerSingleFv
@@ -10405,14 +10458,24 @@
  0002:801EF340       exeBreak__10LargeChainFv
  0002:801EF410       createChainParts__10LargeChainFv
  0002:801EF694       invalidateClippingAllChainParts__10LargeChainFv
+ 0002:801EF778       __ct__Q213NrvLargeChain17LargeChainNrvWaitFv
+ 0002:801EF788       __ct__Q213NrvLargeChain18LargeChainNrvBreakFv
+ 0002:801EF798       execute__Q213NrvLargeChain18LargeChainNrvBreakCFP5Spine
+ 0002:801EF7A0       execute__Q213NrvLargeChain17LargeChainNrvWaitCFP5Spine
+ 0002:801EF7A4       __ct__15LargeChainPartsFPCc
+ 0002:801EF7E0       breakChainParts__15LargeChainPartsFv
  0002:801EF7F0       initChainParts__15LargeChainPartsFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>b
+ 0002:801EF928       kill__15LargeChainPartsFv
+ 0002:801EF97C       __ct__24LavaBallRisingPlanetLavaFPCc
  0002:801EF9B8       init__24LavaBallRisingPlanetLavaFRC12JMapInfoIter
  0002:801EFA4C       exeWait__24LavaBallRisingPlanetLavaFv
  0002:801EFAD0       exeScaleDown__24LavaBallRisingPlanetLavaFv
+ 0002:801EFCF4       __dt__15LavaBreakColumnFv
  0002:801EFD50       __ct__15LavaBreakColumnFPCc
  0002:801EFE04       makeActorAppeared__15LavaBreakColumnFv
  0002:801EFE38       init__15LavaBreakColumnFRC12JMapInfoIter
  0002:801EFE88       control__15LavaBreakColumnFv
+ 0002:801F0020       isKilledAtMoveDone__25AnmModelSwitchMoveEndKillCFv
  0002:801F0028       __ct__11LavaFloaterFPCc
  0002:801F0098       init__11LavaFloaterFRC12JMapInfoIter
  0002:801F027C       initAfterPlacement__11LavaFloaterFv
@@ -10422,6 +10485,8 @@
  0002:801F0504       getCurrentSinkDepth__11LavaFloaterCFv
  0002:801F05D8       exeFloat__11LavaFloaterFv
  0002:801F0638       exeSink__11LavaFloaterFv
+ 0002:801F0764       __dt__15LavaGalaxyPartsFv
+ 0002:801F07C0       __ct__15LavaGalaxyPartsFPCc
  0002:801F0808       initAfterPlacement__15LavaGalaxyPartsFv
  0002:801F08C8       makeActorAppeared__15LavaGalaxyPartsFv
  0002:801F0904       kill__7KoopaJrFv
@@ -10442,6 +10507,8 @@
  0002:801F1600       control__14LavaHomeSeesawFv
  0002:801F1664       calcAndSetBaseMtx__14LavaHomeSeesawFv
  0002:801F1730       init__14LavaHomeSeesawFRC12JMapInfoIter
+ 0002:801F1858       __dt__14LavaHomeSeesawFv
+ 0002:801F18B4       __ct__19LavaHomeVolcanoFlowFPCc
  0002:801F18F0       init__19LavaHomeVolcanoFlowFRC12JMapInfoIter
  0002:801F19B0       endClipped__19LavaHomeVolcanoFlowFv
  0002:801F1A78       exeWait__19LavaHomeVolcanoFlowFv
@@ -10482,6 +10549,7 @@
  0002:801F4314       endClipped__9LavaSteamFv
  0002:801F4354       exeWait__9LavaSteamFv
  0002:801F4454       exeSteam__9LavaSteamFv
+ 0002:801F46F8       __dt__15LavaStrangeRockFv
  0002:801F4754       __ct__15LavaStrangeRockFPCc
  0002:801F47A4       init__15LavaStrangeRockFRC12JMapInfoIter
  0002:801F4918       initModelAndClipping__15LavaStrangeRockFRC12JMapInfoIter
@@ -10627,7 +10695,9 @@
  0002:801FB028       isBreak__13MarioLauncherFPC8Triangle
  0002:801FB0B0       j_calcAndSetBaseMtx__9LiveActorFv_0
  0002:801FB2C8       __dt__13MarioLauncherFv
+ 0002:801FB420       __ct__22MarioLauncherAttractorFPCc
  0002:801FB464       init__22MarioLauncherAttractorFRC12JMapInfoIter
+ 0002:801FB600       __ct__18MechaKoopaPartsArmFPCc
  0002:801FB644       init__18MechaKoopaPartsArmFRC12JMapInfoIter
  0002:801FB718       exeWait__22SandCapsulePressGroundFv
  0002:801FB77C       exeMoveStart__18MechaKoopaPartsArmFv
@@ -10635,12 +10705,14 @@
  0002:801FB90C       exeMoveSign__13SpaceShipStepFv
  0002:801FB990       exeBreak__18MechaKoopaPartsArmFv
  0002:801FBA44       initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo
+ 0002:801FBCC8       __ct__19MechaKoopaPartsHeadFPCc
  0002:801FBD04       init__19MechaKoopaPartsHeadFRC12JMapInfoIter
  0002:801FBDF8       exeDemoBreak__19MechaKoopaPartsHeadFv
  0002:801FBF48       exeDemoWhiteFadeOut__19MechaKoopaPartsHeadFv
  0002:801FBFB4       exeDemoWhiteWait__19MechaKoopaPartsHeadFv
  0002:801FC018       exeDemoWhiteFadeIn__19MechaKoopaPartsHeadFv
  0002:801FC070       exeDemoAppearStar__19MechaKoopaPartsHeadFv
+ 0002:801FC214       __ct__16MercatorFixPartsFPCc
  0002:801FC258       receiveOtherMsg__16MercatorFixPartsFUlP9HitSensorP9HitSensor
  0002:801FC2C8       init__16MercatorFixPartsFRC12JMapInfoIter
  0002:801FC42C       __ct__21MercatorRailMovePartsFPCc
@@ -10654,10 +10726,9 @@
  0002:801FC73C       init__21MercatorRailMovePartsFRC12JMapInfoIter
  0002:801FCB04       __ct__19MercatorRotatePartsFPCc
  0002:801FCB4C       initAfterPlacement__19MercatorRotatePartsFv
- 0002:801FCBA8       receiveOtherMsg__19MercatorRotatePartsFUlP9HitSensorP9HitSensor
- 0002:801FCBBC       control__17PhantomShipHandleFv
  0002:801FCBD0       calcAndSetBaseMtx__19MercatorRotatePartsFv
  0002:801FCC80       init__19MercatorRotatePartsFRC12JMapInfoIter
+ 0002:801FCE98       __ct__14MeteoContainerFPCc
  0002:801FCED4       init__14MeteoContainerFRC12JMapInfoIter
  0002:801FD02C       kill__14MeteoContainerFv
  0002:801FD0FC       receiveOtherMsg__14MeteoContainerFUlP9HitSensorP9HitSensor
@@ -10744,12 +10815,12 @@
  0002:802022D0       exeSwitchAppear__15MorphItemObjNeoFv
  0002:802025AC       exeFly__15MorphItemObjNeoFv
  0002:8020266C       isDemo__15MorphItemObjNeoCFv
+ 0002:802027CC       __ct__11NeedlePlantFPCc
  0002:80202810       init__11NeedlePlantFRC12JMapInfoIter
  0002:802029F4       kill__11NeedlePlantFv
  0002:80202AA8       attackSensor__11NeedlePlantFP9HitSensorP9HitSensor
  0002:80202BE0       receiveMsgPush__11NeedlePlantFP9HitSensorP9HitSensor
  0002:80202C54       receiveMsgPlayerAttack__11NeedlePlantFUlP9HitSensorP9HitSensor
- 0002:80202CDC       receiveMsgEnemyAttack__14SpiderMapBlockFUlP9HitSensorP9HitSensor
  0002:80202D0C       j_connectToSceneNoShadowedMapObj__2MRFP9LiveActor
  0002:80202DBC       execute__Q214NrvNeedlePlant18NeedlePlantNrvWaitCFP5Spine
  0002:80202E00       __ct__13NormalMapBaseFPCc
@@ -10784,6 +10855,8 @@
  0002:80205DE8       drawSettingForCapture__13NormalMapBaseCFPA4_f
  0002:80206164       loadData__13NormalMapBaseFPCcUl
  0002:80206328       __ct__7Color10Fv
+ 0002:802063E4       __ct__16NormalMapTestObjFPCc
+ 0002:80206420       __dt__16NormalMapTestObjFv
  0002:80206478       init__16NormalMapTestObjFRC12JMapInfoIter
  0002:802064E4       __ct__4NoteFPCcRCQ29JGeometry8TVec3<f>P9NoteFairy
  0002:80206568       init__4NoteFRC12JMapInfoIter
@@ -10850,9 +10923,11 @@
  0002:80209A78       calcAndSetBaseMtx__16OceanWaveFloaterFv
  0002:80209C30       getCurrentSinkDepth__16OceanWaveFloaterCFv
  0002:80209D04       controlEffect__16OceanWaveFloaterFv
+ 0002:80209E18       __dt__10PalmIslandFv
  0002:80209E74       __ct__10PalmIslandFPCc
  0002:80209ECC       init__10PalmIslandFRC12JMapInfoIter
  0002:80209FB8       exeFloat__10PalmIslandFv
+ 0002:8020A1C0       __ct__23PeachCastleGardenPlanetFPCc
  0002:8020A204       init__23PeachCastleGardenPlanetFRC12JMapInfoIter
  0002:8020A278       j_connectToScenePlanet__2MRFP9LiveActor_1
  0002:8020A4A0       __ct__21PhantomShipBoxFloaterFPCc
@@ -10863,10 +10938,14 @@
  0002:8020A80C       exeMove__21PhantomShipBoxFloaterFv
  0002:8020A964       exeMoveUnderWater__21PhantomShipBoxFloaterFv
  0002:8020AA30       playRippleSe__21PhantomShipBoxFloaterFv
+ 0002:8020AB6C       __ct__17PhantomShipBridgeFPCc
  0002:8020ABB4       init__17PhantomShipBridgeFRC12JMapInfoIter
  0002:8020ADEC       setStateMoveA__17PhantomShipBridgeFv
  0002:8020AE74       exeMoveA__17PhantomShipBridgeFv
  0002:8020AF88       exeMoveB__17PhantomShipBridgeFv
+ 0002:8020B208       __dt__17PhantomShipBridgeFv
+ 0002:8020B264       __ct__17PhantomShipHandleFPCc
+ 0002:8020B2A8       control__17PhantomShipHandleFv
  0002:8020B2BC       calcAndSetBaseMtx__17PhantomShipHandleFv
  0002:8020B354       init__17PhantomShipHandleFRC12JMapInfoIter
  0002:8020B45C       getRotateMtx__21LavaHomeSeesawRotatorCFv
@@ -10881,6 +10960,7 @@
  0002:8020BB10       exeWait__12PhantomTorchFv
  0002:8020BB90       exeAttack__12PhantomTorchFv
  0002:8020BC30       exeExtinguish__12PhantomTorchFv
+ 0002:8020BE74       __ct__12PicketSwitchFPCc
  0002:8020BEB0       init__12PicketSwitchFRC12JMapInfoIter
  0002:8020BFAC       exeFirstDrop__12PicketSwitchFv
  0002:8020C018       exeLastDrop__12PicketSwitchFv
@@ -10957,6 +11037,8 @@
  0002:80210954       exeWeakNoRotate__9PowerStarFv
  0002:802109A4       exeWeakToWait__9PowerStarFv
  0002:80210A38       exeStageClearDemo__9PowerStarFv
+ 0002:80210DD4       __ct__20PowerStarAppearPointFPCc
+ 0002:80210E18       __dt__20PowerStarAppearPointFv
  0002:80210E74       init__20PowerStarAppearPointFRC12JMapInfoIter
  0002:80210EE8       __ct__15PowerStarHolderFPCc
  0002:80210F3C       registerPowerStar__15PowerStarHolderFP9PowerStari
@@ -11005,6 +11087,7 @@
  0002:80212F54       trySwitchDown__12PTimerSwitchFv
  0002:80213028       exeSwitchDown__12PTimerSwitchFv
  0002:8021307C       exeOn__12PTimerSwitchFv
+ 0002:802131D4       __ct__8PunchBoxFPCc
  0002:80213210       init__8PunchBoxFRC12JMapInfoIter
  0002:802134EC       initAfterPlacement__8PunchBoxFv
  0002:80213538       attackSensor__8PunchBoxFP9HitSensorP9HitSensor
@@ -11049,8 +11132,11 @@
  0002:80215A04       createPurpleCoinHolder__2MRFv
  0002:80215A0C       addToPurpleCoinHolder__2MRFPC7NameObjP4Coin
  0002:80215A48       registPurpleCoinStarter__2MRFP17PurpleCoinStarter
+ 0002:80215AE4       __ct__17PurpleCoinStarterFPCc
  0002:80215B2C       init__17PurpleCoinStarterFRC12JMapInfoIter
+ 0002:80215CA4       __ct__27QuarterRollGravityRoomArrowFPCc
  0002:80215CE0       init__27QuarterRollGravityRoomArrowFRC12JMapInfoIter
+ 0002:802161A4       __ct__21QuestionBoxGalleryObjFPCc
  0002:802161E0       init__21QuestionBoxGalleryObjFRC12JMapInfoIter
  0002:80216370       exeOffStart__21QuestionBoxGalleryObjFv
  0002:802163CC       exeOffWait__21QuestionBoxGalleryObjFv
@@ -11075,6 +11161,8 @@
  0002:80217984       exeMove__9RailBlockFv
  0002:80217A34       exeTerminate__9RailBlockFv
  0002:80217B84       j_calcAndSetBaseMtx__9LiveActorFv_1
+ 0002:80217D34       __ct__8RailCoinFPCc
+ 0002:80217D70       initCoinArray__8RailCoinFRC12JMapInfoIter
  0002:80217DB4       placementNormalRail__8RailCoinFv
  0002:80217EB0       placementMercatorRail__8RailCoinFv
  0002:80217F34       createRailPurpleCoin__2MRFPCc
@@ -11121,6 +11209,7 @@
  0002:80219C40       switchEffect__9RainCloudFv
  0002:80219E1C       updateRainCylinder__9RainCloudFv
  0002:80219F90       isNextStartOK__9RainCloudCFv
+ 0002:8021A190       __ct__24ReverseGravityRoomPlanetFPCc
  0002:8021A1CC       init__24ReverseGravityRoomPlanetFRC12JMapInfoIter
  0002:8021A5E8       __ct__12RevolvingWayFPCc
  0002:8021A650       init__12RevolvingWayFRC12JMapInfoIter
@@ -11192,6 +11281,7 @@
  0002:8021E32C       setStateMove__13RotateMoveObjFv
  0002:8021E390       exeMove__13RotateMoveObjFv
  0002:8021E46C       exeStop__13RotateMoveObjFv
+ 0002:8021E6DC       __ct__23SandCapsuleInsidePlanetFPCc
  0002:8021E718       init__23SandCapsuleInsidePlanetFRC12JMapInfoIter
  0002:8021E97C       __ct__22SandCapsulePressGroundFPCc
  0002:8021E9C0       init__22SandCapsulePressGroundFRC12JMapInfoIter
@@ -11205,7 +11295,6 @@
  0002:8021F26C       init__15SunakazeKunTrapFRC12JMapInfoIter
  0002:8021F354       exeTrap__15SunakazeKunTrapFv
  0002:8021F4E8       __ct__9SandstormFPCc
- 0002:8021F598       makeArchiveList__9UFOKinokoFP27NameObjArchiveListCollectorRC12JMapInfoIter
  0002:8021F5F0       init__9SandstormFRC12JMapInfoIter
  0002:8021F874       exeNonActive__9SandstormFv
  0002:8021F8F8       exeWait__9SandstormFv
@@ -11248,7 +11337,7 @@
  0002:80221D84       exeEnd__11ScrewSwitchFv
  0002:80221E24       receiveOtherMsg__11ScrewSwitchFUlP9HitSensorP9HitSensor
  0002:80221F20       updateBindActorMtx__11ScrewSwitchFv
- 0002:80222110       __ct__25SubmarineVolcanoBigColumnFPCc
+ 0002:80222110       __ct__18ScrewSwitchReverseFPCc
  0002:80222158       init__18ScrewSwitchReverseFRC12JMapInfoIter
  0002:8022234C       exeAdjust__18ScrewSwitchReverseFv
  0002:802223F8       exeScrew__18ScrewSwitchReverseFv
@@ -11284,6 +11373,7 @@
  0002:80223F0C       endBindItem__9ShellfishFv
  0002:80223F9C       putItem__9ShellfishFv
  0002:802240D4       execute__Q212NrvShellfish20ShellfishNrvOpenWaitCFP5Spine
+ 0002:80224220       __ct__18ShockWaveGeneratorFPCc
  0002:80224264       init__18ShockWaveGeneratorFRC12JMapInfoIter
  0002:80224438       exeDemoEcho__18ShockWaveGeneratorFv
  0002:802244B4       exeGenerate__18ShockWaveGeneratorFv
@@ -11319,6 +11409,7 @@
  0002:802261A4       exeTryStartDemo__18SimpleBreakableObjFv
  0002:80226218       exeDemo__18SimpleBreakableObjFv
  0002:802262A4       j_connectToSceneIndirectMapObj__2MRFP9LiveActor_2
+ 0002:802264B4       __ct__18SimpleClipPartsObjFPCc
  0002:802264F0       init__18SimpleClipPartsObjFRC12JMapInfoIter
  0002:8022657C       control__18SimpleClipPartsObjFv
  0002:802265F0       nullsub_98
@@ -11368,8 +11459,10 @@
  0002:80228C78       __ct__16SmallStoneMemberFPCc
  0002:80228CFC       animControl__16SmallStoneMemberFv
  0002:80228DEC       doBreak__16SmallStoneMemberFP10SmallStone
+ 0002:80228F04       __ct__17SnowCapsulePlanetFPCc
  0002:80228F4C       init__17SnowCapsulePlanetFRC12JMapInfoIter
  0002:8022903C       exeOpen__17SnowCapsulePlanetFv
+ 0002:802291A0       __dt__9SnowFloorFv
  0002:802291FC       __ct__9SnowFloorFPCc
  0002:80229248       init__9SnowFloorFRC12JMapInfoIter
  0002:802294EC       drawSetup__9SnowFloorFv
@@ -11391,6 +11484,7 @@
  0002:8022B054       drawLayer__9SnowFloorCFl
  0002:8022B3EC       __sinit__SnowFloor_cpp
  0002:8022B400       dot__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f>
+ 0002:8022B420       __dt__13SnowFloorTileFv
  0002:8022B47C       __ct__13SnowFloorTileFPCc
  0002:8022B4C8       init__13SnowFloorTileFRC12JMapInfoIter
  0002:8022B780       initLocalPoint__13SnowFloorTileFRC12JMapInfoIter
@@ -11419,6 +11513,7 @@
  0002:8022D758       __ct__14SnowplowSwitchFPCc
  0002:8022D79C       receiveOtherMsg__14SnowplowSwitchFUlP9HitSensorP9HitSensor
  0002:8022D858       init__14SnowplowSwitchFRC12JMapInfoIter
+ 0002:8022D92C       __ct__12SoundEmitterFPCc
  0002:8022D970       init__12SoundEmitterFRC12JMapInfoIter
  0002:8022DA54       control__12SoundEmitterFv
  0002:8022DAAC       exePlaySound__12SoundEmitterFv
@@ -11437,6 +11532,7 @@
  0002:8022E61C       exeMove__13SpaceShipStepFv
  0002:8022E688       exeBreak__13SpaceShipStepFv
  0002:8022E7AC       updateResetToInitPosCheck__13SpaceShipStepFv
+ 0002:8022E9DC       __dt__14SphereRailDashFv
  0002:8022EA38       __ct__14SphereRailDashFPCc
  0002:8022EAAC       init__14SphereRailDashFRC12JMapInfoIter
  0002:8022EB78       receiveOtherMsg__14SphereRailDashFUlP9HitSensorP9HitSensor
@@ -11450,6 +11546,10 @@
  0002:8022F440       exeTouchAndApart__10SpiderCoinFv
  0002:8022F560       calcAndSetBaseMtx__10SpiderCoinFv
  0002:8022F734       tryRub__10SpiderCoinFlPQ29JGeometry8TVec2<f>
+ 0002:8022F8DC       __ct__14SpiderMapBlockFPCc
+ 0002:8022F920       receiveMsgPlayerAttack__14SpiderMapBlockFUlP9HitSensorP9HitSensor
+ 0002:8022F978       receiveMsgEnemyAttack__14SpiderMapBlockFUlP9HitSensorP9HitSensor
+ 0002:8022F9A8       __dt__14SpiderMapBlockFv
  0002:8022FA04       init__14SpiderMapBlockFRC12JMapInfoIter
  0002:8022FADC       kill__14SpiderMapBlockFv
  0002:8022FBB4       __ct__12SpiderThreadFPCc
@@ -11541,6 +11641,10 @@
  0002:80233FE4       tryTouch__17SpiderThreadPointFfRCQ29JGeometry8TVec3<f>l
  0002:80234048       tryPush__17SpiderThreadPointFRCQ29JGeometry8TVec3<f>f
  0002:802340D0       startThreadLevelSound__17SpiderThreadPointFv
+ 0002:80234180       __ct__22SpiderThreadRadialLineFi
+ 0002:802341F8       addPoint__22SpiderThreadRadialLineFP21SpiderThreadMainPoint
+ 0002:80234218       updateVelocity__22SpiderThreadRadialLineFv
+ 0002:80234274       updatePos__22SpiderThreadRadialLineFv
  0002:802342D0       __ct__20SpiderThreadWindCtrlFv
  0002:80234304       update__20SpiderThreadWindCtrlFv
  0002:80234374       startWindChance__20SpiderThreadWindCtrlFv
@@ -11583,8 +11687,10 @@
  0002:802361EC       updateCamera__10SpinDriverFv
  0002:80236210       endCamera__10SpinDriverFv
  0002:80236240       canBind__10SpinDriverCFP9HitSensor
+ 0002:8023646C       __ct__16SpinDriverCameraFv
  0002:80236484       startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:80236534       endAppearCamera__16SpinDriverCameraFP9LiveActor
+ 0002:8023656C       getAppearCameraFrames__16SpinDriverCameraCFv
  0002:80236574       start__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:802365F8       update__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:80236668       cancel__16SpinDriverCameraFv
@@ -11669,6 +11775,7 @@
  0002:8023A89C       receiveMsgEnemyAttack__11SpinningBoxFUlP9HitSensorP9HitSensor
  0002:8023A98C       hitReflection__11SpinningBoxFP9HitSensorP9HitSensor
  0002:8023AA18       calcAndSetBaseMtx__11SpinningBoxFv
+ 0002:8023AC4C       __ct__14SpringJetWaterFPCc
  0002:8023ACA4       init__14SpringJetWaterFRC12JMapInfoIter
  0002:8023AF04       startClipped__14SpringJetWaterFv
  0002:8023B1A8       exeWait__14SpringJetWaterFv
@@ -11759,6 +11866,9 @@
  0002:802400B8       calcAndSetBaseMtx__9StarPieceFv
  0002:80240324       setHostInfo__9StarPieceFP17StarPieceHostInfo
  0002:80240478       executeOnEnd__Q212NrvStarPiece16HostTypeNrvThrowCFP5Spine
+ 0002:80240630       __dt__9StarPieceFv
+ 0002:8024068C       __dt__17StarPieceDirectorFv
+ 0002:802406E8       __dt__16StarPieceShooterFv
  0002:80240744       getStarPieceDirector__2MRFv
  0002:8024076C       createStarPiece__2MRFv
  0002:80240824       gotByPlayer__2MRFv
@@ -11833,6 +11943,7 @@
  0002:80244220       offSwitchA__15StarPieceMotherFv
  0002:80244258       attackSensor__15StarPieceMotherFP9HitSensorP9HitSensor
  0002:802442CC       emitStarPieces__15StarPieceMotherFv
+ 0002:80244584       __ct__13StarPieceSpotFPCc
  0002:802445C0       emit__13StarPieceSpotFv
  0002:80244620       init__13StarPieceSpotFRC12JMapInfoIter
  0002:80244738       receiveMsgPlayerAttack__13StarPieceSpotFUlP9HitSensorP9HitSensor
@@ -11841,11 +11952,20 @@
  0002:80244BB8       attackSensor__14SubmarineSteamFP9HitSensorP9HitSensor
  0002:80244E08       endClipped__14SubmarineSteamFv
  0002:80244E58       exeSteam__14SubmarineSteamFv
+ 0002:80244EEC       __dt__14SubmarineSteamFv
+ 0002:80244F48       __sinit_\SubmarineSteam_cpp
+ 0002:80244F74       __ct__Q217NrvSubmarineSteam23HostTypeWaitForSwitchOnFv
+ 0002:80244F84       __ct__Q217NrvSubmarineSteam13HostTypeSteamFv
+ 0002:80244F94       execute__Q217NrvSubmarineSteam13HostTypeSteamCFP5Spine
+ 0002:80244F9C       execute__Q217NrvSubmarineSteam23HostTypeWaitForSwitchOnCFP5Spine
+ 0002:80244FE0       __ct__25SubmarineVolcanoBigColumnFPCc
  0002:80245028       init__25SubmarineVolcanoBigColumnFRC12JMapInfoIter
  0002:80245174       kill__25SubmarineVolcanoBigColumnFv
  0002:802451B8       exeWait__25SubmarineVolcanoBigColumnFv
  0002:80245258       exeBreak__25SubmarineVolcanoBigColumnFv
  0002:802453D0       initBreakModel__25SubmarineVolcanoBigColumnFPCc
+ 0002:80245510       __ct__3SunFPCc
+ 0002:8024554C       __dt__3SunFv
  0002:802455A8       init__3SunFRC12JMapInfoIter
  0002:80245604       setEulerY__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff
  0002:80245694       __ct__15SuperSpinDriverFPCcl
@@ -11906,6 +12026,7 @@
  0002:8024834C       createSuperSpinDriverGreen__2MRFPCc
  0002:80248390       createSuperSpinDriverPink__2MRFPCc
  0002:80248540       executeOnEnd__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootCFP5Spine
+ 0002:80248700       __ct__15SurprisedGalaxyFPCc
  0002:8024873C       init__15SurprisedGalaxyFRC12JMapInfoIter
  0002:802488FC       attackSensor__15SurprisedGalaxyFP9HitSensorP9HitSensor
  0002:80248954       exeExit__15SurprisedGalaxyFv
@@ -11925,6 +12046,9 @@
  0002:8024939C       j_appearLight__10SwingLightFv
  0002:802493A0       makeSubModels__10SwingLightFRC12JMapInfoIterRC19MapObjActorInitInfo
  0002:8024944C       appearLight__10SwingLightFv
+ 0002:8024958C       __dt__10SwingLightFv
+ 0002:802495E4       __ct__9SwitchBoxFPCc
+ 0002:80249620       __dt__9SwitchBoxFv
  0002:8024967C       init__9SwitchBoxFRC12JMapInfoIter
  0002:802498E0       exeWait__9SwitchBoxFv
  0002:80249930       exeHit__9SwitchBoxFv
@@ -11962,6 +12086,8 @@
  0002:8024BC88       draw__11TrampleStarCFv
  0002:8024BD10       receiveOtherMsg__11TrampleStarFUlP9HitSensorP9HitSensor
  0002:8024BED0       drawSelf__11TrampleStarCFv
+ 0002:8024C5AC       set__Q211TrampleStar7SurfaceFUsUsUs
+ 0002:8024C5BC       __ct__15TransparentWallFPCc
  0002:8024C5F8       control__15TransparentWallFv
  0002:8024C7AC       init__15TransparentWallFRC12JMapInfoIter
  0002:8024C82C       __ct__18TreasureBoxCrackedFPCc
@@ -11982,6 +12108,7 @@
  0002:8024D904       checkItemPos__18TreasureBoxCrackedFv
  0002:8024D9BC       isHalfOpen__18TreasureBoxCrackedCFv
  0002:8024DAAC       __sinit__TreasureBoxCracked_cpp
+ 0002:8024DB88       __ct__12TreasureSpotFPCc
  0002:8024DBCC       init__12TreasureSpotFRC12JMapInfoIter
  0002:8024DCB0       exeSpout__12TreasureSpotFv
  0002:8024DD94       control__12TreasureSpotFv
@@ -11993,6 +12120,7 @@
  0002:8024E1CC       exeSign__13TsukidashikunFv
  0002:8024E308       exeMove__13TsukidashikunFv
  0002:8024E3E4       j_connectToSceneCollisionMapObjStrongLight__2MRFP9LiveActor
+ 0002:8024E674       __ct__11TypicalDoorFPCc
  0002:8024E6BC       init__11TypicalDoorFRC12JMapInfoIter
  0002:8024E8A0       exeClose__11TypicalDoorFv
  0002:8024E94C       exeOpen__11TypicalDoorFv
@@ -12013,6 +12141,8 @@
  0002:8024F738       initSensorType__12UFOBreakableFv
  0002:8024F780       receiveMsgEnemyAttack__12UFOBreakableFUlP9HitSensorP9HitSensor
  0002:8024F934       execute__Q210NrvUFOBase14UFOBaseNrvWaitCFP5Spine
+ 0002:8024F988       __ct__9UFOKinokoFPCc
+ 0002:8024F9C4       makeArchiveList__9UFOKinokoFP27NameObjArchiveListCollectorRC12JMapInfoIter
  0002:8024FA1C       init__9UFOKinokoFRC12JMapInfoIter
  0002:8024FC40       startMove__9UFOKinokoFv
  0002:8024FC84       exeMove__9UFOKinokoFv
@@ -12056,6 +12186,8 @@
  0002:80252558       execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine
  0002:80252628       init__18WaterfallCaveCoverFRC12JMapInfoIter
  0002:80252758       exeBreak__18WaterfallCaveCoverFv
+ 0002:80252900       __dt__13IceStepNoSlipFv
+ 0002:80252958       __dt__13WaterLeakPipeFv
  0002:802529B4       __ct__13IceStepNoSlipFPA4_f
  0002:80252A14       init__13IceStepNoSlipFRC12JMapInfoIter
  0002:80252ABC       exeBreak__13IceStepNoSlipFv
@@ -12065,6 +12197,7 @@
  0002:80252D68       exeFreeze__13WaterLeakPipeFv
  0002:80252E70       receiveMsgPlayerAttack__13WaterLeakPipeFUlP9HitSensorP9HitSensor
  0002:80252F84       initPipeHeight__13WaterLeakPipeFv
+ 0002:80253128       __dt__13WaterPressureFv
  0002:80253180       __ct__13WaterPressureFPCc
  0002:802531C8       init__13WaterPressureFRC12JMapInfoIter
  0002:8025321C       initBullet__13WaterPressureFRC12JMapInfoIter
@@ -12083,6 +12216,7 @@
  0002:80253D94       endHostCamera__19WaterPressureBulletCFv
  0002:80253DE8       inviteMario__19WaterPressureBulletFP9HitSensor
  0002:80253F00       updateSuffererMtx__19WaterPressureBulletFv
+ 0002:80254070       __ct__25WaterPressureBulletHolderFPCc
  0002:802540AC       callEmptyBullet__25WaterPressureBulletHolderFv
  0002:8025416C       init__25WaterPressureBulletHolderFRC12JMapInfoIter
  0002:802541DC       __ct__17WaveFloatingForceFPC9LiveActorlfb
@@ -12097,6 +12231,7 @@
  0002:80254A94       draw__9WhirlPoolCFv
  0002:80254C18       drawPlane__9WhirlPoolCFffffffff
  0002:80254F7C       loadMaterial__9WhirlPoolCFv
+ 0002:802554F0       __ct__7WoodBoxFPCc
  0002:8025552C       init__7WoodBoxFRC12JMapInfoIter
  0002:80255910       control__7WoodBoxFv
  0002:80255928       calcViewAndEntry__7WoodBoxFv
@@ -12115,6 +12250,8 @@
  0002:80256648       tryGenerateWormEatenHill__15WormEatenPlanetFv
  0002:802566DC       startThirdDemo__15WormEatenPlanetFv
  0002:802568E0       __ct__10YellowChipFPCc
+ 0002:80256928       __dt__10YellowChipFv
+ 0002:80256980       __dt__8MapPartsFv
  0002:802569DC       __ct__8MapPartsFPCc
  0002:80256A30       init__8MapPartsFRC12JMapInfoIter
  0002:80256AE8       appear__8MapPartsFv
@@ -12141,6 +12278,8 @@
  0002:80257B10       exeMoveStart__15GeneralMapPartsFv
  0002:80257CA0       execute__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnCFP5Spine
  0002:80257DD8       push_back__Q22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo
+ 0002:80257DF4       __dt__16MapPartsFunctionFv
+ 0002:80257E4C       __dt__20FloaterFloatingForceFv
  0002:80257EA8       __ct__20FloaterFloatingForceFP9LiveActorPCc
  0002:80257F40       init__20FloaterFloatingForceFRC12JMapInfoIter
  0002:80257FA0       start__20FloaterFloatingForceFv
@@ -12155,9 +12294,10 @@
  0002:802585E4       exeMove__30FloaterFloatingForceTypeNormalFv
  0002:802587AC       execute__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitCFP5Spine
  0002:802587EC       getCurrentVelocity__30FloaterFloatingForceTypeNormalCFv
- 0002:8025884C       __ct__10SpringStepFfff
- 0002:802588F4       addSpringVelocity__10SpringStepFf
- 0002:80258908       setSpringBaseValue__10SpringStepFf
+ 0002:802587F4       __dt__30FloaterFloatingForceTypeSpringFv
+ 0002:8025884C       __ct__18FloaterSpringForceFfff
+ 0002:802588F4       addSpringVelocity__18FloaterSpringForceFf
+ 0002:80258908       setSpringBaseValue__18FloaterSpringForceFf
  0002:8025892C       __ct__30FloaterFloatingForceTypeSpringFP9LiveActorPCc
  0002:80258990       init__30FloaterFloatingForceTypeSpringFRC12JMapInfoIter
  0002:80258ACC       updateVelocity__30FloaterFloatingForceTypeSpringFv
@@ -12204,6 +12344,9 @@
  0002:8025A9E8       exeReactToTornado__15MapPartsBreakerFv
  0002:8025AB08       exeBreak__15MapPartsBreakerFv
  0002:8025AC14       squared__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f>
+ 0002:8025AC3C       __ct__10SpringStepFfff
+ 0002:8025ACE4       addSpringVelocity__10SpringStepFf
+ 0002:8025ACF8       setSpringBaseValue__10SpringStepFf
  0002:8025AD1C       __ct__21MapPartsFloatingForceFP9LiveActor
  0002:8025ADB0       init__21MapPartsFloatingForceFRC12JMapInfoIter
  0002:8025AE34       initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter
@@ -12273,6 +12416,7 @@
  0002:8025D7D8       isPassed__28MapPartsRailPointPassCheckerCFv
  0002:8025D820       isPassedStartPoint__28MapPartsRailPointPassCheckerCFv
  0002:8025D878       isPassedEndPoint__28MapPartsRailPointPassCheckerCFv
+ 0002:8025D94C       __dt__19MapPartsRailPostureFv
  0002:8025D9A8       __ct__19MapPartsRailPostureFP9LiveActor
  0002:8025D9FC       init__19MapPartsRailPostureFRC12JMapInfoIter
  0002:8025DA5C       end__19MapPartsRailPostureFv
@@ -12335,6 +12479,7 @@
  0002:80260940       exeMove__26MapPartsSeesaw2AxisRotatorFv
  0002:8026098C       exeHipDrop__26MapPartsSeesaw2AxisRotatorFv
  0002:80260AC4       execute__Q229NrvMapPartsSeesaw2AxisRotator12HostTypeStayCFP5Spine
+ 0002:80260B0C       nullsub_141
  0002:80260B20       getRotateMtx__26MapPartsSeesaw2AxisRotatorCFv
  0002:80260B28       createNameObj<13AssemblyBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
  0002:80260B68       createNameObj<18SimpleBreakableObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
@@ -12362,7 +12507,7 @@
  0002:80261200       draw__7NameObjCFv
  0002:80261204       calcAnim__7NameObjFv
  0002:80261208       calcViewAndEntry__7NameObjFv
- 0002:8026120C       initWithoutIter__7NameObjFv
+ 0002:8026120C       func_8026120C
  0002:8026124C       setName__7NameObjFPCc
  0002:80261254       executeMovement__7NameObjFv
  0002:80261278       requestSuspend__7NameObjFv
@@ -12558,6 +12703,7 @@
  0002:8026B82C       find__13NameObjFinderFPCc
  0002:8026B840       __ct__12NameObjGroupFPCci
  0002:8026B8A4       __dt__12NameObjGroupFv
+ 0002:8026B914       registerObj__12NameObjGroupFP7NameObj
  0002:8026B934       pauseOffAll__12NameObjGroupCFv
  0002:8026B990       initObjArray__12NameObjGroupFi
  0002:8026B9F4       __ct__13NameObjHolderFi
@@ -12615,6 +12761,7 @@
  0002:8026D70C       clone__Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>CFP7JKRHeap
  0002:8026D814       __ct__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>FRC49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>
  0002:8026D90C       clone__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFP7JKRHeap
+ 0002:8026D950       __ct__13ButlerExplainFPCc
  0002:8026D98C       init__13ButlerExplainFRC12JMapInfoIter
  0002:8026DA70       control__13ButlerExplainFv
  0002:8026DBEC       __ct__9ButlerMapFPCc
@@ -12667,6 +12814,7 @@
  0002:80270368       exeAppearPowerStar__11CollectTicoFv
  0002:802703E4       calcNoRescuedCount__11CollectTicoCFv
  0002:80270454       startAppearPowerStar__11CollectTicoFv
+ 0002:8027063C       __ct__10DemoRabbitFPCc
  0002:80270678       makeArchiveList__10DemoRabbitFP27NameObjArchiveListCollectorRC12JMapInfoIter
  0002:802706D4       init__10DemoRabbitFRC12JMapInfoIter
  0002:80270934       initAfterPlacement__10DemoRabbitFv
@@ -12716,7 +12864,7 @@
  0002:80272C1C       exeEvent__10HoneyQueenFv
  0002:80272D44       execute__Q212NrvSignBoard16SignBoardNrvWaitCFP5Spine
  0002:80272DBC       execute__Q213NrvHoneyQueen18HoneyQueenNrvReadyCFP5Spine
- 0002:80272F3C       __ct__Q222@unnamed@NPCActor_cpp@8NPCParamFv
+ 0002:80272F3C       __ct__Q221@unnamed@Kinopio_cpp@5ParamFv
  0002:80272F84       __ct__7KinopioFPCc
  0002:80273000       init__7KinopioFRC12JMapInfoIter
  0002:80273670       def_802734B4
@@ -12788,6 +12936,8 @@
  0002:80276E7C       exeOnTreeWait__8LuigiNPCFv
  0002:80276F6C       exeOnTreeFall__8LuigiNPCFv
  0002:802773F8       __dt__11MiiDatabaseFv
+ 0002:8027747C       __dt__13JKRFileFinderFv
+ 0002:802774BC       __dt__Q22MR32AssignableArray<P12RFLStoreData>Fv
  0002:8027751C       __ct__11MiiFaceIconFUsUsRC13MiiFaceRecipePCc
  0002:802775F0       drawIcon__11MiiFaceIconFv
  0002:802776A0       activate__10CameraInfoFv
@@ -12828,6 +12978,7 @@
  0002:80278BE4       initFaceModel__13MiiFaceRecipeCFP12RFLCharModelPv
  0002:80278C08       makeIcon__13MiiFaceRecipeCFPvii8_GXColor
  0002:80278C8C       makeIconWithFavoriteColor__13MiiFaceRecipeCFPvii
+ 0002:80278CDC       __ct__5PeachFPCc
  0002:80278D18       init__5PeachFRC12JMapInfoIter
  0002:80278D7C       exeWait__5PeachFv
  0002:80278E4C       __ct__15RemovableTurtleFP9LiveActorb
@@ -12858,6 +13009,7 @@
  0002:8027A794       exeTutorial__12PenguinCoachFv
  0002:8027A7F8       exePraise__12PenguinCoachFv
  0002:8027A9D8       str_8028C494
+ 0002:8027AB64       __ct__13PenguinMasterFPCc
  0002:8027ABA0       init__13PenguinMasterFRC12JMapInfoIter
  0002:8027AD80       exeReaction__13PenguinMasterFv
  0002:8027AF54       __ct__12PenguinRacerFPCc
@@ -12943,6 +13095,7 @@
  0002:8027F1B0       requestAppearPowerStar__20PowerStarEventKeeperFPCclPCQ29JGeometry8TVec3<f>bb
  0002:8027F25C       isExistPowerStarAtScenario__20PowerStarEventKeeperCFi
  0002:8027F2B4       isCorrectStarIdWithBBS__20PowerStarEventKeeperCFPCcPCcl
+ 0002:8027F348       __ct__6RabbitFPCc
  0002:8027F384       init__6RabbitFRC12JMapInfoIter
  0002:8027F810       control__6RabbitFv
  0002:8027F8BC       exeAppear__6RabbitFv
@@ -13000,6 +13153,7 @@
  0002:802826E4       execute__Q27NrvTico12TicoNrvSpin0CFP5Spine
  0002:80282814       __dt__7RosettaFv
  0002:8028287C       __ct__16RosettaMonologueFv
+ 0002:80282968       __dt__12SimpleLayoutFv
  0002:802829C4       appear__16RosettaMonologueFv
  0002:80282A5C       calcAnim__16RosettaMonologueFv
  0002:80282A9C       movement__16RosettaMonologueFv
@@ -13026,6 +13180,7 @@
  0002:80284104       nullsub_9
  0002:80284108       exeWait__23RosettaDemoHeavensDoor2Fv
  0002:80284480       __dt__23RosettaDemoHeavensDoor2Fv
+ 0002:802844E8       __ct__14RosettaReadingFPCc
  0002:8028452C       init__14RosettaReadingFRC12JMapInfoIter
  0002:802846F0       makeArchiveList__14RosettaReadingFP27NameObjArchiveListCollectorRC12JMapInfoIter
  0002:80284758       exePictureBookBefore__14RosettaReadingFv
@@ -13084,6 +13239,7 @@
  0002:80287498       exeWhiteIn__11RunawayTicoFv
  0002:80287538       exeAppear__11RunawayTicoFv
  0002:802875EC       exeTalk__11RunawayTicoFv
+ 0002:8028791C       __ct__9SignBoardFPCc
  0002:80287958       init__9SignBoardFRC12JMapInfoIter
  0002:80287BAC       __ct__9StrayTicoFPCcP11CollectTico
  0002:80287C5C       init__9StrayTicoFRC12JMapInfoIter
@@ -13190,9 +13346,10 @@
  0002:8028D140       __sinit__Tico_cpp
  0002:8028D3F0       execute__Q27NrvTico11TicoNrvRed0CFP5Spine
  0002:8028D45C       execute__Q212NrvSwingRope21SwingRopeNrvBindLooseCFP5Spine
+ 0002:8028D5FC       __ct__9TicoAstroFPCc
  0002:8028D638       init__9TicoAstroFRC12JMapInfoIter
- 0002:8028D76C       __ct__Q221@unnamed@TicoFat_cpp@12TicoFatParamFv
- 0002:8028D7B0       __ct__12TicoStarRingFPCc
+ 0002:8028D76C       __ct__Q223@unnamed@TicoComet_cpp@12TicoEatParamFv
+ 0002:8028D7B0       __ct__7TicoEatFPCc
  0002:8028D7FC       init__7TicoEatFRC12JMapInfoIter
  0002:8028D8C4       control__7TicoEatFv
  0002:8028D924       receiveMsgPlayerAttack__7TicoEatFUlP9HitSensorP9HitSensor
@@ -13218,6 +13375,7 @@
  0002:8028EBE8       appear__15TicoDomeLectureFv
  0002:8028ECA8       exeMove__15TicoDomeLectureFv
  0002:8028EDC8       exeMetamorphosis__15TicoDomeLectureFv
+ 0002:8028EF2C       __ct__Q221@unnamed@TicoFat_cpp@12TicoFatParamFv
  0002:8028EF70       getActionName__7TicoFatFPCc
  0002:8028F178       __ct__7TicoFatFPCc
  0002:8028F1FC       makeArchiveList__7TicoFatFP27NameObjArchiveListCollectorRC12JMapInfoIter
@@ -13289,6 +13447,7 @@
  0002:80292754       attackSensor__8TicoRailFP9HitSensorP9HitSensor
  0002:80292884       receiveOtherMsg__8TicoRailFUlP9HitSensorP9HitSensor
  0002:802929A4       isSameRailActor__8TicoRailCFPC9LiveActor
+ 0002:80292BFC       __ct__11TicoReadingFPCc
  0002:80292C38       init__11TicoReadingFRC12JMapInfoIter
  0002:80292E68       __ct__8TicoShopFPCc
  0002:80292EB8       kill__8TicoShopFv
@@ -13297,6 +13456,7 @@
  0002:802931D0       eventFunc__8TicoShopFUl
  0002:80293200       startReactionSound__8TicoShopFv
  0002:802932D0       exeDemo__8TicoShopFv
+ 0002:80293568       __ct__12TicoStarRingFPCc
  0002:802935B4       init__12TicoStarRingFRC12JMapInfoIter
  0002:802936FC       kill__12TicoStarRingFv
  0002:80293764       initialize__12TicoStarRingFP9LiveActorP9LiveActorPCc
@@ -13406,6 +13566,8 @@
  0002:802980A0       exeAppearPowerStar__22TrickRabbitSnowCollectFv
  0002:8029837C       execute__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvSuccessTalkCFP5Spine
  0002:80298410       execute__Q228NrvTrickRabbitFreeRunCollect29TrickRabbitSnowCollectNrvWaitCFP5Spine
+ 0002:80298468       __ct<f>__Q29JGeometry9TQuat4<f>Fffff_Pv
+ 0002:8029847C       __ct__23TrickRabbitSnowListenerFv
  0002:8029848C       __ct__15TrickRabbitSnowFPCc
  0002:80298548       setListener__15TrickRabbitSnowFP23TrickRabbitSnowListener
  0002:80298550       init__15TrickRabbitSnowFRC12JMapInfoIter
@@ -13437,9 +13599,9 @@
  0002:80299880       init__27CometEventExecutorTimeLimitFRC12JMapInfoIter
  0002:802999B4       exeStartEvent__27CometEventExecutorTimeLimitFv
  0002:80299A30       getTimeLimit__27CometEventExecutorTimeLimitCFv
+ 0002:80299ACC       __ct__16CometEventKeeperFv
  0002:80299AE4       init__16CometEventKeeperFv
  0002:80299BDC       isStartEvent__16CometEventKeeperCFPCc
- 0002:80299C08       startEventIfExecute__21TimeAttackEventKeeperFv
  0002:80299C28       endCometEvent__16CometEventKeeperFv
  0002:80299C7C       getTimeLimitFromTable__16CometEventKeeperFPC19GalaxyTimeLimitInfoi
  0002:80299D04       initCometStatus__16CometEventKeeperFv
@@ -13455,6 +13617,7 @@
  0002:8029A07C       isGrandEventPowerStar__2MRFPCcl
  0002:8029A1BC       appearEventPowerStar__2MRFPCclPCQ29JGeometry8TVec3<f>bb
  0002:8029A224       isEndEventPowerStarAppearDemo__2MRFPCc
+ 0002:8029A2C0       __ct__Q222@unnamed@NPCActor_cpp@8NPCParamFv
  0002:8029A308       __ct__12NPCActorCapsFPCc
  0002:8029A430       setDefault__12NPCActorCapsFv
  0002:8029A488       setIndirect__12NPCActorCapsFv
@@ -13511,12 +13674,16 @@
  0002:8029C3F0       init__22NPCCapsParameterReaderFv
  0002:8029C934       __ct__22NPCItemParameterReaderFPCc
  0002:8029CA70       push_back__Q22MR49Vector<Q22MR34FixedArray<P16NPCParameterBase,48>>FRCP16NPCParameterBase
+ 0002:8029CA8C       __ct__11NPCDirectorFv
  0002:8029CAD0       init__11NPCDirectorFRC12JMapInfoIter
- 0002:8029CBA0       nullsub_10
- 0002:8029CBA4       nullsub_11
+ 0002:8029CB48       __dt__11NPCDirectorFv
+ 0002:8029CBA0       createNPCData__11NPCFunctionFv
+ 0002:8029CBA4       deleteNPCData__11NPCFunctionFv
  0002:8029CBA8       getNPCItemData__11NPCFunctionFP12NPCActorIteml
+ 0002:8029CCA8       __ct__14NPCSupportRailFPCc
  0002:8029CCE4       init__14NPCSupportRailFRC12JMapInfoIter
- 0002:8029CDAC       __ct__17LuigiLeftSupplierFv
+ 0002:8029CD50       __dt__14NPCSupportRailFv
+ 0002:8029CDAC       __ct__16StageStateKeeperFv
  0002:8029CDB8       __ct__11TalkBalloonFPCc
  0002:8029CE0C       create__11TalkBalloonFPCcbb
  0002:8029CECC       appear__14GalaxyMapTitleFv
@@ -13701,6 +13868,7 @@
  0002:802A2C88       prep__15TalkStateNormalFPC15TalkMessageCtrl
  0002:802A2D90       __ct__15TalkStateHolderFv
  0002:802A2F48       __ct__14TalkStateEventFv
+ 0002:802A2FAC       __ct__24TalkSupportPlayerWatcherFv
  0002:802A2FBC       update__24TalkSupportPlayerWatcherFv
  0002:802A301C       isEnableTalkPlayerStateNormal__24TalkSupportPlayerWatcherCFv
  0002:802A30AC       isEnableTalkPlayerStateEvent__24TalkSupportPlayerWatcherCFv
@@ -13718,8 +13886,12 @@
  0002:802A36E8       __rf__Q44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorCFv
  0002:802A3738       getWaveInfo__Q217JASSimpleWaveBank11TWaveHandleCFv
  0002:802A3740       __ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>13ConstIteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>13ConstIterator
- 0002:802A3764       nullsub_13
+ 0002:802A3758       __ct__21TimeAttackEventKeeperFv
+ 0002:802A3764       init__21TimeAttackEventKeeperFb
+ 0002:802A3768       startEventIfExecute__21TimeAttackEventKeeperFv
  0002:802A3788       endEvent__21TimeAttackEventKeeperFv
+ 0002:802A37A8       __dt__13FireMarioBallFv
+ 0002:802A3804       __ct__13FireMarioBallFPCc
  0002:802A3848       init__13FireMarioBallFRC12JMapInfoIter
  0002:802A392C       appear__13FireMarioBallFv
  0002:802A39CC       appearAndThrow__13FireMarioBallFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
@@ -13768,7 +13940,6 @@
  0002:802A648C       viewCalc2__9J3DModelXFv
  0002:802A6544       setDrawView__9J3DModelXFUl
  0002:802A6564       setDrawViewBuffer__9J3DModelXFPA4_f
- 0002:802A6568       rotationMtx__13J3DMtxBuffer2FPA4_f
  0002:802A657C       copyAnmMtxBuffer__9J3DModelXFPC9J3DModelX
  0002:802A6590       viewCalc3__9J3DModelXFUlPA4_f
  0002:802A6670       viewCalcRef__9J3DModelXFUlP8J3DModel
@@ -13789,6 +13960,8 @@
  0002:802A80E4       getDrawMtx__12J3DMtxBufferFi
  0002:802A8100       getDrawMtxPtr__8J3DModelFv
  0002:802A8118       __dt__8J3DModelFv
+ 0002:802A8174       rotationMtx__13J3DMtxBuffer2FPA4_f
+ 0002:802A8188       __ct__15JetTurtleShadowFPCc
  0002:802A81C4       calcType0__15JetTurtleShadowFPA4_f
  0002:802A8248       drawType0__15JetTurtleShadowCFv
  0002:802A8298       drawType1__15JetTurtleShadowCFv
@@ -13989,6 +14162,7 @@
  0002:802B8D4C       exeGameOverSink__10MarioActorFv
  0002:802B8F54       exeGameOverNonStop__10MarioActorFv
  0002:802B8FE0       exeTimeWait__10MarioActorFv
+ 0002:802B902C       getGravityVec__10MarioActorCFv
  0002:802B9044       getGravityVector__10MarioActorCFPQ29JGeometry8TVec3<f>
  0002:802B908C       getGravityRatio__10MarioActorCFv
  0002:802B9094       getGravityInfo__10MarioActorCFv
@@ -14463,6 +14637,10 @@
  0002:802E0544       calcRingAcc__8MarioFooFv
  0002:802E06C4       draw3D__8MarioFooCFv
  0002:802E13A8       __sinit__MarioSwim_cpp
+ 0002:802E1474       __ct__11MarioHolderFv
+ 0002:802E14C0       __dt__11MarioHolderFv
+ 0002:802E1518       setMarioActor__11MarioHolderFP10MarioActor
+ 0002:802E1520       getMarioActor__11MarioHolderCFv
  0002:802E1528       getMarioHolder__2MRFv
  0002:802E1550       initMember__5MarioFv
  0002:802E178C       isRising__5MarioCFv
@@ -14614,6 +14792,8 @@
  0002:802ED1A4       update25Dmode__5MarioFv
  0002:802ED414       updateAxisFromMode__5MarioFUc
  0002:802ED778       calcMoveDir25D__5MarioFffPQ29JGeometry8TVec3<f>
+ 0002:802ED818       __sinit_\MarioMove25D_cpp
+ 0002:802ED884       __ct__9MarioMoveFP10MarioActor
  0002:802ED898       initAfter__9MarioMoveFv
  0002:802ED934       __ct__10MarioPartsFP9LiveActorPCcPCcbPA4_fPA4_f
  0002:802EDA18       __ct__10MarioPartsFP9LiveActorPCcPCcPA4_f
@@ -14694,7 +14874,7 @@
  0002:802F40D0       getCurrentStatus__5MarioCFv
  0002:802F40EC       isStatusActive__5MarioCFUl
  0002:802F4140       getNoticedStatus__10MarioStateCFv
- 0002:802F41D4       nullsub_21
+ 0002:802F41D4       checkBeeStick__5MarioFv
  0002:802F41D8       tryBeeStick__5MarioFPC9HitSensor
  0002:802F421C       __ct__10MarioStickFP10MarioActor
  0002:802F42D0       startJump__10MarioStickFv
@@ -14716,6 +14896,7 @@
  0002:802F5010       close__9MarioTalkFv
  0002:802F5070       start__9MarioTalkFv
  0002:802F5168       setLastNonFixMoveVec__5MarioFRCQ29JGeometry8TVec3<f>
+ 0002:802F517C       isWalling__5MarioCFv
  0002:802F51A8       checkWallStick__5MarioFv
  0002:802F531C       checkStickWallSide__5MarioFv
  0002:802F53C4       checkStickFrontBack__5MarioFv
@@ -14827,7 +15008,8 @@
  0002:8030275C       isTeresaDisappear__11MarioAccessFv
  0002:803027AC       isFlying__11MarioAccessFv
  0002:80302800       isNeedBrakingCamera__11MarioAccessFv
- 0002:80302830       endTalk__11MarioAccessFv
+ 0002:80302830       getCameraCubeCode__11MarioAccessFv
+ 0002:8030285C       isSwimming__11MarioAccessFv
  0002:80302888       isSkating__11MarioAccessFv
  0002:803028B8       getGroundingPolygon__11MarioAccessFUl
  0002:80302978       getShadowingPolygon__11MarioAccessFv
@@ -14850,6 +15032,7 @@
  0002:80303164       incLife__11MarioAccessFUl
  0002:80303240       isConfrontDeath__11MarioAccessFv
  0002:80303324       addStarPiece__11MarioAccessFv
+ 0002:803033C0       getJointMtx__11MarioAccessFPCc
  0002:803033F8       getVelocity__11MarioAccessFv
  0002:80303454       getLastMove__11MarioAccessFv
  0002:80303488       hide__11MarioAccessFv
@@ -14868,8 +15051,10 @@
  0002:80303A5C       onControl__11MarioAccessFb
  0002:80303AA8       setStateWait__11MarioAccessFv
  0002:80303AE4       startTalk__11MarioAccessFPC9LiveActor
+ 0002:80303B30       endTalk__11MarioAccessFv
  0002:80303B5C       readyRemoteDemo__11MarioAccessFv
  0002:80303E04       onFollowDemo__11MarioAccessFv
+ 0002:80303E44       setBaseMtx__11MarioAccessFPA4_f
  0002:80303E7C       getBaseMtx__11MarioAccessFv
  0002:80303ED4       calcSpinPullVelocity__11MarioAccessFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:80303F20       tryCoinPull__11MarioAccessFv
@@ -14878,6 +15063,7 @@
  0002:803040F8       isOnWaterSurface__11MarioAccessFv
  0002:80304178       calcWorldPadDir__11MarioAccessFPQ29JGeometry8TVec3<f>ff
  0002:803041D8       preventRush__11MarioAccessFv
+ 0002:80304204       getPlayerActor__11MarioAccessFv
  0002:80304228       validateSensor__11MarioAccessFv
  0002:80304258       incOxygen__11MarioAccessFUl
  0002:803042DC       scatterStarPiece__11MarioAccessFUl
@@ -14910,6 +15096,7 @@
  0002:803082C4       updateOnSand__5MarioFv
  0002:80308568       updateOnPoison__5MarioFv
  0002:80308698       updateOnWater__5MarioFv
+ 0002:80308820       __ct__12MarioNullBckFPCc
  0002:8030885C       appear__12MarioNullBckFv
  0002:803088D4       init__12MarioNullBckFRC12JMapInfoIter
  0002:80308938       getFramePos__12MarioNullBckFfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>
@@ -14921,7 +15108,6 @@
  0002:80309458       update__13MarioRecoveryFv
  0002:80309850       close__13MarioRecoveryFv
  0002:80309988       isSliderFloor__5MarioCFv
- 0002:8030998C       isMsgSearchlightAttack__2MRFUl
  0002:8030999C       checkSliderMode__5MarioCFv
  0002:803099E4       __ct__11MarioSliderFP10MarioActor
  0002:80309A50       calcGroundAccel__11MarioSliderFv
@@ -14931,6 +15117,7 @@
  0002:80309E24       start__11MarioSliderFv
  0002:80309EC8       update__11MarioSliderFv
  0002:8030A3E8       close__11MarioSliderFv
+ 0002:8030A4EC       checkStep__5MarioFv
  0002:8030A7D4       __ct__9MarioStepFP10MarioActor
  0002:8030A820       start__9MarioStepFv
  0002:8030A904       update__9MarioStepFv
@@ -14940,6 +15127,7 @@
  0002:8030B018       __ct__9MarioBumpFP10MarioActor
  0002:8030B070       start__9MarioBumpFv
  0002:8030B138       update__9MarioBumpFv
+ 0002:8030B204       checkEnforceMove__5MarioFv
  0002:8030B238       checkEnforceMoveInner__5MarioFv
  0002:8030B458       recordRelativePosition__5MarioFv
  0002:8030B908       invalidateRelativePosition__5MarioFv
@@ -15053,6 +15241,8 @@
  0002:803127A4       control__12TornadoMarioFv
  0002:80312844       __ct__11ModelHolderFPCcb
  0002:803128C0       updateMtx__11ModelHolderFPA4_f
+ 0002:8031292C       __dt__11ModelHolderFv
+ 0002:80312988       __dt__15CollisionShadowFv
  0002:803129E0       setMode__15CollisionShadowFUl
  0002:80312A50       __ct__15CollisionShadowFff
  0002:80312CEC       create__15CollisionShadowFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
@@ -15075,7 +15265,7 @@
  0002:80314A30       getDrawPos__15CollisionShadowCFUl
  0002:80314A4C       getDrawPos__15CollisionShadowCFUlUl
  0002:80314A80       getDrawTx__15CollisionShadowCFUlUl
- 0002:80314AD8       nullsub_22
+ 0002:80314AD8       __ct__9FloorCodeFv
  0002:80314ADC       getCode__9FloorCodeFPC8Triangle
  0002:80314B34       drawPreWipe__10MarioActorCFv
  0002:80314CB8       __ct__11DrawAdaptorFRCQ22MR11FunctorBasei
@@ -15210,7 +15400,6 @@
  0002:803198C4       autoWait__12AudMeSeqCtrlFv
  0002:803198E0       inherit__12AudMeSeqCtrlFP12AudMeSeqCtrl
  0002:803198EC       rhythmProc__12AudMeSeqCtrlFP10AudMeTrackl
- 0002:803199D4       __sinit__JASSeqCtrl_cpp
  0002:80319A50       __ct__14AudMeSeqParserFv
  0002:80319A60       init__14AudMeSeqReaderFPv
  0002:80319AA0       call__14AudMeSeqReaderFUl
@@ -15628,8 +15817,16 @@
  0002:803301E8       calcJumpPower__27SphereAccelSensorControllerCFv
  0002:80330228       j_testBrake__27SphereAccelSensorControllerCFv
  0002:80330230       clacXY__27SphereAccelSensorControllerFPfPf
+ 0002:80330504       __ct__16SphereControllerFv
  0002:8033051C       calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
+ 0002:80330530       update__16SphereControllerFRCQ29JGeometry8TVec3<f>
+ 0002:80330534       doBrake__16SphereControllerCFv
+ 0002:8033053C       calcJumpPower__16SphereControllerCFv
  0002:80330544       setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
+ 0002:80330610       __ct__19SpherePadControllerFv
+ 0002:8033064C       calcMoveVector__19SpherePadControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
+ 0002:80330654       calcJumpPower__19SpherePadControllerCFv
+ 0002:80330688       update__19SpherePadControllerFRCQ29JGeometry8TVec3<f>
  0002:8033068C       clacXY__19SpherePadControllerFPfPf
  0002:803306D8       calcDirSphereMove__19SpherePadControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Ul
  0002:803309A4       calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
@@ -15863,6 +16060,8 @@
  0002:8033F4C0       stageClear__9GameSceneFv
  0002:8033F6A0       execute__Q212NrvGameScene18GameSceneStaffRollCFP5Spine
  0002:8033F76C       execute__Q212NrvGameScene18GameScenePauseMenuCFP5Spine
+ 0002:8033F808       __cl__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFv
+ 0002:8033F838       clone__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFP7JKRHeap
  0002:8033F8A0       getGameScene__31@unnamed@GameSceneFunction_cpp@Fv
  0002:8033FA60       isScenarioDecided__2MRFv
  0002:8033FA78       activateDraw3D__17GameSceneFunctionFv
@@ -15880,8 +16079,13 @@
  0002:80340094       update__17IntermissionSceneFv
  0002:803400A4       draw__17IntermissionSceneCFv
  0002:80340220       setCurrentSceneControllerState__17IntermissionSceneFPCce
+ 0002:80340328       __ct__9LogoSceneFv
  0002:80340388       __dt__9LogoSceneFv
+ 0002:80340400       init__9LogoSceneFv
  0002:80340454       update__9LogoSceneFv
+ 0002:8034048C       calcAnim__9LogoSceneFv
+ 0002:803404B0       draw__9LogoSceneCFv
+ 0002:80340530       isDisplayStrapRemineder__9LogoSceneCFv
  0002:80340700       exeCaptureWait__13PowerStarListFv
  0002:80340A5C       __ct__22MultiSceneEffectKeeperFPCcP12ModelManageriPCc
  0002:80340AE8       init__22MultiSceneEffectKeeperFPC15MultiSceneActorPC12EffectSystem
@@ -15928,7 +16132,10 @@
  0002:80341B18       startTimeUp__14PlayTimerSceneFv
  0002:80341B20       exeTimeUp__14PlayTimerSceneFv
  0002:80341BB0       exeFadeoutAfterTimeUp__14PlayTimerSceneFv
- 0002:80341D04       execute__Q225NrvGalaxySelectBackButton31GalaxySelectBackButtonNrvAppearCFP5Spine
+ 0002:80341CE4       __ct__Q217NrvPlayTimerScene32PlayTimerSceneFadeoutAfterTimeUpFv
+ 0002:80341CF4       execute__Q217NrvPlayTimerScene32PlayTimerSceneFadeoutAfterTimeUpCFP5Spine
+ 0002:80341CFC       execute__Q217NrvPlayTimerScene20PlayTimerSceneTimeUpCFP5Spine
+ 0002:80341D04       execute__Q217NrvPlayTimerScene20PlayTimerSceneNormalCFP5Spine
  0002:80341D44       getCreator__34@unnamed@PlacementInfoOrdered_cpp@FRCQ220PlacementInfoOrdered10Identifier
  0002:80341D60       __ct__20PlacementInfoOrderedFi
  0002:80341E20       sort__20PlacementInfoOrderedFv
@@ -15946,6 +16153,7 @@
  0002:803425AC       __ct__21PlacementStateCheckerFPCc
  0002:803425F8       clearCurrentPlacementZoneId__21PlacementStateCheckerFv
  0002:8034260C       getPlacementStateChecker__2MRFv
+ 0002:80342634       __dt__21PlacementStateCheckerFv
  0002:8034268C       createDrawBuffer__33@unnamed@ScenarioSelectScene_cpp@Fv
  0002:803426E0       tryResumeInitializeThread__33@unnamed@ScenarioSelectScene_cpp@Fv
  0002:80342730       __ct__19ScenarioSelectSceneFv
@@ -15974,13 +16182,16 @@
  0002:803433FC       exeWaitDisappearLayout__19ScenarioSelectSceneFv
  0002:80343464       exeWaitResumeInitializeThreadIfRequestedReset__19ScenarioSelectSceneFv
  0002:803434BC       exeWaitResumeInitializeThreadIfCanceledSelect__19ScenarioSelectSceneFv
+ 0002:803436BC       __dt__19ScenarioSelectSceneFv
+ 0002:80343714       __ct__5SceneFPCc
  0002:80343760       __dt__5SceneFv
  0002:80343814       initNameObjListExecutor__5SceneFv
  0002:80343874       initSceneObjHolder__5SceneFv
- 0002:803438B4       __ct__18ScenePlayingResultFv
+ 0002:803438B4       __ct__20SceneDataInitializerFv
  0002:80343904       startStageFileLoad__20SceneDataInitializerFv
  0002:8034398C       startStageFileLoadAfterScenarioSelected__20SceneDataInitializerFv
  0002:80343A00       waitDoneStageFileLoad__20SceneDataInitializerFv
+ 0002:80343A5C       __dt__20SceneDataInitializerFv
  0002:80343AB4       movementStopSceneController__13SceneFunctionFv
  0002:80343AEC       executeMovementList__13SceneFunctionFv
  0002:80343CC8       executeMovementListOnPlayingMovie__13SceneFunctionFv
@@ -16021,16 +16232,20 @@
  0002:80344AB4       isExistSceneObj__2MRFi
  0002:80344B14       newEachObj__14SceneObjHolderFi
  0002:80345780       def_80344B48
+ 0002:80345798       __sinit_\SceneObjHolder_cpp
  0002:80345824       requestOneUpIfNeed__32@unnamed@ScenePlayingResult_cpp@Fiii
  0002:80345858       incCoin__18ScenePlayingResultFi
  0002:803458B0       getCoinNum__18ScenePlayingResultCFv
  0002:803458C0       incPurpleCoin__18ScenePlayingResultFv
  0002:803458DC       incStarPiece__18ScenePlayingResultFi
- 0002:80345968       j_resetStageResultSequenceParam__20GameSequenceFunctionFv
+ 0002:80345968       getStarPieceNum__18ScenePlayingResultCFv
+ 0002:8034596C       __dt__18ScenePlayingResultFv
+ 0002:803459C4       __ct__18ScenePlayingResultFv
  0002:80345A14       initMovementList__24SceneNameObjListExecutorFv
  0002:80345A88       initCalcAnimList__24SceneNameObjListExecutorFv
  0002:80345AFC       initCalcViewAndEntryList__24SceneNameObjListExecutorFv
  0002:80345B4C       initDrawList__24SceneNameObjListExecutorFv
+ 0002:80345BC0       __dt__24SceneNameObjListExecutorFv
  0002:80345C18       executeStopCategoriesDemoCommon__44@unnamed@SceneNameObjMovementController_cpp@Fv
  0002:80345D18       __ct__21StopSceneStateControlFv
  0002:80345D74       requestStopSceneFor__21StopSceneStateControlFQ22MR19MovementControlTypePC7NameObj
@@ -16041,6 +16256,8 @@
  0002:80346134       movement__30SceneNameObjMovementControllerFv
  0002:8034617C       getSceneNameObjMovementController__2MRFv
  0002:803461A4       notifyRequestNameObjMovementOnOff__2MRFv
+ 0002:803462D0       execute__Q244@unnamed@SceneNameObjMovementController_cpp@28StopSceneStateControlStoppedCFP5Spine
+ 0002:803462D4       execute__Q244@unnamed@SceneNameObjMovementController_cpp@25StopSceneStateControlNoneCFP5Spine
  0002:803462D8       findElement<l>__8JMapInfoCFPCcli_12JMapInfoIter
  0002:80346378       end__8JMapInfoCFv
  0002:803463A4       findElement<PCc>__8JMapInfoCFPCcPCci_12JMapInfoIter
@@ -16097,6 +16314,8 @@
  0002:80348444       makeStageArchiveNameList__15StageFileLoaderFv
  0002:803484F4       makeCometMessageID__2MRFPcUlPCc
  0002:80348508       mountFilesInStageMapFile__15StageFileLoaderFPCc
+ 0002:80348618       tryRequestLoadStageResource__2MRFv
+ 0002:80348620       isLoadStageScenarioResource__2MRFv
  0002:80348628       __ct__21StopSceneDelayRequestFv
  0002:80348690       __ct__19StopSceneControllerFv
  0002:8034874C       movement__21StopSceneDelayRequestFv
@@ -16104,6 +16323,8 @@
  0002:80348798       requestStopSceneDelay__19StopSceneControllerFll
  0002:803487DC       movement__19StopSceneControllerFv
  0002:803487F4       isSceneStopped__19StopSceneControllerCFv
+ 0002:80348808       __dt__21StopSceneDelayRequestFv
+ 0002:80348860       __dt__19StopSceneControllerFv
  0002:803488B8       THPGXRestore
  0002:803489D0       THPGXYuv2RgbSetup
  0002:80348EE4       IPCSetBufferLo
@@ -17672,6 +17893,10 @@
  0002:803926C0       setInformationMessage__11YesNoLayoutFPCc
  0002:803926D4       setSelectMessage__11YesNoLayoutFPCcPCc
  0002:80392738       exeSelecting__11YesNoLayoutFv
+ 0002:803927A4       __dt__11YesNoLayoutFv
+ 0002:803927FC       __sinit__YesNoLayout_cpp
+ 0002:80392804       __ct__Q214NrvYesNoLayout23YesNoLayoutNrvSelectingFv
+ 0002:80392814       execute__Q214NrvYesNoLayout23YesNoLayoutNrvSelectingCFP5Spine
  0002:8039281C       setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer
  0002:80392850       setup__14SpkSpeakerCtrlFv
  0002:80392944       connect__14SpkSpeakerCtrlFl
@@ -17702,6 +17927,7 @@
  0002:80393410       __ct__15SpkMixingBufferFP7JKRHeap
  0002:8039347C       mix__15SpkMixingBufferFlPslfl
  0002:8039351C       update__15SpkMixingBufferFl
+ 0002:80393560       __ct__7SpkWaveFv
  0002:8039356C       setResource__7SpkWaveFPv
  0002:803935AC       getWaveSize__7SpkWaveCFl
  0002:803935E4       getLoopStartPos__7SpkWaveCFl
@@ -17714,6 +17940,7 @@
  0002:80393770       loadTable__7SpkDataFUs
  0002:803937AC       loadWave__7SpkDataFUs
  0002:803937E8       isValid__7SpkDataCFv
+ 0002:80393810       releaseSound__14SpkSoundHandleFv
  0002:8039382C       __ct__14SpkSoundVolumeFv
  0002:80393858       setRelease__14SpkSoundVolumeFl
  0002:803938AC       setFadeOut__14SpkSoundVolumeFl
@@ -17868,7 +18095,6 @@
  0002:80398260       getRequestFileInfoConst__10FileLoaderCFPCc
  0002:803982DC       addRequest__10FileLoaderFPCc
  0002:80398364       loadFileUsingRipper__30@unnamed@FileLoaderThread_cpp@FP15RequestFileInfo
- 0002:80398390       __ct__17NANDManagerThreadFiiP7JKRHeap
  0002:803983DC       run__16FileLoaderThreadFv
  0002:80398468       loadToMainRAM__16FileLoaderThreadFP15RequestFileInfo
  0002:803984BC       mountArchiveAndStartCreateResource__16FileLoaderThreadFP15RequestFileInfo
@@ -17934,7 +18160,6 @@
  0002:8039AEF0       setMovement60fps__22GameSystemFrameControlFv
  0002:8039AF48       getLogoScene__32@unnamed@GameSystemFunction_cpp@Fv
  0002:8039AF64       getAudioSystemWrapper__39@unnamed@GameSystemSceneController_cpp@Fv
- 0002:8039AF74       getSaveDataHandleSequence__34@unnamed@GameSequenceFunction_cpp@Fv
  0002:8039AFD4       setSceneNameObjHolderToNameObjRegister__18GameSystemFunctionFv
  0002:8039AFE8       isCreatedGameDataHolder__18GameSystemFunctionFv
  0002:8039AFF4       isCreatedSystemWipe__18GameSystemFunctionFv
@@ -18076,7 +18301,8 @@
  0002:8039EE94       createGameHeap__17HeapMemoryWatcherFv
  0002:8039EEE4       __ct__17HeapMemoryWatcherFv
  0002:8039EF50       memoryErrorCallback__17HeapMemoryWatcherFPvUli
- 0002:8039EF68       nullsub_25
+ 0002:8039EF68       checkRestMemory__17HeapMemoryWatcherFv
+ 0002:8039EF6C       getDecidedLanguageFromIPL__2MRFv
  0002:8039EFBC       getLanguage__2MRFv
  0002:8039EFCC       getLanguageFromIPL__2MRFv
  0002:8039F0D4       getKind__15J3DAnmColorFullCFv
@@ -18116,7 +18342,6 @@
  0002:803A0778       waitForTick__31@unnamed@MainLoopFramework_cpp@FUlUs
  0002:803A08A0       waitDrawDoneAndSetAlarm__31@unnamed@MainLoopFramework_cpp@Fv
  0002:803A09E8       handleGXAbortAlarm__31@unnamed@MainLoopFramework_cpp@FP7OSAlarmP9OSContext
- 0002:803A0A74       __sinit__JASHeapCtrl_cpp
  0002:803A0AC0       getDrawingXfb__6JUTXfbCFv
  0002:803A0AE8       getDisplayingXfbIndex__6JUTXfbCFv
  0002:803A0BB8       getBlock__27@unnamed@MessageHolder_cpp@FUlPUc
@@ -18160,6 +18385,7 @@
  0002:803A1DF4       tryCheckEnableToCreate__17NANDErrorSequenceFv
  0002:803A1E9C       tryVerifyNANDCheckResult__17NANDErrorSequenceFv
  0002:803A2070       execute__Q231@unnamed@NANDErrorSequence_cpp@34NANDErrorSequenceRemoveDoneKeyWaitCFP5Spine
+ 0002:803A213C       __ct__15NANDRequestInfoFv
  0002:803A216C       init__15NANDRequestInfoFv
  0002:803A2198       isDone__15NANDRequestInfoCFv
  0002:803A21A8       setMove__15NANDRequestInfoFPCcPCc
@@ -18177,6 +18403,7 @@
  0002:803A24C4       isBusyOrAllocFailed__14NANDResultCodeCFv
  0002:803A24E4       isUnknown__14NANDResultCodeCFv
  0002:803A2504       setDelete__15NANDRequestInfoFPCc
+ 0002:803A2560       __ct__17NANDManagerThreadFiiP7JKRHeap
  0002:803A25AC       run__17NANDManagerThreadFv
  0002:803A26BC       executeWriteSequence__17NANDManagerThreadFP15NANDRequestInfo
  0002:803A2770       executeReadSequence__17NANDManagerThreadFP15NANDRequestInfo
@@ -18235,6 +18462,7 @@
  0002:803A5598       __ct__14JASAudioThreadFiiUl
  0002:803A5604       __ct__7JKRAramFUlUll
  0002:803A57D4       __dt__35JASGlobalInstance<14JASAudioThread>Fv
+ 0002:803A5ADC       __ct__24PauseButtonCheckerInGameFv
  0002:803A5AEC       update__24PauseButtonCheckerInGameFv
  0002:803A5B64       isPermitToPlusPause__24PauseButtonCheckerInGameCFv
  0002:803A5BB8       isPermitToMinusPause__24PauseButtonCheckerInGameCFv
@@ -18336,10 +18564,13 @@
  0002:803A9CA8       incModeCounter__26StarPointerOnOffControllerFPvl
  0002:803A9D2C       decModeCounter__26StarPointerOnOffControllerFPv
  0002:803A9E2C       show__17StarPointerLayoutFv
+ 0002:803A9E4C       __dt__Q222StationedArchiveLoader9ConditionFv
+ 0002:803A9E8C       getProperHeap__Q222StationedArchiveLoader9ConditionCFPCQ22MR17StationedFileInfo
  0002:803A9E94       getProperHeap__22StationedArchiveLoaderFPCQ22MR17StationedFileInfo
  0002:803A9EC0       loadResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition
  0002:803A9F98       createAndAddResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition
  0002:803AA03C       loadScenarioData__22StationedArchiveLoaderFP7JKRHeap
+ 0002:803AA0D0       getStationedFileInfoTable__2MRFv
  0002:803AA0DC       __ct__4WPadFl
  0002:803AA2B0       update__4WPadFv
  0002:803AA374       nullsub_26
@@ -18538,18 +18769,23 @@
  0002:803AF06C       hasPowerStar__20GalaxyStatusAccessorCFl
  0002:803AF0C8       isCompleted__20GalaxyStatusAccessorCFv
  0002:803AF130       getPowerStarNumOwned__20GalaxyStatusAccessorCFv
- 0002:803AF1B0       setMirrorReflectionInfoFromModel__2MRFP9LiveActor
+ 0002:803AF17C       makeGalaxyStatusAccessor__2MRFPCc
+ 0002:803AF1B0       makeCurrentGalaxyStatusAccessor__2MRFv
  0002:803AF1E8       getNormalScenarioNum__20GalaxyStatusAccessorCFv
  0002:803AF27C       getAppearPowerStarObjName__20GalaxyStatusAccessorCFl
  0002:803AF300       getActivePowerStarId__20GalaxyStatusAccessorCFl
  0002:803AF348       isValidCoin100__20GalaxyStatusAccessorCFl
  0002:803AF3E8       isHiddenStar__20GalaxyStatusAccessorCFl
- 0002:803AF428       getIncludedGrandGalaxyId__13GameDataConstFPCc
+ 0002:803AF428       getPowerStarNumToOpenGalaxy__13GameDataConstFPCc
+ 0002:803AF4C0       isPowerStarGreen__13GameDataConstFPCcl
+ 0002:803AF4CC       isPowerStarRed__13GameDataConstFPCcl
+ 0002:803AF4D8       isPowerStarLuigiHas__13GameDataConstFPCcl
+ 0002:803AF4E4       isGrandStar__13GameDataConstFPCcl
  0002:803AF4F0       isGalaxyLuigiArrested__13GameDataConstFPCcl
  0002:803AF570       isQuestionGalaxy__13GameDataConstFPCc
  0002:803AF628       isGalaxyAppearGreenDriver__13GameDataConstFPCc
+ 0002:803AF688       getIncludedGrandGalaxyId__13GameDataConstFPCc
  0002:803AF720       isPowerStarSpecial__13GameDataConstFPCclPCc
- 0002:803AF7FC       getGameSequenceProgress__34@unnamed@GameSequenceFunction_cpp@Fv
  0002:803AF80C       resetAllGameData__16GameDataFunctionFv
  0002:803AF838       addStarPieceGivingToTicoSeed__16GameDataFunctionFii
  0002:803AF8C0       setGameEventValueForBit__16GameDataFunctionFPCcib
@@ -18566,7 +18802,6 @@
  0002:803B0198       followStoryEventByName__16GameDataFunctionFPCc
  0002:803B01F0       getPlayerLeft__16GameDataFunctionFv
  0002:803B021C       addPlayerLeft__16GameDataFunctionFi
- 0002:803B02DC       resetStageResultSequenceParam__20GameSequenceFunctionFv
  0002:803B0314       getLast1upStarPieceNum__16GameDataFunctionFv
  0002:803B0328       getUserName__16GameDataFunctionFv
  0002:803B04D8       isEqualJustPowerStarNum__16GameDataFunctionFi
@@ -18650,6 +18885,8 @@
  0002:803B25A0       resetStageResultParam__25GameDataTemporaryInGalaxyFv
  0002:803B25DC       updateHitSensorsAll__2MRFP9LiveActor
  0002:803B25F4       receiveStageResultParam__25GameDataTemporaryInGalaxyFPCclii
+ 0002:803B2664       __ct__21GameEventFlagAccessorFPC13GameEventFlag
+ 0002:803B266C       getName__21GameEventFlagAccessorCFv
  0002:803B2678       isTypeGalaxyOpenStar__21GameEventFlagAccessorCFv
  0002:803B2690       isTypeSpecialStar__21GameEventFlagAccessorCFv
  0002:803B26A8       isTypeStarPiece__21GameEventFlagAccessorCFv
@@ -18698,6 +18935,7 @@
  0002:803B3D74       serialize__20GameEventFlagStorageCFPUcUl
  0002:803B3E74       deserialize__20GameEventFlagStorageFPCUcUl
  0002:803B3F38       initializeData__20GameEventFlagStorageFv
+ 0002:803B3F9C       __ct__21GameEventValueCheckerFv
  0002:803B4008       getValue__21GameEventValueCheckerCFPCc
  0002:803B4040       setValue__21GameEventValueCheckerFPCcUs
  0002:803B40A0       serialize__21GameEventValueCheckerCFPUcUl
@@ -18709,7 +18947,12 @@
  0002:803B458C       initAfterResourceLoaded__20GameSequenceDirectorFv
  0002:803B45CC       update__20GameSequenceDirectorFv
  0002:803B462C       draw__20GameSequenceDirectorCFv
- 0002:803B46C0       getNWC24Messenger__28@unnamed@NWC24Messenger_cpp@Fv
+ 0002:803B4678       isInitializedGameDataHolder__20GameSequenceDirectorCFv
+ 0002:803B4680       getGameDataHolder__20GameSequenceDirectorFv
+ 0002:803B4688       executeOnSaveSuccess__20GameSequenceDirectorFv
+ 0002:803B4694       executeJustBeforeSave__20GameSequenceDirectorFv
+ 0002:803B46A0       getGameSequenceProgress__34@unnamed@GameSequenceFunction_cpp@Fv
+ 0002:803B46B0       getSaveDataHandleSequence__34@unnamed@GameSequenceFunction_cpp@Fv
  0002:803B4940       setInformationMessageReplaceString__2MRFPCwl
  0002:803B49EC       requestChangeScene__20GameSequenceFunctionFPCc
  0002:803B4A78       sendStageResultSequenceParam__20GameSequenceFunctionFPCclii
@@ -18750,12 +18993,15 @@
  0002:803B5E14       isLuigiLeftSupply__20GameSequenceProgressFv
  0002:803B5E20       offLuigiLeftSupply__20GameSequenceProgressFv
  0002:803B5E30       countDownGameEventValueFromNewPowerStar__20GameSequenceProgressFv
+ 0002:803B60C0       __ct__17LuigiLeftSupplierFv
  0002:803B60CC       syncWithFlags__17LuigiLeftSupplierFv
  0002:803B6114       __ct__21SaveDataBannerCreatorFv
  0002:803B61A0       getLastResultCode__15SaveDataHandlerCFv
  0002:803B61AC       exeCreateOnTemporary__21SaveDataBannerCreatorFv
  0002:803B6250       exeMoveToHomeDir__21SaveDataBannerCreatorFv
  0002:803B62E8       setupBannerInfo__21SaveDataBannerCreatorFv
+ 0002:803B64D4       __ct__20SaveDataFileAccessorFPUc
+ 0002:803B64DC       getHeader__20SaveDataFileAccessorFv
  0002:803B64E4       getFileInfo__20SaveDataFileAccessorFi
  0002:803B64F8       makeUserFileInfo__20SaveDataFileAccessorFP20SaveDataUserFileInfoPCc
  0002:803B6624       __ct__15SaveDataHandlerFPC13SysConfigFilePC8UserFile
@@ -18828,7 +19074,9 @@
  0002:803B8BCC       isEnablePointer__22SaveDataHandleSequenceCFv
  0002:803B8C64       executeSaveFinish__22SaveDataHandleSequenceFPbPC5Nerve
  0002:803B8D88       syncNoSaveFlagsFromErrorSequence__22SaveDataHandleSequenceFv
- 0002:803B8FE8       __ct__20JSUMemoryInputStreamFPCvl
+ 0002:803B8FE0       __ct__23ScenarioProgressTestRunFP14GameDataHolder
+ 0002:803B8FE8       __ct__21JSUMemoryOutputStreamFPvl
+ 0002:803B902C       __ct__20JSUMemoryInputStreamFPCvl
  0002:803B9070       __ct__24SpinDriverPathStorageOneFv
  0002:803B90B4       reset__24SpinDriverPathStorageOneFv
  0002:803B90CC       registerToUse__24SpinDriverPathStorageOneFii
@@ -18942,6 +19190,7 @@
  0002:803BC5FC       initActorCamera__2MRFPC9LiveActorRC12JMapInfoIterPP15ActorCameraInfo
  0002:803BC604       initMultiActorCamera__2MRFPC9LiveActorRC12JMapInfoIterPP15ActorCameraInfoPCc
  0002:803BC678       initMultiActorCameraNoInit__2MRFPC9LiveActorP15ActorCameraInfoPCc
+ 0002:803BC6FC       initActorCameraProgrammable__2MRFPC9LiveActor
  0002:803BC704       startActorCameraNoTarget__2MRFPC9LiveActorPC15ActorCameraInfol
  0002:803BC75C       startActorCameraTargetPlayer__2MRFPC9LiveActorPC15ActorCameraInfol
  0002:803BC7BC       startActorCameraTargetSelf__2MRFPC9LiveActorPC15ActorCameraInfol
@@ -19146,6 +19395,7 @@
  0002:803C26F0       setSensorRadius__2MRFP9LiveActorPCcf
  0002:803C2728       setHitSensorApart__2MRFP9HitSensorP9HitSensor
  0002:803C27B8       clearHitSensors__2MRFP9LiveActor
+ 0002:803C27CC       invalidateHitSensors__2MRFP9LiveActor
  0002:803C27E0       invalidateHitSensor__2MRFP9LiveActorPCc
  0002:803C2830       isValidHitSensor__2MRFP9LiveActorPCc
  0002:803C289C       isSensor__2MRFPC9HitSensorPCc
@@ -19416,12 +19666,22 @@
  0002:803C83F0       setProgrammableCameraParam__2MRFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b
  0002:803C84A0       setProgrammableCameraParamFovy__2MRFPCcf
  0002:803C84F8       getEventCameraFrames__2MRFPC15ActorCameraInfoPCc
- 0002:803C852C       dispIconAButton__9GalaxyMapFv
  0002:803C8550       createRegisterName__24@unnamed@CameraUtil_cpp@FPC7NameObjUl
- 0002:803C85B4       declareCameraRegisterVec__2MRFPC7NameObjUlPQ29JGeometry8TVec3<f>
+ 0002:803C85B4       declareCameraRegisterMtx__2MRFPC7NameObjUlPA4_f
+ 0002:803C8600       declareCameraRegisterVec__2MRFPC7NameObjUlPQ29JGeometry8TVec3<f>
+ 0002:803C864C       startStartPosCamera__2MRFb
+ 0002:803C8680       endStartPosCamera__2MRFv
  0002:803C86A4       isStartPosCameraEnd__2MRFv
  0002:803C86D0       hasStartAnimCamera__2MRFv
+ 0002:803C86F4       startStartAnimCamera__2MRFv
+ 0002:803C8718       isStartAnimCameraEnd__2MRFv
+ 0002:803C873C       getStartAnimCameraFrame__2MRFv
+ 0002:803C8760       endStartAnimCamera__2MRFv
+ 0002:803C8784       isCameraInterpolatingNearlyEnd__2MRFv
+ 0002:803C87A8       isFirstPersonCamera__2MRFv
  0002:803C87CC       isPossibleToShiftToFirstPersonCamera__2MRFv
+ 0002:803C8840       isCameraPossibleToRoundLeft__2MRFv
+ 0002:803C8864       isCameraPossibleToRoundRight__2MRFv
  0002:803C8888       isCameraControlNG__2MRFv
  0002:803C88D4       startTalkCamera__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffl
  0002:803C89CC       getCameraWatchPos__2MRFv
@@ -19439,6 +19699,7 @@
  0002:803C8D18       startEventCameraAnim__2MRFPC15ActorCameraInfoPCcRC15CameraTargetArglf
  0002:803C8D98       startLauncherCamera__2MRFRC15CameraTargetArg
  0002:803C8DD8       startLauncherFlightCamera__2MRFl
+ 0002:803C8E68       __sinit__CameraUtil_cpp
  0002:803C8ED4       tryRegisterDemoCast__2MRFP9LiveActorRC12JMapInfoIter
  0002:803C8F18       j_startFunctionAsyncExecute__2MRFRCQ22MR11FunctorBaseiPCc
  0002:803C8F20       tryRegisterDemoActionNerve__2MRFPC9LiveActorPC5NervePCc
@@ -19526,6 +19787,7 @@
  0002:803CB8EC       j_deactivateDraw3D__17GameSceneFunctionFv
  0002:803CB8F0       __ct__19J2DOrthoGraphSimpleFv
  0002:803CBA20       j_setPort__13J2DOrthoGraphFv
+ 0002:803CBA24       __sinit__DrawUtil_cpp
  0002:803CBA4C       place__14J2DGrafContextFffff
  0002:803CBA9C       isExistEffect__24@unnamed@EffectUtil_cpp@FPC9LiveActorPCc
  0002:803CBAD4       j_isDeadInformationMessage__2MRFv
@@ -19586,6 +19848,7 @@
  0002:803CCA30       calcOpenedAstroDomeNum__2MRFv
  0002:803CCAB8       j_getIncludedGrandGalaxyId__13GameDataConstFPCc
  0002:803CCABC       getZoneNum__2MRFv
+ 0002:803CCAE8       j_isPowerStarGreen__13GameDataConstFPCcl
  0002:803CCB2C       getRaceBestTime__2MRFi
  0002:803CCB50       j_getRaceTime__19RaceManagerFunctionFv
  0002:803CCB6C       registerStorageSpinDriverPathDrawRange__2MRFPC7NameObjRC12JMapInfoIteriPf
@@ -20620,6 +20883,7 @@
  0002:803EE8A0       __ct__11FadeStarterFP8NPCActorl
  0002:803EE95C       exeFade__11FadeStarterFv
  0002:803EEADC       exeFade__11DemoStarterFv
+ 0002:803EEB94       __sinit__NPCUtil_cpp
  0002:803EEC8C       execute__Q214NrvDemoStarter18DemoStarterNrvWaitCFP5Spine
  0002:803EED04       execute__Q214NrvTakeOutStar18TakeOutStarNrvAnimCFP5Spine
  0002:803EED0C       isJudgedToClipFrustum__2MRFRCQ29JGeometry8TVec3<f>f
@@ -20845,12 +21109,12 @@
  0002:803F2748       isPlayerElementModeInvincible__2MRFv
  0002:803F2778       isPlayerElementModeBee__2MRFv
  0002:803F27A8       isPlayerElementModeHopper__2MRFv
- 0002:803F27D8       isPlayerHidden__2MRFv
  0002:803F2808       isPlayerElementModeIce__2MRFv
  0002:803F2838       isPlayerElementModeNormal__2MRFv
  0002:803F2864       j_isSkating__11MarioAccessFv
  0002:803F2868       j_changeItemStatus__11MarioAccessFl
  0002:803F2874       j_isParalyzing__11MarioAccessFv
+ 0002:803F28C0       j_isSwimming__11MarioAccessFv
  0002:803F28E8       isPlayerJumpRising__2MRFv
  0002:803F290C       j_validateSensor__11MarioAccessFv
  0002:803F2910       isPlayerInBind__2MRFv
@@ -20884,31 +21148,41 @@
  0002:803F319C       j_hide__11MarioAccessFv
  0002:803F320C       j_startDownWipe__11MarioAccessFv
  0002:803F3210       setCameraTargetToPlayer__2MRFP15CameraTargetArg
- 0002:803F3254       j_isFpViewChangingFailure__11MarioAccessFv
- 0002:803F3258       j_stopFpView__11MarioAccessFv
- 0002:803F32A8       j_noticeDashChance__11MarioAccessFv
- 0002:803F32AC       j_startTalk__11MarioAccessFPC9LiveActor
- 0002:803F32B4       j_preventRush__11MarioAccessFv
+ 0002:803F3250       isPlayerDisableFpView__2MRFv
+ 0002:803F3254       isFpViewChangingFailure__2MRFv
+ 0002:803F3258       stopPlayerFpView__2MRFv
+ 0002:803F325C       setRasterScroll__2MRFlll
+ 0002:803F32A8       noticePlayerDashChance__2MRFv
+ 0002:803F32AC       startPlayerTalk__2MRFPC9LiveActor
+ 0002:803F32B0       endPlayerTalk__2MRFv
+ 0002:803F32B4       preventPlayerRush__2MRFv
  0002:803F32B8       isExistMario__2MRFv
  0002:803F32C0       startPlayerEvent__2MRFPCc
- 0002:803F3318       j_offControl__11MarioAccessFv
- 0002:803F331C       j_onControl__11MarioAccessFb
- 0002:803F3320       j_isOffControl__11MarioAccessFv
+ 0002:803F3318       offPlayerControl__2MRFv
+ 0002:803F331C       onPlayerControl__2MRFb
+ 0002:803F3320       isOffPlayerControl__2MRFv
  0002:803F3324       unlockPlayerAnimation__2MRFv
+ 0002:803F334C       resetPlayerStatus__2MRFv
+ 0002:803F3370       resetPlayerEffect__2MRFv
  0002:803F3398       setPlayerBaseMtx__2MRFPA4_f
- 0002:803F339C       j_getBaseMtx__11MarioAccessFv
- 0002:803F33C8       j_readyDemo__11MarioAccessFv
- 0002:803F33CC       j_onFollowDemo__11MarioAccessFv
+ 0002:803F339C       getPlayerBaseMtx__2MRFv
+ 0002:803F33A0       getPlayerDemoActor__2MRFv
+ 0002:803F33A4       initPlayerAfterOpeningDemo__2MRFv
+ 0002:803F33C8       readyPlayerDemo__2MRFv
+ 0002:803F33CC       onFollowDemoEffect__2MRFv
+ 0002:803F33D0       requestMovementOnPlayer__2MRFv
  0002:803F33F4       calcPlayerJointMtx__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PCc
- 0002:803F3454       j_isOnPress__11MarioAccessFv
- 0002:803F3458       j_addVelocity__11MarioAccessFRCQ29JGeometry8TVec3<f>
- 0002:803F345C       j_addVelocityFromArea__11MarioAccessFRCQ29JGeometry8TVec3<f>
- 0002:803F3460       j_isInWaterMode__11MarioAccessFv
- 0002:803F3464       j_isOnWaterSurface__11MarioAccessFv
- 0002:803F3498       j_calcWorldPadDir__11MarioAccessFPQ29JGeometry8TVec3<f>ff
+ 0002:803F3454       isPlayerOnPress__2MRFv
+ 0002:803F3458       pushPlayer__2MRFRCQ29JGeometry8TVec3<f>
+ 0002:803F345C       pushPlayerFromArea__2MRFRCQ29JGeometry8TVec3<f>
+ 0002:803F3460       isPlayerInWaterMode__2MRFv
+ 0002:803F3464       isPlayerOnWaterSurface__2MRFv
+ 0002:803F3468       isPlayerHidden__2MRFv
+ 0002:803F3498       calcPlayerWorldPadDir__2MRFPQ29JGeometry8TVec3<f>ff
  0002:803F349C       getFullScreenBlurTexture__2MRFv
  0002:803F34C0       getPlayerMovementTimer__2MRFv
- 0002:803F34E4       j_endTalk__11MarioAccessFv
+ 0002:803F34E4       getCameraCube__2MRFv
+ 0002:803F34E8       __sinit__PlayerUtil_cpp
  0002:803F3554       createRailGraphFromJMap__2MRFRC12JMapInfoIter
  0002:803F36F8       __ct__13RailGraphIterFRC13RailGraphIter
  0002:803F3724       createRailGraphIter__2MRFPC9RailGraph
@@ -21042,7 +21316,7 @@
  0002:803F67D0       getZonePlacementMtx__2MRFl
  0002:803F6840       getJapaneseObjectName__2MRFPCc
  0002:803F6900       getCurrentPlacementZoneName__2MRFv
- 0002:803F6944       startSpinHitSound__2MRFPC9LiveActor
+ 0002:803F6944       __sinit__SceneUtil_cpp
  0002:803F6958       __ct__Q22MR30ProhibitSchedulerAndInterruptsFb
  0002:803F6990       __dt__Q22MR30ProhibitSchedulerAndInterruptsFv
  0002:803F69F0       getCaptureScreenDirector__24@unnamed@ScreenUtil_cpp@Fv
@@ -21565,6 +21839,7 @@
  0002:80406890       start__16RumbleCalculatorFUl
  0002:804068B8       calc__16RumbleCalculatorFv
  0002:804069CC       reset__16RumbleCalculatorFv
+ 0002:804069DC       __ct__29RumbleCalculatorCosMultLinearFfffUl
  0002:80406A18       calcValues__29RumbleCalculatorCosMultLinearFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>
  0002:80406A9C       __ct__11SpringValueFv
  0002:80406AC0       setParam__11SpringValueFfffff
@@ -21591,7 +21866,9 @@
  0002:80406F28       calcWiiMailSize__2MRFPCUsPCUsUlUl
  0002:8040701C       checkWiiMailLimit__2MRFUl
  0002:80407074       updateWiiMailSentSize__2MRFUl
- 0002:804070D8       j_getGameMessageDirect__2MRFPCc
+ 0002:804070D8       getMailSender__2MRFPCc
+ 0002:804070DC       getNWC24Messenger__28@unnamed@NWC24Messenger_cpp@Fv
+ 0002:804070EC       __ct__14NWC24MessengerFPCc
  0002:80407274       term__14NWC24MessengerFPCc
  0002:804072B0       isSent__14NWC24MessengerCFPCc
  0002:804072E4       isError__14NWC24MessengerCFPCc
@@ -21626,6 +21903,7 @@
  0002:804081C0       doneTask__Q217NWC24MessengerSub9SendStateFv
  0002:804081E8       appearSysInfo__Q217NWC24MessengerSub9SendStateFPCcl
  0002:8040828C       setNerveAfterSysInfoWindowMiniDisappear__Q217NWC24MessengerSub9SendStateFPC5Nerve
+ 0002:804083F4       __sinit__NWC24Messenger_cpp
  0002:804085C8       execute__Q317NWC24MessengerSub28@unnamed@NWC24Messenger_cpp@19SendStateNrvCloseBGCFP5Spine
  0002:8040861C       execute__Q317NWC24MessengerSub28@unnamed@NWC24Messenger_cpp@17SendStateNrvRetryCFP5Spine
  0002:8040874C       __ct__15NWC24SendThreadFlP7JKRHeap
@@ -21633,6 +21911,7 @@
  0002:8040893C       threadProc__15NWC24SendThreadFPv
  0002:80408B44       checkTotalSize__15NWC24SendThreadFPQ215NWC24SendThread13MsgSendStatus
  0002:80408BA4       setToMyself__15NWC24SendThreadFP11NWC24MsgObj
+ 0002:80408BF0       __ct__11NWC24SystemFP7JKRHeapl
  0002:80408C88       open__11NWC24SystemFP8NWC24ErrPl
  0002:80408D14       close__11NWC24SystemFP8NWC24Err
  0002:80408D78       strlenUTF16__2MRFPCUs
@@ -21770,7 +22049,7 @@
  0002:8040D444       mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
  0002:8040D670       aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
  0002:8040D8CC       JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl
- 0002:8040DD8C       __sinit__JKRDvdAramRipper_cpp
+ 0002:8040DD8C       __sinit__JKRAram_cpp
  0002:8040DDD4       JKRCheckCompressed_noASR__FPUc
  0002:8040DE00       JKRDecompExpandSize__FPUc
  0002:8040DE24       decideAramGroupId__7JKRAramFi
@@ -21779,6 +22058,7 @@
  0002:8040E048       alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode
  0002:8040E0C0       allocFromHead__11JKRAramHeapFUl
  0002:8040E128       allocFromTail__11JKRAramHeapFUl
+ 0002:8040E184       __sinit__JKRAramHeap_cpp
  0002:8040E268       __ct__12JKRAramBlockFUlUlUlUcb
  0002:8040E334       __dt__12JKRAramBlockFv
  0002:8040E3F0       allocHead__12JKRAramBlockFUlUcP11JKRAramHeap
@@ -21791,6 +22071,7 @@
  0002:8040E840       doneDMA__12JKRAramPieceFUl
  0002:8040E89C       __ct__12JKRAMCommandFv
  0002:8040E964       __dt__12JKRAMCommandFv
+ 0002:8040EA00       __sinit__JKRAramPiece_cpp
  0002:8040EA48       create__13JKRAramStreamFl
  0002:8040EAB4       __ct__9JKRDecompFl
  0002:8040EB5C       run__13JKRAramStreamFv
@@ -21803,6 +22084,7 @@
  0002:8040F090       unmount__13JKRFileLoaderFv
  0002:8040F0C8       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
  0002:8040F16C       removeVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>
+ 0002:8040F214       __sinit__JKRFileLoader_cpp
  0002:8040F2E4       __ct__12JKRArcFinderFP10JKRArchivell
  0002:8040F370       findNextFile__12JKRArcFinderFv
  0002:8040F40C       __ct__13JKRFileFinderFv
@@ -21886,10 +22168,12 @@
  0002:80413214       readData__10JKRDvdFileFPvll
  0002:804132D0       sync__10JKRDvdFileFv
  0002:80413324       doneProcess__10JKRDvdFileFlP11DVDFileInfo
+ 0002:80413338       __sinit__JKRDvdFile_cpp
  0002:80413380       __ct__7JKRFileFv
  0002:804134AC       loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  0002:80413624       loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  0002:80413AC4       JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl
+ 0002:80413FFC       __sinit__JKRDvdRipper_cpp
  0002:804140CC       WPADGetDpdSensitivity
  0002:804140D4       loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
  0002:80414178       loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl
@@ -21900,6 +22184,7 @@
  0002:80414740       __dt__12JKRADCommandFv
  0002:804147D0       JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl
  0002:80414CA4       dmaBufferFlush__FUl
+ 0002:80414D0C       __sinit__JKRDvdAramRipper_cpp
  0002:80414E38       create__9JKRDecompFl
  0002:80414F3C       run__9JKRDecompFv
  0002:80414FFC       prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v
@@ -21983,6 +22268,7 @@
  0002:80418450       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
  0002:80418530       createConsole__12JUTExceptionFPvUl
  0002:80418610       __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
+ 0002:80418630       __sinit__JUTException_cpp
  0002:8041875C       start__14JUTDirectPrintFv
  0002:804187D4       erase__14JUTDirectPrintFiiii
  0002:80418868       drawChar__14JUTDirectPrintFiii
@@ -22215,6 +22501,7 @@
  0002:8042193C       reinitTevStages__6J3DSysFv
  0002:80421CEC       reinitIndStages__6J3DSysFv
  0002:80421DDC       reinitPixelProc__6J3DSysFv
+ 0002:80421E88       __sinit__J3DSys_cpp
  0002:80421E94       __ct__13J3DVertexDataFv
  0002:80421F14       setVertexData__15J3DVertexBufferFP13J3DVertexData
  0002:80421F5C       init__15J3DVertexBufferFv
@@ -23824,6 +24111,7 @@
  0002:80488B3C       free__17JASGenericMemPoolFPvUl
  0002:80488B60       setupRootHeap__9JASKernelFP12JKRSolidHeapUl
  0002:80488C54       setupAramHeap__9JASKernelFUlUl
+ 0002:80488CD0       __sinit__JASHeapCtrl_cpp
  0002:80488D38       getResSize__15JASResArcLoaderFPC10JKRArchiveUs
  0002:80488D6C       loadResourceCallback__15JASResArcLoaderFPv
  0002:80488E08       __ct__Q215JASResArcLoader12TLoadResInfoFP10JKRArchiveUsPvUl
@@ -23946,6 +24234,7 @@
  0002:8048C094       findIntr__10JASSeqCtrlFv
  0002:8048C0E4       checkIntr__10JASSeqCtrlFv
  0002:8048C154       timerProcess__10JASSeqCtrlFv
+ 0002:8048C1CC       __sinit__JASSeqCtrl_cpp
  0002:8048C218       conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition
  0002:8048C2EC       writeReg__12JASSeqParserFP8JASTrackUlUl
  0002:8048C4CC       def_8048C364
@@ -24031,8 +24320,10 @@
  0002:8048F238       channelProc__13JASAramStreamFv
  0002:8048F418       channelStart__13JASAramStreamFv
  0002:8048F63C       channelStop__13JASAramStreamFUs
+ 0002:8048F6A8       __sinit__JASAramStream_cpp
  0002:8048F704       noteOnOsc__7JASBankFiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
  0002:8048F7DC       __nw__46JASPoolAllocObject_MultiThreaded<10JASChannel>FUl
+ 0002:8048F834       __sinit__JASBank_cpp
  0002:8048F890       __ct__12JASBasicBankFv
  0002:8048F8DC       getInstParam__12JASBasicBankCFiiiP12JASInstParam
  0002:8048F954       getInst__12JASBasicBankCFi
@@ -24127,6 +24418,7 @@
  0002:80493AD4       checkBankDispose__10JASChannelCFv
  0002:80493B2C       clamp01__7JASCalcFf
  0002:80493B5C       __ct__Q213JASOscillator12EffectParamsFv
+ 0002:80493B88       __sinit__JASChannel_cpp
  0002:80493BE4       __ct__6JASLfoFv
  0002:80493C14       getValue__6JASLfoCFv
  0002:80493CAC       incCounter__6JASLfoFf
@@ -26467,7 +26759,7 @@
  0002:80526E1C       j___ieee754_atan2
  0002:80526E20       j___ieee754_fmod
  0002:80526E24       j___ieee754_log10
- 0002:80526E28       j___ieee754_pow
+ 0002:80526E28       pow
  0002:80526E2C       __ieee754_sqrt
  0002:80527074       nullsub_53
  0002:80527078       j___ieee754_sqrt
@@ -26608,8 +26900,17 @@
  0006:8052D280       _ctors
  0007:8052DEE0       _dtors
  0008:8052DF30       cCreateTable__30@unnamed@AreaObjContainer_cpp@
+ 0008:8052E2A0       scCtgVolume__9AudParams
+ 0008:8052E4C8       cBgmSettingInfo__13AudBgmSetting
+ 0008:8052EE10       cMultiBgmSet__13AudBgmSetting
+ 0008:8052F4E8       cSceneInfo__25@unnamed@AudSceneMgr_cpp@
  0008:8052F8B8       aAudioresSpkres
+ 0008:8052FAF8       cBloomModelOffset__26@unnamed@OtaKingMagma_cpp@
+ 0008:8052FFC0       sSetUpDataTable__45@unnamed@TripodBossKillerGeneraterCircle_cpp@
+ 0008:805304C8       sDrawOrderDataTable__28@unnamed@AutoEffectInfo_cpp@
  0008:805338F0       cModelChangableObjCreatorTable__38@unnamed@ModelChangableObjFactory_cpp@
+ 0008:80538348       sAnimSoundTable__25@unnamed@GhostPlayer_cpp@
+ 0008:80539C38       cGalaxyNamePaneTable__27@unnamed@PowerStarList_cpp@
  0008:8053A020       aSystemResult00
  0008:8053A031       aSystemResult00_0
  0008:8053A042       aSystemResult00_1
@@ -26696,6 +26997,8 @@
  0008:8054EDF0       aMetrotrkDefaul
  0009:8054EE20       __vt__Q34nw4r2ut19TagProcessorBase<w>
  0009:8054EE34       __vt__Q34nw4r2ut19TagProcessorBase<c>
+ 0009:8054EE78       __vt__Q34nw4r2ut4Font
+ 0009:8054EEE4       __vt__Q44nw4r2ut6detail11ResFontBase
  0009:8054EFA0       aTrace_1
  0009:8054EFC8       aAddressBackcha_0
  0009:8054EFE8       a08x08x08x_0
@@ -28418,6 +28721,9 @@
  0009:8055F149       aExplosions_0
  0009:8055F154       aSeBmTripodCann_0
  0009:8055F16E       aSeBmTripodCann_1
+ 0009:8055F2B0       sUpperHorizonAngleTable__45@unnamed@TripodBossKillerGeneraterCircle_cpp@
+ 0009:8055F2CC       sUnderHorizonAngleTable__45@unnamed@TripodBossKillerGeneraterCircle_cpp@
+ 0009:8055F2E4       sBottomHorizonAngleTable__45@unnamed@TripodBossKillerGeneraterCircle_cpp@
  0009:8055F2F0       aTripodbossuppe
  0009:8055F30C       aTripodbossunde
  0009:8055F328       aTripodbossbott
@@ -28438,6 +28744,11 @@
  0009:8055F86B       aSeBmTripodCore_0
  0009:8055F883       aBreak_14
  0009:8055F9B8       aTripodbossstep_0
+ 0009:8055F9CC       __vt__23TripodBossStepStartArea
+ 0009:8055F9F8       __vt__Q213NrvMarioActor19MarioActorNrvNoRush
+ 0009:8055FD38       __vt__28CamTranslatorWaterPlanetBoss
+ 0009:8055FD48       __vt__25CamTranslatorWonderPlanet
+ 0009:8055FD58       __vt__18CamTranslatorDummy
  0009:805600A0       aCamera_0
  0009:805600A7       aIgnorepausenam
  0009:80560217       aOnlycamera
@@ -28454,6 +28765,7 @@
  0009:80560E74       aCamerainnercyl
  0009:80560F17       aCameracharmedv
  0009:80560F3B       aCameraracefoll
+ 0009:80561090       __vt__18TriangleFilterFunc
  0009:805611A8       aCamTypeAnim
  0009:8056128C       aGame_4
  0009:80561291       aCamTypeWaterFo
@@ -28541,10 +28853,12 @@
  0009:80562535       aSY
  0009:8056253A       aSZ
  0009:80562590       aCubecamera_4
+ 0009:805625A0       __vt__10OnlyCamera
  0009:805625E0       aSuperspindrive
  0009:805625F0       aAstrodomedemoc
  0009:80562608       aAstrodomedemoc_0
  0009:8056261C       aYellow_0
+ 0009:80562623       aNI
  0009:8056263F       aSePmLvSpinDrvF
  0009:80562655       aAppear_17
  0009:8056265C       aSpindriverwait
@@ -28582,6 +28896,7 @@
  0009:80562B8C       aIscontinuous
  0009:80562B99       aSS_7
  0009:80562BA0       aCamera_1
+ 0009:80562C28       __vt__16DemoCastSubGroup
  0009:80562C58       aSeSyReadRiddle_6
  0009:80562D48       aDemosheetArc
  0009:80562D56       aDemoSSBcsv
@@ -28701,6 +29016,7 @@
  0009:80563AA8       aSePvDmAstroRet
  0009:80563AC3       aFall_4
  0009:80563AC8       aLand_5
+ 0009:80563BE8       __vt__14AstroEffectObj
  0009:80563C78       aGroupname_2
  0009:80563C88       aPauseIgnore
  0009:80563C95       aIndirect_4
@@ -28751,6 +29067,10 @@
  0009:8056422E       aSeOjFireworkSe_0
  0009:805642D8       aIcelayerbreak
  0009:805642E6       aSeOjIceLayerBr
+ 0009:805645DC       __vt__24SpinPullParticleCallBack
+ 0009:805645F0       aAN
+ 0009:8056460C       __vt__19AnimScaleController
+ 0009:80564618       __vt__Q222NrvAnimScaleController27AnimScaleControllerNrvCrush
  0009:805646B0       aJumpbeamerbeam
  0009:805646BF       aJumpbeamerbeam_0
  0009:805646D3       aJumpbeamerbeam_1
@@ -30619,6 +30939,7 @@
  0009:8057221D       aSeEmWaterbazCa
  0009:8057223B       aBreak_27
  0009:80572241       aSeEmWaterbazCa_0
+ 0009:805722D8       __vt__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvBreak
  0009:80572308       aAudcamerawatch
  0009:80572319       aSeAtLvUnderWat
  0009:80572358       aGame_0
@@ -30697,6 +31018,7 @@
  0009:805728F5       aKoopabattlevs3_1
  0009:8057290A       aSurfinglv1gala_1
  0009:8057291B       aSurfinglv2gala_1
+ 0009:80572DA0       __vt__11ConeGravity
  0009:80572DB0       jpt_80156F94
  0009:80572DFC       jpt_80157134
  0009:80572E64       jpt_801574E4
@@ -30784,6 +31106,9 @@
  0009:80574128       aDisappear_1
  0009:805741B0       aViewgroupctrlc_0
  0009:805741E3       aSArc_2
+ 0009:805741EC       __vt__19VolumeModelDrawInit
+ 0009:80574210       __vt__17VolumeModelDrawer
+ 0009:80574238       __vt__25ActorAppearSwitchListener
  0009:8057426D       aAppear_30
  0009:80574274       aDisappear_2
  0009:8057427E       aChange_2
@@ -31250,6 +31575,7 @@
  0009:80579397       aSeOjLvArrowSwi_0
  0009:805793B2       aSeSyGravitySwi_0
  0009:805793C9       aSeOjArrowSwitc_2
+ 0009:805794A0       aI
  0009:805794F3       aAssemblyblockp
  0009:8057950C       aPartsice
  0009:80579515       aAssemblyblock_0
@@ -31415,10 +31741,12 @@
  0009:8057B076       aSeOjLvBanekiti
  0009:8057B08D       aRepel_1
  0009:8057B093       aSeOjBanekitiRe
+ 0009:8057B150       aOE_0
  0009:8057B15D       aSeOjBShipElevS
  0009:8057B175       aSeOjLvBShipEle
  0009:8057B18F       aSeOjBShipElevS_0
  0009:8057B1A6       aBody_166
+ 0009:8057B280       aUn
  0009:8057B299       aBeamgoroundbea_2
  0009:8057B2A9       aBeam_3
  0009:8057B2BF       aBeamgoroundbea_3
@@ -31564,6 +31892,7 @@
  0009:8057CE02       aChoochootrainb
  0009:8057CE14       aSeOjLvToySlMov
  0009:8057CE29       aSeOjToySlWhist
+ 0009:8057D078       aEA
  0009:8057D0D0       aClipareadropla
  0009:8057D0E2       aSplash
  0009:8057D0E9       aSeOjDropLaserS
@@ -31619,6 +31948,7 @@
  0009:8057DAB4       __vt__9CoinGroup
  0009:8057DBAD       aMeCoinAppearS
  0009:8057DBBE       aSeSyCoinAppear_0
+ 0009:8057DC34       aIn
  0009:8057DCB8       aBody_183
  0009:8057DD71       aPlane
  0009:8057DD77       aMove_21
@@ -32657,6 +32987,8 @@
  0009:8058836A       aSeOjLvTsukidas_0
  0009:80588382       aSeOjTsukidashi_0
  0009:80588468       aMercatorcube_2
+ 0009:80588475       aIn_1
+ 0009:80588490       aIn_0
  0009:80588538       aMove_3
  0009:8058854A       aBreak_41
  0009:80588A70       aRaincloud
@@ -32777,6 +33109,7 @@
  0009:80589C2E       aUfosandobstacl_4
  0009:80589C60       aBurysmoke
  0009:80589C6A       aFallingrock
+ 0009:80589D70       aOE_1
  0009:80589D7D       aMove0D
  0009:80589D85       aBody_228
  0009:80589D8A       aReturn_2
@@ -35257,6 +35590,7 @@
  0009:80599961       aMoviepadrumble_5
  0009:80599977       aRunawaytico_1
  0009:80599983       aHopper
+ 0009:8059A110       __vt__19NameObjListExecutor
  0009:8059A1AA       aAstrodomeButle
  0009:8059A1BE       aAstrodomeButle_0
  0009:8059A1D2       aAstrodomeButle_1
@@ -35516,6 +35850,7 @@
  0009:8059C1CB       aSeSvLuigiFall
  0009:8059C1DC       aTreeland
  0009:8059C1E5       aSeSmLuigiLand
+ 0009:8059C468       aMii
  0009:8059C484       aObjectdataMiif
  0009:8059C4A4       aRflResDat
  0009:8059C4D0       aInitnameobjonm
@@ -36257,6 +36592,7 @@
  0009:805A27D2       aSeOjMarioFireB_0
  0009:805A27EC       aCsFireBall
  0009:805A27F9       aSeOjMarioFireB_1
+ 0009:805A2818       __vt__13FireMarioBall
  0009:805A28A9       aSeBmGhostMario
  0009:805A28C2       aSeBvGhostMario
  0009:805A28E5       aSeBmGhostMario_0
@@ -36720,6 +37056,7 @@
  0009:805B94D3       aBgmMiss_1
  0009:805B969B       aBgmMiss_2
  0009:805B9838       aBgmMiss_3
+ 0009:805B98F8       __vt__18AudRhythmSeqParser
  0009:805BA348       aBigbubble
  0009:805BA352       aPushwind
  0009:805BA35B       aRide_0
@@ -36739,6 +37076,7 @@
  0009:805BA419       aSePmPreHipdrop
  0009:805BA42B       aSeSyReadRiddle_18
  0009:805BA43F       aSeSyLvBigBubbl
+ 0009:805BA458       __vt__9BigBubble
  0009:805BA540       aBind_6
  0009:805BA54C       aCreeperArc
  0009:805BA558       aStalkBti
@@ -37092,6 +37430,9 @@
  0009:805BD014       aSurfinglv1gala_2
  0009:805BD025       aSurfinglv2gala_2
  0009:805BD036       aMirrorarea_0
+ 0009:805BD054       __vt__9GameScene
+ 0009:805BD158       aGamescene_0
+ 0009:805BD188       aO_1
  0009:805BD19F       aBgmStartDemo
  0009:805BD1F8       aIntermissionsc
  0009:805BD230       aLogoscene
@@ -37166,6 +37507,8 @@
  0009:805BE018       aStagedataSArc
  0009:805BE02A       aArc_0
  0009:805BE043       aStopscenecontr
+ 0009:805BE057       aN_0
+ 0009:805BE074       __vt__19StopSceneController
  0009:805BE0C0       aBackbutton
  0009:805BE0CB       aBack_3
  0009:805BE0D0       aBoxbutton
@@ -38260,9 +38603,12 @@
  0009:805C658A       aLefttext
  0009:805C6593       aRighttext
  0009:805C659D       aCsClickClose_6
+ 0009:805C6608       aYesNoIau
  0009:805C6619       aSelectbutton
  0009:805C6626       aLeft_3
  0009:805C662B       aRight_3
+ 0009:805C6634       __vt__11YesNoLayout
+ 0009:805C6664       __vt__Q214NrvYesNoLayout23YesNoLayoutNrvSelecting
  0009:805C66E0       aFileripperCpp
  0009:805C66EF       aFileIsnTExist
  0009:805C6701       aDvdopenFailed
@@ -38687,6 +39033,8 @@
  0009:805C9ED2       aSpecialstarope_2
  0009:805C9EF0       aFactorygalaxy_4
  0009:805C9EFE       aAppeardarkroom
+ 0009:805CAC22       aSpecialstarfin_7
+ 0009:805CAC3C       aStarpiececount_3
  0009:805CAD92       aStarpieceS
  0009:805CAD9E       aSpecialstargre_2
  0009:805CADAF       aName_7
@@ -39143,6 +39491,7 @@
  0009:805D2381       aObjinfo
  0009:805D2389       aChildobjinfo
  0009:805D23A4       aLId_0
+ 0009:805D23D8       __vt__29RumbleCalculatorCosMultLinear
  0009:805D2409       aWiimessagesend
  0009:805D241B       aWc2404
  0009:805D2423       aWc2401
@@ -40546,6 +40895,7 @@
  0009:805F596C       jpt_80528EE4
  0003:805F5AC8       memPool___32JASPoolAllocObject<10AudMeTrack>
  0003:805F5D10       sOutPosition__35@unnamed@DinoPackunStateDamage_cpp@
+ 0003:805F5E18       sStaticAnimParam__33@unnamed@AnimScaleController_cpp@
  0003:806504D0       funcs_804A4458
  0003:80652080       GPFifo
  0003:806520A4       CPUFifo
@@ -40662,7 +41012,7 @@
  0003:806A0608       sInstance__Q212NrvCoinGroup18CoinGroupNrvAppear
  0003:806A0610       sInstance__Q212NrvCoinGroup22CoinGroupNrvDemoAppear
  0003:806A067C       sInstance__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvStop
- 0003:806A1220       sInstance__34SingletonHolder<15NameObjRegister>
+ 0003:806A1220       sInstance__34SingletonHolder$$015NameObjRegister$$1
  0003:806A1228       sInstance__29SingletonHolder<10GameSystem>
  0003:806A1E18       sInstance__Q223@unnamed@GalaxyMap_cpp@13GalaxyMapIdle
  0003:806A1E24       sInstance__Q223@unnamed@GalaxyMap_cpp@24GalaxyMapFadeinGalaxyMap
