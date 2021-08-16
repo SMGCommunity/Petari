@@ -1189,6 +1189,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Screen/MoviePlayingSequence.o \
     $(BUILD_DIR)/asm/Game/Screen/MovieSubtitles.o \
     $(BUILD_DIR)/asm/Game/Screen/MovieSubtitlesDataTable.o \
+    $(BUILD_DIR)/asm/Game/Screen/MovieStarter.o \
     $(BUILD_DIR)/asm/Game/Screen/NoteCounter.o \
     $(BUILD_DIR)/asm/Game/Screen/odh.o \
     $(BUILD_DIR)/asm/Game/Screen/OdhConverter.o \

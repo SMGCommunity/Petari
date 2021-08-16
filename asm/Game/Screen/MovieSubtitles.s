@@ -2,7 +2,6 @@
 
 .text
 
-
 .global func_8037146C
 func_8037146C:
 /* 8037146C 0036C9AC  94 21 FF E0 */	stwu r1, -0x20(r1)
