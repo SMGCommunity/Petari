@@ -1203,6 +1203,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Scene/StageFileLoader.o \
     $(BUILD_DIR)/asm/Game/Scene/StageResourceLoader.o \
     $(BUILD_DIR)/asm/Game/Scene/StopSceneController.o \
+    $(BUILD_DIR)/asm/Game/Screen/data.o \
     $(BUILD_DIR)/asm/Game/Screen/Screen.o \
     $(BUILD_DIR)/asm/Game/Speaker/SpkSpeakerCtrl.o \
     $(BUILD_DIR)/asm/Game/Speaker/SpkSystem.o \
@@ -1211,6 +1212,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/Speaker/SpkTable.o \
     $(BUILD_DIR)/asm/Game/Speaker/SpkData.o \
     $(BUILD_DIR)/asm/Game/Speaker/SpkSound.o \
+    $(BUILD_DIR)/asm/Game/System/data.o \
     $(BUILD_DIR)/asm/Game/System/AlreadyDoneFlagInGalaxy.o \
     $(BUILD_DIR)/asm/Game/System/ArchiveHolder.o \
     $(BUILD_DIR)/asm/Game/System/AudSystemWrapper.o \
@@ -1307,6 +1309,7 @@ TEXT_O_FILES :=     \
     $(BUILD_DIR)/asm/Game/System/StorySequenceExecutor.o \
     $(BUILD_DIR)/asm/Game/System/SysConfigFile.o \
     $(BUILD_DIR)/asm/Game/System/UserFile.o \
+    $(BUILD_DIR)/asm/Game/Util/data.o \
     $(BUILD_DIR)/asm/Game/Util/ActorCameraUtil.o \
     $(BUILD_DIR)/asm/Game/Util/ActorMovementUtil.o \
     $(BUILD_DIR)/asm/Game/Util/ActorSensorUtil.o \
