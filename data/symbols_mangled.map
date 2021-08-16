@@ -12507,7 +12507,7 @@
  0002:80261200       draw__7NameObjCFv
  0002:80261204       calcAnim__7NameObjFv
  0002:80261208       calcViewAndEntry__7NameObjFv
- 0002:8026120C       initWithoutIter__7NameObjFv
+ 0002:8026120C       func_8026120C
  0002:8026124C       setName__7NameObjFPCc
  0002:80261254       executeMovement__7NameObjFv
  0002:80261278       requestSuspend__7NameObjFv
@@ -41012,7 +41012,7 @@
  0003:806A0608       sInstance__Q212NrvCoinGroup18CoinGroupNrvAppear
  0003:806A0610       sInstance__Q212NrvCoinGroup22CoinGroupNrvDemoAppear
  0003:806A067C       sInstance__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvStop
- 0003:806A1220       sInstance__34SingletonHolder<15NameObjRegister>
+ 0003:806A1220       sInstance__34SingletonHolder$$015NameObjRegister$$1
  0003:806A1228       sInstance__29SingletonHolder<10GameSystem>
  0003:806A1E18       sInstance__Q223@unnamed@GalaxyMap_cpp@13GalaxyMapIdle
  0003:806A1E24       sInstance__Q223@unnamed@GalaxyMap_cpp@24GalaxyMapFadeinGalaxyMap

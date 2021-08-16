@@ -4,6 +4,12 @@
 
 namespace JGeometry {
     template<typename T>
+    class TVec2 {
+    public:
+        T x, y;
+    };
+
+    template<typename T>
     class TVec3 {
     public:
         TVec3(T val) {
@@ -35,3 +41,7 @@ namespace JGeometry {
         T x, y, z, h;
     };
 };
+
+typedef JGeometry::TVec2<f32> TVec2f;
+typedef JGeometry::TVec3<f32> TVec3f;
+typedef JGeometry::TVec4<f32> TVec4f;

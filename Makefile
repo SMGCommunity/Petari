@@ -16,7 +16,8 @@ TARGET := smg1_us
 
 BUILD_DIR := build/$(TARGET)
 
-SRC_DIRS := src src/runtime_libs/debugger/embedded/MetroTRK/Os/dolphin
+# can find C and C++ files
+SRC_DIRS := $(shell find src/ -type f -name '*.c*')
 ASM_DIRS := $(shell find asm/ -type f -name '*.s')
 
 # Inputs
@@ -53,19 +54,18 @@ CC      := $(WINE) tools/mwcceppc.exe
 LD      := $(WINE) tools/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
-PYTHON  := python3
 
-#POSTPROC := tools/postprocess.py
+PYTHON   := python
+PPROC    := tools/postprocess.py
+
+PPROCFLAGS := -fsymbol-fixup
 
 # Options
 INCLUDES := -i . -I- -i include
 
 ASFLAGS := -mgekko -I include
 LDFLAGS := -map $(MAP) -fp hard -nodefaults
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -Os -nodefaults -msgstyle gcc $(INCLUDES)
-
-# for postprocess.py
-PROCFLAGS := -fprologue-fixup=old_stack
+CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O4,p -rtti off -nodefaults -msgstyle gcc $(INCLUDES)
 
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
@@ -110,10 +110,10 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
+	$(PPROC) $(PPROCFLAGS) $@
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
-#$(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
