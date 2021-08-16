@@ -1,56 +1,5 @@
 .include "macros.inc"
 
-.rodata
-
-.global lbl_8052F8E0
-lbl_8052F8E0:
-	.incbin "baserom.dol", 0x52B9E0, 0x10
-.global lbl_8052F8F0
-lbl_8052F8F0:
-	.incbin "baserom.dol", 0x52B9F0, 0x10
-.global lbl_8052F900
-lbl_8052F900:
-	.incbin "baserom.dol", 0x52BA00, 0x10
-.global lbl_8052F910
-lbl_8052F910:
-	.incbin "baserom.dol", 0x52BA10, 0x10
-.global lbl_8052F920
-lbl_8052F920:
-	.incbin "baserom.dol", 0x52BA20, 0x4
-.global lbl_8052F924
-lbl_8052F924:
-	.incbin "baserom.dol", 0x52BA24, 0x4
-.global lbl_8052F928
-lbl_8052F928:
-	.incbin "baserom.dol", 0x52BA28, 0x4
-.global lbl_8052F92C
-lbl_8052F92C:
-	.incbin "baserom.dol", 0x52BA2C, 0x4
-.global lbl_8052F930
-lbl_8052F930:
-	.incbin "baserom.dol", 0x52BA30, 0x4
-.global lbl_8052F934
-lbl_8052F934:
-	.incbin "baserom.dol", 0x52BA34, 0x4
-.global lbl_8052F938
-lbl_8052F938:
-	.incbin "baserom.dol", 0x52BA38, 0x4
-.global lbl_8052F93C
-lbl_8052F93C:
-	.incbin "baserom.dol", 0x52BA3C, 0x4
-.global lbl_8052F940
-lbl_8052F940:
-	.incbin "baserom.dol", 0x52BA40, 0x4
-.global lbl_8052F944
-lbl_8052F944:
-	.incbin "baserom.dol", 0x52BA44, 0x4
-.global lbl_8052F948
-lbl_8052F948:
-	.incbin "baserom.dol", 0x52BA48, 0x4
-.global lbl_8052F94C
-lbl_8052F94C:
-	.incbin "baserom.dol", 0x52BA4C, 0x4
-
 .text
 
 .global func_80033CC0

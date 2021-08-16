@@ -1,27 +1,5 @@
 .include "macros.inc"
 
-.rodata
-
-.global lbl_8052FEF0
-lbl_8052FEF0:
-	.incbin "baserom.dol", 0x52BFF0, 0x70
-.global lbl_8052FF60
-lbl_8052FF60:
-	.incbin "baserom.dol", 0x52C060, 0x4
-.global lbl_8052FF64
-lbl_8052FF64:
-	.incbin "baserom.dol", 0x52C064, 0x4
-.global lbl_8052FF68
-lbl_8052FF68:
-	.incbin "baserom.dol", 0x52C068, 0x4
-.global lbl_8052FF6C
-lbl_8052FF6C:
-	.incbin "baserom.dol", 0x52C06C, 0x4
-.global lbl_8052FF70
-lbl_8052FF70:
-	.incbin "baserom.dol", 0x52C070, 0x4
-.align 3
-
 .text
 
 .global func_80077420

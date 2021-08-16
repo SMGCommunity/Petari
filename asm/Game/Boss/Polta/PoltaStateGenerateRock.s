@@ -1,11 +1,5 @@
 .include "macros.inc"
 
-.rodata
-
-.global lbl_8052FD90
-lbl_8052FD90:
-	.incbin "baserom.dol", 0x52BE90, 0x118
-
 .text
 
 .global func_80074E5C
