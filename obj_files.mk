@@ -8,6 +8,7 @@ EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/extabindex.o
 
 NW4R_O_FILES := 					            \
+    $(BUILD_DIR)/asm/nw4r/data.o    \
     $(BUILD_DIR)/asm/nw4r/libnw4r_ut.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_db.o   \
     $(BUILD_DIR)/asm/nw4r/libnw4r_math.o   \
