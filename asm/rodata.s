@@ -1,5 +1,26 @@
 .section .rodata # 0x8052DF00 - 0x8054EE20
 
+.global lbl_8052DF00
+lbl_8052DF00:
+	.incbin "baserom.dol", 0x52A000, 0x8
+.global lbl_8052DF08
+lbl_8052DF08:
+	.incbin "baserom.dol", 0x52A008, 0x8
+.global lbl_8052DF10
+lbl_8052DF10:
+	.incbin "baserom.dol", 0x52A010, 0x8
+.global lbl_8052DF18
+lbl_8052DF18:
+	.incbin "baserom.dol", 0x52A018, 0x8
+.global lbl_8052DF20
+lbl_8052DF20:
+	.incbin "baserom.dol", 0x52A020, 0x8
+.global lbl_8052DF28
+lbl_8052DF28:
+	.incbin "baserom.dol", 0x52A028, 0x8
+.global lbl_8052DF30
+lbl_8052DF30:
+	.incbin "baserom.dol", 0x52A030, 0x328
 .global lbl_8052E258
 lbl_8052E258:
 	.incbin "baserom.dol", 0x52A358, 0x8
