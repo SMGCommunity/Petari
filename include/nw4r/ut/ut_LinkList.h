@@ -7,7 +7,7 @@ namespace nw4r {
         class LinkListNode {
         public:
             LinkListNode()
-                : mNext(nullptr), mPrev(nullptr)
+                : mNext(0), mPrev(0)
             { }
 
             LinkListNode* GetNextNode() const {

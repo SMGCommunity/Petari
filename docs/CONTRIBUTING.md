@@ -53,7 +53,7 @@ If you have any questions or concerns, please join [our Discord server](https://
 
 
 ### Nonmatching Code
-If your code does NOT match, use the `NONMATCHING` macro and include the assembly file and explain in a comment why it does not match.
+If your code does NOT match, use the `NONMATCHING` macro, and explain in a comment why it does not match.
 
 ### Types
 If the function arguments in the symbol use `int`, do NOT use `s32`, you have to use `int`, as they do not mangle to the same symbol.
