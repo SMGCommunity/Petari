@@ -1,6 +1,5 @@
 #pragma once
 
-#include "types.h"
 #include "JGeometry/TVec.h"
 
 namespace JGeometry {

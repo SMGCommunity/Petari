@@ -1,7 +1,8 @@
 #pragma once
 
-#include "types.h"
 #include "Game/Util/JMapInfoIter.h"
+
+#include <revolution.h>
 
 class NameObj {
 public:

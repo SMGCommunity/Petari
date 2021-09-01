@@ -1,7 +1,5 @@
 #pragma once
 
-#include "types.h"
-
 namespace JGeometry {
     template<typename T>
     class TBox2 {
