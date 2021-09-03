@@ -1,9 +1,7 @@
-import glob
 import subprocess
 import sys
 import os
 import shutil
-from pathlib import Path
 
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
@@ -16,8 +14,12 @@ rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 toolsPath = os.path.dirname(os.path.realpath(__file__)) + "\\tools\\"
 
-flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -O4,p -rtti off -align powerpc -enum int -enc SJIS -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
+flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c99 -O4,s -rtti off -align powerpc -enum int -enc SJIS -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
 includes = "-i . -I- -i include "
+
+if "-nonmatching" in sys.argv:
+    print("Using nonmatching functions")
+    flags = flags + " -DNON_MATCHING "
 
 if "RVLFOLDER" not in os.environ:
     print("RVLFOLDER not set in PATH.")
@@ -37,8 +39,6 @@ nw_path = os.getenv("NW4RFOLDER")
 
 includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {cw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {cw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {cw_path}\\PowerPC_EABI_Support\\Msl\\MSL_C\\PPC_EABI\\Include -I- -i {cw_path}\\PowerPC_EABI_Support\\Msl\\MSL_C\\MSL_Common\\Include "
 flags += includes
-
-print(flags)
 
 if os.path.exists("build"):
     shutil.rmtree("build", ignore_errors=True)
