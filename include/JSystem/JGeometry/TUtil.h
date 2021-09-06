@@ -18,11 +18,13 @@ namespace JGeometry {
 
         static T sqrt(T val) {
             if (val <= 0.0f) {
-                return;
+                return 0.0f;
             }
 
             float outVal = __frsqrte(val);
             return (val * (0.5f * outVal * (3.0f - (val * (outVal * outVal)))));
         }
+
+        static T clamp(T, T, T);
     };
 };
