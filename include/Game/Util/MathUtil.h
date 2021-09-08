@@ -37,8 +37,15 @@ namespace MR {
     f32 calcPerpendicFootToLine(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     f32 calcPerpendicFootToLineInside(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
 
+    f32 convergeRadian(f32, f32, f32);
     bool isInRange(f32, f32, f32);
 
+    f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 
     bool isNearZero(const TVec3f &, f32);
+
+    f32 diffAngleAbs(f32, f32);
+    f32 normalizeAngleAbs(f32);
+    bool isAngleBetween(f32, f32, f32);
+    f32 blendAngle(f32, f32, f32);
 };

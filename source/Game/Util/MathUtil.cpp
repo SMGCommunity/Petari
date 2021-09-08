@@ -2,6 +2,8 @@
 #include "JSystem/JGeometry/TUtil.h"
 #include "JSystem/JMath/JMath.h"
 
+#include <cmath>
+
 namespace MR {
     bool isHalfProbability() {
         return (getRandom() < 0.5f);
@@ -105,18 +107,39 @@ namespace MR {
     // etc
 
     bool isInRange(f32 a1, f32 a2, f32 a3) {
-        if (a2 <= a3) {
-            if (a1 >= a2) {
-                return a1 <= a3;
-            }
-            else {
+        if (a2 > a3) {
+            if (a1 < a3) {
                 return false;
             }
+            else {
+                return !(a1 > a2);
+            }
         }
-        else if (a1 >= a3) {
-            return a1 <= a2;
+        else {
+            if (a1 < a2) {
+                return false;
+            }
+            else {
+                return !(a1 > a3);
+            }
         }
-        
-        return false;
+    }
+
+    
+    f32 calcDistanceXY(const TVec3f &a1, const TVec3f &a2) {
+        f32 x_diff = a1.x - a2.x;
+        f32 y_diff = a1.y - a2.y;
+        return JGeometry::TUtil<f32>::sqrt((x_diff * x_diff) + (y_diff * y_diff));
+    }
+
+    
+    f32 diffAngleAbs(f32 a1, f32 a2) {
+        f32 normalize = normalizeAngleAbs(a1 - a2);
+
+        if (normalize > 3.1415927f) {
+            normalize = (6.2831855f - normalize);
+        }
+
+        return normalize;
     }
 };

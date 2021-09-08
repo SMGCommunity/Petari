@@ -71,8 +71,6 @@ namespace JGeometry {
             }
         }
 
-        operator Vec*() { return reinterpret_cast<Vec*>(this); }
-
         T x, y, z;
     };
 
