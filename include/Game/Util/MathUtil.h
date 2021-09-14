@@ -40,8 +40,12 @@ namespace MR {
     f32 calcPerpendicFootToLine(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     f32 calcPerpendicFootToLineInside(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
 
+
+    void clampLength(TVec3f *, const TVec3f &, f32);
     f32 convergeRadian(f32, f32, f32);
     bool isInRange(f32, f32, f32);
+
+    f32 calcRotateY(f32, f32);
 
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 

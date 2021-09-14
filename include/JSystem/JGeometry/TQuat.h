@@ -8,6 +8,7 @@ namespace JGeometry {
     public:
         TQuat4();
 
+        void getZDir(TVec3f &) const;
         void setEuler(T, T, T);
         void setRotate(const JGeometry::TVec3<T> &, const JGeometry::TVec3<T> &);
         void slerp(const JGeometry::TQuat4<T> &, T);

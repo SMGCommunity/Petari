@@ -26,5 +26,6 @@ namespace JGeometry {
         }
 
         static T clamp(T, T, T);
+        static T inv_sqrt(T);
     };
 };

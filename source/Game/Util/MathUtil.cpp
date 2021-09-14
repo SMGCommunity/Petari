@@ -1,6 +1,7 @@
 #include "Game/Util/MathUtil.h"
 #include "JSystem/JGeometry/TUtil.h"
 #include "JSystem/JMath/JMath.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 
 #include "math_types.h"
 
@@ -127,6 +128,26 @@ namespace MR {
 
     // etc
 
+    void clampLength(TVec3f *a1, const TVec3f &a2, f32 a3) {
+        if (a2.squared() > (a3 * a3)) {
+            f32 sqr = a2.squared();
+
+            if (sqr <= 0.0000038146973f) {
+                a1->zero();
+            }
+            else {
+                f32 inv_sqr = JGeometry::TUtil<f32>::inv_sqrt(sqr);
+                a1->scale((inv_sqr * a3), a2);
+            }
+           
+        }
+        else {
+            a1->set(a2);
+        }
+    }
+
+    // MR::convergeRadian(f32, f32, f32)
+
     bool isInRange(f32 a1, f32 a2, f32 a3) {
         if (a2 > a3) {
             if (a1 < a3) {
@@ -145,6 +166,11 @@ namespace MR {
             }
         }
     }
+
+    /*f32 calcRotateY(f32 a1, f32 a2) {
+        f32 val = JMath::sAtanTable.atan2_(-a2, a1);
+        return (minDegree + fmod((maxDegree + ((90.0f + (val * 57.295776f)) - minDegree)), maxDegree));
+    }*/
 
     
     f32 calcDistanceXY(const TVec3f &a1, const TVec3f &a2) {
