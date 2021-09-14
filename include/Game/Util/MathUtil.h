@@ -3,6 +3,9 @@
 #include <revolution.h>
 #include "JSystem/JGeometry/TVec.h"
 
+static f32 minDegree = 0.0f;
+static f32 maxDegree = 360.0f;
+
 namespace MR {
     void initAcosTable();
 
@@ -48,4 +51,16 @@ namespace MR {
     f32 normalizeAngleAbs(f32);
     bool isAngleBetween(f32, f32, f32);
     f32 blendAngle(f32, f32, f32);
+    u8 lerp(u8, u8, f32);
+    _GXColor lerp(_GXColor, _GXColor, f32);
+
+    // MR::sortSmall(long, float *, long *)
+    // MR::sortSmall(long, unsigned long *, long *)
+
+    f32 vecKillElement(const TVec3f &, const TVec3f &, TVec3f *);
+    void vecScaleAdd(const TVec3f *, const TVec3f *, f32);
+    void PSvecBlend(const TVec3f *, const TVec3f *, TVec3f *, f32, f32);
+    void vecBlend(const TVec3f &, const TVec3f &, TVec3f *, f32);
 };
+
+f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

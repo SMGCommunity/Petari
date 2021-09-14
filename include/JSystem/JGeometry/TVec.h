@@ -30,12 +30,7 @@ namespace JGeometry {
         }
 
         template<typename T>
-        void set(T _x, T _y, T _z)
-        {
-            x = _x;
-            y = _y;
-            z = _z;
-        }
+        void set(T _x, T _y, T _z);
 
         template<typename T>
         void set(const JGeometry::TVec3<T> &);
@@ -70,6 +65,8 @@ namespace JGeometry {
                 blr
             }
         }
+
+        const TVec3<T>& operator=(const TVec3<T> &);
 
         T x, y, z;
     };

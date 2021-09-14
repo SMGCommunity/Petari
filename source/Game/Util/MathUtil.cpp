@@ -7,6 +7,25 @@
 #include <cmath>
 
 namespace MR {
+    f32 getRandom(f32 min, f32 max) {
+        return (min + ((max - min) * getRandom()));
+    }
+
+    // getRandom(s32, s32)
+
+    f32 getRandomDegree() {
+        return minDegree + (maxDegree * getRandom());
+    }
+
+    void calcRandomVec(TVec3f *pOut, f32 a2, f32 a3) {
+        f32 v10 = (a2 + ((a3 - a2) * getRandom()));
+        f32 v11 = (a2 + ((a3 - a2) * getRandom()));
+        f32 v12 = getRandom();
+
+        f32 dist = a3 - a2;
+        pOut->set<f32>((a2 + (dist * v12)), v11, v10);
+    }
+
     bool isHalfProbability() {
         return (getRandom() < 0.5f);
     }
@@ -159,5 +178,104 @@ namespace MR {
                 }
             }
         }
+    }
+
+    bool isAngleBetween(f32 a1, f32 a2, f32 a3) {
+        f32 a1_n = normalizeAngleAbs(a1);
+        f32 a2_n = normalizeAngleAbs(a2);
+        f32 a3_n = normalizeAngleAbs(a3);
+
+        if (a3_n > a2_n) {
+            f32 val = a3_n;
+            a3_n = a2_n;
+            a2_n = val;
+        }
+
+        bool res = false;
+
+        if (a1_n >= a3_n && a1_n <= a2_n) {
+            res = true;
+        }
+
+        if ((a2_n - a3_n) > PI) {
+            res = !res;
+        }
+
+        return res;
+    }
+
+    #ifdef NON_MATCHING
+    // register use is wrong, and mull is in wrong order for isAngleBetween
+    f32 blendAngle(f32 a1, f32 a2, f32 a3) {
+        f32 a1_n = normalizeAngleAbs(a1);
+        f32 a2_n = normalizeAngleAbs(a2);
+        
+        if (!isAngleBetween(0.5f * (a1_n + a2_n), a1_n, a2_n)) {
+            if (a1_n < a2_n) {
+                a2_n += TWO_PI;
+            }
+            else {
+                a1_n += TWO_PI;
+            }
+        }
+
+        return normalizeAngleAbs((((1.0f - a3) * a1_n) + (a3 * a2_n)));
+    }
+    #endif
+
+    u8 lerp(u8 a1, u8 a2, f32 a3) {
+        return JGeometry::TUtil<f32>::clamp(a1 + (a3 * (a2 - a1)), 0.0f, 255.0f);
+    }
+
+    #ifdef NON_MATCHING
+    _GXColor lerp(_GXColor a1, _GXColor a2, f32 a3) {
+        u8 v6 = lerp(a1.a, a2.a, a3);
+        u8 v7 = lerp(a1.b, a2.b, a3);
+        u8 v8 = lerp(a1.g, a2.b, a3);
+        u8 thing = lerp(a1.r, a2.r, a3);
+
+        return (v6 | ((v7 << 8) & 0xFF00 | ((v8 << 16) & 0xFF000 | thing << 24)) & 0xFFFF00FF) & 0xFFFFFF00;
+    }
+    #endif
+
+    f32 vecKillElement(const TVec3f &a1, const TVec3f &a2, TVec3f *a3) {
+        if (isNearZero(a2, 0.001f)) {
+            *a3 = a1;
+            return 0.0f;
+        }
+
+        return PSVECKillElement((const Vec*)&a1, (const Vec*)&a2, (const Vec*)a3);
+    }
+
+    void vecScaleAdd(const register TVec3f *a1, const register TVec3f *a2, register f32 a3) {
+        __asm {
+            psq_l f0, 0(a1), 0, 0
+            psq_l f3, 0(a2), 0, 0
+            psq_l f2, 8(a1), 1, 0
+            psq_l f4, 8(a2), 1, 0
+            ps_madds0 f0, f3, a3, f0
+            ps_madds0 f2, f4, a3, f2
+            psq_st f0, 0(a1), 0, 0
+            psq_st f2, 8(a1), 1, 0
+        }
+    }
+
+    void PSvecBlend(const register TVec3f *a1, const register TVec3f *a2, register TVec3f *a3, register f32 a4, register f32 a5) {
+        __asm {
+            psq_l     f0, 0(a1), 0, 0
+            psq_l     f3, 8(a1), 1, 0
+            ps_muls0  f4, f0, a4
+            psq_l     f0, 0(a2), 0, 0
+            ps_muls0  f3, f3, a4
+            psq_l     f1, 8(a2), 1, 0
+            ps_madds0 f4, f0, f2, f4
+            ps_madds0 f3, f1, f2, f3
+            psq_st    f4, 0(a3), 0, 0
+            psq_st    f3, 8(a3), 1, 0
+        }
+    }
+
+    void vecBlend(const TVec3f &a1, const TVec3f &a2, TVec3f *a3, f32 a4) {
+        PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4);
     }
 };
