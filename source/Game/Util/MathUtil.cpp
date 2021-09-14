@@ -2,6 +2,8 @@
 #include "JSystem/JGeometry/TUtil.h"
 #include "JSystem/JMath/JMath.h"
 
+#include "math_types.h"
+
 #include <cmath>
 
 namespace MR {
@@ -71,7 +73,7 @@ namespace MR {
     #ifdef NON_MATCHING
     // wrong register orders
     f32 getEaseInValue(f32 a1, f32 a2, f32 a3, f32 a4) {
-        f32 val = (1.0f - JMACosRadian((((a1 / a4) * 3.1415927f) * 0.5f)));
+        f32 val = (1.0f - JMACosRadian((((a1 / a4) * PI) * 0.5f)));
         return a2 + ((a3 - a2) * val);
     }
     #endif
@@ -79,7 +81,7 @@ namespace MR {
     #ifdef NON_MATCHING
     // wrong register orders
     f32 getEaseOutValue(f32 a1, f32 a2, f32 a3, f32 a4) {
-        f32 val = (JMASinRadian((((a1 / a4) * 3.1415927f) * 0.5f)) * (a3 - a2));
+        f32 val = (JMASinRadian((((a1 / a4) * PI) * 0.5f)) * (a3 - a2));
         return a2 + val;
     }
     #endif
@@ -136,10 +138,26 @@ namespace MR {
     f32 diffAngleAbs(f32 a1, f32 a2) {
         f32 normalize = normalizeAngleAbs(a1 - a2);
 
-        if (normalize > 3.1415927f) {
-            normalize = (6.2831855f - normalize);
+        if (normalize > PI) {
+            normalize = (TWO_PI - normalize);
         }
 
         return normalize;
+    }
+
+    f32 normalizeAngleAbs(f32 angle) {
+        while (1) {
+            if (angle < 0.0f) {
+                angle += TWO_PI;
+            }
+            else {
+                if (!(angle > TWO_PI)) {
+                    return angle;
+                }
+                else {
+                    angle -= TWO_PI;
+                }
+            }
+        }
     }
 };
