@@ -82,7 +82,7 @@ If you ever see this behavior:
 
 ![integer to float conversion](http://shibboleet.us.to/smg_decomp_imgs/inttofloat.png)
 
-This is the result of converting a integer value to a floating point value. In simpiler words, it's `s32` or `u32` to `f32`.
+This is the result of converting an integer value to a floating point value. In simpiler words, it's `s32` or `u32` to `f32`.
 
 ---
 
@@ -136,7 +136,7 @@ There are specific ways that CodeWarrior mangles symbols when overloading operat
 | "<="  | "le"  |
 | ">="  | "ge"  |
 | "&&"  | "aa"  |
-| "||"  | "oo"  |
+| "&verbar;&verbar;"  | "oo"  |
 | "++"  | "pp"  |
 | "--"  | "mm"  |
 | "()"  | "cl"  |
