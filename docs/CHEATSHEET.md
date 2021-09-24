@@ -99,3 +99,48 @@ If there are paired singles, like this:
 ![paired singles manually written](http://shibboleet.us.to/smg_decomp_imgs/manual_paired_singles.png)
 
 These are manually written by the programmer. When using these, be sure to use the `register` keyword so you can access the pointer being accessed for the operations.
+
+## Symbols
+
+There are specific ways that CodeWarrior mangles symbols when overloading operators for classes.
+
+| Operator  | Mangled Symbol |
+| ------------- | ------------- |
+| +  | __pl__  |
+| -  | __mi__  |
+| *  | __ml__  |
+| /  | __dv__  |
+| %  | __md__  |
+| ^  | __er__  |
+| /=  | __adv_  |
+| &  | __ad__  |
+| |  | __or__  |
+| ~  | __co__  |
+| !  | __nt__  |
+| =  | __as__  |
+| <  | __lt__  |
+| >  | __gt__  |
+| +=  | __apl__  |
+| -=  | __ami__  |
+| *=  | __amu__  |
+| %=  | __amd__  |
+| ^=  | __aer__  |
+| &=  | __aad__  |
+| |=  | __aor__  |
+| <<  | __ls__  |
+| >>  | __rs__  |
+| >>=  | __ars__  |
+| <<=  | __als__  |
+| ==  | __eq__  |
+| !=  | __ne__  |
+| <=>  | __le__  |
+| >=  | __ge__  |
+| &&  | __aa__  |
+| ||  | __oo__  |
+| ++  | __pp__  |
+| --  | __mm__  |
+| ()  | __cl__  |
+| []  | __vc__  |
+| ->  | __rf__  |
+| ,  | __cm__  |
+| ->*  | __rm__  |
