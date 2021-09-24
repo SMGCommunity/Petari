@@ -114,7 +114,7 @@ There are specific ways that CodeWarrior mangles symbols when overloading operat
 | "^"  | "er"  |
 | "/="  | "adv"  |
 | "&"  | "ad"  |
-| "|"  | "or"  |
+| "&verbar;"  | "or"  |
 | "~"  | "co"  |
 | "!"  | "nt"  |
 | "="  | "as"  |
@@ -126,7 +126,7 @@ There are specific ways that CodeWarrior mangles symbols when overloading operat
 | "%="  | "amd"  |
 | "^="  | "aer"  |
 | "&="  | "aad"  |
-| "|="  | "aor"  |
+| "&verbar;="  | "aor"  |
 | "<<"  | "ls"  |
 | ">>"  | "rs"  |
 | ">>="  | "ars"  |
