@@ -100,6 +100,49 @@ If there are paired singles, like this:
 
 These are manually written by the programmer. When using these, be sure to use the `register` keyword so you can access the pointer being accessed for the operations.
 
+---
+
+There are many ways that code gets generated with return values of floating point comparisons.
+
+```cpp
+return value < value_2;
+```
+
+⬇️
+
+![floating point less than](http://shibboleet.us.to/smg_decomp_imgs/floating_bool_ret_lt.PNG)
+
+---
+
+```cpp
+return value > value_2;
+```
+
+⬇️
+
+![floating point greater than](http://shibboleet.us.to/smg_decomp_imgs/floating_bool_ret_gt.PNG)
+
+---
+
+```cpp
+return value <= value_2;
+```
+
+⬇️
+
+![less than or equal to](http://shibboleet.us.to/smg_decomp_imgs/floating_bool_ret_lge.PNG)
+
+---
+
+```cpp
+return value >= value_2;
+```
+
+⬇️
+
+![greater than or equal to](http://shibboleet.us.to/smg_decomp_imgs/floating_bool_ret_gte.PNG)
+
+
 ## Symbols
 
 There are specific ways that CodeWarrior mangles symbols when overloading operators for classes.
