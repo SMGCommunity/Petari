@@ -49,6 +49,7 @@ namespace MR {
 
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 
+    bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
 
     f32 diffAngleAbs(f32, f32);
@@ -65,6 +66,10 @@ namespace MR {
     void vecScaleAdd(const TVec3f *, const TVec3f *, f32);
     void PSvecBlend(const TVec3f *, const TVec3f *, TVec3f *, f32, f32);
     void vecBlend(const TVec3f &, const TVec3f &, TVec3f *, f32);
+
+    f32 mod(f32, f32);
+
+    void normalize(TVec3f *);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

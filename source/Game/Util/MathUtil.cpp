@@ -7,6 +7,10 @@
 
 #include <cmath>
 
+bool COOLTESTINGFUNCITON(f32 a1, f32 a2) {
+    return a1 <= a2;
+}
+
 namespace MR {
     f32 getRandom(f32 min, f32 max) {
         return (min + ((max - min) * getRandom()));
@@ -177,6 +181,42 @@ namespace MR {
         f32 x_diff = a1.x - a2.x;
         f32 y_diff = a1.y - a2.y;
         return JGeometry::TUtil<f32>::sqrt((x_diff * x_diff) + (y_diff * y_diff));
+    }
+
+    bool isNearZero(f32 a1, f32 a2) {
+        if (a1 < 0.0f) {
+            a1 = -a1;
+        }
+
+        if (a1 < a2) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isNearZero(const TVec3f &rVec, f32 a2) {
+        f32 v2 = rVec.x;
+        if ( v2 > a2 )
+            return 0;
+
+        f32 v4 = -a2;
+        if ( v2 < -a2 )
+            return 0;
+
+        f32 v5 = rVec.y;
+        if ( v5 > a2 )
+            return 0;
+
+        if ( v5 < v4 )
+            return 0;
+
+        f32 v6 = rVec.z;
+
+        if ( v6 > a2 )
+            return 0;
+
+        return !(rVec.z < -a2);
     }
 
     

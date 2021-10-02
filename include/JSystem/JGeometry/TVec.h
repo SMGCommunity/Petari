@@ -12,11 +12,11 @@ namespace JGeometry {
     template<typename T>
     class TVec3 {
     public:
-        inline TVec3() {
+        TVec3() {
 
         }
 
-        inline TVec3(T _x, T _y, T _z)
+        TVec3(T _x, T _y, T _z)
         {
             x = _x;
             y = _y;
@@ -39,6 +39,11 @@ namespace JGeometry {
         T squared() const;
         void zero();
 
+        void sub(const JGeometry::TVec3<T> &);
+
+        bool epsilonEquals(const JGeometry::TVec3<T> &, T) const;
+
+        void scale(T);
         void scale(T, const JGeometry::TVec3<T> &);
 
         f32 dot(register const JGeometry::TVec3<f32> &rOther) const {
@@ -71,6 +76,7 @@ namespace JGeometry {
         }
 
         const TVec3<T>& operator=(const TVec3<T> &);
+        const TVec3<T>& operator-=(const TVec3<T> &);
 
         T x, y, z;
     };
