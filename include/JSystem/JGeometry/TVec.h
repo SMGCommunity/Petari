@@ -10,7 +10,7 @@ namespace JGeometry {
     };
 
     template<typename T>
-    class TVec3 {
+    struct TVec3 {
     public:
         TVec3() {
 
