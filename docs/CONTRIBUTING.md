@@ -3,7 +3,6 @@
 To contribute, you will need the following tools:
 
 * A disassembler, IDA Pro or Ghidra work very well (you can also use a decompiler, it can make some things easier)
-* devKitPro for Wii, as it includes `powerpc-eabi-as` and `powerpc-eabi-objcopy` for building
 * CodeWarrior, we specifically use version  3.0a3
 * Python 3.7 and higher
 
