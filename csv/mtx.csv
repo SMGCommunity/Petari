@@ -1,4 +1,4 @@
-PSMTXIdentity,mtx.o,mtx.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorPSMTXIdentity,mtx.o,mtx.a,false,
 PSMTXCopy,mtx.o,mtx.a,false,
 PSMTXConcat,mtx.o,mtx.a,false,
 PSMTXInverse,mtx.o,mtx.a,false,

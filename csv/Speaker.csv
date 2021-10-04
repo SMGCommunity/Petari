@@ -1,4 +1,4 @@
-setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer,SpkSpeakerCtrl.o,Speaker.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorsetMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer,SpkSpeakerCtrl.o,Speaker.a,false,
 setup__14SpkSpeakerCtrlFv,SpkSpeakerCtrl.o,Speaker.a,false,
 connect__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,false,
 disconnect__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,false,

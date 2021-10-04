@@ -1,4 +1,4 @@
-Block_link,alloc.o,MSL_C.PPCEABI.bare.H.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorBlock_link,alloc.o,MSL_C.PPCEABI.bare.H.a,false,
 SubBlock_merge_next,alloc.o,MSL_C.PPCEABI.bare.H.a,false,
 deallocate_from_fixed_pools,alloc.o,MSL_C.PPCEABI.bare.H.a,false,
 free,alloc.o,MSL_C.PPCEABI.bare.H.a,false,

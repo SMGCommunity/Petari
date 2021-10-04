@@ -1,4 +1,4 @@
-strlen,__mem.o,Runtime.PPCEABI.H.a,false,
+Symbol Name, Object File, Library Archive, Matching, Authorstrlen,__mem.o,Runtime.PPCEABI.H.a,false,
 __va_arg,__va_arg.o,Runtime.PPCEABI.H.a,false,
 __register_global_object,global_destructor_chain.o,Runtime.PPCEABI.H.a,false,
 __destroy_global_chain,global_destructor_chain.o,Runtime.PPCEABI.H.a,false,

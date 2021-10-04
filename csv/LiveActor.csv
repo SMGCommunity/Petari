@@ -1,4 +1,4 @@
-__ct__15ActiveActorListFi,ActiveActorList.o,LiveActor.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__ct__15ActiveActorListFi,ActiveActorList.o,LiveActor.a,false,
 isFull__15ActiveActorListCFv,ActiveActorList.o,LiveActor.a,false,
 addActor__15ActiveActorListFP9LiveActor,ActiveActorList.o,LiveActor.a,false,
 removeDeadActor__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,false,

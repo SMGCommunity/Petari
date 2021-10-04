@@ -1,4 +1,4 @@
-CompleteTransfer,SIBios.o,si.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorCompleteTransfer,SIBios.o,si.a,false,
 SIInterruptHandler,SIBios.o,si.a,false,
 SIInit,SIBios.o,si.a,false,
 __SITransfer,SIBios.o,si.a,false,

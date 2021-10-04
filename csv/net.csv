@@ -1,4 +1,4 @@
-NETGetUniversalCalendar,nettime.o,net.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorNETGetUniversalCalendar,nettime.o,net.a,false,
 NETGetRexPPCVersionPrintable,NETVersion.o,net.a,false,
 NETMemCpy,netmemcpy.o,net.a,false,
 NETMemSet,netmemset.o,net.a,false,

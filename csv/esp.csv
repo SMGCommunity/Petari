@@ -1,4 +1,4 @@
-ESP_InitLib,esp.o,esp.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorESP_InitLib,esp.o,esp.a,false,
 ESP_CloseLib,esp.o,esp.a,false,
 ESP_LaunchTitle,esp.o,esp.a,false,
 ESP_GetTicketViews,esp.o,esp.a,false,

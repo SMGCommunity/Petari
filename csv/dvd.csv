@@ -1,4 +1,4 @@
-__DVDFSInit,dvdfs.o,dvd.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__DVDFSInit,dvdfs.o,dvd.a,false,
 DVDConvertPathToEntrynum,dvdfs.o,dvd.a,false,
 DVDFastOpen,dvdfs.o,dvd.a,false,
 DVDOpen,dvdfs.o,dvd.a,false,

@@ -1,4 +1,4 @@
-__OSFPRInit,OS.o,os.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__OSFPRInit,OS.o,os.a,false,
 __OSGetIOSRev,OS.o,os.a,false,
 OSGetConsoleType,OS.o,os.a,false,
 ClearArena,OS.o,os.a,false,

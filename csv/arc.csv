@@ -1,4 +1,4 @@
-ARCInitHandle,arc.o,arc.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorARCInitHandle,arc.o,arc.a,false,
 ARCOpen,arc.o,arc.a,false,
 ARCFastOpen,arc.o,arc.a,false,
 ARCConvertPathToEntrynum,arc.o,arc.a,false,

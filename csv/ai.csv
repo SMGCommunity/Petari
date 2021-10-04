@@ -1,4 +1,4 @@
-AIRegisterDMACallback,ai.o,ai.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorAIRegisterDMACallback,ai.o,ai.a,false,
 AIInitDMA,ai.o,ai.a,false,
 AIStartDMA,ai.o,ai.a,false,
 AIStopDMA,ai.o,ai.a,false,

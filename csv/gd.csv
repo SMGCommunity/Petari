@@ -1,4 +1,4 @@
-GDInitGDLObj,GDBase.o,gd.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorGDInitGDLObj,GDBase.o,gd.a,false,
 GDFlushCurrToMem,GDBase.o,gd.a,false,
 GDPadCurr32,GDBase.o,gd.a,false,
 GDOverflowed,GDBase.o,gd.a,false,

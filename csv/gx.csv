@@ -1,4 +1,4 @@
-__GXDefaultTexRegionCallback,GXInit.o,gx.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__GXDefaultTexRegionCallback,GXInit.o,gx.a,false,
 __GXDefaultTlutRegionCallback,GXInit.o,gx.a,false,
 __GXShutdown,GXInit.o,gx.a,false,
 __GXInitRevisionBits,GXInit.o,gx.a,false,

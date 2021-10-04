@@ -1,4 +1,4 @@
-__AXRemoveFromStack,AXAlloc.o,ax.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__AXRemoveFromStack,AXAlloc.o,ax.a,false,
 AXFreeVoice,AXAlloc.o,ax.a,false,
 AXRegisterAuxACallback,AXAux.o,ax.a,false,
 AXGetAuxACallback,AXAux.o,ax.a,false,

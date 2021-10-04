@@ -1,4 +1,4 @@
-DSPCheckMailToDSP,dsp.o,dsp.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorDSPCheckMailToDSP,dsp.o,dsp.a,false,
 DSPCheckMailFromDSP,dsp.o,dsp.a,false,
 DSPReadMailFromDSP,dsp.o,dsp.a,false,
 DSPSendMailToDSP,dsp.o,dsp.a,false,

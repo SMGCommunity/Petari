@@ -1,4 +1,4 @@
-__ct__16AudCameraWatcherFv,AudCameraWatcher.o,GameAudio.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__ct__16AudCameraWatcherFv,AudCameraWatcher.o,GameAudio.a,false,
 playAtmosphereSE__16AudCameraWatcherFv,AudCameraWatcher.o,GameAudio.a,false,
 init__16AudCameraWatcherFRC12JMapInfoIter,AudCameraWatcher.o,GameAudio.a,false,
 movement__16AudCameraWatcherFv,AudCameraWatcher.o,GameAudio.a,false,

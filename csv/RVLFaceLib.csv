@@ -1,4 +1,4 @@
-RFLGetWorkSize,RFL_System.o,RVLFaceLib.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorRFLGetWorkSize,RFL_System.o,RVLFaceLib.a,false,
 RFLInitResAsync,RFL_System.o,RVLFaceLib.a,false,
 RFLExit,RFL_System.o,RVLFaceLib.a,false,
 bootloadDB2Res_,RFL_System.o,RVLFaceLib.a,false,

@@ -1,4 +1,4 @@
-Mail_strcpy,NWC24StdAPI.o,nwc24.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorMail_strcpy,NWC24StdAPI.o,nwc24.a,false,
 Mail_strlen,NWC24StdAPI.o,nwc24.a,false,
 STD_strnlen,NWC24StdAPI.o,nwc24.a,false,
 Mail_memcpy,NWC24StdAPI.o,nwc24.a,false,

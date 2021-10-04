@@ -1,4 +1,4 @@
-__ct__11ConeGravityFv,ConeGravity.o,Gravity.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author__ct__11ConeGravityFv,ConeGravity.o,Gravity.a,false,
 setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,ConeGravity.o,Gravity.a,false,
 setEnableBottom__11ConeGravityFb,ConeGravity.o,Gravity.a,false,
 setTopCutRate__11ConeGravityFf,ConeGravity.o,Gravity.a,false,

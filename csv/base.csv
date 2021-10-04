@@ -1,4 +1,4 @@
-PPCMfmsr,PPCArch.o,base.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorPPCMfmsr,PPCArch.o,base.a,false,
 PPCMtmsr,PPCArch.o,base.a,false,
 PPCMfhid0,PPCArch.o,base.a,false,
 PPCMthid0,PPCArch.o,base.a,false,

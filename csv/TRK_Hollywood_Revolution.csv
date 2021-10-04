@@ -1,4 +1,4 @@
-TRKNubMainLoop,C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mainloop.o,TRK_Hollywood_Revolution.a,false,
+Symbol Name, Object File, Library Archive, Matching, AuthorTRKNubMainLoop,C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mainloop.o,TRK_Hollywood_Revolution.a,false,
 TRKDestructEvent,C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubevent.o,TRK_Hollywood_Revolution.a,false,
 TRKConstructEvent,C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubevent.o,TRK_Hollywood_Revolution.a,false,
 TRKPostEvent,C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubevent.o,TRK_Hollywood_Revolution.a,false,
