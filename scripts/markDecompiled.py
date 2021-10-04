@@ -13,9 +13,13 @@ with open(f"csv/{lib}.csv", "r") as f:
 
 output = []
 
+found = False
+
 for line in lines:
     newLine = line.strip("\n\r")
     spl = newLine.split(",")
+
+    sym = sym.replace(",", "&#44;")
     
     if spl[0] == sym:
         spl[4] = auth
@@ -23,7 +27,11 @@ for line in lines:
 
     output.append(f"{spl[0]},{spl[1]},{spl[2]},{spl[3]},{spl[4]}\n")
 
-with open(f"csv/{lib}.csv", "w") as w:
-    w.writelines(output)
+if found:
+    print(f"Function {sym} has been marked as decompiled!")
+    with open(f"csv/{lib}.csv", "w") as w:
+        w.writelines(output)
+else:
+    print(f"Found {sym} not found!")
 
-print(f"Function {sym} has been marked as decompiled!")
+
