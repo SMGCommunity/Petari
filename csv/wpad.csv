@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthornoAlloc,WPAD.o,wpad.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+noAlloc,WPAD.o,wpad.a,false,
 noFree,WPAD.o,wpad.a,false,
 OnShutdown,WPAD.o,wpad.a,false,
 WPADiSendData,WPAD.o,wpad.a,false,

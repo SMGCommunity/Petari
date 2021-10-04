@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorsetEuler__Q29JGeometry9TQuat4<f>Ffff,AnmPlayer.o,Animation.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+setEuler__Q29JGeometry9TQuat4<f>Ffff,AnmPlayer.o,Animation.a,false,
 setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,AnmPlayer.o,Animation.a,false,
 slerp__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>f,AnmPlayer.o,Animation.a,false,
 normalize__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>,AnmPlayer.o,Animation.a,false,

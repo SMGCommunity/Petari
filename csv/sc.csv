@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorSCInit,scsystem.o,sc.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+SCInit,scsystem.o,sc.a,false,
 SCCheckStatus,scsystem.o,sc.a,false,
 SCReloadConfFileAsync,scsystem.o,sc.a,false,
 OpenCallbackFromReload,scsystem.o,sc.a,false,

@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__dt__7JASHeapFv,AudSystem.o,AudioLib.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__dt__7JASHeapFv,AudSystem.o,AudioLib.a,false,
 sub__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,AudSystem.o,AudioLib.a,false,
 set__Q29JGeometry13SMatrix34C<f>FPA4_Cf,AudSystem.o,AudioLib.a,false,
 AudNewAudSystem___FP14JAUSectionHeapP10JKRArchiveP10JKRArchiveP10JKRArchivei,AudSystem.o,AudioLib.a,false,

@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorTHPVideoDecode,THPDec.o,thp.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+THPVideoDecode,THPDec.o,thp.a,false,
 __THPReadFrameHeader,THPDec.o,thp.a,false,
 __THPReadScaneHeader,THPDec.o,thp.a,false,
 __THPReadQuantizationTable,THPDec.o,thp.a,false,

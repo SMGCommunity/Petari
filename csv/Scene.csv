@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__ct__9GameSceneFv,GameScene.o,Scene.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__ct__9GameSceneFv,GameScene.o,Scene.a,false,
 __dt__9GameSceneFv,GameScene.o,Scene.a,false,
 init__9GameSceneFv,GameScene.o,Scene.a,false,
 start__9GameSceneFv,GameScene.o,Scene.a,false,

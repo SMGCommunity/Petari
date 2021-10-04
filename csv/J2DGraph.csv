@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__ct__14J2DGrafContextFffff,J2DGrafContext.o,J2DGraph.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__ct__14J2DGrafContextFffff,J2DGrafContext.o,J2DGraph.a,false,
 setPort__14J2DGrafContextFv,J2DGrafContext.o,J2DGraph.a,false,
 setup2D__14J2DGrafContextFv,J2DGrafContext.o,J2DGraph.a,false,
 setScissor__14J2DGrafContextFv,J2DGrafContext.o,J2DGraph.a,false,

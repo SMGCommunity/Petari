@@ -1,3 +1,4 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorEUARTInit,euart.o,euart.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+EUARTInit,euart.o,euart.a,false,
 InitializeUART,euart.o,euart.a,false,
 WriteUARTN,euart.o,euart.a,false,

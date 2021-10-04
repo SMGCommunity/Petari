@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorinitShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData,J3DShapeTable.o,J3DGraphAnimator.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData,J3DShapeTable.o,J3DGraphAnimator.a,false,
 sortVcdVatCmd__13J3DShapeTableFv,J3DShapeTable.o,J3DGraphAnimator.a,false,
 __ct__12J3DJointTreeFv,J3DJointTree.o,J3DGraphAnimator.a,false,
 makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable,J3DJointTree.o,J3DGraphAnimator.a,false,

@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__dt__13FireMarioBallFv,FireMarioBall.o,Player.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__dt__13FireMarioBallFv,FireMarioBall.o,Player.a,false,
 __ct__13FireMarioBallFPCc,FireMarioBall.o,Player.a,false,
 init__13FireMarioBallFRC12JMapInfoIter,FireMarioBall.o,Player.a,false,
 appear__13FireMarioBallFv,FireMarioBall.o,Player.a,false,

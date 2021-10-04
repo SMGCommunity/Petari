@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__ct__18AudRhythmSeqParserFv,AudRhythmSeqParser.o,RhythmLib.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__ct__18AudRhythmSeqParserFv,AudRhythmSeqParser.o,RhythmLib.a,false,
 noteOnProcess__18AudRhythmSeqParserFUlUlUlUl,AudRhythmSeqParser.o,RhythmLib.a,false,
 noteOffProcess__18AudRhythmSeqParserFUl,AudRhythmSeqParser.o,RhythmLib.a,false,
 execNoteOnMidi__18AudRhythmSeqParserFP8JASTrackUlUlUl,AudRhythmSeqParser.o,RhythmLib.a,false,

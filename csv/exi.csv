@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorSetExiInterruptMask,EXIBios.o,exi.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+SetExiInterruptMask,EXIBios.o,exi.a,false,
 EXIImm,EXIBios.o,exi.a,false,
 EXIImmEx,EXIBios.o,exi.a,false,
 EXIDma,EXIBios.o,exi.a,false,

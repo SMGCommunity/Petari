@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorAXFXReverbHiInit,AXFXReverbHi.o,axfx.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+AXFXReverbHiInit,AXFXReverbHi.o,axfx.a,false,
 AXFXReverbHiShutdown,AXFXReverbHi.o,axfx.a,false,
 AXFXReverbHiCallback,AXFXReverbHi.o,axfx.a,false,
 AXFXReverbHiExpInit,AXFXReverbHiExp.o,axfx.a,false,

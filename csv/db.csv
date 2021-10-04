@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorDBInit,db.o,db.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+DBInit,db.o,db.a,false,
 __DBExceptionDestinationAux,db.o,db.a,false,
 __DBExceptionDestination,db.o,db.a,false,
 __DBIsExceptionMarked,db.o,db.a,false,

@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorIPCInit,ipcMain.o,ipc.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+IPCInit,ipcMain.o,ipc.a,false,
 IPCReInit,ipcMain.o,ipc.a,false,
 IPCReadReg,ipcMain.o,ipc.a,false,
 IPCWriteReg,ipcMain.o,ipc.a,false,

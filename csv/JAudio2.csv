@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Authorimixcopy__7JASCalcFPCsPCsPsUl,JASCalc.o,JAudio2.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+imixcopy__7JASCalcFPCsPCsPsUl,JASCalc.o,JAudio2.a,false,
 bcopyfast__7JASCalcFPCvPvUl,JASCalc.o,JAudio2.a,false,
 bcopy__7JASCalcFPCvPvUl,JASCalc.o,JAudio2.a,false,
 bzerofast__7JASCalcFPvUl,JASCalc.o,JAudio2.a,false,

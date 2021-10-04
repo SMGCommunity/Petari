@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorOnShutdown,vi.o,vi.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+OnShutdown,vi.o,vi.a,false,
 __VIRetraceHandler,vi.o,vi.a,false,
 VISetPreRetraceCallback,vi.o,vi.a,false,
 VISetPostRetraceCallback,vi.o,vi.a,false,

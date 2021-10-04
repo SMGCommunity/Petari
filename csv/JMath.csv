@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorJMAEulerToQuat__FsssP10Quaternion,JMath.o,JMath.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+JMAEulerToQuat__FsssP10Quaternion,JMath.o,JMath.a,false,
 JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion,JMath.o,JMath.a,false,
 JMAVECScaleAdd__FPC3VecPC3VecP3Vecf,JMath.o,JMath.a,false,
 JMAVECLerp__FPC3VecPC3VecP3Vecf,JMath.o,JMath.a,false,

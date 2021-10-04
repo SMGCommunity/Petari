@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorApp_MEMalloc,WUD.o,wud.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+App_MEMalloc,WUD.o,wud.a,false,
 App_MEMfree,WUD.o,wud.a,false,
 SyncFlushCallback,WUD.o,wud.a,false,
 DeleteFlushCallback,WUD.o,wud.a,false,

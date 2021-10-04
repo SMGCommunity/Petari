@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorTHPGXRestore,THPDraw.o,Screen.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+THPGXRestore,THPDraw.o,Screen.a,false,
 THPGXYuv2RgbSetup,THPDraw.o,Screen.a,false,
 THPGXSetTexObjFilter,THPDraw.o,Screen.a,false,
 THPGXYuv2RgbDraw,THPDraw.o,Screen.a,false,

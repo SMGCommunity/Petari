@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__ct__9BigBubbleFPCc,BigBubble.o,Ride.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__ct__9BigBubbleFPCc,BigBubble.o,Ride.a,false,
 init__9BigBubbleFRC12JMapInfoIter,BigBubble.o,Ride.a,false,
 initSensor__9BigBubbleFv,BigBubble.o,Ride.a,false,
 makeActorAppeared__9BigBubbleFv,BigBubble.o,Ride.a,false,

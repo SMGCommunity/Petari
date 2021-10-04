@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorRSONotifyModuleLoaded,RSOLink.o,rso.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+RSONotifyModuleLoaded,RSOLink.o,rso.a,false,
 RSONotifyPreRSOLink,RSOLink.o,rso.a,false,
 RSONotifyPostRSOLink,RSOLink.o,rso.a,false,
 RSONotifyPreRSOLinkFar,RSOLink.o,rso.a,false,

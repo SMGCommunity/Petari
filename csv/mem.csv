@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorFindContainHeap_,mem_heapCommon.o,mem.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+FindContainHeap_,mem_heapCommon.o,mem.a,false,
 MEMiInitHeapHead,mem_heapCommon.o,mem.a,false,
 MEMiFinalizeHeap,mem_heapCommon.o,mem.a,false,
 AllocUsedBlockFromFreeBlock_,mem_expHeap.o,mem.a,false,

@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthornandCreate,nand.o,nand.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+nandCreate,nand.o,nand.a,false,
 NANDCreate,nand.o,nand.a,false,
 NANDPrivateCreate,nand.o,nand.a,false,
 NANDPrivateCreateAsync,nand.o,nand.a,false,

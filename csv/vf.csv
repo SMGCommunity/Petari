@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorVFipf_toupper,pf_clib.o,vf.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+VFipf_toupper,pf_clib.o,vf.a,false,
 VFipf_memcpy,pf_clib.o,vf.a,false,
 VFipf_memset,pf_clib.o,vf.a,false,
 VFipf_strlen,pf_clib.o,vf.a,false,

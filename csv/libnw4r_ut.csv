@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorGetGlyph__Q44nw4r2ut6detail11ResFontBaseCFPQ34nw4r2ut5GlyphUs,ut_ResFontBase.o,libnw4r_ut.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+GetGlyph__Q44nw4r2ut6detail11ResFontBaseCFPQ34nw4r2ut5GlyphUs,ut_ResFontBase.o,libnw4r_ut.a,false,
 HasGlyph__Q44nw4r2ut6detail11ResFontBaseCFUs,ut_ResFontBase.o,libnw4r_ut.a,false,
 GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv,ut_ResFontBase.o,libnw4r_ut.a,false,
 FindGlyphIndex__Q44nw4r2ut6detail11ResFontBaseCFPCQ34nw4r2ut11FontCodeMapUs,ut_ResFontBase.o,libnw4r_ut.a,false,

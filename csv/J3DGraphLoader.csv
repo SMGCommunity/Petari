@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Author__ct__18J3DMaterialFactoryFRC16J3DMaterialBlock,J3DMaterialFactory.o,J3DGraphLoader.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+__ct__18J3DMaterialFactoryFRC16J3DMaterialBlock,J3DMaterialFactory.o,J3DGraphLoader.a,false,
 __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock,J3DMaterialFactory.o,J3DGraphLoader.a,false,
 countUniqueMaterials__18J3DMaterialFactoryFv,J3DMaterialFactory.o,J3DGraphLoader.a,false,
 countTexGens__18J3DMaterialFactoryCFi,J3DMaterialFactory.o,J3DGraphLoader.a,false,

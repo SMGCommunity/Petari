@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, AuthorUSB_LOG,usb.o,usb.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+USB_LOG,usb.o,usb.a,false,
 USB_ERR,usb.o,usb.a,false,
 IUSB_OpenLib,usb.o,usb.a,false,
 IUSB_CloseLib,usb.o,usb.a,false,

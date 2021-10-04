@@ -1,4 +1,5 @@
-Symbol Name, Object File, Library Archive, Matching, Authorgki_init_free_queue,gki_buffer.o,bte.a,false,
+Symbol Name, Object File, Library Archive, Matching, Author
+gki_init_free_queue,gki_buffer.o,bte.a,false,
 gki_buffer_init,gki_buffer.o,bte.a,false,
 GKI_init_q,gki_buffer.o,bte.a,false,
 GKI_getbuf,gki_buffer.o,bte.a,false,
