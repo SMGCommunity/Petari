@@ -1,0 +1,3 @@
+EUARTInit,euart.o,euart.a,false,
+InitializeUART,euart.o,euart.a,false,
+WriteUARTN,euart.o,euart.a,false,
