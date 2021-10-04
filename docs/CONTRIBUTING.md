@@ -4,8 +4,8 @@ To contribute, you will need the following tools:
 
 * A disassembler, IDA Pro or Ghidra work very well (you can also use a decompiler, it can make some things easier)
 * devKitPro for Wii, as it includes `powerpc-eabi-as` and `powerpc-eabi-objcopy` for building
-* CodeWarrior, we specifically use version 4.3 build 213 (subject to change)
-* make
+* CodeWarrior, we specifically use version  3.0a3
+* Python 3.7 and higher
 
 It is recommended that you have knowledge of the following:
 
@@ -15,7 +15,7 @@ It is recommended that you have knowledge of the following:
 
 Decompilers such as Hex-Rays (included in IDA Pro) are useful as they can make the decompilation easier to write.
 
-Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. Any pull request that fails to match the DOL checksum will be rejected.
+Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. After the code matches, be sure to run `scripts/markDecompiled.py` to mark the function as decompiled.
 
 If you have any questions or concerns, please join [our Discord server](https://discord.gg/k7ZKzSDsVq)!
 
