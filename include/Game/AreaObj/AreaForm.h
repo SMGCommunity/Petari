@@ -7,7 +7,15 @@
 #include "JSystem/JGeometry/TVec.h"
 #include "revolution.h"
 
-class AreaFormCube {
+class AreaForm {
+public:
+    virtual void init(const JMapInfoIter &);
+    virtual bool isInVolume(const TVec3f &) const;
+
+    TPos3f* _4;
+};
+
+class AreaFormCube : public AreaForm {
 public:
     AreaFormCube(int);
 
@@ -21,7 +29,6 @@ public:
     void updateBoxParam();
     void calcWorldMtx(TPos3f *) const;
 
-    TMtx34f* _4;
     int _8;
     TVec3f mTranslation; // _C
     TVec3f mRotation;    // _18
@@ -31,7 +38,7 @@ public:
     Mtx _48;
 };
 
-class AreaFormSphere {
+class AreaFormSphere : public AreaForm {
 public:
     AreaFormSphere();
 
@@ -41,13 +48,12 @@ public:
     void calcUpVec(TVec3f *) const;
     void calcPos(TVec3f *) const;
 
-    TRot3f* _4;
     TVec3f mTranslation;    // _8
     f32 _14;
     TVec3f mUp;             // _18
 };
 
-class AreaFormBowl {
+class AreaFormBowl : public AreaForm {
 public:
     AreaFormBowl();
 
@@ -56,13 +62,12 @@ public:
 
     void calcUpVec(const TVec3f &);
 
-    u32 _4;
     TVec3f mTranslation;    // _8
     TVec3f mUp;             // _14
     f32 _20;
 };
 
-class AreaFormCylinder {
+class AreaFormCylinder : public AreaForm {
 public:
     AreaFormCylinder();
 
@@ -74,7 +79,6 @@ public:
     void calcUpVec(TVec3f *) const;
     void calcDir(const TVec3f &);
 
-    TRot3f* _4;
     TVec3f mTranslation;    // _8
     TVec3f mRotation;       // _14
     f32 _20;
