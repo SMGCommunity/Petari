@@ -46,3 +46,37 @@ public:
     f32 _14;
     TVec3f mUp;             // _18
 };
+
+class AreaFormBowl {
+public:
+    AreaFormBowl();
+
+    virtual void init(const JMapInfoIter &);
+    virtual bool isInVolume(const TVec3f &) const;
+
+    void calcUpVec(const TVec3f &);
+
+    u32 _4;
+    TVec3f mTranslation;    // _8
+    TVec3f mUp;             // _14
+    f32 _20;
+};
+
+class AreaFormCylinder {
+public:
+    AreaFormCylinder();
+
+    virtual void init(const JMapInfoIter &);
+    virtual bool isInVolume(const TVec3f &) const;
+
+    void calcPos(TVec3f *) const;
+    void calcCenterPos(TVec3f *) const;
+    void calcUpVec(TVec3f *) const;
+    void calcDir(const TVec3f &);
+
+    TRot3f* _4;
+    TVec3f mTranslation;    // _8
+    TVec3f mRotation;       // _14
+    f32 _20;
+    f32 _24;
+};

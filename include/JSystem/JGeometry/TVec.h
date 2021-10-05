@@ -16,18 +16,15 @@ namespace JGeometry {
 
         }
 
-        TVec3(T _x, T _y, T _z)
-        {
-            x = _x;
-            y = _y;
-            z = _z;
-        }
+        TVec3(T _x, T _y, T _z);
 
         TVec3(T val) {
             x = val;
             y = val;
             z = val;
         }
+
+        TVec3(const TVec3<T> &);
 
         template<typename T>
         void set(T _x, T _y, T _z);
@@ -46,8 +43,8 @@ namespace JGeometry {
         void scale(T);
         void scale(T, const JGeometry::TVec3<T> &);
 
-        f32 dot(register const JGeometry::TVec3<f32> &rOther) const {
-            register JGeometry::TVec3<f32>* this_vec = this;
+        f32 dot(register const JGeometry::TVec3<f32> &rOther) const; //{
+            /*register const JGeometry::TVec3<f32>* this_vec = this;
             __asm {
                 psq_l f2, 4(this_vec), 0, 0
                 psq_l f1, 4(rOther), 0, 0
@@ -57,26 +54,14 @@ namespace JGeometry {
                 ps_madd f1, f0, f1, f2
                 ps_sum0 f1, f1, f2, f2
                 blr
-            };
-        }
+            };*/
+        //}
 
-        void add(register const JGeometry::TVec3<f32> &rOther) {
-            register JGeometry::TVec3<f32>* this_vec = this;
-            __asm {
-                psq_l f3, 0(this_vec), 0, 0
-                psq_l f2, 0(rOther), 0, 0
-                psq_l f1, 8(this_vec), 1, 0
-                psq_l f0, 8(rOther), 1, 0
-                ps_add f2, f3, f2
-                ps_add f0, f1, f0
-                psq_st f2, 0(this_vec), 0, 0
-                psq_st f0, 8(this_vec), 1, 0
-                blr
-            }
-        }
+        void add(register const JGeometry::TVec3<f32> &rOther);
 
         const TVec3<T>& operator=(const TVec3<T> &);
         const TVec3<T>& operator-=(const TVec3<T> &);
+        const TVec3<T> operator*(f32) const;
 
         T x, y, z;
     };

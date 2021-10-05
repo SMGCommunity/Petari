@@ -13,7 +13,6 @@ with open(f"csv/{lib}.csv", "r") as f:
 
 output = []
 
-found = False
 
 for line in lines:
     newLine = line.strip("\n\r")
@@ -21,6 +20,10 @@ for line in lines:
     
     if spl[0] == sym:
         spl[4] = auth
+
+        if spl[3] == 'true':
+            print("Function is already marked as decompiled!")
+            sys.exit(1)
         spl[3] = 'true'
         found = True
 

@@ -89,9 +89,9 @@ f32 AreaFormCube::getBaseSize() {
 
 
 #ifdef NON_MATCHING
-// issues with inlining vector constructors
+// issues with floating point math order
 void AreaFormCube::updateBoxParam() {
-    MR::makeMtxRotate(&_48, mRotation.x, mRotation.y, mRotation.z);
+    MR::makeMtxRotate(_48, mRotation.x, mRotation.y, mRotation.z);
 
     f32 v3 = (0.5f * (-mScale.x * 1000.0f));
     f32 v5 = (0.5f * (-mScale.y * 1000.0f));
@@ -176,9 +176,6 @@ void AreaFormSphere::calcPos(TVec3f *pOut) const {
     }
 }
 
-
-#ifndef NONMATCHING
-// vector inlining
 bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
     TVec3f pos;
     calcPos(&pos);
@@ -189,4 +186,162 @@ bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
 
     return PSVECMag((const Vec*)&thing) < _14;
 }
-#endif
+
+AreaFormBowl::AreaFormBowl() {
+    _4 = 0;
+    mTranslation.x = 0.0f;
+    mTranslation.y = 0.0f;
+    mTranslation.z = 0.0f;
+    _20 = 0.0f;
+}
+
+void AreaFormBowl::init(const JMapInfoIter &rIter) {
+    MR::getJMapInfoTrans(rIter, &mTranslation);
+
+    f32 scale_x;
+    rIter.getValue<f32>("scale_x", &scale_x);
+    _20 = scale_x;
+    _20 *= 500.0f;
+
+    TVec3f rotation;    
+    MR::getJMapInfoRotate(rIter, &rotation);
+    calcUpVec(rotation);
+}
+
+bool AreaFormBowl::isInVolume(const TVec3f &rPos) const {
+    TVec3f pos(rPos);
+    JMathInlineVEC::PSVECSubtract((const Vec*)&pos, (const Vec*)&mTranslation, (Vec*)&pos);
+    
+    if (PSVECMag((const Vec*)&pos) > _20) {
+        return false;
+    }
+
+    TVec3f other_pos(rPos);
+    PSVECSubtract((const Vec*)&other_pos, (const Vec*)&mTranslation, (Vec*)&other_pos);
+    return other_pos.dot(mUp) < 0.0f;
+}
+
+void AreaFormBowl::calcUpVec(const TVec3f &rPos) {
+    TVec3f up(0.0f, 1.0f, 0.0f);
+
+    Mtx mtx;
+    MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, rPos.x, rPos.y, rPos.z);
+    PSMTXMultVec(mtx, (const Vec*)&up, (Vec*)&up);
+    mUp = up;
+}
+
+AreaFormCylinder::AreaFormCylinder() {
+    _4 = 0;
+    mTranslation.x = 0.0f;
+    mTranslation.y = 0.0f;
+    mTranslation.z = 0.0f;
+    mRotation.x = 0.0f;
+    mRotation.y = 0.0f;
+    mRotation.z = 0.0f;
+    _20 = 0.0f;
+    _24 = 0.0f;
+}
+
+void AreaFormCylinder::calcPos(TVec3f *pPos) const {
+    if (_4) {
+        _4->mult(mTranslation, *pPos);
+        return;
+    }
+
+    pPos->set<f32>(mTranslation);
+}
+
+void AreaFormCylinder::calcCenterPos(TVec3f *pCenterPos) const {
+    calcPos(pCenterPos);
+    TVec3f upVec;
+    calcUpVec(&upVec);
+
+    pCenterPos->add((upVec * _24) * 0.5f);
+}
+
+void AreaFormCylinder::calcUpVec(TVec3f *pUpVec) const {
+    if (_4) {
+        _4->mult33(mRotation, *pUpVec);
+        MR::normalize(pUpVec);
+    }
+    else {
+        pUpVec->set<f32>(mRotation);
+    }
+}
+
+bool AreaFormCylinder::isInVolume(const TVec3f &rVec) const {
+    TVec3f pos;
+    calcPos(&pos);
+
+    TVec3f up;
+    calcUpVec(&up);
+
+    TVec3f stack_8(rVec);
+    JMathInlineVEC::PSVECSubtract((const Vec*)&stack_8, (const Vec*)&pos, (Vec*)&stack_8);
+    f32 v6 = MR::vecKillElement(stack_8, up, &stack_8);
+    f32 v7 = PSVECMag((const Vec*)&stack_8);
+
+    bool ret;
+
+    if (MR::isInRange(v6, 0.0f, _24) && (v7 < _20)) {
+        ret = true;
+    }
+    else {
+        ret = false;
+    }
+
+    return ret;
+}
+
+void AreaFormCylinder::calcDir(const TVec3f &a1) {
+    mRotation.x = 0.0f;
+    mRotation.y = 1.0f;
+    mRotation.z = 0.0f;
+
+    MtxPtr mtx_x = MR::tmpMtxRotXDeg(a1.x);
+    PSMTXMultVec(mtx_x, (const Vec*)&mRotation, (Vec*)&mRotation);
+    MtxPtr mtx_y = MR::tmpMtxRotYDeg(a1.y);
+    PSMTXMultVec(mtx_y, (const Vec*)&mRotation, (Vec*)&mRotation);
+    MtxPtr mtx_z = MR::tmpMtxRotYDeg(a1.z);
+    PSMTXMultVec(mtx_z, (const Vec*)&mRotation, (Vec*)&mRotation);
+    PSVECMag((const Vec*)&mRotation);
+    PSVECNormalize((const Vec*)&mRotation, (Vec*)&mRotation);
+}
+
+void AreaFormSphere::init(const JMapInfoIter &rIter) {
+    MR::getJMapInfoTrans(rIter, &mTranslation);
+
+    f32 scale_x;
+    rIter.getValue<f32>("scale_x", &scale_x);
+
+    _14 = scale_x;
+    _14 *= 500.0f;
+    
+    TVec3f rotation;
+    MR::getJMapInfoRotate(rIter, &rotation);
+
+    TVec3f butts(0.0f, 1.0f, 0.0f);
+
+    Mtx mtx;
+    MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, rotation.x, rotation.y, rotation.z);
+    PSMTXMultVec(mtx, (const Vec*)&butts, (Vec*)&butts);
+    mUp = butts;
+}
+
+void AreaFormCylinder::init(const JMapInfoIter &rIter) {
+    MR::getJMapInfoTrans(rIter, &mTranslation);
+    TVec3f rotate;
+    
+    MR::getJMapInfoRotate(rIter, &rotate);
+    calcDir(rotate);
+
+    f32 temp;
+    rIter.getValue<f32>("scale_x", &temp);
+
+    _20 = temp;
+    _20 *= 500.0f;
+
+    rIter.getValue<f32>("scale_y", &temp);
+    _24 = temp;
+    _24 *= 500.0f;
+}
