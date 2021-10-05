@@ -7,10 +7,6 @@
 
 #include <cmath>
 
-bool COOLTESTINGFUNCITON(f32 a1, f32 a2) {
-    return a1 <= a2;
-}
-
 namespace MR {
     f32 getRandom(f32 min, f32 max) {
         return (min + ((max - min) * getRandom()));

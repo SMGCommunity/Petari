@@ -6,7 +6,6 @@
 #include "JSystem/JGeometry/TMatrix.h"
 
 namespace {
-    /* todo -- stop inling me! */
     void calcRailDirection(TVec3f *pOut, const RailPart *pRailPart, f32 a3) {
         pRailPart->calcVelocity(pOut, a3);
 

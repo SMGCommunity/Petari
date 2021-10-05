@@ -1,11 +1,11 @@
 Symbol Name, Object File, Library Archive, Matching, Author
-__ct__15AlreadyDoneInfoFv,AlreadyDoneFlagInGalaxy.o,System.a,false,
-clear__15AlreadyDoneInfoFv,AlreadyDoneFlagInGalaxy.o,System.a,false,
-init__15AlreadyDoneInfoFPCcll,AlreadyDoneFlagInGalaxy.o,System.a,false,
-isEqual__15AlreadyDoneInfoCFRC15AlreadyDoneInfo,AlreadyDoneFlagInGalaxy.o,System.a,false,
-set__15AlreadyDoneInfoFb,AlreadyDoneFlagInGalaxy.o,System.a,false,
-__ct__23AlreadyDoneFlagInGalaxyFi,AlreadyDoneFlagInGalaxy.o,System.a,false,
-clear__23AlreadyDoneFlagInGalaxyFv,AlreadyDoneFlagInGalaxy.o,System.a,false,
+__ct__15AlreadyDoneInfoFv,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+clear__15AlreadyDoneInfoFv,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+init__15AlreadyDoneInfoFPCcll,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+isEqual__15AlreadyDoneInfoCFRC15AlreadyDoneInfo,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+set__15AlreadyDoneInfoFb,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+__ct__23AlreadyDoneFlagInGalaxyFi,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
+clear__23AlreadyDoneFlagInGalaxyFv,AlreadyDoneFlagInGalaxy.o,System.a,true,shibboleet
 setupFlag__23AlreadyDoneFlagInGalaxyFPCcRC12JMapInfoIterPUl,AlreadyDoneFlagInGalaxy.o,System.a,false,
 updateValue__23AlreadyDoneFlagInGalaxyFiUl,AlreadyDoneFlagInGalaxy.o,System.a,false,
 __ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc,ArchiveHolder.o,System.a,false,
@@ -513,10 +513,10 @@ createGameHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,false,
 __ct__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,false,
 memoryErrorCallback__17HeapMemoryWatcherFPvUli,HeapMemoryWatcher.o,System.a,false,
 checkRestMemory__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,false,
-getDecidedLanguageFromIPL__2MRFv,Language.o,System.a,false,
+getDecidedLanguageFromIPL__2MRFv,Language.o,System.a,true,shibboleet
 getLanguage__2MRFv,Language.o,System.a,false,
 getLanguageFromIPL__2MRFv,Language.o,System.a,false,
-getCurrentLanguagePrefix__2MRFv,Language.o,System.a,false,
+getCurrentLanguagePrefix__2MRFv,Language.o,System.a,true,shibboleet
 getCurrentRegionPrefix__2MRFv,Language.o,System.a,false,
 getLanguageNum__2MRFv,Language.o,System.a,false,
 getLanguagePrefixByIndex__2MRFUl,Language.o,System.a,false,

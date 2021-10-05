@@ -189,3 +189,4 @@ bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
 
     return PSVECMag((const Vec*)&thing) < _14;
 }
+#endif
