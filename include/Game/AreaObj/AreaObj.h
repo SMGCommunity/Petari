@@ -5,6 +5,7 @@
 #include "Game/AreaObj/AreaForm.h"
 #include "Game/NameObj/NameObj.h"
 #include "Game/Map/StageSwitch.h"
+#include "Game/Util.h"
 
 class AreaObj : public NameObj {
 public:
@@ -35,4 +36,13 @@ public:
     s32 mObjArg6; // _30
     s32 mObjArg7; // _34
     StageSwitchCtrl* mSwitchCtrl; // _38
+};
+
+class AreaObjMgr : public NameObj {
+public:
+    AreaObjMgr(s32, const char *);
+
+    MR::Vector<MR::AssignableArray<AreaObj*> > mArray; // _C
+    s32 _14;
+    s32 _18;
 };

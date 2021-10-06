@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/Array.h"
 #include "Game/Util/HashUtil.h"
 #include "Game/Util/JMapInfo.h"
 #include "Game/Util/JMapInfoIter.h"

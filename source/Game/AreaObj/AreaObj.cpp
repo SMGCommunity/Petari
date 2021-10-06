@@ -63,3 +63,11 @@ void AreaObj::setFollowMtx(const TPos3f *pMtx) {
 TPos3f* AreaObj::getFollowMtx() const {
     return mForm->_4;
 }
+
+AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() {
+    _14 = 0;
+    _18 = count;
+}
+
+// AreaObjMgr::entry
+// AreaObjMgr::find_in
