@@ -50,9 +50,9 @@ __ct__10AreaObjMgrFlPCc,AreaObj.o,AreaObj.a,true,shibboleet
 __dt__Q22MR41Vector<Q22MR26AssignableArray<P7AreaObj>>Fv,AreaObj.o,AreaObj.a,true,shibboleet
 entry__10AreaObjMgrFP7AreaObj,AreaObj.o,AreaObj.a,false,
 find_in__10AreaObjMgrCFRCQ29JGeometry8TVec3<f>,AreaObj.o,AreaObj.a,false,
-validate__7AreaObjFv,AreaObj.o,AreaObj.a,false,
-invalidate__7AreaObjFv,AreaObj.o,AreaObj.a,false,
-getManagerName__7AreaObjCFv,AreaObj.o,AreaObj.a,false,
+validate__7AreaObjFv,AreaObj.o,AreaObj.a,true,shibboleet
+invalidate__7AreaObjFv,AreaObj.o,AreaObj.a,true,shibboleet
+getManagerName__7AreaObjCFv,AreaObj.o,AreaObj.a,true,shibboleet
 Functor<7AreaObj>__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>,AreaObj.o,AreaObj.a,false,
 __cl__Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>CFv,AreaObj.o,AreaObj.a,false,
 clone__Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>CFP7JKRHeap,AreaObj.o,AreaObj.a,false,

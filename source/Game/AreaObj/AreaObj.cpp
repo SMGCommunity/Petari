@@ -2,7 +2,7 @@
 
 AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     mType = a1;
-    _14 = 1;
+    mValid = true;
     _15 = 1;
     _16 = 1;
     mObjArg0 = -1;
@@ -23,7 +23,7 @@ AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
 bool AreaObj::isInVolume(const TVec3f &rPos) const {
     bool ret = false;
 
-    if (_14 && _15 && _16) {
+    if (mValid && _15 && _16) {
         if (mForm->isInVolume(rPos)) {
             ret = true;
         }
@@ -71,3 +71,15 @@ AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() 
 
 // AreaObjMgr::entry
 // AreaObjMgr::find_in
+
+void AreaObj::validate() {
+    mValid = true;
+}
+
+void AreaObj::invalidate() {
+    mValid = false;
+}
+
+const char* AreaObj::getManagerName() const {
+    return mName;
+}
