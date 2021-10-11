@@ -10,7 +10,10 @@
 class AreaObj : public NameObj {
 public:
     AreaObj(int, const char *);
-    virtual ~AreaObj();
+    virtual ~AreaObj() {
+
+    }
+
     virtual void init(const JMapInfoIter &);
 
     virtual bool isInVolume(const TVec3f &) const;

@@ -26,6 +26,6 @@ namespace MR {
     template<class T>
     class Functor {
     public:
-        
+    
     };
 };

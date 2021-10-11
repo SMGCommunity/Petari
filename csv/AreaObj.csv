@@ -77,11 +77,11 @@ __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter,AreaObjFollower.o,AreaObj.a,fa
 update__15AreaObjFollowerFv,AreaObjFollower.o,AreaObj.a,false,
 addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter,AreaObjFollower.o,AreaObj.a,false,
 setGravityFollowHost__18BaseMatrixFollowerFPC7NameObj,AreaObjFollower.o,AreaObj.a,false,
-__ct__20AstroChangeStageCubeFiPCc,AstroChangeStageCube.o,AreaObj.a,false,
-init__20AstroChangeStageCubeFRC12JMapInfoIter,AstroChangeStageCube.o,AreaObj.a,false,
-isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f>,AstroChangeStageCube.o,AreaObj.a,false,
-__dt__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,false,
-movement__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,false,
+__ct__20AstroChangeStageCubeFiPCc,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
+init__20AstroChangeStageCubeFRC12JMapInfoIter,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
+isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f>,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
+__dt__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
+movement__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
 __ct__15AudioEffectAreaFiPCc,AudioEffectArea.o,AreaObj.a,false,
 init__15AudioEffectAreaFRC12JMapInfoIter,AudioEffectArea.o,AreaObj.a,false,
 movement__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,false,
