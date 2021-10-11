@@ -2,6 +2,7 @@
 
 #include "Game/Util/ActorSensorUtil.h"
 #include "Game/Util/Array.h"
+#include "Game/Util/CameraUtil.h"
 #include "Game/Util/DemoUtil.h"
 #include "Game/Util/EventUtil.h"
 #include "Game/Util/Functor.h"

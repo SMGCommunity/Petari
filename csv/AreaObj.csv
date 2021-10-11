@@ -82,11 +82,11 @@ init__20AstroChangeStageCubeFRC12JMapInfoIter,AstroChangeStageCube.o,AreaObj.a,t
 isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f>,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
 __dt__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
 movement__20AstroChangeStageCubeFv,AstroChangeStageCube.o,AreaObj.a,true,shibboleet
-__ct__15AudioEffectAreaFiPCc,AudioEffectArea.o,AreaObj.a,false,
-init__15AudioEffectAreaFRC12JMapInfoIter,AudioEffectArea.o,AreaObj.a,false,
-movement__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,false,
-__dt__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,false,
-getManagerName__15AudioEffectAreaCFv,AudioEffectArea.o,AreaObj.a,false,
+__ct__15AudioEffectAreaFiPCc,AudioEffectArea.o,AreaObj.a,true,shibboleet
+init__15AudioEffectAreaFRC12JMapInfoIter,AudioEffectArea.o,AreaObj.a,true,shibboleet
+movement__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,true,shibboleet
+__dt__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,true,shibboleet
+getManagerName__15AudioEffectAreaCFv,AudioEffectArea.o,AreaObj.a,true,shibboleet
 __dt__15BgmProhibitAreaFv,BgmProhibitArea.o,AreaObj.a,false,
 findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc,BgmProhibitArea.o,AreaObj.a,false,
 __ct__15BgmProhibitAreaFiPCc,BgmProhibitArea.o,AreaObj.a,false,
