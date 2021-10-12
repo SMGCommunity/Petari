@@ -11,4 +11,8 @@ namespace MR {
     void startSystemSE(const char *, s32, s32);
 
     void setAudioEffectType(s32, s32);
+
+    bool isPlayingStageBgm();
+
+    void setStageBGMState(s32, u32);
 };

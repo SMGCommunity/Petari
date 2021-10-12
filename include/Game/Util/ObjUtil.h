@@ -4,4 +4,6 @@ class NameObj;
 
 namespace MR {
     void connectToSceneAreaObj(NameObj *);
+
+    bool isStageStateScenarioOpeningCamera();
 };

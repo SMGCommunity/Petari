@@ -7,4 +7,6 @@ namespace MR {
     TVec3f* getPlayerCenterPos();
 
     bool isPlayerInBind();
+
+    bool isPlayerBindedBigBubble();
 };
