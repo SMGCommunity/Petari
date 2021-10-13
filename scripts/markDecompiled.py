@@ -1,12 +1,12 @@
 import sys
 
 if len(sys.argv) < 4:
-    print("Syntax: markDecompiled.py library mangled_symbol author")
+    print("Syntax: markDecompiled.py library author mangled_symbol")
     sys.exit(1)
 
 lib = sys.argv[1]
-sym = sys.argv[2].replace(",", "&#44;").strip("\n\r")
-auth = sys.argv[3]
+sym = sys.argv[3].replace(",", "&#44;").strip("\n\r")
+auth = sys.argv[2]
 
 with open(f"csv/{lib}.csv", "r") as f:
     lines = f.readlines()

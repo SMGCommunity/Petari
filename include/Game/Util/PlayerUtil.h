@@ -9,4 +9,6 @@ namespace MR {
     bool isPlayerInBind();
 
     bool isPlayerBindedBigBubble();
+
+    void forceKillPlayerByAbyss();
 };
