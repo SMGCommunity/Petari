@@ -2,4 +2,6 @@
 
 namespace MR {
     bool isDemoActive();
+
+    bool isPowerStarGetDemoActive();
 };

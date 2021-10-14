@@ -125,8 +125,8 @@ __dt__23CameraRepulsiveCylinderFv,CameraRepulsiveArea.o,AreaObj.a,false,
 getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false,
 getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false,
 getManagerName__19CameraRepulsiveAreaCFv,CameraRepulsiveArea.o,AreaObj.a,false,
-__ct__13ChangeBgmCubeFiPCc,ChangeBgmCube.o,AreaObj.a,false,
-init__13ChangeBgmCubeFRC12JMapInfoIter,ChangeBgmCube.o,AreaObj.a,false,
+__ct__13ChangeBgmCubeFiPCc,ChangeBgmCube.o,AreaObj.a,true,shibboleet
+init__13ChangeBgmCubeFRC12JMapInfoIter,ChangeBgmCube.o,AreaObj.a,true,shibboleet
 __dt__13ChangeBgmCubeFv,ChangeBgmCube.o,AreaObj.a,false,
 movement__13ChangeBgmCubeFv,ChangeBgmCube.o,AreaObj.a,false,
 setLength__Q29JGeometry8TVec3<f>Ff,CollisionArea.o,AreaObj.a,false,

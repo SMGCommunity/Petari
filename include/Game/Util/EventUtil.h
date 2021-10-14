@@ -9,4 +9,7 @@ namespace MR {
     bool isOnGameEventFlagLibraryRoom();
 
     bool hasGrandStar(int);
+
+    bool isGalaxyRedCometAppearInCurrentStage();
+    bool isGalaxyBlackCometAppearInCurrentStage();
 };

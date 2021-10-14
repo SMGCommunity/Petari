@@ -6,6 +6,8 @@ namespace MR {
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
 
+    bool isPlayerDead();
+
     bool isPlayerInBind();
 
     bool isPlayerBindedBigBubble();
