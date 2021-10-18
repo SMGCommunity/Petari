@@ -37,7 +37,7 @@ rvl_path = os.getenv("RVLFOLDER")
 cw_path = os.getenv("CWFOLDER")
 nw_path = os.getenv("NW4RFOLDER")
 
-includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {cw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {cw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {cw_path}\\PowerPC_EABI_Support\\Msl\\MSL_C\\PPC_EABI\\Include -I- -i {cw_path}\\PowerPC_EABI_Support\\Msl\\MSL_C\\MSL_Common\\Include "
+includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {cw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {cw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {cw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {cw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include "
 flags += includes
 
 if os.path.exists("build"):
