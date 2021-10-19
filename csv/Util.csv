@@ -3463,12 +3463,12 @@ drawTrianglePatchPosNormST__13BezierSurfaceCFv,BezierSurface.o,Util.a,false,
 GXPosition3f32,BezierSurface.o,Util.a,false,
 GXNormal3f32,BezierSurface.o,Util.a,false,
 GXTexCoord2f32,BezierSurface.o,Util.a,false,
-__ct__Q22MR14BothDirPtrLinkFPv,BothDirList.o,Util.a,false,
-__dt__Q22MR14BothDirPtrLinkFv,BothDirList.o,Util.a,false,
-__ct__Q22MR14BothDirPtrListFb,BothDirList.o,Util.a,false,
+__ct__Q22MR14BothDirPtrLinkFPv,BothDirList.o,Util.a,true,shibboleet
+__dt__Q22MR14BothDirPtrLinkFv,BothDirList.o,Util.a,true,shibboleet
+__ct__Q22MR14BothDirPtrListFb,BothDirList.o,Util.a,true,shibboleet
 __dt__Q22MR14BothDirPtrListFv,BothDirList.o,Util.a,false,
-initiate__Q22MR14BothDirPtrListFv,BothDirList.o,Util.a,false,
-setFirst__Q22MR14BothDirPtrListFPQ22MR14BothDirPtrLink,BothDirList.o,Util.a,false,
+initiate__Q22MR14BothDirPtrListFv,BothDirList.o,Util.a,true,shibboleet
+setFirst__Q22MR14BothDirPtrListFPQ22MR14BothDirPtrLink,BothDirList.o,Util.a,true,shibboleet
 append__Q22MR14BothDirPtrListFPQ22MR14BothDirPtrLink,BothDirList.o,Util.a,false,
 remove__Q22MR14BothDirPtrListFPQ22MR14BothDirPtrLink,BothDirList.o,Util.a,false,
 isInvalidParts__26CollisionPartsFilterSensorCFPC14CollisionParts,CollisionPartsFilter.o,Util.a,false,

@@ -2,6 +2,7 @@
 
 #include "Game/Util/ActorSensorUtil.h"
 #include "Game/Util/Array.h"
+#include "Game/Util/BothDirList.h"
 #include "Game/Util/CameraUtil.h"
 #include "Game/Util/DemoUtil.h"
 #include "Game/Util/EventUtil.h"
@@ -12,6 +13,7 @@
 #include "Game/Util/JMapInfoIter.h"
 #include "Game/Util/JMapUtil.h"
 #include "Game/Util/MathUtil.h"
+#include "Game/Util/MemoryUtil.h"
 #include "Game/Util/MtxUtil.h"
 #include "Game/Util/ObjUtil.h"
 #include "Game/Util/PlayerUtil.h"

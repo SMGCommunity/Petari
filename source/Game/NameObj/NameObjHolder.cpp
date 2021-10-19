@@ -1,0 +1,38 @@
+#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObjHolder.h"
+#include "Game/Util.h"
+
+NameObjHolder::NameObjHolder(int a1) : 
+    mObjs(0), _4(0), mObjCount(0), _4C(0) {
+        mObjs = new NameObj*[a1];
+        _4 = a1;
+    }
+
+void NameObjHolder::add(NameObj *pObj) {
+    u32 count = mObjCount;
+    mObjCount = count + 1;
+    mObjs[count] = pObj;
+}
+
+void NameObjHolder::suspendAllObj() {
+    for (int i = 0; i < mObjCount; i++) {
+        MR::requestMovementOff(mObjs[i]);
+    }
+}
+
+void NameObjHolder::resumeAllObj() {
+    for (int i = 0; i < mObjCount; i++) {
+        MR::requestMovementOn(mObjs[i]);
+    }
+}
+
+/*
+void NameObjHolder::syncWithFlags() {
+    callMethodAllObj(NameObj::syncWithFlags);
+}
+*/
+
+void NameObjHolder::clearArray() {
+    mObjCount = 0;
+    _4C = 0;
+}
