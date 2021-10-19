@@ -1,4 +1,6 @@
 #include "Game/Util.h"
+#include <stdio.h>
+#include <string.h>
 
 namespace MR {
     #ifdef NON_MATCHING
@@ -17,4 +19,64 @@ namespace MR {
         return (v3 << 16) | v2;
     }
     #endif
+
+    CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap *pHeap) {
+        _0 = JKRHeap::sCurrentHeap;
+        OSLockMutex(&MR::MutexHolder<1>::sMutex);
+        MR::becomeCurrentHeap(pHeap);
+    }
+
+    CurrentHeapRestorer::~CurrentHeapRestorer() {
+        MR::becomeCurrentHeap(_0);
+        OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
+    }
+
+    void* NewDeleteAllocator::alloc(MEMAllocator *pAllocator, u32 size) {
+        return new u8[size];
+    }
+
+    void NewDeleteAllocator::free(MEMAllocator *pAllocator, void *pData) {
+        delete[] (u8*)pData;
+    }
+
+    // MR::getHomeButtonLayoutAllocator
+
+    JKRHeap* getCurrentHeap() {
+        return JKRHeap::sCurrentHeap;
+    }
+
+    // MR::getAproposHeapForSceneArchive
+    // MR::getStationedHeapNapa
+    // MR::getStationedHeapGDDR3
+    // MR::getSceneHeapNapa
+    // MR::getSceneHeapGDDR3
+    // MR::getHeapNapa
+    // MR::getHeapGDDR3
+
+    void becomeCurrentHeap(JKRHeap *pHeap) {
+        OSLockMutex(&MR::MutexHolder<1>::sMutex);
+        pHeap->becomeCurrentHeap();
+        OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
+    }
+
+    bool isEqualCurrentHeap(JKRHeap *pHeap) {
+        return pHeap == JKRHeap::sCurrentHeap;
+    }
+
+    // MR::adjustHeapSize
+    // MR::copyMemory
+
+    void fillMemory(void *pDest, u8 a2, size_t size) {
+        if (a2 == 0) {
+            MR::zeroMemory(pDest, size);
+        }
+        else {
+            memset(pDest, a2, size);
+        }
+    }
+
+    // MR::zeroMemory
+    // MR::calcCheckSum
+    // MR::allocFromWPadHeap
+    // MR::freeFromWPadHeap
 };
