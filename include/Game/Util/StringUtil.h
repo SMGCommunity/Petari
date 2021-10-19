@@ -13,4 +13,6 @@ namespace MR {
     bool isEqualStringCase(const char *, const char *);
     bool isEqualSubString(const char *, const char *);
     bool hasStringSpace(const char *);
+
+    void addFilePrefix(char *, u32, const char *, const char *);
 };
