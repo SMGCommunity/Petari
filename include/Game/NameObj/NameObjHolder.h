@@ -4,7 +4,7 @@
 
 class NameObj;
 
-typedef void (NameObj::*func)(const void *, void *);
+typedef void (NameObj::*func)(void);
 
 class NameObjHolder {
 public:

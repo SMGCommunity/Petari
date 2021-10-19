@@ -26,11 +26,25 @@ void NameObjHolder::resumeAllObj() {
     }
 }
 
-/*
+
 void NameObjHolder::syncWithFlags() {
-    callMethodAllObj(NameObj::syncWithFlags);
+    callMethodAllObj(&NameObj::syncWithFlags);
 }
-*/
+
+#ifdef NON_MATCHING
+// some weird register usage and ordering
+void NameObjHolder::callMethodAllObj(func functionPtr) {
+    func function = functionPtr;
+
+    NameObj** start = mObjs;
+    NameObj** end = &mObjs[mObjCount];
+
+    while (start != end) {
+        (*start->*function)();
+        start++;
+    }
+}
+#endif
 
 void NameObjHolder::clearArray() {
     mObjCount = 0;
