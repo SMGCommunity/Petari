@@ -18,7 +18,7 @@ namespace MR {
     void* receiveFile(const char *);
     void* receiveArchive(const char *);
     void receiveAllRequestedFile();
-    void createAndAddArchive(void *, JKRHeap *, const char *);
+    void* createAndAddArchive(void *, JKRHeap *, const char *);
     void getMountedArchiveAndHeap(const char *, JKRArchive **, JKRHeap **);
     void removeFileConsideringLanguage(const char *);
     void removeResourceAndFileHOlderIfIsEqualHeap(JKRHeap *);
@@ -27,9 +27,9 @@ namespace MR {
     bool isMountedArchive(const char *);
     bool isLoadedObjectOrLayoutArchive(const char *);
     void makeFileNameConsideringLanguage(char *, u32, const char *);
-    void makeObjectArchiveFileName(char *, u32, const char *);
-    const char* makeObjectArchiveFileNameFromPrefix(char *, u32, const char *, bool);
-    void makeLayoutArchiveFileName(char *, u32, const char *);
-    const char* makeLayoutArchiveFileNameFromPrefix(char *, u32, const char *, bool);
+    bool makeObjectArchiveFileName(char *, u32, const char *);
+    bool makeObjectArchiveFileNameFromPrefix(char *, u32, const char *, bool);
+    bool makeLayoutArchiveFileName(char *, u32, const char *);
+    bool makeLayoutArchiveFileNameFromPrefix(char *, u32, const char *, bool);
     void makeScenarioArchiveFileName(char *, u32, const char *);
 };
