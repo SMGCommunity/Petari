@@ -17,6 +17,9 @@ toolsPath = os.path.dirname(os.path.realpath(__file__)) + "\\tools\\"
 flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline off -ipa file -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
 includes = "-i . -I- -i include "
 
+# a list of files that need the flags to be turned on for inlining
+inlined_files = [ "source\Game\System\FileHolder.cpp" ]
+
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")
     flags = flags + " -DNON_MATCHING "
@@ -58,6 +61,16 @@ for root, dirs, files in os.walk("source"):
 
 for task in tasks:
     source_path, build_path = task
+
+    if source_path in inlined_files:
+        new_flags = flags.replace("-inline off", "-inline auto")
+        print(f"Compiling {source_path} [with inlined options]...")
+
+        if subprocess.call(f"{toolsPath}/mwcceppc.exe {new_flags} {source_path} -o {build_path}", shell=True) == 1:
+                deleteDFiles()
+                sys.exit(1)
+
+        continue
 
     print(f"Compiling {source_path}...")
 
