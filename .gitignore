@@ -1,8 +1,8 @@
 .vs
 .vscode
 *.dat
-*.exe
-*.dll
+tools/*.exe
+tools/*.dll
 *.idb
 *.id0
 *.id1
