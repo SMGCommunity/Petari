@@ -673,12 +673,12 @@ updateNerve__13NerveExecutorFv,NerveExecutor.o,System.a,false,
 setNerve__13NerveExecutorFPC5Nerve,NerveExecutor.o,System.a,false,
 isNerve__13NerveExecutorCFPC5Nerve,NerveExecutor.o,System.a,false,
 getNerveStep__13NerveExecutorCFv,NerveExecutor.o,System.a,false,
-__ct__15OSThreadWrapperFUliiP7JKRHeap,OSThreadWrapper.o,System.a,false,
+__ct__15OSThreadWrapperFUliiP7JKRHeap,OSThreadWrapper.o,System.a,true,shibboleet
 __dt__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,false,
 initMessageQueue__15OSThreadWrapperFP7JKRHeapi,OSThreadWrapper.o,System.a,false,
 initHeapSpecified__15OSThreadWrapperFP7JKRHeapUli,OSThreadWrapper.o,System.a,false,
-start__15OSThreadWrapperFPv,OSThreadWrapper.o,System.a,false,
-run__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,false,
+start__15OSThreadWrapperFPv,OSThreadWrapper.o,System.a,true,shibboleet
+run__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,true,shibboleet
 do_alloc__11JKRUnitHeapFUli,Overwrite.o,System.a,false,
 do_free__11JKRUnitHeapFPv,Overwrite.o,System.a,false,
 do_free__12JKRSolidHeapFPv,Overwrite.o,System.a,false,

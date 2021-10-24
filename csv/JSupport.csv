@@ -1,14 +1,14 @@
 Symbol Name, Object File, Library Archive, Matching, Author
-__ct__10JSUPtrLinkFPv,JSUList.o,JSupport.a,false,
-__dt__10JSUPtrLinkFv,JSUList.o,JSupport.a,false,
-__ct__10JSUPtrListFb,JSUList.o,JSupport.a,false,
+__ct__10JSUPtrLinkFPv,JSUList.o,JSupport.a,true,shibboleet
+__dt__10JSUPtrLinkFv,JSUList.o,JSupport.a,true,shibboleet
+__ct__10JSUPtrListFb,JSUList.o,JSupport.a,true,shibboleet
 __dt__10JSUPtrListFv,JSUList.o,JSupport.a,false,
-initiate__10JSUPtrListFv,JSUList.o,JSupport.a,false,
-setFirst__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,false,
-append__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,false,
-prepend__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,false,
-insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink,JSUList.o,JSupport.a,false,
-remove__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,false,
+initiate__10JSUPtrListFv,JSUList.o,JSupport.a,true,shibboleet
+setFirst__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,true,shibboleet
+append__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,true,shibboleet
+prepend__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,true,shibboleet
+insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink,JSUList.o,JSupport.a,true,shibboleet
+remove__10JSUPtrListFP10JSUPtrLink,JSUList.o,JSupport.a,true,shibboleet
 read__14JSUInputStreamFPvl,JSUInputStream.o,JSupport.a,false,
 skip__14JSUInputStreamFl,JSUInputStream.o,JSupport.a,false,
 skip__20JSURandomInputStreamFl,JSUInputStream.o,JSupport.a,false,

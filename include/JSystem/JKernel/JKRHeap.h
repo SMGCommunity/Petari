@@ -14,3 +14,5 @@ public:
     static JKRHeap* sCurrentHeap;
     static JKRHeap* sRootHeap;
 };
+
+void* operator new(u32, JKRHeap *, int);
