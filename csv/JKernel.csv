@@ -133,9 +133,9 @@ dump__11JKRUnitHeapFv,JKRUnitHeap.o,JKernel.a,false,
 state_register__11JKRUnitHeapCFPQ27JKRHeap6TStateUl,JKRUnitHeap.o,JKernel.a,false,
 state_compare__11JKRUnitHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState,JKRUnitHeap.o,JKernel.a,false,
 getHeapType__11JKRUnitHeapFv,JKRUnitHeap.o,JKernel.a,false,
-__ct__11JKRDisposerFv,JKRDisposer.o,JKernel.a,false,
-__dt__22JSULink<11JKRDisposer>Fv,JKRDisposer.o,JKernel.a,false,
-__dt__11JKRDisposerFv,JKRDisposer.o,JKernel.a,false,
+__ct__11JKRDisposerFv,JKRDisposer.o,JKernel.a,true,shibboleet
+__dt__22JSULink<11JKRDisposer>Fv,JKRDisposer.o,JKernel.a,true,shibboleet
+__dt__11JKRDisposerFv,JKRDisposer.o,JKernel.a,true,shibboleet
 __ct__9JKRThreadFUlii,JKRThread.o,JKernel.a,false,
 __ct__9JKRThreadFP7JKRHeapUlii,JKRThread.o,JKernel.a,false,
 __dt__9JKRThreadFv,JKRThread.o,JKernel.a,false,

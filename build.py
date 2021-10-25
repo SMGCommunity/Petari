@@ -18,7 +18,7 @@ flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c
 includes = "-i . -I- -i include "
 
 # a list of files that need the flags to be turned on for inlining
-inlined_files = [ "source\Game\System\FileHolder.cpp" ]
+inlined_files = [ "source\Game\System\FileHolder.cpp", "source\JSystem\JKernel\JKRDisposer.cpp" ]
 
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")

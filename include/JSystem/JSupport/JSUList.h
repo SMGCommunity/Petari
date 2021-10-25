@@ -31,3 +31,16 @@ public:
     JSUPtrLink* mPrev;      // _8
     JSUPtrLink* mNext;      // _C
 };
+
+template<class T>
+class JSULink : public JSUPtrLink {
+public:
+    JSULink(void *pData) : JSUPtrLink(pData) {
+
+    }
+};
+
+template<class T>
+class JSUList : public JSUPtrList {
+
+};
