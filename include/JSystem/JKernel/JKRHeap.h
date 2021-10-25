@@ -16,3 +16,4 @@ public:
 };
 
 void* operator new(u32, JKRHeap *, int);
+void* operator new[](u32, int);

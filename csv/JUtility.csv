@@ -1,16 +1,16 @@
 Symbol Name, Object File, Library Archive, Matching, Author
-__ct__10JUTTextureFii9_GXTexFmt,JUTTexture.o,JUtility.a,false,
-__dt__10JUTTextureFv,JUTTexture.o,JUtility.a,false,
+__ct__10JUTTextureFii9_GXTexFmt,JUTTexture.o,JUtility.a,true,shibboleet
+__dt__10JUTTextureFv,JUTTexture.o,JUtility.a,true,shibboleet
 storeTIMG__10JUTTextureFPC7ResTIMGUc,JUTTexture.o,JUtility.a,false,
-storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette,JUTTexture.o,JUtility.a,false,
+storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette,JUTTexture.o,JUtility.a,true,shibboleet
 storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut,JUTTexture.o,JUtility.a,false,
-attachPalette__10JUTTextureFP10JUTPalette,JUTTexture.o,JUtility.a,false,
-init__10JUTTextureFv,JUTTexture.o,JUtility.a,false,
+attachPalette__10JUTTextureFP10JUTPalette,JUTTexture.o,JUtility.a,true,shibboleet
+init__10JUTTextureFv,JUTTexture.o,JUtility.a,true,shibboleet
 initTexObj__10JUTTextureFv,JUTTexture.o,JUtility.a,false,
 initTexObj__10JUTTextureF7_GXTlut,JUTTexture.o,JUtility.a,false,
-load__10JUTTextureF11_GXTexMapID,JUTTexture.o,JUtility.a,false,
-capture__10JUTTextureFii9_GXTexFmtbUc,JUTTexture.o,JUtility.a,false,
-setEmbPaletteDelFlag__10JUTTextureFb,JUTTexture.o,JUtility.a,false,
+load__10JUTTextureF11_GXTexMapID,JUTTexture.o,JUtility.a,true,shibboleet
+capture__10JUTTextureFii9_GXTexFmtbUc,JUTTexture.o,JUtility.a,true,shibboleet
+setEmbPaletteDelFlag__10JUTTextureFb,JUTTexture.o,JUtility.a,true,shibboleet
 storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT,JUTPalette.o,JUtility.a,false,
 storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv,JUTPalette.o,JUtility.a,false,
 load__10JUTPaletteFv,JUTPalette.o,JUtility.a,false,
