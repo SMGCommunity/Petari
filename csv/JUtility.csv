@@ -4,7 +4,7 @@ __dt__10JUTTextureFv,JUTTexture.o,JUtility.a,true,shibboleet
 storeTIMG__10JUTTextureFPC7ResTIMGUc,JUTTexture.o,JUtility.a,false,
 storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette,JUTTexture.o,JUtility.a,true,shibboleet
 storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut,JUTTexture.o,JUtility.a,false,
-attachPalette__10JUTTextureFP10JUTPalette,JUTTexture.o,JUtility.a,true,shibboleet
+attachPalette__10JUTTextureFP10JUTPalette,JUTTexture.o,JUtility.a,false,
 init__10JUTTextureFv,JUTTexture.o,JUtility.a,true,shibboleet
 initTexObj__10JUTTextureFv,JUTTexture.o,JUtility.a,false,
 initTexObj__10JUTTextureF7_GXTlut,JUTTexture.o,JUtility.a,false,

@@ -68,6 +68,7 @@ void JUTTexture::storeTIMG(const ResTIMG *pImg, JUTPalette *pPalette) {
 
 // JUTTexture::storeTIMG((ResTIMG const *, JUTPalette *, _GXTlut))
 
+#ifdef NON_MATCHING
 void JUTTexture::attachPalette(JUTPalette *pPalette) {
     JUTPalette* thing;
     if (_20->mPaletteFormat) {
@@ -81,6 +82,7 @@ void JUTTexture::attachPalette(JUTPalette *pPalette) {
         initTexObj(mPalette->_C);
     }
 }
+#endif
 
 void JUTTexture::init() {
     if (!_20->mPaletteCount) {
