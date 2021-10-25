@@ -15,6 +15,9 @@ public:
 
     static JKRHeap* findFromRoot(void *);
 
+    static void* alloc(u32, int, JKRHeap *);
+    static void free(void *, JKRHeap *);
+
     static JKRHeap* sCurrentHeap;
     static JKRHeap* sRootHeap;
 

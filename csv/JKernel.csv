@@ -138,11 +138,11 @@ __dt__22JSULink<11JKRDisposer>Fv,JKRDisposer.o,JKernel.a,true,shibboleet
 __dt__11JKRDisposerFv,JKRDisposer.o,JKernel.a,true,shibboleet
 __ct__9JKRThreadFUlii,JKRThread.o,JKernel.a,false,
 __ct__9JKRThreadFP7JKRHeapUlii,JKRThread.o,JKernel.a,false,
-__dt__9JKRThreadFv,JKRThread.o,JKernel.a,false,
-setCommon_mesgQueue__9JKRThreadFP7JKRHeapi,JKRThread.o,JKernel.a,false,
+__dt__9JKRThreadFv,JKRThread.o,JKernel.a,true,shibboleet
+setCommon_mesgQueue__9JKRThreadFP7JKRHeapi,JKRThread.o,JKernel.a,true,shibboleet
 setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli,JKRThread.o,JKernel.a,false,
-start__9JKRThreadFPv,JKRThread.o,JKernel.a,false,
-searchThread__9JKRThreadFP8OSThread,JKRThread.o,JKernel.a,false,
+start__9JKRThreadFPv,JKRThread.o,JKernel.a,true,shibboleet
+searchThread__9JKRThreadFP8OSThread,JKRThread.o,JKernel.a,true,shibboleet
 enter__15JKRThreadSwitchFP9JKRThreadi,JKRThread.o,JKernel.a,false,
 __as__Q28JUtility6TColorFRCQ28JUtility6TColor,JKRThread.o,JKernel.a,false,
 __sinit_\JKRThread_cpp,JKRThread.o,JKernel.a,false,

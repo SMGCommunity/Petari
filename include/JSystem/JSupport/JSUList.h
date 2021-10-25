@@ -6,6 +6,10 @@ class JSUPtrLink;
 
 class JSUPtrList {
 public:
+    inline JSUPtrList() {
+        initiate();
+    }
+
     JSUPtrList(bool);
     ~JSUPtrList();
 
@@ -38,9 +42,17 @@ public:
     JSULink(void *pData) : JSUPtrLink(pData) {
 
     }
+
+    ~JSULink();
 };
 
 template<class T>
 class JSUList : public JSUPtrList {
+public:
+    JSUList() : JSUPtrList() {
+    }
 
+    JSUList(bool thing) : JSUPtrList(thing) {
+
+    }
 };
