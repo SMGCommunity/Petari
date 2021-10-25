@@ -70,6 +70,7 @@ JKRThread* JKRThread::searchThread(OSThread *pThread) {
     return 0;
 }
 
+#ifdef NON_MATCHING
 JKRThread* JKRThreadSwitch::enter(JKRThread *pThread, int a2) {
     JKRThread* thread = pThread;
 
@@ -91,3 +92,4 @@ JKRThread* JKRThreadSwitch::enter(JKRThread *pThread, int a2) {
 
     return thread;
 }
+#endif
