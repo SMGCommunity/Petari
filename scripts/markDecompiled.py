@@ -1,4 +1,5 @@
 import sys
+from colored import fg
 
 if len(sys.argv) < 4:
     print("Syntax: markDecompiled.py library author mangled_symbol")
@@ -22,7 +23,10 @@ for line in lines:
         spl[4] = auth
 
         if spl[3] == 'true':
-            print("Function is already marked as decompiled!")
+            color = fg('red')
+            print(f"{color} Function is already marked as decompiled!")
+            # reset color
+            print("\033[0;0m")
             sys.exit(1)
         spl[3] = 'true'
         found = True
@@ -30,7 +34,11 @@ for line in lines:
     output.append(f"{spl[0]},{spl[1]},{spl[2]},{spl[3]},{spl[4]}\n")
 
 if found:
-    print(f"Function {sym} has been marked as decompiled!")
+    color = fg('green')
+    print(f"{color} Function {sym} has been marked as decompiled!")
+    # reset color
+    print("\033[0;0m")
+
     with open(f"csv/{lib}.csv", "w") as w:
         w.writelines(output)
 else:

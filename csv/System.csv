@@ -1773,12 +1773,12 @@ execute__Q235@unnamed@StorySequenceExecutor_cpp@37StorySequenceExecutorWaitToSce
 execute__Q235@unnamed@StorySequenceExecutor_cpp@25StorySequenceExecutorIdleCFP5Spine,StorySequenceExecutor.o,System.a,false,
 push_back__Q22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo&#44;8>>FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo,StorySequenceExecutor.o,System.a,false,
 __dt__21StorySequenceExecutorFv,StorySequenceExecutor.o,System.a,false,
-__ct__14SysConfigChunkFv,SysConfigFile.o,System.a,false,
-makeHeaderHashCode__14SysConfigChunkCFv,SysConfigFile.o,System.a,false,
-getSignature__14SysConfigChunkCFv,SysConfigFile.o,System.a,false,
+__ct__14SysConfigChunkFv,SysConfigFile.o,System.a,true,shibboleet
+makeHeaderHashCode__14SysConfigChunkCFv,SysConfigFile.o,System.a,true,shibboleet
+getSignature__14SysConfigChunkCFv,SysConfigFile.o,System.a,true,shibboleet
 deserialize__14SysConfigChunkFPCUcUl,SysConfigFile.o,System.a,false,
-initializeData__14SysConfigChunkFv,SysConfigFile.o,System.a,false,
-initHeaderSerializer__14SysConfigChunkFv,SysConfigFile.o,System.a,false,
+initializeData__14SysConfigChunkFv,SysConfigFile.o,System.a,true,shibboleet
+initHeaderSerializer__14SysConfigChunkFv,SysConfigFile.o,System.a,true,shibboleet
 __ct__13SysConfigFileFv,SysConfigFile.o,System.a,false,
 getTimeAnnounced__13SysConfigFileFv,SysConfigFile.o,System.a,false,
 updateTimeAnnounced__13SysConfigFileFv,SysConfigFile.o,System.a,false,
