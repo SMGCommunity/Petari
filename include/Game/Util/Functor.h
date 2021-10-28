@@ -4,6 +4,7 @@ class JKRHeap;
 
 namespace MR {
     class FunctorBase {
+    public:
         virtual void operator()() const = 0;
         virtual FunctorBase* clone(JKRHeap *) const = 0;
     };
