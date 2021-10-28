@@ -23,7 +23,7 @@ public:
     void requestResume();
     void syncWithFlags();
 
-    const char* mName; // _4
-    u16 _8;
+    const char* mName;  // _4
+    u16 mFlags;         // _8
     s16 _A;
 };
