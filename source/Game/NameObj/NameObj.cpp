@@ -63,8 +63,8 @@ void NameObj::requestSuspend() {
 
     mFlags |= 2;
 }
-
 #endif
+
 // same issues will persist with these, decomp when requestSuspend matches
 
 // NameObj::requestResume

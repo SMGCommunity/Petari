@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include "revolution.h"
 
 //#include "string.h"
 
@@ -15,4 +15,6 @@ namespace MR {
     bool hasStringSpace(const char *);
 
     void addFilePrefix(char *, u32, const char *, const char *);
+
+    void copyString(char *, const char *, u32);
 };
