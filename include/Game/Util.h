@@ -15,6 +15,7 @@
 #include "Game/Util/JMapUtil.h"
 #include "Game/Util/MathUtil.h"
 #include "Game/Util/MemoryUtil.h"
+#include "Game/Util/ModelUtil.h"
 #include "Game/Util/MtxUtil.h"
 #include "Game/Util/MutexHolder.h"
 #include "Game/Util/ObjUtil.h"
