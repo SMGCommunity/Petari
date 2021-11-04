@@ -793,7 +793,7 @@ tryFindNewAreaLightID__13LightFunctionFRCQ29JGeometry8TVec3<f>P11ZoneLightID,Lig
 getAreaLightInfo__13LightFunctionFRC11ZoneLightID,LightFunction.o,Map.a,false,
 blendActorLightPos__27@unnamed@LightFunction_cpp@FRC9LightInfoRC9LightInfoP9LightInfof,LightFunction.o,Map.a,false,
 blendActorLightInfo__13LightFunctionFP14ActorLightInfoRC14ActorLightInfoRC14ActorLightInfof,LightFunction.o,Map.a,false,
-loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3<f>10_GXLightID,LightFunction.o,Map.a,false,
+loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3<f>10_GXLightID,LightFunction.o,Map.a,true,shibboleet
 loadLightInfoDiffuse__27@unnamed@LightFunction_cpp@FRC9LightInfo10_GXLightID,LightFunction.o,Map.a,false,
 loadActorLightInfo__13LightFunctionFPC14ActorLightInfo,LightFunction.o,Map.a,false,
 loadLightInfoCoin__13LightFunctionFPC13LightInfoCoin,LightFunction.o,Map.a,false,

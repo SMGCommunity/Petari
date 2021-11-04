@@ -67,6 +67,15 @@ namespace MR {
     void PSvecBlend(const TVec3f *, const TVec3f *, TVec3f *, f32, f32);
     void vecBlend(const TVec3f &, const TVec3f &, TVec3f *, f32);
 
+    void blendColor(_GXColor *, const _GXColor &, const _GXColor  &, f32);
+    void blendVec(Vec *, const Vec &, const Vec &, f32);
+
+    int getMinAbsElementIndex(const TVec3f &);
+    f32 getMaxElement(const TVec3f &);
+    f32 getMaxAbsElement(const TVec3f &);
+    int getMaxElementIndex(const TVec3f &);
+    int getMaxAbsElementIndex(const TVec3f &);
+
     f32 mod(f32, f32);
 
     void normalize(TVec3f *);

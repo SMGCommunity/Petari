@@ -340,4 +340,77 @@ namespace MR {
     void vecBlend(const TVec3f &a1, const TVec3f &a2, TVec3f *a3, f32 a4) {
         PSvecBlend(&a1, &a2, a3, 1.0f - a4, a4);
     }
+
+    // MR::vecBlendNormal
+    // MR::vecBlendSphere
+    // MR::vecRotAxis
+
+    void blendColor(_GXColor *a1, const _GXColor &a2, const _GXColor &a3, f32 a4) {
+        a1->r = getInterpolateValue(a4, a2.r, a3.r);
+        a1->g = getInterpolateValue(a4, a2.g, a3.g);
+        a1->b = getInterpolateValue(a4, a2.b, a3.b);
+        a1->a = getInterpolateValue(a4, a2.a, a3.a);
+    }
+
+    void blendVec(Vec *a1, const Vec &a2, const Vec &a3, f32 a4) {
+        a1->x = getInterpolateValue(a4, a2.x, a3.x);
+        a1->y = getInterpolateValue(a4, a2.y, a3.y);
+        a1->z = getInterpolateValue(a4, a2.z, a3.z);
+    }
+
+    // MR::turnVecToPlane
+
+    int getMinAbsElementIndex(const TVec3f &rVec) {
+        f64 abs_x = __fabs(rVec.x);
+        f64 abs_y = __fabs(rVec.y);
+        f64 abs_z = __fabs(rVec.z);
+
+        if (abs_x < abs_y && abs_x < abs_z) {
+            return 0;
+        }
+
+        if (abs_y < abs_z) {
+            return 1;
+        }
+
+        return 2;
+    }
+
+    f32 getMaxElement(const TVec3f &rVec) {
+        f32* vec_arr = (f32*)(&rVec);
+        return vec_arr[getMaxElementIndex(rVec)];
+    }
+
+    f32 getMaxAbsElement(const TVec3f &rVec) {
+        f32* vec_arr = (f32*)(&rVec);
+        return vec_arr[getMaxAbsElementIndex(rVec)];
+    }
+
+    int getMaxElementIndex(const TVec3f &rVec) {
+        if (rVec.x > rVec.y && rVec.x > rVec.z) {
+            return 0;
+        }
+
+        if (rVec.y > rVec.z) {
+            return 1;
+        }
+
+        return 2;
+    }
+
+    int getMaxAbsElementIndex(const TVec3f &rVec) {
+        f64 abs_x = __fabs(rVec.x);
+        f64 abs_y = __fabs(rVec.y);
+        f64 abs_z = __fabs(rVec.z);
+
+        if (abs_x > abs_y && abs_x > abs_z) {
+            return 0;
+        }
+
+        if (abs_y > abs_z) {
+            return 1;
+        }
+
+        return 2;
+    }
 };
