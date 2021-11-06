@@ -14,7 +14,7 @@ It is recommended that you have knowledge of the following:
 
 Decompilers such as Hex-Rays (included in IDA Pro) are useful as they can make the decompilation easier to write.
 
-Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. After the code matches, be sure to run `scripts/markDecompiled.py` to mark the function as decompiled.
+Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. After the code matches, be sure to run `scripts/check.py` to check the function that you want to mark. If it matches, it will automatically be marked as decompiled.
 
 If you have any questions or concerns, please join [our Discord server](https://discord.gg/k7ZKzSDsVq)!
 

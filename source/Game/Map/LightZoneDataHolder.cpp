@@ -48,7 +48,7 @@ void LightZoneDataHolder::initZoneData() {
     mCount = MR::getZoneNum();
     mZoneInfo = new LightZoneInfo[mCount];
 
-    for (int i = 0; i < mCount; i++) {
+    for (s32 i = 0; i < mCount; i++) {
         mZoneInfo[i].init(i);
     }
 }

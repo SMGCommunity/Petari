@@ -31,7 +31,7 @@ public:
 
     const char* getAreaLightNameInZoneData(s32) const;
 
-    u32 mAreaCount;          // _0
+    s32 mAreaCount;          // _0
     AreaInfo* mAreaInfo;   // _4
 };
 
@@ -43,6 +43,6 @@ public:
     const char* getAreaLightNameInZoneData(const ZoneLightID &) const;
     const char* getDefaultStageAreaLightName() const;
 
-    u32 mCount;                 // _0
+    s32 mCount;                 // _0
     LightZoneInfo* mZoneInfo;  // _4
 };
