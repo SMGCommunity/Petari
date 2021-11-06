@@ -75,6 +75,7 @@ namespace MR {
     f32 getMaxAbsElement(const TVec3f &);
     int getMaxElementIndex(const TVec3f &);
     int getMaxAbsElementIndex(const TVec3f &);
+    f32 diffAngleAbsFast(const TVec3f &, const TVec3f &);
 
     f32 mod(f32, f32);
 

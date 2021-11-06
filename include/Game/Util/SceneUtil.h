@@ -9,4 +9,8 @@ namespace MR {
     s32 getCurrentScenarioNo();
 
     const char* getCurrentStageName();
+
+    s32 getZoneNum();
+
+    const char* getZoneNameFromZoneId(s32);
 }

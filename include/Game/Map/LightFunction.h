@@ -3,6 +3,8 @@
 #include <revolution.h>
 #include "JSystem/JGeometry/TVec.h"
 
+class JMapInfo;
+
 namespace {
     void loadLightDiffuse(_GXColor color, const TVec3f &rPos, _GXLightID lightID) {
         GXLightObj lightObj;
@@ -14,4 +16,11 @@ namespace {
         GXInitLightColor(&lightObj, new_color);
         GXLoadLightObjImm(&lightObj, lightID);
     }
+};
+
+class LightFunction {
+public:
+    static const char* getDefaultAreaLightName();
+
+    static s32 createZoneDataParser(const char *, JMapInfo **);
 };
