@@ -2,8 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.h"
 
-class FlashingCtrl : public NameObj
-{
+class FlashingCtrl : public NameObj {
 public:
     FlashingCtrl(LiveActor *, bool);
 
