@@ -24,7 +24,7 @@ compiler_execptions = {
 }
 
 # a list of files that need the flags to be turned on for inlining
-inlined_files = [ "source\Game\System\FileHolder.cpp", "source\JSystem\JKernel\JKRDisposer.cpp", "source\JSystem\JKernel\JKRThread.cpp" ]
+inlined_files = [ "source\Game\Map\LightDataHolder.cpp", "source\Game\System\FileHolder.cpp", "source\JSystem\JKernel\JKRDisposer.cpp", "source\JSystem\JKernel\JKRThread.cpp" ]
 
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")

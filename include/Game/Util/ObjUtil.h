@@ -2,9 +2,11 @@
 
 class NameObj;
 class JMapInfo;
+class ResourceHolder;
 
 namespace MR {
     void connectToSceneAreaObj(NameObj *);
+    void connectToSceneMapObjMovement(NameObj *);
 
     bool isStageStateScenarioOpeningCamera();
 
@@ -16,4 +18,7 @@ namespace MR {
 
     void getCsvDataS32(s32 *, const JMapInfo *, const char *, s32);
     void getCsvDataStr(const char **, const JMapInfo *, const char *, s32);
+    void getCsvDataBool(bool *, const JMapInfo *, const char *, s32);
+
+    ResourceHolder* createAndAddResourceHolder(const char *);
 };

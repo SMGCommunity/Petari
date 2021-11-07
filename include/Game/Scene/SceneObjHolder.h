@@ -1,6 +1,7 @@
 #pragma once
 
-#define SceneObj_PlanetMapCreator 0x74
+#define SceneObj_LightDirector      0x6
+#define SceneObj_PlanetMapCreator   0x74
 
 class NameObj;
 

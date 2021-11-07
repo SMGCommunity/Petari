@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "ProgressCalc/1.0.0": {
+      "ProgressCalc_New/1.0.0": {
         "runtime": {
-          "ProgressCalc.dll": {}
+          "ProgressCalc_New.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "ProgressCalc/1.0.0": {
+    "ProgressCalc_New/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
