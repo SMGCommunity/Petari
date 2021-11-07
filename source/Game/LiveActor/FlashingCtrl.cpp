@@ -37,11 +37,10 @@ void FlashingCtrl::start(int timer) {
 }
 
 void FlashingCtrl::end() {
-    bool toggle = mToggleDraw;
     mTimer = 0;
     mIsEnded = true;
 
-    if (toggle && !MR::isDead(mActor) && !MR::isClipped(mActor) && MR::isNoEntryDrawBuffer(mActor)) {
+    if (mToggleDraw && !MR::isDead(mActor) && !MR::isClipped(mActor) && MR::isNoEntryDrawBuffer(mActor)) {
         MR::onEntryDrawBuffer(mActor);
     }
 }
@@ -68,11 +67,13 @@ bool FlashingCtrl::isNowOn() const {
 }
 
 void FlashingCtrl::updateFlashing() {
-    if (isNowOn()) {
-        MR::offEntryDrawBuffer(mActor);
-    }
-    else {
-        MR::onEntryDrawBuffer(mActor);
+    if (mToggleDraw) {
+        if (isNowOn()) {
+            MR::offEntryDrawBuffer(mActor);
+        }
+        else {
+            MR::onEntryDrawBuffer(mActor);
+        }
     }
 }
 
