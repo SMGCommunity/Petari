@@ -5,6 +5,7 @@ class JMapInfo;
 class ResourceHolder;
 
 namespace MR {
+    void connectToScene(NameObj *, int, int, int, int);
     void connectToSceneAreaObj(NameObj *);
     void connectToSceneMapObjMovement(NameObj *);
 
