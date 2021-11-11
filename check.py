@@ -20,16 +20,20 @@ blacklistedInsns = {
     PPC_INS_MFESR, PPC_INS_MFDEAR, PPC_INS_MTESR, PPC_INS_MTDEAR, PPC_INS_MFICCR, PPC_INS_MFASR
 }
 
-if len(sys.argv) < 2:
-    print("Syntax: check.py lib [mangled_sym]")
+if len(sys.argv) < 1:
+    print("Syntax: check.py [mangled_sym]")
     sys.exit(1)
 
-if len(sys.argv) == 2:
+if len(sys.argv) == 1:
     sym = None
 else:
-    sym = sys.argv[2].replace(",", "&#44;").strip("\n\r")
+    sym = sys.argv[1].replace(",", "&#44;").strip("\n\r")
 
-lib = sys.argv[1]
+lib = util.getLibFromSym(sym)
+
+if lib == "":
+    print("library not found, symbol must not exist")
+    sys.exit(1)
 
 if lib == "TRK_Hollywood_Revolution":
     print("this library is not supported at the moment")
@@ -127,9 +131,9 @@ if sym is not None:
 
                 if curOpOg.reg != curOpNw.reg:
                     # this is a reoccuring issue with r13 as well
-                    if curOrigInstr.id == PPC_INS_LWZ:
-                        if curOpOg.reg == PPC_REG_R13 and curOpNw.reg == PPC_REG_R0:
-                            print("skipping r13 issue with SDA")
+                    if curOrigInstr.id == PPC_INS_LWZ or curOrigInstr.id == PPC_INS_LHZ:
+                        if curOpOg.reg == PPC_REG_R13 and curOpNw.reg == PPC_REG_R0 or curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
+                            print("skipping r2/r13 issue with SDA")
                             continue
 
                     print(f"ERROR: Operand mismatch on line {i * 4}")

@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 import shutil
+import util
 
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
@@ -59,12 +60,18 @@ if os.path.exists("build"):
 
 tasks = list()
 
-# I do not think that SMG1 ever uses any C anywhere that isn't a part of the SDK / Runtime lib
 for root, dirs, files in os.walk("source"):
     for file in files:
         if file.endswith(".cpp"):
             source_path = os.path.join(root, file)
             build_path = source_path.replace("source", "build").replace(".cpp", ".o")
+
+            os.makedirs(os.path.dirname(build_path), exist_ok=True)
+
+            tasks.append((source_path, build_path))
+        elif file.endswith(".c"):
+            source_path = os.path.join(root, file)
+            build_path = source_path.replace("source", "build").replace(".c", ".o")
 
             os.makedirs(os.path.dirname(build_path), exist_ok=True)
 
