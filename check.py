@@ -73,6 +73,10 @@ if sym is not None:
         elf_file = ELFFile(f) 
         symtab = elf_file.get_section_by_name('.symtab')
 
+        if symtab.get_symbol_by_name(sym) is None:
+            print("could not find symbol, did you forget to compile?")
+            sys.exit(1)
+
         symbol = symtab.get_symbol_by_name(sym)[0]
 
         offs = symbol['st_value']
