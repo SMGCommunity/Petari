@@ -1,8 +1,13 @@
 #include "Game/System/NerveExecutor.h"
 
-NerveExecutor::NerveExecutor(const char *a1) : mSpine(0) {}
+NerveExecutor::NerveExecutor(const char *a1) : mSpine(0) {
 
-NerveExecutor::~NerveExecutor() {}
+}
+
+// This isn't right but when it's virtual it doesn't exist for some reason
+NerveExecutor::~NerveExecutor() {
+
+}
 
 void NerveExecutor::initNerve(const Nerve *pNerve) {
     mSpine = new Spine(this, pNerve);

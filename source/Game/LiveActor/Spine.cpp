@@ -26,10 +26,10 @@ void Spine::setNerve(const Nerve *pNerve) {
 }
 
 const Nerve* Spine::getCurrentNerve() const{
-    if (mNextNerve == 0) {
-        return mCurNerve;
+    if (mNextNerve) {
+        return mNextNerve;
     }
-    return mNextNerve;
+    return mCurNerve;
 }
 
 void Spine::changeNerve() {
@@ -46,4 +46,8 @@ void Spine::changeNerve() {
     mStep = 0;
     mCurNerve = pNextState;
     mNextNerve = NULL;
+}
+
+void Spine::initStateKeeper(int a2) {
+    mStateKeeper = new ActorStateKeeper(a2);
 }

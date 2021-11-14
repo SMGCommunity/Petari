@@ -752,11 +752,11 @@ __cl__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer&#44;M20SimpleJ3DModelDrawerFPCv
 clone__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer&#44;M20SimpleJ3DModelDrawerFPCvPCv_v>CFP7JKRHeap,SimpleJ3DModelDrawer.o,LiveActor.a,false
 __dt__20SimpleJ3DModelDrawerFv,SimpleJ3DModelDrawer.o,LiveActor.a,false
 __ct__5SpineFPvPC5Nerve,Spine.o,LiveActor.a,false
-update__5SpineFv,Spine.o,LiveActor.a,false
-setNerve__5SpineFPC5Nerve,Spine.o,LiveActor.a,false
-getCurrentNerve__5SpineCFv,Spine.o,LiveActor.a,false
-changeNerve__5SpineFv,Spine.o,LiveActor.a,false
-initStateKeeper__5SpineFi,Spine.o,LiveActor.a,false
+update__5SpineFv,Spine.o,LiveActor.a,true
+setNerve__5SpineFPC5Nerve,Spine.o,LiveActor.a,true
+getCurrentNerve__5SpineCFv,Spine.o,LiveActor.a,true
+changeNerve__5SpineFv,Spine.o,LiveActor.a,true
+initStateKeeper__5SpineFi,Spine.o,LiveActor.a,true
 __ct__13SpotMarkLightFP9LiveActorffPA4_f,SpotMarkLight.o,LiveActor.a,false
 control__13SpotMarkLightFv,SpotMarkLight.o,LiveActor.a,false
 calcAndSetBaseMtx__13SpotMarkLightFv,SpotMarkLight.o,LiveActor.a,false

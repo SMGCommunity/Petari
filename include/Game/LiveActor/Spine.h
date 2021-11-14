@@ -14,7 +14,7 @@ public:
     void setNerve(const Nerve *);
     const Nerve* getCurrentNerve() const;
     void changeNerve();
-    void initStateKeeper(s32);
+    void initStateKeeper(int);
 
     void* mExecutor; // _0
     const Nerve* mCurNerve; // _4

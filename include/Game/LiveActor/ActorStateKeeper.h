@@ -5,7 +5,7 @@
 
 class ActorStateKeeper {
 public:
-    ActorStateKeeper(s32);
+    ActorStateKeeper(int);
 
     void addState(ActorStateBaseInterface *, const Nerve *, const char *);
     bool updateCurrentState();
