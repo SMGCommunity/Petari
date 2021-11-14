@@ -3,6 +3,7 @@
 class LiveActor;
 
 namespace MR {
+    void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
 
     bool isClipped(const LiveActor *);
