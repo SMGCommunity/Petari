@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 import shutil
+import util
 
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
@@ -21,6 +22,10 @@ default_compiler_path = "GC/3.0a3/"
 
 compiler_execptions = {
     #"source\JSystem\JKernel\JKRThread.cpp": "GC/2.5/"
+}
+
+compiler_flags = {
+    #"GC/2.5", flags
 }
 
 # a list of files that need the flags to be turned on for inlining
@@ -51,7 +56,7 @@ cw_path = os.getenv("CWFOLDER")
 nw_path = os.getenv("NW4RFOLDER")
 mw_path = os.getenv("MWFOLDER")
 
-includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include "
+includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include "
 flags += includes
 
 if os.path.exists("build"):
@@ -59,12 +64,18 @@ if os.path.exists("build"):
 
 tasks = list()
 
-# I do not think that SMG1 ever uses any C anywhere that isn't a part of the SDK / Runtime lib
 for root, dirs, files in os.walk("source"):
     for file in files:
         if file.endswith(".cpp"):
             source_path = os.path.join(root, file)
             build_path = source_path.replace("source", "build").replace(".cpp", ".o")
+
+            os.makedirs(os.path.dirname(build_path), exist_ok=True)
+
+            tasks.append((source_path, build_path))
+        elif file.endswith(".c"):
+            source_path = os.path.join(root, file)
+            build_path = source_path.replace("source", "build").replace(".c", ".o")
 
             os.makedirs(os.path.dirname(build_path), exist_ok=True)
 

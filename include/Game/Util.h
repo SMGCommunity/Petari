@@ -13,6 +13,7 @@
 #include "Game/Util/JMapInfo.h"
 #include "Game/Util/JMapInfoIter.h"
 #include "Game/Util/JMapUtil.h"
+#include "Game/Util/LightUtil.h"
 #include "Game/Util/LiveActorUtil.h"
 #include "Game/Util/MathUtil.h"
 #include "Game/Util/MemoryUtil.h"

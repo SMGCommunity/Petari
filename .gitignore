@@ -18,3 +18,5 @@ tools/*.dll
 build
 compiler
 __pycache__
+genCsv.py
+checkObject.py

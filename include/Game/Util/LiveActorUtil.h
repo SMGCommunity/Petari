@@ -11,4 +11,6 @@ namespace MR {
 
     void onEntryDrawBuffer(LiveActor *);
     void offEntryDrawBuffer(LiveActor *);
+
+    const char* getModelResName(const LiveActor *);
 }
