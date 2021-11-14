@@ -2,11 +2,16 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/LiveActorFlag.h"
+#include "Game/LiveActor/Spine.h"
+#include "Game/LiveActor/HitSensor.h"
+#include "Game/LiveActor/HitSensorKeeper.h"
 #include "JSystem/JGeometry/TVec.h"
 
 class LiveActor : public NameObj {
 public:
     LiveActor(const char *);
+
+    virtual s32 receiveMessage(u32, HitSensor *, HitSensor *);
 
     TVec3f mPosition;       // _C
     TVec3f mRotation;       // _18
@@ -15,8 +20,8 @@ public:
     TVec3f mGravity;        // _3C
     u32* _48;
     u32* _4C;
-    u32* _50;
-    u32* _54;
+    Spine* mSpine;
+    HitSensorKeeper* mSensorKeeper; // _54
     u32* _58;
     u32* _5C;
     u32* _60;
