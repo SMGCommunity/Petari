@@ -24,7 +24,7 @@ public:
     TVec3f mPosition; // _4
     f32 mRadius; // _10
     u16 mSensorCount; // _14
-    u16 mMaxSensors; // _16
+    u16 mGroupSize; // _16
     HitSensor** mSensors; // _18
     SensorGroup* mSensorGroup; // _1C
     bool mValidBySystem; // _20

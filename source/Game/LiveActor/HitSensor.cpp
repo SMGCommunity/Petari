@@ -3,24 +3,24 @@
 #include "Game/LiveActor/SensorHitChecker.h"
 
 // Doesn't Match
-HitSensor::HitSensor(u32 type, u16 maxSensors, f32 radius, LiveActor *pActor) {
+HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
     mSensorType = type;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
     mPosition.z = 0.0f;
     mRadius = radius;
     mSensorCount = 0;
-    mMaxSensors = maxSensors;
+    mGroupSize = sensorGroupSize;
     mSensors = 0;
     mSensorGroup = NULL;
     mValidBySystem = false;
     mValidByHost = true;
     mActor = pActor;
 
-    if (maxSensors) {
-        mSensors = new HitSensor*[maxSensors];
+    if (sensorGroupSize) {
+        mSensors = new HitSensor*[sensorGroupSize];
 
-        for (s32 i = 0; i < mMaxSensors; i++) {
+        for (s32 i = 0; i < mGroupSize; i++) {
             mSensors[i] = NULL;
         }
     }
@@ -38,7 +38,7 @@ void HitSensor::setType(u32 type) {
     mSensorType = type;
 
     if (mValidBySystem) {
-        if (mMaxSensors) {
+        if (mGroupSize) {
             if (mValidByHost){
                 mSensorGroup->remove(this);
                 wasRemoved = true;
@@ -67,7 +67,7 @@ void HitSensor::validate() {
 
     mValidByHost = true;
 
-    if (!mMaxSensors) {
+    if (!mGroupSize) {
         return;
     }
 
@@ -82,7 +82,7 @@ void HitSensor::invalidate() {
     if (mValidByHost) {
         mValidByHost = false;
 
-        if (mMaxSensors) {
+        if (mGroupSize) {
             if (mValidBySystem) {
                 mSensorGroup->remove(this);
             }
@@ -94,7 +94,7 @@ void HitSensor::invalidate() {
 
 void HitSensor::validateBySystem() {
     if (!mValidBySystem) {
-        if (mMaxSensors) {
+        if (mGroupSize) {
             if (mValidByHost) {
                 mSensorGroup->add(this);
             }
@@ -106,7 +106,7 @@ void HitSensor::validateBySystem() {
 
 void HitSensor::invalidateBySystem() {
     if (!mValidBySystem) {
-        if (mMaxSensors) {
+        if (mGroupSize) {
             if (mValidByHost) {
                 mSensorGroup->remove(this);
             }
@@ -118,7 +118,7 @@ void HitSensor::invalidateBySystem() {
 }
 
 void HitSensor::addHitSensor(HitSensor *pSensor) {
-    if (mSensorCount < mMaxSensors) {
+    if (mSensorCount < mGroupSize) {
         mSensors[mSensorCount] = pSensor;
         mSensorCount++;
     }
