@@ -28,8 +28,8 @@ HitSensor* HitSensorKeeper::addPos(const char *pName, u32 sensorType, u16 sensor
     return pInfo->mSensor;
 }
 
-HitSensor* HitSensorKeeper::addMtx(const char *pName, u32 sensorType, u16 sensorGroupSize, f32 radius, LiveActor *pActor, Mtx mtx, const TVec3f &a7) {
-    HitSensorInfo* pInfo = new HitSensorInfo(pName, new HitSensor(sensorType, sensorGroupSize, radius, pActor), NULL, (Mtx*)mtx, a7, false);
+HitSensor* HitSensorKeeper::addMtx(const char *pName, u32 sensorType, u16 sensorGroupSize, f32 radius, LiveActor *pActor, MtxPtr mtx, const TVec3f &a7) {
+    HitSensorInfo* pInfo = new HitSensorInfo(pName, new HitSensor(sensorType, sensorGroupSize, radius, pActor), NULL, mtx, a7, false);
     registHitSensorInfo(pInfo);
     return pInfo->mSensor;
 }

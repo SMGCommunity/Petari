@@ -8,7 +8,7 @@ class HitSensor;
 class HitSensorInfo
 {
 public:
-    HitSensorInfo(const char *, HitSensor *, const TVec3f *, Mtx *, const TVec3f &, bool);
+    HitSensorInfo(const char *, HitSensor *, const TVec3f *, MtxPtr, const TVec3f &, bool);
 
     void update();
     void doObjCol();
@@ -18,7 +18,7 @@ public:
     HitSensor* mSensor; // _8
     TVec3f _C;
     TVec3f* _18;
-    Mtx* _1C;
+    MtxPtr _1C;
     bool _20;
     u8 _21; // _Padding
     u8 _22;

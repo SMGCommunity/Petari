@@ -283,7 +283,7 @@ invalidateBySystem__9HitSensorFv,HitSensor.o,LiveActor.a,true
 addHitSensor__9HitSensorFP9HitSensor,HitSensor.o,LiveActor.a,true
 __ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3<f>PA4_fRCQ29JGeometry8TVec3<f>b,HitSensorInfo.o,LiveActor.a,false
 update__13HitSensorInfoFv,HitSensorInfo.o,LiveActor.a,false
-doObjCol__13HitSensorInfoFv,HitSensorInfo.o,LiveActor.a,false
+doObjCol__13HitSensorInfoFv,HitSensorInfo.o,LiveActor.a,true
 __ct__15HitSensorKeeperFi,HitSensorKeeper.o,LiveActor.a,true
 add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3<f>,HitSensorKeeper.o,LiveActor.a,true
 addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,HitSensorKeeper.o,LiveActor.a,true

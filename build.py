@@ -29,7 +29,7 @@ compiler_flags = {
 }
 
 # a list of files that need the flags to be turned on for inlining
-inlined_files = [ "source\Game\AreaObj\AreaForm.cpp" "source\Game\Map\LightDataHolder.cpp", "source\Game\System\FileHolder.cpp", "source\JSystem\JKernel\JKRDisposer.cpp", "source\JSystem\JKernel\JKRThread.cpp", "source\Game\LiveActor\HitSensor.cpp", "source\Game\LiveActor\HitSensorKeeper.cpp" ]
+inlined_files = [ "source\Game\AreaObj\AreaForm.cpp" "source\Game\Map\LightDataHolder.cpp", "source\Game\System\FileHolder.cpp", "source\JSystem\JKernel\JKRDisposer.cpp", "source\JSystem\JKernel\JKRThread.cpp", "source\Game\LiveActor\HitSensor.cpp", "source\Game\LiveActor\HitSensorInfo.cpp", "source\Game\LiveActor\HitSensorKeeper.cpp" ]
 
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")

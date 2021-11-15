@@ -11,7 +11,33 @@ class LiveActor : public NameObj {
 public:
     LiveActor(const char *);
 
+    virtual ~LiveActor();
+
+    virtual void init(JMapInfoIter const &);
+    virtual void movement();
+    virtual void calcAnim();
+    virtual void calcViewAndEntry();
+    virtual void appear();
+    virtual void makeActorAppeared();
+    virtual void kill();
+    virtual void makeActorDead();
     virtual s32 receiveMessage(u32, HitSensor *, HitSensor *);
+    virtual Mtx* getBaseMtx() const;
+    virtual Mtx* getTakingMtx() const;
+    virtual void startClipped();
+    virtual void endClipped();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void updateHitSensor(HitSensor *);
+    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgPush(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveMsgTake(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgTaken(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgThrow(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
+    virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
     TVec3f mPosition;       // _C
     TVec3f mRotation;       // _18
