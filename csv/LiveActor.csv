@@ -291,7 +291,7 @@ addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3<f>,HitSen
 addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor,HitSensorKeeper.o,LiveActor.a,false
 getSensor__15HitSensorKeeperCFPCc,HitSensorKeeper.o,LiveActor.a,true
 update__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,true
-doObjCol__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,false
+doObjCol__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,true
 clear__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,true
 validate__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,true
 invalidate__15HitSensorKeeperFv,HitSensorKeeper.o,LiveActor.a,true
