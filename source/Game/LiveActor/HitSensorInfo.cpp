@@ -11,7 +11,7 @@ HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f
     _C.x = a5.x;
     _C.y = a5.y;
     _C.z = a5.z;
-    _18 = (TVec3f*)&a3;
+    _18 = a3;
     _1C = mtx;
     _20 = a6;
 }

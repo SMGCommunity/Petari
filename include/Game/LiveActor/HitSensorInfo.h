@@ -17,7 +17,7 @@ public:
     s32 mHashCode; // _4
     HitSensor* mSensor; // _8
     TVec3f _C;
-    TVec3f* _18;
+    const TVec3f* _18;
     MtxPtr _1C;
     bool _20;
     u8 _21; // _Padding
