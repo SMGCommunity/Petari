@@ -20,7 +20,7 @@ HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f
 
 void HitSensorInfo::doObjCol() {
     for (s32 i = 0; i < mSensor->mSensorCount; i++) {
-        if (MR::isDead(mSensor->mSensors[i]->mActor)) {
+        if (!MR::isDead(mSensor->mSensors[i]->mActor)) {
             mSensor->mActor->attackSensor(mSensor, mSensor->mSensors[i]);
         }
     }
