@@ -7,6 +7,7 @@
 #include "Game/Util/DemoUtil.h"
 #include "Game/Util/EventUtil.h"
 #include "Game/Util/FileUtil.h"
+#include "Game/Util/FixedPosition.h"
 #include "Game/Util/Functor.h"
 #include "Game/Util/HashUtil.h"
 #include "Game/Util/JMapIdInfo.h"

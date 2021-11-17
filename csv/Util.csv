@@ -3520,13 +3520,13 @@ ddLightingOff__2MRFv,DirectDrawUtil.o,Util.a,false
 GXPosition3f32,DirectDrawUtil.o,Util.a,false
 GXNormal3f32,DirectDrawUtil.o,Util.a,false
 GXTexCoord2f32,DirectDrawUtil.o,Util.a,false
-__ct__13FixedPositionFPC9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,false
-__ct__13FixedPositionFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,false
+__ct__13FixedPositionFPC9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,true
+__ct__13FixedPositionFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,true
 __ct__13FixedPositionFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,false
 calc__13FixedPositionFv,FixedPosition.o,Util.a,false
 setBaseMtx__13FixedPositionFPA4_f,FixedPosition.o,Util.a,false
 setLocalTrans__13FixedPositionFRCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,false
-init__13FixedPositionFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,false
+init__13FixedPositionFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,FixedPosition.o,Util.a,true
 __ct__13FixedPositionFPC9LiveActorPCcPC9LiveActor,FixedPosition.o,Util.a,false
 __ct__10BindSphereFRCQ29JGeometry8TVec3<f>f,GeometryBindUtil.o,Util.a,false
 __ct__8BindConeFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff,GeometryBindUtil.o,Util.a,false
