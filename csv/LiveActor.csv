@@ -751,7 +751,7 @@ initDraw__20SimpleJ3DModelDrawerCFv,SimpleJ3DModelDrawer.o,LiveActor.a,false
 __cl__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer&#44;M20SimpleJ3DModelDrawerFPCvPCv_v>CFv,SimpleJ3DModelDrawer.o,LiveActor.a,false
 clone__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer&#44;M20SimpleJ3DModelDrawerFPCvPCv_v>CFP7JKRHeap,SimpleJ3DModelDrawer.o,LiveActor.a,false
 __dt__20SimpleJ3DModelDrawerFv,SimpleJ3DModelDrawer.o,LiveActor.a,false
-__ct__5SpineFPvPC5Nerve,Spine.o,LiveActor.a,false
+__ct__5SpineFPvPC5Nerve,Spine.o,LiveActor.a,true
 update__5SpineFv,Spine.o,LiveActor.a,true
 setNerve__5SpineFPC5Nerve,Spine.o,LiveActor.a,true
 getCurrentNerve__5SpineCFv,Spine.o,LiveActor.a,true
