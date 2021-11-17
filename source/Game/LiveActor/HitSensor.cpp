@@ -2,7 +2,7 @@
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/LiveActor/SensorHitChecker.h"
 
-// Doesn't Match
+#ifdef NON_MATCHING
 HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
     mSensorType = type;
     mPosition.x = 0.0f;
@@ -27,6 +27,7 @@ HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActo
 
     MR::initHitSensorGroup(this);
 }
+#endif
 
 u32 HitSensor::receiveMessage(u32 msg, HitSensor *pReceiver) {
     return mActor->receiveMessage(msg, pReceiver, this);

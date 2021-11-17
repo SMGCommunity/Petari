@@ -34,7 +34,7 @@ HitSensor* HitSensorKeeper::addMtx(const char *pName, u32 sensorType, u16 sensor
     return pInfo->mSensor;
 }
 
-// stack problem
+#ifdef NON_MATCHING
 HitSensor* HitSensorKeeper::addCallback(const char *pName, u32 sensorType, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
     TVec3f callBack;
     callBack.x = 0.0f;
@@ -44,6 +44,7 @@ HitSensor* HitSensorKeeper::addCallback(const char *pName, u32 sensorType, u16 s
     registHitSensorInfo(pInfo);
     return pInfo->mSensor;
 }
+#endif
 
 HitSensor* HitSensorKeeper::getSensor(const char *pSensorName) const {
     if (mSensorInfosSize == 1) {

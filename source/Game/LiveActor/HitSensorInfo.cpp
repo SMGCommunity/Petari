@@ -3,7 +3,7 @@
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
 
-// doesn't give me PS instructions
+#ifdef NON_MATCHING
 HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f *a3, MtxPtr mtx, const register TVec3f &a5, bool a6) {
     mName = pName;
     mHashCode = MR::getHashCode(pName);
@@ -15,6 +15,7 @@ HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f
     _1C = mtx;
     _20 = a6;
 }
+#endif
 
 // HitSensorInfo::update()
 
