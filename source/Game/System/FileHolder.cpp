@@ -46,8 +46,8 @@ FileHolder::FileHolder() {
 
 void FileHolder::add(const char *pName, JKRHeap *pHeap, void *pData) {
     FileHolderFileEntry* entry = new FileHolderFileEntry(pName, pHeap, pData);
-    s32 count = mArray.mArray.mCount;
-    mArray.mArray.mCount++;
+    s32 count = mArray.mCount;
+    mArray.mCount++;
     mArray.mArray.mArr[count] = entry;
 }
 
@@ -65,7 +65,7 @@ FileHolderFileEntry** FileHolder::removeFile(const char *pFile) {
     FileHolderFileEntry* entry = findEntry(pFile);
     FileHolderFileEntry** i;
 
-    for (i = mArray.mArray.mArr; i != &mArray.mArray.mArr[mArray.mArray.mCount] && *i != entry; i++) {
+    for (i = mArray.mArray.mArr; i != &mArray.mArray.mArr[mArray.mCount] && *i != entry; i++) {
     }
 
     delete *i;
@@ -78,7 +78,7 @@ FileHolderFileEntry* FileHolder::findEntry(const char *pFile) const {
 
     FileHolderFileEntry** curEntry;
 
-    for (curEntry = mArray.mArray.mArr; curEntry != &mArray.mArray.mArr[mArray.mArray.mCount]; curEntry++) {
+    for (curEntry = mArray.mArray.mArr; curEntry != &mArray.mArray.mArr[mArray.mCount]; curEntry++) {
         if (entryNum == (*(curEntry))->mEntryNum) {
             return *curEntry;
         }

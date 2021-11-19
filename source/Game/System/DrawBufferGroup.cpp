@@ -23,7 +23,7 @@ s32 DrawBufferGroup::registerDrawBuffer(LiveActor *pActor) {
     if (idx < 0) {
         DrawBufferExecuter* exec = new DrawBufferExecuter(modelName, MR::getJ3DModel(pActor), 0x10);
 
-        idx = _0.mArray.mCount;
+        idx = _0.mCount;
         _0.push_back(exec);
 
         if (_20 == -1) {
@@ -53,7 +53,7 @@ void DrawBufferGroup::findLightInfo(LiveActor *pActor, s32 a2) {
     _0.mArray.mArr[a2]->findLightInfo(pActor);
 
     if (_20 != -1) {
-        for (u32 i = 0; i < _0.mArray.mCount; i++) {
+        for (u32 i = 0; i < _0.mCount; i++) {
             _0.mArray.mArr[i]->onExecuteLight(_1C);
         }
 
@@ -83,7 +83,7 @@ void DrawBufferGroup::setLightType(s32 type) {
 }
 
 s32 DrawBufferGroup::findExecuterIndex(const char *pName) const {
-    for (u32 i = 0; i < _0.mArray.mCount; i++) {
+    for (u32 i = 0; i < _0.mCount; i++) {
         if (MR::isEqualString(_0.mArray.mArr[i]->mName, pName)) {
             return i;
         }
