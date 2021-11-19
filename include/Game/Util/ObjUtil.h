@@ -15,6 +15,7 @@ namespace MR {
     void requestMovementOff(NameObj *);
     
     const JMapInfo* createCsvParser(const char *, const char *, ...);
+    JMapInfo* tryCreateCsvParser(const ResourceHolder *, const char *, ...);
     s32 getCsvDataElementNum(const JMapInfo *);
 
     void getCsvDataS32(s32 *, const JMapInfo *, const char *, s32);

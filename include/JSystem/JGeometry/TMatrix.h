@@ -15,6 +15,8 @@ namespace JGeometry {
 
         }
 
+        void identity();
+
         void mult(const TVec3f &, TVec3f &);
 
         void mult(const TVec3f &srcVec, const TVec2f &destVec) const {
