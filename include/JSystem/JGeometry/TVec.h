@@ -26,6 +26,16 @@ namespace JGeometry {
 
         TVec3(const TVec3<T> &);
 
+        inline void copyTo_PS(register const TVec3<T> &src) {
+            register TVec3<T>* dst = this;
+            __asm {
+                psq_l f0, 0(src), 0, 0
+                lfs f1, 8(src)
+                psq_st f0, 0(dst), 0, 0
+                stfs f1, 8(dst)
+            };
+        }
+
         template<typename T>
         void set(T _x, T _y, T _z);
 
