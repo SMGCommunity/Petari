@@ -4,6 +4,7 @@
 
 #ifdef NON_MATCHING
 HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
+    u16 val = 0xFFFF;
     mSensorType = type;
     mPosition.x = 0.0f;
     mPosition.y = 0.0f;
@@ -17,7 +18,7 @@ HitSensor::HitSensor(u32 type, u16 sensorGroupSize, f32 radius, LiveActor *pActo
     mValidByHost = true;
     mActor = pActor;
 
-    if (sensorGroupSize) {
+    if (val &= sensorGroupSize) {
         mSensors = new HitSensor*[sensorGroupSize];
 
         for (s32 i = 0; i < mGroupSize; i++) {
