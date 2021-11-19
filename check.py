@@ -135,7 +135,7 @@ if sym is not None:
 
                 if curOpOg.reg != curOpNw.reg:
                     # this is a reoccuring issue with r13 as well
-                    if curOrigInstr.id == PPC_INS_LWZ or curOrigInstr.id == PPC_INS_LHZ:
+                    if curOrigInstr.id == PPC_INS_LWZ or curOrigInstr.id == PPC_INS_LHZ or curOrigInstr.id == PPC_INS_STW:
                         if curOpOg.reg == PPC_REG_R13 and curOpNw.reg == PPC_REG_R0 or curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
                             print("skipping r2/r13 issue with SDA")
                             continue
