@@ -253,10 +253,10 @@ isValidHitSensor__2MRFP9LiveActorPCc,ActorSensorUtil.o,Util.a,false
 clearHitSensors__2MRFP9LiveActor,ActorSensorUtil.o,Util.a,false
 getSensor__2MRFP9LiveActori,ActorSensorUtil.o,Util.a,false
 getSensorHost__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
-isSensor__2MRFPC9HitSensorPCc,ActorSensorUtil.o,Util.a,false
+isSensor__2MRFPC9HitSensorPCc,ActorSensorUtil.o,Util.a,true
 isSensorPlayer__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
 isSensorBinder__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
-isSensorRide__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
+isSensorRide__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,true
 isSensorPlayerOrRide__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
 isSensorEnemy__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false
 isSensorEnemyAttack__2MRFPC9HitSensor,ActorSensorUtil.o,Util.a,false

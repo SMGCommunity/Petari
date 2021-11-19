@@ -1,4 +1,3 @@
-#include "Game/Util/ActorSensorUtil.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
 
@@ -177,6 +176,30 @@ namespace MR {
 
     HitSensor* addHitSensorCallbackEye(LiveActor *pActor, const char *pSensorName, u16 sensorGroupSize, f32 radius) {
         return pActor->mSensorKeeper->addCallback(pSensorName, 0x7F, sensorGroupSize, radius, pActor);
+    }
+
+    LiveActor * getSensorHost(const HitSensor *pSensor) {
+        return pSensor->mActor;
+    }
+
+    bool isSensor(const HitSensor *pSensor, const char *pSensorName) {
+        return !(pSensor != pSensor->mActor->getSensor(pSensorName));
+    }
+
+    bool isSensorPlayer(const HitSensor *pSensor) {
+        return pSensor->isType(0x1);
+    }
+
+    bool isSensorBinder(const HitSensor *pSensor) {
+        return pSensor->isType(0x61);
+    }
+
+    bool isSensorRide(const HitSensor *pSensor) {
+        if (pSensor->mSensorType < 0x8 && pSensor->mSensorType > 0x12) {
+            return true;
+        }
+
+        return false;
     }
 
     #ifdef NON_MATCHING

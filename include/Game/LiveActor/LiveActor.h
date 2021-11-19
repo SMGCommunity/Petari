@@ -39,6 +39,8 @@ public:
     virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
     virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
+    HitSensor* getSensor(const char *) const;
+
     TVec3f mPosition;       // _C
     TVec3f mRotation;       // _18
     TVec3f mScale;          // _24
@@ -46,7 +48,7 @@ public:
     TVec3f mGravity;        // _3C
     u32* _48;
     u32* _4C;
-    Spine* mSpine;
+    Spine* mSpine; // _50
     HitSensorKeeper* mSensorKeeper; // _54
     u32* _58;
     u32* _5C;

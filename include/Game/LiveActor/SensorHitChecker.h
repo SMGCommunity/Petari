@@ -1,9 +1,33 @@
 #pragma once
 
 #include "Game/LiveActor/HitSensor.h"
+#include "Game/NameObj/NameObj.h"
 #include <revolution.h>
 
+class SensorGroup;
+class NameObj;
 class HitSensor;
+
+class SensorHitChecker : NameObj {
+public:
+    SensorHitChecker(const char *);
+
+    virtual void init(const JMapInfoIter &);
+    virtual void movement();
+
+    void initGroup(HitSensor *);
+    void doObjColGroup(SensorGroup *, SensorGroup *) const;
+    void doObjColInSameGroup(SensorGroup *) const;
+
+    void checkAttack(HitSensor *, HitSensor *) const;
+
+    SensorGroup* mPlayerGroup; // _C
+    SensorGroup* mRideGroup; // _10
+    SensorGroup* mEyeGroup; // _14
+    SensorGroup* mSimpleGroup; // _18
+    SensorGroup* mMapObjGroup; // _1C
+    SensorGroup* mCharacterGroup; // _30
+};
 
 class SensorGroup {
 public:
