@@ -272,7 +272,7 @@ isNowFlashing__12FlashingCtrlCFv,FlashingCtrl.o,LiveActor.a,true
 isNowOn__12FlashingCtrlCFv,FlashingCtrl.o,LiveActor.a,true
 updateFlashing__12FlashingCtrlFv,FlashingCtrl.o,LiveActor.a,true
 __dt__12FlashingCtrlFv,FlashingCtrl.o,LiveActor.a,true
-__ct__9HitSensorFUlUsfP9LiveActor,HitSensor.o,LiveActor.a,false
+__ct__9HitSensorFUlUsfP9LiveActor,HitSensor.o,LiveActor.a,true
 receiveMessage__9HitSensorFUlP9HitSensor,HitSensor.o,LiveActor.a,true
 setType__9HitSensorFUl,HitSensor.o,LiveActor.a,true
 isType__9HitSensorCFUl,HitSensor.o,LiveActor.a,true

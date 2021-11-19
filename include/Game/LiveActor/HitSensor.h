@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.h"
+#include "Game/LiveActor/SensorHitChecker.h"
 #include <revolution.h>
 
 class LiveActor;
@@ -9,7 +10,7 @@ class SensorGroup;
 class HitSensor {
 public:
     inline HitSensor() {}
-    HitSensor(u32, u16, f32, LiveActor *);
+    HitSensor(u32, u32, f32, LiveActor *);
 
     u32 receiveMessage(u32, HitSensor *);
     void setType(u32);
