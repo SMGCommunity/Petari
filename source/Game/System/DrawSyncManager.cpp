@@ -69,6 +69,7 @@ DrawSyncManager::~DrawSyncManager() {
     OSJoinThread(&mThread, 0);
 }
 
+/*
 void DrawSyncManager::reset(bool arg) {
     if (!arg && _372) {
         _372 = 0;
@@ -77,6 +78,7 @@ void DrawSyncManager::reset(bool arg) {
         GXSetDrawSyncCallback(DrawSyncManager::drawSyncCallback);
     }
 }
+*/
 
 // DrawSyncManager::drawSyncCallbackSub
 
