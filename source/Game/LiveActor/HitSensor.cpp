@@ -41,7 +41,7 @@ void HitSensor::setType(u32 type) {
 
     if (mValidBySystem) {
         if (mGroupSize) {
-            if (mValidByHost){
+            if (mValidByHost) {
                 mSensorGroup->remove(this);
                 wasRemoved = true;
             }

@@ -18,7 +18,7 @@ namespace JGeometry {
 
         TVec3(T _x, T _y, T _z);
 
-        TVec3(T val) {
+        inline TVec3(T val) {
             x = val;
             y = val;
             z = val;

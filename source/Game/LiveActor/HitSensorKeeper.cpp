@@ -34,17 +34,11 @@ HitSensor* HitSensorKeeper::addMtx(const char *pName, u32 sensorType, u16 sensor
     return pInfo->mSensor;
 }
 
-#ifdef NON_MATCHING
 HitSensor* HitSensorKeeper::addCallback(const char *pName, u32 sensorType, u16 sensorGroupSize, f32 radius, LiveActor *pActor) {
-    TVec3f callBack;
-    callBack.x = 0.0f;
-    callBack.y = 0.0f;
-    callBack.z = 0.0f;
-    HitSensorInfo* pInfo = new HitSensorInfo(pName, new HitSensor(sensorType, sensorGroupSize, radius, pActor), NULL, NULL, callBack, true);
+    HitSensorInfo* pInfo = new HitSensorInfo(pName, new HitSensor(sensorType, sensorGroupSize, radius, pActor), NULL, NULL, TVec3f(0.0f), true);
     registHitSensorInfo(pInfo);
     return pInfo->mSensor;
 }
-#endif
 
 HitSensor* HitSensorKeeper::getSensor(const char *pSensorName) const {
     if (mSensorInfosSize == 1) {
