@@ -37,7 +37,22 @@ void SensorHitChecker::movement() {
     mSimpleGroup->clear();
     mMapObjGroup->clear();
     mCharacterGroup->clear();
+    doObjColGroup(mPlayerGroup, mCharacterGroup);
+    doObjColGroup(mPlayerGroup, mMapObjGroup);
+    doObjColGroup(mPlayerGroup, mRideGroup);
+    doObjColGroup(mPlayerGroup, mSimpleGroup);
+    doObjColGroup(mPlayerGroup, mEyeGroup);
+    doObjColGroup(mRideGroup, mCharacterGroup);
+    doObjColGroup(mRideGroup, mMapObjGroup);
+    doObjColGroup(mRideGroup, mSimpleGroup);
+    doObjColGroup(mRideGroup, mEyeGroup);
+    doObjColGroup(mEyeGroup, mCharacterGroup);
+    doObjColGroup(mEyeGroup, mMapObjGroup);
+    doObjColGroup(mEyeGroup, mSimpleGroup);
+    doObjColGroup(mCharacterGroup, mMapObjGroup);
+    doObjColInSameGroup(mCharacterGroup);
 }
+
 #ifdef NON_MATCHING // Wrong registers
 void SensorHitChecker::doObjColGroup(SensorGroup *pGroup1, SensorGroup *pGroup2) const {
     s32 group1SensorCount = pGroup1->mSensorCount;
@@ -96,6 +111,29 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
     }
 }
 #endif
+
+#ifdef NON_MATCHING // Wrong registers and wrong branch on line 123
+void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) const {
+    if (pSensor1->mActor != pSensor2->mActor) {
+        f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
+        f32 yPos = pSensor1->mPosition.y - pSensor2->mPosition.y;
+        f32 zPos = pSensor1->mPosition.z - pSensor2->mPosition.z;
+        f32 totalSize = pSensor2->mRadius + pSensor1->mRadius;
+
+        if ((((yPos * yPos) + (xPos * xPos)) + (zPos * zPos)) >= (totalSize * totalSize)) {
+            if (!pSensor2->isType(127)) {
+                pSensor1->addHitSensor(pSensor2);
+            }
+
+            if (!pSensor1->isType(127)) {
+                pSensor2->addHitSensor(pSensor1);
+            }
+        }
+    }
+}
+#endif 
+
+SensorHitChecker::~SensorHitChecker() {}
 
 SensorHitChecker::SensorHitChecker(const char *pName) : NameObj(pName) {
     mPlayerGroup = NULL;

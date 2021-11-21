@@ -1,5 +1,6 @@
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
+#include "JSystem/JMath/JMath.h"
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {
@@ -200,6 +201,202 @@ namespace MR {
         }
 
         return false;
+    }
+
+    bool isSensorMapObj(const HitSensor *pSensor) {
+        if (pSensor->mSensorType < 0x45 && pSensor->mSensorType > 0x5F) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isSensorAutoRush(const HitSensor *pSensor) {
+        if (pSensor->mSensorType < 0x60 && pSensor->mSensorType > 0x6E) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isSensorRush(const HitSensor *pSensor) {
+        if (pSensor->mSensorType < 0x6F && pSensor->mSensorType > 0x74) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isSensorPressObj(const HitSensor *pSensor) {
+        if (pSensor->mSensorType < 0x75 && pSensor->mSensorType > 0x77) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isSensorEye(const HitSensor *pSensor) {
+        return pSensor->isType(0x7F);
+    }
+
+    bool isSensorPush(const HitSensor *pSensor) {
+        return pSensor->isType(0x80);
+    }
+
+    bool isSensorItem(const HitSensor *pSensor) {
+        if (pSensor->isType(0x4A) || pSensor->isType(0x4B) || pSensor->isType(0x4D)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool tryGetItem(HitSensor *pSender, HitSensor *pReceiver) {
+        return pReceiver->receiveMessage(0x87, pSender);
+    }
+
+    TVec3f* getSensorPos(const HitSensor *pSensor) {
+        return (TVec3f*)&pSensor->mPosition;
+    }
+
+    bool sendArbitraryMsg(u32 msg, HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(msg, pSender);
+    }
+
+    bool sendMsgPush(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x29, pSender);
+    }
+
+    bool sendMsgPlayerTrample(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(2, pSender);
+    }
+
+    bool sendMsgPlayerPunch(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(1, pSender);
+    }
+
+    bool sendMsgJump(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x2C, pSender);
+    }
+
+    bool sendMsgTouchJump(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x2D, pSender);
+    }
+
+    bool sendMsgTaken(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x1F, pSender);
+    }
+
+    bool sendMsgKick(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x2B, pSender);
+    }
+
+    bool sendMsgAwayJump(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x2F, pSender);
+    }
+
+    bool sendMsgEnemyAttackMsgToDir(u32 msg, HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+        TVec3f curSenderPos(pSender->mPosition);
+        JMathInlineVEC::PSVECSubtract((Vec*)&pReceiver->mPosition, (Vec*)&rDir, (Vec*)&pSender->mPosition);
+        bool ret = pReceiver->receiveMessage(msg, pSender);
+        pSender->mPosition.set<f32>(curSenderPos);
+        return ret;
+    }
+
+    bool sendMsgEnemyAttackFlipWeak(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x4D, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlipWeakJump(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x4E, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlip(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x50, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlipToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+        return sendMsgEnemyAttackMsgToDir(0x50, pReceiver, pSender, rDir);
+    }
+
+    bool sendMsgEnemyAttackFlipJump(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x4F, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlipRot(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x51, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlipMaximum(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x52, pSender);
+    }
+
+    bool sendMsgEnemyAttackFlipMaximumToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+        return sendMsgEnemyAttackMsgToDir(0x52, pReceiver, pSender, rDir);
+    }
+
+    bool sendMsgEnemyAttack(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x53, pSender);
+    }
+
+    bool sendMsgEnemyAttackStrong(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x54, pSender);
+    }
+
+    bool sendMsgEnemyAttackStrongToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+        return sendMsgEnemyAttackMsgToDir(0x54, pReceiver, pSender, rDir);
+    }
+
+    bool sendMsgEnemyAttackFire(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x58, pSender);
+    }
+
+    bool sendMsgEnemyAttackFireStrong(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x59, pSender);
+    }
+
+    bool sendMsgEnemyAttackElectric(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x5A, pSender);
+    }
+
+    bool sendMsgEnemyAttackFreeze(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x5D, pSender);
+    }
+
+    bool sendMsgEnemyAttackHeatBeam(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x5B, pSender);
+    }
+
+    bool sendMsgEnemyAttackExplosion(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x56, pSender);
+    }
+
+    bool sendMsgEnemyAttackCounterSpin(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x60, pSender);
+    }
+
+    bool sendMsgEnemyAttackCounterHipDrop(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x61, pSender);
+    }
+
+    bool sendMsgLockOnStarPieceShoot(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0xE, pSender);
+    }
+
+    bool sendMsgStarPieceAttack(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0xC, pSender);
+    }
+
+    bool sendMsgStarPieceGift(HitSensor *pReceiver, HitSensor *pSender, u32 msg) {
+        return pReceiver->receiveMessage(msg + 0xE, pSender);
+    }
+
+    bool sendMsgEnemyAttackMaximum(HitSensor *pReceiver, HitSensor *pSender) {
+        return pReceiver->receiveMessage(0x55, pSender);
+    }
+
+    bool sendMsgEnemyAttackMaximumToDir(HitSensor *pReceiver, HitSensor *pSender, const TVec3f &rDir) {
+        return sendMsgEnemyAttackMsgToDir(0x55, pReceiver, pSender, rDir);
     }
 
     #ifdef NON_MATCHING

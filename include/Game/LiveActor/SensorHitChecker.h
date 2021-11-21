@@ -12,6 +12,8 @@ class SensorHitChecker : NameObj {
 public:
     SensorHitChecker(const char *);
 
+    virtual ~SensorHitChecker();
+
     virtual void init(const JMapInfoIter &);
     virtual void movement();
 

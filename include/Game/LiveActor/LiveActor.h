@@ -21,7 +21,7 @@ public:
     virtual void makeActorAppeared();
     virtual void kill();
     virtual void makeActorDead();
-    virtual s32 receiveMessage(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMessage(u32, HitSensor *, HitSensor *);
     virtual MtxPtr getBaseMtx() const;
     virtual MtxPtr getTakingMtx() const;
     virtual void startClipped();

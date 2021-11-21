@@ -12,7 +12,7 @@ public:
     inline HitSensor() {}
     HitSensor(u32, u32, f32, LiveActor *);
 
-    u32 receiveMessage(u32, HitSensor *);
+    bool receiveMessage(u32, HitSensor *);
     void setType(u32);
     bool isType(u32) const;
     void validate();
