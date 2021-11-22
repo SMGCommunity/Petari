@@ -21,8 +21,8 @@ namespace MR {
 
         typedef T Item;
     
-        T* mArr;       // _0
-        u32 mMaxSize;   // _4
+        T* mArr;        // _0
+        s32 mMaxSize;   // _4
     };
 
     template<class T>

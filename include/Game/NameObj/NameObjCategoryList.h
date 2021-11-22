@@ -35,7 +35,7 @@ public:
 
         MR::AssignableArray<NameObj *> mNameObjArr; // _0
         u32 _8;
-        u32 _C;
+        MR::FunctorBase* _C;
         u32 mCheck;                                 // _10
     };
 
@@ -43,9 +43,12 @@ public:
     NameObjCategoryList(u32, const CategoryListInitialTable *, func_const, bool, const char *);
     ~NameObjCategoryList();
 
+    void execute(int);
     void incrementCheck(NameObj *, int);
     void allocateBuffer();
-
+    void add(NameObj *, int);
+    void remove(NameObj *, int);
+    void registerExecuteBeforeFunction(const MR::FunctorBase &, int);
     void initTable(u32, const CategoryListInitialTable *);
 
     MR::AssignableArray<NameObjCategoryList::CategoryInfo> mCategoryInfo;   // _0
