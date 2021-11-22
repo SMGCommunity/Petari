@@ -6,17 +6,31 @@ class NameObjExecuteInfo {
 public:
     NameObjExecuteInfo();
 
+    void setConnectInfo(NameObj *, int, int, int, int);
+    void initConnectting();
+    void requestConnect(u8 *);
+    void requestDisconnect(u8 *, bool);
+    void executeRequirementConnectMovement();
+    void executeRequirementDisconnectMovement();
+    void executeRequirementConnectDraw();
+    void executeRequirementDisconnectDraw();
+    void executeRequirementDisconnectDrawDelay();
     void requestMovementOn(int);
     void requestMovementOff(int);
 
-    u32 _0;
-    u8 _4;
-    u8 _5;
+    void connectToScene();
+    void disconnectToScene();
+    void connectToDraw();
+    void disconnectToDraw();
+
+    NameObj* mExecutedObject;   // _0
+    s8 _4;
+    s8 _5;
     s8 _6;
     s8 _7;
     s8 _8;
     s8 _9;
-    s8 _A;
+    s16 _A;
 };
 
 class NameObjExecuteHolder : public NameObj { 
@@ -27,13 +41,18 @@ public:
 
     void registerActor(NameObj *, int, int, int, int);
     void initConnectting();
+    void connectToScene(NameObj *);
+    void connectToDraw(NameObj *);
+    void disconnectToScene(NameObj *);
+    void disconnectToDraw(NameObj *);
+    bool isConnectToDraw(const NameObj *) const;
 
     void requestMovementOn(int);
     void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj *) const;
 
     NameObjExecuteInfo* mExecuteArray;  // _C
-    u32 mExecuteCount;                  // _10
+    s32 mExecuteCount;                  // _10
     u32 _14;
     u8 _18;
     u8 _19;
