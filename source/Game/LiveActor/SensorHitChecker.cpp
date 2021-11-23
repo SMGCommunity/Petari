@@ -113,7 +113,7 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup *pSensorGroup) const {
 }
 #endif
 
-#ifdef NON_MATCHING // Wrong registers and wrong branch on line 124
+#ifdef NON_MATCHING // Wrong registers
 void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) const {
     if (pSensor1->mActor != pSensor2->mActor) {
         f32 xPos = pSensor1->mPosition.x - pSensor2->mPosition.x;
