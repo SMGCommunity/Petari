@@ -22,7 +22,7 @@ public:
 
     JMapInfo* mScenarioData; // _0
     const char* mGalaxyName; // _4
-    JMapInfo* mZoneList; // _8
+    JMapInfo* mZoneList;     // _8
 };
 
 class ScenarioDataParser : public NameObj {

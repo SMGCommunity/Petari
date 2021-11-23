@@ -23,11 +23,11 @@ public:
 
     void checkAttack(HitSensor *, HitSensor *) const;
 
-    SensorGroup* mPlayerGroup; // _C
-    SensorGroup* mRideGroup; // _10
-    SensorGroup* mEyeGroup; // _14
-    SensorGroup* mSimpleGroup; // _18
-    SensorGroup* mMapObjGroup; // _1C
+    SensorGroup* mPlayerGroup;    // _C
+    SensorGroup* mRideGroup;      // _10
+    SensorGroup* mEyeGroup;       // _14
+    SensorGroup* mSimpleGroup;    // _18
+    SensorGroup* mMapObjGroup;    // _1C
     SensorGroup* mCharacterGroup; // _30
 };
 
@@ -39,8 +39,8 @@ public:
     void remove(HitSensor *);
     void clear() const;
 
-    s32 mMaxSensors; // _0
-    s32 mSensorCount; // _4
+    s32 mMaxSensors;      // _0
+    s32 mSensorCount;     // _4
     HitSensor** mSensors; // _8
 };
 
