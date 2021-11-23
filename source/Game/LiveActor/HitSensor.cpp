@@ -29,7 +29,7 @@ HitSensor::HitSensor(u32 type, u32 sensorGroupSize, f32 radius, LiveActor *pActo
     MR::initHitSensorGroup(this);
 }
 
-u32 HitSensor::receiveMessage(u32 msg, HitSensor *pReceiver) {
+bool HitSensor::receiveMessage(u32 msg, HitSensor *pReceiver) {
     return mActor->receiveMessage(msg, pReceiver, this);
 }
 
