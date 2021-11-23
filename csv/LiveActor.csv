@@ -590,7 +590,7 @@ movement__16SensorHitCheckerFv,SensorHitChecker.o,LiveActor.a,true
 doObjColGroup__16SensorHitCheckerCFP11SensorGroupP11SensorGroup,SensorHitChecker.o,LiveActor.a,false
 doObjColInSameGroup__16SensorHitCheckerCFP11SensorGroup,SensorHitChecker.o,LiveActor.a,false
 checkAttack__16SensorHitCheckerCFP9HitSensorP9HitSensor,SensorHitChecker.o,LiveActor.a,false
-initHitSensorGroup__2MRFP9HitSensor,SensorHitChecker.o,LiveActor.a,false
+initHitSensorGroup__2MRFP9HitSensor,SensorHitChecker.o,LiveActor.a,true
 __dt__16SensorHitCheckerFv,SensorHitChecker.o,LiveActor.a,true
 __ct__16SensorHitCheckerFPCc,SensorHitChecker.o,LiveActor.a,true
 __ct__22ShadowControllerHolderFv,ShadowController.o,LiveActor.a,false
