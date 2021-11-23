@@ -64,3 +64,20 @@ public:
     u8 _1B;
     u8 _1C;
 };
+
+namespace MR {
+    void registerNameObjToExecuteHolder(NameObj *, int, int, int, int);
+    void initConnectting();
+    void connectToSceneTemporarily(NameObj *);
+    void disconnectToSceneTemporarily(NameObj *);
+    void connectToDrawTemporarily(NameObj *);
+    void disconnectToDrawTemporarily(NameObj *);
+    bool isConnectToDrawTemporarily(const NameObj *);
+    void executeRequirementConnectMovement();
+    void executeRequirementDisconnectMovement();
+    void executeRequirementConnectDraw();
+    void executeRequirementDisconnectDraw();
+    void executeRequirementDisconnectDrawDelay();
+    void requestMovementOnWithCategory(int);
+    void requestMovementOffWithCategory(int);
+};
