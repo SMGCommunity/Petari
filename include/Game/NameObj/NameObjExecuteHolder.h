@@ -46,7 +46,11 @@ public:
     void disconnectToScene(NameObj *);
     void disconnectToDraw(NameObj *);
     bool isConnectToDraw(const NameObj *) const;
-
+    void executeRequirementConnectMovement();
+    void executeRequirementDisconnectMovement();
+    void executeRequirementConnectDraw();
+    void executeRequirementDisconnectDraw();
+    void executeRequirementDisconnectDrawDelay();
     void requestMovementOn(int);
     void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj *) const;
