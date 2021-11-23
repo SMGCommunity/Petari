@@ -121,7 +121,7 @@ void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) con
         f32 zPos = pSensor1->mPosition.z - pSensor2->mPosition.z;
         f32 totalSize = pSensor2->mRadius + pSensor1->mRadius;
 
-        if ((((yPos * yPos) + (xPos * xPos)) + (zPos * zPos)) >= (totalSize * totalSize)) {
+        if (!((((yPos * yPos) + (xPos * xPos)) + (zPos * zPos)) >= (totalSize * totalSize))) {
             if (!pSensor2->isType(127)) {
                 pSensor1->addHitSensor(pSensor2);
             }
