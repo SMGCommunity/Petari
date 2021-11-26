@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/AreaObjUtil.h"
 #include "Game/Util/Array.h"
 #include "Game/Util/BothDirList.h"
 #include "Game/Util/CameraUtil.h"

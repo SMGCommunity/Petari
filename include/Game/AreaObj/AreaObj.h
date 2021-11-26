@@ -51,6 +51,8 @@ class AreaObjMgr : public NameObj {
 public:
     AreaObjMgr(s32, const char *);
 
+    void entry(AreaObj *);
+
     MR::Vector<MR::AssignableArray<AreaObj*> > mArray; // _C
     s32 _14;
     s32 _18;

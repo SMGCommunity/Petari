@@ -1,13 +1,36 @@
 #pragma once
 
 class NameObj;
+class LiveActor;
 class JMapInfo;
 class ResourceHolder;
+class StageSwitchCtrl;
 
 namespace MR {
     void connectToScene(NameObj *, int, int, int, int);
-    void connectToSceneAreaObj(NameObj *);
+    void connectToSceneCollisionMapObj(LiveActor *);
+    void connectToSceneCollisionMapObjMovementCalcAnim(LiveActor *);
+    void connectToSceneCollisionMapObjWeakLight(LiveActor *);
+    void connectToSceneCollisionMapObjStrongLight(LiveActor *);
+    void connectToSceneCollisionEnemy(LiveActor *);
+    void connectToSceneCollisionEnemyMovement(NameObj *);
+    void connectToSceneMapObj(LiveActor *);
     void connectToSceneMapObjMovement(NameObj *);
+    void connectToSceneMapObjMovementCalcAnim(NameObj *);
+    void connectToSceneMapObjNoMovement(LiveActor *);
+    void connectToSceneMapObjNoCalcAnim(LiveActor *);
+    void connectToSceneMapObjNoCalcAnimStrongLight(LiveActor *);
+    void connectToSceneMapObjDecoration(LiveActor *);
+    void connectToSceneMapObjDecorationStrongLight(LiveActor *);
+    void connectToSceneMapObjDecorationMovement(NameObj *);
+    void connectToSceneMapObjStrongLight(LiveActor *);
+    void connectToSceneMapParts(LiveActor *);
+    void connectToScenePlanet(LiveActor *);
+    void connectToSceneEnvironment(LiveActor *);
+    void connectToSceneEnvironmentStrongLight(LiveActor *);
+
+    void connectToSceneAreaObj(NameObj *);
+    
 
     bool isStageStateScenarioOpeningCamera();
 
@@ -23,4 +46,6 @@ namespace MR {
     void getCsvDataBool(bool *, const JMapInfo *, const char *, s32);
 
     ResourceHolder* createAndAddResourceHolder(const char *);
+
+    void listenNameObjStageSwitchOnOffAppear(const NameObj *, const StageSwitchCtrl *, const MR::FunctorBase &, const MR::FunctorBase &);
 };

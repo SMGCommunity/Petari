@@ -1,4 +1,7 @@
 #include "Game/AreaObj/AreaObj.h"
+#include "Game/AreaObj/AreaObjFollower.h"
+#include "Game/Map/SleepControllerHolder.h"
+#include "Game/Util.h"
 
 AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     mType = a1;
@@ -18,7 +21,38 @@ AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     /* todo -- assign forms based on a1 */
 }
 
-// AreaObj::init
+void AreaObj::init(const JMapInfoIter &rIter) {
+    mForm->init(rIter);
+    MR::addBaseMatrixFollowerAreaObj(this, rIter);
+    MR::getJMapInfoArg0WithInit(rIter, &mObjArg0);
+    MR::getJMapInfoArg1WithInit(rIter, &mObjArg1);
+    MR::getJMapInfoArg2WithInit(rIter, &mObjArg2);
+    MR::getJMapInfoArg3WithInit(rIter, &mObjArg3);
+    MR::getJMapInfoArg4WithInit(rIter, &mObjArg4);
+    MR::getJMapInfoArg5WithInit(rIter, &mObjArg5);
+    MR::getJMapInfoArg6WithInit(rIter, &mObjArg6);
+    MR::getJMapInfoArg7WithInit(rIter, &mObjArg7);
+    mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
+
+    if (mSwitchCtrl->isValidSwitchAppear()) {
+        MR::FunctorV0M<AreaObj *, void (AreaObj::*)()> validateFunc = MR::Functor<AreaObj>(this, &AreaObj::validate);
+        MR::FunctorV0M<AreaObj *, void (AreaObj::*)()> invalidateFunc = MR::Functor<AreaObj>(this, &AreaObj::invalidate);
+        MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, validateFunc, invalidateFunc);
+        mValid = false;
+    }
+
+    const char* objName;
+    bool validName = MR::getObjectName(&objName, rIter);
+
+    if (validName) {
+        setName(objName);
+    }
+
+    const char* managerName = getManagerName();
+    MR::getAreaObjManager(managerName)->entry(this);
+    MR::getAreaObjManager(getManagerName());
+    SleepControlFunc::addSleepControl(this, rIter);
+}
 
 bool AreaObj::isInVolume(const TVec3f &rPos) const {
     bool ret = false;

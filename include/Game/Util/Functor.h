@@ -13,20 +13,28 @@ namespace MR {
     class FunctorV0M : public FunctorBase {
     public:
 
-        FunctorV0M(T call, U callee) 
+        inline FunctorV0M(T call, U callee) 
             : mCaller(call), mCallee(callee) {
         }
 
-        virtual void operator()() const = 0;
-        virtual FunctorBase* clone(JKRHeap *) const = 0;
+        inline FunctorV0M() {
+
+        }
+
+        virtual void operator()() const {
+            
+        }
+
+        virtual FunctorBase* clone(JKRHeap *pHeap) const {
+            return new (pHeap, 0x16) FunctorV0M(*this);
+        };
 
         T mCaller;
         U mCallee;
     };
 
     template<class T>
-    class Functor {
-    public:
-    
-    };
+    static FunctorV0M<T *, void (T::*)()> Functor(T* a1, void (T::*a2)()) {
+        return FunctorV0M<T *, void (T::*)()>(a1, a2);
+    }
 };

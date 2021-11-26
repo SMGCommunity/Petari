@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Game/Util.h"
+
+class NameObj;
+
 class StageSwitchCtrl {
 public:
     void onSwitchA();
@@ -11,4 +15,10 @@ public:
     bool isOnSwitchB() const;
     bool isValidSwitchB() const;
     bool isOnSwitchAppear() const;
+
+    bool isValidSwitchAppear() const;
+};
+
+namespace MR {
+    StageSwitchCtrl* createStageSwitchCtrl(NameObj *, const JMapInfoIter &);
 };

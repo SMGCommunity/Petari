@@ -31,6 +31,7 @@ compiler_flags = {
 # a list of files that need the flags to be turned on for inlining
 inlined_files = [ 
     "source\Game\AreaObj\AreaForm.cpp",
+    "source\Game\AreaObj\AreaObj.cpp",
     "source\Game\Map\LightDataHolder.cpp", 
     "source\Game\\NameObj\\NameObjCategoryList.cpp", 
     "source\Game\System\FileHolder.cpp", 
