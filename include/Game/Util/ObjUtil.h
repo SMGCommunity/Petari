@@ -1,6 +1,7 @@
 #pragma once
 
 class NameObj;
+class LayoutActor;
 class LiveActor;
 class JMapInfo;
 class ResourceHolder;
@@ -31,6 +32,8 @@ namespace MR {
 
     void connectToSceneAreaObj(NameObj *);
     
+    bool isName(const NameObj *, const char *);
+    bool isSame(const NameObj *, const NameObj *);
 
     bool isStageStateScenarioOpeningCamera();
 
@@ -48,4 +51,8 @@ namespace MR {
     ResourceHolder* createAndAddResourceHolder(const char *);
 
     void listenNameObjStageSwitchOnOffAppear(const NameObj *, const StageSwitchCtrl *, const MR::FunctorBase &, const MR::FunctorBase &);
+
+    void requestMovementOn(LiveActor *);
+
+    void requestMovementOn(LayoutActor *);
 };

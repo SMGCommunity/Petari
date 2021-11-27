@@ -21,4 +21,9 @@ namespace MR {
     bool getJMapInfoArg7WithInit(const JMapInfoIter &, s32 *);
 
     bool getObjectName(const char **, const JMapInfoIter &);
+
+    const char* getDemoName(const JMapInfoIter &);
+
+    s32 getDemoGroupID(const JMapInfoIter &);
+    s32 getDemoGroupLinkID(const JMapInfoIter &);
 };

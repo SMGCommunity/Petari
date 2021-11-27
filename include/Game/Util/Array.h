@@ -1,5 +1,7 @@
 #pragma once
 
+#include "revolution.h"
+
 namespace MR {
     template<class T>
     class Vector;
@@ -11,6 +13,23 @@ namespace MR {
             mArr = 0;
             mMaxSize = 0;
             //mCount = 0;
+        }
+
+        inline void init(s32 cnt) {
+            mArr = new T[cnt];
+            mMaxSize = cnt;
+        }
+
+        inline void assign(T what, s32 where) {
+            mArr[where] = what;
+        }
+
+        inline T* begin() {
+            return mArr;
+        }
+
+        inline T* end() {
+            return &mArr[mMaxSize];
         }
 
         ~AssignableArray() {
@@ -53,5 +72,22 @@ namespace MR {
 
         T mArray;       // _0
         u32 mCount;     // _8
+    };
+
+    template<class T, int S>
+    class FixedRingBuffer {
+    public:
+        class iterator {
+        public:
+            iterator(T *head, T *tail) {
+                mHead = head;
+                mTail = tail;
+                mEnd = head + S;
+            }
+
+            T* mHead;   // _0
+            T* mTail;   // _4
+            T* mEnd;    // _8
+        };
     };
 };

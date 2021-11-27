@@ -1,5 +1,6 @@
 #pragma once
 
+#define SceneObj_DemoDirector           0x3
 #define SceneObj_LightDirector          0x6
 #define SceneObj_NameObjExecuteHolder   0x58
 #define SceneObj_PlanetMapCreator       0x74

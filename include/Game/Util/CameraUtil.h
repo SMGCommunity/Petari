@@ -4,4 +4,6 @@
 
 namespace MR {
     TVec3f getCamPos();
+
+    bool isCameraInterpolateNearlyEnd();
 };

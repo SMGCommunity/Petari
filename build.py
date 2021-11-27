@@ -32,6 +32,8 @@ compiler_flags = {
 inlined_files = [ 
     "source\Game\AreaObj\AreaForm.cpp",
     "source\Game\AreaObj\AreaObj.cpp",
+    "source\Game\Demo\DemoSimpleCastHolder.cpp",
+    "source\Game\Demo\DemoStartRequestHolder.cpp",
     "source\Game\Map\LightDataHolder.cpp", 
     "source\Game\\NameObj\\NameObjCategoryList.cpp", 
     "source\Game\System\FileHolder.cpp", 
