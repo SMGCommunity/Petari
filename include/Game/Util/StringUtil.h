@@ -17,4 +17,12 @@ namespace MR {
     void addFilePrefix(char *, u32, const char *, const char *);
 
     void copyString(char *, const char *, u32);
+
+    void scan32(const char *, const char *, s32 *);
+    void scan16(const char *, const char *, u16 *);
+    void scan8(const char *, const char *, u8 *);
+    void scanf32(const char *, const char *, f32 *);
+    void scanu8x4(const char *, const char *, u8 *);
+    void scans16x4(const char *, const char *, s16 *);
+    void scanf32x4(const char *, const char *, f32 *);
 };
