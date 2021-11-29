@@ -17,7 +17,9 @@ public:
 
     JKRHeap* _4;
     OSThread* mThread; // _8
-    u8 _C[0x34-0xC];
+    OSMessageQueue mQueue;  // _C
+    OSMessage* mMessageArray;   // _2C
+    u32 mMessageCount;      // _30
     u8* _34;
     u32 _38;
 };

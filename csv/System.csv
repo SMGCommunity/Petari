@@ -675,7 +675,7 @@ isNerve__13NerveExecutorCFPC5Nerve,NerveExecutor.o,System.a,true
 getNerveStep__13NerveExecutorCFv,NerveExecutor.o,System.a,true
 __ct__15OSThreadWrapperFUliiP7JKRHeap,OSThreadWrapper.o,System.a,true
 __dt__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,false
-initMessageQueue__15OSThreadWrapperFP7JKRHeapi,OSThreadWrapper.o,System.a,false
+initMessageQueue__15OSThreadWrapperFP7JKRHeapi,OSThreadWrapper.o,System.a,true
 initHeapSpecified__15OSThreadWrapperFP7JKRHeapUli,OSThreadWrapper.o,System.a,false
 start__15OSThreadWrapperFPv,OSThreadWrapper.o,System.a,true
 run__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,true
