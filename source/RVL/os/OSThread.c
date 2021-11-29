@@ -6,6 +6,7 @@ static s32 Reschedule;
 extern "C" {
 #endif
 
+#ifdef NON_MATCHING
 BOOL OSIsThreadSuspended(OSThread *pThread) {
     return (-pThread->suspend & ~pThread->suspend) >> 31;
 }
@@ -19,6 +20,7 @@ BOOL OSIsThreadTerminated(OSThread *pThread) {
 
     return (-ret | ret) >> 31;
 }
+#endif
 
 s32 OSDisableScheduler() {
     BOOL level = OSDisableInterrupts();
