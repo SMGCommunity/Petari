@@ -43,7 +43,8 @@ inlined_files = [
     "source\Game\LiveActor\HitSensorInfo.cpp", 
     "source\Game\LiveActor\HitSensorKeeper.cpp", 
     "source\Game\\Util\FixedPosition.cpp",
-    "source\Game\System\DrawBufferGroup.cpp" ]
+    "source\Game\System\DrawBufferGroup.cpp"
+    ]
 
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")
@@ -82,14 +83,14 @@ for root, dirs, files in os.walk("source"):
     for file in files:
         if file.endswith(".cpp"):
             source_path = os.path.join(root, file)
-            build_path = source_path.replace("source", "build").replace(".cpp", ".o")
+            build_path = source_path.replace("source", "build", 1).replace(".cpp", ".o")
 
             os.makedirs(os.path.dirname(build_path), exist_ok=True)
 
             tasks.append((source_path, build_path))
         elif file.endswith(".c"):
             source_path = os.path.join(root, file)
-            build_path = source_path.replace("source", "build").replace(".c", ".o")
+            build_path = source_path.replace("source", "build", 1).replace(".c", ".o")
 
             os.makedirs(os.path.dirname(build_path), exist_ok=True)
 
