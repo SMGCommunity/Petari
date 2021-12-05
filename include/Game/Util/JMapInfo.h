@@ -27,6 +27,11 @@ public:
     s32 searchItemInfo(const char *) const;
     s32 getValueType(const char *) const;
 
+    const char* getName() const;
+
+    template<typename T>
+    const bool getValue(int, const char *, T *) const;
+
     bool getValueFast(int, int, const char **) const;
 
     const JMapData* mData; // _0

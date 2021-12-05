@@ -13,4 +13,9 @@ namespace MR {
     s32 getZoneNum();
 
     const char* getZoneNameFromZoneId(s32);
+
+    void setInitializeStatePlacementPlayer();
+    void setInitializeStatePlacementHighPriority();
+    void setInitializeStatePlacement();
+    void setInitializeStateAfterPlacement();
 }

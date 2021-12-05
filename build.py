@@ -43,7 +43,8 @@ inlined_files = [
     "source\Game\LiveActor\HitSensorInfo.cpp", 
     "source\Game\LiveActor\HitSensorKeeper.cpp", 
     "source\Game\\Util\FixedPosition.cpp",
-    "source\Game\System\DrawBufferGroup.cpp"
+    "source\Game\System\DrawBufferGroup.cpp",
+    "source\Game\Scene\StageDataHolder.cpp"
     ]
 
 if "-nonmatching" in sys.argv:

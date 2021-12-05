@@ -18,3 +18,10 @@ public:
     u32 _4;
     u32 _8;
 };
+
+class ResourceHolderManager { 
+public:
+    void createResourceHolder(char const *, CreateResourceHolderArgs *);
+
+    static void startCreateResourceHolderOnMainThread(const char *, CreateResourceHolderArgs *);
+};
