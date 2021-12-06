@@ -103,17 +103,21 @@ JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapIn
     return 0;
 }
 
-#ifdef NON_MATCHING
-// some small register usage issues
-JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) const {
+JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) const {
+    int idx = idx_;
+    int curIdx;
+    JMapInfo* pEnd = mStartObjs.mArr + mStartObjs.mMaxSize;
+    bool isValid;
+    s32 i;
     JMapInfo* inf = mStartObjs.mArr;
+    StageDataHolder* locHolder;
+    
+    while (inf != pEnd)
+    {
+        const JMapData * curData = inf->mData;
+        isValid = curData;
 
-    int curIdx = 0;
-
-    while (inf != inf + mStartObjs.mMaxSize) {
-        bool isValid = inf->mData != 0;
-
-        curIdx = isValid ? inf->mData->_0 : 0;
+        curIdx = isValid ? curData->_0 : 0;
     
         if (idx < curIdx) {
             JMapInfoIter iter;
@@ -122,20 +126,20 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) co
             return iter;
         }
 
-        curIdx = isValid ? inf->mData->_0 : 0;
+        curIdx = isValid ? curData->_0 : 0;
 
         idx -= curIdx;
+
         inf++;
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
-        StageDataHolder* locHolder = mStageDataArray[i];
-        s32 startPosNum = locHolder->getStartPosNum();
+        locHolder = mStageDataArray[i];
+        int startPosNum = locHolder->getStartPosNum();
 
         if (idx < startPosNum) {
             return locHolder->getStartJMapInfoIterFromStartDataIndex(idx);
         }
-
         idx -= startPosNum;
     }
 
@@ -144,7 +148,6 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) co
     iter._4 = -1;
     return iter;
 }
-#endif
 
 void StageDataHolder::calcDataAddress() {
     _E4 = -1;
