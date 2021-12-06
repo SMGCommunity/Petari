@@ -10,7 +10,19 @@ OSThreadWrapper::OSThreadWrapper(u32 a1, int a2, int a3, JKRHeap *pHeap) {
     initMessageQueue(_4, a2);
 }
 
-// OSThreadWrapper::~OSThreadWrapper
+OSThreadWrapper::~OSThreadWrapper() {
+    if (_4) {
+        if (!OSIsThreadTerminated(mThread)) {
+            OSDetachThread(mThread);
+            OSCancelThread(mThread);
+        }
+
+        delete[] _34;
+        delete mThread;
+    }
+
+    delete[] mMessageArray;
+}
 
 void OSThreadWrapper::initMessageQueue(JKRHeap *pHeap, int messageCount) {
     mMessageCount = messageCount;

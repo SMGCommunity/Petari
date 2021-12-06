@@ -176,11 +176,11 @@ decompressFromDVD__10FileRipperFP11DVDFileInfoPvUlUlPCUcUl,FileRipper.o,System.a
 decompressSzsSub__10FileRipperFPUcPUc,FileRipper.o,System.a,false
 readSrcDataFirst__10FileRipperFv,FileRipper.o,System.a,false
 readSrcDataNext__10FileRipperFPUc,FileRipper.o,System.a,false
-__ct__21FunctionAsyncExecInfoFPQ22MR11FunctorBaseiPCc,FunctionAsyncExecutor.o,System.a,false
-__dt__21FunctionAsyncExecInfoFv,FunctionAsyncExecutor.o,System.a,false
-execute__21FunctionAsyncExecInfoFv,FunctionAsyncExecutor.o,System.a,false
-__ct__27FunctionAsyncExecutorThreadFP7JKRHeap,FunctionAsyncExecutor.o,System.a,false
-run__27FunctionAsyncExecutorThreadFv,FunctionAsyncExecutor.o,System.a,false
+__ct__21FunctionAsyncExecInfoFPQ22MR11FunctorBaseiPCc,FunctionAsyncExecutor.o,System.a,true
+__dt__21FunctionAsyncExecInfoFv,FunctionAsyncExecutor.o,System.a,true
+execute__21FunctionAsyncExecInfoFv,FunctionAsyncExecutor.o,System.a,true
+__ct__27FunctionAsyncExecutorThreadFP7JKRHeap,FunctionAsyncExecutor.o,System.a,true
+run__27FunctionAsyncExecutorThreadFv,FunctionAsyncExecutor.o,System.a,true
 __ct__33FunctionAsyncExecutorOnMainThreadFP8OSThread,FunctionAsyncExecutor.o,System.a,false
 update__33FunctionAsyncExecutorOnMainThreadFv,FunctionAsyncExecutor.o,System.a,false
 __ct__21FunctionAsyncExecutorFv,FunctionAsyncExecutor.o,System.a,false
@@ -674,7 +674,7 @@ setNerve__13NerveExecutorFPC5Nerve,NerveExecutor.o,System.a,true
 isNerve__13NerveExecutorCFPC5Nerve,NerveExecutor.o,System.a,true
 getNerveStep__13NerveExecutorCFv,NerveExecutor.o,System.a,true
 __ct__15OSThreadWrapperFUliiP7JKRHeap,OSThreadWrapper.o,System.a,true
-__dt__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,false
+__dt__15OSThreadWrapperFv,OSThreadWrapper.o,System.a,true
 initMessageQueue__15OSThreadWrapperFP7JKRHeapi,OSThreadWrapper.o,System.a,true
 initHeapSpecified__15OSThreadWrapperFP7JKRHeapUli,OSThreadWrapper.o,System.a,false
 start__15OSThreadWrapperFPv,OSThreadWrapper.o,System.a,true

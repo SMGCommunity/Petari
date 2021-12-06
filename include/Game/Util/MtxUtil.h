@@ -13,4 +13,17 @@ namespace MR {
     MtxPtr tmpMtxRotXDeg(f32);
     MtxPtr tmpMtxRotYDeg(f32);
     MtxPtr tmpMtxRotZDeg(f32);
+
+    void setMtxTrans(MtxPtr, f32, f32, f32);
+    void addTransMtx(MtxPtr, const TVec3f &);
+    void addTransMtxLocal(MtxPtr, const TVec3f &);
+    void addTransMtxLocalX(MtxPtr, f32);
+    void addTransMtxLocalY(MtxPtr, f32);
+    void addTransMtxLocalZ(MtxPtr, f32);
+    void extractMtxXDir(MtxPtr, TVec3f *);
+    void extractMtxYDir(MtxPtr, TVec3f *);
+    void extractMtxZDir(MtxPtr, TVec3f *);
+    void extractMtxXYZDir(MtxPtr, TVec3f *, TVec3f *, TVec3f *);
+    void extractMtxTrans(MtxPtr, TVec3f *);
+    bool isSameMtx(MtxPtr, MtxPtr);
 };
