@@ -1,6 +1,6 @@
 # Super Mario Galaxy 1 Decompilation
 
-<img src="https://img.shields.io/badge/dynamic/json?color=blue&label=decompiled&query=linesPercent&url=https%3A%2F%2Fraw.githubusercontent.com/shibbo/Petari/master/data/percent.json" />
+<img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat" />
 
 This repo contains a WIP decompilation of Super Mario Galaxy 1 (USA).
 
