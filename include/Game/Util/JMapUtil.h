@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapInfoIter.h"
+#include "Game/Util/JMapInfo.h"
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 

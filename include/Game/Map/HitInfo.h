@@ -2,7 +2,7 @@
 
 #include "JSystem/JGeometry/TVec.h"
 
-#include "Game/Util/JMapInfoIter.h"
+#include "Game/Util.h"
 
 class CollisionParts;
 

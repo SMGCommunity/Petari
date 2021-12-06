@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 void StageDataHolder::init(const JMapInfoIter &rIter) {
-    if (!_DC) {
+    if (!mZoneID) {
         initTableData();
     }
 
@@ -15,7 +15,7 @@ void StageDataHolder::init(const JMapInfoIter &rIter) {
 
     createLocalStageDataHolder(_EC, 1);
 
-    if (!_DC) {
+    if (!mZoneID) {
         initPlacementInfoOrderedCommon();
     }
 }
@@ -35,7 +35,7 @@ void StageDataHolder::initAfterScenarioSelected() {
         mStageDataArray[i]->initAfterScenarioSelected();
     }
 
-    if (!_DC) {
+    if (!mZoneID) {
         initPlacementInfoOrderedScenario();
     }
 
@@ -88,6 +88,53 @@ void StageDataHolder::initPlacement() {
     _100->initPlacement();
     _108->initPlacement();
     _10C->initPlacement();
+}
+
+bool StageDataHolder::isPlacedZone(int zoneID) const {
+    if (!zoneID) {
+        return true;
+    }
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        if (zoneID != mStageDataArray[i]->mZoneID) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+#ifdef NON_MATCHING
+// stack nonsense
+const char* StageDataHolder::getJapaneseObjectName(const char *pName) const {
+    const JMapInfoIter englishName = mObjNameTbl->findElement<const char *>("en_name", pName, 0);
+    const JMapInfoIter copy = englishName;
+    const JMapInfoIter last = mObjNameTbl->end();
+
+    if (copy == last) {
+        return 0;
+    }
+
+    const char* japaneseName;
+    last.mInfo->getValue<const char *>(englishName._4, "jp_name", &japaneseName);
+    return japaneseName;
+}
+#endif
+
+void* StageDataHolder::getStageArchiveResource(const char *pName) {
+    return mArchive->getResource(0x3F3F3F3F, pName);
+}
+
+s32 StageDataHolder::getStageArchiveResourceSize(void *pData) {
+    return mArchive->getResSize(pData);
+}
+
+void StageDataHolder::initTableData() {
+    JKRArchive* archive = (JKRArchive*)MR::receiveArchive("/StageData/ObjTableTable.arc");
+    void* tableFile = archive->getResource(0x3F3F3F3F, "ObjNameTable.tbl");
+
+    mObjNameTbl = new JMapInfo();
+    mObjNameTbl->attach(tableFile);
 }
 
 JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *pInfoArr, const char *pName) const {

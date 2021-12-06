@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 #include "Game/Map/HitInfo.h"
-#include "Game/Util/JMapInfoIter.h"
+#include "Game/Util.h"
 
 class CodeTable;
 

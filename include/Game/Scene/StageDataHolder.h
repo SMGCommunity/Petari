@@ -16,6 +16,11 @@ public:
     void requestFileLoadScenario();
     void initPlacement();
 
+    bool isPlacedZone(int) const;
+    const char* getJapaneseObjectName(const char *) const;
+    void* getStageArchiveResource(const char *);
+    s32 getStageArchiveResourceSize(void *);
+
     void initPlacementMario();
 
     void initTableData();
@@ -53,7 +58,7 @@ public:
     JKRArchive* mArchive;                           // _A4
     const char* _A8;
     Mtx mPlacementMtx;                              // _AC
-    u32 _DC;
+    s32 mZoneID;                                    // _DC
     u8 _E0;
     u8 _E1;
     u8 _E2;
