@@ -32,6 +32,7 @@ compiler_flags = {
 inlined_files = [ 
     "source\Game\AreaObj\AreaForm.cpp",
     "source\Game\AreaObj\AreaObj.cpp",
+    "source\Game\Camera\CameraPoseParam.cpp",
     "source\Game\Demo\DemoSimpleCastHolder.cpp",
     "source\Game\Demo\DemoStartRequestHolder.cpp",
     "source\Game\Map\LightDataHolder.cpp", 
@@ -72,7 +73,7 @@ cw_path = os.getenv("CWFOLDER")
 nw_path = os.getenv("NW4RFOLDER")
 mw_path = os.getenv("MWFOLDER")
 
-includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include "
+includes += f"-i \"{rvl_path}\\include\" -I- -i \"{nw_path}\\include\" -I- -i  \"{mw_path}\\PowerPC_EABI_Support\\MetroTRK\" -I- -i  \"{mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include\" "
 flags += includes
 
 if os.path.exists("build"):

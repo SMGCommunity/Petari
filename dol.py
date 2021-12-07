@@ -8,7 +8,7 @@ def getCodeFromDOL(sym, functionSize):
         data = f.read()
         # verify that the dol is legit
         hash = hashlib.sha256(data).hexdigest().upper()
-        assert hash == "8B7F28D193170F998F92E02EA638107822FB72073691D0893EB18857BE0C6FCF"
+        assert hash == "8B7F28D193170F998F92E02EA638107822FB72073691D0893EB18857BE0C6FCF" or hash == "69F93FCC0FA34837347B5AC05168BC783ADCACB3C02697CFDA087A3B63ABC9E0"
 
         # grab .text offset and start offset
         txtOffset, = struct.unpack_from(">I", data, 4)
