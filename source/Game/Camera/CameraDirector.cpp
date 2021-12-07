@@ -6,7 +6,7 @@ void CameraPoseParam::copyFrom(const CameraPoseParam &rOther) {
     _18.set(rOther._18);
     _24.set(rOther._24);
     _30 = rOther._30; 
-    _00.set(rOther._34); 
+    _34.set(rOther._34); 
     _0C.set(rOther._40);
     _4C = rOther._4C;
     _50 = rOther._50; 
