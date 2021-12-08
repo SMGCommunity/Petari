@@ -32,6 +32,7 @@ compiler_flags = {
 inlined_files = [ 
     "source\Game\AreaObj\AreaForm.cpp",
     "source\Game\AreaObj\AreaObj.cpp",
+    "source\Game\Camera\Camera.cpp",
     "source\Game\Camera\CameraPoseParam.cpp",
     "source\Game\Demo\DemoSimpleCastHolder.cpp",
     "source\Game\Demo\DemoStartRequestHolder.cpp",

@@ -126,7 +126,7 @@ getCamera__28CamTranslatorWaterPlanetBossCFv,CamTranslatorWaterPlanetBoss.o,Came
 __ct__25CamTranslatorWonderPlanetFP18CameraWonderPlanet,CamTranslatorWonderPlanet.o,Camera.a,false
 setParam__25CamTranslatorWonderPlanetFPC16CameraParamChunk,CamTranslatorWonderPlanet.o,Camera.a,false
 getCamera__25CamTranslatorWonderPlanetCFv,CamTranslatorWonderPlanet.o,Camera.a,false
-__ct__6CameraFPCc,Camera.o,Camera.a,false
+__ct__6CameraFPCc,Camera.o,Camera.a,true
 setZoneMtx__6CameraFl,Camera.o,Camera.a,false
 createTranslator__6CameraFv,Camera.o,Camera.a,false
 createVPanObj__6CameraFv,Camera.o,Camera.a,false
