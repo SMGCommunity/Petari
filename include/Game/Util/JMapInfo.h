@@ -15,7 +15,7 @@ public:
     bool operator==(const JMapInfoIter &) const;
 
     JMapInfo* mInfo; // _0
-    u32 _4;
+    s32 _4;
 };
 
 
@@ -48,6 +48,9 @@ public:
 
     template<typename T>
     JMapInfoIter findElement(const char *, const char *, int) const;
+
+    template<typename T>
+    JMapInfoIter findElement(const char *, s32, int) const;
     JMapInfoIter end() const;
 
     template<typename T>

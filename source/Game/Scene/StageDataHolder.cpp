@@ -90,6 +90,76 @@ void StageDataHolder::initPlacement() {
     _10C->initPlacement();
 }
 
+#ifdef NON_MATCHING
+JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
+    JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
+    JMapInfoIter pathIter = inf->findElement<s32>("l_id", idx, 0);
+    return getCommonPathPointInfoFromRailDataIndex(pOut, pathIter._4);
+}
+#endif
+
+s32 StageDataHolder::getCurrentStartCameraId() const {
+    JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
+    s32 cameraID;
+    bool ret = marioIter.mInfo->getValue<s32>(marioIter._4, "Camera_id", &cameraID);
+
+    if (ret) {
+        return cameraID;
+    }
+
+    return -1;
+}
+
+void StageDataHolder::getStartCameraIdInfoFromStartDataIndex(JMapIdInfo *pInfo, int startDataIdx) const {
+    JMapInfoIter copy;
+    JMapInfoIter startIter = getStartJMapInfoIterFromStartDataIndex(startDataIdx);
+    copy = startIter;
+    s32 cameraID;
+    copy.mInfo->getValue<s32>(startIter._4, "Camera_id", &cameraID);
+    pInfo->initalize(cameraID, copy);
+}
+
+#ifdef NON_MATCHING
+const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfoIter &rIter) const {
+    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->_C * rIter._4;
+
+    if (_E4 > data || data >= _E8) {
+        for (s32 i = 0; i < mStageDataHolderCount; i++) {
+            const StageDataHolder* holder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
+
+            if (holder) {
+                return holder;
+            }
+        }
+
+        return 0;
+    }
+
+    return this;
+}
+#endif
+
+const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) const {
+    if (zoneID == 0) {
+        return this;
+    }
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        StageDataHolder* holder = mStageDataArray[i];
+        s32 curZoneID = holder->mZoneID;
+
+        if (zoneID == curZoneID) {
+            return holder;
+        }
+    }
+
+    return 0;
+}
+
+const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) {
+    return getStageDataHolderFromZoneId(zoneID);
+}
+
 bool StageDataHolder::isPlacedZone(int zoneID) const {
     if (!zoneID) {
         return true;
