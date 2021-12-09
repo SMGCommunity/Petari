@@ -68,9 +68,9 @@ public:
     u8 _59[3];
     f32 _5C;
     f32 _60;
-    BaseCamAnmDataAccessor* mFileDataAccessor;  // _64
-    CamAnmDataAccessor* mDataAccessor;          // _68
-    KeyCamAnmDataAccessor* mKeyDataAccessor;    // _6C
+    BaseCamAnmDataAccessor *mFileDataAccessor;  // _64
+    CamAnmDataAccessor *mDataAccessor;          // _68
+    KeyCamAnmDataAccessor *mKeyDataAccessor;    // _6C
     u32 _70;
     s32 _74;
     u8* mFileData;                              // _78

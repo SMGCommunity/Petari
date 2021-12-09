@@ -56,15 +56,15 @@ CameraAnim::~CameraAnim() {
 }
 
 bool CameraAnim::loadBin(unsigned char *pFile) {
-    CanmFileHeader* pHeader = reinterpret_cast<CanmFileHeader*>(pFile);
+    CanmFileHeader *pHeader = reinterpret_cast<CanmFileHeader *>(pFile);
 
     if (pHeader->mMagic[0] != 'A' || pHeader->mMagic[1] != 'N' || pHeader->mMagic[2] != 'D' || pHeader->mMagic[3] != 'O') {
         return false;
     }
 
     if (pHeader->mType[0] == 'C' && pHeader->mType[1] == 'A' && pHeader->mType[2] == 'N' && pHeader->mType[3] == 'M') {
-            mIsKey = 0;
-            mFileDataAccessor = mDataAccessor;
+        mIsKey = 0;
+        mFileDataAccessor = mDataAccessor;
     }
     else if (pHeader->mType[0] == 'C' && pHeader->mType[1] == 'K' && pHeader->mType[2] == 'A' && pHeader->mType[3] == 'N') {
         mIsKey = 1;
@@ -78,15 +78,15 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
         return false;
     }
 
-    u8* pEntry = reinterpret_cast<u8*>(pFile + sizeof(CanmFileHeader));
+    u8 *pEntry = reinterpret_cast<u8 *>(pFile + sizeof(CanmFileHeader));
     _4C = pHeader->_0C;
     _50 = pHeader->_10;
     _54 = pHeader->_18;
 
     s32 vOffset = pHeader->_1C;
 
-    _70 = *(reinterpret_cast<u32*>(&pEntry[vOffset])) / 4;
-
+    _70 = *(reinterpret_cast<u32 *>(&pntry[vOffset])) / 4;
+E
     mFileDataAccessor->setParam(pEntry, pEntry + vOffset + 1);
 
     return true;
