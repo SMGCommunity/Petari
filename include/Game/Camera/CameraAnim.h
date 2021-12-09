@@ -50,7 +50,7 @@ struct CanmFileHeader {
     s32 _0C;
     s32 _10;
     s32 _14;
-    s32 _18;
+    s32 mNrFrames;
     s32 _1C;
 };
 
@@ -59,11 +59,12 @@ public:
     CameraAnim(const char *);
     virtual ~CameraAnim();
 
+    static s32 getAnimFrame(unsigned char *);
     bool loadBin(unsigned char *);
     
     s32 _4C;
     s32 _50;
-    s32 _54;
+    s32 mNrFrames;                              // _54
     u8 mIsKey;                                  // _58
     u8 _59[3];
     f32 _5C;

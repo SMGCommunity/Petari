@@ -39,7 +39,7 @@ void CamAnmDataAccessor::setParam(u8 *a1, u8 *a2) {
 CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
     _4C = 0;
     _50 = 1;
-    _54 = 0;
+    mNrFrames = 0;
     mIsKey = 0;
     _5C = 1.0f;
     mFileDataAccessor = NULL;
@@ -53,6 +53,29 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
 
 CameraAnim::~CameraAnim() {
 
+}
+
+s32 CameraAnim::getAnimFrame(unsigned char *pFile) {
+    if (pFile == NULL) {
+        return 0;
+    }
+
+    CanmFileHeader *pHeader = reinterpret_cast<CanmFileHeader *>(pFile);
+
+    if (pHeader->mMagic[0] != 'A' || pHeader->mMagic[1] != 'N' || pHeader->mMagic[2] != 'D' || pHeader->mMagic[3] != 'O') {
+        return 0;
+    }
+
+    if ((pHeader->mType[0] != 'C' || pHeader->mType[1] != 'A' || pHeader->mType[2] != 'N' || pHeader->mType[3] != 'M') &&
+        (pHeader->mType[0] != 'C' || pHeader->mType[1] != 'K' || pHeader->mType[2] != 'A' || pHeader->mType[3] != 'N')) {
+        return 0;
+    }
+    
+    if (pHeader->_08 == 0) {
+        return 0;
+    }
+
+    return pHeader->mNrFrames;
 }
 
 bool CameraAnim::loadBin(unsigned char *pFile) {
@@ -81,7 +104,7 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
     u8 *pEntry = reinterpret_cast<u8 *>(pFile + sizeof(CanmFileHeader));
     _4C = pHeader->_0C;
     _50 = pHeader->_10;
-    _54 = pHeader->_18;
+    mNrFrames = pHeader->mNrFrames;
 
     s32 vOffset = pHeader->_1C;
 
