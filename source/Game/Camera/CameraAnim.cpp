@@ -55,7 +55,20 @@ CameraAnim::~CameraAnim() {
 
 }
 
-s32 CameraAnim::getAnimFrame(unsigned char *pFile) {
+bool CameraAnim::isAnimEnd() const {
+    bool hasEnded = true;
+    u32 vNrFrames = mNrFrames;
+
+    if (vNrFrames != 0) {
+        if (!(mCurrentFrame >= vNrFrames)) {
+            hasEnded = false;
+        }
+    }
+
+    return hasEnded;
+}
+
+u32 CameraAnim::getAnimFrame(unsigned char *pFile) {
     if (pFile == NULL) {
         return 0;
     }
