@@ -7,10 +7,10 @@ public:
     virtual inline ~BaseCamAnmDataAccessor();
 
     virtual void setParam(u8 *, u8 *) = 0;
-    virtual void getPos(const TVec3f *, const float) = 0;
-    virtual void getWatchPos(const TVec3f *, const float) = 0;
-    virtual float getTwist(const float) = 0;
-    virtual float getFovy(const float) = 0;
+    virtual void getPos(TVec3f *, float) const = 0;
+    virtual void getWatchPos(TVec3f *, float) const = 0;
+    virtual float getTwist(float) const = 0;
+    virtual float getFovy(float) const = 0;
 };
 
 class KeyCamAnmDataAccessor : public BaseCamAnmDataAccessor {
@@ -19,10 +19,10 @@ public:
     virtual ~KeyCamAnmDataAccessor();
     
     virtual void setParam(u8 *, u8 *);
-    virtual void getPos(const TVec3f *, const float);
-    virtual void getWatchPos(const TVec3f *, const float);
-    virtual float getTwist(const float);
-    virtual float getFovy(const float);
+    virtual void getPos(TVec3f *, float) const;
+    virtual void getWatchPos(TVec3f *, float) const;
+    virtual float getTwist(float) const;
+    virtual float getFovy(float) const;
 
     u8 *_04;
     u8 *_08;
@@ -34,10 +34,10 @@ public:
     virtual ~CamAnmDataAccessor();
     
     virtual void setParam(u8 *, u8 *);
-    virtual void getPos(const TVec3f *, const float);
-    virtual void getWatchPos(const TVec3f *, const float);
-    virtual float getTwist(const float);
-    virtual float getFovy(const float);
+    virtual void getPos(TVec3f *, float) const;
+    virtual void getWatchPos(TVec3f *, float) const;
+    virtual float getTwist(float) const;
+    virtual float getFovy(float) const;
 
     u8 *_04;
     u8 *_08;
@@ -73,7 +73,7 @@ public:
     KeyCamAnmDataAccessor *mKeyDataAccessor;    // _6C
     u32 _70;
     s32 _74;
-    u8* mFileData;                              // _78
+    u8 *mFileData;                              // _78
     u8 _7C;
     u8 _7D[3];
 };

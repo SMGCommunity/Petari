@@ -85,8 +85,8 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
 
     s32 vOffset = pHeader->_1C;
 
-    _70 = *(reinterpret_cast<u32 *>(&pntry[vOffset])) / 4;
-E
+    _70 = *(reinterpret_cast<u32 *>(&pEntry[vOffset])) / 4;
+    
     mFileDataAccessor->setParam(pEntry, pEntry + vOffset + 1);
 
     return true;
