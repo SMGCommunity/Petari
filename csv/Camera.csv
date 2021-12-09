@@ -165,7 +165,7 @@ reset__10CameraAnimFv,CameraAnim.o,Camera.a,false
 calc__10CameraAnimFv,CameraAnim.o,Camera.a,false
 setParam__10CameraAnimFPUcf,CameraAnim.o,Camera.a,false
 isAnimEnd__10CameraAnimCFv,CameraAnim.o,Camera.a,false
-getAnimFrame__10CameraAnimFPUc,CameraAnim.o,Camera.a,false
+getAnimFrame__10CameraAnimFPUc,CameraAnim.o,Camera.a,true
 createTranslator__10CameraAnimFv,CameraAnim.o,Camera.a,false
 loadBin__10CameraAnimFPUc,CameraAnim.o,Camera.a,true
 __dt__10CameraAnimFv,CameraAnim.o,Camera.a,false
