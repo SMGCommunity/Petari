@@ -22,6 +22,17 @@ void KeyCamAnmDataAccessor::setParam(u8 *a1, u8 *a2) {
     _08 = a2;
 }
 
+#ifdef NON_MATCHING
+// Float operation order, does not use fmadds, fmsubs and fnmsubs
+float KeyCamAnmDataAccessor::calcHermite(float a1, float a2, float a3, float a4, float a5, float a6, float a7) const {
+    float fVar1 = a4 / 30.0f;
+    float fVar2 = (a1 - a2) / (a5 - a2);
+    float fVar3 = fVar2 * fVar2 - fVar2;
+
+    return -(a1 - a2) * (fVar2 * fVar1 - a7 / 30.0f * fVar3 + fVar1 * fVar3 + fVar1) - (((fVar2 + fVar2) * fVar3 - fVar2 * fVar2) * (a3 - a6) + a3);
+}
+#endif
+
 inline CamAnmDataAccessor::CamAnmDataAccessor() {
     _04 = 0;
     _08 = 0;
@@ -41,7 +52,7 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
     _50 = 1;
     mNrFrames = 0;
     mIsKey = 0;
-    _5C = 1.0f;
+    mSpeed = 1.0f;
     mFileDataAccessor = NULL;
     mDataAccessor = new CamAnmDataAccessor();
     mKeyDataAccessor = new KeyCamAnmDataAccessor();
@@ -55,12 +66,18 @@ CameraAnim::~CameraAnim() {
 
 }
 
+void CameraAnim::setParam(unsigned char *pFile, float speed) {
+    loadBin(pFile);
+    mFileData = pFile;
+    mSpeed = speed;
+}
+
 bool CameraAnim::isAnimEnd() const {
     bool hasEnded = true;
-    u32 vNrFrames = mNrFrames;
+    u32 nrFrames = mNrFrames;
 
-    if (vNrFrames != 0) {
-        if (!(mCurrentFrame >= vNrFrames)) {
+    if (nrFrames != 0) {
+        if (!(mCurrentFrame >= nrFrames)) {
             hasEnded = false;
         }
     }
@@ -119,11 +136,11 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
     _50 = pHeader->_10;
     mNrFrames = pHeader->mNrFrames;
 
-    s32 vOffset = pHeader->_1C;
+    s32 someOffset = pHeader->_1C;
 
-    _70 = *(reinterpret_cast<u32 *>(&pEntry[vOffset])) / 4;
+    _70 = *(reinterpret_cast<u32 *>(&pEntry[someOffset])) / 4;
     
-    mFileDataAccessor->setParam(pEntry, pEntry + vOffset + 1);
+    mFileDataAccessor->setParam(pEntry, pEntry + someOffset + 1);
 
     return true;
 }

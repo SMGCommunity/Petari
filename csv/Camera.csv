@@ -163,7 +163,7 @@ calcHermite__21KeyCamAnmDataAccessorCFfffffff,CameraAnim.o,Camera.a,false
 __ct__10CameraAnimFPCc,CameraAnim.o,Camera.a,false
 reset__10CameraAnimFv,CameraAnim.o,Camera.a,false
 calc__10CameraAnimFv,CameraAnim.o,Camera.a,false
-setParam__10CameraAnimFPUcf,CameraAnim.o,Camera.a,false
+setParam__10CameraAnimFPUcf,CameraAnim.o,Camera.a,true
 isAnimEnd__10CameraAnimCFv,CameraAnim.o,Camera.a,true
 getAnimFrame__10CameraAnimFPUc,CameraAnim.o,Camera.a,true
 createTranslator__10CameraAnimFv,CameraAnim.o,Camera.a,false

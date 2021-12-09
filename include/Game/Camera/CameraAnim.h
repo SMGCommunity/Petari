@@ -24,6 +24,8 @@ public:
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
+    float calcHermite(float, float, float, float, float, float, float) const;
+
     u8 *_04;
     u8 *_08;
 };
@@ -59,6 +61,7 @@ public:
     CameraAnim(const char *);
     virtual ~CameraAnim();
 
+    void setParam(unsigned char *, float);
     bool isAnimEnd() const;
     static u32 getAnimFrame(unsigned char *);
     bool loadBin(unsigned char *);
@@ -68,7 +71,7 @@ public:
     u32 mNrFrames;                              // _54
     u8 mIsKey;                                  // _58
     u8 _59[3];
-    f32 _5C;
+    f32 mSpeed;                                 // _5C
     f32 mCurrentFrame;                          // _60
     BaseCamAnmDataAccessor *mFileDataAccessor;  // _64
     CamAnmDataAccessor *mDataAccessor;          // _68
