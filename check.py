@@ -142,11 +142,6 @@ if sym is not None:
                     if curOrigInstr.id in {PPC_INS_ADDI, PPC_INS_LIS, PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
                         continue
 
-                    if curOrigInstr.id == PPC_INS_LFS:
-                        if curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
-                            print("skipping r2 issue with lfs")
-                            continue
-
                     print(f"ERROR: Operand mismatch on line {i * 4}")
                     print("Original:")
                     print(curOrigInstr)
