@@ -14,6 +14,13 @@ public:
 
     void setModel(J3DModel *);
 
+    void updateBeforeMovement();
+    void updateAfterMovement();
+
+    void changeAnimationBck(const char *);
+
+    void changeInterpoleFrame(s32);
+
     J3DModel mModel;            // _0
     J3DModelData* mModelData;   // _4
 };

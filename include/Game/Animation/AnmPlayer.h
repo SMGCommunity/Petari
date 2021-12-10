@@ -20,6 +20,7 @@ public:
     void start(const char *);
     void stop();
     bool isPlaying(const char *) const;
+    bool isStop() const;
 
     void* mData;                        // _4
     const ResTable* mResourceTable;     // _8

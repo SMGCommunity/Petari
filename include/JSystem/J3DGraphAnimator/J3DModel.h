@@ -8,6 +8,12 @@ class J3DModelData;
 
 class J3DModel {
 public:
+    virtual void update();
+    virtual void entry();
+    virtual void calc();
+    virtual void calcMaterial();
+    virtual void calcDiffTexMtx();
+    virtual void viewCalc();
     virtual ~J3DModel();
 
     J3DModelData* mModelData;       // _4
