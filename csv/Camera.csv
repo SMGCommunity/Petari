@@ -156,7 +156,7 @@ getWatchPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camer
 getTwist__21KeyCamAnmDataAccessorCFf,CameraAnim.o,Camera.a,false
 getFovy__21KeyCamAnmDataAccessorCFf,CameraAnim.o,Camera.a,false
 get__21KeyCamAnmDataAccessorCFfUlUlUl,CameraAnim.o,Camera.a,false
-searchKeyFrameIndex__21KeyCamAnmDataAccessorCFfUlUlUl,CameraAnim.o,Camera.a,false
+searchKeyFrameIndex__21KeyCamAnmDataAccessorCFfUlUlUl,CameraAnim.o,Camera.a,true
 get3f__21KeyCamAnmDataAccessorCFfUlUl,CameraAnim.o,Camera.a,false
 get4f__21KeyCamAnmDataAccessorCFfUlUl,CameraAnim.o,Camera.a,false
 calcHermite__21KeyCamAnmDataAccessorCFfffffff,CameraAnim.o,Camera.a,false

@@ -97,7 +97,6 @@ if sym is not None:
         totalInsts = len(instr_new)
 
         error_count = 0
-        skip_count = 0
         
         for i in range(totalInsts):
             curOrigInstr = instr_original[i]
@@ -118,7 +117,6 @@ if sym is not None:
 
             # skip any blacklisted instructions
             if curOrigInstr.id in blacklistedInsns:
-                skip_count += 1
                 continue
 
             curOrigOps = curOrigInstr.operands
@@ -156,7 +154,7 @@ if sym is not None:
                     print(curNewInstr)
                     error_count += 1
 
-        print(f"Error check completed with {error_count} error(s) found. {skip_count} instruction(s) were not checked.")
+        print(f"Error check completed with {error_count} error(s) found.")
 
         if util.checkSymForMarked(lib, sym) and error_count != 0:
             print("This function is marked as decompiled, but is throwing matching errors! Unmarking as decompiled...")

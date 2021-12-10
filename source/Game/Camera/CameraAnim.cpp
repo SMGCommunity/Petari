@@ -22,20 +22,22 @@ void KeyCamAnmDataAccessor::setParam(u8 *a1, f32 *pValues) {
     mValues = pValues;
 }
 
-u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long a3, unsigned long stride) const {
-    u32 current = 0;
-    u32 high = a3;
+u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long count, unsigned long stride) const {
+    u32 low = 0;
+    u32 high = count;
 
-    while (current < high) {
-        a3 = (current + high) / 2;
+    while (low < high) {
+        u32 middle = (low + high) / 2;
 
-        if (!(mValues[offset + a3 * stride] <= key)) {
-            current = a3 + 1;
-            a3 = high;
+        if (!(mValues[offset + middle * stride] <= key)) {
+            low = middle + 1;
+        }
+        else {
+            high = middle;
         }
     }
 
-    return current - 1;
+    return low - 1;
 }
 
 #ifdef NON_MATCHING
