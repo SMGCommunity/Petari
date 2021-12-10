@@ -15,7 +15,7 @@ rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 toolsPath = os.path.dirname(os.path.realpath(__file__)) + "\\tools\\"
 
-flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline off -ipa file -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
+flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline auto -ipa file -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
 includes = "-i . -I- -i include "
 
 default_compiler_path = "GC/3.0a3/"
@@ -27,28 +27,6 @@ compiler_execptions = {
 compiler_flags = {
     #"GC/2.5", flags
 }
-
-# a list of files that need the flags to be turned on for inlining
-inlined_files = [ 
-    "source\Game\AreaObj\AreaForm.cpp",
-    "source\Game\AreaObj\AreaObj.cpp",
-    "source\Game\Camera\Camera.cpp",
-    "source\Game\Camera\CameraAnim.cpp",
-    "source\Game\Camera\CameraPoseParam.cpp",
-    "source\Game\Demo\DemoSimpleCastHolder.cpp",
-    "source\Game\Demo\DemoStartRequestHolder.cpp",
-    "source\Game\Map\LightDataHolder.cpp", 
-    "source\Game\\NameObj\\NameObjCategoryList.cpp", 
-    "source\Game\System\FileHolder.cpp", 
-    "source\JSystem\JKernel\JKRDisposer.cpp", 
-    "source\JSystem\JKernel\JKRThread.cpp", 
-    "source\Game\LiveActor\HitSensor.cpp", 
-    "source\Game\LiveActor\HitSensorInfo.cpp", 
-    "source\Game\LiveActor\HitSensorKeeper.cpp", 
-    "source\Game\\Util\FixedPosition.cpp",
-    "source\Game\System\DrawBufferGroup.cpp",
-    "source\Game\Scene\StageDataHolder.cpp"
-    ]
 
 if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")
@@ -110,16 +88,6 @@ for task in tasks:
             compiler_path = f"{cw_path}/{compiler_execptions[source_path]}"
     except:
         pass
-
-    if source_path in inlined_files:
-        new_flags = flags.replace("-inline off", "-inline auto")
-        print(f"Compiling {source_path} [with inlined options]...")
-
-        if subprocess.call(f"{compiler_path}/mwcceppc.exe {new_flags} {source_path} -o {build_path}", shell=True) == 1:
-                deleteDFiles()
-                sys.exit(1)
-
-        continue
 
     print(f"Compiling {source_path}...")
 

@@ -1,6 +1,23 @@
 #pragma once
 
 #include <revolution.h>
+#include "Game/Util.h"
+
+class JMapInfo;
+
+class JMapInfoIter {
+public:
+    template<typename T>
+    bool getValue(const char *, T *) const;
+
+    bool isValid() const;
+
+    bool operator==(const JMapInfoIter &) const;
+
+    JMapInfo* mInfo; // _0
+    s32 _4;
+};
+
 
 struct JMapItem {
     u32 mHash;      // _0
@@ -28,6 +45,13 @@ public:
     s32 getValueType(const char *) const;
 
     const char* getName() const;
+
+    template<typename T>
+    JMapInfoIter findElement(const char *, const char *, int) const;
+
+    template<typename T>
+    JMapInfoIter findElement(const char *, s32, int) const;
+    JMapInfoIter end() const;
 
     template<typename T>
     const bool getValue(int, const char *, T *) const;

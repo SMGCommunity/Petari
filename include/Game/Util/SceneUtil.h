@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapInfoIter.h"
+#include "Game/Util/JMapInfo.h"
 #include <revolution.h>
 
 namespace MR {

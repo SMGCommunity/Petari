@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 void StageDataHolder::init(const JMapInfoIter &rIter) {
-    if (!_DC) {
+    if (!mZoneID) {
         initTableData();
     }
 
@@ -15,7 +15,7 @@ void StageDataHolder::init(const JMapInfoIter &rIter) {
 
     createLocalStageDataHolder(_EC, 1);
 
-    if (!_DC) {
+    if (!mZoneID) {
         initPlacementInfoOrderedCommon();
     }
 }
@@ -35,7 +35,7 @@ void StageDataHolder::initAfterScenarioSelected() {
         mStageDataArray[i]->initAfterScenarioSelected();
     }
 
-    if (!_DC) {
+    if (!mZoneID) {
         initPlacementInfoOrderedScenario();
     }
 
@@ -90,6 +90,123 @@ void StageDataHolder::initPlacement() {
     _10C->initPlacement();
 }
 
+#ifdef NON_MATCHING
+JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
+    JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
+    JMapInfoIter pathIter = inf->findElement<s32>("l_id", idx, 0);
+    return getCommonPathPointInfoFromRailDataIndex(pOut, pathIter._4);
+}
+#endif
+
+s32 StageDataHolder::getCurrentStartCameraId() const {
+    JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
+    s32 cameraID;
+    bool ret = marioIter.mInfo->getValue<s32>(marioIter._4, "Camera_id", &cameraID);
+
+    if (ret) {
+        return cameraID;
+    }
+
+    return -1;
+}
+
+void StageDataHolder::getStartCameraIdInfoFromStartDataIndex(JMapIdInfo *pInfo, int startDataIdx) const {
+    JMapInfoIter copy;
+    JMapInfoIter startIter = getStartJMapInfoIterFromStartDataIndex(startDataIdx);
+    copy = startIter;
+    s32 cameraID;
+    copy.mInfo->getValue<s32>(startIter._4, "Camera_id", &cameraID);
+    pInfo->initalize(cameraID, copy);
+}
+
+#ifdef NON_MATCHING
+const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfoIter &rIter) const {
+    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->_C * rIter._4;
+
+    if (_E4 > data || data >= _E8) {
+        for (s32 i = 0; i < mStageDataHolderCount; i++) {
+            const StageDataHolder* holder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
+
+            if (holder) {
+                return holder;
+            }
+        }
+
+        return 0;
+    }
+
+    return this;
+}
+#endif
+
+const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) const {
+    if (zoneID == 0) {
+        return this;
+    }
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        StageDataHolder* holder = mStageDataArray[i];
+        s32 curZoneID = holder->mZoneID;
+
+        if (zoneID == curZoneID) {
+            return holder;
+        }
+    }
+
+    return 0;
+}
+
+const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) {
+    return getStageDataHolderFromZoneId(zoneID);
+}
+
+bool StageDataHolder::isPlacedZone(int zoneID) const {
+    if (!zoneID) {
+        return true;
+    }
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        if (zoneID != mStageDataArray[i]->mZoneID) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+#ifdef NON_MATCHING
+// stack nonsense
+const char* StageDataHolder::getJapaneseObjectName(const char *pName) const {
+    const JMapInfoIter englishName = mObjNameTbl->findElement<const char *>("en_name", pName, 0);
+    const JMapInfoIter copy = englishName;
+    const JMapInfoIter last = mObjNameTbl->end();
+
+    if (copy == last) {
+        return 0;
+    }
+
+    const char* japaneseName;
+    last.mInfo->getValue<const char *>(englishName._4, "jp_name", &japaneseName);
+    return japaneseName;
+}
+#endif
+
+void* StageDataHolder::getStageArchiveResource(const char *pName) {
+    return mArchive->getResource(0x3F3F3F3F, pName);
+}
+
+s32 StageDataHolder::getStageArchiveResourceSize(void *pData) {
+    return mArchive->getResSize(pData);
+}
+
+void StageDataHolder::initTableData() {
+    JKRArchive* archive = (JKRArchive*)MR::receiveArchive("/StageData/ObjTableTable.arc");
+    void* tableFile = archive->getResource(0x3F3F3F3F, "ObjNameTable.tbl");
+
+    mObjNameTbl = new JMapInfo();
+    mObjNameTbl->attach(tableFile);
+}
+
 JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *pInfoArr, const char *pName) const {
     JMapInfo* inf = pInfoArr->mArr;
     while (inf != pInfoArr->mArr + pInfoArr->mMaxSize) {
@@ -103,17 +220,21 @@ JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapIn
     return 0;
 }
 
-#ifdef NON_MATCHING
-// some small register usage issues
-JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) const {
+JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) const {
+    int idx = idx_;
+    int curIdx;
+    JMapInfo* pEnd = mStartObjs.mArr + mStartObjs.mMaxSize;
+    bool isValid;
+    s32 i;
     JMapInfo* inf = mStartObjs.mArr;
+    StageDataHolder* locHolder;
+    
+    while (inf != pEnd)
+    {
+        const JMapData * curData = inf->mData;
+        isValid = curData;
 
-    int curIdx = 0;
-
-    while (inf != inf + mStartObjs.mMaxSize) {
-        bool isValid = inf->mData != 0;
-
-        curIdx = isValid ? inf->mData->_0 : 0;
+        curIdx = isValid ? curData->_0 : 0;
     
         if (idx < curIdx) {
             JMapInfoIter iter;
@@ -122,20 +243,20 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) co
             return iter;
         }
 
-        curIdx = isValid ? inf->mData->_0 : 0;
+        curIdx = isValid ? curData->_0 : 0;
 
         idx -= curIdx;
+
         inf++;
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
-        StageDataHolder* locHolder = mStageDataArray[i];
-        s32 startPosNum = locHolder->getStartPosNum();
+        locHolder = mStageDataArray[i];
+        int startPosNum = locHolder->getStartPosNum();
 
         if (idx < startPosNum) {
             return locHolder->getStartJMapInfoIterFromStartDataIndex(idx);
         }
-
         idx -= startPosNum;
     }
 
@@ -144,7 +265,6 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx) co
     iter._4 = -1;
     return iter;
 }
-#endif
 
 void StageDataHolder::calcDataAddress() {
     _E4 = -1;
