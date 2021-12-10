@@ -1,4 +1,5 @@
 #include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/HitSensorKeeper.h"
 #include "Game/Util.h"
 #include "JSystem/JMath/JMath.h"
 

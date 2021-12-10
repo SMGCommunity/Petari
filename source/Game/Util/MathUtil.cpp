@@ -289,7 +289,7 @@ namespace MR {
         return JGeometry::TUtil<f32>::clamp(a1 + (a3 * (a2 - a1)), 0.0f, 255.0f);
     }
 
-    #ifdef NON_MATCHING
+    /*#ifdef NON_MATCHING
     _GXColor lerp(_GXColor a1, _GXColor a2, f32 a3) {
         u8 v6 = lerp(a1.a, a2.a, a3);
         u8 v7 = lerp(a1.b, a2.b, a3);
@@ -298,7 +298,7 @@ namespace MR {
 
         return (v6 | ((v7 << 8) & 0xFF00 | ((v8 << 16) & 0xFF000 | thing << 24)) & 0xFFFF00FF) & 0xFFFFFF00;
     }
-    #endif
+    #endif*/
 
     f32 vecKillElement(const TVec3f &a1, const TVec3f &a2, TVec3f *a3) {
         if (isNearZero(a2, 0.001f)) {

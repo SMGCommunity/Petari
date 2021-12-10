@@ -116,11 +116,6 @@ if sym is not None:
                     print(curNewInstr)
                     error_count += 1
 
-            # these are a lot of instructions that have different operands because of linking / SDA
-            if curOrigInstr.id in {PPC_INS_ADDI, PPC_INS_LIS, PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
-                skip_count += 1
-                continue
-
             # skip any blacklisted instructions
             if curOrigInstr.id in blacklistedInsns:
                 skip_count += 1
@@ -144,16 +139,10 @@ if sym is not None:
                     if curOpOg.reg == PPC_REG_R13 and curOpNw.reg == PPC_REG_R0:
                         print("skipping r13 issue")
                         continue
-                    # this is a reoccuring issue with r13 as well
-                    #if curOrigInstr.id == PPC_INS_LWZ or curOrigInstr.id == PPC_INS_LHZ or curOrigInstr.id == PPC_INS_STW:
-                    #    if curOpOg.reg == PPC_REG_R13 and curOpNw.reg == PPC_REG_R0 or curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
-                    #        print("skipping r2/r13 issue with SDA")
-                    #        continue
 
-                    #if curOrigInstr.id == PPC_INS_LFS:
-                    #    if curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
-                    #        print("skipping r2 issue with lfs")
-                    #        continue
+                    # these are a lot of instructions that have different operands because of linking / SDA
+                    if curOrigInstr.id in {PPC_INS_ADDI, PPC_INS_LIS, PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
+                        continue
 
                     if curOrigInstr.id == PPC_INS_LFS:
                         if curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
