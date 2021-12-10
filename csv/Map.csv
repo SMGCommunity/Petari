@@ -38,7 +38,7 @@ __dt__12PriorDrawAirFv,Air.o,Map.a,false
 __dt__18PriorDrawAirHolderFv,Air.o,Map.a,false
 clamp__Q29JGeometry8TUtil<f>Ffff,BezierRail.o,Map.a,false
 calcRailDirection__24@unnamed@BezierRail_cpp@FPQ29JGeometry8TVec3<f>PC8RailPartf,BezierRail.o,Map.a,true
-set__14BezierRailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,BezierRail.o,Map.a,true
+set__14BezierRailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,BezierRail.o,Map.a,false
 calcPos__14BezierRailPartCFPQ29JGeometry8TVec3<f>f,BezierRail.o,Map.a,true
 calcVelocity__14BezierRailPartCFPQ29JGeometry8TVec3<f>f,BezierRail.o,Map.a,true
 getLength__14BezierRailPartCFffi,BezierRail.o,Map.a,false

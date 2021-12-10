@@ -4,6 +4,7 @@
 #define SceneObj_LightDirector          0x6
 #define SceneObj_StageDataHolder        0x8
 #define SceneObj_PlacementStateChecker  0x27
+#define SceneObj_AllLiveActorGroup      0x30
 #define SceneObj_NameObjExecuteHolder   0x58
 #define SceneObj_PlanetMapCreator       0x74
 

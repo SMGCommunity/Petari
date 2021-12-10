@@ -8,9 +8,30 @@ public:
 
     virtual ~J3DAnmBase();
 
-    u32 _0;
-    u8 _4;
+    u8 mLoopMode;       // _4
     u8 _5;
-    s16 _6;
-    f32 _8;
+    s16 mLoopDuration;  // _6
+    f32 mCurrentFrame;  // _8
+};
+
+class J3DFrameCtrl {
+public:
+
+    inline J3DFrameCtrl(s16 endFrame) {
+        init(endFrame);
+    }
+
+    virtual ~J3DFrameCtrl();
+
+    void init(s16);
+    bool checkPass(f32);
+    void update();
+
+    u8 mLoopMode;       // _4
+    u8 mFlags;          // _5
+    s16 mStartFrame;    // _6
+    s16 mEndFrame;      // _8
+    s16 mLoopFrame;     // _A
+    f32 mSpeed;         // _C
+    f32 mCurrentFrame;  // _10
 };

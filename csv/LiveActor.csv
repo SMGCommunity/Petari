@@ -363,7 +363,7 @@ receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor,LiveActor.o,LiveActor.a,false
 addToSoundObjHolder__9LiveActorFv,LiveActor.o,LiveActor.a,false
 updateBinder__9LiveActorFv,LiveActor.o,LiveActor.a,false
 setBaseScale__8J3DModelFRC3Vec,LiveActor.o,LiveActor.a,false
-__ct__13LiveActorFlagFv,LiveActorFlag.o,LiveActor.a,false
+__ct__13LiveActorFlagFv,LiveActorFlag.o,LiveActor.a,true
 __ct__14LiveActorGroupFPCci,LiveActorGroup.o,LiveActor.a,false
 registerActor__14LiveActorGroupFP9LiveActor,LiveActorGroup.o,LiveActor.a,false
 getActor__14LiveActorGroupCFi,LiveActorGroup.o,LiveActor.a,false
