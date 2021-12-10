@@ -160,7 +160,7 @@ searchKeyFrameIndex__21KeyCamAnmDataAccessorCFfUlUlUl,CameraAnim.o,Camera.a,fals
 get3f__21KeyCamAnmDataAccessorCFfUlUl,CameraAnim.o,Camera.a,false
 get4f__21KeyCamAnmDataAccessorCFfUlUl,CameraAnim.o,Camera.a,false
 calcHermite__21KeyCamAnmDataAccessorCFfffffff,CameraAnim.o,Camera.a,false
-__ct__10CameraAnimFPCc,CameraAnim.o,Camera.a,false
+__ct__10CameraAnimFPCc,CameraAnim.o,Camera.a,true
 reset__10CameraAnimFv,CameraAnim.o,Camera.a,false
 calc__10CameraAnimFv,CameraAnim.o,Camera.a,false
 setParam__10CameraAnimFPUcf,CameraAnim.o,Camera.a,true
