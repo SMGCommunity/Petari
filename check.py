@@ -97,6 +97,7 @@ if sym is not None:
         totalInsts = len(instr_new)
 
         error_count = 0
+        skip_count = 0
         
         for i in range(totalInsts):
             curOrigInstr = instr_original[i]
@@ -117,10 +118,12 @@ if sym is not None:
 
             # these are a lot of instructions that have different operands because of linking / SDA
             if curOrigInstr.id in {PPC_INS_ADDI, PPC_INS_LIS, PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
+                skip_count += 1
                 continue
 
             # skip any blacklisted instructions
             if curOrigInstr.id in blacklistedInsns:
+                skip_count += 1
                 continue
 
             curOrigOps = curOrigInstr.operands
@@ -140,6 +143,11 @@ if sym is not None:
                             print("skipping r2/r13 issue with SDA")
                             continue
 
+                    if curOrigInstr.id == PPC_INS_LFS:
+                        if curOpOg.reg == PPC_REG_R2 and curOpNw.reg == PPC_REG_R0:
+                            print("skipping r2 issue with lfs")
+                            continue
+
                     print(f"ERROR: Operand mismatch on line {i * 4}")
                     print("Original:")
                     print(curOrigInstr)
@@ -147,7 +155,7 @@ if sym is not None:
                     print(curNewInstr)
                     error_count += 1
 
-        print(f"Error check completed with {error_count} error(s) found.")
+        print(f"Error check completed with {error_count} error(s) found. {skip_count} instruction(s) were not checked.")
 
         if util.checkSymForMarked(lib, sym) and error_count != 0:
             print("This function is marked as decompiled, but is throwing matching errors! Unmarking as decompiled...")

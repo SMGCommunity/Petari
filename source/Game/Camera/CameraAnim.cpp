@@ -9,21 +9,37 @@ inline BaseCamAnmDataAccessor::~BaseCamAnmDataAccessor() {
 }
 
 inline KeyCamAnmDataAccessor::KeyCamAnmDataAccessor() {
-    _04 = 0;
-    _08 = 0;
+    _04 = NULL;
+    mValues = NULL;
 }
 
 KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 
 }
 
-void KeyCamAnmDataAccessor::setParam(u8 *a1, u8 *a2) {
+void KeyCamAnmDataAccessor::setParam(u8 *a1, f32 *pValues) {
     _04 = a1;
-    _08 = a2;
+    mValues = pValues;
+}
+
+u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long a3, unsigned long stride) const {
+    u32 current = 0;
+    u32 high = a3;
+
+    while (current < high) {
+        a3 = (current + high) / 2;
+
+        if (!(mValues[offset + a3 * stride] <= key)) {
+            current = a3 + 1;
+            a3 = high;
+        }
+    }
+
+    return current - 1;
 }
 
 #ifdef NON_MATCHING
-// Float operation order, does not use fmadds, fmsubs and fnmsubs
+// Float instruction order, does not use fmadds, fmsubs and fnmsubs
 float KeyCamAnmDataAccessor::calcHermite(float a1, float a2, float a3, float a4, float a5, float a6, float a7) const {
     float fVar1 = a4 / 30.0f;
     float fVar2 = (a1 - a2) / (a5 - a2);
@@ -34,17 +50,17 @@ float KeyCamAnmDataAccessor::calcHermite(float a1, float a2, float a3, float a4,
 #endif
 
 inline CamAnmDataAccessor::CamAnmDataAccessor() {
-    _04 = 0;
-    _08 = 0;
+    _04 = NULL;
+    mValues = NULL;
 }
 
 CamAnmDataAccessor::~CamAnmDataAccessor() {
 
 }
 
-void CamAnmDataAccessor::setParam(u8 *a1, u8 *a2) {
+void CamAnmDataAccessor::setParam(u8 *a1, f32 *pValues) {
     _04 = a1;
-    _08 = a2;
+    mValues = pValues;
 }
 
 CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
@@ -56,7 +72,7 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
     mFileDataAccessor = NULL;
     mDataAccessor = new CamAnmDataAccessor();
     mKeyDataAccessor = new KeyCamAnmDataAccessor();
-    _70 = 0;
+    mNrValues = 0;
     _74 = 0;
     mFileData = NULL;
     _7C = 0;
@@ -136,11 +152,11 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
     _50 = pHeader->_10;
     mNrFrames = pHeader->mNrFrames;
 
-    s32 someOffset = pHeader->_1C;
+    u32 valueOffset = pHeader->mValueOffset;
 
-    _70 = *(reinterpret_cast<u32 *>(&pEntry[someOffset])) / 4;
+    mNrValues = *(reinterpret_cast<u32 *>(&pEntry[valueOffset])) / 4;
     
-    mFileDataAccessor->setParam(pEntry, pEntry + someOffset + 1);
+    mFileDataAccessor->setParam(pEntry, reinterpret_cast<f32 *>(pEntry + valueOffset + 4));
 
     return true;
 }

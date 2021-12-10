@@ -6,7 +6,7 @@ public:
     inline BaseCamAnmDataAccessor();
     virtual inline ~BaseCamAnmDataAccessor();
 
-    virtual void setParam(u8 *, u8 *) = 0;
+    virtual void setParam(u8 *, f32 *) = 0;
     virtual void getPos(TVec3f *, float) const = 0;
     virtual void getWatchPos(TVec3f *, float) const = 0;
     virtual float getTwist(float) const = 0;
@@ -18,16 +18,17 @@ public:
     inline KeyCamAnmDataAccessor();
     virtual ~KeyCamAnmDataAccessor();
     
-    virtual void setParam(u8 *, u8 *);
+    virtual void setParam(u8 *, f32 *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
+    u32 searchKeyFrameIndex(float, unsigned long, unsigned long, unsigned long) const;
     float calcHermite(float, float, float, float, float, float, float) const;
 
     u8 *_04;
-    u8 *_08;
+    f32 *mValues;
 };
 
 class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
@@ -35,14 +36,14 @@ public:
     inline CamAnmDataAccessor();
     virtual ~CamAnmDataAccessor();
     
-    virtual void setParam(u8 *, u8 *);
+    virtual void setParam(u8 *, f32 *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
     u8 *_04;
-    u8 *_08;
+    f32 *mValues;
 };
 
 struct CanmFileHeader {
@@ -53,7 +54,7 @@ struct CanmFileHeader {
     s32 _10;
     s32 _14;
     u32 mNrFrames;
-    s32 _1C;
+    u32 mValueOffset;
 };
 
 class CameraAnim : public Camera {
@@ -76,7 +77,7 @@ public:
     BaseCamAnmDataAccessor *mFileDataAccessor;  // _64
     CamAnmDataAccessor *mDataAccessor;          // _68
     KeyCamAnmDataAccessor *mKeyDataAccessor;    // _6C
-    u32 _70;
+    u32 mNrValues;
     s32 _74;
     u8 *mFileData;                              // _78
     u8 _7C;

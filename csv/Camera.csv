@@ -797,7 +797,7 @@ copy__17CameraParamStringFPCc,CameraParamString.o,Camera.a,false
 initCameraCodeCollection__2MRFPCcl,CameraPolygonCodeUtil.o,Camera.a,false
 registerCameraCode__2MRFUl,CameraPolygonCodeUtil.o,Camera.a,false
 termCameraCodeCollection__2MRFv,CameraPolygonCodeUtil.o,Camera.a,false
-__ct__15CameraPoseParamFv,CameraPoseParam.o,Camera.a,false
+__ct__15CameraPoseParamFv,CameraPoseParam.o,Camera.a,true
 __ct__16CameraRaceFollowFPCc,CameraRaceFollow.o,Camera.a,false
 reset__16CameraRaceFollowFv,CameraRaceFollow.o,Camera.a,false
 calc__16CameraRaceFollowFv,CameraRaceFollow.o,Camera.a,false
