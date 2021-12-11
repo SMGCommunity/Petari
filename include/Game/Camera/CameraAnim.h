@@ -1,12 +1,40 @@
 #include "Game/Camera/Camera.h"
 #include "revolution.h"
 
+struct CanmFileHeader {
+    u8 mMagic[4];
+    u8 mType[4];
+    s32 _8;
+    s32 _C;
+    s32 _10;
+    s32 _14;
+    u32 mNrFrames;
+    u32 mValueOffset;
+};
+
+struct CanmKeyFrameComponentInfo {
+    u32 mCount;
+    u32 mOffset;
+    u32 mType;
+};
+
+struct CanmKeyFrameInfo {
+    CanmKeyFrameComponentInfo mPosX;
+    CanmKeyFrameComponentInfo mPosY;
+    CanmKeyFrameComponentInfo mPosZ;
+    CanmKeyFrameComponentInfo mWatchPosX;
+    CanmKeyFrameComponentInfo mWatchPosY;
+    CanmKeyFrameComponentInfo mWatchPosZ;
+    CanmKeyFrameComponentInfo mTwist;
+    CanmKeyFrameComponentInfo mFovy;
+};
+
 class BaseCamAnmDataAccessor {
 public:
     inline BaseCamAnmDataAccessor();
     virtual inline ~BaseCamAnmDataAccessor();
 
-    virtual void setParam(u8 *, f32 *) = 0;
+    virtual void setParam(u32 *, f32 *) = 0;
     virtual void getPos(TVec3f *, float) const = 0;
     virtual void getWatchPos(TVec3f *, float) const = 0;
     virtual float getTwist(float) const = 0;
@@ -18,16 +46,19 @@ public:
     inline KeyCamAnmDataAccessor();
     virtual ~KeyCamAnmDataAccessor();
     
-    virtual void setParam(u8 *, f32 *);
+    virtual void setParam(u32 *, f32 *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
+    float get(float, unsigned long, unsigned long, unsigned long) const;
     u32 searchKeyFrameIndex(float, unsigned long, unsigned long, unsigned long) const;
+    float get3f(float, unsigned long, unsigned long) const;
+    float get4f(float, unsigned long, unsigned long) const;
     float calcHermite(float, float, float, float, float, float, float) const;
 
-    u8 *_04;
+    CanmKeyFrameInfo *mInfo;
     f32 *mValues;
 };
 
@@ -36,25 +67,14 @@ public:
     inline CamAnmDataAccessor();
     virtual ~CamAnmDataAccessor();
     
-    virtual void setParam(u8 *, f32 *);
+    virtual void setParam(u32 *, f32 *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
-    u8 *_04;
+    u32 *_4;
     f32 *mValues;
-};
-
-struct CanmFileHeader {
-    u8 mMagic[4]; // _00
-    u8 mType[4];  // _04
-    s32 _08;
-    s32 _0C;
-    s32 _10;
-    s32 _14;
-    u32 mNrFrames;
-    u32 mValueOffset;
 };
 
 class CameraAnim : public Camera {
