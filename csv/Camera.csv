@@ -948,7 +948,7 @@ isLongDrop__15CameraTargetObjCFv,CameraTargetMtx.o,Camera.a,false
 isTurning__15CameraTargetObjCFv,CameraTargetMtx.o,Camera.a,false
 init__15CameraTargetObjFRC12JMapInfoIter,CameraTargetMtx.o,Camera.a,false
 movement__15CameraTargetMtxFv,CameraTargetMtx.o,Camera.a,false
-__ct__15CameraTargetObjFPCc,CameraTargetObj.o,Camera.a,false
+__ct__15CameraTargetObjFPCc,CameraTargetObj.o,Camera.a,true
 __ct__17CameraTargetActorFPCc,CameraTargetObj.o,Camera.a,false
 movement__17CameraTargetActorFv,CameraTargetObj.o,Camera.a,false
 getPosition__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
