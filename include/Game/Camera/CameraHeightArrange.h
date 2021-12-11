@@ -9,6 +9,14 @@ class CameraHeightArrange : public NameObj {
 public:
     CameraHeightArrange(Camera *);
 
+    void resetJump();
+
+    void resetParameter();
+
+    void chase();
+    void updateHeightAndOffset();
+    TVec3f *getGlobalAxis();
+
     Camera *mCamera;        // _C
     u8 _10;
     u8 _11;
@@ -28,20 +36,18 @@ public:
     u8 _48[4];
     u8 _4C;
     u8 _4D[3];
-    u32 _50;
+    s32 _50;
     u32 _54;
     u32 _58;
     u32 _5C;
     u8 _60;
     u8 _61[3];
-    f32 _64;
-    f32 _68;
-    f32 _6C;
+    TVec3f mGlobalAxis;     // _64
     f32 _70;
     f32 _74;
     f32 _78;
     f32 _7C;
-    u32 _80;
+    s32 _80;
     f32 _84;
     f32 _88;
     u32 _8C;
@@ -49,7 +55,5 @@ public:
     u32 _94;
     u8 _98;
     u8 _99[3];
-    f32 _9C;
-    f32 _A0;
-    f32 _A4;
+    TVec3f _9C;             // _9C
 };

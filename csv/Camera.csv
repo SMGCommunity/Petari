@@ -417,9 +417,9 @@ __ct__19CameraHeightArrangeFP6Camera,CameraHeightArrange.o,Camera.a,true
 updateJump__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 calcWatchPos__19CameraHeightArrangeFP15CameraTargetObj,CameraHeightArrange.o,Camera.a,false
 arrange__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
-resetJump__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
+resetJump__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,true
 reset__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
-resetParameter__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
+resetParameter__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,true
 checkState__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 arrangeHeight__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 arrangeVPan__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
@@ -427,8 +427,8 @@ calcPose__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 updateUpper__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 updateLower__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 calcOffset__19CameraHeightArrangeFf,CameraHeightArrange.o,Camera.a,false
-chase__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
-updateHeightAndOffset__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
+chase__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,true
+updateHeightAndOffset__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,true
 getGlobalAxis__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 isFastRise__15CameraTargetObjCFv,CameraHeightArrange.o,Camera.a,false
 isFastDrop__15CameraTargetObjCFv,CameraHeightArrange.o,Camera.a,false

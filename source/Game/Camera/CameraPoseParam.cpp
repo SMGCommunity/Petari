@@ -1,12 +1,12 @@
 #include "Game/Camera/CameraPoseParam.h"
 
 CameraPoseParam::CameraPoseParam() {
-    _00.x = 0.0f;
-    _00.y = 1.0f;
-    _00.z = 0.0f;
-    _0C.x = 0.0f;
-    _0C.y = 0.0f;
-    _0C.z = 1.0f;
+    _0.x = 0.0f;
+    _0.y = 1.0f;
+    _0.z = 0.0f;
+    _C.x = 0.0f;
+    _C.y = 0.0f;
+    _C.z = 1.0f;
     _18.x = 0.0f;
     _18.y = 1.0f;
     _18.z = 0.0f;
