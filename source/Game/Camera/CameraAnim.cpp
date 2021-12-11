@@ -126,7 +126,7 @@ float KeyCamAnmDataAccessor::calcHermite(float key, float a2, float a3, float a4
 #endif
 
 inline CamAnmDataAccessor::CamAnmDataAccessor() {
-    _4 = NULL;
+    mInfo = NULL;
     mValues = NULL;
 }
 
@@ -134,10 +134,65 @@ CamAnmDataAccessor::~CamAnmDataAccessor() {
 
 }
 
-void CamAnmDataAccessor::setParam(u32 *a1, f32 *pValues) {
-    _4 = a1;
+void CamAnmDataAccessor::setParam(u32 *pInfo, f32 *pValues) {
+    mInfo = reinterpret_cast<CanmFrameInfo *>(pInfo);
     mValues = pValues;
 }
+
+void CamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
+    CamnFrameComponentInfo &infoZ = mInfo->mPosZ;
+    CamnFrameComponentInfo &infoY = mInfo->mPosY;
+    CamnFrameComponentInfo &infoX = mInfo->mPosX;
+
+    f32 x;
+    f32 y;
+    f32 z;
+
+    z = get(key, infoZ.mOffset, infoZ.mCount);
+    y = get(key, infoY.mOffset, infoY.mCount);
+    x = get(key, infoX.mOffset, infoX.mCount);
+
+    pPos->set(x, y, z);
+}
+
+void CamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, float key) const {
+    CamnFrameComponentInfo &infoZ = mInfo->mWatchPosZ;
+    CamnFrameComponentInfo &infoY = mInfo->mWatchPosY;
+    CamnFrameComponentInfo &infoX = mInfo->mWatchPosX;
+
+    f32 x;
+    f32 y;
+    f32 z;
+
+    z = get(key, infoZ.mOffset, infoZ.mCount);
+    y = get(key, infoY.mOffset, infoY.mCount);
+    x = get(key, infoX.mOffset, infoX.mCount);
+
+    pWatchPos->set(x, y, z);
+}
+
+float CamAnmDataAccessor::getTwist(float key) const {
+    CamnFrameComponentInfo &info = mInfo->mTwist;
+
+    return get(key, info.mOffset, info.mCount);
+}
+
+float CamAnmDataAccessor::getFovy(float key) const {
+    CamnFrameComponentInfo &info = mInfo->mFovy;
+
+    return get(key, info.mOffset, info.mCount);
+}
+
+/*float CamAnmDataAccessor::get(float key, unsigned long offset, unsigned long count) const {
+    u32 intKey = static_cast<u32>(key);
+    f32 fKey = static_cast<f32>(intKey);
+
+    f32 diff = key - fKey;
+
+    if (diff < 0.0f) {
+        
+    }
+}*/
 
 CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
     _4C = 0;

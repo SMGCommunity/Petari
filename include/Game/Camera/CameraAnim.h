@@ -29,6 +29,22 @@ struct CanmKeyFrameInfo {
     CanmKeyFrameComponentInfo mFovy;
 };
 
+struct CamnFrameComponentInfo {
+    u32 mCount;
+    u32 mOffset;
+};
+
+struct CanmFrameInfo {
+    CamnFrameComponentInfo mPosX;
+    CamnFrameComponentInfo mPosY;
+    CamnFrameComponentInfo mPosZ;
+    CamnFrameComponentInfo mWatchPosX;
+    CamnFrameComponentInfo mWatchPosY;
+    CamnFrameComponentInfo mWatchPosZ;
+    CamnFrameComponentInfo mTwist;
+    CamnFrameComponentInfo mFovy;
+};
+
 class BaseCamAnmDataAccessor {
 public:
     inline BaseCamAnmDataAccessor();
@@ -73,7 +89,9 @@ public:
     virtual float getTwist(float) const;
     virtual float getFovy(float) const;
 
-    u32 *_4;
+    float get(float, unsigned long, unsigned long) const;
+
+    CanmFrameInfo *mInfo;
     f32 *mValues;
 };
 

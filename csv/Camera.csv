@@ -145,10 +145,10 @@ isCollisionOff__6CameraCFv,Camera.o,Camera.a,false
 isInterpolationOff__6CameraCFv,Camera.o,Camera.a,false
 reset__6CameraFv,Camera.o,Camera.a,false
 set__18CamAnmDataAccessorFPvPv,CameraAnim.o,Camera.a,false
-getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camera.a,false
-getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camera.a,false
-getTwist__18CamAnmDataAccessorCFf,CameraAnim.o,Camera.a,false
-getFovy__18CamAnmDataAccessorCFf,CameraAnim.o,Camera.a,false
+getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camera.a,true
+getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camera.a,true
+getTwist__18CamAnmDataAccessorCFf,CameraAnim.o,Camera.a,true
+getFovy__18CamAnmDataAccessorCFf,CameraAnim.o,Camera.a,true
 get__18CamAnmDataAccessorCFfUlUl,CameraAnim.o,Camera.a,false
 set__21KeyCamAnmDataAccessorFPvPv,CameraAnim.o,Camera.a,false
 getPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f,CameraAnim.o,Camera.a,true
