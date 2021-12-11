@@ -129,7 +129,7 @@ getCamera__25CamTranslatorWonderPlanetCFv,CamTranslatorWonderPlanet.o,Camera.a,f
 __ct__6CameraFPCc,Camera.o,Camera.a,true
 setZoneMtx__6CameraFl,Camera.o,Camera.a,false
 createTranslator__6CameraFv,Camera.o,Camera.a,false
-createVPanObj__6CameraFv,Camera.o,Camera.a,false
+createVPanObj__6CameraFv,Camera.o,Camera.a,true
 __dt__6CameraFv,Camera.o,Camera.a,false
 getCamera__18CamTranslatorDummyCFv,Camera.o,Camera.a,false
 setParam__18CamTranslatorDummyFPC16CameraParamChunk,Camera.o,Camera.a,false
@@ -413,7 +413,7 @@ calc__12CameraGroundFv,CameraGround.o,Camera.a,false
 createTranslator__12CameraGroundFv,CameraGround.o,Camera.a,false
 __dt__12CameraGroundFv,CameraGround.o,Camera.a,false
 __dt__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
-__ct__19CameraHeightArrangeFP6Camera,CameraHeightArrange.o,Camera.a,false
+__ct__19CameraHeightArrangeFP6Camera,CameraHeightArrange.o,Camera.a,true
 updateJump__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
 calcWatchPos__19CameraHeightArrangeFP15CameraTargetObj,CameraHeightArrange.o,Camera.a,false
 arrange__19CameraHeightArrangeFv,CameraHeightArrange.o,Camera.a,false
