@@ -17,9 +17,9 @@ KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 
 }
 
-void KeyCamAnmDataAccessor::setParam(u32 *pInfo, f32 *pValues) {
+void KeyCamAnmDataAccessor::set(void *pInfo, void *pValues) {
     mInfo = reinterpret_cast<CanmKeyFrameInfo *>(pInfo);
-    mValues = pValues;
+    mValues = reinterpret_cast<f32 *>(pValues);
 }
 
 void KeyCamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
@@ -134,9 +134,9 @@ CamAnmDataAccessor::~CamAnmDataAccessor() {
 
 }
 
-void CamAnmDataAccessor::setParam(u32 *pInfo, f32 *pValues) {
+void CamAnmDataAccessor::set(void *pInfo, void *pValues) {
     mInfo = reinterpret_cast<CanmFrameInfo *>(pInfo);
-    mValues = pValues;
+    mValues = reinterpret_cast<f32 *>(pValues);
 }
 
 void CamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
@@ -287,7 +287,7 @@ bool CameraAnim::loadBin(unsigned char *pFile) {
 
     mNrValues = *(reinterpret_cast<u32 *>(&pEntry[valueOffset])) / sizeof(f32);
     
-    mFileDataAccessor->setParam(reinterpret_cast<u32 *>(pEntry), reinterpret_cast<f32 *>(pEntry + valueOffset + 4));
+    mFileDataAccessor->set(pEntry, pEntry + valueOffset + 4);
 
     return true;
 }

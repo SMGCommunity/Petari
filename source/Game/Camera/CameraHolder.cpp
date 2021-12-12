@@ -68,6 +68,10 @@ CameraHolder::CameraHolder(const char *pName) : NameObj(pName) {
     mDefaultFrom14 = _14[mDefaultCameraIndex];
 }
 
+CameraHolder::~CameraHolder() {
+
+}
+
 s32 CameraHolder::getIndexOf(const char *pName) const {
     for (s32 i = 0; i < NR_CAMERA_TYPES; i++) {
         if (strcmp(pName, sCameraTable[i].mName) == 0) {
@@ -80,6 +84,10 @@ s32 CameraHolder::getIndexOf(const char *pName) const {
 
 Camera *CameraHolder::getDefaultCamera() {
     return mCameras[mDefaultCameraIndex];
+}
+
+s32 CameraHolder::getIndexOfDefault() const {
+    return mDefaultCameraIndex;
 }
 
 s32 CameraHolder::getIndexOf(Camera *pCamera) const {

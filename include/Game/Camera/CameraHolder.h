@@ -6,9 +6,11 @@
 class CameraHolder : public NameObj {
 public:
     CameraHolder(const char *);
+    virtual ~CameraHolder();
 
     s32 getIndexOf(const char *) const;
     Camera *getDefaultCamera();
+    s32 getIndexOfDefault() const;
     s32 getIndexOf(Camera *) const;
     void createCameras();
     Camera *getCameraInner(long) const;

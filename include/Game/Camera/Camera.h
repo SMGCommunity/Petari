@@ -6,10 +6,23 @@
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TMatrix.h"
 
+class Camera;
+
+class CamTranslatorDummy {
+public:
+    inline CamTranslatorDummy(Camera *);
+
+    //virtual void setParam(const CameraParamChunk *);
+    virtual Camera *getCamera() const;
+
+    Camera *mCamera;
+};
+
 class Camera : public NameObj {
 public:
     Camera(const char *);
 
+    CamTranslatorDummy *createTranslator();
     void createVPanObj();
 
     u32 _C;

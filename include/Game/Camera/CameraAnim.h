@@ -50,7 +50,7 @@ public:
     inline BaseCamAnmDataAccessor();
     virtual inline ~BaseCamAnmDataAccessor();
 
-    virtual void setParam(u32 *, f32 *) = 0;
+    virtual void set(void *, void *) = 0;
     virtual void getPos(TVec3f *, float) const = 0;
     virtual void getWatchPos(TVec3f *, float) const = 0;
     virtual float getTwist(float) const = 0;
@@ -62,7 +62,7 @@ public:
     inline KeyCamAnmDataAccessor();
     virtual ~KeyCamAnmDataAccessor();
     
-    virtual void setParam(u32 *, f32 *);
+    virtual void set(void *, void *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
@@ -83,7 +83,7 @@ public:
     inline CamAnmDataAccessor();
     virtual ~CamAnmDataAccessor();
     
-    virtual void setParam(u32 *, f32 *);
+    virtual void set(void *, void *);
     virtual void getPos(TVec3f *, float) const;
     virtual void getWatchPos(TVec3f *, float) const;
     virtual float getTwist(float) const;
