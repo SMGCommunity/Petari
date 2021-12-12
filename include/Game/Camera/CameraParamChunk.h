@@ -55,7 +55,7 @@ public:
     virtual void copy(const CameraParamChunk *);
     //virtual void load(DotCamReader *, CameraHolder *); // TODO
     virtual void initiate();
-    //virtual const char *getClassName() const; // TODO
+    virtual const char *getClassName() const;
 
     s32 getZoneID() const;
     bool isOnNoReset() const;
@@ -79,5 +79,37 @@ public:
     ExParam mExParam;                   // _C
     CameraGeneralParam *mGeneralParam;  // _60
     u8 _64;
-    u8 _65[3];
+};
+
+class CameraParamChunkGame : public CameraParamChunk {
+public:
+    CameraParamChunkGame(CameraHolder *, const CameraParamChunkID &);
+    
+    virtual void copy(const CameraParamChunk *);
+    //virtual void load(DotCamReader *, CameraHolder *); // TODO
+    virtual void initiate();
+    virtual const char *getClassName() const;
+
+    u8 _65;
+    u8 _66;
+    u8 _67;
+    u32 _68;
+};
+
+class CameraParamChunkEvent : public CameraParamChunk {
+public:
+    CameraParamChunkEvent(CameraHolder *, const CameraParamChunkID &);
+
+    virtual void copy(const CameraParamChunk *);
+    //virtual void load(DotCamReader *, CameraHolder *); // TODO
+    virtual void initiate();
+    virtual const char *getClassName() const;
+
+    u8 _65;
+    u8 _66[2];
+    u32 _68;
+    u8 _6C;
+    u8 _6D[3];
+    u32 _70;
+    u32 _74;
 };

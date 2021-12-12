@@ -184,3 +184,52 @@ void CameraParamChunk::arrangeCamTypeName(unsigned long version, const char **pp
         }
     }
 }
+
+CameraParamChunkGame::CameraParamChunkGame(CameraHolder *pHolder, const CameraParamChunkID &rChunk) : 
+    CameraParamChunk(pHolder, rChunk) {
+    _65 = 1;
+    _66 = 0;
+    _68 = 120;
+}
+
+void CameraParamChunkGame::copy(const CameraParamChunk *pOther) {
+    CameraParamChunk::copy(pOther);
+}
+
+void CameraParamChunkGame::initiate() {
+    mExParam.init();
+    CameraGeneralParam generalParam = CameraGeneralParam();
+    *mGeneralParam = generalParam;
+    _65 = 0;
+    _66 = 0;
+}
+
+const char *CameraParamChunkGame::getClassName() const {
+    return "Game";
+}
+
+CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder *pHolder, const CameraParamChunkID &rChunk) : 
+    CameraParamChunk(pHolder, rChunk) {
+    _65 = 0;
+    _68 = 0;
+    _6C = 0;
+    _70 = 120;
+    _74 = 1;
+}
+
+void CameraParamChunkEvent::copy(const CameraParamChunk *pOther) {
+    CameraParamChunk::copy(pOther);
+}
+
+void CameraParamChunkEvent::initiate() {
+    mExParam.init();
+    CameraGeneralParam generalParam = CameraGeneralParam();
+    *mGeneralParam = generalParam;
+    _65 = 0;
+    _6C = 0;
+    _74 = 1;
+}
+
+const char *CameraParamChunkEvent::getClassName() const {
+    return "Event";
+}
