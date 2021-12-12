@@ -48,12 +48,17 @@ if "MWFOLDER" not in os.environ:
     print("MWFOLDER not set in PATH.")
     sys.exit(1)
 
+if "RFLFOLDER" not in os.environ:
+    print("RFLFOLDER not set in PATH.")
+    sys.exit(1)
+
 rvl_path = os.getenv("RVLFOLDER")
 cw_path = os.getenv("CWFOLDER")
 nw_path = os.getenv("NW4RFOLDER")
 mw_path = os.getenv("MWFOLDER")
+rfl_path = os.getenv("RFLFOLDER")
 
-includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include "
+includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include -I- -i {rfl_path}\\include "
 flags += includes
 
 if os.path.exists("build"):
@@ -90,7 +95,6 @@ for task in tasks:
         pass
 
     print(f"Compiling {source_path}...")
-
     if subprocess.call(f"{compiler_path}/mwcceppc.exe {flags} {source_path} -o {build_path}", shell=True) == 1:
             deleteDFiles()
             sys.exit(1)

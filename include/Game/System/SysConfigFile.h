@@ -2,15 +2,16 @@
 
 #include <revolution.h>
 #include "Game/System/BinaryDataContentAccessor.h"
+#include "Game/System/BinaryDataChunkHolder.h"
 
-class SysConfigChunk {
+class SysConfigChunk : public BinaryDataChunkBase {
 public:
     SysConfigChunk();
 
     virtual u32 makeHeaderHashCode() const;
     virtual u32 getSignature() const;
-    virtual void serialize();
-    virtual u32 deserialize(const u8 *, u32);
+    virtual void* serialize();
+    virtual bool deserialize(const u8 *, u32);
     virtual void initializeData();
     
     void initHeaderSerializer();

@@ -19,6 +19,7 @@
 #include "Game/Util/LiveActorUtil.h"
 #include "Game/Util/MathUtil.h"
 #include "Game/Util/MemoryUtil.h"
+#include "Game/Util/MessageUtil.h"
 #include "Game/Util/ModelUtil.h"
 #include "Game/Util/MtxUtil.h"
 #include "Game/Util/MutexHolder.h"
