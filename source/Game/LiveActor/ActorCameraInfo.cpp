@@ -7,7 +7,7 @@ ActorCameraInfo::ActorCameraInfo(const JMapInfoIter &rIter) {
     s32 cameraID = -1;
     bool ret = MR::getJMapInfoCameraSetID(rIter, &cameraID);
 
-    if (ret) {
+    if (!ret) {
         mCameraSetID = cameraID;
     }
 
