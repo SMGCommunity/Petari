@@ -193,7 +193,7 @@ getOSThread__21FunctionAsyncExecutorFPCc,FunctionAsyncExecutor.o,System.a,false
 createAndAddExecInfo__21FunctionAsyncExecutorFRCQ22MR11FunctorBaseiPCc,FunctionAsyncExecutor.o,System.a,false
 getSuspendThread__21FunctionAsyncExecutorFv,FunctionAsyncExecutor.o,System.a,false
 __dt__27FunctionAsyncExecutorThreadFv,FunctionAsyncExecutor.o,System.a,false
-main,GameSystem.o,System.a,false
+main,GameSystem.o,System.a,true
 __ct__10GameSystemFv,GameSystem.o,System.a,false
 init__10GameSystemFv,GameSystem.o,System.a,false
 isExecuteLoadSystemArchive__10GameSystemCFv,GameSystem.o,System.a,false

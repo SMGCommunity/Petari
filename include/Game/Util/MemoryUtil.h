@@ -16,6 +16,8 @@ namespace MR {
     void zeroMemory(void *, u32);
     s32 calcCheckSum(const void *, u32);
 
+    JKRHeap* getStationedHeapNapa();
+
     JKRHeap* getAproposHeapForSceneArchive(f32);
 
     class CurrentHeapRestorer {
