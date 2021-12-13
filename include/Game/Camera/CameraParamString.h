@@ -10,5 +10,5 @@ public:
     const char *getCharPtr() const;
     void copy(const char *);
 
-    const char *mString;
+    const char *mString;    // _0
 };

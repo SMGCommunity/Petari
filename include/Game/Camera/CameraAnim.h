@@ -2,47 +2,47 @@
 #include "revolution.h"
 
 struct CanmFileHeader {
-    u8 mMagic[4];
-    u8 mType[4];
+    u8 mMagic[4];       // _0
+    u8 mType[4];        // _4
     s32 _8;
     s32 _C;
     s32 _10;
     s32 _14;
-    u32 mNrFrames;
-    u32 mValueOffset;
+    u32 mNrFrames;      // _18
+    u32 mValueOffset;   // _1C
 };
 
 struct CanmKeyFrameComponentInfo {
-    u32 mCount;
-    u32 mOffset;
-    u32 mType;
+    u32 mCount;     // _0
+    u32 mOffset;    // _4
+    u32 mType;      // _8
 };
 
 struct CanmKeyFrameInfo {
-    CanmKeyFrameComponentInfo mPosX;
-    CanmKeyFrameComponentInfo mPosY;
-    CanmKeyFrameComponentInfo mPosZ;
-    CanmKeyFrameComponentInfo mWatchPosX;
-    CanmKeyFrameComponentInfo mWatchPosY;
-    CanmKeyFrameComponentInfo mWatchPosZ;
-    CanmKeyFrameComponentInfo mTwist;
-    CanmKeyFrameComponentInfo mFovy;
+    CanmKeyFrameComponentInfo mPosX;        // _0
+    CanmKeyFrameComponentInfo mPosY;        // _C
+    CanmKeyFrameComponentInfo mPosZ;        // _18
+    CanmKeyFrameComponentInfo mWatchPosX;   // _24
+    CanmKeyFrameComponentInfo mWatchPosY;   // _30
+    CanmKeyFrameComponentInfo mWatchPosZ;   // _3C
+    CanmKeyFrameComponentInfo mTwist;       // _48
+    CanmKeyFrameComponentInfo mFovy;        // _54
 };
 
 struct CamnFrameComponentInfo {
-    u32 mCount;
-    u32 mOffset;
+    u32 mCount;     // _0
+    u32 mOffset;    // _4
 };
 
 struct CanmFrameInfo {
-    CamnFrameComponentInfo mPosX;
-    CamnFrameComponentInfo mPosY;
-    CamnFrameComponentInfo mPosZ;
-    CamnFrameComponentInfo mWatchPosX;
-    CamnFrameComponentInfo mWatchPosY;
-    CamnFrameComponentInfo mWatchPosZ;
-    CamnFrameComponentInfo mTwist;
-    CamnFrameComponentInfo mFovy;
+    CamnFrameComponentInfo mPosX;       // _0
+    CamnFrameComponentInfo mPosY;       // _8
+    CamnFrameComponentInfo mPosZ;       // _10
+    CamnFrameComponentInfo mWatchPosX;  // _18
+    CamnFrameComponentInfo mWatchPosY;  // _20
+    CamnFrameComponentInfo mWatchPosZ;  // _28
+    CamnFrameComponentInfo mTwist;      // _30
+    CamnFrameComponentInfo mFovy;       // _38
 };
 
 class BaseCamAnmDataAccessor {
@@ -74,8 +74,8 @@ public:
     float get4f(float, unsigned long, unsigned long) const;
     float calcHermite(float, float, float, float, float, float, float) const;
 
-    CanmKeyFrameInfo *mInfo;
-    f32 *mValues;
+    CanmKeyFrameInfo *mInfo;    // _4
+    f32 *mValues;               // _8
 };
 
 class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
@@ -91,8 +91,8 @@ public:
 
     float get(float, unsigned long, unsigned long) const;
 
-    CanmFrameInfo *mInfo;
-    f32 *mValues;
+    CanmFrameInfo *mInfo;   // _4
+    f32 *mValues;           // _8
 };
 
 class CameraAnim : public Camera {

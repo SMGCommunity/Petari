@@ -55,5 +55,5 @@ public:
     u32 _94;
     u8 _98;
     u8 _99[3];
-    TVec3f _9C;             // _9C
+    TVec3f _9C;
 };

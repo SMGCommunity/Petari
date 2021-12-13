@@ -36,7 +36,7 @@ public:
         f32 _14;
         f32 _18;
         u32 _1C;
-        u16 mFlag;
+        u16 mFlag;          // _1E
         u8 _22[2];
         f32 _24;
         f32 _28;
@@ -47,7 +47,7 @@ public:
         u32 _3C;
         u32 _40;
         u32 _44;
-        TVec3f mVPanAxis;
+        TVec3f mVPanAxis;   // _48
     };
 
     CameraParamChunk(CameraHolder *, const CameraParamChunkID &);
