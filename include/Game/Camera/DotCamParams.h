@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Game/Util/JMapInfo.h"
 #include "JSystem/JGeometry/TVec.h"
 #include "revolution.h"
-#include "Game/Util/JMapInfo.h"
 
 class DotCamReader {
 public:

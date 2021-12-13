@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
 #include "Game/NameObj/NameObj.h"
+
+class Camera;
 
 class CameraHolder : public NameObj {
 public:

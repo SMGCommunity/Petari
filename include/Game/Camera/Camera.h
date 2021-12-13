@@ -1,12 +1,12 @@
 #pragma once
 
 #include "revolution.h"
-#include "Game/Camera/CameraHeightArrange.h"
-#include "Game/Camera/CameraPoseParam.h"
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TMatrix.h"
 
 class Camera;
+class CameraHeightArrange;
+class CameraPoseParam;
 
 class CamTranslatorDummy {
 public:

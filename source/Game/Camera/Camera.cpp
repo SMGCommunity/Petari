@@ -1,4 +1,6 @@
 #include "Game/Camera/Camera.h"
+#include "Game/Camera/CameraHeightArrange.h"
+#include "Game/Camera/CameraPoseParam.h"
 
 CamTranslatorDummy::CamTranslatorDummy(Camera *pCamera) {
     mCamera = pCamera;

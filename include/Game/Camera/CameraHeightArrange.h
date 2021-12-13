@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/Camera/CameraPoseParam.h"
 #include "Game/NameObj/NameObj.h"
 
 class Camera;
+class CameraPoseParam;
 
 class CameraHeightArrange : public NameObj {
 public:

@@ -1,10 +1,11 @@
+#include "Game/Camera/Camera.h"
 #include "Game/Camera/CameraHolder.h"
 #include <string.h>
 
 struct CameraTableEntry {
-    const char *mName;
-    const char *mJapaneseDescription;
-    Camera* (*mCreateFunction)(void);
+    const char *mName;                  // _0
+    const char *mJapaneseDescription;   // _4
+    Camera* (*mCreateFunction)(void);   // _8
     u8 _C;
     u8 _D[3];
 };

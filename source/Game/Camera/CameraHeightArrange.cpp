@@ -1,5 +1,6 @@
-#include "Game/Camera/CameraHeightArrange.h"
 #include "Game/Camera/Camera.h"
+#include "Game/Camera/CameraHeightArrange.h"
+#include "Game/Camera/CameraPoseParam.h"
 
 CameraHeightArrange::CameraHeightArrange(Camera *pCamera) : NameObj("CameraHeightArrange") {
     mCamera = pCamera;
