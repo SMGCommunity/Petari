@@ -53,6 +53,8 @@ public:
 
     void entry(AreaObj *);
 
+    AreaObj* find_in(const TVec3f &) const;
+
     MR::Vector<MR::AssignableArray<AreaObj*> > mArray; // _C
     s32 _14;
     s32 _18;

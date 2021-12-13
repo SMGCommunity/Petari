@@ -20,8 +20,13 @@ class AreaObjContainer : public NameObj {
 public:
     AreaObjContainer(const char *);
 
+    virtual ~AreaObjContainer();
     virtual void init(const JMapInfoIter &);
 
     AreaObjMgr* getManager(const char *) const;
     AreaObj* getAreaObj(const char *, const TVec3f &) const;
+};
+
+namespace MR {
+    AreaObjContainer* getAreaObjContainer();
 };

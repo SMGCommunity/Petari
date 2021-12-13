@@ -4,10 +4,21 @@
 #include "Game/LiveActor/LiveActorFlag.h"
 #include "JSystem/JGeometry/TVec.h"
 
+class ActorAnimKeeper;
+class ActorLightCtrl;
+class ActorPadAndCameraCtrl;
+class AudAnmSoundObject;
+class Binder;
+class CollisionParts;
+class EffectKeeper;
 class Spine;
 class HitSensor;
 class HitSensorKeeper;
 class ModelManager;
+class RailRider;
+class ShadowControllerList;
+class StageSwitchCtrl;
+class StarPointerTarget;
 
 class LiveActor : public NameObj {
 public:
@@ -43,24 +54,24 @@ public:
 
     HitSensor* getSensor(const char *) const;
 
-    TVec3f mPosition;               // _C
-    TVec3f mRotation;               // _18
-    TVec3f mScale;                  // _24
-    TVec3f mVelocity;               // _30
-    TVec3f mGravity;                // _3C
-    ModelManager* mModelManager;    // _48
-    u32* _4C;
-    Spine* mSpine;                  // _50
-    HitSensorKeeper* mSensorKeeper; // _54
-    u32* _58;
-    u32* _5C;
-    u32* _60;
-    u32* _64;
-    LiveActorFlag mFlags;           // _68
-    u32* _74;
-    u32* _78;
-    u32* _7C;
-    u32* _80;
-    u32* _84;
-    u32* _88;
+    TVec3f mPosition;                       // _C
+    TVec3f mRotation;                       // _18
+    TVec3f mScale;                          // _24
+    TVec3f mVelocity;                       // _30
+    TVec3f mGravity;                        // _3C
+    ModelManager* mModelManager;            // _48
+    ActorAnimKeeper* mAnimationKeepper;     // _4C
+    Spine* mSpine;                          // _50
+    HitSensorKeeper* mSensorKeeper;         // _54
+    Binder* mBinder;                        // _58
+    RailRider* mRailRider;                  // _5C
+    EffectKeeper* mEffectKeeper;            // _60
+    AudAnmSoundObject* mSoundObject;        // _64
+    LiveActorFlag mFlags;                   // _68
+    ShadowControllerList* mShadowList;      // _74
+    CollisionParts* mCollisionParts;        // _78
+    StageSwitchCtrl* mStageSwitchCtrl;      // _7C
+    StarPointerTarget* mStarPointerTarget;  // _80
+    ActorLightCtrl* mActorLightCtrl;        // _84
+    ActorPadAndCameraCtrl* mCameraCtrl;     // _88
 };

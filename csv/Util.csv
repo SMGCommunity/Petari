@@ -3404,8 +3404,8 @@ isTalkEnd__2MRFPC15TalkMessageCtrl,TalkUtil.o,Util.a,false
 setMessageArg__15TalkMessageCtrlFRC12CustomTagArg,TalkUtil.o,Util.a,false
 getAreaObjManager__2MRFPCc,AreaObjUtil.o,Util.a,false
 getAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
-isInAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
-getAreaObjArg__2MRFPC7AreaObjl,AreaObjUtil.o,Util.a,false
+isInAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,true
+getAreaObjArg__2MRFPC7AreaObjl,AreaObjUtil.o,Util.a,true
 getWaterAreaInfo__2MRFP9WaterInfoRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b,AreaObjUtil.o,Util.a,false
 calcWhirlPoolAccelInfo__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
 calcCubePos__2MRFPC7AreaObjPQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false

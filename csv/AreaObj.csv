@@ -69,9 +69,9 @@ createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10Ar
 __ct__16AreaObjContainerFPCc,AreaObjContainer.o,AreaObj.a,false
 init__16AreaObjContainerFRC12JMapInfoIter,AreaObjContainer.o,AreaObj.a,false
 getManager__16AreaObjContainerCFPCc,AreaObjContainer.o,AreaObj.a,false
-getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>,AreaObjContainer.o,AreaObj.a,false
-getAreaObjContainer__2MRFv,AreaObjContainer.o,AreaObj.a,false
-__dt__16AreaObjContainerFv,AreaObjContainer.o,AreaObj.a,false
+getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>,AreaObjContainer.o,AreaObj.a,true
+getAreaObjContainer__2MRFv,AreaObjContainer.o,AreaObj.a,true
+__dt__16AreaObjContainerFv,AreaObjContainer.o,AreaObj.a,true
 __dt__11WarpCubeMgrFv,AreaObjContainer.o,AreaObj.a,false
 __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter,AreaObjFollower.o,AreaObj.a,false
 update__15AreaObjFollowerFv,AreaObjFollower.o,AreaObj.a,false
