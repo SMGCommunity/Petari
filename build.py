@@ -58,7 +58,7 @@ nw_path = os.getenv("NW4RFOLDER")
 mw_path = os.getenv("MWFOLDER")
 rfl_path = os.getenv("RFLFOLDER")
 
-includes += f"-i {rvl_path}\\include -I- -i {nw_path}\\include -I- -i  {mw_path}\\PowerPC_EABI_Support\\MetroTRK -I- -i  {mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i {mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include -I- -i {rfl_path}\\include "
+includes += f"-i \"{rvl_path}\\include\" -I- -i \"{nw_path}\\include\" -I- -i  \"{mw_path}\\PowerPC_EABI_Support\\MetroTRK\" -I- -i  \"{mw_path}\\PowerPC_EABI_Support\\Runtime\\Inc\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include\" -I- -i \"{mw_path}\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include\" -I- -i \"{rfl_path}\\include\" "
 flags += includes
 
 if os.path.exists("build"):

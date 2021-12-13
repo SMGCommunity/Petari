@@ -1,7 +1,6 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Util.h"
 
 class JMapInfo;
 
@@ -57,6 +56,8 @@ public:
     const bool getValue(int, const char *, T *) const;
 
     bool getValueFast(int, int, const char **) const;
+    bool getValueFast(int, int, unsigned long *) const;
+    bool getValueFast(int, int, long *) const;
 
     const JMapData* mData; // _0
     const char* mName; // _4
