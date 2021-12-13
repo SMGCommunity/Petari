@@ -5,6 +5,7 @@
 #include "JSystem/JGeometry/TVec.h"
 
 class JMapInfo;
+class LightAreaHolder;
 struct PointLightInfo;
 class ResourceHolder;
 
@@ -40,4 +41,6 @@ public:
     static void loadPointLightInfo(const PointLightInfo *);
 
     static void loadLightInfoCoin(const LightInfoCoin *);
+
+    static void registerLightAreaHolder(LightAreaHolder *);
 };

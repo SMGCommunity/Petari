@@ -48,11 +48,17 @@ namespace MR {
     class Vector {
     public:
         inline Vector() {
-            mArray.mArr = 0;
-            mArray.mMaxSize = 0;
-            mCount = 0;
+            
         }
         ~Vector() { }
+
+        inline void assign(T::Item &pItem, int where) {
+            mArray.mArr[where] = pItem;
+        }
+
+        inline void assignToMax(T::Item &pItem) {
+            assign(pItem, mCount);
+        }
 
         T::Item* erase(T::Item *pItem);
 
