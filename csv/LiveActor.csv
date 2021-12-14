@@ -327,8 +327,8 @@ disableCallBack__11IKJointCtrlFv,IKJointCtrl.o,LiveActor.a,false
 enableCallBack__11IKJointCtrlFv,IKJointCtrl.o,LiveActor.a,false
 for_each<PP11IKJointCtrl&#44;Q23std26mem_fun_t<v&#44;11IKJointCtrl>>__3stdFPP11IKJointCtrlPP11IKJointCtrlQ23std26mem_fun_t<v&#44;11IKJointCtrl>_Q23std26mem_fun_t<v&#44;11IKJointCtrl>,IKJointCtrl.o,LiveActor.a,false
 __ct__9LiveActorFPCc,LiveActor.o,LiveActor.a,false
-init__9LiveActorFRC12JMapInfoIter,LiveActor.o,LiveActor.a,false
-appear__9LiveActorFv,LiveActor.o,LiveActor.a,false
+init__9LiveActorFRC12JMapInfoIter,LiveActor.o,LiveActor.a,true
+appear__9LiveActorFv,LiveActor.o,LiveActor.a,true
 makeActorAppeared__9LiveActorFv,LiveActor.o,LiveActor.a,false
 kill__9LiveActorFv,LiveActor.o,LiveActor.a,false
 makeActorDead__9LiveActorFv,LiveActor.o,LiveActor.a,false
