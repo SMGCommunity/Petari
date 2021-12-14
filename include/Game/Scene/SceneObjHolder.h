@@ -14,7 +14,14 @@ class NameObj;
 
 class SceneObjHolder {
 public:
+    SceneObjHolder();
+
+    NameObj* create(int);
     NameObj* getObj(int) const;
+    bool isExist(int) const;
+    NameObj* newEachObj(int);
+
+    NameObj* mSceneObjs[0x7B];      // _0
 };
 
 namespace MR {

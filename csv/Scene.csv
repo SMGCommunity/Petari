@@ -345,11 +345,11 @@ drawXlu__12CategoryListFQ22MR14DrawBufferType,SceneFunction.o,Scene.a,false
 requestMovementOn__12CategoryListFQ22MR12MovementType,SceneFunction.o,Scene.a,false
 requestMovementOff__12CategoryListFQ22MR12MovementType,SceneFunction.o,Scene.a,false
 createHioBasicNode__13SceneFunctionFP5Scene,SceneFunction.o,Scene.a,false
-__ct__14SceneObjHolderFv,SceneObjHolder.o,Scene.a,false
-create__14SceneObjHolderFi,SceneObjHolder.o,Scene.a,false
-getObj__14SceneObjHolderCFi,SceneObjHolder.o,Scene.a,false
-isExist__14SceneObjHolderCFi,SceneObjHolder.o,Scene.a,false
-createSceneObj__2MRFi,SceneObjHolder.o,Scene.a,false
+__ct__14SceneObjHolderFv,SceneObjHolder.o,Scene.a,true
+create__14SceneObjHolderFi,SceneObjHolder.o,Scene.a,true
+getObj__14SceneObjHolderCFi,SceneObjHolder.o,Scene.a,true
+isExist__14SceneObjHolderCFi,SceneObjHolder.o,Scene.a,true
+createSceneObj__2MRFi,SceneObjHolder.o,Scene.a,true
 getSceneObjHolder__2MRFv,SceneObjHolder.o,Scene.a,false
 isExistSceneObj__2MRFi,SceneObjHolder.o,Scene.a,false
 newEachObj__14SceneObjHolderFi,SceneObjHolder.o,Scene.a,false
