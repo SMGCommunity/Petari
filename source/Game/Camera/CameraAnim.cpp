@@ -79,8 +79,6 @@ float KeyCamAnmDataAccessor::get(float key, unsigned long offset, unsigned long 
     }
 }
 
-#ifdef NON_MATCHING
-// if/else content are stored in reversed order, because beq/bne are swapped
 u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long count, unsigned long stride) const {
     u32 low = 0;
     u32 high = count;
@@ -88,17 +86,16 @@ u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, 
     while (low < high) {
         u32 middle = (low + high) / 2;
 
-        if (!(mValues[offset + middle * stride] <= key)) {
-            high = middle;
+        if (mValues[offset + middle * stride] <= key) {
+            low = middle + 1;
         }
         else {
-            low = middle + 1;
+            high = middle;
         }
     }
 
     return low - 1;
 }
-#endif
 
 float KeyCamAnmDataAccessor::get3f(float key, unsigned long offset, unsigned long count) const {
     u32 index = searchKeyFrameIndex(key, offset, count, 3);

@@ -14,6 +14,8 @@ namespace MR {
 
     const char* getZoneNameFromZoneId(s32);
 
+    void getStageCameraData(void **, long *, long);
+
     void setInitializeStatePlacementPlayer();
     void setInitializeStatePlacementHighPriority();
     void setInitializeStatePlacement();
