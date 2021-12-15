@@ -114,6 +114,8 @@ if sym is not None:
                     print("Yours:")
                     print(curNewInstr)
                     error_count += 1
+					
+                continue
 
             # skip any blacklisted instructions
             if curOrigInstr.id in blacklistedInsns:

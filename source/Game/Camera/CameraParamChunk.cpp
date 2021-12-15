@@ -88,13 +88,12 @@ void CameraParamChunk::initiate() {
 }
 
 #ifdef NON_MATCHING
-// "" and "up" are stored in RW SDA
+// Register mismatch
 void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder) {
     const char *camType = "";
     pReader->getValueString("camtype", &camType);
 
-    u32 version = pReader->getVersion();
-    arrangeCamTypeName(version, &camType);
+    arrangeCamTypeName(pReader->getVersion(), &camType);
 
     bool isNotPlanet = !strcmp(camType, "CAM_TYPE_PLANET");
 
@@ -133,11 +132,11 @@ void CameraParamChunk::load(DotCamReader *pReader, CameraHolder *pHolder) {
         "flag.subjectiveoff"
     };
 
-    for (s32 i = 0; i < 6; i++) {
+    for (u32 i = 0; i < 6; i++) {
         s32 flag;
 
         if (pReader->getValueInt(sFlagNames[i], &flag)) {
-            mExParam.mFlag |= static_cast<u16>(flag << i);
+            mExParam.mFlag |= flag << i;
         }
     }
 
