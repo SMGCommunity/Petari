@@ -100,6 +100,11 @@ public:
     CameraAnim(const char *);
     virtual ~CameraAnim();
 
+    virtual bool isZeroFrameMoveOff() const;
+    virtual bool isCollisionOff() const;
+    virtual bool isInterpolationOff() const;
+    virtual CamTranslatorDummy *createTranslator();
+
     void setParam(unsigned char *, float);
     bool isAnimEnd() const;
     static u32 getAnimFrame(unsigned char *);

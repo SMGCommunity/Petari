@@ -1,6 +1,15 @@
 #include "Game/Camera/Camera.h"
 #include "Game/Camera/CameraHeightArrange.h"
 #include "Game/Camera/CameraPoseParam.h"
+#include "Game/Camera/CameraTargetObj.h"
+
+bool CameraTargetObj::isFastDrop() const {
+    return false;
+}
+
+bool CameraTargetObj::isFastRise() const {
+    return false;
+}
 
 CameraHeightArrange::CameraHeightArrange(Camera *pCamera) : NameObj("CameraHeightArrange") {
     mCamera = pCamera;

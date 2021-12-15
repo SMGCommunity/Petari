@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraAnim.h"
+#include "Game/Camera/CamTranslatorAnim.h"
 
 inline BaseCamAnmDataAccessor::BaseCamAnmDataAccessor() {
     
@@ -209,6 +210,25 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
 CameraAnim::~CameraAnim() {
 
 }
+
+bool CameraAnim::isZeroFrameMoveOff() const {
+    return true;
+}
+
+bool CameraAnim::isCollisionOff() const {
+    return true;
+}
+
+bool CameraAnim::isInterpolationOff() const {
+    return true;
+}
+
+#ifdef NON_MATCHING
+// Constructor not inlined
+CamTranslatorDummy *CameraAnim::createTranslator() {
+    return new CamTranslatorAnim(this);
+}
+#endif
 
 void CameraAnim::setParam(unsigned char *pFile, float speed) {
     loadBin(pFile);
