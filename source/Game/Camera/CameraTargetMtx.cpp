@@ -43,3 +43,27 @@ bool CameraTargetObj::isDebugMode() const {
 void CameraTargetObj::resetStatus() {
     
 }
+
+CameraTargetMtx::CameraTargetMtx(const char *pName) : CameraTargetObj(pName) {
+    _40 = 0.0f;
+    _44 = 0.0f;
+    _48 = 0.0f;
+    _4C = 0.0f;
+    _50 = 0.0f;
+    _54 = 0.0f;
+    _58 = 0.0f;
+    _5C = -1.0f;
+    _60 = 0.0f;
+    _64 = 0.0f;
+    _68 = 1.0f;
+    _6C = 0.0f;
+    _70 = 0.0f;
+    _74 = 0.0f;
+    _78 = 1.0f;
+    _7C = 0.0f;
+    _80 = 0.0f;
+    _84 = 1.0f;
+    _88 = 0;
+    _8C = 0;
+    _10.identity();
+}
