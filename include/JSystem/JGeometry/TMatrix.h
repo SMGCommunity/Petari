@@ -30,6 +30,8 @@ namespace JGeometry {
             + ((srcVec.z * this->mMtx[2][2]) + ((srcVec.x * this->mMtx[2][0]) + (srcVec.y * this->mMtx[2][1])))));
         }
 
+        void set(const TMatrix34<T> &other);
+
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const; //{
             /*f32 v3 = this->mMtx[1][3];
             f32 v4 = this->mMtx[0][3];
