@@ -15,3 +15,7 @@ public:
     s32 _0;
     s32 mZoneID;
 };
+
+namespace MR {
+    JMapIdInfo createJMapIdInfoFromClippingGroupId(const JMapInfoIter &);
+};
