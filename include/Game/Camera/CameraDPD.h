@@ -4,7 +4,10 @@
 #include "JSystem/JGeometry/TMatrix.h"
 
 class CameraDPD : public Camera {
+public:
     CameraDPD(const char *);
+
+    virtual void calc();
 
     f32 _4C;
     f32 _50;

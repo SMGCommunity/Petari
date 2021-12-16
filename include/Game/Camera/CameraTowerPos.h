@@ -6,6 +6,8 @@ class CameraTowerPos : public CameraTowerBase {
 public:
     CameraTowerPos(const char *);
 
+    virtual void calc();
+
     f32 _6C;
     f32 _70;
     f32 _74;

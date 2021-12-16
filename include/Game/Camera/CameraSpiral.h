@@ -6,6 +6,8 @@ class CameraSpiral : public Camera {
 public:
     CameraSpiral(const char *);
 
+    virtual void calc();
+
     u32 _4C;
     u32 _50;
     u32 _54;

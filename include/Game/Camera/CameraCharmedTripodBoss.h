@@ -6,6 +6,8 @@ class CameraCharmedTripodBoss : public Camera {
 public:
     CameraCharmedTripodBoss(const char *);
 
+    virtual void calc();
+
     s32 _4C;
     f32 _50;
     f32 _54;

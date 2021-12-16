@@ -6,6 +6,8 @@ class CameraMtxRegParallel : public Camera {
 public:
     CameraMtxRegParallel(const char *);
 
+    virtual void calc();
+
     u32 _4C;
     f32 _50;
     f32 _54;

@@ -6,6 +6,8 @@ class CameraDead : public Camera {
 public:
     CameraDead(const char *);
 
+    virtual void calc();
+
     u8 _4C[4];
     f32 _50;
     u32 _54;
