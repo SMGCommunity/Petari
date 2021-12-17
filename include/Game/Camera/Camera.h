@@ -11,7 +11,9 @@ class CameraPoseParam;
 
 class CamTranslatorDummy {
 public:
-    inline CamTranslatorDummy(Camera *);
+    inline CamTranslatorDummy(Camera *pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;

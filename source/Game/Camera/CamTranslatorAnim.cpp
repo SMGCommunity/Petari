@@ -2,10 +2,6 @@
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CamTranslatorAnim.h"
 
-CamTranslatorAnim::CamTranslatorAnim(CameraAnim *pCamera) : CamTranslatorDummy(pCamera) {
-
-}
-
 /*void CamTranslatorAnim::setParam(const CameraParamChunk *pChunk) {
     CameraAnim *camera = reinterpret_cast<CameraAnim *>(mCamera);
 

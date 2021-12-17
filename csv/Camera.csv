@@ -334,7 +334,7 @@ isEnableToRoundRight__9CameraManCFv,CameraDirector.o,Camera.a,false
 isEnableToReset__9CameraManCFv,CameraDirector.o,Camera.a,false
 roundLeft__9CameraManFv,CameraDirector.o,Camera.a,false
 roundRight__9CameraManFv,CameraDirector.o,Camera.a,false
-getBuffer__22CameraParamChunkID_TmpFUl,CameraDirector.o,Camera.a,false
+getBuffer__22CameraParamChunkID_TmpFUl,CameraDirector.o,Camera.a,true
 __dt__14CameraDirectorFv,CameraDirector.o,Camera.a,false
 __sinit_\CameraDirector_cpp,CameraDirector.o,Camera.a,false
 __ct__9CameraFixFPCc,CameraFix.o,Camera.a,true
@@ -1108,10 +1108,10 @@ __dt__12DotCamReaderFv,DotCamParams.o,Camera.a,true
 getVersion__17DotCamReaderInBinCFv,DotCamParams.o,Camera.a,true
 init__17DotCamReaderInBinFPCv,DotCamParams.o,Camera.a,false
 getValueVec__17DotCamReaderInBinFPCcPQ29JGeometry8TVec3<f>,DotCamParams.o,Camera.a,true
-__ct__17GameCameraCreatorFP22CameraParamChunkHolder,GameCameraCreator.o,Camera.a,false
-initCameraCodeCollection__17GameCameraCreatorFPCcl,GameCameraCreator.o,Camera.a,false
-registerCameraCode__17GameCameraCreatorFUl,GameCameraCreator.o,Camera.a,false
-termCameraCodeCollection__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,false
+__ct__17GameCameraCreatorFP22CameraParamChunkHolder,GameCameraCreator.o,Camera.a,true
+initCameraCodeCollection__17GameCameraCreatorFPCcl,GameCameraCreator.o,Camera.a,true
+registerCameraCode__17GameCameraCreatorFUl,GameCameraCreator.o,Camera.a,true
+termCameraCodeCollection__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,true
 scanStartPos__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,false
 scanArea__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,false
 __ct__10OnlyCameraFPCc,OnlyCamera.o,Camera.a,false

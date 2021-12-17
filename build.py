@@ -15,7 +15,7 @@ rootPath = os.path.dirname(os.path.realpath(__file__))
 path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
 toolsPath = os.path.dirname(os.path.realpath(__file__)) + "\\tools\\"
 
-flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
+flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline auto, level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
 includes = "-i . -I- -i include "
 
 default_compiler_path = "GC/3.0a3/"

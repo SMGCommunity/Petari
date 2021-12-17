@@ -1,3 +1,4 @@
+#include "Game/Camera/CameraDirector.h"
 #include "Game/Camera/CameraPoseParam.h"
 
 void CameraPoseParam::copyFrom(const CameraPoseParam &rOther) {
@@ -11,4 +12,8 @@ void CameraPoseParam::copyFrom(const CameraPoseParam &rOther) {
     _4C = rOther._4C;
     _50 = rOther._50; 
     _54 = rOther._54;
+}
+
+char *CameraParamChunkID_Tmp::getBuffer(unsigned long size) {
+    return &mBuffer[0];
 }

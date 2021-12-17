@@ -1,19 +1,6 @@
 #include "Game/Camera/CameraAnim.h"
 #include "Game/Camera/CamTranslatorAnim.h"
 
-inline BaseCamAnmDataAccessor::BaseCamAnmDataAccessor() {
-    
-}
-
-inline BaseCamAnmDataAccessor::~BaseCamAnmDataAccessor() {
-
-}
-
-inline KeyCamAnmDataAccessor::KeyCamAnmDataAccessor() {
-    mInfo = NULL;
-    mValues = NULL;
-}
-
 KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 
 }
@@ -123,13 +110,8 @@ float KeyCamAnmDataAccessor::calcHermite(float key, float a2, float a3, float a4
 }
 #endif
 
-inline CamAnmDataAccessor::CamAnmDataAccessor() {
-    mInfo = NULL;
-    mValues = NULL;
-}
-
 CamAnmDataAccessor::~CamAnmDataAccessor() {
-
+    
 }
 
 void CamAnmDataAccessor::set(void *pInfo, void *pValues) {
@@ -224,7 +206,7 @@ bool CameraAnim::isInterpolationOff() const {
 }
 
 #ifdef NON_MATCHING
-// Constructor not inlined
+// Wrong instruction order
 CamTranslatorDummy *CameraAnim::createTranslator() {
     return new CamTranslatorAnim(this);
 }

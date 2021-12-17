@@ -4,10 +4,6 @@
 #include "Game/Camera/CameraPoseParam.h"
 #include "Game/Util/SceneUtil.h"
 
-CamTranslatorDummy::CamTranslatorDummy(Camera *pCamera) {
-    mCamera = pCamera;
-}
-
 void CamTranslatorDummy::setParam(const CameraParamChunk *pChunk) {
 
 }
