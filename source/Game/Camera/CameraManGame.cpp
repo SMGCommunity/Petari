@@ -1,4 +1,6 @@
+#include "Game/Camera/CameraHolder.h"
 #include "Game/Camera/CameraParamChunk.h"
+#include "Game/Camera/CameraParamChunkHolder.h"
 #include "Game/Camera/CameraTargetObj.h"
 
 const char *CameraParamChunk::getClassName() const {

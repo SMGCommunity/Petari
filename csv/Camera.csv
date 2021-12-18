@@ -871,7 +871,7 @@ getOffset__15CameraShakeTaskCFPQ29JGeometry8TVec2<f>,CameraShakeTask.o,Camera.a,
 isEnd__15CameraShakeTaskCFv,CameraShakeTask.o,Camera.a,true
 startCommon__15CameraShakeTaskFUl,CameraShakeTask.o,Camera.a,true
 updatePattern__15CameraShakeTaskFv,CameraShakeTask.o,Camera.a,true
-updateInterval__15CameraShakeTaskFv,CameraShakeTask.o,Camera.a,false
+updateInterval__15CameraShakeTaskFv,CameraShakeTask.o,Camera.a,true
 __ct__12CameraShakerFPCc,CameraShaker.o,Camera.a,true
 movement__12CameraShakerFv,CameraShaker.o,Camera.a,true
 shakeVertical__12CameraShakerFQ212CameraShaker20ESinglyVerticalPower,CameraShaker.o,Camera.a,true
@@ -949,7 +949,7 @@ isTurning__15CameraTargetObjCFv,CameraTargetMtx.o,Camera.a,true
 init__15CameraTargetObjFRC12JMapInfoIter,CameraTargetMtx.o,Camera.a,true
 movement__15CameraTargetMtxFv,CameraTargetMtx.o,Camera.a,false
 __ct__15CameraTargetObjFPCc,CameraTargetObj.o,Camera.a,true
-__ct__17CameraTargetActorFPCc,CameraTargetObj.o,Camera.a,false
+__ct__17CameraTargetActorFPCc,CameraTargetObj.o,Camera.a,true
 movement__17CameraTargetActorFv,CameraTargetObj.o,Camera.a,false
 getPosition__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
 getUpVec__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
@@ -960,7 +960,7 @@ getGroundPos__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
 getGravityVector__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
 getCubeCameraArea__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
 getGroundTriangle__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,false
-__ct__18CameraTargetPlayerFPCc,CameraTargetObj.o,Camera.a,false
+__ct__18CameraTargetPlayerFPCc,CameraTargetObj.o,Camera.a,true
 movement__18CameraTargetPlayerFv,CameraTargetObj.o,Camera.a,false
 getPosition__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
 getUpVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
@@ -1114,9 +1114,9 @@ registerCameraCode__17GameCameraCreatorFUl,GameCameraCreator.o,Camera.a,true
 termCameraCodeCollection__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,true
 scanStartPos__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,false
 scanArea__17GameCameraCreatorFv,GameCameraCreator.o,Camera.a,false
-__ct__10OnlyCameraFPCc,OnlyCamera.o,Camera.a,false
+__ct__10OnlyCameraFPCc,OnlyCamera.o,Camera.a,true
 calcPose__10OnlyCameraFP9CameraMan,OnlyCamera.o,Camera.a,false
 calcStartPose__10OnlyCameraFP9CameraMan,OnlyCamera.o,Camera.a,false
 calcSafePose__10OnlyCameraFP9CameraMan,OnlyCamera.o,Camera.a,false
 moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3<f>,OnlyCamera.o,Camera.a,false
-__dt__10OnlyCameraFv,OnlyCamera.o,Camera.a,false
+__dt__10OnlyCameraFv,OnlyCamera.o,Camera.a,true
