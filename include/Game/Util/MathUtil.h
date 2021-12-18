@@ -79,6 +79,7 @@ namespace MR {
 
     f32 mod(f32, f32);
 
+    void normalize(TVec2f *);
     void normalize(TVec3f *);
 };
 

@@ -11,7 +11,7 @@ public:
     void initCameraCodeCollection(const char *, long);
     void registerCameraCode(unsigned long);
     void termCameraCodeCollection();
-    //scanStartPos();
+    //void scanStartPos();
     //void scanArea();
 
     CameraParamChunkHolder *mChunkHolder;   // _0

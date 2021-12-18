@@ -6,6 +6,18 @@ namespace JGeometry {
     template<typename T>
     class TVec2 {
     public:
+        inline TVec2() {
+
+        }
+
+        inline TVec2(T _x, T _y) {
+            x = _x;
+            y = _y;
+        }
+
+        template<typename T>
+        void set(const JGeometry::TVec2<T> &);
+
         T x, y;
     };
 
