@@ -28,7 +28,13 @@ class ClippingGroupHolder : public NameObj {
 public:
     ClippingGroupHolder();
 
+    virtual ~ClippingGroupHolder();
     virtual void movement();
+
+    void createAndAdd(ClippingActorInfo *, const JMapInfoIter &, int);
+    ClippingInfoGroup* createGroup(ClippingActorInfo *, const JMapInfoIter &, int);
+
+    ClippingInfoGroup* findGroup(const JMapInfoIter &);
 
     s32 mNumGroups;                         // _C
     ClippingInfoGroup** mInfoGroups;         // _10

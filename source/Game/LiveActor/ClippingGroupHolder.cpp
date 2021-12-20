@@ -60,11 +60,10 @@ void ClippingInfoGroup::endClippedAll() {
     }
 }
 
-#ifdef NON_MATCHING
-// weird regalloc issue
 void ClippingGroupHolder::movement() {
+    ClippingInfoGroup* group;
     for (s32 i = 0; i < mNumGroups; i++) {
-        ClippingInfoGroup* group = mInfoGroups[i];
+        group = mInfoGroups[i];
 
         if (group->isClippedNowAll()) {
             u8 var = group->_1C;
@@ -80,4 +79,57 @@ void ClippingGroupHolder::movement() {
         }
     }
 }
+
+void ClippingGroupHolder::createAndAdd(ClippingActorInfo *pInfo, const JMapInfoIter &rIter, int count) {
+    ClippingInfoGroup* group = findGroup(rIter);
+
+    if (!group) {
+        group = createGroup(pInfo, rIter, count);
+    }
+
+    group->registerInfo(pInfo);
+}
+
+ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo *pInfo, const JMapInfoIter &rIter, int count) {
+    ClippingInfoGroup* group = new ClippingInfoGroup(pInfo->mActor->mName, count);
+    group->setGroupNo(rIter);
+    mInfoGroups[mNumGroups] = group;
+    mNumGroups++;
+    return group;
+}
+
+#ifdef NON_MATCHING
+// reg usage issue, and not reloading the array to return
+ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter &rIter) {
+    JMapIdInfo info = MR::createJMapIdInfoFromClippingGroupId(rIter);
+
+    for (s32 i = 0; i < mNumGroups; i++) {
+        bool isFound = false;
+        JMapIdInfo* inf = mInfoGroups[i]->_18;
+
+        if (*inf == info) {
+            return mInfoGroups[i];
+        }
+    }
+
+    return 0;
+}
 #endif
+
+ClippingInfoGroup::~ClippingInfoGroup() {
+
+}
+
+ClippingGroupHolder::~ClippingGroupHolder() {
+
+}
+
+ClippingGroupHolder::ClippingGroupHolder() : NameObj("クリッピングアクター保持") {
+    mNumGroups = 0;
+    mInfoGroups = 0;
+    mInfoGroups = new ClippingInfoGroup*[0x40];
+
+    for (s32 i = 0; i < 0x40; i++) {
+        mInfoGroups[i] = 0;
+    }
+}
