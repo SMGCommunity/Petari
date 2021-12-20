@@ -3,6 +3,7 @@
 #include "Game/NameObj/NameObj.h"
 
 class Camera;
+class CamTranslatorDummy;
 
 class CameraHolder : public NameObj {
 public:
@@ -16,8 +17,8 @@ public:
     void createCameras();
     Camera *getCameraInner(long) const;
 
-    s32 mDefaultCameraIndex;    // _C
-    Camera **mCameras;          // _10
-    void **_14;
-    void *mDefaultFrom14;       // _18
+    s32 mDefaultCameraIndex;                // _C
+    Camera **mCameras;                      // _10
+    CamTranslatorDummy **mTranslators;      // _14
+    CamTranslatorDummy *mDefaultTranslator; // _18
 };

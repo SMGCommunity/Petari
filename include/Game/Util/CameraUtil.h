@@ -6,4 +6,6 @@ namespace MR {
     TVec3f getCamPos();
 
     bool isCameraInterpolateNearlyEnd();
+
+    void setShakeOffset(float, float);
 };

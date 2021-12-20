@@ -1,17 +1,5 @@
 #include "Game/Camera/CameraAnim.h"
-
-inline BaseCamAnmDataAccessor::BaseCamAnmDataAccessor() {
-    
-}
-
-inline BaseCamAnmDataAccessor::~BaseCamAnmDataAccessor() {
-
-}
-
-inline KeyCamAnmDataAccessor::KeyCamAnmDataAccessor() {
-    mInfo = NULL;
-    mValues = NULL;
-}
+#include "Game/Camera/CamTranslatorAnim.h"
 
 KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 
@@ -79,8 +67,6 @@ float KeyCamAnmDataAccessor::get(float key, unsigned long offset, unsigned long 
     }
 }
 
-#ifdef NON_MATCHING
-// if/else content are stored in reversed order, because beq/bne are swapped
 u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long count, unsigned long stride) const {
     u32 low = 0;
     u32 high = count;
@@ -88,17 +74,16 @@ u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, 
     while (low < high) {
         u32 middle = (low + high) / 2;
 
-        if (!(mValues[offset + middle * stride] <= key)) {
-            high = middle;
+        if (mValues[offset + middle * stride] <= key) {
+            low = middle + 1;
         }
         else {
-            low = middle + 1;
+            high = middle;
         }
     }
 
     return low - 1;
 }
-#endif
 
 float KeyCamAnmDataAccessor::get3f(float key, unsigned long offset, unsigned long count) const {
     u32 index = searchKeyFrameIndex(key, offset, count, 3);
@@ -125,13 +110,8 @@ float KeyCamAnmDataAccessor::calcHermite(float key, float a2, float a3, float a4
 }
 #endif
 
-inline CamAnmDataAccessor::CamAnmDataAccessor() {
-    mInfo = NULL;
-    mValues = NULL;
-}
-
 CamAnmDataAccessor::~CamAnmDataAccessor() {
-
+    
 }
 
 void CamAnmDataAccessor::set(void *pInfo, void *pValues) {
@@ -212,6 +192,25 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
 CameraAnim::~CameraAnim() {
 
 }
+
+bool CameraAnim::isZeroFrameMoveOff() const {
+    return true;
+}
+
+bool CameraAnim::isCollisionOff() const {
+    return true;
+}
+
+bool CameraAnim::isInterpolationOff() const {
+    return true;
+}
+
+#ifdef NON_MATCHING
+// Wrong instruction order
+CamTranslatorDummy *CameraAnim::createTranslator() {
+    return new CamTranslatorAnim(this);
+}
+#endif
 
 void CameraAnim::setParam(unsigned char *pFile, float speed) {
     loadBin(pFile);

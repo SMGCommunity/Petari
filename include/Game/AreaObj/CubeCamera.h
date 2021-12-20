@@ -4,6 +4,10 @@
 
 class CubeCameraArea : public AreaObj {
 public:
+    enum ECategory {
+
+    };
+    
     CubeCameraArea(int, const char *);
 
     virtual void init(const JMapInfoIter &);

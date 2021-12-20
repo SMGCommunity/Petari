@@ -28,7 +28,7 @@ try:
     print("Found elftools, continuing...")
 except ModuleNotFoundError:
     print("Module `elftools` not found. Installing...")
-    install("elftools")
+    install("pyelftools")
 
 try:
     import ninja
