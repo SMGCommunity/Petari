@@ -623,7 +623,7 @@ closeCreatingCameraChunk__13CameraManGameFv,CameraManGame.o,Camera.a,true
 startStartPosCamera__13CameraManGameFb,CameraManGame.o,Camera.a,true
 endStartPosCamera__13CameraManGameFv,CameraManGame.o,Camera.a,true
 zoomIn__13CameraManGameFv,CameraManGame.o,Camera.a,true
-zoomOut__13CameraManGameFv,CameraManGame.o,Camera.a,false
+zoomOut__13CameraManGameFv,CameraManGame.o,Camera.a,true
 isInterpolationOff__13CameraManGameCFv,CameraManGame.o,Camera.a,true
 isCollisionOff__13CameraManGameCFv,CameraManGame.o,Camera.a,true
 isZeroFrameMoveOff__13CameraManGameCFv,CameraManGame.o,Camera.a,true

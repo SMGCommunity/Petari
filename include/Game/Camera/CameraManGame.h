@@ -34,7 +34,7 @@ public:
     void startStartPosCamera(bool);
     void endStartPosCamera();
     void zoomIn();
-    void ZoomOut();
+    void zoomOut();
     void selectCameraChunk();
     void setChunk(const CameraParamChunkID &);
     void setNullCamera();

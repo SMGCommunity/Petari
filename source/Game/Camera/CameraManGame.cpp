@@ -184,6 +184,6 @@ void CameraManGame::zoomIn() {
     chunk->mExParam.mFovy = (180.0f * (2 * var1)) / 3.1415927f;
 }
 
-void CameraManGame::ZoomOut() {
+void CameraManGame::zoomOut() {
     mZoomedIn = false;
 }
