@@ -52,6 +52,8 @@ public:
     virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
     virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
+    void initActorLightCtrl();
+
     HitSensor* getSensor(const char *) const;
 
     TVec3f mPosition;                       // _C
