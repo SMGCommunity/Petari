@@ -7,7 +7,7 @@ ClippingActorInfo::ClippingActorInfo(LiveActor *pActor) {
     _4 = 0;
     _8 = 0.0f;
     _C = 0;
-    _10 = 6;
+    mFarClipLevel = 6;
     _12 = -1;
     _14 = 0;
     setTypeToSphere(300.0f, 0);

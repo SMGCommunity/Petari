@@ -1,4 +1,5 @@
 #include "Game/LiveActor/ClippingActorHolder.h"
+#include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
 
 ClippingActorHolder::ClippingActorHolder() : NameObj("クリッピングアクター保持") {
@@ -38,3 +39,62 @@ void ClippingActorHolder::initSystemInfo(LiveActor *pActor, const JMapInfoIter &
         mViewGroupCtrl->initActorInfo(find(pActor), viewGroupID);
     }
 }
+
+void ClippingActorHolder::initViewGroupTable() {
+    mViewGroupCtrl->startInitViewGroupTable();
+    mViewGroupCtrl->initViewGroup(_10);
+    mViewGroupCtrl->initViewGroup(_18);
+    mViewGroupCtrl->initViewGroup(_1C);
+    mViewGroupCtrl->initViewGroup(_14);
+    mViewGroupCtrl->endInitViewGroupTable();
+}
+
+void ClippingActorHolder::validateClipping(LiveActor *pActor) {
+    pActor->mFlags.mIsInvalidClipping = false;
+    ClippingActorInfo* inf = _14->remove(pActor);
+
+    if (MR::isDead(pActor)) {
+        _18->add(inf);
+    }
+    else {
+        if (inf->isGroupClipping()) {
+            _10->add(inf);
+        }
+        else {
+            _1C->add(inf);
+        }  
+    }
+}
+
+void ClippingActorHolder::invalidateClipping(LiveActor *pActor) {
+    pActor->mFlags.mIsInvalidClipping = true;
+    ClippingActorInfo* inf;
+
+    if (MR::isDead(pActor)) {
+        inf = _18->remove(pActor);
+    }
+    else {
+        if (_10->isInList(pActor)) {
+            inf = _10->remove(pActor);
+        }
+        else {
+            inf = _1C->remove(pActor);
+        }
+    }
+
+    _14->add(inf);
+    if (MR::isClipped(pActor)) {
+        pActor->endClipped();
+    }
+}
+
+void ClippingActorHolder::setTypeToSphere(LiveActor *pActor, f32 range, const TVec3f *a3) {
+    find(pActor)->setTypeToSphere(range, a3);
+}
+
+#ifdef NON_MATCHING
+// cast issues
+void ClippingActorHolder::setFarClipLevel(LiveActor *pActor, s32 level) {
+    find(pActor)->mFarClipLevel = level;
+}
+#endif

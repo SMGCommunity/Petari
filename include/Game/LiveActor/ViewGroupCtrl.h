@@ -11,6 +11,7 @@ public:
     void endInitViewGroupTable();
 
     void update();
+    void startInitViewGroupTable();
 
     u8 _0[0x14];
 };
