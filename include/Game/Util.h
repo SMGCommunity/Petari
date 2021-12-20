@@ -14,6 +14,7 @@
 #include "Game/Util/HashUtil.h"
 #include "Game/Util/JMapIdInfo.h"
 #include "Game/Util/JMapInfo.h"
+#include "Game/Util/JMapLinkInfo.h"
 #include "Game/Util/JMapUtil.h"
 #include "Game/Util/JointUtil.h"
 #include "Game/Util/LightUtil.h"

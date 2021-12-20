@@ -21,3 +21,5 @@ compiler
 __pycache__
 genCsv.py
 checkObject.py
+.ninja_log
+build.ninja

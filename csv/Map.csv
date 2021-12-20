@@ -822,12 +822,12 @@ initZoneData__19LightZoneDataHolderFv,LightZoneDataHolder.o,Map.a,true
 getAreaLightNameInZoneData__19LightZoneDataHolderCFRC11ZoneLightID,LightZoneDataHolder.o,Map.a,true
 getDefaultStageAreaLightName__19LightZoneDataHolderCFv,LightZoneDataHolder.o,Map.a,true
 init__13LightZoneInfoFl,LightZoneDataHolder.o,Map.a,true
-__ct__13NamePosHolderFv,NamePosHolder.o,Map.a,false
-__ct__11NamePosInfoFv,NamePosHolder.o,Map.a,false
+__ct__13NamePosHolderFv,NamePosHolder.o,Map.a,true
+__ct__11NamePosInfoFv,NamePosHolder.o,Map.a,true
 tryRegisterLinkObj__13NamePosHolderFPC7NameObjRC12JMapInfoIter,NamePosHolder.o,Map.a,false
 find__13NamePosHolderCFPC7NameObjPCcPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>,NamePosHolder.o,Map.a,false
-getNamePosHolder__2MRFv,NamePosHolder.o,Map.a,false
-__dt__13NamePosHolderFv,NamePosHolder.o,Map.a,false
+getNamePosHolder__2MRFv,NamePosHolder.o,Map.a,true
+__dt__13NamePosHolderFv,NamePosHolder.o,Map.a,true
 __ct__9OceanBowlFPCc,OceanBowl.o,Map.a,false
 init__9OceanBowlFRC12JMapInfoIter,OceanBowl.o,Map.a,false
 isInWater__9OceanBowlCFRCQ29JGeometry8TVec3<f>,OceanBowl.o,Map.a,false
