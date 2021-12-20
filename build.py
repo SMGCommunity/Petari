@@ -3,7 +3,6 @@ import sys
 import os
 import shutil
 
-from ninja import ninja_syntax
 import util
 import pathlib
 import shutil
@@ -88,7 +87,7 @@ def main(argv):
     if useNinja:
 
         # Use ninja build system to generate a build script.
-        import ninja
+        from ninja import ninja_syntax
         bo = open("build.ninja", "w")
         nw = ninja_syntax.Writer(bo)
 

@@ -30,6 +30,13 @@ except ModuleNotFoundError:
     print("Module `elftools` not found. Installing...")
     install("elftools")
 
+try:
+    import ninja
+    print("Found ninja, continuing...")
+except ModuleNotFoundError:
+    print("Module 'ninja' not found. Installing...")
+    install("ninja")
+
 if not os.path.exists("deps"):
     print("Dependency folder not found, downloading...")
 
