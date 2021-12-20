@@ -54,9 +54,6 @@ def main(argv):
     includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
     flags += includes
 
-    if os.path.exists("build"):
-        shutil.rmtree("build", ignore_errors=True)
-
     tasks = list()
 
     for root, dirs, files in os.walk("source"):
@@ -111,7 +108,7 @@ def main(argv):
                 pass
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
-        
+    
         # Call ninja to run said build script.
         if subprocess.call("ninja", shell=True) == 1:
             deleteDFiles()
@@ -120,6 +117,8 @@ def main(argv):
     else:
 
         # Old method.
+        if os.path.exists("build"):
+            shutil.rmtree("build", ignore_errors=True)
         for task in tasks:
             source_path, build_path = task     
 
