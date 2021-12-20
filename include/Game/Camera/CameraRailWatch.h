@@ -6,7 +6,7 @@ class CameraRailWatch : public Camera {
 public:
     CameraRailWatch(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     u32 _4C;
     u32 _50;

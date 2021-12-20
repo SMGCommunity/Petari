@@ -115,7 +115,7 @@ public:
     CameraAnim(const char *);
     virtual ~CameraAnim();
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
     virtual bool isZeroFrameMoveOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isInterpolationOff() const;

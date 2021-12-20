@@ -7,6 +7,14 @@ class CameraTargetMtx : public CameraTargetObj {
 public:
     CameraTargetMtx(const char *);
 
+    virtual TVec3f *getPosition() const;
+    virtual TVec3f *getUpVec() const;
+    virtual TVec3f *getFrontVec() const;
+    virtual TVec3f *getSideVec() const;
+    virtual TVec3f *getLastMove() const;
+    virtual TVec3f *getGroundPos() const;
+    virtual TVec3f *getGravityVector() const;
+
     TMtx34f _10;
     f32 _40;
     f32 _44;

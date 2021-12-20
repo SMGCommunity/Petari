@@ -6,7 +6,7 @@ class CameraInwardTower : public Camera {
 public:
     CameraInwardTower(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

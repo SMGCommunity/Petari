@@ -6,7 +6,7 @@ class CameraFixedThere : public Camera {
 public:
     CameraFixedThere(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     u32 _4C;
     u8 _50;

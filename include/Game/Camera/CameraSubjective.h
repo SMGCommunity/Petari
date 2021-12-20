@@ -6,7 +6,7 @@ class CameraSubjective : public Camera {
 public:
     CameraSubjective(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

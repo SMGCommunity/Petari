@@ -6,6 +6,8 @@ class CameraTowerBase : public Camera {
 public:
     CameraTowerBase(const char *);
 
+    virtual CameraTargetObj *calc();
+
     f32 _4C;
     f32 _50;
     f32 _54;

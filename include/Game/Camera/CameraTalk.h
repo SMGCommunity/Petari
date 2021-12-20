@@ -6,7 +6,7 @@ class CameraTalk : public Camera {
 public:
     CameraTalk(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

@@ -6,7 +6,7 @@ class CameraWonderPlanet : public Camera {
 public:
     CameraWonderPlanet(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

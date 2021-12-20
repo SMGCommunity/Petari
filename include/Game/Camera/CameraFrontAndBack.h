@@ -6,7 +6,7 @@ class CameraFrontAndBack : public Camera {
 public:
     CameraFrontAndBack(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

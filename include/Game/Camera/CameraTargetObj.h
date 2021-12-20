@@ -2,6 +2,9 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TVec.h"
+
+class LiveActor;
 
 class CameraTargetObj : public NameObj {
 public:
@@ -9,6 +12,14 @@ public:
     virtual ~CameraTargetObj();
 
     virtual void init(const JMapInfoIter &);
+
+    virtual TVec3f *getPosition() const = 0;
+    virtual TVec3f *getUpVec() const = 0;
+    virtual TVec3f *getFrontVec() const = 0;
+    virtual TVec3f *getSideVec() const = 0;
+    virtual TVec3f *getLastMove() const = 0;
+    virtual TVec3f *getGroundPos() const = 0;
+    virtual TVec3f *getGravityVector() const = 0;
 
     virtual f32 getRadius() const;
     virtual bool isTurning() const;
@@ -41,7 +52,15 @@ public:
     CameraTargetActor(const char *);
     virtual ~CameraTargetActor();
 
-    u32 _10;
+    virtual TVec3f *getPosition() const;
+    virtual TVec3f *getUpVec() const;
+    virtual TVec3f *getFrontVec() const;
+    virtual TVec3f *getSideVec() const;
+    virtual TVec3f *getLastMove() const;
+    virtual TVec3f *getGroundPos() const;
+    virtual TVec3f *getGravityVector() const;
+
+    const LiveActor *_10;
     f32 _14;
     f32 _18;
     f32 _1C;
@@ -58,7 +77,16 @@ class CameraTargetPlayer : public CameraTargetObj {
 public:
     CameraTargetPlayer(const char *);
 
-    u8 _10[0x28];
+    virtual TVec3f *getPosition() const;
+    virtual TVec3f *getUpVec() const;
+    virtual TVec3f *getFrontVec() const;
+    virtual TVec3f *getSideVec() const;
+    virtual TVec3f *getLastMove() const;
+    virtual TVec3f *getGroundPos() const;
+    virtual TVec3f *getGravityVector() const;
+
+    void *_10; // const MarioActor *
+    u8 _14[0x24];
     f32 _38;
     f32 _3C;
     f32 _40;

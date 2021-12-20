@@ -8,7 +8,7 @@ class CameraFix : public Camera {
 public:
     CameraFix(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

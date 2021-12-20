@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraTargetObj.h"
+#include "Game/LiveActor/LiveActor.h"
 
 CameraTargetObj::CameraTargetObj(const char *pName) : NameObj(pName) {
     mCameraWall = 0;

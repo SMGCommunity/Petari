@@ -8,6 +8,7 @@ class Camera;
 class CameraHeightArrange;
 class CameraParamChunk;
 class CameraPoseParam;
+class CameraTargetObj;
 
 class CamTranslatorDummy {
 public:
@@ -27,7 +28,7 @@ public:
     virtual ~Camera();
 
     virtual void reset();
-    virtual void calc() = 0;
+    virtual CameraTargetObj *calc() = 0;
     virtual bool isInterpolationOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isZeroFrameMoveOff() const;

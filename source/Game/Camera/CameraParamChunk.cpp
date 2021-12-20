@@ -5,11 +5,25 @@
 #include "Game/Util/MathUtil.h"
 #include <string.h>
 
-CameraGeneralParam::CameraGeneralParam() :
-    mDist(1200.0f), mAxis(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 0.0f),
-    mUp(0.0f, 1.0f, 0.0f), mAngleA(0.0f), mAngleB(0.3f), mNum1(0), mNum2(0), mString() {
-    
+#ifdef NON_MATCHING
+// String constructor called first instead of last
+CameraGeneralParam::CameraGeneralParam() : mString() {
+    mDist = 1200.0f;
+    mAxis.x = 0.0f;
+    mAxis.y = 1.0f;
+    mAxis.z = 0.0f;
+    mWPoint.x = 0.0f;
+    mWPoint.y = 0.0f;
+    mWPoint.z = 0.0f;
+    mUp.x = 0.0f;
+    mUp.y = 0.0f;
+    mUp.z = 0.0f;
+    mAngleA = 0.0f;
+    mAngleB = 0.3f;
+    mNum1 = 0;
+    mNum2 = 0;
 }
+#endif
 
 CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam &rOther) {
     mDist = rOther.mDist;

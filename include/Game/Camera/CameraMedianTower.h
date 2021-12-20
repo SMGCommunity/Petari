@@ -6,7 +6,7 @@ class CameraMedianTower : public Camera {
 public:
     CameraMedianTower(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     u32 _4C;
     f32 _50;

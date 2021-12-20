@@ -6,7 +6,7 @@ class CameraRailFollow : public Camera {
 public:
     CameraRailFollow(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     u32 _4C;
     f32 _50;

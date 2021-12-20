@@ -6,7 +6,7 @@ class CameraGround : public Camera {
 public:
     CameraGround(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     f32 _4C;
     f32 _50;

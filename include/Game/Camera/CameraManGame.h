@@ -1,26 +1,86 @@
 #pragma once
 
+#include "Game/AreaObj/CubeCamera.h"
 #include "Game/Camera/CameraMan.h"
 
+class Camera;
 class CameraHolder;
+class CameraParamChunk;
 class CameraParamChunkHolder;
+class CameraParamChunkID;
+class CamKarikariEffector;
+class CamHeliEffector;
 
 class CameraManGame : public CameraMan {
 public:
-    CameraManGame(CameraHolder *, CameraParamChunkHolder *, char *);
+    CameraManGame(CameraHolder *, CameraParamChunkHolder *, const char *);
+    virtual ~CameraManGame();
+
+    virtual void init(const JMapInfoIter &);
+
+    virtual void calc();
+    virtual void notifyActivate();
+    virtual void notifyDeactivate();
+    virtual bool isInterpolationOff() const;
+    virtual bool isCollisionOff() const;
+    virtual bool isZeroFrameMoveOff() const;
+    virtual bool isSubjectiveCameraOff() const;
+    virtual bool isCorrectingErpPositionOff() const;
+    virtual bool isEnableToReset() const;
+    virtual bool isEnableToRoundLeft() const;
+    virtual bool isEnableToRoundRight() const;
+
+    void closeCreatingCameraChunk();
+    void startStartPosCamera(bool);
+    void endStartPosCamera();
+    void zoomIn();
+    void ZoomOut();
+    void selectCameraChunk();
+    void setChunk(const CameraParamChunkID &);
+    void setNullCamera();
+    void tryToReplaceChunkToDefault(CameraParamChunk *);
+    void requestResetIfNecessary(CameraParamChunk *);
+    bool isNecessaryToReset(CameraParamChunk *) const;
+    bool isCurrentChunkEnableEndInterp() const;
+    void replaceCurrentChunkAndCamera(CameraParamChunk *);
+    void applyParameter();
+    void checkReset();
+    void setSafePose();
+    void keepAwayWatchPos(TVec3f *, const TVec3f &);
+    void calcSafeUpVec(TVec3f *, const TVec3f &, const TVec3f &);
+    void createDefaultCamera();
+    void createDefaultWaterCamera();
+    void createDefaultWaterSurfaceCamera();
+    void createDefaultFooFighterCamera();
+    void createStartAnimCamera();
+    void createZoomCamera();
+    void checkStateShift();
+    void tryShiftToGCapture();
+    void tryShiftToSwimOrWaterSurface();
+    void tryShiftToFooFighter();
+    void updateNormal();
+    void updateSwim();
+    void updateWaterSurface();
+    void updateGCapture();
+    void updateFooFighter();
+    void setCubeChunk(CubeCameraArea::ECategory);
+    void tryStartPosCamera();
+    void tryZoomCamera();
+    void isZoomCamera() const;
 
     CameraHolder *mHolder;                  // _48
     CameraParamChunkHolder *mChunkHolder;   // _4C
-    s32 mDefaultCameraIndex;                // _50
-    u32 _54;
-    u8 _58[4];
+    Camera *mCamera;                        // _50
+    CameraParamChunk *mChunk;               // _54
+    u8 _58;
+    u8 _59[3];
     u32 _5C;
-    void *_60;
-    void *_64;
+    CamKarikariEffector *mKarikari;         // _60
+    CamHeliEffector *mHeli;                 // _64
     u32 _68;
     u8 _6C;
     u8 _6D[3];
     u32 _70;
-    u8 _74;
+    bool mZoomedIn;                         // _74
     u8 _75[3];
 };

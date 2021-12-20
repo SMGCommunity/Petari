@@ -6,7 +6,7 @@ class CameraCharmedVecRegTower : public Camera {
 public:
     CameraCharmedVecRegTower(const char *);
 
-    virtual void calc();
+    virtual CameraTargetObj *calc();
 
     u8 _4C[36];
     u8 _70;
