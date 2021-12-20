@@ -57,7 +57,10 @@ def main(argv):
     tasks = list()
 
     canUseNinja = not "-n" in argv  
-    useNinja = shutil.which("ninja") is not None and canUseNinja
+    ninjaFound = shutil.which("ninja") is not None
+    if not ninjaFound and canUseNinja:
+        print("Ninja was not found in your PATH. Compilation will be slow!")
+    useNinja = ninjaFound and canUseNinja
     if not useNinja:
         if os.path.exists("build"):
                 shutil.rmtree("build", ignore_errors=True)
