@@ -3,6 +3,7 @@
 *.dat
 tools/*.exe
 tools/*.dll
+deps
 *.idb
 *.id0
 *.id1
@@ -20,3 +21,5 @@ compiler
 __pycache__
 genCsv.py
 checkObject.py
+.ninja_log
+build.ninja

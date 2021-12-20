@@ -9,6 +9,7 @@ import struct
 import util
 from capstone import *
 from capstone.ppc import *
+import pathlib
 
 blacklistedInsns = {
     # Unsupported instructions
@@ -39,7 +40,9 @@ if lib == "TRK_Hollywood_Revolution":
     print("this library is not supported at the moment")
     sys.exit(1)
 
-with open(f"csv/{lib}.csv", "r") as f:
+csv_path = pathlib.Path(f"csv/{lib}.csv")
+
+with open(csv_path, "r") as f:
     lines = f.readlines()
 
 if sym is not None:

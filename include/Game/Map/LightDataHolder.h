@@ -23,7 +23,14 @@ public:
     f32 _18;
 };
 
-struct ActorLightInfo {
+class ActorLightInfo {
+public:
+    inline ActorLightInfo() {
+        
+    }
+
+    void operator=(const ActorLightInfo &);
+
     LightInfo mInfo0;   // _0
     LightInfo mInfo1;   // _14
     u8 mAlpha2;         // _28

@@ -2,6 +2,7 @@
 
 #include "Game/Util/JMapInfo.h"
 #include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 
 namespace MR {
@@ -25,4 +26,7 @@ namespace MR {
     void setInitializeStatePlacementHighPriority();
     void setInitializeStatePlacement();
     void setInitializeStateAfterPlacement();
+
+    s32 getGeneralPosNum();
+    void getGeneralPosData(const char **, TVec3f *, TVec3f *, JMapLinkInfo **, int);
 }

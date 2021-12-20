@@ -13,3 +13,9 @@ public:
 
     u8 mIsDead; // _8
 };
+
+template<typename T>
+class ActorStateBase : public ActorStateBaseInterface {
+public:
+    virtual ~ActorStateBase();
+};

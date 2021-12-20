@@ -11,9 +11,10 @@ public:
     bool updateCurrentState();
     void startState(const Nerve *);
     void endState(const Nerve *);
+    Spine* findStateInfo(const Nerve *);
 
-    s32 mStateCount; // _0
+    s32 _0;
     u32 _4;
-    u32 _8;
-    u32 _C;
+    ActorStateBaseInterface* mNerves;           // _8
+    Spine* mCurrentState;                       // _C
 };

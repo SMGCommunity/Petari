@@ -56,6 +56,7 @@ namespace JGeometry {
 
         T setLength(T);
         T squared() const;
+        T squared(const JGeometry::TVec3<T> &) const;
         void zero();
 
         void sub(const JGeometry::TVec3<T> &);
@@ -64,6 +65,7 @@ namespace JGeometry {
 
         void scale(T);
         void scale(T, const JGeometry::TVec3<T> &);
+        void scale(const JGeometry::TVec3<T> &);
 
         f32 dot(register const JGeometry::TVec3<f32> &rOther) const; //{
             /*register const JGeometry::TVec3<f32>* this_vec = this;

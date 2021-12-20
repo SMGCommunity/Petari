@@ -1,10 +1,9 @@
 #pragma once
 
+#include "Game/AreaObj/AreaObj.h"
+#include "Game/AreaObj/LightAreaHolder.h"
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TVec.h"
-
-class AreaObj;
-class AreaObjMgr;
 
 struct AreaObjEntry {
     const char* mName;                          // _0
@@ -13,7 +12,24 @@ struct AreaObjEntry {
 };
 
 namespace {
-    const AreaObjEntry* cCreateTable;
+    template<typename T>
+    AreaObjMgr* createManager(s32 type, const char *pName) {
+        return new T(type, pName);
+    }
+
+    static AreaObjEntry cCreateTable[8] = {
+        { "SwitchArea", 0x40, createManager<AreaObjMgr> },
+        { "RaceJudgeCube", 0x40, createManager<AreaObjMgr> },
+        { "NinForceWindCube", 0x40, createManager<AreaObjMgr> },
+        { "NinAbyssCube", 0x40, createManager<AreaObjMgr> },
+        //{ "CubeCamera", 0xA0, createManager<AreaObjMgr> },
+        { "BindEndCube", 0x40, createManager<AreaObjMgr> },
+        { "EffectCylinder", 0x40, createManager<AreaObjMgr> },
+        { "DeathArea", 0x40, createManager<AreaObjMgr> },
+        /* todo -- finish me */
+
+        { "LightArea", 0x80, createManager<LightAreaHolder> }
+    };
 };
 
 class AreaObjContainer : public NameObj {

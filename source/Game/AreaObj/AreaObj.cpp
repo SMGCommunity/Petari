@@ -99,11 +99,22 @@ TPos3f* AreaObj::getFollowMtx() const {
 }
 
 AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() {
-    _14 = 0;
+    mArray.mCount = 0;
     _18 = count;
 }
 
-// AreaObjMgr::entry
+void AreaObjMgr::entry(AreaObj *pAreaObj) {
+    if (!mArray.mCount) {
+        u32 cnt = _18;
+        mArray.mArray.mArr = new AreaObj*[cnt];
+        mArray.mArray.mMaxSize = cnt;
+    }
+
+    u32 count = mArray.mCount;
+    mArray.mCount = count + 1;
+    mArray.mArray.mArr[count] = pAreaObj;
+}
+
 // AreaObjMgr::find_in
 
 void AreaObj::validate() {

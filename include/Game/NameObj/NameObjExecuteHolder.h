@@ -17,7 +17,7 @@ public:
     void executeRequirementDisconnectDrawDelay();
     void requestMovementOn(int);
     void requestMovementOff(int);
-
+    void findLightInfo() const;
     void connectToScene();
     void disconnectToScene();
     void connectToDraw();
@@ -80,4 +80,5 @@ namespace MR {
     void executeRequirementDisconnectDrawDelay();
     void requestMovementOnWithCategory(int);
     void requestMovementOffWithCategory(int);
+    void findActorLightInfo(const LiveActor *);
 };

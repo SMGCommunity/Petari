@@ -516,7 +516,7 @@ changeExpressionBlink__12MiiFacePartsFv,MiiFaceParts.o,NPC.a,false
 changeFaceModel__12MiiFacePartsFRC13MiiFaceRecipe,MiiFaceParts.o,NPC.a,false
 initFaceModel__12MiiFacePartsFv,MiiFaceParts.o,NPC.a,false
 tryChangeExpression__12MiiFacePartsFUl,MiiFaceParts.o,NPC.a,false
-__ct__18MiiFacePartsHolderFi,MiiFacePartsHolder.o,NPC.a,false
+__ct__18MiiFacePartsHolderFi,MiiFacePartsHolder.o,NPC.a,true
 __dt__18MiiFacePartsHolderFv,MiiFacePartsHolder.o,NPC.a,false
 init__18MiiFacePartsHolderFRC12JMapInfoIter,MiiFacePartsHolder.o,NPC.a,false
 calcAnim__18MiiFacePartsHolderFv,MiiFacePartsHolder.o,NPC.a,false
