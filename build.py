@@ -3,6 +3,7 @@ import sys
 import os
 import shutil
 import util
+import pathlib
 
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
@@ -15,14 +16,16 @@ if not os.path.exists("deps"):
     print("deps folder not created, please run setup.py!")
     sys.exit(1)
 
+isNotWindows = os.name != "nt"
+
 rootPath = os.path.dirname(os.path.realpath(__file__))
-path = os.path.dirname(os.path.realpath(__file__)) + "\\source\\"
-toolsPath = os.path.dirname(os.path.realpath(__file__)) + "\\tools\\"
+path = os.path.dirname(os.path.realpath(__file__)) + "/source/"
+toolsPath = os.path.dirname(os.path.realpath(__file__)) + "/tools/"
 
 flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
 includes = "-i . -I- -i include "
 
-default_compiler_path = "\\GC\\3.0a3\\"
+default_compiler_path = pathlib.Path("GC/3.0a3/")
 
 compiler_execptions = {
     #"source\JSystem\JKernel\JKRThread.cpp": "GC/2.5/"
@@ -36,7 +39,16 @@ if "-nonmatching" in sys.argv:
     print("Using nonmatching functions")
     flags = flags + " -DNON_MATCHING "
 
-includes += f"-i deps\\RVL_SDK\\include -I- -i deps\\NW4R\\Library\\include -I- -i deps\\EABI\\PowerPC_EABI_Support\\MetroTRK -I- -i deps\\EABI\\PowerPC_EABI_Support\\Runtime\\Inc -I- -i deps\\EABI\\PowerPC_EABI_Support\\MSL\\MSL_C\\PPC_EABI\\Include -I- -i deps\\EABI\\PowerPC_EABI_Support\\MSL\\MSL_C++\\MSL_Common\\Include -I- -i deps\\EABI\\PowerPC_EABI_Support\\MSL\\MSL_C\\MSL_Common\\Include -I- -i deps\\RVLFaceLib\\include "
+rvl_sdk_path = pathlib.Path("deps/RVL_SDK/include")
+nw4r_path = pathlib.Path("deps/NW4R/Library/include")
+trk_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MetroTRK")
+runtime_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/Runtime/Inc")
+msl_c_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include")
+msl_cpp_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include")
+msl_c_common_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include")
+facelib_path = pathlib.Path("deps/RVLFaceLib/include")
+
+includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
 flags += includes
 
 if os.path.exists("build"):
@@ -64,16 +76,20 @@ for root, dirs, files in os.walk("source"):
 for task in tasks:
     source_path, build_path = task
 
-    compiler_path = f"deps\\Compilers\\{default_compiler_path}"
+    compiler_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwcceppc.exe ")
 
     try:
         if compiler_execptions[source_path]:
-            compiler_path = f"{compiler_execptions[source_path]}"
+            compiler_path = pathlib.Path(f"{compiler_execptions[source_path]}/mwcceppc.exe ")
     except:
         pass
 
+    if isNotWindows:
+        compiler_path = pathlib.Path(f"wine {compiler_path} ")
+
+
     print(f"Compiling {source_path}...")
-    if subprocess.call(f"{compiler_path}\\mwcceppc.exe {flags} {source_path} -o {build_path}", shell=True) == 1:
+    if subprocess.call(f"{compiler_path} {flags} {source_path} -o {build_path}", shell=True) == 1:
             deleteDFiles()
             sys.exit(1)
 
