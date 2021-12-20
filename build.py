@@ -54,10 +54,16 @@ def main(argv):
     includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
     flags += includes
 
-    if os.path.exists("build"):
-        shutil.rmtree("build", ignore_errors=True)
-
     tasks = list()
+
+    canUseNinja = not "-n" in argv  
+    ninjaFound = shutil.which("ninja") is not None
+    if not ninjaFound and canUseNinja:
+        print("Ninja was not found in your PATH. Compilation will be slow!")
+    useNinja = ninjaFound and canUseNinja
+    if not useNinja:
+        if os.path.exists("build"):
+                shutil.rmtree("build", ignore_errors=True)
 
     for root, dirs, files in os.walk("source"):
         for file in files:
@@ -75,10 +81,6 @@ def main(argv):
                 os.makedirs(os.path.dirname(build_path), exist_ok=True)
 
                 tasks.append((source_path, build_path))
-
-    # Adjust this if all else fails.
-    canUseNinja = not "-n" in argv  
-    useNinja = shutil.which("ninja") is not None and canUseNinja
 
     compiler_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwcceppc.exe ")
     if isNotWindows:
@@ -111,15 +113,14 @@ def main(argv):
                 pass
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
-        
+    
         # Call ninja to run said build script.
         if subprocess.call("ninja", shell=True) == 1:
             deleteDFiles()
             sys.exit(1)
 
     else:
-
-        # Old method.
+            
         for task in tasks:
             source_path, build_path = task     
 
