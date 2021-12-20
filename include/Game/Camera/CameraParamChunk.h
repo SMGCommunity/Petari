@@ -5,6 +5,7 @@
 
 class CameraHolder;
 class CameraParamChunkID;
+class DotCamReader;
 
 class CameraGeneralParam {
 public:
@@ -12,15 +13,15 @@ public:
 
     CameraGeneralParam &operator=(const CameraGeneralParam &);
 
-    f32 _0;
-    TVec3f _4;
-    TVec3f _10;
-    TVec3f _1C;
-    f32 _28;
-    f32 _2C;
-    u32 _30;
-    u32 _34;
-    CameraParamString mParamString; // _38
+    f32 mDist;                  // _0
+    TVec3f mAxis;               // _4
+    TVec3f mWPoint;             // _10
+    TVec3f mUp;                 // _1C
+    f32 mAngleA;                // _28
+    f32 mAngleB;                // _2C
+    s32 mNum1;                  // _30
+    s32 mNum2;                  // _34
+    CameraParamString mString;  // _38
 };
 
 class CameraParamChunk {
@@ -31,30 +32,30 @@ public:
 
         void init();
 
-        TVec3f _0;
-        f32 _C;
-        f32 _10;
-        f32 _14;
-        f32 _18;
-        u32 _1C;
-        u16 mFlag;          // _1E
-        u8 _22[2];
-        f32 _24;
-        f32 _28;
-        u32 _2C;
-        f32 _30;
-        f32 _34;
-        u32 _38;
-        u32 _3C;
-        u32 _40;
-        u32 _44;
+        TVec3f mWOffset;    // _0
+        f32 mLOffset;       // _C
+        f32 mLOffsetV;      // _10
+        f32 mRoll;          // _14
+        f32 mFovy;          // _18
+        s32 mCamInt;        // _1C
+        u16 mFlag;          // _20
+        u8 _22[2];          // _22
+        f32 mUpper;         // _24
+        f32 mLower;         // _28
+        s32 mGndInt;        // _2C
+        f32 mUPlay;         // _30
+        f32 mLPlay;         // _34
+        s32 mPushDelay;     // _38
+        s32 mPushDelayLow;  // _3C
+        s32 mUDown;         // _40
+        s32 mVPanUse;       // _44
         TVec3f mVPanAxis;   // _48
     };
 
     CameraParamChunk(CameraHolder *, const CameraParamChunkID &);
 
     virtual void copy(const CameraParamChunk *);
-    //virtual void load(DotCamReader *, CameraHolder *); // TODO
+    virtual void load(DotCamReader *, CameraHolder *);
     virtual void initiate();
     virtual const char *getClassName() const;
 
@@ -87,14 +88,14 @@ public:
     CameraParamChunkGame(CameraHolder *, const CameraParamChunkID &);
     
     virtual void copy(const CameraParamChunk *);
-    //virtual void load(DotCamReader *, CameraHolder *); // TODO
+    virtual void load(DotCamReader *, CameraHolder *);
     virtual void initiate();
     virtual const char *getClassName() const;
 
-    u8 _65;
-    u8 _66;
+    u8 mThru;               // _65
+    u8 mEnableEndErpFrame;  // _66
     u8 _67;
-    u32 _68;
+    u32 mCamEndInt;         // _68
 };
 
 class CameraParamChunkEvent : public CameraParamChunk {
@@ -102,15 +103,15 @@ public:
     CameraParamChunkEvent(CameraHolder *, const CameraParamChunkID &);
 
     virtual void copy(const CameraParamChunk *);
-    //virtual void load(DotCamReader *, CameraHolder *); // TODO
+    virtual void load(DotCamReader *, CameraHolder *);
     virtual void initiate();
     virtual const char *getClassName() const;
 
-    u8 _65;
+    u8 mEnableErpFrame;     // _65
     u8 _66[2];
-    u32 _68;
-    u8 _6C;
+    u32 mEvFrame;           // _68
+    u8 mEnableEndErpFrame;  // _6C
     u8 _6D[3];
-    u32 _70;
-    u32 _74;
+    u32 mCamEndInt;         // _70
+    u32 mEvPriority;        // _74
 };

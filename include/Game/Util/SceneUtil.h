@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util/JMapInfo.h"
+#include "JSystem/JGeometry/TMatrix.h"
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 
@@ -13,7 +14,13 @@ namespace MR {
 
     s32 getZoneNum();
 
+    s32 getPlacedRailNum();
+
     const char* getZoneNameFromZoneId(s32);
+
+    TMtx34f *getZonePlacementMtx(long);
+
+    void getStageCameraData(void **, long *, long);
 
     void setInitializeStatePlacementPlayer();
     void setInitializeStatePlacementHighPriority();

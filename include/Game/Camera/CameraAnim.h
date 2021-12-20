@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/Camera/Camera.h"
 #include "revolution.h"
 
@@ -47,8 +49,13 @@ struct CanmFrameInfo {
 
 class BaseCamAnmDataAccessor {
 public:
-    inline BaseCamAnmDataAccessor();
-    virtual inline ~BaseCamAnmDataAccessor();
+    inline BaseCamAnmDataAccessor() {
+    
+    }
+
+    virtual inline ~BaseCamAnmDataAccessor() {
+    
+    }
 
     virtual void set(void *, void *) = 0;
     virtual void getPos(TVec3f *, float) const = 0;
@@ -59,7 +66,11 @@ public:
 
 class KeyCamAnmDataAccessor : public BaseCamAnmDataAccessor {
 public:
-    inline KeyCamAnmDataAccessor();
+    inline KeyCamAnmDataAccessor() {
+        mInfo = NULL;
+        mValues = NULL;
+    }
+
     virtual ~KeyCamAnmDataAccessor();
     
     virtual void set(void *, void *);
@@ -80,7 +91,11 @@ public:
 
 class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
 public:
-    inline CamAnmDataAccessor();
+    inline CamAnmDataAccessor() {
+        mInfo = NULL;
+        mValues = NULL;
+    }
+
     virtual ~CamAnmDataAccessor();
     
     virtual void set(void *, void *);
@@ -99,6 +114,12 @@ class CameraAnim : public Camera {
 public:
     CameraAnim(const char *);
     virtual ~CameraAnim();
+
+    virtual CameraTargetObj *calc();
+    virtual bool isZeroFrameMoveOff() const;
+    virtual bool isCollisionOff() const;
+    virtual bool isInterpolationOff() const;
+    virtual CamTranslatorDummy *createTranslator();
 
     void setParam(unsigned char *, float);
     bool isAnimEnd() const;

@@ -6,7 +6,10 @@
 
 class DotCamReader {
 public:
-    inline DotCamReader();
+    inline DotCamReader() {
+
+    }
+    
     virtual ~DotCamReader();
 
     virtual u32 getVersion() const = 0;
