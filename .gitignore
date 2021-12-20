@@ -3,6 +3,7 @@
 *.dat
 tools/*.exe
 tools/*.dll
+deps
 *.idb
 *.id0
 *.id1
