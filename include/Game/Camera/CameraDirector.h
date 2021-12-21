@@ -60,7 +60,7 @@ public:
     //endEventAtLanding(long, const char *, long);
     //getEventParameter(long, const char *);
     //requestToResetCameraMan();
-    //setInterpolation(unsigned long);
+    void setInterpolation(unsigned long);
     //cover(unsigned long);
     //closeCreatingCameraChunk();
     //initCameraCodeCollection(const char *, long);
@@ -81,7 +81,7 @@ public:
     //startStartPosCamera(bool);
     //isInterpolatingNearlyEnd() const;
     //isForceCameraChange() const;
-    //getDefaultFovy() const;
+    f32 getDefaultFovy() const;
     //startStartAnimCamera();
     //isStartAnimCameraEnd() const;
     //getStartAnimCameraFrame() const;

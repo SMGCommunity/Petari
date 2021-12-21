@@ -6,6 +6,7 @@
 
 class Camera;
 class CameraHeightArrange;
+class CameraMan;
 class CameraParamChunk;
 class CameraPoseParam;
 class CameraTargetObj;
@@ -44,7 +45,7 @@ public:
     void setZoneMtx(long);
     void createVPanObj();
 
-    u32 _C;
+    CameraMan *mCameraMan;      // _C
     CameraPoseParam *mPosParam; // _10
     CameraHeightArrange *mVPan; // _14
     u8 _18;

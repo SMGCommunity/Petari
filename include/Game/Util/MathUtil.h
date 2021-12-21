@@ -81,6 +81,8 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
+
+    bool isNan(const TVec3f &);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

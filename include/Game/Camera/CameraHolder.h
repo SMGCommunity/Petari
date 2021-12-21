@@ -10,6 +10,7 @@ public:
     CameraHolder(const char *);
     virtual ~CameraHolder();
 
+    CamTranslatorDummy *getTranslator(long);
     s32 getIndexOf(const char *) const;
     Camera *getDefaultCamera();
     s32 getIndexOfDefault() const;

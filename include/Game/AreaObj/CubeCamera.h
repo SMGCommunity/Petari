@@ -5,7 +5,11 @@
 class CubeCameraArea : public AreaObj {
 public:
     enum ECategory {
-
+        CATEGORY_UNKNOWN_0 = 0,
+        CATEGORY_UNKNOWN_1 = 1,
+        CATEGORY_UNKNOWN_2 = 2,
+        CATEGORY_UNKNOWN_3 = 3,
+        CATEGORY_UNKNOWN_4 = 4
     };
     
     CubeCameraArea(int, const char *);

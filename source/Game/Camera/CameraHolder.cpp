@@ -347,6 +347,10 @@ CameraHolder::~CameraHolder() {
 
 }
 
+CamTranslatorDummy *CameraHolder::getTranslator(long index) {
+    return mTranslators[index];
+}
+
 s32 CameraHolder::getIndexOf(const char *pName) const {
     for (s32 i = 0; i < NR_CAMERA_TYPES; i++) {
         if (strcmp(pName, sCameraTable[i].mName) == 0) {

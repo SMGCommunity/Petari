@@ -45,15 +45,15 @@ public:
     TVec3f mGlobalAxis;     // _64
     f32 _70;
     f32 _74;
-    f32 _78;
-    f32 _7C;
-    s32 _80;
-    f32 _84;
-    f32 _88;
-    u32 _8C;
-    u32 _90;
-    u32 _94;
-    u8 _98;
+    f32 mUpper;             // _78
+    f32 mLower;             // _7C
+    u32 mGndInt;            // _80
+    f32 mUPlay;             // _84
+    f32 mLPlay;             // _88
+    u32 mPushDelay;         // _8C
+    u32 mPushDelayLow;      // _90
+    u32 mUDown;             // _94
+    u8 mVPanUse;            // _98
     u8 _99[3];
-    TVec3f _9C;
+    TVec3f mVPanAxis;       // _9C
 };

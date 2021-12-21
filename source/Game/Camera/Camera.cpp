@@ -1,5 +1,6 @@
 #include "Game/Camera/Camera.h"
 #include "Game/Camera/CameraHeightArrange.h"
+#include "Game/Camera/CameraMan.h"
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CameraPoseParam.h"
 #include "Game/Util/SceneUtil.h"
