@@ -1,7 +1,12 @@
 # Library Progress Chart
 Progress (Full Game): 1.7214646% [91664 / 5324768]
+
 Progress (Only Game): 2.1786826% [89212 / 4094768]
+
 You have 2 / 120 stars.
+
+
+
 | Library | Percentage |
 | ------------- | ------------- |
 | Animation.a | 4.361673% |
