@@ -13,12 +13,12 @@ class SpkWave {
 public:
     SpkWave();
 
-    void setResource(void * pResource);
-    u32 getWaveSize(long wave) const;
-    u32 getLoopStartPos(long wave) const;
-    u32 getLoopEndPos(long wave) const;
-    u8** getWave(long wave) const;
-    WaveData* getWaveData(long wave) const;
+    void setResource(void *);
+    u32 getWaveSize(long) const;
+    u32 getLoopStartPos(long) const;
+    u32 getLoopEndPos(long) const;
+    u8** getWave(long) const;
+    WaveData* getWaveData(long) const;
 
-    void* mResource; // Is this some specific type of resource?
+    void* mResource;    // _0, Raw data of AudioRes/SpkRes/SpkRes.arc
 };

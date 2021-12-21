@@ -10,13 +10,13 @@ extern void* FUN_8040f918(JKRArchive * pArchive, u16 id);
 
 class SpkData {
 public:
-    SpkData(JKRArchive * pArchive);
+    SpkData(JKRArchive *);
 
-    void loadTable(u16 table);
-    void loadWave(u16 wave);
+    void loadTable(u16);
+    void loadWave(u16);
     bool isValid() const;
 
-    SpkTable mTable;
-    SpkWave mWave;
-    JKRArchive* mArchive;
+    SpkTable mTable;        // _0
+    SpkWave mWave;          // _4
+    JKRArchive* mArchive;   // _14
 };

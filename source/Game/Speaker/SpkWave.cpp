@@ -43,5 +43,5 @@ u8** SpkWave::getWave(long wave) const {
 }
 
 WaveData* SpkWave::getWaveData(long wave) const {
-    return (WaveData*)((u32)mResource + *(u32*)((u32)mResource + wave * 4 + 8)); // Ugly pointer math until we know what resource is.
+    return (WaveData*)((u32)mResource + *(u32*)((u32)mResource + wave * 4 + 8));
 }

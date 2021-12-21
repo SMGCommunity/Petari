@@ -6,10 +6,10 @@ class SpkTable {
 public:
     SpkTable();
 
-    void setResource(void* resource);
+    void setResource(void *);
 
-    bool mInitialized;
-    void* mResource;
-    u32 _08;
-    u32 _0C;
+    bool mInitialized;  // _0
+    void* mResource;    // _4
+    u32 _08;            // _8
+    u32 _0C;            // _C
 };
