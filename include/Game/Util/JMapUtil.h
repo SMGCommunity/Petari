@@ -29,4 +29,6 @@ namespace MR {
     s32 getDemoGroupLinkID(const JMapInfoIter &);
 
     bool getJMapInfoViewGroupID(const JMapInfoIter &, s32 *);
+
+    bool getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
 };

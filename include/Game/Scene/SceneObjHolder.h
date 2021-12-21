@@ -1,5 +1,6 @@
 #pragma once
 
+#define SceneObj_ClippingDirector       0x2
 #define SceneObj_DemoDirector           0x3
 #define SceneObj_LightDirector          0x6
 #define SceneObj_StageDataHolder        0x8

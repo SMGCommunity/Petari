@@ -1440,7 +1440,7 @@ execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvSpinCFP5Spine,Spher
 execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvHoldCFP5Spine,SphereSelectorHandle.o,Map.a,false
 execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvWaitCFP5Spine,SphereSelectorHandle.o,Map.a,false
 length__Q29JGeometry8TVec2<f>CFv,SphereSelectorHandle.o,Map.a,false
-get__10BitFlag128CFi,StageSwitch.o,Map.a,false
+get__10BitFlag128CFi,StageSwitch.o,Map.a,true
 set__10BitFlag128Fib,StageSwitch.o,Map.a,true
 __ct__10ZoneSwitchFv,StageSwitch.o,Map.a,false
 __ct__12SwitchIdInfoFlRC12JMapInfoIter,StageSwitch.o,Map.a,true
