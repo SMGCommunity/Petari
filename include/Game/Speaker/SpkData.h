@@ -2,17 +2,21 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "Game/Speaker/SpkTable.h"
+#include "Game/Speaker/SpkWave.h"
 #include "revolution.h"
+
+// This is something JKernel related, but idk what it is for the time being.
+extern void* FUN_8040f918(JKRArchive * pArchive, u16 id);
 
 class SpkData {
 public:
-    SpkData(JKRArchive * archive);
+    SpkData(JKRArchive * pArchive);
 
     void loadTable(u16 table);
     void loadWave(u16 wave);
     bool isValid() const;
 
-    SpkTable table;
-    u32 unk_4; // This is an SpkWave.
-    u32 unk_5;
+    SpkTable mTable;
+    SpkWave mWave;
+    JKRArchive* mArchive;
 };
