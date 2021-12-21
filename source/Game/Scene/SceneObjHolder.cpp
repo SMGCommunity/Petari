@@ -1,11 +1,13 @@
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/AreaObj/AreaObjContainer.h"
 #include "Game/Map/PlanetMapCreator.h"
+#include "Game/Map/StageSwitch.h"
 #include "Game/NameObj/NameObj.h"
 #include "Game/NameObj/NameObjExecuteHolder.h"
 #include "Game/NameObj/NameObjGroup.h"
 #include "Game/NameObj/MovementOnOffGroupHolder.h"
 #include "Game/LiveActor/AllLiveActorGroup.h"
+#include "Game/LiveActor/ClippingDirector.h"
 #include "Game/Scene/StageDataHolder.h"
 #include "Game/Util.h"
 #include <revolution.h>
@@ -46,8 +48,14 @@ namespace MR {
 // fill me in as we go
 NameObj* SceneObjHolder::newEachObj(int objID) {
     switch(objID) {
+        case 2:
+            return new ClippingDirector();
+
         case 8:
             return new StageDataHolder(MR::getCurrentStageName(), 0, true);
+
+        case 10:
+            return new StageSwitchContainer();
 
         case 13:
             return new AreaObjContainer("エリアオブジェクトコンテナ管理");
