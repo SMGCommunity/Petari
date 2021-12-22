@@ -1,3 +1,3 @@
-Symbol Name, Object File, Library Archive, Matching, Author
-TPLBind,TPL.o,tpl.a,false,
-TPLGet,TPL.o,tpl.a,false,
+Symbol Name, Object File, Library Archive, Matching
+TPLBind,TPL.o,tpl.a,false
+TPLGet,TPL.o,tpl.a,false

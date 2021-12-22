@@ -160,7 +160,7 @@ bool CameraManEvent::doesNextChunkHaveInterpolation() const {
         }
     }
 
-    if (item != NULL && getInterpolateFrame(item->mChunk, item->_14) != 0) {
+    if (item != NULL && getInterpolateFrame(item->mChunk, item->_14) > 0) {
         return true;
     }
 
