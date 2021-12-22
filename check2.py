@@ -93,7 +93,7 @@ class FunctionLibrary:
             library = self.libraries[library_name]
             
             if (symbol, obj_file) in library:
-                library[(symbol, obj_file)][1] = decompiled
+                library[(symbol, obj_file)] = (library[(symbol, obj_file)][0], decompiled)
 
     def get_library_from_symbol(self, symbol, obj_file):
         for library, symbols in self.libraries.items():
