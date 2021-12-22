@@ -22,6 +22,10 @@ namespace MR {
 
     void getStageCameraData(void **, long *, long);
 
+    void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
+
+    void getCameraRailInfo(JMapInfoIter *, const JMapInfo **, s32, s32);
+
     void setInitializeStatePlacementPlayer();
     void setInitializeStatePlacementHighPriority();
     void setInitializeStatePlacement();

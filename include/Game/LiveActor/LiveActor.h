@@ -3,6 +3,7 @@
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/LiveActorFlag.h"
 #include "JSystem/JGeometry/TVec.h"
+#include "Game/LiveActor/RailRider.h"
 
 class ActorAnimKeeper;
 class ActorLightCtrl;
@@ -15,7 +16,6 @@ class Spine;
 class HitSensor;
 class HitSensorKeeper;
 class ModelManager;
-class RailRider;
 class ShadowControllerList;
 class StageSwitchCtrl;
 class StarPointerTarget;
