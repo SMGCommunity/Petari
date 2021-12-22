@@ -13,6 +13,7 @@ namespace CameraLocalUtil {
     CameraDirector *getCameraDirector();
     CameraTargetObj *getTarget(const CameraMan *);
     
+    void calcSafePose(CameraMan *, Camera *);
 
     TVec3f *getPos(const Camera *);
     TVec3f *getWatchPos(const Camera *);
