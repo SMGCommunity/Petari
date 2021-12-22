@@ -48,7 +48,7 @@ public:
     CameraMan *mCameraMan;      // _C
     CameraPoseParam *mPosParam; // _10
     CameraHeightArrange *mVPan; // _14
-    u8 _18;
+    bool mIsLOfsErpOff;         // _18
     u8 _19[3];
     TMtx34f mZoneMatrix;        // _1C
 };

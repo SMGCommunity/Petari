@@ -8,4 +8,6 @@ namespace MR {
     bool isCameraInterpolateNearlyEnd();
 
     void setShakeOffset(float, float);
+
+    void cleanEventCameraTarget_temporally();
 };

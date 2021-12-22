@@ -6,6 +6,7 @@
 #include "JSystem/JGeometry/TPosition3.h"
 
 class CameraCover;
+class CameraDirector;
 class CameraHolder;
 class CameraManGame;
 class CameraManEvent;
@@ -19,9 +20,16 @@ class CameraRotChecker;
 class CameraTargetHolder;
 class CameraShaker;
 class CameraTargetMtx;
+class CameraTargetObj;
 class CameraViewInterpolator;
 class GameCameraCreator;
+class LiveActor;
+class MarioActor;
 class OnlyCamera;
+
+namespace MR {
+    CameraDirector *getCameraDirector();
+}
 
 class CameraParamChunkID_Tmp : public CameraParamChunkID {
 public:
@@ -42,7 +50,7 @@ public:
     virtual void init(const JMapInfoIter &);
     //virtual void movement();
 
-    //setTarget(CameraTargetObj *);
+    void setTarget(CameraTargetObj *);
     //getTarget();
     //push(CameraMan *);
     //pop();
@@ -68,8 +76,8 @@ public:
     //termCameraCodeCollection();
     //declareEvent(long, const char *);
     //started();
-    //setTargetActor(const LiveActor *);
-    //setTargetPlayer(const MarioActor *);
+    void setTargetActor(const LiveActor *);
+    void setTargetPlayer(const MarioActor *);
     //isRotatingHard() const;
     //isSubjectiveCamera() const;
     //isEnableToControl() const;

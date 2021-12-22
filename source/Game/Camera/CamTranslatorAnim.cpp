@@ -12,3 +12,7 @@ void CamTranslatorAnim::setParam(const CameraParamChunk *pChunk) {
 Camera *CamTranslatorAnim::CamTranslatorAnim::getCamera() const {
     return mCamera;
 }
+
+u32 CamTranslatorAnim::getAnimFrame(const CameraParamChunk *pChunk) const {
+    return CameraAnim::getAnimFrame(reinterpret_cast<unsigned char *>(pChunk->mGeneralParam->mNum1));
+}
