@@ -1,10 +1,10 @@
 Symbol Name, Object File, Library Archive, Matching
-__ct__15ActiveActorListFi,ActiveActorList.o,LiveActor.a,false
-isFull__15ActiveActorListCFv,ActiveActorList.o,LiveActor.a,false
+__ct__15ActiveActorListFi,ActiveActorList.o,LiveActor.a,true
+isFull__15ActiveActorListCFv,ActiveActorList.o,LiveActor.a,true
 addActor__15ActiveActorListFP9LiveActor,ActiveActorList.o,LiveActor.a,false
-removeDeadActor__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,false
-clear__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,false
-killAll__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,false
+removeDeadActor__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
+clear__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
+killAll__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
 __ct__15ActorAnimKeeperFP9LiveActor,ActorAnimKeeper.o,LiveActor.a,false
 tryCreate__15ActorAnimKeeperFP9LiveActor,ActorAnimKeeper.o,LiveActor.a,false
 getAnimName__29@unnamed@ActorAnimKeeper_cpp@FPC19ActorAnimKeeperInfoRC17ActorAnimDataInfo,ActorAnimKeeper.o,LiveActor.a,false
