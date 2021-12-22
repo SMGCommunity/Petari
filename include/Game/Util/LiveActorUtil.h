@@ -4,6 +4,7 @@
 #include <revolution.h>
 
 class LiveActor;
+class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
 
@@ -39,4 +40,30 @@ namespace MR {
     void calcLightPos1(TVec3f *, const LiveActor *);
     const GXColor* getLightAmbientColor(const LiveActor *);
     ActorLightCtrl* getLightCtrl(const LiveActor *);
+    bool isStep(const LiveActor *, s32);
+    bool isFirstStep(const LiveActor *);
+    bool isLessStep(const LiveActor *, s32);
+    bool isLessEqualStep(const LiveActor *, s32);
+    bool isGreaterStep(const LiveActor *, s32);
+    bool isGreaterEqualStep(const LiveActor *, s32);
+    bool isIntervalStep(const LiveActor *, s32);
+    bool isNewNerve(const LiveActor *);
+    f32 calcNerveRate(const LiveActor *, s32);
+    f32 calcNerveRate(const LiveActor *, s32, s32);
+    f32 calcNerveEaseInRate(const LiveActor *, s32);
+    f32 calcNerveEaseOutRate(const LiveActor *, s32);
+    f32 calcNerveEaseOutRate(const LiveActor *, s32, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor *, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor *, s32, s32);
+    f32 calcNerveValue(const LiveActor *, s32, f32, f32);
+    f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor *, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor *, s32, s32, f32, f32);
+    f32 calcNerveEaseOutValue(const LiveActor *, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor *, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor *, s32, s32, f32, f32);
+    void setNerveAtStep(LiveActor *, const Nerve *, s32);
+    void setNerveAtBckStopped(LiveActor *, const Nerve *);
+    bool trySetNerve(LiveActor *, const Nerve *);
+    
 }

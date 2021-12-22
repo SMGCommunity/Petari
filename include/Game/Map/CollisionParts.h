@@ -30,3 +30,12 @@ public:
     u32 _E8;
     u32 _EC;
 };
+
+class CollisionPartsFilterBase {
+public:
+    inline CollisionPartsFilterBase() {
+
+    }
+
+    virtual bool isInvalidParts(const CollisionParts *) const = 0;
+};

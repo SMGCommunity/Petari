@@ -52,9 +52,25 @@ public:
     virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
     virtual u32 receiveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
-    void initActorLightCtrl();
-
+    void calcAnmMtx();
+    void setNerve(const Nerve *);
+    bool isNerve(const Nerve *) const;
+    u32 getNerveStep() const;
     HitSensor* getSensor(const char *) const;
+    void initModelManagerWithAnm(const char *, const char *, bool);
+    void initNerve(const Nerve *);
+    void initHitSensor(int);
+    void initBinder(f32, f32, u32);
+    void initRailRider(const JMapInfoIter &);
+    void initEffectKeeper(int, const char *, bool);
+    void initSound(int, bool);
+    void initShadowControllerList(u32);
+    void initActorCollisionParts(const char *, HitSensor *, ResourceHolder *, MtxPtr, bool, bool);
+    void initStageSwitch(const JMapInfoIter &);
+    void initActorStarPointerTarget(f32, const TVec3f *, MtxPtr, TVec3f);
+    void initActorLightCtrl();
+    void addToSoundObjHolder();
+    void updateBinder();
 
     TVec3f mPosition;                       // _C
     TVec3f mRotation;                       // _18
