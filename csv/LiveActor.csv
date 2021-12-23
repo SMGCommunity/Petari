@@ -550,7 +550,7 @@ calcAndSetBaseMtx__10PartsModelFv,PartsModel.o,LiveActor.a,false
 __ct__9RailRiderFRC12JMapInfoIter,RailRider.o,LiveActor.a,true
 __ct__9RailRiderFll,RailRider.o,LiveActor.a,true
 move__9RailRiderFv,RailRider.o,LiveActor.a,true
-moveToNearestPos__9RailRiderFRCQ29JGeometry8TVec3<f>,RailRider.o,LiveActor.a,false
+moveToNearestPos__9RailRiderFRCQ29JGeometry8TVec3<f>,RailRider.o,LiveActor.a,true
 moveToNearestPoint__9RailRiderFRCQ29JGeometry8TVec3<f>,RailRider.o,LiveActor.a,false
 moveToNextPoint__9RailRiderFv,RailRider.o,LiveActor.a,true
 reverse__9RailRiderFv,RailRider.o,LiveActor.a,true
