@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game/Util/Functor.h"
+
 class NameObj;
 class LayoutActor;
 class LiveActor;
@@ -55,4 +57,6 @@ namespace MR {
     void requestMovementOn(LiveActor *);
 
     void requestMovementOn(LayoutActor *);
+
+    void registerPreDrawFunction(const MR::FunctorBase &, int);
 };
