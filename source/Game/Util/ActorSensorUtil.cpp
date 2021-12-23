@@ -260,6 +260,18 @@ namespace MR {
         return (TVec3f*)&pSensor->mPosition;
     }
 
+    void validateHitSensors(LiveActor *pActor) {
+        if (pActor->mSensorKeeper) {
+            pActor->mSensorKeeper->validate();
+        }
+    }
+
+    void invalidateHitSensors(LiveActor *pActor) {
+        if (pActor->mSensorKeeper) {
+            pActor->mSensorKeeper->invalidate();
+        }
+    }
+
     bool sendArbitraryMsg(u32 msg, HitSensor *pReceiver, HitSensor *pSender) {
         return pReceiver->receiveMessage(msg, pSender);
     }

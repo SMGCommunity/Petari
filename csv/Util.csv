@@ -245,8 +245,8 @@ setSensorPos__2MRFP9HitSensorRCQ29JGeometry8TVec3<f>,ActorSensorUtil.o,Util.a,fa
 setSensorOffset__2MRFP9LiveActorPCcRCQ29JGeometry8TVec3<f>,ActorSensorUtil.o,Util.a,false
 setSensorRadius__2MRFP9LiveActorPCcf,ActorSensorUtil.o,Util.a,false
 setHitSensorApart__2MRFP9HitSensorP9HitSensor,ActorSensorUtil.o,Util.a,false
-validateHitSensors__2MRFP9LiveActor,ActorSensorUtil.o,Util.a,false
-invalidateHitSensors__2MRFP9LiveActor,ActorSensorUtil.o,Util.a,false
+validateHitSensors__2MRFP9LiveActor,ActorSensorUtil.o,Util.a,true
+invalidateHitSensors__2MRFP9LiveActor,ActorSensorUtil.o,Util.a,true
 validateHitSensor__2MRFP9LiveActorPCc,ActorSensorUtil.o,Util.a,false
 invalidateHitSensor__2MRFP9LiveActorPCc,ActorSensorUtil.o,Util.a,false
 isValidHitSensor__2MRFP9LiveActorPCc,ActorSensorUtil.o,Util.a,false
