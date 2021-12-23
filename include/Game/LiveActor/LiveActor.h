@@ -2,11 +2,16 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/LiveActorFlag.h"
+#include "Game/LiveActor/ActorAnimKeeper.h"
+#include "Game/LiveActor/ActorLightCtrl.h"
+#include "Game/LiveActor/HitSensorKeeper.h"
+#include "Game/LiveActor/ModelManager.h"
+#include "Game/LiveActor/ShadowController.h"
+#include "Game/LiveActor/Spine.h"
+#include "Game/Map/StageSwitch.h"
 #include "JSystem/JGeometry/TVec.h"
 #include "Game/LiveActor/RailRider.h"
 
-class ActorAnimKeeper;
-class ActorLightCtrl;
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;
 class Binder;

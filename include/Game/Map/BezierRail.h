@@ -50,14 +50,14 @@ public:
 
     
 
-    bool mIsClosed; // _0
+    bool mIsClosed;       // _0
     u8 _1;
     u8 _2;
     u8 _3;
-    u32 _4;
+    u32 mPointNum;        // _4  
     u32 _8;
     RailPart* mRailParts; // _C
     f32* _10;
-    u32 _14;
+    JMapInfoIter* mIter;  // _14
     JMapInfo* _18;
 };

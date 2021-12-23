@@ -1,8 +1,4 @@
 #include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ActorLightCtrl.h"
-#include "Game/LiveActor/HitSensorKeeper.h"
-#include "Game/LiveActor/ShadowController.h"
-#include "Game/LiveActor/Spine.h"
 
 void LiveActor::init(const JMapInfoIter &) {
 
@@ -27,7 +23,7 @@ bool LiveActor::isNerve(const Nerve *pNerve) const {
 u32 LiveActor::getNerveStep() const {
     return mSpine->mStep;
 }
-
+ 
 HitSensor* LiveActor::getSensor(const char *pSensorName) const {
     if (mSensorKeeper) {
         return mSensorKeeper->getSensor(pSensorName);

@@ -7,6 +7,7 @@
 #include "Game/Util/BothDirList.h"
 #include "Game/Util/CameraUtil.h"
 #include "Game/Util/DemoUtil.h"
+#include "Game/Util/DrawUtil.h"
 #include "Game/Util/EventUtil.h"
 #include "Game/Util/FileUtil.h"
 #include "Game/Util/FixedPosition.h"

@@ -70,4 +70,16 @@ namespace MR {
     static FunctorV2M<T *, void (T::*)(U, V), U, V> Functor(T* a1, void (T::*a2)(U, V), U arg_0, V arg_1) {
         return FunctorV2M<T *, void (T::*)(U, V), U, V>(a1, a2, arg_0, arg_1);
     }
+
+    class FunctorV0F : public FunctorBase {
+    public:
+        inline FunctorV0F(void (*func)(void)) {
+            mFunc = func;
+        };
+
+        virtual void operator()() const;
+        virtual FunctorBase* clone(JKRHeap *) const;
+
+        void* mFunc;    // _4
+    };
 };
