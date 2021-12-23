@@ -16,11 +16,11 @@ public:
     bool isNowOn() const;
     void updateFlashing();
 
-    LiveActor *mActor; // _C
-    bool mToggleDraw; // _10
-    bool mIsEnded; // _11
-    u8 mOverrideInterval; // _12
-    u8 _13; // padding
-    s32 mTimer; // _14
-    s32 mFlashStartTime; // _18
+    LiveActor *mActor;      // _C
+    bool mToggleDraw;       // _10
+    bool mIsEnded;          // _11
+    u8 mOverrideInterval;   // _12
+    u8 _13;                 // padding
+    s32 mTimer;             // _14
+    s32 mFlashStartTime;    // _18
 };

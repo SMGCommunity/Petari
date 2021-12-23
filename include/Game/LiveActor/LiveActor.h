@@ -2,22 +2,21 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/LiveActorFlag.h"
+#include "Game/LiveActor/ActorAnimKeeper.h"
+#include "Game/LiveActor/ActorLightCtrl.h"
+#include "Game/LiveActor/HitSensorKeeper.h"
+#include "Game/LiveActor/ModelManager.h"
+#include "Game/LiveActor/ShadowController.h"
+#include "Game/LiveActor/Spine.h"
+#include "Game/Map/StageSwitch.h"
 #include "JSystem/JGeometry/TVec.h"
 
-class ActorAnimKeeper;
-class ActorLightCtrl;
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;
 class Binder;
 class CollisionParts;
 class EffectKeeper;
-class Spine;
-class HitSensor;
-class HitSensorKeeper;
-class ModelManager;
 class RailRider;
-class ShadowControllerList;
-class StageSwitchCtrl;
 class StarPointerTarget;
 
 class LiveActor : public NameObj {

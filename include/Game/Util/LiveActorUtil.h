@@ -66,4 +66,5 @@ namespace MR {
     void setNerveAtBckStopped(LiveActor *, const Nerve *);
     bool trySetNerve(LiveActor *, const Nerve *);
     
+    void setBaseTRMtx(LiveActor *, MtxPtr);
 }
