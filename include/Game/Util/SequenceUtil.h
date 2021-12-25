@@ -10,4 +10,6 @@ namespace MR {
     void requestStartScenarioSelect(const char *);
 
     void requestGoToAstroGalaxy(s32);
+
+    bool isExecScenarioStarter();
 };

@@ -12,7 +12,7 @@ public:
     CameraTargetArg();
     CameraTargetArg(const LiveActor *);
     CameraTargetArg(CameraTargetMtx *);
-
+    
     void setTarget() const;
 
     CameraTargetObj *mTargetObj;    // _0

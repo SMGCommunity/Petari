@@ -6,6 +6,9 @@ class CameraRotChecker {
 public:
     CameraRotChecker();
 
+    void update();
+
     TMtx34f _0;
-    u8 _30[4];
+    bool _30;
+    u8 _31[3];
 };

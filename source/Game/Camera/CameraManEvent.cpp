@@ -106,8 +106,8 @@ void CameraManEvent::start(long zoneID, const char *pName, const CameraTargetArg
     rTargetArg.setTarget();
 }
 
-void CameraManEvent::end(long priority, const char *pName, long a3) {
-    CameraParamChunkEvent *chunk = findChunk(priority, pName);
+void CameraManEvent::end(long zoneID, const char *pName, long a3) {
+    CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
     searchPriority(chunk);
 
     if (cleanChunkFIFO(chunk)) {

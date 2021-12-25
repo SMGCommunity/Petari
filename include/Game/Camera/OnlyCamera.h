@@ -3,6 +3,7 @@
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TVec.h"
 
+class CameraMan;
 class CameraPoseParam;
 
 class OnlyCamera : public NameObj {
@@ -10,7 +11,7 @@ public:
     OnlyCamera(const char *);
     virtual ~OnlyCamera();
 
-    //calcPose(CameraMan *);
+    void calcPose(CameraMan *);
     //calcStartPose(CameraMan *);
     //calcSafePose(CameraMan *);
     //moveToIdealPosition(TVec3f *);
@@ -31,7 +32,7 @@ public:
     f32 _30;
     f32 _34;
     f32 _38;
-    u8 _3C;
+    bool _3C;
     u8 _3D;
     u8 _3E[2];
 };

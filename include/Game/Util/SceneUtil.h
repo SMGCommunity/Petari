@@ -34,4 +34,6 @@ namespace MR {
 
     s32 getCurrentStartCameraID();
     s32 getCurrentStartZoneID();
+
+    bool isEqualStageName(const char *);
 }

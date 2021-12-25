@@ -7,6 +7,8 @@ class CameraCover : public NameObj {
 public:
     CameraCover(const char *);
 
+    void cover(unsigned long);
+
     TMtx34f _C;
     u32 _3C;
     u8 _40;

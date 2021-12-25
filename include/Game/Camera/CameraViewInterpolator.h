@@ -1,16 +1,32 @@
 #pragma once
 
 #include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TPosition3.h"
+
+class CameraTargetObj;
 
 class CameraViewInterpolator {
 public:
     CameraViewInterpolator();
 
+    void updateCameraMtx(MtxPtr, const TVec3f &, const CameraTargetObj *, float);
+    void setInterpolation(unsigned long);
+    bool isInterpolating() const;
+    bool isInterpolatingNearlyEnd() const;
+    void lookAtCenter();
+    void calcCollision(const TPos3f &);
+    void calcBinder(TVec3f *, const TVec3f &, const TVec3f &);
+    void reduceOscillation();
+    void updateCalcState(const CameraTargetObj *);
+    void interpolateCameraSwitching(MtxPtr, const TVec3f &, float);
+    void checkNearlyEnd(MtxPtr);
+    void translateByRepulsion();
+
     u32 _0;
     u32 _4;
-    u8 _8;
-    u8 _9;
-    u8 _A;
+    bool _8;
+    bool _9;
+    bool _A;
     u8 _B;
     TMtx34f _C;
     TMtx34f _3C;
@@ -18,14 +34,14 @@ public:
     f32 _70;
     f32 _74;
     f32 _78;
-    u8 _7C;
-    u8 _7D;
+    bool _7C;
+    bool _7D;
     u8 _7E[2];
     f32 _80;
     f32 _84;
-    u8 _88;
-    u8 _89;
-    u8 _8A;
+    bool _88;
+    bool _89;
+    bool _8A;
     u8 _8B;
     u32 _8C;
     u32 _90;
@@ -36,7 +52,7 @@ public:
     f32 _A4;
     f32 _A8;
     f32 _AC;
-    u8 _B0;
+    bool _B0;
     u8 _B1[3];
     f32 _B4;
     f32 _B8;

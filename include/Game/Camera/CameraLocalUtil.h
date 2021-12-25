@@ -37,6 +37,8 @@ namespace CameraLocalUtil {
     TVec3f *getPos(const CameraMan *);
     TVec3f *getWatchPos(const CameraMan *);
 
+    f32 getFovy(const CameraMan *);
+
     void setPos(CameraMan *, const TVec3f &);
     void setWatchPos(CameraMan *, const TVec3f &);
     void setUpVec(CameraMan *, const TVec3f &);

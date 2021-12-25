@@ -2,6 +2,7 @@
 # script that marks functions as decompiled based on matching status
 
 import os
+from typing import overload
 from elftools.elf.elffile import ELFFile
 import glob
 import hashlib
@@ -176,9 +177,16 @@ def print_instruction_comparison_warning(message, original, custom):
         print_warning(message)
         print_instruction_comparison(original, custom)
 
+def print_instruction_comparison_hint(message, original, custom):
+    global show_hints
+
+    if show_hints:
+        print_hint(message)
+        print_instruction_comparison(original, custom)
+
 def print_instruction_comparison(original, custom):
-    print(f"Original: {original}")
-    print(f"Custom:   {custom}")
+    print(f"\tOriginal: {original}")
+    print(f"\tCustom:   {custom}")
 
 def check_symbol(function_library, mangled_symbol, obj_name, readonly):
     black_listed_instructions = {
@@ -283,6 +291,33 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
             if original_instruction.id == custom_instruction.id:
                 assert(len(original_operands) == len(custom_operands))
 
+                # First check common r2 and r13 issues
+                if original_instruction.id in { PPC_INS_LWZ, PPC_INS_STW, PPC_INS_LFS }:
+                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+
+                    # lwz, stw and lfs are sometimes used with r13, which is a pointer to a read-write
+                    # small data area (SDA). When compiling custom code, this SDA is not generated,
+                    # so the register is set to r0 and the displacement is set to 0.
+
+                    # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
+                    if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].reg == PPC_REG_R0 and\
+                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
+                        print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
+                        hint_count += 1
+                        continue
+                    
+                if original_instruction.id in { PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
+                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+
+                    # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
+
+                    # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
+                    if original_operands[1].reg == PPC_REG_R2 and custom_operands[1].reg == PPC_REG_R0 and\
+                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
+                        print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
+                        hint_count += 1 
+                        continue
+
                 # Check if all registers are equal
                 registers_equal = True 
 
@@ -308,35 +343,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                     # If a function ends with a function call, and the returned value from the function, then b is sometimes used for branching
                     # to that function. Then it's not possible to compare this
                     print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
-                    warning_count += 1
-                elif original_instruction.id in { PPC_INS_LWZ, PPC_INS_STW }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
-
-                    # lwz and stw are sometimes used with r13, which is a pointer to a read-write
-                    # small data area (SDA). When compiling custom code, this SDA is not generated,
-                    # so the register is set to r0 and the displacement is set to 0.
-
-                    # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
-                    if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].reg == PPC_REG_R0 and\
-                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_hint(f"Skipping r13 issue at line {line_string}.")
-                        hint_count += 1
-                    else:
-                        print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
-                        error_count += 1     
-                elif original_instruction.id in { PPC_INS_LFS, PPC_INS_LHZ }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
-
-                    # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
-
-                    # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
-                    if original_operands[1].reg == PPC_REG_R2 and custom_operands[1].reg == PPC_REG_R0 and\
-                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_hint(f"Skipping r2 issue at line {line_string}.")
-                        hint_count += 1
-                    else:
-                        print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
-                        error_count += 1     
+                    warning_count += 1                
                 else:
                     print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                     error_count += 1                
@@ -348,7 +355,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 # Original must be addi rX, r13, X and custom must be li rX, 0
                 if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].imm == 0 and\
                         original_operands[0].reg == custom_operands[0].reg:
-                    print_hint(f"Found addi / li mismatch at line {line_string}.")
+                    print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
                     hint_count += 1
                 else:
                     print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)

@@ -15,7 +15,7 @@ OnlyCamera::OnlyCamera(const char *pName) : NameObj(pName) {
     _30 = 0.0f;
     _34 = 0.0f;
     _38 = 0.0f;
-    _3C = 0;
+    _3C = false;
     _3D = 0;
 }
 
