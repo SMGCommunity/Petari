@@ -109,7 +109,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
 
         # Run clean
         if clean_ninja:
-            subprocess.call("ninja -t clean", shell=True)<
+            subprocess.call("ninja -t clean", shell=True)
     
         # Call ninja to run said build script.
         if subprocess.call("ninja", shell=True) == 1:
