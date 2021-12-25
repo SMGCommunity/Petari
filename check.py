@@ -122,15 +122,15 @@ class FunctionLibrary:
                     yield (symbol, obj_file)
 
 def print_help_and_exit():
-    print("Syntax: check.py [mangled_symbol] [flags...]")
-    print("\t[mangled_symbol] - name of the symbol that should be checked.")
-    print("\t[--all] - run checks on all functions which has been marked as decompiled.")
-    print("\t[--help] - displays this help text.")
-    print("\t[--no-hints] - don't display hint messages.")
-    print("\t[--no-warnings] - don't display warning messages.")
-    print("\t[--readonly] - don't mark or unmark any functions as decompiled.")
+    print("Usage: check.py [mangled_symbol] [flags...]")
+    print("\t[mangled_symbol]: name of the symbol that should be checked.")
+    print("\t[-all]: run checks on all functions which has been marked as decompiled.")
+    print("\t[-help]: displays this help text.")
+    print("\t[-no-hints]: don't display hint messages.")
+    print("\t[-no-warnings]: don't display warning messages.")
+    print("\t[-readonly]: don't mark or unmark any functions as decompiled.")
 
-    sys.exit(1)
+    sys.exit(0)
 
 def is_dol_correct():
     with open("baserom.dol", "rb") as input:
@@ -406,15 +406,15 @@ readonly = False
 for i in range(1, len(sys.argv)):
     arg = sys.argv[i]
 
-    if arg == "--all":
+    if arg == "-all":
         check_all = True
-    elif arg == "--help":
+    elif arg == "-help":
         print_help_and_exit()
-    elif arg == "--no-hints":
+    elif arg == "-no-hints":
         show_hints = False
-    elif arg == "--no-warnings":
+    elif arg == "-no-warnings":
         show_warnings = False
-    elif arg == "--readonly":
+    elif arg == "-readonly":
         readonly = True
     elif mangled_symbol == None:
         mangled_symbol = arg

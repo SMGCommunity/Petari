@@ -17,6 +17,7 @@ class Binder;
 class CollisionParts;
 class EffectKeeper;
 class RailRider;
+class ShadowControllerList;
 class StarPointerTarget;
 
 class LiveActor : public NameObj {
