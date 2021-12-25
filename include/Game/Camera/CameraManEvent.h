@@ -2,6 +2,7 @@
 
 #include "Game/Camera/CameraMan.h"
 #include "Game/Camera/CameraTargetArg.h"
+#include "Inline.h"
 
 class CameraHolder;
 class CameraParamChunk;
@@ -64,7 +65,7 @@ public:
     void setVPanParam();
     void resetCameraIfRequested();
     void setSafePose();
-    CameraParamChunkEvent *findChunk(long, const char *) const ;
+    CameraParamChunkEvent *findChunk(long, const char *) const NO_INLINE;
     void requestChunk(CameraParamChunkEvent *, EPriority, const CameraTargetArg &, long);
     bool cleanChunkFIFO(CameraParamChunk *);
     bool isChunkFIFOEmpty() const;

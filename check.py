@@ -262,10 +262,20 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         warning_count = 0
         hint_count = 0
 
-        if len(original_instructions) > len(custom_instructions):
+        # Capstone doesn't seem to handle paired single instructions
+        # If any is found, it just stops disassembling
+        if 4 * len(original_instructions) != original_size:
+            print_warning(f"Only {len(original_instructions)} out of the {original_size // 4} original instructions were loaded.")
+            warning_count += 1
+
+        if 4 * len(custom_instructions) != custom_size:
+            print_warning(f"Only {len(custom_instructions)} out of the {custom_size // 4} custom instructions were loaded.")
+            warning_count += 1
+
+        if original_size > custom_size:
             print_error("Original code contains more instructions than custom code.")
             error_count += 1
-        elif len(original_instructions) < len(custom_instructions):
+        elif original_size < custom_size:
             print_error("Original code contains less instructions than custom code.")
             error_count += 1
 

@@ -299,7 +299,7 @@ startStartPosCamera__14CameraDirectorFb,CameraDirector.o,Camera.a,true
 isInterpolatingNearlyEnd__14CameraDirectorCFv,CameraDirector.o,Camera.a,true
 isForceCameraChange__14CameraDirectorCFv,CameraDirector.o,Camera.a,true
 getDefaultFovy__14CameraDirectorCFv,CameraDirector.o,Camera.a,true
-startStartAnimCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,false
+startStartAnimCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,true
 isStartAnimCameraEnd__14CameraDirectorCFv,CameraDirector.o,Camera.a,true
 getStartAnimCameraFrame__14CameraDirectorCFv,CameraDirector.o,Camera.a,true
 endStartAnimCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,true

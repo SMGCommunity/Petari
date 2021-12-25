@@ -344,7 +344,6 @@ void CameraManEvent::resetCameraIfRequested() {
     }
 }*/
 
-// This function is auto-inlined
 CameraParamChunkEvent *CameraManEvent::findChunk(long zoneID, const char *pName) const {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(zoneID, pName);

@@ -478,18 +478,14 @@ f32 CameraDirector::getDefaultFovy() const {
     return 45.0f;
 }
 
-#ifdef NON_MATCHING
-// No traces of a constructor for targetArg in the original code. Probably the
-// CameraTargetArg(CameraTargetMatrix *) constructor has been inlined
 void CameraDirector::startStartAnimCamera() {
     if (_178) {
         ActorCameraInfo info = ActorCameraInfo(-1, 0);
-        CameraTargetArg targetArg = CameraTargetArg(mTargetMatrix);
+        CameraTargetArg targetArg = CALL_INLINE_FUNC(CameraTargetArg, mTargetMatrix);
 
         MR::startEventCamera(&info, sStartCameraName, targetArg, 0);
     }
 }
-#endif
 
 bool CameraDirector::isStartAnimCameraEnd() const {
     if (_178) {
@@ -512,26 +508,28 @@ void CameraDirector::endStartAnimCamera() {
     MR::endEventCamera(&info, sStartCameraName, true, 0);
 }
 
-#ifdef NON_MATCHING
-// No traces of a constructor for targetArg in the original code. Probably the
-// CameraTargetArg() constructor has been inlined
+#ifndef NON_MATCHING
+// Register mismatch
 void CameraDirector::startTalkCamera(const TVec3f &rPosition, const TVec3f &rUp, float axisX, float axisY, long a5) {
+    const char *name = sTalkCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createEventID(0, sTalkCameraName);
+    chunkID.createEventID(0, name);
 
     CameraParamChunk *chunk = mChunkHolder->getChunk(chunkID);
 
     if (chunk != NULL) {
         chunk->mGeneralParam->mWPoint.set(rPosition);
         chunk->mGeneralParam->mUp.set(rUp);
-        chunk->mGeneralParam->mAxis.x = axisX;
-        chunk->mGeneralParam->mAxis.y = axisY;
-        chunk->mGeneralParam->mAxis.z = 0.0f;
 
-        CameraTargetArg targetArg = CameraTargetArg();
+        CameraGeneralParam *generalParam = chunk->mGeneralParam;
+        generalParam->mAxis.x = axisX;
+        generalParam->mAxis.y = axisY;
+        generalParam->mAxis.z = 0.0f;
+
+        CameraTargetArg targetArg = CALL_INLINE_FUNC_NO_ARG(CameraTargetArg);
 
         MR::setCameraTargetToPlayer(&targetArg);
-        startEvent(0, sTalkCameraName, targetArg, a5);
+        startEvent(0, name, targetArg, a5);
     }
 }
 #endif

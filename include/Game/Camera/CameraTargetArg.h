@@ -1,6 +1,7 @@
 #pragma once
 
 #include "revolution.h"
+#include "Inline.h"
 
 class CameraTargetObj;
 class CameraTargetMtx;
@@ -12,6 +13,20 @@ public:
     CameraTargetArg();
     CameraTargetArg(const LiveActor *);
     CameraTargetArg(CameraTargetMtx *);
+    
+    inline INLINE_FUNC_DECL_NO_ARG(CameraTargetArg) {
+        mTargetObj = NULL;
+        mTargetMtx = NULL;
+        mLiveActor = NULL;
+        mMarioActor = NULL;
+    }
+    
+    inline INLINE_FUNC_DECL(CameraTargetArg, CameraTargetMtx *pTargetMtx) {
+        mTargetObj = NULL;
+        mTargetMtx = pTargetMtx;
+        mLiveActor = NULL;
+        mMarioActor = NULL;
+    }
     
     void setTarget() const;
 
