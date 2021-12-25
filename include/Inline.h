@@ -1,13 +1,10 @@
 #pragma once
 
-// Needed for len(__VA_ARGS__) == 0
-#define VA_ARGS(...) , 
-
 // Macro which is put after the function definition (only in the header) to prevent the function from being inlined.
 // Example: void someFunction(int someArg) const NO_INLINE;
 #define NO_INLINE __attribute__((noinline))
 
-// Macros which should used when a function is both inlined and not inlined (so it's auto-inlined by the compiler).
+// Macros which should be used when a function is both inlined and not inlined (so it's auto-inlined by the compiler).
 // This is used to declare the inline version of the function. If not a constructor, the non-inline version
 // should call the inline version.
 // Example:

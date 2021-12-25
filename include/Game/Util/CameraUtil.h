@@ -26,5 +26,7 @@ namespace MR {
 
     f32 getNearZ();
 
-    void setNearZ(f32); 
+    void setNearZ(f32);
+
+    void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 };

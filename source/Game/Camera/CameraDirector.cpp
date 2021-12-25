@@ -114,7 +114,7 @@ CameraDirector::CameraDirector(const char *pName) : NameObj(pName) {
     _16C = 0;
     _170 = true;
     _174 = 0;
-    _178 = false;
+    mStartCameraCreated = false;
     mTargetMatrix = new CameraTargetMtx("カメラターゲットダミー");
     mRequestCameraManReset = false;
     _1B1 = false;
@@ -479,7 +479,7 @@ f32 CameraDirector::getDefaultFovy() const {
 }
 
 void CameraDirector::startStartAnimCamera() {
-    if (_178) {
+    if (mStartCameraCreated) {
         ActorCameraInfo info = ActorCameraInfo(-1, 0);
         CameraTargetArg targetArg = CALL_INLINE_FUNC(CameraTargetArg, mTargetMatrix);
 
@@ -488,7 +488,7 @@ void CameraDirector::startStartAnimCamera() {
 }
 
 bool CameraDirector::isStartAnimCameraEnd() const {
-    if (_178) {
+    if (mStartCameraCreated) {
         return isAnimCameraEnd(0, sStartCameraName);
     }
 
@@ -496,7 +496,7 @@ bool CameraDirector::isStartAnimCameraEnd() const {
 }
 
 u32 CameraDirector::getStartAnimCameraFrame() const {
-    if (_178) {
+    if (mStartCameraCreated) {
         return getAnimCameraFrame(0, sStartCameraName);
     }
 
@@ -684,4 +684,75 @@ bool CameraDirector::isPlayableCameraSE(bool a1) {
 
 void CameraDirector::resetCameraMan() {
     setInterpolation(0);
+    
+    CameraTargetObj *target1;
+    CameraTargetObj *target2;
+    CameraTargetObj *target3;
+    CameraMan *man = getCurrentCameraMan();
+
+    target1 = mTargetHolder->get();
+    target2 = mTargetHolder->get();
+    target3 = mTargetHolder->get();
+
+    TVec3f newPos = *target3->getPosition() - *target2->getFrontVec() * 800.0f + *target1->getUpVec() * 300.0f;
+
+    CameraLocalUtil::setPos(man, newPos);
+    CameraLocalUtil::setWatchPos(man, *mTargetHolder->get()->getPosition());
+    CameraLocalUtil::setUpVec(man, *mTargetHolder->get()->getUpVec());
+    CameraLocalUtil::setWatchUpVec(man, *mTargetHolder->get()->getUpVec());
+
+    man->deactivate(this);
+    man->activate(this);
+
+    mOnlyCamera->_3D = true;
+}
+
+void CameraDirector::createStartAnimCamera() {
+    void *data = NULL;
+    s32 size = 0;
+    MR::getCurrentScenarioStartAnimCameraData(&data, &size);
+
+    if (size > 0) {
+        ActorCameraInfo info = ActorCameraInfo(-1, 0);
+        MR::declareEventCameraAnim(&info, sStartCameraName, data);
+        mStartCameraCreated = true;
+    }
+}
+
+void CameraDirector::createTalkCamera() {
+    const char *name = sTalkCameraName;
+    CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
+    chunkID.createEventID(0, name);
+
+    mChunkHolder->createChunk(chunkID, NULL);
+
+    const char *name2 = sTalkCameraName;
+    CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
+    chunkID2.createEventID(0, name2);    
+
+    CameraParamChunk *chunk2 = mChunkHolder->getChunk(chunkID2);
+
+    if (chunk2 != NULL) {
+        chunk2->setCameraType("CAM_TYPE_TALK", mHolder);
+        chunk2->_64 = true;
+    }
+}
+
+void CameraDirector::createSubjectiveCamera() {    
+    const char *name = sSubjectiveCameraName;
+    CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
+    chunkID.createEventID(0, name);
+
+    mChunkHolder->createChunk(chunkID, NULL);
+
+    const char *name2 = sSubjectiveCameraName;
+    CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
+    chunkID2.createEventID(0, name2);    
+
+    CameraParamChunk *chunk2 = mChunkHolder->getChunk(chunkID2);
+
+    if (chunk2 != NULL) {
+        chunk2->setCameraType("CAM_TYPE_SUBJECTIVE", mHolder);
+        chunk2->_64 = true;
+    }
 }

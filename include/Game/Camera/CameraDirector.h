@@ -133,7 +133,7 @@ public:
     void createTalkCamera();
     void createSubjectiveCamera();
     
-    // _15C[0] and _15C[1] should be a struct of size 0x88 with the following layout:
+    // _15C[0] and _15C[1] seems to be a struct of size 0x88 with the following layout:
     // 0x00: mZoneID
     // 0x04: mName
     // 0x84: unknown
@@ -166,7 +166,7 @@ public:
     bool _170;
     u8 _171[3];
     s32 _174;
-    bool _178;
+    bool mStartCameraCreated;                   // _178
     u8 _179[3];
     CameraTargetMtx *mTargetMatrix;             // _17C
     TMtx34f _180;

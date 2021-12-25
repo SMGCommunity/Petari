@@ -318,10 +318,10 @@ controlCameraSE__14CameraDirectorFv,CameraDirector.o,Camera.a,false
 removeEndEventAtLanding__14CameraDirectorFlPCc,CameraDirector.o,Camera.a,false
 calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PC15CameraPoseParam,CameraDirector.o,Camera.a,false
 isPlayableCameraSE__14CameraDirectorFb,CameraDirector.o,Camera.a,true
-resetCameraMan__14CameraDirectorFv,CameraDirector.o,Camera.a,false
-createStartAnimCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,false
-createTalkCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,false
-createSubjectiveCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,false
+resetCameraMan__14CameraDirectorFv,CameraDirector.o,Camera.a,true
+createStartAnimCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,true
+createTalkCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,true
+createSubjectiveCamera__14CameraDirectorFv,CameraDirector.o,Camera.a,true
 getCameraDirector__2MRFv,CameraDirector.o,Camera.a,false
 copyFrom__15CameraPoseParamFRC15CameraPoseParam,CameraDirector.o,Camera.a,true
 isCollisionOff__9CameraManCFv,CameraDirector.o,Camera.a,true
