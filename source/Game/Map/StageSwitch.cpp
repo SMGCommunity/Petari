@@ -2,12 +2,11 @@
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/Util.h"
 
-#ifdef NON_MATCHING
-// and instr is switched
 bool BitFlag128::get(int idx) const {
-    return (mFlags[idx / 32] & (1 << (idx % 32))) == 1 << (idx % 32);
+    u32 flags = mFlags[idx / 32];
+    u32 mask = (1 << (idx % 32));
+    return mask == (flags & (u32)mask);
 }
-#endif
 
 void BitFlag128::set(int bit_index, bool setTrue) {
     u32 valIdx = bit_index / 32;
@@ -24,8 +23,7 @@ void BitFlag128::set(int bit_index, bool setTrue) {
 ZoneSwitch::ZoneSwitch() : BitFlag128() {
     s32 idx = 0;
 
-    while (idx < 0x80)
-    {
+    while (idx < 0x80) {
         set(idx, false);
     }
 }

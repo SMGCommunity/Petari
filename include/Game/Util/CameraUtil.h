@@ -3,6 +3,7 @@
 #include "JSystem/JGeometry/TMatrix.h"
 #include "JSystem/JGeometry/TPosition3.h"
 #include "JSystem/JGeometry/TVec.h"
+#include <revolution.h>
 
 class ActorCameraInfo;
 class CameraTargetArg;
@@ -16,8 +17,10 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
+    MtxPtr getCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
 
+    void loadProjectionMtx();
     void setCameraViewMtx(const TPos3f &, bool, bool, const TVec3f &);
 
     void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, long);
@@ -25,6 +28,7 @@ namespace MR {
     void endEventCamera(const ActorCameraInfo *,const char *, bool, long);
 
     f32 getNearZ();
+    f32 getFarZ();
 
     void setNearZ(f32);
 

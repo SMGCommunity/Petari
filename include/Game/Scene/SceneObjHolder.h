@@ -1,5 +1,6 @@
 #pragma once
 
+#define SceneObj_ClippingDirector       0x2
 #define SceneObj_DemoDirector           0x3
 #define SceneObj_LightDirector          0x6
 #define SceneObj_StageDataHolder        0x8
@@ -9,6 +10,7 @@
 #define SceneObj_PlacementStateChecker  0x27
 #define SceneObj_NamePosHolder          0x28
 #define SceneObj_AllLiveActorGroup      0x30
+#define SceneObj_VolumeModelDrawInit    0x4C
 #define SceneObj_NameObjExecuteHolder   0x58
 #define SceneObj_PlanetMapCreator       0x74
 
@@ -28,6 +30,8 @@ public:
 
 namespace MR {
     SceneObjHolder* getSceneObjHolder();
+
+    NameObj* createSceneObj(int);
 
     bool isExistSceneObj(int);
 };

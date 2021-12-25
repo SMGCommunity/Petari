@@ -22,4 +22,5 @@ __pycache__
 genCsv.py
 checkObject.py
 .ninja_log
+.ninja_deps
 build.ninja
