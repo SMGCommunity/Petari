@@ -25,7 +25,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
 
-    compiler_execptions = {
+    compiler_exceptions = {
         #"source\JSystem\JKernel\JKRThread.cpp": "GC/2.5/"
     }
 
@@ -90,7 +90,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
         nw.rule("cc", f"{compiler_path} $flags $in -o $out", "Compiling $in...")
         exceptionsToRules = { "sample": "value" }
         cc_num = 1
-        for exc in compiler_execptions.values():
+        for exc in compiler_exceptions.values():
             if not exc in exceptionsToRules.keys():
                 exceptionsToRules[exc] = f"cc_{cc_num}"
                 cc_num += 1
@@ -100,8 +100,8 @@ def main(compile_non_matching, use_ninja, clean_ninja):
             source_path, build_path = task
             rule = "cc"
             try:
-                if compiler_execptions[source_path]:
-                    rule = exceptionsToRules[compiler_execptions[source_path]]
+                if compiler_exceptions[source_path]:
+                    rule = exceptionsToRules[compiler_exceptions[source_path]]
             except:
                 pass
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
@@ -109,7 +109,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
 
         # Run clean
         if clean_ninja:
-            subprocess.call("ninja -t clean", shell=True)
+            subprocess.call("ninja -t clean", shell=True)<
     
         # Call ninja to run said build script.
         if subprocess.call("ninja", shell=True) == 1:
@@ -122,8 +122,8 @@ def main(compile_non_matching, use_ninja, clean_ninja):
             source_path, build_path = task     
 
             try:
-                if compiler_execptions[source_path]:
-                    compiler_path = pathlib.Path(f"deps/Compilers/{compiler_execptions[source_path]}/mwcceppc.exe ")
+                if compiler_exceptions[source_path]:
+                    compiler_path = pathlib.Path(f"deps/Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe ")
                     if isNotWindows:
                         compiler_path = pathlib.Path(f"wine {compiler_path} ")
             except:
