@@ -161,5 +161,9 @@ if __name__ == "__main__":
             clean_ninja = True
         elif arg == "-help":
             print_help_and_exit()
+        else:
+            print(f"Invalid argument: {arg}")
+            print()
+            print_help_and_exit()
             
     main(compile_non_matching, use_ninja, clean_ninja)
