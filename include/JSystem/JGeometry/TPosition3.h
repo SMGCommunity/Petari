@@ -7,6 +7,7 @@ namespace JGeometry {
     template<class T>
     class TPosition3 : public TRotation3<T> {
     public:
+        void getTrans(TVec3f &);
     };
 };
 

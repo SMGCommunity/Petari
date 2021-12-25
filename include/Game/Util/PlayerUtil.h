@@ -3,6 +3,7 @@
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 
+class CameraTargetArg;
 class LiveActor;
 
 namespace MR {
@@ -20,4 +21,6 @@ namespace MR {
     bool isNearPlayerAnyTime(const LiveActor *, f32);
 
     void forceKillPlayerByAbyss();
+
+    void setCameraTargetToPlayer(CameraTargetArg *);
 };

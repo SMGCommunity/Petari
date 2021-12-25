@@ -17,7 +17,7 @@ public:
     CameraTargetObj *get();
     void set(CameraTargetObj *);
     void set(const LiveActor *);
-    //void set(const MarioActor *);
+    void set(const MarioActor *);
     bool isOnGround() const;
     bool isMoving() const;
 

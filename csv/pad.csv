@@ -1,2 +1,2 @@
-Symbol Name, Object File, Library Archive, Matching, Author
-__PADDisableRecalibration,Pad.o,pad.a,false,
+Symbol Name, Object File, Library Archive, Matching
+__PADDisableRecalibration,Pad.o,pad.a,false

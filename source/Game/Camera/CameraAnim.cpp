@@ -100,7 +100,7 @@ float KeyCamAnmDataAccessor::get4f(float key, unsigned long offset, unsigned lon
 }
 
 #ifdef NON_MATCHING
-// Float instruction order, does not use fmadds, fmsubs and fnmsubs
+// Float instruction order, register mismatch
 float KeyCamAnmDataAccessor::calcHermite(float key, float a2, float a3, float a4, float a5, float a6, float a7) const {
     float fVar1 = a4 / 30.0f;
     float fVar2 = (key - a2) / (a5 - a2);

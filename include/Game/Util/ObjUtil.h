@@ -32,6 +32,8 @@ namespace MR {
     void connectToSceneEnvironment(LiveActor *);
     void connectToSceneEnvironmentStrongLight(LiveActor *);
 
+    void connectToSceneCamera(NameObj *);
+
     void connectToSceneAreaObj(NameObj *);
     
     bool isName(const NameObj *, const char *);

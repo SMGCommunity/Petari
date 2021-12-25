@@ -80,7 +80,7 @@ public:
     u8 _9[3];
     ExParam mExParam;                   // _C
     CameraGeneralParam *mGeneralParam;  // _60
-    u8 _64;
+    bool _64;
 };
 
 class CameraParamChunkGame : public CameraParamChunk {
