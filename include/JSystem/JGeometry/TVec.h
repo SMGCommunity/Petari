@@ -88,6 +88,9 @@ namespace JGeometry {
         const TVec3<T>& operator-=(const TVec3<T> &);
         const TVec3<T> operator*(f32) const;
 
+        const TVec3<T> operator +(const TVec3<T> &) const;
+        const TVec3<T> operator -(const TVec3<T> &) const;
+
         T x, y, z;
     };
 

@@ -33,4 +33,11 @@ namespace MR {
 
     s32 getGeneralPosNum();
     void getGeneralPosData(const char **, TVec3f *, TVec3f *, JMapLinkInfo **, int);
+
+    void getCurrentScenarioStartAnimCameraData(void **, long *);
+
+    s32 getCurrentStartCameraID();
+    s32 getCurrentStartZoneID();
+
+    bool isEqualStageName(const char *);
 }

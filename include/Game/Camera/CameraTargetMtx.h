@@ -15,6 +15,8 @@ public:
     virtual TVec3f *getGroundPos() const;
     virtual TVec3f *getGravityVector() const;
 
+    void invalidateLastMove();
+
     TMtx34f _10;
     f32 _40;
     f32 _44;

@@ -39,7 +39,7 @@ isExistActorCamera__2MRFPC15ActorCameraInfo,ActorCameraUtil.o,Util.a,false
 startRumbleWithShakeCameraWeak__2MRFPC9LiveActorPCcPCcff,ActorCameraUtil.o,Util.a,false
 startRumbleWithShakeCameraNormalWeak__2MRFPC9LiveActorPCcPCcff,ActorCameraUtil.o,Util.a,false
 startRumbleWithShakeCameraStrong__2MRFPC9LiveActorPCcPCcff,ActorCameraUtil.o,Util.a,false
-__ct__15CameraTargetArgFv,ActorCameraUtil.o,Util.a,false
+__ct__15CameraTargetArgFv,ActorCameraUtil.o,Util.a,true
 calcDistance__2MRFPC9HitSensorPC9HitSensorPQ29JGeometry8TVec3<f>,ActorMovementUtil.o,Util.a,true
 calcDistance__2MRFPC9LiveActorRCQ29JGeometry8TVec3<f>,ActorMovementUtil.o,Util.a,true
 calcDistanceHorizontal__2MRFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,ActorMovementUtil.o,Util.a,true

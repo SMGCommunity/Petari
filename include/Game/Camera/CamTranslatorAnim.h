@@ -14,4 +14,6 @@ public:
 
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;
+
+    u32 getAnimFrame(const CameraParamChunk *) const;
 };

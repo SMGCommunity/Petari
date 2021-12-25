@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry/TMatrix.h"
 #include "JSystem/JGeometry/TVec.h"
 
+class CubeCameraArea;
 class LiveActor;
 
 class CameraTargetObj : public NameObj {
@@ -33,7 +34,7 @@ public:
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
     virtual bool isCameraStateOn(unsigned long) const;
-    //virtual X getCubeCameraArea() const;
+    virtual CubeCameraArea *getCubeCameraArea() const;
     //virtual X getGroundTriangle() const;
     //virtual X getGravityInfo() const;
     virtual void enableCameraWall();

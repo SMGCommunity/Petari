@@ -37,18 +37,18 @@ CameraHeightArrange::CameraHeightArrange(Camera *pCamera) : NameObj("CameraHeigh
     mGlobalAxis.z = 0.0f;
     _70 = 0.1f;
     _74 = 15.0f;
-    _78 = 0.3f;
-    _7C = 0.1f;
-    _80 = 160;
-    _84 = 500.0f;
-    _88 = 800.0f;
-    _8C = 120;
-    _90 = 120;
-    _94 = 120;
-    _98 = 1;
-    _9C.x = 0.0f;
-    _9C.y = 1.0f;
-    _9C.z = 0.0f;
+    mUpper = 0.3f;
+    mLower = 0.1f;
+    mGndInt = 160;
+    mUPlay = 500.0f;
+    mLPlay = 800.0f;
+    mPushDelay = 120;
+    mPushDelayLow = 120;
+    mUDown = 120;
+    mVPanUse = 1;
+    mVPanAxis.x = 0.0f;
+    mVPanAxis.y = 1.0f;
+    mVPanAxis.z = 0.0f;
 }
 
 void CameraHeightArrange::resetJump() {
@@ -60,18 +60,18 @@ void CameraHeightArrange::resetJump() {
 void CameraHeightArrange::resetParameter() {
     _70 = 0.1f;
     _74 = 15.0f;
-    _78 = 0.3f;
-    _7C = 0.1f;
-    _80 = 160;
-    _84 = 500.0f;
-    _88 = 800.0f;
-    _8C = 120;
-    _90 = 120;
-    _94 = 120;
-    _98 = 1;
-    _9C.x = 0.0f;
-    _9C.y = 1.0f;
-    _9C.z = 0.0f;
+    mUpper = 0.3f;
+    mLower = 0.1f;
+    mGndInt = 160;
+    mUPlay = 500.0f;
+    mLPlay = 800.0f;
+    mPushDelay = 120;
+    mPushDelayLow = 120;
+    mUDown = 120;
+    mVPanUse = 1;
+    mVPanAxis.x = 0.0f;
+    mVPanAxis.y = 1.0f;
+    mVPanAxis.z = 0.0f;
     mGlobalAxis.x = 0.0f;
     mGlobalAxis.y = 1.0f;
     mGlobalAxis.z = 0.0f;
@@ -81,7 +81,7 @@ void CameraHeightArrange::resetParameter() {
 void CameraHeightArrange::chase() {
     TVec3f globalAxis = *getGlobalAxis();
 
-    f32 fVar1 = (float)_50 / (float)_80;
+    f32 fVar1 = (float)_50 / (float)mLPlay;
 
     if (fVar1 > 1.0f) {
         fVar1 = 1.0f;
@@ -98,7 +98,7 @@ void CameraHeightArrange::updateHeightAndOffset() {
     TVec3f globalAxis = *getGlobalAxis();
     f32 fVar1;
 
-    if (_98 != 0) {
+    if (mVPanUse != 0) {
         fVar1 = 0.05f;
     }
     else {
@@ -119,7 +119,7 @@ TVec3f *CameraHeightArrange::getGlobalAxis() {
     if (_60 != 0) {
         _60 = 0;
         
-        mGlobalAxis.set(_9C);
+        mGlobalAxis.set(mVPanAxis);
         TMtx34f &matrix = mCamera->mZoneMatrix;
 
         float axisX = mGlobalAxis.x;

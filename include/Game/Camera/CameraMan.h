@@ -39,7 +39,7 @@ public:
     CameraDirector *mDirector;      // _C
     CameraPoseParam *mPoseParam;    // _10
     bool mIsActivated;              // _14
-    u8 _15;
+    bool _15;
     u8 _16[2];
     TMtx34f mMatrix;                // _18
 };

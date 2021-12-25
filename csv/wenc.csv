@@ -1,2 +1,2 @@
-Symbol Name, Object File, Library Archive, Matching, Author
-WENCGetEncodeData,wenc.o,wenc.a,false,
+Symbol Name, Object File, Library Archive, Matching
+WENCGetEncodeData,wenc.o,wenc.a,false
