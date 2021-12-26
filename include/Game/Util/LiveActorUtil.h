@@ -9,6 +9,10 @@ class ResourceHolder;
 class ActorLightCtrl;
 
 namespace MR {
+    void initDefaultPos(LiveActor *, const JMapInfoIter &);
+    void validateClipping(LiveActor *);
+    void invalidateClipping(LiveActor *);
+
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
 

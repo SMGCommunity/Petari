@@ -29,6 +29,7 @@ namespace MR {
     // MR::getScaleWithReactionValueZeroToOne
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue
+    void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, TVec3f &rSrc);
 
     void makeAxisFrontUp(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisFrontSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);

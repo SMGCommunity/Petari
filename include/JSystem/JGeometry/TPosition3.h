@@ -2,10 +2,11 @@
 
 #include "JSystem/JGeometry/TMatrix.h"
 #include "JSystem/JGeometry/TRotation.h"
+#include "Inline.h"
 
 namespace JGeometry {
     template<class T>
-    class TPosition3 : public TRotation3<T> {
+    struct TPosition3 : public TRotation3<T> {
     public:
         void getTrans(TVec3f &);
     };
