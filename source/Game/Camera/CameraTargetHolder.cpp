@@ -39,7 +39,7 @@ bool CameraTargetHolder::isOnGround() const {
 }
 
 bool CameraTargetHolder::isMoving() const {
-    TVec3f *lastMove = mTarget->getLastMove();
+    const TVec3f *lastMove = mTarget->getLastMove();
     float length = PSVECMag(reinterpret_cast<const Vec *>(lastMove));
 
     return length > 1.0f;

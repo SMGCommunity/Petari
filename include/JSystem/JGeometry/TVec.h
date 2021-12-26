@@ -25,7 +25,7 @@ namespace JGeometry {
     struct TVec3 {
     public:
         inline TVec3() {
-
+            
         }
 
         TVec3(T _x, T _y, T _z);

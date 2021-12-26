@@ -10,17 +10,20 @@ class LiveActor;
 class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char *);
-    virtual ~CameraTargetObj();
+    
+    virtual inline ~CameraTargetObj() {
+
+    }
 
     virtual void init(const JMapInfoIter &);
 
-    virtual TVec3f *getPosition() const = 0;
-    virtual TVec3f *getUpVec() const = 0;
-    virtual TVec3f *getFrontVec() const = 0;
-    virtual TVec3f *getSideVec() const = 0;
-    virtual TVec3f *getLastMove() const = 0;
-    virtual TVec3f *getGroundPos() const = 0;
-    virtual TVec3f *getGravityVector() const = 0;
+    virtual const TVec3f *getPosition() const = 0;
+    virtual const TVec3f *getUpVec() const = 0;
+    virtual const TVec3f *getFrontVec() const = 0;
+    virtual const TVec3f *getSideVec() const = 0;
+    virtual const TVec3f *getLastMove() const = 0;
+    virtual const TVec3f *getGroundPos() const = 0;
+    virtual const TVec3f *getGravityVector() const = 0;
 
     virtual f32 getRadius() const;
     virtual bool isTurning() const;
@@ -53,13 +56,13 @@ public:
     CameraTargetActor(const char *);
     virtual ~CameraTargetActor();
 
-    virtual TVec3f *getPosition() const;
-    virtual TVec3f *getUpVec() const;
-    virtual TVec3f *getFrontVec() const;
-    virtual TVec3f *getSideVec() const;
-    virtual TVec3f *getLastMove() const;
-    virtual TVec3f *getGroundPos() const;
-    virtual TVec3f *getGravityVector() const;
+    virtual const TVec3f *getPosition() const;
+    virtual const TVec3f *getUpVec() const;
+    virtual const TVec3f *getFrontVec() const;
+    virtual const TVec3f *getSideVec() const;
+    virtual const TVec3f *getLastMove() const;
+    virtual const TVec3f *getGroundPos() const;
+    virtual const TVec3f *getGravityVector() const;
 
     const LiveActor *_10;
     f32 _14;
@@ -78,13 +81,13 @@ class CameraTargetPlayer : public CameraTargetObj {
 public:
     CameraTargetPlayer(const char *);
 
-    virtual TVec3f *getPosition() const;
-    virtual TVec3f *getUpVec() const;
-    virtual TVec3f *getFrontVec() const;
-    virtual TVec3f *getSideVec() const;
-    virtual TVec3f *getLastMove() const;
-    virtual TVec3f *getGroundPos() const;
-    virtual TVec3f *getGravityVector() const;
+    virtual const TVec3f *getPosition() const;
+    virtual const TVec3f *getUpVec() const;
+    virtual const TVec3f *getFrontVec() const;
+    virtual const TVec3f *getSideVec() const;
+    virtual const TVec3f *getLastMove() const;
+    virtual const TVec3f *getGroundPos() const;
+    virtual const TVec3f *getGravityVector() const;
 
     void *_10; // const MarioActor *
     u8 _14[0x24];
