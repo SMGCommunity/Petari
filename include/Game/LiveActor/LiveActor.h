@@ -10,6 +10,7 @@
 #include "Game/LiveActor/Spine.h"
 #include "Game/Map/StageSwitch.h"
 #include "JSystem/JGeometry/TVec.h"
+#include "Game/LiveActor/RailRider.h"
 
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;

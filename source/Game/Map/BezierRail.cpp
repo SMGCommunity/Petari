@@ -181,7 +181,7 @@ f32 BezierRail::getRailPosCoord(int idx) const {
         return 0.0f;
     }
     else {
-        if (mIsClosed || _4 - 1 != idx) {
+        if (mIsClosed || mPointNum - 1 != idx) {
             return _10[idx - 1];
         }
     }

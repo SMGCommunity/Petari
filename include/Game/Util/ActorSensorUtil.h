@@ -68,6 +68,9 @@ namespace MR {
     bool tryGetItem(HitSensor *, HitSensor *);
     TVec3f* getSensorPos(const HitSensor *);
 
+    void validateHitSensors(LiveActor *);
+    void invalidateHitSensors(LiveActor *);
+
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);
