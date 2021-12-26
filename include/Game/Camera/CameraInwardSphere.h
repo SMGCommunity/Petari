@@ -5,8 +5,13 @@
 class CameraInwardSphere : public Camera {
 public:
     CameraInwardSphere(const char *);
+    virtual ~CameraInwardSphere();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void calcGravityCenter();
 
     f32 _4C;
     f32 _50;

@@ -5,8 +5,18 @@
 class CameraFixedThere : public Camera {
 public:
     CameraFixedThere(const char *);
+    virtual ~CameraFixedThere();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual bool isCorrectingErpPositionOff() const;
+    virtual CamTranslatorDummy *createTranslator();
+
+    void copyStatusFromPrevCamera();
+    void calcEyeDir(TVec3f *);
+    void makeAxisAndRoll();
+    void updateUpVec(const TVec3f &);
+    void updateNormalUpVec(const TVec3f &);
 
     u32 _4C;
     u8 _50;

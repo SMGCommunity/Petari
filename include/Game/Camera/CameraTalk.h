@@ -5,8 +5,13 @@
 class CameraTalk : public Camera {
 public:
     CameraTalk(const char *);
+    virtual ~CameraTalk();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void setParam(const TVec3f &, const TVec3f &, float, float);
 
     f32 _4C;
     f32 _50;

@@ -5,8 +5,11 @@
 class CameraFooFighter : public Camera {
 public:
     CameraFooFighter(const char *);
+    virtual ~CameraFooFighter();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

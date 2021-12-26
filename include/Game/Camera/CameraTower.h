@@ -5,8 +5,18 @@
 class CameraTower : public Camera {
 public:
     CameraTower(const char *);
+    virtual ~CameraTower();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual bool isEnableToRoundLeft() const;
+    virtual bool isEnableToRoundRight() const;
+    virtual CamTranslatorDummy *createTranslator();
+
+    void arrangeRoundingPose();
+    void arrangeHorizontalPose();
+    bool isUpsideDownByRoll() const;
+    void arrangeRound();
 
     f32 _4C;
     f32 _50;

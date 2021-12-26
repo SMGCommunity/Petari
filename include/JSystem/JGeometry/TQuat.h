@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JGeometry/TVec.h"
+#include "JSystem/JGeometry/TVec.h"
 
 namespace JGeometry {
     template<typename T>

@@ -5,8 +5,11 @@
 class CameraTripodPlanet : public Camera {
 public:
     CameraTripodPlanet(const char *);
+    virtual ~CameraTripodPlanet();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

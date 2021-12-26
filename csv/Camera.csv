@@ -920,7 +920,7 @@ movement__18CameraTargetHolderFv,CameraTargetHolder.o,Camera.a,true
 get__18CameraTargetHolderFv,CameraTargetHolder.o,Camera.a,true
 set__18CameraTargetHolderFP15CameraTargetObj,CameraTargetHolder.o,Camera.a,true
 set__18CameraTargetHolderFPC9LiveActor,CameraTargetHolder.o,Camera.a,true
-set__18CameraTargetHolderFPC10MarioActor,CameraTargetHolder.o,Camera.a,false
+set__18CameraTargetHolderFPC10MarioActor,CameraTargetHolder.o,Camera.a,true
 isOnGround__18CameraTargetHolderCFv,CameraTargetHolder.o,Camera.a,true
 isMoving__18CameraTargetHolderCFv,CameraTargetHolder.o,Camera.a,true
 __dt__18CameraTargetHolderFv,CameraTargetHolder.o,Camera.a,true

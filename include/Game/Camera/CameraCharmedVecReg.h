@@ -5,8 +5,11 @@
 class CameraCharmedVecReg : public Camera {
 public:
     CameraCharmedVecReg(const char *);
+    virtual ~CameraCharmedVecReg();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     u32 _4C;
     f32 _50;
