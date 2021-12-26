@@ -17,12 +17,8 @@ class AudAnmSoundObject;
 class Binder;
 class CollisionParts;
 class EffectKeeper;
-class Spine;
-class HitSensor;
-class HitSensorKeeper;
-class ModelManager;
+class RailRider;
 class ShadowControllerList;
-class StageSwitchCtrl;
 class StarPointerTarget;
 
 class LiveActor : public NameObj {

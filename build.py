@@ -13,16 +13,12 @@ def deleteDFiles():
         if dire.endswith(".d"):
             os.remove(os.path.join(os.getcwd(), dire))
 
-def main(argv):
+def main(compile_non_matching, use_ninja, clean_ninja):
     if not os.path.exists("deps"):
         print("deps folder not created, please run setup.py!")
         sys.exit(1)
 
     isNotWindows = os.name != "nt"
-
-    rootPath = os.path.dirname(os.path.realpath(__file__))
-    path = os.path.dirname(os.path.realpath(__file__)) + "/source/"
-    toolsPath = os.path.dirname(os.path.realpath(__file__)) + "/tools/"
 
     flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
     includes = "-i . -I- -i include "
@@ -37,7 +33,7 @@ def main(argv):
         #"GC/2.5", flags
     }
 
-    if "-nonmatching" in sys.argv:
+    if compile_non_matching:
         print("Using nonmatching functions")
         flags = flags + " -DNON_MATCHING "
 
@@ -55,11 +51,10 @@ def main(argv):
 
     tasks = list()
 
-    canUseNinja = not "-n" in argv  
     ninjaFound = shutil.which("ninja") is not None
-    if not ninjaFound and canUseNinja:
+    if not ninjaFound and use_ninja:
         print("Ninja was not found in your PATH. Compilation will be slow!")
-    useNinja = ninjaFound and canUseNinja
+    useNinja = ninjaFound and use_ninja
     if not useNinja:
         if os.path.exists("build"):
                 shutil.rmtree("build", ignore_errors=True)
@@ -86,7 +81,6 @@ def main(argv):
         compiler_path = pathlib.Path(f"wine {compiler_path} ")
 
     if useNinja:
-
         # Use ninja build system to generate a build script.
         from ninja import ninja_syntax
         bo = open("build.ninja", "w")
@@ -112,6 +106,10 @@ def main(argv):
                 pass
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
+
+        # Run clean
+        if clean_ninja:
+            subprocess.call("ninja -t clean", shell=True)
     
         # Call ninja to run said build script.
         if subprocess.call("ninja", shell=True) == 1:
@@ -140,9 +138,32 @@ def main(argv):
 
     print("Complete.")
 
+def print_help_and_exit():
+    print("Usage: build.py [flags...]")
+    print("\t-non-matching: Compile non-matching code.")
+    print("\t-no-ninja: Do not use ninja even if available.")
+    print("\t-clean: Clean old build files before building new when using ninja.")
+    print("\t-help: Displays this help text")
+
+    sys.exit(0)
+
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    if (len(args) == 1 and args[0] != "-n") or len(args) > 1:
-        print("Usage: build.py (-n)\n\t-n: Do not use ninja even if available.")
-    else:
-        main(args)
+    compile_non_matching = False
+    use_ninja = True
+    clean_ninja = False
+
+    for arg in sys.argv[1:]:
+        if arg == "-non-matching":
+            compile_non_matching = True
+        elif arg == "-no-ninja":
+            use_ninja = False
+        elif arg == "-clean":
+            clean_ninja = True
+        elif arg == "-help":
+            print_help_and_exit()
+        else:
+            print(f"Invalid argument: {arg}")
+            print()
+            print_help_and_exit()
+            
+    main(compile_non_matching, use_ninja, clean_ninja)
