@@ -10,7 +10,7 @@ CameraTargetObj::CameraTargetObj(const char *pName) : NameObj(pName) {
 }
 
 CameraTargetActor::CameraTargetActor(const char *pName) : CameraTargetObj(pName) {
-    mLiveActor = NULL;
+    mActor = NULL;
     mUp.x = 0.0f;
     mUp.y = 1.0f;
     mUp.z = 0.0f;
@@ -28,25 +28,25 @@ CameraTargetActor::~CameraTargetActor() {
 }
 
 void CameraTargetActor::movement() {
-    if (MR::isDead(mLiveActor) || MR::isClipped(mLiveActor)) {
+    if (MR::isDead(mActor) || MR::isClipped(mActor)) {
         return;
     }
 
-    if (mLiveActor->getBaseMtx() != NULL) {
-        MR::calcUpVec(&mUp, mLiveActor);
-        MR::calcFrontVec(&mFront, mLiveActor);
-        MR::calcSideVec(&mSide, mLiveActor);
+    if (mActor->getBaseMtx() != NULL) {
+        MR::calcUpVec(&mUp, mActor);
+        MR::calcFrontVec(&mFront, mActor);
+        MR::calcSideVec(&mSide, mActor);
     }
     else {
         TRot3f matrix;
-        MR::makeMtxRotate(reinterpret_cast<MtxPtr>(&matrix), mLiveActor->mRotation.x, mLiveActor->mRotation.y, mLiveActor->mRotation.z);
+        MR::makeMtxRotate(reinterpret_cast<MtxPtr>(&matrix), mActor->mRotation.x, mActor->mRotation.y, mActor->mRotation.z);
 
         matrix.getYDir(mUp);
         matrix.getZDir(mFront);
         matrix.getXDir(mSide);
     }
 
-    CubeCameraArea *area = reinterpret_cast<CubeCameraArea *>(MR::getAreaObj("CubeCamera", mLiveActor->mPosition));
+    CubeCameraArea *area = reinterpret_cast<CubeCameraArea *>(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
     if (area == NULL) {
         mCameraArea = NULL;
@@ -57,7 +57,7 @@ void CameraTargetActor::movement() {
 }
 
 const TVec3f *CameraTargetActor::getPosition() const {
-    return &mLiveActor->mPosition;
+    return &mActor->mPosition;
 }
 
 const TVec3f *CameraTargetActor::getUpVec() const {
@@ -73,11 +73,11 @@ const TVec3f *CameraTargetActor::getSideVec() const {
 }
 
 const TVec3f *CameraTargetActor::getLastMove() const {
-    return &mLiveActor->mVelocity;
+    return &mActor->mVelocity;
 }
 
 const TVec3f *CameraTargetActor::getGroundPos() const {
-    return &mLiveActor->mPosition;
+    return &mActor->mPosition;
 }
 
 const TVec3f *CameraTargetActor::getGravityVector() const {
@@ -102,14 +102,38 @@ void *CameraTargetActor::getGroundTriangle() const {
 }
 
 CameraTargetPlayer::CameraTargetPlayer(const char *pName) : CameraTargetObj(pName) {
-    _38 = 0.0f;
-    _3C = -1.0f;
-    _40 = 0.0f;
-    _44 = 0.0f;
-    _48 = 0.0f;
-    _4C = 0.0f;
-    _50 = 0;
-    _54 = 0;
+    mGravityVector.x = 0.0f;
+    mGravityVector.y = -1.0f;
+    mGravityVector.z = 0.0f;
+    mGroundPos.x = 0.0f;
+    mGroundPos.y = 0.0f;
+    mGroundPos.z = 0.0f;
+    mCameraArea = NULL;
+    mGroundTriangle = NULL;
     _58 = 0;
-    _5A = 1;
+    _5A = true;
+}
+
+CameraTargetPlayer::~CameraTargetPlayer() {
+
+}
+
+const TVec3f *CameraTargetPlayer::getUpVec() const {
+    return &mUp;
+}
+
+const TVec3f *CameraTargetPlayer::getFrontVec() const {
+    return &mFront;
+}
+
+const TVec3f *CameraTargetPlayer::getSideVec() const {
+    return &mSide;
+}
+
+const TVec3f *CameraTargetPlayer::getGroundPos() const {
+    return &mGroundPos;
+}
+
+const TVec3f *CameraTargetPlayer::getGravityVector() const {
+    return &mGravityVector;
 }

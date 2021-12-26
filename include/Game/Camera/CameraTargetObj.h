@@ -7,6 +7,7 @@
 class CubeCameraArea;
 class GravityInfo;
 class LiveActor;
+class MarioActor;
 
 class CameraTargetObj : public NameObj {
 public:
@@ -71,7 +72,7 @@ public:
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual void *getGroundTriangle() const;
 
-    const LiveActor *mLiveActor;    // _10
+    const LiveActor *mActor;        // _10
     TVec3f mUp;                     // _14
     TVec3f mFront;                  // _20
     TVec3f mSide;                   // _2C
@@ -81,6 +82,7 @@ public:
 class CameraTargetPlayer : public CameraTargetObj {
 public:
     CameraTargetPlayer(const char *);
+    virtual ~CameraTargetPlayer();
 
     virtual const TVec3f *getPosition() const;
     virtual const TVec3f *getUpVec() const;
@@ -90,17 +92,31 @@ public:
     virtual const TVec3f *getGroundPos() const;
     virtual const TVec3f *getGravityVector() const;
 
-    void *_10; // const MarioActor *
-    u8 _14[0x24];
-    f32 _38;
-    f32 _3C;
-    f32 _40;
-    f32 _44;
-    f32 _48;
-    f32 _4C;
-    u32 _50;
-    u32 _54;
+    virtual bool isTurning() const;
+    virtual bool isJumping() const;
+    virtual bool isLongDrop() const;
+    virtual bool isFastDrop() const;
+    virtual bool isFastRise() const;
+    virtual bool isWaterMode() const;
+    virtual bool isOnWaterSurface() const;
+    virtual bool isFooFighterMode() const;
+    virtual u32 getSpecialMode() const;
+    virtual bool isCameraStateOn(unsigned long) const;
+    virtual CubeCameraArea *getCubeCameraArea() const;
+    virtual void *getGroundTriangle() const;
+    virtual GravityInfo *getGravityInfo() const;
+    virtual bool isDebugMode() const;
+    virtual TMtx34f *getMapBaseMtx() const;
+
+    const MarioActor *mActor;       // _10
+    TVec3f mSide;                   // _14
+    TVec3f mUp;                     // _20
+    TVec3f mFront;                  // _2C
+    TVec3f mGravityVector;          // _38
+    TVec3f mGroundPos;              // _44
+    CubeCameraArea *mCameraArea;    // _50
+    void *mGroundTriangle;          // _54
     u16 _58;
-    u8 _5A;
+    bool _5A;
     u8 _5B;
 };

@@ -963,11 +963,11 @@ getGroundTriangle__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,true
 __ct__18CameraTargetPlayerFPCc,CameraTargetObj.o,Camera.a,true
 movement__18CameraTargetPlayerFv,CameraTargetObj.o,Camera.a,false
 getPosition__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
-getUpVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
-getFrontVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
-getSideVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
-getGroundPos__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
-getGravityVector__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
+getUpVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,true
+getFrontVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,true
+getSideVec__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,true
+getGroundPos__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,true
+getGravityVector__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,true
 getLastMove__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
 isTurning__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
 isJumping__18CameraTargetPlayerCFv,CameraTargetObj.o,Camera.a,false
@@ -988,7 +988,7 @@ __ct__21CameraTargetDemoActorFPA4_fPCc,CameraTargetObj.o,Camera.a,false
 init__21CameraTargetDemoActorFRC12JMapInfoIter,CameraTargetObj.o,Camera.a,false
 setTargetMtx__21CameraTargetDemoActorFPA4_f,CameraTargetObj.o,Camera.a,false
 __dt__17CameraTargetActorFv,CameraTargetObj.o,Camera.a,true
-__dt__18CameraTargetPlayerFv,CameraTargetObj.o,Camera.a,false
+__dt__18CameraTargetPlayerFv,CameraTargetObj.o,Camera.a,true
 __dt__21CameraTargetDemoActorFv,CameraTargetObj.o,Camera.a,false
 getBaseMtx__21CameraTargetDemoActorCFv,CameraTargetObj.o,Camera.a,false
 getRadius__17CameraTargetActorCFv,CameraTargetObj.o,Camera.a,true
