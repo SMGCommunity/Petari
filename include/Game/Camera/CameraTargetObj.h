@@ -5,12 +5,13 @@
 #include "JSystem/JGeometry/TVec.h"
 
 class CubeCameraArea;
+class GravityInfo;
 class LiveActor;
 
 class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char *);
-    
+
     virtual inline ~CameraTargetObj() {
 
     }
@@ -38,8 +39,8 @@ public:
     virtual u32 getSpecialMode() const;
     virtual bool isCameraStateOn(unsigned long) const;
     virtual CubeCameraArea *getCubeCameraArea() const;
-    //virtual X getGroundTriangle() const;
-    //virtual X getGravityInfo() const;
+    virtual void *getGroundTriangle() const; // TODO: return type
+    virtual GravityInfo *getGravityInfo() const;
     virtual void enableCameraWall();
     virtual void disableCameraWall();
     virtual void setCameraWall(bool);
@@ -47,7 +48,7 @@ public:
     virtual TMtx34f *getMapBaseMtx() const;
     virtual void resetStatus();
 
-    u8 mCameraWall; // _C
+    bool mCameraWall;   // _C
     u8 _D[3];
 };
 
@@ -55,6 +56,8 @@ class CameraTargetActor : public CameraTargetObj {
 public:
     CameraTargetActor(const char *);
     virtual ~CameraTargetActor();
+
+    virtual void movement();
 
     virtual const TVec3f *getPosition() const;
     virtual const TVec3f *getUpVec() const;
@@ -64,17 +67,15 @@ public:
     virtual const TVec3f *getGroundPos() const;
     virtual const TVec3f *getGravityVector() const;
 
-    const LiveActor *_10;
-    f32 _14;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
-    f32 _24;
-    f32 _28;
-    f32 _2C;
-    f32 _30;
-    f32 _34;
-    u32 _38;
+    virtual f32 getRadius() const;
+    virtual CubeCameraArea* getCubeCameraArea() const;
+    virtual void *getGroundTriangle() const;
+
+    const LiveActor *mLiveActor;    // _10
+    TVec3f mUp;                     // _14
+    TVec3f mFront;                  // _20
+    TVec3f mSide;                   // _2C
+    CubeCameraArea *mCameraArea;    // _38
 };
 
 class CameraTargetPlayer : public CameraTargetObj {

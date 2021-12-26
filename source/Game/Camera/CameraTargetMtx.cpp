@@ -22,6 +22,10 @@ u32 CameraTargetObj::getSpecialMode() const {
     return 0;
 }
 
+GravityInfo *CameraTargetObj::getGravityInfo() const {
+    return NULL;
+}
+
 void CameraTargetObj::enableCameraWall() {
     mCameraWall = true;
 }

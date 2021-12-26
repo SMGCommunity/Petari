@@ -41,6 +41,10 @@ CubeCameraArea *CameraTargetObj::getCubeCameraArea() const {
     return NULL;
 }
 
+void *CameraTargetObj::getGroundTriangle() const {
+    return NULL;
+}
+
 CameraManGame::CameraManGame(CameraHolder *pHolder, CameraParamChunkHolder *pChunkHolder, const char *pName) : CameraMan(pName) {
     mHolder = pHolder;
     mChunkHolder = pChunkHolder;

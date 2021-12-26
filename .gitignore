@@ -1,5 +1,6 @@
 .vs
 .vscode
+.editorconfig
 *.dat
 tools/*.exe
 tools/*.dll
