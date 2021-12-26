@@ -30,5 +30,9 @@ namespace MR {
 
     bool getJMapInfoViewGroupID(const JMapInfoIter &, s32 *);
 
+    void getRailPointPos0(const JMapInfoIter &, TVec3f *);
+    void getRailPointPos1(const JMapInfoIter &, TVec3f *);
+    void getRailPointPos2(const JMapInfoIter &, TVec3f *);
+
     bool getJMapInfoClippingGroupID(const JMapInfoIter &, s32 *);
 };

@@ -13,6 +13,9 @@ namespace MR {
     bool isDead(const LiveActor *);
 
     bool isValidDraw(const LiveActor *);
+
+    void invalidateClipping(LiveActor *);
+
     bool isClipped(const LiveActor *);
     bool isInvalidClipping(const LiveActor *);
 
@@ -65,6 +68,8 @@ namespace MR {
     void setNerveAtStep(LiveActor *, const Nerve *, s32);
     void setNerveAtBckStopped(LiveActor *, const Nerve *);
     bool trySetNerve(LiveActor *, const Nerve *);
+
+    bool isNoCalcAnim(const LiveActor *);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
 }

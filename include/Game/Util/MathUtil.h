@@ -67,6 +67,8 @@ namespace MR {
     void PSvecBlend(const TVec3f *, const TVec3f *, TVec3f *, f32, f32);
     void vecBlend(const TVec3f &, const TVec3f &, TVec3f *, f32);
 
+    s32 vecBlendSphere(const TVec3f &, const TVec3f &, TVec3f *, f32);
+
     void blendColor(_GXColor *, const _GXColor &, const _GXColor  &, f32);
     void blendVec(Vec *, const Vec &, const Vec &, f32);
 
