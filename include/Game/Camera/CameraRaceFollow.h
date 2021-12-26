@@ -5,8 +5,13 @@
 class CameraRaceFollow : public Camera {
 public:
     CameraRaceFollow(const char *);
+    virtual ~CameraRaceFollow();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void goRound();
 
     f32 _4C;
     f32 _50;

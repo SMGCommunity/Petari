@@ -126,8 +126,10 @@ def print_help_and_exit():
     print("\t[mangled_symbol]: name of the symbol that should be checked.")
     print("\t[-all]: run checks on all functions which has been marked as decompiled.")
     print("\t[-help]: displays this help text.")
+    print("\t[-only-errors]: displays only error messages.")
     print("\t[-no-hints]: don't display hint messages.")
     print("\t[-no-warnings]: don't display warning messages.")
+    print("\t[-no-errors]: don't display error messages.")
     print("\t[-readonly]: don't mark or unmark any functions as decompiled.")
 
     sys.exit(0)
@@ -152,7 +154,10 @@ def get_code_from_dol(address, size):
         return data[txt_offset + offset:txt_offset + offset + size]
 
 def print_error(message):
-    print(f"ERROR: {message}")
+    global show_errors
+
+    if show_errors:
+        print(f"ERROR: {message}")
 
 def print_warning(message):
     global show_warnings
@@ -167,8 +172,11 @@ def print_hint(message):
         print(f"HINT: {message}")
 
 def print_instruction_comparison_error(message, original, custom):
-    print_error(message)
-    print_instruction_comparison(original, custom)
+    global show_errors
+
+    if show_errors:
+        print_error(message)
+        print_instruction_comparison(original, custom)
 
 def print_instruction_comparison_warning(message, original, custom):
     global show_warnings
@@ -401,6 +409,7 @@ mangled_symbol = None
 check_all = False
 show_hints = True
 show_warnings = True
+show_errors = True
 readonly = False
 
 for i in range(1, len(sys.argv)):
@@ -410,10 +419,16 @@ for i in range(1, len(sys.argv)):
         check_all = True
     elif arg == "-help":
         print_help_and_exit()
+    elif arg == "-only-errors":
+        show_hints = False
+        show_warnings = False
+        show_errors = True
     elif arg == "-no-hints":
         show_hints = False
     elif arg == "-no-warnings":
         show_warnings = False
+    elif arg == "-no-errors":
+        show_errors = False
     elif arg == "-readonly":
         readonly = True
     elif mangled_symbol == None:

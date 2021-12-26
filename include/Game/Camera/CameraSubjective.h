@@ -5,8 +5,12 @@
 class CameraSubjective : public Camera {
 public:
     CameraSubjective(const char *);
+    virtual ~CameraSubjective();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual bool isCollisionOff() const;
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

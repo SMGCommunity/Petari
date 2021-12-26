@@ -5,8 +5,11 @@
 class CameraTrundle : public Camera {
 public:
     CameraTrundle(const char *);
+    virtual ~CameraTrundle();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

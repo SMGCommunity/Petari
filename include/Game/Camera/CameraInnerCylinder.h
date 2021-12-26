@@ -5,8 +5,11 @@
 class CameraInnerCylinder : public Camera {
 public:
     CameraInnerCylinder(const char *);
+    virtual ~CameraInnerCylinder();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

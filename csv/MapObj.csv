@@ -5024,7 +5024,7 @@ isUseAppearCamera__16SpinDriverCameraCFP9LiveActor,SpinDriverCamera.o,MapObj.a,f
 init__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor,SpinDriverCamera.o,MapObj.a,false
 initAppearCamera__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor,SpinDriverCamera.o,MapObj.a,false
 __ct__15CameraTargetArgFP15CameraTargetMtx,SpinDriverCamera.o,MapObj.a,true
-setMtx__15CameraTargetMtxFPA4_f,SpinDriverCamera.o,MapObj.a,false
+setMtx__15CameraTargetMtxFPA4_f,SpinDriverCamera.o,MapObj.a,true
 __ct__21SpinDriverOperateRingFPCc,SpinDriverOperateRing.o,MapObj.a,false
 init__21SpinDriverOperateRingFRC12JMapInfoIter,SpinDriverOperateRing.o,MapObj.a,false
 control__21SpinDriverOperateRingFv,SpinDriverOperateRing.o,MapObj.a,false

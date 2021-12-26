@@ -5,8 +5,13 @@
 class CameraRailWatch : public Camera {
 public:
     CameraRailWatch(const char *);
+    virtual ~CameraRailWatch();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void setParam(long, long, long, float, float, float);
 
     u32 _4C;
     u32 _50;

@@ -5,8 +5,11 @@
 class CameraSpiral : public Camera {
 public:
     CameraSpiral(const char *);
+    virtual ~CameraSpiral();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     u32 _4C;
     u32 _50;

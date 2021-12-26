@@ -5,8 +5,13 @@
 class CameraRailFollow : public Camera {
 public:
     CameraRailFollow(const char *);
+    virtual ~CameraRailFollow();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void setParam(long, long, float, float, float, long);
 
     u32 _4C;
     f32 _50;

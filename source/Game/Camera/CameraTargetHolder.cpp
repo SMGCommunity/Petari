@@ -25,21 +25,21 @@ void CameraTargetHolder::set(CameraTargetObj *pTarget) {
 }
 
 void CameraTargetHolder::set(const LiveActor *pActor) {
-    mTargetActor->_10 = pActor;
+    mTargetActor->mActor = pActor;
     mTarget = mTargetActor;
 }
 
-/*void CameraTargetHolder::set(const MarioActor *pActor) {
-    mTargetPlayer->_10 = pActor;
+void CameraTargetHolder::set(const MarioActor *pActor) {
+    mTargetPlayer->mActor = pActor;
     mTarget = mTargetPlayer;
-}*/
+}
 
 bool CameraTargetHolder::isOnGround() const {
     return !mTarget->isJumping() || mTarget->isWaterMode() || mTarget->isOnWaterSurface();
 }
 
 bool CameraTargetHolder::isMoving() const {
-    TVec3f *lastMove = mTarget->getLastMove();
+    const TVec3f *lastMove = mTarget->getLastMove();
     float length = PSVECMag(reinterpret_cast<const Vec *>(lastMove));
 
     return length > 1.0f;

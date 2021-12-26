@@ -5,8 +5,11 @@
 class CameraSlide : public Camera {
 public:
     CameraSlide(const char *);
+    virtual ~CameraSlide();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

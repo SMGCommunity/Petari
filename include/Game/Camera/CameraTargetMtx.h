@@ -6,37 +6,31 @@
 class CameraTargetMtx : public CameraTargetObj {
 public:
     CameraTargetMtx(const char *);
+    virtual ~CameraTargetMtx();
+    
+    virtual void movement();
 
-    virtual TVec3f *getPosition() const;
-    virtual TVec3f *getUpVec() const;
-    virtual TVec3f *getFrontVec() const;
-    virtual TVec3f *getSideVec() const;
-    virtual TVec3f *getLastMove() const;
-    virtual TVec3f *getGroundPos() const;
-    virtual TVec3f *getGravityVector() const;
+    virtual const TVec3f *getPosition() const;
+    virtual const TVec3f *getUpVec() const;
+    virtual const TVec3f *getFrontVec() const;
+    virtual const TVec3f *getSideVec() const;
+    virtual const TVec3f *getLastMove() const;
+    virtual const TVec3f *getGroundPos() const;
+    virtual const TVec3f *getGravityVector() const;
 
+    virtual CubeCameraArea *getCubeCameraArea() const;
+    
     void invalidateLastMove();
+    void setMtx(MtxPtr);
 
-    TMtx34f _10;
-    f32 _40;
-    f32 _44;
-    f32 _48;
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    f32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
-    f32 _80;
-    f32 _84;
-    u8 _88;
+    TMtx34f mMatrix;                // _10
+    TVec3f mPosition;               // _40
+    TVec3f mLastMove;               // _4C
+    TVec3f mGravityVector;          // _58
+    TVec3f mUp;                     // _64
+    TVec3f mFront;                  // _70
+    TVec3f mSide;                   // _7C
+    bool mInvalidLastMove;          // _88
     u8 _89[3];
-    u32 _8C;
+    CubeCameraArea *mCameraArea;    // _8C
 };

@@ -5,8 +5,17 @@
 class CameraParallel : public Camera {
 public:
     CameraParallel(const char *);
+    virtual ~CameraParallel();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+    virtual bool isEnableToRoundLeft() const;
+    virtual bool isEnableToRoundRight() const;
+    virtual bool isEnableToReset() const;
+
+    void calcIdealPose();
+    void calcRound();
 
     f32 _4C;
     f32 _50;

@@ -41,6 +41,10 @@ CubeCameraArea *CameraTargetObj::getCubeCameraArea() const {
     return NULL;
 }
 
+void *CameraTargetObj::getGroundTriangle() const {
+    return NULL;
+}
+
 CameraManGame::CameraManGame(CameraHolder *pHolder, CameraParamChunkHolder *pChunkHolder, const char *pName) : CameraMan(pName) {
     mHolder = pHolder;
     mChunkHolder = pChunkHolder;
@@ -655,7 +659,7 @@ void CameraManGame::updateWaterSurface() {
 void CameraManGame::updateGCapture() {
     CubeCameraArea::setCurrentCategory(CubeCameraArea::CATEGORY_UNKNOWN_3);
     CameraTargetObj *target = CameraLocalUtil::getTarget(this);
-    TVec3f *position = target->getPosition();
+    const TVec3f *position = target->getPosition();
 
     CubeCameraArea *area = reinterpret_cast<CubeCameraArea *>(MR::getAreaObj("CubeCamera", *position));
 

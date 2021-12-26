@@ -5,8 +5,11 @@
 class CameraWaterPlanet : public Camera {
 public:
     CameraWaterPlanet(const char *);
+    virtual ~CameraWaterPlanet();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

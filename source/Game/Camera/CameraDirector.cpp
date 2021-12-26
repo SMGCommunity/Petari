@@ -129,7 +129,7 @@ CameraDirector::CameraDirector(const char *pName) : NameObj(pName) {
     MR::connectToSceneCamera(this);
     push(mCameraManGame);
     _180.identity();
-    JMath::gekko_ps_copy12(&mTargetMatrix->_10, &_180);
+    JMath::gekko_ps_copy12(&mTargetMatrix->mMatrix, &_180);
     setInterpolation(0);
     mCameraManSubjective->owned(this);
     _1C0.identity();

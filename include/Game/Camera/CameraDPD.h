@@ -6,8 +6,11 @@
 class CameraDPD : public Camera {
 public:
     CameraDPD(const char *);
+    virtual ~CameraDPD();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;
