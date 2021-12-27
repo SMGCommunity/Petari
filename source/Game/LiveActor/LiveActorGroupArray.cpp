@@ -1,6 +1,8 @@
 #include "Game/LiveActor/LiveActorGroupArray.h"
 #include "Game/LiveActor/LiveActor.h"
 
+#include <cstdio>
+
 MsgSharedGroup::MsgSharedGroup(const char *pName, s32 a2, const JMapInfoIter &rIter) : LiveActorGroup(_28, a2) {
     mIDInfo = 0;
     _1C = -1;
@@ -60,5 +62,25 @@ MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, cons
     s32 cnt = mNumGroups;
     mNumGroups = cnt + 1;
     mGroups[cnt] = group;
+    return group;
+}
+
+LiveActorGroup* LiveActorGroupArray::entry(LiveActor *pActor, const JMapInfoIter &rIter, const char *pName, s32 a4) {
+    s32 groupID = -1;
+    MR::getJMapInfoGroupID(rIter, &groupID);
+
+    if (!pName) {
+        char buf[0x20];
+        snprintf(buf, 0x20, "group%02d", groupID);
+        pName = buf;
+    }
+
+    LiveActorGroup* group = findGroup(rIter);
+
+    if (!group) {
+        group = createGroup(rIter, pName, a4);
+    }
+
+    group->registerActor(pActor);
     return group;
 }
