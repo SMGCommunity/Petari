@@ -1,4 +1,4 @@
-#include "Game/Gravity/GravityCreator.h"
+#include "Game/Gravity.h"
 #include "Game/Util.h"
 
 GravityCreator::GravityCreator() {

@@ -1,6 +1,5 @@
+#include "Game/Gravity.h"
 #include "Game/Util/GravityUtil.h"
-#include "Game/Gravity/GravityInfo.h"
-#include "Game/Gravity/PlanetGravityManager.h"
 #include "Game/Util/JMapInfo.h"
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/LiveActor/LiveActor.h"

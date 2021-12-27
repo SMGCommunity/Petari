@@ -1,17 +1,17 @@
-#include "Game/Gravity/GravityInfo.h"
+#include "Game/Gravity.h"
 
 GravityInfo::GravityInfo() {
 	_C = -1;
-	_0 = 0.0f;
-	_4 = 0.0f;
-	_8 = 0.0f;
+	_0.x = 0.0f;
+	_0.y = 0.0f;
+	_0.z = 0.0f;
 	mGravity = NULL;
 }
 
 void GravityInfo::init() {
 	_C = -1;
-	_8 = 0.0f;
-	_4 = 0.0f;
-	_0 = 0.0f;
+	_0.z = 0.0f;
+	_0.y = 0.0f;
+	_0.x = 0.0f;
 	mGravity = NULL;
 }

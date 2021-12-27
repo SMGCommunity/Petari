@@ -1,4 +1,4 @@
-#include "Game/Gravity/PlanetGravity.h"
+#include "Game/Gravity.h"
 #include "Game/Util.h"
 
 PlanetGravity::PlanetGravity() {

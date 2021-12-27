@@ -9,9 +9,7 @@ public:
 
 	void init();
 
-	f32 _0;
-	f32 _4;
-	f32 _8;
+	TVec3f _0;
 	s32 _C;
-	PlanetGravity* mGravity;
+	PlanetGravity* mGravity; // _10
 };

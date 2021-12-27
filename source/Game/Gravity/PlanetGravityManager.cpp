@@ -1,4 +1,4 @@
-#include "Game/Gravity/PlanetGravityManager.h"
+#include "Game/Gravity.h"
 
 PlanetGravityManager::PlanetGravityManager(const char *pName) : NameObj(pName) {
 	mNumGravities = 0;

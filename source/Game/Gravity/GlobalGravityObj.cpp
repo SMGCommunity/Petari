@@ -1,5 +1,4 @@
-#include "Game/Gravity/GlobalGravityObj.h"
-#include "Game/Gravity/GraviryFollower.h"
+#include "Game/Gravity.h"
 #include "Game/Util.h"
 
 GlobalGravityObj::GlobalGravityObj(const char *pName) : LiveActor(pName) {

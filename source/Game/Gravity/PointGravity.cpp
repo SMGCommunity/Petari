@@ -1,4 +1,4 @@
-#include "Game/Gravity/PointGravity.h"
+#include "Game/Gravity.h"
 #include "Game/Util.h"
 
 PointGravity::PointGravity() : PlanetGravity(), mOrigPosition(0, 0, 0), mTranslation(0, 0, 0) {

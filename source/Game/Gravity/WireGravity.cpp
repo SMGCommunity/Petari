@@ -1,4 +1,4 @@
-#include "Game/Gravity/WireGravity.h"
+#include "Game/Gravity.h"
 #include "Game/Util.h"
 
 WireGravity::WireGravity() {
