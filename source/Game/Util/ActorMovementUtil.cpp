@@ -38,8 +38,7 @@ namespace MR {
     f32 calcDistanceVertical(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3) {
         TVec3f stack_8(a2);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
-        a3.dot(stack_8);
-        stack_8.scale(a3);
+        stack_8.scale(a3.dot(stack_8), a3);
         return PSVECMag((Vec*)&stack_8);
     }
 

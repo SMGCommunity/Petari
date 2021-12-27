@@ -8,11 +8,12 @@ HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f
     mHashCode = MR::getHashCode(pName);
     mSensor = pSensor;
 
-    _C.copyTo_PS(a5);
+    _C.setInline(a5);
 
     _18 = a3;
     _1C = mtx;
     _20 = a6;
+
 }
 
 // HitSensorInfo::update()

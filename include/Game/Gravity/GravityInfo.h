@@ -1,6 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.h"
+#include <revolution.h>
+#include "Game/Gravity/PlanetGravity.h"
 
 class GravityInfo {
 public:
@@ -8,7 +9,7 @@ public:
 
 	void init();
 
-	TVec3f _0;
-	s32 _C;
-	u32 _10;
+	TVec3f mGravityVector;           // _0
+	s32 mLargestPriority;            // _C
+	PlanetGravity* mGravityInstance; // _10
 };

@@ -25,7 +25,7 @@ class LiveActor : public NameObj {
 public:
     LiveActor(const char *);
 
-    virtual ~LiveActor();
+    virtual inline ~LiveActor() {}
 
     virtual void init(JMapInfoIter const &);
     virtual void movement();
