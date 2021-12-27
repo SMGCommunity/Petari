@@ -42,7 +42,9 @@ void ClippingDirector::joinToGroupClipping(LiveActor *pActor, const JMapInfoIter
     }
 }
 
-// ClippingDirector::entryLodCtrl
+void ClippingDirector::entryLodCtrl(LodCtrl *pLod, const JMapInfoIter &rIter) {
+    mActorHolder->entryLodCtrl(pLod, rIter);
+}
 
 namespace MR {
     ClippingDirector* getClippingDirector() {

@@ -11,6 +11,8 @@ class CameraTargetArg;
 namespace MR {
     TVec3f getCamPos();
 
+    f32 calcCameraDistanceZ(const TVec3f &);
+
     bool isCameraInterpolateNearlyEnd();
 
     void setShakeOffset(float, float);

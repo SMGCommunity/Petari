@@ -25,6 +25,10 @@ namespace MR {
 
     bool isHiddenModel(const LiveActor *);
 
+    void showModel(LiveActor *);
+
+    void hideModelAndOnCalcAnim(LiveActor *);
+
     ResourceHolder* getResourceHolder(const LiveActor *);
 
     bool isNoEntryDrawBuffer(const LiveActor *);
@@ -76,4 +80,8 @@ namespace MR {
     bool isNoCalcAnim(const LiveActor *);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+
+    void setClippingFar(LiveActor *, f32);
+
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
 }

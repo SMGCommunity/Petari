@@ -1,7 +1,7 @@
 # Library Progress Chart
-Progress (Full Game): 2.3087578% [122936 / 5324768]
+Progress (Full Game): 2.3554077% [125420 / 5324768]
 
-Progress (Only Game): 2.9423888% [120484 / 4094768]
+Progress (Only Game): 3.0030518% [122968 / 4094768]
 
 You have 3 / 120 stars.
 
@@ -9,8 +9,8 @@ You have 3 / 120 stars.
 
 | Library | Percentage |
 | ------------- | ------------- |
+| LiveActor.a | 27.915897% |
 | Camera.a | 26.278996% |
-| LiveActor.a | 24.97514% |
 | AreaObj.a | 19.111694% |
 | NameObj.a | 18.462334% |
 | Gravity.a | 17.199919% |

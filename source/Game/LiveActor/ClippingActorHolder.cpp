@@ -49,6 +49,10 @@ void ClippingActorHolder::initViewGroupTable() {
     mViewGroupCtrl->endInitViewGroupTable();
 }
 
+void ClippingActorHolder::entryLodCtrl(LodCtrl *pLod, const JMapInfoIter &rIter) {
+    mViewGroupCtrl->entryLodCtrl(pLod, rIter);
+}
+
 void ClippingActorHolder::validateClipping(LiveActor *pActor) {
     pActor->mFlags.mIsInvalidClipping = false;
     ClippingActorInfo* inf = _14->remove(pActor);
