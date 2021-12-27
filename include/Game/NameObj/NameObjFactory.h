@@ -11,6 +11,7 @@
 
 class AreaObj;
 class NameObj;
+class NameObjArchiveListCollector;
 
 class NameObjFactory {
 public:
@@ -18,6 +19,11 @@ public:
         const char* mName;                          // _0
         NameObj* (*mCreactionFunc)(const char *);   // _4
         const char* _8;
+    };
+
+    struct Name2MakeArchiveListFunc {
+        const char* mName;                                                          // _0
+        void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
     };
 
     static Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
@@ -92,4 +98,8 @@ namespace {
     };
 
     const char* cName2ArchiveNamesTable;
+
+    const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[1] = {
+        // todo
+    };
 };
