@@ -20,14 +20,14 @@ public:
 };
 
 namespace MR {
-	GlobalGravityObj* createGlobalCubeGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalConeGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalDiskGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalDiskTorusGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalPlaneGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalPlaneInBoxGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalPlaneInCylinderGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalPointGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalSegmentGravityObj(const char *pName);
-	GlobalGravityObj* createGlobalWireGravityObj(const char *pName);
+	NameObj* createGlobalCubeGravityObj(const char *pName);
+	NameObj* createGlobalConeGravityObj(const char *pName);
+	NameObj* createGlobalDiskGravityObj(const char *pName);
+	NameObj* createGlobalDiskTorusGravityObj(const char *pName);
+	NameObj* createGlobalPlaneGravityObj(const char *pName);
+	NameObj* createGlobalPlaneInBoxGravityObj(const char *pName);
+	NameObj* createGlobalPlaneInCylinderGravityObj(const char *pName);
+	NameObj* createGlobalPointGravityObj(const char *pName);
+	NameObj* createGlobalSegmentGravityObj(const char *pName);
+	NameObj* createGlobalWireGravityObj(const char *pName);
 };

@@ -35,6 +35,71 @@ PlanetGravity* GravityCreator::createFromJMap(const JMapInfoIter &rIter) {
 	return instance;
 }
 
+PlanetGravity* CubeGravityCreator::createInstance() {
+	mGravityInstance = new CubeGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* CubeGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* DiskGravityCreator::createInstance() {
+	mGravityInstance = new DiskGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* DiskGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* DiskTorusGravityCreator::createInstance() {
+	mGravityInstance = new DiskTorusGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* DiskTorusGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* ConeGravityCreator::createInstance() {
+	mGravityInstance = new ConeGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* ConeGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneGravityCreator::createInstance() {
+	mGravityInstance = new ParallelGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneInBoxGravityCreator::createInstance() {
+	mGravityInstance = new ParallelGravity();
+	mGravityInstance->setRangeType(ParallelGravity::RangeType_Box);
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneInBoxGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneInCylinderGravityCreator::createInstance() {
+	mGravityInstance = new ParallelGravity();
+	mGravityInstance->setRangeType(ParallelGravity::RangeType_Cylinder);
+	return mGravityInstance;
+}
+
+PlanetGravity* PlaneInCylinderGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
 PlanetGravity* PointGravityCreator::createInstance() {
 	mGravityInstance = new PointGravity();
 	return mGravityInstance;
@@ -46,6 +111,15 @@ void PointGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRo
 }
 
 PlanetGravity* PointGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+PlanetGravity* SegmentGravityCreator::createInstance() {
+	mGravityInstance = new SegmentGravity();
+	return mGravityInstance;
+}
+
+PlanetGravity* SegmentGravityCreator::getGravity() {
 	return mGravityInstance;
 }
 
