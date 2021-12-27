@@ -1,7 +1,7 @@
 # Library Progress Chart
-Progress (Full Game): 2.2977152% [122348 / 5324768]
+Progress (Full Game): 2.3087578% [122936 / 5324768]
 
-Progress (Only Game): 2.9280293% [119896 / 4094768]
+Progress (Only Game): 2.9423888% [120484 / 4094768]
 
 You have 3 / 120 stars.
 
@@ -16,7 +16,7 @@ You have 3 / 120 stars.
 | Gravity.a | 17.199919% |
 | Speaker.a | 8.252704% |
 | Scene.a | 5.921913% |
-| Util.a | 4.855284% |
+| Util.a | 5.047715% |
 | System.a | 4.8320165% |
 | Map.a | 4.3972564% |
 | Animation.a | 4.361673% |

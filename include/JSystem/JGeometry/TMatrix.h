@@ -7,6 +7,9 @@ namespace JGeometry {
     template<typename T>
     class SMatrix34C {
     public:
+
+        void set(MtxPtr);
+
         T mMtx[3][4];
     };
 
