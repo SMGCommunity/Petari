@@ -39,6 +39,6 @@ public:
 	virtual PlanetGravity* createInstance();
 	virtual void settingFromJMapOtherParam(const JMapInfoIter &rIter);
 
-	RailRider* mRailRider; // _4
+	RailRider* mRailRider;         // _4
 	WireGravity* mGravityInstance; // _8
 };

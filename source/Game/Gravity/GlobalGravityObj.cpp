@@ -12,8 +12,9 @@ void GlobalGravityObj::init(const JMapInfoIter &rIter) {
 	MR::useStageSwitchReadA(this, rIter);
 	MR::useStageSwitchReadB(this, rIter);
 
-	if (MR::isValidSwitchA(this) || MR::isValidSwitchB(this))
+	if (MR::isValidSwitchA(this) || MR::isValidSwitchB(this)) {
 		MR::connectToSceneMapObjMovement(this);
+	}
 
 	MR::invalidateClipping(this);
 	MR::registerDemoSimpleCastAll(this);
@@ -26,14 +27,14 @@ void GlobalGravityObj::init(const JMapInfoIter &rIter) {
 void GlobalGravityObj::makeActorAppeared() {
 	LiveActor::makeActorAppeared();
 	PlanetGravity* pGravity = mGravityCreator->getGravity();
-	pGravity->_24 = true;
+	pGravity->mAppeared = true;
 	updateSwitch();
 }
 
 void GlobalGravityObj::makeActorDead() {
 	LiveActor::makeActorDead();
 	PlanetGravity* pGravity = mGravityCreator->getGravity();
-	pGravity->_24 = false;
+	pGravity->mAppeared = false;
 }
 
 void GlobalGravityObj::updateSwitch() {
@@ -41,13 +42,15 @@ void GlobalGravityObj::updateSwitch() {
 		bool switchA = true;
 		bool switchB = true;
 
-		if (MR::isValidSwitchA(this))
+		if (MR::isValidSwitchA(this)) {
 			switchA = MR::isOnSwitchA(this);
-		if (MR::isValidSwitchB(this))
+		}
+		if (MR::isValidSwitchB(this)) {
 			switchB = MR::isOnSwitchB(this) == false;
+		}
 
 		PlanetGravity* pGravity = mGravityCreator->getGravity();
-		pGravity->mEnabled = switchA && switchB;
+		pGravity->mActivated = switchA && switchB;
 	}
 }
 

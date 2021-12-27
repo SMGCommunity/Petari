@@ -10,7 +10,7 @@ void PlanetGravityManager::init(const JMapInfoIter &rIter) {
 
 // PlanetGravityManager::calcTotalGravityVector
 
-// NON-MATCHING
+#ifdef NON_MATCHING
 void PlanetGravityManager::registerGravity(PlanetGravity *pGravity) {
 	pGravity->mIsRegistered = true;
 	s32 index = mNumGravities++;
@@ -27,3 +27,4 @@ void PlanetGravityManager::registerGravity(PlanetGravity *pGravity) {
 		mGravities[i] = v8;
 	}
 }
+#endif

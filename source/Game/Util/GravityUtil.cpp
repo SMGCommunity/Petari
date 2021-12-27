@@ -141,12 +141,15 @@ namespace MR {
 		const char *pType = NULL;
 
 		if (rIter.getValue("Gravity_type", &pType)) {
-			if (!strcmp(pType, "Normal"))
+			if (!strcmp(pType, "Normal")) {
 				pGravity->mGravityType = GRAVITY_TYPE_NORMAL;
-			else if (!strcmp(pType, "Shadow"))
+			}
+			else if (!strcmp(pType, "Shadow")) {
 				pGravity->mGravityType = GRAVITY_TYPE_SHADOW;
-			else if (!strcmp(pType, "Magnet"))
+			}
+			else if (!strcmp(pType, "Magnet")) {
 				pGravity->mGravityType = GRAVITY_TYPE_MAGNET;
+			}
 		}
 	}
 
@@ -154,12 +157,15 @@ namespace MR {
 		const char *pPower = NULL;
 
 		if (rIter.getValue("Power", &pPower)) {
-			if (!strcmp(pPower, "Light"))
+			if (!strcmp(pPower, "Light")) {
 				pGravity->mGravityPower = GRAVITY_POWER_LIGHT;
-			else if (!strcmp(pPower, "Normal"))
+			}
+			else if (!strcmp(pPower, "Normal")) {
 				pGravity->mGravityPower = GRAVITY_POWER_NORMAL;
-			else if (!strcmp(pPower, "Heavy"))
+			}
+			else if (!strcmp(pPower, "Heavy")) {
 				pGravity->mGravityPower = GRAVITY_POWER_HEAVY;
+			}
 		}
 	}
 }

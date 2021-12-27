@@ -9,11 +9,11 @@ PlanetGravity::PlanetGravity() {
 	mHost = this;
 	mGravityType = GRAVITY_TYPE_NORMAL;
 	mGravityPower = GRAVITY_POWER_NORMAL;
-	mEnabled = true;
+	mActivated = true;
 	mIsInverse = false;
 	_22 = true;
 	mIsRegistered = false;
-	_24 = true;
+	mAppeared = true;
 }
 
 void PlanetGravity::setPriority(s32 priority) {
