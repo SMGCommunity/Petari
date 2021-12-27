@@ -132,6 +132,13 @@ PlanetGravity* ConeGravityCreator::createInstance() {
 	return mGravityInstance;
 }
 
+void ConeGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
+	TVec3f scale = rScale * 500.0f;
+	TPos3f localMtx;
+	MR::makeMtxTRS(reinterpret_cast<MtxPtr>(&localMtx), rTrans, rRotate, scale);
+	mGravityInstance->setLocalMatrix(localMtx);
+}
+
 void ConeGravityCreator::settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {
 	// Obj_arg0 = is enable bottom?
 	mGravityInstance->setEnableBottom(arg0 != 0);
