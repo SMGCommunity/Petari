@@ -31,7 +31,7 @@ void MarioLauncherAttractor::init(const JMapInfoIter &rIter) {
 	// Connect to executor, init nerve and start animation
 	MR::connectToSceneMapObj(this);
 	initNerve(&NrvMarioLauncherAttractor::MarioLauncherAttractorNrvWait::sInstance);
-	MR::startBtk(this, "MarioLauncherAttractor.h");
+	MR::startBtk(this, "MarioLauncherAttractor");
 
 	makeActorAppeared();
 }
