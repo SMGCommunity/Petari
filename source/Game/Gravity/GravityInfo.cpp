@@ -1,17 +1,17 @@
 #include "Game/Gravity.h"
 
 GravityInfo::GravityInfo() {
-	_C = -1;
-	_0.x = 0.0f;
-	_0.y = 0.0f;
-	_0.z = 0.0f;
-	mGravity = NULL;
+	mLargestPriority = -1;
+	mGravityVector.x = 0.0f;
+	mGravityVector.y = 0.0f;
+	mGravityVector.z = 0.0f;
+	mGravityInstance = NULL;
 }
 
 void GravityInfo::init() {
-	_C = -1;
-	_0.z = 0.0f;
-	_0.y = 0.0f;
-	_0.x = 0.0f;
-	mGravity = NULL;
+	mLargestPriority = -1;
+	mGravityVector.z = 0.0f;
+	mGravityVector.y = 0.0f;
+	mGravityVector.x = 0.0f;
+	mGravityInstance = NULL;
 }

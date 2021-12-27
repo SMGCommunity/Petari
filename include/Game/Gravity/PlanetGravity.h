@@ -38,7 +38,7 @@ public:
 	f32 mDistant; // _8
 	s32 mPriority; // _C
 	s32 mGravityId; // _10
-	void* _14;
+	void* mHost; // _14
 	s32 mGravityType; // _18
 	s32 mGravityPower; // _1C
 	bool mEnabled; // _20

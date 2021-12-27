@@ -82,7 +82,7 @@ const TVec3f *CameraTargetActor::getGroundPos() const {
 
 const TVec3f *CameraTargetActor::getGravityVector() const {
     if (getGravityInfo() != NULL) {
-        return &getGravityInfo()->_0;
+        return &getGravityInfo()->mGravityVector;
     }
     else {
         return &mUp;

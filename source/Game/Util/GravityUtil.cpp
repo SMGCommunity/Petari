@@ -26,13 +26,13 @@ namespace {
 		}
 	}
 
-	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 unk) {
-		if (!unk)
-			unk = (u32)pActor;
+	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 host) {
+		if (!host)
+			host = (u32)pActor;
 
 		PlanetGravityManager* pManager
 			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SCENEOBJ_PLANETGRAVITYMANAGER));
-		return pManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, unk);
+		return pManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
 	}
 }
 
@@ -43,59 +43,59 @@ namespace MR {
 		pManager->registerGravity(pGravity);
 	}
 
-	bool calcGravityVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL;
-		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcDropShadowVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcDropShadowVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_SHADOW;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcDropShadowVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcDropShadowVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_SHADOW;
-		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityAndDropShadowVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityAndDropShadowVector(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL | GRAVITY_TYPE_SHADOW;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityAndMagnetVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityAndMagnetVector(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL | GRAVITY_TYPE_MAGNET;
-		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityVectorOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityVectorOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL;
-		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcDropShadowVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcDropShadowVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_SHADOW;
-		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, rPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcGravityAndDropShadowVectorOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcGravityAndDropShadowVectorOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_NORMAL | GRAVITY_TYPE_SHADOW;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
-	bool calcAttractMarioLauncherOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 unk) {
+	bool calcAttractMarioLauncherOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *pInfo, u32 host) {
 		u32 typeFlags = GRAVITY_TYPE_MARIO_LAUNCHER;
-		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, unk);
+		return ::calcGravityVectorOrZero(pActor, pActor->mPosition, typeFlags, pDest, pInfo, host);
 	}
 
 	bool isZeroGravity(const LiveActor *pActor) {
@@ -104,7 +104,7 @@ namespace MR {
 	}
 
 	bool isLightGravity(const GravityInfo &rInfo) {
-		PlanetGravity* pGravity = rInfo.mGravity;
+		PlanetGravity* pGravity = rInfo.mGravityInstance;
 		return !pGravity ? false : pGravity->mGravityPower == GRAVITY_POWER_LIGHT;
 	}
 
