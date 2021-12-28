@@ -1,12 +1,12 @@
 # Speaker
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| SpkSpeakerCtrl.o | 0.0% | 0 / 21 |
-| SpkSystem.o | 0.0% | 0 / 14 |
-| SpkMixingBuffer.o | 0.0% | 0 / 4 |
-| SpkWave.o | 100.0% | 7 / 7 |
-| SpkTable.o | 18.181818181818183% | 1 / 2 |
-| SpkData.o | 100.0% | 4 / 4 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| SpkSpeakerCtrl.o | 0.0% | 0 / 21 | 0.0% |
+| SpkSystem.o | 0.0% | 0 / 14 | 0.0% |
+| SpkMixingBuffer.o | 0.0% | 0 / 4 | 0.0% |
+| SpkWave.o | 100.0% | 7 / 7 | 100.0% |
+| SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
+| SpkData.o | 100.0% | 4 / 4 | 100.0% |
 
 
 # SpkSpeakerCtrl.o

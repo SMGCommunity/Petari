@@ -1,142 +1,142 @@
 # Screen
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| THPDraw.o | 0.0% | 0 / 4 |
-| BackButton.o | 0.0% | 0 / 10 |
-| BatteryInfo.o | 0.0% | 0 / 43 |
-| BloomEffect.o | 0.0% | 0 / 20 |
-| BloomEffectSimple.o | 0.0% | 0 / 4 |
-| BombTimerLayout.o | 0.0% | 0 / 25 |
-| BrosButton.o | 0.0% | 0 / 21 |
-| ButtonPaneController.o | 0.0% | 0 / 55 |
-| CameraInfo.o | 0.0% | 0 / 30 |
-| CaptureScreenDirector.o | 0.0% | 0 / 14 |
-| CenterScreenBlur.o | 0.0% | 0 / 16 |
-| CinemaFrame.o | 0.0% | 0 / 28 |
-| CoinCounter.o | 0.0% | 0 / 22 |
-| CometRetryButton.o | 0.0% | 0 / 22 |
-| CopyFilterNegater.o | 0.0% | 0 / 2 |
-| CounterLayoutAppearer.o | 0.0% | 0 / 20 |
-| CounterLayoutController.o | 0.0% | 0 / 25 |
-| CountUpPaneRumbler.o | 0.0% | 0 / 6 |
-| CustomTagProcessor.o | 0.0% | 0 / 58 |
-| DepthOfFieldBlur.o | 0.0% | 0 / 6 |
-| EncouragePal60Window.o | 0.0% | 0 / 14 |
-| ErrorMessageWindow.o | 0.0% | 0 / 19 |
-| FileSelectButton.o | 0.0% | 0 / 21 |
-| FileSelectInfo.o | 0.0% | 0 / 47 |
-| FileSelectNumber.o | 0.0% | 0 / 31 |
-| FullnessMeter.o | 0.0% | 0 / 17 |
-| FullScreenBlur.o | 0.0% | 0 / 2 |
-| GalaxyCometScreenFilter.o | 0.0% | 0 / 3 |
-| GalaxyConfirmLayout.o | 0.0% | 0 / 18 |
-| GalaxyInfoLayoutSetter.o | 0.0% | 0 / 12 |
-| GalaxyMap.o | 0.0% | 0 / 68 |
-| GalaxyMapBackground.o | 0.0% | 0 / 3 |
-| GalaxyMapCometIcon.o | 0.0% | 0 / 8 |
-| GalaxyMapController.o | 0.0% | 0 / 91 |
-| GalaxyMapDomeIcon.o | 0.0% | 0 / 21 |
-| GalaxyMapGalaxyDetail.o | 0.0% | 0 / 20 |
-| GalaxyMapGalaxyPlain.o | 0.0% | 0 / 12 |
-| GalaxyMapIcon.o | 0.0% | 0 / 18 |
-| GalaxyMapMarioIcon.o | 0.0% | 0 / 5 |
-| GalaxyMapSelectButton.o | 0.0% | 0 / 31 |
-| GalaxyMapTicoIcon.o | 0.0% | 0 / 9 |
-| GalaxyMapTitle.o | 0.0% | 0 / 24 |
-| GalaxyNamePlate.o | 0.0% | 0 / 22 |
-| GalaxyNamePlateDrawer.o | 0.0% | 0 / 10 |
-| GalaxySelectBackButton.o | 0.0% | 0 / 20 |
-| GalaxySelectInfo.o | 0.0% | 0 / 17 |
-| GamePauseSequence.o | 0.0% | 0 / 17 |
-| GameSceneLayoutHolder.o | 0.0% | 0 / 21 |
-| GameStageClearSequence.o | 0.0% | 0 / 13 |
-| HeatHazeEffect.o | 0.0% | 0 / 9 |
-| HomeButtonLayout.o | 0.0% | 0 / 20 |
-| IconAButton.o | 0.0% | 0 / 22 |
-| IconComet.o | 0.0% | 0 / 8 |
-| ImageEffectBase.o | 0.0% | 0 / 2 |
-| ImageEffectDirector.o | 0.0% | 0 / 33 |
-| ImageEffectLocalUtil.o | 0.0% | 0 / 12 |
-| ImageEffectResource.o | 0.0% | 0 / 5 |
-| ImageEffectState.o | 0.0% | 0 / 33 |
-| ImageEffectSystemHolder.o | 0.0% | 0 / 8 |
-| InformationMessage.o | 0.0% | 0 / 17 |
-| InformationObserver.o | 0.0% | 0 / 20 |
-| IsbnManager.o | 0.0% | 0 / 10 |
-| LayoutActor.o | 0.0% | 0 / 21 |
-| LayoutActorFlag.o | 0.0% | 0 / 1 |
-| LayoutCoreUtil.o | 0.0% | 0 / 6 |
-| LayoutGroupCtrl.o | 0.0% | 0 / 11 |
-| LayoutManager.o | 0.0% | 0 / 54 |
-| LayoutPaneCtrl.o | 0.0% | 0 / 9 |
-| LensFlare.o | 0.0% | 0 / 49 |
-| LogoFader.o | 0.0% | 0 / 18 |
-| LuigiLetter.o | 0.0% | 0 / 20 |
-| Manual2P.o | 0.0% | 0 / 30 |
-| MarioMeter.o | 0.0% | 0 / 11 |
-| MarioSubMeter.o | 0.0% | 0 / 10 |
-| MessageTagSkipTagProcessor.o | 0.0% | 0 / 13 |
-| MeterLayout.o | 0.0% | 0 / 53 |
-| MiiConfirmIcon.o | 0.0% | 0 / 16 |
-| MiiSelect.o | 0.0% | 0 / 61 |
-| MiiSelectIcon.o | 0.0% | 0 / 30 |
-| MissLayout.o | 0.0% | 0 / 14 |
-| MoviePlayerSimple.o | 0.0% | 0 / 35 |
-| MoviePlayingSequence.o | 0.0% | 0 / 45 |
-| MovieSubtitles.o | 0.0% | 0 / 12 |
-| MovieSubtitlesDataTable.o | 0.0% | 0 / 6 |
-| MovieStarter.o | 0.0% | 0 / 8 |
-| NoteCounter.o | 0.0% | 0 / 22 |
-| odh.o | 0.0% | 0 / 12 |
-| OdhConverter.o | 0.0% | 0 / 13 |
-| OneUpBoard.o | 0.0% | 0 / 13 |
-| PaneEffectKeeper.o | 0.0% | 0 / 13 |
-| PauseMenu.o | 0.0% | 0 / 31 |
-| PeachLetter.o | 0.0% | 0 / 16 |
-| PictureBookCloseButton.o | 0.0% | 0 / 15 |
-| PictureBookLayout.o | 0.0% | 0 / 62 |
-| PlayerActionGuidance.o | 0.0% | 0 / 29 |
-| PlayerLeft.o | 0.0% | 0 / 21 |
-| PlayerMissLeft.o | 0.0% | 0 / 17 |
-| PowerStarList.o | 0.0% | 0 / 63 |
-| PrologueLetter.o | 0.0% | 0 / 16 |
-| ProloguePictureBook.o | 0.0% | 0 / 18 |
-| PurpleCoinCounter.o | 0.0% | 0 / 13 |
-| ReplaceTagProcessor.o | 0.0% | 0 / 12 |
-| SaveIcon.o | 0.0% | 0 / 4 |
-| ScenarioSelectLayout.o | 0.0% | 0 / 63 |
-| ScenarioTitle.o | 0.0% | 0 / 14 |
-| SceneWipeHolder.o | 0.0% | 0 / 9 |
-| ScreenAlphaCapture.o | 0.0% | 0 / 9 |
-| ScreenBlurEffect.o | 0.0% | 0 / 7 |
-| ScreenPreserver.o | 0.0% | 0 / 6 |
-| SimpleLayout.o | 0.0% | 0 / 3 |
-| StaffRoll.o | 0.0% | 0 / 83 |
-| StageResultInformer.o | 0.0% | 0 / 74 |
-| StarCounter.o | 0.0% | 0 / 18 |
-| StarPieceCounter.o | 0.0% | 0 / 30 |
-| StarPointerBlur.o | 0.0% | 0 / 13 |
-| StarPointerCommandStream.o | 0.0% | 0 / 17 |
-| StarPointerController.o | 0.0% | 0 / 12 |
-| StarPointerDirector.o | 0.0% | 0 / 29 |
-| StarPointerGuidance.o | 0.0% | 0 / 37 |
-| StarPointerLayout.o | 0.0% | 0 / 74 |
-| StarPointerTarget.o | 0.0% | 0 / 15 |
-| SubMeterLayout.o | 0.0% | 0 / 9 |
-| SuddenDeathMeter.o | 0.0% | 0 / 41 |
-| SurfingGuidance.o | 0.0% | 0 / 42 |
-| SysInfoWindow.o | 0.0% | 0 / 32 |
-| SystemWipeHolder.o | 0.0% | 0 / 11 |
-| THPSimplePlayerWrapper.o | 0.0% | 0 / 60 |
-| TimeLimitLayout.o | 0.0% | 0 / 37 |
-| TitleSequenceProduct.o | 0.0% | 0 / 31 |
-| WaterCameraFilter.o | 0.0% | 0 / 17 |
-| WipeFade.o | 0.0% | 0 / 15 |
-| WipeGameOver.o | 0.0% | 0 / 17 |
-| WipeHolderBase.o | 0.0% | 0 / 13 |
-| WipeKoopa.o | 0.0% | 0 / 19 |
-| WipeRing.o | 0.0% | 0 / 28 |
-| YesNoController.o | 0.0% | 0 / 27 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| THPDraw.o | 0.0% | 0 / 4 | 0.0% |
+| BackButton.o | 0.0% | 0 / 10 | 0.0% |
+| BatteryInfo.o | 0.0% | 0 / 43 | 0.0% |
+| BloomEffect.o | 0.0% | 0 / 20 | 0.0% |
+| BloomEffectSimple.o | 0.0% | 0 / 4 | 0.0% |
+| BombTimerLayout.o | 0.0% | 0 / 25 | 0.0% |
+| BrosButton.o | 0.0% | 0 / 21 | 0.0% |
+| ButtonPaneController.o | 0.0% | 0 / 55 | 0.0% |
+| CameraInfo.o | 0.0% | 0 / 30 | 0.0% |
+| CaptureScreenDirector.o | 0.0% | 0 / 14 | 0.0% |
+| CenterScreenBlur.o | 0.0% | 0 / 16 | 0.0% |
+| CinemaFrame.o | 0.0% | 0 / 28 | 0.0% |
+| CoinCounter.o | 0.0% | 0 / 22 | 0.0% |
+| CometRetryButton.o | 0.0% | 0 / 22 | 0.0% |
+| CopyFilterNegater.o | 0.0% | 0 / 2 | 0.0% |
+| CounterLayoutAppearer.o | 0.0% | 0 / 20 | 0.0% |
+| CounterLayoutController.o | 0.0% | 0 / 25 | 0.0% |
+| CountUpPaneRumbler.o | 0.0% | 0 / 6 | 0.0% |
+| CustomTagProcessor.o | 0.0% | 0 / 58 | 0.0% |
+| DepthOfFieldBlur.o | 0.0% | 0 / 6 | 0.0% |
+| EncouragePal60Window.o | 0.0% | 0 / 14 | 0.0% |
+| ErrorMessageWindow.o | 0.0% | 0 / 19 | 0.0% |
+| FileSelectButton.o | 0.0% | 0 / 21 | 0.0% |
+| FileSelectInfo.o | 0.0% | 0 / 47 | 0.0% |
+| FileSelectNumber.o | 0.0% | 0 / 31 | 0.0% |
+| FullnessMeter.o | 0.0% | 0 / 17 | 0.0% |
+| FullScreenBlur.o | 0.0% | 0 / 2 | 0.0% |
+| GalaxyCometScreenFilter.o | 0.0% | 0 / 3 | 0.0% |
+| GalaxyConfirmLayout.o | 0.0% | 0 / 18 | 0.0% |
+| GalaxyInfoLayoutSetter.o | 0.0% | 0 / 12 | 0.0% |
+| GalaxyMap.o | 0.0% | 0 / 68 | 0.0% |
+| GalaxyMapBackground.o | 0.0% | 0 / 3 | 0.0% |
+| GalaxyMapCometIcon.o | 0.0% | 0 / 8 | 0.0% |
+| GalaxyMapController.o | 0.0% | 0 / 91 | 0.0% |
+| GalaxyMapDomeIcon.o | 0.0% | 0 / 21 | 0.0% |
+| GalaxyMapGalaxyDetail.o | 0.0% | 0 / 20 | 0.0% |
+| GalaxyMapGalaxyPlain.o | 0.0% | 0 / 12 | 0.0% |
+| GalaxyMapIcon.o | 0.0% | 0 / 18 | 0.0% |
+| GalaxyMapMarioIcon.o | 0.0% | 0 / 5 | 0.0% |
+| GalaxyMapSelectButton.o | 0.0% | 0 / 31 | 0.0% |
+| GalaxyMapTicoIcon.o | 0.0% | 0 / 9 | 0.0% |
+| GalaxyMapTitle.o | 0.0% | 0 / 24 | 0.0% |
+| GalaxyNamePlate.o | 0.0% | 0 / 22 | 0.0% |
+| GalaxyNamePlateDrawer.o | 0.0% | 0 / 10 | 0.0% |
+| GalaxySelectBackButton.o | 0.0% | 0 / 20 | 0.0% |
+| GalaxySelectInfo.o | 0.0% | 0 / 17 | 0.0% |
+| GamePauseSequence.o | 0.0% | 0 / 17 | 0.0% |
+| GameSceneLayoutHolder.o | 0.0% | 0 / 21 | 0.0% |
+| GameStageClearSequence.o | 0.0% | 0 / 13 | 0.0% |
+| HeatHazeEffect.o | 0.0% | 0 / 9 | 0.0% |
+| HomeButtonLayout.o | 0.0% | 0 / 20 | 0.0% |
+| IconAButton.o | 0.0% | 0 / 22 | 0.0% |
+| IconComet.o | 0.0% | 0 / 8 | 0.0% |
+| ImageEffectBase.o | 0.0% | 0 / 2 | 0.0% |
+| ImageEffectDirector.o | 0.0% | 0 / 33 | 0.0% |
+| ImageEffectLocalUtil.o | 0.0% | 0 / 12 | 0.0% |
+| ImageEffectResource.o | 0.0% | 0 / 5 | 0.0% |
+| ImageEffectState.o | 0.0% | 0 / 33 | 0.0% |
+| ImageEffectSystemHolder.o | 0.0% | 0 / 8 | 0.0% |
+| InformationMessage.o | 0.0% | 0 / 17 | 0.0% |
+| InformationObserver.o | 0.0% | 0 / 20 | 0.0% |
+| IsbnManager.o | 0.0% | 0 / 10 | 0.0% |
+| LayoutActor.o | 0.0% | 0 / 21 | 0.0% |
+| LayoutActorFlag.o | 0.0% | 0 / 1 | 0.0% |
+| LayoutCoreUtil.o | 0.0% | 0 / 6 | 0.0% |
+| LayoutGroupCtrl.o | 0.0% | 0 / 11 | 0.0% |
+| LayoutManager.o | 0.0% | 0 / 54 | 0.0% |
+| LayoutPaneCtrl.o | 0.0% | 0 / 9 | 0.0% |
+| LensFlare.o | 0.0% | 0 / 49 | 0.0% |
+| LogoFader.o | 0.0% | 0 / 18 | 0.0% |
+| LuigiLetter.o | 0.0% | 0 / 20 | 0.0% |
+| Manual2P.o | 0.0% | 0 / 30 | 0.0% |
+| MarioMeter.o | 0.0% | 0 / 11 | 0.0% |
+| MarioSubMeter.o | 0.0% | 0 / 10 | 0.0% |
+| MessageTagSkipTagProcessor.o | 0.0% | 0 / 13 | 0.0% |
+| MeterLayout.o | 0.0% | 0 / 53 | 0.0% |
+| MiiConfirmIcon.o | 0.0% | 0 / 16 | 0.0% |
+| MiiSelect.o | 0.0% | 0 / 61 | 0.0% |
+| MiiSelectIcon.o | 0.0% | 0 / 30 | 0.0% |
+| MissLayout.o | 0.0% | 0 / 14 | 0.0% |
+| MoviePlayerSimple.o | 0.0% | 0 / 35 | 0.0% |
+| MoviePlayingSequence.o | 0.0% | 0 / 45 | 0.0% |
+| MovieSubtitles.o | 0.0% | 0 / 12 | 0.0% |
+| MovieSubtitlesDataTable.o | 0.0% | 0 / 6 | 0.0% |
+| MovieStarter.o | 0.0% | 0 / 8 | 0.0% |
+| NoteCounter.o | 0.0% | 0 / 22 | 0.0% |
+| odh.o | 0.0% | 0 / 12 | 0.0% |
+| OdhConverter.o | 0.0% | 0 / 13 | 0.0% |
+| OneUpBoard.o | 0.0% | 0 / 13 | 0.0% |
+| PaneEffectKeeper.o | 0.0% | 0 / 13 | 0.0% |
+| PauseMenu.o | 0.0% | 0 / 31 | 0.0% |
+| PeachLetter.o | 0.0% | 0 / 16 | 0.0% |
+| PictureBookCloseButton.o | 0.0% | 0 / 15 | 0.0% |
+| PictureBookLayout.o | 0.0% | 0 / 62 | 0.0% |
+| PlayerActionGuidance.o | 0.0% | 0 / 29 | 0.0% |
+| PlayerLeft.o | 0.0% | 0 / 21 | 0.0% |
+| PlayerMissLeft.o | 0.0% | 0 / 17 | 0.0% |
+| PowerStarList.o | 0.0% | 0 / 63 | 0.0% |
+| PrologueLetter.o | 0.0% | 0 / 16 | 0.0% |
+| ProloguePictureBook.o | 0.0% | 0 / 18 | 0.0% |
+| PurpleCoinCounter.o | 0.0% | 0 / 13 | 0.0% |
+| ReplaceTagProcessor.o | 0.0% | 0 / 12 | 0.0% |
+| SaveIcon.o | 0.0% | 0 / 4 | 0.0% |
+| ScenarioSelectLayout.o | 0.0% | 0 / 63 | 0.0% |
+| ScenarioTitle.o | 0.0% | 0 / 14 | 0.0% |
+| SceneWipeHolder.o | 0.0% | 0 / 9 | 0.0% |
+| ScreenAlphaCapture.o | 0.0% | 0 / 9 | 0.0% |
+| ScreenBlurEffect.o | 0.0% | 0 / 7 | 0.0% |
+| ScreenPreserver.o | 0.0% | 0 / 6 | 0.0% |
+| SimpleLayout.o | 0.0% | 0 / 3 | 0.0% |
+| StaffRoll.o | 0.0% | 0 / 83 | 0.0% |
+| StageResultInformer.o | 0.0% | 0 / 74 | 0.0% |
+| StarCounter.o | 0.0% | 0 / 18 | 0.0% |
+| StarPieceCounter.o | 0.0% | 0 / 30 | 0.0% |
+| StarPointerBlur.o | 0.0% | 0 / 13 | 0.0% |
+| StarPointerCommandStream.o | 0.0% | 0 / 17 | 0.0% |
+| StarPointerController.o | 0.0% | 0 / 12 | 0.0% |
+| StarPointerDirector.o | 0.0% | 0 / 29 | 0.0% |
+| StarPointerGuidance.o | 0.0% | 0 / 37 | 0.0% |
+| StarPointerLayout.o | 0.0% | 0 / 74 | 0.0% |
+| StarPointerTarget.o | 0.0% | 0 / 15 | 0.0% |
+| SubMeterLayout.o | 0.0% | 0 / 9 | 0.0% |
+| SuddenDeathMeter.o | 0.0% | 0 / 41 | 0.0% |
+| SurfingGuidance.o | 0.0% | 0 / 42 | 0.0% |
+| SysInfoWindow.o | 0.0% | 0 / 32 | 0.0% |
+| SystemWipeHolder.o | 0.0% | 0 / 11 | 0.0% |
+| THPSimplePlayerWrapper.o | 0.0% | 0 / 60 | 0.0% |
+| TimeLimitLayout.o | 0.0% | 0 / 37 | 0.0% |
+| TitleSequenceProduct.o | 0.0% | 0 / 31 | 0.0% |
+| WaterCameraFilter.o | 0.0% | 0 / 17 | 0.0% |
+| WipeFade.o | 0.0% | 0 / 15 | 0.0% |
+| WipeGameOver.o | 0.0% | 0 / 17 | 0.0% |
+| WipeHolderBase.o | 0.0% | 0 / 13 | 0.0% |
+| WipeKoopa.o | 0.0% | 0 / 19 | 0.0% |
+| WipeRing.o | 0.0% | 0 / 28 | 0.0% |
+| YesNoController.o | 0.0% | 0 / 27 | 0.0% |
 
 
 # THPDraw.o

@@ -1,19 +1,19 @@
 # Gravity
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| ConeGravity.o | 0.0% | 0 / 6 |
-| CubeGravity.o | 0.0% | 0 / 10 |
-| DiskGravity.o | 0.0% | 0 / 11 |
-| DiskTorusGravity.o | 0.0% | 0 / 9 |
-| GlobalGravityObj.o | 100.0% | 18 / 18 |
-| GraviryFollower.o | 100.0% | 4 / 4 |
-| GravityCreator.o | 72.55965292841648% | 35 / 42 |
-| GravityInfo.o | 100.0% | 2 / 2 |
-| ParallelGravity.o | 0.0% | 0 / 13 |
-| PlanetGravity.o | 100.0% | 9 / 9 |
-| PlanetGravityManager.o | 21.73913043478261% | 3 / 5 |
-| PointGravity.o | 100.0% | 3 / 3 |
-| SegmentGravity.o | 0.0% | 0 / 8 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| ConeGravity.o | 0.0% | 0 / 6 | 0.0% |
+| CubeGravity.o | 0.0% | 0 / 10 | 0.0% |
+| DiskGravity.o | 0.0% | 0 / 11 | 0.0% |
+| DiskTorusGravity.o | 0.0% | 0 / 9 | 0.0% |
+| GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% |
+| GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
+| GravityCreator.o | 72.55965292841648% | 35 / 42 | 83.33333333333334% |
+| GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
+| ParallelGravity.o | 0.0% | 0 / 13 | 0.0% |
+| PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
+| PlanetGravityManager.o | 21.73913043478261% | 3 / 5 | 60.0% |
+| PointGravity.o | 100.0% | 3 / 3 | 100.0% |
+| SegmentGravity.o | 0.0% | 0 / 8 | 0.0% |
 
 
 # ConeGravity.o

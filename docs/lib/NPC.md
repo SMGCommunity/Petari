@@ -1,83 +1,83 @@
 # NPC
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| Butler.o | 0.0% | 0 / 53 |
-| ButlerExplain.o | 0.0% | 0 / 10 |
-| ButlerMap.o | 0.0% | 0 / 31 |
-| ButlerStateStarPieceReaction.o | 0.0% | 0 / 8 |
-| CareTaker.o | 0.0% | 0 / 65 |
-| CollectTico.o | 0.0% | 0 / 22 |
-| DemoRabbit.o | 0.0% | 0 / 48 |
-| HoneyBee.o | 0.0% | 0 / 28 |
-| HoneyQueen.o | 0.0% | 0 / 35 |
-| Kinopio.o | 0.0% | 0 / 65 |
-| KinopioAstro.o | 0.0% | 0 / 22 |
-| KoopaJr.o | 0.0% | 0 / 41 |
-| LuigiNPC.o | 0.0% | 0 / 58 |
-| MiiDatabase.o | 0.0% | 0 / 3 |
-| MiiFaceIcon.o | 0.0% | 0 / 8 |
-| MiiFaceIconHolder.o | 0.0% | 0 / 7 |
-| MiiFaceParts.o | 0.0% | 0 / 13 |
-| MiiFacePartsHolder.o | 2.910360884749709% | 1 / 20 |
-| MiiFaceRecipe.o | 100.0% | 7 / 7 |
-| Peach.o | 0.0% | 0 / 7 |
-| Penguin.o | 0.0% | 0 / 27 |
-| PenguinCoach.o | 0.0% | 0 / 40 |
-| PenguinMaster.o | 0.0% | 0 / 10 |
-| PenguinRacer.o | 0.0% | 0 / 64 |
-| PenguinRacerLeader.o | 0.0% | 0 / 30 |
-| PenguinSkater.o | 0.0% | 0 / 54 |
-| PenguinStudent.o | 0.0% | 0 / 22 |
-| PowerStarEventKeeper.o | 0.0% | 0 / 12 |
-| Rabbit.o | 0.0% | 0 / 54 |
-| RabbitStateCaught.o | 0.0% | 0 / 20 |
-| RabbitStateWaitStart.o | 0.0% | 0 / 37 |
-| Rosetta.o | 0.0% | 0 / 25 |
-| RosettaDemoAstroDome.o | 0.0% | 0 / 33 |
-| RosettaDemoEpilogue.o | 0.0% | 0 / 9 |
-| RosettaDemoHeavensDoor.o | 0.0% | 0 / 33 |
-| RosettaReading.o | 0.0% | 0 / 16 |
-| RunawayRabbit.o | 0.0% | 0 / 61 |
-| RunawayRabbitCollect.o | 0.0% | 0 / 17 |
-| RunawayTico.o | 0.0% | 0 / 39 |
-| SignBoard.o | 0.0% | 0 / 8 |
-| StrayTico.o | 0.0% | 0 / 36 |
-| Syati.o | 0.0% | 0 / 88 |
-| TeresaRacer.o | 0.0% | 0 / 51 |
-| Tico.o | 0.0% | 0 / 71 |
-| TicoAstro.o | 0.0% | 0 / 3 |
-| TicoComet.o | 0.0% | 0 / 46 |
-| TicoDemoGetPower.o | 0.0% | 0 / 11 |
-| TicoDomeLecture.o | 0.0% | 0 / 14 |
-| TicoFat.o | 0.0% | 0 / 82 |
-| TicoGalaxy.o | 0.0% | 0 / 11 |
-| TicoRail.o | 0.0% | 0 / 40 |
-| TicoReading.o | 0.0% | 0 / 8 |
-| TicoShop.o | 0.0% | 0 / 16 |
-| TicoStarRing.o | 0.0% | 0 / 9 |
-| TrickRabbit.o | 0.0% | 0 / 128 |
-| TrickRabbitFreeRun.o | 0.0% | 0 / 41 |
-| TrickRabbitSnowCollect.o | 0.0% | 0 / 61 |
-| TrickRabbitSnow.o | 0.0% | 0 / 59 |
-| TrickRabbitUtil.o | 0.0% | 0 / 1 |
-| CometEventExecutorTimeLimit.o | 0.0% | 0 / 10 |
-| CometEventKeeper.o | 0.0% | 0 / 8 |
-| EventDirector.o | 0.0% | 0 / 17 |
-| NPCActor.o | 0.0% | 0 / 54 |
-| NPCParameter.o | 0.0% | 0 / 20 |
-| NPCDirector.o | 0.0% | 0 / 3 |
-| NPCFunction.o | 0.0% | 0 / 3 |
-| NPCSupportRail.o | 0.0% | 0 / 3 |
-| StageStateKeeper.o | 0.0% | 0 / 1 |
-| TalkBalloon.o | 0.0% | 0 / 69 |
-| TalkDirector.o | 0.0% | 0 / 62 |
-| TalkMessageCtrl.o | 0.0% | 0 / 43 |
-| TalkMessageInfo.o | 100.0% | 14 / 14 |
-| TalkNodeCtrl.o | 0.0% | 0 / 23 |
-| TurnJointCtrl.o | 0.0% | 0 / 20 |
-| TalkState.o | 0.0% | 0 / 31 |
-| TalkSupportPlayerWatcher.o | 0.0% | 0 / 5 |
-| TalkTextFormer.o | 0.0% | 0 / 16 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| Butler.o | 0.0% | 0 / 53 | 0.0% |
+| ButlerExplain.o | 0.0% | 0 / 10 | 0.0% |
+| ButlerMap.o | 0.0% | 0 / 31 | 0.0% |
+| ButlerStateStarPieceReaction.o | 0.0% | 0 / 8 | 0.0% |
+| CareTaker.o | 0.0% | 0 / 65 | 0.0% |
+| CollectTico.o | 0.0% | 0 / 22 | 0.0% |
+| DemoRabbit.o | 0.0% | 0 / 48 | 0.0% |
+| HoneyBee.o | 0.0% | 0 / 28 | 0.0% |
+| HoneyQueen.o | 0.0% | 0 / 35 | 0.0% |
+| Kinopio.o | 0.0% | 0 / 65 | 0.0% |
+| KinopioAstro.o | 0.0% | 0 / 22 | 0.0% |
+| KoopaJr.o | 0.0% | 0 / 41 | 0.0% |
+| LuigiNPC.o | 0.0% | 0 / 58 | 0.0% |
+| MiiDatabase.o | 0.0% | 0 / 3 | 0.0% |
+| MiiFaceIcon.o | 0.0% | 0 / 8 | 0.0% |
+| MiiFaceIconHolder.o | 0.0% | 0 / 7 | 0.0% |
+| MiiFaceParts.o | 0.0% | 0 / 13 | 0.0% |
+| MiiFacePartsHolder.o | 2.910360884749709% | 1 / 20 | 5.0% |
+| MiiFaceRecipe.o | 100.0% | 7 / 7 | 100.0% |
+| Peach.o | 0.0% | 0 / 7 | 0.0% |
+| Penguin.o | 0.0% | 0 / 27 | 0.0% |
+| PenguinCoach.o | 0.0% | 0 / 40 | 0.0% |
+| PenguinMaster.o | 0.0% | 0 / 10 | 0.0% |
+| PenguinRacer.o | 0.0% | 0 / 64 | 0.0% |
+| PenguinRacerLeader.o | 0.0% | 0 / 30 | 0.0% |
+| PenguinSkater.o | 0.0% | 0 / 54 | 0.0% |
+| PenguinStudent.o | 0.0% | 0 / 22 | 0.0% |
+| PowerStarEventKeeper.o | 0.0% | 0 / 12 | 0.0% |
+| Rabbit.o | 0.0% | 0 / 54 | 0.0% |
+| RabbitStateCaught.o | 0.0% | 0 / 20 | 0.0% |
+| RabbitStateWaitStart.o | 0.0% | 0 / 37 | 0.0% |
+| Rosetta.o | 0.0% | 0 / 25 | 0.0% |
+| RosettaDemoAstroDome.o | 0.0% | 0 / 33 | 0.0% |
+| RosettaDemoEpilogue.o | 0.0% | 0 / 9 | 0.0% |
+| RosettaDemoHeavensDoor.o | 0.0% | 0 / 33 | 0.0% |
+| RosettaReading.o | 0.0% | 0 / 16 | 0.0% |
+| RunawayRabbit.o | 0.0% | 0 / 61 | 0.0% |
+| RunawayRabbitCollect.o | 0.0% | 0 / 17 | 0.0% |
+| RunawayTico.o | 0.0% | 0 / 39 | 0.0% |
+| SignBoard.o | 0.0% | 0 / 8 | 0.0% |
+| StrayTico.o | 0.0% | 0 / 36 | 0.0% |
+| Syati.o | 0.0% | 0 / 88 | 0.0% |
+| TeresaRacer.o | 0.0% | 0 / 51 | 0.0% |
+| Tico.o | 0.0% | 0 / 71 | 0.0% |
+| TicoAstro.o | 0.0% | 0 / 3 | 0.0% |
+| TicoComet.o | 0.0% | 0 / 46 | 0.0% |
+| TicoDemoGetPower.o | 0.0% | 0 / 11 | 0.0% |
+| TicoDomeLecture.o | 0.0% | 0 / 14 | 0.0% |
+| TicoFat.o | 0.0% | 0 / 82 | 0.0% |
+| TicoGalaxy.o | 0.0% | 0 / 11 | 0.0% |
+| TicoRail.o | 0.0% | 0 / 40 | 0.0% |
+| TicoReading.o | 0.0% | 0 / 8 | 0.0% |
+| TicoShop.o | 0.0% | 0 / 16 | 0.0% |
+| TicoStarRing.o | 0.0% | 0 / 9 | 0.0% |
+| TrickRabbit.o | 0.0% | 0 / 128 | 0.0% |
+| TrickRabbitFreeRun.o | 0.0% | 0 / 41 | 0.0% |
+| TrickRabbitSnowCollect.o | 0.0% | 0 / 61 | 0.0% |
+| TrickRabbitSnow.o | 0.0% | 0 / 59 | 0.0% |
+| TrickRabbitUtil.o | 0.0% | 0 / 1 | 0.0% |
+| CometEventExecutorTimeLimit.o | 0.0% | 0 / 10 | 0.0% |
+| CometEventKeeper.o | 0.0% | 0 / 8 | 0.0% |
+| EventDirector.o | 0.0% | 0 / 17 | 0.0% |
+| NPCActor.o | 0.0% | 0 / 54 | 0.0% |
+| NPCParameter.o | 0.0% | 0 / 20 | 0.0% |
+| NPCDirector.o | 0.0% | 0 / 3 | 0.0% |
+| NPCFunction.o | 0.0% | 0 / 3 | 0.0% |
+| NPCSupportRail.o | 0.0% | 0 / 3 | 0.0% |
+| StageStateKeeper.o | 0.0% | 0 / 1 | 0.0% |
+| TalkBalloon.o | 0.0% | 0 / 69 | 0.0% |
+| TalkDirector.o | 0.0% | 0 / 62 | 0.0% |
+| TalkMessageCtrl.o | 0.0% | 0 / 43 | 0.0% |
+| TalkMessageInfo.o | 100.0% | 14 / 14 | 100.0% |
+| TalkNodeCtrl.o | 0.0% | 0 / 23 | 0.0% |
+| TurnJointCtrl.o | 0.0% | 0 / 20 | 0.0% |
+| TalkState.o | 0.0% | 0 / 31 | 0.0% |
+| TalkSupportPlayerWatcher.o | 0.0% | 0 / 5 | 0.0% |
+| TalkTextFormer.o | 0.0% | 0 / 16 | 0.0% |
 
 
 # Butler.o

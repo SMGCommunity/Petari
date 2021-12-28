@@ -1,80 +1,80 @@
 # Util
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| ActorCameraUtil.o | 0.6952491309385863% | 1 / 41 |
-| ActorMovementUtil.o | 6.501811980387977% | 14 / 142 |
-| ActorSensorUtil.o | 37.32394366197183% | 93 / 205 |
-| ActorShadowLocalUtil.o | 0.0% | 0 / 33 |
-| ActorShadowUtil.o | 0.0% | 0 / 73 |
-| ActorStateUtil.o | 0.0% | 0 / 8 |
-| ActorSwitchUtil.o | 0.0% | 0 / 34 |
-| BitArray.o | 0.0% | 0 / 3 |
-| CameraUtil.o | 0.0% | 0 / 106 |
-| DemoUtil.o | 0.0% | 0 / 79 |
-| DrawUtil.o | 0.0% | 0 / 33 |
-| EffectUtil.o | 0.0% | 0 / 43 |
-| EventUtil.o | 0.0% | 0 / 179 |
-| FileUtil.o | 77.67503302509907% | 22 / 25 |
-| FootPrint.o | 0.0% | 0 / 14 |
-| FurCtrl.o | 0.0% | 0 / 15 |
-| FurDrawer.o | 0.0% | 0 / 6 |
-| FurMulti.o | 0.0% | 0 / 7 |
-| FurShader.o | 0.0% | 0 / 11 |
-| GamePadUtil.o | 0.0% | 0 / 63 |
-| GravityUtil.o | 89.94708994708994% | 19 / 20 |
-| HashUtil.o | 41.80790960451977% | 7 / 11 |
-| JMapUtil.o | 0.0% | 0 / 86 |
-| JointUtil.o | 0.0% | 0 / 33 |
-| LayoutUtil.o | 0.0% | 0 / 166 |
-| LightUtil.o | 0.0% | 0 / 5 |
-| LiveActorUtil.o | 1.9562715765247412% | 12 / 345 |
-| MapPartsUtil.o | 0.0% | 0 / 58 |
-| MapUtil.o | 0.0% | 0 / 92 |
-| MathUtil.o | 15.035699286014278% | 31 / 137 |
-| MemoryUtil.o | 25.949367088607595% | 8 / 24 |
-| MessageUtil.o | 0.0% | 0 / 18 |
-| ModelUtil.o | 2.6072786529060292% | 6 / 69 |
-| MtxUtil.o | 5.6675062972292185% | 11 / 79 |
-| MultiEventCamera.o | 0.0% | 0 / 18 |
-| NerveUtil.o | 0.0% | 0 / 15 |
-| NPCUtil.o | 0.0% | 0 / 76 |
-| ObjUtil.o | 0.0% | 0 / 178 |
-| ParabolicPath.o | 0.0% | 0 / 9 |
-| PlayerUtil.o | 0.0% | 0 / 174 |
-| RailGraphUtil.o | 0.0% | 0 / 18 |
-| RailUtil.o | 0.0% | 0 / 118 |
-| SceneUtil.o | 0.0% | 0 / 70 |
-| SchedulerUtil.o | 0.0% | 0 / 2 |
-| ScreenUtil.o | 0.0% | 0 / 115 |
-| SequenceUtil.o | 0.0% | 0 / 23 |
-| ShareUtil.o | 0.0% | 0 / 2 |
-| SoundUtil.o | 0.0% | 0 / 86 |
-| StarPointerUtil.o | 0.0% | 0 / 108 |
-| StringUtil.o | 30.294530154277698% | 9 / 36 |
-| SwitchEventFunctorListener.o | 0.0% | 0 / 5 |
-| SystemUtil.o | 0.0% | 0 / 34 |
-| TalkUtil.o | 0.0% | 0 / 53 |
-| AreaObjUtil.o | 6.666666666666667% | 2 / 22 |
-| BaseMatrixFollowTargetHolder.o | 25.97173144876325% | 9 / 25 |
-| BezierSurface.o | 0.0% | 0 / 14 |
-| BothDirList.o | 34.705882352941174% | 5 / 8 |
-| CollisionPartsFilter.o | 0.0% | 0 / 2 |
-| DirectDraw.o | 0.0% | 0 / 38 |
-| DirectDrawUtil.o | 0.0% | 0 / 9 |
-| FixedPosition.o | 30.66202090592334% | 6 / 8 |
-| GeometryBindUtil.o | 0.0% | 0 / 9 |
-| IKJoint.o | 7.385229540918163% | 5 / 16 |
-| JMapIdInfo.o | 0.0% | 0 / 5 |
-| JMapInfo.o | 0.0% | 0 / 12 |
-| JMapLinkInfo.o | 0.0% | 0 / 5 |
-| JointController.o | 10.526315789473683% | 4 / 10 |
-| JointRumbler.o | 0.0% | 0 / 7 |
-| OctahedronBezierSurface.o | 0.0% | 0 / 10 |
-| PostureHolder.o | 0.0% | 0 / 3 |
-| RumbleCalculator.o | 0.0% | 0 / 6 |
-| SpringValue.o | 0.0% | 0 / 4 |
-| TriangleFilter.o | 0.0% | 0 / 2 |
-| TriggerChecker.o | 0.0% | 0 / 6 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| ActorCameraUtil.o | 0.6952491309385863% | 1 / 41 | 2.4390243902439024% |
+| ActorMovementUtil.o | 6.501811980387977% | 14 / 142 | 9.859154929577464% |
+| ActorSensorUtil.o | 37.32394366197183% | 93 / 205 | 45.36585365853659% |
+| ActorShadowLocalUtil.o | 0.0% | 0 / 33 | 0.0% |
+| ActorShadowUtil.o | 0.0% | 0 / 73 | 0.0% |
+| ActorStateUtil.o | 0.0% | 0 / 8 | 0.0% |
+| ActorSwitchUtil.o | 0.0% | 0 / 34 | 0.0% |
+| BitArray.o | 0.0% | 0 / 3 | 0.0% |
+| CameraUtil.o | 0.0% | 0 / 106 | 0.0% |
+| DemoUtil.o | 0.0% | 0 / 79 | 0.0% |
+| DrawUtil.o | 0.0% | 0 / 33 | 0.0% |
+| EffectUtil.o | 0.0% | 0 / 43 | 0.0% |
+| EventUtil.o | 0.0% | 0 / 179 | 0.0% |
+| FileUtil.o | 77.67503302509907% | 22 / 25 | 88.0% |
+| FootPrint.o | 0.0% | 0 / 14 | 0.0% |
+| FurCtrl.o | 0.0% | 0 / 15 | 0.0% |
+| FurDrawer.o | 0.0% | 0 / 6 | 0.0% |
+| FurMulti.o | 0.0% | 0 / 7 | 0.0% |
+| FurShader.o | 0.0% | 0 / 11 | 0.0% |
+| GamePadUtil.o | 0.0% | 0 / 63 | 0.0% |
+| GravityUtil.o | 89.94708994708994% | 19 / 20 | 95.0% |
+| HashUtil.o | 41.80790960451977% | 7 / 11 | 63.63636363636363% |
+| JMapUtil.o | 0.0% | 0 / 86 | 0.0% |
+| JointUtil.o | 0.0% | 0 / 33 | 0.0% |
+| LayoutUtil.o | 0.0% | 0 / 166 | 0.0% |
+| LightUtil.o | 0.0% | 0 / 5 | 0.0% |
+| LiveActorUtil.o | 1.9562715765247412% | 12 / 345 | 3.4782608695652173% |
+| MapPartsUtil.o | 0.0% | 0 / 58 | 0.0% |
+| MapUtil.o | 0.0% | 0 / 92 | 0.0% |
+| MathUtil.o | 15.035699286014278% | 31 / 137 | 22.62773722627737% |
+| MemoryUtil.o | 25.949367088607595% | 8 / 24 | 33.33333333333333% |
+| MessageUtil.o | 0.0% | 0 / 18 | 0.0% |
+| ModelUtil.o | 2.6072786529060292% | 6 / 69 | 8.695652173913043% |
+| MtxUtil.o | 5.6675062972292185% | 11 / 79 | 13.924050632911392% |
+| MultiEventCamera.o | 0.0% | 0 / 18 | 0.0% |
+| NerveUtil.o | 0.0% | 0 / 15 | 0.0% |
+| NPCUtil.o | 0.0% | 0 / 76 | 0.0% |
+| ObjUtil.o | 0.0% | 0 / 178 | 0.0% |
+| ParabolicPath.o | 0.0% | 0 / 9 | 0.0% |
+| PlayerUtil.o | 0.0% | 0 / 174 | 0.0% |
+| RailGraphUtil.o | 0.0% | 0 / 18 | 0.0% |
+| RailUtil.o | 0.0% | 0 / 118 | 0.0% |
+| SceneUtil.o | 0.0% | 0 / 70 | 0.0% |
+| SchedulerUtil.o | 0.0% | 0 / 2 | 0.0% |
+| ScreenUtil.o | 0.0% | 0 / 115 | 0.0% |
+| SequenceUtil.o | 0.0% | 0 / 23 | 0.0% |
+| ShareUtil.o | 0.0% | 0 / 2 | 0.0% |
+| SoundUtil.o | 0.0% | 0 / 86 | 0.0% |
+| StarPointerUtil.o | 0.0% | 0 / 108 | 0.0% |
+| StringUtil.o | 30.294530154277698% | 9 / 36 | 25.0% |
+| SwitchEventFunctorListener.o | 0.0% | 0 / 5 | 0.0% |
+| SystemUtil.o | 0.0% | 0 / 34 | 0.0% |
+| TalkUtil.o | 0.0% | 0 / 53 | 0.0% |
+| AreaObjUtil.o | 6.666666666666667% | 2 / 22 | 9.090909090909092% |
+| BaseMatrixFollowTargetHolder.o | 25.97173144876325% | 9 / 25 | 36.0% |
+| BezierSurface.o | 0.0% | 0 / 14 | 0.0% |
+| BothDirList.o | 34.705882352941174% | 5 / 8 | 62.5% |
+| CollisionPartsFilter.o | 0.0% | 0 / 2 | 0.0% |
+| DirectDraw.o | 0.0% | 0 / 38 | 0.0% |
+| DirectDrawUtil.o | 0.0% | 0 / 9 | 0.0% |
+| FixedPosition.o | 30.66202090592334% | 6 / 8 | 75.0% |
+| GeometryBindUtil.o | 0.0% | 0 / 9 | 0.0% |
+| IKJoint.o | 7.385229540918163% | 5 / 16 | 31.25% |
+| JMapIdInfo.o | 0.0% | 0 / 5 | 0.0% |
+| JMapInfo.o | 0.0% | 0 / 12 | 0.0% |
+| JMapLinkInfo.o | 0.0% | 0 / 5 | 0.0% |
+| JointController.o | 10.526315789473683% | 4 / 10 | 40.0% |
+| JointRumbler.o | 0.0% | 0 / 7 | 0.0% |
+| OctahedronBezierSurface.o | 0.0% | 0 / 10 | 0.0% |
+| PostureHolder.o | 0.0% | 0 / 3 | 0.0% |
+| RumbleCalculator.o | 0.0% | 0 / 6 | 0.0% |
+| SpringValue.o | 0.0% | 0 / 4 | 0.0% |
+| TriangleFilter.o | 0.0% | 0 / 2 | 0.0% |
+| TriggerChecker.o | 0.0% | 0 / 6 | 0.0% |
 
 
 # ActorCameraUtil.o

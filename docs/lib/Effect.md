@@ -1,27 +1,27 @@
 # Effect
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AstroEffectObj.o | 0.0% | 0 / 11 |
-| AutoEffectGroup.o | 0.0% | 0 / 6 |
-| AutoEffectGroupHolder.o | 0.0% | 0 / 8 |
-| AutoEffectInfo.o | 0.0% | 0 / 10 |
-| EffectObjGravityDust.o | 0.0% | 0 / 8 |
-| EffectSystem.o | 0.0% | 0 / 9 |
-| EffectSystemUtil.o | 0.0% | 0 / 32 |
-| MultiEmitter.o | 0.0% | 0 / 44 |
-| MultiEmitterAccess.o | 0.0% | 0 / 22 |
-| MultiEmitterCallBack.o | 0.0% | 0 / 34 |
-| MultiEmitterParticleCallBack.o | 0.0% | 0 / 4 |
-| ParticleCalcExecutor.o | 0.0% | 0 / 10 |
-| ParticleDrawExecutor.o | 0.0% | 0 / 20 |
-| ParticleEmitter.o | 0.0% | 0 / 5 |
-| ParticleEmitterHolder.o | 0.0% | 0 / 9 |
-| ParticleResourceHolder.o | 0.0% | 0 / 7 |
-| RandomEffectObj.o | 0.0% | 0 / 8 |
-| SimpleEffectObj.o | 0.0% | 0 / 17 |
-| SingleEmitter.o | 0.0% | 0 / 8 |
-| SpinPullParticleCallBack.o | 0.0% | 0 / 5 |
-| SyncBckEffectChecker.o | 0.0% | 0 / 8 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AstroEffectObj.o | 0.0% | 0 / 11 | 0.0% |
+| AutoEffectGroup.o | 0.0% | 0 / 6 | 0.0% |
+| AutoEffectGroupHolder.o | 0.0% | 0 / 8 | 0.0% |
+| AutoEffectInfo.o | 0.0% | 0 / 10 | 0.0% |
+| EffectObjGravityDust.o | 0.0% | 0 / 8 | 0.0% |
+| EffectSystem.o | 0.0% | 0 / 9 | 0.0% |
+| EffectSystemUtil.o | 0.0% | 0 / 32 | 0.0% |
+| MultiEmitter.o | 0.0% | 0 / 44 | 0.0% |
+| MultiEmitterAccess.o | 0.0% | 0 / 22 | 0.0% |
+| MultiEmitterCallBack.o | 0.0% | 0 / 34 | 0.0% |
+| MultiEmitterParticleCallBack.o | 0.0% | 0 / 4 | 0.0% |
+| ParticleCalcExecutor.o | 0.0% | 0 / 10 | 0.0% |
+| ParticleDrawExecutor.o | 0.0% | 0 / 20 | 0.0% |
+| ParticleEmitter.o | 0.0% | 0 / 5 | 0.0% |
+| ParticleEmitterHolder.o | 0.0% | 0 / 9 | 0.0% |
+| ParticleResourceHolder.o | 0.0% | 0 / 7 | 0.0% |
+| RandomEffectObj.o | 0.0% | 0 / 8 | 0.0% |
+| SimpleEffectObj.o | 0.0% | 0 / 17 | 0.0% |
+| SingleEmitter.o | 0.0% | 0 / 8 | 0.0% |
+| SpinPullParticleCallBack.o | 0.0% | 0 / 5 | 0.0% |
+| SyncBckEffectChecker.o | 0.0% | 0 / 8 | 0.0% |
 
 
 # AstroEffectObj.o

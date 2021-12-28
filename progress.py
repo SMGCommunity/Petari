@@ -83,13 +83,14 @@ class Library:
         # first we are going to generate the tables for the object files themselves in the library
         page = []
         page.append(f"# {self.name}\n")
-        page.append("| Object | Percentage | Functions Done / Total Functions |\n")
-        page.append("| ------------- | ------------- | ------------- |\n")
+        page.append("| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) \n")
+        page.append("| ------------- | ------------- | ------------- | ------------- |\n")
 
         for obj in self.objects:
             d, f = obj.calculateProgress()
             prog = (d / f) * 100.0
-            page.append(f"| {obj.name} | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} |\n")
+            funcProg = (obj.totalCompletedFunctions / obj.totalFunctions) * 100.0
+            page.append(f"| {obj.name} | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% |\n")
 
         page.append("\n\n")
 

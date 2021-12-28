@@ -1,42 +1,42 @@
 # AreaObj
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AreaForm.o | 67.90648246546228% | 24 / 33 |
-| AreaFormDrawer.o | 0.0% | 0 / 3 |
-| AreaObj.o | 59.87903225806451% | 19 / 24 |
-| AreaObjContainer.o | 27.331189710610932% | 5 / 14 |
-| AreaObjFollower.o | 0.0% | 0 / 4 |
-| AstroChangeStageCube.o | 100.0% | 5 / 5 |
-| AudioEffectArea.o | 100.0% | 5 / 5 |
-| BgmProhibitArea.o | 21.11111111111111% | 3 / 6 |
-| BigBubbleCameraArea.o | 21.428571428571427% | 2 / 10 |
-| BigBubbleGoalArea.o | 0.0% | 0 / 8 |
-| BloomArea.o | 0.0% | 0 / 6 |
-| CameraRepulsiveArea.o | 0.0% | 0 / 8 |
-| ChangeBgmCube.o | 10.60070671378092% | 2 / 4 |
-| CollisionArea.o | 0.0% | 0 / 31 |
-| CubeCamera.o | 34.55882352941176% | 7 / 12 |
-| DeathArea.o | 56.36363636363636% | 5 / 7 |
-| DepthOfFieldArea.o | 0.0% | 0 / 8 |
-| FollowCollisionArea.o | 0.0% | 0 / 4 |
-| GlaringLightArea.o | 0.0% | 0 / 7 |
-| HazeCube.o | 0.0% | 0 / 4 |
-| ImageEffectArea.o | 0.0% | 0 / 5 |
-| LightArea.o | 100.0% | 4 / 4 |
-| LightAreaHolder.o | 33.33333333333333% | 3 / 5 |
-| MercatorTransformCube.o | 0.0% | 0 / 23 |
-| MessageArea.o | 0.0% | 0 / 3 |
-| PlayerSeArea.o | 0.0% | 0 / 5 |
-| QuakeEffectArea.o | 0.0% | 0 / 2 |
-| RestartCube.o | 0.0% | 0 / 5 |
-| ScreenBlurArea.o | 0.0% | 0 / 5 |
-| SimpleBloomArea.o | 0.0% | 0 / 4 |
-| SoundEmitterCube.o | 0.0% | 0 / 5 |
-| SoundEmitterSphere.o | 0.0% | 0 / 4 |
-| SpinGuidanceArea.o | 0.0% | 0 / 3 |
-| SunLightArea.o | 0.0% | 0 / 3 |
-| SwitchArea.o | 0.0% | 0 / 5 |
-| WarpCube.o | 0.0% | 0 / 8 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AreaForm.o | 67.90648246546228% | 24 / 33 | 72.72727272727273% |
+| AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% |
+| AreaObj.o | 59.87903225806451% | 19 / 24 | 79.16666666666666% |
+| AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% |
+| AreaObjFollower.o | 0.0% | 0 / 4 | 0.0% |
+| AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% |
+| AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% |
+| BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% |
+| BigBubbleCameraArea.o | 21.428571428571427% | 2 / 10 | 20.0% |
+| BigBubbleGoalArea.o | 0.0% | 0 / 8 | 0.0% |
+| BloomArea.o | 0.0% | 0 / 6 | 0.0% |
+| CameraRepulsiveArea.o | 0.0% | 0 / 8 | 0.0% |
+| ChangeBgmCube.o | 10.60070671378092% | 2 / 4 | 50.0% |
+| CollisionArea.o | 0.0% | 0 / 31 | 0.0% |
+| CubeCamera.o | 34.55882352941176% | 7 / 12 | 58.333333333333336% |
+| DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% |
+| DepthOfFieldArea.o | 0.0% | 0 / 8 | 0.0% |
+| FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% |
+| GlaringLightArea.o | 0.0% | 0 / 7 | 0.0% |
+| HazeCube.o | 0.0% | 0 / 4 | 0.0% |
+| ImageEffectArea.o | 0.0% | 0 / 5 | 0.0% |
+| LightArea.o | 100.0% | 4 / 4 | 100.0% |
+| LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% |
+| MercatorTransformCube.o | 0.0% | 0 / 23 | 0.0% |
+| MessageArea.o | 0.0% | 0 / 3 | 0.0% |
+| PlayerSeArea.o | 0.0% | 0 / 5 | 0.0% |
+| QuakeEffectArea.o | 0.0% | 0 / 2 | 0.0% |
+| RestartCube.o | 0.0% | 0 / 5 | 0.0% |
+| ScreenBlurArea.o | 0.0% | 0 / 5 | 0.0% |
+| SimpleBloomArea.o | 0.0% | 0 / 4 | 0.0% |
+| SoundEmitterCube.o | 0.0% | 0 / 5 | 0.0% |
+| SoundEmitterSphere.o | 0.0% | 0 / 4 | 0.0% |
+| SpinGuidanceArea.o | 0.0% | 0 / 3 | 0.0% |
+| SunLightArea.o | 0.0% | 0 / 3 | 0.0% |
+| SwitchArea.o | 0.0% | 0 / 5 | 0.0% |
+| WarpCube.o | 0.0% | 0 / 8 | 0.0% |
 
 
 # AreaForm.o

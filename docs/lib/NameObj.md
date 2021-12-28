@@ -1,18 +1,18 @@
 # NameObj
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| ModelChangableObjFactory.o | 0.0% | 0 / 13 |
-| MovementOnOffGroupHolder.o | 100.0% | 6 / 6 |
-| NameObj.o | 55.46875% | 11 / 16 |
-| NameObjAdaptor.o | 100.0% | 9 / 9 |
-| NameObjArchiveListCollector.o | 100.0% | 3 / 3 |
-| NameObjCategoryList.o | 76.39593908629442% | 10 / 15 |
-| NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 |
-| NameObjFactory.o | 3.0015449128227765% | 16 / 568 |
-| NameObjFinder.o | 0.0% | 0 / 1 |
-| NameObjGroup.o | 100.0% | 5 / 5 |
-| NameObjHolder.o | 29.962546816479403% | 5 / 10 |
-| NameObjListExecutor.o | 57.377049180327866% | 28 / 31 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| ModelChangableObjFactory.o | 0.0% | 0 / 13 | 0.0% |
+| MovementOnOffGroupHolder.o | 100.0% | 6 / 6 | 100.0% |
+| NameObj.o | 55.46875% | 11 / 16 | 68.75% |
+| NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% |
+| NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
+| NameObjCategoryList.o | 76.39593908629442% | 10 / 15 | 66.66666666666666% |
+| NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% |
+| NameObjFactory.o | 3.0015449128227765% | 16 / 568 | 2.8169014084507045% |
+| NameObjFinder.o | 0.0% | 0 / 1 | 0.0% |
+| NameObjGroup.o | 100.0% | 5 / 5 | 100.0% |
+| NameObjHolder.o | 29.962546816479403% | 5 / 10 | 50.0% |
+| NameObjListExecutor.o | 57.377049180327866% | 28 / 31 | 90.32258064516128% |
 
 
 # ModelChangableObjFactory.o

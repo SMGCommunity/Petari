@@ -1,132 +1,132 @@
 # Camera
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| CamHeliEffector.o | 2.3890784982935154% | 2 / 24 |
-| CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 |
-| CamPoseSphereInterpolator.o | 0.0% | 0 / 2 |
-| CamTranslatorAnim.o | 100.0% | 3 / 3 |
-| CamTranslatorBehind.o | 0.0% | 0 / 2 |
-| CamTranslatorBlackHole.o | 0.0% | 0 / 2 |
-| CamTranslatorCharmedFix.o | 0.0% | 0 / 2 |
-| CamTranslatorCharmedTripodBoss.o | 0.0% | 0 / 2 |
-| CamTranslatorCharmedVecReg.o | 0.0% | 0 / 2 |
-| CamTranslatorCharmedVecRegTower.o | 0.0% | 0 / 2 |
-| CamTranslatorCubePlanet.o | 0.0% | 0 / 2 |
-| CamTranslatorDPD.o | 0.0% | 0 / 2 |
-| CamTranslatorDead.o | 0.0% | 0 / 3 |
-| CamTranslatorFix.o | 0.0% | 0 / 2 |
-| CamTranslatorFixedPoint.o | 0.0% | 0 / 2 |
-| CamTranslatorFixedThere.o | 0.0% | 0 / 2 |
-| CamTranslatorFollow.o | 0.0% | 0 / 3 |
-| CamTranslatorFooFighter.o | 0.0% | 0 / 3 |
-| CamTranslatorFooFighterPlanet.o | 0.0% | 0 / 3 |
-| CamTranslatorFrontAndBack.o | 0.0% | 0 / 2 |
-| CamTranslatorGround.o | 0.0% | 0 / 2 |
-| CamTranslatorInnerCylinder.o | 0.0% | 0 / 2 |
-| CamTranslatorInwardSphere.o | 0.0% | 0 / 2 |
-| CamTranslatorInwardTower.o | 0.0% | 0 / 2 |
-| CamTranslatorMedianPlanet.o | 0.0% | 0 / 3 |
-| CamTranslatorMedianTower.o | 0.0% | 0 / 2 |
-| CamTranslatorMtxRegParallel.o | 0.0% | 0 / 2 |
-| CamTranslatorObjParallel.o | 0.0% | 0 / 2 |
-| CamTranslatorParallel.o | 0.0% | 0 / 2 |
-| CamTranslatorRaceFollow.o | 0.0% | 0 / 2 |
-| CamTranslatorRailDemo.o | 0.0% | 0 / 2 |
-| CamTranslatorRailFollow.o | 0.0% | 0 / 2 |
-| CamTranslatorRailWatch.o | 0.0% | 0 / 2 |
-| CamTranslatorSlide.o | 0.0% | 0 / 2 |
-| CamTranslatorSpiral.o | 0.0% | 0 / 2 |
-| CamTranslatorTalk.o | 0.0% | 0 / 2 |
-| CamTranslatorTower.o | 0.0% | 0 / 2 |
-| CamTranslatorTowerPos.o | 0.0% | 0 / 2 |
-| CamTranslatorTripodBoss.o | 0.0% | 0 / 2 |
-| CamTranslatorTripodBossJoint.o | 0.0% | 0 / 2 |
-| CamTranslatorTripodPlanet.o | 0.0% | 0 / 2 |
-| CamTranslatorTrundle.o | 0.0% | 0 / 2 |
-| CamTranslatorTwistedPassage.o | 0.0% | 0 / 2 |
-| CamTranslatorWaterFollow.o | 0.0% | 0 / 3 |
-| CamTranslatorWaterPlanet.o | 0.0% | 0 / 3 |
-| CamTranslatorWaterPlanetBoss.o | 0.0% | 0 / 3 |
-| CamTranslatorWonderPlanet.o | 0.0% | 0 / 3 |
-| Camera.o | 71.03448275862068% | 16 / 18 |
-| CameraAnim.o | 58.4% | 22 / 30 |
-| CameraBehind.o | 9.583333333333334% | 1 / 6 |
-| CameraBlackHole.o | 10.683760683760683% | 1 / 5 |
-| CameraCalc.o | 0.0% | 0 / 9 |
-| CameraCharmedFix.o | 9.854014598540147% | 1 / 5 |
-| CameraCharmedTripodBoss.o | 8.259587020648967% | 1 / 6 |
-| CameraCharmedVecReg.o | 7.142857142857142% | 1 / 5 |
-| CameraCharmedVecRegTower.o | 4.545454545454546% | 1 / 5 |
-| CameraContext.o | 11.479028697571744% | 7 / 12 |
-| CameraCover.o | 0.0% | 0 / 9 |
-| CameraCubePlanet.o | 9.737827715355806% | 1 / 5 |
-| CameraDPD.o | 5.4945054945054945% | 1 / 8 |
-| CameraDead.o | 5.675675675675676% | 1 / 7 |
-| CameraDirector.o | 65.09392747924858% | 71 / 81 |
-| CameraFix.o | 16.355140186915886% | 1 / 6 |
-| CameraFixedPoint.o | 6.418918918918918% | 1 / 6 |
-| CameraFixedThere.o | 5.421686746987952% | 1 / 11 |
-| CameraFollow.o | 3.3758439609902475% | 2 / 29 |
-| CameraFooFighter.o | 5.137614678899083% | 1 / 5 |
-| CameraFooFighterPlanet.o | 3.6585365853658534% | 1 / 6 |
-| CameraFrontAndBack.o | 7.068062827225131% | 1 / 7 |
-| CameraGround.o | 13.004484304932735% | 1 / 5 |
-| CameraHeightArrange.o | 17.647058823529413% | 7 / 22 |
-| CameraHolder.o | 100.0% | 54 / 54 |
-| CameraInnerCylinder.o | 6.493506493506493% | 1 / 5 |
-| CameraInwardSphere.o | 4.852686308492201% | 1 / 6 |
-| CameraInwardTower.o | 9.254498714652955% | 1 / 7 |
-| CameraLocalUtil.o | 0.0% | 0 / 61 |
-| CameraMan.o | 100.0% | 11 / 11 |
-| CameraManEvent.o | 71.81738366988587% | 33 / 37 |
-| CameraManGame.o | 75.73407202216067% | 52 / 57 |
-| CameraManPause.o | 15.48223350253807% | 7 / 10 |
-| CameraManSubjective.o | 100.0% | 6 / 6 |
-| CameraMedianPlanet.o | 3.909205548549811% | 1 / 15 |
-| CameraMedianTower.o | 4.86284289276808% | 1 / 11 |
-| CameraMtxRegParallel.o | 14.619883040935672% | 1 / 6 |
-| CameraObjParallel.o | 9.900990099009901% | 1 / 5 |
-| CameraParallel.o | 7.368421052631578% | 1 / 10 |
-| CameraParamChunk.o | 64.14662084765177% | 29 / 32 |
-| CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 |
-| CameraParamChunkID.o | 100.0% | 11 / 11 |
-| CameraParamString.o | 100.0% | 5 / 5 |
-| CameraPolygonCodeUtil.o | 0.0% | 0 / 3 |
-| CameraPoseParam.o | 100.0% | 1 / 1 |
-| CameraRaceFollow.o | 6.596306068601583% | 1 / 6 |
-| CameraRailDemo.o | 4.901960784313726% | 1 / 9 |
-| CameraRailFollow.o | 7.183908045977011% | 1 / 6 |
-| CameraRailHolder.o | 11.83206106870229% | 3 / 6 |
-| CameraRailWatch.o | 5.769230769230769% | 1 / 6 |
-| CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 |
-| CameraRotChecker.o | 9.30232558139535% | 1 / 4 |
-| CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 |
-| CameraShakeTask.o | 100.0% | 10 / 10 |
-| CameraShaker.o | 92.1259842519685% | 17 / 18 |
-| CameraSlide.o | 10.545454545454545% | 1 / 5 |
-| CameraSpiral.o | 6.753246753246753% | 1 / 5 |
-| CameraSubjective.o | 5.898123324396782% | 1 / 6 |
-| CameraTalk.o | 5.95482546201232% | 1 / 6 |
-| CameraTargetArg.o | 63.51351351351351% | 2 / 3 |
-| CameraTargetHolder.o | 100.0% | 9 / 9 |
-| CameraTargetMtx.o | 62.944162436548226% | 22 / 24 |
-| CameraTargetObj.o | 46.837944664031625% | 21 / 45 |
-| CameraTestObj.o | 0.0% | 0 / 2 |
-| CameraTower.o | 4.513064133016627% | 1 / 14 |
-| CameraTowerBase.o | 8.150470219435736% | 1 / 10 |
-| CameraTowerPos.o | 5.807622504537205% | 1 / 9 |
-| CameraTripodBoss.o | 9.13978494623656% | 1 / 4 |
-| CameraTripodBossJoint.o | 7.100591715976331% | 1 / 7 |
-| CameraTripodPlanet.o | 8.823529411764707% | 1 / 5 |
-| CameraTrundle.o | 11.666666666666666% | 1 / 5 |
-| CameraTwistedPassage.o | 5.275779376498801% | 1 / 9 |
-| CameraViewInterpolator.o | 0.0% | 0 / 13 |
-| CameraWaterFollow.o | 6.841046277665996% | 1 / 6 |
-| CameraWaterPlanet.o | 5.276381909547738% | 1 / 5 |
-| CameraWaterPlanetBoss.o | 7.000000000000001% | 1 / 6 |
-| CameraWonderPlanet.o | 4.7713717693836974% | 1 / 9 |
-| DotCamParams.o | 57.35849056603774% | 8 / 11 |
-| GameCameraCreator.o | 44.871794871794876% | 4 / 6 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| CamHeliEffector.o | 2.3890784982935154% | 2 / 24 | 8.333333333333332% |
+| CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 | 33.33333333333333% |
+| CamPoseSphereInterpolator.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorAnim.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorBehind.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorBlackHole.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorCharmedFix.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorCharmedTripodBoss.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorCharmedVecReg.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorCharmedVecRegTower.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorCubePlanet.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorDPD.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorDead.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorFix.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorFixedPoint.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorFixedThere.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorFollow.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorFooFighter.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorFooFighterPlanet.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorFrontAndBack.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorGround.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorInnerCylinder.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorInwardSphere.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorInwardTower.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorMedianPlanet.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorMedianTower.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorMtxRegParallel.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorObjParallel.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorParallel.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorRaceFollow.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorRailDemo.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorRailFollow.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorRailWatch.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorSlide.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorSpiral.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTalk.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTower.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTowerPos.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTripodBoss.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTripodBossJoint.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTripodPlanet.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTrundle.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorTwistedPassage.o | 0.0% | 0 / 2 | 0.0% |
+| CamTranslatorWaterFollow.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorWaterPlanet.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorWaterPlanetBoss.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorWonderPlanet.o | 0.0% | 0 / 3 | 0.0% |
+| Camera.o | 71.03448275862068% | 16 / 18 | 88.88888888888889% |
+| CameraAnim.o | 58.4% | 22 / 30 | 73.33333333333333% |
+| CameraBehind.o | 9.583333333333334% | 1 / 6 | 16.666666666666664% |
+| CameraBlackHole.o | 10.683760683760683% | 1 / 5 | 20.0% |
+| CameraCalc.o | 0.0% | 0 / 9 | 0.0% |
+| CameraCharmedFix.o | 9.854014598540147% | 1 / 5 | 20.0% |
+| CameraCharmedTripodBoss.o | 8.259587020648967% | 1 / 6 | 16.666666666666664% |
+| CameraCharmedVecReg.o | 7.142857142857142% | 1 / 5 | 20.0% |
+| CameraCharmedVecRegTower.o | 4.545454545454546% | 1 / 5 | 20.0% |
+| CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% |
+| CameraCover.o | 0.0% | 0 / 9 | 0.0% |
+| CameraCubePlanet.o | 9.737827715355806% | 1 / 5 | 20.0% |
+| CameraDPD.o | 5.4945054945054945% | 1 / 8 | 12.5% |
+| CameraDead.o | 5.675675675675676% | 1 / 7 | 14.285714285714285% |
+| CameraDirector.o | 65.09392747924858% | 71 / 81 | 87.65432098765432% |
+| CameraFix.o | 16.355140186915886% | 1 / 6 | 16.666666666666664% |
+| CameraFixedPoint.o | 6.418918918918918% | 1 / 6 | 16.666666666666664% |
+| CameraFixedThere.o | 5.421686746987952% | 1 / 11 | 9.090909090909092% |
+| CameraFollow.o | 3.3758439609902475% | 2 / 29 | 6.896551724137931% |
+| CameraFooFighter.o | 5.137614678899083% | 1 / 5 | 20.0% |
+| CameraFooFighterPlanet.o | 3.6585365853658534% | 1 / 6 | 16.666666666666664% |
+| CameraFrontAndBack.o | 7.068062827225131% | 1 / 7 | 14.285714285714285% |
+| CameraGround.o | 13.004484304932735% | 1 / 5 | 20.0% |
+| CameraHeightArrange.o | 17.647058823529413% | 7 / 22 | 31.818181818181817% |
+| CameraHolder.o | 100.0% | 54 / 54 | 100.0% |
+| CameraInnerCylinder.o | 6.493506493506493% | 1 / 5 | 20.0% |
+| CameraInwardSphere.o | 4.852686308492201% | 1 / 6 | 16.666666666666664% |
+| CameraInwardTower.o | 9.254498714652955% | 1 / 7 | 14.285714285714285% |
+| CameraLocalUtil.o | 0.0% | 0 / 61 | 0.0% |
+| CameraMan.o | 100.0% | 11 / 11 | 100.0% |
+| CameraManEvent.o | 71.81738366988587% | 33 / 37 | 89.1891891891892% |
+| CameraManGame.o | 75.73407202216067% | 52 / 57 | 91.22807017543859% |
+| CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% |
+| CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% |
+| CameraMedianPlanet.o | 3.909205548549811% | 1 / 15 | 6.666666666666667% |
+| CameraMedianTower.o | 4.86284289276808% | 1 / 11 | 9.090909090909092% |
+| CameraMtxRegParallel.o | 14.619883040935672% | 1 / 6 | 16.666666666666664% |
+| CameraObjParallel.o | 9.900990099009901% | 1 / 5 | 20.0% |
+| CameraParallel.o | 7.368421052631578% | 1 / 10 | 10.0% |
+| CameraParamChunk.o | 64.14662084765177% | 29 / 32 | 90.625% |
+| CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 | 90.9090909090909% |
+| CameraParamChunkID.o | 100.0% | 11 / 11 | 100.0% |
+| CameraParamString.o | 100.0% | 5 / 5 | 100.0% |
+| CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% |
+| CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% |
+| CameraRaceFollow.o | 6.596306068601583% | 1 / 6 | 16.666666666666664% |
+| CameraRailDemo.o | 4.901960784313726% | 1 / 9 | 11.11111111111111% |
+| CameraRailFollow.o | 7.183908045977011% | 1 / 6 | 16.666666666666664% |
+| CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% |
+| CameraRailWatch.o | 5.769230769230769% | 1 / 6 | 16.666666666666664% |
+| CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 | 92.3076923076923% |
+| CameraRotChecker.o | 9.30232558139535% | 1 / 4 | 25.0% |
+| CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 | 85.71428571428571% |
+| CameraShakeTask.o | 100.0% | 10 / 10 | 100.0% |
+| CameraShaker.o | 92.1259842519685% | 17 / 18 | 94.44444444444444% |
+| CameraSlide.o | 10.545454545454545% | 1 / 5 | 20.0% |
+| CameraSpiral.o | 6.753246753246753% | 1 / 5 | 20.0% |
+| CameraSubjective.o | 5.898123324396782% | 1 / 6 | 16.666666666666664% |
+| CameraTalk.o | 5.95482546201232% | 1 / 6 | 16.666666666666664% |
+| CameraTargetArg.o | 63.51351351351351% | 2 / 3 | 66.66666666666666% |
+| CameraTargetHolder.o | 100.0% | 9 / 9 | 100.0% |
+| CameraTargetMtx.o | 62.944162436548226% | 22 / 24 | 91.66666666666666% |
+| CameraTargetObj.o | 46.837944664031625% | 21 / 45 | 46.666666666666664% |
+| CameraTestObj.o | 0.0% | 0 / 2 | 0.0% |
+| CameraTower.o | 4.513064133016627% | 1 / 14 | 7.142857142857142% |
+| CameraTowerBase.o | 8.150470219435736% | 1 / 10 | 10.0% |
+| CameraTowerPos.o | 5.807622504537205% | 1 / 9 | 11.11111111111111% |
+| CameraTripodBoss.o | 9.13978494623656% | 1 / 4 | 25.0% |
+| CameraTripodBossJoint.o | 7.100591715976331% | 1 / 7 | 14.285714285714285% |
+| CameraTripodPlanet.o | 8.823529411764707% | 1 / 5 | 20.0% |
+| CameraTrundle.o | 11.666666666666666% | 1 / 5 | 20.0% |
+| CameraTwistedPassage.o | 5.275779376498801% | 1 / 9 | 11.11111111111111% |
+| CameraViewInterpolator.o | 0.0% | 0 / 13 | 0.0% |
+| CameraWaterFollow.o | 6.841046277665996% | 1 / 6 | 16.666666666666664% |
+| CameraWaterPlanet.o | 5.276381909547738% | 1 / 5 | 20.0% |
+| CameraWaterPlanetBoss.o | 7.000000000000001% | 1 / 6 | 16.666666666666664% |
+| CameraWonderPlanet.o | 4.7713717693836974% | 1 / 9 | 11.11111111111111% |
+| DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% |
+| GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% |
 
 
 # CamHeliEffector.o

@@ -1,322 +1,322 @@
 # MapObj
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AirBubble.o | 0.0% | 0 / 23 |
-| AirBubbleGenerator.o | 0.0% | 0 / 11 |
-| AirBubbleHolder.o | 0.0% | 0 / 7 |
-| AnmModelObj.o | 0.0% | 0 / 47 |
-| ArrowSwitch.o | 0.0% | 0 / 27 |
-| ArrowSwitchMulti.o | 0.0% | 0 / 21 |
-| ArrowSwitchMultiHolder.o | 0.0% | 0 / 7 |
-| AssemblyBlock.o | 0.0% | 0 / 22 |
-| AstroCore.o | 0.0% | 0 / 16 |
-| AstroCountDownPlate.o | 0.0% | 0 / 24 |
-| AstroDome.o | 0.0% | 0 / 16 |
-| AstroDomeAsteroid.o | 0.0% | 0 / 10 |
-| AstroDomeBlueStar.o | 0.0% | 0 / 55 |
-| AstroDomeCameraController.o | 0.0% | 0 / 29 |
-| AstroDomeComet.o | 0.0% | 0 / 16 |
-| AstroDomeDemoAstroGalaxy.o | 0.0% | 0 / 3 |
-| AstroDomeGalaxySelector.o | 0.0% | 0 / 37 |
-| AstroDomeOrbit.o | 0.0% | 0 / 16 |
-| AstroDomeSky.o | 0.0% | 0 / 31 |
-| AstroMapBoard.o | 0.0% | 0 / 8 |
-| AstroMapObj.o | 0.0% | 0 / 40 |
-| AstroMapObjFunction.o | 0.0% | 0 / 14 |
-| AstroOverlookObj.o | 0.0% | 0 / 3 |
-| BallOpener.o | 0.0% | 0 / 17 |
-| BallRail.o | 0.0% | 0 / 19 |
-| Banekiti.o | 0.0% | 0 / 19 |
-| BattleShipElevator.o | 0.0% | 0 / 13 |
-| BeamGoRoundPlanet.o | 0.0% | 0 / 16 |
-| BeeFlowerHover.o | 0.0% | 0 / 21 |
-| BenefitItemInvincible.o | 0.0% | 0 / 12 |
-| BenefitItemLifeUp.o | 0.0% | 0 / 8 |
-| BenefitItemObj.o | 0.0% | 0 / 35 |
-| BigBubbleDrawer.o | 0.0% | 0 / 9 |
-| BigBubbleGenerator.o | 0.0% | 0 / 21 |
-| BigBubbleHolder.o | 0.0% | 0 / 15 |
-| BigBubbleMoveLimitter.o | 0.0% | 0 / 7 |
-| BigFan.o | 0.0% | 0 / 18 |
-| BigFanHolder.o | 0.0% | 0 / 7 |
-| BlackHole.o | 0.0% | 0 / 22 |
-| BlueChip.o | 0.0% | 0 / 3 |
-| BlueStarCupsulePlanet.o | 0.0% | 0 / 42 |
-| BreakableCage.o | 0.0% | 0 / 23 |
-| BrightObj.o | 0.0% | 0 / 42 |
-| BumpAppearPlanet.o | 0.0% | 0 / 19 |
-| Candlestand.o | 0.0% | 0 / 31 |
-| CannonFortressBreakStep.o | 0.0% | 0 / 19 |
-| CapsuleCage.o | 0.0% | 0 / 23 |
-| ChipBase.o | 0.0% | 0 / 39 |
-| ChipCounter.o | 0.0% | 0 / 30 |
-| ChipGroup.o | 0.0% | 0 / 17 |
-| ChipHolder.o | 0.0% | 0 / 17 |
-| ChooChooTrain.o | 0.0% | 0 / 8 |
-| CircleCoinGroup.o | 0.0% | 0 / 8 |
-| ClipArea.o | 0.0% | 0 / 14 |
-| ClipAreaDrop.o | 0.0% | 0 / 10 |
-| ClipAreaDropHolder.o | 0.0% | 0 / 6 |
-| ClipAreaDropLaser.o | 0.0% | 0 / 13 |
-| ClipAreaHolder.o | 0.0% | 0 / 15 |
-| ClipAreaMovable.o | 0.0% | 0 / 16 |
-| ClipAreaShape.o | 0.0% | 0 / 13 |
-| ClipFieldFillDraw.o | 0.0% | 0 / 10 |
-| ClipFieldMapParts.o | 0.0% | 0 / 5 |
-| ClipFieldSwitch.o | 0.0% | 0 / 4 |
-| CocoNut.o | 0.0% | 0 / 58 |
-| CoconutTree.o | 0.0% | 0 / 3 |
-| CoconutTreeLeaf.o | 0.0% | 0 / 12 |
-| Coin.o | 0.0% | 0 / 65 |
-| CoinBox.o | 0.0% | 0 / 10 |
-| CoinGroup.o | 0.0% | 0 / 24 |
-| CoinHolder.o | 0.0% | 0 / 19 |
-| CoinReplica.o | 0.0% | 0 / 10 |
-| CoinRotater.o | 0.0% | 0 / 7 |
-| CoinSpot.o | 0.0% | 0 / 12 |
-| CollapsePlane.o | 0.0% | 0 / 22 |
-| CollectCounter.o | 0.0% | 0 / 12 |
-| CollisionBlocker.o | 0.0% | 0 / 7 |
-| CrystalCage.o | 0.0% | 0 / 24 |
-| CrystalCageMoving.o | 0.0% | 0 / 36 |
-| CrystalSwitch.o | 0.0% | 0 / 22 |
-| CutBushModelObj.o | 0.0% | 0 / 5 |
-| DashRing.o | 0.0% | 0 / 9 |
-| DeadLeaves.o | 0.0% | 0 / 10 |
-| DesertLandMoveSwitch.o | 0.0% | 0 / 28 |
-| DesertMovingLand.o | 0.0% | 0 / 30 |
-| DragonHeadFlower.o | 0.0% | 0 / 20 |
-| DriftWood.o | 0.0% | 0 / 18 |
-| DummyDisplayModel.o | 0.0% | 0 / 16 |
-| DynamicCollisionObj.o | 0.0% | 0 / 7 |
-| EarthenPipe.o | 0.0% | 0 / 50 |
-| ElectricBall.o | 0.0% | 0 / 27 |
-| ElectricRail.o | 0.0% | 0 / 48 |
-| ElectricRailHolder.o | 0.0% | 0 / 17 |
-| ElectricRailMoving.o | 0.0% | 0 / 44 |
-| ExterminationChecker.o | 0.0% | 0 / 21 |
-| FallDownBridge.o | 0.0% | 0 / 11 |
-| FallingSmallRock.o | 0.0% | 0 / 11 |
-| FallOutFieldDraw.o | 0.0% | 0 / 13 |
-| FireBar.o | 0.0% | 0 / 21 |
-| FirePressure.o | 0.0% | 0 / 7 |
-| FirePressureBullet.o | 0.0% | 0 / 12 |
-| FirePressureBulletHolder.o | 0.0% | 0 / 4 |
-| FirePressureRadiate.o | 0.0% | 0 / 37 |
-| FlameGun.o | 0.0% | 0 / 27 |
-| FlexibleSphere.o | 0.0% | 0 / 8 |
-| FlipPanel.o | 0.0% | 0 / 43 |
-| Fountain.o | 0.0% | 0 / 14 |
-| FountainBig.o | 0.0% | 0 / 21 |
-| GCapture.o | 0.0% | 0 / 70 |
-| GCaptureRibbon.o | 0.0% | 0 / 10 |
-| GCaptureTarget.o | 0.0% | 0 / 41 |
-| GravityLight.o | 0.0% | 0 / 8 |
-| GravityLightRoad.o | 0.0% | 0 / 21 |
-| GreenCaterpillarBig.o | 0.0% | 0 / 31 |
-| HatchWaterPlanet.o | 0.0% | 0 / 13 |
-| HeavensDoorDemoObj.o | 0.0% | 0 / 18 |
-| HipDropMoveObj.o | 0.0% | 0 / 20 |
-| HipDropRock.o | 0.0% | 0 / 15 |
-| HipDropSwitch.o | 0.0% | 0 / 21 |
-| HipDropTimerSwitch.o | 0.0% | 0 / 23 |
-| HitWallTimerSwitch.o | 0.0% | 0 / 26 |
-| IceStep.o | 0.0% | 0 / 15 |
-| IceVolcanoUpDownPlane.o | 0.0% | 0 / 7 |
-| InvisiblePolygonObj.o | 0.0% | 0 / 6 |
-| InvisiblePolygonObjGCapture.o | 0.0% | 0 / 3 |
-| IronCannonShell.o | 0.0% | 0 / 27 |
-| ItemAppearStone.o | 0.0% | 0 / 9 |
-| ItemBlock.o | 0.0% | 0 / 26 |
-| ItemBubble.o | 0.0% | 0 / 18 |
-| JetTurtle.o | 0.0% | 0 / 55 |
-| JumpHole.o | 0.0% | 0 / 21 |
-| JumpStand.o | 0.0% | 0 / 21 |
-| KeySwitch.o | 0.0% | 0 / 22 |
-| KillerGunnerSingle.o | 0.0% | 0 / 16 |
-| LargeChain.o | 0.0% | 0 / 15 |
-| LargeChainParts.o | 0.0% | 0 / 4 |
-| LavaBallRisingPlanetLava.o | 0.0% | 0 / 15 |
-| LavaBreakColumn.o | 0.0% | 0 / 7 |
-| LavaFloater.o | 0.0% | 0 / 19 |
-| LavaGalaxyParts.o | 0.0% | 0 / 7 |
-| LavaGeyser.o | 0.0% | 0 / 25 |
-| LavaHomeSeesaw.o | 0.0% | 0 / 8 |
-| LavaHomeVolcanoFlow.o | 0.0% | 0 / 14 |
-| LavaJamboSunPlanet.o | 0.0% | 0 / 14 |
-| LavaProminence.o | 0.0% | 0 / 37 |
-| LavaProminenceTriple.o | 0.0% | 0 / 11 |
-| LavaSteam.o | 0.0% | 0 / 22 |
-| LavaStrangeRock.o | 0.0% | 0 / 10 |
-| LotusLeaf.o | 0.0% | 0 / 16 |
-| MagicBell.o | 0.0% | 0 / 15 |
-| ManholeCover.o | 0.0% | 0 / 13 |
-| MapObjActor.o | 0.0% | 0 / 59 |
-| MapObjActorInitInfo.o | 0.0% | 0 / 37 |
-| MapObjConnector.o | 0.0% | 0 / 6 |
-| MarblePlanet.o | 0.0% | 0 / 35 |
-| MarioLauncher.o | 0.0% | 0 / 58 |
-| MarioLauncherAttractor.o | 100.0% | 6 / 6 |
-| MechaKoopaPartsArm.o | 0.0% | 0 / 32 |
-| MechaKoopaPartsHead.o | 0.0% | 0 / 25 |
-| MercatorFixParts.o | 0.0% | 0 / 4 |
-| MercatorRailMoveParts.o | 0.0% | 0 / 13 |
-| MercatorRotateParts.o | 0.0% | 0 / 7 |
-| MeteoContainer.o | 0.0% | 0 / 15 |
-| MeteorStrike.o | 0.0% | 0 / 25 |
-| MeteorStrikeLauncher.o | 0.0% | 0 / 14 |
-| MiniatureGalaxy.o | 0.0% | 0 / 40 |
-| MiniatureGalaxyHolder.o | 0.0% | 0 / 18 |
-| MorphItemObjNeo.o | 0.0% | 0 / 32 |
-| NeedlePlant.o | 0.0% | 0 / 15 |
-| NormalMapBase.o | 0.0% | 0 / 39 |
-| NormalMapTestObj.o | 0.0% | 0 / 3 |
-| Note.o | 0.0% | 0 / 21 |
-| NoteFairy.o | 0.0% | 0 / 39 |
-| OceanFloaterLandParts.o | 0.0% | 0 / 18 |
-| OceanSmallTurtle.o | 0.0% | 0 / 29 |
-| OceanWaveFloater.o | 0.0% | 0 / 12 |
-| PalmIsland.o | 0.0% | 0 / 9 |
-| PeachCastleGardenPlanet.o | 0.0% | 0 / 13 |
-| PhantomShipBoxFloater.o | 0.0% | 0 / 17 |
-| PhantomShipBridge.o | 0.0% | 0 / 19 |
-| PhantomShipHandle.o | 0.0% | 0 / 6 |
-| PhantomTorch.o | 0.0% | 0 / 24 |
-| PicketSwitch.o | 0.0% | 0 / 13 |
-| PlantGroup.o | 0.0% | 0 / 38 |
-| PlantPoint.o | 0.0% | 0 / 2 |
-| PlantRailInfo.o | 0.0% | 0 / 3 |
-| PomponPlant.o | 0.0% | 0 / 15 |
-| PowerStar.o | 0.0% | 0 / 65 |
-| PowerStarAppearPoint.o | 0.0% | 0 / 3 |
-| PowerStarHolder.o | 0.0% | 0 / 11 |
-| PressureBase.o | 0.0% | 0 / 48 |
-| PrizeRing.o | 0.0% | 0 / 31 |
-| PTimerSwitch.o | 0.0% | 0 / 24 |
-| PunchBox.o | 0.0% | 0 / 21 |
-| PunchingKinoko.o | 0.0% | 0 / 59 |
-| PurpleCoinHolder.o | 0.0% | 0 / 7 |
-| PurpleCoinStarter.o | 0.0% | 0 / 7 |
-| QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 |
-| QuestionBoxGalleryObj.o | 0.0% | 0 / 24 |
-| QuestionCoin.o | 0.0% | 0 / 25 |
-| RailBlock.o | 0.0% | 0 / 19 |
-| RailCoin.o | 0.0% | 0 / 10 |
-| RailMoveObj.o | 0.0% | 0 / 53 |
-| RainCloud.o | 0.0% | 0 / 32 |
-| ReverseGravityRoomPlanet.o | 0.0% | 0 / 20 |
-| RevolvingWay.o | 0.0% | 0 / 10 |
-| Rock.o | 0.0% | 0 / 51 |
-| RockCreator.o | 0.0% | 0 / 17 |
-| RosettaChair.o | 0.0% | 0 / 8 |
-| RosettaPictureBook.o | 0.0% | 0 / 23 |
-| RotateMoveObj.o | 0.0% | 0 / 20 |
-| SandCapsuleInsidePlanet.o | 0.0% | 0 / 12 |
-| SandCapsulePressGround.o | 0.0% | 0 / 36 |
-| Sandstorm.o | 0.0% | 0 / 46 |
-| SandUpDownEffectObj.o | 0.0% | 0 / 28 |
-| SandUpDownTriRock.o | 0.0% | 0 / 23 |
-| ScrewSwitch.o | 0.0% | 0 / 20 |
-| ScrewSwitchReverse.o | 0.0% | 0 / 15 |
-| SeaBottomTriplePropeller.o | 0.0% | 0 / 11 |
-| SeesawMoveNut.o | 0.0% | 0 / 12 |
-| Shellfish.o | 0.0% | 0 / 37 |
-| ShockWaveGenerator.o | 0.0% | 0 / 17 |
-| ShootingStar.o | 0.0% | 0 / 17 |
-| SideSpikeMoveStep.o | 0.0% | 0 / 18 |
-| SimpleBreakableObj.o | 0.0% | 0 / 30 |
-| SimpleClipPartsObj.o | 0.0% | 0 / 12 |
-| SimpleFloaterObj.o | 0.0% | 0 / 7 |
-| SimpleMapObj.o | 0.0% | 0 / 32 |
-| SimpleNormalMapObj.o | 0.0% | 0 / 3 |
-| SimpleTimerObj.o | 0.0% | 0 / 10 |
-| SmallStone.o | 0.0% | 0 / 20 |
-| SnowCapsulePlanet.o | 0.0% | 0 / 11 |
-| SnowFloor.o | 0.0% | 0 / 22 |
-| SnowFloorTile.o | 0.0% | 0 / 17 |
-| SnowMan.o | 0.0% | 0 / 28 |
-| SnowplowSwitch.o | 0.0% | 0 / 4 |
-| SoundEmitter.o | 0.0% | 0 / 10 |
-| SpaceMine.o | 0.0% | 0 / 15 |
-| SpaceShipStep.o | 0.0% | 0 / 23 |
-| SphereRailDash.o | 0.0% | 0 / 11 |
-| SpiderCoin.o | 0.0% | 0 / 16 |
-| SpiderMapBlock.o | 0.0% | 0 / 6 |
-| SpiderThread.o | 0.0% | 0 / 33 |
-| SpiderThreadHangInfo.o | 0.0% | 0 / 7 |
-| SpiderThreadMainPoint.o | 0.0% | 0 / 13 |
-| SpiderThreadPart.o | 0.0% | 0 / 29 |
-| SpiderThreadPoint.o | 0.0% | 0 / 10 |
-| SpiderThreadRadialLine.o | 0.0% | 0 / 4 |
-| SpiderThreadWindCtrl.o | 0.0% | 0 / 7 |
-| SpinDriver.o | 0.0% | 0 / 59 |
-| SpinDriverCamera.o | 5.205479452054795% | 2 / 14 |
-| SpinDriverOperateRing.o | 0.0% | 0 / 19 |
-| SpinDriverPathDrawer.o | 0.0% | 0 / 28 |
-| SpinDriverShootPath.o | 0.0% | 0 / 9 |
-| SpinDriverUtil.o | 0.0% | 0 / 1 |
-| SpinLeverSwitch.o | 0.0% | 0 / 16 |
-| SpinningBox.o | 0.0% | 0 / 35 |
-| SpringJetWater.o | 0.0% | 0 / 17 |
-| SpringWaterFloaterSpot.o | 0.0% | 0 / 25 |
-| StageEffectDataTable.o | 0.0% | 0 / 22 |
-| StarPiece.o | 0.0% | 0 / 86 |
-| StarPieceDirector.o | 0.0% | 0 / 45 |
-| StarPieceFollowGroup.o | 0.0% | 0 / 18 |
-| StarPieceGroup.o | 0.0% | 0 / 28 |
-| StarPieceMother.o | 0.0% | 0 / 19 |
-| StarPieceSpot.o | 0.0% | 0 / 7 |
-| SubmarineSteam.o | 0.0% | 0 / 13 |
-| SubmarineVolcanoBigColumn.o | 0.0% | 0 / 14 |
-| Sun.o | 0.0% | 0 / 3 |
-| SuperSpinDriver.o | 0.0% | 0 / 94 |
-| SurprisedGalaxy.o | 0.0% | 0 / 13 |
-| Swinger.o | 0.0% | 0 / 4 |
-| SwingLight.o | 0.0% | 0 / 20 |
-| SwitchBox.o | 0.0% | 0 / 17 |
-| TimeAppearObj.o | 0.0% | 0 / 10 |
-| TimerMoveWall.o | 0.0% | 0 / 15 |
-| TrampleStar.o | 0.0% | 0 / 32 |
-| TransparentWall.o | 0.0% | 0 / 4 |
-| TreasureBoxCracked.o | 0.0% | 0 / 30 |
-| TreasureSpot.o | 0.0% | 0 / 14 |
-| Tsukidashikun.o | 0.0% | 0 / 27 |
-| TypicalDoor.o | 0.0% | 0 / 28 |
-| UFOBase.o | 0.0% | 0 / 26 |
-| UFOKinoko.o | 0.0% | 0 / 20 |
-| ValveSwitch.o | 0.0% | 0 / 21 |
-| WarpPod.o | 0.0% | 0 / 22 |
-| WatchTowerRotateStep.o | 0.0% | 0 / 14 |
-| WaterfallCaveCover.o | 0.0% | 0 / 9 |
-| WaterLeakPipe.o | 0.0% | 0 / 22 |
-| WaterPressure.o | 0.0% | 0 / 6 |
-| WaterPressureBullet.o | 0.0% | 0 / 21 |
-| WaterPressureBulletHolder.o | 0.0% | 0 / 4 |
-| WaveFloatingForce.o | 0.0% | 0 / 5 |
-| WhirlPool.o | 0.0% | 0 / 9 |
-| WoodBox.o | 0.0% | 0 / 18 |
-| WormEatenPlanet.o | 0.0% | 0 / 25 |
-| YellowChip.o | 0.0% | 0 / 2 |
-| MapParts.o | 0.0% | 0 / 8 |
-| GeneralMapParts.o | 0.0% | 0 / 32 |
-| FloaterFloatingForce.o | 0.0% | 0 / 7 |
-| FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 |
-| FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 |
-| FloaterFunction.o | 0.0% | 0 / 6 |
-| LavaHomeSeesawRotator.o | 0.0% | 0 / 35 |
-| MapPartsAppearController.o | 0.0% | 0 / 21 |
-| MapPartsBreaker.o | 0.0% | 0 / 10 |
-| MapPartsFloatingForce.o | 0.0% | 0 / 27 |
-| MapPartsFunction.o | 0.0% | 0 / 9 |
-| MapPartsRailGuideDrawer.o | 0.0% | 0 / 19 |
-| MapPartsRailGuideHolder.o | 0.0% | 0 / 5 |
-| MapPartsRailGuidePoint.o | 0.0% | 0 / 4 |
-| MapPartsRailMover.o | 0.0% | 0 / 58 |
-| MapPartsRailPointPassChecker.o | 0.0% | 0 / 9 |
-| MapPartsRailPosture.o | 0.0% | 0 / 13 |
-| MapPartsRailRotator.o | 0.0% | 0 / 27 |
-| MapPartsRotator.o | 0.0% | 0 / 33 |
-| MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AirBubble.o | 0.0% | 0 / 23 | 0.0% |
+| AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% |
+| AirBubbleHolder.o | 0.0% | 0 / 7 | 0.0% |
+| AnmModelObj.o | 0.0% | 0 / 47 | 0.0% |
+| ArrowSwitch.o | 0.0% | 0 / 27 | 0.0% |
+| ArrowSwitchMulti.o | 0.0% | 0 / 21 | 0.0% |
+| ArrowSwitchMultiHolder.o | 0.0% | 0 / 7 | 0.0% |
+| AssemblyBlock.o | 0.0% | 0 / 22 | 0.0% |
+| AstroCore.o | 0.0% | 0 / 16 | 0.0% |
+| AstroCountDownPlate.o | 0.0% | 0 / 24 | 0.0% |
+| AstroDome.o | 0.0% | 0 / 16 | 0.0% |
+| AstroDomeAsteroid.o | 0.0% | 0 / 10 | 0.0% |
+| AstroDomeBlueStar.o | 0.0% | 0 / 55 | 0.0% |
+| AstroDomeCameraController.o | 0.0% | 0 / 29 | 0.0% |
+| AstroDomeComet.o | 0.0% | 0 / 16 | 0.0% |
+| AstroDomeDemoAstroGalaxy.o | 0.0% | 0 / 3 | 0.0% |
+| AstroDomeGalaxySelector.o | 0.0% | 0 / 37 | 0.0% |
+| AstroDomeOrbit.o | 0.0% | 0 / 16 | 0.0% |
+| AstroDomeSky.o | 0.0% | 0 / 31 | 0.0% |
+| AstroMapBoard.o | 0.0% | 0 / 8 | 0.0% |
+| AstroMapObj.o | 0.0% | 0 / 40 | 0.0% |
+| AstroMapObjFunction.o | 0.0% | 0 / 14 | 0.0% |
+| AstroOverlookObj.o | 0.0% | 0 / 3 | 0.0% |
+| BallOpener.o | 0.0% | 0 / 17 | 0.0% |
+| BallRail.o | 0.0% | 0 / 19 | 0.0% |
+| Banekiti.o | 0.0% | 0 / 19 | 0.0% |
+| BattleShipElevator.o | 0.0% | 0 / 13 | 0.0% |
+| BeamGoRoundPlanet.o | 0.0% | 0 / 16 | 0.0% |
+| BeeFlowerHover.o | 0.0% | 0 / 21 | 0.0% |
+| BenefitItemInvincible.o | 0.0% | 0 / 12 | 0.0% |
+| BenefitItemLifeUp.o | 0.0% | 0 / 8 | 0.0% |
+| BenefitItemObj.o | 0.0% | 0 / 35 | 0.0% |
+| BigBubbleDrawer.o | 0.0% | 0 / 9 | 0.0% |
+| BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% |
+| BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% |
+| BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% |
+| BigFan.o | 0.0% | 0 / 18 | 0.0% |
+| BigFanHolder.o | 0.0% | 0 / 7 | 0.0% |
+| BlackHole.o | 0.0% | 0 / 22 | 0.0% |
+| BlueChip.o | 0.0% | 0 / 3 | 0.0% |
+| BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% |
+| BreakableCage.o | 0.0% | 0 / 23 | 0.0% |
+| BrightObj.o | 0.0% | 0 / 42 | 0.0% |
+| BumpAppearPlanet.o | 0.0% | 0 / 19 | 0.0% |
+| Candlestand.o | 0.0% | 0 / 31 | 0.0% |
+| CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% |
+| CapsuleCage.o | 0.0% | 0 / 23 | 0.0% |
+| ChipBase.o | 0.0% | 0 / 39 | 0.0% |
+| ChipCounter.o | 0.0% | 0 / 30 | 0.0% |
+| ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
+| ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
+| ChooChooTrain.o | 0.0% | 0 / 8 | 0.0% |
+| CircleCoinGroup.o | 0.0% | 0 / 8 | 0.0% |
+| ClipArea.o | 0.0% | 0 / 14 | 0.0% |
+| ClipAreaDrop.o | 0.0% | 0 / 10 | 0.0% |
+| ClipAreaDropHolder.o | 0.0% | 0 / 6 | 0.0% |
+| ClipAreaDropLaser.o | 0.0% | 0 / 13 | 0.0% |
+| ClipAreaHolder.o | 0.0% | 0 / 15 | 0.0% |
+| ClipAreaMovable.o | 0.0% | 0 / 16 | 0.0% |
+| ClipAreaShape.o | 0.0% | 0 / 13 | 0.0% |
+| ClipFieldFillDraw.o | 0.0% | 0 / 10 | 0.0% |
+| ClipFieldMapParts.o | 0.0% | 0 / 5 | 0.0% |
+| ClipFieldSwitch.o | 0.0% | 0 / 4 | 0.0% |
+| CocoNut.o | 0.0% | 0 / 58 | 0.0% |
+| CoconutTree.o | 0.0% | 0 / 3 | 0.0% |
+| CoconutTreeLeaf.o | 0.0% | 0 / 12 | 0.0% |
+| Coin.o | 0.0% | 0 / 65 | 0.0% |
+| CoinBox.o | 0.0% | 0 / 10 | 0.0% |
+| CoinGroup.o | 0.0% | 0 / 24 | 0.0% |
+| CoinHolder.o | 0.0% | 0 / 19 | 0.0% |
+| CoinReplica.o | 0.0% | 0 / 10 | 0.0% |
+| CoinRotater.o | 0.0% | 0 / 7 | 0.0% |
+| CoinSpot.o | 0.0% | 0 / 12 | 0.0% |
+| CollapsePlane.o | 0.0% | 0 / 22 | 0.0% |
+| CollectCounter.o | 0.0% | 0 / 12 | 0.0% |
+| CollisionBlocker.o | 0.0% | 0 / 7 | 0.0% |
+| CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
+| CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
+| CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
+| CutBushModelObj.o | 0.0% | 0 / 5 | 0.0% |
+| DashRing.o | 0.0% | 0 / 9 | 0.0% |
+| DeadLeaves.o | 0.0% | 0 / 10 | 0.0% |
+| DesertLandMoveSwitch.o | 0.0% | 0 / 28 | 0.0% |
+| DesertMovingLand.o | 0.0% | 0 / 30 | 0.0% |
+| DragonHeadFlower.o | 0.0% | 0 / 20 | 0.0% |
+| DriftWood.o | 0.0% | 0 / 18 | 0.0% |
+| DummyDisplayModel.o | 0.0% | 0 / 16 | 0.0% |
+| DynamicCollisionObj.o | 0.0% | 0 / 7 | 0.0% |
+| EarthenPipe.o | 0.0% | 0 / 50 | 0.0% |
+| ElectricBall.o | 0.0% | 0 / 27 | 0.0% |
+| ElectricRail.o | 0.0% | 0 / 48 | 0.0% |
+| ElectricRailHolder.o | 0.0% | 0 / 17 | 0.0% |
+| ElectricRailMoving.o | 0.0% | 0 / 44 | 0.0% |
+| ExterminationChecker.o | 0.0% | 0 / 21 | 0.0% |
+| FallDownBridge.o | 0.0% | 0 / 11 | 0.0% |
+| FallingSmallRock.o | 0.0% | 0 / 11 | 0.0% |
+| FallOutFieldDraw.o | 0.0% | 0 / 13 | 0.0% |
+| FireBar.o | 0.0% | 0 / 21 | 0.0% |
+| FirePressure.o | 0.0% | 0 / 7 | 0.0% |
+| FirePressureBullet.o | 0.0% | 0 / 12 | 0.0% |
+| FirePressureBulletHolder.o | 0.0% | 0 / 4 | 0.0% |
+| FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% |
+| FlameGun.o | 0.0% | 0 / 27 | 0.0% |
+| FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% |
+| FlipPanel.o | 0.0% | 0 / 43 | 0.0% |
+| Fountain.o | 0.0% | 0 / 14 | 0.0% |
+| FountainBig.o | 0.0% | 0 / 21 | 0.0% |
+| GCapture.o | 0.0% | 0 / 70 | 0.0% |
+| GCaptureRibbon.o | 0.0% | 0 / 10 | 0.0% |
+| GCaptureTarget.o | 0.0% | 0 / 41 | 0.0% |
+| GravityLight.o | 0.0% | 0 / 8 | 0.0% |
+| GravityLightRoad.o | 0.0% | 0 / 21 | 0.0% |
+| GreenCaterpillarBig.o | 0.0% | 0 / 31 | 0.0% |
+| HatchWaterPlanet.o | 0.0% | 0 / 13 | 0.0% |
+| HeavensDoorDemoObj.o | 0.0% | 0 / 18 | 0.0% |
+| HipDropMoveObj.o | 0.0% | 0 / 20 | 0.0% |
+| HipDropRock.o | 0.0% | 0 / 15 | 0.0% |
+| HipDropSwitch.o | 0.0% | 0 / 21 | 0.0% |
+| HipDropTimerSwitch.o | 0.0% | 0 / 23 | 0.0% |
+| HitWallTimerSwitch.o | 0.0% | 0 / 26 | 0.0% |
+| IceStep.o | 0.0% | 0 / 15 | 0.0% |
+| IceVolcanoUpDownPlane.o | 0.0% | 0 / 7 | 0.0% |
+| InvisiblePolygonObj.o | 0.0% | 0 / 6 | 0.0% |
+| InvisiblePolygonObjGCapture.o | 0.0% | 0 / 3 | 0.0% |
+| IronCannonShell.o | 0.0% | 0 / 27 | 0.0% |
+| ItemAppearStone.o | 0.0% | 0 / 9 | 0.0% |
+| ItemBlock.o | 0.0% | 0 / 26 | 0.0% |
+| ItemBubble.o | 0.0% | 0 / 18 | 0.0% |
+| JetTurtle.o | 0.0% | 0 / 55 | 0.0% |
+| JumpHole.o | 0.0% | 0 / 21 | 0.0% |
+| JumpStand.o | 0.0% | 0 / 21 | 0.0% |
+| KeySwitch.o | 0.0% | 0 / 22 | 0.0% |
+| KillerGunnerSingle.o | 0.0% | 0 / 16 | 0.0% |
+| LargeChain.o | 0.0% | 0 / 15 | 0.0% |
+| LargeChainParts.o | 0.0% | 0 / 4 | 0.0% |
+| LavaBallRisingPlanetLava.o | 0.0% | 0 / 15 | 0.0% |
+| LavaBreakColumn.o | 0.0% | 0 / 7 | 0.0% |
+| LavaFloater.o | 0.0% | 0 / 19 | 0.0% |
+| LavaGalaxyParts.o | 0.0% | 0 / 7 | 0.0% |
+| LavaGeyser.o | 0.0% | 0 / 25 | 0.0% |
+| LavaHomeSeesaw.o | 0.0% | 0 / 8 | 0.0% |
+| LavaHomeVolcanoFlow.o | 0.0% | 0 / 14 | 0.0% |
+| LavaJamboSunPlanet.o | 0.0% | 0 / 14 | 0.0% |
+| LavaProminence.o | 0.0% | 0 / 37 | 0.0% |
+| LavaProminenceTriple.o | 0.0% | 0 / 11 | 0.0% |
+| LavaSteam.o | 0.0% | 0 / 22 | 0.0% |
+| LavaStrangeRock.o | 0.0% | 0 / 10 | 0.0% |
+| LotusLeaf.o | 0.0% | 0 / 16 | 0.0% |
+| MagicBell.o | 0.0% | 0 / 15 | 0.0% |
+| ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
+| MapObjActor.o | 0.0% | 0 / 59 | 0.0% |
+| MapObjActorInitInfo.o | 0.0% | 0 / 37 | 0.0% |
+| MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
+| MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
+| MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
+| MarioLauncherAttractor.o | 100.0% | 6 / 6 | 100.0% |
+| MechaKoopaPartsArm.o | 0.0% | 0 / 32 | 0.0% |
+| MechaKoopaPartsHead.o | 0.0% | 0 / 25 | 0.0% |
+| MercatorFixParts.o | 0.0% | 0 / 4 | 0.0% |
+| MercatorRailMoveParts.o | 0.0% | 0 / 13 | 0.0% |
+| MercatorRotateParts.o | 0.0% | 0 / 7 | 0.0% |
+| MeteoContainer.o | 0.0% | 0 / 15 | 0.0% |
+| MeteorStrike.o | 0.0% | 0 / 25 | 0.0% |
+| MeteorStrikeLauncher.o | 0.0% | 0 / 14 | 0.0% |
+| MiniatureGalaxy.o | 0.0% | 0 / 40 | 0.0% |
+| MiniatureGalaxyHolder.o | 0.0% | 0 / 18 | 0.0% |
+| MorphItemObjNeo.o | 0.0% | 0 / 32 | 0.0% |
+| NeedlePlant.o | 0.0% | 0 / 15 | 0.0% |
+| NormalMapBase.o | 0.0% | 0 / 39 | 0.0% |
+| NormalMapTestObj.o | 0.0% | 0 / 3 | 0.0% |
+| Note.o | 0.0% | 0 / 21 | 0.0% |
+| NoteFairy.o | 0.0% | 0 / 39 | 0.0% |
+| OceanFloaterLandParts.o | 0.0% | 0 / 18 | 0.0% |
+| OceanSmallTurtle.o | 0.0% | 0 / 29 | 0.0% |
+| OceanWaveFloater.o | 0.0% | 0 / 12 | 0.0% |
+| PalmIsland.o | 0.0% | 0 / 9 | 0.0% |
+| PeachCastleGardenPlanet.o | 0.0% | 0 / 13 | 0.0% |
+| PhantomShipBoxFloater.o | 0.0% | 0 / 17 | 0.0% |
+| PhantomShipBridge.o | 0.0% | 0 / 19 | 0.0% |
+| PhantomShipHandle.o | 0.0% | 0 / 6 | 0.0% |
+| PhantomTorch.o | 0.0% | 0 / 24 | 0.0% |
+| PicketSwitch.o | 0.0% | 0 / 13 | 0.0% |
+| PlantGroup.o | 0.0% | 0 / 38 | 0.0% |
+| PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
+| PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
+| PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
+| PowerStar.o | 0.0% | 0 / 65 | 0.0% |
+| PowerStarAppearPoint.o | 0.0% | 0 / 3 | 0.0% |
+| PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
+| PressureBase.o | 0.0% | 0 / 48 | 0.0% |
+| PrizeRing.o | 0.0% | 0 / 31 | 0.0% |
+| PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% |
+| PunchBox.o | 0.0% | 0 / 21 | 0.0% |
+| PunchingKinoko.o | 0.0% | 0 / 59 | 0.0% |
+| PurpleCoinHolder.o | 0.0% | 0 / 7 | 0.0% |
+| PurpleCoinStarter.o | 0.0% | 0 / 7 | 0.0% |
+| QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 | 0.0% |
+| QuestionBoxGalleryObj.o | 0.0% | 0 / 24 | 0.0% |
+| QuestionCoin.o | 0.0% | 0 / 25 | 0.0% |
+| RailBlock.o | 0.0% | 0 / 19 | 0.0% |
+| RailCoin.o | 0.0% | 0 / 10 | 0.0% |
+| RailMoveObj.o | 0.0% | 0 / 53 | 0.0% |
+| RainCloud.o | 0.0% | 0 / 32 | 0.0% |
+| ReverseGravityRoomPlanet.o | 0.0% | 0 / 20 | 0.0% |
+| RevolvingWay.o | 0.0% | 0 / 10 | 0.0% |
+| Rock.o | 0.0% | 0 / 51 | 0.0% |
+| RockCreator.o | 0.0% | 0 / 17 | 0.0% |
+| RosettaChair.o | 0.0% | 0 / 8 | 0.0% |
+| RosettaPictureBook.o | 0.0% | 0 / 23 | 0.0% |
+| RotateMoveObj.o | 0.0% | 0 / 20 | 0.0% |
+| SandCapsuleInsidePlanet.o | 0.0% | 0 / 12 | 0.0% |
+| SandCapsulePressGround.o | 0.0% | 0 / 36 | 0.0% |
+| Sandstorm.o | 0.0% | 0 / 46 | 0.0% |
+| SandUpDownEffectObj.o | 0.0% | 0 / 28 | 0.0% |
+| SandUpDownTriRock.o | 0.0% | 0 / 23 | 0.0% |
+| ScrewSwitch.o | 0.0% | 0 / 20 | 0.0% |
+| ScrewSwitchReverse.o | 0.0% | 0 / 15 | 0.0% |
+| SeaBottomTriplePropeller.o | 0.0% | 0 / 11 | 0.0% |
+| SeesawMoveNut.o | 0.0% | 0 / 12 | 0.0% |
+| Shellfish.o | 0.0% | 0 / 37 | 0.0% |
+| ShockWaveGenerator.o | 0.0% | 0 / 17 | 0.0% |
+| ShootingStar.o | 0.0% | 0 / 17 | 0.0% |
+| SideSpikeMoveStep.o | 0.0% | 0 / 18 | 0.0% |
+| SimpleBreakableObj.o | 0.0% | 0 / 30 | 0.0% |
+| SimpleClipPartsObj.o | 0.0% | 0 / 12 | 0.0% |
+| SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% |
+| SimpleMapObj.o | 0.0% | 0 / 32 | 0.0% |
+| SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% |
+| SimpleTimerObj.o | 0.0% | 0 / 10 | 0.0% |
+| SmallStone.o | 0.0% | 0 / 20 | 0.0% |
+| SnowCapsulePlanet.o | 0.0% | 0 / 11 | 0.0% |
+| SnowFloor.o | 0.0% | 0 / 22 | 0.0% |
+| SnowFloorTile.o | 0.0% | 0 / 17 | 0.0% |
+| SnowMan.o | 0.0% | 0 / 28 | 0.0% |
+| SnowplowSwitch.o | 0.0% | 0 / 4 | 0.0% |
+| SoundEmitter.o | 0.0% | 0 / 10 | 0.0% |
+| SpaceMine.o | 0.0% | 0 / 15 | 0.0% |
+| SpaceShipStep.o | 0.0% | 0 / 23 | 0.0% |
+| SphereRailDash.o | 0.0% | 0 / 11 | 0.0% |
+| SpiderCoin.o | 0.0% | 0 / 16 | 0.0% |
+| SpiderMapBlock.o | 0.0% | 0 / 6 | 0.0% |
+| SpiderThread.o | 0.0% | 0 / 33 | 0.0% |
+| SpiderThreadHangInfo.o | 0.0% | 0 / 7 | 0.0% |
+| SpiderThreadMainPoint.o | 0.0% | 0 / 13 | 0.0% |
+| SpiderThreadPart.o | 0.0% | 0 / 29 | 0.0% |
+| SpiderThreadPoint.o | 0.0% | 0 / 10 | 0.0% |
+| SpiderThreadRadialLine.o | 0.0% | 0 / 4 | 0.0% |
+| SpiderThreadWindCtrl.o | 0.0% | 0 / 7 | 0.0% |
+| SpinDriver.o | 0.0% | 0 / 59 | 0.0% |
+| SpinDriverCamera.o | 5.205479452054795% | 2 / 14 | 14.285714285714285% |
+| SpinDriverOperateRing.o | 0.0% | 0 / 19 | 0.0% |
+| SpinDriverPathDrawer.o | 0.0% | 0 / 28 | 0.0% |
+| SpinDriverShootPath.o | 0.0% | 0 / 9 | 0.0% |
+| SpinDriverUtil.o | 0.0% | 0 / 1 | 0.0% |
+| SpinLeverSwitch.o | 0.0% | 0 / 16 | 0.0% |
+| SpinningBox.o | 0.0% | 0 / 35 | 0.0% |
+| SpringJetWater.o | 0.0% | 0 / 17 | 0.0% |
+| SpringWaterFloaterSpot.o | 0.0% | 0 / 25 | 0.0% |
+| StageEffectDataTable.o | 0.0% | 0 / 22 | 0.0% |
+| StarPiece.o | 0.0% | 0 / 86 | 0.0% |
+| StarPieceDirector.o | 0.0% | 0 / 45 | 0.0% |
+| StarPieceFollowGroup.o | 0.0% | 0 / 18 | 0.0% |
+| StarPieceGroup.o | 0.0% | 0 / 28 | 0.0% |
+| StarPieceMother.o | 0.0% | 0 / 19 | 0.0% |
+| StarPieceSpot.o | 0.0% | 0 / 7 | 0.0% |
+| SubmarineSteam.o | 0.0% | 0 / 13 | 0.0% |
+| SubmarineVolcanoBigColumn.o | 0.0% | 0 / 14 | 0.0% |
+| Sun.o | 0.0% | 0 / 3 | 0.0% |
+| SuperSpinDriver.o | 0.0% | 0 / 94 | 0.0% |
+| SurprisedGalaxy.o | 0.0% | 0 / 13 | 0.0% |
+| Swinger.o | 0.0% | 0 / 4 | 0.0% |
+| SwingLight.o | 0.0% | 0 / 20 | 0.0% |
+| SwitchBox.o | 0.0% | 0 / 17 | 0.0% |
+| TimeAppearObj.o | 0.0% | 0 / 10 | 0.0% |
+| TimerMoveWall.o | 0.0% | 0 / 15 | 0.0% |
+| TrampleStar.o | 0.0% | 0 / 32 | 0.0% |
+| TransparentWall.o | 0.0% | 0 / 4 | 0.0% |
+| TreasureBoxCracked.o | 0.0% | 0 / 30 | 0.0% |
+| TreasureSpot.o | 0.0% | 0 / 14 | 0.0% |
+| Tsukidashikun.o | 0.0% | 0 / 27 | 0.0% |
+| TypicalDoor.o | 0.0% | 0 / 28 | 0.0% |
+| UFOBase.o | 0.0% | 0 / 26 | 0.0% |
+| UFOKinoko.o | 0.0% | 0 / 20 | 0.0% |
+| ValveSwitch.o | 0.0% | 0 / 21 | 0.0% |
+| WarpPod.o | 0.0% | 0 / 22 | 0.0% |
+| WatchTowerRotateStep.o | 0.0% | 0 / 14 | 0.0% |
+| WaterfallCaveCover.o | 0.0% | 0 / 9 | 0.0% |
+| WaterLeakPipe.o | 0.0% | 0 / 22 | 0.0% |
+| WaterPressure.o | 0.0% | 0 / 6 | 0.0% |
+| WaterPressureBullet.o | 0.0% | 0 / 21 | 0.0% |
+| WaterPressureBulletHolder.o | 0.0% | 0 / 4 | 0.0% |
+| WaveFloatingForce.o | 0.0% | 0 / 5 | 0.0% |
+| WhirlPool.o | 0.0% | 0 / 9 | 0.0% |
+| WoodBox.o | 0.0% | 0 / 18 | 0.0% |
+| WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% |
+| YellowChip.o | 0.0% | 0 / 2 | 0.0% |
+| MapParts.o | 0.0% | 0 / 8 | 0.0% |
+| GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% |
+| FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% |
+| FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% |
+| FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 | 0.0% |
+| FloaterFunction.o | 0.0% | 0 / 6 | 0.0% |
+| LavaHomeSeesawRotator.o | 0.0% | 0 / 35 | 0.0% |
+| MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% |
+| MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
+| MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
+| MapPartsFunction.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsRailGuideDrawer.o | 0.0% | 0 / 19 | 0.0% |
+| MapPartsRailGuideHolder.o | 0.0% | 0 / 5 | 0.0% |
+| MapPartsRailGuidePoint.o | 0.0% | 0 / 4 | 0.0% |
+| MapPartsRailMover.o | 0.0% | 0 / 58 | 0.0% |
+| MapPartsRailPointPassChecker.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
+| MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
+| MapPartsRotator.o | 0.0% | 0 / 33 | 0.0% |
+| MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 | 0.0% |
 
 
 # AirBubble.o

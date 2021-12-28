@@ -1,17 +1,17 @@
 # Animation
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AnmPlayer.o | 8.095238095238095% | 9 / 32 |
-| BckCtrl.o | 18.295218295218298% | 3 / 9 |
-| BpkPlayer.o | 0.0% | 0 / 3 |
-| BrkPlayer.o | 0.0% | 0 / 3 |
-| BtkPlayer.o | 0.0% | 0 / 3 |
-| BtpPlayer.o | 0.0% | 0 / 3 |
-| BvaPlayer.o | 0.0% | 0 / 3 |
-| LayoutAnmPlayer.o | 0.0% | 0 / 5 |
-| MaterialAnmBuffer.o | 0.0% | 0 / 32 |
-| XanimeCore.o | 4.778761061946903% | 5 / 46 |
-| XanimePlayer.o | 0.0% | 0 / 44 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% |
+| BckCtrl.o | 18.295218295218298% | 3 / 9 | 33.33333333333333% |
+| BpkPlayer.o | 0.0% | 0 / 3 | 0.0% |
+| BrkPlayer.o | 0.0% | 0 / 3 | 0.0% |
+| BtkPlayer.o | 0.0% | 0 / 3 | 0.0% |
+| BtpPlayer.o | 0.0% | 0 / 3 | 0.0% |
+| BvaPlayer.o | 0.0% | 0 / 3 | 0.0% |
+| LayoutAnmPlayer.o | 0.0% | 0 / 5 | 0.0% |
+| MaterialAnmBuffer.o | 0.0% | 0 / 32 | 0.0% |
+| XanimeCore.o | 4.778761061946903% | 5 / 46 | 10.869565217391305% |
+| XanimePlayer.o | 0.0% | 0 / 44 | 0.0% |
 
 
 # AnmPlayer.o

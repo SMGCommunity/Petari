@@ -1,13 +1,13 @@
 # GameAudio
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AudCameraWatcher.o | 0.0% | 0 / 5 |
-| AudStageBgmWrap.o | 0.0% | 0 / 3 |
-| AudSeKeeper.o | 0.0% | 0 / 11 |
-| AudTalkSoundData.o | 0.0% | 0 / 3 |
-| AudEffectDirector.o | 0.0% | 0 / 7 |
-| AudBgmConductor.o | 0.0% | 0 / 8 |
-| AudStageBgmTable.o | 0.0% | 0 / 3 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AudCameraWatcher.o | 0.0% | 0 / 5 | 0.0% |
+| AudStageBgmWrap.o | 0.0% | 0 / 3 | 0.0% |
+| AudSeKeeper.o | 0.0% | 0 / 11 | 0.0% |
+| AudTalkSoundData.o | 0.0% | 0 / 3 | 0.0% |
+| AudEffectDirector.o | 0.0% | 0 / 7 | 0.0% |
+| AudBgmConductor.o | 0.0% | 0 / 8 | 0.0% |
+| AudStageBgmTable.o | 0.0% | 0 / 3 | 0.0% |
 
 
 # AudCameraWatcher.o

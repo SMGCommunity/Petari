@@ -1,20 +1,20 @@
 # RhythmLib
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| AudRhythmSeqParser.o | 0.0% | 0 / 29 |
-| AudBgmTempoAdjuster.o | 0.0% | 0 / 7 |
-| AudMeTrack.o | 0.0% | 0 / 56 |
-| AudMeChannelMgr.o | 0.0% | 0 / 3 |
-| AudMeSeqCtrl.o | 0.0% | 0 / 9 |
-| AudMeSeqReader.o | 0.0% | 0 / 5 |
-| AudMeSeqParser.o | 0.0% | 0 / 62 |
-| AudMeTrackCallback.o | 0.0% | 0 / 6 |
-| AudMePlayer.o | 0.0% | 0 / 30 |
-| AudRhythmMeSystem.o | 0.0% | 0 / 9 |
-| AudMeHandles.o | 0.0% | 0 / 3 |
-| AudMeObject.o | 0.0% | 0 / 8 |
-| AudChordInfo.o | 0.0% | 0 / 40 |
-| AudRhythmHolder.o | 0.0% | 0 / 5 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| AudRhythmSeqParser.o | 0.0% | 0 / 29 | 0.0% |
+| AudBgmTempoAdjuster.o | 0.0% | 0 / 7 | 0.0% |
+| AudMeTrack.o | 0.0% | 0 / 56 | 0.0% |
+| AudMeChannelMgr.o | 0.0% | 0 / 3 | 0.0% |
+| AudMeSeqCtrl.o | 0.0% | 0 / 9 | 0.0% |
+| AudMeSeqReader.o | 0.0% | 0 / 5 | 0.0% |
+| AudMeSeqParser.o | 0.0% | 0 / 62 | 0.0% |
+| AudMeTrackCallback.o | 0.0% | 0 / 6 | 0.0% |
+| AudMePlayer.o | 0.0% | 0 / 30 | 0.0% |
+| AudRhythmMeSystem.o | 0.0% | 0 / 9 | 0.0% |
+| AudMeHandles.o | 0.0% | 0 / 3 | 0.0% |
+| AudMeObject.o | 0.0% | 0 / 8 | 0.0% |
+| AudChordInfo.o | 0.0% | 0 / 40 | 0.0% |
+| AudRhythmHolder.o | 0.0% | 0 / 5 | 0.0% |
 
 
 # AudRhythmSeqParser.o

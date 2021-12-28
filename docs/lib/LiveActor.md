@@ -1,66 +1,66 @@
 # LiveActor
-| Object | Percentage | Functions Done / Total Functions |
-| ------------- | ------------- | ------------- |
-| ActiveActorList.o | 90.76923076923077% | 5 / 6 |
-| ActorAnimKeeper.o | 0.0% | 0 / 9 |
-| ActorCameraInfo.o | 100.0% | 2 / 2 |
-| ActorJointCtrl.o | 100.0% | 13 / 13 |
-| ActorLightCtrl.o | 35.978835978835974% | 8 / 14 |
-| ActorPadAndCameraCtrl.o | 0.0% | 0 / 7 |
-| ActorStateBase.o | 0.0% | 0 / 1 |
-| ActorStateKeeper.o | 46.42857142857143% | 3 / 6 |
-| AllLiveActorGroup.o | 90.625% | 6 / 7 |
-| AnimationRandomPlayer.o | 0.0% | 0 / 10 |
-| Binder.o | 0.0% | 0 / 20 |
-| ClippingActorHolder.o | 55.48523206751055% | 9 / 15 |
-| ClippingActorInfo.o | 42.14876033057851% | 5 / 12 |
-| ClippingDirector.o | 100.0% | 11 / 11 |
-| ClippingGroupHolder.o | 87.65133171912834% | 11 / 14 |
-| ClippingJudge.o | 32.29665071770335% | 7 / 12 |
-| DisplayListMaker.o | 0.0% | 0 / 32 |
-| DynamicJointCtrl.o | 15.723270440251572% | 8 / 25 |
-| EffectKeeper.o | 0.0% | 0 / 38 |
-| FaceJointCtrl.o | 22.22222222222222% | 3 / 10 |
-| FlashingCtrl.o | 100.0% | 9 / 9 |
-| HitSensor.o | 100.0% | 9 / 9 |
-| HitSensorInfo.o | 30.09259259259259% | 2 / 3 |
-| HitSensorKeeper.o | 100.0% | 16 / 16 |
-| IKJointCtrl.o | 30.0% | 11 / 26 |
-| LiveActor.o | 12.299465240641712% | 12 / 37 |
-| LiveActorFlag.o | 100.0% | 1 / 1 |
-| LiveActorGroup.o | 0.0% | 0 / 7 |
-| LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 |
-| LodCtrl.o | 62.66318537859008% | 24 / 28 |
-| MaterialCtrl.o | 0.0% | 0 / 33 |
-| MessageSensorHolder.o | 0.0% | 0 / 3 |
-| MirrorActor.o | 0.0% | 0 / 8 |
-| MirrorCamera.o | 0.0% | 0 / 12 |
-| MirrorReflectionModel.o | 0.0% | 0 / 7 |
-| ModelManager.o | 25.387365911799765% | 11 / 50 |
-| ModelObj.o | 39.285714285714285% | 3 / 8 |
-| Nerve.o | 100.0% | 1 / 1 |
-| PartsModel.o | 91.37466307277629% | 12 / 13 |
-| RailRider.o | 75.37619699042408% | 28 / 33 |
-| SensorHitChecker.o | 65.21739130434783% | 10 / 13 |
-| ShadowController.o | 18.144750254842% | 23 / 68 |
-| ShadowDrawer.o | 100.0% | 4 / 4 |
-| ShadowSurfaceBox.o | 0.0% | 0 / 5 |
-| ShadowSurfaceCircle.o | 0.0% | 0 / 4 |
-| ShadowSurfaceDrawer.o | 0.0% | 0 / 4 |
-| ShadowSurfaceOval.o | 0.0% | 0 / 6 |
-| ShadowVolumeBox.o | 0.0% | 0 / 6 |
-| ShadowVolumeCylinder.o | 0.0% | 0 / 5 |
-| ShadowVolumeDrawer.o | 0.0% | 0 / 16 |
-| ShadowVolumeFlatModel.o | 0.0% | 0 / 10 |
-| ShadowVolumeLine.o | 0.0% | 0 / 8 |
-| ShadowVolumeModel.o | 0.0% | 0 / 3 |
-| ShadowVolumeOval.o | 0.0% | 0 / 5 |
-| ShadowVolumeOvalPole.o | 0.0% | 0 / 4 |
-| ShadowVolumeSphere.o | 0.0% | 0 / 5 |
-| SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 |
-| Spine.o | 100.0% | 6 / 6 |
-| SpotMarkLight.o | 0.0% | 0 / 4 |
-| ViewGroupCtrl.o | 0.0% | 0 / 7 |
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| ------------- | ------------- | ------------- | ------------- |
+| ActiveActorList.o | 90.76923076923077% | 5 / 6 | 83.33333333333334% |
+| ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% |
+| ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% |
+| ActorJointCtrl.o | 100.0% | 13 / 13 | 100.0% |
+| ActorLightCtrl.o | 35.978835978835974% | 8 / 14 | 57.14285714285714% |
+| ActorPadAndCameraCtrl.o | 0.0% | 0 / 7 | 0.0% |
+| ActorStateBase.o | 100.0% | 1 / 1 | 100.0% |
+| ActorStateKeeper.o | 46.42857142857143% | 3 / 6 | 50.0% |
+| AllLiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
+| AnimationRandomPlayer.o | 0.0% | 0 / 10 | 0.0% |
+| Binder.o | 0.0% | 0 / 20 | 0.0% |
+| ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
+| ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
+| ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
+| ClippingGroupHolder.o | 87.65133171912834% | 11 / 14 | 78.57142857142857% |
+| ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% |
+| DisplayListMaker.o | 0.0% | 0 / 32 | 0.0% |
+| DynamicJointCtrl.o | 15.723270440251572% | 8 / 25 | 32.0% |
+| EffectKeeper.o | 0.0% | 0 / 38 | 0.0% |
+| FaceJointCtrl.o | 22.22222222222222% | 3 / 10 | 30.0% |
+| FlashingCtrl.o | 100.0% | 9 / 9 | 100.0% |
+| HitSensor.o | 100.0% | 9 / 9 | 100.0% |
+| HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% |
+| HitSensorKeeper.o | 100.0% | 16 / 16 | 100.0% |
+| IKJointCtrl.o | 30.0% | 11 / 26 | 42.30769230769231% |
+| LiveActor.o | 12.299465240641712% | 12 / 37 | 32.432432432432435% |
+| LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% |
+| LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
+| LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% |
+| LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% |
+| MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% |
+| MessageSensorHolder.o | 0.0% | 0 / 3 | 0.0% |
+| MirrorActor.o | 0.0% | 0 / 8 | 0.0% |
+| MirrorCamera.o | 0.0% | 0 / 12 | 0.0% |
+| MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
+| ModelManager.o | 25.387365911799765% | 11 / 50 | 22.0% |
+| ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
+| Nerve.o | 100.0% | 1 / 1 | 100.0% |
+| PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
+| RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
+| SensorHitChecker.o | 65.21739130434783% | 10 / 13 | 76.92307692307693% |
+| ShadowController.o | 18.144750254842% | 23 / 68 | 33.82352941176471% |
+| ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% |
+| ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
+| ShadowSurfaceDrawer.o | 0.0% | 0 / 4 | 0.0% |
+| ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% |
+| ShadowVolumeBox.o | 0.0% | 0 / 6 | 0.0% |
+| ShadowVolumeCylinder.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowVolumeDrawer.o | 0.0% | 0 / 16 | 0.0% |
+| ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% |
+| ShadowVolumeLine.o | 0.0% | 0 / 8 | 0.0% |
+| ShadowVolumeModel.o | 0.0% | 0 / 3 | 0.0% |
+| ShadowVolumeOval.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowVolumeOvalPole.o | 0.0% | 0 / 4 | 0.0% |
+| ShadowVolumeSphere.o | 0.0% | 0 / 5 | 0.0% |
+| SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% |
+| Spine.o | 100.0% | 6 / 6 | 100.0% |
+| SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% |
+| ViewGroupCtrl.o | 0.0% | 0 / 7 | 0.0% |
 
 
 # ActiveActorList.o
@@ -147,7 +147,7 @@
 # ActorStateBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| update__23ActorStateBaseInterfaceFv | :x: |
+| update__23ActorStateBaseInterfaceFv | :white_check_mark: |
 
 
 # ActorStateKeeper.o
@@ -169,7 +169,7 @@
 | getAllLiveActorGroup__2MRFv | :white_check_mark: |
 | startInitLiveActorSystemInfo__2MRFv | :white_check_mark: |
 | initLiveActorSystemInfo__2MRFRC12JMapInfoIter | :white_check_mark: |
-| endInitLiveActorSystemInfo__2MRFv | :x: |
+| endInitLiveActorSystemInfo__2MRFv | :white_check_mark: |
 | __dt__17AllLiveActorGroupFv | :white_check_mark: |
 
 
@@ -566,13 +566,13 @@
 # LiveActorGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14LiveActorGroupFPCci | :x: |
-| registerActor__14LiveActorGroupFP9LiveActor | :x: |
-| getActor__14LiveActorGroupCFi | :x: |
-| getDeadActor__14LiveActorGroupCFv | :x: |
-| getLivingActorNum__14LiveActorGroupCFv | :x: |
-| appearAll__14LiveActorGroupFv | :x: |
-| killAll__14LiveActorGroupFv | :x: |
+| __ct__14LiveActorGroupFPCci | :white_check_mark: |
+| registerActor__14LiveActorGroupFP9LiveActor | :white_check_mark: |
+| getActor__14LiveActorGroupCFi | :white_check_mark: |
+| getDeadActor__14LiveActorGroupCFv | :white_check_mark: |
+| getLivingActorNum__14LiveActorGroupCFv | :white_check_mark: |
+| appearAll__14LiveActorGroupFv | :white_check_mark: |
+| killAll__14LiveActorGroupFv | :white_check_mark: |
 
 
 # LiveActorGroupArray.o
