@@ -7,7 +7,7 @@ ConeGravity::ConeGravity() : PlanetGravity() {
 	mEnableBottom = true;
 	mTopCutRate = 0.0f;
 	mLocalMtx.identity();
-	_58.identity();
+	mWorldMtx.identity();
 }
 
 void ConeGravity::setEnableBottom(bool val) {
@@ -21,4 +21,15 @@ void ConeGravity::setTopCutRate(f32 val) {
 		val = 1.0f;
 
 	mTopCutRate = val;
+}
+
+void ConeGravity::updateMtx(const TPos3f &rMtx) {
+	mWorldMtx.concat(rMtx, mLocalMtx);
+
+	TVec3f dirX;
+	mWorldMtx.getXDirInline(dirX);
+	_90 = VECMag(reinterpret_cast<Vec*>(&dirX));
+
+	TVec3f dirY; // unused
+	mWorldMtx.getYDir(dirY);
 }

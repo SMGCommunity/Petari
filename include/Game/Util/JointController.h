@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TPosition3.h"
+#include "JSystem/JGeometry.h"
 
 class J3DJoint;
 class J3DModel;

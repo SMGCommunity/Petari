@@ -3,8 +3,6 @@
 #include "JSystem/JGeometry/TVec.h"
 #include "JSystem/JGeometry/TQuat.h"
 #include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TRotation.h"
 #include "JSystem/JGeometry/THex.h"
 #include "JSystem/JGeometry/TPartition3.h"
 #include "JSystem/JGeometry/TBox.h"

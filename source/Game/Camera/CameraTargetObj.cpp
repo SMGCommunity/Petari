@@ -3,7 +3,6 @@
 #include "Game/Gravity/GravityInfo.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util/LiveActorUtil.h"
-#include "JSystem/JGeometry/TRotation.h"
 
 CameraTargetObj::CameraTargetObj(const char *pName) : NameObj(pName) {
     mCameraWall = false;

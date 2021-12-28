@@ -1,9 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
+#include "JSystem/JGeometry.h"
 
 class ActorCameraInfo;
 class CameraTargetArg;

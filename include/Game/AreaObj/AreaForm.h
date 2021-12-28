@@ -1,11 +1,8 @@
 #pragma once
 
+#include <revolution.h>
 #include "Game/Util.h"
-#include "JSystem/JGeometry/TBox.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TRotation.h"
-#include "JSystem/JGeometry/TVec.h"
-#include "revolution.h"
+#include "JSystem/JGeometry.h"
 
 class AreaForm {
 public:
