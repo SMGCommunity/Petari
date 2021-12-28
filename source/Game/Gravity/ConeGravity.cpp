@@ -10,6 +10,11 @@ ConeGravity::ConeGravity() : PlanetGravity() {
 	mWorldMtx.identity();
 }
 
+void ConeGravity::setLocalMatrix(const TPos3f &rMtx) {
+	mLocalMtx.setInline(rMtx);
+	updateIdentityMtx();
+}
+
 void ConeGravity::setEnableBottom(bool val) {
 	mEnableBottom = val;
 }

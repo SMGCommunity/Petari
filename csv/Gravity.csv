@@ -1,11 +1,11 @@
 Symbol Name, Object File, Library Archive, Matching
 __ct__11ConeGravityFv,ConeGravity.o,Gravity.a,true
-setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,ConeGravity.o,Gravity.a,false
+setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,ConeGravity.o,Gravity.a,true
 setEnableBottom__11ConeGravityFb,ConeGravity.o,Gravity.a,true
 setTopCutRate__11ConeGravityFf,ConeGravity.o,Gravity.a,true
 updateMtx__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,ConeGravity.o,Gravity.a,true
 calcOwnGravityVector__11ConeGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>,ConeGravity.o,Gravity.a,false
-isZero__Q29JGeometry8TVec3<f>CFv,CubeGravity.o,Gravity.a,false
+isZero__Q29JGeometry8TVec3<f>CFv,CubeGravity.o,Gravity.a,true
 __ct__11CubeGravityFv,CubeGravity.o,Gravity.a,false
 setCube__11CubeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,CubeGravity.o,Gravity.a,false
 calcGravityArea__11CubeGravityCFRCQ29JGeometry8TVec3<f>,CubeGravity.o,Gravity.a,false

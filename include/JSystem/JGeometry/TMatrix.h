@@ -11,6 +11,27 @@ namespace JGeometry {
         void set(const SMatrix34C<T> &rSrc);
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
+        inline void setInline(const SMatrix34C<T> &rSrc) {
+            register const SMatrix34C<T> *pSrc = &rSrc;
+            register SMatrix34C<T> *pDest = this;
+            register f32 rxxyx, rzxtx, rxyyy, rzyty, rxzyz, rzztz;
+
+            __asm {
+                psq_l     rxxyx, 0(pSrc), 0, 0
+                psq_l     rzxtx, 8(pSrc), 0, 0
+                psq_l     rxyyy, 0x10(pSrc), 0, 0
+                psq_l     rzyty, 0x18(pSrc), 0, 0
+                psq_l     rxzyz, 0x20(pSrc), 0, 0
+                psq_l     rzztz, 0x28(pSrc), 0, 0
+                psq_st    rxxyx, 0(pDest), 0, 0
+                psq_st    rzxtx, 8(pDest), 0, 0
+                psq_st    rxyyy, 0x10(pDest), 0, 0
+                psq_st    rzyty, 0x18(pDest), 0, 0
+                psq_st    rxzyz, 0x20(pDest), 0, 0
+                psq_st    rzztz, 0x28(pDest), 0, 0
+            };
+        }
+
         T mMtx[3][4];
     };
 

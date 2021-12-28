@@ -1,8 +1,8 @@
 # Gravity
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| ConeGravity.o | 10.14851485148515% | 3 / 6 | 50.0% |
-| CubeGravity.o | 0.0% | 0 / 10 | 0.0% |
+| ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% |
+| CubeGravity.o | 1.3597033374536465% | 1 / 10 | 10.0% |
 | DiskGravity.o | 0.0% | 0 / 11 | 0.0% |
 | DiskTorusGravity.o | 0.0% | 0 / 9 | 0.0% |
 | GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% |
@@ -20,17 +20,17 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__11ConeGravityFv | :white_check_mark: |
-| setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
 | setEnableBottom__11ConeGravityFb | :white_check_mark: |
 | setTopCutRate__11ConeGravityFf | :white_check_mark: |
-| updateMtx__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| updateMtx__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
 | calcOwnGravityVector__11ConeGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 
 
 # CubeGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| isZero__Q29JGeometry8TVec3<f>CFv | :x: |
+| isZero__Q29JGeometry8TVec3<f>CFv | :white_check_mark: |
 | __ct__11CubeGravityFv | :x: |
 | setCube__11CubeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | calcGravityArea__11CubeGravityCFRCQ29JGeometry8TVec3<f> | :x: |
