@@ -29,6 +29,9 @@ public:
     bool updateRootJointCallBack(TPos3f *, const JointControllerInfo &);
     bool updateMiddleJointCallBack(TPos3f *, const JointControllerInfo &);
 
+    void disableCallBack();
+    void enableCallBack();
+
     const char* mName;                                      // _0
     TMtx34f _4;
     TMtx34f _34;

@@ -98,3 +98,11 @@ IKJointCtrl* IKJointCtrlHolder::findIKJointCtrl(const char *pName) {
     
     return 0;
 }
+
+void IKJointCtrl::disableCallBack() {
+    _B6 = 0;
+}
+
+void IKJointCtrl::enableCallBack() {
+    _B6 = 1;
+}

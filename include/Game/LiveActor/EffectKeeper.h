@@ -23,6 +23,8 @@ public:
     void playEmitterOffClipped();
     void stopEmitterOnClipped();
 
+    void clear();
+
     const char* _0;
     ResourceHolder* mResourceHolder;    // _4
     const char* mResourceName;          // _8

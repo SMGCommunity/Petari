@@ -72,6 +72,10 @@ public:
     void addToSoundObjHolder();
     void updateBinder();
 
+    inline bool isBinderValid(Binder *pBinder) {
+        return pBinder;
+    }
+
     TVec3f mPosition;                       // _C
     TVec3f mRotation;                       // _18
     TVec3f mScale;                          // _24

@@ -1,4 +1,6 @@
 #include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/Binder.h"
+#include "Game/LiveActor/ClippingDirector.h"
 #include "Game/LiveActor/ActorPadAndCameraCtrl.h"
 #include "Game/NameObj/NameObjExecuteHolder.h"
 #include "Game/Util.h"
@@ -10,6 +12,68 @@ void LiveActor::init(const JMapInfoIter &) {
 void LiveActor::appear() {
     makeActorAppeared();
 }
+
+void LiveActor::makeActorAppeared() {
+    if (mSensorKeeper) {
+        mSensorKeeper->validateBySystem();
+    }
+
+    if (MR::isClipped(this)) {
+        endClipped();
+    }
+
+    mFlags.mIsDead = false;
+    if (mCollisionParts) {
+        MR::validateCollisionParts(this);
+    }
+
+    MR::resetPosition(this);
+    if (mActorLightCtrl) {
+        mActorLightCtrl->reset();
+    }
+
+    MR::tryUpdateHitSensorsAll(this);
+    MR::addToClippingTarget(this);
+    MR::connectToSceneTemporarily(this);
+    
+    if (!MR::isNoEntryDrawBuffer(this)) {
+        MR::connectToDrawTemporarily(this);
+    }
+}
+
+void LiveActor::kill() {
+    makeActorDead();
+}
+
+#ifdef NON_MATCHING
+void LiveActor::makeActorDead() {
+    mVelocity.z = 0.0f;
+    mVelocity.y = 0.0f;
+    mVelocity.x = 0.0f;
+    MR::clearHitSensors(this);
+
+    if (mSensorKeeper) {
+        mSensorKeeper->invalidateBySystem();
+    }
+
+    if (mBinder) {
+        mBinder->clear();
+    }
+
+    if (mEffectKeeper) {
+        mEffectKeeper->clear();
+    }
+
+    if (mCollisionParts) {
+        MR::invalidateCollisionParts(this);
+    }
+
+    mFlags.mIsDead = true;
+    MR::removeFromClippingTarget(this);
+    MR::disconnectToSceneTemporarily(this);
+    MR::disconnectToDrawTemporarily(this);
+}
+#endif
 
 MtxPtr LiveActor::getTakingMtx() const {
     return getBaseMtx();
@@ -109,21 +173,22 @@ void LiveActor::initRailRider(const JMapInfoIter &rIter) {
     mRailRider = new RailRider(rIter);
 }
 
+#ifdef NON_MATCHING
 void LiveActor::initEffectKeeper(int a1, const char *a2, bool doSort) {
-    const char* name = mName;
-    ResourceHolder* hldr = MR::getModelResourceHolder(this);
-    mEffectKeeper = new EffectKeeper(name, hldr, a1, a2);
+    EffectKeeper* keeper = new EffectKeeper(mName, MR::getModelResourceHolder(this), a1, a2);
+    mEffectKeeper = keeper;
 
     if (doSort) {
-        mEffectKeeper->enableSort();
+        keeper->enableSort();
     }
 
-    mEffectKeeper->init(this);
+    keeper->init(this);
 
     if (mBinder) {
-        mEffectKeeper->setBinder(mBinder);
+        keeper->setBinder(mBinder);
     }
 }
+#endif
 
 // LiveActor::initSound
 

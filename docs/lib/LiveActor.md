@@ -10,7 +10,7 @@
 | ActorStateBase.o | 100.0% | 1 / 1 | 100.0% |
 | ActorStateKeeper.o | 46.42857142857143% | 3 / 6 | 50.0% |
 | AllLiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
-| AnimationRandomPlayer.o | 0.0% | 0 / 10 | 0.0% |
+| AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% |
 | Binder.o | 0.0% | 0 / 20 | 0.0% |
 | ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
 | ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
@@ -25,8 +25,8 @@
 | HitSensor.o | 100.0% | 9 / 9 | 100.0% |
 | HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% |
 | HitSensorKeeper.o | 100.0% | 16 / 16 | 100.0% |
-| IKJointCtrl.o | 30.0% | 11 / 26 | 42.30769230769231% |
-| LiveActor.o | 23.101604278074866% | 17 / 37 | 45.94594594594595% |
+| IKJointCtrl.o | 30.705882352941178% | 13 / 26 | 50.0% |
+| LiveActor.o | 28.770053475935832% | 19 / 37 | 51.35135135135135% |
 | LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% |
 | LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
 | LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% |
@@ -176,16 +176,16 @@
 # AnimationRandomPlayer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21AnimationRandomPlayerFPC9LiveActorPCcPCclf | :x: |
-| updateStartStep__21AnimationRandomPlayerFv | :x: |
-| exeWait__21AnimationRandomPlayerFv | :x: |
-| exePlay__21AnimationRandomPlayerFv | :x: |
-| __dt__21AnimationRandomPlayerFv | :x: |
-| __sinit_\AnimationRandomPlayer_cpp | :x: |
-| __ct__Q224NrvAnimationRandomPlayer12HostTypeWaitFv | :x: |
-| __ct__Q224NrvAnimationRandomPlayer12HostTypePlayFv | :x: |
-| execute__Q224NrvAnimationRandomPlayer12HostTypePlayCFP5Spine | :x: |
-| execute__Q224NrvAnimationRandomPlayer12HostTypeWaitCFP5Spine | :x: |
+| __ct__21AnimationRandomPlayerFPC9LiveActorPCcPCclf | :white_check_mark: |
+| updateStartStep__21AnimationRandomPlayerFv | :white_check_mark: |
+| exeWait__21AnimationRandomPlayerFv | :white_check_mark: |
+| exePlay__21AnimationRandomPlayerFv | :white_check_mark: |
+| __dt__21AnimationRandomPlayerFv | :white_check_mark: |
+| __sinit_\AnimationRandomPlayer_cpp | :white_check_mark: |
+| __ct__Q224NrvAnimationRandomPlayer12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q224NrvAnimationRandomPlayer12HostTypePlayFv | :white_check_mark: |
+| execute__Q224NrvAnimationRandomPlayer12HostTypePlayCFP5Spine | :white_check_mark: |
+| execute__Q224NrvAnimationRandomPlayer12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # Binder.o
@@ -510,8 +510,8 @@
 | __dt__36JointControlDelegator<11IKJointCtrl>Fv | :x: |
 | calcJointMatrix__36JointControlDelegator<11IKJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__36JointControlDelegator<11IKJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| disableCallBack__11IKJointCtrlFv | :x: |
-| enableCallBack__11IKJointCtrlFv | :x: |
+| disableCallBack__11IKJointCtrlFv | :white_check_mark: |
+| enableCallBack__11IKJointCtrlFv | :white_check_mark: |
 | for_each<PP11IKJointCtrl,Q23std26mem_fun_t<v,11IKJointCtrl>>__3stdFPP11IKJointCtrlPP11IKJointCtrlQ23std26mem_fun_t<v,11IKJointCtrl>_Q23std26mem_fun_t<v,11IKJointCtrl> | :x: |
 
 
@@ -521,8 +521,8 @@
 | __ct__9LiveActorFPCc | :x: |
 | init__9LiveActorFRC12JMapInfoIter | :white_check_mark: |
 | appear__9LiveActorFv | :white_check_mark: |
-| makeActorAppeared__9LiveActorFv | :x: |
-| kill__9LiveActorFv | :x: |
+| makeActorAppeared__9LiveActorFv | :white_check_mark: |
+| kill__9LiveActorFv | :white_check_mark: |
 | makeActorDead__9LiveActorFv | :x: |
 | movement__9LiveActorFv | :x: |
 | calcAnim__9LiveActorFv | :x: |

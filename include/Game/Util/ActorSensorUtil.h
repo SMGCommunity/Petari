@@ -118,4 +118,8 @@ namespace MR {
     void updateHitSensorsAll(LiveActor *);
 
     void setHitSensorApart(HitSensor *, HitSensor *);
+
+    bool tryUpdateHitSensorsAll(LiveActor *);
+
+    void clearHitSensors(LiveActor *);
 };

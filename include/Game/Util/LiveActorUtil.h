@@ -88,4 +88,14 @@ namespace MR {
     void setClippingFar(LiveActor *, f32);
 
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
+    
+    void validateCollisionParts(LiveActor *);
+
+    void invalidateCollisionParts(LiveActor *);
+
+    void startAllAnim(const LiveActor *, const char *);
+
+    bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
+
+    void setAllAnimFrame(const LiveActor *, const char *, f32);
 }

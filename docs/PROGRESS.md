@@ -10,7 +10,7 @@
 | [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy.md) | 0.0% |
 | [GameAudio](https://github.com/shibbo/Petari/blob/master/docs/lib/GameAudio.md) | 0.0% |
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 34.869528619528616% |
-| [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 27.867095391211144% |
+| [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 28.90628640663591% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 4.421267429996599% |
 | [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 0.0724683016349683% |
 | [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 18.34665291741858% |
