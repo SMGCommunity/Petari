@@ -97,6 +97,7 @@ class Library:
         for obj in self.objects:
             page.append(f"# {obj.name}\n")
             page.append("| Symbol | Decompiled? |\n")
+            page.append("| ------------- | ------------- |\n")
 
             for func in obj.getFunctions():
                 marker = ":x:"

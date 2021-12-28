@@ -100,6 +100,7 @@
 
 # AlreadyDoneFlagInGalaxy.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AlreadyDoneInfoFv | :white_check_mark: |
 | clear__15AlreadyDoneInfoFv | :white_check_mark: |
 | init__15AlreadyDoneInfoFPCcll | :white_check_mark: |
@@ -113,6 +114,7 @@
 
 # ArchiveHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc | :x: |
 | __dt__25ArchiveHolderArchiveEntryFv | :x: |
 | __ct__13ArchiveHolderFv | :x: |
@@ -125,6 +127,7 @@
 
 # AudSystemWrapper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16AudSystemWrapperFP12JKRSolidHeapP7JKRHeap | :x: |
 | requestResourceForInitialize__16AudSystemWrapperFv | :x: |
 | createAudioSystem__16AudSystemWrapperFv | :x: |
@@ -149,6 +152,7 @@
 
 # BinaryDataChunkHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21BinaryDataChunkHolderFUli | :x: |
 | addChunk__21BinaryDataChunkHolderFP19BinaryDataChunkBase | :white_check_mark: |
 | makeFileBinary__21BinaryDataChunkHolderFPUcUl | :x: |
@@ -160,6 +164,7 @@
 
 # BinaryDataContentAccessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__33BinaryDataContentHeaderSerializerFPUcUl | :x: |
 | addAttribute__33BinaryDataContentHeaderSerializerFPCcUl | :x: |
 | flush__33BinaryDataContentHeaderSerializerFv | :x: |
@@ -176,6 +181,7 @@
 
 # DrawBuffer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21DrawBufferShapeDrawerFP11J3DMaterialP12J3DMatPacket | :x: |
 | init__21DrawBufferShapeDrawerFl | :x: |
 | swap__21DrawBufferShapeDrawerFP21DrawBufferShapeDrawer | :x: |
@@ -199,6 +205,7 @@
 
 # DrawBufferExecuter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18DrawBufferExecuterFPCcP8J3DModell | :x: |
 | allocateActorListBuffer__18DrawBufferExecuterFv | :x: |
 | add__18DrawBufferExecuterFP9LiveActor | :x: |
@@ -213,6 +220,7 @@
 
 # DrawBufferGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15DrawBufferGroupFv | :white_check_mark: |
 | init__15DrawBufferGroupFl | :white_check_mark: |
 | registerDrawBuffer__15DrawBufferGroupFP9LiveActor | :white_check_mark: |
@@ -236,6 +244,7 @@
 
 # DrawBufferHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DrawBufferHolderFv | :x: |
 | initTable__16DrawBufferHolderFPC22DrawBufferInitialTablel | :x: |
 | __dt__15DrawBufferGroupFv | :x: |
@@ -255,6 +264,7 @@
 
 # DrawSyncManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | start__15DrawSyncManagerFUll | :white_check_mark: |
 | prepareReset__15DrawSyncManagerFv | :white_check_mark: |
 | resetIfAborted__15DrawSyncManagerFv | :white_check_mark: |
@@ -276,6 +286,7 @@
 
 # FileHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19FileHolderFileEntryFPCcP7JKRHeapPv | :white_check_mark: |
 | __dt__19FileHolderFileEntryFv | :white_check_mark: |
 | waitReadDone__19FileHolderFileEntryFv | :white_check_mark: |
@@ -292,6 +303,7 @@
 
 # FileLoader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10FileLoaderFv | :x: |
 | requestLoadToMainRAM__10FileLoaderFPCcPUcP7JKRHeapQ212JKRDvdRipper15EAllocDirectionb | :x: |
 | requestMountArchive__10FileLoaderFPCcP7JKRHeapb | :x: |
@@ -312,6 +324,7 @@
 
 # FileLoaderThread.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | loadFileUsingRipper__30@unnamed@FileLoaderThread_cpp@FP15RequestFileInfo | :x: |
 | __ct__16FileLoaderThreadFiiP7JKRHeap | :x: |
 | run__16FileLoaderThreadFv | :x: |
@@ -322,6 +335,7 @@
 
 # FileRipper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setup__10FileRipperFUlP7JKRHeap | :x: |
 | checkCompressed__10FileRipperFPCUc | :x: |
 | loadToMainRAM__10FileRipperFPCcPUcbP7JKRHeapQ210FileRipper14AllocDirection | :x: |
@@ -333,6 +347,7 @@
 
 # FunctionAsyncExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21FunctionAsyncExecInfoFPQ22MR11FunctorBaseiPCc | :white_check_mark: |
 | __dt__21FunctionAsyncExecInfoFv | :white_check_mark: |
 | execute__21FunctionAsyncExecInfoFv | :white_check_mark: |
@@ -354,6 +369,7 @@
 
 # GameSystem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | main | :white_check_mark: |
 | __ct__10GameSystemFv | :x: |
 | init__10GameSystemFv | :x: |
@@ -390,12 +406,14 @@
 
 # GameSystemDimmingWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24GameSystemDimmingWatcherFv | :x: |
 | update__24GameSystemDimmingWatcherFv | :x: |
 
 
 # GameSystemErrorWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22GameSystemErrorWatcherFv | :x: |
 | initAfterResourceLoaded__22GameSystemErrorWatcherFv | :x: |
 | movement__22GameSystemErrorWatcherFv | :x: |
@@ -423,6 +441,7 @@
 
 # GameSystemException.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isBootWPAD__33@unnamed@GameSystemException_cpp@Fv | :x: |
 | init__19GameSystemExceptionFv | :x: |
 | handleException__19GameSystemExceptionFUsP9OSContextUlUl | :x: |
@@ -431,6 +450,7 @@
 
 # GameSystemFontHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameSystemFontHolderFv | :x: |
 | getMessageFont__20GameSystemFontHolderCFv | :x: |
 | createFontFromEmbeddedData__20GameSystemFontHolderFv | :x: |
@@ -439,12 +459,14 @@
 
 # GameSystemFrameControl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22GameSystemFrameControlFv | :x: |
 | setMovement60fps__22GameSystemFrameControlFv | :x: |
 
 
 # GameSystemFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getLogoScene__32@unnamed@GameSystemFunction_cpp@Fv | :x: |
 | getAudSystemWrapper__32@unnamed@GameSystemFunction_cpp@Fv | :x: |
 | getSaveDataHandleSequence__32@unnamed@GameSystemFunction_cpp@Fv | :x: |
@@ -497,6 +519,7 @@
 
 # GameSystemObjHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19GameSystemObjHolderFv | :x: |
 | initAfterStationedResourceLoaded__19GameSystemObjHolderFv | :x: |
 | initMessageResource__19GameSystemObjHolderFv | :x: |
@@ -521,6 +544,7 @@
 
 # GameSystemStationedArchiveLoader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isExecute__22ConditionIfIsNotPlayerCFPCQ22MR17StationedFileInfo | :x: |
 | __ct__22ConditionUsePlayerHeapFv | :x: |
 | isExecute__22ConditionUsePlayerHeapCFPCQ22MR17StationedFileInfo | :x: |
@@ -577,6 +601,7 @@
 
 # GameSystemSceneController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getAudioSystemWrapper__39@unnamed@GameSystemSceneController_cpp@Fv | :x: |
 | __ct__16SceneControlInfoFv | :x: |
 | setScene__16SceneControlInfoFPCc | :white_check_mark: |
@@ -659,6 +684,7 @@
 
 # GameSystemResetAndPowerProcess.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__30GameSystemResetAndPowerProcessFRC12JMapInfoIter | :x: |
 | draw__30GameSystemResetAndPowerProcessCFv | :x: |
 | isActive__30GameSystemResetAndPowerProcessCFv | :x: |
@@ -699,6 +725,7 @@
 
 # HeapMemoryWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createExpHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeapb | :x: |
 | createSolidHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeap | :x: |
 | destroyHeapAndSetNULL__31@unnamed@HeapMemoryWatcher_cpp@FPP7JKRHeap | :x: |
@@ -722,6 +749,7 @@
 
 # Language.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getDecidedLanguageFromIPL__2MRFv | :white_check_mark: |
 | getLanguage__2MRFv | :x: |
 | getLanguageFromIPL__2MRFv | :x: |
@@ -733,6 +761,7 @@
 
 # LayoutHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12LayoutHolderFR10JKRArchive | :x: |
 | __dt__12LayoutHolderFv | :x: |
 | GetResource__12LayoutHolderFUlPCcPUl | :x: |
@@ -749,6 +778,7 @@
 
 # MainLoopFramework.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | ctor_subroutine__17MainLoopFrameworkFb | :x: |
 | __dt__17MainLoopFrameworkFv | :x: |
 | createManager__17MainLoopFrameworkFPC16_GXRenderModeObjPvPvPvb | :x: |
@@ -787,6 +817,7 @@
 
 # MessageHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getBlock__27@unnamed@MessageHolder_cpp@FUlPUc | :x: |
 | getMessageDirect__11MessageDataCFP15TalkMessageInfoPCc | :x: |
 | getMessage__11MessageDataCFP15TalkMessageInfoUsUs | :x: |
@@ -810,6 +841,7 @@
 
 # NANDErrorSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17NANDErrorSequenceFP22SaveDataHandleSequenceP13SysInfoWindowP13SysInfoWindow | :x: |
 | startErrorToWiiMenu__17NANDErrorSequenceFPCc | :x: |
 | startRemoveFile__17NANDErrorSequenceFv | :x: |
@@ -870,6 +902,7 @@
 
 # NANDManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15NANDRequestInfoFv | :x: |
 | init__15NANDRequestInfoFv | :x: |
 | isDone__15NANDRequestInfoCFv | :x: |
@@ -894,6 +927,7 @@
 
 # NANDManagerThread.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17NANDManagerThreadFiiP7JKRHeap | :x: |
 | run__17NANDManagerThreadFv | :x: |
 | executeWriteSequence__17NANDManagerThreadFP15NANDRequestInfo | :x: |
@@ -903,6 +937,7 @@
 
 # NerveExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13NerveExecutorFPCc | :white_check_mark: |
 | __dt__13NerveExecutorFv | :x: |
 | initNerve__13NerveExecutorFPC5Nerve | :white_check_mark: |
@@ -914,6 +949,7 @@
 
 # OSThreadWrapper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15OSThreadWrapperFUliiP7JKRHeap | :white_check_mark: |
 | __dt__15OSThreadWrapperFv | :white_check_mark: |
 | initMessageQueue__15OSThreadWrapperFP7JKRHeapi | :white_check_mark: |
@@ -924,6 +960,7 @@
 
 # Overwrite.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | do_alloc__11JKRUnitHeapFUli | :x: |
 | do_free__11JKRUnitHeapFPv | :x: |
 | do_free__12JKRSolidHeapFPv | :x: |
@@ -991,6 +1028,7 @@
 
 # PauseButtonCheckerInGame.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24PauseButtonCheckerInGameFv | :x: |
 | update__24PauseButtonCheckerInGameFv | :x: |
 | isPermitToPlusPause__24PauseButtonCheckerInGameCFv | :x: |
@@ -1000,11 +1038,13 @@
 
 # PlacedHiddenStarScenarioTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPlacedHiddenStarScenarioNoFromTable__2MRFPCcl | :x: |
 
 
 # RenderMode.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSuitableRenderMode__2MRFv | :x: |
 | isAspectRatioFlag16Per9__2MRFv | :x: |
 | getRequiredExternalFrameBufferSize__2MRFv | :x: |
@@ -1013,6 +1053,7 @@
 
 # ResourceHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14ResourceHolderFR10JKRArchive | :x: |
 | getMotionName__14ResourceHolderCFUl | :x: |
 | isExistMaterialAnm__14ResourceHolderCFv | :x: |
@@ -1030,6 +1071,7 @@
 
 # ResourceHolderManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ResourceHolderManagerFv | :x: |
 | createAndAdd__21ResourceHolderManagerFPCcP7JKRHeap | :x: |
 | createAndAddStationed__21ResourceHolderManagerFPCc | :x: |
@@ -1056,6 +1098,7 @@
 
 # ResourceInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11ResFileInfoFv | :white_check_mark: |
 | __ct__8ResTableFv | :white_check_mark: |
 | newFileInfoTable__8ResTableFUl | :white_check_mark: |
@@ -1075,6 +1118,7 @@
 
 # ScenarioDataParser.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12ScenarioDataFPCc | :x: |
 | getScenarioNum__12ScenarioDataCFv | :x: |
 | getPowerStarNum__12ScenarioDataCFv | :x: |
@@ -1104,6 +1148,7 @@
 
 # ShapePacketUserData.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19ShapePacketUserDataFv | :x: |
 | init__19ShapePacketUserDataFP11J3DMaterial | :x: |
 | callDL__19ShapePacketUserDataCFv | :x: |
@@ -1116,6 +1161,7 @@
 
 # StarPointerOnOffController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26StarPointerOnOffControllerFv | :x: |
 | update__26StarPointerOnOffControllerFv | :x: |
 | setStateToTitle__26StarPointerOnOffControllerFPv | :x: |
@@ -1158,6 +1204,7 @@
 
 # StationedArchiveLoader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__Q222StationedArchiveLoader9ConditionFv | :x: |
 | getProperHeap__Q222StationedArchiveLoader9ConditionCFPCQ22MR17StationedFileInfo | :x: |
 | getProperHeap__22StationedArchiveLoaderFPCQ22MR17StationedFileInfo | :x: |
@@ -1168,11 +1215,13 @@
 
 # StationedFileInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getStationedFileInfoTable__2MRFv | :x: |
 
 
 # WPad.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__4WPadFl | :x: |
 | setReadInfo__4WPadFP16WPadReadDataInfo | :x: |
 | update__4WPadFv | :x: |
@@ -1198,6 +1247,7 @@
 
 # WPadAcceleration.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16WPadAccelerationFPC4WPadUl | :x: |
 | getAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f> | :x: |
 | getPastAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f>l | :x: |
@@ -1211,6 +1261,7 @@
 
 # WPadButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10WPadButtonFPC4WPad | :x: |
 | update__10WPadButtonFv | :x: |
 | testButtonUp__10WPadButtonCFv | :x: |
@@ -1244,6 +1295,7 @@
 
 # WPadHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16WPadReadDataInfoFv | :x: |
 | getKPadStatus__16WPadReadDataInfoCFUl | :x: |
 | getValidStatusCount__16WPadReadDataInfoCFv | :x: |
@@ -1267,6 +1319,7 @@
 
 # WPadHVSwing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11WPadHVSwingFPC4WPadUl | :x: |
 | updateSwing__11WPadHVSwingFv | :x: |
 | updateCentrifugal__11WPadHVSwingFv | :x: |
@@ -1275,6 +1328,7 @@
 
 # WPadInfoChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15WPadInfoCheckerFP4WPad | :x: |
 | getBattery__15WPadInfoCheckerCFv | :x: |
 | successGetInfo__15WPadInfoCheckerFv | :x: |
@@ -1285,6 +1339,7 @@
 
 # WPadLeaveWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16WPadLeaveWatcherFP4WPad | :x: |
 | update__16WPadLeaveWatcherFv | :x: |
 | start__16WPadLeaveWatcherFv | :x: |
@@ -1294,6 +1349,7 @@
 
 # WPadPointer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11WPadPointerFPC4WPad | :x: |
 | reset__11WPadPointerFv | :x: |
 | setSensorBarLevel__11WPadPointerFf | :x: |
@@ -1307,6 +1363,7 @@
 
 # WPadRumble.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | clear__13RumbleChannelFv | :x: |
 | update__13RumbleChannelFv | :x: |
 | setPattern__13RumbleChannelFPCvRC13RumblePatternUlb | :x: |
@@ -1325,6 +1382,7 @@
 
 # WPadRumbleData.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPattern__10RumbleDataFPCc | :x: |
 | initHashValue__10RumbleDataFv | :x: |
 | checkHashCollision__10RumbleDataFv | :x: |
@@ -1332,6 +1390,7 @@
 
 # WPadStick.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9WPadStickFPC4WPad | :x: |
 | update__9WPadStickFv | :x: |
 | isChanged__9WPadStickCFv | :x: |
@@ -1339,6 +1398,7 @@
 
 # HomeButtonMenuWrapper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setupRsoHomeButtonMenu__3RSOFv | :x: |
 | HBMCreate__3RSOFPC11HBMDataInfo | :x: |
 | HBMInit__3RSOFv | :x: |
@@ -1352,6 +1412,7 @@
 
 # HomeButtonStateNotifier.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23HomeButtonStateNotifierFv | :x: |
 | update__23HomeButtonStateNotifierFb | :x: |
 | registerMoviePlayerSimple__23HomeButtonStateNotifierFP17MoviePlayerSimple | :x: |
@@ -1361,6 +1422,7 @@
 
 # ConfigDataHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ConfigDataCreateChunkFv | :x: |
 | makeHeaderHashCode__21ConfigDataCreateChunkCFv | :x: |
 | getSignature__21ConfigDataCreateChunkCFv | :x: |
@@ -1388,6 +1450,7 @@
 
 # ConfigDataMii.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ConfigDataMiiFv | :x: |
 | setMiiOrIconId__13ConfigDataMiiFPCvPCUl | :x: |
 | getIconId__13ConfigDataMiiCFPUl | :x: |
@@ -1402,6 +1465,7 @@
 
 # ConfigDataMisc.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14ConfigDataMiscFv | :x: |
 | isLastLoadedMario__14ConfigDataMiscCFv | :white_check_mark: |
 | setLastLoadedMario__14ConfigDataMiscFb | :white_check_mark: |
@@ -1420,6 +1484,7 @@
 
 # FindingLuigiEventScheduler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26FindingLuigiEventSchedulerFv | :x: |
 | initAfterResourceLoaded__26FindingLuigiEventSchedulerFv | :x: |
 | setStateHiding__26FindingLuigiEventSchedulerFv | :x: |
@@ -1441,6 +1506,7 @@
 
 # GalaxyCometScheduler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GalaxyCometTimeTableFPC20GalaxyCometTimePaper | :x: |
 | update__20GalaxyCometTimeTableFv | :x: |
 | checkIsReady__20GalaxyCometTimeTableFv | :x: |
@@ -1472,6 +1538,7 @@
 
 # GalaxyCometState.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16GalaxyCometStateFv | :x: |
 | update__16GalaxyCometStateFv | :x: |
 | isLand__16GalaxyCometStateCFv | :x: |
@@ -1490,6 +1557,7 @@
 
 # GalaxyMoveArgument.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18GalaxyMoveArgumentFUlPCclPC10JMapIdInfo | :x: |
 | isEqualStage__18GalaxyMoveArgumentCFPCc | :x: |
 | isEqualStageScenario__18GalaxyMoveArgumentCFPCci | :x: |
@@ -1497,11 +1565,13 @@
 
 # GalaxyNameSortTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGalaxySortIndex__19GalaxyNameSortTableFPCc | :x: |
 
 
 # GalaxyStatusAccessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GalaxyStatusAccessorFPC12ScenarioData | :white_check_mark: |
 | getName__20GalaxyStatusAccessorCFv | :white_check_mark: |
 | getScenarioNum__20GalaxyStatusAccessorCFv | :white_check_mark: |
@@ -1532,6 +1602,7 @@
 
 # GameDataConst.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPowerStarNumToOpenGalaxy__13GameDataConstFPCc | :x: |
 | isPowerStarGreen__13GameDataConstFPCcl | :x: |
 | isPowerStarRed__13GameDataConstFPCcl | :x: |
@@ -1546,6 +1617,7 @@
 
 # GameDataFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSaveDataHandleSequence__30@unnamed@GameDataFunction_cpp@Fv | :x: |
 | getGameSequenceProgress__30@unnamed@GameDataFunction_cpp@Fv | :x: |
 | isDataMario__16GameDataFunctionFv | :x: |
@@ -1628,6 +1700,7 @@
 
 # GameDataGalaxyStorage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | hasPowerStar__28GameDataSomeScenarioAccessorCFv | :x: |
 | isAlreadyVisited__28GameDataSomeScenarioAccessorCFv | :x: |
 | getMaxCoinNum__28GameDataSomeScenarioAccessorCFv | :x: |
@@ -1659,6 +1732,7 @@
 
 # GameDataHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14GameDataHolderFPC8UserFile | :x: |
 | isDataMario__14GameDataHolderCFv | :x: |
 | getGalaxyNumCanOpen__14GameDataHolderCFv | :x: |
@@ -1709,6 +1783,7 @@
 
 # GameDataPlayerStatus.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameDataPlayerStatusFv | :x: |
 | makeHeaderHashCode__20GameDataPlayerStatusCFv | :x: |
 | getSignature__20GameDataPlayerStatusCFv | :x: |
@@ -1724,6 +1799,7 @@
 
 # GameDataTemporaryInGalaxy.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25GameDataTemporaryInGalaxyFv | :x: |
 | resetPlayerRestartIdInfo__25GameDataTemporaryInGalaxyFv | :x: |
 | setPlayerRestartIdInfo__25GameDataTemporaryInGalaxyFRC10JMapIdInfo | :x: |
@@ -1744,6 +1820,7 @@
 
 # GameEventFlag.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GameEventFlagAccessorFPC13GameEventFlag | :x: |
 | getName__21GameEventFlagAccessorCFv | :x: |
 | isTypeGalaxyOpenStar__21GameEventFlagAccessorCFv | :x: |
@@ -1761,6 +1838,7 @@
 
 # GameEventFlagTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isEnd__17GameEventFlagIterCFv | :x: |
 | goNext__17GameEventFlagIterFv | :x: |
 | getFlag__17GameEventFlagIterCFv | :x: |
@@ -1793,6 +1871,7 @@
 
 # GameEventFlagChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameEventFlagCheckerFP14GameDataHolder | :x: |
 | canOn__20GameEventFlagCheckerCFPCc | :x: |
 | isOn__20GameEventFlagCheckerCFPCc | :x: |
@@ -1806,6 +1885,7 @@
 
 # GameEventFlagStorage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameEventFlagStorageFv | :x: |
 | set__20GameEventFlagStorageFPC13GameEventFlagb | :x: |
 | isOn__20GameEventFlagStorageCFPC13GameEventFlag | :x: |
@@ -1818,6 +1898,7 @@
 
 # GameEventValueChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GameEventValueCheckerFv | :x: |
 | getValue__21GameEventValueCheckerCFPCc | :x: |
 | setValue__21GameEventValueCheckerFPCcUs | :x: |
@@ -1832,6 +1913,7 @@
 
 # GameSequenceDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameSequenceDirectorFv | :x: |
 | Functor<20GameSequenceDirector>__2MRFP20GameSequenceDirectorM20GameSequenceDirectorFPCvPv_v_Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v> | :x: |
 | __cl__Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>CFv | :x: |
@@ -1847,6 +1929,7 @@
 
 # GameSequenceFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGameSequenceProgress__34@unnamed@GameSequenceFunction_cpp@Fv | :x: |
 | getSaveDataHandleSequence__34@unnamed@GameSequenceFunction_cpp@Fv | :x: |
 | getNWC24Messenger__34@unnamed@GameSequenceFunction_cpp@Fv | :x: |
@@ -1913,6 +1996,7 @@
 
 # GameSequenceProgress.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GameSequenceProgressFv | :x: |
 | initAfterResourceLoaded__20GameSequenceProgressFv | :x: |
 | update__20GameSequenceProgressFv | :x: |
@@ -1954,12 +2038,14 @@
 
 # LuigiLeftSupplier.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17LuigiLeftSupplierFv | :x: |
 | syncWithFlags__17LuigiLeftSupplierFv | :x: |
 
 
 # SaveDataBannerCreator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21SaveDataBannerCreatorFv | :x: |
 | execute__21SaveDataBannerCreatorFv | :x: |
 | isDone__21SaveDataBannerCreatorCFv | :x: |
@@ -1979,6 +2065,7 @@
 
 # SaveDataFileAccessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SaveDataFileAccessorFPUc | :x: |
 | getHeader__20SaveDataFileAccessorFv | :x: |
 | getFileInfo__20SaveDataFileAccessorFi | :x: |
@@ -1987,6 +2074,7 @@
 
 # SaveDataHandler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SaveDataHandlerFPC13SysConfigFilePC8UserFile | :x: |
 | update__15SaveDataHandlerFv | :x: |
 | requestCheckEnableToCreate__15SaveDataHandlerFv | :x: |
@@ -2030,6 +2118,7 @@
 
 # SaveDataHandleSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22SaveDataHandleSequenceFv | :x: |
 | initAfterResourceLoaded__22SaveDataHandleSequenceFv | :x: |
 | registerFunctorOnSaveSuccess__22SaveDataHandleSequenceFRCQ22MR11FunctorBase | :x: |
@@ -2117,11 +2206,13 @@
 
 # ScenarioProgressTestRun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23ScenarioProgressTestRunFP14GameDataHolder | :x: |
 
 
 # SpinDriverPathStorage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21JSUMemoryOutputStreamFPvl | :x: |
 | __ct__20JSUMemoryInputStreamFPCvl | :x: |
 | __ct__24SpinDriverPathStorageOneFv | :x: |
@@ -2157,6 +2248,7 @@
 
 # StageResultSequenceChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__28StageResultSequenceCheckListFv | :x: |
 | __ct__26StageResultSequenceCheckerFv | :x: |
 | check__26StageResultSequenceCheckerFv | :x: |
@@ -2175,6 +2267,7 @@
 
 # StarPieceAlmsStorage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20StarPieceAlmsStorageFv | :x: |
 | getValue__20StarPieceAlmsStorageCFi | :x: |
 | getMaxValue__20StarPieceAlmsStorageCFi | :x: |
@@ -2188,6 +2281,7 @@
 
 # StorySequenceExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21StorySequenceExecutorFv | :x: |
 | update__21StorySequenceExecutorFv | :x: |
 | isNeedMoviePlayerExecutingEventEnum__21StorySequenceExecutorCFv | :x: |
@@ -2250,6 +2344,7 @@
 
 # SysConfigFile.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SysConfigChunkFv | :white_check_mark: |
 | makeHeaderHashCode__14SysConfigChunkCFv | :white_check_mark: |
 | getSignature__14SysConfigChunkCFv | :white_check_mark: |

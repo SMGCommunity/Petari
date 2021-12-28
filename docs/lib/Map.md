@@ -86,6 +86,7 @@
 
 # ActorAppearSwitchListener.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25ActorAppearSwitchListenerFP9LiveActorbb | :x: |
 | listenSwitchOnEvent__25ActorAppearSwitchListenerFv | :x: |
 | listenSwitchOffEvent__25ActorAppearSwitchListenerFv | :x: |
@@ -94,6 +95,7 @@
 
 # Air.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__3AirFPCc | :x: |
 | init__3AirFRC12JMapInfoIter | :x: |
 | appear__3AirFv | :x: |
@@ -131,6 +133,7 @@
 
 # BezierRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | clamp__Q29JGeometry8TUtil<f>Ffff | :x: |
 | calcRailDirection__24@unnamed@BezierRail_cpp@FPQ29JGeometry8TVec3<f>PC8RailPartf | :white_check_mark: |
 | set__14BezierRailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -156,6 +159,7 @@
 
 # Butterfly.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9ButterflyFPCc | :x: |
 | init__9ButterflyFRC12JMapInfoIter | :x: |
 | initAfterPlacement__9ButterflyFv | :x: |
@@ -197,6 +201,7 @@
 
 # CollisionCategorizedKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26CollisionCategorizedKeeperFl | :x: |
 | movement__26CollisionCategorizedKeeperFv | :x: |
 | addToZone__26CollisionCategorizedKeeperFP14CollisionPartsl | :white_check_mark: |
@@ -225,6 +230,7 @@
 
 # CollisionCode.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<Ul>__12JMapInfoIterCFPCcPUl_b | :x: |
 | __ct__13CollisionCodeFv | :white_check_mark: |
 | __ct__9CodeTableFUl | :white_check_mark: |
@@ -249,6 +255,7 @@
 
 # CollisionDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CollisionDirectorFv | :x: |
 | init__17CollisionDirectorFRC12JMapInfoIter | :x: |
 | initAfterPlacement__17CollisionDirectorFv | :x: |
@@ -259,6 +266,7 @@
 
 # CollisionParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getScale__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
 | __ct__14CollisionPartsFv | :x: |
 | init__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P9HitSensorPCvPCvlb | :x: |
@@ -293,6 +301,7 @@
 
 # FileSelectCameraController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26FileSelectCameraControllerFPCc | :x: |
 | init__26FileSelectCameraControllerFRC12JMapInfoIter | :x: |
 | appear__26FileSelectCameraControllerFv | :x: |
@@ -325,6 +334,7 @@
 
 # FileSelectEffect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16FileSelectEffectFPCc | :x: |
 | init__16FileSelectEffectFRC12JMapInfoIter | :x: |
 | appear__16FileSelectEffectFv | :x: |
@@ -344,12 +354,14 @@
 
 # FileSelectFunc.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getMiiNameBufferSize__14FileSelectFuncFv | :white_check_mark: |
 | copyMiiName__14FileSelectFuncFPUsRC16FileSelectIconID | :white_check_mark: |
 
 
 # FileSelectIconID.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16FileSelectIconIDFv | :white_check_mark: |
 | __ct__16FileSelectIconIDFRC16FileSelectIconID | :white_check_mark: |
 | set__16FileSelectIconIDFRC16FileSelectIconID | :white_check_mark: |
@@ -363,6 +375,7 @@
 
 # FileSelectItem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkCollisionOfPointAndCylinder__28@unnamed@FileSelectItem_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__14FileSelectItemFlbRC16FileSelectIconIDPCc | :x: |
 | init__14FileSelectItemFRC12JMapInfoIter | :x: |
@@ -448,6 +461,7 @@
 
 # FileSelectModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15FileSelectModelFPCcPA4_fPCc | :x: |
 | calcAnim__15FileSelectModelFv | :x: |
 | open__15FileSelectModelFv | :x: |
@@ -477,6 +491,7 @@
 
 # FileSelector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getItemArrayIndex__26@unnamed@FileSelector_cpp@Fl | :x: |
 | __ct__12FileSelectorFPCc | :x: |
 | init__12FileSelectorFRC12JMapInfoIter | :x: |
@@ -690,6 +705,7 @@
 
 # FileSelectSky.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__13FileSelectSkyFv | :x: |
 | __ct__13FileSelectSkyFPCc | :x: |
 | init__13FileSelectSkyFRC12JMapInfoIter | :x: |
@@ -704,6 +720,7 @@
 
 # FishGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__4FishFv | :x: |
 | __dt__9FishGroupFv | :x: |
 | __ct__4FishFPCcP9FishGroupib | :x: |
@@ -731,6 +748,7 @@
 
 # Flag.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__4FlagFv | :x: |
 | __ct__4FlagFPCc | :x: |
 | init__4FlagFRC12JMapInfoIter | :x: |
@@ -748,6 +766,7 @@
 
 # GravityDust.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27GravityDustParticleCallBackFPC9LiveActor | :x: |
 | execute__27GravityDustParticleCallBackFP14JPABaseEmitterP15JPABaseParticle | :x: |
 | __dt__27GravityDustParticleCallBackFv | :x: |
@@ -755,6 +774,7 @@
 
 # GroundChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13GroundCheckerFPCcff | :x: |
 | bringFriction__13GroundCheckerFff | :x: |
 | __dt__13GroundCheckerFv | :x: |
@@ -762,6 +782,7 @@
 
 # GroupSwitchWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18GroupSwitchWatcherFPCc | :x: |
 | init__18GroupSwitchWatcherFRC12JMapInfoIter | :x: |
 | control__18GroupSwitchWatcherFv | :x: |
@@ -770,6 +791,7 @@
 
 # Halo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__4HaloFPCc | :x: |
 | __dt__11MapObjActorFv | :x: |
 | init__4HaloFRC12JMapInfoIter | :x: |
@@ -798,6 +820,7 @@
 
 # HitInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8TriangleFv | :x: |
 | fillData__8TriangleFP14CollisionPartsUlP9HitSensor | :x: |
 | getHostName__8TriangleCFv | :x: |
@@ -824,6 +847,7 @@
 
 # KCollision.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __eq__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
 | __dv__Q29JGeometry8TVec3<f>CFf | :x: |
 | __ct__16KCollisionServerFv | :x: |
@@ -859,6 +883,7 @@
 
 # KCollisionPlus.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isInsideMinMaxInLocalSpace__16KCollisionServerCFRCQ216KCollisionServer3V3u | :x: |
 | outCheck__16KCollisionServerCFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PQ216KCollisionServer3V3uPQ216KCollisionServer3V3u | :x: |
 | objectSpaceToLocalSpace__16KCollisionServerCFPQ216KCollisionServer3V3uRCQ29JGeometry8TVec3<f> | :x: |
@@ -866,6 +891,7 @@
 
 # KoopaBattleMapCoinPlate.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__23KoopaBattleMapCoinPlateFv | :x: |
 | __ct__23KoopaBattleMapCoinPlateFPCc | :x: |
 | calcAndSetBaseMtx__23KoopaBattleMapCoinPlateFv | :x: |
@@ -875,6 +901,7 @@
 
 # KoopaBattleMapDamagePlate.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25KoopaBattleMapDamagePlateFPCc | :x: |
 | init__25KoopaBattleMapDamagePlateFRC12JMapInfoIter | :x: |
 | exeBreak__25KoopaBattleMapDamagePlateFv | :x: |
@@ -894,6 +921,7 @@
 
 # KoopaBattleMapPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__20KoopaBattleMapPlanetFv | :x: |
 | __ct__20KoopaBattleMapPlanetFPCcPCcbbb | :x: |
 | init__20KoopaBattleMapPlanetFRC12JMapInfoIter | :x: |
@@ -912,6 +940,7 @@
 
 # KoopaBattleMapPlate.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19KoopaBattleMapPlateFPCc | :x: |
 | calcAndSetBaseMtx__19KoopaBattleMapPlateFv | :x: |
 | __dt__19KoopaBattleMapPlateFv | :x: |
@@ -921,6 +950,7 @@
 
 # KoopaBattleMapStair.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19KoopaBattleMapStairFPCc | :x: |
 | init__19KoopaBattleMapStairFRC12JMapInfoIter | :x: |
 | initAfterPlacement__19KoopaBattleMapStairFv | :x: |
@@ -955,6 +985,7 @@
 
 # LavaShellTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14LavaShellTowerFPCc | :x: |
 | init__14LavaShellTowerFRC12JMapInfoIter | :x: |
 | exeDemo__14LavaShellTowerFv | :x: |
@@ -971,6 +1002,7 @@
 
 # LavaSunPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13LavaSunPlanetFPCc | :x: |
 | control__13LavaSunPlanetFv | :x: |
 | calcAndSetBaseMtx__13LavaSunPlanetFv | :x: |
@@ -980,6 +1012,7 @@
 
 # LightDataHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15LightDataHolderFv | :x: |
 | initLightData__15LightDataHolderFv | :x: |
 | findAreaLight__15LightDataHolderCFPCc | :x: |
@@ -989,6 +1022,7 @@
 
 # LightDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13LightDirectorFv | :x: |
 | init__13LightDirectorFRC12JMapInfoIter | :white_check_mark: |
 | initData__13LightDirectorFv | :x: |
@@ -1000,6 +1034,7 @@
 
 # LightFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initLightRegisterAll__13LightFunctionFv | :x: |
 | initLightData__13LightFunctionFv | :white_check_mark: |
 | loadLightArchive__13LightFunctionFv | :white_check_mark: |
@@ -1027,6 +1062,7 @@
 
 # LightPointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14LightPointCtrlFv | :white_check_mark: |
 | loadPointLight__14LightPointCtrlFv | :x: |
 | update__14LightPointCtrlFv | :white_check_mark: |
@@ -1042,6 +1078,7 @@
 
 # LightZoneDataHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11ZoneLightIDFv | :white_check_mark: |
 | clear__11ZoneLightIDFv | :white_check_mark: |
 | isTargetArea__11ZoneLightIDCFPC9LightArea | :white_check_mark: |
@@ -1057,6 +1094,7 @@
 
 # NamePosHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13NamePosHolderFv | :white_check_mark: |
 | __ct__11NamePosInfoFv | :white_check_mark: |
 | tryRegisterLinkObj__13NamePosHolderFPC7NameObjRC12JMapInfoIter | :x: |
@@ -1067,6 +1105,7 @@
 
 # OceanBowl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9OceanBowlFPCc | :x: |
 | init__9OceanBowlFRC12JMapInfoIter | :x: |
 | isInWater__9OceanBowlCFRCQ29JGeometry8TVec3<f> | :x: |
@@ -1087,6 +1126,7 @@
 
 # OceanBowlBloomDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20OceanBowlBloomDrawerFP9OceanBowl | :x: |
 | init__20OceanBowlBloomDrawerFRC12JMapInfoIter | :x: |
 | draw__20OceanBowlBloomDrawerCFv | :x: |
@@ -1096,6 +1136,7 @@
 
 # OceanBowlPoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14OceanBowlPointFRCQ29JGeometry8TVec3<f> | :x: |
 | updatePos__14OceanBowlPointFff | :x: |
 | calcHeightStatic__14OceanBowlPointFffff | :x: |
@@ -1104,6 +1145,7 @@
 
 # OceanHomeMapCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16OceanHomeMapCtrlFv | :x: |
 | entryMapRing__16OceanHomeMapCtrlFP9PlanetMap | :x: |
 | tryEntryOceanHomeMap__20OceanHomeMapFunctionFP9PlanetMap | :x: |
@@ -1114,6 +1156,7 @@
 
 # OceanRing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9OceanRingFPCc | :x: |
 | init__9OceanRingFRC12JMapInfoIter | :x: |
 | initAfterPlacement__9OceanRingFv | :x: |
@@ -1139,6 +1182,7 @@
 
 # OceanRingBloomDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20OceanRingBloomDrawerFP9OceanRing | :x: |
 | init__20OceanRingBloomDrawerFRC12JMapInfoIter | :x: |
 | draw__20OceanRingBloomDrawerCFv | :x: |
@@ -1147,6 +1191,7 @@
 
 # OceanRingDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19OceanRingPartDrawerFPC9OceanRingiibPfPfPf | :x: |
 | initDisplayList__19OceanRingPartDrawerFPfPfPf | :x: |
 | draw__19OceanRingPartDrawerCFv | :x: |
@@ -1172,6 +1217,7 @@
 
 # OceanRingPipe.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__13OceanRingPipeFv | :x: |
 | __ct__Q29JGeometry8TVec3<s>Fv | :x: |
 | __ct__13OceanRingPipeFPC9OceanRingff | :x: |
@@ -1182,6 +1228,7 @@
 
 # OceanRingPipeInside.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19OceanRingPipeInsideFPC13OceanRingPipe | :x: |
 | init__19OceanRingPipeInsideFRC12JMapInfoIter | :x: |
 | movement__19OceanRingPipeInsideFv | :x: |
@@ -1197,6 +1244,7 @@
 
 # OceanRingPipeOutside.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20OceanRingPipeOutsideFPC13OceanRingPipe | :x: |
 | init__20OceanRingPipeOutsideFRC12JMapInfoIter | :x: |
 | movement__20OceanRingPipeOutsideFv | :x: |
@@ -1212,6 +1260,7 @@
 
 # OceanSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
 | update__16OceanSpherePlaneFfff | :x: |
@@ -1252,6 +1301,7 @@
 
 # OceanSpherePoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16OceanSpherePointFPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffRCQ29JGeometry8TVec2<f> | :x: |
 | updatePos__16OceanSpherePointFfff | :x: |
 | calcHeight__16OceanSpherePointCFffff | :x: |
@@ -1259,6 +1309,7 @@
 
 # PlanetMap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9PlanetMapFPCcPCc | :x: |
 | init__9PlanetMapFRC12JMapInfoIter | :x: |
 | makeActorAppeared__9PlanetMapFv | :x: |
@@ -1286,6 +1337,7 @@
 
 # PlanetMapCreator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | makeSubModelName__30@unnamed@PlanetMapCreator_cpp@FPPCcPC8JMapInfolPCcPCc | :x: |
 | createNameObj<17BeamGoRoundPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | createNameObj<16BumpAppearPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
@@ -1329,6 +1381,7 @@
 
 # PlanetMapWithoutHighModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25PlanetMapWithoutHighModelFPCc | :x: |
 | connectToScene__25PlanetMapWithoutHighModelFRC19MapObjActorInitInfo | :x: |
 | __dt__25PlanetMapWithoutHighModelFv | :x: |
@@ -1337,6 +1390,7 @@
 
 # QuakeEffectGenerator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20QuakeEffectGeneratorFv | :x: |
 | init__20QuakeEffectGeneratorFRC12JMapInfoIter | :x: |
 | exeWaitInArea__20QuakeEffectGeneratorFv | :x: |
@@ -1353,6 +1407,7 @@
 
 # RaceManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17RaceManagerLayoutFPCc | :x: |
 | __dt__11LayoutActorFv | :x: |
 | init__17RaceManagerLayoutFRC12JMapInfoIter | :x: |
@@ -1452,6 +1507,7 @@
 
 # RaceRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8RaceRailFPCc | :x: |
 | __ct__11PlayerRacerFPCc | :x: |
 | appear__11PlayerRacerFv | :x: |
@@ -1479,6 +1535,7 @@
 
 # RailGraph.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9RailGraphFv | :x: |
 | addNode__9RailGraphFRCQ29JGeometry8TVec3<f> | :x: |
 | connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :x: |
@@ -1492,6 +1549,7 @@
 
 # RailGraphEdge.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13RailGraphEdgeFv | :x: |
 | clearConnectInfo__13RailGraphEdgeFv | :x: |
 | getNextNode__13RailGraphEdgeCFl | :x: |
@@ -1502,6 +1560,7 @@
 
 # RailGraphIter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13RailGraphIterFPC9RailGraph | :x: |
 | moveNodeNext__13RailGraphIterFv | :x: |
 | setNode__13RailGraphIterFl | :x: |
@@ -1521,11 +1580,13 @@
 
 # RailGraphNode.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13RailGraphNodeFv | :x: |
 
 
 # RailPart.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | epsilonEquals__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__8RailPartFv | :white_check_mark: |
 | init__8RailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -1542,6 +1603,7 @@
 
 # ScenarioSelectStar.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15MultiSceneActorFv | :x: |
 | __ct__18ScenarioSelectStarFP12EffectSystem | :x: |
 | init__18ScenarioSelectStarFRC12JMapInfoIter | :x: |
@@ -1583,6 +1645,7 @@
 
 # SeaGull.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7SeaGullFP12SeaGullGroup | :x: |
 | init__7SeaGullFRC12JMapInfoIter | :x: |
 | exeHoverFront__7SeaGullFv | :x: |
@@ -1607,6 +1670,7 @@
 
 # Sky.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__3SkyFPCc | :x: |
 | init__3SkyFRC12JMapInfoIter | :x: |
 | calcAnim__3SkyFv | :x: |
@@ -1631,6 +1695,7 @@
 
 # SleepController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SleepControllerFRC12JMapInfoIterP19SwitchEventListener | :x: |
 | initSync__15SleepControllerFv | :x: |
 | update__15SleepControllerFv | :x: |
@@ -1638,6 +1703,7 @@
 
 # SleepControllerHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21SleepControllerHolderFv | :x: |
 | movement__21SleepControllerHolderFv | :x: |
 | add__21SleepControllerHolderFP7NameObjRC12JMapInfoIterP19SwitchEventListener | :x: |
@@ -1656,6 +1722,7 @@
 
 # SpaceInner.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10SpaceInnerFPCc | :x: |
 | init__10SpaceInnerFRC12JMapInfoIter | :x: |
 | calcAnim__10SpaceInnerFv | :x: |
@@ -1672,6 +1739,7 @@
 
 # SphereSelector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SphereSelectorFv | :x: |
 | init__14SphereSelectorFRC12JMapInfoIter | :x: |
 | appear__14SphereSelectorFv | :x: |
@@ -1746,6 +1814,7 @@
 
 # SphereSelectorHandle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SphereSelectorHandleFPCc | :x: |
 | init__20SphereSelectorHandleFRC12JMapInfoIter | :x: |
 | appear__20SphereSelectorHandleFv | :x: |
@@ -1803,6 +1872,7 @@
 
 # StageSwitch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | get__10BitFlag128CFi | :white_check_mark: |
 | set__10BitFlag128Fib | :white_check_mark: |
 | __ct__10ZoneSwitchFv | :x: |
@@ -1838,6 +1908,7 @@
 
 # SunshadeMapHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17SunshadeMapHolderFv | :x: |
 | isInShadeFromTheSun__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
 | createSunshadeMapHolder__2MRFv | :x: |
@@ -1846,6 +1917,7 @@
 
 # SunshadeMapParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16SunshadeMapPartsFPCc | :x: |
 | __dt__15GeneralMapPartsFv | :x: |
 | calcAnim__16SunshadeMapPartsFv | :x: |
@@ -1856,6 +1928,7 @@
 
 # SwitchSynchronizer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18SwitchSynchronizerFPCc | :x: |
 | init__18SwitchSynchronizerFRC12JMapInfoIter | :x: |
 | movement__18SwitchSynchronizerFv | :x: |
@@ -1864,6 +1937,7 @@
 
 # SwitchWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13SwitchWatcherFPC15StageSwitchCtrl | :x: |
 | movement__13SwitchWatcherFv | :x: |
 | checkSwitch__13SwitchWatcherFP19SwitchEventListenerUlb | :x: |
@@ -1874,6 +1948,7 @@
 
 # SwitchWatcherHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19SwitchWatcherHolderFv | :x: |
 | movement__19SwitchWatcherHolderFv | :x: |
 | joinSwitchEventListenerA__19SwitchWatcherHolderFPC15StageSwitchCtrlP19SwitchEventListener | :x: |
@@ -1889,6 +1964,7 @@
 
 # TimerSwitch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TimerSwitchFPCc | :x: |
 | init__11TimerSwitchFRC12JMapInfoIter | :x: |
 | control__11TimerSwitchFv | :x: |
@@ -1897,6 +1973,7 @@
 
 # WaterAreaHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15WaterAreaHolderFv | :x: |
 | entryOceanBowl__15WaterAreaHolderFP9OceanBowl | :x: |
 | entryOceanRing__15WaterAreaHolderFP9OceanRing | :x: |
@@ -1921,6 +1998,7 @@
 
 # WaterInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9WaterInfoFv | :x: |
 | isInWater__9WaterInfoCFv | :x: |
 | clear__9WaterInfoFv | :x: |
@@ -1928,6 +2006,7 @@
 
 # WaterPlant.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10WaterPlantFPCc | :x: |
 | init__10WaterPlantFRC12JMapInfoIter | :x: |
 | initAfterPlacement__10WaterPlantFv | :x: |
@@ -1952,6 +2031,7 @@
 
 # WaterPoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10WaterPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffff | :x: |
 | initAfterPlacement__10WaterPointFv | :x: |
 | updatePos__10WaterPointFfffff | :x: |
@@ -1960,6 +2040,7 @@
 
 # WaterRoad.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | scale__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Ff | :x: |
 | __ct__18WaterRoadModelInfoFP9WaterRoadb | :x: |
 | initPoints__18WaterRoadModelInfoFP9WaterRoad | :x: |

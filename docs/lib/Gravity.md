@@ -5,9 +5,9 @@
 | CubeGravity.o | 0.0% | 0 / 10 |
 | DiskGravity.o | 0.0% | 0 / 11 |
 | DiskTorusGravity.o | 0.0% | 0 / 9 |
-| GlobalGravityObj.o | 48.336594911937375% | 10 / 18 |
-| GraviryFollower.o | 0.0% | 0 / 4 |
-| GravityCreator.o | 22.125813449023862% | 11 / 42 |
+| GlobalGravityObj.o | 100.0% | 18 / 18 |
+| GraviryFollower.o | 100.0% | 4 / 4 |
+| GravityCreator.o | 72.55965292841648% | 35 / 42 |
 | GravityInfo.o | 100.0% | 2 / 2 |
 | ParallelGravity.o | 0.0% | 0 / 13 |
 | PlanetGravity.o | 100.0% | 9 / 9 |
@@ -18,6 +18,7 @@
 
 # ConeGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11ConeGravityFv | :x: |
 | setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | setEnableBottom__11ConeGravityFb | :x: |
@@ -28,6 +29,7 @@
 
 # CubeGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isZero__Q29JGeometry8TVec3<f>CFv | :x: |
 | __ct__11CubeGravityFv | :x: |
 | setCube__11CubeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
@@ -42,6 +44,7 @@
 
 # DiskGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11DiskGravityFv | :x: |
 | setLocalPosition__11DiskGravityFRCQ29JGeometry8TVec3<f> | :x: |
 | setLocalDirection__11DiskGravityFRCQ29JGeometry8TVec3<f> | :x: |
@@ -57,6 +60,7 @@
 
 # DiskTorusGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DiskTorusGravityFv | :x: |
 | setPosition__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :x: |
 | setDirection__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :x: |
@@ -70,6 +74,7 @@
 
 # GlobalGravityObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16GlobalGravityObjFPCc | :white_check_mark: |
 | init__16GlobalGravityObjFRC12JMapInfoIter | :white_check_mark: |
 | makeActorAppeared__16GlobalGravityObjFv | :white_check_mark: |
@@ -77,65 +82,67 @@
 | updateSwitch__16GlobalGravityObjFv | :white_check_mark: |
 | movement__16GlobalGravityObjFv | :white_check_mark: |
 | getGravity__16GlobalGravityObjFv | :white_check_mark: |
-| createGlobalCubeGravityObj__2MRFPCc | :x: |
-| createGlobalConeGravityObj__2MRFPCc | :x: |
-| createGlobalDiskGravityObj__2MRFPCc | :x: |
-| createGlobalDiskTorusGravityObj__2MRFPCc | :x: |
-| createGlobalPlaneGravityObj__2MRFPCc | :x: |
-| createGlobalPlaneInBoxGravityObj__2MRFPCc | :x: |
-| createGlobalPlaneInCylinderGravityObj__2MRFPCc | :x: |
+| createGlobalCubeGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalConeGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalDiskGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalDiskTorusGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalPlaneGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalPlaneInBoxGravityObj__2MRFPCc | :white_check_mark: |
+| createGlobalPlaneInCylinderGravityObj__2MRFPCc | :white_check_mark: |
 | createGlobalPointGravityObj__2MRFPCc | :white_check_mark: |
-| createGlobalSegmentGravityObj__2MRFPCc | :x: |
+| createGlobalSegmentGravityObj__2MRFPCc | :white_check_mark: |
 | createGlobalWireGravityObj__2MRFPCc | :white_check_mark: |
 | __dt__16GlobalGravityObjFv | :white_check_mark: |
 
 
 # GraviryFollower.o
 | Symbol | Decompiled? |
-| __ct__15GraviryFollowerFP16GlobalGravityObjRC12JMapInfoIter | :x: |
-| setGravityFollowHost__15GraviryFollowerFPC7NameObj | :x: |
-| update__15GraviryFollowerFv | :x: |
-| addBaseMatrixFollowerGravity__2MRFP16GlobalGravityObjRC12JMapInfoIter | :x: |
+| ------------- | ------------- |
+| __ct__15GraviryFollowerFP16GlobalGravityObjRC12JMapInfoIter | :white_check_mark: |
+| setGravityFollowHost__15GraviryFollowerFPC7NameObj | :white_check_mark: |
+| update__15GraviryFollowerFv | :white_check_mark: |
+| addBaseMatrixFollowerGravity__2MRFP16GlobalGravityObjRC12JMapInfoIter | :white_check_mark: |
 
 
 # GravityCreator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14GravityCreatorFv | :white_check_mark: |
 | createFromJMap__14GravityCreatorFRC12JMapInfoIter | :white_check_mark: |
-| createInstance__18CubeGravityCreatorFv | :x: |
+| createInstance__18CubeGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__18CubeGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__18CubeGravityCreatorFlll | :x: |
-| getGravity__18CubeGravityCreatorFv | :x: |
-| createInstance__18DiskGravityCreatorFv | :x: |
+| settingFromJMapArgs__18CubeGravityCreatorFlll | :white_check_mark: |
+| getGravity__18CubeGravityCreatorFv | :white_check_mark: |
+| createInstance__18DiskGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__18DiskGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__18DiskGravityCreatorFlll | :x: |
-| getGravity__18DiskGravityCreatorFv | :x: |
-| createInstance__23DiskTorusGravityCreatorFv | :x: |
+| settingFromJMapArgs__18DiskGravityCreatorFlll | :white_check_mark: |
+| getGravity__18DiskGravityCreatorFv | :white_check_mark: |
+| createInstance__23DiskTorusGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__23DiskTorusGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__23DiskTorusGravityCreatorFlll | :x: |
-| getGravity__23DiskTorusGravityCreatorFv | :x: |
-| createInstance__18ConeGravityCreatorFv | :x: |
-| settingFromSRT__18ConeGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__18ConeGravityCreatorFlll | :x: |
-| getGravity__18ConeGravityCreatorFv | :x: |
-| createInstance__19PlaneGravityCreatorFv | :x: |
+| settingFromJMapArgs__23DiskTorusGravityCreatorFlll | :white_check_mark: |
+| getGravity__23DiskTorusGravityCreatorFv | :white_check_mark: |
+| createInstance__18ConeGravityCreatorFv | :white_check_mark: |
+| settingFromSRT__18ConeGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| settingFromJMapArgs__18ConeGravityCreatorFlll | :white_check_mark: |
+| getGravity__18ConeGravityCreatorFv | :white_check_mark: |
+| createInstance__19PlaneGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__19PlaneGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| getGravity__19PlaneGravityCreatorFv | :x: |
-| createInstance__24PlaneInBoxGravityCreatorFv | :x: |
+| getGravity__19PlaneGravityCreatorFv | :white_check_mark: |
+| createInstance__24PlaneInBoxGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__24PlaneInBoxGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| getGravity__24PlaneInBoxGravityCreatorFv | :x: |
-| settingFromJMapArgs__24PlaneInBoxGravityCreatorFlll | :x: |
-| createInstance__29PlaneInCylinderGravityCreatorFv | :x: |
-| getGravity__29PlaneInCylinderGravityCreatorFv | :x: |
+| getGravity__24PlaneInBoxGravityCreatorFv | :white_check_mark: |
+| settingFromJMapArgs__24PlaneInBoxGravityCreatorFlll | :white_check_mark: |
+| createInstance__29PlaneInCylinderGravityCreatorFv | :white_check_mark: |
+| getGravity__29PlaneInCylinderGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__29PlaneInCylinderGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__29PlaneInCylinderGravityCreatorFlll | :x: |
+| settingFromJMapArgs__29PlaneInCylinderGravityCreatorFlll | :white_check_mark: |
 | createInstance__19PointGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__19PointGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | getGravity__19PointGravityCreatorFv | :white_check_mark: |
-| createInstance__21SegmentGravityCreatorFv | :x: |
+| createInstance__21SegmentGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__21SegmentGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| settingFromJMapArgs__21SegmentGravityCreatorFlll | :x: |
-| getGravity__21SegmentGravityCreatorFv | :x: |
+| settingFromJMapArgs__21SegmentGravityCreatorFlll | :white_check_mark: |
+| getGravity__21SegmentGravityCreatorFv | :white_check_mark: |
 | createInstance__18WireGravityCreatorFv | :white_check_mark: |
 | settingFromJMapOtherParam__18WireGravityCreatorFRC12JMapInfoIter | :white_check_mark: |
 | getGravity__18WireGravityCreatorFv | :white_check_mark: |
@@ -146,12 +153,14 @@
 
 # GravityInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11GravityInfoFv | :white_check_mark: |
 | init__11GravityInfoFv | :white_check_mark: |
 
 
 # ParallelGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ParallelGravityFv | :x: |
 | calcOwnGravityVector__15ParallelGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 | updateMtx__15ParallelGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
@@ -169,6 +178,7 @@
 
 # PlanetGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13PlanetGravityFv | :white_check_mark: |
 | setPriority__13PlanetGravityFl | :white_check_mark: |
 | calcGravity__13PlanetGravityCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -182,6 +192,7 @@
 
 # PlanetGravityManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20PlanetGravityManagerFPCc | :white_check_mark: |
 | init__20PlanetGravityManagerFRC12JMapInfoIter | :white_check_mark: |
 | calcTotalGravityVector__20PlanetGravityManagerCFPQ29JGeometry8TVec3<f>P11GravityInfoRCQ29JGeometry8TVec3<f>UlUl | :x: |
@@ -191,6 +202,7 @@
 
 # PointGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12PointGravityFv | :white_check_mark: |
 | calcOwnGravityVector__12PointGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | updateMtx__12PointGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
@@ -198,6 +210,7 @@
 
 # SegmentGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SegmentGravityFv | :x: |
 | calcOwnGravityVector__14SegmentGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 | updateMtx__14SegmentGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |

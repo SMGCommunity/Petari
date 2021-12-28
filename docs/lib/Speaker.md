@@ -11,6 +11,7 @@
 
 # SpkSpeakerCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer | :x: |
 | setup__14SpkSpeakerCtrlFv | :x: |
 | connect__14SpkSpeakerCtrlFl | :x: |
@@ -36,6 +37,7 @@
 
 # SpkSystem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9SpkSystemFP7JKRHeap | :x: |
 | __dt__18JSUList<8SpkSound>Fv | :x: |
 | setResource__9SpkSystemFP10JKRArchiveUsUs | :x: |
@@ -54,6 +56,7 @@
 
 # SpkMixingBuffer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SpkMixingBufferFP7JKRHeap | :x: |
 | mix__15SpkMixingBufferFlPslfl | :x: |
 | getSamples__15SpkMixingBufferCFl | :x: |
@@ -62,6 +65,7 @@
 
 # SpkWave.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7SpkWaveFv | :white_check_mark: |
 | setResource__7SpkWaveFPv | :white_check_mark: |
 | getWaveSize__7SpkWaveCFl | :white_check_mark: |
@@ -73,12 +77,14 @@
 
 # SpkTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8SpkTableFv | :white_check_mark: |
 | setResource__8SpkTableFPv | :x: |
 
 
 # SpkData.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7SpkDataFP10JKRArchive | :white_check_mark: |
 | loadTable__7SpkDataFUs | :white_check_mark: |
 | loadWave__7SpkDataFUs | :white_check_mark: |

@@ -29,6 +29,7 @@
 
 # GameScene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9GameSceneFv | :x: |
 | __dt__9GameSceneFv | :x: |
 | init__9GameSceneFv | :x: |
@@ -99,6 +100,7 @@
 
 # GameSceneFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGameScene__31@unnamed@GameSceneFunction_cpp@Fv | :x: |
 | notifyEndScenarioStarter__17GameSceneFunctionFv | :x: |
 | requestPlayMovieDemo__17GameSceneFunctionFv | :x: |
@@ -120,6 +122,7 @@
 
 # GameScenePauseControl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GameScenePauseControlFP9GameScene | :x: |
 | registerNervePauseMenu__21GameScenePauseControlFPC5Nerve | :x: |
 | requestPauseMenuOff__21GameScenePauseControlFv | :x: |
@@ -133,6 +136,7 @@
 
 # GameSceneScenarioOpeningCameraState.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__35GameSceneScenarioOpeningCameraStateFv | :x: |
 | update__35GameSceneScenarioOpeningCameraStateFv | :x: |
 | isDone__35GameSceneScenarioOpeningCameraStateCFv | :x: |
@@ -150,6 +154,7 @@
 
 # IntermissionScene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17IntermissionSceneFv | :x: |
 | update__17IntermissionSceneFv | :x: |
 | draw__17IntermissionSceneCFv | :x: |
@@ -160,6 +165,7 @@
 
 # LogoScene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9LogoSceneFv | :x: |
 | __dt__9LogoSceneFv | :x: |
 | init__9LogoSceneFv | :x: |
@@ -201,6 +207,7 @@
 
 # MultiSceneEffectKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22MultiSceneEffectKeeperFPCcP12ModelManageriPCc | :x: |
 | init__22MultiSceneEffectKeeperFPC15MultiSceneActorPC12EffectSystem | :x: |
 | add__22MultiSceneEffectKeeperFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCc | :x: |
@@ -216,6 +223,7 @@
 
 # MultiSceneActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15MultiSceneActorFPCcPCcb | :x: |
 | init__15MultiSceneActorFRC12JMapInfoIter | :x: |
 | movement__15MultiSceneActorFv | :x: |
@@ -254,6 +262,7 @@
 
 # PlayTimerScene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PlayTimerSceneFv | :x: |
 | init__14PlayTimerSceneFv | :x: |
 | start__14PlayTimerSceneFv | :x: |
@@ -277,6 +286,7 @@
 
 # PlacementInfoOrdered.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getCreator__34@unnamed@PlacementInfoOrdered_cpp@FRCQ220PlacementInfoOrdered10Identifier | :x: |
 | __ct__20PlacementInfoOrderedFi | :x: |
 | sort__20PlacementInfoOrderedFv | :x: |
@@ -297,6 +307,7 @@
 
 # PlacementStateChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21PlacementStateCheckerFPCc | :white_check_mark: |
 | setCurrentPlacementZoneId__21PlacementStateCheckerFi | :white_check_mark: |
 | clearCurrentPlacementZoneId__21PlacementStateCheckerFv | :white_check_mark: |
@@ -307,6 +318,7 @@
 
 # ScenarioSelectScene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createDrawBuffer__33@unnamed@ScenarioSelectScene_cpp@Fv | :x: |
 | tryResumeInitializeThread__33@unnamed@ScenarioSelectScene_cpp@Fv | :x: |
 | __ct__19ScenarioSelectSceneFv | :x: |
@@ -361,6 +373,7 @@
 
 # Scene.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5SceneFPCc | :x: |
 | __dt__5SceneFv | :x: |
 | init__5SceneFv | :x: |
@@ -374,6 +387,7 @@
 
 # SceneDataInitializer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SceneDataInitializerFv | :x: |
 | startStageFileLoad__20SceneDataInitializerFv | :x: |
 | startStageFileLoadAfterScenarioSelected__20SceneDataInitializerFv | :x: |
@@ -387,6 +401,7 @@
 
 # SceneExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | movementStopSceneController__13SceneFunctionFv | :x: |
 | executeMovementList__13SceneFunctionFv | :x: |
 | executeMovementListOnPlayingMovie__13SceneFunctionFv | :x: |
@@ -410,6 +425,7 @@
 
 # SceneFactory.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createScene<9GameScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
 | createScene<17IntermissionScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
 | createScene<9LogoScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
@@ -418,6 +434,7 @@
 
 # SceneFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startStageFileLoad__13SceneFunctionFv | :x: |
 | waitDoneStageFileLoad__13SceneFunctionFv | :x: |
 | startActorFileLoadCommon__13SceneFunctionFv | :x: |
@@ -443,6 +460,7 @@
 
 # SceneObjHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SceneObjHolderFv | :white_check_mark: |
 | create__14SceneObjHolderFi | :white_check_mark: |
 | getObj__14SceneObjHolderCFi | :white_check_mark: |
@@ -456,6 +474,7 @@
 
 # ScenePlayingResult.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | requestOneUpIfNeed__32@unnamed@ScenePlayingResult_cpp@Fiii | :x: |
 | incCoin__18ScenePlayingResultFi | :x: |
 | getCoinNum__18ScenePlayingResultCFv | :x: |
@@ -468,6 +487,7 @@
 
 # SceneNameObjListExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initMovementList__24SceneNameObjListExecutorFv | :x: |
 | initCalcAnimList__24SceneNameObjListExecutorFv | :x: |
 | initCalcViewAndEntryList__24SceneNameObjListExecutorFv | :x: |
@@ -477,6 +497,7 @@
 
 # SceneNameObjMovementController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | executeStopCategoriesDemoCommon__44@unnamed@SceneNameObjMovementController_cpp@Fv | :x: |
 | __ct__21StopSceneStateControlFv | :x: |
 | requestStopSceneFor__21StopSceneStateControlFQ22MR19MovementControlTypePC7NameObj | :x: |
@@ -501,6 +522,7 @@
 
 # StageDataHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | findElement<l>__8JMapInfoCFPCcli_12JMapInfoIter | :x: |
 | end__8JMapInfoCFv | :x: |
 | findElement<PCc>__8JMapInfoCFPCcPCci_12JMapInfoIter | :x: |
@@ -556,6 +578,7 @@
 
 # StageFileLoader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15StageFileLoaderFPCc | :x: |
 | startLoadingStageFile__15StageFileLoaderFv | :x: |
 | waitLoadedStageFile__15StageFileLoaderFv | :x: |
@@ -566,6 +589,7 @@
 
 # StageResourceLoader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | tryRequestLoadStageResource__2MRFv | :x: |
 | isLoadStageScenarioResource__2MRFv | :x: |
 

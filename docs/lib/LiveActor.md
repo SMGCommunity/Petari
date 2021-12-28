@@ -65,6 +65,7 @@
 
 # ActiveActorList.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ActiveActorListFi | :white_check_mark: |
 | isFull__15ActiveActorListCFv | :white_check_mark: |
 | addActor__15ActiveActorListFP9LiveActor | :x: |
@@ -75,6 +76,7 @@
 
 # ActorAnimKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ActorAnimKeeperFP9LiveActor | :x: |
 | tryCreate__15ActorAnimKeeperFP9LiveActor | :x: |
 | getAnimName__29@unnamed@ActorAnimKeeper_cpp@FPC19ActorAnimKeeperInfoRC17ActorAnimDataInfo | :x: |
@@ -88,12 +90,14 @@
 
 # ActorCameraInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ActorCameraInfoFRC12JMapInfoIter | :white_check_mark: |
 | __ct__15ActorCameraInfoFll | :white_check_mark: |
 
 
 # ActorJointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14ActorJointCtrlFP9LiveActor | :white_check_mark: |
 | startDynamicCtrl__14ActorJointCtrlFPCcl | :white_check_mark: |
 | endDynamicCtrl__14ActorJointCtrlFPCcl | :white_check_mark: |
@@ -111,6 +115,7 @@
 
 # ActorLightCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14ActorLightCtrlFPC9LiveActor | :white_check_mark: |
 | init__14ActorLightCtrlFib | :x: |
 | __as__14ActorLightInfoFRC14ActorLightInfo | :x: |
@@ -129,6 +134,7 @@
 
 # ActorPadAndCameraCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f> | :x: |
 | tryCreate__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f> | :x: |
 | update__21ActorPadAndCameraCtrlFv | :x: |
@@ -140,11 +146,13 @@
 
 # ActorStateBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | update__23ActorStateBaseInterfaceFv | :x: |
 
 
 # ActorStateKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16ActorStateKeeperFi | :x: |
 | addState__16ActorStateKeeperFP23ActorStateBaseInterfacePC5NervePCc | :x: |
 | updateCurrentState__16ActorStateKeeperFv | :white_check_mark: |
@@ -155,6 +163,7 @@
 
 # AllLiveActorGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17AllLiveActorGroupFv | :white_check_mark: |
 | initActorSystemInfo__17AllLiveActorGroupFRC12JMapInfoIter | :white_check_mark: |
 | getAllLiveActorGroup__2MRFv | :white_check_mark: |
@@ -166,6 +175,7 @@
 
 # AnimationRandomPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21AnimationRandomPlayerFPC9LiveActorPCcPCclf | :x: |
 | updateStartStep__21AnimationRandomPlayerFv | :x: |
 | exeWait__21AnimationRandomPlayerFv | :x: |
@@ -180,6 +190,7 @@
 
 # Binder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6BinderFPA4_fPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>ffUl | :x: |
 | setTriangleFilter__6BinderFP18TriangleFilterBase | :x: |
 | setCollisionPartsFilter__6BinderFP24CollisionPartsFilterBase | :x: |
@@ -204,6 +215,7 @@
 
 # ClippingActorHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19ClippingActorHolderFv | :white_check_mark: |
 | movement__19ClippingActorHolderFv | :white_check_mark: |
 | registerActor__19ClippingActorHolderFP9LiveActor | :white_check_mark: |
@@ -223,6 +235,7 @@
 
 # ClippingActorInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17ClippingActorInfoFP9LiveActor | :white_check_mark: |
 | judgeClipping__17ClippingActorInfoFv | :x: |
 | isJudgedToClip__17ClippingActorInfoCFv | :x: |
@@ -239,6 +252,7 @@
 
 # ClippingDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16ClippingDirectorFv | :white_check_mark: |
 | endInitActorSystemInfo__16ClippingDirectorFv | :white_check_mark: |
 | movement__16ClippingDirectorFv | :white_check_mark: |
@@ -254,6 +268,7 @@
 
 # ClippingGroupHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17ClippingInfoGroupFPCci | :white_check_mark: |
 | setGroupNo__17ClippingInfoGroupFRC12JMapInfoIter | :white_check_mark: |
 | __ct__10JMapIdInfoFRC10JMapIdInfo | :x: |
@@ -272,6 +287,7 @@
 
 # ClippingJudge.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ClippingJudgeFPCc | :white_check_mark: |
 | __ct__Q29JGeometry15THexahedron3<f>Fv | :white_check_mark: |
 | init__13ClippingJudgeFRC12JMapInfoIter | :white_check_mark: |
@@ -288,6 +304,7 @@
 
 # DisplayListMaker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DisplayListMakerFP8J3DModelPC14ResourceHolder | :x: |
 | update__16DisplayListMakerFv | :x: |
 | diff__16DisplayListMakerFv | :x: |
@@ -324,6 +341,7 @@
 
 # DynamicJointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<f>__8JMapInfoCFiPCcPf_Cb | :x: |
 | calcJointChildNum__30@unnamed@DynamicJointCtrl_cpp@FP8J3DJoint | :x: |
 | __ct__13JointCtrlRateFv | :x: |
@@ -353,6 +371,7 @@
 
 # EffectKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | makeAttibuteEffectBaseName__26@unnamed@EffectKeeper_cpp@FPcUlPCc | :x: |
 | __ct__12EffectKeeperFPCcP14ResourceHolderiPCc | :x: |
 | init__12EffectKeeperFP9LiveActor | :x: |
@@ -395,6 +414,7 @@
 
 # FaceJointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13FaceJointCtrlFP9LiveActor | :white_check_mark: |
 | init__13FaceJointCtrlFv | :x: |
 | startCtrl__13FaceJointCtrlFl | :white_check_mark: |
@@ -409,6 +429,7 @@
 
 # FlashingCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12FlashingCtrlFP9LiveActorb | :white_check_mark: |
 | movement__12FlashingCtrlFv | :white_check_mark: |
 | start__12FlashingCtrlFi | :white_check_mark: |
@@ -422,6 +443,7 @@
 
 # HitSensor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9HitSensorFUlUsfP9LiveActor | :white_check_mark: |
 | receiveMessage__9HitSensorFUlP9HitSensor | :white_check_mark: |
 | setType__9HitSensorFUl | :white_check_mark: |
@@ -435,6 +457,7 @@
 
 # HitSensorInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3<f>PA4_fRCQ29JGeometry8TVec3<f>b | :white_check_mark: |
 | update__13HitSensorInfoFv | :x: |
 | doObjCol__13HitSensorInfoFv | :white_check_mark: |
@@ -442,6 +465,7 @@
 
 # HitSensorKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15HitSensorKeeperFi | :white_check_mark: |
 | add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -462,6 +486,7 @@
 
 # IKJointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11IKJointCtrlFP9LiveActor | :x: |
 | init__11IKJointCtrlFRC16IKJointCtrlParam | :x: |
 | setEndPosition__11IKJointCtrlFRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
@@ -492,6 +517,7 @@
 
 # LiveActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9LiveActorFPCc | :x: |
 | init__9LiveActorFRC12JMapInfoIter | :white_check_mark: |
 | appear__9LiveActorFv | :white_check_mark: |
@@ -533,11 +559,13 @@
 
 # LiveActorFlag.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13LiveActorFlagFv | :white_check_mark: |
 
 
 # LiveActorGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14LiveActorGroupFPCci | :x: |
 | registerActor__14LiveActorGroupFP9LiveActor | :x: |
 | getActor__14LiveActorGroupCFi | :x: |
@@ -549,6 +577,7 @@
 
 # LiveActorGroupArray.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14MsgSharedGroupFPCclRC12JMapInfoIter | :white_check_mark: |
 | init__14MsgSharedGroupFRC12JMapInfoIter | :white_check_mark: |
 | movement__14MsgSharedGroupFv | :white_check_mark: |
@@ -566,6 +595,7 @@
 
 # LodCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7LodCtrlFP9LiveActorRC12JMapInfoIter | :x: |
 | offSyncShadowHost__7LodCtrlFv | :white_check_mark: |
 | appear__7LodCtrlFv | :white_check_mark: |
@@ -598,6 +628,7 @@
 
 # MaterialCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12MaterialCtrlFP12J3DModelDataPCc | :x: |
 | update__12MaterialCtrlFv | :x: |
 | __ct__7FogCtrlFP12J3DModelDatab | :x: |
@@ -635,6 +666,7 @@
 
 # MessageSensorHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19MessageSensorHolderFPCc | :x: |
 | init__19MessageSensorHolderFRC12JMapInfoIter | :x: |
 | __dt__19MessageSensorHolderFv | :x: |
@@ -642,6 +674,7 @@
 
 # MirrorActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__11MirrorActorFv | :x: |
 | __ct__11MirrorActorFP9LiveActorPCcPCc | :x: |
 | init__11MirrorActorFRC12JMapInfoIter | :x: |
@@ -654,6 +687,7 @@
 
 # MirrorCamera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12MirrorCameraFPCc | :x: |
 | init__12MirrorCameraFRC12JMapInfoIter | :x: |
 | getVertexFormat__26@unnamed@MirrorCamera_cpp@FPC12J3DModelData7_GXAttr | :x: |
@@ -670,6 +704,7 @@
 
 # MirrorReflectionModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21MirrorReflectionModelFPC9LiveActorPCcPCcPA4_f | :x: |
 | init__21MirrorReflectionModelFRC12JMapInfoIter | :x: |
 | movement__21MirrorReflectionModelFv | :x: |
@@ -681,6 +716,7 @@
 
 # ModelManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12ModelManagerFv | :x: |
 | update__12ModelManagerFv | :white_check_mark: |
 | calcAnim__12ModelManagerFv | :white_check_mark: |
@@ -735,6 +771,7 @@
 
 # ModelObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8ModelObjFPCcPCcPA4_fiiib | :white_check_mark: |
 | init__8ModelObjFRC12JMapInfoIter | :white_check_mark: |
 | calcAndSetBaseMtx__8ModelObjFv | :white_check_mark: |
@@ -747,11 +784,13 @@
 
 # Nerve.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | executeOnEnd__5NerveCFP5Spine | :white_check_mark: |
 
 
 # PartsModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10PartsModelFP9LiveActorPCcPCcPA4_fib | :white_check_mark: |
 | makeActorAppeared__10PartsModelFv | :white_check_mark: |
 | makeActorDead__10PartsModelFv | :white_check_mark: |
@@ -769,6 +808,7 @@
 
 # RailRider.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9RailRiderFRC12JMapInfoIter | :white_check_mark: |
 | __ct__9RailRiderFll | :white_check_mark: |
 | move__9RailRiderFv | :white_check_mark: |
@@ -806,6 +846,7 @@
 
 # SensorHitChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11SensorGroupFiPCc | :white_check_mark: |
 | add__11SensorGroupFP9HitSensor | :white_check_mark: |
 | remove__11SensorGroupFP9HitSensor | :white_check_mark: |
@@ -823,6 +864,7 @@
 
 # ShadowController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22ShadowControllerHolderFv | :x: |
 | __ct__16ShadowControllerFP9LiveActorPCc | :x: |
 | __ct__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv | :x: |
@@ -895,6 +937,7 @@
 
 # ShadowDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12ShadowDrawerFPCc | :white_check_mark: |
 | getController__12ShadowDrawerCFv | :white_check_mark: |
 | setShadowController__12ShadowDrawerFP16ShadowController | :white_check_mark: |
@@ -903,6 +946,7 @@
 
 # ShadowSurfaceBox.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__19ShadowSurfaceDrawerFv | :x: |
 | __dt__16ShadowSurfaceBoxFv | :x: |
 | __ct__16ShadowSurfaceBoxFv | :x: |
@@ -912,6 +956,7 @@
 
 # ShadowSurfaceCircle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__19ShadowSurfaceCircleFv | :x: |
 | __ct__19ShadowSurfaceCircleFv | :x: |
 | setRadius__19ShadowSurfaceCircleFf | :x: |
@@ -920,6 +965,7 @@
 
 # ShadowSurfaceDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ShadowSurfaceDrawInitFPCc | :x: |
 | initDraw__21ShadowSurfaceDrawInitFv | :x: |
 | __ct__19ShadowSurfaceDrawerFPCc | :x: |
@@ -928,6 +974,7 @@
 
 # ShadowSurfaceOval.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17ShadowSurfaceOvalFv | :x: |
 | setColor__17ShadowSurfaceOvalF6Color8 | :x: |
 | setAlpha__17ShadowSurfaceOvalFUc | :x: |
@@ -938,6 +985,7 @@
 
 # ShadowVolumeBox.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ShadowVolumeBoxFv | :x: |
 | setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3<f> | :x: |
 | loadModelDrawMtx__15ShadowVolumeBoxCFv | :x: |
@@ -948,6 +996,7 @@
 
 # ShadowVolumeCylinder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__20ShadowVolumeCylinderFv | :x: |
 | __ct__20ShadowVolumeCylinderFv | :x: |
 | __dt__17ShadowVolumeModelFv | :x: |
@@ -957,6 +1006,7 @@
 
 # ShadowVolumeDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20ShadowVolumeDrawInitFv | :x: |
 | __ct__18ShadowVolumeDrawerFPCc | :x: |
 | setStartDrawShepeOffset__18ShadowVolumeDrawerFf | :x: |
@@ -977,6 +1027,7 @@
 
 # ShadowVolumeFlatModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ShadowVolumeFlatModelFPCc | :x: |
 | __ct__21ShadowVolumeFlatModelFv | :x: |
 | setBaseMatrixPtr__21ShadowVolumeFlatModelFPA4_f | :x: |
@@ -991,6 +1042,7 @@
 
 # ShadowVolumeLine.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16ShadowVolumeLineFv | :x: |
 | loadModelDrawMtx__16ShadowVolumeLineCFv | :x: |
 | drawShape__16ShadowVolumeLineCFv | :x: |
@@ -1003,6 +1055,7 @@
 
 # ShadowVolumeModel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17ShadowVolumeModelFPCc | :x: |
 | initVolumeModel__17ShadowVolumeModelFPCc | :x: |
 | drawShape__17ShadowVolumeModelCFv | :x: |
@@ -1010,6 +1063,7 @@
 
 # ShadowVolumeOval.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__16ShadowVolumeOvalFv | :x: |
 | __ct__16ShadowVolumeOvalFv | :x: |
 | isDraw__16ShadowVolumeOvalCFv | :x: |
@@ -1019,6 +1073,7 @@
 
 # ShadowVolumeOvalPole.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__20ShadowVolumeOvalPoleFv | :x: |
 | __ct__20ShadowVolumeOvalPoleFv | :x: |
 | loadModelDrawMtx__20ShadowVolumeOvalPoleCFv | :x: |
@@ -1027,6 +1082,7 @@
 
 # ShadowVolumeSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18ShadowVolumeSphereFv | :x: |
 | __ct__18ShadowVolumeSphereFv | :x: |
 | setRadius__18ShadowVolumeSphereFf | :x: |
@@ -1036,6 +1092,7 @@
 
 # SimpleJ3DModelDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SimpleJ3DModelDrawerFP7NameObjPCcPCci | :x: |
 | initDraw__20SimpleJ3DModelDrawerCFv | :x: |
 | __cl__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer,M20SimpleJ3DModelDrawerFPCvPCv_v>CFv | :x: |
@@ -1045,6 +1102,7 @@
 
 # Spine.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5SpineFPvPC5Nerve | :white_check_mark: |
 | update__5SpineFv | :white_check_mark: |
 | setNerve__5SpineFPC5Nerve | :white_check_mark: |
@@ -1055,6 +1113,7 @@
 
 # SpotMarkLight.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13SpotMarkLightFP9LiveActorffPA4_f | :x: |
 | control__13SpotMarkLightFv | :x: |
 | calcAndSetBaseMtx__13SpotMarkLightFv | :x: |
@@ -1063,6 +1122,7 @@
 
 # ViewGroupCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ViewGroupCtrlFv | :x: |
 | initActorInfo__13ViewGroupCtrlFP17ClippingActorInfol | :x: |
 | initViewGroup__13ViewGroupCtrlFP21ClippingActorInfoList | :x: |

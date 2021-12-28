@@ -141,6 +141,7 @@
 
 # THPDraw.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | THPGXRestore | :x: |
 | THPGXYuv2RgbSetup | :x: |
 | THPGXSetTexObjFilter | :x: |
@@ -149,6 +150,7 @@
 
 # BackButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10BackButtonFPCcb | :x: |
 | appear__10BackButtonFv | :x: |
 | disappear__10BackButtonFv | :x: |
@@ -163,6 +165,7 @@
 
 # BatteryInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BatteryInfoFP11LayoutActorPCci | :x: |
 | exeEnought__11BatteryInfoFv | :x: |
 | exeLowAppear__11BatteryInfoFv | :x: |
@@ -210,6 +213,7 @@
 
 # BloomEffect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BloomEffectFPCc | :x: |
 | __dt__15ImageEffectBaseFv | :x: |
 | preDraw__11BloomEffectCFv | :x: |
@@ -234,6 +238,7 @@
 
 # BloomEffectSimple.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17BloomEffectSimpleFv | :x: |
 | draw__17BloomEffectSimpleCFv | :x: |
 | set__Q231@unnamed@BloomEffectSimple_cpp@7TexSpecFP10JUTTexturell9_GXTexFmt | :x: |
@@ -242,6 +247,7 @@
 
 # BombTimerLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15BombTimerLayoutFb | :x: |
 | init__15BombTimerLayoutFRC12JMapInfoIter | :x: |
 | appear__15BombTimerLayoutFv | :x: |
@@ -271,6 +277,7 @@
 
 # BrosButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10BrosButtonFPCc | :x: |
 | init__10BrosButtonFRC12JMapInfoIter | :x: |
 | appear__10BrosButtonFb | :x: |
@@ -296,6 +303,7 @@
 
 # ButtonPaneController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20ButtonPaneControllerFP11LayoutActorPCcPCcUlb | :x: |
 | update__20ButtonPaneControllerFv | :x: |
 | appear__20ButtonPaneControllerFv | :x: |
@@ -355,6 +363,7 @@
 
 # CameraInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10CameraInfoFPCc | :x: |
 | init__10CameraInfoFRC12JMapInfoIter | :x: |
 | control__10CameraInfoFv | :x: |
@@ -389,6 +398,7 @@
 
 # CaptureScreenDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21CaptureScreenDirectorFv | :x: |
 | captureIfAllow__21CaptureScreenDirectorFPCc | :x: |
 | capture__21CaptureScreenDirectorFv | :x: |
@@ -407,6 +417,7 @@
 
 # CenterScreenBlur.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CenterScreenBlurFv | :x: |
 | init__16CenterScreenBlurFRC12JMapInfoIter | :x: |
 | appear__16CenterScreenBlurFv | :x: |
@@ -427,6 +438,7 @@
 
 # CinemaFrame.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CinemaFrameFb | :x: |
 | init__11CinemaFrameFRC12JMapInfoIter | :x: |
 | appear__11CinemaFrameFv | :x: |
@@ -459,6 +471,7 @@
 
 # CoinCounter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CoinCounterFPCc | :x: |
 | init__11CoinCounterFRC12JMapInfoIter | :x: |
 | appear__11CoinCounterFv | :x: |
@@ -485,6 +498,7 @@
 
 # CometRetryButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CometRetryButtonFPCc | :x: |
 | init__16CometRetryButtonFRC12JMapInfoIter | :x: |
 | appear__16CometRetryButtonFv | :x: |
@@ -511,12 +525,14 @@
 
 # CopyFilterNegater.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CopyFilterNegaterFv | :x: |
 | __dt__17CopyFilterNegaterFv | :x: |
 
 
 # CounterLayoutAppearer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2<f> | :x: |
 | update__21CounterLayoutAppearerFv | :x: |
 | appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2<f> | :x: |
@@ -541,6 +557,7 @@
 
 # CounterLayoutController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23CounterLayoutControllerFv | :x: |
 | init__23CounterLayoutControllerFRC12JMapInfoIter | :x: |
 | appear__23CounterLayoutControllerFv | :x: |
@@ -570,6 +587,7 @@
 
 # CountUpPaneRumbler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18CountUpPaneRumblerFP11LayoutActorPCc | :x: |
 | update__18CountUpPaneRumblerFv | :x: |
 | start__18CountUpPaneRumblerFv | :x: |
@@ -580,6 +598,7 @@
 
 # CustomTagProcessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setGXColor__32@unnamed@CustomTagProcessor_cpp@F11_GXColorS10 | :x: |
 | clampU8__32@unnamed@CustomTagProcessor_cpp@Fl | :x: |
 | getTextColor__32@unnamed@CustomTagProcessor_cpp@Fl | :x: |
@@ -642,6 +661,7 @@
 
 # DepthOfFieldBlur.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DepthOfFieldBlurFPCc | :x: |
 | draw__16DepthOfFieldBlurCFv | :x: |
 | drawZAlphaTex__16DepthOfFieldBlurCFv | :x: |
@@ -652,6 +672,7 @@
 
 # EncouragePal60Window.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20EncouragePal60WindowFv | :x: |
 | init__20EncouragePal60WindowFRC12JMapInfoIter | :x: |
 | appear__20EncouragePal60WindowFv | :x: |
@@ -670,6 +691,7 @@
 
 # ErrorMessageWindow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18ErrorMessageWindowFv | :x: |
 | init__18ErrorMessageWindowFRC12JMapInfoIter | :x: |
 | appear__18ErrorMessageWindowFv | :x: |
@@ -693,6 +715,7 @@
 
 # FileSelectButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16FileSelectButtonFPCc | :x: |
 | init__16FileSelectButtonFRC12JMapInfoIter | :x: |
 | appear__16FileSelectButtonFv | :x: |
@@ -718,6 +741,7 @@
 
 # FileSelectInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14FileSelectInfoFlPCc | :x: |
 | init__14FileSelectInfoFRC12JMapInfoIter | :x: |
 | appear__14FileSelectInfoFv | :x: |
@@ -769,6 +793,7 @@
 
 # FileSelectNumber.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16FileSelectNumberFPCc | :x: |
 | init__16FileSelectNumberFRC12JMapInfoIter | :x: |
 | appear__16FileSelectNumberFv | :x: |
@@ -804,6 +829,7 @@
 
 # FullnessMeter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13FullnessMeterFP9LiveActorll | :x: |
 | init__13FullnessMeterFRC12JMapInfoIter | :x: |
 | control__13FullnessMeterFv | :x: |
@@ -825,12 +851,14 @@
 
 # FullScreenBlur.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | drawFullScreenBlur__2MRFf | :x: |
 | drawFullScreenBlur__2MRFffUcUc | :x: |
 
 
 # GalaxyCometScreenFilter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23GalaxyCometScreenFilterFv | :x: |
 | setCometType__23GalaxyCometScreenFilterFPCc | :x: |
 | __dt__23GalaxyCometScreenFilterFv | :x: |
@@ -838,6 +866,7 @@
 
 # GalaxyConfirmLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19GalaxyConfirmLayoutFv | :x: |
 | init__19GalaxyConfirmLayoutFRC12JMapInfoIter | :x: |
 | appear__19GalaxyConfirmLayoutFv | :x: |
@@ -860,6 +889,7 @@
 
 # GalaxyInfoLayoutSetter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addPictureFontStar__36@unnamed@GalaxyInfoLayoutSetter_cpp@FPPwPPwPCcl | :x: |
 | __ct__22GalaxyInfoLayoutSetterFP11LayoutActor | :x: |
 | replaceTexture__22GalaxyInfoLayoutSetterFPCc | :x: |
@@ -876,6 +906,7 @@
 
 # GalaxyMap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9GalaxyMapFv | :x: |
 | __dt__Q22MR48Vector<Q22MR33AssignableArray<P13GalaxyMapIcon>>Fv | :x: |
 | __dt__Q22MR53Vector<Q22MR38AssignableArray<P18GalaxyMapCometIcon>>Fv | :x: |
@@ -948,6 +979,7 @@
 
 # GalaxyMapBackground.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19GalaxyMapBackgroundFv | :x: |
 | appear__19GalaxyMapBackgroundFv | :x: |
 | __dt__19GalaxyMapBackgroundFv | :x: |
@@ -955,6 +987,7 @@
 
 # GalaxyMapCometIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18GalaxyMapCometIconFPCcP11LayoutActorPCc | :x: |
 | appear__18GalaxyMapCometIconFv | :x: |
 | calcAnim__18GalaxyMapCometIconFv | :x: |
@@ -967,6 +1000,7 @@
 
 # GalaxyMapController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19GalaxyMapControllerFv | :x: |
 | init__19GalaxyMapControllerFRC12JMapInfoIter | :x: |
 | appear__19GalaxyMapControllerFv | :x: |
@@ -1062,6 +1096,7 @@
 
 # GalaxyMapDomeIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ne__12JMapInfoIterCFRC12JMapInfoIter | :x: |
 | __ct__17GalaxyMapDomeIconFiP11LayoutActorPCcPCc | :x: |
 | appear__17GalaxyMapDomeIconFv | :x: |
@@ -1087,6 +1122,7 @@
 
 # GalaxyMapGalaxyDetail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GalaxyMapGalaxyDetailFv | :x: |
 | init__21GalaxyMapGalaxyDetailFRC12JMapInfoIter | :x: |
 | appear__21GalaxyMapGalaxyDetailFv | :x: |
@@ -1111,6 +1147,7 @@
 
 # GalaxyMapGalaxyPlain.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20GalaxyMapGalaxyPlainFPC11LayoutActor | :x: |
 | show__20GalaxyMapGalaxyPlainFPCcPCc | :x: |
 | adjustTransInScreen__20GalaxyMapGalaxyPlainFv | :x: |
@@ -1127,6 +1164,7 @@
 
 # GalaxyMapIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13GalaxyMapIconFPCcP11LayoutActorPCc | :x: |
 | appear__13GalaxyMapIconFv | :x: |
 | calcAnim__13GalaxyMapIconFv | :x: |
@@ -1149,6 +1187,7 @@
 
 # GalaxyMapMarioIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18GalaxyMapMarioIconFP11LayoutActorPCc | :x: |
 | init__18GalaxyMapMarioIconFRC12JMapInfoIter | :x: |
 | showBlink__18GalaxyMapMarioIconFv | :x: |
@@ -1158,6 +1197,7 @@
 
 # GalaxyMapSelectButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GalaxyMapSelectButtonFv | :x: |
 | init__21GalaxyMapSelectButtonFRC12JMapInfoIter | :x: |
 | appear__21GalaxyMapSelectButtonFv | :x: |
@@ -1193,6 +1233,7 @@
 
 # GalaxyMapTicoIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17GalaxyMapTicoIconFiPCcP11LayoutActorPCc | :x: |
 | init__17GalaxyMapTicoIconFRC12JMapInfoIter | :x: |
 | appear__17GalaxyMapTicoIconFv | :x: |
@@ -1206,6 +1247,7 @@
 
 # GalaxyMapTitle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14GalaxyMapTitleFv | :x: |
 | init__14GalaxyMapTitleFRC12JMapInfoIter | :x: |
 | appear__14GalaxyMapTitleFv | :x: |
@@ -1234,6 +1276,7 @@
 
 # GalaxyNamePlate.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15GalaxyNamePlateFPCcb | :x: |
 | init__15GalaxyNamePlateFRC12JMapInfoIter | :x: |
 | kill__15GalaxyNamePlateFv | :x: |
@@ -1260,6 +1303,7 @@
 
 # GalaxyNamePlateDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GalaxyNamePlateDrawerFv | :x: |
 | init__21GalaxyNamePlateDrawerFRC12JMapInfoIter | :x: |
 | draw__21GalaxyNamePlateDrawerCFv | :x: |
@@ -1274,6 +1318,7 @@
 
 # GalaxySelectBackButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22GalaxySelectBackButtonFv | :x: |
 | init__22GalaxySelectBackButtonFRC12JMapInfoIter | :x: |
 | appear__22GalaxySelectBackButtonFv | :x: |
@@ -1298,6 +1343,7 @@
 
 # GalaxySelectInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16GalaxySelectInfoFb | :x: |
 | init__16GalaxySelectInfoFRC12JMapInfoIter | :x: |
 | draw__16GalaxySelectInfoCFv | :x: |
@@ -1319,6 +1365,7 @@
 
 # GamePauseSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17GamePauseSequenceFv | :x: |
 | init__17GamePauseSequenceFRC12JMapInfoIter | :x: |
 | initWindowMenu__17GamePauseSequenceFRCQ22MR11FunctorBase | :x: |
@@ -1340,6 +1387,7 @@
 
 # GameSceneLayoutHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21GameSceneLayoutHolderFv | :x: |
 | createPurpleCoinCounter__21GameSceneLayoutHolderFv | :x: |
 | movement__21GameSceneLayoutHolderFv | :x: |
@@ -1365,6 +1413,7 @@
 
 # GameStageClearSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22GameStageClearSequenceFv | :x: |
 | init__22GameStageClearSequenceFRC12JMapInfoIter | :x: |
 | startPowerStarGetDemo__22GameStageClearSequenceFv | :x: |
@@ -1382,6 +1431,7 @@
 
 # HeatHazeEffect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14HeatHazeEffectFPCc | :x: |
 | appear__14HeatHazeEffectFv | :x: |
 | control__14HeatHazeEffectFv | :x: |
@@ -1395,6 +1445,7 @@
 
 # HomeButtonLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | SoundCallback__30@unnamed@HomeButtonLayout_cpp@Fii | :x: |
 | __ct__21HomeButtonMenuContextFv | :x: |
 | initControllerData__21HomeButtonMenuContextFv | :x: |
@@ -1419,6 +1470,7 @@
 
 # IconAButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11IconAButtonFbb | :x: |
 | init__11IconAButtonFRC12JMapInfoIter | :x: |
 | setFollowActorPane__11IconAButtonFP11LayoutActorPCc | :x: |
@@ -1445,6 +1497,7 @@
 
 # IconComet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9IconCometFv | :x: |
 | init__9IconCometFRC12JMapInfoIter | :x: |
 | appearIfLanding__9IconCometFPCc | :x: |
@@ -1457,12 +1510,14 @@
 
 # ImageEffectBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ImageEffectBaseFPCc | :x: |
 | calcAnim__15ImageEffectBaseFv | :x: |
 
 
 # ImageEffectDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19ImageEffectDirectorFPCc | :x: |
 | movement__19ImageEffectDirectorFv | :x: |
 | setCurrentEffect__19ImageEffectDirectorFP15ImageEffectBase | :x: |
@@ -1500,6 +1555,7 @@
 
 # ImageEffectLocalUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setTextureTrans__34@unnamed@ImageEffectLocalUtil_cpp@Fff | :x: |
 | connectToSceneImageEffect__2MRFP7NameObj | :x: |
 | connectToSceneImageEffectMovement__2MRFP7NameObj | :x: |
@@ -1516,6 +1572,7 @@
 
 # ImageEffectResource.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19ImageEffectResourceFv | :x: |
 | createBloomTexture__19ImageEffectResourceFv | :x: |
 | createBlurTexture__19ImageEffectResourceFv | :x: |
@@ -1525,6 +1582,7 @@
 
 # ImageEffectState.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | update__16ImageEffectStateFv | :x: |
 | forceOff__16ImageEffectStateFv | :x: |
 | __ct__Q220ImageEffectStateImpl16StateBloomNormalFP19ImageEffectDirector | :x: |
@@ -1562,6 +1620,7 @@
 
 # ImageEffectSystemHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23ImageEffectSystemHolderFv | :x: |
 | pauseOff__23ImageEffectSystemHolderFv | :x: |
 | createImageEffectSystemHolder__2MRFv | :x: |
@@ -1574,6 +1633,7 @@
 
 # InformationMessage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18InformationMessageFv | :x: |
 | init__18InformationMessageFRC12JMapInfoIter | :x: |
 | appear__18InformationMessageFv | :x: |
@@ -1595,6 +1655,7 @@
 
 # InformationObserver.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19InformationObserverFv | :x: |
 | init__19InformationObserverFRC12JMapInfoIter | :x: |
 | entry__19InformationObserverFQ219InformationObserver4TYPEP9LiveActor | :x: |
@@ -1619,6 +1680,7 @@
 
 # IsbnManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11IsbnManagerFP12MEMAllocator | :x: |
 | __dt__11IsbnManagerFv | :x: |
 | setAdjustRate__11IsbnManagerFff | :x: |
@@ -1633,6 +1695,7 @@
 
 # LayoutActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11LayoutActorFPCcb | :x: |
 | movement__11LayoutActorFv | :x: |
 | calcAnim__11LayoutActorFv | :x: |
@@ -1658,11 +1721,13 @@
 
 # LayoutActorFlag.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15LayoutActorFlagFv | :x: |
 
 
 # LayoutCoreUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPaneUserData__14LayoutCoreUtilFPCQ34nw4r3lyt4PanePc | :x: |
 | setTextBoxMessage__14LayoutCoreUtilFPQ34nw4r3lyt7TextBoxPCw | :x: |
 | initTextBoxPane__14LayoutCoreUtilFPQ34nw4r3lyt7TextBoxPCcUl | :x: |
@@ -1673,6 +1738,7 @@
 
 # LayoutGroupCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15LayoutGroupCtrlFP13LayoutManagerPCcUl | :x: |
 | movement__15LayoutGroupCtrlFv | :x: |
 | calcAnim__15LayoutGroupCtrlFv | :x: |
@@ -1688,6 +1754,7 @@
 
 # LayoutManager.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ml__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv | :x: |
 | __pp__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorFi | :x: |
 | GetBeginIter__Q34nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>Fv | :x: |
@@ -1746,6 +1813,7 @@
 
 # LayoutPaneCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14LayoutPaneCtrlFP13LayoutManagerPCcUl | :x: |
 | movement__14LayoutPaneCtrlFv | :x: |
 | calcAnim__14LayoutPaneCtrlFv | :x: |
@@ -1759,6 +1827,7 @@
 
 # LensFlare.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14LensFlareModelFPCcPCc | :x: |
 | update__14LensFlareModelFbb | :x: |
 | exeHide__14LensFlareModelFv | :x: |
@@ -1812,6 +1881,7 @@
 
 # LogoFader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9LogoFaderFPCc | :x: |
 | draw__9LogoFaderCFv | :x: |
 | exeFadeIn__9LogoFaderFv | :x: |
@@ -1834,6 +1904,7 @@
 
 # LuigiLetter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11LuigiLetterFbPCc | :x: |
 | init__11LuigiLetterFRC12JMapInfoIter | :x: |
 | appear__11LuigiLetterFv | :x: |
@@ -1858,6 +1929,7 @@
 
 # Manual2P.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8Manual2PFPCc | :x: |
 | init__8Manual2PFRC12JMapInfoIter | :x: |
 | appear__8Manual2PFv | :x: |
@@ -1892,6 +1964,7 @@
 
 # MarioMeter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MarioMeterFPCc | :x: |
 | initLifeCount__10MarioMeterFl | :x: |
 | setLifeCount__10MarioMeterFl | :x: |
@@ -1907,6 +1980,7 @@
 
 # MarioSubMeter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MarioSubMeterFPCc | :x: |
 | setBeeLifeRatio__13MarioSubMeterFf | :x: |
 | setWaterLifeRatio__13MarioSubMeterFf | :x: |
@@ -1921,6 +1995,7 @@
 
 # MessageTagSkipTagProcessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23MessageEditorMessageTagFPCQ34nw4r2ut15PrintContext<w> | :x: |
 | __ct__23MessageEditorMessageTagFPCw | :x: |
 | getTagLength__23MessageEditorMessageTagCFv | :x: |
@@ -1938,6 +2013,7 @@
 
 # MeterLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11MeterLayoutFPCcPCc | :x: |
 | init__11MeterLayoutFRC12JMapInfoIter | :x: |
 | control__11MeterLayoutFv | :x: |
@@ -1995,6 +2071,7 @@
 
 # MiiConfirmIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14MiiConfirmIconFPCc | :x: |
 | init__14MiiConfirmIconFRC12JMapInfoIter | :x: |
 | appear__14MiiConfirmIconFPQ34nw4r3lyt6TexMapPCw | :x: |
@@ -2015,6 +2092,7 @@
 
 # MiiSelect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9MiiSelectFPCc | :x: |
 | init__9MiiSelectFRC12JMapInfoIter | :x: |
 | appear__9MiiSelectFv | :x: |
@@ -2080,6 +2158,7 @@
 
 # MiiSelectIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MiiSelectIconFiiiPCc | :x: |
 | appear__13MiiSelectIconFRC16FileSelectIconID | :x: |
 | appearMiiDummy__13MiiSelectIconFv | :x: |
@@ -2114,6 +2193,7 @@
 
 # MissLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MissLayoutFv | :x: |
 | init__10MissLayoutFRC12JMapInfoIter | :x: |
 | kill__10MissLayoutFv | :x: |
@@ -2132,6 +2212,7 @@
 
 # MoviePlayerSimple.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17MoviePlayerSimpleFv | :x: |
 | __dt__17MoviePlayerSimpleFv | :x: |
 | __dt__22THPSimplePlayerWrapperFv | :x: |
@@ -2171,6 +2252,7 @@
 
 # MoviePlayingSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | openWipe__34@unnamed@MoviePlayingSequence_cpp@FQ234@unnamed@MoviePlayingSequence_cpp@8WipeTypel | :x: |
 | closeWipe__34@unnamed@MoviePlayingSequence_cpp@FQ234@unnamed@MoviePlayingSequence_cpp@8WipeTypel | :x: |
 | getMovieName__34@unnamed@MoviePlayingSequence_cpp@FPC16MoviePlayingInfo | :x: |
@@ -2220,6 +2302,7 @@
 
 # MovieSubtitles.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14MovieSubtitlesFPCcl | :x: |
 | appear__14MovieSubtitlesFv | :x: |
 | exeTalk__14MovieSubtitlesFv | :x: |
@@ -2236,6 +2319,7 @@
 
 # MovieSubtitlesDataTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSubtitlesMessageInfo__18MovieSubtitlesUtilFPCcl | :x: |
 | isExistSubtitles__18MovieSubtitlesUtilFPCcl | :x: |
 | getSubtitlesMessageId__18MovieSubtitlesUtilFPCcl | :x: |
@@ -2246,6 +2330,7 @@
 
 # MovieStarter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12MovieStarterFPCc | :x: |
 | init__12MovieStarterFRC12JMapInfoIter | :x: |
 | appear__12MovieStarterFv | :x: |
@@ -2258,6 +2343,7 @@
 
 # NoteCounter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11NoteCounterFPCc | :x: |
 | init__11NoteCounterFRC12JMapInfoIter | :x: |
 | declareNoteNumMaxAndMelody__11NoteCounterFP9LiveActorllf | :x: |
@@ -2284,6 +2370,7 @@
 
 # odh.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | ODHEncodeRGB565 | :x: |
 | compressGbaOdh__9CArGBAOdhFPUcPUciiiUlPUci | :x: |
 | cdj_c_initializeCompressOdh__9CArGBAOdhFP16SArCDJ_OdhMasterPUsUcPUcPUcUl | :x: |
@@ -2300,6 +2387,7 @@
 
 # OdhConverter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12OdhConverterFv | :x: |
 | init__12OdhConverterFRC12JMapInfoIter | :x: |
 | draw__12OdhConverterCFv | :x: |
@@ -2317,6 +2405,7 @@
 
 # OneUpBoard.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10OneUpBoardFv | :x: |
 | init__10OneUpBoardFRC12JMapInfoIter | :x: |
 | popup__10OneUpBoardFl | :x: |
@@ -2334,6 +2423,7 @@
 
 # PaneEffectKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16PaneEffectKeeperFP11LayoutActorPC13LayoutManageriPCc | :x: |
 | init__16PaneEffectKeeperFPC11LayoutActorPC12EffectSystem | :x: |
 | add__16PaneEffectKeeperFPCcPCcPCc | :x: |
@@ -2351,6 +2441,7 @@
 
 # PauseMenu.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isInvalidBackAstroDome__23@unnamed@PauseMenu_cpp@Fv | :x: |
 | __ct__9PauseMenuFv | :x: |
 | init__9PauseMenuFRC12JMapInfoIter | :x: |
@@ -2386,6 +2477,7 @@
 
 # PeachLetter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11PeachLetterFPCc | :x: |
 | init__11PeachLetterFRC12JMapInfoIter | :x: |
 | movement__11PeachLetterFv | :x: |
@@ -2406,6 +2498,7 @@
 
 # PictureBookCloseButton.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22PictureBookCloseButtonFb | :x: |
 | init__22PictureBookCloseButtonFRC12JMapInfoIter | :x: |
 | appear__22PictureBookCloseButtonFv | :x: |
@@ -2425,6 +2518,7 @@
 
 # PictureBookLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getTextureNum__31@unnamed@PictureBookLayout_cpp@Fl | :x: |
 | getPageNum__31@unnamed@PictureBookLayout_cpp@Fl | :x: |
 | __ct__17PictureBookLayoutFllb | :x: |
@@ -2491,6 +2585,7 @@
 
 # PlayerActionGuidance.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPlayerActionGuidance__2MRFv | :x: |
 | __ct__20PlayerActionGuidanceFv | :x: |
 | control__20PlayerActionGuidanceFv | :x: |
@@ -2524,6 +2619,7 @@
 
 # PlayerLeft.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10PlayerLeftFPCc | :x: |
 | init__10PlayerLeftFRC12JMapInfoIter | :x: |
 | appear__10PlayerLeftFv | :x: |
@@ -2549,6 +2645,7 @@
 
 # PlayerMissLeft.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PlayerMissLeftFPCc | :x: |
 | init__14PlayerMissLeftFRC12JMapInfoIter | :x: |
 | appear__14PlayerMissLeftFv | :x: |
@@ -2570,6 +2667,7 @@
 
 # PowerStarList.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSortPriority__27@unnamed@PowerStarList_cpp@FPC20GalaxyStatusAccessor | :x: |
 | getDisplayRaceBestTimeNum__27@unnamed@PowerStarList_cpp@Fv | :x: |
 | getSortedList__27@unnamed@PowerStarList_cpp@FPQ227@unnamed@PowerStarList_cpp@8ListItem | :x: |
@@ -2637,6 +2735,7 @@
 
 # PrologueLetter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PrologueLetterFPCc | :x: |
 | init__14PrologueLetterFRC12JMapInfoIter | :x: |
 | appear__14PrologueLetterFv | :x: |
@@ -2657,6 +2756,7 @@
 
 # ProloguePictureBook.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19ProloguePictureBookFv | :x: |
 | init__19ProloguePictureBookFRC12JMapInfoIter | :x: |
 | appear__19ProloguePictureBookFv | :x: |
@@ -2679,6 +2779,7 @@
 
 # PurpleCoinCounter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17PurpleCoinCounterFPCc | :x: |
 | init__17PurpleCoinCounterFRC12JMapInfoIter | :x: |
 | appear__17PurpleCoinCounterFv | :x: |
@@ -2696,6 +2797,7 @@
 
 # ReplaceTagProcessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | findGroupFunctionInfo__Q219ReplaceTagProcessor4ImplFi | :x: |
 | findGroupFunctionInfo__Q219ReplaceTagProcessor8ImplArgsFi | :x: |
 | Replace__19ReplaceTagProcessorFPwPCw | :x: |
@@ -2712,6 +2814,7 @@
 
 # SaveIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8SaveIconFPC11LayoutActor | :x: |
 | appear__8SaveIconFv | :x: |
 | calcAnim__8SaveIconFv | :x: |
@@ -2720,6 +2823,7 @@
 
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20ScenarioSelectLayoutFP12EffectSystemPC13CameraContext | :x: |
 | init__20ScenarioSelectLayoutFRC12JMapInfoIter | :x: |
 | appear__20ScenarioSelectLayoutFv | :x: |
@@ -2787,6 +2891,7 @@
 
 # ScenarioTitle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ScenarioTitleFv | :x: |
 | init__13ScenarioTitleFRC12JMapInfoIter | :x: |
 | start__13ScenarioTitleFv | :x: |
@@ -2805,6 +2910,7 @@
 
 # SceneWipeHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SceneWipeHolderFv | :x: |
 | __dt__14WipeHolderBaseFv | :x: |
 | getCurrent__14WipeHolderBaseCFv | :x: |
@@ -2818,6 +2924,7 @@
 
 # ScreenAlphaCapture.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18ScreenAlphaCaptureFPCc | :x: |
 | init__18ScreenAlphaCaptureFRC12JMapInfoIter | :x: |
 | createScreenAlpha__18ScreenAlphaCaptureFlf | :x: |
@@ -2831,6 +2938,7 @@
 
 # ScreenBlurEffect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16ScreenBlurEffectFPCc | :x: |
 | calcAnimSub__16ScreenBlurEffectFv | :x: |
 | notifyTurnOn__16ScreenBlurEffectFv | :x: |
@@ -2842,6 +2950,7 @@
 
 # ScreenPreserver.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ScreenPreserverFv | :x: |
 | captureIfAllow__15ScreenPreserverFv | :x: |
 | draw__15ScreenPreserverCFv | :x: |
@@ -2852,6 +2961,7 @@
 
 # SimpleLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12SimpleLayoutFPCcPCcUli | :x: |
 | __ct__18SimpleEffectLayoutFPCcPCcUli | :x: |
 | __dt__18SimpleEffectLayoutFv | :x: |
@@ -2859,6 +2969,7 @@
 
 # StaffRoll.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getStaffRollParam__23@unnamed@StaffRoll_cpp@Fv | :x: |
 | __ct__13StaffRollLineFPCc | :x: |
 | init__13StaffRollLineFRC12JMapInfoIter | :x: |
@@ -2946,6 +3057,7 @@
 
 # StageResultInformer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27DisplayInformationForResultFP19StageResultInformer | :x: |
 | exeAppear__27DisplayInformationForResultFv | :x: |
 | exeDisplay__27DisplayInformationForResultFv | :x: |
@@ -3024,6 +3136,7 @@
 
 # StarCounter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11StarCounterFv | :x: |
 | init__11StarCounterFRC12JMapInfoIter | :x: |
 | appear__11StarCounterFv | :x: |
@@ -3046,6 +3159,7 @@
 
 # StarPieceCounter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16StarPieceCounterFPCc | :x: |
 | init__16StarPieceCounterFRC12JMapInfoIter | :x: |
 | appear__16StarPieceCounterFv | :x: |
@@ -3080,6 +3194,7 @@
 
 # StarPointerBlur.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15StarPointerBlurFv | :x: |
 | __ct__15StarPointerBlurFP10JUTTexture | :x: |
 | __ct__Q215StarPointerBlur9BlurPointFv | :x: |
@@ -3097,6 +3212,7 @@
 
 # StarPointerCommandStream.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24StarPointerCommandStreamFPCQ29JGeometry8TVec2<f> | :x: |
 | start__24StarPointerCommandStreamFPCQ29JGeometry8TVec3<f>b | :x: |
 | show__24StarPointerCommandStreamFv | :x: |
@@ -3118,6 +3234,7 @@
 
 # StarPointerController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7DpdInfoFv | :x: |
 | __ct__21StarPointerControllerFv | :x: |
 | isOutScreenLong__21StarPointerControllerCFv | :x: |
@@ -3134,6 +3251,7 @@
 
 # StarPointerDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19StarPointerDirectorFv | :x: |
 | update__19StarPointerDirectorFv | :x: |
 | draw__19StarPointerDirectorFv | :x: |
@@ -3167,6 +3285,7 @@
 
 # StarPointerGuidance.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19StarPointerGuidanceFPCc | :x: |
 | init__19StarPointerGuidanceFRC12JMapInfoIter | :x: |
 | control__19StarPointerGuidanceFv | :x: |
@@ -3208,6 +3327,7 @@
 
 # StarPointerLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17StarPointerLayoutFPCc | :x: |
 | initWithPort__17StarPointerLayoutFl | :x: |
 | appear__17StarPointerLayoutFv | :x: |
@@ -3286,6 +3406,7 @@
 
 # StarPointerTarget.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17StarPointerTargetFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f> | :x: |
 | calcScreenPosition__17StarPointerTargetCFPQ29JGeometry8TVec2<f> | :x: |
 | isPointing__17StarPointerTargetCFRCQ29JGeometry8TVec2<f>ff | :x: |
@@ -3305,6 +3426,7 @@
 
 # SubMeterLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SubMeterLayoutFPCcPCc | :x: |
 | init__14SubMeterLayoutFRC12JMapInfoIter | :x: |
 | setLifeRatio__14SubMeterLayoutFf | :x: |
@@ -3318,6 +3440,7 @@
 
 # SuddenDeathMeter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16SuddenDeathMeterFPCcPCc | :x: |
 | init__16SuddenDeathMeterFRC12JMapInfoIter | :x: |
 | control__16SuddenDeathMeterFv | :x: |
@@ -3363,6 +3486,7 @@
 
 # SurfingGuidance.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SurfingGuidanceFv | :x: |
 | init__15SurfingGuidanceFRC12JMapInfoIter | :x: |
 | activate__15SurfingGuidanceFv | :x: |
@@ -3409,6 +3533,7 @@
 
 # SysInfoWindow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13SysInfoWindowFQ213SysInfoWindow17SysInfoWindowTypeQ213SysInfoWindow18SysInfoExecuteType | :x: |
 | init__13SysInfoWindowFRC12JMapInfoIter | :x: |
 | movement__13SysInfoWindowFv | :x: |
@@ -3445,6 +3570,7 @@
 
 # SystemWipeHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16SystemWipeHolderFv | :x: |
 | init__16SystemWipeHolderFRC12JMapInfoIter | :x: |
 | movement__16SystemWipeHolderFv | :x: |
@@ -3460,6 +3586,7 @@
 
 # THPSimplePlayerWrapper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | dvdCallBackFunc__36@unnamed@THPSimplePlayerWrapper_cpp@FlP11DVDFileInfo | :x: |
 | __ct__22THPSimplePlayerWrapperFPCc | :x: |
 | init__22THPSimplePlayerWrapperFl | :x: |
@@ -3524,6 +3651,7 @@
 
 # TimeLimitLayout.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__12TimeUpLayoutFRC12JMapInfoIter | :x: |
 | __ct__15TimeLimitLayoutFUl | :x: |
 | init__15TimeLimitLayoutFRC12JMapInfoIter | :x: |
@@ -3565,6 +3693,7 @@
 
 # TitleSequenceProduct.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q223TitleSequenceProductSub10LogoLayoutFv | :x: |
 | __ct__20TitleSequenceProductFv | :x: |
 | exeDisplayEncouragePal60Window__20TitleSequenceProductFv | :x: |
@@ -3600,6 +3729,7 @@
 
 # WaterCameraFilter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17WaterCameraFilterFv | :x: |
 | init__17WaterCameraFilterFRC12JMapInfoIter | :x: |
 | exeAirToWater__17WaterCameraFilterFv | :x: |
@@ -3621,6 +3751,7 @@
 
 # WipeFade.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8WipeFadeFPCcRC6Color8 | :x: |
 | __dt__14WipeLayoutBaseFv | :x: |
 | init__8WipeFadeFRC12JMapInfoIter | :x: |
@@ -3640,6 +3771,7 @@
 
 # WipeGameOver.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12WipeGameOverFv | :x: |
 | init__12WipeGameOverFRC12JMapInfoIter | :x: |
 | kill__12WipeGameOverFv | :x: |
@@ -3661,6 +3793,7 @@
 
 # WipeHolderBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14WipeHolderBaseFUlPCc | :x: |
 | setCurrent__14WipeHolderBaseFPCc | :x: |
 | wipe__14WipeHolderBaseFPCcl | :x: |
@@ -3678,6 +3811,7 @@
 
 # WipeKoopa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9WipeKoopaFv | :x: |
 | init__9WipeKoopaFRC12JMapInfoIter | :x: |
 | exeWipeOut__9WipeKoopaFv | :x: |
@@ -3701,6 +3835,7 @@
 
 # WipeRing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8WipeRingFbPCc | :x: |
 | init__8WipeRingFRC12JMapInfoIter | :x: |
 | exeWipeIn__8WipeRingFv | :x: |
@@ -3733,6 +3868,7 @@
 
 # YesNoController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15YesNoControllerFP11LayoutActor | :x: |
 | appear__15YesNoControllerFv | :x: |
 | kill__15YesNoControllerFv | :x: |

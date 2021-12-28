@@ -41,6 +41,7 @@
 
 # AreaForm.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | dot__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
 | set<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>_v | :x: |
 | add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
@@ -78,6 +79,7 @@
 
 # AreaFormDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __pl__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
 | __sinit_\AreaFormDrawer_cpp | :x: |
 | __ct__6Color8FUcUcUcUc | :x: |
@@ -85,6 +87,7 @@
 
 # AreaObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7AreaObjFiPCc | :x: |
 | init__7AreaObjFRC12JMapInfoIter | :white_check_mark: |
 | isInVolume__7AreaObjCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -113,6 +116,7 @@
 
 # AreaObjContainer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createManager<10AreaObjMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
@@ -131,6 +135,7 @@
 
 # AreaObjFollower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter | :x: |
 | update__15AreaObjFollowerFv | :x: |
 | addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter | :x: |
@@ -139,6 +144,7 @@
 
 # AstroChangeStageCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20AstroChangeStageCubeFiPCc | :white_check_mark: |
 | init__20AstroChangeStageCubeFRC12JMapInfoIter | :white_check_mark: |
 | isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -148,6 +154,7 @@
 
 # AudioEffectArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AudioEffectAreaFiPCc | :white_check_mark: |
 | init__15AudioEffectAreaFRC12JMapInfoIter | :white_check_mark: |
 | movement__15AudioEffectAreaFv | :white_check_mark: |
@@ -157,6 +164,7 @@
 
 # BgmProhibitArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15BgmProhibitAreaFv | :x: |
 | findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc | :x: |
 | __ct__15BgmProhibitAreaFiPCc | :white_check_mark: |
@@ -167,6 +175,7 @@
 
 # BigBubbleCameraArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19BigBubbleCameraAreaFiPCc | :white_check_mark: |
 | __dt__14CubeCameraAreaFv | :x: |
 | isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3<f> | :x: |
@@ -181,6 +190,7 @@
 
 # BigBubbleGoalArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17BigBubbleGoalAreaFiPCc | :x: |
 | init__17BigBubbleGoalAreaFRC12JMapInfoIter | :x: |
 | addBubble__17BigBubbleGoalAreaFP9BigBubble | :x: |
@@ -193,6 +203,7 @@
 
 # BloomArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BloomAreaFiPCc | :x: |
 | __dt__15ImageEffectAreaFv | :x: |
 | init__9BloomAreaFRC12JMapInfoIter | :x: |
@@ -203,6 +214,7 @@
 
 # CameraRepulsiveArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | scale__Q29JGeometry8TVec3<f>Ff | :x: |
 | __ami__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
 | __dt__19CameraRepulsiveAreaFv | :x: |
@@ -215,6 +227,7 @@
 
 # ChangeBgmCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ChangeBgmCubeFiPCc | :white_check_mark: |
 | init__13ChangeBgmCubeFRC12JMapInfoIter | :white_check_mark: |
 | __dt__13ChangeBgmCubeFv | :x: |
@@ -223,6 +236,7 @@
 
 # CollisionArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setLength__Q29JGeometry8TVec3<f>Ff | :x: |
 | sub__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
 | __mi__Q29JGeometry8TVec3<f>CFv | :x: |
@@ -258,6 +272,7 @@
 
 # CubeCamera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CubeCameraAreaFiPCc | :white_check_mark: |
 | init__14CubeCameraAreaFRC12JMapInfoIter | :x: |
 | movement__14CubeCameraAreaFv | :white_check_mark: |
@@ -274,6 +289,7 @@
 
 # DeathArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9DeathAreaFiPCc | :white_check_mark: |
 | init__9DeathAreaFRC12JMapInfoIter | :white_check_mark: |
 | movement__9DeathAreaFv | :x: |
@@ -285,6 +301,7 @@
 
 # DepthOfFieldArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DepthOfFieldAreaFiPCc | :x: |
 | init__16DepthOfFieldAreaFRC12JMapInfoIter | :x: |
 | getIntensity__16DepthOfFieldAreaCFv | :x: |
@@ -297,6 +314,7 @@
 
 # FollowCollisionArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__19FollowCollisionAreaFv | :x: |
 | __ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>PA4_ff | :x: |
 | movement__19FollowCollisionAreaFv | :x: |
@@ -305,6 +323,7 @@
 
 # GlaringLightArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19GlaringLightAreaMgrFlPCc | :x: |
 | __ct__16GlaringLightAreaFiPCc | :x: |
 | init__16GlaringLightAreaFRC12JMapInfoIter | :x: |
@@ -316,6 +335,7 @@
 
 # HazeCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8HazeCubeFiPCc | :x: |
 | init__8HazeCubeFRC12JMapInfoIter | :x: |
 | __dt__8HazeCubeFv | :x: |
@@ -324,6 +344,7 @@
 
 # ImageEffectArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc | :x: |
 | __ct__18ImageEffectAreaMgrFlPCc | :x: |
 | initAfterPlacement__18ImageEffectAreaMgrFv | :x: |
@@ -333,6 +354,7 @@
 
 # LightArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9LightAreaFiPCc | :white_check_mark: |
 | init__9LightAreaFRC12JMapInfoIter | :white_check_mark: |
 | __dt__9LightAreaFv | :white_check_mark: |
@@ -341,6 +363,7 @@
 
 # LightAreaHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15LightAreaHolderFlPCc | :white_check_mark: |
 | tryFindLightID__15LightAreaHolderCFRCQ29JGeometry8TVec3<f>P11ZoneLightID | :x: |
 | initAfterPlacement__15LightAreaHolderFv | :white_check_mark: |
@@ -350,6 +373,7 @@
 
 # MercatorTransformCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __amu__Q29JGeometry8TVec3<f>Ff | :x: |
 | __ct__21MercatorTransformCubeFiPCc | :x: |
 | init__21MercatorTransformCubeFRC12JMapInfoIter | :x: |
@@ -377,6 +401,7 @@
 
 # MessageArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11MessageAreaFiPCc | :x: |
 | init__11MessageAreaFRC12JMapInfoIter | :x: |
 | __dt__11MessageAreaFv | :x: |
@@ -384,6 +409,7 @@
 
 # PlayerSeArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12PlayerSeAreaFiPCc | :x: |
 | init__12PlayerSeAreaFRC12JMapInfoIter | :x: |
 | __dt__12PlayerSeAreaFv | :x: |
@@ -393,12 +419,14 @@
 
 # QuakeEffectArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15QuakeEffectAreaFiPCc | :x: |
 | __dt__15QuakeEffectAreaFv | :x: |
 
 
 # RestartCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11RestartCubeFiPCc | :x: |
 | init__11RestartCubeFRC12JMapInfoIter | :x: |
 | updatePlayerRestartIdInfo__11RestartCubeFv | :x: |
@@ -408,6 +436,7 @@
 
 # ScreenBlurArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14ScreenBlurAreaFiPCc | :x: |
 | init__14ScreenBlurAreaFRC12JMapInfoIter | :x: |
 | __dt__14ScreenBlurAreaFv | :x: |
@@ -417,6 +446,7 @@
 
 # SimpleBloomArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SimpleBloomAreaFiPCc | :x: |
 | init__15SimpleBloomAreaFRC12JMapInfoIter | :x: |
 | __dt__15SimpleBloomAreaFv | :x: |
@@ -425,6 +455,7 @@
 
 # SoundEmitterCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__16SoundEmitterCubeFv | :x: |
 | __ct__16SoundEmitterCubeFiPCc | :x: |
 | init__16SoundEmitterCubeFRC12JMapInfoIter | :x: |
@@ -434,6 +465,7 @@
 
 # SoundEmitterSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18SoundEmitterSphereFv | :x: |
 | __ct__18SoundEmitterSphereFiPCc | :x: |
 | init__18SoundEmitterSphereFRC12JMapInfoIter | :x: |
@@ -442,6 +474,7 @@
 
 # SpinGuidanceArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16SpinGuidanceAreaFiPCc | :x: |
 | __dt__16SpinGuidanceAreaFv | :x: |
 | init__16SpinGuidanceAreaFRC12JMapInfoIter | :x: |
@@ -449,6 +482,7 @@
 
 # SunLightArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12SunLightAreaFiPCc | :x: |
 | __dt__12SunLightAreaFv | :x: |
 | getManagerName__12SunLightAreaCFv | :x: |
@@ -456,6 +490,7 @@
 
 # SwitchArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10SwitchAreaFiPCc | :x: |
 | init__10SwitchAreaFRC12JMapInfoIter | :x: |
 | movement__10SwitchAreaFv | :x: |
@@ -465,6 +500,7 @@
 
 # WarpCube.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__8WarpCubeFv | :x: |
 | getPairCube__11WarpCubeMgrFPC7AreaObj | :x: |
 | setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs | :x: |

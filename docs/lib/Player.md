@@ -111,6 +111,7 @@
 
 # FireMarioBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__13FireMarioBallFv | :x: |
 | __ct__13FireMarioBallFPCc | :x: |
 | init__13FireMarioBallFRC12JMapInfoIter | :x: |
@@ -130,6 +131,7 @@
 
 # GhostPacket.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11GhostPacketFPvUl | :x: |
 | read__11GhostPacketFPUcUl | :x: |
 | read__11GhostPacketFPUl | :x: |
@@ -142,6 +144,7 @@
 
 # GhostPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | playSound__25@unnamed@GhostPlayer_cpp@FP9LiveActorPCc | :x: |
 | makeArchiveList__11GhostPlayerFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | __ct__11GhostPlayerFPCc | :x: |
@@ -192,6 +195,7 @@
 
 # GroupChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12GroupCheckerFPCcUl | :white_check_mark: |
 | initAfterPlacement__12GroupCheckerFv | :white_check_mark: |
 | add__12GroupCheckerFPC7NameObj | :white_check_mark: |
@@ -204,6 +208,7 @@
 
 # J3DModelX.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | viewCalc2__9J3DModelXFv | :x: |
 | setDrawView__9J3DModelXFUl | :x: |
 | setDrawViewBuffer__9J3DModelXFPA4_f | :x: |
@@ -232,6 +237,7 @@
 
 # JetTurtleShadow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15JetTurtleShadowFPCc | :x: |
 | calcType0__15JetTurtleShadowFPA4_f | :x: |
 | drawType0__15JetTurtleShadowCFv | :x: |
@@ -242,6 +248,7 @@
 
 # MarineSnow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MarineSnowFv | :x: |
 | view__10MarineSnowFv | :x: |
 | clear__10MarineSnowFv | :x: |
@@ -250,6 +257,7 @@
 
 # Mario.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5MarioFP10MarioActor | :x: |
 | updateAndClearStrideParameter__5MarioFv | :x: |
 | checkKeyLock__5MarioFv | :x: |
@@ -309,6 +317,7 @@
 
 # MarioActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __as__8TriangleFRC8Triangle | :x: |
 | getEuler__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
 | __ct__10MarioActorFPCc | :x: |
@@ -401,6 +410,7 @@
 
 # MarioActorDraw.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initDrawAndModel__10MarioActorFv | :x: |
 | initBeeMario__10MarioActorFv | :x: |
 | initHopperMario__10MarioActorFv | :x: |
@@ -441,6 +451,7 @@
 
 # MarioActorPunch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isEnableSpinPunch__10MarioActorFv | :x: |
 | reactionPunch__10MarioActorFP9HitSensor | :x: |
 | sendPunch__10MarioActorFP9HitSensorb | :x: |
@@ -455,6 +466,7 @@
 
 # MarioActorCamera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getMapBaseMtx__10MarioActorCFv | :x: |
 | isFastRise__10MarioActorCFv | :x: |
 | isLongDrop__10MarioActorCFv | :x: |
@@ -474,12 +486,14 @@
 
 # MarioActorClap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | bodyClap__10MarioActorFv | :x: |
 | __sinit_\MarioActorClap_cpp | :x: |
 
 
 # MarioActorGameOver.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | forceKill__10MarioActorFUl | :x: |
 | exeGameOver__10MarioActorFv | :x: |
 | exeGameOverAbyss__10MarioActorFv | :x: |
@@ -492,6 +506,7 @@
 
 # MarioActorGravity.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGravityVec__10MarioActorCFv | :x: |
 | getGravityVector__10MarioActorCFv | :x: |
 | getAirGravityVec__10MarioActorCFv | :x: |
@@ -512,6 +527,7 @@
 
 # MarioActorHand.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initHand__10MarioActorFv | :x: |
 | updateHand__10MarioActorFv | :x: |
 | __sinit_\MarioActorHand_cpp | :x: |
@@ -523,12 +539,14 @@
 
 # MarioActorInit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initMember__10MarioActorFv | :x: |
 | __sinit_\MarioActorInit_cpp | :x: |
 
 
 # MarioActorPad.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | resetPadSwing__10MarioActorFv | :x: |
 | isRequestHipDrop__10MarioActorCFv | :x: |
 | isRequestRush__10MarioActorCFv | :x: |
@@ -550,6 +568,7 @@
 
 # MarioActorParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init2D__10MarioActorFv | :x: |
 | initParts__10MarioActorFv | :x: |
 | updateBeeWingAnimation__10MarioActorFv | :x: |
@@ -577,6 +596,7 @@
 
 # MarioActorRush.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | settingRush__10MarioActorFv | :x: |
 | isFixJumpRushSensor__10MarioActorCFPC9HitSensor | :x: |
 | isLandEffectRushSensor__10MarioActorCFPC9HitSensor | :x: |
@@ -589,6 +609,7 @@
 
 # MarioActorSensor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setupSensors__10MarioActorFv | :x: |
 | updateHitSensor__10MarioActorFP9HitSensor | :x: |
 | doTrampleJump__10MarioActorFP9HitSensor | :x: |
@@ -605,6 +626,7 @@
 
 # MarioActorShadow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initShadow__10MarioActorFv | :x: |
 | calcViewReflectionModel__10MarioActorFv | :x: |
 | calcViewWallShadowModel__10MarioActorFv | :x: |
@@ -622,6 +644,7 @@
 
 # MarioActorSpecialDraw.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initScreenBox__10MarioActorFv | :x: |
 | isUseScreenBox__10MarioActorCFv | :x: |
 | calcScreenBoxRange__10MarioActorFv | :x: |
@@ -662,6 +685,7 @@
 
 # MarioActorMatrix.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initActionMatrix__10MarioActorFv | :x: |
 | isActionOk__10MarioActorCFPCc | :x: |
 | selectAction__10MarioActorCFPCc | :x: |
@@ -694,6 +718,7 @@
 
 # MarioActorMorph.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setPlayerMode__10MarioActorFUsb | :x: |
 | resetPlayerModeOnDamage__10MarioActorFv | :x: |
 | resetPlayerModeOnNoDamage__10MarioActorFv | :x: |
@@ -706,6 +731,7 @@
 
 # MarioActorEye.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initBlink__10MarioActorFv | :x: |
 | setBlink__10MarioActorFPCc | :x: |
 | updateBlink__10MarioActorFv | :x: |
@@ -714,6 +740,7 @@
 
 # MarioActorOffensiveMsg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | attackOrPushSensor__10MarioActorFP9HitSensorf | :x: |
 | attackOrPushSensorInDamage__10MarioActorFP9HitSensorf | :x: |
 | attackOrPushSensorInRush__10MarioActorFP9HitSensorf | :x: |
@@ -736,6 +763,7 @@
 
 # MarioActorDefensiveMsg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | receiveMsgEnemyAttack__10MarioActorFUlP9HitSensorP9HitSensor | :x: |
 | tryAttackMsg__10MarioActorFUlPC9HitSensorPb | :x: |
 | receiveMsgPush__10MarioActorFP9HitSensorP9HitSensor | :x: |
@@ -750,6 +778,7 @@
 
 # MarioActorRushMsg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addRushSensor__10MarioActorFP9HitSensorb | :x: |
 | tryStandardRush__10MarioActorFv | :x: |
 | checkPriorRushTarget__10MarioActorFv | :x: |
@@ -765,6 +794,7 @@
 
 # MarioActorTakeMsg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | memorizeSensorThrow__10MarioActorFP9HitSensor | :x: |
 | tryThrow__10MarioActorFv | :x: |
 | tryReleaseDirect__10MarioActorFPC9HitSensor | :x: |
@@ -785,6 +815,7 @@
 
 # MarioActorBlackHole.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initBlackHoleOut__10MarioActorFv | :x: |
 | exeGameOverBlackHole2__10MarioActorFv | :x: |
 | __sinit_\MarioActorBlackHole_cpp | :x: |
@@ -792,6 +823,7 @@
 
 # MarioAnimator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MarioAnimatorFP10MarioActor | :x: |
 | init__13MarioAnimatorFv | :x: |
 | isAnimationStop__13MarioAnimatorCFv | :x: |
@@ -841,6 +873,7 @@
 
 # MarioAnimationEfx.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initCallbackTable__13MarioAnimatorFv | :x: |
 | entryCallback__13MarioAnimatorFPCc | :x: |
 | runningCallback__13MarioAnimatorFv | :x: |
@@ -859,6 +892,7 @@
 
 # MarioWait.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | controlWaitAnimation__13MarioAnimatorFv | :x: |
 | stopWaitAnimation__13MarioAnimatorFv | :x: |
 | checkStart__9MarioWaitFv | :x: |
@@ -878,6 +912,7 @@
 
 # MarioClimb.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | connectToClimb__5MarioFv | :x: |
 | __ct__10MarioClimbFP10MarioActor | :x: |
 | update__10MarioClimbFv | :x: |
@@ -888,6 +923,7 @@
 
 # MarioCollision.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isIgnoreTriangle__5MarioFPC8Triangle | :x: |
 | checkBaseTransBall__5MarioFv | :x: |
 | createAtField__5MarioFbf | :x: |
@@ -932,11 +968,13 @@
 
 # MarioConst.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MarioConstFv | :x: |
 
 
 # MarioDamage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isDamaging__5MarioCFv | :x: |
 | damageLarge__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | __sinit_\MarioDamage_cpp | :x: |
@@ -997,6 +1035,7 @@
 
 # MarioDamageParalyze.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doParalyze__5MarioFv | :x: |
 | __ct__13MarioParalyzeFP10MarioActor | :x: |
 | close__13MarioParalyzeFv | :x: |
@@ -1007,6 +1046,7 @@
 
 # MarioDamageFreeze.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doFreeze__5MarioFv | :x: |
 | __ct__11MarioFreezeFP10MarioActor | :x: |
 | close__11MarioFreezeFv | :x: |
@@ -1019,6 +1059,7 @@
 
 # MarioDamageStun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9MarioStunFP10MarioActor | :x: |
 | close__9MarioStunFv | :x: |
 | start__9MarioStunFv | :x: |
@@ -1028,6 +1069,7 @@
 
 # MarioDamageCrush.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | requestCrush__5MarioFv | :x: |
 | tryCrush__5MarioFv | :x: |
 | __ct__10MarioCrushFP10MarioActor | :x: |
@@ -1039,6 +1081,7 @@
 
 # MarioFaint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doFlipWeak__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | faint__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | __ct__10MarioFaintFP10MarioActor | :x: |
@@ -1051,6 +1094,7 @@
 
 # MarioFlip.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doFlipJump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | doFlipBackRoll__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | start__9MarioFlipFv | :x: |
@@ -1065,6 +1109,7 @@
 
 # MarioFrontStep.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doFrontStep__5MarioFv | :x: |
 | start__14MarioFrontStepFv | :x: |
 | __sinit_\MarioFrontStep_cpp | :x: |
@@ -1076,6 +1121,7 @@
 
 # MarioBee.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | beeMarioOnGround__5MarioFv | :x: |
 | entryWallWalkMode__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | beeMarioOnAir__5MarioFv | :x: |
@@ -1084,6 +1130,7 @@
 
 # MarioBlown.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | blown__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | __ct__10MarioBlownFP10MarioActor | :x: |
 | close__10MarioBlownFv | :x: |
@@ -1094,6 +1141,7 @@
 
 # MarioEffect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addMarioEffectAtJoint__25@unnamed@MarioEffect_cpp@FP9LiveActorPCcPCcPCc | :x: |
 | execute__11MarioEffectFP14JPABaseEmitter | :x: |
 | addRequest__11MarioEffectFPCcPA4_f | :x: |
@@ -1133,6 +1181,7 @@
 
 # MarioFlow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doFlow__5MarioFv | :x: |
 | start__9MarioFlowFv | :x: |
 | update__9MarioFlowFv | :x: |
@@ -1143,6 +1192,7 @@
 
 # MarioFoo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | tryStartFoo__5MarioFv | :x: |
 | __ct__8MarioFooFP10MarioActor | :x: |
 | init__8MarioFooFv | :x: |
@@ -1165,6 +1215,7 @@
 
 # MarioHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11MarioHolderFv | :x: |
 | __dt__11MarioHolderFv | :x: |
 | setMarioActor__11MarioHolderFP10MarioActor | :x: |
@@ -1174,11 +1225,13 @@
 
 # MarioInit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initMember__5MarioFv | :x: |
 
 
 # MarioJump.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isRising__5MarioCFv | :x: |
 | checkWallRiseAndSlipFront__5MarioFv | :x: |
 | tryJump__5MarioFv | :x: |
@@ -1228,6 +1281,7 @@
 
 # MarioMessenger.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14MarioMessengerFP9HitSensor | :x: |
 | movement__14MarioMessengerFv | :x: |
 | addRequest__14MarioMessengerFP9HitSensorUl | :x: |
@@ -1236,6 +1290,7 @@
 
 # MarioModule.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPlayer__11MarioModuleCFv | :x: |
 | getAnimator__11MarioModuleCFv | :x: |
 | getShadowPos__11MarioModuleCFv | :x: |
@@ -1330,6 +1385,7 @@
 
 # MarioMove.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | mainMove__5MarioFv | :x: |
 | isEnableTurn__5MarioFv | :x: |
 | __sinit_\MarioMove_cpp | :x: |
@@ -1347,6 +1403,7 @@
 
 # MarioMove2D.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | check2DMode__5MarioFv | :x: |
 | __sinit_\MarioMove2D_cpp | :x: |
 | calcMoveDir2D__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
@@ -1360,6 +1417,7 @@
 
 # MarioMove25D.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set25Dmode__5MarioFPC7AreaObj | :x: |
 | update25Dmode__5MarioFv | :x: |
 | updateAxisFromMode__5MarioFUc | :x: |
@@ -1369,12 +1427,14 @@
 
 # MarioMoveSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9MarioMoveFP10MarioActor | :x: |
 | initAfter__9MarioMoveFv | :x: |
 
 
 # MarioParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MarioPartsFP9LiveActorPCcPCcbPA4_fPA4_f | :x: |
 | __ct__10MarioPartsFP9LiveActorPCcPCcPA4_f | :x: |
 | init__10MarioPartsFRC12JMapInfoIter | :x: |
@@ -1383,6 +1443,7 @@
 
 # MarioPress.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkPressDamage__5MarioFv | :x: |
 | checkVerticalPress__5MarioFb | :x: |
 | checkSidePressPre__5MarioFv | :x: |
@@ -1392,6 +1453,7 @@
 
 # MarioRabbit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startRabbitMode__5MarioFv | :x: |
 | endRabbitMode__5MarioFv | :x: |
 | __ct__11MarioRabbitFP10MarioActor | :x: |
@@ -1407,6 +1469,7 @@
 
 # MarioSearchLight.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16MarioSearchLightFP9LiveActor | :x: |
 | init__16MarioSearchLightFRC12JMapInfoIter | :x: |
 | initThrowing__10MarioActorFv | :x: |
@@ -1425,6 +1488,7 @@
 
 # MarioSideStep.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkWallJumpCode__5MarioFv | :x: |
 | __ct__13MarioSideStepFP10MarioActor | :x: |
 | close__13MarioSideStepFv | :x: |
@@ -1436,6 +1500,7 @@
 
 # MarioSkate.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isSkatableFloor__5MarioCFv | :x: |
 | doSkate__5MarioFv | :x: |
 | __ct__10MarioSkateFP10MarioActor | :x: |
@@ -1450,6 +1515,7 @@
 
 # MarioSound.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initSoundTable__5MarioFP9SoundListUl | :x: |
 | initSound__5MarioFv | :x: |
 | playSoundJ__5MarioFPCcl | :x: |
@@ -1465,6 +1531,7 @@
 
 # MarioSpecial.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkOnimasu__5MarioFPC9HitSensor | :x: |
 | isDossun__5MarioCFPC8Triangle | :x: |
 | isStageCameraRotate2D__5MarioCFv | :x: |
@@ -1480,6 +1547,7 @@
 
 # MarioSpin.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkTornado__5MarioFv | :x: |
 | resetTornado__5MarioFv | :x: |
 | calcTornadoTilt__5MarioFv | :x: |
@@ -1493,6 +1561,7 @@
 
 # MarioState.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10MarioStateFP10MarioActorUl | :x: |
 | proc__10MarioStateFUl | :x: |
 | sendStateMsg__5MarioFUl | :x: |
@@ -1508,6 +1577,7 @@
 
 # MarioStick.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkBeeStick__5MarioFv | :x: |
 | tryBeeStick__5MarioFPC9HitSensor | :x: |
 | __ct__10MarioStickFP10MarioActor | :x: |
@@ -1523,6 +1593,7 @@
 
 # MarioSukekiyo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MarioSukekiyoFP10MarioActor | :x: |
 | __ct__9MarioBuryFP10MarioActor | :x: |
 | close__13MarioSukekiyoFv | :x: |
@@ -1535,6 +1606,7 @@
 
 # MarioTalk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startTalk__5MarioFPC9LiveActor | :x: |
 | endTalk__5MarioFv | :x: |
 | __ct__9MarioTalkFP10MarioActor | :x: |
@@ -1548,6 +1620,7 @@
 
 # MarioWall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isWalling__5MarioCFv | :x: |
 | checkWallStick__5MarioFv | :x: |
 | checkStickWallSide__5MarioFv | :x: |
@@ -1578,6 +1651,7 @@
 
 # MarioHang.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isHanging__5MarioCFv | :x: |
 | fixHangDir__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
 | isEnableBackHang__5MarioFv | :x: |
@@ -1599,6 +1673,7 @@
 
 # MarioSwim.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isSwimming__5MarioCFv | :x: |
 | forceStartSwimAndShoot__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | forceExitSwim__5MarioFv | :x: |
@@ -1664,12 +1739,14 @@
 
 # MarioSwimDamage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkWaterDamage__5MarioFv | :x: |
 | __sinit_\MarioSwimDamage_cpp | :x: |
 
 
 # MarioAccess.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getTakePos__11MarioAccessFPQ29JGeometry8TVec3<f> | :x: |
 | isOnActor__11MarioAccessFPC9LiveActor | :x: |
 | isOnGround__11MarioAccessFUl | :x: |
@@ -1760,6 +1837,7 @@
 
 # MarioSlip.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | clearSlope__5MarioFv | :x: |
 | isEnableSlopeMove__5MarioCFv | :x: |
 | moveSlopeSlide__5MarioFv | :x: |
@@ -1770,6 +1848,7 @@
 
 # MarioSlope.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | lockGroundCheck__5MarioFPvb | :x: |
 | unlockGroundCheck__5MarioFPv | :x: |
 | isUseSimpleGroundCheck__5MarioCFv | :x: |
@@ -1779,6 +1858,7 @@
 
 # MarioWalk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | stopWalk__5MarioFv | :x: |
 | cancelSquatMode__5MarioFv | :x: |
 | getTargetWalkSpeed__5MarioCFv | :x: |
@@ -1798,6 +1878,7 @@
 
 # MarioNullBck.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12MarioNullBckFPCc | :x: |
 | appear__12MarioNullBckFv | :x: |
 | getLastPos__12MarioNullBckFPQ29JGeometry8TVec3<f> | :x: |
@@ -1808,6 +1889,7 @@
 
 # MarioRecovery.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doRecovery__5MarioFv | :x: |
 | __ct__13MarioRecoveryFP10MarioActor | :x: |
 | calcFirstVector__13MarioRecoveryFv | :x: |
@@ -1820,6 +1902,7 @@
 
 # MarioSlider.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isSliderFloor__5MarioCFv | :x: |
 | checkSliderMode__5MarioCFv | :x: |
 | __ct__11MarioSliderFP10MarioActor | :x: |
@@ -1835,6 +1918,7 @@
 
 # MarioStep.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkStep__5MarioFv | :x: |
 | __ct__9MarioStepFP10MarioActor | :x: |
 | start__9MarioStepFv | :x: |
@@ -1846,6 +1930,7 @@
 
 # MarioBump.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkBump__5MarioFv | :x: |
 | startBump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
 | __sinit_\MarioBump_cpp | :x: |
@@ -1857,6 +1942,7 @@
 
 # MarioEnforce.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | checkEnforceMove__5MarioFv | :x: |
 | checkEnforceMoveInner__5MarioFv | :x: |
 | recordRelativePosition__5MarioFv | :x: |
@@ -1883,6 +1969,7 @@
 
 # MarioTask.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | delTask__5MarioFP15MarioModuleTask | :x: |
 | execTask__5MarioFv | :x: |
 | drawTask__5MarioCFv | :x: |
@@ -1907,6 +1994,7 @@
 
 # MarioTeresa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startTeresaMode__5MarioFv | :x: |
 | updateDropFlag__11MarioTeresaFv | :x: |
 | getHitWallNorm__5MarioFPQ29JGeometry8TVec3<f> | :x: |
@@ -1943,6 +2031,7 @@
 
 # MarioMagic.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | stopPunch__5MarioFv | :x: |
 | startMagic__5MarioFv | :x: |
 | __ct__10MarioMagicFP10MarioActor | :x: |
@@ -1954,6 +2043,7 @@
 
 # MarioWarp.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | doObjWarp__5MarioFP9LiveActor | :x: |
 | doPointWarp__5MarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
 | isVisibleRecoveryWarpBubble__5MarioCFv | :x: |
@@ -1970,6 +2060,7 @@
 
 # MarioFpView.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isDisableStayHere__5MarioCFv | :x: |
 | isDisableFpViewMode__5MarioCFv | :x: |
 | __ct__11MarioFpViewFP10MarioActor | :x: |
@@ -1984,6 +2075,7 @@
 
 # Mario2D.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | stick2DadjustGround__5MarioFRfRf | :x: |
 | calcDir2D__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
 | __sinit_\Mario2D_cpp | :x: |
@@ -1991,6 +2083,7 @@
 
 # MatrixControl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MatrixControlFPCcP9MatrixMapP16MatrixSelectListl | :x: |
 | getValue__13MatrixControlCFPCcUc | :x: |
 | getValueOrNone__13MatrixControlCFPCcUcPUc | :x: |
@@ -2005,11 +2098,13 @@
 
 # RushEndInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11RushEndInfoFP9LiveActorUlRCQ29JGeometry8TVec3<f>bUl | :x: |
 
 
 # TornadoMario.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12TornadoMarioFPCc | :x: |
 | init__12TornadoMarioFRC12JMapInfoIter | :x: |
 | hideForce__12TornadoMarioFv | :x: |
@@ -2024,6 +2119,7 @@
 
 # ModelHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11ModelHolderFPCcb | :x: |
 | updateMtx__11ModelHolderFPA4_f | :x: |
 | __dt__11ModelHolderFv | :x: |
@@ -2031,6 +2127,7 @@
 
 # MarioShadow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15CollisionShadowFv | :x: |
 | setMode__15CollisionShadowFUl | :x: |
 | __ct__15CollisionShadowFff | :x: |
@@ -2060,18 +2157,21 @@
 
 # MarioMapCode.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9FloorCodeFv | :x: |
 | getCode__9FloorCodeFPC8Triangle | :x: |
 
 
 # MarioActorWipe.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | drawPreWipe__10MarioActorCFv | :x: |
 | __sinit_\MarioActorWipe_cpp | :x: |
 
 
 # DrawAdaptor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11DrawAdaptorFRCQ22MR11FunctorBasei | :x: |
 | draw__11DrawAdaptorCFv | :x: |
 | __dt__11DrawAdaptorFv | :x: |
@@ -2079,6 +2179,7 @@
 
 # PlayerEvent.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14EventSequencerFv | :x: |
 | init__14EventSequencerFRC12JMapInfoIter | :x: |
 | movement__14EventSequencerFv | :x: |
@@ -2105,6 +2206,7 @@
 
 # PlayerEventGameOver.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13EventGameOverFv | :x: |
 | init__13EventGameOverFUsUs | :x: |
 | sound__13EventGameOverFUsUs | :x: |
@@ -2115,6 +2217,7 @@
 
 # PlayerEventAbyss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10EventAbyssFv | :x: |
 | init__10EventAbyssFUsUs | :x: |
 | sound__10EventAbyssFUsUs | :x: |
@@ -2124,6 +2227,7 @@
 
 # PlayerEventDown.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9EventDownFv | :x: |
 | init__9EventDownFUsUs | :x: |
 | sound__9EventDownFUsUs | :x: |
@@ -2133,6 +2237,7 @@
 
 # PlayerEventFireDown.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13EventFireDownFv | :x: |
 | init__13EventFireDownFUsUs | :x: |
 | sound__13EventFireDownFUsUs | :x: |
@@ -2143,6 +2248,7 @@
 
 # PlayerEventRaceDown.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13EventRaceDownFv | :x: |
 | init__13EventRaceDownFUsUs | :x: |
 | sound__13EventRaceDownFUsUs | :x: |

@@ -26,6 +26,7 @@
 
 # AstroEffectObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14AstroEffectObjFPCc | :x: |
 | __dt__15SimpleEffectObjFv | :x: |
 | init__14AstroEffectObjFRC12JMapInfoIter | :x: |
@@ -41,6 +42,7 @@
 
 # AutoEffectGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AutoEffectGroupFPCci | :x: |
 | add__15AutoEffectGroupFRC12JMapInfoIter | :x: |
 | addAutoEffectsFromGroup__Q22MR6EffectFPC15AutoEffectGroupP12EffectKeeperPC9LiveActor | :x: |
@@ -51,6 +53,7 @@
 
 # AutoEffectGroupHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21AutoEffectGroupHolderFv | :x: |
 | find__21AutoEffectGroupHolderCFPCc | :x: |
 | isExist__21AutoEffectGroupHolderCFPCc | :x: |
@@ -63,6 +66,7 @@
 
 # AutoEffectInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<PCc>__12JMapInfoIterCFPCcPPCc_b | :x: |
 | str2Color__28@unnamed@AutoEffectInfo_cpp@FPCc | :x: |
 | isValueOnR__28@unnamed@AutoEffectInfo_cpp@FRC12JMapInfoIterPCc | :x: |
@@ -77,6 +81,7 @@
 
 # EffectObjGravityDust.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20EffectObjGravityDustFPCc | :x: |
 | init__20EffectObjGravityDustFRC12JMapInfoIter | :x: |
 | endClipped__20EffectObjGravityDustFv | :x: |
@@ -89,6 +94,7 @@
 
 # EffectSystem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12EffectSystemFPCcb | :x: |
 | init__12EffectSystemFRC12JMapInfoIter | :x: |
 | createEmitter__12EffectSystemFUsUcUc | :x: |
@@ -102,6 +108,7 @@
 
 # EffectSystemUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setupMultiEmitter__30@unnamed@EffectSystemUtil_cpp@FP12MultiEmitterPC14AutoEffectInfo | :x: |
 | requestMovementOnAllEmitters__Q22MR6EffectFv | :x: |
 | requestMovementOffAllLoopEmitters__Q22MR6EffectFv | :x: |
@@ -138,6 +145,7 @@
 
 # MultiEmitter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct<s>__Q29JGeometry8TVec3<s>Fsss_Pv | :x: |
 | __ct__12MultiEmitterFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | __ct__12MultiEmitterFPCcPA4_fRCQ29JGeometry8TVec3<f> | :x: |
@@ -186,6 +194,7 @@
 
 # MultiEmitterAccess.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setGlobalRotation__12MultiEmitterFRCQ29JGeometry8TVec3<s>l | :x: |
 | setGlobalTranslation__12MultiEmitterFRCQ29JGeometry8TVec3<f>l | :x: |
 | setGlobalScale__12MultiEmitterFRCQ29JGeometry8TVec3<f>l | :x: |
@@ -212,6 +221,7 @@
 
 # MultiEmitterCallBack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | mul__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
 | getSyntheticColor__34@unnamed@MultiEmitterCallBack_cpp@FRC6Color8RC6Color8 | :x: |
 | __ct__20MultiEmitterCallBackFPC12MultiEmitterRCQ29JGeometry8TVec3<f> | :x: |
@@ -250,6 +260,7 @@
 
 # MultiEmitterParticleCallBack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__28MultiEmitterParticleCallBackFv | :x: |
 | __dt__28MultiEmitterParticleCallBackFv | :x: |
 | draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle | :x: |
@@ -258,6 +269,7 @@
 
 # ParticleCalcExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20ParticleCalcExecutorFPC12EffectSystemb | :x: |
 | movementNormal__20ParticleCalcExecutorFv | :x: |
 | movementIgnorePause3D__20ParticleCalcExecutorFv | :x: |
@@ -272,6 +284,7 @@
 
 # ParticleDrawExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | connectToSceneDrawAdaptor__34@unnamed@ParticleDrawExecutor_cpp@FP14NameObjAdaptorRCQ22MR11FunctorBasei | :x: |
 | __ct__20ParticleDrawExecutorFPC12EffectSystemb | :x: |
 | initDraw__20ParticleDrawExecutorFv | :x: |
@@ -296,6 +309,7 @@
 
 # ParticleEmitter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ParticleEmitterFv | :x: |
 | invalidate__15ParticleEmitterFv | :x: |
 | init__15ParticleEmitterFUs | :x: |
@@ -305,6 +319,7 @@
 
 # ParticleEmitterHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21ParticleEmitterHolderFPC12EffectSystemi | :x: |
 | update__21ParticleEmitterHolderFb | :x: |
 | forceDeleteAllOneTimeEmitters__21ParticleEmitterHolderFv | :x: |
@@ -318,6 +333,7 @@
 
 # ParticleResourceHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22ParticleResourceHolderFPCc | :x: |
 | getUserIndex__22ParticleResourceHolderCFPCc | :x: |
 | countAutoEffectNum__22ParticleResourceHolderFv | :x: |
@@ -329,6 +345,7 @@
 
 # RandomEffectObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15RandomEffectObjFPCc | :x: |
 | init__15RandomEffectObjFRC12JMapInfoIter | :x: |
 | appear__15RandomEffectObjFv | :x: |
@@ -341,6 +358,7 @@
 
 # SimpleEffectObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | findDataElement__29@unnamed@SimpleEffectObj_cpp@FPCc | :x: |
 | __ct__15SimpleEffectObjFPCc | :x: |
 | init__15SimpleEffectObjFRC12JMapInfoIter | :x: |
@@ -362,6 +380,7 @@
 
 # SingleEmitter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13SingleEmitterFv | :x: |
 | init__13SingleEmitterFUs | :x: |
 | deleteEmitter__13SingleEmitterFv | :x: |
@@ -374,6 +393,7 @@
 
 # SpinPullParticleCallBack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24SpinPullParticleCallBackFv | :x: |
 | execute__24SpinPullParticleCallBackFP14JPABaseEmitterP15JPABaseParticle | :x: |
 | execute__24MerameraParticleCallBackFP14JPABaseEmitterP15JPABaseParticle | :x: |
@@ -383,6 +403,7 @@
 
 # SyncBckEffectChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SyncBckEffectCheckerFP12XanimePlayer | :x: |
 | updateBefore__20SyncBckEffectCheckerFv | :x: |
 | updateAfter__20SyncBckEffectCheckerFv | :x: |

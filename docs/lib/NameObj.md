@@ -17,6 +17,7 @@
 
 # ModelChangableObjFactory.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createNameObj<13AssemblyBlock>__38@unnamed@ModelChangableObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj<17ClipFieldMapParts>__38@unnamed@ModelChangableObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj<14FlexibleSphere>__38@unnamed@ModelChangableObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -34,6 +35,7 @@
 
 # MovementOnOffGroupHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24MovementOnOffGroupHolderFPCc | :white_check_mark: |
 | joinToGroup__24MovementOnOffGroupHolderFPCcP7NameObjUl | :white_check_mark: |
 | onMovementGroup__24MovementOnOffGroupHolderFPCc | :white_check_mark: |
@@ -44,6 +46,7 @@
 
 # NameObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7NameObjFPCc | :white_check_mark: |
 | __dt__7NameObjFv | :white_check_mark: |
 | init__7NameObjFRC12JMapInfoIter | :white_check_mark: |
@@ -64,6 +67,7 @@
 
 # NameObjAdaptor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14NameObjAdaptorFPCc | :white_check_mark: |
 | __dt__14NameObjAdaptorFv | :white_check_mark: |
 | movement__14NameObjAdaptorFv | :white_check_mark: |
@@ -77,6 +81,7 @@
 
 # NameObjArchiveListCollector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27NameObjArchiveListCollectorFv | :white_check_mark: |
 | addArchive__27NameObjArchiveListCollectorFPCc | :white_check_mark: |
 | getArchive__27NameObjArchiveListCollectorCFl | :white_check_mark: |
@@ -84,6 +89,7 @@
 
 # NameObjCategoryList.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19NameObjCategoryListFUlPC24CategoryListInitialTableM7NameObjFPCvPv_vbPCc | :white_check_mark: |
 | __ct__19NameObjCategoryListFUlPC24CategoryListInitialTableM7NameObjFPCvPCv_vbPCc | :white_check_mark: |
 | __dt__19NameObjCategoryListFv | :white_check_mark: |
@@ -103,6 +109,7 @@
 
 # NameObjExecuteHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18NameObjExecuteInfoFv | :white_check_mark: |
 | setConnectInfo__18NameObjExecuteInfoFP7NameObjiiii | :white_check_mark: |
 | initConnectting__18NameObjExecuteInfoFv | :white_check_mark: |
@@ -156,6 +163,7 @@
 
 # NameObjFactory.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createBaseOriginCube<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createSphere<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createBaseOriginCylinder<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -728,11 +736,13 @@
 
 # NameObjFinder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | find__13NameObjFinderFPCc | :x: |
 
 
 # NameObjGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12NameObjGroupFPCci | :white_check_mark: |
 | __dt__12NameObjGroupFv | :white_check_mark: |
 | registerObj__12NameObjGroupFP7NameObj | :white_check_mark: |
@@ -742,6 +752,7 @@
 
 # NameObjHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13NameObjHolderFi | :white_check_mark: |
 | add__13NameObjHolderFP7NameObj | :white_check_mark: |
 | suspendAllObj__13NameObjHolderFv | :white_check_mark: |
@@ -756,6 +767,7 @@
 
 # NameObjListExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19NameObjListExecutorFv | :white_check_mark: |
 | __dt__19NameObjListExecutorFv | :x: |
 | __dt__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv | :x: |

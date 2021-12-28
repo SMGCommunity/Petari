@@ -12,6 +12,7 @@
 
 # AudCameraWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16AudCameraWatcherFv | :x: |
 | playAtmosphereSE__16AudCameraWatcherFv | :x: |
 | init__16AudCameraWatcherFRC12JMapInfoIter | :x: |
@@ -21,6 +22,7 @@
 
 # AudStageBgmWrap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | changeStageNameToSoundID__15AudStageBgmWrapFPCcPCcl | :x: |
 | getCometEventBgm__15AudStageBgmWrapFPCc | :x: |
 | getKoopaFortressAppearBgm__15AudStageBgmWrapFPCc | :x: |
@@ -28,6 +30,7 @@
 
 # AudSeKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14AudSeKeeperBoxFv | :x: |
 | __dt__14AudSeKeeperBoxFv | :x: |
 | update__14AudSeKeeperBoxFv | :x: |
@@ -43,6 +46,7 @@
 
 # AudTalkSoundData.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSoundIDFromTalkSoundNo__16AudTalkSoundDataFUc | :x: |
 | __sinit_\AudTalkSoundData_cpp | :x: |
 | __ct__10JAISoundIDFUl | :x: |
@@ -50,6 +54,7 @@
 
 # AudEffectDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17AudEffectDirectorFv | :x: |
 | init__17AudEffectDirectorFRC12JMapInfoIter | :x: |
 | movement__17AudEffectDirectorFv | :x: |
@@ -61,6 +66,7 @@
 
 # AudBgmConductor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AudBgmConductorFv | :x: |
 | init__15AudBgmConductorFRC12JMapInfoIter | :x: |
 | playPinchEventBgmLevel__15AudBgmConductorFb | :x: |
@@ -73,6 +79,7 @@
 
 # AudStageBgmTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | findDataElement__30@unnamed@AudStageBgmTable_cpp@FPCc | :x: |
 | getBgmId__16AudStageBgmTableFPCcl | :x: |
 | getBgmState__16AudStageBgmTableFPCcl | :x: |

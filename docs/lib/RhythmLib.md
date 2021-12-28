@@ -19,6 +19,7 @@
 
 # AudRhythmSeqParser.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18AudRhythmSeqParserFv | :x: |
 | noteOnProcess__18AudRhythmSeqParserFUlUlUlUl | :x: |
 | noteOffProcess__18AudRhythmSeqParserFUl | :x: |
@@ -52,6 +53,7 @@
 
 # AudBgmTempoAdjuster.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19AudBgmTempoAdjusterFv | :x: |
 | init__19AudBgmTempoAdjusterFv | :x: |
 | setInfo__19AudBgmTempoAdjusterFfUlUlUlUl | :x: |
@@ -63,6 +65,7 @@
 
 # AudMeTrack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10AudMeTrackFv | :x: |
 | __dt__10AudMeTrackFv | :x: |
 | init__10AudMeTrackFv | :x: |
@@ -123,6 +126,7 @@
 
 # AudMeChannelMgr.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AudMeChannelMgrFP10AudMeTrack | :x: |
 | noteOff__15AudMeChannelMgrFUlUs | :x: |
 | setPauseFlag__15AudMeChannelMgrFb | :x: |
@@ -130,6 +134,7 @@
 
 # AudMeSeqCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12AudMeSeqCtrlFv | :x: |
 | start__12AudMeSeqCtrlFPvUl | :x: |
 | wait__12AudMeSeqCtrlFll | :x: |
@@ -143,6 +148,7 @@
 
 # AudMeSeqReader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__14AudMeSeqReaderFPv | :x: |
 | call__14AudMeSeqReaderFUl | :x: |
 | ret__14AudMeSeqReaderFv | :x: |
@@ -152,6 +158,7 @@
 
 # AudMeSeqParser.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | cmdBank__14AudMeSeqParserFP10AudMeTrackPUl | :x: |
 | cmdPrg__14AudMeSeqParserFP10AudMeTrackPUl | :x: |
 | cmdBProg__14AudMeSeqParserFP10AudMeTrackPUl | :x: |
@@ -218,6 +225,7 @@
 
 # AudMeTrackCallback.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | regist__11AudCallbackFPFllPv_lPv | :x: |
 | callback__11AudCallbackFll | :x: |
 | regist__18AudMeTrackCallbackFPFllPv_lPv | :x: |
@@ -228,6 +236,7 @@
 
 # AudMePlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | releaseMe__11AudMeHandleFv | :x: |
 | __ct__5AudMeFv | :x: |
 | __dt__5AudMeFv | :x: |
@@ -262,6 +271,7 @@
 
 # AudRhythmMeSystem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17AudRhythmMeSystemFP7JKRHeapUlb | :x: |
 | setSeq__17AudRhythmMeSystemFR14JAISoundHandlel | :x: |
 | rejectSeq__17AudRhythmMeSystemFl | :x: |
@@ -275,6 +285,7 @@
 
 # AudMeHandles.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12AudMeHandlesFP11AudMeHandlei | :x: |
 | getHandleMeID__12AudMeHandlesFUl | :x: |
 | getFreeHandle__12AudMeHandlesFv | :x: |
@@ -282,6 +293,7 @@
 
 # AudMeObject.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11AudMeObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap | :x: |
 | __dt__11AudMeObjectFv | :x: |
 | dispose__11AudMeObjectFv | :x: |
@@ -294,6 +306,7 @@
 
 # AudChordInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initScaleData__12AudScaleDataFUl | :x: |
 | __ct__13AudChordTableFv | :x: |
 | setChordTable__13AudChordTableFlP10JKRArchive | :x: |
@@ -338,6 +351,7 @@
 
 # AudRhythmHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15AudRhythmHolderFv | :x: |
 | movement__15AudRhythmHolderFv | :x: |
 | copyInfoFromParser__15AudRhythmHolderFv | :x: |

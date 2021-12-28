@@ -173,6 +173,7 @@
 
 # BossAccessor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12BossAccessorFv | :x: |
 | setBossAccessorKoopa__10BossAccessFP5Koopa | :x: |
 | getBossAccessorKoopa__10BossAccessFv | :x: |
@@ -181,6 +182,7 @@
 
 # BossBegoman.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BossBegomanFPCc | :x: |
 | __dt__11BegomanBaseFv | :x: |
 | init__11BossBegomanFRC12JMapInfoIter | :x: |
@@ -277,6 +279,7 @@
 
 # BossBegomanHead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15BossBegomanHeadFP9LiveActorPA4_f | :x: |
 | __dt__10PartsModelFv | :x: |
 | init__15BossBegomanHeadFRC12JMapInfoIter | :x: |
@@ -317,6 +320,7 @@
 
 # BossKameck.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct<i>__Q29JGeometry8TVec3<f>Fiii_Pv | :x: |
 | __dt__9LiveActorFv | :x: |
 | __ct__10BossKameckFPCcPCc | :x: |
@@ -354,6 +358,7 @@
 
 # BossKameckAction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16BossKameckActionFPCcP10BossKameck | :x: |
 | __dt__28ActorStateBase<10BossKameck>Fv | :x: |
 | control__23ActorStateBaseInterfaceFv | :x: |
@@ -370,6 +375,7 @@
 
 # BossKameckBarrier.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17BossKameckBarrierFPCcPCc | :x: |
 | init__17BossKameckBarrierFRC12JMapInfoIter | :x: |
 | control__17BossKameckBarrierFv | :x: |
@@ -382,6 +388,7 @@
 
 # BossKameckBattleDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22BossKameckDemoPositionFv | :x: |
 | init__22BossKameckDemoPositionFRC12JMapInfoIter | :x: |
 | __ct__20BossKameckBattleDemoFP10BossKameckRC12JMapInfoIter | :x: |
@@ -430,6 +437,7 @@
 
 # BossKameckBattlePattarn.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23BossKameckBattlePattarnFPlb | :x: |
 | initPattarn__23BossKameckBattlePattarnFPl | :x: |
 | goNextPattarn__23BossKameckBattlePattarnFv | :x: |
@@ -437,6 +445,7 @@
 
 # BossKameckSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19BossKameckSequencerFPCc | :x: |
 | init__19BossKameckSequencerFP10BossKameckRC12JMapInfoIter | :x: |
 | update__19BossKameckSequencerFv | :x: |
@@ -450,6 +459,7 @@
 
 # BossKameckMoveRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18BossKameckMoveRailFPCc | :x: |
 | init__18BossKameckMoveRailFRC12JMapInfoIter | :x: |
 | calcMovePosition__18BossKameckMoveRailCFPQ29JGeometry8TVec3<f>l | :x: |
@@ -460,6 +470,7 @@
 
 # BossKameckVs1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13BossKameckVs1Fv | :x: |
 | init__13BossKameckVs1FP10BossKameckRC12JMapInfoIter | :x: |
 | start__13BossKameckVs1Fv | :x: |
@@ -490,6 +501,7 @@
 
 # BossKameckVs2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13BossKameckVs2Fv | :x: |
 | init__13BossKameckVs2FP10BossKameckRC12JMapInfoIter | :x: |
 | start__13BossKameckVs2Fv | :x: |
@@ -523,6 +535,7 @@
 
 # BossKameckStateBattle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21BossKameckStateBattleFP10BossKameck | :x: |
 | init__21BossKameckStateBattleFv | :x: |
 | appear__21BossKameckStateBattleFv | :x: |
@@ -583,6 +596,7 @@
 
 # BossStinkBug.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getZDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
 | setQuat__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f> | :x: |
 | __ct__12BossStinkBugFPCc | :x: |
@@ -633,6 +647,7 @@
 
 # BossStinkBugActionBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22BossStinkBugActionBaseFPCcP12BossStinkBug | :x: |
 | __dt__30ActorStateBase<12BossStinkBug>Fv | :x: |
 | updateGroundWalk__22BossStinkBugActionBaseFf | :x: |
@@ -682,6 +697,7 @@
 
 # BossStinkBugActionFlyHigh.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25BossStinkBugActionFlyHighFP12BossStinkBug | :x: |
 | appear__25BossStinkBugActionFlyHighFv | :x: |
 | control__25BossStinkBugActionFlyHighFv | :x: |
@@ -735,6 +751,7 @@
 
 # BossStinkBugActionFlyLow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24BossStinkBugActionFlyLowFP12BossStinkBug | :x: |
 | appear__24BossStinkBugActionFlyLowFv | :x: |
 | control__24BossStinkBugActionFlyLowFv | :x: |
@@ -770,6 +787,7 @@
 
 # BossStinkBugActionGround.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24BossStinkBugActionGroundFP12BossStinkBug | :x: |
 | appear__24BossStinkBugActionGroundFv | :x: |
 | control__24BossStinkBugActionGroundFv | :x: |
@@ -808,6 +826,7 @@
 
 # BossStinkBugActionSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27BossStinkBugActionSequencerFP12BossStinkBugRC12JMapInfoIter | :x: |
 | isValidFollowId__27BossStinkBugActionSequencerCFl | :x: |
 | attackSensor__27BossStinkBugActionSequencerFP9HitSensorP9HitSensor | :x: |
@@ -845,6 +864,7 @@
 
 # BossStinkBugAngryDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21BossStinkBugAngryDemoFP12BossStinkBugRC12JMapInfoIter | :x: |
 | appear__21BossStinkBugAngryDemoFv | :x: |
 | exeDemo__21BossStinkBugAngryDemoFv | :x: |
@@ -858,6 +878,7 @@
 
 # BossStinkBugBomb.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16BossStinkBugBombFPCc | :x: |
 | init__16BossStinkBugBombFRC12JMapInfoIter | :x: |
 | control__16BossStinkBugBombFv | :x: |
@@ -878,6 +899,7 @@
 
 # BossStinkBugBombHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22BossStinkBugBombHolderFP9LiveActor | :x: |
 | __dt__14LiveActorGroupFv | :x: |
 | __dt__36DeriveActorGroup<16BossStinkBugBomb>Fv | :x: |
@@ -886,6 +908,7 @@
 
 # BossStinkBugFinishDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22BossStinkBugFinishDemoFP12BossStinkBugRC12JMapInfoIter | :x: |
 | appear__22BossStinkBugFinishDemoFv | :x: |
 | exeDemo__22BossStinkBugFinishDemoFv | :x: |
@@ -902,6 +925,7 @@
 
 # BossStinkBugFlyDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19BossStinkBugFlyDemoFP12BossStinkBugRC12JMapInfoIter | :x: |
 | appear__19BossStinkBugFlyDemoFv | :x: |
 | exeDemo__19BossStinkBugFlyDemoFv | :x: |
@@ -915,6 +939,7 @@
 
 # BossStinkBugFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>PC12BossStinkBugf | :x: |
 | addLocalHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>P12BossStinkBugf | :x: |
 | calcDiffCurrentRailPosition__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>P12BossStinkBugff | :x: |
@@ -932,6 +957,7 @@
 
 # BossStinkBugOpeningDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23BossStinkBugOpeningDemoFP12BossStinkBugRC12JMapInfoIter | :x: |
 | appear__23BossStinkBugOpeningDemoFv | :x: |
 | exeDemo__23BossStinkBugOpeningDemoFv | :x: |
@@ -945,6 +971,7 @@
 
 # DinoPackun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set<f>__Q29JGeometry8TVec4<f>FRCQ29JGeometry8TVec4<f>_v | :x: |
 | __ct__Q224@unnamed@DinoPackun_cpp@15DinoPackunParamFv | :x: |
 | __ct__10DinoPackunFPCc | :x: |
@@ -1008,6 +1035,7 @@
 
 # DinoPackunAction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DinoPackunActionFPCcP10DinoPackun | :x: |
 | __dt__28ActorStateBase<10DinoPackun>Fv | :x: |
 | sendBlowAttackMessage__16DinoPackunActionFP9HitSensorP9HitSensorb | :x: |
@@ -1033,6 +1061,7 @@
 
 # DinoPackunBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DinoPackunBallFPCcP10DinoPackun | :x: |
 | __dt__18DinoPackunTailNodeFv | :x: |
 | init__14DinoPackunBallFRC12JMapInfoIter | :x: |
@@ -1077,6 +1106,7 @@
 
 # DinoPackunBattleEgg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q222NrvDinoPackunBattleEgg26DinoPackunBattleEggNrvTurnFv | :x: |
 | __ct__Q222NrvDinoPackunBattleEgg26DinoPackunBattleEggNrvWalkFv | :x: |
 | __ct__Q222NrvDinoPackunBattleEgg28DinoPackunBattleEggNrvDamageFv | :x: |
@@ -1098,6 +1128,7 @@
 
 # DinoPackunBattleEggVs2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q222NrvDinoPackunBattleEgg29DinoPackunBattleEggVs2NrvTurnFv | :x: |
 | __ct__Q222NrvDinoPackunBattleEgg29DinoPackunBattleEggVs2NrvWalkFv | :x: |
 | __ct__Q222NrvDinoPackunBattleEgg31DinoPackunBattleEggVs2NrvDamageFv | :x: |
@@ -1122,6 +1153,7 @@
 
 # DinoPackunBattleVs1Lv1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22DinoPackunBattleVs1Lv1FP10DinoPackun | :x: |
 | appear__22DinoPackunBattleVs1Lv1Fv | :x: |
 | attackSensor__22DinoPackunBattleVs1Lv1FP9HitSensorP9HitSensor | :x: |
@@ -1154,6 +1186,7 @@
 
 # DinoPackunBattleVs1Lv2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22DinoPackunBattleVs1Lv2FP10DinoPackun | :x: |
 | appear__22DinoPackunBattleVs1Lv2Fv | :x: |
 | attackSensor__22DinoPackunBattleVs1Lv2FP9HitSensorP9HitSensor | :x: |
@@ -1190,6 +1223,7 @@
 
 # DinoPackunBattleVs2Lv1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22DinoPackunBattleVs2Lv1FP10DinoPackun | :x: |
 | setTrackFire__22DinoPackunBattleVs2Lv1FP25DinoPackunTrackFireHolder | :x: |
 | setFireBall__22DinoPackunBattleVs2Lv1FP20DinoPackunFireHolder | :x: |
@@ -1240,6 +1274,7 @@
 
 # DinoPackunDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DinoPackunDemoFP10DinoPackun | :x: |
 | init__14DinoPackunDemoFv | :x: |
 | control__14DinoPackunDemoFv | :x: |
@@ -1272,6 +1307,7 @@
 
 # DinoPackunDemoPosition.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22DinoPackunDemoPositionFPCc | :x: |
 | init__22DinoPackunDemoPositionFRC12JMapInfoIter | :x: |
 | control__22DinoPackunDemoPositionFv | :x: |
@@ -1286,6 +1322,7 @@
 
 # DinoPackunEggShell.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18DinoPackunEggShellFPCcP9HitSensorPA4_f | :x: |
 | init__18DinoPackunEggShellFRC12JMapInfoIter | :x: |
 | control__18DinoPackunEggShellFv | :x: |
@@ -1298,6 +1335,7 @@
 
 # DinoPackunFire.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20DinoPackunFireHolderFl | :x: |
 | __dt__34DeriveActorGroup<14DinoPackunFire>Fv | :x: |
 | __ct__14DinoPackunFireFPCc | :x: |
@@ -1320,6 +1358,7 @@
 
 # DinoPackunSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19DinoPackunSequencerFPCcP10DinoPackun | :x: |
 | update__19DinoPackunSequencerFv | :x: |
 | attackSensor__19DinoPackunSequencerFP9HitSensorP9HitSensor | :x: |
@@ -1335,6 +1374,7 @@
 
 # DinoPackunStateAwake.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20DinoPackunStateAwakeFP10DinoPackun | :x: |
 | appear__20DinoPackunStateAwakeFv | :x: |
 | kill__20DinoPackunStateAwakeFv | :x: |
@@ -1347,6 +1387,7 @@
 
 # DinoPackunStateDamage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21DinoPackunStateDamageFP10DinoPackun | :x: |
 | appear__21DinoPackunStateDamageFv | :x: |
 | isDamageMessage__21DinoPackunStateDamageCFUl | :x: |
@@ -1378,6 +1419,7 @@
 
 # DinoPackunStateFire.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19DinoPackunStateFireFP10DinoPackun | :x: |
 | init__19DinoPackunStateFireFv | :x: |
 | appear__19DinoPackunStateFireFv | :x: |
@@ -1407,6 +1449,7 @@
 
 # DinoPackunTail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DinoPackunTailFUl | :x: |
 | addTailNode__14DinoPackunTailFP18DinoPackunTailNode | :x: |
 | activate__14DinoPackunTailFv | :x: |
@@ -1429,6 +1472,7 @@
 
 # DinoPackunTailNode.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18DinoPackunTailNodeFPCcP10DinoPackun | :x: |
 | createJointController__18DinoPackunTailNodeFP9LiveActorPCc | :x: |
 | resetJoint__18DinoPackunTailNodeFv | :x: |
@@ -1450,6 +1494,7 @@
 
 # DinoPackunTailPart.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18DinoPackunTailPartFPCcP10DinoPackun | :x: |
 | init__18DinoPackunTailPartFRC12JMapInfoIter | :x: |
 | control__18DinoPackunTailPartFv | :x: |
@@ -1468,6 +1513,7 @@
 
 # DinoPackunTailRoot.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18DinoPackunTailRootFPCcP10DinoPackun | :x: |
 | init__18DinoPackunTailRootFRC12JMapInfoIter | :x: |
 | createJointControllerOwn__18DinoPackunTailRootFP9LiveActorPCc | :x: |
@@ -1481,6 +1527,7 @@
 
 # DinoPackunTrackFire.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25DinoPackunTrackFireHolderFl | :x: |
 | __dt__39DeriveActorGroup<19DinoPackunTrackFire>Fv | :x: |
 | __ct__19DinoPackunTrackFireFPCc | :x: |
@@ -1503,6 +1550,7 @@
 
 # DinoPackunVs1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13DinoPackunVs1FP10DinoPackun | :x: |
 | init__13DinoPackunVs1Fv | :x: |
 | start__13DinoPackunVs1Fv | :x: |
@@ -1540,6 +1588,7 @@
 
 # DinoPackunVs2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13DinoPackunVs2FP10DinoPackun | :x: |
 | init__13DinoPackunVs2Fv | :x: |
 | start__13DinoPackunVs2Fv | :x: |
@@ -1577,6 +1626,7 @@
 
 # Dodoryu.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setAll<f>__Q29JGeometry8TVec3<f>Ff_v | :x: |
 | __ct__Q29JGeometry8TVec3<f>FRC3Vec | :x: |
 | __ct__7DodoryuFPCc | :x: |
@@ -1703,6 +1753,7 @@
 
 # DodoryuDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | resetCastDisposition__25@unnamed@DodoryuDemo_cpp@FP7Dodoryu | :x: |
 | __ct__18DodoryuDemoOpeningFP7DodoryuPCc | :x: |
 | init__18DodoryuDemoOpeningFRC12JMapInfoIter | :x: |
@@ -1773,6 +1824,7 @@
 
 # DodoryuHill.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11DodoryuHillFP7Dodoryu | :x: |
 | __dt__12MogucchiHillFv | :x: |
 | notifyAppearAttackToPlayer__11DodoryuHillFP9HitSensorP9HitSensor | :x: |
@@ -1782,6 +1834,7 @@
 
 # DodoryuMove.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q210DodoryuSub9MoveStateFPQ210DodoryuSub15MoveStateHolder | :x: |
 | __ct__Q210DodoryuSub15MoveStateHolderFP7Dodoryu | :x: |
 | execute__Q210DodoryuSub15MoveStateHolderFv | :x: |
@@ -1806,12 +1859,14 @@
 
 # DodoryuStateBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcAttackDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | calcVerticalizedDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 
 
 # DodoryuStateLv1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | negateInternal__9JGeometryFPCfPf | :x: |
 | __ct__15DodoryuStateLv1FP7DodoryuPCc | :x: |
 | init__15DodoryuStateLv1FRC12JMapInfoIter | :x: |
@@ -1871,6 +1926,7 @@
 
 # DodoryuStateLv2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f> | :x: |
 | mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
 | __ct__15DodoryuStateLv2FP7DodoryuP17DodoryuChaseParamPCc | :x: |
@@ -1997,6 +2053,7 @@
 
 # DodoryuStateWait.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DodoryuStateWaitFP7DodoryuPCc | :x: |
 | init__16DodoryuStateWaitFRC12JMapInfoIter | :x: |
 | exeWait__16DodoryuStateWaitFv | :x: |
@@ -2008,6 +2065,7 @@
 
 # DodoryuUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcVerticalizedDir__11DodoryuUtilFP7DodoryuPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | turnToward__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3<f>f | :x: |
 | accelerate__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3<f>fff | :x: |
@@ -2018,6 +2076,7 @@
 
 # Koopa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5KoopaFPCcP14KoopaSequencer | :x: |
 | kill__5KoopaFv | :x: |
 | control__5KoopaFv | :x: |
@@ -2037,6 +2096,7 @@
 
 # KoopaBattleBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15KoopaBattleBaseFPCcP5Koopa | :x: |
 | __dt__22ActorStateBase<5Koopa>Fv | :x: |
 | init__15KoopaBattleBaseFv | :x: |
@@ -2052,6 +2112,7 @@
 
 # KoopaBattleMain.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15KoopaBattleMainFPCcP5Koopa | :x: |
 | init__15KoopaBattleMainFv | :x: |
 | appear__15KoopaBattleMainFv | :x: |
@@ -2104,6 +2165,7 @@
 
 # KoopaBattleStairsBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21KoopaBattleStairsBaseFP5Koopa | :x: |
 | calcFireStartPos__21KoopaBattleStairsBaseCFPQ29JGeometry8TVec3<f>PCc | :x: |
 | update__21KoopaBattleStairsBaseFv | :x: |
@@ -2115,6 +2177,7 @@
 
 # KoopaBattleStairsVs1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20KoopaBattleStairsVs1FP5Koopa | :x: |
 | registerStair__20KoopaBattleStairsVs1FP19KoopaBattleMapStair | :x: |
 | exeWaitDemo__20KoopaBattleStairsVs1Fv | :x: |
@@ -2146,6 +2209,7 @@
 
 # KoopaBattleStairsVs3.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20KoopaBattleStairsVs3FP5Koopa | :x: |
 | registerStair__20KoopaBattleStairsVs3FP19KoopaBattleMapStair | :x: |
 | exeWaitDemo__20KoopaBattleStairsVs3Fv | :x: |
@@ -2164,6 +2228,7 @@
 
 # KoopaBattleVs3Lv1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaBattleVs3Lv1FP5Koopa | :x: |
 | init__17KoopaBattleVs3Lv1Fv | :x: |
 | appear__17KoopaBattleVs3Lv1Fv | :x: |
@@ -2193,6 +2258,7 @@
 
 # KoopaBattleVs3Lv2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaBattleVs3Lv2FP5Koopa | :x: |
 | init__17KoopaBattleVs3Lv2Fv | :x: |
 | appear__17KoopaBattleVs3Lv2Fv | :x: |
@@ -2221,6 +2287,7 @@
 
 # KoopaDemoPowerUp.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__16KoopaDemoPowerUpFv | :x: |
 | __ct__16KoopaDemoPowerUpFP5Koopa | :x: |
 | init__16KoopaDemoPowerUpFv | :x: |
@@ -2237,6 +2304,7 @@
 
 # KoopaDemoFallToPlanetVs3Lv2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27KoopaDemoFallToPlanetVs3Lv2FP5Koopa | :x: |
 | init__27KoopaDemoFallToPlanetVs3Lv2Fv | :x: |
 | appear__27KoopaDemoFallToPlanetVs3Lv2Fv | :x: |
@@ -2262,6 +2330,7 @@
 
 # KoopaDemoFallToPlanetVs3Lv3.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27KoopaDemoFallToPlanetVs3Lv3FP5Koopa | :x: |
 | init__27KoopaDemoFallToPlanetVs3Lv3Fv | :x: |
 | appear__27KoopaDemoFallToPlanetVs3Lv3Fv | :x: |
@@ -2287,6 +2356,7 @@
 
 # KoopaDemoJumpToPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21KoopaDemoJumpToPlanetFP5Koopa | :x: |
 | init__21KoopaDemoJumpToPlanetFv | :x: |
 | kill__21KoopaDemoJumpToPlanetFv | :x: |
@@ -2309,6 +2379,7 @@
 
 # KoopaFigureBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15KoopaFigureBallFv | :x: |
 | __ct__15KoopaFigureBallFPCcP5KoopafPCQ22MR14ActorMoveParam | :x: |
 | init__15KoopaFigureBallFRC12JMapInfoIter | :x: |
@@ -2320,6 +2391,7 @@
 
 # KoopaFireShort.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14KoopaFireShortFPC5Koopa | :x: |
 | init__14KoopaFireShortFRC12JMapInfoIter | :x: |
 | appear__14KoopaFireShortFv | :x: |
@@ -2346,6 +2418,7 @@
 
 # KoopaFireStairs.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15KoopaFireStairsFv | :x: |
 | __ct__15KoopaFireStairsFPCcb | :x: |
 | init__15KoopaFireStairsFRC12JMapInfoIter | :x: |
@@ -2364,6 +2437,7 @@
 
 # KoopaFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createKoopaVs1__13KoopaFunctionFPCc | :x: |
 | createKoopaVs2__13KoopaFunctionFPCc | :x: |
 | createKoopaVs3__13KoopaFunctionFPCc | :x: |
@@ -2457,6 +2531,7 @@
 
 # KoopaParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10KoopaPartsFP5KoopaRC12JMapInfoIter | :x: |
 | createKoopaBodyParts__24@unnamed@KoopaParts_cpp@FP9LiveActorPCcPCcPCc | :x: |
 | emitFireStairsToPos__10KoopaPartsFPC19KoopaBattleMapStairRCQ29JGeometry8TVec3<f>b | :x: |
@@ -2482,6 +2557,7 @@
 
 # KoopaPowerUpSwitch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18KoopaPowerUpSwitchFPCc | :x: |
 | init__18KoopaPowerUpSwitchFRC12JMapInfoIter | :x: |
 | initAfterPlacement__18KoopaPowerUpSwitchFv | :x: |
@@ -2490,6 +2566,7 @@
 
 # KoopaPlanetShadow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__17KoopaPlanetShadowFv | :x: |
 | __ct__17KoopaPlanetShadowFPC5Koopa | :x: |
 | init__17KoopaPlanetShadowFRC12JMapInfoIter | :x: |
@@ -2498,6 +2575,7 @@
 
 # KoopaRestarterVs3.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaRestarterVs3FPCc | :x: |
 | init__17KoopaRestarterVs3FRC12JMapInfoIter | :x: |
 | appear__17KoopaRestarterVs3Fv | :x: |
@@ -2506,6 +2584,7 @@
 
 # KoopaRockBreak.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14KoopaRockBreakFP9LiveActor | :x: |
 | init__14KoopaRockBreakFRC12JMapInfoIter | :x: |
 | control__14KoopaRockBreakFv | :x: |
@@ -2514,6 +2593,7 @@
 
 # KoopaSensorCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15KoopaSensorCtrlFP5Koopa | :x: |
 | update__15KoopaSensorCtrlFP9HitSensor | :x: |
 | initSensor__15KoopaSensorCtrlFv | :x: |
@@ -2521,6 +2601,7 @@
 
 # KoopaSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14KoopaSequencerFPCcl | :x: |
 | init__14KoopaSequencerFP5KoopaRC12JMapInfoIter | :x: |
 | update__14KoopaSequencerFv | :x: |
@@ -2532,6 +2613,7 @@
 
 # KoopaSubSequenceBattle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22KoopaSubSequenceBattleFP5KoopaP14KoopaSequencerP15KoopaBattleBase | :x: |
 | kill__22KoopaSubSequenceBattleFv | :x: |
 | isDemo__22KoopaSubSequenceBattleCFv | :x: |
@@ -2553,6 +2635,7 @@
 
 # KoopaSequencerVs1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaSequencerVs1Fv | :x: |
 | init__17KoopaSequencerVs1FP5KoopaRC12JMapInfoIter | :x: |
 | exeBattleStairs__17KoopaSequencerVs1Fv | :x: |
@@ -2583,6 +2666,7 @@
 
 # KoopaSequencerVs2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaSequencerVs2Fv | :x: |
 | init__17KoopaSequencerVs2FP5KoopaRC12JMapInfoIter | :x: |
 | exeWaitDemoBattleStart__17KoopaSequencerVs2Fv | :x: |
@@ -2613,6 +2697,7 @@
 
 # KoopaSequencerVs3.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaSequencerVs3Fv | :x: |
 | init__17KoopaSequencerVs3FP5KoopaRC12JMapInfoIter | :x: |
 | exeWaitPlayer__17KoopaSequencerVs3Fv | :x: |
@@ -2667,6 +2752,7 @@
 
 # KoopaShockWave.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14KoopaShockWaveFP5Koopa | :x: |
 | init__14KoopaShockWaveFRC12JMapInfoIter | :x: |
 | appear__14KoopaShockWaveFv | :x: |
@@ -2684,6 +2770,7 @@
 
 # KoopaStateAttackFireShort.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25KoopaStateAttackFireShortFP5Koopa | :x: |
 | init__25KoopaStateAttackFireShortFv | :x: |
 | appear__25KoopaStateAttackFireShortFv | :x: |
@@ -2699,6 +2786,7 @@
 
 # KoopaStateAttackFireLong.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24KoopaStateAttackFireLongFP5Koopa | :x: |
 | init__24KoopaStateAttackFireLongFv | :x: |
 | appear__24KoopaStateAttackFireLongFv | :x: |
@@ -2714,6 +2802,7 @@
 
 # KoopaStateAttackHipDrop.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23KoopaStateAttackHipDropFP5Koopa | :x: |
 | init__23KoopaStateAttackHipDropFv | :x: |
 | appear__23KoopaStateAttackHipDropFv | :x: |
@@ -2747,6 +2836,7 @@
 
 # KoopaStateAttackRoll.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20KoopaStateAttackRollFP5Koopa | :x: |
 | init__20KoopaStateAttackRollFv | :x: |
 | appear__20KoopaStateAttackRollFv | :x: |
@@ -2779,6 +2869,7 @@
 
 # KoopaStateAttackShockWave.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25KoopaStateAttackShockWaveFP5Koopa | :x: |
 | init__25KoopaStateAttackShockWaveFv | :x: |
 | appear__25KoopaStateAttackShockWaveFv | :x: |
@@ -2801,6 +2892,7 @@
 
 # KoopaStateAttackSpin.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20KoopaStateAttackSpinFP5Koopa | :x: |
 | init__20KoopaStateAttackSpinFv | :x: |
 | appear__20KoopaStateAttackSpinFv | :x: |
@@ -2831,6 +2923,7 @@
 
 # KoopaStateChaseRoll.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19KoopaStateChaseRollFP5Koopa | :x: |
 | init__19KoopaStateChaseRollFv | :x: |
 | appear__19KoopaStateChaseRollFv | :x: |
@@ -2863,6 +2956,7 @@
 
 # KoopaStateDamageEscape.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22KoopaStateDamageEscapeFP5Koopa | :x: |
 | init__22KoopaStateDamageEscapeFv | :x: |
 | appear__22KoopaStateDamageEscapeFv | :x: |
@@ -2918,6 +3012,7 @@
 
 # KoopaStateGuard.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15KoopaStateGuardFP5Koopa | :x: |
 | init__15KoopaStateGuardFv | :x: |
 | tryStart__15KoopaStateGuardFUlP9HitSensorP9HitSensor | :x: |
@@ -2936,6 +3031,7 @@
 
 # KoopaStateJumpAway.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18KoopaStateJumpAwayFP5Koopa | :x: |
 | init__18KoopaStateJumpAwayFv | :x: |
 | appear__18KoopaStateJumpAwayFv | :x: |
@@ -2954,6 +3050,7 @@
 
 # KoopaSwitchKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17KoopaSwitchKeeperFPCc | :x: |
 | init__17KoopaSwitchKeeperFRC12JMapInfoIter | :x: |
 | initAfterPlacement__17KoopaSwitchKeeperFv | :x: |
@@ -2962,6 +3059,7 @@
 
 # KoopaViewSwitchKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21KoopaViewSwitchKeeperFPCc | :x: |
 | init__21KoopaViewSwitchKeeperFRC12JMapInfoIter | :x: |
 | initAfterPlacement__21KoopaViewSwitchKeeperFv | :x: |
@@ -2970,6 +3068,7 @@
 
 # OtaKing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __defctor__10FireBubbleFv | :x: |
 | __defctor__8FireBallFv | :x: |
 | __defctor__11CocoNutBallFv | :x: |
@@ -3073,6 +3172,7 @@
 
 # OtaKingLongFoot.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15OtaKingLongFootFP9LiveActorlPCc | :x: |
 | init__15OtaKingLongFootFRC12JMapInfoIter | :x: |
 | hide__15OtaKingLongFootFv | :x: |
@@ -3100,6 +3200,7 @@
 
 # OtaKingMagma.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12OtaKingMagmaFP9LiveActorl | :x: |
 | init__12OtaKingMagmaFRC12JMapInfoIter | :x: |
 | appearDemo__12OtaKingMagmaFv | :x: |
@@ -3139,6 +3240,7 @@
 
 # Polta.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct<i>__Q29JGeometry9TQuat4<f>Fiiii_Pv | :x: |
 | __ct__16BombTeresaHolderFv | :x: |
 | __dt__30DeriveActorGroup<10BombTeresa>Fv | :x: |
@@ -3181,6 +3283,7 @@
 
 # PoltaActionBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15PoltaActionBaseFPCcP5Polta | :x: |
 | __dt__22ActorStateBase<5Polta>Fv | :x: |
 | updateScreamSensor__15PoltaActionBaseFv | :x: |
@@ -3197,6 +3300,7 @@
 
 # PoltaActionSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20PoltaActionSequencerFP5PoltaRC12JMapInfoIter | :x: |
 | attackSensor__20PoltaActionSequencerFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__20PoltaActionSequencerFUlP9HitSensorP9HitSensor | :x: |
@@ -3228,6 +3332,7 @@
 
 # PoltaArm.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__8PoltaArmFv | :x: |
 | __ct__8PoltaArmFPCcPCcPA4_f | :x: |
 | init__8PoltaArmFRC12JMapInfoIter | :x: |
@@ -3271,6 +3376,7 @@
 
 # PoltaBattleLv1.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PoltaBattleLv1FP5Polta | :x: |
 | appear__14PoltaBattleLv1Fv | :x: |
 | control__14PoltaBattleLv1Fv | :x: |
@@ -3306,6 +3412,7 @@
 
 # PoltaBattleLv2.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PoltaBattleLv2FP5Polta | :x: |
 | appear__14PoltaBattleLv2Fv | :x: |
 | control__14PoltaBattleLv2Fv | :x: |
@@ -3348,6 +3455,7 @@
 
 # PoltaDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9PoltaDemoFP5Polta | :x: |
 | init__9PoltaDemoFv | :x: |
 | control__9PoltaDemoFv | :x: |
@@ -3374,6 +3482,7 @@
 
 # PoltaFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | onMovement__13PoltaFunctionFP5Polta | :x: |
 | emitEffectShadow__13PoltaFunctionFP5Polta | :x: |
 | getLeftArmActor__13PoltaFunctionFP5Polta | :x: |
@@ -3420,6 +3529,7 @@
 
 # PoltaGroundRock.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15PoltaGroundRockFPCc | :x: |
 | init__15PoltaGroundRockFRC12JMapInfoIter | :x: |
 | initBreakModel__15PoltaGroundRockFv | :x: |
@@ -3451,6 +3561,7 @@
 
 # PoltaGroundRockHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21PoltaGroundRockHolderFv | :x: |
 | __dt__35DeriveActorGroup<15PoltaGroundRock>Fv | :x: |
 | breakAll__21PoltaGroundRockHolderFv | :x: |
@@ -3459,6 +3570,7 @@
 
 # PoltaRock.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9PoltaRockFPCc | :x: |
 | init__9PoltaRockFRC12JMapInfoIter | :x: |
 | kill__9PoltaRockFv | :x: |
@@ -3489,6 +3601,7 @@
 
 # PoltaRockHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15PoltaRockHolderFv | :x: |
 | __dt__28DeriveActorGroup<9PoltaRock>Fv | :x: |
 | __dt__15PoltaRockHolderFv | :x: |
@@ -3496,6 +3609,7 @@
 
 # PoltaSensorCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15PoltaSensorCtrlFP5Polta | :x: |
 | getSensorCount__15PoltaSensorCtrlCFv | :x: |
 | setScreamSensorSize__15PoltaSensorCtrlFf | :x: |
@@ -3510,6 +3624,7 @@
 
 # PoltaStateAttackGround.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22PoltaStateAttackGroundFP5Polta | :x: |
 | appear__22PoltaStateAttackGroundFv | :x: |
 | exeStart__22PoltaStateAttackGroundFv | :x: |
@@ -3528,6 +3643,7 @@
 
 # PoltaStateGenerateRock.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22PoltaStateGenerateRockFP5Polta | :x: |
 | appear__22PoltaStateGenerateRockFv | :x: |
 | exeSign__22PoltaStateGenerateRockFv | :x: |
@@ -3545,6 +3661,7 @@
 
 # PoltaStateGroundRockAttack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26PoltaStateGroundRockAttackFP5Polta | :x: |
 | appear__26PoltaStateGroundRockAttackFv | :x: |
 | exeSign__26PoltaStateGroundRockAttackFv | :x: |
@@ -3562,6 +3679,7 @@
 
 # PoltaStatePunch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15PoltaStatePunchFP5Polta | :x: |
 | appear__15PoltaStatePunchFv | :x: |
 | getAttackActor__15PoltaStatePunchFv | :x: |
@@ -3582,6 +3700,7 @@
 
 # PoltaStateStagger.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17PoltaStateStaggerFP5Polta | :x: |
 | setActionName__17PoltaStateStaggerFPCc | :x: |
 | appear__17PoltaStateStaggerFv | :x: |
@@ -3595,6 +3714,7 @@
 
 # PoltaWaitStart.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PoltaWaitStartFP5Polta | :x: |
 | appear__14PoltaWaitStartFv | :x: |
 | __dt__14PoltaWaitStartFv | :x: |
@@ -3602,6 +3722,7 @@
 
 # SkeletalFishBaby.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isValid__12JMapInfoIterCFv | :x: |
 | __ct__16SkeletalFishBabyFPCc | :x: |
 | init__16SkeletalFishBabyFRC12JMapInfoIter | :x: |
@@ -3644,6 +3765,7 @@
 
 # SkeletalFishBabyRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SkeletalFishBabyRailFPCc | :x: |
 | init__20SkeletalFishBabyRailFRC12JMapInfoIter | :x: |
 | __dt__20SkeletalFishBabyRailFv | :x: |
@@ -3651,6 +3773,7 @@
 
 # SkeletalFishBabyRailHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__29SkeletalFishBabyRailGroupNodeFl | :x: |
 | addChild__29SkeletalFishBabyRailGroupNodeFP20SkeletalFishBabyRail | :x: |
 | tidy__29SkeletalFishBabyRailGroupNodeFv | :x: |
@@ -3667,6 +3790,7 @@
 
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | negate__Q29JGeometry8TVec3<f>Fv | :x: |
 | squared__Q29JGeometry8TVec3<f>CFv | :x: |
 | __ct__16SkeletalFishBossFPCc | :x: |
@@ -3785,6 +3909,7 @@
 
 # SkeletalFishBossBattleDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__30SkeletalFishBossBattleDirectorFP16SkeletalFishBoss | :x: |
 | initiate__30SkeletalFishBossBattleDirectorFv | :x: |
 | startPowerUpDemo1__30SkeletalFishBossBattleDirectorFv | :x: |
@@ -3803,12 +3928,14 @@
 
 # SkeletalFishBossFunc.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3<f> | :x: |
 | copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3<f>l | :x: |
 
 
 # SkeletalFishBossInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SkeletalFishBossInfoFP16SkeletalFishBossllPCc | :x: |
 | init__20SkeletalFishBossInfoFRC12JMapInfoIter | :x: |
 | getLevelStatus__20SkeletalFishBossInfoCFl | :x: |
@@ -3821,6 +3948,7 @@
 
 # SkeletalFishBossRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20SkeletalFishBossRailFPCc | :x: |
 | init__20SkeletalFishBossRailFRC12JMapInfoIter | :x: |
 | initAfterPlacement__20SkeletalFishBossRailFv | :x: |
@@ -3834,6 +3962,7 @@
 
 # SkeletalFishBossRailHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26SkeletalFishBossRailHolderFPCc | :x: |
 | add__26SkeletalFishBossRailHolderFP20SkeletalFishBossRail | :x: |
 | getInOrder__26SkeletalFishBossRailHolderCFl | :x: |
@@ -3845,6 +3974,7 @@
 
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | transform__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
 | cubic<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f_v | :x: |
 | angle__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
@@ -3911,6 +4041,7 @@
 
 # SkeletalFishGuardHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23SkeletalFishGuardHolderFP16SkeletalFishBosslPCc | :x: |
 | movement__23SkeletalFishGuardHolderFv | :x: |
 | forceAppearAll__23SkeletalFishGuardHolderFv | :x: |
@@ -3930,11 +4061,13 @@
 
 # SkeletalFishJointCalc.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcJoint__21SkeletalFishJointCalcFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P23SkeletalFishRailControlRC19JointControllerInfo | :x: |
 
 
 # SkeletalFishRailControl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23SkeletalFishRailControlFv | :x: |
 | setRailActor__23SkeletalFishRailControlFP9LiveActorP9LiveActorb | :x: |
 | update__23SkeletalFishRailControlFv | :x: |
@@ -3945,6 +4078,7 @@
 
 # TombSpider.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10TombSpiderFPCc | :x: |
 | init__10TombSpiderFRC12JMapInfoIter | :x: |
 | exeWaitPlayer__10TombSpiderFv | :x: |
@@ -3990,6 +4124,7 @@
 
 # TombSpiderAcid.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TombSpiderAcidFP10TombSpider | :x: |
 | start__14TombSpiderAcidFv | :x: |
 | startGland__14TombSpiderAcidFv | :x: |
@@ -4002,6 +4137,7 @@
 
 # TombSpiderAction1st.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19TombSpiderAction1stFP10TombSpider | :x: |
 | __dt__20TombSpiderActionBaseFv | :x: |
 | init__19TombSpiderAction1stFv | :x: |
@@ -4044,6 +4180,7 @@
 
 # TombSpiderAction2nd.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19TombSpiderAction2ndFP10TombSpider | :x: |
 | init__19TombSpiderAction2ndFv | :x: |
 | appear__19TombSpiderAction2ndFv | :x: |
@@ -4085,6 +4222,7 @@
 
 # TombSpiderActionBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20TombSpiderActionBaseFP10TombSpiderPCc | :x: |
 | __dt__28ActorStateBase<10TombSpider>Fv | :x: |
 | init__20TombSpiderActionBaseFv | :x: |
@@ -4111,6 +4249,7 @@
 
 # TombSpiderActionCocoon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22TombSpiderActionCocoonFP10TombSpider | :x: |
 | init__22TombSpiderActionCocoonFv | :x: |
 | attackSensor__22TombSpiderActionCocoonFP9HitSensorP9HitSensor | :x: |
@@ -4127,6 +4266,7 @@
 
 # TombSpiderDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TombSpiderDemoFP10TombSpider | :x: |
 | updateGateOpen__14TombSpiderDemoFv | :x: |
 | updateCocoonBreak__14TombSpiderDemoFv | :x: |
@@ -4141,11 +4281,13 @@
 
 # TombSpiderEnvironment.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21TombSpiderEnvironmentFP9LiveActor | :x: |
 
 
 # TombSpiderFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGlandFrontL__18TombSpiderFunctionFPC10TombSpider | :x: |
 | getGlandFrontR__18TombSpiderFunctionFPC10TombSpider | :x: |
 | getGlandRearL__18TombSpiderFunctionFPC10TombSpider | :x: |
@@ -4202,6 +4344,7 @@
 
 # TombSpiderGland.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15TombSpiderGlandFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :x: |
 | init__15TombSpiderGlandFRC12JMapInfoIter | :x: |
 | startActive__15TombSpiderGlandFv | :x: |
@@ -4223,6 +4366,7 @@
 
 # TombSpiderParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15TombSpiderPartsFP10TombSpider | :x: |
 | appearThreadAttacherAll__15TombSpiderPartsFv | :x: |
 | killThreadAttacherAll__15TombSpiderPartsFv | :x: |
@@ -4233,6 +4377,7 @@
 
 # TombSpiderSensorCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20TombSpiderSensorCtrlFP10TombSpider | :x: |
 | update__20TombSpiderSensorCtrlFP9HitSensor | :x: |
 | updateMainParts__20TombSpiderSensorCtrlFP9HitSensor | :x: |
@@ -4246,6 +4391,7 @@
 
 # TombSpiderStateSwoon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20TombSpiderStateSwoonFP10TombSpider | :x: |
 | init__20TombSpiderStateSwoonFv | :x: |
 | appear__20TombSpiderStateSwoonFv | :x: |
@@ -4264,6 +4410,7 @@
 
 # TombSpiderThreadAttacher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24TombSpiderThreadAttacherFP9LiveActorPCcff | :x: |
 | init__24TombSpiderThreadAttacherFRC12JMapInfoIter | :x: |
 | exeFree__24TombSpiderThreadAttacherFv | :x: |
@@ -4277,6 +4424,7 @@
 
 # TombSpiderVitalSpot.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19TombSpiderVitalSpotFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :x: |
 | init__19TombSpiderVitalSpotFRC12JMapInfoIter | :x: |
 | startChance__19TombSpiderVitalSpotFv | :x: |
@@ -4303,6 +4451,7 @@
 
 # TripodBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10TripodBossFPCc | :x: |
 | init__10TripodBossFRC12JMapInfoIter | :x: |
 | initAfterPlacement__10TripodBossFv | :x: |
@@ -4412,6 +4561,7 @@
 
 # TripodBossAccesser.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | convertBoneIDToIndex__32@unnamed@TripodBossAccesser_cpp@Fl | :x: |
 | __ct__18TripodBossAccesserFPCc | :x: |
 | setTriPodBoss__18TripodBossAccesserFP10TripodBoss | :x: |
@@ -4453,6 +4603,7 @@
 
 # TripodBossBaseJointPosition.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27TripodBossBaseJointPositionFPCc | :x: |
 | init__27TripodBossBaseJointPositionFRC12JMapInfoIter | :x: |
 | initAfterPlacement__27TripodBossBaseJointPositionFv | :x: |
@@ -4463,6 +4614,7 @@
 
 # TripodBossBreakMovement.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23TripodBossBreakMovementFPCc | :x: |
 | start__23TripodBossBreakMovementFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
 | movement__23TripodBossBreakMovementFv | :x: |
@@ -4481,6 +4633,7 @@
 
 # TripodBossCoin.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TripodBossCoinFPCc | :x: |
 | init__14TripodBossCoinFRC12JMapInfoIter | :x: |
 | movement__14TripodBossCoinFv | :x: |
@@ -4498,6 +4651,7 @@
 
 # TripodBossCore.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TripodBossCoreFPCc | :x: |
 | __dt__22TripodBossFixPartsBaseFv | :x: |
 | init__14TripodBossCoreFRC12JMapInfoIter | :x: |
@@ -4525,6 +4679,7 @@
 
 # TripodBossFixParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18TripodBossFixPartsFPCc | :x: |
 | init__18TripodBossFixPartsFRC12JMapInfoIter | :x: |
 | initSensor__18TripodBossFixPartsFRC12JMapInfoIter | :x: |
@@ -4548,6 +4703,7 @@
 
 # TripodBossFixPartsBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22TripodBossFixPartsBaseFPCc | :x: |
 | init__22TripodBossFixPartsBaseFRC12JMapInfoIter | :x: |
 | initAfterPlacement__22TripodBossFixPartsBaseFv | :x: |
@@ -4566,6 +4722,7 @@
 
 # TripodBossGuardWall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19TripodBossGuardWallFPCc | :x: |
 | __defctor__23TripodBossGuardWallPartFv | :x: |
 | __dt__23TripodBossGuardWallPartFv | :x: |
@@ -4599,6 +4756,7 @@
 
 # TripodBossGuardWallPart.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23TripodBossGuardWallPartFPCc | :x: |
 | init__23TripodBossGuardWallPartFRC12JMapInfoIter | :x: |
 | makeActorAppeared__23TripodBossGuardWallPartFv | :x: |
@@ -4629,6 +4787,7 @@
 
 # TripodBossKillerGenerater.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set__Q29JGeometry13SMatrix34C<f>FRCQ29JGeometry13SMatrix34C<f> | :x: |
 | __ct__25TripodBossKillerGeneraterFPCc | :x: |
 | init__25TripodBossKillerGeneraterFRC12JMapInfoIter | :x: |
@@ -4680,6 +4839,7 @@
 
 # TripodBossKillerGeneraterCircle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__31TripodBossKillerGeneraterCircleFv | :x: |
 | __ct__31TripodBossKillerGeneraterCircleFPCc | :x: |
 | init__31TripodBossKillerGeneraterCircleFRC12JMapInfoIter | :x: |
@@ -4689,6 +4849,7 @@
 
 # TripodBossKinokoOneUp.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21TripodBossKinokoOneUpFPCc | :x: |
 | init__21TripodBossKinokoOneUpFRC12JMapInfoIter | :x: |
 | __dt__14BenefitItemObjFv | :x: |
@@ -4718,6 +4879,7 @@
 
 # TripodBossLeg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
 | setYDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
 | setZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
@@ -4812,6 +4974,7 @@
 
 # TripodBossMovableArea.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set<i>__Q29JGeometry8TVec3<f>Fiii_v | :x: |
 | __ct__9HitResultFv | :x: |
 | __ct__21TripodBossMovableAreaFv | :x: |
@@ -4829,6 +4992,7 @@
 
 # TripodBossRailMoveParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23TripodBossRailMovePartsFPCc | :x: |
 | init__23TripodBossRailMovePartsFRC12JMapInfoIter | :x: |
 | makeActorDead__23TripodBossRailMovePartsFv | :x: |
@@ -4840,6 +5004,7 @@
 
 # TripodBossRotateParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21TripodBossRotatePartsFPCc | :x: |
 | init__21TripodBossRotatePartsFRC12JMapInfoIter | :x: |
 | makeActorDead__21TripodBossRotatePartsFv | :x: |
@@ -4852,6 +5017,7 @@
 
 # TripodBossShell.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15TripodBossShellFv | :x: |
 | __ct__15TripodBossShellFPCc | :x: |
 | init__15TripodBossShellFRC12JMapInfoIter | :x: |
@@ -4870,6 +5036,7 @@
 
 # TripodBossStepPoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19TripodBossStepPointFPCc | :x: |
 | init__19TripodBossStepPointFRC12JMapInfoIter | :x: |
 | initAfterPlacement__19TripodBossStepPointFv | :x: |
@@ -4881,6 +5048,7 @@
 
 # TripodBossStepSequence.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22TripodBossStepSequenceFv | :x: |
 | addStepPoint__22TripodBossStepSequenceFP19TripodBossStepPoint | :x: |
 | getCurrentLeg__22TripodBossStepSequenceCFv | :x: |

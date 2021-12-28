@@ -131,6 +131,7 @@
 
 # CamHeliEffector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CamHeliEffectorFv | :white_check_mark: |
 | update__15CamHeliEffectorFP9CameraMan | :x: |
 | isCameraStateOn__15CameraTargetObjCFUl | :white_check_mark: |
@@ -159,6 +160,7 @@
 
 # CamKarikariEffector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | JMACosRadian__Ff | :x: |
 | __ct__19CamKarikariEffectorFv | :white_check_mark: |
 | update__19CamKarikariEffectorFP9CameraMan | :x: |
@@ -166,12 +168,14 @@
 
 # CamPoseSphereInterpolator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
 | transform__Q29JGeometry9TQuat4<f>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
 
 
 # CamTranslatorAnim.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__17CamTranslatorAnimFPC16CameraParamChunk | :white_check_mark: |
 | getCamera__17CamTranslatorAnimCFv | :white_check_mark: |
 | getAnimFrame__17CamTranslatorAnimCFPC16CameraParamChunk | :white_check_mark: |
@@ -179,54 +183,63 @@
 
 # CamTranslatorBehind.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__19CamTranslatorBehindFPC16CameraParamChunk | :x: |
 | getCamera__19CamTranslatorBehindCFv | :x: |
 
 
 # CamTranslatorBlackHole.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__22CamTranslatorBlackHoleFPC16CameraParamChunk | :x: |
 | getCamera__22CamTranslatorBlackHoleCFv | :x: |
 
 
 # CamTranslatorCharmedFix.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorCharmedFixFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorCharmedFixCFv | :x: |
 
 
 # CamTranslatorCharmedTripodBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__30CamTranslatorCharmedTripodBossFPC16CameraParamChunk | :x: |
 | getCamera__30CamTranslatorCharmedTripodBossCFv | :x: |
 
 
 # CamTranslatorCharmedVecReg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__26CamTranslatorCharmedVecRegFPC16CameraParamChunk | :x: |
 | getCamera__26CamTranslatorCharmedVecRegCFv | :x: |
 
 
 # CamTranslatorCharmedVecRegTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__31CamTranslatorCharmedVecRegTowerFPC16CameraParamChunk | :x: |
 | getCamera__31CamTranslatorCharmedVecRegTowerCFv | :x: |
 
 
 # CamTranslatorCubePlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorCubePlanetFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorCubePlanetCFv | :x: |
 
 
 # CamTranslatorDPD.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__16CamTranslatorDPDFPC16CameraParamChunk | :x: |
 | getCamera__16CamTranslatorDPDCFv | :x: |
 
 
 # CamTranslatorDead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CamTranslatorDeadFP10CameraDead | :x: |
 | setParam__17CamTranslatorDeadFPC16CameraParamChunk | :x: |
 | getCamera__17CamTranslatorDeadCFv | :x: |
@@ -234,24 +247,28 @@
 
 # CamTranslatorFix.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__16CamTranslatorFixFPC16CameraParamChunk | :x: |
 | getCamera__16CamTranslatorFixCFv | :x: |
 
 
 # CamTranslatorFixedPoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorFixedPointFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorFixedPointCFv | :x: |
 
 
 # CamTranslatorFixedThere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorFixedThereFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorFixedThereCFv | :x: |
 
 
 # CamTranslatorFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19CamTranslatorFollowFP12CameraFollow | :x: |
 | setParam__19CamTranslatorFollowFPC16CameraParamChunk | :x: |
 | getCamera__19CamTranslatorFollowCFv | :x: |
@@ -259,6 +276,7 @@
 
 # CamTranslatorFooFighter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23CamTranslatorFooFighterFP16CameraFooFighter | :x: |
 | setParam__23CamTranslatorFooFighterFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorFooFighterCFv | :x: |
@@ -266,6 +284,7 @@
 
 # CamTranslatorFooFighterPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__29CamTranslatorFooFighterPlanetFP22CameraFooFighterPlanet | :x: |
 | setParam__29CamTranslatorFooFighterPlanetFPC16CameraParamChunk | :x: |
 | getCamera__29CamTranslatorFooFighterPlanetCFv | :x: |
@@ -273,36 +292,42 @@
 
 # CamTranslatorFrontAndBack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__25CamTranslatorFrontAndBackFPC16CameraParamChunk | :x: |
 | getCamera__25CamTranslatorFrontAndBackCFv | :x: |
 
 
 # CamTranslatorGround.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__19CamTranslatorGroundFPC16CameraParamChunk | :x: |
 | getCamera__19CamTranslatorGroundCFv | :x: |
 
 
 # CamTranslatorInnerCylinder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__26CamTranslatorInnerCylinderFPC16CameraParamChunk | :x: |
 | getCamera__26CamTranslatorInnerCylinderCFv | :x: |
 
 
 # CamTranslatorInwardSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__25CamTranslatorInwardSphereFPC16CameraParamChunk | :x: |
 | getCamera__25CamTranslatorInwardSphereCFv | :x: |
 
 
 # CamTranslatorInwardTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__24CamTranslatorInwardTowerFPC16CameraParamChunk | :x: |
 | getCamera__24CamTranslatorInwardTowerCFv | :x: |
 
 
 # CamTranslatorMedianPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25CamTranslatorMedianPlanetFP18CameraMedianPlanet | :x: |
 | setParam__25CamTranslatorMedianPlanetFPC16CameraParamChunk | :x: |
 | getCamera__25CamTranslatorMedianPlanetCFv | :x: |
@@ -310,114 +335,133 @@
 
 # CamTranslatorMedianTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__24CamTranslatorMedianTowerFPC16CameraParamChunk | :x: |
 | getCamera__24CamTranslatorMedianTowerCFv | :x: |
 
 
 # CamTranslatorMtxRegParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__27CamTranslatorMtxRegParallelFPC16CameraParamChunk | :x: |
 | getCamera__27CamTranslatorMtxRegParallelCFv | :x: |
 
 
 # CamTranslatorObjParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__24CamTranslatorObjParallelFPC16CameraParamChunk | :x: |
 | getCamera__24CamTranslatorObjParallelCFv | :x: |
 
 
 # CamTranslatorParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__21CamTranslatorParallelFPC16CameraParamChunk | :x: |
 | getCamera__21CamTranslatorParallelCFv | :x: |
 
 
 # CamTranslatorRaceFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorRaceFollowFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorRaceFollowCFv | :x: |
 
 
 # CamTranslatorRailDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__21CamTranslatorRailDemoFPC16CameraParamChunk | :x: |
 | getCamera__21CamTranslatorRailDemoCFv | :x: |
 
 
 # CamTranslatorRailFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorRailFollowFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorRailFollowCFv | :x: |
 
 
 # CamTranslatorRailWatch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__22CamTranslatorRailWatchFPC16CameraParamChunk | :x: |
 | getCamera__22CamTranslatorRailWatchCFv | :x: |
 
 
 # CamTranslatorSlide.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__18CamTranslatorSlideFPC16CameraParamChunk | :x: |
 | getCamera__18CamTranslatorSlideCFv | :x: |
 
 
 # CamTranslatorSpiral.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__19CamTranslatorSpiralFPC16CameraParamChunk | :x: |
 | getCamera__19CamTranslatorSpiralCFv | :x: |
 
 
 # CamTranslatorTalk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__17CamTranslatorTalkFPC16CameraParamChunk | :x: |
 | getCamera__17CamTranslatorTalkCFv | :x: |
 
 
 # CamTranslatorTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__18CamTranslatorTowerFPC16CameraParamChunk | :x: |
 | getCamera__18CamTranslatorTowerCFv | :x: |
 
 
 # CamTranslatorTowerPos.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__21CamTranslatorTowerPosFPC16CameraParamChunk | :x: |
 | getCamera__21CamTranslatorTowerPosCFv | :x: |
 
 
 # CamTranslatorTripodBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__23CamTranslatorTripodBossFPC16CameraParamChunk | :x: |
 | getCamera__23CamTranslatorTripodBossCFv | :x: |
 
 
 # CamTranslatorTripodBossJoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__28CamTranslatorTripodBossJointFPC16CameraParamChunk | :x: |
 | getCamera__28CamTranslatorTripodBossJointCFv | :x: |
 
 
 # CamTranslatorTripodPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__25CamTranslatorTripodPlanetFPC16CameraParamChunk | :x: |
 | getCamera__25CamTranslatorTripodPlanetCFv | :x: |
 
 
 # CamTranslatorTrundle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__20CamTranslatorTrundleFPC16CameraParamChunk | :x: |
 | getCamera__20CamTranslatorTrundleCFv | :x: |
 
 
 # CamTranslatorTwistedPassage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setParam__27CamTranslatorTwistedPassageFPC16CameraParamChunk | :x: |
 | getCamera__27CamTranslatorTwistedPassageCFv | :x: |
 
 
 # CamTranslatorWaterFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24CamTranslatorWaterFollowFP17CameraWaterFollow | :x: |
 | setParam__24CamTranslatorWaterFollowFPC16CameraParamChunk | :x: |
 | getCamera__24CamTranslatorWaterFollowCFv | :x: |
@@ -425,6 +469,7 @@
 
 # CamTranslatorWaterPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24CamTranslatorWaterPlanetFP17CameraWaterPlanet | :x: |
 | setParam__24CamTranslatorWaterPlanetFPC16CameraParamChunk | :x: |
 | getCamera__24CamTranslatorWaterPlanetCFv | :x: |
@@ -432,6 +477,7 @@
 
 # CamTranslatorWaterPlanetBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__28CamTranslatorWaterPlanetBossFP21CameraWaterPlanetBoss | :x: |
 | setParam__28CamTranslatorWaterPlanetBossFPC16CameraParamChunk | :x: |
 | getCamera__28CamTranslatorWaterPlanetBossCFv | :x: |
@@ -439,6 +485,7 @@
 
 # CamTranslatorWonderPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25CamTranslatorWonderPlanetFP18CameraWonderPlanet | :x: |
 | setParam__25CamTranslatorWonderPlanetFPC16CameraParamChunk | :x: |
 | getCamera__25CamTranslatorWonderPlanetCFv | :x: |
@@ -446,6 +493,7 @@
 
 # Camera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6CameraFPCc | :white_check_mark: |
 | setZoneMtx__6CameraFl | :x: |
 | createTranslator__6CameraFv | :white_check_mark: |
@@ -468,6 +516,7 @@
 
 # CameraAnim.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set__18CamAnmDataAccessorFPvPv | :white_check_mark: |
 | getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
 | getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
@@ -502,6 +551,7 @@
 
 # CameraBehind.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__12CameraBehindFv | :x: |
 | __ct__12CameraBehindFPCc | :white_check_mark: |
 | reset__12CameraBehindFv | :x: |
@@ -512,6 +562,7 @@
 
 # CameraBlackHole.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraBlackHoleFPCc | :white_check_mark: |
 | reset__15CameraBlackHoleFv | :x: |
 | calc__15CameraBlackHoleFv | :x: |
@@ -521,6 +572,7 @@
 
 # CameraCalc.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | JMAAcosRadian__Ff | :x: |
 | crossToPolar__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPfPf | :x: |
 | polarToCross__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>fff | :x: |
@@ -534,6 +586,7 @@
 
 # CameraCharmedFix.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraCharmedFixFPCc | :white_check_mark: |
 | reset__16CameraCharmedFixFv | :x: |
 | calc__16CameraCharmedFixFv | :x: |
@@ -543,6 +596,7 @@
 
 # CameraCharmedTripodBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23CameraCharmedTripodBossFPCc | :white_check_mark: |
 | reset__23CameraCharmedTripodBossFv | :x: |
 | calc__23CameraCharmedTripodBossFv | :x: |
@@ -553,6 +607,7 @@
 
 # CameraCharmedVecReg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19CameraCharmedVecRegFPCc | :white_check_mark: |
 | reset__19CameraCharmedVecRegFv | :x: |
 | calc__19CameraCharmedVecRegFv | :x: |
@@ -562,6 +617,7 @@
 
 # CameraCharmedVecRegTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24CameraCharmedVecRegTowerFPCc | :white_check_mark: |
 | reset__24CameraCharmedVecRegTowerFv | :x: |
 | calc__24CameraCharmedVecRegTowerFv | :x: |
@@ -571,6 +627,7 @@
 
 # CameraContext.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__13CameraContextFv | :white_check_mark: |
 | __ct__13CameraContextFv | :white_check_mark: |
 | initParams__13CameraContextFv | :x: |
@@ -587,6 +644,7 @@
 
 # CameraCover.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | PI__Q29JGeometry8TUtil<f>Fv | :x: |
 | __ct__11CameraCoverFPCc | :x: |
 | movement__11CameraCoverFv | :x: |
@@ -600,6 +658,7 @@
 
 # CameraCubePlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraCubePlanetFPCc | :white_check_mark: |
 | reset__16CameraCubePlanetFv | :x: |
 | calc__16CameraCubePlanetFv | :x: |
@@ -609,6 +668,7 @@
 
 # CameraDPD.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9CameraDPDFPCc | :white_check_mark: |
 | reset__9CameraDPDFv | :x: |
 | calc__9CameraDPDFv | :x: |
@@ -621,6 +681,7 @@
 
 # CameraDead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10CameraDeadFPCc | :white_check_mark: |
 | reset__10CameraDeadFv | :x: |
 | calc__10CameraDeadFv | :x: |
@@ -632,6 +693,7 @@
 
 # CameraDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CameraDirectorFPCc | :white_check_mark: |
 | init__14CameraDirectorFRC12JMapInfoIter | :white_check_mark: |
 | movement__14CameraDirectorFv | :white_check_mark: |
@@ -717,6 +779,7 @@
 
 # CameraFix.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9CameraFixFPCc | :white_check_mark: |
 | reset__9CameraFixFv | :x: |
 | calc__9CameraFixFv | :x: |
@@ -727,6 +790,7 @@
 
 # CameraFixedPoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraFixedPointFPCc | :white_check_mark: |
 | reset__16CameraFixedPointFv | :x: |
 | calc__16CameraFixedPointFv | :x: |
@@ -737,6 +801,7 @@
 
 # CameraFixedThere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraFixedThereFPCc | :white_check_mark: |
 | reset__16CameraFixedThereFv | :x: |
 | calc__16CameraFixedThereFv | :x: |
@@ -752,6 +817,7 @@
 
 # CameraFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12CameraFollowFPCc | :white_check_mark: |
 | reset__12CameraFollowFv | :x: |
 | calc__12CameraFollowFv | :x: |
@@ -785,6 +851,7 @@
 
 # CameraFooFighter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraFooFighterFPCc | :white_check_mark: |
 | reset__16CameraFooFighterFv | :x: |
 | calc__16CameraFooFighterFv | :x: |
@@ -794,6 +861,7 @@
 
 # CameraFooFighterPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__22CameraFooFighterPlanetFv | :x: |
 | __ct__22CameraFooFighterPlanetFPCc | :white_check_mark: |
 | reset__22CameraFooFighterPlanetFv | :x: |
@@ -804,6 +872,7 @@
 
 # CameraFrontAndBack.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18CameraFrontAndBackFv | :x: |
 | __ct__18CameraFrontAndBackFPCc | :white_check_mark: |
 | reset__18CameraFrontAndBackFv | :x: |
@@ -815,6 +884,7 @@
 
 # CameraGround.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12CameraGroundFPCc | :white_check_mark: |
 | reset__12CameraGroundFv | :x: |
 | calc__12CameraGroundFv | :x: |
@@ -824,6 +894,7 @@
 
 # CameraHeightArrange.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__19CameraHeightArrangeFv | :x: |
 | __ct__19CameraHeightArrangeFP6Camera | :white_check_mark: |
 | updateJump__19CameraHeightArrangeFv | :x: |
@@ -850,6 +921,7 @@
 
 # CameraHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createCamera<14CameraParallel>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
 | createCamera<11CameraTower>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
 | createCamera<12CameraFollow>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
@@ -908,6 +980,7 @@
 
 # CameraInnerCylinder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19CameraInnerCylinderFPCc | :white_check_mark: |
 | reset__19CameraInnerCylinderFv | :x: |
 | calc__19CameraInnerCylinderFv | :x: |
@@ -917,6 +990,7 @@
 
 # CameraInwardSphere.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18CameraInwardSphereFv | :x: |
 | __ct__18CameraInwardSphereFPCc | :white_check_mark: |
 | reset__18CameraInwardSphereFv | :x: |
@@ -927,6 +1001,7 @@
 
 # CameraInwardTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__17CameraInwardTowerFv | :x: |
 | __ct__17CameraInwardTowerFPCc | :white_check_mark: |
 | reset__17CameraInwardTowerFv | :x: |
@@ -938,6 +1013,7 @@
 
 # CameraLocalUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getWatchPos__15CameraLocalUtilFPC9CameraMan | :x: |
 | getPos__15CameraLocalUtilFPC9CameraMan | :x: |
 | getUpVec__15CameraLocalUtilFPC9CameraMan | :x: |
@@ -1003,6 +1079,7 @@
 
 # CameraMan.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9CameraManFPCc | :white_check_mark: |
 | owned__9CameraManFP14CameraDirector | :white_check_mark: |
 | released__9CameraManFP14CameraDirector | :white_check_mark: |
@@ -1018,6 +1095,7 @@
 
 # CameraManEvent.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CameraManEventFP12CameraHolderP22CameraParamChunkHolderPCc | :white_check_mark: |
 | __ct__Q214CameraManEvent13ChunkFIFOItemFv | :x: |
 | init__14CameraManEventFRC12JMapInfoIter | :white_check_mark: |
@@ -1059,6 +1137,7 @@
 
 # CameraManGame.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13CameraManGameFP12CameraHolderP22CameraParamChunkHolderPCc | :white_check_mark: |
 | init__13CameraManGameFRC12JMapInfoIter | :white_check_mark: |
 | calc__13CameraManGameFv | :white_check_mark: |
@@ -1120,6 +1199,7 @@
 
 # CameraManPause.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CameraManPauseFPCc | :white_check_mark: |
 | init__14CameraManPauseFRC12JMapInfoIter | :white_check_mark: |
 | calc__14CameraManPauseFv | :x: |
@@ -1134,6 +1214,7 @@
 
 # CameraManSubjective.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19CameraManSubjectiveFPCc | :white_check_mark: |
 | init__19CameraManSubjectiveFRC12JMapInfoIter | :white_check_mark: |
 | calc__19CameraManSubjectiveFv | :white_check_mark: |
@@ -1144,6 +1225,7 @@
 
 # CameraMedianPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18CameraMedianPlanetFv | :x: |
 | __ct__18CameraMedianPlanetFPCc | :white_check_mark: |
 | reset__18CameraMedianPlanetFv | :x: |
@@ -1163,6 +1245,7 @@
 
 # CameraMedianTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CameraMedianTowerFPCc | :white_check_mark: |
 | reset__17CameraMedianTowerFv | :x: |
 | calc__17CameraMedianTowerFv | :x: |
@@ -1178,6 +1261,7 @@
 
 # CameraMtxRegParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__20CameraMtxRegParallelFv | :x: |
 | __ct__20CameraMtxRegParallelFPCc | :white_check_mark: |
 | reset__20CameraMtxRegParallelFv | :x: |
@@ -1188,6 +1272,7 @@
 
 # CameraObjParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CameraObjParallelFPCc | :white_check_mark: |
 | reset__17CameraObjParallelFv | :x: |
 | calc__17CameraObjParallelFv | :x: |
@@ -1197,6 +1282,7 @@
 
 # CameraParallel.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CameraParallelFPCc | :white_check_mark: |
 | reset__14CameraParallelFv | :x: |
 | calc__14CameraParallelFv | :x: |
@@ -1211,6 +1297,7 @@
 
 # CameraParamChunk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __as__18CameraGeneralParamFRC18CameraGeneralParam | :white_check_mark: |
 | __ct__16CameraParamChunkFP12CameraHolderRC18CameraParamChunkID | :white_check_mark: |
 | getZoneID__16CameraParamChunkCFv | :white_check_mark: |
@@ -1247,6 +1334,7 @@
 
 # CameraParamChunkHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22CameraParamChunkHolderFP12CameraHolderPCc | :white_check_mark: |
 | __dt__22CameraParamChunkHolderFv | :white_check_mark: |
 | createChunk__22CameraParamChunkHolderFRC18CameraParamChunkIDP7JKRHeap | :white_check_mark: |
@@ -1262,6 +1350,7 @@
 
 # CameraParamChunkID.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18CameraParamChunkIDFv | :white_check_mark: |
 | __ct__18CameraParamChunkIDFRC18CameraParamChunkID | :white_check_mark: |
 | __gt__18CameraParamChunkIDCFRC18CameraParamChunkID | :white_check_mark: |
@@ -1277,6 +1366,7 @@
 
 # CameraParamString.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CameraParamStringFv | :white_check_mark: |
 | __as__17CameraParamStringFRC17CameraParamString | :white_check_mark: |
 | setCharPtr__17CameraParamStringFPCc | :white_check_mark: |
@@ -1286,6 +1376,7 @@
 
 # CameraPolygonCodeUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initCameraCodeCollection__2MRFPCcl | :x: |
 | registerCameraCode__2MRFUl | :x: |
 | termCameraCodeCollection__2MRFv | :x: |
@@ -1293,11 +1384,13 @@
 
 # CameraPoseParam.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraPoseParamFv | :white_check_mark: |
 
 
 # CameraRaceFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraRaceFollowFPCc | :white_check_mark: |
 | reset__16CameraRaceFollowFv | :x: |
 | calc__16CameraRaceFollowFv | :x: |
@@ -1308,6 +1401,7 @@
 
 # CameraRailDemo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14CameraRailDemoFPCc | :white_check_mark: |
 | reset__14CameraRailDemoFv | :x: |
 | calc__14CameraRailDemoFv | :x: |
@@ -1321,6 +1415,7 @@
 
 # CameraRailFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraRailFollowFPCc | :white_check_mark: |
 | reset__16CameraRailFollowFv | :x: |
 | calc__16CameraRailFollowFv | :x: |
@@ -1331,6 +1426,7 @@
 
 # CameraRailHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraRailHolderFPCc | :x: |
 | __ct__Q216CameraRailHolder8ZoneRailFv | :white_check_mark: |
 | __as__Q216CameraRailHolder7RailSetFRCQ216CameraRailHolder7RailSet | :white_check_mark: |
@@ -1341,6 +1437,7 @@
 
 # CameraRailWatch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraRailWatchFPCc | :white_check_mark: |
 | reset__15CameraRailWatchFv | :x: |
 | calc__15CameraRailWatchFv | :x: |
@@ -1351,6 +1448,7 @@
 
 # CameraRegisterHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20CameraRegisterHolderFPCc | :white_check_mark: |
 | declareMtxReg__20CameraRegisterHolderFPCcPA4_f | :white_check_mark: |
 | getMtx__20CameraRegisterHolderCFPCc | :white_check_mark: |
@@ -1368,6 +1466,7 @@
 
 # CameraRotChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | acos__Q29JGeometry8TUtil<f>Ff | :x: |
 | __ct__16CameraRotCheckerFv | :white_check_mark: |
 | update__16CameraRotCheckerFv | :x: |
@@ -1376,6 +1475,7 @@
 
 # CameraShakePatternImpl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24CameraShakePatternSinglyFf | :white_check_mark: |
 | isEnd__24CameraShakePatternSinglyCFv | :white_check_mark: |
 | getOffset__24CameraShakePatternSinglyCFPQ29JGeometry8TVec2<f> | :white_check_mark: |
@@ -1394,6 +1494,7 @@
 
 # CameraShakeTask.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraShakeTaskFP18CameraShakePattern | :white_check_mark: |
 | start__15CameraShakeTaskFUlUl | :white_check_mark: |
 | startInfinity__15CameraShakeTaskFUl | :white_check_mark: |
@@ -1408,6 +1509,7 @@
 
 # CameraShaker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12CameraShakerFPCc | :white_check_mark: |
 | movement__12CameraShakerFv | :white_check_mark: |
 | shakeVertical__12CameraShakerFQ212CameraShaker20ESinglyVerticalPower | :white_check_mark: |
@@ -1430,6 +1532,7 @@
 
 # CameraSlide.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CameraSlideFPCc | :white_check_mark: |
 | reset__11CameraSlideFv | :x: |
 | calc__11CameraSlideFv | :x: |
@@ -1439,6 +1542,7 @@
 
 # CameraSpiral.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12CameraSpiralFPCc | :white_check_mark: |
 | reset__12CameraSpiralFv | :x: |
 | calc__12CameraSpiralFv | :x: |
@@ -1448,6 +1552,7 @@
 
 # CameraSubjective.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CameraSubjectiveFPCc | :white_check_mark: |
 | reset__16CameraSubjectiveFv | :x: |
 | calc__16CameraSubjectiveFv | :x: |
@@ -1458,6 +1563,7 @@
 
 # CameraTalk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10CameraTalkFPCc | :white_check_mark: |
 | reset__10CameraTalkFv | :x: |
 | calc__10CameraTalkFv | :x: |
@@ -1468,6 +1574,7 @@
 
 # CameraTargetArg.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraTargetArgFPC9LiveActor | :white_check_mark: |
 | setTarget__15CameraTargetArgCFv | :white_check_mark: |
 | __sinit_\CameraTargetArg_cpp | :x: |
@@ -1475,6 +1582,7 @@
 
 # CameraTargetHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18CameraTargetHolderFv | :white_check_mark: |
 | movement__18CameraTargetHolderFv | :white_check_mark: |
 | get__18CameraTargetHolderFv | :white_check_mark: |
@@ -1488,6 +1596,7 @@
 
 # CameraTargetMtx.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraTargetMtxFPCc | :white_check_mark: |
 | getPosition__15CameraTargetMtxCFv | :white_check_mark: |
 | getUpVec__15CameraTargetMtxCFv | :white_check_mark: |
@@ -1516,6 +1625,7 @@
 
 # CameraTargetObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15CameraTargetObjFPCc | :white_check_mark: |
 | __ct__17CameraTargetActorFPCc | :white_check_mark: |
 | movement__17CameraTargetActorFv | :white_check_mark: |
@@ -1565,12 +1675,14 @@
 
 # CameraTestObj.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>f | :x: |
 | identity33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv | :x: |
 
 
 # CameraTower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CameraTowerFPCc | :white_check_mark: |
 | reset__11CameraTowerFv | :x: |
 | calc__11CameraTowerFv | :x: |
@@ -1589,6 +1701,7 @@
 
 # CameraTowerBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__15CameraTowerBaseFv | :x: |
 | __ct__15CameraTowerBaseFPCc | :white_check_mark: |
 | reset__15CameraTowerBaseFv | :x: |
@@ -1603,6 +1716,7 @@
 
 # CameraTowerPos.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__14CameraTowerPosFv | :x: |
 | __ct__14CameraTowerPosFPCc | :white_check_mark: |
 | reset__14CameraTowerPosFv | :x: |
@@ -1616,6 +1730,7 @@
 
 # CameraTripodBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__16CameraTripodBossFv | :x: |
 | __ct__16CameraTripodBossFPCc | :white_check_mark: |
 | createTranslator__16CameraTripodBossFv | :x: |
@@ -1624,6 +1739,7 @@
 
 # CameraTripodBossJoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__21CameraTripodBossJointFv | :x: |
 | __ct__21CameraTripodBossJointFPCc | :white_check_mark: |
 | reset__21CameraTripodBossJointFv | :x: |
@@ -1635,6 +1751,7 @@
 
 # CameraTripodPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18CameraTripodPlanetFPCc | :white_check_mark: |
 | reset__18CameraTripodPlanetFv | :x: |
 | calc__18CameraTripodPlanetFv | :x: |
@@ -1644,6 +1761,7 @@
 
 # CameraTrundle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13CameraTrundleFPCc | :white_check_mark: |
 | reset__13CameraTrundleFv | :x: |
 | calc__13CameraTrundleFv | :x: |
@@ -1653,6 +1771,7 @@
 
 # CameraTwistedPassage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20CameraTwistedPassageFPCc | :white_check_mark: |
 | reset__20CameraTwistedPassageFv | :x: |
 | calc__20CameraTwistedPassageFv | :x: |
@@ -1666,6 +1785,7 @@
 
 # CameraViewInterpolator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22CameraViewInterpolatorFv | :x: |
 | updateCameraMtx__22CameraViewInterpolatorFPA4_fRCQ29JGeometry8TVec3<f>PC15CameraTargetObjf | :x: |
 | setInterpolation__22CameraViewInterpolatorFUl | :x: |
@@ -1683,6 +1803,7 @@
 
 # CameraWaterFollow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CameraWaterFollowFPCc | :white_check_mark: |
 | reset__17CameraWaterFollowFv | :x: |
 | calc__17CameraWaterFollowFv | :x: |
@@ -1693,6 +1814,7 @@
 
 # CameraWaterPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CameraWaterPlanetFPCc | :white_check_mark: |
 | reset__17CameraWaterPlanetFv | :x: |
 | calc__17CameraWaterPlanetFv | :x: |
@@ -1702,6 +1824,7 @@
 
 # CameraWaterPlanetBoss.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21CameraWaterPlanetBossFPCc | :white_check_mark: |
 | reset__21CameraWaterPlanetBossFv | :x: |
 | calc__21CameraWaterPlanetBossFv | :x: |
@@ -1712,6 +1835,7 @@
 
 # CameraWonderPlanet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__18CameraWonderPlanetFv | :x: |
 | __ct__18CameraWonderPlanetFPCc | :white_check_mark: |
 | reset__18CameraWonderPlanetFv | :x: |
@@ -1725,6 +1849,7 @@
 
 # DotCamParams.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17DotCamReaderInBinFPCv | :white_check_mark: |
 | __dt__17DotCamReaderInBinFv | :x: |
 | hasMoreChunk__17DotCamReaderInBinCFv | :x: |
@@ -1740,6 +1865,7 @@
 
 # GameCameraCreator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17GameCameraCreatorFP22CameraParamChunkHolder | :white_check_mark: |
 | initCameraCodeCollection__17GameCameraCreatorFPCcl | :white_check_mark: |
 | registerCameraCode__17GameCameraCreatorFUl | :white_check_mark: |

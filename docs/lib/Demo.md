@@ -35,6 +35,7 @@
 
 # AstroDomeDemoStarter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20AstroDomeDemoStarterFPCc | :x: |
 | init__20AstroDomeDemoStarterFRC12JMapInfoIter | :x: |
 | startJumpOut__20AstroDomeDemoStarterFv | :x: |
@@ -64,6 +65,7 @@
 
 # AstroDemoFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getOpenedAstroDomeNum__17AstroDemoFunctionFv | :x: |
 | getGrandStarReturnDemoName__17AstroDemoFunctionFi | :x: |
 | getActiveGrandStarReturnDemoIndex__17AstroDemoFunctionFv | :x: |
@@ -80,6 +82,7 @@
 
 # DemoActionKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<l>__8JMapInfoCFiPCcPl_Cb | :x: |
 | getValue<PCc>__8JMapInfoCFiPCcPPCc_Cb | :x: |
 | findTalkMessageCtrl__30@unnamed@DemoActionKeeper_cpp@FP9LiveActor | :x: |
@@ -103,6 +106,7 @@
 
 # DemoCameraFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isCameraTargetMario__18DemoCameraFunctionFPC14DemoCameraInfo | :x: |
 | setStringNullIfEmpty__18DemoCameraFunctionFPPCc | :x: |
 | makeAnimCameraName__18DemoCameraFunctionFPcUlPC14DemoCameraInfo | :x: |
@@ -110,6 +114,7 @@
 
 # DemoCameraKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DemoCameraInfoFv | :x: |
 | initCast__16DemoCameraKeeperFP9LiveActorRC12JMapInfoIter | :x: |
 | start__16DemoCameraKeeperFv | :x: |
@@ -125,6 +130,7 @@
 
 # DemoCastGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13DemoCastGroupFPCc | :white_check_mark: |
 | tryRegisterDemoActor__13DemoCastGroupFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo | :white_check_mark: |
 | tryRegisterDemoActor__13DemoCastGroupFP9LiveActorPCcRC12JMapInfoIter | :white_check_mark: |
@@ -136,6 +142,7 @@
 
 # DemoCastGroupHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19DemoCastGroupHolderFv | :white_check_mark: |
 | tryRegisterDemoActor__19DemoCastGroupHolderCFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo | :white_check_mark: |
 | tryRegisterDemoActor__19DemoCastGroupHolderCFP9LiveActorPCcRC12JMapInfoIter | :white_check_mark: |
@@ -146,6 +153,7 @@
 
 # DemoCastSubGroup.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DemoCastSubGroupFPCc | :x: |
 | init__16DemoCastSubGroupFRC12JMapInfoIter | :x: |
 | tryRegisterDemoActor__16DemoCastSubGroupFP9LiveActorRC12JMapInfoIterRC10JMapIdInfo | :x: |
@@ -154,6 +162,7 @@
 
 # DemoCtrlBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12DemoCtrlBaseFP9LiveActorPCc | :x: |
 | init__12DemoCtrlBaseFRC12JMapInfoIter | :x: |
 | end__12DemoCtrlBaseFv | :x: |
@@ -165,6 +174,7 @@
 
 # DemoDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12DemoDirectorFPCc | :x: |
 | movement__12DemoDirectorFv | :x: |
 | startDemoProgrammable__12DemoDirectorFP7NameObjPCcbl | :x: |
@@ -187,6 +197,7 @@
 
 # DemoExecutor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12DemoExecutorFPCc | :x: |
 | init__12DemoExecutorFRC12JMapInfoIter | :x: |
 | registerDemoActor__12DemoExecutorFP9LiveActorRC12JMapInfoIter | :x: |
@@ -219,6 +230,7 @@
 
 # DemoExecutorFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | registerDemoActionFunction__20DemoExecutorFunctionFPC12DemoExecutorPC9LiveActorRCQ22MR11FunctorBasePCc | :x: |
 | registerDemoActionNerve__20DemoExecutorFunctionFPC12DemoExecutorPC9LiveActorPC5NervePCc | :x: |
 | isExistDemoPart__20DemoExecutorFunctionFPC12DemoExecutorPCc | :x: |
@@ -239,6 +251,7 @@
 
 # DemoFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getDemoDirector__12DemoFunctionFv | :x: |
 | getDemoCastSubGroupHolder__12DemoFunctionFv | :x: |
 | registerDemoSimpleCastAllFunction__12DemoFunctionFP9LiveActor | :x: |
@@ -291,6 +304,7 @@
 
 # DemoKoopaJrShip.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15DemoKoopaJrShipFPCc | :x: |
 | init__15DemoKoopaJrShipFRC12JMapInfoIter | :x: |
 | appear__15DemoKoopaJrShipFv | :x: |
@@ -315,12 +329,14 @@
 
 # DemoPadRumbler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DemoPadRumblerFPCc | :x: |
 | update__14DemoPadRumblerFl | :x: |
 
 
 # DemoParamCommonDataTable.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getParam__38@unnamed@DemoParamCommonDataTable_cpp@FPCc | :x: |
 | getCameraShakeIntensity__Q22MR4DemoFPCc | :x: |
 | getCameraShakeSpeed__Q22MR4DemoFPCc | :x: |
@@ -332,6 +348,7 @@
 
 # DemoPlayerKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DemoPlayerKeeperFPC12DemoExecutor | :x: |
 | __ct__14DemoPlayerInfoFv | :x: |
 | update__16DemoPlayerKeeperFv | :x: |
@@ -341,6 +358,7 @@
 
 # DemoPositionController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22DemoPositionControllerFPCcRC12JMapInfoIter | :x: |
 | control__22DemoPositionControllerFv | :x: |
 | initAnimCamera__22DemoPositionControllerFPCc | :x: |
@@ -351,6 +369,7 @@
 
 # DemoSimpleCastHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20DemoSimpleCastHolderFlll | :white_check_mark: |
 | registerActor__20DemoSimpleCastHolderFP9LiveActor | :white_check_mark: |
 | registerActor__20DemoSimpleCastHolderFP11LayoutActor | :white_check_mark: |
@@ -361,6 +380,7 @@
 
 # DemoSoundKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13DemoSoundInfoFv | :x: |
 | __ct__15DemoSoundKeeperFP12DemoExecutor | :x: |
 | update__15DemoSoundKeeperFv | :x: |
@@ -375,6 +395,7 @@
 
 # DemoStartRequestHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13DemoStartInfoFv | :x: |
 | __as__13DemoStartInfoFRC13DemoStartInfo | :x: |
 | pushRequest__22DemoStartRequestHolderFP9LiveActorPCc | :x: |
@@ -398,6 +419,7 @@
 
 # DemoStartRequestUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startDemoSystem__20DemoStartRequestUtilFP7NameObjPCclQ213DemoStartInfo8DemoTypeQ213DemoStartInfo15CinemaFrameTypeQ213DemoStartInfo15StarPointerTypeQ213DemoStartInfo16DeleteEffectTypePCc | :x: |
 | startDemoSystem__20DemoStartRequestUtilFP9LiveActorPCclQ213DemoStartInfo8DemoTypeQ213DemoStartInfo15CinemaFrameTypeQ213DemoStartInfo15StarPointerTypeQ213DemoStartInfo16DeleteEffectTypePCc | :x: |
 | startDemoSystem__20DemoStartRequestUtilFP11LayoutActorPCclQ213DemoStartInfo8DemoTypeQ213DemoStartInfo15CinemaFrameTypeQ213DemoStartInfo15StarPointerTypeQ213DemoStartInfo16DeleteEffectTypePCc | :x: |
@@ -421,6 +443,7 @@
 
 # DemoSubPartKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17DemoSubPartKeeperFPC12DemoExecutor | :x: |
 | __ct__15DemoSubPartInfoFv | :x: |
 | update__17DemoSubPartKeeperFv | :x: |
@@ -433,6 +456,7 @@
 
 # DemoTalkAnimCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16DemoTalkAnimCtrlFP9LiveActorPCcPCc | :x: |
 | initForScene__16DemoTalkAnimCtrlFPCcPCcRC12JMapInfoIter | :x: |
 | updateCamera__16DemoTalkAnimCtrlFv | :x: |
@@ -451,6 +475,7 @@
 
 # DemoTimeKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14DemoTimeKeeperFPC12DemoExecutor | :x: |
 | __ct__16DemoTimePartInfoFv | :x: |
 | start__14DemoTimeKeeperFv | :x: |
@@ -466,6 +491,7 @@
 
 # DemoWipeKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12DemoWipeInfoFv | :x: |
 | __ct__14DemoWipeKeeperFP12DemoExecutor | :x: |
 | start__14DemoWipeKeeperFv | :x: |
@@ -480,6 +506,7 @@
 
 # GrandStarReturnDemoStarter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | __ct__26GrandStarReturnDemoStarterFPCc | :x: |
 | init__26GrandStarReturnDemoStarterFRC12JMapInfoIter | :x: |
@@ -516,6 +543,7 @@
 
 # PrologueDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16PrologueDirectorFPCc | :x: |
 | init__16PrologueDirectorFRC12JMapInfoIter | :x: |
 | initAfterPlacement__16PrologueDirectorFv | :x: |
@@ -563,6 +591,7 @@
 
 # ReturnDemoRailMove.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setResultFlyStartFrame__32@unnamed@ReturnDemoRailMove_cpp@FP9LiveActorl | :x: |
 | __ct__18ReturnDemoRailMoveFP9LiveActorP9LiveActorRC12JMapInfoIterbPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | posToStart__18ReturnDemoRailMoveFv | :x: |
@@ -577,6 +606,7 @@
 
 # ScenarioStarter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15ScenarioStarterFPCc | :x: |
 | init__15ScenarioStarterFRC12JMapInfoIter | :x: |
 | exeWaitToStart__15ScenarioStarterFv | :x: |

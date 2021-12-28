@@ -72,7 +72,7 @@
 | TalkBalloon.o | 0.0% | 0 / 69 |
 | TalkDirector.o | 0.0% | 0 / 62 |
 | TalkMessageCtrl.o | 0.0% | 0 / 43 |
-| TalkMessageInfo.o | 0.0% | 0 / 14 |
+| TalkMessageInfo.o | 100.0% | 14 / 14 |
 | TalkNodeCtrl.o | 0.0% | 0 / 23 |
 | TurnJointCtrl.o | 0.0% | 0 / 20 |
 | TalkState.o | 0.0% | 0 / 31 |
@@ -82,6 +82,7 @@
 
 # Butler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6ButlerFPCc | :x: |
 | __dt__8NPCActorFv | :x: |
 | init__6ButlerFRC12JMapInfoIter | :x: |
@@ -139,6 +140,7 @@
 
 # ButlerExplain.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ButlerExplainFPCc | :x: |
 | init__13ButlerExplainFRC12JMapInfoIter | :x: |
 | control__13ButlerExplainFv | :x: |
@@ -153,6 +155,7 @@
 
 # ButlerMap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9ButlerMapFPCc | :x: |
 | init__9ButlerMapFRC12JMapInfoIter | :x: |
 | appear__9ButlerMapFv | :x: |
@@ -188,6 +191,7 @@
 
 # ButlerStateStarPieceReaction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__28ButlerStateStarPieceReactionFP9LiveActorRC12JMapInfoIterPCc | :x: |
 | init__28ButlerStateStarPieceReactionFv | :x: |
 | appear__28ButlerStateStarPieceReactionFv | :x: |
@@ -200,6 +204,7 @@
 
 # CareTaker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9CaretakerFPCc | :x: |
 | makeArchiveList__9CaretakerFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | init__9CaretakerFRC12JMapInfoIter | :x: |
@@ -269,6 +274,7 @@
 
 # CollectTico.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CollectTicoFPCc | :x: |
 | init__11CollectTicoFRC12JMapInfoIter | :x: |
 | exeWait__11CollectTicoFv | :x: |
@@ -295,6 +301,7 @@
 
 # DemoRabbit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10DemoRabbitFPCc | :x: |
 | makeArchiveList__10DemoRabbitFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | init__10DemoRabbitFRC12JMapInfoIter | :x: |
@@ -347,6 +354,7 @@
 
 # HoneyBee.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8HoneyBeeFPCc | :x: |
 | makeArchiveList__8HoneyBeeFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | init__8HoneyBeeFRC12JMapInfoIter | :x: |
@@ -379,6 +387,7 @@
 
 # HoneyQueen.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10HoneyQueenFPCc | :x: |
 | init__10HoneyQueenFRC12JMapInfoIter | :x: |
 | control__10HoneyQueenFv | :x: |
@@ -418,6 +427,7 @@
 
 # Kinopio.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q221@unnamed@Kinopio_cpp@5ParamFv | :x: |
 | __ct__7KinopioFPCc | :x: |
 | init__7KinopioFRC12JMapInfoIter | :x: |
@@ -487,6 +497,7 @@
 
 # KinopioAstro.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12KinopioAstroFPCc | :x: |
 | makeArchiveList__12KinopioAstroFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | dispLetter__12KinopioAstroCFP11LayoutActor | :x: |
@@ -513,6 +524,7 @@
 
 # KoopaJr.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7KoopaJrFPCc | :x: |
 | init__7KoopaJrFRC12JMapInfoIter | :x: |
 | kill__7KoopaJrFv | :x: |
@@ -558,6 +570,7 @@
 
 # LuigiNPC.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8LuigiNPCFPCc | :x: |
 | makeArchiveList__8LuigiNPCFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | branchFunc__8LuigiNPCFUl | :x: |
@@ -620,6 +633,7 @@
 
 # MiiDatabase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__11MiiDatabaseFv | :x: |
 | __dt__13JKRFileFinderFv | :x: |
 | __dt__Q22MR32AssignableArray<P12RFLStoreData>Fv | :x: |
@@ -627,6 +641,7 @@
 
 # MiiFaceIcon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11MiiFaceIconFUsUsRC13MiiFaceRecipePCc | :x: |
 | init__11MiiFaceIconFRC12JMapInfoIter | :x: |
 | movement__11MiiFaceIconFv | :x: |
@@ -639,6 +654,7 @@
 
 # MiiFaceIconHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17MiiFaceIconHolderFUlPCc | :x: |
 | drawIcons__17MiiFaceIconHolderFv | :x: |
 | registerIcon__17MiiFaceIconHolderFP11MiiFaceIcon | :x: |
@@ -650,6 +666,7 @@
 
 # MiiFaceParts.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12MiiFacePartsFPCcRC13MiiFaceRecipe | :x: |
 | __dt__12MiiFacePartsFv | :x: |
 | init__12MiiFacePartsFRC12JMapInfoIter | :x: |
@@ -667,6 +684,7 @@
 
 # MiiFacePartsHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18MiiFacePartsHolderFi | :white_check_mark: |
 | __dt__18MiiFacePartsHolderFv | :x: |
 | init__18MiiFacePartsHolderFRC12JMapInfoIter | :x: |
@@ -691,6 +709,7 @@
 
 # MiiFaceRecipe.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13MiiFaceRecipeF13RFLDataSourcei13RFLResolutionUl | :white_check_mark: |
 | setDatabase__13MiiFaceRecipeFP11RFLMiddleDB | :white_check_mark: |
 | hasExpression__13MiiFaceRecipeCF13RFLExpression | :white_check_mark: |
@@ -702,6 +721,7 @@
 
 # Peach.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5PeachFPCc | :x: |
 | init__5PeachFRC12JMapInfoIter | :x: |
 | exeWait__5PeachFv | :x: |
@@ -713,6 +733,7 @@
 
 # Penguin.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15RemovableTurtleFP9LiveActorb | :x: |
 | isPullRange__15RemovableTurtleCFv | :x: |
 | tryRemove__15RemovableTurtleFv | :x: |
@@ -744,6 +765,7 @@
 
 # PenguinCoach.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12PenguinCoachFPCc | :x: |
 | init__12PenguinCoachFRC12JMapInfoIter | :x: |
 | initAfterPlacement__12PenguinCoachFv | :x: |
@@ -788,6 +810,7 @@
 
 # PenguinMaster.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13PenguinMasterFPCc | :x: |
 | init__13PenguinMasterFRC12JMapInfoIter | :x: |
 | receiveMsgPlayerAttack__13PenguinMasterFUlP9HitSensorP9HitSensor | :x: |
@@ -802,6 +825,7 @@
 
 # PenguinRacer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12PenguinRacerFPCc | :x: |
 | init__12PenguinRacerFRC12JMapInfoIter | :x: |
 | initModel__12PenguinRacerFv | :x: |
@@ -870,6 +894,7 @@
 
 # PenguinRacerLeader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18PenguinRacerLeaderFPCc | :x: |
 | init__18PenguinRacerLeaderFRC12JMapInfoIter | :x: |
 | branchFunc__18PenguinRacerLeaderFUl | :x: |
@@ -904,6 +929,7 @@
 
 # PenguinSkater.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13PenguinSkaterFPCc | :x: |
 | init__13PenguinSkaterFRC12JMapInfoIter | :x: |
 | initAfterPlacement__13PenguinSkaterFv | :x: |
@@ -962,6 +988,7 @@
 
 # PenguinStudent.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14PenguinStudentFPCc | :x: |
 | init__14PenguinStudentFRC12JMapInfoIter | :x: |
 | initAfterPlacement__14PenguinStudentFv | :x: |
@@ -988,6 +1015,7 @@
 
 # PowerStarEventKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20PowerStarEventKeeperFv | :x: |
 | initStarInfoTable__20PowerStarEventKeeperFv | :x: |
 | findStarID__20PowerStarEventKeeperCFPCc | :x: |
@@ -1004,6 +1032,7 @@
 
 # Rabbit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6RabbitFPCc | :x: |
 | init__6RabbitFRC12JMapInfoIter | :x: |
 | control__6RabbitFv | :x: |
@@ -1062,6 +1091,7 @@
 
 # RabbitStateCaught.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17RabbitStateCaughtFP9LiveActorP15TalkMessageCtrl | :x: |
 | unusePowerStarModel__17RabbitStateCaughtFv | :x: |
 | init__17RabbitStateCaughtFv | :x: |
@@ -1086,6 +1116,7 @@
 
 # RabbitStateWaitStart.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20RabbitStateWaitStartFP9LiveActorPQ29JGeometry8TVec3<f>P15TalkMessageCtrl | :x: |
 | setTalkActionName__20RabbitStateWaitStartFPCc | :x: |
 | init__20RabbitStateWaitStartFv | :x: |
@@ -1127,6 +1158,7 @@
 
 # Rosetta.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7RosettaFPCc | :x: |
 | __dt__11FadeStarterFv | :x: |
 | makeArchiveList__7RosettaFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
@@ -1156,6 +1188,7 @@
 
 # RosettaDemoAstroDome.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16RosettaMonologueFv | :x: |
 | __dt__12SimpleLayoutFv | :x: |
 | appear__16RosettaMonologueFv | :x: |
@@ -1193,6 +1226,7 @@
 
 # RosettaDemoEpilogue.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19RosettaDemoEpilogueFP7RosettaRC12JMapInfoIter | :x: |
 | startDemo__19RosettaDemoEpilogueFv | :x: |
 | exeDemo__19RosettaDemoEpilogueFv | :x: |
@@ -1206,6 +1240,7 @@
 
 # RosettaDemoHeavensDoor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23RosettaDemoHeavensDoor1FP7RosettaRC12JMapInfoIter | :x: |
 | makeArchiveList__23RosettaDemoHeavensDoor1FP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | preDemo__23RosettaDemoHeavensDoor1Fv | :x: |
@@ -1243,6 +1278,7 @@
 
 # RosettaReading.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14RosettaReadingFPCc | :x: |
 | init__14RosettaReadingFRC12JMapInfoIter | :x: |
 | appear__14RosettaReadingFv | :x: |
@@ -1263,6 +1299,7 @@
 
 # RunawayRabbit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13RunawayRabbitFPCcP20RunawayRabbitCollect | :x: |
 | init__13RunawayRabbitFRC12JMapInfoIter | :x: |
 | initAfterPlacement__13RunawayRabbitFv | :x: |
@@ -1328,6 +1365,7 @@
 
 # RunawayRabbitCollect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20RunawayRabbitCollectFPCc | :x: |
 | init__20RunawayRabbitCollectFRC12JMapInfoIter | :x: |
 | initAfterPlacement__20RunawayRabbitCollectFv | :x: |
@@ -1349,6 +1387,7 @@
 
 # RunawayTico.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11RunawayTicoFPCc | :x: |
 | __dt__4TicoFv | :x: |
 | makeArchiveList__11RunawayTicoFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
@@ -1392,6 +1431,7 @@
 
 # SignBoard.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9SignBoardFPCc | :x: |
 | init__9SignBoardFRC12JMapInfoIter | :x: |
 | control__9SignBoardFv | :x: |
@@ -1404,6 +1444,7 @@
 
 # StrayTico.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9StrayTicoFPCcP11CollectTico | :x: |
 | init__9StrayTicoFRC12JMapInfoIter | :x: |
 | initSensor__9StrayTicoFv | :x: |
@@ -1444,6 +1485,7 @@
 
 # Syati.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setEulerZ__Q29JGeometry9TQuat4<f>Ff | :x: |
 | __ct__5SyatiFPCc | :x: |
 | init__5SyatiFRC12JMapInfoIter | :x: |
@@ -1536,6 +1578,7 @@
 
 # TeresaRacer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TeresaRacerFPCc | :x: |
 | init__11TeresaRacerFRC12JMapInfoIter | :x: |
 | control__11TeresaRacerFv | :x: |
@@ -1591,6 +1634,7 @@
 
 # Tico.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__4TicoFPCc | :x: |
 | makeArchiveList__4TicoFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | initBase__4TicoFl | :x: |
@@ -1666,6 +1710,7 @@
 
 # TicoAstro.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9TicoAstroFPCc | :x: |
 | init__9TicoAstroFRC12JMapInfoIter | :x: |
 | __dt__9TicoAstroFv | :x: |
@@ -1673,6 +1718,7 @@
 
 # TicoComet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q223@unnamed@TicoComet_cpp@12TicoEatParamFv | :x: |
 | __ct__7TicoEatFPCc | :x: |
 | init__7TicoEatFRC12JMapInfoIter | :x: |
@@ -1723,6 +1769,7 @@
 
 # TicoDemoGetPower.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16TicoDemoGetPowerFP4TicoRC12JMapInfoIter | :x: |
 | startDemo__16TicoDemoGetPowerFv | :x: |
 | exeDemo__16TicoDemoGetPowerFv | :x: |
@@ -1738,6 +1785,7 @@
 
 # TicoDomeLecture.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15TicoDomeLectureFPCc | :x: |
 | init__15TicoDomeLectureFRC12JMapInfoIter | :x: |
 | appear__15TicoDomeLectureFv | :x: |
@@ -1756,6 +1804,7 @@
 
 # TicoFat.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q221@unnamed@TicoFat_cpp@12TicoFatParamFv | :x: |
 | getActionName__7TicoFatFPCc | :x: |
 | __ct__7TicoFatFPCc | :x: |
@@ -1842,6 +1891,7 @@
 
 # TicoGalaxy.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10TicoGalaxyFPCc | :x: |
 | init__10TicoGalaxyFRC12JMapInfoIter | :x: |
 | initAfterPlacement__10TicoGalaxyFv | :x: |
@@ -1857,6 +1907,7 @@
 
 # TicoRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8TicoRailFPCc | :x: |
 | init__8TicoRailFRC12JMapInfoIter | :x: |
 | exeWait__8TicoRailFv | :x: |
@@ -1901,6 +1952,7 @@
 
 # TicoReading.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TicoReadingFPCc | :x: |
 | init__11TicoReadingFRC12JMapInfoIter | :x: |
 | appear__11TicoReadingFv | :x: |
@@ -1913,6 +1965,7 @@
 
 # TicoShop.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8TicoShopFPCc | :x: |
 | kill__8TicoShopFv | :x: |
 | init__8TicoShopFRC12JMapInfoIter | :x: |
@@ -1933,6 +1986,7 @@
 
 # TicoStarRing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12TicoStarRingFPCc | :x: |
 | init__12TicoStarRingFRC12JMapInfoIter | :x: |
 | kill__12TicoStarRingFv | :x: |
@@ -1946,6 +2000,7 @@
 
 # TrickRabbit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TrickRabbitFPCc | :x: |
 | init__11TrickRabbitFRC12JMapInfoIter | :x: |
 | initAfterPlacement__11TrickRabbitFv | :x: |
@@ -2078,6 +2133,7 @@
 
 # TrickRabbitFreeRun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18TrickRabbitFreeRunFPCc | :x: |
 | init__18TrickRabbitFreeRunFRC12JMapInfoIter | :x: |
 | initAfterPlacement__18TrickRabbitFreeRunFv | :x: |
@@ -2123,6 +2179,7 @@
 
 # TrickRabbitSnowCollect.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22TrickRabbitSnowCollectFPCc | :x: |
 | init__22TrickRabbitSnowCollectFRC12JMapInfoIter | :x: |
 | initRabbits__22TrickRabbitSnowCollectFRC12JMapInfoIter | :x: |
@@ -2188,6 +2245,7 @@
 
 # TrickRabbitSnow.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct<f>__Q29JGeometry9TQuat4<f>Fffff_Pv | :x: |
 | __ct__23TrickRabbitSnowListenerFv | :x: |
 | __ct__15TrickRabbitSnowFPCc | :x: |
@@ -2251,11 +2309,13 @@
 
 # TrickRabbitUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createRabbitFootPrint__15TrickRabbitUtilFP9LiveActor | :x: |
 
 
 # CometEventExecutorTimeLimit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27CometEventExecutorTimeLimitFUl | :x: |
 | init__27CometEventExecutorTimeLimitFRC12JMapInfoIter | :x: |
 | appear__27CometEventExecutorTimeLimitFv | :x: |
@@ -2270,6 +2330,7 @@
 
 # CometEventKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16CometEventKeeperFv | :x: |
 | init__16CometEventKeeperFv | :x: |
 | isStartEvent__16CometEventKeeperCFPCc | :x: |
@@ -2282,6 +2343,7 @@
 
 # EventDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13EventDirectorFv | :x: |
 | init__13EventDirectorFRC12JMapInfoIter | :x: |
 | declareEventPowerStar__2MRFPCclb | :x: |
@@ -2303,6 +2365,7 @@
 
 # NPCActor.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q222@unnamed@NPCActor_cpp@8NPCParamFv | :x: |
 | __ct__12NPCActorCapsFPCc | :x: |
 | setDefault__12NPCActorCapsFv | :x: |
@@ -2361,6 +2424,7 @@
 
 # NPCParameter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16NPCParameterEditFPCcPPCcb | :x: |
 | read__16NPCParameterEditFP8JMapInfol | :x: |
 | __ct__16NPCParameterBoolFPCcPb | :x: |
@@ -2385,6 +2449,7 @@
 
 # NPCDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11NPCDirectorFv | :x: |
 | init__11NPCDirectorFRC12JMapInfoIter | :x: |
 | __dt__11NPCDirectorFv | :x: |
@@ -2392,6 +2457,7 @@
 
 # NPCFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createNPCData__11NPCFunctionFv | :x: |
 | deleteNPCData__11NPCFunctionFv | :x: |
 | getNPCItemData__11NPCFunctionFP12NPCActorIteml | :x: |
@@ -2399,6 +2465,7 @@
 
 # NPCSupportRail.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14NPCSupportRailFPCc | :x: |
 | init__14NPCSupportRailFRC12JMapInfoIter | :x: |
 | __dt__14NPCSupportRailFv | :x: |
@@ -2406,11 +2473,13 @@
 
 # StageStateKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16StageStateKeeperFv | :x: |
 
 
 # TalkBalloon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TalkBalloonFPCc | :x: |
 | create__11TalkBalloonFPCcbb | :x: |
 | init__11TalkBalloonFRC12JMapInfoIter | :x: |
@@ -2484,6 +2553,7 @@
 
 # TalkDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9TalkPeekZFv | :x: |
 | setDrawSyncToken__9TalkPeekZFv | :x: |
 | drawSyncCallback__9TalkPeekZFUs | :x: |
@@ -2550,6 +2620,7 @@
 
 # TalkMessageCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isNodeEventContinue__29@unnamed@TalkMessageCtrl_cpp@FPCQ213MessageSystem13FlowNodeEvent | :x: |
 | createMessage__15TalkMessageCtrlFRC12JMapInfoIterPCc | :x: |
 | createMessageDirect__15TalkMessageCtrlFRC12JMapInfoIterPCc | :x: |
@@ -2597,24 +2668,26 @@
 
 # TalkMessageInfo.o
 | Symbol | Decompiled? |
-| __ct__15TalkMessageInfoFv | :x: |
-| isNormalTalk__15TalkMessageInfoCFv | :x: |
-| isShortTalk__15TalkMessageInfoCFv | :x: |
-| isEventTalk__15TalkMessageInfoCFv | :x: |
-| isComposeTalk__15TalkMessageInfoCFv | :x: |
-| isFlowTalk__15TalkMessageInfoCFv | :x: |
-| isNullTalk__15TalkMessageInfoCFv | :x: |
-| isBalloonCall__15TalkMessageInfoCFv | :x: |
-| isBalloonFix__15TalkMessageInfoCFv | :x: |
-| isBalloonSign__15TalkMessageInfoCFv | :x: |
-| isBalloonInfo__15TalkMessageInfoCFv | :x: |
-| isBalloonIcon__15TalkMessageInfoCFv | :x: |
-| isCameraNormal__15TalkMessageInfoCFv | :x: |
-| isCameraEvent__15TalkMessageInfoCFv | :x: |
+| ------------- | ------------- |
+| __ct__15TalkMessageInfoFv | :white_check_mark: |
+| isNormalTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isShortTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isEventTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isComposeTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isFlowTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isNullTalk__15TalkMessageInfoCFv | :white_check_mark: |
+| isBalloonCall__15TalkMessageInfoCFv | :white_check_mark: |
+| isBalloonFix__15TalkMessageInfoCFv | :white_check_mark: |
+| isBalloonSign__15TalkMessageInfoCFv | :white_check_mark: |
+| isBalloonInfo__15TalkMessageInfoCFv | :white_check_mark: |
+| isBalloonIcon__15TalkMessageInfoCFv | :white_check_mark: |
+| isCameraNormal__15TalkMessageInfoCFv | :white_check_mark: |
+| isCameraEvent__15TalkMessageInfoCFv | :white_check_mark: |
 
 
 # TalkNodeCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | entry__18TalkMessageHistoryFUs | :x: |
 | search__18TalkMessageHistoryCFUs | :x: |
 | __ct__12TalkNodeCtrlFv | :x: |
@@ -2642,6 +2715,7 @@
 
 # TurnJointCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | makeMtxRotVecDegree__27@unnamed@TurnJointCtrl_cpp@FPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__13TurnJointCtrlFP9LiveActor | :x: |
 | init__13TurnJointCtrlFfff | :x: |
@@ -2666,6 +2740,7 @@
 
 # TalkState.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__9TalkStateFP15TalkMessageCtrlP11TalkBalloon | :x: |
 | isLostMessage__9TalkStateCFPC15TalkMessageCtrl | :x: |
 | balloonOff__9TalkStateCFv | :x: |
@@ -2701,6 +2776,7 @@
 
 # TalkSupportPlayerWatcher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__24TalkSupportPlayerWatcherFv | :x: |
 | update__24TalkSupportPlayerWatcherFv | :x: |
 | isEnableTalkPlayerStateNormal__24TalkSupportPlayerWatcherCFv | :x: |
@@ -2710,6 +2786,7 @@
 
 # TalkTextFormer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getTextBoxPane__28@unnamed@TalkTextFormer_cpp@FP11LayoutActorPCc | :x: |
 | initTagProcessorRecursive__2MRFP11LayoutActorPCcl | :x: |
 | nextStepTagProcessorRecursive__2MRFP11LayoutActorPCc | :x: |

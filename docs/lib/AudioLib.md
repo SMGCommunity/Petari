@@ -36,6 +36,7 @@
 
 # AudSystem.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__7JASHeapFv | :x: |
 | sub__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | set__Q29JGeometry13SMatrix34C<f>FPA4_Cf | :x: |
@@ -154,6 +155,7 @@
 
 # AudSystemVolumeController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__25AudSystemVolumeControllerFP9AudSystem | :x: |
 | init__25AudSystemVolumeControllerFv | :x: |
 | update__25AudSystemVolumeControllerFv | :x: |
@@ -168,12 +170,14 @@
 
 # AudAudience.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | updateSetting__23AudAudience_withSettingFv | :x: |
 | __ct__23AudAudience_withSettingFv | :x: |
 
 
 # AudSoundInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSoundSw__12AudSoundInfoCF10JAISoundID | :x: |
 | isLimitNumPlaying__12AudSoundInfoCF10JAISoundID | :x: |
 | isLimitCountPlaying__12AudSoundInfoCF10JAISoundID | :x: |
@@ -186,6 +190,7 @@
 
 # AudWrap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSystem__7AudWrapFv | :x: |
 | getSoundInfo__7AudWrapFv | :x: |
 | getSceneMgr__7AudWrapFv | :x: |
@@ -209,6 +214,7 @@
 
 # AudSoundObject.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14AudSoundObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap | :x: |
 | __dt__14AudSoundObjectFv | :x: |
 | addToSoundObjHolder__14AudSoundObjectFv | :x: |
@@ -241,23 +247,27 @@
 
 # AudSoundObject_Kawamura.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | modifySe_Kawamura__14AudSoundObjectFP14JAISoundHandlel | :x: |
 | modifyLimitedSound_Kawamura__14AudSoundObjectF10JAISoundID | :x: |
 
 
 # AudSoundObject_Takezawa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | modifySe_Takezawa__14AudSoundObjectFP14JAISoundHandlell | :x: |
 | modifyLimitedSound_Takezawa__14AudSoundObjectF10JAISoundID | :x: |
 
 
 # AudSoundObject_Gohara.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | modifySe_Gohara__14AudSoundObjectFP14JAISoundHandlell | :x: |
 
 
 # AudAnmSoundObject.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17AudAnmSoundObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap | :x: |
 | update__17AudAnmSoundObjectFf | :x: |
 | modifySoundParams__17AudAnmSoundObjectFP14JASSoundParamsPC22JAUSoundAnimationSoundf | :x: |
@@ -282,6 +292,7 @@
 
 # AudBgm.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6AudBgmFv | :x: |
 | resetAuxVolume__6AudBgmFv | :x: |
 | __ct__12AudSingleBgmFv | :x: |
@@ -343,6 +354,7 @@
 
 # AudBgmKeeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12AudBgmKeeperFv | :x: |
 | get__12AudBgmKeeperFQ212AudBgmKeeper7BgmType | :x: |
 | release__12AudBgmKeeperFP6AudBgm | :x: |
@@ -352,6 +364,7 @@
 
 # AudBgmMgr.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9AudBgmMgrFv | :x: |
 | movement__9AudBgmMgrFv | :x: |
 | start__9AudBgmMgrFlUlb | :x: |
@@ -372,6 +385,7 @@
 
 # AudBgmRhythmStrategy.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set__20AudBgmRhythmStrategyFP6AudBgml | :x: |
 | reject__20AudBgmRhythmStrategyFv | :x: |
 | setDominant__20AudBgmRhythmStrategyFv | :x: |
@@ -381,6 +395,7 @@
 
 # AudBgmSetting.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getMuteState__13AudBgmSettingF10JAISoundIDl | :x: |
 | getExtraChordNum__13AudBgmSettingF10JAISoundIDl | :x: |
 | getSeqIdForMultiBgm__13AudBgmSettingFUl | :x: |
@@ -394,6 +409,7 @@
 
 # AudBgmVolumeController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22AudBgmVolumeControllerFv | :x: |
 | update__22AudBgmVolumeControllerFv | :x: |
 | getVolume__22AudBgmVolumeControllerCFv | :x: |
@@ -405,6 +421,7 @@
 
 # AudEffector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11AudEffectorFv | :x: |
 | initFxLine__11AudEffectorFP7JKRHeap | :x: |
 | setFxSend__11AudEffectorFf | :x: |
@@ -415,6 +432,7 @@
 
 # AudFader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8AudFaderFv | :x: |
 | set__8AudFaderFfl | :x: |
 | update__8AudFaderFv | :x: |
@@ -422,6 +440,7 @@
 
 # AudLimitedSound.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19AudLimitedSoundInfoFv | :x: |
 | init__19AudLimitedSoundInfoFv | :x: |
 | set__19AudLimitedSoundInfoF10JAISoundIDl | :x: |
@@ -431,6 +450,7 @@
 
 # AudMeNameConverter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18AudMeNameConverterFv | :x: |
 | getMeID__18AudMeNameConverterCFPCc | :x: |
 | init__18AudMeNameConverterFv | :x: |
@@ -439,6 +459,7 @@
 
 # AudMicWrap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setMicMtx__10AudMicWrapFPA4_fl | :x: |
 | setMicEnv__10AudMicWrapFv | :x: |
 | getMicPos__10AudMicWrapFv | :x: |
@@ -446,6 +467,7 @@
 
 # AudRemixMgr.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11AudRemixMgrFP7JKRHeap | :x: |
 | init__11AudRemixMgrFv | :x: |
 | update__11AudRemixMgrFv | :x: |
@@ -455,6 +477,7 @@
 
 # AudRemixSequencer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20AudRmxSeqNoteOnTimerFv | :x: |
 | initData__20AudRmxSeqNoteOnTimerFv | :x: |
 | setData__20AudRmxSeqNoteOnTimerFPC18RemixNoteTrackDataPC13RemixNoteData | :x: |
@@ -470,6 +493,7 @@
 
 # AudSceneMgr.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11AudSceneMgrFP14JAUSectionHeap | :x: |
 | isLoadDoneSystemInit__11AudSceneMgrFv | :x: |
 | loadStaticResource__11AudSceneMgrFv | :x: |
@@ -495,6 +519,7 @@
 
 # AudSeStrategy.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calc__13AudSeStrategyFP5JAISe | :x: |
 | mix__13AudSeStrategyFP5JAISeP14JASSoundParams | :x: |
 | newStrategy__16AudSeStrategyMgrF10JAISoundID | :x: |
@@ -506,6 +531,7 @@
 
 # AudSoundNameConverter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21AudSoundNameConverterFv | :x: |
 | getSoundID__21AudSoundNameConverterCFPCc | :x: |
 | getSoundID__21AudSoundNameConverterCFPCcUl | :x: |
@@ -519,6 +545,7 @@
 
 # AudSoundObjHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17AudSoundObjHolderFP7JKRHeapl | :x: |
 | update__17AudSoundObjHolderFv | :x: |
 | add__17AudSoundObjHolderFP14AudSoundObject | :x: |
@@ -528,6 +555,7 @@
 
 # AudSpeakerWrap.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getResName__14AudSpeakerWrapFv | :x: |
 | getRequiredHeapSize__14AudSpeakerWrapFv | :x: |
 | start__14AudSpeakerWrapFll | :x: |
@@ -541,6 +569,7 @@
 
 # AudTrackController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18AudTrackControllerFv | :x: |
 | start__18AudTrackControllerFP14JAISoundHandle | :x: |
 | stop__18AudTrackControllerFv | :x: |
@@ -553,6 +582,7 @@
 
 # AudUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | linerMax__7AudUtilFllf | :x: |
 | linerMinMax__7AudUtilFlllff | :x: |
 | isProperCurrentStageOrAudioDebugMode__7AudUtilFv | :x: |
@@ -560,6 +590,7 @@
 
 # OverwriteJAudio.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | noteOn__7JASBankFPC7JASBankiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv | :x: |
 | channelStart__8JASTrackFPQ28JASTrack11TChannelMgrUlUlUl | :x: |
 | setFileName__10JASWaveArcFPCc | :x: |

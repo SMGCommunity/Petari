@@ -16,6 +16,7 @@
 
 # AnmPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setEuler__Q29JGeometry9TQuat4<f>Ffff | :x: |
 | setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | slerp__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>f | :x: |
@@ -52,6 +53,7 @@
 
 # BckCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<l>__12JMapInfoIterCFPCcPl_b | :x: |
 | __ct__7BckCtrlFP14ResourceHolderPCc | :x: |
 | add__7BckCtrlFRC11BckCtrlData | :x: |
@@ -65,6 +67,7 @@
 
 # BpkPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BpkPlayerFPC14ResourceHolderP12J3DModelData | :x: |
 | attach__9BpkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
 | detach__9BpkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
@@ -72,6 +75,7 @@
 
 # BrkPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BrkPlayerFPC14ResourceHolderP12J3DModelData | :x: |
 | attach__9BrkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
 | detach__9BrkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
@@ -79,6 +83,7 @@
 
 # BtkPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BtkPlayerFPC14ResourceHolderP12J3DModelData | :x: |
 | attach__9BtkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
 | detach__9BtkPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
@@ -86,6 +91,7 @@
 
 # BtpPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BtpPlayerFPC14ResourceHolderP12J3DModelData | :x: |
 | attach__9BtpPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
 | detach__9BtpPlayerFP10J3DAnmBaseP12J3DModelData | :x: |
@@ -93,6 +99,7 @@
 
 # BvaPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BvaPlayerFPC8ResTableP8J3DModel | :x: |
 | calc__9BvaPlayerFv | :x: |
 | getAnmVisibility__9BvaPlayerFv | :x: |
@@ -100,6 +107,7 @@
 
 # LayoutAnmPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15LayoutAnmPlayerFPC13LayoutManager | :x: |
 | movement__15LayoutAnmPlayerFv | :x: |
 | reflectFrame__15LayoutAnmPlayerFv | :x: |
@@ -109,6 +117,7 @@
 
 # MaterialAnmBuffer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17MaterialAnmBufferFPC14ResourceHolderP12J3DModelDatab | :x: |
 | getDiffFlag__17MaterialAnmBufferCFl | :x: |
 | getAllocMaterialAnmNum__17MaterialAnmBufferCFP12J3DModelDatab | :x: |
@@ -145,6 +154,7 @@
 
 # XanimeCore.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q29JGeometry8TVec3<f>Fv | :x: |
 | zero__Q29JGeometry8TVec3<f>Fv | :x: |
 | __as__14XtransformInfoFRC14XtransformInfo | :x: |
@@ -195,6 +205,7 @@
 
 # XanimePlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | init__12XanimePlayerFv | :x: |
 | __ct__12XanimePlayerFP8J3DModelP19XanimeResourceTable | :x: |
 | __ct__12XanimePlayerFP8J3DModelP19XanimeResourceTableP12XanimePlayer | :x: |

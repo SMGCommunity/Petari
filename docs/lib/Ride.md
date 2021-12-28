@@ -26,6 +26,7 @@
 
 # BigBubble.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9BigBubbleFPCc | :x: |
 | init__9BigBubbleFRC12JMapInfoIter | :x: |
 | initSensor__9BigBubbleFv | :x: |
@@ -112,6 +113,7 @@
 
 # Creeper.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12CreeperPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC12CreeperPoint | :x: |
 | updateFree__12CreeperPointFv | :x: |
 | updateBend__12CreeperPointFbRCQ29JGeometry8TVec3<f>ff | :x: |
@@ -150,6 +152,7 @@
 
 # Fluff.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5FluffFPCc | :x: |
 | init__5FluffFRC12JMapInfoIter | :x: |
 | initAfterPlacement__5FluffFv | :x: |
@@ -194,6 +197,7 @@
 
 # FluffWind.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15FluffWindEffectFPCc | :x: |
 | initEffectInfo__15FluffWindEffectFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCcf | :x: |
 | init__15FluffWindEffectFRC12JMapInfoIter | :x: |
@@ -218,6 +222,7 @@
 
 # JumpBranch.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10JumpBranchFPCc | :x: |
 | init__10JumpBranchFRC12JMapInfoIter | :x: |
 | exeWait__10JumpBranchFv | :x: |
@@ -237,6 +242,7 @@
 
 # Plant.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setXYZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | __ct__5PlantFPCc | :x: |
 | init__5PlantFRC12JMapInfoIter | :x: |
@@ -305,6 +311,7 @@
 
 # PlantLeaf.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9PlantLeafFfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__17PlantLeafDrawInitFPCc | :x: |
 | init__9PlantLeafFRC12JMapInfoIter | :x: |
@@ -321,6 +328,7 @@
 
 # PlantStalk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10PlantStalkFv | :x: |
 | init__10PlantStalkFRC12JMapInfoIter | :x: |
 | draw__10PlantStalkCFv | :x: |
@@ -341,6 +349,7 @@
 
 # Pole.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__4PoleFPCc | :x: |
 | init__4PoleFRC12JMapInfoIter | :x: |
 | appear__4PoleFv | :x: |
@@ -407,6 +416,7 @@
 
 # SledRopePoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13SledRopePointFRCQ29JGeometry8TVec3<f>f | :x: |
 | updatePos__13SledRopePointFf | :x: |
 | bindToMapCollision__13SledRopePointFf | :x: |
@@ -414,6 +424,7 @@
 
 # SlingShooter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12SlingShooterFPCc | :x: |
 | init__12SlingShooterFRC12JMapInfoIter | :x: |
 | initAfterPlacement__12SlingShooterFv | :x: |
@@ -463,6 +474,7 @@
 
 # SpaceCocoon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11SpaceCocoonFPCc | :x: |
 | init__11SpaceCocoonFRC12JMapInfoIter | :x: |
 | exeStop__11SpaceCocoonFv | :x: |
@@ -531,6 +543,7 @@
 
 # SphereAccelSensorController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__27SphereAccelSensorControllerFv | :x: |
 | getPadAcceleration__27SphereAccelSensorControllerCFPQ29JGeometry8TVec3<f> | :x: |
 | testBrake__27SphereAccelSensorControllerCFv | :x: |
@@ -544,6 +557,7 @@
 
 # SphereController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16SphereControllerFv | :x: |
 | calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | update__16SphereControllerFRCQ29JGeometry8TVec3<f> | :x: |
@@ -553,6 +567,7 @@
 
 # SpherePadController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | __ct__19SpherePadControllerFv | :x: |
 | calcMoveVector__19SpherePadControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -564,6 +579,7 @@
 
 # SurfRay.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | __ct__7SurfRayFPCcl | :x: |
 | init__7SurfRayFRC12JMapInfoIter | :x: |
@@ -636,6 +652,7 @@
 
 # SurfRayTutorial.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15SurfRayTutorialFP9LiveActorP15TalkMessageCtrlRC12JMapInfoIter | :x: |
 | update__15SurfRayTutorialFv | :x: |
 | exeTutorialAllStart__15SurfRayTutorialFv | :x: |
@@ -696,6 +713,7 @@
 
 # SwingRope.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9SwingRopeFPCc | :x: |
 | init__9SwingRopeFRC12JMapInfoIter | :x: |
 | draw__9SwingRopeCFv | :x: |
@@ -756,6 +774,7 @@
 
 # SwingRopePoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14SwingRopePointFRCQ29JGeometry8TVec3<f> | :x: |
 | addAccel__14SwingRopePointFRCQ29JGeometry8TVec3<f> | :x: |
 | restrict__14SwingRopePointFRCQ29JGeometry8TVec3<f>fPCQ29JGeometry8TVec3<f> | :x: |
@@ -771,6 +790,7 @@
 
 # Tamakoro.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8TamakoroFPCc | :x: |
 | init__8TamakoroFRC12JMapInfoIter | :x: |
 | initSensor__8TamakoroFv | :x: |
@@ -879,6 +899,7 @@
 
 # TamakoroTutorial.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16TamakoroTutorialFPCc | :x: |
 | init__16TamakoroTutorialFRC12JMapInfoIter | :x: |
 | isNeedTutorial__16TamakoroTutorialFv | :x: |

@@ -79,6 +79,7 @@
 
 # ActorCameraUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createActorCameraName__29@unnamed@ActorCameraUtil_cpp@FPcUlPC9LiveActorPC15ActorCameraInfo | :x: |
 | createMultiActorCameraName__29@unnamed@ActorCameraUtil_cpp@FPcUlPC9LiveActorPC15ActorCameraInfoPCc | :x: |
 | initAnimCamera__2MRFPC9LiveActorPC15ActorCameraInfoPCc | :x: |
@@ -124,6 +125,7 @@
 
 # ActorMovementUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcDistance__2MRFPC9HitSensorPC9HitSensorPQ29JGeometry8TVec3<f> | :white_check_mark: |
 | calcDistance__2MRFPC9LiveActorRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | calcDistanceHorizontal__2MRFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -270,6 +272,7 @@
 
 # ActorSensorUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addHitSensor__2MRFP9LiveActorPCcUlUsfRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | addHitSensorBinder__2MRFP9LiveActorPCcUsfRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | addHitSensorTransferableBinder__2MRFP9LiveActorPCcUsfRCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -479,6 +482,7 @@
 
 # ActorShadowLocalUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getValue<b>__12JMapInfoIterCFPCcPb_b | :x: |
 | getShadowControllerCount__11ActorShadowFPC9LiveActor | :x: |
 | getShadowController__11ActorShadowFPC9LiveActorUl | :x: |
@@ -516,6 +520,7 @@
 
 # ActorShadowUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initShadowFromCSV__2MRFP9LiveActorPCc | :x: |
 | initShadowSurfaceCircle__2MRFP9LiveActorf | :x: |
 | initShadowVolumeSphere__2MRFP9LiveActorf | :x: |
@@ -593,6 +598,7 @@
 
 # ActorStateUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initActorStateKeeper__2MRFP13NerveExecutorl | :x: |
 | initActorState__2MRFP13NerveExecutorP23ActorStateBaseInterfacePC5NervePCc | :x: |
 | updateActorState__2MRFP9LiveActorP23ActorStateBaseInterface | :x: |
@@ -605,6 +611,7 @@
 
 # ActorSwitchUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | useStageSwitchReadA__2MRFP9LiveActorRC12JMapInfoIter | :x: |
 | useStageSwitchReadB__2MRFP9LiveActorRC12JMapInfoIter | :x: |
 | useStageSwitchReadAppear__2MRFP9LiveActorRC12JMapInfoIter | :x: |
@@ -643,6 +650,7 @@
 
 # BitArray.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q22MR8BitArrayFi | :x: |
 | isOn__Q22MR8BitArrayCFi | :x: |
 | set__Q22MR8BitArrayFib | :x: |
@@ -650,6 +658,7 @@
 
 # CameraUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct<f>__Q29JGeometry8TVec4<f>Fffff_Pv | :x: |
 | calcNormalizedScreenPosToScreenPos__24@unnamed@CameraUtil_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | calcScreenPosition__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -760,6 +769,7 @@
 
 # DemoUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | tryRegisterDemoCast__2MRFP9LiveActorRC12JMapInfoIter | :x: |
 | registerDemoActionFunctor__2MRFPC9LiveActorRCQ22MR11FunctorBasePCc | :x: |
 | registerDemoActionNerve__2MRFPC9LiveActorPC5NervePCc | :x: |
@@ -843,6 +853,7 @@
 
 # DrawUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | drawInit__2MRFv | :x: |
 | reinitGX__2MRFv | :x: |
 | resetTextureCacheSize__2MRFv | :x: |
@@ -880,6 +891,7 @@
 
 # EffectUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isExistEffect__24@unnamed@EffectUtil_cpp@FPC9LiveActorPCc | :x: |
 | requestEffectStopSceneStart__2MRFv | :x: |
 | requestEffectStopSceneEnd__2MRFv | :x: |
@@ -927,6 +939,7 @@
 
 # EventUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getPlayerLeft__2MRFv | :x: |
 | incPlayerLeft__2MRFv | :x: |
 | decPlayerLeft__2MRFv | :x: |
@@ -1110,6 +1123,7 @@
 
 # FileUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isFileExist__2MRFPCcb | :white_check_mark: |
 | getFileSize__2MRFPCcb | :white_check_mark: |
 | convertPathToEntrynumConsideringLanguage__2MRFPCc | :white_check_mark: |
@@ -1139,6 +1153,7 @@
 
 # FootPrint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9FootPrintFPCcll | :x: |
 | __ct__9FootPrintFPCcl | :x: |
 | initMember__9FootPrintFll | :x: |
@@ -1157,6 +1172,7 @@
 
 # FurCtrl.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | check__7FurBankFP12J3DModelDataUl | :x: |
 | add__14FurDrawManagerFP7FurCtrlUc | :x: |
 | draw__14FurDrawManagerCFv | :x: |
@@ -1176,6 +1192,7 @@
 
 # FurDrawer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9FurDrawerFUlP7ResTIMGP7ResTIMG | :x: |
 | update__9FurDrawerFv | :x: |
 | calcValue__Q29FurDrawer11CLayerParamCFll | :x: |
@@ -1186,6 +1203,7 @@
 
 # FurMulti.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8FurMultiFP9LiveActorUl | :x: |
 | setLayerDirect__8FurMultiFUlUlUlUlP8FurParamP7ResTIMGP7ResTIMGP7ResTIMGP7ResTIMG | :x: |
 | addToManager__8FurMultiFv | :x: |
@@ -1197,6 +1215,7 @@
 
 # FurShader.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7CShaderFPC12J3DModelDataPC7ResTIMG | :x: |
 | __dt__7CShaderFv | :x: |
 | calc__7CShaderFP8J3DModel | :x: |
@@ -1212,6 +1231,7 @@
 
 # GamePadUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getCorePadPointingPosBasedOnScreen__2MRFPQ29JGeometry8TVec2<f>l | :x: |
 | getCorePadPointingPos__2MRFPQ29JGeometry8TVec2<f>l | :x: |
 | getCorePadPastPointingPos__2MRFPQ29JGeometry8TVec2<f>ll | :x: |
@@ -1279,6 +1299,7 @@
 
 # GravityUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getJMapInfoArgPlus__25@unnamed@GravityUtil_cpp@FRC12JMapInfoIterPCcPf | :x: |
 | getJMapInfoArgPlus__25@unnamed@GravityUtil_cpp@FRC12JMapInfoIterPCcPl | :white_check_mark: |
 | calcGravityVectorOrZero__25@unnamed@GravityUtil_cpp@FPC7NameObjRCQ29JGeometry8TVec3<f>UlPQ29JGeometry8TVec3<f>P11GravityInfoUl | :white_check_mark: |
@@ -1303,6 +1324,7 @@
 
 # HashUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13HashSortTableFUl | :white_check_mark: |
 | add__13HashSortTableFPCcUlb | :white_check_mark: |
 | add__13HashSortTableFUlUl | :white_check_mark: |
@@ -1318,6 +1340,7 @@
 
 # JMapUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isValidInfo__2MRFRC12JMapInfoIter | :x: |
 | isObjectName__2MRFRC12JMapInfoIterPCc | :x: |
 | getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :x: |
@@ -1408,6 +1431,7 @@
 
 # JointUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getJoint__2MRFP8J3DModelPCc | :x: |
 | getJoint__2MRFPC9LiveActorPCc | :x: |
 | getJoint__2MRFPC9LiveActorUs | :x: |
@@ -1445,6 +1469,7 @@
 
 # LayoutUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | DynamicCast<PCQ34nw4r3lyt7TextBox,CQ34nw4r3lyt4Pane>__Q24nw4r2utFPCQ34nw4r3lyt4Pane_PCQ34nw4r3lyt7TextBox | :x: |
 | DynamicCast<PQ34nw4r3lyt7Picture,Q34nw4r3lyt4Pane>__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7Picture | :x: |
 | SetVisible__Q34nw4r3lyt4PaneFb | :x: |
@@ -1615,6 +1640,7 @@
 
 # LightUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | loadLight__2MRFl | :x: |
 | loadLightPlayer__2MRFv | :x: |
 | initActorLightInfoLightType__2MRFP9LiveActorl | :x: |
@@ -1624,6 +1650,7 @@
 
 # LiveActorUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createCollisionParts__27@unnamed@LiveActorUtil_cpp@FP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Q22MR18CollisionScaleTypel | :x: |
 | isExistIndirectTexture__2MRFPC9LiveActor | :x: |
 | initMirrorReflection__2MRFP9LiveActor | :x: |
@@ -1973,6 +2000,7 @@
 
 # MapPartsUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getBodySensor__2MRFP9LiveActor | :x: |
 | setBodySensorType__2MRFP9LiveActorUl | :x: |
 | setBodySensorTypeMapObj__2MRFP9LiveActor | :x: |
@@ -2035,6 +2063,7 @@
 
 # MapUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getStrikeInfoNumCategory__21@unnamed@MapUtil_cpp@Fl | :x: |
 | getFirstPolyOnLineCategory__21@unnamed@MapUtil_cpp@FPQ29JGeometry8TVec3<f>P8TriangleRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC18TriangleFilterBasePC24CollisionPartsFilterBasel | :x: |
 | getFirstPolyOnLineCategoryExceptSensor__21@unnamed@MapUtil_cpp@FPQ29JGeometry8TVec3<f>P8TriangleRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC9HitSensorl | :x: |
@@ -2131,6 +2160,7 @@
 
 # MathUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | initAcosTable__2MRFv | :x: |
 | acosEx__2MRFf | :x: |
 | getRandom__2MRFv | :x: |
@@ -2272,6 +2302,7 @@
 
 # MemoryUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q22MR19CurrentHeapRestorerFP7JKRHeap | :white_check_mark: |
 | __dt__Q22MR19CurrentHeapRestorerFv | :white_check_mark: |
 | alloc__Q22MR18NewDeleteAllocatorFP12MEMAllocatorUl | :white_check_mark: |
@@ -2300,6 +2331,7 @@
 
 # MessageUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getSystemMessageDirect__2MRFPCc | :x: |
 | getGameMessageDirect__2MRFPCc | :x: |
 | getLayoutMessageDirect__2MRFPCc | :x: |
@@ -2322,6 +2354,7 @@
 
 # ModelUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | newXanimePlayer__2MRFPC14ResourceHolderPCcPC14ResourceHolder10J3DMdlFlagP19XanimeResourceTable | :x: |
 | newXanimeResourceTable__2MRFP14ResourceHolder | :x: |
 | updateModelManager__2MRFP9LiveActor | :x: |
@@ -2395,6 +2428,7 @@
 
 # MtxUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setScale__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
 | getXYZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
 | makeMtxRotate__2MRFPA4_fsss | :x: |
@@ -2478,6 +2512,7 @@
 
 # MultiEventCamera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16MultiEventCameraFv | :x: |
 | isEnd__16MultiEventCameraCFv | :x: |
 | setUp__16MultiEventCameraFPCcPC15ActorCameraInfol | :x: |
@@ -2500,6 +2535,7 @@
 
 # NerveUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isStep__2MRFPC13NerveExecutorl | :x: |
 | isFirstStep__2MRFPC13NerveExecutor | :x: |
 | isLessStep__2MRFPC13NerveExecutorl | :x: |
@@ -2519,6 +2555,7 @@
 
 # NPCUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getNPCItemData__2MRFP12NPCActorIteml | :x: |
 | isNPCItemFileExist__2MRFPCc | :x: |
 | initDefaultPose__2MRFP8NPCActorRC12JMapInfoIter | :x: |
@@ -2599,6 +2636,7 @@
 
 # ObjUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isJudgedToClipFrustum__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
 | isJudgedToClipFrustum100m__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
 | isJudgedToClipFrustum300m__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
@@ -2781,6 +2819,7 @@
 
 # ParabolicPath.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ParabolicPathFv | :x: |
 | initFromMaxHeight__13ParabolicPathFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | initFromUpVector__13ParabolicPathFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
@@ -2794,6 +2833,7 @@
 
 # PlayerUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isOnGroundPlayer__2MRFv | :x: |
 | getPlayerGroundingPolygon__2MRFv | :x: |
 | forceKillPlayerByAbyss__2MRFv | :x: |
@@ -2972,6 +3012,7 @@
 
 # RailGraphUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createRailGraphFromJMap__2MRFRC12JMapInfoIter | :x: |
 | __ct__13RailGraphIterFRC13RailGraphIter | :x: |
 | createRailGraphIter__2MRFPC9RailGraph | :x: |
@@ -2994,6 +3035,7 @@
 
 # RailUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | moveTransToOtherActorRailPos__2MRFP9LiveActorPC9LiveActor | :x: |
 | moveTransToCurrentRailPos__2MRFP9LiveActor | :x: |
 | moveCoord__2MRFP9LiveActorf | :x: |
@@ -3116,6 +3158,7 @@
 
 # SceneUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getRailInfoFromRailId__23@unnamed@SceneUtil_cpp@FP12JMapInfoIterPPC8JMapInfoPC15StageDataHolderi | :x: |
 | getCurrentScenarioNo__2MRFv | :x: |
 | getCurrentSelectedScenarioNo__2MRFv | :x: |
@@ -3190,12 +3233,14 @@
 
 # SchedulerUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q22MR30ProhibitSchedulerAndInterruptsFb | :x: |
 | __dt__Q22MR30ProhibitSchedulerAndInterruptsFv | :x: |
 
 
 # ScreenUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getCaptureScreenDirector__24@unnamed@ScreenUtil_cpp@Fv | :x: |
 | getPlayTimerScene__24@unnamed@ScreenUtil_cpp@Fv | :x: |
 | appearInformationMessage__24@unnamed@ScreenUtil_cpp@Fbb | :x: |
@@ -3315,6 +3360,7 @@
 
 # SequenceUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | requestChangeScene__2MRFPCc | :x: |
 | requestChangeSceneTitle__2MRFv | :x: |
 | requestChangeStageInGameAfterLoadingGameData__2MRFv | :x: |
@@ -3342,12 +3388,14 @@
 
 # ShareUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__13ResourceShareFv | :x: |
 | __ct__13ResourceShareFv | :x: |
 
 
 # SoundUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startSystemSE__2MRF10JAISoundIDll | :x: |
 | startSystemLevelSE__2MRFPCcll | :x: |
 | startSystemLevelSE__2MRF10JAISoundIDll | :x: |
@@ -3438,6 +3486,7 @@
 
 # StarPointerUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getStarPointerOnOffController__29@unnamed@StarPointerUtil_cpp@Fv | :x: |
 | always__29@unnamed@StarPointerUtil_cpp@Fl | :x: |
 | onReaction__29@unnamed@StarPointerUtil_cpp@FUxlbbb | :x: |
@@ -3550,6 +3599,7 @@
 
 # StringUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | addFilePrefix__2MRFPcUlPCcPCc | :x: |
 | makeDateString__2MRFPwllll | :x: |
 | makeTimeString__2MRFPwlll | :x: |
@@ -3590,6 +3640,7 @@
 
 # SwitchEventFunctorListener.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26SwitchEventFunctorListenerFv | :x: |
 | setOnFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :x: |
 | setOffFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :x: |
@@ -3599,6 +3650,7 @@
 
 # SystemUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getGameSystemObjHolder__2MRFv | :x: |
 | getFunctionAsyncExecutor__24@unnamed@SystemUtil_cpp@Fv | :x: |
 | getFontOnCurrentLanguage__2MRFv | :x: |
@@ -3637,6 +3689,7 @@
 
 # TalkUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | registerBranchFunc__2MRFP15TalkMessageCtrlRC19TalkMessageFuncBase | :x: |
 | registerEventFunc__2MRFP15TalkMessageCtrlRC19TalkMessageFuncBase | :x: |
 | registerAnimeFunc__2MRFP15TalkMessageCtrlRC19TalkMessageFuncBase | :x: |
@@ -3694,6 +3747,7 @@
 
 # AreaObjUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getAreaObjManager__2MRFPCc | :x: |
 | getAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f> | :x: |
 | isInAreaObj__2MRFPCcRCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -3720,6 +3774,7 @@
 
 # BaseMatrixFollowTargetHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18BaseMatrixFollowerFP7NameObjRC12JMapInfoIter | :white_check_mark: |
 | getFollowTargetActor__18BaseMatrixFollowerCFv | :white_check_mark: |
 | calcFollowMatrix__18BaseMatrixFollowerCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
@@ -3749,6 +3804,7 @@
 
 # BezierSurface.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13BezierSurfaceFlUl | :x: |
 | setST__13BezierSurfaceFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
 | setDivideLevel__13BezierSurfaceFl | :x: |
@@ -3767,6 +3823,7 @@
 
 # BothDirList.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q22MR14BothDirPtrLinkFPv | :white_check_mark: |
 | __dt__Q22MR14BothDirPtrLinkFv | :white_check_mark: |
 | __ct__Q22MR14BothDirPtrListFb | :white_check_mark: |
@@ -3779,12 +3836,14 @@
 
 # CollisionPartsFilter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isInvalidParts__26CollisionPartsFilterSensorCFPC14CollisionParts | :x: |
 | isInvalidParts__25CollisionPartsFilterActorCFPC14CollisionParts | :x: |
 
 
 # DirectDraw.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setViewMtx__6TDDrawFPA4_f | :x: |
 | loadViewMtx__6TDDrawFPA4_f | :x: |
 | setModelMtx__6TDDrawFPA4_f | :x: |
@@ -3827,6 +3886,7 @@
 
 # DirectDrawUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | ddSetVtxFormat__2MRFUl | :x: |
 | ddChangeTev__2MRFv | :x: |
 | ddSendVtxData__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f> | :x: |
@@ -3840,6 +3900,7 @@
 
 # FixedPosition.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13FixedPositionFPC9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | __ct__13FixedPositionFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | __ct__13FixedPositionFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
@@ -3852,6 +3913,7 @@
 
 # GeometryBindUtil.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10BindSphereFRCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__8BindConeFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
 | isInPoint__8BindConeCFRCQ29JGeometry8TVec3<f> | :x: |
@@ -3865,6 +3927,7 @@
 
 # IKJoint.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7IKJointFv | :white_check_mark: |
 | setRootBoneLength__7IKJointFf | :white_check_mark: |
 | setMiddleBoneLength__7IKJointFf | :white_check_mark: |
@@ -3885,6 +3948,7 @@
 
 # JMapIdInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10JMapIdInfoFlRC12JMapInfoIter | :x: |
 | __ct__10JMapIdInfoFll | :x: |
 | initialize__10JMapIdInfoFlRC12JMapInfoIter | :x: |
@@ -3894,6 +3958,7 @@
 
 # JMapInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8JMapInfoFv | :x: |
 | __dt__8JMapInfoFv | :x: |
 | attach__8JMapInfoFPCv | :x: |
@@ -3910,6 +3975,7 @@
 
 # JMapLinkInfo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12JMapLinkInfoFRC12JMapInfoIterb | :x: |
 | isValid__12JMapLinkInfoCFv | :x: |
 | invalidate__12JMapLinkInfoFv | :x: |
@@ -3919,6 +3985,7 @@
 
 # JointController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15JointControllerFv | :white_check_mark: |
 | calcJointMatrix__15JointControllerFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :white_check_mark: |
 | calcJointMatrixAfterChild__15JointControllerFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :white_check_mark: |
@@ -3933,6 +4000,7 @@
 
 # JointRumbler.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12JointRumblerFP9LiveActorPCcffUlbl | :x: |
 | update__12JointRumblerFv | :x: |
 | start__12JointRumblerFv | :x: |
@@ -3944,6 +4012,7 @@
 
 # OctahedronBezierSurface.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcBezierHandlePoint__37@unnamed@OctahedronBezierSurface_cpp@FPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
 | __ct__23OctahedronBezierSurfaceFUl | :x: |
 | getVertex__23OctahedronBezierSurfaceCFl | :x: |
@@ -3958,6 +4027,7 @@
 
 # PostureHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13PostureHolderFPC9LiveActor | :x: |
 | store__13PostureHolderFPC9LiveActor | :x: |
 | restore__13PostureHolderFP9LiveActor | :x: |
@@ -3965,6 +4035,7 @@
 
 # RumbleCalculator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16RumbleCalculatorFfffUl | :x: |
 | start__16RumbleCalculatorFUl | :x: |
 | calc__16RumbleCalculatorFv | :x: |
@@ -3975,6 +4046,7 @@
 
 # SpringValue.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11SpringValueFv | :x: |
 | __ct__11SpringValueFfffff | :x: |
 | setParam__11SpringValueFfffff | :x: |
@@ -3983,12 +4055,14 @@
 
 # TriangleFilter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createTriangleFilterFunc__2MRFPFPC8Triangle_b | :x: |
 | isInvalidTriangle__24TriangleFilterDangerCodeCFPC8Triangle | :x: |
 
 
 # TriggerChecker.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TriggerCheckerFv | :x: |
 | update__14TriggerCheckerFb | :x: |
 | setInput__14TriggerCheckerFb | :x: |

@@ -114,6 +114,7 @@
 
 # AnimScaleController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q233@unnamed@AnimScaleController_cpp@21AnimScaleDefaultParamFv | :x: |
 | __ct__14AnimScaleParamFv | :x: |
 | __ct__19AnimScaleControllerFP14AnimScaleParam | :x: |
@@ -149,6 +150,7 @@
 
 # AnimStampController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__19AnimStampControllerFv | :x: |
 | init__19AnimStampControllerFlffffff | :x: |
 | startAnim__19AnimStampControllerFRCQ29JGeometry8TVec3<f> | :x: |
@@ -164,6 +166,7 @@
 
 # BallBeamer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10BallBeamerFPCc | :x: |
 | makeArchiveList__10BallBeamerFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | init__10BallBeamerFRC12JMapInfoIter | :x: |
@@ -193,6 +196,7 @@
 
 # Balloonfish.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BalloonfishFPCc | :x: |
 | init__11BalloonfishFRC12JMapInfoIter | :x: |
 | appear__11BalloonfishFv | :x: |
@@ -221,6 +225,7 @@
 
 # BasaBasa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8BasaBasaFPCc | :x: |
 | init__8BasaBasaFRC12JMapInfoIter | :x: |
 | exeWait__8BasaBasaFv | :x: |
@@ -302,6 +307,7 @@
 
 # BegomanBaby.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BegomanBabyFPCc | :x: |
 | __ct__11BegomanBabyFP7NameObjPCc | :x: |
 | init__11BegomanBabyFRC12JMapInfoIter | :x: |
@@ -382,6 +388,7 @@
 
 # BegomanBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11BegomanBaseFPCc | :x: |
 | getSoundNormal__11BegomanBaseFv | :x: |
 | getSoundBoss__11BegomanBaseFv | :x: |
@@ -465,11 +472,13 @@
 
 # BegomanFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | rotate__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
 
 
 # BegomanLauncher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15BegomanLauncherFPCc | :x: |
 | init__15BegomanLauncherFRC12JMapInfoIter | :x: |
 | initAfterPlacement__15BegomanLauncherFv | :x: |
@@ -500,6 +509,7 @@
 
 # BegomanSpike.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12BegomanSpikeFPCc | :x: |
 | init__12BegomanSpikeFRC12JMapInfoIter | :x: |
 | onSwitchB__12BegomanSpikeFv | :x: |
@@ -582,6 +592,7 @@
 
 # BegomanSpring.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | squared__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
 | __ct__13BegomanSpringFPCc | :x: |
 | init__13BegomanSpringFRC12JMapInfoIter | :x: |
@@ -669,6 +680,7 @@
 
 # BegomanSpringHead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | calcAndSetBaseMtx__11BegomanHeadFv | :x: |
 | __ct__17BegomanSpringHeadFP9LiveActorPA4_f | :x: |
 | __dt__11BegomanHeadFv | :x: |
@@ -700,6 +712,7 @@
 
 # Birikyu.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7BirikyuFPCc | :x: |
 | init__7BirikyuFRC12JMapInfoIter | :x: |
 | initAfterPlacement__7BirikyuFv | :x: |
@@ -746,6 +759,7 @@
 
 # BombBird.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__8BombBirdFv | :x: |
 | __ct__8BombBirdFPCc | :x: |
 | init__8BombBirdFRC12JMapInfoIter | :x: |
@@ -804,6 +818,7 @@
 
 # BombBirdBomb.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12BombBirdBombFPCc | :x: |
 | init__12BombBirdBombFRC12JMapInfoIter | :x: |
 | kill__12BombBirdBombFv | :x: |
@@ -829,6 +844,7 @@
 
 # BombHei.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7BombHeiFPCc | :x: |
 | init__7BombHeiFRC12JMapInfoIter | :x: |
 | setGroupClipping__7BombHeiFRC12JMapInfoIter | :x: |
@@ -903,6 +919,7 @@
 
 # BombHeiLauncher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15BombHeiLauncherFPCc | :x: |
 | init__15BombHeiLauncherFRC12JMapInfoIter | :x: |
 | initAfterPlacement__15BombHeiLauncherFv | :x: |
@@ -926,6 +943,7 @@
 
 # BombTeresa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10BombTeresaFPCc | :x: |
 | init__10BombTeresaFRC12JMapInfoIter | :x: |
 | initAfterPlacement__10BombTeresaFv | :x: |
@@ -1023,6 +1041,7 @@
 
 # CannonShellBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17CannonShellHolderFi | :x: |
 | registerCannonShell__17CannonShellHolderFP15CannonShellBase | :x: |
 | getValidShell__17CannonShellHolderCFv | :x: |
@@ -1031,6 +1050,7 @@
 
 # CocoNutBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11CocoNutBallFPCc | :x: |
 | init__11CocoNutBallFRC12JMapInfoIter | :x: |
 | appear__11CocoNutBallFv | :x: |
@@ -1074,6 +1094,7 @@
 
 # CocoSambo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13CocoSamboHeadFP9LiveActor | :x: |
 | init__13CocoSamboHeadFRC12JMapInfoIter | :x: |
 | kill__13CocoSamboHeadFv | :x: |
@@ -1165,6 +1186,7 @@
 
 # DharmaSambo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__Q22MR51Vector<Q22MR36AssignableArray<P16DharmaSamboParts>>Fv | :x: |
 | __dt__Q22MR48Vector<Q22MR33AssignableArray<P13FixedPosition>>Fv | :x: |
 | mul__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -1257,6 +1279,7 @@
 
 # Dossun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6DossunFPCc | :x: |
 | init__6DossunFRC12JMapInfoIter | :x: |
 | appear__6DossunFv | :x: |
@@ -1287,6 +1310,7 @@
 
 # ElectricPressureBullet.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22ElectricPressureBulletFPCc | :x: |
 | init__22ElectricPressureBulletFRC12JMapInfoIter | :x: |
 | kill__22ElectricPressureBulletFv | :x: |
@@ -1302,6 +1326,7 @@
 
 # EyeBeamer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getXDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
 | __ct__9EyeBeamerFPCc | :x: |
 | init__9EyeBeamerFRC12JMapInfoIter | :x: |
@@ -1352,6 +1377,7 @@
 
 # FireBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8FireBallFPCc | :x: |
 | init__8FireBallFRC12JMapInfoIter | :x: |
 | appear__8FireBallFv | :x: |
@@ -1376,6 +1402,7 @@
 
 # FireBubble.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | negate__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
 | __ct__10FireBubbleFPCc | :x: |
 | init__10FireBubbleFRC12JMapInfoIter | :x: |
@@ -1422,6 +1449,7 @@
 
 # Gesso.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5GessoFPCc | :x: |
 | init__5GessoFRC12JMapInfoIter | :x: |
 | kill__5GessoFv | :x: |
@@ -1484,6 +1512,7 @@
 
 # HammerHeadPackun.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16HammerHeadPackunFPCc | :x: |
 | init__16HammerHeadPackunFRC12JMapInfoIter | :x: |
 | makeActorAppeared__16HammerHeadPackunFv | :x: |
@@ -1549,6 +1578,7 @@
 
 # Hanachan.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13HanachanPartsFP8HanachanlPCcPCc | :x: |
 | init__13HanachanPartsFRC12JMapInfoIter | :x: |
 | kill__13HanachanPartsFv | :x: |
@@ -1679,6 +1709,7 @@
 
 # HomingKiller.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isSensorType__26@unnamed@HomingKiller_cpp@FPC9HitSensorPCUlUl | :x: |
 | __ct__12HomingKillerFPCc | :x: |
 | init__12HomingKillerFRC12JMapInfoIter | :x: |
@@ -1752,6 +1783,7 @@
 
 # IceMerameraKing.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__Q22MR46Vector<Q22MR31AssignableArray<P11ThrowingIce>>Fv | :x: |
 | __ct__15IceMerameraKingFPCc | :x: |
 | init__15IceMerameraKingFRC12JMapInfoIter | :x: |
@@ -1834,6 +1866,7 @@
 
 # ItemGenerator.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13ItemGeneratorFv | :x: |
 | setTypeNone__13ItemGeneratorFv | :x: |
 | setTypeCoin__13ItemGeneratorFl | :x: |
@@ -1844,6 +1877,7 @@
 
 # Jellyfish.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9JellyfishFPCc | :x: |
 | init__9JellyfishFRC12JMapInfoIter | :x: |
 | kill__9JellyfishFv | :x: |
@@ -1892,6 +1926,7 @@
 
 # JellyfishElectric.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17JellyfishElectricFPCc | :x: |
 | init__17JellyfishElectricFRC12JMapInfoIter | :x: |
 | kill__17JellyfishElectricFv | :x: |
@@ -1934,6 +1969,7 @@
 
 # Jiraira.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7JirairaFPCc | :x: |
 | init__7JirairaFRC12JMapInfoIter | :x: |
 | appear__7JirairaFv | :x: |
@@ -1965,6 +2001,7 @@
 
 # JumpBeamer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10JumpBeamerFPCc | :x: |
 | __dt__11JumpEmitterFv | :x: |
 | control__10JumpBeamerFv | :x: |
@@ -2017,6 +2054,7 @@
 
 # JumpGuarder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11JumpEmitterFPCc | :x: |
 | kill__11JumpEmitterFv | :x: |
 | initEventCamera__11JumpEmitterFRC12JMapInfoIter | :x: |
@@ -2077,6 +2115,7 @@
 
 # JumpSpider.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10JumpSpiderFPCc | :x: |
 | init__10JumpSpiderFRC12JMapInfoIter | :x: |
 | initAfterPlacement__10JumpSpiderFv | :x: |
@@ -2141,6 +2180,7 @@
 
 # Kabokuri.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8KabokuriFPCc | :x: |
 | init__8KabokuriFRC12JMapInfoIter | :x: |
 | initSensor__8KabokuriFv | :x: |
@@ -2196,6 +2236,7 @@
 
 # KabokuriFire.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12KabokuriFireFPCc | :x: |
 | init__12KabokuriFireFRC12JMapInfoIter | :x: |
 | start__12KabokuriFireFRCQ29JGeometry8TVec3<f>b | :x: |
@@ -2212,6 +2253,7 @@
 
 # KabokuriFireHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__18KabokuriFireHolderFv | :x: |
 | __dt__32DeriveActorGroup<12KabokuriFire>Fv | :x: |
 | createHolder__22KabokuriFireHolderFuncFv | :x: |
@@ -2222,6 +2264,7 @@
 
 # Kameck.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6KameckFPCc | :x: |
 | init__6KameckFRC12JMapInfoIter | :x: |
 | initBeam__6KameckFv | :x: |
@@ -2321,6 +2364,7 @@
 
 # KameckBeam.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23KameckBeamEventListenerFv | :x: |
 | __ct__25KameckBeamCollisionFilterFPCQ29JGeometry8TVec3<f>f | :x: |
 | isInvalidParts__25KameckBeamCollisionFilterCFPC14CollisionParts | :x: |
@@ -2368,6 +2412,7 @@
 
 # KameckBeamHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16KameckBeamHolderFv | :x: |
 | __dt__30DeriveActorGroup<10KameckBeam>Fv | :x: |
 | __ct__20KameckFireBallHolderFv | :x: |
@@ -2388,6 +2433,7 @@
 
 # KameckFireBall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14KameckFireBallFPCc | :x: |
 | init__14KameckFireBallFRC12JMapInfoIter | :x: |
 | kill__14KameckFireBallFv | :x: |
@@ -2412,6 +2458,7 @@
 
 # KameckHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12KameckHolderFl | :x: |
 | __dt__25DeriveActorGroup<6Kameck>Fv | :x: |
 | startDemoAppear__12KameckHolderFv | :x: |
@@ -2422,6 +2469,7 @@
 
 # KameckTurtle.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12KameckTurtleFPCc | :x: |
 | init__12KameckTurtleFRC12JMapInfoIter | :x: |
 | initJetTurtle__12KameckTurtleFv | :x: |
@@ -2447,6 +2495,7 @@
 
 # Kanina.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getRunAwayBreakTimeRandom__20@unnamed@Kanina_cpp@Fv | :x: |
 | __ct__6KaninaFPCc | :x: |
 | init__6KaninaFRC12JMapInfoIter | :x: |
@@ -2550,6 +2599,7 @@
 
 # Karikari.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8KarikariFPCc | :x: |
 | init__8KarikariFRC12JMapInfoIter | :x: |
 | applyEnvironmentInfluenceToVelocity__8KarikariFv | :x: |
@@ -2631,6 +2681,7 @@
 
 # KarikariDirector.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16KarikariDirectorFPCc | :x: |
 | isMaxNumCling__16KarikariDirectorCFv | :x: |
 | removeAllClingingKarikari__16KarikariDirectorFv | :x: |
@@ -2649,6 +2700,7 @@
 
 # Karon.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5KaronFPCc | :x: |
 | init__5KaronFRC12JMapInfoIter | :x: |
 | initAfterPlacement__5KaronFv | :x: |
@@ -2715,6 +2767,7 @@
 
 # Kiraira.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7KirairaFPCc | :x: |
 | init__7KirairaFRC12JMapInfoIter | :x: |
 | calcAndSetBaseMtx__7KirairaFv | :x: |
@@ -2756,6 +2809,7 @@
 
 # KirairaChain.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__12KirairaChainFv | :x: |
 | __ct__12KirairaChainFPC9LiveActor | :x: |
 | init__12KirairaChainFRC12JMapInfoIter | :x: |
@@ -2772,6 +2826,7 @@
 
 # KoopaJrShip.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | setEulerZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff | :x: |
 | __ct__11KoopaJrShipFPCc | :x: |
 | init__11KoopaJrShipFRC12JMapInfoIter | :x: |
@@ -2848,6 +2903,7 @@
 
 # KoopaJrShipCannonMainShell.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26KoopaJrShipCannonMainShellFPCc | :x: |
 | __dt__15CannonShellBaseFv | :x: |
 | init__26KoopaJrShipCannonMainShellFRC12JMapInfoIter | :x: |
@@ -2872,6 +2928,7 @@
 
 # KoopaJrShipCannonShell.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22KoopaJrShipCannonShellFPCc | :x: |
 | init__22KoopaJrShipCannonShellFRC12JMapInfoIter | :x: |
 | kill__22KoopaJrShipCannonShellFv | :x: |
@@ -2905,6 +2962,7 @@
 
 # KoteBug.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7KoteBugFPCc | :x: |
 | init__7KoteBugFRC12JMapInfoIter | :x: |
 | appear__7KoteBugFv | :x: |
@@ -2979,6 +3037,7 @@
 
 # Kuribo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q220@unnamed@Kuribo_cpp@11KuriboParamFv | :x: |
 | __ct__6KuriboFPCc | :x: |
 | init__6KuriboFRC12JMapInfoIter | :x: |
@@ -3072,6 +3131,7 @@
 
 # KuriboChief.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q225@unnamed@KuriboChief_cpp@16KuriboChiefParamFv | :x: |
 | __ct__11KuriboChiefFPCc | :x: |
 | init__11KuriboChiefFRC12JMapInfoIter | :x: |
@@ -3127,6 +3187,7 @@
 
 # KuriboMini.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__Q224@unnamed@KuriboMini_cpp@15KuriboMiniParamFv | :x: |
 | __ct__10KuriboMiniFPCc | :x: |
 | init__10KuriboMiniFRC12JMapInfoIter | :x: |
@@ -3192,6 +3253,7 @@
 
 # MechanicKoopaMini.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17MechanicKoopaMiniFPCc | :x: |
 | onAppearSwitchOn__17MechanicKoopaMiniFv | :x: |
 | init__17MechanicKoopaMiniFRC12JMapInfoIter | :x: |
@@ -3260,6 +3322,7 @@
 
 # Meramera.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8MerameraFPCc | :x: |
 | init__8MerameraFRC12JMapInfoIter | :x: |
 | initElementType__8MerameraFRC12JMapInfoIter | :x: |
@@ -3398,6 +3461,7 @@
 
 # Metbo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5MetboFPCc | :x: |
 | init__5MetboFRC12JMapInfoIter | :x: |
 | exeNonActive__5MetboFv | :x: |
@@ -3474,6 +3538,7 @@
 
 # Mogu.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__4MoguFPCc | :x: |
 | init__4MoguFRC12JMapInfoIter | :x: |
 | kill__4MoguFv | :x: |
@@ -3528,6 +3593,7 @@
 
 # Mogucchi.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__8MogucchiFPCc | :x: |
 | init__8MogucchiFRC12JMapInfoIter | :x: |
 | initAfterPlacement__8MogucchiFv | :x: |
@@ -3574,6 +3640,7 @@
 
 # MogucchiHill.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17MogucchiHillPieceFPCc | :x: |
 | init__17MogucchiHillPieceFRC12JMapInfoIter | :x: |
 | control__17MogucchiHillPieceFv | :x: |
@@ -3625,6 +3692,7 @@
 
 # MogucchiRefuseTerritory.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__23MogucchiRefuseTerritoryFv | :x: |
 | __ct__23MogucchiRefuseTerritoryFPCc | :x: |
 | init__23MogucchiRefuseTerritoryFRC12JMapInfoIter | :x: |
@@ -3632,6 +3700,7 @@
 
 # MogucchiShooter.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__15MogucchiShooterFP9LiveActorPCc | :x: |
 | init__15MogucchiShooterFRC12JMapInfoIter | :x: |
 | panicDeath__15MogucchiShooterFv | :x: |
@@ -3688,6 +3757,7 @@
 
 # MoguStone.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | set<i>__Q29JGeometry8TVec4<f>Fiiii_v | :x: |
 | __ct__9MoguStoneFPCcPCc | :x: |
 | init__9MoguStoneFRC12JMapInfoIter | :x: |
@@ -3723,6 +3793,7 @@
 
 # NokonokoLand.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | startBckBtp__26@unnamed@NokonokoLand_cpp@FP9LiveActorPCcPCc | :x: |
 | __ct__12NokonokoLandFPCc | :x: |
 | init__12NokonokoLandFRC12JMapInfoIter | :x: |
@@ -3821,6 +3892,7 @@
 
 # Onimasu.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__7OnimasuFv | :x: |
 | __ct__7OnimasuFPCc | :x: |
 | init__7OnimasuFRC12JMapInfoIter | :x: |
@@ -3857,6 +3929,7 @@
 
 # OnimasuJump.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11OnimasuJumpFPCc | :x: |
 | calcJumpVelocity__11OnimasuJumpFv | :x: |
 | getLastPointNo__11OnimasuJumpCFv | :x: |
@@ -3874,6 +3947,7 @@
 
 # OnimasuPivot.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12OnimasuPivotFPCc | :x: |
 | initFromRailPoint__12OnimasuPivotFv | :x: |
 | startMoveInner__12OnimasuPivotFv | :x: |
@@ -3889,6 +3963,7 @@
 
 # OtaRock.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7OtaRockFPCc | :x: |
 | init__7OtaRockFRC12JMapInfoIter | :x: |
 | appear__7OtaRockFv | :x: |
@@ -3936,6 +4011,7 @@
 
 # PackunPetit.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11PackunPetitFPCc | :x: |
 | init__11PackunPetitFRC12JMapInfoIter | :x: |
 | initAfterPlacement__11PackunPetitFv | :x: |
@@ -4007,6 +4083,7 @@
 
 # Petari.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6PetariFPCc | :x: |
 | init__6PetariFRC12JMapInfoIter | :x: |
 | initAfterPlacement__6PetariFv | :x: |
@@ -4093,6 +4170,7 @@
 
 # Poihana.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7PoihanaFPCc | :x: |
 | init__7PoihanaFRC12JMapInfoIter | :x: |
 | initAfterPlacement__7PoihanaFv | :x: |
@@ -4192,6 +4270,7 @@
 
 # Pukupuku.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20PukupukuStateLandingFP8Pukupuku | :x: |
 | exeLandingMoveLand__20PukupukuStateLandingFv | :x: |
 | exeLandingJumpFromWater__20PukupukuStateLandingFv | :x: |
@@ -4256,6 +4335,7 @@
 
 # RingBeam.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__20RingBeamShadowDrawerFPC9LiveActor | :x: |
 | __dt__18ShadowVolumeDrawerFv | :x: |
 | loadModelDrawMtx__20RingBeamShadowDrawerCFv | :x: |
@@ -4283,6 +4363,7 @@
 
 # RingBeamer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10RingBeamerFPCc | :x: |
 | init__10RingBeamerFRC12JMapInfoIter | :x: |
 | syncSwitchOffB__10RingBeamerFv | :x: |
@@ -4306,11 +4387,13 @@
 
 # SamboFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | createAnimScaleController__13SamboFunctionFP14AnimScaleParam | :x: |
 
 
 # SamboHead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9SamboHeadFPCc | :x: |
 | init__9SamboHeadFRC12JMapInfoIter | :x: |
 | appear__9SamboHeadFv | :x: |
@@ -4378,6 +4461,7 @@
 
 # SearchBeamer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12SearchBeamerFPCc | :x: |
 | init__12SearchBeamerFRC12JMapInfoIter | :x: |
 | exeNonActive__12SearchBeamerFv | :x: |
@@ -4453,6 +4537,7 @@
 
 # Snakehead.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__9SnakeheadFPCc | :x: |
 | init__9SnakeheadFRC12JMapInfoIter | :x: |
 | initAfterPlacement__9SnakeheadFv | :x: |
@@ -4491,6 +4576,7 @@
 
 # SpinHitController.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__17SpinHitControllerFPC7NameObjlb | :x: |
 | __ct__17SpinHitControllerFPC7NameObjlllffflb | :x: |
 | setParameter__17SpinHitControllerFPC7NameObjlllffflb | :x: |
@@ -4502,6 +4588,7 @@
 
 # StinkBugBase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __dt__12StinkBugBaseFv | :x: |
 | __ct__12StinkBugBaseFPCc | :x: |
 | setDashVelocity__12StinkBugBaseFf | :x: |
@@ -4515,6 +4602,7 @@
 
 # StinkBugParent.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | getParam__28@unnamed@StinkBugParent_cpp@Fb | :x: |
 | __ct__14StinkBugParentFPCc | :x: |
 | init__14StinkBugParentFRC12JMapInfoIter | :x: |
@@ -4582,6 +4670,7 @@
 
 # StinkBugSmall.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13StinkBugSmallFPCc | :x: |
 | init__13StinkBugSmallFRC12JMapInfoIter | :x: |
 | exeWait__13StinkBugSmallFv | :x: |
@@ -4648,6 +4737,7 @@
 
 # StringSpider.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12StringSpiderFPCc | :x: |
 | getSearchToAttackTime__12StringSpiderFv | :x: |
 | init__12StringSpiderFRC12JMapInfoIter | :x: |
@@ -4726,6 +4816,7 @@
 
 # Takobo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6TakoboFPCc | :x: |
 | init__6TakoboFRC12JMapInfoIter | :x: |
 | initAfterPlacement__6TakoboFv | :x: |
@@ -4782,6 +4873,7 @@
 
 # TakoHei.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__7TakoHeiFPCc | :x: |
 | init__7TakoHeiFRC12JMapInfoIter | :x: |
 | initAfterPlacement__7TakoHeiFv | :x: |
@@ -4882,6 +4974,7 @@
 
 # TakoHeiInk.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__10TakoHeiInkFPCc | :x: |
 | init__10TakoHeiInkFRC12JMapInfoIter | :x: |
 | kill__10TakoHeiInkFv | :x: |
@@ -4897,6 +4990,7 @@
 
 # TakoHeiInkHolder.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16TakoHeiInkHolderFv | :x: |
 | __dt__30DeriveActorGroup<10TakoHeiInk>Fv | :x: |
 | createTakoHeiInkHolder__2MRFv | :x: |
@@ -4906,6 +5000,7 @@
 
 # Teresa.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__6TeresaFPCc | :x: |
 | init__6TeresaFRC12JMapInfoIter | :x: |
 | initDummyModel__6TeresaFRC12JMapInfoIter | :x: |
@@ -5029,6 +5124,7 @@
 
 # TeresaWater.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__11TeresaWaterFPCc | :x: |
 | init__11TeresaWaterFRC12JMapInfoIter | :x: |
 | exeMove__11TeresaWaterFv | :x: |
@@ -5055,6 +5151,7 @@
 
 # TerritoryMover.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__14TerritoryMoverFf | :x: |
 | decideNextTargetPos__14TerritoryMoverFPC9LiveActor | :x: |
 | isReachedTarget__14TerritoryMoverFPC9LiveActorf | :x: |
@@ -5062,6 +5159,7 @@
 
 # Unizo.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__5UnizoFPCc | :x: |
 | initType__5UnizoFRC12JMapInfoIter | :x: |
 | init__5UnizoFRC12JMapInfoIter | :x: |
@@ -5131,6 +5229,7 @@
 
 # UnizoLauncher.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__13UnizoLauncherFPCc | :x: |
 | init__13UnizoLauncherFRC12JMapInfoIter | :x: |
 | exeLaunch__13UnizoLauncherFv | :x: |
@@ -5144,6 +5243,7 @@
 
 # WalkerStateBindStarPointer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26WalkerStateBindStarPointerFP9LiveActorP19AnimScaleController | :x: |
 | __dt__26ActorStateBase<9LiveActor>Fv | :x: |
 | appear__26WalkerStateBindStarPointerFv | :x: |
@@ -5158,6 +5258,7 @@
 
 # WalkerStateBlowDamage.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21WalkerStateBlowDamageFP9LiveActorPQ29JGeometry8TVec3<f>P26WalkerStateBlowDamageParam | :x: |
 | appear__21WalkerStateBlowDamageFv | :x: |
 | exeBlow__21WalkerStateBlowDamageFv | :x: |
@@ -5171,6 +5272,7 @@
 
 # WalkerStateChase.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__21WalkerStateChaseParamFv | :x: |
 | __ct__16WalkerStateChaseFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP21WalkerStateChaseParam | :x: |
 | appear__16WalkerStateChaseFv | :x: |
@@ -5187,6 +5289,7 @@
 
 # WalkerStateFindPlayer.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__26WalkerStateFindPlayerParamFv | :x: |
 | __ct__21WalkerStateFindPlayerFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP26WalkerStateFindPlayerParam | :x: |
 | appear__21WalkerStateFindPlayerFv | :x: |
@@ -5211,17 +5314,20 @@
 
 # WalkerStateFunction.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | isInSightPlayer__19WalkerStateFunctionFPC9LiveActorRCQ29JGeometry8TVec3<f>PC16WalkerStateParam | :x: |
 | calcPassiveMovement__19WalkerStateFunctionFP9LiveActorPC16WalkerStateParam | :x: |
 
 
 # WalkerStateParam.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__16WalkerStateParamFv | :x: |
 
 
 # WalkerStateRunaway.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23WalkerStateRunawayParamFv | :x: |
 | __ct__18WalkerStateRunawayFP9LiveActorPQ29JGeometry8TVec3<f>P23WalkerStateRunawayParam | :x: |
 | appear__18WalkerStateRunawayFv | :x: |
@@ -5244,6 +5350,7 @@
 
 # WalkerStateStagger.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__23WalkerStateStaggerParamFv | :x: |
 | __ct__18WalkerStateStaggerFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP23WalkerStateStaggerParam | :x: |
 | appear__18WalkerStateStaggerFv | :x: |
@@ -5267,6 +5374,7 @@
 
 # WalkerStateWander.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__22WalkerStateWanderParamFv | :x: |
 | __ct__17WalkerStateWanderFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP22WalkerStateWanderParam | :x: |
 | appear__17WalkerStateWanderFv | :x: |
@@ -5284,6 +5392,7 @@
 
 # WaterBazooka.o
 | Symbol | Decompiled? |
+| ------------- | ------------- |
 | __ct__12WaterBazookaFPCc | :x: |
 | init__12WaterBazookaFRC12JMapInfoIter | :x: |
 | receiveMsgPlayerAttack__12WaterBazookaFUlP9HitSensorP9HitSensor | :x: |
