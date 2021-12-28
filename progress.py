@@ -265,7 +265,7 @@ for key in libraries:
     lib = libraries[key]
     d, f = lib.calculateProgress()
     libprog = (d / f) * 100.0
-    progressPage.append(f"| {key} | {libprog}% |\n")
+    progressPage.append(f"| [{key}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}.md) | {libprog}% |\n")
 
 with open("docs/PROGRESS.md", "w") as w:
     w.writelines(progressPage)
