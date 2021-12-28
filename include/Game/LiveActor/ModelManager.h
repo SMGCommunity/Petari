@@ -12,6 +12,8 @@ class ModelManager {
 public:
     ModelManager();
 
+    void init(const char *, const char *, bool);
+
     void update();
     void calcAnim();
     void calcView();

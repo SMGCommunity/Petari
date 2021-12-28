@@ -12,6 +12,8 @@ namespace MR {
 
     J3DModel* getJ3DModel(const LiveActor *);
 
+    void calcJ3DModel(LiveActor *);
+
     u32 getMaterialNo(J3DModelData *, const char *);
     u32 getMaterialNo(J3DModel *, const char *);
     J3DMaterial* getMaterial(J3DModelData *, const char *);

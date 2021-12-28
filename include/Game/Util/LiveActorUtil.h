@@ -33,6 +33,7 @@ namespace MR {
     void hideModelAndOnCalcAnim(LiveActor *);
 
     ResourceHolder* getResourceHolder(const LiveActor *);
+    ResourceHolder* getModelResourceHolder(const LiveActor *);
 
     bool isNoEntryDrawBuffer(const LiveActor *);
 

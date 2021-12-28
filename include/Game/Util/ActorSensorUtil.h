@@ -114,4 +114,8 @@ namespace MR {
     bool isMsgPlayerUpperPunch(u32);
     bool isMsgPlayerKick(u32);
     bool isMsgJetTurtleAttack(u32);
+
+    void updateHitSensorsAll(LiveActor *);
+
+    void setHitSensorApart(HitSensor *, HitSensor *);
 };
