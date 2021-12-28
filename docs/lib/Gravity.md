@@ -9,7 +9,7 @@
 | GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
 | GravityCreator.o | 100.0% | 42 / 42 | 100.0% |
 | GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
-| ParallelGravity.o | 39.473684210526315% | 7 / 13 | 53.84615384615385% |
+| ParallelGravity.o | 40.430622009569376% | 9 / 13 | 69.23076923076923% |
 | PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
 | PlanetGravityManager.o | 21.73913043478261% | 3 / 5 | 60.0% |
 | PointGravity.o | 100.0% | 3 / 3 | 100.0% |
@@ -167,9 +167,9 @@
 | setPlane__15ParallelGravityFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setRangeBox__15ParallelGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | setRangeCylinder__15ParallelGravityFff | :white_check_mark: |
-| setRangeType__15ParallelGravityFQ215ParallelGravity10RANGE_TYPE | :x: |
+| setRangeType__15ParallelGravityFQ215ParallelGravity10RANGE_TYPE | :white_check_mark: |
 | setBaseDistance__15ParallelGravityFf | :white_check_mark: |
-| setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE | :x: |
+| setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE | :white_check_mark: |
 | isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 | isInBoxRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
 | isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
