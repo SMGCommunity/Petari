@@ -1,4 +1,5 @@
 #include "Game/LiveActor/DynamicJointCtrl.h"
+#include "Game/Util.h"
 
 #ifdef NON_MATCHING
 // scheduling issues
@@ -63,4 +64,40 @@ void JointCtrlRate::endCtrl(s32 val) {
     _C = -1;
     _4 = val;
     _0 = 1.0f;
+}
+
+void DynamicJointCtrlKeeper::update() {
+    for (s32 i = 0; i < _4; i++) {
+        mControls[i]->update();
+    }
+}
+
+void DynamicJointCtrlKeeper::setCallBackFunction() {
+    for (s32 i = 0; i < _4; i++) {
+        mControls[i]->setCallBackFunction();
+    }
+}
+
+void DynamicJointCtrlKeeper::startCtrl(const char *pName, s32 a2) {
+    findJointCtrl(pName)->mControlRate->startCtrl(a2);
+}
+
+void DynamicJointCtrlKeeper::endCtrl(const char *pName, s32 a2) {
+    findJointCtrl(pName)->mControlRate->endCtrl(a2);
+}
+
+void DynamicJointCtrlKeeper::reset() {
+    for (s32 i = 0; i < _4; i++) {
+        mControls[i]->reset();
+    }
+}
+
+DynamicJointCtrl* DynamicJointCtrlKeeper::findJointCtrl(const char *pName) {
+    for (s32 i = 0; i < _4; i++) {
+        if (MR::isEqualString(mControls[i]->mName, pName)) {
+            return mControls[i];
+        }
+    }
+
+    return mControls[0];
 }

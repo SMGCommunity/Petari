@@ -6,7 +6,7 @@ CameraMan::CameraMan(const char *pName) : NameObj(pName) {
     mDirector = NULL;
     mPoseParam = new CameraPoseParam();
     mIsActivated = false;
-    _15 = 0;
+    _15 = false;
     mMatrix.identity();
 }
 
@@ -17,7 +17,7 @@ void CameraMan::init(const JMapInfoIter &rIter) {
 void CameraMan::movement() {
     if (mIsActivated) {
         calc();
-        _15 = 0;
+        _15 = false;
     }
 }
 

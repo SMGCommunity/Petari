@@ -1,5 +1,6 @@
 #include "Game/Camera/Camera.h"
 #include "Game/Camera/CameraHeightArrange.h"
+#include "Game/Camera/CameraMan.h"
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CameraPoseParam.h"
 #include "Game/Util/SceneUtil.h"
@@ -15,7 +16,7 @@ Camera *CamTranslatorDummy::getCamera() const {
 Camera::Camera(const char *pName) : NameObj(pName) {
     mPosParam = new CameraPoseParam();
     mVPan = NULL;
-    _18 = 0;
+    mIsLOfsErpOff = false;
     mZoneMatrix.identity();
 }
 

@@ -21,7 +21,6 @@ public:
     f32 getParam(f32) const;
 
     f32 getNearestParam(const TVec3f &, f32) const;
-    f32 normalizePos(f32, int) const;
 
     TVec3f _0;
     TVec3f _C;
@@ -35,6 +34,7 @@ public:
 
     BezierRail(const JMapInfoIter &, const JMapInfo *);
 
+    f32 normalizePos(f32, int) const;
     f32 getPartLength(int) const;
     void calcPos(TVec3f *, f32) const;
     void calcDirection(TVec3f *, f32) const;
@@ -50,14 +50,14 @@ public:
 
     
 
-    bool mIsClosed; // _0
+    bool mIsClosed;       // _0
     u8 _1;
     u8 _2;
     u8 _3;
-    u32 _4;
+    u32 mPointNum;        // _4  
     u32 _8;
     RailPart* mRailParts; // _C
     f32* _10;
-    u32 _14;
+    JMapInfoIter* mIter;  // _14
     JMapInfo* _18;
 };

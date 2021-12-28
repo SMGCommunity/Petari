@@ -5,8 +5,11 @@
 class CameraCharmedFix : public Camera {
 public:
     CameraCharmedFix(const char *);
+    virtual ~CameraCharmedFix();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

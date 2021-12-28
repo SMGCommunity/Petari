@@ -2,6 +2,7 @@
 
 #include "revolution.h"
 #include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry/TPosition3.h"
 
 namespace MR {
 
@@ -9,6 +10,10 @@ namespace MR {
 
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f &, const TVec3f &);
+
+    void makeMtxTRS(MtxPtr, const TVec3f &rTranslation, const TVec3f &rRotation, const TVec3f &rScale);
+
+    void makeMtxSideUp(TPos3f *, const TVec3f &, const TVec3f &);
 
     MtxPtr tmpMtxRotXDeg(f32);
     MtxPtr tmpMtxRotYDeg(f32);

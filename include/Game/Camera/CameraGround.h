@@ -5,8 +5,11 @@
 class CameraGround : public Camera {
 public:
     CameraGround(const char *);
+    virtual ~CameraGround();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

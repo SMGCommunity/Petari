@@ -5,8 +5,18 @@
 class CameraTowerBase : public Camera {
 public:
     CameraTowerBase(const char *);
+    virtual ~CameraTowerBase();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void calcIdealPoseOfTowerBase();
+    void resetBegin();
+    void resetPreVPan();
+    void resetPostVPan();
+    void arrangePreVPan();
+    void arrangePostVPan();
 
     f32 _4C;
     f32 _50;

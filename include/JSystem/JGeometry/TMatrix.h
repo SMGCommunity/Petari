@@ -7,6 +7,9 @@ namespace JGeometry {
     template<typename T>
     class SMatrix34C {
     public:
+
+        void set(MtxPtr);
+
         T mMtx[3][4];
     };
 
@@ -21,7 +24,7 @@ namespace JGeometry {
 
         void mult(const TVec3f &, TVec3f &);
 
-        void mult(const TVec3f &srcVec, const TVec2f &destVec) const {
+        void mult(const TVec3f &srcVec, TVec3f &destVec) const NO_INLINE {
             destVec.set<f32>(   (this->mMtx[0][3]
             + ((srcVec.z * this->mMtx[0][2]) + ((srcVec.x * this->mMtx[0][0]) + (srcVec.y * this->mMtx[0][1])))),
                 (this->mMtx[1][3]

@@ -29,6 +29,7 @@ namespace MR {
     // MR::getScaleWithReactionValueZeroToOne
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue
+    void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, TVec3f &rSrc);
 
     void makeAxisFrontUp(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisFrontSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
@@ -67,6 +68,8 @@ namespace MR {
     void PSvecBlend(const TVec3f *, const TVec3f *, TVec3f *, f32, f32);
     void vecBlend(const TVec3f &, const TVec3f &, TVec3f *, f32);
 
+    s32 vecBlendSphere(const TVec3f &, const TVec3f &, TVec3f *, f32);
+
     void blendColor(_GXColor *, const _GXColor &, const _GXColor  &, f32);
     void blendVec(Vec *, const Vec &, const Vec &, f32);
 
@@ -81,6 +84,8 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
+
+    bool isNan(const TVec3f &);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

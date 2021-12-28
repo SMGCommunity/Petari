@@ -22,6 +22,10 @@ namespace MR {
 
     void getStageCameraData(void **, long *, long);
 
+    void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
+
+    void getCameraRailInfo(JMapInfoIter *, const JMapInfo **, s32, s32);
+
     void setInitializeStatePlacementPlayer();
     void setInitializeStatePlacementHighPriority();
     void setInitializeStatePlacement();
@@ -29,4 +33,11 @@ namespace MR {
 
     s32 getGeneralPosNum();
     void getGeneralPosData(const char **, TVec3f *, TVec3f *, JMapLinkInfo **, int);
+
+    void getCurrentScenarioStartAnimCameraData(void **, long *);
+
+    s32 getCurrentStartCameraID();
+    s32 getCurrentStartZoneID();
+
+    bool isEqualStageName(const char *);
 }

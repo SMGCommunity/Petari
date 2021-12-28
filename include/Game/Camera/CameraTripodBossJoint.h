@@ -3,8 +3,14 @@
 class CameraTripodBossJoint : public Camera {
 public:
     CameraTripodBossJoint(const char *);
+    virtual ~CameraTripodBossJoint();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual bool isEnableToReset() const;
+    virtual CamTranslatorDummy *createTranslator();
+
+    void calcIdealPose();
 
     f32 _4C;
     f32 _50;

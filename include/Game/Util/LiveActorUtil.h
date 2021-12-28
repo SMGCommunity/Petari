@@ -9,14 +9,28 @@ class ResourceHolder;
 class ActorLightCtrl;
 
 namespace MR {
+    void initDefaultPos(LiveActor *, const JMapInfoIter &);
+    void validateClipping(LiveActor *);
+    void invalidateClipping(LiveActor *);
+    void setClippingTypeSphere(LiveActor *, f32);
+    void setClippingFar200m(LiveActor *);
+    void startBtk(const LiveActor *, const char *);
+
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
 
     bool isValidDraw(const LiveActor *);
+
+    void invalidateClipping(LiveActor *);
+
     bool isClipped(const LiveActor *);
     bool isInvalidClipping(const LiveActor *);
 
     bool isHiddenModel(const LiveActor *);
+
+    void showModel(LiveActor *);
+
+    void hideModelAndOnCalcAnim(LiveActor *);
 
     ResourceHolder* getResourceHolder(const LiveActor *);
 
@@ -65,6 +79,12 @@ namespace MR {
     void setNerveAtStep(LiveActor *, const Nerve *, s32);
     void setNerveAtBckStopped(LiveActor *, const Nerve *);
     bool trySetNerve(LiveActor *, const Nerve *);
+
+    bool isNoCalcAnim(const LiveActor *);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+
+    void setClippingFar(LiveActor *, f32);
+
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
 }

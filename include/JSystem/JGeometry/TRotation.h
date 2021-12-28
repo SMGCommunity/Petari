@@ -7,6 +7,10 @@ namespace JGeometry {
     class TRotation3 : public T {
     public:
         void mult33(const TVec3f &, const TVec3f &) const;
+
+        void getXDir(TVec3f &) const;
+        void getYDir(TVec3f &) const;
+        void getZDir(TVec3f &) const;
     };
 };
 

@@ -9,7 +9,7 @@ public:
     void initActorInfo(ClippingActorInfo *, s32);
     void initViewGroup(ClippingActorInfoList *);
     void endInitViewGroupTable();
-
+    void entryLodCtrl(LodCtrl *, const JMapInfoIter &);
     void update();
     void startInitViewGroupTable();
 

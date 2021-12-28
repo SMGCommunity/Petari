@@ -5,8 +5,13 @@
 class CameraCharmedTripodBoss : public Camera {
 public:
     CameraCharmedTripodBoss(const char *);
+    virtual ~CameraCharmedTripodBoss();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void setParam(long, TVec3f, const TVec3f &, const TVec2f &);
 
     s32 _4C;
     f32 _50;

@@ -1,10 +1,11 @@
 #pragma once
 
 #include <revolution.h>
+#include "Inline.h"
 
 namespace JGeometry {
     template<typename T>
-    class TVec2 {
+    struct TVec2 {
     public:
         inline TVec2() {
 
@@ -15,8 +16,39 @@ namespace JGeometry {
             y = _y;
         }
 
+        inline TVec2(const TVec2<T> &rSrc) {
+            x = rSrc.x;
+            y = rSrc.y;
+        }
+
         template<typename T>
         void set(const JGeometry::TVec2<T> &);
+
+        TVec2<T>& operator=(const TVec2<T> &rSrc) {
+            x = rSrc.x;
+            y = rSrc.y;
+        }
+
+        TVec2<T>& operator+(const TVec2<T> &rOther) const {
+            TVec2<T> result;
+            result.x = x + rOther.x;
+            result.y = y + rOther.y;
+            return result;
+        }
+
+        TVec2<T>& operator-(const TVec2<T> &rOther) const {
+            TVec2<T> result;
+            result.x = x - rOther.x;
+            result.y = y - rOther.y;
+            return result;
+        }
+
+        TVec2<T>& operator*(f32 scale) const {
+            TVec2<T> result;
+            result.x = x * scale;
+            result.y = y * scale;
+            return result;
+        }
 
         T x, y;
     };
@@ -24,12 +56,15 @@ namespace JGeometry {
     template<typename T>
     struct TVec3 {
     public:
-        inline TVec3() {
+        /* Constructors */
+        inline TVec3() {}
 
+        template<typename T>
+        TVec3(T _x, T _y, T _z) {
+            x = _x;
+            y = _y;
+            z = _z;
         }
-
-        TVec3(T _x, T _y, T _z);
-        TVec3(int, int, int);
 
         inline TVec3(T val) {
             x = val;
@@ -37,38 +72,39 @@ namespace JGeometry {
             z = val;
         }
 
-        TVec3(const TVec3<T> &);
-
-        inline void copyTo_PS(register const TVec3<T> &src) {
-            register TVec3<T>* dst = this;
-            __asm {
-                psq_l f0, 0(src), 0, 0
-                lfs f1, 8(src)
-                psq_st f0, 0(dst), 0, 0
-                stfs f1, 8(dst)
-            };
+        inline TVec3(const TVec3<T> &rSrc) {
+            setInline(rSrc);
         }
+
+        // TODO: TVec3<T>(const Vec &)
+
+        /* General operations */
+        // TODO: set(const Vec &)
+        template<typename T>
+        void set(const JGeometry::TVec3<T> &);
 
         template<typename T>
         void set(T _x, T _y, T _z);
 
         template<typename T>
-        void set(const JGeometry::TVec3<T> &);
+        void setAll(T val);
+
+        void add(const TVec3<T> &);
+        void add(const TVec3<T> &, const TVec3<T> &);
+        void sub(const TVec3<T> &);
+        void sub(const TVec3<T> &, const TVec3<T> &);
+        void mul(const TVec3<T> &);
+        void mul(const TVec3<T> &, const TVec3<T> &);
+        void scale(T);
+        void scale(T, const TVec3<T> &);
 
         T setLength(T);
+        T setLength(const TVec3<T>, T);
         T squared() const;
-        T squared(const JGeometry::TVec3<T> &) const;
-        void zero();
+        T squared(const TVec3<T> &) const;
+        T angle(const TVec3<T> &rOther) const;
 
-        void sub(const JGeometry::TVec3<T> &);
-
-        bool epsilonEquals(const JGeometry::TVec3<T> &, T) const;
-
-        void scale(T);
-        void scale(T, const JGeometry::TVec3<T> &);
-        void scale(const JGeometry::TVec3<T> &);
-
-        f32 dot(register const JGeometry::TVec3<f32> &rOther) const; //{
+        T dot(const TVec3<T> &rOther) const; //{
             /*register const JGeometry::TVec3<f32>* this_vec = this;
             __asm {
                 psq_l f2, 4(this_vec), 0, 0
@@ -80,20 +116,106 @@ namespace JGeometry {
                 ps_sum0 f1, f1, f2, f2
                 blr
             };*/
-        //}
+            //}
 
-        void add(register const JGeometry::TVec3<f32> &rOther);
+        void zero();
+        void negate();
+        void negate(const TVec3<T> &rSrc);
+        void normalize(const TVec3<T> &rSrc);
 
-        const TVec3<T>& operator=(const TVec3<T> &);
-        const TVec3<T>& operator-=(const TVec3<T> &);
-        const TVec3<T> operator*(f32) const;
+        template<typename S>
+        void cubic(const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, T);
+
+        bool isZero() const;
+        bool epsilonEquals(const TVec3<T> &, T) const;
+
+        /* Operators */
+        TVec3<T>& operator=(const TVec3<T> &);
+        TVec3<T>& operator+=(const TVec3<T> &);
+        TVec3<T>& operator-=(const TVec3<T> &);
+        TVec3<T>& operator*=(T);
+
+        TVec3<T> operator+(const TVec3<T> &) const;
+        TVec3<T> operator-(const TVec3<T> &) const;
+        TVec3<T> operator-() const;
+        TVec3<T> operator*(T) const;
+        TVec3<T> operator/(T) const;
+
+        bool operator==(const TVec3<T> &);
+
+        /* Helper inline functions */
+        inline void setInline(register const TVec3<T> &src) {
+            register TVec3<T>* dst = this;
+            register f32 xy;
+            register f32 z;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
+            };
+        }
+
+        inline void scaleInline(T scale) {
+            x *= scale;
+            y *= scale;
+            z *= scale;
+        }
+
+        inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {
+            register TVec3<T>* dst = this;
+            register const TVec3<T>* a = &rA;
+            register const TVec3<T>* b = &rB;
+            register f32 aXY, aZ, bZ, bXY;
+            z = rB.z;
+
+            __asm {
+                psq_l     aXY, 0(a), 0, 0
+                psq_l     bXY, 0(b), 0, 0
+                psq_l     aZ, 8(dst), 1, 0
+                psq_l     bZ, 8(b), 1, 0
+                ps_sub    bXY, aXY, bXY
+                ps_sub    bZ, aZ, bZ
+                psq_st    bXY, 0(dst), 0, 0
+                psq_st    bZ, 8(dst), 1, 0
+            };
+        }
+
+        inline void negateInline(register const TVec3<T> &rSrc) {
+            register TVec3<T>* dst = this;
+            register f32 xy;
+            register f32 z;
+
+            __asm {
+                psq_l xy, 0(rSrc), 0, 0
+                lfs z, 8(rSrc)
+                ps_neg xy, xy
+                fneg z, z
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
+            }
+        }
 
         T x, y, z;
     };
 
     template<typename T>
-    class TVec4 {
+    struct TVec4 {
     public:
+        inline TVec4() {}
+
+        template<typename T>
+        TVec4(T _x, T _y, T _z, T _h) {
+            x = _x;
+            y = _y;
+            z = _z;
+            h = _h;
+        }
+
+        template<typename T>
+        void set(const JGeometry::TVec3<T> &);
+
         template<typename T>
         void set(T _x, T _y, T _z, T _h) {
             x = _x;
@@ -102,10 +224,13 @@ namespace JGeometry {
             h = _h;
         }
 
+        void scale(T);
+
         T x, y, z, h;
     };
 };
 
 typedef JGeometry::TVec2<f32> TVec2f;
 typedef JGeometry::TVec3<f32> TVec3f;
+typedef JGeometry::TVec3<s16> TVec3s;
 typedef JGeometry::TVec4<f32> TVec4f;

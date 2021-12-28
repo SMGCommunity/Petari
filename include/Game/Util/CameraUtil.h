@@ -1,17 +1,38 @@
 #pragma once
 
+#include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TPosition3.h"
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
+
+class ActorCameraInfo;
+class CameraTargetArg;
 
 namespace MR {
     TVec3f getCamPos();
 
+    f32 calcCameraDistanceZ(const TVec3f &);
+
     bool isCameraInterpolateNearlyEnd();
 
-    void setShakeOffset(f32, f32);
+    void setShakeOffset(float, float);
 
-    f32 getFarZ();
+    void cleanEventCameraTarget_temporally();
+
+    MtxPtr getCameraViewMtx();
+    TPos3f *getCameraInvViewMtx();
 
     void loadProjectionMtx();
-    MtxPtr getCameraViewMtx();
+    void setCameraViewMtx(const TPos3f &, bool, bool, const TVec3f &);
+
+    void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, long);
+
+    void endEventCamera(const ActorCameraInfo *,const char *, bool, long);
+
+    f32 getNearZ();
+    f32 getFarZ();
+
+    void setNearZ(f32);
+
+    void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 };

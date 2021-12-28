@@ -10,6 +10,7 @@
 #include "Game/LiveActor/Spine.h"
 #include "Game/Map/StageSwitch.h"
 #include "JSystem/JGeometry/TVec.h"
+#include "Game/LiveActor/RailRider.h"
 
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;
@@ -17,13 +18,14 @@ class Binder;
 class CollisionParts;
 class EffectKeeper;
 class RailRider;
+class ShadowControllerList;
 class StarPointerTarget;
 
 class LiveActor : public NameObj {
 public:
     LiveActor(const char *);
 
-    virtual ~LiveActor();
+    virtual inline ~LiveActor() {}
 
     virtual void init(JMapInfoIter const &);
     virtual void movement();

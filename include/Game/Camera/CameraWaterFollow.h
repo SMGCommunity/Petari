@@ -5,8 +5,12 @@
 class CameraWaterFollow : public Camera {
 public:
     CameraWaterFollow(const char *);
+    virtual ~CameraWaterFollow();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual bool isEnableToReset() const;
+    virtual CamTranslatorDummy *createTranslator();
 
     f32 _4C;
     f32 _50;

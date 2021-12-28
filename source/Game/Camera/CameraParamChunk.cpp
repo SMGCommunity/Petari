@@ -69,7 +69,7 @@ CameraParamChunk::CameraParamChunk(CameraHolder *pHolder, const CameraParamChunk
     mParamChunkID = new CameraParamChunkID(rChunk);
     mCameraTypeIndex = pHolder->getIndexOfDefault();
     mGeneralParam = new CameraGeneralParam();
-    _64 = 0;
+    _64 = false;
     mExParam.init();
 }
 

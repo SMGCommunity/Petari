@@ -2,6 +2,8 @@
 
 #include "Game/Util/ActorMovementUtil.h"
 #include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/ActorShadowUtil.h"
+#include "Game/Util/ActorSwitchUtil.h"
 #include "Game/Util/AreaObjUtil.h"
 #include "Game/Util/Array.h"
 #include "Game/Util/BothDirList.h"
@@ -12,6 +14,7 @@
 #include "Game/Util/FileUtil.h"
 #include "Game/Util/FixedPosition.h"
 #include "Game/Util/Functor.h"
+#include "Game/Util/GravityUtil.h"
 #include "Game/Util/HashUtil.h"
 #include "Game/Util/JMapIdInfo.h"
 #include "Game/Util/JMapInfo.h"

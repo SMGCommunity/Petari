@@ -23,4 +23,8 @@ namespace MR {
     void updateModelDiffDL(LiveActor *);
     bool isEnvelope(J3DMaterial *);
     void hideMaterial(J3DModel *, const char *);
+
+    void syncJointAnimation(LiveActor *, const LiveActor *);
+
+    void syncMaterialAnimation(LiveActor *, const LiveActor *);
 };

@@ -5,8 +5,13 @@
 class CameraMtxRegParallel : public Camera {
 public:
     CameraMtxRegParallel(const char *);
+    virtual ~CameraMtxRegParallel();
 
+    virtual void reset();
     virtual CameraTargetObj *calc();
+    virtual CamTranslatorDummy *createTranslator();
+
+    void calcIdealPose();
 
     u32 _4C;
     f32 _50;
