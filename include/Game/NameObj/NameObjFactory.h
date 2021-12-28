@@ -8,6 +8,7 @@
 #include "Game/AreaObj/ChangeBgmCube.h"
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/DeathArea.h"
+#include "Game/Gravity/GlobalGravityObj.h"
 
 class AreaObj;
 class NameObj;
@@ -73,7 +74,7 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[17] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[27] = {
         { "CubeCameraBox", createCenterOriginCube<CubeCameraArea>, 0 },
         { "CubeCameraCylinder", createBaseOriginCylinder<CubeCameraArea>, 0 },
         { "CubeCameraSphere", createSphere<CubeCameraArea>, 0 },
@@ -94,7 +95,18 @@ namespace {
         { "AudioEffectSphere", createSphere<AudioEffectArea>, 0 },
         { "AudioEffectCylinder", createBaseOriginCylinder<AudioEffectArea>, 0 },
 
-        { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 }
+        { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 },
+
+        { "GlobalCubeGravity", MR::createGlobalCubeGravityObj, NULL },
+        { "GlobalConeGravity", MR::createGlobalConeGravityObj, NULL },
+        { "GlobalDiskGravity", MR::createGlobalDiskGravityObj, NULL },
+        { "GlobalDiskTorusGravity", MR::createGlobalDiskTorusGravityObj, NULL },
+        { "GlobalPlaneGravity", MR::createGlobalPlaneGravityObj, NULL },
+        { "GlobalPlaneGravityInBox", MR::createGlobalPlaneInBoxGravityObj, NULL },
+        { "GlobalPlaneGravityInCylinder", MR::createGlobalPlaneInCylinderGravityObj, NULL },
+        { "GlobalPointGravity", MR::createGlobalPointGravityObj, NULL },
+        { "GlobalSegmentGravity", MR::createGlobalSegmentGravityObj, NULL },
+        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL }
     };
 
     const char* cName2ArchiveNamesTable;

@@ -55,3 +55,9 @@ public:
     MR::Vector<MR::AssignableArray<BaseMatrixFollower*> > mFollowers;       // _C
     MR::Vector<MR::AssignableArray<BaseMatrixFollowTarget*> > mTargets;     // _18
 };
+
+namespace MR {
+    bool isValidFollowID(const JMapInfoIter &);
+    void addBaseMatrixFollower(BaseMatrixFollower *);
+    void addBaseMatrixFollowTarget(LiveActor *, const JMapInfoIter &, const TPos3f *, BaseMatrixFollowValidater *);
+};

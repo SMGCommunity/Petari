@@ -1,5 +1,6 @@
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/AreaObj/AreaObjContainer.h"
+#include "Game/Gravity/PlanetGravityManager.h"
 #include "Game/Map/PlanetMapCreator.h"
 #include "Game/Map/StageSwitch.h"
 #include "Game/NameObj/NameObj.h"
@@ -68,6 +69,9 @@ NameObj* SceneObjHolder::newEachObj(int objID) {
 
         case 48:
             return new AllLiveActorGroup();
+
+        case SCENEOBJ_PLANETGRAVITYMANAGER:
+            return new PlanetGravityManager("重力");
 
         case 88:
             return new NameObjExecuteHolder(0x1000);
