@@ -24,7 +24,7 @@ public:
 
 	void setPlane(const TVec3f &, const TVec3f &);
 	void setRangeBox(const TPos3f &);
-	void setRangeCylinder(f32, f32);
+	void setRangeCylinder(f32 radius, f32 height);
 	void setRangeType(RANGE_TYPE rangeType);
 	void setBaseDistance(f32 val);
 	void setDistanceCalcType(DISTANCE_CALC_TYPE distanceCalcType);
@@ -42,8 +42,8 @@ public:
 	TVec3f _A0;
 	TVec3f _AC;
 	TVec3f _B8;
-	f32 mRangeCylinder1;                  // _C4
-	f32 mRangeCylinder2;                  // _C8
+	f32 mCylinderHeight;                  // _C4
+	f32 mCylinderRadius;                  // _C8
 	f32 mBaseDistance;                    // _CC
 	RANGE_TYPE mRangeType;                // _D0
 	DISTANCE_CALC_TYPE mDistanceCalcType; // _D4

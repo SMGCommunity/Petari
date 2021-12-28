@@ -5,7 +5,7 @@
 #include "JSystem/JGeometry/TMatrix.h"
 
 namespace MR {
-
+    void makeMtxRotate(MtxPtr, const TVec3f &);
     void makeMtxRotate(MtxPtr, f32, f32, f32);
 
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);

@@ -133,9 +133,9 @@ PlanetGravity* ConeGravityCreator::createInstance() {
 }
 
 void ConeGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
-	TVec3f scale = rScale * 500.0f;
+	// Calculate local matrix
 	TPos3f localMtx;
-	MR::makeMtxTRS(reinterpret_cast<MtxPtr>(&localMtx), rTrans, rRotate, scale);
+	MR::makeMtxTRS(reinterpret_cast<MtxPtr>(&localMtx), rTrans, rRotate, rScale * 500.0f);
 	mGravityInstance->setLocalMatrix(localMtx);
 }
 
@@ -154,6 +154,17 @@ PlanetGravity* ConeGravityCreator::getGravity() {
 PlanetGravity* PlaneGravityCreator::createInstance() {
 	mGravityInstance = new ParallelGravity();
 	return mGravityInstance;
+}
+
+void PlaneGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
+	// Calculate TRS matrix
+	TPos3f mtx;
+	MR::makeMtxRotate(reinterpret_cast<MtxPtr>(&mtx), rRotate);
+
+	// Set normal-form plane
+	TVec3f upVec;
+	mtx.getYDir(upVec);
+	mGravityInstance->setPlane(upVec, rTrans);
 }
 
 PlanetGravity* PlaneGravityCreator::getGravity() {
@@ -197,13 +208,27 @@ PlanetGravity* PlaneInCylinderGravityCreator::createInstance() {
 	return mGravityInstance;
 }
 
+PlanetGravity* PlaneInCylinderGravityCreator::getGravity() {
+	return mGravityInstance;
+}
+
+void PlaneInCylinderGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
+	// Calculate TRS matrix
+	TPos3f mtx;
+	MR::makeMtxTR(reinterpret_cast<MtxPtr>(&mtx), rTrans, rRotate);
+
+	// Set normal-form plane
+	TVec3f upVec;
+	mtx.getYDir(upVec);
+	mGravityInstance->setPlane(upVec, rTrans);
+
+	// Set cylinder range
+	mGravityInstance->setRangeCylinder(500.0f * rScale.x, 500.0f * rScale.y);
+}
+
 void PlaneInCylinderGravityCreator::settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {
 	// Obj_arg0 = base distance
 	mGravityInstance->setBaseDistance(arg0);
-}
-
-PlanetGravity* PlaneInCylinderGravityCreator::getGravity() {
-	return mGravityInstance;
 }
 
 PlanetGravity* PointGravityCreator::createInstance() {
@@ -223,6 +248,22 @@ PlanetGravity* PointGravityCreator::getGravity() {
 PlanetGravity* SegmentGravityCreator::createInstance() {
 	mGravityInstance = new SegmentGravity();
 	return mGravityInstance;
+}
+
+void SegmentGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
+	// Calculate TRS matrix
+	TPos3f mtx;
+	MR::makeMtxTRS(reinterpret_cast<MtxPtr>(&mtx), rTrans, rRotate, rScale);
+
+	// Get side and up vectors
+	TVec3f sideVec, upVec;
+	mtx.getXDir(sideVec);
+	mtx.getYDir(upVec);
+
+	// Set gravity points and side vec
+	mGravityInstance->setGravityPoint(0, rTrans);
+	mGravityInstance->setGravityPoint(1, rTrans + upVec * 1000.0f);
+	mGravityInstance->setSideVector(sideVec);
 }
 
 void SegmentGravityCreator::settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {

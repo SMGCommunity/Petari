@@ -7,7 +7,7 @@
 | DiskTorusGravity.o | 0.0% | 0 / 9 | 0.0% |
 | GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% |
 | GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
-| GravityCreator.o | 72.55965292841648% | 35 / 42 | 83.33333333333334% |
+| GravityCreator.o | 82.646420824295% | 38 / 42 | 90.47619047619048% |
 | GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
 | ParallelGravity.o | 0.0% | 0 / 13 | 0.0% |
 | PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
@@ -126,7 +126,7 @@
 | settingFromJMapArgs__18ConeGravityCreatorFlll | :white_check_mark: |
 | getGravity__18ConeGravityCreatorFv | :white_check_mark: |
 | createInstance__19PlaneGravityCreatorFv | :white_check_mark: |
-| settingFromSRT__19PlaneGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| settingFromSRT__19PlaneGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | getGravity__19PlaneGravityCreatorFv | :white_check_mark: |
 | createInstance__24PlaneInBoxGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__24PlaneInBoxGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -134,13 +134,13 @@
 | settingFromJMapArgs__24PlaneInBoxGravityCreatorFlll | :white_check_mark: |
 | createInstance__29PlaneInCylinderGravityCreatorFv | :white_check_mark: |
 | getGravity__29PlaneInCylinderGravityCreatorFv | :white_check_mark: |
-| settingFromSRT__29PlaneInCylinderGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| settingFromSRT__29PlaneInCylinderGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | settingFromJMapArgs__29PlaneInCylinderGravityCreatorFlll | :white_check_mark: |
 | createInstance__19PointGravityCreatorFv | :white_check_mark: |
 | settingFromSRT__19PointGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | getGravity__19PointGravityCreatorFv | :white_check_mark: |
 | createInstance__21SegmentGravityCreatorFv | :white_check_mark: |
-| settingFromSRT__21SegmentGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| settingFromSRT__21SegmentGravityCreatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | settingFromJMapArgs__21SegmentGravityCreatorFlll | :white_check_mark: |
 | getGravity__21SegmentGravityCreatorFv | :white_check_mark: |
 | createInstance__18WireGravityCreatorFv | :white_check_mark: |
