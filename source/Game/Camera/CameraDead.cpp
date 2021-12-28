@@ -6,7 +6,7 @@ f32 CameraTargetObj::getRadius() const {
 }
 
 CameraDead::CameraDead(const char *pName) : Camera(pName) {
-    _50 = 0.5f;
+    mDist = 0.5f;
     _54 = 0;
     _58 = 0;
     _5C = 0;

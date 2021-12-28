@@ -20,10 +20,6 @@ Camera::Camera(const char *pName) : NameObj(pName) {
     mZoneMatrix.identity();
 }
 
-Camera::~Camera() {
-
-}
-
 void Camera::reset() {
     
 }

@@ -18,15 +18,11 @@ public:
     bool isUpsideDownByRoll() const;
     void arrangeRound();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    f32 _6C;
+    TVec3f mWPoint; // _4C
+    TVec3f mAxis;   // _58
+    f32 mAngleB;    // _64
+    f32 mAngleA;    // _68
+    f32 mDist;      // _6C
     f32 _70;
     f32 _74;
     f32 _78;

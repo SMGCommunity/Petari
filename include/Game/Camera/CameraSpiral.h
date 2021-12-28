@@ -11,12 +11,14 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorDummy *createTranslator();
 
-    u32 _4C;
+    s32 _4C;
     u32 _50;
-    u32 _54;
-    u8 _58[12];
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    f32 _70;
+    s32 _54;
+    s32 _58;
+    f32 mWPointY;   // _5C
+    f32 mAxisY;     // _60
+    f32 mWPointZ;   // _64
+    f32 mAxisZ;     // _68
+    f32 mWPointX;   // _6C
+    f32 mAxisX;     // _70
 };

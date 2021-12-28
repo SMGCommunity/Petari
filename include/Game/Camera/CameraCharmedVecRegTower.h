@@ -11,7 +11,12 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorDummy *createTranslator();
 
-    u8 _4C[36];
-    u8 _70;
-    u8 _71[7];
+    TVec3f mWPoint;         // _4C
+    TVec3f mAxis;           // _58
+    f32 mAngleA;            // _64
+    f32 mAngleB;            // _68
+    f32 mDist;              // _6C
+    bool _70;
+    u8 _71[3];
+    const char *mString;    // _74
 };

@@ -11,15 +11,15 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorDummy *createTranslator();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
+    f32 mAngleA;    // _4C
+    f32 mAngleB;    // _50
+    f32 mDist;      // _54
+    f32 mUpX;       // _58
+    f32 mUpY;       // _5C
+    f32 mUpZ;       // _60
     f32 _64;
     f32 _68;
     f32 _6C;
-    u8 _70;
+    bool _70;
     u8 _71[3];
 };

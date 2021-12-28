@@ -2,7 +2,7 @@
 
 CameraFixedThere::CameraFixedThere(const char *pName) : Camera(pName) {
     _4C = 0;
-    _50 = 0;
+    _50 = false;
     _54 = 0.0f;
     _58 = 1.0f;
     _5C = 0.0f;

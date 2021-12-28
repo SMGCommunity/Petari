@@ -19,7 +19,7 @@ public:
     void updateNormalUpVec(const TVec3f &);
 
     u32 _4C;
-    u8 _50;
+    bool _50;
     u8 _51[3];
     f32 _54;
     f32 _58;

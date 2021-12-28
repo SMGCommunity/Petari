@@ -15,16 +15,12 @@ public:
     void arrangeHorizontalPose(const TVec3f &, TVec3f &);
     void arrangeWatchPos(TVec3f &, const TVec3f &);
 
-    f32 _6C;
-    f32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
-    f32 _80;
-    f32 _84;
-    f32 _88;
-    f32 _8C;
-    f32 _90;
+    TVec3f mWPoint; // _6C
+    TVec3f mAxis;   // _78
+    f32 mAngleA;    // _84
+    f32 mAngleB;    // _88
+    f32 mUpX;       // _8C
+    f32 mUpY;       // _90
     f32 _94;
     f32 _98;
     f32 _9C;

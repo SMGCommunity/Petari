@@ -16,10 +16,10 @@ public:
     void rotateCamera();
     void checkReset();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    u8 _58;
+    f32 mAxisX;
+    f32 mAxisY;
+    f32 mAngleA;
+    bool _58;
     u8 _59[3];
     u32 _5C;
 };

@@ -1,9 +1,9 @@
 #include "Game/Camera/CameraInwardSphere.h"
 
 CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
-    _4C = 1500.0f;
-    _50 = 500.0f;
-    _54 = 300.0f;
+    mDist = 1500.0f;
+    mAngleA = 500.0f;
+    mAngleB = 300.0f;
     _58 = 0.0f;
     _5C = 0.0f;
     _60 = 0.0f;

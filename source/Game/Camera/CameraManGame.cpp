@@ -557,7 +557,7 @@ void CameraManGame::createStartAnimCamera() {
         chunk->setCameraType("CAM_TYPE_ANIM", director->mHolder);
 
         chunk->mGeneralParam->mNum1 = reinterpret_cast<s32>(data);
-        chunk->_64 = 1;
+        chunk->_64 = true;
     }
 }
 

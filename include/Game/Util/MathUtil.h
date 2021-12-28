@@ -53,6 +53,8 @@ namespace MR {
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
 
+    bool isSameDirection(const TVec3f &, const TVec3f &, float);
+
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);
     bool isAngleBetween(f32, f32, f32);
@@ -84,6 +86,10 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
+
+    bool normalizeOrZero(TVec2f *);
+    bool normalizeOrZero(TVec3f *);
+    bool normalizeOrZero(const TVec3f &, TVec3f *);
 
     bool isNan(const TVec3f &);
 };

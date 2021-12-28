@@ -13,10 +13,6 @@ public:
 
     f32 _4C;
     f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
+    TVec3f mWPoint; // _54
+    TVec3f mAxis;   // _60
 };

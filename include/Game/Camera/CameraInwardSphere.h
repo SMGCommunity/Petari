@@ -13,9 +13,9 @@ public:
 
     void calcGravityCenter();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
+    f32 mDist;      // _4C
+    f32 mAngleA;    // _50
+    f32 mAngleB;    // _54
     f32 _58;
     f32 _5C;
     f32 _60;

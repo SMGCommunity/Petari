@@ -20,13 +20,16 @@ public:
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;
 
-    Camera *mCamera;
+    Camera *mCamera;    // _4
 };
 
 class Camera : public NameObj {
 public:
     Camera(const char *);
-    virtual ~Camera();
+
+    virtual inline ~Camera() {
+
+    }
 
     virtual void reset();
     virtual CameraTargetObj *calc() = 0;
