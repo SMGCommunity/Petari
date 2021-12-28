@@ -72,9 +72,10 @@ namespace JGeometry {
             z = val;
         }
 
-        inline TVec3(const TVec3<T> &rSrc) {
-            setInline(rSrc);
-        }
+        //inline 
+        TVec3(const TVec3<T> &rSrc); //{
+        //    setInline(rSrc);
+       // }
 
         // TODO: TVec3<T>(const Vec &)
 

@@ -11,6 +11,7 @@ public:
 
     JMapIdInfo(s32, s32);
     JMapIdInfo(s32, const JMapInfoIter &);
+    JMapIdInfo(const JMapIdInfo &);
 
     void initalize(s32, const JMapInfoIter &);
 

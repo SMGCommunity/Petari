@@ -35,6 +35,8 @@ namespace MR {
     void connectToSceneCamera(NameObj *);
 
     void connectToSceneAreaObj(NameObj *);
+
+    void connectToSceneMirrorMapObj(LiveActor *);
     
     bool isName(const NameObj *, const char *);
     bool isSame(const NameObj *, const NameObj *);

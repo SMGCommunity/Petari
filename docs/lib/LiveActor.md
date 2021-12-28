@@ -15,12 +15,12 @@
 | ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
 | ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
 | ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
-| ClippingGroupHolder.o | 87.65133171912834% | 11 / 14 | 78.57142857142857% |
+| ClippingGroupHolder.o | 90.79903147699758% | 13 / 14 | 92.85714285714286% |
 | ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% |
 | DisplayListMaker.o | 0.0% | 0 / 32 | 0.0% |
 | DynamicJointCtrl.o | 15.723270440251572% | 8 / 25 | 32.0% |
 | EffectKeeper.o | 0.0% | 0 / 38 | 0.0% |
-| FaceJointCtrl.o | 22.22222222222222% | 3 / 10 | 30.0% |
+| FaceJointCtrl.o | 26.041666666666668% | 5 / 10 | 50.0% |
 | FlashingCtrl.o | 100.0% | 9 / 9 | 100.0% |
 | HitSensor.o | 100.0% | 9 / 9 | 100.0% |
 | HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% |
@@ -32,8 +32,8 @@
 | LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% |
 | LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% |
 | MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% |
-| MessageSensorHolder.o | 0.0% | 0 / 3 | 0.0% |
-| MirrorActor.o | 0.0% | 0 / 8 | 0.0% |
+| MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% |
+| MirrorActor.o | 30.454545454545457% | 4 / 8 | 50.0% |
 | MirrorCamera.o | 0.0% | 0 / 12 | 0.0% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
 | ModelManager.o | 25.387365911799765% | 11 / 50 | 22.0% |
@@ -271,8 +271,8 @@
 | ------------- | ------------- |
 | __ct__17ClippingInfoGroupFPCci | :white_check_mark: |
 | setGroupNo__17ClippingInfoGroupFRC12JMapInfoIter | :white_check_mark: |
-| __ct__10JMapIdInfoFRC10JMapIdInfo | :x: |
-| registerInfo__17ClippingInfoGroupFP17ClippingActorInfo | :x: |
+| __ct__10JMapIdInfoFRC10JMapIdInfo | :white_check_mark: |
+| registerInfo__17ClippingInfoGroupFP17ClippingActorInfo | :white_check_mark: |
 | isClippedNowAll__17ClippingInfoGroupCFv | :white_check_mark: |
 | startClippedAll__17ClippingInfoGroupFv | :white_check_mark: |
 | endClippedAll__17ClippingInfoGroupFv | :white_check_mark: |
@@ -419,8 +419,8 @@
 | init__13FaceJointCtrlFv | :x: |
 | startCtrl__13FaceJointCtrlFl | :white_check_mark: |
 | endCtrl__13FaceJointCtrlFl | :white_check_mark: |
-| update__13FaceJointCtrlFv | :x: |
-| setCallBackFunction__13FaceJointCtrlFv | :x: |
+| update__13FaceJointCtrlFv | :white_check_mark: |
+| setCallBackFunction__13FaceJointCtrlFv | :white_check_mark: |
 | updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
 | __dt__38JointControlDelegator<13FaceJointCtrl>Fv | :x: |
 | calcJointMatrix__38JointControlDelegator<13FaceJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
@@ -667,20 +667,20 @@
 # MessageSensorHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19MessageSensorHolderFPCc | :x: |
-| init__19MessageSensorHolderFRC12JMapInfoIter | :x: |
-| __dt__19MessageSensorHolderFv | :x: |
+| __ct__19MessageSensorHolderFPCc | :white_check_mark: |
+| init__19MessageSensorHolderFRC12JMapInfoIter | :white_check_mark: |
+| __dt__19MessageSensorHolderFv | :white_check_mark: |
 
 
 # MirrorActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__11MirrorActorFv | :x: |
-| __ct__11MirrorActorFP9LiveActorPCcPCc | :x: |
+| __dt__11MirrorActorFv | :white_check_mark: |
+| __ct__11MirrorActorFP9LiveActorPCcPCc | :white_check_mark: |
 | init__11MirrorActorFRC12JMapInfoIter | :x: |
 | movement__11MirrorActorFv | :x: |
-| calcAnim__11MirrorActorFv | :x: |
-| calcViewAndEntry__11MirrorActorFv | :x: |
+| calcAnim__11MirrorActorFv | :white_check_mark: |
+| calcViewAndEntry__11MirrorActorFv | :white_check_mark: |
 | isHostInTheOtherSideOfMirror__11MirrorActorCFv | :x: |
 | getHostCenterPos__11MirrorActorCFv | :x: |
 

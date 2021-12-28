@@ -1,5 +1,6 @@
 #include "Game/LiveActor/FaceJointCtrl.h"
 #include "Game/LiveActor/DynamicJointCtrl.h"
+#include "Game/Util/JointController.h"
 
 FaceJointCtrl::FaceJointCtrl(LiveActor *pActor) {
     mHostActor = pActor;
@@ -26,4 +27,20 @@ void FaceJointCtrl::endCtrl(s32 val) {
         mJointCtrlRate->endCtrl(val);
         update();
     }
+}
+
+void FaceJointCtrl::update() {
+    if (!mJointController) {
+        return;
+    }
+
+    mJointCtrlRate->update();
+}
+
+void FaceJointCtrl::setCallBackFunction() {
+    if (!mJointController) {
+        return;
+    }
+
+    mJointController->registerCallBack();
 }

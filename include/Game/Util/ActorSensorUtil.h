@@ -52,6 +52,8 @@ namespace MR {
     HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *, const char *, u16, f32);
     HitSensor* addHitSensorCallbackEye(LiveActor *, const char *, u16, f32);
 
+    void addBodyMessageSensor(LiveActor *, u32);
+
     LiveActor* getSensorHost(const HitSensor *);
     bool isSensor(const HitSensor *, const char *);
     bool isSensorPlayer(const HitSensor *);
