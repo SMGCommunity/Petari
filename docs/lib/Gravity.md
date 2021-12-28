@@ -9,7 +9,7 @@
 | GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
 | GravityCreator.o | 100.0% | 42 / 42 | 100.0% |
 | GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
-| ParallelGravity.o | 40.430622009569376% | 9 / 13 | 69.23076923076923% |
+| ParallelGravity.o | 52.63157894736842% | 10 / 13 | 76.92307692307693% |
 | PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
 | PlanetGravityManager.o | 85.86956521739131% | 4 / 5 | 80.0% |
 | PointGravity.o | 100.0% | 3 / 3 | 100.0% |
@@ -172,7 +172,7 @@
 | setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE | :white_check_mark: |
 | isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 | isInBoxRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
-| isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
+| isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 | isInRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 
 

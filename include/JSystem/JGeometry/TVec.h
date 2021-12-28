@@ -169,9 +169,8 @@ namespace JGeometry {
             z *= scale;
         }
 
-        inline void addInline(const TVec3<T> &rOther2) {
-            register const TVec3<T> *rOther = &rOther2;
-            register const TVec3<T>* dst = this;
+        inline void addInline(register const TVec3<T> &rOther) {
+            register TVec3<T>* dst = this;
             register f32 aXY, bXY, aZ, bZ;
 
             __asm {

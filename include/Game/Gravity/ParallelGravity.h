@@ -41,7 +41,7 @@ public:
 	TVec3f mPlanePosition;                // _94
 	TVec3f mPlaneUpVec;                   // _A0
 	TVec3f mWorldPlanePosition;           // _AC
-	TVec3f _B8;
+	TVec3f mWorldPlaneUpVec;              // _B4
 	f32 mCylinderHeight;                  // _C4
 	f32 mCylinderRadius;                  // _C8
 	f32 mBaseDistance;                    // _CC

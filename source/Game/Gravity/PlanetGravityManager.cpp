@@ -27,18 +27,23 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pDest, GravityInfo *pI
 	while (pGravities != &mGravities[mNumGravities]) {
 		// Is gravity valid/active?
 		bool validGravity = false;
-		if ((*pGravities)->mActivated && (*pGravities)->mValidFollower && (*pGravities)->mAppeared)
+
+		if ((*pGravities)->mActivated && (*pGravities)->mValidFollower && (*pGravities)->mAppeared) {
 			validGravity = true;
+		}
 
 		// Gravity is valid, matches specified gravity type(s) and does not have same host
 		if (validGravity && ((gravityType & (*pGravities)->mGravityType) != 0) && (host != (u32)(*pGravities)->mHost)) {
 			// Is priority lower -> end of list reached as it's sorted in descending order
 			s32 priority = (*pGravities)->mPriority;
-			if (priority < largestPriority)
+
+			if (priority < largestPriority) {
 				break;
+			}
 
 			// Calculate gravity
 			TVec3f gravityVec;
+
 			if ((*pGravities)->calcGravity(&gravityVec, rPosition)) {
 				bool storeInfo = false;
 				f32 scalar = VECMag(reinterpret_cast<const Vec*>(&gravityVec));

@@ -112,7 +112,7 @@ setBaseDistance__15ParallelGravityFf,ParallelGravity.o,Gravity.a,true
 setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE,ParallelGravity.o,Gravity.a,true
 isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf,ParallelGravity.o,Gravity.a,true
 isInBoxRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf,ParallelGravity.o,Gravity.a,false
-isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf,ParallelGravity.o,Gravity.a,false
+isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf,ParallelGravity.o,Gravity.a,true
 isInRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf,ParallelGravity.o,Gravity.a,true
 __ct__13PlanetGravityFv,PlanetGravity.o,Gravity.a,true
 setPriority__13PlanetGravityFl,PlanetGravity.o,Gravity.a,true
