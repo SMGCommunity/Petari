@@ -1,34 +1,25 @@
-# Library Progress Chart
-Progress (Full Game): 2.3589385% [125608 / 5324768]
-
-Progress (Only Game): 3.007643% [123156 / 4094768]
-
-You have 3 / 120 stars.
-
-
-
 | Library | Percentage |
 | ------------- | ------------- |
-| LiveActor.a | 28.138468% |
-| Camera.a | 26.278996% |
-| AreaObj.a | 19.111694% |
-| NameObj.a | 18.462334% |
-| Gravity.a | 17.199919% |
-| Speaker.a | 8.252704% |
-| Scene.a | 5.921913% |
-| Util.a | 5.047715% |
-| System.a | 4.8320165% |
-| Map.a | 4.3972564% |
-| Animation.a | 4.361673% |
-| Demo.a | 3.7959945% |
-| NPC.a | 0.19521274% |
-| Player.a | 0.10706729% |
-| MapObj.a | 0.010054772% |
-| AudioLib.a | 0% |
-| Boss.a | 0% |
-| Effect.a | 0% |
-| Enemy.a | 0% |
-| GameAudio.a | 0% |
-| RhythmLib.a | 0% |
-| Ride.a | 0% |
-| Screen.a | 0% |
+| Animation | 4.970806375256431% |
+| AreaObj | 19.422716756637655% |
+| AudioLib | 0.0% |
+| Boss | 0.0% |
+| Camera | 26.4655737704918% |
+| Demo | 4.035652389205248% |
+| Effect | 0.0% |
+| Enemy | 0.0% |
+| GameAudio | 0.0% |
+| Gravity | 16.666666666666664% |
+| LiveActor | 26.613542103546294% |
+| Map | 4.421267429996599% |
+| MapObj | 0.00990573907240574% |
+| NameObj | 18.34665291741858% |
+| NPC | 0.1885296449652013% |
+| Player | 0.10719572578312432% |
+| RhythmLib | 0.0% |
+| Ride | 0.0% |
+| Scene | 5.992438563327032% |
+| Screen | 0.0% |
+| Speaker | 14.201762977473065% |
+| System | 4.72754842496576% |
+| Util | 5.050690278469075% |
