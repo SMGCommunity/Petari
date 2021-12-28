@@ -144,7 +144,13 @@ namespace JGeometry {
         bool operator==(const TVec3<T> &);
 
         /* Helper inline functions */
-        inline void setInline(register const TVec3<T> &src) {
+        inline void setInline(const TVec3<T> &src) {
+            x = src.x;
+            y = src.y;
+            z = src.z;
+        }
+
+        inline void setInlinePS(register const TVec3<T> &src) {
             register TVec3<T>* dst = this;
             register f32 xy;
             register f32 z;
