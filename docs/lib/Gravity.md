@@ -1,7 +1,7 @@
 # Gravity
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| ConeGravity.o | 0.0% | 0 / 6 | 0.0% |
+| ConeGravity.o | 10.14851485148515% | 3 / 6 | 50.0% |
 | CubeGravity.o | 0.0% | 0 / 10 | 0.0% |
 | DiskGravity.o | 0.0% | 0 / 11 | 0.0% |
 | DiskTorusGravity.o | 0.0% | 0 / 9 | 0.0% |
@@ -19,10 +19,10 @@
 # ConeGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11ConeGravityFv | :x: |
+| __ct__11ConeGravityFv | :white_check_mark: |
 | setLocalMatrix__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| setEnableBottom__11ConeGravityFb | :x: |
-| setTopCutRate__11ConeGravityFf | :x: |
+| setEnableBottom__11ConeGravityFb | :white_check_mark: |
+| setTopCutRate__11ConeGravityFf | :white_check_mark: |
 | updateMtx__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | calcOwnGravityVector__11ConeGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 

@@ -27,8 +27,9 @@ namespace {
 	}
 
 	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 host) {
-		if (!host)
+		if (!host) {
 			host = (u32)pActor;
+		}
 
 		PlanetGravityManager* pManager
 			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SCENEOBJ_PLANETGRAVITYMANAGER));
