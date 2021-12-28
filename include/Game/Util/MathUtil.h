@@ -84,6 +84,7 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
+    void normalizeOrZero(TVec3f *);
 
     bool isNan(const TVec3f &);
 };

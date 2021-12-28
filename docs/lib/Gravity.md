@@ -3,17 +3,17 @@
 | ------------- | ------------- | ------------- | ------------- |
 | ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% |
 | CubeGravity.o | 1.3597033374536465% | 1 / 10 | 10.0% |
-| DiskGravity.o | 0.0% | 0 / 11 | 0.0% |
-| DiskTorusGravity.o | 0.0% | 0 / 9 | 0.0% |
+| DiskGravity.o | 33.33333333333333% | 9 / 11 | 81.81818181818183% |
+| DiskTorusGravity.o | 20.99644128113879% | 7 / 9 | 77.77777777777779% |
 | GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% |
 | GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
 | GravityCreator.o | 100.0% | 42 / 42 | 100.0% |
 | GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
-| ParallelGravity.o | 0.0% | 0 / 13 | 0.0% |
+| ParallelGravity.o | 39.473684210526315% | 7 / 13 | 53.84615384615385% |
 | PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
 | PlanetGravityManager.o | 21.73913043478261% | 3 / 5 | 60.0% |
 | PointGravity.o | 100.0% | 3 / 3 | 100.0% |
-| SegmentGravity.o | 0.0% | 0 / 8 | 0.0% |
+| SegmentGravity.o | 25.115207373271893% | 5 / 8 | 62.5% |
 
 
 # ConeGravity.o
@@ -45,29 +45,29 @@
 # DiskGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11DiskGravityFv | :x: |
-| setLocalPosition__11DiskGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setLocalDirection__11DiskGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setSideDirection__11DiskGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setRadius__11DiskGravityFf | :x: |
-| setValidDegee__11DiskGravityFf | :x: |
-| setBothSide__11DiskGravityFb | :x: |
-| setEnableEdgeGravity__11DiskGravityFb | :x: |
+| __ct__11DiskGravityFv | :white_check_mark: |
+| setLocalPosition__11DiskGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setLocalDirection__11DiskGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setSideDirection__11DiskGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setRadius__11DiskGravityFf | :white_check_mark: |
+| setValidDegee__11DiskGravityFf | :white_check_mark: |
+| setBothSide__11DiskGravityFb | :white_check_mark: |
+| setEnableEdgeGravity__11DiskGravityFb | :white_check_mark: |
 | calcOwnGravityVector__11DiskGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
-| updateMtx__11DiskGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| updateMtx__11DiskGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
 | updateLocalParam__11DiskGravityFv | :x: |
 
 
 # DiskTorusGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16DiskTorusGravityFv | :x: |
-| setPosition__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setDirection__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setRadius__16DiskTorusGravityFf | :x: |
-| setDiskRadius__16DiskTorusGravityFf | :x: |
-| setEdgeType__16DiskTorusGravityFl | :x: |
-| setBothSide__16DiskTorusGravityFb | :x: |
+| __ct__16DiskTorusGravityFv | :white_check_mark: |
+| setPosition__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setDirection__16DiskTorusGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setRadius__16DiskTorusGravityFf | :white_check_mark: |
+| setDiskRadius__16DiskTorusGravityFf | :white_check_mark: |
+| setEdgeType__16DiskTorusGravityFl | :white_check_mark: |
+| setBothSide__16DiskTorusGravityFb | :white_check_mark: |
 | updateMtx__16DiskTorusGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
 | calcOwnGravityVector__16DiskTorusGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 
@@ -161,19 +161,19 @@
 # ParallelGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15ParallelGravityFv | :x: |
-| calcOwnGravityVector__15ParallelGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
+| __ct__15ParallelGravityFv | :white_check_mark: |
+| calcOwnGravityVector__15ParallelGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | updateMtx__15ParallelGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| setPlane__15ParallelGravityFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setPlane__15ParallelGravityFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setRangeBox__15ParallelGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| setRangeCylinder__15ParallelGravityFff | :x: |
+| setRangeCylinder__15ParallelGravityFff | :white_check_mark: |
 | setRangeType__15ParallelGravityFQ215ParallelGravity10RANGE_TYPE | :x: |
-| setBaseDistance__15ParallelGravityFf | :x: |
+| setBaseDistance__15ParallelGravityFf | :white_check_mark: |
 | setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE | :x: |
-| isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
+| isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 | isInBoxRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
 | isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
-| isInRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :x: |
+| isInRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf | :white_check_mark: |
 
 
 # PlanetGravity.o
@@ -211,13 +211,13 @@
 # SegmentGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SegmentGravityFv | :x: |
+| __ct__14SegmentGravityFv | :white_check_mark: |
 | calcOwnGravityVector__14SegmentGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 | updateMtx__14SegmentGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| setGravityPoint__14SegmentGravityFUlRCQ29JGeometry8TVec3<f> | :x: |
-| setSideVector__14SegmentGravityFRCQ29JGeometry8TVec3<f> | :x: |
-| setValidSideDegree__14SegmentGravityFf | :x: |
-| setEdgeValid__14SegmentGravityFUlb | :x: |
+| setGravityPoint__14SegmentGravityFUlRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setSideVector__14SegmentGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setValidSideDegree__14SegmentGravityFf | :white_check_mark: |
+| setEdgeValid__14SegmentGravityFUlb | :white_check_mark: |
 | updateLocalParam__14SegmentGravityFv | :x: |
 
 

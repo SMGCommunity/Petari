@@ -119,10 +119,10 @@ void DiskGravityCreator::settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2) {
 
 	// Obj_arg3 = valid degree
 	if (arg2 >= 0) {
-		mGravityInstance->setValidDegree(arg2);
+		mGravityInstance->setValidDegee(arg2);
 	}
 	else {
-		mGravityInstance->setValidDegree(360.0f);
+		mGravityInstance->setValidDegee(360.0f);
 	}
 }
 
