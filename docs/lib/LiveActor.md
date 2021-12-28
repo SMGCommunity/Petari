@@ -26,7 +26,7 @@
 | HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% |
 | HitSensorKeeper.o | 100.0% | 16 / 16 | 100.0% |
 | IKJointCtrl.o | 30.0% | 11 / 26 | 42.30769230769231% |
-| LiveActor.o | 12.299465240641712% | 12 / 37 | 32.432432432432435% |
+| LiveActor.o | 23.101604278074866% | 17 / 37 | 45.94594594594595% |
 | LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% |
 | LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
 | LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% |
@@ -535,23 +535,23 @@
 | isNerve__9LiveActorCFPC5Nerve | :white_check_mark: |
 | getNerveStep__9LiveActorCFv | :white_check_mark: |
 | getSensor__9LiveActorCFPCc | :white_check_mark: |
-| getBaseMtx__9LiveActorCFv | :x: |
+| getBaseMtx__9LiveActorCFv | :white_check_mark: |
 | startClipped__9LiveActorFv | :x: |
 | endClipped__9LiveActorFv | :x: |
-| initModelManagerWithAnm__9LiveActorFPCcPCcb | :x: |
+| initModelManagerWithAnm__9LiveActorFPCcPCcb | :white_check_mark: |
 | initNerve__9LiveActorFPC5Nerve | :white_check_mark: |
 | initHitSensor__9LiveActorFi | :white_check_mark: |
 | initBinder__9LiveActorFffUl | :x: |
-| initRailRider__9LiveActorFRC12JMapInfoIter | :x: |
+| initRailRider__9LiveActorFRC12JMapInfoIter | :white_check_mark: |
 | initEffectKeeper__9LiveActorFiPCcb | :x: |
 | initSound__9LiveActorFib | :x: |
 | initShadowControllerList__9LiveActorFUl | :white_check_mark: |
 | initActorCollisionParts__9LiveActorFPCcP9HitSensorP14ResourceHolderPA4_fbb | :x: |
-| initStageSwitch__9LiveActorFRC12JMapInfoIter | :x: |
+| initStageSwitch__9LiveActorFRC12JMapInfoIter | :white_check_mark: |
 | initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f> | :x: |
 | initActorLightCtrl__9LiveActorFv | :white_check_mark: |
 | attackSensor__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
-| receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor | :x: |
+| receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
 | addToSoundObjHolder__9LiveActorFv | :x: |
 | updateBinder__9LiveActorFv | :x: |
 | setBaseScale__8J3DModelFRC3Vec | :x: |
