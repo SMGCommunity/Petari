@@ -4,51 +4,49 @@
 #include "Inline.h"
 
 namespace JGeometry {
+    void negateInternal(const f32 *rSrc, f32 *rDest);
+
     template<typename T>
     struct TVec2 {
     public:
-        inline TVec2() {
+        /* Constructors */
+        inline TVec2() {}
 
-        }
-
-        inline TVec2(T _x, T _y) {
+        template<typename T>
+        TVec2(T _x, T _y) {
             x = _x;
             y = _y;
         }
 
-        inline TVec2(const TVec2<T> &rSrc) {
+        //inline
+        TVec2(const TVec2<T> &rSrc); /*{
             x = rSrc.x;
             y = rSrc.y;
-        }
+        }*/
+
+        /* General operations */
+        template<typename T>
+        void set(const JGeometry::TVec2<T> &rSrc);
 
         template<typename T>
-        void set(const JGeometry::TVec2<T> &);
+        void set(T _x, T _y);
 
-        TVec2<T>& operator=(const TVec2<T> &rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
+        void setMin(const TVec2<T> &);
+        void setMax(const TVec2<T> &);
 
-        TVec2<T>& operator+(const TVec2<T> &rOther) const {
-            TVec2<T> result;
-            result.x = x + rOther.x;
-            result.y = y + rOther.y;
-            return result;
-        }
+        void sub(const TVec2<T> &rOther);
+        T length() const;
+        T squared() const;
+        T squared(const TVec2<T> &) const;
+        T dot(const TVec2<T> &rOther) const;
+        T distance(const TVec2<T> &rOther) const;
+        void zero();
 
-        TVec2<T>& operator-(const TVec2<T> &rOther) const {
-            TVec2<T> result;
-            result.x = x - rOther.x;
-            result.y = y - rOther.y;
-            return result;
-        }
-
-        TVec2<T>& operator*(f32 scale) const {
-            TVec2<T> result;
-            result.x = x * scale;
-            result.y = y * scale;
-            return result;
-        }
+        /* Operators */
+        TVec2<T>& operator=(const TVec2<T> &rSrc);
+        TVec2<T>& operator+(const TVec2<T> &rOther) const;
+        TVec2<T>& operator-(const TVec2<T> &rOther) const;
+        TVec2<T>& operator*(f32 scale) const;
 
         T x, y;
     };
@@ -66,21 +64,22 @@ namespace JGeometry {
             z = _z;
         }
 
-        inline TVec3(T val) {
+        TVec3(T val) {
             x = val;
             y = val;
             z = val;
         }
 
         //inline 
-        TVec3(const TVec3<T> &rSrc); //{
-        //    setInline(rSrc);
-       // }
+        TVec3(const TVec3<T> &rSrc); /*{
+            setInline(rSrc);
+        }*/
 
-        // TODO: TVec3<T>(const Vec &)
+        TVec3<T>(const Vec &rSrc);
 
         /* General operations */
-        // TODO: set(const Vec &)
+        void set(const Vec &rSrc);
+
         template<typename T>
         void set(const JGeometry::TVec3<T> &);
 
@@ -145,7 +144,13 @@ namespace JGeometry {
         bool operator==(const TVec3<T> &);
 
         /* Helper inline functions */
-        inline void setInline(register const TVec3<T> &src) {
+        inline void setInline(const TVec3<T> &src) {
+            x = src.x;
+            y = src.y;
+            z = src.z;
+        }
+
+        inline void setInlinePS(register const TVec3<T> &src) {
             register TVec3<T>* dst = this;
             register f32 xy;
             register f32 z;
@@ -162,6 +167,22 @@ namespace JGeometry {
             x *= scale;
             y *= scale;
             z *= scale;
+        }
+
+        inline void addInline(register const TVec3<T> &rOther) {
+            register TVec3<T>* dst = this;
+            register f32 aXY, bXY, aZ, bZ;
+
+            __asm {
+                psq_l     aXY, 0(dst), 0, 0
+                psq_l     bXY, 0(rOther), 0, 0
+                psq_l     aZ, 8(dst), 1, 0
+                psq_l     bZ, 0(rOther), 1, 0
+                ps_add    bXY, aXY, bXY
+                ps_add    bZ, aZ, bZ
+                psq_st    bXY, 0(dst), 0, 0
+                psq_st    bZ, 8(dst), 1, 0
+            };
         }
 
         inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {
@@ -204,6 +225,7 @@ namespace JGeometry {
     template<typename T>
     struct TVec4 {
     public:
+        /* Constructors */
         inline TVec4() {}
 
         template<typename T>
@@ -214,8 +236,9 @@ namespace JGeometry {
             h = _h;
         }
 
+        /* General operations */
         template<typename T>
-        void set(const JGeometry::TVec3<T> &);
+        void set(const JGeometry::TVec4<T> &);
 
         template<typename T>
         void set(T _x, T _y, T _z, T _h) {
@@ -225,7 +248,7 @@ namespace JGeometry {
             h = _h;
         }
 
-        void scale(T);
+        void scale(T val);
 
         T x, y, z, h;
     };

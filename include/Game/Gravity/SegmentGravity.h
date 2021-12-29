@@ -24,7 +24,6 @@ public:
 	f32 _88;
 	f32 mSideDegree;          // _8C
 	f32 _90;
-	f32 _94;
-	f32 _98;
-	u8 mEdges;                // _9C
+	f32 _94[2];
+	bool mEdges[2];           // _9C
 };

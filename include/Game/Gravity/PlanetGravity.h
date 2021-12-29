@@ -39,7 +39,7 @@ public:
 	s32 mPriority;       // _C
 	s32 mGravityId;      // _10, read from the stage files but never used
 	const void* mHost;   // _14, host object pointer, can be any pointer
-	s32 mGravityType;    // _18, gravity type bits
+	u32 mGravityType;    // _18, gravity type bits
 	s32 mGravityPower;   // _1C, gravity power type
 	bool mActivated;     // _20, corresponding GlobalGravityObj has switch activated?
 	bool mIsInverse;     // _21, invert gravity vector?

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TPosition3.h"
+#include "JSystem/JGeometry.h"
 
 class IKJoint {
 public:
