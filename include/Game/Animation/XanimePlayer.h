@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "Game/Animation/XanimeCore.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 
 class XanimeResourceTable;
@@ -23,4 +24,6 @@ public:
 
     J3DModel mModel;            // _0
     J3DModelData* mModelData;   // _4
+    u8 _8[0x6C-0x8];
+    XanimeCore* mCore;          // _6C
 };

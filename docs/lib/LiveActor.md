@@ -34,9 +34,9 @@
 | MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% |
 | MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% |
 | MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% |
-| MirrorCamera.o | 30.89430894308943% | 6 / 12 | 50.0% |
+| MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
-| ModelManager.o | 25.387365911799765% | 11 / 50 | 22.0% |
+| ModelManager.o | 39.45172824791419% | 26 / 50 | 52.0% |
 | ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
 | Nerve.o | 100.0% | 1 / 1 | 100.0% |
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
@@ -690,7 +690,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__12MirrorCameraFPCc | :x: |
-| init__12MirrorCameraFRC12JMapInfoIter | :x: |
+| init__12MirrorCameraFRC12JMapInfoIter | :white_check_mark: |
 | getVertexFormat__26@unnamed@MirrorCamera_cpp@FPC12J3DModelData7_GXAttr | :x: |
 | setMirrorMapInfo__12MirrorCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setMirrorMapInfo__12MirrorCameraFP12J3DModelData | :x: |
@@ -732,11 +732,11 @@
 | startBtp__12ModelManagerFPCc | :white_check_mark: |
 | startBpk__12ModelManagerFPCc | :white_check_mark: |
 | startBva__12ModelManagerFPCc | :white_check_mark: |
-| stopBtk__12ModelManagerFv | :x: |
-| stopBrk__12ModelManagerFv | :x: |
-| stopBtp__12ModelManagerFv | :x: |
-| stopBpk__12ModelManagerFv | :x: |
-| stopBva__12ModelManagerFv | :x: |
+| stopBtk__12ModelManagerFv | :white_check_mark: |
+| stopBrk__12ModelManagerFv | :white_check_mark: |
+| stopBtp__12ModelManagerFv | :white_check_mark: |
+| stopBpk__12ModelManagerFv | :white_check_mark: |
+| stopBva__12ModelManagerFv | :white_check_mark: |
 | getBckCtrl__12ModelManagerCFv | :x: |
 | getBtkCtrl__12ModelManagerCFv | :x: |
 | getBrkCtrl__12ModelManagerCFv | :x: |
@@ -744,16 +744,16 @@
 | getBpkCtrl__12ModelManagerCFv | :x: |
 | getBvaCtrl__12ModelManagerCFv | :x: |
 | isBckStopped__12ModelManagerCFv | :x: |
-| isBtkStopped__12ModelManagerCFv | :x: |
-| isBrkStopped__12ModelManagerCFv | :x: |
-| isBtpStopped__12ModelManagerCFv | :x: |
-| isBpkStopped__12ModelManagerCFv | :x: |
-| isBvaStopped__12ModelManagerCFv | :x: |
-| isBtkPlaying__12ModelManagerCFPCc | :x: |
-| isBrkPlaying__12ModelManagerCFPCc | :x: |
-| isBpkPlaying__12ModelManagerCFPCc | :x: |
-| isBtpPlaying__12ModelManagerCFPCc | :x: |
-| isBvaPlaying__12ModelManagerCFPCc | :x: |
+| isBtkStopped__12ModelManagerCFv | :white_check_mark: |
+| isBrkStopped__12ModelManagerCFv | :white_check_mark: |
+| isBtpStopped__12ModelManagerCFv | :white_check_mark: |
+| isBpkStopped__12ModelManagerCFv | :white_check_mark: |
+| isBvaStopped__12ModelManagerCFv | :white_check_mark: |
+| isBtkPlaying__12ModelManagerCFPCc | :white_check_mark: |
+| isBrkPlaying__12ModelManagerCFPCc | :white_check_mark: |
+| isBpkPlaying__12ModelManagerCFPCc | :white_check_mark: |
+| isBtpPlaying__12ModelManagerCFPCc | :white_check_mark: |
+| isBvaPlaying__12ModelManagerCFPCc | :white_check_mark: |
 | initJointTransform__12ModelManagerFv | :x: |
 | getJointTransform__12ModelManagerFPCc | :x: |
 | getResourceHolder__12ModelManagerCFv | :x: |

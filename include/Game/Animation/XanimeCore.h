@@ -89,6 +89,8 @@ public:
     void doFreeze();
     void setBck(u32, J3DAnmTransform *);
 
+    void enableJointTranform(J3DModelData *);
+
     void initMember(u32);
 
     u8 _4;
