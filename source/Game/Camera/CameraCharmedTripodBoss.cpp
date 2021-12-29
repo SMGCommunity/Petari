@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraCharmedTripodBoss.h"
+#include "Game/Camera/CamTranslatorCharmedTripodBoss.h"
 
 CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char *pName) : Camera(pName) {
     _4C = -1;
@@ -10,4 +11,8 @@ CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char *pName) : Camera(pNa
     _64 = 1000.0f;
     _68 = 0.0f;
     _6C = 0.0f;
+}
+
+CamTranslatorBase *CameraCharmedTripodBoss::createTranslator() {
+    return new CamTranslatorCharmedTripodBoss(this);
 }

@@ -257,7 +257,7 @@ void CameraManEvent::checkReset(ChunkFIFOItem *pItem) {
 
 void CameraManEvent::changeCamera() {
     mCamera = mHolder->getCameraInner(mChunk->mCameraTypeIndex);
-    CamTranslatorDummy *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
+    CamTranslatorBase *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
     translator->setParam(mChunk);
     setExtraParam();
     setVPanParam();

@@ -1,19 +1,19 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
 #include "Game/Camera/CameraAnim.h"
 
-class CameraAnim;
 class CameraParamChunk;
 
-class CamTranslatorAnim : public CamTranslatorDummy {
+class CamTranslatorAnim : public CamTranslatorBase {
 public:
-    inline CamTranslatorAnim(CameraAnim *pCamera) : CamTranslatorDummy(pCamera) {
-
+    inline CamTranslatorAnim(CameraAnim *pCamera) {
+        mCamera = pCamera;
     }
 
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;
 
     u32 getAnimFrame(const CameraParamChunk *) const;
+
+    CameraAnim *mCamera;    // _4
 };

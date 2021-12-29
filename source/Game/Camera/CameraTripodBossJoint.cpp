@@ -1,10 +1,15 @@
 #include "Game/Camera/CameraTripodBossJoint.h"
+#include "Game/Camera/CamTranslatorTripodBossJoint.h"
 
 CameraTripodBossJoint::CameraTripodBossJoint(const char *pName) : Camera(pName) {
-    _4C = 0.0f;
-    _50 = 0.0f;
-    _54 = 3000.0f;
-    _68 = 0;
+    mAngleB = 0.0f;
+    mAngleA = 0.0f;
+    mDist = 3000.0f;
+    _68 = false;
     _6C = 0.0f;
     _70 = 0.0f;
+}
+
+CamTranslatorBase *CameraTripodBossJoint::createTranslator() {
+    return new CamTranslatorTripodBossJoint(this);
 }
