@@ -6,8 +6,8 @@ class CameraParamChunk;
 
 class CamTranslatorAnim : public CamTranslatorDummy {
 public:
-    inline CamTranslatorAnim(CameraAnim *pCamera) : CamTranslatorDummy(pCamera) {
-
+    inline CamTranslatorAnim(CameraAnim *pCamera) {
+        mCamera = pCamera;
     }
 
     virtual void setParam(const CameraParamChunk *);

@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraSlide.h"
+#include "Game/Camera/CamTranslatorSlide.h"
 
 CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
     mAxis.x = 1.0f;
@@ -12,4 +13,8 @@ CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
     mWPoint.z = 0.0f;
     mAngleA = 0.0f;
     mDist = 1000.0f;
+}
+
+CamTranslatorDummy *CameraSlide::createTranslator() {
+    return new CamTranslatorSlide(this);
 }

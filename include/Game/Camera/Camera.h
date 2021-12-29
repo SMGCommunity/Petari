@@ -13,6 +13,15 @@ class CameraTargetObj;
 
 class CamTranslatorDummy {
 public:
+    // Calling the second constructor doesn't work for translators inheriting
+    // this (gives wrong instruction order), so instead we have an empty constructor
+    // and set mCamera individually in each constructor.
+    // I think this is because the other translators are not inhering this class,
+    // instead there is a abstract base class which all translators inherit from.
+    inline CamTranslatorDummy() {
+
+    }
+
     inline CamTranslatorDummy(Camera *pCamera) {
         mCamera = pCamera;
     }

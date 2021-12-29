@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraMedianPlanet.h"
+#include "Game/Camera/CamTranslatorMedianPlanet.h"
 
 CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
     mString = NULL;
@@ -9,4 +10,8 @@ CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
     mDist = 2000.0f;
     mAxisZ = 0.2f;
     mWPointX = 0.5f;
+}
+
+CamTranslatorDummy *CameraMedianPlanet::createTranslator() {
+    return new CamTranslatorMedianPlanet(this);
 }

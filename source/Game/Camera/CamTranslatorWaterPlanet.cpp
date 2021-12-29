@@ -1,8 +1,8 @@
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CamTranslatorWaterPlanet.h"
 
-CamTranslatorWaterPlanet::CamTranslatorWaterPlanet(CameraWaterPlanet *pCamera) : CamTranslatorDummy(pCamera) {
-
+CamTranslatorWaterPlanet::CamTranslatorWaterPlanet(CameraWaterPlanet *pCamera) {
+	mCamera = pCamera;
 }
 
 void CamTranslatorWaterPlanet::setParam(const CameraParamChunk *pChunk) {

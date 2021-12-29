@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraGround.h"
+#include "Game/Camera/CamTranslatorGround.h"
 
 CameraGround::CameraGround(const char *pName) : Camera(pName) {
     mAngleA = 0.0f;
@@ -11,4 +12,8 @@ CameraGround::CameraGround(const char *pName) : Camera(pName) {
     _68 = 0.0f;
     _6C = 0.0f;
     _70 = true;
+}
+
+CamTranslatorDummy *CameraGround::createTranslator() {
+    return new CamTranslatorGround(this);
 }

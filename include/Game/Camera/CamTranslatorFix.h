@@ -4,8 +4,8 @@
 
 class CamTranslatorFix : public CamTranslatorDummy {
 public:
-	inline CamTranslatorFix(CameraFix *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorFix(CameraFix *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

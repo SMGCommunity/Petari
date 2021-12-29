@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraTripodPlanet.h"
+#include "Game/Camera/CamTranslatorTripodPlanet.h"
 
 CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
     mAxis.x = 0.0f;
@@ -10,4 +11,8 @@ CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
     mAngleA = 0.0f;
     mAngleB = 0.0f;
     mDist = 1000.0f;
+}
+
+CamTranslatorDummy *CameraTripodPlanet::createTranslator() {
+    return new CamTranslatorTripodPlanet(this);
 }

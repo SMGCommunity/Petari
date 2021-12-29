@@ -4,8 +4,8 @@
 
 class CamTranslatorMedianTower : public CamTranslatorDummy {
 public:
-	inline CamTranslatorMedianTower(CameraMedianTower *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorMedianTower(CameraMedianTower *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

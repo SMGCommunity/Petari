@@ -1,8 +1,8 @@
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CamTranslatorWaterPlanetBoss.h"
 
-CamTranslatorWaterPlanetBoss::CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss *pCamera) : CamTranslatorDummy(pCamera) {
-
+CamTranslatorWaterPlanetBoss::CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss *pCamera) {
+	mCamera = pCamera;
 }
 
 #ifdef NON_MATCHING

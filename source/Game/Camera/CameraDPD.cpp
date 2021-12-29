@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraDPD.h"
+#include "Game/Camera/CamTranslatorDPD.h"
 
 CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _4C = 0.0f;
@@ -18,4 +19,8 @@ CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _B4 = false;
     mUpX = 0.0f;
     _60.identity();
+}
+
+CamTranslatorDummy *CameraDPD::createTranslator() {
+    return new CamTranslatorDPD(this);
 }

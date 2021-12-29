@@ -4,8 +4,8 @@
 
 class CamTranslatorRailDemo : public CamTranslatorDummy {
 public:
-	inline CamTranslatorRailDemo(CameraRailDemo *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorRailDemo(CameraRailDemo *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

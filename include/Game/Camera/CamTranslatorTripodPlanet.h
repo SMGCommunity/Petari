@@ -4,8 +4,8 @@
 
 class CamTranslatorTripodPlanet : public CamTranslatorDummy {
 public:
-	inline CamTranslatorTripodPlanet(CameraTripodPlanet *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorTripodPlanet(CameraTripodPlanet *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

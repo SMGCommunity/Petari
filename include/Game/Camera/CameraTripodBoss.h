@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/Camera/CameraTower.h"
 
 class CameraTripodBoss : public CameraTower {

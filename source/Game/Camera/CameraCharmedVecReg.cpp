@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraCharmedVecReg.h"
+#include "Game/Camera/CamTranslatorCharmedVecReg.h"
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
     mString = NULL;
@@ -8,4 +9,8 @@ CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
     mAxisY = 0.0f;
     mAngleA = 0.5f;
     mAngleB = 0.02f;
+}
+
+CamTranslatorDummy *CameraCharmedVecReg::createTranslator() {
+    return new CamTranslatorCharmedVecReg(this);
 }

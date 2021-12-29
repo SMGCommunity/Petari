@@ -4,8 +4,8 @@
 
 class CamTranslatorCubePlanet : public CamTranslatorDummy {
 public:
-	inline CamTranslatorCubePlanet(CameraCubePlanet *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorCubePlanet(CameraCubePlanet *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

@@ -4,8 +4,8 @@
 
 class CamTranslatorMtxRegParallel : public CamTranslatorDummy {
 public:
-	inline CamTranslatorMtxRegParallel(CameraMtxRegParallel *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorMtxRegParallel(CameraMtxRegParallel *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

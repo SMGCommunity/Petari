@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraTower.h"
+#include "Game/Camera/CamTranslatorTower.h"
 
 CameraTower::CameraTower(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;
@@ -20,4 +21,8 @@ CameraTower::CameraTower(const char *pName) : Camera(pName) {
     _89 = 0;
 
     createVPanObj();
+}
+
+CamTranslatorDummy *CameraTower::createTranslator() {
+    return new CamTranslatorTower(this);
 }

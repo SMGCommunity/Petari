@@ -4,8 +4,8 @@
 
 class CamTranslatorTwistedPassage : public CamTranslatorDummy {
 public:
-	inline CamTranslatorTwistedPassage(CameraTwistedPassage *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorTwistedPassage(CameraTwistedPassage *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

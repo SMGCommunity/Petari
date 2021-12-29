@@ -4,8 +4,8 @@
 
 class CamTranslatorFrontAndBack : public CamTranslatorDummy {
 public:
-	CamTranslatorFrontAndBack(CameraFrontAndBack *pCamera) : CamTranslatorDummy(pCamera) {
-
+	CamTranslatorFrontAndBack(CameraFrontAndBack *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

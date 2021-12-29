@@ -4,8 +4,8 @@
 
 class CamTranslatorTrundle : public CamTranslatorDummy {
 public:
-	inline CamTranslatorTrundle(CameraTrundle *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorTrundle(CameraTrundle *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

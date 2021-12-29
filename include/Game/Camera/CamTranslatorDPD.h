@@ -4,8 +4,8 @@
 
 class CamTranslatorDPD : public CamTranslatorDummy {
 public:
-	inline CamTranslatorDPD(CameraDPD *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorDPD(CameraDPD *pCamera) {
+		mCamera = pCamera;
 	}
 
 	void setParam(const CameraParamChunk *);

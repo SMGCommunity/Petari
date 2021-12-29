@@ -4,8 +4,8 @@
 
 class CamTranslatorCharmedVecReg : public CamTranslatorDummy {
 public:
-	inline CamTranslatorCharmedVecReg(CameraCharmedVecReg *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorCharmedVecReg(CameraCharmedVecReg *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

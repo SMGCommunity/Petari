@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraInwardSphere.h"
+#include "Game/Camera/CamTranslatorInwardSphere.h"
 
 CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
     mDist = 1500.0f;
@@ -10,4 +11,8 @@ CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
     _64 = 0.0f;
     _68 = 0.0f;
     _6C = 0.0f;
+}
+
+CamTranslatorDummy *CameraInwardSphere::createTranslator() {
+    return new CamTranslatorInwardSphere(this);
 }

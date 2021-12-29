@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraFrontAndBack.h"
+#include "Game/Camera/CamTranslatorFrontAndBack.h"
 
 CameraFrontAndBack::CameraFrontAndBack(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;
@@ -10,4 +11,8 @@ CameraFrontAndBack::CameraFrontAndBack(const char *pName) : Camera(pName) {
     mAngleA = 0.0f;
     mAngleB = 0.0f;
     mDist = 1200.0f;
+}
+
+CamTranslatorDummy *CameraFrontAndBack::createTranslator() {
+    return new CamTranslatorFrontAndBack(this);
 }

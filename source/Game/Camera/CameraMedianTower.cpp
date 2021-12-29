@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraMedianTower.h"
+#include "Game/Camera/CamTranslatorMedianTower.h"
 
 CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     mString = NULL;
@@ -17,4 +18,8 @@ CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     _80 = 1.0f;
     _84 = 1;
     _88 = 120;
+}
+
+CamTranslatorDummy *CameraMedianTower::createTranslator() {
+    return new CamTranslatorMedianTower(this);
 }

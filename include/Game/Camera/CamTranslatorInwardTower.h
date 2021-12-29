@@ -4,8 +4,8 @@
 
 class CamTranslatorInwardTower : public CamTranslatorDummy {
 public:
-	inline CamTranslatorInwardTower(CameraInwardTower *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorInwardTower(CameraInwardTower *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

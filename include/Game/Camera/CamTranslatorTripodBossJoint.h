@@ -4,8 +4,8 @@
 
 class CamTranslatorTripodBossJoint : public CamTranslatorDummy {
 public:
-	inline CamTranslatorTripodBossJoint(CameraTripodBossJoint *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorTripodBossJoint(CameraTripodBossJoint *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

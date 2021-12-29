@@ -4,8 +4,8 @@
 
 class CamTranslatorGround : public CamTranslatorDummy {
 public:
-	inline CamTranslatorGround(CameraGround *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorGround(CameraGround *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

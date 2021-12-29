@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraCubePlanet.h"
+#include "Game/Camera/CamTranslatorCubePlanet.h"
 
 CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
     mDist = 3000.0f;
@@ -7,4 +8,8 @@ CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
     _58 = 0.0f;
     _5C = 1.0f;
     _60 = 0.0f;
+}
+
+CamTranslatorDummy *CameraCubePlanet::createTranslator() {
+    return new CamTranslatorCubePlanet(this);
 }

@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraBehind.h"
+#include "Game/Camera/CamTranslatorBehind.h"
 
 CameraBehind::CameraBehind(const char *pName) : Camera(pName) {
     mAngleB = 0.5235988f;
@@ -6,4 +7,8 @@ CameraBehind::CameraBehind(const char *pName) : Camera(pName) {
     mDist = 3000.0f;
 
     createVPanObj();
+}
+
+CamTranslatorDummy *CameraBehind::createTranslator() {
+    return new CamTranslatorBehind(this);
 }

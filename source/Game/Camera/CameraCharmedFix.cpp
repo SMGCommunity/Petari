@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraCharmedFix.h"
+#include "Game/Camera/CamTranslatorCharmedFix.h"
 
 CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
     mAxis.x = 0.0f;
@@ -10,4 +11,8 @@ CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
     mWPoint.z = 1000.0f;
-} 
+}
+
+CamTranslatorDummy *CameraCharmedFix::createTranslator() {
+    return new CamTranslatorCharmedFix(this);
+}

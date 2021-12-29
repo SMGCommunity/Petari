@@ -4,8 +4,8 @@
 
 class CamTranslatorSlide : public CamTranslatorDummy {
 public:
-	inline CamTranslatorSlide(CameraSlide *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorSlide(CameraSlide *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraWaterPlanetBoss.h"
+#include "Game/Camera/CamTranslatorWaterPlanetBoss.h"
 
 CameraWaterPlanetBoss::CameraWaterPlanetBoss(const char *pName) : Camera(pName) {
     mAxisY = 300.0f;
@@ -22,4 +23,8 @@ CameraWaterPlanetBoss::CameraWaterPlanetBoss(const char *pName) : Camera(pName) 
     _94 = 1.0f;
     _98 = 0.0f;
     _9C = 0.0f;
+}
+
+CamTranslatorDummy *CameraWaterPlanetBoss::createTranslator() {
+    return new CamTranslatorWaterPlanetBoss(this);
 }

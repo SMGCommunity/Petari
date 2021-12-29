@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraFooFighter.h"
+#include "Game/Camera/CamTranslatorFooFighter.h"
 
 CameraFooFighter::CameraFooFighter(const char *pName) : Camera(pName) {
     mAxisY = 300.0f;
@@ -9,4 +10,8 @@ CameraFooFighter::CameraFooFighter(const char *pName) : Camera(pName) {
     _60 = 0.0f;
     _64 = 0.0f;
     _68 = 0.0f;
+}
+
+CamTranslatorDummy *CameraFooFighter::createTranslator() {
+    return new CamTranslatorFooFighter(this);
 }

@@ -4,8 +4,8 @@
 
 class CamTranslatorTalk : public CamTranslatorDummy {
 public:
-	inline CamTranslatorTalk(CameraTalk *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorTalk(CameraTalk *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);

@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraTrundle.h"
+#include "Game/Camera/CamTranslatorTrundle.h"
 
 CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;
@@ -11,4 +12,8 @@ CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
     mAngleA = 0.0f;
     mAngleB = 0.0f;
     mUpX = 0.0f;
+}
+
+CamTranslatorDummy *CameraTrundle::createTranslator() {
+    return new CamTranslatorTrundle(this);
 }

@@ -4,8 +4,8 @@
 
 class CamTranslatorSpiral : public CamTranslatorDummy {
 public:
-	inline CamTranslatorSpiral(CameraSpiral *pCamera) : CamTranslatorDummy(pCamera) {
-
+	inline CamTranslatorSpiral(CameraSpiral *pCamera) {
+		mCamera = pCamera;
 	}
 
 	virtual void setParam(const CameraParamChunk *);
