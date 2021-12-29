@@ -75,6 +75,7 @@
 | SpringValue.o | 0.0% | 0 / 4 | 0.0% |
 | TriangleFilter.o | 0.0% | 0 / 2 | 0.0% |
 | TriggerChecker.o | 0.0% | 0 / 6 | 0.0% |
+| ValueControl.o | 0.0% | 0 / 11 | 0.0% |
 
 
 # ActorCameraUtil.o
@@ -4069,5 +4070,21 @@
 | getLevel__14TriggerCheckerCFv | :x: |
 | getOnTrigger__14TriggerCheckerCFv | :x: |
 | getOffTrigger__14TriggerCheckerCFv | :x: |
+
+
+# ValueControl.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__12ValueControlFi | :x: |
+| setDirToOne__12ValueControlFv | :x: |
+| setDirToOneResetFrame__12ValueControlFv | :x: |
+| setDirToZero__12ValueControlFv | :x: |
+| setDirToZeroResetFrame__12ValueControlFv | :x: |
+| setMaxFrame__12ValueControlFi | :x: |
+| update__12ValueControlFv | :x: |
+| setZero__12ValueControlFv | :x: |
+| setOne__12ValueControlFv | :x: |
+| getValue__12ValueControlCFv | :x: |
+| resetFrame__12ValueControlFv | :x: |
 
 

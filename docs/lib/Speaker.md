@@ -7,6 +7,7 @@
 | SpkWave.o | 100.0% | 7 / 7 | 100.0% |
 | SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
 | SpkData.o | 100.0% | 4 / 4 | 100.0% |
+| SpkSound.o | 0.0% | 0 / 22 | 0.0% |
 
 
 # SpkSpeakerCtrl.o
@@ -89,5 +90,32 @@
 | loadTable__7SpkDataFUs | :white_check_mark: |
 | loadWave__7SpkDataFUs | :white_check_mark: |
 | isValid__7SpkDataCFv | :white_check_mark: |
+
+
+# SpkSound.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| releaseSound__14SpkSoundHandleFv | :x: |
+| __ct__14SpkSoundVolumeFv | :x: |
+| setRelease__14SpkSoundVolumeFl | :x: |
+| setFadeOut__14SpkSoundVolumeFl | :x: |
+| calc__14SpkSoundVolumeFRb | :x: |
+| __ct__8SpkSoundFv | :x: |
+| __dt__8SpkSoundFv | :x: |
+| update__8SpkSoundFf | :x: |
+| stop__8SpkSoundFl | :x: |
+| attachHandle__8SpkSoundFP14SpkSoundHandle | :x: |
+| releaseHandle__8SpkSoundFv | :x: |
+| start__8SpkSoundFll | :x: |
+| unlock__8SpkSoundFv | :x: |
+| setWaveData__8SpkSoundFl | :x: |
+| __ct__14SpkSoundHolderFv | :x: |
+| startSound__14SpkSoundHolderFllP14SpkSoundHandle | :x: |
+| update__14SpkSoundHolderFl | :x: |
+| updateEachSound__14SpkSoundHolderFl | :x: |
+| freeDeadSound__14SpkSoundHolderFl | :x: |
+| framework__14SpkSoundHolderFv | :x: |
+| __ct__18JSUList<8SpkSound>Fv | :x: |
+| __sinit_\SpkSound_cpp | :x: |
 
 

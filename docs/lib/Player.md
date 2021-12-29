@@ -107,6 +107,7 @@
 | PlayerEventDown.o | 0.0% | 0 / 5 | 0.0% |
 | PlayerEventFireDown.o | 0.0% | 0 / 6 | 0.0% |
 | PlayerEventRaceDown.o | 0.0% | 0 / 6 | 0.0% |
+| PlayerEventGhostRaceDown.o | 0.0% | 0 / 4 | 0.0% |
 
 
 # FireMarioBall.o
@@ -2255,5 +2256,14 @@
 | __sinit_\PlayerEventRaceDown_cpp | :x: |
 | checkCloseWipeStart__13EventRaceDownFUs | :x: |
 | missLayoutOpen__13EventRaceDownFUsUs | :x: |
+
+
+# PlayerEventGhostRaceDown.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__18EventGhostRaceDownFv | :x: |
+| init__18EventGhostRaceDownFUsUs | :x: |
+| sound__18EventGhostRaceDownFUsUs | :x: |
+| __sinit_\PlayerEventGhostRaceDown_cpp | :x: |
 
 

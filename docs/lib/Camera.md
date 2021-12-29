@@ -127,6 +127,7 @@
 | CameraWonderPlanet.o | 4.7713717693836974% | 1 / 9 | 11.11111111111111% |
 | DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% |
 | GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% |
+| OnlyCamera.o | 12.024048096192384% | 2 / 6 | 33.33333333333333% |
 
 
 # CamHeliEffector.o
@@ -1872,5 +1873,16 @@
 | termCameraCodeCollection__17GameCameraCreatorFv | :white_check_mark: |
 | scanStartPos__17GameCameraCreatorFv | :x: |
 | scanArea__17GameCameraCreatorFv | :x: |
+
+
+# OnlyCamera.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__10OnlyCameraFPCc | :white_check_mark: |
+| calcPose__10OnlyCameraFP9CameraMan | :x: |
+| calcStartPose__10OnlyCameraFP9CameraMan | :x: |
+| calcSafePose__10OnlyCameraFP9CameraMan | :x: |
+| moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3<f> | :x: |
+| __dt__10OnlyCameraFv | :white_check_mark: |
 
 

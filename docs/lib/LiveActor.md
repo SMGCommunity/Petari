@@ -61,6 +61,7 @@
 | Spine.o | 100.0% | 6 / 6 | 100.0% |
 | SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% |
 | ViewGroupCtrl.o | 0.0% | 0 / 7 | 0.0% |
+| VolumeModelDrawer.o | 100.0% | 6 / 6 | 100.0% |
 
 
 # ActiveActorList.o
@@ -1130,5 +1131,16 @@
 | entryLodCtrl__13ViewGroupCtrlFP7LodCtrlRC12JMapInfoIter | :x: |
 | update__13ViewGroupCtrlFv | :x: |
 | startInitViewGroupTable__13ViewGroupCtrlFv | :x: |
+
+
+# VolumeModelDrawer.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__19VolumeModelDrawInitFv | :white_check_mark: |
+| __ct__17VolumeModelDrawerFPCcPCcPA4_f | :white_check_mark: |
+| draw__17VolumeModelDrawerCFv | :white_check_mark: |
+| loadModelDrawMtx__17VolumeModelDrawerCFv | :white_check_mark: |
+| __dt__17VolumeModelDrawerFv | :white_check_mark: |
+| __dt__19VolumeModelDrawInitFv | :white_check_mark: |
 
 

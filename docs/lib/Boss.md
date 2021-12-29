@@ -169,6 +169,7 @@
 | TripodBossShell.o | 0.0% | 0 / 14 | 0.0% |
 | TripodBossStepPoint.o | 0.0% | 0 / 7 | 0.0% |
 | TripodBossStepSequence.o | 0.0% | 0 / 8 | 0.0% |
+| TripodBossStepStartArea.o | 0.0% | 0 / 5 | 0.0% |
 
 
 # BossAccessor.o
@@ -5057,5 +5058,15 @@
 | nextStep__22TripodBossStepSequenceFv | :x: |
 | isEmpty__22TripodBossStepSequenceCFv | :x: |
 | reset__22TripodBossStepSequenceFv | :x: |
+
+
+# TripodBossStepStartArea.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__23TripodBossStepStartAreaFiPCc | :x: |
+| init__23TripodBossStepStartAreaFRC12JMapInfoIter | :x: |
+| movement__23TripodBossStepStartAreaFv | :x: |
+| __dt__23TripodBossStepStartAreaFv | :x: |
+| getManagerName__23TripodBossStepStartAreaCFv | :x: |
 
 

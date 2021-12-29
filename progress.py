@@ -58,6 +58,20 @@ class Library:
     def addObject(self, object):
         self.objects.append(object)
 
+    def addFunctionToObject(self, obj, function):
+        if self.containsObject(obj.name):
+            self.findObject(obj.name).addFunction(function)
+        else:
+            self.addObject(obj)
+            self.addFunctionToObject(obj, function)
+
+    def findObject(self, objectName):
+        for obj in self.objects:
+            if obj.name == objectName:
+                return obj
+
+        return None
+
     def getObjects(self):
         return self.objects
     
@@ -192,8 +206,6 @@ for csv_file in csv_files:
     # we are just going to ignore non-SMG libraries
     if lib_arch_name not in excludedLibraries:
         library = Library(lib_name)
-        curObj = None
-        lastObj = ""
 
         with open(csv_file, "r") as c:
             csv_reader = csv.reader(c)
@@ -211,16 +223,8 @@ for csv_file in csv_files:
                 funcSize = int(func_sizes[symbol].strip("\n"))
                 func = Function(symbol, done, funcSize)
 
-                if obj != lastObj:
-                    lastObj = obj
-                    if curObj is not None:
-                        if not library.containsObject(obj):
-                            library.addObject(curObj)
-
-                    curObj = Object(obj)
-                    curObj.addFunction(func)
-                else:
-                    curObj.addFunction(func)
+                obj = Object(obj)
+                library.addFunctionToObject(obj, func)
 
         libraries[lib_name] = library
 

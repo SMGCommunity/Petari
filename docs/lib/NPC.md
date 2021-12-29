@@ -78,6 +78,7 @@
 | TalkState.o | 0.0% | 0 / 31 | 0.0% |
 | TalkSupportPlayerWatcher.o | 0.0% | 0 / 5 | 0.0% |
 | TalkTextFormer.o | 0.0% | 0 / 16 | 0.0% |
+| TimeAttackEventKeeper.o | 0.0% | 0 / 4 | 0.0% |
 
 
 # Butler.o
@@ -2803,5 +2804,14 @@
 | __rf__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv | :x: |
 | GetEndIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>Fv | :x: |
 | __ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8Iterator | :x: |
+
+
+# TimeAttackEventKeeper.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__21TimeAttackEventKeeperFv | :x: |
+| init__21TimeAttackEventKeeperFb | :x: |
+| startEventIfExecute__21TimeAttackEventKeeperFv | :x: |
+| endEvent__21TimeAttackEventKeeperFv | :x: |
 
 

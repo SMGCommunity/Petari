@@ -32,6 +32,7 @@
 | AudTrackController.o | 0.0% | 0 / 8 | 0.0% |
 | AudUtil.o | 0.0% | 0 / 3 | 0.0% |
 | OverwriteJAudio.o | 0.0% | 0 / 8 | 0.0% |
+| CSSoundNameConverter.o | 0.0% | 0 / 5 | 0.0% |
 
 
 # AudSystem.o
@@ -599,5 +600,15 @@
 | __sinit_\OverwriteJAudio_cpp | :x: |
 | __ct__38JASMemPool_MultiThreaded<10JASChannel>Fv | :x: |
 | __dt__38JASMemPool_MultiThreaded<10JASChannel>Fv | :x: |
+
+
+# CSSoundNameConverter.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__20CSSoundNameConverterFv | :x: |
+| getSoundID__20CSSoundNameConverterCFPCc | :x: |
+| init__20CSSoundNameConverterFv | :x: |
+| initDataTable__20CSSoundNameConverterFPC8SpkTable | :x: |
+| makeDataTable__20CSSoundNameConverterFPC8SpkTable | :x: |
 
 

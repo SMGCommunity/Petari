@@ -14,6 +14,7 @@
 | PlanetGravityManager.o | 21.73913043478261% | 3 / 5 | 60.0% |
 | PointGravity.o | 100.0% | 3 / 3 | 100.0% |
 | SegmentGravity.o | 0.0% | 0 / 8 | 0.0% |
+| WireGravity.o | 33.5483870967742% | 3 / 4 | 75.0% |
 
 
 # ConeGravity.o
@@ -219,5 +220,14 @@
 | setValidSideDegree__14SegmentGravityFf | :x: |
 | setEdgeValid__14SegmentGravityFUlb | :x: |
 | updateLocalParam__14SegmentGravityFv | :x: |
+
+
+# WireGravity.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__11WireGravityFv | :white_check_mark: |
+| setPointListSize__11WireGravityFUl | :white_check_mark: |
+| addPoint__11WireGravityFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| calcOwnGravityVector__11WireGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f> | :x: |
 
 

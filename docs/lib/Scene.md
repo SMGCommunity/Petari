@@ -25,6 +25,7 @@
 | StageDataHolder.o | 25.36162005785921% | 18 / 51 | 35.294117647058826% |
 | StageFileLoader.o | 0.0% | 0 / 6 | 0.0% |
 | StageResourceLoader.o | 0.0% | 0 / 2 | 0.0% |
+| StopSceneController.o | 0.0% | 0 / 9 | 0.0% |
 
 
 # GameScene.o
@@ -592,5 +593,19 @@
 | ------------- | ------------- |
 | tryRequestLoadStageResource__2MRFv | :x: |
 | isLoadStageScenarioResource__2MRFv | :x: |
+
+
+# StopSceneController.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__21StopSceneDelayRequestFv | :x: |
+| __ct__19StopSceneControllerFv | :x: |
+| movement__21StopSceneDelayRequestFv | :x: |
+| requestStopScene__19StopSceneControllerFl | :x: |
+| requestStopSceneDelay__19StopSceneControllerFll | :x: |
+| movement__19StopSceneControllerFv | :x: |
+| isSceneStopped__19StopSceneControllerCFv | :x: |
+| __dt__21StopSceneDelayRequestFv | :x: |
+| __dt__19StopSceneControllerFv | :x: |
 
 

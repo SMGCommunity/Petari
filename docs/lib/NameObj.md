@@ -13,6 +13,7 @@
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% |
 | NameObjHolder.o | 29.962546816479403% | 5 / 10 | 50.0% |
 | NameObjListExecutor.o | 57.377049180327866% | 28 / 31 | 90.32258064516128% |
+| NameObjRegister.o | 100.0% | 3 / 3 | 100.0% |
 
 
 # ModelChangableObjFactory.o
@@ -799,5 +800,13 @@
 | initCalcAnimList__19NameObjListExecutorFv | :white_check_mark: |
 | initCalcViewAndEntryList__19NameObjListExecutorFv | :white_check_mark: |
 | initDrawList__19NameObjListExecutorFv | :white_check_mark: |
+
+
+# NameObjRegister.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| setCurrentHolder__15NameObjRegisterFP13NameObjHolder | :white_check_mark: |
+| add__15NameObjRegisterFP7NameObj | :white_check_mark: |
+| __ct__15NameObjRegisterFv | :white_check_mark: |
 
 

@@ -110,6 +110,7 @@
 | WalkerStateStagger.o | 0.0% | 0 / 19 | 0.0% |
 | WalkerStateWander.o | 0.0% | 0 / 13 | 0.0% |
 | WaterBazooka.o | 0.0% | 0 / 93 | 0.0% |
+| WaterBazookaCapsule.o | 0.0% | 0 / 18 | 0.0% |
 
 
 # AnimScaleController.o
@@ -5486,5 +5487,28 @@
 | calcJointMatrix__37JointControlDelegator<12WaterBazooka>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__37JointControlDelegator<12WaterBazooka>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
 | __dt__12WaterBazookaFv | :x: |
+
+
+# WaterBazookaCapsule.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__19WaterBazookaCapsuleFP9LiveActorPCc | :x: |
+| init__19WaterBazookaCapsuleFRC12JMapInfoIter | :x: |
+| crackCapsule__19WaterBazookaCapsuleFv | :x: |
+| breakCapsule__19WaterBazookaCapsuleFv | :x: |
+| isPlayerOnCapsule__19WaterBazookaCapsuleCFv | :x: |
+| exeCrack__19WaterBazookaCapsuleFv | :x: |
+| exeBreak__19WaterBazookaCapsuleFv | :x: |
+| receiveMsgPlayerAttack__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor | :x: |
+| receiveMsgEnemyAttack__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor | :x: |
+| receiveOtherMsg__19WaterBazookaCapsuleFUlP9HitSensorP9HitSensor | :x: |
+| __dt__19WaterBazookaCapsuleFv | :x: |
+| __sinit_\WaterBazookaCapsule_cpp | :x: |
+| __ct__Q222NrvWaterBazookaCapsule28WaterBazookaCapsuleNrvNormalFv | :x: |
+| __ct__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvCrackFv | :x: |
+| __ct__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvBreakFv | :x: |
+| execute__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvBreakCFP5Spine | :x: |
+| execute__Q222NrvWaterBazookaCapsule27WaterBazookaCapsuleNrvCrackCFP5Spine | :x: |
+| execute__Q222NrvWaterBazookaCapsule28WaterBazookaCapsuleNrvNormalCFP5Spine | :x: |
 
 

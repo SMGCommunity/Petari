@@ -22,6 +22,7 @@
 | SingleEmitter.o | 0.0% | 0 / 8 | 0.0% |
 | SpinPullParticleCallBack.o | 0.0% | 0 / 5 | 0.0% |
 | SyncBckEffectChecker.o | 0.0% | 0 / 8 | 0.0% |
+| SyncBckEffectInfo.o | 0.0% | 0 / 7 | 0.0% |
 
 
 # AstroEffectObj.o
@@ -412,5 +413,17 @@
 | isDelete__20SyncBckEffectCheckerCFPC17SyncBckEffectInfo | :x: |
 | checkPass__20SyncBckEffectCheckerCFf | :x: |
 | checkPassIfRate0__20SyncBckEffectCheckerCFf | :x: |
+
+
+# SyncBckEffectInfo.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__Q217SyncBckEffectInfo15BckResourceInfoFPC12XanimePlayerPCc | :x: |
+| isLoop__Q217SyncBckEffectInfo15BckResourceInfoCFv | :x: |
+| __ct__17SyncBckEffectInfoFPC12XanimePlayerPCclffb | :x: |
+| addBck__17SyncBckEffectInfoFPC12XanimePlayerPCc | :x: |
+| isRegisteredBck__17SyncBckEffectInfoCFPCc | :x: |
+| isBckLoop__17SyncBckEffectInfoCFPCc | :x: |
+| isExistSyncBckDeleteFrame__Q22MR6EffectFPC17SyncBckEffectInfo | :x: |
 
 

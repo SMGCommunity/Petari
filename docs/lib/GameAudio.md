@@ -8,6 +8,7 @@
 | AudEffectDirector.o | 0.0% | 0 / 7 | 0.0% |
 | AudBgmConductor.o | 0.0% | 0 / 8 | 0.0% |
 | AudStageBgmTable.o | 0.0% | 0 / 3 | 0.0% |
+| AudTamakoroBgmCtrl.o | 0.0% | 0 / 5 | 0.0% |
 
 
 # AudCameraWatcher.o
@@ -83,5 +84,15 @@
 | findDataElement__30@unnamed@AudStageBgmTable_cpp@FPCc | :x: |
 | getBgmId__16AudStageBgmTableFPCcl | :x: |
 | getBgmState__16AudStageBgmTableFPCcl | :x: |
+
+
+# AudTamakoroBgmCtrl.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__18AudTamakoroBgmCtrlFv | :x: |
+| init__18AudTamakoroBgmCtrlFv | :x: |
+| control__18AudTamakoroBgmCtrlFfbl | :x: |
+| modifyTempo__18AudTamakoroBgmCtrlFP14JAISoundHandlef | :x: |
+| modifyPitch__18AudTamakoroBgmCtrlFP14JAISoundHandlef | :x: |
 
 

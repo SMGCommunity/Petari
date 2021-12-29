@@ -15,6 +15,7 @@
 | AudMeObject.o | 0.0% | 0 / 8 | 0.0% |
 | AudChordInfo.o | 0.0% | 0 / 40 | 0.0% |
 | AudRhythmHolder.o | 0.0% | 0 / 5 | 0.0% |
+| AudRhythmWrap.o | 0.0% | 0 / 2 | 0.0% |
 
 
 # AudRhythmSeqParser.o
@@ -357,5 +358,12 @@
 | copyInfoFromParser__15AudRhythmHolderFv | :x: |
 | init__15AudRhythmHolderFv | :x: |
 | copyInfoFromParserOne__15AudRhythmHolderFUlUlUlx | :x: |
+
+
+# AudRhythmWrap.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| rhythmProc__13AudRhythmWrapFv | :x: |
+| __sinit_\AudRhythmWrap_cpp | :x: |
 
 

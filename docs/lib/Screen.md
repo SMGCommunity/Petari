@@ -137,6 +137,7 @@
 | WipeKoopa.o | 0.0% | 0 / 19 | 0.0% |
 | WipeRing.o | 0.0% | 0 / 28 | 0.0% |
 | YesNoController.o | 0.0% | 0 / 27 | 0.0% |
+| YesNoLayout.o | 0.0% | 0 / 12 | 0.0% |
 
 
 # THPDraw.o
@@ -3896,5 +3897,22 @@
 | execute__Q218NrvYesNoController27YesNoControllerNrvDisappearCFP5Spine | :x: |
 | execute__Q218NrvYesNoController25YesNoControllerNrvDecidedCFP5Spine | :x: |
 | execute__Q218NrvYesNoController27YesNoControllerNrvSelectingCFP5Spine | :x: |
+
+
+# YesNoLayout.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__11YesNoLayoutFv | :x: |
+| init__11YesNoLayoutFRC12JMapInfoIter | :x: |
+| appear__11YesNoLayoutFv | :x: |
+| kill__11YesNoLayoutFv | :x: |
+| setInformationMessage__11YesNoLayoutFPCc | :x: |
+| setSelectMessage__11YesNoLayoutFPCcPCc | :x: |
+| control__11YesNoLayoutFv | :x: |
+| exeSelecting__11YesNoLayoutFv | :x: |
+| __dt__11YesNoLayoutFv | :x: |
+| __sinit_\YesNoLayout_cpp | :x: |
+| __ct__Q214NrvYesNoLayout23YesNoLayoutNrvSelectingFv | :x: |
+| execute__Q214NrvYesNoLayout23YesNoLayoutNrvSelectingCFP5Spine | :x: |
 
 

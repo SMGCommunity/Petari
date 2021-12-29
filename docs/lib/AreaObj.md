@@ -37,6 +37,7 @@
 | SunLightArea.o | 0.0% | 0 / 3 | 0.0% |
 | SwitchArea.o | 0.0% | 0 / 5 | 0.0% |
 | WarpCube.o | 0.0% | 0 / 8 | 0.0% |
+| WaterArea.o | 0.0% | 0 / 5 | 0.0% |
 
 
 # AreaForm.o
@@ -509,5 +510,15 @@
 | movement__8WarpCubeFv | :x: |
 | draw__8WarpCubeCFv | :x: |
 | init__8WarpCubeFRC12JMapInfoIter | :x: |
+
+
+# WaterArea.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__9WaterAreaFiPCc | :x: |
+| init__9WaterAreaFRC12JMapInfoIter | :x: |
+| __ct__12WaterAreaMgrFlPCc | :x: |
+| __dt__9WaterAreaFv | :x: |
+| __dt__12WaterAreaMgrFv | :x: |
 
 
