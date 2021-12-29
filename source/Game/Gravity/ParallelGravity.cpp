@@ -60,6 +60,19 @@ void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) 
 	mPlanePosition = rPlanePos;
 }
 
+#ifdef NON_MATCHING
+void ParallelGravity::setRangeBox(const TPos3f &rMtx) {
+	const u64* pSrc = reinterpret_cast<const u64*>(&rMtx);
+	u64* pDest = reinterpret_cast<u64*>(&mLocalMtx);
+
+	for (s32 i = 6; i >= 1; i--) {
+		*pDest++ = *pSrc++;
+	}
+
+	updateIdentityMtx();
+}
+#endif
+
 void ParallelGravity::setRangeCylinder(f32 radius, f32 height) {
 	mCylinderRadius = radius;
 	mCylinderHeight = height;

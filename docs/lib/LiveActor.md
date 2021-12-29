@@ -36,7 +36,7 @@
 | MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% |
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
-| ModelManager.o | 39.45172824791419% | 26 / 50 | 52.0% |
+| ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% |
 | ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
 | Nerve.o | 100.0% | 1 / 1 | 100.0% |
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
@@ -754,12 +754,12 @@
 | isBpkPlaying__12ModelManagerCFPCc | :white_check_mark: |
 | isBtpPlaying__12ModelManagerCFPCc | :white_check_mark: |
 | isBvaPlaying__12ModelManagerCFPCc | :white_check_mark: |
-| initJointTransform__12ModelManagerFv | :x: |
+| initJointTransform__12ModelManagerFv | :white_check_mark: |
 | getJointTransform__12ModelManagerFPCc | :x: |
 | getResourceHolder__12ModelManagerCFv | :x: |
-| getModelResourceHolder__12ModelManagerCFv | :x: |
+| getModelResourceHolder__12ModelManagerCFv | :white_check_mark: |
 | getJ3DModel__12ModelManagerCFv | :x: |
-| getJ3DModelData__12ModelManagerCFv | :x: |
+| getJ3DModelData__12ModelManagerCFv | :white_check_mark: |
 | getPlayingBckName__12ModelManagerCFv | :x: |
 | initModelAndAnimation__12ModelManagerFP14ResourceHolderPCcP14ResourceHolder10J3DMdlFlag | :x: |
 | initMaterialAnm__12ModelManagerFv | :x: |
