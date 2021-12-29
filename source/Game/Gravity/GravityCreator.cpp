@@ -258,13 +258,13 @@ void PlaneInBoxGravityCreator::settingFromJMapArgs(s32 arg0, s32 arg1, s32 arg2)
 	// Obj_arg1 = distance calc type
 	switch (arg1) {
 	case 0:
-		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_0);
+		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_X);
 		break;
 	case 1:
-		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_1);
+		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_Y);
 		break;
 	case 2:
-		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_2);
+		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_Z);
 		break;
 	default:
 		mGravityInstance->setDistanceCalcType(ParallelGravity::DistanceCalcType_Default);

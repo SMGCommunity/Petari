@@ -14,8 +14,8 @@ ParallelGravity::ParallelGravity() :
 	mBaseDistance = 2000.0f;
 	mRangeType = RangeType_Sphere;
 	mDistanceCalcType = DistanceCalcType_Default;
-	_28.identity();
-	_58.identity();
+	mLocalMtx.identity();
+	mWorldMtx.identity();
 }
 
 bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
@@ -29,6 +29,26 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TV
 
 	return true;
 }
+
+#ifdef NON_MATCHING
+void ParallelGravity::updateMtx(const TPos3f &rMtx) {
+	rMtx.mult33Inline(mPlaneUpVec, mWorldPlaneUpVec);
+	rMtx.mult(mPlanePosition, mWorldPlanePosition);
+	MR::normalizeOrZero(&mWorldPlaneUpVec);
+
+	if (mRangeType == RangeType_Box) {
+		mWorldMtx.concat(rMtx, mLocalMtx);
+
+		TVec3f tempDir;
+		mWorldMtx.getXDir(tempDir);
+		mExtentX = tempDir.squared();
+		mWorldMtx.getYDir(tempDir);
+		mExtentY = tempDir.squared();
+		mWorldMtx.getZDir(tempDir);
+		mExtentZ = tempDir.squared();
+	}
+}
+#endif
 
 void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) {
 	// Up vector
@@ -75,6 +95,61 @@ bool ParallelGravity::isInSphereRange(const TVec3f &rPosition, f32 *pScalar) con
 		f32 range = mRange;
 		return dirToCenter.squared() < range * range;
 	}
+}
+
+bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const {
+	// Get direction to center
+	TVec3f translation;
+	mWorldMtx.getTransInline(translation);
+	TVec3f dirToCenter(rPosition - translation);
+
+	// Check in X direction
+	TVec3f dirX;
+	mWorldMtx.getXDir(dirX);
+	f32 dotX = dirToCenter.dot(dirX);
+
+	if (dotX < -mExtentX || mExtentX < dotX)
+		return false;
+
+	// Check in Y direction
+	TVec3f dirY;
+	mWorldMtx.getYDir(dirY);
+	f32 dotY = dirToCenter.dot(dirY);
+
+	if (dotY < -mExtentY || mExtentY < dotY)
+		return false;
+
+	// Check in Z direction
+	TVec3f dirZ;
+	mWorldMtx.getYDir(dirZ);
+	f32 dotZ = dirToCenter.dot(dirZ);
+
+	if (dotZ < -mExtentZ || mExtentZ < dotZ)
+		return false;
+
+	// Calculate distance scalar
+	if (pScalar) {
+		f32 abs;
+		switch (mDistanceCalcType) {
+		case DistanceCalcType_X:
+			abs = __fabsf(dotX);
+			*pScalar = mBaseDistance + abs / MR::sqrt(mExtentX);
+			break;
+		case DistanceCalcType_Y:
+			abs = __fabsf(dotY);
+			*pScalar = mBaseDistance + abs / MR::sqrt(mExtentY);
+			break;
+		case DistanceCalcType_Z:
+			abs = __fabsf(dotZ);
+			*pScalar = mBaseDistance + abs / MR::sqrt(mExtentZ);
+			break;
+		case DistanceCalcType_Default:
+			*pScalar = mBaseDistance;
+			break;
+		}
+	}
+
+	return true;
 }
 
 bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const {

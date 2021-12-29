@@ -12,9 +12,9 @@ public:
 
 	enum DISTANCE_CALC_TYPE {
 		DistanceCalcType_Default = -1,
-		DistanceCalcType_0 = 0,
-		DistanceCalcType_1 = 1,
-		DistanceCalcType_2 = 2
+		DistanceCalcType_X = 0,
+		DistanceCalcType_Y = 1,
+		DistanceCalcType_Z = 2
 	};
 
 	ParallelGravity();
@@ -33,15 +33,15 @@ public:
 	bool isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const;
 	bool isInRange(const TVec3f &rPosition, f32 *pScalar) const;
 
-	TPos3f _28;
-	TPos3f _58;
-	f32 _88;
-	f32 _8C;
-	f32 _90;
+	TPos3f mLocalMtx;                     // _28
+	TPos3f mWorldMtx;                     // _58
+	f32 mExtentX;                         // _88
+	f32 mExtentY;						  // _8C
+	f32 mExtentZ;						  // _90
 	TVec3f mPlanePosition;                // _94
 	TVec3f mPlaneUpVec;                   // _A0
 	TVec3f mWorldPlanePosition;           // _AC
-	TVec3f mWorldPlaneUpVec;              // _B4
+	TVec3f mWorldPlaneUpVec;              // _B8
 	f32 mCylinderHeight;                  // _C4
 	f32 mCylinderRadius;                  // _C8
 	f32 mBaseDistance;                    // _CC

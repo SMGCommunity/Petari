@@ -9,6 +9,9 @@ static f32 maxDegree = 360.0f;
 namespace MR {
     void initAcosTable();
 
+    template<typename T>
+    T sqrt(T val);
+
     f32 getRandom();
     f32 getRandom(f32, f32);
     s32 getRandom(s32, s32);
