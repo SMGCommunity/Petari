@@ -32,7 +32,7 @@ namespace {
 		}
 
 		PlanetGravityManager* pManager
-			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SCENEOBJ_PLANETGRAVITYMANAGER));
+			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetGravityManager));
 		return pManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
 	}
 }
@@ -40,7 +40,7 @@ namespace {
 namespace MR {
 	void registerGravity(PlanetGravity *pGravity) {
 		PlanetGravityManager* pManager
-			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SCENEOBJ_PLANETGRAVITYMANAGER));
+			= static_cast<PlanetGravityManager*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetGravityManager));
 		pManager->registerGravity(pGravity);
 	}
 

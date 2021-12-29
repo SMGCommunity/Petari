@@ -36,7 +36,7 @@
 | MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% |
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
-| ModelManager.o | 39.45172824791419% | 26 / 50 | 52.0% |
+| ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% |
 | ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
 | Nerve.o | 100.0% | 1 / 1 | 100.0% |
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
@@ -48,13 +48,13 @@
 | ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
 | ShadowSurfaceDrawer.o | 0.0% | 0 / 4 | 0.0% |
 | ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% |
-| ShadowVolumeBox.o | 0.0% | 0 / 6 | 0.0% |
-| ShadowVolumeCylinder.o | 0.0% | 0 / 5 | 0.0% |
-| ShadowVolumeDrawer.o | 0.0% | 0 / 16 | 0.0% |
+| ShadowVolumeBox.o | 16.09907120743034% | 2 / 6 | 33.33333333333333% |
+| ShadowVolumeCylinder.o | 1.5037593984962405% | 1 / 5 | 20.0% |
+| ShadowVolumeDrawer.o | 70.58823529411765% | 14 / 16 | 87.5% |
 | ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% |
 | ShadowVolumeLine.o | 0.0% | 0 / 8 | 0.0% |
-| ShadowVolumeModel.o | 0.0% | 0 / 3 | 0.0% |
-| ShadowVolumeOval.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowVolumeModel.o | 100.0% | 3 / 3 | 100.0% |
+| ShadowVolumeOval.o | 32.06751054852321% | 4 / 5 | 80.0% |
 | ShadowVolumeOvalPole.o | 0.0% | 0 / 4 | 0.0% |
 | ShadowVolumeSphere.o | 0.0% | 0 / 5 | 0.0% |
 | SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% |
@@ -754,12 +754,12 @@
 | isBpkPlaying__12ModelManagerCFPCc | :white_check_mark: |
 | isBtpPlaying__12ModelManagerCFPCc | :white_check_mark: |
 | isBvaPlaying__12ModelManagerCFPCc | :white_check_mark: |
-| initJointTransform__12ModelManagerFv | :x: |
+| initJointTransform__12ModelManagerFv | :white_check_mark: |
 | getJointTransform__12ModelManagerFPCc | :x: |
 | getResourceHolder__12ModelManagerCFv | :x: |
-| getModelResourceHolder__12ModelManagerCFv | :x: |
+| getModelResourceHolder__12ModelManagerCFv | :white_check_mark: |
 | getJ3DModel__12ModelManagerCFv | :x: |
-| getJ3DModelData__12ModelManagerCFv | :x: |
+| getJ3DModelData__12ModelManagerCFv | :white_check_mark: |
 | getPlayingBckName__12ModelManagerCFv | :x: |
 | initModelAndAnimation__12ModelManagerFP14ResourceHolderPCcP14ResourceHolder10J3DMdlFlag | :x: |
 | initMaterialAnm__12ModelManagerFv | :x: |
@@ -991,8 +991,8 @@
 | setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3<f> | :x: |
 | loadModelDrawMtx__15ShadowVolumeBoxCFv | :x: |
 | makeVertexBuffer__15ShadowVolumeBoxCFv | :x: |
-| drawShape__15ShadowVolumeBoxCFv | :x: |
-| __dt__15ShadowVolumeBoxFv | :x: |
+| drawShape__15ShadowVolumeBoxCFv | :white_check_mark: |
+| __dt__15ShadowVolumeBoxFv | :white_check_mark: |
 
 
 # ShadowVolumeCylinder.o
@@ -1001,29 +1001,29 @@
 | __dt__20ShadowVolumeCylinderFv | :x: |
 | __ct__20ShadowVolumeCylinderFv | :x: |
 | __dt__17ShadowVolumeModelFv | :x: |
-| setRadius__20ShadowVolumeCylinderFf | :x: |
+| setRadius__20ShadowVolumeCylinderFf | :white_check_mark: |
 | loadModelDrawMtx__20ShadowVolumeCylinderCFv | :x: |
 
 
 # ShadowVolumeDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20ShadowVolumeDrawInitFv | :x: |
-| __ct__18ShadowVolumeDrawerFPCc | :x: |
-| setStartDrawShepeOffset__18ShadowVolumeDrawerFf | :x: |
-| setEndDrawShepeOffset__18ShadowVolumeDrawerFf | :x: |
-| onCutDropShadow__18ShadowVolumeDrawerFv | :x: |
-| offCutDropShadow__18ShadowVolumeDrawerFv | :x: |
-| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f> | :x: |
+| __ct__20ShadowVolumeDrawInitFv | :white_check_mark: |
+| __ct__18ShadowVolumeDrawerFPCc | :white_check_mark: |
+| setStartDrawShepeOffset__18ShadowVolumeDrawerFf | :white_check_mark: |
+| setEndDrawShepeOffset__18ShadowVolumeDrawerFf | :white_check_mark: |
+| onCutDropShadow__18ShadowVolumeDrawerFv | :white_check_mark: |
+| offCutDropShadow__18ShadowVolumeDrawerFv | :white_check_mark: |
+| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
 | calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>PC16ShadowController | :x: |
-| calcBaseDropLength__18ShadowVolumeDrawerCFv | :x: |
+| calcBaseDropLength__18ShadowVolumeDrawerCFv | :white_check_mark: |
 | calcBaseDropLength__18ShadowVolumeDrawerCFPC16ShadowController | :x: |
-| loadModelDrawMtx__18ShadowVolumeDrawerCFv | :x: |
-| drawShape__18ShadowVolumeDrawerCFv | :x: |
-| isDraw__18ShadowVolumeDrawerCFv | :x: |
-| draw__18ShadowVolumeDrawerCFv | :x: |
-| __dt__20ShadowVolumeDrawInitFv | :x: |
-| __sinit_\ShadowVolumeDrawer_cpp | :x: |
+| loadModelDrawMtx__18ShadowVolumeDrawerCFv | :white_check_mark: |
+| drawShape__18ShadowVolumeDrawerCFv | :white_check_mark: |
+| isDraw__18ShadowVolumeDrawerCFv | :white_check_mark: |
+| draw__18ShadowVolumeDrawerCFv | :white_check_mark: |
+| __dt__20ShadowVolumeDrawInitFv | :white_check_mark: |
+| __sinit_\ShadowVolumeDrawer_cpp | :white_check_mark: |
 
 
 # ShadowVolumeFlatModel.o
@@ -1057,19 +1057,19 @@
 # ShadowVolumeModel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17ShadowVolumeModelFPCc | :x: |
-| initVolumeModel__17ShadowVolumeModelFPCc | :x: |
-| drawShape__17ShadowVolumeModelCFv | :x: |
+| __ct__17ShadowVolumeModelFPCc | :white_check_mark: |
+| initVolumeModel__17ShadowVolumeModelFPCc | :white_check_mark: |
+| drawShape__17ShadowVolumeModelCFv | :white_check_mark: |
 
 
 # ShadowVolumeOval.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__16ShadowVolumeOvalFv | :x: |
-| __ct__16ShadowVolumeOvalFv | :x: |
-| isDraw__16ShadowVolumeOvalCFv | :x: |
+| __dt__16ShadowVolumeOvalFv | :white_check_mark: |
+| __ct__16ShadowVolumeOvalFv | :white_check_mark: |
+| isDraw__16ShadowVolumeOvalCFv | :white_check_mark: |
 | loadModelDrawMtx__16ShadowVolumeOvalCFv | :x: |
-| setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 
 
 # ShadowVolumeOvalPole.o

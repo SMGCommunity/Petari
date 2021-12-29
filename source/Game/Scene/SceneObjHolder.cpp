@@ -70,7 +70,7 @@ NameObj* SceneObjHolder::newEachObj(int objID) {
         case 48:
             return new AllLiveActorGroup();
 
-        case SCENEOBJ_PLANETGRAVITYMANAGER:
+        case SceneObj_PlanetGravityManager:
             return new PlanetGravityManager("重力");
 
         case 88:
