@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxCalc.h"
 #include "JSystem/JGeometry/TVec.h"
 
