@@ -13,6 +13,9 @@ public:
     virtual void calcAnim();
     virtual void calcViewAndEntry();
 
+    bool isHostInTheOtherSideOfMirror() const;
+    TVec3f& getHostCenterPos() const;
+
     LiveActor* _8C;
     u32 _90;
     u32 _94;

@@ -1,8 +1,10 @@
 #include "Game/LiveActor/MirrorActor.h"
+#include "Game/LiveActor/MirrorCamera.h"
+#include "Game/NameObj/NameObjExecuteHolder.h"
 #include "JSystem/JMath/JMath.h"
 
 MirrorActor::~MirrorActor() {
-    
+
 }
 
 MirrorActor::MirrorActor(LiveActor *pActor, const char *a2, const char *a3) : LiveActor(a2) {
@@ -25,17 +27,17 @@ void MirrorActor::init(const JMapInfoIter &rIter) {
     JMAVECLerp((const Vec*)&modelBB.mMax, (const Vec*)&modelBB.mMin, (Vec*)&stack_14, 0.5f);
     register TVec3f stack_8(modelBB.mMax);
 
-    register TVec3f* butts = &stack_8;
+    register TVec3f* ptrStack = &stack_8;
 
     __asm {
         psq_l f1, 0x20(r1), 0, 0
-        psq_l f0, 0(butts), 0, 0
-        psq_l f2, 8(butts), 1, 0 
+        psq_l f0, 0(ptrStack), 0, 0
+        psq_l f2, 8(ptrStack), 1, 0 
         ps_sub f0, f0, f1
         psq_l f3, 0x28(r1), 1, 0
         ps_sub f1, f2, f3
-        psq_st f0, 0(butts), 0, 0
-        psq_st f1, 8(butts), 1, 0
+        psq_st f0, 0(ptrStack), 0, 0
+        psq_st f1, 8(ptrStack), 1, 0
     };
 
     f32 mag = PSVECMag((const Vec*)&stack_8);
@@ -52,7 +54,30 @@ void MirrorActor::init(const JMapInfoIter &rIter) {
 }
 #endif
 
-void MirrorActor::calcAnim() {
+void MirrorActor::movement() {
+    if (MR::isDead(this) || MR::isDead(_8C) || MR::isClipped(_8C) || MR::isHiddenModel(_8C) || isHostInTheOtherSideOfMirror()) {
+        if (_A0) {
+            _A0 = 1;
+
+            if (!MR::isHiddenModel(this)) {
+                MR::disconnectToDrawTemporarily(this);
+            }
+        }   
+    }
+    else {
+        if (_A0) {
+            _A0 = 0;
+
+            if (!MR::isHiddenModel(this)) {
+                MR::connectToDrawTemporarily(this);
+            }
+        }
+
+        LiveActor::movement();
+    }
+}
+
+void MirrorActor::calcAnim() { 
     MR::copyJointAnimation(this, _8C);
     MR::updateMaterial(this);
 }
@@ -60,3 +85,17 @@ void MirrorActor::calcAnim() {
 void MirrorActor::calcViewAndEntry() {
     mModelManager->calcView();
 }
+
+#ifdef NON_MATCHING
+// weird function call to getHostCenterPos
+bool MirrorActor::isHostInTheOtherSideOfMirror() const {
+    if (MR::isExistMirrorCamera()) { 
+        TVec3f centerPos;
+        centerPos = getHostCenterPos();
+        f32 dist = MR::getDistanceToMirror(centerPos);
+        return dist < 0.0f;
+    }
+
+    return false;
+}
+#endif

@@ -33,8 +33,8 @@
 | LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% |
 | MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% |
 | MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% |
-| MirrorActor.o | 30.454545454545457% | 4 / 8 | 50.0% |
-| MirrorCamera.o | 0.0% | 0 / 12 | 0.0% |
+| MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% |
+| MirrorCamera.o | 30.89430894308943% | 6 / 12 | 50.0% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
 | ModelManager.o | 25.387365911799765% | 11 / 50 | 22.0% |
 | ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
@@ -679,7 +679,7 @@
 | __dt__11MirrorActorFv | :white_check_mark: |
 | __ct__11MirrorActorFP9LiveActorPCcPCc | :white_check_mark: |
 | init__11MirrorActorFRC12JMapInfoIter | :x: |
-| movement__11MirrorActorFv | :x: |
+| movement__11MirrorActorFv | :white_check_mark: |
 | calcAnim__11MirrorActorFv | :white_check_mark: |
 | calcViewAndEntry__11MirrorActorFv | :white_check_mark: |
 | isHostInTheOtherSideOfMirror__11MirrorActorCFv | :x: |
@@ -692,15 +692,15 @@
 | __ct__12MirrorCameraFPCc | :x: |
 | init__12MirrorCameraFRC12JMapInfoIter | :x: |
 | getVertexFormat__26@unnamed@MirrorCamera_cpp@FPC12J3DModelData7_GXAttr | :x: |
-| setMirrorMapInfo__12MirrorCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setMirrorMapInfo__12MirrorCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setMirrorMapInfo__12MirrorCameraFP12J3DModelData | :x: |
 | updateViewMtx__12MirrorCameraFv | :x: |
 | updateModelTexMtx__12MirrorCameraFv | :x: |
-| getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3<f> | :x: |
-| getMirrorCamera__2MRFv | :x: |
-| getDistanceToMirror__2MRFRCQ29JGeometry8TVec3<f> | :x: |
-| __dt__12MirrorCameraFv | :x: |
-| movement__12MirrorCameraFv | :x: |
+| getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getMirrorCamera__2MRFv | :white_check_mark: |
+| getDistanceToMirror__2MRFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| __dt__12MirrorCameraFv | :white_check_mark: |
+| movement__12MirrorCameraFv | :white_check_mark: |
 
 
 # MirrorReflectionModel.o

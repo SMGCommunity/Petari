@@ -33,4 +33,6 @@ namespace MR {
     void setNearZ(f32);
 
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
+
+    bool isExistMirrorCamera();
 };
