@@ -105,6 +105,14 @@ namespace JGeometry {
             f32 x = mMtx[0][0];
             rDest.set(x, y, z);
         }
+
+        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDest) const {
+            rDest.set<f32>(
+                rSrc.z * mMtx[0][2] + (rSrc.y * mMtx[0][0] + (rSrc.x * mMtx[0][1])),
+                rSrc.z * mMtx[1][2] + (rSrc.y * mMtx[1][0] + (rSrc.x * mMtx[1][1])),
+                rSrc.z * mMtx[2][2] + (rSrc.y * mMtx[2][0] + (rSrc.x * mMtx[2][1]))
+                );
+        }
     };
 
     template<class T>
@@ -119,6 +127,15 @@ namespace JGeometry {
         void makeQuat(const TQuat4f &rSrc);
         void setPositionFromLookAt(const TPosition3<T> &rLookAt);
         void setQT(const TQuat4f &rSrcQuat, const TVec3f &rSrcTrans);
+
+#ifdef NON_MATCHING
+        inline void getTransInline(TVec3f &rDest) const {
+            f32 z = mMtx[2][3];
+            f32 y = mMtx[1][3];
+            f32 x = mMtx[0][3];
+            rDest.set(x, y, z);
+        }
+#endif
     };
 };
 
