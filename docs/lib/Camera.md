@@ -5,126 +5,126 @@
 | CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 | 33.33333333333333% |
 | CamPoseSphereInterpolator.o | 0.0% | 0 / 2 | 0.0% |
 | CamTranslatorAnim.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorBehind.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorBlackHole.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorCharmedFix.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorCharmedTripodBoss.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorCharmedVecReg.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorCharmedVecRegTower.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorCubePlanet.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorDPD.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorDead.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorFix.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorFixedPoint.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorFixedThere.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorFollow.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorFooFighter.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorFooFighterPlanet.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorFrontAndBack.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorGround.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorInnerCylinder.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorInwardSphere.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorInwardTower.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorMedianPlanet.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorMedianTower.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorMtxRegParallel.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorObjParallel.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorParallel.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorRaceFollow.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorRailDemo.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorRailFollow.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorRailWatch.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorSlide.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorSpiral.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTalk.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTower.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTowerPos.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTripodBoss.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTripodBossJoint.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTripodPlanet.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTrundle.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorTwistedPassage.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorWaterFollow.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorWaterPlanet.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorWaterPlanetBoss.o | 0.0% | 0 / 3 | 0.0% |
-| CamTranslatorWonderPlanet.o | 0.0% | 0 / 3 | 0.0% |
+| CamTranslatorBehind.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorBlackHole.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorCharmedFix.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorCharmedTripodBoss.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorCharmedVecReg.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorCharmedVecRegTower.o | 3.125% | 1 / 2 | 50.0% |
+| CamTranslatorCubePlanet.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorDPD.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorDead.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorFix.o | 5.555555555555555% | 1 / 2 | 50.0% |
+| CamTranslatorFixedPoint.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorFixedThere.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorFollow.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorFooFighter.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorFooFighterPlanet.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorFrontAndBack.o | 3.125% | 1 / 2 | 50.0% |
+| CamTranslatorGround.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorInnerCylinder.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorInwardSphere.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorInwardTower.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorMedianPlanet.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorMedianTower.o | 4.081632653061225% | 1 / 2 | 50.0% |
+| CamTranslatorMtxRegParallel.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorObjParallel.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorParallel.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorRaceFollow.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorRailDemo.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorRailFollow.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorRailWatch.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorSlide.o | 1.4285714285714286% | 1 / 2 | 50.0% |
+| CamTranslatorSpiral.o | 8.695652173913043% | 1 / 2 | 50.0% |
+| CamTranslatorTalk.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorTower.o | 4.878048780487805% | 1 / 2 | 50.0% |
+| CamTranslatorTowerPos.o | 4.25531914893617% | 1 / 2 | 50.0% |
+| CamTranslatorTripodBoss.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorTripodBossJoint.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorTripodPlanet.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorTrundle.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorTwistedPassage.o | 100.0% | 2 / 2 | 100.0% |
+| CamTranslatorWaterFollow.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorWaterPlanet.o | 100.0% | 3 / 3 | 100.0% |
+| CamTranslatorWaterPlanetBoss.o | 17.94871794871795% | 2 / 3 | 66.66666666666666% |
+| CamTranslatorWonderPlanet.o | 100.0% | 3 / 3 | 100.0% |
 | Camera.o | 71.03448275862068% | 16 / 18 | 88.88888888888889% |
-| CameraAnim.o | 58.4% | 22 / 30 | 73.33333333333333% |
-| CameraBehind.o | 9.583333333333334% | 1 / 6 | 16.666666666666664% |
-| CameraBlackHole.o | 10.683760683760683% | 1 / 5 | 20.0% |
+| CameraAnim.o | 60.457142857142856% | 23 / 30 | 76.66666666666667% |
+| CameraBehind.o | 17.083333333333332% | 2 / 6 | 33.33333333333333% |
+| CameraBlackHole.o | 18.37606837606838% | 2 / 5 | 40.0% |
 | CameraCalc.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCharmedFix.o | 9.854014598540147% | 1 / 5 | 20.0% |
-| CameraCharmedTripodBoss.o | 8.259587020648967% | 1 / 6 | 16.666666666666664% |
-| CameraCharmedVecReg.o | 7.142857142857142% | 1 / 5 | 20.0% |
-| CameraCharmedVecRegTower.o | 4.545454545454546% | 1 / 5 | 20.0% |
+| CameraCharmedFix.o | 16.423357664233578% | 2 / 5 | 40.0% |
+| CameraCharmedTripodBoss.o | 13.569321533923304% | 2 / 6 | 33.33333333333333% |
+| CameraCharmedVecReg.o | 11.904761904761903% | 2 / 5 | 40.0% |
+| CameraCharmedVecRegTower.o | 9.358288770053475% | 2 / 5 | 40.0% |
 | CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% |
 | CameraCover.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCubePlanet.o | 9.737827715355806% | 1 / 5 | 20.0% |
-| CameraDPD.o | 5.4945054945054945% | 1 / 8 | 12.5% |
-| CameraDead.o | 5.675675675675676% | 1 / 7 | 14.285714285714285% |
+| CameraCubePlanet.o | 16.479400749063668% | 2 / 5 | 40.0% |
+| CameraDPD.o | 7.967032967032966% | 2 / 8 | 25.0% |
+| CameraDead.o | 10.0% | 2 / 7 | 28.57142857142857% |
 | CameraDirector.o | 65.09392747924858% | 71 / 81 | 87.65432098765432% |
-| CameraFix.o | 16.355140186915886% | 1 / 6 | 16.666666666666664% |
-| CameraFixedPoint.o | 6.418918918918918% | 1 / 6 | 16.666666666666664% |
-| CameraFixedThere.o | 5.421686746987952% | 1 / 11 | 9.090909090909092% |
-| CameraFollow.o | 3.3758439609902475% | 2 / 29 | 6.896551724137931% |
-| CameraFooFighter.o | 5.137614678899083% | 1 / 5 | 20.0% |
-| CameraFooFighterPlanet.o | 3.6585365853658534% | 1 / 6 | 16.666666666666664% |
-| CameraFrontAndBack.o | 7.068062827225131% | 1 / 7 | 14.285714285714285% |
+| CameraFix.o | 24.766355140186917% | 2 / 6 | 33.33333333333333% |
+| CameraFixedPoint.o | 12.5% | 2 / 6 | 33.33333333333333% |
+| CameraFixedThere.o | 9.036144578313253% | 2 / 11 | 18.181818181818183% |
+| CameraFollow.o | 4.576144036009002% | 3 / 29 | 10.344827586206897% |
+| CameraFooFighter.o | 8.073394495412845% | 2 / 5 | 40.0% |
+| CameraFooFighterPlanet.o | 6.445993031358885% | 2 / 6 | 33.33333333333333% |
+| CameraFrontAndBack.o | 11.780104712041885% | 2 / 7 | 28.57142857142857% |
 | CameraGround.o | 13.004484304932735% | 1 / 5 | 20.0% |
 | CameraHeightArrange.o | 17.647058823529413% | 7 / 22 | 31.818181818181817% |
 | CameraHolder.o | 100.0% | 54 / 54 | 100.0% |
-| CameraInnerCylinder.o | 6.493506493506493% | 1 / 5 | 20.0% |
-| CameraInwardSphere.o | 4.852686308492201% | 1 / 6 | 16.666666666666664% |
-| CameraInwardTower.o | 9.254498714652955% | 1 / 7 | 14.285714285714285% |
+| CameraInnerCylinder.o | 10.38961038961039% | 2 / 5 | 40.0% |
+| CameraInwardSphere.o | 7.9722703639514725% | 2 / 6 | 33.33333333333333% |
+| CameraInwardTower.o | 13.881748071979436% | 2 / 7 | 28.57142857142857% |
 | CameraLocalUtil.o | 0.0% | 0 / 61 | 0.0% |
 | CameraMan.o | 100.0% | 11 / 11 | 100.0% |
 | CameraManEvent.o | 71.81738366988587% | 33 / 37 | 89.1891891891892% |
 | CameraManGame.o | 75.73407202216067% | 52 / 57 | 91.22807017543859% |
 | CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% |
 | CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% |
-| CameraMedianPlanet.o | 3.909205548549811% | 1 / 15 | 6.666666666666667% |
-| CameraMedianTower.o | 4.86284289276808% | 1 / 11 | 9.090909090909092% |
-| CameraMtxRegParallel.o | 14.619883040935672% | 1 / 6 | 16.666666666666664% |
-| CameraObjParallel.o | 9.900990099009901% | 1 / 5 | 20.0% |
-| CameraParallel.o | 7.368421052631578% | 1 / 10 | 10.0% |
+| CameraMedianPlanet.o | 5.926860025220681% | 2 / 15 | 13.333333333333334% |
+| CameraMedianTower.o | 7.107231920199501% | 2 / 11 | 18.181818181818183% |
+| CameraMtxRegParallel.o | 25.146198830409354% | 2 / 6 | 33.33333333333333% |
+| CameraObjParallel.o | 18.81188118811881% | 2 / 5 | 40.0% |
+| CameraParallel.o | 12.105263157894736% | 2 / 10 | 20.0% |
 | CameraParamChunk.o | 64.14662084765177% | 29 / 32 | 90.625% |
 | CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 | 90.9090909090909% |
 | CameraParamChunkID.o | 100.0% | 11 / 11 | 100.0% |
 | CameraParamString.o | 100.0% | 5 / 5 | 100.0% |
 | CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% |
 | CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% |
-| CameraRaceFollow.o | 6.596306068601583% | 1 / 6 | 16.666666666666664% |
-| CameraRailDemo.o | 4.901960784313726% | 1 / 9 | 11.11111111111111% |
-| CameraRailFollow.o | 7.183908045977011% | 1 / 6 | 16.666666666666664% |
+| CameraRaceFollow.o | 11.345646437994723% | 2 / 6 | 33.33333333333333% |
+| CameraRailDemo.o | 10.784313725490197% | 2 / 9 | 22.22222222222222% |
+| CameraRailFollow.o | 12.35632183908046% | 2 / 6 | 33.33333333333333% |
 | CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% |
-| CameraRailWatch.o | 5.769230769230769% | 1 / 6 | 16.666666666666664% |
+| CameraRailWatch.o | 10.096153846153847% | 2 / 6 | 33.33333333333333% |
 | CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 | 92.3076923076923% |
 | CameraRotChecker.o | 9.30232558139535% | 1 / 4 | 25.0% |
 | CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 | 85.71428571428571% |
 | CameraShakeTask.o | 100.0% | 10 / 10 | 100.0% |
 | CameraShaker.o | 92.1259842519685% | 17 / 18 | 94.44444444444444% |
-| CameraSlide.o | 10.545454545454545% | 1 / 5 | 20.0% |
-| CameraSpiral.o | 6.753246753246753% | 1 / 5 | 20.0% |
-| CameraSubjective.o | 5.898123324396782% | 1 / 6 | 16.666666666666664% |
-| CameraTalk.o | 5.95482546201232% | 1 / 6 | 16.666666666666664% |
+| CameraSlide.o | 17.09090909090909% | 2 / 5 | 40.0% |
+| CameraSpiral.o | 11.428571428571429% | 2 / 5 | 40.0% |
+| CameraSubjective.o | 10.723860589812332% | 2 / 6 | 33.33333333333333% |
+| CameraTalk.o | 9.650924024640657% | 2 / 6 | 33.33333333333333% |
 | CameraTargetArg.o | 63.51351351351351% | 2 / 3 | 66.66666666666666% |
 | CameraTargetHolder.o | 100.0% | 9 / 9 | 100.0% |
 | CameraTargetMtx.o | 62.944162436548226% | 22 / 24 | 91.66666666666666% |
 | CameraTargetObj.o | 46.837944664031625% | 21 / 45 | 46.666666666666664% |
 | CameraTestObj.o | 0.0% | 0 / 2 | 0.0% |
-| CameraTower.o | 4.513064133016627% | 1 / 14 | 7.142857142857142% |
+| CameraTower.o | 6.65083135391924% | 2 / 14 | 14.285714285714285% |
 | CameraTowerBase.o | 8.150470219435736% | 1 / 10 | 10.0% |
-| CameraTowerPos.o | 5.807622504537205% | 1 / 9 | 11.11111111111111% |
-| CameraTripodBoss.o | 9.13978494623656% | 1 / 4 | 25.0% |
-| CameraTripodBossJoint.o | 7.100591715976331% | 1 / 7 | 14.285714285714285% |
-| CameraTripodPlanet.o | 8.823529411764707% | 1 / 5 | 20.0% |
-| CameraTrundle.o | 11.666666666666666% | 1 / 5 | 20.0% |
-| CameraTwistedPassage.o | 5.275779376498801% | 1 / 9 | 11.11111111111111% |
+| CameraTowerPos.o | 9.074410163339383% | 2 / 9 | 22.22222222222222% |
+| CameraTripodBoss.o | 18.817204301075268% | 2 / 4 | 50.0% |
+| CameraTripodBossJoint.o | 12.42603550295858% | 2 / 7 | 28.57142857142857% |
+| CameraTripodPlanet.o | 14.705882352941178% | 2 / 5 | 40.0% |
+| CameraTrundle.o | 19.166666666666668% | 2 / 5 | 40.0% |
+| CameraTwistedPassage.o | 9.59232613908873% | 2 / 9 | 22.22222222222222% |
 | CameraViewInterpolator.o | 0.0% | 0 / 13 | 0.0% |
-| CameraWaterFollow.o | 6.841046277665996% | 1 / 6 | 16.666666666666664% |
-| CameraWaterPlanet.o | 5.276381909547738% | 1 / 5 | 20.0% |
-| CameraWaterPlanetBoss.o | 7.000000000000001% | 1 / 6 | 16.666666666666664% |
-| CameraWonderPlanet.o | 4.7713717693836974% | 1 / 9 | 11.11111111111111% |
+| CameraWaterFollow.o | 10.06036217303823% | 2 / 6 | 33.33333333333333% |
+| CameraWaterPlanet.o | 9.296482412060302% | 2 / 5 | 40.0% |
+| CameraWaterPlanetBoss.o | 9.666666666666666% | 2 / 6 | 33.33333333333333% |
+| CameraWonderPlanet.o | 7.952286282306163% | 2 / 9 | 22.22222222222222% |
 | DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% |
 | GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% |
 | OnlyCamera.o | 12.024048096192384% | 2 / 6 | 33.33333333333333% |
@@ -185,311 +185,311 @@
 # CamTranslatorBehind.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__19CamTranslatorBehindFPC16CameraParamChunk | :x: |
-| getCamera__19CamTranslatorBehindCFv | :x: |
+| setParam__19CamTranslatorBehindFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__19CamTranslatorBehindCFv | :white_check_mark: |
 
 
 # CamTranslatorBlackHole.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__22CamTranslatorBlackHoleFPC16CameraParamChunk | :x: |
-| getCamera__22CamTranslatorBlackHoleCFv | :x: |
+| setParam__22CamTranslatorBlackHoleFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__22CamTranslatorBlackHoleCFv | :white_check_mark: |
 
 
 # CamTranslatorCharmedFix.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorCharmedFixFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorCharmedFixCFv | :x: |
+| setParam__23CamTranslatorCharmedFixFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorCharmedFixCFv | :white_check_mark: |
 
 
 # CamTranslatorCharmedTripodBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__30CamTranslatorCharmedTripodBossFPC16CameraParamChunk | :x: |
-| getCamera__30CamTranslatorCharmedTripodBossCFv | :x: |
+| setParam__30CamTranslatorCharmedTripodBossFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__30CamTranslatorCharmedTripodBossCFv | :white_check_mark: |
 
 
 # CamTranslatorCharmedVecReg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__26CamTranslatorCharmedVecRegFPC16CameraParamChunk | :x: |
-| getCamera__26CamTranslatorCharmedVecRegCFv | :x: |
+| setParam__26CamTranslatorCharmedVecRegFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__26CamTranslatorCharmedVecRegCFv | :white_check_mark: |
 
 
 # CamTranslatorCharmedVecRegTower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__31CamTranslatorCharmedVecRegTowerFPC16CameraParamChunk | :x: |
-| getCamera__31CamTranslatorCharmedVecRegTowerCFv | :x: |
+| getCamera__31CamTranslatorCharmedVecRegTowerCFv | :white_check_mark: |
 
 
 # CamTranslatorCubePlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorCubePlanetFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorCubePlanetCFv | :x: |
+| setParam__23CamTranslatorCubePlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorCubePlanetCFv | :white_check_mark: |
 
 
 # CamTranslatorDPD.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__16CamTranslatorDPDFPC16CameraParamChunk | :x: |
-| getCamera__16CamTranslatorDPDCFv | :x: |
+| setParam__16CamTranslatorDPDFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__16CamTranslatorDPDCFv | :white_check_mark: |
 
 
 # CamTranslatorDead.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17CamTranslatorDeadFP10CameraDead | :x: |
-| setParam__17CamTranslatorDeadFPC16CameraParamChunk | :x: |
-| getCamera__17CamTranslatorDeadCFv | :x: |
+| __ct__17CamTranslatorDeadFP10CameraDead | :white_check_mark: |
+| setParam__17CamTranslatorDeadFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__17CamTranslatorDeadCFv | :white_check_mark: |
 
 
 # CamTranslatorFix.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__16CamTranslatorFixFPC16CameraParamChunk | :x: |
-| getCamera__16CamTranslatorFixCFv | :x: |
+| getCamera__16CamTranslatorFixCFv | :white_check_mark: |
 
 
 # CamTranslatorFixedPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorFixedPointFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorFixedPointCFv | :x: |
+| setParam__23CamTranslatorFixedPointFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorFixedPointCFv | :white_check_mark: |
 
 
 # CamTranslatorFixedThere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorFixedThereFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorFixedThereCFv | :x: |
+| setParam__23CamTranslatorFixedThereFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorFixedThereCFv | :white_check_mark: |
 
 
 # CamTranslatorFollow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19CamTranslatorFollowFP12CameraFollow | :x: |
-| setParam__19CamTranslatorFollowFPC16CameraParamChunk | :x: |
-| getCamera__19CamTranslatorFollowCFv | :x: |
+| __ct__19CamTranslatorFollowFP12CameraFollow | :white_check_mark: |
+| setParam__19CamTranslatorFollowFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__19CamTranslatorFollowCFv | :white_check_mark: |
 
 
 # CamTranslatorFooFighter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__23CamTranslatorFooFighterFP16CameraFooFighter | :x: |
-| setParam__23CamTranslatorFooFighterFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorFooFighterCFv | :x: |
+| __ct__23CamTranslatorFooFighterFP16CameraFooFighter | :white_check_mark: |
+| setParam__23CamTranslatorFooFighterFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorFooFighterCFv | :white_check_mark: |
 
 
 # CamTranslatorFooFighterPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__29CamTranslatorFooFighterPlanetFP22CameraFooFighterPlanet | :x: |
-| setParam__29CamTranslatorFooFighterPlanetFPC16CameraParamChunk | :x: |
-| getCamera__29CamTranslatorFooFighterPlanetCFv | :x: |
+| __ct__29CamTranslatorFooFighterPlanetFP22CameraFooFighterPlanet | :white_check_mark: |
+| setParam__29CamTranslatorFooFighterPlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__29CamTranslatorFooFighterPlanetCFv | :white_check_mark: |
 
 
 # CamTranslatorFrontAndBack.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__25CamTranslatorFrontAndBackFPC16CameraParamChunk | :x: |
-| getCamera__25CamTranslatorFrontAndBackCFv | :x: |
+| getCamera__25CamTranslatorFrontAndBackCFv | :white_check_mark: |
 
 
 # CamTranslatorGround.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__19CamTranslatorGroundFPC16CameraParamChunk | :x: |
-| getCamera__19CamTranslatorGroundCFv | :x: |
+| setParam__19CamTranslatorGroundFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__19CamTranslatorGroundCFv | :white_check_mark: |
 
 
 # CamTranslatorInnerCylinder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__26CamTranslatorInnerCylinderFPC16CameraParamChunk | :x: |
-| getCamera__26CamTranslatorInnerCylinderCFv | :x: |
+| setParam__26CamTranslatorInnerCylinderFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__26CamTranslatorInnerCylinderCFv | :white_check_mark: |
 
 
 # CamTranslatorInwardSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__25CamTranslatorInwardSphereFPC16CameraParamChunk | :x: |
-| getCamera__25CamTranslatorInwardSphereCFv | :x: |
+| setParam__25CamTranslatorInwardSphereFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__25CamTranslatorInwardSphereCFv | :white_check_mark: |
 
 
 # CamTranslatorInwardTower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__24CamTranslatorInwardTowerFPC16CameraParamChunk | :x: |
-| getCamera__24CamTranslatorInwardTowerCFv | :x: |
+| setParam__24CamTranslatorInwardTowerFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__24CamTranslatorInwardTowerCFv | :white_check_mark: |
 
 
 # CamTranslatorMedianPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__25CamTranslatorMedianPlanetFP18CameraMedianPlanet | :x: |
-| setParam__25CamTranslatorMedianPlanetFPC16CameraParamChunk | :x: |
-| getCamera__25CamTranslatorMedianPlanetCFv | :x: |
+| __ct__25CamTranslatorMedianPlanetFP18CameraMedianPlanet | :white_check_mark: |
+| setParam__25CamTranslatorMedianPlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__25CamTranslatorMedianPlanetCFv | :white_check_mark: |
 
 
 # CamTranslatorMedianTower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__24CamTranslatorMedianTowerFPC16CameraParamChunk | :x: |
-| getCamera__24CamTranslatorMedianTowerCFv | :x: |
+| getCamera__24CamTranslatorMedianTowerCFv | :white_check_mark: |
 
 
 # CamTranslatorMtxRegParallel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__27CamTranslatorMtxRegParallelFPC16CameraParamChunk | :x: |
-| getCamera__27CamTranslatorMtxRegParallelCFv | :x: |
+| setParam__27CamTranslatorMtxRegParallelFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__27CamTranslatorMtxRegParallelCFv | :white_check_mark: |
 
 
 # CamTranslatorObjParallel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__24CamTranslatorObjParallelFPC16CameraParamChunk | :x: |
-| getCamera__24CamTranslatorObjParallelCFv | :x: |
+| setParam__24CamTranslatorObjParallelFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__24CamTranslatorObjParallelCFv | :white_check_mark: |
 
 
 # CamTranslatorParallel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__21CamTranslatorParallelFPC16CameraParamChunk | :x: |
-| getCamera__21CamTranslatorParallelCFv | :x: |
+| setParam__21CamTranslatorParallelFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__21CamTranslatorParallelCFv | :white_check_mark: |
 
 
 # CamTranslatorRaceFollow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorRaceFollowFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorRaceFollowCFv | :x: |
+| setParam__23CamTranslatorRaceFollowFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorRaceFollowCFv | :white_check_mark: |
 
 
 # CamTranslatorRailDemo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__21CamTranslatorRailDemoFPC16CameraParamChunk | :x: |
-| getCamera__21CamTranslatorRailDemoCFv | :x: |
+| setParam__21CamTranslatorRailDemoFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__21CamTranslatorRailDemoCFv | :white_check_mark: |
 
 
 # CamTranslatorRailFollow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorRailFollowFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorRailFollowCFv | :x: |
+| setParam__23CamTranslatorRailFollowFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorRailFollowCFv | :white_check_mark: |
 
 
 # CamTranslatorRailWatch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__22CamTranslatorRailWatchFPC16CameraParamChunk | :x: |
-| getCamera__22CamTranslatorRailWatchCFv | :x: |
+| setParam__22CamTranslatorRailWatchFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__22CamTranslatorRailWatchCFv | :white_check_mark: |
 
 
 # CamTranslatorSlide.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__18CamTranslatorSlideFPC16CameraParamChunk | :x: |
-| getCamera__18CamTranslatorSlideCFv | :x: |
+| getCamera__18CamTranslatorSlideCFv | :white_check_mark: |
 
 
 # CamTranslatorSpiral.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__19CamTranslatorSpiralFPC16CameraParamChunk | :x: |
-| getCamera__19CamTranslatorSpiralCFv | :x: |
+| getCamera__19CamTranslatorSpiralCFv | :white_check_mark: |
 
 
 # CamTranslatorTalk.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__17CamTranslatorTalkFPC16CameraParamChunk | :x: |
-| getCamera__17CamTranslatorTalkCFv | :x: |
+| setParam__17CamTranslatorTalkFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__17CamTranslatorTalkCFv | :white_check_mark: |
 
 
 # CamTranslatorTower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__18CamTranslatorTowerFPC16CameraParamChunk | :x: |
-| getCamera__18CamTranslatorTowerCFv | :x: |
+| getCamera__18CamTranslatorTowerCFv | :white_check_mark: |
 
 
 # CamTranslatorTowerPos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setParam__21CamTranslatorTowerPosFPC16CameraParamChunk | :x: |
-| getCamera__21CamTranslatorTowerPosCFv | :x: |
+| getCamera__21CamTranslatorTowerPosCFv | :white_check_mark: |
 
 
 # CamTranslatorTripodBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__23CamTranslatorTripodBossFPC16CameraParamChunk | :x: |
-| getCamera__23CamTranslatorTripodBossCFv | :x: |
+| setParam__23CamTranslatorTripodBossFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__23CamTranslatorTripodBossCFv | :white_check_mark: |
 
 
 # CamTranslatorTripodBossJoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__28CamTranslatorTripodBossJointFPC16CameraParamChunk | :x: |
-| getCamera__28CamTranslatorTripodBossJointCFv | :x: |
+| setParam__28CamTranslatorTripodBossJointFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__28CamTranslatorTripodBossJointCFv | :white_check_mark: |
 
 
 # CamTranslatorTripodPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__25CamTranslatorTripodPlanetFPC16CameraParamChunk | :x: |
-| getCamera__25CamTranslatorTripodPlanetCFv | :x: |
+| setParam__25CamTranslatorTripodPlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__25CamTranslatorTripodPlanetCFv | :white_check_mark: |
 
 
 # CamTranslatorTrundle.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__20CamTranslatorTrundleFPC16CameraParamChunk | :x: |
-| getCamera__20CamTranslatorTrundleCFv | :x: |
+| setParam__20CamTranslatorTrundleFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__20CamTranslatorTrundleCFv | :white_check_mark: |
 
 
 # CamTranslatorTwistedPassage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setParam__27CamTranslatorTwistedPassageFPC16CameraParamChunk | :x: |
-| getCamera__27CamTranslatorTwistedPassageCFv | :x: |
+| setParam__27CamTranslatorTwistedPassageFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__27CamTranslatorTwistedPassageCFv | :white_check_mark: |
 
 
 # CamTranslatorWaterFollow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24CamTranslatorWaterFollowFP17CameraWaterFollow | :x: |
-| setParam__24CamTranslatorWaterFollowFPC16CameraParamChunk | :x: |
-| getCamera__24CamTranslatorWaterFollowCFv | :x: |
+| __ct__24CamTranslatorWaterFollowFP17CameraWaterFollow | :white_check_mark: |
+| setParam__24CamTranslatorWaterFollowFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__24CamTranslatorWaterFollowCFv | :white_check_mark: |
 
 
 # CamTranslatorWaterPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24CamTranslatorWaterPlanetFP17CameraWaterPlanet | :x: |
-| setParam__24CamTranslatorWaterPlanetFPC16CameraParamChunk | :x: |
-| getCamera__24CamTranslatorWaterPlanetCFv | :x: |
+| __ct__24CamTranslatorWaterPlanetFP17CameraWaterPlanet | :white_check_mark: |
+| setParam__24CamTranslatorWaterPlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__24CamTranslatorWaterPlanetCFv | :white_check_mark: |
 
 
 # CamTranslatorWaterPlanetBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__28CamTranslatorWaterPlanetBossFP21CameraWaterPlanetBoss | :x: |
+| __ct__28CamTranslatorWaterPlanetBossFP21CameraWaterPlanetBoss | :white_check_mark: |
 | setParam__28CamTranslatorWaterPlanetBossFPC16CameraParamChunk | :x: |
-| getCamera__28CamTranslatorWaterPlanetBossCFv | :x: |
+| getCamera__28CamTranslatorWaterPlanetBossCFv | :white_check_mark: |
 
 
 # CamTranslatorWonderPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__25CamTranslatorWonderPlanetFP18CameraWonderPlanet | :x: |
-| setParam__25CamTranslatorWonderPlanetFPC16CameraParamChunk | :x: |
-| getCamera__25CamTranslatorWonderPlanetCFv | :x: |
+| __ct__25CamTranslatorWonderPlanetFP18CameraWonderPlanet | :white_check_mark: |
+| setParam__25CamTranslatorWonderPlanetFPC16CameraParamChunk | :white_check_mark: |
+| getCamera__25CamTranslatorWonderPlanetCFv | :white_check_mark: |
 
 
 # Camera.o
@@ -540,7 +540,7 @@
 | setParam__10CameraAnimFPUcf | :white_check_mark: |
 | isAnimEnd__10CameraAnimCFv | :white_check_mark: |
 | getAnimFrame__10CameraAnimFPUc | :white_check_mark: |
-| createTranslator__10CameraAnimFv | :x: |
+| createTranslator__10CameraAnimFv | :white_check_mark: |
 | loadBin__10CameraAnimFPUc | :white_check_mark: |
 | __dt__10CameraAnimFv | :x: |
 | __dt__18CamAnmDataAccessorFv | :x: |
@@ -557,7 +557,7 @@
 | __ct__12CameraBehindFPCc | :white_check_mark: |
 | reset__12CameraBehindFv | :x: |
 | calc__12CameraBehindFv | :x: |
-| createTranslator__12CameraBehindFv | :x: |
+| createTranslator__12CameraBehindFv | :white_check_mark: |
 | calcPosAndUp__12CameraBehindFf | :x: |
 
 
@@ -567,7 +567,7 @@
 | __ct__15CameraBlackHoleFPCc | :white_check_mark: |
 | reset__15CameraBlackHoleFv | :x: |
 | calc__15CameraBlackHoleFv | :x: |
-| createTranslator__15CameraBlackHoleFv | :x: |
+| createTranslator__15CameraBlackHoleFv | :white_check_mark: |
 | __dt__15CameraBlackHoleFv | :x: |
 
 
@@ -591,7 +591,7 @@
 | __ct__16CameraCharmedFixFPCc | :white_check_mark: |
 | reset__16CameraCharmedFixFv | :x: |
 | calc__16CameraCharmedFixFv | :x: |
-| createTranslator__16CameraCharmedFixFv | :x: |
+| createTranslator__16CameraCharmedFixFv | :white_check_mark: |
 | __dt__16CameraCharmedFixFv | :x: |
 
 
@@ -602,7 +602,7 @@
 | reset__23CameraCharmedTripodBossFv | :x: |
 | calc__23CameraCharmedTripodBossFv | :x: |
 | setParam__23CameraCharmedTripodBossFlQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f> | :x: |
-| createTranslator__23CameraCharmedTripodBossFv | :x: |
+| createTranslator__23CameraCharmedTripodBossFv | :white_check_mark: |
 | __dt__23CameraCharmedTripodBossFv | :x: |
 
 
@@ -612,7 +612,7 @@
 | __ct__19CameraCharmedVecRegFPCc | :white_check_mark: |
 | reset__19CameraCharmedVecRegFv | :x: |
 | calc__19CameraCharmedVecRegFv | :x: |
-| createTranslator__19CameraCharmedVecRegFv | :x: |
+| createTranslator__19CameraCharmedVecRegFv | :white_check_mark: |
 | __dt__19CameraCharmedVecRegFv | :x: |
 
 
@@ -622,7 +622,7 @@
 | __ct__24CameraCharmedVecRegTowerFPCc | :white_check_mark: |
 | reset__24CameraCharmedVecRegTowerFv | :x: |
 | calc__24CameraCharmedVecRegTowerFv | :x: |
-| createTranslator__24CameraCharmedVecRegTowerFv | :x: |
+| createTranslator__24CameraCharmedVecRegTowerFv | :white_check_mark: |
 | __dt__24CameraCharmedVecRegTowerFv | :x: |
 
 
@@ -663,7 +663,7 @@
 | __ct__16CameraCubePlanetFPCc | :white_check_mark: |
 | reset__16CameraCubePlanetFv | :x: |
 | calc__16CameraCubePlanetFv | :x: |
-| createTranslator__16CameraCubePlanetFv | :x: |
+| createTranslator__16CameraCubePlanetFv | :white_check_mark: |
 | __dt__16CameraCubePlanetFv | :x: |
 
 
@@ -674,7 +674,7 @@
 | reset__9CameraDPDFv | :x: |
 | calc__9CameraDPDFv | :x: |
 | __as__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f> | :x: |
-| createTranslator__9CameraDPDFv | :x: |
+| createTranslator__9CameraDPDFv | :white_check_mark: |
 | __dt__9CameraDPDFv | :x: |
 | __ml__Q29JGeometry8TVec2<f>CFf | :x: |
 | __pl__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
@@ -686,7 +686,7 @@
 | __ct__10CameraDeadFPCc | :white_check_mark: |
 | reset__10CameraDeadFv | :x: |
 | calc__10CameraDeadFv | :x: |
-| createTranslator__10CameraDeadFv | :x: |
+| createTranslator__10CameraDeadFv | :white_check_mark: |
 | __dt__10CameraDeadFv | :x: |
 | getRadius__15CameraTargetObjCFv | :x: |
 | isInterpolationOff__10CameraDeadCFv | :x: |
@@ -785,7 +785,7 @@
 | reset__9CameraFixFv | :x: |
 | calc__9CameraFixFv | :x: |
 | setParam__9CameraFixFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createTranslator__9CameraFixFv | :x: |
+| createTranslator__9CameraFixFv | :white_check_mark: |
 | __dt__9CameraFixFv | :x: |
 
 
@@ -795,7 +795,7 @@
 | __ct__16CameraFixedPointFPCc | :white_check_mark: |
 | reset__16CameraFixedPointFv | :x: |
 | calc__16CameraFixedPointFv | :x: |
-| createTranslator__16CameraFixedPointFv | :x: |
+| createTranslator__16CameraFixedPointFv | :white_check_mark: |
 | setParam__16CameraFixedPointFRCQ29JGeometry8TVec3<f>Ul | :x: |
 | __dt__16CameraFixedPointFv | :x: |
 
@@ -806,7 +806,7 @@
 | __ct__16CameraFixedThereFPCc | :white_check_mark: |
 | reset__16CameraFixedThereFv | :x: |
 | calc__16CameraFixedThereFv | :x: |
-| createTranslator__16CameraFixedThereFv | :x: |
+| createTranslator__16CameraFixedThereFv | :white_check_mark: |
 | copyStatusFromPrevCamera__16CameraFixedThereFv | :x: |
 | calcEyeDir__16CameraFixedThereFPQ29JGeometry8TVec3<f> | :x: |
 | makeAxisAndRoll__16CameraFixedThereFv | :x: |
@@ -823,7 +823,7 @@
 | reset__12CameraFollowFv | :x: |
 | calc__12CameraFollowFv | :x: |
 | setParam__12CameraFollowFfffffb | :x: |
-| createTranslator__12CameraFollowFv | :x: |
+| createTranslator__12CameraFollowFv | :white_check_mark: |
 | isEnableToRoundLeft__12CameraFollowCFv | :x: |
 | isEnableToRoundRight__12CameraFollowCFv | :x: |
 | calcIdealPos__12CameraFollowFv | :x: |
@@ -856,7 +856,7 @@
 | __ct__16CameraFooFighterFPCc | :white_check_mark: |
 | reset__16CameraFooFighterFv | :x: |
 | calc__16CameraFooFighterFv | :x: |
-| createTranslator__16CameraFooFighterFv | :x: |
+| createTranslator__16CameraFooFighterFv | :white_check_mark: |
 | __dt__16CameraFooFighterFv | :x: |
 
 
@@ -867,7 +867,7 @@
 | __ct__22CameraFooFighterPlanetFPCc | :white_check_mark: |
 | reset__22CameraFooFighterPlanetFv | :x: |
 | calc__22CameraFooFighterPlanetFv | :x: |
-| createTranslator__22CameraFooFighterPlanetFv | :x: |
+| createTranslator__22CameraFooFighterPlanetFv | :white_check_mark: |
 | goRoundBehind__22CameraFooFighterPlanetFRQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
 
 
@@ -878,7 +878,7 @@
 | __ct__18CameraFrontAndBackFPCc | :white_check_mark: |
 | reset__18CameraFrontAndBackFv | :x: |
 | calc__18CameraFrontAndBackFv | :x: |
-| createTranslator__18CameraFrontAndBackFv | :x: |
+| createTranslator__18CameraFrontAndBackFv | :white_check_mark: |
 | calcBaseQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f> | :x: |
 | calcDipQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 
@@ -985,7 +985,7 @@
 | __ct__19CameraInnerCylinderFPCc | :white_check_mark: |
 | reset__19CameraInnerCylinderFv | :x: |
 | calc__19CameraInnerCylinderFv | :x: |
-| createTranslator__19CameraInnerCylinderFv | :x: |
+| createTranslator__19CameraInnerCylinderFv | :white_check_mark: |
 | __dt__19CameraInnerCylinderFv | :x: |
 
 
@@ -996,7 +996,7 @@
 | __ct__18CameraInwardSphereFPCc | :white_check_mark: |
 | reset__18CameraInwardSphereFv | :x: |
 | calc__18CameraInwardSphereFv | :x: |
-| createTranslator__18CameraInwardSphereFv | :x: |
+| createTranslator__18CameraInwardSphereFv | :white_check_mark: |
 | calcGravityCenter__18CameraInwardSphereFv | :x: |
 
 
@@ -1007,7 +1007,7 @@
 | __ct__17CameraInwardTowerFPCc | :white_check_mark: |
 | reset__17CameraInwardTowerFv | :x: |
 | calc__17CameraInwardTowerFv | :x: |
-| createTranslator__17CameraInwardTowerFv | :x: |
+| createTranslator__17CameraInwardTowerFv | :white_check_mark: |
 | calcIdealPose__17CameraInwardTowerFv | :x: |
 | isEnableToReset__17CameraInwardTowerCFv | :x: |
 
@@ -1231,7 +1231,7 @@
 | __ct__18CameraMedianPlanetFPCc | :white_check_mark: |
 | reset__18CameraMedianPlanetFv | :x: |
 | calc__18CameraMedianPlanetFv | :x: |
-| createTranslator__18CameraMedianPlanetFv | :x: |
+| createTranslator__18CameraMedianPlanetFv | :white_check_mark: |
 | getPrevFront__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
 | constrainDipAngle__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
 | makeTargetMtx__18CameraMedianPlanetFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
@@ -1250,7 +1250,7 @@
 | __ct__17CameraMedianTowerFPCc | :white_check_mark: |
 | reset__17CameraMedianTowerFv | :x: |
 | calc__17CameraMedianTowerFv | :x: |
-| createTranslator__17CameraMedianTowerFv | :x: |
+| createTranslator__17CameraMedianTowerFv | :white_check_mark: |
 | calcFovyPos__17CameraMedianTowerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | limitAngularVelocity__17CameraMedianTowerFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | calcDistance__17CameraMedianTowerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
@@ -1267,7 +1267,7 @@
 | __ct__20CameraMtxRegParallelFPCc | :white_check_mark: |
 | reset__20CameraMtxRegParallelFv | :x: |
 | calc__20CameraMtxRegParallelFv | :x: |
-| createTranslator__20CameraMtxRegParallelFv | :x: |
+| createTranslator__20CameraMtxRegParallelFv | :white_check_mark: |
 | calcIdealPose__20CameraMtxRegParallelFv | :x: |
 
 
@@ -1277,7 +1277,7 @@
 | __ct__17CameraObjParallelFPCc | :white_check_mark: |
 | reset__17CameraObjParallelFv | :x: |
 | calc__17CameraObjParallelFv | :x: |
-| createTranslator__17CameraObjParallelFv | :x: |
+| createTranslator__17CameraObjParallelFv | :white_check_mark: |
 | __dt__17CameraObjParallelFv | :x: |
 
 
@@ -1287,7 +1287,7 @@
 | __ct__14CameraParallelFPCc | :white_check_mark: |
 | reset__14CameraParallelFv | :x: |
 | calc__14CameraParallelFv | :x: |
-| createTranslator__14CameraParallelFv | :x: |
+| createTranslator__14CameraParallelFv | :white_check_mark: |
 | isEnableToRoundLeft__14CameraParallelCFv | :x: |
 | isEnableToRoundRight__14CameraParallelCFv | :x: |
 | isEnableToReset__14CameraParallelCFv | :x: |
@@ -1395,7 +1395,7 @@
 | __ct__16CameraRaceFollowFPCc | :white_check_mark: |
 | reset__16CameraRaceFollowFv | :x: |
 | calc__16CameraRaceFollowFv | :x: |
-| createTranslator__16CameraRaceFollowFv | :x: |
+| createTranslator__16CameraRaceFollowFv | :white_check_mark: |
 | goRound__16CameraRaceFollowFv | :x: |
 | __dt__16CameraRaceFollowFv | :x: |
 
@@ -1407,7 +1407,7 @@
 | reset__14CameraRailDemoFv | :x: |
 | calc__14CameraRailDemoFv | :x: |
 | setParam__14CameraRailDemoFllllf | :x: |
-| createTranslator__14CameraRailDemoFv | :x: |
+| createTranslator__14CameraRailDemoFv | :white_check_mark: |
 | calcLinear__14CameraRailDemoFv | :x: |
 | calcEaseInOut__14CameraRailDemoFv | :x: |
 | calcDamp__14CameraRailDemoFv | :x: |
@@ -1421,7 +1421,7 @@
 | reset__16CameraRailFollowFv | :x: |
 | calc__16CameraRailFollowFv | :x: |
 | setParam__16CameraRailFollowFllfffl | :x: |
-| createTranslator__16CameraRailFollowFv | :x: |
+| createTranslator__16CameraRailFollowFv | :white_check_mark: |
 | __dt__16CameraRailFollowFv | :x: |
 
 
@@ -1443,7 +1443,7 @@
 | reset__15CameraRailWatchFv | :x: |
 | calc__15CameraRailWatchFv | :x: |
 | setParam__15CameraRailWatchFlllfff | :x: |
-| createTranslator__15CameraRailWatchFv | :x: |
+| createTranslator__15CameraRailWatchFv | :white_check_mark: |
 | __dt__15CameraRailWatchFv | :x: |
 
 
@@ -1537,7 +1537,7 @@
 | __ct__11CameraSlideFPCc | :white_check_mark: |
 | reset__11CameraSlideFv | :x: |
 | calc__11CameraSlideFv | :x: |
-| createTranslator__11CameraSlideFv | :x: |
+| createTranslator__11CameraSlideFv | :white_check_mark: |
 | __dt__11CameraSlideFv | :x: |
 
 
@@ -1547,7 +1547,7 @@
 | __ct__12CameraSpiralFPCc | :white_check_mark: |
 | reset__12CameraSpiralFv | :x: |
 | calc__12CameraSpiralFv | :x: |
-| createTranslator__12CameraSpiralFv | :x: |
+| createTranslator__12CameraSpiralFv | :white_check_mark: |
 | __dt__12CameraSpiralFv | :x: |
 
 
@@ -1557,7 +1557,7 @@
 | __ct__16CameraSubjectiveFPCc | :white_check_mark: |
 | reset__16CameraSubjectiveFv | :x: |
 | calc__16CameraSubjectiveFv | :x: |
-| createTranslator__16CameraSubjectiveFv | :x: |
+| createTranslator__16CameraSubjectiveFv | :white_check_mark: |
 | __dt__16CameraSubjectiveFv | :x: |
 | isCollisionOff__16CameraSubjectiveCFv | :x: |
 
@@ -1569,7 +1569,7 @@
 | reset__10CameraTalkFv | :x: |
 | calc__10CameraTalkFv | :x: |
 | setParam__10CameraTalkFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
-| createTranslator__10CameraTalkFv | :x: |
+| createTranslator__10CameraTalkFv | :white_check_mark: |
 | __dt__10CameraTalkFv | :x: |
 
 
@@ -1687,7 +1687,7 @@
 | __ct__11CameraTowerFPCc | :white_check_mark: |
 | reset__11CameraTowerFv | :x: |
 | calc__11CameraTowerFv | :x: |
-| createTranslator__11CameraTowerFv | :x: |
+| createTranslator__11CameraTowerFv | :white_check_mark: |
 | isEnableToRoundLeft__11CameraTowerCFv | :x: |
 | isEnableToRoundRight__11CameraTowerCFv | :x: |
 | calcIdealPos__11CameraTowerFv | :x: |
@@ -1723,7 +1723,7 @@
 | reset__14CameraTowerPosFv | :x: |
 | calc__14CameraTowerPosFv | :x: |
 | calcIdealPose__14CameraTowerPosFb | :x: |
-| createTranslator__14CameraTowerPosFv | :x: |
+| createTranslator__14CameraTowerPosFv | :white_check_mark: |
 | arrangeHorizontalPose__14CameraTowerPosFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
 | arrangeWatchPos__14CameraTowerPosFRQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
 | isEnableToReset__14CameraTowerPosCFv | :x: |
@@ -1734,7 +1734,7 @@
 | ------------- | ------------- |
 | __dt__16CameraTripodBossFv | :x: |
 | __ct__16CameraTripodBossFPCc | :white_check_mark: |
-| createTranslator__16CameraTripodBossFv | :x: |
+| createTranslator__16CameraTripodBossFv | :white_check_mark: |
 | arrangeRound__16CameraTripodBossFv | :x: |
 
 
@@ -1745,7 +1745,7 @@
 | __ct__21CameraTripodBossJointFPCc | :white_check_mark: |
 | reset__21CameraTripodBossJointFv | :x: |
 | calc__21CameraTripodBossJointFv | :x: |
-| createTranslator__21CameraTripodBossJointFv | :x: |
+| createTranslator__21CameraTripodBossJointFv | :white_check_mark: |
 | calcIdealPose__21CameraTripodBossJointFv | :x: |
 | isEnableToReset__21CameraTripodBossJointCFv | :x: |
 
@@ -1756,7 +1756,7 @@
 | __ct__18CameraTripodPlanetFPCc | :white_check_mark: |
 | reset__18CameraTripodPlanetFv | :x: |
 | calc__18CameraTripodPlanetFv | :x: |
-| createTranslator__18CameraTripodPlanetFv | :x: |
+| createTranslator__18CameraTripodPlanetFv | :white_check_mark: |
 | __dt__18CameraTripodPlanetFv | :x: |
 
 
@@ -1766,7 +1766,7 @@
 | __ct__13CameraTrundleFPCc | :white_check_mark: |
 | reset__13CameraTrundleFv | :x: |
 | calc__13CameraTrundleFv | :x: |
-| createTranslator__13CameraTrundleFv | :x: |
+| createTranslator__13CameraTrundleFv | :white_check_mark: |
 | __dt__13CameraTrundleFv | :x: |
 
 
@@ -1777,7 +1777,7 @@
 | reset__20CameraTwistedPassageFv | :x: |
 | calc__20CameraTwistedPassageFv | :x: |
 | setParam__20CameraTwistedPassageFllff | :x: |
-| createTranslator__20CameraTwistedPassageFv | :x: |
+| createTranslator__20CameraTwistedPassageFv | :white_check_mark: |
 | initStartPos__20CameraTwistedPassageFv | :x: |
 | calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3<f> | :x: |
 | calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3<f> | :x: |
@@ -1808,7 +1808,7 @@
 | __ct__17CameraWaterFollowFPCc | :white_check_mark: |
 | reset__17CameraWaterFollowFv | :x: |
 | calc__17CameraWaterFollowFv | :x: |
-| createTranslator__17CameraWaterFollowFv | :x: |
+| createTranslator__17CameraWaterFollowFv | :white_check_mark: |
 | __dt__17CameraWaterFollowFv | :x: |
 | isEnableToReset__17CameraWaterFollowCFv | :x: |
 
@@ -1819,7 +1819,7 @@
 | __ct__17CameraWaterPlanetFPCc | :white_check_mark: |
 | reset__17CameraWaterPlanetFv | :x: |
 | calc__17CameraWaterPlanetFv | :x: |
-| createTranslator__17CameraWaterPlanetFv | :x: |
+| createTranslator__17CameraWaterPlanetFv | :white_check_mark: |
 | __dt__17CameraWaterPlanetFv | :x: |
 
 
@@ -1829,7 +1829,7 @@
 | __ct__21CameraWaterPlanetBossFPCc | :white_check_mark: |
 | reset__21CameraWaterPlanetBossFv | :x: |
 | calc__21CameraWaterPlanetBossFv | :x: |
-| createTranslator__21CameraWaterPlanetBossFv | :x: |
+| createTranslator__21CameraWaterPlanetBossFv | :white_check_mark: |
 | __dt__21CameraWaterPlanetBossFv | :x: |
 | isEnableToReset__21CameraWaterPlanetBossCFv | :x: |
 
@@ -1841,7 +1841,7 @@
 | __ct__18CameraWonderPlanetFPCc | :white_check_mark: |
 | reset__18CameraWonderPlanetFv | :x: |
 | calc__18CameraWonderPlanetFv | :x: |
-| createTranslator__18CameraWonderPlanetFv | :x: |
+| createTranslator__18CameraWonderPlanetFv | :white_check_mark: |
 | updateCameraReset__18CameraWonderPlanetFv | :x: |
 | rotateCamera__18CameraWonderPlanetFv | :x: |
 | checkReset__18CameraWonderPlanetFv | :x: |
