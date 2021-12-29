@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraTwistedPassage.h"
 
-class CamTranslatorTwistedPassage : public CamTranslatorDummy {
+class CamTranslatorTwistedPassage : public CamTranslatorBase {
 public:
 	inline CamTranslatorTwistedPassage(CameraTwistedPassage *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraTwistedPassage *mCamera;	// _4
 };

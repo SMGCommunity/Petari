@@ -9,6 +9,6 @@ CameraWonderPlanet::CameraWonderPlanet(const char *pName) : Camera(pName) {
     _5C = 0;
 }
 
-CamTranslatorDummy *CameraWonderPlanet::createTranslator() {
+CamTranslatorBase *CameraWonderPlanet::createTranslator() {
     return new CamTranslatorWonderPlanet(this);
 }

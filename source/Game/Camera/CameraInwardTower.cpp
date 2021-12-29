@@ -20,6 +20,6 @@ CameraInwardTower::CameraInwardTower(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CamTranslatorDummy *CameraInwardTower::createTranslator() {
+CamTranslatorBase *CameraInwardTower::createTranslator() {
     return new CamTranslatorInwardTower(this);
 }

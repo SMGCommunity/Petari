@@ -5,6 +5,6 @@ CameraRailDemo::CameraRailDemo(const char *pName) : Camera(pName) {
     
 }
 
-CamTranslatorDummy *CameraRailDemo::createTranslator() {
+CamTranslatorBase *CameraRailDemo::createTranslator() {
     return new CamTranslatorRailDemo(this);
 }

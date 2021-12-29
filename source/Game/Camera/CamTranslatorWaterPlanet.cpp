@@ -16,7 +16,7 @@ void CamTranslatorWaterPlanet::setParam(const CameraParamChunk *pChunk) {
 	axisY = general->mAxis.y;
 	axisX = general->mAxis.x;
 
-	CameraWaterPlanet *camera = reinterpret_cast<CameraWaterPlanet *>(mCamera);
+	CameraWaterPlanet *camera = mCamera;
 
 	camera->mAxisX = axisX;
 	camera->mAxisY = axisY;

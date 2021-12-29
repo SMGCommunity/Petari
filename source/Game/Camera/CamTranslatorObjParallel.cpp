@@ -12,7 +12,7 @@ void CamTranslatorObjParallel::setParam(const CameraParamChunk *pChunk) {
 	angleA = general->mAngleA;
 	dist = general->mDist;
 
-	CameraObjParallel *camera = reinterpret_cast<CameraObjParallel *>(mCamera);
+	CameraObjParallel *camera = mCamera;
 
 	camera->mDist = dist;
 	camera->mAngleA = angleA;

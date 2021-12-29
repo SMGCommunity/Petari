@@ -9,7 +9,7 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     const char *mString;    // _4C
     f32 mDist;              // _50

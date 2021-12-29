@@ -13,7 +13,7 @@ void CamTranslatorTripodBossJoint::setParam(const CameraParamChunk *pChunk) {
 	angle.y = 180.0f * general->mAngleA / 3.1415927f;
 	angle.x = 180.0f * general->mAngleB / 3.1415927f;
 
-	CameraTripodBossJoint *camera = reinterpret_cast<CameraTripodBossJoint *>(mCamera);
+	CameraTripodBossJoint *camera = mCamera;
 
 	camera->mAngleB = angle.x;
 	camera->mAngleA = angle.y;

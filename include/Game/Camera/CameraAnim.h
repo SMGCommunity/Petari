@@ -120,7 +120,7 @@ public:
     virtual bool isZeroFrameMoveOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isInterpolationOff() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void setParam(unsigned char *, float);
     bool isAnimEnd() const;

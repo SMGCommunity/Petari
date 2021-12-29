@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraInwardSphere.h"
 
-class CamTranslatorInwardSphere : public CamTranslatorDummy {
+class CamTranslatorInwardSphere : public CamTranslatorBase {
 public:
 	inline CamTranslatorInwardSphere(CameraInwardSphere *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraInwardSphere *mCamera;	// _4
 };

@@ -9,7 +9,7 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void calcFovyPos(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     void limitAngularVelocity(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);

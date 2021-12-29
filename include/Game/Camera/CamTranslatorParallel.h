@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraParallel.h"
 
-class CamTranslatorParallel : public CamTranslatorDummy {
+class CamTranslatorParallel : public CamTranslatorBase {
 public:
 	inline CamTranslatorParallel(CameraParallel *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraParallel *mCamera;	// _4
 };

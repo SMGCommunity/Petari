@@ -64,7 +64,7 @@ bool Camera::isEnableToReset() const {
     return false;
 }
 
-CamTranslatorDummy *Camera::createTranslator() {
+CamTranslatorBase *Camera::createTranslator() {
     return new CamTranslatorDummy(this);
 }
 

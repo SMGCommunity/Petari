@@ -357,7 +357,7 @@ void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk *pChunk) {
 #ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::applyParameter() {
-    CamTranslatorDummy *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
+    CamTranslatorBase *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
     translator->setParam(mChunk);
     Camera *camera = translator->getCamera();
 

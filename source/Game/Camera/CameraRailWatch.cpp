@@ -10,6 +10,6 @@ CameraRailWatch::CameraRailWatch(const char *pName) : Camera(pName) {
     _60 = 0.0f;
 }
 
-CamTranslatorDummy *CameraRailWatch::createTranslator() {
+CamTranslatorBase *CameraRailWatch::createTranslator() {
     return new CamTranslatorRailWatch(this);
 }

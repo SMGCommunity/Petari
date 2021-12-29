@@ -10,7 +10,7 @@ public:
     virtual void reset();
     virtual CameraTargetObj *calc();
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void updateCameraReset();
     void rotateCamera();

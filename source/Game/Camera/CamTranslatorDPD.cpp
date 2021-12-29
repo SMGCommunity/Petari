@@ -5,7 +5,7 @@ void CamTranslatorDPD::setParam(const CameraParamChunk *pChunk) {
 	CameraDPD *camera;
 
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	camera = reinterpret_cast<CameraDPD *>(mCamera);
+	camera = mCamera;
 
 	f32 dist;
 	f32 angleA;

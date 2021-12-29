@@ -9,6 +9,6 @@ CameraRaceFollow::CameraRaceFollow(const char *pName) : Camera(pName) {
     mWPointZ = 0.0f;
 }
 
-CamTranslatorDummy *CameraRaceFollow::createTranslator() {
+CamTranslatorBase *CameraRaceFollow::createTranslator() {
     return new CamTranslatorRaceFollow(this);
 }

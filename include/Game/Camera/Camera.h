@@ -11,17 +11,18 @@ class CameraParamChunk;
 class CameraPoseParam;
 class CameraTargetObj;
 
-class CamTranslatorDummy {
+class CamTranslatorBase {
 public:
-    // Calling the second constructor doesn't work for translators inheriting
-    // this (gives wrong instruction order), so instead we have an empty constructor
-    // and set mCamera individually in each constructor.
-    // I think this is because the other translators are not inhering this class,
-    // instead there is a abstract base class which all translators inherit from.
-    inline CamTranslatorDummy() {
+    inline CamTranslatorBase() {
 
     }
 
+    virtual void setParam(const CameraParamChunk *) = 0;
+    virtual Camera *getCamera() const = 0;
+};
+
+class CamTranslatorDummy : public CamTranslatorBase {
+public:
     inline CamTranslatorDummy(Camera *pCamera) {
         mCamera = pCamera;
     }
@@ -52,7 +53,7 @@ public:
     virtual bool isEnableToRoundLeft() const;
     virtual bool isEnableToRoundRight() const;
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void setZoneMtx(long);
     void createVPanObj();

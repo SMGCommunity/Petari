@@ -8,7 +8,7 @@ void CamTranslatorMtxRegParallel::setParam(const CameraParamChunk *pChunk) {
 	f32 dist = general->mDist;
 	const char *string = general->mString.getCharPtr();
 
-	CameraMtxRegParallel *camera = reinterpret_cast<CameraMtxRegParallel *>(mCamera);
+	CameraMtxRegParallel *camera = mCamera;
 
 	camera->mString = string;
 	camera->mAngleB = angle.x;

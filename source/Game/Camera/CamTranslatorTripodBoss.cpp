@@ -12,7 +12,7 @@ void CamTranslatorTripodBoss::setParam(const CameraParamChunk *pChunk) {
 	up.x = general->mUp.x;
 	dist = general->mDist;
 
-	camera = reinterpret_cast<CameraTripodBoss *>(mCamera);
+	camera = mCamera;
 
 	camera->mWPoint.set(general->mWPoint);
 	camera->mAxis.set(general->mAxis);

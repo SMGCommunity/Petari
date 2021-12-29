@@ -25,7 +25,7 @@ void CamTranslatorMedianPlanet::setParam(const CameraParamChunk *pChunk) {
 	axisX = general->mAxis.x;
 	const char *string = general->mString.getCharPtr();
 
-	CameraMedianPlanet *camera = reinterpret_cast<CameraMedianPlanet *>(mCamera);
+	CameraMedianPlanet *camera = mCamera;
 
 	camera->mString = string;
 	camera->mAxisX = axisX;

@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorFixedThere.h"
 
 void CamTranslatorFixedThere::setParam(const CameraParamChunk *pChunk) {
-	CameraFixedThere *camera = reinterpret_cast<CameraFixedThere *>(mCamera);
+	CameraFixedThere *camera = mCamera;
 	CameraGeneralParam *general = pChunk->mGeneralParam;
 
 	s32 num2 = general->mNum2;

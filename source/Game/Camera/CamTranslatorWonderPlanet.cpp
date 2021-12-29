@@ -16,7 +16,7 @@ void CamTranslatorWonderPlanet::setParam(const CameraParamChunk *pChunk) {
 	axisY = general->mAxis.y;
 	axisX = general->mAxis.x;
 
-	CameraWonderPlanet *camera = reinterpret_cast<CameraWonderPlanet *>(mCamera);
+	CameraWonderPlanet *camera = mCamera;
 
 	camera->mAxisX = axisX;
 	camera->mAxisY = axisY;

@@ -13,6 +13,6 @@ CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
     mDist = 1000.0f;
 }
 
-CamTranslatorDummy *CameraTripodPlanet::createTranslator() {
+CamTranslatorBase *CameraTripodPlanet::createTranslator() {
     return new CamTranslatorTripodPlanet(this);
 }

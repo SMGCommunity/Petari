@@ -15,7 +15,7 @@ void CamTranslatorCharmedFix::setParam(const CameraParamChunk *pChunk) {
 		MR::normalize(&up);
 	}
 
-	CameraCharmedFix *camera = reinterpret_cast<CameraCharmedFix *>(mCamera);
+	CameraCharmedFix *camera = mCamera;
 
 	camera->mAxis.set(general->mAxis);
 	camera->mUp.set(up);

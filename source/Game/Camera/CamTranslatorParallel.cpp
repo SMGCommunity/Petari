@@ -11,7 +11,7 @@ void CamTranslatorParallel::setParam(const CameraParamChunk *pChunk) {
 	angle.x = 180.0f * pChunk->mGeneralParam->mAngleB / 3.1415927f;
 	bool var = !(pChunk->mGeneralParam->mNum1 != 1);
 
-	CameraParallel *camera = reinterpret_cast<CameraParallel *>(mCamera);
+	CameraParallel *camera = mCamera;
 
 	camera->mAngleB = angle.x;
 	camera->mAngleA = angle.y;

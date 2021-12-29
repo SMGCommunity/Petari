@@ -14,7 +14,7 @@ void CamTranslatorTower::setParam(const CameraParamChunk *pChunk) {
 	angle.y = 3.1415927f * (1.0f - general->mAngleA) * 0.5f;
 	dist = general->mDist;
 
-	camera = reinterpret_cast<CameraTower *>(mCamera);
+	camera = mCamera;
 
 	camera->mWPoint.set(general->mWPoint);
 	camera->mAxis.set(general->mAxis);

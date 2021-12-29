@@ -12,6 +12,6 @@ CameraBlackHole::CameraBlackHole(const char *pName) : Camera(pName) {
     mAxis.z = 0.0f;
 }
 
-CamTranslatorDummy *CameraBlackHole::createTranslator() {
+CamTranslatorBase *CameraBlackHole::createTranslator() {
     return new CamTranslatorBlackHole(this);
 }

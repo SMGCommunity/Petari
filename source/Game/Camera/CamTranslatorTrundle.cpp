@@ -21,7 +21,7 @@ void CamTranslatorTrundle::setParam(const CameraParamChunk *pChunk) {
 		angleA = general->mAngleA;
 		dist = general->mDist;
 
-		camera = reinterpret_cast<CameraTrundle *>(mCamera);
+		camera = mCamera;
 
 		camera->mWPoint.set(general->mWPoint);
 		camera->mAxis.set(axis);

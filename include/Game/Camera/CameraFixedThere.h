@@ -10,7 +10,7 @@ public:
     virtual void reset();
     virtual CameraTargetObj *calc();
     virtual bool isCorrectingErpPositionOff() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void copyStatusFromPrevCamera();
     void calcEyeDir(TVec3f *);

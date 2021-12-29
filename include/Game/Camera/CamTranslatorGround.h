@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraGround.h"
 
-class CamTranslatorGround : public CamTranslatorDummy {
+class CamTranslatorGround : public CamTranslatorBase {
 public:
 	inline CamTranslatorGround(CameraGround *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraGround *mCamera;
 };

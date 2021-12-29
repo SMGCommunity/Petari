@@ -9,7 +9,7 @@ public:
     virtual void reset();
     virtual CameraTargetObj *calc();
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void calcIdealPose(bool);
     void arrangeHorizontalPose(const TVec3f &, TVec3f &);

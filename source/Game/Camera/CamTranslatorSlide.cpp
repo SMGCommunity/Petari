@@ -23,7 +23,7 @@
 
 	MR::normalize(&up);
 
-	CameraSlide *camera = reinterpret_cast<CameraSlide *>(mCamera);
+	CameraSlide *camera = mCamera;
 
 	f32 dist = general->mDist;
 	f32 angleA = general->mAngleA;

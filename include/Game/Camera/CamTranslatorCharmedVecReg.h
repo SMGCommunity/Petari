@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraCharmedVecReg.h"
 
-class CamTranslatorCharmedVecReg : public CamTranslatorDummy {
+class CamTranslatorCharmedVecReg : public CamTranslatorBase {
 public:
 	inline CamTranslatorCharmedVecReg(CameraCharmedVecReg *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraCharmedVecReg *mCamera;	// _4
 };

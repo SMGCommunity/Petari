@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorRailFollow.h"
 
 void CamTranslatorRailFollow::setParam(const CameraParamChunk *pChunk) {
-	reinterpret_cast<CameraRailFollow *>(mCamera)->setParam(
+	mCamera->setParam(
 		pChunk->getZoneID(),
 		pChunk->mGeneralParam->mNum1,
 		pChunk->mGeneralParam->mDist,

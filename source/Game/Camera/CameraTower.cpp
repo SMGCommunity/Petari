@@ -23,6 +23,6 @@ CameraTower::CameraTower(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CamTranslatorDummy *CameraTower::createTranslator() {
+CamTranslatorBase *CameraTower::createTranslator() {
     return new CamTranslatorTower(this);
 }

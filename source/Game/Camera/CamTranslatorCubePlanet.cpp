@@ -3,7 +3,7 @@
 
 void CamTranslatorCubePlanet::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	CameraCubePlanet *camera = reinterpret_cast<CameraCubePlanet *>(mCamera);
+	CameraCubePlanet *camera = mCamera;
 
 	f32 dist;
 	f32 angleA;

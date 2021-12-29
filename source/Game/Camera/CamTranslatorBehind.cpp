@@ -10,7 +10,7 @@ void CamTranslatorBehind::setParam(const CameraParamChunk *pChunk) {
 	axisX = pChunk->mGeneralParam->mAxis.x;
 	dist = pChunk->mGeneralParam->mDist;
 
-	CameraBehind *camera = reinterpret_cast<CameraBehind *>(mCamera);
+	CameraBehind *camera = mCamera;
 
 	camera->mAngleB = angle.x;
 	camera->mAngleA = angle.y;

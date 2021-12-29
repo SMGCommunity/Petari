@@ -1,8 +1,8 @@
 #include "Game/Camera/CameraParamChunk.h"
 #include "Game/Camera/CamTranslatorWaterFollow.h"
 
-CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow *pCamera) : CamTranslatorDummy(pCamera) {
-
+CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow *pCamera) {
+	mCamera = pCamera;
 }
 
 void CamTranslatorWaterFollow::setParam(const CameraParamChunk *pChunk) {
@@ -16,7 +16,7 @@ void CamTranslatorWaterFollow::setParam(const CameraParamChunk *pChunk) {
 	axisX = general->mAxis.x;
 	axisY = general->mAxis.y;
 
-	CameraWaterFollow *camera = reinterpret_cast<CameraWaterFollow *>(mCamera);
+	CameraWaterFollow *camera = mCamera;
 
 	camera->mAxisY = axisY;
 	camera->mAxisX = axisX;

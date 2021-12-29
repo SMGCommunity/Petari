@@ -16,7 +16,7 @@ void CamTranslatorRaceFollow::setParam(const CameraParamChunk *pChunk) {
 	wPointY = pChunk->mGeneralParam->mWPoint.y;
 	wPointX = pChunk->mGeneralParam->mWPoint.x;
 
-	CameraRaceFollow *camera = reinterpret_cast<CameraRaceFollow *>(mCamera);
+	CameraRaceFollow *camera = mCamera;
 
 	camera->mWPointX = wPointX;
 	camera->mWPointY = wPointY;

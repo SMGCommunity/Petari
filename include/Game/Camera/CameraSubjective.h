@@ -10,7 +10,7 @@ public:
     virtual void reset();
     virtual CameraTargetObj *calc();
     virtual bool isCollisionOff() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     f32 _4C;
     f32 _50;

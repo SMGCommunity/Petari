@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraInnerCylinder.h"
 
-class CamTranslatorInnerCylinder : public CamTranslatorDummy {
+class CamTranslatorInnerCylinder : public CamTranslatorBase {
 public:
 	inline CamTranslatorInnerCylinder(CameraInnerCylinder *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraInnerCylinder *mCamera;	// _4
 };

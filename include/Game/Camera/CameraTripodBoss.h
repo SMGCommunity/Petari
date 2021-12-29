@@ -8,7 +8,7 @@ public:
     virtual ~CameraTripodBoss();
 
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void arrangeRound();
 

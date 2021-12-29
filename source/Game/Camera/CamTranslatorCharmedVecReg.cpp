@@ -20,7 +20,7 @@ void CamTranslatorCharmedVecReg::setParam(const CameraParamChunk *pChunk) {
 	dist = general->mDist;
 	string = general->mString.getCharPtr();
 
-	CameraCharmedVecReg *camera = reinterpret_cast<CameraCharmedVecReg *>(mCamera);
+	CameraCharmedVecReg *camera = mCamera;
 
 	camera->mString = string;
 	camera->mDist = dist;

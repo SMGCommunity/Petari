@@ -13,7 +13,7 @@ void CamTranslatorDead::setParam(const CameraParamChunk *pChunk) {
 	s32 num2;
 
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	camera = reinterpret_cast<CameraDead *>(mCamera);
+	camera = mCamera;
 
 	num2 = general->mNum2;
 	num1 = general->mNum1;

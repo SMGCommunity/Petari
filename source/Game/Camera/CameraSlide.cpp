@@ -15,6 +15,6 @@ CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
     mDist = 1000.0f;
 }
 
-CamTranslatorDummy *CameraSlide::createTranslator() {
+CamTranslatorBase *CameraSlide::createTranslator() {
     return new CamTranslatorSlide(this);
 }

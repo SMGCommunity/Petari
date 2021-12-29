@@ -15,7 +15,7 @@ void CamTranslatorFix::setParam(const CameraParamChunk *pChunk) {
 	TVec3f aTStack32Negative;
 	aTStack32.negateInline(aTStack32Negative);
 
-	CameraFix *camera = reinterpret_cast<CameraFix *>(mCamera);
+	CameraFix *camera = mCamera;
 	camera->setParam(general->mWPoint, aTStack32Negative, general->mUp);
 }
 #endif

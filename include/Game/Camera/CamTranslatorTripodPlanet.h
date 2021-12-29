@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraTripodPlanet.h"
 
-class CamTranslatorTripodPlanet : public CamTranslatorDummy {
+class CamTranslatorTripodPlanet : public CamTranslatorBase {
 public:
 	inline CamTranslatorTripodPlanet(CameraTripodPlanet *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraTripodPlanet *mCamera;	// _4
 };

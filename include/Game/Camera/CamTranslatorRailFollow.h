@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraRailFollow.h"
 
-class CamTranslatorRailFollow : public CamTranslatorDummy {
+class CamTranslatorRailFollow : public CamTranslatorBase {
 public:
 	inline CamTranslatorRailFollow(CameraRailFollow *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraRailFollow *mCamera;	// _4
 };

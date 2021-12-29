@@ -30,7 +30,7 @@ void CamTranslatorWaterPlanetBoss::setParam(const CameraParamChunk *pChunk) {
 	axisX = general->mAxis.x;
 	axisY = general->mAxis.y;
 
-	camera = reinterpret_cast<CameraWaterPlanetBoss *>(mCamera);
+	camera = mCamera;
 
 	camera->mAxisY = axisY;
 	camera->mAxisX = axisX;

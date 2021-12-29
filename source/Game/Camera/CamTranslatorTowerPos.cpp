@@ -16,7 +16,7 @@ void CamTranslatorTowerPos::setParam(const CameraParamChunk *pChunk) {
 	upX = general->mUp.x;
 	upY = general->mUp.y;
 
-	camera = reinterpret_cast<CameraTowerPos *>(mCamera);
+	camera = mCamera;
 
 	camera->mWPoint.set(general->mWPoint);
 	camera->mAxis.set(general->mAxis);

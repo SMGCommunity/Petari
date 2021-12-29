@@ -205,7 +205,7 @@ bool CameraAnim::isInterpolationOff() const {
     return true;
 }
 
-CamTranslatorDummy *CameraAnim::createTranslator() {
+CamTranslatorBase *CameraAnim::createTranslator() {
     return new CamTranslatorAnim(this);
 }
 

@@ -10,6 +10,6 @@ CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
     _60 = 0.0f;
 }
 
-CamTranslatorDummy *CameraCubePlanet::createTranslator() {
+CamTranslatorBase *CameraCubePlanet::createTranslator() {
     return new CamTranslatorCubePlanet(this);
 }

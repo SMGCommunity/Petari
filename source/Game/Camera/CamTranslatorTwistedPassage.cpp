@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorTwistedPassage.h"
 
 void CamTranslatorTwistedPassage::setParam(const CameraParamChunk *pChunk) {
-	reinterpret_cast<CameraTwistedPassage *>(mCamera)->setParam(
+	mCamera->setParam(
 		pChunk->getZoneID(),
 		pChunk->mGeneralParam->mNum1,
 		pChunk->mGeneralParam->mAxis.x,

@@ -9,7 +9,7 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     TVec3f mAxis;   // _4C
     TVec3f mUp;     // _58

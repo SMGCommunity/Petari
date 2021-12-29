@@ -3,7 +3,7 @@
 
 void CamTranslatorInwardSphere::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	CameraInwardSphere *camera = reinterpret_cast<CameraInwardSphere *>(mCamera);
+	CameraInwardSphere *camera = mCamera;
 
 	f32 angleA;
 	f32 dist;

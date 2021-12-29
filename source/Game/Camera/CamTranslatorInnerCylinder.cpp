@@ -14,7 +14,7 @@ void CamTranslatorInnerCylinder::setParam(const CameraParamChunk *pChunk) {
 		MR::normalize(&axis);
 	}
 
-	CameraInnerCylinder *camera = reinterpret_cast<CameraInnerCylinder *>(mCamera);
+	CameraInnerCylinder *camera = mCamera;
 
 	TVec2f angle = TVec2f(general->mAngleA, general->mAngleB);
 	f32 dist;

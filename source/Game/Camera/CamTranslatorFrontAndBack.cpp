@@ -27,7 +27,7 @@ void CamTranslatorFrontAndBack::setParam(const CameraParamChunk *pChunk) {
 	angleA2 = angleA * 3.1415927f / 180.0f;
 	dist = general->mDist;
 
-	CameraFrontAndBack *camera = reinterpret_cast<CameraFrontAndBack *>(mCamera);
+	CameraFrontAndBack *camera = mCamera;
 
 	camera->mWPoint = general->mWPoint;
 	camera->mAxis = axis;

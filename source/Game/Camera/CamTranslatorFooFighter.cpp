@@ -7,7 +7,7 @@ CamTranslatorFooFighter::CamTranslatorFooFighter(CameraFooFighter *pCamera) {
 
 void CamTranslatorFooFighter::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	CameraFooFighter *camera = reinterpret_cast<CameraFooFighter *>(mCamera);
+	CameraFooFighter *camera = mCamera;
 
 	f32 axisY;
 	f32 axisX;

@@ -16,7 +16,7 @@ void CamTranslatorCharmedTripodBoss::setParam(const CameraParamChunk *pChunk) {
 
 	TVec2f axis = TVec2f(general->mAxis.x, general->mAxis.y);
 
-	reinterpret_cast<CameraCharmedTripodBoss *>(mCamera)->setParam(general->mNum1, up, general->mWPoint, axis);
+	mCamera->setParam(general->mNum1, up, general->mWPoint, axis);
 }
 
 Camera *CamTranslatorCharmedTripodBoss::getCamera() const {

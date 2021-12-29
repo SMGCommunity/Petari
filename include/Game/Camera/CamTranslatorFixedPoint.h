@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraFixedPoint.h"
 
-class CamTranslatorFixedPoint : public CamTranslatorDummy {
+class CamTranslatorFixedPoint : public CamTranslatorBase {
 public:
 	inline CamTranslatorFixedPoint(CameraFixedPoint *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraFixedPoint *mCamera;	// _4
 };

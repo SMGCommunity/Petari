@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraFrontAndBack.h"
 
-class CamTranslatorFrontAndBack : public CamTranslatorDummy {
+class CamTranslatorFrontAndBack : public CamTranslatorBase {
 public:
 	CamTranslatorFrontAndBack(CameraFrontAndBack *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraFrontAndBack *mCamera;	// _4
 };

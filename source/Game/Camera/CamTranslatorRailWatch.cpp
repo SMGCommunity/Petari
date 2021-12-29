@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorRailWatch.h"
 
 void CamTranslatorRailWatch::setParam(const CameraParamChunk *pChunk) {
-	reinterpret_cast<CameraRailWatch *>(mCamera)->setParam(
+	mCamera->setParam(
 		pChunk->getZoneID(),
 		pChunk->mGeneralParam->mNum1,
 		pChunk->mGeneralParam->mNum2,

@@ -3,14 +3,14 @@
 #include "Game/NameObj/NameObj.h"
 
 class Camera;
-class CamTranslatorDummy;
+class CamTranslatorBase;
 
 class CameraHolder : public NameObj {
 public:
     CameraHolder(const char *);
     virtual ~CameraHolder();
 
-    CamTranslatorDummy *getTranslator(long);
+    CamTranslatorBase *getTranslator(long);
     s32 getIndexOf(const char *) const;
     Camera *getDefaultCamera();
     s32 getIndexOfDefault() const;
@@ -20,6 +20,6 @@ public:
 
     s32 mDefaultCameraIndex;                // _C
     Camera **mCameras;                      // _10
-    CamTranslatorDummy **mTranslators;      // _14
-    CamTranslatorDummy *mDefaultTranslator; // _18
+    CamTranslatorBase **mTranslators;      // _14
+    CamTranslatorBase *mDefaultTranslator; // _18
 };

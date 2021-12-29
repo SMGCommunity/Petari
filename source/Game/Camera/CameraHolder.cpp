@@ -347,7 +347,7 @@ CameraHolder::~CameraHolder() {
 
 }
 
-CamTranslatorDummy *CameraHolder::getTranslator(long index) {
+CamTranslatorBase *CameraHolder::getTranslator(long index) {
     return mTranslators[index];
 }
 
@@ -381,7 +381,7 @@ s32 CameraHolder::getIndexOf(Camera *pCamera) const {
 
 void CameraHolder::createCameras() {
     mCameras = new Camera *[NR_CAMERA_TYPES];
-    mTranslators = new CamTranslatorDummy *[NR_CAMERA_TYPES];
+    mTranslators = new CamTranslatorBase *[NR_CAMERA_TYPES];
 
     for (s32 i = 0; i < NR_CAMERA_TYPES; i++) {
         mCameras[i] = sCameraTable[i].mCreateFunction();

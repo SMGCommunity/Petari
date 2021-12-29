@@ -9,6 +9,6 @@ CameraBehind::CameraBehind(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CamTranslatorDummy *CameraBehind::createTranslator() {
+CamTranslatorBase *CameraBehind::createTranslator() {
     return new CamTranslatorBehind(this);
 }

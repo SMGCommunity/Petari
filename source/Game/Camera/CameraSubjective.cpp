@@ -8,6 +8,6 @@ CameraSubjective::CameraSubjective(const char *pName) : Camera(pName) {
     _5C.identity();
 }
 
-CamTranslatorDummy *CameraSubjective::createTranslator() {
+CamTranslatorBase *CameraSubjective::createTranslator() {
     return new CamTranslatorDummy(this);
 }

@@ -12,6 +12,6 @@ CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
     mWPointX = 0.5f;
 }
 
-CamTranslatorDummy *CameraMedianPlanet::createTranslator() {
+CamTranslatorBase *CameraMedianPlanet::createTranslator() {
     return new CamTranslatorMedianPlanet(this);
 }

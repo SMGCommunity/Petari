@@ -4,7 +4,7 @@
 
 class CameraParamChunk;
 
-class CamTranslatorAnim : public CamTranslatorDummy {
+class CamTranslatorAnim : public CamTranslatorBase {
 public:
     inline CamTranslatorAnim(CameraAnim *pCamera) {
         mCamera = pCamera;
@@ -14,4 +14,6 @@ public:
     virtual Camera *getCamera() const;
 
     u32 getAnimFrame(const CameraParamChunk *) const;
+
+    CameraAnim *mCamera;    // _4
 };

@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorRailDemo.h"
 
 void CamTranslatorRailDemo::setParam(const CameraParamChunk *pChunk) {
-	reinterpret_cast<CameraRailDemo *>(mCamera)->setParam(
+	mCamera->setParam(
 		pChunk->getZoneID(),
 		pChunk->mGeneralParam->mNum1 >> 16,
 		pChunk->mGeneralParam->mNum2,

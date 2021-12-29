@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraInwardTower.h"
 
-class CamTranslatorInwardTower : public CamTranslatorDummy {
+class CamTranslatorInwardTower : public CamTranslatorBase {
 public:
 	inline CamTranslatorInwardTower(CameraInwardTower *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraInwardTower *mCamera;	// _4
 };

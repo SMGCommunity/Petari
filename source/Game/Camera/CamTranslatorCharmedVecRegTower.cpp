@@ -27,7 +27,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk *pChunk) {
 	angleA = general->mAngleA;
 	string = general->mString.getCharPtr();
 
-	CameraCharmedVecRegTower *camera = reinterpret_cast<CameraCharmedVecRegTower *>(mCamera);
+	CameraCharmedVecRegTower *camera = mCamera;
 
 	camera->mString = string;
 	camera->mWPoint.set(general->mWPoint);

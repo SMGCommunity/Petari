@@ -7,7 +7,7 @@ CamTranslatorFooFighterPlanet::CamTranslatorFooFighterPlanet(CameraFooFighterPla
 
 void CamTranslatorFooFighterPlanet::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	CameraFooFighterPlanet *camera = reinterpret_cast<CameraFooFighterPlanet *>(mCamera);
+	CameraFooFighterPlanet *camera = mCamera;
 
 	f32 axisX;
 	f32 axisY;

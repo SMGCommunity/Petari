@@ -13,6 +13,6 @@ CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char *pName) : Camera(pNa
     _6C = 0.0f;
 }
 
-CamTranslatorDummy *CameraCharmedTripodBoss::createTranslator() {
+CamTranslatorBase *CameraCharmedTripodBoss::createTranslator() {
     return new CamTranslatorCharmedTripodBoss(this);
 }

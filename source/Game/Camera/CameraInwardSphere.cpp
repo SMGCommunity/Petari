@@ -13,6 +13,6 @@ CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
     _6C = 0.0f;
 }
 
-CamTranslatorDummy *CameraInwardSphere::createTranslator() {
+CamTranslatorBase *CameraInwardSphere::createTranslator() {
     return new CamTranslatorInwardSphere(this);
 }

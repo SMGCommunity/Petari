@@ -7,6 +7,6 @@ CameraFixedPoint::CameraFixedPoint(const char *pName) : Camera(pName) {
     _54 = 0.0f;
 }
 
-CamTranslatorDummy *CameraFixedPoint::createTranslator() {
+CamTranslatorBase *CameraFixedPoint::createTranslator() {
     return new CamTranslatorFixedPoint(this);
 }

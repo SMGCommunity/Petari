@@ -10,6 +10,6 @@ CameraTripodBossJoint::CameraTripodBossJoint(const char *pName) : Camera(pName) 
     _70 = 0.0f;
 }
 
-CamTranslatorDummy *CameraTripodBossJoint::createTranslator() {
+CamTranslatorBase *CameraTripodBossJoint::createTranslator() {
     return new CamTranslatorTripodBossJoint(this);
 }

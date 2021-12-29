@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraTripodBossJoint.h"
 
-class CamTranslatorTripodBossJoint : public CamTranslatorDummy {
+class CamTranslatorTripodBossJoint : public CamTranslatorBase {
 public:
 	inline CamTranslatorTripodBossJoint(CameraTripodBossJoint *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraTripodBossJoint *mCamera;	// _4
 };

@@ -12,6 +12,6 @@ CameraFooFighter::CameraFooFighter(const char *pName) : Camera(pName) {
     _68 = 0.0f;
 }
 
-CamTranslatorDummy *CameraFooFighter::createTranslator() {
+CamTranslatorBase *CameraFooFighter::createTranslator() {
     return new CamTranslatorFooFighter(this);
 }

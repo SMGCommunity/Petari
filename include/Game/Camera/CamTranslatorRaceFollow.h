@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraRaceFollow.h"
 
-class CamTranslatorRaceFollow : public CamTranslatorDummy {
+class CamTranslatorRaceFollow : public CamTranslatorBase {
 public:
 	inline CamTranslatorRaceFollow(CameraRaceFollow *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraRaceFollow *mCamera;	// _4
 };

@@ -18,7 +18,7 @@ void CamTranslatorMedianTower::setParam(const CameraParamChunk *pChunk) {
 	angleA = general->mAngleA;
 	string = general->mString.getCharPtr();
 
-	CameraMedianTower *camera = reinterpret_cast<CameraMedianTower *>(mCamera);
+	CameraMedianTower *camera = mCamera;
 
 	camera->mString = string;
 	camera->mWPoint.set(pChunk->mGeneralParam->mWPoint);

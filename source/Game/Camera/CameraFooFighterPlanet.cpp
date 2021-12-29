@@ -7,6 +7,6 @@ CameraFooFighterPlanet::CameraFooFighterPlanet(const char *pName) : Camera(pName
     mAngleA = 0.7853982f;
 }
 
-CamTranslatorDummy *CameraFooFighterPlanet::createTranslator() {
+CamTranslatorBase *CameraFooFighterPlanet::createTranslator() {
     return new CamTranslatorFooFighterPlanet(this);
 }

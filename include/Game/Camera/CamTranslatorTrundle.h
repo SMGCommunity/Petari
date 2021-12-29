@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraTrundle.h"
 
-class CamTranslatorTrundle : public CamTranslatorDummy {
+class CamTranslatorTrundle : public CamTranslatorBase {
 public:
 	inline CamTranslatorTrundle(CameraTrundle *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraTrundle *mCamera;	// _4
 };

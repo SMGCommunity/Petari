@@ -13,6 +13,6 @@ CameraFixedThere::CameraFixedThere(const char *pName) : Camera(pName) {
     _6C = 0.0f;
 }
 
-CamTranslatorDummy *CameraFixedThere::createTranslator() {
+CamTranslatorBase *CameraFixedThere::createTranslator() {
     return new CamTranslatorFixedThere(this);
 }

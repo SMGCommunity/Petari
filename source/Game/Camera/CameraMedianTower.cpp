@@ -20,6 +20,6 @@ CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     _88 = 120;
 }
 
-CamTranslatorDummy *CameraMedianTower::createTranslator() {
+CamTranslatorBase *CameraMedianTower::createTranslator() {
     return new CamTranslatorMedianTower(this);
 }

@@ -28,6 +28,6 @@ CameraFollow::CameraFollow(const char *pName) : Camera(pName) {
     createVPanObj();
 }
 
-CamTranslatorDummy *CameraFollow::createTranslator() {
+CamTranslatorBase *CameraFollow::createTranslator() {
     return new CamTranslatorFollow(this);
 }

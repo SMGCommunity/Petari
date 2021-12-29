@@ -5,6 +5,6 @@ CameraCharmedVecRegTower::CameraCharmedVecRegTower(const char *pName) : Camera(p
     _70 = false;
 }
 
-CamTranslatorDummy *CameraCharmedVecRegTower::createTranslator() {
+CamTranslatorBase *CameraCharmedVecRegTower::createTranslator() {
     return new CamTranslatorCharmedVecRegTower(this);
 }

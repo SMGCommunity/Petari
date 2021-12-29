@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraBehind.h"
 
-class CamTranslatorBehind : public CamTranslatorDummy {
+class CamTranslatorBehind : public CamTranslatorBase {
 public:
 	inline CamTranslatorBehind(CameraBehind *pCamera) {
 		mCamera = pCamera;
@@ -10,4 +10,6 @@ public:
 
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
+
+	CameraBehind *mCamera;	// _4
 };

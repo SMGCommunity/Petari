@@ -11,6 +11,6 @@ CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
     mAngleB = 0.02f;
 }
 
-CamTranslatorDummy *CameraCharmedVecReg::createTranslator() {
+CamTranslatorBase *CameraCharmedVecReg::createTranslator() {
     return new CamTranslatorCharmedVecReg(this);
 }

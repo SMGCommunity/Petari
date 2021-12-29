@@ -7,7 +7,7 @@ CamTranslatorFollow::CamTranslatorFollow(CameraFollow *pCamera) {
 
 void CamTranslatorFollow::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;
-	CameraFollow *camera = reinterpret_cast<CameraFollow *>(mCamera);
+	CameraFollow *camera = mCamera;
 
 	camera->setParam(
 		general->mAxis.x,

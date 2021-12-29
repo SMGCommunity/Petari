@@ -11,7 +11,7 @@ public:
     virtual CameraTargetObj *calc();
     virtual bool isEnableToRoundLeft() const;
     virtual bool isEnableToRoundRight() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void arrangeRoundingPose();
     void arrangeHorizontalPose();

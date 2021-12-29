@@ -25,6 +25,6 @@ CameraWaterPlanetBoss::CameraWaterPlanetBoss(const char *pName) : Camera(pName) 
     _9C = 0.0f;
 }
 
-CamTranslatorDummy *CameraWaterPlanetBoss::createTranslator() {
+CamTranslatorBase *CameraWaterPlanetBoss::createTranslator() {
     return new CamTranslatorWaterPlanetBoss(this);
 }

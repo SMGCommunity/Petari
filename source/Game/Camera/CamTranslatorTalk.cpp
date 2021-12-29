@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorTalk.h"
 
 void CamTranslatorTalk::setParam(const CameraParamChunk *pChunk) {
-	reinterpret_cast<CameraTalk *>(mCamera)->setParam(
+	mCamera->setParam(
 		pChunk->mGeneralParam->mWPoint,
 		pChunk->mGeneralParam->mUp,
 		pChunk->mGeneralParam->mAxis.x,
