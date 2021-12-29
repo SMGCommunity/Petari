@@ -23,4 +23,6 @@ namespace MR {
     void forceKillPlayerByAbyss();
 
     void setCameraTargetToPlayer(CameraTargetArg *);
+
+    bool isPlayerInAreaObj(const char *);
 };

@@ -2,6 +2,7 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/ClippingActorInfo.h"
+#include "Game/LiveActor/LodCtrl.h"
 #include "Game/LiveActor/ViewGroupCtrl.h"
 
 namespace {
@@ -18,6 +19,7 @@ public:
     void registerActor(LiveActor *);
     void initSystemInfo(LiveActor *, const JMapInfoIter &);
     void initViewGroupTable();
+    void entryLodCtrl(LodCtrl *, const JMapInfoIter &);
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
     void addToClippingTarget(LiveActor *);

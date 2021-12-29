@@ -29,6 +29,9 @@ public:
     bool updateRootJointCallBack(TPos3f *, const JointControllerInfo &);
     bool updateMiddleJointCallBack(TPos3f *, const JointControllerInfo &);
 
+    void disableCallBack();
+    void enableCallBack();
+
     const char* mName;                                      // _0
     TMtx34f _4;
     TMtx34f _34;
@@ -62,8 +65,11 @@ public:
     void setEndPosition(const char *, const TVec3f &, f32);
     void setEndDirection(const char *, const TVec3f &, f32);
 
-    void endUpdate();
+    void startUpdate();
 
+    void endUpdate();
+    void endCtrlAll();
+    void setCallBackFunction();
     IKJointCtrl* findIKJointCtrl(const char *);
 
     IKJointCtrl** mControls;    // _0
@@ -71,4 +77,9 @@ public:
     s32 _8;
     LiveActor* mActor;          // _C
     u8 _10;
+};
+
+class ActorJoint {
+public:
+    static IKJointCtrlHolder* createIKJointCtrlHolder(LiveActor *);
 };

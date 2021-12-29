@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxCalc.h"
 #include "JSystem/JGeometry/TVec.h"
 
@@ -88,6 +89,8 @@ public:
     void shareJointTransform(const XanimeCore *);
     void doFreeze();
     void setBck(u32, J3DAnmTransform *);
+
+    void enableJointTranform(J3DModelData *);
 
     void initMember(u32);
 

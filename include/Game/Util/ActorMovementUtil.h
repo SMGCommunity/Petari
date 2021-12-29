@@ -27,4 +27,5 @@ namespace MR {
     void calcSideVec(TVec3f *, const LiveActor *);
     void calcPositionUpOffset(TVec3f *, const LiveActor *, f32);
 
+    void resetPosition(LiveActor *);
 };

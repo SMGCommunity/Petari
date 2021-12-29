@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "JSystem/JGeometry/TBox.h"
 
 class J3DModel;
 class J3DModelData;
@@ -11,6 +12,9 @@ namespace MR {
     bool isExistModel(const char *);
 
     J3DModel* getJ3DModel(const LiveActor *);
+    J3DModelData* getJ3DModelData(const char *);
+
+    void calcJ3DModel(LiveActor *);
 
     u32 getMaterialNo(J3DModelData *, const char *);
     u32 getMaterialNo(J3DModel *, const char *);
@@ -23,4 +27,14 @@ namespace MR {
     void updateModelDiffDL(LiveActor *);
     bool isEnvelope(J3DMaterial *);
     void hideMaterial(J3DModel *, const char *);
+
+    void updateMaterial(LiveActor *);
+
+    void syncJointAnimation(LiveActor *, const LiveActor *);
+
+    void syncMaterialAnimation(LiveActor *, const LiveActor *);
+
+    void copyJointAnimation(LiveActor *, const LiveActor *);
+
+    void calcModelBoundingBox(TBox3f *, const LiveActor *);
 };

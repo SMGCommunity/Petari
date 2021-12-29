@@ -2,6 +2,7 @@
 
 #include "Game/Util/ActorMovementUtil.h"
 #include "Game/Util/ActorSensorUtil.h"
+#include "Game/Util/ActorShadowUtil.h"
 #include "Game/Util/ActorSwitchUtil.h"
 #include "Game/Util/AreaObjUtil.h"
 #include "Game/Util/Array.h"
@@ -28,6 +29,7 @@
 #include "Game/Util/ModelUtil.h"
 #include "Game/Util/MtxUtil.h"
 #include "Game/Util/MutexHolder.h"
+#include "Game/Util/NerveUtil.h"
 #include "Game/Util/ObjUtil.h"
 #include "Game/Util/PlayerUtil.h"
 #include "Game/Util/SceneUtil.h"

@@ -4,20 +4,19 @@
 #include "Game/LiveActor/LiveActorFlag.h"
 #include "Game/LiveActor/ActorAnimKeeper.h"
 #include "Game/LiveActor/ActorLightCtrl.h"
+#include "Game/LiveActor/EffectKeeper.h"
 #include "Game/LiveActor/HitSensorKeeper.h"
 #include "Game/LiveActor/ModelManager.h"
 #include "Game/LiveActor/ShadowController.h"
 #include "Game/LiveActor/Spine.h"
+#include "Game/LiveActor/RailRider.h"
 #include "Game/Map/StageSwitch.h"
 #include "JSystem/JGeometry/TVec.h"
-#include "Game/LiveActor/RailRider.h"
 
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;
 class Binder;
 class CollisionParts;
-class EffectKeeper;
-class RailRider;
 class ShadowControllerList;
 class StarPointerTarget;
 
@@ -73,13 +72,17 @@ public:
     void addToSoundObjHolder();
     void updateBinder();
 
+    inline bool isBinderValid(Binder *pBinder) {
+        return pBinder;
+    }
+
     TVec3f mPosition;                       // _C
     TVec3f mRotation;                       // _18
     TVec3f mScale;                          // _24
     TVec3f mVelocity;                       // _30
     TVec3f mGravity;                        // _3C
     ModelManager* mModelManager;            // _48
-    ActorAnimKeeper* mAnimationKeepper;     // _4C
+    ActorAnimKeeper* mAnimationKeeper;      // _4C
     Spine* mSpine;                          // _50
     HitSensorKeeper* mSensorKeeper;         // _54
     Binder* mBinder;                        // _58

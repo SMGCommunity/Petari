@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry.h"
 
 class CubeCameraArea;
 class GravityInfo;

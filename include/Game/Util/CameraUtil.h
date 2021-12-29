@@ -1,15 +1,15 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
+#include "JSystem/JGeometry.h"
 
 class ActorCameraInfo;
 class CameraTargetArg;
 
 namespace MR {
     TVec3f getCamPos();
+
+    f32 calcCameraDistanceZ(const TVec3f &);
 
     bool isCameraInterpolateNearlyEnd();
 
@@ -33,4 +33,6 @@ namespace MR {
     void setNearZ(f32);
 
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
+
+    bool isExistMirrorCamera();
 };

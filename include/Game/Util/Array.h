@@ -1,6 +1,7 @@
 #pragma once
 
 #include "revolution.h"
+#include "Inline.h"
 
 namespace MR {
     template<class T>
@@ -50,7 +51,7 @@ namespace MR {
         inline Vector() {
             
         }
-        ~Vector() { }
+        ~Vector();
 
         inline void assign(T::Item &pItem, int where) {
             mArray.mArr[where] = pItem;

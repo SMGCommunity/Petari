@@ -63,13 +63,61 @@ PlanetGravity* GlobalGravityObj::getGravity() {
 }
 
 namespace MR {
-	GlobalGravityObj* createGlobalPointGravityObj(const char *pName) {
+	NameObj* createGlobalCubeGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new CubeGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalConeGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new ConeGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalDiskGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new DiskGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalDiskTorusGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new DiskTorusGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalPlaneGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new PlaneGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalPlaneInBoxGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new PlaneInBoxGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalPlaneInCylinderGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new PlaneInCylinderGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalPointGravityObj(const char *pName) {
 		GlobalGravityObj* ret = new GlobalGravityObj(pName);
 		ret->mGravityCreator = new PointGravityCreator();
 		return ret;
 	}
 
-	GlobalGravityObj* createGlobalWireGravityObj(const char *pName) {
+	NameObj* createGlobalSegmentGravityObj(const char *pName) {
+		GlobalGravityObj* ret = new GlobalGravityObj(pName);
+		ret->mGravityCreator = new SegmentGravityCreator();
+		return ret;
+	}
+
+	NameObj* createGlobalWireGravityObj(const char *pName) {
 		GlobalGravityObj* ret = new GlobalGravityObj(pName);
 		ret->mGravityCreator = new WireGravityCreator();
 		return ret;

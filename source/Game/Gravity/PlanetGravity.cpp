@@ -11,7 +11,7 @@ PlanetGravity::PlanetGravity() {
 	mGravityPower = GRAVITY_POWER_NORMAL;
 	mActivated = true;
 	mIsInverse = false;
-	_22 = true;
+	mValidFollower = true;
 	mIsRegistered = false;
 	mAppeared = true;
 }

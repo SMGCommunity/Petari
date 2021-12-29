@@ -52,6 +52,8 @@ namespace MR {
     HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *, const char *, u16, f32);
     HitSensor* addHitSensorCallbackEye(LiveActor *, const char *, u16, f32);
 
+    void addBodyMessageSensor(LiveActor *, u32);
+
     LiveActor* getSensorHost(const HitSensor *);
     bool isSensor(const HitSensor *, const char *);
     bool isSensorPlayer(const HitSensor *);
@@ -114,4 +116,12 @@ namespace MR {
     bool isMsgPlayerUpperPunch(u32);
     bool isMsgPlayerKick(u32);
     bool isMsgJetTurtleAttack(u32);
+
+    void updateHitSensorsAll(LiveActor *);
+
+    void setHitSensorApart(HitSensor *, HitSensor *);
+
+    bool tryUpdateHitSensorsAll(LiveActor *);
+
+    void clearHitSensors(LiveActor *);
 };

@@ -8,9 +8,11 @@
 #include "Game/AreaObj/ChangeBgmCube.h"
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/DeathArea.h"
+#include "Game/Gravity/GlobalGravityObj.h"
 
 class AreaObj;
 class NameObj;
+class NameObjArchiveListCollector;
 
 class NameObjFactory {
 public:
@@ -18,6 +20,11 @@ public:
         const char* mName;                          // _0
         NameObj* (*mCreactionFunc)(const char *);   // _4
         const char* _8;
+    };
+
+    struct Name2MakeArchiveListFunc {
+        const char* mName;                                                          // _0
+        void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
     };
 
     static Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
@@ -67,7 +74,7 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[17] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[27] = {
         { "CubeCameraBox", createCenterOriginCube<CubeCameraArea>, 0 },
         { "CubeCameraCylinder", createBaseOriginCylinder<CubeCameraArea>, 0 },
         { "CubeCameraSphere", createSphere<CubeCameraArea>, 0 },
@@ -88,8 +95,23 @@ namespace {
         { "AudioEffectSphere", createSphere<AudioEffectArea>, 0 },
         { "AudioEffectCylinder", createBaseOriginCylinder<AudioEffectArea>, 0 },
 
-        { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 }
+        { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 },
+
+        { "GlobalCubeGravity", MR::createGlobalCubeGravityObj, NULL },
+        { "GlobalConeGravity", MR::createGlobalConeGravityObj, NULL },
+        { "GlobalDiskGravity", MR::createGlobalDiskGravityObj, NULL },
+        { "GlobalDiskTorusGravity", MR::createGlobalDiskTorusGravityObj, NULL },
+        { "GlobalPlaneGravity", MR::createGlobalPlaneGravityObj, NULL },
+        { "GlobalPlaneGravityInBox", MR::createGlobalPlaneInBoxGravityObj, NULL },
+        { "GlobalPlaneGravityInCylinder", MR::createGlobalPlaneInCylinderGravityObj, NULL },
+        { "GlobalPointGravity", MR::createGlobalPointGravityObj, NULL },
+        { "GlobalSegmentGravity", MR::createGlobalSegmentGravityObj, NULL },
+        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL }
     };
 
     const char* cName2ArchiveNamesTable;
+
+    const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[1] = {
+        // todo
+    };
 };

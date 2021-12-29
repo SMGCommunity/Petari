@@ -2,6 +2,7 @@
 
 #include "Game/Animation/AnmPlayer.h"
 
+class BckCtrl;
 class BrkCtrl;
 class DisplayListMaker;
 class ResourceHolder;
@@ -11,6 +12,8 @@ class XanimeResourceTable;
 class ModelManager {
 public:
     ModelManager();
+
+    void init(const char *, const char *, bool);
 
     void update();
     void calcAnim();
@@ -30,6 +33,7 @@ public:
     void stopBtp();
     void stopBpk();
     void stopBva();
+    BckCtrl* getBckCtrl() const;
     BrkCtrl* getBrkCtrl() const;
 
     bool isBckStopped() const;
@@ -43,10 +47,17 @@ public:
     bool isBpkPlaying(const char *) const;
     bool isBtpPlaying(const char *) const;
     bool isBvaPlaying(const char *) const;
+    void initJointTransform();
+
+    ResourceHolder* getModelResourceHolder() const;
+
+    J3DModelData* getJ3DModelData() const;
     
     void calc();
     
     J3DModel* getJ3DModel() const;
+
+    void initVisibilityAnm();
 
     void changeBckSetting(const char *, const char *, XanimePlayer *);
 

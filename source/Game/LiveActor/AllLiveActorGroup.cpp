@@ -39,6 +39,11 @@ namespace MR {
         AllLiveActorGroup* group = (AllLiveActorGroup*)MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
         group->initActorSystemInfo(rIter);
     }
+
+    void endInitLiveActorSystemInfo() {
+        MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
+        MR::getClippingDirector()->endInitActorSystemInfo();
+    }
 };
 
 AllLiveActorGroup::~AllLiveActorGroup() {

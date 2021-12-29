@@ -13,7 +13,7 @@ public:
 	virtual ~PlanetGravityManager() {}
 	virtual void init(const JMapInfoIter &);
 
-	bool calcTotalGravityVector(TVec3f *pDest, GravityInfo *pInfo, const TVec3f &, u32 gravityType, u32 host) const;
+	bool calcTotalGravityVector(TVec3f *pDest, GravityInfo *pInfo, const TVec3f &rPosition, u32 gravityType, u32 host) const;
 	void registerGravity(PlanetGravity *pGravity);
 
 	PlanetGravity* mGravities[128]; // _C

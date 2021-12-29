@@ -1,7 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TPosition3.h"
+#include "JSystem/JGeometry.h"
 
 class CameraTargetObj;
 

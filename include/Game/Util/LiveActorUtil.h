@@ -12,6 +12,9 @@ namespace MR {
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
+    void setClippingTypeSphere(LiveActor *, f32);
+    void setClippingFar200m(LiveActor *);
+    void startBtk(const LiveActor *, const char *);
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
@@ -25,7 +28,12 @@ namespace MR {
 
     bool isHiddenModel(const LiveActor *);
 
+    void showModel(LiveActor *);
+
+    void hideModelAndOnCalcAnim(LiveActor *);
+
     ResourceHolder* getResourceHolder(const LiveActor *);
+    ResourceHolder* getModelResourceHolder(const LiveActor *);
 
     bool isNoEntryDrawBuffer(const LiveActor *);
 
@@ -76,4 +84,18 @@ namespace MR {
     bool isNoCalcAnim(const LiveActor *);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+
+    void setClippingFar(LiveActor *, f32);
+
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
+    
+    void validateCollisionParts(LiveActor *);
+
+    void invalidateCollisionParts(LiveActor *);
+
+    void startAllAnim(const LiveActor *, const char *);
+
+    bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
+
+    void setAllAnimFrame(const LiveActor *, const char *, f32);
 }

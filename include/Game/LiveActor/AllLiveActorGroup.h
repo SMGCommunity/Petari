@@ -17,4 +17,5 @@ namespace MR {
     AllLiveActorGroup* getAllLiveActorGroup();
     void startInitLiveActorSystemInfo();
     void initLiveActorSystemInfo(const JMapInfoIter &);
+    void endInitLiveActorSystemInfo();
 };
