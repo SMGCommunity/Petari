@@ -46,17 +46,17 @@
 | ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% |
 | ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% |
 | ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
-| ShadowSurfaceDrawer.o | 0.0% | 0 / 4 | 0.0% |
+| ShadowSurfaceDrawer.o | 36.885245901639344% | 2 / 4 | 50.0% |
 | ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% |
 | ShadowVolumeBox.o | 16.09907120743034% | 2 / 6 | 33.33333333333333% |
 | ShadowVolumeCylinder.o | 1.5037593984962405% | 1 / 5 | 20.0% |
 | ShadowVolumeDrawer.o | 70.58823529411765% | 14 / 16 | 87.5% |
 | ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% |
-| ShadowVolumeLine.o | 0.0% | 0 / 8 | 0.0% |
+| ShadowVolumeLine.o | 29.64426877470356% | 7 / 8 | 87.5% |
 | ShadowVolumeModel.o | 100.0% | 3 / 3 | 100.0% |
 | ShadowVolumeOval.o | 32.06751054852321% | 4 / 5 | 80.0% |
-| ShadowVolumeOvalPole.o | 0.0% | 0 / 4 | 0.0% |
-| ShadowVolumeSphere.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowVolumeOvalPole.o | 23.144104803493452% | 3 / 4 | 75.0% |
+| ShadowVolumeSphere.o | 56.451612903225815% | 4 / 5 | 80.0% |
 | SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% |
 | Spine.o | 100.0% | 6 / 6 | 100.0% |
 | SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% |
@@ -969,8 +969,8 @@
 | ------------- | ------------- |
 | __ct__21ShadowSurfaceDrawInitFPCc | :x: |
 | initDraw__21ShadowSurfaceDrawInitFv | :x: |
-| __ct__19ShadowSurfaceDrawerFPCc | :x: |
-| __dt__21ShadowSurfaceDrawInitFv | :x: |
+| __ct__19ShadowSurfaceDrawerFPCc | :white_check_mark: |
+| __dt__21ShadowSurfaceDrawInitFv | :white_check_mark: |
 
 
 # ShadowSurfaceOval.o
@@ -1044,14 +1044,14 @@
 # ShadowVolumeLine.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16ShadowVolumeLineFv | :x: |
-| loadModelDrawMtx__16ShadowVolumeLineCFv | :x: |
+| __ct__16ShadowVolumeLineFv | :white_check_mark: |
+| loadModelDrawMtx__16ShadowVolumeLineCFv | :white_check_mark: |
 | drawShape__16ShadowVolumeLineCFv | :x: |
-| setFromShadowController__16ShadowVolumeLineFPC16ShadowController | :x: |
-| setToShadowController__16ShadowVolumeLineFPC16ShadowController | :x: |
-| setFromWidth__16ShadowVolumeLineFf | :x: |
-| setToWidth__16ShadowVolumeLineFf | :x: |
-| __dt__16ShadowVolumeLineFv | :x: |
+| setFromShadowController__16ShadowVolumeLineFPC16ShadowController | :white_check_mark: |
+| setToShadowController__16ShadowVolumeLineFPC16ShadowController | :white_check_mark: |
+| setFromWidth__16ShadowVolumeLineFf | :white_check_mark: |
+| setToWidth__16ShadowVolumeLineFf | :white_check_mark: |
+| __dt__16ShadowVolumeLineFv | :white_check_mark: |
 
 
 # ShadowVolumeModel.o
@@ -1075,19 +1075,19 @@
 # ShadowVolumeOvalPole.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__20ShadowVolumeOvalPoleFv | :x: |
-| __ct__20ShadowVolumeOvalPoleFv | :x: |
+| __dt__20ShadowVolumeOvalPoleFv | :white_check_mark: |
+| __ct__20ShadowVolumeOvalPoleFv | :white_check_mark: |
 | loadModelDrawMtx__20ShadowVolumeOvalPoleCFv | :x: |
-| setSize__20ShadowVolumeOvalPoleFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__20ShadowVolumeOvalPoleFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 
 
 # ShadowVolumeSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18ShadowVolumeSphereFv | :x: |
-| __ct__18ShadowVolumeSphereFv | :x: |
-| setRadius__18ShadowVolumeSphereFf | :x: |
-| isDraw__18ShadowVolumeSphereCFv | :x: |
+| __dt__18ShadowVolumeSphereFv | :white_check_mark: |
+| __ct__18ShadowVolumeSphereFv | :white_check_mark: |
+| setRadius__18ShadowVolumeSphereFf | :white_check_mark: |
+| isDraw__18ShadowVolumeSphereCFv | :white_check_mark: |
 | loadModelDrawMtx__18ShadowVolumeSphereCFv | :x: |
 
 
