@@ -42,7 +42,7 @@
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
 | RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
 | SensorHitChecker.o | 65.21739130434783% | 10 / 13 | 76.92307692307693% |
-| ShadowController.o | 18.144750254842% | 23 / 68 | 33.82352941176471% |
+| ShadowController.o | 32.82364933741081% | 39 / 68 | 57.35294117647059% |
 | ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% |
 | ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% |
 | ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
@@ -882,29 +882,29 @@
 | resetCalcCount__20ShadowControllerListFv | :x: |
 | requestCalc__20ShadowControllerListFv | :x: |
 | requestCalc__16ShadowControllerFv | :x: |
-| update__16ShadowControllerFv | :x: |
-| updateFarClipping__16ShadowControllerFf | :x: |
+| update__16ShadowControllerFv | :white_check_mark: |
+| updateFarClipping__16ShadowControllerFf | :white_check_mark: |
 | updateDirection__16ShadowControllerFv | :x: |
 | updateProjection__16ShadowControllerFv | :x: |
-| getShadowDrawer__16ShadowControllerFv | :x: |
-| getHost__16ShadowControllerCFv | :x: |
-| setShadowDrawer__16ShadowControllerFP12ShadowDrawer | :x: |
-| getDropPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getDropDir__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getDropLength__16ShadowControllerCFv | :x: |
-| getProjectionPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getProjectionNormal__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
+| getShadowDrawer__16ShadowControllerFv | :white_check_mark: |
+| getHost__16ShadowControllerCFv | :white_check_mark: |
+| setShadowDrawer__16ShadowControllerFP12ShadowDrawer | :white_check_mark: |
+| getDropPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getDropDir__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getDropLength__16ShadowControllerCFv | :white_check_mark: |
+| getProjectionPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getProjectionNormal__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
 | getProjectionLength__16ShadowControllerCFv | :x: |
-| isProjected__16ShadowControllerCFv | :x: |
-| isDraw__16ShadowControllerCFv | :x: |
+| isProjected__16ShadowControllerCFv | :white_check_mark: |
+| isDraw__16ShadowControllerCFv | :white_check_mark: |
 | isCalcCollision__16ShadowControllerCFv | :x: |
 | isCalcGravity__16ShadowControllerCFv | :x: |
 | isCalcShadowGravity__16ShadowControllerCFv | :x: |
-| setGroupName__16ShadowControllerFPCc | :x: |
-| setDropPosPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :x: |
+| setGroupName__16ShadowControllerFPCc | :white_check_mark: |
+| setDropPosPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setDropPosMtxPtr__16ShadowControllerFPA4_fRCQ29JGeometry8TVec3<f> | :x: |
-| setDropPosFix__16ShadowControllerFRCQ29JGeometry8TVec3<f> | :x: |
-| setDropDirPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :x: |
+| setDropPosFix__16ShadowControllerFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setDropDirPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setProjectionPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f> | :x: |
 | setDropDirFix__16ShadowControllerFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
 | setDropLength__16ShadowControllerFf | :white_check_mark: |
