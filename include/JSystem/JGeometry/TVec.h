@@ -185,6 +185,22 @@ namespace JGeometry {
             };
         }
 
+        inline void addInline2(register const TVec3<T> &rOther) {
+            register TVec3<T>* dst = this;
+            register f32 _2, _1, _0;
+
+            __asm {
+                psq_l     _0, 0(rOther), 0, 0
+                psq_l     _2, 0(dst), 0, 0
+                psq_l     _1, 8(dst), 1, 0
+                ps_add    _0, _2, _0
+                psq_st    _0, 0(dst), 0, 0
+                psq_l     _0, 8(rOther), 1, 0
+                ps_add    _0, _1, _0
+                psq_st    _0, 8(dst), 1, 0
+            };
+        }
+
         inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {
             register TVec3<T>* dst = this;
             register const TVec3<T>* a = &rA;
@@ -202,6 +218,24 @@ namespace JGeometry {
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    bZ, 8(dst), 1, 0
             };
+        }
+
+        inline const TVec3<T> negateInline() const {
+            TVec3<T> ret;
+            register const TVec3<T>* src = this;
+            register TVec3<T>* dest = &ret;
+            register f32 xy, z;
+
+            __asm {
+                psq_l     xy, 0(src), 0, 0
+                ps_neg    xy, xy
+                psq_st    xy, 0(dest), 0, 0
+                lfs       z, 8(src)
+                fneg      z, z
+                stfs      z, 8(dest)
+            }
+
+            return ret;
         }
 
         inline void negateInline(register const TVec3<T> &rSrc) {

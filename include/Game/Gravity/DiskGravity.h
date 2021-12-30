@@ -23,12 +23,12 @@ public:
 	TVec3f mLocalDirection;  // _40
 	TVec3f mRotation;        // _4C
 	TVec3f mSideDirection;   // _58
-	TVec3f _64;
-	TVec3f _70;
+	TVec3f mSideVecOrtho;    // _64
+	TVec3f mWorldSideDir;    // _70
 	f32 mRadius;             // _7C
-	f32 _80;
-	f32 mDegree;             // _84
-	f32 _88;
+	f32 mWorldRadius;        // _80
+	f32 mValidDegree;        // _84
+	f32 mValidCos;           // _88
 	bool mEnableBothSide;    // _8C
 	bool mEnableEdgeGravity; // _8D
 };
