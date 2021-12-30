@@ -205,11 +205,11 @@ __ct__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
 __dt__24JSULink<13JKRFileLoader>Fv,JKRFileLoader.o,JKernel.a,false
 __dt__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
 unmount__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
-getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader,JKRFileLoader.o,JKernel.a,false
-initializeVolumeList__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,false
-prependVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>,JKRFileLoader.o,JKernel.a,false
-removeVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>,JKRFileLoader.o,JKernel.a,false
-__sinit_\JKRFileLoader_cpp,JKRFileLoader.o,JKernel.a,false
+getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader,JKRFileLoader.o,JKernel.a,true
+initializeVolumeList__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
+prependVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>,JKRFileLoader.o,JKernel.a,true
+removeVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>,JKRFileLoader.o,JKernel.a,true
+__sinit_\JKRFileLoader_cpp,JKRFileLoader.o,JKernel.a,true
 __ct__24JSUList<13JKRFileLoader>Fv,JKRFileLoader.o,JKernel.a,false
 __dt__24JSUList<13JKRFileLoader>Fv,JKRFileLoader.o,JKernel.a,false
 __ct__12JKRArcFinderFP10JKRArchivell,JKRFileFinder.o,JKernel.a,false
