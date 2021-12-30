@@ -3,7 +3,7 @@
 #include "Game/Camera/CamTranslatorAnim.h"
 
 void CamTranslatorAnim::setParam(const CameraParamChunk *pChunk) {
-    CameraAnim *camera = reinterpret_cast<CameraAnim *>(mCamera);
+    CameraAnim *camera = mCamera;
 
     // mNum1 is used to store the pointer to the data
     camera->setParam(reinterpret_cast<unsigned char *>(pChunk->mGeneralParam->mNum1), pChunk->mGeneralParam->mDist);

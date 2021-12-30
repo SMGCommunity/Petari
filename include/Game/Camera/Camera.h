@@ -11,7 +11,17 @@ class CameraParamChunk;
 class CameraPoseParam;
 class CameraTargetObj;
 
-class CamTranslatorDummy {
+class CamTranslatorBase {
+public:
+    inline CamTranslatorBase() {
+
+    }
+
+    virtual void setParam(const CameraParamChunk *) = 0;
+    virtual Camera *getCamera() const = 0;
+};
+
+class CamTranslatorDummy : public CamTranslatorBase {
 public:
     inline CamTranslatorDummy(Camera *pCamera) {
         mCamera = pCamera;
@@ -20,13 +30,16 @@ public:
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;
 
-    Camera *mCamera;
+    Camera *mCamera;    // _4
 };
 
 class Camera : public NameObj {
 public:
     Camera(const char *);
-    virtual ~Camera();
+
+    virtual inline ~Camera() {
+
+    }
 
     virtual void reset();
     virtual CameraTargetObj *calc() = 0;
@@ -40,7 +53,7 @@ public:
     virtual bool isEnableToRoundLeft() const;
     virtual bool isEnableToRoundRight() const;
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void setZoneMtx(long);
     void createVPanObj();

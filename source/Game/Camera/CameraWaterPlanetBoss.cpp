@@ -1,25 +1,30 @@
 #include "Game/Camera/CameraWaterPlanetBoss.h"
+#include "Game/Camera/CamTranslatorWaterPlanetBoss.h"
 
 CameraWaterPlanetBoss::CameraWaterPlanetBoss(const char *pName) : Camera(pName) {
-    _4C = 300.0f;
-    _50 = 1200.0f;
-    _54 = 0.01f;
+    mAxisY = 300.0f;
+    mAxisX = 1200.0f;
+    mDist = 0.01f;
     _58 = 0.01f;
     _5C = 0;
     _60 = 0.0f;
     _64 = 0.0f;
     _68 = 0.0f;
-    _6C = 0;
-    _70 = 0.0f;
-    _74 = 0.0f;
-    _78 = 0.0f;
-    _7C = 0.0f;
-    _80 = 0.0f;
-    _84 = 0.0f;
-    _88 = 0.0f;
-    _8C = 0;
+    _6C = false;
+    mWPointX = 0.0f;
+    mWPointY = 0.0f;
+    mWPointZ = 0.0f;
+    mAxisZ = 0.0f;
+    mUpY = 0.0f;
+    mUpX = 0.0f;
+    mUpZ = 0.0f;
+    _8C = false;
     _90 = 0;
     _94 = 1.0f;
     _98 = 0.0f;
     _9C = 0.0f;
+}
+
+CamTranslatorBase *CameraWaterPlanetBoss::createTranslator() {
+    return new CamTranslatorWaterPlanetBoss(this);
 }

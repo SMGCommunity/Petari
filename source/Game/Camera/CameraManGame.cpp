@@ -357,7 +357,7 @@ void CameraManGame::replaceCurrentChunkAndCamera(CameraParamChunk *pChunk) {
 #ifdef NON_MATCHING
 // Register mismatch, r0 used
 void CameraManGame::applyParameter() {
-    CamTranslatorDummy *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
+    CamTranslatorBase *translator = mHolder->getTranslator(mChunk->mCameraTypeIndex);
     translator->setParam(mChunk);
     Camera *camera = translator->getCamera();
 
@@ -557,7 +557,7 @@ void CameraManGame::createStartAnimCamera() {
         chunk->setCameraType("CAM_TYPE_ANIM", director->mHolder);
 
         chunk->mGeneralParam->mNum1 = reinterpret_cast<s32>(data);
-        chunk->_64 = 1;
+        chunk->_64 = true;
     }
 }
 

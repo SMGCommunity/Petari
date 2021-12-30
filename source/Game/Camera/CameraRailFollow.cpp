@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraRailFollow.h"
+#include "Game/Camera/CamTranslatorRailFollow.h"
 
 CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
     _4C = 0;
@@ -7,4 +8,8 @@ CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
     _58 = 0.0f;
     _5C = 30.0f;
     _60 = 0.35f;
+}
+
+CamTranslatorBase *CameraRailFollow::createTranslator() {
+    return new CamTranslatorRailFollow(this);
 }

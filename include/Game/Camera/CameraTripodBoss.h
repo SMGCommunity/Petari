@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/Camera/CameraTower.h"
 
 class CameraTripodBoss : public CameraTower {
@@ -6,9 +8,9 @@ public:
     virtual ~CameraTripodBoss();
 
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void arrangeRound();
 
-    f32 _8C;
+    f32 upZ;    // _8C
 };

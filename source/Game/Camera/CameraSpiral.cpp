@@ -1,11 +1,16 @@
 #include "Game/Camera/CameraSpiral.h"
+#include "Game/Camera/CamTranslatorSpiral.h"
 
 CameraSpiral::CameraSpiral(const char *pName) : Camera(pName) {
     _4C = 60;
     _50 = 0;
     _54 = 0;
-    _64 = 1000.0f;
-    _68 = 1000.0f;
-    _6C = 0.0f;
-    _70 = 0.0f;
+    mWPointZ = 1000.0f;
+    mAxisZ = 1000.0f;
+    mWPointX = 0.0f;
+    mAxisX = 0.0f;
+}
+
+CamTranslatorBase *CameraSpiral::createTranslator() {
+    return new CamTranslatorSpiral(this);
 }

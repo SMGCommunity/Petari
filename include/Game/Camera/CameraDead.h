@@ -13,11 +13,11 @@ public:
     virtual void reset();
     virtual CameraTargetObj *calc();
     virtual bool isInterpolationOff() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     u8 _4C[4];
-    f32 _50;
-    u32 _54;
-    u32 _58;
+    f32 mDist;  // _50
+    s32 _54;
+    s32 _58;
     u32 _5C;    
 };

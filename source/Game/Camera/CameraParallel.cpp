@@ -1,14 +1,19 @@
 #include "Game/Camera/CameraParallel.h"
+#include "Game/Camera/CamTranslatorParallel.h"
 
 CameraParallel::CameraParallel(const char *pName) : Camera(pName) {
-    _4C = 0.0f;
-    _50 = 0.0f;
-    _54 = 3000.0f;
-    _58 = 0;
-    _59 = 0;
+    mAngleB = 0.0f;
+    mAngleA = 0.0f;
+    mDist = 3000.0f;
+    _58 = false;
+    _59 = false;
     _5C = 0.0f;
     _60 = 0.0f;
     _64 = 0.0f;
 
     createVPanObj();
+}
+
+CamTranslatorBase *CameraParallel::createTranslator() {
+    return new CamTranslatorParallel(this);
 }
