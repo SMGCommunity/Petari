@@ -67,7 +67,7 @@
 | Sky.o | 0.0% | 0 / 20 | 0.0% |
 | SleepController.o | 0.0% | 0 / 3 | 0.0% |
 | SleepControllerHolder.o | 0.0% | 0 / 14 | 0.0% |
-| SpaceInner.o | 0.0% | 0 / 12 | 0.0% |
+| SpaceInner.o | 100.0% | 12 / 12 | 100.0% |
 | SphereSelector.o | 0.0% | 0 / 70 | 0.0% |
 | SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% |
 | StageSwitch.o | 66.87116564417178% | 26 / 31 | 83.87096774193549% |
@@ -76,7 +76,7 @@
 | SwitchSynchronizer.o | 0.0% | 0 / 4 | 0.0% |
 | SwitchWatcher.o | 0.0% | 0 / 6 | 0.0% |
 | SwitchWatcherHolder.o | 0.0% | 0 / 11 | 0.0% |
-| TimerSwitch.o | 0.0% | 0 / 4 | 0.0% |
+| TimerSwitch.o | 100.0% | 4 / 4 | 100.0% |
 | WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% |
 | WaterInfo.o | 0.0% | 0 / 3 | 0.0% |
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% |
@@ -1724,18 +1724,18 @@
 # SpaceInner.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SpaceInnerFPCc | :x: |
-| init__10SpaceInnerFRC12JMapInfoIter | :x: |
-| calcAnim__10SpaceInnerFv | :x: |
-| appear__10SpaceInnerFv | :x: |
-| disappear__10SpaceInnerFv | :x: |
-| isAppeared__10SpaceInnerCFv | :x: |
-| __dt__10SpaceInnerFv | :x: |
-| __sinit_\SpaceInner_cpp | :x: |
-| __ct__Q213NrvSpaceInner14HostTypeAppearFv | :x: |
-| __ct__Q213NrvSpaceInner17HostTypeDisappearFv | :x: |
-| execute__Q213NrvSpaceInner17HostTypeDisappearCFP5Spine | :x: |
-| execute__Q213NrvSpaceInner14HostTypeAppearCFP5Spine | :x: |
+| __ct__10SpaceInnerFPCc | :white_check_mark: |
+| init__10SpaceInnerFRC12JMapInfoIter | :white_check_mark: |
+| calcAnim__10SpaceInnerFv | :white_check_mark: |
+| appear__10SpaceInnerFv | :white_check_mark: |
+| disappear__10SpaceInnerFv | :white_check_mark: |
+| isAppeared__10SpaceInnerCFv | :white_check_mark: |
+| __dt__10SpaceInnerFv | :white_check_mark: |
+| __sinit_\SpaceInner_cpp | :white_check_mark: |
+| __ct__Q213NrvSpaceInner14HostTypeAppearFv | :white_check_mark: |
+| __ct__Q213NrvSpaceInner17HostTypeDisappearFv | :white_check_mark: |
+| execute__Q213NrvSpaceInner17HostTypeDisappearCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpaceInner14HostTypeAppearCFP5Spine | :white_check_mark: |
 
 
 # SphereSelector.o
@@ -1966,10 +1966,10 @@
 # TimerSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11TimerSwitchFPCc | :x: |
-| init__11TimerSwitchFRC12JMapInfoIter | :x: |
-| control__11TimerSwitchFv | :x: |
-| __dt__11TimerSwitchFv | :x: |
+| __ct__11TimerSwitchFPCc | :white_check_mark: |
+| init__11TimerSwitchFRC12JMapInfoIter | :white_check_mark: |
+| control__11TimerSwitchFv | :white_check_mark: |
+| __dt__11TimerSwitchFv | :white_check_mark: |
 
 
 # WaterAreaHolder.o
