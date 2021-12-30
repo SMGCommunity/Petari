@@ -201,10 +201,10 @@ writeToAram__13JKRAramStreamFP20JKRAramStreamCommand,JKRAramStream.o,JKernel.a,f
 write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl,JKRAramStream.o,JKernel.a,false
 sync__13JKRAramStreamFP20JKRAramStreamCommandi,JKRAramStream.o,JKernel.a,false
 setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap,JKRAramStream.o,JKernel.a,false
-__ct__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,false
+__ct__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
 __dt__24JSULink<13JKRFileLoader>Fv,JKRFileLoader.o,JKernel.a,false
-__dt__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,false
-unmount__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,false
+__dt__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
+unmount__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,true
 getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader,JKRFileLoader.o,JKernel.a,false
 initializeVolumeList__13JKRFileLoaderFv,JKRFileLoader.o,JKernel.a,false
 prependVolumeList__13JKRFileLoaderFP24JSULink<13JKRFileLoader>,JKRFileLoader.o,JKernel.a,false
