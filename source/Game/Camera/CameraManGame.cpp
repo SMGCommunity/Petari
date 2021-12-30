@@ -15,11 +15,13 @@
 #include "Game/MapObj/GCapture.h"
 #include <string.h>
 
-const char *sDefaultCameraName = "デフォルトカメラ";
-const char *sDefaultWaterCameraName = "デフォルト水中カメラ";
-const char *sDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
-const char *sDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
-const char *sDefaultStartAnimCameraName = "スタートアニメカメラ";
+namespace {
+    const char *gDefaultCameraName = "デフォルトカメラ";
+    const char *gDefaultWaterCameraName = "デフォルト水中カメラ";
+    const char *gDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
+    const char *gDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
+    const char *gDefaultStartAnimCameraName = "スタートアニメカメラ";
+}
 
 const char *CameraParamChunk::getClassName() const {
     return "Base";
@@ -485,13 +487,13 @@ void CameraManGame::keepAwayWatchPos(TVec3f *watchPos, const TVec3f &pos) {
 
 void CameraManGame::createDefaultCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createOtherID(0, sDefaultCameraName);
+    chunkID.createOtherID(0, gDefaultCameraName);
     mChunkHolder->createChunk(chunkID, NULL);
 }
 
 void CameraManGame::createDefaultWaterCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createOtherID(0, sDefaultWaterCameraName);
+    chunkID.createOtherID(0, gDefaultWaterCameraName);
     CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, NULL);
 
     chunk->setCameraType("CAM_TYPE_WATER_FOLLOW", mHolder);
@@ -508,7 +510,7 @@ void CameraManGame::createDefaultWaterCamera() {
 
 void CameraManGame::createDefaultWaterSurfaceCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createOtherID(0, sDefaultWaterSurfaceCameraName);
+    chunkID.createOtherID(0, gDefaultWaterSurfaceCameraName);
     CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, NULL);
 
     chunk->setCameraType("CAM_TYPE_FOLLOW", mHolder);
@@ -528,7 +530,7 @@ void CameraManGame::createDefaultWaterSurfaceCamera() {
 
 void CameraManGame::createDefaultFooFighterCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createOtherID(0, sDefaultFooFighterCameraName);
+    chunkID.createOtherID(0, gDefaultFooFighterCameraName);
     CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, NULL);
 
     chunk->setCameraType("CAM_TYPE_FOO_FIGHTER", mHolder);
@@ -550,7 +552,7 @@ void CameraManGame::createStartAnimCamera() {
 
     if (size >= 0) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createOtherID(0, sDefaultStartAnimCameraName);
+        chunkID.createOtherID(0, gDefaultStartAnimCameraName);
         CameraParamChunk *chunk = mChunkHolder->createChunk(chunkID, NULL);
 
         CameraDirector *director = CameraLocalUtil::getCameraDirector();
@@ -641,7 +643,7 @@ bool CameraManGame::tryShiftToFooFighter() {
 void CameraManGame::updateSwim() {
     if (!setCubeChunk(CubeCameraArea::CATEGORY_UNKNOWN_1)) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createOtherID(0, sDefaultWaterCameraName);
+        chunkID.createOtherID(0, gDefaultWaterCameraName);
 
         setChunk(chunkID);
     }
@@ -650,7 +652,7 @@ void CameraManGame::updateSwim() {
 void CameraManGame::updateWaterSurface() {
     if (!setCubeChunk(CubeCameraArea::CATEGORY_UNKNOWN_2)) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createOtherID(0, sDefaultWaterSurfaceCameraName);
+        chunkID.createOtherID(0, gDefaultWaterSurfaceCameraName);
 
         setChunk(chunkID);
     }
@@ -678,7 +680,7 @@ void CameraManGame::updateGCapture() {
 void CameraManGame::updateFooFighter() {
     if (!setCubeChunk(CubeCameraArea::CATEGORY_UNKNOWN_4)) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-        chunkID.createOtherID(0, sDefaultFooFighterCameraName);
+        chunkID.createOtherID(0, gDefaultFooFighterCameraName);
 
         setChunk(chunkID);
     }
