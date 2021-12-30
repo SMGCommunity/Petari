@@ -89,7 +89,6 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
-    void normalizeOrZero(TVec3f *);
 
     bool normalizeOrZero(TVec2f *);
     bool normalizeOrZero(TVec3f *);
