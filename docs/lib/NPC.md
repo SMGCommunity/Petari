@@ -126,17 +126,17 @@
 | execute__Q29NrvButler25ButlerNrvDemoDomeLecture2CFP5Spine | :x: |
 | execute__Q29NrvButler13ButlerNrvDemoCFP5Spine | :x: |
 | execute__Q29NrvButler26ButlerNrvStarPieceReactionCFP5Spine | :x: |
-| Functor<6Butler>__2MRFP6ButlerM6ButlerFPCvPv_v_Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v> | :x: |
-| Functor<6Butler,PCc>__2MRFP6ButlerM6ButlerFPCvPvPCc_vPCc_Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc> | :x: |
-| __cl__Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>CFv | :x: |
-| clone__Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>CFP7JKRHeap | :x: |
-| __cl__Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v>CFv | :x: |
-| clone__Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v>CFP7JKRHeap | :x: |
-| __ct__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>FRC45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b> | :x: |
+| Functor&lt;6Butler&gt;__2MRFP6ButlerM6ButlerFPCvPv_v_Q22MR37FunctorV0M&lt;P6Butler,M6ButlerFPCvPv_v&gt; | :x: |
+| Functor&lt;6Butler,PCc&gt;__2MRFP6ButlerM6ButlerFPCvPvPCc_vPCc_Q22MR44FunctorV1M&lt;P6Butler,M6ButlerFPCvPvPCc_v,PCc&gt; | :x: |
+| __cl__Q22MR44FunctorV1M&lt;P6Butler,M6ButlerFPCvPvPCc_v,PCc&gt;CFv | :x: |
+| clone__Q22MR44FunctorV1M&lt;P6Butler,M6ButlerFPCvPvPCc_v,PCc&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR37FunctorV0M&lt;P6Butler,M6ButlerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR37FunctorV0M&lt;P6Butler,M6ButlerFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __ct__45TalkMessageFuncM&lt;P6Butler,M6ButlerFPCvPvUl_b&gt;FRC45TalkMessageFuncM&lt;P6Butler,M6ButlerFPCvPvUl_b&gt; | :x: |
 | __dt__6ButlerFv | :x: |
-| __cl__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFUl | :x: |
-| clone__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFv | :x: |
-| clone__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFP7JKRHeap | :x: |
+| __cl__45TalkMessageFuncM&lt;P6Butler,M6ButlerFPCvPvUl_b&gt;CFUl | :x: |
+| clone__45TalkMessageFuncM&lt;P6Butler,M6ButlerFPCvPvUl_b&gt;CFv | :x: |
+| clone__45TalkMessageFuncM&lt;P6Butler,M6ButlerFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
 
 
 # ButlerExplain.o
@@ -149,8 +149,8 @@
 | __sinit_\ButlerExplain_cpp | :x: |
 | __ct__Q216NrvButlerExplain20ButlerExplainNrvDemoFv | :x: |
 | execute__Q216NrvButlerExplain20ButlerExplainNrvDemoCFP5Spine | :x: |
-| __cl__Q22MR53FunctorV0M<P13ButlerExplain,M13ButlerExplainFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13ButlerExplain,M13ButlerExplainFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13ButlerExplain,M13ButlerExplainFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13ButlerExplain,M13ButlerExplainFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13ButlerExplainFv | :x: |
 
 
@@ -184,9 +184,9 @@
 | execute__Q212NrvButlerMap36ButlerMapNrvLectureDemoShowMapBeforeCFP5Spine | :x: |
 | execute__Q212NrvButlerMap25ButlerMapNrvShowGalaxyMapCFP5Spine | :x: |
 | execute__Q212NrvButlerMap16ButlerMapNrvTalkCFP5Spine | :x: |
-| Functor<9ButlerMap>__2MRFP9ButlerMapM9ButlerMapFPCvPv_v_Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9ButlerMap&gt;__2MRFP9ButlerMapM9ButlerMapFPCvPv_v_Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9ButlerMapFv | :x: |
 
 
@@ -265,11 +265,11 @@
 | execute__Q212NrvCaretaker20CaretakerNrvReactionCFP5Spine | :x: |
 | execute__Q212NrvCaretaker23CaretakerNrvTakeOutStarCFP5Spine | :x: |
 | __ct__12NPCActorItemFPCc | :x: |
-| TalkMessageFunc<9Caretaker>__FP9CaretakerM9CaretakerFPCvPvUl_b_51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b> | :x: |
-| __cl__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFUl | :x: |
-| clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFv | :x: |
-| clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>FRC51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;9Caretaker&gt;__FP9CaretakerM9CaretakerFPCvPvUl_b_51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt; | :x: |
+| __cl__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFUl | :x: |
+| clone__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFv | :x: |
+| clone__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;FRC51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt; | :x: |
 | __dt__9CaretakerFv | :x: |
 
 
@@ -295,8 +295,8 @@
 | execute__Q214NrvCollectTico26CollectTicoNrvCompleteDemoCFP5Spine | :x: |
 | execute__Q214NrvCollectTico26CollectTicoNrvTryStartDemoCFP5Spine | :x: |
 | execute__Q214NrvCollectTico18CollectTicoNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR49FunctorV0M<P11CollectTico,M11CollectTicoFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11CollectTico,M11CollectTicoFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11CollectTico,M11CollectTicoFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11CollectTico,M11CollectTicoFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11CollectTicoFv | :x: |
 
 
@@ -312,7 +312,7 @@
 | fadeIn__10DemoRabbitFv | :x: |
 | updateStopVelocity__10DemoRabbitFv | :x: |
 | updateNormalVelocity__10DemoRabbitFv | :x: |
-| updateRun__10DemoRabbitFRCQ29JGeometry8TVec3<f>b | :x: |
+| updateRun__10DemoRabbitFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | updateJump__10DemoRabbitFv | :x: |
 | tryGuide__10DemoRabbitFv | :x: |
 | tryWait__10DemoRabbitFv | :x: |
@@ -347,9 +347,9 @@
 | execute__Q213NrvDemoRabbit18DemoRabbitNrvTalk0CFP5Spine | :x: |
 | execute__Q213NrvDemoRabbit17DemoRabbitNrvDemoCFP5Spine | :x: |
 | execute__Q213NrvDemoRabbit19DemoRabbitNrvAppearCFP5Spine | :x: |
-| Functor<10DemoRabbit>__2MRFP10DemoRabbitM10DemoRabbitFPCvPv_v_Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v> | :x: |
-| __cl__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;10DemoRabbit&gt;__2MRFP10DemoRabbitM10DemoRabbitFPCvPv_v_Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt; | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10DemoRabbitFv | :x: |
 
 
@@ -420,9 +420,9 @@
 | execute__Q213NrvHoneyQueen17HoneyQueenNrvDemoCFP5Spine | :x: |
 | execute__Q213NrvHoneyQueen18HoneyQueenNrvReadyCFP5Spine | :x: |
 | execute__Q213NrvHoneyQueen17HoneyQueenNrvWaitCFP5Spine | :x: |
-| Functor<10HoneyQueen>__2MRFP10HoneyQueenM10HoneyQueenFPCvPv_v_Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v> | :x: |
-| __cl__Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;10HoneyQueen&gt;__2MRFP10HoneyQueenM10HoneyQueenFPCvPv_v_Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt; | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10HoneyQueenFv | :x: |
 
 
@@ -446,7 +446,7 @@
 | calcAndSetBaseMtx__7KinopioFv | :x: |
 | receiveMsgPlayerAttack__7KinopioFUlP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__7KinopioFUlP9HitSensorP9HitSensor | :x: |
-| faceToVector__7KinopioFRCQ29JGeometry8TVec3<f>f | :x: |
+| faceToVector__7KinopioFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | faceToPlayer__7KinopioFf | :x: |
 | faceToDefault__7KinopioFf | :x: |
 | setDefaultNerve__7KinopioFv | :x: |
@@ -486,13 +486,13 @@
 | execute__Q210NrvKinopio13KinopioNrvFarCFP5Spine | :x: |
 | execute__Q210NrvKinopio21KinopioNrvTakeOutStarCFP5Spine | :x: |
 | execute__Q210NrvKinopio18KinopioNrvReactionCFP5Spine | :x: |
-| __dt__31JointControlDelegator<7Kinopio>Fv | :x: |
-| calcJointMatrix__31JointControlDelegator<7Kinopio>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__31JointControlDelegator<7Kinopio>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| __cl__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFUl | :x: |
-| clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFv | :x: |
-| clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>FRC47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b> | :x: |
+| __dt__31JointControlDelegator&lt;7Kinopio&gt;Fv | :x: |
+| calcJointMatrix__31JointControlDelegator&lt;7Kinopio&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__31JointControlDelegator&lt;7Kinopio&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __cl__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFUl | :x: |
+| clone__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFv | :x: |
+| clone__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt; | :x: |
 | __dt__7KinopioFv | :x: |
 
 
@@ -512,15 +512,15 @@
 | init__12KinopioAstroFRC12JMapInfoIter | :x: |
 | control__12KinopioAstroFv | :x: |
 | getExpandedResSize__10JKRArchiveCFPCv | :x: |
-| Functor<12KinopioAstro>__2MRFP12KinopioAstroM12KinopioAstroFPCvPv_v_Q22MR51FunctorV0M<P12KinopioAstro,M12KinopioAstroFPCvPv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<P12KinopioAstro,M12KinopioAstroFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12KinopioAstro,M12KinopioAstroFPCvPv_v>CFP7JKRHeap | :x: |
-| __ct__59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b>FRC59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b> | :x: |
+| Functor&lt;12KinopioAstro&gt;__2MRFP12KinopioAstroM12KinopioAstroFPCvPv_v_Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __ct__59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt;FRC59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt; | :x: |
 | __dt__12KinopioAstroFv | :x: |
-| TalkMessageFunc<12KinopioAstro>__FP12KinopioAstroM12KinopioAstroFPCvPvUl_b_59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b> | :x: |
-| __cl__59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b>CFUl | :x: |
-| clone__59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b>CFv | :x: |
-| clone__59TalkMessageFuncM<P12KinopioAstro,M12KinopioAstroFPCvPvUl_b>CFP7JKRHeap | :x: |
+| TalkMessageFunc&lt;12KinopioAstro&gt;__FP12KinopioAstroM12KinopioAstroFPCvPvUl_b_59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt; | :x: |
+| __cl__59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt;CFUl | :x: |
+| clone__59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt;CFv | :x: |
+| clone__59TalkMessageFuncM&lt;P12KinopioAstro,M12KinopioAstroFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
 
 
 # KoopaJr.o
@@ -564,8 +564,8 @@
 | execute__Q210NrvKoopaJr19HostTypeReactionEndCFP5Spine | :x: |
 | execute__Q210NrvKoopaJr16HostTypeReactionCFP5Spine | :x: |
 | execute__Q210NrvKoopaJr12HostTypeWaitCFP5Spine | :x: |
-| __cl__Q22MR39FunctorV0M<P7KoopaJr,M7KoopaJrFPCvPv_v>CFv | :x: |
-| clone__Q22MR39FunctorV0M<P7KoopaJr,M7KoopaJrFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR39FunctorV0M&lt;P7KoopaJr,M7KoopaJrFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7KoopaJr,M7KoopaJrFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7KoopaJrFv | :x: |
 
 
@@ -624,11 +624,11 @@
 | execute__Q211NrvLuigiNPC22LuigiNPCNrvTakeOutStarCFP5Spine | :x: |
 | execute__Q211NrvLuigiNPC19LuigiNPCNrvReactionCFP5Spine | :x: |
 | execute__Q211NrvLuigiNPC15LuigiNPCNrvWaitCFP5Spine | :x: |
-| TalkMessageFunc<8LuigiNPC>__FP8LuigiNPCM8LuigiNPCFPCvPvUl_b_49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b> | :x: |
-| __cl__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFUl | :x: |
-| clone__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFv | :x: |
-| clone__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>FRC49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;8LuigiNPC&gt;__FP8LuigiNPCM8LuigiNPCFPCvPvUl_b_49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt; | :x: |
+| __cl__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFUl | :x: |
+| clone__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFv | :x: |
+| clone__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;FRC49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt; | :x: |
 | __dt__8LuigiNPCFv | :x: |
 
 
@@ -637,7 +637,7 @@
 | ------------- | ------------- |
 | __dt__11MiiDatabaseFv | :x: |
 | __dt__13JKRFileFinderFv | :x: |
-| __dt__Q22MR32AssignableArray<P12RFLStoreData>Fv | :x: |
+| __dt__Q22MR32AssignableArray&lt;P12RFLStoreData&gt;Fv | :x: |
 
 
 # MiiFaceIcon.o
@@ -660,8 +660,8 @@
 | drawIcons__17MiiFaceIconHolderFv | :x: |
 | registerIcon__17MiiFaceIconHolderFP11MiiFaceIcon | :x: |
 | registerMiiFaceIcon__2MRFP11MiiFaceIcon | :x: |
-| __cl__Q22MR61FunctorV0M<P17MiiFaceIconHolder,M17MiiFaceIconHolderFPCvPv_v>CFv | :x: |
-| clone__Q22MR61FunctorV0M<P17MiiFaceIconHolder,M17MiiFaceIconHolderFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR61FunctorV0M&lt;P17MiiFaceIconHolder,M17MiiFaceIconHolderFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR61FunctorV0M&lt;P17MiiFaceIconHolder,M17MiiFaceIconHolderFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__17MiiFaceIconHolderFv | :x: |
 
 
@@ -675,7 +675,7 @@
 | calcViewAndEntry__12MiiFacePartsFv | :x: |
 | drawOpa__12MiiFacePartsCFPC18RFLDrawCoreSetting | :x: |
 | drawXlu__12MiiFacePartsCFPC18RFLDrawCoreSetting | :x: |
-| initFixedPosition__12MiiFacePartsFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| initFixedPosition__12MiiFacePartsFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | changeExpressionNormal__12MiiFacePartsFv | :x: |
 | changeExpressionBlink__12MiiFacePartsFv | :x: |
 | changeFaceModel__12MiiFacePartsFRC13MiiFaceRecipe | :x: |
@@ -701,10 +701,10 @@
 | drawExtra__18MiiFacePartsHolderCFv | :x: |
 | setTevOpa__18MiiFacePartsHolderCFv | :x: |
 | setTevXlu__18MiiFacePartsHolderCFv | :x: |
-| __cl__Q22MR39FunctorV0M<P7NameObj,M7NameObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR39FunctorV0M<P7NameObj,M7NameObjFPCvPv_v>CFP7JKRHeap | :x: |
-| __cl__Q22MR63FunctorV0M<P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR39FunctorV0M&lt;P7NameObj,M7NameObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7NameObj,M7NameObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | @24@__dt__18MiiFacePartsHolderFv | :x: |
 
 
@@ -801,11 +801,11 @@
 | execute__Q215NrvPenguinCoach26PenguinCoachNrvTakeOutStarCFP5Spine | :x: |
 | @348@resetAudience__12PenguinCoachFv | :x: |
 | @348@prepAudience__12PenguinCoachFv | :x: |
-| TalkMessageFunc<12PenguinCoach>__FP12PenguinCoachM12PenguinCoachFPCvPvUl_b_59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b> | :x: |
-| __cl__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFUl | :x: |
-| clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFv | :x: |
-| clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>FRC59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;12PenguinCoach&gt;__FP12PenguinCoachM12PenguinCoachFPCvPvUl_b_59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt; | :x: |
+| __cl__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFUl | :x: |
+| clone__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFv | :x: |
+| clone__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;FRC59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt; | :x: |
 | __dt__12PenguinCoachFv | :x: |
 
 
@@ -920,11 +920,11 @@
 | execute__Q221NrvPenguinRacerLeader25PenguinRacerLeaderNrvWaitCFP5Spine | :x: |
 | @348@exitRacer__18PenguinRacerLeaderFv | :x: |
 | @348@resetRacer__18PenguinRacerLeaderFPC11RaceManager | :x: |
-| TalkMessageFunc<18PenguinRacerLeader>__FP18PenguinRacerLeaderM18PenguinRacerLeaderFPCvPvUl_b_71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b> | :x: |
-| __cl__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFUl | :x: |
-| clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFv | :x: |
-| clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>FRC71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;18PenguinRacerLeader&gt;__FP18PenguinRacerLeaderM18PenguinRacerLeaderFPCvPvUl_b_71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt; | :x: |
+| __cl__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFUl | :x: |
+| clone__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFv | :x: |
+| clone__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;FRC71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt; | :x: |
 | __dt__18PenguinRacerLeaderFv | :x: |
 
 
@@ -1007,10 +1007,10 @@
 | execute__Q217NrvPenguinStudent21PenguinStudentNrvSlowCFP5Spine | :x: |
 | execute__Q217NrvPenguinStudent21PenguinStudentNrvLeadCFP5Spine | :x: |
 | execute__Q217NrvPenguinStudent21PenguinStudentNrvSwimCFP5Spine | :x: |
-| __cl__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFUl | :x: |
-| clone__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFv | :x: |
-| clone__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>FRC63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b> | :x: |
+| __cl__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFUl | :x: |
+| clone__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFv | :x: |
+| clone__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;FRC63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt; | :x: |
 | __dt__14PenguinStudentFv | :x: |
 
 
@@ -1025,7 +1025,7 @@
 | isRed__20PowerStarEventKeeperCFPCcl | :x: |
 | isGrand__20PowerStarEventKeeperCFPCcl | :x: |
 | initStarInfoTableAfterPlacement__20PowerStarEventKeeperFv | :x: |
-| requestAppearPowerStar__20PowerStarEventKeeperFPCclPCQ29JGeometry8TVec3<f>bb | :x: |
+| requestAppearPowerStar__20PowerStarEventKeeperFPCclPCQ29JGeometry8TVec3&lt;f&gt;bb | :x: |
 | isExistPowerStarAtScenario__20PowerStarEventKeeperCFi | :x: |
 | isCorrectStarIdWithBBS__20PowerStarEventKeeperCFPCcPCcl | :x: |
 | isSuccess__20PowerStarEventKeeperCFPCcl | :x: |
@@ -1043,8 +1043,8 @@
 | exeGoal__6RabbitFv | :x: |
 | exeFinish__6RabbitFv | :x: |
 | calcAndSetBaseMtx__6RabbitFv | :x: |
-| calcRailPos__6RabbitFPQ29JGeometry8TVec3<f> | :x: |
-| isNeedTurn__6RabbitFRCQ29JGeometry8TVec3<f> | :x: |
+| calcRailPos__6RabbitFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| isNeedTurn__6RabbitFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateJump__6RabbitFv | :x: |
 | exeForwardLand__6RabbitFv | :x: |
 | exePreJump__6RabbitFv | :x: |
@@ -1118,7 +1118,7 @@
 # RabbitStateWaitStart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20RabbitStateWaitStartFP9LiveActorPQ29JGeometry8TVec3<f>P15TalkMessageCtrl | :x: |
+| __ct__20RabbitStateWaitStartFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P15TalkMessageCtrl | :x: |
 | setTalkActionName__20RabbitStateWaitStartFPCc | :x: |
 | init__20RabbitStateWaitStartFv | :x: |
 | appear__20RabbitStateWaitStartFv | :x: |
@@ -1179,11 +1179,11 @@
 | __ct__Q210NrvRosetta18RosettaNrvReactionFv | :x: |
 | execute__Q210NrvRosetta18RosettaNrvReactionCFP5Spine | :x: |
 | execute__Q210NrvRosetta14RosettaNrvDemoCFP5Spine | :x: |
-| TalkMessageFunc<7Rosetta>__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b> | :x: |
-| __cl__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFUl | :x: |
-| clone__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFv | :x: |
-| clone__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>FRC47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;7Rosetta&gt;__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt; | :x: |
+| __cl__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFUl | :x: |
+| clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFv | :x: |
+| clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt; | :x: |
 | __dt__7RosettaFv | :x: |
 
 
@@ -1201,10 +1201,10 @@
 | startDemo__27RosettaDemoAstroDomeExplainFv | :x: |
 | exeDemo__27RosettaDemoAstroDomeExplainFv | :x: |
 | __ct__31RosettaDemoAstroDomeFinalBattleFP7RosettaRC12JMapInfoIter | :x: |
-| EntryDemo<31RosettaDemoAstroDomeFinalBattle>__FP31RosettaDemoAstroDomeFinalBattlePCcPCcRC12JMapInfoIter_v | :x: |
+| EntryDemo&lt;31RosettaDemoAstroDomeFinalBattle&gt;__FP31RosettaDemoAstroDomeFinalBattlePCcPCcRC12JMapInfoIter_v | :x: |
 | startDemo__31RosettaDemoAstroDomeFinalBattleFv | :x: |
 | __ct__24RosettaDemoAstroDomeTalkFP7RosettaRC12JMapInfoIter | :x: |
-| EntryDemo<24RosettaDemoAstroDomeTalk>__FP24RosettaDemoAstroDomeTalkPCcPCcRC12JMapInfoIter_v | :x: |
+| EntryDemo&lt;24RosettaDemoAstroDomeTalk&gt;__FP24RosettaDemoAstroDomeTalkPCcPCcRC12JMapInfoIter_v | :x: |
 | startDemo__24RosettaDemoAstroDomeTalkFv | :x: |
 | __sinit_\RosettaDemoAstroDome_cpp | :x: |
 | __ct__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoFv | :x: |
@@ -1213,12 +1213,12 @@
 | execute__Q227NrvRosettaDemoAstroDomeTalk35RosettaDemoAstroDomeTalkNrvTalkDemoCFP5Spine | :x: |
 | execute__Q234NrvRosettaDemoAstroDomeFinalBattle49RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemoCFP5Spine | :x: |
 | execute__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoCFP5Spine | :x: |
-| __cl__Q22MR75FunctorV0M<P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v>CFv | :x: |
-| clone__Q22MR75FunctorV0M<P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v>CFP7JKRHeap | :x: |
-| __cl__Q22MR89FunctorV0M<P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v>CFv | :x: |
-| clone__Q22MR89FunctorV0M<P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v>CFP7JKRHeap | :x: |
-| __cl__Q22MR81FunctorV0M<P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v>CFv | :x: |
-| clone__Q22MR81FunctorV0M<P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__27RosettaDemoAstroDomeExplainFv | :x: |
 | __dt__31RosettaDemoAstroDomeFinalBattleFv | :x: |
 | __dt__24RosettaDemoAstroDomeTalkFv | :x: |
@@ -1234,8 +1234,8 @@
 | __sinit_\RosettaDemoEpilogue_cpp | :x: |
 | __ct__Q222NrvRosettaDemoEpilogue26RosettaDemoEpilogueNrvDemoFv | :x: |
 | execute__Q222NrvRosettaDemoEpilogue26RosettaDemoEpilogueNrvDemoCFP5Spine | :x: |
-| __cl__Q22MR65FunctorV0M<P19RosettaDemoEpilogue,M19RosettaDemoEpilogueFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19RosettaDemoEpilogue,M19RosettaDemoEpilogueFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19RosettaDemoEpilogue,M19RosettaDemoEpilogueFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19RosettaDemoEpilogue,M19RosettaDemoEpilogueFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19RosettaDemoEpilogueFv | :x: |
 
 
@@ -1265,14 +1265,14 @@
 | execute__Q226NrvRosettaDemoHeavensDoor130RosettaDemoHeavensDoor1NrvDemoCFP5Spine | :x: |
 | execute__Q226NrvRosettaDemoHeavensDoor130RosettaDemoHeavensDoor1NrvFadeCFP5Spine | :x: |
 | execute__Q226NrvRosettaDemoHeavensDoor130RosettaDemoHeavensDoor1NrvWaitCFP5Spine | :x: |
-| changeNerve<Q226NrvRosettaDemoHeavensDoor130RosettaDemoHeavensDoor1NrvDemo>__23RosettaDemoHeavensDoor1Fv_v | :x: |
-| changeNerve<Q226NrvRosettaDemoHeavensDoor230RosettaDemoHeavensDoor2NrvDemo>__23RosettaDemoHeavensDoor2Fv_v | :x: |
+| changeNerve&lt;Q226NrvRosettaDemoHeavensDoor130RosettaDemoHeavensDoor1NrvDemo&gt;__23RosettaDemoHeavensDoor1Fv_v | :x: |
+| changeNerve&lt;Q226NrvRosettaDemoHeavensDoor230RosettaDemoHeavensDoor2NrvDemo&gt;__23RosettaDemoHeavensDoor2Fv_v | :x: |
 | __dt__11DemoStarterFv | :x: |
-| Functor<23RosettaDemoHeavensDoor1>__2MRFP23RosettaDemoHeavensDoor1M23RosettaDemoHeavensDoor1FPCvPv_v_Q22MR73FunctorV0M<P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v> | :x: |
-| __cl__Q22MR73FunctorV0M<P23RosettaDemoHeavensDoor2,M23RosettaDemoHeavensDoor2FPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23RosettaDemoHeavensDoor2,M23RosettaDemoHeavensDoor2FPCvPv_v>CFP7JKRHeap | :x: |
-| __cl__Q22MR73FunctorV0M<P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;23RosettaDemoHeavensDoor1&gt;__2MRFP23RosettaDemoHeavensDoor1M23RosettaDemoHeavensDoor1FPCvPv_v_Q22MR73FunctorV0M&lt;P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v&gt; | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23RosettaDemoHeavensDoor2,M23RosettaDemoHeavensDoor2FPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23RosettaDemoHeavensDoor2,M23RosettaDemoHeavensDoor2FPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23RosettaDemoHeavensDoor1,M23RosettaDemoHeavensDoor1FPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__23RosettaDemoHeavensDoor1Fv | :x: |
 | __dt__23RosettaDemoHeavensDoor2Fv | :x: |
 
@@ -1358,9 +1358,9 @@
 | execute__Q216NrvRunawayRabbit22RunawayRabbitNrvAppearCFP5Spine | :x: |
 | execute__Q216NrvRunawayRabbit20RunawayRabbitNrvHideCFP5Spine | :x: |
 | execute__Q216NrvRunawayRabbit24RunawayRabbitNrvNoActiveCFP5Spine | :x: |
-| isValid__50BaseMatrixFollowValidateDelegator<13RunawayRabbit>CFl | :x: |
-| __cl__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFP7JKRHeap | :x: |
+| isValid__50BaseMatrixFollowValidateDelegator&lt;13RunawayRabbit&gt;CFl | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13RunawayRabbit,M13RunawayRabbitFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13RunawayRabbit,M13RunawayRabbitFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13RunawayRabbitFv | :x: |
 
 
@@ -1376,7 +1376,7 @@
 | noticeCaughtRabbit__20RunawayRabbitCollectFP13RunawayRabbit | :x: |
 | control__20RunawayRabbitCollectFv | :x: |
 | exeWait__20RunawayRabbitCollectFv | :x: |
-| appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3<f> | :x: |
+| appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeActive__20RunawayRabbitCollectFv | :x: |
 | __dt__20RunawayRabbitCollectFv | :x: |
 | __sinit_\RunawayRabbitCollect_cpp | :x: |
@@ -1394,11 +1394,11 @@
 | makeArchiveList__11RunawayTicoFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | init__11RunawayTicoFRC12JMapInfoIter | :x: |
 | initAfterPlacement__11RunawayTicoFv | :x: |
-| appearBushComment__11RunawayTicoFRCQ29JGeometry8TVec3<f> | :x: |
-| appearHoleComment__11RunawayTicoFRCQ29JGeometry8TVec3<f> | :x: |
-| appearPipeComment__11RunawayTicoFRCQ29JGeometry8TVec3<f> | :x: |
-| appearMamaComment__11RunawayTicoFRCQ29JGeometry8TVec3<f> | :x: |
-| setPosAfterCaught__11RunawayTicoFRCQ29JGeometry8TVec3<f> | :x: |
+| appearBushComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearHoleComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearPipeComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearMamaComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setPosAfterCaught__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setPosAllCaught__11RunawayTicoFv | :x: |
 | isStartRunaway__11RunawayTicoCFv | :x: |
 | startRunaway__11RunawayTicoFv | :x: |
@@ -1424,9 +1424,9 @@
 | execute__Q214NrvRunawayTico21RunawayTicoNrvWhiteInCFP5Spine | :x: |
 | execute__Q214NrvRunawayTico20RunawayTicoNrvGuide1CFP5Spine | :x: |
 | execute__Q214NrvRunawayTico20RunawayTicoNrvGuide0CFP5Spine | :x: |
-| Functor<11RunawayTico>__2MRFP11RunawayTicoM11RunawayTicoFPCvPv_v_Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11RunawayTico&gt;__2MRFP11RunawayTicoM11RunawayTicoFPCvPv_v_Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11RunawayTicoFv | :x: |
 
 
@@ -1458,7 +1458,7 @@
 | receiveMsgPlayerAttack__9StrayTicoFUlP9HitSensorP9HitSensor | :x: |
 | receiveMsgPush__9StrayTicoFP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__9StrayTicoFUlP9HitSensorP9HitSensor | :x: |
-| requestCompleteDemo__9StrayTicoFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| requestCompleteDemo__9StrayTicoFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | exeWait__9StrayTicoFv | :x: |
 | exeGlad__9StrayTicoFv | :x: |
 | exeChase__9StrayTicoFv | :x: |
@@ -1487,7 +1487,7 @@
 # Syati.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setEulerZ__Q29JGeometry9TQuat4<f>Ff | :x: |
+| setEulerZ__Q29JGeometry9TQuat4&lt;f&gt;Ff | :x: |
 | __ct__5SyatiFPCc | :x: |
 | init__5SyatiFRC12JMapInfoIter | :x: |
 | exeWait__5SyatiFv | :x: |
@@ -1520,8 +1520,8 @@
 | resetScore__5SyatiFv | :x: |
 | killAllRings__5SyatiFv | :x: |
 | emitRing__5SyatiFv | :x: |
-| setupBalloonFollowMtx__5SyatiFRCQ29JGeometry8TVec3<f> | :x: |
-| calcHeadJoint__5SyatiFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| setupBalloonFollowMtx__5SyatiFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcHeadJoint__5SyatiFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | control__5SyatiFv | :x: |
 | calcAndSetBaseMtx__5SyatiFv | :x: |
 | attackSensor__5SyatiFP9HitSensorP9HitSensor | :x: |
@@ -1571,9 +1571,9 @@
 | execute__Q28NrvSyati24SyatiWaitBlankStartEventCFP5Spine | :x: |
 | execute__Q28NrvSyati22SyatiFadeoutStartEventCFP5Spine | :x: |
 | execute__Q28NrvSyati9SyatiWaitCFP5Spine | :x: |
-| __dt__29JointControlDelegator<5Syati>Fv | :x: |
-| calcJointMatrix__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__29JointControlDelegator&lt;5Syati&gt;Fv | :x: |
+| calcJointMatrix__29JointControlDelegator&lt;5Syati&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__29JointControlDelegator&lt;5Syati&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__5SyatiFv | :x: |
 
 
@@ -1625,11 +1625,11 @@
 | @348@startRacer__11TeresaRacerFv | :x: |
 | @348@prepRacer__11TeresaRacerFPC11RaceManager | :x: |
 | @348@initRacer__11TeresaRacerFv | :x: |
-| TalkMessageFunc<11TeresaRacer>__FP11TeresaRacerM11TeresaRacerFPCvPvUl_b_57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b> | :x: |
-| __cl__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFUl | :x: |
-| clone__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFv | :x: |
-| clone__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>FRC57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;11TeresaRacer&gt;__FP11TeresaRacerM11TeresaRacerFPCvPvUl_b_57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt; | :x: |
+| __cl__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFUl | :x: |
+| clone__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFv | :x: |
+| clone__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;FRC57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt; | :x: |
 | __dt__11TeresaRacerFv | :x: |
 
 
@@ -1702,11 +1702,11 @@
 | execute__Q27NrvTico14TicoNrvDelightCFP5Spine | :x: |
 | execute__Q27NrvTico15TicoNrvReactionCFP5Spine | :x: |
 | execute__Q27NrvTico17TicoNrvNoReactionCFP5Spine | :x: |
-| TalkMessageFunc<4Tico>__FP4TicoM4TicoFPCvPvUl_b_41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b> | :x: |
-| __cl__41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b>CFUl | :x: |
-| clone__41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b>CFv | :x: |
-| clone__41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b>FRC41TalkMessageFuncM<P4Tico,M4TicoFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;4Tico&gt;__FP4TicoM4TicoFPCvPvUl_b_41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt; | :x: |
+| __cl__41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt;CFUl | :x: |
+| clone__41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt;CFv | :x: |
+| clone__41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt;FRC41TalkMessageFuncM&lt;P4Tico,M4TicoFPCvPvUl_b&gt; | :x: |
 
 
 # TicoAstro.o
@@ -1760,11 +1760,11 @@
 | execute__Q210NrvTicoEat16TicoEatNrvEatNowCFP5Spine | :x: |
 | execute__Q210NrvTicoEat16TicoEatNrvEatPreCFP5Spine | :x: |
 | startReactionSound__7TicoEatFv | :x: |
-| TalkMessageFunc<9TicoComet>__FP9TicoCometM9TicoCometFPCvPvUl_b_51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b> | :x: |
-| __cl__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFUl | :x: |
-| clone__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFv | :x: |
-| clone__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>FRC51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;9TicoComet&gt;__FP9TicoCometM9TicoCometFPCvPvUl_b_51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt; | :x: |
+| __cl__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFUl | :x: |
+| clone__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFv | :x: |
+| clone__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;FRC51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt; | :x: |
 | __dt__9TicoCometFv | :x: |
 
 
@@ -1779,8 +1779,8 @@
 | __ct__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvDemoFv | :x: |
 | execute__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvDemoCFP5Spine | :x: |
 | execute__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR59FunctorV0M<P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16TicoDemoGetPowerFv | :x: |
 
 
@@ -1867,10 +1867,10 @@
 | execute__Q210NrvTicoFat14TicoFatNrvWaitCFP5Spine | :x: |
 | execute__Q210NrvTicoFat14TicoFatNrvPrepCFP5Spine | :x: |
 | execute__Q210NrvTicoFat18TicoFatNrvReactionCFP5Spine | :x: |
-| __cl__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFUl | :x: |
-| clone__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFv | :x: |
-| clone__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>FRC47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b> | :x: |
+| __cl__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFUl | :x: |
+| clone__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFv | :x: |
+| clone__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt; | :x: |
 | __dt__7TicoFatFv | :x: |
 | __sinit_\TicoFat_cpp | :x: |
 | __ct__Q210NrvTicoFat18TicoFatNrvReactionFv | :x: |
@@ -1975,11 +1975,11 @@
 | startReactionSound__8TicoShopFv | :x: |
 | exeDemo__8TicoShopFv | :x: |
 | execute__Q211NrvTicoShop15TicoShopNrvDemoCFP5Spine | :x: |
-| TalkMessageFunc<8TicoShop>__FP8TicoShopM8TicoShopFPCvPvUl_b_49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b> | :x: |
-| __cl__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFUl | :x: |
-| clone__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFv | :x: |
-| clone__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFP7JKRHeap | :x: |
-| __ct__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>FRC49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b> | :x: |
+| TalkMessageFunc&lt;8TicoShop&gt;__FP8TicoShopM8TicoShopFPCvPvUl_b_49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt; | :x: |
+| __cl__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFUl | :x: |
+| clone__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFv | :x: |
+| clone__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
+| __ct__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;FRC49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt; | :x: |
 | __dt__8TicoShopFv | :x: |
 | __sinit_\TicoShop_cpp | :x: |
 | __ct__Q211NrvTicoShop15TicoShopNrvDemoFv | :x: |
@@ -2062,12 +2062,12 @@
 | doJumpStart__11TrickRabbitFv | :x: |
 | doJump__11TrickRabbitFv | :x: |
 | tearDownWait__11TrickRabbitFv | :x: |
-| checkDivingThicket__11TrickRabbitFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| checkDivingThicket__11TrickRabbitFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | selectEdgeStartEvent__11TrickRabbitFP13RailGraphIter | :x: |
-| selectEdgeRunnaway__11TrickRabbitFP13RailGraphIterRCQ29JGeometry8TVec3<f>f | :x: |
+| selectEdgeRunnaway__11TrickRabbitFP13RailGraphIterRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | startRouteLevelControl__11TrickRabbitFll | :x: |
 | controlRouteLevel__11TrickRabbitFv | :x: |
-| addMovingAccel__11TrickRabbitFRCQ29JGeometry8TVec3<f>f | :x: |
+| addMovingAccel__11TrickRabbitFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | addKeepRouteRange__11TrickRabbitFfff | :x: |
 | updateFootPrint__11TrickRabbitFv | :x: |
 | isCaughtable__11TrickRabbitCFv | :x: |
@@ -2247,7 +2247,7 @@
 # TrickRabbitSnow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct<f>__Q29JGeometry9TQuat4<f>Fffff_Pv | :x: |
+| __ct&lt;f&gt;__Q29JGeometry9TQuat4&lt;f&gt;Fffff_Pv | :x: |
 | __ct__23TrickRabbitSnowListenerFv | :x: |
 | __ct__15TrickRabbitSnowFPCc | :x: |
 | setListener__15TrickRabbitSnowFP23TrickRabbitSnowListener | :x: |
@@ -2303,8 +2303,8 @@
 | noticeGiveUp__23TrickRabbitSnowListenerFP15TrickRabbitSnow | :x: |
 | noticeAppear__23TrickRabbitSnowListenerFP15TrickRabbitSnow | :x: |
 | noticeStart__23TrickRabbitSnowListenerFP15TrickRabbitSnow | :x: |
-| __cl__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR57FunctorV0M&lt;P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15TrickRabbitSnowFv | :x: |
 
 
@@ -2359,7 +2359,7 @@
 | isGreenEventPowerStar__2MRFPCcl | :x: |
 | isRedEventPowerStar__2MRFPCcl | :x: |
 | isGrandEventPowerStar__2MRFPCcl | :x: |
-| appearEventPowerStar__2MRFPCclPCQ29JGeometry8TVec3<f>bb | :x: |
+| appearEventPowerStar__2MRFPCclPCQ29JGeometry8TVec3&lt;f&gt;bb | :x: |
 | isEndEventPowerStarAppearDemo__2MRFPCc | :x: |
 | __dt__13EventDirectorFv | :x: |
 
@@ -2375,7 +2375,7 @@
 | makeArchiveList__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
 | addArchive__8NPCActorFP27NameObjArchiveListCollectorRC12NPCActorItem | :x: |
 | makeArchiveListDefault__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| setBaseMtx__8NPCActorFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setBaseMtx__8NPCActorFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | setBaseMtx__8NPCActorFPA4_f | :x: |
 | setInitPose__8NPCActorFv | :x: |
 | init__8NPCActorFRC12JMapInfoIter | :x: |
@@ -2387,11 +2387,11 @@
 | makeActorDead__8NPCActorFv | :x: |
 | kill__8NPCActorFv | :x: |
 | control__8NPCActorFv | :x: |
-| initTalkCtrl__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f | :x: |
-| initTalkCtrlDirect__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f | :x: |
-| calcJointScale__8NPCActorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| initTalkCtrl__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f | :x: |
+| initTalkCtrlDirect__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f | :x: |
+| calcJointScale__8NPCActorFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | turnToPlayer__8NPCActorFv | :x: |
-| calcVecToPlayer__22@unnamed@NPCActor_cpp@FPQ29JGeometry8TVec3<f>PC9LiveActor | :x: |
+| calcVecToPlayer__22@unnamed@NPCActor_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :x: |
 | turnToPlayer__8NPCActorFf | :x: |
 | turnToPlayer__8NPCActorFfff | :x: |
 | turnToDefault__8NPCActorFf | :x: |
@@ -2418,9 +2418,9 @@
 | execute__Q211NrvNPCActor15NPCActorNrvTalkCFP5Spine | :x: |
 | execute__Q211NrvNPCActor15NPCActorNrvWaitCFP5Spine | :x: |
 | execute__Q211NrvNPCActor19NPCActorNrvReactionCFP5Spine | :x: |
-| __dt__32JointControlDelegator<8NPCActor>Fv | :x: |
-| calcJointMatrix__32JointControlDelegator<8NPCActor>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__32JointControlDelegator<8NPCActor>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__32JointControlDelegator&lt;8NPCActor&gt;Fv | :x: |
+| calcJointMatrix__32JointControlDelegator&lt;8NPCActor&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__32JointControlDelegator&lt;8NPCActor&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # NPCParameter.o
@@ -2430,22 +2430,22 @@
 | read__16NPCParameterEditFP8JMapInfol | :x: |
 | __ct__16NPCParameterBoolFPCcPb | :x: |
 | read__16NPCParameterBoolFP8JMapInfol | :x: |
-| __ct__15NPCParameterV3fFPCcPQ29JGeometry8TVec3<f>ff | :x: |
+| __ct__15NPCParameterV3fFPCcPQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | read__15NPCParameterV3fFP8JMapInfol | :x: |
 | __ct__17NPCParameterJointFPCcPCcPPCc | :x: |
 | __ct__18NPCParameterReaderFPCc | :x: |
 | read__18NPCParameterReaderFP8JMapInfol | :x: |
 | __ct__22NPCCapsParameterReaderFPCc | :x: |
 | copy__22NPCItemParameterReaderFPC12NPCActorItem | :x: |
-| __ct__20NPCParameterRange<l>FPCcPlll | :x: |
-| read__20NPCParameterRange<l>FP8JMapInfol | :x: |
-| __ct__20NPCParameterRange<f>FPCcPfff | :x: |
-| read__20NPCParameterRange<f>FP8JMapInfol | :x: |
+| __ct__20NPCParameterRange&lt;l&gt;FPCcPlll | :x: |
+| read__20NPCParameterRange&lt;l&gt;FP8JMapInfol | :x: |
+| __ct__20NPCParameterRange&lt;f&gt;FPCcPfff | :x: |
+| read__20NPCParameterRange&lt;f&gt;FP8JMapInfol | :x: |
 | read__17NPCParameterJointFP8JMapInfol | :x: |
 | init__22NPCCapsParameterReaderFv | :x: |
 | __ct__22NPCItemParameterReaderFPCc | :x: |
 | read__16NPCParameterBaseFP8JMapInfol | :x: |
-| push_back__Q22MR49Vector<Q22MR34FixedArray<P16NPCParameterBase,48>>FRCP16NPCParameterBase | :x: |
+| push_back__Q22MR49Vector&lt;Q22MR34FixedArray&lt;P16NPCParameterBase,48&gt;&gt;FRCP16NPCParameterBase | :x: |
 
 
 # NPCDirector.o
@@ -2559,7 +2559,7 @@
 | setDrawSyncToken__9TalkPeekZFv | :x: |
 | drawSyncCallback__9TalkPeekZFUs | :x: |
 | __ct__12TalkDirectorFPCc | :x: |
-| __dt__Q22MR50Vector<Q22MR35AssignableArray<P15TalkMessageCtrl>>Fv | :x: |
+| __dt__Q22MR50Vector&lt;Q22MR35AssignableArray&lt;P15TalkMessageCtrl&gt;&gt;Fv | :x: |
 | init__12TalkDirectorFRC12JMapInfoIter | :x: |
 | movement__12TalkDirectorFv | :x: |
 | request__12TalkDirectorFP15TalkMessageCtrlb | :x: |
@@ -2615,7 +2615,7 @@
 | talk__9TalkStateFPC15TalkMessageCtrl | :x: |
 | clos__9TalkStateFv | :x: |
 | term__9TalkStateFPC15TalkMessageCtrl | :x: |
-| __dt__Q22MR35AssignableArray<P15TalkMessageCtrl>Fv | :x: |
+| __dt__Q22MR35AssignableArray&lt;P15TalkMessageCtrl&gt;Fv | :x: |
 | __dt__12TalkDirectorFv | :x: |
 
 
@@ -2661,7 +2661,7 @@
 | getMessage__12TalkFunctionFPC15TalkMessageCtrl | :x: |
 | getSubMessage__12TalkFunctionFPC15TalkMessageCtrl | :x: |
 | __dt__15TalkMessageCtrlFv | :x: |
-| __ct__15TalkMessageCtrlFP9LiveActorRCQ29JGeometry8TVec3<f>PA4_f | :x: |
+| __ct__15TalkMessageCtrlFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PA4_f | :x: |
 | inMessageArea__15TalkMessageCtrlCFv | :x: |
 | startCamera__15TalkMessageCtrlFl | :x: |
 | getBranchID__15TalkMessageCtrlCFv | :x: |
@@ -2717,7 +2717,7 @@
 # TurnJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| makeMtxRotVecDegree__27@unnamed@TurnJointCtrl_cpp@FPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| makeMtxRotVecDegree__27@unnamed@TurnJointCtrl_cpp@FPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__13TurnJointCtrlFP9LiveActor | :x: |
 | init__13TurnJointCtrlFfff | :x: |
 | addFace__13TurnJointCtrlFPCcfQ213TurnJointCtrl4AXISQ213TurnJointCtrl4AXISQ213TurnJointCtrl4AXIS | :x: |
@@ -2726,17 +2726,17 @@
 | endCtrl__13TurnJointCtrlFl | :x: |
 | validate__13TurnJointCtrlFv | :x: |
 | invalidate__13TurnJointCtrlFv | :x: |
-| setStarePos__13TurnJointCtrlFRCQ29JGeometry8TVec3<f> | :x: |
+| setStarePos__13TurnJointCtrlFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | update__13TurnJointCtrlFv | :x: |
 | setCallBackFunction__13TurnJointCtrlFv | :x: |
-| updateJointMtxCallBackFace__13TurnJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| updateJointMtxCallBackWaist__13TurnJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| getMtxDir__13TurnJointCtrlFPQ29JGeometry8TVec3<f>PCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Q213TurnJointCtrl4AXIS | :x: |
-| updateJointMtxCallBack__13TurnJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ213TurnJointCtrl4Ctrl | :x: |
-| createJointController<13TurnJointCtrl>__2MRFP13TurnJointCtrlPC9LiveActorPCcM13TurnJointCtrlFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_bM13TurnJointCtrlFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_b_P15JointController | :x: |
-| __dt__38JointControlDelegator<13TurnJointCtrl>Fv | :x: |
-| calcJointMatrix__38JointControlDelegator<13TurnJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__38JointControlDelegator<13TurnJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| updateJointMtxCallBackFace__13TurnJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| updateJointMtxCallBackWaist__13TurnJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| getMtxDir__13TurnJointCtrlFPQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Q213TurnJointCtrl4AXIS | :x: |
+| updateJointMtxCallBack__13TurnJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ213TurnJointCtrl4Ctrl | :x: |
+| createJointController&lt;13TurnJointCtrl&gt;__2MRFP13TurnJointCtrlPC9LiveActorPCcM13TurnJointCtrlFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_bM13TurnJointCtrlFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_b_P15JointController | :x: |
+| __dt__38JointControlDelegator&lt;13TurnJointCtrl&gt;Fv | :x: |
+| calcJointMatrix__38JointControlDelegator&lt;13TurnJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__38JointControlDelegator&lt;13TurnJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # TalkState.o
@@ -2800,10 +2800,10 @@
 | updateTalking__14TalkTextFormerFv | :x: |
 | isTextAppearedAll__14TalkTextFormerCFv | :x: |
 | IsDerivedFrom__Q44nw4r2ut6detail15RuntimeTypeInfoCFPCQ44nw4r2ut6detail15RuntimeTypeInfo | :x: |
-| GetBeginIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>Fv | :x: |
-| __rf__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv | :x: |
-| GetEndIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>Fv | :x: |
-| __ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8Iterator | :x: |
+| GetBeginIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;Fv | :x: |
+| __rf__Q44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorCFv | :x: |
+| GetEndIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;Fv | :x: |
+| __ne__Q24nw4r2utFQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8Iterator | :x: |
 
 
 # TimeAttackEventKeeper.o

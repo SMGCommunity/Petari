@@ -43,36 +43,36 @@
 # AreaForm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| dot__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
-| set<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>_v | :x: |
-| add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
-| asin__Q29JGeometry8TUtil<f>Ff | :x: |
-| mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
-| getValue<f>__12JMapInfoIterCFPCcPf_b | :x: |
+| dot__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| set&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;_v | :x: |
+| add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| asin__Q29JGeometry8TUtil&lt;f&gt;Ff | :x: |
+| mult33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getValue&lt;f&gt;__12JMapInfoIterCFPCcPf_b | :x: |
 | __ct__12AreaFormCubeFi | :white_check_mark: |
 | init__12AreaFormCubeFRC12JMapInfoIter | :white_check_mark: |
-| isInVolume__12AreaFormCubeCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcWorldPos__12AreaFormCubeCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcWorldRotate__12AreaFormCubeCFPQ29JGeometry8TVec3<f> | :x: |
-| calcWorldBox__12AreaFormCubeCFPQ29JGeometry11TDirBox3<f> | :white_check_mark: |
-| calcLocalPos__12AreaFormCubeCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__12AreaFormCubeCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcWorldPos__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcWorldRotate__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWorldBox__12AreaFormCubeCFPQ29JGeometry11TDirBox3&lt;f&gt; | :white_check_mark: |
+| calcLocalPos__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getBaseSize__12AreaFormCubeFv | :white_check_mark: |
 | updateBoxParam__12AreaFormCubeFv | :x: |
-| calcWorldMtx__12AreaFormCubeCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
+| calcWorldMtx__12AreaFormCubeCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
 | __ct__14AreaFormSphereFv | :white_check_mark: |
-| calcUpVec__14AreaFormSphereCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcPos__14AreaFormSphereCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| isInVolume__14AreaFormSphereCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| calcUpVec__14AreaFormSphereCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcPos__14AreaFormSphereCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isInVolume__14AreaFormSphereCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __ct__12AreaFormBowlFv | :white_check_mark: |
 | init__12AreaFormBowlFRC12JMapInfoIter | :white_check_mark: |
-| isInVolume__12AreaFormBowlCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcUpVec__12AreaFormBowlFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__12AreaFormBowlCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcUpVec__12AreaFormBowlFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __ct__16AreaFormCylinderFv | :white_check_mark: |
-| calcPos__16AreaFormCylinderCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcCenterPos__16AreaFormCylinderCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcUpVec__16AreaFormCylinderCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| isInVolume__16AreaFormCylinderCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcDir__16AreaFormCylinderFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| calcPos__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcCenterPos__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcUpVec__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isInVolume__16AreaFormCylinderCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcDir__16AreaFormCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | PSVECSubtract__14JMathInlineVECFPC3VecPC3VecP3Vec | :x: |
 | init__14AreaFormSphereFRC12JMapInfoIter | :white_check_mark: |
 | init__16AreaFormCylinderFRC12JMapInfoIter | :white_check_mark: |
@@ -81,7 +81,7 @@
 # AreaFormDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __pl__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
+| __pl__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\AreaFormDrawer_cpp | :x: |
 | __ct__6Color8FUcUcUcUc | :x: |
 
@@ -91,44 +91,44 @@
 | ------------- | ------------- |
 | __ct__7AreaObjFiPCc | :x: |
 | init__7AreaObjFRC12JMapInfoIter | :white_check_mark: |
-| isInVolume__7AreaObjCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__7AreaObjCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | onSwitchA__7AreaObjFv | :white_check_mark: |
 | offSwitchA__7AreaObjFv | :white_check_mark: |
 | isOnSwitchA__7AreaObjCFv | :white_check_mark: |
 | isOnSwitchB__7AreaObjCFv | :white_check_mark: |
 | isValidSwitchA__7AreaObjCFv | :white_check_mark: |
 | isValidSwitchB__7AreaObjCFv | :white_check_mark: |
-| setFollowMtx__7AreaObjFPCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :white_check_mark: |
+| setFollowMtx__7AreaObjFPCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
 | getFollowMtx__7AreaObjCFv | :white_check_mark: |
 | __ct__10AreaObjMgrFlPCc | :white_check_mark: |
-| __dt__Q22MR41Vector<Q22MR26AssignableArray<P7AreaObj>>Fv | :white_check_mark: |
+| __dt__Q22MR41Vector&lt;Q22MR26AssignableArray&lt;P7AreaObj&gt;&gt;Fv | :white_check_mark: |
 | entry__10AreaObjMgrFP7AreaObj | :white_check_mark: |
-| find_in__10AreaObjMgrCFRCQ29JGeometry8TVec3<f> | :x: |
+| find_in__10AreaObjMgrCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | validate__7AreaObjFv | :white_check_mark: |
 | invalidate__7AreaObjFv | :white_check_mark: |
 | getManagerName__7AreaObjCFv | :white_check_mark: |
-| Functor<7AreaObj>__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v> | :white_check_mark: |
-| __cl__Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR39FunctorV0M<P7AreaObj,M7AreaObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;7AreaObj&gt;__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7AreaObjFv | :white_check_mark: |
 | __dt__10AreaObjMgrFv | :white_check_mark: |
-| __dt__Q22MR26AssignableArray<P7AreaObj>Fv | :x: |
+| __dt__Q22MR26AssignableArray&lt;P7AreaObj&gt;Fv | :x: |
 
 
 # AreaObjContainer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createManager<10AreaObjMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
-| createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager<12WaterAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager<19GlaringLightAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager<15LightAreaHolder>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
-| createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;10AreaObjMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
+| createManager&lt;13CubeCameraMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;11WarpCubeMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
+| createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | __ct__16AreaObjContainerFPCc | :x: |
 | init__16AreaObjContainerFRC12JMapInfoIter | :x: |
 | getManager__16AreaObjContainerCFPCc | :x: |
-| getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getAreaObjContainer__2MRFv | :white_check_mark: |
 | __dt__16AreaObjContainerFv | :white_check_mark: |
 | __dt__11WarpCubeMgrFv | :x: |
@@ -148,7 +148,7 @@
 | ------------- | ------------- |
 | __ct__20AstroChangeStageCubeFiPCc | :white_check_mark: |
 | init__20AstroChangeStageCubeFRC12JMapInfoIter | :white_check_mark: |
-| isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__20AstroChangeStageCubeCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __dt__20AstroChangeStageCubeFv | :white_check_mark: |
 | movement__20AstroChangeStageCubeFv | :white_check_mark: |
 
@@ -179,10 +179,10 @@
 | ------------- | ------------- |
 | __ct__19BigBubbleCameraAreaFiPCc | :white_check_mark: |
 | __dt__14CubeCameraAreaFv | :x: |
-| isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3<f> | :x: |
+| isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__19BigBubbleSwitchAreaFiPCc | :x: |
 | __dt__10SwitchAreaFv | :x: |
-| isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __dt__19BigBubbleCameraAreaFv | :x: |
 | __dt__19BigBubbleSwitchAreaFv | :x: |
 | getManagerName__19BigBubbleSwitchAreaCFv | :x: |
@@ -216,13 +216,13 @@
 # CameraRepulsiveArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| scale__Q29JGeometry8TVec3<f>Ff | :x: |
-| __ami__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
+| scale__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
+| __ami__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__19CameraRepulsiveAreaFv | :x: |
 | __dt__21CameraRepulsiveSphereFv | :x: |
 | __dt__23CameraRepulsiveCylinderFv | :x: |
-| getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f> | :x: |
-| getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f> | :x: |
+| getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getManagerName__19CameraRepulsiveAreaCFv | :x: |
 
 
@@ -238,18 +238,18 @@
 # CollisionArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setLength__Q29JGeometry8TVec3<f>Ff | :x: |
-| sub__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f> | :x: |
-| __mi__Q29JGeometry8TVec3<f>CFv | :x: |
-| inv_sqrt__Q29JGeometry8TUtil<f>Ff | :x: |
-| getXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
-| getYDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
-| getZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
+| setLength__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
+| sub__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __mi__Q29JGeometry8TVec3&lt;f&gt;CFv | :x: |
+| inv_sqrt__Q29JGeometry8TUtil&lt;f&gt;Ff | :x: |
+| getXDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getYDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__13CollisionAreaFiPCc | :x: |
 | init__13CollisionAreaFRC12JMapInfoIter | :x: |
 | movement__13CollisionAreaFv | :x: |
-| hitCheck__13CollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
-| setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3<f>f | :x: |
+| hitCheck__13CollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | setSurfaceAndSync__11AreaPolygonFl | :x: |
 | setSurface__11AreaPolygonFl | :x: |
 | invalidate__11AreaPolygonFv | :x: |
@@ -279,7 +279,7 @@
 | movement__14CubeCameraAreaFv | :white_check_mark: |
 | isValidCameraID__14CubeCameraAreaCFv | :white_check_mark: |
 | getCameraID__14CubeCameraAreaCFv | :white_check_mark: |
-| isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setCurrentCategory__14CubeCameraAreaFl | :white_check_mark: |
 | getCategoryArg__14CubeCameraAreaCFv | :white_check_mark: |
 | __ct__13CubeCameraMgrFlPCc | :x: |
@@ -294,7 +294,7 @@
 | __ct__9DeathAreaFiPCc | :white_check_mark: |
 | init__9DeathAreaFRC12JMapInfoIter | :white_check_mark: |
 | movement__9DeathAreaFv | :x: |
-| isInVolume__9DeathAreaCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| isInVolume__9DeathAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getDeathType__9DeathAreaCFv | :white_check_mark: |
 | __dt__9DeathAreaFv | :x: |
 | getManagerName__9DeathAreaCFv | :white_check_mark: |
@@ -317,9 +317,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __dt__19FollowCollisionAreaFv | :x: |
-| __ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>PA4_ff | :x: |
+| __ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;PA4_ff | :x: |
 | movement__19FollowCollisionAreaFv | :x: |
-| hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # GlaringLightArea.o
@@ -366,7 +366,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15LightAreaHolderFlPCc | :white_check_mark: |
-| tryFindLightID__15LightAreaHolderCFRCQ29JGeometry8TVec3<f>P11ZoneLightID | :x: |
+| tryFindLightID__15LightAreaHolderCFRCQ29JGeometry8TVec3&lt;f&gt;P11ZoneLightID | :x: |
 | initAfterPlacement__15LightAreaHolderFv | :white_check_mark: |
 | sort__15LightAreaHolderFv | :x: |
 | __dt__15LightAreaHolderFv | :white_check_mark: |
@@ -375,19 +375,19 @@
 # MercatorTransformCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __amu__Q29JGeometry8TVec3<f>Ff | :x: |
+| __amu__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
 | __ct__21MercatorTransformCubeFiPCc | :x: |
 | init__21MercatorTransformCubeFRC12JMapInfoIter | :x: |
-| convertTransAndRotate__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>b | :x: |
+| convertTransAndRotate__21MercatorTransformCubeCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | getSphereRadius__21MercatorTransformCubeCFv | :x: |
-| calcUV__21MercatorTransformCubeCFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3<f> | :x: |
-| convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>b | :x: |
-| convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b | :x: |
+| calcUV__21MercatorTransformCubeCFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | initDefaultPosForMercator__2MRFP9LiveActorRC12JMapInfoIterb | :x: |
-| calcNearestRailPosForMercator__2MRFPQ29JGeometry8TVec3<f>PC9LiveActorf | :x: |
-| calcRailClippingInfoForMercator__2MRFPQ29JGeometry8TVec3<f>PfP9LiveActorff | :x: |
-| initAndSetRailClippingForMercator__2MRFPQ29JGeometry8TVec3<f>P9LiveActorff | :x: |
+| calcNearestRailPosForMercator__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorf | :x: |
+| calcRailClippingInfoForMercator__2MRFPQ29JGeometry8TVec3&lt;f&gt;PfP9LiveActorff | :x: |
+| initAndSetRailClippingForMercator__2MRFPQ29JGeometry8TVec3&lt;f&gt;P9LiveActorff | :x: |
 | calcRailTotalLengthForMercator__2MRFPC9LiveActorf | :x: |
 | getDivideMercatorRailPosition__2MRFP25DivideMercatorRailPosInfoPC9LiveActorUlfUl | :x: |
 | createMapPartsRailMoverForMercator__2MRFP9LiveActorRC12JMapInfoIterb | :x: |
@@ -397,7 +397,7 @@
 | min__2MRFff | :x: |
 | max__2MRFff | :x: |
 | getMercatorCube__35@unnamed@MercatorTransformCube_cpp@Fv | :x: |
-| getEulerXYZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
+| getEulerXYZ__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # MessageArea.o
@@ -461,7 +461,7 @@
 | __ct__16SoundEmitterCubeFiPCc | :x: |
 | init__16SoundEmitterCubeFRC12JMapInfoIter | :x: |
 | movement__16SoundEmitterCubeFv | :x: |
-| extend__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>FRCQ29JGeometry8TVec3<f> | :x: |
+| extend__Q29JGeometry27TBox&lt;Q29JGeometry8TVec3&lt;f&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # SoundEmitterSphere.o

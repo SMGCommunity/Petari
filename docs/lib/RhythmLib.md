@@ -118,9 +118,9 @@
 | getSameME__Q210AudMeTrack5TListFP10AudMeTrackUl | :x: |
 | __sinit_\AudMeTrack_cpp | :x: |
 | setParams__10JASChannelFRC16JASChannelParams | :x: |
-| begin__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv | :x: |
-| end__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv | :x: |
-| __ne__7JGadgetFQ37JGadget28TLinkList<10AudMeTrack,-384>8iteratorQ37JGadget28TLinkList<10AudMeTrack,-384>8iterator | :x: |
+| begin__Q27JGadget28TLinkList&lt;10AudMeTrack,-384&gt;Fv | :x: |
+| end__Q27JGadget28TLinkList&lt;10AudMeTrack,-384&gt;Fv | :x: |
+| __ne__7JGadgetFQ37JGadget28TLinkList&lt;10AudMeTrack,-384&gt;8iteratorQ37JGadget28TLinkList&lt;10AudMeTrack,-384&gt;8iterator | :x: |
 | __ct__Q210AudMeTrack5TListFv | :x: |
 | __dt__Q210AudMeTrack5TListFv | :x: |
 
@@ -257,7 +257,7 @@
 | __ct__8AudMeMgrFv | :x: |
 | setMeSeq__8AudMeMgrFPv | :x: |
 | setMeTable__8AudMeMgrFPv | :x: |
-| startMe__8AudMeMgrFUlP11AudMeHandlePCQ29JGeometry8TVec3<f> | :x: |
+| startMe__8AudMeMgrFUlP11AudMeHandlePCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | freeDeadMe__8AudMeMgrFv | :x: |
 | updateEachMe__8AudMeMgrFv | :x: |
 | stopAll__8AudMeMgrFl | :x: |
@@ -295,7 +295,7 @@
 # AudMeObject.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11AudMeObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap | :x: |
+| __ct__11AudMeObjectFPQ29JGeometry8TVec3&lt;f&gt;UcP7JKRHeap | :x: |
 | __dt__11AudMeObjectFv | :x: |
 | dispose__11AudMeObjectFv | :x: |
 | startMe__11AudMeObjectFUl | :x: |
