@@ -63,7 +63,7 @@
 | RailGraphNode.o | 0.0% | 0 / 1 | 0.0% |
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
-| SeaGull.o | 0.0% | 0 / 20 | 0.0% |
+| SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
 | Sky.o | 0.0% | 0 / 20 | 0.0% |
 | SleepController.o | 0.0% | 0 / 3 | 0.0% |
 | SleepControllerHolder.o | 0.0% | 0 / 14 | 0.0% |
@@ -1647,26 +1647,26 @@
 # SeaGull.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7SeaGullFP12SeaGullGroup | :x: |
+| __ct__7SeaGullFP12SeaGullGroup | :white_check_mark: |
 | init__7SeaGullFRC12JMapInfoIter | :x: |
-| exeHoverFront__7SeaGullFv | :x: |
-| exeHoverLeft__7SeaGullFv | :x: |
-| exeHoverRight__7SeaGullFv | :x: |
-| control__7SeaGullFv | :x: |
+| exeHoverFront__7SeaGullFv | :white_check_mark: |
+| exeHoverLeft__7SeaGullFv | :white_check_mark: |
+| exeHoverRight__7SeaGullFv | :white_check_mark: |
+| control__7SeaGullFv | :white_check_mark: |
 | updateHover__7SeaGullFv | :x: |
-| calcAndSetBaseMtx__7SeaGullFv | :x: |
-| __ct__12SeaGullGroupFPCc | :x: |
+| calcAndSetBaseMtx__7SeaGullFv | :white_check_mark: |
+| __ct__12SeaGullGroupFPCc | :white_check_mark: |
 | init__12SeaGullGroupFRC12JMapInfoIter | :x: |
-| updatePosInfo__12SeaGullGroupCFPlb | :x: |
-| __dt__7SeaGullFv | :x: |
-| __dt__12SeaGullGroupFv | :x: |
-| __sinit_\SeaGull_cpp | :x: |
-| __ct__Q210NrvSeaGull20SeaGullNrvHoverFrontFv | :x: |
-| __ct__Q210NrvSeaGull19SeaGullNrvHoverLeftFv | :x: |
-| __ct__Q210NrvSeaGull20SeaGullNrvHoverRightFv | :x: |
-| execute__Q210NrvSeaGull20SeaGullNrvHoverRightCFP5Spine | :x: |
-| execute__Q210NrvSeaGull19SeaGullNrvHoverLeftCFP5Spine | :x: |
-| execute__Q210NrvSeaGull20SeaGullNrvHoverFrontCFP5Spine | :x: |
+| updatePosInfo__12SeaGullGroupCFPlb | :white_check_mark: |
+| __dt__7SeaGullFv | :white_check_mark: |
+| __dt__12SeaGullGroupFv | :white_check_mark: |
+| __sinit_\SeaGull_cpp | :white_check_mark: |
+| __ct__Q210NrvSeaGull20SeaGullNrvHoverFrontFv | :white_check_mark: |
+| __ct__Q210NrvSeaGull19SeaGullNrvHoverLeftFv | :white_check_mark: |
+| __ct__Q210NrvSeaGull20SeaGullNrvHoverRightFv | :white_check_mark: |
+| execute__Q210NrvSeaGull20SeaGullNrvHoverRightCFP5Spine | :white_check_mark: |
+| execute__Q210NrvSeaGull19SeaGullNrvHoverLeftCFP5Spine | :white_check_mark: |
+| execute__Q210NrvSeaGull20SeaGullNrvHoverFrontCFP5Spine | :white_check_mark: |
 
 
 # Sky.o

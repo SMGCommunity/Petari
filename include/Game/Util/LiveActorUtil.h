@@ -29,6 +29,7 @@ namespace MR {
     bool isHiddenModel(const LiveActor *);
 
     void showModel(LiveActor *);
+    void hideModel(LiveActor *);
 
     void hideModelAndOnCalcAnim(LiveActor *);
 
@@ -99,7 +100,12 @@ namespace MR {
 
     void setAllAnimFrame(const LiveActor *, const char *, f32);
 
+    void startBck(const LiveActor *, const char *, const char *);
     void startBrk(const LiveActor *, const char *);
 
     bool isBrkStopped(const LiveActor *);
+
+    void setBckFrameAtRandom(const LiveActor *);
+
+    void setBaseTRMtx(LiveActor *, const TPos3f &);
 }
