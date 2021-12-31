@@ -1,12 +1,11 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "revolution/os/OSMutex.h"
+#include "revolution.h"
 
 namespace {
-	JKRFileLoader *gFileLoader;
-	OSMutex gLoaderMutex;
+	OSMutex gLoaderMutex; // _8060CFA8
 }
 
-static JSUList<JKRFileLoader> sFileLoaderList = JSUList<JKRFileLoader>();
+JSUList<JKRFileLoader> JKRFileLoader::sFileLoaderList = JSUList<JKRFileLoader>();
 
 JKRFileLoader::JKRFileLoader() : JKRDisposer(), _18(this) {
 	_28 = 0;
@@ -15,8 +14,8 @@ JKRFileLoader::JKRFileLoader() : JKRDisposer(), _18(this) {
 }
 
 JKRFileLoader::~JKRFileLoader() {
-	if (gFileLoader == this) {
-		gFileLoader = NULL;
+	if (gCurrentFileLoader == this) {
+		gCurrentFileLoader = NULL;
 	}
 }
 

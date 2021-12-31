@@ -18,8 +18,9 @@ public:
     static void* alloc(u32, int, JKRHeap *);
     static void free(void *, JKRHeap *);
 
-    static JKRHeap* sCurrentHeap;
-    static JKRHeap* sRootHeap;
+    static JKRHeap *sGameHeap; // _806B70A8
+    static JKRHeap *sCurrentHeap; // _806B70AC
+    static JKRHeap *sRootHeap; // _806B70B0
 
     u8 _0[0x5C];
     JSUList<JKRDisposer> mDisposerList; // _5C
