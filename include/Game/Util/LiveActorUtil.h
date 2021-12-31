@@ -7,6 +7,7 @@ class LiveActor;
 class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
+class ProjmapEffectMtxSetter;
 
 namespace MR {
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
@@ -30,6 +31,8 @@ namespace MR {
 
     void showModel(LiveActor *);
     void hideModel(LiveActor *);
+    void showModelIfHidden(LiveActor *);
+    void hideModelIfHidden(LiveActor *);
 
     void hideModelAndOnCalcAnim(LiveActor *);
 
@@ -95,6 +98,7 @@ namespace MR {
     void invalidateCollisionParts(LiveActor *);
 
     void startAllAnim(const LiveActor *, const char *);
+    bool tryStartAllAnim(const LiveActor *, const char *);
 
     bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
 
@@ -108,4 +112,8 @@ namespace MR {
     void setBckFrameAtRandom(const LiveActor *);
 
     void setBaseTRMtx(LiveActor *, const TPos3f &);
+
+    ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
+
+    void newDifferedDLBuffer(LiveActor *);
 }

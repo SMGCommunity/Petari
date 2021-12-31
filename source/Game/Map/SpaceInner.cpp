@@ -5,7 +5,7 @@ NrvSpaceInner::HostTypeAppear NrvSpaceInner::HostTypeAppear::sInstance;
 NrvSpaceInner::HostTypeDisappear NrvSpaceInner::HostTypeDisappear::sInstance;
 
 SpaceInner::SpaceInner(const char *pName) : LiveActor(pName) {
-    
+
 }
 
 void SpaceInner::init(const JMapInfoIter &rIter) {

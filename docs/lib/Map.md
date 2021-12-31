@@ -64,7 +64,7 @@
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
 | SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
-| Sky.o | 0.0% | 0 / 20 | 0.0% |
+| Sky.o | 97.39696312364426% | 19 / 20 | 95.0% |
 | SleepController.o | 0.0% | 0 / 3 | 0.0% |
 | SleepControllerHolder.o | 0.0% | 0 / 14 | 0.0% |
 | SpaceInner.o | 100.0% | 12 / 12 | 100.0% |
@@ -1672,26 +1672,26 @@
 # Sky.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__3SkyFPCc | :x: |
-| init__3SkyFRC12JMapInfoIter | :x: |
-| calcAnim__3SkyFv | :x: |
-| initModel__3SkyFPCc | :x: |
-| control__3SkyFv | :x: |
-| appearSpaceInner__3SkyFv | :x: |
-| disappearSpaceInner__3SkyFv | :x: |
-| __ct__16ProjectionMapSkyFPCc | :x: |
-| __dt__3SkyFv | :x: |
-| calcAndSetBaseMtx__16ProjectionMapSkyFv | :x: |
-| initModel__16ProjectionMapSkyFPCc | :x: |
-| __sinit_\Sky_cpp | :x: |
-| __ct__Q26NrvSky12HostTypeWaitFv | :x: |
-| __ct__Q26NrvSky14HostTypeChangeFv | :x: |
-| execute__Q26NrvSky14HostTypeChangeCFP5Spine | :x: |
-| execute__Q26NrvSky12HostTypeWaitCFP5Spine | :x: |
-| Functor&lt;3Sky&gt;__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt; | :x: |
+| __ct__3SkyFPCc | :white_check_mark: |
+| init__3SkyFRC12JMapInfoIter | :white_check_mark: |
+| calcAnim__3SkyFv | :white_check_mark: |
+| initModel__3SkyFPCc | :white_check_mark: |
+| control__3SkyFv | :white_check_mark: |
+| appearSpaceInner__3SkyFv | :white_check_mark: |
+| disappearSpaceInner__3SkyFv | :white_check_mark: |
+| __ct__16ProjectionMapSkyFPCc | :white_check_mark: |
+| __dt__3SkyFv | :white_check_mark: |
+| calcAndSetBaseMtx__16ProjectionMapSkyFv | :white_check_mark: |
+| initModel__16ProjectionMapSkyFPCc | :white_check_mark: |
+| __sinit_\Sky_cpp | :white_check_mark: |
+| __ct__Q26NrvSky12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q26NrvSky14HostTypeChangeFv | :white_check_mark: |
+| execute__Q26NrvSky14HostTypeChangeCFP5Spine | :white_check_mark: |
+| execute__Q26NrvSky12HostTypeWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;3Sky&gt;__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt; | :white_check_mark: |
 | __cl__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__16ProjectionMapSkyFv | :x: |
+| clone__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__16ProjectionMapSkyFv | :white_check_mark: |
 
 
 # SleepController.o
