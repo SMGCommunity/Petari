@@ -71,24 +71,19 @@ public:
         void *mAllocatedData;   // _10
     };
 
-    struct SDirEntry {
-        // A bit unsure about this, maybe this is not the
-        // struct for a directory stored in a file
-        union {            
-            struct {
-                u8 mFileFlag;   // _0
-                u8 _1;
-                u16 mFileID;    // _2
-            } _0;
-            u32 mID;            // _0
-        };
-        union {
-            u32 mNameOffset;    // _4
-            char *mName;        // _4
-        };
+    struct SDIDirEntry {
+        u32 mID;                // _0
+        u32 mNameOffset;        // _4
         u16 mHash;              // _8
         u16 mNrFiles;           // _A
         u32 mFirstFileIndex;    // _C
+    };
+
+    struct SDirEntry {
+        u8 mFileFlag;   // _0
+        u8 _1;
+        u16 mFileID;    // _2
+        char *mName;    // _4
     };
 
     class CArcName {
@@ -137,8 +132,8 @@ public:
     u32 countResource() const;
     u32 getFileAttribute(unsigned long) const;
     bool isSameName(CArcName &, unsigned long, unsigned short) const;
-    SDirEntry *findResType(unsigned long) const;
-    SDirEntry *findDirectory(const char *, unsigned long) const;
+    SDIDirEntry *findResType(unsigned long) const;
+    SDIDirEntry *findDirectory(const char *, unsigned long) const;
     SDIFileEntry *findTypeResource(unsigned long, const char *) const;
     SDIFileEntry *findFsResource(const char *, unsigned long) const;
     SDIFileEntry *findIdxResource(unsigned long) const;
@@ -153,7 +148,7 @@ public:
     u8 _3D[3];
     s32 _40;
     RarcInfoBlock *mInfoBlock;  // _44
-    SDirEntry *mDirs;           // _48
+    SDIDirEntry *mDirs;           // _48
     SDIFileEntry *mFiles;       // _4C
     u32 *mExpandSizes;          // _50
     char *mStringTable;         // _54

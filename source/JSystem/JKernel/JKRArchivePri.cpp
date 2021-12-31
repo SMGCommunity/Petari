@@ -117,8 +117,8 @@ bool JKRArchive::isSameName(CArcName &rName, unsigned long nameOffset, unsigned 
 	return strcmp(mStringTable + nameOffset, rName.mName) == 0;
 }
 
-JKRArchive::SDirEntry *JKRArchive::findResType(unsigned long a1) const {
-	SDirEntry *current = mDirs;
+JKRArchive::SDIDirEntry *JKRArchive::findResType(unsigned long a1) const {
+	SDIDirEntry *current = mDirs;
 
 	for (u32 i = 0; i < mInfoBlock->mNrDirs; i++) {		
 		if (current->mID == a1) {
@@ -133,8 +133,8 @@ JKRArchive::SDirEntry *JKRArchive::findResType(unsigned long a1) const {
 
 #ifdef NON_MATCHING
 // Register mismatch
-JKRArchive::SDirEntry *JKRArchive::findDirectory(const char *pName, unsigned long dirIndex) const {
-	SDirEntry *dir;
+JKRArchive::SDIDirEntry *JKRArchive::findDirectory(const char *pName, unsigned long dirIndex) const {
+	SDIDirEntry *dir;
 	SDIFileEntry *currentFile;
 	s32 i;
 
@@ -169,7 +169,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findTypeResource(unsigned long a1, const c
 		CArcName name;
 		name.store(pName);
 
-		SDirEntry *dir = findResType(a1);
+		SDIDirEntry *dir = findResType(a1);
 
 		if (dir != NULL) {
 			SDIFileEntry *current = &mFiles[dir->mFirstFileIndex];
@@ -191,7 +191,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findTypeResource(unsigned long a1, const c
 // Register mismatch
 JKRArchive::SDIFileEntry *JKRArchive::findFsResource(const char *pName, unsigned long dirIndex) const {
 	if (pName != NULL) {
-		SDirEntry *dir;
+		SDIDirEntry *dir;
 		SDIFileEntry *currentFile;
 		s32 i;
 

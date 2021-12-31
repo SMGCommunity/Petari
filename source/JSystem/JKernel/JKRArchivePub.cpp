@@ -4,7 +4,7 @@
 #include "revolution.h"
 
 bool JKRArchive::becomeCurrent(const char *pName) {
-	SDirEntry *dir;
+	SDIDirEntry *dir;
 
 	if (*pName == '/') {
 		const char *pDir = pName + 1;
@@ -154,7 +154,7 @@ s32 JKRArchive::getResSize(const void *pResource) const {
 }
 
 s32 JKRArchive::countFile(const char *pName) const {
-	SDirEntry *dir;
+	SDIDirEntry *dir;
 
 	if (*pName == '/') {
 		pName++;
@@ -177,7 +177,7 @@ s32 JKRArchive::countFile(const char *pName) const {
 }
 
 JKRArcFinder *JKRArchive::getFirstFile(const char *pName) const {
-	SDirEntry *dir;
+	SDIDirEntry *dir;
 
 	if (*pName == '/') {
 		pName++;
@@ -276,8 +276,8 @@ bool JKRArchive::getDirEntry(SDirEntry *pDir, unsigned long fileIndex) const {
 		return false;
 	}
 
-	pDir->_0.mFileFlag = file->mFlag;
-	pDir->_0.mFileID = file->mFileID;
+	pDir->mFileFlag = file->mFlag;
+	pDir->mFileID = file->mFileID;
 	pDir->mName = mStringTable + file->mNameOffset;
 
 	return true;

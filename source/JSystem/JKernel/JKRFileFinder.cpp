@@ -35,8 +35,8 @@ bool JKRArcFinder::findNextFile() {
 
 			mName = dir.mName;
 			mDirIndex = mCurrentIndex;
-			mFileID = dir._0.mFileID;
-			mFileFlag = dir._0.mFileFlag;
+			mFileID = dir.mFileID;
+			mFileFlag = dir.mFileFlag;
 			mFileIsFolder = ((mFileFlag >> 1) & 1) != 0;
 			
 			mCurrentIndex++;
