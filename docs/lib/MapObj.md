@@ -286,7 +286,7 @@
 | UFOKinoko.o | 0.0% | 0 / 20 | 0.0% |
 | ValveSwitch.o | 0.0% | 0 / 21 | 0.0% |
 | WarpPod.o | 0.0% | 0 / 22 | 0.0% |
-| WatchTowerRotateStep.o | 0.0% | 0 / 14 | 0.0% |
+| WatchTowerRotateStep.o | 85.85131894484412% | 12 / 14 | 85.71428571428571% |
 | WaterfallCaveCover.o | 0.0% | 0 / 9 | 0.0% |
 | WaterLeakPipe.o | 0.0% | 0 / 22 | 0.0% |
 | WaterPressure.o | 0.0% | 0 / 6 | 0.0% |
@@ -7576,20 +7576,20 @@
 # WatchTowerRotateStep.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20WatchTowerRotateStepFPCc | :x: |
-| init__20WatchTowerRotateStepFRC12JMapInfoIter | :x: |
-| exeMoveStart__20WatchTowerRotateStepFv | :x: |
-| calcAndSetBaseMtx__20WatchTowerRotateStepFv | :x: |
-| initLift__20WatchTowerRotateStepFRC12JMapInfoIter | :x: |
+| __ct__20WatchTowerRotateStepFPCc | :white_check_mark: |
+| init__20WatchTowerRotateStepFRC12JMapInfoIter | :white_check_mark: |
+| exeMoveStart__20WatchTowerRotateStepFv | :white_check_mark: |
+| calcAndSetBaseMtx__20WatchTowerRotateStepFv | :white_check_mark: |
+| initLift__20WatchTowerRotateStepFRC12JMapInfoIter | :white_check_mark: |
 | attachLift__20WatchTowerRotateStepFv | :x: |
 | __sinit_\WatchTowerRotateStep_cpp | :x: |
-| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitFv | :x: |
-| __ct__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartFv | :x: |
-| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveFv | :x: |
-| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine | :x: |
-| execute__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartCFP5Spine | :x: |
-| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitCFP5Spine | :x: |
-| __dt__20WatchTowerRotateStepFv | :x: |
+| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitFv | :white_check_mark: |
+| __ct__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartFv | :white_check_mark: |
+| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveFv | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartCFP5Spine | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitCFP5Spine | :white_check_mark: |
+| __dt__20WatchTowerRotateStepFv | :white_check_mark: |
 
 
 # WaterfallCaveCover.o
