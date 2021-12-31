@@ -3,6 +3,56 @@
 #include <ctype.h>
 #include <string.h>
 
+#ifdef NON_MATCHING
+// tolower() is inlined
+const char *JKRArchive::CArcName::store(const char *pName) {
+	mHash = 0;
+	u32 length = 0;
+
+	for (; *pName != 0; pName++) {
+		char lowerChar = tolower(*pName);
+
+		mHash = lowerChar + mHash * 3;
+
+		if (length < MAX_NAME_LENGTH) {
+			mName[length++] = lowerChar;
+		}
+	}
+
+	mLength = static_cast<u16>(length);
+	mName[length] = 0;
+
+	return &mLength[length];
+}
+#endif
+
+#ifdef NON_MATCHING
+// tolower() is inlined
+const char *JKRArchive::CArcName::store(const char *pName, char stopChar) {
+	mHash = 0;
+	u32 length = 0;
+
+	for (; *pName != stopChar; pName++) {
+		char lowerChar = tolower(*pName);
+
+		mHash = lowerChar + mHash * 3;
+
+		if (length < MAX_NAME_LENGTH) {
+			mName[length++] = lowerChar;
+		}
+	}
+
+	mLength = static_cast<u16>(length);
+	mName[length] = 0;
+
+	if (*pName == 0) {
+		return NULL;
+	}
+
+	return pName + 1;
+}
+#endif
+
 JKRArchive::JKRArchive() {
 	_30 = false;
 	_60 = 1;
@@ -31,108 +81,6 @@ JKRArchive::~JKRArchive() {
 
 }
 
-bool JKRArchive::isSameName(CArcName &rName, unsigned long nameOffset, unsigned short hash) const {
-	if (rName.mHash != hash) {
-		return false;
-	}
-
-	return strcmp(mStringTable + nameOffset, rName.mName) == 0;
-}
-
-JKRArchive::SDirEntry *JKRArchive::findResType(unsigned long a1) const {
-	SDirEntry *current = mDirs;
-
-	for (u32 i = 0; i < mInfoBlock->mNrDirs; i++) {		
-		if (current->mID == a1) {
-			return current;
-		}
-
-		current++;
-	}
-
-	return NULL;
-}
-
-JKRArchive::SDirEntry *JKRArchive::findDirectory(const char *pName, unsigned long dirIndex) const {
-	if (pName == NULL) {
-		return &mDirs[dirIndex];
-	}
-
-	CArcName name;
-	name.store(pName, '/');
-
-	SDIFileEntry *current = &mFiles[mDirs[dirIndex].mFirstFileIndex];
-
-	for (u32 i = 0; i < mDirs[dirIndex].mNrFiles; i++) {
-		//if (isSameName(name, current->mFlag & 0xFFFFFF, current->mHash)) {
-		//	if ((current->mTestFlag & 2) != 0) {
-		//		return NULL;
-		//	}
-		//}
-
-		current++;
-	}
-
-	return NULL;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef NON_MATCHING
-// tolower() is inlined
-void JKRArchive::CArcName::store(const char *pName) {
-	mHash = 0;
-	u32 length = 0;
-
-	for (; *pName != 0; pName++) {
-		char lowerChar = tolower(*pName);
-
-		mHash = lowerChar + mHash * 3;
-
-		if (length < MAX_NAME_LENGTH) {
-			mName[length++] = lowerChar;
-		}
-	}
-
-	mLength = static_cast<u16>(length);
-	mName[length] = 0;
-}
-#endif
-
-#ifdef NON_MATCHING
-// tolower() is inlined
-void JKRArchive::CArcName::store(const char *pName, char stopChar) {
-	mHash = 0;
-	u32 length = 0;
-
-	for (; *pName != stopChar; pName++) {
-		char lowerChar = tolower(*pName);
-
-		mHash = lowerChar + mHash * 3;
-
-		if (length < MAX_NAME_LENGTH) {
-			mName[length++] = lowerChar;
-		}
-	}
-
-	mLength = static_cast<u16>(length);
-	mName[length] = 0;
-}
-#endif
-
 #ifdef NON_MATCHING
 // blt ..., blr is optimized to bgelr
 void JKRArchive::setExpandSize(SDIFileEntry *pFile, unsigned long size) {
@@ -158,4 +106,178 @@ u32 JKRArchive::getExpandSize(SDIFileEntry *pFile) const {
 	}
 
 	return mExpandSizes[fileIndex];
+}
+
+
+bool JKRArchive::isSameName(CArcName &rName, unsigned long nameOffset, unsigned short hash) const {
+	if (rName.mHash != hash) {
+		return false;
+	}
+
+	return strcmp(mStringTable + nameOffset, rName.mName) == 0;
+}
+
+JKRArchive::SDirEntry *JKRArchive::findResType(unsigned long a1) const {
+	SDirEntry *current = mDirs;
+
+	for (u32 i = 0; i < mInfoBlock->mNrDirs; i++) {		
+		if (current->mID == a1) {
+			return current;
+		}
+
+		current++;
+	}
+
+	return NULL;
+}
+
+#ifdef NON_MATCHING
+// Register mismatch
+JKRArchive::SDirEntry *JKRArchive::findDirectory(const char *pName, unsigned long dirIndex) const {
+	SDirEntry *dir;
+	SDIFileEntry *currentFile;
+	s32 i;
+
+	if (pName == NULL) {
+		return &mDirs[dirIndex];
+	}
+
+	CArcName name;
+	const char *next = name.store(pName, '/');
+
+	dir = &mDirs[dirIndex];
+	currentFile = &mFiles[dir->mFirstFileIndex];
+
+	for (i = 0; i < dir->mNrFiles; i++) {
+		if (isSameName(name, currentFile->mNameOffset, currentFile->mHash)) {
+			if ((currentFile->mFlag & FILE_FLAG_FOLDER) != 0) {
+				return findDirectory(next, currentFile->mDirIndex);
+			}
+
+			break;
+		}
+
+		currentFile++;
+	}
+
+	return NULL;
+}
+#endif
+
+JKRArchive::SDIFileEntry *JKRArchive::findTypeResource(unsigned long a1, const char *pName) const {
+	if (a1 != 0) {
+		CArcName name;
+		name.store(pName);
+
+		SDirEntry *dir = findResType(a1);
+
+		if (dir != NULL) {
+			SDIFileEntry *current = &mFiles[dir->mFirstFileIndex];
+
+			for (s32 i = 0; i < dir->mNrFiles; i++) {
+				if (isSameName(name, current->mNameOffset, current->mHash)) {
+					return current;
+				}
+
+				current++;
+			}
+		}
+	}
+
+	return NULL;
+}
+
+#ifdef NON_MATCHING
+// Register mismatch
+JKRArchive::SDIFileEntry *JKRArchive::findFsResource(const char *pName, unsigned long dirIndex) const {
+	if (pName != NULL) {
+		SDirEntry *dir;
+		SDIFileEntry *currentFile;
+		s32 i;
+
+		CArcName name;
+		const char *next = name.store(pName, '/');
+
+		dir = &mDirs[dirIndex];
+		currentFile = &mFiles[dir->mFirstFileIndex];
+
+		for (s32 i = 0; i < dir->mNrFiles; i++) {
+			if (isSameName(name, currentFile->mNameOffset, currentFile->mHash)) {
+				if ((currentFile->mFlag & FILE_FLAG_FOLDER) != 0) {
+					return findFsResource(next, currentFile->mDirIndex);
+				}
+				else if (next == NULL) {
+					return currentFile;
+				}
+				else {
+					return NULL;
+				}
+			}
+
+			currentFile++;
+		}
+	}
+
+	return NULL;
+}
+#endif
+
+JKRArchive::SDIFileEntry *JKRArchive::findIdxResource(unsigned long index) const {
+	if (index < mInfoBlock->mNrFiles) {
+		return &mFiles[index];
+	}
+
+	return NULL;
+}
+
+JKRArchive::SDIFileEntry *JKRArchive::findNameResource(const char *pName) const {
+	SDIFileEntry *current = mFiles;
+
+	CArcName name;
+	name.store(pName);
+
+	for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+		if (isSameName(name, current->mNameOffset, current->mHash)) {
+			return current;
+		}
+
+		current++;
+	}
+
+	return NULL;
+}
+
+JKRArchive::SDIFileEntry *JKRArchive::findPtrResource(const void *pResource) const {
+	SDIFileEntry *current = mFiles;
+
+	for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+		if (current->mAllocatedData == pResource) {
+			return current;
+		}
+
+		current++;
+	}
+
+	return NULL;
+}
+
+JKRArchive::SDIFileEntry *JKRArchive::findIdResource(unsigned short fileID) const {
+	if (fileID != 0xFFFF) {
+		SDIFileEntry *current = mFiles;
+		SDIFileEntry *indexed = &mFiles[fileID];
+
+		if (indexed->mFileID == fileID && (indexed->mFlag & FILE_FLAG_FILE) != 0) {
+			return indexed;
+		}
+
+		for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+			if (current->mFileID == fileID && (current->mFlag & FILE_FLAG_FILE) != 0) {
+				return current;
+			}
+
+			current++;
+		}
+	}
+
+	return NULL;
 }

@@ -276,9 +276,9 @@ bool JKRArchive::getDirEntry(SDirEntry *pDir, unsigned long fileIndex) const {
 		return false;
 	}
 
-	pDir->_0.mFileFlag = static_cast<u8>(file->mFlag >> 24);
+	pDir->_0.mFileFlag = file->mFlag;
 	pDir->_0.mFileID = file->mFileID;
-	pDir->mName = mStringTable + (file->mFlag & 0xFFFFFF);
+	pDir->mName = mStringTable + file->mNameOffset;
 
 	return true;
 }
@@ -320,7 +320,7 @@ u32 JKRArchive::countResource() const {
 	u32 count = 0;
 	
 	for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-		if (((mFiles[i].mFlag >> 24) & 1) != 0) {
+		if ((mFiles[i].mFlag & FILE_FLAG_FILE) != 0) {
 			count++;
 		}
 	}
@@ -332,7 +332,7 @@ u32 JKRArchive::getFileAttribute(unsigned long fileIndex) const {
 	SDIFileEntry *file = findIdxResource(fileIndex);
 
 	if (file != NULL) {
-		return file->mFlag >> 24;
+		return file->mFlag;
 	}
 
 	return 0;

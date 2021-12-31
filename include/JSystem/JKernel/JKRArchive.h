@@ -23,6 +23,16 @@ public:
         MOUNT_MODE_COMP = 4
     };
 
+    enum EFileFlag {
+        FILE_FLAG_FILE = 1 << 0,
+        FILE_FLAG_FOLDER = 1 << 1,
+        FILE_FLAG_COMPRESSED = 1 << 2,
+        FILE_FLAG_MRAM = 1 << 4,
+        FILE_FLAG_ARAM = 1 << 5,
+        FILE_FLAG_DVD = 1 << 6,
+        FILE_FLAG_YAZ0 = 1 << 7
+    };
+
     struct RarcHeader {
         u32 mMagic;             // _0
         u32 mFileSize;          // _4
@@ -49,7 +59,8 @@ public:
     struct SDIFileEntry {
         u16 mFileID;            // _0
         u16 mHash;              // _2
-        u32 mFlag;              // _4
+        u32 mFlag : 8;          // _4
+        u32 mNameOffset : 24;   // _5
         union {
             u32 mDataOffset;    // _8
             u32 mDirIndex;      // _8
@@ -58,9 +69,6 @@ public:
             u32 mDataSize;      // _C
         };
         void *mAllocatedData;   // _10
-
-        u32 mTestFlag : 8;
-        u32 mTestNameOffset : 24;
     };
 
     struct SDirEntry {
@@ -89,8 +97,8 @@ public:
 
         }
 
-        void store(const char *);
-        void store(const char *, char);
+        const char *store(const char *);
+        const char *store(const char *, char);
 
         u16 mHash;                          // _0
         u16 mLength;                        // _2

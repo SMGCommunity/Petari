@@ -243,12 +243,12 @@ __dt__10JKRArchiveFv,JKRArchivePri.o,JKernel.a,true
 isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs,JKRArchivePri.o,JKernel.a,true
 findResType__10JKRArchiveCFUl,JKRArchivePri.o,JKernel.a,true
 findDirectory__10JKRArchiveCFPCcUl,JKRArchivePri.o,JKernel.a,false
-findTypeResource__10JKRArchiveCFUlPCc,JKRArchivePri.o,JKernel.a,false
+findTypeResource__10JKRArchiveCFUlPCc,JKRArchivePri.o,JKernel.a,true
 findFsResource__10JKRArchiveCFPCcUl,JKRArchivePri.o,JKernel.a,false
-findIdxResource__10JKRArchiveCFUl,JKRArchivePri.o,JKernel.a,false
-findNameResource__10JKRArchiveCFPCc,JKRArchivePri.o,JKernel.a,false
-findPtrResource__10JKRArchiveCFPCv,JKRArchivePri.o,JKernel.a,false
-findIdResource__10JKRArchiveCFUs,JKRArchivePri.o,JKernel.a,false
+findIdxResource__10JKRArchiveCFUl,JKRArchivePri.o,JKernel.a,true
+findNameResource__10JKRArchiveCFPCc,JKRArchivePri.o,JKernel.a,true
+findPtrResource__10JKRArchiveCFPCv,JKRArchivePri.o,JKernel.a,true
+findIdResource__10JKRArchiveCFUs,JKRArchivePri.o,JKernel.a,true
 store__Q210JKRArchive8CArcNameFPCc,JKRArchivePri.o,JKernel.a,false
 store__Q210JKRArchive8CArcNameFPCcc,JKRArchivePri.o,JKernel.a,false
 setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl,JKRArchivePri.o,JKernel.a,false
