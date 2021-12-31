@@ -10,3 +10,22 @@ bool NameObjFactory::isPlayerArchiveLoaderObj(const char *pArchive) {
 
     return false;
 }
+
+// this isn't matching yet but I'm leaving it here to allow the createNameObj functions to generate
+const NameObjFactory::Name2CreateFunc* NameObjFactory::getName2CreateFunc(const char *pName, const NameObjFactory::Name2CreateFunc *pTable) {
+    if (!pTable) {
+        pTable = cCreateTable;
+    }
+
+    Name2CreateFunc* last = (Name2CreateFunc*)cName2ArchiveNamesTable;
+
+    for (const Name2CreateFunc* i = pTable; i != last; i++) {
+        if (i->mName) {
+            if (MR::isEqualStringCase(i->mName, pName)) {
+                return i;
+            }
+        }
+    }
+
+    return 0;
+}

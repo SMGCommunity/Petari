@@ -8,7 +8,7 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
 | NameObjCategoryList.o | 76.39593908629442% | 10 / 15 | 66.66666666666666% |
 | NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% |
-| NameObjFactory.o | 3.0015449128227765% | 16 / 568 | 2.8169014084507045% |
+| NameObjFactory.o | 3.7077907746634295% | 20 / 568 | 3.5211267605633805% |
 | NameObjFinder.o | 0.0% | 0 / 1 | 0.0% |
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% |
 | NameObjHolder.o | 29.962546816479403% | 5 / 10 | 50.0% |
@@ -592,8 +592,8 @@
 | createNameObj&lt;14AstroEffectObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;26UFOKinokoUnderConstruction&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12AstroDomeSky&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;16ProjectionMapSky&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;3Sky&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;16ProjectionMapSky&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createNameObj&lt;3Sky&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;3Air&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12PriorDrawAir&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16ProjectionMapAir&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -619,7 +619,7 @@
 | createNameObj&lt;20WhirlPoolAccelerator&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9FishGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;4Flag&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;12SeaGullGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12SeaGullGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;10WaterPlant&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18HitWallTimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12PTimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -655,7 +655,7 @@
 | createNameObj&lt;15ClipFieldSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18GroupSwitchWatcher&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;8RaceRail&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;11TimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;11TimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;18SwitchSynchronizer&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12MovieStarter&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12DemoExecutor&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |

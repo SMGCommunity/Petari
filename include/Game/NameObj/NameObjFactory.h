@@ -9,6 +9,7 @@
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/DeathArea.h"
 #include "Game/Gravity/GlobalGravityObj.h"
+#include "Game/Map.h"
 
 class AreaObj;
 class NameObj;
@@ -27,7 +28,7 @@ public:
         void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
     };
 
-    static Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
+    static const Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
     static bool isPlayerArchiveLoaderObj(const char *);
 };
 
@@ -74,7 +75,7 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[27] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[48] = {
         { "CubeCameraBox", createCenterOriginCube<CubeCameraArea>, 0 },
         { "CubeCameraCylinder", createBaseOriginCylinder<CubeCameraArea>, 0 },
         { "CubeCameraSphere", createSphere<CubeCameraArea>, 0 },
@@ -97,6 +98,28 @@ namespace {
 
         { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 },
 
+        { "VROrbit", createNameObj<ProjectionMapSky>, "VROrbit" },
+        { "VRDarkSpace", createNameObj<Sky>, "VRDarkSpace" },
+        { "VRSandwichSun", createNameObj<ProjectionMapSky>, "VRSandwichSun" },
+        { "SummerSky", createNameObj<Sky>, "SummerSky" },
+        { "GalaxySky", createNameObj<Sky>, "GalaxySky" },
+        { "MilkyWaySky", createNameObj<Sky>, "MilkyWaySky" },
+        { "HalfGalaxySky", createNameObj<ProjectionMapSky>, "HalfGalaxySky" },
+        { "GreenPlanetOrbitSky", createNameObj<ProjectionMapSky>, "GreenPlanetOrbitSky" },
+        { "PhantomSky", createNameObj<Sky>, "PhantomSky" },
+        { "KoopaVS1Sky", createNameObj<ProjectionMapSky>, "KoopaVS1Sky" },
+        { "KoopaVS2Sky", createNameObj<Sky>, "KoopaVS2Sky" },
+        { "FamicomMarioSky", createNameObj<Sky>, "FamicomMarioSky" },
+        { "DesertSky", createNameObj<Sky>, "DesertSky" },
+        { "ChildRoomSky", createNameObj<Sky>, "ChildRoomSky" },
+        { "AuroraSky", createNameObj<Sky>, "AuroraSky" },
+        { "CloudSky", createNameObj<ProjectionMapSky>, "CloudSky" },
+        { "RockPlanetOrbitSky", createNameObj<ProjectionMapSky>, "RockPlanetOrbitSky" },
+        { "StarrySky", createNameObj<Sky>, "StarrySky" },
+        { "AstroDomeSky", createNameObj<Sky>, "StarrySky" },
+
+        { "SeaGullGroup", createNameObj<SeaGullGroup>, "SeaGullGroup" },
+
         { "GlobalCubeGravity", MR::createGlobalCubeGravityObj, NULL },
         { "GlobalConeGravity", MR::createGlobalConeGravityObj, NULL },
         { "GlobalDiskGravity", MR::createGlobalDiskGravityObj, NULL },
@@ -106,7 +129,9 @@ namespace {
         { "GlobalPlaneGravityInCylinder", MR::createGlobalPlaneInCylinderGravityObj, NULL },
         { "GlobalPointGravity", MR::createGlobalPointGravityObj, NULL },
         { "GlobalSegmentGravity", MR::createGlobalSegmentGravityObj, NULL },
-        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL }
+        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL },
+
+        { "TimerSwitch", createNameObj<TimerSwitch>, "" }
     };
 
     const char* cName2ArchiveNamesTable;
