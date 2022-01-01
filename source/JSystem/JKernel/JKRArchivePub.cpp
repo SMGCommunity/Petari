@@ -1,6 +1,10 @@
+#include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRCompArchive.h"
+#include "JSystem/JKernel/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "revolution.h"
 
 bool JKRArchive::becomeCurrent(const char *pName) {
@@ -246,28 +250,41 @@ void JKRArchive::mount(const char *pName, EMountMode mountMode, JKRHeap *pHeap, 
 	}
 }
 
-/*void JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap *pHeap, EMountDirection mountDir) {
-	if (check_mount_already(entryNum, pHeap) != NULL) {
-		return;
+JKRArchive *JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap *pHeap, EMountDirection mountDir) {
+	JKRArchive *archive = check_mount_already(entryNum, pHeap);
+
+	if (archive != NULL) {
+		return archive;
 	}
 
-	s32 uVar2 = -4;
+	s32 uVar1 = -4;
 
 	if (mountDir == MOUNT_DIRECTION_1) {
-		uVar2 = 4;
+		uVar1 = 4;
 	}
 
 	switch (mountMode) {
-		case MOUNT_MODE_DVD:
+		case MOUNT_MODE_MEM:
+			archive = new(pHeap, uVar1) JKRMemArchive(entryNum, mountDir);
 			break;
 		case MOUNT_MODE_ARAM:
+			archive = new(pHeap, uVar1) JKRAramArchive(entryNum, mountDir);
 			break;
-		case MOUNT_MODE_MEM:
+		case MOUNT_MODE_DVD:
+			archive = new(pHeap, uVar1) JKRDvdArchive(entryNum, mountDir);
 			break;
 		case MOUNT_MODE_COMP:
+			archive = new(pHeap, uVar1) JKRCompArchive(entryNum, mountDir);
 			break;
 	}
-}*/
+
+	if (archive != NULL && archive->mMountMode == MOUNT_MODE_0) {
+		delete archive;
+		archive = NULL;
+	}
+
+	return archive;
+}
 
 bool JKRArchive::getDirEntry(SDirEntry *pDir, unsigned long fileIndex) const {
 	SDIFileEntry *file = findIdxResource(fileIndex);

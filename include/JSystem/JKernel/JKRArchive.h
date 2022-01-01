@@ -17,9 +17,10 @@ public:
     };
 
     enum EMountMode {
-        MOUNT_MODE_DVD = 1,
+        MOUNT_MODE_0 = 0,
+        MOUNT_MODE_MEM = 1,
         MOUNT_MODE_ARAM = 2,
-        MOUNT_MODE_MEM = 3,
+        MOUNT_MODE_DVD = 3,
         MOUNT_MODE_COMP = 4
     };
 
@@ -30,7 +31,7 @@ public:
         FILE_FLAG_MRAM = 1 << 4,
         FILE_FLAG_ARAM = 1 << 5,
         FILE_FLAG_DVD = 1 << 6,
-        FILE_FLAG_YAZ0 = 1 << 7
+        FILE_FLAG_IS_YAZ0 = 1 << 7
     };
 
     struct RarcHeader {
@@ -124,7 +125,7 @@ public:
     static JKRArchive *check_mount_already(long);
     static JKRArchive *check_mount_already(long, JKRHeap *);
     static void mount(const char *, EMountMode, JKRHeap *, EMountDirection);
-    static void mount(long, EMountMode, JKRHeap *, EMountDirection);
+    static JKRArchive *mount(long, EMountMode, JKRHeap *, EMountDirection);
     bool getDirEntry(SDirEntry *, unsigned long) const;
     void *getIdxResource(unsigned long);
     void *getResource(unsigned short);
