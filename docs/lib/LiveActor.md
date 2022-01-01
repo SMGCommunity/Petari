@@ -42,21 +42,21 @@
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
 | RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
 | SensorHitChecker.o | 65.21739130434783% | 10 / 13 | 76.92307692307693% |
-| ShadowController.o | 18.144750254842% | 23 / 68 | 33.82352941176471% |
+| ShadowController.o | 32.82364933741081% | 39 / 68 | 57.35294117647059% |
 | ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% |
 | ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% |
 | ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
-| ShadowSurfaceDrawer.o | 0.0% | 0 / 4 | 0.0% |
+| ShadowSurfaceDrawer.o | 36.885245901639344% | 2 / 4 | 50.0% |
 | ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% |
 | ShadowVolumeBox.o | 16.09907120743034% | 2 / 6 | 33.33333333333333% |
 | ShadowVolumeCylinder.o | 1.5037593984962405% | 1 / 5 | 20.0% |
 | ShadowVolumeDrawer.o | 70.58823529411765% | 14 / 16 | 87.5% |
 | ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% |
-| ShadowVolumeLine.o | 0.0% | 0 / 8 | 0.0% |
+| ShadowVolumeLine.o | 29.64426877470356% | 7 / 8 | 87.5% |
 | ShadowVolumeModel.o | 100.0% | 3 / 3 | 100.0% |
 | ShadowVolumeOval.o | 32.06751054852321% | 4 / 5 | 80.0% |
-| ShadowVolumeOvalPole.o | 0.0% | 0 / 4 | 0.0% |
-| ShadowVolumeSphere.o | 0.0% | 0 / 5 | 0.0% |
+| ShadowVolumeOvalPole.o | 23.144104803493452% | 3 / 4 | 75.0% |
+| ShadowVolumeSphere.o | 56.451612903225815% | 4 / 5 | 80.0% |
 | SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% |
 | Spine.o | 100.0% | 6 / 6 | 100.0% |
 | SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% |
@@ -105,8 +105,8 @@
 | resetDynamicCtrl__14ActorJointCtrlFv | :white_check_mark: |
 | startFaceCtrl__14ActorJointCtrlFl | :white_check_mark: |
 | endFaceCtrl__14ActorJointCtrlFl | :white_check_mark: |
-| setIKEndPosition__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| setIKEndDirection__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| setIKEndPosition__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| setIKEndDirection__14ActorJointCtrlFPCcRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | endIKCtrlAll__14ActorJointCtrlFv | :white_check_mark: |
 | update__14ActorJointCtrlFv | :white_check_mark: |
 | startUpdate__14ActorJointCtrlFv | :white_check_mark: |
@@ -136,8 +136,8 @@
 # ActorPadAndCameraCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f> | :x: |
-| tryCreate__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f> | :x: |
+| __ct__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryCreate__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | update__21ActorPadAndCameraCtrlFv | :x: |
 | updateInfoBck__21ActorPadAndCameraCtrlFv | :x: |
 | tryUpdateCameraShake__35@unnamed@ActorPadAndCameraCtrl_cpp@FPCc | :x: |
@@ -192,26 +192,26 @@
 # Binder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__6BinderFPA4_fPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>ffUl | :x: |
+| __ct__6BinderFPA4_fPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;ffUl | :x: |
 | setTriangleFilter__6BinderFP18TriangleFilterBase | :x: |
 | setCollisionPartsFilter__6BinderFP24CollisionPartsFilterBase | :x: |
 | clear__6BinderFv | :x: |
 | getPlane__6BinderCFi | :x: |
 | copyPlaneArrayAndSortingSensor__6BinderFPP7HitInfoUl | :x: |
 | compSensor__6BinderFPC7HitInfoPC7HitInfo | :x: |
-| bind__6BinderFRCQ29JGeometry8TVec3<f> | :x: |
-| moveAlongHittedPlanes__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P7HitInfoUlPb | :x: |
-| findBindedPos__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PbP7HitInfoUlbb | :x: |
-| moveWithCollisionParts__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| bind__6BinderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| moveAlongHittedPlanes__6BinderFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P7HitInfoUlPb | :x: |
+| findBindedPos__6BinderFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PbP7HitInfoUlbb | :x: |
+| moveWithCollisionParts__6BinderFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | storeCurrentHitInfo__6BinderFP7HitInfoUlb | :x: |
 | __as__7HitInfoFRC7HitInfo | :x: |
-| obtainMomentFixReaction__6BinderFP7HitInfoUlPQ29JGeometry8TVec3<f>Ul | :x: |
+| obtainMomentFixReaction__6BinderFP7HitInfoUlPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
 | storeContactPlane__6BinderFP7HitInfoUl | :x: |
-| sort<PP7HitInfo,PFPC7HitInfoPC7HitInfo_b>__3stdFPP7HitInfoPP7HitInfoPFPC7HitInfoPC7HitInfo_b_v | :x: |
-| sort<PP7HitInfo,RPFPC7HitInfoPC7HitInfo_b>__3stdFPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
-| swap<P7HitInfo>__3stdFRP7HitInfoRP7HitInfo_v | :x: |
-| __sort132<RPFPC7HitInfoPC7HitInfo_b,PP7HitInfo>__3stdFPP7HitInfoPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
-| __selection_sort<RPFPC7HitInfoPC7HitInfo_b,PP7HitInfo>__3stdFPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
+| sort&lt;PP7HitInfo,PFPC7HitInfoPC7HitInfo_b&gt;__3stdFPP7HitInfoPP7HitInfoPFPC7HitInfoPC7HitInfo_b_v | :x: |
+| sort&lt;PP7HitInfo,RPFPC7HitInfoPC7HitInfo_b&gt;__3stdFPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
+| swap&lt;P7HitInfo&gt;__3stdFRP7HitInfoRP7HitInfo_v | :x: |
+| __sort132&lt;RPFPC7HitInfoPC7HitInfo_b,PP7HitInfo&gt;__3stdFPP7HitInfoPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
+| __selection_sort&lt;RPFPC7HitInfoPC7HitInfo_b,PP7HitInfo&gt;__3stdFPP7HitInfoPP7HitInfoRPFPC7HitInfoPC7HitInfo_b_v | :x: |
 
 
 # ClippingActorHolder.o
@@ -228,7 +228,7 @@
 | addToClippingTarget__19ClippingActorHolderFP9LiveActor | :x: |
 | removeFromClippingTarget__19ClippingActorHolderFP9LiveActor | :x: |
 | startGroupClipping__19ClippingActorHolderFP9LiveActorRC12JMapInfoIter | :x: |
-| setTypeToSphere__19ClippingActorHolderFP9LiveActorfPCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setTypeToSphere__19ClippingActorHolderFP9LiveActorfPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setFarClipLevel__19ClippingActorHolderFP9LiveActorl | :x: |
 | find__19ClippingActorHolderCFPC9LiveActor | :x: |
 | __dt__19ClippingActorHolderFv | :white_check_mark: |
@@ -241,7 +241,7 @@
 | judgeClipping__17ClippingActorInfoFv | :x: |
 | isJudgedToClip__17ClippingActorInfoCFv | :x: |
 | isGroupClipping__17ClippingActorInfoCFv | :x: |
-| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3<f> | :x: |
+| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter | :x: |
 | __ct__21ClippingActorInfoListFi | :white_check_mark: |
 | add__21ClippingActorInfoListFP17ClippingActorInfo | :white_check_mark: |
@@ -290,17 +290,17 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__13ClippingJudgeFPCc | :white_check_mark: |
-| __ct__Q29JGeometry15THexahedron3<f>Fv | :white_check_mark: |
+| __ct__Q29JGeometry15THexahedron3&lt;f&gt;Fv | :white_check_mark: |
 | init__13ClippingJudgeFRC12JMapInfoIter | :white_check_mark: |
 | movement__13ClippingJudgeFv | :white_check_mark: |
-| isJudgedToClipFrustum__13ClippingJudgeCFRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| isJudgedToClipFrustum__13ClippingJudgeCFRCQ29JGeometry8TVec3<f>fl | :white_check_mark: |
-| calcViewingVolume__13ClippingJudgeFPQ29JGeometry15THexahedron3<f>f | :x: |
+| isJudgedToClipFrustum__13ClippingJudgeCFRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| isJudgedToClipFrustum__13ClippingJudgeCFRCQ29JGeometry8TVec3&lt;f&gt;fl | :white_check_mark: |
+| calcViewingVolume__13ClippingJudgeFPQ29JGeometry15THexahedron3&lt;f&gt;f | :x: |
 | getClippingJudge__2MRFv | :x: |
 | __dt__13ClippingJudgeFv | :white_check_mark: |
-| mayIntersectBall3__Q29JGeometry15THexahedron3<f>CFRCQ29JGeometry8TVec3<f>f | :x: |
-| set__Q29JGeometry14TPartition3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| set__Q29JGeometry14TPartition3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| mayIntersectBall3__Q29JGeometry15THexahedron3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| set__Q29JGeometry14TPartition3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| set__Q29JGeometry14TPartition3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # DisplayListMaker.o
@@ -343,7 +343,7 @@
 # DynamicJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getValue<f>__8JMapInfoCFiPCcPf_Cb | :x: |
+| getValue&lt;f&gt;__8JMapInfoCFiPCcPf_Cb | :x: |
 | calcJointChildNum__30@unnamed@DynamicJointCtrl_cpp@FP8J3DJoint | :x: |
 | __ct__13JointCtrlRateFv | :x: |
 | update__13JointCtrlRateFv | :x: |
@@ -352,7 +352,7 @@
 | __ct__20DynamicJointCtrlNodeFPC16DynamicJointCtrlPA4_ff | :x: |
 | update__20DynamicJointCtrlNodeFP9LiveActorPC20DynamicJointCtrlNode | :x: |
 | reset__20DynamicJointCtrlNodeFv | :x: |
-| updateJointMtxCallBack__20DynamicJointCtrlNodeFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| updateJointMtxCallBack__20DynamicJointCtrlNodeFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __ct__16DynamicJointCtrlFP9LiveActorPCcPC21DynamicJointCtrlParam | :x: |
 | init__16DynamicJointCtrlFv | :x: |
 | update__16DynamicJointCtrlFv | :x: |
@@ -365,9 +365,9 @@
 | endCtrl__22DynamicJointCtrlKeeperFPCcl | :white_check_mark: |
 | reset__22DynamicJointCtrlKeeperFv | :white_check_mark: |
 | findJointCtrl__22DynamicJointCtrlKeeperFPCc | :white_check_mark: |
-| __dt__45JointControlDelegator<20DynamicJointCtrlNode>Fv | :x: |
-| calcJointMatrix__45JointControlDelegator<20DynamicJointCtrlNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__45JointControlDelegator<20DynamicJointCtrlNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;Fv | :x: |
+| calcJointMatrix__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # EffectKeeper.o
@@ -379,9 +379,9 @@
 | initAfterPlacementForAttributeEffect__12EffectKeeperFPA4_f | :x: |
 | setBinder__12EffectKeeperFPC6Binder | :x: |
 | addEffect__12EffectKeeperFPCcP9LiveActor | :x: |
-| registerEffect__12EffectKeeperFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCc | :x: |
+| registerEffect__12EffectKeeperFPCcPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | registerEffect__12EffectKeeperFPCcPA4_fPCcPCc | :x: |
-| registerEffect__12EffectKeeperFPCcPA4_fPCQ29JGeometry8TVec3<f>PCcPCc | :x: |
+| registerEffect__12EffectKeeperFPCcPA4_fPCQ29JGeometry8TVec3&lt;f&gt;PCcPCc | :x: |
 | registerEffectWithoutSRT__12EffectKeeperFPCcPCc | :x: |
 | registerSyncBckEffect__12EffectKeeperFP12XanimePlayerPCcPCclffb | :x: |
 | createEmitter__12EffectKeeperFPCc | :x: |
@@ -410,7 +410,7 @@
 | updateFloorCode__12EffectKeeperFv | :x: |
 | updateFloorCode__12EffectKeeperFPC8Triangle | :x: |
 | isTypeAttributeEffect__12EffectKeeperCFPCc | :x: |
-| for_each<PP12MultiEmitter,Q23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l>>__3stdFPP12MultiEmitterPP12MultiEmitterQ23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l>_Q23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l> | :x: |
+| for_each&lt;PP12MultiEmitter,Q23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt;&gt;__3stdFPP12MultiEmitterPP12MultiEmitterQ23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt;_Q23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt; | :x: |
 
 
 # FaceJointCtrl.o
@@ -422,10 +422,10 @@
 | endCtrl__13FaceJointCtrlFl | :white_check_mark: |
 | update__13FaceJointCtrlFv | :white_check_mark: |
 | setCallBackFunction__13FaceJointCtrlFv | :white_check_mark: |
-| updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| __dt__38JointControlDelegator<13FaceJointCtrl>Fv | :x: |
-| calcJointMatrix__38JointControlDelegator<13FaceJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__38JointControlDelegator<13FaceJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __dt__38JointControlDelegator&lt;13FaceJointCtrl&gt;Fv | :x: |
+| calcJointMatrix__38JointControlDelegator&lt;13FaceJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__38JointControlDelegator&lt;13FaceJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # FlashingCtrl.o
@@ -459,7 +459,7 @@
 # HitSensorInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3<f>PA4_fRCQ29JGeometry8TVec3<f>b | :white_check_mark: |
+| __ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3&lt;f&gt;PA4_fRCQ29JGeometry8TVec3&lt;f&gt;b | :white_check_mark: |
 | update__13HitSensorInfoFv | :x: |
 | doObjCol__13HitSensorInfoFv | :white_check_mark: |
 
@@ -468,9 +468,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15HitSensorKeeperFi | :white_check_mark: |
-| add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor | :white_check_mark: |
 | getSensor__15HitSensorKeeperCFPCc | :white_check_mark: |
 | update__15HitSensorKeeperFv | :white_check_mark: |
@@ -490,30 +490,30 @@
 | ------------- | ------------- |
 | __ct__11IKJointCtrlFP9LiveActor | :x: |
 | init__11IKJointCtrlFRC16IKJointCtrlParam | :x: |
-| setEndPosition__11IKJointCtrlFRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| setEndDirection__11IKJointCtrlFRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| setEndPosition__11IKJointCtrlFRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| setEndDirection__11IKJointCtrlFRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | endCtrl__11IKJointCtrlFv | :white_check_mark: |
 | setCallBackFunction__11IKJointCtrlFv | :white_check_mark: |
-| updateRootJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :white_check_mark: |
-| updateMiddleJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :white_check_mark: |
-| updateEndJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| updateRootJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| updateMiddleJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| updateEndJointCallBack__11IKJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __ct__17IKJointCtrlHolderFP9LiveActorUl | :white_check_mark: |
 | addCtrl__17IKJointCtrlHolderFRC16IKJointCtrlParam | :white_check_mark: |
 | startUpdate__17IKJointCtrlHolderFv | :x: |
-| setEndPosition__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| setEndDirection__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| setEndPosition__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| setEndDirection__17IKJointCtrlHolderFPCcRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | endUpdate__17IKJointCtrlHolderFv | :x: |
 | endCtrlAll__17IKJointCtrlHolderFv | :x: |
 | setCallBackFunction__17IKJointCtrlHolderFv | :x: |
 | findIKJointCtrl__17IKJointCtrlHolderFPCc | :white_check_mark: |
 | createIKJointCtrlHolder__10ActorJointFP9LiveActor | :x: |
-| createJointController<11IKJointCtrl>__2MRFP11IKJointCtrlPC9LiveActorUsM11IKJointCtrlFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_bM11IKJointCtrlFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_b_P15JointController | :x: |
-| __dt__36JointControlDelegator<11IKJointCtrl>Fv | :x: |
-| calcJointMatrix__36JointControlDelegator<11IKJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__36JointControlDelegator<11IKJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| createJointController&lt;11IKJointCtrl&gt;__2MRFP11IKJointCtrlPC9LiveActorUsM11IKJointCtrlFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_bM11IKJointCtrlFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_b_P15JointController | :x: |
+| __dt__36JointControlDelegator&lt;11IKJointCtrl&gt;Fv | :x: |
+| calcJointMatrix__36JointControlDelegator&lt;11IKJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__36JointControlDelegator&lt;11IKJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | disableCallBack__11IKJointCtrlFv | :white_check_mark: |
 | enableCallBack__11IKJointCtrlFv | :white_check_mark: |
-| for_each<PP11IKJointCtrl,Q23std26mem_fun_t<v,11IKJointCtrl>>__3stdFPP11IKJointCtrlPP11IKJointCtrlQ23std26mem_fun_t<v,11IKJointCtrl>_Q23std26mem_fun_t<v,11IKJointCtrl> | :x: |
+| for_each&lt;PP11IKJointCtrl,Q23std26mem_fun_t&lt;v,11IKJointCtrl&gt;&gt;__3stdFPP11IKJointCtrlPP11IKJointCtrlQ23std26mem_fun_t&lt;v,11IKJointCtrl&gt;_Q23std26mem_fun_t&lt;v,11IKJointCtrl&gt; | :x: |
 
 
 # LiveActor.o
@@ -549,7 +549,7 @@
 | initShadowControllerList__9LiveActorFUl | :white_check_mark: |
 | initActorCollisionParts__9LiveActorFPCcP9HitSensorP14ResourceHolderPA4_fbb | :x: |
 | initStageSwitch__9LiveActorFRC12JMapInfoIter | :white_check_mark: |
-| initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f> | :x: |
+| initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3&lt;f&gt;PA4_fQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | initActorLightCtrl__9LiveActorFv | :white_check_mark: |
 | attackSensor__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
 | receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
@@ -610,7 +610,7 @@
 | setDistanceToLow__7LodCtrlFf | :white_check_mark: |
 | setDistanceToMiddleAndLow__7LodCtrlFff | :white_check_mark: |
 | LodFuntionCall__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActor_v | :white_check_mark: |
-| LodFuntionCall<f>__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActorf_vf_v | :white_check_mark: |
+| LodFuntionCall&lt;f&gt;__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActorf_vf_v | :white_check_mark: |
 | setClippingTypeSphereContainsModelBoundingBox__7LodCtrlFf | :white_check_mark: |
 | setFarClipping__7LodCtrlFf | :white_check_mark: |
 | invalidateClipping__7LodCtrlFv | :white_check_mark: |
@@ -640,9 +640,9 @@
 | update__26ViewProjmapEffectMtxSetterFv | :x: |
 | __ct__22ProjmapEffectMtxSetterFP8J3DModelPC14ResourceHolder | :x: |
 | update__22ProjmapEffectMtxSetterFv | :x: |
-| getBaseTrans__22ProjmapEffectMtxSetterCFPQ29JGeometry8TVec3<f> | :x: |
+| getBaseTrans__22ProjmapEffectMtxSetterCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateMtxUseBaseMtx__22ProjmapEffectMtxSetterFv | :x: |
-| updateMtxUseBaseMtxWithLocalOffset__22ProjmapEffectMtxSetterFRCQ29JGeometry8TVec3<f> | :x: |
+| updateMtxUseBaseMtxWithLocalOffset__22ProjmapEffectMtxSetterFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__25MirrorReflectionMtxSetterFP8J3DModelPC14ResourceHolder | :x: |
 | addUpdatingTexMtxFromTexNo__25MirrorReflectionMtxSetterFP12J3DModelDataUs | :x: |
 | addUpdatingTexMtxFromTexCoord__25MirrorReflectionMtxSetterFP11J3DMaterial | :x: |
@@ -692,13 +692,13 @@
 | __ct__12MirrorCameraFPCc | :x: |
 | init__12MirrorCameraFRC12JMapInfoIter | :white_check_mark: |
 | getVertexFormat__26@unnamed@MirrorCamera_cpp@FPC12J3DModelData7_GXAttr | :x: |
-| setMirrorMapInfo__12MirrorCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setMirrorMapInfo__12MirrorCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setMirrorMapInfo__12MirrorCameraFP12J3DModelData | :x: |
 | updateViewMtx__12MirrorCameraFv | :x: |
 | updateModelTexMtx__12MirrorCameraFv | :x: |
-| getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getDistance__12MirrorCameraCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getMirrorCamera__2MRFv | :white_check_mark: |
-| getDistanceToMirror__2MRFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getDistanceToMirror__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __dt__12MirrorCameraFv | :white_check_mark: |
 | movement__12MirrorCameraFv | :white_check_mark: |
 
@@ -799,9 +799,9 @@
 | movement__10PartsModelFv | :white_check_mark: |
 | calcAnim__10PartsModelFv | :x: |
 | calcViewAndEntry__10PartsModelFv | :white_check_mark: |
-| initFixedPosition__10PartsModelFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :white_check_mark: |
+| initFixedPosition__10PartsModelFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :white_check_mark: |
 | initFixedPosition__10PartsModelFPCc | :white_check_mark: |
-| initFixedPosition__10PartsModelFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| initFixedPosition__10PartsModelFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | loadFixedPosition__10PartsModelFPCc | :white_check_mark: |
 | offFixedPosNormalizeScale__10PartsModelFv | :white_check_mark: |
 | calcAndSetBaseMtx__10PartsModelFv | :white_check_mark: |
@@ -813,13 +813,13 @@
 | __ct__9RailRiderFRC12JMapInfoIter | :white_check_mark: |
 | __ct__9RailRiderFll | :white_check_mark: |
 | move__9RailRiderFv | :white_check_mark: |
-| moveToNearestPos__9RailRiderFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| moveToNearestPoint__9RailRiderFRCQ29JGeometry8TVec3<f> | :x: |
+| moveToNearestPos__9RailRiderFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| moveToNearestPoint__9RailRiderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | moveToNextPoint__9RailRiderFv | :white_check_mark: |
 | reverse__9RailRiderFv | :white_check_mark: |
-| calcPosAtCoord__9RailRiderCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| calcDirectionAtCoord__9RailRiderCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| calcNearestPos__9RailRiderCFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| calcPosAtCoord__9RailRiderCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcDirectionAtCoord__9RailRiderCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcNearestPos__9RailRiderCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getTotalLength__9RailRiderCFv | :white_check_mark: |
 | getPartLength__9RailRiderCFi | :white_check_mark: |
 | isLoop__9RailRiderCFv | :white_check_mark: |
@@ -832,7 +832,7 @@
 | getNextPointCoord__9RailRiderCFv | :white_check_mark: |
 | getCurrentPointCoord__9RailRiderCFv | :white_check_mark: |
 | getPointNum__9RailRiderCFv | :white_check_mark: |
-| copyPointPos__9RailRiderCFPQ29JGeometry8TVec3<f>l | :white_check_mark: |
+| copyPointPos__9RailRiderCFPQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | getPointCoord__9RailRiderCFl | :white_check_mark: |
 | initBezierRail__9RailRiderFRC12JMapInfoIterPC8JMapInfo | :x: |
 | getPointArgS32NoInit__9RailRiderCFPCcPll | :white_check_mark: |
@@ -868,9 +868,9 @@
 | ------------- | ------------- |
 | __ct__22ShadowControllerHolderFv | :x: |
 | __ct__16ShadowControllerFP9LiveActorPCc | :x: |
-| __ct__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv | :x: |
-| __dt__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv | :x: |
-| push_back__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>FRCP16ShadowController | :x: |
+| __ct__Q22MR51Vector&lt;Q22MR36AssignableArray&lt;P16ShadowController&gt;&gt;Fv | :x: |
+| __dt__Q22MR51Vector&lt;Q22MR36AssignableArray&lt;P16ShadowController&gt;&gt;Fv | :x: |
+| push_back__Q22MR51Vector&lt;Q22MR36AssignableArray&lt;P16ShadowController&gt;&gt;FRCP16ShadowController | :x: |
 | movement__22ShadowControllerHolderFv | :x: |
 | initAfterPlacement__22ShadowControllerHolderFv | :x: |
 | updateController__22ShadowControllerHolderFv | :x: |
@@ -882,36 +882,36 @@
 | resetCalcCount__20ShadowControllerListFv | :x: |
 | requestCalc__20ShadowControllerListFv | :x: |
 | requestCalc__16ShadowControllerFv | :x: |
-| update__16ShadowControllerFv | :x: |
-| updateFarClipping__16ShadowControllerFf | :x: |
+| update__16ShadowControllerFv | :white_check_mark: |
+| updateFarClipping__16ShadowControllerFf | :white_check_mark: |
 | updateDirection__16ShadowControllerFv | :x: |
 | updateProjection__16ShadowControllerFv | :x: |
-| getShadowDrawer__16ShadowControllerFv | :x: |
-| getHost__16ShadowControllerCFv | :x: |
-| setShadowDrawer__16ShadowControllerFP12ShadowDrawer | :x: |
-| getDropPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getDropDir__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getDropLength__16ShadowControllerCFv | :x: |
-| getProjectionPos__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| getProjectionNormal__16ShadowControllerCFPQ29JGeometry8TVec3<f> | :x: |
+| getShadowDrawer__16ShadowControllerFv | :white_check_mark: |
+| getHost__16ShadowControllerCFv | :white_check_mark: |
+| setShadowDrawer__16ShadowControllerFP12ShadowDrawer | :white_check_mark: |
+| getDropPos__16ShadowControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getDropDir__16ShadowControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getDropLength__16ShadowControllerCFv | :white_check_mark: |
+| getProjectionPos__16ShadowControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getProjectionNormal__16ShadowControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getProjectionLength__16ShadowControllerCFv | :x: |
-| isProjected__16ShadowControllerCFv | :x: |
-| isDraw__16ShadowControllerCFv | :x: |
+| isProjected__16ShadowControllerCFv | :white_check_mark: |
+| isDraw__16ShadowControllerCFv | :white_check_mark: |
 | isCalcCollision__16ShadowControllerCFv | :x: |
 | isCalcGravity__16ShadowControllerCFv | :x: |
 | isCalcShadowGravity__16ShadowControllerCFv | :x: |
-| setGroupName__16ShadowControllerFPCc | :x: |
-| setDropPosPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :x: |
-| setDropPosMtxPtr__16ShadowControllerFPA4_fRCQ29JGeometry8TVec3<f> | :x: |
-| setDropPosFix__16ShadowControllerFRCQ29JGeometry8TVec3<f> | :x: |
-| setDropDirPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f> | :x: |
-| setProjectionPtr__16ShadowControllerFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f> | :x: |
-| setDropDirFix__16ShadowControllerFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setGroupName__16ShadowControllerFPCc | :white_check_mark: |
+| setDropPosPtr__16ShadowControllerFPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setDropPosMtxPtr__16ShadowControllerFPA4_fRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setDropPosFix__16ShadowControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setDropDirPtr__16ShadowControllerFPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setProjectionPtr__16ShadowControllerFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setDropDirFix__16ShadowControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setDropLength__16ShadowControllerFf | :white_check_mark: |
 | setDropStartOffset__16ShadowControllerFf | :white_check_mark: |
 | setDropTypeNormal__16ShadowControllerFv | :white_check_mark: |
 | setDropTypeSurface__16ShadowControllerFv | :white_check_mark: |
-| setProjectionFix__16ShadowControllerFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b | :white_check_mark: |
+| setProjectionFix__16ShadowControllerFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :white_check_mark: |
 | onCalcCollision__16ShadowControllerFv | :white_check_mark: |
 | offCalcCollision__16ShadowControllerFv | :white_check_mark: |
 | onCalcCollisionOneTime__16ShadowControllerFv | :white_check_mark: |
@@ -932,7 +932,7 @@
 | addShadowController__2MRFP16ShadowController | :x: |
 | requestCalcActorShadowAppear__2MRFP9LiveActor | :x: |
 | requestCalcActorShadow__2MRFP9LiveActor | :x: |
-| __dt__Q22MR36AssignableArray<P16ShadowController>Fv | :x: |
+| __dt__Q22MR36AssignableArray&lt;P16ShadowController&gt;Fv | :x: |
 | __dt__22ShadowControllerHolderFv | :x: |
 
 
@@ -951,7 +951,7 @@
 | __dt__19ShadowSurfaceDrawerFv | :x: |
 | __dt__16ShadowSurfaceBoxFv | :x: |
 | __ct__16ShadowSurfaceBoxFv | :x: |
-| setSize__16ShadowSurfaceBoxFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__16ShadowSurfaceBoxFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw__16ShadowSurfaceBoxCFv | :x: |
 
 
@@ -969,8 +969,8 @@
 | ------------- | ------------- |
 | __ct__21ShadowSurfaceDrawInitFPCc | :x: |
 | initDraw__21ShadowSurfaceDrawInitFv | :x: |
-| __ct__19ShadowSurfaceDrawerFPCc | :x: |
-| __dt__21ShadowSurfaceDrawInitFv | :x: |
+| __ct__19ShadowSurfaceDrawerFPCc | :white_check_mark: |
+| __dt__21ShadowSurfaceDrawInitFv | :white_check_mark: |
 
 
 # ShadowSurfaceOval.o
@@ -979,7 +979,7 @@
 | __ct__17ShadowSurfaceOvalFv | :x: |
 | setColor__17ShadowSurfaceOvalF6Color8 | :x: |
 | setAlpha__17ShadowSurfaceOvalFUc | :x: |
-| setSize__17ShadowSurfaceOvalFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__17ShadowSurfaceOvalFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw__17ShadowSurfaceOvalCFv | :x: |
 | __dt__17ShadowSurfaceOvalFv | :x: |
 
@@ -988,7 +988,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15ShadowVolumeBoxFv | :x: |
-| setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | loadModelDrawMtx__15ShadowVolumeBoxCFv | :x: |
 | makeVertexBuffer__15ShadowVolumeBoxCFv | :x: |
 | drawShape__15ShadowVolumeBoxCFv | :white_check_mark: |
@@ -1014,8 +1014,8 @@
 | setEndDrawShepeOffset__18ShadowVolumeDrawerFf | :white_check_mark: |
 | onCutDropShadow__18ShadowVolumeDrawerFv | :white_check_mark: |
 | offCutDropShadow__18ShadowVolumeDrawerFv | :white_check_mark: |
-| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>PC16ShadowController | :x: |
+| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3&lt;f&gt;PC16ShadowController | :x: |
 | calcBaseDropLength__18ShadowVolumeDrawerCFv | :white_check_mark: |
 | calcBaseDropLength__18ShadowVolumeDrawerCFPC16ShadowController | :x: |
 | loadModelDrawMtx__18ShadowVolumeDrawerCFv | :white_check_mark: |
@@ -1036,22 +1036,22 @@
 | initJointDrawMtxResister__21ShadowVolumeFlatModelFv | :x: |
 | draw__21ShadowVolumeFlatModelCFv | :x: |
 | loadModelDrawMtx__21ShadowVolumeFlatModelCFv | :x: |
-| calcRootJoint__21ShadowVolumeFlatModelCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
-| calcDropJoint__21ShadowVolumeFlatModelCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
+| calcRootJoint__21ShadowVolumeFlatModelCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcDropJoint__21ShadowVolumeFlatModelCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__21ShadowVolumeFlatModelFv | :x: |
 
 
 # ShadowVolumeLine.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16ShadowVolumeLineFv | :x: |
-| loadModelDrawMtx__16ShadowVolumeLineCFv | :x: |
+| __ct__16ShadowVolumeLineFv | :white_check_mark: |
+| loadModelDrawMtx__16ShadowVolumeLineCFv | :white_check_mark: |
 | drawShape__16ShadowVolumeLineCFv | :x: |
-| setFromShadowController__16ShadowVolumeLineFPC16ShadowController | :x: |
-| setToShadowController__16ShadowVolumeLineFPC16ShadowController | :x: |
-| setFromWidth__16ShadowVolumeLineFf | :x: |
-| setToWidth__16ShadowVolumeLineFf | :x: |
-| __dt__16ShadowVolumeLineFv | :x: |
+| setFromShadowController__16ShadowVolumeLineFPC16ShadowController | :white_check_mark: |
+| setToShadowController__16ShadowVolumeLineFPC16ShadowController | :white_check_mark: |
+| setFromWidth__16ShadowVolumeLineFf | :white_check_mark: |
+| setToWidth__16ShadowVolumeLineFf | :white_check_mark: |
+| __dt__16ShadowVolumeLineFv | :white_check_mark: |
 
 
 # ShadowVolumeModel.o
@@ -1069,25 +1069,25 @@
 | __ct__16ShadowVolumeOvalFv | :white_check_mark: |
 | isDraw__16ShadowVolumeOvalCFv | :white_check_mark: |
 | loadModelDrawMtx__16ShadowVolumeOvalCFv | :x: |
-| setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 
 
 # ShadowVolumeOvalPole.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__20ShadowVolumeOvalPoleFv | :x: |
-| __ct__20ShadowVolumeOvalPoleFv | :x: |
+| __dt__20ShadowVolumeOvalPoleFv | :white_check_mark: |
+| __ct__20ShadowVolumeOvalPoleFv | :white_check_mark: |
 | loadModelDrawMtx__20ShadowVolumeOvalPoleCFv | :x: |
-| setSize__20ShadowVolumeOvalPoleFRCQ29JGeometry8TVec3<f> | :x: |
+| setSize__20ShadowVolumeOvalPoleFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 
 
 # ShadowVolumeSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18ShadowVolumeSphereFv | :x: |
-| __ct__18ShadowVolumeSphereFv | :x: |
-| setRadius__18ShadowVolumeSphereFf | :x: |
-| isDraw__18ShadowVolumeSphereCFv | :x: |
+| __dt__18ShadowVolumeSphereFv | :white_check_mark: |
+| __ct__18ShadowVolumeSphereFv | :white_check_mark: |
+| setRadius__18ShadowVolumeSphereFf | :white_check_mark: |
+| isDraw__18ShadowVolumeSphereCFv | :white_check_mark: |
 | loadModelDrawMtx__18ShadowVolumeSphereCFv | :x: |
 
 
@@ -1096,8 +1096,8 @@
 | ------------- | ------------- |
 | __ct__20SimpleJ3DModelDrawerFP7NameObjPCcPCci | :x: |
 | initDraw__20SimpleJ3DModelDrawerCFv | :x: |
-| __cl__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer,M20SimpleJ3DModelDrawerFPCvPCv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<PC20SimpleJ3DModelDrawer,M20SimpleJ3DModelDrawerFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR69FunctorV0M&lt;PC20SimpleJ3DModelDrawer,M20SimpleJ3DModelDrawerFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;PC20SimpleJ3DModelDrawer,M20SimpleJ3DModelDrawerFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__20SimpleJ3DModelDrawerFv | :x: |
 
 

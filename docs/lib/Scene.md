@@ -95,8 +95,8 @@
 | execute__Q212NrvGameScene15GameSceneActionCFP5Spine | :x: |
 | execute__Q212NrvGameScene24GameSceneScenarioStarterCFP5Spine | :x: |
 | execute__Q212NrvGameScene30GameSceneScenarioOpeningCameraCFP5Spine | :x: |
-| __cl__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR69FunctorV0M&lt;P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v&gt;CFP7JKRHeap | :x: |
 
 
 # GameSceneFunction.o
@@ -211,7 +211,7 @@
 | ------------- | ------------- |
 | __ct__22MultiSceneEffectKeeperFPCcP12ModelManageriPCc | :x: |
 | init__22MultiSceneEffectKeeperFPC15MultiSceneActorPC12EffectSystem | :x: |
-| add__22MultiSceneEffectKeeperFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCc | :x: |
+| add__22MultiSceneEffectKeeperFPCcPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | add__22MultiSceneEffectKeeperFPCcPA4_fPCc | :x: |
 | create__22MultiSceneEffectKeeperFPCcP12EffectSystem | :x: |
 | deleteAll__22MultiSceneEffectKeeperFv | :x: |
@@ -301,7 +301,7 @@
 | __ct__Q220PlacementInfoOrdered5IndexFv | :x: |
 | __dt__Q220PlacementInfoOrdered5IndexFv | :x: |
 | __ct__Q220PlacementInfoOrdered9SameIdSetFv | :x: |
-| __dt__Q22MR43BothDirList<Q220PlacementInfoOrdered5Index>Fv | :x: |
+| __dt__Q22MR43BothDirList&lt;Q220PlacementInfoOrdered5Index&gt;Fv | :x: |
 | __dt__Q220PlacementInfoOrdered9SameIdSetFv | :x: |
 | attach__20PlacementInfoOrderedFPC8JMapInfoP20PlacementInfoOrdered | :x: |
 
@@ -427,9 +427,9 @@
 # SceneFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createScene<9GameScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
-| createScene<17IntermissionScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
-| createScene<9LogoScene>__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
+| createScene&lt;9GameScene&gt;__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
+| createScene&lt;17IntermissionScene&gt;__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
+| createScene&lt;9LogoScene&gt;__26@unnamed@SceneFactory_cpp@Fv_P5Scene | :x: |
 | createScene__2MRFPCc | :x: |
 
 
@@ -524,13 +524,13 @@
 # StageDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| findElement<l>__8JMapInfoCFPCcli_12JMapInfoIter | :x: |
+| findElement&lt;l&gt;__8JMapInfoCFPCcli_12JMapInfoIter | :x: |
 | end__8JMapInfoCFv | :x: |
-| findElement<PCc>__8JMapInfoCFPCcPCci_12JMapInfoIter | :x: |
+| findElement&lt;PCc&gt;__8JMapInfoCFPCcPCci_12JMapInfoIter | :x: |
 | __eq__12JMapInfoIterCFRC12JMapInfoIter | :x: |
 | isPrioPlacementObjInfo__29@unnamed@StageDataHolder_cpp@FPCc | :x: |
-| calcPlacementInfoNum__29@unnamed@StageDataHolder_cpp@FPiPiRCQ22MR26AssignableArray<8JMapInfo> | :x: |
-| attachJmpInfoToPlacementInfoOrdered__29@unnamed@StageDataHolder_cpp@FP20PlacementInfoOrderedP20PlacementInfoOrderedP20PlacementInfoOrderedRCQ22MR26AssignableArray<8JMapInfo> | :x: |
+| calcPlacementInfoNum__29@unnamed@StageDataHolder_cpp@FPiPiRCQ22MR26AssignableArray&lt;8JMapInfo&gt; | :x: |
+| attachJmpInfoToPlacementInfoOrdered__29@unnamed@StageDataHolder_cpp@FP20PlacementInfoOrderedP20PlacementInfoOrderedP20PlacementInfoOrderedRCQ22MR26AssignableArray&lt;8JMapInfo&gt; | :x: |
 | __ct__15StageDataHolderFPCcib | :x: |
 | init__15StageDataHolderFRC12JMapInfoIter | :white_check_mark: |
 | initAfterScenarioSelected__15StageDataHolderFv | :white_check_mark: |
@@ -558,22 +558,22 @@
 | initPlacementMario__15StageDataHolderFv | :x: |
 | makeMarioJMapInfoIter__15StageDataHolderCFRC10JMapIdInfo | :x: |
 | makeCurrentMarioJMapInfoIter__15StageDataHolderCFv | :x: |
-| initJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCc | :x: |
-| initAllLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCc | :x: |
-| initAllLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCcPCc | :x: |
-| initLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCcPCcUl | :x: |
+| initJmpInfo__15StageDataHolderFPQ22MR26AssignableArray&lt;8JMapInfo&gt;PCc | :x: |
+| initAllLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray&lt;8JMapInfo&gt;PCc | :x: |
+| initAllLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray&lt;8JMapInfo&gt;PCcPCc | :x: |
+| initLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray&lt;8JMapInfo&gt;PCcPCcUl | :x: |
 | attachJmpInfoToArray__15StageDataHolderFP8JMapInfoPCc | :x: |
 | initTableData__15StageDataHolderFv | :white_check_mark: |
 | initPlacementInfoOrderedCommon__15StageDataHolderFv | :x: |
 | initPlacementInfoOrderedScenario__15StageDataHolderFv | :x: |
-| findJmpInfoFromArray__15StageDataHolderCFPCQ22MR26AssignableArray<8JMapInfo>PCc | :white_check_mark: |
+| findJmpInfoFromArray__15StageDataHolderCFPCQ22MR26AssignableArray&lt;8JMapInfo&gt;PCc | :white_check_mark: |
 | getStartJMapInfoIterFromStartDataIndex__15StageDataHolderCFi | :x: |
 | calcDataAddress__15StageDataHolderFv | :white_check_mark: |
-| updateDataAddress__15StageDataHolderFPCQ22MR26AssignableArray<8JMapInfo> | :white_check_mark: |
-| createLocalStageDataHolder__15StageDataHolderFRCQ22MR26AssignableArray<8JMapInfo>b | :x: |
+| updateDataAddress__15StageDataHolderFPCQ22MR26AssignableArray&lt;8JMapInfo&gt; | :white_check_mark: |
+| createLocalStageDataHolder__15StageDataHolderFRCQ22MR26AssignableArray&lt;8JMapInfo&gt;b | :x: |
 | calcPlacementMtx__15StageDataHolderFRC12JMapInfoIter | :white_check_mark: |
 | getStageDataHolder__2MRFv | :x: |
-| __dt__Q22MR26AssignableArray<8JMapInfo>Fv | :white_check_mark: |
+| __dt__Q22MR26AssignableArray&lt;8JMapInfo&gt;Fv | :white_check_mark: |
 | __dt__15StageDataHolderFv | :white_check_mark: |
 
 

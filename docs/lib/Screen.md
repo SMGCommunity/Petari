@@ -534,9 +534,9 @@
 # CounterLayoutAppearer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2<f> | :x: |
+| __ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | update__21CounterLayoutAppearerFv | :x: |
-| appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2<f> | :x: |
+| appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | disappear__21CounterLayoutAppearerFv | :x: |
 | isAppeared__21CounterLayoutAppearerCFv | :x: |
 | isDisappeared__21CounterLayoutAppearerCFv | :x: |
@@ -603,40 +603,40 @@
 | setGXColor__32@unnamed@CustomTagProcessor_cpp@F11_GXColorS10 | :x: |
 | clampU8__32@unnamed@CustomTagProcessor_cpp@Fl | :x: |
 | getTextColor__32@unnamed@CustomTagProcessor_cpp@Fl | :x: |
-| setTextColor__32@unnamed@CustomTagProcessor_cpp@FPQ34nw4r2ut17TextWriterBase<w>l | :x: |
+| setTextColor__32@unnamed@CustomTagProcessor_cpp@FPQ34nw4r2ut17TextWriterBase&lt;w&gt;l | :x: |
 | __ct__18CustomTagAlphaCtrlFv | :x: |
 | init__18CustomTagAlphaCtrlFUlffll | :x: |
 | alpha__18CustomTagAlphaCtrlCFv | :x: |
 | update__18CustomTagAlphaCtrlFv | :x: |
 | isEnd__18CustomTagAlphaCtrlCFv | :x: |
 | findGroupFunctionInfo__Q218CustomTagProcessor4ImplFi | :x: |
-| PrintImpl__Q34nw4r2ut17TextWriterBase<w>FPCwi | :x: |
+| PrintImpl__Q34nw4r2ut17TextWriterBase&lt;w&gt;FPCwi | :x: |
 | __ct__18CustomTagProcessorFPQ34nw4r3lyt7TextBox | :x: |
 | __dt__26MessageTagSkipTagProcessorFv | :x: |
-| CalcRect__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext<w> | :x: |
-| Process__18CustomTagProcessorFUsPQ34nw4r2ut15PrintContext<w> | :x: |
+| CalcRect__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| Process__18CustomTagProcessorFUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
 | setArgNumber__18CustomTagProcessorFll | :x: |
 | setArgString__18CustomTagProcessorFPCwl | :x: |
 | initAlpha__18CustomTagProcessorFffll | :x: |
 | reset__18CustomTagProcessorFPCw | :x: |
 | getReplaceTag__18CustomTagProcessorCFPCwlll | :x: |
-| isIgnoreTag__18CustomTagProcessorCFUsPQ34nw4r2ut15PrintContext<w> | :x: |
-| writeString__18CustomTagProcessorFPQ34nw4r2ut4RectPCwPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeDisplayGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeSoundGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exePictureGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeFontSizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeSystemGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeLocalizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeNumberGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeStringGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeSystemGroupColor__18CustomTagProcessorFPQ34nw4r2ut4RectiPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeSystemGroupRuby__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeDisplayGroupWait__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeDisplayGroupOffset__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeDisplayGroupCenter__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exeFontGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
-| exePatchimuGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w> | :x: |
+| isIgnoreTag__18CustomTagProcessorCFUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| writeString__18CustomTagProcessorFPQ34nw4r2ut4RectPCwPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeDisplayGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeSoundGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exePictureGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeFontSizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeSystemGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeLocalizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeNumberGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeStringGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeSystemGroupColor__18CustomTagProcessorFPQ34nw4r2ut4RectiPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeSystemGroupRuby__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeDisplayGroupWait__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeDisplayGroupOffset__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeDisplayGroupCenter__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exeFontGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| exePatchimuGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
 | __dt__18CustomTagProcessorFv | :x: |
 | __sinit_\CustomTagProcessor_cpp | :x: |
 | GetTextColor__Q34nw4r2ut10CharWriterCFv | :x: |
@@ -648,7 +648,7 @@
 | MoveCursorX__Q34nw4r2ut10CharWriterFf | :x: |
 | MoveCursorY__Q34nw4r2ut10CharWriterFf | :x: |
 | SetCursorY__Q34nw4r2ut10CharWriterFf | :x: |
-| __ct__Q34nw4r2ut17TextWriterBase<w>FRCQ34nw4r2ut17TextWriterBase<w> | :x: |
+| __ct__Q34nw4r2ut17TextWriterBase&lt;w&gt;FRCQ34nw4r2ut17TextWriterBase&lt;w&gt; | :x: |
 | SetFont__Q34nw4r2ut10CharWriterFRCQ34nw4r2ut4Font | :x: |
 | ResetColorMapping__Q34nw4r2ut10CharWriterFv | :x: |
 | Set__Q34nw4r2ut14CharStrmReaderFPCw | :x: |
@@ -656,8 +656,8 @@
 | GetCurrentPos__Q34nw4r2ut14CharStrmReaderCFv | :x: |
 | __ct__Q34nw4r2ut4RectFv | :x: |
 | SetHeight__Q34nw4r2ut4RectFf | :x: |
-| GetLineSpace__Q34nw4r2ut17TextWriterBase<w>CFv | :x: |
-| SetCharSpace__Q34nw4r2ut17TextWriterBase<w>Ff | :x: |
+| GetLineSpace__Q34nw4r2ut17TextWriterBase&lt;w&gt;CFv | :x: |
+| SetCharSpace__Q34nw4r2ut17TextWriterBase&lt;w&gt;Ff | :x: |
 
 
 # DepthOfFieldBlur.o
@@ -909,10 +909,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__9GalaxyMapFv | :x: |
-| __dt__Q22MR48Vector<Q22MR33AssignableArray<P13GalaxyMapIcon>>Fv | :x: |
-| __dt__Q22MR53Vector<Q22MR38AssignableArray<P18GalaxyMapCometIcon>>Fv | :x: |
-| __dt__Q22MR52Vector<Q22MR37AssignableArray<P17GalaxyMapDomeIcon>>Fv | :x: |
-| __dt__Q22MR52Vector<Q22MR37AssignableArray<P17GalaxyMapTicoIcon>>Fv | :x: |
+| __dt__Q22MR48Vector&lt;Q22MR33AssignableArray&lt;P13GalaxyMapIcon&gt;&gt;Fv | :x: |
+| __dt__Q22MR53Vector&lt;Q22MR38AssignableArray&lt;P18GalaxyMapCometIcon&gt;&gt;Fv | :x: |
+| __dt__Q22MR52Vector&lt;Q22MR37AssignableArray&lt;P17GalaxyMapDomeIcon&gt;&gt;Fv | :x: |
+| __dt__Q22MR52Vector&lt;Q22MR37AssignableArray&lt;P17GalaxyMapTicoIcon&gt;&gt;Fv | :x: |
 | init__9GalaxyMapFRC12JMapInfoIter | :x: |
 | appear__9GalaxyMapFv | :x: |
 | kill__9GalaxyMapFv | :x: |
@@ -963,18 +963,18 @@
 | execute__Q223@unnamed@GalaxyMap_cpp@17GalaxyMapFocusOutCFP5Spine | :x: |
 | execute__Q223@unnamed@GalaxyMap_cpp@16GalaxyMapFocusInCFP5Spine | :x: |
 | execute__Q223@unnamed@GalaxyMap_cpp@13GalaxyMapIdleCFP5Spine | :x: |
-| for_each<PP17GalaxyMapTicoIcon,Q23std26mem_fun_t<v,11LayoutActor>>__3stdFPP17GalaxyMapTicoIconPP17GalaxyMapTicoIconQ23std26mem_fun_t<v,11LayoutActor>_Q23std26mem_fun_t<v,11LayoutActor> | :x: |
-| for_each<PP18GalaxyMapCometIcon,Q23std26mem_fun_t<v,11LayoutActor>>__3stdFPP18GalaxyMapCometIconPP18GalaxyMapCometIconQ23std26mem_fun_t<v,11LayoutActor>_Q23std26mem_fun_t<v,11LayoutActor> | :x: |
-| for_each<PP13GalaxyMapIcon,Q23std26mem_fun_t<v,11LayoutActor>>__3stdFPP13GalaxyMapIconPP13GalaxyMapIconQ23std26mem_fun_t<v,11LayoutActor>_Q23std26mem_fun_t<v,11LayoutActor> | :x: |
-| for_each<PP17GalaxyMapDomeIcon,Q23std26mem_fun_t<v,11LayoutActor>>__3stdFPP17GalaxyMapDomeIconPP17GalaxyMapDomeIconQ23std26mem_fun_t<v,11LayoutActor>_Q23std26mem_fun_t<v,11LayoutActor> | :x: |
-| for_each<PP17GalaxyMapDomeIcon,Q23std32mem_fun_t<v,17GalaxyMapDomeIcon>>__3stdFPP17GalaxyMapDomeIconPP17GalaxyMapDomeIconQ23std32mem_fun_t<v,17GalaxyMapDomeIcon>_Q23std32mem_fun_t<v,17GalaxyMapDomeIcon> | :x: |
-| for_each<PP17GalaxyMapTicoIcon,Q23std32mem_fun_t<v,17GalaxyMapTicoIcon>>__3stdFPP17GalaxyMapTicoIconPP17GalaxyMapTicoIconQ23std32mem_fun_t<v,17GalaxyMapTicoIcon>_Q23std32mem_fun_t<v,17GalaxyMapTicoIcon> | :x: |
-| for_each<PP13GalaxyMapIcon,Q23std28mem_fun_t<v,13GalaxyMapIcon>>__3stdFPP13GalaxyMapIconPP13GalaxyMapIconQ23std28mem_fun_t<v,13GalaxyMapIcon>_Q23std28mem_fun_t<v,13GalaxyMapIcon> | :x: |
-| bind2nd<Q23std68pointer_to_binary_function<PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v>,Q34nw4r3lyt8DrawInfo>__3stdFRCQ23std68pointer_to_binary_function<PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v>RCQ34nw4r3lyt8DrawInfo_Q23std110binder2nd<Q23std68pointer_to_binary_function<PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v>,RCQ34nw4r3lyt8DrawInfo> | :x: |
-| __dt__Q22MR37AssignableArray<P17GalaxyMapTicoIcon>Fv | :x: |
-| __dt__Q22MR37AssignableArray<P17GalaxyMapDomeIcon>Fv | :x: |
-| __dt__Q22MR38AssignableArray<P18GalaxyMapCometIcon>Fv | :x: |
-| __dt__Q22MR33AssignableArray<P13GalaxyMapIcon>Fv | :x: |
+| for_each&lt;PP17GalaxyMapTicoIcon,Q23std26mem_fun_t&lt;v,11LayoutActor&gt;&gt;__3stdFPP17GalaxyMapTicoIconPP17GalaxyMapTicoIconQ23std26mem_fun_t&lt;v,11LayoutActor&gt;_Q23std26mem_fun_t&lt;v,11LayoutActor&gt; | :x: |
+| for_each&lt;PP18GalaxyMapCometIcon,Q23std26mem_fun_t&lt;v,11LayoutActor&gt;&gt;__3stdFPP18GalaxyMapCometIconPP18GalaxyMapCometIconQ23std26mem_fun_t&lt;v,11LayoutActor&gt;_Q23std26mem_fun_t&lt;v,11LayoutActor&gt; | :x: |
+| for_each&lt;PP13GalaxyMapIcon,Q23std26mem_fun_t&lt;v,11LayoutActor&gt;&gt;__3stdFPP13GalaxyMapIconPP13GalaxyMapIconQ23std26mem_fun_t&lt;v,11LayoutActor&gt;_Q23std26mem_fun_t&lt;v,11LayoutActor&gt; | :x: |
+| for_each&lt;PP17GalaxyMapDomeIcon,Q23std26mem_fun_t&lt;v,11LayoutActor&gt;&gt;__3stdFPP17GalaxyMapDomeIconPP17GalaxyMapDomeIconQ23std26mem_fun_t&lt;v,11LayoutActor&gt;_Q23std26mem_fun_t&lt;v,11LayoutActor&gt; | :x: |
+| for_each&lt;PP17GalaxyMapDomeIcon,Q23std32mem_fun_t&lt;v,17GalaxyMapDomeIcon&gt;&gt;__3stdFPP17GalaxyMapDomeIconPP17GalaxyMapDomeIconQ23std32mem_fun_t&lt;v,17GalaxyMapDomeIcon&gt;_Q23std32mem_fun_t&lt;v,17GalaxyMapDomeIcon&gt; | :x: |
+| for_each&lt;PP17GalaxyMapTicoIcon,Q23std32mem_fun_t&lt;v,17GalaxyMapTicoIcon&gt;&gt;__3stdFPP17GalaxyMapTicoIconPP17GalaxyMapTicoIconQ23std32mem_fun_t&lt;v,17GalaxyMapTicoIcon&gt;_Q23std32mem_fun_t&lt;v,17GalaxyMapTicoIcon&gt; | :x: |
+| for_each&lt;PP13GalaxyMapIcon,Q23std28mem_fun_t&lt;v,13GalaxyMapIcon&gt;&gt;__3stdFPP13GalaxyMapIconPP13GalaxyMapIconQ23std28mem_fun_t&lt;v,13GalaxyMapIcon&gt;_Q23std28mem_fun_t&lt;v,13GalaxyMapIcon&gt; | :x: |
+| bind2nd&lt;Q23std68pointer_to_binary_function&lt;PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v&gt;,Q34nw4r3lyt8DrawInfo&gt;__3stdFRCQ23std68pointer_to_binary_function&lt;PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v&gt;RCQ34nw4r3lyt8DrawInfo_Q23std110binder2nd&lt;Q23std68pointer_to_binary_function&lt;PC11LayoutActor,RCQ34nw4r3lyt8DrawInfo,v&gt;,RCQ34nw4r3lyt8DrawInfo&gt; | :x: |
+| __dt__Q22MR37AssignableArray&lt;P17GalaxyMapTicoIcon&gt;Fv | :x: |
+| __dt__Q22MR37AssignableArray&lt;P17GalaxyMapDomeIcon&gt;Fv | :x: |
+| __dt__Q22MR38AssignableArray&lt;P18GalaxyMapCometIcon&gt;Fv | :x: |
+| __dt__Q22MR33AssignableArray&lt;P13GalaxyMapIcon&gt;Fv | :x: |
 | __dt__9GalaxyMapFv | :x: |
 
 
@@ -1090,8 +1090,8 @@
 | execute__Q233@unnamed@GalaxyMapController_cpp@32GalaxyMapControllerFadeinModeMapCFP5Spine | :x: |
 | execute__Q233@unnamed@GalaxyMapController_cpp@31GalaxyMapControllerReadyModeMapCFP5Spine | :x: |
 | setColor__8WipeFadeF8_GXColor | :x: |
-| __cl__Q22MR65FunctorV0M<P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19GalaxyMapControllerFv | :x: |
 
 
@@ -1285,7 +1285,7 @@
 | showNew__15GalaxyNamePlateFb | :x: |
 | showOpen__15GalaxyNamePlateFb | :x: |
 | show__15GalaxyNamePlateFPCwb | :x: |
-| setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3<f> | :x: |
+| setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setShowBalloonNozzle__15GalaxyNamePlateFb | :x: |
 | control__15GalaxyNamePlateFv | :x: |
 | show__15GalaxyNamePlateFPCwlbb | :x: |
@@ -1310,10 +1310,10 @@
 | draw__21GalaxyNamePlateDrawerCFv | :x: |
 | registerPlate__21GalaxyNamePlateDrawerFPC11LayoutActor | :x: |
 | registerToGalaxyNamePlateDrawer__2MRFPC11LayoutActor | :x: |
-| sort<PPC25GalaxyNamePlatePrioritied,RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt>__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
-| swap<PC25GalaxyNamePlatePrioritied>__3stdFRPC25GalaxyNamePlatePrioritiedRPC25GalaxyNamePlatePrioritied_v | :x: |
-| __sort132<RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt,PPC25GalaxyNamePlatePrioritied>__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
-| __selection_sort<RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt,PPC25GalaxyNamePlatePrioritied>__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
+| sort&lt;PPC25GalaxyNamePlatePrioritied,RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt&gt;__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
+| swap&lt;PC25GalaxyNamePlatePrioritied&gt;__3stdFRPC25GalaxyNamePlatePrioritiedRPC25GalaxyNamePlatePrioritied_v | :x: |
+| __sort132&lt;RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt,PPC25GalaxyNamePlatePrioritied&gt;__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
+| __selection_sort&lt;RQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt,PPC25GalaxyNamePlatePrioritied&gt;__3stdFPPC25GalaxyNamePlatePrioritiedPPC25GalaxyNamePlatePrioritiedRQ235@unnamed@GalaxyNamePlateDrawer_cpp@15PlatePriorityLt_v | :x: |
 | __dt__21GalaxyNamePlateDrawerFv | :x: |
 
 
@@ -1566,9 +1566,9 @@
 | sendTextureVertex__20ImageEffectLocalUtilFll | :x: |
 | blurTexture__20ImageEffectLocalUtilFP10JUTTexturellUlff | :x: |
 | connectToSceneNormalBloom__2MRFP11BloomEffect | :x: |
-| Functor<11BloomEffect>__2MRFPC11BloomEffectM11BloomEffectFPCvPCv_v_Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11BloomEffect&gt;__2MRFPC11BloomEffectM11BloomEffectFPCvPCv_v_Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 
 
 # ImageEffectResource.o
@@ -1691,7 +1691,7 @@
 | calc__11IsbnManagerFb | :x: |
 | draw__11IsbnManagerFv | :x: |
 | reset__11IsbnManagerFv | :x: |
-| DynamicCast<PQ34nw4r3lyt7TextBox,Q34nw4r3lyt4Pane>__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7TextBox | :x: |
+| DynamicCast&lt;PQ34nw4r3lyt7TextBox,Q34nw4r3lyt4Pane&gt;__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7TextBox | :x: |
 
 
 # LayoutActor.o
@@ -1707,7 +1707,7 @@
 | isNerve__11LayoutActorCFPC5Nerve | :x: |
 | getNerveStep__11LayoutActorCFv | :x: |
 | getTrans__11LayoutActorCFv | :x: |
-| setTrans__11LayoutActorFRCQ29JGeometry8TVec2<f> | :x: |
+| setTrans__11LayoutActorFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | getLayoutManager__11LayoutActorCFv | :x: |
 | createPaneMtxRef__11LayoutActorFPCc | :x: |
 | getPaneMtxRef__11LayoutActorFPCc | :x: |
@@ -1732,9 +1732,9 @@
 | getPaneUserData__14LayoutCoreUtilFPCQ34nw4r3lyt4PanePc | :x: |
 | setTextBoxMessage__14LayoutCoreUtilFPQ34nw4r3lyt7TextBoxPCw | :x: |
 | initTextBoxPane__14LayoutCoreUtilFPQ34nw4r3lyt7TextBoxPCcUl | :x: |
-| convertScreenPosToLayoutPos__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
-| convertLayoutPosToScreenPos__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
-| convertPaneLocalPosToScreenPos__2MRFPQ29JGeometry8TVec2<f>PCQ34nw4r3lyt4PaneRCQ29JGeometry8TVec2<f> | :x: |
+| convertScreenPosToLayoutPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| convertLayoutPosToScreenPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| convertPaneLocalPosToScreenPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;PCQ34nw4r3lyt4PaneRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # LayoutGroupCtrl.o
@@ -1745,24 +1745,24 @@
 | calcAnim__15LayoutGroupCtrlFv | :x: |
 | getPaneNum__15LayoutGroupCtrlCFv | :x: |
 | getPane__15LayoutGroupCtrlCFUl | :x: |
-| GetBeginIter__Q34nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>Fv | :x: |
-| __rf__Q44nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>8IteratorCFv | :x: |
-| __pp__Q44nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>8IteratorFi | :x: |
-| GetEndIter__Q34nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>Fv | :x: |
-| __ne__Q24nw4r2utFQ44nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>8IteratorQ44nw4r2ut39LinkList<Q44nw4r3lyt6detail8PaneLink,0>8Iterator | :x: |
+| GetBeginIter__Q34nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;Fv | :x: |
+| __rf__Q44nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;8IteratorCFv | :x: |
+| __pp__Q44nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;8IteratorFi | :x: |
+| GetEndIter__Q34nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;Fv | :x: |
+| __ne__Q24nw4r2utFQ44nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;8IteratorQ44nw4r2ut39LinkList&lt;Q44nw4r3lyt6detail8PaneLink,0&gt;8Iterator | :x: |
 | isStop__15LayoutAnmPlayerCFv | :x: |
 
 
 # LayoutManager.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ml__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv | :x: |
-| __pp__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorFi | :x: |
-| GetBeginIter__Q34nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>Fv | :x: |
-| __rf__Q44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorCFv | :x: |
-| __pp__Q44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorFi | :x: |
-| GetEndIter__Q34nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>Fv | :x: |
-| __ne__Q24nw4r2utFQ44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorQ44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8Iterator | :x: |
+| __ml__Q44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorCFv | :x: |
+| __pp__Q44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorFi | :x: |
+| GetBeginIter__Q34nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;Fv | :x: |
+| __rf__Q44nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;8IteratorCFv | :x: |
+| __pp__Q44nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;8IteratorFi | :x: |
+| GetEndIter__Q34nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;Fv | :x: |
+| __ne__Q24nw4r2utFQ44nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;8IteratorQ44nw4r2ut29LinkList&lt;Q34nw4r3lyt5Group,4&gt;8Iterator | :x: |
 | __ct__13LayoutManagerFPCcbUlUl | :x: |
 | movement__13LayoutManagerFv | :x: |
 | calcAnim__13LayoutManagerFv | :x: |
@@ -1774,13 +1774,13 @@
 | getIndexOfPane__13LayoutManagerCFPCc | :x: |
 | isExistPaneCtrl__13LayoutManagerCFPCc | :x: |
 | addGroupCtrl__13LayoutManagerFP15LayoutGroupCtrl | :x: |
-| isPointing__13LayoutManagerCFPCQ34nw4r3lyt4PaneRCQ29JGeometry8TVec2<f> | :x: |
+| isPointing__13LayoutManagerCFPCQ34nw4r3lyt4PaneRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createAndAddGroupCtrl__13LayoutManagerFPCcUl | :x: |
 | getIndexOfGroupCtrl__13LayoutManagerCFPCc | :x: |
 | createPaneMtxRef__13LayoutManagerFPCc | :x: |
 | getPaneMtxRef__13LayoutManagerCFPCc | :x: |
 | isExistPaneMtxRef__13LayoutManagerCFPCc | :x: |
-| isPointing__13LayoutManagerCFPCcRCQ29JGeometry8TVec2<f> | :x: |
+| isPointing__13LayoutManagerCFPCcRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | getAnimTransform__13LayoutManagerCFPCc | :x: |
 | bindPaneCtrlAnim__13LayoutManagerFP14LayoutPaneCtrlPQ34nw4r3lyt13AnimTransform | :x: |
 | bindPaneCtrlAnimSub__13LayoutManagerFRUlPQ34nw4r3lyt13AnimTransform | :x: |
@@ -1799,12 +1799,12 @@
 | findPaneByName__13LayoutManagerCFPCc | :x: |
 | replaceIndDummyTexture__13LayoutManagerFv | :x: |
 | removeUnnecessaryPanes__13LayoutManagerFPQ34nw4r3lyt4Pane | :x: |
-| __ct__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fv | :x: |
-| __dt__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fv | :x: |
-| isAnythingTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>CFv | :x: |
-| onBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fi | :x: |
-| offBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fi | :x: |
-| isTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>CFi | :x: |
+| __ct__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;Fv | :x: |
+| __dt__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;Fv | :x: |
+| isAnythingTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;CFv | :x: |
+| onBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;Fi | :x: |
+| offBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;Fi | :x: |
+| isTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag&lt;128&gt;CFi | :x: |
 | SetLocationAdjustScale__Q34nw4r3lyt8DrawInfoFRCQ34nw4r4math4VEC2 | :x: |
 | isExistResOther__12LayoutHolderCFPCc | :x: |
 | getResOther__12LayoutHolderCFPCc | :x: |
@@ -1997,7 +1997,7 @@
 # MessageTagSkipTagProcessor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__23MessageEditorMessageTagFPCQ34nw4r2ut15PrintContext<w> | :x: |
+| __ct__23MessageEditorMessageTagFPCQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
 | __ct__23MessageEditorMessageTagFPCw | :x: |
 | getTagLength__23MessageEditorMessageTagCFv | :x: |
 | getSkipLength__23MessageEditorMessageTagCFv | :x: |
@@ -2007,9 +2007,9 @@
 | getParam32__23MessageEditorMessageTagCFi | :x: |
 | getParamPtr__23MessageEditorMessageTagCFi | :x: |
 | __ct__26MessageTagSkipTagProcessorFv | :x: |
-| CalcRect__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext<w> | :x: |
-| Process__26MessageTagSkipTagProcessorFUsPQ34nw4r2ut15PrintContext<w> | :x: |
-| skipTag__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectPQ34nw4r2ut15PrintContext<w>b | :x: |
+| CalcRect__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| Process__26MessageTagSkipTagProcessorFUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| skipTag__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectPQ34nw4r2ut15PrintContext&lt;w&gt;b | :x: |
 
 
 # MeterLayout.o
@@ -2037,8 +2037,8 @@
 | exeBreakMeter__11MeterLayoutFv | :x: |
 | exeZeroMeter__11MeterLayoutFv | :x: |
 | exeZeroMeterBreak__11MeterLayoutFv | :x: |
-| calcMarioHeadPosition__11MeterLayoutCFPQ29JGeometry8TVec2<f> | :x: |
-| calcPowerUpMeterBasePosition__11MeterLayoutCFPQ29JGeometry8TVec2<f> | :x: |
+| calcMarioHeadPosition__11MeterLayoutCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| calcPowerUpMeterBasePosition__11MeterLayoutCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | setAnimBase__11MeterLayoutFv | :x: |
 | setCountAnimFrame__11MeterLayoutFv | :x: |
 | setRecoveryCountAnimFrame__11MeterLayoutFv | :x: |
@@ -2248,7 +2248,7 @@
 | execute__Q231@unnamed@MoviePlayerSimple_cpp@21MoviePlayerSimpleOpenCFP5Spine | :x: |
 | execute__Q231@unnamed@MoviePlayerSimple_cpp@20MoviePlayerSimpleOffCFP5Spine | :x: |
 | @32@__dt__17MoviePlayerSimpleFv | :x: |
-| __ct__Q29JGeometry8TBox2<s>Fssss | :x: |
+| __ct__Q29JGeometry8TBox2&lt;s&gt;Fssss | :x: |
 
 
 # MoviePlayingSequence.o
@@ -2259,7 +2259,7 @@
 | getMovieName__34@unnamed@MoviePlayingSequence_cpp@FPC16MoviePlayingInfo | :x: |
 | getMovieName__20MoviePlayingSequenceFQ220MoviePlayingSequence9MovieType | :x: |
 | __ct__20MoviePlayingSequenceFPCcl | :x: |
-| __dt__Q22MR49Vector<Q22MR34AssignableArray<P14MovieSubtitles>>Fv | :x: |
+| __dt__Q22MR49Vector&lt;Q22MR34AssignableArray&lt;P14MovieSubtitles&gt;&gt;Fv | :x: |
 | appear__20MoviePlayingSequenceFv | :x: |
 | kill__20MoviePlayingSequenceFv | :x: |
 | exePlayWait__20MoviePlayingSequenceFv | :x: |
@@ -2295,8 +2295,8 @@
 | execute__Q223NrvMoviePlayingSequence17HostTypePlayStartCFP5Spine | :x: |
 | execute__Q223NrvMoviePlayingSequence16HostTypePlayWaitCFP5Spine | :x: |
 | execute__Q223NrvMoviePlayingSequence12HostTypeWaitCFP5Spine | :x: |
-| __dt__Q22MR40AssignableArray<P20MoviePlayingSequence>Fv | :x: |
-| __dt__Q22MR34AssignableArray<P14MovieSubtitles>Fv | :x: |
+| __dt__Q22MR40AssignableArray&lt;P20MoviePlayingSequence&gt;Fv | :x: |
+| __dt__Q22MR34AssignableArray&lt;P14MovieSubtitles&gt;Fv | :x: |
 | __dt__20MoviePlayingSequenceFv | :x: |
 | __dt__26MoviePlayingSequenceHolderFv | :x: |
 
@@ -2337,8 +2337,8 @@
 | appear__12MovieStarterFv | :x: |
 | kill__12MovieStarterFv | :x: |
 | control__12MovieStarterFv | :x: |
-| __cl__Q22MR51FunctorV0M<P12MovieStarter,M12MovieStarterFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12MovieStarter,M12MovieStarterFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12MovieStarter,M12MovieStarterFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12MovieStarter,M12MovieStarterFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12MovieStarterFv | :x: |
 
 
@@ -2729,8 +2729,8 @@
 | execute__Q216NrvPowerStarList25PowerStarListNrvDisappearCFP5Spine | :x: |
 | execute__Q216NrvPowerStarList20PowerStarListNrvWaitCFP5Spine | :x: |
 | execute__Q216NrvPowerStarList22PowerStarListNrvAppearCFP5Spine | :x: |
-| __cl__Q22MR53FunctorV0M<P13PowerStarList,M13PowerStarListFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13PowerStarList,M13PowerStarListFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13PowerStarList,M13PowerStarListFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13PowerStarList,M13PowerStarListFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13PowerStarListFv | :x: |
 
 
@@ -2846,7 +2846,7 @@
 | fadeOutText__20ScenarioSelectLayoutFv | :x: |
 | trySelect__20ScenarioSelectLayoutFv | :x: |
 | getSelectedStar__20ScenarioSelectLayoutCFv | :x: |
-| calcWorldPositionFromScreenPos__20ScenarioSelectLayoutCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>f | :x: |
+| calcWorldPositionFromScreenPos__20ScenarioSelectLayoutCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;f | :x: |
 | calcDisplayScenarioNum__20ScenarioSelectLayoutCFPlPl | :x: |
 | appearAllStar__20ScenarioSelectLayoutFllb | :x: |
 | appearStar__20ScenarioSelectLayoutFlli | :x: |
@@ -3190,7 +3190,7 @@
 | execute__Q219NrvStarPieceCounter23StarPieceCounterNrvWaitCFP5Spine | :x: |
 | execute__Q219NrvStarPieceCounter25StarPieceCounterNrvAppearCFP5Spine | :x: |
 | execute__Q219NrvStarPieceCounter23StarPieceCounterNrvHideCFP5Spine | :x: |
-| setAppearOffset__21CounterLayoutAppearerFRCQ29JGeometry8TVec2<f> | :x: |
+| setAppearOffset__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # StarPointerBlur.o
@@ -3203,7 +3203,7 @@
 | hide__15StarPointerBlurFv | :x: |
 | hideAll__15StarPointerBlurFv | :x: |
 | movement__15StarPointerBlurFv | :x: |
-| updatePoint__15StarPointerBlurFRCQ29JGeometry8TVec2<f>bPQ29JGeometry8TVec2<f> | :x: |
+| updatePoint__15StarPointerBlurFRCQ29JGeometry8TVec2&lt;f&gt;bPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | findDrawPointRange__15StarPointerBlurCFPUsPUs | :x: |
 | draw__15StarPointerBlurCFv | :x: |
 | draw2__15StarPointerBlurCFv | :x: |
@@ -3214,14 +3214,14 @@
 # StarPointerCommandStream.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24StarPointerCommandStreamFPCQ29JGeometry8TVec2<f> | :x: |
-| start__24StarPointerCommandStreamFPCQ29JGeometry8TVec3<f>b | :x: |
+| __ct__24StarPointerCommandStreamFPCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| start__24StarPointerCommandStreamFPCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | show__24StarPointerCommandStreamFv | :x: |
 | hide__24StarPointerCommandStreamFv | :x: |
 | clear__24StarPointerCommandStreamFv | :x: |
 | init__24StarPointerCommandStreamFRC12JMapInfoIter | :x: |
 | control__24StarPointerCommandStreamFv | :x: |
-| calcPose__24StarPointerCommandStreamFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
+| calcPose__24StarPointerCommandStreamFRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | exeWait__24StarPointerCommandStreamFv | :x: |
 | exeSignal__24StarPointerCommandStreamFv | :x: |
 | calcLineWidth__24StarPointerCommandStreamCFf | :x: |
@@ -3243,11 +3243,11 @@
 | movement__21StarPointerControllerFPCfPCf | :x: |
 | storeDataFromCallback__21StarPointerControllerFPCfPCf | :x: |
 | storePastPointingData__21StarPointerControllerFv | :x: |
-| calcPastPointingPosOnScreen__21StarPointerControllerCFPQ29JGeometry8TVec2<f>l | :x: |
+| calcPastPointingPosOnScreen__21StarPointerControllerCFPQ29JGeometry8TVec2&lt;f&gt;l | :x: |
 | updateDpdInfo__21StarPointerControllerFv | :x: |
 | updateAdditionalInfo__21StarPointerControllerFv | :x: |
-| calcViewDistanceZ__21StarPointerControllerFRCQ29JGeometry8TVec3<f>PA4_f | :x: |
-| sub__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f> | :x: |
+| calcViewDistanceZ__21StarPointerControllerFRCQ29JGeometry8TVec3&lt;f&gt;PA4_f | :x: |
+| sub__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # StarPointerDirector.o
@@ -3269,9 +3269,9 @@
 | __ct__16StarPointerPeekZFv | :x: |
 | setDrawSyncToken__16StarPointerPeekZFv | :x: |
 | drawSyncCallback__16StarPointerPeekZFUs | :x: |
-| isOnScreenEdge__19StarPointerFunctionFRCQ29JGeometry8TVec2<f>ff | :x: |
+| isOnScreenEdge__19StarPointerFunctionFRCQ29JGeometry8TVec2&lt;f&gt;ff | :x: |
 | isOnScreenEdge__19StarPointerFunctionFl | :x: |
-| forceInsideScreenEdge__19StarPointerFunctionFPQ29JGeometry8TVec2<f> | :x: |
+| forceInsideScreenEdge__19StarPointerFunctionFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | getStarPointerDirector__19StarPointerFunctionFv | :x: |
 | getNumStarPointer__19StarPointerFunctionFv | :x: |
 | getPastPointNum__19StarPointerFunctionFl | :x: |
@@ -3333,7 +3333,7 @@
 | initWithPort__17StarPointerLayoutFl | :x: |
 | appear__17StarPointerLayoutFv | :x: |
 | kill__17StarPointerLayoutFv | :x: |
-| startCommandStream__17StarPointerLayoutFPC9LiveActorPCQ29JGeometry8TVec3<f>b | :x: |
+| startCommandStream__17StarPointerLayoutFPC9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | endCommandStream__17StarPointerLayoutFPC9LiveActor | :x: |
 | forceEndCommandStream__17StarPointerLayoutFv | :x: |
 | isCommandStream__17StarPointerLayoutFPC9LiveActor | :x: |
@@ -3355,7 +3355,7 @@
 | control__17StarPointerLayoutFv | :x: |
 | setPosition__17StarPointerLayoutFv | :x: |
 | rotateTest__17StarPointerLayoutFv | :x: |
-| calcPoseNozzle__17StarPointerLayoutFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
+| calcPoseNozzle__17StarPointerLayoutFRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | changeLayout__17StarPointerLayoutF15StarPointerKind | :x: |
 | isChanceToRumble__17StarPointerLayoutCFv | :x: |
 | hideBlur__17StarPointerLayoutFv | :x: |
@@ -3408,19 +3408,19 @@
 # StarPointerTarget.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17StarPointerTargetFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f> | :x: |
-| calcScreenPosition__17StarPointerTargetCFPQ29JGeometry8TVec2<f> | :x: |
-| isPointing__17StarPointerTargetCFRCQ29JGeometry8TVec2<f>ff | :x: |
-| calcPosition__17StarPointerTargetCFPQ29JGeometry8TVec3<f> | :x: |
+| __ct__17StarPointerTargetFfPCQ29JGeometry8TVec3&lt;f&gt;PA4_fQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcScreenPosition__17StarPointerTargetCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| isPointing__17StarPointerTargetCFRCQ29JGeometry8TVec2&lt;f&gt;ff | :x: |
+| calcPosition__17StarPointerTargetCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcRadius2d__17StarPointerTargetCFfff | :x: |
-| calcScreenPositionFromView__17StarPointerTargetCFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcScreenPositionFromView__17StarPointerTargetCFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__23StarPointerLayoutTargetFP11LayoutActorPCcPCc | :x: |
-| isPointing__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2<f> | :x: |
-| isPointingCircle__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2<f> | :x: |
-| isPointingRectangle__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2<f> | :x: |
-| calcBasePos__23StarPointerLayoutTargetCFPQ29JGeometry8TVec2<f> | :x: |
+| isPointing__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| isPointingCircle__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| isPointingRectangle__23StarPointerLayoutTargetCFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| calcBasePos__23StarPointerLayoutTargetCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | __ct__29StarPointerLayoutTargetKeeperFi | :x: |
-| addTargetCircle__29StarPointerLayoutTargetKeeperFP11LayoutActorPCcfRCQ29JGeometry8TVec2<f>PCc | :x: |
+| addTargetCircle__29StarPointerLayoutTargetKeeperFP11LayoutActorPCcfRCQ29JGeometry8TVec2&lt;f&gt;PCc | :x: |
 | getTarget__29StarPointerLayoutTargetKeeperCFPCc | :x: |
 | registerTarget__29StarPointerLayoutTargetKeeperFP23StarPointerLayoutTarget | :x: |
 
@@ -3460,9 +3460,9 @@
 | exeZeroMeterBreak__16SuddenDeathMeterFv | :x: |
 | initCount__16SuddenDeathMeterFl | :x: |
 | setCount__16SuddenDeathMeterFl | :x: |
-| calcMarioHeadPosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2<f> | :x: |
-| calcPowerUpMeterBasePosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2<f> | :x: |
-| setPowerUpMeterPosition__16SuddenDeathMeterFRCQ29JGeometry8TVec2<f> | :x: |
+| calcMarioHeadPosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| calcPowerUpMeterBasePosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| setPowerUpMeterPosition__16SuddenDeathMeterFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | setCountAnimFrame__16SuddenDeathMeterFv | :x: |
 | setRecoveryCountAnimFrame__16SuddenDeathMeterFv | :x: |
 | __dt__16SuddenDeathMeterFv | :x: |
@@ -3577,7 +3577,7 @@
 | movement__16SystemWipeHolderFv | :x: |
 | calcAnim__16SystemWipeHolderFv | :x: |
 | draw__16SystemWipeHolderCFv | :x: |
-| setWipeRingCenter__16SystemWipeHolderFRCQ29JGeometry8TVec3<f> | :x: |
+| setWipeRingCenter__16SystemWipeHolderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | startGameScreenCapture__16SystemWipeHolderFv | :x: |
 | drawGameScreenCapture__16SystemWipeHolderCFv | :x: |
 | updateWipe__16SystemWipeHolderFPCc | :x: |
@@ -3848,9 +3848,9 @@
 | isClose__8WipeRingCFv | :x: |
 | isWipeIn__8WipeRingCFv | :x: |
 | isWipeOut__8WipeRingCFv | :x: |
-| setCenterPos__8WipeRingFRCQ29JGeometry8TVec3<f> | :x: |
+| setCenterPos__8WipeRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | startAnim__8WipeRingFPCc | :x: |
-| getMarioCenterPos__8WipeRingFPQ29JGeometry8TVec3<f> | :x: |
+| getMarioCenterPos__8WipeRingFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcRadius__8WipeRingCFv | :x: |
 | calcMaxRadius__8WipeRingCFv | :x: |
 | updatePlayerPos__8WipeRingFv | :x: |
@@ -3864,7 +3864,7 @@
 | execute__Q222@unnamed@WipeRing_cpp@15WipeRingNrvOpenCFP5Spine | :x: |
 | execute__Q222@unnamed@WipeRing_cpp@17WipeRingNrvWipeInCFP5Spine | :x: |
 | execute__Q222@unnamed@WipeRing_cpp@16WipeRingNrvCloseCFP5Spine | :x: |
-| distance__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
+| distance__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # YesNoController.o

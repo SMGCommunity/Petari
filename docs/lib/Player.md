@@ -118,7 +118,7 @@
 | init__13FireMarioBallFRC12JMapInfoIter | :x: |
 | appear__13FireMarioBallFv | :x: |
 | kill__13FireMarioBallFv | :x: |
-| appearAndThrow__13FireMarioBallFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| appearAndThrow__13FireMarioBallFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | attackSensor__13FireMarioBallFP9HitSensorP9HitSensor | :x: |
 | attackFire__13FireMarioBallFP9HitSensor | :x: |
 | initSensor__13FireMarioBallFv | :x: |
@@ -139,8 +139,8 @@
 | read__11GhostPacketFPs | :x: |
 | read__11GhostPacketFPPc | :x: |
 | read__11GhostPacketFPSc | :x: |
-| read__11GhostPacketFPQ29JGeometry9TVec3<Sc> | :x: |
-| read__11GhostPacketFPQ29JGeometry8TVec3<s> | :x: |
+| read__11GhostPacketFPQ29JGeometry9TVec3&lt;Sc&gt; | :x: |
+| read__11GhostPacketFPQ29JGeometry8TVec3&lt;s&gt; | :x: |
 
 
 # GhostPlayer.o
@@ -170,8 +170,8 @@
 | draw__11GhostPlayerCFv | :x: |
 | receiveGhostPacket__11GhostPlayerFP11GhostPacket | :x: |
 | getShiftRatio__FSc | :x: |
-| convToFloat__2MRFRQ29JGeometry8TVec3<s>ScPQ29JGeometry8TVec3<f> | :x: |
-| convToFloat__2MRFRQ29JGeometry9TVec3<Sc>ScPQ29JGeometry8TVec3<f> | :x: |
+| convToFloat__2MRFRQ29JGeometry8TVec3&lt;s&gt;ScPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| convToFloat__2MRFRQ29JGeometry9TVec3&lt;Sc&gt;ScPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | convToFloat__2MRFsScPf | :x: |
 | convToFloat__2MRFScScPf | :x: |
 | __dt__11GhostPlayerFv | :x: |
@@ -216,10 +216,10 @@
 | copyAnmMtxBuffer__9J3DModelXFPC9J3DModelX | :x: |
 | viewCalc3__9J3DModelXFUlPA4_f | :x: |
 | viewCalcRef__9J3DModelXFUlP8J3DModel | :x: |
-| viewCalcRefPos__9J3DModelXFUlP8J3DModelRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| viewCalcRefPos__9J3DModelXFUlP8J3DModelRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcNrmMtx2__13J3DMtxBuffer2Fv | :x: |
 | calcDrawMtx2__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBuffer | :x: |
-| calcDrawMtx3__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBufferRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcDrawMtx3__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBufferRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | directDraw__9J3DModelXFP8J3DModel | :x: |
 | drawIn__9J3DModelXFP11J3DMaterialbPA4_fP8J3DModel | :x: |
 | simpleDrawSetup__9J3DModelXFP11J3DMaterial | :x: |
@@ -253,7 +253,7 @@
 | __ct__10MarineSnowFv | :x: |
 | view__10MarineSnowFv | :x: |
 | clear__10MarineSnowFv | :x: |
-| draw__10MarineSnowCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| draw__10MarineSnowCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 
 
 # Mario.o
@@ -266,35 +266,35 @@
 | updateMorphResetTimer__5MarioFv | :x: |
 | doExtraServices__5MarioFv | :x: |
 | isEnableCheckGround__5MarioFv | :x: |
-| setGroundNorm__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| setGroundNorm__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | checkForceGrounding__5MarioFv | :x: |
 | fixHeadFrontVecByGravity__5MarioFv | :x: |
-| createMtxDir__5MarioFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| createMtxDir__5MarioFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isNonFixHeadVec__5MarioCFv | :x: |
 | createDirectionMtx__5MarioFPA4_f | :x: |
-| createCorrectionMtx__5MarioFPA4_fPQ29JGeometry8TVec3<f> | :x: |
-| slopeTiltHead__5MarioFPQ29JGeometry8TVec3<f> | :x: |
+| createCorrectionMtx__5MarioFPA4_fPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| slopeTiltHead__5MarioFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | fixFrontVecByGravity__5MarioFv | :x: |
 | fixFrontVecFromUpSide__5MarioFv | :x: |
 | fixSideVecFromFrontUp__5MarioFv | :x: |
-| setSideVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| setHeadVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| setFrontVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>f | :x: |
-| setFrontVecKeepUpAngle__5MarioFRCQ29JGeometry8TVec3<f>f | :x: |
-| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>Ul | :x: |
-| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| setFrontVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| setHeadAndFrontVecFromRotate__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| forceSetHeadVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| setSideVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setHeadVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setFrontVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| setFrontVecKeepUpAngle__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
+| setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setFrontVecKeepSide__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setHeadAndFrontVecFromRotate__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| forceSetHeadVecKeepSide__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw__5MarioCFv | :x: |
-| addTrans__5MarioFRCQ29JGeometry8TVec3<f>PCc | :x: |
-| setTrans__5MarioFRCQ29JGeometry8TVec3<f>PCc | :x: |
+| addTrans__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
+| setTrans__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | isEnableRush__5MarioCFv | :x: |
 | isInvincible__5MarioCFv | :x: |
 | inputStick__5MarioFv | :x: |
 | isCeiling__5MarioCFv | :x: |
-| setGravityVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| setGravityVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateSoundCode__5MarioFv | :x: |
 | isForceStopRush__5MarioCFv | :x: |
 | getShadowNorm__5MarioCFv | :x: |
@@ -313,21 +313,21 @@
 | __sinit_\Mario_cpp | :x: |
 | getJointTransform__10XanimeCoreFUl | :x: |
 | draw3D__10MarioStateCFv | :x: |
-| isInvalidTriangle__31TriangleFilterDelegator<5Mario>CFPC8Triangle | :x: |
+| isInvalidTriangle__31TriangleFilterDelegator&lt;5Mario&gt;CFPC8Triangle | :x: |
 
 
 # MarioActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __as__8TriangleFRC8Triangle | :x: |
-| getEuler__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
+| getEuler__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__10MarioActorFPCc | :x: |
 | __dt__10MarioActorFv | :x: |
 | init__10MarioActorFRC12JMapInfoIter | :x: |
-| init2__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
+| init2__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | initAfterPlacement__10MarioActorFv | :x: |
 | initAfterOpeningDemo__10MarioActorFv | :x: |
-| calcBaseFrontVec__10MarioActorFRCQ29JGeometry8TVec3<f> | :x: |
+| calcBaseFrontVec__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | playSound__10MarioActorFPCcl | :x: |
 | changeAnimation__10MarioActorFPCcPCc | :x: |
 | changeAnimationNonStop__10MarioActorFPCc | :x: |
@@ -369,14 +369,14 @@
 | scaleMtx__10MarioActorFPA4_f | :x: |
 | updateBaseScaleMtx__10MarioActorFv | :x: |
 | getRealMtx__10MarioActorCFPA4_fPCc | :x: |
-| getRealPos__10MarioActorCFPCcPQ29JGeometry8TVec3<f> | :x: |
+| getRealPos__10MarioActorCFPCcPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getGlobalJointMtx__10MarioActorFPCc | :x: |
 | calcAnimInMovement__10MarioActorFv | :x: |
 | forceSetBaseMtx__10MarioActorFPA4_f | :x: |
 | calcAnim__10MarioActorFv | :x: |
 | calcAndSetBaseMtx__10MarioActorFv | :x: |
 | setBlendMtxTimer__10MarioActorFUs | :x: |
-| getGroundPos__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
+| getGroundPos__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getShadowPos__10MarioActorCFv | :x: |
 | isTurning__10MarioActorCFv | :x: |
 | isJumping__10MarioActorCFv | :x: |
@@ -406,7 +406,7 @@
 | getFrameBufferWidth__2MRFv | :x: |
 | setPunchHitTimer__10MarioActorFUc | :x: |
 | __sinit_\MarioActor_cpp | :x: |
-| isInvalidTriangle__37TriangleFilterDelegator<10MarioActor>CFPC8Triangle | :x: |
+| isInvalidTriangle__37TriangleFilterDelegator&lt;10MarioActor&gt;CFPC8Triangle | :x: |
 
 
 # MarioActorDraw.o
@@ -428,9 +428,9 @@
 | initFace__10MarioActorFv | :x: |
 | updateFace__10MarioActorFv | :x: |
 | __sinit_\MarioActorDraw_cpp | :x: |
-| Functor<10MarioActor>__2MRFPC10MarioActorM10MarioActorFPCvPCv_v_Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v>CFP7JKRHeap | :x: |
+| Functor&lt;10MarioActor&gt;__2MRFPC10MarioActorM10MarioActorFPCvPCv_v_Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | initBlur__10MarioActorFv | :x: |
 | getJ3DModel__10MarioActorCFv | :x: |
 | getModelData__10MarioActorCFv | :x: |
@@ -474,10 +474,10 @@
 | isFastDrop__10MarioActorCFv | :x: |
 | getSpecialMode__10MarioActorCFv | :x: |
 | isCameraStateOn__10MarioActorCF25SPECIAL_STATUS_FOR_CAMERA | :x: |
-| getFrontVec__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
-| getSideVec__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
-| getUpVec__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
-| getLastMove__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
+| getFrontVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getSideVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getUpVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getLastMove__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getLastMove__10MarioActorCFv | :x: |
 | getTransForCamera__10MarioActorCFv | :x: |
 | updateTransForCamera__10MarioActorFv | :x: |
@@ -511,18 +511,18 @@
 | getGravityVec__10MarioActorCFv | :x: |
 | getGravityVector__10MarioActorCFv | :x: |
 | getAirGravityVec__10MarioActorCFv | :x: |
-| getGravityVector__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
+| getGravityVector__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getGravityRatio__10MarioActorCFv | :x: |
 | getGravityInfo__10MarioActorCFv | :x: |
 | getGravityLevel__10MarioActorCFv | :x: |
-| checkBeeWallStick__10MarioActorFRQ29JGeometry8TVec3<f> | :x: |
-| checkBeeFloorStick__10MarioActorFRQ29JGeometry8TVec3<f> | :x: |
+| checkBeeWallStick__10MarioActorFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| checkBeeFloorStick__10MarioActorFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | syncJumpBeeStickMode__10MarioActorFv | :x: |
-| updateBeeModeGravity__10MarioActorFRQ29JGeometry8TVec3<f> | :x: |
+| updateBeeModeGravity__10MarioActorFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isInZeroGravitySpot__10MarioActorCFv | :x: |
 | updateGravityVec__10MarioActorFbb | :x: |
-| checkBeeCeilStick__10MarioActorFRQ29JGeometry8TVec3<f> | :x: |
-| updateBeeStickMode__10MarioActorFRQ29JGeometry8TVec3<f> | :x: |
+| checkBeeCeilStick__10MarioActorFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateBeeStickMode__10MarioActorFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioActorGravity_cpp | :x: |
 
 
@@ -586,9 +586,9 @@
 | __sinit_\MarioActorParts_cpp | :x: |
 | update2D__10MarioActorFv | :x: |
 | updateThrowVector__10MarioActorFv | :x: |
-| createIceFloor__10MarioActorFRCQ29JGeometry8TVec3<f> | :x: |
-| createIceFloor__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createIceWall__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| createIceFloor__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createIceFloor__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createIceWall__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateBaseMtxTeresa__10MarioActorFPA4_f | :x: |
 | finalizeFreezeModel__10MarioActorFv | :x: |
 | offTakingFlag__10MarioActorFv | :x: |
@@ -635,7 +635,7 @@
 | __sinit_\MarioActorShadow_cpp | :x: |
 | decideShadowMode__10MarioActorFv | :x: |
 | calcViewSilhouetteModel__10MarioActorFv | :x: |
-| calcCylinderToCenter__10MarioActorFPC7AreaObjPQ29JGeometry8TVec3<f> | :x: |
+| calcCylinderToCenter__10MarioActorFPC7AreaObjPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcViewBlurModel__10MarioActorFv | :x: |
 | calcViewFootPrint__10MarioActorFv | :x: |
 | drawSilhouette__10MarioActorCFv | :x: |
@@ -662,7 +662,7 @@
 | createRainbowDL__10MarioActorFv | :x: |
 | drawScreenBlend__10MarioActorCFv | :x: |
 | updateRandomTexture__10MarioActorFf | :x: |
-| drawWallShade__10MarioActorCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| drawWallShade__10MarioActorCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | drawSpinInhibit__10MarioActorCFv | :x: |
 | drawColdWaterDamage__10MarioActorCFv | :x: |
 | setRasterScroll__10MarioActorFlll | :x: |
@@ -676,7 +676,7 @@
 | initDarkMask__10MarioActorFv | :x: |
 | updateDarkMask__10MarioActorFUs | :x: |
 | drawDarkMask__10MarioActorCFv | :x: |
-| __ct__Q29JGeometry8TBox2<f>Fffff | :x: |
+| __ct__Q29JGeometry8TBox2&lt;f&gt;Fffff | :x: |
 | GXPosition3f32 | :x: |
 | showBeeFur__10MarioActorFv | :x: |
 | __sinit_\MarioActorSpecialDraw_cpp | :x: |
@@ -755,7 +755,7 @@
 | tryJetAttack__10MarioActorFP9HitSensor | :x: |
 | tryCounterJetAttack__10MarioActorFP9HitSensor | :x: |
 | tryGetItem__10MarioActorFP9HitSensor | :x: |
-| cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3<f>fff | :x: |
+| cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
 | attackOrPushPolygons__10MarioActorFv | :x: |
 | sendWallTouch__10MarioActorFP9HitSensorP9HitSensor | :x: |
 | sendMsgUpperPunch__10MarioActorFP9HitSensor | :x: |
@@ -770,10 +770,10 @@
 | receiveMsgPush__10MarioActorFP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__10MarioActorFUlP9HitSensorP9HitSensor | :x: |
 | __sinit_\MarioActorDefensiveMsg_cpp | :x: |
-| tryVectorAttackMsg__10MarioActorFUlRCQ29JGeometry8TVec3<f> | :x: |
+| tryVectorAttackMsg__10MarioActorFUlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | receiveMsgTaken__10MarioActorFP9HitSensorP9HitSensor | :x: |
-| cylinderHitCheck__10MarioActorFPC9HitSensorPQ29JGeometry8TVec3<f> | :x: |
-| hitWall__10MarioStateFRCQ29JGeometry8TVec3<f>P9HitSensor | :x: |
+| cylinderHitCheck__10MarioActorFPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| hitWall__10MarioStateFRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor | :x: |
 | passRing__10MarioStateFPC9HitSensor | :x: |
 
 
@@ -806,7 +806,7 @@
 | tryCoinPullInRush__10MarioActorFv | :x: |
 | flushCoinPull__10MarioActorFv | :x: |
 | tryCoinPullOne__10MarioActorFP9HitSensor | :x: |
-| tryPullTrans__10MarioActorFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| tryPullTrans__10MarioActorFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | releaseThrowMemoSensor__10MarioActorFv | :x: |
 | tryReleaseWithMsg__10MarioActorFUl | :x: |
 | tryTornadoPull__10MarioActorFP9HitSensor | :x: |
@@ -905,7 +905,7 @@
 | checkSpecialWaitAnimation__5MarioFv | :x: |
 | resetSleepTimer__5MarioFv | :x: |
 | __ct__9MarioWaitFP10MarioActor | :x: |
-| hitPoly__10MarioStateFUcRCQ29JGeometry8TVec3<f>P9HitSensor | :x: |
+| hitPoly__10MarioStateFUcRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor | :x: |
 | keep__10MarioStateFv | :x: |
 | notice__10MarioStateFv | :x: |
 | init__10MarioStateFv | :x: |
@@ -934,11 +934,11 @@
 | calcDistToCeil__5MarioFb | :x: |
 | calcDistToCeilOnPress__5MarioFv | :x: |
 | calcDistToCeilHead__5MarioFv | :x: |
-| fixTransBetweenWall__5MarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| fixTransBetweenWall__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcDistWidth__5MarioFv | :x: |
 | updateCameraPolygon__5MarioFv | :x: |
 | setCameraPolygon__5MarioFPC8Triangle | :x: |
-| checkAllWall__5MarioFRCQ29JGeometry8TVec3<f>f | :x: |
+| checkAllWall__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | calcFrontFloor__5MarioFv | :x: |
 | getWallNorm__5MarioCFv | :x: |
 | getSideWallNorm__5MarioCFv | :x: |
@@ -951,7 +951,7 @@
 | updateWallFloorCode__5MarioFv | :x: |
 | saveLastSafetyTrans__5MarioFv | :x: |
 | setNotSafetyTimer__5MarioFv | :x: |
-| getLastSafetyTrans__5MarioCFPQ29JGeometry8TVec3<f> | :x: |
+| getLastSafetyTrans__5MarioCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | checkCurrentFloorCodeSevere__5MarioCFUl | :x: |
 | isCurrentFloorSink__5MarioCFv | :x: |
 | isCurrentFloorSand__5MarioCFv | :x: |
@@ -977,7 +977,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | isDamaging__5MarioCFv | :x: |
-| damageLarge__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| damageLarge__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioDamage_cpp | :x: |
 | decDamageAfterTimer__5MarioFv | :x: |
 | checkDamage__5MarioFv | :x: |
@@ -985,14 +985,14 @@
 | damageFloorCheck__5MarioFv | :x: |
 | damageWallCheck__5MarioFv | :x: |
 | damagePolygonCheck__5MarioFPC8Triangle | :x: |
-| flipLarge__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| flipLarge__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isEnableAddDamage__5MarioCFv | :x: |
-| damage__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| damage__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__11MarioDamageFP10MarioActor | :x: |
 | start__11MarioDamageFv | :x: |
-| setVec__11MarioDamageFRCQ29JGeometry8TVec3<f> | :x: |
+| setVec__11MarioDamageFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setVecSize__11MarioDamageFff | :x: |
-| stopHead__11MarioDamageFRCQ29JGeometry8TVec3<f> | :x: |
+| stopHead__11MarioDamageFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | update__11MarioDamageFv | :x: |
 | close__11MarioDamageFv | :x: |
 | notice__11MarioDamageFv | :x: |
@@ -1055,7 +1055,7 @@
 | start__11MarioFreezeFv | :x: |
 | update__11MarioFreezeFv | :x: |
 | __sinit_\MarioDamageFreeze_cpp | :x: |
-| setJumpVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| setJumpVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # MarioDamageStun.o
@@ -1083,10 +1083,10 @@
 # MarioFaint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| doFlipWeak__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| faint__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| doFlipWeak__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| faint__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__10MarioFaintFP10MarioActor | :x: |
-| setVec__10MarioFaintFRCQ29JGeometry8TVec3<f> | :x: |
+| setVec__10MarioFaintFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | update__10MarioFaintFv | :x: |
 | start__10MarioFaintFv | :x: |
 | close__10MarioFaintFv | :x: |
@@ -1096,15 +1096,15 @@
 # MarioFlip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| doFlipJump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| doFlipBackRoll__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| doFlipJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| doFlipBackRoll__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | start__9MarioFlipFv | :x: |
 | update__9MarioFlipFv | :x: |
 | __sinit_\MarioFlip_cpp | :x: |
-| doFlipRot__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| doFlipLarge__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| doFlipRot__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| doFlipLarge__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__9MarioFlipFP10MarioActor | :x: |
-| setVec__9MarioFlipFRCQ29JGeometry8TVec3<f> | :x: |
+| setVec__9MarioFlipFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | close__9MarioFlipFv | :x: |
 
 
@@ -1124,7 +1124,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | beeMarioOnGround__5MarioFv | :x: |
-| entryWallWalkMode__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| entryWallWalkMode__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | beeMarioOnAir__5MarioFv | :x: |
 | __sinit_\MarioBee_cpp | :x: |
 
@@ -1132,7 +1132,7 @@
 # MarioBlown.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| blown__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| blown__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__10MarioBlownFP10MarioActor | :x: |
 | close__10MarioBlownFv | :x: |
 | start__10MarioBlownFv | :x: |
@@ -1154,15 +1154,15 @@
 | initCommonEffect__10MarioActorFv | :x: |
 | playCommonEffect__10MarioActorFPCc | :x: |
 | initEffect__10MarioActorFv | :x: |
-| emitEffectWaterColumn__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| emitEffectWaterColumn__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isCommonEffect__10MarioActorCFPCc | :x: |
 | isMaterialEffect__10MarioActorCFPCc | :x: |
 | playEffect__10MarioActorFPCc | :x: |
-| playEffectTrans__10MarioActorFPCcRCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRT__10MarioActorFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRTZ__10MarioActorFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRTW__10MarioActorFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectSRT__10MarioActorFPCcfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| playEffectTrans__10MarioActorFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRT__10MarioActorFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRTZ__10MarioActorFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRTW__10MarioActorFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectSRT__10MarioActorFPCcfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | stopCommonEffect__10MarioActorFPCc | :x: |
 | stopEffect__10MarioActorFPCc | :x: |
 | stopEffectForce__10MarioActorFPCc | :x: |
@@ -1204,7 +1204,7 @@
 | getGravityVec__8MarioFooCFv | :x: |
 | jet__8MarioFooFv | :x: |
 | updateTilt__8MarioFooFv | :x: |
-| hitWall__8MarioFooFRCQ29JGeometry8TVec3<f>P9HitSensor | :x: |
+| hitWall__8MarioFooFRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor | :x: |
 | getStickY__8MarioFooCFv | :x: |
 | spin__8MarioFooFv | :x: |
 | passRing__8MarioFooFPC9HitSensor | :x: |
@@ -1243,14 +1243,14 @@
 | startTornadoCentering__5MarioFP9HitSensor | :x: |
 | taskOnTornadoCentering__5MarioFUl | :x: |
 | trySpinJump__5MarioFUc | :x: |
-| tryForceJumpDelay__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| tryFreeJumpDelay__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| tryForceJump__5MarioFRCQ29JGeometry8TVec3<f>b | :x: |
-| tryForceFreeJump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| tryForcePowerJump__5MarioFRCQ29JGeometry8TVec3<f>b | :x: |
-| tryFreeJump__5MarioFRCQ29JGeometry8TVec3<f>b | :x: |
-| tryWallJump__5MarioFRCQ29JGeometry8TVec3<f>b | :x: |
-| tryStickJump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| tryForceJumpDelay__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryFreeJumpDelay__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryForceJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| tryForceFreeJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryForcePowerJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| tryFreeJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| tryWallJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| tryStickJump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | trySlipUpJump__5MarioFv | :x: |
 | tryHangSlipUp__5MarioFv | :x: |
 | tryDrop__5MarioFv | :x: |
@@ -1268,7 +1268,7 @@
 | doAirWalk__5MarioFv | :x: |
 | stopJump__5MarioFv | :x: |
 | cancelTornadoJump__5MarioFv | :x: |
-| setRocketBooster__5MarioFRCQ29JGeometry8TVec3<f>fUs | :x: |
+| setRocketBooster__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;fUs | :x: |
 | procRocketBooster__5MarioFv | :x: |
 | isSoftLandingFloor__5MarioCFv | :x: |
 | checkAndTryForceJump__5MarioFv | :x: |
@@ -1331,23 +1331,23 @@
 | isStickOn__11MarioModuleCFv | :x: |
 | isStickFull__11MarioModuleCFv | :x: |
 | getWorldPadDir__11MarioModuleCFv | :x: |
-| calcWorldPadDir__11MarioModuleFPQ29JGeometry8TVec3<f>ffb | :x: |
-| addVelocity__11MarioModuleFRCQ29JGeometry8TVec3<f> | :x: |
-| addVelocity__11MarioModuleFRCQ29JGeometry8TVec3<f>f | :x: |
-| addVelocityAfter__11MarioModuleFRCQ29JGeometry8TVec3<f> | :x: |
+| calcWorldPadDir__11MarioModuleFPQ29JGeometry8TVec3&lt;f&gt;ffb | :x: |
+| addVelocity__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addVelocity__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| addVelocityAfter__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | clearVelocity__11MarioModuleFv | :x: |
 | getVelocity__11MarioModuleCFv | :x: |
-| addTrans__11MarioModuleFRCQ29JGeometry8TVec3<f>PCc | :x: |
+| addTrans__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | cutGravityElementFromJumpVec__11MarioModuleFb | :x: |
-| cutVecElementFromJumpVec__11MarioModuleFRCQ29JGeometry8TVec3<f> | :x: |
+| cutVecElementFromJumpVec__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getJumpVec__11MarioModuleCFv | :x: |
-| setJumpVec__11MarioModuleFRCQ29JGeometry8TVec3<f> | :x: |
+| setJumpVec__11MarioModuleFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | playEffect__11MarioModuleFPCc | :x: |
-| playEffectTrans__11MarioModuleFPCcRCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRT__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRTZ__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectRTW__11MarioModuleFPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| playEffectSRT__11MarioModuleFPCcfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| playEffectTrans__11MarioModuleFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRT__11MarioModuleFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRTZ__11MarioModuleFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectRTW__11MarioModuleFPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| playEffectSRT__11MarioModuleFPCcfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | stopEffect__11MarioModuleFPCc | :x: |
 | stopEffectForce__11MarioModuleFPCc | :x: |
 | playSound__11MarioModuleFPCcl | :x: |
@@ -1375,7 +1375,7 @@
 | isSlipPolygon__11MarioModuleCFPC8Triangle | :x: |
 | getFloorCode__11MarioModuleCFv | :x: |
 | calcPolygonAngleD__11MarioModuleCFPC8Triangle | :x: |
-| calcAngleD__11MarioModuleCFRCQ29JGeometry8TVec3<f> | :x: |
+| calcAngleD__11MarioModuleCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getTmpPolygon__11MarioModuleCFv | :x: |
 | sendPunch__11MarioModuleFP9HitSensorb | :x: |
 | getSensor__11MarioModuleCFPC8Triangle | :x: |
@@ -1394,9 +1394,9 @@
 | decideInertia__5MarioFf | :x: |
 | decideInertiaOnIce__5MarioFf | :x: |
 | decideInertiaOnSlip__5MarioFf | :x: |
-| calcShadowDir__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
-| retainMoveDir__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
-| calcMoveDir__5MarioFffPQ29JGeometry8TVec3<f>b | :x: |
+| calcShadowDir__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| retainMoveDir__5MarioFffPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcMoveDir__5MarioFffPQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | checkLockOnHoming__5MarioFv | :x: |
 | doLockOnHoming__5MarioFv | :x: |
 | fixPositionInTower__5MarioFv | :x: |
@@ -1407,8 +1407,8 @@
 | ------------- | ------------- |
 | check2DMode__5MarioFv | :x: |
 | __sinit_\MarioMove2D_cpp | :x: |
-| calcMoveDir2D__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
-| calcShadowDir2D__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| calcMoveDir2D__5MarioFffPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcShadowDir2D__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | stick2Dadjust__5MarioFRfRf | :x: |
 | set2Dmode__5MarioFb | :x: |
 | beforeJumping2D__5MarioFv | :x: |
@@ -1422,7 +1422,7 @@
 | set25Dmode__5MarioFPC7AreaObj | :x: |
 | update25Dmode__5MarioFv | :x: |
 | updateAxisFromMode__5MarioFUc | :x: |
-| calcMoveDir25D__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
+| calcMoveDir25D__5MarioFffPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioMove25D_cpp | :x: |
 
 
@@ -1483,7 +1483,7 @@
 | updateThrowing__10MarioActorFv | :x: |
 | calcViewSearchLight__10MarioActorFv | :x: |
 | drawSearchLight__10MarioActorCFv | :x: |
-| getThrowVec__10MarioActorCFPQ29JGeometry8TVec3<f> | :x: |
+| getThrowVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__16MarioSearchLightFv | :x: |
 
 
@@ -1539,7 +1539,7 @@
 | isNoWalkFallOnDossun__5MarioCFv | :x: |
 | isNotReflectGlassGround__5MarioCFv | :x: |
 | isUseAnotherMovingPolygon__5MarioCFv | :x: |
-| isUseFooSpecialGravity__5MarioCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| isUseFooSpecialGravity__5MarioCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioSpecial_cpp | :x: |
 | updateOnimasu__5MarioFv | :x: |
 | isHeadPushEnableArea__5MarioCFv | :x: |
@@ -1552,7 +1552,7 @@
 | checkTornado__5MarioFv | :x: |
 | resetTornado__5MarioFv | :x: |
 | calcTornadoTilt__5MarioFv | :x: |
-| reflectWallOnSpinning__5MarioFRCQ29JGeometry8TVec3<f>Us | :x: |
+| reflectWallOnSpinning__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;Us | :x: |
 | forceStopTornado__5MarioFv | :x: |
 | startRotationTask__5MarioFUl | :x: |
 | doSpinWallEffect__5MarioFv | :x: |
@@ -1616,7 +1616,7 @@
 | close__9MarioTalkFv | :x: |
 | start__9MarioTalkFv | :x: |
 | __sinit_\MarioTalk_cpp | :x: |
-| setLastNonFixMoveVec__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| setLastNonFixMoveVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # MarioWall.o
@@ -1634,7 +1634,7 @@
 | fixWallingTop__5MarioFv | :x: |
 | checkWallFloorCode__5MarioCFUs | :x: |
 | checkWallCode__5MarioCFPCcb | :x: |
-| checkWallCodeNorm__5MarioCFUsPQ29JGeometry8TVec3<f>b | :x: |
+| checkWallCodeNorm__5MarioCFUsPQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | setWallCancel__5MarioFv | :x: |
 | keepDistFrontWall__5MarioFv | :x: |
 | isEnableStickWall__5MarioFv | :x: |
@@ -1654,11 +1654,11 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | isHanging__5MarioCFv | :x: |
-| fixHangDir__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| fixHangDir__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isEnableBackHang__5MarioFv | :x: |
 | isEnableSideHang__5MarioFv | :x: |
 | recordWallPolygon__9MarioHangFPC8Triangle | :x: |
-| recordHangNorm__9MarioHangFRCQ29JGeometry8TVec3<f> | :x: |
+| recordHangNorm__9MarioHangFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | forceDrop__9MarioHangFv | :x: |
 | __ct__9MarioHangFP10MarioActor | :x: |
 | close__9MarioHangFv | :x: |
@@ -1676,9 +1676,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | isSwimming__5MarioCFv | :x: |
-| forceStartSwimAndShoot__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| forceStartSwimAndShoot__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | forceExitSwim__5MarioFv | :x: |
-| setDamage__9MarioSwimFRCQ29JGeometry8TVec3<f>Us | :x: |
+| setDamage__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt;Us | :x: |
 | checkStartSwim__5MarioFv | :x: |
 | startSwim__5MarioFv | :x: |
 | __ct__9MarioSwimFP10MarioActor | :x: |
@@ -1696,27 +1696,27 @@
 | checkWaterCube__9MarioSwimFb | :x: |
 | __as__9WaterInfoFRC9WaterInfo | :x: |
 | updateUnderWater__9MarioSwimFv | :x: |
-| checkUnderWaterFull__9MarioSwimFRCQ29JGeometry8TVec3<f> | :x: |
+| checkUnderWaterFull__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | checkWaterBottom__9MarioSwimFv | :x: |
-| getWaterAreaInfo__9MarioSwimFP9WaterInfoRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec2<f> | :x: |
+| getWaterAreaInfo__9MarioSwimFP9WaterInfoRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | getGravityVec__9MarioSwimCFv | :x: |
 | surfacePaddle__9MarioSwimFv | :x: |
 | spin__9MarioSwimFv | :x: |
 | startSpinDash__9MarioSwimFv | :x: |
-| hitPunch__9MarioSwimFRCQ29JGeometry8TVec3<f> | :x: |
+| hitPunch__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | jet__9MarioSwimFv | :x: |
 | resetJet__9MarioSwimFv | :x: |
 | dropJet__9MarioSwimFb | :x: |
 | startJet__9MarioSwimFUl | :x: |
 | forceStopSpin__9MarioSwimFv | :x: |
-| addFaint__9MarioSwimFRCQ29JGeometry8TVec3<f> | :x: |
-| addDamage__9MarioSwimFRCQ29JGeometry8TVec3<f> | :x: |
+| addFaint__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addDamage__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateTilt__9MarioSwimFv | :x: |
 | pushedByWaterWall__9MarioSwimFv | :x: |
 | tryJetAttack__9MarioSwimFP9HitSensor | :x: |
 | hitHead__9MarioSwimFPC7HitInfo | :x: |
-| hitPoly__9MarioSwimFUcRCQ29JGeometry8TVec3<f>P9HitSensor | :x: |
-| hitWall__9MarioSwimFRCQ29JGeometry8TVec3<f>P9HitSensor | :x: |
+| hitPoly__9MarioSwimFUcRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor | :x: |
+| hitWall__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor | :x: |
 | decLife__9MarioSwimFv | :x: |
 | incLife__9MarioSwimFv | :x: |
 | incOxygen__9MarioSwimFv | :x: |
@@ -1731,8 +1731,8 @@
 | resetAndFixPose__9MarioSwimFv | :x: |
 | getStickY__9MarioSwimCFv | :x: |
 | updateOxygenWatch__9MarioSwimFv | :x: |
-| addVelocity__9MarioSwimFRCQ29JGeometry8TVec3<f> | :x: |
-| addVelocity__9MarioSwimFRCQ29JGeometry8TVec3<f>f | :x: |
+| addVelocity__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addVelocity__9MarioSwimFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | doJetJump__9MarioSwimFUc | :x: |
 | __sinit_\MarioSwim_cpp | :x: |
 | getBlurOffset__9MarioSwimCFv | :x: |
@@ -1748,7 +1748,7 @@
 # MarioAccess.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getTakePos__11MarioAccessFPQ29JGeometry8TVec3<f> | :x: |
+| getTakePos__11MarioAccessFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isOnActor__11MarioAccessFPC9LiveActor | :x: |
 | isOnGround__11MarioAccessFUl | :x: |
 | isHipDropFalling__11MarioAccessFv | :x: |
@@ -1773,17 +1773,17 @@
 | stopFpView__11MarioAccessFv | :x: |
 | noticeDashChance__11MarioAccessFv | :x: |
 | setWalkingResist__11MarioAccessFf | :x: |
-| forceFly__11MarioAccessFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
-| setJumpVec__11MarioAccessFRCQ29JGeometry8TVec3<f> | :x: |
-| forceJump__11MarioAccessFRCQ29JGeometry8TVec3<f>Ul | :x: |
-| freeJump__11MarioAccessFRCQ29JGeometry8TVec3<f>Ul | :x: |
+| forceFly__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| setJumpVec__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| forceJump__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
+| freeJump__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
 | tornadoJump__11MarioAccessFv | :x: |
 | tornadoJumpMini__11MarioAccessFv | :x: |
 | becomeNormalJumpStatus__11MarioAccessFv | :x: |
-| setFrontVecKeepUp__11MarioAccessFRCQ29JGeometry8TVec3<f>Us | :x: |
-| setFrontVecTarget__11MarioAccessFRCQ29JGeometry8TVec3<f>Us | :x: |
-| getThrowVec__11MarioAccessFPQ29JGeometry8TVec3<f> | :x: |
-| setTrans__11MarioAccessFRCQ29JGeometry8TVec3<f>Us | :x: |
+| setFrontVecKeepUp__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;Us | :x: |
+| setFrontVecTarget__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;Us | :x: |
+| getThrowVec__11MarioAccessFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setTrans__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt;Us | :x: |
 | endRush__11MarioAccessFPC11RushEndInfo | :x: |
 | incLife__11MarioAccessFUl | :x: |
 | isConfrontDeath__11MarioAccessFv | :x: |
@@ -1817,12 +1817,12 @@
 | onFollowDemo__11MarioAccessFv | :x: |
 | setBaseMtx__11MarioAccessFPA4_f | :x: |
 | getBaseMtx__11MarioAccessFv | :x: |
-| calcSpinPullVelocity__11MarioAccessFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcSpinPullVelocity__11MarioAccessFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | tryCoinPull__11MarioAccessFv | :x: |
-| addVelocity__11MarioAccessFRCQ29JGeometry8TVec3<f> | :x: |
-| addVelocityFromArea__11MarioAccessFRCQ29JGeometry8TVec3<f> | :x: |
+| addVelocity__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addVelocityFromArea__11MarioAccessFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isOnWaterSurface__11MarioAccessFv | :x: |
-| calcWorldPadDir__11MarioAccessFPQ29JGeometry8TVec3<f>ff | :x: |
+| calcWorldPadDir__11MarioAccessFPQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | preventRush__11MarioAccessFv | :x: |
 | getPlayerActor__11MarioAccessFv | :x: |
 | validateSensor__11MarioAccessFv | :x: |
@@ -1882,10 +1882,10 @@
 | ------------- | ------------- |
 | __ct__12MarioNullBckFPCc | :x: |
 | appear__12MarioNullBckFv | :x: |
-| getLastPos__12MarioNullBckFPQ29JGeometry8TVec3<f> | :x: |
+| getLastPos__12MarioNullBckFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__12MarioNullBckFv | :x: |
 | init__12MarioNullBckFRC12JMapInfoIter | :x: |
-| getFramePos__12MarioNullBckFfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| getFramePos__12MarioNullBckFfPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # MarioRecovery.o
@@ -1925,7 +1925,7 @@
 | start__9MarioStepFv | :x: |
 | update__9MarioStepFv | :x: |
 | close__9MarioStepFv | :x: |
-| startStep__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| startStep__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioStep_cpp | :x: |
 
 
@@ -1933,7 +1933,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | checkBump__5MarioFv | :x: |
-| startBump__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| startBump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\MarioBump_cpp | :x: |
 | __ct__9MarioBumpFP10MarioActor | :x: |
 | start__9MarioBumpFv | :x: |
@@ -1952,14 +1952,14 @@
 | moveRelativePosition__5MarioFUl | :x: |
 | moveRelativePositionWall__5MarioFv | :x: |
 | recordLastGround__5MarioFv | :x: |
-| getLastGroundPos__5MarioCFPQ29JGeometry8TVec3<f> | :x: |
+| getLastGroundPos__5MarioCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getLastGroundEdgeNrm__5MarioCFUl | :x: |
-| getLastGroundEdgeIndex__5MarioCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| getLastGroundEdgeIndex__5MarioCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | pushedByReaction__5MarioFv | :x: |
-| addReaction__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| addReaction__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | tryPushToVelocity__5MarioFv | :x: |
-| push__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
-| push2__5MarioFRCQ29JGeometry8TVec3<f> | :x: |
+| push__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| push2__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | powerAreaMove__5MarioFv | :x: |
 | powerRailMove__5MarioFv | :x: |
 | recordJumpEnforceMove__5MarioFv | :x: |
@@ -1998,7 +1998,7 @@
 | ------------- | ------------- |
 | startTeresaMode__5MarioFv | :x: |
 | updateDropFlag__11MarioTeresaFv | :x: |
-| getHitWallNorm__5MarioFPQ29JGeometry8TVec3<f> | :x: |
+| getHitWallNorm__5MarioFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | resetTeresaMode__5MarioFv | :x: |
 | resetTeresaMode__11MarioTeresaFv | :x: |
 | isTeresaAccel__11MarioTeresaCFv | :x: |
@@ -2012,9 +2012,9 @@
 | procNearGroundControl__11MarioTeresaFv | :x: |
 | procDrop__11MarioTeresaFv | :x: |
 | addTeresaVerticalVelocity__11MarioTeresaFf | :x: |
-| addTeresaHorizontalVelocity__11MarioTeresaFRCQ29JGeometry8TVec3<f> | :x: |
-| doTeresaReflection__5MarioFRCQ29JGeometry8TVec3<f>b | :x: |
-| doTeresaReflection__11MarioTeresaFRCQ29JGeometry8TVec3<f>b | :x: |
+| addTeresaHorizontalVelocity__11MarioTeresaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| doTeresaReflection__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
+| doTeresaReflection__11MarioTeresaFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | initTeresaMarioAnimation__10MarioActorFv | :x: |
 | startTeresaDisappear__5MarioFv | :x: |
 | start__11MarioTeresaFv | :x: |
@@ -2046,12 +2046,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | doObjWarp__5MarioFP9LiveActor | :x: |
-| doPointWarp__5MarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
+| doPointWarp__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | isVisibleRecoveryWarpBubble__5MarioCFv | :x: |
 | __ct__9MarioWarpFP10MarioActor | :x: |
 | calcAxis__9MarioWarpFv | :x: |
 | doCubeWarp__5MarioFv | :x: |
-| doPointWarpRecovery__5MarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| doPointWarpRecovery__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateJump__9MarioWarpFv | :x: |
 | start__9MarioWarpFv | :x: |
 | update__9MarioWarpFv | :x: |
@@ -2078,7 +2078,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | stick2DadjustGround__5MarioFRfRf | :x: |
-| calcDir2D__5MarioFffPQ29JGeometry8TVec3<f> | :x: |
+| calcDir2D__5MarioFffPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\Mario2D_cpp | :x: |
 
 
@@ -2100,7 +2100,7 @@
 # RushEndInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11RushEndInfoFP9LiveActorUlRCQ29JGeometry8TVec3<f>bUl | :x: |
+| __ct__11RushEndInfoFP9LiveActorUlRCQ29JGeometry8TVec3&lt;f&gt;bUl | :x: |
 
 
 # TornadoMario.o
@@ -2110,7 +2110,7 @@
 | init__12TornadoMarioFRC12JMapInfoIter | :x: |
 | hideForce__12TornadoMarioFv | :x: |
 | calcAnim__12TornadoMarioFv | :x: |
-| setTrHeight__12TornadoMarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setTrHeight__12TornadoMarioFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcAndSetBaseMtx__12TornadoMarioFv | :x: |
 | __dt__12TornadoMarioFv | :x: |
 | show__12TornadoMarioFv | :x: |
@@ -2132,17 +2132,17 @@
 | __dt__15CollisionShadowFv | :x: |
 | setMode__15CollisionShadowFUl | :x: |
 | __ct__15CollisionShadowFff | :x: |
-| create__15CollisionShadowFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| create__15CollisionShadowFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw1__15CollisionShadowCFv | :x: |
 | sendVtx__15CollisionShadowCFv | :x: |
 | sendZsortedVtx__15CollisionShadowCFb | :x: |
 | initCaptureTex__15CollisionShadowFv | :x: |
-| setViewMtx__15CollisionShadowFRCQ29JGeometry8TVec3<f> | :x: |
+| setViewMtx__15CollisionShadowFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setUpdateFlag__15CollisionShadowFv | :x: |
 | calcView__15CollisionShadowFP9J3DModelXUlP9J3DModelX | :x: |
-| drawAndCaptureTex__15CollisionShadowFP9J3DModelXRCQ29JGeometry8TVec3<f> | :x: |
+| drawAndCaptureTex__15CollisionShadowFP9J3DModelXRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | clearAlphaBuffer__15CollisionShadowFv | :x: |
-| drawVolumeBox__15CollisionShadowCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| drawVolumeBox__15CollisionShadowCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw__15CollisionShadowCFv | :x: |
 | draw2__15CollisionShadowCFv | :x: |
 | draw3__15CollisionShadowCFv | :x: |

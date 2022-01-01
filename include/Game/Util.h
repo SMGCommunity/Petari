@@ -32,6 +32,7 @@
 #include "Game/Util/NerveUtil.h"
 #include "Game/Util/ObjUtil.h"
 #include "Game/Util/PlayerUtil.h"
+#include "Game/Util/RailUtil.h"
 #include "Game/Util/SceneUtil.h"
 #include "Game/Util/ScreenUtil.h"
 #include "Game/Util/SequenceUtil.h"

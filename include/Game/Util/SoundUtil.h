@@ -12,7 +12,13 @@ namespace MR {
 
     void stopSubBGM(u32);
 
+    void startSound(const LiveActor *, const char *, s32, s32);
+
     void startSystemSE(const char *, s32, s32);
+
+    void startSound(const LiveActor *, const char *, s32, s32);
+
+    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);    
 
     void setAudioEffectType(s32, s32);
 

@@ -40,7 +40,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__9SpkSystemFP7JKRHeap | :x: |
-| __dt__18JSUList<8SpkSound>Fv | :x: |
+| __dt__18JSUList&lt;8SpkSound&gt;Fv | :x: |
 | setResource__9SpkSystemFP10JKRArchiveUsUs | :x: |
 | framework__9SpkSystemFv | :x: |
 | startSound__9SpkSystemFllP14SpkSoundHandle | :x: |
@@ -51,8 +51,8 @@
 | extensionProcess__9SpkSystemFll | :x: |
 | getDeviceVolume__9SpkSystemFl | :x: |
 | __sinit_\SpkSystem_cpp | :x: |
-| __ct__21JASMemPool<8SpkSound>Fv | :x: |
-| __dt__21JASMemPool<8SpkSound>Fv | :x: |
+| __ct__21JASMemPool&lt;8SpkSound&gt;Fv | :x: |
+| __dt__21JASMemPool&lt;8SpkSound&gt;Fv | :x: |
 
 
 # SpkMixingBuffer.o
@@ -115,7 +115,7 @@
 | updateEachSound__14SpkSoundHolderFl | :x: |
 | freeDeadSound__14SpkSoundHolderFl | :x: |
 | framework__14SpkSoundHolderFv | :x: |
-| __ct__18JSUList<8SpkSound>Fv | :x: |
+| __ct__18JSUList&lt;8SpkSound&gt;Fv | :x: |
 | __sinit_\SpkSound_cpp | :x: |
 
 

@@ -37,6 +37,8 @@ namespace MR {
     void connectToSceneAreaObj(NameObj *);
 
     void connectToSceneMirrorMapObj(LiveActor *);
+
+    void connectToSceneSky(LiveActor *);
     
     bool isName(const NameObj *, const char *);
     bool isSame(const NameObj *, const NameObj *);
@@ -63,4 +65,7 @@ namespace MR {
     void requestMovementOn(LayoutActor *);
 
     void registerPreDrawFunction(const MR::FunctorBase &, int);
+
+    bool isJudgedToClipFrustum100m(const TVec3f &, f32);
+    bool isJudgedToClipFrustum300m(const TVec3f &, f32);
 };

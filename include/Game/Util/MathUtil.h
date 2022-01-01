@@ -17,7 +17,7 @@ namespace MR {
     s32 getRandom(s32, s32);
     f32 getRandomDegree();
     void calcRandomVec(TVec3f *, f32, f32);
-    bool isHalfProbability();
+    u8 isHalfProbability();
     f32 getSignHalfProbability();
     void getRandomVector(TVec3f *, f32);
     void addRandomVector(TVec3f *, const TVec3f &, f32);
@@ -52,6 +52,8 @@ namespace MR {
     f32 calcRotateY(f32, f32);
 
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
+
+    void rotateVecDegree(TVec3f *, const TVec3f &, f32);
 
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);

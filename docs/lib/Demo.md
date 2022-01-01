@@ -59,8 +59,8 @@
 | execute__Q223NrvAstroDomeDemoStarter38AstroDomeDemoStarterNrvSpinDriverStartCFP5Spine | :x: |
 | execute__Q223NrvAstroDomeDemoStarter39AstroDomeDemoStarterNrvSpinDriverAppearCFP5Spine | :x: |
 | getBaseMtx__20AstroDomeDemoStarterCFv | :x: |
-| __cl__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFv | :x: |
-| clone__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR67FunctorV0M&lt;P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR67FunctorV0M&lt;P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__20AstroDomeDemoStarterFv | :x: |
 
 
@@ -84,8 +84,8 @@
 # DemoActionKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getValue<l>__8JMapInfoCFiPCcPl_Cb | :x: |
-| getValue<PCc>__8JMapInfoCFiPCcPPCc_Cb | :x: |
+| getValue&lt;l&gt;__8JMapInfoCFiPCcPl_Cb | :x: |
+| getValue&lt;PCc&gt;__8JMapInfoCFiPCcPPCc_Cb | :x: |
 | findTalkMessageCtrl__30@unnamed@DemoActionKeeper_cpp@FP9LiveActor | :x: |
 | setTalkAnimCtrlInterpole__30@unnamed@DemoActionKeeper_cpp@FP9LiveActorl | :x: |
 | __ct__14DemoActionInfoFv | :x: |
@@ -221,11 +221,11 @@
 | update__19DemoSheetKeeperBaseFv | :x: |
 | start__19DemoSheetKeeperBaseFv | :x: |
 | end__19DemoSheetKeeperBaseFv | :x: |
-| for_each<PP19DemoSheetKeeperBase,Q23std34mem_fun_t<v,19DemoSheetKeeperBase>>__3stdFPP19DemoSheetKeeperBasePP19DemoSheetKeeperBaseQ23std34mem_fun_t<v,19DemoSheetKeeperBase>_Q23std34mem_fun_t<v,19DemoSheetKeeperBase> | :x: |
-| for_each<PP16DemoTalkAnimCtrl,Q23std59binder2nd<Q23std36mem_fun1_t<v,16DemoTalkAnimCtrl,PCc>,PCc>>__3stdFPP16DemoTalkAnimCtrlPP16DemoTalkAnimCtrlQ23std59binder2nd<Q23std36mem_fun1_t<v,16DemoTalkAnimCtrl,PCc>,PCc>_Q23std59binder2nd<Q23std36mem_fun1_t<v,16DemoTalkAnimCtrl,PCc>,PCc> | :x: |
-| push_back__Q22MR51Vector<Q22MR36FixedArray<P19DemoSheetKeeperBase,2>>FRCP19DemoSheetKeeperBase | :x: |
-| __cl__Q22MR51FunctorV0M<P12DemoExecutor,M12DemoExecutorFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12DemoExecutor,M12DemoExecutorFPCvPv_v>CFP7JKRHeap | :x: |
+| for_each&lt;PP19DemoSheetKeeperBase,Q23std34mem_fun_t&lt;v,19DemoSheetKeeperBase&gt;&gt;__3stdFPP19DemoSheetKeeperBasePP19DemoSheetKeeperBaseQ23std34mem_fun_t&lt;v,19DemoSheetKeeperBase&gt;_Q23std34mem_fun_t&lt;v,19DemoSheetKeeperBase&gt; | :x: |
+| for_each&lt;PP16DemoTalkAnimCtrl,Q23std59binder2nd&lt;Q23std36mem_fun1_t&lt;v,16DemoTalkAnimCtrl,PCc&gt;,PCc&gt;&gt;__3stdFPP16DemoTalkAnimCtrlPP16DemoTalkAnimCtrlQ23std59binder2nd&lt;Q23std36mem_fun1_t&lt;v,16DemoTalkAnimCtrl,PCc&gt;,PCc&gt;_Q23std59binder2nd&lt;Q23std36mem_fun1_t&lt;v,16DemoTalkAnimCtrl,PCc&gt;,PCc&gt; | :x: |
+| push_back__Q22MR51Vector&lt;Q22MR36FixedArray&lt;P19DemoSheetKeeperBase,2&gt;&gt;FRCP19DemoSheetKeeperBase | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12DemoExecutor,M12DemoExecutorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12DemoExecutor,M12DemoExecutorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12DemoExecutorFv | :x: |
 
 
@@ -376,7 +376,7 @@
 | registerActor__20DemoSimpleCastHolderFP11LayoutActor | :white_check_mark: |
 | registerNameObj__20DemoSimpleCastHolderFP7NameObj | :white_check_mark: |
 | movementOnAllCasts__20DemoSimpleCastHolderFv | :white_check_mark: |
-| __dt__Q22MR26AssignableArray<P7NameObj>Fv | :white_check_mark: |
+| __dt__Q22MR26AssignableArray&lt;P7NameObj&gt;Fv | :white_check_mark: |
 
 
 # DemoSoundKeeper.o
@@ -389,8 +389,8 @@
 | isPermitBgmChange__15DemoSoundKeeperFv | :x: |
 | getTypeString__15DemoSoundKeeperCFv | :x: |
 | getName__15DemoSoundKeeperCFv | :x: |
-| executeType__42DemoSheetKeeperInfoHolder<13DemoSoundInfo>FPC13DemoSoundInfo | :x: |
-| push_back__Q22MR47Vector<Q22MR32AssignableArray<13DemoSoundInfo>>FRC13DemoSoundInfo | :x: |
+| executeType__42DemoSheetKeeperInfoHolder&lt;13DemoSoundInfo&gt;FPC13DemoSoundInfo | :x: |
+| push_back__Q22MR47Vector&lt;Q22MR32AssignableArray&lt;13DemoSoundInfo&gt;&gt;FRC13DemoSoundInfo | :x: |
 | @8@executeType__15DemoSoundKeeperFPC13DemoSoundInfo | :x: |
 
 
@@ -413,9 +413,9 @@
 | find__22DemoStartRequestHolderCFPC7NameObjPCc | :x: |
 | findEmpty__22DemoStartRequestHolderCFv | :x: |
 | __ct__22DemoStartRequestHolderFv | :x: |
-| __ct__Q32MR37FixedRingBuffer<PC13DemoStartInfo,16>8iteratorFPPC13DemoStartInfoPPC13DemoStartInfo | :x: |
-| push_back__Q22MR37FixedRingBuffer<PC13DemoStartInfo,16>FRCPC13DemoStartInfo | :x: |
-| __pp__Q32MR37FixedRingBuffer<PC13DemoStartInfo,16>8iteratorFv | :x: |
+| __ct__Q32MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;8iteratorFPPC13DemoStartInfoPPC13DemoStartInfo | :x: |
+| push_back__Q22MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;FRCPC13DemoStartInfo | :x: |
+| __pp__Q32MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;8iteratorFv | :x: |
 
 
 # DemoStartRequestUtil.o
@@ -500,23 +500,23 @@
 | executeType__14DemoWipeKeeperFPC12DemoWipeInfo | :x: |
 | getTypeString__14DemoWipeKeeperCFv | :x: |
 | getName__14DemoWipeKeeperCFv | :x: |
-| executeType__41DemoSheetKeeperInfoHolder<12DemoWipeInfo>FPC12DemoWipeInfo | :x: |
-| push_back__Q22MR46Vector<Q22MR31AssignableArray<12DemoWipeInfo>>FRC12DemoWipeInfo | :x: |
+| executeType__41DemoSheetKeeperInfoHolder&lt;12DemoWipeInfo&gt;FPC12DemoWipeInfo | :x: |
+| push_back__Q22MR46Vector&lt;Q22MR31AssignableArray&lt;12DemoWipeInfo&gt;&gt;FRC12DemoWipeInfo | :x: |
 | @8@executeType__14DemoWipeKeeperFPC12DemoWipeInfo | :x: |
 
 
 # GrandStarReturnDemoStarter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__26GrandStarReturnDemoStarterFPCc | :x: |
 | init__26GrandStarReturnDemoStarterFRC12JMapInfoIter | :x: |
 | appear__26GrandStarReturnDemoStarterFv | :x: |
 | control__26GrandStarReturnDemoStarterFv | :x: |
-| calcOffsetStarToCore__26GrandStarReturnDemoStarterCFPQ29JGeometry8TVec3<f> | :x: |
+| calcOffsetStarToCore__26GrandStarReturnDemoStarterCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateRailMoveEndDir__26GrandStarReturnDemoStarterFv | :x: |
 | emitEffectRush__26GrandStarReturnDemoStarterFv | :x: |
-| updateRushStarPos__26GrandStarReturnDemoStarterFRCQ29JGeometry8TVec3<f>l | :x: |
+| updateRushStarPos__26GrandStarReturnDemoStarterFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | tryStartStageResult__26GrandStarReturnDemoStarterFPCc | :x: |
 | exeMove__26GrandStarReturnDemoStarterFv | :x: |
 | exeFlyWait__26GrandStarReturnDemoStarterFv | :x: |
@@ -594,12 +594,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | setResultFlyStartFrame__32@unnamed@ReturnDemoRailMove_cpp@FP9LiveActorl | :x: |
-| __ct__18ReturnDemoRailMoveFP9LiveActorP9LiveActorRC12JMapInfoIterbPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| __ct__18ReturnDemoRailMoveFP9LiveActorP9LiveActorRC12JMapInfoIterbPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | posToStart__18ReturnDemoRailMoveFv | :x: |
 | posToEnd__18ReturnDemoRailMoveFv | :x: |
 | offPathDraw__18ReturnDemoRailMoveFv | :x: |
 | getDemoFlyBrakeFrame__18ReturnDemoRailMoveCFv | :x: |
-| calcPathPosDir__18ReturnDemoRailMoveCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :x: |
+| calcPathPosDir__18ReturnDemoRailMoveCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | setupPathDrawForGraneStarReturnDemo__18ReturnDemoRailMoveFv | :x: |
 | start__18ReturnDemoRailMoveFv | :x: |
 | update__18ReturnDemoRailMoveFll | :x: |
@@ -619,7 +619,7 @@
 | updateBindPosition__15ScenarioStarterFv | :x: |
 | updateBindActorMtx__15ScenarioStarterFv | :x: |
 | updateShootMotion__15ScenarioStarterFv | :x: |
-| turnBindHead__15ScenarioStarterFRCQ29JGeometry8TVec3<f>f | :x: |
+| turnBindHead__15ScenarioStarterFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | calcShootMotionTime__15ScenarioStarterFv | :x: |
 | receiveOtherMsg__15ScenarioStarterFUlP9HitSensorP9HitSensor | :x: |
 | trySkipTrigger__15ScenarioStarterCFv | :x: |

@@ -235,12 +235,12 @@
 | setDrawCameraType__15DrawBufferGroupFl | :white_check_mark: |
 | setLightType__15DrawBufferGroupFl | :white_check_mark: |
 | findExecuterIndex__15DrawBufferGroupCFPCc | :white_check_mark: |
-| __ct__Q22MR53Vector<Q22MR38AssignableArray<P18DrawBufferExecuter>>Fv | :white_check_mark: |
-| __dt__Q22MR53Vector<Q22MR38AssignableArray<P18DrawBufferExecuter>>Fv | :white_check_mark: |
-| push_back__Q22MR53Vector<Q22MR38AssignableArray<P18DrawBufferExecuter>>FRCP18DrawBufferExecuter | :white_check_mark: |
-| for_each<PP18DrawBufferExecuter,Q23std33mem_fun_t<v,18DrawBufferExecuter>>__3stdFPP18DrawBufferExecuterPP18DrawBufferExecuterQ23std33mem_fun_t<v,18DrawBufferExecuter>_Q23std33mem_fun_t<v,18DrawBufferExecuter> | :x: |
-| for_each<PCP18DrawBufferExecuter,Q23std39const_mem_fun_t<v,18DrawBufferExecuter>>__3stdFPCP18DrawBufferExecuterPCP18DrawBufferExecuterQ23std39const_mem_fun_t<v,18DrawBufferExecuter>_Q23std39const_mem_fun_t<v,18DrawBufferExecuter> | :x: |
-| __dt__Q22MR38AssignableArray<P18DrawBufferExecuter>Fv | :white_check_mark: |
+| __ct__Q22MR53Vector&lt;Q22MR38AssignableArray&lt;P18DrawBufferExecuter&gt;&gt;Fv | :white_check_mark: |
+| __dt__Q22MR53Vector&lt;Q22MR38AssignableArray&lt;P18DrawBufferExecuter&gt;&gt;Fv | :white_check_mark: |
+| push_back__Q22MR53Vector&lt;Q22MR38AssignableArray&lt;P18DrawBufferExecuter&gt;&gt;FRCP18DrawBufferExecuter | :white_check_mark: |
+| for_each&lt;PP18DrawBufferExecuter,Q23std33mem_fun_t&lt;v,18DrawBufferExecuter&gt;&gt;__3stdFPP18DrawBufferExecuterPP18DrawBufferExecuterQ23std33mem_fun_t&lt;v,18DrawBufferExecuter&gt;_Q23std33mem_fun_t&lt;v,18DrawBufferExecuter&gt; | :x: |
+| for_each&lt;PCP18DrawBufferExecuter,Q23std39const_mem_fun_t&lt;v,18DrawBufferExecuter&gt;&gt;__3stdFPCP18DrawBufferExecuterPCP18DrawBufferExecuterQ23std39const_mem_fun_t&lt;v,18DrawBufferExecuter&gt;_Q23std39const_mem_fun_t&lt;v,18DrawBufferExecuter&gt; | :x: |
+| __dt__Q22MR38AssignableArray&lt;P18DrawBufferExecuter&gt;Fv | :white_check_mark: |
 
 
 # DrawBufferHolder.o
@@ -258,9 +258,9 @@
 | drawOpa__16DrawBufferHolderCFl | :x: |
 | drawXlu__16DrawBufferHolderCFl | :x: |
 | getExecuteList__16DrawBufferHolderFl | :x: |
-| __ct__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv | :x: |
-| end__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv | :x: |
-| for_each<PP15DrawBufferGroup,Q23std30mem_fun_t<v,15DrawBufferGroup>>__3stdFPP15DrawBufferGroupPP15DrawBufferGroupQ23std30mem_fun_t<v,15DrawBufferGroup>_Q23std30mem_fun_t<v,15DrawBufferGroup> | :x: |
+| __ct__Q22MR50Vector&lt;Q22MR35AssignableArray&lt;P15DrawBufferGroup&gt;&gt;Fv | :x: |
+| end__Q22MR50Vector&lt;Q22MR35AssignableArray&lt;P15DrawBufferGroup&gt;&gt;Fv | :x: |
+| for_each&lt;PP15DrawBufferGroup,Q23std30mem_fun_t&lt;v,15DrawBufferGroup&gt;&gt;__3stdFPP15DrawBufferGroupPP15DrawBufferGroupQ23std30mem_fun_t&lt;v,15DrawBufferGroup&gt;_Q23std30mem_fun_t&lt;v,15DrawBufferGroup&gt; | :x: |
 
 
 # DrawSyncManager.o
@@ -299,7 +299,7 @@
 | removeIfIsEqualHeap__10FileHolderFP7JKRHeap | :x: |
 | removeFile__10FileHolderFPCc | :white_check_mark: |
 | findEntry__10FileHolderCFPCc | :white_check_mark: |
-| erase__Q22MR54Vector<Q22MR39AssignableArray<P19FileHolderFileEntry>>FPP19FileHolderFileEntry | :x: |
+| erase__Q22MR54Vector&lt;Q22MR39AssignableArray&lt;P19FileHolderFileEntry&gt;&gt;FPP19FileHolderFileEntry | :x: |
 
 
 # FileLoader.o
@@ -401,8 +401,8 @@
 | execute__Q213NrvGameSystem29GameSystemInitializeLogoSceneCFP5Spine | :x: |
 | execute__Q213NrvGameSystem25GameSystemInitializeAudioCFP5Spine | :x: |
 | __dt__10GameSystemFv | :x: |
-| __cl__Q22MR65FunctorV0M<P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v&gt;CFP7JKRHeap | :x: |
 
 
 # GameSystemDimmingWatcher.o
@@ -591,11 +591,11 @@
 | execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@58GameSystemStationedArchiveLoaderLoadStationedArchiveOthersCFP5Spine | :x: |
 | execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@58GameSystemStationedArchiveLoaderLoadStationedArchivePlayerCFP5Spine | :x: |
 | execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@52GameSystemStationedArchiveLoaderLoadAudio1stWaveDataCFP5Spine | :x: |
-| Functor<32GameSystemStationedArchiveLoader,b>__2MRFP32GameSystemStationedArchiveLoaderM32GameSystemStationedArchiveLoaderFPCvPvb_vb_Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b> | :x: |
-| __cl__Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b>CFv | :x: |
-| clone__Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b>CFP7JKRHeap | :x: |
-| __cl__Q22MR91FunctorV0M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v>CFv | :x: |
-| clone__Q22MR91FunctorV0M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;32GameSystemStationedArchiveLoader,b&gt;__2MRFP32GameSystemStationedArchiveLoaderM32GameSystemStationedArchiveLoaderFPCvPvb_vb_Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt; | :x: |
+| __cl__Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt;CFv | :x: |
+| clone__Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR91FunctorV0M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR91FunctorV0M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__32GameSystemStationedArchiveLoaderFv | :x: |
 | __dt__22ConditionUsePlayerHeapFv | :x: |
 
@@ -678,9 +678,9 @@
 | execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerChangeWaveBankCFP5Spine | :x: |
 | execute__Q228NrvGameSystemSceneController31GameSystemSceneControllerNormalCFP5Spine | :x: |
 | execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerNotInitializedCFP5Spine | :x: |
-| Functor<25GameSystemSceneController>__2MRFP25GameSystemSceneControllerM25GameSystemSceneControllerFPCvPv_v_Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v> | :x: |
-| __cl__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFv | :x: |
-| clone__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;25GameSystemSceneController&gt;__2MRFP25GameSystemSceneControllerM25GameSystemSceneControllerFPCvPv_v_Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt; | :x: |
+| __cl__Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt;CFP7JKRHeap | :x: |
 
 
 # GameSystemResetAndPowerProcess.o
@@ -805,15 +805,15 @@
 | setForOSResetSystem__17MainLoopFrameworkFv | :x: |
 | waitForTick__31@unnamed@MainLoopFramework_cpp@FUlUs | :x: |
 | waitDrawDoneAndSetAlarm__31@unnamed@MainLoopFramework_cpp@Fv | :x: |
-| __dt__Q22MR37BothDirLink<22MainLoopFrameworkAlarm>Fv | :x: |
+| __dt__Q22MR37BothDirLink&lt;22MainLoopFrameworkAlarm&gt;Fv | :x: |
 | handleGXAbortAlarm__31@unnamed@MainLoopFramework_cpp@FP7OSAlarmP9OSContext | :x: |
 | __sinit_\MainLoopFramework_cpp | :x: |
 | getDrawingXfb__6JUTXfbCFv | :x: |
 | getManager__6JUTXfbFv | :x: |
 | getDisplayingXfbIndex__6JUTXfbCFv | :x: |
 | __dt__13J2DOrthoGraphFv | :x: |
-| __ct__Q22MR37BothDirList<22MainLoopFrameworkAlarm>Fb | :x: |
-| __dt__Q22MR37BothDirList<22MainLoopFrameworkAlarm>Fv | :x: |
+| __ct__Q22MR37BothDirList&lt;22MainLoopFrameworkAlarm&gt;Fb | :x: |
+| __dt__Q22MR37BothDirList&lt;22MainLoopFrameworkAlarm&gt;Fv | :x: |
 
 
 # MessageHolder.o
@@ -898,7 +898,7 @@
 | execute__Q231@unnamed@NANDErrorSequence_cpp@30NANDErrorSequenceErrorToFreezeCFP5Spine | :x: |
 | execute__Q231@unnamed@NANDErrorSequence_cpp@22NANDErrorSequenceErrorCFP5Spine | :x: |
 | execute__Q231@unnamed@NANDErrorSequence_cpp@21NANDErrorSequenceIdleCFP5Spine | :x: |
-| __dt__40ActorStateBase<22SaveDataHandleSequence>Fv | :x: |
+| __dt__40ActorStateBase&lt;22SaveDataHandleSequence&gt;Fv | :x: |
 
 
 # NANDManager.o
@@ -979,13 +979,13 @@
 | noLoadPrj__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPA4_Cf | :x: |
 | loadPrj__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPA4_Cf | :x: |
 | loadPrjAnm__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPA4_Cf | :x: |
-| getNext__23@unnamed@Overwrite_cpp@FP26JPANode<15JPABaseParticle> | :x: |
-| getPrev__23@unnamed@Overwrite_cpp@FP26JPANode<15JPABaseParticle> | :x: |
-| dirTypeVel__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> | :x: |
-| dirTypePos__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> | :x: |
-| dirTypePosInv__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> | :x: |
-| dirTypeEmtrDir__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> | :x: |
-| dirTypePrevPtcl__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> | :x: |
+| getNext__23@unnamed@Overwrite_cpp@FP26JPANode&lt;15JPABaseParticle&gt; | :x: |
+| getPrev__23@unnamed@Overwrite_cpp@FP26JPANode&lt;15JPABaseParticle&gt; | :x: |
+| dirTypeVel__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| dirTypePos__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| dirTypePosInv__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| dirTypeEmtrDir__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| dirTypePrevPtcl__23@unnamed@Overwrite_cpp@FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | rotTypeY__23@unnamed@Overwrite_cpp@FffRA3_A4_f | :x: |
 | rotTypeX__23@unnamed@Overwrite_cpp@FffRA3_A4_f | :x: |
 | rotTypeZ__23@unnamed@Overwrite_cpp@FffRA3_A4_f | :x: |
@@ -1013,18 +1013,18 @@
 | __ct__14JASAudioThreadFiiUl | :x: |
 | __ct__7JKRAramFUlUll | :x: |
 | GXPosition3f32 | :x: |
-| __dt__Q317JASThreadingModel56InterruptsDisable<35JASMemPool_MultiThreaded<8JASTrack>>4LockFv | :x: |
-| __dt__Q317JASThreadingModel71InterruptsDisable<50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>>4LockFv | :x: |
-| __dt__35JASGlobalInstance<14JASAudioThread>Fv | :x: |
+| __dt__Q317JASThreadingModel56InterruptsDisable&lt;35JASMemPool_MultiThreaded&lt;8JASTrack&gt;&gt;4LockFv | :x: |
+| __dt__Q317JASThreadingModel71InterruptsDisable&lt;50JASMemPool_MultiThreaded&lt;Q28JASTrack11TChannelMgr&gt;&gt;4LockFv | :x: |
+| __dt__35JASGlobalInstance&lt;14JASAudioThread&gt;Fv | :x: |
 | __dt__12JPAFieldSpinFv | :x: |
 | __dt__18JPAFieldConvectionFv | :x: |
 | __dt__14JPAFieldVortexFv | :x: |
 | __dt__11JPAFieldAirFv | :x: |
 | __sinit_\Overwrite_cpp | :x: |
-| __ct__50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>Fv | :x: |
-| __dt__50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>Fv | :x: |
-| __ct__35JASMemPool_MultiThreaded<8JASTrack>Fv | :x: |
-| __dt__35JASMemPool_MultiThreaded<8JASTrack>Fv | :x: |
+| __ct__50JASMemPool_MultiThreaded&lt;Q28JASTrack11TChannelMgr&gt;Fv | :x: |
+| __dt__50JASMemPool_MultiThreaded&lt;Q28JASTrack11TChannelMgr&gt;Fv | :x: |
+| __ct__35JASMemPool_MultiThreaded&lt;8JASTrack&gt;Fv | :x: |
+| __dt__35JASMemPool_MultiThreaded&lt;8JASTrack&gt;Fv | :x: |
 
 
 # PauseButtonCheckerInGame.o
@@ -1091,9 +1091,9 @@
 | find__21ResourceHolderManagerFPCc | :x: |
 | __ct__34ResourceHolderManagerName2ResourceFv | :x: |
 | __ct__24CreateResourceHolderArgsFv | :x: |
-| Functor<21ResourceHolderManager,PCc,P24CreateResourceHolderArgs>__2MRFP21ResourceHolderManagerM21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_vPCcP24CreateResourceHolderArgs_Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs> | :x: |
-| __cl__Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs>CFv | :x: |
-| clone__Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs>CFP7JKRHeap | :x: |
+| Functor&lt;21ResourceHolderManager,PCc,P24CreateResourceHolderArgs&gt;__2MRFP21ResourceHolderManagerM21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_vPCcP24CreateResourceHolderArgs_Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt; | :x: |
+| __cl__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFv | :x: |
+| clone__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFP7JKRHeap | :x: |
 | __as__34ResourceHolderManagerName2ResourceFRC34ResourceHolderManagerName2Resource | :x: |
 
 
@@ -1140,10 +1140,10 @@
 | getCurrentCommonLayers__20ScenarioDataFunctionFPCc | :x: |
 | getCurrentScenarioLayers__20ScenarioDataFunctionFPCcl | :x: |
 | makeBeginScenarioDataIter__2MRFv | :x: |
-| sort<PP12ScenarioData,RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt>__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
-| swap<P12ScenarioData>__3stdFRP12ScenarioDataRP12ScenarioData_v | :x: |
-| __sort132<RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData>__3stdFPP12ScenarioDataPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
-| __selection_sort<RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData>__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
+| sort&lt;PP12ScenarioData,RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt&gt;__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
+| swap&lt;P12ScenarioData&gt;__3stdFRP12ScenarioDataRP12ScenarioData_v | :x: |
+| __sort132&lt;RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData&gt;__3stdFPP12ScenarioDataPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
+| __selection_sort&lt;RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData&gt;__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v | :x: |
 | __dt__18ScenarioDataParserFv | :x: |
 
 
@@ -1242,16 +1242,16 @@
 | getKPadStatus__4WPadCFUl | :x: |
 | getValidStatusCount__4WPadCFv | :x: |
 | getEnableAccelPastCount__4WPadCFUl | :x: |
-| getAcceleration__4WPadCFPQ29JGeometry8TVec3<f>Ul | :x: |
-| getPastAcceleration__4WPadCFPQ29JGeometry8TVec3<f>lUl | :x: |
+| getAcceleration__4WPadCFPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
+| getPastAcceleration__4WPadCFPQ29JGeometry8TVec3&lt;f&gt;lUl | :x: |
 
 
 # WPadAcceleration.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__16WPadAccelerationFPC4WPadUl | :x: |
-| getAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f> | :x: |
-| getPastAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f>l | :x: |
+| getAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getPastAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | isStationary__16WPadAccelerationCFv | :x: |
 | isBalanced__16WPadAccelerationCFv | :x: |
 | update__16WPadAccelerationFv | :x: |
@@ -1355,11 +1355,11 @@
 | reset__11WPadPointerFv | :x: |
 | setSensorBarLevel__11WPadPointerFf | :x: |
 | update__11WPadPointerFv | :x: |
-| getPointingPos__11WPadPointerCFPQ29JGeometry8TVec2<f> | :x: |
-| getHorizonVec__11WPadPointerCFPQ29JGeometry8TVec2<f> | :x: |
-| getPastPointingPos__11WPadPointerCFPQ29JGeometry8TVec2<f>l | :x: |
+| getPointingPos__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| getHorizonVec__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| getPastPointingPos__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt;l | :x: |
 | getEnablePastCount__11WPadPointerCFv | :x: |
-| getPointingPosBasedOnScreen__11WPadPointerCFPQ29JGeometry8TVec2<f> | :x: |
+| getPointingPosBasedOnScreen__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # WPadRumble.o
@@ -1861,10 +1861,10 @@
 | isDependedAnother__18GameEventFlagTableFPCcPCc | :x: |
 | getIndexFromHashCode__18GameEventFlagTableFUs | :x: |
 | calcSpecialPowerStarNum__18GameEventFlagTableFPCc | :x: |
-| sort<PQ226GameEventFlagTableInstance3Key,RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
-| swap<Q226GameEventFlagTableInstance3Key>__3stdFRQ226GameEventFlagTableInstance3KeyRQ226GameEventFlagTableInstance3Key_v | :x: |
-| __sort132<RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
-| __selection_sort<RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
+| sort&lt;PQ226GameEventFlagTableInstance3Key,RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
+| swap&lt;Q226GameEventFlagTableInstance3Key&gt;__3stdFRQ226GameEventFlagTableInstance3KeyRQ226GameEventFlagTableInstance3Key_v | :x: |
+| __sort132&lt;RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
+| __selection_sort&lt;RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v | :x: |
 | getStarPieceNumToOpenExclamationGalaxy__18GameEventFlagTableFPCc | :x: |
 | calcGreenPowerStarNum__18GameEventFlagTableFv | :x: |
 | getGalaxyDependedFlags__18GameEventFlagTableFPPCciPCc | :x: |
@@ -1916,9 +1916,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__20GameSequenceDirectorFv | :x: |
-| Functor<20GameSequenceDirector>__2MRFP20GameSequenceDirectorM20GameSequenceDirectorFPCvPv_v_Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v> | :x: |
-| __cl__Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>CFv | :x: |
-| clone__Q22MR67FunctorV0M<P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;20GameSequenceDirector&gt;__2MRFP20GameSequenceDirectorM20GameSequenceDirectorFPCvPv_v_Q22MR67FunctorV0M&lt;P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR67FunctorV0M&lt;P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR67FunctorV0M&lt;P20GameSequenceDirector,M20GameSequenceDirectorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | initAfterResourceLoaded__20GameSequenceDirectorFv | :x: |
 | update__20GameSequenceDirectorFv | :x: |
 | draw__20GameSequenceDirectorCFv | :x: |
@@ -2243,8 +2243,8 @@
 | deserialize__21SpinDriverPathStorageFPCUcUl | :x: |
 | findFromGalaxy__21SpinDriverPathStorageFPCc | :x: |
 | findFromHashCode__21SpinDriverPathStorageFUs | :x: |
-| push_back__Q22MR58Vector<Q22MR43AssignableArray<24SpinDriverPathStorageOne>>FRC24SpinDriverPathStorageOne | :x: |
-| __dt__Q22MR43AssignableArray<24SpinDriverPathStorageOne>Fv | :x: |
+| push_back__Q22MR58Vector&lt;Q22MR43AssignableArray&lt;24SpinDriverPathStorageOne&gt;&gt;FRC24SpinDriverPathStorageOne | :x: |
+| __dt__Q22MR43AssignableArray&lt;24SpinDriverPathStorageOne&gt;Fv | :x: |
 
 
 # StageResultSequenceChecker.o
@@ -2305,10 +2305,10 @@
 | setNextStageToAstroGalaxyOrDome__21StorySequenceExecutorFP18GalaxyMoveArgument | :x: |
 | setNextStageToAstroDome__21StorySequenceExecutorFP18GalaxyMoveArgument | :x: |
 | isExecuteDemoLuigiMissing__21StorySequenceExecutorCFPC18GalaxyMoveArgument | :x: |
-| getOptionalDemoForClearGalaxy__21StorySequenceExecutorCFPQ22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>PC18GalaxyMoveArgument | :x: |
+| getOptionalDemoForClearGalaxy__21StorySequenceExecutorCFPQ22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt;PC18GalaxyMoveArgument | :x: |
 | isEqualStageStopCometScheduler__21StorySequenceExecutorFPCc | :x: |
 | prepareDemoSequence__21StorySequenceExecutorFPCQ225StorySequenceExecutorType16DemoSequenceInfo | :x: |
-| prepareDemoSequence__21StorySequenceExecutorFRCQ22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>> | :x: |
+| prepareDemoSequence__21StorySequenceExecutorFRCQ22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt; | :x: |
 | prepareDemoSequenceButlerFortressDiscover__21StorySequenceExecutorFPC18GalaxyMoveArgumentRC29DemoFortressDiscoverCheckList | :x: |
 | tryStartDemo__21StorySequenceExecutorFPCc | :x: |
 | tryStartSave__21StorySequenceExecutorFv | :x: |
@@ -2339,7 +2339,7 @@
 | execute__Q235@unnamed@StorySequenceExecutor_cpp@37StorySequenceExecutorPlayDemoSequenceCFP5Spine | :x: |
 | execute__Q235@unnamed@StorySequenceExecutor_cpp@37StorySequenceExecutorWaitToSceneStartCFP5Spine | :x: |
 | execute__Q235@unnamed@StorySequenceExecutor_cpp@25StorySequenceExecutorIdleCFP5Spine | :x: |
-| push_back__Q22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo | :x: |
+| push_back__Q22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt;FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo | :x: |
 | __dt__21StorySequenceExecutorFv | :x: |
 
 

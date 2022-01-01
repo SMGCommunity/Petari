@@ -191,10 +191,10 @@
 | kill__11BossBegomanFv | :x: |
 | control__11BossBegomanFv | :x: |
 | setStepBackNerve__11BossBegomanFv | :x: |
-| onTouchElectric__11BossBegomanFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| onTouchElectric__11BossBegomanFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setNerveReturn__11BossBegomanFv | :x: |
 | getNerveWait__11BossBegomanFv | :x: |
-| addVelocityOnPushedFromElectricRail__11BossBegomanFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| addVelocityOnPushedFromElectricRail__11BossBegomanFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | requestAttack__11BossBegomanFv | :x: |
 | exePreDemoWait__11BossBegomanFv | :x: |
 | exeFirstContactDemo__11BossBegomanFv | :x: |
@@ -295,7 +295,7 @@
 | exeTurn__15BossBegomanHeadFv | :x: |
 | exeTurnEnd__15BossBegomanHeadFv | :x: |
 | calcAndSetBaseMtx__15BossBegomanHeadFv | :x: |
-| calcJointEdge__15BossBegomanHeadFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointEdge__15BossBegomanHeadFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __sinit_\BossBegomanHead_cpp | :x: |
 | __ct__Q218NrvBossBegomanHead19HostTypeNrvDemoWaitFv | :x: |
 | __ct__Q218NrvBossBegomanHead22HostTypeNrvOpeningDemoFv | :x: |
@@ -313,16 +313,16 @@
 | execute__Q218NrvBossBegomanHead17HostTypeNrvOnWaitCFP5Spine | :x: |
 | execute__Q218NrvBossBegomanHead22HostTypeNrvOpeningDemoCFP5Spine | :x: |
 | execute__Q218NrvBossBegomanHead19HostTypeNrvDemoWaitCFP5Spine | :x: |
-| __dt__40JointControlDelegator<15BossBegomanHead>Fv | :x: |
-| calcJointMatrix__40JointControlDelegator<15BossBegomanHead>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__40JointControlDelegator<15BossBegomanHead>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__40JointControlDelegator&lt;15BossBegomanHead&gt;Fv | :x: |
+| calcJointMatrix__40JointControlDelegator&lt;15BossBegomanHead&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__40JointControlDelegator&lt;15BossBegomanHead&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__15BossBegomanHeadFv | :x: |
 
 
 # BossKameck.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct<i>__Q29JGeometry8TVec3<f>Fiii_Pv | :x: |
+| __ct&lt;i&gt;__Q29JGeometry8TVec3&lt;f&gt;Fiii_Pv | :x: |
 | __dt__9LiveActorFv | :x: |
 | __ct__10BossKameckFPCcPCc | :x: |
 | getMoveRail__10BossKameckFl | :x: |
@@ -352,8 +352,8 @@
 | hitBeam__10BossKameckFl | :x: |
 | createBossKameck1__2MRFPCc | :x: |
 | start__19BossKameckSequencerFv | :x: |
-| __cl__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10BossKameck,M10BossKameckFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10BossKameck,M10BossKameckFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10BossKameckFv | :x: |
 
 
@@ -361,7 +361,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__16BossKameckActionFPCcP10BossKameck | :x: |
-| __dt__28ActorStateBase<10BossKameck>Fv | :x: |
+| __dt__28ActorStateBase&lt;10BossKameck&gt;Fv | :x: |
 | control__23ActorStateBaseInterfaceFv | :x: |
 | kill__23ActorStateBaseInterfaceFv | :x: |
 | appear__23ActorStateBaseInterfaceFv | :x: |
@@ -463,7 +463,7 @@
 | ------------- | ------------- |
 | __ct__18BossKameckMoveRailFPCc | :x: |
 | init__18BossKameckMoveRailFRC12JMapInfoIter | :x: |
-| calcMovePosition__18BossKameckMoveRailCFPQ29JGeometry8TVec3<f>l | :x: |
+| calcMovePosition__18BossKameckMoveRailCFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | calcRandomIndex__18BossKameckMoveRailCFl | :x: |
 | calcRandomStoppableIndex__18BossKameckMoveRailCFl | :x: |
 | __dt__18BossKameckMoveRailFv | :x: |
@@ -598,8 +598,8 @@
 # BossStinkBug.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getZDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
-| setQuat__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f> | :x: |
+| getZDir__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setQuat__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry9TQuat4&lt;f&gt; | :x: |
 | __ct__12BossStinkBugFPCc | :x: |
 | makeActorAppeared__12BossStinkBugFv | :x: |
 | makeActorDead__12BossStinkBugFv | :x: |
@@ -615,7 +615,7 @@
 | getBombLauncher__12BossStinkBugFv | :x: |
 | control__12BossStinkBugFv | :x: |
 | calcAndSetBaseMtx__12BossStinkBugFv | :x: |
-| calcUpVec__12BossStinkBugCFPQ29JGeometry8TVec3<f> | :x: |
+| calcUpVec__12BossStinkBugCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcAnim__12BossStinkBugFv | :x: |
 | updateAction__12BossStinkBugFv | :x: |
 | updatePose__12BossStinkBugFv | :x: |
@@ -641,8 +641,8 @@
 | isValid__27BossStinkBugFollowValidaterCFl | :x: |
 | __sinit_\BossStinkBug_cpp | :x: |
 | gekko_ps_copy12__5JMathFPvPCv | :x: |
-| __cl__Q22MR51FunctorV0M<P12BossStinkBug,M12BossStinkBugFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12BossStinkBug,M12BossStinkBugFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12BossStinkBug,M12BossStinkBugFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12BossStinkBug,M12BossStinkBugFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12BossStinkBugFv | :x: |
 
 
@@ -650,7 +650,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__22BossStinkBugActionBaseFPCcP12BossStinkBug | :x: |
-| __dt__30ActorStateBase<12BossStinkBug>Fv | :x: |
+| __dt__30ActorStateBase&lt;12BossStinkBug&gt;Fv | :x: |
 | updateGroundWalk__22BossStinkBugActionBaseFf | :x: |
 | updateFlyRoll__22BossStinkBugActionBaseFv | :x: |
 | updateFlyRollWait__22BossStinkBugActionBaseFl | :x: |
@@ -884,7 +884,7 @@
 | init__16BossStinkBugBombFRC12JMapInfoIter | :x: |
 | control__16BossStinkBugBombFv | :x: |
 | calcAndSetBaseMtx__16BossStinkBugBombFv | :x: |
-| start__16BossStinkBugBombFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| start__16BossStinkBugBombFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | attackSensor__16BossStinkBugBombFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__16BossStinkBugBombFUlP9HitSensorP9HitSensor | :x: |
 | receiveMsgPush__16BossStinkBugBombFP9HitSensorP9HitSensor | :x: |
@@ -903,7 +903,7 @@
 | ------------- | ------------- |
 | __ct__22BossStinkBugBombHolderFP9LiveActor | :x: |
 | __dt__14LiveActorGroupFv | :x: |
-| __dt__36DeriveActorGroup<16BossStinkBugBomb>Fv | :x: |
+| __dt__36DeriveActorGroup&lt;16BossStinkBugBomb&gt;Fv | :x: |
 | __dt__22BossStinkBugBombHolderFv | :x: |
 
 
@@ -941,14 +941,14 @@
 # BossStinkBugFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| addHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>PC12BossStinkBugf | :x: |
-| addLocalHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>P12BossStinkBugf | :x: |
-| calcDiffCurrentRailPosition__20BossStinkBugFunctionFPQ29JGeometry8TVec3<f>P12BossStinkBugff | :x: |
+| addHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3&lt;f&gt;PC12BossStinkBugf | :x: |
+| addLocalHeightOffset__20BossStinkBugFunctionFPQ29JGeometry8TVec3&lt;f&gt;P12BossStinkBugf | :x: |
+| calcDiffCurrentRailPosition__20BossStinkBugFunctionFPQ29JGeometry8TVec3&lt;f&gt;P12BossStinkBugff | :x: |
 | moveRail__20BossStinkBugFunctionFP12BossStinkBugfff | :x: |
-| turnRailGround__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3<f>fb | :x: |
-| turnRail__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3<f>fffffb | :x: |
-| regainToRail__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3<f>ffff | :x: |
-| setFallVelocity__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3<f>fff | :x: |
+| turnRailGround__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3&lt;f&gt;fb | :x: |
+| turnRail__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3&lt;f&gt;fffffb | :x: |
+| regainToRail__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3&lt;f&gt;ffff | :x: |
+| setFallVelocity__20BossStinkBugFunctionFP12BossStinkBugRCQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
 | throwBomb__20BossStinkBugFunctionFP12BossStinkBug | :x: |
 | invalidateAttack__20BossStinkBugFunctionFP12BossStinkBug | :x: |
 | isHipDropableSensor__20BossStinkBugFunctionFPC12BossStinkBugPC9HitSensor | :x: |
@@ -973,7 +973,7 @@
 # DinoPackun.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| set<f>__Q29JGeometry8TVec4<f>FRCQ29JGeometry8TVec4<f>_v | :x: |
+| set&lt;f&gt;__Q29JGeometry8TVec4&lt;f&gt;FRCQ29JGeometry8TVec4&lt;f&gt;_v | :x: |
 | __ct__Q224@unnamed@DinoPackun_cpp@15DinoPackunParamFv | :x: |
 | __ct__10DinoPackunFPCc | :x: |
 | init__10DinoPackunFRC12JMapInfoIter | :x: |
@@ -987,7 +987,7 @@
 | makeActorDead__10DinoPackunFv | :x: |
 | startHitReaction__10DinoPackunFv | :x: |
 | isHitReaction__10DinoPackunCFl | :x: |
-| hitScaleJoint__10DinoPackunFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| hitScaleJoint__10DinoPackunFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | getEggShell__10DinoPackunFv | :x: |
 | getEggBrokenModel__10DinoPackunFv | :x: |
 | getBallModel__10DinoPackunFv | :x: |
@@ -1008,7 +1008,7 @@
 | appearStarPiece__10DinoPackunFl | :x: |
 | isSensorEgg__10DinoPackunCFPC9HitSensor | :x: |
 | resetPosition__10DinoPackunFv | :x: |
-| adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3<f>f | :x: |
+| adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | activateParts__10DinoPackunFv | :x: |
 | onMovementParts__10DinoPackunFv | :x: |
 | onAimTailBall__10DinoPackunFl | :x: |
@@ -1025,12 +1025,12 @@
 | isUseEggShell__19DinoPackunSequencerCFv | :x: |
 | init__19DinoPackunSequencerFv | :x: |
 | start__19DinoPackunSequencerFv | :x: |
-| setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f> | :x: |
-| __dt__35JointControlDelegator<10DinoPackun>Fv | :x: |
-| calcJointMatrix__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| __cl__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFP7JKRHeap | :x: |
+| setTrans__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __dt__35JointControlDelegator&lt;10DinoPackun&gt;Fv | :x: |
+| calcJointMatrix__35JointControlDelegator&lt;10DinoPackun&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__35JointControlDelegator&lt;10DinoPackun&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10DinoPackun,M10DinoPackunFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10DinoPackun,M10DinoPackunFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10DinoPackunFv | :x: |
 
 
@@ -1038,7 +1038,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__16DinoPackunActionFPCcP10DinoPackun | :x: |
-| __dt__28ActorStateBase<10DinoPackun>Fv | :x: |
+| __dt__28ActorStateBase&lt;10DinoPackun&gt;Fv | :x: |
 | sendBlowAttackMessage__16DinoPackunActionFP9HitSensorP9HitSensorb | :x: |
 | sendHitAttackMessage__16DinoPackunActionFP9HitSensorP9HitSensorb | :x: |
 | updateTurn__16DinoPackunActionFlf | :x: |
@@ -1068,7 +1068,7 @@
 | init__14DinoPackunBallFRC12JMapInfoIter | :x: |
 | control__14DinoPackunBallFv | :x: |
 | calcAndSetBaseMtx__14DinoPackunBallFv | :x: |
-| addNodeVelocity__14DinoPackunBallFRCQ29JGeometry8TVec3<f> | :x: |
+| addNodeVelocity__14DinoPackunBallFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setWeakSensor__14DinoPackunBallFP9HitSensor | :x: |
 | createJointControllerOwn__14DinoPackunBallFP9LiveActorPCc | :x: |
 | requestLockPosition__14DinoPackunBallFv | :x: |
@@ -1099,9 +1099,9 @@
 | execute__Q217NrvDinoPackunBall23DinoPackunBallNrvChargeCFP5Spine | :x: |
 | execute__Q217NrvDinoPackunBall22DinoPackunBallNrvShootCFP5Spine | :x: |
 | execute__Q217NrvDinoPackunBall21DinoPackunBallNrvWaitCFP5Spine | :x: |
-| __dt__43JointControlDelegator<18DinoPackunTailNode>Fv | :x: |
-| calcJointMatrix__43JointControlDelegator<18DinoPackunTailNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__43JointControlDelegator<18DinoPackunTailNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__43JointControlDelegator&lt;18DinoPackunTailNode&gt;Fv | :x: |
+| calcJointMatrix__43JointControlDelegator&lt;18DinoPackunTailNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__43JointControlDelegator&lt;18DinoPackunTailNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__14DinoPackunBallFv | :x: |
 
 
@@ -1338,14 +1338,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__20DinoPackunFireHolderFl | :x: |
-| __dt__34DeriveActorGroup<14DinoPackunFire>Fv | :x: |
+| __dt__34DeriveActorGroup&lt;14DinoPackunFire&gt;Fv | :x: |
 | __ct__14DinoPackunFireFPCc | :x: |
 | init__14DinoPackunFireFRC12JMapInfoIter | :x: |
 | kill__14DinoPackunFireFv | :x: |
 | control__14DinoPackunFireFv | :x: |
 | calcAndSetBaseMtx__14DinoPackunFireFv | :x: |
 | attackSensor__14DinoPackunFireFP9HitSensorP9HitSensor | :x: |
-| appearShot__14DinoPackunFireFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| appearShot__14DinoPackunFireFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeShot__14DinoPackunFireFv | :x: |
 | exeGround__14DinoPackunFireFv | :x: |
 | __dt__14DinoPackunFireFv | :x: |
@@ -1466,8 +1466,8 @@
 | addAccelKeepBend__14DinoPackunTailFv | :x: |
 | addAccelKeepDistance__14DinoPackunTailFv | :x: |
 | addAccelToBck__14DinoPackunTailFv | :x: |
-| getTailNodePosition__14DinoPackunTailCFPQ29JGeometry8TVec3<f>l | :x: |
-| getEndTailPosition__14DinoPackunTailCFPQ29JGeometry8TVec3<f> | :x: |
+| getTailNodePosition__14DinoPackunTailCFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| getEndTailPosition__14DinoPackunTailCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getNode__14DinoPackunTailCFUl | :x: |
 
 
@@ -1479,16 +1479,16 @@
 | resetJoint__18DinoPackunTailNodeFv | :x: |
 | getLinkLength__18DinoPackunTailNodeCFv | :x: |
 | getKeepBendPower__18DinoPackunTailNodeCFv | :x: |
-| preCalcJoint__18DinoPackunTailNodeFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| turnJointLocalXDir__18DinoPackunTailNodeFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointScale__18DinoPackunTailNodeFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| preCalcJoint__18DinoPackunTailNodeFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| turnJointLocalXDir__18DinoPackunTailNodeFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointScale__18DinoPackunTailNodeFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | registerPreCalcJointCallBack__18DinoPackunTailNodeFv | :x: |
 | registerJointCallBack__18DinoPackunTailNodeFv | :x: |
 | lockPosition__18DinoPackunTailNodeFv | :x: |
 | unLockPosition__18DinoPackunTailNodeFv | :x: |
-| addNodeVelocityHost__18DinoPackunTailNodeFRCQ29JGeometry8TVec3<f> | :x: |
+| addNodeVelocityHost__18DinoPackunTailNodeFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getNodeDirection__18DinoPackunTailNodeCFv | :x: |
-| addNodeVelocity__18DinoPackunTailNodeFRCQ29JGeometry8TVec3<f> | :x: |
+| addNodeVelocity__18DinoPackunTailNodeFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | requestLockPosition__18DinoPackunTailNodeFv | :x: |
 | requestUnLockPosition__18DinoPackunTailNodeFv | :x: |
 
@@ -1518,11 +1518,11 @@
 | __ct__18DinoPackunTailRootFPCcP10DinoPackun | :x: |
 | init__18DinoPackunTailRootFRC12JMapInfoIter | :x: |
 | createJointControllerOwn__18DinoPackunTailRootFP9LiveActorPCc | :x: |
-| calcJointDirection__18DinoPackunTailRootFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| addNodeVelocity__18DinoPackunTailRootFRCQ29JGeometry8TVec3<f> | :x: |
-| __dt__43JointControlDelegator<18DinoPackunTailRoot>Fv | :x: |
-| calcJointMatrix__43JointControlDelegator<18DinoPackunTailRoot>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__43JointControlDelegator<18DinoPackunTailRoot>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointDirection__18DinoPackunTailRootFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| addNodeVelocity__18DinoPackunTailRootFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __dt__43JointControlDelegator&lt;18DinoPackunTailRoot&gt;Fv | :x: |
+| calcJointMatrix__43JointControlDelegator&lt;18DinoPackunTailRoot&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__43JointControlDelegator&lt;18DinoPackunTailRoot&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__18DinoPackunTailRootFv | :x: |
 
 
@@ -1530,13 +1530,13 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__25DinoPackunTrackFireHolderFl | :x: |
-| __dt__39DeriveActorGroup<19DinoPackunTrackFire>Fv | :x: |
+| __dt__39DeriveActorGroup&lt;19DinoPackunTrackFire&gt;Fv | :x: |
 | __ct__19DinoPackunTrackFireFPCc | :x: |
 | init__19DinoPackunTrackFireFRC12JMapInfoIter | :x: |
 | control__19DinoPackunTrackFireFv | :x: |
 | attackSensor__19DinoPackunTrackFireFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__19DinoPackunTrackFireFUlP9HitSensorP9HitSensor | :x: |
-| appearAndSetPos__19DinoPackunTrackFireFRCQ29JGeometry8TVec3<f> | :x: |
+| appearAndSetPos__19DinoPackunTrackFireFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeWait__19DinoPackunTrackFireFv | :x: |
 | exeGround__19DinoPackunTrackFireFv | :x: |
 | __dt__19DinoPackunTrackFireFv | :x: |
@@ -1628,8 +1628,8 @@
 # Dodoryu.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setAll<f>__Q29JGeometry8TVec3<f>Ff_v | :x: |
-| __ct__Q29JGeometry8TVec3<f>FRC3Vec | :x: |
+| setAll&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;Ff_v | :x: |
+| __ct__Q29JGeometry8TVec3&lt;f&gt;FRC3Vec | :x: |
 | __ct__7DodoryuFPCc | :x: |
 | init__7DodoryuFRC12JMapInfoIter | :x: |
 | initAfterPlacement__7DodoryuFv | :x: |
@@ -1638,18 +1638,18 @@
 | endClipped__7DodoryuFv | :x: |
 | snapToGround__7DodoryuFv | :x: |
 | snapToWall__7DodoryuFv | :x: |
-| setMtx__7DodoryuFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setMtx__7DodoryuFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | notifyOnSwitchA__7DodoryuFv | :x: |
 | nextState__7DodoryuFv | :x: |
 | pauseOff__7DodoryuFv | :x: |
 | startPlayerCenterCamera__7DodoryuFv | :x: |
 | endPlayerCenterCamera__7DodoryuFv | :x: |
-| getPlayerResetMtx__7DodoryuCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ul | :x: |
+| getPlayerResetMtx__7DodoryuCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ul | :x: |
 | checkWallWithVelocity__7DodoryuFv | :x: |
 | reactJumpOutCommon__7DodoryuCFv | :x: |
 | startSpinOutCamera__7DodoryuFv | :x: |
 | endSpinOutCamera__7DodoryuFv | :x: |
-| keepOffFromClosedArea__7DodoryuFPQ29JGeometry8TVec3<f> | :x: |
+| keepOffFromClosedArea__7DodoryuFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | tryRumblePad__7DodoryuFv | :x: |
 | invalidateEyeSensor__7DodoryuFv | :x: |
 | validateEyeSensor__7DodoryuFv | :x: |
@@ -1673,7 +1673,7 @@
 | appearBank__7DodoryuFv | :x: |
 | leaveRabbit__7DodoryuFv | :x: |
 | resetRabbit__7DodoryuFv | :x: |
-| calcRabbitDir__7DodoryuCFPQ29JGeometry8TVec3<f> | :x: |
+| calcRabbitDir__7DodoryuCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | displayRabbitMessage__7DodoryuFv | :x: |
 | calcAndSetBaseMtx__7DodoryuFv | :x: |
 | attackSensor__7DodoryuFP9HitSensorP9HitSensor | :x: |
@@ -1682,7 +1682,7 @@
 | initSwitch__7DodoryuFRC12JMapInfoIter | :x: |
 | createMogucchiHill__7DodoryuFv | :x: |
 | createDodoryuBank__7DodoryuFv | :x: |
-| turnUpVecTo__7DodoryuFRCQ29JGeometry8TVec3<f> | :x: |
+| turnUpVecTo__7DodoryuFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | checkHipDrop__7DodoryuFv | :x: |
 | initState__7DodoryuFv | :x: |
 | updateRumblePad__7DodoryuFv | :x: |
@@ -1710,7 +1710,7 @@
 | __ct__15DodoryuLeadHillFP7Dodoryu | :x: |
 | init__15DodoryuLeadHillFRC12JMapInfoIter | :x: |
 | control__15DodoryuLeadHillFv | :x: |
-| calcJoint__15DodoryuLeadHillFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJoint__15DodoryuLeadHillFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcAndSetBaseMtx__15DodoryuLeadHillFv | :x: |
 | initJoint__15DodoryuLeadHillFv | :x: |
 | __sinit_\Dodoryu_cpp | :x: |
@@ -1740,12 +1740,12 @@
 | catchAttackSensor__16DodoryuStateBaseFP9HitSensorP9HitSensor | :x: |
 | catchPlayerAttack__16DodoryuStateBaseFUlP9HitSensorP9HitSensor | :x: |
 | catchHipDrop__16DodoryuStateBaseFv | :x: |
-| __dt__40JointControlDelegator<15DodoryuLeadHill>Fv | :x: |
-| calcJointMatrix__40JointControlDelegator<15DodoryuLeadHill>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__40JointControlDelegator<15DodoryuLeadHill>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| push_back__Q22MR49Vector<Q22MR34FixedArray<P16DodoryuStateBase,16>>FRCP16DodoryuStateBase | :x: |
-| __cl__Q22MR39FunctorV0M<P7Dodoryu,M7DodoryuFPCvPv_v>CFv | :x: |
-| clone__Q22MR39FunctorV0M<P7Dodoryu,M7DodoryuFPCvPv_v>CFP7JKRHeap | :x: |
+| __dt__40JointControlDelegator&lt;15DodoryuLeadHill&gt;Fv | :x: |
+| calcJointMatrix__40JointControlDelegator&lt;15DodoryuLeadHill&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__40JointControlDelegator&lt;15DodoryuLeadHill&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| push_back__Q22MR49Vector&lt;Q22MR34FixedArray&lt;P16DodoryuStateBase,16&gt;&gt;FRCP16DodoryuStateBase | :x: |
+| __cl__Q22MR39FunctorV0M&lt;P7Dodoryu,M7DodoryuFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7Dodoryu,M7DodoryuFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7DodoryuFv | :x: |
 | __dt__11DodoryuBankFv | :x: |
 | __dt__13DodoryuRabbitFv | :x: |
@@ -1861,8 +1861,8 @@
 # DodoryuStateBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| calcAttackDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcVerticalizedDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcAttackDir__16DodoryuStateBaseFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcVerticalizedDir__16DodoryuStateBaseFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # DodoryuStateLv1.o
@@ -1928,8 +1928,8 @@
 # DodoryuStateLv2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f> | :x: |
-| mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
+| scale__Q29JGeometry8TVec3&lt;f&gt;FfRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| mult33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__15DodoryuStateLv2FP7DodoryuP17DodoryuChaseParamPCc | :x: |
 | init__15DodoryuStateLv2FRC12JMapInfoIter | :x: |
 | control__15DodoryuStateLv2Fv | :x: |
@@ -1978,9 +1978,9 @@
 | tryToShiftAppearSign__15DodoryuStateLv2Fv | :x: |
 | determinChaseMoreAccelCounter__15DodoryuStateLv2Fv | :x: |
 | determinChaseMoreBrakeCounter__15DodoryuStateLv2Fv | :x: |
-| turnToward__15DodoryuStateLv2FRCQ29JGeometry8TVec3<f>f | :x: |
+| turnToward__15DodoryuStateLv2FRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | addVelocity__15DodoryuStateLv2Fb | :x: |
-| calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | isReflectSpinAttack__15DodoryuStateLv2CFv | :x: |
 | shiftChaseUnderground__15DodoryuStateLv2Fv | :x: |
 | shiftChaseExposingHead__15DodoryuStateLv2Fv | :x: |
@@ -2048,8 +2048,8 @@
 | execute__Q229@unnamed@DodoryuStateLv2_cpp@28DodoryuStateLv2NrvReadyChaseCFP5Spine | :x: |
 | executeOnEnd__Q229@unnamed@DodoryuStateLv2_cpp@23DodoryuStateLv2NrvStartCFP5Spine | :x: |
 | execute__Q229@unnamed@DodoryuStateLv2_cpp@23DodoryuStateLv2NrvStartCFP5Spine | :x: |
-| makeRotate__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f | :x: |
-| zeroTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv | :x: |
+| makeRotate__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| zeroTrans__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Fv | :x: |
 
 
 # DodoryuStateWait.o
@@ -2067,12 +2067,12 @@
 # DodoryuUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| calcVerticalizedDir__11DodoryuUtilFP7DodoryuPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| turnToward__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3<f>f | :x: |
-| accelerate__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3<f>fff | :x: |
+| calcVerticalizedDir__11DodoryuUtilFP7DodoryuPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| turnToward__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| accelerate__11DodoryuUtilFP7DodoryuRCQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
 | addVelocity__11DodoryuUtilFP7Dodoryub | :x: |
 | rotateVelocityByWall__11DodoryuUtilFP7Dodoryu | :x: |
-| calcEscapeDir__11DodoryuUtilFP7DodoryuPQ29JGeometry8TVec3<f>f | :x: |
+| calcEscapeDir__11DodoryuUtilFP7DodoryuPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 
 
 # Koopa.o
@@ -2099,7 +2099,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15KoopaBattleBaseFPCcP5Koopa | :x: |
-| __dt__22ActorStateBase<5Koopa>Fv | :x: |
+| __dt__22ActorStateBase&lt;5Koopa&gt;Fv | :x: |
 | init__15KoopaBattleBaseFv | :x: |
 | kill__15KoopaBattleBaseFv | :x: |
 | updateChasePlayer__15KoopaBattleBaseFRCQ22MR14ActorMoveParam | :x: |
@@ -2108,7 +2108,7 @@
 | updateFind__15KoopaBattleBaseFv | :x: |
 | updateRecover__15KoopaBattleBaseFPC5Nerve | :x: |
 | __dt__15KoopaBattleBaseFv | :x: |
-| moveAndTurnToPlayer__2MRFP9LiveActorPQ29JGeometry8TVec3<f>RCQ22MR14ActorMoveParam | :x: |
+| moveAndTurnToPlayer__2MRFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;RCQ22MR14ActorMoveParam | :x: |
 
 
 # KoopaBattleMain.o
@@ -2168,11 +2168,11 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__21KoopaBattleStairsBaseFP5Koopa | :x: |
-| calcFireStartPos__21KoopaBattleStairsBaseCFPQ29JGeometry8TVec3<f>PCc | :x: |
+| calcFireStartPos__21KoopaBattleStairsBaseCFPQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | update__21KoopaBattleStairsBaseFv | :x: |
 | end__21KoopaBattleStairsBaseFv | :x: |
 | receiveMsgPlayerAttack__21KoopaBattleStairsBaseFUlP9HitSensorP9HitSensor | :x: |
-| calcFireAttackStep__21KoopaBattleStairsBaseCFP19KoopaBattleMapStairflRCQ29JGeometry8TVec3<f> | :x: |
+| calcFireAttackStep__21KoopaBattleStairsBaseCFP19KoopaBattleMapStairflRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__21KoopaBattleStairsBaseFv | :x: |
 
 
@@ -2425,7 +2425,7 @@
 | init__15KoopaFireStairsFRC12JMapInfoIter | :x: |
 | appear__15KoopaFireStairsFv | :x: |
 | makeActorDead__15KoopaFireStairsFv | :x: |
-| setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3<f> | :x: |
+| setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeFly__15KoopaFireStairsFv | :x: |
 | exeBreak__15KoopaFireStairsFv | :x: |
 | calcAndSetBaseMtx__15KoopaFireStairsFv | :x: |
@@ -2476,7 +2476,7 @@
 | emitKoopaFireShortFast__13KoopaFunctionFP5Koopa | :x: |
 | emitKoopaFireShortCurve__13KoopaFunctionFP5Koopa | :x: |
 | emitKoopaFireLongTime__13KoopaFunctionFP5Koopa | :x: |
-| emitFireStairsToTarget__13KoopaFunctionFP5KoopaPC19KoopaBattleMapStairRCQ29JGeometry8TVec3<f>b | :x: |
+| emitFireStairsToTarget__13KoopaFunctionFP5KoopaPC19KoopaBattleMapStairRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | killKoopaFireStairsAll__13KoopaFunctionFP5Koopa | :x: |
 | emitKoopaShockWave__13KoopaFunctionFP5Koopa | :x: |
 | getKoopaPlanet__13KoopaFunctionFP5Koopa | :x: |
@@ -2535,7 +2535,7 @@
 | ------------- | ------------- |
 | __ct__10KoopaPartsFP5KoopaRC12JMapInfoIter | :x: |
 | createKoopaBodyParts__24@unnamed@KoopaParts_cpp@FP9LiveActorPCcPCcPCc | :x: |
-| emitFireStairsToPos__10KoopaPartsFPC19KoopaBattleMapStairRCQ29JGeometry8TVec3<f>b | :x: |
+| emitFireStairsToPos__10KoopaPartsFPC19KoopaBattleMapStairRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | killFireStairsAll__10KoopaPartsFv | :x: |
 | emitFireShort__10KoopaPartsFbb | :x: |
 | emitFireLongTime__10KoopaPartsFv | :x: |
@@ -2758,7 +2758,7 @@
 | init__14KoopaShockWaveFRC12JMapInfoIter | :x: |
 | appear__14KoopaShockWaveFv | :x: |
 | makeActorDead__14KoopaShockWaveFv | :x: |
-| makeShockWaveMtx__28@unnamed@KoopaShockWave_cpp@FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
+| makeShockWaveMtx__28@unnamed@KoopaShockWave_cpp@FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | exeWaveAttack__14KoopaShockWaveFv | :x: |
 | updateHitSensor__14KoopaShockWaveFP9HitSensor | :x: |
 | calcAndSetBaseMtx__14KoopaShockWaveFv | :x: |
@@ -3076,7 +3076,7 @@
 | __dt__11CocoNutBallFv | :x: |
 | __dt__8FireBallFv | :x: |
 | __dt__10FireBubbleFv | :x: |
-| set__Q29JGeometry8TVec3<f>FRC3Vec | :x: |
+| set__Q29JGeometry8TVec3&lt;f&gt;FRC3Vec | :x: |
 | __ct__7OtaKingFPCc | :x: |
 | init__7OtaKingFRC12JMapInfoIter | :x: |
 | movement__7OtaKingFv | :x: |
@@ -3165,9 +3165,9 @@
 | execute__Q210NrvOtaKing20OtaKingNrvAppearDemoCFP5Spine | :x: |
 | execute__Q210NrvOtaKing22OtaKingNrvWaitOnSwitchCFP5Spine | :x: |
 | repeat__2MRFfff | :x: |
-| copyTrans__13FixedPositionCFPQ29JGeometry8TVec3<f> | :x: |
-| __cl__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFv | :x: |
-| clone__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFP7JKRHeap | :x: |
+| copyTrans__13FixedPositionCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __cl__Q22MR39FunctorV0M&lt;P7OtaKing,M7OtaKingFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7OtaKing,M7OtaKingFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7OtaKingFv | :x: |
 
 
@@ -3242,22 +3242,22 @@
 # Polta.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct<i>__Q29JGeometry9TQuat4<f>Fiiii_Pv | :x: |
+| __ct&lt;i&gt;__Q29JGeometry9TQuat4&lt;f&gt;Fiiii_Pv | :x: |
 | __ct__16BombTeresaHolderFv | :x: |
-| __dt__30DeriveActorGroup<10BombTeresa>Fv | :x: |
+| __dt__30DeriveActorGroup&lt;10BombTeresa&gt;Fv | :x: |
 | init__5PoltaFRC12JMapInfoIter | :x: |
 | initArm__5PoltaFv | :x: |
 | initPartsModel__5PoltaFv | :x: |
 | initCamera__5PoltaFRC12JMapInfoIter | :x: |
-| appearBreakModelFirst__5PoltaFRCQ29JGeometry8TVec3<f> | :x: |
-| appearBreakModelMiddle__5PoltaFRCQ29JGeometry8TVec3<f> | :x: |
-| appearBreakModelLast__5PoltaFRCQ29JGeometry8TVec3<f> | :x: |
+| appearBreakModelFirst__5PoltaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearBreakModelMiddle__5PoltaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearBreakModelLast__5PoltaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | appearStarPiece__5PoltaFl | :x: |
 | disperseAll__16BombTeresaHolderFv | :x: |
 | __ct__5PoltaFPCc | :x: |
 | initSensor__5PoltaFv | :x: |
 | initBombTeresaHolder__5PoltaFv | :x: |
-| appearBreakModel__5PoltaFRCQ29JGeometry8TVec3<f>PCc | :x: |
+| appearBreakModel__5PoltaFRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | isEndBreakModel__5PoltaCFv | :x: |
 | killBreakModel__5PoltaFv | :x: |
 | rotateToPlayer__5PoltaFv | :x: |
@@ -3276,8 +3276,8 @@
 | receiveMsgPlayerAttack__5PoltaFUlP9HitSensorP9HitSensor | :x: |
 | receiveMsgEnemyAttack__5PoltaFUlP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__5PoltaFUlP9HitSensorP9HitSensor | :x: |
-| __cl__Q22MR35FunctorV0M<P5Polta,M5PoltaFPCvPv_v>CFv | :x: |
-| clone__Q22MR35FunctorV0M<P5Polta,M5PoltaFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR35FunctorV0M&lt;P5Polta,M5PoltaFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR35FunctorV0M&lt;P5Polta,M5PoltaFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__5PoltaFv | :x: |
 | __dt__16BombTeresaHolderFv | :x: |
 
@@ -3286,7 +3286,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15PoltaActionBaseFPCcP5Polta | :x: |
-| __dt__22ActorStateBase<5Polta>Fv | :x: |
+| __dt__22ActorStateBase&lt;5Polta&gt;Fv | :x: |
 | updateScreamSensor__15PoltaActionBaseFv | :x: |
 | __dt__15PoltaActionBaseFv | :x: |
 | updateWait__15PoltaActionBaseFv | :x: |
@@ -3513,19 +3513,19 @@
 | isMaxGenerateBombTeresa__13PoltaFunctionFP5Polta | :x: |
 | getCountDeadGroundRock__13PoltaFunctionFP5Polta | :x: |
 | appearGroundRock__13PoltaFunctionFP5Poltaff | :x: |
-| appearRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>flll | :x: |
-| appearWhiteRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>fll | :x: |
-| appearBlackRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>fll | :x: |
-| appearYellowRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>fll | :x: |
+| appearRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;flll | :x: |
+| appearWhiteRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;fll | :x: |
+| appearBlackRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;fll | :x: |
+| appearYellowRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;fll | :x: |
 | appearBombTeresaFromRoot__13PoltaFunctionFP5Poltaffl | :x: |
-| appearBombTeresaNormal__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| appearBombTeresaNormal__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | disperseBombTeresa__13PoltaFunctionFP5Polta | :x: |
 | breakGroundRock__13PoltaFunctionFP5Polta | :x: |
 | killBombTeresa__13PoltaFunctionFP5Polta | :x: |
 | killPoltaRock__13PoltaFunctionFP5Polta | :x: |
 | killGroundRock__13PoltaFunctionFP5Polta | :x: |
 | setBodyHP__13PoltaFunctionFP5Poltal | :x: |
-| getDeadMember__30DeriveActorGroup<10BombTeresa>CFv | :x: |
+| getDeadMember__30DeriveActorGroup&lt;10BombTeresa&gt;CFv | :x: |
 
 
 # PoltaGroundRock.o
@@ -3536,7 +3536,7 @@
 | initBreakModel__15PoltaGroundRockFv | :x: |
 | control__15PoltaGroundRockFv | :x: |
 | calcAndSetBaseMtx__15PoltaGroundRockFv | :x: |
-| start__15PoltaGroundRockFP9LiveActorRCQ29JGeometry8TVec3<f> | :x: |
+| start__15PoltaGroundRockFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | requestBreak__15PoltaGroundRockFv | :x: |
 | attackSensor__15PoltaGroundRockFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__15PoltaGroundRockFUlP9HitSensorP9HitSensor | :x: |
@@ -3564,7 +3564,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__21PoltaGroundRockHolderFv | :x: |
-| __dt__35DeriveActorGroup<15PoltaGroundRock>Fv | :x: |
+| __dt__35DeriveActorGroup&lt;15PoltaGroundRock&gt;Fv | :x: |
 | breakAll__21PoltaGroundRockHolderFv | :x: |
 | __dt__21PoltaGroundRockHolderFv | :x: |
 
@@ -3577,7 +3577,7 @@
 | kill__9PoltaRockFv | :x: |
 | control__9PoltaRockFv | :x: |
 | calcAndSetBaseMtx__9PoltaRockFv | :x: |
-| start__9PoltaRockFP5PoltaRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| start__9PoltaRockFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setColorWhite__9PoltaRockFv | :x: |
 | setColorBlack__9PoltaRockFv | :x: |
 | setColorYellow__9PoltaRockFv | :x: |
@@ -3604,7 +3604,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15PoltaRockHolderFv | :x: |
-| __dt__28DeriveActorGroup<9PoltaRock>Fv | :x: |
+| __dt__28DeriveActorGroup&lt;9PoltaRock&gt;Fv | :x: |
 | __dt__15PoltaRockHolderFv | :x: |
 
 
@@ -3740,8 +3740,8 @@
 | exeBind__16SkeletalFishBabyFv | :x: |
 | exeBreak__16SkeletalFishBabyFv | :x: |
 | exeDead__16SkeletalFishBabyFv | :x: |
-| calcJoint__16SkeletalFishBabyFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| damage__16SkeletalFishBabyFRCQ29JGeometry8TVec3<f>b | :x: |
+| calcJoint__16SkeletalFishBabyFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| damage__16SkeletalFishBabyFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | calcAndSetBaseMtx__16SkeletalFishBabyFv | :x: |
 | initRail__16SkeletalFishBabyFRC12JMapInfoIter | :x: |
 | initJoint__16SkeletalFishBabyFv | :x: |
@@ -3758,9 +3758,9 @@
 | executeOnEnd__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvBindCFP5Spine | :x: |
 | execute__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvBindCFP5Spine | :x: |
 | execute__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvSwimCFP5Spine | :x: |
-| __dt__41JointControlDelegator<16SkeletalFishBaby>Fv | :x: |
-| calcJointMatrix__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__41JointControlDelegator&lt;16SkeletalFishBaby&gt;Fv | :x: |
+| calcJointMatrix__41JointControlDelegator&lt;16SkeletalFishBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__41JointControlDelegator&lt;16SkeletalFishBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__16SkeletalFishBabyFv | :x: |
 
 
@@ -3792,8 +3792,8 @@
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| negate__Q29JGeometry8TVec3<f>Fv | :x: |
-| squared__Q29JGeometry8TVec3<f>CFv | :x: |
+| negate__Q29JGeometry8TVec3&lt;f&gt;Fv | :x: |
+| squared__Q29JGeometry8TVec3&lt;f&gt;CFv | :x: |
 | __ct__16SkeletalFishBossFPCc | :x: |
 | init__16SkeletalFishBossFRC12JMapInfoIter | :x: |
 | initAfterPlacement__16SkeletalFishBossFv | :x: |
@@ -3802,8 +3802,8 @@
 | kill__16SkeletalFishBossFv | :x: |
 | control__16SkeletalFishBossFv | :x: |
 | calcAnim__16SkeletalFishBossFv | :x: |
-| calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3<f> | :x: |
+| calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeSwim__16SkeletalFishBossFv | :x: |
 | exeOpen__16SkeletalFishBossFv | :x: |
 | exeOpenWait__16SkeletalFishBossFv | :x: |
@@ -3836,12 +3836,12 @@
 | initCamera__16SkeletalFishBossFv | :x: |
 | validateCollision__16SkeletalFishBossFv | :x: |
 | invalidateCollision__16SkeletalFishBossFv | :x: |
-| getMouthSensorCenterPos__16SkeletalFishBossCFRQ29JGeometry8TVec3<f>f | :x: |
+| getMouthSensorCenterPos__16SkeletalFishBossCFRQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | updateCollision__16SkeletalFishBossFv | :x: |
 | powerUp__16SkeletalFishBossFv | :x: |
 | startDamageAnim__16SkeletalFishBossFv | :x: |
 | calcPlanetCenterPosition__16SkeletalFishBossFv | :x: |
-| calcGravityCenter__16SkeletalFishBossFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcGravityCenter__16SkeletalFishBossFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | resetRail__16SkeletalFishBossFv | :x: |
 | updateBgm__16SkeletalFishBossFv | :x: |
 | getCurrentBossRail__16SkeletalFishBossFv | :x: |
@@ -3898,11 +3898,11 @@
 | execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitCFP5Spine | :x: |
 | execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenCFP5Spine | :x: |
 | execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimCFP5Spine | :x: |
-| __dt__41JointControlDelegator<16SkeletalFishBoss>Fv | :x: |
-| calcJointMatrix__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| __cl__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFP7JKRHeap | :x: |
+| __dt__41JointControlDelegator&lt;16SkeletalFishBoss&gt;Fv | :x: |
+| calcJointMatrix__41JointControlDelegator&lt;16SkeletalFishBoss&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__41JointControlDelegator&lt;16SkeletalFishBoss&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16SkeletalFishBossFv | :x: |
 | __dt__20SkeletalFishBossHeadFv | :x: |
 | __dt__25SkeletalFishBossScarFlashFv | :x: |
@@ -3930,8 +3930,8 @@
 # SkeletalFishBossFunc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3<f> | :x: |
-| copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3<f>l | :x: |
+| getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 
 
 # SkeletalFishBossInfo.o
@@ -3976,12 +3976,12 @@
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| transform__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
-| cubic<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f_v | :x: |
-| angle__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
-| setXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f> | :x: |
-| setYDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f> | :x: |
-| setZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f> | :x: |
+| transform__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| cubic&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f_v | :x: |
+| angle__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setXDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setYDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | JMAAsinRadian__Ff | :x: |
 | __ct__17SkeletalFishGuardFP16SkeletalFishBossPCc | :x: |
 | init__17SkeletalFishGuardFRC12JMapInfoIter | :x: |
@@ -4004,14 +4004,14 @@
 | receiveMsgPlayerAttack__17SkeletalFishGuardFUlP9HitSensorP9HitSensor | :x: |
 | initSensor__17SkeletalFishGuardFv | :x: |
 | calcTransAndFront__17SkeletalFishGuardFv | :x: |
-| rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f | :x: |
-| rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f | :x: |
+| rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | tryShiftApart__17SkeletalFishGuardFv | :x: |
 | tryShiftStraight__17SkeletalFishGuardFv | :x: |
 | tryShiftKill__17SkeletalFishGuardFv | :x: |
-| turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| turn__17SkeletalFishGuardFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | lookToPlayer__17SkeletalFishGuardFff | :x: |
-| calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l | :x: |
+| calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | isInScreen__17SkeletalFishGuardCFv | :x: |
 | isPlayerInAttackRange__17SkeletalFishGuardCFv | :x: |
 | isLineOfSightClear__17SkeletalFishGuardCFv | :x: |
@@ -4063,7 +4063,7 @@
 # SkeletalFishJointCalc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| calcJoint__21SkeletalFishJointCalcFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P23SkeletalFishRailControlRC19JointControllerInfo | :x: |
+| calcJoint__21SkeletalFishJointCalcFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P23SkeletalFishRailControlRC19JointControllerInfo | :x: |
 
 
 # SkeletalFishRailControl.o
@@ -4073,8 +4073,8 @@
 | setRailActor__23SkeletalFishRailControlFP9LiveActorP9LiveActorb | :x: |
 | update__23SkeletalFishRailControlFv | :x: |
 | getRailInfo__23SkeletalFishRailControlFP20SkeletalFishRailInfof | :x: |
-| getPos__23SkeletalFishRailControlFPQ29JGeometry8TVec3<f>f | :x: |
-| getMtx__23SkeletalFishRailControlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>f | :x: |
+| getPos__23SkeletalFishRailControlFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| getMtx__23SkeletalFishRailControlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;f | :x: |
 
 
 # TombSpider.o
@@ -4133,7 +4133,7 @@
 | update__14TombSpiderAcidFv | :x: |
 | updateEmitAcid__14TombSpiderAcidFv | :x: |
 | updateDeleteAcid__14TombSpiderAcidFv | :x: |
-| updateGroundMtx__14TombSpiderAcidFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PA4_f | :x: |
+| updateGroundMtx__14TombSpiderAcidFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PA4_f | :x: |
 
 
 # TombSpiderAction1st.o
@@ -4225,7 +4225,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__20TombSpiderActionBaseFP10TombSpiderPCc | :x: |
-| __dt__28ActorStateBase<10TombSpider>Fv | :x: |
+| __dt__28ActorStateBase&lt;10TombSpider&gt;Fv | :x: |
 | init__20TombSpiderActionBaseFv | :x: |
 | appear__20TombSpiderActionBaseFv | :x: |
 | updateChanceStart__20TombSpiderActionBaseFv | :x: |
@@ -4346,7 +4346,7 @@
 # TombSpiderGland.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15TombSpiderGlandFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :x: |
+| __ct__15TombSpiderGlandFP9LiveActorPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | init__15TombSpiderGlandFRC12JMapInfoIter | :x: |
 | startActive__15TombSpiderGlandFv | :x: |
 | startDamage__15TombSpiderGlandFv | :x: |
@@ -4387,7 +4387,7 @@
 | updateAttackSensorPos__34@unnamed@TombSpiderSensorCtrl_cpp@FP9HitSensorPC9LiveActor | :x: |
 | updateAttackSensor__20TombSpiderSensorCtrlFP9HitSensor | :x: |
 | initSensor__20TombSpiderSensorCtrlFv | :x: |
-| __ct<f>__Q29JGeometry8TVec2<f>Fff_Pv | :x: |
+| __ct&lt;f&gt;__Q29JGeometry8TVec2&lt;f&gt;Fff_Pv | :x: |
 
 
 # TombSpiderStateSwoon.o
@@ -4426,7 +4426,7 @@
 # TombSpiderVitalSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19TombSpiderVitalSpotFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :x: |
+| __ct__19TombSpiderVitalSpotFP9LiveActorPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | init__19TombSpiderVitalSpotFRC12JMapInfoIter | :x: |
 | startChance__19TombSpiderVitalSpotFv | :x: |
 | endChance__19TombSpiderVitalSpotFv | :x: |
@@ -4459,7 +4459,7 @@
 | initEventCamera__10TripodBossFRC12JMapInfoIter | :x: |
 | initLeg__10TripodBossFRC12JMapInfoIter | :x: |
 | initLegIKPlacement__10TripodBossFv | :x: |
-| initMovableArea__10TripodBossFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| initMovableArea__10TripodBossFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | initBodyPosition__10TripodBossFv | :x: |
 | initBoneInfo__10TripodBossFv | :x: |
 | initPose__10TripodBossFv | :x: |
@@ -4504,15 +4504,15 @@
 | isBroken__10TripodBossCFv | :x: |
 | isRideMario__10TripodBossCFv | :x: |
 | isLeaveMarioNow__10TripodBossCFv | :x: |
-| setJointAttachBaseMatrix__10TripodBossFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
+| setJointAttachBaseMatrix__10TripodBossFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
 | addStepPoint__10TripodBossFP19TripodBossStepPoint | :x: |
-| getBodyMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| getJointMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
-| getJointAttachMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
+| getBodyMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| getJointMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
+| getJointAttachMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
 | requestStartStepSequence__10TripodBossFl | :x: |
 | getCurrentStepSequence__10TripodBossFv | :x: |
 | getNextStepSequence__10TripodBossFv | :x: |
-| calcLegUpVector__10TripodBossFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcLegUpVector__10TripodBossFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcDemoMovement__10TripodBossFv | :x: |
 | calcBodyMovement__10TripodBossFv | :x: |
 | calcLegMovement__10TripodBossFv | :x: |
@@ -4525,7 +4525,7 @@
 | getLegMatrixPtr__10TripodBossCFQ210TripodBoss7PART_IDQ210TripodBoss11SUB_PART_ID | :x: |
 | changeBgmState__10TripodBossFv | :x: |
 | getPartIDFromBoneID__10TripodBossFl | :x: |
-| setAttachBaseMatrix__14TripodBossBoneFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setAttachBaseMatrix__14TripodBossBoneFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | createTripodBoss__2MRFPCc | :x: |
 | createTripod2Boss__2MRFPCc | :x: |
 | __sinit_\TripodBoss_cpp | :x: |
@@ -4555,8 +4555,8 @@
 | execute__Q213NrvTripodBoss17TripodBossNrvWaitCFP5Spine | :x: |
 | execute__Q213NrvTripodBoss22TripodBossNrvNonActiveCFP5Spine | :x: |
 | execute__Q213NrvTripodBoss25TripodBossNrvTryStartDemoCFP5Spine | :x: |
-| __cl__Q22MR47FunctorV0M<P10TripodBoss,M10TripodBossFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10TripodBoss,M10TripodBossFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10TripodBoss,M10TripodBossFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10TripodBoss,M10TripodBossFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10TripodBossFv | :x: |
 
 
@@ -4591,12 +4591,12 @@
 | tryDamageDemoTripodBoss__2MRFv | :x: |
 | requestEndDamageDemoTripodBoss__2MRFv | :x: |
 | getTripodBossGravityHostID__2MRFv | :x: |
-| setTripodBossJointAttachBaseMatrix__2MRFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
+| setTripodBossJointAttachBaseMatrix__2MRFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
 | requestStartTripodBossStepSequence__2MRFl | :x: |
 | addTripodBossStepPoint__2MRFP19TripodBossStepPoint | :x: |
-| getTripodBossJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
-| getTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
-| concatTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
+| getTripodBossJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
+| getTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
+| concatTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
 | isSteppingTripodBossLegID__2MRFl | :x: |
 | isSteppingTripodBossJointID__2MRFl | :x: |
 | __dt__18TripodBossAccesserFv | :x: |
@@ -4617,7 +4617,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__23TripodBossBreakMovementFPCc | :x: |
-| start__23TripodBossBreakMovementFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l | :x: |
+| start__23TripodBossBreakMovementFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l | :x: |
 | movement__23TripodBossBreakMovementFv | :x: |
 | setBreakDownLevel__23TripodBossBreakMovementFl | :x: |
 | exeStartBreak__23TripodBossBreakMovementFv | :x: |
@@ -4709,11 +4709,11 @@
 | init__22TripodBossFixPartsBaseFRC12JMapInfoIter | :x: |
 | initAfterPlacement__22TripodBossFixPartsBaseFv | :x: |
 | initClippingSphere__22TripodBossFixPartsBaseFv | :x: |
-| setClippingSphere__22TripodBossFixPartsBaseFRCQ29JGeometry8TVec3<f>f | :x: |
+| setClippingSphere__22TripodBossFixPartsBaseFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | makeActorDead__22TripodBossFixPartsBaseFv | :x: |
 | calcAndSetBaseMtx__22TripodBossFixPartsBaseFv | :x: |
 | receiveOtherMsg__22TripodBossFixPartsBaseFUlP9HitSensorP9HitSensor | :x: |
-| calcTripodLocalMatrix__22TripodBossFixPartsBaseFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcTripodLocalMatrix__22TripodBossFixPartsBaseFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | activateTripodBoss__22TripodBossFixPartsBaseFv | :x: |
 | startBreakMovement__22TripodBossFixPartsBaseFv | :x: |
 | updateBreakMovementMatrix__22TripodBossFixPartsBaseFv | :x: |
@@ -4750,8 +4750,8 @@
 | execute__Q222NrvTriPodBossGuardWall29TripodBossGuardWallNrvTryDemoCFP5Spine | :x: |
 | execute__Q222NrvTriPodBossGuardWall26TripodBossGuardWallNrvWaitCFP5Spine | :x: |
 | getBaseMtx__19TripodBossGuardWallCFv | :x: |
-| __cl__Q22MR65FunctorV0M<P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19TripodBossGuardWallFv | :x: |
 
 
@@ -4770,7 +4770,7 @@
 | isEndDemo__23TripodBossGuardWallPartCFv | :x: |
 | exeBreak__23TripodBossGuardWallPartFv | :x: |
 | exeRepair__23TripodBossGuardWallPartFv | :x: |
-| setHostMatrix__23TripodBossGuardWallPartFPCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setHostMatrix__23TripodBossGuardWallPartFPCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | setPlacementAngle__23TripodBossGuardWallPartFf | :x: |
 | setStartTiming__23TripodBossGuardWallPartFl | :x: |
 | __sinit_\TripodBossGuardWallPart_cpp | :x: |
@@ -4789,14 +4789,14 @@
 # TripodBossKillerGenerater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| set__Q29JGeometry13SMatrix34C<f>FRCQ29JGeometry13SMatrix34C<f> | :x: |
+| set__Q29JGeometry13SMatrix34C&lt;f&gt;FRCQ29JGeometry13SMatrix34C&lt;f&gt; | :x: |
 | __ct__25TripodBossKillerGeneraterFPCc | :x: |
 | init__25TripodBossKillerGeneraterFRC12JMapInfoIter | :x: |
 | kill__25TripodBossKillerGeneraterFv | :x: |
 | receiveMsgEnemyAttack__25TripodBossKillerGeneraterFUlP9HitSensorP9HitSensor | :x: |
-| calcTripodLocalMatrix__25TripodBossKillerGeneraterFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcTripodLocalMatrix__25TripodBossKillerGeneraterFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | activateTripodBoss__25TripodBossKillerGeneraterFv | :x: |
-| setLocalMatrix__25TripodBossKillerGeneraterFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| setLocalMatrix__25TripodBossKillerGeneraterFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | setActiveLebel__25TripodBossKillerGeneraterFl | :x: |
 | setHasCollision__25TripodBossKillerGeneraterFb | :x: |
 | tryShootSetting__25TripodBossKillerGeneraterFv | :x: |
@@ -4881,13 +4881,13 @@
 # TripodBossLeg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
-| setYDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
-| setZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
+| setXDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ffff | :x: |
+| setYDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ffff | :x: |
+| setZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ffff | :x: |
 | __dt__13TripodBossLegFv | :x: |
-| scale__Q29JGeometry8TVec4<f>Ff | :x: |
-| normalize__Q29JGeometry9TQuat4<f>Fv | :x: |
-| slerp__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>RCQ29JGeometry9TQuat4<f>f | :x: |
+| scale__Q29JGeometry8TVec4&lt;f&gt;Ff | :x: |
+| normalize__Q29JGeometry9TQuat4&lt;f&gt;Fv | :x: |
+| slerp__Q29JGeometry9TQuat4&lt;f&gt;FRCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;f | :x: |
 | __ct__13TripodBossLegFPCc | :x: |
 | init__13TripodBossLegFRC12JMapInfoIter | :x: |
 | initShadow__13TripodBossLegFPCc | :x: |
@@ -4897,10 +4897,10 @@
 | attackSensor__13TripodBossLegFP9HitSensorP9HitSensor | :x: |
 | setBody__13TripodBossLegFP10TripodBoss | :x: |
 | setMovableArea__13TripodBossLegFP21TripodBossMovableArea | :x: |
-| setIKParam__13TripodBossLegFffRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setIKParam__13TripodBossLegFffRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setStepTarget__13TripodBossLegFP19TripodBossStepPoint | :x: |
 | setWait__13TripodBossLegFv | :x: |
-| setForceEndPoint__13TripodBossLegFRCQ29JGeometry8TVec3<f> | :x: |
+| setForceEndPoint__13TripodBossLegFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setDemoEffectTiming__13TripodBossLegFb | :x: |
 | getRootJointMatrix__13TripodBossLegCFv | :x: |
 | getMiddleJointMatrix__13TripodBossLegCFv | :x: |
@@ -4931,20 +4931,20 @@
 | exeLanding__13TripodBossLegFv | :x: |
 | exeDamageVibration__13TripodBossLegFv | :x: |
 | exeBreak__13TripodBossLegFv | :x: |
-| addToTargetPower__13TripodBossLegFRCQ29JGeometry8TVec3<f>f | :x: |
+| addToTargetPower__13TripodBossLegFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | addIKLimitPower__13TripodBossLegFv | :x: |
 | addAccelUpLeg__13TripodBossLegFP19TripodBossStepPointf | :x: |
 | calcLegHeight__13TripodBossLegCFP19TripodBossStepPoint | :x: |
 | updatePose__13TripodBossLegFv | :x: |
 | updateIKPose__13TripodBossLegFv | :x: |
 | bindEndPosition__13TripodBossLegFv | :x: |
-| separateLocalAxisRootJoint__13TripodBossLegFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| separateLocalAxisRootJoint__13TripodBossLegFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | separateAnkleJointLocalAxis__13TripodBossLegFv | :x: |
 | updateAnkleUp__13TripodBossLegFf | :x: |
 | updateAnkleSlerpToBasePose__13TripodBossLegFv | :x: |
 | updateAnkleLanding__13TripodBossLegFv | :x: |
 | updateAnkleShadowMatrix__13TripodBossLegFv | :x: |
-| separateMatrixRotateYZX__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| separateMatrixRotateYZX__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | __sinit_\TripodBossLeg_cpp | :x: |
 | __ct__Q216NrvTripodBossLeg20TripodBossLegNrvHoldFv | :x: |
 | __ct__Q216NrvTripodBossLeg20TripodBossLegNrvDemoFv | :x: |
@@ -4968,27 +4968,27 @@
 | execute__Q216NrvTripodBossLeg20TripodBossLegNrvMoveCFP5Spine | :x: |
 | execute__Q216NrvTripodBossLeg20TripodBossLegNrvDemoCFP5Spine | :x: |
 | execute__Q216NrvTripodBossLeg20TripodBossLegNrvHoldCFP5Spine | :x: |
-| setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff | :x: |
-| makeQuat__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f> | :x: |
+| setTrans__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ffff | :x: |
+| makeQuat__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry9TQuat4&lt;f&gt; | :x: |
 | clamp__2MRFfff | :x: |
 
 
 # TripodBossMovableArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| set<i>__Q29JGeometry8TVec3<f>Fiii_v | :x: |
+| set&lt;i&gt;__Q29JGeometry8TVec3&lt;f&gt;Fiii_v | :x: |
 | __ct__9HitResultFv | :x: |
 | __ct__21TripodBossMovableAreaFv | :x: |
-| setCenter__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f> | :x: |
-| setBaseAxis__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f> | :x: |
-| setFrontVector__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f> | :x: |
+| setCenter__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setBaseAxis__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setFrontVector__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setRadius__21TripodBossMovableAreaFf | :x: |
-| collideSphere__21TripodBossMovableAreaCFP9HitResultRCQ29JGeometry8TVec3<f>fRCQ29JGeometry8TVec3<f> | :x: |
-| calcNearLandingPosition__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcLandingNormal__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcLandingFront__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| collideSphere__21TripodBossMovableAreaCFP9HitResultRCQ29JGeometry8TVec3&lt;f&gt;fRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcNearLandingPosition__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcLandingNormal__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcLandingFront__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\TripodBossMovableArea_cpp | :x: |
-| sqrt<f>__2MRFf_f | :x: |
+| sqrt&lt;f&gt;__2MRFf_f | :x: |
 
 
 # TripodBossRailMoveParts.o
@@ -4998,7 +4998,7 @@
 | init__23TripodBossRailMovePartsFRC12JMapInfoIter | :x: |
 | makeActorDead__23TripodBossRailMovePartsFv | :x: |
 | activateTripodBoss__23TripodBossRailMovePartsFv | :x: |
-| calcTripodLocalMatrix__23TripodBossRailMovePartsFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcTripodLocalMatrix__23TripodBossRailMovePartsFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | exeWaitOwn__23TripodBossRailMovePartsFv | :x: |
 | __dt__23TripodBossRailMovePartsFv | :x: |
 
@@ -5010,7 +5010,7 @@
 | init__21TripodBossRotatePartsFRC12JMapInfoIter | :x: |
 | makeActorDead__21TripodBossRotatePartsFv | :x: |
 | activateTripodBoss__21TripodBossRotatePartsFv | :x: |
-| calcTripodLocalMatrix__21TripodBossRotatePartsFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcTripodLocalMatrix__21TripodBossRotatePartsFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | __dt__21TripodBossRotatePartsFv | :x: |
 | getRotateMtx__15MapPartsRotatorCFv | :x: |
 | exeWaitOwn__21TripodBossRotatePartsFv | :x: |
@@ -5041,9 +5041,9 @@
 | __ct__19TripodBossStepPointFPCc | :x: |
 | init__19TripodBossStepPointFRC12JMapInfoIter | :x: |
 | initAfterPlacement__19TripodBossStepPointFv | :x: |
-| setStepPosition__19TripodBossStepPointFRCQ29JGeometry8TVec3<f> | :x: |
-| setStepNormal__19TripodBossStepPointFRCQ29JGeometry8TVec3<f> | :x: |
-| setStepFront__19TripodBossStepPointFRCQ29JGeometry8TVec3<f> | :x: |
+| setStepPosition__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setStepNormal__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setStepFront__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__19TripodBossStepPointFv | :x: |
 
 

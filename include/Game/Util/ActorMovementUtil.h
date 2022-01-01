@@ -28,4 +28,8 @@ namespace MR {
     void calcPositionUpOffset(TVec3f *, const LiveActor *, f32);
 
     void resetPosition(LiveActor *);
+
+    void calcActorAxis(TVec3f *, TVec3f *, TVec3f *, const LiveActor *);
+
+    void calcActorAxisY(TVec3f *, const LiveActor *);
 };

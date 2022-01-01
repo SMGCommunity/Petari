@@ -63,11 +63,11 @@
 | RailGraphNode.o | 0.0% | 0 / 1 | 0.0% |
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
-| SeaGull.o | 0.0% | 0 / 20 | 0.0% |
-| Sky.o | 0.0% | 0 / 20 | 0.0% |
+| SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
+| Sky.o | 97.39696312364426% | 19 / 20 | 95.0% |
 | SleepController.o | 0.0% | 0 / 3 | 0.0% |
 | SleepControllerHolder.o | 0.0% | 0 / 14 | 0.0% |
-| SpaceInner.o | 0.0% | 0 / 12 | 0.0% |
+| SpaceInner.o | 100.0% | 12 / 12 | 100.0% |
 | SphereSelector.o | 0.0% | 0 / 70 | 0.0% |
 | SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% |
 | StageSwitch.o | 66.87116564417178% | 26 / 31 | 83.87096774193549% |
@@ -76,7 +76,7 @@
 | SwitchSynchronizer.o | 0.0% | 0 / 4 | 0.0% |
 | SwitchWatcher.o | 0.0% | 0 / 6 | 0.0% |
 | SwitchWatcherHolder.o | 0.0% | 0 / 11 | 0.0% |
-| TimerSwitch.o | 0.0% | 0 / 4 | 0.0% |
+| TimerSwitch.o | 100.0% | 4 / 4 | 100.0% |
 | WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% |
 | WaterInfo.o | 0.0% | 0 / 3 | 0.0% |
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% |
@@ -123,9 +123,9 @@
 | __ct__Q26NrvAir11HostTypeOutFv | :x: |
 | execute__Q26NrvAir11HostTypeOutCFP5Spine | :x: |
 | execute__Q26NrvAir10HostTypeInCFP5Spine | :x: |
-| Functor<3Air>__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v> | :x: |
-| __cl__Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v>CFv | :x: |
-| clone__Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :x: |
+| __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10AirFar100mFv | :x: |
 | __dt__16ProjectionMapAirFv | :x: |
 | __dt__12PriorDrawAirFv | :x: |
@@ -135,21 +135,21 @@
 # BezierRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| clamp__Q29JGeometry8TUtil<f>Ffff | :x: |
-| calcRailDirection__24@unnamed@BezierRail_cpp@FPQ29JGeometry8TVec3<f>PC8RailPartf | :white_check_mark: |
-| set__14BezierRailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcPos__14BezierRailPartCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| calcVelocity__14BezierRailPartCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| clamp__Q29JGeometry8TUtil&lt;f&gt;Ffff | :x: |
+| calcRailDirection__24@unnamed@BezierRail_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PC8RailPartf | :white_check_mark: |
+| set__14BezierRailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcPos__14BezierRailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcVelocity__14BezierRailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | getLength__14BezierRailPartCFffi | :x: |
 | getParam__14BezierRailPartCFf | :x: |
-| getNearestParam__14BezierRailPartCFRCQ29JGeometry8TVec3<f>f | :x: |
+| getNearestParam__14BezierRailPartCFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | normalizePos__10BezierRailCFfi | :x: |
 | getTotalLength__10BezierRailCFv | :white_check_mark: |
 | getPartLength__10BezierRailCFi | :white_check_mark: |
-| calcPos__10BezierRailCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| calcDirection__10BezierRailCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| calcPosDir__10BezierRailCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| getNearestRailPosCoord__10BezierRailCFRCQ29JGeometry8TVec3<f> | :x: |
+| calcPos__10BezierRailCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcDirection__10BezierRailCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcPosDir__10BezierRailCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| getNearestRailPosCoord__10BezierRailCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getRailPosCoord__10BezierRailCFi | :white_check_mark: |
 | calcCurrentRailCtrlPointIter__10BezierRailCFP12JMapInfoIterfb | :white_check_mark: |
 | calcRailCtrlPointIter__10BezierRailCFP12JMapInfoIteri | :white_check_mark: |
@@ -196,8 +196,8 @@
 | execute__Q212NrvButterfly12HostTypeHiveCFP5Spine | :x: |
 | execute__Q212NrvButterfly15HostTypeRunAwayCFP5Spine | :x: |
 | execute__Q212NrvButterfly12HostTypeWaitCFP5Spine | :x: |
-| __mi__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
-| converge<f>__2MRFfff_f | :x: |
+| __mi__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
+| converge&lt;f&gt;__2MRFfff_f | :x: |
 
 
 # CollisionCategorizedKeeper.o
@@ -209,13 +209,13 @@
 | removeFromZone__26CollisionCategorizedKeeperFP14CollisionPartsl | :white_check_mark: |
 | addToGlobal__26CollisionCategorizedKeeperFP14CollisionParts | :white_check_mark: |
 | removeFromGlobal__26CollisionCategorizedKeeperFP14CollisionParts | :white_check_mark: |
-| checkStrikePoint__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3<f>P7HitInfo | :x: |
-| checkStrikeBall__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3<f>fbPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
-| checkStrikeBallWithThickness__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3<f>ffPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
-| checkStrikeLine__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
-| createAreaPolygonList__26CollisionCategorizedKeeperFP8TriangleUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createAreaPolygonListArray__26CollisionCategorizedKeeperFP8TriangleUlPQ29JGeometry8TVec3<f>Ul | :x: |
-| isSphereOverlappingWithBox__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| checkStrikePoint__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3&lt;f&gt;P7HitInfo | :x: |
+| checkStrikeBall__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3&lt;f&gt;fbPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
+| checkStrikeBallWithThickness__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3&lt;f&gt;ffPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
+| checkStrikeLine__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;lPC24CollisionPartsFilterBasePC18TriangleFilterBase | :x: |
+| createAreaPolygonList__26CollisionCategorizedKeeperFP8TriangleUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createAreaPolygonListArray__26CollisionCategorizedKeeperFP8TriangleUlPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
+| isSphereOverlappingWithBox__26CollisionCategorizedKeeperFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | searchSameHostParts__26CollisionCategorizedKeeperCFPP14CollisionPartsP14CollisionParts | :x: |
 | getStrikeInfo__26CollisionCategorizedKeeperFUl | :x: |
 | getZone__26CollisionCategorizedKeeperFi | :x: |
@@ -223,7 +223,7 @@
 | addParts__13CollisionZoneFP14CollisionParts | :white_check_mark: |
 | calcMinMaxAndRadius__13CollisionZoneFv | :x: |
 | calcMinMaxAndRadiusIfMoveOuter__13CollisionZoneFP14CollisionParts | :x: |
-| addAndUpdateMinMax__13CollisionZoneFQ29JGeometry8TVec3<f>Q29JGeometry8TVec3<f> | :x: |
+| addAndUpdateMinMax__13CollisionZoneFQ29JGeometry8TVec3&lt;f&gt;Q29JGeometry8TVec3&lt;f&gt; | :x: |
 | eraseParts__13CollisionZoneFP14CollisionParts | :x: |
 | __dt__26CollisionCategorizedKeeperFv | :x: |
 | getTrans__14CollisionPartsFv | :x: |
@@ -232,7 +232,7 @@
 # CollisionCode.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getValue<Ul>__12JMapInfoIterCFPCcPUl_b | :x: |
+| getValue&lt;Ul&gt;__12JMapInfoIterCFPCcPUl_b | :x: |
 | __ct__13CollisionCodeFv | :white_check_mark: |
 | __ct__9CodeTableFUl | :white_check_mark: |
 | add__9CodeTableFPCcUl | :white_check_mark: |
@@ -268,36 +268,36 @@
 # CollisionParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getScale__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f> | :x: |
+| getScale__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__14CollisionPartsFv | :x: |
-| init__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P9HitSensorPCvPCvlb | :x: |
+| init__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
 | addToBelongZone__14CollisionPartsFv | :x: |
 | removeFromBelongZone__14CollisionPartsFv | :x: |
-| initWithAutoEqualScale__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P9HitSensorPCvPCvlb | :x: |
-| initWithNotUsingScale__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P9HitSensorPCvPCvlb | :x: |
-| resetAllMtx__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| initWithAutoEqualScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
+| initWithNotUsingScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
+| resetAllMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | resetAllMtx__14CollisionPartsFv | :x: |
 | forceResetAllMtxAndSetUpdateMtxOneTime__14CollisionPartsFv | :x: |
-| resetAllMtxPrivate__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| setMtx__14CollisionPartsFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| resetAllMtxPrivate__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| setMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | setMtx__14CollisionPartsFv | :x: |
 | updateMtx__14CollisionPartsFv | :x: |
 | makeEqualScale__14CollisionPartsFPA4_f | :x: |
 | updateBoundingSphereRange__14CollisionPartsFv | :x: |
-| updateBoundingSphereRange__14CollisionPartsFQ29JGeometry8TVec3<f> | :x: |
+| updateBoundingSphereRange__14CollisionPartsFQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateBoundingSphereRangePrivate__14CollisionPartsFf | :x: |
 | getHostName__14CollisionPartsCFv | :x: |
 | getPlacementZoneID__14CollisionPartsCFv | :x: |
-| checkStrikePoint__14CollisionPartsFP7HitInfoRCQ29JGeometry8TVec3<f> | :x: |
-| checkStrikeBall__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>fbPC18TriangleFilterBase | :x: |
-| checkStrikeBallCore__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffPP12KC_PrismDataPfPUcPC18TriangleFilterBasePCQ29JGeometry8TVec3<f> | :x: |
-| checkStrikeBallWithThickness__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>ffPC18TriangleFilterBase | :x: |
-| calcCollidePosition__14CollisionPartsFPQ29JGeometry8TVec3<f>RC12KC_PrismDataUc | :x: |
-| projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| checkStrikeLine__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC18TriangleFilterBase | :x: |
-| createAreaPolygonList__14CollisionPartsFP8TriangleUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createAreaPolygonListArray__14CollisionPartsFP8TriangleUlPQ29JGeometry8TVec3<f>Ul | :x: |
-| calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| checkStrikePoint__14CollisionPartsFP7HitInfoRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| checkStrikeBall__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;fbPC18TriangleFilterBase | :x: |
+| checkStrikeBallCore__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffPP12KC_PrismDataPfPUcPC18TriangleFilterBasePCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| checkStrikeBallWithThickness__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;ffPC18TriangleFilterBase | :x: |
+| calcCollidePosition__14CollisionPartsFPQ29JGeometry8TVec3&lt;f&gt;RC12KC_PrismDataUc | :x: |
+| projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| checkStrikeLine__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PC18TriangleFilterBase | :x: |
+| createAreaPolygonList__14CollisionPartsFP8TriangleUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createAreaPolygonListArray__14CollisionPartsFP8TriangleUlPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
+| calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # FileSelectCameraController.o
@@ -308,7 +308,7 @@
 | appear__26FileSelectCameraControllerFv | :x: |
 | kill__26FileSelectCameraControllerFv | :x: |
 | goToFarPoint__26FileSelectCameraControllerFv | :x: |
-| goToNearPoint__26FileSelectCameraControllerFRCQ29JGeometry8TVec3<f> | :x: |
+| goToNearPoint__26FileSelectCameraControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isAtFarPoint__26FileSelectCameraControllerCFv | :x: |
 | isAtNearPoint__26FileSelectCameraControllerCFv | :x: |
 | isToOrAtFarPoint__26FileSelectCameraControllerCFv | :x: |
@@ -377,7 +377,7 @@
 # FileSelectItem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| checkCollisionOfPointAndCylinder__28@unnamed@FileSelectItem_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| checkCollisionOfPointAndCylinder__28@unnamed@FileSelectItem_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__14FileSelectItemFlbRC16FileSelectIconIDPCc | :x: |
 | init__14FileSelectItemFRC12JMapInfoIter | :x: |
 | appear__14FileSelectItemFv | :x: |
@@ -696,12 +696,12 @@
 | execute__Q215NrvFileSelector23FileSelectorNrvTitleEndCFP5Spine | :x: |
 | execute__Q215NrvFileSelector20FileSelectorNrvTitleCFP5Spine | :x: |
 | execute__Q215NrvFileSelector23FileSelectorNrvWaitBindCFP5Spine | :x: |
-| Functor<12FileSelector>__2MRFP12FileSelectorM12FileSelectorFPCvPv_v_Q22MR51FunctorV0M<P12FileSelector,M12FileSelectorFPCvPv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<P12FileSelector,M12FileSelectorFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12FileSelector,M12FileSelectorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;12FileSelector&gt;__2MRFP12FileSelectorM12FileSelectorFPCvPv_v_Q22MR51FunctorV0M&lt;P12FileSelector,M12FileSelectorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12FileSelector,M12FileSelectorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12FileSelector,M12FileSelectorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12FileSelectorFv | :x: |
-| __dt__34DeriveActorGroup<14FileSelectItem>Fv | :x: |
-| notify__39FileSelectItemDelegator<12FileSelector>FP14FileSelectIteml | :x: |
+| __dt__34DeriveActorGroup&lt;14FileSelectItem&gt;Fv | :x: |
+| notify__39FileSelectItemDelegator&lt;12FileSelector&gt;FP14FileSelectIteml | :x: |
 
 
 # FileSelectSky.o
@@ -754,7 +754,7 @@
 | __ct__4FlagFPCc | :x: |
 | init__4FlagFRC12JMapInfoIter | :x: |
 | appear__4FlagFv | :x: |
-| setInfoPos__4FlagFPCcPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffllf | :x: |
+| setInfoPos__4FlagFPCcPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffllf | :x: |
 | movement__4FlagFv | :x: |
 | updateFlag__4FlagFv | :x: |
 | draw__4FlagCFv | :x: |
@@ -835,7 +835,7 @@
 | calcAndGetNormal__8TriangleFi | :x: |
 | calcAndGetEdgeNormal__8TriangleFi | :x: |
 | calcAndGetPos__8TriangleFi | :x: |
-| calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getAttributes__8TriangleCFv | :x: |
 | getBaseMtx__8TriangleCFv | :x: |
 | getBaseInvMtx__8TriangleCFv | :x: |
@@ -849,8 +849,8 @@
 # KCollision.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __eq__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f> | :x: |
-| __dv__Q29JGeometry8TVec3<f>CFf | :x: |
+| __eq__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __dv__Q29JGeometry8TVec3&lt;f&gt;CFf | :x: |
 | __ct__16KCollisionServerFv | :x: |
 | init__16KCollisionServerFPvPCv | :x: |
 | setData__16KCollisionServerFPv | :x: |
@@ -860,11 +860,11 @@
 | checkArea3D__16KCollisionServerFP4FxyzP4FxyzPP12KC_PrismDataUl | :x: |
 | checkSphere__16KCollisionServerFP4FxyzffUlPP12KC_PrismDataPfPUc | :x: |
 | checkSphereWithThickness__16KCollisionServerFP4FxyzffUlPP12KC_PrismDataPfPUcf | :x: |
-| checkArrow__16KCollisionServerCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPUcPUlPP12KC_PrismDataUl | :x: |
+| checkArrow__16KCollisionServerCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUcPUlPP12KC_PrismDataUl | :x: |
 | KCHitSphere__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUc | :x: |
 | KCHitSphereWithThickness__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUcf | :x: |
 | isNearParallelNormal__16KCollisionServerCFPC12KC_PrismData | :x: |
-| KCHitArrow__16KCollisionServerCFP12KC_PrismDataRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPUc | :x: |
+| KCHitArrow__16KCollisionServerCFP12KC_PrismDataRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUc | :x: |
 | toIndex__16KCollisionServerCFPC12KC_PrismData | :x: |
 | getFaceNormal__16KCollisionServerCFPC12KC_PrismData | :x: |
 | getEdgeNormal1__16KCollisionServerCFPC12KC_PrismData | :x: |
@@ -877,8 +877,8 @@
 | getTriangleNum__16KCollisionServerCFv | :x: |
 | getAttributes__16KCollisionServerCFUl | :x: |
 | searchBlock__16KCollisionServerCFPlRCUlRCUlRCUl | :x: |
-| setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3<f> | :x: |
-| find<PP12KC_PrismData,P12KC_PrismData>__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData | :x: |
+| setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| find&lt;PP12KC_PrismData,P12KC_PrismData&gt;__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData | :x: |
 | __as__4FxyzFRC4Fxyz | :x: |
 
 
@@ -886,8 +886,8 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | isInsideMinMaxInLocalSpace__16KCollisionServerCFRCQ216KCollisionServer3V3u | :x: |
-| outCheck__16KCollisionServerCFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PQ216KCollisionServer3V3uPQ216KCollisionServer3V3u | :x: |
-| objectSpaceToLocalSpace__16KCollisionServerCFPQ216KCollisionServer3V3uRCQ29JGeometry8TVec3<f> | :x: |
+| outCheck__16KCollisionServerCFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PQ216KCollisionServer3V3uPQ216KCollisionServer3V3u | :x: |
+| objectSpaceToLocalSpace__16KCollisionServerCFPQ216KCollisionServer3V3uRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # KoopaBattleMapCoinPlate.o
@@ -958,8 +958,8 @@
 | isRequestAttackVs1__19KoopaBattleMapStairCFv | :x: |
 | calcRemainTimeToBreak__19KoopaBattleMapStairCFv | :x: |
 | isRequestAttackVs3__19KoopaBattleMapStairCFv | :x: |
-| updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll | :x: |
-| calcAndSetTargetPos__19KoopaBattleMapStairFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll | :x: |
+| calcAndSetTargetPos__19KoopaBattleMapStairFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcTimeRate__19KoopaBattleMapStairCFv | :x: |
 | isBreak__19KoopaBattleMapStairCFv | :x: |
 | isTypeNormal__19KoopaBattleMapStairCFv | :x: |
@@ -1048,17 +1048,17 @@
 | getDefaultStepInterpolate__13LightFunctionFv | :x: |
 | registerPlayerLightCtrl__13LightFunctionFPC14ActorLightCtrl | :x: |
 | registerLightAreaHolder__13LightFunctionFP15LightAreaHolder | :x: |
-| tryFindNewAreaLightID__13LightFunctionFRCQ29JGeometry8TVec3<f>P11ZoneLightID | :x: |
+| tryFindNewAreaLightID__13LightFunctionFRCQ29JGeometry8TVec3&lt;f&gt;P11ZoneLightID | :x: |
 | getAreaLightInfo__13LightFunctionFRC11ZoneLightID | :x: |
 | blendActorLightPos__27@unnamed@LightFunction_cpp@FRC9LightInfoRC9LightInfoP9LightInfof | :x: |
 | blendActorLightInfo__13LightFunctionFP14ActorLightInfoRC14ActorLightInfoRC14ActorLightInfof | :x: |
-| loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3<f>10_GXLightID | :white_check_mark: |
+| loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3&lt;f&gt;10_GXLightID | :white_check_mark: |
 | loadLightInfoDiffuse__27@unnamed@LightFunction_cpp@FRC9LightInfo10_GXLightID | :x: |
 | loadActorLightInfo__13LightFunctionFPC14ActorLightInfo | :x: |
 | loadLightInfoCoin__13LightFunctionFPC13LightInfoCoin | :x: |
 | loadPointLightInfo__13LightFunctionFPC14PointLightInfo | :x: |
 | loadAllLightWhite__13LightFunctionFv | :x: |
-| calcLightWorldPos__13LightFunctionFPQ29JGeometry8TVec3<f>RC9LightInfo | :x: |
+| calcLightWorldPos__13LightFunctionFPQ29JGeometry8TVec3&lt;f&gt;RC9LightInfo | :x: |
 
 
 # LightPointCtrl.o
@@ -1068,7 +1068,7 @@
 | loadPointLight__14LightPointCtrlFv | :x: |
 | update__14LightPointCtrlFv | :white_check_mark: |
 | __as__14PointLightInfoFRC14PointLightInfo | :x: |
-| requestPointLight__14LightPointCtrlFPC9LiveActorQ29JGeometry8TVec3<f>6Color8fl | :x: |
+| requestPointLight__14LightPointCtrlFPC9LiveActorQ29JGeometry8TVec3&lt;f&gt;6Color8fl | :x: |
 | __as__3VecFRC3Vec | :x: |
 | updatePointLight__14LightPointCtrlFv | :x: |
 | clearPointLight__14LightPointCtrlFP14PointLightInfo | :x: |
@@ -1099,7 +1099,7 @@
 | __ct__13NamePosHolderFv | :white_check_mark: |
 | __ct__11NamePosInfoFv | :white_check_mark: |
 | tryRegisterLinkObj__13NamePosHolderFPC7NameObjRC12JMapInfoIter | :x: |
-| find__13NamePosHolderCFPC7NameObjPCcPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| find__13NamePosHolderCFPC7NameObjPCcPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getNamePosHolder__2MRFv | :white_check_mark: |
 | __dt__13NamePosHolderFv | :white_check_mark: |
 
@@ -1109,8 +1109,8 @@
 | ------------- | ------------- |
 | __ct__9OceanBowlFPCc | :x: |
 | init__9OceanBowlFRC12JMapInfoIter | :x: |
-| isInWater__9OceanBowlCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcWaterInfo__9OceanBowlCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P9WaterInfo | :x: |
+| isInWater__9OceanBowlCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWaterInfo__9OceanBowlCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo | :x: |
 | movement__9OceanBowlFv | :x: |
 | initPoints__9OceanBowlFv | :x: |
 | updatePoints__9OceanBowlFv | :x: |
@@ -1138,10 +1138,10 @@
 # OceanBowlPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14OceanBowlPointFRCQ29JGeometry8TVec3<f> | :x: |
+| __ct__14OceanBowlPointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updatePos__14OceanBowlPointFff | :x: |
 | calcHeightStatic__14OceanBowlPointFffff | :x: |
-| reset__14OceanBowlPointFRCQ29JGeometry8TVec3<f>f | :x: |
+| reset__14OceanBowlPointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 
 
 # OceanHomeMapCtrl.o
@@ -1161,11 +1161,11 @@
 | __ct__9OceanRingFPCc | :x: |
 | init__9OceanRingFRC12JMapInfoIter | :x: |
 | initAfterPlacement__9OceanRingFv | :x: |
-| isInWater__9OceanRingCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcWaterInfo__9OceanRingCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P9WaterInfo | :x: |
-| calcNearestPos__9OceanRingCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
-| calcWaveHeight__9OceanRingCFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f> | :x: |
-| calcStreamVec__9OceanRingCFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f> | :x: |
+| isInWater__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWaterInfo__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo | :x: |
+| calcNearestPos__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWaveHeight__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcStreamVec__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | movement__9OceanRingFv | :x: |
 | startClipped__9OceanRingFv | :x: |
 | endClipped__9OceanRingFv | :x: |
@@ -1177,7 +1177,7 @@
 | calcClippingBox__9OceanRingFv | :x: |
 | draw__9OceanRingCFv | :x: |
 | __dt__9OceanRingFv | :x: |
-| intersectsPoint__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>CFRCQ29JGeometry8TVec3<f> | :x: |
+| intersectsPoint__Q29JGeometry27TBox&lt;Q29JGeometry8TVec3&lt;f&gt;&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getPoint__9OceanRingCFii | :x: |
 
 
@@ -1220,7 +1220,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __dt__13OceanRingPipeFv | :x: |
-| __ct__Q29JGeometry8TVec3<s>Fv | :x: |
+| __ct__Q29JGeometry8TVec3&lt;s&gt;Fv | :x: |
 | __ct__13OceanRingPipeFPC9OceanRingff | :x: |
 | init__13OceanRingPipeFRC12JMapInfoIter | :x: |
 | movement__13OceanRingPipeFv | :x: |
@@ -1262,16 +1262,16 @@
 # OceanSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f | :x: |
-| __ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
+| setRotate__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| __ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | update__16OceanSpherePlaneFfff | :x: |
-| __ct__20OceanSpherePlaneEdgeFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f> | :x: |
+| __ct__20OceanSpherePlaneEdgeFlPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | update__20OceanSpherePlaneEdgeFfff | :x: |
 | __ct__11OceanSphereFPCc | :x: |
 | init__11OceanSphereFRC12JMapInfoIter | :x: |
 | appear__11OceanSphereFv | :x: |
-| isInWater__11OceanSphereCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcWaterInfo__11OceanSphereCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P9WaterInfo | :x: |
+| isInWater__11OceanSphereCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWaterInfo__11OceanSphereCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo | :x: |
 | exeRiseUp__11OceanSphereFv | :x: |
 | initPoints__11OceanSphereFv | :x: |
 | calcDisplayListSize__25@unnamed@OceanSphere_cpp@FUlUl | :x: |
@@ -1303,7 +1303,7 @@
 # OceanSpherePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16OceanSpherePointFPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffRCQ29JGeometry8TVec2<f> | :x: |
+| __ct__16OceanSpherePointFPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | updatePos__16OceanSpherePointFfff | :x: |
 | calcHeight__16OceanSpherePointCFffff | :x: |
 
@@ -1340,32 +1340,32 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | makeSubModelName__30@unnamed@PlanetMapCreator_cpp@FPPCcPC8JMapInfolPCcPCc | :x: |
-| createNameObj<17BeamGoRoundPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<16BumpAppearPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<13RailPlanetMap>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<13RotateMoveObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<12FurPlanetMap>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<18SimpleClipPartsObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<21PlanetMapFarClippable>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<16HatchWaterPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<12SimpleMapObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<18LavaJamboSunPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<13LavaSunPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<12MarblePlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<23PeachCastleGardenPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<23SandCapsuleInsidePlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<14FlexibleSphere>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<17SnowCapsulePlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<16PlanetMapAnimLow>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<14AstroSimpleObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<21QuestionBoxGalleryObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<24ReverseGravityRoomPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<15WormEatenPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;17BeamGoRoundPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;16BumpAppearPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13RailPlanetMap&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13RotateMoveObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12FurPlanetMap&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;18SimpleClipPartsObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;21PlanetMapFarClippable&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;16HatchWaterPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12SimpleMapObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;18LavaJamboSunPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13LavaSunPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12MarblePlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;23PeachCastleGardenPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;23SandCapsuleInsidePlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;14FlexibleSphere&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;17SnowCapsulePlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;16PlanetMapAnimLow&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;14AstroSimpleObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;21QuestionBoxGalleryObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;24ReverseGravityRoomPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;15WormEatenPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | isDataForceLow__30@unnamed@PlanetMapCreator_cpp@FPC13PlanetMapData | :x: |
 | __ct__16PlanetMapCreatorFPCc | :x: |
 | getCreateFunc__16PlanetMapCreatorFPCc | :x: |
-| createNameObj<9PlanetMap>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj<25PlanetMapWithoutHighModel>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;9PlanetMap&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;25PlanetMapWithoutHighModel&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | makeArchiveListPlanet__16PlanetMapCreatorFP27NameObjArchiveListCollectorRC12JMapInfoIterPCc | :x: |
 | createPlanetMapDataTable__16PlanetMapCreatorFP8JMapInfo | :white_check_mark: |
 | addTableData__16PlanetMapCreatorFPC8JMapInfol | :white_check_mark: |
@@ -1496,13 +1496,13 @@
 | execute__Q214NrvRaceManager18RaceManagerNrvWaitCFP5Spine | :x: |
 | initRacer__13AbstractRacerFv | :x: |
 | compRacer__13AbstractRacerFPC13AbstractRacerPC13AbstractRacer | :x: |
-| for_each<PP13AbstractRacer,Q23std28mem_fun_t<v,13AbstractRacer>>__3stdFPP13AbstractRacerPP13AbstractRacerQ23std28mem_fun_t<v,13AbstractRacer>_Q23std28mem_fun_t<v,13AbstractRacer> | :x: |
-| sort<PP13AbstractRacer,RPFPC13AbstractRacerPC13AbstractRacer_b>__3stdFPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
-| swap<P13AbstractRacer>__3stdFRP13AbstractRacerRP13AbstractRacer_v | :x: |
-| __sort132<RPFPC13AbstractRacerPC13AbstractRacer_b,PP13AbstractRacer>__3stdFPP13AbstractRacerPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
-| __selection_sort<RPFPC13AbstractRacerPC13AbstractRacer_b,PP13AbstractRacer>__3stdFPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
+| for_each&lt;PP13AbstractRacer,Q23std28mem_fun_t&lt;v,13AbstractRacer&gt;&gt;__3stdFPP13AbstractRacerPP13AbstractRacerQ23std28mem_fun_t&lt;v,13AbstractRacer&gt;_Q23std28mem_fun_t&lt;v,13AbstractRacer&gt; | :x: |
+| sort&lt;PP13AbstractRacer,RPFPC13AbstractRacerPC13AbstractRacer_b&gt;__3stdFPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
+| swap&lt;P13AbstractRacer&gt;__3stdFRP13AbstractRacerRP13AbstractRacer_v | :x: |
+| __sort132&lt;RPFPC13AbstractRacerPC13AbstractRacer_b,PP13AbstractRacer&gt;__3stdFPP13AbstractRacerPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
+| __selection_sort&lt;RPFPC13AbstractRacerPC13AbstractRacer_b,PP13AbstractRacer&gt;__3stdFPP13AbstractRacerPP13AbstractRacerRPFPC13AbstractRacerPC13AbstractRacer_b_v | :x: |
 | exeGoal__11RaceManagerFv | :x: |
-| for_each<PP16AbstractAudience,Q23std31mem_fun_t<v,16AbstractAudience>>__3stdFPP16AbstractAudiencePP16AbstractAudienceQ23std31mem_fun_t<v,16AbstractAudience>_Q23std31mem_fun_t<v,16AbstractAudience> | :x: |
+| for_each&lt;PP16AbstractAudience,Q23std31mem_fun_t&lt;v,16AbstractAudience&gt;&gt;__3stdFPP16AbstractAudiencePP16AbstractAudienceQ23std31mem_fun_t&lt;v,16AbstractAudience&gt;_Q23std31mem_fun_t&lt;v,16AbstractAudience&gt; | :x: |
 | control__11LayoutActorFv | :x: |
 
 
@@ -1538,7 +1538,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__9RailGraphFv | :x: |
-| addNode__9RailGraphFRCQ29JGeometry8TVec3<f> | :x: |
+| addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :x: |
 | __as__13RailGraphEdgeFRC13RailGraphEdge | :x: |
 | getNode__9RailGraphCFl | :x: |
@@ -1588,18 +1588,18 @@
 # RailPart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| epsilonEquals__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>f | :x: |
+| epsilonEquals__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__8RailPartFv | :white_check_mark: |
-| init__8RailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| initForBezier__8RailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| calcPos__8RailPartCFPQ29JGeometry8TVec3<f>f | :x: |
-| calcVelocity__8RailPartCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| init__8RailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| initForBezier__8RailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcPos__8RailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcVelocity__8RailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | getLength__8RailPartCFffi | :white_check_mark: |
 | getTotalLength__8RailPartCFv | :white_check_mark: |
 | getParam__8RailPartCFf | :white_check_mark: |
-| getNearestParam__8RailPartCFRCQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| set__14LinearRailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :white_check_mark: |
-| getNearestParam__14LinearRailPartCFRCQ29JGeometry8TVec3<f>f | :x: |
+| getNearestParam__8RailPartCFRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| set__14LinearRailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getNearestParam__14LinearRailPartCFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 
 
 # ScenarioSelectStar.o
@@ -1615,7 +1615,7 @@
 | select__18ScenarioSelectStarFv | :x: |
 | notSelect__18ScenarioSelectStarFv | :x: |
 | isAppearEnd__18ScenarioSelectStarCFv | :x: |
-| setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3<f>l | :x: |
+| setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | control__18ScenarioSelectStarFv | :x: |
 | tryEndPointing__18ScenarioSelectStarFv | :x: |
 | updatePos__18ScenarioSelectStarFv | :x: |
@@ -1647,51 +1647,51 @@
 # SeaGull.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7SeaGullFP12SeaGullGroup | :x: |
+| __ct__7SeaGullFP12SeaGullGroup | :white_check_mark: |
 | init__7SeaGullFRC12JMapInfoIter | :x: |
-| exeHoverFront__7SeaGullFv | :x: |
-| exeHoverLeft__7SeaGullFv | :x: |
-| exeHoverRight__7SeaGullFv | :x: |
-| control__7SeaGullFv | :x: |
+| exeHoverFront__7SeaGullFv | :white_check_mark: |
+| exeHoverLeft__7SeaGullFv | :white_check_mark: |
+| exeHoverRight__7SeaGullFv | :white_check_mark: |
+| control__7SeaGullFv | :white_check_mark: |
 | updateHover__7SeaGullFv | :x: |
-| calcAndSetBaseMtx__7SeaGullFv | :x: |
-| __ct__12SeaGullGroupFPCc | :x: |
+| calcAndSetBaseMtx__7SeaGullFv | :white_check_mark: |
+| __ct__12SeaGullGroupFPCc | :white_check_mark: |
 | init__12SeaGullGroupFRC12JMapInfoIter | :x: |
-| updatePosInfo__12SeaGullGroupCFPlb | :x: |
-| __dt__7SeaGullFv | :x: |
-| __dt__12SeaGullGroupFv | :x: |
-| __sinit_\SeaGull_cpp | :x: |
-| __ct__Q210NrvSeaGull20SeaGullNrvHoverFrontFv | :x: |
-| __ct__Q210NrvSeaGull19SeaGullNrvHoverLeftFv | :x: |
-| __ct__Q210NrvSeaGull20SeaGullNrvHoverRightFv | :x: |
-| execute__Q210NrvSeaGull20SeaGullNrvHoverRightCFP5Spine | :x: |
-| execute__Q210NrvSeaGull19SeaGullNrvHoverLeftCFP5Spine | :x: |
-| execute__Q210NrvSeaGull20SeaGullNrvHoverFrontCFP5Spine | :x: |
+| updatePosInfo__12SeaGullGroupCFPlb | :white_check_mark: |
+| __dt__7SeaGullFv | :white_check_mark: |
+| __dt__12SeaGullGroupFv | :white_check_mark: |
+| __sinit_\SeaGull_cpp | :white_check_mark: |
+| __ct__Q210NrvSeaGull20SeaGullNrvHoverFrontFv | :white_check_mark: |
+| __ct__Q210NrvSeaGull19SeaGullNrvHoverLeftFv | :white_check_mark: |
+| __ct__Q210NrvSeaGull20SeaGullNrvHoverRightFv | :white_check_mark: |
+| execute__Q210NrvSeaGull20SeaGullNrvHoverRightCFP5Spine | :white_check_mark: |
+| execute__Q210NrvSeaGull19SeaGullNrvHoverLeftCFP5Spine | :white_check_mark: |
+| execute__Q210NrvSeaGull20SeaGullNrvHoverFrontCFP5Spine | :white_check_mark: |
 
 
 # Sky.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__3SkyFPCc | :x: |
-| init__3SkyFRC12JMapInfoIter | :x: |
-| calcAnim__3SkyFv | :x: |
-| initModel__3SkyFPCc | :x: |
-| control__3SkyFv | :x: |
-| appearSpaceInner__3SkyFv | :x: |
-| disappearSpaceInner__3SkyFv | :x: |
-| __ct__16ProjectionMapSkyFPCc | :x: |
-| __dt__3SkyFv | :x: |
-| calcAndSetBaseMtx__16ProjectionMapSkyFv | :x: |
-| initModel__16ProjectionMapSkyFPCc | :x: |
-| __sinit_\Sky_cpp | :x: |
-| __ct__Q26NrvSky12HostTypeWaitFv | :x: |
-| __ct__Q26NrvSky14HostTypeChangeFv | :x: |
-| execute__Q26NrvSky14HostTypeChangeCFP5Spine | :x: |
-| execute__Q26NrvSky12HostTypeWaitCFP5Spine | :x: |
-| Functor<3Sky>__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v> | :x: |
-| __cl__Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v>CFv | :x: |
-| clone__Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v>CFP7JKRHeap | :x: |
-| __dt__16ProjectionMapSkyFv | :x: |
+| __ct__3SkyFPCc | :white_check_mark: |
+| init__3SkyFRC12JMapInfoIter | :white_check_mark: |
+| calcAnim__3SkyFv | :white_check_mark: |
+| initModel__3SkyFPCc | :white_check_mark: |
+| control__3SkyFv | :white_check_mark: |
+| appearSpaceInner__3SkyFv | :white_check_mark: |
+| disappearSpaceInner__3SkyFv | :white_check_mark: |
+| __ct__16ProjectionMapSkyFPCc | :white_check_mark: |
+| __dt__3SkyFv | :white_check_mark: |
+| calcAndSetBaseMtx__16ProjectionMapSkyFv | :white_check_mark: |
+| initModel__16ProjectionMapSkyFPCc | :white_check_mark: |
+| __sinit_\Sky_cpp | :white_check_mark: |
+| __ct__Q26NrvSky12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q26NrvSky14HostTypeChangeFv | :white_check_mark: |
+| execute__Q26NrvSky14HostTypeChangeCFP5Spine | :white_check_mark: |
+| execute__Q26NrvSky12HostTypeWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;3Sky&gt;__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__16ProjectionMapSkyFv | :white_check_mark: |
 
 
 # SleepController.o
@@ -1712,30 +1712,30 @@
 | initSyncSleepController__16SleepControlFuncFv | :x: |
 | addSleepControl__16SleepControlFuncFP7AreaObjRC12JMapInfoIter | :x: |
 | addSleepControl__16SleepControlFuncFP9LiveActorRC12JMapInfoIter | :x: |
-| for_each<PP15SleepController,Q23std30mem_fun_t<v,15SleepController>>__3stdFPP15SleepControllerPP15SleepControllerQ23std30mem_fun_t<v,15SleepController>_Q23std30mem_fun_t<v,15SleepController> | :x: |
+| for_each&lt;PP15SleepController,Q23std30mem_fun_t&lt;v,15SleepController&gt;&gt;__3stdFPP15SleepControllerPP15SleepControllerQ23std30mem_fun_t&lt;v,15SleepController&gt;_Q23std30mem_fun_t&lt;v,15SleepController&gt; | :x: |
 | awake__7AreaObjFv | :x: |
 | sleep__7AreaObjFv | :x: |
-| Functor<9LiveActor>__2MRFP9LiveActorM9LiveActorFPCvPv_v_Q22MR43FunctorV0M<P9LiveActor,M9LiveActorFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9LiveActor,M9LiveActorFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9LiveActor,M9LiveActorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9LiveActor&gt;__2MRFP9LiveActorM9LiveActorFPCvPv_v_Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__21SleepControllerHolderFv | :x: |
 
 
 # SpaceInner.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SpaceInnerFPCc | :x: |
-| init__10SpaceInnerFRC12JMapInfoIter | :x: |
-| calcAnim__10SpaceInnerFv | :x: |
-| appear__10SpaceInnerFv | :x: |
-| disappear__10SpaceInnerFv | :x: |
-| isAppeared__10SpaceInnerCFv | :x: |
-| __dt__10SpaceInnerFv | :x: |
-| __sinit_\SpaceInner_cpp | :x: |
-| __ct__Q213NrvSpaceInner14HostTypeAppearFv | :x: |
-| __ct__Q213NrvSpaceInner17HostTypeDisappearFv | :x: |
-| execute__Q213NrvSpaceInner17HostTypeDisappearCFP5Spine | :x: |
-| execute__Q213NrvSpaceInner14HostTypeAppearCFP5Spine | :x: |
+| __ct__10SpaceInnerFPCc | :white_check_mark: |
+| init__10SpaceInnerFRC12JMapInfoIter | :white_check_mark: |
+| calcAnim__10SpaceInnerFv | :white_check_mark: |
+| appear__10SpaceInnerFv | :white_check_mark: |
+| disappear__10SpaceInnerFv | :white_check_mark: |
+| isAppeared__10SpaceInnerCFv | :white_check_mark: |
+| __dt__10SpaceInnerFv | :white_check_mark: |
+| __sinit_\SpaceInner_cpp | :white_check_mark: |
+| __ct__Q213NrvSpaceInner14HostTypeAppearFv | :white_check_mark: |
+| __ct__Q213NrvSpaceInner17HostTypeDisappearFv | :white_check_mark: |
+| execute__Q213NrvSpaceInner17HostTypeDisappearCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpaceInner14HostTypeAppearCFP5Spine | :white_check_mark: |
 
 
 # SphereSelector.o
@@ -1756,7 +1756,7 @@
 | exeSelectCancel__14SphereSelectorFv | :x: |
 | exeConfirmStart__14SphereSelectorFv | :x: |
 | exeConfirmCancel__14SphereSelectorFv | :x: |
-| getHandleMtx__28@unnamed@SphereSelector_cpp@FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| getHandleMtx__28@unnamed@SphereSelector_cpp@FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | registerTarget__22SphereSelectorFunctionFP9LiveActor | :x: |
 | isPadButton__22SphereSelectorFunctionFv | :x: |
 | getSelectStartFrame__22SphereSelectorFunctionFv | :x: |
@@ -1781,8 +1781,8 @@
 | invalidatePointing__22SphereSelectorFunctionFv | :x: |
 | isValidPointing__22SphereSelectorFunctionFv | :x: |
 | setHandle__22SphereSelectorFunctionFP20SphereSelectorHandle | :x: |
-| calcHandledTrans__22SphereSelectorFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
-| calcHandledRotateMtx__22SphereSelectorFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcHandledTrans__22SphereSelectorFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcHandledRotateMtx__22SphereSelectorFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | getHandleTrans__22SphereSelectorFunctionFv | :x: |
 | getHandleRotateSpeed__22SphereSelectorFunctionFv | :x: |
 | isHandleHolding__22SphereSelectorFunctionFv | :x: |
@@ -1793,7 +1793,7 @@
 | getPointingTarget__22SphereSelectorFunctionFv | :x: |
 | getSelectedTarget__22SphereSelectorFunctionFv | :x: |
 | getSelectedActorTrans__22SphereSelectorFunctionFv | :x: |
-| calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__14SphereSelectorFv | :x: |
 | __sinit_\SphereSelector_cpp | :x: |
 | __ct__Q217NrvSphereSelector28SphereSelectorNrvSelectStartFv | :x: |
@@ -1868,7 +1868,7 @@
 | execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvSpinCFP5Spine | :x: |
 | execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvHoldCFP5Spine | :x: |
 | execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvWaitCFP5Spine | :x: |
-| length__Q29JGeometry8TVec2<f>CFv | :x: |
+| length__Q29JGeometry8TVec2&lt;f&gt;CFv | :x: |
 
 
 # StageSwitch.o
@@ -1911,7 +1911,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__17SunshadeMapHolderFv | :x: |
-| isInShadeFromTheSun__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
+| isInShadeFromTheSun__2MRFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | createSunshadeMapHolder__2MRFv | :x: |
 | __dt__17SunshadeMapHolderFv | :x: |
 
@@ -1966,10 +1966,10 @@
 # TimerSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11TimerSwitchFPCc | :x: |
-| init__11TimerSwitchFRC12JMapInfoIter | :x: |
-| control__11TimerSwitchFv | :x: |
-| __dt__11TimerSwitchFv | :x: |
+| __ct__11TimerSwitchFPCc | :white_check_mark: |
+| init__11TimerSwitchFRC12JMapInfoIter | :white_check_mark: |
+| control__11TimerSwitchFv | :white_check_mark: |
+| __dt__11TimerSwitchFv | :white_check_mark: |
 
 
 # WaterAreaHolder.o
@@ -1988,8 +1988,8 @@
 | entryWhirlPool__17WaterAreaFunctionFP9WhirlPool | :x: |
 | entryWhirlPoolAccelerator__17WaterAreaFunctionFP20WhirlPoolAccelerator | :x: |
 | createWaterAreaHolder__17WaterAreaFunctionFv | :x: |
-| tryInOceanArea__17WaterAreaFunctionFRCQ29JGeometry8TVec3<f>P9WaterInfo | :x: |
-| tryInWhirlPoolAccelerator__17WaterAreaFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| tryInOceanArea__17WaterAreaFunctionFRCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo | :x: |
+| tryInWhirlPoolAccelerator__17WaterAreaFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isCameraInWaterForCameraUtil__17WaterAreaFunctionFv | :x: |
 | getCameraWaterDepth__17WaterAreaFunctionFv | :x: |
 | getCameraWaterInfo__17WaterAreaFunctionFv | :x: |
@@ -2024,8 +2024,8 @@
 | initDraw__18WaterPlantDrawInitCFv | :x: |
 | __sinit_\WaterPlant_cpp | :x: |
 | GXPosition3f32 | :x: |
-| __cl__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10WaterPlantFv | :x: |
 | __dt__18WaterPlantDrawInitFv | :x: |
 
@@ -2033,7 +2033,7 @@
 # WaterPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10WaterPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffff | :x: |
+| __ct__10WaterPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffff | :x: |
 | initAfterPlacement__10WaterPointFv | :x: |
 | updatePos__10WaterPointFfffff | :x: |
 | calcHeight__10WaterPointCFffffff | :x: |
@@ -2042,7 +2042,7 @@
 # WaterRoad.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| scale__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Ff | :x: |
+| scale__Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;Ff | :x: |
 | __ct__18WaterRoadModelInfoFP9WaterRoadb | :x: |
 | initPoints__18WaterRoadModelInfoFP9WaterRoad | :x: |
 | initDisplayList__18WaterRoadModelInfoFv | :x: |
@@ -2096,10 +2096,10 @@
 # WhirlPoolAccelerator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14WhirlPoolPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUc | :x: |
+| __ct__14WhirlPoolPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUc | :x: |
 | __ct__20WhirlPoolAcceleratorFPCc | :x: |
 | init__20WhirlPoolAcceleratorFRC12JMapInfoIter | :x: |
-| calcInfo__20WhirlPoolAcceleratorCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| calcInfo__20WhirlPoolAcceleratorCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | movement__20WhirlPoolAcceleratorFv | :x: |
 | initPoints__20WhirlPoolAcceleratorFv | :x: |
 | draw__20WhirlPoolAcceleratorCFv | :x: |

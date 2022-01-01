@@ -7,6 +7,7 @@ class LiveActor;
 class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
+class ProjmapEffectMtxSetter;
 
 namespace MR {
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
@@ -29,6 +30,9 @@ namespace MR {
     bool isHiddenModel(const LiveActor *);
 
     void showModel(LiveActor *);
+    void hideModel(LiveActor *);
+    void showModelIfHidden(LiveActor *);
+    void hideModelIfHidden(LiveActor *);
 
     void hideModelAndOnCalcAnim(LiveActor *);
 
@@ -82,8 +86,11 @@ namespace MR {
     bool trySetNerve(LiveActor *, const Nerve *);
 
     bool isNoCalcAnim(const LiveActor *);
+
+    void initCollisionParts(LiveActor *, const char *, HitSensor *, MtxPtr);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+    void setBaseTRMtx(LiveActor *, const TPos3f &);
 
     void setClippingFar(LiveActor *, f32);
 
@@ -94,8 +101,22 @@ namespace MR {
     void invalidateCollisionParts(LiveActor *);
 
     void startAllAnim(const LiveActor *, const char *);
+    bool tryStartAllAnim(const LiveActor *, const char *);
 
     bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
 
     void setAllAnimFrame(const LiveActor *, const char *, f32);
+
+    void startBck(const LiveActor *, const char *, const char *);
+    void startBrk(const LiveActor *, const char *);
+
+    bool isBrkStopped(const LiveActor *);
+
+    void setBckFrameAtRandom(const LiveActor *);
+
+    void setBaseTRMtx(LiveActor *, const TPos3f &);
+
+    ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
+
+    void newDifferedDLBuffer(LiveActor *);
 }

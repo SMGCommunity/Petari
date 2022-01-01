@@ -36,7 +36,7 @@
 | control__9BigBubbleFv | :x: |
 | calcAnim__9BigBubbleFv | :x: |
 | draw__9BigBubbleCFv | :x: |
-| generate__9BigBubbleFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fbllPC21BigBubbleMoveLimitter | :x: |
+| generate__9BigBubbleFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fbllPC21BigBubbleMoveLimitter | :x: |
 | setActionType__9BigBubbleFl | :x: |
 | setShapeType__9BigBubbleFl | :x: |
 | getBaseRadius__9BigBubbleCFv | :x: |
@@ -67,7 +67,7 @@
 | exeBreak__9BigBubbleFv | :x: |
 | exeEscape__9BigBubbleFv | :x: |
 | exeGoal__9BigBubbleFv | :x: |
-| addDeformVelocityOuter__9BigBubbleFRCQ29JGeometry8TVec3<f>b | :x: |
+| addDeformVelocityOuter__9BigBubbleFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | addDeformVelocityInternalOressure__9BigBubbleFv | :x: |
 | addDeformVelocityRebound__9BigBubbleFv | :x: |
 | addCoriolisAccel__9BigBubbleFv | :x: |
@@ -82,10 +82,10 @@
 | updateMeshPoint__9BigBubbleFv | :x: |
 | updateCaptureReduceVolume__9BigBubbleFv | :x: |
 | updateCaptureWarningColor__9BigBubbleFv | :x: |
-| calcMergePosition__9BigBubbleCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PC9BigBubble | :x: |
-| calcLocalDirection__9BigBubbleCFPQ29JGeometry8TVec3<f>l | :x: |
-| getNearAxisIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f> | :x: |
-| getMergeIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f> | :x: |
+| calcMergePosition__9BigBubbleCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PC9BigBubble | :x: |
+| calcLocalDirection__9BigBubbleCFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| getNearAxisIndex__9BigBubbleCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getMergeIndex__9BigBubbleCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isPushable__9BigBubbleCFv | :x: |
 | isBindMario__9BigBubbleCFv | :x: |
 | isDraw__9BigBubbleCFv | :x: |
@@ -108,16 +108,16 @@
 | execute__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine | :x: |
 | execute__Q212NrvBigBubble16BigBubbleNrvWaitCFP5Spine | :x: |
 | execute__Q212NrvBigBubble18BigBubbleNrvAppearCFP5Spine | :x: |
-| setQT__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setQT__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getBaseMtx__9BigBubbleCFv | :x: |
 
 
 # Creeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12CreeperPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC12CreeperPoint | :x: |
+| __ct__12CreeperPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PC12CreeperPoint | :x: |
 | updateFree__12CreeperPointFv | :x: |
-| updateBend__12CreeperPointFbRCQ29JGeometry8TVec3<f>ff | :x: |
+| updateBend__12CreeperPointFbRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | updateLocalAxis__12CreeperPointFv | :x: |
 | __ct__7CreeperFPCc | :x: |
 | init__7CreeperFRC12JMapInfoIter | :x: |
@@ -132,8 +132,8 @@
 | tryHangUp__7CreeperFv | :x: |
 | tryJump__7CreeperFv | :x: |
 | updateHangUp__7CreeperFf | :x: |
-| calcAndGetCurrentInfo__7CreeperCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
-| sendVertex__21@unnamed@Creeper_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUlff | :x: |
+| calcAndGetCurrentInfo__7CreeperCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| sendVertex__21@unnamed@Creeper_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUlff | :x: |
 | draw__7CreeperCFv | :x: |
 | loadMaterial__7CreeperCFv | :x: |
 | __dt__7CreeperFv | :x: |
@@ -200,7 +200,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15FluffWindEffectFPCc | :x: |
-| initEffectInfo__15FluffWindEffectFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCcf | :x: |
+| initEffectInfo__15FluffWindEffectFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCcf | :x: |
 | init__15FluffWindEffectFRC12JMapInfoIter | :x: |
 | makeActorDead__15FluffWindEffectFv | :x: |
 | exeBrowWind__15FluffWindEffectFv | :x: |
@@ -209,13 +209,13 @@
 | init__9FluffWindFRC12JMapInfoIter | :x: |
 | makeActorDead__9FluffWindFv | :x: |
 | __ct__15FluffWindHolderFv | :x: |
-| calcWindInfo__15FluffWindHolderCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>Pf | :x: |
-| calcFluffWindInfo__13FluffFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>Pf | :x: |
+| calcWindInfo__15FluffWindHolderCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
+| calcFluffWindInfo__13FluffFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
 | __sinit_\FluffWind_cpp | :x: |
 | __ct__Q218NrvFluffWindEffect26FluffWindEffectNrvBrowWindFv | :x: |
 | execute__Q218NrvFluffWindEffect26FluffWindEffectNrvBrowWindCFP5Spine | :x: |
-| __cl__Q22MR43FunctorV0M<P9FluffWind,M9FluffWindFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9FluffWind,M9FluffWindFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9FluffWind,M9FluffWindFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9FluffWind,M9FluffWindFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15FluffWindEffectFv | :x: |
 | __dt__9FluffWindFv | :x: |
 | __dt__15FluffWindHolderFv | :x: |
@@ -244,7 +244,7 @@
 # Plant.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setXYZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setXYZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__5PlantFPCc | :x: |
 | init__5PlantFRC12JMapInfoIter | :x: |
 | initAfterPlacement__5PlantFv | :x: |
@@ -313,16 +313,16 @@
 # PlantLeaf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9PlantLeafFfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| __ct__9PlantLeafFfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__17PlantLeafDrawInitFPCc | :x: |
 | init__9PlantLeafFRC12JMapInfoIter | :x: |
-| updateGrowUp__9PlantLeafFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
-| updateSpring__9PlantLeafFRCQ29JGeometry8TVec3<f>ff | :x: |
+| updateGrowUp__9PlantLeafFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| updateSpring__9PlantLeafFRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | updateSpring__9PlantLeafFf | :x: |
 | init__17PlantLeafDrawInitFRC12JMapInfoIter | :x: |
 | initDraw__17PlantLeafDrawInitCFv | :x: |
-| __cl__Q22MR63FunctorV0M<PC17PlantLeafDrawInit,M17PlantLeafDrawInitFPCvPCv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<PC17PlantLeafDrawInit,M17PlantLeafDrawInitFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR63FunctorV0M&lt;PC17PlantLeafDrawInit,M17PlantLeafDrawInitFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;PC17PlantLeafDrawInit,M17PlantLeafDrawInitFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9PlantLeafFv | :x: |
 | __dt__17PlantLeafDrawInitFv | :x: |
 
@@ -334,16 +334,16 @@
 | init__10PlantStalkFRC12JMapInfoIter | :x: |
 | draw__10PlantStalkCFv | :x: |
 | updateGrowUp__10PlantStalkFv | :x: |
-| calcPosAndAxisY__10PlantStalkCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :x: |
-| calcNearestPos__10PlantStalkCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcPosAndAxisY__10PlantStalkCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcNearestPos__10PlantStalkCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcPlayerCoord__10PlantStalkCFv | :x: |
 | drawGrowUp__10PlantStalkCFv | :x: |
 | __ct__18PlantStalkDrawInitFPCc | :x: |
 | initDraw__18PlantStalkDrawInitCFv | :x: |
 | __sinit_\PlantStalk_cpp | :x: |
 | GXPosition3f32 | :x: |
-| __cl__Q22MR65FunctorV0M<PC18PlantStalkDrawInit,M18PlantStalkDrawInitFPCvPCv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<PC18PlantStalkDrawInit,M18PlantStalkDrawInitFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;PC18PlantStalkDrawInit,M18PlantStalkDrawInitFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;PC18PlantStalkDrawInit,M18PlantStalkDrawInitFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__10PlantStalkFv | :x: |
 | __dt__18PlantStalkDrawInitFv | :x: |
 
@@ -376,7 +376,7 @@
 | tryHandstandTurn__4PoleFv | :x: |
 | isEnableTurn__4PoleCFv | :x: |
 | updateBindTrans__4PoleFv | :x: |
-| calcGravityMtx__4PoleFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcGravityMtx__4PoleFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | updateTopPos__4PoleFf | :x: |
 | getPoleSubPadStickX__4PoleCFv | :x: |
 | getPoleSubPadStickY__4PoleCFv | :x: |
@@ -418,7 +418,7 @@
 # SledRopePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13SledRopePointFRCQ29JGeometry8TVec3<f>f | :x: |
+| __ct__13SledRopePointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | updatePos__13SledRopePointFf | :x: |
 | bindToMapCollision__13SledRopePointFf | :x: |
 
@@ -443,7 +443,7 @@
 | receiveMsgEnemyAttack__12SlingShooterFUlP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__12SlingShooterFUlP9HitSensorP9HitSensor | :x: |
 | calcAndSetBaseMtx__12SlingShooterFv | :x: |
-| calcBaseMtx__12SlingShooterFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcBaseMtx__12SlingShooterFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | updateWait__12SlingShooterFv | :x: |
 | updateHang__12SlingShooterFv | :x: |
 | updateActorMtx__12SlingShooterFv | :x: |
@@ -503,10 +503,10 @@
 | tryRelease__11SpaceCocoonFv | :x: |
 | tryAttackMap__11SpaceCocoonFv | :x: |
 | isKinopioAttached__11SpaceCocoonCFv | :x: |
-| endBind__11SpaceCocoonFRCQ29JGeometry8TVec3<f>b | :x: |
+| endBind__11SpaceCocoonFRCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | endCommandStream__11SpaceCocoonFv | :x: |
 | draw__11SpaceCocoonCFv | :x: |
-| drawPoints__25@unnamed@SpaceCocoon_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffff6Color86Color8fff | :x: |
+| drawPoints__25@unnamed@SpaceCocoon_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffff6Color86Color8fff | :x: |
 | drawPlane__11SpaceCocoonCFffff6Color86Color8ff | :x: |
 | initDraw__11SpaceCocoonCFv | :x: |
 | __dt__11SpaceCocoonFv | :x: |
@@ -546,11 +546,11 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__27SphereAccelSensorControllerFv | :x: |
-| getPadAcceleration__27SphereAccelSensorControllerCFPQ29JGeometry8TVec3<f> | :x: |
+| getPadAcceleration__27SphereAccelSensorControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | testBrake__27SphereAccelSensorControllerCFv | :x: |
 | calcJumpPower__27SphereAccelSensorControllerCFv | :x: |
 | doBrake__27SphereAccelSensorControllerCFv | :x: |
-| update__27SphereAccelSensorControllerFRCQ29JGeometry8TVec3<f> | :x: |
+| update__27SphereAccelSensorControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | clacXY__27SphereAccelSensorControllerFPfPf | :x: |
 | notifyDeactivate__16SphereControllerFv | :x: |
 | notifyActivate__16SphereControllerFv | :x: |
@@ -560,8 +560,8 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__16SphereControllerFv | :x: |
-| calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| update__16SphereControllerFRCQ29JGeometry8TVec3<f> | :x: |
+| calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| update__16SphereControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | doBrake__16SphereControllerCFv | :x: |
 | calcJumpPower__16SphereControllerCFv | :x: |
 
@@ -569,19 +569,19 @@
 # SpherePadController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setRotate__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__19SpherePadControllerFv | :x: |
-| calcMoveVector__19SpherePadControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcMoveVector__19SpherePadControllerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcJumpPower__19SpherePadControllerCFv | :x: |
-| update__19SpherePadControllerFRCQ29JGeometry8TVec3<f> | :x: |
+| update__19SpherePadControllerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | clacXY__19SpherePadControllerFPfPf | :x: |
-| calcDirSphereMove__19SpherePadControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Ul | :x: |
+| calcDirSphereMove__19SpherePadControllerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
 
 
 # SurfRay.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__7SurfRayFPCcl | :x: |
 | init__7SurfRayFRC12JMapInfoIter | :x: |
 | exeWaitPlayer__7SurfRayFv | :x: |
@@ -729,8 +729,8 @@
 | calcPointNo__9SwingRopeCFf | :x: |
 | calcFriction__9SwingRopeCFl | :x: |
 | addPointGravity__9SwingRopeFv | :x: |
-| restrictPointToTail__9SwingRopeFlPCQ29JGeometry8TVec3<f>f | :x: |
-| restrictPointToHead__9SwingRopeFlRCQ29JGeometry8TVec3<f>f | :x: |
+| restrictPointToTail__9SwingRopeFlPCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| restrictPointToHead__9SwingRopeFlRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | isAllPointsStop__9SwingRopeCFv | :x: |
 | isStretched__9SwingRopeCFv | :x: |
 | tryJump__9SwingRopeFv | :x: |
@@ -744,7 +744,7 @@
 | updateStretchHangUpperPoints__9SwingRopeFv | :x: |
 | updateHangLowerPoints__9SwingRopeFv | :x: |
 | updateHangLowerPointPos__9SwingRopeFl | :x: |
-| sendPoint__23@unnamed@SwingRope_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUlff | :x: |
+| sendPoint__23@unnamed@SwingRope_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUlff | :x: |
 | drawLine__23@unnamed@SwingRope_cpp@FPC9SwingRopeUlUlffff | :x: |
 | drawLineAtHanging__23@unnamed@SwingRope_cpp@FPC9SwingRopeUlUlffffff | :x: |
 | drawStop__9SwingRopeCFv | :x: |
@@ -767,8 +767,8 @@
 | execute__Q212NrvSwingRope23SwingRopeNrvFreeInvalidCFP5Spine | :x: |
 | execute__Q212NrvSwingRope16SwingRopeNrvFreeCFP5Spine | :x: |
 | execute__Q212NrvSwingRope16SwingRopeNrvStopCFP5Spine | :x: |
-| __cl__Q22MR57FunctorV0M<PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR57FunctorV0M&lt;PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9SwingRopeFv | :x: |
 | __dt__14SwingRopeGroupFv | :x: |
 
@@ -776,17 +776,17 @@
 # SwingRopePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SwingRopePointFRCQ29JGeometry8TVec3<f> | :x: |
-| addAccel__14SwingRopePointFRCQ29JGeometry8TVec3<f> | :x: |
-| restrict__14SwingRopePointFRCQ29JGeometry8TVec3<f>fPCQ29JGeometry8TVec3<f> | :x: |
-| strain__14SwingRopePointFRCQ29JGeometry8TVec3<f>f | :x: |
+| __ct__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addAccel__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| restrict__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;fPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| strain__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | updatePos__14SwingRopePointFf | :x: |
-| updateAxis__14SwingRopePointFRCQ29JGeometry8TVec3<f> | :x: |
-| updatePosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3<f>f | :x: |
+| updateAxis__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updatePosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | stop__14SwingRopePointFv | :x: |
-| setInfo__14SwingRopePointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
-| setPosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| setAndUpdatePosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setInfo__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| setPosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setAndUpdatePosAndAxis__14SwingRopePointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # Tamakoro.o
@@ -796,7 +796,7 @@
 | init__8TamakoroFRC12JMapInfoIter | :x: |
 | initSensor__8TamakoroFv | :x: |
 | initJointControl__8TamakoroFv | :x: |
-| ringMtxCallBack__8TamakoroFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| ringMtxCallBack__8TamakoroFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | control__8TamakoroFv | :x: |
 | calcAndSetBaseMtx__8TamakoroFv | :x: |
 | updateBindActorMatrix__8TamakoroFv | :x: |
@@ -892,9 +892,9 @@
 | execute__Q211NrvTamakoro20TamakoroNrvBindStartCFP5Spine | :x: |
 | execute__Q211NrvTamakoro22TamakoroNrvStandByBindCFP5Spine | :x: |
 | execute__Q211NrvTamakoro26TamakoroNrvStandByTutorialCFP5Spine | :x: |
-| __dt__32JointControlDelegator<8Tamakoro>Fv | :x: |
-| calcJointMatrix__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__32JointControlDelegator&lt;8Tamakoro&gt;Fv | :x: |
+| calcJointMatrix__32JointControlDelegator&lt;8Tamakoro&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__32JointControlDelegator&lt;8Tamakoro&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__8TamakoroFv | :x: |
 
 
@@ -980,7 +980,7 @@
 | attackSensor__7TrapezeFP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__7TrapezeFUlP9HitSensorP9HitSensor | :x: |
 | tryJump__7TrapezeFv | :x: |
-| updateStick__7TrapezeFRCQ29JGeometry8TVec3<f>f | :x: |
+| updateStick__7TrapezeFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | updateStickMtx__7TrapezeFv | :x: |
 | updateHangPoint__7TrapezeFv | :x: |
 | updateBind__7TrapezeFv | :x: |
@@ -988,12 +988,12 @@
 | updateSlideDown__7TrapezeFv | :x: |
 | isStartSwingFront__7TrapezeCFv | :x: |
 | isStartSwingBack__7TrapezeCFv | :x: |
-| drawRope__7TrapezeCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
+| drawRope__7TrapezeCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | __ct__19TrapezeRopeDrawInitFPCc | :x: |
 | initDraw__19TrapezeRopeDrawInitCFv | :x: |
 | GXPosition3f32 | :x: |
-| __cl__Q22MR67FunctorV0M<PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v>CFv | :x: |
-| clone__Q22MR67FunctorV0M<PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR67FunctorV0M&lt;PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR67FunctorV0M&lt;PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7TrapezeFv | :x: |
 | __dt__19TrapezeRopeDrawInitFv | :x: |
 | __sinit_\Trapeze_cpp | :x: |

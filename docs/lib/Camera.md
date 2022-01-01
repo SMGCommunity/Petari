@@ -170,8 +170,8 @@
 # CamPoseSphereInterpolator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
-| transform__Q29JGeometry9TQuat4<f>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
+| setRotate__Q29JGeometry9TQuat4&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| transform__Q29JGeometry9TQuat4&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # CamTranslatorAnim.o
@@ -519,14 +519,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | set__18CamAnmDataAccessorFPvPv | :white_check_mark: |
-| getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| getPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| getWatchPos__18CamAnmDataAccessorCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | getTwist__18CamAnmDataAccessorCFf | :white_check_mark: |
 | getFovy__18CamAnmDataAccessorCFf | :white_check_mark: |
 | get__18CamAnmDataAccessorCFfUlUl | :x: |
 | set__21KeyCamAnmDataAccessorFPvPv | :white_check_mark: |
-| getPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
-| getWatchPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3<f>f | :white_check_mark: |
+| getPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| getWatchPos__21KeyCamAnmDataAccessorCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | getTwist__21KeyCamAnmDataAccessorCFf | :white_check_mark: |
 | getFovy__21KeyCamAnmDataAccessorCFf | :white_check_mark: |
 | get__21KeyCamAnmDataAccessorCFfUlUlUl | :white_check_mark: |
@@ -575,12 +575,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | JMAAcosRadian__Ff | :x: |
-| crossToPolar__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPfPf | :x: |
-| polarToCross__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>fff | :x: |
-| polarToCrossDegree__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>fff | :x: |
+| crossToPolar__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPfPf | :x: |
+| polarToCross__2MRFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
+| polarToCrossDegree__2MRFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
 | diffRadian__2MRFff | :x: |
-| diffRadianAroundAxis__2MRFPfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| projectVecOnPlane__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| diffRadianAroundAxis__2MRFPfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| projectVecOnPlane__2MRFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | cosDegree__2MRFf | :x: |
 | sinDegree__2MRFf | :x: |
 
@@ -601,7 +601,7 @@
 | __ct__23CameraCharmedTripodBossFPCc | :white_check_mark: |
 | reset__23CameraCharmedTripodBossFv | :x: |
 | calc__23CameraCharmedTripodBossFv | :x: |
-| setParam__23CameraCharmedTripodBossFlQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f> | :x: |
+| setParam__23CameraCharmedTripodBossFlQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createTranslator__23CameraCharmedTripodBossFv | :white_check_mark: |
 | __dt__23CameraCharmedTripodBossFv | :x: |
 
@@ -635,7 +635,7 @@
 | getViewMtx__13CameraContextCFv | :white_check_mark: |
 | getInvViewMtx__13CameraContextCFv | :white_check_mark: |
 | getAspect__13CameraContextCFv | :x: |
-| setViewMtx__13CameraContextFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>bbRCQ29JGeometry8TVec3<f> | :x: |
+| setViewMtx__13CameraContextFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;bbRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setNearZ__13CameraContextFf | :white_check_mark: |
 | setFovy__13CameraContextFf | :white_check_mark: |
 | setShakeOffset__13CameraContextFff | :white_check_mark: |
@@ -646,7 +646,7 @@
 # CameraCover.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PI__Q29JGeometry8TUtil<f>Fv | :x: |
+| PI__Q29JGeometry8TUtil&lt;f&gt;Fv | :x: |
 | __ct__11CameraCoverFPCc | :x: |
 | movement__11CameraCoverFv | :x: |
 | draw__11CameraCoverCFv | :x: |
@@ -673,11 +673,11 @@
 | __ct__9CameraDPDFPCc | :white_check_mark: |
 | reset__9CameraDPDFv | :x: |
 | calc__9CameraDPDFv | :x: |
-| __as__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f> | :x: |
+| __as__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createTranslator__9CameraDPDFv | :white_check_mark: |
 | __dt__9CameraDPDFv | :x: |
-| __ml__Q29JGeometry8TVec2<f>CFf | :x: |
-| __pl__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
+| __ml__Q29JGeometry8TVec2&lt;f&gt;CFf | :x: |
+| __pl__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # CameraDead.o
@@ -742,7 +742,7 @@
 | isStartAnimCameraEnd__14CameraDirectorCFv | :white_check_mark: |
 | getStartAnimCameraFrame__14CameraDirectorCFv | :white_check_mark: |
 | endStartAnimCamera__14CameraDirectorFv | :white_check_mark: |
-| startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffl | :x: |
+| startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffl | :x: |
 | endTalkCamera__14CameraDirectorFbl | :white_check_mark: |
 | startSubjectiveCamera__14CameraDirectorFl | :white_check_mark: |
 | endSubjectiveCamera__14CameraDirectorFl | :white_check_mark: |
@@ -755,7 +755,7 @@
 | checkEndOfEventCamera__14CameraDirectorFv | :x: |
 | controlCameraSE__14CameraDirectorFv | :x: |
 | removeEndEventAtLanding__14CameraDirectorFlPCc | :x: |
-| calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PC15CameraPoseParam | :x: |
+| calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PC15CameraPoseParam | :x: |
 | isPlayableCameraSE__14CameraDirectorFb | :white_check_mark: |
 | resetCameraMan__14CameraDirectorFv | :white_check_mark: |
 | createStartAnimCamera__14CameraDirectorFv | :white_check_mark: |
@@ -784,7 +784,7 @@
 | __ct__9CameraFixFPCc | :white_check_mark: |
 | reset__9CameraFixFv | :x: |
 | calc__9CameraFixFv | :x: |
-| setParam__9CameraFixFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setParam__9CameraFixFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createTranslator__9CameraFixFv | :white_check_mark: |
 | __dt__9CameraFixFv | :x: |
 
@@ -796,7 +796,7 @@
 | reset__16CameraFixedPointFv | :x: |
 | calc__16CameraFixedPointFv | :x: |
 | createTranslator__16CameraFixedPointFv | :white_check_mark: |
-| setParam__16CameraFixedPointFRCQ29JGeometry8TVec3<f>Ul | :x: |
+| setParam__16CameraFixedPointFRCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
 | __dt__16CameraFixedPointFv | :x: |
 
 
@@ -808,10 +808,10 @@
 | calc__16CameraFixedThereFv | :x: |
 | createTranslator__16CameraFixedThereFv | :white_check_mark: |
 | copyStatusFromPrevCamera__16CameraFixedThereFv | :x: |
-| calcEyeDir__16CameraFixedThereFPQ29JGeometry8TVec3<f> | :x: |
+| calcEyeDir__16CameraFixedThereFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | makeAxisAndRoll__16CameraFixedThereFv | :x: |
-| updateUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3<f> | :x: |
-| updateNormalUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3<f> | :x: |
+| updateUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateNormalUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__16CameraFixedThereFv | :x: |
 | isCorrectingErpPositionOff__16CameraFixedThereCFv | :x: |
 
@@ -828,20 +828,20 @@
 | isEnableToRoundRight__12CameraFollowCFv | :x: |
 | calcIdealPos__12CameraFollowFv | :x: |
 | calcRotPos__12CameraFollowFv | :x: |
-| constrainDistance__12CameraFollowFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| constrainDistance__12CameraFollowFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | constrainAngleX__12CameraFollowFPf | :x: |
-| constrainAngleY__12CameraFollowFPfRCQ29JGeometry8TVec3<f>f | :x: |
+| constrainAngleY__12CameraFollowFPfRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | getMagnitudeOfMovingRound__12CameraFollowCFv | :x: |
-| checkShiftStateToRound__12CameraFollowFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| checkShiftStateToRound__12CameraFollowFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | arrangeHeight__12CameraFollowFv | :x: |
 | reflectRotOffset__12CameraFollowFv | :x: |
 | isWallForward__12CameraFollowCFv | :x: |
 | arrangeLookUp__12CameraFollowFv | :x: |
-| checkAscent__12CameraFollowCFPQ29JGeometry8TVec3<f> | :x: |
+| checkAscent__12CameraFollowCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | arrangeLookDown__12CameraFollowFv | :x: |
-| checkDescent__12CameraFollowCFPQ29JGeometry8TVec3<f> | :x: |
+| checkDescent__12CameraFollowCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | startRound__12CameraFollowFff | :x: |
-| checkValidityOfRound__12CameraFollowFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| checkValidityOfRound__12CameraFollowFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isUpsideDownByRoll__12CameraFollowCFv | :x: |
 | __dt__12CameraFollowFv | :x: |
 | __sinit_\CameraFollow_cpp | :x: |
@@ -868,7 +868,7 @@
 | reset__22CameraFooFighterPlanetFv | :x: |
 | calc__22CameraFooFighterPlanetFv | :x: |
 | createTranslator__22CameraFooFighterPlanetFv | :white_check_mark: |
-| goRoundBehind__22CameraFooFighterPlanetFRQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
+| goRoundBehind__22CameraFooFighterPlanetFRQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # CameraFrontAndBack.o
@@ -879,8 +879,8 @@
 | reset__18CameraFrontAndBackFv | :x: |
 | calc__18CameraFrontAndBackFv | :x: |
 | createTranslator__18CameraFrontAndBackFv | :white_check_mark: |
-| calcBaseQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcDipQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcBaseQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcDipQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # CameraGround.o
@@ -923,51 +923,51 @@
 # CameraHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createCamera<14CameraParallel>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<11CameraTower>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<12CameraFollow>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<18CameraWonderPlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<9CameraFix>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraFixedPoint>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<12CameraBehind>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<17CameraInwardTower>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraFixedThere>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraTripodBoss>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<14CameraTowerPos>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<18CameraTripodPlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<10CameraDead>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<18CameraInwardSphere>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<14CameraRailDemo>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraRailFollow>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<21CameraTripodBossJoint>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<23CameraCharmedTripodBoss>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<17CameraObjParallel>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraCharmedFix>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<12CameraGround>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<13CameraTrundle>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraCubePlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<19CameraInnerCylinder>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<12CameraSpiral>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<10CameraTalk>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<20CameraMtxRegParallel>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<19CameraCharmedVecReg>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<18CameraMedianPlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<20CameraTwistedPassage>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<17CameraMedianTower>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<24CameraCharmedVecRegTower>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<18CameraFrontAndBack>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraRaceFollow>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<11CameraSlide>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraFooFighter>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<22CameraFooFighterPlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<15CameraBlackHole>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<10CameraAnim>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<9CameraDPD>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<17CameraWaterFollow>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<17CameraWaterPlanet>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<21CameraWaterPlanetBoss>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<15CameraRailWatch>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
-| createCamera<16CameraSubjective>__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;14CameraParallel&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;11CameraTower&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;12CameraFollow&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;18CameraWonderPlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;9CameraFix&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraFixedPoint&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;12CameraBehind&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;17CameraInwardTower&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraFixedThere&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraTripodBoss&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;14CameraTowerPos&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;18CameraTripodPlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;10CameraDead&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;18CameraInwardSphere&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;14CameraRailDemo&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraRailFollow&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;21CameraTripodBossJoint&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;23CameraCharmedTripodBoss&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;17CameraObjParallel&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraCharmedFix&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;12CameraGround&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;13CameraTrundle&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraCubePlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;19CameraInnerCylinder&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;12CameraSpiral&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;10CameraTalk&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;20CameraMtxRegParallel&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;19CameraCharmedVecReg&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;18CameraMedianPlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;20CameraTwistedPassage&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;17CameraMedianTower&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;24CameraCharmedVecRegTower&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;18CameraFrontAndBack&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraRaceFollow&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;11CameraSlide&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraFooFighter&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;22CameraFooFighterPlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;15CameraBlackHole&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;10CameraAnim&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;9CameraDPD&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;17CameraWaterFollow&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;17CameraWaterPlanet&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;21CameraWaterPlanetBoss&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;15CameraRailWatch&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
+| createCamera&lt;16CameraSubjective&gt;__26@unnamed@CameraHolder_cpp@Fv_P6Camera | :white_check_mark: |
 | __ct__12CameraHolderFPCc | :white_check_mark: |
 | getTranslator__12CameraHolderFl | :white_check_mark: |
 | getIndexOf__12CameraHolderCFPCc | :white_check_mark: |
@@ -1023,13 +1023,13 @@
 | getGlobalOffset__15CameraLocalUtilFPC9CameraMan | :x: |
 | getLocalOffset__15CameraLocalUtilFPC9CameraMan | :x: |
 | getRoll__15CameraLocalUtilFPC9CameraMan | :x: |
-| setWatchPos__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
-| setPos__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
-| setUpVec__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
-| setWatchUpVec__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
+| setWatchPos__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setPos__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setUpVec__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setWatchUpVec__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setFovy__15CameraLocalUtilFP9CameraManf | :x: |
-| setGlobalOffset__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
-| setLocalOffset__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3<f> | :x: |
+| setGlobalOffset__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setLocalOffset__15CameraLocalUtilFP9CameraManRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setFrontOffset__15CameraLocalUtilFP9CameraManf | :x: |
 | setUpperOffset__15CameraLocalUtilFP9CameraManf | :x: |
 | setRoll__15CameraLocalUtilFP9CameraManf | :x: |
@@ -1049,31 +1049,31 @@
 | getGlobalOffset__15CameraLocalUtilFPC6Camera | :x: |
 | getLocalOffset__15CameraLocalUtilFPC6Camera | :x: |
 | getRoll__15CameraLocalUtilFPC6Camera | :x: |
-| setWatchPos__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
-| setPos__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
-| setUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
-| setWatchUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
-| setUpVecAndWatchUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
+| setWatchPos__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setPos__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setWatchUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setUpVecAndWatchUpVec__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setFovy__15CameraLocalUtilFP6Cameraf | :x: |
-| setGlobalOffset__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
-| setLocalOffset__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3<f> | :x: |
+| setGlobalOffset__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setLocalOffset__15CameraLocalUtilFP6CameraRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setFrontOffset__15CameraLocalUtilFP6Cameraf | :x: |
 | setUpperOffset__15CameraLocalUtilFP6Cameraf | :x: |
 | setRoll__15CameraLocalUtilFP6Cameraf | :x: |
-| recalcUpVec__15CameraLocalUtilFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| makeWatchOffset__15CameraLocalUtilFPQ29JGeometry8TVec3<f>P6CameraP15CameraTargetObjf | :x: |
-| makeWatchPoint__15CameraLocalUtilFPQ29JGeometry8TVec3<f>P6CameraP15CameraTargetObjf | :x: |
-| makeWatchOffsetImm__15CameraLocalUtilFPQ29JGeometry8TVec3<f>P6CameraP15CameraTargetObj | :x: |
-| makeWatchPointImm__15CameraLocalUtilFPQ29JGeometry8TVec3<f>P6CameraP15CameraTargetObj | :x: |
+| recalcUpVec__15CameraLocalUtilFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| makeWatchOffset__15CameraLocalUtilFPQ29JGeometry8TVec3&lt;f&gt;P6CameraP15CameraTargetObjf | :x: |
+| makeWatchPoint__15CameraLocalUtilFPQ29JGeometry8TVec3&lt;f&gt;P6CameraP15CameraTargetObjf | :x: |
+| makeWatchOffsetImm__15CameraLocalUtilFPQ29JGeometry8TVec3&lt;f&gt;P6CameraP15CameraTargetObj | :x: |
+| makeWatchPointImm__15CameraLocalUtilFPQ29JGeometry8TVec3&lt;f&gt;P6CameraP15CameraTargetObj | :x: |
 | tryCameraReset__15CameraLocalUtilFv | :x: |
 | tryCameraResetTrigger__15CameraLocalUtilFv | :x: |
 | testCameraPadButtonReset__15CameraLocalUtilFv | :x: |
 | testCameraPadTriggerReset__15CameraLocalUtilFv | :x: |
 | testCameraPadTriggerRoundLeft__15CameraLocalUtilFv | :x: |
 | testCameraPadTriggerRoundRight__15CameraLocalUtilFv | :x: |
-| slerpCamera__15CameraLocalUtilFPQ29JGeometry9TQuat4<f>RCQ29JGeometry9TQuat4<f>RCQ29JGeometry9TQuat4<f>fb | :x: |
-| makeTowerCameraMtx__15CameraLocalUtilFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| arrangeDistanceByFovy__15CameraLocalUtilFP6CameraQ29JGeometry8TVec3<f>f | :x: |
+| slerpCamera__15CameraLocalUtilFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;fb | :x: |
+| makeTowerCameraMtx__15CameraLocalUtilFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| arrangeDistanceByFovy__15CameraLocalUtilFP6CameraQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | arrangeDistanceByPushAndPull__15CameraLocalUtilFP6Cameraff | :x: |
 | calcSafePose__15CameraLocalUtilFP9CameraManP6Camera | :x: |
 
@@ -1167,8 +1167,8 @@
 | applyParameter__13CameraManGameFv | :x: |
 | checkReset__13CameraManGameFv | :white_check_mark: |
 | setSafePose__13CameraManGameFv | :white_check_mark: |
-| keepAwayWatchPos__13CameraManGameFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcSafeUpVec__13CameraManGameFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| keepAwayWatchPos__13CameraManGameFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcSafeUpVec__13CameraManGameFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createDefaultCamera__13CameraManGameFv | :white_check_mark: |
 | createDefaultWaterCamera__13CameraManGameFv | :white_check_mark: |
 | createDefaultWaterSurfaceCamera__13CameraManGameFv | :white_check_mark: |
@@ -1232,16 +1232,16 @@
 | reset__18CameraMedianPlanetFv | :x: |
 | calc__18CameraMedianPlanetFv | :x: |
 | createTranslator__18CameraMedianPlanetFv | :white_check_mark: |
-| getPrevFront__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
-| constrainDipAngle__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
-| makeTargetMtx__18CameraMedianPlanetFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| peepMtx__18CameraMedianPlanetFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| rotate33__18CameraMedianPlanetFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>f | :x: |
-| constrainLength__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
+| getPrevFront__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| constrainDipAngle__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| makeTargetMtx__18CameraMedianPlanetFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| peepMtx__18CameraMedianPlanetFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| rotate33__18CameraMedianPlanetFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| constrainLength__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getMaxRate__18CameraMedianPlanetFv | :x: |
-| getRegisterUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
-| calcWatchPos__18CameraMedianPlanetFPQ29JGeometry8TVec3<f> | :x: |
-| calcUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| getRegisterUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWatchPos__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # CameraMedianTower.o
@@ -1251,10 +1251,10 @@
 | reset__17CameraMedianTowerFv | :x: |
 | calc__17CameraMedianTowerFv | :x: |
 | createTranslator__17CameraMedianTowerFv | :white_check_mark: |
-| calcFovyPos__17CameraMedianTowerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| limitAngularVelocity__17CameraMedianTowerFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcDistance__17CameraMedianTowerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| updateReset__17CameraMedianTowerFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcFovyPos__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| limitAngularVelocity__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcDistance__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateReset__17CameraMedianTowerFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__17CameraMedianTowerFv | :x: |
 | JMASinDegree__Ff | :x: |
 | JMACosDegree__Ff | :x: |
@@ -1308,7 +1308,7 @@
 | isAntiBlurOff__16CameraParamChunkCFv | :white_check_mark: |
 | isCollisionOff__16CameraParamChunkCFv | :white_check_mark: |
 | isSubjectiveCameraOff__16CameraParamChunkCFv | :white_check_mark: |
-| getVPanAxis__16CameraParamChunkCFPQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getVPanAxis__16CameraParamChunkCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setCameraType__16CameraParamChunkFPCcPC12CameraHolder | :white_check_mark: |
 | setUseFovy__16CameraParamChunkFb | :white_check_mark: |
 | setLOfsErpOff__16CameraParamChunkFb | :white_check_mark: |
@@ -1453,7 +1453,7 @@
 | __ct__20CameraRegisterHolderFPCc | :white_check_mark: |
 | declareMtxReg__20CameraRegisterHolderFPCcPA4_f | :white_check_mark: |
 | getMtx__20CameraRegisterHolderCFPCc | :white_check_mark: |
-| declareVecReg__20CameraRegisterHolderFPCcPCQ29JGeometry8TVec3<f> | :white_check_mark: |
+| declareVecReg__20CameraRegisterHolderFPCcPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getVec__20CameraRegisterHolderCFPCc | :white_check_mark: |
 | declareFloatReg__20CameraRegisterHolderFPCcPCf | :white_check_mark: |
 | getDummyVecRegName__20CameraRegisterHolderCFv | :white_check_mark: |
@@ -1468,7 +1468,7 @@
 # CameraRotChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| acos__Q29JGeometry8TUtil<f>Ff | :x: |
+| acos__Q29JGeometry8TUtil&lt;f&gt;Ff | :x: |
 | __ct__16CameraRotCheckerFv | :white_check_mark: |
 | update__16CameraRotCheckerFv | :x: |
 | __sinit_\CameraRotChecker_cpp | :x: |
@@ -1479,18 +1479,18 @@
 | ------------- | ------------- |
 | __ct__24CameraShakePatternSinglyFf | :white_check_mark: |
 | isEnd__24CameraShakePatternSinglyCFv | :white_check_mark: |
-| getOffset__24CameraShakePatternSinglyCFPQ29JGeometry8TVec2<f> | :white_check_mark: |
+| getOffset__24CameraShakePatternSinglyCFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
 | start__24CameraShakePatternSinglyFv | :white_check_mark: |
 | update__24CameraShakePatternSinglyFv | :x: |
-| setDirection__24CameraShakePatternSinglyFRCQ29JGeometry8TVec2<f> | :white_check_mark: |
+| setDirection__24CameraShakePatternSinglyFRCQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
 | __ct__29CameraShakePatternVerticalSinFff | :white_check_mark: |
 | isEnd__29CameraShakePatternVerticalSinCFv | :white_check_mark: |
-| getOffset__29CameraShakePatternVerticalSinCFPQ29JGeometry8TVec2<f> | :white_check_mark: |
+| getOffset__29CameraShakePatternVerticalSinCFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
 | start__29CameraShakePatternVerticalSinFv | :white_check_mark: |
 | update__29CameraShakePatternVerticalSinFv | :white_check_mark: |
 | __dt__24CameraShakePatternSinglyFv | :white_check_mark: |
 | __dt__29CameraShakePatternVerticalSinFv | :white_check_mark: |
-| set<f>__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f>_v | :x: |
+| set&lt;f&gt;__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt;_v | :x: |
 
 
 # CameraShakeTask.o
@@ -1501,7 +1501,7 @@
 | startInfinity__15CameraShakeTaskFUl | :white_check_mark: |
 | endForce__15CameraShakeTaskFv | :white_check_mark: |
 | movement__15CameraShakeTaskFv | :white_check_mark: |
-| getOffset__15CameraShakeTaskCFPQ29JGeometry8TVec2<f> | :white_check_mark: |
+| getOffset__15CameraShakeTaskCFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
 | isEnd__15CameraShakeTaskCFv | :white_check_mark: |
 | startCommon__15CameraShakeTaskFUl | :white_check_mark: |
 | updatePattern__15CameraShakeTaskFv | :white_check_mark: |
@@ -1523,10 +1523,10 @@
 | updateSinglyHorizontalTask__12CameraShakerFv | :white_check_mark: |
 | updateInfinityTask__12CameraShakerFv | :white_check_mark: |
 | setOffset__12CameraShakerFv | :white_check_mark: |
-| addSinglyVerticalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f> | :white_check_mark: |
-| addSinglyHorizontalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f> | :white_check_mark: |
-| addInfinityTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f> | :white_check_mark: |
-| adjustOffsetToScreen__12CameraShakerFPQ29JGeometry8TVec2<f> | :x: |
+| addSinglyVerticalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
+| addSinglyHorizontalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
+| addInfinityTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
+| adjustOffsetToScreen__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | startInfinity__12CameraShakerFUlff | :white_check_mark: |
 | __dt__12CameraShakerFv | :white_check_mark: |
 
@@ -1568,7 +1568,7 @@
 | __ct__10CameraTalkFPCc | :white_check_mark: |
 | reset__10CameraTalkFv | :x: |
 | calc__10CameraTalkFv | :x: |
-| setParam__10CameraTalkFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
+| setParam__10CameraTalkFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | createTranslator__10CameraTalkFv | :white_check_mark: |
 | __dt__10CameraTalkFv | :x: |
 
@@ -1677,8 +1677,8 @@
 # CameraTestObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>f | :x: |
-| identity33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv | :x: |
+| setRotate__Q29JGeometry9TQuat4&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| identity33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Fv | :x: |
 
 
 # CameraTower.o
@@ -1724,8 +1724,8 @@
 | calc__14CameraTowerPosFv | :x: |
 | calcIdealPose__14CameraTowerPosFb | :x: |
 | createTranslator__14CameraTowerPosFv | :white_check_mark: |
-| arrangeHorizontalPose__14CameraTowerPosFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f> | :x: |
-| arrangeWatchPos__14CameraTowerPosFRQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| arrangeHorizontalPose__14CameraTowerPosFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| arrangeWatchPos__14CameraTowerPosFRQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isEnableToReset__14CameraTowerPosCFv | :x: |
 
 
@@ -1779,8 +1779,8 @@
 | setParam__20CameraTwistedPassageFllff | :x: |
 | createTranslator__20CameraTwistedPassageFv | :white_check_mark: |
 | initStartPos__20CameraTwistedPassageFv | :x: |
-| calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3<f> | :x: |
+| calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__20CameraTwistedPassageFv | :x: |
 
 
@@ -1788,16 +1788,16 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__22CameraViewInterpolatorFv | :x: |
-| updateCameraMtx__22CameraViewInterpolatorFPA4_fRCQ29JGeometry8TVec3<f>PC15CameraTargetObjf | :x: |
+| updateCameraMtx__22CameraViewInterpolatorFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;PC15CameraTargetObjf | :x: |
 | setInterpolation__22CameraViewInterpolatorFUl | :x: |
 | isInterpolating__22CameraViewInterpolatorCFv | :x: |
 | isInterpolatingNearlyEnd__22CameraViewInterpolatorCFv | :x: |
 | lookAtCenter__22CameraViewInterpolatorFv | :x: |
-| calcCollision__22CameraViewInterpolatorFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| calcBinder__22CameraViewInterpolatorFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcCollision__22CameraViewInterpolatorFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| calcBinder__22CameraViewInterpolatorFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | reduceOscillation__22CameraViewInterpolatorFv | :x: |
 | updateCalcState__22CameraViewInterpolatorFPC15CameraTargetObj | :x: |
-| interpolateCameraSwitching__22CameraViewInterpolatorFPA4_fRCQ29JGeometry8TVec3<f>f | :x: |
+| interpolateCameraSwitching__22CameraViewInterpolatorFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | checkNearlyEnd__22CameraViewInterpolatorFPA4_f | :x: |
 | translateByRepulsion__22CameraViewInterpolatorFv | :x: |
 
@@ -1861,7 +1861,7 @@
 | __dt__12DotCamReaderFv | :white_check_mark: |
 | getVersion__17DotCamReaderInBinCFv | :white_check_mark: |
 | init__17DotCamReaderInBinFPCv | :x: |
-| getValueVec__17DotCamReaderInBinFPCcPQ29JGeometry8TVec3<f> | :white_check_mark: |
+| getValueVec__17DotCamReaderInBinFPCcPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 
 
 # GameCameraCreator.o
@@ -1882,7 +1882,7 @@
 | calcPose__10OnlyCameraFP9CameraMan | :x: |
 | calcStartPose__10OnlyCameraFP9CameraMan | :x: |
 | calcSafePose__10OnlyCameraFP9CameraMan | :x: |
-| moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3<f> | :x: |
+| moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__10OnlyCameraFv | :white_check_mark: |
 
 

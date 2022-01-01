@@ -120,7 +120,10 @@ class Library:
                 if func.isCompleted:
                     marker = ":white_check_mark:"
 
-                page.append(f"| {func.name} | {marker} |\n")
+                funcName = func.name.replace("<", "&lt;")
+                funcName = funcName.replace(">", "&gt;")
+
+                page.append(f"| {funcName} | {marker} |\n")
 
             page.append("\n\n")
 

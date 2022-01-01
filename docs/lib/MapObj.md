@@ -286,7 +286,7 @@
 | UFOKinoko.o | 0.0% | 0 / 20 | 0.0% |
 | ValveSwitch.o | 0.0% | 0 / 21 | 0.0% |
 | WarpPod.o | 0.0% | 0 / 22 | 0.0% |
-| WatchTowerRotateStep.o | 0.0% | 0 / 14 | 0.0% |
+| WatchTowerRotateStep.o | 85.85131894484412% | 12 / 14 | 85.71428571428571% |
 | WaterfallCaveCover.o | 0.0% | 0 / 9 | 0.0% |
 | WaterLeakPipe.o | 0.0% | 0 / 22 | 0.0% |
 | WaterPressure.o | 0.0% | 0 / 6 | 0.0% |
@@ -307,12 +307,12 @@
 | MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% |
 | MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
 | MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsFunction.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailGuideDrawer.o | 0.0% | 0 / 19 | 0.0% |
 | MapPartsRailGuideHolder.o | 0.0% | 0 / 5 | 0.0% |
-| MapPartsRailGuidePoint.o | 0.0% | 0 / 4 | 0.0% |
+| MapPartsRailGuidePoint.o | 100.0% | 4 / 4 | 100.0% |
 | MapPartsRailMover.o | 0.0% | 0 / 58 | 0.0% |
-| MapPartsRailPointPassChecker.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
 | MapPartsRotator.o | 0.0% | 0 / 33 | 0.0% |
@@ -329,7 +329,7 @@
 | appear__9AirBubbleFv | :x: |
 | kill__9AirBubbleFv | :x: |
 | control__9AirBubbleFv | :x: |
-| appearMove__9AirBubbleFRCQ29JGeometry8TVec3<f>l | :x: |
+| appearMove__9AirBubbleFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | exeWait__9AirBubbleFv | :x: |
 | exeMove__9AirBubbleFv | :x: |
 | exeBreak__9AirBubbleFv | :x: |
@@ -368,10 +368,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15AirBubbleHolderFPCc | :x: |
-| __dt__28DeriveActorGroup<9AirBubble>Fv | :x: |
-| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3<f>l | :x: |
+| __dt__28DeriveActorGroup&lt;9AirBubble&gt;Fv | :x: |
+| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | createAirBubbleHolder__2MRFv | :x: |
-| appearAirBubble__2MRFRCQ29JGeometry8TVec3<f>l | :x: |
+| appearAirBubble__2MRFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | __dt__15AirBubbleHolderFv | :x: |
 | init__15AirBubbleHolderFRC12JMapInfoIter | :x: |
 
@@ -454,9 +454,9 @@
 | execute__Q214NrvArrowSwitch18ArrowSwitchNrvLockCFP5Spine | :x: |
 | execute__Q214NrvArrowSwitch20ArrowSwitchNrvRotateCFP5Spine | :x: |
 | execute__Q214NrvArrowSwitch18ArrowSwitchNrvWaitCFP5Spine | :x: |
-| Functor<11ArrowSwitch>__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11ArrowSwitch&gt;__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11ArrowSwitchFv | :x: |
 
 
@@ -490,7 +490,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__22ArrowSwitchMultiHolderFv | :x: |
-| __dt__36DeriveActorGroup<16ArrowSwitchMulti>Fv | :x: |
+| __dt__36DeriveActorGroup&lt;16ArrowSwitchMulti&gt;Fv | :x: |
 | findSwitch__22ArrowSwitchMultiHolderFPC10JMapIdInfo | :x: |
 | createArrowSwitchMultiHolder__2MRFv | :x: |
 | registerArrowSwitchMulti__2MRFP16ArrowSwitchMulti | :x: |
@@ -541,8 +541,8 @@
 | __ct__Q212NrvAstroCore16AstroCoreNrvGrowFv | :x: |
 | execute__Q212NrvAstroCore16AstroCoreNrvGrowCFP5Spine | :x: |
 | execute__Q212NrvAstroCore16AstroCoreNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9AstroCore,M9AstroCoreFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9AstroCore,M9AstroCoreFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9AstroCoreFv | :x: |
 
 
@@ -569,9 +569,9 @@
 | execute__Q222NrvAstroCountDownPlate29AstroCountDownPlateNrvRevivalCFP5Spine | :x: |
 | execute__Q222NrvAstroCountDownPlate27AstroCountDownPlateNrvAliveCFP5Spine | :x: |
 | execute__Q222NrvAstroCountDownPlate26AstroCountDownPlateNrvDeadCFP5Spine | :x: |
-| Functor<19AstroCountDownPlate>__2MRFP19AstroCountDownPlateM19AstroCountDownPlateFPCvPv_v_Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v> | :x: |
-| __cl__Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;19AstroCountDownPlate&gt;__2MRFP19AstroCountDownPlateM19AstroCountDownPlateFPCvPv_v_Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt; | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19AstroCountDownPlateFv | :x: |
 
 
@@ -617,7 +617,7 @@
 | __ct__Q217AstroDomeBlueStar12CaptureActorFv | :x: |
 | init__Q217AstroDomeBlueStar12CaptureActorFRC12JMapInfoIter | :x: |
 | kill__Q217AstroDomeBlueStar12CaptureActorFv | :x: |
-| updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
+| updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | __ct__17AstroDomeBlueStarFPCc | :x: |
 | init__17AstroDomeBlueStarFRC12JMapInfoIter | :x: |
 | appear__17AstroDomeBlueStarFv | :x: |
@@ -630,7 +630,7 @@
 | tryStartBind__17AstroDomeBlueStarFPC9LiveActor | :x: |
 | isActiveBind__17AstroDomeBlueStarCFv | :x: |
 | isValidBindStart__17AstroDomeBlueStarCFv | :x: |
-| calcZoomInPos__17AstroDomeBlueStarCFPQ29JGeometry8TVec3<f> | :x: |
+| calcZoomInPos__17AstroDomeBlueStarCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeAppear__17AstroDomeBlueStarFv | :x: |
 | exeWait__17AstroDomeBlueStarFv | :x: |
 | exePointing__17AstroDomeBlueStarFv | :x: |
@@ -664,9 +664,9 @@
 | execute__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvPointingCFP5Spine | :x: |
 | execute__Q220NrvAstroDomeBlueStar24AstroDomeBlueStarNrvWaitCFP5Spine | :x: |
 | execute__Q220NrvAstroDomeBlueStar26AstroDomeBlueStarNrvAppearCFP5Spine | :x: |
-| Functor<17AstroDomeBlueStar>__2MRFP17AstroDomeBlueStarM17AstroDomeBlueStarFPCvPv_v_Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v> | :x: |
-| __cl__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFv | :x: |
-| clone__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;17AstroDomeBlueStar&gt;__2MRFP17AstroDomeBlueStarM17AstroDomeBlueStarFPCvPv_v_Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt; | :x: |
+| __cl__Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__Q217AstroDomeBlueStar12CaptureActorFv | :x: |
 | __dt__17AstroDomeBlueStarFv | :x: |
 
@@ -680,10 +680,10 @@
 | kill__25AstroDomeCameraControllerFv | :x: |
 | control__25AstroDomeCameraControllerFv | :x: |
 | receiveOtherMsg__25AstroDomeCameraControllerFUlP9HitSensorP9HitSensor | :x: |
-| calcZoomOutPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f> | :x: |
-| calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcZoomInTarget__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcZoomInUp__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f> | :x: |
+| calcZoomOutPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcZoomInTarget__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcZoomInUp__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeGalaxySelectStart__25AstroDomeCameraControllerFv | :x: |
 | exeGalaxySelect__25AstroDomeCameraControllerFv | :x: |
 | exeGalaxyConfirmStart__25AstroDomeCameraControllerFv | :x: |
@@ -702,7 +702,7 @@
 | execute__Q228NrvAstroDomeCameraController40AstroDomeCameraControllerNrvGalaxySelectCFP5Spine | :x: |
 | execute__Q228NrvAstroDomeCameraController45AstroDomeCameraControllerNrvGalaxySelectStartCFP5Spine | :x: |
 | __ct__Q225AstroDomeCameraController8PositionFv | :x: |
-| reset__Q225AstroDomeCameraController8PositionFRCQ29JGeometry8TVec3<f> | :x: |
+| reset__Q225AstroDomeCameraController8PositionFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # AstroDomeComet.o
@@ -785,15 +785,15 @@
 | drawBloom__14AstroDomeOrbitCFv | :x: |
 | setup__14AstroDomeOrbitFl | :x: |
 | moveCoord__14AstroDomeOrbitFv | :x: |
-| calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3<f> | :x: |
+| calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | initDraw__14AstroDomeOrbitCFRC6Color8 | :x: |
 | drawCelling__14AstroDomeOrbitCFfbf | :x: |
 | drawSide__14AstroDomeOrbitCFfbf | :x: |
 | calcRepeatedRotateCoord__14AstroDomeOrbitCFf | :x: |
 | __sinit_\AstroDomeOrbit_cpp | :x: |
 | GXPosition3f32 | :x: |
-| __cl__Q22MR57FunctorV0M<PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR57FunctorV0M&lt;PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__14AstroDomeOrbitFv | :x: |
 
 
@@ -880,9 +880,9 @@
 | execute__Q214NrvAstroMapObj28AstroMapObjNrvAliveAfterDemoCFP5Spine | :x: |
 | execute__Q214NrvAstroMapObj19AstroMapObjNrvAliveCFP5Spine | :x: |
 | execute__Q214NrvAstroMapObj18AstroMapObjNrvDeadCFP5Spine | :x: |
-| Functor<11AstroMapObj>__2MRFP11AstroMapObjM11AstroMapObjFPCvPv_v_Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11AstroMapObj&gt;__2MRFP11AstroMapObjM11AstroMapObjFPCvPv_v_Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11AstroMapObjFv | :x: |
 | __dt__14AstroSimpleObjFv | :x: |
 | initCaseNoUseSwitchB__11AstroMapObjFRC19MapObjActorInitInfo | :x: |
@@ -905,7 +905,7 @@
 | getDomeIdFromArg0__19AstroMapObjFunctionFRC12JMapInfoIter | :x: |
 | getModelName__19AstroMapObjFunctionFPCcl | :x: |
 | createAstroNamePlateParser__19AstroMapObjFunctionFv | :x: |
-| trySetAndShowNamePlate__19AstroMapObjFunctionFP15GalaxyNamePlatePC8JMapInfoRCQ29JGeometry8TVec3<f>PCclb | :x: |
+| trySetAndShowNamePlate__19AstroMapObjFunctionFP15GalaxyNamePlatePC8JMapInfoRCQ29JGeometry8TVec3&lt;f&gt;PCclb | :x: |
 | tryRegisterMultiDemoAndFunction__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIterRCQ22MR11FunctorBase | :x: |
 | initilizePeculiar__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIter | :x: |
 
@@ -1096,7 +1096,7 @@
 | appear__14BenefitItemObjFv | :x: |
 | appearGround__14BenefitItemObjFv | :x: |
 | appearThrowUp__14BenefitItemObjFv | :x: |
-| shoot__14BenefitItemObjFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b | :x: |
+| shoot__14BenefitItemObjFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | appearThrowUpQuestionBox__14BenefitItemObjFv | :x: |
 | control__14BenefitItemObjFv | :x: |
 | exeWait__14BenefitItemObjFv | :x: |
@@ -1116,9 +1116,9 @@
 | runBck__14BenefitItemObjFPCc | :x: |
 | runEfx__14BenefitItemObjFPCc | :x: |
 | stopEfx__14BenefitItemObjFPCc | :x: |
-| setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3<f> | :x: |
-| __cl__Q22MR55FunctorV0M<P14BenefitItemObj,M14BenefitItemObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR55FunctorV0M<P14BenefitItemObj,M14BenefitItemObjFPCvPv_v>CFP7JKRHeap | :x: |
+| setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __cl__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15ShadowClipActorFv | :x: |
 | __sinit_\BenefitItemObj_cpp | :x: |
 
@@ -1157,9 +1157,9 @@
 | __ct__Q221NrvBigBubbleGenerator27BigBubbleGeneratorNrvActiveFv | :x: |
 | execute__Q221NrvBigBubbleGenerator27BigBubbleGeneratorNrvActiveCFP5Spine | :x: |
 | execute__Q221NrvBigBubbleGenerator30BigBubbleGeneratorNrvNonActiveCFP5Spine | :x: |
-| Functor<18BigBubbleGenerator>__2MRFP18BigBubbleGeneratorM18BigBubbleGeneratorFPCvPv_v_Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v> | :x: |
-| __cl__Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;18BigBubbleGenerator&gt;__2MRFP18BigBubbleGeneratorM18BigBubbleGeneratorFPCvPv_v_Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__18BigBubbleGeneratorFv | :x: |
 
 
@@ -1170,13 +1170,13 @@
 | movement__15BigBubbleHolderFv | :x: |
 | draw__15BigBubbleHolderCFv | :x: |
 | addMoveLimitter__15BigBubbleHolderFP21BigBubbleMoveLimitter | :x: |
-| generateBigBubble__15BigBubbleHolderFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fblll | :x: |
+| generateBigBubble__15BigBubbleHolderFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fblll | :x: |
 | getMoveLimitter__15BigBubbleHolderCFl | :x: |
 | sortDrawOrder__15BigBubbleHolderFv | :x: |
 | setUpBigBubbleDraw__2MRFv | :x: |
 | createBigBubbleHolder__2MRFv | :x: |
-| generateBigBubble__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fblll | :x: |
-| limitBigBubblePosition__2MRFPQ29JGeometry8TVec3<f>fl | :x: |
+| generateBigBubble__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fblll | :x: |
+| limitBigBubblePosition__2MRFPQ29JGeometry8TVec3&lt;f&gt;fl | :x: |
 | addBigBubbleMoveLimitter__2MRFP21BigBubbleMoveLimitter | :x: |
 | isPlayerBindedBigBubble__2MRFv | :x: |
 | __dt__15BigBubbleHolderFv | :x: |
@@ -1188,8 +1188,8 @@
 | ------------- | ------------- |
 | __ct__21BigBubbleMoveLimitterFPCcl | :x: |
 | init__21BigBubbleMoveLimitterFRC12JMapInfoIter | :x: |
-| limitPosition__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3<f>f | :x: |
-| limitVelocity__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| limitPosition__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| limitVelocity__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | createBigBubbleMoveLimitterCylinder__2MRFPCc | :x: |
 | createBigBubbleMoveLimitterPlane__2MRFPCc | :x: |
 | __dt__21BigBubbleMoveLimitterFv | :x: |
@@ -1201,7 +1201,7 @@
 | __ct__6BigFanFPCc | :x: |
 | init__6BigFanFRC12JMapInfoIter | :x: |
 | initWindModel__6BigFanFv | :x: |
-| calcWindInfo__6BigFanFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcWindInfo__6BigFanFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | control__6BigFanFv | :x: |
 | start__6BigFanFv | :x: |
 | exeStart__6BigFanFv | :x: |
@@ -1213,8 +1213,8 @@
 | execute__Q29NrvBigFan13BigFanNrvWaitCFP5Spine | :x: |
 | execute__Q29NrvBigFan14BigFanNrvStartCFP5Spine | :x: |
 | execute__Q29NrvBigFan13BigFanNrvStopCFP5Spine | :x: |
-| __cl__Q22MR37FunctorV0M<P6BigFan,M6BigFanFPCvPv_v>CFv | :x: |
-| clone__Q22MR37FunctorV0M<P6BigFan,M6BigFanFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__6BigFanFv | :x: |
 
 
@@ -1222,10 +1222,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__12BigFanHolderFv | :x: |
-| __dt__25DeriveActorGroup<6BigFan>Fv | :x: |
-| calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf | :x: |
+| __dt__25DeriveActorGroup&lt;6BigFan&gt;Fv | :x: |
+| calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
 | createBigFanHolder__14BigFanFunctionFv | :x: |
-| calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf | :x: |
+| calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
 | registerBigFan__14BigFanFunctionFP6BigFan | :x: |
 | __dt__12BigFanHolderFv | :x: |
 
@@ -1243,7 +1243,7 @@
 | initMapToolInfo__9BlackHoleFRC12JMapInfoIter | :x: |
 | initModel__9BlackHoleFv | :x: |
 | initCubeBox__9BlackHoleFv | :x: |
-| isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3<f> | :x: |
+| isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateModelScale__9BlackHoleFff | :x: |
 | exeWait__9BlackHoleFv | :x: |
 | exeDisappear__9BlackHoleFv | :x: |
@@ -1276,7 +1276,7 @@
 | updatePose__21BlueStarCupsulePlanetFv | :x: |
 | decidedTarget__21BlueStarCupsulePlanetFv | :x: |
 | releasedTarget__21BlueStarCupsulePlanetFv | :x: |
-| getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3<f> | :x: |
+| getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isReleaseForce__21BlueStarCupsulePlanetCFv | :x: |
 | getPointableRange__21BlueStarCupsulePlanetCFv | :x: |
 | exeWait__21BlueStarCupsulePlanetFv | :x: |
@@ -1299,12 +1299,12 @@
 | execute__Q224NrvBlueStarCupsulePlanet28BlueStarCupsulePlanetNrvWaitCFP5Spine | :x: |
 | @140@getPointableRange__21BlueStarCupsulePlanetCFv | :x: |
 | @140@isReleaseForce__21BlueStarCupsulePlanetCFv | :x: |
-| @140@getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3<f> | :x: |
+| @140@getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | @140@releasedTarget__21BlueStarCupsulePlanetFv | :x: |
 | @140@decidedTarget__21BlueStarCupsulePlanetFv | :x: |
-| Functor<21BlueStarCupsulePlanet>__2MRFP21BlueStarCupsulePlanetM21BlueStarCupsulePlanetFPCvPv_v_Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v> | :x: |
-| __cl__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;21BlueStarCupsulePlanet&gt;__2MRFP21BlueStarCupsulePlanetM21BlueStarCupsulePlanetFPCvPv_v_Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt; | :x: |
+| __cl__Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__21BlueStarCupsulePlanetFv | :x: |
 | releaseDistance__18GCaptureTargetableCFv | :x: |
 | canEndHold__18GCaptureTargetableCFv | :x: |
@@ -1343,39 +1343,39 @@
 # BrightObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| calcScreenPosition__23@unnamed@BrightObj_cpp@FPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>> | :x: |
+| calcScreenPosition__23@unnamed@BrightObj_cpp@FPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry66TProjection3&lt;Q29JGeometry38TMatrix44&lt;Q29JGeometry13SMatrix44C&lt;f&gt;&gt;&gt; | :x: |
 | __ct__10BrightInfoFv | :x: |
-| write__10BrightInfoFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>f | :x: |
+| write__10BrightInfoFRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;f | :x: |
 | endRead__10BrightInfoFv | :x: |
 | reset__10BrightInfoFv | :x: |
 | __ct__14BrightDrawInfoFv | :x: |
-| write__14BrightDrawInfoFUsRCQ29JGeometry8TVec3<f>f | :x: |
+| write__14BrightDrawInfoFUsRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__13BrightCamInfoFv | :x: |
-| write__13BrightCamInfoFUsRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| write__13BrightCamInfoFUsRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry66TProjection3&lt;Q29JGeometry38TMatrix44&lt;Q29JGeometry13SMatrix44C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__13BrightObjBaseFv | :x: |
 | checkVisibilityOfSphere__13BrightObjBaseFUsRC13BrightCamInfo | :x: |
-| checkVisible__13BrightObjBaseFPQ213BrightObjBase8CheckArgRCQ29JGeometry8TVec3<f>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>> | :x: |
+| checkVisible__13BrightObjBaseFPQ213BrightObjBase8CheckArgRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry66TProjection3&lt;Q29JGeometry38TMatrix44&lt;Q29JGeometry13SMatrix44C&lt;f&gt;&gt;&gt; | :x: |
 | setResult__13BrightObjBaseFRCQ213BrightObjBase8CheckArg | :x: |
-| drawSphere__13BrightObjBaseCFRCQ29JGeometry8TVec3<f>f | :x: |
+| drawSphere__13BrightObjBaseCFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __ct__9BrightObjFPCc | :x: |
 | init__9BrightObjFRC12JMapInfoIter | :x: |
 | control__9BrightObjFv | :x: |
 | draw__9BrightObjCFv | :x: |
 | calcBrightInfo__9BrightObjFUsRC13BrightCamInfo | :x: |
-| getNowCenter__9BrightObjCFPQ29JGeometry8TVec2<f> | :x: |
+| getNowCenter__9BrightObjCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | __ct__9BrightSunFPCc | :x: |
 | control__9BrightSunFv | :x: |
 | draw__9BrightSunCFv | :x: |
 | calcBrightInfo__9BrightSunFUsRC13BrightCamInfo | :x: |
-| getNowCenter__9BrightSunCFPQ29JGeometry8TVec2<f> | :x: |
+| getNowCenter__9BrightSunCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | controlSunModel__9BrightSunFv | :x: |
-| zero__Q29JGeometry8TVec2<f>Fv | :x: |
+| zero__Q29JGeometry8TVec2&lt;f&gt;Fv | :x: |
 | __dt__9BrightObjFv | :x: |
 | __dt__9BrightSunFv | :x: |
-| @140@getNowCenter__9BrightObjCFPQ29JGeometry8TVec2<f> | :x: |
+| @140@getNowCenter__9BrightObjCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | @140@calcBrightInfo__9BrightObjFUsRC13BrightCamInfo | :x: |
 | @140@__dt__9BrightObjFv | :x: |
-| @140@getNowCenter__9BrightSunCFPQ29JGeometry8TVec2<f> | :x: |
+| @140@getNowCenter__9BrightSunCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | @140@calcBrightInfo__9BrightSunFUsRC13BrightCamInfo | :x: |
 | @140@__dt__9BrightSunFv | :x: |
 | __dt__13BrightObjBaseFv | :x: |
@@ -1383,7 +1383,7 @@
 | getCenter__13BrightObjBaseCFv | :x: |
 | getBrightCenter__13BrightObjBaseCFv | :x: |
 | getBright__13BrightObjBaseCFv | :x: |
-| getNowCenter__13BrightObjBaseCFPQ29JGeometry8TVec2<f> | :x: |
+| getNowCenter__13BrightObjBaseCFPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | init__9BrightSunFRC12JMapInfoIter | :x: |
 
 
@@ -1405,9 +1405,9 @@
 | execute__Q219NrvBumpAppearPlanet25BumpAppearPlanetNrvBumpInCFP5Spine | :x: |
 | execute__Q219NrvBumpAppearPlanet26BumpAppearPlanetNrvBumpOutCFP5Spine | :x: |
 | execute__Q219NrvBumpAppearPlanet23BumpAppearPlanetNrvWaitCFP5Spine | :x: |
-| Functor<16BumpAppearPlanet>__2MRFP16BumpAppearPlanetM16BumpAppearPlanetFPCvPv_v_Q22MR59FunctorV0M<P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v> | :x: |
-| __cl__Q22MR59FunctorV0M<P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;16BumpAppearPlanet&gt;__2MRFP16BumpAppearPlanetM16BumpAppearPlanetFPCvPv_v_Q22MR59FunctorV0M&lt;P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v&gt; | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16BumpAppearPlanet,M16BumpAppearPlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16BumpAppearPlanetFv | :x: |
 
 
@@ -1466,8 +1466,8 @@
 | execute__Q226NrvCannonFortressBreakStep30CannonFortressBreakStepNrvFallCFP5Spine | :x: |
 | execute__Q226NrvCannonFortressBreakStep35CannonFortressBreakStepNrvFallStartCFP5Spine | :x: |
 | execute__Q226NrvCannonFortressBreakStep30CannonFortressBreakStepNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR73FunctorV0M<P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__23CannonFortressBreakStepFv | :x: |
 
 
@@ -1494,8 +1494,8 @@
 | initCaseNoUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
 | initCaseNoUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
 | initCaseUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| __cl__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11CapsuleCageFv | :x: |
 
 
@@ -1594,8 +1594,8 @@
 | init__9ChipGroupFRC12JMapInfoIter | :x: |
 | noticeGet__9ChipGroupFP8ChipBase | :x: |
 | receiveAppearRequest__9ChipGroupFv | :x: |
-| __cl__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9ChipGroup,M9ChipGroupFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9ChipGroup,M9ChipGroupFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13BlueChipGroupFv | :x: |
 | __dt__15YellowChipGroupFv | :x: |
 
@@ -1626,12 +1626,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__13ChooChooTrainFPCc | :x: |
-| __dt__Q22MR42Vector<Q22MR27AssignableArray<P8ModelObj>>Fv | :x: |
+| __dt__Q22MR42Vector&lt;Q22MR27AssignableArray&lt;P8ModelObj&gt;&gt;Fv | :x: |
 | startClipped__13ChooChooTrainFv | :x: |
 | endClipped__13ChooChooTrainFv | :x: |
 | init__13ChooChooTrainFRC12JMapInfoIter | :x: |
 | control__13ChooChooTrainFv | :x: |
-| __dt__Q22MR27AssignableArray<P8ModelObj>Fv | :x: |
+| __dt__Q22MR27AssignableArray&lt;P8ModelObj&gt;Fv | :x: |
 | __dt__13ChooChooTrainFv | :x: |
 
 
@@ -1656,7 +1656,7 @@
 | initBaseMatrix__8ClipAreaFRC12JMapInfoIter | :x: |
 | draw__8ClipAreaCFv | :x: |
 | setShape__8ClipAreaFP13ClipAreaShape | :x: |
-| isInArea__8ClipAreaCFRCQ29JGeometry8TVec3<f>f | :x: |
+| isInArea__8ClipAreaCFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | setClipSphereArea__2MRFP8ClipArea | :x: |
 | setClipCenterBoxArea__2MRFP8ClipArea | :x: |
 | setClipBottomBoxArea__2MRFP8ClipArea | :x: |
@@ -1686,10 +1686,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__18ClipAreaDropHolderFv | :x: |
-| __dt__32DeriveActorGroup<12ClipAreaDrop>Fv | :x: |
+| __dt__32DeriveActorGroup&lt;12ClipAreaDrop&gt;Fv | :x: |
 | createClipAreaDropHolder__2MRFv | :x: |
 | getDeadClipAreaDrop__2MRFv | :x: |
-| appearClipAreaDrop__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
+| appearClipAreaDrop__2MRFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __dt__18ClipAreaDropHolderFv | :x: |
 
 
@@ -1715,19 +1715,19 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__14ClipAreaHolderFPCc | :x: |
-| __dt__27DeriveActorGroup<8ClipArea>Fv | :x: |
+| __dt__27DeriveActorGroup&lt;8ClipArea&gt;Fv | :x: |
 | init__14ClipAreaHolderFRC12JMapInfoIter | :x: |
-| isInArea__14ClipAreaHolderCFRCQ29JGeometry8TVec3<f>f | :x: |
-| __ct__23ClipAreaCollisionFilterFPCQ29JGeometry8TVec3<f>f | :x: |
+| isInArea__14ClipAreaHolderCFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| __ct__23ClipAreaCollisionFilterFPCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | isInvalidParts__23ClipAreaCollisionFilterCFPC14CollisionParts | :x: |
 | createClipAreaHolder__2MRFv | :x: |
 | isExistClipAreaHolder__2MRFv | :x: |
 | addClipArea__2MRFP8ClipArea | :x: |
-| isInClipArea__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
+| isInClipArea__2MRFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | isActiveClipArea__2MRFv | :x: |
 | activateClipArea__2MRFv | :x: |
 | deactivateClipArea__2MRFv | :x: |
-| setBinderExceptSensorType__2MRFP9LiveActorPCQ29JGeometry8TVec3<f>f | :x: |
+| setBinderExceptSensorType__2MRFP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | __dt__14ClipAreaHolderFv | :x: |
 
 
@@ -1756,16 +1756,16 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__13ClipAreaShapeFPCc | :x: |
-| isInArea__13ClipAreaShapeCFRCQ29JGeometry8TVec3<f>fRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
-| calcVolumeMatrix__13ClipAreaShapeCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
-| drawVolumeShape__13ClipAreaShapeCFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
-| isInArea__19ClipAreaShapeSphereCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcVolumeMatrix__19ClipAreaShapeSphereCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
-| isInArea__16ClipAreaShapeBoxCFRCQ29JGeometry8TVec3<f> | :x: |
-| calcVolumeMatrix__16ClipAreaShapeBoxCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f> | :x: |
+| isInArea__13ClipAreaShapeCFRCQ29JGeometry8TVec3&lt;f&gt;fRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcVolumeMatrix__13ClipAreaShapeCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| drawVolumeShape__13ClipAreaShapeCFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| isInArea__19ClipAreaShapeSphereCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcVolumeMatrix__19ClipAreaShapeSphereCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| isInArea__16ClipAreaShapeBoxCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcVolumeMatrix__16ClipAreaShapeBoxCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__17ClipAreaShapeConeFl | :x: |
-| isInArea__17ClipAreaShapeConeCFRCQ29JGeometry8TVec3<f> | :x: |
-| isInArea__13ClipAreaShapeCFRCQ29JGeometry8TVec3<f> | :x: |
+| isInArea__17ClipAreaShapeConeCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| isInArea__13ClipAreaShapeCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__19ClipAreaShapeSphereFv | :x: |
 | __ct__16ClipAreaShapeBoxFl | :x: |
 
@@ -1811,8 +1811,8 @@
 | init__7CocoNutFRC12JMapInfoIter | :x: |
 | initAfterPlacement__7CocoNutFv | :x: |
 | startClipped__7CocoNutFv | :x: |
-| hit__7CocoNutFRCQ29JGeometry8TVec3<f>f | :x: |
-| isPossibleToHit__7CocoNutCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| hit__7CocoNutFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| isPossibleToHit__7CocoNutCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcMoveSpeed__7CocoNutCFv | :x: |
 | getModelName__7CocoNutFv | :x: |
 | getBreakEffectName__7CocoNutFv | :x: |
@@ -1829,7 +1829,7 @@
 | updateRotate__7CocoNutFf | :x: |
 | updateGravity__7CocoNutFv | :x: |
 | processMove__7CocoNutFv | :x: |
-| setFrontVec__7CocoNutFRCQ29JGeometry8TVec3<f> | :x: |
+| setFrontVec__7CocoNutFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | tryHit__7CocoNutFP9HitSensorP9HitSensor | :x: |
 | tryPushedFromActor__7CocoNutFP9HitSensorP9HitSensor | :x: |
 | reviseFrontVec__7CocoNutFv | :x: |
@@ -1837,9 +1837,9 @@
 | tryMoveEnd__7CocoNutFv | :x: |
 | tryDisappear__7CocoNutFv | :x: |
 | isValidPushedFromPlayer__7CocoNutCFPC9HitSensorPC9HitSensor | :x: |
-| calcHitSpeedAndFrontVec__7CocoNutCFPfPfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcHitSpeedAndFrontVec__7CocoNutCFPfPfPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isOnGround__7CocoNutCFv | :x: |
-| getWallNormal__7CocoNutCFPQ29JGeometry8TVec3<f> | :x: |
+| getWallNormal__7CocoNutCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | sendMsgToBindedSensor__7CocoNutFv | :x: |
 | sendMsgEnemyAttackToBindedSensor__7CocoNutFP9HitSensor | :x: |
 | isValidReceiveMsg__7CocoNutCFPC9HitSensor | :x: |
@@ -1878,7 +1878,7 @@
 # CoconutTreeLeaf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15CoconutTreeLeafFPC20CoconutTreeLeafGroupPA4_fPCQ29JGeometry8TVec3<f> | :x: |
+| __ct__15CoconutTreeLeafFPC20CoconutTreeLeafGroupPA4_fPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | init__15CoconutTreeLeafFRC12JMapInfoIter | :x: |
 | update__15CoconutTreeLeafFff | :x: |
 | receiveMsgPlayerAttack__15CoconutTreeLeafFUlP9HitSensorP9HitSensor | :x: |
@@ -1917,8 +1917,8 @@
 | appearControlPose__4CoinFv | :x: |
 | appearNonActive__4CoinFv | :x: |
 | appearFixTimer__4CoinFll | :x: |
-| appearMove__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll | :x: |
-| appearHop__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| appearMove__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll | :x: |
+| appearHop__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | requestActive__4CoinFv | :x: |
 | requestActiveWithGravity__4CoinFv | :x: |
 | requestDeactive__4CoinFv | :x: |
@@ -1957,8 +1957,8 @@
 | execute__Q27NrvCoin14CoinNrvFixHideCFP5Spine | :x: |
 | execute__Q27NrvCoin10CoinNrvFixCFP5Spine | :x: |
 | execute__Q27NrvCoin16CoinNrvNonActiveCFP5Spine | :x: |
-| __cl__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFv | :x: |
-| clone__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__4CoinFv | :x: |
 
 
@@ -1986,7 +1986,7 @@
 | appearCoinAll__9CoinGroupFv | :x: |
 | appearCoinFix__9CoinGroupFv | :x: |
 | appearCoinAllTimer__9CoinGroupFv | :x: |
-| setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3<f> | :x: |
+| setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | appear__9CoinGroupFv | :x: |
 | exeAppear__9CoinGroupFv | :x: |
 | exeDemoAppear__9CoinGroupFv | :x: |
@@ -2001,21 +2001,21 @@
 | execute__Q212NrvCoinGroup18CoinGroupNrvAppearCFP5Spine | :x: |
 | getCoinName__9CoinGroupCFv | :x: |
 | placementCoin__9CoinGroupFv | :x: |
-| Functor<9CoinGroup>__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9CoinGroup&gt;__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFP7JKRHeap | :x: |
 
 
 # CoinHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__10CoinHolderFPCc | :x: |
-| hopCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| appearCoinFix__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>l | :x: |
-| appearCoinPop__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>l | :x: |
-| appearCoinPopToDirection__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
-| appearCoinToVelocity__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
-| appearCoinCircle__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>l | :x: |
+| hopCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearCoinFix__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinPop__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinPopToDirection__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinToVelocity__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinCircle__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | declare__10CoinHolderFPC7NameObjl | :x: |
 | getDeclareRemnantCoinCount__10CoinHolderCFPC7NameObj | :x: |
 | findHostInfo__10CoinHolderCFPC7NameObj | :x: |
@@ -2024,10 +2024,10 @@
 | addToCoinHolder__2MRFPC7NameObjP4Coin | :x: |
 | __dt__10CoinHolderFv | :x: |
 | __ct__12CoinHostInfoFv | :x: |
-| __dt__23DeriveActorGroup<4Coin>Fv | :x: |
+| __dt__23DeriveActorGroup&lt;4Coin&gt;Fv | :x: |
 | init__10CoinHolderFRC12JMapInfoIter | :x: |
-| appearCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lllf | :x: |
-| getDeadMember__23DeriveActorGroup<4Coin>CFv | :x: |
+| appearCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;lllf | :x: |
+| getDeadMember__23DeriveActorGroup&lt;4Coin&gt;CFv | :x: |
 
 
 # CoinReplica.o
@@ -2039,9 +2039,9 @@
 | deactiveCoin__11CoinReplicaFv | :x: |
 | removeCoin__11CoinReplicaFv | :x: |
 | init__11CoinReplicaFRC12JMapInfoIter | :x: |
-| Functor<11CoinReplica>__2MRFP11CoinReplicaM11CoinReplicaFPCvPv_v_Q22MR49FunctorV0M<P11CoinReplica,M11CoinReplicaFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11CoinReplica,M11CoinReplicaFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11CoinReplica,M11CoinReplicaFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11CoinReplica&gt;__2MRFP11CoinReplicaM11CoinReplicaFPCvPv_v_Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11CoinReplicaFv | :x: |
 
 
@@ -2084,7 +2084,7 @@
 | exeDPDStop__13CollapsePlaneFv | :x: |
 | calcAndSetBaseMtx__13CollapsePlaneFv | :x: |
 | control__13CollapsePlaneFv | :x: |
-| calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | tryDPDStop__13CollapsePlaneFv | :x: |
 | __sinit_\CollapsePlane_cpp | :x: |
 | __ct__Q216NrvCollapsePlane20CollapsePlaneNrvWaitFv | :x: |
@@ -2095,9 +2095,9 @@
 | execute__Q216NrvCollapsePlane23CollapsePlaneNrvDPDStopCFP5Spine | :x: |
 | execute__Q216NrvCollapsePlane24CollapsePlaneNrvCollapseCFP5Spine | :x: |
 | execute__Q216NrvCollapsePlane20CollapsePlaneNrvWaitCFP5Spine | :x: |
-| __dt__38JointControlDelegator<13CollapsePlane>Fv | :x: |
-| calcJointMatrix__38JointControlDelegator<13CollapsePlane>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__38JointControlDelegator<13CollapsePlane>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__38JointControlDelegator&lt;13CollapsePlane&gt;Fv | :x: |
+| calcJointMatrix__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__13CollapsePlaneFv | :x: |
 
 
@@ -2125,8 +2125,8 @@
 | init__16CollisionBlockerFRC12JMapInfoIter | :x: |
 | forceBreak__16CollisionBlockerFv | :x: |
 | attackSensor__16CollisionBlockerFP9HitSensorP9HitSensor | :x: |
-| __cl__Q22MR59FunctorV0M<P16CollisionBlocker,M16CollisionBlockerFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16CollisionBlocker,M16CollisionBlockerFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16CollisionBlockerFv | :x: |
 
 
@@ -2154,8 +2154,8 @@
 | execute__Q214NrvCrystalCage24CrystalCageNrvBreakAfterCFP5Spine | :x: |
 | execute__Q214NrvCrystalCage19CrystalCageNrvBreakCFP5Spine | :x: |
 | execute__Q214NrvCrystalCage18CrystalCageNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR49FunctorV0M<P11CrystalCage,M11CrystalCageFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11CrystalCage,M11CrystalCageFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11CrystalCageFv | :x: |
 
 
@@ -2346,7 +2346,7 @@
 | exeSetCenter__16DragonHeadFlowerFv | :x: |
 | exeLaunchReady__16DragonHeadFlowerFv | :x: |
 | exeRailMove__16DragonHeadFlowerFv | :x: |
-| initParabola__16DragonHeadFlowerFRCQ29JGeometry8TVec3<f> | :x: |
+| initParabola__16DragonHeadFlowerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\DragonHeadFlower_cpp | :x: |
 | __ct__Q219NrvDragonHeadFlower23DragonHeadFlowerNrvWaitFv | :x: |
 | __ct__Q219NrvDragonHeadFlower28DragonHeadFlowerNrvSetCenterFv | :x: |
@@ -2392,11 +2392,11 @@
 | makeActorDead__17DummyDisplayModelFv | :x: |
 | control__17DummyDisplayModelFv | :x: |
 | calcAndSetBaseMtx__17DummyDisplayModelFv | :x: |
-| createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPCcl | :x: |
-| createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPA4_flRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createDummyDisplayModelCrystalItem__2MRFP9LiveActorRC12JMapInfoIterRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| createDummyDisplayModelCrystalItem__2MRFP9LiveActorlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPA4_flRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createDummyDisplayModelCrystalItem__2MRFP9LiveActorRC12JMapInfoIterRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| createDummyDisplayModelCrystalItem__2MRFP9LiveActorlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getDummyDisplayModelId__2MRFRC12JMapInfoIterl | :x: |
 | getDummyDisplayModelId__2MRFPC9LiveActor | :x: |
 | makeArchiveListDummyDisplayModel__2MRFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
@@ -2411,7 +2411,7 @@
 | syncCollision__19DynamicCollisionObjFv | :x: |
 | updateTriangle__19DynamicCollisionObjFv | :x: |
 | updateCollisionHeader__19DynamicCollisionObjFv | :x: |
-| __ct__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f> | :x: |
+| __ct__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createCollision__19DynamicCollisionObjFv | :x: |
 
 
@@ -2475,7 +2475,7 @@
 | ------------- | ------------- |
 | __ct__Q212ElectricBall4BallFv | :x: |
 | init__Q212ElectricBall4BallFP9LiveActor | :x: |
-| updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | activate__Q212ElectricBall4BallFv | :x: |
 | __ct__12ElectricBallFPCc | :x: |
 | init__12ElectricBallFRC12JMapInfoIter | :x: |
@@ -2494,11 +2494,11 @@
 | execute__Q215NrvElectricBall14HostTypeAttackCFP5Spine | :x: |
 | execute__Q215NrvElectricBall12HostTypeMoveCFP5Spine | :x: |
 | execute__Q215NrvElectricBall12HostTypeWaitCFP5Spine | :x: |
-| for_each<PQ212ElectricBall4Ball,Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>>__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>_Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>> | :x: |
+| for_each&lt;PQ212ElectricBall4Ball,Q23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;&gt;__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;_Q23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt; | :x: |
 | getBaseMtx__12ElectricBallCFv | :x: |
-| __dt__Q22MR38AssignableArray<Q212ElectricBall4Ball>Fv | :x: |
-| __cl__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFP7JKRHeap | :x: |
+| __dt__Q22MR38AssignableArray&lt;Q212ElectricBall4Ball&gt;Fv | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12ElectricBall,M12ElectricBallFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12ElectricBall,M12ElectricBallFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12ElectricBallFv | :x: |
 
 
@@ -2511,7 +2511,7 @@
 | init__17ElectricRailPointFRC12JMapInfoIter | :x: |
 | attackSensor__17ElectricRailPointFP9HitSensorP9HitSensor | :x: |
 | __ct__21ElectricRailSeparatorFv | :x: |
-| setup__21ElectricRailSeparatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setup__21ElectricRailSeparatorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__24ElectricRailShadowDrawerFPC9LiveActorP21ElectricRailSeparatorl | :x: |
 | loadModelDrawMtx__24ElectricRailShadowDrawerCFv | :x: |
 | drawShape__24ElectricRailShadowDrawerCFv | :x: |
@@ -2535,7 +2535,7 @@
 | drawPlaneGX__12ElectricRailCFffff | :x: |
 | initShadow__12ElectricRailFRC12JMapInfoIter | :x: |
 | updateHitSensorPos__12ElectricRailFv | :x: |
-| calcGravity__12ElectricRailCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| calcGravity__12ElectricRailCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeDisappear__12ElectricRailFv | :x: |
 | __sinit_\ElectricRail_cpp | :x: |
 | __ct__Q215NrvElectricRail19ElectricRailNrvWaitFv | :x: |
@@ -2549,8 +2549,8 @@
 | GDWrite_f32 | :x: |
 | GDPosition3f32 | :x: |
 | GXPosition3f32 | :x: |
-| __cl__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12ElectricRail,M12ElectricRailFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12ElectricRail,M12ElectricRailFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__24ElectricRailShadowDrawerFv | :x: |
 | __dt__12ElectricRailFv | :x: |
 
@@ -2558,22 +2558,22 @@
 # ElectricRailHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| isNearRail__32@unnamed@ElectricRailHolder_cpp@FPC9LiveActorPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| isNearRail__32@unnamed@ElectricRailHolder_cpp@FPC9LiveActorPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__18ElectricRailHolderFPCc | :x: |
 | calcAnim__18ElectricRailHolderFv | :x: |
 | draw__18ElectricRailHolderCFv | :x: |
-| isTouchRail__18ElectricRailHolderCFPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| isTouchRail__18ElectricRailHolderCFPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | control__18ElectricRailHolderFv | :x: |
 | initDraw__18ElectricRailHolderCFv | :x: |
 | registerRail__20ElectricRailFunctionFPC9LiveActor16ElectricRailType | :x: |
-| isTouchRail__20ElectricRailFunctionFPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| isTouchRail__20ElectricRailFunctionFPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getHitSensorRadius__20ElectricRailFunctionFv | :x: |
 | calcDisplayListSize__20ElectricRailFunctionFUll | :x: |
 | init__18ElectricRailHolderFRC12JMapInfoIter | :x: |
 | registerRail__18ElectricRailHolderFPC9LiveActor16ElectricRailType | :x: |
 | createModel__18ElectricRailHolderCF16ElectricRailType | :x: |
-| __cl__Q22MR65FunctorV0M<PC18ElectricRailHolder,M18ElectricRailHolderFPCvPCv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<PC18ElectricRailHolder,M18ElectricRailHolderFPCvPCv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR65FunctorV0M&lt;PC18ElectricRailHolder,M18ElectricRailHolderFPCvPCv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;PC18ElectricRailHolder,M18ElectricRailHolderFPCvPCv_v&gt;CFP7JKRHeap | :x: |
 | __dt__18ElectricRailHolderFv | :x: |
 
 
@@ -2587,7 +2587,7 @@
 | init__18ElectricRailMovingFRC12JMapInfoIter | :x: |
 | draw__18ElectricRailMovingCFv | :x: |
 | disappear__18ElectricRailMovingFv | :x: |
-| isTouchRail__18ElectricRailMovingCFPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| isTouchRail__18ElectricRailMovingCFPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | attackSensor__18ElectricRailMovingFP9HitSensorP9HitSensor | :x: |
 | initMapToolInfo__18ElectricRailMovingFRC12JMapInfoIter | :x: |
 | initSensor__18ElectricRailMovingFv | :x: |
@@ -2603,7 +2603,7 @@
 | updatePointPosAndModel__18ElectricRailMovingFv | :x: |
 | isValidCoord__18ElectricRailMovingCFf | :x: |
 | getRepeatedCoord__18ElectricRailMovingCFf | :x: |
-| calcPointPos__18ElectricRailMovingCFPQ29JGeometry8TVec3<f>f | :x: |
+| calcPointPos__18ElectricRailMovingCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | move__18ElectricRailMovingFv | :x: |
 | exeDisappear__18ElectricRailMovingFv | :x: |
 | __sinit_\ElectricRailMoving_cpp | :x: |
@@ -2621,16 +2621,16 @@
 | GDTexCoord2f32 | :x: |
 | GXPosition3f32 | :x: |
 | GXTexCoord2f32 | :x: |
-| __cl__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__18ElectricRailMovingFv | :x: |
 
 
 # ExterminationChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor | :x: |
-| createLiveActor<8Meramera>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor | :x: |
+| createLiveActor&lt;16SkeletalFishBaby&gt;__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor | :x: |
+| createLiveActor&lt;8Meramera&gt;__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor | :x: |
 | __ct__20ExterminationCheckerFPCc | :x: |
 | init__20ExterminationCheckerFRC12JMapInfoIter | :x: |
 | control__20ExterminationCheckerFv | :x: |
@@ -2696,9 +2696,9 @@
 | draw__16FallOutFieldDrawCFv | :x: |
 | createFallOutFieldDraw__2MRFPCc | :x: |
 | __sinit_\FallOutFieldDraw_cpp | :x: |
-| Functor<16FallOutFieldDraw>__2MRFP16FallOutFieldDrawM16FallOutFieldDrawFPCvPv_v_Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v> | :x: |
-| __cl__Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;16FallOutFieldDraw&gt;__2MRFP16FallOutFieldDrawM16FallOutFieldDrawFPCvPv_v_Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt; | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16FallOutFieldDrawFv | :x: |
 
 
@@ -2737,7 +2737,7 @@
 | init__12FirePressureFRC12JMapInfoIter | :x: |
 | initBullet__12FirePressureFRC12JMapInfoIter | :x: |
 | shotBullet__12FirePressureFf | :x: |
-| calcGunPointFromCannon__12FirePressureFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcGunPointFromCannon__12FirePressureFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 
 
 # FirePressureBullet.o
@@ -2747,7 +2747,7 @@
 | init__18FirePressureBulletFRC12JMapInfoIter | :x: |
 | kill__18FirePressureBulletFv | :x: |
 | calcAndSetBaseMtx__18FirePressureBulletFv | :x: |
-| shotFireBullet__18FirePressureBulletFP9LiveActorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCfbb | :x: |
+| shotFireBullet__18FirePressureBulletFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCfbb | :x: |
 | exeFly__18FirePressureBulletFv | :x: |
 | attackSensor__18FirePressureBulletFP9HitSensorP9HitSensor | :x: |
 | isCrash__18FirePressureBulletCFv | :x: |
@@ -2785,7 +2785,7 @@
 | startRelax__19FirePressureRadiateFv | :x: |
 | updateHitSensor__19FirePressureRadiateFP9HitSensor | :x: |
 | calcRadiateEffectMtx__19FirePressureRadiateFv | :x: |
-| calcJointCannon__19FirePressureRadiateFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointCannon__19FirePressureRadiateFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __sinit_\FirePressureRadiate_cpp | :x: |
 | __ct__Q222NrvFirePressureRadiate27FirePressureRadiateNrvRelaxFv | :x: |
 | __ct__Q222NrvFirePressureRadiate30FirePressureRadiateNrvSyncWaitFv | :x: |
@@ -2799,13 +2799,13 @@
 | execute__Q222NrvFirePressureRadiate26FirePressureRadiateNrvWaitCFP5Spine | :x: |
 | execute__Q222NrvFirePressureRadiate30FirePressureRadiateNrvSyncWaitCFP5Spine | :x: |
 | execute__Q222NrvFirePressureRadiate27FirePressureRadiateNrvRelaxCFP5Spine | :x: |
-| Functor<19FirePressureRadiate>__2MRFP19FirePressureRadiateM19FirePressureRadiateFPCvPv_v_Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v> | :x: |
-| __cl__Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;19FirePressureRadiate&gt;__2MRFP19FirePressureRadiateM19FirePressureRadiateFPCvPv_v_Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt; | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19FirePressureRadiateFv | :x: |
-| __dt__44JointControlDelegator<19FirePressureRadiate>Fv | :x: |
-| calcJointMatrix__44JointControlDelegator<19FirePressureRadiate>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__44JointControlDelegator<19FirePressureRadiate>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__44JointControlDelegator&lt;19FirePressureRadiate&gt;Fv | :x: |
+| calcJointMatrix__44JointControlDelegator&lt;19FirePressureRadiate&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__44JointControlDelegator&lt;19FirePressureRadiate&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # FlameGun.o
@@ -2866,7 +2866,7 @@
 | endClipped__9FlipPanelFv | :x: |
 | calcAndSetBaseMtx__9FlipPanelFv | :x: |
 | receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor | :x: |
-| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | checkPlayerOnTop__9FlipPanelFv | :x: |
 | __ct__17FlipPanelObserverFPCc | :x: |
 | init__17FlipPanelObserverFRC12JMapInfoIter | :x: |
@@ -2894,9 +2894,9 @@
 | execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine | :x: |
 | execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :x: |
 | execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :x: |
-| __dt__33JointControlDelegator<9FlipPanel>Fv | :x: |
-| calcJointMatrix__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :x: |
+| calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __dt__9FlipPanelFv | :x: |
 | __dt__17FlipPanelObserverFv | :x: |
 
@@ -2984,8 +2984,8 @@
 | upTractPower__8GCaptureFv | :x: |
 | downTractPower__8GCaptureFv | :x: |
 | fillGapBindTrans__8GCaptureFv | :x: |
-| updateRibbon__8GCaptureFRCQ29JGeometry8TVec3<f>l | :x: |
-| updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f> | :x: |
+| updateRibbon__8GCaptureFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | addRotateAccelPointing__8GCaptureFv | :x: |
 | tryAddVelocityReflectJumpCollision__8GCaptureFv | :x: |
 | requestTarget__8GCaptureFP18GCaptureTargetable | :x: |
@@ -3027,8 +3027,8 @@
 | __ct__14GCaptureRibbonFPCc | :x: |
 | draw__14GCaptureRibbonCFv | :x: |
 | reset__14GCaptureRibbonFv | :x: |
-| lengthen__14GCaptureRibbonFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| shorten__14GCaptureRibbonFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| lengthen__14GCaptureRibbonFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| shorten__14GCaptureRibbonFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateAxis__14GCaptureRibbonFv | :x: |
 | calcLineWidth__14GCaptureRibbonCFv | :x: |
 | __dt__14GCaptureRibbonFv | :x: |
@@ -3073,10 +3073,10 @@
 | @140@getPointableRange__14GCaptureTargetCFv | :x: |
 | @140@releaseDistance__14GCaptureTargetCFv | :x: |
 | @140@isReleaseForce__14GCaptureTargetCFv | :x: |
-| @140@getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3<f> | :x: |
+| @140@getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | @140@releasedTarget__14GCaptureTargetFv | :x: |
 | @140@decidedTarget__14GCaptureTargetFv | :x: |
-| getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3<f> | :x: |
+| getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | releaseDistance__14GCaptureTargetCFv | :x: |
 | getPointableRange__14GCaptureTargetCFv | :x: |
 | __dt__14GCaptureTargetFv | :x: |
@@ -3116,8 +3116,8 @@
 | execute__Q219NrvGravityLightRoad28GravityLightRoadNrvDisappearCFP5Spine | :x: |
 | execute__Q219NrvGravityLightRoad23GravityLightRoadNrvDrawCFP5Spine | :x: |
 | execute__Q219NrvGravityLightRoad23GravityLightRoadNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16GravityLightRoad,M16GravityLightRoadFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16GravityLightRoad,M16GravityLightRoadFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16GravityLightRoadFv | :x: |
 
 
@@ -3129,7 +3129,7 @@
 | setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor | :x: |
 | control__23GreenCaterpillarBigBodyFv | :x: |
 | calcAndSetBaseMtx__23GreenCaterpillarBigBodyFv | :x: |
-| calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3<f> | :x: |
+| calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__19GreenCaterpillarBigFPCc | :x: |
 | init__19GreenCaterpillarBigFRC12JMapInfoIter | :x: |
 | startWriggle__19GreenCaterpillarBigFv | :x: |
@@ -3193,8 +3193,8 @@
 | execute__Q221NrvHeavensDoorDemoObj27HeavensDoorDemoObjNrvVanishCFP5Spine | :x: |
 | execute__Q221NrvHeavensDoorDemoObj25HeavensDoorDemoObjNrvWaitCFP5Spine | :x: |
 | execute__Q221NrvHeavensDoorDemoObj27HeavensDoorDemoObjNrvAppearCFP5Spine | :x: |
-| __cl__Q22MR63FunctorV0M<P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__18HeavensDoorDemoObjFv | :x: |
 
 
@@ -3335,7 +3335,7 @@
 | __dt__7IceStepFv | :x: |
 | init__7IceStepFRC12JMapInfoIter | :x: |
 | exeWait__7IceStepFv | :x: |
-| setOn__7IceStepFUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setOn__7IceStepFUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | destroy__7IceStepFv | :x: |
 | doHit__7IceStepFv | :x: |
 | receiveMsgPlayerAttack__7IceStepFUlP9HitSensorP9HitSensor | :x: |
@@ -3354,7 +3354,7 @@
 | __ct__21IceVolcanoUpDownPlaneFPCc | :x: |
 | __dt__11RailMoveObjFv | :x: |
 | move__21IceVolcanoUpDownPlaneFv | :x: |
-| tryCalcNearestPosToPlayer__21IceVolcanoUpDownPlaneCFPQ29JGeometry8TVec3<f> | :x: |
+| tryCalcNearestPosToPlayer__21IceVolcanoUpDownPlaneCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getSoundCalcPos__21IceVolcanoUpDownPlaneFv | :x: |
 | __dt__21IceVolcanoUpDownPlaneFv | :x: |
 | setupInitInfo__11RailMoveObjFRC12JMapInfoIterP19MapObjActorInitInfo | :x: |
@@ -3552,7 +3552,7 @@
 | exeSetUp__8JumpHoleFv | :x: |
 | exeRailMove__8JumpHoleFv | :x: |
 | bindHole__8JumpHoleFv | :x: |
-| initParabola__8JumpHoleFRCQ29JGeometry8TVec3<f> | :x: |
+| initParabola__8JumpHoleFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\JumpHole_cpp | :x: |
 | __ct__Q211NrvJumpHole15JumpHoleNrvWaitFv | :x: |
 | __ct__Q211NrvJumpHole20JumpHoleNrvSetCenterFv | :x: |
@@ -3598,7 +3598,7 @@
 | __ct__9KeySwitchFPCc | :x: |
 | init__9KeySwitchFRC12JMapInfoIter | :x: |
 | initKeySwitchByOwner__9KeySwitchFRC12JMapInfoIter | :x: |
-| appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3<f> | :x: |
+| appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeDemoStart__9KeySwitchFv | :x: |
 | exeAppear__9KeySwitchFv | :x: |
 | exeWait__9KeySwitchFv | :x: |
@@ -3664,7 +3664,7 @@
 | ------------- | ------------- |
 | __ct__15LargeChainPartsFPCc | :x: |
 | breakChainParts__15LargeChainPartsFv | :x: |
-| initChainParts__15LargeChainPartsFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>b | :x: |
+| initChainParts__15LargeChainPartsFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | kill__15LargeChainPartsFv | :x: |
 
 
@@ -3720,8 +3720,8 @@
 | __ct__Q214NrvLavaFloater12HostTypeSinkFv | :x: |
 | execute__Q214NrvLavaFloater12HostTypeSinkCFP5Spine | :x: |
 | execute__Q214NrvLavaFloater13HostTypeFloatCFP5Spine | :x: |
-| updateHostTrans__20FloaterFloatingForceCFPQ29JGeometry8TVec3<f> | :x: |
-| updateHostVelocity__20FloaterFloatingForceCFPQ29JGeometry8TVec3<f> | :x: |
+| updateHostTrans__20FloaterFloatingForceCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateHostVelocity__20FloaterFloatingForceCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # LavaGalaxyParts.o
@@ -3896,9 +3896,9 @@
 | execute__Q212NrvLavaSteam13HostTypeSteamCFP5Spine | :x: |
 | execute__Q212NrvLavaSteam23HostTypeWaitForSwitchOnCFP5Spine | :x: |
 | execute__Q212NrvLavaSteam12HostTypeWaitCFP5Spine | :x: |
-| Functor<9LavaSteam>__2MRFP9LavaSteamM9LavaSteamFPCvPv_v_Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9LavaSteam&gt;__2MRFP9LavaSteamM9LavaSteamFPCvPv_v_Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9LavaSteamFv | :x: |
 
 
@@ -3948,7 +3948,7 @@
 | attackSensor__9MagicBellFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__9MagicBellFUlP9HitSensorP9HitSensor | :x: |
 | tryRing__9MagicBellFv | :x: |
-| startRing__9MagicBellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| startRing__9MagicBellFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__9MagicBellFv | :x: |
 | __sinit_\MagicBell_cpp | :x: |
 | __ct__Q212NrvMagicBell16MagicBellNrvWaitFv | :x: |
@@ -4033,9 +4033,9 @@
 | execute__Q214NrvMapObjActor12HostTypeMoveCFP5Spine | :x: |
 | execute__Q214NrvMapObjActor12HostTypeWaitCFP5Spine | :x: |
 | end__16MapPartsFunctionFv | :x: |
-| Functor<11MapObjActor>__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11MapObjActor&gt;__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | isOnReverse__19MapPartsRotatorBaseCFv | :x: |
 | isMoving__19MapPartsRotatorBaseCFv | :x: |
 
@@ -4051,11 +4051,11 @@
 | setupBinder__19MapObjActorInitInfoFff | :x: |
 | setupEffect__19MapObjActorInitInfoFPCc | :x: |
 | setupSound__19MapObjActorInitInfoFl | :x: |
-| setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3<f> | :x: |
+| setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setupNoAppearRiddleSE__19MapObjActorInitInfoFv | :x: |
 | setupHitSensor__19MapObjActorInitInfoFv | :x: |
 | setupHitSensorCallBack__19MapObjActorInitInfoFv | :x: |
-| setupHitSensorParam__19MapObjActorInitInfoFUsfRCQ29JGeometry8TVec3<f> | :x: |
+| setupHitSensorParam__19MapObjActorInitInfoFUsfRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setupNerve__19MapObjActorInitInfoFPC5Nerve | :x: |
 | setupShadow__19MapObjActorInitInfoFPCc | :x: |
 | setupGroupClipping__19MapObjActorInitInfoFl | :x: |
@@ -4088,7 +4088,7 @@
 | __ct__15MapObjConnectorFP9LiveActor | :x: |
 | attachToUnder__15MapObjConnectorFv | :x: |
 | attachToBack__15MapObjConnectorFv | :x: |
-| attach__15MapObjConnectorFRCQ29JGeometry8TVec3<f> | :x: |
+| attach__15MapObjConnectorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | connect__15MapObjConnectorFv | :x: |
 | connect__15MapObjConnectorFP9LiveActor | :x: |
 
@@ -4105,7 +4105,7 @@
 | kill__12MarblePlanetFv | :x: |
 | receiveMsgEnemyAttack__12MarblePlanetFUlP9HitSensorP9HitSensor | :x: |
 | initCoreAndElectron__12MarblePlanetFv | :x: |
-| __ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc | :x: |
+| __ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | init__20MarblePlanetElectronFRC12JMapInfoIter | :x: |
 | exeMove__20MarblePlanetElectronFv | :x: |
 | exeAttack__20MarblePlanetElectronFv | :x: |
@@ -4114,7 +4114,7 @@
 | receiveMsgPlayerAttack__20MarblePlanetElectronFUlP9HitSensorP9HitSensor | :x: |
 | receiveMsgPush__20MarblePlanetElectronFP9HitSensorP9HitSensor | :x: |
 | crashElectron__20MarblePlanetElectronFP9HitSensor | :x: |
-| __ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3<f>PCc | :x: |
+| __ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
 | init__26MarblePlanetElectronShadowFRC12JMapInfoIter | :x: |
 | calcAndSetBaseMtx__26MarblePlanetElectronShadowFv | :x: |
 | __dt__12MarblePlanetFv | :x: |
@@ -4187,13 +4187,13 @@
 | execute__Q216NrvMarioLauncher24MarioLauncherNrvPlayerInCFP5Spine | :x: |
 | execute__Q216NrvMarioLauncher21MarioLauncherNrvReadyCFP5Spine | :x: |
 | execute__Q216NrvMarioLauncher20MarioLauncherNrvWaitCFP5Spine | :x: |
-| Functor<13MarioLauncher>__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v> | :x: |
-| __cl__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;13MarioLauncher&gt;__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt; | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13MarioLauncherFv | :x: |
 | __dt__19MarioLauncherLayoutFv | :x: |
 | __dt__18MarioLauncherShellFv | :x: |
-| isInvalidTriangle__40TriangleFilterDelegator<13MarioLauncher>CFPC8Triangle | :x: |
+| isInvalidTriangle__40TriangleFilterDelegator&lt;13MarioLauncher&gt;CFPC8Triangle | :x: |
 
 
 # MarioLauncherAttractor.o
@@ -4239,8 +4239,8 @@
 | execute__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine | :x: |
 | execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearCFP5Spine | :x: |
 | execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontCFP5Spine | :x: |
-| __cl__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__18MechaKoopaPartsArmFv | :x: |
 
 
@@ -4295,9 +4295,9 @@
 | calcAndSetBaseMtx__21MercatorRailMovePartsFv | :x: |
 | updatePose__21MercatorRailMovePartsFv | :x: |
 | init__21MercatorRailMovePartsFRC12JMapInfoIter | :x: |
-| Functor<21MercatorRailMoveParts>__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v> | :x: |
-| __cl__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;21MercatorRailMoveParts&gt;__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt; | :x: |
+| __cl__Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__21MercatorRailMovePartsFv | :x: |
 
 
@@ -4342,15 +4342,15 @@
 | appear__12MeteorStrikeFv | :x: |
 | appear__12MeteorStrikeFl | :x: |
 | kill__12MeteorStrikeFv | :x: |
-| getMovedPos__12MeteorStrikeCFPQ29JGeometry8TVec3<f>l | :x: |
+| getMovedPos__12MeteorStrikeCFPQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | getSpeed__12MeteorStrikeFRC12JMapInfoIter | :x: |
 | calcAndSetBaseMtx__12MeteorStrikeFv | :x: |
 | attackSensor__12MeteorStrikeFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__12MeteorStrikeFUlP9HitSensorP9HitSensor | :x: |
 | initMapToolInfo__12MeteorStrikeFRC12JMapInfoIter | :x: |
 | initModel__12MeteorStrikeFv | :x: |
-| calcBreakPosture__12MeteorStrikeFRCQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
-| emitEffectColumn__12MeteorStrikeFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcBreakPosture__12MeteorStrikeFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
+| emitEffectColumn__12MeteorStrikeFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | startRumble__12MeteorStrikeFv | :x: |
 | isInScreen__12MeteorStrikeCFv | :x: |
 | exeMove__12MeteorStrikeFv | :x: |
@@ -4445,8 +4445,8 @@
 | getCometLandMiniatureGalaxy__23MiniatureGalaxyFunctionFv | :x: |
 | getCometNameId__23MiniatureGalaxyFunctionFv | :x: |
 | getPointingMiniatureGalaxy__23MiniatureGalaxyFunctionFv | :x: |
-| __cl__Q22MR69FunctorV0M<P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR69FunctorV0M&lt;P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__21MiniatureGalaxyHolderFv | :x: |
 
 
@@ -4562,7 +4562,7 @@
 # Note.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__4NoteFPCcRCQ29JGeometry8TVec3<f>P9NoteFairy | :x: |
+| __ct__4NoteFPCcRCQ29JGeometry8TVec3&lt;f&gt;P9NoteFairy | :x: |
 | init__4NoteFRC12JMapInfoIter | :x: |
 | startCountDown__4NoteFv | :x: |
 | exeWait__4NoteFv | :x: |
@@ -4681,8 +4681,8 @@
 | execute__Q219NrvOceanSmallTurtle26OceanSmallTurtleNrvFloatUpCFP5Spine | :x: |
 | execute__Q219NrvOceanSmallTurtle30OceanSmallTurtleNrvFloatSignalCFP5Spine | :x: |
 | execute__Q219NrvOceanSmallTurtle23OceanSmallTurtleNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFv | :x: |
-| clone__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR59FunctorV0M&lt;P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16OceanSmallTurtleFv | :x: |
 
 
@@ -4730,8 +4730,8 @@
 | __ct__Q226NrvPeachCastleGardenPlanet32PeachCastleGardenPlanetNrvDamageFv | :x: |
 | execute__Q226NrvPeachCastleGardenPlanet32PeachCastleGardenPlanetNrvDamageCFP5Spine | :x: |
 | execute__Q226NrvPeachCastleGardenPlanet30PeachCastleGardenPlanetNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR73FunctorV0M<P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__23PeachCastleGardenPlanetFv | :x: |
 
 
@@ -4775,9 +4775,9 @@
 | execute__Q220NrvPhantomShipBridge13HostTypeMoveBCFP5Spine | :x: |
 | execute__Q220NrvPhantomShipBridge13HostTypeMoveACFP5Spine | :x: |
 | execute__Q220NrvPhantomShipBridge12HostTypeWaitCFP5Spine | :x: |
-| Functor<17PhantomShipBridge>__2MRFP17PhantomShipBridgeM17PhantomShipBridgeFPCvPv_v_Q22MR61FunctorV0M<P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v> | :x: |
-| __cl__Q22MR61FunctorV0M<P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v>CFv | :x: |
-| clone__Q22MR61FunctorV0M<P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;17PhantomShipBridge&gt;__2MRFP17PhantomShipBridgeM17PhantomShipBridgeFPCvPv_v_Q22MR61FunctorV0M&lt;P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v&gt; | :x: |
+| __cl__Q22MR61FunctorV0M&lt;P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR61FunctorV0M&lt;P17PhantomShipBridge,M17PhantomShipBridgeFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__17PhantomShipBridgeFv | :x: |
 
 
@@ -4815,9 +4815,9 @@
 | execute__Q215NrvPhantomTorch18HostTypeExtinguishCFP5Spine | :x: |
 | execute__Q215NrvPhantomTorch14HostTypeAttackCFP5Spine | :x: |
 | execute__Q215NrvPhantomTorch12HostTypeWaitCFP5Spine | :x: |
-| Functor<12PhantomTorch>__2MRFP12PhantomTorchM12PhantomTorchFPCvPv_v_Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;12PhantomTorch&gt;__2MRFP12PhantomTorchM12PhantomTorchFPCvPv_v_Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12PhantomTorchFv | :x: |
 
 
@@ -4847,8 +4847,8 @@
 | makeActorAppeared__10PlantGroupFv | :x: |
 | makeActorDead__10PlantGroupFv | :x: |
 | initMember__10PlantGroupFlRC12JMapInfoIter | :x: |
-| placeOnCollisionFormCircle__10PlantGroupFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcBoundingSphereRadius__10PlantGroupFRCQ29JGeometry8TVec3<f> | :x: |
+| placeOnCollisionFormCircle__10PlantGroupFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcBoundingSphereRadius__10PlantGroupFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | initAfterPlacement__10PlantGroupFv | :x: |
 | control__10PlantGroupFv | :x: |
 | emitHintEffect__10PlantGroupFv | :x: |
@@ -4865,7 +4865,7 @@
 | generateItem__11PlantMemberFP10PlantGroup | :x: |
 | initPosture__11PlantMemberFv | :x: |
 | tryShake__11PlantMemberFP9HitSensor | :x: |
-| tryPush__11PlantMemberFRCQ29JGeometry8TVec3<f>fl | :x: |
+| tryPush__11PlantMemberFRCQ29JGeometry8TVec3&lt;f&gt;fl | :x: |
 | animControl__11PlantMemberFP10PlantGroup | :x: |
 | __dt__10PlantGroupFv | :x: |
 | __dt__11PlantMemberFv | :x: |
@@ -4885,16 +4885,16 @@
 # PlantPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10PlantPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
-| setAxisAndPos__10PlantPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| __ct__10PlantPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| setAxisAndPos__10PlantPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # PlantRailInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__13PlantRailInfoFRC12JMapInfoIterf | :x: |
-| calcPosAndAxisY__13PlantRailInfoCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :x: |
-| calcNearestPointPos__13PlantRailInfoCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
+| calcPosAndAxisY__13PlantRailInfoCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcNearestPointPos__13PlantRailInfoCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 
 
 # PomponPlant.o
@@ -4929,7 +4929,7 @@
 | appear__9PowerStarFv | :x: |
 | makeActorAppeared__9PowerStarFv | :x: |
 | requestAppear__9PowerStarFv | :x: |
-| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3<f> | :x: |
+| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isEndAppearDemo__9PowerStarCFv | :x: |
 | offAppearDemo__9PowerStarFv | :x: |
 | setupColor__9PowerStarFP9LiveActorPC7NameObjl | :x: |
@@ -4951,11 +4951,11 @@
 | initShadow__9PowerStarFRC12JMapInfoIter | :x: |
 | initPosture__9PowerStarFv | :x: |
 | endAppearDemo__9PowerStarFv | :x: |
-| getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3<f> | :x: |
+| getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getAppearCameraActor__9PowerStarFv | :x: |
 | getAppearCameraInfo__9PowerStarCFv | :x: |
 | requestAppearOrWait__9PowerStarFv | :x: |
-| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3<f>f | :x: |
+| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | processWait__9PowerStarFf | :x: |
 | exeAppearDemoRise__9PowerStarFv | :x: |
 | exeAppearDemoMove__9PowerStarFv | :x: |
@@ -5001,7 +5001,7 @@
 | __ct__15PowerStarHolderFPCc | :x: |
 | init__15PowerStarHolderFRC12JMapInfoIter | :x: |
 | registerPowerStar__15PowerStarHolderFP9PowerStari | :x: |
-| requestAppearPowerStar__15PowerStarHolderFiPCQ29JGeometry8TVec3<f>b | :x: |
+| requestAppearPowerStar__15PowerStarHolderFiPCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | appearPowerStarWithoutDemo__15PowerStarHolderFi | :x: |
 | getAppearedPowerStar__15PowerStarHolderCFi | :x: |
 | findPowerStarRequestInfo__15PowerStarHolderCFi | :x: |
@@ -5033,7 +5033,7 @@
 | startRelax__12PressureBaseFv | :x: |
 | initBullet__12PressureBaseFRC12JMapInfoIter | :x: |
 | shotBullet__12PressureBaseFf | :x: |
-| calcJointCannonV__12PressureBaseFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| calcJointCannonV__12PressureBaseFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | isShotTypeOnGravity__12PressureBaseCFv | :x: |
 | isShotTypeFollow__12PressureBaseCFv | :x: |
 | __sinit_\PressureBase_cpp | :x: |
@@ -5055,13 +5055,13 @@
 | execute__Q215NrvPressureBase24PressureBaseNrvWaitStartCFP5Spine | :x: |
 | execute__Q215NrvPressureBase25PressureBaseNrvRelaxStartCFP5Spine | :x: |
 | execute__Q220NrvPressureMessenger24PressureMessengerNrvSyncCFP5Spine | :x: |
-| Functor<12PressureBase>__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;12PressureBase&gt;__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__17PressureMessengerFv | :x: |
-| __dt__37JointControlDelegator<12PressureBase>Fv | :x: |
-| calcJointMatrix__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| __dt__37JointControlDelegator&lt;12PressureBase&gt;Fv | :x: |
+| calcJointMatrix__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 
 
 # PrizeRing.o
@@ -5150,8 +5150,8 @@
 | __ct__Q211NrvPunchBox14PunchBoxNrvHitFv | :x: |
 | execute__Q211NrvPunchBox14PunchBoxNrvHitCFP5Spine | :x: |
 | execute__Q211NrvPunchBox15PunchBoxNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFv | :x: |
-| clone__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR41FunctorV0M&lt;P8PunchBox,M8PunchBoxFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR41FunctorV0M&lt;P8PunchBox,M8PunchBoxFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__8PunchBoxFv | :x: |
 
 
@@ -5164,7 +5164,7 @@
 | initShadow__14PunchingKinokoFv | :x: |
 | initCamera__14PunchingKinokoFRC12JMapInfoIter | :x: |
 | initJointControl__14PunchingKinokoFv | :x: |
-| ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
+| ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | makeActorAppeared__14PunchingKinokoFv | :x: |
 | kill__14PunchingKinokoFv | :x: |
 | makeActorDead__14PunchingKinokoFv | :x: |
@@ -5211,11 +5211,11 @@
 | execute__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedCFP5Spine | :x: |
 | execute__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingCFP5Spine | :x: |
 | execute__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitCFP5Spine | :x: |
-| __dt__39JointControlDelegator<14PunchingKinoko>Fv | :x: |
-| calcJointMatrix__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo | :x: |
-| __cl__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFv | :x: |
-| clone__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFP7JKRHeap | :x: |
+| __dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv | :x: |
+| calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__14PunchingKinokoFv | :x: |
 
 
@@ -5238,8 +5238,8 @@
 | init__17PurpleCoinStarterFRC12JMapInfoIter | :x: |
 | setHost__17PurpleCoinStarterFP16PurpleCoinHolder | :x: |
 | start__17PurpleCoinStarterFv | :x: |
-| __cl__Q22MR61FunctorV0M<P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v>CFv | :x: |
-| clone__Q22MR61FunctorV0M<P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__17PurpleCoinStarterFv | :x: |
 
 
@@ -5268,9 +5268,9 @@
 | execute__Q230NrvQuarterRollGravityRoomArrow38QuarterRollGravityRoomArrowNrvRollOffACFP5Spine | :x: |
 | execute__Q230NrvQuarterRollGravityRoomArrow37QuarterRollGravityRoomArrowNrvRollOnACFP5Spine | :x: |
 | execute__Q230NrvQuarterRollGravityRoomArrow34QuarterRollGravityRoomArrowNrvWaitCFP5Spine | :x: |
-| Functor<27QuarterRollGravityRoomArrow>__2MRFP27QuarterRollGravityRoomArrowM27QuarterRollGravityRoomArrowFPCvPv_v_Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v> | :x: |
-| __cl__Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v>CFv | :x: |
-| clone__Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;27QuarterRollGravityRoomArrow&gt;__2MRFP27QuarterRollGravityRoomArrowM27QuarterRollGravityRoomArrowFPCvPv_v_Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt; | :x: |
+| __cl__Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__27QuarterRollGravityRoomArrowFv | :x: |
 
 
@@ -5297,9 +5297,9 @@
 | execute__Q224NrvQuestionBoxGalleryObj32QuestionBoxGalleryObjNrvOffStartCFP5Spine | :x: |
 | execute__Q224NrvQuestionBoxGalleryObj30QuestionBoxGalleryObjNrvOnWaitCFP5Spine | :x: |
 | execute__Q224NrvQuestionBoxGalleryObj31QuestionBoxGalleryObjNrvOnStartCFP5Spine | :x: |
-| Functor<21QuestionBoxGalleryObj>__2MRFP21QuestionBoxGalleryObjM21QuestionBoxGalleryObjFPCvPv_v_Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v> | :x: |
-| __cl__Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;21QuestionBoxGalleryObj&gt;__2MRFP21QuestionBoxGalleryObjM21QuestionBoxGalleryObjFPCvPv_v_Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt; | :x: |
+| __cl__Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__21QuestionBoxGalleryObjFv | :x: |
 
 
@@ -5328,8 +5328,8 @@
 | execute__Q215NrvQuestionCoin14HostTypeCaughtCFP5Spine | :x: |
 | execute__Q215NrvQuestionCoin18HostTypeThrowActorCFP5Spine | :x: |
 | execute__Q215NrvQuestionCoin12HostTypeWaitCFP5Spine | :x: |
-| __cl__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12QuestionCoin,M12QuestionCoinFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12QuestionCoin,M12QuestionCoinFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12QuestionCoinFv | :x: |
 
 
@@ -5351,9 +5351,9 @@
 | execute__Q212NrvRailBlock21RailBlockNrvTerminateCFP5Spine | :x: |
 | execute__Q212NrvRailBlock16RailBlockNrvMoveCFP5Spine | :x: |
 | execute__Q212NrvRailBlock16RailBlockNrvWaitCFP5Spine | :x: |
-| Functor<9RailBlock>__2MRFP9RailBlockM9RailBlockFPCvPv_v_Q22MR43FunctorV0M<P9RailBlock,M9RailBlockFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9RailBlock,M9RailBlockFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9RailBlock,M9RailBlockFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9RailBlock&gt;__2MRFP9RailBlockM9RailBlockFPCvPv_v_Q22MR43FunctorV0M&lt;P9RailBlock,M9RailBlockFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9RailBlock,M9RailBlockFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9RailBlock,M9RailBlockFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9RailBlockFv | :x: |
 
 
@@ -5366,7 +5366,7 @@
 | placementMercatorRail__8RailCoinFv | :x: |
 | createRailCoin__2MRFPCc | :x: |
 | createRailPurpleCoin__2MRFPCc | :x: |
-| setPosition__Q222@unnamed@RailCoin_cpp@23RailCoinMercatorDivInfoFlRCQ29JGeometry8TVec3<f> | :x: |
+| setPosition__Q222@unnamed@RailCoin_cpp@23RailCoinMercatorDivInfoFlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__8RailCoinFv | :x: |
 | placementCoin__8RailCoinFv | :x: |
 | getCoinName__8RailCoinCFv | :x: |
@@ -5420,8 +5420,8 @@
 | execute__Q214NrvRailMoveObj12HostTypeMoveCFP5Spine | :x: |
 | execute__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :x: |
 | execute__Q214NrvRailMoveObj12HostTypeWaitCFP5Spine | :x: |
-| __cl__Q22MR73FunctorV0M<P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__16RailMoveObjPressFv | :x: |
 | __dt__21RailMoveObjBreakAtEndFv | :x: |
 | __dt__19RailMoveIndirectObjFv | :x: |
@@ -5486,9 +5486,9 @@
 | execute__Q227NrvReverseGravityRoomPlanet34ReverseGravityRoomPlanetNrvUpStartCFP5Spine | :x: |
 | execute__Q227NrvReverseGravityRoomPlanet35ReverseGravityRoomPlanetNrvDownWaitCFP5Spine | :x: |
 | execute__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartCFP5Spine | :x: |
-| Functor<24ReverseGravityRoomPlanet>__2MRFP24ReverseGravityRoomPlanetM24ReverseGravityRoomPlanetFPCvPv_v_Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v> | :x: |
-| __cl__Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR75FunctorV0M<P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;24ReverseGravityRoomPlanet&gt;__2MRFP24ReverseGravityRoomPlanetM24ReverseGravityRoomPlanetFPCvPv_v_Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt; | :x: |
+| __cl__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__24ReverseGravityRoomPlanetFv | :x: |
 
 
@@ -5528,7 +5528,7 @@
 | initEffect__4RockFv | :x: |
 | isBreakByWall__4RockCFv | :x: |
 | move__4RockFf | :x: |
-| calcBaseMtx__4RockCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcBaseMtx__4RockCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | isInClippingRange__4RockCFv | :x: |
 | startSoundWanwanVoice__4RockFv | :x: |
 | startRollLevelSound__4RockFb | :x: |
@@ -5580,8 +5580,8 @@
 | __ct__Q214NrvRockCreator22RockCreatorNrvDeactiveFv | :x: |
 | execute__Q214NrvRockCreator22RockCreatorNrvDeactiveCFP5Spine | :x: |
 | execute__Q214NrvRockCreator20RockCreatorNrvActiveCFP5Spine | :x: |
-| __cl__Q22MR49FunctorV0M<P11RockCreator,M11RockCreatorFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11RockCreator,M11RockCreatorFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11RockCreator,M11RockCreatorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11RockCreator,M11RockCreatorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__11RockCreatorFv | :x: |
 
 
@@ -5592,9 +5592,9 @@
 | setDefaultPose__12RosettaChairFv | :x: |
 | init__12RosettaChairFRC12JMapInfoIter | :x: |
 | startDemo__12RosettaChairFv | :x: |
-| Functor<12RosettaChair>__2MRFP12RosettaChairM12RosettaChairFPCvPv_v_Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v> | :x: |
-| __cl__Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;12RosettaChair&gt;__2MRFP12RosettaChairM12RosettaChairFPCvPv_v_Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt; | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12RosettaChairFv | :x: |
 
 
@@ -5644,9 +5644,9 @@
 | execute__Q216NrvRotateMoveObj12HostTypeMoveCFP5Spine | :x: |
 | execute__Q216NrvRotateMoveObj12HostTypeWaitCFP5Spine | :x: |
 | execute__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :x: |
-| Functor<13RotateMoveObj>__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v> | :x: |
-| __cl__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;13RotateMoveObj&gt;__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt; | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13RotateMoveObjFv | :x: |
 | getRotateSpeed__19MapPartsRotatorBaseCFv | :x: |
 
@@ -5662,9 +5662,9 @@
 | __sinit_\SandCapsuleInsidePlanet_cpp | :x: |
 | __ct__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitFv | :x: |
 | execute__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitCFP5Spine | :x: |
-| Functor<23SandCapsuleInsidePlanet>__2MRFP23SandCapsuleInsidePlanetM23SandCapsuleInsidePlanetFPCvPv_v_Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v> | :x: |
-| __cl__Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR73FunctorV0M<P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;23SandCapsuleInsidePlanet&gt;__2MRFP23SandCapsuleInsidePlanetM23SandCapsuleInsidePlanetFPCvPv_v_Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt; | :x: |
+| __cl__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__23SandCapsuleInsidePlanetFv | :x: |
 
 
@@ -5712,7 +5712,7 @@
 # Sandstorm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15SunakazeKunTrapFP9LiveActorRCQ29JGeometry8TVec3<f> | :x: |
+| __ct__15SunakazeKunTrapFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | init__15SunakazeKunTrapFRC12JMapInfoIter | :x: |
 | exeTrap__15SunakazeKunTrapFv | :x: |
 | attackSensor__15SunakazeKunTrapFP9HitSensorP9HitSensor | :x: |
@@ -5787,9 +5787,9 @@
 | execute__Q222NrvSandUpDownEffectObj41SandUpDownEffectObjNrvFallingRockAndSmokeCFP5Spine | :x: |
 | execute__Q222NrvSandUpDownEffectObj33SandUpDownEffectObjNrvFallingRockCFP5Spine | :x: |
 | execute__Q222NrvSandUpDownEffectObj26SandUpDownEffectObjNrvWaitCFP5Spine | :x: |
-| Functor<19SandUpDownEffectObj>__2MRFP19SandUpDownEffectObjM19SandUpDownEffectObjFPCvPv_v_Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v> | :x: |
-| __cl__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;19SandUpDownEffectObj&gt;__2MRFP19SandUpDownEffectObjM19SandUpDownEffectObjFPCvPv_v_Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt; | :x: |
+| __cl__Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__19SandUpDownEffectObjFv | :x: |
 
 
@@ -5816,8 +5816,8 @@
 | execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvRestCFP5Spine | :x: |
 | execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvDownCFP5Spine | :x: |
 | execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR61FunctorV0M<P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v>CFv | :x: |
-| clone__Q22MR61FunctorV0M<P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR61FunctorV0M&lt;P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR61FunctorV0M&lt;P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__17SandUpDownTriRockFv | :x: |
 
 
@@ -5980,8 +5980,8 @@
 | execute__Q215NrvShootingStar27HostTypeNrvWaitForNextShootCFP5Spine | :x: |
 | execute__Q215NrvShootingStar19HostTypeNrvShootingCFP5Spine | :x: |
 | execute__Q215NrvShootingStar22HostTypeNrvPreShootingCFP5Spine | :x: |
-| __cl__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFv | :x: |
-| clone__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR51FunctorV0M&lt;P12ShootingStar,M12ShootingStarFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR51FunctorV0M&lt;P12ShootingStar,M12ShootingStarFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__12ShootingStarFv | :x: |
 
 
@@ -6035,9 +6035,9 @@
 | execute__Q221NrvSimpleBreakableObj12HostTypeDemoCFP5Spine | :x: |
 | execute__Q221NrvSimpleBreakableObj20HostTypeTryStartDemoCFP5Spine | :x: |
 | execute__Q221NrvSimpleBreakableObj12HostTypeWaitCFP5Spine | :x: |
-| Functor<18SimpleBreakableObj>__2MRFP18SimpleBreakableObjM18SimpleBreakableObjFPCvPv_v_Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v> | :x: |
-| __cl__Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;18SimpleBreakableObj&gt;__2MRFP18SimpleBreakableObjM18SimpleBreakableObjFPCvPv_v_Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt; | :x: |
+| __cl__Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__26SimpleBreakableIndirectObjFv | :x: |
 | initCaseNoUseSwitchB__18SimpleBreakableObjFRC19MapObjActorInitInfo | :x: |
 | initCaseNoUseSwitchA__18SimpleBreakableObjFRC19MapObjActorInitInfo | :x: |
@@ -6096,8 +6096,8 @@
 | changeTexture__28SimpleTextureSwitchChangeObjFv | :x: |
 | init__15SimpleMirrorObjFRC12JMapInfoIter | :x: |
 | getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv | :x: |
-| __cl__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFv | :x: |
-| clone__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__20SimpleEnvironmentObjFv | :x: |
 | __dt__25SimpleMapObjNoSilhouettedFv | :x: |
 | __dt__28SimpleTextureSwitchChangeObjFv | :x: |
@@ -6181,23 +6181,23 @@
 | init__9SnowFloorFRC12JMapInfoIter | :x: |
 | drawSetup__9SnowFloorFv | :x: |
 | initLocalPoint__9SnowFloorFRC12JMapInfoIter | :x: |
-| calcLocalPoint__9SnowFloorFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f> | :x: |
+| calcLocalPoint__9SnowFloorFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createReduceMap__9SnowFloorFUs | :x: |
-| digPlayerWalk__9SnowFloorFRCQ29JGeometry8TVec3<f> | :x: |
-| digDpd__9SnowFloorFRCQ29JGeometry8TVec3<f> | :x: |
+| digPlayerWalk__9SnowFloorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| digDpd__9SnowFloorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | control__9SnowFloorFv | :x: |
-| doErase__9SnowFloorFRCQ29JGeometry8TVec3<f>ff | :x: |
-| doMove__9SnowFloorFQ29JGeometry8TVec2<f>Q29JGeometry8TVec2<f>ff | :x: |
-| doErase__9SnowFloorFQ29JGeometry8TVec2<f>ff | :x: |
+| doErase__9SnowFloorFRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| doMove__9SnowFloorFQ29JGeometry8TVec2&lt;f&gt;Q29JGeometry8TVec2&lt;f&gt;ff | :x: |
+| doErase__9SnowFloorFQ29JGeometry8TVec2&lt;f&gt;ff | :x: |
 | createTexture__9SnowFloorFv | :x: |
 | addCheckList__9SnowFloorFP9HitSensor | :x: |
 | updateCheckList__9SnowFloorFv | :x: |
-| calcCoverSnow__9SnowFloorFRCQ29JGeometry8TVec2<f>f | :x: |
+| calcCoverSnow__9SnowFloorFRCQ29JGeometry8TVec2&lt;f&gt;f | :x: |
 | attackSensor__9SnowFloorFP9HitSensorP9HitSensor | :x: |
 | draw__9SnowFloorCFv | :x: |
 | drawLayer__9SnowFloorCFl | :x: |
 | __sinit_\SnowFloor_cpp | :x: |
-| dot__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
+| dot__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # SnowFloorTile.o
@@ -6207,14 +6207,14 @@
 | __ct__13SnowFloorTileFPCc | :x: |
 | init__13SnowFloorTileFRC12JMapInfoIter | :x: |
 | initLocalPoint__13SnowFloorTileFRC12JMapInfoIter | :x: |
-| calcLocalPoint__13SnowFloorTileFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :x: |
+| calcLocalPoint__13SnowFloorTileFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | createReduceMap__13SnowFloorTileFUs | :x: |
-| digPlayerWalk__13SnowFloorTileFRCQ29JGeometry8TVec3<f> | :x: |
-| digDpd__13SnowFloorTileFRCQ29JGeometry8TVec3<f> | :x: |
+| digPlayerWalk__13SnowFloorTileFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| digDpd__13SnowFloorTileFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | control__13SnowFloorTileFv | :x: |
-| doErase__13SnowFloorTileFRCQ29JGeometry8TVec3<f>ff | :x: |
-| doMove__13SnowFloorTileFQ29JGeometry8TVec2<f>Q29JGeometry8TVec2<f>ff | :x: |
-| doErase__13SnowFloorTileFQ29JGeometry8TVec2<f>ff | :x: |
+| doErase__13SnowFloorTileFRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| doMove__13SnowFloorTileFQ29JGeometry8TVec2&lt;f&gt;Q29JGeometry8TVec2&lt;f&gt;ff | :x: |
+| doErase__13SnowFloorTileFQ29JGeometry8TVec2&lt;f&gt;ff | :x: |
 | createTexture__13SnowFloorTileFv | :x: |
 | attackSensor__13SnowFloorTileFP9HitSensorP9HitSensor | :x: |
 | draw__13SnowFloorTileCFv | :x: |
@@ -6353,7 +6353,7 @@
 | exeTouch__10SpiderCoinFv | :x: |
 | exeTouchAndApart__10SpiderCoinFv | :x: |
 | calcAndSetBaseMtx__10SpiderCoinFv | :x: |
-| tryRub__10SpiderCoinFlPQ29JGeometry8TVec2<f> | :x: |
+| tryRub__10SpiderCoinFlPQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | __sinit_\SpiderCoin_cpp | :x: |
 | __ct__Q213NrvSpiderCoin17SpiderCoinNrvWaitFv | :x: |
 | __ct__Q213NrvSpiderCoin18SpiderCoinNrvTouchFv | :x: |
@@ -6380,12 +6380,12 @@
 | ------------- | ------------- |
 | __ct__12SpiderThreadFPCc | :x: |
 | init__12SpiderThreadFRC12JMapInfoIter | :x: |
-| initThread__12SpiderThreadFRCQ29JGeometry8TVec3<f> | :x: |
+| initThread__12SpiderThreadFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | movement__12SpiderThreadFv | :x: |
 | draw__12SpiderThreadCFv | :x: |
-| startActorBind__12SpiderThreadFP9LiveActorPPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l | :x: |
-| touchActor__12SpiderThreadFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| tryPush__12SpiderThreadFRCQ29JGeometry8TVec3<f>f | :x: |
+| startActorBind__12SpiderThreadFP9LiveActorPPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| touchActor__12SpiderThreadFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryPush__12SpiderThreadFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | stopAllPartsPoint__12SpiderThreadFv | :x: |
 | cutSpiderThread__12SpiderThreadFv | :x: |
 | initMainThreads__12SpiderThreadFv | :x: |
@@ -6394,20 +6394,20 @@
 | updatePointerInfo__12SpiderThreadFv | :x: |
 | updateHangedPoint__12SpiderThreadFv | :x: |
 | tryTouchPoint__12SpiderThreadFl | :x: |
-| findNearestPointPos__12SpiderThreadCFPPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>PlPlRCQ29JGeometry8TVec3<f> | :x: |
+| findNearestPointPos__12SpiderThreadCFPPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;PlPlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | findHangInfo__12SpiderThreadCFP9LiveActor | :x: |
 | initDraw__12SpiderThreadCFv | :x: |
-| initSpiderThread__2MRFRCQ29JGeometry8TVec3<f> | :x: |
+| initSpiderThread__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | appearSpiderThread__2MRFv | :x: |
 | startSpiderThreadBattle__2MRFv | :x: |
 | startSpiderThreadChance__2MRFv | :x: |
 | startSpiderThreadBattleEnd__2MRFv | :x: |
 | pauseOffSpiderThread__2MRFv | :x: |
 | getSpiderThreadPosZ__2MRFv | :x: |
-| startActorBindToSpiderThread__2MRFP9LiveActorPPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| startActorBindToSpiderThread__2MRFP9LiveActorPPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | sendMsgToSpiderThread__2MRFUlP9HitSensor | :x: |
-| touchActorToSpiderThread__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| tryPushSpiderThread__2MRFRCQ29JGeometry8TVec3<f>f | :x: |
+| touchActorToSpiderThread__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryPushSpiderThread__2MRFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | onSpiderThreadBloom__2MRFv | :x: |
 | drawSpiderThreadBloom__2MRFv | :x: |
 | __dt__12SpiderThreadFv | :x: |
@@ -6417,7 +6417,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__20SpiderThreadHangInfoFv | :x: |
-| startBind__20SpiderThreadHangInfoFP9LiveActorPCQ29JGeometry8TVec3<f>P16SpiderThreadPartlRCQ29JGeometry8TVec3<f>l | :x: |
+| startBind__20SpiderThreadHangInfoFP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;P16SpiderThreadPartlRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | endBind__20SpiderThreadHangInfoFv | :x: |
 | startHang__20SpiderThreadHangInfoFv | :x: |
 | endHang__20SpiderThreadHangInfoFb | :x: |
@@ -6429,10 +6429,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__25SpiderThreadPointNearInfoFv | :x: |
-| setInfo__25SpiderThreadPointNearInfoFfP16SpiderThreadPartRCQ29JGeometry8TVec3<f> | :x: |
+| setInfo__25SpiderThreadPointNearInfoFfP16SpiderThreadPartRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | clear__25SpiderThreadPointNearInfoFv | :x: |
 | getPos__25SpiderThreadPointNearInfoCFv | :x: |
-| __ct__21SpiderThreadMainPointFRCQ29JGeometry8TVec3<f>i | :x: |
+| __ct__21SpiderThreadMainPointFRCQ29JGeometry8TVec3&lt;f&gt;i | :x: |
 | addNearMainPoint__21SpiderThreadMainPointFP21SpiderThreadMainPointP16SpiderThreadPart | :x: |
 | addNearPartPoint__21SpiderThreadMainPointFP17SpiderThreadPointf | :x: |
 | removeNearPoint__21SpiderThreadMainPointFPC17SpiderThreadPoint | :x: |
@@ -6452,25 +6452,25 @@
 | update__16SpiderThreadPartFv | :x: |
 | draw__16SpiderThreadPartCFv | :x: |
 | startHang__16SpiderThreadPartFl | :x: |
-| updateHang__16SpiderThreadPartFRCQ29JGeometry8TVec3<f>l | :x: |
+| updateHang__16SpiderThreadPartFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
 | endHang__16SpiderThreadPartFl | :x: |
 | stopAllPoints__16SpiderThreadPartFv | :x: |
-| calcNearestPointInfo__16SpiderThreadPartFPPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>PlRCQ29JGeometry8TVec3<f> | :x: |
+| calcNearestPointInfo__16SpiderThreadPartFPPCQ29JGeometry8TVec3&lt;f&gt;PPCQ29JGeometry8TVec3&lt;f&gt;PlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updatePointPosToLine__16SpiderThreadPartFv | :x: |
 | updatePointPosAndBasePosToLine__16SpiderThreadPartFv | :x: |
-| touchActor__16SpiderThreadPartFlRCQ29JGeometry8TVec3<f> | :x: |
-| tryTouch__16SpiderThreadPartFfRCQ29JGeometry8TVec3<f>l | :x: |
-| findTouchPoint__16SpiderThreadPartFfRCQ29JGeometry8TVec3<f>l | :x: |
-| findNearestPointNo__16SpiderThreadPartCFPlRCQ29JGeometry8TVec3<f> | :x: |
+| touchActor__16SpiderThreadPartFlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryTouch__16SpiderThreadPartFfRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| findTouchPoint__16SpiderThreadPartFfRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| findNearestPointNo__16SpiderThreadPartCFPlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updatePointPosHanging__16SpiderThreadPartFl | :x: |
-| updatePointVelocityTouch__16SpiderThreadPartFlRCQ29JGeometry8TVec3<f> | :x: |
+| updatePointVelocityTouch__16SpiderThreadPartFlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateBasePos__16SpiderThreadPartFv | :x: |
 | updateForceAttach__16SpiderThreadPartFv | :x: |
 | updateCutPoints__16SpiderThreadPartFv | :x: |
 | updateDrawVec__16SpiderThreadPartFv | :x: |
-| sendPointsUpper__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
-| sendPointsRightLower__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
-| sendPointsLeftLower__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff | :x: |
+| sendPointsUpper__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| sendPointsRightLower__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| sendPointsLeftLower__30@unnamed@SpiderThreadPart_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | drawLine__16SpiderThreadPartCFv | :x: |
 | drawPoints__16SpiderThreadPartCFv | :x: |
 | __sinit_\SpiderThreadPart_cpp | :x: |
@@ -6480,15 +6480,15 @@
 # SpiderThreadPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17SpiderThreadPointFRCQ29JGeometry8TVec3<f>f | :x: |
+| __ct__17SpiderThreadPointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | updateSpring__17SpiderThreadPointFv | :x: |
-| updateDrawVec__17SpiderThreadPointFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f> | :x: |
+| updateDrawVec__17SpiderThreadPointFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateWind__17SpiderThreadPointFf | :x: |
 | updatePos__17SpiderThreadPointFv | :x: |
-| restrict__17SpiderThreadPointFPCQ29JGeometry8TVec3<f>f | :x: |
-| updateHang__17SpiderThreadPointFRCQ29JGeometry8TVec3<f> | :x: |
-| tryTouch__17SpiderThreadPointFfRCQ29JGeometry8TVec3<f>l | :x: |
-| tryPush__17SpiderThreadPointFRCQ29JGeometry8TVec3<f>f | :x: |
+| restrict__17SpiderThreadPointFPCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| updateHang__17SpiderThreadPointFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| tryTouch__17SpiderThreadPointFfRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| tryPush__17SpiderThreadPointFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | startThreadLevelSound__17SpiderThreadPointFv | :x: |
 
 
@@ -6549,7 +6549,7 @@
 | updateBindActorMatrix__10SpinDriverFf | :x: |
 | calcBindActorMatrix__10SpinDriverFv | :x: |
 | calcParabolicBindPose__10SpinDriverFv | :x: |
-| turnBindHead__10SpinDriverFRCQ29JGeometry8TVec3<f>f | :x: |
+| turnBindHead__10SpinDriverFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | calcShootMotionTime__10SpinDriverFv | :x: |
 | startCamera__10SpinDriverFv | :x: |
 | updateCamera__10SpinDriverFv | :x: |
@@ -6581,14 +6581,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__16SpinDriverCameraFv | :x: |
-| startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | endAppearCamera__16SpinDriverCameraFP9LiveActor | :x: |
 | getAppearCameraFrames__16SpinDriverCameraCFv | :x: |
-| start__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| update__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| start__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| update__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | cancel__16SpinDriverCameraFv | :x: |
 | end__16SpinDriverCameraFv | :x: |
-| updateTargetMatrix__16SpinDriverCameraFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| updateTargetMatrix__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isUseAppearCamera__16SpinDriverCameraCFP9LiveActor | :x: |
 | init__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :x: |
 | initAppearCamera__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :x: |
@@ -6604,16 +6604,16 @@
 | control__21SpinDriverOperateRingFv | :x: |
 | setRadiusRate__21SpinDriverOperateRingFf | :x: |
 | reset__21SpinDriverOperateRingFv | :x: |
-| update__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| update__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updatePosition__21SpinDriverOperateRingFv | :x: |
-| updateControlPoint__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f> | :x: |
-| updateDirection__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f> | :x: |
+| updateControlPoint__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateDirection__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | resetVelocityAndTrans__21SpinDriverOperateRingFv | :x: |
-| addAccelToOperatePlane__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f> | :x: |
-| addAccelOperate__21SpinDriverOperateRingFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| addAccelToOperatePlane__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| addAccelOperate__21SpinDriverOperateRingFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | addAccelToCenter__21SpinDriverOperateRingFv | :x: |
 | attenuateVelocity__21SpinDriverOperateRingFv | :x: |
-| calcOperatePowerByDPD__21SpinDriverOperateRingCFPQ29JGeometry8TVec3<f> | :x: |
+| calcOperatePowerByDPD__21SpinDriverOperateRingCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__21SpinDriverOperateRingFv | :x: |
 | __sinit_\SpinDriverOperateRing_cpp | :x: |
 | __ct__Q224NrvSpinDriverOperateRing28SpinDriverOperateRingNrvWaitFv | :x: |
@@ -6646,9 +6646,9 @@
 | setMaskLength__20SpinDriverPathDrawerFf | :x: |
 | setFadeScale__20SpinDriverPathDrawerFf | :x: |
 | draw__20SpinDriverPathDrawerCFv | :x: |
-| sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3<f>ff | :x: |
-| __cl__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFv | :x: |
-| clone__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFP7JKRHeap | :x: |
+| sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| __cl__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__20SpinDriverPathDrawerFv | :x: |
 | __dt__22SpinDriverPathDrawInitFv | :x: |
 
@@ -6658,19 +6658,19 @@
 | ------------- | ------------- |
 | __ct__19SpinDriverShootPathFv | :x: |
 | init__19SpinDriverShootPathFRC12JMapInfoIter | :x: |
-| initUsingParabolic__19SpinDriverShootPathFRC12JMapInfoIterRCQ29JGeometry8TVec3<f> | :x: |
-| setStartPosition__19SpinDriverShootPathFRCQ29JGeometry8TVec3<f> | :x: |
-| calcPosition__19SpinDriverShootPathCFPQ29JGeometry8TVec3<f>f | :x: |
-| calcDirection__19SpinDriverShootPathCFPQ29JGeometry8TVec3<f>ff | :x: |
-| calcInitPose__19SpinDriverShootPathCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f | :x: |
+| initUsingParabolic__19SpinDriverShootPathFRC12JMapInfoIterRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setStartPosition__19SpinDriverShootPathFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcPosition__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcDirection__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| calcInitPose__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | getTotalLength__19SpinDriverShootPathCFv | :x: |
-| calcClippingInfo__19SpinDriverShootPathFPQ29JGeometry8TVec3<f>Pfff | :x: |
+| calcClippingInfo__19SpinDriverShootPathFPQ29JGeometry8TVec3&lt;f&gt;Pfff | :x: |
 
 
 # SpinDriverUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setShadowAndClipping__14SpinDriverUtilFP9LiveActorPQ29JGeometry8TVec3<f>ffPf | :x: |
+| setShadowAndClipping__14SpinDriverUtilFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;ffPf | :x: |
 
 
 # SpinLeverSwitch.o
@@ -6697,7 +6697,7 @@
 # SpinningBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getYDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f> | :x: |
+| getYDir__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__11SpinningBoxFPCc | :x: |
 | init__11SpinningBoxFRC12JMapInfoIter | :x: |
 | kill__11SpinningBoxFv | :x: |
@@ -6707,8 +6707,8 @@
 | exeSliding__11SpinningBoxFv | :x: |
 | exeSpinning__11SpinningBoxFv | :x: |
 | exePointed__11SpinningBoxFv | :x: |
-| calcPlanarProjectedVec__11SpinningBoxFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| calcHitDirection__11SpinningBoxFRCQ29JGeometry8TVec3<f> | :x: |
+| calcPlanarProjectedVec__11SpinningBoxFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcHitDirection__11SpinningBoxFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | generateIceBox__11SpinningBoxFP9HitSensorP9HitSensor | :x: |
 | attackSensor__11SpinningBoxFP9HitSensorP9HitSensor | :x: |
 | receiveOtherMsg__11SpinningBoxFUlP9HitSensorP9HitSensor | :x: |
@@ -6781,8 +6781,8 @@
 | execute__Q225NrvSpringWaterFloaterSpot32SpringWaterFloaterSpotNrvFloatUpCFP5Spine | :x: |
 | execute__Q225NrvSpringWaterFloaterSpot36SpringWaterFloaterSpotNrvFloatSignalCFP5Spine | :x: |
 | execute__Q225NrvSpringWaterFloaterSpot29SpringWaterFloaterSpotNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFv | :x: |
-| clone__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR71FunctorV0M&lt;P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR71FunctorV0M&lt;P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__22SpringWaterFloaterSpotFv | :x: |
 
 
@@ -6832,10 +6832,10 @@
 | changeScale__9StarPieceFf | :x: |
 | control__9StarPieceFv | :x: |
 | exeFloating__9StarPieceFv | :x: |
-| appearHop__9StarPieceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| appearHop__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeHop__9StarPieceFv | :x: |
 | exeFall__9StarPieceFv | :x: |
-| isTouchToTarget__9StarPieceFPQ29JGeometry8TVec3<f>f | :x: |
+| isTouchToTarget__9StarPieceFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | isEffectLight__9StarPieceFv | :x: |
 | exeToTarget__9StarPieceFv | :x: |
 | exeSpinDrained__9StarPieceFv | :x: |
@@ -6846,14 +6846,14 @@
 | exeRailMove__9StarPieceFv | :x: |
 | setFollowPlayerAndAppear__9StarPieceFv | :x: |
 | tryCalcGravity__9StarPieceFv | :x: |
-| trySetGravityAndFront__9StarPieceFRCQ29JGeometry8TVec3<f> | :x: |
-| throwToTarget__9StarPieceFP9HitSensorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
-| throwToTargetCore__9StarPieceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fb | :x: |
-| giftToTarget__9StarPieceFP21StarPieceReceiverInfoUlP9HitSensorRCQ29JGeometry8TVec3<f> | :x: |
-| goToPlayer__9StarPieceFQ29JGeometry8TVec3<f> | :x: |
-| launch__9StarPieceFRCQ29JGeometry8TVec3<f>ffbb | :x: |
-| launch__9StarPieceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffbb | :x: |
-| launch__9StarPieceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>bb | :x: |
+| trySetGravityAndFront__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| throwToTarget__9StarPieceFP9HitSensorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| throwToTargetCore__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fb | :x: |
+| giftToTarget__9StarPieceFP21StarPieceReceiverInfoUlP9HitSensorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| goToPlayer__9StarPieceFQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| launch__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;ffbb | :x: |
+| launch__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffbb | :x: |
+| launch__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;bb | :x: |
 | calcEffectScale__9StarPieceFffb | :x: |
 | calcNearCameraScale__9StarPieceFv | :x: |
 | calcDistToCamera__9StarPieceFv | :x: |
@@ -6865,7 +6865,7 @@
 | isOnRailMove__9StarPieceFv | :x: |
 | isFloat__9StarPieceFv | :x: |
 | attackSensor__9StarPieceFP9HitSensorP9HitSensor | :x: |
-| setReflect__9StarPieceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
+| setReflect__9StarPieceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | receiveOtherMsg__9StarPieceFUlP9HitSensorP9HitSensor | :x: |
 | isIgnoreTriOnThrow__9StarPieceFPC8Triangle | :x: |
 | touchPlayer__9StarPieceFv | :x: |
@@ -6900,7 +6900,7 @@
 | execute__Q212NrvStarPiece14HostTypeNrvHopCFP5Spine | :x: |
 | execute__Q212NrvStarPiece19HostTypeNrvFloatingCFP5Spine | :x: |
 | __as__10J3DGXColorF8_GXColor | :x: |
-| isInvalidTriangle__35TriangleFilterDelegator<9StarPiece>CFPC8Triangle | :x: |
+| isInvalidTriangle__35TriangleFilterDelegator&lt;9StarPiece&gt;CFPC8Triangle | :x: |
 | __dt__9StarPieceFv | :x: |
 
 
@@ -6923,9 +6923,9 @@
 | declareReceiveNum__17StarPieceDirectorFPC7NameObjl | :x: |
 | getDeclareRemnantStarPieceCount__17StarPieceDirectorFPC7NameObj | :x: |
 | getDeclareRemnantStarPieceCountNotExist__17StarPieceDirectorFPC7NameObj | :x: |
-| hopPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f> | :x: |
-| appearPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>lffbb | :x: |
-| appearPieceToDirection__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lffbb | :x: |
+| hopPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| appearPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;lffbb | :x: |
+| appearPieceToDirection__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;lffbb | :x: |
 | gotByPlayer__17StarPieceDirectorFv | :x: |
 | movement__17StarPieceDirectorFv | :x: |
 | updateSound__17StarPieceDirectorFv | :x: |
@@ -6961,7 +6961,7 @@
 | init__20StarPieceFollowGroupFRC12JMapInfoIter | :x: |
 | beginFollowPieces__20StarPieceFollowGroupFv | :x: |
 | placementPiece__20StarPieceFollowGroupFl | :x: |
-| updateAxises__20StarPieceFollowGroupFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f | :x: |
+| updateAxises__20StarPieceFollowGroupFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | followPieces__20StarPieceFollowGroupFv | :x: |
 | allKillPieces__20StarPieceFollowGroupFv | :x: |
 | onSwitchA__20StarPieceFollowGroupFv | :x: |
@@ -6972,8 +6972,8 @@
 | __ct__Q223NrvStarPieceFollowGroup20HostTypeNrvFollowEndFv | :x: |
 | execute__Q223NrvStarPieceFollowGroup20HostTypeNrvFollowEndCFP5Spine | :x: |
 | execute__Q223NrvStarPieceFollowGroup25HostTypeNrvFollowToPlayerCFP5Spine | :x: |
-| __cl__Q22MR67FunctorV0M<P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v>CFv | :x: |
-| clone__Q22MR67FunctorV0M<P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR67FunctorV0M&lt;P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR67FunctorV0M&lt;P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__20StarPieceFollowGroupFv | :x: |
 
 
@@ -7004,9 +7004,9 @@
 | __ct__Q217NrvStarPieceGroup15HostTypeNrvFlowFv | :x: |
 | execute__Q217NrvStarPieceGroup15HostTypeNrvFlowCFP5Spine | :x: |
 | execute__Q217NrvStarPieceGroup16HostTypeNrvGroupCFP5Spine | :x: |
-| Functor<14StarPieceGroup>__2MRFP14StarPieceGroupM14StarPieceGroupFPCvPv_v_Q22MR55FunctorV0M<P14StarPieceGroup,M14StarPieceGroupFPCvPv_v> | :x: |
-| __cl__Q22MR55FunctorV0M<P14StarPieceGroup,M14StarPieceGroupFPCvPv_v>CFv | :x: |
-| clone__Q22MR55FunctorV0M<P14StarPieceGroup,M14StarPieceGroupFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;14StarPieceGroup&gt;__2MRFP14StarPieceGroupM14StarPieceGroupFPCvPv_v_Q22MR55FunctorV0M&lt;P14StarPieceGroup,M14StarPieceGroupFPCvPv_v&gt; | :x: |
+| __cl__Q22MR55FunctorV0M&lt;P14StarPieceGroup,M14StarPieceGroupFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR55FunctorV0M&lt;P14StarPieceGroup,M14StarPieceGroupFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__14StarPieceGroupFv | :x: |
 
 
@@ -7028,9 +7028,9 @@
 | __ct__Q218NrvStarPieceMother15HostTypeNrvWaitFv | :x: |
 | execute__Q218NrvStarPieceMother15HostTypeNrvWaitCFP5Spine | :x: |
 | execute__Q218NrvStarPieceMother21HostTypeNrvMoveOnRailCFP5Spine | :x: |
-| Functor<15StarPieceMother>__2MRFP15StarPieceMotherM15StarPieceMotherFPCvPv_v_Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v> | :x: |
-| __cl__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;15StarPieceMother&gt;__2MRFP15StarPieceMotherM15StarPieceMotherFPCvPv_v_Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt; | :x: |
+| __cl__Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15StarPieceMotherFv | :x: |
 
 
@@ -7041,8 +7041,8 @@
 | emit__13StarPieceSpotFv | :x: |
 | init__13StarPieceSpotFRC12JMapInfoIter | :x: |
 | receiveMsgPlayerAttack__13StarPieceSpotFUlP9HitSensorP9HitSensor | :x: |
-| __cl__Q22MR53FunctorV0M<P13StarPieceSpot,M13StarPieceSpotFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13StarPieceSpot,M13StarPieceSpotFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13StarPieceSpot,M13StarPieceSpotFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13StarPieceSpot,M13StarPieceSpotFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13StarPieceSpotFv | :x: |
 
 
@@ -7094,7 +7094,7 @@
 # SuperSpinDriver.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setEulerY__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff | :x: |
+| setEulerY__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ff | :x: |
 | __ct__15SuperSpinDriverFPCcl | :x: |
 | init__15SuperSpinDriverFRC12JMapInfoIter | :x: |
 | initAfterPlacement__15SuperSpinDriverFv | :x: |
@@ -7144,7 +7144,7 @@
 | endBind__15SuperSpinDriverFv | :x: |
 | updateBindActorMatrix__15SuperSpinDriverFv | :x: |
 | updateBindActorPoseToShoot__15SuperSpinDriverFf | :x: |
-| turnBindHead__15SuperSpinDriverFRCQ29JGeometry8TVec3<f>f | :x: |
+| turnBindHead__15SuperSpinDriverFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | moveBindPosToCenter__15SuperSpinDriverFv | :x: |
 | startPathDraw__15SuperSpinDriverFv | :x: |
 | endPathDraw__15SuperSpinDriverFv | :x: |
@@ -7184,9 +7184,9 @@
 | execute__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearCFP5Spine | :x: |
 | execute__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveCFP5Spine | :x: |
 | execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoCFP5Spine | :x: |
-| Functor<15SuperSpinDriver>__2MRFP15SuperSpinDriverM15SuperSpinDriverFPCvPv_v_Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v> | :x: |
-| __cl__Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;15SuperSpinDriver&gt;__2MRFP15SuperSpinDriverM15SuperSpinDriverFPCvPv_v_Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt; | :x: |
+| __cl__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15SuperSpinDriverFv | :x: |
 
 
@@ -7211,10 +7211,10 @@
 # Swinger.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7SwingerFPCQ29JGeometry8TVec3<f>PA4_ffffPCQ29JGeometry8TVec3<f> | :x: |
+| __ct__7SwingerFPCQ29JGeometry8TVec3&lt;f&gt;PA4_ffffPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | update__7SwingerFv | :x: |
-| accel__7SwingerFRCQ29JGeometry8TVec3<f> | :x: |
-| updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3<f> | :x: |
+| accel__7SwingerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
 # SwingLight.o
@@ -7236,8 +7236,8 @@
 | appearLight__10SwingLightFv | :x: |
 | initCaseNoUseSwitchA__13LightCylinderFRC19MapObjActorInitInfo | :x: |
 | initCaseUseSwitchA__13LightCylinderFRC19MapObjActorInitInfo | :x: |
-| __cl__Q22MR47FunctorV0M<P10SwingLight,M10SwingLightFPCvPv_v>CFv | :x: |
-| clone__Q22MR47FunctorV0M<P10SwingLight,M10SwingLightFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR47FunctorV0M&lt;P10SwingLight,M10SwingLightFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR47FunctorV0M&lt;P10SwingLight,M10SwingLightFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13LightCylinderFv | :x: |
 | __dt__10SwingLightFv | :x: |
 
@@ -7294,8 +7294,8 @@
 | execute__Q216NrvTimerMoveWall24TimerMoveWallNrvMoveBackCFP5Spine | :x: |
 | execute__Q216NrvTimerMoveWall25TimerMoveWallNrvMoveFrontCFP5Spine | :x: |
 | execute__Q216NrvTimerMoveWall20TimerMoveWallNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR53FunctorV0M<P13TimerMoveWall,M13TimerMoveWallFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13TimerMoveWall,M13TimerMoveWallFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13TimerMoveWall,M13TimerMoveWallFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13TimerMoveWall,M13TimerMoveWallFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13TimerMoveWallFv | :x: |
 
 
@@ -7321,7 +7321,7 @@
 | offLod__11TrampleStarFv | :x: |
 | exeBindingCapture__11TrampleStarFv | :x: |
 | exeBindingShoot__11TrampleStarFv | :x: |
-| calcNearestVtxIndex__11TrampleStarFRCQ29JGeometry8TVec3<f> | :x: |
+| calcNearestVtxIndex__11TrampleStarFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | draw__11TrampleStarCFv | :x: |
 | receiveOtherMsg__11TrampleStarFUlP9HitSensorP9HitSensor | :x: |
 | drawSelf__11TrampleStarCFv | :x: |
@@ -7426,8 +7426,8 @@
 | execute__Q216NrvTsukidashikun27TsukidashikunNrvWaitForwardCFP5Spine | :x: |
 | execute__Q216NrvTsukidashikun24TsukidashikunNrvWaitBackCFP5Spine | :x: |
 | execute__Q216NrvTsukidashikun21TsukidashikunNrvRelaxCFP5Spine | :x: |
-| __cl__Q22MR53FunctorV0M<P13Tsukidashikun,M13TsukidashikunFPCvPv_v>CFv | :x: |
-| clone__Q22MR53FunctorV0M<P13Tsukidashikun,M13TsukidashikunFPCvPv_v>CFP7JKRHeap | :x: |
+| __cl__Q22MR53FunctorV0M&lt;P13Tsukidashikun,M13TsukidashikunFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR53FunctorV0M&lt;P13Tsukidashikun,M13TsukidashikunFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__13TsukidashikunFv | :x: |
 
 
@@ -7457,9 +7457,9 @@
 | execute__Q214NrvTypicalDoor12HostTypeOpenCFP5Spine | :x: |
 | execute__Q214NrvTypicalDoor20HostTypeCloseForDemoCFP5Spine | :x: |
 | execute__Q214NrvTypicalDoor13HostTypeCloseCFP5Spine | :x: |
-| Functor<11TypicalDoor>__2MRFP11TypicalDoorM11TypicalDoorFPCvPv_v_Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v> | :x: |
-| __cl__Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v>CFv | :x: |
-| clone__Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;11TypicalDoor&gt;__2MRFP11TypicalDoorM11TypicalDoorFPCvPv_v_Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt; | :x: |
+| __cl__Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15TypicalDoorOpenFv | :x: |
 | __dt__16DarknessRoomDoorFv | :x: |
 
@@ -7514,9 +7514,9 @@
 | execute__Q212NrvUFOKinoko12HostTypeStopCFP5Spine | :x: |
 | execute__Q212NrvUFOKinoko12HostTypeMoveCFP5Spine | :x: |
 | execute__Q212NrvUFOKinoko12HostTypeWaitCFP5Spine | :x: |
-| Functor<9UFOKinoko>__2MRFP9UFOKinokoM9UFOKinokoFPCvPv_v_Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v> | :x: |
-| __cl__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFv | :x: |
-| clone__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;9UFOKinoko&gt;__2MRFP9UFOKinokoM9UFOKinokoFPCvPv_v_Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt; | :x: |
+| __cl__Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__9UFOKinokoFv | :x: |
 
 
@@ -7576,20 +7576,20 @@
 # WatchTowerRotateStep.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20WatchTowerRotateStepFPCc | :x: |
-| init__20WatchTowerRotateStepFRC12JMapInfoIter | :x: |
-| exeMoveStart__20WatchTowerRotateStepFv | :x: |
-| calcAndSetBaseMtx__20WatchTowerRotateStepFv | :x: |
-| initLift__20WatchTowerRotateStepFRC12JMapInfoIter | :x: |
+| __ct__20WatchTowerRotateStepFPCc | :white_check_mark: |
+| init__20WatchTowerRotateStepFRC12JMapInfoIter | :white_check_mark: |
+| exeMoveStart__20WatchTowerRotateStepFv | :white_check_mark: |
+| calcAndSetBaseMtx__20WatchTowerRotateStepFv | :white_check_mark: |
+| initLift__20WatchTowerRotateStepFRC12JMapInfoIter | :white_check_mark: |
 | attachLift__20WatchTowerRotateStepFv | :x: |
 | __sinit_\WatchTowerRotateStep_cpp | :x: |
-| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitFv | :x: |
-| __ct__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartFv | :x: |
-| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveFv | :x: |
-| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine | :x: |
-| execute__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartCFP5Spine | :x: |
-| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitCFP5Spine | :x: |
-| __dt__20WatchTowerRotateStepFv | :x: |
+| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitFv | :white_check_mark: |
+| __ct__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartFv | :white_check_mark: |
+| __ct__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveFv | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvMoveCFP5Spine | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep32WatchTowerRotateStepNrvMoveStartCFP5Spine | :white_check_mark: |
+| execute__Q223NrvWatchTowerRotateStep27WatchTowerRotateStepNrvWaitCFP5Spine | :white_check_mark: |
+| __dt__20WatchTowerRotateStepFv | :white_check_mark: |
 
 
 # WaterfallCaveCover.o
@@ -7641,7 +7641,7 @@
 | init__13WaterPressureFRC12JMapInfoIter | :x: |
 | initBullet__13WaterPressureFRC12JMapInfoIter | :x: |
 | shotBullet__13WaterPressureFf | :x: |
-| calcGunPointFromCannon__13WaterPressureFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcGunPointFromCannon__13WaterPressureFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 
 
 # WaterPressureBullet.o
@@ -7652,7 +7652,7 @@
 | kill__19WaterPressureBulletFv | :x: |
 | control__19WaterPressureBulletFv | :x: |
 | calcAndSetBaseMtx__19WaterPressureBulletFv | :x: |
-| shotWaterBullet__19WaterPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>fbbbPP15ActorCameraInfo | :x: |
+| shotWaterBullet__19WaterPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;fbbbPP15ActorCameraInfo | :x: |
 | exeFly__19WaterPressureBulletFv | :x: |
 | exeSpinKill__19WaterPressureBulletFv | :x: |
 | attackSensor__19WaterPressureBulletFP9HitSensorP9HitSensor | :x: |
@@ -7750,9 +7750,9 @@
 | execute__Q218NrvWormEatenPlanet27WormEatenPlanetNrvThirdWaitCFP5Spine | :x: |
 | execute__Q218NrvWormEatenPlanet28WormEatenPlanetNrvSecondWaitCFP5Spine | :x: |
 | execute__Q218NrvWormEatenPlanet27WormEatenPlanetNrvFirstWaitCFP5Spine | :x: |
-| Functor<15WormEatenPlanet>__2MRFP15WormEatenPlanetM15WormEatenPlanetFPCvPv_v_Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v> | :x: |
-| __cl__Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;15WormEatenPlanet&gt;__2MRFP15WormEatenPlanetM15WormEatenPlanetFPCvPv_v_Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt; | :x: |
+| __cl__Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__15WormEatenPlanetFv | :x: |
 
 
@@ -7806,11 +7806,11 @@
 | execute__Q218NrvGeneralMapParts17HostTypeMoveStartCFP5Spine | :x: |
 | execute__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnCFP5Spine | :x: |
 | execute__Q218NrvGeneralMapParts12HostTypeWaitCFP5Spine | :x: |
-| Functor<15GeneralMapParts>__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v> | :x: |
-| __cl__Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v>CFv | :x: |
-| clone__Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;15GeneralMapParts&gt;__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt; | :x: |
+| __cl__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | receiveMsg__16MapPartsFunctionFUl | :x: |
-| push_back__Q22MR48Vector<Q22MR33FixedArray<P16MapPartsFunction,8>>FRCP16MapPartsFunction | :x: |
+| push_back__Q22MR48Vector&lt;Q22MR33FixedArray&lt;P16MapPartsFunction,8&gt;&gt;FRCP16MapPartsFunction | :x: |
 
 
 # FloaterFloatingForce.o
@@ -7831,7 +7831,7 @@
 | __ct__30FloaterFloatingForceTypeNormalFP9LiveActorPCc | :x: |
 | init__30FloaterFloatingForceTypeNormalFRC12JMapInfoIter | :x: |
 | start__30FloaterFloatingForceTypeNormalFv | :x: |
-| updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3<f> | :x: |
+| updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateVelocity__30FloaterFloatingForceTypeNormalFb | :x: |
 | soundMoveSE__30FloaterFloatingForceTypeNormalFv | :x: |
 | setStateMove__30FloaterFloatingForceTypeNormalFv | :x: |
@@ -7861,7 +7861,7 @@
 | init__30FloaterFloatingForceTypeSpringFRC12JMapInfoIter | :x: |
 | start__30FloaterFloatingForceTypeSpringFv | :x: |
 | updateVelocity__30FloaterFloatingForceTypeSpringFv | :x: |
-| updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3<f> | :x: |
+| updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | soundMoveSE__30FloaterFloatingForceTypeSpringFv | :x: |
 | getCurrentSinkSpeed__30FloaterFloatingForceTypeSpringCFv | :x: |
 | tryOn__30FloaterFloatingForceTypeSpringFv | :x: |
@@ -7907,7 +7907,7 @@
 | getDistanceFromRotAxis__21LavaHomeSeesawRotatorCFv | :x: |
 | addForceHipDrop__21LavaHomeSeesawRotatorFv | :x: |
 | isGoingToReachTargetAngle__21LavaHomeSeesawRotatorCFv | :x: |
-| calcRotatedAngle__21LavaHomeSeesawRotatorCFPfRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcRotatedAngle__21LavaHomeSeesawRotatorCFPfRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | tryHipDrop__21LavaHomeSeesawRotatorFv | :x: |
 | tryStay__21LavaHomeSeesawRotatorFv | :x: |
 | tryRebound__21LavaHomeSeesawRotatorFv | :x: |
@@ -7948,9 +7948,9 @@
 | __ct__Q227NrvMapPartsAppearController17HostTypeDisappearFv | :x: |
 | execute__Q227NrvMapPartsAppearController17HostTypeDisappearCFP5Spine | :x: |
 | execute__Q227NrvMapPartsAppearController12HostTypeWaitCFP5Spine | :x: |
-| Functor<24MapPartsAppearController>__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v> | :x: |
-| __cl__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFv | :x: |
-| clone__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFP7JKRHeap | :x: |
+| Functor&lt;24MapPartsAppearController&gt;__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt; | :x: |
+| __cl__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFv | :x: |
+| clone__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__24MapPartsAppearControllerFv | :x: |
 
 
@@ -7966,7 +7966,7 @@
 | execute__Q218NrvMapPartsBreaker13HostTypeBreakCFP5Spine | :x: |
 | execute__Q218NrvMapPartsBreaker22HostTypeReactToTornadoCFP5Spine | :x: |
 | execute__Q218NrvMapPartsBreaker12HostTypeWaitCFP5Spine | :x: |
-| squared__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f> | :x: |
+| squared__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 
 # MapPartsFloatingForce.o
@@ -8004,15 +8004,15 @@
 # MapPartsFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16MapPartsFunctionFP9LiveActorPCc | :x: |
-| sendMsgToHost__16MapPartsFunctionFUl | :x: |
-| movement__16MapPartsFunctionFv | :x: |
-| initNerve__16MapPartsFunctionFPC5Nerve | :x: |
-| setNerve__16MapPartsFunctionFPC5Nerve | :x: |
-| getStep__16MapPartsFunctionCFv | :x: |
-| isStep__16MapPartsFunctionCFl | :x: |
-| isNerve__16MapPartsFunctionCFPC5Nerve | :x: |
-| isFirstStep__16MapPartsFunctionCFv | :x: |
+| __ct__16MapPartsFunctionFP9LiveActorPCc | :white_check_mark: |
+| sendMsgToHost__16MapPartsFunctionFUl | :white_check_mark: |
+| movement__16MapPartsFunctionFv | :white_check_mark: |
+| initNerve__16MapPartsFunctionFPC5Nerve | :white_check_mark: |
+| setNerve__16MapPartsFunctionFPC5Nerve | :white_check_mark: |
+| getStep__16MapPartsFunctionCFv | :white_check_mark: |
+| isStep__16MapPartsFunctionCFl | :white_check_mark: |
+| isNerve__16MapPartsFunctionCFPC5Nerve | :white_check_mark: |
+| isFirstStep__16MapPartsFunctionCFv | :white_check_mark: |
 
 
 # MapPartsRailGuideDrawer.o
@@ -8034,8 +8034,8 @@
 | execute__Q226NrvMapPartsRailGuideDrawer19HostTypeDrawForwardCFP5Spine | :x: |
 | execute__Q226NrvMapPartsRailGuideDrawer15HostTypeDrawAllCFP5Spine | :x: |
 | execute__Q226NrvMapPartsRailGuideDrawer15HostTypeHideAllCFP5Spine | :x: |
-| for_each<PP22MapPartsRailGuidePoint,Q23std23mem_fun_t<v,9LiveActor>>__3stdFPP22MapPartsRailGuidePointPP22MapPartsRailGuidePointQ23std23mem_fun_t<v,9LiveActor>_Q23std23mem_fun_t<v,9LiveActor> | :x: |
-| push_back__Q22MR56Vector<Q22MR41FixedArray<P22MapPartsRailGuidePoint,256>>FRCP22MapPartsRailGuidePoint | :x: |
+| for_each&lt;PP22MapPartsRailGuidePoint,Q23std23mem_fun_t&lt;v,9LiveActor&gt;&gt;__3stdFPP22MapPartsRailGuidePointPP22MapPartsRailGuidePointQ23std23mem_fun_t&lt;v,9LiveActor&gt;_Q23std23mem_fun_t&lt;v,9LiveActor&gt; | :x: |
+| push_back__Q22MR56Vector&lt;Q22MR41FixedArray&lt;P22MapPartsRailGuidePoint,256&gt;&gt;FRCP22MapPartsRailGuidePoint | :x: |
 | __dt__23MapPartsRailGuideDrawerFv | :x: |
 
 
@@ -8052,10 +8052,10 @@
 # MapPartsRailGuidePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcfb | :x: |
-| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcib | :x: |
-| init__22MapPartsRailGuidePointFRC12JMapInfoIter | :x: |
-| __dt__22MapPartsRailGuidePointFv | :x: |
+| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcfb | :white_check_mark: |
+| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcib | :white_check_mark: |
+| init__22MapPartsRailGuidePointFRC12JMapInfoIter | :white_check_mark: |
+| __dt__22MapPartsRailGuidePointFv | :white_check_mark: |
 
 
 # MapPartsRailMover.o
@@ -8124,15 +8124,15 @@
 # MapPartsRailPointPassChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__28MapPartsRailPointPassCheckerFP9LiveActor | :x: |
-| movement__28MapPartsRailPointPassCheckerFv | :x: |
-| start__28MapPartsRailPointPassCheckerFv | :x: |
-| isPassed__28MapPartsRailPointPassCheckerCFv | :x: |
-| isReachedEnd__28MapPartsRailPointPassCheckerCFv | :x: |
-| isPassedStartPoint__28MapPartsRailPointPassCheckerCFv | :x: |
-| isPassedEndPoint__28MapPartsRailPointPassCheckerCFv | :x: |
-| __dt__28MapPartsRailPointPassCheckerFv | :x: |
-| isWorking__28MapPartsRailPointPassCheckerCFv | :x: |
+| __ct__28MapPartsRailPointPassCheckerFP9LiveActor | :white_check_mark: |
+| movement__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| start__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| isPassed__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isReachedEnd__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isPassedStartPoint__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isPassedEndPoint__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| __dt__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| isWorking__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
 
 
 # MapPartsRailPosture.o
@@ -8169,7 +8169,7 @@
 | updateHostRotateMtx__19MapPartsRailRotatorFv | :x: |
 | updateInfo__19MapPartsRailRotatorFl | :x: |
 | isReachedTargetAngle__19MapPartsRailRotatorCFv | :x: |
-| calcRotateAxisDir__19MapPartsRailRotatorCFQ219MapPartsRailRotator8AxisTypePQ29JGeometry8TVec3<f> | :x: |
+| calcRotateAxisDir__19MapPartsRailRotatorCFQ219MapPartsRailRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateRotateMtx__19MapPartsRailRotatorFQ219MapPartsRailRotator8AxisTypef | :x: |
 | exeRotate__19MapPartsRailRotatorFv | :x: |
 | __sinit_\MapPartsRailRotator_cpp | :x: |
@@ -8204,7 +8204,7 @@
 | initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :x: |
 | isReachedTargetAngle__15MapPartsRotatorCFv | :x: |
 | updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef | :x: |
-| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3<f> | :x: |
+| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeRotate__15MapPartsRotatorFv | :x: |
 | exeRotateStart__15MapPartsRotatorFv | :x: |
 | __dt__15MapPartsRotatorFv | :x: |
@@ -8241,7 +8241,7 @@
 | getDistanceFromRotAxis__26MapPartsSeesaw1AxisRotatorCFv | :x: |
 | addForceHipDrop__26MapPartsSeesaw1AxisRotatorFv | :x: |
 | isGoingToReachTargetAngle__26MapPartsSeesaw1AxisRotatorCFv | :x: |
-| calcRotatedAngle__26MapPartsSeesaw1AxisRotatorCFPfRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>> | :x: |
+| calcRotatedAngle__26MapPartsSeesaw1AxisRotatorCFPfRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | tryHipDrop__26MapPartsSeesaw1AxisRotatorFv | :x: |
 | __dt__26MapPartsSeesaw1AxisRotatorFv | :x: |
 | __sinit_\MapPartsSeesaw1AxisRotator_cpp | :x: |
