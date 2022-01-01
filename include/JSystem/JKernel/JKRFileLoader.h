@@ -6,14 +6,14 @@ class JKRArcFinder;
 
 class JKRFileLoader : public JKRDisposer {
 public:
-    JKRFileLoader();    
+    JKRFileLoader();
     virtual ~JKRFileLoader();
 
     virtual void unmount();
 
     virtual bool becomeCurrent(const char *) = 0;
-    virtual void* getResource(const char *) = 0;
-    virtual void* getResource(unsigned long, const char *) = 0;
+    virtual void *getResource(const char *) = 0;
+    virtual void *getResource(unsigned long, const char *) = 0;
     virtual u32 readResource(void *, unsigned long, const char *) = 0;
     virtual u32 readResource(void *, unsigned long, unsigned long, const char *) = 0;
     virtual void removeResourceAll() = 0;

@@ -106,8 +106,8 @@ public:
     virtual ~JKRArchive();
 
     virtual bool becomeCurrent(const char *);
-    virtual void* getResource(const char *);
-    virtual void* getResource(unsigned long, const char *);
+    virtual void *getResource(const char *);
+    virtual void *getResource(unsigned long, const char *);
     virtual u32 readResource(void *, unsigned long, const char *);
     virtual u32 readResource(void *, unsigned long, unsigned long, const char *);
     virtual void removeResourceAll();

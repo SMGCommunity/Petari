@@ -8,349 +8,349 @@
 #include "revolution.h"
 
 bool JKRArchive::becomeCurrent(const char *pName) {
-	SDIDirEntry *dir;
+    SDIDirEntry *dir;
 
-	if (*pName == '/') {
-		const char *pDir = pName + 1;
+    if (*pName == '/') {
+        const char *pDir = pName + 1;
 
-		if (*pDir == 0) {
-			pDir = NULL;
-		}
+        if (*pDir == 0) {
+            pDir = NULL;
+        }
 
-		dir = findDirectory(pDir, 0);
-	}
-	else {
-		dir = findDirectory(pName, sCurrentDirIndex);
-	}
+        dir = findDirectory(pDir, 0);
+    }
+    else {
+        dir = findDirectory(pName, sCurrentDirIndex);
+    }
 
-	bool validDir = dir != NULL;
+    bool validDir = dir != NULL;
 
-	if (validDir) {
-		JKRFileLoader::gCurrentFileLoader = this;
-		sCurrentDirIndex = static_cast<u32>(dir - mDirs);
-	}
+    if (validDir) {
+        JKRFileLoader::gCurrentFileLoader = this;
+        sCurrentDirIndex = static_cast<u32>(dir - mDirs);
+    }
 
-	return validDir;
+    return validDir;
 }
 
 void *JKRArchive::getResource(const char *pName) {
-	SDIFileEntry *file;
-	
-	if (*pName == '/') {
-		file = findFsResource(pName + 1, 0);
-	}
-	else {
-		file = findFsResource(pName, sCurrentDirIndex);
-	}
+    SDIFileEntry *file;
 
-	if (file != NULL) {
-		return fetchResource(file, NULL);
-	}
+    if (*pName == '/') {
+        file = findFsResource(pName + 1, 0);
+    }
+    else {
+        file = findFsResource(pName, sCurrentDirIndex);
+    }
 
-	return NULL;
+    if (file != NULL) {
+        return fetchResource(file, NULL);
+    }
+
+    return NULL;
 }
 
 void *JKRArchive::getResource(unsigned long a1, const char *pName) {
-	SDIFileEntry *file;
+    SDIFileEntry *file;
 
-	if (a1 == NULL_MAGIC || a1 == QUESTIONMARK_MAGIC) {
-		file = findNameResource(pName);
-	}
-	else {
-		file = findTypeResource(a1, pName);
-	}
+    if (a1 == NULL_MAGIC || a1 == QUESTIONMARK_MAGIC) {
+        file = findNameResource(pName);
+    }
+    else {
+        file = findTypeResource(a1, pName);
+    }
 
-	if (file != NULL) {
-		return fetchResource(file, NULL);
-	}
+    if (file != NULL) {
+        return fetchResource(file, NULL);
+    }
 
-	return NULL;
+    return NULL;
 }
 
 u32 JKRArchive::readResource(void *a1, unsigned long a2, const char *pName) {
-	SDIFileEntry *file;
+    SDIFileEntry *file;
 
-	if (*pName == '/') {
-		file = findFsResource(pName + 1, 0);
-	}
-	else {
-		file = findFsResource(pName, sCurrentDirIndex);
-	}
+    if (*pName == '/') {
+        file = findFsResource(pName + 1, 0);
+    }
+    else {
+        file = findFsResource(pName, sCurrentDirIndex);
+    }
 
-	if (file != NULL) {
-		u32 local_18;
-		fetchResource(a1, a2, file, &local_18);
+    if (file != NULL) {
+        u32 local_18;
+        fetchResource(a1, a2, file, &local_18);
 
-		return local_18;
-	}
+        return local_18;
+    }
 
-	return 0;
+    return 0;
 }
 
 u32 JKRArchive::readResource(void *a1, unsigned long a2, unsigned long a3, const char *pName) {
-	SDIFileEntry *file;
+    SDIFileEntry *file;
 
-	if (a3 == NULL_MAGIC || a3 == QUESTIONMARK_MAGIC) {
-		file = findNameResource(pName);
-	}
-	else {
-		file = findTypeResource(a3, pName);
-	}
+    if (a3 == NULL_MAGIC || a3 == QUESTIONMARK_MAGIC) {
+        file = findNameResource(pName);
+    }
+    else {
+        file = findTypeResource(a3, pName);
+    }
 
-	if (file != NULL) {
-		u32 local_18;
-		fetchResource(a1, a2, file, &local_18);
+    if (file != NULL) {
+        u32 local_18;
+        fetchResource(a1, a2, file, &local_18);
 
-		return local_18;
-	}
+        return local_18;
+    }
 
-	return 0;
+    return 0;
 }
 
 void JKRArchive::removeResourceAll() {
-	if (mInfoBlock != NULL && mMountMode != MOUNT_MODE_DVD) {
-		SDIFileEntry *current = mFiles;
+    if (mInfoBlock != NULL && mMountMode != MOUNT_MODE_DVD) {
+        SDIFileEntry *current = mFiles;
 
-		for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-			if (current->mAllocatedData != NULL) {
-				JKRHeap::free(current->mAllocatedData, mHeap);
-				current->mAllocatedData = NULL;
-			}
+        for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+            if (current->mAllocatedData != NULL) {
+                JKRHeap::free(current->mAllocatedData, mHeap);
+                current->mAllocatedData = NULL;
+            }
 
-			current++;
-		}
-	}
+            current++;
+        }
+    }
 }
 
 bool JKRArchive::removeResource(void *pResource) {
-	SDIFileEntry *file = findPtrResource(pResource);
+    SDIFileEntry *file = findPtrResource(pResource);
 
-	if (file == NULL) {
-		return false;
-	}
+    if (file == NULL) {
+        return false;
+    }
 
-	file->mAllocatedData = NULL;
-	JKRHeap::free(pResource, mHeap);
+    file->mAllocatedData = NULL;
+    JKRHeap::free(pResource, mHeap);
 
-	return true;
+    return true;
 }
 
 bool JKRArchive::detachResource(void *pResource) {
-	SDIFileEntry *file = findPtrResource(pResource);
+    SDIFileEntry *file = findPtrResource(pResource);
 
-	if (file == NULL) {
-		return false;
-	}
+    if (file == NULL) {
+        return false;
+    }
 
-	file->mAllocatedData = NULL;
+    file->mAllocatedData = NULL;
 
-	return true;
+    return true;
 }
 
 s32 JKRArchive::getResSize(const void *pResource) const {
-	SDIFileEntry *file = findPtrResource(pResource);
+    SDIFileEntry *file = findPtrResource(pResource);
 
-	if (file == NULL) {
-		return -1;
-	}
+    if (file == NULL) {
+        return -1;
+    }
 
-	return file->mDataSize;
+    return file->mDataSize;
 }
 
 s32 JKRArchive::countFile(const char *pName) const {
-	SDIDirEntry *dir;
+    SDIDirEntry *dir;
 
-	if (*pName == '/') {
-		pName++;
+    if (*pName == '/') {
+        pName++;
 
-		if (*pName == 0) {
-			pName = NULL;
-		}
+        if (*pName == 0) {
+            pName = NULL;
+        }
 
-		dir = findDirectory(pName, 0);
-	}
-	else {
-		dir = findDirectory(pName, sCurrentDirIndex);
-	}
+        dir = findDirectory(pName, 0);
+    }
+    else {
+        dir = findDirectory(pName, sCurrentDirIndex);
+    }
 
-	if (dir != NULL) {
-		return dir->mNrFiles;
-	}
+    if (dir != NULL) {
+        return dir->mNrFiles;
+    }
 
-	return 0;
+    return 0;
 }
 
 JKRArcFinder *JKRArchive::getFirstFile(const char *pName) const {
-	SDIDirEntry *dir;
+    SDIDirEntry *dir;
 
-	if (*pName == '/') {
-		pName++;
+    if (*pName == '/') {
+        pName++;
 
-		if (*pName == 0) {
-			pName = NULL;
-		}
+        if (*pName == 0) {
+            pName = NULL;
+        }
 
-		dir = findDirectory(pName, 0);
-	}
-	else {
-		dir = findDirectory(pName, sCurrentDirIndex);
-	}
+        dir = findDirectory(pName, 0);
+    }
+    else {
+        dir = findDirectory(pName, sCurrentDirIndex);
+    }
 
-	if (dir != NULL) {
-		// Bad to cast to non-const
-		return new(JKRHeap::sGameHeap, 0) JKRArcFinder(const_cast<JKRArchive *>(this), dir->mFirstFileIndex, dir->mNrFiles);
-	}
+    if (dir != NULL) {
+        // Bad to cast to non-const
+        return new(JKRHeap::sGameHeap, 0) JKRArcFinder(const_cast<JKRArchive *>(this), dir->mFirstFileIndex, dir->mNrFiles);
+    }
 
-	return NULL;
+    return NULL;
 }
 
 JKRArchive *JKRArchive::check_mount_already(long entryNum) {
-	JSUPtrLink *current = JKRFileLoader::sFileLoaderList.mHead;
+    JSUPtrLink *current = JKRFileLoader::sFileLoaderList.mHead;
 
-	while (current != NULL) {
-		JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
+    while (current != NULL) {
+        JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-		if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum) {
-			archive->_34++;
-			return archive;
-		}
+        if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum) {
+            archive->_34++;
+            return archive;
+        }
 
-		current = current->mNext;
-	}
+        current = current->mNext;
+    }
 
-	return NULL;
+    return NULL;
 }
 
 JKRArchive *JKRArchive::check_mount_already(long entryNum, JKRHeap *pHeap) {
-	if (pHeap == NULL) {
-		pHeap = JKRHeap::sCurrentHeap;
-	}
+    if (pHeap == NULL) {
+        pHeap = JKRHeap::sCurrentHeap;
+    }
 
-	JSUPtrLink *current = JKRFileLoader::sFileLoaderList.mHead;
+    JSUPtrLink *current = JKRFileLoader::sFileLoaderList.mHead;
 
-	while (current != NULL) {
-		JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
+    while (current != NULL) {
+        JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-		if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum && archive->mHeap == pHeap) {
-			archive->_34++;
-			return archive;
-		}
+        if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum && archive->mHeap == pHeap) {
+            archive->_34++;
+            return archive;
+        }
 
-		current = current->mNext;
-	}
+        current = current->mNext;
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void JKRArchive::mount(const char *pName, EMountMode mountMode, JKRHeap *pHeap, EMountDirection mountDir) {
-	s32 entryNum = DVDConvertPathToEntrynum(pName);
+    s32 entryNum = DVDConvertPathToEntrynum(pName);
 
-	if (entryNum >= 0) {
-		mount(entryNum, mountMode, pHeap, mountDir);
-	}
+    if (entryNum >= 0) {
+        mount(entryNum, mountMode, pHeap, mountDir);
+    }
 }
 
 JKRArchive *JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap *pHeap, EMountDirection mountDir) {
-	JKRArchive *archive = check_mount_already(entryNum, pHeap);
+    JKRArchive *archive = check_mount_already(entryNum, pHeap);
 
-	if (archive != NULL) {
-		return archive;
-	}
+    if (archive != NULL) {
+        return archive;
+    }
 
-	s32 uVar1 = -4;
+    s32 uVar1 = -4;
 
-	if (mountDir == MOUNT_DIRECTION_1) {
-		uVar1 = 4;
-	}
+    if (mountDir == MOUNT_DIRECTION_1) {
+        uVar1 = 4;
+    }
 
-	switch (mountMode) {
-		case MOUNT_MODE_MEM:
-			archive = new(pHeap, uVar1) JKRMemArchive(entryNum, mountDir);
-			break;
-		case MOUNT_MODE_ARAM:
-			archive = new(pHeap, uVar1) JKRAramArchive(entryNum, mountDir);
-			break;
-		case MOUNT_MODE_DVD:
-			archive = new(pHeap, uVar1) JKRDvdArchive(entryNum, mountDir);
-			break;
-		case MOUNT_MODE_COMP:
-			archive = new(pHeap, uVar1) JKRCompArchive(entryNum, mountDir);
-			break;
-	}
+    switch (mountMode) {
+        case MOUNT_MODE_MEM:
+            archive = new(pHeap, uVar1) JKRMemArchive(entryNum, mountDir);
+            break;
+        case MOUNT_MODE_ARAM:
+            archive = new(pHeap, uVar1) JKRAramArchive(entryNum, mountDir);
+            break;
+        case MOUNT_MODE_DVD:
+            archive = new(pHeap, uVar1) JKRDvdArchive(entryNum, mountDir);
+            break;
+        case MOUNT_MODE_COMP:
+            archive = new(pHeap, uVar1) JKRCompArchive(entryNum, mountDir);
+            break;
+    }
 
-	if (archive != NULL && archive->mMountMode == MOUNT_MODE_0) {
-		delete archive;
-		archive = NULL;
-	}
+    if (archive != NULL && archive->mMountMode == MOUNT_MODE_0) {
+        delete archive;
+        archive = NULL;
+    }
 
-	return archive;
+    return archive;
 }
 
 bool JKRArchive::getDirEntry(SDirEntry *pDir, unsigned long fileIndex) const {
-	SDIFileEntry *file = findIdxResource(fileIndex);
+    SDIFileEntry *file = findIdxResource(fileIndex);
 
-	if (file == NULL) {
-		return false;
-	}
+    if (file == NULL) {
+        return false;
+    }
 
-	pDir->mFileFlag = file->mFlag;
-	pDir->mFileID = file->mFileID;
-	pDir->mName = mStringTable + file->mNameOffset;
+    pDir->mFileFlag = file->mFlag;
+    pDir->mFileID = file->mFileID;
+    pDir->mName = mStringTable + file->mNameOffset;
 
-	return true;
+    return true;
 }
 
 void *JKRArchive::getIdxResource(unsigned long fileIndex) {
-	SDIFileEntry *file = findIdxResource(fileIndex);
+    SDIFileEntry *file = findIdxResource(fileIndex);
 
-	if (file != NULL) {
-		return fetchResource(file, 0);
-	}
+    if (file != NULL) {
+        return fetchResource(file, 0);
+    }
 
-	return NULL;
+    return NULL;
 }
 
 void *JKRArchive::getResource(unsigned short fileID) {
-	SDIFileEntry *file = findIdResource(fileID);
+    SDIFileEntry *file = findIdResource(fileID);
 
-	if (file != NULL) {
-		return fetchResource(file, 0);
-	}
+    if (file != NULL) {
+        return fetchResource(file, 0);
+    }
 
-	return NULL;
+    return NULL;
 }
 
 u32 JKRArchive::readResource(void *pResource, unsigned long a2, unsigned short fileID) {
-	SDIFileEntry *file = findIdResource(fileID);
+    SDIFileEntry *file = findIdResource(fileID);
 
-	if (file != NULL) {
-		u32 local_18;
-		fetchResource(pResource, a2, file, &local_18);
+    if (file != NULL) {
+        u32 local_18;
+        fetchResource(pResource, a2, file, &local_18);
 
-		return local_18;
-	}
+        return local_18;
+    }
 
-	return 0;
+    return 0;
 }
 
 u32 JKRArchive::countResource() const {
-	u32 count = 0;
-	
-	for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-		if ((mFiles[i].mFlag & FILE_FLAG_FILE) != 0) {
-			count++;
-		}
-	}
+    u32 count = 0;
 
-	return count;
+    for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+        if ((mFiles[i].mFlag & FILE_FLAG_FILE) != 0) {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 u32 JKRArchive::getFileAttribute(unsigned long fileIndex) const {
-	SDIFileEntry *file = findIdxResource(fileIndex);
+    SDIFileEntry *file = findIdxResource(fileIndex);
 
-	if (file != NULL) {
-		return file->mFlag;
-	}
+    if (file != NULL) {
+        return file->mFlag;
+    }
 
-	return 0;
+    return 0;
 }

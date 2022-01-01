@@ -330,9 +330,9 @@ __sinit_\JKRDvdAramRipper_cpp,JKRDvdAramRipper.o,JKernel.a,false
 __dt__18JSUFileInputStreamFv,JKRDvdAramRipper.o,JKernel.a,false
 __ct__23JSUList<12JKRADCommand>Fv,JKRDvdAramRipper.o,JKernel.a,false
 __dt__23JSUList<12JKRADCommand>Fv,JKRDvdAramRipper.o,JKernel.a,false
-create__9JKRDecompFl,JKRDecomp.o,JKernel.a,false
-__ct__9JKRDecompFl,JKRDecomp.o,JKernel.a,false
-__dt__9JKRDecompFv,JKRDecomp.o,JKernel.a,false
+create__9JKRDecompFl,JKRDecomp.o,JKernel.a,true
+__ct__9JKRDecompFl,JKRDecomp.o,JKernel.a,true
+__dt__9JKRDecompFv,JKRDecomp.o,JKernel.a,true
 run__9JKRDecompFv,JKRDecomp.o,JKernel.a,false
 prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v,JKRDecomp.o,JKernel.a,false
 sendCommand__9JKRDecompFP16JKRDecompCommand,JKRDecomp.o,JKernel.a,false
