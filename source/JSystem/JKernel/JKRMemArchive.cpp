@@ -12,32 +12,29 @@ JKRMemArchive::JKRMemArchive() {
 }
 
 JKRMemArchive::JKRMemArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_MEM) {
-    _30 = 0;
+    mIsMounted = false;
     mMountDir = mountDir;
 
     if (!open(entryNum, mountDir)) {
         return;
     }
 
-    SDIDirEntry *firstDir = mDirs;
-    char *stringTable = mStringTable;
+    mLoaderType = RARC_MAGIC;
+    mLoaderName = mStringTable + mDirs->mNameOffset;
 
-    _2C = RARC_MAGIC;
-    mLoaderName = stringTable + firstDir->mNameOffset;
+    prependVolumeList(&mLoaderLink);
 
-    prependVolumeList(&_18);
-
-    _30 = 1;
+    mIsMounted = true;
 }
 
 JKRMemArchive::~JKRMemArchive() {
-    if (_30 == 1) {
+    if (mIsMounted == true) {
         if (_6C && mHeader != NULL) {
             JKRHeap::free(mHeader, mHeap);
         }
 
-        removeVolumeList(&_18);
-        _30 = 0;
+        removeVolumeList(&mLoaderLink);
+        mIsMounted = false;
     }
 }
 
@@ -136,7 +133,7 @@ void *JKRMemArchive::fetchResource(void *pData, unsigned long dataSize, SDIFileE
 }
 
 void JKRMemArchive::fixedInit(long entryNum) {
-    _30 = 0;
+    mIsMounted = false;
     mMountMode = MOUNT_MODE_MEM;
     _34 = 1;
     _58 = 2;
@@ -165,12 +162,12 @@ bool JKRMemArchive::mountFixed(void *a1, JKRMemBreakFlag breakFlag) {
     SDIDirEntry *firstDir = mDirs;
     char *stringTable = mStringTable;
 
-    _2C = RARC_MAGIC;
+    mLoaderType = RARC_MAGIC;
     mLoaderName = stringTable + firstDir->mNameOffset;
 
-    prependVolumeList(&_18);
+    prependVolumeList(&mLoaderLink);
 
-    _30 = 1;
+    mIsMounted = true;
     _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
 
     return true;

@@ -210,7 +210,7 @@ JKRArchive *JKRArchive::check_mount_already(long entryNum) {
     while (current != NULL) {
         JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-        if (archive->_2C == RARC_MAGIC && archive->mEntryNum == entryNum) {
+        if (archive->mLoaderType == RARC_MAGIC && archive->mEntryNum == entryNum) {
             archive->_34++;
             return archive;
         }
@@ -231,7 +231,7 @@ JKRArchive *JKRArchive::check_mount_already(long entryNum, JKRHeap *pHeap) {
     while (current != NULL) {
         JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-        if (archive->_2C == RARC_MAGIC && archive->mEntryNum == entryNum && archive->mHeap == pHeap) {
+        if (archive->mLoaderType == RARC_MAGIC && archive->mEntryNum == entryNum && archive->mHeap == pHeap) {
             archive->_34++;
             return archive;
         }

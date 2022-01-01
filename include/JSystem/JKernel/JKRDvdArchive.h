@@ -11,9 +11,10 @@ public:
     virtual void *fetchResource(SDIFileEntry *, unsigned long *);
     virtual void *fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *);
 
-    void open(long);
+    bool open(long);
     void fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char *, unsigned long, int, int);
     void fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap *, int, int, unsigned char **);
 
-    u8 _64[8];
+    u8 _64[4];
+    void *_68;
 };

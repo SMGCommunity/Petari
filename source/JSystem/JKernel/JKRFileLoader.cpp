@@ -7,9 +7,9 @@ namespace {
 
 JSUList<JKRFileLoader> JKRFileLoader::sFileLoaderList = JSUList<JKRFileLoader>();
 
-JKRFileLoader::JKRFileLoader() : JKRDisposer(), _18(this) {
+JKRFileLoader::JKRFileLoader() : JKRDisposer(), mLoaderLink(this) {
     mLoaderName = NULL;
-    _2C = 0;
+    mLoaderType = 0;
     _34 = 0;
 }
 

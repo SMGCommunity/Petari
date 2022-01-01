@@ -32,10 +32,10 @@ public:
     static JSUList<JKRFileLoader> sFileLoaderList; // _8060CF9C
     static JKRFileLoader *gCurrentFileLoader; // _806B7140;
 
-    JSULink<JKRFileLoader> _18;
-    char *mLoaderName;          // _28
-    u32 _2C;
-    u8 _30;
+    JSULink<JKRFileLoader> mLoaderLink; // _18
+    char *mLoaderName;                  // _28
+    u32 mLoaderType;                    // _2C
+    bool mIsMounted;                    // _30
     u8 _31[3];
     u32 _34;
 };

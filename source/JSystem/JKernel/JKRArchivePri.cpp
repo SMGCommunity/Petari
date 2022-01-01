@@ -54,12 +54,12 @@ const char *JKRArchive::CArcName::store(const char *pName, char stopChar) {
 #endif
 
 JKRArchive::JKRArchive() {
-    _30 = 0;
+    mIsMounted = false;
     mMountDir = MOUNT_DIRECTION_1;
 }
 
 JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
-    _30 = 0;
+    mIsMounted = false;
     mMountMode = mountMode;
     _34 = 1;
     _58 = 1;

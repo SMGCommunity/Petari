@@ -266,7 +266,7 @@ removeResourceAll__13JKRMemArchiveFv,JKRMemArchive.o,JKernel.a,true
 removeResource__13JKRMemArchiveFPv,JKRMemArchive.o,JKernel.a,true
 fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli,JKRMemArchive.o,JKernel.a,false
 getExpandedResSize__13JKRMemArchiveCFPCv,JKRMemArchive.o,JKernel.a,true
-__ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection,JKRAramArchive.o,JKernel.a,false
+__ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection,JKRAramArchive.o,JKernel.a,true
 __dt__14JKRAramArchiveFv,JKRAramArchive.o,JKernel.a,false
 open__14JKRAramArchiveFl,JKRAramArchive.o,JKernel.a,false
 fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl,JKRAramArchive.o,JKernel.a,false
@@ -276,7 +276,7 @@ fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc,JKRAramArchive.o,J
 getExpandedResSize__14JKRAramArchiveCFPCv,JKRAramArchive.o,JKernel.a,false
 __dt__7JKRFileFv,JKRAramArchive.o,JKernel.a,false
 JKRConvertAttrToCompressionType__Fi,JKRAramArchive.o,JKernel.a,false
-__ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection,JKRDvdArchive.o,JKernel.a,false
+__ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection,JKRDvdArchive.o,JKernel.a,true
 __dt__13JKRDvdArchiveFv,JKRDvdArchive.o,JKernel.a,false
 open__13JKRDvdArchiveFl,JKRDvdArchive.o,JKernel.a,false
 fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl,JKRDvdArchive.o,JKernel.a,false
