@@ -307,10 +307,10 @@
 | MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% |
 | MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
 | MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsFunction.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailGuideDrawer.o | 0.0% | 0 / 19 | 0.0% |
 | MapPartsRailGuideHolder.o | 0.0% | 0 / 5 | 0.0% |
-| MapPartsRailGuidePoint.o | 0.0% | 0 / 4 | 0.0% |
+| MapPartsRailGuidePoint.o | 100.0% | 4 / 4 | 100.0% |
 | MapPartsRailMover.o | 0.0% | 0 / 58 | 0.0% |
 | MapPartsRailPointPassChecker.o | 0.0% | 0 / 9 | 0.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
@@ -8004,15 +8004,15 @@
 # MapPartsFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16MapPartsFunctionFP9LiveActorPCc | :x: |
-| sendMsgToHost__16MapPartsFunctionFUl | :x: |
-| movement__16MapPartsFunctionFv | :x: |
-| initNerve__16MapPartsFunctionFPC5Nerve | :x: |
-| setNerve__16MapPartsFunctionFPC5Nerve | :x: |
-| getStep__16MapPartsFunctionCFv | :x: |
-| isStep__16MapPartsFunctionCFl | :x: |
-| isNerve__16MapPartsFunctionCFPC5Nerve | :x: |
-| isFirstStep__16MapPartsFunctionCFv | :x: |
+| __ct__16MapPartsFunctionFP9LiveActorPCc | :white_check_mark: |
+| sendMsgToHost__16MapPartsFunctionFUl | :white_check_mark: |
+| movement__16MapPartsFunctionFv | :white_check_mark: |
+| initNerve__16MapPartsFunctionFPC5Nerve | :white_check_mark: |
+| setNerve__16MapPartsFunctionFPC5Nerve | :white_check_mark: |
+| getStep__16MapPartsFunctionCFv | :white_check_mark: |
+| isStep__16MapPartsFunctionCFl | :white_check_mark: |
+| isNerve__16MapPartsFunctionCFPC5Nerve | :white_check_mark: |
+| isFirstStep__16MapPartsFunctionCFv | :white_check_mark: |
 
 
 # MapPartsRailGuideDrawer.o
@@ -8052,10 +8052,10 @@
 # MapPartsRailGuidePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcfb | :x: |
-| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcib | :x: |
-| init__22MapPartsRailGuidePointFRC12JMapInfoIter | :x: |
-| __dt__22MapPartsRailGuidePointFv | :x: |
+| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcfb | :white_check_mark: |
+| __ct__22MapPartsRailGuidePointFPC9LiveActorPCcib | :white_check_mark: |
+| init__22MapPartsRailGuidePointFRC12JMapInfoIter | :white_check_mark: |
+| __dt__22MapPartsRailGuidePointFv | :white_check_mark: |
 
 
 # MapPartsRailMover.o
