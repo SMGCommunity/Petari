@@ -10,6 +10,10 @@ CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
     _60 = 0.35f;
 }
 
+CameraRailFollow::~CameraRailFollow() {
+
+}
+
 CamTranslatorBase *CameraRailFollow::createTranslator() {
     return new CamTranslatorRailFollow(this);
 }

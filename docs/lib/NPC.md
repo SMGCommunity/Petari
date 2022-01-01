@@ -11,10 +11,10 @@
 | HoneyBee.o | 0.0% | 0 / 28 | 0.0% |
 | HoneyQueen.o | 0.0% | 0 / 35 | 0.0% |
 | Kinopio.o | 0.0% | 0 / 65 | 0.0% |
-| KinopioAstro.o | 0.0% | 0 / 22 | 0.0% |
+| KinopioAstro.o | 0.5298013245033113% | 1 / 22 | 4.545454545454546% |
 | KoopaJr.o | 0.0% | 0 / 41 | 0.0% |
 | LuigiNPC.o | 0.0% | 0 / 58 | 0.0% |
-| MiiDatabase.o | 0.0% | 0 / 3 | 0.0% |
+| MiiDatabase.o | 21.91780821917808% | 1 / 3 | 33.33333333333333% |
 | MiiFaceIcon.o | 0.0% | 0 / 8 | 0.0% |
 | MiiFaceIconHolder.o | 0.0% | 0 / 7 | 0.0% |
 | MiiFaceParts.o | 0.0% | 0 / 13 | 0.0% |
@@ -511,7 +511,7 @@
 | endDemo__12KinopioAstroFv | :x: |
 | init__12KinopioAstroFRC12JMapInfoIter | :x: |
 | control__12KinopioAstroFv | :x: |
-| getExpandedResSize__10JKRArchiveCFPCv | :x: |
+| getExpandedResSize__10JKRArchiveCFPCv | :white_check_mark: |
 | Functor&lt;12KinopioAstro&gt;__2MRFP12KinopioAstroM12KinopioAstroFPCvPv_v_Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt; | :x: |
 | __cl__Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR51FunctorV0M&lt;P12KinopioAstro,M12KinopioAstroFPCvPv_v&gt;CFP7JKRHeap | :x: |
@@ -636,7 +636,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __dt__11MiiDatabaseFv | :x: |
-| __dt__13JKRFileFinderFv | :x: |
+| __dt__13JKRFileFinderFv | :white_check_mark: |
 | __dt__Q22MR32AssignableArray&lt;P12RFLStoreData&gt;Fv | :x: |
 
 

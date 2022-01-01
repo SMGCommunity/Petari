@@ -55,9 +55,9 @@ struct CameraTableEntry {
     u8 _D[3];
 };
 
-const char *sDefaultCameraName = "CAM_TYPE_XZ_PARA";
-
 namespace {
+    const char *gDefaultCameraName = "CAM_TYPE_XZ_PARA";
+
     template<typename T>
     Camera *createCamera();
 
@@ -285,61 +285,61 @@ namespace {
     Camera *createCamera<CameraSubjective>() {
         return new CameraSubjective("主観カメラ");
     }
+
+    #define NR_CAMERA_TYPES 45
+
+    CameraTableEntry gCameraTable[NR_CAMERA_TYPES] = {
+        { "CAM_TYPE_XZ_PARA",               "並行",                       createCamera<CameraParallel>,           1 },
+        { "CAM_TYPE_TOWER",                 "塔",                         createCamera<CameraTower>,              1 },
+        { "CAM_TYPE_FOLLOW",                "フォロー",                    createCamera<CameraFollow>,             1 },
+        { "CAM_TYPE_WONDER_PLANET",         "プラネット",                  createCamera<CameraWonderPlanet>,       1 },
+        { "CAM_TYPE_POINT_FIX",             "完全固定",                    createCamera<CameraFix>,                1 },
+        { "CAM_TYPE_EYEPOS_FIX",            "定点",                       createCamera<CameraFixedPoint>,         1 },
+        { "CAM_TYPE_SLIDER",                "スライダー",                  createCamera<CameraBehind>,             1 },
+        { "CAM_TYPE_INWARD_TOWER",          "塔内部",                      createCamera<CameraInwardTower>,        1 },
+        { "CAM_TYPE_EYEPOS_FIX_THER",       "その場定点",                  createCamera<CameraFixedThere>,         1 },
+        { "CAM_TYPE_TRIPOD_BOSS",           "三脚ボス",                    createCamera<CameraTripodBoss>,         1 },
+        { "CAM_TYPE_TOWER_POS",             "塔（サブターゲット付き）",     createCamera<CameraTowerPos>,           1 },
+        { "CAM_TYPE_TRIPOD_PLANET",         "三脚惑星",                    createCamera<CameraTripodPlanet>,       1 },
+        { "CAM_TYPE_DEAD",                  "通常死亡",                    createCamera<CameraDead>,               1 },
+        { "CAM_TYPE_INWARD_SPHERE",         "球内部",                      createCamera<CameraInwardSphere>,       1 },
+        { "CAM_TYPE_RAIL_DEMO",             "レールデモ",                  createCamera<CameraRailDemo>,           1 },
+        { "CAM_TYPE_RAIL_FOLLOW",           "レールフォロー",              createCamera<CameraRailFollow>,         1 },
+        { "CAM_TYPE_TRIPOD_BOSS_JOINT",     "三脚ボスジョイント",           createCamera<CameraTripodBossJoint>,    1 },
+        { "CAM_TYPE_CHARMED_TRIPOD_BOSS",   "三脚ボスジョイント注視",       createCamera<CameraCharmedTripodBoss>,  1 },
+        { "CAM_TYPE_OBJ_PARALLEL",          "オブジェ並行",                createCamera<CameraObjParallel>,        1 },
+        { "CAM_TYPE_CHARMED_FIX",           "サンボ",                      createCamera<CameraCharmedFix>,         1 },
+        { "CAM_TYPE_GROUND",                "地面",                        createCamera<CameraGround>,             1 },
+        { "CAM_TYPE_TRUNDLE",               "トランドル",                  createCamera<CameraTrundle>,            1 },
+        { "CAM_TYPE_CUBE_PLANET",           "キューブ惑星",                createCamera<CameraCubePlanet>,         1 },
+        { "CAM_TYPE_INNER_CYLINDER",        "円筒内部",                    createCamera<CameraInnerCylinder>,      1 },
+        { "CAM_TYPE_SPIRAL_DEMO",           "螺旋デモ",                    createCamera<CameraSpiral>,             1 },
+        { "CAM_TYPE_TALK",                  "会話",                       createCamera<CameraTalk>,               1 },
+        { "CAM_TYPE_MTXREG_PARALLEL",       "マトリクスレジスタ並行",       createCamera<CameraMtxRegParallel>,     1 },
+        { "CAM_TYPE_CHARMED_VECREG",        "ベクトルレジスタ注目",         createCamera<CameraCharmedVecReg>,      1 },
+        { "CAM_TYPE_MEDIAN_PLANET",         "中点注目プラネット",           createCamera<CameraMedianPlanet>,       1 },
+        { "CAM_TYPE_TWISTED_PASSAGE",       "ねじれ回廊",                  createCamera<CameraTwistedPassage>,     1 },
+        { "CAM_TYPE_MEDIAN_TOWER",          "中点塔カメラ",                createCamera<CameraMedianTower>,        1 },
+        { "CAM_TYPE_CHARMED_VECREG_TOWER",  "VecReg角度補正塔カメラ",       createCamera<CameraCharmedVecRegTower>, 1 },
+        { "CAM_TYPE_FRONT_AND_BACK",        "表裏カメラ",                  createCamera<CameraFrontAndBack>,       1 },
+        { "CAM_TYPE_RACE_FOLLOW",           "レース用フォロー",             createCamera<CameraRaceFollow>,         1 },
+        { "CAM_TYPE_2D_SLIDE",              "２Ｄスライド",                createCamera<CameraSlide>,              1 },
+        { "CAM_TYPE_FOO_FIGHTER",           "フーファイター",              createCamera<CameraFooFighter>,         1 },
+        { "CAM_TYPE_FOO_FIGHTER_PLANET",    "フーファイタープラネット",     createCamera<CameraFooFighterPlanet>,   1 },
+        { "CAM_TYPE_BLACK_HOLE",            "ブラックホール",              createCamera<CameraBlackHole>,          0 },
+        { "CAM_TYPE_ANIM",                  "アニメ",                     createCamera<CameraAnim>,               0 },
+        { "CAM_TYPE_DPD",                   "ＤＰＤ",                     createCamera<CameraDPD>,                1 },
+        { "CAM_TYPE_WATER_FOLLOW",          "水中フォロー",                createCamera<CameraWaterFollow>,        1 },
+        { "CAM_TYPE_WATER_PLANET",          "水中プラネット",              createCamera<CameraWaterPlanet>,        1 },
+        { "CAM_TYPE_WATER_PLANET_BOSS",     "水中プラネットボス",          createCamera<CameraWaterPlanetBoss>,    1 },
+        { "CAM_TYPE_RAIL_WATCH",            "レール注目",                 createCamera<CameraRailWatch>,          1 },
+        { "CAM_TYPE_SUBJECTIVE",            "主観",                       createCamera<CameraSubjective>,         1 }
+    };
 }
-
-#define NR_CAMERA_TYPES 45
-
-CameraTableEntry sCameraTable[NR_CAMERA_TYPES] = {
-    { "CAM_TYPE_XZ_PARA",               "並行",                       createCamera<CameraParallel>,           1 },
-    { "CAM_TYPE_TOWER",                 "塔",                         createCamera<CameraTower>,              1 },
-    { "CAM_TYPE_FOLLOW",                "フォロー",                    createCamera<CameraFollow>,             1 },
-    { "CAM_TYPE_WONDER_PLANET",         "プラネット",                  createCamera<CameraWonderPlanet>,       1 },
-    { "CAM_TYPE_POINT_FIX",             "完全固定",                    createCamera<CameraFix>,                1 },
-    { "CAM_TYPE_EYEPOS_FIX",            "定点",                       createCamera<CameraFixedPoint>,         1 },
-    { "CAM_TYPE_SLIDER",                "スライダー",                  createCamera<CameraBehind>,             1 },
-    { "CAM_TYPE_INWARD_TOWER",          "塔内部",                      createCamera<CameraInwardTower>,        1 },
-    { "CAM_TYPE_EYEPOS_FIX_THER",       "その場定点",                  createCamera<CameraFixedThere>,         1 },
-    { "CAM_TYPE_TRIPOD_BOSS",           "三脚ボス",                    createCamera<CameraTripodBoss>,         1 },
-    { "CAM_TYPE_TOWER_POS",             "塔（サブターゲット付き）",     createCamera<CameraTowerPos>,           1 },
-    { "CAM_TYPE_TRIPOD_PLANET",         "三脚惑星",                    createCamera<CameraTripodPlanet>,       1 },
-    { "CAM_TYPE_DEAD",                  "通常死亡",                    createCamera<CameraDead>,               1 },
-    { "CAM_TYPE_INWARD_SPHERE",         "球内部",                      createCamera<CameraInwardSphere>,       1 },
-    { "CAM_TYPE_RAIL_DEMO",             "レールデモ",                  createCamera<CameraRailDemo>,           1 },
-    { "CAM_TYPE_RAIL_FOLLOW",           "レールフォロー",              createCamera<CameraRailFollow>,         1 },
-    { "CAM_TYPE_TRIPOD_BOSS_JOINT",     "三脚ボスジョイント",           createCamera<CameraTripodBossJoint>,    1 },
-    { "CAM_TYPE_CHARMED_TRIPOD_BOSS",   "三脚ボスジョイント注視",       createCamera<CameraCharmedTripodBoss>,  1 },
-    { "CAM_TYPE_OBJ_PARALLEL",          "オブジェ並行",                createCamera<CameraObjParallel>,        1 },
-    { "CAM_TYPE_CHARMED_FIX",           "サンボ",                      createCamera<CameraCharmedFix>,         1 },
-    { "CAM_TYPE_GROUND",                "地面",                        createCamera<CameraGround>,             1 },
-    { "CAM_TYPE_TRUNDLE",               "トランドル",                  createCamera<CameraTrundle>,            1 },
-    { "CAM_TYPE_CUBE_PLANET",           "キューブ惑星",                createCamera<CameraCubePlanet>,         1 },
-    { "CAM_TYPE_INNER_CYLINDER",        "円筒内部",                    createCamera<CameraInnerCylinder>,      1 },
-    { "CAM_TYPE_SPIRAL_DEMO",           "螺旋デモ",                    createCamera<CameraSpiral>,             1 },
-    { "CAM_TYPE_TALK",                  "会話",                       createCamera<CameraTalk>,               1 },
-    { "CAM_TYPE_MTXREG_PARALLEL",       "マトリクスレジスタ並行",       createCamera<CameraMtxRegParallel>,     1 },
-    { "CAM_TYPE_CHARMED_VECREG",        "ベクトルレジスタ注目",         createCamera<CameraCharmedVecReg>,      1 },
-    { "CAM_TYPE_MEDIAN_PLANET",         "中点注目プラネット",           createCamera<CameraMedianPlanet>,       1 },
-    { "CAM_TYPE_TWISTED_PASSAGE",       "ねじれ回廊",                  createCamera<CameraTwistedPassage>,     1 },
-    { "CAM_TYPE_MEDIAN_TOWER",          "中点塔カメラ",                createCamera<CameraMedianTower>,        1 },
-    { "CAM_TYPE_CHARMED_VECREG_TOWER",  "VecReg角度補正塔カメラ",       createCamera<CameraCharmedVecRegTower>, 1 },
-    { "CAM_TYPE_FRONT_AND_BACK",        "表裏カメラ",                  createCamera<CameraFrontAndBack>,       1 },
-    { "CAM_TYPE_RACE_FOLLOW",           "レース用フォロー",             createCamera<CameraRaceFollow>,         1 },
-    { "CAM_TYPE_2D_SLIDE",              "２Ｄスライド",                createCamera<CameraSlide>,              1 },
-    { "CAM_TYPE_FOO_FIGHTER",           "フーファイター",              createCamera<CameraFooFighter>,         1 },
-    { "CAM_TYPE_FOO_FIGHTER_PLANET",    "フーファイタープラネット",     createCamera<CameraFooFighterPlanet>,   1 },
-    { "CAM_TYPE_BLACK_HOLE",            "ブラックホール",              createCamera<CameraBlackHole>,          0 },
-    { "CAM_TYPE_ANIM",                  "アニメ",                     createCamera<CameraAnim>,               0 },
-    { "CAM_TYPE_DPD",                   "ＤＰＤ",                     createCamera<CameraDPD>,                1 },
-    { "CAM_TYPE_WATER_FOLLOW",          "水中フォロー",                createCamera<CameraWaterFollow>,        1 },
-    { "CAM_TYPE_WATER_PLANET",          "水中プラネット",              createCamera<CameraWaterPlanet>,        1 },
-    { "CAM_TYPE_WATER_PLANET_BOSS",     "水中プラネットボス",          createCamera<CameraWaterPlanetBoss>,    1 },
-    { "CAM_TYPE_RAIL_WATCH",            "レール注目",                 createCamera<CameraRailWatch>,          1 },
-    { "CAM_TYPE_SUBJECTIVE",            "主観",                       createCamera<CameraSubjective>,         1 }
-};
 
 CameraHolder::CameraHolder(const char *pName) : NameObj(pName) {
     createCameras();
-    mDefaultCameraIndex = getIndexOf(sDefaultCameraName);
+    mDefaultCameraIndex = getIndexOf(gDefaultCameraName);
     mDefaultTranslator = mTranslators[mDefaultCameraIndex];
 }
 
@@ -353,7 +353,7 @@ CamTranslatorBase *CameraHolder::getTranslator(long index) {
 
 s32 CameraHolder::getIndexOf(const char *pName) const {
     for (s32 i = 0; i < NR_CAMERA_TYPES; i++) {
-        if (strcmp(pName, sCameraTable[i].mName) == 0) {
+        if (strcmp(pName, gCameraTable[i].mName) == 0) {
             return i;
         }
     }
@@ -384,7 +384,7 @@ void CameraHolder::createCameras() {
     mTranslators = new CamTranslatorBase *[NR_CAMERA_TYPES];
 
     for (s32 i = 0; i < NR_CAMERA_TYPES; i++) {
-        mCameras[i] = sCameraTable[i].mCreateFunction();
+        mCameras[i] = gCameraTable[i].mCreateFunction();
         mTranslators[i] = mCameras[i]->createTranslator();
     }
 }

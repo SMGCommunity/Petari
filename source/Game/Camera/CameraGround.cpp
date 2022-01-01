@@ -14,6 +14,10 @@ CameraGround::CameraGround(const char *pName) : Camera(pName) {
     _70 = true;
 }
 
+CameraGround::~CameraGround() {
+
+}
+
 CamTranslatorBase *CameraGround::createTranslator() {
     return new CamTranslatorGround(this);
 }

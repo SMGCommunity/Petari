@@ -7,6 +7,7 @@ class CubeCameraArea;
 class GravityInfo;
 class LiveActor;
 class MarioActor;
+class Triangle;
 
 class CameraTargetObj : public NameObj {
 public:
@@ -39,7 +40,7 @@ public:
     virtual u32 getSpecialMode() const;
     virtual bool isCameraStateOn(unsigned long) const;
     virtual CubeCameraArea *getCubeCameraArea() const;
-    virtual void *getGroundTriangle() const; // TODO: return type
+    virtual Triangle *getGroundTriangle() const;
     virtual GravityInfo *getGravityInfo() const;
     virtual void enableCameraWall();
     virtual void disableCameraWall();
@@ -69,7 +70,7 @@ public:
 
     virtual f32 getRadius() const;
     virtual CubeCameraArea* getCubeCameraArea() const;
-    virtual void *getGroundTriangle() const;
+    virtual Triangle *getGroundTriangle() const;
 
     const LiveActor *mActor;        // _10
     TVec3f mUp;                     // _14
@@ -102,7 +103,7 @@ public:
     virtual u32 getSpecialMode() const;
     virtual bool isCameraStateOn(unsigned long) const;
     virtual CubeCameraArea *getCubeCameraArea() const;
-    virtual void *getGroundTriangle() const;
+    virtual Triangle *getGroundTriangle() const;
     virtual GravityInfo *getGravityInfo() const;
     virtual bool isDebugMode() const;
     virtual TMtx34f *getMapBaseMtx() const;
@@ -114,7 +115,7 @@ public:
     TVec3f mGravityVector;          // _38
     TVec3f mGroundPos;              // _44
     CubeCameraArea *mCameraArea;    // _50
-    void *mGroundTriangle;          // _54
+    Triangle *mGroundTriangle;      // _54
     u16 _58;
     bool _5A;
     u8 _5B;

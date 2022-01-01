@@ -1,7 +1,7 @@
 #include "JSystem/JSupport/JSUList.h"
 
 JSUPtrLink::JSUPtrLink(void *pData) {
-    _0 = pData;
+    mData = pData;
     mPtrList = 0;
     mPrev = 0;
     mNext = 0;
@@ -149,4 +149,9 @@ bool JSUPtrList::remove(JSUPtrLink *pLink) {
     }
 
     return isSameList;
+}
+
+template<class T>
+JSUList<T>::JSUList() : JSUPtrList() {
+
 }

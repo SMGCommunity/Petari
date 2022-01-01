@@ -96,7 +96,7 @@ CubeCameraArea *CameraTargetActor::getCubeCameraArea() const {
     return mCameraArea;
 }
 
-void *CameraTargetActor::getGroundTriangle() const {
+Triangle *CameraTargetActor::getGroundTriangle() const {
     return NULL;
 }
 
