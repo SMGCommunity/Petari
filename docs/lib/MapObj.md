@@ -312,7 +312,7 @@
 | MapPartsRailGuideHolder.o | 0.0% | 0 / 5 | 0.0% |
 | MapPartsRailGuidePoint.o | 100.0% | 4 / 4 | 100.0% |
 | MapPartsRailMover.o | 0.0% | 0 / 58 | 0.0% |
-| MapPartsRailPointPassChecker.o | 0.0% | 0 / 9 | 0.0% |
+| MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
 | MapPartsRotator.o | 0.0% | 0 / 33 | 0.0% |
@@ -8124,15 +8124,15 @@
 # MapPartsRailPointPassChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__28MapPartsRailPointPassCheckerFP9LiveActor | :x: |
-| movement__28MapPartsRailPointPassCheckerFv | :x: |
-| start__28MapPartsRailPointPassCheckerFv | :x: |
-| isPassed__28MapPartsRailPointPassCheckerCFv | :x: |
-| isReachedEnd__28MapPartsRailPointPassCheckerCFv | :x: |
-| isPassedStartPoint__28MapPartsRailPointPassCheckerCFv | :x: |
-| isPassedEndPoint__28MapPartsRailPointPassCheckerCFv | :x: |
-| __dt__28MapPartsRailPointPassCheckerFv | :x: |
-| isWorking__28MapPartsRailPointPassCheckerCFv | :x: |
+| __ct__28MapPartsRailPointPassCheckerFP9LiveActor | :white_check_mark: |
+| movement__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| start__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| isPassed__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isReachedEnd__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isPassedStartPoint__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| isPassedEndPoint__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
+| __dt__28MapPartsRailPointPassCheckerFv | :white_check_mark: |
+| isWorking__28MapPartsRailPointPassCheckerCFv | :white_check_mark: |
 
 
 # MapPartsRailPosture.o

@@ -9,7 +9,10 @@ class MapPartsFunction : public NameObj {
 public:
     MapPartsFunction(LiveActor *, const char *);
 
-    virtual ~MapPartsFunction();
+    inline virtual ~MapPartsFunction() {
+
+    }
+
     virtual void init(const JMapInfoIter &) {
 
     }
