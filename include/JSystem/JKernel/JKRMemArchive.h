@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 enum JKRMemBreakFlag {
-
+    JKR_MEM_BREAK_FLAG_1 = 1
 };
 
 class JKRMemArchive : public JKRArchive {
@@ -16,13 +16,16 @@ public:
     virtual bool removeResource(void *);
     virtual s32 getExpandedResSize(const void *) const;
     virtual void *fetchResource(SDIFileEntry *, unsigned long *);
-    virtual void fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *);
+    virtual void *fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *);
 
     void fixedInit(long);
-    void mountFixed(void *, JKRMemBreakFlag);
-    void open(long, EMountDirection);
-    void open(void *, JKRMemBreakFlag);
-    void fetchResource_subroutine(unsigned char *, unsigned long, unsigned char *, unsigned long, int);
+    bool mountFixed(void *, JKRMemBreakFlag);
+    bool open(long, EMountDirection);
+    bool open(void *, unsigned long, JKRMemBreakFlag);
+    static s32 fetchResource_subroutine(unsigned char *, unsigned long, unsigned char *, unsigned long, int);
 
-    u8 _64[12];
+    RarcHeader *mHeader;        // _64
+    u8 *mFileDataStart;         // _68
+    bool _6C;
+    u8 _6D[3];
 };

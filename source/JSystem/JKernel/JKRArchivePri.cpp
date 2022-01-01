@@ -54,12 +54,12 @@ const char *JKRArchive::CArcName::store(const char *pName, char stopChar) {
 #endif
 
 JKRArchive::JKRArchive() {
-    _30 = false;
-    _60 = 1;
+    _30 = 0;
+    mMountDir = MOUNT_DIRECTION_1;
 }
 
-JKRArchive::JKRArchive(long a1, EMountMode mountMode) {
-    _30 = false;
+JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
+    _30 = 0;
     mMountMode = mountMode;
     _34 = 1;
     _58 = 1;
@@ -69,7 +69,7 @@ JKRArchive::JKRArchive(long a1, EMountMode mountMode) {
         mHeap = JKRHeap::sCurrentHeap;
     }
 
-    _40 = a1;
+    mEntryNum = entryNum;
 
     if (gCurrentFileLoader == NULL) {
         sCurrentDirIndex = 0;
@@ -81,22 +81,15 @@ JKRArchive::~JKRArchive() {
 
 }
 
-#ifdef NON_MATCHING
-// blt ..., blr is optimized to bgelr
 void JKRArchive::setExpandSize(SDIFileEntry *pFile, unsigned long size) {
     u32 fileIndex = static_cast<u32>(pFile - mFiles);
 
-    if (mExpandSizes == NULL) {
-        return;
-    }
-
-    if (fileIndex >= mInfoBlock->mNrFiles) {
+    if (mExpandSizes == NULL || fileIndex >= mInfoBlock->mNrFiles) {
         return;
     }
 
     mExpandSizes[fileIndex] = size;
 }
-#endif
 
 u32 JKRArchive::getExpandSize(SDIFileEntry *pFile) const {
     u32 fileIndex = static_cast<u32>(pFile - mFiles);
@@ -251,7 +244,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findPtrResource(const void *pResource) con
     SDIFileEntry *current = mFiles;
 
     for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-        if (current->mAllocatedData == pResource) {
+        if (current->mFileData == pResource) {
             return current;
         }
 

@@ -33,9 +33,9 @@ public:
     static JKRFileLoader *gCurrentFileLoader; // _806B7140;
 
     JSULink<JKRFileLoader> _18;
-    u32 _28;
+    char *mLoaderName;          // _28
     u32 _2C;
-    bool _30;
+    u8 _30;
     u8 _31[3];
     u32 _34;
 };

@@ -112,9 +112,9 @@ void JKRArchive::removeResourceAll() {
         SDIFileEntry *current = mFiles;
 
         for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-            if (current->mAllocatedData != NULL) {
-                JKRHeap::free(current->mAllocatedData, mHeap);
-                current->mAllocatedData = NULL;
+            if (current->mFileData != NULL) {
+                JKRHeap::free(current->mFileData, mHeap);
+                current->mFileData = NULL;
             }
 
             current++;
@@ -129,7 +129,7 @@ bool JKRArchive::removeResource(void *pResource) {
         return false;
     }
 
-    file->mAllocatedData = NULL;
+    file->mFileData = NULL;
     JKRHeap::free(pResource, mHeap);
 
     return true;
@@ -142,7 +142,7 @@ bool JKRArchive::detachResource(void *pResource) {
         return false;
     }
 
-    file->mAllocatedData = NULL;
+    file->mFileData = NULL;
 
     return true;
 }
@@ -210,7 +210,7 @@ JKRArchive *JKRArchive::check_mount_already(long entryNum) {
     while (current != NULL) {
         JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-        if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum) {
+        if (archive->_2C == RARC_MAGIC && archive->mEntryNum == entryNum) {
             archive->_34++;
             return archive;
         }
@@ -231,7 +231,7 @@ JKRArchive *JKRArchive::check_mount_already(long entryNum, JKRHeap *pHeap) {
     while (current != NULL) {
         JKRArchive *archive = reinterpret_cast<JKRArchive *>(current->mData);
 
-        if (archive->_2C == RARC_MAGIC && archive->_40 == entryNum && archive->mHeap == pHeap) {
+        if (archive->_2C == RARC_MAGIC && archive->mEntryNum == entryNum && archive->mHeap == pHeap) {
             archive->_34++;
             return archive;
         }

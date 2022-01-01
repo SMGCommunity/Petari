@@ -37,7 +37,7 @@ bool JKRArcFinder::findNextFile() {
             mDirIndex = mCurrentIndex;
             mFileID = dir.mFileID;
             mFileFlag = dir.mFileFlag;
-            mFileIsFolder = ((mFileFlag >> 1) & 1) != 0;
+            mFileIsFolder = ((mFileFlag >> JKRArchive::FILE_FLAG_FOLDER_SHIFT) & 1) != 0;
 
             mCurrentIndex++;
         }

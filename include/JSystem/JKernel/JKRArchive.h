@@ -25,13 +25,21 @@ public:
     };
 
     enum EFileFlag {
-        FILE_FLAG_FILE = 1 << 0,
-        FILE_FLAG_FOLDER = 1 << 1,
-        FILE_FLAG_COMPRESSED = 1 << 2,
-        FILE_FLAG_MRAM = 1 << 4,
-        FILE_FLAG_ARAM = 1 << 5,
-        FILE_FLAG_DVD = 1 << 6,
-        FILE_FLAG_IS_YAZ0 = 1 << 7
+        FILE_FLAG_FILE_SHIFT = 0,
+        FILE_FLAG_FOLDER_SHIFT = 1,
+        FILE_FLAG_COMPRESSED_SHIFT = 2,
+        FILE_FLAG_MRAM_SHIFT = 4,
+        FILE_FLAG_ARAM_SHIFT = 5,
+        FILE_FLAG_DVD_SHIFT = 6,
+        FILE_FLAG_IS_YAZ0_SHIFT = 7,
+
+        FILE_FLAG_FILE = 1 << FILE_FLAG_FILE_SHIFT,
+        FILE_FLAG_FOLDER = 1 << FILE_FLAG_FOLDER_SHIFT,
+        FILE_FLAG_COMPRESSED = 1 << FILE_FLAG_COMPRESSED_SHIFT,
+        FILE_FLAG_MRAM = 1 << FILE_FLAG_MRAM_SHIFT,
+        FILE_FLAG_ARAM = 1 << FILE_FLAG_ARAM_SHIFT,
+        FILE_FLAG_DVD = 1 << FILE_FLAG_DVD_SHIFT,
+        FILE_FLAG_IS_YAZ0 = 1 << FILE_FLAG_IS_YAZ0_SHIFT
     };
 
     struct RarcHeader {
@@ -69,7 +77,7 @@ public:
         union {
             u32 mDataSize;      // _C
         };
-        void *mAllocatedData;   // _10
+        void *mFileData;        // _10
     };
 
     struct SDIDirEntry {
@@ -118,7 +126,7 @@ public:
     JKRArcFinder *getFirstFile(const char *) const;
     virtual s32 getExpandedResSize(const void *) const;
     virtual void *fetchResource(SDIFileEntry *, unsigned long *) = 0;
-    virtual void fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *) = 0;
+    virtual void *fetchResource(void *, unsigned long, SDIFileEntry *, unsigned long *) = 0;
     virtual void setExpandSize(SDIFileEntry *, unsigned long);
     virtual u32 getExpandSize(SDIFileEntry *) const;
 
@@ -147,13 +155,13 @@ public:
     JKRHeap *mHeap;             // _38
     u8 mMountMode;              // _3C
     u8 _3D[3];
-    s32 _40;
+    s32 mEntryNum;              // _40
     RarcInfoBlock *mInfoBlock;  // _44
-    SDIDirEntry *mDirs;           // _48
+    SDIDirEntry *mDirs;         // _48
     SDIFileEntry *mFiles;       // _4C
     u32 *mExpandSizes;          // _50
     char *mStringTable;         // _54
     u32 _58;
-    u8 _5C[4];
-    u32 _60;
+    s32 _5C;
+    u32 mMountDir;              // _60
 };
