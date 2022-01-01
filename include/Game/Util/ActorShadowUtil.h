@@ -5,11 +5,11 @@
 class LiveActor;
 
 namespace MR {
-    void initShadowVolumeSphere(LiveActor *, f32);
+    void initShadowVolumeBox(LiveActor *, const TVec3f &, MtxPtr);
 
     void setShadowDropLength(LiveActor *, const char *, f32);
 
-    void onCalcShadowOneTime(LiveActor *, const char *);
+    void setShadowVolumeStartDropOffset(LiveActor *, const char *, f32);
 
     void onShadowVisibleSyncHostAll(LiveActor *);
     void offShadowVisibleSyncHostAll(LiveActor *);

@@ -53,6 +53,8 @@ namespace MR {
 
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 
+    void rotateVecDegree(TVec3f *, const TVec3f &, f32);
+
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
 

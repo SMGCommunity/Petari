@@ -86,8 +86,11 @@ namespace MR {
     bool trySetNerve(LiveActor *, const Nerve *);
 
     bool isNoCalcAnim(const LiveActor *);
+
+    void initCollisionParts(LiveActor *, const char *, HitSensor *, MtxPtr);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+    void setBaseTRMtx(LiveActor *, const TPos3f &);
 
     void setClippingFar(LiveActor *, f32);
 
