@@ -21,6 +21,10 @@ CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _60.identity();
 }
 
+CameraDPD::~CameraDPD() {
+
+}
+
 CamTranslatorBase *CameraDPD::createTranslator() {
     return new CamTranslatorDPD(this);
 }

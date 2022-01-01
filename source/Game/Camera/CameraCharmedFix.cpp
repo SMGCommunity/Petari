@@ -13,6 +13,10 @@ CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
     mWPoint.z = 1000.0f;
 }
 
+CameraCharmedFix::~CameraCharmedFix() {
+
+}
+
 CamTranslatorBase *CameraCharmedFix::createTranslator() {
     return new CamTranslatorCharmedFix(this);
 }

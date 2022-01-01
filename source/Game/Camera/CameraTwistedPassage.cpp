@@ -8,6 +8,10 @@ CameraTwistedPassage::CameraTwistedPassage(const char *pName) : Camera(pName) {
     _58 = 0;
 }
 
+CameraTwistedPassage::~CameraTwistedPassage() {
+
+}
+
 CamTranslatorBase *CameraTwistedPassage::createTranslator() {
     return new CamTranslatorTwistedPassage(this);
 }

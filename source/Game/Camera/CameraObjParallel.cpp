@@ -7,6 +7,10 @@ CameraObjParallel::CameraObjParallel(const char *pName) : Camera(pName) {
     mDist = 3000.0f;
 }
 
+CameraObjParallel::~CameraObjParallel() {
+
+}
+
 CamTranslatorBase *CameraObjParallel::createTranslator() {
     return new CamTranslatorObjParallel(this);
 }

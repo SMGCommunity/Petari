@@ -7,6 +7,10 @@ CameraWaterPlanet::CameraWaterPlanet(const char *pName) : Camera(pName) {
     mAngleA = 0.7853982f;
 }
 
+CameraWaterPlanet::~CameraWaterPlanet() {
+
+}
+
 CamTranslatorBase *CameraWaterPlanet::createTranslator() {
     return new CamTranslatorWaterPlanet(this);
 }

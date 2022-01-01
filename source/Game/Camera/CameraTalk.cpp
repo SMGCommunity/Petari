@@ -13,6 +13,10 @@ CameraTalk::CameraTalk(const char *pName) : Camera(pName) {
     _6C = 0;
 }
 
+CameraTalk::~CameraTalk() {
+
+}
+
 CamTranslatorBase *CameraTalk::createTranslator() {
     return new CamTranslatorTalk(this);
 }

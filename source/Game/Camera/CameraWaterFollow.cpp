@@ -17,6 +17,10 @@ CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
     _7C = 0.0f;
 }
 
+CameraWaterFollow::~CameraWaterFollow() {
+
+}
+
 CamTranslatorBase *CameraWaterFollow::createTranslator() {
     return new CamTranslatorWaterFollow(this);
 }

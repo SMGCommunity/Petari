@@ -17,6 +17,10 @@ CameraInnerCylinder::CameraInnerCylinder(const char *pName) : Camera(pName) {
     _80 = 0;
 }
 
+CameraInnerCylinder::~CameraInnerCylinder() {
+
+}
+
 CamTranslatorBase *CameraInnerCylinder::createTranslator() {
     return new CamTranslatorInnerCylinder(this);
 }

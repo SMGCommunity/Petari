@@ -14,6 +14,10 @@ CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
     mUpX = 0.0f;
 }
 
+CameraTrundle::~CameraTrundle() {
+
+}
+
 CamTranslatorBase *CameraTrundle::createTranslator() {
     return new CamTranslatorTrundle(this);
 }

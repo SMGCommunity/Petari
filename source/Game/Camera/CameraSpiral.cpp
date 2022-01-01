@@ -11,6 +11,10 @@ CameraSpiral::CameraSpiral(const char *pName) : Camera(pName) {
     mAxisX = 0.0f;
 }
 
+CameraSpiral::~CameraSpiral() {
+
+}
+
 CamTranslatorBase *CameraSpiral::createTranslator() {
     return new CamTranslatorSpiral(this);
 }

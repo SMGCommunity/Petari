@@ -11,6 +11,10 @@ CameraMtxRegParallel::CameraMtxRegParallel(const char *pName) : Camera(pName) {
     mWPoint.z = 0.0f;
 }
 
+CameraMtxRegParallel::~CameraMtxRegParallel() {
+
+}
+
 CamTranslatorBase *CameraMtxRegParallel::createTranslator() {
     return new CamTranslatorMtxRegParallel(this);
 }

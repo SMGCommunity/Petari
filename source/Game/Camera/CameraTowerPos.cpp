@@ -17,6 +17,10 @@ CameraTowerPos::CameraTowerPos(const char *pName) : CameraTowerBase(pName) {
     _9C = 0.0f;
 }
 
+CameraTowerPos::~CameraTowerPos() {
+
+}
+
 CamTranslatorBase *CameraTowerPos::createTranslator() {
     return new CamTranslatorTowerPos(this);
 }
