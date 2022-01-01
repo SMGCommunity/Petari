@@ -50,81 +50,81 @@
 | CamTranslatorWonderPlanet.o | 100.0% | 3 / 3 | 100.0% |
 | Camera.o | 71.03448275862068% | 16 / 18 | 88.88888888888889% |
 | CameraAnim.o | 60.457142857142856% | 23 / 30 | 76.66666666666667% |
-| CameraBehind.o | 17.083333333333332% | 2 / 6 | 33.33333333333333% |
-| CameraBlackHole.o | 18.37606837606838% | 2 / 5 | 40.0% |
+| CameraBehind.o | 26.666666666666668% | 3 / 6 | 50.0% |
+| CameraBlackHole.o | 28.205128205128204% | 3 / 5 | 60.0% |
 | CameraCalc.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCharmedFix.o | 16.423357664233578% | 2 / 5 | 40.0% |
-| CameraCharmedTripodBoss.o | 13.569321533923304% | 2 / 6 | 33.33333333333333% |
-| CameraCharmedVecReg.o | 11.904761904761903% | 2 / 5 | 40.0% |
-| CameraCharmedVecRegTower.o | 9.358288770053475% | 2 / 5 | 40.0% |
+| CameraCharmedFix.o | 24.817518248175183% | 3 / 5 | 60.0% |
+| CameraCharmedTripodBoss.o | 20.353982300884958% | 3 / 6 | 50.0% |
+| CameraCharmedVecReg.o | 17.989417989417987% | 3 / 5 | 60.0% |
+| CameraCharmedVecRegTower.o | 15.508021390374333% | 3 / 5 | 60.0% |
 | CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% |
 | CameraCover.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCubePlanet.o | 16.479400749063668% | 2 / 5 | 40.0% |
-| CameraDPD.o | 7.967032967032966% | 2 / 8 | 25.0% |
-| CameraDead.o | 10.0% | 2 / 7 | 28.57142857142857% |
+| CameraCubePlanet.o | 25.0936329588015% | 3 / 5 | 60.0% |
+| CameraDPD.o | 11.126373626373626% | 3 / 8 | 37.5% |
+| CameraDead.o | 16.216216216216218% | 3 / 7 | 42.857142857142854% |
 | CameraDirector.o | 65.09392747924858% | 71 / 81 | 87.65432098765432% |
-| CameraFix.o | 24.766355140186917% | 2 / 6 | 33.33333333333333% |
-| CameraFixedPoint.o | 12.5% | 2 / 6 | 33.33333333333333% |
-| CameraFixedThere.o | 9.036144578313253% | 2 / 11 | 18.181818181818183% |
-| CameraFollow.o | 4.576144036009002% | 3 / 29 | 10.344827586206897% |
-| CameraFooFighter.o | 8.073394495412845% | 2 / 5 | 40.0% |
-| CameraFooFighterPlanet.o | 6.445993031358885% | 2 / 6 | 33.33333333333333% |
-| CameraFrontAndBack.o | 11.780104712041885% | 2 / 7 | 28.57142857142857% |
-| CameraGround.o | 13.004484304932735% | 1 / 5 | 20.0% |
+| CameraFix.o | 35.51401869158878% | 3 / 6 | 50.0% |
+| CameraFixedPoint.o | 20.27027027027027% | 3 / 6 | 50.0% |
+| CameraFixedThere.o | 13.654618473895583% | 3 / 11 | 27.27272727272727% |
+| CameraFollow.o | 6.301575393848462% | 4 / 29 | 13.793103448275861% |
+| CameraFooFighter.o | 12.293577981651376% | 3 / 5 | 60.0% |
+| CameraFooFighterPlanet.o | 10.452961672473867% | 3 / 6 | 50.0% |
+| CameraFrontAndBack.o | 17.801047120418847% | 3 / 7 | 42.857142857142854% |
+| CameraGround.o | 23.318385650224215% | 2 / 5 | 40.0% |
 | CameraHeightArrange.o | 17.647058823529413% | 7 / 22 | 31.818181818181817% |
 | CameraHolder.o | 100.0% | 54 / 54 | 100.0% |
-| CameraInnerCylinder.o | 10.38961038961039% | 2 / 5 | 40.0% |
-| CameraInwardSphere.o | 7.9722703639514725% | 2 / 6 | 33.33333333333333% |
-| CameraInwardTower.o | 13.881748071979436% | 2 / 7 | 28.57142857142857% |
+| CameraInnerCylinder.o | 15.367965367965366% | 3 / 5 | 60.0% |
+| CameraInwardSphere.o | 11.95840554592721% | 3 / 6 | 50.0% |
+| CameraInwardTower.o | 19.794344473007712% | 3 / 7 | 42.857142857142854% |
 | CameraLocalUtil.o | 0.0% | 0 / 61 | 0.0% |
 | CameraMan.o | 100.0% | 11 / 11 | 100.0% |
 | CameraManEvent.o | 71.81738366988587% | 33 / 37 | 89.1891891891892% |
 | CameraManGame.o | 75.73407202216067% | 52 / 57 | 91.22807017543859% |
 | CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% |
 | CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% |
-| CameraMedianPlanet.o | 5.926860025220681% | 2 / 15 | 13.333333333333334% |
-| CameraMedianTower.o | 7.107231920199501% | 2 / 11 | 18.181818181818183% |
-| CameraMtxRegParallel.o | 25.146198830409354% | 2 / 6 | 33.33333333333333% |
-| CameraObjParallel.o | 18.81188118811881% | 2 / 5 | 40.0% |
-| CameraParallel.o | 12.105263157894736% | 2 / 10 | 20.0% |
+| CameraMedianPlanet.o | 8.827238335435057% | 3 / 15 | 20.0% |
+| CameraMedianTower.o | 9.975062344139651% | 3 / 11 | 27.27272727272727% |
+| CameraMtxRegParallel.o | 38.59649122807017% | 3 / 6 | 50.0% |
+| CameraObjParallel.o | 30.198019801980198% | 3 / 5 | 60.0% |
+| CameraParallel.o | 18.157894736842106% | 3 / 10 | 30.0% |
 | CameraParamChunk.o | 64.14662084765177% | 29 / 32 | 90.625% |
 | CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 | 90.9090909090909% |
 | CameraParamChunkID.o | 100.0% | 11 / 11 | 100.0% |
 | CameraParamString.o | 100.0% | 5 / 5 | 100.0% |
 | CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% |
 | CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% |
-| CameraRaceFollow.o | 11.345646437994723% | 2 / 6 | 33.33333333333333% |
-| CameraRailDemo.o | 10.784313725490197% | 2 / 9 | 22.22222222222222% |
-| CameraRailFollow.o | 12.35632183908046% | 2 / 6 | 33.33333333333333% |
+| CameraRaceFollow.o | 17.41424802110818% | 3 / 6 | 50.0% |
+| CameraRailDemo.o | 18.30065359477124% | 3 / 9 | 33.33333333333333% |
+| CameraRailFollow.o | 18.96551724137931% | 3 / 6 | 50.0% |
 | CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% |
-| CameraRailWatch.o | 10.096153846153847% | 2 / 6 | 33.33333333333333% |
+| CameraRailWatch.o | 15.625% | 3 / 6 | 50.0% |
 | CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 | 92.3076923076923% |
 | CameraRotChecker.o | 9.30232558139535% | 1 / 4 | 25.0% |
 | CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 | 85.71428571428571% |
 | CameraShakeTask.o | 100.0% | 10 / 10 | 100.0% |
 | CameraShaker.o | 92.1259842519685% | 17 / 18 | 94.44444444444444% |
-| CameraSlide.o | 17.09090909090909% | 2 / 5 | 40.0% |
-| CameraSpiral.o | 11.428571428571429% | 2 / 5 | 40.0% |
-| CameraSubjective.o | 10.723860589812332% | 2 / 6 | 33.33333333333333% |
-| CameraTalk.o | 9.650924024640657% | 2 / 6 | 33.33333333333333% |
+| CameraSlide.o | 25.454545454545453% | 3 / 5 | 60.0% |
+| CameraSpiral.o | 17.402597402597404% | 3 / 5 | 60.0% |
+| CameraSubjective.o | 16.890080428954423% | 3 / 6 | 50.0% |
+| CameraTalk.o | 14.37371663244353% | 3 / 6 | 50.0% |
 | CameraTargetArg.o | 63.51351351351351% | 2 / 3 | 66.66666666666666% |
 | CameraTargetHolder.o | 100.0% | 9 / 9 | 100.0% |
 | CameraTargetMtx.o | 62.944162436548226% | 22 / 24 | 91.66666666666666% |
 | CameraTargetObj.o | 46.837944664031625% | 21 / 45 | 46.666666666666664% |
 | CameraTestObj.o | 0.0% | 0 / 2 | 0.0% |
-| CameraTower.o | 6.65083135391924% | 2 / 14 | 14.285714285714285% |
-| CameraTowerBase.o | 8.150470219435736% | 1 / 10 | 10.0% |
-| CameraTowerPos.o | 9.074410163339383% | 2 / 9 | 22.22222222222222% |
-| CameraTripodBoss.o | 18.817204301075268% | 2 / 4 | 50.0% |
-| CameraTripodBossJoint.o | 12.42603550295858% | 2 / 7 | 28.57142857142857% |
-| CameraTripodPlanet.o | 14.705882352941178% | 2 / 5 | 40.0% |
-| CameraTrundle.o | 19.166666666666668% | 2 / 5 | 40.0% |
-| CameraTwistedPassage.o | 9.59232613908873% | 2 / 9 | 22.22222222222222% |
+| CameraTower.o | 9.382422802850355% | 3 / 14 | 21.428571428571427% |
+| CameraTowerBase.o | 15.360501567398119% | 2 / 10 | 20.0% |
+| CameraTowerPos.o | 13.06715063520871% | 3 / 9 | 33.33333333333333% |
+| CameraTripodBoss.o | 30.64516129032258% | 3 / 4 | 75.0% |
+| CameraTripodBossJoint.o | 19.230769230769234% | 3 / 7 | 42.857142857142854% |
+| CameraTripodPlanet.o | 22.22222222222222% | 3 / 5 | 60.0% |
+| CameraTrundle.o | 28.749999999999996% | 3 / 5 | 60.0% |
+| CameraTwistedPassage.o | 15.107913669064748% | 3 / 9 | 33.33333333333333% |
 | CameraViewInterpolator.o | 0.0% | 0 / 13 | 0.0% |
-| CameraWaterFollow.o | 10.06036217303823% | 2 / 6 | 33.33333333333333% |
-| CameraWaterPlanet.o | 9.296482412060302% | 2 / 5 | 40.0% |
-| CameraWaterPlanetBoss.o | 9.666666666666666% | 2 / 6 | 33.33333333333333% |
-| CameraWonderPlanet.o | 7.952286282306163% | 2 / 9 | 22.22222222222222% |
+| CameraWaterFollow.o | 14.688128772635814% | 3 / 6 | 50.0% |
+| CameraWaterPlanet.o | 15.07537688442211% | 3 / 5 | 60.0% |
+| CameraWaterPlanetBoss.o | 13.5% | 3 / 6 | 50.0% |
+| CameraWonderPlanet.o | 12.524850894632205% | 3 / 9 | 33.33333333333333% |
 | DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% |
 | GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% |
 | OnlyCamera.o | 12.024048096192384% | 2 / 6 | 33.33333333333333% |
@@ -553,7 +553,7 @@
 # CameraBehind.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__12CameraBehindFv | :x: |
+| __dt__12CameraBehindFv | :white_check_mark: |
 | __ct__12CameraBehindFPCc | :white_check_mark: |
 | reset__12CameraBehindFv | :x: |
 | calc__12CameraBehindFv | :x: |
@@ -568,7 +568,7 @@
 | reset__15CameraBlackHoleFv | :x: |
 | calc__15CameraBlackHoleFv | :x: |
 | createTranslator__15CameraBlackHoleFv | :white_check_mark: |
-| __dt__15CameraBlackHoleFv | :x: |
+| __dt__15CameraBlackHoleFv | :white_check_mark: |
 
 
 # CameraCalc.o
@@ -592,7 +592,7 @@
 | reset__16CameraCharmedFixFv | :x: |
 | calc__16CameraCharmedFixFv | :x: |
 | createTranslator__16CameraCharmedFixFv | :white_check_mark: |
-| __dt__16CameraCharmedFixFv | :x: |
+| __dt__16CameraCharmedFixFv | :white_check_mark: |
 
 
 # CameraCharmedTripodBoss.o
@@ -603,7 +603,7 @@
 | calc__23CameraCharmedTripodBossFv | :x: |
 | setParam__23CameraCharmedTripodBossFlQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createTranslator__23CameraCharmedTripodBossFv | :white_check_mark: |
-| __dt__23CameraCharmedTripodBossFv | :x: |
+| __dt__23CameraCharmedTripodBossFv | :white_check_mark: |
 
 
 # CameraCharmedVecReg.o
@@ -613,7 +613,7 @@
 | reset__19CameraCharmedVecRegFv | :x: |
 | calc__19CameraCharmedVecRegFv | :x: |
 | createTranslator__19CameraCharmedVecRegFv | :white_check_mark: |
-| __dt__19CameraCharmedVecRegFv | :x: |
+| __dt__19CameraCharmedVecRegFv | :white_check_mark: |
 
 
 # CameraCharmedVecRegTower.o
@@ -623,7 +623,7 @@
 | reset__24CameraCharmedVecRegTowerFv | :x: |
 | calc__24CameraCharmedVecRegTowerFv | :x: |
 | createTranslator__24CameraCharmedVecRegTowerFv | :white_check_mark: |
-| __dt__24CameraCharmedVecRegTowerFv | :x: |
+| __dt__24CameraCharmedVecRegTowerFv | :white_check_mark: |
 
 
 # CameraContext.o
@@ -664,7 +664,7 @@
 | reset__16CameraCubePlanetFv | :x: |
 | calc__16CameraCubePlanetFv | :x: |
 | createTranslator__16CameraCubePlanetFv | :white_check_mark: |
-| __dt__16CameraCubePlanetFv | :x: |
+| __dt__16CameraCubePlanetFv | :white_check_mark: |
 
 
 # CameraDPD.o
@@ -675,7 +675,7 @@
 | calc__9CameraDPDFv | :x: |
 | __as__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 | createTranslator__9CameraDPDFv | :white_check_mark: |
-| __dt__9CameraDPDFv | :x: |
+| __dt__9CameraDPDFv | :white_check_mark: |
 | __ml__Q29JGeometry8TVec2&lt;f&gt;CFf | :x: |
 | __pl__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
@@ -687,7 +687,7 @@
 | reset__10CameraDeadFv | :x: |
 | calc__10CameraDeadFv | :x: |
 | createTranslator__10CameraDeadFv | :white_check_mark: |
-| __dt__10CameraDeadFv | :x: |
+| __dt__10CameraDeadFv | :white_check_mark: |
 | getRadius__15CameraTargetObjCFv | :x: |
 | isInterpolationOff__10CameraDeadCFv | :x: |
 
@@ -786,7 +786,7 @@
 | calc__9CameraFixFv | :x: |
 | setParam__9CameraFixFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createTranslator__9CameraFixFv | :white_check_mark: |
-| __dt__9CameraFixFv | :x: |
+| __dt__9CameraFixFv | :white_check_mark: |
 
 
 # CameraFixedPoint.o
@@ -797,7 +797,7 @@
 | calc__16CameraFixedPointFv | :x: |
 | createTranslator__16CameraFixedPointFv | :white_check_mark: |
 | setParam__16CameraFixedPointFRCQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
-| __dt__16CameraFixedPointFv | :x: |
+| __dt__16CameraFixedPointFv | :white_check_mark: |
 
 
 # CameraFixedThere.o
@@ -812,7 +812,7 @@
 | makeAxisAndRoll__16CameraFixedThereFv | :x: |
 | updateUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateNormalUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __dt__16CameraFixedThereFv | :x: |
+| __dt__16CameraFixedThereFv | :white_check_mark: |
 | isCorrectingErpPositionOff__16CameraFixedThereCFv | :x: |
 
 
@@ -843,7 +843,7 @@
 | startRound__12CameraFollowFff | :x: |
 | checkValidityOfRound__12CameraFollowFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isUpsideDownByRoll__12CameraFollowCFv | :x: |
-| __dt__12CameraFollowFv | :x: |
+| __dt__12CameraFollowFv | :white_check_mark: |
 | __sinit_\CameraFollow_cpp | :x: |
 | isJumping__15CameraTargetObjCFv | :white_check_mark: |
 | isInvalidTriangle__18TriangleFilterFuncCFPC8Triangle | :x: |
@@ -857,13 +857,13 @@
 | reset__16CameraFooFighterFv | :x: |
 | calc__16CameraFooFighterFv | :x: |
 | createTranslator__16CameraFooFighterFv | :white_check_mark: |
-| __dt__16CameraFooFighterFv | :x: |
+| __dt__16CameraFooFighterFv | :white_check_mark: |
 
 
 # CameraFooFighterPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__22CameraFooFighterPlanetFv | :x: |
+| __dt__22CameraFooFighterPlanetFv | :white_check_mark: |
 | __ct__22CameraFooFighterPlanetFPCc | :white_check_mark: |
 | reset__22CameraFooFighterPlanetFv | :x: |
 | calc__22CameraFooFighterPlanetFv | :x: |
@@ -874,7 +874,7 @@
 # CameraFrontAndBack.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18CameraFrontAndBackFv | :x: |
+| __dt__18CameraFrontAndBackFv | :white_check_mark: |
 | __ct__18CameraFrontAndBackFPCc | :white_check_mark: |
 | reset__18CameraFrontAndBackFv | :x: |
 | calc__18CameraFrontAndBackFv | :x: |
@@ -890,7 +890,7 @@
 | reset__12CameraGroundFv | :x: |
 | calc__12CameraGroundFv | :x: |
 | createTranslator__12CameraGroundFv | :x: |
-| __dt__12CameraGroundFv | :x: |
+| __dt__12CameraGroundFv | :white_check_mark: |
 
 
 # CameraHeightArrange.o
@@ -986,13 +986,13 @@
 | reset__19CameraInnerCylinderFv | :x: |
 | calc__19CameraInnerCylinderFv | :x: |
 | createTranslator__19CameraInnerCylinderFv | :white_check_mark: |
-| __dt__19CameraInnerCylinderFv | :x: |
+| __dt__19CameraInnerCylinderFv | :white_check_mark: |
 
 
 # CameraInwardSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18CameraInwardSphereFv | :x: |
+| __dt__18CameraInwardSphereFv | :white_check_mark: |
 | __ct__18CameraInwardSphereFPCc | :white_check_mark: |
 | reset__18CameraInwardSphereFv | :x: |
 | calc__18CameraInwardSphereFv | :x: |
@@ -1003,7 +1003,7 @@
 # CameraInwardTower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__17CameraInwardTowerFv | :x: |
+| __dt__17CameraInwardTowerFv | :white_check_mark: |
 | __ct__17CameraInwardTowerFPCc | :white_check_mark: |
 | reset__17CameraInwardTowerFv | :x: |
 | calc__17CameraInwardTowerFv | :x: |
@@ -1227,7 +1227,7 @@
 # CameraMedianPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18CameraMedianPlanetFv | :x: |
+| __dt__18CameraMedianPlanetFv | :white_check_mark: |
 | __ct__18CameraMedianPlanetFPCc | :white_check_mark: |
 | reset__18CameraMedianPlanetFv | :x: |
 | calc__18CameraMedianPlanetFv | :x: |
@@ -1255,7 +1255,7 @@
 | limitAngularVelocity__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcDistance__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateReset__17CameraMedianTowerFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __dt__17CameraMedianTowerFv | :x: |
+| __dt__17CameraMedianTowerFv | :white_check_mark: |
 | JMASinDegree__Ff | :x: |
 | JMACosDegree__Ff | :x: |
 
@@ -1263,7 +1263,7 @@
 # CameraMtxRegParallel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__20CameraMtxRegParallelFv | :x: |
+| __dt__20CameraMtxRegParallelFv | :white_check_mark: |
 | __ct__20CameraMtxRegParallelFPCc | :white_check_mark: |
 | reset__20CameraMtxRegParallelFv | :x: |
 | calc__20CameraMtxRegParallelFv | :x: |
@@ -1278,7 +1278,7 @@
 | reset__17CameraObjParallelFv | :x: |
 | calc__17CameraObjParallelFv | :x: |
 | createTranslator__17CameraObjParallelFv | :white_check_mark: |
-| __dt__17CameraObjParallelFv | :x: |
+| __dt__17CameraObjParallelFv | :white_check_mark: |
 
 
 # CameraParallel.o
@@ -1293,7 +1293,7 @@
 | isEnableToReset__14CameraParallelCFv | :x: |
 | calcIdealPose__14CameraParallelFv | :x: |
 | calcRound__14CameraParallelFv | :x: |
-| __dt__14CameraParallelFv | :x: |
+| __dt__14CameraParallelFv | :white_check_mark: |
 
 
 # CameraParamChunk.o
@@ -1397,7 +1397,7 @@
 | calc__16CameraRaceFollowFv | :x: |
 | createTranslator__16CameraRaceFollowFv | :white_check_mark: |
 | goRound__16CameraRaceFollowFv | :x: |
-| __dt__16CameraRaceFollowFv | :x: |
+| __dt__16CameraRaceFollowFv | :white_check_mark: |
 
 
 # CameraRailDemo.o
@@ -1411,7 +1411,7 @@
 | calcLinear__14CameraRailDemoFv | :x: |
 | calcEaseInOut__14CameraRailDemoFv | :x: |
 | calcDamp__14CameraRailDemoFv | :x: |
-| __dt__14CameraRailDemoFv | :x: |
+| __dt__14CameraRailDemoFv | :white_check_mark: |
 
 
 # CameraRailFollow.o
@@ -1422,7 +1422,7 @@
 | calc__16CameraRailFollowFv | :x: |
 | setParam__16CameraRailFollowFllfffl | :x: |
 | createTranslator__16CameraRailFollowFv | :white_check_mark: |
-| __dt__16CameraRailFollowFv | :x: |
+| __dt__16CameraRailFollowFv | :white_check_mark: |
 
 
 # CameraRailHolder.o
@@ -1444,7 +1444,7 @@
 | calc__15CameraRailWatchFv | :x: |
 | setParam__15CameraRailWatchFlllfff | :x: |
 | createTranslator__15CameraRailWatchFv | :white_check_mark: |
-| __dt__15CameraRailWatchFv | :x: |
+| __dt__15CameraRailWatchFv | :white_check_mark: |
 
 
 # CameraRegisterHolder.o
@@ -1538,7 +1538,7 @@
 | reset__11CameraSlideFv | :x: |
 | calc__11CameraSlideFv | :x: |
 | createTranslator__11CameraSlideFv | :white_check_mark: |
-| __dt__11CameraSlideFv | :x: |
+| __dt__11CameraSlideFv | :white_check_mark: |
 
 
 # CameraSpiral.o
@@ -1548,7 +1548,7 @@
 | reset__12CameraSpiralFv | :x: |
 | calc__12CameraSpiralFv | :x: |
 | createTranslator__12CameraSpiralFv | :white_check_mark: |
-| __dt__12CameraSpiralFv | :x: |
+| __dt__12CameraSpiralFv | :white_check_mark: |
 
 
 # CameraSubjective.o
@@ -1558,7 +1558,7 @@
 | reset__16CameraSubjectiveFv | :x: |
 | calc__16CameraSubjectiveFv | :x: |
 | createTranslator__16CameraSubjectiveFv | :white_check_mark: |
-| __dt__16CameraSubjectiveFv | :x: |
+| __dt__16CameraSubjectiveFv | :white_check_mark: |
 | isCollisionOff__16CameraSubjectiveCFv | :x: |
 
 
@@ -1570,7 +1570,7 @@
 | calc__10CameraTalkFv | :x: |
 | setParam__10CameraTalkFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
 | createTranslator__10CameraTalkFv | :white_check_mark: |
-| __dt__10CameraTalkFv | :x: |
+| __dt__10CameraTalkFv | :white_check_mark: |
 
 
 # CameraTargetArg.o
@@ -1695,7 +1695,7 @@
 | arrangeHorizontalPose__11CameraTowerFv | :x: |
 | isUpsideDownByRoll__11CameraTowerCFv | :x: |
 | arrangeRound__11CameraTowerFv | :x: |
-| __dt__11CameraTowerFv | :x: |
+| __dt__11CameraTowerFv | :white_check_mark: |
 | __sinit_\CameraTower_cpp | :x: |
 | isEnableToReset__11CameraTowerCFv | :x: |
 
@@ -1703,7 +1703,7 @@
 # CameraTowerBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__15CameraTowerBaseFv | :x: |
+| __dt__15CameraTowerBaseFv | :white_check_mark: |
 | __ct__15CameraTowerBaseFPCc | :white_check_mark: |
 | reset__15CameraTowerBaseFv | :x: |
 | calc__15CameraTowerBaseFv | :x: |
@@ -1718,7 +1718,7 @@
 # CameraTowerPos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__14CameraTowerPosFv | :x: |
+| __dt__14CameraTowerPosFv | :white_check_mark: |
 | __ct__14CameraTowerPosFPCc | :white_check_mark: |
 | reset__14CameraTowerPosFv | :x: |
 | calc__14CameraTowerPosFv | :x: |
@@ -1732,7 +1732,7 @@
 # CameraTripodBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__16CameraTripodBossFv | :x: |
+| __dt__16CameraTripodBossFv | :white_check_mark: |
 | __ct__16CameraTripodBossFPCc | :white_check_mark: |
 | createTranslator__16CameraTripodBossFv | :white_check_mark: |
 | arrangeRound__16CameraTripodBossFv | :x: |
@@ -1741,7 +1741,7 @@
 # CameraTripodBossJoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__21CameraTripodBossJointFv | :x: |
+| __dt__21CameraTripodBossJointFv | :white_check_mark: |
 | __ct__21CameraTripodBossJointFPCc | :white_check_mark: |
 | reset__21CameraTripodBossJointFv | :x: |
 | calc__21CameraTripodBossJointFv | :x: |
@@ -1757,7 +1757,7 @@
 | reset__18CameraTripodPlanetFv | :x: |
 | calc__18CameraTripodPlanetFv | :x: |
 | createTranslator__18CameraTripodPlanetFv | :white_check_mark: |
-| __dt__18CameraTripodPlanetFv | :x: |
+| __dt__18CameraTripodPlanetFv | :white_check_mark: |
 
 
 # CameraTrundle.o
@@ -1767,7 +1767,7 @@
 | reset__13CameraTrundleFv | :x: |
 | calc__13CameraTrundleFv | :x: |
 | createTranslator__13CameraTrundleFv | :white_check_mark: |
-| __dt__13CameraTrundleFv | :x: |
+| __dt__13CameraTrundleFv | :white_check_mark: |
 
 
 # CameraTwistedPassage.o
@@ -1781,7 +1781,7 @@
 | initStartPos__20CameraTwistedPassageFv | :x: |
 | calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __dt__20CameraTwistedPassageFv | :x: |
+| __dt__20CameraTwistedPassageFv | :white_check_mark: |
 
 
 # CameraViewInterpolator.o
@@ -1809,7 +1809,7 @@
 | reset__17CameraWaterFollowFv | :x: |
 | calc__17CameraWaterFollowFv | :x: |
 | createTranslator__17CameraWaterFollowFv | :white_check_mark: |
-| __dt__17CameraWaterFollowFv | :x: |
+| __dt__17CameraWaterFollowFv | :white_check_mark: |
 | isEnableToReset__17CameraWaterFollowCFv | :x: |
 
 
@@ -1820,7 +1820,7 @@
 | reset__17CameraWaterPlanetFv | :x: |
 | calc__17CameraWaterPlanetFv | :x: |
 | createTranslator__17CameraWaterPlanetFv | :white_check_mark: |
-| __dt__17CameraWaterPlanetFv | :x: |
+| __dt__17CameraWaterPlanetFv | :white_check_mark: |
 
 
 # CameraWaterPlanetBoss.o
@@ -1830,14 +1830,14 @@
 | reset__21CameraWaterPlanetBossFv | :x: |
 | calc__21CameraWaterPlanetBossFv | :x: |
 | createTranslator__21CameraWaterPlanetBossFv | :white_check_mark: |
-| __dt__21CameraWaterPlanetBossFv | :x: |
+| __dt__21CameraWaterPlanetBossFv | :white_check_mark: |
 | isEnableToReset__21CameraWaterPlanetBossCFv | :x: |
 
 
 # CameraWonderPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18CameraWonderPlanetFv | :x: |
+| __dt__18CameraWonderPlanetFv | :white_check_mark: |
 | __ct__18CameraWonderPlanetFPCc | :white_check_mark: |
 | reset__18CameraWonderPlanetFv | :x: |
 | calc__18CameraWonderPlanetFv | :x: |
