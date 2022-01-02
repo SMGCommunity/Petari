@@ -45,13 +45,33 @@ namespace MR {
         s32 mMaxSize;   // _4
     };
 
+    template<class T, int C>
+    class FixedArray {
+    public:
+        typedef T Item;
+
+        inline ~FixedArray() {
+
+        }
+
+        inline int getSize() {
+            return C;
+        }
+
+        T mArr[C];          // _0
+    };
+
     template<class T>
     class Vector {
     public:
         inline Vector() {
             
         }
-        ~Vector();
+
+
+        inline ~Vector() {
+            
+        }
 
         inline void assign(T::Item &pItem, int where) {
             mArray.mArr[where] = pItem;
@@ -63,7 +83,7 @@ namespace MR {
 
         T::Item* erase(T::Item *pItem);
 
-        void push_back(const T::Item &rItem) {
+        void push_back(const T::Item &rItem) NO_INLINE {
             u32 count = mCount;
             mCount++;
             mArray.mArr[count] = rItem;

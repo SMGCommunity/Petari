@@ -308,8 +308,8 @@
 | MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
 | MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
 | MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% |
-| MapPartsRailGuideDrawer.o | 0.0% | 0 / 19 | 0.0% |
-| MapPartsRailGuideHolder.o | 0.0% | 0 / 5 | 0.0% |
+| MapPartsRailGuideDrawer.o | 28.647214854111407% | 4 / 19 | 21.052631578947366% |
+| MapPartsRailGuideHolder.o | 17.391304347826086% | 2 / 5 | 40.0% |
 | MapPartsRailGuidePoint.o | 100.0% | 4 / 4 | 100.0% |
 | MapPartsRailMover.o | 0.0% | 0 / 58 | 0.0% |
 | MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
@@ -8020,12 +8020,12 @@
 | ------------- | ------------- |
 | __ct__23MapPartsRailGuideDrawerFP9LiveActorPCc | :x: |
 | init__23MapPartsRailGuideDrawerFRC12JMapInfoIter | :x: |
-| start__23MapPartsRailGuideDrawerFv | :x: |
-| end__23MapPartsRailGuideDrawerFv | :x: |
+| start__23MapPartsRailGuideDrawerFv | :white_check_mark: |
+| end__23MapPartsRailGuideDrawerFv | :white_check_mark: |
 | isWorking__23MapPartsRailGuideDrawerCFv | :x: |
 | show__23MapPartsRailGuideDrawerFv | :x: |
 | hide__23MapPartsRailGuideDrawerFv | :x: |
-| initGuidePoints__23MapPartsRailGuideDrawerFRC12JMapInfoIter | :x: |
+| initGuidePoints__23MapPartsRailGuideDrawerFRC12JMapInfoIter | :white_check_mark: |
 | exeDrawForward__23MapPartsRailGuideDrawerFv | :x: |
 | __sinit_\MapPartsRailGuideDrawer_cpp | :x: |
 | __ct__Q226NrvMapPartsRailGuideDrawer15HostTypeHideAllFv | :x: |
@@ -8036,15 +8036,15 @@
 | execute__Q226NrvMapPartsRailGuideDrawer15HostTypeHideAllCFP5Spine | :x: |
 | for_each&lt;PP22MapPartsRailGuidePoint,Q23std23mem_fun_t&lt;v,9LiveActor&gt;&gt;__3stdFPP22MapPartsRailGuidePointPP22MapPartsRailGuidePointQ23std23mem_fun_t&lt;v,9LiveActor&gt;_Q23std23mem_fun_t&lt;v,9LiveActor&gt; | :x: |
 | push_back__Q22MR56Vector&lt;Q22MR41FixedArray&lt;P22MapPartsRailGuidePoint,256&gt;&gt;FRCP22MapPartsRailGuidePoint | :x: |
-| __dt__23MapPartsRailGuideDrawerFv | :x: |
+| __dt__23MapPartsRailGuideDrawerFv | :white_check_mark: |
 
 
 # MapPartsRailGuideHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__23MapPartsRailGuideHolderFv | :x: |
+| __ct__23MapPartsRailGuideHolderFv | :white_check_mark: |
 | createRailGuide__23MapPartsRailGuideHolderFP9LiveActorPCcRC12JMapInfoIter | :x: |
-| init__23MapPartsRailGuideHolderFRC12JMapInfoIter | :x: |
+| init__23MapPartsRailGuideHolderFRC12JMapInfoIter | :white_check_mark: |
 | find__23MapPartsRailGuideHolderFl | :x: |
 | __dt__23MapPartsRailGuideHolderFv | :x: |
 

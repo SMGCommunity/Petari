@@ -8,6 +8,7 @@ class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
 class ProjmapEffectMtxSetter;
+class ModelObj;
 
 namespace MR {
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
@@ -119,4 +120,7 @@ namespace MR {
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);
+
+    ModelObj* createModelObjMapObj(const char *, const char *, MtxPtr);
+    ModelObj* createModelObjMapObjStrongLight(const char *, const char *, MtxPtr);
 }

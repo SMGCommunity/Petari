@@ -23,7 +23,7 @@
 | GamePadUtil.o | 0.0% | 0 / 63 | 0.0% |
 | GravityUtil.o | 89.94708994708994% | 19 / 20 | 95.0% |
 | HashUtil.o | 41.80790960451977% | 7 / 11 | 63.63636363636363% |
-| JMapUtil.o | 0.0% | 0 / 86 | 0.0% |
+| JMapUtil.o | 10.631229235880399% | 8 / 86 | 9.30232558139535% |
 | JointUtil.o | 0.0% | 0 / 33 | 0.0% |
 | LayoutUtil.o | 0.0% | 0 / 166 | 0.0% |
 | LightUtil.o | 0.0% | 0 / 5 | 0.0% |
@@ -1385,15 +1385,15 @@
 | getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPl | :x: |
 | getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPf | :x: |
 | getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| isEqualObjectName__2MRFRC12JMapInfoIterPCc | :x: |
-| getDemoGroupID__2MRFRC12JMapInfoIter | :x: |
-| getDemoGroupLinkID__2MRFRC12JMapInfoIter | :x: |
-| getJMapInfoRailArg__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :x: |
-| getJMapInfoRailArg0NoInit__2MRFRC12JMapInfoIterPl | :x: |
+| isEqualObjectName__2MRFRC12JMapInfoIterPCc | :white_check_mark: |
+| getDemoGroupID__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getDemoGroupLinkID__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getJMapInfoRailArg__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :white_check_mark: |
+| getJMapInfoRailArg0NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
 | getRailId__2MRFRC12JMapInfoIterPl | :x: |
-| getObjectName__2MRFPPCcRC12JMapInfoIter | :x: |
-| isExistJMapArg__2MRFRC12JMapInfoIter | :x: |
-| getJMapInfoShapeIdWithInit__2MRFRC12JMapInfoIterPl | :x: |
+| getObjectName__2MRFPPCcRC12JMapInfoIter | :white_check_mark: |
+| isExistJMapArg__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getJMapInfoShapeIdWithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
 | getJMapInfoTransLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getJMapInfoRotateLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getJMapInfoScale__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
