@@ -151,7 +151,7 @@
 | LotusLeaf.o | 0.0% | 0 / 16 | 0.0% |
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
-| MapObjActor.o | 4.184782608695652% | 6 / 59 | 10.16949152542373% |
+| MapObjActor.o | 41.95652173913044% | 41 / 59 | 69.49152542372882% |
 | MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
 | MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
@@ -3979,33 +3979,33 @@
 # MapObjActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11MapObjActorFPCc | :x: |
-| __ct__11MapObjActorFPCcPCc | :x: |
+| __ct__11MapObjActorFPCc | :white_check_mark: |
+| __ct__11MapObjActorFPCcPCc | :white_check_mark: |
 | init__11MapObjActorFRC12JMapInfoIter | :white_check_mark: |
-| initAfterPlacement__11MapObjActorFv | :x: |
-| appear__11MapObjActorFv | :x: |
-| kill__11MapObjActorFv | :x: |
+| initAfterPlacement__11MapObjActorFv | :white_check_mark: |
+| appear__11MapObjActorFv | :white_check_mark: |
+| kill__11MapObjActorFv | :white_check_mark: |
 | initialize__11MapObjActorFRC12JMapInfoIterRC19MapObjActorInitInfo | :x: |
-| isObjectName__11MapObjActorCFPCc | :x: |
+| isObjectName__11MapObjActorCFPCc | :white_check_mark: |
 | connectToScene__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
 | initCaseUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
 | initCaseNoUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
-| initCaseUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :x: |
-| control__11MapObjActorFv | :x: |
+| initCaseUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
+| control__11MapObjActorFv | :white_check_mark: |
 | calcAndSetBaseMtx__11MapObjActorFv | :x: |
 | startClipped__11MapObjActorFv | :white_check_mark: |
 | endClipped__11MapObjActorFv | :white_check_mark: |
-| tryCreateBreakModel__11MapObjActorFRC19MapObjActorInitInfo | :x: |
-| tryEmitWaitEffect__11MapObjActorFv | :x: |
-| tryDeleteWaitEffect__11MapObjActorFv | :x: |
-| startMapPartsFunctions__11MapObjActorFv | :x: |
-| endMapPartsFunctions__11MapObjActorFv | :x: |
-| pauseMapPartsFunctions__11MapObjActorFv | :x: |
-| setStateWait__11MapObjActorFv | :x: |
-| updateProjmapMtx__11MapObjActorFv | :x: |
-| exeWait__11MapObjActorFv | :x: |
-| exeMove__11MapObjActorFv | :x: |
+| tryCreateBreakModel__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
+| tryEmitWaitEffect__11MapObjActorFv | :white_check_mark: |
+| tryDeleteWaitEffect__11MapObjActorFv | :white_check_mark: |
+| startMapPartsFunctions__11MapObjActorFv | :white_check_mark: |
+| endMapPartsFunctions__11MapObjActorFv | :white_check_mark: |
+| pauseMapPartsFunctions__11MapObjActorFv | :white_check_mark: |
+| setStateWait__11MapObjActorFv | :white_check_mark: |
+| updateProjmapMtx__11MapObjActorFv | :white_check_mark: |
+| exeWait__11MapObjActorFv | :white_check_mark: |
+| exeMove__11MapObjActorFv | :white_check_mark: |
 | startAllMapPartsFunctions__15MapObjActorUtilFPC11MapObjActor | :x: |
 | endAllMapPartsFunctions__15MapObjActorUtilFPC11MapObjActor | :x: |
 | pauseAllMapPartsFunctions__15MapObjActorUtilFPC11MapObjActor | :x: |
@@ -4015,27 +4015,27 @@
 | isRailMoverReachedEnd__15MapObjActorUtilFPC11MapObjActor | :x: |
 | getSeesaw1AxisAngularSpeed__15MapObjActorUtilFPC11MapObjActor | :x: |
 | forceRotateSeesaw1Axis__15MapObjActorUtilFPC11MapObjActorf | :x: |
-| startRotator__15MapObjActorUtilFPC11MapObjActor | :x: |
-| startRailMover__15MapObjActorUtilFPC11MapObjActor | :x: |
-| endRotator__15MapObjActorUtilFPC11MapObjActor | :x: |
-| pauseRotator__15MapObjActorUtilFPC11MapObjActor | :x: |
-| resetRailMoverToInitPos__15MapObjActorUtilFPC11MapObjActor | :x: |
-| startBreak__15MapObjActorUtilFP11MapObjActor | :x: |
+| startRotator__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| startRailMover__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| endRotator__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| pauseRotator__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| resetRailMoverToInitPos__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| startBreak__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | tryStartBreak__15MapObjActorUtilFP11MapObjActor | :x: |
-| isBreakStopped__15MapObjActorUtilFPC11MapObjActor | :x: |
-| killBloomModel__15MapObjActorUtilFP11MapObjActor | :x: |
-| appearBloomModel__15MapObjActorUtilFP11MapObjActor | :x: |
+| isBreakStopped__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
+| killBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
+| appearBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | __sinit_\MapObjActor_cpp | :x: |
 | __ct__Q214NrvMapObjActor12HostTypeWaitFv | :x: |
-| __ct__Q214NrvMapObjActor12HostTypeMoveFv | :x: |
-| __ct__Q214NrvMapObjActor12HostTypeDoneFv | :x: |
-| execute__Q214NrvMapObjActor12HostTypeDoneCFP5Spine | :x: |
-| execute__Q214NrvMapObjActor12HostTypeMoveCFP5Spine | :x: |
-| execute__Q214NrvMapObjActor12HostTypeWaitCFP5Spine | :x: |
+| __ct__Q214NrvMapObjActor12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q214NrvMapObjActor12HostTypeDoneFv | :white_check_mark: |
+| execute__Q214NrvMapObjActor12HostTypeDoneCFP5Spine | :white_check_mark: |
+| execute__Q214NrvMapObjActor12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q214NrvMapObjActor12HostTypeWaitCFP5Spine | :white_check_mark: |
 | end__16MapPartsFunctionFv | :x: |
-| Functor&lt;11MapObjActor&gt;__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt; | :x: |
+| Functor&lt;11MapObjActor&gt;__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt; | :white_check_mark: |
 | __cl__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| clone__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | isOnReverse__19MapPartsRotatorBaseCFv | :x: |
 | isMoving__19MapPartsRotatorBaseCFv | :x: |
 

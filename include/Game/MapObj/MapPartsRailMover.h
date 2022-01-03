@@ -14,7 +14,7 @@ public:
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
-    virtual u32 receiveMsg(u32);
+    virtual s32 receiveMsg(u32);
     virtual void control();
 
     void moveToInitPos();
@@ -46,9 +46,7 @@ public:
     s32 mMoveConditionType;                                 // _1C
     s32 mMoveStopType;                                      // _20
     s32 mSignMotionType;                                    // _24
-    f32 _28;
-    u32 _2C;
-    f32 _30;
+    TVec3f _28;
     f32 _34;
     s32 mStopTime;                                          // _38
     f32 _3C;

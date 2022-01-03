@@ -111,7 +111,12 @@ namespace MR {
     void startBck(const LiveActor *, const char *, const char *);
     void startBrk(const LiveActor *, const char *);
 
+    bool isExistBck(const LiveActor *, const char *);
+
+    bool isBckStopped(const LiveActor *);
     bool isBrkStopped(const LiveActor *);
+
+    bool isBckOneTimeAndStopped(const LiveActor *);
 
     void setBckFrameAtRandom(const LiveActor *);
 

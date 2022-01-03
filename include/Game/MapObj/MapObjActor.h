@@ -11,6 +11,7 @@ class MapPartsRailGuideDrawer;
 class MapPartsRailPosture;
 class ModelObj;
 class MapPartsFunction;
+class ProjmapEffectMtxSetter;
 
 namespace NrvMapObjActor {
     NERVE(HostTypeWait);
@@ -69,7 +70,7 @@ public:
     LodCtrl* mPlanetLodCtrl;                    // _90
     ModelObj* mBloomModel;                      // _94
     ModelObj* mModelObj;                        // _98
-    u32 _9C;
+    ProjmapEffectMtxSetter* mMatrixSetter;      // _9C
     MapPartsRailMover* mRailMover;              // _A0
     MapPartsRotator* mRotator;                  // _A4
     MapPartsRailRotator* mRailRotator;          // _A8
@@ -81,4 +82,22 @@ public:
     NrvMapObjActor::HostTypeWait* mWaitNrv;     // _B8
     NrvMapObjActor::HostTypeMove* mMoveNrv;     // _BC
     NrvMapObjActor::HostTypeDone* mDoneNrv;     // _C0
+};
+
+class MapObjActorUtil {
+public:
+    static void startAllMapPartsFunctions(const MapObjActor *);
+    static void endAllMapPartsFunctions(const MapObjActor *);
+    static void pauseAllMapPartsFunctions(const MapObjActor *);
+
+    static void startRotator(const MapObjActor *);
+    static void startRailMover(const MapObjActor *);
+    static void endRotator(const MapObjActor *);
+    static void pauseRotator(const MapObjActor *);
+    static void resetRailMoverToInitPos(const MapObjActor *);
+    static void startBreak(MapObjActor *);
+    static bool tryStartBreak(MapObjActor *);
+    static bool isBreakStopped(const MapObjActor *);
+    static void killBloomModel(MapObjActor *);
+    static void appearBloomModel(MapObjActor *);
 };
