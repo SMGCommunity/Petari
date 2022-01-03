@@ -37,4 +37,6 @@ namespace MR {
     void copyJointAnimation(LiveActor *, const LiveActor *);
 
     void calcModelBoundingBox(TBox3f *, const LiveActor *);
+
+    bool isExistCollisionResource(const LiveActor *, const char *);
 };

@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/MapObj/MapObjActorInitInfo.h"
 
+class LodCtrl;
 class MapPartsRailMover;
 class MapPartsRotator;
 class MapPartsRailRotator;
@@ -10,6 +11,12 @@ class MapPartsRailGuideDrawer;
 class MapPartsRailPosture;
 class ModelObj;
 class MapPartsFunction;
+
+namespace NrvMapObjActor {
+    NERVE(HostTypeWait);
+    NERVE(HostTypeMove);
+    NERVE(HostTypeDone);
+};
 
 namespace {
     const char* cBrkNameColorChange = "ColorChange";
@@ -59,8 +66,8 @@ public:
     void exeMove();
 
     const char* mObjectName;                    // _8C
-    u32 _90;
-    u32 _94;
+    LodCtrl* mPlanetLodCtrl;                    // _90
+    ModelObj* mBloomModel;                      // _94
     ModelObj* mModelObj;                        // _98
     u32 _9C;
     MapPartsRailMover* mRailMover;              // _A0
@@ -71,7 +78,7 @@ public:
     u8 _B4;
     u8 _B5;
     u8 _B6;
-    u32 _B8;
-    u32 _BC;
-    u32 _C0;
+    NrvMapObjActor::HostTypeWait* mWaitNrv;     // _B8
+    NrvMapObjActor::HostTypeMove* mMoveNrv;     // _BC
+    NrvMapObjActor::HostTypeDone* mDoneNrv;     // _C0
 };

@@ -151,8 +151,8 @@
 | LotusLeaf.o | 0.0% | 0 / 16 | 0.0% |
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
-| MapObjActor.o | 0.0% | 0 / 59 | 0.0% |
-| MapObjActorInitInfo.o | 0.0% | 0 / 37 | 0.0% |
+| MapObjActor.o | 4.184782608695652% | 6 / 59 | 10.16949152542373% |
+| MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
 | MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
@@ -3981,21 +3981,21 @@
 | ------------- | ------------- |
 | __ct__11MapObjActorFPCc | :x: |
 | __ct__11MapObjActorFPCcPCc | :x: |
-| init__11MapObjActorFRC12JMapInfoIter | :x: |
+| init__11MapObjActorFRC12JMapInfoIter | :white_check_mark: |
 | initAfterPlacement__11MapObjActorFv | :x: |
 | appear__11MapObjActorFv | :x: |
 | kill__11MapObjActorFv | :x: |
 | initialize__11MapObjActorFRC12JMapInfoIterRC19MapObjActorInitInfo | :x: |
 | isObjectName__11MapObjActorCFPCc | :x: |
-| connectToScene__11MapObjActorFRC19MapObjActorInitInfo | :x: |
-| initCaseUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :x: |
+| connectToScene__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchA__11MapObjActorFRC19MapObjActorInitInfo | :white_check_mark: |
 | initCaseUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :x: |
 | initCaseNoUseSwitchB__11MapObjActorFRC19MapObjActorInitInfo | :x: |
 | control__11MapObjActorFv | :x: |
 | calcAndSetBaseMtx__11MapObjActorFv | :x: |
-| startClipped__11MapObjActorFv | :x: |
-| endClipped__11MapObjActorFv | :x: |
+| startClipped__11MapObjActorFv | :white_check_mark: |
+| endClipped__11MapObjActorFv | :white_check_mark: |
 | tryCreateBreakModel__11MapObjActorFRC19MapObjActorInitInfo | :x: |
 | tryEmitWaitEffect__11MapObjActorFv | :x: |
 | tryDeleteWaitEffect__11MapObjActorFv | :x: |
@@ -4044,16 +4044,16 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__19MapObjActorInitInfoFv | :x: |
-| setupHioNode__19MapObjActorInitInfoFPCc | :x: |
-| setupDefaultPos__19MapObjActorInitInfoFv | :x: |
-| setupModelName__19MapObjActorInitInfoFPCc | :x: |
-| setupConnectToScene__19MapObjActorInitInfoFv | :x: |
-| setupBinder__19MapObjActorInitInfoFff | :x: |
-| setupEffect__19MapObjActorInitInfoFPCc | :x: |
-| setupSound__19MapObjActorInitInfoFl | :x: |
-| setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setupNoAppearRiddleSE__19MapObjActorInitInfoFv | :x: |
-| setupHitSensor__19MapObjActorInitInfoFv | :x: |
+| setupHioNode__19MapObjActorInitInfoFPCc | :white_check_mark: |
+| setupDefaultPos__19MapObjActorInitInfoFv | :white_check_mark: |
+| setupModelName__19MapObjActorInitInfoFPCc | :white_check_mark: |
+| setupConnectToScene__19MapObjActorInitInfoFv | :white_check_mark: |
+| setupBinder__19MapObjActorInitInfoFff | :white_check_mark: |
+| setupEffect__19MapObjActorInitInfoFPCc | :white_check_mark: |
+| setupSound__19MapObjActorInitInfoFl | :white_check_mark: |
+| setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setupNoAppearRiddleSE__19MapObjActorInitInfoFv | :white_check_mark: |
+| setupHitSensor__19MapObjActorInitInfoFv | :white_check_mark: |
 | setupHitSensorCallBack__19MapObjActorInitInfoFv | :x: |
 | setupHitSensorParam__19MapObjActorInitInfoFUsfRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | setupNerve__19MapObjActorInitInfoFPC5Nerve | :x: |
