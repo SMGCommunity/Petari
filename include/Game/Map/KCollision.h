@@ -97,7 +97,7 @@ public:
     bool outCheck(const TVec3f *, const TVec3f *, V3u *, V3u *) const;
     void objectSpaceToLocalSpace(V3u *, const TVec3f &) const;
 
-    KCLFile* mFile;     // _0
-    JMapInfo *mapInfo;  // _4
-    f32 mMaxDistance;   // _8
+    KCLFile* mFile;         // _0
+    JMapInfo *mapInfo;      // _4
+    f32 mMaxVertexDistance; // _8
 };
