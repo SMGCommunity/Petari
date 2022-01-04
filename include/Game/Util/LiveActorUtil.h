@@ -8,6 +8,7 @@ class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
 class ProjmapEffectMtxSetter;
+class ModelObj;
 
 namespace MR {
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
@@ -110,7 +111,12 @@ namespace MR {
     void startBck(const LiveActor *, const char *, const char *);
     void startBrk(const LiveActor *, const char *);
 
+    bool isExistBck(const LiveActor *, const char *);
+
+    bool isBckStopped(const LiveActor *);
     bool isBrkStopped(const LiveActor *);
+
+    bool isBckOneTimeAndStopped(const LiveActor *);
 
     void setBckFrameAtRandom(const LiveActor *);
 
@@ -119,4 +125,7 @@ namespace MR {
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);
+
+    ModelObj* createModelObjMapObj(const char *, const char *, MtxPtr);
+    ModelObj* createModelObjMapObjStrongLight(const char *, const char *, MtxPtr);
 }

@@ -1,0 +1,19 @@
+#pragma once
+
+#include "Game/MapObj/MapPartsFunction.h"
+
+class MapPartsRailPosture : public MapPartsFunction {
+public:
+    MapPartsRailPosture(LiveActor *);
+
+    virtual ~MapPartsRailPosture();
+    virtual void init(const JMapInfoIter &);
+    virtual bool isWorking() const;
+    virtual void start();
+    virtual void end();
+
+    void exeMove();
+
+    MtxPtr _18;
+    u32 _48;
+};

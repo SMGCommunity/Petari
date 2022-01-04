@@ -6,6 +6,38 @@ class Nerve;
 
 class MapObjActorInitInfo {
 public:
+    MapObjActorInitInfo();
+
+    void setupHioNode(const char *);
+    void setupDefaultPos();
+    void setupModelName(const char *);
+    void setupConnectToScene();
+    void setupBinder(f32, f32);
+    void setupEffect(const char *);
+    void setupSound(s32);
+    void setupSoundPos(TVec3f *);
+    void setupNoAppearRiddleSE();
+    void setupHitSensor();
+    void setupHitSensorCallBack();
+    void setupHitSensorParam(u16, f32, const TVec3f &);
+    void setupNerve(const Nerve *);
+    void setupShadow(const char *);
+    void setupGroupClipping(s32);
+    void setupClippingRadius(f32);
+    void setupFarClipping(f32);
+    void setupProjmapMtx(bool);
+    void setupRailMover();
+    void setupRotator();
+    void setupRailRotator();
+    void setupSEesaw1AxisRotator(const char *, f32);
+    void setupRailPosture();
+    void setupBaseMtxFollowTarget();
+    void setupAffectedScale();
+    void setupSeAppear();
+    void setupMirrorReflection(bool);
+    void setupPrepareChangeDummyTexture(const char *);
+    void setupNouseLodCtrl();
+
     bool mSetDefaultPosition;           // _0
     bool mConnectToScene;               // _1
     bool mInitBinder;                   // _2
@@ -47,7 +79,7 @@ public:
     s32 mGroupClipping;                 // _50
     f32 mClippingRadius;                // _54
     f32 mFarClipping;                   // _58
-    u32 _5C;
+    s32 _5C;
     s32 mColorChangeArg;                // _60
     s32 mTextureChangeArg;              // _64
     bool mNoAppearRiddleSE;             // _68

@@ -1,8 +1,15 @@
 #pragma once
 
 #include "Game/Util/JMapInfo.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry.h"
 #include <revolution.h>
+
+namespace {
+    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut) NO_INLINE;
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *) NO_INLINE;
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *) NO_INLINE;
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *) NO_INLINE;
+};
 
 namespace MR {
     bool isValidInfo(const JMapInfoIter &rIter);

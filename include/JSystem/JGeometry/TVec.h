@@ -153,6 +153,12 @@ namespace JGeometry {
             z = src.z;
         }
 
+        inline void setInline(T val) {
+            x = val;
+            y = val;
+            z = val;
+        }
+
         inline void setInlinePS(register const TVec3<T> &src) {
             register TVec3<T>* dst = this;
             register f32 xy;

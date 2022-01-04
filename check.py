@@ -325,7 +325,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                         hint_count += 1
                         continue
                     
-                if original_instruction.id in { PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
+                if original_instruction.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
                     assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
                     # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.

@@ -6,6 +6,8 @@
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
 
+static TVec3f gZeroVec = TVec3f(0.0f, 0.0f, 0.0f);
+
 namespace MR {
     void initAcosTable();
 
