@@ -9,7 +9,7 @@
 | JetTurtleShadow.o | 0.0% | 0 / 6 | 0.0% |
 | MarineSnow.o | 0.0% | 0 / 4 | 0.0% |
 | Mario.o | 0.0% | 0 / 55 | 0.0% |
-| MarioActor.o | 0.0% | 0 / 88 | 0.0% |
+| MarioActor.o | 0.5966239813736903% | 1 / 88 | 1.1363636363636365% |
 | MarioActorDraw.o | 0.0% | 0 / 36 | 0.0% |
 | MarioActorPunch.o | 0.0% | 0 / 10 | 0.0% |
 | MarioActorCamera.o | 0.0% | 0 / 15 | 0.0% |
@@ -319,7 +319,7 @@
 # MarioActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __as__8TriangleFRC8Triangle | :x: |
+| __as__8TriangleFRC8Triangle | :white_check_mark: |
 | getEuler__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__10MarioActorFPCc | :x: |
 | __dt__10MarioActorFv | :x: |

@@ -86,7 +86,7 @@ moveAlongHittedPlanes__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29J
 findBindedPos__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PbP7HitInfoUlbb,Binder.o,LiveActor.a,false
 moveWithCollisionParts__6BinderFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>,Binder.o,LiveActor.a,false
 storeCurrentHitInfo__6BinderFP7HitInfoUlb,Binder.o,LiveActor.a,false
-__as__7HitInfoFRC7HitInfo,Binder.o,LiveActor.a,false
+__as__7HitInfoFRC7HitInfo,Binder.o,LiveActor.a,true
 obtainMomentFixReaction__6BinderFP7HitInfoUlPQ29JGeometry8TVec3<f>Ul,Binder.o,LiveActor.a,false
 storeContactPlane__6BinderFP7HitInfoUl,Binder.o,LiveActor.a,false
 sort<PP7HitInfo&#44;PFPC7HitInfoPC7HitInfo_b>__3stdFPP7HitInfoPP7HitInfoPFPC7HitInfoPC7HitInfo_b_v,Binder.o,LiveActor.a,false

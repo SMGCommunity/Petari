@@ -19,6 +19,17 @@ public:
     void addToGlobal(CollisionParts *);
     void removeFromGlobal(CollisionParts *);
 
+    void checkStrikePoint(const TVec3f &, HitInfo *);
+    void checkStrikeBall(const TVec3f &, float, bool, const CollisionPartsFilterBase *, const TriangleFilterBase *);
+    void checkStrikeBallWithThickness(const TVec3f &, float, float, const CollisionPartsFilterBase *, const TriangleFilterBase *);
+    void checkStrikeLine(const TVec3f &, const TVec3f &, long, const CollisionPartsFilterBase *, const TriangleFilterBase *);
+    void createAreaPolygonList(Triangle *, unsigned long, const TVec3f &, const TVec3f &);
+    void createAreaPolygonListArray(Triangle *, unsigned long, TVec3f *, unsigned long);
+    void isSphereOverlappingWithBox(const TVec3f &, const TVec3f &, const TVec3f &, float);
+    void searchSameHostParts(CollisionParts **, CollisionParts *) const;
+    void getStrikeInfo(unsigned long);
+    CollisionZone *getZone(int);
+
     HitInfo* mHitInfoArray;         // _C
     s32 _10;
     s32 mZoneCount;                 // _14

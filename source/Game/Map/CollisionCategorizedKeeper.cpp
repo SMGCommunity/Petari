@@ -1,4 +1,12 @@
 #include "Game/Map/CollisionCategorizedKeeper.h"
+#include "Game/Map/CollisionParts.h"
+
+TVec3f CollisionParts::getTrans() {
+    TVec3f translation;
+    mBaseMatrix.getTransInline(translation);
+
+    return translation;
+}
 
 void CollisionCategorizedKeeper::addToZone(CollisionParts *pParts, s32 zone) {
     mZones[zone]->addParts(pParts);

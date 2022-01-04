@@ -1,10 +1,11 @@
 #include "Game/Gravity.h"
 #include "Game/Util.h"
+#include "Inline.h"
 
 DiskTorusGravity::DiskTorusGravity() :
 	PlanetGravity(),
-	mLocalPosition(0.0f, 50.0f, 0.0f),
-	mTranslation(0.0f, 50.0f, 0.0f),
+    CALL_INLINE_FUNC(mLocalPosition, 0.0f, 50.0f, 0.0f),
+    CALL_INLINE_FUNC(mTranslation, 0.0f, 50.0f, 0.0f),
 	mLocalDirection(0, 1, 0),
 	mRotation(0, 1, 0)
 {

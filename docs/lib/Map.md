@@ -5,10 +5,10 @@
 | Air.o | 0.0% | 0 / 33 | 0.0% |
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% |
 | Butterfly.o | 0.0% | 0 / 37 | 0.0% |
-| CollisionCategorizedKeeper.o | 7.686729514140682% | 6 / 24 | 25.0% |
+| CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% |
 | CollisionCode.o | 96.32352941176471% | 19 / 20 | 95.0% |
-| CollisionDirector.o | 0.0% | 0 / 6 | 0.0% |
-| CollisionParts.o | 0.0% | 0 / 30 | 0.0% |
+| CollisionDirector.o | 100.0% | 6 / 6 | 100.0% |
+| CollisionParts.o | 25.15762925598991% | 19 / 30 | 63.33333333333333% |
 | FileSelectCameraController.o | 0.0% | 0 / 28 | 0.0% |
 | FileSelectEffect.o | 0.0% | 0 / 15 | 0.0% |
 | FileSelectFunc.o | 100.0% | 2 / 2 | 100.0% |
@@ -23,9 +23,9 @@
 | GroundChecker.o | 0.0% | 0 / 3 | 0.0% |
 | GroupSwitchWatcher.o | 0.0% | 0 / 4 | 0.0% |
 | Halo.o | 0.0% | 0 / 24 | 0.0% |
-| HitInfo.o | 0.0% | 0 / 22 | 0.0% |
-| KCollision.o | 0.0% | 0 / 31 | 0.0% |
-| KCollisionPlus.o | 0.0% | 0 / 3 | 0.0% |
+| HitInfo.o | 100.0% | 22 / 22 | 100.0% |
+| KCollision.o | 13.093525179856117% | 18 / 31 | 58.06451612903226% |
+| KCollisionPlus.o | 83.19327731092437% | 2 / 3 | 66.66666666666666% |
 | KoopaBattleMapCoinPlate.o | 0.0% | 0 / 5 | 0.0% |
 | KoopaBattleMapDamagePlate.o | 0.0% | 0 / 15 | 0.0% |
 | KoopaBattleMapPlanet.o | 0.0% | 0 / 14 | 0.0% |
@@ -226,7 +226,7 @@
 | addAndUpdateMinMax__13CollisionZoneFQ29JGeometry8TVec3&lt;f&gt;Q29JGeometry8TVec3&lt;f&gt; | :x: |
 | eraseParts__13CollisionZoneFP14CollisionParts | :x: |
 | __dt__26CollisionCategorizedKeeperFv | :x: |
-| getTrans__14CollisionPartsFv | :x: |
+| getTrans__14CollisionPartsFv | :white_check_mark: |
 
 
 # CollisionCode.o
@@ -257,37 +257,37 @@
 # CollisionDirector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17CollisionDirectorFv | :x: |
-| init__17CollisionDirectorFRC12JMapInfoIter | :x: |
-| initAfterPlacement__17CollisionDirectorFv | :x: |
-| movement__17CollisionDirectorFv | :x: |
-| getCollisionDirector__2MRFv | :x: |
-| __dt__17CollisionDirectorFv | :x: |
+| __ct__17CollisionDirectorFv | :white_check_mark: |
+| init__17CollisionDirectorFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__17CollisionDirectorFv | :white_check_mark: |
+| movement__17CollisionDirectorFv | :white_check_mark: |
+| getCollisionDirector__2MRFv | :white_check_mark: |
+| __dt__17CollisionDirectorFv | :white_check_mark: |
 
 
 # CollisionParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | getScale__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __ct__14CollisionPartsFv | :x: |
-| init__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
-| addToBelongZone__14CollisionPartsFv | :x: |
-| removeFromBelongZone__14CollisionPartsFv | :x: |
-| initWithAutoEqualScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
-| initWithNotUsingScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :x: |
-| resetAllMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
-| resetAllMtx__14CollisionPartsFv | :x: |
-| forceResetAllMtxAndSetUpdateMtxOneTime__14CollisionPartsFv | :x: |
-| resetAllMtxPrivate__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
-| setMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
-| setMtx__14CollisionPartsFv | :x: |
-| updateMtx__14CollisionPartsFv | :x: |
+| __ct__14CollisionPartsFv | :white_check_mark: |
+| init__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :white_check_mark: |
+| addToBelongZone__14CollisionPartsFv | :white_check_mark: |
+| removeFromBelongZone__14CollisionPartsFv | :white_check_mark: |
+| initWithAutoEqualScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :white_check_mark: |
+| initWithNotUsingScale__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9HitSensorPCvPCvlb | :white_check_mark: |
+| resetAllMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
+| resetAllMtx__14CollisionPartsFv | :white_check_mark: |
+| forceResetAllMtxAndSetUpdateMtxOneTime__14CollisionPartsFv | :white_check_mark: |
+| resetAllMtxPrivate__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
+| setMtx__14CollisionPartsFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
+| setMtx__14CollisionPartsFv | :white_check_mark: |
+| updateMtx__14CollisionPartsFv | :white_check_mark: |
 | makeEqualScale__14CollisionPartsFPA4_f | :x: |
-| updateBoundingSphereRange__14CollisionPartsFv | :x: |
-| updateBoundingSphereRange__14CollisionPartsFQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| updateBoundingSphereRangePrivate__14CollisionPartsFf | :x: |
-| getHostName__14CollisionPartsCFv | :x: |
-| getPlacementZoneID__14CollisionPartsCFv | :x: |
+| updateBoundingSphereRange__14CollisionPartsFv | :white_check_mark: |
+| updateBoundingSphereRange__14CollisionPartsFQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| updateBoundingSphereRangePrivate__14CollisionPartsFf | :white_check_mark: |
+| getHostName__14CollisionPartsCFv | :white_check_mark: |
+| getPlacementZoneID__14CollisionPartsCFv | :white_check_mark: |
 | checkStrikePoint__14CollisionPartsFP7HitInfoRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | checkStrikeBall__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;fbPC18TriangleFilterBase | :x: |
 | checkStrikeBallCore__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffPP12KC_PrismDataPfPUcPC18TriangleFilterBasePCQ29JGeometry8TVec3&lt;f&gt; | :x: |
@@ -297,7 +297,7 @@
 | checkStrikeLine__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PC18TriangleFilterBase | :x: |
 | createAreaPolygonList__14CollisionPartsFP8TriangleUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | createAreaPolygonListArray__14CollisionPartsFP8TriangleUlPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
-| calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 
 
 # FileSelectCameraController.o
@@ -822,28 +822,28 @@
 # HitInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8TriangleFv | :x: |
-| fillData__8TriangleFP14CollisionPartsUlP9HitSensor | :x: |
-| getHostName__8TriangleCFv | :x: |
-| getHostPlacementZoneID__8TriangleCFv | :x: |
-| isHostMoved__8TriangleCFv | :x: |
-| isValid__8TriangleCFv | :x: |
-| getNormal__8TriangleCFi | :x: |
-| getFaceNormal__8TriangleCFv | :x: |
-| getEdgeNormal__8TriangleCFi | :x: |
-| getPos__8TriangleCFi | :x: |
-| calcAndGetNormal__8TriangleFi | :x: |
-| calcAndGetEdgeNormal__8TriangleFi | :x: |
-| calcAndGetPos__8TriangleFi | :x: |
-| calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getAttributes__8TriangleCFv | :x: |
-| getBaseMtx__8TriangleCFv | :x: |
-| getBaseInvMtx__8TriangleCFv | :x: |
-| getPrevBaseMtx__8TriangleCFv | :x: |
-| __ct__7HitInfoFv | :x: |
-| isCollisionAtFace__7HitInfoCFv | :x: |
-| isCollisionAtEdge__7HitInfoCFv | :x: |
-| isCollisionAtCorner__7HitInfoCFv | :x: |
+| __ct__8TriangleFv | :white_check_mark: |
+| fillData__8TriangleFP14CollisionPartsUlP9HitSensor | :white_check_mark: |
+| getHostName__8TriangleCFv | :white_check_mark: |
+| getHostPlacementZoneID__8TriangleCFv | :white_check_mark: |
+| isHostMoved__8TriangleCFv | :white_check_mark: |
+| isValid__8TriangleCFv | :white_check_mark: |
+| getNormal__8TriangleCFi | :white_check_mark: |
+| getFaceNormal__8TriangleCFv | :white_check_mark: |
+| getEdgeNormal__8TriangleCFi | :white_check_mark: |
+| getPos__8TriangleCFi | :white_check_mark: |
+| calcAndGetNormal__8TriangleFi | :white_check_mark: |
+| calcAndGetEdgeNormal__8TriangleFi | :white_check_mark: |
+| calcAndGetPos__8TriangleFi | :white_check_mark: |
+| calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getAttributes__8TriangleCFv | :white_check_mark: |
+| getBaseMtx__8TriangleCFv | :white_check_mark: |
+| getBaseInvMtx__8TriangleCFv | :white_check_mark: |
+| getPrevBaseMtx__8TriangleCFv | :white_check_mark: |
+| __ct__7HitInfoFv | :white_check_mark: |
+| isCollisionAtFace__7HitInfoCFv | :white_check_mark: |
+| isCollisionAtEdge__7HitInfoCFv | :white_check_mark: |
+| isCollisionAtCorner__7HitInfoCFv | :white_check_mark: |
 
 
 # KCollision.o
@@ -851,11 +851,11 @@
 | ------------- | ------------- |
 | __eq__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dv__Q29JGeometry8TVec3&lt;f&gt;CFf | :x: |
-| __ct__16KCollisionServerFv | :x: |
-| init__16KCollisionServerFPvPCv | :x: |
-| setData__16KCollisionServerFPv | :x: |
+| __ct__16KCollisionServerFv | :white_check_mark: |
+| init__16KCollisionServerFPvPCv | :white_check_mark: |
+| setData__16KCollisionServerFPv | :white_check_mark: |
 | calcFarthestVertexDistance__16KCollisionServerFv | :x: |
-| isBinaryInitialized__16KCollisionServerFPCv | :x: |
+| isBinaryInitialized__16KCollisionServerFPCv | :white_check_mark: |
 | checkPoint__16KCollisionServerFP4FxyzfPf | :x: |
 | checkArea3D__16KCollisionServerFP4FxyzP4FxyzPP12KC_PrismDataUl | :x: |
 | checkSphere__16KCollisionServerFP4FxyzffUlPP12KC_PrismDataPfPUc | :x: |
@@ -863,31 +863,31 @@
 | checkArrow__16KCollisionServerCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUcPUlPP12KC_PrismDataUl | :x: |
 | KCHitSphere__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUc | :x: |
 | KCHitSphereWithThickness__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUcf | :x: |
-| isNearParallelNormal__16KCollisionServerCFPC12KC_PrismData | :x: |
+| isNearParallelNormal__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
 | KCHitArrow__16KCollisionServerCFP12KC_PrismDataRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUc | :x: |
-| toIndex__16KCollisionServerCFPC12KC_PrismData | :x: |
-| getFaceNormal__16KCollisionServerCFPC12KC_PrismData | :x: |
-| getEdgeNormal1__16KCollisionServerCFPC12KC_PrismData | :x: |
-| getEdgeNormal2__16KCollisionServerCFPC12KC_PrismData | :x: |
-| getEdgeNormal3__16KCollisionServerCFPC12KC_PrismData | :x: |
-| getNormal__16KCollisionServerCFUl | :x: |
-| calXvec__16KCollisionServerCFPC4FxyzPC4FxyzP4Fxyz | :x: |
-| getPos__16KCollisionServerCFPC12KC_PrismDatai | :x: |
-| getPrismData__16KCollisionServerCFUl | :x: |
-| getTriangleNum__16KCollisionServerCFv | :x: |
-| getAttributes__16KCollisionServerCFUl | :x: |
+| toIndex__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
+| getFaceNormal__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
+| getEdgeNormal1__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
+| getEdgeNormal2__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
+| getEdgeNormal3__16KCollisionServerCFPC12KC_PrismData | :white_check_mark: |
+| getNormal__16KCollisionServerCFUl | :white_check_mark: |
+| calXvec__16KCollisionServerCFPC4FxyzPC4FxyzP4Fxyz | :white_check_mark: |
+| getPos__16KCollisionServerCFPC12KC_PrismDatai | :white_check_mark: |
+| getPrismData__16KCollisionServerCFUl | :white_check_mark: |
+| getTriangleNum__16KCollisionServerCFv | :white_check_mark: |
+| getAttributes__16KCollisionServerCFUl | :white_check_mark: |
 | searchBlock__16KCollisionServerCFPlRCUlRCUlRCUl | :x: |
-| setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | find&lt;PP12KC_PrismData,P12KC_PrismData&gt;__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData | :x: |
-| __as__4FxyzFRC4Fxyz | :x: |
+| __as__4FxyzFRC4Fxyz | :white_check_mark: |
 
 
 # KCollisionPlus.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | isInsideMinMaxInLocalSpace__16KCollisionServerCFRCQ216KCollisionServer3V3u | :x: |
-| outCheck__16KCollisionServerCFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PQ216KCollisionServer3V3uPQ216KCollisionServer3V3u | :x: |
-| objectSpaceToLocalSpace__16KCollisionServerCFPQ216KCollisionServer3V3uRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| outCheck__16KCollisionServerCFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PQ216KCollisionServer3V3uPQ216KCollisionServer3V3u | :white_check_mark: |
+| objectSpaceToLocalSpace__16KCollisionServerCFPQ216KCollisionServer3V3uRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 
 
 # KoopaBattleMapCoinPlate.o
