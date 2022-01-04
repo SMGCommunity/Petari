@@ -53,6 +53,6 @@ public:
     TVec3f _64;
     TVec3f _70;
     TVec3f _7C;
-    bool _88;
+    u8 _88;
     u8 _89[3];
 };

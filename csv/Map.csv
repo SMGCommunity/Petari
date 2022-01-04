@@ -641,10 +641,10 @@ getAttributes__8TriangleCFv,HitInfo.o,Map.a,true
 getBaseMtx__8TriangleCFv,HitInfo.o,Map.a,true
 getBaseInvMtx__8TriangleCFv,HitInfo.o,Map.a,true
 getPrevBaseMtx__8TriangleCFv,HitInfo.o,Map.a,true
-__ct__7HitInfoFv,HitInfo.o,Map.a,false
-isCollisionAtFace__7HitInfoCFv,HitInfo.o,Map.a,false
-isCollisionAtEdge__7HitInfoCFv,HitInfo.o,Map.a,false
-isCollisionAtCorner__7HitInfoCFv,HitInfo.o,Map.a,false
+__ct__7HitInfoFv,HitInfo.o,Map.a,true
+isCollisionAtFace__7HitInfoCFv,HitInfo.o,Map.a,true
+isCollisionAtEdge__7HitInfoCFv,HitInfo.o,Map.a,true
+isCollisionAtCorner__7HitInfoCFv,HitInfo.o,Map.a,true
 __eq__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>,KCollision.o,Map.a,false
 __dv__Q29JGeometry8TVec3<f>CFf,KCollision.o,Map.a,false
 __ct__16KCollisionServerFv,KCollision.o,Map.a,true

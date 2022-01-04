@@ -204,7 +204,19 @@ TPos3f *Triangle::getPrevBaseMtx() const {
     return &mParts->mPrevBaseMatrix;
 }
 
-HitInfo::HitInfo() {
-    //_64 = TVec3f<int>(0, 0, 0);
-    //_64 = TVec3f(0, 0, 0);
+HitInfo::HitInfo() : mParentTriangle(), _60(0.0f),
+    _64(0, 0, 0), _70(0, 0, 0), _7C(0, 0, 0) {
+    _88 = 0;
+}
+
+bool HitInfo::isCollisionAtFace() const {
+    return _88 == 1;
+}
+
+bool HitInfo::isCollisionAtEdge() const {
+    return _88 == 2 || _88 == 3 || _88 == 4;
+}
+
+bool HitInfo::isCollisionAtCorner() const {
+    return _88 == 5 || _88 == 6 || _88 == 7;
 }
