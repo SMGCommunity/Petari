@@ -125,6 +125,7 @@ def print_help_and_exit():
     print("Usage: check.py [mangled_symbol] [flags...]")
     print("\t[mangled_symbol]: name of the symbol that should be checked.")
     print("\t[-all]: run checks on all functions which has been marked as decompiled.")
+    print("\t[-compare]: compares decompiled functions.")
     print("\t[-help]: displays this help text.")
     print("\t[-only-errors]: displays only error messages.")
     print("\t[-no-hints]: don't display hint messages.")
@@ -407,6 +408,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
 
 mangled_symbol = None
 check_all = False
+compare = False
 show_hints = True
 show_warnings = True
 show_errors = True
@@ -417,6 +419,8 @@ for i in range(1, len(sys.argv)):
 
     if arg == "-all":
         check_all = True
+    elif arg == "-compare":
+        compare = True
     elif arg == "-help":
         print_help_and_exit()
     elif arg == "-only-errors":
@@ -438,7 +442,7 @@ for i in range(1, len(sys.argv)):
         print()
         print_help_and_exit()
 
-if mangled_symbol == None and not check_all:
+if mangled_symbol == None and not check_all and not compare:
     print_help_and_exit()
 
 if not is_dol_correct():
@@ -464,7 +468,71 @@ if check_all:
     print(f"{success_count} function(s) out of the {total_count} function(s), which were marked as decompiled, passed the check.")
     print(f"{total_count - success_count} function(s) failed the check.")
 
-else:
+if compare:
+    success_count_a = 0
+    fail_count_a = 0
+    matched_a = set()
+    failed_a = set()
+
+    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
+        print(f"Checking {symbol}...")
+        
+        if check_symbol(function_library, symbol, obj_name, True):
+            success_count_a += 1
+            matched_a.add((symbol, obj_name))
+        else:
+            fail_count_a += 1
+            failed_a.add((symbol, obj_name))
+
+        print()
+
+    print()
+    print()
+    print("First run of tests are now done.")
+    print("Now, please make the code changes you wish to test, and then recompile everything.")
+    input("Press Enter to contiue...")
+    
+    success_count_b = 0
+    fail_count_b = 0
+    matched_b = set()
+    failed_b = set()
+
+    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
+        print(f"Checking {symbol}...")
+        
+        if check_symbol(function_library, symbol, obj_name, True):
+            success_count_b += 1
+            matched_b.add((symbol, obj_name))
+        else:
+            fail_count_b += 1
+            failed_b.add((symbol, obj_name))
+
+            print()
+            
+    print()
+    print()
+    print("Second run of tests are now done.")
+    print()
+    
+    print(f"First run: {success_count_a} matched and {fail_count_a} failed.")
+    print(f"Second run: {success_count_b} matched and {fail_count_b} failed.")
+    print()
+
+    print("The following functions matched during the first run and failed during the second test:")
+
+    for matched in matched_a:
+        if matched in failed_b:
+            print(f"{matched[0]} in {matched[1]}")
+
+    print()
+    print("The following functions failed during the first run and matched during the second test:")
+
+    for failed in failed_a:
+        if failed in matched_b:
+            print(f"{failed[0]} in {failed[1]}")
+
+
+if mangled_symbol != None:
     obj_names = function_library.get_obj_names_from_symbol(mangled_symbol)
 
     if len(obj_names) == 0:
