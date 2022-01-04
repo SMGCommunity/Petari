@@ -11,7 +11,7 @@
 | ActorStateKeeper.o | 46.42857142857143% | 3 / 6 | 50.0% |
 | AllLiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
 | AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% |
-| Binder.o | 0.0% | 0 / 20 | 0.0% |
+| Binder.o | 3.778866340097971% | 1 / 20 | 5.0% |
 | ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
 | ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
 | ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
@@ -204,7 +204,7 @@
 | findBindedPos__6BinderFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PbP7HitInfoUlbb | :x: |
 | moveWithCollisionParts__6BinderFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | storeCurrentHitInfo__6BinderFP7HitInfoUlb | :x: |
-| __as__7HitInfoFRC7HitInfo | :x: |
+| __as__7HitInfoFRC7HitInfo | :white_check_mark: |
 | obtainMomentFixReaction__6BinderFP7HitInfoUlPQ29JGeometry8TVec3&lt;f&gt;Ul | :x: |
 | storeContactPlane__6BinderFP7HitInfoUl | :x: |
 | sort&lt;PP7HitInfo,PFPC7HitInfoPC7HitInfo_b&gt;__3stdFPP7HitInfoPP7HitInfoPFPC7HitInfoPC7HitInfo_b_v | :x: |
