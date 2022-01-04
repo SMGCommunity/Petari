@@ -105,7 +105,7 @@
 | FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% |
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% |
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% |
-| FlipPanel.o | 67.85388127853881% | 15 / 43 | 34.883720930232556% |
+| FlipPanel.o | 72.42009132420091% | 16 / 43 | 37.2093023255814% |
 | Fountain.o | 0.0% | 0 / 14 | 0.0% |
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% |
 | GCapture.o | 0.0% | 0 / 70 | 0.0% |
@@ -2871,7 +2871,7 @@
 | __ct__17FlipPanelObserverFPCc | :white_check_mark: |
 | init__17FlipPanelObserverFRC12JMapInfoIter | :white_check_mark: |
 | exeWait__17FlipPanelObserverFv | :white_check_mark: |
-| exeComplete__17FlipPanelObserverFv | :x: |
+| exeComplete__17FlipPanelObserverFv | :white_check_mark: |
 | exeDemoWait__17FlipPanelObserverFv | :x: |
 | initAfterPlacement__17FlipPanelObserverFv | :x: |
 | receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor | :x: |
