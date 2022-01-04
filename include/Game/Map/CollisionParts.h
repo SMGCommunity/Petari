@@ -47,9 +47,9 @@ public:
 
     TMtx34f *_0;
     TMtx34f mMatrix;            // _4
-    TPos3f _34;
-    TPos3f _64;
-    TMtx34f _94;
+    TPos3f mBaseMatrix;         // _34
+    TPos3f mInvBaseMatrix;      // _64
+    TPos3f mPrevBaseMatrix;     // _94
     KCollisionServer *mServer;  // _C4
     HitSensor *mHitSensor;      // _C8
     bool _CC;

@@ -3,7 +3,7 @@
 
 TVec3f CollisionParts::getTrans() {
     TVec3f translation;
-    _34.getTransInline(translation);
+    mBaseMatrix.getTransInline(translation);
 
     return translation;
 }

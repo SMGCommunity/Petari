@@ -158,10 +158,15 @@ s32 KCollisionServer::getTriangleNum() const {
     return (reinterpret_cast<u8 *>(mFile->mOctree) - reinterpret_cast<u8 *>(mFile->mPrisms + 1)) / sizeof(KC_PrismData);
 }
 
-/*u16 KCollisionServer::getAttributes(unsigned long index) const {
-    // It seems to return mFile and mFile->mPrisms[1 + index].mAttribute on the stack
-    return mFile->mPrisms[1 + index].mAttribute;
-}*/
+JMapInfoIter KCollisionServer::getAttributes(unsigned long index) const {
+    KC_PrismData *prism = &mFile->mPrisms[1 + index];
+
+    JMapInfoIter iter;
+    iter.mInfo = mapInfo;
+    iter._4 = prism->mAttribute;
+
+    return iter;
+}
 
 #ifdef NON_MATCHING
 // Register mismatch

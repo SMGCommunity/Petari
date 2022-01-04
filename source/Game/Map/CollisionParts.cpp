@@ -24,10 +24,10 @@ CollisionParts::CollisionParts() {
 
     mServer = new KCollisionServer();
 
-    _94.identity();
-    _34.identity();
+    mPrevBaseMatrix.identity();
+    mBaseMatrix.identity();
     mMatrix.identity();
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&_34), reinterpret_cast<MtxPtr>(&_64));
+    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
 }
 
 void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, long keeperIndex, bool a6) {
@@ -37,7 +37,7 @@ void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *p
     resetAllMtx(a1);
 
     TVec3f scale;
-    _34.getScale(scale);
+    mBaseMatrix.getScale(scale);
 
     CollisionDirector *director = MR::getCollisionDirector();
     CollisionCategorizedKeeper *keeper = director->mKeepers[keeperIndex];
@@ -123,10 +123,10 @@ void CollisionParts::forceResetAllMtxAndSetUpdateMtxOneTime() {
 }
 
 void CollisionParts::resetAllMtxPrivate(const TPos3f &a1) {
-    JMath::gekko_ps_copy12(&_94, &a1);
-    JMath::gekko_ps_copy12(&_34, &a1);
+    JMath::gekko_ps_copy12(&mPrevBaseMatrix, &a1);
+    JMath::gekko_ps_copy12(&mBaseMatrix, &a1);
     JMath::gekko_ps_copy12(&mMatrix, &a1);
-    PSMTXInverse(reinterpret_cast<MtxPtr>(&_34), reinterpret_cast<MtxPtr>(&_64));
+    PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
 }
 
 void CollisionParts::setMtx(const TPos3f &matrix) {
@@ -145,12 +145,12 @@ void CollisionParts::updateMtx() {
     }
 
     if (!bVar1) {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&_34))) {
+        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
             _D4++;
         }
     }
     else {
-        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&_34))) {
+        if (MR::isSameMtx(reinterpret_cast<MtxPtr>(&mMatrix), reinterpret_cast<MtxPtr>(&mBaseMatrix))) {
             _D4++;
         }
         else {
@@ -175,9 +175,9 @@ void CollisionParts::updateMtx() {
         _CE = false;
 
         if (_D4 < 2) {
-            JMath::gekko_ps_copy12(&_94, &_34);
-            JMath::gekko_ps_copy12(&_34, &mMatrix);
-            PSMTXInverse(reinterpret_cast<MtxPtr>(&_34), reinterpret_cast<MtxPtr>(&_64));
+            JMath::gekko_ps_copy12(&mPrevBaseMatrix, &mBaseMatrix);
+            JMath::gekko_ps_copy12(&mBaseMatrix, &mMatrix);
+            PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
         }
     }
 }
@@ -282,10 +282,10 @@ void CollisionParts::projectToPlane(TVec3f *pProjected, const TVec3f &rPos, cons
 void CollisionParts::calcForceMovePower(TVec3f *a1, const TVec3f &a2) const {
     TVec3f tStack88 = a2;
     TMtx34f auStack76;
-    PSMTXInverse((MtxPtr)&_94, reinterpret_cast<MtxPtr>(&auStack76));
+    PSMTXInverse((MtxPtr)&mPrevBaseMatrix, reinterpret_cast<MtxPtr>(&auStack76));
 
     auStack76.mult(tStack88, tStack88);
-    _34.mult(tStack88, tStack88);
+    mBaseMatrix.mult(tStack88, tStack88);
 
     tStack88.sub(a2);
     *a1 = tStack88;

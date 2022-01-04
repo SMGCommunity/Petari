@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/JMapInfo.h"
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 
@@ -91,7 +92,7 @@ public:
     TVec3f getPos(const KC_PrismData *, int) const;
     KC_PrismData *getPrismData(unsigned long) const;
     s32 getTriangleNum() const;
-    u16 getAttributes(unsigned long) const;
+    JMapInfoIter getAttributes(unsigned long) const;
     s32 *searchBlock(long *, const unsigned long &, const unsigned long &, const unsigned long &) const;
     bool isInsideMinMaxInLocalSpace(const V3u &) const;
     bool outCheck(const TVec3f *, const TVec3f *, V3u *, V3u *) const;
