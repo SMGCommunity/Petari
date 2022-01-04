@@ -330,6 +330,20 @@ void FlipPanelObserver::exeComplete() {
 
         setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::sInstance);
     }
+}
 
+void FlipPanelObserver::exeDemoWait() {
+    if (!MR::isDemoActive()) {
+        if (MR::isValidSwitchA(this)) {
+            MR::onSwitchA(this);
+        }
 
+        makeActorDead();
+    }
+}
+
+void FlipPanelObserver::initAfterPlacement() {
+    if (MR::isValidSwitchAppear(this)) {
+        MR::callMakeActorDeadAllGroupMember(this);
+    }
 }

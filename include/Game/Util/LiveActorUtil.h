@@ -147,5 +147,6 @@ namespace MR {
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 
     void callAppearAllGroupMember(const LiveActor *);
+    void callMakeActorDeadAllGroupMember(const LiveActor *);
     void callRequestMovementOnAllGroupMember(const LiveActor *);
 }

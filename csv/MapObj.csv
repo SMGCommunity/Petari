@@ -2028,8 +2028,8 @@ __ct__17FlipPanelObserverFPCc,FlipPanel.o,MapObj.a,true
 init__17FlipPanelObserverFRC12JMapInfoIter,FlipPanel.o,MapObj.a,true
 exeWait__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,true
 exeComplete__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,true
-exeDemoWait__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,false
-initAfterPlacement__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,false
+exeDemoWait__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,true
+initAfterPlacement__17FlipPanelObserverFv,FlipPanel.o,MapObj.a,true
 receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor,FlipPanel.o,MapObj.a,false
 __sinit_\FlipPanel_cpp,FlipPanel.o,MapObj.a,false
 __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv,FlipPanel.o,MapObj.a,false
