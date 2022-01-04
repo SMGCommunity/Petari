@@ -128,24 +128,84 @@ void JKRDecomp::decode(unsigned char *pSrc, unsigned char *pDst, unsigned long c
 
 }*/
 
-/*void JKRDecomp::decodeSZS(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long a4) {
-    u8 *end = pDst + (*reinterpret_cast<u32 *>(pSrc + 4)) - a4;
+#ifdef NON_MATCHING // Wrong registers
+void JKRDecomp::decodeSZS(u8 *pSrc, u8 *pDst, u32 compressedSize, u32 a4) {
+    u32 decompSize = ((s32)pDst + *(u32*)(pSrc + 4)) - a4;
+    u8 byte1, byte2;
+    s32 validBitCount = 0;
+    u32 curBlock;
 
     if (compressedSize == 0) {
         return;
     }
 
-    if (a4 > *reinterpret_cast<u32 *>(pSrc)) {
+    if (a4 > *(u32*)pSrc) {
         return;
     }
 
-    u8 *current = pSrc + 0x10;
+    pSrc += 0x10;
 
     do {
+        if (validBitCount == 0) {
+            curBlock = *pSrc;
+            validBitCount = 8;
+            pSrc++;
+        }
 
-    }
-    while (true);
-}*/
+        if ((curBlock & 0x80) != 0) {
+            if (a4 == 0) {
+                compressedSize--;
+                *pDst++ = *pSrc;
+
+                if (compressedSize == 0) {
+                    return;
+                }
+            }
+            else {
+                a4--;
+            }
+
+            pSrc++;
+        }
+        else {
+            // This bit specifically
+            byte1 = *pSrc++;
+            byte2 = *pSrc++;
+
+            u8* copySrc = pDst;
+            copySrc -= ((byte1 & 0xF) << 8) | byte2;;
+            u32 numBytes = byte1 >> 4;
+
+            if (numBytes == 0) {
+                numBytes = *pSrc++ + 0x12;
+            }
+            else {
+                numBytes += 2;
+            }
+            
+            do {
+               if (a4 == 0) {
+                    compressedSize--;
+                    *pDst = *(copySrc - 1);
+                    pDst++;
+
+                    if (compressedSize == 0) {
+                        return;
+                    }
+                }
+                else {
+                    a4--;
+                }
+
+                copySrc++;
+            } while (--numBytes != 0);
+        }
+
+        curBlock <<= 1;
+        validBitCount--;
+    } while ((u32)pDst != decompSize);
+}
+#endif
 
 EJKRCompression JKRDecomp::checkCompressed(unsigned char *pSrc) {
     if (pSrc[0] == 'Y' && pSrc[1] == 'a' && pSrc[3] == '0') {

@@ -3,7 +3,7 @@
 | ------------- | ------------- | ------------- | ------------- |
 | AirBubble.o | 0.0% | 0 / 23 | 0.0% |
 | AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% |
-| AirBubbleHolder.o | 0.0% | 0 / 7 | 0.0% |
+| AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% |
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% |
 | ArrowSwitch.o | 0.0% | 0 / 27 | 0.0% |
 | ArrowSwitchMulti.o | 0.0% | 0 / 21 | 0.0% |
@@ -367,11 +367,11 @@
 # AirBubbleHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15AirBubbleHolderFPCc | :x: |
+| __ct__15AirBubbleHolderFPCc | :white_check_mark: |
 | __dt__28DeriveActorGroup&lt;9AirBubble&gt;Fv | :x: |
-| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
-| createAirBubbleHolder__2MRFv | :x: |
-| appearAirBubble__2MRFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
+| createAirBubbleHolder__2MRFv | :white_check_mark: |
+| appearAirBubble__2MRFRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | __dt__15AirBubbleHolderFv | :x: |
 | init__15AirBubbleHolderFRC12JMapInfoIter | :x: |
 

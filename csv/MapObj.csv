@@ -33,11 +33,11 @@ __ct__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitFv,AirBubbleGenerator.
 __ct__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateFv,AirBubbleGenerator.o,MapObj.a,false
 execute__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateCFP5Spine,AirBubbleGenerator.o,MapObj.a,false
 execute__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitCFP5Spine,AirBubbleGenerator.o,MapObj.a,false
-__ct__15AirBubbleHolderFPCc,AirBubbleHolder.o,MapObj.a,false
+__ct__15AirBubbleHolderFPCc,AirBubbleHolder.o,MapObj.a,true
 __dt__28DeriveActorGroup<9AirBubble>Fv,AirBubbleHolder.o,MapObj.a,false
-appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3<f>l,AirBubbleHolder.o,MapObj.a,false
-createAirBubbleHolder__2MRFv,AirBubbleHolder.o,MapObj.a,false
-appearAirBubble__2MRFRCQ29JGeometry8TVec3<f>l,AirBubbleHolder.o,MapObj.a,false
+appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3<f>l,AirBubbleHolder.o,MapObj.a,true
+createAirBubbleHolder__2MRFv,AirBubbleHolder.o,MapObj.a,true
+appearAirBubble__2MRFRCQ29JGeometry8TVec3<f>l,AirBubbleHolder.o,MapObj.a,true
 __dt__15AirBubbleHolderFv,AirBubbleHolder.o,MapObj.a,false
 init__15AirBubbleHolderFRC12JMapInfoIter,AirBubbleHolder.o,MapObj.a,false
 __ct__11AnmModelObjFPCc,AnmModelObj.o,MapObj.a,false

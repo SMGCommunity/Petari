@@ -13,6 +13,8 @@ class ModelObj;
 class BrkCtrl;
 
 namespace MR {
+    bool isExistIndirectTexture(const LiveActor *);
+
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);

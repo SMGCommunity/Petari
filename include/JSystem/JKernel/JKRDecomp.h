@@ -43,6 +43,6 @@ public:
     static bool orderSync(unsigned char *, unsigned char *, unsigned long, unsigned long);
     static void decode(unsigned char *, unsigned char *, unsigned long, unsigned long);
     static void decodeSZP(unsigned char *, unsigned char *, unsigned long, unsigned long);
-    static void decodeSZS(unsigned char *, unsigned char *, unsigned long, unsigned long);
+    static void decodeSZS(u8 *, u8 *, u32, u32);
     static EJKRCompression checkCompressed(unsigned char *);
 };

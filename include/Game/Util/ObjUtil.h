@@ -17,6 +17,13 @@ namespace MR {
     void connectToSceneCollisionMapObjStrongLight(LiveActor *);
     void connectToSceneCollisionEnemy(LiveActor *);
     void connectToSceneCollisionEnemyMovement(NameObj *);
+    void connectToSceneCollisionEnemyStrongLight(LiveActor *);
+    void connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(LiveActor *);
+    void connectToSceneNpc(LiveActor *);
+    void connectToSceneNpcMovement(LiveActor *);
+    void connectToSceneRide(LiveActor *);
+    void connectToSceneEnemy(LiveActor *);
+    void connectToSceneEnemyMovement(NameObj *);
     void connectToSceneMapObj(LiveActor *);
     void connectToSceneMapObjMovement(NameObj *);
     void connectToSceneMapObjMovementCalcAnim(NameObj *);
@@ -31,6 +38,15 @@ namespace MR {
     void connectToScenePlanet(LiveActor *);
     void connectToSceneEnvironment(LiveActor *);
     void connectToSceneEnvironmentStrongLight(LiveActor *);
+    void connectToClippedMapParts(LiveActor *);
+    void connectToSceneEnemyDecoration(LiveActor *);
+    void connectToSceneItem(LiveActor *);
+    void connectToSceneItemStrongLight(LiveActor *);
+    void connectToSceneIndirectEnemy(LiveActor *);
+    void connectToSceneIndirectNpc(LiveActor *);
+    void connectToSceneIndirectMapObj(LiveActor *);
+    void connectToSceneIndirectMapObjStrongLight(LiveActor *);
+    void connectToSceneAreaObj(NameObj *);
 
     void connectToSceneCamera(NameObj *);
 
