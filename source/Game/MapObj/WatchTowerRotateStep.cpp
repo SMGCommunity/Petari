@@ -1,5 +1,6 @@
 #include "Game/MapObj/WatchTowerRotateStep.h"
 #include "Game/Util.h"
+#include "Inline.h"
 
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance;
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance;
@@ -61,7 +62,8 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
         mLifts[i]->mCalcOwnMtx = false;
 
         MR::initCollisionParts(mLifts[i], "WatchTowerRotateStepLift", getSensor(NULL), NULL);
-        MR::initShadowVolumeBox(mLifts[i], TVec3f(600.0f, 200.0f, 400.0f), mLifts[i]->getBaseMtx());
+        TVec3f local68 = CALL_INLINE_FUNC(TVec3f, 600.0f, 200.0f, 400.0f);
+        MR::initShadowVolumeBox(mLifts[i], local68, mLifts[i]->getBaseMtx());
         MR::setShadowVolumeStartDropOffset(mLifts[i], "WatchTowerRotateStepLift", 300.0f);
         MR::setShadowDropLength(mLifts[i], "WatchTowerRotateStepLift", 370.0f);
 

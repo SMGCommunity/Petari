@@ -1,13 +1,14 @@
 #include "Game/Gravity.h"
 #include "Game/Util.h"
 #include "JSystem/JMath.h"
+#include "Inline.h"
 
 ParallelGravity::ParallelGravity() :
 	PlanetGravity(),
 	mPlanePosition(0, 0, 0),
-	mPlaneUpVec(0.0f, 1.0f, 0.0f),
+    CALL_INLINE_FUNC(mPlaneUpVec, 0.0f, 1.0f, 0.0f),
 	mWorldPlanePosition(0, 0, 0),
-	mWorldPlaneUpVec(0.0f, 1.0f, 0.0f)
+    CALL_INLINE_FUNC(mWorldPlaneUpVec, 0.0f, 1.0f, 0.0f)
 {
 	mCylinderHeight = 1000.0f;
 	mCylinderRadius = 500.0f;
