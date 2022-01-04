@@ -109,6 +109,8 @@ namespace MR {
     bool sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const TVec3f &);
 
+    void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
+
     bool isMsgPlayerHitAll(u32);
     bool isMsgPlayerSpinAttack(u32);
     bool isMsgPlayerTrample(u32);

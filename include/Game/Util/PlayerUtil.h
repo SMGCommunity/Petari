@@ -25,4 +25,11 @@ namespace MR {
     void setCameraTargetToPlayer(CameraTargetArg *);
 
     bool isPlayerInAreaObj(const char *);
+
+    bool isOnGroundPlayer();
+    bool isOnPlayer(const LiveActor *);
+
+    bool isPlayerJumpRising();
+    TVec3f* getPlayerGroundingPolygon();
+    TVec3f* getPlayerGroundNormal();
 };

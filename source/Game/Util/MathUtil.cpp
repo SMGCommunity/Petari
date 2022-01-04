@@ -7,6 +7,8 @@
 
 #include <cmath>
 
+static TVec3f gZeroVec = TVec3f(0.0f, 0.0f, 0.0f);
+
 namespace MR {
     f32 getRandom(f32 min, f32 max) {
         return (min + ((max - min) * getRandom()));

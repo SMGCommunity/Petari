@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/Nerve.h"
+class NameObj;
+class LiveActor;
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor *, const JMapInfoIter &);
@@ -14,4 +16,7 @@ namespace MR {
     bool isDemoActive();
 
     bool isPowerStarGetDemoActive();
+
+    bool tryStartDemo(LiveActor *, const char *);
+    void endDemo(NameObj *, const char *);
 };

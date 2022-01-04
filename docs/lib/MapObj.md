@@ -105,7 +105,7 @@
 | FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% |
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% |
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% |
-| FlipPanel.o | 0.0% | 0 / 43 | 0.0% |
+| FlipPanel.o | 67.85388127853881% | 15 / 43 | 34.883720930232556% |
 | Fountain.o | 0.0% | 0 / 14 | 0.0% |
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% |
 | GCapture.o | 0.0% | 0 / 70 | 0.0% |
@@ -151,7 +151,7 @@
 | LotusLeaf.o | 0.0% | 0 / 16 | 0.0% |
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
-| MapObjActor.o | 41.95652173913044% | 41 / 59 | 69.49152542372882% |
+| MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
 | MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
 | MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
@@ -2856,21 +2856,21 @@
 # FlipPanel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9FlipPanelFPCc | :x: |
-| init__9FlipPanelFRC12JMapInfoIter | :x: |
-| exeFrontLand__9FlipPanelFv | :x: |
-| exeBackLand__9FlipPanelFv | :x: |
-| exeWait__9FlipPanelFv | :x: |
-| exeEnd__9FlipPanelFv | :x: |
-| appear__9FlipPanelFv | :x: |
-| endClipped__9FlipPanelFv | :x: |
-| calcAndSetBaseMtx__9FlipPanelFv | :x: |
-| receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor | :x: |
-| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| checkPlayerOnTop__9FlipPanelFv | :x: |
-| __ct__17FlipPanelObserverFPCc | :x: |
-| init__17FlipPanelObserverFRC12JMapInfoIter | :x: |
-| exeWait__17FlipPanelObserverFv | :x: |
+| __ct__9FlipPanelFPCc | :white_check_mark: |
+| init__9FlipPanelFRC12JMapInfoIter | :white_check_mark: |
+| exeFrontLand__9FlipPanelFv | :white_check_mark: |
+| exeBackLand__9FlipPanelFv | :white_check_mark: |
+| exeWait__9FlipPanelFv | :white_check_mark: |
+| exeEnd__9FlipPanelFv | :white_check_mark: |
+| appear__9FlipPanelFv | :white_check_mark: |
+| endClipped__9FlipPanelFv | :white_check_mark: |
+| calcAndSetBaseMtx__9FlipPanelFv | :white_check_mark: |
+| receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| checkPlayerOnTop__9FlipPanelFv | :white_check_mark: |
+| __ct__17FlipPanelObserverFPCc | :white_check_mark: |
+| init__17FlipPanelObserverFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__17FlipPanelObserverFv | :white_check_mark: |
 | exeComplete__17FlipPanelObserverFv | :x: |
 | exeDemoWait__17FlipPanelObserverFv | :x: |
 | initAfterPlacement__17FlipPanelObserverFv | :x: |
@@ -4021,11 +4021,11 @@
 | pauseRotator__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | resetRailMoverToInitPos__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | startBreak__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
-| tryStartBreak__15MapObjActorUtilFP11MapObjActor | :x: |
+| tryStartBreak__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | isBreakStopped__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | killBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | appearBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
-| __sinit_\MapObjActor_cpp | :x: |
+| __sinit_\MapObjActor_cpp | :white_check_mark: |
 | __ct__Q214NrvMapObjActor12HostTypeWaitFv | :x: |
 | __ct__Q214NrvMapObjActor12HostTypeMoveFv | :white_check_mark: |
 | __ct__Q214NrvMapObjActor12HostTypeDoneFv | :white_check_mark: |
