@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util/JMapInfo.h"
+#include "JSystem/JGeometry/TMatrix.h"
 #include "JSystem/JGeometry/TVec.h"
 
 class CollisionParts;
@@ -39,13 +40,19 @@ public:
 
 class HitInfo {
 public:
+    HitInfo();
+
+    HitInfo &operator=(const HitInfo &);
+
+    bool isCollisionAtFace() const;
+    bool isCollisionAtEdge() const;
+    bool isCollisionAtCorner() const;
+
     Triangle mParentTriangle;   // _0
     f32 _60;
     TVec3f _64;
     TVec3f _70;
     TVec3f _7C;
-    u8 _88;
-    u8 _89;
-    u8 _8A;
-    u8 _8B;
+    bool _88;
+    u8 _89[3];
 };

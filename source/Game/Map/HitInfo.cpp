@@ -203,3 +203,8 @@ TPos3f *Triangle::getBaseInvMtx() const {
 TPos3f *Triangle::getPrevBaseMtx() const {
     return &mParts->mPrevBaseMatrix;
 }
+
+HitInfo::HitInfo() {
+    //_64 = TVec3f<int>(0, 0, 0);
+    //_64 = TVec3f(0, 0, 0);
+}
