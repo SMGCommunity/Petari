@@ -39,8 +39,8 @@ public:
     AreaForm* mForm;              // _C
     int mType;                    // _10
     bool mValid;                  // _14
-    u8 _15;
-    u8 _16;
+    bool _15;
+    bool mAwake;                  // _16
     s32 mObjArg0;                 // _18
     s32 mObjArg1;                 // _1C
     s32 mObjArg2;                 // _20

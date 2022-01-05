@@ -147,7 +147,7 @@ invalidate__11AreaPolygonFv,CollisionArea.o,AreaObj.a,true
 validate__11AreaPolygonFv,CollisionArea.o,AreaObj.a,true
 __dt__11AreaPolygonFv,CollisionArea.o,AreaObj.a,true
 __dt__13CollisionAreaFv,CollisionArea.o,AreaObj.a,false
-isValid__7AreaObjCFv,CollisionArea.o,AreaObj.a,false
+isValid__7AreaObjCFv,CollisionArea.o,AreaObj.a,true
 __ct__11AreaPolygonFv,CollisionArea.o,AreaObj.a,true
 __dt__19DynamicCollisionObjFv,CollisionArea.o,AreaObj.a,true
 init__11AreaPolygonFRC12JMapInfoIter,CollisionArea.o,AreaObj.a,false
