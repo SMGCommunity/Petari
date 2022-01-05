@@ -44,7 +44,9 @@ public:
         mMtxCalcAfterChildFunc = calcAfterChild;
     }
 
-    virtual ~JointControlDelegator();
+    virtual ~JointControlDelegator() {
+        
+    }
 
     T* mHost;                       // _C
     func mMtxCalcFunc;             // _10

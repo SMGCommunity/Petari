@@ -347,3 +347,111 @@ void FlipPanelObserver::initAfterPlacement() {
         MR::callMakeActorDeadAllGroupMember(this);
     }
 }
+
+#ifdef NON_MATCHING
+s32 FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+    if(msg == 0x66) {
+        if (_90) {
+            if (_9C) {
+                MR::startSystemME("ME_FLIP_PANEL_INV_OFF");
+            }
+            else {
+                MR::startSystemME("ME_FLIP_PANEL_ON");
+            }
+        }
+        else if (_9C) {
+            MR::startSystemME("ME_FLIP_PANEL_INV_OFF_FIRST");
+        }
+        else {
+            MR::startSystemME("ME_FLIP_PANEL_ON_FIRST");
+        }
+
+        _90++;
+        return 1;
+    }
+    else if (msg == 0x67) {
+        if (_9C) {
+            MR::startSystemME("ME_FLIP_PANEL_INV_ON");
+        }
+        else {
+            MR::startSystemME("ME_FLIP_PANEL_OFF");
+        }
+
+        _90--;
+        return 1;
+    }
+
+    return 0;
+}
+#endif
+
+namespace NrvFlipPanel {
+    FlipPanelNrvFrontLand FlipPanelNrvFrontLand::sInstance;
+    FlipPanelNrvBackLand FlipPanelNrvBackLand::sInstance;
+    FlipPanelNrvFront FlipPanelNrvFront::sInstance;
+    FlipPanelNrvBack FlipPanelNrvBack::sInstance;
+    FlipPanelNrvEndPrepare FlipPanelNrvEndPrepare::sInstance;
+    FlipPanelNrvEnd FlipPanelNrvEnd::sInstance;
+};
+
+namespace NrvFlipPanelObserver {
+    FlipPanelObserverNrvWait FlipPanelObserverNrvWait::sInstance;
+    FlipPanelObserverNrvComplete FlipPanelObserverNrvComplete::sInstance;
+    FlipPanelObserverNrvDemoWait FlipPanelObserverNrvDemoWait::sInstance;
+};
+
+void NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::execute(Spine *pSpine) const {
+    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    obs->exeDemoWait();
+}
+
+void NrvFlipPanelObserver::FlipPanelObserverNrvComplete::execute(Spine *pSpine) const {
+    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    obs->exeComplete();
+}
+
+void NrvFlipPanelObserver::FlipPanelObserverNrvWait::execute(Spine *pSpine) const {
+    FlipPanelObserver* obs = reinterpret_cast<FlipPanelObserver*>(pSpine->mExecutor);
+    obs->exeWait();
+}
+
+void NrvFlipPanel::FlipPanelNrvEnd::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    panel->exeEnd();
+}
+
+void NrvFlipPanel::FlipPanelNrvEndPrepare::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    
+    if (MR::isStep(panel, 0x14)) {
+        panel->setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
+    }
+}
+
+void NrvFlipPanel::FlipPanelNrvBack::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    panel->exeWait();
+}
+
+void NrvFlipPanel::FlipPanelNrvFront::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    panel->exeWait();
+}
+
+void NrvFlipPanel::FlipPanelNrvBackLand::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    panel->exeBackLand();
+}
+
+void NrvFlipPanel::FlipPanelNrvFrontLand::execute(Spine *pSpine) const {
+    FlipPanel* panel = reinterpret_cast<FlipPanel*>(pSpine->mExecutor);
+    panel->exeFrontLand();
+}
+
+FlipPanel::~FlipPanel() {
+
+}
+
+FlipPanelObserver::~FlipPanelObserver() {
+    
+}

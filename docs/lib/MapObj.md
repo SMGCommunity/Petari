@@ -105,7 +105,7 @@
 | FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% |
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% |
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% |
-| FlipPanel.o | 75.98173515981735% | 18 / 43 | 41.86046511627907% |
+| FlipPanel.o | 90.22831050228311% | 40 / 43 | 93.02325581395348% |
 | Fountain.o | 0.0% | 0 / 14 | 0.0% |
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% |
 | GCapture.o | 0.0% | 0 / 70 | 0.0% |
@@ -2875,30 +2875,30 @@
 | exeDemoWait__17FlipPanelObserverFv | :white_check_mark: |
 | initAfterPlacement__17FlipPanelObserverFv | :white_check_mark: |
 | receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor | :x: |
-| __sinit_\FlipPanel_cpp | :x: |
-| __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv | :x: |
-| __ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv | :x: |
-| __ct__Q212NrvFlipPanel17FlipPanelNrvFrontFv | :x: |
-| __ct__Q212NrvFlipPanel16FlipPanelNrvBackFv | :x: |
-| __ct__Q212NrvFlipPanel22FlipPanelNrvEndPrepareFv | :x: |
-| __ct__Q212NrvFlipPanel15FlipPanelNrvEndFv | :x: |
-| __ct__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitFv | :x: |
-| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteFv | :x: |
-| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitFv | :x: |
-| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitCFP5Spine | :x: |
-| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteCFP5Spine | :x: |
-| execute__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel15FlipPanelNrvEndCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel22FlipPanelNrvEndPrepareCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel16FlipPanelNrvBackCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :x: |
-| __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :x: |
+| __sinit_\FlipPanel_cpp | :white_check_mark: |
+| __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel17FlipPanelNrvFrontFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel16FlipPanelNrvBackFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel22FlipPanelNrvEndPrepareFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel15FlipPanelNrvEndFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitFv | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitCFP5Spine | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteCFP5Spine | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel15FlipPanelNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel22FlipPanelNrvEndPrepareCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel16FlipPanelNrvBackCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :white_check_mark: |
+| __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :white_check_mark: |
 | calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| __dt__9FlipPanelFv | :x: |
-| __dt__17FlipPanelObserverFv | :x: |
+| __dt__9FlipPanelFv | :white_check_mark: |
+| __dt__17FlipPanelObserverFv | :white_check_mark: |
 
 
 # Fountain.o
