@@ -10,6 +10,7 @@
 #define SceneObj_AreaObjContainer           0xD
 #define SceneObj_MarioHolder                0x14
 #define SceneObj_MirrorCamera               0x16
+#define SceneObj_PlayerActionGuidance       0x23
 #define SceneObj_PlacementStateChecker      0x27
 #define SceneObj_NamePosHolder              0x28
 #define SceneObj_AllLiveActorGroup          0x30
