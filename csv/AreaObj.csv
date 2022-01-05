@@ -263,9 +263,9 @@ __ct__15SimpleBloomAreaFiPCc,SimpleBloomArea.o,AreaObj.a,true
 init__15SimpleBloomAreaFRC12JMapInfoIter,SimpleBloomArea.o,AreaObj.a,true
 __dt__15SimpleBloomAreaFv,SimpleBloomArea.o,AreaObj.a,true
 getManagerName__15SimpleBloomAreaCFv,SimpleBloomArea.o,AreaObj.a,true
-__dt__16SoundEmitterCubeFv,SoundEmitterCube.o,AreaObj.a,false
-__ct__16SoundEmitterCubeFiPCc,SoundEmitterCube.o,AreaObj.a,false
-init__16SoundEmitterCubeFRC12JMapInfoIter,SoundEmitterCube.o,AreaObj.a,false
+__dt__16SoundEmitterCubeFv,SoundEmitterCube.o,AreaObj.a,true
+__ct__16SoundEmitterCubeFiPCc,SoundEmitterCube.o,AreaObj.a,true
+init__16SoundEmitterCubeFRC12JMapInfoIter,SoundEmitterCube.o,AreaObj.a,true
 movement__16SoundEmitterCubeFv,SoundEmitterCube.o,AreaObj.a,false
 extend__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>FRCQ29JGeometry8TVec3<f>,SoundEmitterCube.o,AreaObj.a,false
 __dt__18SoundEmitterSphereFv,SoundEmitterSphere.o,AreaObj.a,false
