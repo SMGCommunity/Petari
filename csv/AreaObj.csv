@@ -111,12 +111,12 @@ draw__17BigBubbleGoalAreaCFv,BigBubbleGoalArea.o,AreaObj.a,true
 checkBigBubbleGoal__2MRFP9BigBubble,BigBubbleGoalArea.o,AreaObj.a,false
 getManagerName__17BigBubbleGoalAreaCFv,BigBubbleGoalArea.o,AreaObj.a,true
 __dt__17BigBubbleGoalAreaFv,BigBubbleGoalArea.o,AreaObj.a,true
-__ct__9BloomAreaFiPCc,BloomArea.o,AreaObj.a,false
-__dt__15ImageEffectAreaFv,BloomArea.o,AreaObj.a,false
-init__9BloomAreaFRC12JMapInfoIter,BloomArea.o,AreaObj.a,false
-__dt__9BloomAreaFv,BloomArea.o,AreaObj.a,false
-isSyncWithPlayer__15ImageEffectAreaCFv,BloomArea.o,AreaObj.a,false
-getManagerName__9BloomAreaCFv,BloomArea.o,AreaObj.a,false
+__ct__9BloomAreaFiPCc,BloomArea.o,AreaObj.a,true
+__dt__15ImageEffectAreaFv,BloomArea.o,AreaObj.a,true
+init__9BloomAreaFRC12JMapInfoIter,BloomArea.o,AreaObj.a,true
+__dt__9BloomAreaFv,BloomArea.o,AreaObj.a,true
+isSyncWithPlayer__15ImageEffectAreaCFv,BloomArea.o,AreaObj.a,true
+getManagerName__9BloomAreaCFv,BloomArea.o,AreaObj.a,true
 scale__Q29JGeometry8TVec3<f>Ff,CameraRepulsiveArea.o,AreaObj.a,false
 __ami__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false
 __dt__19CameraRepulsiveAreaFv,CameraRepulsiveArea.o,AreaObj.a,false
@@ -202,7 +202,7 @@ __ct__8HazeCubeFiPCc,HazeCube.o,AreaObj.a,false
 init__8HazeCubeFRC12JMapInfoIter,HazeCube.o,AreaObj.a,false
 __dt__8HazeCubeFv,HazeCube.o,AreaObj.a,false
 getManagerName__8HazeCubeCFv,HazeCube.o,AreaObj.a,false
-__ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc,ImageEffectArea.o,AreaObj.a,false
+__ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc,ImageEffectArea.o,AreaObj.a,true
 __ct__18ImageEffectAreaMgrFlPCc,ImageEffectArea.o,AreaObj.a,false
 initAfterPlacement__18ImageEffectAreaMgrFv,ImageEffectArea.o,AreaObj.a,false
 sort__18ImageEffectAreaMgrFv,ImageEffectArea.o,AreaObj.a,false

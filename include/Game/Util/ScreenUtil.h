@@ -10,6 +10,8 @@ namespace MR {
 
     void createCenterScreenBlur();
 
+    void createNormalBloom();
+
     void startCenterScreenBlur(long, float, unsigned char, long, long);
 
     void turnOffDOFInSubjective();
