@@ -19,6 +19,7 @@
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C
 #define SceneObj_NameObjExecuteHolder       0x58
+#define SceneObj_QuakeEffectGenerator       0x5B
 #define SceneObj_HeatHazeDirector           0x5D
 #define SceneObj_PlanetMapCreator           0x74
 

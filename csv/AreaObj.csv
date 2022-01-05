@@ -247,8 +247,8 @@ init__12PlayerSeAreaFRC12JMapInfoIter,PlayerSeArea.o,AreaObj.a,true
 __dt__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,true
 movement__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,true
 getManagerName__12PlayerSeAreaCFv,PlayerSeArea.o,AreaObj.a,true
-__ct__15QuakeEffectAreaFiPCc,QuakeEffectArea.o,AreaObj.a,false
-__dt__15QuakeEffectAreaFv,QuakeEffectArea.o,AreaObj.a,false
+__ct__15QuakeEffectAreaFiPCc,QuakeEffectArea.o,AreaObj.a,true
+__dt__15QuakeEffectAreaFv,QuakeEffectArea.o,AreaObj.a,true
 __ct__11RestartCubeFiPCc,RestartCube.o,AreaObj.a,false
 init__11RestartCubeFRC12JMapInfoIter,RestartCube.o,AreaObj.a,false
 updatePlayerRestartIdInfo__11RestartCubeFv,RestartCube.o,AreaObj.a,false
