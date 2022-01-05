@@ -9,7 +9,9 @@
 #include "Game/NameObj/MovementOnOffGroupHolder.h"
 #include "Game/LiveActor/AllLiveActorGroup.h"
 #include "Game/LiveActor/ClippingDirector.h"
+#include "Game/LiveActor/SensorHitChecker.h"
 #include "Game/Scene/StageDataHolder.h"
+#include "Game/MapObj.h"
 #include "Game/Util.h"
 #include <revolution.h>
 
@@ -49,6 +51,9 @@ namespace MR {
 // fill me in as we go
 NameObj* SceneObjHolder::newEachObj(int objID) {
     switch(objID) {
+        case 0:
+            return new SensorHitChecker("センサー当たり");
+            
         case 2:
             return new ClippingDirector();
 
@@ -72,6 +77,9 @@ NameObj* SceneObjHolder::newEachObj(int objID) {
 
         case SceneObj_PlanetGravityManager:
             return new PlanetGravityManager("重力");
+
+        case 57:
+            return new AirBubbleHolder("空気アワ管理");
 
         case 88:
             return new NameObjExecuteHolder(0x1000);

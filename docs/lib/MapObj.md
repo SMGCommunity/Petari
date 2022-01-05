@@ -3,7 +3,7 @@
 | ------------- | ------------- | ------------- | ------------- |
 | AirBubble.o | 0.0% | 0 / 23 | 0.0% |
 | AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% |
-| AirBubbleHolder.o | 0.0% | 0 / 7 | 0.0% |
+| AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% |
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% |
 | ArrowSwitch.o | 0.0% | 0 / 27 | 0.0% |
 | ArrowSwitchMulti.o | 0.0% | 0 / 21 | 0.0% |
@@ -105,7 +105,7 @@
 | FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% |
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% |
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% |
-| FlipPanel.o | 0.0% | 0 / 43 | 0.0% |
+| FlipPanel.o | 90.22831050228311% | 40 / 43 | 93.02325581395348% |
 | Fountain.o | 0.0% | 0 / 14 | 0.0% |
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% |
 | GCapture.o | 0.0% | 0 / 70 | 0.0% |
@@ -116,7 +116,7 @@
 | GreenCaterpillarBig.o | 0.0% | 0 / 31 | 0.0% |
 | HatchWaterPlanet.o | 0.0% | 0 / 13 | 0.0% |
 | HeavensDoorDemoObj.o | 0.0% | 0 / 18 | 0.0% |
-| HipDropMoveObj.o | 0.0% | 0 / 20 | 0.0% |
+| HipDropMoveObj.o | 100.0% | 20 / 20 | 100.0% |
 | HipDropRock.o | 0.0% | 0 / 15 | 0.0% |
 | HipDropSwitch.o | 0.0% | 0 / 21 | 0.0% |
 | HipDropTimerSwitch.o | 0.0% | 0 / 23 | 0.0% |
@@ -151,7 +151,7 @@
 | LotusLeaf.o | 0.0% | 0 / 16 | 0.0% |
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
-| MapObjActor.o | 41.95652173913044% | 41 / 59 | 69.49152542372882% |
+| MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
 | MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
 | MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
@@ -367,11 +367,11 @@
 # AirBubbleHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15AirBubbleHolderFPCc | :x: |
+| __ct__15AirBubbleHolderFPCc | :white_check_mark: |
 | __dt__28DeriveActorGroup&lt;9AirBubble&gt;Fv | :x: |
-| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
-| createAirBubbleHolder__2MRFv | :x: |
-| appearAirBubble__2MRFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearAirBubble__15AirBubbleHolderFRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
+| createAirBubbleHolder__2MRFv | :white_check_mark: |
+| appearAirBubble__2MRFRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | __dt__15AirBubbleHolderFv | :x: |
 | init__15AirBubbleHolderFRC12JMapInfoIter | :x: |
 
@@ -2856,49 +2856,49 @@
 # FlipPanel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9FlipPanelFPCc | :x: |
-| init__9FlipPanelFRC12JMapInfoIter | :x: |
-| exeFrontLand__9FlipPanelFv | :x: |
-| exeBackLand__9FlipPanelFv | :x: |
-| exeWait__9FlipPanelFv | :x: |
-| exeEnd__9FlipPanelFv | :x: |
-| appear__9FlipPanelFv | :x: |
-| endClipped__9FlipPanelFv | :x: |
-| calcAndSetBaseMtx__9FlipPanelFv | :x: |
-| receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor | :x: |
-| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| checkPlayerOnTop__9FlipPanelFv | :x: |
-| __ct__17FlipPanelObserverFPCc | :x: |
-| init__17FlipPanelObserverFRC12JMapInfoIter | :x: |
-| exeWait__17FlipPanelObserverFv | :x: |
-| exeComplete__17FlipPanelObserverFv | :x: |
-| exeDemoWait__17FlipPanelObserverFv | :x: |
-| initAfterPlacement__17FlipPanelObserverFv | :x: |
+| __ct__9FlipPanelFPCc | :white_check_mark: |
+| init__9FlipPanelFRC12JMapInfoIter | :white_check_mark: |
+| exeFrontLand__9FlipPanelFv | :white_check_mark: |
+| exeBackLand__9FlipPanelFv | :white_check_mark: |
+| exeWait__9FlipPanelFv | :white_check_mark: |
+| exeEnd__9FlipPanelFv | :white_check_mark: |
+| appear__9FlipPanelFv | :white_check_mark: |
+| endClipped__9FlipPanelFv | :white_check_mark: |
+| calcAndSetBaseMtx__9FlipPanelFv | :white_check_mark: |
+| receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| checkPlayerOnTop__9FlipPanelFv | :white_check_mark: |
+| __ct__17FlipPanelObserverFPCc | :white_check_mark: |
+| init__17FlipPanelObserverFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__17FlipPanelObserverFv | :white_check_mark: |
+| exeComplete__17FlipPanelObserverFv | :white_check_mark: |
+| exeDemoWait__17FlipPanelObserverFv | :white_check_mark: |
+| initAfterPlacement__17FlipPanelObserverFv | :white_check_mark: |
 | receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor | :x: |
-| __sinit_\FlipPanel_cpp | :x: |
-| __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv | :x: |
-| __ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv | :x: |
-| __ct__Q212NrvFlipPanel17FlipPanelNrvFrontFv | :x: |
-| __ct__Q212NrvFlipPanel16FlipPanelNrvBackFv | :x: |
-| __ct__Q212NrvFlipPanel22FlipPanelNrvEndPrepareFv | :x: |
-| __ct__Q212NrvFlipPanel15FlipPanelNrvEndFv | :x: |
-| __ct__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitFv | :x: |
-| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteFv | :x: |
-| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitFv | :x: |
-| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitCFP5Spine | :x: |
-| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteCFP5Spine | :x: |
-| execute__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel15FlipPanelNrvEndCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel22FlipPanelNrvEndPrepareCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel16FlipPanelNrvBackCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :x: |
-| execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :x: |
-| __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :x: |
+| __sinit_\FlipPanel_cpp | :white_check_mark: |
+| __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel17FlipPanelNrvFrontFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel16FlipPanelNrvBackFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel22FlipPanelNrvEndPrepareFv | :white_check_mark: |
+| __ct__Q212NrvFlipPanel15FlipPanelNrvEndFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteFv | :white_check_mark: |
+| __ct__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitFv | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvDemoWaitCFP5Spine | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver28FlipPanelObserverNrvCompleteCFP5Spine | :white_check_mark: |
+| execute__Q220NrvFlipPanelObserver24FlipPanelObserverNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel15FlipPanelNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel22FlipPanelNrvEndPrepareCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel16FlipPanelNrvBackCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :white_check_mark: |
+| execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :white_check_mark: |
+| __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :white_check_mark: |
 | calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| __dt__9FlipPanelFv | :x: |
-| __dt__17FlipPanelObserverFv | :x: |
+| __dt__9FlipPanelFv | :white_check_mark: |
+| __dt__17FlipPanelObserverFv | :white_check_mark: |
 
 
 # Fountain.o
@@ -3201,26 +3201,26 @@
 # HipDropMoveObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18HipDropDemoMoveObjFv | :x: |
-| __ct__14HipDropMoveObjFPCc | :x: |
-| init__14HipDropMoveObjFRC12JMapInfoIter | :x: |
-| receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor | :x: |
-| isEndMove__14HipDropMoveObjCFv | :x: |
-| exeMove__14HipDropMoveObjFv | :x: |
-| __ct__18HipDropDemoMoveObjFPCc | :x: |
-| __dt__14HipDropMoveObjFv | :x: |
-| moveStart__18HipDropDemoMoveObjFv | :x: |
-| moving__18HipDropDemoMoveObjFv | :x: |
-| __sinit_\HipDropMoveObj_cpp | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeWaitFv | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeMoveFv | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeDoneFv | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeDoneCFP5Spine | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeMoveCFP5Spine | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeWaitCFP5Spine | :x: |
-| moveStart__14HipDropMoveObjFv | :x: |
-| moving__14HipDropMoveObjFv | :x: |
-| moveEnd__14HipDropMoveObjFv | :x: |
+| __dt__18HipDropDemoMoveObjFv | :white_check_mark: |
+| __ct__14HipDropMoveObjFPCc | :white_check_mark: |
+| init__14HipDropMoveObjFRC12JMapInfoIter | :white_check_mark: |
+| receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| isEndMove__14HipDropMoveObjCFv | :white_check_mark: |
+| exeMove__14HipDropMoveObjFv | :white_check_mark: |
+| __ct__18HipDropDemoMoveObjFPCc | :white_check_mark: |
+| __dt__14HipDropMoveObjFv | :white_check_mark: |
+| moveStart__18HipDropDemoMoveObjFv | :white_check_mark: |
+| moving__18HipDropDemoMoveObjFv | :white_check_mark: |
+| __sinit_\HipDropMoveObj_cpp | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeDoneFv | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeDoneCFP5Spine | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeWaitCFP5Spine | :white_check_mark: |
+| moveStart__14HipDropMoveObjFv | :white_check_mark: |
+| moving__14HipDropMoveObjFv | :white_check_mark: |
+| moveEnd__14HipDropMoveObjFv | :white_check_mark: |
 
 
 # HipDropRock.o
@@ -4021,11 +4021,11 @@
 | pauseRotator__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | resetRailMoverToInitPos__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | startBreak__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
-| tryStartBreak__15MapObjActorUtilFP11MapObjActor | :x: |
+| tryStartBreak__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | isBreakStopped__15MapObjActorUtilFPC11MapObjActor | :white_check_mark: |
 | killBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
 | appearBloomModel__15MapObjActorUtilFP11MapObjActor | :white_check_mark: |
-| __sinit_\MapObjActor_cpp | :x: |
+| __sinit_\MapObjActor_cpp | :white_check_mark: |
 | __ct__Q214NrvMapObjActor12HostTypeWaitFv | :x: |
 | __ct__Q214NrvMapObjActor12HostTypeMoveFv | :white_check_mark: |
 | __ct__Q214NrvMapObjActor12HostTypeDoneFv | :white_check_mark: |

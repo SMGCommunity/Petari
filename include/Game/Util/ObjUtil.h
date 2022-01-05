@@ -17,6 +17,13 @@ namespace MR {
     void connectToSceneCollisionMapObjStrongLight(LiveActor *);
     void connectToSceneCollisionEnemy(LiveActor *);
     void connectToSceneCollisionEnemyMovement(NameObj *);
+    void connectToSceneCollisionEnemyStrongLight(LiveActor *);
+    void connectToSceneCollisionEnemyNoShadowedMapObjStrongLight(LiveActor *);
+    void connectToSceneNpc(LiveActor *);
+    void connectToSceneNpcMovement(LiveActor *);
+    void connectToSceneRide(LiveActor *);
+    void connectToSceneEnemy(LiveActor *);
+    void connectToSceneEnemyMovement(NameObj *);
     void connectToSceneMapObj(LiveActor *);
     void connectToSceneMapObjMovement(NameObj *);
     void connectToSceneMapObjMovementCalcAnim(NameObj *);
@@ -31,6 +38,15 @@ namespace MR {
     void connectToScenePlanet(LiveActor *);
     void connectToSceneEnvironment(LiveActor *);
     void connectToSceneEnvironmentStrongLight(LiveActor *);
+    void connectToClippedMapParts(LiveActor *);
+    void connectToSceneEnemyDecoration(LiveActor *);
+    void connectToSceneItem(LiveActor *);
+    void connectToSceneItemStrongLight(LiveActor *);
+    void connectToSceneIndirectEnemy(LiveActor *);
+    void connectToSceneIndirectNpc(LiveActor *);
+    void connectToSceneIndirectMapObj(LiveActor *);
+    void connectToSceneIndirectMapObjStrongLight(LiveActor *);
+    void connectToSceneAreaObj(NameObj *);
 
     void connectToSceneCamera(NameObj *);
 
@@ -68,4 +84,15 @@ namespace MR {
 
     bool isJudgedToClipFrustum100m(const TVec3f &, f32);
     bool isJudgedToClipFrustum300m(const TVec3f &, f32);
+
+    bool tryRumblePadMiddle(const void *, s32);
+
+    void declarePowerStar(const NameObj *);
+    void declarePowerStar(const NameObj *, s32);
+
+    void appearPowerStarWithoutDemo(const NameObj *);
+    void requestAppearPowerStar(const NameObj *);
+    void requestAppearPowerStar(const NameObj *, const TVec3f &);
+    void requestAppearPowerStar(const NameObj *, s32, const TVec3f &);
+    void requestAppearPowerStar(const NameObj *, const LiveActor *, f32);
 };

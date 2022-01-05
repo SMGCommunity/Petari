@@ -3,7 +3,7 @@
 | ------------- | ------------- | ------------- | ------------- |
 | AreaForm.o | 67.90648246546228% | 24 / 33 | 72.72727272727273% |
 | AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% |
-| AreaObj.o | 59.87903225806451% | 19 / 24 | 79.16666666666666% |
+| AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% |
 | AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% |
 | AreaObjFollower.o | 0.0% | 0 / 4 | 0.0% |
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% |
@@ -108,7 +108,7 @@
 | invalidate__7AreaObjFv | :white_check_mark: |
 | getManagerName__7AreaObjCFv | :white_check_mark: |
 | Functor&lt;7AreaObj&gt;__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt; | :white_check_mark: |
-| __cl__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFv | :x: |
+| __cl__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFv | :white_check_mark: |
 | clone__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
 | __dt__7AreaObjFv | :white_check_mark: |
 | __dt__10AreaObjMgrFv | :white_check_mark: |

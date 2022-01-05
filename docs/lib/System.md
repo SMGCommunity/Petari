@@ -42,7 +42,7 @@
 | PlacedHiddenStarScenarioTable.o | 0.0% | 0 / 1 | 0.0% |
 | RenderMode.o | 0.0% | 0 / 4 | 0.0% |
 | ResourceHolder.o | 0.0% | 0 / 13 | 0.0% |
-| ResourceHolderManager.o | 4.618117229129663% | 1 / 22 | 4.545454545454546% |
+| ResourceHolderManager.o | 12.433392539964476% | 3 / 22 | 13.636363636363635% |
 | ResourceInfo.o | 100.0% | 15 / 15 | 100.0% |
 | ScenarioDataParser.o | 6.487889273356401% | 4 / 25 | 16.0% |
 | ShapePacketUserData.o | 0.0% | 0 / 8 | 0.0% |
@@ -1092,8 +1092,8 @@
 | __ct__34ResourceHolderManagerName2ResourceFv | :x: |
 | __ct__24CreateResourceHolderArgsFv | :x: |
 | Functor&lt;21ResourceHolderManager,PCc,P24CreateResourceHolderArgs&gt;__2MRFP21ResourceHolderManagerM21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_vPCcP24CreateResourceHolderArgs_Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt; | :x: |
-| __cl__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFv | :x: |
-| clone__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFv | :white_check_mark: |
+| clone__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFP7JKRHeap | :white_check_mark: |
 | __as__34ResourceHolderManagerName2ResourceFRC34ResourceHolderManagerName2Resource | :x: |
 
 

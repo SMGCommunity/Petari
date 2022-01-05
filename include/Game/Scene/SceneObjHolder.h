@@ -1,5 +1,6 @@
 #pragma once
 
+#define SceneObj_SensorHitChecker           0x0
 #define SceneObj_CollisionDirector          0x1
 #define SceneObj_ClippingDirector           0x2
 #define SceneObj_DemoDirector               0x3
@@ -13,6 +14,7 @@
 #define SceneObj_NamePosHolder              0x28
 #define SceneObj_AllLiveActorGroup          0x30
 #define SceneObj_PlanetGravityManager       0x32
+#define SceneObj_AirBubbleHolder            0x39
 #define SceneObj_ShadowVolumeDrawer         0x45
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C

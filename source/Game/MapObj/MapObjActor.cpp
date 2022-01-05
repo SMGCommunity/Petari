@@ -369,6 +369,46 @@ void MapObjActorUtil::startBreak(MapObjActor *pActor) {
     }
 }
 
+bool MapObjActorUtil::tryStartBreak(MapObjActor *pActor) {
+    const char* stopSe = MR::StageEffect::getStopSe(pActor->mObjectName);
+    if (stopSe) {
+        MR::startSound(pActor, stopSe, -1, -1);
+    }
+
+    const char* breakEffect = cEffectNameBreak;
+    if (MR::isRegisteredEffect(pActor, breakEffect)) {
+        MR::emitEffect(pActor, breakEffect);
+    }
+
+    ModelObj* modelObj = pActor->mModelObj;
+    if (modelObj) {
+        pActor->mModelObj->appear();
+        const char* breakName = (const char *)cBckNameBreak;
+        MR::startAllAnim(modelObj, breakName);
+
+        if (MR::isExistBva(pActor, breakName)) {
+            MR::startBva(pActor, breakName);
+            MR::setBvaFrameAndStop(pActor, 1.0f);
+        }
+        else {
+            MR::hideModel(pActor);
+        }
+
+        MR::invalidateClipping(modelObj);
+        return true;
+    }
+    else {
+        const char* breakName = cBckNameBreak;
+        if (MR::isExistBck(pActor, breakName)) {
+            MR::startAllAnim(pActor, breakName);
+            MR::invalidateClipping(pActor);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool MapObjActorUtil::isBreakStopped(const MapObjActor *pActor) {
     const LiveActor* actor = pActor->mModelObj;
 

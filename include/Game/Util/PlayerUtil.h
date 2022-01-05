@@ -33,4 +33,17 @@ namespace MR {
     f32 getPlayerHitRadius();
 
     void pushPlayerFromArea(const TVec3f &);
+    
+    bool isOnPlayer(const LiveActor *);
+
+    bool isPlayerJumpRising();
+    TVec3f* getPlayerGroundingPolygon();
+    TVec3f* getPlayerGroundNormal();
+
+    f32 calcDistanceToPlayer(const TVec3f &);
+
+    void startBckPlayer(const char *, const char *);
+    LiveActor* getPlayerDemoActor();
+
+    void setPlayerBaseMtx(MtxPtr);
 };

@@ -1,7 +1,7 @@
 | Library | Percentage |
 | ------------- | ------------- |
 | [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.3616726668512875% |
-| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 19.17346383904296% |
+| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 19.303969548667755% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
 | [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 0.0% |
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 33.49212924606462% |
@@ -12,7 +12,7 @@
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 56.286937028734464% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 35.83679114799447% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 9.096986240320874% |
-| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 0.9480077795920914% |
+| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 1.7654889806446246% |
 | [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 18.945379594641018% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.35402906208718626% |
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 0.14184156212575486% |
@@ -21,5 +21,5 @@
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 5.900967982129561% |
 | [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 0.0% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 8.252703471826978% |
-| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 4.708662184546429% |
-| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 5.209818100979456% |
+| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 4.815843320666472% |
+| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 5.653123406258582% |

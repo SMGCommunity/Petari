@@ -54,7 +54,7 @@ validate__7AreaObjFv,AreaObj.o,AreaObj.a,true
 invalidate__7AreaObjFv,AreaObj.o,AreaObj.a,true
 getManagerName__7AreaObjCFv,AreaObj.o,AreaObj.a,true
 Functor<7AreaObj>__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>,AreaObj.o,AreaObj.a,true
-__cl__Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>CFv,AreaObj.o,AreaObj.a,false
+__cl__Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>CFv,AreaObj.o,AreaObj.a,true
 clone__Q22MR39FunctorV0M<P7AreaObj&#44;M7AreaObjFPCvPv_v>CFP7JKRHeap,AreaObj.o,AreaObj.a,false
 __dt__7AreaObjFv,AreaObj.o,AreaObj.a,true
 __dt__10AreaObjMgrFv,AreaObj.o,AreaObj.a,true

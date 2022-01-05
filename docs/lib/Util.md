@@ -38,7 +38,7 @@
 | MultiEventCamera.o | 0.0% | 0 / 18 | 0.0% |
 | NerveUtil.o | 0.0% | 0 / 15 | 0.0% |
 | NPCUtil.o | 0.0% | 0 / 76 | 0.0% |
-| ObjUtil.o | 0.0% | 0 / 178 | 0.0% |
+| ObjUtil.o | 12.004249291784703% | 40 / 178 | 22.47191011235955% |
 | ParabolicPath.o | 0.0% | 0 / 9 | 0.0% |
 | PlayerUtil.o | 0.0% | 0 / 174 | 0.0% |
 | RailGraphUtil.o | 0.0% | 0 / 18 | 0.0% |
@@ -2645,47 +2645,47 @@
 | isInWater__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isInDeath__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isInDarkMatter__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| connectToScene__2MRFP9LiveActoriiii | :x: |
-| connectToScene__2MRFP7NameObjiiii | :x: |
-| connectToSceneCollisionMapObj__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionMapObjMovementCalcAnim__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionMapObjWeakLight__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionMapObjStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionEnemy__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionEnemyMovement__2MRFP7NameObj | :x: |
-| connectToSceneCollisionEnemyStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneCollisionEnemyNoShadowedMapObjStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneNpc__2MRFP9LiveActor | :x: |
-| connectToSceneNpcMovement__2MRFP9LiveActor | :x: |
-| connectToSceneRide__2MRFP9LiveActor | :x: |
-| connectToSceneEnemy__2MRFP9LiveActor | :x: |
-| connectToSceneEnemyMovement__2MRFP7NameObj | :x: |
-| connectToSceneMapObj__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjMovement__2MRFP7NameObj | :x: |
-| connectToSceneMapObjMovementCalcAnim__2MRFP7NameObj | :x: |
-| connectToSceneMapObjNoMovement__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjNoCalcAnim__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjNoCalcAnimStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjDecoration__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjDecorationStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneMapObjDecorationMovement__2MRFP7NameObj | :x: |
-| connectToSceneMapObjStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneMapParts__2MRFP9LiveActor | :x: |
-| connectToScenePlanet__2MRFP9LiveActor | :x: |
-| connectToSceneEnvironment__2MRFP9LiveActor | :x: |
-| connectToSceneEnvironmentStrongLight__2MRFP9LiveActor | :x: |
-| connectToClippedMapParts__2MRFP9LiveActor | :x: |
-| connectToSceneEnemyDecoration__2MRFP9LiveActor | :x: |
-| connectToSceneEnemyDecorationMovement__2MRFP7NameObj | :x: |
+| connectToScene__2MRFP9LiveActoriiii | :white_check_mark: |
+| connectToScene__2MRFP7NameObjiiii | :white_check_mark: |
+| connectToSceneCollisionMapObj__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionMapObjMovementCalcAnim__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionMapObjWeakLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionMapObjStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionEnemy__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionEnemyMovement__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneCollisionEnemyStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneCollisionEnemyNoShadowedMapObjStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneNpc__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneNpcMovement__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneRide__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnemy__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnemyMovement__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneMapObj__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjMovement__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneMapObjMovementCalcAnim__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneMapObjNoMovement__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjNoCalcAnim__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjNoCalcAnimStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjDecoration__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjDecorationStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapObjDecorationMovement__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneMapObjStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneMapParts__2MRFP9LiveActor | :white_check_mark: |
+| connectToScenePlanet__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnvironment__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnvironmentStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToClippedMapParts__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnemyDecoration__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneEnemyDecorationMovement__2MRFP7NameObj | :white_check_mark: |
 | connectToSceneEnemyDecorationMovementCalcAnim__2MRFP7NameObj | :x: |
-| connectToSceneItem__2MRFP9LiveActor | :x: |
-| connectToSceneItemStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneIndirectEnemy__2MRFP9LiveActor | :x: |
-| connectToSceneIndirectNpc__2MRFP9LiveActor | :x: |
-| connectToSceneIndirectMapObj__2MRFP9LiveActor | :x: |
-| connectToSceneIndirectMapObjStrongLight__2MRFP9LiveActor | :x: |
-| connectToSceneScreenEffectMovement__2MRFP7NameObj | :x: |
-| connectToSceneAreaObj__2MRFP7NameObj | :x: |
+| connectToSceneItem__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneItemStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneIndirectEnemy__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneIndirectNpc__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneIndirectMapObj__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneIndirectMapObjStrongLight__2MRFP9LiveActor | :white_check_mark: |
+| connectToSceneScreenEffectMovement__2MRFP7NameObj | :white_check_mark: |
+| connectToSceneAreaObj__2MRFP7NameObj | :white_check_mark: |
 | connectToScene3DModelFor2D__2MRFP9LiveActor | :x: |
 | connectToSceneLayout__2MRFP7NameObj | :x: |
 | connectToSceneLayoutMovementCalcAnim__2MRFP7NameObj | :x: |

@@ -17,7 +17,7 @@ namespace MR {
     void startSound(const LiveActor *, const char *, s32, s32);
 
     void startSystemSE(const char *, s32, s32);
-
+    void startSystemME(const char *);
     void startSound(const LiveActor *, const char *, s32, s32);
     void startSoundObject(AudSoundObject *, const char *);
 
