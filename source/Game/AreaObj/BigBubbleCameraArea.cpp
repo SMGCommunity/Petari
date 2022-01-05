@@ -4,6 +4,10 @@ BigBubbleCameraArea::BigBubbleCameraArea(int a1, const char *pName) : CubeCamera
 
 }
 
+BigBubbleCameraArea::~BigBubbleCameraArea() {
+
+}
+
 bool BigBubbleCameraArea::isInVolume(const TVec3f &rVec) const {
     if (MR::isPlayerBindedBigBubble()) {
         return CubeCameraArea::isInVolume(rVec);
