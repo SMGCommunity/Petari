@@ -96,12 +96,12 @@ getManagerName__15BgmProhibitAreaCFv,BgmProhibitArea.o,AreaObj.a,true
 __ct__19BigBubbleCameraAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__14CubeCameraAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
 isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3<f>,BigBubbleCameraArea.o,AreaObj.a,false
-__ct__19BigBubbleSwitchAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,false
+__ct__19BigBubbleSwitchAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__10SwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,true
 isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3<f>,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__19BigBubbleCameraAreaFv,BigBubbleCameraArea.o,AreaObj.a,true
-__dt__19BigBubbleSwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
-getManagerName__19BigBubbleSwitchAreaCFv,BigBubbleCameraArea.o,AreaObj.a,false
+__dt__19BigBubbleSwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,true
+getManagerName__19BigBubbleSwitchAreaCFv,BigBubbleCameraArea.o,AreaObj.a,true
 getManagerName__19BigBubbleCameraAreaCFv,BigBubbleCameraArea.o,AreaObj.a,false
 __ct__17BigBubbleGoalAreaFiPCc,BigBubbleGoalArea.o,AreaObj.a,true
 init__17BigBubbleGoalAreaFRC12JMapInfoIter,BigBubbleGoalArea.o,AreaObj.a,true
