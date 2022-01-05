@@ -268,9 +268,9 @@ __ct__16SoundEmitterCubeFiPCc,SoundEmitterCube.o,AreaObj.a,true
 init__16SoundEmitterCubeFRC12JMapInfoIter,SoundEmitterCube.o,AreaObj.a,true
 movement__16SoundEmitterCubeFv,SoundEmitterCube.o,AreaObj.a,false
 extend__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>FRCQ29JGeometry8TVec3<f>,SoundEmitterCube.o,AreaObj.a,false
-__dt__18SoundEmitterSphereFv,SoundEmitterSphere.o,AreaObj.a,false
-__ct__18SoundEmitterSphereFiPCc,SoundEmitterSphere.o,AreaObj.a,false
-init__18SoundEmitterSphereFRC12JMapInfoIter,SoundEmitterSphere.o,AreaObj.a,false
+__dt__18SoundEmitterSphereFv,SoundEmitterSphere.o,AreaObj.a,true
+__ct__18SoundEmitterSphereFiPCc,SoundEmitterSphere.o,AreaObj.a,true
+init__18SoundEmitterSphereFRC12JMapInfoIter,SoundEmitterSphere.o,AreaObj.a,true
 movement__18SoundEmitterSphereFv,SoundEmitterSphere.o,AreaObj.a,false
 __ct__16SpinGuidanceAreaFiPCc,SpinGuidanceArea.o,AreaObj.a,false
 __dt__16SpinGuidanceAreaFv,SpinGuidanceArea.o,AreaObj.a,false
