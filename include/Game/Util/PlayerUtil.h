@@ -32,4 +32,11 @@ namespace MR {
     bool isPlayerJumpRising();
     TVec3f* getPlayerGroundingPolygon();
     TVec3f* getPlayerGroundNormal();
+
+    f32 calcDistanceToPlayer(const TVec3f &);
+
+    void startBckPlayer(const char *, const char *);
+    LiveActor* getPlayerDemoActor();
+
+    void setPlayerBaseMtx(MtxPtr);
 };

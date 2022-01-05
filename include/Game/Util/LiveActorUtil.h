@@ -151,4 +151,6 @@ namespace MR {
     void callAppearAllGroupMember(const LiveActor *);
     void callMakeActorDeadAllGroupMember(const LiveActor *);
     void callRequestMovementOnAllGroupMember(const LiveActor *);
+
+    void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
 }

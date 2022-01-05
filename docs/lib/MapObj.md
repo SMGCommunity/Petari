@@ -116,7 +116,7 @@
 | GreenCaterpillarBig.o | 0.0% | 0 / 31 | 0.0% |
 | HatchWaterPlanet.o | 0.0% | 0 / 13 | 0.0% |
 | HeavensDoorDemoObj.o | 0.0% | 0 / 18 | 0.0% |
-| HipDropMoveObj.o | 0.0% | 0 / 20 | 0.0% |
+| HipDropMoveObj.o | 100.0% | 20 / 20 | 100.0% |
 | HipDropRock.o | 0.0% | 0 / 15 | 0.0% |
 | HipDropSwitch.o | 0.0% | 0 / 21 | 0.0% |
 | HipDropTimerSwitch.o | 0.0% | 0 / 23 | 0.0% |
@@ -3201,26 +3201,26 @@
 # HipDropMoveObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18HipDropDemoMoveObjFv | :x: |
-| __ct__14HipDropMoveObjFPCc | :x: |
-| init__14HipDropMoveObjFRC12JMapInfoIter | :x: |
-| receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor | :x: |
-| isEndMove__14HipDropMoveObjCFv | :x: |
-| exeMove__14HipDropMoveObjFv | :x: |
-| __ct__18HipDropDemoMoveObjFPCc | :x: |
-| __dt__14HipDropMoveObjFv | :x: |
-| moveStart__18HipDropDemoMoveObjFv | :x: |
-| moving__18HipDropDemoMoveObjFv | :x: |
-| __sinit_\HipDropMoveObj_cpp | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeWaitFv | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeMoveFv | :x: |
-| __ct__Q217NrvHipDropMoveObj12HostTypeDoneFv | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeDoneCFP5Spine | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeMoveCFP5Spine | :x: |
-| execute__Q217NrvHipDropMoveObj12HostTypeWaitCFP5Spine | :x: |
-| moveStart__14HipDropMoveObjFv | :x: |
-| moving__14HipDropMoveObjFv | :x: |
-| moveEnd__14HipDropMoveObjFv | :x: |
+| __dt__18HipDropDemoMoveObjFv | :white_check_mark: |
+| __ct__14HipDropMoveObjFPCc | :white_check_mark: |
+| init__14HipDropMoveObjFRC12JMapInfoIter | :white_check_mark: |
+| receiveMsgPlayerAttack__14HipDropMoveObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| isEndMove__14HipDropMoveObjCFv | :white_check_mark: |
+| exeMove__14HipDropMoveObjFv | :white_check_mark: |
+| __ct__18HipDropDemoMoveObjFPCc | :white_check_mark: |
+| __dt__14HipDropMoveObjFv | :white_check_mark: |
+| moveStart__18HipDropDemoMoveObjFv | :white_check_mark: |
+| moving__18HipDropDemoMoveObjFv | :white_check_mark: |
+| __sinit_\HipDropMoveObj_cpp | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q217NrvHipDropMoveObj12HostTypeDoneFv | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeDoneCFP5Spine | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q217NrvHipDropMoveObj12HostTypeWaitCFP5Spine | :white_check_mark: |
+| moveStart__14HipDropMoveObjFv | :white_check_mark: |
+| moving__14HipDropMoveObjFv | :white_check_mark: |
+| moveEnd__14HipDropMoveObjFv | :white_check_mark: |
 
 
 # HipDropRock.o
