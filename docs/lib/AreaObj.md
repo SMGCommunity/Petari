@@ -9,19 +9,19 @@
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% |
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% |
 | BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% |
-| BigBubbleCameraArea.o | 21.428571428571427% | 2 / 10 | 20.0% |
-| BigBubbleGoalArea.o | 0.0% | 0 / 8 | 0.0% |
-| BloomArea.o | 0.0% | 0 / 6 | 0.0% |
+| BigBubbleCameraArea.o | 72.02380952380952% | 7 / 10 | 70.0% |
+| BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% |
+| BloomArea.o | 100.0% | 6 / 6 | 100.0% |
 | CameraRepulsiveArea.o | 0.0% | 0 / 8 | 0.0% |
-| ChangeBgmCube.o | 10.60070671378092% | 2 / 4 | 50.0% |
-| CollisionArea.o | 0.0% | 0 / 31 | 0.0% |
+| ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% |
+| CollisionArea.o | 25.90489709013485% | 11 / 31 | 35.483870967741936% |
 | CubeCamera.o | 34.55882352941176% | 7 / 12 | 58.333333333333336% |
 | DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% |
-| DepthOfFieldArea.o | 0.0% | 0 / 8 | 0.0% |
+| DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% |
 | FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% |
-| GlaringLightArea.o | 0.0% | 0 / 7 | 0.0% |
+| GlaringLightArea.o | 77.57575757575758% | 5 / 7 | 71.42857142857143% |
 | HazeCube.o | 0.0% | 0 / 4 | 0.0% |
-| ImageEffectArea.o | 0.0% | 0 / 5 | 0.0% |
+| ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% |
 | LightArea.o | 100.0% | 4 / 4 | 100.0% |
 | LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% |
 | MercatorTransformCube.o | 0.0% | 0 / 23 | 0.0% |
@@ -35,7 +35,7 @@
 | SoundEmitterSphere.o | 0.0% | 0 / 4 | 0.0% |
 | SpinGuidanceArea.o | 0.0% | 0 / 3 | 0.0% |
 | SunLightArea.o | 0.0% | 0 / 3 | 0.0% |
-| SwitchArea.o | 0.0% | 0 / 5 | 0.0% |
+| SwitchArea.o | 100.0% | 5 / 5 | 100.0% |
 | WarpCube.o | 0.0% | 0 / 8 | 0.0% |
 | WaterArea.o | 0.0% | 0 / 5 | 0.0% |
 
@@ -180,37 +180,37 @@
 | __ct__19BigBubbleCameraAreaFiPCc | :white_check_mark: |
 | __dt__14CubeCameraAreaFv | :x: |
 | isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __ct__19BigBubbleSwitchAreaFiPCc | :x: |
-| __dt__10SwitchAreaFv | :x: |
+| __ct__19BigBubbleSwitchAreaFiPCc | :white_check_mark: |
+| __dt__10SwitchAreaFv | :white_check_mark: |
 | isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
-| __dt__19BigBubbleCameraAreaFv | :x: |
-| __dt__19BigBubbleSwitchAreaFv | :x: |
-| getManagerName__19BigBubbleSwitchAreaCFv | :x: |
+| __dt__19BigBubbleCameraAreaFv | :white_check_mark: |
+| __dt__19BigBubbleSwitchAreaFv | :white_check_mark: |
+| getManagerName__19BigBubbleSwitchAreaCFv | :white_check_mark: |
 | getManagerName__19BigBubbleCameraAreaCFv | :x: |
 
 
 # BigBubbleGoalArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17BigBubbleGoalAreaFiPCc | :x: |
-| init__17BigBubbleGoalAreaFRC12JMapInfoIter | :x: |
+| __ct__17BigBubbleGoalAreaFiPCc | :white_check_mark: |
+| init__17BigBubbleGoalAreaFRC12JMapInfoIter | :white_check_mark: |
 | addBubble__17BigBubbleGoalAreaFP9BigBubble | :x: |
-| movement__17BigBubbleGoalAreaFv | :x: |
-| draw__17BigBubbleGoalAreaCFv | :x: |
+| movement__17BigBubbleGoalAreaFv | :white_check_mark: |
+| draw__17BigBubbleGoalAreaCFv | :white_check_mark: |
 | checkBigBubbleGoal__2MRFP9BigBubble | :x: |
-| getManagerName__17BigBubbleGoalAreaCFv | :x: |
-| __dt__17BigBubbleGoalAreaFv | :x: |
+| getManagerName__17BigBubbleGoalAreaCFv | :white_check_mark: |
+| __dt__17BigBubbleGoalAreaFv | :white_check_mark: |
 
 
 # BloomArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9BloomAreaFiPCc | :x: |
-| __dt__15ImageEffectAreaFv | :x: |
-| init__9BloomAreaFRC12JMapInfoIter | :x: |
-| __dt__9BloomAreaFv | :x: |
-| isSyncWithPlayer__15ImageEffectAreaCFv | :x: |
-| getManagerName__9BloomAreaCFv | :x: |
+| __ct__9BloomAreaFiPCc | :white_check_mark: |
+| __dt__15ImageEffectAreaFv | :white_check_mark: |
+| init__9BloomAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__9BloomAreaFv | :white_check_mark: |
+| isSyncWithPlayer__15ImageEffectAreaCFv | :white_check_mark: |
+| getManagerName__9BloomAreaCFv | :white_check_mark: |
 
 
 # CameraRepulsiveArea.o
@@ -231,7 +231,7 @@
 | ------------- | ------------- |
 | __ct__13ChangeBgmCubeFiPCc | :white_check_mark: |
 | init__13ChangeBgmCubeFRC12JMapInfoIter | :white_check_mark: |
-| __dt__13ChangeBgmCubeFv | :x: |
+| __dt__13ChangeBgmCubeFv | :white_check_mark: |
 | movement__13ChangeBgmCubeFv | :x: |
 
 
@@ -245,20 +245,20 @@
 | getXDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getYDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __ct__13CollisionAreaFiPCc | :x: |
-| init__13CollisionAreaFRC12JMapInfoIter | :x: |
-| movement__13CollisionAreaFv | :x: |
+| __ct__13CollisionAreaFiPCc | :white_check_mark: |
+| init__13CollisionAreaFRC12JMapInfoIter | :white_check_mark: |
+| movement__13CollisionAreaFv | :white_check_mark: |
 | hitCheck__13CollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| setSurfaceAndSync__11AreaPolygonFl | :x: |
+| setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| setSurfaceAndSync__11AreaPolygonFl | :white_check_mark: |
 | setSurface__11AreaPolygonFl | :x: |
-| invalidate__11AreaPolygonFv | :x: |
-| validate__11AreaPolygonFv | :x: |
-| __dt__11AreaPolygonFv | :x: |
+| invalidate__11AreaPolygonFv | :white_check_mark: |
+| validate__11AreaPolygonFv | :white_check_mark: |
+| __dt__11AreaPolygonFv | :white_check_mark: |
 | __dt__13CollisionAreaFv | :x: |
-| isValid__7AreaObjCFv | :x: |
-| __ct__11AreaPolygonFv | :x: |
-| __dt__19DynamicCollisionObjFv | :x: |
+| isValid__7AreaObjCFv | :white_check_mark: |
+| __ct__11AreaPolygonFv | :white_check_mark: |
+| __dt__19DynamicCollisionObjFv | :white_check_mark: |
 | init__11AreaPolygonFRC12JMapInfoIter | :x: |
 | receiveOtherMsg__9LiveActorFUlP9HitSensorP9HitSensor | :x: |
 | receiveMsgThrow__9LiveActorFP9HitSensorP9HitSensor | :x: |
@@ -303,14 +303,14 @@
 # DepthOfFieldArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16DepthOfFieldAreaFiPCc | :x: |
-| init__16DepthOfFieldAreaFRC12JMapInfoIter | :x: |
-| getIntensity__16DepthOfFieldAreaCFv | :x: |
-| getBlurMaxDist__16DepthOfFieldAreaCFv | :x: |
-| getBlurMinDist__16DepthOfFieldAreaCFv | :x: |
-| __dt__16DepthOfFieldAreaFv | :x: |
-| isSyncWithPlayer__16DepthOfFieldAreaCFv | :x: |
-| getManagerName__16DepthOfFieldAreaCFv | :x: |
+| __ct__16DepthOfFieldAreaFiPCc | :white_check_mark: |
+| init__16DepthOfFieldAreaFRC12JMapInfoIter | :white_check_mark: |
+| getIntensity__16DepthOfFieldAreaCFv | :white_check_mark: |
+| getBlurMaxDist__16DepthOfFieldAreaCFv | :white_check_mark: |
+| getBlurMinDist__16DepthOfFieldAreaCFv | :white_check_mark: |
+| __dt__16DepthOfFieldAreaFv | :white_check_mark: |
+| isSyncWithPlayer__16DepthOfFieldAreaCFv | :white_check_mark: |
+| getManagerName__16DepthOfFieldAreaCFv | :white_check_mark: |
 
 
 # FollowCollisionArea.o
@@ -326,12 +326,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__19GlaringLightAreaMgrFlPCc | :x: |
-| __ct__16GlaringLightAreaFiPCc | :x: |
-| init__16GlaringLightAreaFRC12JMapInfoIter | :x: |
-| __dt__16GlaringLightAreaFv | :x: |
+| __ct__16GlaringLightAreaFiPCc | :white_check_mark: |
+| init__16GlaringLightAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__16GlaringLightAreaFv | :white_check_mark: |
 | __dt__19GlaringLightAreaMgrFv | :x: |
-| movement__16GlaringLightAreaFv | :x: |
-| getManagerName__16GlaringLightAreaCFv | :x: |
+| movement__16GlaringLightAreaFv | :white_check_mark: |
+| getManagerName__16GlaringLightAreaCFv | :white_check_mark: |
 
 
 # HazeCube.o
@@ -346,7 +346,7 @@
 # ImageEffectArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc | :x: |
+| __ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc | :white_check_mark: |
 | __ct__18ImageEffectAreaMgrFlPCc | :x: |
 | initAfterPlacement__18ImageEffectAreaMgrFv | :x: |
 | sort__18ImageEffectAreaMgrFv | :x: |
@@ -492,11 +492,11 @@
 # SwitchArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SwitchAreaFiPCc | :x: |
-| init__10SwitchAreaFRC12JMapInfoIter | :x: |
-| movement__10SwitchAreaFv | :x: |
-| isUpdate__10SwitchAreaCFv | :x: |
-| getManagerName__10SwitchAreaCFv | :x: |
+| __ct__10SwitchAreaFiPCc | :white_check_mark: |
+| init__10SwitchAreaFRC12JMapInfoIter | :white_check_mark: |
+| movement__10SwitchAreaFv | :white_check_mark: |
+| isUpdate__10SwitchAreaCFv | :white_check_mark: |
+| getManagerName__10SwitchAreaCFv | :white_check_mark: |
 
 
 # WarpCube.o

@@ -33,7 +33,6 @@ namespace MR {
     f32 getPlayerHitRadius();
 
     void pushPlayerFromArea(const TVec3f &);
-    
     bool isOnPlayer(const LiveActor *);
 
     bool isPlayerJumpRising();

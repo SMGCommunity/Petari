@@ -88,7 +88,7 @@
 | DragonHeadFlower.o | 0.0% | 0 / 20 | 0.0% |
 | DriftWood.o | 0.0% | 0 / 18 | 0.0% |
 | DummyDisplayModel.o | 0.0% | 0 / 16 | 0.0% |
-| DynamicCollisionObj.o | 0.0% | 0 / 7 | 0.0% |
+| DynamicCollisionObj.o | 14.285714285714285% | 3 / 7 | 42.857142857142854% |
 | EarthenPipe.o | 0.0% | 0 / 50 | 0.0% |
 | ElectricBall.o | 0.0% | 0 / 27 | 0.0% |
 | ElectricRail.o | 0.0% | 0 / 48 | 0.0% |
@@ -2406,9 +2406,9 @@
 # DynamicCollisionObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19DynamicCollisionObjFPCc | :x: |
-| init__19DynamicCollisionObjFRC12JMapInfoIter | :x: |
-| syncCollision__19DynamicCollisionObjFv | :x: |
+| __ct__19DynamicCollisionObjFPCc | :white_check_mark: |
+| init__19DynamicCollisionObjFRC12JMapInfoIter | :white_check_mark: |
+| syncCollision__19DynamicCollisionObjFv | :white_check_mark: |
 | updateTriangle__19DynamicCollisionObjFv | :x: |
 | updateCollisionHeader__19DynamicCollisionObjFv | :x: |
 | __ct__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
