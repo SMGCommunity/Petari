@@ -26,6 +26,8 @@ namespace MR {
 
     bool isPlayerInAreaObj(const char *);
 
+    bool isOnGroundPlayer();
+
     bool isPlayerTeresaDisappear();
 
     f32 getPlayerHitRadius();

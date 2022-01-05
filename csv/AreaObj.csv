@@ -97,7 +97,7 @@ __ct__19BigBubbleCameraAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__14CubeCameraAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
 isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3<f>,BigBubbleCameraArea.o,AreaObj.a,false
 __ct__19BigBubbleSwitchAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,false
-__dt__10SwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
+__dt__10SwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,true
 isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3<f>,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__19BigBubbleCameraAreaFv,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__19BigBubbleSwitchAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
@@ -278,11 +278,11 @@ init__16SpinGuidanceAreaFRC12JMapInfoIter,SpinGuidanceArea.o,AreaObj.a,false
 __ct__12SunLightAreaFiPCc,SunLightArea.o,AreaObj.a,false
 __dt__12SunLightAreaFv,SunLightArea.o,AreaObj.a,false
 getManagerName__12SunLightAreaCFv,SunLightArea.o,AreaObj.a,false
-__ct__10SwitchAreaFiPCc,SwitchArea.o,AreaObj.a,false
-init__10SwitchAreaFRC12JMapInfoIter,SwitchArea.o,AreaObj.a,false
-movement__10SwitchAreaFv,SwitchArea.o,AreaObj.a,false
-isUpdate__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,false
-getManagerName__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,false
+__ct__10SwitchAreaFiPCc,SwitchArea.o,AreaObj.a,true
+init__10SwitchAreaFRC12JMapInfoIter,SwitchArea.o,AreaObj.a,true
+movement__10SwitchAreaFv,SwitchArea.o,AreaObj.a,true
+isUpdate__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
+getManagerName__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
 __dt__8WarpCubeFv,WarpCube.o,AreaObj.a,false
 getPairCube__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,false
 setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs,WarpCube.o,AreaObj.a,false

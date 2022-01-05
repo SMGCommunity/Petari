@@ -1,5 +1,9 @@
 #include "Game/AreaObj/BigBubbleCameraArea.h"
 
+SwitchArea::~SwitchArea() {
+
+}
+
 BigBubbleCameraArea::BigBubbleCameraArea(int a1, const char *pName) : CubeCameraArea(a1, pName) {
 
 }
