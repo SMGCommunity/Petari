@@ -4,6 +4,7 @@
 
 class AreaObj;
 class AreaObjMgr;
+class AreaCubeBoundingBox;
 
 namespace MR {
     AreaObjMgr* getAreaObjManager(const char *);
@@ -12,4 +13,8 @@ namespace MR {
     s32 getAreaObjArg(const AreaObj *, s32);
 
     void calcCylinderPos(TVec3f *, const AreaObj *);
+
+    void calcCubeLocalPos(TVec3f *, const AreaObj *, const TVec3f &);
+
+    AreaCubeBoundingBox *getCubeLocalBox(const AreaObj *);
 };

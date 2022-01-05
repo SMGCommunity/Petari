@@ -20,6 +20,7 @@ namespace MR {
     const char* getZoneNameFromZoneId(s32);
 
     TMtx34f *getZonePlacementMtx(long);
+    TMtx34f *getZonePlacementMtx(const JMapInfoIter &);
 
     void getStageCameraData(void **, long *, long);
 
