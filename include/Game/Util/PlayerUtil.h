@@ -25,4 +25,10 @@ namespace MR {
     void setCameraTargetToPlayer(CameraTargetArg *);
 
     bool isPlayerInAreaObj(const char *);
+
+    bool isPlayerTeresaDisappear();
+
+    f32 getPlayerHitRadius();
+
+    void pushPlayerFromArea(const TVec3f &);
 };

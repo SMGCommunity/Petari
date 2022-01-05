@@ -3,6 +3,7 @@
 #include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
 
+class CollisionParts;
 class LiveActor;
 class Nerve;
 class ResourceHolder;
@@ -98,8 +99,10 @@ namespace MR {
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
     
     void validateCollisionParts(LiveActor *);
+    void validateCollisionParts(CollisionParts *);
 
     void invalidateCollisionParts(LiveActor *);
+    void invalidateCollisionParts(CollisionParts *);
 
     void startAllAnim(const LiveActor *, const char *);
     bool tryStartAllAnim(const LiveActor *, const char *);

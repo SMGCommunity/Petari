@@ -31,6 +31,11 @@ public:
     void validate();
     void invalidate();
 
+    bool isValid() const;
+
+    void awake();
+    void sleep();
+
     AreaForm* mForm;              // _C
     int mType;                    // _10
     bool mValid;                  // _14
