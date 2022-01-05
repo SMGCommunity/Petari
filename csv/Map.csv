@@ -1299,8 +1299,8 @@ initSyncSleepController__16SleepControlFuncFv,SleepControllerHolder.o,Map.a,fals
 addSleepControl__16SleepControlFuncFP7AreaObjRC12JMapInfoIter,SleepControllerHolder.o,Map.a,false
 addSleepControl__16SleepControlFuncFP9LiveActorRC12JMapInfoIter,SleepControllerHolder.o,Map.a,false
 for_each<PP15SleepController&#44;Q23std30mem_fun_t<v&#44;15SleepController>>__3stdFPP15SleepControllerPP15SleepControllerQ23std30mem_fun_t<v&#44;15SleepController>_Q23std30mem_fun_t<v&#44;15SleepController>,SleepControllerHolder.o,Map.a,false
-awake__7AreaObjFv,SleepControllerHolder.o,Map.a,false
-sleep__7AreaObjFv,SleepControllerHolder.o,Map.a,false
+awake__7AreaObjFv,SleepControllerHolder.o,Map.a,true
+sleep__7AreaObjFv,SleepControllerHolder.o,Map.a,true
 Functor<9LiveActor>__2MRFP9LiveActorM9LiveActorFPCvPv_v_Q22MR43FunctorV0M<P9LiveActor&#44;M9LiveActorFPCvPv_v>,SleepControllerHolder.o,Map.a,false
 __cl__Q22MR43FunctorV0M<P9LiveActor&#44;M9LiveActorFPCvPv_v>CFv,SleepControllerHolder.o,Map.a,false
 clone__Q22MR43FunctorV0M<P9LiveActor&#44;M9LiveActorFPCvPv_v>CFP7JKRHeap,SleepControllerHolder.o,Map.a,false

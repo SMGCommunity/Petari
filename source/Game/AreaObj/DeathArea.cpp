@@ -10,13 +10,13 @@ void DeathArea::init(const JMapInfoIter &rIter) {
 }
 
 #ifdef NON_MATCHING
-// getDeathType keeps getting inlined
+// No cntlzw, rlwinm
 void DeathArea::movement() {
-    if (isInVolume(*MR::getPlayerPos()) && getDeathType()) {
+    if (isInVolume(*MR::getPlayerPos()) && getDeathType() == 0) {
         MR::forceKillPlayerByAbyss();
     }
 }
-#endif 
+#endif
 
 bool DeathArea::isInVolume(const TVec3f &rVec) const {
     bool ret;
@@ -31,7 +31,7 @@ bool DeathArea::isInVolume(const TVec3f &rVec) const {
     return ret;
 }
 
-u32 DeathArea::getDeathType() const {
+s32 DeathArea::getDeathType() const {
     return mObjArg0 != -1 ? mObjArg0 : 0;
 }
 

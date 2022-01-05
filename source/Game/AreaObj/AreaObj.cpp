@@ -6,8 +6,8 @@
 AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     mType = a1;
     mValid = true;
-    _15 = 1;
-    _16 = 1;
+    _15 = true;
+    mAwake = true;
     mObjArg0 = -1;
     mObjArg1 = -1;
     mObjArg2 = -1;
@@ -57,7 +57,7 @@ void AreaObj::init(const JMapInfoIter &rIter) {
 bool AreaObj::isInVolume(const TVec3f &rPos) const {
     bool ret = false;
 
-    if (mValid && _15 && _16) {
+    if (mValid && _15 && mAwake) {
         if (mForm->isInVolume(rPos)) {
             ret = true;
         }

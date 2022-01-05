@@ -32,6 +32,10 @@ namespace MR {
 
     void setNearZ(f32);
 
+    TVec3f getCamXDir();
+    TVec3f getCamYDir();
+    TVec3f getCamZDir();
+
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 
     bool isExistMirrorCamera();
