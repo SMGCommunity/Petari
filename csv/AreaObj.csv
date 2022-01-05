@@ -259,10 +259,10 @@ init__14ScreenBlurAreaFRC12JMapInfoIter,ScreenBlurArea.o,AreaObj.a,true
 __dt__14ScreenBlurAreaFv,ScreenBlurArea.o,AreaObj.a,true
 isSyncWithPlayer__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,true
 getManagerName__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,true
-__ct__15SimpleBloomAreaFiPCc,SimpleBloomArea.o,AreaObj.a,false
-init__15SimpleBloomAreaFRC12JMapInfoIter,SimpleBloomArea.o,AreaObj.a,false
-__dt__15SimpleBloomAreaFv,SimpleBloomArea.o,AreaObj.a,false
-getManagerName__15SimpleBloomAreaCFv,SimpleBloomArea.o,AreaObj.a,false
+__ct__15SimpleBloomAreaFiPCc,SimpleBloomArea.o,AreaObj.a,true
+init__15SimpleBloomAreaFRC12JMapInfoIter,SimpleBloomArea.o,AreaObj.a,true
+__dt__15SimpleBloomAreaFv,SimpleBloomArea.o,AreaObj.a,true
+getManagerName__15SimpleBloomAreaCFv,SimpleBloomArea.o,AreaObj.a,true
 __dt__16SoundEmitterCubeFv,SoundEmitterCube.o,AreaObj.a,false
 __ct__16SoundEmitterCubeFiPCc,SoundEmitterCube.o,AreaObj.a,false
 init__16SoundEmitterCubeFRC12JMapInfoIter,SoundEmitterCube.o,AreaObj.a,false

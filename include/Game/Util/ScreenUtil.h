@@ -11,6 +11,7 @@ namespace MR {
     void createCenterScreenBlur();
 
     void createNormalBloom();
+    void createSimpleBloom();
 
     void createScreenBlur();
     void startCenterScreenBlur(long, float, unsigned char, long, long);
