@@ -275,9 +275,9 @@ movement__18SoundEmitterSphereFv,SoundEmitterSphere.o,AreaObj.a,false
 __ct__16SpinGuidanceAreaFiPCc,SpinGuidanceArea.o,AreaObj.a,true
 __dt__16SpinGuidanceAreaFv,SpinGuidanceArea.o,AreaObj.a,true
 init__16SpinGuidanceAreaFRC12JMapInfoIter,SpinGuidanceArea.o,AreaObj.a,false
-__ct__12SunLightAreaFiPCc,SunLightArea.o,AreaObj.a,false
-__dt__12SunLightAreaFv,SunLightArea.o,AreaObj.a,false
-getManagerName__12SunLightAreaCFv,SunLightArea.o,AreaObj.a,false
+__ct__12SunLightAreaFiPCc,SunLightArea.o,AreaObj.a,true
+__dt__12SunLightAreaFv,SunLightArea.o,AreaObj.a,true
+getManagerName__12SunLightAreaCFv,SunLightArea.o,AreaObj.a,true
 __ct__10SwitchAreaFiPCc,SwitchArea.o,AreaObj.a,true
 init__10SwitchAreaFRC12JMapInfoIter,SwitchArea.o,AreaObj.a,true
 movement__10SwitchAreaFv,SwitchArea.o,AreaObj.a,true
