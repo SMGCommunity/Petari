@@ -45,4 +45,6 @@ namespace MR {
     LiveActor* getPlayerDemoActor();
 
     void setPlayerBaseMtx(MtxPtr);
+
+    void startLevelSoundPlayer(const char *, long);
 };

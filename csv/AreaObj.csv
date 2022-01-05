@@ -242,11 +242,11 @@ getEulerXYZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMat
 __ct__11MessageAreaFiPCc,MessageArea.o,AreaObj.a,true
 init__11MessageAreaFRC12JMapInfoIter,MessageArea.o,AreaObj.a,true
 __dt__11MessageAreaFv,MessageArea.o,AreaObj.a,true
-__ct__12PlayerSeAreaFiPCc,PlayerSeArea.o,AreaObj.a,false
-init__12PlayerSeAreaFRC12JMapInfoIter,PlayerSeArea.o,AreaObj.a,false
-__dt__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,false
-movement__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,false
-getManagerName__12PlayerSeAreaCFv,PlayerSeArea.o,AreaObj.a,false
+__ct__12PlayerSeAreaFiPCc,PlayerSeArea.o,AreaObj.a,true
+init__12PlayerSeAreaFRC12JMapInfoIter,PlayerSeArea.o,AreaObj.a,true
+__dt__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,true
+movement__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,true
+getManagerName__12PlayerSeAreaCFv,PlayerSeArea.o,AreaObj.a,true
 __ct__15QuakeEffectAreaFiPCc,QuakeEffectArea.o,AreaObj.a,false
 __dt__15QuakeEffectAreaFv,QuakeEffectArea.o,AreaObj.a,false
 __ct__11RestartCubeFiPCc,RestartCube.o,AreaObj.a,false
