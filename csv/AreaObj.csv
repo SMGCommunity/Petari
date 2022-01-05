@@ -239,9 +239,9 @@ min__2MRFff,MercatorTransformCube.o,AreaObj.a,false
 max__2MRFff,MercatorTransformCube.o,AreaObj.a,false
 getMercatorCube__35@unnamed@MercatorTransformCube_cpp@Fv,MercatorTransformCube.o,AreaObj.a,false
 getEulerXYZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>,MercatorTransformCube.o,AreaObj.a,false
-__ct__11MessageAreaFiPCc,MessageArea.o,AreaObj.a,false
-init__11MessageAreaFRC12JMapInfoIter,MessageArea.o,AreaObj.a,false
-__dt__11MessageAreaFv,MessageArea.o,AreaObj.a,false
+__ct__11MessageAreaFiPCc,MessageArea.o,AreaObj.a,true
+init__11MessageAreaFRC12JMapInfoIter,MessageArea.o,AreaObj.a,true
+__dt__11MessageAreaFv,MessageArea.o,AreaObj.a,true
 __ct__12PlayerSeAreaFiPCc,PlayerSeArea.o,AreaObj.a,false
 init__12PlayerSeAreaFRC12JMapInfoIter,PlayerSeArea.o,AreaObj.a,false
 __dt__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,false
