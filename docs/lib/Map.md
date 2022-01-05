@@ -66,7 +66,7 @@
 | SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
 | Sky.o | 97.39696312364426% | 19 / 20 | 95.0% |
 | SleepController.o | 0.0% | 0 / 3 | 0.0% |
-| SleepControllerHolder.o | 0.0% | 0 / 14 | 0.0% |
+| SleepControllerHolder.o | 1.7543859649122806% | 2 / 14 | 14.285714285714285% |
 | SpaceInner.o | 100.0% | 12 / 12 | 100.0% |
 | SphereSelector.o | 0.0% | 0 / 70 | 0.0% |
 | SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% |
@@ -1713,8 +1713,8 @@
 | addSleepControl__16SleepControlFuncFP7AreaObjRC12JMapInfoIter | :x: |
 | addSleepControl__16SleepControlFuncFP9LiveActorRC12JMapInfoIter | :x: |
 | for_each&lt;PP15SleepController,Q23std30mem_fun_t&lt;v,15SleepController&gt;&gt;__3stdFPP15SleepControllerPP15SleepControllerQ23std30mem_fun_t&lt;v,15SleepController&gt;_Q23std30mem_fun_t&lt;v,15SleepController&gt; | :x: |
-| awake__7AreaObjFv | :x: |
-| sleep__7AreaObjFv | :x: |
+| awake__7AreaObjFv | :white_check_mark: |
+| sleep__7AreaObjFv | :white_check_mark: |
 | Functor&lt;9LiveActor&gt;__2MRFP9LiveActorM9LiveActorFPCvPv_v_Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt; | :x: |
 | __cl__Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR43FunctorV0M&lt;P9LiveActor,M9LiveActorFPCvPv_v&gt;CFP7JKRHeap | :x: |
