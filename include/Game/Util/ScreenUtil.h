@@ -12,6 +12,7 @@ namespace MR {
 
     void createNormalBloom();
 
+    void createScreenBlur();
     void startCenterScreenBlur(long, float, unsigned char, long, long);
 
     void createDepthOfFieldBlur();

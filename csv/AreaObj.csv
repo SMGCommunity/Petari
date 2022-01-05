@@ -254,11 +254,11 @@ init__11RestartCubeFRC12JMapInfoIter,RestartCube.o,AreaObj.a,true
 updatePlayerRestartIdInfo__11RestartCubeFv,RestartCube.o,AreaObj.a,true
 __dt__11RestartCubeFv,RestartCube.o,AreaObj.a,true
 changeBgm__11RestartCubeFv,RestartCube.o,AreaObj.a,false
-__ct__14ScreenBlurAreaFiPCc,ScreenBlurArea.o,AreaObj.a,false
-init__14ScreenBlurAreaFRC12JMapInfoIter,ScreenBlurArea.o,AreaObj.a,false
-__dt__14ScreenBlurAreaFv,ScreenBlurArea.o,AreaObj.a,false
-isSyncWithPlayer__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,false
-getManagerName__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,false
+__ct__14ScreenBlurAreaFiPCc,ScreenBlurArea.o,AreaObj.a,true
+init__14ScreenBlurAreaFRC12JMapInfoIter,ScreenBlurArea.o,AreaObj.a,true
+__dt__14ScreenBlurAreaFv,ScreenBlurArea.o,AreaObj.a,true
+isSyncWithPlayer__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,true
+getManagerName__14ScreenBlurAreaCFv,ScreenBlurArea.o,AreaObj.a,true
 __ct__15SimpleBloomAreaFiPCc,SimpleBloomArea.o,AreaObj.a,false
 init__15SimpleBloomAreaFRC12JMapInfoIter,SimpleBloomArea.o,AreaObj.a,false
 __dt__15SimpleBloomAreaFv,SimpleBloomArea.o,AreaObj.a,false
