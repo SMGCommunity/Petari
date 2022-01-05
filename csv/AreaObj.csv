@@ -192,12 +192,12 @@ __ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>PA4_ff,FollowCollisionArea.o,
 movement__19FollowCollisionAreaFv,FollowCollisionArea.o,AreaObj.a,false
 hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>,FollowCollisionArea.o,AreaObj.a,false
 __ct__19GlaringLightAreaMgrFlPCc,GlaringLightArea.o,AreaObj.a,false
-__ct__16GlaringLightAreaFiPCc,GlaringLightArea.o,AreaObj.a,false
-init__16GlaringLightAreaFRC12JMapInfoIter,GlaringLightArea.o,AreaObj.a,false
-__dt__16GlaringLightAreaFv,GlaringLightArea.o,AreaObj.a,false
+__ct__16GlaringLightAreaFiPCc,GlaringLightArea.o,AreaObj.a,true
+init__16GlaringLightAreaFRC12JMapInfoIter,GlaringLightArea.o,AreaObj.a,true
+__dt__16GlaringLightAreaFv,GlaringLightArea.o,AreaObj.a,true
 __dt__19GlaringLightAreaMgrFv,GlaringLightArea.o,AreaObj.a,false
-movement__16GlaringLightAreaFv,GlaringLightArea.o,AreaObj.a,false
-getManagerName__16GlaringLightAreaCFv,GlaringLightArea.o,AreaObj.a,false
+movement__16GlaringLightAreaFv,GlaringLightArea.o,AreaObj.a,true
+getManagerName__16GlaringLightAreaCFv,GlaringLightArea.o,AreaObj.a,true
 __ct__8HazeCubeFiPCc,HazeCube.o,AreaObj.a,false
 init__8HazeCubeFRC12JMapInfoIter,HazeCube.o,AreaObj.a,false
 __dt__8HazeCubeFv,HazeCube.o,AreaObj.a,false
