@@ -249,10 +249,10 @@ movement__12PlayerSeAreaFv,PlayerSeArea.o,AreaObj.a,true
 getManagerName__12PlayerSeAreaCFv,PlayerSeArea.o,AreaObj.a,true
 __ct__15QuakeEffectAreaFiPCc,QuakeEffectArea.o,AreaObj.a,true
 __dt__15QuakeEffectAreaFv,QuakeEffectArea.o,AreaObj.a,true
-__ct__11RestartCubeFiPCc,RestartCube.o,AreaObj.a,false
-init__11RestartCubeFRC12JMapInfoIter,RestartCube.o,AreaObj.a,false
-updatePlayerRestartIdInfo__11RestartCubeFv,RestartCube.o,AreaObj.a,false
-__dt__11RestartCubeFv,RestartCube.o,AreaObj.a,false
+__ct__11RestartCubeFiPCc,RestartCube.o,AreaObj.a,true
+init__11RestartCubeFRC12JMapInfoIter,RestartCube.o,AreaObj.a,true
+updatePlayerRestartIdInfo__11RestartCubeFv,RestartCube.o,AreaObj.a,true
+__dt__11RestartCubeFv,RestartCube.o,AreaObj.a,true
 changeBgm__11RestartCubeFv,RestartCube.o,AreaObj.a,false
 __ct__14ScreenBlurAreaFiPCc,ScreenBlurArea.o,AreaObj.a,false
 init__14ScreenBlurAreaFRC12JMapInfoIter,ScreenBlurArea.o,AreaObj.a,false
