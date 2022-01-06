@@ -291,8 +291,8 @@ endEventCamera__11WarpCubeMgrFv,WarpCube.o,AreaObj.a,false
 movement__8WarpCubeFv,WarpCube.o,AreaObj.a,true
 draw__8WarpCubeCFv,WarpCube.o,AreaObj.a,false
 init__8WarpCubeFRC12JMapInfoIter,WarpCube.o,AreaObj.a,true
-__ct__9WaterAreaFiPCc,WaterArea.o,AreaObj.a,false
+__ct__9WaterAreaFiPCc,WaterArea.o,AreaObj.a,true
 init__9WaterAreaFRC12JMapInfoIter,WaterArea.o,AreaObj.a,false
 __ct__12WaterAreaMgrFlPCc,WaterArea.o,AreaObj.a,false
-__dt__9WaterAreaFv,WaterArea.o,AreaObj.a,false
+__dt__9WaterAreaFv,WaterArea.o,AreaObj.a,true
 __dt__12WaterAreaMgrFv,WaterArea.o,AreaObj.a,false
