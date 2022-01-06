@@ -283,14 +283,14 @@ init__10SwitchAreaFRC12JMapInfoIter,SwitchArea.o,AreaObj.a,true
 movement__10SwitchAreaFv,SwitchArea.o,AreaObj.a,true
 isUpdate__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
 getManagerName__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
-__dt__8WarpCubeFv,WarpCube.o,AreaObj.a,false
+__dt__8WarpCubeFv,WarpCube.o,AreaObj.a,true
 getPairCube__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,false
 setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs,WarpCube.o,AreaObj.a,false
 startEventCamera__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,false
 endEventCamera__11WarpCubeMgrFv,WarpCube.o,AreaObj.a,false
-movement__8WarpCubeFv,WarpCube.o,AreaObj.a,false
+movement__8WarpCubeFv,WarpCube.o,AreaObj.a,true
 draw__8WarpCubeCFv,WarpCube.o,AreaObj.a,false
-init__8WarpCubeFRC12JMapInfoIter,WarpCube.o,AreaObj.a,false
+init__8WarpCubeFRC12JMapInfoIter,WarpCube.o,AreaObj.a,true
 __ct__9WaterAreaFiPCc,WaterArea.o,AreaObj.a,false
 init__9WaterAreaFRC12JMapInfoIter,WaterArea.o,AreaObj.a,false
 __ct__12WaterAreaMgrFlPCc,WaterArea.o,AreaObj.a,false

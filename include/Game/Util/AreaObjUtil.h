@@ -14,7 +14,10 @@ namespace MR {
 
     void calcCylinderPos(TVec3f *, const AreaObj *);
 
+    void calcCubePos(const AreaObj *, TVec3f *);
     void calcCubeLocalPos(TVec3f *, const AreaObj *, const TVec3f &);
+    
+    void calcCubeRotate(const AreaObj *, TVec3f *);
 
     AreaCubeBoundingBox *getCubeLocalBox(const AreaObj *);
 };
