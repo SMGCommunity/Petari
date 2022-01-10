@@ -12,5 +12,6 @@ void JMAVECLerp(const Vec *, const Vec *, Vec *, f32);
 
 class JMathInlineVEC {
 public:
+    static void PSVECAdd(const Vec *, const Vec *, Vec *);
     static void PSVECSubtract(const Vec *, const Vec *, Vec *);
 };

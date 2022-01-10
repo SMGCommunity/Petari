@@ -291,7 +291,7 @@ bool MapObjActor::tryDeleteWaitEffect() {
         return false;
     }
 
-    MR::deleteEFfect(this, mObjectName);
+    MR::deleteEffect(this, mObjectName);
     return true;
 }
 

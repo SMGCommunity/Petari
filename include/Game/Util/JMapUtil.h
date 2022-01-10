@@ -5,10 +5,10 @@
 #include <revolution.h>
 
 namespace {
-    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut) NO_INLINE;
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *) NO_INLINE;
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *) NO_INLINE;
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *) NO_INLINE;
+    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut);
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *);
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *);
+    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *);
 };
 
 namespace MR {

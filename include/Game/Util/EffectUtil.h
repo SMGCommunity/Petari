@@ -8,7 +8,7 @@ namespace MR {
     bool isRegisteredEffect(const LiveActor *, const char *);
 
     bool isEffectValid(const LiveActor *, const char *);
-    void deleteEFfect(LiveActor *, const char *);
+    void deleteEffect(LiveActor *, const char *);
 
     void emitEffect(LiveActor *, const char *);
 };

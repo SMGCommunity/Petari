@@ -98,7 +98,7 @@
 | FallDownBridge.o | 0.0% | 0 / 11 | 0.0% |
 | FallingSmallRock.o | 0.0% | 0 / 11 | 0.0% |
 | FallOutFieldDraw.o | 0.0% | 0 / 13 | 0.0% |
-| FireBar.o | 0.0% | 0 / 21 | 0.0% |
+| FireBar.o | 71.49877149877149% | 19 / 21 | 90.47619047619048% |
 | FirePressure.o | 0.0% | 0 / 7 | 0.0% |
 | FirePressureBullet.o | 0.0% | 0 / 12 | 0.0% |
 | FirePressureBulletHolder.o | 0.0% | 0 / 4 | 0.0% |
@@ -2705,27 +2705,27 @@
 # FireBar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__11FireBarBallFv | :x: |
-| __dt__7FireBarFv | :x: |
-| __ct__11FireBarBallFP9LiveActor | :x: |
-| init__11FireBarBallFRC12JMapInfoIter | :x: |
-| initAfterPlacement__11FireBarBallFv | :x: |
-| control__11FireBarBallFv | :x: |
-| startClipped__11FireBarBallFv | :x: |
-| endClipped__11FireBarBallFv | :x: |
-| controlEmitEffect__11FireBarBallFv | :x: |
-| __ct__7FireBarFPCc | :x: |
-| init__7FireBarFRC12JMapInfoIter | :x: |
-| exeWait__7FireBarFv | :x: |
-| makeActorAppeared__7FireBarFv | :x: |
-| makeActorDead__7FireBarFv | :x: |
-| attackSensor__7FireBarFP9HitSensorP9HitSensor | :x: |
+| __dt__11FireBarBallFv | :white_check_mark: |
+| __dt__7FireBarFv | :white_check_mark: |
+| __ct__11FireBarBallFP9LiveActor | :white_check_mark: |
+| init__11FireBarBallFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__11FireBarBallFv | :white_check_mark: |
+| control__11FireBarBallFv | :white_check_mark: |
+| startClipped__11FireBarBallFv | :white_check_mark: |
+| endClipped__11FireBarBallFv | :white_check_mark: |
+| controlEmitEffect__11FireBarBallFv | :white_check_mark: |
+| __ct__7FireBarFPCc | :white_check_mark: |
+| init__7FireBarFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__7FireBarFv | :white_check_mark: |
+| makeActorAppeared__7FireBarFv | :white_check_mark: |
+| makeActorDead__7FireBarFv | :white_check_mark: |
+| attackSensor__7FireBarFP9HitSensorP9HitSensor | :white_check_mark: |
 | updateHitSensor__7FireBarFP9HitSensor | :x: |
 | initFireBarBall__7FireBarFRC12JMapInfoIter | :x: |
-| fixFireBarBall__7FireBarFv | :x: |
-| __sinit_\FireBar_cpp | :x: |
-| __ct__Q210NrvFireBar14FireBarNrvWaitFv | :x: |
-| execute__Q210NrvFireBar14FireBarNrvWaitCFP5Spine | :x: |
+| fixFireBarBall__7FireBarFv | :white_check_mark: |
+| __sinit_\FireBar_cpp | :white_check_mark: |
+| __ct__Q210NrvFireBar14FireBarNrvWaitFv | :white_check_mark: |
+| execute__Q210NrvFireBar14FireBarNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # FirePressure.o

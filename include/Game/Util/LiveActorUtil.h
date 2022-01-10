@@ -55,6 +55,8 @@ namespace MR {
 
     void calcAnimDirect(LiveActor *);
 
+    void calcGravity(LiveActor *);
+
     void initLightCtrl(LiveActor *);
     void initLightCtrlForPlayer(LiveActor *);
     void initLightCtrlNoDrawEnemy(LiveActor *);
@@ -123,7 +125,10 @@ namespace MR {
 
     f32 getBckFrameMax(const LiveActor *);
     f32 getBrkFrameMax(const LiveActor *);
+    f32 getBtkFrameMax(const LiveActor *);
     void setBckFrameAndStop(const LiveActor *, f32);
+
+    void setBtkFrame(LiveActor *, f32);
 
     bool isExistBck(const LiveActor *, const char *);
     bool isExistBva(const LiveActor *, const char *);
