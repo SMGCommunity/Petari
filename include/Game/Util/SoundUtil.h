@@ -2,6 +2,8 @@
 
 #include <revolution.h>
 
+class AudSoundObject;
+
 namespace MR {
 
     void startCurrentStageBGM();
@@ -17,6 +19,7 @@ namespace MR {
     void startSystemSE(const char *, s32, s32);
     void startSystemME(const char *);
     void startSound(const LiveActor *, const char *, s32, s32);
+    void startSoundObject(AudSoundObject *, const char *);
 
     void startLevelSound(const LiveActor *, const char *, s32, s32, s32);    
 

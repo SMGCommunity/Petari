@@ -59,7 +59,7 @@ bool AstroChangeStageCube::isInVolume(const TVec3f &rVec) const {
 void AstroChangeStageCube::movement() {
     bool isValid = false;
 
-    if (mValid && _15 && _16) {
+    if (mValid && _15 && mAwake) {
         isValid = true;
     }
 

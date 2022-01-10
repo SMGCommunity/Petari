@@ -10,4 +10,6 @@ namespace MR {
     AreaObj* getAreaObj(const char *, const TVec3f &);
     bool isInAreaObj(const char *, const TVec3f &);
     s32 getAreaObjArg(const AreaObj *, s32);
+
+    void calcCylinderPos(TVec3f *, const AreaObj *);
 };

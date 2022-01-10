@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.h"
+#include "Inline.h"
 
 class DeathArea : public AreaObj {
 public:
@@ -11,5 +12,5 @@ public:
     virtual bool isInVolume(const TVec3f &) const;
     virtual const char* getManagerName() const;
 
-    u32 getDeathType() const;
+    s32 getDeathType() const NO_INLINE;
 };

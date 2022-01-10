@@ -27,6 +27,12 @@ namespace MR {
     bool isPlayerInAreaObj(const char *);
 
     bool isOnGroundPlayer();
+
+    bool isPlayerTeresaDisappear();
+
+    f32 getPlayerHitRadius();
+
+    void pushPlayerFromArea(const TVec3f &);
     bool isOnPlayer(const LiveActor *);
 
     bool isPlayerJumpRising();

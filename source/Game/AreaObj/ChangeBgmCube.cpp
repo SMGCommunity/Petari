@@ -6,6 +6,10 @@ ChangeBgmCube::ChangeBgmCube(int a1, const char *pName) : AreaObj(a1, pName) {
     _3C = 0;
 }
 
+ChangeBgmCube::~ChangeBgmCube() {
+
+}
+
 void ChangeBgmCube::init(const JMapInfoIter &rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
