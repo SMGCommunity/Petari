@@ -12,11 +12,6 @@ public:
     TPos3f* _4;
 };
 
-struct AreaCubeBoundingBox {
-    TVec3f mMin;
-    TVec3f mMax;
-};
-
 class AreaFormCube : public AreaForm {
 public:
     AreaFormCube(int);
@@ -35,7 +30,7 @@ public:
     TVec3f mTranslation;            // _C
     TVec3f mRotation;               // _18
     TVec3f mScale;                  // _24
-    AreaCubeBoundingBox mBounding;  // _30
+    TBox3f mBounding;  // _30
     Mtx _48;
 };
 

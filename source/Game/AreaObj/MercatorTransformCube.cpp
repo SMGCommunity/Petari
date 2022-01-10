@@ -37,7 +37,7 @@ void MercatorTransformCube::calcUV(TVec2f *uv, const TVec3f &a2) const {
 }
 
 void MercatorTransformCube::calcLocalBoxSize(TVec3f *pPos) const {
-    AreaCubeBoundingBox *box = MR::getCubeLocalBox(this);
+    TBox3f *box = MR::getCubeLocalBox(this);
 
     TVec3f max;
     TVec3f min;
