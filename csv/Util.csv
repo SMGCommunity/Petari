@@ -1427,8 +1427,8 @@ __rf__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane&#44;4>13ConstIteratorCFv,LayoutUtil.
 GetEndIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane&#44;4>CFv,LayoutUtil.o,Util.a,false
 __ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane&#44;4>13ConstIteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane&#44;4>13ConstIterator,LayoutUtil.o,Util.a,false
 __as__Q34nw4r2ut4RectFRCQ34nw4r2ut4Rect,LayoutUtil.o,Util.a,false
-setTextBoxNumberRecursive__2MRFP11LayoutActorPCcl,LayoutUtil.o,Util.a,false
-clearTextBoxMessageRecursive__2MRFP11LayoutActorPCc,LayoutUtil.o,Util.a,false
+setTextBoxNumberRecursive__2MRFP11LayoutActorPCcl,LayoutUtil.o,Util.a,true
+clearTextBoxMessageRecursive__2MRFP11LayoutActorPCc,LayoutUtil.o,Util.a,true
 createAndSetupIconAButton__2MRFP11LayoutActorbb,LayoutUtil.o,Util.a,false
 setCometAnimFromId__2MRFP11LayoutActoriUl,LayoutUtil.o,Util.a,false
 __ct__Q34nw4r3lyt6TexMapFRC9_GXTexObj,LayoutUtil.o,Util.a,false

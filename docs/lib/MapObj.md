@@ -49,7 +49,7 @@
 | CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% |
 | CapsuleCage.o | 0.0% | 0 / 23 | 0.0% |
 | ChipBase.o | 0.0% | 0 / 39 | 0.0% |
-| ChipCounter.o | 0.0% | 0 / 30 | 0.0% |
+| ChipCounter.o | 19.971056439942114% | 3 / 30 | 10.0% |
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
 | ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
 | ChooChooTrain.o | 0.0% | 0 / 8 | 0.0% |
@@ -75,7 +75,7 @@
 | CoinRotater.o | 0.0% | 0 / 7 | 0.0% |
 | CoinSpot.o | 0.0% | 0 / 12 | 0.0% |
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% |
-| CollectCounter.o | 0.0% | 0 / 12 | 0.0% |
+| CollectCounter.o | 100.0% | 12 / 12 | 100.0% |
 | CollisionBlocker.o | 0.0% | 0 / 7 | 0.0% |
 | CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
 | CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
@@ -1546,9 +1546,9 @@
 # ChipCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11ChipCounterFPCcl | :x: |
-| init__11ChipCounterFRC12JMapInfoIter | :x: |
-| control__11ChipCounterFv | :x: |
+| __ct__11ChipCounterFPCcl | :white_check_mark: |
+| init__11ChipCounterFRC12JMapInfoIter | :white_check_mark: |
+| control__11ChipCounterFv | :white_check_mark: |
 | setCount__11ChipCounterFl | :x: |
 | requestShow__11ChipCounterFll | :x: |
 | requestComplete__11ChipCounterFl | :x: |
@@ -2104,18 +2104,18 @@
 # CollectCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14CollectCounterFPCc | :x: |
-| init__14CollectCounterFRC12JMapInfoIter | :x: |
-| control__14CollectCounterFv | :x: |
-| setCount__14CollectCounterFl | :x: |
-| tryEndShow__14CollectCounterFv | :x: |
-| setPosition__14CollectCounterFv | :x: |
-| __dt__14CollectCounterFv | :x: |
-| __sinit_\CollectCounter_cpp | :x: |
-| __ct__Q217NrvCollectCounter21CollectCounterNrvHideFv | :x: |
-| __ct__Q217NrvCollectCounter21CollectCounterNrvShowFv | :x: |
-| execute__Q217NrvCollectCounter21CollectCounterNrvShowCFP5Spine | :x: |
-| execute__Q217NrvCollectCounter21CollectCounterNrvHideCFP5Spine | :x: |
+| __ct__14CollectCounterFPCc | :white_check_mark: |
+| init__14CollectCounterFRC12JMapInfoIter | :white_check_mark: |
+| control__14CollectCounterFv | :white_check_mark: |
+| setCount__14CollectCounterFl | :white_check_mark: |
+| tryEndShow__14CollectCounterFv | :white_check_mark: |
+| setPosition__14CollectCounterFv | :white_check_mark: |
+| __dt__14CollectCounterFv | :white_check_mark: |
+| __sinit_\CollectCounter_cpp | :white_check_mark: |
+| __ct__Q217NrvCollectCounter21CollectCounterNrvHideFv | :white_check_mark: |
+| __ct__Q217NrvCollectCounter21CollectCounterNrvShowFv | :white_check_mark: |
+| execute__Q217NrvCollectCounter21CollectCounterNrvShowCFP5Spine | :white_check_mark: |
+| execute__Q217NrvCollectCounter21CollectCounterNrvHideCFP5Spine | :white_check_mark: |
 
 
 # CollisionBlocker.o
