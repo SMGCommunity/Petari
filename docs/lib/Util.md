@@ -75,7 +75,7 @@
 | SpringValue.o | 0.0% | 0 / 4 | 0.0% |
 | TriangleFilter.o | 0.0% | 0 / 2 | 0.0% |
 | TriggerChecker.o | 0.0% | 0 / 6 | 0.0% |
-| ValueControl.o | 0.0% | 0 / 11 | 0.0% |
+| ValueControl.o | 45.6% | 8 / 11 | 72.72727272727273% |
 
 
 # ActorCameraUtil.o
@@ -4075,16 +4075,16 @@
 # ValueControl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12ValueControlFi | :x: |
-| setDirToOne__12ValueControlFv | :x: |
-| setDirToOneResetFrame__12ValueControlFv | :x: |
-| setDirToZero__12ValueControlFv | :x: |
-| setDirToZeroResetFrame__12ValueControlFv | :x: |
+| __ct__12ValueControlFi | :white_check_mark: |
+| setDirToOne__12ValueControlFv | :white_check_mark: |
+| setDirToOneResetFrame__12ValueControlFv | :white_check_mark: |
+| setDirToZero__12ValueControlFv | :white_check_mark: |
+| setDirToZeroResetFrame__12ValueControlFv | :white_check_mark: |
 | setMaxFrame__12ValueControlFi | :x: |
 | update__12ValueControlFv | :x: |
-| setZero__12ValueControlFv | :x: |
-| setOne__12ValueControlFv | :x: |
+| setZero__12ValueControlFv | :white_check_mark: |
+| setOne__12ValueControlFv | :white_check_mark: |
 | getValue__12ValueControlCFv | :x: |
-| resetFrame__12ValueControlFv | :x: |
+| resetFrame__12ValueControlFv | :white_check_mark: |
 
 

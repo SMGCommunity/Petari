@@ -153,7 +153,7 @@
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
 | MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
 | MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
-| MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
+| MapObjConnector.o | 32.25806451612903% | 4 / 6 | 66.66666666666666% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
 | MarioLauncherAttractor.o | 100.0% | 6 / 6 | 100.0% |
@@ -4085,11 +4085,11 @@
 # MapObjConnector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15MapObjConnectorFP9LiveActor | :x: |
-| attachToUnder__15MapObjConnectorFv | :x: |
-| attachToBack__15MapObjConnectorFv | :x: |
+| __ct__15MapObjConnectorFP9LiveActor | :white_check_mark: |
+| attachToUnder__15MapObjConnectorFv | :white_check_mark: |
+| attachToBack__15MapObjConnectorFv | :white_check_mark: |
 | attach__15MapObjConnectorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| connect__15MapObjConnectorFv | :x: |
+| connect__15MapObjConnectorFv | :white_check_mark: |
 | connect__15MapObjConnectorFP9LiveActor | :x: |
 
 
