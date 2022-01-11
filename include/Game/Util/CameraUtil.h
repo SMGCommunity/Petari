@@ -41,4 +41,7 @@ namespace MR {
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 
     bool isExistMirrorCamera();
+
+    void initActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **);
+    bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
 };

@@ -18,6 +18,10 @@ namespace JGeometry {
     template<typename T>
     class TBox3 {
     public:
+        TBox3() {
+
+        }
+
         JGeometry::TVec3<T> mMin;   // _0
         JGeometry::TVec3<T> mMax;   // _C
     };

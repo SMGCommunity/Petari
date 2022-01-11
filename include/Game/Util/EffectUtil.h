@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution.h>
+
 class LiveActor;
 
 namespace MR {
@@ -13,4 +15,6 @@ namespace MR {
     void emitEffect(LiveActor *, const char *);
 
     void forceDeleteEffectAll(LiveActor *);
+
+    void setEffectHostMtx(LiveActor *, const char *, MtxPtr);
 };

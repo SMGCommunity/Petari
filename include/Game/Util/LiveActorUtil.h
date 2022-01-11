@@ -21,6 +21,7 @@ namespace MR {
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
     void setClippingTypeSphere(LiveActor *, f32);
+    void setClippingFarMax(LiveActor *);
     void setClippingFar200m(LiveActor *);
     void startBtk(const LiveActor *, const char *);
 

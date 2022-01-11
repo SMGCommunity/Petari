@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/ActorCameraUtil.h"
 #include "Game/Util/ActorMovementUtil.h"
 #include "Game/Util/ActorSensorUtil.h"
 #include "Game/Util/ActorShadowUtil.h"
