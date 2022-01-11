@@ -40,7 +40,7 @@
 | BigFan.o | 0.0% | 0 / 18 | 0.0% |
 | BigFanHolder.o | 0.0% | 0 / 7 | 0.0% |
 | BlackHole.o | 0.0% | 0 / 22 | 0.0% |
-| BlueChip.o | 0.0% | 0 / 3 | 0.0% |
+| BlueChip.o | 100.0% | 3 / 3 | 100.0% |
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% |
 | BreakableCage.o | 0.0% | 0 / 23 | 0.0% |
 | BrightObj.o | 0.0% | 0 / 42 | 0.0% |
@@ -296,7 +296,7 @@
 | WhirlPool.o | 0.0% | 0 / 9 | 0.0% |
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% |
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% |
-| YellowChip.o | 0.0% | 0 / 2 | 0.0% |
+| YellowChip.o | 100.0% | 2 / 2 | 100.0% |
 | MapParts.o | 0.0% | 0 / 8 | 0.0% |
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% |
 | FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% |
@@ -1260,9 +1260,9 @@
 # BlueChip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8BlueChipFPCc | :x: |
-| __dt__8ChipBaseFv | :x: |
-| __dt__8BlueChipFv | :x: |
+| __ct__8BlueChipFPCc | :white_check_mark: |
+| __dt__8ChipBaseFv | :white_check_mark: |
+| __dt__8BlueChipFv | :white_check_mark: |
 
 
 # BlueStarCupsulePlanet.o
@@ -7759,8 +7759,8 @@
 # YellowChip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10YellowChipFPCc | :x: |
-| __dt__10YellowChipFv | :x: |
+| __ct__10YellowChipFPCc | :white_check_mark: |
+| __dt__10YellowChipFv | :white_check_mark: |
 
 
 # MapParts.o

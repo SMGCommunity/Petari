@@ -741,9 +741,9 @@ __ct__Q212NrvBlackHole21BlackHoleNrvDisappearFv,BlackHole.o,MapObj.a,false
 execute__Q212NrvBlackHole21BlackHoleNrvDisappearCFP5Spine,BlackHole.o,MapObj.a,false
 execute__Q212NrvBlackHole16BlackHoleNrvDemoCFP5Spine,BlackHole.o,MapObj.a,false
 execute__Q212NrvBlackHole16BlackHoleNrvWaitCFP5Spine,BlackHole.o,MapObj.a,false
-__ct__8BlueChipFPCc,BlueChip.o,MapObj.a,false
-__dt__8ChipBaseFv,BlueChip.o,MapObj.a,false
-__dt__8BlueChipFv,BlueChip.o,MapObj.a,false
+__ct__8BlueChipFPCc,BlueChip.o,MapObj.a,true
+__dt__8ChipBaseFv,BlueChip.o,MapObj.a,true
+__dt__8BlueChipFv,BlueChip.o,MapObj.a,true
 __ct__21BlueStarCupsulePlanetFPCc,BlueStarCupsulePlanet.o,MapObj.a,false
 init__21BlueStarCupsulePlanetFRC12JMapInfoIter,BlueStarCupsulePlanet.o,MapObj.a,false
 control__21BlueStarCupsulePlanetFv,BlueStarCupsulePlanet.o,MapObj.a,false
@@ -5960,8 +5960,8 @@ Functor<15WormEatenPlanet>__2MRFP15WormEatenPlanetM15WormEatenPlanetFPCvPv_v_Q22
 __cl__Q22MR57FunctorV0M<P15WormEatenPlanet&#44;M15WormEatenPlanetFPCvPv_v>CFv,WormEatenPlanet.o,MapObj.a,false
 clone__Q22MR57FunctorV0M<P15WormEatenPlanet&#44;M15WormEatenPlanetFPCvPv_v>CFP7JKRHeap,WormEatenPlanet.o,MapObj.a,false
 __dt__15WormEatenPlanetFv,WormEatenPlanet.o,MapObj.a,false
-__ct__10YellowChipFPCc,YellowChip.o,MapObj.a,false
-__dt__10YellowChipFv,YellowChip.o,MapObj.a,false
+__ct__10YellowChipFPCc,YellowChip.o,MapObj.a,true
+__dt__10YellowChipFv,YellowChip.o,MapObj.a,true
 __dt__8MapPartsFv,MapParts.o,MapObj.a,false
 __ct__8MapPartsFPCc,MapParts.o,MapObj.a,false
 init__8MapPartsFRC12JMapInfoIter,MapParts.o,MapObj.a,false
