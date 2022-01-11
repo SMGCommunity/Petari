@@ -45,4 +45,6 @@ namespace MR {
     LiveActor* getPlayerDemoActor();
 
     void setPlayerBaseMtx(MtxPtr);
+
+    void incPlayerOxygen(u32);
 };

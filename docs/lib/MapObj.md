@@ -48,7 +48,7 @@
 | Candlestand.o | 0.0% | 0 / 31 | 0.0% |
 | CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% |
 | CapsuleCage.o | 0.0% | 0 / 23 | 0.0% |
-| ChipBase.o | 0.0% | 0 / 39 | 0.0% |
+| ChipBase.o | 79.12087912087912% | 36 / 39 | 92.3076923076923% |
 | ChipCounter.o | 19.971056439942114% | 3 / 30 | 10.0% |
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
 | ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
@@ -1502,45 +1502,45 @@
 # ChipBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8ChipBaseFPCclPCc | :x: |
-| init__8ChipBaseFRC12JMapInfoIter | :x: |
-| initModel__8ChipBaseFRC12JMapInfoIter | :x: |
-| initSensor__8ChipBaseFv | :x: |
+| __ct__8ChipBaseFPCclPCc | :white_check_mark: |
+| init__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initModel__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initSensor__8ChipBaseFv | :white_check_mark: |
 | initShadow__8ChipBaseFRC12JMapInfoIter | :x: |
-| initJMapParam__8ChipBaseFRC12JMapInfoIter | :x: |
-| initAfterPlacement__8ChipBaseFv | :x: |
-| deactive__8ChipBaseFv | :x: |
-| setGroupID__8ChipBaseFl | :x: |
-| setHost__8ChipBaseFP9LiveActor | :x: |
-| makeActorAppeared__8ChipBaseFv | :x: |
-| makeActorDead__8ChipBaseFv | :x: |
-| control__8ChipBaseFv | :x: |
-| appearWait__8ChipBaseFv | :x: |
-| appearFlashing__8ChipBaseFl | :x: |
+| initJMapParam__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__8ChipBaseFv | :white_check_mark: |
+| deactive__8ChipBaseFv | :white_check_mark: |
+| setGroupID__8ChipBaseFl | :white_check_mark: |
+| setHost__8ChipBaseFP9LiveActor | :white_check_mark: |
+| makeActorAppeared__8ChipBaseFv | :white_check_mark: |
+| makeActorDead__8ChipBaseFv | :white_check_mark: |
+| control__8ChipBaseFv | :white_check_mark: |
+| appearWait__8ChipBaseFv | :white_check_mark: |
+| appearFlashing__8ChipBaseFl | :white_check_mark: |
 | receiveOtherMsg__8ChipBaseFUlP9HitSensorP9HitSensor | :x: |
-| requestGet__8ChipBaseFP9HitSensorP9HitSensor | :x: |
-| requestShow__8ChipBaseFv | :x: |
-| requestHide__8ChipBaseFv | :x: |
-| requestStartControl__8ChipBaseFv | :x: |
-| requestEndControl__8ChipBaseFv | :x: |
-| exeFlashing__8ChipBaseFv | :x: |
+| requestGet__8ChipBaseFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestShow__8ChipBaseFv | :white_check_mark: |
+| requestHide__8ChipBaseFv | :white_check_mark: |
+| requestStartControl__8ChipBaseFv | :white_check_mark: |
+| requestEndControl__8ChipBaseFv | :white_check_mark: |
+| exeFlashing__8ChipBaseFv | :white_check_mark: |
 | exeGot__8ChipBaseFv | :x: |
-| isGettable__8ChipBaseCFv | :x: |
-| isNeedBubble__8ChipBaseFRC12JMapInfoIter | :x: |
-| makeArchiveList__8ChipBaseFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| __sinit_\ChipBase_cpp | :x: |
-| __ct__Q211NrvChipBase19ChipBaseNrvDeactiveFv | :x: |
-| __ct__Q211NrvChipBase15ChipBaseNrvWaitFv | :x: |
-| __ct__Q211NrvChipBase20ChipBaseNrvControledFv | :x: |
-| __ct__Q211NrvChipBase19ChipBaseNrvFlashingFv | :x: |
-| __ct__Q211NrvChipBase15ChipBaseNrvHideFv | :x: |
-| __ct__Q211NrvChipBase14ChipBaseNrvGotFv | :x: |
-| execute__Q211NrvChipBase14ChipBaseNrvGotCFP5Spine | :x: |
-| execute__Q211NrvChipBase15ChipBaseNrvHideCFP5Spine | :x: |
-| execute__Q211NrvChipBase19ChipBaseNrvFlashingCFP5Spine | :x: |
-| execute__Q211NrvChipBase20ChipBaseNrvControledCFP5Spine | :x: |
-| execute__Q211NrvChipBase15ChipBaseNrvWaitCFP5Spine | :x: |
-| execute__Q211NrvChipBase19ChipBaseNrvDeactiveCFP5Spine | :x: |
+| isGettable__8ChipBaseCFv | :white_check_mark: |
+| isNeedBubble__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| makeArchiveList__8ChipBaseFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| __sinit_\ChipBase_cpp | :white_check_mark: |
+| __ct__Q211NrvChipBase19ChipBaseNrvDeactiveFv | :white_check_mark: |
+| __ct__Q211NrvChipBase15ChipBaseNrvWaitFv | :white_check_mark: |
+| __ct__Q211NrvChipBase20ChipBaseNrvControledFv | :white_check_mark: |
+| __ct__Q211NrvChipBase19ChipBaseNrvFlashingFv | :white_check_mark: |
+| __ct__Q211NrvChipBase15ChipBaseNrvHideFv | :white_check_mark: |
+| __ct__Q211NrvChipBase14ChipBaseNrvGotFv | :white_check_mark: |
+| execute__Q211NrvChipBase14ChipBaseNrvGotCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase15ChipBaseNrvHideCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase19ChipBaseNrvFlashingCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase20ChipBaseNrvControledCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase15ChipBaseNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase19ChipBaseNrvDeactiveCFP5Spine | :white_check_mark: |
 
 
 # ChipCounter.o

@@ -16,6 +16,8 @@ namespace MR {
     void setShadowDropPosition(LiveActor *, const char *, const TVec3f &);
     void setShadowDropDirection(LiveActor *, const char *, const TVec3f &);
 
+    void setClippingRangeIncludeShadow(LiveActor *, TVec3f *, f32);
+
     void initShadowVolumeSphere(LiveActor *, f32);
     void onCalcShadowOneTime(LiveActor *, const char *);
 
@@ -23,6 +25,9 @@ namespace MR {
     void offShadowVisibleSyncHostAll(LiveActor *);
     void onShadowFollowHostScale(LiveActor *, const char *);
     void onShadowFollowHostScaleAll(LiveActor *);
+
+    void onCalcShadowDropPrivateGravity(LiveActor *, const char *);
+    void onCalcShadowDropPrivateGravityOneTime(LiveActor *, const char *);
 
     void onShadowVolumeCutDropLength(LiveActor *, const char *);
 

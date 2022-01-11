@@ -11,4 +11,6 @@ namespace MR {
     void deleteEffect(LiveActor *, const char *);
 
     void emitEffect(LiveActor *, const char *);
+
+    void forceDeleteEffectAll(LiveActor *);
 };

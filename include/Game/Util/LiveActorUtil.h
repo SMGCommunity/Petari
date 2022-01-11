@@ -12,6 +12,7 @@ class ActorLightCtrl;
 class ProjmapEffectMtxSetter;
 class ModelObj;
 class BrkCtrl;
+class PartsModel;
 
 namespace MR {
     bool isExistIndirectTexture(const LiveActor *);
@@ -57,6 +58,8 @@ namespace MR {
     void calcAnimDirect(LiveActor *);
 
     void calcGravity(LiveActor *);
+
+    void zeroVelocity(LiveActor *);
 
     void initLightCtrl(LiveActor *);
     void initLightCtrlForPlayer(LiveActor *);
@@ -147,6 +150,8 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor *, const TPos3f &);
 
+    void stopBck(const LiveActor *);
+
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);
@@ -161,4 +166,6 @@ namespace MR {
     void callRequestMovementOnAllGroupMember(const LiveActor *);
 
     void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
+
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor *, const char *, const char *, MtxPtr);
 }
