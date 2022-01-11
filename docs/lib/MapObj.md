@@ -315,7 +315,7 @@
 | MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsRotator.o | 0.0% | 0 / 33 | 0.0% |
+| MapPartsRotator.o | 24.404761904761905% | 9 / 33 | 27.27272727272727% |
 | MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 | 0.0% |
 | MapPartsSeesaw2AxisRotator.o | 0.0% | 0 / 23 | 0.0% |
 
@@ -8189,19 +8189,19 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15MapPartsRotatorFP9LiveActor | :x: |
-| init__15MapPartsRotatorFRC12JMapInfoIter | :x: |
-| start__15MapPartsRotatorFv | :x: |
-| end__15MapPartsRotatorFv | :x: |
-| isWorking__15MapPartsRotatorCFv | :x: |
-| startWithSignalMotion__15MapPartsRotatorFv | :x: |
-| cancelSignalMotion__15MapPartsRotatorFv | :x: |
+| init__15MapPartsRotatorFRC12JMapInfoIter | :white_check_mark: |
+| start__15MapPartsRotatorFv | :white_check_mark: |
+| end__15MapPartsRotatorFv | :white_check_mark: |
+| isWorking__15MapPartsRotatorCFv | :white_check_mark: |
+| startWithSignalMotion__15MapPartsRotatorFv | :white_check_mark: |
+| cancelSignalMotion__15MapPartsRotatorFv | :white_check_mark: |
 | updateBaseHostMtx__15MapPartsRotatorFv | :x: |
-| isMoving__15MapPartsRotatorCFv | :x: |
+| isMoving__15MapPartsRotatorCFv | :white_check_mark: |
 | updateVelocity__15MapPartsRotatorFv | :x: |
 | updateAngle__15MapPartsRotatorFv | :x: |
 | updateTargetAngle__15MapPartsRotatorFv | :x: |
-| restartAtEnd__15MapPartsRotatorFv | :x: |
-| initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :x: |
+| restartAtEnd__15MapPartsRotatorFv | :white_check_mark: |
+| initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :white_check_mark: |
 | isReachedTargetAngle__15MapPartsRotatorCFv | :x: |
 | updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef | :x: |
 | calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
