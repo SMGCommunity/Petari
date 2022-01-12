@@ -119,6 +119,30 @@ void MapPartsRotator::initRotateSpeed(const JMapInfoIter &rIter) {
     }
 }
 
+void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f *pDir) const {
+    f32 x, y, z;
+    switch (type) {
+        case 0:
+            z = _40.mMtx[2][0];
+            y = _40.mMtx[1][0];
+            x = _40.mMtx[0][0];
+            pDir->set(x, y, z);
+            break;
+        case 1:
+            z = _40.mMtx[2][1];
+            y = _40.mMtx[1][1];
+            x  = _40.mMtx[0][1];
+            pDir->set(x, y, z);
+            break;
+        case 2:
+            z = _40.mMtx[2][2];
+            y = _40.mMtx[1][2];
+            x = _40.mMtx[0][2];
+            pDir->set(x, y, z);
+            break;
+    }
+}
+
 MapPartsRotator::~MapPartsRotator() {
 
 }

@@ -48,6 +48,7 @@ public:
     void initRotateSpeed(const JMapInfoIter &);
     bool isReachedTargetAngle() const;
     void updateRotateMtx(AxisType, f32);
+    void calcRotateAxisDir(AxisType, TVec3f *) const;
     
     void exeRotate();
     void exeRotateStart();

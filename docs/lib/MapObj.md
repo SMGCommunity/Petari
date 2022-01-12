@@ -315,7 +315,7 @@
 | MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsRotator.o | 34.64285714285714% | 23 / 33 | 69.6969696969697% |
+| MapPartsRotator.o | 37.61904761904762% | 24 / 33 | 72.72727272727273% |
 | MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 | 0.0% |
 | MapPartsSeesaw2AxisRotator.o | 0.0% | 0 / 23 | 0.0% |
 
@@ -8204,7 +8204,7 @@
 | initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :white_check_mark: |
 | isReachedTargetAngle__15MapPartsRotatorCFv | :x: |
 | updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef | :x: |
-| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | exeRotate__15MapPartsRotatorFv | :x: |
 | exeRotateStart__15MapPartsRotatorFv | :x: |
 | __dt__15MapPartsRotatorFv | :white_check_mark: |
