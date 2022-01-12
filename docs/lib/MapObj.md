@@ -315,7 +315,7 @@
 | MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsRotator.o | 24.404761904761905% | 9 / 33 | 27.27272727272727% |
+| MapPartsRotator.o | 34.64285714285714% | 23 / 33 | 69.6969696969697% |
 | MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 | 0.0% |
 | MapPartsSeesaw2AxisRotator.o | 0.0% | 0 / 23 | 0.0% |
 
@@ -8207,20 +8207,20 @@
 | calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | exeRotate__15MapPartsRotatorFv | :x: |
 | exeRotateStart__15MapPartsRotatorFv | :x: |
-| __dt__15MapPartsRotatorFv | :x: |
-| __sinit_\MapPartsRotator_cpp | :x: |
-| __ct__Q218NrvMapPartsRotator17HostTypeNeverMoveFv | :x: |
-| __ct__Q218NrvMapPartsRotator12HostTypeWaitFv | :x: |
-| __ct__Q218NrvMapPartsRotator19HostTypeRotateStartFv | :x: |
-| __ct__Q218NrvMapPartsRotator14HostTypeRotateFv | :x: |
-| __ct__Q218NrvMapPartsRotator17HostTypeStopAtEndFv | :x: |
-| execute__Q218NrvMapPartsRotator17HostTypeStopAtEndCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator14HostTypeRotateCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator19HostTypeRotateStartCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator12HostTypeWaitCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator17HostTypeNeverMoveCFP5Spine | :x: |
-| isOnReverse__15MapPartsRotatorCFv | :x: |
-| getRotateSpeed__15MapPartsRotatorCFv | :x: |
+| __dt__15MapPartsRotatorFv | :white_check_mark: |
+| __sinit_\MapPartsRotator_cpp | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator17HostTypeNeverMoveFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator19HostTypeRotateStartFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator14HostTypeRotateFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator17HostTypeStopAtEndFv | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator17HostTypeStopAtEndCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator14HostTypeRotateCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator19HostTypeRotateStartCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator12HostTypeWaitCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator17HostTypeNeverMoveCFP5Spine | :white_check_mark: |
+| isOnReverse__15MapPartsRotatorCFv | :white_check_mark: |
+| getRotateSpeed__15MapPartsRotatorCFv | :white_check_mark: |
 
 
 # MapPartsSeesaw1AxisRotator.o

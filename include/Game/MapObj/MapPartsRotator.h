@@ -3,7 +3,24 @@
 #include "Game/MapObj/MapPartsFunction.h"
 #include "Game/LiveActor/Nerve.h"
 
-class MapPartsRotator : public MapPartsFunction {
+class MapPartsRotatorBase : public MapPartsFunction {
+public:
+    virtual ~MapPartsRotatorBase();
+
+    virtual bool isMoving() const {
+        return false;
+    }
+
+    virtual bool isOnReverse() const {
+        return false;
+    }
+
+    virtual f32 getRotateSpeed() const {
+        return 1.0f;
+    }
+};
+
+class MapPartsRotator : public MapPartsRotatorBase {
 public:
     MapPartsRotator(LiveActor *);
 
@@ -56,4 +73,5 @@ namespace NrvMapPartsRotator {
     NERVE(HostTypeWait);
     NERVE(HostTypeRotateStart);
     NERVE(HostTypeRotate);
+    NERVE(HostTypeStopAtEnd);
 };

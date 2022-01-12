@@ -1,4 +1,5 @@
 #include "Game/MapObj/MapPartsRotator.h"
+#include "Game/LiveActor/Spine.h"
 
 #ifdef NON_MATCHING
 // floating reg order on the inlined matrix set, but oh well
@@ -116,4 +117,49 @@ void MapPartsRotator::initRotateSpeed(const JMapInfoIter &rIter) {
     if (mRotateAngle < 0.0f) {
         _18 = 0.0f;
     }
+}
+
+MapPartsRotator::~MapPartsRotator() {
+
+}
+
+namespace NrvMapPartsRotator {
+    HostTypeNeverMove HostTypeNeverMove::sInstance;
+    HostTypeWait HostTypeWait::sInstance;
+    HostTypeRotateStart HostTypeRotateStart::sInstance;
+    HostTypeRotate HostTypeRotate::sInstance;
+    HostTypeStopAtEnd HostTypeStopAtEnd::sInstance;
+
+    void HostTypeStopAtEnd::execute(Spine *pSpine) const {
+        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        if (rotator->isStep(rotator->mRotateStopTime)) {
+            rotator->restartAtEnd();
+        }
+    }
+
+    void HostTypeRotate::execute(Spine *pSpine) const {
+        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        rotator->exeRotate();
+    }
+
+    void HostTypeRotateStart::execute(Spine *pSpine) const {
+        MapPartsRotator* rotator = reinterpret_cast<MapPartsRotator*>(pSpine->mExecutor);
+        rotator->exeRotateStart();
+    }
+
+    void HostTypeWait::execute(Spine *pSpine) const {
+        
+    }
+
+    void HostTypeNeverMove::execute(Spine *pSpine) const {
+
+    }
+};
+
+bool MapPartsRotator::isOnReverse() const {
+    return mIsOnReverse;
+}
+
+f32 MapPartsRotator::getRotateSpeed() const {
+    return mRotateSpeed;
 }
