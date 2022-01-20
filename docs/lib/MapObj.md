@@ -152,7 +152,7 @@
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
 | MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
-| MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
+| MapObjActorInitInfo.o | 22.48062015503876% | 11 / 37 | 29.72972972972973% |
 | MapObjConnector.o | 32.25806451612903% | 4 / 6 | 66.66666666666666% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
@@ -4043,7 +4043,7 @@
 # MapObjActorInitInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19MapObjActorInitInfoFv | :x: |
+| __ct__19MapObjActorInitInfoFv | :white_check_mark: |
 | setupHioNode__19MapObjActorInitInfoFPCc | :white_check_mark: |
 | setupDefaultPos__19MapObjActorInitInfoFv | :white_check_mark: |
 | setupModelName__19MapObjActorInitInfoFPCc | :white_check_mark: |

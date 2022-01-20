@@ -26,6 +26,7 @@ namespace MR {
     void startBtk(const LiveActor *, const char *);
 
     LiveActorGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
+    LiveActorGroup* getGroupFromArray(const LiveActor *);
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);

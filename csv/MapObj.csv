@@ -2964,7 +2964,7 @@ __cl__Q22MR49FunctorV0M<P11MapObjActor&#44;M11MapObjActorFPCvPv_v>CFv,MapObjActo
 clone__Q22MR49FunctorV0M<P11MapObjActor&#44;M11MapObjActorFPCvPv_v>CFP7JKRHeap,MapObjActor.o,MapObj.a,true
 isOnReverse__19MapPartsRotatorBaseCFv,MapObjActor.o,MapObj.a,false
 isMoving__19MapPartsRotatorBaseCFv,MapObjActor.o,MapObj.a,false
-__ct__19MapObjActorInitInfoFv,MapObjActorInitInfo.o,MapObj.a,false
+__ct__19MapObjActorInitInfoFv,MapObjActorInitInfo.o,MapObj.a,true
 setupHioNode__19MapObjActorInitInfoFPCc,MapObjActorInitInfo.o,MapObj.a,true
 setupDefaultPos__19MapObjActorInitInfoFv,MapObjActorInitInfo.o,MapObj.a,true
 setupModelName__19MapObjActorInitInfoFPCc,MapObjActorInitInfo.o,MapObj.a,true
