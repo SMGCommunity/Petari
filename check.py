@@ -372,7 +372,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                     #print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1                
                 else:
-                    print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                     error_count += 1                
             elif original_instruction.id == PPC_INS_ADDI and custom_instruction.id == PPC_INS_LI:
                 assert(len(original_operands) == 3 and len(custom_operands) == 2)

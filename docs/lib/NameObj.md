@@ -3,10 +3,10 @@
 | ------------- | ------------- | ------------- | ------------- |
 | ModelChangableObjFactory.o | 0.0% | 0 / 13 | 0.0% |
 | MovementOnOffGroupHolder.o | 100.0% | 6 / 6 | 100.0% |
-| NameObj.o | 55.46875% | 11 / 16 | 68.75% |
+| NameObj.o | 86.71875% | 15 / 16 | 93.75% |
 | NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% |
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
-| NameObjCategoryList.o | 76.39593908629442% | 10 / 15 | 66.66666666666666% |
+| NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% |
 | NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% |
 | NameObjFactory.o | 3.7077907746634295% | 20 / 568 | 3.5211267605633805% |
 | NameObjFinder.o | 0.0% | 0 / 1 | 0.0% |
@@ -59,11 +59,11 @@
 | initWithoutIter__7NameObjFv | :white_check_mark: |
 | setName__7NameObjFPCc | :white_check_mark: |
 | executeMovement__7NameObjFv | :white_check_mark: |
-| requestSuspend__7NameObjFv | :x: |
-| requestResume__7NameObjFv | :x: |
+| requestSuspend__7NameObjFv | :white_check_mark: |
+| requestResume__7NameObjFv | :white_check_mark: |
 | syncWithFlags__7NameObjFv | :x: |
-| requestMovementOn__15NameObjFunctionFP7NameObj | :x: |
-| requestMovementOff__15NameObjFunctionFP7NameObj | :x: |
+| requestMovementOn__15NameObjFunctionFP7NameObj | :white_check_mark: |
+| requestMovementOff__15NameObjFunctionFP7NameObj | :white_check_mark: |
 
 
 # NameObjAdaptor.o
@@ -101,11 +101,11 @@
 | remove__19NameObjCategoryListFP7NameObji | :x: |
 | registerExecuteBeforeFunction__19NameObjCategoryListFRCQ22MR11FunctorBasei | :white_check_mark: |
 | initTable__19NameObjCategoryListFUlPC24CategoryListInitialTable | :white_check_mark: |
-| __ct__Q219NameObjCategoryList12CategoryInfoFv | :x: |
+| __ct__Q219NameObjCategoryList12CategoryInfoFv | :white_check_mark: |
 | __dt__Q219NameObjCategoryList12CategoryInfoFv | :x: |
-| __cl__Q233@unnamed@NameObjCategoryList_cpp@40NameObjRealDelegator&lt;M7NameObjFPCvPCv_v&gt;FP7NameObj | :x: |
+| __cl__Q233@unnamed@NameObjCategoryList_cpp@40NameObjRealDelegator&lt;M7NameObjFPCvPCv_v&gt;FP7NameObj | :white_check_mark: |
 | __cl__Q233@unnamed@NameObjCategoryList_cpp@39NameObjRealDelegator&lt;M7NameObjFPCvPv_v&gt;FP7NameObj | :white_check_mark: |
-| __dt__Q22MR54AssignableArray&lt;Q219NameObjCategoryList12CategoryInfo&gt;Fv | :x: |
+| __dt__Q22MR54AssignableArray&lt;Q219NameObjCategoryList12CategoryInfo&gt;Fv | :white_check_mark: |
 
 
 # NameObjExecuteHolder.o

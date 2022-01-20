@@ -4,6 +4,10 @@
 
 #include <revolution.h>
 
+namespace MR {
+    void notifyRequestNameObjMovementOnOff();
+}
+
 class NameObj {
 public:
     NameObj(const char *);
@@ -24,6 +28,12 @@ public:
     void syncWithFlags();
 
     const char* mName;  // _4
-    u16 mFlags;         // _8
+    volatile u16 mFlags;         // _8
     s16 _A;
+};
+
+class NameObjFunction {
+public:
+    static void requestMovementOn(NameObj *);
+    static void requestMovementOff(NameObj *);
 };
