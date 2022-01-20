@@ -297,7 +297,7 @@
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% |
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% |
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% |
-| MapParts.o | 0.0% | 0 / 8 | 0.0% |
+| MapParts.o | 9.170305676855897% | 1 / 8 | 12.5% |
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% |
 | FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% |
 | FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% |
@@ -7767,7 +7767,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __dt__8MapPartsFv | :x: |
-| __ct__8MapPartsFPCc | :x: |
+| __ct__8MapPartsFPCc | :white_check_mark: |
 | init__8MapPartsFRC12JMapInfoIter | :x: |
 | appear__8MapPartsFv | :x: |
 | getSensorNumMax__8MapPartsCFv | :x: |

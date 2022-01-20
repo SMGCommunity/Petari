@@ -81,12 +81,13 @@ namespace JGeometry {
 
         inline TVec3<T>(const register Vec &rSrc) {
             register TVec3<T>* dst = this;
-            register f32 xy;
+            register const Vec* src = &rSrc;
             register f32 z;
+            register f32 xy;
 
             __asm {
-                psq_l xy, 0(rSrc), 0, 0
-                lfs z, 8(rSrc)
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
@@ -187,14 +188,14 @@ namespace JGeometry {
         inline void setZero() {
             register TVec3<T>* dst = this;
             register const Vec* src = &gZeroVec;
-            register f32 xy;
             register f32 z;
+            register f32 xy;
 
             __asm {
-                lfs z, 8(src)
                 psq_l xy, 0(src), 0, 0
-                stfs z, 8(dst)
+                lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
             };
         }
 

@@ -5963,7 +5963,7 @@ __dt__15WormEatenPlanetFv,WormEatenPlanet.o,MapObj.a,false
 __ct__10YellowChipFPCc,YellowChip.o,MapObj.a,true
 __dt__10YellowChipFv,YellowChip.o,MapObj.a,true
 __dt__8MapPartsFv,MapParts.o,MapObj.a,false
-__ct__8MapPartsFPCc,MapParts.o,MapObj.a,false
+__ct__8MapPartsFPCc,MapParts.o,MapObj.a,true
 init__8MapPartsFRC12JMapInfoIter,MapParts.o,MapObj.a,false
 appear__8MapPartsFv,MapParts.o,MapObj.a,false
 getSensorNumMax__8MapPartsCFv,MapParts.o,MapObj.a,false
