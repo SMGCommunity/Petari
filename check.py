@@ -4,6 +4,7 @@
 import os
 from typing import overload
 from elftools.elf.elffile import ELFFile
+from colorama import Fore, Style
 import glob
 import hashlib
 import sys
@@ -299,6 +300,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
             custom_operands = custom_instruction.operands
 
             if str(original_instruction) == str(custom_instruction):
+                print(f"{Fore.GREEN}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
                 # Fully identical, nothing to be checked
                 continue
 
@@ -321,7 +323,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                     # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
                     if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].reg == PPC_REG_R0 and\
                             custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
+                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                        #print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
                         hint_count += 1
                         continue
                     
@@ -333,7 +336,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                     # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
                     if original_operands[1].reg == PPC_REG_R2 and custom_operands[1].reg == PPC_REG_R0 and\
                             custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
+                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                        #print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
                         hint_count += 1 
                         continue
 
@@ -346,22 +350,26 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                         break
 
                 if registers_equal:
-                    print_instruction_comparison_warning(f"Registers are identical but the instruction is not identical at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Registers are identical but the instruction is not identical at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id == PPC_INS_ADDI:
                     # addi is commonly used when loading addresses
-                    print_instruction_comparison_warning(f"Skipping addi instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping addi instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id == PPC_INS_LIS:
                     # Same as addi
-                    print_instruction_comparison_warning(f"Skipping lis instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping lis instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id in { PPC_INS_B, PPC_INS_BL }:
                     # bl is used to call most functions, and since the functions are likely to be placed
                     # differently it's not possible to compare it
                     # If a function ends with a function call, and the returned value from the function, then b is sometimes used for branching
                     # to that function. Then it's not possible to compare this
-                    print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1                
                 else:
                     print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
@@ -374,13 +382,16 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 # Original must be addi rX, r13, X and custom must be li rX, 0
                 if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].imm == 0 and\
                         original_operands[0].reg == custom_operands[0].reg:
-                    print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
                     hint_count += 1
                 else:
-                    print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                     error_count += 1
             else:
-                print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                 error_count += 1
 
         print()

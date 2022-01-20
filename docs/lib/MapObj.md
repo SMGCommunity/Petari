@@ -297,7 +297,7 @@
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% |
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% |
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% |
-| MapParts.o | 9.170305676855897% | 1 / 8 | 12.5% |
+| MapParts.o | 28.38427947598253% | 6 / 8 | 75.0% |
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% |
 | FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% |
 | FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% |
@@ -7766,13 +7766,13 @@
 # MapParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__8MapPartsFv | :x: |
+| __dt__8MapPartsFv | :white_check_mark: |
 | __ct__8MapPartsFPCc | :white_check_mark: |
 | init__8MapPartsFRC12JMapInfoIter | :x: |
-| appear__8MapPartsFv | :x: |
-| getSensorNumMax__8MapPartsCFv | :x: |
-| getMoveStartSignalTime__8MapPartsFv | :x: |
-| connectToScene__8MapPartsFv | :x: |
+| appear__8MapPartsFv | :white_check_mark: |
+| getSensorNumMax__8MapPartsCFv | :white_check_mark: |
+| getMoveStartSignalTime__8MapPartsFv | :white_check_mark: |
+| connectToScene__8MapPartsFv | :white_check_mark: |
 | initModelAndCollision__8MapPartsFRC12JMapInfoIter | :x: |
 
 
