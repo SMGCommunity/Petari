@@ -3,7 +3,7 @@
 | ------------- | ------------- | ------------- | ------------- |
 | ModelChangableObjFactory.o | 0.0% | 0 / 13 | 0.0% |
 | MovementOnOffGroupHolder.o | 100.0% | 6 / 6 | 100.0% |
-| NameObj.o | 86.71875% | 15 / 16 | 93.75% |
+| NameObj.o | 100.0% | 16 / 16 | 100.0% |
 | NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% |
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% |
@@ -61,7 +61,7 @@
 | executeMovement__7NameObjFv | :white_check_mark: |
 | requestSuspend__7NameObjFv | :white_check_mark: |
 | requestResume__7NameObjFv | :white_check_mark: |
-| syncWithFlags__7NameObjFv | :x: |
+| syncWithFlags__7NameObjFv | :white_check_mark: |
 | requestMovementOn__15NameObjFunctionFP7NameObj | :white_check_mark: |
 | requestMovementOff__15NameObjFunctionFP7NameObj | :white_check_mark: |
 

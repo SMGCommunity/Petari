@@ -71,23 +71,21 @@ void NameObj::requestResume() {
     mFlags |= 4;
 }
 
-#ifdef NON_MATCHING
 void NameObj::syncWithFlags() {
     u16 flag = (mFlags & 0x2);
     if (flag == 0x2) {
         flag = mFlags;
-        flag &= (~0x2);
+        flag &= ~0x2;
         flag |= 0x1;
         mFlags = flag;
     }
 
     flag = (mFlags & 0x4);
     if (flag == 0x4) {
-        mFlags = (mFlags & 0xFFFFFFFA);
-
+        flag = mFlags & ~0x4;
+        mFlags = flag & ~0x1;
     }
 }
-#endif
 
 void NameObjFunction::requestMovementOn(NameObj *pObj) {
     pObj->requestResume();

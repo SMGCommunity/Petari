@@ -31,7 +31,7 @@ setName__7NameObjFPCc,NameObj.o,NameObj.a,true
 executeMovement__7NameObjFv,NameObj.o,NameObj.a,true
 requestSuspend__7NameObjFv,NameObj.o,NameObj.a,true
 requestResume__7NameObjFv,NameObj.o,NameObj.a,true
-syncWithFlags__7NameObjFv,NameObj.o,NameObj.a,false
+syncWithFlags__7NameObjFv,NameObj.o,NameObj.a,true
 requestMovementOn__15NameObjFunctionFP7NameObj,NameObj.o,NameObj.a,true
 requestMovementOff__15NameObjFunctionFP7NameObj,NameObj.o,NameObj.a,true
 __ct__14NameObjAdaptorFPCc,NameObjAdaptor.o,NameObj.a,true
