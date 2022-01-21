@@ -8,11 +8,11 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% |
 | NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% |
-| NameObjFactory.o | 3.7077907746634295% | 20 / 568 | 3.5211267605633805% |
+| NameObjFactory.o | 5.208563231074818% | 28 / 568 | 4.929577464788732% |
 | NameObjFinder.o | 0.0% | 0 / 1 | 0.0% |
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% |
-| NameObjHolder.o | 29.962546816479403% | 5 / 10 | 50.0% |
-| NameObjListExecutor.o | 57.377049180327866% | 28 / 31 | 90.32258064516128% |
+| NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% |
+| NameObjListExecutor.o | 58.46994535519126% | 29 / 31 | 93.54838709677419% |
 | NameObjRegister.o | 100.0% | 3 / 3 | 100.0% |
 
 
@@ -165,9 +165,9 @@
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createBaseOriginCube&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createSphere&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createBaseOriginCylinder&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createBaseOriginCube&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createSphere&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createBaseOriginCylinder&lt;10SwitchArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createCenterOriginCube&lt;14CubeCameraArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createBaseOriginCylinder&lt;14CubeCameraArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createSphere&lt;14CubeCameraArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
@@ -197,11 +197,11 @@
 | createCenterOriginCube&lt;14ScreenBlurArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createSphere&lt;14ScreenBlurArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createBaseOriginCylinder&lt;14ScreenBlurArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createCenterOriginCube&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createSphere&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createBaseOriginCylinder&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createBaseOriginCube&lt;9LightArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createBaseOriginCylinder&lt;9LightArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createCenterOriginCube&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createSphere&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createBaseOriginCylinder&lt;16DepthOfFieldArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createBaseOriginCube&lt;9LightArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createBaseOriginCylinder&lt;9LightArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createBaseOriginCube&lt;15QuakeEffectArea&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createBaseOriginCube&lt;8HazeCube&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;21CameraRepulsiveSphere&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -758,7 +758,7 @@
 | add__13NameObjHolderFP7NameObj | :white_check_mark: |
 | suspendAllObj__13NameObjHolderFv | :white_check_mark: |
 | resumeAllObj__13NameObjHolderFv | :white_check_mark: |
-| syncWithFlags__13NameObjHolderFv | :x: |
+| syncWithFlags__13NameObjHolderFv | :white_check_mark: |
 | callMethodAllObj__13NameObjHolderFM7NameObjFPCvPv_v | :x: |
 | clearArray__13NameObjHolderFv | :white_check_mark: |
 | find__13NameObjHolderFPCc | :x: |
@@ -776,7 +776,7 @@
 | registerDrawBuffer__19NameObjListExecutorFP9LiveActori | :white_check_mark: |
 | allocateDrawBufferActorList__19NameObjListExecutorFv | :white_check_mark: |
 | registerPreDrawFunction__19NameObjListExecutorFRCQ22MR11FunctorBasei | :white_check_mark: |
-| findLightInfo__19NameObjListExecutorCFP9LiveActorii | :x: |
+| findLightInfo__19NameObjListExecutorCFP9LiveActorii | :white_check_mark: |
 | incrementCheckMovement__19NameObjListExecutorFP7NameObji | :white_check_mark: |
 | incrementCheckCalcAnim__19NameObjListExecutorFP7NameObji | :white_check_mark: |
 | incrementCheckDraw__19NameObjListExecutorFP7NameObji | :white_check_mark: |

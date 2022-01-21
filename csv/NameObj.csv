@@ -110,9 +110,9 @@ requestMovementOffWithCategory__2MRFi,NameObjExecuteHolder.o,NameObj.a,true
 findActorLightInfo__2MRFPC9LiveActor,NameObjExecuteHolder.o,NameObj.a,false
 __ct__20NameObjExecuteHolderFi,NameObjExecuteHolder.o,NameObj.a,true
 __dt__20NameObjExecuteHolderFv,NameObjExecuteHolder.o,NameObj.a,true
-createBaseOriginCube<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createSphere<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createBaseOriginCylinder<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createBaseOriginCube<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createSphere<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createBaseOriginCylinder<10SwitchArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createCenterOriginCube<14CubeCameraArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createBaseOriginCylinder<14CubeCameraArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createSphere<14CubeCameraArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
@@ -142,11 +142,11 @@ createBaseOriginCylinder<15SimpleBloomArea>__28@unnamed@NameObjFactory_cpp@FPCc_
 createCenterOriginCube<14ScreenBlurArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createSphere<14ScreenBlurArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createBaseOriginCylinder<14ScreenBlurArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createCenterOriginCube<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createSphere<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createBaseOriginCylinder<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createBaseOriginCube<9LightArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createBaseOriginCylinder<9LightArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createCenterOriginCube<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createSphere<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createBaseOriginCylinder<16DepthOfFieldArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createBaseOriginCube<9LightArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createBaseOriginCylinder<9LightArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createBaseOriginCube<15QuakeEffectArea>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createBaseOriginCube<8HazeCube>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<21CameraRepulsiveSphere>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -688,7 +688,7 @@ __ct__13NameObjHolderFi,NameObjHolder.o,NameObj.a,true
 add__13NameObjHolderFP7NameObj,NameObjHolder.o,NameObj.a,true
 suspendAllObj__13NameObjHolderFv,NameObjHolder.o,NameObj.a,true
 resumeAllObj__13NameObjHolderFv,NameObjHolder.o,NameObj.a,true
-syncWithFlags__13NameObjHolderFv,NameObjHolder.o,NameObj.a,false
+syncWithFlags__13NameObjHolderFv,NameObjHolder.o,NameObj.a,true
 callMethodAllObj__13NameObjHolderFM7NameObjFPCvPv_v,NameObjHolder.o,NameObj.a,false
 clearArray__13NameObjHolderFv,NameObjHolder.o,NameObj.a,true
 find__13NameObjHolderFPCc,NameObjHolder.o,NameObj.a,false
@@ -701,7 +701,7 @@ init__19NameObjListExecutorFv,NameObjListExecutor.o,NameObj.a,true
 registerDrawBuffer__19NameObjListExecutorFP9LiveActori,NameObjListExecutor.o,NameObj.a,true
 allocateDrawBufferActorList__19NameObjListExecutorFv,NameObjListExecutor.o,NameObj.a,true
 registerPreDrawFunction__19NameObjListExecutorFRCQ22MR11FunctorBasei,NameObjListExecutor.o,NameObj.a,true
-findLightInfo__19NameObjListExecutorCFP9LiveActorii,NameObjListExecutor.o,NameObj.a,false
+findLightInfo__19NameObjListExecutorCFP9LiveActorii,NameObjListExecutor.o,NameObj.a,true
 incrementCheckMovement__19NameObjListExecutorFP7NameObji,NameObjListExecutor.o,NameObj.a,true
 incrementCheckCalcAnim__19NameObjListExecutorFP7NameObji,NameObjListExecutor.o,NameObj.a,true
 incrementCheckDraw__19NameObjListExecutorFP7NameObji,NameObjListExecutor.o,NameObj.a,true

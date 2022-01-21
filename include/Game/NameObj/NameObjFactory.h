@@ -8,6 +8,9 @@
 #include "Game/AreaObj/ChangeBgmCube.h"
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/DeathArea.h"
+#include "Game/AreaObj/DepthOfFieldArea.h"
+#include "Game/AreaObj/LightArea.h"
+#include "Game/AreaObj/SwitchArea.h"
 #include "Game/Gravity/GlobalGravityObj.h"
 #include "Game/Map.h"
 
@@ -75,7 +78,10 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[48] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[56] = {
+        { "SwitchCube", createBaseOriginCube<SwitchArea>, 0 },
+        { "SwitchSphere", createSphere<SwitchArea>, 0 },
+        { "SwitchCylinder", createBaseOriginCylinder<SwitchArea>, 0 },
         { "CubeCameraBox", createCenterOriginCube<CubeCameraArea>, 0 },
         { "CubeCameraCylinder", createBaseOriginCylinder<CubeCameraArea>, 0 },
         { "CubeCameraSphere", createSphere<CubeCameraArea>, 0 },
@@ -87,6 +93,13 @@ namespace {
 
         { "ChangeBgmCube", createBaseOriginCube<ChangeBgmCube>, 0 },
         { "BgmProhibitArea", createSphere<BgmProhibitArea>, 0 },
+
+        { "DepthOfFieldCube", createCenterOriginCube<DepthOfFieldArea>, 0 },
+        { "DepthOfFieldSphere", createSphere<DepthOfFieldArea>, 0 },
+        { "DepthOfFieldCylinder", createBaseOriginCylinder<DepthOfFieldArea>, 0 },
+
+        { "LightCtrlCube", createBaseOriginCube<LightArea>, 0 },
+        { "LightCtrlCylinder", createBaseOriginCylinder<LightArea>, 0 },
 
         { "BigBubbleCameraBox", createCenterOriginCube<BigBubbleCameraArea>, 0 },
         { "BigBubbleCameraCylinder", createBaseOriginCylinder<BigBubbleCameraArea>, 0 },

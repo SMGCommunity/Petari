@@ -13,7 +13,7 @@ public:
     void active(LiveActor *, s32, s32);
     s16 registerDrawBuffer(LiveActor *, s32);
     void deactive(LiveActor *, s32, s32);
-
+    void findLightInfo(LiveActor *, s32, s32);
     void entry(s32);
 
     void drawOpa(s32) const;
