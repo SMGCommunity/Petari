@@ -123,8 +123,10 @@ namespace MR {
     bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
 
     void setAllAnimFrame(const LiveActor *, const char *, f32);
+    void setAllAnimFrameAtEnd(const LiveActor *, const char *);
 
     void startBck(const LiveActor *, const char *, const char *);
+    void startBckNoInterpole(const LiveActor *, const char *);
     void startBrk(const LiveActor *, const char *);
     void startBva(const LiveActor *, const char *);
     void setBvaFrameAndStop(const LiveActor *, f32);
@@ -170,4 +172,6 @@ namespace MR {
     void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
 
     PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor *, const char *, const char *, MtxPtr);
+
+    void startAction(const LiveActor *, const char *);
 }

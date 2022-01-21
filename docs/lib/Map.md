@@ -2,7 +2,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
 | ActorAppearSwitchListener.o | 0.0% | 0 / 4 | 0.0% |
-| Air.o | 0.0% | 0 / 33 | 0.0% |
+| Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% |
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% |
 | Butterfly.o | 0.0% | 0 / 37 | 0.0% |
 | CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% |
@@ -97,15 +97,15 @@
 # Air.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__3AirFPCc | :x: |
-| init__3AirFRC12JMapInfoIter | :x: |
-| appear__3AirFv | :x: |
-| isDrawing__3AirCFv | :x: |
-| initModel__3AirFPCc | :x: |
-| tryChange__3AirFv | :x: |
-| appearFadeIn__3AirFv | :x: |
-| appearFadeOut__3AirFv | :x: |
-| exeIn__3AirFv | :x: |
+| __ct__3AirFPCc | :white_check_mark: |
+| init__3AirFRC12JMapInfoIter | :white_check_mark: |
+| appear__3AirFv | :white_check_mark: |
+| isDrawing__3AirCFv | :white_check_mark: |
+| initModel__3AirFPCc | :white_check_mark: |
+| tryChange__3AirFv | :white_check_mark: |
+| appearFadeIn__3AirFv | :white_check_mark: |
+| appearFadeOut__3AirFv | :white_check_mark: |
+| exeIn__3AirFv | :white_check_mark: |
 | exeOut__3AirFv | :x: |
 | __ct__16ProjectionMapAirFPCc | :x: |
 | __dt__3AirFv | :x: |
@@ -123,9 +123,9 @@
 | __ct__Q26NrvAir11HostTypeOutFv | :x: |
 | execute__Q26NrvAir11HostTypeOutCFP5Spine | :x: |
 | execute__Q26NrvAir10HostTypeInCFP5Spine | :x: |
-| Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :x: |
-| __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__10AirFar100mFv | :x: |
 | __dt__16ProjectionMapAirFv | :x: |
 | __dt__12PriorDrawAirFv | :x: |

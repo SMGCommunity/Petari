@@ -54,6 +54,8 @@ namespace MR {
 
     void connectToSceneCamera(NameObj *);
 
+    void connectToSceneAir(LiveActor *);
+
     void connectToSceneAreaObj(NameObj *);
 
     void connectToSceneMirrorMapObj(LiveActor *);

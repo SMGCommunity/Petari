@@ -63,7 +63,7 @@
 | CometEventExecutorTimeLimit.o | 0.0% | 0 / 10 | 0.0% |
 | CometEventKeeper.o | 0.0% | 0 / 8 | 0.0% |
 | EventDirector.o | 0.0% | 0 / 17 | 0.0% |
-| NPCActor.o | 0.0% | 0 / 54 | 0.0% |
+| NPCActor.o | 12.459371614301192% | 9 / 54 | 16.666666666666664% |
 | NPCParameter.o | 0.0% | 0 / 20 | 0.0% |
 | NPCDirector.o | 0.0% | 0 / 3 | 0.0% |
 | NPCFunction.o | 0.0% | 0 / 3 | 0.0% |
@@ -2368,18 +2368,18 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__Q222@unnamed@NPCActor_cpp@8NPCParamFv | :x: |
-| __ct__12NPCActorCapsFPCc | :x: |
-| setDefault__12NPCActorCapsFv | :x: |
-| setIndirect__12NPCActorCapsFv | :x: |
+| __ct__12NPCActorCapsFPCc | :white_check_mark: |
+| setDefault__12NPCActorCapsFv | :white_check_mark: |
+| setIndirect__12NPCActorCapsFv | :white_check_mark: |
 | __ct__8NPCActorFPCc | :x: |
-| makeArchiveList__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| addArchive__8NPCActorFP27NameObjArchiveListCollectorRC12NPCActorItem | :x: |
-| makeArchiveListDefault__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
+| makeArchiveList__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| addArchive__8NPCActorFP27NameObjArchiveListCollectorRC12NPCActorItem | :white_check_mark: |
+| makeArchiveListDefault__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
 | setBaseMtx__8NPCActorFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
 | setBaseMtx__8NPCActorFPA4_f | :x: |
-| setInitPose__8NPCActorFv | :x: |
-| init__8NPCActorFRC12JMapInfoIter | :x: |
-| initAfterPlacement__8NPCActorFv | :x: |
+| setInitPose__8NPCActorFv | :white_check_mark: |
+| init__8NPCActorFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__8NPCActorFv | :white_check_mark: |
 | initialize__8NPCActorFRC12JMapInfoIterRC12NPCActorCaps | :x: |
 | equipment__8NPCActorFRC12NPCActorItemb | :x: |
 | calcAndSetBaseMtx__8NPCActorFv | :x: |

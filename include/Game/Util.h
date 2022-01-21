@@ -35,6 +35,7 @@
 #include "Game/Util/MtxUtil.h"
 #include "Game/Util/MutexHolder.h"
 #include "Game/Util/NerveUtil.h"
+#include "Game/Util/NPCUtil.h"
 #include "Game/Util/ObjUtil.h"
 #include "Game/Util/PlayerUtil.h"
 #include "Game/Util/RailUtil.h"
