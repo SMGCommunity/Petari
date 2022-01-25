@@ -81,7 +81,7 @@
 | WaterInfo.o | 0.0% | 0 / 3 | 0.0% |
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% |
 | WaterPoint.o | 0.0% | 0 / 4 | 0.0% |
-| WaterRoad.o | 0.0% | 0 / 49 | 0.0% |
+| WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% |
 | WhirlPoolAccelerator.o | 0.0% | 0 / 11 | 0.0% |
 
 
@@ -2047,11 +2047,11 @@
 | initPoints__18WaterRoadModelInfoFP9WaterRoad | :x: |
 | initDisplayList__18WaterRoadModelInfoFv | :x: |
 | sendGD__18WaterRoadModelInfoCFv | :x: |
-| drawGD__18WaterRoadModelInfoCFv | :x: |
+| drawGD__18WaterRoadModelInfoCFv | :white_check_mark: |
 | drawDirect__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
-| calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
+| calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad | :white_check_mark: |
 | loadMaterialHigh__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
-| loadMaterialLow__18WaterRoadModelInfoCFv | :x: |
+| loadMaterialLow__18WaterRoadModelInfoCFv | :white_check_mark: |
 | __ct__9WaterRoadFPCc | :x: |
 | init__9WaterRoadFRC12JMapInfoIter | :x: |
 | appear__9WaterRoadFv | :x: |

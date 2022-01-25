@@ -124,7 +124,7 @@
 | StarPointerTarget.o | 0.0% | 0 / 15 | 0.0% |
 | SubMeterLayout.o | 0.0% | 0 / 9 | 0.0% |
 | SuddenDeathMeter.o | 0.0% | 0 / 41 | 0.0% |
-| SurfingGuidance.o | 0.0% | 0 / 42 | 0.0% |
+| SurfingGuidance.o | 100.0% | 42 / 42 | 100.0% |
 | SysInfoWindow.o | 0.0% | 0 / 32 | 0.0% |
 | SystemWipeHolder.o | 0.0% | 0 / 11 | 0.0% |
 | THPSimplePlayerWrapper.o | 0.0% | 0 / 60 | 0.0% |
@@ -3488,48 +3488,48 @@
 # SurfingGuidance.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15SurfingGuidanceFv | :x: |
-| init__15SurfingGuidanceFRC12JMapInfoIter | :x: |
-| activate__15SurfingGuidanceFv | :x: |
-| levelOffReady__15SurfingGuidanceFv | :x: |
-| levelOffHold__15SurfingGuidanceFv | :x: |
-| levelOffSuccess__15SurfingGuidanceFv | :x: |
-| turnLeftReady__15SurfingGuidanceFv | :x: |
-| turnLeftHold__15SurfingGuidanceFv | :x: |
-| turnLeftSuccess__15SurfingGuidanceFv | :x: |
-| turnRightReady__15SurfingGuidanceFv | :x: |
-| turnRightHold__15SurfingGuidanceFv | :x: |
-| turnRightSuccess__15SurfingGuidanceFv | :x: |
-| deactivate__15SurfingGuidanceFv | :x: |
-| exeFadeIn__15SurfingGuidanceFv | :x: |
-| exeLevelOffReady__15SurfingGuidanceFv | :x: |
-| exeTurnLeftReady__15SurfingGuidanceFv | :x: |
-| exeTurnRightReady__15SurfingGuidanceFv | :x: |
-| exeFadeOut__15SurfingGuidanceFv | :x: |
-| __dt__15SurfingGuidanceFv | :x: |
-| __sinit_\SurfingGuidance_cpp | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@21SurfingGuidanceFadeInFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceLevelOffReadyFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceLevelOffHoldFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceLevelOffSuccessFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnLeftReadyFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceTurnLeftHoldFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceTurnLeftSuccessFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@29SurfingGuidanceTurnRightReadyFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnRightHoldFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@31SurfingGuidanceTurnRightSuccessFv | :x: |
-| __ct__Q229@unnamed@SurfingGuidance_cpp@22SurfingGuidanceFadeOutFv | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@22SurfingGuidanceFadeOutCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@31SurfingGuidanceTurnRightSuccessCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnRightHoldCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@29SurfingGuidanceTurnRightReadyCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceTurnLeftSuccessCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceTurnLeftHoldCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnLeftReadyCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceLevelOffSuccessCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceLevelOffHoldCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceLevelOffReadyCFP5Spine | :x: |
-| execute__Q229@unnamed@SurfingGuidance_cpp@21SurfingGuidanceFadeInCFP5Spine | :x: |
+| __ct__15SurfingGuidanceFv | :white_check_mark: |
+| init__15SurfingGuidanceFRC12JMapInfoIter | :white_check_mark: |
+| activate__15SurfingGuidanceFv | :white_check_mark: |
+| levelOffReady__15SurfingGuidanceFv | :white_check_mark: |
+| levelOffHold__15SurfingGuidanceFv | :white_check_mark: |
+| levelOffSuccess__15SurfingGuidanceFv | :white_check_mark: |
+| turnLeftReady__15SurfingGuidanceFv | :white_check_mark: |
+| turnLeftHold__15SurfingGuidanceFv | :white_check_mark: |
+| turnLeftSuccess__15SurfingGuidanceFv | :white_check_mark: |
+| turnRightReady__15SurfingGuidanceFv | :white_check_mark: |
+| turnRightHold__15SurfingGuidanceFv | :white_check_mark: |
+| turnRightSuccess__15SurfingGuidanceFv | :white_check_mark: |
+| deactivate__15SurfingGuidanceFv | :white_check_mark: |
+| exeFadeIn__15SurfingGuidanceFv | :white_check_mark: |
+| exeLevelOffReady__15SurfingGuidanceFv | :white_check_mark: |
+| exeTurnLeftReady__15SurfingGuidanceFv | :white_check_mark: |
+| exeTurnRightReady__15SurfingGuidanceFv | :white_check_mark: |
+| exeFadeOut__15SurfingGuidanceFv | :white_check_mark: |
+| __dt__15SurfingGuidanceFv | :white_check_mark: |
+| __sinit_\SurfingGuidance_cpp | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@21SurfingGuidanceFadeInFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceLevelOffReadyFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceLevelOffHoldFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceLevelOffSuccessFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnLeftReadyFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceTurnLeftHoldFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceTurnLeftSuccessFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@29SurfingGuidanceTurnRightReadyFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnRightHoldFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@31SurfingGuidanceTurnRightSuccessFv | :white_check_mark: |
+| __ct__Q229@unnamed@SurfingGuidance_cpp@22SurfingGuidanceFadeOutFv | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@22SurfingGuidanceFadeOutCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@31SurfingGuidanceTurnRightSuccessCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnRightHoldCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@29SurfingGuidanceTurnRightReadyCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceTurnLeftSuccessCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceTurnLeftHoldCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceTurnLeftReadyCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@30SurfingGuidanceLevelOffSuccessCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@27SurfingGuidanceLevelOffHoldCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@28SurfingGuidanceLevelOffReadyCFP5Spine | :white_check_mark: |
+| execute__Q229@unnamed@SurfingGuidance_cpp@21SurfingGuidanceFadeInCFP5Spine | :white_check_mark: |
 
 
 # SysInfoWindow.o

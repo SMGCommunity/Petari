@@ -17,7 +17,7 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
-    MtxPtr getCameraViewMtx();
+    const MtxPtr getCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
 
     void loadProjectionMtx();

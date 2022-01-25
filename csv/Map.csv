@@ -1558,11 +1558,11 @@ __ct__18WaterRoadModelInfoFP9WaterRoadb,WaterRoad.o,Map.a,false
 initPoints__18WaterRoadModelInfoFP9WaterRoad,WaterRoad.o,Map.a,false
 initDisplayList__18WaterRoadModelInfoFv,WaterRoad.o,Map.a,false
 sendGD__18WaterRoadModelInfoCFv,WaterRoad.o,Map.a,false
-drawGD__18WaterRoadModelInfoCFv,WaterRoad.o,Map.a,false
+drawGD__18WaterRoadModelInfoCFv,WaterRoad.o,Map.a,true
 drawDirect__18WaterRoadModelInfoCFPC9WaterRoad,WaterRoad.o,Map.a,false
-calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad,WaterRoad.o,Map.a,false
+calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad,WaterRoad.o,Map.a,true
 loadMaterialHigh__18WaterRoadModelInfoCFPC9WaterRoad,WaterRoad.o,Map.a,false
-loadMaterialLow__18WaterRoadModelInfoCFv,WaterRoad.o,Map.a,false
+loadMaterialLow__18WaterRoadModelInfoCFv,WaterRoad.o,Map.a,true
 __ct__9WaterRoadFPCc,WaterRoad.o,Map.a,false
 init__9WaterRoadFRC12JMapInfoIter,WaterRoad.o,Map.a,false
 appear__9WaterRoadFv,WaterRoad.o,Map.a,false

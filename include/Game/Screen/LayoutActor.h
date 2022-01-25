@@ -29,6 +29,7 @@ public:
     void initLayoutManager(const char *, u32);
     void initNerve(const Nerve *);
 
+    bool isNerve(const Nerve *) const;
     void setNerve(const Nerve *) const;
 
     LayoutManager* mManager;                                    // _C

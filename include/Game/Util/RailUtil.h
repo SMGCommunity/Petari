@@ -14,6 +14,7 @@ namespace MR {
     void calcRailPosAtCoord(TVec3f *, const LiveActor *, f32);
 
     void calcRailPointPos(TVec3f *, const LiveActor *, int);
+    f32 getRailCoord(const LiveActor *);
     f32 getRailPointCoord(const LiveActor *, int);
 
     bool isRailReachedGoal(const LiveActor *);
