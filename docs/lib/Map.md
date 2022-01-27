@@ -58,8 +58,8 @@
 | RaceManager.o | 0.0% | 0 / 95 | 0.0% |
 | RaceRail.o | 0.0% | 0 / 23 | 0.0% |
 | RailGraph.o | 0.0% | 0 / 9 | 0.0% |
-| RailGraphEdge.o | 0.0% | 0 / 6 | 0.0% |
-| RailGraphIter.o | 0.0% | 0 / 15 | 0.0% |
+| RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% |
+| RailGraphIter.o | 100.0% | 15 / 15 | 100.0% |
 | RailGraphNode.o | 0.0% | 0 / 1 | 0.0% |
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
@@ -1551,32 +1551,32 @@
 # RailGraphEdge.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphEdgeFv | :x: |
-| clearConnectInfo__13RailGraphEdgeFv | :x: |
-| getNextNode__13RailGraphEdgeCFl | :x: |
-| getNextEdge__13RailGraphEdgeCFl | :x: |
-| setNextEdge__13RailGraphEdgeFll | :x: |
-| setArgs__13RailGraphEdgeFPC8JMapInfol | :x: |
+| __ct__13RailGraphEdgeFv | :white_check_mark: |
+| clearConnectInfo__13RailGraphEdgeFv | :white_check_mark: |
+| getNextNode__13RailGraphEdgeCFl | :white_check_mark: |
+| getNextEdge__13RailGraphEdgeCFl | :white_check_mark: |
+| setNextEdge__13RailGraphEdgeFll | :white_check_mark: |
+| setArgs__13RailGraphEdgeFPC8JMapInfol | :white_check_mark: |
 
 
 # RailGraphIter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphIterFPC9RailGraph | :x: |
-| moveNodeNext__13RailGraphIterFv | :x: |
-| setNode__13RailGraphIterFl | :x: |
-| watchStartEdge__13RailGraphIterFv | :x: |
-| watchNextEdge__13RailGraphIterFv | :x: |
-| isWatchEndEdge__13RailGraphIterCFv | :x: |
-| selectEdge__13RailGraphIterFv | :x: |
-| selectEdge__13RailGraphIterFl | :x: |
-| isWatchedPrevEdge__13RailGraphIterCFv | :x: |
-| isSelectedEdge__13RailGraphIterCFv | :x: |
-| getCurrentNode__13RailGraphIterCFv | :x: |
-| getNextNode__13RailGraphIterCFv | :x: |
-| getWatchNode__13RailGraphIterCFv | :x: |
-| getCurrentEdge__13RailGraphIterCFv | :x: |
-| getWatchEdge__13RailGraphIterCFv | :x: |
+| __ct__13RailGraphIterFPC9RailGraph | :white_check_mark: |
+| moveNodeNext__13RailGraphIterFv | :white_check_mark: |
+| setNode__13RailGraphIterFl | :white_check_mark: |
+| watchStartEdge__13RailGraphIterFv | :white_check_mark: |
+| watchNextEdge__13RailGraphIterFv | :white_check_mark: |
+| isWatchEndEdge__13RailGraphIterCFv | :white_check_mark: |
+| selectEdge__13RailGraphIterFv | :white_check_mark: |
+| selectEdge__13RailGraphIterFl | :white_check_mark: |
+| isWatchedPrevEdge__13RailGraphIterCFv | :white_check_mark: |
+| isSelectedEdge__13RailGraphIterCFv | :white_check_mark: |
+| getCurrentNode__13RailGraphIterCFv | :white_check_mark: |
+| getNextNode__13RailGraphIterCFv | :white_check_mark: |
+| getWatchNode__13RailGraphIterCFv | :white_check_mark: |
+| getCurrentEdge__13RailGraphIterCFv | :white_check_mark: |
+| getWatchEdge__13RailGraphIterCFv | :white_check_mark: |
 
 
 # RailGraphNode.o
