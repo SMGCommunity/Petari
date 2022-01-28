@@ -56,7 +56,7 @@
 | PlanetMapWithoutHighModel.o | 0.0% | 0 / 4 | 0.0% |
 | QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% |
 | RaceManager.o | 0.0% | 0 / 95 | 0.0% |
-| RaceRail.o | 0.0% | 0 / 23 | 0.0% |
+| RaceRail.o | 42.25053078556263% | 20 / 23 | 86.95652173913044% |
 | RailGraph.o | 100.0% | 9 / 9 | 100.0% |
 | RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% |
 | RailGraphIter.o | 100.0% | 15 / 15 | 100.0% |
@@ -1509,27 +1509,27 @@
 # RaceRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8RaceRailFPCc | :x: |
-| __ct__11PlayerRacerFPCc | :x: |
-| appear__11PlayerRacerFv | :x: |
-| init__11PlayerRacerFRC12JMapInfoIter | :x: |
-| startRacer__11PlayerRacerFv | :x: |
+| __ct__8RaceRailFPCc | :white_check_mark: |
+| __ct__11PlayerRacerFPCc | :white_check_mark: |
+| appear__11PlayerRacerFv | :white_check_mark: |
+| init__11PlayerRacerFRC12JMapInfoIter | :white_check_mark: |
+| startRacer__11PlayerRacerFv | :white_check_mark: |
 | updateRacer__11PlayerRacerFPC11RaceManager | :x: |
-| goalRacer__11PlayerRacerFv | :x: |
-| loseRacer__11PlayerRacerFv | :x: |
-| exitRacer__11PlayerRacerFv | :x: |
-| __dt__11PlayerRacerFv | :x: |
-| __dt__8RaceRailFv | :x: |
-| @140@exitRacer__11PlayerRacerFv | :x: |
-| @140@resetRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@loseRacer__11PlayerRacerFv | :x: |
-| @140@goalRacer__11PlayerRacerFv | :x: |
-| @140@updateRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@startRacer__11PlayerRacerFv | :x: |
-| @140@prepRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@initRacer__11PlayerRacerFv | :x: |
-| init__8RaceRailFRC12JMapInfoIter | :x: |
-| initRacer__11PlayerRacerFv | :x: |
+| goalRacer__11PlayerRacerFv | :white_check_mark: |
+| loseRacer__11PlayerRacerFv | :white_check_mark: |
+| exitRacer__11PlayerRacerFv | :white_check_mark: |
+| __dt__11PlayerRacerFv | :white_check_mark: |
+| __dt__8RaceRailFv | :white_check_mark: |
+| @140@exitRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@resetRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@loseRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@goalRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@updateRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@startRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@prepRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@initRacer__11PlayerRacerFv | :white_check_mark: |
+| init__8RaceRailFRC12JMapInfoIter | :white_check_mark: |
+| initRacer__11PlayerRacerFv | :white_check_mark: |
 | prepRacer__11PlayerRacerFPC11RaceManager | :x: |
 | resetRacer__11PlayerRacerFPC11RaceManager | :x: |
 
