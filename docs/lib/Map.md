@@ -57,10 +57,10 @@
 | QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% |
 | RaceManager.o | 0.0% | 0 / 95 | 0.0% |
 | RaceRail.o | 0.0% | 0 / 23 | 0.0% |
-| RailGraph.o | 0.0% | 0 / 9 | 0.0% |
+| RailGraph.o | 100.0% | 9 / 9 | 100.0% |
 | RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% |
 | RailGraphIter.o | 100.0% | 15 / 15 | 100.0% |
-| RailGraphNode.o | 0.0% | 0 / 1 | 0.0% |
+| RailGraphNode.o | 100.0% | 1 / 1 | 100.0% |
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
 | SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
@@ -1537,15 +1537,15 @@
 # RailGraph.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9RailGraphFv | :x: |
-| addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :x: |
-| __as__13RailGraphEdgeFRC13RailGraphEdge | :x: |
-| getNode__9RailGraphCFl | :x: |
-| getEdge__9RailGraphCFl | :x: |
-| isValidEdge__9RailGraphCFl | :x: |
-| connectEdgeToNode__9RailGraphFll | :x: |
-| getIterator__9RailGraphCFv | :x: |
+| __ct__9RailGraphFv | :white_check_mark: |
+| addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :white_check_mark: |
+| __as__13RailGraphEdgeFRC13RailGraphEdge | :white_check_mark: |
+| getNode__9RailGraphCFl | :white_check_mark: |
+| getEdge__9RailGraphCFl | :white_check_mark: |
+| isValidEdge__9RailGraphCFl | :white_check_mark: |
+| connectEdgeToNode__9RailGraphFll | :white_check_mark: |
+| getIterator__9RailGraphCFv | :white_check_mark: |
 
 
 # RailGraphEdge.o
@@ -1582,7 +1582,7 @@
 # RailGraphNode.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphNodeFv | :x: |
+| __ct__13RailGraphNodeFv | :white_check_mark: |
 
 
 # RailPart.o
