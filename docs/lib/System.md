@@ -71,7 +71,7 @@
 | GalaxyMoveArgument.o | 0.0% | 0 / 3 | 0.0% |
 | GalaxyNameSortTable.o | 0.0% | 0 / 1 | 0.0% |
 | GalaxyStatusAccessor.o | 64.6484375% | 20 / 26 | 76.92307692307693% |
-| GameDataConst.o | 0.0% | 0 / 10 | 0.0% |
+| GameDataConst.o | 59.75103734439834% | 8 / 10 | 80.0% |
 | GameDataFunction.o | 0.0% | 0 / 78 | 0.0% |
 | GameDataGalaxyStorage.o | 0.0% | 0 / 27 | 0.0% |
 | GameDataHolder.o | 0.0% | 0 / 46 | 0.0% |
@@ -1604,15 +1604,15 @@
 # GameDataConst.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getPowerStarNumToOpenGalaxy__13GameDataConstFPCc | :x: |
-| isPowerStarGreen__13GameDataConstFPCcl | :x: |
-| isPowerStarRed__13GameDataConstFPCcl | :x: |
-| isPowerStarLuigiHas__13GameDataConstFPCcl | :x: |
-| isGrandStar__13GameDataConstFPCcl | :x: |
-| isGalaxyLuigiArrested__13GameDataConstFPCcl | :x: |
+| getPowerStarNumToOpenGalaxy__13GameDataConstFPCc | :white_check_mark: |
+| isPowerStarGreen__13GameDataConstFPCcl | :white_check_mark: |
+| isPowerStarRed__13GameDataConstFPCcl | :white_check_mark: |
+| isPowerStarLuigiHas__13GameDataConstFPCcl | :white_check_mark: |
+| isGrandStar__13GameDataConstFPCcl | :white_check_mark: |
+| isGalaxyLuigiArrested__13GameDataConstFPCcl | :white_check_mark: |
 | isQuestionGalaxy__13GameDataConstFPCc | :x: |
-| isGalaxyAppearGreenDriver__13GameDataConstFPCc | :x: |
-| getIncludedGrandGalaxyId__13GameDataConstFPCc | :x: |
+| isGalaxyAppearGreenDriver__13GameDataConstFPCc | :white_check_mark: |
+| getIncludedGrandGalaxyId__13GameDataConstFPCc | :white_check_mark: |
 | isPowerStarSpecial__13GameDataConstFPCclPCc | :x: |
 
 
