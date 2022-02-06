@@ -62,9 +62,9 @@
 | WPadStick.o | 0.0% | 0 / 3 | 0.0% |
 | HomeButtonMenuWrapper.o | 0.0% | 0 / 9 | 0.0% |
 | HomeButtonStateNotifier.o | 0.0% | 0 / 5 | 0.0% |
-| ConfigDataHolder.o | 0.0% | 0 / 23 | 0.0% |
-| ConfigDataMii.o | 0.0% | 0 / 10 | 0.0% |
-| ConfigDataMisc.o | 27.485380116959064% | 8 / 14 | 57.14285714285714% |
+| ConfigDataHolder.o | 100.0% | 23 / 23 | 100.0% |
+| ConfigDataMii.o | 100.0% | 10 / 10 | 100.0% |
+| ConfigDataMisc.o | 100.0% | 14 / 14 | 100.0% |
 | FindingLuigiEventScheduler.o | 0.0% | 0 / 17 | 0.0% |
 | GalaxyCometScheduler.o | 0.0% | 0 / 27 | 0.0% |
 | GalaxyCometState.o | 0.0% | 0 / 14 | 0.0% |
@@ -1424,50 +1424,50 @@
 # ConfigDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21ConfigDataCreateChunkFv | :x: |
-| makeHeaderHashCode__21ConfigDataCreateChunkCFv | :x: |
-| getSignature__21ConfigDataCreateChunkCFv | :x: |
-| serialize__21ConfigDataCreateChunkCFPUcUl | :x: |
-| deserialize__21ConfigDataCreateChunkFPCUcUl | :x: |
-| initializeData__21ConfigDataCreateChunkFv | :x: |
-| setIsCreated__16ConfigDataHolderFb | :x: |
-| isCreated__16ConfigDataHolderCFv | :x: |
-| setLastLoadedMario__16ConfigDataHolderFb | :x: |
-| isLastLoadedMario__16ConfigDataHolderCFv | :x: |
-| onCompleteEndingMario__16ConfigDataHolderFv | :x: |
-| onCompleteEndingLuigi__16ConfigDataHolderFv | :x: |
-| isOnCompleteEndingMario__16ConfigDataHolderFv | :x: |
-| isOnCompleteEndingLuigi__16ConfigDataHolderFv | :x: |
-| updateLastModified__16ConfigDataHolderFv | :x: |
-| getLastModified__16ConfigDataHolderCFv | :x: |
-| setMiiOrIconId__16ConfigDataHolderFPCvPCUl | :x: |
-| getMiiId__16ConfigDataHolderCFPv | :x: |
-| getIconId__16ConfigDataHolderCFPUl | :x: |
-| resetAllData__16ConfigDataHolderFv | :x: |
-| makeFileBinary__16ConfigDataHolderFPUcUl | :x: |
-| __ct__16ConfigDataHolderFv | :x: |
-| loadFromFileBinary__16ConfigDataHolderFPCcPCUcUl | :x: |
+| __ct__21ConfigDataCreateChunkFv | :white_check_mark: |
+| makeHeaderHashCode__21ConfigDataCreateChunkCFv | :white_check_mark: |
+| getSignature__21ConfigDataCreateChunkCFv | :white_check_mark: |
+| serialize__21ConfigDataCreateChunkCFPUcUl | :white_check_mark: |
+| deserialize__21ConfigDataCreateChunkFPCUcUl | :white_check_mark: |
+| initializeData__21ConfigDataCreateChunkFv | :white_check_mark: |
+| setIsCreated__16ConfigDataHolderFb | :white_check_mark: |
+| isCreated__16ConfigDataHolderCFv | :white_check_mark: |
+| setLastLoadedMario__16ConfigDataHolderFb | :white_check_mark: |
+| isLastLoadedMario__16ConfigDataHolderCFv | :white_check_mark: |
+| onCompleteEndingMario__16ConfigDataHolderFv | :white_check_mark: |
+| onCompleteEndingLuigi__16ConfigDataHolderFv | :white_check_mark: |
+| isOnCompleteEndingMario__16ConfigDataHolderFv | :white_check_mark: |
+| isOnCompleteEndingLuigi__16ConfigDataHolderFv | :white_check_mark: |
+| updateLastModified__16ConfigDataHolderFv | :white_check_mark: |
+| getLastModified__16ConfigDataHolderCFv | :white_check_mark: |
+| setMiiOrIconId__16ConfigDataHolderFPCvPCUl | :white_check_mark: |
+| getMiiId__16ConfigDataHolderCFPv | :white_check_mark: |
+| getIconId__16ConfigDataHolderCFPUl | :white_check_mark: |
+| resetAllData__16ConfigDataHolderFv | :white_check_mark: |
+| makeFileBinary__16ConfigDataHolderFPUcUl | :white_check_mark: |
+| __ct__16ConfigDataHolderFv | :white_check_mark: |
+| loadFromFileBinary__16ConfigDataHolderFPCcPCUcUl | :white_check_mark: |
 
 
 # ConfigDataMii.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13ConfigDataMiiFv | :x: |
-| setMiiOrIconId__13ConfigDataMiiFPCvPCUl | :x: |
-| getIconId__13ConfigDataMiiCFPUl | :x: |
-| getMiiId__13ConfigDataMiiCFPv | :x: |
-| makeHeaderHashCode__13ConfigDataMiiCFv | :x: |
-| getSignature__13ConfigDataMiiCFv | :x: |
-| serialize__13ConfigDataMiiCFPUcUl | :x: |
-| deserialize__13ConfigDataMiiFPCUcUl | :x: |
-| initializeData__13ConfigDataMiiFv | :x: |
-| getAvailable__20JSURandomInputStreamCFv | :x: |
+| __ct__13ConfigDataMiiFv | :white_check_mark: |
+| setMiiOrIconId__13ConfigDataMiiFPCvPCUl | :white_check_mark: |
+| getIconId__13ConfigDataMiiCFPUl | :white_check_mark: |
+| getMiiId__13ConfigDataMiiCFPv | :white_check_mark: |
+| makeHeaderHashCode__13ConfigDataMiiCFv | :white_check_mark: |
+| getSignature__13ConfigDataMiiCFv | :white_check_mark: |
+| serialize__13ConfigDataMiiCFPUcUl | :white_check_mark: |
+| deserialize__13ConfigDataMiiFPCUcUl | :white_check_mark: |
+| initializeData__13ConfigDataMiiFv | :white_check_mark: |
+| getAvailable__20JSURandomInputStreamCFv | :white_check_mark: |
 
 
 # ConfigDataMisc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14ConfigDataMiscFv | :x: |
+| __ct__14ConfigDataMiscFv | :white_check_mark: |
 | isLastLoadedMario__14ConfigDataMiscCFv | :white_check_mark: |
 | setLastLoadedMario__14ConfigDataMiscFb | :white_check_mark: |
 | onCompleteEndingMario__14ConfigDataMiscFv | :white_check_mark: |
@@ -1476,11 +1476,11 @@
 | isOnCompleteEndingLuigi__14ConfigDataMiscFv | :white_check_mark: |
 | getLastModified__14ConfigDataMiscCFv | :white_check_mark: |
 | updateLastModified__14ConfigDataMiscFv | :white_check_mark: |
-| makeHeaderHashCode__14ConfigDataMiscCFv | :x: |
-| getSignature__14ConfigDataMiscCFv | :x: |
-| serialize__14ConfigDataMiscCFPUcUl | :x: |
-| deserialize__14ConfigDataMiscFPCUcUl | :x: |
-| initializeData__14ConfigDataMiscFv | :x: |
+| makeHeaderHashCode__14ConfigDataMiscCFv | :white_check_mark: |
+| getSignature__14ConfigDataMiscCFv | :white_check_mark: |
+| serialize__14ConfigDataMiscCFPUcUl | :white_check_mark: |
+| deserialize__14ConfigDataMiscFPCUcUl | :white_check_mark: |
+| initializeData__14ConfigDataMiscFv | :white_check_mark: |
 
 
 # FindingLuigiEventScheduler.o
