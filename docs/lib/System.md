@@ -44,7 +44,7 @@
 | ResourceHolder.o | 0.0% | 0 / 13 | 0.0% |
 | ResourceHolderManager.o | 12.433392539964476% | 3 / 22 | 13.636363636363635% |
 | ResourceInfo.o | 100.0% | 15 / 15 | 100.0% |
-| ScenarioDataParser.o | 6.487889273356401% | 4 / 25 | 16.0% |
+| ScenarioDataParser.o | 9.16955017301038% | 5 / 25 | 20.0% |
 | ShapePacketUserData.o | 0.0% | 0 / 8 | 0.0% |
 | StarPointerOnOffController.o | 0.0% | 0 / 38 | 0.0% |
 | StationedArchiveLoader.o | 0.0% | 0 / 6 | 0.0% |
@@ -1123,7 +1123,7 @@
 | __ct__12ScenarioDataFPCc | :x: |
 | getScenarioNum__12ScenarioDataCFv | :x: |
 | getPowerStarNum__12ScenarioDataCFv | :x: |
-| getValueString__12ScenarioDataCFPCclPPCc | :x: |
+| getValueString__12ScenarioDataCFPCclPPCc | :white_check_mark: |
 | getZoneName__12ScenarioDataCFl | :white_check_mark: |
 | getScenarioDataIter__12ScenarioDataCFl | :x: |
 | __ct__18ScenarioDataParserFPCc | :x: |

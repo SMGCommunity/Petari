@@ -805,7 +805,7 @@ setName__11ResFileInfoFPCcb,ResourceInfo.o,System.a,true
 __ct__12ScenarioDataFPCc,ScenarioDataParser.o,System.a,false
 getScenarioNum__12ScenarioDataCFv,ScenarioDataParser.o,System.a,false
 getPowerStarNum__12ScenarioDataCFv,ScenarioDataParser.o,System.a,false
-getValueString__12ScenarioDataCFPCclPPCc,ScenarioDataParser.o,System.a,false
+getValueString__12ScenarioDataCFPCclPPCc,ScenarioDataParser.o,System.a,true
 getZoneName__12ScenarioDataCFl,ScenarioDataParser.o,System.a,true
 getScenarioDataIter__12ScenarioDataCFl,ScenarioDataParser.o,System.a,false
 __ct__18ScenarioDataParserFPCc,ScenarioDataParser.o,System.a,false

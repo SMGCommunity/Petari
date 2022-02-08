@@ -100,4 +100,6 @@ public:
     static bool isBreakStopped(const MapObjActor *);
     static void killBloomModel(MapObjActor *);
     static void appearBloomModel(MapObjActor *);
+
+    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo *);
 };

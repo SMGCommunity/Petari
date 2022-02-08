@@ -34,6 +34,14 @@ namespace JGeometry {
             };
         }
 
+        inline Mtx* toMtx() {
+            return (Mtx*)mMtx;
+        }
+
+        inline const Mtx* toCMtx() const {
+            return (const Mtx*)mMtx;
+        }
+
         T mMtx[3][4];
     };
 

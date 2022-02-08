@@ -279,7 +279,7 @@
 | TrampleStar.o | 0.0% | 0 / 32 | 0.0% |
 | TransparentWall.o | 0.0% | 0 / 4 | 0.0% |
 | TreasureBoxCracked.o | 0.0% | 0 / 30 | 0.0% |
-| TreasureSpot.o | 0.0% | 0 / 14 | 0.0% |
+| TreasureSpot.o | 100.0% | 14 / 14 | 100.0% |
 | Tsukidashikun.o | 0.0% | 0 / 27 | 0.0% |
 | TypicalDoor.o | 0.0% | 0 / 28 | 0.0% |
 | UFOBase.o | 0.0% | 0 / 26 | 0.0% |
@@ -7383,20 +7383,20 @@
 # TreasureSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12TreasureSpotFPCc | :x: |
-| init__12TreasureSpotFRC12JMapInfoIter | :x: |
-| exeSpout__12TreasureSpotFv | :x: |
-| control__12TreasureSpotFv | :x: |
-| receiveMsgPlayerAttack__12TreasureSpotFUlP9HitSensorP9HitSensor | :x: |
-| switchEmitGlow__12TreasureSpotFv | :x: |
-| __dt__12TreasureSpotFv | :x: |
-| __sinit_\TreasureSpot_cpp | :x: |
-| __ct__Q215NrvTreasureSpot19TreasureSpotNrvWaitFv | :x: |
-| __ct__Q215NrvTreasureSpot18TreasureSpotNrvEndFv | :x: |
-| __ct__Q215NrvTreasureSpot20TreasureSpotNrvSpoutFv | :x: |
-| execute__Q215NrvTreasureSpot20TreasureSpotNrvSpoutCFP5Spine | :x: |
-| execute__Q215NrvTreasureSpot18TreasureSpotNrvEndCFP5Spine | :x: |
-| execute__Q215NrvTreasureSpot19TreasureSpotNrvWaitCFP5Spine | :x: |
+| __ct__12TreasureSpotFPCc | :white_check_mark: |
+| init__12TreasureSpotFRC12JMapInfoIter | :white_check_mark: |
+| exeSpout__12TreasureSpotFv | :white_check_mark: |
+| control__12TreasureSpotFv | :white_check_mark: |
+| receiveMsgPlayerAttack__12TreasureSpotFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| switchEmitGlow__12TreasureSpotFv | :white_check_mark: |
+| __dt__12TreasureSpotFv | :white_check_mark: |
+| __sinit_\TreasureSpot_cpp | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot19TreasureSpotNrvWaitFv | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot18TreasureSpotNrvEndFv | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot20TreasureSpotNrvSpoutFv | :white_check_mark: |
+| execute__Q215NrvTreasureSpot20TreasureSpotNrvSpoutCFP5Spine | :white_check_mark: |
+| execute__Q215NrvTreasureSpot18TreasureSpotNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q215NrvTreasureSpot19TreasureSpotNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # Tsukidashikun.o
