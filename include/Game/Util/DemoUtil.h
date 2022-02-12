@@ -13,6 +13,10 @@ namespace MR {
     void registerDemoActionNerve(const LiveActor *, const Nerve *, const char *);
     bool tryRegisterDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
 
+    bool tryRegisterDemoActionNerve(const LiveActor *, const Nerve *, const char *);
+
+    bool isRegisteredDemoActionNerve(const LiveActor *);
+
     void registerDemoSimpleCastAll(LiveActor *);
 
     bool isDemoActive();

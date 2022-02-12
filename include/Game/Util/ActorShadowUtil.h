@@ -32,4 +32,7 @@ namespace MR {
     void onShadowVolumeCutDropLength(LiveActor *, const char *);
 
     void onCalcShadow(LiveActor *, const char *);
+
+    void validateShadow(LiveActor *, const char *);
+    void invalidateShadow(LiveActor *, const char *);
 };

@@ -27,4 +27,8 @@ namespace MR {
     bool hasMapPartsShadow(s32);
 
     bool hasMapPartsMoveStartSignMotion(s32);
+
+    bool isMoveStartUnconditional(s32);
+
+    void setBodySensorType(LiveActor *, u32);
 };

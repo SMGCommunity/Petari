@@ -18,4 +18,6 @@ namespace MR {
     f32 getRailPointCoord(const LiveActor *, int);
 
     bool isRailReachedGoal(const LiveActor *);
+
+    void initAndSetRailClipping(TVec3f *, LiveActor *, f32, f32);
 };

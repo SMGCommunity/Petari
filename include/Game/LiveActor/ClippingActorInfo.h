@@ -16,12 +16,12 @@ public:
     void setGroupClippingNo(const JMapInfoIter &);
 
     LiveActor* mActor;  // _0
-    s32 _4;
+    const TVec3f* _4;
     f32 _8;
-    u32 _C;
+    JMapIdInfo* mInfo;  // _C
     s16 mFarClipLevel;  // _10
     s16 _12;
-    u32 _14;
+    u8* _14;
 };
 
 class ClippingActorInfoList {

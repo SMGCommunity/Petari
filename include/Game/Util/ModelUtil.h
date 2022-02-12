@@ -38,5 +38,7 @@ namespace MR {
 
     void calcModelBoundingBox(TBox3f *, const LiveActor *);
 
+    void calcModelBoundingRadius(f32 *, const LiveActor *);
+
     bool isExistCollisionResource(const LiveActor *, const char *);
 };

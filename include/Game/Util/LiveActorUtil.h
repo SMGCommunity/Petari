@@ -143,10 +143,13 @@ namespace MR {
     bool isExistBck(const LiveActor *, const char *);
     bool isExistBva(const LiveActor *, const char *);
 
+    bool isBckPlaying(const LiveActor *, const char *);
+
     bool isBckStopped(const LiveActor *);
     bool isBrkStopped(const LiveActor *);
 
     bool isBckOneTimeAndStopped(const LiveActor *);
+
 
     void setBrkFrame(const LiveActor *, f32);
 

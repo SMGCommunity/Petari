@@ -14,6 +14,12 @@ namespace MR {
 
         static bool isRiddleSeTypeStop(const char *);
 
+        static bool tryStageEffectStart(LiveActor *, const char *);
+        static bool tryStageEffectMoving(LiveActor *, const char *);
+        static bool tryStageEffectStop(LiveActor *, const char *);
+
+        static bool isExistStageEffectData(const char *);
+
         static void rumblePadStart(LiveActor *, const char *);
         static void rumblePadStop(LiveActor *, const char *);
 

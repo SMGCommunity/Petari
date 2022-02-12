@@ -1,7 +1,7 @@
 # LiveActor
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| ActiveActorList.o | 90.76923076923077% | 5 / 6 | 83.33333333333334% |
+| ActiveActorList.o | 100.0% | 6 / 6 | 100.0% |
 | ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% |
 | ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% |
 | ActorJointCtrl.o | 100.0% | 13 / 13 | 100.0% |
@@ -13,7 +13,7 @@
 | AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% |
 | Binder.o | 3.778866340097971% | 1 / 20 | 5.0% |
 | ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
-| ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
+| ClippingActorInfo.o | 72.31404958677686% | 9 / 12 | 75.0% |
 | ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
 | ClippingGroupHolder.o | 90.79903147699758% | 13 / 14 | 92.85714285714286% |
 | ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% |
@@ -69,7 +69,7 @@
 | ------------- | ------------- |
 | __ct__15ActiveActorListFi | :white_check_mark: |
 | isFull__15ActiveActorListCFv | :white_check_mark: |
-| addActor__15ActiveActorListFP9LiveActor | :x: |
+| addActor__15ActiveActorListFP9LiveActor | :white_check_mark: |
 | removeDeadActor__15ActiveActorListFv | :white_check_mark: |
 | clear__15ActiveActorListFv | :white_check_mark: |
 | killAll__15ActiveActorListFv | :white_check_mark: |
@@ -238,10 +238,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__17ClippingActorInfoFP9LiveActor | :white_check_mark: |
-| judgeClipping__17ClippingActorInfoFv | :x: |
-| isJudgedToClip__17ClippingActorInfoCFv | :x: |
-| isGroupClipping__17ClippingActorInfoCFv | :x: |
-| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| judgeClipping__17ClippingActorInfoFv | :white_check_mark: |
+| isJudgedToClip__17ClippingActorInfoCFv | :white_check_mark: |
+| isGroupClipping__17ClippingActorInfoCFv | :white_check_mark: |
+| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter | :x: |
 | __ct__21ClippingActorInfoListFi | :white_check_mark: |
 | add__21ClippingActorInfoListFP17ClippingActorInfo | :white_check_mark: |
