@@ -35,4 +35,6 @@ namespace MR {
 
     void validateShadow(LiveActor *, const char *);
     void invalidateShadow(LiveActor *, const char *);
+
+    void initShadowFromCSV(LiveActor *, const char *);
 };

@@ -13,6 +13,7 @@ class ProjmapEffectMtxSetter;
 class ModelObj;
 class BrkCtrl;
 class PartsModel;
+class LodCtrl;
 
 namespace MR {
     bool isExistIndirectTexture(const LiveActor *);
@@ -177,4 +178,6 @@ namespace MR {
     PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor *, const char *, const char *, MtxPtr);
 
     void startAction(const LiveActor *, const char *);
+
+    LodCtrl* createLodCtrlNPC(LiveActor *, const JMapInfoIter &);
 }

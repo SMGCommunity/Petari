@@ -37,7 +37,7 @@
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
 | ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% |
-| ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
+| ModelObj.o | 100.0% | 8 / 8 | 100.0% |
 | Nerve.o | 100.0% | 1 / 1 | 100.0% |
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
 | RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
@@ -776,11 +776,11 @@
 | __ct__8ModelObjFPCcPCcPA4_fiiib | :white_check_mark: |
 | init__8ModelObjFRC12JMapInfoIter | :white_check_mark: |
 | calcAndSetBaseMtx__8ModelObjFv | :white_check_mark: |
-| init__11ModelObjNpcFRC12JMapInfoIter | :x: |
-| control__11ModelObjNpcFv | :x: |
-| calcAndSetBaseMtx__11ModelObjNpcFv | :x: |
-| __dt__11ModelObjNpcFv | :x: |
-| __ct__11ModelObjNpcFPCcPCcPA4_f | :x: |
+| init__11ModelObjNpcFRC12JMapInfoIter | :white_check_mark: |
+| control__11ModelObjNpcFv | :white_check_mark: |
+| calcAndSetBaseMtx__11ModelObjNpcFv | :white_check_mark: |
+| __dt__11ModelObjNpcFv | :white_check_mark: |
+| __ct__11ModelObjNpcFPCcPCcPA4_f | :white_check_mark: |
 
 
 # Nerve.o

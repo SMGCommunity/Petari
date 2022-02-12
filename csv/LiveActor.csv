@@ -528,11 +528,11 @@ isStop__13AnmPlayerBaseCFv,ModelManager.o,LiveActor.a,false
 __ct__8ModelObjFPCcPCcPA4_fiiib,ModelObj.o,LiveActor.a,true
 init__8ModelObjFRC12JMapInfoIter,ModelObj.o,LiveActor.a,true
 calcAndSetBaseMtx__8ModelObjFv,ModelObj.o,LiveActor.a,true
-init__11ModelObjNpcFRC12JMapInfoIter,ModelObj.o,LiveActor.a,false
-control__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-calcAndSetBaseMtx__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-__dt__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-__ct__11ModelObjNpcFPCcPCcPA4_f,ModelObj.o,LiveActor.a,false
+init__11ModelObjNpcFRC12JMapInfoIter,ModelObj.o,LiveActor.a,true
+control__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+calcAndSetBaseMtx__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+__dt__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+__ct__11ModelObjNpcFPCcPCcPA4_f,ModelObj.o,LiveActor.a,true
 executeOnEnd__5NerveCFP5Spine,Nerve.o,LiveActor.a,true
 __ct__10PartsModelFP9LiveActorPCcPCcPA4_fib,PartsModel.o,LiveActor.a,true
 makeActorAppeared__10PartsModelFv,PartsModel.o,LiveActor.a,true
