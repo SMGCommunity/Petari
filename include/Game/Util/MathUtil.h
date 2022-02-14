@@ -98,6 +98,11 @@ namespace MR {
     bool normalizeOrZero(const TVec3f &, TVec3f *);
 
     bool isNan(const TVec3f &);
+
+    template<typename T>
+    T converge(T, T, T);
+
+    f32 clamp(f32, f32, f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

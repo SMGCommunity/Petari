@@ -306,7 +306,7 @@
 | LavaHomeSeesawRotator.o | 0.0% | 0 / 35 | 0.0% |
 | MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% |
 | MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
-| MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
+| MapPartsFloatingForce.o | 66.71270718232044% | 23 / 27 | 85.18518518518519% |
 | MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailGuideDrawer.o | 28.647214854111407% | 4 / 19 | 21.052631578947366% |
 | MapPartsRailGuideHolder.o | 17.391304347826086% | 2 / 5 | 40.0% |
@@ -7972,33 +7972,33 @@
 # MapPartsFloatingForce.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SpringStepFfff | :x: |
-| addSpringVelocity__10SpringStepFf | :x: |
-| setSpringBaseValue__10SpringStepFf | :x: |
-| __ct__21MapPartsFloatingForceFP9LiveActor | :x: |
-| init__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
-| setObjectName__21MapPartsFloatingForceFPCc | :x: |
-| initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
-| initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
+| __ct__10SpringStepFfff | :white_check_mark: |
+| addSpringVelocity__10SpringStepFf | :white_check_mark: |
+| setSpringBaseValue__10SpringStepFf | :white_check_mark: |
+| __ct__21MapPartsFloatingForceFP9LiveActor | :white_check_mark: |
+| init__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
+| setObjectName__21MapPartsFloatingForceFPCc | :white_check_mark: |
+| initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
+| initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
 | start__21MapPartsFloatingForceFv | :x: |
-| updateVelocity__21MapPartsFloatingForceFv | :x: |
+| updateVelocity__21MapPartsFloatingForceFv | :white_check_mark: |
 | updateVelocitySpring__21MapPartsFloatingForceFv | :x: |
-| tryOn__21MapPartsFloatingForceFv | :x: |
-| tryReturn__21MapPartsFloatingForceFv | :x: |
-| exeWait__21MapPartsFloatingForceFv | :x: |
+| tryOn__21MapPartsFloatingForceFv | :white_check_mark: |
+| tryReturn__21MapPartsFloatingForceFv | :white_check_mark: |
+| exeWait__21MapPartsFloatingForceFv | :white_check_mark: |
 | exeMove__21MapPartsFloatingForceFv | :x: |
-| exeMoveSpring__21MapPartsFloatingForceFv | :x: |
+| exeMoveSpring__21MapPartsFloatingForceFv | :white_check_mark: |
 | exeMoveReturn__21MapPartsFloatingForceFv | :x: |
-| __dt__21MapPartsFloatingForceFv | :x: |
-| __sinit_\MapPartsFloatingForce_cpp | :x: |
-| __ct__Q224NrvMapPartsFloatingForce12HostTypeWaitFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce12HostTypeMoveFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnFv | :x: |
-| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce12HostTypeMoveCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce12HostTypeWaitCFP5Spine | :x: |
+| __dt__21MapPartsFloatingForceFv | :white_check_mark: |
+| __sinit_\MapPartsFloatingForce_cpp | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnFv | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # MapPartsFunction.o

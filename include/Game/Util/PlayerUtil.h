@@ -34,6 +34,7 @@ namespace MR {
 
     void pushPlayerFromArea(const TVec3f &);
     bool isOnPlayer(const LiveActor *);
+    bool isOnPlayer(const HitSensor *);
 
     bool isPlayerJumpRising();
     TVec3f* getPlayerGroundingPolygon();
