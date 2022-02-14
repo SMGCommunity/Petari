@@ -229,7 +229,7 @@
 | SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% |
 | SimpleMapObj.o | 0.0% | 0 / 32 | 0.0% |
 | SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% |
-| SimpleTimerObj.o | 0.0% | 0 / 10 | 0.0% |
+| SimpleTimerObj.o | 100.0% | 10 / 10 | 100.0% |
 | SmallStone.o | 0.0% | 0 / 20 | 0.0% |
 | SnowCapsulePlanet.o | 0.0% | 0 / 11 | 0.0% |
 | SnowFloor.o | 0.0% | 0 / 22 | 0.0% |
@@ -6120,16 +6120,16 @@
 # SimpleTimerObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SimpleTimerObjFPCc | :x: |
-| init__14SimpleTimerObjFRC12JMapInfoIter | :x: |
-| exeTimer__14SimpleTimerObjFv | :x: |
-| appear__14SimpleTimerObjFv | :x: |
-| kill__14SimpleTimerObjFv | :x: |
-| control__14SimpleTimerObjFv | :x: |
-| __dt__14SimpleTimerObjFv | :x: |
-| __sinit_\SimpleTimerObj_cpp | :x: |
-| __ct__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerFv | :x: |
-| execute__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerCFP5Spine | :x: |
+| __ct__14SimpleTimerObjFPCc | :white_check_mark: |
+| init__14SimpleTimerObjFRC12JMapInfoIter | :white_check_mark: |
+| exeTimer__14SimpleTimerObjFv | :white_check_mark: |
+| appear__14SimpleTimerObjFv | :white_check_mark: |
+| kill__14SimpleTimerObjFv | :white_check_mark: |
+| control__14SimpleTimerObjFv | :white_check_mark: |
+| __dt__14SimpleTimerObjFv | :white_check_mark: |
+| __sinit_\SimpleTimerObj_cpp | :white_check_mark: |
+| __ct__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerFv | :white_check_mark: |
+| execute__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerCFP5Spine | :white_check_mark: |
 
 
 # SmallStone.o
