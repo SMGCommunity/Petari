@@ -187,8 +187,8 @@
 | PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
 | PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
 | PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
-| PowerStar.o | 0.0% | 0 / 65 | 0.0% |
-| PowerStarAppearPoint.o | 0.0% | 0 / 3 | 0.0% |
+| PowerStar.o | 12.136752136752136% | 5 / 65 | 7.6923076923076925% |
+| PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% |
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
 | PressureBase.o | 0.0% | 0 / 48 | 0.0% |
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% |
@@ -4947,15 +4947,15 @@
 | receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor | :x: |
 | initMapToolInfo__9PowerStarFRC12JMapInfoIter | :x: |
 | initModel__9PowerStarFv | :x: |
-| initSensorGrandStar__9PowerStarFv | :x: |
-| initShadow__9PowerStarFRC12JMapInfoIter | :x: |
+| initSensorGrandStar__9PowerStarFv | :white_check_mark: |
+| initShadow__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
 | initPosture__9PowerStarFv | :x: |
-| endAppearDemo__9PowerStarFv | :x: |
+| endAppearDemo__9PowerStarFv | :white_check_mark: |
 | getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getAppearCameraActor__9PowerStarFv | :x: |
 | getAppearCameraInfo__9PowerStarCFv | :x: |
-| requestAppearOrWait__9PowerStarFv | :x: |
-| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| requestAppearOrWait__9PowerStarFv | :white_check_mark: |
+| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | processWait__9PowerStarFf | :x: |
 | exeAppearDemoRise__9PowerStarFv | :x: |
 | exeAppearDemoMove__9PowerStarFv | :x: |
@@ -4990,9 +4990,9 @@
 # PowerStarAppearPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20PowerStarAppearPointFPCc | :x: |
-| __dt__20PowerStarAppearPointFv | :x: |
-| init__20PowerStarAppearPointFRC12JMapInfoIter | :x: |
+| __ct__20PowerStarAppearPointFPCc | :white_check_mark: |
+| __dt__20PowerStarAppearPointFv | :white_check_mark: |
+| init__20PowerStarAppearPointFRC12JMapInfoIter | :white_check_mark: |
 
 
 # PowerStarHolder.o

@@ -180,4 +180,8 @@ namespace MR {
     void startAction(const LiveActor *, const char *);
 
     LodCtrl* createLodCtrlNPC(LiveActor *, const JMapInfoIter &);
+
+    bool changeShowModelFlagSyncNearClipping(LiveActor *, f32);
+
+    void hideModelAndOnCalcAnimIfShown(LiveActor *);
 }

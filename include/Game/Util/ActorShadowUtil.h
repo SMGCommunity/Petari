@@ -34,7 +34,9 @@ namespace MR {
     void onCalcShadow(LiveActor *, const char *);
 
     void validateShadow(LiveActor *, const char *);
+    void validateShadowGroup(LiveActor *, const char *);
     void invalidateShadow(LiveActor *, const char *);
+    void invalidateShadowAll(LiveActor *);
 
     void initShadowFromCSV(LiveActor *, const char *);
 };

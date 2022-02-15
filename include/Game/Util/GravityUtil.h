@@ -10,10 +10,10 @@ class LiveActor;
 class NameObj;
 
 namespace {
-	void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, f32 *pDest) NO_INLINE;
-	void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, s32 *pDest) NO_INLINE;
-	bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 host) NO_INLINE;
-}
+	//void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, f32 *pDest) NO_INLINE;
+	//void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, s32 *pDest) NO_INLINE;
+	//bool calcGravityVectorOrZero(const NameObj *pActor, const TVec3f &rPosition, u32 gravityType, TVec3f * pDest, GravityInfo *pInfo, u32 host) NO_INLINE;
+};
 
 namespace MR {
 	void registerGravity(PlanetGravity *pGravity);

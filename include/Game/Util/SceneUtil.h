@@ -41,4 +41,7 @@ namespace MR {
     s32 getCurrentStartZoneID();
 
     bool isEqualStageName(const char *);
+
+    bool isStageKoopaVs();
+    bool isStageKoopaVs3();
 }
