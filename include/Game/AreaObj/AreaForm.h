@@ -30,7 +30,7 @@ public:
     TVec3f mTranslation;            // _C
     TVec3f mRotation;               // _18
     TVec3f mScale;                  // _24
-    TBox3f mBounding;  // _30
+    TBox3f mBounding;               // _30
     Mtx _48;
 };
 

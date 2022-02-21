@@ -182,7 +182,7 @@ s32 PowerStar::getBtpFrameCurrentStage(s32 a1) {
         return 2;
     }
 
-    return -(MR::isPowerStarRedInCurrentStage(a1) != 0) & 0x3;
+    return MR::isPowerStarRedInCurrentStage(a1) ? 3 : 0;
 }
 
 bool PowerStar::isCurrentStageKoopaVs3() {
