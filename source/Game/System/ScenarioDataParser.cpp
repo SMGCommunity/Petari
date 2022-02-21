@@ -1,14 +1,12 @@
 #include "Game/System/ScenarioDataParser.h"
 #include "Game/Util.h"
 
-const char* ScenarioDataParser::sNullStr = "";
-
 bool ScenarioData::getValueString(const char *pKey, s32 a2, const char **pOut) const {
     ScenarioDataIter inf = getScenarioDataIter(a2);
     bool ret = inf._0->getValue<const char *>(inf.mCur, pKey, pOut);
 
     if (ret) {
-        if (MR::isEqualString(*pOut, ScenarioDataParser::sNullStr)) {
+        if (MR::isEqualString(*pOut, "")) {
             *pOut = 0;
         }
     }

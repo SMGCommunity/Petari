@@ -100,4 +100,10 @@ public:
     static bool isBreakStopped(const MapObjActor *);
     static void killBloomModel(MapObjActor *);
     static void appearBloomModel(MapObjActor *);
+
+    static bool isRailMoverWorking(const MapObjActor *);
+
+    static void setupInitInfoTypical(MapObjActorInitInfo *, const char *);
+
+    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo *);
 };

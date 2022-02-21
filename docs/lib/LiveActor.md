@@ -1,7 +1,7 @@
 # LiveActor
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| ActiveActorList.o | 90.76923076923077% | 5 / 6 | 83.33333333333334% |
+| ActiveActorList.o | 100.0% | 6 / 6 | 100.0% |
 | ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% |
 | ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% |
 | ActorJointCtrl.o | 100.0% | 13 / 13 | 100.0% |
@@ -13,7 +13,7 @@
 | AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% |
 | Binder.o | 3.778866340097971% | 1 / 20 | 5.0% |
 | ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
-| ClippingActorInfo.o | 42.14876033057851% | 5 / 12 | 41.66666666666667% |
+| ClippingActorInfo.o | 72.31404958677686% | 9 / 12 | 75.0% |
 | ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
 | ClippingGroupHolder.o | 90.79903147699758% | 13 / 14 | 92.85714285714286% |
 | ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% |
@@ -37,7 +37,7 @@
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
 | MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
 | ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% |
-| ModelObj.o | 39.285714285714285% | 3 / 8 | 37.5% |
+| ModelObj.o | 100.0% | 8 / 8 | 100.0% |
 | Nerve.o | 100.0% | 1 / 1 | 100.0% |
 | PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
 | RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
@@ -69,7 +69,7 @@
 | ------------- | ------------- |
 | __ct__15ActiveActorListFi | :white_check_mark: |
 | isFull__15ActiveActorListCFv | :white_check_mark: |
-| addActor__15ActiveActorListFP9LiveActor | :x: |
+| addActor__15ActiveActorListFP9LiveActor | :white_check_mark: |
 | removeDeadActor__15ActiveActorListFv | :white_check_mark: |
 | clear__15ActiveActorListFv | :white_check_mark: |
 | killAll__15ActiveActorListFv | :white_check_mark: |
@@ -238,10 +238,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__17ClippingActorInfoFP9LiveActor | :white_check_mark: |
-| judgeClipping__17ClippingActorInfoFv | :x: |
-| isJudgedToClip__17ClippingActorInfoCFv | :x: |
-| isGroupClipping__17ClippingActorInfoCFv | :x: |
-| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| judgeClipping__17ClippingActorInfoFv | :white_check_mark: |
+| isJudgedToClip__17ClippingActorInfoCFv | :white_check_mark: |
+| isGroupClipping__17ClippingActorInfoCFv | :white_check_mark: |
+| setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter | :x: |
 | __ct__21ClippingActorInfoListFi | :white_check_mark: |
 | add__21ClippingActorInfoListFP17ClippingActorInfo | :white_check_mark: |
@@ -776,11 +776,11 @@
 | __ct__8ModelObjFPCcPCcPA4_fiiib | :white_check_mark: |
 | init__8ModelObjFRC12JMapInfoIter | :white_check_mark: |
 | calcAndSetBaseMtx__8ModelObjFv | :white_check_mark: |
-| init__11ModelObjNpcFRC12JMapInfoIter | :x: |
-| control__11ModelObjNpcFv | :x: |
-| calcAndSetBaseMtx__11ModelObjNpcFv | :x: |
-| __dt__11ModelObjNpcFv | :x: |
-| __ct__11ModelObjNpcFPCcPCcPA4_f | :x: |
+| init__11ModelObjNpcFRC12JMapInfoIter | :white_check_mark: |
+| control__11ModelObjNpcFv | :white_check_mark: |
+| calcAndSetBaseMtx__11ModelObjNpcFv | :white_check_mark: |
+| __dt__11ModelObjNpcFv | :white_check_mark: |
+| __ct__11ModelObjNpcFPCcPCcPA4_f | :white_check_mark: |
 
 
 # Nerve.o

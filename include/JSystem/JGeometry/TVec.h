@@ -172,6 +172,14 @@ namespace JGeometry {
             z = val;
         }
 
+        inline Vec* toVec() {
+            return (Vec*)this;
+        }
+
+        inline const Vec* toCVec() const {
+            return (const Vec*)this;
+        }
+
         inline void setInlinePS(register const TVec3<T> &src) {
             register TVec3<T>* dst = this;
             register f32 xy;

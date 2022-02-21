@@ -39,3 +39,46 @@ void ModelObj::calcAndSetBaseMtx() {
         LiveActor::calcAndSetBaseMtx();
     }
 }
+
+void ModelObjNpc::control() {
+    mLODCtrl->update();
+    mJointCtrl->update();
+}
+
+void ModelObjNpc::init(const JMapInfoIter &rIter) {
+    mLODCtrl = MR::createLodCtrlNPC(this, rIter);
+    mJointCtrl = new ActorJointCtrl(this);
+    makeActorAppeared();
+}
+
+void ModelObjNpc::calcAndSetBaseMtx() {
+    if (mMtx) {
+        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        MR::setBaseTRMtx(this, mMtx);
+    }
+    else {
+        LiveActor::calcAndSetBaseMtx();
+    }
+
+    mJointCtrl->setCallBackFunction();
+}
+
+ModelObjNpc::~ModelObjNpc() {
+
+}
+
+ModelObjNpc::ModelObjNpc(const char *a1, const char *a2, MtxPtr mtx) : LiveActor(a1) {
+    mMtx = mtx;
+    mLODCtrl = 0;
+    mJointCtrl = 0;
+
+    if (mtx) {
+        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+    }
+
+    initModelManagerWithAnm(a2, 0, 0);
+    MR::connectToSceneNpc(this);
+    MR::initShadowFromCSV(this, "Shadow");
+    initSound(8, false);
+    initEffectKeeper(8, 0, false);
+}

@@ -93,6 +93,22 @@ namespace MR {
 
     bool tryRumblePadMiddle(const void *, s32);
 
+    void declareCoin(const NameObj *, s32);
+    void getDeclareRemnantCoinCount(const NameObj *);
+    void hopCoin(const NameObj *, const TVec3f &, const TVec3f &);
+    void appearCoinFix(const NameObj *, const TVec3f &, s32);
+
+    void appearCoinPopToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32);
+
+    void declareStarPiece(const NameObj *, s32);
+    void getDeclareRemnantStarPieceCount(const NameObj *);
+    void getDeclareRemnantStarPieceCountNotExist(const NameObj *);
+    void declareStarPieceReceiver(const NameObj *, s32);
+    void clearGotCountStarPieceReceiver(const NameObj *);
+    void hopStarPiece(const NameObj *, const TVec3f &, const TVec3f &);
+    void appearStarPiece(const NameObj *, const TVec3f &, s32, f32, f32, bool);
+    void appearStarPieceToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32, f32, f32, bool);
+
     void declarePowerStar(const NameObj *);
     void declarePowerStar(const NameObj *, s32);
 

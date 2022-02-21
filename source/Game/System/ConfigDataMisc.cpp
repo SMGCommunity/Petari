@@ -1,14 +1,13 @@
 #include "Game/System/ConfigDataMisc.h"
+#include "JSystem/JSupport/JSUMemoryInputStream.h"
+#include "JSystem/JSupport/JSUMemoryOutputStream.h"
 
-#ifdef NON_MATCHING
-// weird issues with the call at the bottom
 ConfigDataMisc::ConfigDataMisc() {
     mData = 1;
     mLastModified = 0;
 
     initializeData();
 }
-#endif
 
 bool ConfigDataMisc::isLastLoadedMario() const {
     return !((mData & 0x1) - 1);
@@ -53,4 +52,39 @@ u32 ConfigDataMisc::makeHeaderHashCode() const {
 
 u32 ConfigDataMisc::getSignature() const {
     return 0x4D495343;
+}
+
+s32 ConfigDataMisc::serialize(u8 *pData, u32 len) const {
+    JSUMemoryOutputStream stream;
+    stream.setBuffer(pData, len);
+    u8 stack_8 = mData;
+    stream.write(&stack_8, 1);
+    OSTime stack_10 = mLastModified;
+    stream.write(&stack_10, 8);
+    return stream.mPosition;
+}
+
+s32 ConfigDataMisc::deserialize(const u8 *pData, u32 len) {
+    initializeData();
+    JSUMemoryInputStream stream;
+    stream.setBuffer(pData, len);
+    u8 stack_8;
+    stream.read(&stack_8, 1);
+    mData = stack_8;
+
+    if (!stream.getAvailable()) {
+        mLastModified = 0;
+    }
+    else {
+        OSTime time;
+        stream.read(&time, 8);
+        mLastModified = time;
+    }
+
+    return 0;
+}
+
+void ConfigDataMisc::initializeData() {
+    mData = 1;
+    mLastModified = 0;
 }

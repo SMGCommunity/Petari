@@ -28,6 +28,9 @@ namespace MR {
     bool isEnvelope(J3DMaterial *);
     void hideMaterial(J3DModel *, const char *);
 
+    void showMaterial(const LiveActor *, const char *);
+    void hideMaterial(const LiveActor *, const char *);
+
     void updateMaterial(LiveActor *);
 
     void syncJointAnimation(LiveActor *, const LiveActor *);
@@ -37,6 +40,8 @@ namespace MR {
     void copyJointAnimation(LiveActor *, const LiveActor *);
 
     void calcModelBoundingBox(TBox3f *, const LiveActor *);
+
+    void calcModelBoundingRadius(f32 *, const LiveActor *);
 
     bool isExistCollisionResource(const LiveActor *, const char *);
 };

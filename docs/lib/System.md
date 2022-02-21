@@ -44,7 +44,7 @@
 | ResourceHolder.o | 0.0% | 0 / 13 | 0.0% |
 | ResourceHolderManager.o | 12.433392539964476% | 3 / 22 | 13.636363636363635% |
 | ResourceInfo.o | 100.0% | 15 / 15 | 100.0% |
-| ScenarioDataParser.o | 6.487889273356401% | 4 / 25 | 16.0% |
+| ScenarioDataParser.o | 9.16955017301038% | 5 / 25 | 20.0% |
 | ShapePacketUserData.o | 0.0% | 0 / 8 | 0.0% |
 | StarPointerOnOffController.o | 0.0% | 0 / 38 | 0.0% |
 | StationedArchiveLoader.o | 0.0% | 0 / 6 | 0.0% |
@@ -62,16 +62,16 @@
 | WPadStick.o | 0.0% | 0 / 3 | 0.0% |
 | HomeButtonMenuWrapper.o | 0.0% | 0 / 9 | 0.0% |
 | HomeButtonStateNotifier.o | 0.0% | 0 / 5 | 0.0% |
-| ConfigDataHolder.o | 0.0% | 0 / 23 | 0.0% |
-| ConfigDataMii.o | 0.0% | 0 / 10 | 0.0% |
-| ConfigDataMisc.o | 27.485380116959064% | 8 / 14 | 57.14285714285714% |
+| ConfigDataHolder.o | 100.0% | 23 / 23 | 100.0% |
+| ConfigDataMii.o | 100.0% | 10 / 10 | 100.0% |
+| ConfigDataMisc.o | 100.0% | 14 / 14 | 100.0% |
 | FindingLuigiEventScheduler.o | 0.0% | 0 / 17 | 0.0% |
 | GalaxyCometScheduler.o | 0.0% | 0 / 27 | 0.0% |
 | GalaxyCometState.o | 0.0% | 0 / 14 | 0.0% |
 | GalaxyMoveArgument.o | 0.0% | 0 / 3 | 0.0% |
 | GalaxyNameSortTable.o | 0.0% | 0 / 1 | 0.0% |
 | GalaxyStatusAccessor.o | 64.6484375% | 20 / 26 | 76.92307692307693% |
-| GameDataConst.o | 0.0% | 0 / 10 | 0.0% |
+| GameDataConst.o | 59.75103734439834% | 8 / 10 | 80.0% |
 | GameDataFunction.o | 0.0% | 0 / 78 | 0.0% |
 | GameDataGalaxyStorage.o | 0.0% | 0 / 27 | 0.0% |
 | GameDataHolder.o | 0.0% | 0 / 46 | 0.0% |
@@ -1123,7 +1123,7 @@
 | __ct__12ScenarioDataFPCc | :x: |
 | getScenarioNum__12ScenarioDataCFv | :x: |
 | getPowerStarNum__12ScenarioDataCFv | :x: |
-| getValueString__12ScenarioDataCFPCclPPCc | :x: |
+| getValueString__12ScenarioDataCFPCclPPCc | :white_check_mark: |
 | getZoneName__12ScenarioDataCFl | :white_check_mark: |
 | getScenarioDataIter__12ScenarioDataCFl | :x: |
 | __ct__18ScenarioDataParserFPCc | :x: |
@@ -1424,50 +1424,50 @@
 # ConfigDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21ConfigDataCreateChunkFv | :x: |
-| makeHeaderHashCode__21ConfigDataCreateChunkCFv | :x: |
-| getSignature__21ConfigDataCreateChunkCFv | :x: |
-| serialize__21ConfigDataCreateChunkCFPUcUl | :x: |
-| deserialize__21ConfigDataCreateChunkFPCUcUl | :x: |
-| initializeData__21ConfigDataCreateChunkFv | :x: |
-| setIsCreated__16ConfigDataHolderFb | :x: |
-| isCreated__16ConfigDataHolderCFv | :x: |
-| setLastLoadedMario__16ConfigDataHolderFb | :x: |
-| isLastLoadedMario__16ConfigDataHolderCFv | :x: |
-| onCompleteEndingMario__16ConfigDataHolderFv | :x: |
-| onCompleteEndingLuigi__16ConfigDataHolderFv | :x: |
-| isOnCompleteEndingMario__16ConfigDataHolderFv | :x: |
-| isOnCompleteEndingLuigi__16ConfigDataHolderFv | :x: |
-| updateLastModified__16ConfigDataHolderFv | :x: |
-| getLastModified__16ConfigDataHolderCFv | :x: |
-| setMiiOrIconId__16ConfigDataHolderFPCvPCUl | :x: |
-| getMiiId__16ConfigDataHolderCFPv | :x: |
-| getIconId__16ConfigDataHolderCFPUl | :x: |
-| resetAllData__16ConfigDataHolderFv | :x: |
-| makeFileBinary__16ConfigDataHolderFPUcUl | :x: |
-| __ct__16ConfigDataHolderFv | :x: |
-| loadFromFileBinary__16ConfigDataHolderFPCcPCUcUl | :x: |
+| __ct__21ConfigDataCreateChunkFv | :white_check_mark: |
+| makeHeaderHashCode__21ConfigDataCreateChunkCFv | :white_check_mark: |
+| getSignature__21ConfigDataCreateChunkCFv | :white_check_mark: |
+| serialize__21ConfigDataCreateChunkCFPUcUl | :white_check_mark: |
+| deserialize__21ConfigDataCreateChunkFPCUcUl | :white_check_mark: |
+| initializeData__21ConfigDataCreateChunkFv | :white_check_mark: |
+| setIsCreated__16ConfigDataHolderFb | :white_check_mark: |
+| isCreated__16ConfigDataHolderCFv | :white_check_mark: |
+| setLastLoadedMario__16ConfigDataHolderFb | :white_check_mark: |
+| isLastLoadedMario__16ConfigDataHolderCFv | :white_check_mark: |
+| onCompleteEndingMario__16ConfigDataHolderFv | :white_check_mark: |
+| onCompleteEndingLuigi__16ConfigDataHolderFv | :white_check_mark: |
+| isOnCompleteEndingMario__16ConfigDataHolderFv | :white_check_mark: |
+| isOnCompleteEndingLuigi__16ConfigDataHolderFv | :white_check_mark: |
+| updateLastModified__16ConfigDataHolderFv | :white_check_mark: |
+| getLastModified__16ConfigDataHolderCFv | :white_check_mark: |
+| setMiiOrIconId__16ConfigDataHolderFPCvPCUl | :white_check_mark: |
+| getMiiId__16ConfigDataHolderCFPv | :white_check_mark: |
+| getIconId__16ConfigDataHolderCFPUl | :white_check_mark: |
+| resetAllData__16ConfigDataHolderFv | :white_check_mark: |
+| makeFileBinary__16ConfigDataHolderFPUcUl | :white_check_mark: |
+| __ct__16ConfigDataHolderFv | :white_check_mark: |
+| loadFromFileBinary__16ConfigDataHolderFPCcPCUcUl | :white_check_mark: |
 
 
 # ConfigDataMii.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13ConfigDataMiiFv | :x: |
-| setMiiOrIconId__13ConfigDataMiiFPCvPCUl | :x: |
-| getIconId__13ConfigDataMiiCFPUl | :x: |
-| getMiiId__13ConfigDataMiiCFPv | :x: |
-| makeHeaderHashCode__13ConfigDataMiiCFv | :x: |
-| getSignature__13ConfigDataMiiCFv | :x: |
-| serialize__13ConfigDataMiiCFPUcUl | :x: |
-| deserialize__13ConfigDataMiiFPCUcUl | :x: |
-| initializeData__13ConfigDataMiiFv | :x: |
-| getAvailable__20JSURandomInputStreamCFv | :x: |
+| __ct__13ConfigDataMiiFv | :white_check_mark: |
+| setMiiOrIconId__13ConfigDataMiiFPCvPCUl | :white_check_mark: |
+| getIconId__13ConfigDataMiiCFPUl | :white_check_mark: |
+| getMiiId__13ConfigDataMiiCFPv | :white_check_mark: |
+| makeHeaderHashCode__13ConfigDataMiiCFv | :white_check_mark: |
+| getSignature__13ConfigDataMiiCFv | :white_check_mark: |
+| serialize__13ConfigDataMiiCFPUcUl | :white_check_mark: |
+| deserialize__13ConfigDataMiiFPCUcUl | :white_check_mark: |
+| initializeData__13ConfigDataMiiFv | :white_check_mark: |
+| getAvailable__20JSURandomInputStreamCFv | :white_check_mark: |
 
 
 # ConfigDataMisc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14ConfigDataMiscFv | :x: |
+| __ct__14ConfigDataMiscFv | :white_check_mark: |
 | isLastLoadedMario__14ConfigDataMiscCFv | :white_check_mark: |
 | setLastLoadedMario__14ConfigDataMiscFb | :white_check_mark: |
 | onCompleteEndingMario__14ConfigDataMiscFv | :white_check_mark: |
@@ -1476,11 +1476,11 @@
 | isOnCompleteEndingLuigi__14ConfigDataMiscFv | :white_check_mark: |
 | getLastModified__14ConfigDataMiscCFv | :white_check_mark: |
 | updateLastModified__14ConfigDataMiscFv | :white_check_mark: |
-| makeHeaderHashCode__14ConfigDataMiscCFv | :x: |
-| getSignature__14ConfigDataMiscCFv | :x: |
-| serialize__14ConfigDataMiscCFPUcUl | :x: |
-| deserialize__14ConfigDataMiscFPCUcUl | :x: |
-| initializeData__14ConfigDataMiscFv | :x: |
+| makeHeaderHashCode__14ConfigDataMiscCFv | :white_check_mark: |
+| getSignature__14ConfigDataMiscCFv | :white_check_mark: |
+| serialize__14ConfigDataMiscCFPUcUl | :white_check_mark: |
+| deserialize__14ConfigDataMiscFPCUcUl | :white_check_mark: |
+| initializeData__14ConfigDataMiscFv | :white_check_mark: |
 
 
 # FindingLuigiEventScheduler.o
@@ -1604,15 +1604,15 @@
 # GameDataConst.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getPowerStarNumToOpenGalaxy__13GameDataConstFPCc | :x: |
-| isPowerStarGreen__13GameDataConstFPCcl | :x: |
-| isPowerStarRed__13GameDataConstFPCcl | :x: |
-| isPowerStarLuigiHas__13GameDataConstFPCcl | :x: |
-| isGrandStar__13GameDataConstFPCcl | :x: |
-| isGalaxyLuigiArrested__13GameDataConstFPCcl | :x: |
+| getPowerStarNumToOpenGalaxy__13GameDataConstFPCc | :white_check_mark: |
+| isPowerStarGreen__13GameDataConstFPCcl | :white_check_mark: |
+| isPowerStarRed__13GameDataConstFPCcl | :white_check_mark: |
+| isPowerStarLuigiHas__13GameDataConstFPCcl | :white_check_mark: |
+| isGrandStar__13GameDataConstFPCcl | :white_check_mark: |
+| isGalaxyLuigiArrested__13GameDataConstFPCcl | :white_check_mark: |
 | isQuestionGalaxy__13GameDataConstFPCc | :x: |
-| isGalaxyAppearGreenDriver__13GameDataConstFPCc | :x: |
-| getIncludedGrandGalaxyId__13GameDataConstFPCc | :x: |
+| isGalaxyAppearGreenDriver__13GameDataConstFPCc | :white_check_mark: |
+| getIncludedGrandGalaxyId__13GameDataConstFPCc | :white_check_mark: |
 | isPowerStarSpecial__13GameDataConstFPCclPCc | :x: |
 
 

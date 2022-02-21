@@ -51,7 +51,7 @@
 | SoundUtil.o | 0.0% | 0 / 86 | 0.0% |
 | StarPointerUtil.o | 0.0% | 0 / 108 | 0.0% |
 | StringUtil.o | 30.294530154277698% | 9 / 36 | 25.0% |
-| SwitchEventFunctorListener.o | 0.0% | 0 / 5 | 0.0% |
+| SwitchEventFunctorListener.o | 100.0% | 5 / 5 | 100.0% |
 | SystemUtil.o | 0.0% | 0 / 34 | 0.0% |
 | TalkUtil.o | 0.0% | 0 / 53 | 0.0% |
 | AreaObjUtil.o | 6.666666666666667% | 2 / 22 | 9.090909090909092% |
@@ -3642,11 +3642,11 @@
 # SwitchEventFunctorListener.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__26SwitchEventFunctorListenerFv | :x: |
-| setOnFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :x: |
-| setOffFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :x: |
-| listenSwitchOnEvent__26SwitchEventFunctorListenerFv | :x: |
-| listenSwitchOffEvent__26SwitchEventFunctorListenerFv | :x: |
+| __ct__26SwitchEventFunctorListenerFv | :white_check_mark: |
+| setOnFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :white_check_mark: |
+| setOffFunctor__26SwitchEventFunctorListenerFRCQ22MR11FunctorBase | :white_check_mark: |
+| listenSwitchOnEvent__26SwitchEventFunctorListenerFv | :white_check_mark: |
+| listenSwitchOffEvent__26SwitchEventFunctorListenerFv | :white_check_mark: |
 
 
 # SystemUtil.o

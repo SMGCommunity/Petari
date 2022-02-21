@@ -10,6 +10,8 @@ namespace MR {
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
 
+    TVec3f* getPlayerRotate();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -34,6 +36,7 @@ namespace MR {
 
     void pushPlayerFromArea(const TVec3f &);
     bool isOnPlayer(const LiveActor *);
+    bool isOnPlayer(const HitSensor *);
 
     bool isPlayerJumpRising();
     TVec3f* getPlayerGroundingPolygon();
@@ -48,4 +51,6 @@ namespace MR {
 
     void startLevelSoundPlayer(const char *, long);
     void incPlayerOxygen(u32);
+
+    void stopSoundPlayer(const char *, u32);
 };

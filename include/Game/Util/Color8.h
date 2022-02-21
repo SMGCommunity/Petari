@@ -4,6 +4,7 @@
 
 class Color8 {
 public:
+    Color8(_GXColor);
     Color8(u8, u8, u8, u8);
 
     u8 r;   // _0

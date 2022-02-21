@@ -32,4 +32,6 @@ namespace MR {
     void calcActorAxis(TVec3f *, TVec3f *, TVec3f *, const LiveActor *);
 
     void calcActorAxisY(TVec3f *, const LiveActor *);
+
+    bool isInWater(const LiveActor *, const TVec3f &);
 };

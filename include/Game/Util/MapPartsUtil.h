@@ -2,6 +2,8 @@
 
 #include "Game/Util.h"
 
+class HitSensor;
+
 namespace MR {
     bool getMapPartsArgMoveConditionType(s32 *, const JMapInfoIter &);
     bool getMapPartsArgRotateSpeed(f32 *, const JMapInfoIter &);
@@ -27,4 +29,10 @@ namespace MR {
     bool hasMapPartsShadow(s32);
 
     bool hasMapPartsMoveStartSignMotion(s32);
+
+    bool isMoveStartUnconditional(s32);
+
+    void setBodySensorType(LiveActor *, u32);
+
+    const HitSensor* getBodySensor(LiveActor *);
 };

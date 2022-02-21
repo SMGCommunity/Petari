@@ -1,7 +1,7 @@
 # Map
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| ActorAppearSwitchListener.o | 0.0% | 0 / 4 | 0.0% |
+| ActorAppearSwitchListener.o | 16.39344262295082% | 1 / 4 | 25.0% |
 | Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% |
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% |
 | Butterfly.o | 0.0% | 0 / 37 | 0.0% |
@@ -91,7 +91,7 @@
 | __ct__25ActorAppearSwitchListenerFP9LiveActorbb | :x: |
 | listenSwitchOnEvent__25ActorAppearSwitchListenerFv | :x: |
 | listenSwitchOffEvent__25ActorAppearSwitchListenerFv | :x: |
-| refresh__19SwitchEventListenerFb | :x: |
+| refresh__19SwitchEventListenerFb | :white_check_mark: |
 
 
 # Air.o

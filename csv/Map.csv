@@ -2,7 +2,7 @@ Symbol Name, Object File, Library Archive, Matching
 __ct__25ActorAppearSwitchListenerFP9LiveActorbb,ActorAppearSwitchListener.o,Map.a,false
 listenSwitchOnEvent__25ActorAppearSwitchListenerFv,ActorAppearSwitchListener.o,Map.a,false
 listenSwitchOffEvent__25ActorAppearSwitchListenerFv,ActorAppearSwitchListener.o,Map.a,false
-refresh__19SwitchEventListenerFb,ActorAppearSwitchListener.o,Map.a,false
+refresh__19SwitchEventListenerFb,ActorAppearSwitchListener.o,Map.a,true
 __ct__3AirFPCc,Air.o,Map.a,true
 init__3AirFRC12JMapInfoIter,Air.o,Map.a,true
 appear__3AirFv,Air.o,Map.a,true

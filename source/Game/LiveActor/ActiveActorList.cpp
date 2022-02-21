@@ -13,15 +13,12 @@ bool ActiveActorList::isFull() const {
     return mCurCount >= mMaxCount;
 }
 
-#ifdef NON_MATCHING
 void ActiveActorList::addActor(LiveActor *pActor) {
-    s32 count = mCurCount;
-    if (count < mMaxCount) {
+    if (!hasTooMany()) {
         mActorList[mCurCount] = pActor;
         mCurCount++;
     }
 }
-#endif
 
 void ActiveActorList::removeDeadActor() {
     s32 cur = 0;

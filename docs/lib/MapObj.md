@@ -187,8 +187,8 @@
 | PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
 | PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
 | PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
-| PowerStar.o | 0.0% | 0 / 65 | 0.0% |
-| PowerStarAppearPoint.o | 0.0% | 0 / 3 | 0.0% |
+| PowerStar.o | 44.61538461538462% | 29 / 65 | 44.61538461538462% |
+| PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% |
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
 | PressureBase.o | 0.0% | 0 / 48 | 0.0% |
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% |
@@ -202,7 +202,7 @@
 | QuestionCoin.o | 0.0% | 0 / 25 | 0.0% |
 | RailBlock.o | 0.0% | 0 / 19 | 0.0% |
 | RailCoin.o | 0.0% | 0 / 10 | 0.0% |
-| RailMoveObj.o | 0.0% | 0 / 53 | 0.0% |
+| RailMoveObj.o | 100.0% | 53 / 53 | 100.0% |
 | RainCloud.o | 0.0% | 0 / 32 | 0.0% |
 | ReverseGravityRoomPlanet.o | 0.0% | 0 / 20 | 0.0% |
 | RevolvingWay.o | 0.0% | 0 / 10 | 0.0% |
@@ -229,7 +229,7 @@
 | SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% |
 | SimpleMapObj.o | 0.0% | 0 / 32 | 0.0% |
 | SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% |
-| SimpleTimerObj.o | 0.0% | 0 / 10 | 0.0% |
+| SimpleTimerObj.o | 100.0% | 10 / 10 | 100.0% |
 | SmallStone.o | 0.0% | 0 / 20 | 0.0% |
 | SnowCapsulePlanet.o | 0.0% | 0 / 11 | 0.0% |
 | SnowFloor.o | 0.0% | 0 / 22 | 0.0% |
@@ -279,7 +279,7 @@
 | TrampleStar.o | 0.0% | 0 / 32 | 0.0% |
 | TransparentWall.o | 0.0% | 0 / 4 | 0.0% |
 | TreasureBoxCracked.o | 0.0% | 0 / 30 | 0.0% |
-| TreasureSpot.o | 0.0% | 0 / 14 | 0.0% |
+| TreasureSpot.o | 100.0% | 14 / 14 | 100.0% |
 | Tsukidashikun.o | 0.0% | 0 / 27 | 0.0% |
 | TypicalDoor.o | 0.0% | 0 / 28 | 0.0% |
 | UFOBase.o | 0.0% | 0 / 26 | 0.0% |
@@ -306,7 +306,7 @@
 | LavaHomeSeesawRotator.o | 0.0% | 0 / 35 | 0.0% |
 | MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% |
 | MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% |
-| MapPartsFloatingForce.o | 0.0% | 0 / 27 | 0.0% |
+| MapPartsFloatingForce.o | 66.71270718232044% | 23 / 27 | 85.18518518518519% |
 | MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailGuideDrawer.o | 28.647214854111407% | 4 / 19 | 21.052631578947366% |
 | MapPartsRailGuideHolder.o | 17.391304347826086% | 2 / 5 | 40.0% |
@@ -4920,42 +4920,42 @@
 # PowerStar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setupColor__23@unnamed@PowerStar_cpp@FP9LiveActorbi | :x: |
-| setupColorGrandStar__23@unnamed@PowerStar_cpp@FP9LiveActorb | :x: |
-| requestPointLight__23@unnamed@PowerStar_cpp@FPC9LiveActori | :x: |
+| setupColor__23@unnamed@PowerStar_cpp@FP9LiveActorbi | :white_check_mark: |
+| setupColorGrandStar__23@unnamed@PowerStar_cpp@FP9LiveActorb | :white_check_mark: |
+| requestPointLight__23@unnamed@PowerStar_cpp@FPC9LiveActori | :white_check_mark: |
 | __ct__9PowerStarFPCc | :x: |
 | init__9PowerStarFRC12JMapInfoIter | :x: |
-| initAfterPlacement__9PowerStarFv | :x: |
-| appear__9PowerStarFv | :x: |
-| makeActorAppeared__9PowerStarFv | :x: |
-| requestAppear__9PowerStarFv | :x: |
-| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isEndAppearDemo__9PowerStarCFv | :x: |
-| offAppearDemo__9PowerStarFv | :x: |
-| setupColor__9PowerStarFP9LiveActorPC7NameObjl | :x: |
-| setupColorAtResultSequence__9PowerStarFP9LiveActorb | :x: |
-| requestPointLight__9PowerStarFPC9LiveActorPC7NameObjl | :x: |
-| requestPointLightAtResultSequence__9PowerStarFPC9LiveActor | :x: |
-| getPowerStarWaitRotateSpeed__9PowerStarFv | :x: |
-| getBtpFrameCurrentStage__9PowerStarFl | :x: |
-| isCurrentStageKoopaVs3__9PowerStarFv | :x: |
-| initShadowPowerStar__9PowerStarFP9LiveActorb | :x: |
-| makeArchiveList__9PowerStarFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| control__9PowerStarFv | :x: |
+| initAfterPlacement__9PowerStarFv | :white_check_mark: |
+| appear__9PowerStarFv | :white_check_mark: |
+| makeActorAppeared__9PowerStarFv | :white_check_mark: |
+| requestAppear__9PowerStarFv | :white_check_mark: |
+| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isEndAppearDemo__9PowerStarCFv | :white_check_mark: |
+| offAppearDemo__9PowerStarFv | :white_check_mark: |
+| setupColor__9PowerStarFP9LiveActorPC7NameObjl | :white_check_mark: |
+| setupColorAtResultSequence__9PowerStarFP9LiveActorb | :white_check_mark: |
+| requestPointLight__9PowerStarFPC9LiveActorPC7NameObjl | :white_check_mark: |
+| requestPointLightAtResultSequence__9PowerStarFPC9LiveActor | :white_check_mark: |
+| getPowerStarWaitRotateSpeed__9PowerStarFv | :white_check_mark: |
+| getBtpFrameCurrentStage__9PowerStarFl | :white_check_mark: |
+| isCurrentStageKoopaVs3__9PowerStarFv | :white_check_mark: |
+| initShadowPowerStar__9PowerStarFP9LiveActorb | :white_check_mark: |
+| makeArchiveList__9PowerStarFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| control__9PowerStarFv | :white_check_mark: |
 | calcAndSetBaseMtx__9PowerStarFv | :x: |
-| receiveMsgPlayerAttack__9PowerStarFUlP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor | :x: |
-| initMapToolInfo__9PowerStarFRC12JMapInfoIter | :x: |
-| initModel__9PowerStarFv | :x: |
-| initSensorGrandStar__9PowerStarFv | :x: |
-| initShadow__9PowerStarFRC12JMapInfoIter | :x: |
+| receiveMsgPlayerAttack__9PowerStarFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initMapToolInfo__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
+| initModel__9PowerStarFv | :white_check_mark: |
+| initSensorGrandStar__9PowerStarFv | :white_check_mark: |
+| initShadow__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
 | initPosture__9PowerStarFv | :x: |
-| endAppearDemo__9PowerStarFv | :x: |
+| endAppearDemo__9PowerStarFv | :white_check_mark: |
 | getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getAppearCameraActor__9PowerStarFv | :x: |
 | getAppearCameraInfo__9PowerStarCFv | :x: |
-| requestAppearOrWait__9PowerStarFv | :x: |
-| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| requestAppearOrWait__9PowerStarFv | :white_check_mark: |
+| calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | processWait__9PowerStarFf | :x: |
 | exeAppearDemoRise__9PowerStarFv | :x: |
 | exeAppearDemoMove__9PowerStarFv | :x: |
@@ -4990,9 +4990,9 @@
 # PowerStarAppearPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20PowerStarAppearPointFPCc | :x: |
-| __dt__20PowerStarAppearPointFv | :x: |
-| init__20PowerStarAppearPointFRC12JMapInfoIter | :x: |
+| __ct__20PowerStarAppearPointFPCc | :white_check_mark: |
+| __dt__20PowerStarAppearPointFv | :white_check_mark: |
+| init__20PowerStarAppearPointFRC12JMapInfoIter | :white_check_mark: |
 
 
 # PowerStarHolder.o
@@ -5375,59 +5375,59 @@
 # RailMoveObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11RailMoveObjFPCc | :x: |
-| init__11RailMoveObjFRC12JMapInfoIter | :x: |
-| getSoundCalcPos__11RailMoveObjFv | :x: |
-| startClipped__11RailMoveObjFv | :x: |
-| endClipped__11RailMoveObjFv | :x: |
-| initCaseUseSwitchB__11RailMoveObjFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchB__11RailMoveObjFRC19MapObjActorInitInfo | :x: |
-| startMoveInner__11RailMoveObjFv | :x: |
-| move__11RailMoveObjFv | :x: |
-| doAtEndPoint__11RailMoveObjFv | :x: |
-| endMove__11RailMoveObjFv | :x: |
-| isMoving__11RailMoveObjCFv | :x: |
-| receiveOtherMsg__11RailMoveObjFUlP9HitSensorP9HitSensor | :x: |
-| exeWait__11RailMoveObjFv | :x: |
-| tryStartMove__11RailMoveObjFv | :x: |
-| exeMove__11RailMoveObjFv | :x: |
-| __ct__16RailMoveObjPressFPCc | :x: |
-| init__16RailMoveObjPressFRC12JMapInfoIter | :x: |
-| __ct__21RailMoveObjBreakAtEndFPCc | :x: |
-| doAtEndPoint__21RailMoveObjBreakAtEndFv | :x: |
-| connectToScene__19RailMoveIndirectObjFRC19MapObjActorInitInfo | :x: |
-| init__23RailMoveObjSwitchShadowFRC12JMapInfoIter | :x: |
-| initCaseUseSwitchA__23RailMoveObjSwitchShadowFRC19MapObjActorInitInfo | :x: |
-| startOnShadow__23RailMoveObjSwitchShadowFv | :x: |
-| __ct__15RailDemoMoveObjFPCc | :x: |
-| init__15RailDemoMoveObjFRC12JMapInfoIter | :x: |
-| tryStartMove__15RailDemoMoveObjFv | :x: |
-| startMoveInner__15RailDemoMoveObjFv | :x: |
-| move__15RailDemoMoveObjFv | :x: |
-| endMove__15RailDemoMoveObjFv | :x: |
-| __ct__17RailRotateMoveObjFPCc | :x: |
-| setupInitInfo__17RailRotateMoveObjFRC12JMapInfoIterP19MapObjActorInitInfo | :x: |
-| receiveOtherMsg__17RailRotateMoveObjFUlP9HitSensorP9HitSensor | :x: |
-| initCaseUseSwitchB__17RailRotateMoveObjFRC19MapObjActorInitInfo | :x: |
-| tryStartRotateAtPoint__17RailRotateMoveObjFv | :x: |
-| tryStartRotateBetweenPoints__17RailRotateMoveObjFv | :x: |
-| __sinit_\RailMoveObj_cpp | :x: |
-| __ct__Q214NrvRailMoveObj12HostTypeWaitFv | :x: |
-| __ct__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnFv | :x: |
-| __ct__Q214NrvRailMoveObj12HostTypeMoveFv | :x: |
-| __ct__Q214NrvRailMoveObj12HostTypeDoneFv | :x: |
-| execute__Q214NrvRailMoveObj12HostTypeDoneCFP5Spine | :x: |
-| execute__Q214NrvRailMoveObj12HostTypeMoveCFP5Spine | :x: |
-| execute__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :x: |
-| execute__Q214NrvRailMoveObj12HostTypeWaitCFP5Spine | :x: |
-| __cl__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__16RailMoveObjPressFv | :x: |
-| __dt__21RailMoveObjBreakAtEndFv | :x: |
-| __dt__19RailMoveIndirectObjFv | :x: |
-| __dt__23RailMoveObjSwitchShadowFv | :x: |
-| __dt__15RailDemoMoveObjFv | :x: |
-| __dt__17RailRotateMoveObjFv | :x: |
+| __ct__11RailMoveObjFPCc | :white_check_mark: |
+| init__11RailMoveObjFRC12JMapInfoIter | :white_check_mark: |
+| getSoundCalcPos__11RailMoveObjFv | :white_check_mark: |
+| startClipped__11RailMoveObjFv | :white_check_mark: |
+| endClipped__11RailMoveObjFv | :white_check_mark: |
+| initCaseUseSwitchB__11RailMoveObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchB__11RailMoveObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| startMoveInner__11RailMoveObjFv | :white_check_mark: |
+| move__11RailMoveObjFv | :white_check_mark: |
+| doAtEndPoint__11RailMoveObjFv | :white_check_mark: |
+| endMove__11RailMoveObjFv | :white_check_mark: |
+| isMoving__11RailMoveObjCFv | :white_check_mark: |
+| receiveOtherMsg__11RailMoveObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| exeWait__11RailMoveObjFv | :white_check_mark: |
+| tryStartMove__11RailMoveObjFv | :white_check_mark: |
+| exeMove__11RailMoveObjFv | :white_check_mark: |
+| __ct__16RailMoveObjPressFPCc | :white_check_mark: |
+| init__16RailMoveObjPressFRC12JMapInfoIter | :white_check_mark: |
+| __ct__21RailMoveObjBreakAtEndFPCc | :white_check_mark: |
+| doAtEndPoint__21RailMoveObjBreakAtEndFv | :white_check_mark: |
+| connectToScene__19RailMoveIndirectObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| init__23RailMoveObjSwitchShadowFRC12JMapInfoIter | :white_check_mark: |
+| initCaseUseSwitchA__23RailMoveObjSwitchShadowFRC19MapObjActorInitInfo | :white_check_mark: |
+| startOnShadow__23RailMoveObjSwitchShadowFv | :white_check_mark: |
+| __ct__15RailDemoMoveObjFPCc | :white_check_mark: |
+| init__15RailDemoMoveObjFRC12JMapInfoIter | :white_check_mark: |
+| tryStartMove__15RailDemoMoveObjFv | :white_check_mark: |
+| startMoveInner__15RailDemoMoveObjFv | :white_check_mark: |
+| move__15RailDemoMoveObjFv | :white_check_mark: |
+| endMove__15RailDemoMoveObjFv | :white_check_mark: |
+| __ct__17RailRotateMoveObjFPCc | :white_check_mark: |
+| setupInitInfo__17RailRotateMoveObjFRC12JMapInfoIterP19MapObjActorInitInfo | :white_check_mark: |
+| receiveOtherMsg__17RailRotateMoveObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initCaseUseSwitchB__17RailRotateMoveObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| tryStartRotateAtPoint__17RailRotateMoveObjFv | :white_check_mark: |
+| tryStartRotateBetweenPoints__17RailRotateMoveObjFv | :white_check_mark: |
+| __sinit_\RailMoveObj_cpp | :white_check_mark: |
+| __ct__Q214NrvRailMoveObj12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnFv | :white_check_mark: |
+| __ct__Q214NrvRailMoveObj12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q214NrvRailMoveObj12HostTypeDoneFv | :white_check_mark: |
+| execute__Q214NrvRailMoveObj12HostTypeDoneCFP5Spine | :white_check_mark: |
+| execute__Q214NrvRailMoveObj12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :white_check_mark: |
+| execute__Q214NrvRailMoveObj12HostTypeWaitCFP5Spine | :white_check_mark: |
+| __cl__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__16RailMoveObjPressFv | :white_check_mark: |
+| __dt__21RailMoveObjBreakAtEndFv | :white_check_mark: |
+| __dt__19RailMoveIndirectObjFv | :white_check_mark: |
+| __dt__23RailMoveObjSwitchShadowFv | :white_check_mark: |
+| __dt__15RailDemoMoveObjFv | :white_check_mark: |
+| __dt__17RailRotateMoveObjFv | :white_check_mark: |
 
 
 # RainCloud.o
@@ -6120,16 +6120,16 @@
 # SimpleTimerObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SimpleTimerObjFPCc | :x: |
-| init__14SimpleTimerObjFRC12JMapInfoIter | :x: |
-| exeTimer__14SimpleTimerObjFv | :x: |
-| appear__14SimpleTimerObjFv | :x: |
-| kill__14SimpleTimerObjFv | :x: |
-| control__14SimpleTimerObjFv | :x: |
-| __dt__14SimpleTimerObjFv | :x: |
-| __sinit_\SimpleTimerObj_cpp | :x: |
-| __ct__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerFv | :x: |
-| execute__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerCFP5Spine | :x: |
+| __ct__14SimpleTimerObjFPCc | :white_check_mark: |
+| init__14SimpleTimerObjFRC12JMapInfoIter | :white_check_mark: |
+| exeTimer__14SimpleTimerObjFv | :white_check_mark: |
+| appear__14SimpleTimerObjFv | :white_check_mark: |
+| kill__14SimpleTimerObjFv | :white_check_mark: |
+| control__14SimpleTimerObjFv | :white_check_mark: |
+| __dt__14SimpleTimerObjFv | :white_check_mark: |
+| __sinit_\SimpleTimerObj_cpp | :white_check_mark: |
+| __ct__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerFv | :white_check_mark: |
+| execute__Q217NrvSimpleTimerObj22SimpleTimerObjNrvTimerCFP5Spine | :white_check_mark: |
 
 
 # SmallStone.o
@@ -7383,20 +7383,20 @@
 # TreasureSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12TreasureSpotFPCc | :x: |
-| init__12TreasureSpotFRC12JMapInfoIter | :x: |
-| exeSpout__12TreasureSpotFv | :x: |
-| control__12TreasureSpotFv | :x: |
-| receiveMsgPlayerAttack__12TreasureSpotFUlP9HitSensorP9HitSensor | :x: |
-| switchEmitGlow__12TreasureSpotFv | :x: |
-| __dt__12TreasureSpotFv | :x: |
-| __sinit_\TreasureSpot_cpp | :x: |
-| __ct__Q215NrvTreasureSpot19TreasureSpotNrvWaitFv | :x: |
-| __ct__Q215NrvTreasureSpot18TreasureSpotNrvEndFv | :x: |
-| __ct__Q215NrvTreasureSpot20TreasureSpotNrvSpoutFv | :x: |
-| execute__Q215NrvTreasureSpot20TreasureSpotNrvSpoutCFP5Spine | :x: |
-| execute__Q215NrvTreasureSpot18TreasureSpotNrvEndCFP5Spine | :x: |
-| execute__Q215NrvTreasureSpot19TreasureSpotNrvWaitCFP5Spine | :x: |
+| __ct__12TreasureSpotFPCc | :white_check_mark: |
+| init__12TreasureSpotFRC12JMapInfoIter | :white_check_mark: |
+| exeSpout__12TreasureSpotFv | :white_check_mark: |
+| control__12TreasureSpotFv | :white_check_mark: |
+| receiveMsgPlayerAttack__12TreasureSpotFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| switchEmitGlow__12TreasureSpotFv | :white_check_mark: |
+| __dt__12TreasureSpotFv | :white_check_mark: |
+| __sinit_\TreasureSpot_cpp | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot19TreasureSpotNrvWaitFv | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot18TreasureSpotNrvEndFv | :white_check_mark: |
+| __ct__Q215NrvTreasureSpot20TreasureSpotNrvSpoutFv | :white_check_mark: |
+| execute__Q215NrvTreasureSpot20TreasureSpotNrvSpoutCFP5Spine | :white_check_mark: |
+| execute__Q215NrvTreasureSpot18TreasureSpotNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q215NrvTreasureSpot19TreasureSpotNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # Tsukidashikun.o
@@ -7972,33 +7972,33 @@
 # MapPartsFloatingForce.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SpringStepFfff | :x: |
-| addSpringVelocity__10SpringStepFf | :x: |
-| setSpringBaseValue__10SpringStepFf | :x: |
-| __ct__21MapPartsFloatingForceFP9LiveActor | :x: |
-| init__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
-| setObjectName__21MapPartsFloatingForceFPCc | :x: |
-| initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
-| initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :x: |
+| __ct__10SpringStepFfff | :white_check_mark: |
+| addSpringVelocity__10SpringStepFf | :white_check_mark: |
+| setSpringBaseValue__10SpringStepFf | :white_check_mark: |
+| __ct__21MapPartsFloatingForceFP9LiveActor | :white_check_mark: |
+| init__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
+| setObjectName__21MapPartsFloatingForceFPCc | :white_check_mark: |
+| initForNormalMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
+| initForSpringMotion__21MapPartsFloatingForceFRC12JMapInfoIter | :white_check_mark: |
 | start__21MapPartsFloatingForceFv | :x: |
-| updateVelocity__21MapPartsFloatingForceFv | :x: |
+| updateVelocity__21MapPartsFloatingForceFv | :white_check_mark: |
 | updateVelocitySpring__21MapPartsFloatingForceFv | :x: |
-| tryOn__21MapPartsFloatingForceFv | :x: |
-| tryReturn__21MapPartsFloatingForceFv | :x: |
-| exeWait__21MapPartsFloatingForceFv | :x: |
+| tryOn__21MapPartsFloatingForceFv | :white_check_mark: |
+| tryReturn__21MapPartsFloatingForceFv | :white_check_mark: |
+| exeWait__21MapPartsFloatingForceFv | :white_check_mark: |
 | exeMove__21MapPartsFloatingForceFv | :x: |
-| exeMoveSpring__21MapPartsFloatingForceFv | :x: |
+| exeMoveSpring__21MapPartsFloatingForceFv | :white_check_mark: |
 | exeMoveReturn__21MapPartsFloatingForceFv | :x: |
-| __dt__21MapPartsFloatingForceFv | :x: |
-| __sinit_\MapPartsFloatingForce_cpp | :x: |
-| __ct__Q224NrvMapPartsFloatingForce12HostTypeWaitFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce12HostTypeMoveFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringFv | :x: |
-| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnFv | :x: |
-| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce12HostTypeMoveCFP5Spine | :x: |
-| execute__Q224NrvMapPartsFloatingForce12HostTypeWaitCFP5Spine | :x: |
+| __dt__21MapPartsFloatingForceFv | :white_check_mark: |
+| __sinit_\MapPartsFloatingForce_cpp | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringFv | :white_check_mark: |
+| __ct__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnFv | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveReturnCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce18HostTypeMoveSpringCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q224NrvMapPartsFloatingForce12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # MapPartsFunction.o

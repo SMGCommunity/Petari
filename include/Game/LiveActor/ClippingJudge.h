@@ -20,3 +20,7 @@ public:
     THex3f mClipFrustums[0x8];
     f32  mClipDistances[0x8];
 };
+
+namespace MR {
+    ClippingJudge* getClippingJudge();
+};

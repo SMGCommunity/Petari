@@ -1,7 +1,7 @@
 Symbol Name, Object File, Library Archive, Matching
 __ct__15ActiveActorListFi,ActiveActorList.o,LiveActor.a,true
 isFull__15ActiveActorListCFv,ActiveActorList.o,LiveActor.a,true
-addActor__15ActiveActorListFP9LiveActor,ActiveActorList.o,LiveActor.a,false
+addActor__15ActiveActorListFP9LiveActor,ActiveActorList.o,LiveActor.a,true
 removeDeadActor__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
 clear__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
 killAll__15ActiveActorListFv,ActiveActorList.o,LiveActor.a,true
@@ -110,10 +110,10 @@ setFarClipLevel__19ClippingActorHolderFP9LiveActorl,ClippingActorHolder.o,LiveAc
 find__19ClippingActorHolderCFPC9LiveActor,ClippingActorHolder.o,LiveActor.a,false
 __dt__19ClippingActorHolderFv,ClippingActorHolder.o,LiveActor.a,true
 __ct__17ClippingActorInfoFP9LiveActor,ClippingActorInfo.o,LiveActor.a,true
-judgeClipping__17ClippingActorInfoFv,ClippingActorInfo.o,LiveActor.a,false
-isJudgedToClip__17ClippingActorInfoCFv,ClippingActorInfo.o,LiveActor.a,false
-isGroupClipping__17ClippingActorInfoCFv,ClippingActorInfo.o,LiveActor.a,false
-setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3<f>,ClippingActorInfo.o,LiveActor.a,false
+judgeClipping__17ClippingActorInfoFv,ClippingActorInfo.o,LiveActor.a,true
+isJudgedToClip__17ClippingActorInfoCFv,ClippingActorInfo.o,LiveActor.a,true
+isGroupClipping__17ClippingActorInfoCFv,ClippingActorInfo.o,LiveActor.a,true
+setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3<f>,ClippingActorInfo.o,LiveActor.a,true
 setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter,ClippingActorInfo.o,LiveActor.a,false
 __ct__21ClippingActorInfoListFi,ClippingActorInfo.o,LiveActor.a,true
 add__21ClippingActorInfoListFP17ClippingActorInfo,ClippingActorInfo.o,LiveActor.a,true
@@ -528,11 +528,11 @@ isStop__13AnmPlayerBaseCFv,ModelManager.o,LiveActor.a,false
 __ct__8ModelObjFPCcPCcPA4_fiiib,ModelObj.o,LiveActor.a,true
 init__8ModelObjFRC12JMapInfoIter,ModelObj.o,LiveActor.a,true
 calcAndSetBaseMtx__8ModelObjFv,ModelObj.o,LiveActor.a,true
-init__11ModelObjNpcFRC12JMapInfoIter,ModelObj.o,LiveActor.a,false
-control__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-calcAndSetBaseMtx__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-__dt__11ModelObjNpcFv,ModelObj.o,LiveActor.a,false
-__ct__11ModelObjNpcFPCcPCcPA4_f,ModelObj.o,LiveActor.a,false
+init__11ModelObjNpcFRC12JMapInfoIter,ModelObj.o,LiveActor.a,true
+control__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+calcAndSetBaseMtx__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+__dt__11ModelObjNpcFv,ModelObj.o,LiveActor.a,true
+__ct__11ModelObjNpcFPCcPCcPA4_f,ModelObj.o,LiveActor.a,true
 executeOnEnd__5NerveCFP5Spine,Nerve.o,LiveActor.a,true
 __ct__10PartsModelFP9LiveActorPCcPCcPA4_fib,PartsModel.o,LiveActor.a,true
 makeActorAppeared__10PartsModelFv,PartsModel.o,LiveActor.a,true
