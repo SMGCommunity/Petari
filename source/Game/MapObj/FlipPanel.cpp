@@ -169,7 +169,7 @@ void FlipPanel::calcAndSetBaseMtx() {
     }
 }
 
-s32 FlipPanel::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+u32 FlipPanel::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (isNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance)) {
         return 0;
     }
@@ -349,7 +349,7 @@ void FlipPanelObserver::initAfterPlacement() {
 }
 
 #ifdef NON_MATCHING
-s32 FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+u32 FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
     if(msg == 0x66) {
         if (_90) {
             if (_9C) {
