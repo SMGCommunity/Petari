@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/Nerve.h"
+#include "Game/Util/Functor.h"
 class NameObj;
 class LiveActor;
 
@@ -10,6 +11,7 @@ namespace MR {
     bool isDemoCast(const LiveActor *, const char *);
 
     void registerDemoActionNerve(const LiveActor *, const Nerve *, const char *);
+    bool tryRegisterDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
 
     void registerDemoSimpleCastAll(LiveActor *);
     void registerDemoSimpleCastAll(NameObj *);

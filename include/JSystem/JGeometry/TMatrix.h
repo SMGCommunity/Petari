@@ -11,6 +11,8 @@ namespace JGeometry {
         void set(const SMatrix34C<T> &rSrc);
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
+        void scale(T);
+
         inline void setInline(const SMatrix34C<T> &rSrc) {
             register const SMatrix34C<T> *pSrc = &rSrc;
             register SMatrix34C<T> *pDest = this;

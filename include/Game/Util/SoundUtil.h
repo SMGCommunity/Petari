@@ -12,6 +12,11 @@ namespace MR {
     void stopStageBGM(u32);
     void unlockStageBGM();
 
+    void moveVolumeStageBGM(f32, u32);
+    void moveVolumeStageBGMForNoteFairy(f32, u32);
+
+    void moreVolumeSubBGM(f32, u32);
+
     void stopSubBGM(u32);
 
     void startSound(const LiveActor *, const char *, s32, s32);

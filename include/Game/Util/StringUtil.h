@@ -18,6 +18,8 @@ namespace MR {
 
     void copyString(char *, const char *, u32);
 
+    bool isNullOrEmptyString(const char *);
+
     void scan32(const char *, const char *, s32 *);
     void scan16(const char *, const char *, u16 *);
     void scan8(const char *, const char *, u8 *);

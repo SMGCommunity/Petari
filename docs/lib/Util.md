@@ -25,7 +25,7 @@
 | HashUtil.o | 41.80790960451977% | 7 / 11 | 63.63636363636363% |
 | JMapUtil.o | 10.631229235880399% | 8 / 86 | 9.30232558139535% |
 | JointUtil.o | 0.0% | 0 / 33 | 0.0% |
-| LayoutUtil.o | 0.0% | 0 / 166 | 0.0% |
+| LayoutUtil.o | 0.21998742928975487% | 2 / 166 | 1.2048192771084338% |
 | LightUtil.o | 0.0% | 0 / 5 | 0.0% |
 | LiveActorUtil.o | 1.9562715765247412% | 12 / 345 | 3.4782608695652173% |
 | MapPartsUtil.o | 0.0% | 0 / 58 | 0.0% |
@@ -75,7 +75,7 @@
 | SpringValue.o | 0.0% | 0 / 4 | 0.0% |
 | TriangleFilter.o | 0.0% | 0 / 2 | 0.0% |
 | TriggerChecker.o | 0.0% | 0 / 6 | 0.0% |
-| ValueControl.o | 0.0% | 0 / 11 | 0.0% |
+| ValueControl.o | 45.6% | 8 / 11 | 72.72727272727273% |
 
 
 # ActorCameraUtil.o
@@ -1629,8 +1629,8 @@
 | GetEndIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;CFv | :x: |
 | __ne__Q24nw4r2utFQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;13ConstIteratorQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;13ConstIterator | :x: |
 | __as__Q34nw4r2ut4RectFRCQ34nw4r2ut4Rect | :x: |
-| setTextBoxNumberRecursive__2MRFP11LayoutActorPCcl | :x: |
-| clearTextBoxMessageRecursive__2MRFP11LayoutActorPCc | :x: |
+| setTextBoxNumberRecursive__2MRFP11LayoutActorPCcl | :white_check_mark: |
+| clearTextBoxMessageRecursive__2MRFP11LayoutActorPCc | :white_check_mark: |
 | createAndSetupIconAButton__2MRFP11LayoutActorbb | :x: |
 | setCometAnimFromId__2MRFP11LayoutActoriUl | :x: |
 | __ct__Q34nw4r3lyt6TexMapFRC9_GXTexObj | :x: |
@@ -4075,16 +4075,16 @@
 # ValueControl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12ValueControlFi | :x: |
-| setDirToOne__12ValueControlFv | :x: |
-| setDirToOneResetFrame__12ValueControlFv | :x: |
-| setDirToZero__12ValueControlFv | :x: |
-| setDirToZeroResetFrame__12ValueControlFv | :x: |
+| __ct__12ValueControlFi | :white_check_mark: |
+| setDirToOne__12ValueControlFv | :white_check_mark: |
+| setDirToOneResetFrame__12ValueControlFv | :white_check_mark: |
+| setDirToZero__12ValueControlFv | :white_check_mark: |
+| setDirToZeroResetFrame__12ValueControlFv | :white_check_mark: |
 | setMaxFrame__12ValueControlFi | :x: |
 | update__12ValueControlFv | :x: |
-| setZero__12ValueControlFv | :x: |
-| setOne__12ValueControlFv | :x: |
+| setZero__12ValueControlFv | :white_check_mark: |
+| setOne__12ValueControlFv | :white_check_mark: |
 | getValue__12ValueControlCFv | :x: |
-| resetFrame__12ValueControlFv | :x: |
+| resetFrame__12ValueControlFv | :white_check_mark: |
 
 

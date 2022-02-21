@@ -1,6 +1,7 @@
 #include "Game/NameObj/NameObj.h"
 #include "Game/NameObj/NameObjRegister.h"
 #include "Game/SingletonHolder.h"
+#include "Game/Util.h"
 
 NameObj::NameObj(const char *pName) {
     mName = pName;
@@ -54,18 +55,44 @@ void NameObj::executeMovement() {
     }
 }
 
-#ifdef NON_MATCHING
-// mFlags does not get reloaded in the block
 void NameObj::requestSuspend() {
-    if ((mFlags & 0x4) == 0x4) {
-        mFlags &= 0xFFFFFFFB;
+    u16 flag = (mFlags & 0x4);
+    if (flag == 0x4) {
+        mFlags &= ~0x4;
+    }
+    mFlags |= 2; 
+}
+
+void NameObj::requestResume() {
+    u16 flag = (mFlags & 0x2);
+    if (flag == 0x2) {
+        mFlags &= ~0x2;
+    }
+    mFlags |= 4;
+}
+
+void NameObj::syncWithFlags() {
+    u16 flag = (mFlags & 0x2);
+    if (flag == 0x2) {
+        flag = mFlags;
+        flag &= ~0x2;
+        flag |= 0x1;
+        mFlags = flag;
     }
 
-    mFlags |= 2;
+    flag = (mFlags & 0x4);
+    if (flag == 0x4) {
+        flag = mFlags & ~0x4;
+        mFlags = flag & ~0x1;
+    }
 }
-#endif
 
-// same issues will persist with these, decomp when requestSuspend matches
+void NameObjFunction::requestMovementOn(NameObj *pObj) {
+    pObj->requestResume();
+    MR::notifyRequestNameObjMovementOnOff();
+}
 
-// NameObj::requestResume
-// NameObj::syncWithFlags
+void NameObjFunction::requestMovementOff(NameObj *pObj) {
+    pObj->requestSuspend();
+    MR::notifyRequestNameObjMovementOnOff();
+}

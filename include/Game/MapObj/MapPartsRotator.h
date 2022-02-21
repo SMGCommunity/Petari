@@ -1,10 +1,32 @@
 #pragma once
 
 #include "Game/MapObj/MapPartsFunction.h"
+#include "Game/LiveActor/Nerve.h"
 
-class MapPartsRotator : public MapPartsFunction {
+class MapPartsRotatorBase : public MapPartsFunction {
+public:
+    virtual ~MapPartsRotatorBase();
+
+    virtual bool isMoving() const {
+        return false;
+    }
+
+    virtual bool isOnReverse() const {
+        return false;
+    }
+
+    virtual f32 getRotateSpeed() const {
+        return 1.0f;
+    }
+};
+
+class MapPartsRotator : public MapPartsRotatorBase {
 public:
     MapPartsRotator(LiveActor *);
+
+    enum AxisType {
+        
+    };
 
     virtual ~MapPartsRotator();
     virtual void init(const JMapInfoIter &);
@@ -25,6 +47,8 @@ public:
     void restartAtEnd();
     void initRotateSpeed(const JMapInfoIter &);
     bool isReachedTargetAngle() const;
+    void updateRotateMtx(AxisType, f32);
+    void calcRotateAxisDir(AxisType, TVec3f *) const;
     
     void exeRotate();
     void exeRotateStart();
@@ -43,4 +67,12 @@ public:
     TMtx34f _70;
     f32 _A0;
     bool mIsOnReverse;  // _A4
+};
+
+namespace NrvMapPartsRotator {
+    NERVE(HostTypeNeverMove);
+    NERVE(HostTypeWait);
+    NERVE(HostTypeRotateStart);
+    NERVE(HostTypeRotate);
+    NERVE(HostTypeStopAtEnd);
 };

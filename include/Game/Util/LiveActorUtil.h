@@ -12,6 +12,7 @@ class ActorLightCtrl;
 class ProjmapEffectMtxSetter;
 class ModelObj;
 class BrkCtrl;
+class PartsModel;
 
 namespace MR {
     bool isExistIndirectTexture(const LiveActor *);
@@ -20,10 +21,12 @@ namespace MR {
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
     void setClippingTypeSphere(LiveActor *, f32);
+    void setClippingFarMax(LiveActor *);
     void setClippingFar200m(LiveActor *);
     void startBtk(const LiveActor *, const char *);
 
     LiveActorGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
+    LiveActorGroup* getGroupFromArray(const LiveActor *);
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
@@ -55,6 +58,10 @@ namespace MR {
     const char* getModelResName(const LiveActor *);
 
     void calcAnimDirect(LiveActor *);
+
+    void calcGravity(LiveActor *);
+
+    void zeroVelocity(LiveActor *);
 
     void initLightCtrl(LiveActor *);
     void initLightCtrlForPlayer(LiveActor *);
@@ -116,8 +123,10 @@ namespace MR {
     bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
 
     void setAllAnimFrame(const LiveActor *, const char *, f32);
+    void setAllAnimFrameAtEnd(const LiveActor *, const char *);
 
     void startBck(const LiveActor *, const char *, const char *);
+    void startBckNoInterpole(const LiveActor *, const char *);
     void startBrk(const LiveActor *, const char *);
     void startBva(const LiveActor *, const char *);
     void setBvaFrameAndStop(const LiveActor *, f32);
@@ -126,7 +135,10 @@ namespace MR {
 
     f32 getBckFrameMax(const LiveActor *);
     f32 getBrkFrameMax(const LiveActor *);
+    f32 getBtkFrameMax(const LiveActor *);
     void setBckFrameAndStop(const LiveActor *, f32);
+
+    void setBtkFrame(LiveActor *, f32);
 
     bool isExistBck(const LiveActor *, const char *);
     bool isExistBva(const LiveActor *, const char *);
@@ -142,6 +154,8 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor *, const TPos3f &);
 
+    void stopBck(const LiveActor *);
+
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);
@@ -156,4 +170,8 @@ namespace MR {
     void callRequestMovementOnAllGroupMember(const LiveActor *);
 
     void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
+
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor *, const char *, const char *, MtxPtr);
+
+    void startAction(const LiveActor *, const char *);
 }

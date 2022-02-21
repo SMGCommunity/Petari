@@ -2,7 +2,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
 | ActorAppearSwitchListener.o | 0.0% | 0 / 4 | 0.0% |
-| Air.o | 0.0% | 0 / 33 | 0.0% |
+| Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% |
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% |
 | Butterfly.o | 0.0% | 0 / 37 | 0.0% |
 | CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% |
@@ -56,11 +56,11 @@
 | PlanetMapWithoutHighModel.o | 0.0% | 0 / 4 | 0.0% |
 | QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% |
 | RaceManager.o | 0.0% | 0 / 95 | 0.0% |
-| RaceRail.o | 0.0% | 0 / 23 | 0.0% |
-| RailGraph.o | 0.0% | 0 / 9 | 0.0% |
-| RailGraphEdge.o | 0.0% | 0 / 6 | 0.0% |
-| RailGraphIter.o | 0.0% | 0 / 15 | 0.0% |
-| RailGraphNode.o | 0.0% | 0 / 1 | 0.0% |
+| RaceRail.o | 42.25053078556263% | 20 / 23 | 86.95652173913044% |
+| RailGraph.o | 100.0% | 9 / 9 | 100.0% |
+| RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% |
+| RailGraphIter.o | 100.0% | 15 / 15 | 100.0% |
+| RailGraphNode.o | 100.0% | 1 / 1 | 100.0% |
 | RailPart.o | 60.0% | 9 / 12 | 75.0% |
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
 | SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
@@ -81,7 +81,7 @@
 | WaterInfo.o | 0.0% | 0 / 3 | 0.0% |
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% |
 | WaterPoint.o | 0.0% | 0 / 4 | 0.0% |
-| WaterRoad.o | 0.0% | 0 / 49 | 0.0% |
+| WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% |
 | WhirlPoolAccelerator.o | 0.0% | 0 / 11 | 0.0% |
 
 
@@ -97,15 +97,15 @@
 # Air.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__3AirFPCc | :x: |
-| init__3AirFRC12JMapInfoIter | :x: |
-| appear__3AirFv | :x: |
-| isDrawing__3AirCFv | :x: |
-| initModel__3AirFPCc | :x: |
-| tryChange__3AirFv | :x: |
-| appearFadeIn__3AirFv | :x: |
-| appearFadeOut__3AirFv | :x: |
-| exeIn__3AirFv | :x: |
+| __ct__3AirFPCc | :white_check_mark: |
+| init__3AirFRC12JMapInfoIter | :white_check_mark: |
+| appear__3AirFv | :white_check_mark: |
+| isDrawing__3AirCFv | :white_check_mark: |
+| initModel__3AirFPCc | :white_check_mark: |
+| tryChange__3AirFv | :white_check_mark: |
+| appearFadeIn__3AirFv | :white_check_mark: |
+| appearFadeOut__3AirFv | :white_check_mark: |
+| exeIn__3AirFv | :white_check_mark: |
 | exeOut__3AirFv | :x: |
 | __ct__16ProjectionMapAirFPCc | :x: |
 | __dt__3AirFv | :x: |
@@ -123,9 +123,9 @@
 | __ct__Q26NrvAir11HostTypeOutFv | :x: |
 | execute__Q26NrvAir11HostTypeOutCFP5Spine | :x: |
 | execute__Q26NrvAir10HostTypeInCFP5Spine | :x: |
-| Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :x: |
-| __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__10AirFar100mFv | :x: |
 | __dt__16ProjectionMapAirFv | :x: |
 | __dt__12PriorDrawAirFv | :x: |
@@ -1509,27 +1509,27 @@
 # RaceRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8RaceRailFPCc | :x: |
-| __ct__11PlayerRacerFPCc | :x: |
-| appear__11PlayerRacerFv | :x: |
-| init__11PlayerRacerFRC12JMapInfoIter | :x: |
-| startRacer__11PlayerRacerFv | :x: |
+| __ct__8RaceRailFPCc | :white_check_mark: |
+| __ct__11PlayerRacerFPCc | :white_check_mark: |
+| appear__11PlayerRacerFv | :white_check_mark: |
+| init__11PlayerRacerFRC12JMapInfoIter | :white_check_mark: |
+| startRacer__11PlayerRacerFv | :white_check_mark: |
 | updateRacer__11PlayerRacerFPC11RaceManager | :x: |
-| goalRacer__11PlayerRacerFv | :x: |
-| loseRacer__11PlayerRacerFv | :x: |
-| exitRacer__11PlayerRacerFv | :x: |
-| __dt__11PlayerRacerFv | :x: |
-| __dt__8RaceRailFv | :x: |
-| @140@exitRacer__11PlayerRacerFv | :x: |
-| @140@resetRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@loseRacer__11PlayerRacerFv | :x: |
-| @140@goalRacer__11PlayerRacerFv | :x: |
-| @140@updateRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@startRacer__11PlayerRacerFv | :x: |
-| @140@prepRacer__11PlayerRacerFPC11RaceManager | :x: |
-| @140@initRacer__11PlayerRacerFv | :x: |
-| init__8RaceRailFRC12JMapInfoIter | :x: |
-| initRacer__11PlayerRacerFv | :x: |
+| goalRacer__11PlayerRacerFv | :white_check_mark: |
+| loseRacer__11PlayerRacerFv | :white_check_mark: |
+| exitRacer__11PlayerRacerFv | :white_check_mark: |
+| __dt__11PlayerRacerFv | :white_check_mark: |
+| __dt__8RaceRailFv | :white_check_mark: |
+| @140@exitRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@resetRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@loseRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@goalRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@updateRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@startRacer__11PlayerRacerFv | :white_check_mark: |
+| @140@prepRacer__11PlayerRacerFPC11RaceManager | :white_check_mark: |
+| @140@initRacer__11PlayerRacerFv | :white_check_mark: |
+| init__8RaceRailFRC12JMapInfoIter | :white_check_mark: |
+| initRacer__11PlayerRacerFv | :white_check_mark: |
 | prepRacer__11PlayerRacerFPC11RaceManager | :x: |
 | resetRacer__11PlayerRacerFPC11RaceManager | :x: |
 
@@ -1537,52 +1537,52 @@
 # RailGraph.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9RailGraphFv | :x: |
-| addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :x: |
-| __as__13RailGraphEdgeFRC13RailGraphEdge | :x: |
-| getNode__9RailGraphCFl | :x: |
-| getEdge__9RailGraphCFl | :x: |
-| isValidEdge__9RailGraphCFl | :x: |
-| connectEdgeToNode__9RailGraphFll | :x: |
-| getIterator__9RailGraphCFv | :x: |
+| __ct__9RailGraphFv | :white_check_mark: |
+| addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge | :white_check_mark: |
+| __as__13RailGraphEdgeFRC13RailGraphEdge | :white_check_mark: |
+| getNode__9RailGraphCFl | :white_check_mark: |
+| getEdge__9RailGraphCFl | :white_check_mark: |
+| isValidEdge__9RailGraphCFl | :white_check_mark: |
+| connectEdgeToNode__9RailGraphFll | :white_check_mark: |
+| getIterator__9RailGraphCFv | :white_check_mark: |
 
 
 # RailGraphEdge.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphEdgeFv | :x: |
-| clearConnectInfo__13RailGraphEdgeFv | :x: |
-| getNextNode__13RailGraphEdgeCFl | :x: |
-| getNextEdge__13RailGraphEdgeCFl | :x: |
-| setNextEdge__13RailGraphEdgeFll | :x: |
-| setArgs__13RailGraphEdgeFPC8JMapInfol | :x: |
+| __ct__13RailGraphEdgeFv | :white_check_mark: |
+| clearConnectInfo__13RailGraphEdgeFv | :white_check_mark: |
+| getNextNode__13RailGraphEdgeCFl | :white_check_mark: |
+| getNextEdge__13RailGraphEdgeCFl | :white_check_mark: |
+| setNextEdge__13RailGraphEdgeFll | :white_check_mark: |
+| setArgs__13RailGraphEdgeFPC8JMapInfol | :white_check_mark: |
 
 
 # RailGraphIter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphIterFPC9RailGraph | :x: |
-| moveNodeNext__13RailGraphIterFv | :x: |
-| setNode__13RailGraphIterFl | :x: |
-| watchStartEdge__13RailGraphIterFv | :x: |
-| watchNextEdge__13RailGraphIterFv | :x: |
-| isWatchEndEdge__13RailGraphIterCFv | :x: |
-| selectEdge__13RailGraphIterFv | :x: |
-| selectEdge__13RailGraphIterFl | :x: |
-| isWatchedPrevEdge__13RailGraphIterCFv | :x: |
-| isSelectedEdge__13RailGraphIterCFv | :x: |
-| getCurrentNode__13RailGraphIterCFv | :x: |
-| getNextNode__13RailGraphIterCFv | :x: |
-| getWatchNode__13RailGraphIterCFv | :x: |
-| getCurrentEdge__13RailGraphIterCFv | :x: |
-| getWatchEdge__13RailGraphIterCFv | :x: |
+| __ct__13RailGraphIterFPC9RailGraph | :white_check_mark: |
+| moveNodeNext__13RailGraphIterFv | :white_check_mark: |
+| setNode__13RailGraphIterFl | :white_check_mark: |
+| watchStartEdge__13RailGraphIterFv | :white_check_mark: |
+| watchNextEdge__13RailGraphIterFv | :white_check_mark: |
+| isWatchEndEdge__13RailGraphIterCFv | :white_check_mark: |
+| selectEdge__13RailGraphIterFv | :white_check_mark: |
+| selectEdge__13RailGraphIterFl | :white_check_mark: |
+| isWatchedPrevEdge__13RailGraphIterCFv | :white_check_mark: |
+| isSelectedEdge__13RailGraphIterCFv | :white_check_mark: |
+| getCurrentNode__13RailGraphIterCFv | :white_check_mark: |
+| getNextNode__13RailGraphIterCFv | :white_check_mark: |
+| getWatchNode__13RailGraphIterCFv | :white_check_mark: |
+| getCurrentEdge__13RailGraphIterCFv | :white_check_mark: |
+| getWatchEdge__13RailGraphIterCFv | :white_check_mark: |
 
 
 # RailGraphNode.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13RailGraphNodeFv | :x: |
+| __ct__13RailGraphNodeFv | :white_check_mark: |
 
 
 # RailPart.o
@@ -2047,11 +2047,11 @@
 | initPoints__18WaterRoadModelInfoFP9WaterRoad | :x: |
 | initDisplayList__18WaterRoadModelInfoFv | :x: |
 | sendGD__18WaterRoadModelInfoCFv | :x: |
-| drawGD__18WaterRoadModelInfoCFv | :x: |
+| drawGD__18WaterRoadModelInfoCFv | :white_check_mark: |
 | drawDirect__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
-| calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
+| calcDemoDrawPointNum__18WaterRoadModelInfoCFPC9WaterRoad | :white_check_mark: |
 | loadMaterialHigh__18WaterRoadModelInfoCFPC9WaterRoad | :x: |
-| loadMaterialLow__18WaterRoadModelInfoCFv | :x: |
+| loadMaterialLow__18WaterRoadModelInfoCFv | :white_check_mark: |
 | __ct__9WaterRoadFPCc | :x: |
 | init__9WaterRoadFRC12JMapInfoIter | :x: |
 | appear__9WaterRoadFv | :x: |

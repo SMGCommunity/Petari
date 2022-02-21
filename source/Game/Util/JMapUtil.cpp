@@ -2,7 +2,7 @@
 #include "Game/Util.h"
 
 namespace {
-    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut)  {
+    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut) NO_INLINE {
         s32 val;
         bool hasValue = rIter.getValue<s32>(pName, &val);
 
@@ -18,7 +18,7 @@ namespace {
         return false;
     }
 
-    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, s32 *pOut)  {
+    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, s32 *pOut) NO_INLINE {
         s32 val;
         bool hasValue = rIter.getValue<s32>(pName, &val);
 
@@ -34,7 +34,7 @@ namespace {
         return false;
     }
 
-    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, f32 *pOut) {
+    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, f32 *pOut) NO_INLINE {
         s32 val;
         bool hasValue = ::getJMapInfoArgNoInit(rIter, pName, &val);
 
@@ -44,9 +44,9 @@ namespace {
 
         *pOut = val;
         return true;
-    }
+    } 
 
-    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, bool *pOut)  {
+    bool getJMapInfoArgNoInit(const JMapInfoIter &rIter, const char *pName, bool *pOut) NO_INLINE {
         s32 val;
         bool hasValue = rIter.getValue<s32>(pName, &val);
 

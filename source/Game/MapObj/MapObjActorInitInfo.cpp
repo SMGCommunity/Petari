@@ -1,7 +1,7 @@
 #include "Game/MapObj/MapObjActorInitInfo.h"
 #include "Game/Util.h"
 
-#ifdef NON_MATCHING
+
 // scheduling issues with the paired single set
 MapObjActorInitInfo::MapObjActorInitInfo() {
     mSetDefaultPosition = 0;
@@ -9,24 +9,24 @@ MapObjActorInitInfo::MapObjActorInitInfo() {
     mInitBinder = 0;
     mHasEffect = 0;
     mHasSensors = 0;
-    mHasShadows = 0;
+    mHasShadows = 0; 
     mCalcGravity = 0;
     mProjectMapMtx = 0;
     mInitFur = 0;
     mHasRailMover = 0;
     mHasRotator = 0;
-    mHasRailRotator = 0;
+    mHasRailRotator = 0; 
     _C = 0;
-    _D = 0;
+    _D = 0; 
     mUsesRailPosture = 0;
     mDoesBaseMtxFollowTarget = 0;
     mIsAffectedByScale = 0;
     mUseMirrorReflection = 0;
     mModelName = 0;
-    mHioNode = 0;
+    mHioNode = 0; 
     _1C = 0;
     mSensorSize = 0.0f;
-    mSensorOffset.setInlinePS(gZeroVec);
+    mSensorOffset.setZero();
     mHitSensorCB = 0;
     mBinderRadius = 0.0f;
     mBinderCenterY = 0.0f;
@@ -53,7 +53,6 @@ MapObjActorInitInfo::MapObjActorInitInfo() {
     _8C = 0;
     mNoUseLOD = 0;
 }
-#endif
 
 void MapObjActorInitInfo::setupHioNode(const char *pName) {
     mHioNode = pName;

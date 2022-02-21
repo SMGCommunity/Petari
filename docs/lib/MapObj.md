@@ -39,8 +39,8 @@
 | BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% |
 | BigFan.o | 0.0% | 0 / 18 | 0.0% |
 | BigFanHolder.o | 0.0% | 0 / 7 | 0.0% |
-| BlackHole.o | 0.0% | 0 / 22 | 0.0% |
-| BlueChip.o | 0.0% | 0 / 3 | 0.0% |
+| BlackHole.o | 66.66666666666666% | 18 / 22 | 81.81818181818183% |
+| BlueChip.o | 100.0% | 3 / 3 | 100.0% |
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% |
 | BreakableCage.o | 0.0% | 0 / 23 | 0.0% |
 | BrightObj.o | 0.0% | 0 / 42 | 0.0% |
@@ -48,8 +48,8 @@
 | Candlestand.o | 0.0% | 0 / 31 | 0.0% |
 | CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% |
 | CapsuleCage.o | 0.0% | 0 / 23 | 0.0% |
-| ChipBase.o | 0.0% | 0 / 39 | 0.0% |
-| ChipCounter.o | 0.0% | 0 / 30 | 0.0% |
+| ChipBase.o | 79.12087912087912% | 36 / 39 | 92.3076923076923% |
+| ChipCounter.o | 19.971056439942114% | 3 / 30 | 10.0% |
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
 | ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
 | ChooChooTrain.o | 0.0% | 0 / 8 | 0.0% |
@@ -75,7 +75,7 @@
 | CoinRotater.o | 0.0% | 0 / 7 | 0.0% |
 | CoinSpot.o | 0.0% | 0 / 12 | 0.0% |
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% |
-| CollectCounter.o | 0.0% | 0 / 12 | 0.0% |
+| CollectCounter.o | 100.0% | 12 / 12 | 100.0% |
 | CollisionBlocker.o | 0.0% | 0 / 7 | 0.0% |
 | CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
 | CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
@@ -98,7 +98,7 @@
 | FallDownBridge.o | 0.0% | 0 / 11 | 0.0% |
 | FallingSmallRock.o | 0.0% | 0 / 11 | 0.0% |
 | FallOutFieldDraw.o | 0.0% | 0 / 13 | 0.0% |
-| FireBar.o | 0.0% | 0 / 21 | 0.0% |
+| FireBar.o | 71.49877149877149% | 19 / 21 | 90.47619047619048% |
 | FirePressure.o | 0.0% | 0 / 7 | 0.0% |
 | FirePressureBullet.o | 0.0% | 0 / 12 | 0.0% |
 | FirePressureBulletHolder.o | 0.0% | 0 / 4 | 0.0% |
@@ -152,8 +152,8 @@
 | MagicBell.o | 0.0% | 0 / 15 | 0.0% |
 | ManholeCover.o | 0.0% | 0 / 13 | 0.0% |
 | MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
-| MapObjActorInitInfo.o | 7.493540051679587% | 10 / 37 | 27.027027027027028% |
-| MapObjConnector.o | 0.0% | 0 / 6 | 0.0% |
+| MapObjActorInitInfo.o | 22.48062015503876% | 11 / 37 | 29.72972972972973% |
+| MapObjConnector.o | 32.25806451612903% | 4 / 6 | 66.66666666666666% |
 | MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
 | MarioLauncherAttractor.o | 100.0% | 6 / 6 | 100.0% |
@@ -296,8 +296,8 @@
 | WhirlPool.o | 0.0% | 0 / 9 | 0.0% |
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% |
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% |
-| YellowChip.o | 0.0% | 0 / 2 | 0.0% |
-| MapParts.o | 0.0% | 0 / 8 | 0.0% |
+| YellowChip.o | 100.0% | 2 / 2 | 100.0% |
+| MapParts.o | 28.38427947598253% | 6 / 8 | 75.0% |
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% |
 | FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% |
 | FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% |
@@ -315,7 +315,7 @@
 | MapPartsRailPointPassChecker.o | 100.0% | 9 / 9 | 100.0% |
 | MapPartsRailPosture.o | 0.0% | 0 / 13 | 0.0% |
 | MapPartsRailRotator.o | 0.0% | 0 / 27 | 0.0% |
-| MapPartsRotator.o | 0.0% | 0 / 33 | 0.0% |
+| MapPartsRotator.o | 37.61904761904762% | 24 / 33 | 72.72727272727273% |
 | MapPartsSeesaw1AxisRotator.o | 0.0% | 0 / 31 | 0.0% |
 | MapPartsSeesaw2AxisRotator.o | 0.0% | 0 / 23 | 0.0% |
 
@@ -1234,35 +1234,35 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__9BlackHoleFPCc | :x: |
-| init__9BlackHoleFRC12JMapInfoIter | :x: |
-| makeActorAppeared__9BlackHoleFv | :x: |
-| kill__9BlackHoleFv | :x: |
-| tryStartDemoCamera__9BlackHoleFv | :x: |
+| init__9BlackHoleFRC12JMapInfoIter | :white_check_mark: |
+| makeActorAppeared__9BlackHoleFv | :white_check_mark: |
+| kill__9BlackHoleFv | :white_check_mark: |
+| tryStartDemoCamera__9BlackHoleFv | :white_check_mark: |
 | calcAndSetBaseMtx__9BlackHoleFv | :x: |
-| attackSensor__9BlackHoleFP9HitSensorP9HitSensor | :x: |
+| attackSensor__9BlackHoleFP9HitSensorP9HitSensor | :white_check_mark: |
 | initMapToolInfo__9BlackHoleFRC12JMapInfoIter | :x: |
-| initModel__9BlackHoleFv | :x: |
+| initModel__9BlackHoleFv | :white_check_mark: |
 | initCubeBox__9BlackHoleFv | :x: |
-| isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| updateModelScale__9BlackHoleFff | :x: |
-| exeWait__9BlackHoleFv | :x: |
-| exeDisappear__9BlackHoleFv | :x: |
-| __dt__9BlackHoleFv | :x: |
-| __sinit_\BlackHole_cpp | :x: |
-| __ct__Q212NrvBlackHole16BlackHoleNrvWaitFv | :x: |
-| __ct__Q212NrvBlackHole16BlackHoleNrvDemoFv | :x: |
-| __ct__Q212NrvBlackHole21BlackHoleNrvDisappearFv | :x: |
-| execute__Q212NrvBlackHole21BlackHoleNrvDisappearCFP5Spine | :x: |
-| execute__Q212NrvBlackHole16BlackHoleNrvDemoCFP5Spine | :x: |
-| execute__Q212NrvBlackHole16BlackHoleNrvWaitCFP5Spine | :x: |
+| isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| updateModelScale__9BlackHoleFff | :white_check_mark: |
+| exeWait__9BlackHoleFv | :white_check_mark: |
+| exeDisappear__9BlackHoleFv | :white_check_mark: |
+| __dt__9BlackHoleFv | :white_check_mark: |
+| __sinit_\BlackHole_cpp | :white_check_mark: |
+| __ct__Q212NrvBlackHole16BlackHoleNrvWaitFv | :white_check_mark: |
+| __ct__Q212NrvBlackHole16BlackHoleNrvDemoFv | :white_check_mark: |
+| __ct__Q212NrvBlackHole21BlackHoleNrvDisappearFv | :white_check_mark: |
+| execute__Q212NrvBlackHole21BlackHoleNrvDisappearCFP5Spine | :white_check_mark: |
+| execute__Q212NrvBlackHole16BlackHoleNrvDemoCFP5Spine | :white_check_mark: |
+| execute__Q212NrvBlackHole16BlackHoleNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # BlueChip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8BlueChipFPCc | :x: |
-| __dt__8ChipBaseFv | :x: |
-| __dt__8BlueChipFv | :x: |
+| __ct__8BlueChipFPCc | :white_check_mark: |
+| __dt__8ChipBaseFv | :white_check_mark: |
+| __dt__8BlueChipFv | :white_check_mark: |
 
 
 # BlueStarCupsulePlanet.o
@@ -1502,53 +1502,53 @@
 # ChipBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8ChipBaseFPCclPCc | :x: |
-| init__8ChipBaseFRC12JMapInfoIter | :x: |
-| initModel__8ChipBaseFRC12JMapInfoIter | :x: |
-| initSensor__8ChipBaseFv | :x: |
+| __ct__8ChipBaseFPCclPCc | :white_check_mark: |
+| init__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initModel__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initSensor__8ChipBaseFv | :white_check_mark: |
 | initShadow__8ChipBaseFRC12JMapInfoIter | :x: |
-| initJMapParam__8ChipBaseFRC12JMapInfoIter | :x: |
-| initAfterPlacement__8ChipBaseFv | :x: |
-| deactive__8ChipBaseFv | :x: |
-| setGroupID__8ChipBaseFl | :x: |
-| setHost__8ChipBaseFP9LiveActor | :x: |
-| makeActorAppeared__8ChipBaseFv | :x: |
-| makeActorDead__8ChipBaseFv | :x: |
-| control__8ChipBaseFv | :x: |
-| appearWait__8ChipBaseFv | :x: |
-| appearFlashing__8ChipBaseFl | :x: |
+| initJMapParam__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__8ChipBaseFv | :white_check_mark: |
+| deactive__8ChipBaseFv | :white_check_mark: |
+| setGroupID__8ChipBaseFl | :white_check_mark: |
+| setHost__8ChipBaseFP9LiveActor | :white_check_mark: |
+| makeActorAppeared__8ChipBaseFv | :white_check_mark: |
+| makeActorDead__8ChipBaseFv | :white_check_mark: |
+| control__8ChipBaseFv | :white_check_mark: |
+| appearWait__8ChipBaseFv | :white_check_mark: |
+| appearFlashing__8ChipBaseFl | :white_check_mark: |
 | receiveOtherMsg__8ChipBaseFUlP9HitSensorP9HitSensor | :x: |
-| requestGet__8ChipBaseFP9HitSensorP9HitSensor | :x: |
-| requestShow__8ChipBaseFv | :x: |
-| requestHide__8ChipBaseFv | :x: |
-| requestStartControl__8ChipBaseFv | :x: |
-| requestEndControl__8ChipBaseFv | :x: |
-| exeFlashing__8ChipBaseFv | :x: |
+| requestGet__8ChipBaseFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestShow__8ChipBaseFv | :white_check_mark: |
+| requestHide__8ChipBaseFv | :white_check_mark: |
+| requestStartControl__8ChipBaseFv | :white_check_mark: |
+| requestEndControl__8ChipBaseFv | :white_check_mark: |
+| exeFlashing__8ChipBaseFv | :white_check_mark: |
 | exeGot__8ChipBaseFv | :x: |
-| isGettable__8ChipBaseCFv | :x: |
-| isNeedBubble__8ChipBaseFRC12JMapInfoIter | :x: |
-| makeArchiveList__8ChipBaseFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| __sinit_\ChipBase_cpp | :x: |
-| __ct__Q211NrvChipBase19ChipBaseNrvDeactiveFv | :x: |
-| __ct__Q211NrvChipBase15ChipBaseNrvWaitFv | :x: |
-| __ct__Q211NrvChipBase20ChipBaseNrvControledFv | :x: |
-| __ct__Q211NrvChipBase19ChipBaseNrvFlashingFv | :x: |
-| __ct__Q211NrvChipBase15ChipBaseNrvHideFv | :x: |
-| __ct__Q211NrvChipBase14ChipBaseNrvGotFv | :x: |
-| execute__Q211NrvChipBase14ChipBaseNrvGotCFP5Spine | :x: |
-| execute__Q211NrvChipBase15ChipBaseNrvHideCFP5Spine | :x: |
-| execute__Q211NrvChipBase19ChipBaseNrvFlashingCFP5Spine | :x: |
-| execute__Q211NrvChipBase20ChipBaseNrvControledCFP5Spine | :x: |
-| execute__Q211NrvChipBase15ChipBaseNrvWaitCFP5Spine | :x: |
-| execute__Q211NrvChipBase19ChipBaseNrvDeactiveCFP5Spine | :x: |
+| isGettable__8ChipBaseCFv | :white_check_mark: |
+| isNeedBubble__8ChipBaseFRC12JMapInfoIter | :white_check_mark: |
+| makeArchiveList__8ChipBaseFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| __sinit_\ChipBase_cpp | :white_check_mark: |
+| __ct__Q211NrvChipBase19ChipBaseNrvDeactiveFv | :white_check_mark: |
+| __ct__Q211NrvChipBase15ChipBaseNrvWaitFv | :white_check_mark: |
+| __ct__Q211NrvChipBase20ChipBaseNrvControledFv | :white_check_mark: |
+| __ct__Q211NrvChipBase19ChipBaseNrvFlashingFv | :white_check_mark: |
+| __ct__Q211NrvChipBase15ChipBaseNrvHideFv | :white_check_mark: |
+| __ct__Q211NrvChipBase14ChipBaseNrvGotFv | :white_check_mark: |
+| execute__Q211NrvChipBase14ChipBaseNrvGotCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase15ChipBaseNrvHideCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase19ChipBaseNrvFlashingCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase20ChipBaseNrvControledCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase15ChipBaseNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q211NrvChipBase19ChipBaseNrvDeactiveCFP5Spine | :white_check_mark: |
 
 
 # ChipCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11ChipCounterFPCcl | :x: |
-| init__11ChipCounterFRC12JMapInfoIter | :x: |
-| control__11ChipCounterFv | :x: |
+| __ct__11ChipCounterFPCcl | :white_check_mark: |
+| init__11ChipCounterFRC12JMapInfoIter | :white_check_mark: |
+| control__11ChipCounterFv | :white_check_mark: |
 | setCount__11ChipCounterFl | :x: |
 | requestShow__11ChipCounterFll | :x: |
 | requestComplete__11ChipCounterFl | :x: |
@@ -2104,18 +2104,18 @@
 # CollectCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14CollectCounterFPCc | :x: |
-| init__14CollectCounterFRC12JMapInfoIter | :x: |
-| control__14CollectCounterFv | :x: |
-| setCount__14CollectCounterFl | :x: |
-| tryEndShow__14CollectCounterFv | :x: |
-| setPosition__14CollectCounterFv | :x: |
-| __dt__14CollectCounterFv | :x: |
-| __sinit_\CollectCounter_cpp | :x: |
-| __ct__Q217NrvCollectCounter21CollectCounterNrvHideFv | :x: |
-| __ct__Q217NrvCollectCounter21CollectCounterNrvShowFv | :x: |
-| execute__Q217NrvCollectCounter21CollectCounterNrvShowCFP5Spine | :x: |
-| execute__Q217NrvCollectCounter21CollectCounterNrvHideCFP5Spine | :x: |
+| __ct__14CollectCounterFPCc | :white_check_mark: |
+| init__14CollectCounterFRC12JMapInfoIter | :white_check_mark: |
+| control__14CollectCounterFv | :white_check_mark: |
+| setCount__14CollectCounterFl | :white_check_mark: |
+| tryEndShow__14CollectCounterFv | :white_check_mark: |
+| setPosition__14CollectCounterFv | :white_check_mark: |
+| __dt__14CollectCounterFv | :white_check_mark: |
+| __sinit_\CollectCounter_cpp | :white_check_mark: |
+| __ct__Q217NrvCollectCounter21CollectCounterNrvHideFv | :white_check_mark: |
+| __ct__Q217NrvCollectCounter21CollectCounterNrvShowFv | :white_check_mark: |
+| execute__Q217NrvCollectCounter21CollectCounterNrvShowCFP5Spine | :white_check_mark: |
+| execute__Q217NrvCollectCounter21CollectCounterNrvHideCFP5Spine | :white_check_mark: |
 
 
 # CollisionBlocker.o
@@ -2705,27 +2705,27 @@
 # FireBar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__11FireBarBallFv | :x: |
-| __dt__7FireBarFv | :x: |
-| __ct__11FireBarBallFP9LiveActor | :x: |
-| init__11FireBarBallFRC12JMapInfoIter | :x: |
-| initAfterPlacement__11FireBarBallFv | :x: |
-| control__11FireBarBallFv | :x: |
-| startClipped__11FireBarBallFv | :x: |
-| endClipped__11FireBarBallFv | :x: |
-| controlEmitEffect__11FireBarBallFv | :x: |
-| __ct__7FireBarFPCc | :x: |
-| init__7FireBarFRC12JMapInfoIter | :x: |
-| exeWait__7FireBarFv | :x: |
-| makeActorAppeared__7FireBarFv | :x: |
-| makeActorDead__7FireBarFv | :x: |
-| attackSensor__7FireBarFP9HitSensorP9HitSensor | :x: |
+| __dt__11FireBarBallFv | :white_check_mark: |
+| __dt__7FireBarFv | :white_check_mark: |
+| __ct__11FireBarBallFP9LiveActor | :white_check_mark: |
+| init__11FireBarBallFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__11FireBarBallFv | :white_check_mark: |
+| control__11FireBarBallFv | :white_check_mark: |
+| startClipped__11FireBarBallFv | :white_check_mark: |
+| endClipped__11FireBarBallFv | :white_check_mark: |
+| controlEmitEffect__11FireBarBallFv | :white_check_mark: |
+| __ct__7FireBarFPCc | :white_check_mark: |
+| init__7FireBarFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__7FireBarFv | :white_check_mark: |
+| makeActorAppeared__7FireBarFv | :white_check_mark: |
+| makeActorDead__7FireBarFv | :white_check_mark: |
+| attackSensor__7FireBarFP9HitSensorP9HitSensor | :white_check_mark: |
 | updateHitSensor__7FireBarFP9HitSensor | :x: |
 | initFireBarBall__7FireBarFRC12JMapInfoIter | :x: |
-| fixFireBarBall__7FireBarFv | :x: |
-| __sinit_\FireBar_cpp | :x: |
-| __ct__Q210NrvFireBar14FireBarNrvWaitFv | :x: |
-| execute__Q210NrvFireBar14FireBarNrvWaitCFP5Spine | :x: |
+| fixFireBarBall__7FireBarFv | :white_check_mark: |
+| __sinit_\FireBar_cpp | :white_check_mark: |
+| __ct__Q210NrvFireBar14FireBarNrvWaitFv | :white_check_mark: |
+| execute__Q210NrvFireBar14FireBarNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # FirePressure.o
@@ -4043,7 +4043,7 @@
 # MapObjActorInitInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19MapObjActorInitInfoFv | :x: |
+| __ct__19MapObjActorInitInfoFv | :white_check_mark: |
 | setupHioNode__19MapObjActorInitInfoFPCc | :white_check_mark: |
 | setupDefaultPos__19MapObjActorInitInfoFv | :white_check_mark: |
 | setupModelName__19MapObjActorInitInfoFPCc | :white_check_mark: |
@@ -4085,11 +4085,11 @@
 # MapObjConnector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15MapObjConnectorFP9LiveActor | :x: |
-| attachToUnder__15MapObjConnectorFv | :x: |
-| attachToBack__15MapObjConnectorFv | :x: |
+| __ct__15MapObjConnectorFP9LiveActor | :white_check_mark: |
+| attachToUnder__15MapObjConnectorFv | :white_check_mark: |
+| attachToBack__15MapObjConnectorFv | :white_check_mark: |
 | attach__15MapObjConnectorFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| connect__15MapObjConnectorFv | :x: |
+| connect__15MapObjConnectorFv | :white_check_mark: |
 | connect__15MapObjConnectorFP9LiveActor | :x: |
 
 
@@ -7759,20 +7759,20 @@
 # YellowChip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10YellowChipFPCc | :x: |
-| __dt__10YellowChipFv | :x: |
+| __ct__10YellowChipFPCc | :white_check_mark: |
+| __dt__10YellowChipFv | :white_check_mark: |
 
 
 # MapParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__8MapPartsFv | :x: |
-| __ct__8MapPartsFPCc | :x: |
+| __dt__8MapPartsFv | :white_check_mark: |
+| __ct__8MapPartsFPCc | :white_check_mark: |
 | init__8MapPartsFRC12JMapInfoIter | :x: |
-| appear__8MapPartsFv | :x: |
-| getSensorNumMax__8MapPartsCFv | :x: |
-| getMoveStartSignalTime__8MapPartsFv | :x: |
-| connectToScene__8MapPartsFv | :x: |
+| appear__8MapPartsFv | :white_check_mark: |
+| getSensorNumMax__8MapPartsCFv | :white_check_mark: |
+| getMoveStartSignalTime__8MapPartsFv | :white_check_mark: |
+| connectToScene__8MapPartsFv | :white_check_mark: |
 | initModelAndCollision__8MapPartsFRC12JMapInfoIter | :x: |
 
 
@@ -8189,38 +8189,38 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15MapPartsRotatorFP9LiveActor | :x: |
-| init__15MapPartsRotatorFRC12JMapInfoIter | :x: |
-| start__15MapPartsRotatorFv | :x: |
-| end__15MapPartsRotatorFv | :x: |
-| isWorking__15MapPartsRotatorCFv | :x: |
-| startWithSignalMotion__15MapPartsRotatorFv | :x: |
-| cancelSignalMotion__15MapPartsRotatorFv | :x: |
+| init__15MapPartsRotatorFRC12JMapInfoIter | :white_check_mark: |
+| start__15MapPartsRotatorFv | :white_check_mark: |
+| end__15MapPartsRotatorFv | :white_check_mark: |
+| isWorking__15MapPartsRotatorCFv | :white_check_mark: |
+| startWithSignalMotion__15MapPartsRotatorFv | :white_check_mark: |
+| cancelSignalMotion__15MapPartsRotatorFv | :white_check_mark: |
 | updateBaseHostMtx__15MapPartsRotatorFv | :x: |
-| isMoving__15MapPartsRotatorCFv | :x: |
+| isMoving__15MapPartsRotatorCFv | :white_check_mark: |
 | updateVelocity__15MapPartsRotatorFv | :x: |
 | updateAngle__15MapPartsRotatorFv | :x: |
 | updateTargetAngle__15MapPartsRotatorFv | :x: |
-| restartAtEnd__15MapPartsRotatorFv | :x: |
-| initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :x: |
+| restartAtEnd__15MapPartsRotatorFv | :white_check_mark: |
+| initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter | :white_check_mark: |
 | isReachedTargetAngle__15MapPartsRotatorCFv | :x: |
 | updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef | :x: |
-| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | exeRotate__15MapPartsRotatorFv | :x: |
 | exeRotateStart__15MapPartsRotatorFv | :x: |
-| __dt__15MapPartsRotatorFv | :x: |
-| __sinit_\MapPartsRotator_cpp | :x: |
-| __ct__Q218NrvMapPartsRotator17HostTypeNeverMoveFv | :x: |
-| __ct__Q218NrvMapPartsRotator12HostTypeWaitFv | :x: |
-| __ct__Q218NrvMapPartsRotator19HostTypeRotateStartFv | :x: |
-| __ct__Q218NrvMapPartsRotator14HostTypeRotateFv | :x: |
-| __ct__Q218NrvMapPartsRotator17HostTypeStopAtEndFv | :x: |
-| execute__Q218NrvMapPartsRotator17HostTypeStopAtEndCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator14HostTypeRotateCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator19HostTypeRotateStartCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator12HostTypeWaitCFP5Spine | :x: |
-| execute__Q218NrvMapPartsRotator17HostTypeNeverMoveCFP5Spine | :x: |
-| isOnReverse__15MapPartsRotatorCFv | :x: |
-| getRotateSpeed__15MapPartsRotatorCFv | :x: |
+| __dt__15MapPartsRotatorFv | :white_check_mark: |
+| __sinit_\MapPartsRotator_cpp | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator17HostTypeNeverMoveFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator19HostTypeRotateStartFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator14HostTypeRotateFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsRotator17HostTypeStopAtEndFv | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator17HostTypeStopAtEndCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator14HostTypeRotateCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator19HostTypeRotateStartCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator12HostTypeWaitCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsRotator17HostTypeNeverMoveCFP5Spine | :white_check_mark: |
+| isOnReverse__15MapPartsRotatorCFv | :white_check_mark: |
+| getRotateSpeed__15MapPartsRotatorCFv | :white_check_mark: |
 
 
 # MapPartsSeesaw1AxisRotator.o

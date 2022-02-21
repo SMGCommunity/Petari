@@ -47,4 +47,5 @@ namespace MR {
     void setPlayerBaseMtx(MtxPtr);
 
     void startLevelSoundPlayer(const char *, long);
+    void incPlayerOxygen(u32);
 };

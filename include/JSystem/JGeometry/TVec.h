@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "Inline.h"
+#include "math_types.h"
 
 namespace JGeometry {
     void negateInternal(const f32 *rSrc, f32 *rDest);
@@ -78,7 +79,19 @@ namespace JGeometry {
             setInline(rSrc);
         }*/
 
-        TVec3<T>(const Vec &rSrc);
+        inline TVec3<T>(const register Vec &rSrc) {
+            register TVec3<T>* dst = this;
+            register const Vec* src = &rSrc;
+            register f32 z;
+            register f32 xy;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
+            };
+        }
 
         /* General operations */
         void set(const Vec &rSrc);
@@ -163,6 +176,20 @@ namespace JGeometry {
             register TVec3<T>* dst = this;
             register f32 xy;
             register f32 z;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
+            };
+        }
+
+        inline void setZero() {
+            register TVec3<T>* dst = this;
+            register const Vec* src = &gZeroVec;
+            register f32 z;
+            register f32 xy;
 
             __asm {
                 psq_l xy, 0(src), 0, 0

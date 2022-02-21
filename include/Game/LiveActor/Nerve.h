@@ -17,3 +17,6 @@ public:\
     virtual void execute(Spine *) const;\
     static name sInstance;\
 };\
+
+#define INIT_NERVE(name)\
+    name name::sInstance;

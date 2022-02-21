@@ -17,7 +17,7 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
-    MtxPtr getCameraViewMtx();
+    const MtxPtr getCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
 
     void loadProjectionMtx();
@@ -37,7 +37,14 @@ namespace MR {
     TVec3f getCamZDir();
 
     void declareEventCamera(const ActorCameraInfo *, const char *);
+    void calcScreenPosition(TVec2f *, const TVec3f &);
+
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 
     bool isExistMirrorCamera();
+
+    void initActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **);
+    bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
+
+    bool isStartAnimCameraEnd();
 };
