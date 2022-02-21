@@ -26,4 +26,7 @@ namespace MR {
     bool tryStartDemo(LiveActor *, const char *);
     bool tryStartDemoRegistered(LiveActor *, const char *);
     void endDemo(NameObj *, const char *);
+
+    void requestStartDemoMarioPuppetableWithoutCinmeaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
+    void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
 };

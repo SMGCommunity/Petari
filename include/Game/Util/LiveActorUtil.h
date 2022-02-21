@@ -153,6 +153,7 @@ namespace MR {
 
 
     void setBrkFrame(const LiveActor *, f32);
+    void setBrkFrameEndAndStop(const LiveActor *);
 
     void setBckFrameAtRandom(const LiveActor *);
 
@@ -160,12 +161,18 @@ namespace MR {
 
     void stopBck(const LiveActor *);
 
+    void startBtp(const LiveActor *, const char *);
+    void setBtpFrameAndStop(const LiveActor *, f32);
+
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);
 
     ModelObj* createModelObjMapObj(const char *, const char *, MtxPtr);
     ModelObj* createModelObjMapObjStrongLight(const char *, const char *, MtxPtr);
+    ModelObj* createModelObjIndirectMapObj(const char *, const char *, MtxPtr);
+    ModelObj* createModelObjNoSilhouettedMapObj(const char *, const char *, MtxPtr);
+    ModelObj* createModelObjNpc(const char *, const char *, MtxPtr);
 
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 
@@ -184,4 +191,6 @@ namespace MR {
     bool changeShowModelFlagSyncNearClipping(LiveActor *, f32);
 
     void hideModelAndOnCalcAnimIfShown(LiveActor *);
+
+    bool tryCreateMirrorActor(LiveActor *, const char *);
 }

@@ -2,19 +2,13 @@
 
 #include "Game/NameObj/NameObjArchiveListCollector.h"
 #include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/ModelObj.h"
+#include "Game/Util/Color8.h"
 #include "JSystem/JGeometry.h"
 
 namespace {
     const char* cAppearDemoName = "パワースター出現";
     const char* cStageClearAnimNameKoopaVs3 = "GrandStarGetKoopaVs3";
-
-    /*void setupColorGrandStar(LiveActor *, bool) NO_INLINE {
-
-    }
-
-    void setupColor(LiveActor *, bool, int) NO_INLINE {
-
-    }*/
 };
 
 class PowerStar : public LiveActor {
@@ -28,29 +22,29 @@ public:
     virtual void makeActorAppeared();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual u32 receiveMsgPLayerAttack(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void requestAppear();
     void setDemoAppearPos(const TVec3f &);
     bool isEndAppearDemo() const;
     void offAppearDemo();
-    void setupColor(LiveActor *, const NameObj *, s32);
-    void setupColorAtResultSequence(LiveActor *, bool);
-    void requestPointLight(const LiveActor *, const NameObj *, s32);
-    void requestPointLightAtResultSequence(const LiveActor *);
-    f32 getPowerStarWaitRotateSpeed();
-    u32 getBtpFrameCurrentStage(s32);
-    bool isCurrentStageKoopaVs3();
-    void initShadowPowerStar(LiveActor *, bool);
-    void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
+    static void setupColor(LiveActor *, const NameObj *, s32);
+    static void setupColorAtResultSequence(LiveActor *, bool);
+    static void requestPointLight(const LiveActor *, const NameObj *, s32);
+    static void requestPointLightAtResultSequence(const LiveActor *);
+    static f32 getPowerStarWaitRotateSpeed();
+    static s32 getBtpFrameCurrentStage(s32);
+    static bool isCurrentStageKoopaVs3();
+    static void initShadowPowerStar(LiveActor *, bool);
+    static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
     void initMapToolInfo(const JMapInfoIter &);
     void initModel();
     void initSensorGrandStar();
     void initShadow(const JMapInfoIter &);
     void initPosture();
     void endAppearDemo();
-    TVec3f* getNearestAppearPoint(const TVec3f &);
+    LiveActor* getNearestAppearPoint(const TVec3f &);
     LiveActor* getAppearCameraActor();
     const ActorCameraInfo* getAppearCameraInfo() const;
     void requestAppearOrWait();
@@ -65,6 +59,10 @@ public:
     void exeWeakToWait();
     void exeStageClearDemo();
 
+    inline bool isGrandStar() {
+        return mIsGrandStar;
+    }
+
     s32 mPowerStarId;               // _8C
     bool mIsInDemo;                 // _90
     TVec3f mAppearPosition;         // _94
@@ -77,11 +75,11 @@ public:
     u8 _11D;
     u8 _11E;
     u8 _11F;
-    u32 mColorFrame;                // _120
-    bool mIsGrandStar;              // _124
-    u8 _125;                        // Obj_arg0
-    u8 _126;                        // Obj_arg1
-    u8 _127;                        // Obj_arg4
+    volatile u32 mColorFrame;                // _120
+    volatile bool mIsGrandStar;              // _124
+    bool _125;                        // Obj_arg0
+    bool _126;                        // Obj_arg1
+    bool _127;                        // Obj_arg4
     ActorCameraInfo* mCameraInfo;   // _128
     LiveActor* mCameraActor;        // _12C
     ModelObj* mLuigiNPC;            // _130

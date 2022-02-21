@@ -10,6 +10,8 @@ namespace MR {
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
 
+    TVec3f* getPlayerRotate();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -48,4 +50,6 @@ namespace MR {
     void setPlayerBaseMtx(MtxPtr);
 
     void incPlayerOxygen(u32);
+
+    void stopSoundPlayer(const char *, u32);
 };

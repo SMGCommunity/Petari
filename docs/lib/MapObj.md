@@ -187,7 +187,7 @@
 | PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
 | PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
 | PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
-| PowerStar.o | 12.136752136752136% | 5 / 65 | 7.6923076923076925% |
+| PowerStar.o | 44.61538461538462% | 29 / 65 | 44.61538461538462% |
 | PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% |
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
 | PressureBase.o | 0.0% | 0 / 48 | 0.0% |
@@ -4920,33 +4920,33 @@
 # PowerStar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setupColor__23@unnamed@PowerStar_cpp@FP9LiveActorbi | :x: |
-| setupColorGrandStar__23@unnamed@PowerStar_cpp@FP9LiveActorb | :x: |
-| requestPointLight__23@unnamed@PowerStar_cpp@FPC9LiveActori | :x: |
+| setupColor__23@unnamed@PowerStar_cpp@FP9LiveActorbi | :white_check_mark: |
+| setupColorGrandStar__23@unnamed@PowerStar_cpp@FP9LiveActorb | :white_check_mark: |
+| requestPointLight__23@unnamed@PowerStar_cpp@FPC9LiveActori | :white_check_mark: |
 | __ct__9PowerStarFPCc | :x: |
 | init__9PowerStarFRC12JMapInfoIter | :x: |
-| initAfterPlacement__9PowerStarFv | :x: |
-| appear__9PowerStarFv | :x: |
-| makeActorAppeared__9PowerStarFv | :x: |
-| requestAppear__9PowerStarFv | :x: |
-| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isEndAppearDemo__9PowerStarCFv | :x: |
-| offAppearDemo__9PowerStarFv | :x: |
-| setupColor__9PowerStarFP9LiveActorPC7NameObjl | :x: |
-| setupColorAtResultSequence__9PowerStarFP9LiveActorb | :x: |
-| requestPointLight__9PowerStarFPC9LiveActorPC7NameObjl | :x: |
-| requestPointLightAtResultSequence__9PowerStarFPC9LiveActor | :x: |
-| getPowerStarWaitRotateSpeed__9PowerStarFv | :x: |
-| getBtpFrameCurrentStage__9PowerStarFl | :x: |
-| isCurrentStageKoopaVs3__9PowerStarFv | :x: |
-| initShadowPowerStar__9PowerStarFP9LiveActorb | :x: |
-| makeArchiveList__9PowerStarFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| control__9PowerStarFv | :x: |
+| initAfterPlacement__9PowerStarFv | :white_check_mark: |
+| appear__9PowerStarFv | :white_check_mark: |
+| makeActorAppeared__9PowerStarFv | :white_check_mark: |
+| requestAppear__9PowerStarFv | :white_check_mark: |
+| setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isEndAppearDemo__9PowerStarCFv | :white_check_mark: |
+| offAppearDemo__9PowerStarFv | :white_check_mark: |
+| setupColor__9PowerStarFP9LiveActorPC7NameObjl | :white_check_mark: |
+| setupColorAtResultSequence__9PowerStarFP9LiveActorb | :white_check_mark: |
+| requestPointLight__9PowerStarFPC9LiveActorPC7NameObjl | :white_check_mark: |
+| requestPointLightAtResultSequence__9PowerStarFPC9LiveActor | :white_check_mark: |
+| getPowerStarWaitRotateSpeed__9PowerStarFv | :white_check_mark: |
+| getBtpFrameCurrentStage__9PowerStarFl | :white_check_mark: |
+| isCurrentStageKoopaVs3__9PowerStarFv | :white_check_mark: |
+| initShadowPowerStar__9PowerStarFP9LiveActorb | :white_check_mark: |
+| makeArchiveList__9PowerStarFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| control__9PowerStarFv | :white_check_mark: |
 | calcAndSetBaseMtx__9PowerStarFv | :x: |
-| receiveMsgPlayerAttack__9PowerStarFUlP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor | :x: |
-| initMapToolInfo__9PowerStarFRC12JMapInfoIter | :x: |
-| initModel__9PowerStarFv | :x: |
+| receiveMsgPlayerAttack__9PowerStarFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__9PowerStarFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initMapToolInfo__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
+| initModel__9PowerStarFv | :white_check_mark: |
 | initSensorGrandStar__9PowerStarFv | :white_check_mark: |
 | initShadow__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
 | initPosture__9PowerStarFv | :x: |

@@ -68,6 +68,7 @@ namespace MR {
     bool isMsgLockOnStarPieceShoot(u32);
 
     bool isMsgStarPieceAttack(u32);
+    bool isMsgStarPieceReflect(u32);
 
     bool isSensorMapObj(const HitSensor *);
     bool isSensorAutoRush(const HitSensor *);
