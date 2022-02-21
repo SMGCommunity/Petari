@@ -73,7 +73,7 @@ void AreaFormCube::calcWorldBox(TDirBox3f *pBox) const {
     pBox->_18.z = pos.mMtx[2][2];
     pBox->_24.z = pos.mMtx[2][3];
 
-    JMathInlineVEC::PSVECSubtract((const Vec*)&mBounding.mMax, (const Vec*)&mBounding.mMin, (Vec*)&mBounding.mMin);
+    JMathInlineVEC::PSVECSubtract((const Vec*)&mBounding.mMax, (const Vec*)&mBounding.mMin, (Vec*)&pBox->_30);
     pos.mult(mBounding.mMin, pBox->_24);
 }
 
