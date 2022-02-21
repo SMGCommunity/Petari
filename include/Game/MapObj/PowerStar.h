@@ -75,7 +75,14 @@ public:
     u8 _11D;
     u8 _11E;
     u8 _11F;
-    volatile u32 mColorFrame;                // _120
+
+    // _120
+    // this isn't what they wrote but oh well
+    union {
+        volatile u32 mColorFrame_v;
+        u32 mColorFrame;
+    };
+
     volatile bool mIsGrandStar;              // _124
     bool _125;                        // Obj_arg0
     bool _126;                        // Obj_arg1
