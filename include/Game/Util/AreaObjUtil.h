@@ -1,9 +1,11 @@
 #pragma once
 
+#include "JSystem/JGeometry/TBox.h"
 #include "JSystem/JGeometry/TVec.h"
 
 class AreaObj;
 class AreaObjMgr;
+class AreaCubeBoundingBox;
 
 namespace MR {
     AreaObjMgr* getAreaObjManager(const char *);
@@ -12,4 +14,11 @@ namespace MR {
     s32 getAreaObjArg(const AreaObj *, s32);
 
     void calcCylinderPos(TVec3f *, const AreaObj *);
+
+    void calcCubePos(const AreaObj *, TVec3f *);
+    void calcCubeLocalPos(TVec3f *, const AreaObj *, const TVec3f &);
+    
+    void calcCubeRotate(const AreaObj *, TVec3f *);
+
+    TBox3f *getCubeLocalBox(const AreaObj *);
 };

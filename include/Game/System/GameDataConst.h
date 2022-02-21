@@ -6,6 +6,7 @@
 const JMapData GalaxyIDBCSV = { 0x0, 0x0, 0x0, 0x0 };
 
 class GameDataConst {
+public:
     static u32 getPowerStarNumToOpenGalaxy(const char *);
     static bool isPowerStarGreen(const char *, s32);
     static bool isPowerStarRed(const char *, s32);

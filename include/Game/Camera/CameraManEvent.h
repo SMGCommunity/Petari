@@ -77,7 +77,7 @@ public:
     bool isAnimCameraEnd(long, const char *) const;
 
     CameraHolder *mHolder;                      // _48
-    CameraParamChunkHolder* mChunkHolder;       // _4C
+    CameraParamChunkHolder *mChunkHolder;       // _4C
     Camera *mCamera;                            // _50
     ChunkFIFOItemPair mItems[NR_FIFO_ITEMS];    // _54
     CameraParamChunkEvent *mChunk;              // _B4

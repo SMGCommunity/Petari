@@ -10,6 +10,7 @@
 #define SceneObj_AreaObjContainer           0xD
 #define SceneObj_MarioHolder                0x14
 #define SceneObj_MirrorCamera               0x16
+#define SceneObj_PlayerActionGuidance       0x23
 #define SceneObj_PlacementStateChecker      0x27
 #define SceneObj_NamePosHolder              0x28
 #define SceneObj_AllLiveActorGroup          0x30
@@ -19,6 +20,8 @@
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C
 #define SceneObj_NameObjExecuteHolder       0x58
+#define SceneObj_QuakeEffectGenerator       0x5B
+#define SceneObj_HeatHazeDirector           0x5D
 #define SceneObj_PlanetMapCreator           0x74
 
 class NameObj;

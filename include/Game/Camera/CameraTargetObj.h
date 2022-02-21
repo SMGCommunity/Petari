@@ -112,7 +112,7 @@ public:
     TVec3f mSide;                   // _14
     TVec3f mUp;                     // _20
     TVec3f mFront;                  // _2C
-    TVec3f mGravityVector;          // _38
+    TVec3f mGravity;                // _38
     TVec3f mGroundPos;              // _44
     CubeCameraArea *mCameraArea;    // _50
     Triangle *mGroundTriangle;      // _54

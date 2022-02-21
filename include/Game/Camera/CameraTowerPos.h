@@ -5,7 +5,7 @@
 class CameraTowerPos : public CameraTowerBase {
 public:
     CameraTowerPos(const char *);
-    ~CameraTowerPos();
+    virtual ~CameraTowerPos();
 
     virtual void reset();
     virtual CameraTargetObj *calc();

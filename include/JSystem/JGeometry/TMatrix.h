@@ -16,7 +16,12 @@ namespace JGeometry {
         inline void setInline(const SMatrix34C<T> &rSrc) {
             register const SMatrix34C<T> *pSrc = &rSrc;
             register SMatrix34C<T> *pDest = this;
-            register f32 rxxyx, rzxtx, rxyyy, rzyty, rxzyz, rzztz;
+            register f32 rzztz;
+            register f32 rxzyz;
+            register f32 rzyty;
+            register f32 rxyyy;
+            register f32 rzxtx;
+            register f32 rxxyx;
 
             __asm {
                 psq_l     rxxyx, 0(pSrc), 0, 0

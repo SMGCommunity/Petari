@@ -61,7 +61,7 @@ void CameraParamChunkHolder::sort() {
         for (s32 j = i + 1; j < mNrChunks; j++) {
             if (*mChunks[j]->mParamChunkID > *mChunks[minIndex]->mParamChunkID) {
                 minIndex = j;
-            }   
+            }
         }
 
         if (minIndex != i) {
