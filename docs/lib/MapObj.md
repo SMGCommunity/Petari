@@ -187,7 +187,7 @@
 | PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
 | PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
 | PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
-| PowerStar.o | 44.61538461538462% | 29 / 65 | 44.61538461538462% |
+| PowerStar.o | 57.136752136752136% | 51 / 65 | 78.46153846153847% |
 | PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% |
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
 | PressureBase.o | 0.0% | 0 / 48 | 0.0% |
@@ -4923,8 +4923,8 @@
 | setupColor__23@unnamed@PowerStar_cpp@FP9LiveActorbi | :white_check_mark: |
 | setupColorGrandStar__23@unnamed@PowerStar_cpp@FP9LiveActorb | :white_check_mark: |
 | requestPointLight__23@unnamed@PowerStar_cpp@FPC9LiveActori | :white_check_mark: |
-| __ct__9PowerStarFPCc | :x: |
-| init__9PowerStarFRC12JMapInfoIter | :x: |
+| __ct__9PowerStarFPCc | :white_check_mark: |
+| init__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
 | initAfterPlacement__9PowerStarFv | :white_check_mark: |
 | appear__9PowerStarFv | :white_check_mark: |
 | makeActorAppeared__9PowerStarFv | :white_check_mark: |
@@ -4965,26 +4965,26 @@
 | exeWeakNoRotate__9PowerStarFv | :x: |
 | exeWeakToWait__9PowerStarFv | :x: |
 | exeStageClearDemo__9PowerStarFv | :x: |
-| __dt__9PowerStarFv | :x: |
-| __sinit_\PowerStar_cpp | :x: |
-| __ct__Q212NrvPowerStar27PowerStarNrvWaitStartAppearFv | :x: |
-| __ct__Q212NrvPowerStar26PowerStarNrvAppearDemoRiseFv | :x: |
-| __ct__Q212NrvPowerStar26PowerStarNrvAppearDemoMoveFv | :x: |
-| __ct__Q212NrvPowerStar27PowerStarNrvAppearDemoKoopaFv | :x: |
-| __ct__Q212NrvPowerStar16PowerStarNrvWaitFv | :x: |
-| __ct__Q212NrvPowerStar16PowerStarNrvWeakFv | :x: |
-| __ct__Q212NrvPowerStar24PowerStarNrvWeakNoRotateFv | :x: |
-| __ct__Q212NrvPowerStar22PowerStarNrvWeakToWaitFv | :x: |
-| __ct__Q212NrvPowerStar26PowerStarNrvStageClearDemoFv | :x: |
-| execute__Q212NrvPowerStar26PowerStarNrvStageClearDemoCFP5Spine | :x: |
-| execute__Q212NrvPowerStar22PowerStarNrvWeakToWaitCFP5Spine | :x: |
-| execute__Q212NrvPowerStar24PowerStarNrvWeakNoRotateCFP5Spine | :x: |
-| execute__Q212NrvPowerStar16PowerStarNrvWeakCFP5Spine | :x: |
-| execute__Q212NrvPowerStar16PowerStarNrvWaitCFP5Spine | :x: |
-| execute__Q212NrvPowerStar27PowerStarNrvAppearDemoKoopaCFP5Spine | :x: |
-| execute__Q212NrvPowerStar26PowerStarNrvAppearDemoMoveCFP5Spine | :x: |
-| execute__Q212NrvPowerStar26PowerStarNrvAppearDemoRiseCFP5Spine | :x: |
-| execute__Q212NrvPowerStar27PowerStarNrvWaitStartAppearCFP5Spine | :x: |
+| __dt__9PowerStarFv | :white_check_mark: |
+| __sinit_\PowerStar_cpp | :white_check_mark: |
+| __ct__Q212NrvPowerStar27PowerStarNrvWaitStartAppearFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar26PowerStarNrvAppearDemoRiseFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar26PowerStarNrvAppearDemoMoveFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar27PowerStarNrvAppearDemoKoopaFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar16PowerStarNrvWaitFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar16PowerStarNrvWeakFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar24PowerStarNrvWeakNoRotateFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar22PowerStarNrvWeakToWaitFv | :white_check_mark: |
+| __ct__Q212NrvPowerStar26PowerStarNrvStageClearDemoFv | :white_check_mark: |
+| execute__Q212NrvPowerStar26PowerStarNrvStageClearDemoCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar22PowerStarNrvWeakToWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar24PowerStarNrvWeakNoRotateCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar16PowerStarNrvWeakCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar16PowerStarNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar27PowerStarNrvAppearDemoKoopaCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar26PowerStarNrvAppearDemoMoveCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar26PowerStarNrvAppearDemoRiseCFP5Spine | :white_check_mark: |
+| execute__Q212NrvPowerStar27PowerStarNrvWaitStartAppearCFP5Spine | :white_check_mark: |
 
 
 # PowerStarAppearPoint.o
