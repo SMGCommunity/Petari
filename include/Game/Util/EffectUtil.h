@@ -3,6 +3,7 @@
 #include <revolution.h>
 
 class LiveActor;
+class HitSensor;
 
 namespace MR {
     bool isExistEffectKeeper(const LiveActor *);
@@ -19,5 +20,9 @@ namespace MR {
     void forceDeleteEffect(LiveActor *, const char *);
     void forceDeleteEffectAll(LiveActor *);
 
+    void addEffectHitNormal(LiveActor *, const char *);
+
     void setEffectHostMtx(LiveActor *, const char *, MtxPtr);
+
+    void emitEffectHitBetweenSensors(LiveActor *, const HitSensor *, const HitSensor *, f32, const char *);
 };

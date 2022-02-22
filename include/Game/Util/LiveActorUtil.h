@@ -16,6 +16,13 @@ class PartsModel;
 class LodCtrl;
 
 namespace MR {
+    enum CollisionScaleType {
+        UNKNOWN_0 = 0,
+        UNKNOWN_1 = 1,
+        UNKNOWN_2 = 2,
+        UNKNOWN_3 = 3
+    };
+
     bool isExistIndirectTexture(const LiveActor *);
 
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
@@ -145,6 +152,7 @@ namespace MR {
     void setBckFrameAndStop(const LiveActor *, f32);
 
     void setBtkFrame(LiveActor *, f32);
+    void setBtkFrameAndStop(const LiveActor *, f32);
 
     bool isExistBck(const LiveActor *, const char *);
     bool isExistBva(const LiveActor *, const char *);
@@ -198,4 +206,6 @@ namespace MR {
     void hideModelAndOnCalcAnimIfShown(LiveActor *);
 
     bool tryCreateMirrorActor(LiveActor *, const char *);
-}
+
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, CollisionScaleType);
+};

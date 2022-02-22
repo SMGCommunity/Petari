@@ -34,4 +34,12 @@ namespace MR {
     void calcActorAxisY(TVec3f *, const LiveActor *);
 
     bool isInWater(const LiveActor *, const TVec3f &);
+
+    void attenuateVelocity(LiveActor *, f32);
+
+    void killVelocityToTarget(LiveActor *, const TVec3f &);
+
+    void restrictVelocity(LiveActor *, f32);
+
+    void turnDirectionToGround(const LiveActor *, TVec3f *);
 };

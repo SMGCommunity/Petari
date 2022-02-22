@@ -103,6 +103,8 @@ namespace MR {
     T converge(T, T, T);
 
     f32 clamp(f32, f32, f32);
+
+    f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

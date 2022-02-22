@@ -154,7 +154,7 @@
 | MapObjActor.o | 46.68478260869565% | 43 / 59 | 72.88135593220339% |
 | MapObjActorInitInfo.o | 22.48062015503876% | 11 / 37 | 29.72972972972973% |
 | MapObjConnector.o | 32.25806451612903% | 4 / 6 | 66.66666666666666% |
-| MarblePlanet.o | 0.0% | 0 / 35 | 0.0% |
+| MarblePlanet.o | 100.0% | 35 / 35 | 100.0% |
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% |
 | MarioLauncherAttractor.o | 100.0% | 6 / 6 | 100.0% |
 | MechaKoopaPartsArm.o | 0.0% | 0 / 32 | 0.0% |
@@ -4096,41 +4096,41 @@
 # MarblePlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12MarblePlanetFPCc | :x: |
-| init__12MarblePlanetFRC12JMapInfoIter | :x: |
-| exeScaleUpCore__12MarblePlanetFv | :x: |
-| exeBreakCore__12MarblePlanetFv | :x: |
-| startClipped__12MarblePlanetFv | :x: |
-| endClipped__12MarblePlanetFv | :x: |
-| kill__12MarblePlanetFv | :x: |
-| receiveMsgEnemyAttack__12MarblePlanetFUlP9HitSensorP9HitSensor | :x: |
-| initCoreAndElectron__12MarblePlanetFv | :x: |
-| __ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
-| init__20MarblePlanetElectronFRC12JMapInfoIter | :x: |
-| exeMove__20MarblePlanetElectronFv | :x: |
-| exeAttack__20MarblePlanetElectronFv | :x: |
-| control__20MarblePlanetElectronFv | :x: |
-| attackSensor__20MarblePlanetElectronFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__20MarblePlanetElectronFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgPush__20MarblePlanetElectronFP9HitSensorP9HitSensor | :x: |
-| crashElectron__20MarblePlanetElectronFP9HitSensor | :x: |
-| __ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCc | :x: |
-| init__26MarblePlanetElectronShadowFRC12JMapInfoIter | :x: |
-| calcAndSetBaseMtx__26MarblePlanetElectronShadowFv | :x: |
-| __dt__12MarblePlanetFv | :x: |
-| __dt__20MarblePlanetElectronFv | :x: |
-| __dt__26MarblePlanetElectronShadowFv | :x: |
-| __sinit_\MarblePlanet_cpp | :x: |
-| __ct__Q215NrvMarblePlanet19MarblePlanetNrvWaitFv | :x: |
-| __ct__Q215NrvMarblePlanet26MarblePlanetNrvScaleUpCoreFv | :x: |
-| __ct__Q215NrvMarblePlanet24MarblePlanetNrvBreakCoreFv | :x: |
-| __ct__Q223NrvMarblePlanetElectron27MarblePlanetElectronNrvMoveFv | :x: |
-| __ct__Q223NrvMarblePlanetElectron29MarblePlanetElectronNrvAttackFv | :x: |
-| execute__Q223NrvMarblePlanetElectron29MarblePlanetElectronNrvAttackCFP5Spine | :x: |
-| execute__Q223NrvMarblePlanetElectron27MarblePlanetElectronNrvMoveCFP5Spine | :x: |
-| execute__Q215NrvMarblePlanet24MarblePlanetNrvBreakCoreCFP5Spine | :x: |
-| execute__Q215NrvMarblePlanet26MarblePlanetNrvScaleUpCoreCFP5Spine | :x: |
-| execute__Q215NrvMarblePlanet19MarblePlanetNrvWaitCFP5Spine | :x: |
+| __ct__12MarblePlanetFPCc | :white_check_mark: |
+| init__12MarblePlanetFRC12JMapInfoIter | :white_check_mark: |
+| exeScaleUpCore__12MarblePlanetFv | :white_check_mark: |
+| exeBreakCore__12MarblePlanetFv | :white_check_mark: |
+| startClipped__12MarblePlanetFv | :white_check_mark: |
+| endClipped__12MarblePlanetFv | :white_check_mark: |
+| kill__12MarblePlanetFv | :white_check_mark: |
+| receiveMsgEnemyAttack__12MarblePlanetFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initCoreAndElectron__12MarblePlanetFv | :white_check_mark: |
+| __ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc | :white_check_mark: |
+| init__20MarblePlanetElectronFRC12JMapInfoIter | :white_check_mark: |
+| exeMove__20MarblePlanetElectronFv | :white_check_mark: |
+| exeAttack__20MarblePlanetElectronFv | :white_check_mark: |
+| control__20MarblePlanetElectronFv | :white_check_mark: |
+| attackSensor__20MarblePlanetElectronFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__20MarblePlanetElectronFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPush__20MarblePlanetElectronFP9HitSensorP9HitSensor | :white_check_mark: |
+| crashElectron__20MarblePlanetElectronFP9HitSensor | :white_check_mark: |
+| __ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCc | :white_check_mark: |
+| init__26MarblePlanetElectronShadowFRC12JMapInfoIter | :white_check_mark: |
+| calcAndSetBaseMtx__26MarblePlanetElectronShadowFv | :white_check_mark: |
+| __dt__12MarblePlanetFv | :white_check_mark: |
+| __dt__20MarblePlanetElectronFv | :white_check_mark: |
+| __dt__26MarblePlanetElectronShadowFv | :white_check_mark: |
+| __sinit_\MarblePlanet_cpp | :white_check_mark: |
+| __ct__Q215NrvMarblePlanet19MarblePlanetNrvWaitFv | :white_check_mark: |
+| __ct__Q215NrvMarblePlanet26MarblePlanetNrvScaleUpCoreFv | :white_check_mark: |
+| __ct__Q215NrvMarblePlanet24MarblePlanetNrvBreakCoreFv | :white_check_mark: |
+| __ct__Q223NrvMarblePlanetElectron27MarblePlanetElectronNrvMoveFv | :white_check_mark: |
+| __ct__Q223NrvMarblePlanetElectron29MarblePlanetElectronNrvAttackFv | :white_check_mark: |
+| execute__Q223NrvMarblePlanetElectron29MarblePlanetElectronNrvAttackCFP5Spine | :white_check_mark: |
+| execute__Q223NrvMarblePlanetElectron27MarblePlanetElectronNrvMoveCFP5Spine | :white_check_mark: |
+| execute__Q215NrvMarblePlanet24MarblePlanetNrvBreakCoreCFP5Spine | :white_check_mark: |
+| execute__Q215NrvMarblePlanet26MarblePlanetNrvScaleUpCoreCFP5Spine | :white_check_mark: |
+| execute__Q215NrvMarblePlanet19MarblePlanetNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # MarioLauncher.o

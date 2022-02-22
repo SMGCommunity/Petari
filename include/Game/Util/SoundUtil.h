@@ -39,4 +39,6 @@ namespace MR {
     void setCubeBgmChangeInvalid();
     bool isCubeBgmChangeInvalid();
     void clearBgmQueue();
+
+    void startAfterBossBGM();
 };

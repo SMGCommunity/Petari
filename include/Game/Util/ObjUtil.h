@@ -93,7 +93,9 @@ namespace MR {
     bool isJudgedToClipFrustum100m(const TVec3f &, f32);
     bool isJudgedToClipFrustum300m(const TVec3f &, f32);
 
+    bool tryRumblePadVeryWeak(const void *, s32);
     bool tryRumblePadMiddle(const void *, s32);
+    bool tryRumblePadStrong(const void *, s32);
 
     void declareCoin(const NameObj *, s32);
     void getDeclareRemnantCoinCount(const NameObj *);
@@ -119,4 +121,7 @@ namespace MR {
     void requestAppearPowerStar(const NameObj *, const TVec3f &);
     void requestAppearPowerStar(const NameObj *, s32, const TVec3f &);
     void requestAppearPowerStar(const NameObj *, const LiveActor *, f32);
+
+    void shakeCameraNormal();
+    void shakeCameraStrong();
 };
