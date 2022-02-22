@@ -2,6 +2,7 @@
 #include "Game/MapObj/PowerStarHolder.h"
 #include "Game/LiveActor/LiveActorGroup.h"
 #include "Game/Util.h"
+#include "JSystem/JMath.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -272,7 +273,7 @@ s32 PowerStar::getBtpFrameCurrentStage(s32 a1) {
         return 2;
     }
 
-    return -(MR::isPowerStarRedInCurrentStage(a1) != 0) & 0x3;
+    return MR::isPowerStarRedInCurrentStage(a1) ? 3 : 0;
 }
 
 bool PowerStar::isCurrentStageKoopaVs3() {
@@ -469,6 +470,36 @@ void PowerStar::initShadow(const JMapInfoIter &rIter) {
     }
 }
 
+void PowerStar::initPosture() {
+    MR::calcGravity(this, mAppearPosition);
+    TMtx34f rotate;
+    MR::makeMtxRotate((MtxPtr)&rotate, _A0);
+
+    if (!_126) {
+        TVec3f stack_14;
+        f32 z = rotate.mMtx[2][2];
+        f32 y = rotate.mMtx[1][2];
+        f32 x = rotate.mMtx[0][2];
+        stack_14.set(x, y, z);
+
+        TVec3f negGravity;
+        negGravity.negateInline_2(mGravity);
+
+        if (!MR::isSameDirection(negGravity, stack_14, 0.0099999998f)) {
+            MR::makeMtxUpFront(&_B8, negGravity, stack_14);
+        }
+        else {
+            MR::makeMtxUpNoSupport(&_B8, negGravity);
+        }
+    }
+    else {
+        JMath::gekko_ps_copy12(&_B8, &rotate);
+    }
+
+    _B8.zeroTrans();
+    mRotation.y = 0.0f;
+}
+
 void PowerStar::endAppearDemo() {
     if (!_11C) {
         MR::endDemo(this, cAppearDemoName);
@@ -477,6 +508,35 @@ void PowerStar::endAppearDemo() {
     MR::moveVolumeStageBGM(1.0f, 0x3C);
     MR::moveVolumeSubBGM(1.0f, 0x3C);
     setNerve(&NrvPowerStar::PowerStarNrvWait::sInstance);
+}
+
+PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const {
+    LiveActorGroup* group = MR::getGroupFromArray(this);
+    f32 curDist = 3.4028235e38f;
+    PowerStarAppearPoint* curNearest = 0;
+
+    for (int i = 0; i < group->mObjectCount; i++) {
+        PowerStarAppearPoint* actor = reinterpret_cast<PowerStarAppearPoint*>(group->getActor(i));
+
+        if ((LiveActor*)actor != this) {
+            f32 dist = PSVECDistance(rPos.toCVec(), actor->mPosition.toCVec());
+
+            if (dist < curDist) {
+                curNearest = actor;
+                curDist = dist;
+            }
+        }
+    }
+
+    return curNearest;
+}
+
+
+LiveActor* PowerStar::getAppearCameraActor() {
+    LiveActor* cam_actor = this->mCameraActor;
+    if (cam_actor) {
+        return cam_actor;
+    }
 }
 
 void PowerStar::requestAppearOrWait() {
@@ -558,6 +618,90 @@ void PowerStar::processWait(f32 val) {
     }
 }
 #endif
+
+#ifdef NON_MATCHING
+void PowerStar::exeAppearDemoRise() {
+    if (MR::isFirstStep(this)) {
+        MR::showModelIfHidden(this);
+        MR::moveVolumeStageBGM(0.0f, 5);
+        MR::moveVolumeSubBGM(0.0f, 5);
+
+        CameraTargetArg target_arg(this);
+        MR::startActorCameraTargetOther(getAppearCameraActor(), getAppearCameraInfo(), target_arg, 0);
+        mPosition.set(_AC);
+        MR::emitEffect(this, "Light");
+    }
+
+    TVec3f stack_8(0.0f, 0.0f, 0.0f);
+    if (MR::isInWater(this, stack_8)) {
+        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
+    }
+    else {
+        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+    }
+
+    f32 easeOut = MR::calcNerveEaseOutValue(this, 0x3C, 0.0f, 300.0f);
+    calcAppearDemoRiseTrans(&mPosition, easeOut);
+    mRotation.y = 0.0f + fmod((360.0f + ((10.0f + mRotation.y) - 0.0f)), 360.0f);
+
+    if (MR::isStep(this, 0x50)) {
+        setNerve(&NrvPowerStar::PowerStarNrvAppearDemoMove::sInstance);
+    }
+}
+#endif
+
+// PowerStar::exeAppearDemoMove()
+
+void PowerStar::exeWait() {
+    if (MR::isFirstStep(this)) {
+        if (MR::isGalaxyGhostCometAppearInCurrentStage()) {
+            MR::validateClipping(this);
+        }
+
+        MR::validateHitSensors(this);
+        MR::emitEffect(this, "Light");
+    }
+    
+    processWait(mIsGrandStar ? 2.0f : 3.0f);
+} 
+
+void PowerStar::exeWeak() {
+    if (MR::isFirstStep(this)) {
+        MR::invalidateHitSensors(this);
+        MR::validateClipping(this);
+
+        if (mColorFrame != 4) {
+            MR::startBrkAndSetFrameAndStop(this, "Recover", 0.0f);
+        }
+    }
+
+    _164 = 1;
+    processWait(0.30000001f);
+}
+
+void PowerStar::exeWeakNoRotate() {
+    if (MR::isFirstStep(this)) {
+        mRotation.y = 45.0f;
+    }
+
+    _164 = 1;
+    processWait(0.0f);
+}
+
+void PowerStar::exeWeakToWait() {
+    if (MR::isFirstStep(this)) {
+        if (mColorFrame != 4) {
+            MR::setBrkRate(this, 1.0f);
+        }
+    }
+
+    _164 = 0;
+    f32 easeIn = MR::calcNerveEaseInValue(this, 0x1E, 0.30000001f, mIsGrandStar ? 2.0f : 3.0f);
+    processWait(easeIn);
+    MR::setNerveAtStep(this, &NrvPowerStar::PowerStarNrvWait::sInstance, 0x1E);
+}
+
+// PowerStar::exeStageClearDemo
 
 PowerStar::~PowerStar() {
 

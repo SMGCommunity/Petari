@@ -187,7 +187,7 @@
 | PlantPoint.o | 0.0% | 0 / 2 | 0.0% |
 | PlantRailInfo.o | 0.0% | 0 / 3 | 0.0% |
 | PomponPlant.o | 0.0% | 0 / 15 | 0.0% |
-| PowerStar.o | 57.136752136752136% | 51 / 65 | 78.46153846153847% |
+| PowerStar.o | 66.49572649572649% | 58 / 65 | 89.23076923076924% |
 | PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% |
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% |
 | PressureBase.o | 0.0% | 0 / 48 | 0.0% |
@@ -4949,10 +4949,10 @@
 | initModel__9PowerStarFv | :white_check_mark: |
 | initSensorGrandStar__9PowerStarFv | :white_check_mark: |
 | initShadow__9PowerStarFRC12JMapInfoIter | :white_check_mark: |
-| initPosture__9PowerStarFv | :x: |
+| initPosture__9PowerStarFv | :white_check_mark: |
 | endAppearDemo__9PowerStarFv | :white_check_mark: |
-| getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getAppearCameraActor__9PowerStarFv | :x: |
+| getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getAppearCameraActor__9PowerStarFv | :white_check_mark: |
 | getAppearCameraInfo__9PowerStarCFv | :x: |
 | requestAppearOrWait__9PowerStarFv | :white_check_mark: |
 | calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
@@ -4960,10 +4960,10 @@
 | exeAppearDemoRise__9PowerStarFv | :x: |
 | exeAppearDemoMove__9PowerStarFv | :x: |
 | exeAppearDemoKoopa__9PowerStarFv | :x: |
-| exeWait__9PowerStarFv | :x: |
-| exeWeak__9PowerStarFv | :x: |
-| exeWeakNoRotate__9PowerStarFv | :x: |
-| exeWeakToWait__9PowerStarFv | :x: |
+| exeWait__9PowerStarFv | :white_check_mark: |
+| exeWeak__9PowerStarFv | :white_check_mark: |
+| exeWeakNoRotate__9PowerStarFv | :white_check_mark: |
+| exeWeakToWait__9PowerStarFv | :white_check_mark: |
 | exeStageClearDemo__9PowerStarFv | :x: |
 | __dt__9PowerStarFv | :white_check_mark: |
 | __sinit_\PowerStar_cpp | :white_check_mark: |

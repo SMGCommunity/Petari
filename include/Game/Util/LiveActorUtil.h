@@ -61,6 +61,7 @@ namespace MR {
     void calcAnimDirect(LiveActor *);
 
     void calcGravity(LiveActor *);
+    void calcGravity(LiveActor *, const TVec3f &);
 
     void zeroVelocity(LiveActor *);
 
@@ -133,6 +134,10 @@ namespace MR {
     void setBvaFrameAndStop(const LiveActor *, f32);
 
     BrkCtrl* getBrkCtrl(const LiveActor *);
+
+    void startBrkAndSetFrameAndStop(const LiveActor *, const char *, f32);
+
+    void setBrkRate(const LiveActor *, f32);
 
     f32 getBckFrameMax(const LiveActor *);
     f32 getBrkFrameMax(const LiveActor *);

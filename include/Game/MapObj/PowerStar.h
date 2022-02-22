@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/MapObj/PowerStarAppearPoint.h"
 #include "Game/NameObj/NameObjArchiveListCollector.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/LiveActor/ModelObj.h"
@@ -44,9 +45,9 @@ public:
     void initShadow(const JMapInfoIter &);
     void initPosture();
     void endAppearDemo();
-    LiveActor* getNearestAppearPoint(const TVec3f &);
+    PowerStarAppearPoint* getNearestAppearPoint(const TVec3f &) const;
     LiveActor* getAppearCameraActor();
-    const ActorCameraInfo* getAppearCameraInfo() const;
+    ActorCameraInfo* getAppearCameraInfo() const;
     void requestAppearOrWait();
     void calcAppearDemoRiseTrans(TVec3f *, f32) const;
     void processWait(f32);
@@ -68,7 +69,7 @@ public:
     TVec3f mAppearPosition;         // _94
     TVec3f _A0;
     TVec3f _AC;
-    TMtx34f _B8;
+    TPos3f _B8;
     TMtx34f _E8;
     ModelObj* mPowerStarModelObj;   // _118
     u8 _11C;
@@ -79,17 +80,17 @@ public:
     // _120
     // this isn't what they wrote but oh well
     union {
-        volatile u32 mColorFrame_v;
-        u32 mColorFrame;
+        volatile s32 mColorFrame_v;
+        s32 mColorFrame;
     };
 
     volatile bool mIsGrandStar;              // _124
-    bool _125;                        // Obj_arg0
-    bool _126;                        // Obj_arg1
-    bool _127;                        // Obj_arg4
-    ActorCameraInfo* mCameraInfo;   // _128
-    LiveActor* mCameraActor;        // _12C
-    ModelObj* mLuigiNPC;            // _130
+    bool _125;                          // Obj_arg0
+    bool _126;                          // Obj_arg1
+    bool _127;                          // Obj_arg4
+    ActorCameraInfo* mCameraInfo;       // _128
+    PowerStarAppearPoint* mCameraActor; // _12C
+    ModelObj* mLuigiNPC;                // _130
     TMtx34f _134;
     u8 _164;
 };

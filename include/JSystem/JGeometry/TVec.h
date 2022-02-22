@@ -296,6 +296,20 @@ namespace JGeometry {
                 stfs z, 8(dst)
             }
         }
+        inline void negateInline_2(register const TVec3<T> &rSrc) {
+            register TVec3<T>* dst = this;
+            register f32 xy;
+            register f32 z;
+
+            __asm {
+                psq_l xy, 0(rSrc), 0, 0
+                ps_neg xy, xy
+                psq_st xy, 0(dst), 0, 0
+                lfs z, 8(rSrc)
+                fneg z, z
+                stfs z, 8(dst)
+            }
+        }
 
         T x, y, z;
     };
