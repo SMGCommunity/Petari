@@ -101,9 +101,9 @@ Triangle *CameraTargetActor::getGroundTriangle() const {
 }
 
 CameraTargetPlayer::CameraTargetPlayer(const char *pName) : CameraTargetObj(pName) {
-    mGravityVector.x = 0.0f;
-    mGravityVector.y = -1.0f;
-    mGravityVector.z = 0.0f;
+    mGravity.x = 0.0f;
+    mGravity.y = -1.0f;
+    mGravity.z = 0.0f;
     mGroundPos.x = 0.0f;
     mGroundPos.y = 0.0f;
     mGroundPos.z = 0.0f;
@@ -134,5 +134,5 @@ const TVec3f *CameraTargetPlayer::getGroundPos() const {
 }
 
 const TVec3f *CameraTargetPlayer::getGravityVector() const {
-    return &mGravityVector;
+    return &mGravity;
 }

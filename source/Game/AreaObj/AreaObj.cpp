@@ -21,6 +21,7 @@ AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     /* todo -- assign forms based on a1 */
 }
 
+// Issues with functors
 void AreaObj::init(const JMapInfoIter &rIter) {
     mForm->init(rIter);
     MR::addBaseMatrixFollowerAreaObj(this, rIter);

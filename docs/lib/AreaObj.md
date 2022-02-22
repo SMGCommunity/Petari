@@ -20,24 +20,24 @@
 | DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% |
 | FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% |
 | GlaringLightArea.o | 77.57575757575758% | 5 / 7 | 71.42857142857143% |
-| HazeCube.o | 0.0% | 0 / 4 | 0.0% |
+| HazeCube.o | 100.0% | 4 / 4 | 100.0% |
 | ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% |
 | LightArea.o | 100.0% | 4 / 4 | 100.0% |
 | LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% |
-| MercatorTransformCube.o | 0.0% | 0 / 23 | 0.0% |
-| MessageArea.o | 0.0% | 0 / 3 | 0.0% |
-| PlayerSeArea.o | 0.0% | 0 / 5 | 0.0% |
-| QuakeEffectArea.o | 0.0% | 0 / 2 | 0.0% |
-| RestartCube.o | 0.0% | 0 / 5 | 0.0% |
-| ScreenBlurArea.o | 0.0% | 0 / 5 | 0.0% |
-| SimpleBloomArea.o | 0.0% | 0 / 4 | 0.0% |
-| SoundEmitterCube.o | 0.0% | 0 / 5 | 0.0% |
-| SoundEmitterSphere.o | 0.0% | 0 / 4 | 0.0% |
-| SpinGuidanceArea.o | 0.0% | 0 / 3 | 0.0% |
-| SunLightArea.o | 0.0% | 0 / 3 | 0.0% |
+| MercatorTransformCube.o | 12.424503882657463% | 6 / 23 | 26.08695652173913% |
+| MessageArea.o | 100.0% | 3 / 3 | 100.0% |
+| PlayerSeArea.o | 100.0% | 5 / 5 | 100.0% |
+| QuakeEffectArea.o | 100.0% | 2 / 2 | 100.0% |
+| RestartCube.o | 49.26829268292683% | 4 / 5 | 80.0% |
+| ScreenBlurArea.o | 100.0% | 5 / 5 | 100.0% |
+| SimpleBloomArea.o | 100.0% | 4 / 4 | 100.0% |
+| SoundEmitterCube.o | 32.66129032258064% | 3 / 5 | 60.0% |
+| SoundEmitterSphere.o | 48.8235294117647% | 3 / 4 | 75.0% |
+| SpinGuidanceArea.o | 47.5% | 2 / 3 | 66.66666666666666% |
+| SunLightArea.o | 100.0% | 3 / 3 | 100.0% |
 | SwitchArea.o | 100.0% | 5 / 5 | 100.0% |
-| WarpCube.o | 0.0% | 0 / 8 | 0.0% |
-| WaterArea.o | 0.0% | 0 / 5 | 0.0% |
+| WarpCube.o | 41.40350877192983% | 3 / 8 | 37.5% |
+| WaterArea.o | 33.89830508474576% | 2 / 5 | 40.0% |
 
 
 # AreaForm.o
@@ -337,10 +337,10 @@
 # HazeCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8HazeCubeFiPCc | :x: |
-| init__8HazeCubeFRC12JMapInfoIter | :x: |
-| __dt__8HazeCubeFv | :x: |
-| getManagerName__8HazeCubeCFv | :x: |
+| __ct__8HazeCubeFiPCc | :white_check_mark: |
+| init__8HazeCubeFRC12JMapInfoIter | :white_check_mark: |
+| __dt__8HazeCubeFv | :white_check_mark: |
+| getManagerName__8HazeCubeCFv | :white_check_mark: |
 
 
 # ImageEffectArea.o
@@ -376,12 +376,12 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __amu__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
-| __ct__21MercatorTransformCubeFiPCc | :x: |
-| init__21MercatorTransformCubeFRC12JMapInfoIter | :x: |
+| __ct__21MercatorTransformCubeFiPCc | :white_check_mark: |
+| init__21MercatorTransformCubeFRC12JMapInfoIter | :white_check_mark: |
 | convertTransAndRotate__21MercatorTransformCubeCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
-| getSphereRadius__21MercatorTransformCubeCFv | :x: |
-| calcUV__21MercatorTransformCubeCFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getSphereRadius__21MercatorTransformCubeCFv | :white_check_mark: |
+| calcUV__21MercatorTransformCubeCFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcLocalBoxSize__21MercatorTransformCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | convertMercatorPlaneToSphereTransAndRotate__2MRFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
 | initDefaultPosForMercator__2MRFP9LiveActorRC12JMapInfoIterb | :x: |
@@ -391,7 +391,7 @@
 | calcRailTotalLengthForMercator__2MRFPC9LiveActorf | :x: |
 | getDivideMercatorRailPosition__2MRFP25DivideMercatorRailPosInfoPC9LiveActorUlfUl | :x: |
 | createMapPartsRailMoverForMercator__2MRFP9LiveActorRC12JMapInfoIterb | :x: |
-| __dt__21MercatorTransformCubeFv | :x: |
+| __dt__21MercatorTransformCubeFv | :white_check_mark: |
 | cos__2MRFf | :x: |
 | sin__2MRFf | :x: |
 | min__2MRFff | :x: |
@@ -403,63 +403,63 @@
 # MessageArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11MessageAreaFiPCc | :x: |
-| init__11MessageAreaFRC12JMapInfoIter | :x: |
-| __dt__11MessageAreaFv | :x: |
+| __ct__11MessageAreaFiPCc | :white_check_mark: |
+| init__11MessageAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__11MessageAreaFv | :white_check_mark: |
 
 
 # PlayerSeArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12PlayerSeAreaFiPCc | :x: |
-| init__12PlayerSeAreaFRC12JMapInfoIter | :x: |
-| __dt__12PlayerSeAreaFv | :x: |
-| movement__12PlayerSeAreaFv | :x: |
-| getManagerName__12PlayerSeAreaCFv | :x: |
+| __ct__12PlayerSeAreaFiPCc | :white_check_mark: |
+| init__12PlayerSeAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__12PlayerSeAreaFv | :white_check_mark: |
+| movement__12PlayerSeAreaFv | :white_check_mark: |
+| getManagerName__12PlayerSeAreaCFv | :white_check_mark: |
 
 
 # QuakeEffectArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15QuakeEffectAreaFiPCc | :x: |
-| __dt__15QuakeEffectAreaFv | :x: |
+| __ct__15QuakeEffectAreaFiPCc | :white_check_mark: |
+| __dt__15QuakeEffectAreaFv | :white_check_mark: |
 
 
 # RestartCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11RestartCubeFiPCc | :x: |
-| init__11RestartCubeFRC12JMapInfoIter | :x: |
-| updatePlayerRestartIdInfo__11RestartCubeFv | :x: |
-| __dt__11RestartCubeFv | :x: |
+| __ct__11RestartCubeFiPCc | :white_check_mark: |
+| init__11RestartCubeFRC12JMapInfoIter | :white_check_mark: |
+| updatePlayerRestartIdInfo__11RestartCubeFv | :white_check_mark: |
+| __dt__11RestartCubeFv | :white_check_mark: |
 | changeBgm__11RestartCubeFv | :x: |
 
 
 # ScreenBlurArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14ScreenBlurAreaFiPCc | :x: |
-| init__14ScreenBlurAreaFRC12JMapInfoIter | :x: |
-| __dt__14ScreenBlurAreaFv | :x: |
-| isSyncWithPlayer__14ScreenBlurAreaCFv | :x: |
-| getManagerName__14ScreenBlurAreaCFv | :x: |
+| __ct__14ScreenBlurAreaFiPCc | :white_check_mark: |
+| init__14ScreenBlurAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__14ScreenBlurAreaFv | :white_check_mark: |
+| isSyncWithPlayer__14ScreenBlurAreaCFv | :white_check_mark: |
+| getManagerName__14ScreenBlurAreaCFv | :white_check_mark: |
 
 
 # SimpleBloomArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15SimpleBloomAreaFiPCc | :x: |
-| init__15SimpleBloomAreaFRC12JMapInfoIter | :x: |
-| __dt__15SimpleBloomAreaFv | :x: |
-| getManagerName__15SimpleBloomAreaCFv | :x: |
+| __ct__15SimpleBloomAreaFiPCc | :white_check_mark: |
+| init__15SimpleBloomAreaFRC12JMapInfoIter | :white_check_mark: |
+| __dt__15SimpleBloomAreaFv | :white_check_mark: |
+| getManagerName__15SimpleBloomAreaCFv | :white_check_mark: |
 
 
 # SoundEmitterCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__16SoundEmitterCubeFv | :x: |
-| __ct__16SoundEmitterCubeFiPCc | :x: |
-| init__16SoundEmitterCubeFRC12JMapInfoIter | :x: |
+| __dt__16SoundEmitterCubeFv | :white_check_mark: |
+| __ct__16SoundEmitterCubeFiPCc | :white_check_mark: |
+| init__16SoundEmitterCubeFRC12JMapInfoIter | :white_check_mark: |
 | movement__16SoundEmitterCubeFv | :x: |
 | extend__Q29JGeometry27TBox&lt;Q29JGeometry8TVec3&lt;f&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
@@ -467,26 +467,26 @@
 # SoundEmitterSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18SoundEmitterSphereFv | :x: |
-| __ct__18SoundEmitterSphereFiPCc | :x: |
-| init__18SoundEmitterSphereFRC12JMapInfoIter | :x: |
+| __dt__18SoundEmitterSphereFv | :white_check_mark: |
+| __ct__18SoundEmitterSphereFiPCc | :white_check_mark: |
+| init__18SoundEmitterSphereFRC12JMapInfoIter | :white_check_mark: |
 | movement__18SoundEmitterSphereFv | :x: |
 
 
 # SpinGuidanceArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16SpinGuidanceAreaFiPCc | :x: |
-| __dt__16SpinGuidanceAreaFv | :x: |
+| __ct__16SpinGuidanceAreaFiPCc | :white_check_mark: |
+| __dt__16SpinGuidanceAreaFv | :white_check_mark: |
 | init__16SpinGuidanceAreaFRC12JMapInfoIter | :x: |
 
 
 # SunLightArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12SunLightAreaFiPCc | :x: |
-| __dt__12SunLightAreaFv | :x: |
-| getManagerName__12SunLightAreaCFv | :x: |
+| __ct__12SunLightAreaFiPCc | :white_check_mark: |
+| __dt__12SunLightAreaFv | :white_check_mark: |
+| getManagerName__12SunLightAreaCFv | :white_check_mark: |
 
 
 # SwitchArea.o
@@ -502,23 +502,23 @@
 # WarpCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__8WarpCubeFv | :x: |
+| __dt__8WarpCubeFv | :white_check_mark: |
 | getPairCube__11WarpCubeMgrFPC7AreaObj | :x: |
 | setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs | :x: |
 | startEventCamera__11WarpCubeMgrFPC7AreaObj | :x: |
 | endEventCamera__11WarpCubeMgrFv | :x: |
-| movement__8WarpCubeFv | :x: |
+| movement__8WarpCubeFv | :white_check_mark: |
 | draw__8WarpCubeCFv | :x: |
-| init__8WarpCubeFRC12JMapInfoIter | :x: |
+| init__8WarpCubeFRC12JMapInfoIter | :white_check_mark: |
 
 
 # WaterArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9WaterAreaFiPCc | :x: |
+| __ct__9WaterAreaFiPCc | :white_check_mark: |
 | init__9WaterAreaFRC12JMapInfoIter | :x: |
 | __ct__12WaterAreaMgrFlPCc | :x: |
-| __dt__9WaterAreaFv | :x: |
+| __dt__9WaterAreaFv | :white_check_mark: |
 | __dt__12WaterAreaMgrFv | :x: |
 
 

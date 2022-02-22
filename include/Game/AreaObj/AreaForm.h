@@ -27,11 +27,10 @@ public:
     void calcWorldMtx(TPos3f *) const;
 
     int _8;
-    TVec3f mTranslation; // _C
-    TVec3f mRotation;    // _18
-    TVec3f mScale;       // _24
-    TVec3f _30;
-    TVec3f _3C;
+    TVec3f mTranslation;            // _C
+    TVec3f mRotation;               // _18
+    TVec3f mScale;                  // _24
+    TBox3f mBounding;               // _30
     Mtx _48;
 };
 

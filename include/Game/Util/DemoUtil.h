@@ -18,6 +18,7 @@ namespace MR {
     bool isRegisteredDemoActionNerve(const LiveActor *);
 
     void registerDemoSimpleCastAll(LiveActor *);
+    void registerDemoSimpleCastAll(NameObj *);
 
     bool isDemoActive();
 

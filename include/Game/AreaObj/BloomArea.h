@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/AreaObj/ImageEffectArea.h"
 
 class BloomArea : public ImageEffectArea {

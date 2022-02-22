@@ -3,8 +3,6 @@
 #include "Game/Camera/Camera.h"
 #include "Game/NameObj/NameObj.h"
 
-class OnlyCamera;
-
 class CameraDead : public Camera {
 public:
     CameraDead(const char *);
@@ -19,5 +17,5 @@ public:
     f32 mDist;  // _50
     s32 _54;
     s32 _58;
-    u32 _5C;    
+    u32 _5C;
 };
