@@ -54,6 +54,7 @@ namespace MR {
 
     void addBodyMessageSensorMapObj(LiveActor *);
     void addBodyMessageSensor(LiveActor *, u32);
+    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
 
     LiveActor* getSensorHost(const HitSensor *);
     bool isSensor(const HitSensor *, const char *);

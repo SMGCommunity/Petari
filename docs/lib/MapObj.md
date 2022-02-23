@@ -126,7 +126,7 @@
 | InvisiblePolygonObj.o | 0.0% | 0 / 6 | 0.0% |
 | InvisiblePolygonObjGCapture.o | 0.0% | 0 / 3 | 0.0% |
 | IronCannonShell.o | 0.0% | 0 / 27 | 0.0% |
-| ItemAppearStone.o | 0.0% | 0 / 9 | 0.0% |
+| ItemAppearStone.o | 100.0% | 9 / 9 | 100.0% |
 | ItemBlock.o | 0.0% | 0 / 26 | 0.0% |
 | ItemBubble.o | 0.0% | 0 / 18 | 0.0% |
 | JetTurtle.o | 0.0% | 0 / 55 | 0.0% |
@@ -3414,15 +3414,15 @@
 # ItemAppearStone.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15ItemAppearStoneFPCc | :x: |
-| init__15ItemAppearStoneFRC12JMapInfoIter | :x: |
-| kill__15ItemAppearStoneFv | :x: |
-| calcAndSetBaseMtx__15ItemAppearStoneFv | :x: |
-| exeWait__15ItemAppearStoneFv | :x: |
-| __dt__15ItemAppearStoneFv | :x: |
-| __sinit_\ItemAppearStone_cpp | :x: |
-| __ct__Q218NrvItemAppearStone12HostTypeWaitFv | :x: |
-| execute__Q218NrvItemAppearStone12HostTypeWaitCFP5Spine | :x: |
+| __ct__15ItemAppearStoneFPCc | :white_check_mark: |
+| init__15ItemAppearStoneFRC12JMapInfoIter | :white_check_mark: |
+| kill__15ItemAppearStoneFv | :white_check_mark: |
+| calcAndSetBaseMtx__15ItemAppearStoneFv | :white_check_mark: |
+| exeWait__15ItemAppearStoneFv | :white_check_mark: |
+| __dt__15ItemAppearStoneFv | :white_check_mark: |
+| __sinit_\ItemAppearStone_cpp | :white_check_mark: |
+| __ct__Q218NrvItemAppearStone12HostTypeWaitFv | :white_check_mark: |
+| execute__Q218NrvItemAppearStone12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # ItemBlock.o
