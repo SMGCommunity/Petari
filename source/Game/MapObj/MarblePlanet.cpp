@@ -37,7 +37,6 @@ void MarblePlanet::exeScaleUpCore() {
         MR::shakeCameraNormal();
         mRemainingElectrons = mRemainingElectrons - 1;
         switch (mRemainingElectrons) {
-            
             case 0:
                 MR::emitEffect(this, "Break");
                 MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_3", -1, -1);

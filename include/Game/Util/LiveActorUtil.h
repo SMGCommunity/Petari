@@ -64,6 +64,9 @@ namespace MR {
     void offEntryDrawBuffer(LiveActor *);
 
     const char* getModelResName(const LiveActor *);
+    
+    void onCalcGravity(LiveActor *);
+    void offCalcGravity(LiveActor *);
 
     void calcAnimDirect(LiveActor *);
 
@@ -143,6 +146,8 @@ namespace MR {
     BrkCtrl* getBrkCtrl(const LiveActor *);
 
     void startBrkAndSetFrameAndStop(const LiveActor *, const char *, f32);
+    bool tryStartBck(const LiveActor *, const char *, const char *);
+    void setBckRate(const LiveActor *, f32);
 
     void setBrkRate(const LiveActor *, f32);
 
@@ -208,4 +213,7 @@ namespace MR {
     bool tryCreateMirrorActor(LiveActor *, const char *);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, CollisionScaleType);
+
+    bool isBindedGround(const LiveActor *);
+    bool isBindedWall(const LiveActor *);
 };

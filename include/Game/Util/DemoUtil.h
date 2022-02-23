@@ -25,6 +25,7 @@ namespace MR {
     bool isPowerStarGetDemoActive();
 
     bool tryStartDemo(LiveActor *, const char *);
+    bool tryStartDemoWithoutCinemaFrame(LiveActor *, const char *);
     bool tryStartDemoRegistered(LiveActor *, const char *);
     void endDemo(NameObj *, const char *);
 

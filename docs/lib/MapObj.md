@@ -132,7 +132,7 @@
 | JetTurtle.o | 0.0% | 0 / 55 | 0.0% |
 | JumpHole.o | 0.0% | 0 / 21 | 0.0% |
 | JumpStand.o | 0.0% | 0 / 21 | 0.0% |
-| KeySwitch.o | 0.0% | 0 / 22 | 0.0% |
+| KeySwitch.o | 100.0% | 22 / 22 | 100.0% |
 | KillerGunnerSingle.o | 0.0% | 0 / 16 | 0.0% |
 | LargeChain.o | 0.0% | 0 / 15 | 0.0% |
 | LargeChainParts.o | 0.0% | 0 / 4 | 0.0% |
@@ -3594,28 +3594,28 @@
 # KeySwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__9KeySwitchFv | :x: |
-| __ct__9KeySwitchFPCc | :x: |
-| init__9KeySwitchFRC12JMapInfoIter | :x: |
-| initKeySwitchByOwner__9KeySwitchFRC12JMapInfoIter | :x: |
-| appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| exeDemoStart__9KeySwitchFv | :x: |
-| exeAppear__9KeySwitchFv | :x: |
-| exeWait__9KeySwitchFv | :x: |
-| appear__9KeySwitchFv | :x: |
-| kill__9KeySwitchFv | :x: |
-| calcAndSetBaseMtx__9KeySwitchFv | :x: |
-| control__9KeySwitchFv | :x: |
-| receiveMsgPlayerAttack__9KeySwitchFUlP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__9KeySwitchFUlP9HitSensorP9HitSensor | :x: |
-| tryAvoid__9KeySwitchFv | :x: |
-| __sinit_\KeySwitch_cpp | :x: |
-| __ct__Q212NrvKeySwitch21KeySwitchNrvDemoStartFv | :x: |
-| __ct__Q212NrvKeySwitch18KeySwitchNrvAppearFv | :x: |
-| __ct__Q212NrvKeySwitch16KeySwitchNrvWaitFv | :x: |
-| execute__Q212NrvKeySwitch16KeySwitchNrvWaitCFP5Spine | :x: |
-| execute__Q212NrvKeySwitch18KeySwitchNrvAppearCFP5Spine | :x: |
-| execute__Q212NrvKeySwitch21KeySwitchNrvDemoStartCFP5Spine | :x: |
+| __dt__9KeySwitchFv | :white_check_mark: |
+| __ct__9KeySwitchFPCc | :white_check_mark: |
+| init__9KeySwitchFRC12JMapInfoIter | :white_check_mark: |
+| initKeySwitchByOwner__9KeySwitchFRC12JMapInfoIter | :white_check_mark: |
+| appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| exeDemoStart__9KeySwitchFv | :white_check_mark: |
+| exeAppear__9KeySwitchFv | :white_check_mark: |
+| exeWait__9KeySwitchFv | :white_check_mark: |
+| appear__9KeySwitchFv | :white_check_mark: |
+| kill__9KeySwitchFv | :white_check_mark: |
+| calcAndSetBaseMtx__9KeySwitchFv | :white_check_mark: |
+| control__9KeySwitchFv | :white_check_mark: |
+| receiveMsgPlayerAttack__9KeySwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__9KeySwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| tryAvoid__9KeySwitchFv | :white_check_mark: |
+| __sinit_\KeySwitch_cpp | :white_check_mark: |
+| __ct__Q212NrvKeySwitch21KeySwitchNrvDemoStartFv | :white_check_mark: |
+| __ct__Q212NrvKeySwitch18KeySwitchNrvAppearFv | :white_check_mark: |
+| __ct__Q212NrvKeySwitch16KeySwitchNrvWaitFv | :white_check_mark: |
+| execute__Q212NrvKeySwitch16KeySwitchNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvKeySwitch18KeySwitchNrvAppearCFP5Spine | :white_check_mark: |
+| execute__Q212NrvKeySwitch21KeySwitchNrvDemoStartCFP5Spine | :white_check_mark: |
 
 
 # KillerGunnerSingle.o

@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry/TMatrix.h"
 
 class LiveActor;
 class HitSensor;
@@ -42,4 +43,10 @@ namespace MR {
     void restrictVelocity(LiveActor *, f32);
 
     void turnDirectionToGround(const LiveActor *, TVec3f *);
+
+    void calcMtxFromGravityAndZAxis(TPos3f *, const LiveActor *, const TVec3f &, const TVec3f &);
+
+    void addVelocityToGravity(LiveActor *, f32);
+
+    void resetPosition(LiveActor *, const TVec3f &);
 };

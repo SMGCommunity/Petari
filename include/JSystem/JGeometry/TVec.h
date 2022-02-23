@@ -166,6 +166,12 @@ namespace JGeometry {
             z = src.z;
         }
 
+        inline void setInline(T _x, T _y, T _z) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+
         inline void setInline(T val) {
             x = val;
             y = val;
@@ -261,6 +267,24 @@ namespace JGeometry {
                 ps_sub    bZ, aZ, bZ
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    bZ, 8(dst), 1, 0
+            };
+        }
+
+        inline void subInline2(const TVec3<T>& rA, const TVec3<T>& rB) {
+            register TVec3<T>* dst = this;
+            register const TVec3<T>* a = &rA;
+            register const TVec3<T>* b = &rB;
+            register f32 bXY, aXY, bZ, aZ;
+
+            __asm {
+                psq_l     aXY, 0(a), 0, 0
+                psq_l     bXY, 0(b), 0, 0
+                ps_sub    aXY, aXY, bXY
+                psq_st    aXY, 0(dst), 0, 0
+                psq_l     aZ, 8(a), 1, 0
+                psq_l     bZ, 8(b), 1, 0
+                ps_sub    aZ, aZ, bZ
+                psq_st    aZ, 8(dst), 1, 0
             };
         }
 

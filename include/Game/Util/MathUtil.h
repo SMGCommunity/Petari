@@ -105,6 +105,8 @@ namespace MR {
     f32 clamp(f32, f32, f32);
 
     f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
+
+    void calcReboundVelocity(TVec3f *, const TVec3f &, f32, f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);
