@@ -23,7 +23,7 @@
 | SceneNameObjListExecutor.o | 0.0% | 0 / 5 | 0.0% |
 | SceneNameObjMovementController.o | 0.0% | 0 / 20 | 0.0% |
 | StageDataHolder.o | 25.36162005785921% | 18 / 51 | 35.294117647058826% |
-| StageFileLoader.o | 0.0% | 0 / 6 | 0.0% |
+| StageFileLoader.o | 100.0% | 6 / 6 | 100.0% |
 | StageResourceLoader.o | 0.0% | 0 / 2 | 0.0% |
 | StopSceneController.o | 0.0% | 0 / 9 | 0.0% |
 
@@ -580,12 +580,12 @@
 # StageFileLoader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15StageFileLoaderFPCc | :x: |
-| startLoadingStageFile__15StageFileLoaderFv | :x: |
-| waitLoadedStageFile__15StageFileLoaderFv | :x: |
-| makeStageArchiveNameList__15StageFileLoaderFv | :x: |
-| makeStageArchiveName__15StageFileLoaderFPcUlPCc | :x: |
-| mountFilesInStageMapFile__15StageFileLoaderFPCc | :x: |
+| __ct__15StageFileLoaderFPCc | :white_check_mark: |
+| startLoadingStageFile__15StageFileLoaderFv | :white_check_mark: |
+| waitLoadedStageFile__15StageFileLoaderFv | :white_check_mark: |
+| makeStageArchiveNameList__15StageFileLoaderFv | :white_check_mark: |
+| makeStageArchiveName__15StageFileLoaderFPcUlPCc | :white_check_mark: |
+| mountFilesInStageMapFile__15StageFileLoaderFPCc | :white_check_mark: |
 
 
 # StageResourceLoader.o

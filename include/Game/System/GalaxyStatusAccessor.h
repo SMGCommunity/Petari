@@ -36,6 +36,6 @@ public:
 };
 
 namespace MR {
-    GalaxyStatusAccessor* makeGalaxyStatusAcessor(const char *);
-    GalaxyStatusAccessor* makeCurrentGalaxyStatusAccessor();
+    GalaxyStatusAccessor makeGalaxyStatusAcessor(const char *);
+    GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor();
 };

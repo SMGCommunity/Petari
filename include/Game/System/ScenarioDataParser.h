@@ -40,7 +40,7 @@ public:
 
     virtual ~ScenarioDataParser();
     
-    GalaxyStatusAccessor* makeAccessor(const char *) const;
+    GalaxyStatusAccessor makeAccessor(const char *) const;
 
     static const char* sNullStr;
 };
