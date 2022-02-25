@@ -13,6 +13,7 @@
 #include "Game/AreaObj/SwitchArea.h"
 #include "Game/Gravity/GlobalGravityObj.h"
 #include "Game/Map.h"
+#include "Game/MapObj.h"
 
 class AreaObj;
 class NameObj;
@@ -78,7 +79,7 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[56] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[68] = {
         { "SwitchCube", createBaseOriginCube<SwitchArea>, 0 },
         { "SwitchSphere", createSphere<SwitchArea>, 0 },
         { "SwitchCylinder", createBaseOriginCylinder<SwitchArea>, 0 },
@@ -143,6 +144,26 @@ namespace {
         { "GlobalPointGravity", MR::createGlobalPointGravityObj, NULL },
         { "GlobalSegmentGravity", MR::createGlobalSegmentGravityObj, NULL },
         { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL },
+
+        { "BlackHole", createNameObj<BigFan>, "BlackHole" },
+        { "BlackHoleCube", createNameObj<BigFan>, "BlackHole" },
+
+        { "BigFan", createNameObj<BigFan>, "BigFan" },
+        { "BigFanNoLeg", createNameObj<BigFan>, "BigFanNoLeg" },
+
+        { "PowerStar", createNameObj<PowerStar>, "PowerStar" },
+        { "GrandStar", createNameObj<PowerStar>, "GrandStar", },
+        { "PowerStarAppearPoint", createNameObj<PowerStarAppearPoint>, NULL },
+
+        { "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
+
+        { "FlipPanel", createNameObj<FlipPanel>, "FlipPanel" },
+        { "FlipPanelObserver", createNameObj<FlipPanelObserver>, NULL },
+
+        { "TreasureSpot", createNameObj<TreasureSpot>, "TreasureSpot" },
+        { "CoinFlower", createNameObj<TreasureSpot>, "CoinFlower" },
+
+        { "FireBar", createNameObj<FireBar>, "FireBarCore" },
 
         { "TimerSwitch", createNameObj<TimerSwitch>, "" }
     };

@@ -16,6 +16,7 @@
 #define SceneObj_AllLiveActorGroup          0x30
 #define SceneObj_PlanetGravityManager       0x32
 #define SceneObj_AirBubbleHolder            0x39
+#define SceneObj_BigFanHolder               0x3A
 #define SceneObj_ShadowVolumeDrawer         0x45
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C

@@ -15,7 +15,7 @@ public:
     virtual void control();
     virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
-    virtual void receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeHit();
     void doHit(HitSensor *, HitSensor *);

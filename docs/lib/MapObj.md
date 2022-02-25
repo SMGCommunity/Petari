@@ -37,8 +37,8 @@
 | BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% |
 | BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% |
 | BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% |
-| BigFan.o | 0.0% | 0 / 18 | 0.0% |
-| BigFanHolder.o | 0.0% | 0 / 7 | 0.0% |
+| BigFan.o | 78.96825396825396% | 17 / 18 | 94.44444444444444% |
+| BigFanHolder.o | 57.73195876288659% | 6 / 7 | 85.71428571428571% |
 | BlackHole.o | 66.66666666666666% | 18 / 22 | 81.81818181818183% |
 | BlueChip.o | 100.0% | 3 / 3 | 100.0% |
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% |
@@ -1198,36 +1198,36 @@
 # BigFan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__6BigFanFPCc | :x: |
-| init__6BigFanFRC12JMapInfoIter | :x: |
-| initWindModel__6BigFanFv | :x: |
+| __ct__6BigFanFPCc | :white_check_mark: |
+| init__6BigFanFRC12JMapInfoIter | :white_check_mark: |
+| initWindModel__6BigFanFv | :white_check_mark: |
 | calcWindInfo__6BigFanFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| control__6BigFanFv | :x: |
-| start__6BigFanFv | :x: |
-| exeStart__6BigFanFv | :x: |
-| exeWait__6BigFanFv | :x: |
-| __sinit_\BigFan_cpp | :x: |
-| __ct__Q29NrvBigFan13BigFanNrvStopFv | :x: |
-| __ct__Q29NrvBigFan14BigFanNrvStartFv | :x: |
-| __ct__Q29NrvBigFan13BigFanNrvWaitFv | :x: |
-| execute__Q29NrvBigFan13BigFanNrvWaitCFP5Spine | :x: |
-| execute__Q29NrvBigFan14BigFanNrvStartCFP5Spine | :x: |
-| execute__Q29NrvBigFan13BigFanNrvStopCFP5Spine | :x: |
-| __cl__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__6BigFanFv | :x: |
+| control__6BigFanFv | :white_check_mark: |
+| start__6BigFanFv | :white_check_mark: |
+| exeStart__6BigFanFv | :white_check_mark: |
+| exeWait__6BigFanFv | :white_check_mark: |
+| __sinit_\BigFan_cpp | :white_check_mark: |
+| __ct__Q29NrvBigFan13BigFanNrvStopFv | :white_check_mark: |
+| __ct__Q29NrvBigFan14BigFanNrvStartFv | :white_check_mark: |
+| __ct__Q29NrvBigFan13BigFanNrvWaitFv | :white_check_mark: |
+| execute__Q29NrvBigFan13BigFanNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q29NrvBigFan14BigFanNrvStartCFP5Spine | :white_check_mark: |
+| execute__Q29NrvBigFan13BigFanNrvStopCFP5Spine | :white_check_mark: |
+| __cl__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR37FunctorV0M&lt;P6BigFan,M6BigFanFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__6BigFanFv | :white_check_mark: |
 
 
 # BigFanHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12BigFanHolderFv | :x: |
-| __dt__25DeriveActorGroup&lt;6BigFan&gt;Fv | :x: |
+| __ct__12BigFanHolderFv | :white_check_mark: |
+| __dt__25DeriveActorGroup&lt;6BigFan&gt;Fv | :white_check_mark: |
 | calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
-| createBigFanHolder__14BigFanFunctionFv | :x: |
-| calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
-| registerBigFan__14BigFanFunctionFP6BigFan | :x: |
-| __dt__12BigFanHolderFv | :x: |
+| createBigFanHolder__14BigFanFunctionFv | :white_check_mark: |
+| calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :white_check_mark: |
+| registerBigFan__14BigFanFunctionFP6BigFan | :white_check_mark: |
+| __dt__12BigFanHolderFv | :white_check_mark: |
 
 
 # BlackHole.o
