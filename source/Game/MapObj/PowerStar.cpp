@@ -4,14 +4,6 @@
 #include "Game/Util.h"
 #include "JSystem/JMath.h"
 
-#ifdef __cplusplus
-extern "C" {
-f32 sin(f32);
-f32 cos(f32);
-f64 fmod(f64, f64);
-}
-#endif
-
 const GXColor lightColor[5] = { { 0x96, 0x96, 0x32, 0 },
                                         { 0x32, 0x32, 0x96, 0 },
                                         { 0x32, 0x96, 0x32, 0 },

@@ -10,4 +10,10 @@ namespace MR {
     void drawSimpleModel(J3DModelData *);
 
     void loadTexProjectionMtx(u32);
+
+    void reinitGX();
+
+    
+
+    void clearZBuffer();
 };

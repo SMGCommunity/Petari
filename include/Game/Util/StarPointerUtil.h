@@ -14,4 +14,8 @@ namespace MR {
     void startStarPointerModePowerStarGetDemo(void *); 
 
     f32 calcPointRadius2D(const TVec3f &, f32);
+
+    void setStarPointerDrawSyncToken();
+
+    void endStarPointerMode(void *);
 };

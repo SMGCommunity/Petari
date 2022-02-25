@@ -38,6 +38,8 @@ namespace MR {
 
     void getCurrentScenarioStartAnimCameraData(void **, long *);
 
+    void playSceneForScenarioOpeningCamera();
+
     s32 getCurrentStartCameraID();
     s32 getCurrentStartZoneID();
 
@@ -45,4 +47,6 @@ namespace MR {
 
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
+
+    bool isBeginScenarioStarter();
 }

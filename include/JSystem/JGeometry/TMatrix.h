@@ -47,6 +47,10 @@ namespace JGeometry {
             return (const Mtx*)mMtx;
         }
 
+        inline MtxPtr toMtxPtr() {
+            return (MtxPtr)mMtx;
+        }
+
         T mMtx[3][4];
     };
 

@@ -115,6 +115,8 @@ namespace MR {
     bool isNoCalcAnim(const LiveActor *);
 
     void initCollisionParts(LiveActor *, const char *, HitSensor *, MtxPtr);
+
+    void initCollisionPartsAutoEqualScale(LiveActor *, const char *, HitSensor *, MtxPtr);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
     void setBaseTRMtx(LiveActor *, const TPos3f &);
@@ -204,6 +206,7 @@ namespace MR {
 
     void startAction(const LiveActor *, const char *);
 
+    LodCtrl* createLodCtrlPlanet(LiveActor *, const JMapInfoIter &, f32, s32);
     LodCtrl* createLodCtrlNPC(LiveActor *, const JMapInfoIter &);
 
     bool changeShowModelFlagSyncNearClipping(LiveActor *, f32);

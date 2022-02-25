@@ -9,6 +9,8 @@ namespace MR {
     void startCurrentStageBGM();
     void startBossBGM(s32);
 
+    void startStageBGMFromStageName(const char *, const char * , s32);
+
     void stopStageBGM(u32);
     void unlockStageBGM();
 

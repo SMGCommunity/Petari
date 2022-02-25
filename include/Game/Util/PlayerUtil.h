@@ -53,4 +53,8 @@ namespace MR {
     void incPlayerOxygen(u32);
 
     void stopSoundPlayer(const char *, u32);
+
+    void showPlayer();
+
+    bool isPlayerElementModeBee();
 };

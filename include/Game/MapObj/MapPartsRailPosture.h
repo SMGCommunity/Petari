@@ -14,6 +14,6 @@ public:
 
     void exeMove();
 
-    MtxPtr _18;
+    TMtx34f _18;
     u32 _48;
 };
