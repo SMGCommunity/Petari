@@ -82,7 +82,7 @@
 | CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
 | CutBushModelObj.o | 0.0% | 0 / 5 | 0.0% |
 | DashRing.o | 0.0% | 0 / 9 | 0.0% |
-| DeadLeaves.o | 0.0% | 0 / 10 | 0.0% |
+| DeadLeaves.o | 100.0% | 10 / 10 | 100.0% |
 | DesertLandMoveSwitch.o | 0.0% | 0 / 28 | 0.0% |
 | DesertMovingLand.o | 0.0% | 0 / 30 | 0.0% |
 | DragonHeadFlower.o | 0.0% | 0 / 20 | 0.0% |
@@ -2254,16 +2254,16 @@
 # DeadLeaves.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10DeadLeavesFPCc | :x: |
-| init__10DeadLeavesFRC12JMapInfoIter | :x: |
-| exeSpin__10DeadLeavesFv | :x: |
-| receiveMsgPlayerAttack__10DeadLeavesFUlP9HitSensorP9HitSensor | :x: |
-| __dt__10DeadLeavesFv | :x: |
-| __sinit_\DeadLeaves_cpp | :x: |
-| __ct__Q213NrvDeadLeaves17DeadLeavesNrvWaitFv | :x: |
-| __ct__Q213NrvDeadLeaves17DeadLeavesNrvSpinFv | :x: |
-| execute__Q213NrvDeadLeaves17DeadLeavesNrvSpinCFP5Spine | :x: |
-| execute__Q213NrvDeadLeaves17DeadLeavesNrvWaitCFP5Spine | :x: |
+| __ct__10DeadLeavesFPCc | :white_check_mark: |
+| init__10DeadLeavesFRC12JMapInfoIter | :white_check_mark: |
+| exeSpin__10DeadLeavesFv | :white_check_mark: |
+| receiveMsgPlayerAttack__10DeadLeavesFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| __dt__10DeadLeavesFv | :white_check_mark: |
+| __sinit_\DeadLeaves_cpp | :white_check_mark: |
+| __ct__Q213NrvDeadLeaves17DeadLeavesNrvWaitFv | :white_check_mark: |
+| __ct__Q213NrvDeadLeaves17DeadLeavesNrvSpinFv | :white_check_mark: |
+| execute__Q213NrvDeadLeaves17DeadLeavesNrvSpinCFP5Spine | :white_check_mark: |
+| execute__Q213NrvDeadLeaves17DeadLeavesNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # DesertLandMoveSwitch.o
