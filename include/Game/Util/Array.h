@@ -13,7 +13,6 @@ namespace MR {
         inline AssignableArray() {
             mArr = 0;
             mMaxSize = 0;
-            //mCount = 0;
         }
 
         inline void init(s32 cnt) {
@@ -37,6 +36,10 @@ namespace MR {
             if (mArr) {
                 delete[] mArr;
             }
+        }
+
+        inline T* getAtIdx(u32 idx) {
+            return mArr[idx];
         }
 
         typedef T Item;
@@ -65,7 +68,7 @@ namespace MR {
     class Vector {
     public:
         inline Vector() {
-            
+            mCount = 0;
         }
 
 
@@ -97,8 +100,12 @@ namespace MR {
             return &mArray.mArr[mArray.mMaxSize];
         }
 
+        inline T::Item* getAt(u32 idx) {
+            return mArray[idx];
+        }
+
         T mArray;       // _0
-        u32 mCount;     // _8
+        s32 mCount;     // _8
     };
 
     template<class T, int S>

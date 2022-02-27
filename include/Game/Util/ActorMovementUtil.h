@@ -49,4 +49,6 @@ namespace MR {
     void addVelocityToGravity(LiveActor *, f32);
 
     void resetPosition(LiveActor *, const TVec3f &);
+
+    void turnDirectionAndGravityH(LiveActor *, const TVec3f &, f32, f32);
 };

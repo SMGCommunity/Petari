@@ -52,7 +52,7 @@
 | ChipCounter.o | 19.971056439942114% | 3 / 30 | 10.0% |
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
 | ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
-| ChooChooTrain.o | 0.0% | 0 / 8 | 0.0% |
+| ChooChooTrain.o | 100.0% | 8 / 8 | 100.0% |
 | CircleCoinGroup.o | 0.0% | 0 / 8 | 0.0% |
 | ClipArea.o | 0.0% | 0 / 14 | 0.0% |
 | ClipAreaDrop.o | 0.0% | 0 / 10 | 0.0% |
@@ -1625,14 +1625,14 @@
 # ChooChooTrain.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13ChooChooTrainFPCc | :x: |
-| __dt__Q22MR42Vector&lt;Q22MR27AssignableArray&lt;P8ModelObj&gt;&gt;Fv | :x: |
-| startClipped__13ChooChooTrainFv | :x: |
-| endClipped__13ChooChooTrainFv | :x: |
-| init__13ChooChooTrainFRC12JMapInfoIter | :x: |
-| control__13ChooChooTrainFv | :x: |
-| __dt__Q22MR27AssignableArray&lt;P8ModelObj&gt;Fv | :x: |
-| __dt__13ChooChooTrainFv | :x: |
+| __ct__13ChooChooTrainFPCc | :white_check_mark: |
+| __dt__Q22MR42Vector&lt;Q22MR27AssignableArray&lt;P8ModelObj&gt;&gt;Fv | :white_check_mark: |
+| startClipped__13ChooChooTrainFv | :white_check_mark: |
+| endClipped__13ChooChooTrainFv | :white_check_mark: |
+| init__13ChooChooTrainFRC12JMapInfoIter | :white_check_mark: |
+| control__13ChooChooTrainFv | :white_check_mark: |
+| __dt__Q22MR27AssignableArray&lt;P8ModelObj&gt;Fv | :white_check_mark: |
+| __dt__13ChooChooTrainFv | :white_check_mark: |
 
 
 # CircleCoinGroup.o

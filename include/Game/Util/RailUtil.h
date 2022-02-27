@@ -20,4 +20,18 @@ namespace MR {
     bool isRailReachedGoal(const LiveActor *);
 
     void initAndSetRailClipping(TVec3f *, LiveActor *, f32, f32);
+
+    void moveCoordToNearestPos(LiveActor *, const TVec3f &);
+
+    void moveTransToCurrentRailPos(LiveActor *);
+
+    void reverseRailDirection(LiveActor *);
+
+    void setRailCoord(LiveActor *, f32);
+
+    void moveCoord(LiveActor *, f32);
+    
+    void moveTransToOtherActorRailPos(LiveActor *, const LiveActor *);
+
+    const TVec3f& getRailDirection(const LiveActor *);
 };
