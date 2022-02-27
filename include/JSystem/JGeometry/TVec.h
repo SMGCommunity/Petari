@@ -97,7 +97,11 @@ namespace JGeometry {
         void set(const Vec &rSrc);
 
         template<typename T>
-        void set(const JGeometry::TVec3<T> &);
+        void set(const JGeometry::TVec3<T> &rSrc) NO_INLINE {
+            x = rSrc.x;
+            y = rSrc.y;
+            z = rSrc.z;
+        }
 
         template<typename T>
         void set(T _x, T _y, T _z);
@@ -105,7 +109,20 @@ namespace JGeometry {
         template<typename T>
         void setAll(T val);
 
-        void add(const TVec3<T> &);
+        void add(const register TVec3<T> &rSrc) NO_INLINE {
+            register const JGeometry::TVec3<f32>* this_vec = this;
+            __asm {
+                psq_l f3, 0(this_vec), 0, 0
+                psq_l f2, 0(rSrc), 0, 0
+                psq_l     f1, 8(this_vec), 1, 0
+                psq_l     f0, 8(rSrc), 1, 0
+                ps_add f2, f3, f2
+                ps_add f0, f1, f0
+                psq_st f2, 0(this_vec), 0, 0
+                psq_st f0, 8(this_vec), 0, 0
+            };
+        }
+    
         void add(const TVec3<T> &, const TVec3<T> &);
         void sub(const TVec3<T> &);
         void sub(const TVec3<T> &, const TVec3<T> &);
@@ -120,8 +137,8 @@ namespace JGeometry {
         T squared(const TVec3<T> &) const;
         T angle(const TVec3<T> &rOther) const;
 
-        T dot(const TVec3<T> &rOther) const; //{
-            /*register const JGeometry::TVec3<f32>* this_vec = this;
+        T dot(const register TVec3<T> &rOther) const NO_INLINE {
+            register const JGeometry::TVec3<f32>* this_vec = this;
             __asm {
                 psq_l f2, 4(this_vec), 0, 0
                 psq_l f1, 4(rOther), 0, 0
@@ -131,8 +148,8 @@ namespace JGeometry {
                 ps_madd f1, f0, f1, f2
                 ps_sum0 f1, f1, f2, f2
                 blr
-            };*/
-            //}
+            };
+        }
 
         void zero();
         void negate();

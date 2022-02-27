@@ -1,7 +1,7 @@
 | Library | Percentage |
 | ------------- | ------------- |
 | [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.3616726668512875% |
-| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 42.827623708537246% |
+| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 43.51277868406743% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
 | [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 0.0% |
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 33.49212924606462% |

@@ -1,7 +1,7 @@
 # AreaObj
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| AreaForm.o | 67.90648246546228% | 24 / 33 | 72.72727272727273% |
+| AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% |
 | AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% |
 | AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% |
 | AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% |
@@ -43,10 +43,10 @@
 # AreaForm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| dot__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| set&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;_v | :x: |
-| add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| asin__Q29JGeometry8TUtil&lt;f&gt;Ff | :x: |
+| dot__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| set&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;_v | :white_check_mark: |
+| add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| asin__Q29JGeometry8TUtil&lt;f&gt;Ff | :white_check_mark: |
 | mult33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getValue&lt;f&gt;__12JMapInfoIterCFPCcPf_b | :x: |
 | __ct__12AreaFormCubeFi | :white_check_mark: |
