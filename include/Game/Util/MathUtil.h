@@ -118,6 +118,8 @@ namespace MR {
     f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
 
     void calcReboundVelocity(TVec3f *, const TVec3f &, f32, f32);
+
+    void getRotatedAxisY(TVec3f *, const TVec3f &);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

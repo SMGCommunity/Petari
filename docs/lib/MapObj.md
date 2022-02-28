@@ -68,7 +68,7 @@
 | CoconutTree.o | 0.0% | 0 / 3 | 0.0% |
 | CoconutTreeLeaf.o | 0.0% | 0 / 12 | 0.0% |
 | Coin.o | 0.0% | 0 / 65 | 0.0% |
-| CoinBox.o | 0.0% | 0 / 10 | 0.0% |
+| CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% |
 | CoinGroup.o | 0.0% | 0 / 24 | 0.0% |
 | CoinHolder.o | 0.0% | 0 / 19 | 0.0% |
 | CoinReplica.o | 0.0% | 0 / 10 | 0.0% |
@@ -1965,16 +1965,16 @@
 # CoinBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7CoinBoxFPCc | :x: |
-| __dt__7CoinBoxFv | :x: |
-| init__7CoinBoxFRC12JMapInfoIter | :x: |
+| __ct__7CoinBoxFPCc | :white_check_mark: |
+| __dt__7CoinBoxFv | :white_check_mark: |
+| init__7CoinBoxFRC12JMapInfoIter | :white_check_mark: |
 | exeHit__7CoinBoxFv | :x: |
-| receiveOtherMsg__7CoinBoxFUlP9HitSensorP9HitSensor | :x: |
-| __sinit_\CoinBox_cpp | :x: |
-| __ct__Q210NrvCoinBox14CoinBoxNrvWaitFv | :x: |
-| __ct__Q210NrvCoinBox13CoinBoxNrvHitFv | :x: |
-| execute__Q210NrvCoinBox13CoinBoxNrvHitCFP5Spine | :x: |
-| execute__Q210NrvCoinBox14CoinBoxNrvWaitCFP5Spine | :x: |
+| receiveOtherMsg__7CoinBoxFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| __sinit_\CoinBox_cpp | :white_check_mark: |
+| __ct__Q210NrvCoinBox14CoinBoxNrvWaitFv | :white_check_mark: |
+| __ct__Q210NrvCoinBox13CoinBoxNrvHitFv | :white_check_mark: |
+| execute__Q210NrvCoinBox13CoinBoxNrvHitCFP5Spine | :white_check_mark: |
+| execute__Q210NrvCoinBox14CoinBoxNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # CoinGroup.o

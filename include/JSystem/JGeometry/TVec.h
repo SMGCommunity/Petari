@@ -122,6 +122,13 @@ namespace JGeometry {
                 psq_st f0, 8(this_vec), 0, 0
             };
         }
+        
+        void addXY(const register TVec3<T> &rSrc) NO_INLINE {
+            register const JGeometry::TVec3<f32>* this_vec = this;
+            psq_l f3, 0(rSrc), 0, 0
+            
+            psq_st f0, 0(this_vec), 0, 0
+        }
     
         void add(const TVec3<T> &, const TVec3<T> &);
         void sub(const TVec3<T> &);

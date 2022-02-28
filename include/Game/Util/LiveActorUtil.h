@@ -31,6 +31,7 @@ namespace MR {
     void setClippingTypeSphere(LiveActor *, f32);
     void setClippingTypeSphere(LiveActor *, f32, const TVec3f *);
     void setClippingFarMax(LiveActor *);
+    void setClippingFar50m(LiveActor *);
     void setClippingFar200m(LiveActor *);
     void startBtk(const LiveActor *, const char *);
 
@@ -68,6 +69,8 @@ namespace MR {
     
     void onCalcGravity(LiveActor *);
     void offCalcGravity(LiveActor *);
+
+    void calcGravityOrZero(LiveActor *);
 
     void calcAnimDirect(LiveActor *);
 

@@ -105,6 +105,8 @@ namespace MR {
     void appearCoinPop(const NameObj *, const TVec3f &, s32);
     void appearCoinPopToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32);
 
+    void appearCoinToVelocity(const NameObj *, const TVec3f &, const TVec3f &, s32);
+
     void declareStarPiece(const NameObj *, s32);
     void getDeclareRemnantStarPieceCount(const NameObj *);
     void getDeclareRemnantStarPieceCountNotExist(const NameObj *);
