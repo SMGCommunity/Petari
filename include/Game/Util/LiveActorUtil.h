@@ -25,7 +25,6 @@ namespace MR {
 
     bool isExistIndirectTexture(const LiveActor *);
 
-    void initDefaultPos(LiveActor *, const JMapInfoIter &);
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
     void setClippingTypeSphere(LiveActor *, f32);
@@ -41,6 +40,11 @@ namespace MR {
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
 
+    void initDefaultPos(LiveActor *, const JMapInfoIter &);
+    void initDefaultPosNoRepeat(LiveActor *, const JMapInfoIter &);
+    bool isValidMovement(const LiveActor *);
+    bool isValidCalcAnim(const LiveActor *);
+    bool isValidCalcViewAndEntry(const LiveActor *);
     bool isValidDraw(const LiveActor *);
 
     void invalidateClipping(LiveActor *);

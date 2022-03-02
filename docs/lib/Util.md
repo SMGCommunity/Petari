@@ -27,7 +27,7 @@
 | JointUtil.o | 0.0% | 0 / 33 | 0.0% |
 | LayoutUtil.o | 0.21998742928975487% | 2 / 166 | 1.2048192771084338% |
 | LightUtil.o | 0.0% | 0 / 5 | 0.0% |
-| LiveActorUtil.o | 1.9562715765247412% | 12 / 345 | 3.4782608695652173% |
+| LiveActorUtil.o | 6.8181818181818175% | 28 / 345 | 8.115942028985506% |
 | MapPartsUtil.o | 0.0% | 0 / 58 | 0.0% |
 | MapUtil.o | 0.0% | 0 / 92 | 0.0% |
 | MathUtil.o | 15.035699286014278% | 31 / 137 | 22.62773722627737% |
@@ -1685,24 +1685,24 @@
 | isPressedRoofAndGround__2MRFPC9LiveActor | :x: |
 | isPressedMovingWall__2MRFPC9LiveActor | :x: |
 | initDefaultPos__2MRFP9LiveActorRC12JMapInfoIter | :x: |
-| initDefaultPosNoRepeat__2MRFP9LiveActorRC12JMapInfoIter | :x: |
-| isValidMovement__2MRFPC9LiveActor | :x: |
-| isValidCalcAnim__2MRFPC9LiveActor | :x: |
-| isValidCalcViewAndEntry__2MRFPC9LiveActor | :x: |
-| isValidDraw__2MRFPC9LiveActor | :x: |
+| initDefaultPosNoRepeat__2MRFP9LiveActorRC12JMapInfoIter | :white_check_mark: |
+| isValidMovement__2MRFPC9LiveActor | :white_check_mark: |
+| isValidCalcAnim__2MRFPC9LiveActor | :white_check_mark: |
+| isValidCalcViewAndEntry__2MRFPC9LiveActor | :white_check_mark: |
+| isValidDraw__2MRFPC9LiveActor | :white_check_mark: |
 | calcAnimDirect__2MRFP9LiveActor | :white_check_mark: |
 | setClippingTypeSphere__2MRFP9LiveActorf | :x: |
-| setClippingTypeSphere__2MRFP9LiveActorfPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setClippingTypeSphereContainsModelBoundingBox__2MRFP9LiveActorf | :x: |
-| setClippingFar50m__2MRFP9LiveActor | :x: |
-| setClippingFar100m__2MRFP9LiveActor | :x: |
-| setClippingFar200m__2MRFP9LiveActor | :x: |
-| setClippingFar300m__2MRFP9LiveActor | :x: |
-| setClippingFarMax__2MRFP9LiveActor | :x: |
-| setClippingFar__2MRFP9LiveActorf | :x: |
-| setGroupClipping__2MRFP9LiveActorRC12JMapInfoIteri | :x: |
-| validateClipping__2MRFP9LiveActor | :x: |
-| invalidateClipping__2MRFP9LiveActor | :x: |
+| setClippingTypeSphere__2MRFP9LiveActorfPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setClippingTypeSphereContainsModelBoundingBox__2MRFP9LiveActorf | :white_check_mark: |
+| setClippingFar50m__2MRFP9LiveActor | :white_check_mark: |
+| setClippingFar100m__2MRFP9LiveActor | :white_check_mark: |
+| setClippingFar200m__2MRFP9LiveActor | :white_check_mark: |
+| setClippingFar300m__2MRFP9LiveActor | :white_check_mark: |
+| setClippingFarMax__2MRFP9LiveActor | :white_check_mark: |
+| setClippingFar__2MRFP9LiveActorf | :white_check_mark: |
+| setGroupClipping__2MRFP9LiveActorRC12JMapInfoIteri | :white_check_mark: |
+| validateClipping__2MRFP9LiveActor | :white_check_mark: |
+| invalidateClipping__2MRFP9LiveActor | :white_check_mark: |
 | changeShowModelFlagSyncNearClipping__2MRFP9LiveActorf | :x: |
 | isClipped__2MRFPC9LiveActor | :x: |
 | isInvalidClipping__2MRFPC9LiveActor | :x: |

@@ -204,7 +204,7 @@
 | RailCoin.o | 0.0% | 0 / 10 | 0.0% |
 | RailMoveObj.o | 100.0% | 53 / 53 | 100.0% |
 | RainCloud.o | 0.0% | 0 / 32 | 0.0% |
-| ReverseGravityRoomPlanet.o | 0.0% | 0 / 20 | 0.0% |
+| ReverseGravityRoomPlanet.o | 100.0% | 20 / 20 | 100.0% |
 | RevolvingWay.o | 0.0% | 0 / 10 | 0.0% |
 | Rock.o | 0.0% | 0 / 51 | 0.0% |
 | RockCreator.o | 0.0% | 0 / 17 | 0.0% |
@@ -251,7 +251,7 @@
 | SpiderThreadWindCtrl.o | 0.0% | 0 / 7 | 0.0% |
 | SpinDriver.o | 0.0% | 0 / 59 | 0.0% |
 | SpinDriverCamera.o | 5.205479452054795% | 2 / 14 | 14.285714285714285% |
-| SpinDriverOperateRing.o | 0.0% | 0 / 19 | 0.0% |
+| SpinDriverOperateRing.o | 45.5535390199637% | 14 / 19 | 73.68421052631578% |
 | SpinDriverPathDrawer.o | 0.0% | 0 / 28 | 0.0% |
 | SpinDriverShootPath.o | 0.0% | 0 / 9 | 0.0% |
 | SpinDriverUtil.o | 0.0% | 0 / 1 | 0.0% |
@@ -5470,26 +5470,26 @@
 # ReverseGravityRoomPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24ReverseGravityRoomPlanetFPCc | :x: |
-| init__24ReverseGravityRoomPlanetFRC12JMapInfoIter | :x: |
-| exeDownStart__24ReverseGravityRoomPlanetFv | :x: |
-| exeUpStart__24ReverseGravityRoomPlanetFv | :x: |
-| initCaseUseSwitchA__24ReverseGravityRoomPlanetFRC19MapObjActorInitInfo | :x: |
-| startSwitchOn__24ReverseGravityRoomPlanetFv | :x: |
-| startSwitchOff__24ReverseGravityRoomPlanetFv | :x: |
-| __sinit_\ReverseGravityRoomPlanet_cpp | :x: |
-| __ct__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartFv | :x: |
-| __ct__Q227NrvReverseGravityRoomPlanet35ReverseGravityRoomPlanetNrvDownWaitFv | :x: |
-| __ct__Q227NrvReverseGravityRoomPlanet34ReverseGravityRoomPlanetNrvUpStartFv | :x: |
-| __ct__Q227NrvReverseGravityRoomPlanet33ReverseGravityRoomPlanetNrvUpWaitFv | :x: |
-| execute__Q227NrvReverseGravityRoomPlanet33ReverseGravityRoomPlanetNrvUpWaitCFP5Spine | :x: |
-| execute__Q227NrvReverseGravityRoomPlanet34ReverseGravityRoomPlanetNrvUpStartCFP5Spine | :x: |
-| execute__Q227NrvReverseGravityRoomPlanet35ReverseGravityRoomPlanetNrvDownWaitCFP5Spine | :x: |
-| execute__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartCFP5Spine | :x: |
-| Functor&lt;24ReverseGravityRoomPlanet&gt;__2MRFP24ReverseGravityRoomPlanetM24ReverseGravityRoomPlanetFPCvPv_v_Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt; | :x: |
-| __cl__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__24ReverseGravityRoomPlanetFv | :x: |
+| __ct__24ReverseGravityRoomPlanetFPCc | :white_check_mark: |
+| init__24ReverseGravityRoomPlanetFRC12JMapInfoIter | :white_check_mark: |
+| exeDownStart__24ReverseGravityRoomPlanetFv | :white_check_mark: |
+| exeUpStart__24ReverseGravityRoomPlanetFv | :white_check_mark: |
+| initCaseUseSwitchA__24ReverseGravityRoomPlanetFRC19MapObjActorInitInfo | :white_check_mark: |
+| startSwitchOn__24ReverseGravityRoomPlanetFv | :white_check_mark: |
+| startSwitchOff__24ReverseGravityRoomPlanetFv | :white_check_mark: |
+| __sinit_\ReverseGravityRoomPlanet_cpp | :white_check_mark: |
+| __ct__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartFv | :white_check_mark: |
+| __ct__Q227NrvReverseGravityRoomPlanet35ReverseGravityRoomPlanetNrvDownWaitFv | :white_check_mark: |
+| __ct__Q227NrvReverseGravityRoomPlanet34ReverseGravityRoomPlanetNrvUpStartFv | :white_check_mark: |
+| __ct__Q227NrvReverseGravityRoomPlanet33ReverseGravityRoomPlanetNrvUpWaitFv | :white_check_mark: |
+| execute__Q227NrvReverseGravityRoomPlanet33ReverseGravityRoomPlanetNrvUpWaitCFP5Spine | :white_check_mark: |
+| execute__Q227NrvReverseGravityRoomPlanet34ReverseGravityRoomPlanetNrvUpStartCFP5Spine | :white_check_mark: |
+| execute__Q227NrvReverseGravityRoomPlanet35ReverseGravityRoomPlanetNrvDownWaitCFP5Spine | :white_check_mark: |
+| execute__Q227NrvReverseGravityRoomPlanet36ReverseGravityRoomPlanetNrvDownStartCFP5Spine | :white_check_mark: |
+| Functor&lt;24ReverseGravityRoomPlanet&gt;__2MRFP24ReverseGravityRoomPlanetM24ReverseGravityRoomPlanetFPCvPv_v_Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR75FunctorV0M&lt;P24ReverseGravityRoomPlanet,M24ReverseGravityRoomPlanetFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__24ReverseGravityRoomPlanetFv | :white_check_mark: |
 
 
 # RevolvingWay.o
@@ -6599,25 +6599,25 @@
 # SpinDriverOperateRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21SpinDriverOperateRingFPCc | :x: |
-| init__21SpinDriverOperateRingFRC12JMapInfoIter | :x: |
-| control__21SpinDriverOperateRingFv | :x: |
-| setRadiusRate__21SpinDriverOperateRingFf | :x: |
-| reset__21SpinDriverOperateRingFv | :x: |
-| update__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __ct__21SpinDriverOperateRingFPCc | :white_check_mark: |
+| init__21SpinDriverOperateRingFRC12JMapInfoIter | :white_check_mark: |
+| control__21SpinDriverOperateRingFv | :white_check_mark: |
+| setRadiusRate__21SpinDriverOperateRingFf | :white_check_mark: |
+| reset__21SpinDriverOperateRingFv | :white_check_mark: |
+| update__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | updatePosition__21SpinDriverOperateRingFv | :x: |
 | updateControlPoint__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateDirection__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| resetVelocityAndTrans__21SpinDriverOperateRingFv | :x: |
-| addAccelToOperatePlane__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| resetVelocityAndTrans__21SpinDriverOperateRingFv | :white_check_mark: |
+| addAccelToOperatePlane__21SpinDriverOperateRingFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | addAccelOperate__21SpinDriverOperateRingFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| addAccelToCenter__21SpinDriverOperateRingFv | :x: |
-| attenuateVelocity__21SpinDriverOperateRingFv | :x: |
+| addAccelToCenter__21SpinDriverOperateRingFv | :white_check_mark: |
+| attenuateVelocity__21SpinDriverOperateRingFv | :white_check_mark: |
 | calcOperatePowerByDPD__21SpinDriverOperateRingCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __dt__21SpinDriverOperateRingFv | :x: |
-| __sinit_\SpinDriverOperateRing_cpp | :x: |
-| __ct__Q224NrvSpinDriverOperateRing28SpinDriverOperateRingNrvWaitFv | :x: |
-| execute__Q224NrvSpinDriverOperateRing28SpinDriverOperateRingNrvWaitCFP5Spine | :x: |
+| __dt__21SpinDriverOperateRingFv | :white_check_mark: |
+| __sinit_\SpinDriverOperateRing_cpp | :white_check_mark: |
+| __ct__Q224NrvSpinDriverOperateRing28SpinDriverOperateRingNrvWaitFv | :white_check_mark: |
+| execute__Q224NrvSpinDriverOperateRing28SpinDriverOperateRingNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # SpinDriverPathDrawer.o

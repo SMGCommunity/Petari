@@ -104,6 +104,8 @@ namespace MR {
     void normalize(TVec3f *);
     void normalize(const TVec3f &, TVec3f *);
 
+    f32 normalize(f32, f32, f32);
+
     bool normalizeOrZero(TVec2f *);
     bool normalizeOrZero(TVec3f *);
     bool normalizeOrZero(const TVec3f &, TVec3f *);
