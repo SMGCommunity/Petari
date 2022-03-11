@@ -1,9 +1,6 @@
 # Super Mario Galaxy 1 Decompilation
 
 <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat" />
-<a href="https://discord.gg/98AeffnUUV">
-<img src="https://img.shields.io/discord/946579636110884884?logo=discord"
-    alt="chat on our Discord"></a>
 
 This repo contains a WIP decompilation of Super Mario Galaxy 1 (USA).
 
