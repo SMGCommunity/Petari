@@ -12,4 +12,4 @@ This repo contains a WIP decompilation of Super Mario Galaxy 1 (USA).
 
 ## Contributions
 
-Want to contribute, or learn how to contribute? Try joining our Discord server (link is at the top), and looking into docs/Contributing! We will be glad to answer any questions for people who wish to contribute. All pull requests and issues are welcome.
+Want to contribute, or learn how to contribute? Try joining our Discord server, and looking into docs/Contributing! We will be glad to answer any questions for people who wish to contribute. All pull requests and issues are welcome.
