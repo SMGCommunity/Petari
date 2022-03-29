@@ -47,7 +47,7 @@ except ModuleNotFoundError:
 if not os.path.exists("deps"):
     print("Dependency folder not found, downloading...")
 
-    with urllib.request.urlopen("http://shibboleet.us.to/deps.zip") as response, open("deps.zip", 'wb') as out:
+    with urllib.request.urlopen("http://shibbo.net/smg/deps.zip") as response, open("deps.zip", 'wb') as out:
         data = response.read()
         out.write(data)
 
