@@ -80,6 +80,8 @@ please join our **[Discord]** server.
 
 ### General
 
+<br>
+
 - Lines should not exceed `100` characters, <br>
   these can be split into multiple lines.
   
@@ -90,6 +92,8 @@ please join our **[Discord]** server.
 <br>
 
 ### Headers
+
+<br>
 
 - Use `forward-declared` types when possible
 
@@ -103,6 +107,8 @@ please join our **[Discord]** server.
 <br>
 
 ### Includes
+
+<br>
 
 - For system library includes use:
 
@@ -121,6 +127,8 @@ please join our **[Discord]** server.
 <br>
 
 ### Names
+
+<br>
 
 - Names for known symbols should match **exactly**, <br>
   even including typos in the symbol.
@@ -147,20 +155,22 @@ please join our **[Discord]** server.
 
 ### Classes
 
+<br>
+
 - When referencing a class member, do **not** use <br>
   `this ->`, unless it is required for compilation.
 
 - Functions for classes must be put in the following order: 
     
-    1. Constructor
+    - Constructor
     
-    2. Destructor
+    - Destructor
     
-    3. Operators
+    - Operators
     
-    4. Virtual Functions
+    - Virtual Functions
     
-    5. Member Functions
+    - Member Functions
     
     *If the virtual functions are not in the order that* <br>
     *they are in the **vtable**, then the rule above can be* <br>
