@@ -1,5 +1,8 @@
 # Contributing
 
+We will be glad to answer any questions for people who wish to contribute.
+All pull requests and issues are welcome.
+
 To contribute, you will need the following tools:
 
 * A disassembler, IDA Pro or Ghidra work very well (you can also use a decompiler, it can make some things easier)
