@@ -1,5 +1,47 @@
-## Build Instructions
 
-1. Obtain a clean copy of a main.dol from Super Mario Galaxy 1 and rename it to `baserom.dol`, and place it on the root.
-2. Run `setup.py` to download and install all of the dependencies.
-3. Run `build.py`, then use `check.py` to verify matching status. For more information, see docs/Contributing.
+# Build Instructions
+
+<br>
+
+1. Obtain a clean copy of a `main.dol` from **Super Mario Galaxy 1**
+
+<br>
+
+2. Rename it to `baserom.dol`
+
+<br>
+
+3. Place it on the root folder
+
+<br>
+
+4. Download / Install dependencies with:
+    
+    ```sh
+    python setup.py
+    ```
+    
+<br>
+    
+5. Build with:
+
+    ```sh
+    python build.py
+    ```
+    
+<br>
+    
+6. Verify your built with:
+
+    ```sh
+    python check.py
+    ```
+
+<br>    
+    
+*For more information check the **[Contribution Guide]** .*
+
+
+<!----------------------------------------------------------------------------->
+
+[Contribution Guide]: CONTRIBUTING.md
