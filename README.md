@@ -1,15 +1,23 @@
-# Super Mario Galaxy 1 Decompilation
 
-<img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat" />
+# Petari ![Badge Decompiled]
+*A **Super Mario Galaxy 1 US** Decompilation Project*
 
-This repo contains a WIP decompilation of Super Mario Galaxy 1 (USA).
+---
 
-## Build Instructions
+ **[❮ Build ❯][Build]**
+ **[❮ Contribute ❯][Contribute]**
+ **[❮ CheatSheet ❯][CheatSheet]**
+ **[❮ Progress ❯][Progress]**
 
-1. Obtain a clean copy of a main.dol from Super Mario Galaxy 1 and rename it to `baserom.dol`, and place it on the root.
-2. Run `setup.py` to download and install all of the dependencies.
-3. Run `build.py`, then use `check.py` to verify matching status. For more information, see docs/Contributing.
+---
 
-## Contributions
 
-Want to contribute, or learn how to contribute? Try looking into docs/Contributing! We will be glad to answer any questions for people who wish to contribute. All pull requests and issues are welcome.
+
+<!----------------------------------------------------------------------------->
+
+[Contribute]: docs/CONTRIBUTING.md
+[CheatSheet]: docs/CHEATSHEET.md
+[Progress]: docs/PROGRESS.md
+[Build]: docs/Build.md
+
+[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat

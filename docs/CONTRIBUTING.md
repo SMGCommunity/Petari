@@ -1,58 +1,198 @@
+
 # Contributing
 
-To contribute, you will need the following tools:
+We will be glad to answer any questions <br>
+for people who wish to contribute.
 
-* A disassembler, IDA Pro or Ghidra work very well (you can also use a decompiler, it can make some things easier)
-* CodeWarrior, we specifically use version  3.0a3
-* Python 3.7 and higher
+All pull requests and issues are welcome.
 
-It is recommended that you have knowledge of the following:
+<br>
 
-* C / C++ (however, C++ is recommended)
-* PowerPC Assembly
-* Reverse engineering instructions from PowerPC to C / C++
+### Before Submission
 
-Decompilers such as Hex-Rays (included in IDA Pro) are useful as they can make the decompilation easier to write.
+Be sure that all of your submitted code <br>
+follows the guidelines that are listed below.
 
-Be sure that all of your submitted code follows the guidelines that are listed below. When running `make`, it is REQUIRED that the output is 1:1. After the code matches, be sure to run `scripts/check.py` to check the function that you want to mark. If it matches, it will automatically be marked as decompiled.
+When running `make`, it is **REQUIRED** that the output is `1:1`.
 
-If you have any questions or concerns, please join [our Discord server](https://discord.gg/k7ZKzSDsVq)!
+After the code matches, be sure to run `scripts/check.py` <br>
+to check the function that you want to mark.
+
+If it matches, it will automatically be marked as decompiled.
+
+<br>
+
+### Questions
+
+If you have any questions or concerns, <br>
+please join our **[Discord]** server.
+
+<br>
+
+---
+
+<br>
+
+## Requirements
+
+<br>
+
+### Tools
+
+- A **Disassembler** / **IDA Pro** / **Ghidra**
+
+    *You can also use a decompiler, it can make some things easier*
+    
+- **CodeWarrior** 
+    
+    *We specifically use version `3.0a3`*
+    
+- **Python**
+
+    *Version `3.7+`*
+
+<br>
+
+### Knowledge
+
+- **C** / **C++**
+
+    *However **C++** is recommended*
+    
+- **PowerPC Assembly**
+
+- **PowerPC** ➝ **C** / **C++** reverse engineering instructions 
+
+<br>
+
+*Decompilers such as Hex-Rays (included in IDA Pro) are* <br>
+*useful as they can make the decompilation easier to write.*
+
+<br>
+
+---
+
+<br>
 
 ## Guidelines
 
+<br>
+
 ### General
 
-* Lines should not exceed 100 characters, these can be split into multiple lines
-* Use `NULL` when assigning or comparing a pointer, not `0` -- Only use `0` when assigning or comparing a value
+<br>
+
+- Lines should not exceed `100` characters, <br>
+  these can be split into multiple lines.
+  
+- Use `NULL` instead of `0` when assigning / comparing a pointer.
+  
+  *Only use `0` when assigning or comparing a value.*
+
+<br>
 
 ### Headers
 
-* Use `#pragma once` at the top of each header file
-* Use forward-declared types when possible
+<br>
 
+- Use `forward-declared` types when possible
+
+- At the top of every header place:
+
+    ```c++
+    #pragma once
+    ```
+    
+
+<br>
 
 ### Includes
 
-* Use `#include<>` for system library includes
-* Use `#include "..."` for including game headers, and they must be relative to `include`
+<br>
+
+- For system library includes use:
+
+    ```c++
+    #include <...>
+    ```
+    
+- For game header includes use:
+
+    ```c++
+    #include "..."
+    ```
+    
+    *These includes must be relative to the `include` folder.*
+
+<br>
 
 ### Names
 
-* Names for known symbols should match exactly, even including typoes in the symbol
-* Member variables must be prefixed with `m`
-* Arguments for functions must be prefixed with `p` for pointers or `r` for passed-by-reference
-* Static variables with no known symbol must be prefixed with `s`, with globals prefixed with `g`
-* Functions with no symbols (such as inlined functions), must use camelCase
+<br>
+
+- Names for known symbols should match **exactly**, <br>
+  even including typos in the symbol.
+
+- Member variables must be prefixed with `m`.
+
+- Arguments for functions must be prefixed with:
+
+    - `p` for pointers 
+
+    - `r` for passed-by-reference
+    
+- Static variables with:
+
+    - No known symbol must be prefixed with `s`
+
+    - Global scope must be prefixed with `g`
+    
+- Functions with no symbols must use **camelCase**.
+
+    *Such as **inlined** functions.*
+
+<br>
 
 ### Classes
 
-* Functions for classes must be put in this order: constructor, destructor, operators, virtual functions, member functions
-    * If the virtual functions are not in the order that they are in the vtable, then the rule above can be ignored as these functions must be placed in order
-* When referencing a class member, do not use `this->`, unless it is required for compilation
+<br>
 
+- When referencing a class member, do **not** use <br>
+  `this ->`, unless it is required for compilation.
+
+- Functions for classes must be put in the following order: 
+    
+    - Constructor
+    
+    - Destructor
+    
+    - Operators
+    
+    - Virtual Functions
+    
+    - Member Functions
+    
+    *If the virtual functions are not in the order that* <br>
+    *they are in the **vtable**, then the rule above can be* <br>
+    *ignored as these functions must be placed in order.*
+    
+
+<br>
 
 ### Nonmatching Code
-If your code does NOT match, use the `NONMATCHING` macro, and explain in a comment why it does not match.
+
+If your code does **NOT** match, use the <br>
+`NONMATCHING` macro, and explain in a <br>
+comment why it does not match.
+
+<br>
 
 ### Types
-If the function arguments in the symbol use `int`, do NOT use `s32`, you have to use `int`, as they do not mangle to the same symbol.
+
+If the function arguments in the symbol use `int`, <br>
+do **NOT** use `s32`, you have to use `int`, as they <br>
+do not mangle to the same symbol.
+
+<!----------------------------------------------------------------------------->
+
+[Discord]: https://discord.gg/k7ZKzSDsVq
