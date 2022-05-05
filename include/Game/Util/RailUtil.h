@@ -33,5 +33,8 @@ namespace MR {
     
     void moveTransToOtherActorRailPos(LiveActor *, const LiveActor *);
 
+    const TVec3f& getRailPos(const LiveActor *);
     const TVec3f& getRailDirection(const LiveActor *);
+
+    void moveCoordToStartPos(LiveActor *);
 };

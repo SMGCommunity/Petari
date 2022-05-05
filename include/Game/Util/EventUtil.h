@@ -36,4 +36,6 @@ namespace MR {
     bool isGalaxyGhostCometAppearInCurrentStage();
     bool isGalaxyQuickCometAppearInCurrentStage();
     bool isGalaxyBlackCometAppearInCurrentStage();
+
+    bool isPlayerLuigi();
 };

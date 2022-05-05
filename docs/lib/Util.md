@@ -50,7 +50,7 @@
 | ShareUtil.o | 0.0% | 0 / 2 | 0.0% |
 | SoundUtil.o | 0.0% | 0 / 86 | 0.0% |
 | StarPointerUtil.o | 0.0% | 0 / 108 | 0.0% |
-| StringUtil.o | 30.294530154277698% | 9 / 36 | 25.0% |
+| StringUtil.o | 32.678821879382895% | 10 / 36 | 27.77777777777778% |
 | SwitchEventFunctorListener.o | 100.0% | 5 / 5 | 100.0% |
 | SystemUtil.o | 0.0% | 0 / 34 | 0.0% |
 | TalkUtil.o | 0.0% | 0 / 53 | 0.0% |
@@ -3614,7 +3614,7 @@
 | copyString__2MRFPwPCwUl | :x: |
 | addPictureFontCode__2MRFPwi | :x: |
 | addPictureFontTag__2MRFPwi | :x: |
-| addPictureFontTagPlayerIcon__2MRFPw | :x: |
+| addPictureFontTagPlayerIcon__2MRFPw | :white_check_mark: |
 | addNewLine__2MRFPw | :x: |
 | addNumberFontTag__2MRFPwPCwe | :x: |
 | getBasename__2MRFPCc | :white_check_mark: |

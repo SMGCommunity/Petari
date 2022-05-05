@@ -3287,7 +3287,7 @@ copyString__2MRFPcPCcUl,StringUtil.o,Util.a,false
 copyString__2MRFPwPCwUl,StringUtil.o,Util.a,false
 addPictureFontCode__2MRFPwi,StringUtil.o,Util.a,false
 addPictureFontTag__2MRFPwi,StringUtil.o,Util.a,false
-addPictureFontTagPlayerIcon__2MRFPw,StringUtil.o,Util.a,false
+addPictureFontTagPlayerIcon__2MRFPw,StringUtil.o,Util.a,true
 addNewLine__2MRFPw,StringUtil.o,Util.a,false
 addNumberFontTag__2MRFPwPCwe,StringUtil.o,Util.a,false
 getBasename__2MRFPCc,StringUtil.o,Util.a,true

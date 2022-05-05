@@ -1,39 +1,39 @@
 # Speaker
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
-| SpkSpeakerCtrl.o | 0.0% | 0 / 21 | 0.0% |
+| SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% |
 | SpkSystem.o | 0.0% | 0 / 14 | 0.0% |
 | SpkMixingBuffer.o | 0.0% | 0 / 4 | 0.0% |
 | SpkWave.o | 100.0% | 7 / 7 | 100.0% |
 | SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
 | SpkData.o | 100.0% | 4 / 4 | 100.0% |
-| SpkSound.o | 0.0% | 0 / 22 | 0.0% |
+| SpkSound.o | 8.831521739130435% | 3 / 22 | 13.636363636363635% |
 
 
 # SpkSpeakerCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer | :x: |
+| setMixingBuffer__14SpkSpeakerCtrlFP15SpkMixingBuffer | :white_check_mark: |
 | setup__14SpkSpeakerCtrlFv | :x: |
 | connect__14SpkSpeakerCtrlFl | :x: |
 | disconnect__14SpkSpeakerCtrlFl | :x: |
-| setSpeakerOn__14SpkSpeakerCtrlFl | :x: |
-| setSpeakerOnCallback__14SpkSpeakerCtrlFll | :x: |
-| setSpeakerPlay__14SpkSpeakerCtrlFl | :x: |
+| setSpeakerOn__14SpkSpeakerCtrlFl | :white_check_mark: |
+| setSpeakerOnCallback__14SpkSpeakerCtrlFll | :white_check_mark: |
+| setSpeakerPlay__14SpkSpeakerCtrlFl | :white_check_mark: |
 | startPlayCallback__14SpkSpeakerCtrlFll | :x: |
-| setSpeakerOff__14SpkSpeakerCtrlFl | :x: |
+| setSpeakerOff__14SpkSpeakerCtrlFl | :white_check_mark: |
 | retryConnection__14SpkSpeakerCtrlFl | :x: |
-| reconnect__14SpkSpeakerCtrlFl | :x: |
-| framework__14SpkSpeakerCtrlFv | :x: |
-| reconnectProcess__14SpkSpeakerCtrlFl | :x: |
-| initReconnect__14SpkSpeakerCtrlFl | :x: |
-| continuousUsingProcess__14SpkSpeakerCtrlFl | :x: |
+| reconnect__14SpkSpeakerCtrlFl | :white_check_mark: |
+| framework__14SpkSpeakerCtrlFv | :white_check_mark: |
+| reconnectProcess__14SpkSpeakerCtrlFl | :white_check_mark: |
+| initReconnect__14SpkSpeakerCtrlFl | :white_check_mark: |
+| continuousUsingProcess__14SpkSpeakerCtrlFl | :white_check_mark: |
 | updateSpeaker__14SpkSpeakerCtrlFP7OSAlarmP9OSContext | :x: |
-| isEnable__14SpkSpeakerCtrlFl | :x: |
-| extensionProcess__14SpkSpeakerCtrlFll | :x: |
-| getDeviceVolume__14SpkSpeakerCtrlFl | :x: |
-| __sinit_\SpkSpeakerCtrl_cpp | :x: |
-| __arraydtor$3716 | :x: |
+| isEnable__14SpkSpeakerCtrlFl | :white_check_mark: |
+| extensionProcess__14SpkSpeakerCtrlFll | :white_check_mark: |
+| getDeviceVolume__14SpkSpeakerCtrlFl | :white_check_mark: |
+| __sinit_\SpkSpeakerCtrl_cpp | :white_check_mark: |
+| __arraydtor$3716 | :white_check_mark: |
 
 
 # SpkSystem.o
@@ -96,9 +96,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | releaseSound__14SpkSoundHandleFv | :x: |
-| __ct__14SpkSoundVolumeFv | :x: |
-| setRelease__14SpkSoundVolumeFl | :x: |
-| setFadeOut__14SpkSoundVolumeFl | :x: |
+| __ct__14SpkSoundVolumeFv | :white_check_mark: |
+| setRelease__14SpkSoundVolumeFl | :white_check_mark: |
+| setFadeOut__14SpkSoundVolumeFl | :white_check_mark: |
 | calc__14SpkSoundVolumeFRb | :x: |
 | __ct__8SpkSoundFv | :x: |
 | __dt__8SpkSoundFv | :x: |
