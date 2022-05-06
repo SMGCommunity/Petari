@@ -31,11 +31,13 @@
     
 <br>
     
-6. **Verify** your built with:
+6. **Verify** your build with:
 
     ```sh
-    python check.py
+    python check.py symbol_name
     ```
+
+    If your function is matching, then it will return with 0 errors. Be careful, as paired-single instructions are currently unsupported so those are ignored.
 
 <br>    
     
