@@ -17,5 +17,5 @@ public:
     s32 mCastCount;                 // _1C
     LiveActor** mCastList;          // _20
     MR::FunctorBase** mFunctors;    // _24
-    const Nerve** mNerves;                 // _28
+    const Nerve** mNerves;          // _28
 };

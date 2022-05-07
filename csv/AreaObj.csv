@@ -119,10 +119,10 @@ isSyncWithPlayer__15ImageEffectAreaCFv,BloomArea.o,AreaObj.a,true
 getManagerName__9BloomAreaCFv,BloomArea.o,AreaObj.a,true
 scale__Q29JGeometry8TVec3<f>Ff,CameraRepulsiveArea.o,AreaObj.a,false
 __ami__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false
-__dt__19CameraRepulsiveAreaFv,CameraRepulsiveArea.o,AreaObj.a,false
-__dt__21CameraRepulsiveSphereFv,CameraRepulsiveArea.o,AreaObj.a,false
-__dt__23CameraRepulsiveCylinderFv,CameraRepulsiveArea.o,AreaObj.a,false
-getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false
+__dt__19CameraRepulsiveAreaFv,CameraRepulsiveArea.o,AreaObj.a,true
+__dt__21CameraRepulsiveSphereFv,CameraRepulsiveArea.o,AreaObj.a,true
+__dt__23CameraRepulsiveCylinderFv,CameraRepulsiveArea.o,AreaObj.a,true
+getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,true
 getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false
 getManagerName__19CameraRepulsiveAreaCFv,CameraRepulsiveArea.o,AreaObj.a,false
 __ct__13ChangeBgmCubeFiPCc,ChangeBgmCube.o,AreaObj.a,true
