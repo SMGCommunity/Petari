@@ -7,6 +7,7 @@
 #include "Game/Util/ActorSwitchUtil.h"
 #include "Game/Util/AreaObjUtil.h"
 #include "Game/Util/Array.h"
+#include "Game/Util/BitArray.h"
 #include "Game/Util/BothDirList.h"
 #include "Game/Util/CameraUtil.h"
 #include "Game/Util/DemoUtil.h"

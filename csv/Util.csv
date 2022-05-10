@@ -535,9 +535,9 @@ listenStageSwitchOnOffA__2MRFP9LiveActorRCQ22MR11FunctorBaseRCQ22MR11FunctorBase
 listenStageSwitchOnB__2MRFP9LiveActorRCQ22MR11FunctorBase,ActorSwitchUtil.o,Util.a,false
 listenStageSwitchOffB__2MRFP9LiveActorRCQ22MR11FunctorBase,ActorSwitchUtil.o,Util.a,false
 listenStageSwitchOnOffB__2MRFP9LiveActorRCQ22MR11FunctorBaseRCQ22MR11FunctorBase,ActorSwitchUtil.o,Util.a,false
-__ct__Q22MR8BitArrayFi,BitArray.o,Util.a,false
-isOn__Q22MR8BitArrayCFi,BitArray.o,Util.a,false
-set__Q22MR8BitArrayFib,BitArray.o,Util.a,false
+__ct__Q22MR8BitArrayFi,BitArray.o,Util.a,true
+isOn__Q22MR8BitArrayCFi,BitArray.o,Util.a,true
+set__Q22MR8BitArrayFib,BitArray.o,Util.a,true
 __ct<f>__Q29JGeometry8TVec4<f>Fffff_Pv,CameraUtil.o,Util.a,false
 calcNormalizedScreenPosToScreenPos__24@unnamed@CameraUtil_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,CameraUtil.o,Util.a,false
 calcScreenPosition__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f>,CameraUtil.o,Util.a,false

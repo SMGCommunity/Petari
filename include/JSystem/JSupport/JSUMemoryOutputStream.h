@@ -13,7 +13,6 @@ public:
     virtual s32 getLength() const;
     virtual s32 getPosition() const;
     virtual s32 seekPos(s32, JSUStreamSeekFrom);
-    
 
     void setBuffer(void *, s32);
 

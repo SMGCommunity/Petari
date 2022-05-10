@@ -27,7 +27,7 @@
 | GameSystemStationedArchiveLoader.o | 0.0% | 0 / 52 | 0.0% |
 | GameSystemSceneController.o | 0.819672131147541% | 2 / 78 | 2.564102564102564% |
 | GameSystemResetAndPowerProcess.o | 0.0% | 0 / 36 | 0.0% |
-| HeapMemoryWatcher.o | 0.0% | 0 / 19 | 0.0% |
+| HeapMemoryWatcher.o | 89.85507246376811% | 18 / 19 | 94.73684210526315% |
 | Language.o | 38.392857142857146% | 2 / 7 | 28.57142857142857% |
 | LayoutHolder.o | 0.0% | 0 / 12 | 0.0% |
 | MainLoopFramework.o | 0.0% | 0 / 34 | 0.0% |
@@ -80,7 +80,7 @@
 | GameEventFlag.o | 0.0% | 0 / 13 | 0.0% |
 | GameEventFlagTable.o | 0.0% | 0 / 28 | 0.0% |
 | GameEventFlagChecker.o | 0.0% | 0 / 9 | 0.0% |
-| GameEventFlagStorage.o | 0.0% | 0 / 8 | 0.0% |
+| GameEventFlagStorage.o | 44.6078431372549% | 6 / 8 | 75.0% |
 | GameEventValueChecker.o | 0.0% | 0 / 10 | 0.0% |
 | GameSequenceDirector.o | 0.0% | 0 / 11 | 0.0% |
 | GameSequenceFunction.o | 0.0% | 0 / 62 | 0.0% |
@@ -727,25 +727,25 @@
 # HeapMemoryWatcher.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createExpHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeapb | :x: |
-| createSolidHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeap | :x: |
-| destroyHeapAndSetNULL__31@unnamed@HeapMemoryWatcher_cpp@FPP7JKRHeap | :x: |
-| getHeapNapa__17HeapMemoryWatcherFPC7JKRHeap | :x: |
-| getHeapGDDR3__17HeapMemoryWatcherFPC7JKRHeap | :x: |
-| createFileCacheHeapOnGameHeap__17HeapMemoryWatcherFUl | :x: |
-| createSceneHeapOnGameHeap__17HeapMemoryWatcherFv | :x: |
-| adjustStationedHeaps__17HeapMemoryWatcherFv | :x: |
-| setCurrentHeapToStationedHeap__17HeapMemoryWatcherFv | :x: |
-| setCurrentHeapToGameHeap__17HeapMemoryWatcherFv | :x: |
-| setCurrentHeapToSceneHeap__17HeapMemoryWatcherFv | :x: |
-| destroySceneHeap__17HeapMemoryWatcherFv | :x: |
-| destroyGameHeap__17HeapMemoryWatcherFv | :x: |
+| createExpHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeapb | :white_check_mark: |
+| createSolidHeap__31@unnamed@HeapMemoryWatcher_cpp@FUlP7JKRHeap | :white_check_mark: |
+| destroyHeapAndSetNULL__31@unnamed@HeapMemoryWatcher_cpp@FPP7JKRHeap | :white_check_mark: |
+| getHeapNapa__17HeapMemoryWatcherFPC7JKRHeap | :white_check_mark: |
+| getHeapGDDR3__17HeapMemoryWatcherFPC7JKRHeap | :white_check_mark: |
+| createFileCacheHeapOnGameHeap__17HeapMemoryWatcherFUl | :white_check_mark: |
+| createSceneHeapOnGameHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| adjustStationedHeaps__17HeapMemoryWatcherFv | :white_check_mark: |
+| setCurrentHeapToStationedHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| setCurrentHeapToGameHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| setCurrentHeapToSceneHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| destroySceneHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| destroyGameHeap__17HeapMemoryWatcherFv | :white_check_mark: |
 | createRootHeap__17HeapMemoryWatcherFv | :x: |
-| createHeaps__17HeapMemoryWatcherFv | :x: |
-| createGameHeap__17HeapMemoryWatcherFv | :x: |
-| __ct__17HeapMemoryWatcherFv | :x: |
-| memoryErrorCallback__17HeapMemoryWatcherFPvUli | :x: |
-| checkRestMemory__17HeapMemoryWatcherFv | :x: |
+| createHeaps__17HeapMemoryWatcherFv | :white_check_mark: |
+| createGameHeap__17HeapMemoryWatcherFv | :white_check_mark: |
+| __ct__17HeapMemoryWatcherFv | :white_check_mark: |
+| memoryErrorCallback__17HeapMemoryWatcherFPvUli | :white_check_mark: |
+| checkRestMemory__17HeapMemoryWatcherFv | :white_check_mark: |
 
 
 # Language.o
@@ -1887,14 +1887,14 @@
 # GameEventFlagStorage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20GameEventFlagStorageFv | :x: |
-| set__20GameEventFlagStorageFPC13GameEventFlagb | :x: |
-| isOn__20GameEventFlagStorageCFPC13GameEventFlag | :x: |
-| getSignature__20GameEventFlagStorageCFv | :x: |
+| __ct__20GameEventFlagStorageFv | :white_check_mark: |
+| set__20GameEventFlagStorageFPC13GameEventFlagb | :white_check_mark: |
+| isOn__20GameEventFlagStorageCFPC13GameEventFlag | :white_check_mark: |
+| getSignature__20GameEventFlagStorageCFv | :white_check_mark: |
 | serialize__20GameEventFlagStorageCFPUcUl | :x: |
 | deserialize__20GameEventFlagStorageFPCUcUl | :x: |
-| initializeData__20GameEventFlagStorageFv | :x: |
-| makeHeaderHashCode__20GameEventFlagStorageCFv | :x: |
+| initializeData__20GameEventFlagStorageFv | :white_check_mark: |
+| makeHeaderHashCode__20GameEventFlagStorageCFv | :white_check_mark: |
 
 
 # GameEventValueChecker.o

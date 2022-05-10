@@ -8,7 +8,7 @@
 | ActorShadowUtil.o | 0.0% | 0 / 73 | 0.0% |
 | ActorStateUtil.o | 0.0% | 0 / 8 | 0.0% |
 | ActorSwitchUtil.o | 0.0% | 0 / 34 | 0.0% |
-| BitArray.o | 0.0% | 0 / 3 | 0.0% |
+| BitArray.o | 100.0% | 3 / 3 | 100.0% |
 | CameraUtil.o | 0.0% | 0 / 106 | 0.0% |
 | DemoUtil.o | 0.0% | 0 / 79 | 0.0% |
 | DrawUtil.o | 0.0% | 0 / 33 | 0.0% |
@@ -652,9 +652,9 @@
 # BitArray.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__Q22MR8BitArrayFi | :x: |
-| isOn__Q22MR8BitArrayCFi | :x: |
-| set__Q22MR8BitArrayFib | :x: |
+| __ct__Q22MR8BitArrayFi | :white_check_mark: |
+| isOn__Q22MR8BitArrayCFi | :white_check_mark: |
+| set__Q22MR8BitArrayFib | :white_check_mark: |
 
 
 # CameraUtil.o
