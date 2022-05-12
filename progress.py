@@ -215,7 +215,7 @@ lib_percent_colors = {
     "AudioLib": "yellow",
     "Boss": "orange",
     "Camera": "red",
-    "Demo": "black",
+    "Demo": "D65076",
     "Effect": "pink",
     "Enemy": "magenta",
     "GameAudio": "teal",

@@ -520,8 +520,8 @@ getCurrentLanguagePrefix__2MRFv,Language.o,System.a,true
 getCurrentRegionPrefix__2MRFv,Language.o,System.a,false
 getLanguageNum__2MRFv,Language.o,System.a,false
 getLanguagePrefixByIndex__2MRFUl,Language.o,System.a,false
-__ct__12LayoutHolderFR10JKRArchive,LayoutHolder.o,System.a,false
-__dt__12LayoutHolderFv,LayoutHolder.o,System.a,false
+__ct__12LayoutHolderFR10JKRArchive,LayoutHolder.o,System.a,true
+__dt__12LayoutHolderFv,LayoutHolder.o,System.a,true
 GetResource__12LayoutHolderFUlPCcPUl,LayoutHolder.o,System.a,false
 GetFont__12LayoutHolderFPCc,LayoutHolder.o,System.a,false
 isAnimationHashEqual__12LayoutHolderCFUlUl,LayoutHolder.o,System.a,false

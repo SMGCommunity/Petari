@@ -29,7 +29,7 @@
 | GameSystemResetAndPowerProcess.o | 0.0% | 0 / 36 | 0.0% |
 | HeapMemoryWatcher.o | 89.85507246376811% | 18 / 19 | 94.73684210526315% |
 | Language.o | 38.392857142857146% | 2 / 7 | 28.57142857142857% |
-| LayoutHolder.o | 0.0% | 0 / 12 | 0.0% |
+| LayoutHolder.o | 10.961968680089486% | 2 / 12 | 16.666666666666664% |
 | MainLoopFramework.o | 0.0% | 0 / 34 | 0.0% |
 | MessageHolder.o | 0.0% | 0 / 19 | 0.0% |
 | NANDErrorSequence.o | 0.0% | 0 / 56 | 0.0% |
@@ -763,8 +763,8 @@
 # LayoutHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12LayoutHolderFR10JKRArchive | :x: |
-| __dt__12LayoutHolderFv | :x: |
+| __ct__12LayoutHolderFR10JKRArchive | :white_check_mark: |
+| __dt__12LayoutHolderFv | :white_check_mark: |
 | GetResource__12LayoutHolderFUlPCcPUl | :x: |
 | GetFont__12LayoutHolderFPCc | :x: |
 | isAnimationHashEqual__12LayoutHolderCFUlUl | :x: |
