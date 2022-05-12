@@ -20,4 +20,4 @@
 [Progress]: docs/PROGRESS.md
 [Build]: docs/Build.md
 
-[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat
+[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Animation.json&style=flat https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AreaObj.json&style=flat
