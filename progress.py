@@ -1,7 +1,11 @@
-import csv, glob, os, sys
+import csv, glob, math, os, sys
 from pathlib import Path
 
 libraries = { }
+
+def truncate(number, digits) -> float:
+    stepper = 10.0 ** digits
+    return math.trunc(stepper * number) / stepper
 
 class Function:
     name = ""
@@ -92,6 +96,21 @@ class Library:
             doneSize += d
         
         return doneSize, fullSize
+
+    def getName(self):
+        return self.name
+
+    def generateJSONTag(self, percent, color):
+        json = []
+        json.append("{\n")
+        json.append("\t\"schemaVersion\": 1,\n")
+        json.append(f"\t\"label\": \"{self.name}\",\n")
+        json.append(f"\t\"message\": \"{truncate(percent, 5)}%\",\n")
+        json.append(f"\t\"color\": \"{color}\"\n")
+        json.append("}")
+
+        with open(f"data/json/{self.name}.json", "w") as w:
+            w.writelines(json)
 
     def generateMarkdown(self):
         # first we are going to generate the tables for the object files themselves in the library
@@ -190,6 +209,32 @@ excludedLibraries = [
             "NdevExi2A.a"
 ]
 
+lib_percent_colors = {
+    "Animation": "brightgreen",
+    "AreaObj": "green",
+    "AudioLib": "yellow",
+    "Boss": "orange",
+    "Camera": "red",
+    "Demo": "black",
+    "Effect": "pink",
+    "Enemy": "magenta",
+    "GameAudio": "teal",
+    "Gravity": "maroon",
+    "LiveActor": "cyan",
+    "Map": "silver",
+    "MapObj": "tan",
+    "NameObj": "indigo",
+    "NPC": "7fffd4",
+    "Player": "ff7f50",
+    "RhythmLib": "088da5",
+    "Ride": "ffff66",
+    "Scene": "a0db8e",
+    "Screen": "ff4040",
+    "Speaker": "daa520",
+    "System": "696969",
+    "Util": "ff6666"
+}
+
 func_sizes = {}
 
 # start by reading function sizes
@@ -241,6 +286,7 @@ for key in libraries:
     d, f = lib.calculateProgress()
     fullSize += f
     doneSize += d
+    lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
 
 progPercent = (doneSize / fullSize ) * 100.0
 progNonPercent = int((doneSize / fullSize) * 120.0)
@@ -249,18 +295,6 @@ print(f"Progress: {progPercent}% [{doneSize} / {fullSize}] bytes")
 print(f"You currently have {progNonPercent} / 120 stars.")
 
 print("Generating JSON...")
-
-# generate our JSON for the tags on the github page
-json = []
-json.append("{\n")
-json.append("\t\"schemaVersion\": 1,\n")
-json.append("\t\"label\": \"decompiled\",\n")
-json.append(f"\t\"message\": \"{progPercent}%\",\n")
-json.append("\t\"color\": \"blue\"\n")
-json.append("}")
-
-with open("data/percent.json", "w") as w:
-    w.writelines(json)
 
 print("Generating markdown pages...")
 

@@ -22,6 +22,7 @@ compiler
 __pycache__
 genCsv.py
 checkObject.py
+sanity_check.py
 .ninja_log
 .ninja_deps
 build.ninja
