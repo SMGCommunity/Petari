@@ -150,8 +150,3 @@ bool JSUPtrList::remove(JSUPtrLink *pLink) {
 
     return isSameList;
 }
-
-template<class T>
-JSUList<T>::JSUList() : JSUPtrList() {
-
-}
