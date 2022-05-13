@@ -4,6 +4,7 @@
 import os
 from typing import overload
 from elftools.elf.elffile import ELFFile
+from colorama import Fore, Style
 import glob
 import hashlib
 import sys
@@ -125,6 +126,7 @@ def print_help_and_exit():
     print("Usage: check.py [mangled_symbol] [flags...]")
     print("\t[mangled_symbol]: name of the symbol that should be checked.")
     print("\t[-all]: run checks on all functions which has been marked as decompiled.")
+    print("\t[-compare]: compares decompiled functions.")
     print("\t[-help]: displays this help text.")
     print("\t[-only-errors]: displays only error messages.")
     print("\t[-no-hints]: don't display hint messages.")
@@ -298,6 +300,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
             custom_operands = custom_instruction.operands
 
             if str(original_instruction) == str(custom_instruction):
+                print(f"{Fore.GREEN}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
                 # Fully identical, nothing to be checked
                 continue
 
@@ -310,21 +313,22 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 assert(len(original_operands) == len(custom_operands))
 
                 # First check common r2 and r13 issues
-                if original_instruction.id in { PPC_INS_LWZ, PPC_INS_STW, PPC_INS_LFS }:
+                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STW, PPC_INS_LFS }:
                     assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
-                    # lwz, stw and lfs are sometimes used with r13, which is a pointer to a read-write
+                    # lbz, lwz, stw and lfs are sometimes used with r13, which is a pointer to a read-write
                     # small data area (SDA). When compiling custom code, this SDA is not generated,
                     # so the register is set to r0 and the displacement is set to 0.
 
                     # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
                     if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].reg == PPC_REG_R0 and\
                             custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
+                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                        #print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
                         hint_count += 1
                         continue
                     
-                if original_instruction.id in { PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
+                if original_instruction.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
                     assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
                     # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
@@ -332,7 +336,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                     # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
                     if original_operands[1].reg == PPC_REG_R2 and custom_operands[1].reg == PPC_REG_R0 and\
                             custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
+                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                        #print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
                         hint_count += 1 
                         continue
 
@@ -345,25 +350,30 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                         break
 
                 if registers_equal:
-                    print_instruction_comparison_warning(f"Registers are identical but the instruction is not identical at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Registers are identical but the instruction is not identical at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id == PPC_INS_ADDI:
                     # addi is commonly used when loading addresses
-                    print_instruction_comparison_warning(f"Skipping addi instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping addi instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id == PPC_INS_LIS:
                     # Same as addi
-                    print_instruction_comparison_warning(f"Skipping lis instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping lis instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1
                 elif original_instruction.id in { PPC_INS_B, PPC_INS_BL }:
                     # bl is used to call most functions, and since the functions are likely to be placed
                     # differently it's not possible to compare it
                     # If a function ends with a function call, and the returned value from the function, then b is sometimes used for branching
                     # to that function. Then it's not possible to compare this
-                    print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
                     warning_count += 1                
                 else:
-                    print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                     error_count += 1                
             elif original_instruction.id == PPC_INS_ADDI and custom_instruction.id == PPC_INS_LI:
                 assert(len(original_operands) == 3 and len(custom_operands) == 2)
@@ -373,13 +383,16 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 # Original must be addi rX, r13, X and custom must be li rX, 0
                 if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].imm == 0 and\
                         original_operands[0].reg == custom_operands[0].reg:
-                    print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
                     hint_count += 1
                 else:
-                    print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                     error_count += 1
             else:
-                print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                 error_count += 1
 
         print()
@@ -407,6 +420,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
 
 mangled_symbol = None
 check_all = False
+compare = False
 show_hints = True
 show_warnings = True
 show_errors = True
@@ -417,6 +431,8 @@ for i in range(1, len(sys.argv)):
 
     if arg == "-all":
         check_all = True
+    elif arg == "-compare":
+        compare = True
     elif arg == "-help":
         print_help_and_exit()
     elif arg == "-only-errors":
@@ -438,7 +454,7 @@ for i in range(1, len(sys.argv)):
         print()
         print_help_and_exit()
 
-if mangled_symbol == None and not check_all:
+if mangled_symbol == None and not check_all and not compare:
     print_help_and_exit()
 
 if not is_dol_correct():
@@ -464,7 +480,71 @@ if check_all:
     print(f"{success_count} function(s) out of the {total_count} function(s), which were marked as decompiled, passed the check.")
     print(f"{total_count - success_count} function(s) failed the check.")
 
-else:
+if compare:
+    success_count_a = 0
+    fail_count_a = 0
+    matched_a = set()
+    failed_a = set()
+
+    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
+        print(f"Checking {symbol}...")
+        
+        if check_symbol(function_library, symbol, obj_name, True):
+            success_count_a += 1
+            matched_a.add((symbol, obj_name))
+        else:
+            fail_count_a += 1
+            failed_a.add((symbol, obj_name))
+
+        print()
+
+    print()
+    print()
+    print("First run of tests are now done.")
+    print("Now, please make the code changes you wish to test, and then recompile everything.")
+    input("Press Enter to contiue...")
+    
+    success_count_b = 0
+    fail_count_b = 0
+    matched_b = set()
+    failed_b = set()
+
+    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
+        print(f"Checking {symbol}...")
+        
+        if check_symbol(function_library, symbol, obj_name, True):
+            success_count_b += 1
+            matched_b.add((symbol, obj_name))
+        else:
+            fail_count_b += 1
+            failed_b.add((symbol, obj_name))
+
+            print()
+            
+    print()
+    print()
+    print("Second run of tests are now done.")
+    print()
+    
+    print(f"First run: {success_count_a} matched and {fail_count_a} failed.")
+    print(f"Second run: {success_count_b} matched and {fail_count_b} failed.")
+    print()
+
+    print("The following functions matched during the first run and failed during the second test:")
+
+    for matched in matched_a:
+        if matched in failed_b:
+            print(f"{matched[0]} in {matched[1]}")
+
+    print()
+    print("The following functions failed during the first run and matched during the second test:")
+
+    for failed in failed_a:
+        if failed in matched_b:
+            print(f"{failed[0]} in {failed[1]}")
+
+
+if mangled_symbol != None:
     obj_names = function_library.get_obj_names_from_symbol(mangled_symbol)
 
     if len(obj_names) == 0:

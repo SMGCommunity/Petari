@@ -12,7 +12,7 @@ public:
     virtual bool isEnableToRoundLeft() const;
     virtual bool isEnableToRoundRight() const;
     virtual bool isEnableToReset() const;
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void setParam(float, float, float, float, float, bool);
     void calcIdealPos();

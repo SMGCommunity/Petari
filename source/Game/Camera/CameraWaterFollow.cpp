@@ -1,9 +1,10 @@
 #include "Game/Camera/CameraWaterFollow.h"
+#include "Game/Camera/CamTranslatorWaterFollow.h"
 
 CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
-    _4C = 300.0f;
-    _50 = 1200.0f;
-    _54 = 0.01f;
+    mAxisY = 300.0f;
+    mAxisX = 1200.0f;
+    mDist = 0.01f;
     _58 = 0.01f;
     _5C = 0;
     _60 = 0.0f;
@@ -14,4 +15,12 @@ CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
     _74 = 1.0f;
     _78 = 0.0f;
     _7C = 0.0f;
+}
+
+CameraWaterFollow::~CameraWaterFollow() {
+
+}
+
+CamTranslatorBase *CameraWaterFollow::createTranslator() {
+    return new CamTranslatorWaterFollow(this);
 }

@@ -10,6 +10,8 @@ namespace MR {
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
 
+    TVec3f* getPlayerRotate();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -23,4 +25,36 @@ namespace MR {
     void forceKillPlayerByAbyss();
 
     void setCameraTargetToPlayer(CameraTargetArg *);
+
+    bool isPlayerInAreaObj(const char *);
+
+    bool isOnGroundPlayer();
+
+    bool isPlayerTeresaDisappear();
+
+    f32 getPlayerHitRadius();
+
+    void pushPlayerFromArea(const TVec3f &);
+    bool isOnPlayer(const LiveActor *);
+    bool isOnPlayer(const HitSensor *);
+
+    bool isPlayerJumpRising();
+    TVec3f* getPlayerGroundingPolygon();
+    TVec3f* getPlayerGroundNormal();
+
+    f32 calcDistanceToPlayer(const TVec3f &);
+
+    void startBckPlayer(const char *, const char *);
+    LiveActor* getPlayerDemoActor();
+
+    void setPlayerBaseMtx(MtxPtr);
+
+    void startLevelSoundPlayer(const char *, long);
+    void incPlayerOxygen(u32);
+
+    void stopSoundPlayer(const char *, u32);
+
+    void showPlayer();
+
+    bool isPlayerElementModeBee();
 };

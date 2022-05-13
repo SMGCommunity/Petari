@@ -24,6 +24,8 @@ public:
         u32 _10;
     };
 
+    JKRThread(unsigned long, int, int);
+
     virtual ~JKRThread();
     virtual s32 run();
 

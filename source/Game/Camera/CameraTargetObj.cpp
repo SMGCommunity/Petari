@@ -3,7 +3,6 @@
 #include "Game/Gravity/GravityInfo.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util/LiveActorUtil.h"
-#include "JSystem/JGeometry/TRotation.h"
 
 CameraTargetObj::CameraTargetObj(const char *pName) : NameObj(pName) {
     mCameraWall = false;
@@ -97,14 +96,14 @@ CubeCameraArea *CameraTargetActor::getCubeCameraArea() const {
     return mCameraArea;
 }
 
-void *CameraTargetActor::getGroundTriangle() const {
+Triangle *CameraTargetActor::getGroundTriangle() const {
     return NULL;
 }
 
 CameraTargetPlayer::CameraTargetPlayer(const char *pName) : CameraTargetObj(pName) {
-    mGravityVector.x = 0.0f;
-    mGravityVector.y = -1.0f;
-    mGravityVector.z = 0.0f;
+    mGravity.x = 0.0f;
+    mGravity.y = -1.0f;
+    mGravity.z = 0.0f;
     mGroundPos.x = 0.0f;
     mGroundPos.y = 0.0f;
     mGroundPos.z = 0.0f;
@@ -135,5 +134,5 @@ const TVec3f *CameraTargetPlayer::getGroundPos() const {
 }
 
 const TVec3f *CameraTargetPlayer::getGravityVector() const {
-    return &mGravityVector;
+    return &mGravity;
 }

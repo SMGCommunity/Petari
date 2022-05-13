@@ -52,11 +52,31 @@ namespace MR {
     HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *, const char *, u16, f32);
     HitSensor* addHitSensorCallbackEye(LiveActor *, const char *, u16, f32);
 
+    void addBodyMessageSensorMapObj(LiveActor *);
+    void addBodyMessageSensor(LiveActor *, u32);
+    HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
+    HitSensor* addBodyMessageSensorReceiver(LiveActor *);
+
+    HitSensor* addMessageSensorMapObjMoveCollision(LiveActor *, const char *);
+
     LiveActor* getSensorHost(const HitSensor *);
     bool isSensor(const HitSensor *, const char *);
     bool isSensorPlayer(const HitSensor *);
     bool isSensorBinder(const HitSensor *);
     bool isSensorRide(const HitSensor *);
+
+    bool isSensorPlayerOrRide(const HitSensor *);
+
+    bool isSensorEnemyAttack(const HitSensor *);
+
+    bool isMsgLockOnStarPieceShoot(u32);
+
+    bool isMsgStarPieceAttack(u32);
+    bool isMsgStarPieceReflect(u32);
+
+    bool isMsgFloorTouch(u32);
+
+    bool isSensorEnemy(const HitSensor *);
 
     bool isSensorMapObj(const HitSensor *);
     bool isSensorAutoRush(const HitSensor *);
@@ -106,6 +126,8 @@ namespace MR {
     bool sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const TVec3f &);
 
+    void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
+
     bool isMsgPlayerHitAll(u32);
     bool isMsgPlayerSpinAttack(u32);
     bool isMsgPlayerTrample(u32);
@@ -114,4 +136,18 @@ namespace MR {
     bool isMsgPlayerUpperPunch(u32);
     bool isMsgPlayerKick(u32);
     bool isMsgJetTurtleAttack(u32);
+
+    bool isMsgItemGet(u32);
+
+    void updateHitSensorsAll(LiveActor *);
+
+    void setHitSensorApart(HitSensor *, HitSensor *);
+
+    bool tryUpdateHitSensorsAll(LiveActor *);
+
+    void clearHitSensors(LiveActor *);
+
+    HitSensor* getGroundSensor(const LiveActor *);
+    HitSensor* getRoofSensor(const LiveActor *);
+    HitSensor* getWallSensor(const LiveActor *);
 };

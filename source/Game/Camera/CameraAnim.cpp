@@ -205,12 +205,9 @@ bool CameraAnim::isInterpolationOff() const {
     return true;
 }
 
-#ifdef NON_MATCHING
-// Wrong instruction order
-CamTranslatorDummy *CameraAnim::createTranslator() {
+CamTranslatorBase *CameraAnim::createTranslator() {
     return new CamTranslatorAnim(this);
 }
-#endif
 
 void CameraAnim::setParam(unsigned char *pFile, float speed) {
     loadBin(pFile);

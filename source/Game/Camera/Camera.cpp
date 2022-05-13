@@ -20,10 +20,6 @@ Camera::Camera(const char *pName) : NameObj(pName) {
     mZoneMatrix.identity();
 }
 
-Camera::~Camera() {
-
-}
-
 void Camera::reset() {
     
 }
@@ -68,7 +64,7 @@ bool Camera::isEnableToReset() const {
     return false;
 }
 
-CamTranslatorDummy *Camera::createTranslator() {
+CamTranslatorBase *Camera::createTranslator() {
     return new CamTranslatorDummy(this);
 }
 

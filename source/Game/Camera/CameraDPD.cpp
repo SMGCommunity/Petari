@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraDPD.h"
+#include "Game/Camera/CamTranslatorDPD.h"
 
 CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _4C = 0.0f;
@@ -6,16 +7,24 @@ CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _54 = 0.0f;
     _58 = 0.0f;
     _5C = 0.0f;
-    _90 = 1;
+    _90 = true;
     _94 = 0;
-    _98 = 0.0f;
+    mDist = 0.0f;
     _9C = 40.0f;
-    _A0 = 1.5707964f;
-    _A4 = 1.5707964f;
-    _A8 = 0.0f;
-    _AC = 0.05f;
-    _B0 = 0.99f;
-    _B4 = 0;
-    _B8 = 0.0f;
+    mAngleA = 1.5707964f;
+    mAngleB = 1.5707964f;
+    mWPointZ = 0.0f;
+    mWPointX = 0.05f;
+    mWPointY = 0.99f;
+    _B4 = false;
+    mUpX = 0.0f;
     _60.identity();
+}
+
+CameraDPD::~CameraDPD() {
+
+}
+
+CamTranslatorBase *CameraDPD::createTranslator() {
+    return new CamTranslatorDPD(this);
 }

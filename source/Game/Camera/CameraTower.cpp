@@ -1,15 +1,16 @@
 #include "Game/Camera/CameraTower.h"
+#include "Game/Camera/CamTranslatorTower.h"
 
 CameraTower::CameraTower(const char *pName) : Camera(pName) {
-    _4C = 0.0f;
-    _50 = 0.0f;
-    _54 = 0.0f;
-    _58 = 0.0f;
-    _5C = 1.0f;
-    _60 = 0.0f;
-    _64 = 0.0f;
-    _68 = 0.0f;
-    _6C = 2000.0f;
+    mWPoint.x = 0.0f;
+    mWPoint.y = 0.0f;
+    mWPoint.z = 0.0f;
+    mAxis.x = 0.0f;
+    mAxis.y = 1.0f;
+    mAxis.z = 0.0f;
+    mAngleB = 0.0f;
+    mAngleA = 0.0f;
+    mDist = 2000.0f;
     _70 = 0.0f;
     _74 = 0.0f;
     _78 = 0.0f;
@@ -20,4 +21,12 @@ CameraTower::CameraTower(const char *pName) : Camera(pName) {
     _89 = 0;
 
     createVPanObj();
+}
+
+CameraTower::~CameraTower() {
+
+}
+
+CamTranslatorBase *CameraTower::createTranslator() {
+    return new CamTranslatorTower(this);
 }

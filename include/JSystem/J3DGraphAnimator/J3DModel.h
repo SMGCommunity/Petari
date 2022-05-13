@@ -16,6 +16,8 @@ public:
     virtual void viewCalc();
     virtual ~J3DModel();
 
+    void setBaseScale(const Vec &);
+
     J3DModelData* mModelData;       // _4
     u32 _8;
     u32 _C;

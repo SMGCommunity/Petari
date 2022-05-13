@@ -60,7 +60,7 @@ s32 JKRThread::start(void *pData) {
 
 JKRThread* JKRThread::searchThread(OSThread *pThread) {
     for (JSUPtrLink* i = sThreadList.mHead; i; i = i->mNext) {
-        JKRThread* thread = reinterpret_cast<JKRThread*>(i->_0);
+        JKRThread* thread = reinterpret_cast<JKRThread*>(i->mData);
 
         if (thread->mThread == pThread) {
             return thread;

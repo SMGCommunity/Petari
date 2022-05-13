@@ -13,22 +13,22 @@ public:
 	void setLocalDirection(const TVec3f &rLocalDir);
 	void setSideDirection(const TVec3f &rSideDir);
 	void setRadius(f32 val);
-	void setValidDegree(f32 val);
+	void setValidDegee(f32 val);
 	void setBothSide(bool val);
 	void setEnableEdgeGravity(bool val);
 	void updateLocalParam();
 
 	TVec3f mLocalPosition;   // _28
-	TVec3f _34;
+	TVec3f mTranslation;     // _34
 	TVec3f mLocalDirection;  // _40
-	TVec3f _4C;
+	TVec3f mRotation;        // _4C
 	TVec3f mSideDirection;   // _58
-	TVec3f _64;
-	TVec3f _70;
+	TVec3f mSideVecOrtho;    // _64
+	TVec3f mWorldSideDir;    // _70
 	f32 mRadius;             // _7C
-	f32 _80;
-	f32 mDegree;             // _84
-	f32 _88;
+	f32 mWorldRadius;        // _80
+	f32 mValidDegree;        // _84
+	f32 mValidCos;           // _88
 	bool mEnableBothSide;    // _8C
 	bool mEnableEdgeGravity; // _8D
 };

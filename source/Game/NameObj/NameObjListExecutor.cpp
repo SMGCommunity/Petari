@@ -42,6 +42,10 @@ void NameObjListExecutor::registerPreDrawFunction(const MR::FunctorBase &rFunc, 
     mDrawList->registerExecuteBeforeFunction(rFunc, a2);
 }
 
+void NameObjListExecutor::findLightInfo(LiveActor *pActor, int a2, int a3) const {
+    mBufferHolder->findLightInfo(pActor, a2, a3);
+}
+
 // NameObjListExecutor::findLightInfo
 
 void NameObjListExecutor::incrementCheckMovement(NameObj *pObj, int category) {

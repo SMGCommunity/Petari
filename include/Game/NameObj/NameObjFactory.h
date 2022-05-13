@@ -8,7 +8,12 @@
 #include "Game/AreaObj/ChangeBgmCube.h"
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/DeathArea.h"
+#include "Game/AreaObj/DepthOfFieldArea.h"
+#include "Game/AreaObj/LightArea.h"
+#include "Game/AreaObj/SwitchArea.h"
 #include "Game/Gravity/GlobalGravityObj.h"
+#include "Game/Map.h"
+#include "Game/MapObj.h"
 
 class AreaObj;
 class NameObj;
@@ -27,7 +32,7 @@ public:
         void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
     };
 
-    static Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
+    static const Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
     static bool isPlayerArchiveLoaderObj(const char *);
 };
 
@@ -74,7 +79,10 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[27] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[68] = {
+        { "SwitchCube", createBaseOriginCube<SwitchArea>, 0 },
+        { "SwitchSphere", createSphere<SwitchArea>, 0 },
+        { "SwitchCylinder", createBaseOriginCylinder<SwitchArea>, 0 },
         { "CubeCameraBox", createCenterOriginCube<CubeCameraArea>, 0 },
         { "CubeCameraCylinder", createBaseOriginCylinder<CubeCameraArea>, 0 },
         { "CubeCameraSphere", createSphere<CubeCameraArea>, 0 },
@@ -87,6 +95,13 @@ namespace {
         { "ChangeBgmCube", createBaseOriginCube<ChangeBgmCube>, 0 },
         { "BgmProhibitArea", createSphere<BgmProhibitArea>, 0 },
 
+        { "DepthOfFieldCube", createCenterOriginCube<DepthOfFieldArea>, 0 },
+        { "DepthOfFieldSphere", createSphere<DepthOfFieldArea>, 0 },
+        { "DepthOfFieldCylinder", createBaseOriginCylinder<DepthOfFieldArea>, 0 },
+
+        { "LightCtrlCube", createBaseOriginCube<LightArea>, 0 },
+        { "LightCtrlCylinder", createBaseOriginCylinder<LightArea>, 0 },
+
         { "BigBubbleCameraBox", createCenterOriginCube<BigBubbleCameraArea>, 0 },
         { "BigBubbleCameraCylinder", createBaseOriginCylinder<BigBubbleCameraArea>, 0 },
         { "BigBubbleCameraSphere", createSphere<BigBubbleCameraArea>, 0 },
@@ -97,6 +112,28 @@ namespace {
 
         { "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 },
 
+        { "VROrbit", createNameObj<ProjectionMapSky>, "VROrbit" },
+        { "VRDarkSpace", createNameObj<Sky>, "VRDarkSpace" },
+        { "VRSandwichSun", createNameObj<ProjectionMapSky>, "VRSandwichSun" },
+        { "SummerSky", createNameObj<Sky>, "SummerSky" },
+        { "GalaxySky", createNameObj<Sky>, "GalaxySky" },
+        { "MilkyWaySky", createNameObj<Sky>, "MilkyWaySky" },
+        { "HalfGalaxySky", createNameObj<ProjectionMapSky>, "HalfGalaxySky" },
+        { "GreenPlanetOrbitSky", createNameObj<ProjectionMapSky>, "GreenPlanetOrbitSky" },
+        { "PhantomSky", createNameObj<Sky>, "PhantomSky" },
+        { "KoopaVS1Sky", createNameObj<ProjectionMapSky>, "KoopaVS1Sky" },
+        { "KoopaVS2Sky", createNameObj<Sky>, "KoopaVS2Sky" },
+        { "FamicomMarioSky", createNameObj<Sky>, "FamicomMarioSky" },
+        { "DesertSky", createNameObj<Sky>, "DesertSky" },
+        { "ChildRoomSky", createNameObj<Sky>, "ChildRoomSky" },
+        { "AuroraSky", createNameObj<Sky>, "AuroraSky" },
+        { "CloudSky", createNameObj<ProjectionMapSky>, "CloudSky" },
+        { "RockPlanetOrbitSky", createNameObj<ProjectionMapSky>, "RockPlanetOrbitSky" },
+        { "StarrySky", createNameObj<Sky>, "StarrySky" },
+        { "AstroDomeSky", createNameObj<Sky>, "StarrySky" },
+
+        { "SeaGullGroup", createNameObj<SeaGullGroup>, "SeaGullGroup" },
+
         { "GlobalCubeGravity", MR::createGlobalCubeGravityObj, NULL },
         { "GlobalConeGravity", MR::createGlobalConeGravityObj, NULL },
         { "GlobalDiskGravity", MR::createGlobalDiskGravityObj, NULL },
@@ -106,7 +143,29 @@ namespace {
         { "GlobalPlaneGravityInCylinder", MR::createGlobalPlaneInCylinderGravityObj, NULL },
         { "GlobalPointGravity", MR::createGlobalPointGravityObj, NULL },
         { "GlobalSegmentGravity", MR::createGlobalSegmentGravityObj, NULL },
-        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL }
+        { "GlobalWireGravity", MR::createGlobalWireGravityObj, NULL },
+
+        { "BlackHole", createNameObj<BigFan>, "BlackHole" },
+        { "BlackHoleCube", createNameObj<BigFan>, "BlackHole" },
+
+        { "BigFan", createNameObj<BigFan>, "BigFan" },
+        { "BigFanNoLeg", createNameObj<BigFan>, "BigFanNoLeg" },
+
+        { "PowerStar", createNameObj<PowerStar>, "PowerStar" },
+        { "GrandStar", createNameObj<PowerStar>, "GrandStar", },
+        { "PowerStarAppearPoint", createNameObj<PowerStarAppearPoint>, NULL },
+
+        { "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
+
+        { "FlipPanel", createNameObj<FlipPanel>, "FlipPanel" },
+        { "FlipPanelObserver", createNameObj<FlipPanelObserver>, NULL },
+
+        { "TreasureSpot", createNameObj<TreasureSpot>, "TreasureSpot" },
+        { "CoinFlower", createNameObj<TreasureSpot>, "CoinFlower" },
+
+        { "FireBar", createNameObj<FireBar>, "FireBarCore" },
+
+        { "TimerSwitch", createNameObj<TimerSwitch>, "" }
     };
 
     const char* cName2ArchiveNamesTable;

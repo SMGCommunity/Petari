@@ -29,14 +29,17 @@ public:
     bool updateRootJointCallBack(TPos3f *, const JointControllerInfo &);
     bool updateMiddleJointCallBack(TPos3f *, const JointControllerInfo &);
 
+    void disableCallBack();
+    void enableCallBack();
+
     const char* mName;                                      // _0
     TMtx34f _4;
     TMtx34f _34;
     LiveActor* mActor;                                      // _64
     IKJoint* mJoint;                                        // _68
-    JointControllerDelegator<IKJointCtrl>* mRootCtrl;       // _6C
-    JointControllerDelegator<IKJointCtrl>* mMiddleCtrl;     // _70
-    JointControllerDelegator<IKJointCtrl>* mEndCtrl;        // _74
+    JointControlDelegator<IKJointCtrl>* mRootCtrl;          // _6C
+    JointControlDelegator<IKJointCtrl>* mMiddleCtrl;        // _70
+    JointControlDelegator<IKJointCtrl>* mEndCtrl;           // _74
     TVec3f _78;
     TVec3f mEndLocalDir;                                    // _84
     f32 _90;

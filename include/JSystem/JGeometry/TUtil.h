@@ -1,5 +1,7 @@
 #pragma once
 
+static f32 flt_80630CA0[0x408];
+
 namespace JGeometry {
     template<typename T>
     class TUtil {
@@ -23,6 +25,22 @@ namespace JGeometry {
 
             float outVal = __frsqrte(val);
             return (val * (0.5f * outVal * (3.0f - (val * (outVal * outVal)))));
+        }
+
+        static f32 asin(f32 val) NO_INLINE {
+            if (val >= 1.0f) {
+                return 1.5707964f;
+            }
+
+            if (val <= -1.0f) {
+                return -1.5707964f;
+            }
+
+            if (val < 0.0f) {
+                return -flt_80630CA0[(u32)(1023.5f * -val)];
+            }
+
+            return flt_80630CA0[(u32)(1023.5f * val)];
         }
 
         static T clamp(T, T, T);

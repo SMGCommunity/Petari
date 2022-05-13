@@ -5,6 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 
 class JKRHeap;
+class JKRExpHeap;
 
 namespace MR {
     void becomeCurrentHeap(JKRHeap *);
@@ -19,6 +20,8 @@ namespace MR {
     JKRHeap* getStationedHeapNapa();
 
     JKRHeap* getAproposHeapForSceneArchive(f32);
+
+    void adjustHeapSize(JKRExpHeap *, const char *);
 
     class CurrentHeapRestorer {
     public:

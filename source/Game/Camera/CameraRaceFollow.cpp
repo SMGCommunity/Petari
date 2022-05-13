@@ -1,9 +1,18 @@
 #include "Game/Camera/CameraRaceFollow.h"
+#include "Game/Camera/CamTranslatorRaceFollow.h"
 
 CameraRaceFollow::CameraRaceFollow(const char *pName) : Camera(pName) {
-    _4C = 500.0f;
-    _50 = 1200.0f;
-    _54 = 0.2617994f;
-    _58 = 0;
-    _5C = 0.0f;
+    mWPointX = 500.0f;
+    mWPointY = 1200.0f;
+    mAngleA = 0.2617994f;
+    _58 = false;
+    mWPointZ = 0.0f;
+}
+
+CameraRaceFollow::~CameraRaceFollow() {
+
+}
+
+CamTranslatorBase *CameraRaceFollow::createTranslator() {
+    return new CamTranslatorRaceFollow(this);
 }

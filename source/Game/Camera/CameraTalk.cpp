@@ -1,4 +1,5 @@
 #include "Game/Camera/CameraTalk.h"
+#include "Game/Camera/CamTranslatorTalk.h"
 
 CameraTalk::CameraTalk(const char *pName) : Camera(pName) {
     _4C = 0.0f;
@@ -10,4 +11,12 @@ CameraTalk::CameraTalk(const char *pName) : Camera(pName) {
     _64 = 120.0f;
     _68 = 450.0f;
     _6C = 0;
+}
+
+CameraTalk::~CameraTalk() {
+
+}
+
+CamTranslatorBase *CameraTalk::createTranslator() {
+    return new CamTranslatorTalk(this);
 }

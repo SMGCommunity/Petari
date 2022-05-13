@@ -14,12 +14,12 @@ AreaFormCube::AreaFormCube(int a1) {
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
-    _30.x = 0.0f;
-    _30.y = 0.0f;
-    _30.z = 0.0f;
-    _3C.x = 0.0f;
-    _3C.y = 0.0f;
-    _3C.z = 0.0f;
+    mBounding.mMin.x = 0.0f;
+    mBounding.mMin.y = 0.0f;
+    mBounding.mMin.z = 0.0f;
+    mBounding.mMax.x = 0.0f;
+    mBounding.mMax.y = 0.0f;
+    mBounding.mMax.z = 0.0f;
 }
 
 void AreaFormCube::init(const JMapInfoIter &rIter) {
@@ -38,7 +38,7 @@ bool AreaFormCube::isInVolume(const TVec3f &rPos) const {
 
     bool res = false;
 
-    if (transpose.x >= _30.x && transpose.y >= _30.y && transpose.z >= _30.z && transpose.x < _3C.x && transpose.y < _3C.y && transpose.z < _3C.z) {
+    if (transpose.x >= mBounding.mMin.x && transpose.y >= mBounding.mMin.y && transpose.z >= mBounding.mMin.z && transpose.x < mBounding.mMax.x && transpose.y < mBounding.mMax.y && transpose.z < mBounding.mMax.z) {
         res = true;
     }
 
@@ -73,8 +73,8 @@ void AreaFormCube::calcWorldBox(TDirBox3f *pBox) const {
     pBox->_18.z = pos.mMtx[2][2];
     pBox->_24.z = pos.mMtx[2][3];
 
-    JMathInlineVEC::PSVECSubtract((const Vec*)&_3C, (const Vec*)&_30, (Vec*)&pBox->_30);
-    pos.mult(_30, pBox->_24);
+    JMathInlineVEC::PSVECSubtract(mBounding.mMax.toCVec(), mBounding.mMin.toCVec(), pBox->_30.toVec());
+    pos.mult(mBounding.mMin, pBox->_24);
 }
 
 void AreaFormCube::calcLocalPos(TVec3f *pPos, const TVec3f &a2) const {
@@ -181,10 +181,8 @@ bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
     calcPos(&pos);
 
     TVec3f thing(rVector);
-
-    JMathInlineVEC::PSVECSubtract((const Vec*)&thing, (const Vec*)&pos, (Vec*)&thing);
-
-    return PSVECMag((const Vec*)&thing) < _14;
+    JMathInlineVEC::PSVECSubtract(thing.toCVec(), pos.toCVec(), thing.toVec());
+    return PSVECMag(thing.toCVec()) < _14;
 }
 
 AreaFormBowl::AreaFormBowl() {
@@ -210,7 +208,7 @@ void AreaFormBowl::init(const JMapInfoIter &rIter) {
 
 bool AreaFormBowl::isInVolume(const TVec3f &rPos) const {
     TVec3f pos(rPos);
-    JMathInlineVEC::PSVECSubtract((const Vec*)&pos, (const Vec*)&mTranslation, (Vec*)&pos);
+    JMathInlineVEC::PSVECSubtract(pos.toCVec(), mTranslation.toCVec(), pos.toVec());
     
     if (PSVECMag((const Vec*)&pos) > _20) {
         return false;

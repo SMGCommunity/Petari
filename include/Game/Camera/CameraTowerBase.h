@@ -9,7 +9,6 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
 
     void calcIdealPoseOfTowerBase();
     void resetBegin();

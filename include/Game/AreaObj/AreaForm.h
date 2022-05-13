@@ -1,11 +1,8 @@
 #pragma once
 
+#include <revolution.h>
 #include "Game/Util.h"
-#include "JSystem/JGeometry/TBox.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TRotation.h"
-#include "JSystem/JGeometry/TVec.h"
-#include "revolution.h"
+#include "JSystem/JGeometry.h"
 
 class AreaForm {
 public:
@@ -30,11 +27,10 @@ public:
     void calcWorldMtx(TPos3f *) const;
 
     int _8;
-    TVec3f mTranslation; // _C
-    TVec3f mRotation;    // _18
-    TVec3f mScale;       // _24
-    TVec3f _30;
-    TVec3f _3C;
+    TVec3f mTranslation;            // _C
+    TVec3f mRotation;               // _18
+    TVec3f mScale;                  // _24
+    TBox3f mBounding;               // _30
     Mtx _48;
 };
 

@@ -18,11 +18,11 @@ namespace MR {
         }
 
         inline FunctorV0M() {
-
+            
         }
 
         virtual void operator()() const {
-            
+            (mCaller->*mCallee)();
         }
 
         virtual FunctorBase* clone(JKRHeap *pHeap) const {
@@ -48,7 +48,7 @@ namespace MR {
         }
 
         virtual void operator()() const {
-            
+            (mCaller->*mCallee)(mArg0, mArg1);
         }
 
         virtual FunctorBase* clone(JKRHeap *pHeap) const {

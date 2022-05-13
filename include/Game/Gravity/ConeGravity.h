@@ -14,7 +14,7 @@ public:
 	void setTopCutRate(f32 val);
 
 	TPos3f mLocalMtx;   // _28
-	TPos3f _58;
+	TPos3f mWorldMtx;   // _58
 	f32 _88;            // set in ctor but never used
 	f32 _8C;            // set in ctor but never used
 	f32 _90;

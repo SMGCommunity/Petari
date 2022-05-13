@@ -27,8 +27,8 @@ namespace MR {
         pOut->set<f32>((a2 + (dist * v12)), v11, v10);
     }
 
-    bool isHalfProbability() {
-        return (getRandom() < 0.5f);
+    u8 isHalfProbability() {
+        return MR::getRandom() < 0.5f;
     }
 
     f32 getSignHalfProbability() {

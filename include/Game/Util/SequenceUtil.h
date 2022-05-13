@@ -12,4 +12,6 @@ namespace MR {
     void requestGoToAstroGalaxy(s32);
 
     bool isExecScenarioStarter();
+
+    void executeOnWelcomeAndRetry();
 };

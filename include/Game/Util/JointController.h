@@ -1,14 +1,16 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TPosition3.h"
+#include "JSystem/JGeometry.h"
 
 class J3DJoint;
 class J3DModel;
+class LiveActor;
 
 struct JointControllerInfo {
 
 };
+
 
 class JointController {
 public:
@@ -26,18 +28,25 @@ public:
     J3DJoint* mJoint;   // _8
 };
 
+namespace MR {
+    void setJointControllerParam(JointController *, const LiveActor *, const char *);
+};
+
 template<typename T>
-class JointControllerDelegator : public JointController {
+class JointControlDelegator : public JointController {
 public:
 
     typedef bool (T::*func)(TPos3f *, const JointControllerInfo &);
 
-    inline JointControllerDelegator(func calcFunc, func calcAfterChild) : JointController() {
+    inline JointControlDelegator(T *pHost, func calcFunc, func calcAfterChild) : JointController() {
+        mHost = pHost;
         mMtxCalcFunc = calcFunc;
         mMtxCalcAfterChildFunc = calcAfterChild;
     }
 
-    virtual ~JointControllerDelegator();
+    virtual ~JointControlDelegator() {
+        
+    }
 
     T* mHost;                       // _C
     func mMtxCalcFunc;             // _10

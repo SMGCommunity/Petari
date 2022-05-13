@@ -37,10 +37,17 @@ except ModuleNotFoundError:
     print("Module 'ninja' not found. Installing...")
     install("ninja")
 
+try:
+    import colorama
+    print("Found colorama, continuing...")
+except ModuleNotFoundError:
+    print("Module 'colorama' not found. Installing...")
+    install("colorama")
+
 if not os.path.exists("deps"):
     print("Dependency folder not found, downloading...")
 
-    with urllib.request.urlopen("http://shibboleet.us.to/deps.zip") as response, open("deps.zip", 'wb') as out:
+    with urllib.request.urlopen("http://shibbo.net/smg/deps.zip") as response, open("deps.zip", 'wb') as out:
         data = response.read()
         out.write(data)
 

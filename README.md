@@ -1,18 +1,28 @@
-# Super Mario Galaxy 1 Decompilation
 
-<img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat" />
-<a href="https://discord.gg/k7ZKzSDsVq">
-<img src="https://img.shields.io/discord/334663517355507714?logo=discord"
-    alt="chat on our Discord"></a>
+# Petari ![Badge Decompiled]
+*A **Super Mario Galaxy 1 US** Decompilation Project*
 
-This repo contains a WIP decompilation of Super Mario Galaxy 1 (USA).
+<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Animation.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AreaObj.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AudioLib.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Boss.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Camera.json&style=flat"/> 
+<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Demo.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Effect.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Enemy.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/GameAudio.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Gravity.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/LiveActor.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Map.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/MapObj.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/NameObj.json&style=flat"/> 
+<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/NPC.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Player.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/RhythmLib.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Ride.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Scene.json&style=flat"/> 
+<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Screen.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Speaker.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/System.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Util.json&style=flat"/>
 
-## Build Instructions
+---
 
-1. Obtain a clean copy of a main.dol from Super Mario Galaxy 1 and rename it to `baserom.dol`, and place it on the root.
-2. Run `setup.py` to download and install all of the dependencies.
-3. Run `build.py`, then use `check.py` to verify matching status. For more information, see docs/Contributing.
+ **[❮ Build ❯][Build]**
+ **[❮ Contribute ❯][Contribute]**
+ **[❮ CheatSheet ❯][CheatSheet]**
+ **[❮ Progress ❯][Progress]**
 
-## Contributions
+---
 
-Want to contribute, or learn how to contribute? Try joining our Discord server (link is at the top), and looking into docs/Contributing! We will be glad to answer any questions for people who wish to contribute. All pull requests and issues are welcome.
+
+
+<!----------------------------------------------------------------------------->
+
+[Contribute]: docs/CONTRIBUTING.md
+[CheatSheet]: docs/CHEATSHEET.md
+[Progress]: docs/PROGRESS.md
+[Build]: docs/Build.md
+
+[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/percent.json&style=flat 

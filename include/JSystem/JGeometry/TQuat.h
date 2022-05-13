@@ -4,16 +4,43 @@
 
 namespace JGeometry {
     template<typename T>
-    class TQuat4 {
+    struct TQuat4 : public TVec4<T> {
     public:
-        TQuat4();
+        /* Constructors */
+        inline TQuat4() {}
 
-        void getZDir(TVec3f &) const;
-        void setEuler(T, T, T);
-        void setRotate(const JGeometry::TVec3<T> &, const JGeometry::TVec3<T> &);
-        void slerp(const JGeometry::TQuat4<T> &, T);
-        void normalize(const JGeometry::TQuat4<T> &, T);
-        void getEuler(const JGeometry::TVec3<T> &) const;
+        template<typename T>
+        TQuat4(T _x, T _y, T _z, T _w) {
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
+        }
+
+        /* General operations */
+        void normalize();
+        void normalize(const TQuat4<T> &rSrc);
+
+        void getXDir(TVec3<T> &rDest) const;
+        void getYDir(TVec3<T> &rDest) const;
+        void getZDir(TVec3<T> &rDest) const;
+
+        void getEuler(TVec3<T> &rDest) const;
+        void setEuler(T _x, T _y, T _z);
+        void setEulerZ(T _z);
+
+        void setRotate(const TVec3<T> &, const TVec3<T> &, T);
+        void setRotate(const TVec3<T> &, const TVec3<T> &);
+        void setRotate(const TVec3<T> &, f32);
+        void rotate(TVec3f &rDest) const;
+
+        void slerp(const TQuat4<T> &, const TQuat4<T>, T);
+        void slerp(const TQuat4<T> &, T);
+        void transform(const TVec3<T> &, TVec3<T> &rDest);
+        void transform(TVec3<T> &rDest);
+
+        /* Operators */
+        TQuat4<T>& operator=(const TQuat4<T> &rSrc);
     };
 };
 

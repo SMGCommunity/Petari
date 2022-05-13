@@ -32,9 +32,4 @@ namespace MR {
         _0 = pFirst;
         _8 = 1;
     }
-
-    /*
-    void BothDirPtrList::append(MR::BothDirPtrLink *) {
-    }
-    */
 };

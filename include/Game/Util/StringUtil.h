@@ -17,6 +17,13 @@ namespace MR {
     void addFilePrefix(char *, u32, const char *, const char *);
 
     void copyString(char *, const char *, u32);
+    void copyString(wchar_t *, const wchar_t *, u32);
+    void addPictureFontCode(wchar_t *, int);
+    void addPictureFontTag(wchar_t *, int);
+    void addPictureFontTagPlayerIcon(wchar_t *);
+    void addNewLine(wchar_t *);
+
+    bool isNullOrEmptyString(const char *);
 
     void scan32(const char *, const char *, s32 *);
     void scan16(const char *, const char *, u16 *);

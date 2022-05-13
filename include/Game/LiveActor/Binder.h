@@ -2,5 +2,5 @@
 
 class Binder {
 public:
-    
+    void clear();
 };

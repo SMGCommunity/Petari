@@ -9,14 +9,14 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void goRound();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    u8 _58;
+    f32 mWPointX;   // _4C
+    f32 mWPointY;   // _50
+    f32 mAngleA;    // _54
+    bool _58;
     u8 _59[3];
-    f32 _5C;
+    f32 mWPointZ;   // _5C
 };

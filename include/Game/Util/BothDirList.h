@@ -23,8 +23,8 @@ namespace MR {
 
         void initiate();
         void setFirst(MR::BothDirPtrLink *);
-        void append(MR::BothDirPtrLink *);
-        void remove(MR::BothDirPtrLink *);
+        bool append(MR::BothDirPtrLink *);
+        bool remove(MR::BothDirPtrLink *);
 
         MR::BothDirPtrLink* _0;
         MR::BothDirPtrLink* _4;

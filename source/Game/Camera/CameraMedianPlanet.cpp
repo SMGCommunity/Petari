@@ -1,12 +1,21 @@
 #include "Game/Camera/CameraMedianPlanet.h"
+#include "Game/Camera/CamTranslatorMedianPlanet.h"
 
 CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
-    _4C = 0;
-    _50 = 1200.0f;
-    _54 = 3000.0f;
-    _58 = 0.7853982f;
-    _5C = 0.0f;
-    _60 = 2000.0f;
-    _64 = 0.2f;
-    _68 = 0.5f;
+    mString = NULL;
+    mAxisX = 1200.0f;
+    mAxisY = 3000.0f;
+    mAngleA = 0.7853982f;
+    mAngleB = 0.0f;
+    mDist = 2000.0f;
+    mAxisZ = 0.2f;
+    mWPointX = 0.5f;
+}
+
+CameraMedianPlanet::~CameraMedianPlanet() {
+
+}
+
+CamTranslatorBase *CameraMedianPlanet::createTranslator() {
+    return new CamTranslatorMedianPlanet(this);
 }

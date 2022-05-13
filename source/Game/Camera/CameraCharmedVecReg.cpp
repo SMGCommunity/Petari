@@ -1,11 +1,20 @@
 #include "Game/Camera/CameraCharmedVecReg.h"
+#include "Game/Camera/CamTranslatorCharmedVecReg.h"
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
-    _4C = 0;
-    _50 = 1000.0f;
-    _54 = 0.0f;
-    _58 = 0.0f;
-    _5C = 0.0f;
-    _60 = 0.5f;
-    _64 = 0.02f;
+    mString = NULL;
+    mDist = 1000.0f;
+    mAxisX = 0.0f;
+    mAxisZ = 0.0f;
+    mAxisY = 0.0f;
+    mAngleA = 0.5f;
+    mAngleB = 0.02f;
+}
+
+CameraCharmedVecReg::~CameraCharmedVecReg() {
+
+}
+
+CamTranslatorBase *CameraCharmedVecReg::createTranslator() {
+    return new CamTranslatorCharmedVecReg(this);
 }

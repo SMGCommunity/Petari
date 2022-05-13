@@ -9,24 +9,20 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj *calc();
-    virtual CamTranslatorDummy *createTranslator();
+    virtual CamTranslatorBase *createTranslator();
 
     void calcFovyPos(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     void limitAngularVelocity(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     void calcDistance(TVec3f *, const TVec3f &);
     void updateReset(const TVec3f &, const TVec3f &, const TVec3f &);
 
-    u32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    f32 _70;
-    f32 _74;
+    const char *mString;    // _4C
+    TVec3f mWPoint;         // _50
+    TVec3f mAxis;           // _5C
+    f32 mAngleA;            // _68
+    f32 mUpX;               // _6C
+    f32 mUpY;               // _70
+    f32 mUpZ;               // _74
     f32 _78;
     f32 _7C;
     f32 _80;

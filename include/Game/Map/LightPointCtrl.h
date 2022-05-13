@@ -2,8 +2,6 @@
 
 #include <revolution.h>
 
-typedef _GXColor Color8;
-
 class PointLightInfo {
 public:
     void operator=(const PointLightInfo &);

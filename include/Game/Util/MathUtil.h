@@ -6,15 +6,29 @@
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
 
+static f32 flt_8060FC80[1816];
+
+#ifdef __cplusplus
+extern "C" {
+f64 sin(f32);
+f64 cos(f32);
+f64 fmod(f64, f64);
+}
+#endif
+
+
 namespace MR {
     void initAcosTable();
+
+    template<typename T>
+    T sqrt(T val);
 
     f32 getRandom();
     f32 getRandom(f32, f32);
     s32 getRandom(s32, s32);
     f32 getRandomDegree();
     void calcRandomVec(TVec3f *, f32, f32);
-    bool isHalfProbability();
+    u8 isHalfProbability();
     f32 getSignHalfProbability();
     void getRandomVector(TVec3f *, f32);
     void addRandomVector(TVec3f *, const TVec3f &, f32);
@@ -50,8 +64,12 @@ namespace MR {
 
     f32 calcDistanceXY(const TVec3f &, const TVec3f &);
 
+    void rotateVecDegree(TVec3f *, const TVec3f &, f32);
+
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
+
+    bool isSameDirection(const TVec3f &, const TVec3f &, float);
 
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);
@@ -84,8 +102,26 @@ namespace MR {
 
     void normalize(TVec2f *);
     void normalize(TVec3f *);
+    void normalize(const TVec3f &, TVec3f *);
+
+    f32 normalize(f32, f32, f32);
+
+    bool normalizeOrZero(TVec2f *);
+    bool normalizeOrZero(TVec3f *);
+    bool normalizeOrZero(const TVec3f &, TVec3f *);
 
     bool isNan(const TVec3f &);
+
+    template<typename T>
+    T converge(T, T, T);
+
+    f32 clamp(f32, f32, f32);
+
+    f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
+
+    void calcReboundVelocity(TVec3f *, const TVec3f &, f32, f32);
+
+    void getRotatedAxisY(TVec3f *, const TVec3f &);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

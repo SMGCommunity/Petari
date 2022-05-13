@@ -10,8 +10,29 @@ extern int strcasecmp(const char*, const char*);
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
+#include "Game/Util.h"
 
-namespace MR { 
+namespace MR {
+    void addPictureFontCode(wchar_t *pStr, int code) {
+        *pStr = code;
+        *++pStr = 0;
+    }
+
+    #ifdef NON_MATCHING
+    void addPictureFontTag(wchar_t *pStr, int tag) {
+        pStr[0] = 0x1A;
+        *(u8*)pStr[1] = 0x6;
+        *(u8*)pStr[2] = 0x3;
+        pStr[3] = tag - 0x30;
+        pStr[4] = 0;
+    }
+    #endif
+
+    void addPictureFontTagPlayerIcon(wchar_t *pMsgStr) {
+        int tag = MR::isPlayerLuigi() ? 0x4C : 0x42;
+        MR::addPictureFontTag(pMsgStr, tag);
+    }
+
     #ifdef NON_MATCHING
     // missing branch, and wrong condition (likely because of the branch)
     const char* getBasename(const char *pString) {

@@ -1,34 +1,25 @@
-# Library Progress Chart
-Progress (Full Game): 2.3589385% [125608 / 5324768]
-
-Progress (Only Game): 3.007643% [123156 / 4094768]
-
-You have 3 / 120 stars.
-
-
-
 | Library | Percentage |
 | ------------- | ------------- |
-| LiveActor.a | 28.138468% |
-| Camera.a | 26.278996% |
-| AreaObj.a | 19.111694% |
-| NameObj.a | 18.462334% |
-| Gravity.a | 17.199919% |
-| Speaker.a | 8.252704% |
-| Scene.a | 5.921913% |
-| Util.a | 5.047715% |
-| System.a | 4.8320165% |
-| Map.a | 4.3972564% |
-| Animation.a | 4.361673% |
-| Demo.a | 3.7959945% |
-| NPC.a | 0.19521274% |
-| Player.a | 0.10706729% |
-| MapObj.a | 0.010054772% |
-| AudioLib.a | 0% |
-| Boss.a | 0% |
-| Effect.a | 0% |
-| Enemy.a | 0% |
-| GameAudio.a | 0% |
-| RhythmLib.a | 0% |
-| Ride.a | 0% |
-| Screen.a | 0% |
+| [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.3616726668512875% |
+| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 44.2958129418162% |
+| [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
+| [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 0.0% |
+| [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 33.49212924606462% |
+| [Demo](https://github.com/shibbo/Petari/blob/master/docs/lib/Demo.md) | 3.7442572741194486% |
+| [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect.md) | 0.0% |
+| [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy.md) | 0.0% |
+| [GameAudio](https://github.com/shibbo/Petari/blob/master/docs/lib/GameAudio.md) | 0.0% |
+| [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 56.286937028734464% |
+| [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 36.855693868142005% |
+| [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 11.757933634152229% |
+| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 7.197162737001945% |
+| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 22.226039161800067% |
+| [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.7591369440774989% |
+| [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 0.14184156212575486% |
+| [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib.md) | 0.0% |
+| [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 0.0% |
+| [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 7.59493670886076% |
+| [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 0.8324294656508502% |
+| [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 44.906089926010246% |
+| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 7.724349605378544% |
+| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 6.347504282669247% |

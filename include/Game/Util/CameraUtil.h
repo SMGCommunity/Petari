@@ -1,9 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TPosition3.h"
-#include "JSystem/JGeometry/TVec.h"
 #include <revolution.h>
+#include "JSystem/JGeometry.h"
 
 class ActorCameraInfo;
 class CameraTargetArg;
@@ -19,7 +17,7 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
-    MtxPtr getCameraViewMtx();
+    const MtxPtr getCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
 
     void loadProjectionMtx();
@@ -34,5 +32,30 @@ namespace MR {
 
     void setNearZ(f32);
 
+    TVec3f getCamXDir();
+    TVec3f getCamYDir();
+    TVec3f getCamZDir();
+
+    void declareEventCamera(const ActorCameraInfo *, const char *);
+    void calcScreenPosition(TVec2f *, const TVec3f &);
+
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
+
+    bool isExistMirrorCamera();
+
+    void initActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **);
+    bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
+    void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
+
+    bool isStartAnimCameraEnd();
+
+    void overlayWithPreviousScreen(u32);
+
+    void resetCamerLocalOffset();
+
+    void drawInitFor2DModel();
+
+    bool hasStartAnimCamera();
+
+    void endStartAnimCamera();
 };

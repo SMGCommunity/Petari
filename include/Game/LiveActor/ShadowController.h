@@ -60,6 +60,8 @@ public:
     void validate();
     void invalidate();
 
+    void updateProjection();
+
     LiveActor* mActor;                                  // _0
     const char* pName;                                  // _4
     const char* mGroupName;                             // _8
@@ -68,10 +70,10 @@ public:
     CollisionPartsFilterBase* mCollisionPartsFilter;    // _14
     MtxPtr _18;
     MtxPtr _1C;
-    TVec3f* mDropPos;                                   // _20
-    TVec3f* mDropDir;                                   // _24
-    u32 _28;
-    u32 _2C;
+    const TVec3f* mDropPos;                              // _20
+    const TVec3f* mDropDir;                              // _24
+    TVec3f* mProjPos;                                    // _28
+    TVec3f* mProjNorm;                                   // _2C
     TVec3f _30;
     TVec3f _3C;
     TVec3f _48;
@@ -83,6 +85,7 @@ public:
     u8 _64;
     u8 _65;
     u8 _66;
+    u8 _67;
     f32 mStartOffset;                                   // _68
     f32 mDropLength;                                    // _6C
     u8 _70;

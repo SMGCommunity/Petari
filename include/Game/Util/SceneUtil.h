@@ -7,6 +7,7 @@
 
 namespace MR {
     s32 getPlacedZoneId(const JMapInfoIter &);
+    s32 getCurrentPlacementZoneId();
 
     s32 getCurrentScenarioNo();
 
@@ -19,6 +20,7 @@ namespace MR {
     const char* getZoneNameFromZoneId(s32);
 
     TMtx34f *getZonePlacementMtx(long);
+    TMtx34f *getZonePlacementMtx(const JMapInfoIter &);
 
     void getStageCameraData(void **, long *, long);
 
@@ -36,8 +38,15 @@ namespace MR {
 
     void getCurrentScenarioStartAnimCameraData(void **, long *);
 
+    void playSceneForScenarioOpeningCamera();
+
     s32 getCurrentStartCameraID();
     s32 getCurrentStartZoneID();
 
     bool isEqualStageName(const char *);
+
+    bool isStageKoopaVs();
+    bool isStageKoopaVs3();
+
+    bool isBeginScenarioStarter();
 }
