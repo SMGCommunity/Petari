@@ -2,12 +2,12 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
 | SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% |
-| SpkSystem.o | 0.0% | 0 / 14 | 0.0% |
-| SpkMixingBuffer.o | 0.0% | 0 / 4 | 0.0% |
+| SpkSystem.o | 67.70833333333334% | 10 / 14 | 71.42857142857143% |
+| SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% |
 | SpkWave.o | 100.0% | 7 / 7 | 100.0% |
 | SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
 | SpkData.o | 100.0% | 4 / 4 | 100.0% |
-| SpkSound.o | 8.831521739130435% | 3 / 22 | 13.636363636363635% |
+| SpkSound.o | 22.554347826086957% | 9 / 22 | 40.909090909090914% |
 
 
 # SpkSpeakerCtrl.o
@@ -39,17 +39,17 @@
 # SpkSystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9SpkSystemFP7JKRHeap | :x: |
-| __dt__18JSUList&lt;8SpkSound&gt;Fv | :x: |
-| setResource__9SpkSystemFP10JKRArchiveUsUs | :x: |
-| framework__9SpkSystemFv | :x: |
-| startSound__9SpkSystemFllP14SpkSoundHandle | :x: |
+| __ct__9SpkSystemFP7JKRHeap | :white_check_mark: |
+| __dt__18JSUList&lt;8SpkSound&gt;Fv | :white_check_mark: |
+| setResource__9SpkSystemFP10JKRArchiveUsUs | :white_check_mark: |
+| framework__9SpkSystemFv | :white_check_mark: |
+| startSound__9SpkSystemFllP14SpkSoundHandle | :white_check_mark: |
 | newSoundMemPool__9SpkSystemFl | :x: |
-| connect__9SpkSystemFl | :x: |
-| disconnect__9SpkSystemFl | :x: |
-| reconnect__9SpkSystemFl | :x: |
-| extensionProcess__9SpkSystemFll | :x: |
-| getDeviceVolume__9SpkSystemFl | :x: |
+| connect__9SpkSystemFl | :white_check_mark: |
+| disconnect__9SpkSystemFl | :white_check_mark: |
+| reconnect__9SpkSystemFl | :white_check_mark: |
+| extensionProcess__9SpkSystemFll | :white_check_mark: |
+| getDeviceVolume__9SpkSystemFl | :white_check_mark: |
 | __sinit_\SpkSystem_cpp | :x: |
 | __ct__21JASMemPool&lt;8SpkSound&gt;Fv | :x: |
 | __dt__21JASMemPool&lt;8SpkSound&gt;Fv | :x: |
@@ -58,9 +58,9 @@
 # SpkMixingBuffer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15SpkMixingBufferFP7JKRHeap | :x: |
+| __ct__15SpkMixingBufferFP7JKRHeap | :white_check_mark: |
 | mix__15SpkMixingBufferFlPslfl | :x: |
-| getSamples__15SpkMixingBufferCFl | :x: |
+| getSamples__15SpkMixingBufferCFl | :white_check_mark: |
 | update__15SpkMixingBufferFl | :x: |
 
 
@@ -103,19 +103,19 @@
 | __ct__8SpkSoundFv | :x: |
 | __dt__8SpkSoundFv | :x: |
 | update__8SpkSoundFf | :x: |
-| stop__8SpkSoundFl | :x: |
-| attachHandle__8SpkSoundFP14SpkSoundHandle | :x: |
-| releaseHandle__8SpkSoundFv | :x: |
+| stop__8SpkSoundFl | :white_check_mark: |
+| attachHandle__8SpkSoundFP14SpkSoundHandle | :white_check_mark: |
+| releaseHandle__8SpkSoundFv | :white_check_mark: |
 | start__8SpkSoundFll | :x: |
 | unlock__8SpkSoundFv | :x: |
 | setWaveData__8SpkSoundFl | :x: |
-| __ct__14SpkSoundHolderFv | :x: |
+| __ct__14SpkSoundHolderFv | :white_check_mark: |
 | startSound__14SpkSoundHolderFllP14SpkSoundHandle | :x: |
-| update__14SpkSoundHolderFl | :x: |
+| update__14SpkSoundHolderFl | :white_check_mark: |
 | updateEachSound__14SpkSoundHolderFl | :x: |
 | freeDeadSound__14SpkSoundHolderFl | :x: |
 | framework__14SpkSoundHolderFv | :x: |
-| __ct__18JSUList&lt;8SpkSound&gt;Fv | :x: |
+| __ct__18JSUList&lt;8SpkSound&gt;Fv | :white_check_mark: |
 | __sinit_\SpkSound_cpp | :x: |
 
 

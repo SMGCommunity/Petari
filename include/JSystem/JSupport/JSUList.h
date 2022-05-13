@@ -49,7 +49,9 @@ public:
 template<class T>
 class JSUList : public JSUPtrList {
 public:
-    JSUList();
+    JSUList() : JSUPtrList() {
+        
+    }
 
     JSUList(bool thing) : JSUPtrList(thing) {
 
