@@ -6,6 +6,7 @@
 
 namespace MR {
     void notifyRequestNameObjMovementOnOff();
+    void connectToDrawTemporarily(NameObj*);
 }
 
 class NameObj {

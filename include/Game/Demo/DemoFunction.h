@@ -7,4 +7,5 @@ public:
     static void* loadDemoArchive();
 
     static bool isDemoPartTalk(const char *);
+    static void registerDemoSimpleCastAllFunction(NameObj*);
 };

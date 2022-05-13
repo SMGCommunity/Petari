@@ -469,12 +469,12 @@ getDistanceToMirror__2MRFRCQ29JGeometry8TVec3<f>,MirrorCamera.o,LiveActor.a,true
 __dt__12MirrorCameraFv,MirrorCamera.o,LiveActor.a,true
 movement__12MirrorCameraFv,MirrorCamera.o,LiveActor.a,true
 __ct__21MirrorReflectionModelFPC9LiveActorPCcPCcPA4_f,MirrorReflectionModel.o,LiveActor.a,false
-init__21MirrorReflectionModelFRC12JMapInfoIter,MirrorReflectionModel.o,LiveActor.a,false
+init__21MirrorReflectionModelFRC12JMapInfoIter,MirrorReflectionModel.o,LiveActor.a,true
 movement__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,false
-calcAnim__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,false
-calcViewAndEntry__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,false
+calcAnim__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,true
+calcViewAndEntry__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,true
 calcAndSetBaseMtx__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,false
-__dt__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,false
+__dt__21MirrorReflectionModelFv,MirrorReflectionModel.o,LiveActor.a,true
 __ct__12ModelManagerFv,ModelManager.o,LiveActor.a,false
 update__12ModelManagerFv,ModelManager.o,LiveActor.a,true
 calcAnim__12ModelManagerFv,ModelManager.o,LiveActor.a,true
