@@ -296,6 +296,17 @@ print(f"You currently have {progNonPercent} / 120 stars.")
 
 print("Generating JSON...")
 
+json = []
+json.append("{\n")
+json.append("\t\"schemaVersion\": 1,\n")
+json.append("\t\"label\": \"decompiled\",\n")
+json.append(f"\t\"message\": \"{progPercent}%\",\n")
+json.append("\t\"color\": \"blue\"\n")
+json.append("}")
+
+with open("data/percent.json", "w") as w:
+    w.writelines(json)
+
 print("Generating markdown pages...")
 
 # now we generate our progress page
