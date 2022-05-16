@@ -4,6 +4,7 @@
 #include "Game/Speaker/SpkMixingBuffer.h"
 #include "Game/Speaker/SpkSound.h"
 #include "JSystem/JAudio2/JASGlobal.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 
 class SpkSystem : JASGlobalInstance<SpkSystem> {
 public:

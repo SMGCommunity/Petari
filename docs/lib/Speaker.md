@@ -2,12 +2,12 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
 | ------------- | ------------- | ------------- | ------------- |
 | SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% |
-| SpkSystem.o | 67.70833333333334% | 10 / 14 | 71.42857142857143% |
+| SpkSystem.o | 70.3125% | 11 / 14 | 78.57142857142857% |
 | SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% |
 | SpkWave.o | 100.0% | 7 / 7 | 100.0% |
 | SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
 | SpkData.o | 100.0% | 4 / 4 | 100.0% |
-| SpkSound.o | 22.554347826086957% | 9 / 22 | 40.909090909090914% |
+| SpkSound.o | 27.03804347826087% | 12 / 22 | 54.54545454545454% |
 
 
 # SpkSpeakerCtrl.o
@@ -44,7 +44,7 @@
 | setResource__9SpkSystemFP10JKRArchiveUsUs | :white_check_mark: |
 | framework__9SpkSystemFv | :white_check_mark: |
 | startSound__9SpkSystemFllP14SpkSoundHandle | :white_check_mark: |
-| newSoundMemPool__9SpkSystemFl | :x: |
+| newSoundMemPool__9SpkSystemFl | :white_check_mark: |
 | connect__9SpkSystemFl | :white_check_mark: |
 | disconnect__9SpkSystemFl | :white_check_mark: |
 | reconnect__9SpkSystemFl | :white_check_mark: |
@@ -95,7 +95,7 @@
 # SpkSound.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| releaseSound__14SpkSoundHandleFv | :x: |
+| releaseSound__14SpkSoundHandleFv | :white_check_mark: |
 | __ct__14SpkSoundVolumeFv | :white_check_mark: |
 | setRelease__14SpkSoundVolumeFl | :white_check_mark: |
 | setFadeOut__14SpkSoundVolumeFl | :white_check_mark: |
@@ -106,8 +106,8 @@
 | stop__8SpkSoundFl | :white_check_mark: |
 | attachHandle__8SpkSoundFP14SpkSoundHandle | :white_check_mark: |
 | releaseHandle__8SpkSoundFv | :white_check_mark: |
-| start__8SpkSoundFll | :x: |
-| unlock__8SpkSoundFv | :x: |
+| start__8SpkSoundFll | :white_check_mark: |
+| unlock__8SpkSoundFv | :white_check_mark: |
 | setWaveData__8SpkSoundFl | :x: |
 | __ct__14SpkSoundHolderFv | :white_check_mark: |
 | startSound__14SpkSoundHolderFllP14SpkSoundHandle | :x: |

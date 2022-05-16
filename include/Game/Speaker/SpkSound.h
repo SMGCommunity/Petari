@@ -31,7 +31,7 @@ public:
     f32 _1C;
 };
 
-class SpkSound {
+class SpkSound : public JSUPtrLink {
 public:
     SpkSound();
     ~SpkSound();
@@ -40,11 +40,10 @@ public:
     void stop(s32);
     void attachHandle(SpkSoundHandle *);
     void releaseHandle();
-    void start(s32, s32);
+    bool start(s32, s32);
     void unlock();
-    void setWaveData(s32);
+    bool setWaveData(s32);
 
-    JSUPtrLink _0;
     SpkSoundHandle* mSoundHandle;   // _10
     s32 _14;
     u32 _18;
@@ -55,7 +54,7 @@ public:
     u32 _2C;
     s32 _30;
     s32 _34;
-    u32 _38;
+    s32 _38;
     s32 _3C;
     SpkSoundVolume mVolume;         // _40
 };

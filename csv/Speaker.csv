@@ -25,7 +25,7 @@ __dt__18JSUList<8SpkSound>Fv,SpkSystem.o,Speaker.a,true
 setResource__9SpkSystemFP10JKRArchiveUsUs,SpkSystem.o,Speaker.a,true
 framework__9SpkSystemFv,SpkSystem.o,Speaker.a,true
 startSound__9SpkSystemFllP14SpkSoundHandle,SpkSystem.o,Speaker.a,true
-newSoundMemPool__9SpkSystemFl,SpkSystem.o,Speaker.a,false
+newSoundMemPool__9SpkSystemFl,SpkSystem.o,Speaker.a,true
 connect__9SpkSystemFl,SpkSystem.o,Speaker.a,true
 disconnect__9SpkSystemFl,SpkSystem.o,Speaker.a,true
 reconnect__9SpkSystemFl,SpkSystem.o,Speaker.a,true
@@ -51,7 +51,7 @@ __ct__7SpkDataFP10JKRArchive,SpkData.o,Speaker.a,true
 loadTable__7SpkDataFUs,SpkData.o,Speaker.a,true
 loadWave__7SpkDataFUs,SpkData.o,Speaker.a,true
 isValid__7SpkDataCFv,SpkData.o,Speaker.a,true
-releaseSound__14SpkSoundHandleFv,SpkSound.o,Speaker.a,false
+releaseSound__14SpkSoundHandleFv,SpkSound.o,Speaker.a,true
 __ct__14SpkSoundVolumeFv,SpkSound.o,Speaker.a,true
 setRelease__14SpkSoundVolumeFl,SpkSound.o,Speaker.a,true
 setFadeOut__14SpkSoundVolumeFl,SpkSound.o,Speaker.a,true
@@ -62,8 +62,8 @@ update__8SpkSoundFf,SpkSound.o,Speaker.a,false
 stop__8SpkSoundFl,SpkSound.o,Speaker.a,true
 attachHandle__8SpkSoundFP14SpkSoundHandle,SpkSound.o,Speaker.a,true
 releaseHandle__8SpkSoundFv,SpkSound.o,Speaker.a,true
-start__8SpkSoundFll,SpkSound.o,Speaker.a,false
-unlock__8SpkSoundFv,SpkSound.o,Speaker.a,false
+start__8SpkSoundFll,SpkSound.o,Speaker.a,true
+unlock__8SpkSoundFv,SpkSound.o,Speaker.a,true
 setWaveData__8SpkSoundFl,SpkSound.o,Speaker.a,false
 __ct__14SpkSoundHolderFv,SpkSound.o,Speaker.a,true
 startSound__14SpkSoundHolderFllP14SpkSoundHandle,SpkSound.o,Speaker.a,false

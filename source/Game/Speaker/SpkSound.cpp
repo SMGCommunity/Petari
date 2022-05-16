@@ -1,4 +1,14 @@
 #include "Game/Speaker/SpkSound.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+
+void SpkSoundHandle::releaseSound() {
+    if (!mSound) {
+        return;
+    }
+
+    mSound->mSoundHandle = NULL;
+    mSound = NULL;
+}
 
 SpkSoundVolume::SpkSoundVolume() {
     _0 = 1.0f;
@@ -36,6 +46,18 @@ void SpkSoundVolume::setFadeOut(s32 fadeOut) {
     OSRestoreInterrupts(status);
 }
 
+#ifdef NON_MATCHING
+SpkSound::~SpkSound() {
+    releaseHandle();
+
+    if (this) {
+        JASPoolAllocObject<SpkSound>::memPool_.free(this, 0x60);
+    }
+}
+#endif
+
+// SpkSound::update
+
 void SpkSound::stop(s32 a1) {
     _38 = 3;
     s32 fade = (6 * a1) / 40;
@@ -64,6 +86,26 @@ void SpkSound::releaseHandle() {
 
     mSoundHandle->mSound = NULL;
     mSoundHandle = NULL;
+}
+
+bool SpkSound::start(s32 a1, s32 a2) {
+    _20 = a1;
+    bool res = setWaveData(a2);
+
+    if (!res) {
+        return false;
+    }
+
+    _38 = 1;
+    return true;
+}
+
+void SpkSound::unlock() {
+    if (_38 != 1) {
+        return; 
+    }
+
+    _38 = 2;
 }
 
 SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(this) {
