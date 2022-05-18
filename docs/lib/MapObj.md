@@ -268,7 +268,7 @@
 | StarPieceSpot.o | 0.0% | 0 / 7 | 0.0% |
 | SubmarineSteam.o | 0.0% | 0 / 13 | 0.0% |
 | SubmarineVolcanoBigColumn.o | 0.0% | 0 / 14 | 0.0% |
-| Sun.o | 0.0% | 0 / 3 | 0.0% |
+| Sun.o | 100.0% | 3 / 3 | 100.0% |
 | SuperSpinDriver.o | 0.0% | 0 / 94 | 0.0% |
 | SurprisedGalaxy.o | 0.0% | 0 / 13 | 0.0% |
 | Swinger.o | 0.0% | 0 / 4 | 0.0% |
@@ -7086,9 +7086,9 @@
 # Sun.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__3SunFPCc | :x: |
-| __dt__3SunFv | :x: |
-| init__3SunFRC12JMapInfoIter | :x: |
+| __ct__3SunFPCc | :white_check_mark: |
+| __dt__3SunFv | :white_check_mark: |
+| init__3SunFRC12JMapInfoIter | :white_check_mark: |
 
 
 # SuperSpinDriver.o
