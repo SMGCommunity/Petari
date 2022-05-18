@@ -274,7 +274,7 @@
 | Swinger.o | 0.0% | 0 / 4 | 0.0% |
 | SwingLight.o | 0.0% | 0 / 20 | 0.0% |
 | SwitchBox.o | 0.0% | 0 / 17 | 0.0% |
-| TimeAppearObj.o | 0.0% | 0 / 10 | 0.0% |
+| TimeAppearObj.o | 100.0% | 10 / 10 | 100.0% |
 | TimerMoveWall.o | 0.0% | 0 / 15 | 0.0% |
 | TrampleStar.o | 0.0% | 0 / 32 | 0.0% |
 | TransparentWall.o | 0.0% | 0 / 4 | 0.0% |
@@ -7267,16 +7267,16 @@
 # TimeAppearObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13TimeAppearObjFPCc | :x: |
-| init__13TimeAppearObjFRC12JMapInfoIter | :x: |
-| exeEnd__13TimeAppearObjFv | :x: |
-| appear__13TimeAppearObjFv | :x: |
-| __dt__13TimeAppearObjFv | :x: |
-| __sinit_\TimeAppearObj_cpp | :x: |
-| __ct__Q216NrvTimeAppearObj20TimeAppearObjNrvHideFv | :x: |
-| __ct__Q216NrvTimeAppearObj19TimeAppearObjNrvEndFv | :x: |
-| execute__Q216NrvTimeAppearObj19TimeAppearObjNrvEndCFP5Spine | :x: |
-| execute__Q216NrvTimeAppearObj20TimeAppearObjNrvHideCFP5Spine | :x: |
+| __ct__13TimeAppearObjFPCc | :white_check_mark: |
+| init__13TimeAppearObjFRC12JMapInfoIter | :white_check_mark: |
+| exeEnd__13TimeAppearObjFv | :white_check_mark: |
+| appear__13TimeAppearObjFv | :white_check_mark: |
+| __dt__13TimeAppearObjFv | :white_check_mark: |
+| __sinit_\TimeAppearObj_cpp | :white_check_mark: |
+| __ct__Q216NrvTimeAppearObj20TimeAppearObjNrvHideFv | :white_check_mark: |
+| __ct__Q216NrvTimeAppearObj19TimeAppearObjNrvEndFv | :white_check_mark: |
+| execute__Q216NrvTimeAppearObj19TimeAppearObjNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q216NrvTimeAppearObj20TimeAppearObjNrvHideCFP5Spine | :white_check_mark: |
 
 
 # TimerMoveWall.o
