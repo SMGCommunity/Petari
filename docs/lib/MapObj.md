@@ -80,7 +80,7 @@
 | CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
 | CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
 | CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
-| CutBushModelObj.o | 0.0% | 0 / 5 | 0.0% |
+| CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% |
 | DashRing.o | 0.0% | 0 / 9 | 0.0% |
 | DeadLeaves.o | 100.0% | 10 / 10 | 100.0% |
 | DesertLandMoveSwitch.o | 0.0% | 0 / 28 | 0.0% |
@@ -2230,11 +2230,11 @@
 # CutBushModelObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15CutBushModelObjFPCcPCcbPA4_f | :x: |
-| init__15CutBushModelObjFRC12JMapInfoIter | :x: |
-| initAfterPlacement__15CutBushModelObjFv | :x: |
-| calcAndSetBaseMtx__15CutBushModelObjFv | :x: |
-| __dt__15CutBushModelObjFv | :x: |
+| __ct__15CutBushModelObjFPCcPCcbPA4_f | :white_check_mark: |
+| init__15CutBushModelObjFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__15CutBushModelObjFv | :white_check_mark: |
+| calcAndSetBaseMtx__15CutBushModelObjFv | :white_check_mark: |
+| __dt__15CutBushModelObjFv | :white_check_mark: |
 
 
 # DashRing.o
