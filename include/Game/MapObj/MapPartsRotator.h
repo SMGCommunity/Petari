@@ -33,7 +33,7 @@ public:
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
-    virtual MtxPtr getRotateMtx() const;
+    virtual TMtx34f& getRotateMtx() const;
     virtual bool isMoving() const;
     virtual bool isOnReverse() const;
     virtual f32 getRotateSpeed() const;

@@ -211,6 +211,71 @@ void MapObjActor::control() {
     }
 }
 
+void MapObjActor::calcAndSetBaseMtx() {
+    updateProjmapMtx();
+
+    if (MR::isExistMirrorCamera() && _B5) {
+        MR::setMirrorReflectionInfoFromModel(this);
+    }
+
+    bool v3 = 1;
+    bool v4 = 1;
+    bool v5 = 0;
+
+    if (mRotator && mRotator->isWorking()) {
+        v5 = true;
+    }
+
+    if (!v5) {
+        bool v7 = 0;
+
+        if (mRailRotator && mRailRotator->isWorking()) {
+            v7 = 1;
+        }
+
+        if (!v7) {
+            v4 = 0;
+        }
+    }
+
+    if (!v4) {
+        bool v9 = 0;
+
+        if (mRailPosture && mRailPosture->isWorking()) {
+            v9 = 1;
+        }
+
+        if (!v9) {
+            v3 = 0;
+        }
+    }
+
+    if (!v3) {
+        LiveActor::calcAndSetBaseMtx();
+    }
+    else {
+        TPos3f mtx;
+        mtx.identity();
+
+        if (mRailPosture && mRailPosture->isWorking()) {
+            mtx.concat(mRailPosture->_18);
+        }
+
+        if (mRotator && mRotator->isWorking()) {
+            mtx.concat(mRotator->getRotateMtx());
+        }
+
+        if (mRailRotator && mRailRotator->isWorking()) {
+            mtx.concat(mRailRotator->_5C);
+        }
+
+        mtx.mMtx[0][3] = mPosition.x;
+        mtx.mMtx[1][3] = mPosition.y;
+        mtx.mMtx[2][3] = mPosition.z;
+        MR::setBaseTRMtx(this, mtx);
+    }
+}
+
 void MapObjActor::startClipped() {
     tryEmitWaitEffect();
     LiveActor::startClipped();
@@ -341,6 +406,94 @@ void MapObjActor::exeMove() {
     if (MR::isExistBck(this, cBckNameMove) && MR::isBckStopped(this)) {
         setNerve(mDoneNrv);
     }
+}
+
+void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor *pActor) {
+    if (pActor->mRotator) {
+        pActor->mRotator->start();
+    }
+
+    if (pActor->mRailMover) {
+        pActor->mRailMover->start();
+    }
+
+    if (pActor->mRailRotator) {
+        pActor->mRailRotator->start();
+    }
+
+    if (pActor->mRailPosture) {
+        pActor->mRailPosture->start();
+    }
+
+    if (pActor->mRailGuideDrawer) {
+        pActor->mRailGuideDrawer->start();
+    }
+}
+
+void MapObjActorUtil::endAllMapPartsFunctions(const MapObjActor *pActor) {
+    if (pActor->mRotator) {
+        pActor->mRotator->end();
+    }
+
+    if (pActor->mRailMover) {
+        pActor->mRailMover->end();
+    }
+
+    if (pActor->mRailRotator) {
+        pActor->mRailRotator->end();
+    }
+
+    if (pActor->mRailPosture) {
+        pActor->mRailPosture->end();
+    }
+}
+
+void MapObjActorUtil::pauseAllMapPartsFunctions(const MapObjActor *pActor) {
+    if (pActor->mRotator) {
+        pActor->mRotator->_14 = 0;
+    }
+
+    if (pActor->mRailMover) {
+        pActor->mRailMover->_14 = 0;
+    }
+
+    if (pActor->mRailRotator) {
+        pActor->mRailRotator->_14 = 0;
+    }
+}
+
+void MapObjActorUtil::resumeAllMapPartsFunctions(const MapObjActor *pActor) {
+    if (pActor->mRotator) {
+        pActor->mRotator->_14 = 1;
+    }
+
+    if (pActor->mRailMover) {
+        pActor->mRailMover->_14 = 1;
+    }
+
+    if (pActor->mRailRotator) {
+        pActor->mRailRotator->_14 = 1;
+    }
+}
+
+bool MapObjActorUtil::isRotatorMoving(const MapObjActor *pActor) {
+    return pActor->mRotator->isMoving();
+}
+
+bool MapObjActorUtil::isRailMoverWorking(const MapObjActor *pActor) {
+    return pActor->mRailMover->isWorking();
+}
+
+bool MapObjActorUtil::isRailMoverReachedEnd(const MapObjActor *pActor) {
+    return pActor->mRailMover->isReachedEnd();
+}
+
+f32 MapObjActorUtil::getSeesaw1AxisAngularSpeed(const MapObjActor *pActor) {
+    return pActor->mRotator->_40.mMtx[2][2];
+}
+
+void MapObjActorUtil::forceRotateSeesaw1Axis(const MapObjActor *pActor, f32 a2) {
+    pActor->mRotator->_40.mMtx[2][3] = a2;
 }
 
 void MapObjActorUtil::startRotator(const MapObjActor *pActor) {

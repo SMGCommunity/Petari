@@ -229,4 +229,6 @@ namespace MR {
     bool isBindedWall(const LiveActor *);
 
     bool isActionEnd(const LiveActor *);
+
+    void setMirrorReflectionInfoFromModel(LiveActor *);
 };

@@ -89,6 +89,12 @@ public:
     static void startAllMapPartsFunctions(const MapObjActor *);
     static void endAllMapPartsFunctions(const MapObjActor *);
     static void pauseAllMapPartsFunctions(const MapObjActor *);
+    static void resumeAllMapPartsFunctions(const MapObjActor *);
+    static bool isRotatorMoving(const MapObjActor *);
+    static bool isRailMoverWorking(const MapObjActor *);
+    static bool isRailMoverReachedEnd(const MapObjActor *);
+    static f32 getSeesaw1AxisAngularSpeed(const MapObjActor *);
+    static void forceRotateSeesaw1Axis(const MapObjActor *, f32);
 
     static void startRotator(const MapObjActor *);
     static void startRailMover(const MapObjActor *);
@@ -100,8 +106,6 @@ public:
     static bool isBreakStopped(const MapObjActor *);
     static void killBloomModel(MapObjActor *);
     static void appearBloomModel(MapObjActor *);
-
-    static bool isRailMoverWorking(const MapObjActor *);
 
     static void setupInitInfoTypical(MapObjActorInitInfo *, const char *);
 
