@@ -24,7 +24,7 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void requestAppear();
     void setDemoAppearPos(const TVec3f &);

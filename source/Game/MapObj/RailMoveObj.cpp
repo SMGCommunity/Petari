@@ -125,7 +125,7 @@ bool RailMoveObj::isMoving() const {
     return MapObjActorUtil::isRailMoverWorking(this);
 }
 
-u32 RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool RailMoveObj::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
     if (msg == 0xCF && isNerve(&NrvRailMoveObj::HostTypeMove::sInstance)) {
         kill();
         return true;
@@ -271,7 +271,7 @@ void RailRotateMoveObj::setupInitInfo(const JMapInfoIter &rIter, MapObjActorInit
     pInfo->setupRailRotator();
 }
 
-u32 RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (msg == 0xCB) {
         return tryStartRotateAtPoint();
     }

@@ -138,6 +138,12 @@ namespace MR {
     bool isMsgJetTurtleAttack(u32);
 
     bool isMsgItemGet(u32);
+    bool isMsgItemPull(u32);
+    bool isMsgItemShow(u32);
+    bool isMsgItemHide(u32);
+    bool isMsgItemStartMove(u32);
+    bool isMsgItemEndMove(u32);
+    bool isMsgInhaleBlackHole(u32);
 
     void updateHitSensorsAll(LiveActor *);
 
@@ -150,4 +156,6 @@ namespace MR {
     HitSensor* getGroundSensor(const LiveActor *);
     HitSensor* getRoofSensor(const LiveActor *);
     HitSensor* getWallSensor(const LiveActor *);
+
+    void setSensorRadius(LiveActor *, const char *, f32);
 };

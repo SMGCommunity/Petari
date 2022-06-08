@@ -18,7 +18,7 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void initKeySwitchByOwner(const JMapInfoIter &);
     void appearKeySwitch(const TVec3f &);

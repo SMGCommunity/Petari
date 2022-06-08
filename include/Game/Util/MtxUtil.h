@@ -80,4 +80,6 @@ namespace MR {
 	MtxPtr tmpMtxRotZDeg(f32);
 	void orderRotateMtx(s16, const TVec3f &, MtxPtr);
 	void rotAxisVecRad(const TVec3f &, const TVec3f &, TVec3f *, f32);
+
+	void makeMtxTR(MtxPtr, const LiveActor *);
 };

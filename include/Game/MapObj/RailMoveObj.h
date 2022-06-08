@@ -18,7 +18,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void startClipped();
     virtual void endClipped();
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
     virtual void setupInitInfo(const JMapInfoIter &, MapObjActorInitInfo *);
@@ -92,7 +92,7 @@ public:
     RailRotateMoveObj(const char *);
 
     virtual ~RailRotateMoveObj();
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
     virtual void setupInitInfo(const JMapInfoIter &, MapObjActorInitInfo *);
 

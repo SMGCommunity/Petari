@@ -197,7 +197,7 @@ void BeeFlowerHover::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, stack_8);
 }
 
-u32 BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
     if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance)) {
         return 0;
     }

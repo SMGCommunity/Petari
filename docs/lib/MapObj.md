@@ -67,7 +67,7 @@
 | CocoNut.o | 0.0% | 0 / 58 | 0.0% |
 | CoconutTree.o | 0.0% | 0 / 3 | 0.0% |
 | CoconutTreeLeaf.o | 0.0% | 0 / 12 | 0.0% |
-| Coin.o | 0.0% | 0 / 65 | 0.0% |
+| Coin.o | 100.0% | 65 / 65 | 100.0% |
 | CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% |
 | CoinGroup.o | 0.0% | 0 / 24 | 0.0% |
 | CoinHolder.o | 0.0% | 0 / 19 | 0.0% |
@@ -1895,71 +1895,71 @@
 # Coin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__4CoinFPCc | :x: |
-| init__4CoinFRC12JMapInfoIter | :x: |
-| initAfterPlacement__4CoinFv | :x: |
-| initShadow__4CoinFRC12JMapInfoIter | :x: |
-| setShadowAndPoseModeFromJMapIter__4CoinFRC12JMapInfoIter | :x: |
-| makeActorAppeared__4CoinFv | :x: |
-| makeActorDead__4CoinFv | :x: |
-| calcAndSetBaseMtx__4CoinFv | :x: |
-| receiveOtherMsg__4CoinFUlP9HitSensorP9HitSensor | :x: |
-| exeNonActive__4CoinFv | :x: |
-| exeFix__4CoinFv | :x: |
-| exeFixTimer__4CoinFv | :x: |
-| exeMove__4CoinFv | :x: |
-| exeControled__4CoinFv | :x: |
-| exeSpinDrained__4CoinFv | :x: |
-| exeHop__4CoinFv | :x: |
-| appear__4CoinFv | :x: |
-| appearFixInit__4CoinFv | :x: |
-| appearFix__4CoinFv | :x: |
-| appearControlPose__4CoinFv | :x: |
-| appearNonActive__4CoinFv | :x: |
-| appearFixTimer__4CoinFll | :x: |
-| appearMove__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll | :x: |
-| appearHop__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| requestActive__4CoinFv | :x: |
-| requestActiveWithGravity__4CoinFv | :x: |
-| requestDeactive__4CoinFv | :x: |
-| requestStartControl__4CoinFv | :x: |
-| requestEndControl__4CoinFv | :x: |
-| requestSpinDrain__4CoinFv | :x: |
-| requestShow__4CoinFv | :x: |
-| requestHide__4CoinFv | :x: |
-| noticeGetCoin__4CoinFv | :x: |
-| setLife__4CoinFl | :x: |
-| setHostInfo__4CoinFP12CoinHostInfo | :x: |
-| setCalcShadowMode__4CoinFv | :x: |
-| setCannotTime__4CoinFl | :x: |
-| calcRebouond__4CoinFv | :x: |
-| attenuateVelocity__4CoinFv | :x: |
-| isNeedBubble__4CoinFRC12JMapInfoIter | :x: |
-| makeArchiveList__4CoinFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| createDirectSetCoin__2MRFPCc | :x: |
-| createCoin__2MRFPC7NameObjPCc | :x: |
-| createDirectSetPurpleCoin__2MRFPCc | :x: |
-| createPurpleCoin__2MRFPC7NameObjPCc | :x: |
-| __sinit_\Coin_cpp | :x: |
-| __ct__Q27NrvCoin16CoinNrvNonActiveFv | :x: |
-| __ct__Q27NrvCoin10CoinNrvFixFv | :x: |
-| __ct__Q27NrvCoin14CoinNrvFixHideFv | :x: |
-| __ct__Q27NrvCoin15CoinNrvFixTimerFv | :x: |
-| __ct__Q27NrvCoin16CoinNrvControledFv | :x: |
-| __ct__Q27NrvCoin18CoinNrvSpinDrainedFv | :x: |
-| __ct__Q27NrvCoin11CoinNrvMoveFv | :x: |
-| __ct__Q27NrvCoin10CoinNrvHopFv | :x: |
-| execute__Q27NrvCoin10CoinNrvHopCFP5Spine | :x: |
-| execute__Q27NrvCoin11CoinNrvMoveCFP5Spine | :x: |
-| execute__Q27NrvCoin18CoinNrvSpinDrainedCFP5Spine | :x: |
-| execute__Q27NrvCoin16CoinNrvControledCFP5Spine | :x: |
-| execute__Q27NrvCoin15CoinNrvFixTimerCFP5Spine | :x: |
-| execute__Q27NrvCoin14CoinNrvFixHideCFP5Spine | :x: |
-| execute__Q27NrvCoin10CoinNrvFixCFP5Spine | :x: |
-| execute__Q27NrvCoin16CoinNrvNonActiveCFP5Spine | :x: |
-| __cl__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__4CoinFv | :x: |
+| __ct__4CoinFPCc | :white_check_mark: |
+| init__4CoinFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__4CoinFv | :white_check_mark: |
+| initShadow__4CoinFRC12JMapInfoIter | :white_check_mark: |
+| setShadowAndPoseModeFromJMapIter__4CoinFRC12JMapInfoIter | :white_check_mark: |
+| makeActorAppeared__4CoinFv | :white_check_mark: |
+| makeActorDead__4CoinFv | :white_check_mark: |
+| calcAndSetBaseMtx__4CoinFv | :white_check_mark: |
+| receiveOtherMsg__4CoinFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| exeNonActive__4CoinFv | :white_check_mark: |
+| exeFix__4CoinFv | :white_check_mark: |
+| exeFixTimer__4CoinFv | :white_check_mark: |
+| exeMove__4CoinFv | :white_check_mark: |
+| exeControled__4CoinFv | :white_check_mark: |
+| exeSpinDrained__4CoinFv | :white_check_mark: |
+| exeHop__4CoinFv | :white_check_mark: |
+| appear__4CoinFv | :white_check_mark: |
+| appearFixInit__4CoinFv | :white_check_mark: |
+| appearFix__4CoinFv | :white_check_mark: |
+| appearControlPose__4CoinFv | :white_check_mark: |
+| appearNonActive__4CoinFv | :white_check_mark: |
+| appearFixTimer__4CoinFll | :white_check_mark: |
+| appearMove__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll | :white_check_mark: |
+| appearHop__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| requestActive__4CoinFv | :white_check_mark: |
+| requestActiveWithGravity__4CoinFv | :white_check_mark: |
+| requestDeactive__4CoinFv | :white_check_mark: |
+| requestStartControl__4CoinFv | :white_check_mark: |
+| requestEndControl__4CoinFv | :white_check_mark: |
+| requestSpinDrain__4CoinFv | :white_check_mark: |
+| requestShow__4CoinFv | :white_check_mark: |
+| requestHide__4CoinFv | :white_check_mark: |
+| noticeGetCoin__4CoinFv | :white_check_mark: |
+| setLife__4CoinFl | :white_check_mark: |
+| setHostInfo__4CoinFP12CoinHostInfo | :white_check_mark: |
+| setCalcShadowMode__4CoinFv | :white_check_mark: |
+| setCannotTime__4CoinFl | :white_check_mark: |
+| calcRebouond__4CoinFv | :white_check_mark: |
+| attenuateVelocity__4CoinFv | :white_check_mark: |
+| isNeedBubble__4CoinFRC12JMapInfoIter | :white_check_mark: |
+| makeArchiveList__4CoinFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| createDirectSetCoin__2MRFPCc | :white_check_mark: |
+| createCoin__2MRFPC7NameObjPCc | :white_check_mark: |
+| createDirectSetPurpleCoin__2MRFPCc | :white_check_mark: |
+| createPurpleCoin__2MRFPC7NameObjPCc | :white_check_mark: |
+| __sinit_\Coin_cpp | :white_check_mark: |
+| __ct__Q27NrvCoin16CoinNrvNonActiveFv | :white_check_mark: |
+| __ct__Q27NrvCoin10CoinNrvFixFv | :white_check_mark: |
+| __ct__Q27NrvCoin14CoinNrvFixHideFv | :white_check_mark: |
+| __ct__Q27NrvCoin15CoinNrvFixTimerFv | :white_check_mark: |
+| __ct__Q27NrvCoin16CoinNrvControledFv | :white_check_mark: |
+| __ct__Q27NrvCoin18CoinNrvSpinDrainedFv | :white_check_mark: |
+| __ct__Q27NrvCoin11CoinNrvMoveFv | :white_check_mark: |
+| __ct__Q27NrvCoin10CoinNrvHopFv | :white_check_mark: |
+| execute__Q27NrvCoin10CoinNrvHopCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin11CoinNrvMoveCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin18CoinNrvSpinDrainedCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin16CoinNrvControledCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin15CoinNrvFixTimerCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin14CoinNrvFixHideCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin10CoinNrvFixCFP5Spine | :white_check_mark: |
+| execute__Q27NrvCoin16CoinNrvNonActiveCFP5Spine | :white_check_mark: |
+| __cl__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__4CoinFv | :white_check_mark: |
 
 
 # CoinBox.o

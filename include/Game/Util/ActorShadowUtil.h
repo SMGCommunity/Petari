@@ -39,4 +39,8 @@ namespace MR {
     void invalidateShadowAll(LiveActor *);
 
     void initShadowFromCSV(LiveActor *, const char *);
+
+    void initShadowSurfaceCircle(LiveActor *, f32);
+
+    void setShadowDropPositionPtr(LiveActor *, const char *, const TVec3f *);
 };

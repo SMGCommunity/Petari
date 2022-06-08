@@ -16,7 +16,7 @@ public:
     virtual void appear();
     virtual void endClipped();
     virtual void calcAndSetBaseMtx();
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeFrontLand();
     void exeBackLand();
@@ -40,7 +40,7 @@ public:
     virtual ~FlipPanelObserver();
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeWait();
     void exeComplete();

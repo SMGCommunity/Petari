@@ -50,7 +50,7 @@ void CoinBox::exeHit() {
 }
 #endif
 
-u32 CoinBox::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
+bool CoinBox::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
     if (msg - 0x31 < 2) {
         setNerve(&NrvCoinBox::CoinBoxNrvHit::sInstance);
         return 1;

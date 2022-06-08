@@ -51,4 +51,6 @@ namespace MR {
     void resetPosition(LiveActor *, const TVec3f &);
 
     void turnDirectionAndGravityH(LiveActor *, const TVec3f &, f32, f32);
+
+    bool isInDeath(const LiveActor *, const TVec3f &);
 };

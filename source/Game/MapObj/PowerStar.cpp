@@ -337,7 +337,7 @@ u32 PowerStar::receiveMsgPlayerAttack(u32 msg,  HitSensor *a2, HitSensor *a3) {
     return MR::isMsgJetTurtleAttack(msg);
 }
 
-u32 PowerStar::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool PowerStar::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
     switch(msg) {
         case 0x98:
             return 1;

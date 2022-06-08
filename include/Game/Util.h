@@ -29,6 +29,7 @@
 #include "Game/Util/LiveActorUtil.h"
 #include "Game/Util/MapObjUtil.h"
 #include "Game/Util/MapPartsUtil.h"
+#include "Game/Util/MapUtil.h"
 #include "Game/Util/MathUtil.h"
 #include "Game/Util/MemoryUtil.h"
 #include "Game/Util/MessageUtil.h"

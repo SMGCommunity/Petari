@@ -50,7 +50,7 @@ public:
     virtual u32 receiveMsgTaken(HitSensor *, HitSensor *);
     virtual u32 receiveMsgThrow(HitSensor *, HitSensor *);
     virtual u32 receiveMsgApart(HitSensor *, HitSensor *);
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void calcAnmMtx();
     void setNerve(const Nerve *);

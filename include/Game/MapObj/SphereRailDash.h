@@ -8,7 +8,7 @@ public:
 
     virtual ~SphereRailDash();
     virtual void init(const JMapInfoIter &);
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeWait();
     void exeRailMove();

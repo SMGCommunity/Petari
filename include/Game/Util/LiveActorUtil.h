@@ -54,6 +54,9 @@ namespace MR {
 
     bool isHiddenModel(const LiveActor *);
 
+    void onBind(LiveActor *);
+    void offBind(LiveActor *);
+
     void showModel(LiveActor *);
     void hideModel(LiveActor *);
     void showModelIfHidden(LiveActor *);
@@ -81,7 +84,11 @@ namespace MR {
     void calcGravity(LiveActor *);
     void calcGravity(LiveActor *, const TVec3f &);
 
+    void offCalcShadow(LiveActor *, const char *);
+
     void zeroVelocity(LiveActor *);
+
+    bool isNoBind(const LiveActor *);
 
     void initLightCtrl(LiveActor *);
     void initLightCtrlForPlayer(LiveActor *);
@@ -130,6 +137,7 @@ namespace MR {
     void setBaseTRMtx(LiveActor *, const TPos3f &);
 
     void setClippingFar(LiveActor *, f32);
+    void setClippingFar100m(LiveActor *);
 
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
     
@@ -231,4 +239,15 @@ namespace MR {
     bool isActionEnd(const LiveActor *);
 
     void setMirrorReflectionInfoFromModel(LiveActor *);
+
+    bool isBindedRoof(const LiveActor *);
+    bool isOnGround(const LiveActor *);
+
+    bool isPressedRoofAndGround(const LiveActor *);
+
+    TVec3f* getRoofNormal(const LiveActor *);
+    TVec3f* getWallNormal(const LiveActor *);
+    TVec3f* getGroundNormal(const LiveActor *);
+
+    void setBinderExceptSensorType(LiveActor *, const TVec3f *, f32);
 };

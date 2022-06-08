@@ -170,7 +170,7 @@ u32 KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
-u32 KeySwitch::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return 1;
     }

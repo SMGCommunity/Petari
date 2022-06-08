@@ -12,7 +12,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual u32 receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeSoftTouch();
     void exeSoftTouchWait();

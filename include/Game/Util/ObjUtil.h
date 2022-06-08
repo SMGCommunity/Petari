@@ -131,4 +131,6 @@ namespace MR {
 
     void shakeCameraNormal();
     void shakeCameraStrong();
+
+    bool isInWater(const TVec3f &);
 };

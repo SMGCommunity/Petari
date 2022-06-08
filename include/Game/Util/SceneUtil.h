@@ -49,4 +49,7 @@ namespace MR {
     bool isStageKoopaVs3();
 
     bool isBeginScenarioStarter();
+
+    void incCoin(int);
+    void incPurpleCoin();
 }
