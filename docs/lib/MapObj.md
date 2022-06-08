@@ -69,7 +69,7 @@
 | CoconutTreeLeaf.o | 0.0% | 0 / 12 | 0.0% |
 | Coin.o | 100.0% | 65 / 65 | 100.0% |
 | CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% |
-| CoinGroup.o | 0.0% | 0 / 24 | 0.0% |
+| CoinGroup.o | 100.0% | 24 / 24 | 100.0% |
 | CoinHolder.o | 0.0% | 0 / 19 | 0.0% |
 | CoinReplica.o | 0.0% | 0 / 10 | 0.0% |
 | CoinRotater.o | 0.0% | 0 / 7 | 0.0% |
@@ -1980,30 +1980,30 @@
 # CoinGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9CoinGroupFPCc | :x: |
-| init__9CoinGroupFRC12JMapInfoIter | :x: |
-| killCoinAll__9CoinGroupFv | :x: |
-| appearCoinAll__9CoinGroupFv | :x: |
-| appearCoinFix__9CoinGroupFv | :x: |
-| appearCoinAllTimer__9CoinGroupFv | :x: |
-| setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| appear__9CoinGroupFv | :x: |
-| exeAppear__9CoinGroupFv | :x: |
-| exeDemoAppear__9CoinGroupFv | :x: |
-| __sinit_\CoinGroup_cpp | :x: |
-| __ct__Q212NrvCoinGroup18CoinGroupNrvAppearFv | :x: |
-| __ct__Q212NrvCoinGroup24CoinGroupNrvTryStartDemoFv | :x: |
-| __ct__Q212NrvCoinGroup22CoinGroupNrvDemoAppearFv | :x: |
-| __ct__Q212NrvCoinGroup16CoinGroupNrvKillFv | :x: |
-| execute__Q212NrvCoinGroup16CoinGroupNrvKillCFP5Spine | :x: |
-| execute__Q212NrvCoinGroup22CoinGroupNrvDemoAppearCFP5Spine | :x: |
-| execute__Q212NrvCoinGroup24CoinGroupNrvTryStartDemoCFP5Spine | :x: |
-| execute__Q212NrvCoinGroup18CoinGroupNrvAppearCFP5Spine | :x: |
-| getCoinName__9CoinGroupCFv | :x: |
-| placementCoin__9CoinGroupFv | :x: |
-| Functor&lt;9CoinGroup&gt;__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt; | :x: |
-| __cl__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __ct__9CoinGroupFPCc | :white_check_mark: |
+| init__9CoinGroupFRC12JMapInfoIter | :white_check_mark: |
+| killCoinAll__9CoinGroupFv | :white_check_mark: |
+| appearCoinAll__9CoinGroupFv | :white_check_mark: |
+| appearCoinFix__9CoinGroupFv | :white_check_mark: |
+| appearCoinAllTimer__9CoinGroupFv | :white_check_mark: |
+| setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| appear__9CoinGroupFv | :white_check_mark: |
+| exeAppear__9CoinGroupFv | :white_check_mark: |
+| exeDemoAppear__9CoinGroupFv | :white_check_mark: |
+| __sinit_\CoinGroup_cpp | :white_check_mark: |
+| __ct__Q212NrvCoinGroup18CoinGroupNrvAppearFv | :white_check_mark: |
+| __ct__Q212NrvCoinGroup24CoinGroupNrvTryStartDemoFv | :white_check_mark: |
+| __ct__Q212NrvCoinGroup22CoinGroupNrvDemoAppearFv | :white_check_mark: |
+| __ct__Q212NrvCoinGroup16CoinGroupNrvKillFv | :white_check_mark: |
+| execute__Q212NrvCoinGroup16CoinGroupNrvKillCFP5Spine | :white_check_mark: |
+| execute__Q212NrvCoinGroup22CoinGroupNrvDemoAppearCFP5Spine | :white_check_mark: |
+| execute__Q212NrvCoinGroup24CoinGroupNrvTryStartDemoCFP5Spine | :white_check_mark: |
+| execute__Q212NrvCoinGroup18CoinGroupNrvAppearCFP5Spine | :white_check_mark: |
+| getCoinName__9CoinGroupCFv | :white_check_mark: |
+| placementCoin__9CoinGroupFv | :white_check_mark: |
+| Functor&lt;9CoinGroup&gt;__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 
 
 # CoinHolder.o

@@ -15,5 +15,7 @@ namespace MR {
 
     void initAnimCamera(const LiveActor *, const ActorCameraInfo *, const char *);
 
+    bool isExistActorCamera(const ActorCameraInfo *);
+
     void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 };

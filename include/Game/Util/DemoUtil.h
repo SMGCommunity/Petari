@@ -10,6 +10,8 @@ namespace MR {
 
     bool isDemoCast(const LiveActor *, const char *);
 
+    void registerDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
+
     void registerDemoActionNerve(const LiveActor *, const Nerve *, const char *);
     bool tryRegisterDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
 
@@ -28,6 +30,8 @@ namespace MR {
     bool tryStartDemoWithoutCinemaFrame(LiveActor *, const char *);
     bool tryStartDemoRegistered(LiveActor *, const char *);
     void endDemo(NameObj *, const char *);
+
+    bool requestStartDemo(LiveActor *, const char *, const Nerve *, const Nerve *);
 
     void requestStartDemoMarioPuppetableWithoutCinmeaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
