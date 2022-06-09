@@ -3,6 +3,8 @@
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
 
+class LiveActor;
+
 namespace MR {
 	void makeMtxRotate(MtxPtr, s16, s16, s16);
 	void makeMtxRotate(MtxPtr, f32, f32, f32);

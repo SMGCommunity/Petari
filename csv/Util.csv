@@ -3605,11 +3605,11 @@ draw__23OctahedronBezierSurfaceCFv,OctahedronBezierSurface.o,Util.a,false
 __ct__13PostureHolderFPC9LiveActor,PostureHolder.o,Util.a,false
 store__13PostureHolderFPC9LiveActor,PostureHolder.o,Util.a,false
 restore__13PostureHolderFP9LiveActor,PostureHolder.o,Util.a,false
-__ct__16RumbleCalculatorFfffUl,RumbleCalculator.o,Util.a,false
-start__16RumbleCalculatorFUl,RumbleCalculator.o,Util.a,false
+__ct__16RumbleCalculatorFfffUl,RumbleCalculator.o,Util.a,true
+start__16RumbleCalculatorFUl,RumbleCalculator.o,Util.a,true
 calc__16RumbleCalculatorFv,RumbleCalculator.o,Util.a,false
-reset__16RumbleCalculatorFv,RumbleCalculator.o,Util.a,false
-__ct__29RumbleCalculatorCosMultLinearFfffUl,RumbleCalculator.o,Util.a,false
+reset__16RumbleCalculatorFv,RumbleCalculator.o,Util.a,true
+__ct__29RumbleCalculatorCosMultLinearFfffUl,RumbleCalculator.o,Util.a,true
 calcValues__29RumbleCalculatorCosMultLinearFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,RumbleCalculator.o,Util.a,false
 __ct__11SpringValueFv,SpringValue.o,Util.a,false
 __ct__11SpringValueFfffff,SpringValue.o,Util.a,false

@@ -53,7 +53,7 @@
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% |
 | ChipHolder.o | 0.0% | 0 / 17 | 0.0% |
 | ChooChooTrain.o | 100.0% | 8 / 8 | 100.0% |
-| CircleCoinGroup.o | 0.0% | 0 / 8 | 0.0% |
+| CircleCoinGroup.o | 48.616600790513836% | 7 / 8 | 87.5% |
 | ClipArea.o | 0.0% | 0 / 14 | 0.0% |
 | ClipAreaDrop.o | 0.0% | 0 / 10 | 0.0% |
 | ClipAreaDropHolder.o | 0.0% | 0 / 6 | 0.0% |
@@ -65,7 +65,7 @@
 | ClipFieldMapParts.o | 0.0% | 0 / 5 | 0.0% |
 | ClipFieldSwitch.o | 0.0% | 0 / 4 | 0.0% |
 | CocoNut.o | 0.0% | 0 / 58 | 0.0% |
-| CoconutTree.o | 0.0% | 0 / 3 | 0.0% |
+| CoconutTree.o | 100.0% | 3 / 3 | 100.0% |
 | CoconutTreeLeaf.o | 0.0% | 0 / 12 | 0.0% |
 | Coin.o | 100.0% | 65 / 65 | 100.0% |
 | CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% |
@@ -76,7 +76,7 @@
 | CoinSpot.o | 0.0% | 0 / 12 | 0.0% |
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% |
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% |
-| CollisionBlocker.o | 0.0% | 0 / 7 | 0.0% |
+| CollisionBlocker.o | 78.53107344632768% | 5 / 7 | 71.42857142857143% |
 | CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
 | CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
 | CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
@@ -1638,14 +1638,14 @@
 # CircleCoinGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15CircleCoinGroupFPCc | :x: |
-| __dt__9CoinGroupFv | :x: |
-| initCoinArray__15CircleCoinGroupFRC12JMapInfoIter | :x: |
+| __ct__15CircleCoinGroupFPCc | :white_check_mark: |
+| __dt__9CoinGroupFv | :white_check_mark: |
+| initCoinArray__15CircleCoinGroupFRC12JMapInfoIter | :white_check_mark: |
 | placementCoin__15CircleCoinGroupFv | :x: |
-| createCircleCoinGroup__2MRFPCc | :x: |
-| createCirclePurpleCoinGroup__2MRFPCc | :x: |
-| __dt__15CircleCoinGroupFv | :x: |
-| getCoinName__15CircleCoinGroupCFv | :x: |
+| createCircleCoinGroup__2MRFPCc | :white_check_mark: |
+| createCirclePurpleCoinGroup__2MRFPCc | :white_check_mark: |
+| __dt__15CircleCoinGroupFv | :white_check_mark: |
+| getCoinName__15CircleCoinGroupCFv | :white_check_mark: |
 
 
 # ClipArea.o
@@ -1870,9 +1870,9 @@
 # CoconutTree.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CoconutTreeFPCc | :x: |
-| __dt__11CoconutTreeFv | :x: |
-| init__11CoconutTreeFRC12JMapInfoIter | :x: |
+| __ct__11CoconutTreeFPCc | :white_check_mark: |
+| __dt__11CoconutTreeFv | :white_check_mark: |
+| init__11CoconutTreeFRC12JMapInfoIter | :white_check_mark: |
 
 
 # CoconutTreeLeaf.o
@@ -2121,13 +2121,13 @@
 # CollisionBlocker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16CollisionBlockerFPCc | :x: |
-| init__16CollisionBlockerFRC12JMapInfoIter | :x: |
-| forceBreak__16CollisionBlockerFv | :x: |
-| attackSensor__16CollisionBlockerFP9HitSensorP9HitSensor | :x: |
+| __ct__16CollisionBlockerFPCc | :white_check_mark: |
+| init__16CollisionBlockerFRC12JMapInfoIter | :white_check_mark: |
+| forceBreak__16CollisionBlockerFv | :white_check_mark: |
+| attackSensor__16CollisionBlockerFP9HitSensorP9HitSensor | :white_check_mark: |
 | __cl__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__16CollisionBlockerFv | :x: |
+| __dt__16CollisionBlockerFv | :white_check_mark: |
 
 
 # CrystalCage.o

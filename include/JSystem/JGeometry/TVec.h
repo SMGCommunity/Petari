@@ -158,11 +158,7 @@ namespace JGeometry {
             };
         }
 
-        void zero() {
-            x = 0.0f;
-            y = 0.0f;
-            z = 0.0f;
-        }
+        void zero();
     
         void negate();
         void negate(const TVec3<T> &rSrc);

@@ -71,7 +71,7 @@
 | JointRumbler.o | 0.0% | 0 / 7 | 0.0% |
 | OctahedronBezierSurface.o | 0.0% | 0 / 10 | 0.0% |
 | PostureHolder.o | 0.0% | 0 / 3 | 0.0% |
-| RumbleCalculator.o | 0.0% | 0 / 6 | 0.0% |
+| RumbleCalculator.o | 29.166666666666668% | 4 / 6 | 66.66666666666666% |
 | SpringValue.o | 0.0% | 0 / 4 | 0.0% |
 | TriangleFilter.o | 0.0% | 0 / 2 | 0.0% |
 | TriggerChecker.o | 0.0% | 0 / 6 | 0.0% |
@@ -4037,11 +4037,11 @@
 # RumbleCalculator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16RumbleCalculatorFfffUl | :x: |
-| start__16RumbleCalculatorFUl | :x: |
+| __ct__16RumbleCalculatorFfffUl | :white_check_mark: |
+| start__16RumbleCalculatorFUl | :white_check_mark: |
 | calc__16RumbleCalculatorFv | :x: |
-| reset__16RumbleCalculatorFv | :x: |
-| __ct__29RumbleCalculatorCosMultLinearFfffUl | :x: |
+| reset__16RumbleCalculatorFv | :white_check_mark: |
+| __ct__29RumbleCalculatorCosMultLinearFfffUl | :white_check_mark: |
 | calcValues__29RumbleCalculatorCosMultLinearFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 
 
