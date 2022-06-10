@@ -74,6 +74,12 @@ namespace JGeometry {
             z = val;
         }
 
+        TVec3(T _xy, T _z) {
+            x = _xy;
+            y = _xy;
+            z = _z;
+        }
+
         //inline 
         TVec3(const TVec3<T> &rSrc); /*{
             setInline(rSrc);
@@ -345,6 +351,7 @@ namespace JGeometry {
                 stfs z, 8(dst)
             }
         }
+
         inline void negateInline_2(register const TVec3<T> &rSrc) {
             register TVec3<T>* dst = this;
             register f32 xy;

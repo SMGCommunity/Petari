@@ -67,6 +67,8 @@ namespace MR {
     void connectToSceneNoSilhouettedMapObj(LiveActor *);
 
     void connectToSceneNoSilhouettedMapObjWeakLightNoMovement(LiveActor *);
+
+    void connectToSceneCrystal(LiveActor *);
     
     bool isName(const NameObj *, const char *);
     bool isSame(const NameObj *, const NameObj *);
@@ -133,4 +135,6 @@ namespace MR {
     void shakeCameraStrong();
 
     bool isInWater(const TVec3f &);
+
+    void stopScene(s32);
 };

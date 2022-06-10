@@ -76,8 +76,8 @@
 | CoinSpot.o | 0.0% | 0 / 12 | 0.0% |
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% |
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% |
-| CollisionBlocker.o | 78.53107344632768% | 5 / 7 | 71.42857142857143% |
-| CrystalCage.o | 0.0% | 0 / 24 | 0.0% |
+| CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% |
+| CrystalCage.o | 92.85042333019756% | 23 / 24 | 95.83333333333334% |
 | CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
 | CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
 | CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% |
@@ -2125,38 +2125,38 @@
 | init__16CollisionBlockerFRC12JMapInfoIter | :white_check_mark: |
 | forceBreak__16CollisionBlockerFv | :white_check_mark: |
 | attackSensor__16CollisionBlockerFP9HitSensorP9HitSensor | :white_check_mark: |
-| __cl__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR59FunctorV0M&lt;P16CollisionBlocker,M16CollisionBlockerFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__16CollisionBlockerFv | :white_check_mark: |
 
 
 # CrystalCage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CrystalCageFPCc | :x: |
-| init__11CrystalCageFRC12JMapInfoIter | :x: |
+| __ct__11CrystalCageFPCc | :white_check_mark: |
+| init__11CrystalCageFRC12JMapInfoIter | :white_check_mark: |
 | initAfterPlacement__11CrystalCageFv | :x: |
-| kill__11CrystalCageFv | :x: |
-| forceBreak__11CrystalCageFv | :x: |
-| attackSensor__11CrystalCageFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__11CrystalCageFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgEnemyAttack__11CrystalCageFUlP9HitSensorP9HitSensor | :x: |
-| initMapToolInfo__11CrystalCageFRC12JMapInfoIter | :x: |
-| initModel__11CrystalCageFPCc | :x: |
-| tryOnSwitchDead__11CrystalCageFv | :x: |
-| exeWait__11CrystalCageFv | :x: |
-| exeBreak__11CrystalCageFv | :x: |
-| exeBreakAfter__11CrystalCageFv | :x: |
-| __sinit_\CrystalCage_cpp | :x: |
-| __ct__Q214NrvCrystalCage18CrystalCageNrvWaitFv | :x: |
-| __ct__Q214NrvCrystalCage19CrystalCageNrvBreakFv | :x: |
-| __ct__Q214NrvCrystalCage24CrystalCageNrvBreakAfterFv | :x: |
-| execute__Q214NrvCrystalCage24CrystalCageNrvBreakAfterCFP5Spine | :x: |
-| execute__Q214NrvCrystalCage19CrystalCageNrvBreakCFP5Spine | :x: |
-| execute__Q214NrvCrystalCage18CrystalCageNrvWaitCFP5Spine | :x: |
-| __cl__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__11CrystalCageFv | :x: |
+| kill__11CrystalCageFv | :white_check_mark: |
+| forceBreak__11CrystalCageFv | :white_check_mark: |
+| attackSensor__11CrystalCageFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__11CrystalCageFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgEnemyAttack__11CrystalCageFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initMapToolInfo__11CrystalCageFRC12JMapInfoIter | :white_check_mark: |
+| initModel__11CrystalCageFPCc | :white_check_mark: |
+| tryOnSwitchDead__11CrystalCageFv | :white_check_mark: |
+| exeWait__11CrystalCageFv | :white_check_mark: |
+| exeBreak__11CrystalCageFv | :white_check_mark: |
+| exeBreakAfter__11CrystalCageFv | :white_check_mark: |
+| __sinit_\CrystalCage_cpp | :white_check_mark: |
+| __ct__Q214NrvCrystalCage18CrystalCageNrvWaitFv | :white_check_mark: |
+| __ct__Q214NrvCrystalCage19CrystalCageNrvBreakFv | :white_check_mark: |
+| __ct__Q214NrvCrystalCage24CrystalCageNrvBreakAfterFv | :white_check_mark: |
+| execute__Q214NrvCrystalCage24CrystalCageNrvBreakAfterCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCrystalCage19CrystalCageNrvBreakCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCrystalCage18CrystalCageNrvWaitCFP5Spine | :white_check_mark: |
+| __cl__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__11CrystalCageFv | :white_check_mark: |
 
 
 # CrystalCageMoving.o

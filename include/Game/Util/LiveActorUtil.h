@@ -250,4 +250,8 @@ namespace MR {
     TVec3f* getGroundNormal(const LiveActor *);
 
     void setBinderExceptSensorType(LiveActor *, const TVec3f *, f32);
+
+    void setBinderOffsetVec(LiveActor *, const TVec3f *, bool);
+
+    void setBinderExceptActor(LiveActor *, const LiveActor *);
 };

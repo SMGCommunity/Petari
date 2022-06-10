@@ -43,4 +43,6 @@ namespace MR {
     void clearBgmQueue();
 
     void startAfterBossBGM();
+
+    void startCSSound(const char *, const char *, s32);
 };
