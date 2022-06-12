@@ -117,6 +117,7 @@ class Library:
         page = []
         page.append(f"# {self.name}\n")
         page.append("| Symbol | Meaning \n")
+        page.append("| ------------- | ------------- \n")
         page.append("| :x: | Object has not yet been started. \n")
         page.append("| :eight_pointed_black_star: | Object is in progress. \n")
         page.append("| :white_check_mark: | Object is completed. \n")
