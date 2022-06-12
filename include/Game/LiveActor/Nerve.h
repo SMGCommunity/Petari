@@ -18,5 +18,16 @@ public:\
     static name sInstance;\
 };\
 
+#define NERVE_EXECEND(name)\
+class name : public Nerve\
+{\
+public:\
+    name() NO_INLINE {\
+    };\
+    virtual void execute(Spine *) const;\
+    virtual void executeOnEnd(Spine *) const;\
+    static name sInstance;\
+};\
+
 #define INIT_NERVE(name)\
     name name::sInstance;

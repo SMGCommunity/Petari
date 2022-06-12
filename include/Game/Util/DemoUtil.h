@@ -24,6 +24,8 @@ namespace MR {
 
     bool isDemoActive();
 
+    bool isDemoExist(const char *);
+
     bool isPowerStarGetDemoActive();
 
     bool tryStartDemo(LiveActor *, const char *);
@@ -35,4 +37,6 @@ namespace MR {
 
     void requestStartDemoMarioPuppetableWithoutCinmeaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
+
+    void requestStartTimeKeepDemo(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 };

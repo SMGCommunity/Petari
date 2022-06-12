@@ -78,7 +78,7 @@
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% |
 | CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% |
 | CrystalCage.o | 92.85042333019756% | 23 / 24 | 95.83333333333334% |
-| CrystalCageMoving.o | 0.0% | 0 / 36 | 0.0% |
+| CrystalCageMoving.o | 100.0% | 36 / 36 | 100.0% |
 | CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
 | CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% |
 | DashRing.o | 0.0% | 0 / 9 | 0.0% |
@@ -2162,42 +2162,42 @@
 # CrystalCageMoving.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17CrystalCageMovingFPCc | :x: |
-| init__17CrystalCageMovingFRC12JMapInfoIter | :x: |
-| exeBreakBig__17CrystalCageMovingFv | :x: |
-| exeBreakSmall__17CrystalCageMovingFv | :x: |
-| exeBreakAll__17CrystalCageMovingFv | :x: |
-| exeDemoTicoMove__17CrystalCageMovingFv | :x: |
-| exeDemoTicoStop__17CrystalCageMovingFv | :x: |
-| exeDemoTicoChange__17CrystalCageMovingFv | :x: |
-| kill__17CrystalCageMovingFv | :x: |
-| control__17CrystalCageMovingFv | :x: |
-| receiveOtherMsg__17CrystalCageMovingFUlP9HitSensorP9HitSensor | :x: |
-| crashMario__17CrystalCageMovingFP9HitSensorP9HitSensor | :x: |
-| updateHitSensor__17CrystalCageMovingFP9HitSensor | :x: |
-| connectToScene__17CrystalCageMovingFRC19MapObjActorInitInfo | :x: |
-| initDummyModel__17CrystalCageMovingFRC12JMapInfoIter | :x: |
-| startBreakDemo__17CrystalCageMovingFv | :x: |
-| isNerveTypeEnd__17CrystalCageMovingCFv | :x: |
-| __dt__17CrystalCageMovingFv | :x: |
-| __sinit_\CrystalCageMoving_cpp | :x: |
-| __ct__Q220NrvCrystalCageMoving27CrystalCageMovingNrvWaitBigFv | :x: |
-| __ct__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigFv | :x: |
-| __ct__Q220NrvCrystalCageMoving29CrystalCageMovingNrvWaitSmallFv | :x: |
-| __ct__Q220NrvCrystalCageMoving30CrystalCageMovingNrvBreakSmallFv | :x: |
-| __ct__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakAllFv | :x: |
-| __ct__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoMoveFv | :x: |
-| __ct__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoStopFv | :x: |
-| __ct__Q220NrvCrystalCageMoving34CrystalCageMovingNrvDemoTicoChangeFv | :x: |
-| execute__Q220NrvCrystalCageMoving34CrystalCageMovingNrvDemoTicoChangeCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoStopCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoMoveCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakAllCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving30CrystalCageMovingNrvBreakSmallCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving29CrystalCageMovingNrvWaitSmallCFP5Spine | :x: |
-| executeOnEnd__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigCFP5Spine | :x: |
-| execute__Q220NrvCrystalCageMoving27CrystalCageMovingNrvWaitBigCFP5Spine | :x: |
+| __ct__17CrystalCageMovingFPCc | :white_check_mark: |
+| init__17CrystalCageMovingFRC12JMapInfoIter | :white_check_mark: |
+| exeBreakBig__17CrystalCageMovingFv | :white_check_mark: |
+| exeBreakSmall__17CrystalCageMovingFv | :white_check_mark: |
+| exeBreakAll__17CrystalCageMovingFv | :white_check_mark: |
+| exeDemoTicoMove__17CrystalCageMovingFv | :white_check_mark: |
+| exeDemoTicoStop__17CrystalCageMovingFv | :white_check_mark: |
+| exeDemoTicoChange__17CrystalCageMovingFv | :white_check_mark: |
+| kill__17CrystalCageMovingFv | :white_check_mark: |
+| control__17CrystalCageMovingFv | :white_check_mark: |
+| receiveOtherMsg__17CrystalCageMovingFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| crashMario__17CrystalCageMovingFP9HitSensorP9HitSensor | :white_check_mark: |
+| updateHitSensor__17CrystalCageMovingFP9HitSensor | :white_check_mark: |
+| connectToScene__17CrystalCageMovingFRC19MapObjActorInitInfo | :white_check_mark: |
+| initDummyModel__17CrystalCageMovingFRC12JMapInfoIter | :white_check_mark: |
+| startBreakDemo__17CrystalCageMovingFv | :white_check_mark: |
+| isNerveTypeEnd__17CrystalCageMovingCFv | :white_check_mark: |
+| __dt__17CrystalCageMovingFv | :white_check_mark: |
+| __sinit_\CrystalCageMoving_cpp | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving27CrystalCageMovingNrvWaitBigFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving29CrystalCageMovingNrvWaitSmallFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving30CrystalCageMovingNrvBreakSmallFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakAllFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoMoveFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoStopFv | :white_check_mark: |
+| __ct__Q220NrvCrystalCageMoving34CrystalCageMovingNrvDemoTicoChangeFv | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving34CrystalCageMovingNrvDemoTicoChangeCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoStopCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving32CrystalCageMovingNrvDemoTicoMoveCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakAllCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving30CrystalCageMovingNrvBreakSmallCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving29CrystalCageMovingNrvWaitSmallCFP5Spine | :white_check_mark: |
+| executeOnEnd__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigCFP5Spine | :white_check_mark: |
+| execute__Q220NrvCrystalCageMoving27CrystalCageMovingNrvWaitBigCFP5Spine | :white_check_mark: |
 
 
 # CrystalSwitch.o

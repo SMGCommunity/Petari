@@ -13,6 +13,8 @@ namespace MR {
     void startAnimCameraTargetSelf(const LiveActor *, const ActorCameraInfo *, const char *, s32, f32);
     void startActorCameraTargetOther(const LiveActor *, const ActorCameraInfo *, const CameraTargetArg &, s32);
 
+    void startActorCameraNoTarget(const LiveActor *, const ActorCameraInfo *, s32);
+
     void initAnimCamera(const LiveActor *, const ActorCameraInfo *, const char *);
 
     bool isExistActorCamera(const ActorCameraInfo *);

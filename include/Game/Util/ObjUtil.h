@@ -102,6 +102,7 @@ namespace MR {
     bool tryRumblePadVeryWeak(const void *, s32);
     bool tryRumblePadMiddle(const void *, s32);
     bool tryRumblePadStrong(const void *, s32);
+    bool tryRumblePadVeryStrong(const void *, s32);
 
     void declareCoin(const NameObj *, s32);
     void getDeclareRemnantCoinCount(const NameObj *);
@@ -133,6 +134,7 @@ namespace MR {
 
     void shakeCameraNormal();
     void shakeCameraStrong();
+    void shakeCameraVeryStrong();
 
     bool isInWater(const TVec3f &);
 

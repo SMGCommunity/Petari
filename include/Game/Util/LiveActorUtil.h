@@ -189,6 +189,7 @@ namespace MR {
 
 
     void setBrkFrame(const LiveActor *, f32);
+    void setBrkFrameAndStop(const LiveActor *, f32);
     void setBrkFrameEndAndStop(const LiveActor *);
 
     void setBckFrameAtRandom(const LiveActor *);
