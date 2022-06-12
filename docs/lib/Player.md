@@ -1,113 +1,113 @@
 # Player
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| FireMarioBall.o | 0.0% | 0 / 15 | 0.0% |
-| GhostPacket.o | 0.0% | 0 / 8 | 0.0% |
-| GhostPlayer.o | 0.0% | 0 / 46 | 0.0% |
-| GroupChecker.o | 91.97080291970804% | 6 / 8 | 75.0% |
-| J3DModelX.o | 0.0% | 0 / 24 | 0.0% |
-| JetTurtleShadow.o | 0.0% | 0 / 6 | 0.0% |
-| MarineSnow.o | 0.0% | 0 / 4 | 0.0% |
-| Mario.o | 0.0% | 0 / 55 | 0.0% |
-| MarioActor.o | 0.5966239813736903% | 1 / 88 | 1.1363636363636365% |
-| MarioActorDraw.o | 0.0% | 0 / 36 | 0.0% |
-| MarioActorPunch.o | 0.0% | 0 / 10 | 0.0% |
-| MarioActorCamera.o | 0.0% | 0 / 15 | 0.0% |
-| MarioActorClap.o | 0.0% | 0 / 2 | 0.0% |
-| MarioActorGameOver.o | 0.0% | 0 / 8 | 0.0% |
-| MarioActorGravity.o | 0.0% | 0 / 16 | 0.0% |
-| MarioActorHand.o | 0.0% | 0 / 7 | 0.0% |
-| MarioActorInit.o | 0.0% | 0 / 2 | 0.0% |
-| MarioActorPad.o | 0.0% | 0 / 17 | 0.0% |
-| MarioActorParts.o | 0.0% | 0 / 23 | 0.0% |
-| MarioActorRush.o | 0.0% | 0 / 8 | 0.0% |
-| MarioActorSensor.o | 0.0% | 0 / 12 | 0.0% |
-| MarioActorShadow.o | 0.0% | 0 / 13 | 0.0% |
-| MarioActorSpecialDraw.o | 0.0% | 0 / 36 | 0.0% |
-| MarioActorMatrix.o | 0.0% | 0 / 28 | 0.0% |
-| MarioActorMorph.o | 0.0% | 0 / 8 | 0.0% |
-| MarioActorEye.o | 0.0% | 0 / 4 | 0.0% |
-| MarioActorOffensiveMsg.o | 0.0% | 0 / 18 | 0.0% |
-| MarioActorDefensiveMsg.o | 0.0% | 0 / 10 | 0.0% |
-| MarioActorRushMsg.o | 0.0% | 0 / 11 | 0.0% |
-| MarioActorTakeMsg.o | 0.0% | 0 / 16 | 0.0% |
-| MarioActorBlackHole.o | 0.0% | 0 / 3 | 0.0% |
-| MarioAnimator.o | 0.0% | 0 / 45 | 0.0% |
-| MarioAnimationEfx.o | 0.0% | 0 / 14 | 0.0% |
-| MarioWait.o | 0.0% | 0 / 15 | 0.0% |
-| MarioClimb.o | 0.0% | 0 / 6 | 0.0% |
-| MarioCollision.o | 0.0% | 0 / 40 | 0.0% |
-| MarioConst.o | 0.0% | 0 / 1 | 0.0% |
-| MarioDamage.o | 0.0% | 0 / 56 | 0.0% |
-| MarioDamageParalyze.o | 0.0% | 0 / 6 | 0.0% |
-| MarioDamageFreeze.o | 0.0% | 0 / 8 | 0.0% |
-| MarioDamageStun.o | 0.0% | 0 / 5 | 0.0% |
-| MarioDamageCrush.o | 0.0% | 0 / 7 | 0.0% |
-| MarioFaint.o | 0.0% | 0 / 8 | 0.0% |
-| MarioFlip.o | 0.0% | 0 / 10 | 0.0% |
-| MarioFrontStep.o | 0.0% | 0 / 7 | 0.0% |
-| MarioBee.o | 0.0% | 0 / 4 | 0.0% |
-| MarioBlown.o | 0.0% | 0 / 6 | 0.0% |
-| MarioEffect.o | 0.0% | 0 / 35 | 0.0% |
-| MarioFlow.o | 0.0% | 0 / 6 | 0.0% |
-| MarioFoo.o | 0.0% | 0 / 18 | 0.0% |
-| MarioHolder.o | 0.0% | 0 / 5 | 0.0% |
-| MarioInit.o | 0.0% | 0 / 1 | 0.0% |
-| MarioJump.o | 0.0% | 0 / 45 | 0.0% |
-| MarioMessenger.o | 0.0% | 0 / 4 | 0.0% |
-| MarioModule.o | 0.0% | 0 / 90 | 0.0% |
-| MarioMove.o | 0.0% | 0 / 13 | 0.0% |
-| MarioMove2D.o | 0.0% | 0 / 9 | 0.0% |
-| MarioMove25D.o | 0.0% | 0 / 5 | 0.0% |
-| MarioMoveSphere.o | 0.0% | 0 / 2 | 0.0% |
-| MarioParts.o | 0.0% | 0 / 4 | 0.0% |
-| MarioPress.o | 0.0% | 0 / 5 | 0.0% |
-| MarioRabbit.o | 0.0% | 0 / 11 | 0.0% |
-| MarioSearchLight.o | 0.0% | 0 / 14 | 0.0% |
-| MarioSideStep.o | 0.0% | 0 / 7 | 0.0% |
-| MarioSkate.o | 0.0% | 0 / 10 | 0.0% |
-| MarioSound.o | 0.0% | 0 / 11 | 0.0% |
-| MarioSpecial.o | 0.0% | 0 / 11 | 0.0% |
-| MarioSpin.o | 0.0% | 0 / 9 | 0.0% |
-| MarioState.o | 0.0% | 0 / 11 | 0.0% |
-| MarioStick.o | 0.0% | 0 / 11 | 0.0% |
-| MarioSukekiyo.o | 0.0% | 0 / 8 | 0.0% |
-| MarioTalk.o | 0.0% | 0 / 9 | 0.0% |
-| MarioWall.o | 0.0% | 0 / 26 | 0.0% |
-| MarioHang.o | 0.0% | 0 / 17 | 0.0% |
-| MarioSwim.o | 0.0% | 0 / 61 | 0.0% |
-| MarioSwimDamage.o | 0.0% | 0 / 2 | 0.0% |
-| MarioAccess.o | 0.0% | 0 / 86 | 0.0% |
-| MarioSlip.o | 0.0% | 0 / 6 | 0.0% |
-| MarioSlope.o | 0.0% | 0 / 5 | 0.0% |
-| MarioWalk.o | 0.0% | 0 / 15 | 0.0% |
-| MarioNullBck.o | 0.0% | 0 / 6 | 0.0% |
-| MarioRecovery.o | 0.0% | 0 / 8 | 0.0% |
-| MarioSlider.o | 0.0% | 0 / 11 | 0.0% |
-| MarioStep.o | 0.0% | 0 / 7 | 0.0% |
-| MarioBump.o | 0.0% | 0 / 7 | 0.0% |
-| MarioEnforce.o | 0.0% | 0 / 22 | 0.0% |
-| MarioTask.o | 0.0% | 0 / 20 | 0.0% |
-| MarioTeresa.o | 0.0% | 0 / 32 | 0.0% |
-| MarioMagic.o | 0.0% | 0 / 7 | 0.0% |
-| MarioWarp.o | 0.0% | 0 / 12 | 0.0% |
-| MarioFpView.o | 0.0% | 0 / 10 | 0.0% |
-| Mario2D.o | 0.0% | 0 / 3 | 0.0% |
-| MatrixControl.o | 0.0% | 0 / 10 | 0.0% |
-| RushEndInfo.o | 0.0% | 0 / 1 | 0.0% |
-| TornadoMario.o | 0.0% | 0 / 10 | 0.0% |
-| ModelHolder.o | 0.0% | 0 / 3 | 0.0% |
-| MarioShadow.o | 0.0% | 0 / 25 | 0.0% |
-| MarioMapCode.o | 0.0% | 0 / 2 | 0.0% |
-| MarioActorWipe.o | 0.0% | 0 / 2 | 0.0% |
-| DrawAdaptor.o | 0.0% | 0 / 3 | 0.0% |
-| PlayerEvent.o | 0.0% | 0 / 22 | 0.0% |
-| PlayerEventGameOver.o | 0.0% | 0 / 6 | 0.0% |
-| PlayerEventAbyss.o | 0.0% | 0 / 5 | 0.0% |
-| PlayerEventDown.o | 0.0% | 0 / 5 | 0.0% |
-| PlayerEventFireDown.o | 0.0% | 0 / 6 | 0.0% |
-| PlayerEventRaceDown.o | 0.0% | 0 / 6 | 0.0% |
-| PlayerEventGhostRaceDown.o | 0.0% | 0 / 4 | 0.0% |
+| FireMarioBall.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| GhostPacket.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| GhostPlayer.o | 0.0% | 0 / 46 | 0.0% | :x: 
+| GroupChecker.o | 91.97080291970804% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
+| J3DModelX.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| JetTurtleShadow.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarineSnow.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| Mario.o | 0.0% | 0 / 55 | 0.0% | :x: 
+| MarioActor.o | 0.5966239813736903% | 1 / 88 | 1.1363636363636365% | :eight_pointed_black_star: 
+| MarioActorDraw.o | 0.0% | 0 / 36 | 0.0% | :x: 
+| MarioActorPunch.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| MarioActorCamera.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| MarioActorClap.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| MarioActorGameOver.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioActorGravity.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| MarioActorHand.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioActorInit.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| MarioActorPad.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| MarioActorParts.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| MarioActorRush.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioActorSensor.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| MarioActorShadow.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| MarioActorSpecialDraw.o | 0.0% | 0 / 36 | 0.0% | :x: 
+| MarioActorMatrix.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| MarioActorMorph.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioActorEye.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| MarioActorOffensiveMsg.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| MarioActorDefensiveMsg.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| MarioActorRushMsg.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioActorTakeMsg.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| MarioActorBlackHole.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| MarioAnimator.o | 0.0% | 0 / 45 | 0.0% | :x: 
+| MarioAnimationEfx.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| MarioWait.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| MarioClimb.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioCollision.o | 0.0% | 0 / 40 | 0.0% | :x: 
+| MarioConst.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| MarioDamage.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| MarioDamageParalyze.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioDamageFreeze.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioDamageStun.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MarioDamageCrush.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioFaint.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioFlip.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| MarioFrontStep.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioBee.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| MarioBlown.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioEffect.o | 0.0% | 0 / 35 | 0.0% | :x: 
+| MarioFlow.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioFoo.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| MarioHolder.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MarioInit.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| MarioJump.o | 0.0% | 0 / 45 | 0.0% | :x: 
+| MarioMessenger.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| MarioModule.o | 0.0% | 0 / 90 | 0.0% | :x: 
+| MarioMove.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| MarioMove2D.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| MarioMove25D.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MarioMoveSphere.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| MarioParts.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| MarioPress.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MarioRabbit.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioSearchLight.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| MarioSideStep.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioSkate.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| MarioSound.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioSpecial.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioSpin.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| MarioState.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioStick.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioSukekiyo.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioTalk.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| MarioWall.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| MarioHang.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| MarioSwim.o | 0.0% | 0 / 61 | 0.0% | :x: 
+| MarioSwimDamage.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| MarioAccess.o | 0.0% | 0 / 86 | 0.0% | :x: 
+| MarioSlip.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioSlope.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MarioWalk.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| MarioNullBck.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| MarioRecovery.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| MarioSlider.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MarioStep.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioBump.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioEnforce.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| MarioTask.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| MarioTeresa.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| MarioMagic.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| MarioWarp.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| MarioFpView.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| Mario2D.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| MatrixControl.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| RushEndInfo.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| TornadoMario.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| ModelHolder.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| MarioShadow.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| MarioMapCode.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| MarioActorWipe.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| DrawAdaptor.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| PlayerEvent.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| PlayerEventGameOver.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| PlayerEventAbyss.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| PlayerEventDown.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| PlayerEventFireDown.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| PlayerEventRaceDown.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| PlayerEventGhostRaceDown.o | 0.0% | 0 / 4 | 0.0% | :x: 
 
 
 # FireMarioBall.o

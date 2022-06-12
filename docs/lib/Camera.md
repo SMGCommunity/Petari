@@ -1,133 +1,133 @@
 # Camera
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| CamHeliEffector.o | 2.3890784982935154% | 2 / 24 | 8.333333333333332% |
-| CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 | 33.33333333333333% |
-| CamPoseSphereInterpolator.o | 0.0% | 0 / 2 | 0.0% |
-| CamTranslatorAnim.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorBehind.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorBlackHole.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorCharmedFix.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorCharmedTripodBoss.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorCharmedVecReg.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorCharmedVecRegTower.o | 3.125% | 1 / 2 | 50.0% |
-| CamTranslatorCubePlanet.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorDPD.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorDead.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorFix.o | 5.555555555555555% | 1 / 2 | 50.0% |
-| CamTranslatorFixedPoint.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorFixedThere.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorFollow.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorFooFighter.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorFooFighterPlanet.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorFrontAndBack.o | 3.125% | 1 / 2 | 50.0% |
-| CamTranslatorGround.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorInnerCylinder.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorInwardSphere.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorInwardTower.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorMedianPlanet.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorMedianTower.o | 4.081632653061225% | 1 / 2 | 50.0% |
-| CamTranslatorMtxRegParallel.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorObjParallel.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorParallel.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorRaceFollow.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorRailDemo.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorRailFollow.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorRailWatch.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorSlide.o | 1.4285714285714286% | 1 / 2 | 50.0% |
-| CamTranslatorSpiral.o | 8.695652173913043% | 1 / 2 | 50.0% |
-| CamTranslatorTalk.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorTower.o | 4.878048780487805% | 1 / 2 | 50.0% |
-| CamTranslatorTowerPos.o | 4.25531914893617% | 1 / 2 | 50.0% |
-| CamTranslatorTripodBoss.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorTripodBossJoint.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorTripodPlanet.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorTrundle.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorTwistedPassage.o | 100.0% | 2 / 2 | 100.0% |
-| CamTranslatorWaterFollow.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorWaterPlanet.o | 100.0% | 3 / 3 | 100.0% |
-| CamTranslatorWaterPlanetBoss.o | 17.94871794871795% | 2 / 3 | 66.66666666666666% |
-| CamTranslatorWonderPlanet.o | 100.0% | 3 / 3 | 100.0% |
-| Camera.o | 71.03448275862068% | 16 / 18 | 88.88888888888889% |
-| CameraAnim.o | 60.457142857142856% | 23 / 30 | 76.66666666666667% |
-| CameraBehind.o | 26.666666666666668% | 3 / 6 | 50.0% |
-| CameraBlackHole.o | 28.205128205128204% | 3 / 5 | 60.0% |
-| CameraCalc.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCharmedFix.o | 24.817518248175183% | 3 / 5 | 60.0% |
-| CameraCharmedTripodBoss.o | 20.353982300884958% | 3 / 6 | 50.0% |
-| CameraCharmedVecReg.o | 17.989417989417987% | 3 / 5 | 60.0% |
-| CameraCharmedVecRegTower.o | 15.508021390374333% | 3 / 5 | 60.0% |
-| CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% |
-| CameraCover.o | 0.0% | 0 / 9 | 0.0% |
-| CameraCubePlanet.o | 25.0936329588015% | 3 / 5 | 60.0% |
-| CameraDPD.o | 11.126373626373626% | 3 / 8 | 37.5% |
-| CameraDead.o | 16.216216216216218% | 3 / 7 | 42.857142857142854% |
-| CameraDirector.o | 65.09392747924858% | 71 / 81 | 87.65432098765432% |
-| CameraFix.o | 35.51401869158878% | 3 / 6 | 50.0% |
-| CameraFixedPoint.o | 20.27027027027027% | 3 / 6 | 50.0% |
-| CameraFixedThere.o | 13.654618473895583% | 3 / 11 | 27.27272727272727% |
-| CameraFollow.o | 6.301575393848462% | 4 / 29 | 13.793103448275861% |
-| CameraFooFighter.o | 12.293577981651376% | 3 / 5 | 60.0% |
-| CameraFooFighterPlanet.o | 10.452961672473867% | 3 / 6 | 50.0% |
-| CameraFrontAndBack.o | 17.801047120418847% | 3 / 7 | 42.857142857142854% |
-| CameraGround.o | 23.318385650224215% | 2 / 5 | 40.0% |
-| CameraHeightArrange.o | 17.647058823529413% | 7 / 22 | 31.818181818181817% |
-| CameraHolder.o | 100.0% | 54 / 54 | 100.0% |
-| CameraInnerCylinder.o | 15.367965367965366% | 3 / 5 | 60.0% |
-| CameraInwardSphere.o | 11.95840554592721% | 3 / 6 | 50.0% |
-| CameraInwardTower.o | 19.794344473007712% | 3 / 7 | 42.857142857142854% |
-| CameraLocalUtil.o | 0.0% | 0 / 61 | 0.0% |
-| CameraMan.o | 100.0% | 11 / 11 | 100.0% |
-| CameraManEvent.o | 71.81738366988587% | 33 / 37 | 89.1891891891892% |
-| CameraManGame.o | 75.73407202216067% | 52 / 57 | 91.22807017543859% |
-| CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% |
-| CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% |
-| CameraMedianPlanet.o | 8.827238335435057% | 3 / 15 | 20.0% |
-| CameraMedianTower.o | 9.975062344139651% | 3 / 11 | 27.27272727272727% |
-| CameraMtxRegParallel.o | 38.59649122807017% | 3 / 6 | 50.0% |
-| CameraObjParallel.o | 30.198019801980198% | 3 / 5 | 60.0% |
-| CameraParallel.o | 18.157894736842106% | 3 / 10 | 30.0% |
-| CameraParamChunk.o | 64.14662084765177% | 29 / 32 | 90.625% |
-| CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 | 90.9090909090909% |
-| CameraParamChunkID.o | 100.0% | 11 / 11 | 100.0% |
-| CameraParamString.o | 100.0% | 5 / 5 | 100.0% |
-| CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% |
-| CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% |
-| CameraRaceFollow.o | 17.41424802110818% | 3 / 6 | 50.0% |
-| CameraRailDemo.o | 18.30065359477124% | 3 / 9 | 33.33333333333333% |
-| CameraRailFollow.o | 18.96551724137931% | 3 / 6 | 50.0% |
-| CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% |
-| CameraRailWatch.o | 15.625% | 3 / 6 | 50.0% |
-| CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 | 92.3076923076923% |
-| CameraRotChecker.o | 9.30232558139535% | 1 / 4 | 25.0% |
-| CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 | 85.71428571428571% |
-| CameraShakeTask.o | 100.0% | 10 / 10 | 100.0% |
-| CameraShaker.o | 92.1259842519685% | 17 / 18 | 94.44444444444444% |
-| CameraSlide.o | 25.454545454545453% | 3 / 5 | 60.0% |
-| CameraSpiral.o | 17.402597402597404% | 3 / 5 | 60.0% |
-| CameraSubjective.o | 16.890080428954423% | 3 / 6 | 50.0% |
-| CameraTalk.o | 14.37371663244353% | 3 / 6 | 50.0% |
-| CameraTargetArg.o | 63.51351351351351% | 2 / 3 | 66.66666666666666% |
-| CameraTargetHolder.o | 100.0% | 9 / 9 | 100.0% |
-| CameraTargetMtx.o | 62.944162436548226% | 22 / 24 | 91.66666666666666% |
-| CameraTargetObj.o | 46.837944664031625% | 21 / 45 | 46.666666666666664% |
-| CameraTestObj.o | 0.0% | 0 / 2 | 0.0% |
-| CameraTower.o | 9.382422802850355% | 3 / 14 | 21.428571428571427% |
-| CameraTowerBase.o | 15.360501567398119% | 2 / 10 | 20.0% |
-| CameraTowerPos.o | 13.06715063520871% | 3 / 9 | 33.33333333333333% |
-| CameraTripodBoss.o | 30.64516129032258% | 3 / 4 | 75.0% |
-| CameraTripodBossJoint.o | 19.230769230769234% | 3 / 7 | 42.857142857142854% |
-| CameraTripodPlanet.o | 22.22222222222222% | 3 / 5 | 60.0% |
-| CameraTrundle.o | 28.749999999999996% | 3 / 5 | 60.0% |
-| CameraTwistedPassage.o | 15.107913669064748% | 3 / 9 | 33.33333333333333% |
-| CameraViewInterpolator.o | 0.0% | 0 / 13 | 0.0% |
-| CameraWaterFollow.o | 14.688128772635814% | 3 / 6 | 50.0% |
-| CameraWaterPlanet.o | 15.07537688442211% | 3 / 5 | 60.0% |
-| CameraWaterPlanetBoss.o | 13.5% | 3 / 6 | 50.0% |
-| CameraWonderPlanet.o | 12.524850894632205% | 3 / 9 | 33.33333333333333% |
-| DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% |
-| GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% |
-| OnlyCamera.o | 12.024048096192384% | 2 / 6 | 33.33333333333333% |
+| CamHeliEffector.o | 2.3890784982935154% | 2 / 24 | 8.333333333333332% | :eight_pointed_black_star: 
+| CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
+| CamPoseSphereInterpolator.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| CamTranslatorAnim.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorBehind.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorBlackHole.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorCharmedFix.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorCharmedTripodBoss.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorCharmedVecReg.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorCharmedVecRegTower.o | 3.125% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorCubePlanet.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorDPD.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorDead.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorFix.o | 5.555555555555555% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorFixedPoint.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorFixedThere.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorFollow.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorFooFighter.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorFooFighterPlanet.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorFrontAndBack.o | 3.125% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorGround.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorInnerCylinder.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorInwardSphere.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorInwardTower.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorMedianPlanet.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorMedianTower.o | 4.081632653061225% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorMtxRegParallel.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorObjParallel.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorParallel.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorRaceFollow.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorRailDemo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorRailFollow.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorRailWatch.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorSlide.o | 1.4285714285714286% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorSpiral.o | 8.695652173913043% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorTalk.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorTower.o | 4.878048780487805% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorTowerPos.o | 4.25531914893617% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| CamTranslatorTripodBoss.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorTripodBossJoint.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorTripodPlanet.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorTrundle.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorTwistedPassage.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| CamTranslatorWaterFollow.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorWaterPlanet.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| CamTranslatorWaterPlanetBoss.o | 17.94871794871795% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| CamTranslatorWonderPlanet.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| Camera.o | 71.03448275862068% | 16 / 18 | 88.88888888888889% | :eight_pointed_black_star: 
+| CameraAnim.o | 60.457142857142856% | 23 / 30 | 76.66666666666667% | :eight_pointed_black_star: 
+| CameraBehind.o | 26.666666666666668% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraBlackHole.o | 28.205128205128204% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraCalc.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| CameraCharmedFix.o | 24.817518248175183% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraCharmedTripodBoss.o | 20.353982300884958% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraCharmedVecReg.o | 17.989417989417987% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraCharmedVecRegTower.o | 15.508021390374333% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
+| CameraCover.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| CameraCubePlanet.o | 25.0936329588015% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraDPD.o | 11.126373626373626% | 3 / 8 | 37.5% | :eight_pointed_black_star: 
+| CameraDead.o | 16.216216216216218% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
+| CameraDirector.o | 65.09392747924858% | 71 / 81 | 87.65432098765432% | :eight_pointed_black_star: 
+| CameraFix.o | 35.51401869158878% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraFixedPoint.o | 20.27027027027027% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraFixedThere.o | 13.654618473895583% | 3 / 11 | 27.27272727272727% | :eight_pointed_black_star: 
+| CameraFollow.o | 6.301575393848462% | 4 / 29 | 13.793103448275861% | :eight_pointed_black_star: 
+| CameraFooFighter.o | 12.293577981651376% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraFooFighterPlanet.o | 10.452961672473867% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraFrontAndBack.o | 17.801047120418847% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
+| CameraGround.o | 23.318385650224215% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
+| CameraHeightArrange.o | 17.647058823529413% | 7 / 22 | 31.818181818181817% | :eight_pointed_black_star: 
+| CameraHolder.o | 100.0% | 54 / 54 | 100.0% | :white_check_mark: 
+| CameraInnerCylinder.o | 15.367965367965366% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraInwardSphere.o | 11.95840554592721% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraInwardTower.o | 19.794344473007712% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
+| CameraLocalUtil.o | 0.0% | 0 / 61 | 0.0% | :x: 
+| CameraMan.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
+| CameraManEvent.o | 71.81738366988587% | 33 / 37 | 89.1891891891892% | :eight_pointed_black_star: 
+| CameraManGame.o | 75.73407202216067% | 52 / 57 | 91.22807017543859% | :eight_pointed_black_star: 
+| CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% | :eight_pointed_black_star: 
+| CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| CameraMedianPlanet.o | 8.827238335435057% | 3 / 15 | 20.0% | :eight_pointed_black_star: 
+| CameraMedianTower.o | 9.975062344139651% | 3 / 11 | 27.27272727272727% | :eight_pointed_black_star: 
+| CameraMtxRegParallel.o | 38.59649122807017% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraObjParallel.o | 30.198019801980198% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraParallel.o | 18.157894736842106% | 3 / 10 | 30.0% | :eight_pointed_black_star: 
+| CameraParamChunk.o | 64.14662084765177% | 29 / 32 | 90.625% | :eight_pointed_black_star: 
+| CameraParamChunkHolder.o | 90.06024096385542% | 10 / 11 | 90.9090909090909% | :eight_pointed_black_star: 
+| CameraParamChunkID.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
+| CameraParamString.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| CameraRaceFollow.o | 17.41424802110818% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraRailDemo.o | 18.30065359477124% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| CameraRailFollow.o | 18.96551724137931% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraRailWatch.o | 15.625% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraRegisterHolder.o | 89.95433789954338% | 12 / 13 | 92.3076923076923% | :eight_pointed_black_star: 
+| CameraRotChecker.o | 9.30232558139535% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
+| CameraShakePatternImpl.o | 68.42105263157895% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
+| CameraShakeTask.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
+| CameraShaker.o | 92.1259842519685% | 17 / 18 | 94.44444444444444% | :eight_pointed_black_star: 
+| CameraSlide.o | 25.454545454545453% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraSpiral.o | 17.402597402597404% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraSubjective.o | 16.890080428954423% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraTalk.o | 14.37371663244353% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraTargetArg.o | 63.51351351351351% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| CameraTargetHolder.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| CameraTargetMtx.o | 62.944162436548226% | 22 / 24 | 91.66666666666666% | :eight_pointed_black_star: 
+| CameraTargetObj.o | 46.837944664031625% | 21 / 45 | 46.666666666666664% | :eight_pointed_black_star: 
+| CameraTestObj.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| CameraTower.o | 9.382422802850355% | 3 / 14 | 21.428571428571427% | :eight_pointed_black_star: 
+| CameraTowerBase.o | 15.360501567398119% | 2 / 10 | 20.0% | :eight_pointed_black_star: 
+| CameraTowerPos.o | 13.06715063520871% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| CameraTripodBoss.o | 30.64516129032258% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| CameraTripodBossJoint.o | 19.230769230769234% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
+| CameraTripodPlanet.o | 22.22222222222222% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraTrundle.o | 28.749999999999996% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraTwistedPassage.o | 15.107913669064748% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| CameraViewInterpolator.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| CameraWaterFollow.o | 14.688128772635814% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraWaterPlanet.o | 15.07537688442211% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| CameraWaterPlanetBoss.o | 13.5% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| CameraWonderPlanet.o | 12.524850894632205% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| DotCamParams.o | 57.35849056603774% | 8 / 11 | 72.72727272727273% | :eight_pointed_black_star: 
+| GameCameraCreator.o | 44.871794871794876% | 4 / 6 | 66.66666666666666% | :eight_pointed_black_star: 
+| OnlyCamera.o | 12.024048096192384% | 2 / 6 | 33.33333333333333% | :eight_pointed_black_star: 
 
 
 # CamHeliEffector.o

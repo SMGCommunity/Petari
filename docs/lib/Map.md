@@ -1,88 +1,88 @@
 # Map
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| ActorAppearSwitchListener.o | 16.39344262295082% | 1 / 4 | 25.0% |
-| Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% |
-| BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% |
-| Butterfly.o | 0.0% | 0 / 37 | 0.0% |
-| CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% |
-| CollisionCode.o | 96.32352941176471% | 19 / 20 | 95.0% |
-| CollisionDirector.o | 100.0% | 6 / 6 | 100.0% |
-| CollisionParts.o | 25.15762925598991% | 19 / 30 | 63.33333333333333% |
-| FileSelectCameraController.o | 0.0% | 0 / 28 | 0.0% |
-| FileSelectEffect.o | 0.0% | 0 / 15 | 0.0% |
-| FileSelectFunc.o | 100.0% | 2 / 2 | 100.0% |
-| FileSelectIconID.o | 100.0% | 9 / 9 | 100.0% |
-| FileSelectItem.o | 0.0% | 0 / 81 | 0.0% |
-| FileSelectModel.o | 0.0% | 0 / 25 | 0.0% |
-| FileSelector.o | 0.0% | 0 / 209 | 0.0% |
-| FileSelectSky.o | 0.0% | 0 / 10 | 0.0% |
-| FishGroup.o | 0.0% | 0 / 23 | 0.0% |
-| Flag.o | 0.0% | 0 / 13 | 0.0% |
-| GravityDust.o | 0.0% | 0 / 3 | 0.0% |
-| GroundChecker.o | 0.0% | 0 / 3 | 0.0% |
-| GroupSwitchWatcher.o | 0.0% | 0 / 4 | 0.0% |
-| Halo.o | 0.0% | 0 / 24 | 0.0% |
-| HitInfo.o | 100.0% | 22 / 22 | 100.0% |
-| KCollision.o | 13.093525179856117% | 18 / 31 | 58.06451612903226% |
-| KCollisionPlus.o | 83.19327731092437% | 2 / 3 | 66.66666666666666% |
-| KoopaBattleMapCoinPlate.o | 0.0% | 0 / 5 | 0.0% |
-| KoopaBattleMapDamagePlate.o | 0.0% | 0 / 15 | 0.0% |
-| KoopaBattleMapPlanet.o | 0.0% | 0 / 14 | 0.0% |
-| KoopaBattleMapPlate.o | 0.0% | 0 / 5 | 0.0% |
-| KoopaBattleMapStair.o | 0.0% | 0 / 30 | 0.0% |
-| LavaShellTower.o | 0.0% | 0 / 12 | 0.0% |
-| LavaSunPlanet.o | 0.0% | 0 / 5 | 0.0% |
-| LightDataHolder.o | 4.444444444444445% | 2 / 5 | 40.0% |
-| LightDirector.o | 48.30508474576271% | 4 / 7 | 57.14285714285714% |
-| LightFunction.o | 13.51039260969977% | 4 / 23 | 17.391304347826086% |
-| LightPointCtrl.o | 18.88888888888889% | 2 / 11 | 18.181818181818183% |
-| LightZoneDataHolder.o | 100.0% | 11 / 11 | 100.0% |
-| NamePosHolder.o | 43.81443298969072% | 4 / 6 | 66.66666666666666% |
-| OceanBowl.o | 0.0% | 0 / 16 | 0.0% |
-| OceanBowlBloomDrawer.o | 0.0% | 0 / 5 | 0.0% |
-| OceanBowlPoint.o | 0.0% | 0 / 4 | 0.0% |
-| OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% |
-| OceanRing.o | 0.0% | 0 / 21 | 0.0% |
-| OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% |
-| OceanRingDrawer.o | 0.0% | 0 / 21 | 0.0% |
-| OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% |
-| OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% |
-| OceanRingPipeOutside.o | 0.0% | 0 / 11 | 0.0% |
-| OceanSphere.o | 0.0% | 0 / 36 | 0.0% |
-| OceanSpherePoint.o | 0.0% | 0 / 3 | 0.0% |
-| PlanetMap.o | 0.0% | 0 / 23 | 0.0% |
-| PlanetMapCreator.o | 29.97881355932203% | 8 / 39 | 20.51282051282051% |
-| PlanetMapWithoutHighModel.o | 0.0% | 0 / 4 | 0.0% |
-| QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% |
-| RaceManager.o | 0.0% | 0 / 95 | 0.0% |
-| RaceRail.o | 42.25053078556263% | 20 / 23 | 86.95652173913044% |
-| RailGraph.o | 100.0% | 9 / 9 | 100.0% |
-| RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% |
-| RailGraphIter.o | 100.0% | 15 / 15 | 100.0% |
-| RailGraphNode.o | 100.0% | 1 / 1 | 100.0% |
-| RailPart.o | 60.0% | 9 / 12 | 75.0% |
-| ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% |
-| SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% |
-| Sky.o | 97.39696312364426% | 19 / 20 | 95.0% |
-| SleepController.o | 0.0% | 0 / 3 | 0.0% |
-| SleepControllerHolder.o | 1.7543859649122806% | 2 / 14 | 14.285714285714285% |
-| SpaceInner.o | 100.0% | 12 / 12 | 100.0% |
-| SphereSelector.o | 0.0% | 0 / 70 | 0.0% |
-| SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% |
-| StageSwitch.o | 66.87116564417178% | 26 / 31 | 83.87096774193549% |
-| SunshadeMapHolder.o | 0.0% | 0 / 4 | 0.0% |
-| SunshadeMapParts.o | 0.0% | 0 / 6 | 0.0% |
-| SwitchSynchronizer.o | 0.0% | 0 / 4 | 0.0% |
-| SwitchWatcher.o | 0.0% | 0 / 6 | 0.0% |
-| SwitchWatcherHolder.o | 0.0% | 0 / 11 | 0.0% |
-| TimerSwitch.o | 100.0% | 4 / 4 | 100.0% |
-| WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% |
-| WaterInfo.o | 0.0% | 0 / 3 | 0.0% |
-| WaterPlant.o | 0.0% | 0 / 20 | 0.0% |
-| WaterPoint.o | 0.0% | 0 / 4 | 0.0% |
-| WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% |
-| WhirlPoolAccelerator.o | 0.0% | 0 / 11 | 0.0% |
+| ActorAppearSwitchListener.o | 16.39344262295082% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
+| Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% | :eight_pointed_black_star: 
+| BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% | :eight_pointed_black_star: 
+| Butterfly.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% | :eight_pointed_black_star: 
+| CollisionCode.o | 96.32352941176471% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
+| CollisionDirector.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| CollisionParts.o | 25.15762925598991% | 19 / 30 | 63.33333333333333% | :eight_pointed_black_star: 
+| FileSelectCameraController.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| FileSelectEffect.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| FileSelectFunc.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| FileSelectIconID.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| FileSelectItem.o | 0.0% | 0 / 81 | 0.0% | :x: 
+| FileSelectModel.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| FileSelector.o | 0.0% | 0 / 209 | 0.0% | :x: 
+| FileSelectSky.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| FishGroup.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| Flag.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| GravityDust.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| GroundChecker.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| GroupSwitchWatcher.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| Halo.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| HitInfo.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
+| KCollision.o | 13.093525179856117% | 18 / 31 | 58.06451612903226% | :eight_pointed_black_star: 
+| KCollisionPlus.o | 83.19327731092437% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| KoopaBattleMapCoinPlate.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| KoopaBattleMapDamagePlate.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| KoopaBattleMapPlanet.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| KoopaBattleMapPlate.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| KoopaBattleMapStair.o | 0.0% | 0 / 30 | 0.0% | :x: 
+| LavaShellTower.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| LavaSunPlanet.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| LightDataHolder.o | 4.444444444444445% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
+| LightDirector.o | 48.30508474576271% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
+| LightFunction.o | 13.51039260969977% | 4 / 23 | 17.391304347826086% | :eight_pointed_black_star: 
+| LightPointCtrl.o | 18.88888888888889% | 2 / 11 | 18.181818181818183% | :eight_pointed_black_star: 
+| LightZoneDataHolder.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
+| NamePosHolder.o | 43.81443298969072% | 4 / 6 | 66.66666666666666% | :eight_pointed_black_star: 
+| OceanBowl.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| OceanBowlBloomDrawer.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| OceanBowlPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| OceanRing.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OceanRingDrawer.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| OceanRingPipeOutside.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| OceanSphere.o | 0.0% | 0 / 36 | 0.0% | :x: 
+| OceanSpherePoint.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| PlanetMap.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| PlanetMapCreator.o | 29.97881355932203% | 8 / 39 | 20.51282051282051% | :eight_pointed_black_star: 
+| PlanetMapWithoutHighModel.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| RaceManager.o | 0.0% | 0 / 95 | 0.0% | :x: 
+| RaceRail.o | 42.25053078556263% | 20 / 23 | 86.95652173913044% | :eight_pointed_black_star: 
+| RailGraph.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| RailGraphIter.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
+| RailGraphNode.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| RailPart.o | 60.0% | 9 / 12 | 75.0% | :eight_pointed_black_star: 
+| ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
+| Sky.o | 97.39696312364426% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
+| SleepController.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| SleepControllerHolder.o | 1.7543859649122806% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
+| SpaceInner.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
+| SphereSelector.o | 0.0% | 0 / 70 | 0.0% | :x: 
+| SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% | :x: 
+| StageSwitch.o | 66.87116564417178% | 26 / 31 | 83.87096774193549% | :eight_pointed_black_star: 
+| SunshadeMapHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| SunshadeMapParts.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| SwitchSynchronizer.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| SwitchWatcher.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| SwitchWatcherHolder.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| TimerSwitch.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| WaterInfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| WaterPlant.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| WaterPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% | :eight_pointed_black_star: 
+| WhirlPoolAccelerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
 
 
 # ActorAppearSwitchListener.o

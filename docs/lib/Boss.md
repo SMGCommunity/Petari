@@ -1,175 +1,175 @@
 # Boss
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| BossAccessor.o | 0.0% | 0 / 4 | 0.0% |
-| BossBegoman.o | 0.0% | 0 / 92 | 0.0% |
-| BossBegomanHead.o | 0.0% | 0 / 36 | 0.0% |
-| BossKameck.o | 0.0% | 0 / 33 | 0.0% |
-| BossKameckAction.o | 0.0% | 0 / 12 | 0.0% |
-| BossKameckBarrier.o | 0.0% | 0 / 8 | 0.0% |
-| BossKameckBattleDemo.o | 0.0% | 0 / 44 | 0.0% |
-| BossKameckBattlePattarn.o | 0.0% | 0 / 3 | 0.0% |
-| BossKameckSequencer.o | 0.0% | 0 / 9 | 0.0% |
-| BossKameckMoveRail.o | 0.0% | 0 / 6 | 0.0% |
-| BossKameckVs1.o | 0.0% | 0 / 26 | 0.0% |
-| BossKameckVs2.o | 0.0% | 0 / 29 | 0.0% |
-| BossKameckStateBattle.o | 0.0% | 0 / 56 | 0.0% |
-| BossStinkBug.o | 0.0% | 0 / 46 | 0.0% |
-| BossStinkBugActionBase.o | 0.0% | 0 / 45 | 0.0% |
-| BossStinkBugActionFlyHigh.o | 0.0% | 0 / 49 | 0.0% |
-| BossStinkBugActionFlyLow.o | 0.0% | 0 / 31 | 0.0% |
-| BossStinkBugActionGround.o | 0.0% | 0 / 34 | 0.0% |
-| BossStinkBugActionSequencer.o | 0.0% | 0 / 33 | 0.0% |
-| BossStinkBugAngryDemo.o | 0.0% | 0 / 9 | 0.0% |
-| BossStinkBugBomb.o | 0.0% | 0 / 16 | 0.0% |
-| BossStinkBugBombHolder.o | 0.0% | 0 / 4 | 0.0% |
-| BossStinkBugFinishDemo.o | 0.0% | 0 / 12 | 0.0% |
-| BossStinkBugFlyDemo.o | 0.0% | 0 / 9 | 0.0% |
-| BossStinkBugFunction.o | 0.0% | 0 / 13 | 0.0% |
-| BossStinkBugOpeningDemo.o | 0.0% | 0 / 9 | 0.0% |
-| DinoPackun.o | 0.0% | 0 / 59 | 0.0% |
-| DinoPackunAction.o | 0.0% | 0 / 21 | 0.0% |
-| DinoPackunBall.o | 0.0% | 0 / 40 | 0.0% |
-| DinoPackunBattleEgg.o | 0.0% | 0 / 17 | 0.0% |
-| DinoPackunBattleEggVs2.o | 0.0% | 0 / 20 | 0.0% |
-| DinoPackunBattleVs1Lv1.o | 0.0% | 0 / 28 | 0.0% |
-| DinoPackunBattleVs1Lv2.o | 0.0% | 0 / 32 | 0.0% |
-| DinoPackunBattleVs2Lv1.o | 0.0% | 0 / 46 | 0.0% |
-| DinoPackunDemo.o | 0.0% | 0 / 28 | 0.0% |
-| DinoPackunDemoPosition.o | 0.0% | 0 / 10 | 0.0% |
-| DinoPackunEggShell.o | 0.0% | 0 / 8 | 0.0% |
-| DinoPackunFire.o | 0.0% | 0 / 18 | 0.0% |
-| DinoPackunSequencer.o | 0.0% | 0 / 11 | 0.0% |
-| DinoPackunStateAwake.o | 0.0% | 0 / 8 | 0.0% |
-| DinoPackunStateDamage.o | 0.0% | 0 / 27 | 0.0% |
-| DinoPackunStateFire.o | 0.0% | 0 / 25 | 0.0% |
-| DinoPackunTail.o | 0.0% | 0 / 18 | 0.0% |
-| DinoPackunTailNode.o | 0.0% | 0 / 17 | 0.0% |
-| DinoPackunTailPart.o | 0.0% | 0 / 14 | 0.0% |
-| DinoPackunTailRoot.o | 0.0% | 0 / 9 | 0.0% |
-| DinoPackunTrackFire.o | 0.0% | 0 / 18 | 0.0% |
-| DinoPackunVs1.o | 0.0% | 0 / 33 | 0.0% |
-| DinoPackunVs2.o | 0.0% | 0 / 33 | 0.0% |
-| Dodoryu.o | 0.0% | 0 / 122 | 0.0% |
-| DodoryuDemo.o | 0.0% | 0 / 66 | 0.0% |
-| DodoryuHill.o | 0.0% | 0 / 5 | 0.0% |
-| DodoryuMove.o | 0.0% | 0 / 20 | 0.0% |
-| DodoryuStateBase.o | 0.0% | 0 / 2 | 0.0% |
-| DodoryuStateLv1.o | 0.0% | 0 / 55 | 0.0% |
-| DodoryuStateLv2.o | 0.0% | 0 / 122 | 0.0% |
-| DodoryuStateWait.o | 0.0% | 0 / 7 | 0.0% |
-| DodoryuUtil.o | 0.0% | 0 / 6 | 0.0% |
-| Koopa.o | 0.0% | 0 / 15 | 0.0% |
-| KoopaBattleBase.o | 0.0% | 0 / 11 | 0.0% |
-| KoopaBattleMain.o | 0.0% | 0 / 48 | 0.0% |
-| KoopaBattleStairsBase.o | 0.0% | 0 / 7 | 0.0% |
-| KoopaBattleStairsVs1.o | 0.0% | 0 / 27 | 0.0% |
-| KoopaBattleStairsVs3.o | 0.0% | 0 / 14 | 0.0% |
-| KoopaBattleVs3Lv1.o | 0.0% | 0 / 25 | 0.0% |
-| KoopaBattleVs3Lv2.o | 0.0% | 0 / 24 | 0.0% |
-| KoopaDemoPowerUp.o | 0.0% | 0 / 12 | 0.0% |
-| KoopaDemoFallToPlanetVs3Lv2.o | 0.0% | 0 / 21 | 0.0% |
-| KoopaDemoFallToPlanetVs3Lv3.o | 0.0% | 0 / 21 | 0.0% |
-| KoopaDemoJumpToPlanet.o | 0.0% | 0 / 18 | 0.0% |
-| KoopaFigureBall.o | 0.0% | 0 / 7 | 0.0% |
-| KoopaFireShort.o | 0.0% | 0 / 22 | 0.0% |
-| KoopaFireStairs.o | 0.0% | 0 / 14 | 0.0% |
-| KoopaFunction.o | 0.0% | 0 / 89 | 0.0% |
-| KoopaParts.o | 0.0% | 0 / 21 | 0.0% |
-| KoopaPowerUpSwitch.o | 0.0% | 0 / 4 | 0.0% |
-| KoopaPlanetShadow.o | 0.0% | 0 / 4 | 0.0% |
-| KoopaRestarterVs3.o | 0.0% | 0 / 4 | 0.0% |
-| KoopaRockBreak.o | 0.0% | 0 / 4 | 0.0% |
-| KoopaSensorCtrl.o | 0.0% | 0 / 3 | 0.0% |
-| KoopaSequencer.o | 0.0% | 0 / 7 | 0.0% |
-| KoopaSubSequenceBattle.o | 0.0% | 0 / 17 | 0.0% |
-| KoopaSequencerVs1.o | 0.0% | 0 / 26 | 0.0% |
-| KoopaSequencerVs2.o | 0.0% | 0 / 26 | 0.0% |
-| KoopaSequencerVs3.o | 0.0% | 0 / 50 | 0.0% |
-| KoopaShockWave.o | 0.0% | 0 / 13 | 0.0% |
-| KoopaStateAttackFireShort.o | 0.0% | 0 / 11 | 0.0% |
-| KoopaStateAttackFireLong.o | 0.0% | 0 / 11 | 0.0% |
-| KoopaStateAttackHipDrop.o | 0.0% | 0 / 29 | 0.0% |
-| KoopaStateAttackRoll.o | 0.0% | 0 / 28 | 0.0% |
-| KoopaStateAttackShockWave.o | 0.0% | 0 / 18 | 0.0% |
-| KoopaStateAttackSpin.o | 0.0% | 0 / 26 | 0.0% |
-| KoopaStateChaseRoll.o | 0.0% | 0 / 28 | 0.0% |
-| KoopaStateDamageEscape.o | 0.0% | 0 / 51 | 0.0% |
-| KoopaStateGuard.o | 0.0% | 0 / 14 | 0.0% |
-| KoopaStateJumpAway.o | 0.0% | 0 / 14 | 0.0% |
-| KoopaSwitchKeeper.o | 0.0% | 0 / 4 | 0.0% |
-| KoopaViewSwitchKeeper.o | 0.0% | 0 / 4 | 0.0% |
-| OtaKing.o | 0.0% | 0 / 99 | 0.0% |
-| OtaKingLongFoot.o | 0.0% | 0 / 23 | 0.0% |
-| OtaKingMagma.o | 0.0% | 0 / 35 | 0.0% |
-| Polta.o | 0.0% | 0 / 38 | 0.0% |
-| PoltaActionBase.o | 0.0% | 0 / 12 | 0.0% |
-| PoltaActionSequencer.o | 0.0% | 0 / 27 | 0.0% |
-| PoltaArm.o | 0.0% | 0 / 39 | 0.0% |
-| PoltaBattleLv1.o | 0.0% | 0 / 31 | 0.0% |
-| PoltaBattleLv2.o | 0.0% | 0 / 38 | 0.0% |
-| PoltaDemo.o | 0.0% | 0 / 22 | 0.0% |
-| PoltaFunction.o | 0.0% | 0 / 42 | 0.0% |
-| PoltaGroundRock.o | 0.0% | 0 / 27 | 0.0% |
-| PoltaGroundRockHolder.o | 0.0% | 0 / 4 | 0.0% |
-| PoltaRock.o | 0.0% | 0 / 26 | 0.0% |
-| PoltaRockHolder.o | 0.0% | 0 / 3 | 0.0% |
-| PoltaSensorCtrl.o | 0.0% | 0 / 10 | 0.0% |
-| PoltaStateAttackGround.o | 0.0% | 0 / 14 | 0.0% |
-| PoltaStateGenerateRock.o | 0.0% | 0 / 13 | 0.0% |
-| PoltaStateGroundRockAttack.o | 0.0% | 0 / 13 | 0.0% |
-| PoltaStatePunch.o | 0.0% | 0 / 16 | 0.0% |
-| PoltaStateStagger.o | 0.0% | 0 / 9 | 0.0% |
-| PoltaWaitStart.o | 0.0% | 0 / 3 | 0.0% |
-| SkeletalFishBaby.o | 0.0% | 0 / 38 | 0.0% |
-| SkeletalFishBabyRail.o | 0.0% | 0 / 3 | 0.0% |
-| SkeletalFishBabyRailHolder.o | 0.0% | 0 / 12 | 0.0% |
-| SkeletalFishBoss.o | 0.0% | 0 / 114 | 0.0% |
-| SkeletalFishBossBattleDirector.o | 0.0% | 0 / 14 | 0.0% |
-| SkeletalFishBossFunc.o | 0.0% | 0 / 2 | 0.0% |
-| SkeletalFishBossInfo.o | 0.0% | 0 / 8 | 0.0% |
-| SkeletalFishBossRail.o | 0.0% | 0 / 9 | 0.0% |
-| SkeletalFishBossRailHolder.o | 0.0% | 0 / 7 | 0.0% |
-| SkeletalFishGuard.o | 0.0% | 0 / 62 | 0.0% |
-| SkeletalFishGuardHolder.o | 0.0% | 0 / 15 | 0.0% |
-| SkeletalFishJointCalc.o | 0.0% | 0 / 1 | 0.0% |
-| SkeletalFishRailControl.o | 0.0% | 0 / 6 | 0.0% |
-| TombSpider.o | 0.0% | 0 / 41 | 0.0% |
-| TombSpiderAcid.o | 0.0% | 0 / 8 | 0.0% |
-| TombSpiderAction1st.o | 0.0% | 0 / 38 | 0.0% |
-| TombSpiderAction2nd.o | 0.0% | 0 / 37 | 0.0% |
-| TombSpiderActionBase.o | 0.0% | 0 / 22 | 0.0% |
-| TombSpiderActionCocoon.o | 0.0% | 0 / 12 | 0.0% |
-| TombSpiderDemo.o | 0.0% | 0 / 10 | 0.0% |
-| TombSpiderEnvironment.o | 0.0% | 0 / 1 | 0.0% |
-| TombSpiderFunction.o | 0.0% | 0 / 52 | 0.0% |
-| TombSpiderGland.o | 0.0% | 0 / 17 | 0.0% |
-| TombSpiderParts.o | 0.0% | 0 / 6 | 0.0% |
-| TombSpiderSensorCtrl.o | 0.0% | 0 / 9 | 0.0% |
-| TombSpiderStateSwoon.o | 0.0% | 0 / 14 | 0.0% |
-| TombSpiderThreadAttacher.o | 0.0% | 0 / 9 | 0.0% |
-| TombSpiderVitalSpot.o | 0.0% | 0 / 22 | 0.0% |
-| TripodBoss.o | 0.0% | 0 / 105 | 0.0% |
-| TripodBossAccesser.o | 0.0% | 0 / 37 | 0.0% |
-| TripodBossBaseJointPosition.o | 0.0% | 0 / 6 | 0.0% |
-| TripodBossBreakMovement.o | 0.0% | 0 / 14 | 0.0% |
-| TripodBossCoin.o | 0.0% | 0 / 13 | 0.0% |
-| TripodBossCore.o | 0.0% | 0 / 23 | 0.0% |
-| TripodBossFixParts.o | 0.0% | 0 / 19 | 0.0% |
-| TripodBossFixPartsBase.o | 0.0% | 0 / 14 | 0.0% |
-| TripodBossGuardWall.o | 0.0% | 0 / 29 | 0.0% |
-| TripodBossGuardWallPart.o | 0.0% | 0 / 26 | 0.0% |
-| TripodBossKillerGenerater.o | 0.0% | 0 / 47 | 0.0% |
-| TripodBossKillerGeneraterCircle.o | 0.0% | 0 / 5 | 0.0% |
-| TripodBossKinokoOneUp.o | 0.0% | 0 / 25 | 0.0% |
-| TripodBossLeg.o | 0.0% | 0 / 90 | 0.0% |
-| TripodBossMovableArea.o | 0.0% | 0 / 13 | 0.0% |
-| TripodBossRailMoveParts.o | 0.0% | 0 / 7 | 0.0% |
-| TripodBossRotateParts.o | 0.0% | 0 / 8 | 0.0% |
-| TripodBossShell.o | 0.0% | 0 / 14 | 0.0% |
-| TripodBossStepPoint.o | 0.0% | 0 / 7 | 0.0% |
-| TripodBossStepSequence.o | 0.0% | 0 / 8 | 0.0% |
-| TripodBossStepStartArea.o | 0.0% | 0 / 5 | 0.0% |
+| BossAccessor.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| BossBegoman.o | 0.0% | 0 / 92 | 0.0% | :x: 
+| BossBegomanHead.o | 0.0% | 0 / 36 | 0.0% | :x: 
+| BossKameck.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| BossKameckAction.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| BossKameckBarrier.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| BossKameckBattleDemo.o | 0.0% | 0 / 44 | 0.0% | :x: 
+| BossKameckBattlePattarn.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| BossKameckSequencer.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| BossKameckMoveRail.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| BossKameckVs1.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| BossKameckVs2.o | 0.0% | 0 / 29 | 0.0% | :x: 
+| BossKameckStateBattle.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| BossStinkBug.o | 0.0% | 0 / 46 | 0.0% | :x: 
+| BossStinkBugActionBase.o | 0.0% | 0 / 45 | 0.0% | :x: 
+| BossStinkBugActionFlyHigh.o | 0.0% | 0 / 49 | 0.0% | :x: 
+| BossStinkBugActionFlyLow.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| BossStinkBugActionGround.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| BossStinkBugActionSequencer.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| BossStinkBugAngryDemo.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| BossStinkBugBomb.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| BossStinkBugBombHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| BossStinkBugFinishDemo.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| BossStinkBugFlyDemo.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| BossStinkBugFunction.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| BossStinkBugOpeningDemo.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| DinoPackun.o | 0.0% | 0 / 59 | 0.0% | :x: 
+| DinoPackunAction.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| DinoPackunBall.o | 0.0% | 0 / 40 | 0.0% | :x: 
+| DinoPackunBattleEgg.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| DinoPackunBattleEggVs2.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| DinoPackunBattleVs1Lv1.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| DinoPackunBattleVs1Lv2.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| DinoPackunBattleVs2Lv1.o | 0.0% | 0 / 46 | 0.0% | :x: 
+| DinoPackunDemo.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| DinoPackunDemoPosition.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| DinoPackunEggShell.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| DinoPackunFire.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| DinoPackunSequencer.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| DinoPackunStateAwake.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| DinoPackunStateDamage.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| DinoPackunStateFire.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| DinoPackunTail.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| DinoPackunTailNode.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| DinoPackunTailPart.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| DinoPackunTailRoot.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| DinoPackunTrackFire.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| DinoPackunVs1.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| DinoPackunVs2.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| Dodoryu.o | 0.0% | 0 / 122 | 0.0% | :x: 
+| DodoryuDemo.o | 0.0% | 0 / 66 | 0.0% | :x: 
+| DodoryuHill.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| DodoryuMove.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| DodoryuStateBase.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| DodoryuStateLv1.o | 0.0% | 0 / 55 | 0.0% | :x: 
+| DodoryuStateLv2.o | 0.0% | 0 / 122 | 0.0% | :x: 
+| DodoryuStateWait.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| DodoryuUtil.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| Koopa.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| KoopaBattleBase.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| KoopaBattleMain.o | 0.0% | 0 / 48 | 0.0% | :x: 
+| KoopaBattleStairsBase.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| KoopaBattleStairsVs1.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| KoopaBattleStairsVs3.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| KoopaBattleVs3Lv1.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| KoopaBattleVs3Lv2.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| KoopaDemoPowerUp.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| KoopaDemoFallToPlanetVs3Lv2.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| KoopaDemoFallToPlanetVs3Lv3.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| KoopaDemoJumpToPlanet.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| KoopaFigureBall.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| KoopaFireShort.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| KoopaFireStairs.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| KoopaFunction.o | 0.0% | 0 / 89 | 0.0% | :x: 
+| KoopaParts.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| KoopaPowerUpSwitch.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| KoopaPlanetShadow.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| KoopaRestarterVs3.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| KoopaRockBreak.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| KoopaSensorCtrl.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| KoopaSequencer.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| KoopaSubSequenceBattle.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| KoopaSequencerVs1.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| KoopaSequencerVs2.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| KoopaSequencerVs3.o | 0.0% | 0 / 50 | 0.0% | :x: 
+| KoopaShockWave.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| KoopaStateAttackFireShort.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| KoopaStateAttackFireLong.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| KoopaStateAttackHipDrop.o | 0.0% | 0 / 29 | 0.0% | :x: 
+| KoopaStateAttackRoll.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| KoopaStateAttackShockWave.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| KoopaStateAttackSpin.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| KoopaStateChaseRoll.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| KoopaStateDamageEscape.o | 0.0% | 0 / 51 | 0.0% | :x: 
+| KoopaStateGuard.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| KoopaStateJumpAway.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| KoopaSwitchKeeper.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| KoopaViewSwitchKeeper.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OtaKing.o | 0.0% | 0 / 99 | 0.0% | :x: 
+| OtaKingLongFoot.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| OtaKingMagma.o | 0.0% | 0 / 35 | 0.0% | :x: 
+| Polta.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| PoltaActionBase.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| PoltaActionSequencer.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| PoltaArm.o | 0.0% | 0 / 39 | 0.0% | :x: 
+| PoltaBattleLv1.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| PoltaBattleLv2.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| PoltaDemo.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| PoltaFunction.o | 0.0% | 0 / 42 | 0.0% | :x: 
+| PoltaGroundRock.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| PoltaGroundRockHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| PoltaRock.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| PoltaRockHolder.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| PoltaSensorCtrl.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| PoltaStateAttackGround.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| PoltaStateGenerateRock.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| PoltaStateGroundRockAttack.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| PoltaStatePunch.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| PoltaStateStagger.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| PoltaWaitStart.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| SkeletalFishBaby.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| SkeletalFishBabyRail.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| SkeletalFishBabyRailHolder.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| SkeletalFishBoss.o | 0.0% | 0 / 114 | 0.0% | :x: 
+| SkeletalFishBossBattleDirector.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| SkeletalFishBossFunc.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| SkeletalFishBossInfo.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| SkeletalFishBossRail.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SkeletalFishBossRailHolder.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| SkeletalFishGuard.o | 0.0% | 0 / 62 | 0.0% | :x: 
+| SkeletalFishGuardHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| SkeletalFishJointCalc.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| SkeletalFishRailControl.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| TombSpider.o | 0.0% | 0 / 41 | 0.0% | :x: 
+| TombSpiderAcid.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| TombSpiderAction1st.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| TombSpiderAction2nd.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| TombSpiderActionBase.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| TombSpiderActionCocoon.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| TombSpiderDemo.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| TombSpiderEnvironment.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| TombSpiderFunction.o | 0.0% | 0 / 52 | 0.0% | :x: 
+| TombSpiderGland.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| TombSpiderParts.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| TombSpiderSensorCtrl.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| TombSpiderStateSwoon.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| TombSpiderThreadAttacher.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| TombSpiderVitalSpot.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| TripodBoss.o | 0.0% | 0 / 105 | 0.0% | :x: 
+| TripodBossAccesser.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| TripodBossBaseJointPosition.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| TripodBossBreakMovement.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| TripodBossCoin.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| TripodBossCore.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| TripodBossFixParts.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| TripodBossFixPartsBase.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| TripodBossGuardWall.o | 0.0% | 0 / 29 | 0.0% | :x: 
+| TripodBossGuardWallPart.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| TripodBossKillerGenerater.o | 0.0% | 0 / 47 | 0.0% | :x: 
+| TripodBossKillerGeneraterCircle.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| TripodBossKinokoOneUp.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| TripodBossLeg.o | 0.0% | 0 / 90 | 0.0% | :x: 
+| TripodBossMovableArea.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| TripodBossRailMoveParts.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| TripodBossRotateParts.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| TripodBossShell.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| TripodBossStepPoint.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| TripodBossStepSequence.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| TripodBossStepStartArea.o | 0.0% | 0 / 5 | 0.0% | :x: 
 
 
 # BossAccessor.o

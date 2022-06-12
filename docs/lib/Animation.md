@@ -1,18 +1,18 @@
 # Animation
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% |
-| BckCtrl.o | 18.295218295218298% | 3 / 9 | 33.33333333333333% |
-| BpkPlayer.o | 0.0% | 0 / 3 | 0.0% |
-| BrkPlayer.o | 0.0% | 0 / 3 | 0.0% |
-| BtkPlayer.o | 0.0% | 0 / 3 | 0.0% |
-| BtpPlayer.o | 0.0% | 0 / 3 | 0.0% |
-| BvaPlayer.o | 0.0% | 0 / 3 | 0.0% |
-| LayoutAnmPlayer.o | 0.0% | 0 / 5 | 0.0% |
-| MaterialAnmBuffer.o | 0.0% | 0 / 32 | 0.0% |
-| XanimeCore.o | 4.778761061946903% | 5 / 46 | 10.869565217391305% |
-| XanimePlayer.o | 0.0% | 0 / 44 | 0.0% |
-| XanimeResource.o | 0.0% | 0 / 18 | 0.0% |
+| AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% | :eight_pointed_black_star: 
+| BckCtrl.o | 18.295218295218298% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| BpkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| BrkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| BtkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| BtpPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| BvaPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| LayoutAnmPlayer.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| MaterialAnmBuffer.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| XanimeCore.o | 4.778761061946903% | 5 / 46 | 10.869565217391305% | :eight_pointed_black_star: 
+| XanimePlayer.o | 0.0% | 0 / 44 | 0.0% | :x: 
+| XanimeResource.o | 0.0% | 0 / 18 | 0.0% | :x: 
 
 
 # AnmPlayer.o

@@ -1,28 +1,28 @@
 # Ride
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| BigBubble.o | 0.0% | 0 / 82 | 0.0% |
-| Creeper.o | 0.0% | 0 / 34 | 0.0% |
-| Fluff.o | 0.0% | 0 / 40 | 0.0% |
-| FluffWind.o | 0.0% | 0 / 20 | 0.0% |
-| JumpBranch.o | 0.0% | 0 / 15 | 0.0% |
-| Plant.o | 0.0% | 0 / 64 | 0.0% |
-| PlantLeaf.o | 0.0% | 0 / 12 | 0.0% |
-| PlantStalk.o | 0.0% | 0 / 16 | 0.0% |
-| Pole.o | 0.0% | 0 / 62 | 0.0% |
-| SledRopePoint.o | 0.0% | 0 / 3 | 0.0% |
-| SlingShooter.o | 0.0% | 0 / 45 | 0.0% |
-| SpaceCocoon.o | 0.0% | 0 / 64 | 0.0% |
-| SphereAccelSensorController.o | 0.0% | 0 / 9 | 0.0% |
-| SphereController.o | 0.0% | 0 / 5 | 0.0% |
-| SpherePadController.o | 0.0% | 0 / 7 | 0.0% |
-| SurfRay.o | 0.0% | 0 / 68 | 0.0% |
-| SurfRayTutorial.o | 0.0% | 0 / 56 | 0.0% |
-| SwingRope.o | 0.0% | 0 / 56 | 0.0% |
-| SwingRopePoint.o | 0.0% | 0 / 11 | 0.0% |
-| Tamakoro.o | 0.0% | 0 / 104 | 0.0% |
-| TamakoroTutorial.o | 0.0% | 0 / 57 | 0.0% |
-| Trapeze.o | 0.0% | 0 / 34 | 0.0% |
+| BigBubble.o | 0.0% | 0 / 82 | 0.0% | :x: 
+| Creeper.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| Fluff.o | 0.0% | 0 / 40 | 0.0% | :x: 
+| FluffWind.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| JumpBranch.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| Plant.o | 0.0% | 0 / 64 | 0.0% | :x: 
+| PlantLeaf.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| PlantStalk.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| Pole.o | 0.0% | 0 / 62 | 0.0% | :x: 
+| SledRopePoint.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| SlingShooter.o | 0.0% | 0 / 45 | 0.0% | :x: 
+| SpaceCocoon.o | 0.0% | 0 / 64 | 0.0% | :x: 
+| SphereAccelSensorController.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SphereController.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| SpherePadController.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| SurfRay.o | 0.0% | 0 / 68 | 0.0% | :x: 
+| SurfRayTutorial.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| SwingRope.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| SwingRopePoint.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| Tamakoro.o | 0.0% | 0 / 104 | 0.0% | :x: 
+| TamakoroTutorial.o | 0.0% | 0 / 57 | 0.0% | :x: 
+| Trapeze.o | 0.0% | 0 / 34 | 0.0% | :x: 
 
 
 # BigBubble.o

@@ -1,43 +1,43 @@
 # AreaObj
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% |
-| AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% |
-| AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% |
-| AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% |
-| AreaObjFollower.o | 0.0% | 0 / 4 | 0.0% |
-| AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% |
-| AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% |
-| BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% |
-| BigBubbleCameraArea.o | 72.02380952380952% | 7 / 10 | 70.0% |
-| BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% |
-| BloomArea.o | 100.0% | 6 / 6 | 100.0% |
-| CameraRepulsiveArea.o | 45.85987261146497% | 4 / 8 | 50.0% |
-| ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% |
-| CollisionArea.o | 25.90489709013485% | 11 / 31 | 35.483870967741936% |
-| CubeCamera.o | 34.55882352941176% | 7 / 12 | 58.333333333333336% |
-| DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% |
-| DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% |
-| FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% |
-| GlaringLightArea.o | 77.57575757575758% | 5 / 7 | 71.42857142857143% |
-| HazeCube.o | 100.0% | 4 / 4 | 100.0% |
-| ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% |
-| LightArea.o | 100.0% | 4 / 4 | 100.0% |
-| LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% |
-| MercatorTransformCube.o | 12.424503882657463% | 6 / 23 | 26.08695652173913% |
-| MessageArea.o | 100.0% | 3 / 3 | 100.0% |
-| PlayerSeArea.o | 100.0% | 5 / 5 | 100.0% |
-| QuakeEffectArea.o | 100.0% | 2 / 2 | 100.0% |
-| RestartCube.o | 49.26829268292683% | 4 / 5 | 80.0% |
-| ScreenBlurArea.o | 100.0% | 5 / 5 | 100.0% |
-| SimpleBloomArea.o | 100.0% | 4 / 4 | 100.0% |
-| SoundEmitterCube.o | 32.66129032258064% | 3 / 5 | 60.0% |
-| SoundEmitterSphere.o | 48.8235294117647% | 3 / 4 | 75.0% |
-| SpinGuidanceArea.o | 47.5% | 2 / 3 | 66.66666666666666% |
-| SunLightArea.o | 100.0% | 3 / 3 | 100.0% |
-| SwitchArea.o | 100.0% | 5 / 5 | 100.0% |
-| WarpCube.o | 41.40350877192983% | 3 / 8 | 37.5% |
-| WaterArea.o | 33.89830508474576% | 2 / 5 | 40.0% |
+| AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
+| AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% | :eight_pointed_black_star: 
+| AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% | :eight_pointed_black_star: 
+| AreaObjFollower.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| BigBubbleCameraArea.o | 72.02380952380952% | 7 / 10 | 70.0% | :eight_pointed_black_star: 
+| BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
+| BloomArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| CameraRepulsiveArea.o | 45.85987261146497% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
+| ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| CollisionArea.o | 25.90489709013485% | 11 / 31 | 35.483870967741936% | :eight_pointed_black_star: 
+| CubeCamera.o | 34.55882352941176% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
+| DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
+| DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
+| FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| GlaringLightArea.o | 77.57575757575758% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
+| HazeCube.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
+| LightArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| MercatorTransformCube.o | 12.424503882657463% | 6 / 23 | 26.08695652173913% | :eight_pointed_black_star: 
+| MessageArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| PlayerSeArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| QuakeEffectArea.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| RestartCube.o | 49.26829268292683% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| ScreenBlurArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| SimpleBloomArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| SoundEmitterCube.o | 32.66129032258064% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| SoundEmitterSphere.o | 48.8235294117647% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| SpinGuidanceArea.o | 47.5% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| SunLightArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| SwitchArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| WarpCube.o | 41.40350877192983% | 3 / 8 | 37.5% | :eight_pointed_black_star: 
+| WaterArea.o | 33.89830508474576% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
 
 
 # AreaForm.o

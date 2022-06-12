@@ -1,31 +1,31 @@
 # Scene
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| GameScene.o | 0.0% | 0 / 66 | 0.0% |
-| GameSceneFunction.o | 0.0% | 0 / 17 | 0.0% |
-| GameScenePauseControl.o | 0.0% | 0 / 9 | 0.0% |
-| GameSceneScenarioOpeningCameraState.o | 0.0% | 0 / 13 | 0.0% |
-| IntermissionScene.o | 0.0% | 0 / 6 | 0.0% |
-| LogoScene.o | 0.0% | 0 / 37 | 0.0% |
-| MultiSceneEffectKeeper.o | 0.0% | 0 / 11 | 0.0% |
-| MultiSceneActor.o | 0.0% | 0 / 34 | 0.0% |
-| PlayTimerScene.o | 0.0% | 0 / 19 | 0.0% |
-| PlacementInfoOrdered.o | 0.0% | 0 / 16 | 0.0% |
-| PlacementStateChecker.o | 100.0% | 6 / 6 | 100.0% |
-| ScenarioSelectScene.o | 0.0% | 0 / 50 | 0.0% |
-| Scene.o | 0.0% | 0 / 9 | 0.0% |
-| SceneDataInitializer.o | 0.0% | 0 / 9 | 0.0% |
-| SceneExecutor.o | 0.0% | 0 / 19 | 0.0% |
-| SceneFactory.o | 0.0% | 0 / 4 | 0.0% |
-| SceneFunction.o | 0.0% | 0 / 21 | 0.0% |
-| SceneObjHolder.o | 5.683060109289618% | 5 / 9 | 55.55555555555556% |
-| ScenePlayingResult.o | 0.0% | 0 / 8 | 0.0% |
-| SceneNameObjListExecutor.o | 0.0% | 0 / 5 | 0.0% |
-| SceneNameObjMovementController.o | 0.0% | 0 / 20 | 0.0% |
-| StageDataHolder.o | 25.36162005785921% | 18 / 51 | 35.294117647058826% |
-| StageFileLoader.o | 100.0% | 6 / 6 | 100.0% |
-| StageResourceLoader.o | 0.0% | 0 / 2 | 0.0% |
-| StopSceneController.o | 0.0% | 0 / 9 | 0.0% |
+| GameScene.o | 0.0% | 0 / 66 | 0.0% | :x: 
+| GameSceneFunction.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| GameScenePauseControl.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| GameSceneScenarioOpeningCameraState.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| IntermissionScene.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| LogoScene.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| MultiSceneEffectKeeper.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| MultiSceneActor.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| PlayTimerScene.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| PlacementInfoOrdered.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| PlacementStateChecker.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| ScenarioSelectScene.o | 0.0% | 0 / 50 | 0.0% | :x: 
+| Scene.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SceneDataInitializer.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SceneExecutor.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| SceneFactory.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| SceneFunction.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| SceneObjHolder.o | 5.683060109289618% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
+| ScenePlayingResult.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| SceneNameObjListExecutor.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| SceneNameObjMovementController.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| StageDataHolder.o | 25.36162005785921% | 18 / 51 | 35.294117647058826% | :eight_pointed_black_star: 
+| StageFileLoader.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| StageResourceLoader.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| StopSceneController.o | 0.0% | 0 / 9 | 0.0% | :x: 
 
 
 # GameScene.o

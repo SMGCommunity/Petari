@@ -1,19 +1,19 @@
 # NameObj
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| ModelChangableObjFactory.o | 0.0% | 0 / 13 | 0.0% |
-| MovementOnOffGroupHolder.o | 100.0% | 6 / 6 | 100.0% |
-| NameObj.o | 100.0% | 16 / 16 | 100.0% |
-| NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% |
-| NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% |
-| NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% |
-| NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% |
-| NameObjFactory.o | 6.621054954756124% | 36 / 568 | 6.338028169014084% |
-| NameObjFinder.o | 0.0% | 0 / 1 | 0.0% |
-| NameObjGroup.o | 100.0% | 5 / 5 | 100.0% |
-| NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% |
-| NameObjListExecutor.o | 58.46994535519126% | 29 / 31 | 93.54838709677419% |
-| NameObjRegister.o | 100.0% | 3 / 3 | 100.0% |
+| ModelChangableObjFactory.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| MovementOnOffGroupHolder.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| NameObj.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
+| NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
+| NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% | :eight_pointed_black_star: 
+| NameObjFactory.o | 6.621054954756124% | 36 / 568 | 6.338028169014084% | :eight_pointed_black_star: 
+| NameObjFinder.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
+| NameObjListExecutor.o | 58.46994535519126% | 29 / 31 | 93.54838709677419% | :eight_pointed_black_star: 
+| NameObjRegister.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # ModelChangableObjFactory.o

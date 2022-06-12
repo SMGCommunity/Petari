@@ -1,20 +1,20 @@
 # Gravity
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% |
-| CubeGravity.o | 1.3597033374536465% | 1 / 10 | 10.0% |
-| DiskGravity.o | 33.33333333333333% | 9 / 11 | 81.81818181818183% |
-| DiskTorusGravity.o | 20.99644128113879% | 7 / 9 | 77.77777777777779% |
-| GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% |
-| GraviryFollower.o | 100.0% | 4 / 4 | 100.0% |
-| GravityCreator.o | 100.0% | 42 / 42 | 100.0% |
-| GravityInfo.o | 100.0% | 2 / 2 | 100.0% |
-| ParallelGravity.o | 80.14354066985646% | 11 / 13 | 84.61538461538461% |
-| PlanetGravity.o | 100.0% | 9 / 9 | 100.0% |
-| PlanetGravityManager.o | 85.86956521739131% | 4 / 5 | 80.0% |
-| PointGravity.o | 100.0% | 3 / 3 | 100.0% |
-| SegmentGravity.o | 25.115207373271893% | 5 / 8 | 62.5% |
-| WireGravity.o | 33.5483870967742% | 3 / 4 | 75.0% |
+| ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
+| CubeGravity.o | 1.3597033374536465% | 1 / 10 | 10.0% | :eight_pointed_black_star: 
+| DiskGravity.o | 33.33333333333333% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
+| DiskTorusGravity.o | 20.99644128113879% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
+| GlobalGravityObj.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
+| GraviryFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| GravityCreator.o | 100.0% | 42 / 42 | 100.0% | :white_check_mark: 
+| GravityInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| ParallelGravity.o | 80.14354066985646% | 11 / 13 | 84.61538461538461% | :eight_pointed_black_star: 
+| PlanetGravity.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| PlanetGravityManager.o | 85.86956521739131% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| PointGravity.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| SegmentGravity.o | 25.115207373271893% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
+| WireGravity.o | 33.5483870967742% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 
 
 # ConeGravity.o

@@ -1,102 +1,102 @@
 # System
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AlreadyDoneFlagInGalaxy.o | 58.98876404494382% | 7 / 9 | 77.77777777777779% |
-| ArchiveHolder.o | 0.0% | 0 / 8 | 0.0% |
-| AudSystemWrapper.o | 0.0% | 0 / 20 | 0.0% |
-| BinaryDataChunkHolder.o | 16.877637130801688% | 2 / 7 | 28.57142857142857% |
-| BinaryDataContentAccessor.o | 0.0% | 0 / 12 | 0.0% |
-| DrawBuffer.o | 0.0% | 0 / 19 | 0.0% |
-| DrawBufferExecuter.o | 0.0% | 0 / 10 | 0.0% |
-| DrawBufferGroup.o | 52.459016393442624% | 12 / 19 | 63.1578947368421% |
-| DrawBufferHolder.o | 0.0% | 0 / 15 | 0.0% |
-| DrawSyncManager.o | 36.7816091954023% | 10 / 17 | 58.82352941176471% |
-| FileHolder.o | 76.36986301369863% | 10 / 12 | 83.33333333333334% |
-| FileLoader.o | 0.0% | 0 / 16 | 0.0% |
-| FileLoaderThread.o | 0.0% | 0 / 6 | 0.0% |
-| FileRipper.o | 0.0% | 0 / 7 | 0.0% |
-| FunctionAsyncExecutor.o | 24.47817836812144% | 5 / 17 | 29.411764705882355% |
-| GameSystem.o | 8.732394366197182% | 1 / 32 | 3.125% |
-| GameSystemDimmingWatcher.o | 0.0% | 0 / 2 | 0.0% |
-| GameSystemErrorWatcher.o | 0.0% | 0 / 23 | 0.0% |
-| GameSystemException.o | 0.0% | 0 / 4 | 0.0% |
-| GameSystemFontHolder.o | 0.0% | 0 / 4 | 0.0% |
-| GameSystemFrameControl.o | 0.0% | 0 / 2 | 0.0% |
-| GameSystemFunction.o | 0.0% | 0 / 48 | 0.0% |
-| GameSystemObjHolder.o | 0.0% | 0 / 20 | 0.0% |
-| GameSystemStationedArchiveLoader.o | 0.0% | 0 / 52 | 0.0% |
-| GameSystemSceneController.o | 0.819672131147541% | 2 / 78 | 2.564102564102564% |
-| GameSystemResetAndPowerProcess.o | 0.0% | 0 / 36 | 0.0% |
-| HeapMemoryWatcher.o | 89.85507246376811% | 18 / 19 | 94.73684210526315% |
-| Language.o | 38.392857142857146% | 2 / 7 | 28.57142857142857% |
-| LayoutHolder.o | 10.961968680089486% | 2 / 12 | 16.666666666666664% |
-| MainLoopFramework.o | 0.0% | 0 / 34 | 0.0% |
-| MessageHolder.o | 0.0% | 0 / 19 | 0.0% |
-| NANDErrorSequence.o | 0.0% | 0 / 56 | 0.0% |
-| NANDManager.o | 0.0% | 0 / 20 | 0.0% |
-| NANDManagerThread.o | 0.0% | 0 / 5 | 0.0% |
-| NerveExecutor.o | 67.53246753246754% | 6 / 7 | 85.71428571428571% |
-| OSThreadWrapper.o | 73.4375% | 5 / 6 | 83.33333333333334% |
-| Overwrite.o | 0.0% | 0 / 63 | 0.0% |
-| PauseButtonCheckerInGame.o | 0.0% | 0 / 5 | 0.0% |
-| PlacedHiddenStarScenarioTable.o | 0.0% | 0 / 1 | 0.0% |
-| RenderMode.o | 0.0% | 0 / 4 | 0.0% |
-| ResourceHolder.o | 0.0% | 0 / 13 | 0.0% |
-| ResourceHolderManager.o | 12.433392539964476% | 3 / 22 | 13.636363636363635% |
-| ResourceInfo.o | 100.0% | 15 / 15 | 100.0% |
-| ScenarioDataParser.o | 9.16955017301038% | 5 / 25 | 20.0% |
-| ShapePacketUserData.o | 0.0% | 0 / 8 | 0.0% |
-| StarPointerOnOffController.o | 0.0% | 0 / 38 | 0.0% |
-| StationedArchiveLoader.o | 0.0% | 0 / 6 | 0.0% |
-| StationedFileInfo.o | 0.0% | 0 / 1 | 0.0% |
-| WPad.o | 0.0% | 0 / 21 | 0.0% |
-| WPadAcceleration.o | 0.0% | 0 / 9 | 0.0% |
-| WPadButton.o | 0.0% | 0 / 29 | 0.0% |
-| WPadHolder.o | 0.0% | 0 / 19 | 0.0% |
-| WPadHVSwing.o | 0.0% | 0 / 4 | 0.0% |
-| WPadInfoChecker.o | 0.0% | 0 / 6 | 0.0% |
-| WPadLeaveWatcher.o | 0.0% | 0 / 5 | 0.0% |
-| WPadPointer.o | 0.0% | 0 / 9 | 0.0% |
-| WPadRumble.o | 0.0% | 0 / 14 | 0.0% |
-| WPadRumbleData.o | 0.0% | 0 / 3 | 0.0% |
-| WPadStick.o | 0.0% | 0 / 3 | 0.0% |
-| HomeButtonMenuWrapper.o | 0.0% | 0 / 9 | 0.0% |
-| HomeButtonStateNotifier.o | 0.0% | 0 / 5 | 0.0% |
-| ConfigDataHolder.o | 100.0% | 23 / 23 | 100.0% |
-| ConfigDataMii.o | 100.0% | 10 / 10 | 100.0% |
-| ConfigDataMisc.o | 100.0% | 14 / 14 | 100.0% |
-| FindingLuigiEventScheduler.o | 0.0% | 0 / 17 | 0.0% |
-| GalaxyCometScheduler.o | 0.0% | 0 / 27 | 0.0% |
-| GalaxyCometState.o | 0.0% | 0 / 14 | 0.0% |
-| GalaxyMoveArgument.o | 0.0% | 0 / 3 | 0.0% |
-| GalaxyNameSortTable.o | 0.0% | 0 / 1 | 0.0% |
-| GalaxyStatusAccessor.o | 64.6484375% | 20 / 26 | 76.92307692307693% |
-| GameDataConst.o | 59.75103734439834% | 8 / 10 | 80.0% |
-| GameDataFunction.o | 0.0% | 0 / 78 | 0.0% |
-| GameDataGalaxyStorage.o | 0.0% | 0 / 27 | 0.0% |
-| GameDataHolder.o | 0.0% | 0 / 46 | 0.0% |
-| GameDataPlayerStatus.o | 0.0% | 0 / 11 | 0.0% |
-| GameDataTemporaryInGalaxy.o | 0.0% | 0 / 16 | 0.0% |
-| GameEventFlag.o | 0.0% | 0 / 13 | 0.0% |
-| GameEventFlagTable.o | 0.0% | 0 / 28 | 0.0% |
-| GameEventFlagChecker.o | 0.0% | 0 / 9 | 0.0% |
-| GameEventFlagStorage.o | 44.6078431372549% | 6 / 8 | 75.0% |
-| GameEventValueChecker.o | 0.0% | 0 / 10 | 0.0% |
-| GameSequenceDirector.o | 0.0% | 0 / 11 | 0.0% |
-| GameSequenceFunction.o | 0.0% | 0 / 62 | 0.0% |
-| GameSequenceProgress.o | 0.0% | 0 / 37 | 0.0% |
-| LuigiLeftSupplier.o | 0.0% | 0 / 2 | 0.0% |
-| SaveDataBannerCreator.o | 0.0% | 0 / 15 | 0.0% |
-| SaveDataFileAccessor.o | 0.0% | 0 / 4 | 0.0% |
-| SaveDataHandler.o | 0.0% | 0 / 39 | 0.0% |
-| SaveDataHandleSequence.o | 0.0% | 0 / 83 | 0.0% |
-| ScenarioProgressTestRun.o | 0.0% | 0 / 1 | 0.0% |
-| SpinDriverPathStorage.o | 0.0% | 0 / 31 | 0.0% |
-| StageResultSequenceChecker.o | 0.0% | 0 / 14 | 0.0% |
-| StarPieceAlmsStorage.o | 0.0% | 0 / 9 | 0.0% |
-| StorySequenceExecutor.o | 0.0% | 0 / 58 | 0.0% |
-| SysConfigFile.o | 30.0% | 5 / 16 | 31.25% |
-| UserFile.o | 0.0% | 0 / 26 | 0.0% |
+| AlreadyDoneFlagInGalaxy.o | 58.98876404494382% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
+| ArchiveHolder.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| AudSystemWrapper.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| BinaryDataChunkHolder.o | 16.877637130801688% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
+| BinaryDataContentAccessor.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| DrawBuffer.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| DrawBufferExecuter.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| DrawBufferGroup.o | 52.459016393442624% | 12 / 19 | 63.1578947368421% | :eight_pointed_black_star: 
+| DrawBufferHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| DrawSyncManager.o | 36.7816091954023% | 10 / 17 | 58.82352941176471% | :eight_pointed_black_star: 
+| FileHolder.o | 76.36986301369863% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
+| FileLoader.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| FileLoaderThread.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| FileRipper.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| FunctionAsyncExecutor.o | 24.47817836812144% | 5 / 17 | 29.411764705882355% | :eight_pointed_black_star: 
+| GameSystem.o | 8.732394366197182% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
+| GameSystemDimmingWatcher.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| GameSystemErrorWatcher.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| GameSystemException.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| GameSystemFontHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| GameSystemFrameControl.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| GameSystemFunction.o | 0.0% | 0 / 48 | 0.0% | :x: 
+| GameSystemObjHolder.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| GameSystemStationedArchiveLoader.o | 0.0% | 0 / 52 | 0.0% | :x: 
+| GameSystemSceneController.o | 0.819672131147541% | 2 / 78 | 2.564102564102564% | :eight_pointed_black_star: 
+| GameSystemResetAndPowerProcess.o | 0.0% | 0 / 36 | 0.0% | :x: 
+| HeapMemoryWatcher.o | 89.85507246376811% | 18 / 19 | 94.73684210526315% | :eight_pointed_black_star: 
+| Language.o | 38.392857142857146% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
+| LayoutHolder.o | 10.961968680089486% | 2 / 12 | 16.666666666666664% | :eight_pointed_black_star: 
+| MainLoopFramework.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| MessageHolder.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| NANDErrorSequence.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| NANDManager.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| NANDManagerThread.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| NerveExecutor.o | 67.53246753246754% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| OSThreadWrapper.o | 73.4375% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
+| Overwrite.o | 0.0% | 0 / 63 | 0.0% | :x: 
+| PauseButtonCheckerInGame.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| PlacedHiddenStarScenarioTable.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| RenderMode.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ResourceHolder.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| ResourceHolderManager.o | 12.433392539964476% | 3 / 22 | 13.636363636363635% | :eight_pointed_black_star: 
+| ResourceInfo.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
+| ScenarioDataParser.o | 9.16955017301038% | 5 / 25 | 20.0% | :eight_pointed_black_star: 
+| ShapePacketUserData.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| StarPointerOnOffController.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| StationedArchiveLoader.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| StationedFileInfo.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| WPad.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| WPadAcceleration.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| WPadButton.o | 0.0% | 0 / 29 | 0.0% | :x: 
+| WPadHolder.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| WPadHVSwing.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| WPadInfoChecker.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| WPadLeaveWatcher.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| WPadPointer.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| WPadRumble.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| WPadRumbleData.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| WPadStick.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| HomeButtonMenuWrapper.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| HomeButtonStateNotifier.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| ConfigDataHolder.o | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
+| ConfigDataMii.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
+| ConfigDataMisc.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
+| FindingLuigiEventScheduler.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| GalaxyCometScheduler.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| GalaxyCometState.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| GalaxyMoveArgument.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| GalaxyNameSortTable.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| GalaxyStatusAccessor.o | 64.6484375% | 20 / 26 | 76.92307692307693% | :eight_pointed_black_star: 
+| GameDataConst.o | 59.75103734439834% | 8 / 10 | 80.0% | :eight_pointed_black_star: 
+| GameDataFunction.o | 0.0% | 0 / 78 | 0.0% | :x: 
+| GameDataGalaxyStorage.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| GameDataHolder.o | 0.0% | 0 / 46 | 0.0% | :x: 
+| GameDataPlayerStatus.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| GameDataTemporaryInGalaxy.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| GameEventFlag.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| GameEventFlagTable.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| GameEventFlagChecker.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| GameEventFlagStorage.o | 44.6078431372549% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
+| GameEventValueChecker.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| GameSequenceDirector.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| GameSequenceFunction.o | 0.0% | 0 / 62 | 0.0% | :x: 
+| GameSequenceProgress.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| LuigiLeftSupplier.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| SaveDataBannerCreator.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| SaveDataFileAccessor.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| SaveDataHandler.o | 0.0% | 0 / 39 | 0.0% | :x: 
+| SaveDataHandleSequence.o | 0.0% | 0 / 83 | 0.0% | :x: 
+| ScenarioProgressTestRun.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| SpinDriverPathStorage.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| StageResultSequenceChecker.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| StarPieceAlmsStorage.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| StorySequenceExecutor.o | 0.0% | 0 / 58 | 0.0% | :x: 
+| SysConfigFile.o | 30.0% | 5 / 16 | 31.25% | :eight_pointed_black_star: 
+| UserFile.o | 0.0% | 0 / 26 | 0.0% | :x: 
 
 
 # AlreadyDoneFlagInGalaxy.o

@@ -1,116 +1,116 @@
 # Enemy
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AnimScaleController.o | 0.0% | 0 / 31 | 0.0% |
-| AnimStampController.o | 0.0% | 0 / 11 | 0.0% |
-| BallBeamer.o | 0.0% | 0 / 25 | 0.0% |
-| Balloonfish.o | 0.0% | 0 / 24 | 0.0% |
-| BasaBasa.o | 0.0% | 0 / 77 | 0.0% |
-| BegomanBaby.o | 0.0% | 0 / 76 | 0.0% |
-| BegomanBase.o | 0.0% | 0 / 79 | 0.0% |
-| BegomanFunction.o | 0.0% | 0 / 1 | 0.0% |
-| BegomanLauncher.o | 0.0% | 0 / 26 | 0.0% |
-| BegomanSpike.o | 0.0% | 0 / 78 | 0.0% |
-| BegomanSpring.o | 0.0% | 0 / 83 | 0.0% |
-| BegomanSpringHead.o | 0.0% | 0 / 27 | 0.0% |
-| Birikyu.o | 0.0% | 0 / 42 | 0.0% |
-| BombBird.o | 0.0% | 0 / 54 | 0.0% |
-| BombBirdBomb.o | 0.0% | 0 / 21 | 0.0% |
-| BombHei.o | 0.0% | 0 / 70 | 0.0% |
-| BombHeiLauncher.o | 0.0% | 0 / 19 | 0.0% |
-| BombTeresa.o | 0.0% | 0 / 93 | 0.0% |
-| CannonShellBase.o | 0.0% | 0 / 4 | 0.0% |
-| CocoNutBall.o | 0.0% | 0 / 39 | 0.0% |
-| CocoSambo.o | 0.0% | 0 / 87 | 0.0% |
-| DharmaSambo.o | 0.0% | 0 / 88 | 0.0% |
-| Dossun.o | 0.0% | 0 / 26 | 0.0% |
-| ElectricPressureBullet.o | 0.0% | 0 / 11 | 0.0% |
-| EyeBeamer.o | 0.0% | 0 / 46 | 0.0% |
-| FireBall.o | 0.0% | 0 / 20 | 0.0% |
-| FireBubble.o | 0.0% | 0 / 42 | 0.0% |
-| Gesso.o | 0.0% | 0 / 58 | 0.0% |
-| HammerHeadPackun.o | 0.0% | 0 / 61 | 0.0% |
-| Hanachan.o | 0.0% | 0 / 126 | 0.0% |
-| HomingKiller.o | 0.0% | 0 / 69 | 0.0% |
-| IceMerameraKing.o | 0.0% | 0 / 78 | 0.0% |
-| ItemGenerator.o | 0.0% | 0 / 6 | 0.0% |
-| Jellyfish.o | 0.0% | 0 / 44 | 0.0% |
-| JellyfishElectric.o | 0.0% | 0 / 38 | 0.0% |
-| Jiraira.o | 0.0% | 0 / 27 | 0.0% |
-| JumpBeamer.o | 0.0% | 0 / 48 | 0.0% |
-| JumpGuarder.o | 0.0% | 0 / 56 | 0.0% |
-| JumpSpider.o | 0.0% | 0 / 60 | 0.0% |
-| Kabokuri.o | 0.0% | 0 / 51 | 0.0% |
-| KabokuriFire.o | 0.0% | 0 / 12 | 0.0% |
-| KabokuriFireHolder.o | 0.0% | 0 / 6 | 0.0% |
-| Kameck.o | 0.0% | 0 / 95 | 0.0% |
-| KameckBeam.o | 0.0% | 0 / 43 | 0.0% |
-| KameckBeamHolder.o | 0.0% | 0 / 16 | 0.0% |
-| KameckFireBall.o | 0.0% | 0 / 20 | 0.0% |
-| KameckHolder.o | 0.0% | 0 / 6 | 0.0% |
-| KameckTurtle.o | 0.0% | 0 / 21 | 0.0% |
-| Kanina.o | 0.0% | 0 / 99 | 0.0% |
-| Karikari.o | 0.0% | 0 / 77 | 0.0% |
-| KarikariDirector.o | 0.0% | 0 / 14 | 0.0% |
-| Karon.o | 0.0% | 0 / 62 | 0.0% |
-| Kiraira.o | 0.0% | 0 / 37 | 0.0% |
-| KirairaChain.o | 0.0% | 0 / 12 | 0.0% |
-| KoopaJrShip.o | 0.0% | 0 / 72 | 0.0% |
-| KoopaJrShipCannonMainShell.o | 0.0% | 0 / 20 | 0.0% |
-| KoopaJrShipCannonShell.o | 0.0% | 0 / 29 | 0.0% |
-| KoteBug.o | 0.0% | 0 / 70 | 0.0% |
-| Kuribo.o | 0.0% | 0 / 89 | 0.0% |
-| KuriboChief.o | 0.0% | 0 / 51 | 0.0% |
-| KuriboMini.o | 0.0% | 0 / 61 | 0.0% |
-| MechanicKoopaMini.o | 0.0% | 0 / 64 | 0.0% |
-| Meramera.o | 0.0% | 0 / 134 | 0.0% |
-| Metbo.o | 0.0% | 0 / 72 | 0.0% |
-| Mogu.o | 0.0% | 0 / 50 | 0.0% |
-| Mogucchi.o | 0.0% | 0 / 42 | 0.0% |
-| MogucchiHill.o | 0.0% | 0 / 47 | 0.0% |
-| MogucchiRefuseTerritory.o | 0.0% | 0 / 3 | 0.0% |
-| MogucchiShooter.o | 0.0% | 0 / 52 | 0.0% |
-| MoguStone.o | 0.0% | 0 / 31 | 0.0% |
-| NokonokoLand.o | 0.0% | 0 / 94 | 0.0% |
-| Onimasu.o | 0.0% | 0 / 32 | 0.0% |
-| OnimasuJump.o | 0.0% | 0 / 13 | 0.0% |
-| OnimasuPivot.o | 0.0% | 0 / 11 | 0.0% |
-| OtaRock.o | 0.0% | 0 / 43 | 0.0% |
-| PackunPetit.o | 0.0% | 0 / 67 | 0.0% |
-| Petari.o | 0.0% | 0 / 82 | 0.0% |
-| Poihana.o | 0.0% | 0 / 95 | 0.0% |
-| Pukupuku.o | 0.0% | 0 / 60 | 0.0% |
-| RingBeam.o | 0.0% | 0 / 23 | 0.0% |
-| RingBeamer.o | 0.0% | 0 / 19 | 0.0% |
-| SamboFunction.o | 0.0% | 0 / 1 | 0.0% |
-| SamboHead.o | 0.0% | 0 / 63 | 0.0% |
-| SearchBeamer.o | 0.0% | 0 / 71 | 0.0% |
-| Snakehead.o | 0.0% | 0 / 34 | 0.0% |
-| SpinHitController.o | 0.0% | 0 / 7 | 0.0% |
-| StinkBugBase.o | 0.0% | 0 / 9 | 0.0% |
-| StinkBugParent.o | 0.0% | 0 / 63 | 0.0% |
-| StinkBugSmall.o | 0.0% | 0 / 62 | 0.0% |
-| StringSpider.o | 0.0% | 0 / 74 | 0.0% |
-| Takobo.o | 0.0% | 0 / 52 | 0.0% |
-| TakoHei.o | 0.0% | 0 / 96 | 0.0% |
-| TakoHeiInk.o | 0.0% | 0 / 11 | 0.0% |
-| TakoHeiInkHolder.o | 0.0% | 0 / 5 | 0.0% |
-| Teresa.o | 0.0% | 0 / 119 | 0.0% |
-| TeresaWater.o | 0.0% | 0 / 22 | 0.0% |
-| TerritoryMover.o | 0.0% | 0 / 3 | 0.0% |
-| Unizo.o | 0.0% | 0 / 65 | 0.0% |
-| UnizoLauncher.o | 0.0% | 0 / 9 | 0.0% |
-| WalkerStateBindStarPointer.o | 0.0% | 0 / 10 | 0.0% |
-| WalkerStateBlowDamage.o | 0.0% | 0 / 9 | 0.0% |
-| WalkerStateChase.o | 0.0% | 0 / 12 | 0.0% |
-| WalkerStateFindPlayer.o | 0.0% | 0 / 20 | 0.0% |
-| WalkerStateFunction.o | 0.0% | 0 / 2 | 0.0% |
-| WalkerStateParam.o | 0.0% | 0 / 1 | 0.0% |
-| WalkerStateRunaway.o | 0.0% | 0 / 18 | 0.0% |
-| WalkerStateStagger.o | 0.0% | 0 / 19 | 0.0% |
-| WalkerStateWander.o | 0.0% | 0 / 13 | 0.0% |
-| WaterBazooka.o | 0.0% | 0 / 93 | 0.0% |
-| WaterBazookaCapsule.o | 0.0% | 0 / 18 | 0.0% |
+| AnimScaleController.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| AnimStampController.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| BallBeamer.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| Balloonfish.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| BasaBasa.o | 0.0% | 0 / 77 | 0.0% | :x: 
+| BegomanBaby.o | 0.0% | 0 / 76 | 0.0% | :x: 
+| BegomanBase.o | 0.0% | 0 / 79 | 0.0% | :x: 
+| BegomanFunction.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| BegomanLauncher.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| BegomanSpike.o | 0.0% | 0 / 78 | 0.0% | :x: 
+| BegomanSpring.o | 0.0% | 0 / 83 | 0.0% | :x: 
+| BegomanSpringHead.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| Birikyu.o | 0.0% | 0 / 42 | 0.0% | :x: 
+| BombBird.o | 0.0% | 0 / 54 | 0.0% | :x: 
+| BombBirdBomb.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| BombHei.o | 0.0% | 0 / 70 | 0.0% | :x: 
+| BombHeiLauncher.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| BombTeresa.o | 0.0% | 0 / 93 | 0.0% | :x: 
+| CannonShellBase.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| CocoNutBall.o | 0.0% | 0 / 39 | 0.0% | :x: 
+| CocoSambo.o | 0.0% | 0 / 87 | 0.0% | :x: 
+| DharmaSambo.o | 0.0% | 0 / 88 | 0.0% | :x: 
+| Dossun.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| ElectricPressureBullet.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| EyeBeamer.o | 0.0% | 0 / 46 | 0.0% | :x: 
+| FireBall.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| FireBubble.o | 0.0% | 0 / 42 | 0.0% | :x: 
+| Gesso.o | 0.0% | 0 / 58 | 0.0% | :x: 
+| HammerHeadPackun.o | 0.0% | 0 / 61 | 0.0% | :x: 
+| Hanachan.o | 0.0% | 0 / 126 | 0.0% | :x: 
+| HomingKiller.o | 0.0% | 0 / 69 | 0.0% | :x: 
+| IceMerameraKing.o | 0.0% | 0 / 78 | 0.0% | :x: 
+| ItemGenerator.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| Jellyfish.o | 0.0% | 0 / 44 | 0.0% | :x: 
+| JellyfishElectric.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| Jiraira.o | 0.0% | 0 / 27 | 0.0% | :x: 
+| JumpBeamer.o | 0.0% | 0 / 48 | 0.0% | :x: 
+| JumpGuarder.o | 0.0% | 0 / 56 | 0.0% | :x: 
+| JumpSpider.o | 0.0% | 0 / 60 | 0.0% | :x: 
+| Kabokuri.o | 0.0% | 0 / 51 | 0.0% | :x: 
+| KabokuriFire.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| KabokuriFireHolder.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| Kameck.o | 0.0% | 0 / 95 | 0.0% | :x: 
+| KameckBeam.o | 0.0% | 0 / 43 | 0.0% | :x: 
+| KameckBeamHolder.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| KameckFireBall.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| KameckHolder.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| KameckTurtle.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| Kanina.o | 0.0% | 0 / 99 | 0.0% | :x: 
+| Karikari.o | 0.0% | 0 / 77 | 0.0% | :x: 
+| KarikariDirector.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| Karon.o | 0.0% | 0 / 62 | 0.0% | :x: 
+| Kiraira.o | 0.0% | 0 / 37 | 0.0% | :x: 
+| KirairaChain.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| KoopaJrShip.o | 0.0% | 0 / 72 | 0.0% | :x: 
+| KoopaJrShipCannonMainShell.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| KoopaJrShipCannonShell.o | 0.0% | 0 / 29 | 0.0% | :x: 
+| KoteBug.o | 0.0% | 0 / 70 | 0.0% | :x: 
+| Kuribo.o | 0.0% | 0 / 89 | 0.0% | :x: 
+| KuriboChief.o | 0.0% | 0 / 51 | 0.0% | :x: 
+| KuriboMini.o | 0.0% | 0 / 61 | 0.0% | :x: 
+| MechanicKoopaMini.o | 0.0% | 0 / 64 | 0.0% | :x: 
+| Meramera.o | 0.0% | 0 / 134 | 0.0% | :x: 
+| Metbo.o | 0.0% | 0 / 72 | 0.0% | :x: 
+| Mogu.o | 0.0% | 0 / 50 | 0.0% | :x: 
+| Mogucchi.o | 0.0% | 0 / 42 | 0.0% | :x: 
+| MogucchiHill.o | 0.0% | 0 / 47 | 0.0% | :x: 
+| MogucchiRefuseTerritory.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| MogucchiShooter.o | 0.0% | 0 / 52 | 0.0% | :x: 
+| MoguStone.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| NokonokoLand.o | 0.0% | 0 / 94 | 0.0% | :x: 
+| Onimasu.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| OnimasuJump.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| OnimasuPivot.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| OtaRock.o | 0.0% | 0 / 43 | 0.0% | :x: 
+| PackunPetit.o | 0.0% | 0 / 67 | 0.0% | :x: 
+| Petari.o | 0.0% | 0 / 82 | 0.0% | :x: 
+| Poihana.o | 0.0% | 0 / 95 | 0.0% | :x: 
+| Pukupuku.o | 0.0% | 0 / 60 | 0.0% | :x: 
+| RingBeam.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| RingBeamer.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| SamboFunction.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| SamboHead.o | 0.0% | 0 / 63 | 0.0% | :x: 
+| SearchBeamer.o | 0.0% | 0 / 71 | 0.0% | :x: 
+| Snakehead.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| SpinHitController.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| StinkBugBase.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| StinkBugParent.o | 0.0% | 0 / 63 | 0.0% | :x: 
+| StinkBugSmall.o | 0.0% | 0 / 62 | 0.0% | :x: 
+| StringSpider.o | 0.0% | 0 / 74 | 0.0% | :x: 
+| Takobo.o | 0.0% | 0 / 52 | 0.0% | :x: 
+| TakoHei.o | 0.0% | 0 / 96 | 0.0% | :x: 
+| TakoHeiInk.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| TakoHeiInkHolder.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| Teresa.o | 0.0% | 0 / 119 | 0.0% | :x: 
+| TeresaWater.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| TerritoryMover.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| Unizo.o | 0.0% | 0 / 65 | 0.0% | :x: 
+| UnizoLauncher.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| WalkerStateBindStarPointer.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| WalkerStateBlowDamage.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| WalkerStateChase.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| WalkerStateFindPlayer.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| WalkerStateFunction.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| WalkerStateParam.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| WalkerStateRunaway.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| WalkerStateStagger.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| WalkerStateWander.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| WaterBazooka.o | 0.0% | 0 / 93 | 0.0% | :x: 
+| WaterBazookaCapsule.o | 0.0% | 0 / 18 | 0.0% | :x: 
 
 
 # AnimScaleController.o

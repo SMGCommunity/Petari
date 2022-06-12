@@ -1,13 +1,13 @@
 # Speaker
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% |
-| SpkSystem.o | 70.3125% | 11 / 14 | 78.57142857142857% |
-| SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% |
-| SpkWave.o | 100.0% | 7 / 7 | 100.0% |
-| SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% |
-| SpkData.o | 100.0% | 4 / 4 | 100.0% |
-| SpkSound.o | 27.03804347826087% | 12 / 22 | 54.54545454545454% |
+| SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% | :eight_pointed_black_star: 
+| SpkSystem.o | 70.3125% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
+| SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
+| SpkWave.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
+| SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| SpkData.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| SpkSound.o | 27.03804347826087% | 12 / 22 | 54.54545454545454% | :eight_pointed_black_star: 
 
 
 # SpkSpeakerCtrl.o

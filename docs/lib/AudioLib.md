@@ -1,38 +1,38 @@
 # AudioLib
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AudSystem.o | 0.0% | 0 / 114 | 0.0% |
-| AudSystemVolumeController.o | 0.0% | 0 / 10 | 0.0% |
-| AudAudience.o | 0.0% | 0 / 2 | 0.0% |
-| AudSoundInfo.o | 0.0% | 0 / 8 | 0.0% |
-| AudWrap.o | 0.0% | 0 / 19 | 0.0% |
-| AudSoundObject.o | 0.0% | 0 / 28 | 0.0% |
-| AudSoundObject_Kawamura.o | 0.0% | 0 / 2 | 0.0% |
-| AudSoundObject_Takezawa.o | 0.0% | 0 / 2 | 0.0% |
-| AudSoundObject_Gohara.o | 0.0% | 0 / 1 | 0.0% |
-| AudAnmSoundObject.o | 0.0% | 0 / 20 | 0.0% |
-| AudBgm.o | 0.0% | 0 / 57 | 0.0% |
-| AudBgmKeeper.o | 0.0% | 0 / 5 | 0.0% |
-| AudBgmMgr.o | 0.0% | 0 / 16 | 0.0% |
-| AudBgmRhythmStrategy.o | 0.0% | 0 / 5 | 0.0% |
-| AudBgmSetting.o | 0.0% | 0 / 9 | 0.0% |
-| AudBgmVolumeController.o | 0.0% | 0 / 7 | 0.0% |
-| AudEffector.o | 0.0% | 0 / 6 | 0.0% |
-| AudFader.o | 0.0% | 0 / 3 | 0.0% |
-| AudLimitedSound.o | 0.0% | 0 / 5 | 0.0% |
-| AudMeNameConverter.o | 0.0% | 0 / 4 | 0.0% |
-| AudMicWrap.o | 0.0% | 0 / 3 | 0.0% |
-| AudRemixMgr.o | 0.0% | 0 / 5 | 0.0% |
-| AudRemixSequencer.o | 0.0% | 0 / 11 | 0.0% |
-| AudSceneMgr.o | 0.0% | 0 / 21 | 0.0% |
-| AudSeStrategy.o | 0.0% | 0 / 7 | 0.0% |
-| AudSoundNameConverter.o | 0.0% | 0 / 9 | 0.0% |
-| AudSoundObjHolder.o | 0.0% | 0 / 5 | 0.0% |
-| AudSpeakerWrap.o | 0.0% | 0 / 9 | 0.0% |
-| AudTrackController.o | 0.0% | 0 / 8 | 0.0% |
-| AudUtil.o | 0.0% | 0 / 3 | 0.0% |
-| OverwriteJAudio.o | 0.0% | 0 / 8 | 0.0% |
-| CSSoundNameConverter.o | 0.0% | 0 / 5 | 0.0% |
+| AudSystem.o | 0.0% | 0 / 114 | 0.0% | :x: 
+| AudSystemVolumeController.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| AudAudience.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| AudSoundInfo.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| AudWrap.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| AudSoundObject.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| AudSoundObject_Kawamura.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| AudSoundObject_Takezawa.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| AudSoundObject_Gohara.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| AudAnmSoundObject.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| AudBgm.o | 0.0% | 0 / 57 | 0.0% | :x: 
+| AudBgmKeeper.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| AudBgmMgr.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| AudBgmRhythmStrategy.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| AudBgmSetting.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| AudBgmVolumeController.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| AudEffector.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| AudFader.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| AudLimitedSound.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| AudMeNameConverter.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| AudMicWrap.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| AudRemixMgr.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| AudRemixSequencer.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| AudSceneMgr.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| AudSeStrategy.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| AudSoundNameConverter.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| AudSoundObjHolder.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| AudSpeakerWrap.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| AudTrackController.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| AudUtil.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| OverwriteJAudio.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| CSSoundNameConverter.o | 0.0% | 0 / 5 | 0.0% | :x: 
 
 
 # AudSystem.o

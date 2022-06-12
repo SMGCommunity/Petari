@@ -1,28 +1,28 @@
 # Effect
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AstroEffectObj.o | 0.0% | 0 / 11 | 0.0% |
-| AutoEffectGroup.o | 0.0% | 0 / 6 | 0.0% |
-| AutoEffectGroupHolder.o | 0.0% | 0 / 8 | 0.0% |
-| AutoEffectInfo.o | 0.0% | 0 / 10 | 0.0% |
-| EffectObjGravityDust.o | 0.0% | 0 / 8 | 0.0% |
-| EffectSystem.o | 0.0% | 0 / 9 | 0.0% |
-| EffectSystemUtil.o | 0.0% | 0 / 32 | 0.0% |
-| MultiEmitter.o | 0.0% | 0 / 44 | 0.0% |
-| MultiEmitterAccess.o | 0.0% | 0 / 22 | 0.0% |
-| MultiEmitterCallBack.o | 0.0% | 0 / 34 | 0.0% |
-| MultiEmitterParticleCallBack.o | 0.0% | 0 / 4 | 0.0% |
-| ParticleCalcExecutor.o | 0.0% | 0 / 10 | 0.0% |
-| ParticleDrawExecutor.o | 0.0% | 0 / 20 | 0.0% |
-| ParticleEmitter.o | 0.0% | 0 / 5 | 0.0% |
-| ParticleEmitterHolder.o | 0.0% | 0 / 9 | 0.0% |
-| ParticleResourceHolder.o | 0.0% | 0 / 7 | 0.0% |
-| RandomEffectObj.o | 0.0% | 0 / 8 | 0.0% |
-| SimpleEffectObj.o | 0.0% | 0 / 17 | 0.0% |
-| SingleEmitter.o | 0.0% | 0 / 8 | 0.0% |
-| SpinPullParticleCallBack.o | 0.0% | 0 / 5 | 0.0% |
-| SyncBckEffectChecker.o | 0.0% | 0 / 8 | 0.0% |
-| SyncBckEffectInfo.o | 0.0% | 0 / 7 | 0.0% |
+| AstroEffectObj.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| AutoEffectGroup.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| AutoEffectGroupHolder.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| AutoEffectInfo.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| EffectObjGravityDust.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| EffectSystem.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| EffectSystemUtil.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| MultiEmitter.o | 0.0% | 0 / 44 | 0.0% | :x: 
+| MultiEmitterAccess.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| MultiEmitterCallBack.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| MultiEmitterParticleCallBack.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ParticleCalcExecutor.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| ParticleDrawExecutor.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| ParticleEmitter.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| ParticleEmitterHolder.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| ParticleResourceHolder.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| RandomEffectObj.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| SimpleEffectObj.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| SingleEmitter.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| SpinPullParticleCallBack.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| SyncBckEffectChecker.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| SyncBckEffectInfo.o | 0.0% | 0 / 7 | 0.0% | :x: 
 
 
 # AstroEffectObj.o

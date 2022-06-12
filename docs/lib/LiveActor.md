@@ -1,67 +1,67 @@
 # LiveActor
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| ActiveActorList.o | 100.0% | 6 / 6 | 100.0% |
-| ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% |
-| ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% |
-| ActorJointCtrl.o | 100.0% | 13 / 13 | 100.0% |
-| ActorLightCtrl.o | 35.978835978835974% | 8 / 14 | 57.14285714285714% |
-| ActorPadAndCameraCtrl.o | 0.0% | 0 / 7 | 0.0% |
-| ActorStateBase.o | 100.0% | 1 / 1 | 100.0% |
-| ActorStateKeeper.o | 46.42857142857143% | 3 / 6 | 50.0% |
-| AllLiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
-| AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% |
-| Binder.o | 3.778866340097971% | 1 / 20 | 5.0% |
-| ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% |
-| ClippingActorInfo.o | 72.31404958677686% | 9 / 12 | 75.0% |
-| ClippingDirector.o | 100.0% | 11 / 11 | 100.0% |
-| ClippingGroupHolder.o | 90.79903147699758% | 13 / 14 | 92.85714285714286% |
-| ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% |
-| DisplayListMaker.o | 0.0% | 0 / 32 | 0.0% |
-| DynamicJointCtrl.o | 15.723270440251572% | 8 / 25 | 32.0% |
-| EffectKeeper.o | 0.0% | 0 / 38 | 0.0% |
-| FaceJointCtrl.o | 26.041666666666668% | 5 / 10 | 50.0% |
-| FlashingCtrl.o | 100.0% | 9 / 9 | 100.0% |
-| HitSensor.o | 100.0% | 9 / 9 | 100.0% |
-| HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% |
-| HitSensorKeeper.o | 100.0% | 16 / 16 | 100.0% |
-| IKJointCtrl.o | 30.705882352941178% | 13 / 26 | 50.0% |
-| LiveActor.o | 28.770053475935832% | 19 / 37 | 51.35135135135135% |
-| LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% |
-| LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% |
-| LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% |
-| LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% |
-| MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% |
-| MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% |
-| MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% |
-| MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% |
-| MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% |
-| ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% |
-| ModelObj.o | 100.0% | 8 / 8 | 100.0% |
-| Nerve.o | 100.0% | 1 / 1 | 100.0% |
-| PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% |
-| RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% |
-| SensorHitChecker.o | 65.21739130434783% | 10 / 13 | 76.92307692307693% |
-| ShadowController.o | 32.82364933741081% | 39 / 68 | 57.35294117647059% |
-| ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% |
-| ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% |
-| ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% |
-| ShadowSurfaceDrawer.o | 36.885245901639344% | 2 / 4 | 50.0% |
-| ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% |
-| ShadowVolumeBox.o | 16.09907120743034% | 2 / 6 | 33.33333333333333% |
-| ShadowVolumeCylinder.o | 1.5037593984962405% | 1 / 5 | 20.0% |
-| ShadowVolumeDrawer.o | 70.58823529411765% | 14 / 16 | 87.5% |
-| ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% |
-| ShadowVolumeLine.o | 29.64426877470356% | 7 / 8 | 87.5% |
-| ShadowVolumeModel.o | 100.0% | 3 / 3 | 100.0% |
-| ShadowVolumeOval.o | 32.06751054852321% | 4 / 5 | 80.0% |
-| ShadowVolumeOvalPole.o | 23.144104803493452% | 3 / 4 | 75.0% |
-| ShadowVolumeSphere.o | 56.451612903225815% | 4 / 5 | 80.0% |
-| SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% |
-| Spine.o | 100.0% | 6 / 6 | 100.0% |
-| SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% |
-| ViewGroupCtrl.o | 0.0% | 0 / 7 | 0.0% |
-| VolumeModelDrawer.o | 100.0% | 6 / 6 | 100.0% |
+| ActiveActorList.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| ActorJointCtrl.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
+| ActorLightCtrl.o | 35.978835978835974% | 8 / 14 | 57.14285714285714% | :eight_pointed_black_star: 
+| ActorPadAndCameraCtrl.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| ActorStateBase.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| ActorStateKeeper.o | 46.42857142857143% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| AllLiveActorGroup.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
+| AnimationRandomPlayer.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
+| Binder.o | 3.778866340097971% | 1 / 20 | 5.0% | :eight_pointed_black_star: 
+| ClippingActorHolder.o | 55.48523206751055% | 9 / 15 | 60.0% | :eight_pointed_black_star: 
+| ClippingActorInfo.o | 72.31404958677686% | 9 / 12 | 75.0% | :eight_pointed_black_star: 
+| ClippingDirector.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
+| ClippingGroupHolder.o | 90.79903147699758% | 13 / 14 | 92.85714285714286% | :eight_pointed_black_star: 
+| ClippingJudge.o | 32.29665071770335% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
+| DisplayListMaker.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| DynamicJointCtrl.o | 15.723270440251572% | 8 / 25 | 32.0% | :eight_pointed_black_star: 
+| EffectKeeper.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| FaceJointCtrl.o | 26.041666666666668% | 5 / 10 | 50.0% | :eight_pointed_black_star: 
+| FlashingCtrl.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| HitSensor.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| HitSensorInfo.o | 30.09259259259259% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| HitSensorKeeper.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
+| IKJointCtrl.o | 30.705882352941178% | 13 / 26 | 50.0% | :eight_pointed_black_star: 
+| LiveActor.o | 28.770053475935832% | 19 / 37 | 51.35135135135135% | :eight_pointed_black_star: 
+| LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
+| LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% | :eight_pointed_black_star: 
+| LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
+| MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
+| MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
+| MirrorReflectionModel.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% | :eight_pointed_black_star: 
+| ModelObj.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
+| Nerve.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| PartsModel.o | 91.37466307277629% | 12 / 13 | 92.3076923076923% | :eight_pointed_black_star: 
+| RailRider.o | 75.37619699042408% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
+| SensorHitChecker.o | 65.21739130434783% | 10 / 13 | 76.92307692307693% | :eight_pointed_black_star: 
+| ShadowController.o | 32.82364933741081% | 39 / 68 | 57.35294117647059% | :eight_pointed_black_star: 
+| ShadowDrawer.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| ShadowSurfaceBox.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| ShadowSurfaceCircle.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ShadowSurfaceDrawer.o | 36.885245901639344% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
+| ShadowSurfaceOval.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| ShadowVolumeBox.o | 16.09907120743034% | 2 / 6 | 33.33333333333333% | :eight_pointed_black_star: 
+| ShadowVolumeCylinder.o | 1.5037593984962405% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
+| ShadowVolumeDrawer.o | 70.58823529411765% | 14 / 16 | 87.5% | :eight_pointed_black_star: 
+| ShadowVolumeFlatModel.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| ShadowVolumeLine.o | 29.64426877470356% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
+| ShadowVolumeModel.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| ShadowVolumeOval.o | 32.06751054852321% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| ShadowVolumeOvalPole.o | 23.144104803493452% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| ShadowVolumeSphere.o | 56.451612903225815% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| Spine.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ViewGroupCtrl.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| VolumeModelDrawer.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 
 
 # ActiveActorList.o

@@ -1,37 +1,37 @@
 # Demo
-| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) 
+| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- |
-| AstroDomeDemoStarter.o | 0.0% | 0 / 25 | 0.0% |
-| AstroDemoFunction.o | 0.0% | 0 / 12 | 0.0% |
-| DemoActionKeeper.o | 8.500772797527048% | 3 / 19 | 15.789473684210526% |
-| DemoCameraFunction.o | 0.0% | 0 / 3 | 0.0% |
-| DemoCameraKeeper.o | 0.0% | 0 / 11 | 0.0% |
-| DemoCastGroup.o | 92.20779220779221% | 6 / 7 | 85.71428571428571% |
-| DemoCastGroupHolder.o | 100.0% | 6 / 6 | 100.0% |
-| DemoCastSubGroup.o | 0.0% | 0 / 4 | 0.0% |
-| DemoCtrlBase.o | 0.0% | 0 / 7 | 0.0% |
-| DemoDirector.o | 0.0% | 0 / 18 | 0.0% |
-| DemoExecutor.o | 0.0% | 0 / 28 | 0.0% |
-| DemoExecutorFunction.o | 0.0% | 0 / 16 | 0.0% |
-| DemoFunction.o | 1.8094089264173705% | 1 / 48 | 2.083333333333333% |
-| DemoKoopaJrShip.o | 0.0% | 0 / 20 | 0.0% |
-| DemoPadRumbler.o | 0.0% | 0 / 2 | 0.0% |
-| DemoParamCommonDataTable.o | 0.0% | 0 / 7 | 0.0% |
-| DemoPlayerKeeper.o | 0.0% | 0 / 5 | 0.0% |
-| DemoPositionController.o | 0.0% | 0 / 6 | 0.0% |
-| DemoSimpleCastHolder.o | 100.0% | 6 / 6 | 100.0% |
-| DemoSoundKeeper.o | 0.0% | 0 / 10 | 0.0% |
-| DemoStartRequestHolder.o | 0.0% | 0 / 19 | 0.0% |
-| DemoStartRequestUtil.o | 0.0% | 0 / 19 | 0.0% |
-| DemoSubPartKeeper.o | 0.0% | 0 / 8 | 0.0% |
-| DemoTalkAnimCtrl.o | 0.0% | 0 / 14 | 0.0% |
-| DemoTimeKeeper.o | 0.0% | 0 / 11 | 0.0% |
-| DemoWipeKeeper.o | 0.0% | 0 / 10 | 0.0% |
-| GrandStarReturnDemoStarter.o | 0.0% | 0 / 32 | 0.0% |
-| PrologueDirector.o | 0.0% | 0 / 43 | 0.0% |
-| ReturnDemoRailMove.o | 0.0% | 0 / 10 | 0.0% |
-| ScenarioStarter.o | 0.0% | 0 / 30 | 0.0% |
-| StarReturnDemoStarter.o | 0.0% | 0 / 42 | 0.0% |
+| AstroDomeDemoStarter.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| AstroDemoFunction.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| DemoActionKeeper.o | 8.500772797527048% | 3 / 19 | 15.789473684210526% | :eight_pointed_black_star: 
+| DemoCameraFunction.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| DemoCameraKeeper.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| DemoCastGroup.o | 92.20779220779221% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| DemoCastGroupHolder.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| DemoCastSubGroup.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| DemoCtrlBase.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| DemoDirector.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| DemoExecutor.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| DemoExecutorFunction.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| DemoFunction.o | 1.8094089264173705% | 1 / 48 | 2.083333333333333% | :eight_pointed_black_star: 
+| DemoKoopaJrShip.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| DemoPadRumbler.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| DemoParamCommonDataTable.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| DemoPlayerKeeper.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| DemoPositionController.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| DemoSimpleCastHolder.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| DemoSoundKeeper.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| DemoStartRequestHolder.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| DemoStartRequestUtil.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| DemoSubPartKeeper.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| DemoTalkAnimCtrl.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| DemoTimeKeeper.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| DemoWipeKeeper.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| GrandStarReturnDemoStarter.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| PrologueDirector.o | 0.0% | 0 / 43 | 0.0% | :x: 
+| ReturnDemoRailMove.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| ScenarioStarter.o | 0.0% | 0 / 30 | 0.0% | :x: 
+| StarReturnDemoStarter.o | 0.0% | 0 / 42 | 0.0% | :x: 
 
 
 # AstroDomeDemoStarter.o
