@@ -88,7 +88,7 @@
 | CrystalCageMoving.o | 100.0% | 36 / 36 | 100.0% | :white_check_mark: 
 | CrystalSwitch.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| DashRing.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| DashRing.o | 19.242902208201894% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
 | DeadLeaves.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | DesertLandMoveSwitch.o | 0.0% | 0 / 28 | 0.0% | :x: 
 | DesertMovingLand.o | 0.0% | 0 / 30 | 0.0% | :x: 
@@ -2247,15 +2247,15 @@
 # DashRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__8DashRingFv | :x: |
+| __dt__8DashRingFv | :white_check_mark: |
 | initCommon__8DashRingFRC12JMapInfoIterPCc | :x: |
 | attackSensor__8DashRingFP9HitSensorP9HitSensor | :x: |
 | control__8DashRingFv | :x: |
-| calcAndSetBaseMtx__8DashRingFv | :x: |
-| calcAxis__8DashRingFv | :x: |
-| calcSubAxis__8DashRingFv | :x: |
+| calcAndSetBaseMtx__8DashRingFv | :white_check_mark: |
+| calcAxis__8DashRingFv | :white_check_mark: |
+| calcSubAxis__8DashRingFv | :white_check_mark: |
 | draw__8DashRingCFv | :x: |
-| init__8DashRingFRC12JMapInfoIter | :x: |
+| init__8DashRingFRC12JMapInfoIter | :white_check_mark: |
 
 
 # DeadLeaves.o
