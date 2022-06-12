@@ -1,4 +1,10 @@
 # Gravity
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 

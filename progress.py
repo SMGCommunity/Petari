@@ -116,6 +116,11 @@ class Library:
         # first we are going to generate the tables for the object files themselves in the library
         page = []
         page.append(f"# {self.name}\n")
+        page.append("| Symbol | Meaning \n")
+        page.append("| :x: | Object has not yet been started. \n")
+        page.append("| :eight_pointed_black_star: | Object is in progress. \n")
+        page.append("| :white_check_mark: | Object is completed. \n")
+        page.append("\n\n")
         page.append("| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status \n")
         page.append("| ------------- | ------------- | ------------- | ------------- | ------------- \n")
 

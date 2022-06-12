@@ -1,4 +1,10 @@
 # AreaObj
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 

@@ -1,4 +1,10 @@
 # Speaker
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% | :eight_pointed_black_star: 

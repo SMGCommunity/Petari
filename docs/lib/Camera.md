@@ -1,4 +1,10 @@
 # Camera
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | CamHeliEffector.o | 2.3890784982935154% | 2 / 24 | 8.333333333333332% | :eight_pointed_black_star: 

@@ -1,4 +1,10 @@
 # System
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AlreadyDoneFlagInGalaxy.o | 58.98876404494382% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 

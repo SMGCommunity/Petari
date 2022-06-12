@@ -1,4 +1,10 @@
 # Util
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActorCameraUtil.o | 0.6952491309385863% | 1 / 41 | 2.4390243902439024% | :eight_pointed_black_star: 

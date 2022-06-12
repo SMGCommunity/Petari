@@ -1,4 +1,10 @@
 # Animation
+| Symbol | Meaning 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% | :eight_pointed_black_star: 
