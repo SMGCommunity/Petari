@@ -1,6 +1,6 @@
 # Screen
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | THPDraw.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | BackButton.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | BatteryInfo.o | 0.0% | 0 / 43 | 0.0% | :x: 

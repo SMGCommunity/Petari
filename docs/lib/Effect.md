@@ -1,6 +1,6 @@
 # Effect
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AstroEffectObj.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | AutoEffectGroup.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | AutoEffectGroupHolder.o | 0.0% | 0 / 8 | 0.0% | :x: 

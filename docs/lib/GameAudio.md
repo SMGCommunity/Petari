@@ -1,6 +1,6 @@
 # GameAudio
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AudCameraWatcher.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | AudStageBgmWrap.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | AudSeKeeper.o | 0.0% | 0 / 11 | 0.0% | :x: 

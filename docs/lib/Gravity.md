@@ -1,6 +1,6 @@
 # Gravity
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | ConeGravity.o | 19.306930693069308% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
 | CubeGravity.o | 1.3597033374536465% | 1 / 10 | 10.0% | :eight_pointed_black_star: 
 | DiskGravity.o | 33.33333333333333% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 

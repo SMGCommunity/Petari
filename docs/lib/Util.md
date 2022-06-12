@@ -1,6 +1,6 @@
 # Util
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActorCameraUtil.o | 0.6952491309385863% | 1 / 41 | 2.4390243902439024% | :eight_pointed_black_star: 
 | ActorMovementUtil.o | 6.501811980387977% | 14 / 142 | 9.859154929577464% | :eight_pointed_black_star: 
 | ActorSensorUtil.o | 37.32394366197183% | 93 / 205 | 45.36585365853659% | :eight_pointed_black_star: 

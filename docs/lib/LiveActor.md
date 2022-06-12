@@ -1,6 +1,6 @@
 # LiveActor
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActiveActorList.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | ActorAnimKeeper.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | ActorCameraInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 

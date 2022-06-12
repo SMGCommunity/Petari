@@ -1,6 +1,6 @@
 # Scene
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | GameScene.o | 0.0% | 0 / 66 | 0.0% | :x: 
 | GameSceneFunction.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | GameScenePauseControl.o | 0.0% | 0 / 9 | 0.0% | :x: 

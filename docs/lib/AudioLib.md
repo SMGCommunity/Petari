@@ -1,6 +1,6 @@
 # AudioLib
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AudSystem.o | 0.0% | 0 / 114 | 0.0% | :x: 
 | AudSystemVolumeController.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | AudAudience.o | 0.0% | 0 / 2 | 0.0% | :x: 

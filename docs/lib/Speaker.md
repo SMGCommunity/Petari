@@ -1,6 +1,6 @@
 # Speaker
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% | :eight_pointed_black_star: 
 | SpkSystem.o | 70.3125% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% | :eight_pointed_black_star: 

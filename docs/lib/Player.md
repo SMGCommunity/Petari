@@ -1,6 +1,6 @@
 # Player
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | FireMarioBall.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | GhostPacket.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | GhostPlayer.o | 0.0% | 0 / 46 | 0.0% | :x: 

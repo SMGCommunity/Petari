@@ -117,7 +117,7 @@ class Library:
         page = []
         page.append(f"# {self.name}\n")
         page.append("| Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status \n")
-        page.append("| ------------- | ------------- | ------------- | ------------- |\n")
+        page.append("| ------------- | ------------- | ------------- | ------------- | ------------- \n")
 
         for obj in self.objects:
             d, f = obj.calculateProgress()

@@ -1,6 +1,6 @@
 # Enemy
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AnimScaleController.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | AnimStampController.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | BallBeamer.o | 0.0% | 0 / 25 | 0.0% | :x: 

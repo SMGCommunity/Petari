@@ -1,6 +1,6 @@
 # Ride
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | BigBubble.o | 0.0% | 0 / 82 | 0.0% | :x: 
 | Creeper.o | 0.0% | 0 / 34 | 0.0% | :x: 
 | Fluff.o | 0.0% | 0 / 40 | 0.0% | :x: 

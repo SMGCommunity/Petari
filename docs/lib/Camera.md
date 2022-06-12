@@ -1,6 +1,6 @@
 # Camera
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | CamHeliEffector.o | 2.3890784982935154% | 2 / 24 | 8.333333333333332% | :eight_pointed_black_star: 
 | CamKarikariEffector.o | 1.0101010101010102% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
 | CamPoseSphereInterpolator.o | 0.0% | 0 / 2 | 0.0% | :x: 

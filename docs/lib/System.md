@@ -1,6 +1,6 @@
 # System
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AlreadyDoneFlagInGalaxy.o | 58.98876404494382% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | ArchiveHolder.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | AudSystemWrapper.o | 0.0% | 0 / 20 | 0.0% | :x: 

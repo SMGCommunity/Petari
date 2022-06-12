@@ -1,6 +1,6 @@
 # NPC
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | Butler.o | 0.0% | 0 / 53 | 0.0% | :x: 
 | ButlerExplain.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | ButlerMap.o | 0.0% | 0 / 31 | 0.0% | :x: 

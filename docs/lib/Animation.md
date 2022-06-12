@@ -1,6 +1,6 @@
 # Animation
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% | :eight_pointed_black_star: 
 | BckCtrl.o | 18.295218295218298% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
 | BpkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 

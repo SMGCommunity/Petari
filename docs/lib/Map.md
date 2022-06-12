@@ -1,6 +1,6 @@
 # Map
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActorAppearSwitchListener.o | 16.39344262295082% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
 | Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% | :eight_pointed_black_star: 
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% | :eight_pointed_black_star: 

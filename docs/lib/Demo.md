@@ -1,6 +1,6 @@
 # Demo
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AstroDomeDemoStarter.o | 0.0% | 0 / 25 | 0.0% | :x: 
 | AstroDemoFunction.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | DemoActionKeeper.o | 8.500772797527048% | 3 / 19 | 15.789473684210526% | :eight_pointed_black_star: 

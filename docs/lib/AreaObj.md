@@ -1,6 +1,6 @@
 # AreaObj
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% | :eight_pointed_black_star: 

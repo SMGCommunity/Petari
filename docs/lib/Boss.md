@@ -1,6 +1,6 @@
 # Boss
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | BossAccessor.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | BossBegoman.o | 0.0% | 0 / 92 | 0.0% | :x: 
 | BossBegomanHead.o | 0.0% | 0 / 36 | 0.0% | :x: 

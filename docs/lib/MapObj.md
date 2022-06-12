@@ -1,6 +1,6 @@
 # MapObj
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AirBubble.o | 0.0% | 0 / 23 | 0.0% | :x: 
 | AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 

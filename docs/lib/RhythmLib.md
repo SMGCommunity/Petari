@@ -1,6 +1,6 @@
 # RhythmLib
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- 
 | AudRhythmSeqParser.o | 0.0% | 0 / 29 | 0.0% | :x: 
 | AudBgmTempoAdjuster.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | AudMeTrack.o | 0.0% | 0 / 56 | 0.0% | :x: 
