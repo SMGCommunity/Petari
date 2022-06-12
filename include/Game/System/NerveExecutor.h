@@ -12,7 +12,7 @@ public:
     void updateNerve();
     void setNerve(const Nerve *);
     bool isNerve(const Nerve* ) const;
-    u32 getNerveStep() const;
+    s32 getNerveStep() const;
 
     Spine* mSpine; // _4
 };

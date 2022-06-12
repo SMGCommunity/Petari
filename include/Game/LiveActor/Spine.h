@@ -19,6 +19,6 @@ public:
     void* mExecutor; // _0
     const Nerve* mCurNerve; // _4
     const Nerve* mNextNerve; // _8
-    u32 mStep; // _C
+    s32 mStep; // _C
     ActorStateKeeper* mStateKeeper; // _10
 };

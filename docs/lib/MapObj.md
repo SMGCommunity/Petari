@@ -79,7 +79,7 @@
 | CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% |
 | CrystalCage.o | 92.85042333019756% | 23 / 24 | 95.83333333333334% |
 | CrystalCageMoving.o | 100.0% | 36 / 36 | 100.0% |
-| CrystalSwitch.o | 0.0% | 0 / 22 | 0.0% |
+| CrystalSwitch.o | 100.0% | 22 / 22 | 100.0% |
 | CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% |
 | DashRing.o | 0.0% | 0 / 9 | 0.0% |
 | DeadLeaves.o | 100.0% | 10 / 10 | 100.0% |
@@ -2203,28 +2203,28 @@
 # CrystalSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13CrystalSwitchFPCc | :x: |
-| init__13CrystalSwitchFRC12JMapInfoIter | :x: |
-| control__13CrystalSwitchFv | :x: |
-| attackSensor__13CrystalSwitchFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__13CrystalSwitchFUlP9HitSensorP9HitSensor | :x: |
-| trySwitchDown__13CrystalSwitchFv | :x: |
-| tryOn__13CrystalSwitchFv | :x: |
-| tryOff__13CrystalSwitchFv | :x: |
-| exeOff__13CrystalSwitchFv | :x: |
-| exeSwitchDown__13CrystalSwitchFv | :x: |
-| exeOn__13CrystalSwitchFv | :x: |
-| calcRotSpeed__13CrystalSwitchFv | :x: |
-| __dt__13CrystalSwitchFv | :x: |
-| __sinit_\CrystalSwitch_cpp | :x: |
-| __ct__Q216NrvCrystalSwitch19CrystalSwitchNrvOffFv | :x: |
-| __ct__Q216NrvCrystalSwitch26CrystalSwitchNrvSwitchDownFv | :x: |
-| __ct__Q216NrvCrystalSwitch18CrystalSwitchNrvOnFv | :x: |
-| __ct__Q216NrvCrystalSwitch24CrystalSwitchNrvSwitchUpFv | :x: |
-| execute__Q216NrvCrystalSwitch24CrystalSwitchNrvSwitchUpCFP5Spine | :x: |
-| execute__Q216NrvCrystalSwitch18CrystalSwitchNrvOnCFP5Spine | :x: |
-| execute__Q216NrvCrystalSwitch26CrystalSwitchNrvSwitchDownCFP5Spine | :x: |
-| execute__Q216NrvCrystalSwitch19CrystalSwitchNrvOffCFP5Spine | :x: |
+| __ct__13CrystalSwitchFPCc | :white_check_mark: |
+| init__13CrystalSwitchFRC12JMapInfoIter | :white_check_mark: |
+| control__13CrystalSwitchFv | :white_check_mark: |
+| attackSensor__13CrystalSwitchFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__13CrystalSwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| trySwitchDown__13CrystalSwitchFv | :white_check_mark: |
+| tryOn__13CrystalSwitchFv | :white_check_mark: |
+| tryOff__13CrystalSwitchFv | :white_check_mark: |
+| exeOff__13CrystalSwitchFv | :white_check_mark: |
+| exeSwitchDown__13CrystalSwitchFv | :white_check_mark: |
+| exeOn__13CrystalSwitchFv | :white_check_mark: |
+| calcRotSpeed__13CrystalSwitchFv | :white_check_mark: |
+| __dt__13CrystalSwitchFv | :white_check_mark: |
+| __sinit_\CrystalSwitch_cpp | :white_check_mark: |
+| __ct__Q216NrvCrystalSwitch19CrystalSwitchNrvOffFv | :white_check_mark: |
+| __ct__Q216NrvCrystalSwitch26CrystalSwitchNrvSwitchDownFv | :white_check_mark: |
+| __ct__Q216NrvCrystalSwitch18CrystalSwitchNrvOnFv | :white_check_mark: |
+| __ct__Q216NrvCrystalSwitch24CrystalSwitchNrvSwitchUpFv | :white_check_mark: |
+| execute__Q216NrvCrystalSwitch24CrystalSwitchNrvSwitchUpCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCrystalSwitch18CrystalSwitchNrvOnCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCrystalSwitch26CrystalSwitchNrvSwitchDownCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCrystalSwitch19CrystalSwitchNrvOffCFP5Spine | :white_check_mark: |
 
 
 # CutBushModelObj.o

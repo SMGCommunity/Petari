@@ -87,7 +87,7 @@ bool LiveActor::isNerve(const Nerve *pNerve) const {
     return mSpine->getCurrentNerve() == pNerve;
 }
 
-u32 LiveActor::getNerveStep() const {
+s32 LiveActor::getNerveStep() const {
     return mSpine->mStep;
 }
  

@@ -201,6 +201,8 @@ namespace MR {
     void startBtp(const LiveActor *, const char *);
     void setBtpFrameAndStop(const LiveActor *, f32);
 
+    void startBpk(const LiveActor *, const char *);
+
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
 
     void newDifferedDLBuffer(LiveActor *);

@@ -27,6 +27,6 @@ bool NerveExecutor::isNerve(const Nerve* pNerve) const {
     return !(mSpine->getCurrentNerve() != pNerve);
 }
 
-u32 NerveExecutor::getNerveStep() const {
+s32 NerveExecutor::getNerveStep() const {
     return mSpine->mStep;
 }
