@@ -185,7 +185,21 @@ namespace JGeometry {
         TVec3<T> operator+(const TVec3<T> &) const;
         TVec3<T> operator-(const TVec3<T> &) const;
         TVec3<T> operator-() const;
-        TVec3<T> operator*(T) const;
+
+        TVec3<T> operator*(T scalar) const {
+            TVec3<T> f = *this;
+            f.x = this->x * scalar;
+            f.y = this->y * scalar;
+            f.z = this->z * scalar;
+            return f;
+        }
+
+        TVec3<T> operator%(T scalar) const {
+            TVec3<T> f = *this;
+            f.scale(scalar);
+            return f;
+        }
+
         TVec3<T> operator/(T) const;
 
         bool operator==(const TVec3<T> &);

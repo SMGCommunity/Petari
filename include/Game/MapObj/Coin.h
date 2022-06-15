@@ -8,13 +8,13 @@
 class CoinHostInfo {
 public:
     CoinHostInfo() {
-        _0 = 0;
+        mHostActor = NULL;
         _4 = 0;
         _8 = 0;
         _C = 0;
     }
 
-    u32 _0;
+    const NameObj* mHostActor;  // _0
     u32 _4;
     u32 _8;
     u32 _C;

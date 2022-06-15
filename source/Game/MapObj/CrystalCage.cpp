@@ -116,8 +116,6 @@ void CrystalCage::init(const JMapInfoIter &rIter) {
     }
 }
 
-#ifdef NON_MATCHING
-// I have this function extremely close, except for a two-lined swap...
 void CrystalCage::initAfterPlacement() {
     if (!mIsBreakObjVisible || mHasBinding) {
         f32 val = mCrystalCageType == 2 ? 1000.0f : 300.0f;
@@ -138,8 +136,7 @@ void CrystalCage::initAfterPlacement() {
             mVelocity.scale(-2.0f, up_vec);
         }
     }
-}
-#endif
+} 
 
 void CrystalCage::kill() {
     LiveActor::kill();

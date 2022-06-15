@@ -77,7 +77,7 @@
 | Coin.o | 100.0% | 65 / 65 | 100.0% | :white_check_mark: 
 | CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% | :eight_pointed_black_star: 
 | CoinGroup.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
-| CoinHolder.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| CoinHolder.o | 41.98606271777003% | 11 / 19 | 57.89473684210527% | :eight_pointed_black_star: 
 | CoinReplica.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | CoinRotater.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | CoinSpot.o | 0.0% | 0 / 12 | 0.0% | :x: 
@@ -2016,25 +2016,25 @@
 # CoinHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10CoinHolderFPCc | :x: |
+| __ct__10CoinHolderFPCc | :white_check_mark: |
 | hopCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | appearCoinFix__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
-| appearCoinPop__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinPop__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | appearCoinPopToDirection__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
-| appearCoinToVelocity__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| appearCoinToVelocity__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | appearCoinCircle__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
-| declare__10CoinHolderFPC7NameObjl | :x: |
-| getDeclareRemnantCoinCount__10CoinHolderCFPC7NameObj | :x: |
-| findHostInfo__10CoinHolderCFPC7NameObj | :x: |
+| declare__10CoinHolderFPC7NameObjl | :white_check_mark: |
+| getDeclareRemnantCoinCount__10CoinHolderCFPC7NameObj | :white_check_mark: |
+| findHostInfo__10CoinHolderCFPC7NameObj | :white_check_mark: |
 | createCoinHolder__2MRFv | :x: |
 | getCoinHolder__2MRFv | :x: |
 | addToCoinHolder__2MRFPC7NameObjP4Coin | :x: |
-| __dt__10CoinHolderFv | :x: |
-| __ct__12CoinHostInfoFv | :x: |
-| __dt__23DeriveActorGroup&lt;4Coin&gt;Fv | :x: |
-| init__10CoinHolderFRC12JMapInfoIter | :x: |
+| __dt__10CoinHolderFv | :white_check_mark: |
+| __ct__12CoinHostInfoFv | :white_check_mark: |
+| __dt__23DeriveActorGroup&lt;4Coin&gt;Fv | :white_check_mark: |
+| init__10CoinHolderFRC12JMapInfoIter | :white_check_mark: |
 | appearCoin__10CoinHolderFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;lllf | :x: |
-| getDeadMember__23DeriveActorGroup&lt;4Coin&gt;CFv | :x: |
+| getDeadMember__23DeriveActorGroup&lt;4Coin&gt;CFv | :white_check_mark: |
 
 
 # CoinReplica.o

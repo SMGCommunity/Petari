@@ -27,6 +27,14 @@ public:
 
     }
 
+    T* getDeadMember() const NO_INLINE {
+        if (getDeadActor()) {
+            return reinterpret_cast<T*>(getDeadActor());
+        }
+
+        return NULL;
+    }
+
     ~DeriveActorGroup() {
 
     }
