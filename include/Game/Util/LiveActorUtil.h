@@ -69,6 +69,9 @@ namespace MR {
 
     bool isNoEntryDrawBuffer(const LiveActor *);
 
+    void onCalcAnim(LiveActor *);
+    void offCalcAnim(LiveActor *);
+
     void onEntryDrawBuffer(LiveActor *);
     void offEntryDrawBuffer(LiveActor *);
 

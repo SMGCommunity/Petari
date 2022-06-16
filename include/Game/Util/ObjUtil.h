@@ -115,8 +115,8 @@ namespace MR {
     void appearCoinToVelocity(const NameObj *, const TVec3f &, const TVec3f &, s32);
 
     void declareStarPiece(const NameObj *, s32);
-    void getDeclareRemnantStarPieceCount(const NameObj *);
-    void getDeclareRemnantStarPieceCountNotExist(const NameObj *);
+    s32 getDeclareRemnantStarPieceCount(const NameObj *);
+    s32 getDeclareRemnantStarPieceCountNotExist(const NameObj *);
     void declareStarPieceReceiver(const NameObj *, s32);
     void clearGotCountStarPieceReceiver(const NameObj *);
     void hopStarPiece(const NameObj *, const TVec3f &, const TVec3f &);

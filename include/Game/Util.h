@@ -51,3 +51,5 @@
 #include "Game/Util/StringUtil.h"
 #include "Game/Util/SystemUtil.h"
 #include "Game/Util/TalkUtil.h"
+#include "Game/Util/TriangleFilter.h"
+#include "Game/Util/ValueControl.h"

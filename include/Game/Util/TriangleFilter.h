@@ -1,9 +1,8 @@
 #pragma once
 
-class Binder {
-public:
-    void clear();
-};
+class Triangle;
+
+typedef bool (*TriangleFunc)(const Triangle *);
 
 class TriangleFilterBase {
 public:
@@ -18,5 +17,13 @@ public:
 
 class TriangleFilterFunc : public TriangleFilterBase {
 public:
+    TriangleFilterFunc(TriangleFunc func) : TriangleFilterBase(func) {
+
+    }
+
     virtual bool isInvalidTriangle(const Triangle *) const;
+};
+
+namespace MR {
+    TriangleFilterFunc* createTriangleFilterFunc(TriangleFunc);
 };
