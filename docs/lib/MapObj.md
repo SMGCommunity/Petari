@@ -306,7 +306,7 @@
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | MapParts.o | 28.38427947598253% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% | :x: 
-| FloaterFloatingForce.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| FloaterFloatingForce.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | FloaterFunction.o | 0.0% | 0 / 6 | 0.0% | :x: 
@@ -7823,13 +7823,13 @@
 # FloaterFloatingForce.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__16MapPartsFunctionFv | :x: |
-| __dt__20FloaterFloatingForceFv | :x: |
-| __ct__20FloaterFloatingForceFP9LiveActorPCc | :x: |
-| init__20FloaterFloatingForceFRC12JMapInfoIter | :x: |
-| start__20FloaterFloatingForceFv | :x: |
-| control__16MapPartsFunctionFv | :x: |
-| getCurrentVelocity__20FloaterFloatingForceCFv | :x: |
+| __dt__16MapPartsFunctionFv | :white_check_mark: |
+| __dt__20FloaterFloatingForceFv | :white_check_mark: |
+| __ct__20FloaterFloatingForceFP9LiveActorPCc | :white_check_mark: |
+| init__20FloaterFloatingForceFRC12JMapInfoIter | :white_check_mark: |
+| start__20FloaterFloatingForceFv | :white_check_mark: |
+| control__16MapPartsFunctionFv | :white_check_mark: |
+| getCurrentVelocity__20FloaterFloatingForceCFv | :white_check_mark: |
 
 
 # FloaterFloatingForceTypeNormal.o
