@@ -14,6 +14,8 @@ class ModelObj;
 class BrkCtrl;
 class PartsModel;
 class LodCtrl;
+class CollisionParts;
+class HitSensor;
 
 namespace MR {
     enum CollisionScaleType {
@@ -260,4 +262,9 @@ namespace MR {
     void setBinderOffsetVec(LiveActor *, const TVec3f *, bool);
 
     void setBinderExceptActor(LiveActor *, const LiveActor *);
+
+    bool tryCreateCollisionAllOtherCategory(LiveActor *, MtxPtr, HitSensor *, CollisionParts **, CollisionParts **, CollisionParts **);
+    bool tryCreateCollisionAllOtherCategory(LiveActor *, HitSensor *, CollisionParts **, CollisionParts **, CollisionParts **);
+
+    f32 getCollisionBoundingSphereRange(const LiveActor *);
 };

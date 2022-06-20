@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util.h"
+#include "JSystem/JGeometry.h"
 
 class HitSensor;
 
@@ -26,6 +27,8 @@ namespace MR {
     bool getMapPartsArgRailRotateSpeed(f32 *, const JMapInfoIter &);
     bool getMapPartsArgRailRotateTime(s32 *, const JMapInfoIter &);
 
+    bool getMapPartsObjectName(char *, u32, const JMapInfoIter &);
+
     bool hasMapPartsShadow(s32);
 
     bool hasMapPartsMoveStartSignMotion(s32);
@@ -35,4 +38,6 @@ namespace MR {
     void setBodySensorType(LiveActor *, u32);
 
     const HitSensor* getBodySensor(LiveActor *);
+
+    void initMapPartsClipping(LiveActor *, const JMapInfoIter &, TVec3f *, bool);
 };

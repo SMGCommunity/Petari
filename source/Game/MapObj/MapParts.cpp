@@ -1,4 +1,5 @@
 #include "Game/MapObj/MapParts.h"
+#include "JSystem/JMath/JMath.h"
 #include "math_types.h"
 
 MapParts::~MapParts() {
@@ -7,6 +8,19 @@ MapParts::~MapParts() {
 
 MapParts::MapParts(const char *pName) : LiveActor(pName) {
     _8C.setZero();
+}
+
+void MapParts::init(const JMapInfoIter &rIter) {
+    if (MR::isConnectedWithRail(rIter)) {
+        initRailRider(rIter);
+    }
+
+    MR::initDefaultPosNoRepeat(this, rIter);
+    initModelAndCollision(rIter);
+    connectToScene();
+    MR::initMapPartsClipping(this, rIter, &_8C, false);
+    MR::joinToGroupArray(this, rIter, "MapParts", 0x40);
+    initSound(4, false);
 }
 
 void MapParts::appear() {
@@ -24,4 +38,46 @@ s32 MapParts::getMoveStartSignalTime() {
 
 void MapParts::connectToScene() {
     MR::connectToSceneMapParts(this);
+}
+
+void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
+    char name[0x30];
+    MR::getMapPartsObjectName(name, 0x30, rIter);
+    initModelManagerWithAnm(name, NULL, false);
+    initHitSensor(2);
+    TVec3f dist;
+    TVec3f lerpVec;
+    TVec3f sensor_offs;
+    sensor_offs.x = 0.0f;
+    sensor_offs.y = 0.0f;
+    sensor_offs.z = 0.0f;
+    u32 sensorNum = getSensorNumMax();
+    HitSensor* sensor = MR::addHitSensorMapObj(this, "body", sensorNum, 100.0f, sensor_offs);
+    if (MR::isExistJoint(this, cFollowjointName)) {
+        MtxPtr jointMtx = MR::getJointMtx(this, cFollowjointName);
+        MR::initCollisionParts(this, name, sensor, jointMtx);
+        MR::tryCreateCollisionAllOtherCategory(this, jointMtx, sensor, NULL, NULL, NULL);
+    }
+    else {
+        MR::initCollisionParts(this, name, sensor, NULL);
+        MR::tryCreateCollisionAllOtherCategory(this, sensor, NULL, NULL, NULL);
+    }
+
+    f32 sensorRange;
+    if (MR::getJ3DModel(this)) {
+        TBox3f box;
+        MR::calcModelBoundingBox(&box, this);
+        JMathInlineVEC::PSVECSubtract(box.mMax.toCVec(), box.mMin.toCVec(), dist.toVec());
+        sensorRange = 0.5f * PSVECMag(dist.toCVec());
+        JMAVECLerp(box.mMax.toCVec(), box.mMin.toCVec(), lerpVec.toVec(), 0.5f);
+        TVec3f trueSensorOffset;
+        trueSensorOffset.setInlinePS(lerpVec);
+        JMathInlineVEC::PSVECSubtract(trueSensorOffset.toCVec(), mPosition.toCVec(), trueSensorOffset.toVec());
+        MR::setSensorOffset(this, "body", trueSensorOffset);
+    }
+    else {
+        sensorRange = MR::getCollisionBoundingSphereRange(this);
+    }
+
+    sensor->mRadius = sensorRange;
 }

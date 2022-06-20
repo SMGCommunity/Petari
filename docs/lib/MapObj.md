@@ -304,10 +304,10 @@
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% | :x: 
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% | :x: 
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| MapParts.o | 28.38427947598253% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
+| MapParts.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% | :x: 
 | FloaterFloatingForce.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
-| FloaterFloatingForceTypeNormal.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| FloaterFloatingForceTypeNormal.o | 61.79540709812108% | 18 / 20 | 90.0% | :eight_pointed_black_star: 
 | FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | FloaterFunction.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | LavaHomeSeesawRotator.o | 0.0% | 0 / 35 | 0.0% | :x: 
@@ -7775,12 +7775,12 @@
 | ------------- | ------------- |
 | __dt__8MapPartsFv | :white_check_mark: |
 | __ct__8MapPartsFPCc | :white_check_mark: |
-| init__8MapPartsFRC12JMapInfoIter | :x: |
+| init__8MapPartsFRC12JMapInfoIter | :white_check_mark: |
 | appear__8MapPartsFv | :white_check_mark: |
 | getSensorNumMax__8MapPartsCFv | :white_check_mark: |
 | getMoveStartSignalTime__8MapPartsFv | :white_check_mark: |
 | connectToScene__8MapPartsFv | :white_check_mark: |
-| initModelAndCollision__8MapPartsFRC12JMapInfoIter | :x: |
+| initModelAndCollision__8MapPartsFRC12JMapInfoIter | :white_check_mark: |
 
 
 # GeneralMapParts.o
@@ -7835,26 +7835,26 @@
 # FloaterFloatingForceTypeNormal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__30FloaterFloatingForceTypeNormalFP9LiveActorPCc | :x: |
-| init__30FloaterFloatingForceTypeNormalFRC12JMapInfoIter | :x: |
-| start__30FloaterFloatingForceTypeNormalFv | :x: |
+| __ct__30FloaterFloatingForceTypeNormalFP9LiveActorPCc | :white_check_mark: |
+| init__30FloaterFloatingForceTypeNormalFRC12JMapInfoIter | :white_check_mark: |
+| start__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
 | updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | updateVelocity__30FloaterFloatingForceTypeNormalFb | :x: |
-| soundMoveSE__30FloaterFloatingForceTypeNormalFv | :x: |
-| setStateMove__30FloaterFloatingForceTypeNormalFv | :x: |
-| exeMoveFirst__30FloaterFloatingForceTypeNormalFv | :x: |
-| exeMove__30FloaterFloatingForceTypeNormalFv | :x: |
-| __dt__30FloaterFloatingForceTypeNormalFv | :x: |
-| __sinit_\FloaterFloatingForceTypeNormal_cpp | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitFv | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeNormal17HostTypeMoveFirstFv | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeNormal21HostTypeMoveOffPlayerFv | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeNormal20HostTypeMoveOnPlayerFv | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeNormal20HostTypeMoveOnPlayerCFP5Spine | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeNormal21HostTypeMoveOffPlayerCFP5Spine | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeNormal17HostTypeMoveFirstCFP5Spine | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitCFP5Spine | :x: |
-| getCurrentVelocity__30FloaterFloatingForceTypeNormalCFv | :x: |
+| soundMoveSE__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
+| setStateMove__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
+| exeMoveFirst__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
+| exeMove__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
+| __dt__30FloaterFloatingForceTypeNormalFv | :white_check_mark: |
+| __sinit_\FloaterFloatingForceTypeNormal_cpp | :white_check_mark: |
+| __ct__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q233NrvFloaterFloatingForceTypeNormal17HostTypeMoveFirstFv | :white_check_mark: |
+| __ct__Q233NrvFloaterFloatingForceTypeNormal21HostTypeMoveOffPlayerFv | :white_check_mark: |
+| __ct__Q233NrvFloaterFloatingForceTypeNormal20HostTypeMoveOnPlayerFv | :white_check_mark: |
+| execute__Q233NrvFloaterFloatingForceTypeNormal20HostTypeMoveOnPlayerCFP5Spine | :white_check_mark: |
+| execute__Q233NrvFloaterFloatingForceTypeNormal21HostTypeMoveOffPlayerCFP5Spine | :white_check_mark: |
+| execute__Q233NrvFloaterFloatingForceTypeNormal17HostTypeMoveFirstCFP5Spine | :white_check_mark: |
+| execute__Q233NrvFloaterFloatingForceTypeNormal12HostTypeWaitCFP5Spine | :white_check_mark: |
+| getCurrentVelocity__30FloaterFloatingForceTypeNormalCFv | :white_check_mark: |
 
 
 # FloaterFloatingForceTypeSpring.o

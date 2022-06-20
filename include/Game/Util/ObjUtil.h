@@ -132,6 +132,7 @@ namespace MR {
     void requestAppearPowerStar(const NameObj *, s32, const TVec3f &);
     void requestAppearPowerStar(const NameObj *, const LiveActor *, f32);
 
+    void shakeCameraWeak();
     void shakeCameraNormal();
     void shakeCameraStrong();
     void shakeCameraVeryStrong();
