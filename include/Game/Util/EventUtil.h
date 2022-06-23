@@ -38,4 +38,8 @@ namespace MR {
     bool isGalaxyBlackCometAppearInCurrentStage();
 
     bool isPlayerLuigi();
+
+    void explainOneUpIfAtFirst();
+
+    void incPlayerLeft();
 };

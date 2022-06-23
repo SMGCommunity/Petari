@@ -33,7 +33,7 @@ void HipDropMoveObj::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
-u32 HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (!isNerve(&NrvHipDropMoveObj::HostTypeWait::sInstance)) {
             return 0;

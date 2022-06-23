@@ -20,4 +20,6 @@ namespace MR {
     bool isExistActorCamera(const ActorCameraInfo *);
 
     void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
+
+    s32 getActorCameraFrames(const LiveActor *, const ActorCameraInfo *);
 };

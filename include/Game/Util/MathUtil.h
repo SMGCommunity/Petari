@@ -121,7 +121,25 @@ namespace MR {
 
     void calcReboundVelocity(TVec3f *, const TVec3f &, f32, f32);
 
+    void getRotatedAxisZ(TVec3f *, const TVec3f &);
     void getRotatedAxisY(TVec3f *, const TVec3f &);
+
+    /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
+     * this function automates this and resolves most issues
+    */
+    inline TVec3f createVecAndScale(const TVec3f &rSrc, f32 scalar) {
+        TVec3f vec(rSrc);
+        vec.scale(scalar);
+        return vec;
+    }
+
+    inline TVec3f negateVector(TVec3f &rVec) {
+        return -rVec;
+    }
+
+    inline void createVecScaleAndApply(const TVec3f &rSrc, TVec3f &rDest, f32 scalar) {
+        rDest += createVecAndScale(rSrc, scalar);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

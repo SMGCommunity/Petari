@@ -12,7 +12,7 @@ public:
     virtual void initAfterPlacement();
     virtual void kill();
     virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
 
     void forceBreak();

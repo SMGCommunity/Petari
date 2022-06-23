@@ -53,7 +53,8 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
 }
 
 #ifdef NON_MATCHING
-bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
+// matching this with the stack is fucking impossible
+bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
 	TVec3f dirToPos;
 	dirToPos = rPosition - mTranslation;
 	f32 dot = dirToPos.dot(mRotation);
@@ -77,7 +78,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 
 		if (dot >= 0.0f) {
 			TVec3f neg;
-			neg.negateInline(mRotation);
+			neg.negateInline_2(mRotation);
 			grav = &neg;
 		}
 		else {
@@ -108,8 +109,8 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 	if (pDest) {
 		*pDest = gravity;
 	}
-	if (pScalar) {
-		*pScalar = scalar;
+	if (pDistance) {
+		*pDistance = distance;
 	}
 
 	return true;

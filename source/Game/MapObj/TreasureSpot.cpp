@@ -50,7 +50,7 @@ void TreasureSpot::control() {
     }
 }
 
-u32 TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (isNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance)) {
         return 0;
     }

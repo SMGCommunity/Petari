@@ -43,4 +43,6 @@ namespace MR {
     void forceToScreenCinemaFrame();
     void forceToFrameCinemaFrame();
     void forceToBlankCinemaFrame();
+
+    void requestOneUp();
 };

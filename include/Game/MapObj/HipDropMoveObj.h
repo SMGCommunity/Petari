@@ -14,7 +14,7 @@ public:
 
     virtual ~HipDropMoveObj();
     virtual void init(const JMapInfoIter &);
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual void moveStart();
     virtual void moving();
     virtual void moveEnd();

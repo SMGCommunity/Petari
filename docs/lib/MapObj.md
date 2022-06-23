@@ -39,7 +39,7 @@
 | BeeFlowerHover.o | 82.1311475409836% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | BenefitItemInvincible.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | BenefitItemLifeUp.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| BenefitItemObj.o | 0.0% | 0 / 35 | 0.0% | :x: 
+| BenefitItemObj.o | 98.54368932038835% | 34 / 35 | 97.14285714285714% | :eight_pointed_black_star: 
 | BigBubbleDrawer.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
@@ -84,7 +84,7 @@
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
-| CrystalCage.o | 92.85042333019756% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
+| CrystalCage.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | CrystalCageMoving.o | 100.0% | 36 / 36 | 100.0% | :white_check_mark: 
 | CrystalSwitch.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | CutBushModelObj.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -1093,41 +1093,41 @@
 # BenefitItemObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| endClipped__15ShadowClipActorFv | :x: |
-| control__15ShadowClipActorFv | :x: |
-| __ct__14BenefitItemObjFPCcPCc | :x: |
-| initModelAndEfx__14BenefitItemObjFv | :x: |
-| init__14BenefitItemObjFRC12JMapInfoIter | :x: |
-| initAfterPlacement__14BenefitItemObjFv | :x: |
-| makeActorAppeared__14BenefitItemObjFv | :x: |
-| appear__14BenefitItemObjFv | :x: |
-| appearGround__14BenefitItemObjFv | :x: |
-| appearThrowUp__14BenefitItemObjFv | :x: |
-| shoot__14BenefitItemObjFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :x: |
-| appearThrowUpQuestionBox__14BenefitItemObjFv | :x: |
-| control__14BenefitItemObjFv | :x: |
+| endClipped__15ShadowClipActorFv | :white_check_mark: |
+| control__15ShadowClipActorFv | :white_check_mark: |
+| __ct__14BenefitItemObjFPCcPCc | :white_check_mark: |
+| initModelAndEfx__14BenefitItemObjFv | :white_check_mark: |
+| init__14BenefitItemObjFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__14BenefitItemObjFv | :white_check_mark: |
+| makeActorAppeared__14BenefitItemObjFv | :white_check_mark: |
+| appear__14BenefitItemObjFv | :white_check_mark: |
+| appearGround__14BenefitItemObjFv | :white_check_mark: |
+| appearThrowUp__14BenefitItemObjFv | :white_check_mark: |
+| shoot__14BenefitItemObjFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b | :white_check_mark: |
+| appearThrowUpQuestionBox__14BenefitItemObjFv | :white_check_mark: |
+| control__14BenefitItemObjFv | :white_check_mark: |
 | exeWait__14BenefitItemObjFv | :x: |
-| doRotateY__14BenefitItemObjFv | :x: |
-| exeShoot__14BenefitItemObjFv | :x: |
-| exeCatch__14BenefitItemObjFv | :x: |
-| receiveMsgPlayerAttack__14BenefitItemObjFUlP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__14BenefitItemObjFUlP9HitSensorP9HitSensor | :x: |
-| exeAppearGround__14BenefitItemObjFv | :x: |
-| exePreEscape__14BenefitItemObjFv | :x: |
-| initEscape__14BenefitItemObjFv | :x: |
-| doEscape__14BenefitItemObjFv | :x: |
-| exeEscape__14BenefitItemObjFv | :x: |
-| calcAndSetBaseMtx__14BenefitItemObjFv | :x: |
-| calcAndSetBaseMtxInMovement__14BenefitItemObjFv | :x: |
-| setFollowMtx__14BenefitItemObjFPA4_f | :x: |
-| runBck__14BenefitItemObjFPCc | :x: |
-| runEfx__14BenefitItemObjFPCc | :x: |
-| stopEfx__14BenefitItemObjFPCc | :x: |
-| setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __cl__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__15ShadowClipActorFv | :x: |
-| __sinit_\BenefitItemObj_cpp | :x: |
+| doRotateY__14BenefitItemObjFv | :white_check_mark: |
+| exeShoot__14BenefitItemObjFv | :white_check_mark: |
+| exeCatch__14BenefitItemObjFv | :white_check_mark: |
+| receiveMsgPlayerAttack__14BenefitItemObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__14BenefitItemObjFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| exeAppearGround__14BenefitItemObjFv | :white_check_mark: |
+| exePreEscape__14BenefitItemObjFv | :white_check_mark: |
+| initEscape__14BenefitItemObjFv | :white_check_mark: |
+| doEscape__14BenefitItemObjFv | :white_check_mark: |
+| exeEscape__14BenefitItemObjFv | :white_check_mark: |
+| calcAndSetBaseMtx__14BenefitItemObjFv | :white_check_mark: |
+| calcAndSetBaseMtxInMovement__14BenefitItemObjFv | :white_check_mark: |
+| setFollowMtx__14BenefitItemObjFPA4_f | :white_check_mark: |
+| runBck__14BenefitItemObjFPCc | :white_check_mark: |
+| runEfx__14BenefitItemObjFPCc | :white_check_mark: |
+| stopEfx__14BenefitItemObjFPCc | :white_check_mark: |
+| setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| __cl__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__15ShadowClipActorFv | :white_check_mark: |
+| __sinit_\BenefitItemObj_cpp | :white_check_mark: |
 
 
 # BigBubbleDrawer.o
@@ -2142,7 +2142,7 @@
 | ------------- | ------------- |
 | __ct__11CrystalCageFPCc | :white_check_mark: |
 | init__11CrystalCageFRC12JMapInfoIter | :white_check_mark: |
-| initAfterPlacement__11CrystalCageFv | :x: |
+| initAfterPlacement__11CrystalCageFv | :white_check_mark: |
 | kill__11CrystalCageFv | :white_check_mark: |
 | forceBreak__11CrystalCageFv | :white_check_mark: |
 | attackSensor__11CrystalCageFP9HitSensorP9HitSensor | :white_check_mark: |

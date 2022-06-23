@@ -84,4 +84,8 @@ namespace MR {
 	void rotAxisVecRad(const TVec3f &, const TVec3f &, TVec3f *, f32);
 
 	void makeMtxTR(MtxPtr, const LiveActor *);
+
+	void setMtxTrans(MtxPtr mtx, const TVec3f &rVec) {
+		MR::setMtxTrans(mtx, rVec.x, rVec.y, rVec.z);
+	}
 };

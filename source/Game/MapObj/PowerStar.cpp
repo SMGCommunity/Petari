@@ -329,7 +329,7 @@ void PowerStar::calcAndSetBaseMtx() {
 }
 #endif
 
-u32 PowerStar::receiveMsgPlayerAttack(u32 msg,  HitSensor *a2, HitSensor *a3) {
+bool PowerStar::receiveMsgPlayerAttack(u32 msg,  HitSensor *a2, HitSensor *a3) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return 1;
     }

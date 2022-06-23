@@ -166,7 +166,7 @@ void KeySwitch::control() {
     }
 }
 
-u32 KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool KeySwitch::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
     return MR::isMsgStarPieceReflect(msg);
 }
 

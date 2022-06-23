@@ -255,7 +255,7 @@ void MarblePlanetElectron::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
-u32 MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (isNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance)) {
         return 0;
     }

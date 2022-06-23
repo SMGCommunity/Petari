@@ -184,7 +184,18 @@ namespace JGeometry {
 
         TVec3<T> operator+(const TVec3<T> &) const;
         TVec3<T> operator-(const TVec3<T> &) const;
-        TVec3<T> operator-() const;
+        const TVec3<T> operator-() const NO_INLINE {
+            register f32 z, xy;
+            __asm {
+                psq_l xy, 0(r4), 0, 0
+                lfs z, 8(r4)
+                ps_neg xy, xy
+                fneg z, z
+                psq_st xy, 0(r3), 0, 0
+                stfs z, 8(r3)
+                blr
+            }
+        }
 
         TVec3<T> operator*(T scalar) const {
             TVec3<T> f = *this;
@@ -198,6 +209,10 @@ namespace JGeometry {
             TVec3<T> f = *this;
             f.scale(scalar);
             return f;
+        }
+
+        Vec multToVec(T scalar) {
+
         }
 
         TVec3<T> operator/(T) const;
@@ -346,6 +361,24 @@ namespace JGeometry {
                 lfs       z, 8(src)
                 fneg      z, z
                 stfs      z, 8(dest)
+            }
+
+            return ret;
+        }
+
+        inline const TVec3<T> negateInline_2() const {
+            TVec3<T> ret;
+            register const TVec3<T>* src = this;
+            register TVec3<T>* dst = &ret;
+            register f32 xy, z;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
+                ps_neg xy, xy
+                fneg z, z
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
             }
 
             return ret;

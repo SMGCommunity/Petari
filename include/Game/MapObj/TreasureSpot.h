@@ -9,7 +9,7 @@ public:
     virtual ~TreasureSpot();
     virtual void init(const JMapInfoIter &);
     virtual void control();
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
 
     void exeSpout();
     void switchEmitGlow();

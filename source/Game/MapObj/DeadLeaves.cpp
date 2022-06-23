@@ -48,7 +48,7 @@ void DeadLeaves::exeSpin() {
     }
 }
 
-u32 DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
+bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         setNerve(&NrvDeadLeaves::DeadLeavesNrvSpin::sInstance);
         return 1;

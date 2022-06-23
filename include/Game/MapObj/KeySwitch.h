@@ -17,7 +17,7 @@ public:
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void initKeySwitchByOwner(const JMapInfoIter &);

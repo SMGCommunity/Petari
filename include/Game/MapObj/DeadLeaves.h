@@ -9,7 +9,7 @@ public:
 
     virtual ~DeadLeaves();
     virtual void init(const JMapInfoIter &);
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
 
     void exeSpin();
 

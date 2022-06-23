@@ -44,7 +44,7 @@ public:
     virtual void updateHitSensor(HitSensor *);
     virtual void attackSensor(HitSensor *, HitSensor *);
     virtual u32 receiveMsgPush(HitSensor *, HitSensor *);
-    virtual u32 receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
     virtual u32 receiveMsgTake(HitSensor *, HitSensor *);
     virtual u32 receiveMsgTaken(HitSensor *, HitSensor *);

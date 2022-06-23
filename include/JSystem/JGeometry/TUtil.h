@@ -43,6 +43,10 @@ namespace JGeometry {
             return flt_80630CA0[(u32)(1023.5f * val)];
         }
 
+        static f32 PI() NO_INLINE {
+            return 3.1415927f;
+        }
+
         static T clamp(T, T, T);
         static T inv_sqrt(T);
     };

@@ -23,6 +23,7 @@ namespace MR {
 
     void moveCoordToNearestPos(LiveActor *, const TVec3f &);
 
+    void moveCoordAndTransToNearestRailPos(LiveActor *);
     void moveTransToCurrentRailPos(LiveActor *);
 
     void reverseRailDirection(LiveActor *);
@@ -37,4 +38,6 @@ namespace MR {
     const TVec3f& getRailDirection(const LiveActor *);
 
     void moveCoordToStartPos(LiveActor *);
+
+    bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
 };

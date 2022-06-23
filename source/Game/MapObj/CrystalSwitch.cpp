@@ -40,7 +40,7 @@ void CrystalSwitch::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
-u32 CrystalSwitch::receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *) {
+bool CrystalSwitch::receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *) {
     _98 = 1;
     return 1;
 }

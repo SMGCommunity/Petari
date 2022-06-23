@@ -123,10 +123,11 @@ void CrystalCage::initAfterPlacement() {
         TVec3f stack_2C;
         TVec3f stack_20;
         MR::calcUpVec(&up_vec, this);
-        JMathInlineVEC::PSVECAdd(mPosition.toCVec(), (up_vec * (val * mScale.x)).toCVec(), stack_20.toVec());
+        // I realy do not like this, but it matches :c
+        JMathInlineVEC::PSVECAdd(mPosition.toCVec(), (Vec *) &(up_vec * (val * mScale.x)), stack_20.toVec());
         stack_2C.scale((-(2.0f * val) * mScale.x), up_vec);
 
-        if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, NULL, stack_20, stack_2C, this)) {
+        if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, 0, stack_20, stack_2C, this)) {
             _F8.set<f32>(mPosition);
         }
 
@@ -136,7 +137,7 @@ void CrystalCage::initAfterPlacement() {
             mVelocity.scale(-2.0f, up_vec);
         }
     }
-} 
+}
 
 void CrystalCage::kill() {
     LiveActor::kill();
@@ -168,7 +169,7 @@ void CrystalCage::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
-u32 CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (!isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
         return 0;
     }

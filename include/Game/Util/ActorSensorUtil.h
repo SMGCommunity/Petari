@@ -145,6 +145,9 @@ namespace MR {
     bool isMsgItemEndMove(u32);
     bool isMsgInhaleBlackHole(u32);
 
+    bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
+    bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);
+
     void updateHitSensorsAll(LiveActor *);
 
     void setHitSensorApart(HitSensor *, HitSensor *);
