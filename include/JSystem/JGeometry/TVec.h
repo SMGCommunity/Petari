@@ -434,6 +434,13 @@ namespace JGeometry {
             }
         }
 
+        inline void multAndSet(TVec3<T> *pDest, T scalar) {
+            TVec3<T> mult_res = *this * scalar;
+            pDest->x = mult_res.x;
+            pDest->y = mult_res.y;
+            pDest->z = mult_res.z;
+        }
+
         T x, y, z;
     };
 

@@ -697,7 +697,7 @@ __dt__21BigBubbleMoveLimitterFv,BigBubbleMoveLimitter.o,MapObj.a,false
 __ct__6BigFanFPCc,BigFan.o,MapObj.a,true
 init__6BigFanFRC12JMapInfoIter,BigFan.o,MapObj.a,true
 initWindModel__6BigFanFv,BigFan.o,MapObj.a,true
-calcWindInfo__6BigFanFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,BigFan.o,MapObj.a,false
+calcWindInfo__6BigFanFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,BigFan.o,MapObj.a,true
 control__6BigFanFv,BigFan.o,MapObj.a,true
 start__6BigFanFv,BigFan.o,MapObj.a,true
 exeStart__6BigFanFv,BigFan.o,MapObj.a,true

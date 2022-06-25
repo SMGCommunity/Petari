@@ -65,7 +65,46 @@ void BigFan::initWindModel() {
     mWindModel->mScale.z = mWindLength / 2000.0f;
 }
 
-// BigFan::calcWindInfo
+void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {    
+    if (MR::isDead(this) || isStartOrWait()) {
+        pWindInfo->zero();
+    }
+    else {
+        if (mWindLength <= 0.0f) {
+            pWindInfo->zero();
+            return;
+        }
+        
+        TVec3f front_vec;
+        MR::calcFrontVec(&front_vec, this);
+        MR::normalize(&front_vec);
+        TVec3f stack_38 = a2 - mPosition;
+        f32 dot = front_vec.dot(stack_38);
+
+        if (dot < 0.0f) {
+            pWindInfo->zero();
+            return;
+        }
+
+        TVec3f stack_2C;
+        stack_2C.setInlinePS(stack_38 - (front_vec * dot));
+        f32 mag = PSVECMag(stack_2C.toCVec());
+
+        if (mag >= 400.0f * mScale.x) {
+            pWindInfo->zero();
+            return;
+        }
+
+        f32 scalar = (1.0f - (dot / mWindLength));
+        if (scalar < 0.0f) {
+            pWindInfo->zero();
+            return;
+        }
+
+        front_vec.multAndSet(pWindInfo, scalar);
+        return;
+    }
+}
 
 void BigFan::control() {
 
