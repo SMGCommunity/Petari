@@ -40,7 +40,7 @@
 | BenefitItemInvincible.o | 62.95454545454545% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
 | BenefitItemLifeUp.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | BenefitItemObj.o | 98.54368932038835% | 34 / 35 | 97.14285714285714% | :eight_pointed_black_star: 
-| BigBubbleDrawer.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| BigBubbleDrawer.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% | :x: 
@@ -1133,15 +1133,15 @@
 # BigBubbleDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15BigBubbleDrawerFv | :x: |
-| setUpDraw__15BigBubbleDrawerCFv | :x: |
-| setUpVertexFormat__15BigBubbleDrawerCFv | :x: |
-| setUpTexture__15BigBubbleDrawerCFv | :x: |
-| setUpTevStage__15BigBubbleDrawerCFv | :x: |
-| setUpPixelFormat__15BigBubbleDrawerCFv | :x: |
-| setUpMaterial__15BigBubbleDrawerCFv | :x: |
-| __sinit_\BigBubbleDrawer_cpp | :x: |
-| __ct__6Color8FUl | :x: |
+| __ct__15BigBubbleDrawerFv | :white_check_mark: |
+| setUpDraw__15BigBubbleDrawerCFv | :white_check_mark: |
+| setUpVertexFormat__15BigBubbleDrawerCFv | :white_check_mark: |
+| setUpTexture__15BigBubbleDrawerCFv | :white_check_mark: |
+| setUpTevStage__15BigBubbleDrawerCFv | :white_check_mark: |
+| setUpPixelFormat__15BigBubbleDrawerCFv | :white_check_mark: |
+| setUpMaterial__15BigBubbleDrawerCFv | :white_check_mark: |
+| __sinit_\BigBubbleDrawer_cpp | :white_check_mark: |
+| __ct__6Color8FUl | :white_check_mark: |
 
 
 # BigBubbleGenerator.o

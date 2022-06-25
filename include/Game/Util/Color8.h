@@ -6,9 +6,21 @@ class Color8 {
 public:
     Color8(_GXColor);
     Color8(u8, u8, u8, u8);
+    Color8(u32 color) {
+        mColor = color;
+    }
 
-    u8 r;   // _0
-    u8 g;   // _1
-    u8 b;   // _2
-    u8 a;   // _3
+    inline operator GXColor() const {
+        GXColor color;
+        color.r = r;
+        color.g = g;
+        color.b = b;
+        color.a = a;
+        return color;
+    }
+
+    union {
+        u8 r, g, b, a;
+        u32 mColor;
+    };
 };

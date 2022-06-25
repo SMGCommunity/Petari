@@ -9,6 +9,8 @@ class JMapInfo;
 class ResourceHolder;
 class StageSwitchCtrl;
 
+class ResTIMG;
+
 namespace MR {
     void connectToScene(NameObj *, int, int, int, int);
     void connectToSceneCollisionMapObj(LiveActor *);
@@ -141,4 +143,6 @@ namespace MR {
     bool isInWater(const TVec3f &);
 
     void stopScene(s32);
+
+    const ResTIMG* loadTexFromArc(const char *, const char *);
 };
