@@ -37,8 +37,8 @@
 | BattleShipElevator.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | BeamGoRoundPlanet.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | BeeFlowerHover.o | 82.1311475409836% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
-| BenefitItemInvincible.o | 0.0% | 0 / 12 | 0.0% | :x: 
-| BenefitItemLifeUp.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| BenefitItemInvincible.o | 62.95454545454545% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
+| BenefitItemLifeUp.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | BenefitItemObj.o | 98.54368932038835% | 34 / 35 | 97.14285714285714% | :eight_pointed_black_star: 
 | BigBubbleDrawer.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% | :x: 
@@ -1063,31 +1063,31 @@
 # BenefitItemInvincible.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21BenefitItemInvincibleFPCc | :x: |
-| exeCatch__21BenefitItemInvincibleFv | :x: |
-| init__21BenefitItemInvincibleFRC12JMapInfoIter | :x: |
-| initModelAndEfx__21BenefitItemInvincibleFv | :x: |
-| appearThrowUp__21BenefitItemInvincibleFv | :x: |
+| __ct__21BenefitItemInvincibleFPCc | :white_check_mark: |
+| exeCatch__21BenefitItemInvincibleFv | :white_check_mark: |
+| init__21BenefitItemInvincibleFRC12JMapInfoIter | :white_check_mark: |
+| initModelAndEfx__21BenefitItemInvincibleFv | :white_check_mark: |
+| appearThrowUp__21BenefitItemInvincibleFv | :white_check_mark: |
 | initEscape__21BenefitItemInvincibleFv | :x: |
 | doEscape__21BenefitItemInvincibleFv | :x: |
-| runEfx__21BenefitItemInvincibleFPCc | :x: |
-| stopEfx__21BenefitItemInvincibleFPCc | :x: |
-| __dt__21BenefitItemInvincibleFv | :x: |
-| runBck__21BenefitItemInvincibleFPCc | :x: |
-| __sinit_\BenefitItemInvincible_cpp | :x: |
+| runEfx__21BenefitItemInvincibleFPCc | :white_check_mark: |
+| stopEfx__21BenefitItemInvincibleFPCc | :white_check_mark: |
+| __dt__21BenefitItemInvincibleFv | :white_check_mark: |
+| runBck__21BenefitItemInvincibleFPCc | :white_check_mark: |
+| __sinit_\BenefitItemInvincible_cpp | :white_check_mark: |
 
 
 # BenefitItemLifeUp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17BenefitItemLifeUpFPCc | :x: |
-| exeCatch__17BenefitItemLifeUpFv | :x: |
-| initModelAndEfx__17BenefitItemLifeUpFv | :x: |
-| runEfx__17BenefitItemLifeUpFPCc | :x: |
-| __sinit_\BenefitItemLifeUp_cpp | :x: |
-| init__17BenefitItemLifeUpFRC12JMapInfoIter | :x: |
-| stopEfx__17BenefitItemLifeUpFPCc | :x: |
-| __dt__17BenefitItemLifeUpFv | :x: |
+| __ct__17BenefitItemLifeUpFPCc | :white_check_mark: |
+| exeCatch__17BenefitItemLifeUpFv | :white_check_mark: |
+| initModelAndEfx__17BenefitItemLifeUpFv | :white_check_mark: |
+| runEfx__17BenefitItemLifeUpFPCc | :white_check_mark: |
+| __sinit_\BenefitItemLifeUp_cpp | :white_check_mark: |
+| init__17BenefitItemLifeUpFRC12JMapInfoIter | :white_check_mark: |
+| stopEfx__17BenefitItemLifeUpFPCc | :white_check_mark: |
+| __dt__17BenefitItemLifeUpFv | :white_check_mark: |
 
 
 # BenefitItemObj.o

@@ -57,4 +57,6 @@ namespace MR {
     void showPlayer();
 
     bool isPlayerElementModeBee();
+
+    void changePlayerItemStatus(s32);
 };

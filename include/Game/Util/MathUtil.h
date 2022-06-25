@@ -133,12 +133,29 @@ namespace MR {
         return vec;
     }
 
+    inline TVec3f createNegatedVecAndScale(const TVec3f &rSrc, f32 scalar) {
+        return rSrc.negateInline() % scalar;
+        //vec.scale(scalar);
+        //return vec;
+    }
+
     inline TVec3f negateVector(TVec3f &rVec) {
         return -rVec;
     }
 
     inline void createVecScaleAndApply(const TVec3f &rSrc, TVec3f &rDest, f32 scalar) {
         rDest += createVecAndScale(rSrc, scalar);
+    }
+
+    inline TVec3f addTwoScalarVecs(const TVec3f &rSrcVector_One, const TVec3f &rSrcVector_Two, f32 scalar_one, f32 scalar_two) {
+        TVec3f vec_one(rSrcVector_One);
+        vec_one.scale(scalar_one);
+        f32 scale_2 = scalar_two;
+        TVec3f vec_two(rSrcVector_Two);
+        vec_two.scale(scale_2);
+        TVec3f res(vec_two);
+        res += vec_one;
+        return res;
     }
 };
 

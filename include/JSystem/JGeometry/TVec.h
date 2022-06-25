@@ -366,6 +366,26 @@ namespace JGeometry {
             return ret;
         }
 
+        inline const TVec3<T> negateInlineAndScale(T scalar) const {
+            TVec3<T> ret;
+            register const TVec3<T>* src = this;
+            register TVec3<T>* dest = &ret;
+            register f32 xy, z;
+
+            __asm {
+                psq_l     xy, 0(src), 0, 0
+                ps_neg    xy, xy
+                psq_st    xy, 0(dest), 0, 0
+                lfs       z, 8(src)
+                fneg      z, z
+                stfs      z, 8(dest)
+            }
+
+            TVec3f trueRet = TVec3f(ret);
+            trueRet.scale(scalar);
+            return trueRet;
+        }
+
         inline const TVec3<T> negateInline_2() const {
             TVec3<T> ret;
             register const TVec3<T>* src = this;

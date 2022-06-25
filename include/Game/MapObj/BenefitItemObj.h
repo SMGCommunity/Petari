@@ -77,6 +77,8 @@ public:
     u32 _130;
     LiveActor* mHitSensorActor;     // _134
     u8 _138;
+    u8 _139;
+    u16 _13A;
 };
 
 class ShadowClipActor : public LiveActor {
