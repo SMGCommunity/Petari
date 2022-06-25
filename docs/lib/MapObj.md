@@ -44,7 +44,7 @@
 | BigBubbleGenerator.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| BigFan.o | 78.96825396825396% | 17 / 18 | 94.44444444444444% | :eight_pointed_black_star: 
+| BigFan.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | BigFanHolder.o | 57.73195876288659% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
 | BlackHole.o | 66.66666666666666% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
 | BlueChip.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -1208,7 +1208,7 @@
 | __ct__6BigFanFPCc | :white_check_mark: |
 | init__6BigFanFRC12JMapInfoIter | :white_check_mark: |
 | initWindModel__6BigFanFv | :white_check_mark: |
-| calcWindInfo__6BigFanFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWindInfo__6BigFanFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | control__6BigFanFv | :white_check_mark: |
 | start__6BigFanFv | :white_check_mark: |
 | exeStart__6BigFanFv | :white_check_mark: |
