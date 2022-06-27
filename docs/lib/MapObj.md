@@ -45,7 +45,7 @@
 | BigBubbleHolder.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | BigBubbleMoveLimitter.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | BigFan.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| BigFanHolder.o | 57.73195876288659% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| BigFanHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | BlackHole.o | 66.66666666666666% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
 | BlueChip.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% | :x: 
@@ -1230,7 +1230,7 @@
 | ------------- | ------------- |
 | __ct__12BigFanHolderFv | :white_check_mark: |
 | __dt__25DeriveActorGroup&lt;6BigFan&gt;Fv | :white_check_mark: |
-| calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :x: |
+| calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :white_check_mark: |
 | createBigFanHolder__14BigFanFunctionFv | :white_check_mark: |
 | calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;Pf | :white_check_mark: |
 | registerBigFan__14BigFanFunctionFP6BigFan | :white_check_mark: |
