@@ -714,7 +714,7 @@ clone__Q22MR37FunctorV0M<P6BigFan&#44;M6BigFanFPCvPv_v>CFP7JKRHeap,BigFan.o,MapO
 __dt__6BigFanFv,BigFan.o,MapObj.a,true
 __ct__12BigFanHolderFv,BigFanHolder.o,MapObj.a,true
 __dt__25DeriveActorGroup<6BigFan>Fv,BigFanHolder.o,MapObj.a,true
-calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf,BigFanHolder.o,MapObj.a,false
+calcWindInfo__12BigFanHolderFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf,BigFanHolder.o,MapObj.a,true
 createBigFanHolder__14BigFanFunctionFv,BigFanHolder.o,MapObj.a,true
 calcWindInfo__14BigFanFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>Pf,BigFanHolder.o,MapObj.a,true
 registerBigFan__14BigFanFunctionFP6BigFan,BigFanHolder.o,MapObj.a,true
