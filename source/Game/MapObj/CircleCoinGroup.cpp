@@ -13,12 +13,12 @@ void CircleCoinGroup::initCoinArray(const JMapInfoIter &rIter) {
 /* CircleCoinGroup::placementCoin */
 
 namespace MR {
-    CircleCoinGroup* createCircleCoinGroup(const char *pName) {
+    NameObj* createCircleCoinGroup(const char *pName) {
         CircleCoinGroup* group = new CircleCoinGroup(pName);
         return group;
     }
 
-    CircleCoinGroup* createCirclePurpleCoinGroup(const char *pName) {
+    NameObj* createCirclePurpleCoinGroup(const char *pName) {
         CircleCoinGroup* group = new CircleCoinGroup(pName);
         group->mIsPurpleCoinGroup = true;
         return group;

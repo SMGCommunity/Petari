@@ -259,6 +259,28 @@ namespace JGeometry {
             };
         }
 
+        inline void setInlineXYPS(register const TVec3<T> &src) {
+            register TVec3<T>* dst = this;
+            register f32 xy, scalar, _z;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs _z, 8(src)
+                psq_st xy, 0(dst), 0, 0
+            };
+            scalar = 500.0f;
+
+            f32 __z = _z;
+            f32 _y = x;
+            f32 _x = y;
+            __z = __z * scalar;
+            _y = _y * scalar;
+            _x = _x * scalar;
+            z = __z;
+            y = _x;
+            x = _y;
+        }
+
         inline void setZero() {
             register TVec3<T>* dst = this;
             register const Vec* src = &gZeroVec;

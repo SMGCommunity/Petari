@@ -651,7 +651,7 @@ void Coin::makeArchiveList(NameObjArchiveListCollector *pList, const JMapInfoIte
 }
 
 namespace MR {
-    Coin* createDirectSetCoin(const char *pName) {
+    NameObj* createDirectSetCoin(const char *pName) {
         Coin* coin = new Coin(pName);
         MR::createCoinHolder();
         MR::createCoinRotater();
@@ -659,7 +659,7 @@ namespace MR {
         return coin;
     }
 
-    Coin* createCoin(const NameObj *pObj, const char *pName) {
+    NameObj* createCoin(const NameObj *pObj, const char *pName) {
         Coin* coin = new Coin(pName);
         MR::createCoinHolder();
         MR::createCoinRotater();
@@ -667,7 +667,7 @@ namespace MR {
         return coin;
     }
 
-    Coin* createDirectSetPurpleCoin(const char *pName) {
+    NameObj* createDirectSetPurpleCoin(const char *pName) {
         Coin* coin = new Coin(pName);
         coin->mIsPurpleCoin = true;
         MR::createPurpleCoinHolder();
@@ -676,7 +676,7 @@ namespace MR {
         return coin;
     }
 
-    Coin* createPurpleCoin(const NameObj *pObj, const char *pName) {
+    NameObj* createPurpleCoin(const NameObj *pObj, const char *pName) {
         Coin* coin = new Coin(pName);
         coin->mIsPurpleCoin = true;
         MR::createPurpleCoinHolder();

@@ -79,7 +79,9 @@ namespace {
         "MorphItemNeoTeresa"
     };
 
-    const NameObjFactory::Name2CreateFunc cCreateTable[68] = {
+
+    /* we can organize this after it's done */
+    const NameObjFactory::Name2CreateFunc cCreateTable[100] = {
         { "SwitchCube", createBaseOriginCube<SwitchArea>, 0 },
         { "SwitchSphere", createSphere<SwitchArea>, 0 },
         { "SwitchCylinder", createBaseOriginCylinder<SwitchArea>, 0 },
@@ -132,7 +134,19 @@ namespace {
         { "StarrySky", createNameObj<Sky>, "StarrySky" },
         { "AstroDomeSky", createNameObj<Sky>, "StarrySky" },
 
+        { "Coin", MR::createDirectSetCoin, "Coin" },
+        { "PurpleCoin", MR::createDirectSetPurpleCoin, "PurpleCoin" },
+
+        { "CircleCoinGroup", MR::createCircleCoinGroup, "CircleCoinGroup" },
+        { "CirclePurpleCoinGroup", MR::createCirclePurpleCoinGroup, "CirclePurpleCoinGroup" },
+
+        { "BlueChip", createNameObj<BlueChip>, "BlueChip" },
+        { "YellowChip", createNameObj<YellowChip>, "YellowChip" },
+        //{ "BlueChipGroup", createNameObj<YellowChipGroup}
+
         { "SeaGullGroup", createNameObj<SeaGullGroup>, "SeaGullGroup" },
+
+        { "CrystalSwitch", createNameObj<CrystalSwitch>, "CrystalSwitch "},
 
         { "GlobalCubeGravity", MR::createGlobalCubeGravityObj, NULL },
         { "GlobalConeGravity", MR::createGlobalConeGravityObj, NULL },
@@ -155,17 +169,43 @@ namespace {
         { "GrandStar", createNameObj<PowerStar>, "GrandStar", },
         { "PowerStarAppearPoint", createNameObj<PowerStarAppearPoint>, NULL },
 
-        { "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
+        { "CoconutTree", createNameObj<CoconutTree>, "CoconutTree" },
 
         { "FlipPanel", createNameObj<FlipPanel>, "FlipPanel" },
         { "FlipPanelObserver", createNameObj<FlipPanelObserver>, NULL },
+        { "FlipPanelReverse", createNameObj<FlipPanel>, "FlipPanelReverse" },
 
         { "TreasureSpot", createNameObj<TreasureSpot>, "TreasureSpot" },
         { "CoinFlower", createNameObj<TreasureSpot>, "CoinFlower" },
 
         { "FireBar", createNameObj<FireBar>, "FireBarCore" },
 
-        { "TimerSwitch", createNameObj<TimerSwitch>, "" }
+        { "TimerSwitch", createNameObj<TimerSwitch>, "" },
+
+        { "LavaHomeVolcanoInnerFlow", createNameObj<RailMoveObj>, "LavaHomeVolcanoInnerFlow" },
+        { "LavaRotatePlanetStartStep", createNameObj<RailMoveObj>, "LavaRotatePlanetStartStep" },
+
+        { "CrystalCageS", createNameObj<CrystalCage>, "CrystalCageS" },
+        { "CrystalCageM", createNameObj<CrystalCage>, "CrystalCageM" },
+        { "CrystalCageL", createNameObj<CrystalCage>, "CrystalCageL" },
+        { "CrystalCageMoving", createNameObj<CrystalCageMoving>, "CrystalCageMoving" },
+
+        { "DashRing", createNameObj<DashRing>, "DashRing" },
+
+        { "ChooChooTrain", createNameObj<ChooChooTrain>, "ChooChooTrain" },
+
+        { "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
+
+        { "DeadLeaves", createNameObj<DeadLeaves>, "DeadLeaves" },
+
+        { "CoinBox", createNameObj<CoinBox>, NULL },
+
+        { "ShootingStar", createNameObj<ShootingStar>, "ShootingStar" },
+
+        { "BenefitItemLifeUp", createNameObj<BenefitItemLifeUp>, "KinokoLifeUp" },
+        { "BenefitItemInvincible", createNameObj<BenefitItemInvincible>, "BenefitItemInvincible" },
+
+        { "CollisionBlocker", createNameObj<CollisionBlocker>, NULL }
     };
 
     const char* cName2ArchiveNamesTable;

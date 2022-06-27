@@ -28,4 +28,11 @@ namespace MR {
     void setTextBoxFormatRecursive(LayoutActor *, const char *, const wchar_t *, ...);
 
     bool isFirstStep(const LayoutActor *);
+
+    bool isDead(const LayoutActor *);
+
+    bool isStoppedAnimFrame(const LayoutActor *);
+
+    bool isExecuteCalcAnimLayout(const LayoutActor *);
+    bool isExecuteDrawLayout(const LayoutActor *);
 };

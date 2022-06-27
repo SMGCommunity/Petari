@@ -234,7 +234,7 @@ createNameObj<11SpaceCocoon>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameO
 createNameObj<7Trapeze>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9WaterRoad>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<7WarpPod>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<7CoinBox>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<7CoinBox>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<8PunchBox>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9SwitchBox>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<16NormalMapTestObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -353,13 +353,13 @@ createNameObj<10SmallStone>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameOb
 createNameObj<13Tsukidashikun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9RailBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9ItemBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<12ShootingStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<12ShootingStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<8FlameGun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<16BenefitItemOneUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<17BenefitItemLifeUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<21BenefitItemInvincible>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<17BenefitItemLifeUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createNameObj<21BenefitItemInvincible>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<8CoinSpot>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<16CollisionBlocker>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<16CollisionBlocker>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<9LotusLeaf>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14PunchingKinoko>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<16DesertMovingLand>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -376,7 +376,7 @@ createNameObj<18KillerGunnerSingle>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameOb
 createNameObj<9PowerStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<20PowerStarAppearPoint>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<7CocoNut>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<11CoconutTree>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<11CoconutTree>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<20CoconutTreeLeafGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<13CollapsePlane>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<7WoodBox>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -403,7 +403,7 @@ createNameObj<18AnmModelSwitchMove>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameOb
 createNameObj<11LavaFloater>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14LavaHomeSeesaw>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<19LavaHomeVolcanoFlow>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<11RailMoveObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<11RailMoveObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<20AnmModelGroundOnMove>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<25AnmModelSwitchMoveEndKill>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15LavaBreakColumn>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -411,8 +411,8 @@ createNameObj<14LavaShellTower>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Na
 createNameObj<15LavaGalaxyParts>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9LavaSteam>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15LavaStrangeRock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<11CrystalCage>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<17CrystalCageMoving>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<11CrystalCage>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createNameObj<17CrystalCageMoving>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<9Shellfish>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15RailDemoMoveObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12SimpleMapObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -450,7 +450,7 @@ createNameObj<17SideSpikeMoveStep>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj
 createNameObj<18SimpleMapObjFarMax>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<17SandUpDownTriRock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9JumpStand>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<13ChooChooTrain>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<13ChooChooTrain>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<10SwingLight>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<7SnowMan>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<18ShockWaveGenerator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -494,7 +494,7 @@ createNameObj<12RosettaChair>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Name
 createNameObj<12GravityLight>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<16GravityLightRoad>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14SimpleTimerObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<10DeadLeaves>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<10DeadLeaves>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<16PrologueDirector>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14FlexibleSphere>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<18SimpleClipPartsObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -548,8 +548,8 @@ createNameObj<13PowerStarHalo>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Nam
 createNameObj<17PurpleCoinStarter>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<11CoinReplica>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12QuestionCoin>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<8BlueChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<10YellowChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<8BlueChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createNameObj<10YellowChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<13BlueChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15YellowChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9StarPiece>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -568,7 +568,7 @@ createNameObj<12SeaGullGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Name
 createNameObj<10WaterPlant>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<18HitWallTimerSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12PTimerSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<13CrystalSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<13CrystalSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<13HipDropSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<18HipDropTimerSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<20DesertLandMoveSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false

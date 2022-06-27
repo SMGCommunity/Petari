@@ -83,10 +83,10 @@ public:
 };
 
 namespace MR {
-    Coin* createDirectSetCoin(const char *);
-    Coin* createCoin(const NameObj *, const char *);
-    Coin* createDirectSetPurpleCoin(const char *);
-    Coin* createPurpleCoin(const NameObj *, const char *);
+    NameObj* createDirectSetCoin(const char *);
+    NameObj* createCoin(const NameObj *, const char *);
+    NameObj* createDirectSetPurpleCoin(const char *);
+    NameObj* createPurpleCoin(const NameObj *, const char *);
 };
 
 namespace NrvCoin {

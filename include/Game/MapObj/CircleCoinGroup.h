@@ -15,6 +15,6 @@ public:
 };
 
 namespace MR {
-    CircleCoinGroup* createCircleCoinGroup(const char *);
-    CircleCoinGroup* createCirclePurpleCoinGroup(const char *);
+    NameObj* createCircleCoinGroup(const char *);
+    NameObj* createCirclePurpleCoinGroup(const char *);
 };

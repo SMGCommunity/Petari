@@ -86,7 +86,41 @@ void BlackHole::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
-// BlackHole::initMapToolInfo
+#ifdef NON_MATCHING
+// shrug
+void BlackHole::initMapToolInfo(const JMapInfoIter &rIter) {
+    MR::initDefaultPos(this, rIter);
+    MR::useStageSwitchReadA(this, rIter);
+    MR::useStageSwitchReadAppear(this, rIter);
+
+    if (MR::isEqualObjectName(rIter, "BlackHoleCube")) {
+        initCubeBox();
+        setName("ブラックホール[キューブ指定]");
+    }
+
+    if (_A4 == 0) {
+        _A0 = 500.0f * mScale.z;
+    }
+    else {
+        TVec3f stack_C;
+        stack_C.setInlineXYPS(mScale);
+        _A0 = PSVECMag(stack_C.toCVec());
+    }
+
+    f32 arg0;
+    bool ret = MR::getJMapInfoArg0NoInit(rIter, &arg0);
+
+    if (ret) {
+        _9C = arg0 / 1000.0f;
+    }
+    else if (_A4) {
+        _9C = 1.0f;
+    }
+    else {
+        _9C = mScale.x;
+    }
+}
+#endif
 
 void BlackHole::initModel() {
     initModelManagerWithAnm("BlackHoleRange", 0, false);

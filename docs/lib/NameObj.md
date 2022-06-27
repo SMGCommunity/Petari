@@ -15,7 +15,7 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% | :eight_pointed_black_star: 
-| NameObjFactory.o | 6.621054954756124% | 36 / 568 | 6.338028169014084% | :eight_pointed_black_star: 
+| NameObjFactory.o | 9.092915471198411% | 50 / 568 | 8.80281690140845% | :eight_pointed_black_star: 
 | NameObjFinder.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
@@ -296,7 +296,7 @@
 | createNameObj&lt;7Trapeze&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9WaterRoad&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;7WarpPod&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;7CoinBox&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;7CoinBox&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;8PunchBox&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9SwitchBox&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16NormalMapTestObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -415,13 +415,13 @@
 | createNameObj&lt;13Tsukidashikun&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9RailBlock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9ItemBlock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;12ShootingStar&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12ShootingStar&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;8FlameGun&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16BenefitItemOneUp&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;17BenefitItemLifeUp&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;21BenefitItemInvincible&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;17BenefitItemLifeUp&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createNameObj&lt;21BenefitItemInvincible&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;8CoinSpot&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;16CollisionBlocker&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;16CollisionBlocker&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;9LotusLeaf&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;14PunchingKinoko&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16DesertMovingLand&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -438,7 +438,7 @@
 | createNameObj&lt;9PowerStar&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;20PowerStarAppearPoint&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;7CocoNut&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;11CoconutTree&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;11CoconutTree&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;20CoconutTreeLeafGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;13CollapsePlane&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;7WoodBox&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -465,7 +465,7 @@
 | createNameObj&lt;11LavaFloater&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;14LavaHomeSeesaw&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;19LavaHomeVolcanoFlow&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;11RailMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;11RailMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;20AnmModelGroundOnMove&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;25AnmModelSwitchMoveEndKill&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15LavaBreakColumn&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -473,8 +473,8 @@
 | createNameObj&lt;15LavaGalaxyParts&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9LavaSteam&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15LavaStrangeRock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;11CrystalCage&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;17CrystalCageMoving&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;11CrystalCage&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createNameObj&lt;17CrystalCageMoving&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;9Shellfish&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15RailDemoMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12SimpleMapObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -512,7 +512,7 @@
 | createNameObj&lt;18SimpleMapObjFarMax&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;17SandUpDownTriRock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9JumpStand&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;13ChooChooTrain&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13ChooChooTrain&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;10SwingLight&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;7SnowMan&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18ShockWaveGenerator&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -556,7 +556,7 @@
 | createNameObj&lt;12GravityLight&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16GravityLightRoad&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;14SimpleTimerObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;10DeadLeaves&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;10DeadLeaves&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;16PrologueDirector&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;14FlexibleSphere&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18SimpleClipPartsObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -610,8 +610,8 @@
 | createNameObj&lt;17PurpleCoinStarter&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;11CoinReplica&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12QuestionCoin&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;8BlueChip&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;10YellowChip&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;8BlueChip&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createNameObj&lt;10YellowChip&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;13BlueChipGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15YellowChipGroup&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9StarPiece&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -630,7 +630,7 @@
 | createNameObj&lt;10WaterPlant&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18HitWallTimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12PTimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;13CrystalSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13CrystalSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;13HipDropSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18HipDropTimerSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;20DesertLandMoveSwitch&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
