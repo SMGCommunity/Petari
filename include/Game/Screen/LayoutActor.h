@@ -3,8 +3,9 @@
 #include "Game/NameObj/NameObj.h"
 #include "Game/LiveActor/Spine.h"
 #include "Game/Screen/LayoutActorFlag.h"
+#include "Game/Screen/LayoutManager.h"
+#include "JSystem/JGeometry.h"
 
-class LayoutManager;
 class PaneEffectKeeper;
 class StarPointerLayoutTargetKeeper;
 
@@ -26,11 +27,20 @@ public:
 
     }
 
-    void initLayoutManager(const char *, u32);
     void initNerve(const Nerve *);
 
-    bool isNerve(const Nerve *) const;
     void setNerve(const Nerve *) const;
+    bool isNerve(const Nerve *) const;
+    s32 getNerveStep() const;
+    const TVec2f getTrans() const;
+    void setTrans(const TVec2f &);
+    LayoutManager* getLayoutManager() const;
+
+    void initLayoutManager(const char *, u32);
+    void initLayoutManagerNoConvertFilename(const char *, u32);
+    void initLayoutManagerWithTextBoxBufferLength(const char *, u32, u32);
+
+    void updateSpine();
 
     LayoutManager* mManager;                                    // _C
     Spine* mSpine;                                              // _10

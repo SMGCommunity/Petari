@@ -1,8 +1,40 @@
 #include "Game/NameObj/NameObjFactory.h"
+#include "Game/Map/PlanetMapCreator.h"
 #include "Game/Util.h"
 
+CreationFuncPtr NameObjFactory::getCreator(const char *pName) {
+    if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {
+        return PlanetMapCreatorFunction::getPlanetMapCreator(pName);
+    }
+    
+    const Name2CreateFunc* func = NameObjFactory::getName2CreateFunc(pName, NULL);
+    return !func ? NULL : func->mCreationFunc;
+}
+
+void NameObjFactory::requestMountObjectArchives(const char *pName, const JMapInfoIter &rIter) {
+    NameObjArchiveListCollector archiveList;
+    NameObjFactory::getMountObjectArchiveList(&archiveList, pName, rIter);
+
+    for (int i = 0; i < archiveList.mCount; i++) {
+        MR::mountAsyncArchiveByObjectOrLayoutName(archiveList.getArchive(i), NULL);
+    }
+}
+
+bool NameObjFactory::isReadResourceFromDVD(const char *pName, const JMapInfoIter &rIter) {
+    NameObjArchiveListCollector archiveList;
+    NameObjFactory::getMountObjectArchiveList(&archiveList, pName, rIter);
+
+    for (int i = 0; i < archiveList.mCount; i++) {
+        if (!MR::isLoadedObjectOrLayoutArchive(archiveList.getArchive(i))) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool NameObjFactory::isPlayerArchiveLoaderObj(const char *pArchive) {
-    for (s32 i = 0; i < 0x8; i++) {
+    for (u32 i = 0; i < 0x8; i++) {
         if (MR::isEqualStringCase(cPlayerArchiveLoaderObjTable[i], pArchive)) {
             return true;
         }
@@ -11,13 +43,13 @@ bool NameObjFactory::isPlayerArchiveLoaderObj(const char *pArchive) {
     return false;
 }
 
-// this isn't matching yet but I'm leaving it here to allow the createNameObj functions to generate
 const NameObjFactory::Name2CreateFunc* NameObjFactory::getName2CreateFunc(const char *pName, const NameObjFactory::Name2CreateFunc *pTable) {
     if (!pTable) {
         pTable = cCreateTable;
     }
 
-    Name2CreateFunc* last = (Name2CreateFunc*)cName2ArchiveNamesTable;
+
+    const Name2CreateFunc* last = &(cCreateTable[0x49F]);
 
     for (const Name2CreateFunc* i = pTable; i != last; i++) {
         if (i->mName) {
@@ -28,4 +60,29 @@ const NameObjFactory::Name2CreateFunc* NameObjFactory::getName2CreateFunc(const 
     }
 
     return 0;
+}
+
+void NameObjFactory::getMountObjectArchiveList(NameObjArchiveListCollector *pArchiveList, const char *pName, const JMapInfoIter &rIter) {
+    if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {
+        PlanetMapCreatorFunction::makeArchiveList(pArchiveList, rIter, pName);
+    }
+    else {
+        const Name2CreateFunc* creationFunc = NameObjFactory::getName2CreateFunc(pName, NULL);
+
+        if (creationFunc && creationFunc->mArchiveName != 0) { 
+            pArchiveList->addArchive(creationFunc->mArchiveName);
+        }
+
+        for (NameObjFactory::Name2Archive* curArchive = cName2ArchiveNamesTable; curArchive != &cName2ArchiveNamesTable[0x1B9]; curArchive++) {
+            if (MR::isEqualString(curArchive->mObjectName, pName)) {
+                pArchiveList->addArchive(curArchive->mArchiveName);
+            }
+        }
+
+        for (const NameObjFactory::Name2MakeArchiveListFunc* curFunc = cName2MakeArchiveListFuncTable; curFunc != &cName2MakeArchiveListFuncTable[0x5B]; curFunc++) {
+            if (MR::isEqualString(curFunc->mName, pName)) {
+                curFunc->mArchiveFunc(pArchiveList, rIter);
+            }
+        }
+    }
 }

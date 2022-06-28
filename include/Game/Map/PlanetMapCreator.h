@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObjFactory.h"
 #include "Game/NameObj/NameObjArchiveListCollector.h"
 #include "Game/Util.h"
 
@@ -58,8 +59,11 @@ public:
 };
 
 class PlanetMapCreatorFunction {
+public:
     static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &, const char *);
 
     static bool isLoadArchiveAfterScenarioSelected(const char *);
     static bool isRegisteredObj(const char *);
+
+    static CreationFuncPtr getPlanetMapCreator(const char *);
 };

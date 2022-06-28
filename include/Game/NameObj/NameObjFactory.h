@@ -19,12 +19,19 @@ class AreaObj;
 class NameObj;
 class NameObjArchiveListCollector;
 
+typedef NameObj* (*CreationFuncPtr)(const char *);
+
 class NameObjFactory {
 public:
     struct Name2CreateFunc {
         const char* mName;                          // _0
-        NameObj* (*mCreactionFunc)(const char *);   // _4
-        const char* _8;
+        NameObj* (*mCreationFunc)(const char *);   // _4
+        const char* mArchiveName;                   // _8
+    };
+
+    struct Name2Archive {
+        const char* mObjectName;    // _0
+        const char* mArchiveName;   // _4
     };
 
     struct Name2MakeArchiveListFunc {
@@ -32,7 +39,11 @@ public:
         void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
     };
 
+    static CreationFuncPtr getCreator(const char *);
+    static void requestMountObjectArchives(const char *, const JMapInfoIter &);
+    static bool isReadResourceFromDVD(const char *, const JMapInfoIter &);
     static const Name2CreateFunc* getName2CreateFunc(const char *, const Name2CreateFunc *);
+    static void getMountObjectArchiveList(NameObjArchiveListCollector *, const char *, const JMapInfoIter &);
     static bool isPlayerArchiveLoaderObj(const char *);
 };
 
@@ -208,9 +219,12 @@ namespace {
         { "CollisionBlocker", createNameObj<CollisionBlocker>, NULL }
     };
 
-    const char* cName2ArchiveNamesTable;
 
-    const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[1] = {
+    NameObjFactory::Name2Archive cName2ArchiveNamesTable[0x1B9] = {
+        { "AirBubbleGenerator", "AirBubble" }
+    };
+
+    const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[0x5B] = {
         // todo
     };
 };

@@ -70,8 +70,8 @@
 | InformationMessage.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | InformationObserver.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | IsbnManager.o | 0.0% | 0 / 10 | 0.0% | :x: 
-| LayoutActor.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| LayoutActorFlag.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| LayoutActor.o | 64.19753086419753% | 14 / 21 | 66.66666666666666% | :eight_pointed_black_star: 
+| LayoutActorFlag.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | LayoutCoreUtil.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | LayoutGroupCtrl.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | LayoutManager.o | 0.0% | 0 / 54 | 0.0% | :x: 
@@ -1704,33 +1704,33 @@
 # LayoutActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11LayoutActorFPCcb | :x: |
-| movement__11LayoutActorFv | :x: |
-| calcAnim__11LayoutActorFv | :x: |
-| draw__11LayoutActorCFv | :x: |
-| appear__11LayoutActorFv | :x: |
-| kill__11LayoutActorFv | :x: |
-| setNerve__11LayoutActorCFPC5Nerve | :x: |
-| isNerve__11LayoutActorCFPC5Nerve | :x: |
-| getNerveStep__11LayoutActorCFv | :x: |
+| __ct__11LayoutActorFPCcb | :white_check_mark: |
+| movement__11LayoutActorFv | :white_check_mark: |
+| calcAnim__11LayoutActorFv | :white_check_mark: |
+| draw__11LayoutActorCFv | :white_check_mark: |
+| appear__11LayoutActorFv | :white_check_mark: |
+| kill__11LayoutActorFv | :white_check_mark: |
+| setNerve__11LayoutActorCFPC5Nerve | :white_check_mark: |
+| isNerve__11LayoutActorCFPC5Nerve | :white_check_mark: |
+| getNerveStep__11LayoutActorCFv | :white_check_mark: |
 | getTrans__11LayoutActorCFv | :x: |
 | setTrans__11LayoutActorFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
-| getLayoutManager__11LayoutActorCFv | :x: |
+| getLayoutManager__11LayoutActorCFv | :white_check_mark: |
 | createPaneMtxRef__11LayoutActorFPCc | :x: |
 | getPaneMtxRef__11LayoutActorFPCc | :x: |
-| initLayoutManager__11LayoutActorFPCcUl | :x: |
-| initLayoutManagerNoConvertFilename__11LayoutActorFPCcUl | :x: |
-| initLayoutManagerWithTextBoxBufferLength__11LayoutActorFPCcUlUl | :x: |
+| initLayoutManager__11LayoutActorFPCcUl | :white_check_mark: |
+| initLayoutManagerNoConvertFilename__11LayoutActorFPCcUl | :white_check_mark: |
+| initLayoutManagerWithTextBoxBufferLength__11LayoutActorFPCcUlUl | :white_check_mark: |
 | initNerve__11LayoutActorFPC5Nerve | :x: |
 | initEffectKeeper__11LayoutActorFiPCcPC12EffectSystem | :x: |
 | initPointingTarget__11LayoutActorFi | :x: |
-| updateSpine__11LayoutActorFv | :x: |
+| updateSpine__11LayoutActorFv | :white_check_mark: |
 
 
 # LayoutActorFlag.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15LayoutActorFlagFv | :x: |
+| __ct__15LayoutActorFlagFv | :white_check_mark: |
 
 
 # LayoutCoreUtil.o

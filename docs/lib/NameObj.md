@@ -15,8 +15,8 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% | :eight_pointed_black_star: 
-| NameObjFactory.o | 9.092915471198411% | 50 / 568 | 8.80281690140845% | :eight_pointed_black_star: 
-| NameObjFinder.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| NameObjFactory.o | 11.465460163319356% | 56 / 568 | 9.859154929577464% | :eight_pointed_black_star: 
+| NameObjFinder.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
 | NameObjListExecutor.o | 58.46994535519126% | 29 / 31 | 93.54838709677419% | :eight_pointed_black_star: 
@@ -673,12 +673,12 @@
 | createNameObj&lt;26GrandStarReturnDemoStarter&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15ScenarioStarter&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12FileSelector&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| getCreator__14NameObjFactoryFPCc | :x: |
-| requestMountObjectArchives__14NameObjFactoryFPCcRC12JMapInfoIter | :x: |
-| isReadResourceFromDVD__14NameObjFactoryFPCcRC12JMapInfoIter | :x: |
-| isPlayerArchiveLoaderObj__14NameObjFactoryFPCc | :x: |
-| getName2CreateFunc__14NameObjFactoryFPCcPCQ214NameObjFactory15Name2CreateFunc | :x: |
-| getMountObjectArchiveList__14NameObjFactoryFP27NameObjArchiveListCollectorPCcRC12JMapInfoIter | :x: |
+| getCreator__14NameObjFactoryFPCc | :white_check_mark: |
+| requestMountObjectArchives__14NameObjFactoryFPCcRC12JMapInfoIter | :white_check_mark: |
+| isReadResourceFromDVD__14NameObjFactoryFPCcRC12JMapInfoIter | :white_check_mark: |
+| isPlayerArchiveLoaderObj__14NameObjFactoryFPCc | :white_check_mark: |
+| getName2CreateFunc__14NameObjFactoryFPCcPCQ214NameObjFactory15Name2CreateFunc | :white_check_mark: |
+| getMountObjectArchiveList__14NameObjFactoryFP27NameObjArchiveListCollectorPCcRC12JMapInfoIter | :white_check_mark: |
 | __dt__28EffectObjR100F50SyncClippingFv | :x: |
 | __dt__16EffectObjR500F50Fv | :x: |
 | __dt__17EffectObjR1000F50Fv | :x: |
@@ -745,7 +745,7 @@
 # NameObjFinder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| find__13NameObjFinderFPCc | :x: |
+| find__13NameObjFinderFPCc | :white_check_mark: |
 
 
 # NameObjGroup.o

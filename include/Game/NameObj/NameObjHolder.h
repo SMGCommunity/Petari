@@ -18,6 +18,8 @@ public:
     void callMethodAllObj(func);
     void clearArray();
 
+    NameObj* find(const char *);
+
     NameObj** mObjs; // _0
     u32 _4;
     u32 mObjCount; // _8

@@ -2,9 +2,9 @@
 
 #include "Game/NameObj/NameObjHolder.h"
 
-class NameObjGroup;
+class NameObj;
 
 class NameObjFinder {
 public:
-    static NameObjGroup* find(const char *);
+    static NameObj* find(const char *);
 };

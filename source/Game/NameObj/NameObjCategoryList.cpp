@@ -101,7 +101,7 @@ NameObjCategoryList::CategoryInfo::CategoryInfo() {
 }
 
 NameObjCategoryList::CategoryInfo::~CategoryInfo() {
-
+    
 }
 
 NameObjCategoryList::~NameObjCategoryList() {

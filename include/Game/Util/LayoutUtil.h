@@ -21,6 +21,10 @@ namespace MR {
 
     void setFollowPos(const TVec2f &, const LayoutActor *, const char *);
 
+    void copyPaneTrans(TVec2f *, const LayoutActor *, const char *);
+
+    void convertLayoutPosToScreenPos(TVec2f *, const TVec2f &);
+
     void setTextBoxNumberRecursive(LayoutActor *, const char *, s32);
     void clearTextBoxMessageRecursive(LayoutActor *, const char *);
 

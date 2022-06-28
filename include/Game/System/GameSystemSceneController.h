@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/NameObj/NameObjHolder.h"
 #include "Game/Util.h"
 
 class NameObjListExecutor;
@@ -19,4 +20,7 @@ public:
 class GameSystemSceneController {
 public:
     NameObjListExecutor* getNameObjListExecutor() const;
+
+    u8 _0[0xA8];
+    NameObjHolder* mObjHolder;     // _A8
 };
