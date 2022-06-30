@@ -58,5 +58,8 @@ namespace MR {
 
     bool isPlayerElementModeBee();
 
+    bool isPlayerInWaterMode();
+    bool isPlayerOnWaterSurface();
+
     void changePlayerItemStatus(s32);
 };

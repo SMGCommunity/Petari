@@ -15,6 +15,8 @@ namespace MR {
     void setAnimFrameAndStop(LayoutActor *, f32, u32);
     void setPaneAnimFrameAndStop(LayoutActor *, const char *, f32, u32);
 
+    void setAnimRate(LayoutActor *, f32, u32);
+
     f32 getAnimFrame(const LayoutActor *, u32);
     
     bool isAnimStopped(const LayoutActor *, u32);
@@ -39,4 +41,9 @@ namespace MR {
 
     bool isExecuteCalcAnimLayout(const LayoutActor *);
     bool isExecuteDrawLayout(const LayoutActor *);
+    
+    void showLayout(LayoutActor *);
+    void hideLayout(LayoutActor *);
+
+    bool isHiddenLayout(const LayoutActor *);
 };

@@ -82,7 +82,7 @@
 | Manual2P.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | MarioMeter.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | MarioSubMeter.o | 0.0% | 0 / 10 | 0.0% | :x: 
-| MessageTagSkipTagProcessor.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| MessageTagSkipTagProcessor.o | 37.5% | 3 / 13 | 23.076923076923077% | :eight_pointed_black_star: 
 | MeterLayout.o | 0.0% | 0 / 53 | 0.0% | :x: 
 | MiiConfirmIcon.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | MiiSelect.o | 0.0% | 0 / 61 | 0.0% | :x: 
@@ -129,7 +129,7 @@
 | StarPointerGuidance.o | 0.0% | 0 / 37 | 0.0% | :x: 
 | StarPointerLayout.o | 0.0% | 0 / 74 | 0.0% | :x: 
 | StarPointerTarget.o | 0.0% | 0 / 15 | 0.0% | :x: 
-| SubMeterLayout.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SubMeterLayout.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | SuddenDeathMeter.o | 0.0% | 0 / 41 | 0.0% | :x: 
 | SurfingGuidance.o | 100.0% | 42 / 42 | 100.0% | :white_check_mark: 
 | SysInfoWindow.o | 0.0% | 0 / 32 | 0.0% | :x: 
@@ -2013,9 +2013,9 @@
 | getParam16__23MessageEditorMessageTagCFi | :x: |
 | getParam32__23MessageEditorMessageTagCFi | :x: |
 | getParamPtr__23MessageEditorMessageTagCFi | :x: |
-| __ct__26MessageTagSkipTagProcessorFv | :x: |
-| CalcRect__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
-| Process__26MessageTagSkipTagProcessorFUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| __ct__26MessageTagSkipTagProcessorFv | :white_check_mark: |
+| CalcRect__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :white_check_mark: |
+| Process__26MessageTagSkipTagProcessorFUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :white_check_mark: |
 | skipTag__26MessageTagSkipTagProcessorFPQ34nw4r2ut4RectPQ34nw4r2ut15PrintContext&lt;w&gt;b | :x: |
 
 
@@ -3435,15 +3435,15 @@
 # SubMeterLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SubMeterLayoutFPCcPCc | :x: |
-| init__14SubMeterLayoutFRC12JMapInfoIter | :x: |
-| setLifeRatio__14SubMeterLayoutFf | :x: |
-| requestDeactivate__14SubMeterLayoutFv | :x: |
-| requestAppear__14SubMeterLayoutFv | :x: |
-| requestFrameIn__14SubMeterLayoutFv | :x: |
-| requestFrameOut__14SubMeterLayoutFv | :x: |
-| control__14SubMeterLayoutFv | :x: |
-| __dt__14SubMeterLayoutFv | :x: |
+| __ct__14SubMeterLayoutFPCcPCc | :white_check_mark: |
+| init__14SubMeterLayoutFRC12JMapInfoIter | :white_check_mark: |
+| setLifeRatio__14SubMeterLayoutFf | :white_check_mark: |
+| requestDeactivate__14SubMeterLayoutFv | :white_check_mark: |
+| requestAppear__14SubMeterLayoutFv | :white_check_mark: |
+| requestFrameIn__14SubMeterLayoutFv | :white_check_mark: |
+| requestFrameOut__14SubMeterLayoutFv | :white_check_mark: |
+| control__14SubMeterLayoutFv | :white_check_mark: |
+| __dt__14SubMeterLayoutFv | :white_check_mark: |
 
 
 # SuddenDeathMeter.o

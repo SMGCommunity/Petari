@@ -60,4 +60,6 @@ namespace MR {
     void endStartAnimCamera();
 
     void pauseOffCameraDirector();
+
+    void calcScreenPosition(TVec2f *, const TVec3f &);
 };
