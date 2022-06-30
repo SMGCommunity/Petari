@@ -48,8 +48,12 @@ namespace MR {
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
 
+    bool isStageAstroLocation();
+
     bool isBeginScenarioStarter();
 
     void incCoin(int);
     void incPurpleCoin();
+
+    s32 getCoinNum();
 }

@@ -20,12 +20,12 @@
 | CaptureScreenDirector.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | CenterScreenBlur.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | CinemaFrame.o | 0.0% | 0 / 28 | 0.0% | :x: 
-| CoinCounter.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| CoinCounter.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | CometRetryButton.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | CopyFilterNegater.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| CounterLayoutAppearer.o | 0.0% | 0 / 20 | 0.0% | :x: 
+| CounterLayoutAppearer.o | 92.21789883268482% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | CounterLayoutController.o | 0.0% | 0 / 25 | 0.0% | :x: 
-| CountUpPaneRumbler.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| CountUpPaneRumbler.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | CustomTagProcessor.o | 0.0% | 0 / 58 | 0.0% | :x: 
 | DepthOfFieldBlur.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | EncouragePal60Window.o | 0.0% | 0 / 14 | 0.0% | :x: 
@@ -480,28 +480,28 @@
 # CoinCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CoinCounterFPCc | :x: |
-| init__11CoinCounterFRC12JMapInfoIter | :x: |
-| appear__11CoinCounterFv | :x: |
-| forceAppear__11CoinCounterFv | :x: |
-| disappear__11CoinCounterFv | :x: |
-| isWait__11CoinCounterCFv | :x: |
-| control__11CoinCounterFv | :x: |
-| updateCounter__11CoinCounterFv | :x: |
-| exeHide__11CoinCounterFv | :x: |
-| exeAppear__11CoinCounterFv | :x: |
-| exeWait__11CoinCounterFv | :x: |
-| exeDisappear__11CoinCounterFv | :x: |
-| __dt__11CoinCounterFv | :x: |
-| __sinit_\CoinCounter_cpp | :x: |
-| __ct__Q214NrvCoinCounter18CoinCounterNrvHideFv | :x: |
-| __ct__Q214NrvCoinCounter20CoinCounterNrvAppearFv | :x: |
-| __ct__Q214NrvCoinCounter18CoinCounterNrvWaitFv | :x: |
-| __ct__Q214NrvCoinCounter23CoinCounterNrvDisappearFv | :x: |
-| execute__Q214NrvCoinCounter23CoinCounterNrvDisappearCFP5Spine | :x: |
-| execute__Q214NrvCoinCounter18CoinCounterNrvWaitCFP5Spine | :x: |
-| execute__Q214NrvCoinCounter20CoinCounterNrvAppearCFP5Spine | :x: |
-| execute__Q214NrvCoinCounter18CoinCounterNrvHideCFP5Spine | :x: |
+| __ct__11CoinCounterFPCc | :white_check_mark: |
+| init__11CoinCounterFRC12JMapInfoIter | :white_check_mark: |
+| appear__11CoinCounterFv | :white_check_mark: |
+| forceAppear__11CoinCounterFv | :white_check_mark: |
+| disappear__11CoinCounterFv | :white_check_mark: |
+| isWait__11CoinCounterCFv | :white_check_mark: |
+| control__11CoinCounterFv | :white_check_mark: |
+| updateCounter__11CoinCounterFv | :white_check_mark: |
+| exeHide__11CoinCounterFv | :white_check_mark: |
+| exeAppear__11CoinCounterFv | :white_check_mark: |
+| exeWait__11CoinCounterFv | :white_check_mark: |
+| exeDisappear__11CoinCounterFv | :white_check_mark: |
+| __dt__11CoinCounterFv | :white_check_mark: |
+| __sinit_\CoinCounter_cpp | :white_check_mark: |
+| __ct__Q214NrvCoinCounter18CoinCounterNrvHideFv | :white_check_mark: |
+| __ct__Q214NrvCoinCounter20CoinCounterNrvAppearFv | :white_check_mark: |
+| __ct__Q214NrvCoinCounter18CoinCounterNrvWaitFv | :white_check_mark: |
+| __ct__Q214NrvCoinCounter23CoinCounterNrvDisappearFv | :white_check_mark: |
+| execute__Q214NrvCoinCounter23CoinCounterNrvDisappearCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCoinCounter18CoinCounterNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCoinCounter20CoinCounterNrvAppearCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCoinCounter18CoinCounterNrvHideCFP5Spine | :white_check_mark: |
 
 
 # CometRetryButton.o
@@ -541,26 +541,26 @@
 # CounterLayoutAppearer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
-| update__21CounterLayoutAppearerFv | :x: |
-| appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
-| disappear__21CounterLayoutAppearerFv | :x: |
-| isAppeared__21CounterLayoutAppearerCFv | :x: |
-| isDisappeared__21CounterLayoutAppearerCFv | :x: |
-| reset__21CounterLayoutAppearerFv | :x: |
+| __ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
+| update__21CounterLayoutAppearerFv | :white_check_mark: |
+| appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt; | :white_check_mark: |
+| disappear__21CounterLayoutAppearerFv | :white_check_mark: |
+| isAppeared__21CounterLayoutAppearerCFv | :white_check_mark: |
+| isDisappeared__21CounterLayoutAppearerCFv | :white_check_mark: |
+| reset__21CounterLayoutAppearerFv | :white_check_mark: |
 | updateLayoutOffset__21CounterLayoutAppearerFf | :x: |
-| exeAppear__21CounterLayoutAppearerFv | :x: |
-| exeDisappear__21CounterLayoutAppearerFv | :x: |
-| __dt__21CounterLayoutAppearerFv | :x: |
-| __sinit_\CounterLayoutAppearer_cpp | :x: |
-| __ct__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvHideFv | :x: |
-| __ct__Q224NrvCounterLayoutAppearer30CounterLayoutAppearerNrvAppearFv | :x: |
-| __ct__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvShowFv | :x: |
-| __ct__Q224NrvCounterLayoutAppearer33CounterLayoutAppearerNrvDisappearFv | :x: |
-| execute__Q224NrvCounterLayoutAppearer33CounterLayoutAppearerNrvDisappearCFP5Spine | :x: |
-| execute__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvShowCFP5Spine | :x: |
-| execute__Q224NrvCounterLayoutAppearer30CounterLayoutAppearerNrvAppearCFP5Spine | :x: |
-| execute__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvHideCFP5Spine | :x: |
+| exeAppear__21CounterLayoutAppearerFv | :white_check_mark: |
+| exeDisappear__21CounterLayoutAppearerFv | :white_check_mark: |
+| __dt__21CounterLayoutAppearerFv | :white_check_mark: |
+| __sinit_\CounterLayoutAppearer_cpp | :white_check_mark: |
+| __ct__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvHideFv | :white_check_mark: |
+| __ct__Q224NrvCounterLayoutAppearer30CounterLayoutAppearerNrvAppearFv | :white_check_mark: |
+| __ct__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvShowFv | :white_check_mark: |
+| __ct__Q224NrvCounterLayoutAppearer33CounterLayoutAppearerNrvDisappearFv | :white_check_mark: |
+| execute__Q224NrvCounterLayoutAppearer33CounterLayoutAppearerNrvDisappearCFP5Spine | :white_check_mark: |
+| execute__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvShowCFP5Spine | :white_check_mark: |
+| execute__Q224NrvCounterLayoutAppearer30CounterLayoutAppearerNrvAppearCFP5Spine | :white_check_mark: |
+| execute__Q224NrvCounterLayoutAppearer28CounterLayoutAppearerNrvHideCFP5Spine | :white_check_mark: |
 
 
 # CounterLayoutController.o
@@ -596,12 +596,12 @@
 # CountUpPaneRumbler.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__18CountUpPaneRumblerFP11LayoutActorPCc | :x: |
-| update__18CountUpPaneRumblerFv | :x: |
-| start__18CountUpPaneRumblerFv | :x: |
-| reset__18CountUpPaneRumblerFv | :x: |
-| isRumbling__18CountUpPaneRumblerCFv | :x: |
-| connectPane__18CountUpPaneRumblerFP11LayoutActorPCc | :x: |
+| __ct__18CountUpPaneRumblerFP11LayoutActorPCc | :white_check_mark: |
+| update__18CountUpPaneRumblerFv | :white_check_mark: |
+| start__18CountUpPaneRumblerFv | :white_check_mark: |
+| reset__18CountUpPaneRumblerFv | :white_check_mark: |
+| isRumbling__18CountUpPaneRumblerCFv | :white_check_mark: |
+| connectPane__18CountUpPaneRumblerFP11LayoutActorPCc | :white_check_mark: |
 
 
 # CustomTagProcessor.o

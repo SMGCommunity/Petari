@@ -18,10 +18,15 @@ namespace MR {
     void setAnimRate(LayoutActor *, f32, u32);
 
     f32 getAnimFrame(const LayoutActor *, u32);
+
+    s16 getAnimFrameMax(const LayoutActor *, u32);
     
     bool isAnimStopped(const LayoutActor *, u32);
 
+    void setFollowPos(const TVec2f *, const LayoutActor *, const char *);
     void setFollowPos(const TVec2f &, const LayoutActor *, const char *);
+
+    void setFollowTypeAdd(const LayoutActor *, const char *);
 
     void copyPaneTrans(TVec2f *, const LayoutActor *, const char *);
 
@@ -46,4 +51,8 @@ namespace MR {
     void hideLayout(LayoutActor *);
 
     bool isHiddenLayout(const LayoutActor *);
+
+    void startAnimAndSetFrameAndStop(LayoutActor *, const char *, f32, u32);
+
+    void emitEffect(LayoutActor *, const char *);
 };

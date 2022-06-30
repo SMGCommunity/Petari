@@ -8,6 +8,7 @@
 
 class PaneEffectKeeper;
 class StarPointerLayoutTargetKeeper;
+class EffectSystem;
 
 class LayoutActor : public NameObj {
 public:
@@ -39,6 +40,8 @@ public:
     void initLayoutManager(const char *, u32);
     void initLayoutManagerNoConvertFilename(const char *, u32);
     void initLayoutManagerWithTextBoxBufferLength(const char *, u32, u32);
+
+    void initEffectKeeper(int, const char *, const EffectSystem *);
 
     void updateSpine();
 
