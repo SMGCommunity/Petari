@@ -46,6 +46,7 @@ void CounterLayoutAppearer::reset() {
     setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
 }
 
+#ifdef NON_MATCHING
 void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     TVec2f vec;
     f32 x = (_C + (offset * (zero - _C))) + _1C;
@@ -55,6 +56,7 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     mFollowPos.x = x;
     mFollowPos.y = y;
 }
+#endif
 
 void CounterLayoutAppearer::exeAppear() {
     updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, 0)));
