@@ -38,7 +38,6 @@ def main(compile_non_matching, use_ninja, clean_ninja):
         flags = flags + " -DNON_MATCHING "
 
     rvl_sdk_path = pathlib.Path("deps/RVL_SDK/include")
-    nw4r_path = pathlib.Path("deps/NW4R/Library/include")
     trk_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MetroTRK")
     runtime_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/Runtime/Inc")
     msl_c_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include")
@@ -46,7 +45,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
     msl_c_common_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include")
     facelib_path = pathlib.Path("deps/RVLFaceLib/include")
 
-    includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
+    includes += f"-i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
     flags += includes
 
     tasks = list()
