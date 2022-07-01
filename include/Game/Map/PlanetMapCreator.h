@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjFactory.h"
 #include "Game/NameObj/NameObjArchiveListCollector.h"
 #include "Game/Util.h"
 
@@ -15,6 +14,8 @@ struct UniqueEntry {
     const char* _0;
     const char* _4;
 };
+
+typedef NameObj* (*CreationFuncPtr)(const char *);
 
 namespace {
     static char* sArcName = "PlanetMapDataTable.arc";

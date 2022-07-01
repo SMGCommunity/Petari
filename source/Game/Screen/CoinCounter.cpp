@@ -165,7 +165,7 @@ namespace NrvCoinCounter {
 
     void CoinCounterNrvDisappear::execute(Spine *pSpine) const {
         CoinCounter* counter = reinterpret_cast<CoinCounter*>(pSpine->mExecutor);
-        counter->exeDisappear();
+        counter->exeDisappear(); 
     }
 
     void CoinCounterNrvWait::execute(Spine *pSpine) const {
