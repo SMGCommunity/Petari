@@ -65,7 +65,7 @@
 | CameraCharmedVecReg.o | 17.989417989417987% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | CameraCharmedVecRegTower.o | 15.508021390374333% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | CameraContext.o | 11.479028697571744% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
-| CameraCover.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| CameraCover.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | CameraCubePlanet.o | 25.0936329588015% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | CameraDPD.o | 11.126373626373626% | 3 / 8 | 37.5% | :eight_pointed_black_star: 
 | CameraDead.o | 16.216216216216218% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
@@ -653,15 +653,15 @@
 # CameraCover.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PI__Q29JGeometry8TUtil&lt;f&gt;Fv | :x: |
-| __ct__11CameraCoverFPCc | :x: |
-| movement__11CameraCoverFv | :x: |
-| draw__11CameraCoverCFv | :x: |
-| cover__11CameraCoverFUl | :x: |
-| isCameraHopping__11CameraCoverCFv | :x: |
-| copyCamera__11CameraCoverFv | :x: |
-| __dt__11CameraCoverFv | :x: |
-| __sinit_\CameraCover_cpp | :x: |
+| PI__Q29JGeometry8TUtil&lt;f&gt;Fv | :white_check_mark: |
+| __ct__11CameraCoverFPCc | :white_check_mark: |
+| movement__11CameraCoverFv | :white_check_mark: |
+| draw__11CameraCoverCFv | :white_check_mark: |
+| cover__11CameraCoverFUl | :white_check_mark: |
+| isCameraHopping__11CameraCoverCFv | :white_check_mark: |
+| copyCamera__11CameraCoverFv | :white_check_mark: |
+| __dt__11CameraCoverFv | :white_check_mark: |
+| __sinit_\CameraCover_cpp | :white_check_mark: |
 
 
 # CameraCubePlanet.o

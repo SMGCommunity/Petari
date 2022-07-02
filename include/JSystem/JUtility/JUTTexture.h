@@ -38,6 +38,10 @@ public:
 
 class JUTTexture {
 public:
+    inline JUTTexture() {
+
+    }
+
     JUTTexture(int, int, _GXTexFmt);
     JUTTexture(const ResTIMG *, u8);
     ~JUTTexture();

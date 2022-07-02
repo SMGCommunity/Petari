@@ -145,4 +145,6 @@ namespace MR {
     void stopScene(s32);
 
     const ResTIMG* loadTexFromArc(const char *, const char *);
+
+    void joinToNameObjGroup(NameObj *, const char *);
 };

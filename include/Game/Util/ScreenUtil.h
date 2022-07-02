@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 namespace MR {
     void closeSystemWipeCircleWithCaptureScreen(s32);
@@ -46,5 +47,10 @@ namespace MR {
 
     void requestOneUp();
 
+
+    void startToCaptureScreen(const char *);
+    void endToCaptureScreen(const char *);
     void captureScreenIfAllow(const char *);
+
+    ResTIMG* getScreenResTIMG();
 };
