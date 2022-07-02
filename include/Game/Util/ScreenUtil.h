@@ -45,4 +45,6 @@ namespace MR {
     void forceToBlankCinemaFrame();
 
     void requestOneUp();
+
+    void captureScreenIfAllow(const char *);
 };

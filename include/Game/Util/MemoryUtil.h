@@ -21,6 +21,8 @@ namespace MR {
 
     JKRHeap* getAproposHeapForSceneArchive(f32);
 
+    JKRHeap* getStationedHeapGDDR3();
+
     void adjustHeapSize(JKRExpHeap *, const char *);
 
     class CurrentHeapRestorer {

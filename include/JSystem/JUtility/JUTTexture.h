@@ -55,7 +55,7 @@ public:
 
     GXTexObj mTexObj; // _0
     ResTIMG* _20;
-    u32* _24;
+    ResTIMG* _24;
     JUTPalette* _28;
     JUTPalette* mPalette; // _2C
     u8 mWrapS;              // _30

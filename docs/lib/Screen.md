@@ -17,7 +17,7 @@
 | BrosButton.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | ButtonPaneController.o | 0.0% | 0 / 55 | 0.0% | :x: 
 | CameraInfo.o | 0.0% | 0 / 30 | 0.0% | :x: 
-| CaptureScreenDirector.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| CaptureScreenDirector.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | CenterScreenBlur.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | CinemaFrame.o | 0.0% | 0 / 28 | 0.0% | :x: 
 | CoinCounter.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
@@ -407,20 +407,20 @@
 # CaptureScreenDirector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__21CaptureScreenDirectorFv | :x: |
-| captureIfAllow__21CaptureScreenDirectorFPCc | :x: |
-| capture__21CaptureScreenDirectorFv | :x: |
-| requestCaptureTiming__21CaptureScreenDirectorFPCc | :x: |
-| invalidateCaptureTiming__21CaptureScreenDirectorFPCc | :x: |
-| getResTIMG__21CaptureScreenDirectorCFv | :x: |
-| getTexImage__21CaptureScreenDirectorCFv | :x: |
-| getUsingTiming__21CaptureScreenDirectorCFv | :x: |
-| getCurrentTiming__21CaptureScreenDirectorCFv | :x: |
-| findFromName__21CaptureScreenDirectorCFPCc | :x: |
-| __ct__18CaptureScreenActorFUlPCc | :x: |
-| draw__18CaptureScreenActorCFv | :x: |
-| __dt__21CaptureScreenDirectorFv | :x: |
-| __dt__18CaptureScreenActorFv | :x: |
+| __ct__21CaptureScreenDirectorFv | :white_check_mark: |
+| captureIfAllow__21CaptureScreenDirectorFPCc | :white_check_mark: |
+| capture__21CaptureScreenDirectorFv | :white_check_mark: |
+| requestCaptureTiming__21CaptureScreenDirectorFPCc | :white_check_mark: |
+| invalidateCaptureTiming__21CaptureScreenDirectorFPCc | :white_check_mark: |
+| getResTIMG__21CaptureScreenDirectorCFv | :white_check_mark: |
+| getTexImage__21CaptureScreenDirectorCFv | :white_check_mark: |
+| getUsingTiming__21CaptureScreenDirectorCFv | :white_check_mark: |
+| getCurrentTiming__21CaptureScreenDirectorCFv | :white_check_mark: |
+| findFromName__21CaptureScreenDirectorCFPCc | :white_check_mark: |
+| __ct__18CaptureScreenActorFUlPCc | :white_check_mark: |
+| draw__18CaptureScreenActorCFv | :white_check_mark: |
+| __dt__21CaptureScreenDirectorFv | :white_check_mark: |
+| __dt__18CaptureScreenActorFv | :white_check_mark: |
 
 
 # CenterScreenBlur.o
