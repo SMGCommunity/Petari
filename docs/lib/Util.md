@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActorCameraUtil.o | 0.6952491309385863% | 1 / 41 | 2.4390243902439024% | :eight_pointed_black_star: 
-| ActorMovementUtil.o | 6.501811980387977% | 14 / 142 | 9.859154929577464% | :eight_pointed_black_star: 
+| ActorMovementUtil.o | 18.503517373694308% | 37 / 142 | 26.056338028169012% | :eight_pointed_black_star: 
 | ActorSensorUtil.o | 37.32394366197183% | 93 / 205 | 45.36585365853659% | :eight_pointed_black_star: 
 | ActorShadowLocalUtil.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | ActorShadowUtil.o | 0.0% | 0 / 73 | 0.0% | :x: 
@@ -138,9 +138,9 @@
 | calcDistance__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | calcDistanceHorizontal__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | calcDistanceVertical__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
-| calcDistanceVertical__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcDistanceVertical__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | calcDistanceToPlayer__2MRFPC9LiveActor | :white_check_mark: |
-| calcDistanceToPlayerH__2MRFPC9LiveActor | :x: |
+| calcDistanceToPlayerH__2MRFPC9LiveActor | :white_check_mark: |
 | isNear__2MRFPC9HitSensorPC9HitSensorf | :white_check_mark: |
 | isNear__2MRFPC9LiveActorPC9LiveActorf | :white_check_mark: |
 | isNear__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
@@ -152,18 +152,18 @@
 | calcFrontVec__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :white_check_mark: |
 | calcUpVec__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :white_check_mark: |
 | calcSideVec__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :white_check_mark: |
-| calcPositionUpOffset__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorf | :x: |
-| calcVecToPlayerH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorPCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| calcVecFromPlayerH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :x: |
-| calcVecToTargetPosH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| calcVecFromTargetPosH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isFaceToTargetDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| isFaceToPlayerDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| isFaceToTargetDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| isFaceToPlayerDegree__2MRFPC9LiveActorf | :x: |
-| isFaceToPlayerDegreeHV__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
-| isFaceToTargetHorizontalDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| isFaceToPlayerHorizontalDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcPositionUpOffset__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorf | :white_check_mark: |
+| calcVecToPlayerH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorPCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcVecFromPlayerH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :white_check_mark: |
+| calcVecToTargetPosH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcVecFromTargetPosH__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isFaceToTargetDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| isFaceToPlayerDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| isFaceToTargetDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| isFaceToPlayerDegree__2MRFPC9LiveActorf | :white_check_mark: |
+| isFaceToPlayerDegreeHV__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;ff | :white_check_mark: |
+| isFaceToTargetHorizontalDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| isFaceToPlayerHorizontalDegree__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | isClockwiseToDir__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isClockwiseToPlayer__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | isPlayerLeftSide__2MRFPC9LiveActor | :x: |
@@ -175,11 +175,11 @@
 | isPlayerExistSide__2MRFPC9LiveActorff | :x: |
 | isPlayerExistUp__2MRFPC9LiveActorff | :x: |
 | isPlayerExistDown__2MRFPC9LiveActorff | :x: |
-| isInWater__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isInDeath__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| makeMtxTR__2MRFPA4_fPC9LiveActor | :x: |
-| makeMtxTRS__2MRFPA4_fPC9LiveActor | :x: |
-| makeMtxTransRotateY__2MRFPA4_fPC9LiveActor | :x: |
+| isInWater__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isInDeath__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| makeMtxTR__2MRFPA4_fPC9LiveActor | :white_check_mark: |
+| makeMtxTRS__2MRFPA4_fPC9LiveActor | :white_check_mark: |
+| makeMtxTransRotateY__2MRFPA4_fPC9LiveActor | :white_check_mark: |
 | calcMtxFromGravityAndZAxis__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcAndSetBaseMtxFromGravityAndZAxis__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcActorAxis__2MRFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :x: |
@@ -192,10 +192,10 @@
 | makeQuatFromRotate__2MRFPQ29JGeometry9TQuat4&lt;f&gt;PC9LiveActor | :x: |
 | makeQuatAndFrontFromRotate__2MRFPQ29JGeometry9TQuat4&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :x: |
 | turnQuatUpToGravity__2MRFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;PC9LiveActor | :x: |
-| blendQuatFromGroundAndFront__2MRFPQ29JGeometry9TQuat4&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
-| resetPosition__2MRFP9LiveActor | :x: |
-| resetPosition__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| resetPosition__2MRFP9LiveActorPCc | :x: |
+| blendQuatFromGroundAndFront__2MRFPQ29JGeometry9TQuat4&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;ff | :white_check_mark: |
+| resetPosition__2MRFP9LiveActor | :white_check_mark: |
+| resetPosition__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| resetPosition__2MRFP9LiveActorPCc | :white_check_mark: |
 | makeMtxOnMapCollision__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P9LiveActorf | :x: |
 | calcVelocityMoveToDirectionHorizon__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
 | calcVelocityMoveToDirectionHorizon__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;ffff | :x: |

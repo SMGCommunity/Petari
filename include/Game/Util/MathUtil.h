@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry.h"
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
@@ -55,6 +55,7 @@ namespace MR {
     f32 calcPerpendicFootToLine(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     f32 calcPerpendicFootToLineInside(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
 
+    void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, float, float);
 
     void clampLength(TVec3f *, const TVec3f &, f32);
     f32 convergeRadian(f32, f32, f32);
@@ -97,6 +98,11 @@ namespace MR {
     int getMaxElementIndex(const TVec3f &);
     int getMaxAbsElementIndex(const TVec3f &);
     f32 diffAngleAbsFast(const TVec3f &, const TVec3f &);
+
+    bool isNearAngleRadian(const TVec3f &, const TVec3f &, float);
+    bool isNearAngleDegree(const TVec3f &, const TVec3f &, float);
+    bool isNearAngleRadianHV(const TVec3f &, const TVec3f &, const TVec3f &, float, float);
+    bool isNearAngleDegreeHV(const TVec3f &, const TVec3f &, const TVec3f &, float, float);
 
     f32 mod(f32, f32);
 

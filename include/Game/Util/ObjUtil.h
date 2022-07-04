@@ -140,7 +140,11 @@ namespace MR {
     void shakeCameraStrong();
     void shakeCameraVeryStrong();
 
+    void findNamePos(const char *, TVec3f *, TVec3f *);
+
     bool isInWater(const TVec3f &);
+    bool isInDeath(const TVec3f &);
+    bool isInDarkMatter(const TVec3f &);
 
     void stopScene(s32);
 
