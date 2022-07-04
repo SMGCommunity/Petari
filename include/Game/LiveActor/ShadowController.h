@@ -107,3 +107,9 @@ public:
     MR::Vector<MR::AssignableArray<ShadowController*> > mShadowList;    // _0
     LiveActor* mHost;                                                   // _C
 };
+
+namespace MR {
+    void addShadowController(ShadowController *);
+    void requestCalcActorShadowAppear(LiveActor *);
+    void requestCalcActorShadow(LiveActor *);
+}

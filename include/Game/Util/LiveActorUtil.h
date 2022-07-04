@@ -59,6 +59,8 @@ namespace MR {
     void onBind(LiveActor *);
     void offBind(LiveActor *);
 
+    bool isCalcGravity(const LiveActor *);
+
     void showModel(LiveActor *);
     void hideModel(LiveActor *);
     void showModelIfHidden(LiveActor *);
@@ -151,6 +153,8 @@ namespace MR {
 
     void invalidateCollisionParts(LiveActor *);
     void invalidateCollisionParts(CollisionParts *);
+
+    void resetAllCollisionMtx(LiveActor *);
 
     void startAllAnim(const LiveActor *, const char *);
     bool tryStartAllAnim(const LiveActor *, const char *);
