@@ -120,7 +120,7 @@
 | GCaptureTarget.o | 0.0% | 0 / 41 | 0.0% | :x: 
 | GravityLight.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | GravityLightRoad.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| GreenCaterpillarBig.o | 0.0% | 0 / 31 | 0.0% | :x: 
+| GreenCaterpillarBig.o | 100.0% | 31 / 31 | 100.0% | :white_check_mark: 
 | HatchWaterPlanet.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | HeavensDoorDemoObj.o | 0.0% | 0 / 18 | 0.0% | :x: 
 | HipDropMoveObj.o | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
@@ -3131,37 +3131,37 @@
 # GreenCaterpillarBig.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__23GreenCaterpillarBigBodyFP9LiveActorPA4_f | :x: |
-| init__23GreenCaterpillarBigBodyFRC12JMapInfoIter | :x: |
-| setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor | :x: |
-| control__23GreenCaterpillarBigBodyFv | :x: |
-| calcAndSetBaseMtx__23GreenCaterpillarBigBodyFv | :x: |
-| calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __ct__19GreenCaterpillarBigFPCc | :x: |
-| init__19GreenCaterpillarBigFRC12JMapInfoIter | :x: |
-| startWriggle__19GreenCaterpillarBigFv | :x: |
-| exeWriggle__19GreenCaterpillarBigFv | :x: |
-| initBodyParts__19GreenCaterpillarBigFRC12JMapInfoIter | :x: |
-| tryGenerateBodyParts__19GreenCaterpillarBigFv | :x: |
-| control__19GreenCaterpillarBigFv | :x: |
-| calcAndSetBaseMtx__19GreenCaterpillarBigFv | :x: |
-| startClipped__19GreenCaterpillarBigFv | :x: |
-| endClipped__19GreenCaterpillarBigFv | :x: |
-| fixBodyPartsOnRail__19GreenCaterpillarBigFv | :x: |
-| leaveApple__19GreenCaterpillarBigFv | :x: |
-| __dt__23GreenCaterpillarBigBodyFv | :x: |
-| __dt__19GreenCaterpillarBigFv | :x: |
-| __sinit_\GreenCaterpillarBig_cpp | :x: |
-| __ct__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvHideFv | :x: |
-| __ct__Q222NrvGreenCaterpillarBig29GreenCaterpillarBigNrvWriggleFv | :x: |
-| __ct__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvRestFv | :x: |
-| __ct__Q222NrvGreenCaterpillarBig31GreenCaterpillarBigNrvEndAdjustFv | :x: |
-| __ct__Q222NrvGreenCaterpillarBig25GreenCaterpillarBigNrvEndFv | :x: |
-| execute__Q222NrvGreenCaterpillarBig25GreenCaterpillarBigNrvEndCFP5Spine | :x: |
-| execute__Q222NrvGreenCaterpillarBig31GreenCaterpillarBigNrvEndAdjustCFP5Spine | :x: |
-| execute__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvRestCFP5Spine | :x: |
-| execute__Q222NrvGreenCaterpillarBig29GreenCaterpillarBigNrvWriggleCFP5Spine | :x: |
-| execute__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvHideCFP5Spine | :x: |
+| __ct__23GreenCaterpillarBigBodyFP9LiveActorPA4_f | :white_check_mark: |
+| init__23GreenCaterpillarBigBodyFRC12JMapInfoIter | :white_check_mark: |
+| setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor | :white_check_mark: |
+| control__23GreenCaterpillarBigBodyFv | :white_check_mark: |
+| calcAndSetBaseMtx__23GreenCaterpillarBigBodyFv | :white_check_mark: |
+| calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| __ct__19GreenCaterpillarBigFPCc | :white_check_mark: |
+| init__19GreenCaterpillarBigFRC12JMapInfoIter | :white_check_mark: |
+| startWriggle__19GreenCaterpillarBigFv | :white_check_mark: |
+| exeWriggle__19GreenCaterpillarBigFv | :white_check_mark: |
+| initBodyParts__19GreenCaterpillarBigFRC12JMapInfoIter | :white_check_mark: |
+| tryGenerateBodyParts__19GreenCaterpillarBigFv | :white_check_mark: |
+| control__19GreenCaterpillarBigFv | :white_check_mark: |
+| calcAndSetBaseMtx__19GreenCaterpillarBigFv | :white_check_mark: |
+| startClipped__19GreenCaterpillarBigFv | :white_check_mark: |
+| endClipped__19GreenCaterpillarBigFv | :white_check_mark: |
+| fixBodyPartsOnRail__19GreenCaterpillarBigFv | :white_check_mark: |
+| leaveApple__19GreenCaterpillarBigFv | :white_check_mark: |
+| __dt__23GreenCaterpillarBigBodyFv | :white_check_mark: |
+| __dt__19GreenCaterpillarBigFv | :white_check_mark: |
+| __sinit_\GreenCaterpillarBig_cpp | :white_check_mark: |
+| __ct__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvHideFv | :white_check_mark: |
+| __ct__Q222NrvGreenCaterpillarBig29GreenCaterpillarBigNrvWriggleFv | :white_check_mark: |
+| __ct__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvRestFv | :white_check_mark: |
+| __ct__Q222NrvGreenCaterpillarBig31GreenCaterpillarBigNrvEndAdjustFv | :white_check_mark: |
+| __ct__Q222NrvGreenCaterpillarBig25GreenCaterpillarBigNrvEndFv | :white_check_mark: |
+| execute__Q222NrvGreenCaterpillarBig25GreenCaterpillarBigNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q222NrvGreenCaterpillarBig31GreenCaterpillarBigNrvEndAdjustCFP5Spine | :white_check_mark: |
+| execute__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvRestCFP5Spine | :white_check_mark: |
+| execute__Q222NrvGreenCaterpillarBig29GreenCaterpillarBigNrvWriggleCFP5Spine | :white_check_mark: |
+| execute__Q222NrvGreenCaterpillarBig26GreenCaterpillarBigNrvHideCFP5Spine | :white_check_mark: |
 
 
 # HatchWaterPlanet.o
