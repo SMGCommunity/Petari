@@ -262,7 +262,7 @@ with open("data/funcSizes.txt", "r") as file:
 
 csv_files = glob.glob("csv/*.csv")
 
-for csv_file in csv_files:
+for csv_file in sorted(csv_files, key=str.casefold):
     lib_name = Path(csv_file).stem
     lib_arch_name = Path(csv_file).stem + ".a"
     # we are just going to ignore non-SMG libraries

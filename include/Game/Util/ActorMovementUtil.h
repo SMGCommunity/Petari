@@ -27,14 +27,43 @@ namespace MR {
     void calcUpVec(TVec3f *, const LiveActor *);
     void calcSideVec(TVec3f *, const LiveActor *);
     void calcPositionUpOffset(TVec3f *, const LiveActor *, f32);
+    void calcVecToPlayerH(TVec3f *, const LiveActor *, const TVec3f *);
+    void calcVecFromPlayerH(TVec3f *, const LiveActor *);
+    void calcVecToTargetPosH(TVec3f *, const LiveActor *, const TVec3f &, const TVec3f *);
+    void calcVecFromTargetPosH(TVec3f *, const LiveActor *, const TVec3f &, const TVec3f *);
+    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, const TVec3f &, float);
+    bool isFaceToPlayerDegree(const LiveActor *, const TVec3f &, float);
+    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, float);
+    bool isFaceToPlayerDegree(const LiveActor *, float);
+    bool isFaceToPlayerDegreeHV(const LiveActor *, const TVec3f&, float, float);
+    bool isFaceToTargetHorizontalDegree(const LiveActor *, const TVec3f &, const TVec3f &, float);
+    bool isFaceToPlayerHorizontalDegree(const LiveActor *, const TVec3f &, float);
+    bool isClockwiseToDir(const LiveActor *, const TVec3f &, const TVec3f &);
+    bool isClockwiseToPlayer(const LiveActor *, const TVec3f &);
+    bool isPlayerLeftSide(const LiveActor *);
+    bool isLeftSideFromPlayer(const LiveActor *);
+    bool isInSightConePlayer(const LiveActor *, const TVec3f &, float, float);
+    bool isInSightFanPlayer(const LiveActor *, const TVec3f &, float, float, float);
+    bool isBindedWallFront(const LiveActor *, const TVec3f &, float);
+    bool isPlayerExistSide(const LiveActor *, float, float);
+    bool isPlayerExistUp(const LiveActor *, float, float);
+    bool isPlayerExistDown(const LiveActor *, float, float);
+    bool isInWater(const LiveActor *, const TVec3f &);
+    bool isInDeath(const LiveActor *, const TVec3f &);
+
+    void makeMtxTR(MtxPtr, const LiveActor *);
+    void makeMtxTRS(MtxPtr, const LiveActor *);
+    void makeMtxTransRotateY(MtxPtr, const LiveActor *);
+
+    void blendQuatFromGroundAndFront(TQuat4f *, const LiveActor *, const TVec3f &, float, float);
 
     void resetPosition(LiveActor *);
+    void resetPosition(LiveActor *, const TVec3f &);
+    void resetPosition(LiveActor *, const char *);
 
     void calcActorAxis(TVec3f *, TVec3f *, TVec3f *, const LiveActor *);
 
     void calcActorAxisY(TVec3f *, const LiveActor *);
-
-    bool isInWater(const LiveActor *, const TVec3f &);
 
     void attenuateVelocity(LiveActor *, f32);
 
@@ -48,9 +77,5 @@ namespace MR {
 
     void addVelocityToGravity(LiveActor *, f32);
 
-    void resetPosition(LiveActor *, const TVec3f &);
-
     void turnDirectionAndGravityH(LiveActor *, const TVec3f &, f32, f32);
-
-    bool isInDeath(const LiveActor *, const TVec3f &);
 };
