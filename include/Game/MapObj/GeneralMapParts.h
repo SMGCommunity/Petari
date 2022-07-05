@@ -11,14 +11,27 @@
 
 class GeneralMapParts : public MapParts {
 public:
+    GeneralMapParts(const char *);
 
-    typedef void (MapPartsFunction::*funcPtr)(void);
-
+    virtual ~GeneralMapParts();
+    virtual void init(const JMapInfoIter &);
+    virtual void initAfterPlacement();
+    virtual void appear();
     virtual void kill();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void initMapPartsFunction(const JMapInfoIter &);
     void initSensorType(const JMapInfoIter &);
     void initGravity(const JMapInfoIter &);
+    void receiveMsgSwitchBOn();
+    void receiveMsgSwitchBOff();
+    void broadcastMsgToAllFunctions(u32);
+    bool isFixed() const;
+    void startMove();
+    void exeWait();
+    void exeMoveStart();
 
     ActorCameraInfo* mCameraInfo;                                       // _98
     s32 mMoveConditionType;                                             // _9C
@@ -33,4 +46,11 @@ public:
     MapPartsRailPosture* mRailPosture;                                  // _E0
     u8 _E4;
     u8 _E5;
+};
+
+namespace NrvGeneralMapParts {
+    NERVE(HostTypeWait);
+    NERVE(HostTypeWaitForPlayerOn);
+    NERVE(HostTypeMoveStart);
+    NERVE(HostTypeMove);
 };

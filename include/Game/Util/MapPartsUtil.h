@@ -5,6 +5,8 @@
 
 class HitSensor;
 class MapPartsRailGuideDrawer;
+class MapPartsRailMover;
+class MapPartsRailRotator;
 
 namespace MR {
     bool getMapPartsArgMoveConditionType(s32 *, const JMapInfoIter &);
@@ -36,6 +38,8 @@ namespace MR {
 
     bool hasMapPartsVanishSignMotion(s32);
 
+    bool isMapPartsShadowTypeNone(s32);
+
     bool isMoveStartUnconditional(s32);
 
     void setBodySensorType(LiveActor *, u32);
@@ -45,4 +49,18 @@ namespace MR {
     void initMapPartsClipping(LiveActor *, const JMapInfoIter &, TVec3f *, bool);
 
     MapPartsRailGuideDrawer* createMapPartsRailGuideDrawer(LiveActor *, const char *, const JMapInfoIter &);
+
+    bool isMapPartsPressOn(const JMapInfoIter &);
+
+    void setBodySensorTypePress(LiveActor *);
+    void setBodySensorTypeMoveCollision(LiveActor *);
+    void setBodySensorTypeMapObj(LiveActor *);
+
+    bool isMapPartsSignMotionTypeMoveWait(s32);
+
+    bool isMoveStartTypeUnconditional(s32);
+
+    bool receiveMapPartsRotateMsg(LiveActor *, u32, MapPartsRailMover *, MapPartsRailRotator *);
+
+    void initMapPartsShadow(LiveActor *, const JMapInfoIter &);
 };

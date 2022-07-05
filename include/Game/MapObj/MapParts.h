@@ -16,7 +16,7 @@ public:
     virtual s32 getSensorNumMax() const;
     virtual void connectToScene();
 
-    s32 getMoveStartSignalTime();
+    static s32 getMoveStartSignalTime();
     void initModelAndCollision(const JMapInfoIter &);
 
     TVec3f _8C;

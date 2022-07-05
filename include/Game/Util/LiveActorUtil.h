@@ -271,4 +271,6 @@ namespace MR {
     bool tryCreateCollisionAllOtherCategory(LiveActor *, HitSensor *, CollisionParts **, CollisionParts **, CollisionParts **);
 
     f32 getCollisionBoundingSphereRange(const LiveActor *);
+
+    bool isExistAnim(const LiveActor *, const char *);
 };

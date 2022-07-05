@@ -305,7 +305,7 @@
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% | :x: 
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | MapParts.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
-| GeneralMapParts.o | 10.555555555555555% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
+| GeneralMapParts.o | 80.0925925925926% | 29 / 32 | 90.625% | :eight_pointed_black_star: 
 | FloaterFloatingForce.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | FloaterFloatingForceTypeNormal.o | 61.79540709812108% | 18 / 20 | 90.0% | :eight_pointed_black_star: 
 | FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 | 0.0% | :x: 
@@ -7786,38 +7786,38 @@
 # GeneralMapParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15GeneralMapPartsFPCc | :x: |
-| init__15GeneralMapPartsFRC12JMapInfoIter | :x: |
-| initAfterPlacement__15GeneralMapPartsFv | :x: |
-| appear__15GeneralMapPartsFv | :x: |
+| __ct__15GeneralMapPartsFPCc | :white_check_mark: |
+| init__15GeneralMapPartsFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__15GeneralMapPartsFv | :white_check_mark: |
+| appear__15GeneralMapPartsFv | :white_check_mark: |
 | kill__15GeneralMapPartsFv | :x: |
-| receiveOtherMsg__15GeneralMapPartsFUlP9HitSensorP9HitSensor | :x: |
-| control__15GeneralMapPartsFv | :x: |
-| calcAndSetBaseMtx__15GeneralMapPartsFv | :x: |
+| receiveOtherMsg__15GeneralMapPartsFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| control__15GeneralMapPartsFv | :white_check_mark: |
+| calcAndSetBaseMtx__15GeneralMapPartsFv | :white_check_mark: |
 | initMapPartsFunction__15GeneralMapPartsFRC12JMapInfoIter | :white_check_mark: |
-| initSensorType__15GeneralMapPartsFRC12JMapInfoIter | :x: |
-| initGravity__15GeneralMapPartsFRC12JMapInfoIter | :x: |
+| initSensorType__15GeneralMapPartsFRC12JMapInfoIter | :white_check_mark: |
+| initGravity__15GeneralMapPartsFRC12JMapInfoIter | :white_check_mark: |
 | receiveMsgSwitchBOn__15GeneralMapPartsFv | :x: |
-| receiveMsgSwitchBOff__15GeneralMapPartsFv | :x: |
+| receiveMsgSwitchBOff__15GeneralMapPartsFv | :white_check_mark: |
 | broadcastMsgToAllFunctions__15GeneralMapPartsFUl | :x: |
-| isFixed__15GeneralMapPartsCFv | :x: |
-| startMove__15GeneralMapPartsFv | :x: |
-| exeWait__15GeneralMapPartsFv | :x: |
-| exeMoveStart__15GeneralMapPartsFv | :x: |
-| __sinit_\GeneralMapParts_cpp | :x: |
-| __ct__Q218NrvGeneralMapParts12HostTypeWaitFv | :x: |
-| __ct__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnFv | :x: |
-| __ct__Q218NrvGeneralMapParts17HostTypeMoveStartFv | :x: |
-| __ct__Q218NrvGeneralMapParts12HostTypeMoveFv | :x: |
-| execute__Q218NrvGeneralMapParts12HostTypeMoveCFP5Spine | :x: |
-| execute__Q218NrvGeneralMapParts17HostTypeMoveStartCFP5Spine | :x: |
-| execute__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnCFP5Spine | :x: |
-| execute__Q218NrvGeneralMapParts12HostTypeWaitCFP5Spine | :x: |
-| Functor&lt;15GeneralMapParts&gt;__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt; | :x: |
-| __cl__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| receiveMsg__16MapPartsFunctionFUl | :x: |
-| push_back__Q22MR48Vector&lt;Q22MR33FixedArray&lt;P16MapPartsFunction,8&gt;&gt;FRCP16MapPartsFunction | :x: |
+| isFixed__15GeneralMapPartsCFv | :white_check_mark: |
+| startMove__15GeneralMapPartsFv | :white_check_mark: |
+| exeWait__15GeneralMapPartsFv | :white_check_mark: |
+| exeMoveStart__15GeneralMapPartsFv | :white_check_mark: |
+| __sinit_\GeneralMapParts_cpp | :white_check_mark: |
+| __ct__Q218NrvGeneralMapParts12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnFv | :white_check_mark: |
+| __ct__Q218NrvGeneralMapParts17HostTypeMoveStartFv | :white_check_mark: |
+| __ct__Q218NrvGeneralMapParts12HostTypeMoveFv | :white_check_mark: |
+| execute__Q218NrvGeneralMapParts12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q218NrvGeneralMapParts17HostTypeMoveStartCFP5Spine | :white_check_mark: |
+| execute__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnCFP5Spine | :white_check_mark: |
+| execute__Q218NrvGeneralMapParts12HostTypeWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;15GeneralMapParts&gt;__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| receiveMsg__16MapPartsFunctionFUl | :white_check_mark: |
+| push_back__Q22MR48Vector&lt;Q22MR33FixedArray&lt;P16MapPartsFunction,8&gt;&gt;FRCP16MapPartsFunction | :white_check_mark: |
 
 
 # FloaterFloatingForce.o

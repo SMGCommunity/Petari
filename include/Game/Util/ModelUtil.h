@@ -44,4 +44,6 @@ namespace MR {
     void calcModelBoundingRadius(f32 *, const LiveActor *);
 
     bool isExistCollisionResource(const LiveActor *, const char *);
+
+    bool isExistEffectTexMtx(LiveActor *);
 };
