@@ -139,6 +139,9 @@ namespace MR {
     void shakeCameraNormal();
     void shakeCameraStrong();
     void shakeCameraVeryStrong();
+    void shakeCameraInfinity(NameObj *, f32, f32);
+
+    void stopShakingCamera(NameObj *);
 
     bool isInWater(const TVec3f &);
 
@@ -147,4 +150,6 @@ namespace MR {
     const ResTIMG* loadTexFromArc(const char *, const char *);
 
     void joinToNameObjGroup(NameObj *, const char *);
+
+    bool isEndPowerStarAppearDemo(const NameObj *);
 };

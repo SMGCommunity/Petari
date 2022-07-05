@@ -62,4 +62,7 @@ namespace MR {
     bool isPlayerOnWaterSurface();
 
     void changePlayerItemStatus(s32);
+
+    void setPlayerStateWait();
+    void setPlayerPos(const char *);
 };

@@ -42,7 +42,7 @@ public:
     }
 
     virtual void reset();
-    virtual CameraTargetObj *calc() = 0;
+    virtual CameraTargetObj* calc() = 0;
     virtual bool isInterpolationOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isZeroFrameMoveOff() const;

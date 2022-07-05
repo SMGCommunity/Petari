@@ -16,5 +16,10 @@ public:
     void calcEaseInOut();
     void calcDamp();
 
-    u8 _4C[24];
+    u32* _4C;
+    s32 _50;
+    s32 _54;
+    u32 _58;
+    f32 _5C;
+    f32 _60;
 };

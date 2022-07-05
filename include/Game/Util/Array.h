@@ -92,12 +92,12 @@ namespace MR {
             mArray.mArr[count] = rItem;
         }
 
-        T::Item* begin() {
-            return mArray.mArr;
+        T::Item begin() {
+            return mArray.mArr[0];
         }
 
-        T::Item* end() {
-            return &mArray.mArr[mArray.mMaxSize];
+        T::Item end() {
+            return mArray.mArr[mCount];
         }
 
         inline T::Item* getAt(u32 idx) {

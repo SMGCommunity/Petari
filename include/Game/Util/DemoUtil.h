@@ -39,4 +39,6 @@ namespace MR {
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
 
     void requestStartTimeKeepDemo(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
+
+    bool isDemoPartLastStep(const char *);
 };

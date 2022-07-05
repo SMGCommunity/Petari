@@ -101,7 +101,7 @@
 | CameraPolygonCodeUtil.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | CameraPoseParam.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | CameraRaceFollow.o | 17.41424802110818% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
-| CameraRailDemo.o | 18.30065359477124% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| CameraRailDemo.o | 29.411764705882355% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
 | CameraRailFollow.o | 18.96551724137931% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
 | CameraRailHolder.o | 11.83206106870229% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
 | CameraRailWatch.o | 15.625% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
@@ -1411,8 +1411,8 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__14CameraRailDemoFPCc | :white_check_mark: |
-| reset__14CameraRailDemoFv | :x: |
-| calc__14CameraRailDemoFv | :x: |
+| reset__14CameraRailDemoFv | :white_check_mark: |
+| calc__14CameraRailDemoFv | :white_check_mark: |
 | setParam__14CameraRailDemoFllllf | :x: |
 | createTranslator__14CameraRailDemoFv | :white_check_mark: |
 | calcLinear__14CameraRailDemoFv | :x: |

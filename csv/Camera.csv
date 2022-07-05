@@ -805,8 +805,8 @@ createTranslator__16CameraRaceFollowFv,CameraRaceFollow.o,Camera.a,true
 goRound__16CameraRaceFollowFv,CameraRaceFollow.o,Camera.a,false
 __dt__16CameraRaceFollowFv,CameraRaceFollow.o,Camera.a,true
 __ct__14CameraRailDemoFPCc,CameraRailDemo.o,Camera.a,true
-reset__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,false
-calc__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,false
+reset__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,true
+calc__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,true
 setParam__14CameraRailDemoFllllf,CameraRailDemo.o,Camera.a,false
 createTranslator__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,true
 calcLinear__14CameraRailDemoFv,CameraRailDemo.o,Camera.a,false

@@ -53,4 +53,7 @@ namespace MR {
     void captureScreenIfAllow(const char *);
 
     ResTIMG* getScreenResTIMG();
+
+    void openWipeWhiteFade(s32);
+    void closeWipeWhiteFade(s32);
 };

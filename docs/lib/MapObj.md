@@ -164,8 +164,8 @@
 | MarblePlanet.o | 100.0% | 35 / 35 | 100.0% | :white_check_mark: 
 | MarioLauncher.o | 0.0% | 0 / 58 | 0.0% | :x: 
 | MarioLauncherAttractor.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| MechaKoopaPartsArm.o | 0.0% | 0 / 32 | 0.0% | :x: 
-| MechaKoopaPartsHead.o | 0.0% | 0 / 25 | 0.0% | :x: 
+| MechaKoopaPartsArm.o | 100.0% | 32 / 32 | 100.0% | :white_check_mark: 
+| MechaKoopaPartsHead.o | 100.0% | 25 / 25 | 100.0% | :white_check_mark: 
 | MercatorFixParts.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | MercatorRailMoveParts.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | MercatorRotateParts.o | 0.0% | 0 / 7 | 0.0% | :x: 
@@ -305,14 +305,14 @@
 | WormEatenPlanet.o | 0.0% | 0 / 25 | 0.0% | :x: 
 | YellowChip.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | MapParts.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
-| GeneralMapParts.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| GeneralMapParts.o | 10.555555555555555% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
 | FloaterFloatingForce.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | FloaterFloatingForceTypeNormal.o | 61.79540709812108% | 18 / 20 | 90.0% | :eight_pointed_black_star: 
 | FloaterFloatingForceTypeSpring.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | FloaterFunction.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | LavaHomeSeesawRotator.o | 0.0% | 0 / 35 | 0.0% | :x: 
-| MapPartsAppearController.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| MapPartsBreaker.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| MapPartsAppearController.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
+| MapPartsBreaker.o | 93.28859060402685% | 9 / 10 | 90.0% | :eight_pointed_black_star: 
 | MapPartsFloatingForce.o | 66.71270718232044% | 23 / 27 | 85.18518518518519% | :eight_pointed_black_star: 
 | MapPartsFunction.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | MapPartsRailGuideDrawer.o | 28.647214854111407% | 4 / 19 | 21.052631578947366% | :eight_pointed_black_star: 
@@ -4217,68 +4217,68 @@
 # MechaKoopaPartsArm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__18MechaKoopaPartsArmFPCc | :x: |
-| init__18MechaKoopaPartsArmFRC12JMapInfoIter | :x: |
-| exeWait__18MechaKoopaPartsArmFv | :x: |
-| exeMoveStart__18MechaKoopaPartsArmFv | :x: |
-| exeMove__18MechaKoopaPartsArmFv | :x: |
-| exeBreakStart__18MechaKoopaPartsArmFv | :x: |
-| exeBreak__18MechaKoopaPartsArmFv | :x: |
-| initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo | :x: |
-| startBreak__18MechaKoopaPartsArmFv | :x: |
-| __sinit_\MechaKoopaPartsArm_cpp | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvMoveFrontFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvMoveRearFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm31MechaKoopaPartsArmNrvBreakStartFv | :x: |
-| __ct__Q221NrvMechaKoopaPartsArm26MechaKoopaPartsArmNrvBreakFv | :x: |
-| execute__Q221NrvMechaKoopaPartsArm26MechaKoopaPartsArmNrvBreakCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm31MechaKoopaPartsArmNrvBreakStartCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvMoveRearCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvMoveFrontCFP5Spine | :x: |
-| executeOnEnd__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearCFP5Spine | :x: |
-| executeOnEnd__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearCFP5Spine | :x: |
-| execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontCFP5Spine | :x: |
-| __cl__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__18MechaKoopaPartsArmFv | :x: |
+| __ct__18MechaKoopaPartsArmFPCc | :white_check_mark: |
+| init__18MechaKoopaPartsArmFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__18MechaKoopaPartsArmFv | :white_check_mark: |
+| exeMoveStart__18MechaKoopaPartsArmFv | :white_check_mark: |
+| exeMove__18MechaKoopaPartsArmFv | :white_check_mark: |
+| exeBreakStart__18MechaKoopaPartsArmFv | :white_check_mark: |
+| exeBreak__18MechaKoopaPartsArmFv | :white_check_mark: |
+| initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo | :white_check_mark: |
+| startBreak__18MechaKoopaPartsArmFv | :white_check_mark: |
+| __sinit_\MechaKoopaPartsArm_cpp | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvMoveFrontFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvMoveRearFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm31MechaKoopaPartsArmNrvBreakStartFv | :white_check_mark: |
+| __ct__Q221NrvMechaKoopaPartsArm26MechaKoopaPartsArmNrvBreakFv | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm26MechaKoopaPartsArmNrvBreakCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm31MechaKoopaPartsArmNrvBreakStartCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvMoveRearCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvMoveFrontCFP5Spine | :white_check_mark: |
+| executeOnEnd__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm34MechaKoopaPartsArmNrvMoveStartRearCFP5Spine | :white_check_mark: |
+| executeOnEnd__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearCFP5Spine | :white_check_mark: |
+| execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontCFP5Spine | :white_check_mark: |
+| __cl__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__18MechaKoopaPartsArmFv | :white_check_mark: |
 
 
 # MechaKoopaPartsHead.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19MechaKoopaPartsHeadFPCc | :x: |
-| init__19MechaKoopaPartsHeadFRC12JMapInfoIter | :x: |
-| exeDemoBreak__19MechaKoopaPartsHeadFv | :x: |
-| exeDemoWhiteFadeOut__19MechaKoopaPartsHeadFv | :x: |
-| exeDemoWhiteWait__19MechaKoopaPartsHeadFv | :x: |
-| exeDemoWhiteFadeIn__19MechaKoopaPartsHeadFv | :x: |
-| exeDemoAppearStar__19MechaKoopaPartsHeadFv | :x: |
-| __dt__19MechaKoopaPartsHeadFv | :x: |
-| __sinit_\MechaKoopaPartsHead_cpp | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead26MechaKoopaPartsHeadNrvWaitFv | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead31MechaKoopaPartsHeadNrvDemoBreakFv | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead38MechaKoopaPartsHeadNrvDemoWhiteFadeOutFv | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead35MechaKoopaPartsHeadNrvDemoWhiteWaitFv | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead37MechaKoopaPartsHeadNrvDemoWhiteFadeInFv | :x: |
-| __ct__Q222NrvMechaKoopaPartsHead36MechaKoopaPartsHeadNrvDemoAppearStarFv | :x: |
-| execute__Q222NrvMechaKoopaPartsHead36MechaKoopaPartsHeadNrvDemoAppearStarCFP5Spine | :x: |
-| execute__Q222NrvMechaKoopaPartsHead37MechaKoopaPartsHeadNrvDemoWhiteFadeInCFP5Spine | :x: |
-| execute__Q222NrvMechaKoopaPartsHead35MechaKoopaPartsHeadNrvDemoWhiteWaitCFP5Spine | :x: |
-| execute__Q222NrvMechaKoopaPartsHead38MechaKoopaPartsHeadNrvDemoWhiteFadeOutCFP5Spine | :x: |
-| execute__Q222NrvMechaKoopaPartsHead31MechaKoopaPartsHeadNrvDemoBreakCFP5Spine | :x: |
-| execute__Q222NrvMechaKoopaPartsHead26MechaKoopaPartsHeadNrvWaitCFP5Spine | :x: |
-| initCaseNoUseSwitchB__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :x: |
-| initCaseUseSwitchB__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchA__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :x: |
-| initCaseUseSwitchA__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :x: |
+| __ct__19MechaKoopaPartsHeadFPCc | :white_check_mark: |
+| init__19MechaKoopaPartsHeadFRC12JMapInfoIter | :white_check_mark: |
+| exeDemoBreak__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| exeDemoWhiteFadeOut__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| exeDemoWhiteWait__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| exeDemoWhiteFadeIn__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| exeDemoAppearStar__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| __dt__19MechaKoopaPartsHeadFv | :white_check_mark: |
+| __sinit_\MechaKoopaPartsHead_cpp | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead26MechaKoopaPartsHeadNrvWaitFv | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead31MechaKoopaPartsHeadNrvDemoBreakFv | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead38MechaKoopaPartsHeadNrvDemoWhiteFadeOutFv | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead35MechaKoopaPartsHeadNrvDemoWhiteWaitFv | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead37MechaKoopaPartsHeadNrvDemoWhiteFadeInFv | :white_check_mark: |
+| __ct__Q222NrvMechaKoopaPartsHead36MechaKoopaPartsHeadNrvDemoAppearStarFv | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead36MechaKoopaPartsHeadNrvDemoAppearStarCFP5Spine | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead37MechaKoopaPartsHeadNrvDemoWhiteFadeInCFP5Spine | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead35MechaKoopaPartsHeadNrvDemoWhiteWaitCFP5Spine | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead38MechaKoopaPartsHeadNrvDemoWhiteFadeOutCFP5Spine | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead31MechaKoopaPartsHeadNrvDemoBreakCFP5Spine | :white_check_mark: |
+| execute__Q222NrvMechaKoopaPartsHead26MechaKoopaPartsHeadNrvWaitCFP5Spine | :white_check_mark: |
+| initCaseNoUseSwitchB__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseUseSwitchB__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchA__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseUseSwitchA__19MechaKoopaPartsHeadFRC19MapObjActorInitInfo | :white_check_mark: |
 
 
 # MercatorFixParts.o
@@ -7794,7 +7794,7 @@
 | receiveOtherMsg__15GeneralMapPartsFUlP9HitSensorP9HitSensor | :x: |
 | control__15GeneralMapPartsFv | :x: |
 | calcAndSetBaseMtx__15GeneralMapPartsFv | :x: |
-| initMapPartsFunction__15GeneralMapPartsFRC12JMapInfoIter | :x: |
+| initMapPartsFunction__15GeneralMapPartsFRC12JMapInfoIter | :white_check_mark: |
 | initSensorType__15GeneralMapPartsFRC12JMapInfoIter | :x: |
 | initGravity__15GeneralMapPartsFRC12JMapInfoIter | :x: |
 | receiveMsgSwitchBOn__15GeneralMapPartsFv | :x: |
@@ -7938,41 +7938,41 @@
 # MapPartsAppearController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24MapPartsAppearControllerFP9LiveActor | :x: |
-| init__24MapPartsAppearControllerFRC12JMapInfoIter | :x: |
-| start__24MapPartsAppearControllerFv | :x: |
-| end__24MapPartsAppearControllerFv | :x: |
-| storeCurrentPosture__24MapPartsAppearControllerFv | :x: |
-| initSwitchMessenger__24MapPartsAppearControllerFRC12JMapInfoIter | :x: |
-| receiveMsg__24MapPartsAppearControllerFUl | :x: |
-| startAppear__24MapPartsAppearControllerFv | :x: |
-| startKill__24MapPartsAppearControllerFv | :x: |
-| appearHost__24MapPartsAppearControllerFv | :x: |
-| killHost__24MapPartsAppearControllerFv | :x: |
-| exeDisappear__24MapPartsAppearControllerFv | :x: |
-| __sinit_\MapPartsAppearController_cpp | :x: |
-| __ct__Q227NrvMapPartsAppearController12HostTypeWaitFv | :x: |
-| __ct__Q227NrvMapPartsAppearController17HostTypeDisappearFv | :x: |
-| execute__Q227NrvMapPartsAppearController17HostTypeDisappearCFP5Spine | :x: |
-| execute__Q227NrvMapPartsAppearController12HostTypeWaitCFP5Spine | :x: |
-| Functor&lt;24MapPartsAppearController&gt;__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt; | :x: |
-| __cl__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__24MapPartsAppearControllerFv | :x: |
+| __ct__24MapPartsAppearControllerFP9LiveActor | :white_check_mark: |
+| init__24MapPartsAppearControllerFRC12JMapInfoIter | :white_check_mark: |
+| start__24MapPartsAppearControllerFv | :white_check_mark: |
+| end__24MapPartsAppearControllerFv | :white_check_mark: |
+| storeCurrentPosture__24MapPartsAppearControllerFv | :white_check_mark: |
+| initSwitchMessenger__24MapPartsAppearControllerFRC12JMapInfoIter | :white_check_mark: |
+| receiveMsg__24MapPartsAppearControllerFUl | :white_check_mark: |
+| startAppear__24MapPartsAppearControllerFv | :white_check_mark: |
+| startKill__24MapPartsAppearControllerFv | :white_check_mark: |
+| appearHost__24MapPartsAppearControllerFv | :white_check_mark: |
+| killHost__24MapPartsAppearControllerFv | :white_check_mark: |
+| exeDisappear__24MapPartsAppearControllerFv | :white_check_mark: |
+| __sinit_\MapPartsAppearController_cpp | :white_check_mark: |
+| __ct__Q227NrvMapPartsAppearController12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q227NrvMapPartsAppearController17HostTypeDisappearFv | :white_check_mark: |
+| execute__Q227NrvMapPartsAppearController17HostTypeDisappearCFP5Spine | :white_check_mark: |
+| execute__Q227NrvMapPartsAppearController12HostTypeWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;24MapPartsAppearController&gt;__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__24MapPartsAppearControllerFv | :white_check_mark: |
 
 
 # MapPartsBreaker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| exeReactToTornado__15MapPartsBreakerFv | :x: |
-| exeBreak__15MapPartsBreakerFv | :x: |
-| __sinit_\MapPartsBreaker_cpp | :x: |
-| __ct__Q218NrvMapPartsBreaker12HostTypeWaitFv | :x: |
-| __ct__Q218NrvMapPartsBreaker22HostTypeReactToTornadoFv | :x: |
-| __ct__Q218NrvMapPartsBreaker13HostTypeBreakFv | :x: |
-| execute__Q218NrvMapPartsBreaker13HostTypeBreakCFP5Spine | :x: |
-| execute__Q218NrvMapPartsBreaker22HostTypeReactToTornadoCFP5Spine | :x: |
-| execute__Q218NrvMapPartsBreaker12HostTypeWaitCFP5Spine | :x: |
+| exeReactToTornado__15MapPartsBreakerFv | :white_check_mark: |
+| exeBreak__15MapPartsBreakerFv | :white_check_mark: |
+| __sinit_\MapPartsBreaker_cpp | :white_check_mark: |
+| __ct__Q218NrvMapPartsBreaker12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsBreaker22HostTypeReactToTornadoFv | :white_check_mark: |
+| __ct__Q218NrvMapPartsBreaker13HostTypeBreakFv | :white_check_mark: |
+| execute__Q218NrvMapPartsBreaker13HostTypeBreakCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsBreaker22HostTypeReactToTornadoCFP5Spine | :white_check_mark: |
+| execute__Q218NrvMapPartsBreaker12HostTypeWaitCFP5Spine | :white_check_mark: |
 | squared__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt; | :x: |
 
 

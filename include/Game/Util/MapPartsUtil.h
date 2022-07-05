@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry.h"
 
 class HitSensor;
+class MapPartsRailGuideDrawer;
 
 namespace MR {
     bool getMapPartsArgMoveConditionType(s32 *, const JMapInfoIter &);
@@ -33,6 +34,8 @@ namespace MR {
 
     bool hasMapPartsMoveStartSignMotion(s32);
 
+    bool hasMapPartsVanishSignMotion(s32);
+
     bool isMoveStartUnconditional(s32);
 
     void setBodySensorType(LiveActor *, u32);
@@ -40,4 +43,6 @@ namespace MR {
     const HitSensor* getBodySensor(LiveActor *);
 
     void initMapPartsClipping(LiveActor *, const JMapInfoIter &, TVec3f *, bool);
+
+    MapPartsRailGuideDrawer* createMapPartsRailGuideDrawer(LiveActor *, const char *, const JMapInfoIter &);
 };
