@@ -121,7 +121,7 @@
 | GravityLight.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | GravityLightRoad.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | GreenCaterpillarBig.o | 100.0% | 31 / 31 | 100.0% | :white_check_mark: 
-| HatchWaterPlanet.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| HatchWaterPlanet.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | HeavensDoorDemoObj.o | 0.0% | 0 / 18 | 0.0% | :x: 
 | HipDropMoveObj.o | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
 | HipDropRock.o | 0.0% | 0 / 15 | 0.0% | :x: 
@@ -3167,19 +3167,19 @@
 # HatchWaterPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16HatchWaterPlanetFPCc | :x: |
-| init__16HatchWaterPlanetFRC12JMapInfoIter | :x: |
-| control__16HatchWaterPlanetFv | :x: |
-| exeOpen__16HatchWaterPlanetFv | :x: |
-| exeWaitAfterOpen__16HatchWaterPlanetFv | :x: |
-| __dt__16HatchWaterPlanetFv | :x: |
-| __sinit_\HatchWaterPlanet_cpp | :x: |
-| __ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvWaitFv | :x: |
-| __ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvOpenFv | :x: |
-| __ct__Q219NrvHatchWaterPlanet32HatchWaterPlanetNrvWaitAfterOpenFv | :x: |
-| execute__Q219NrvHatchWaterPlanet32HatchWaterPlanetNrvWaitAfterOpenCFP5Spine | :x: |
-| execute__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvOpenCFP5Spine | :x: |
-| execute__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvWaitCFP5Spine | :x: |
+| __ct__16HatchWaterPlanetFPCc | :white_check_mark: |
+| init__16HatchWaterPlanetFRC12JMapInfoIter | :white_check_mark: |
+| control__16HatchWaterPlanetFv | :white_check_mark: |
+| exeOpen__16HatchWaterPlanetFv | :white_check_mark: |
+| exeWaitAfterOpen__16HatchWaterPlanetFv | :white_check_mark: |
+| __dt__16HatchWaterPlanetFv | :white_check_mark: |
+| __sinit_\HatchWaterPlanet_cpp | :white_check_mark: |
+| __ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvWaitFv | :white_check_mark: |
+| __ct__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvOpenFv | :white_check_mark: |
+| __ct__Q219NrvHatchWaterPlanet32HatchWaterPlanetNrvWaitAfterOpenFv | :white_check_mark: |
+| execute__Q219NrvHatchWaterPlanet32HatchWaterPlanetNrvWaitAfterOpenCFP5Spine | :white_check_mark: |
+| execute__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvOpenCFP5Spine | :white_check_mark: |
+| execute__Q219NrvHatchWaterPlanet23HatchWaterPlanetNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # HeavensDoorDemoObj.o
