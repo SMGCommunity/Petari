@@ -1526,9 +1526,9 @@ getCameraWaterDepth__17WaterAreaFunctionFv,WaterAreaHolder.o,Map.a,false
 getCameraWaterInfo__17WaterAreaFunctionFv,WaterAreaHolder.o,Map.a,false
 pauseOffWaterArea__17WaterAreaFunctionFv,WaterAreaHolder.o,Map.a,false
 __dt__15WaterAreaHolderFv,WaterAreaHolder.o,Map.a,false
-__ct__9WaterInfoFv,WaterInfo.o,Map.a,false
-isInWater__9WaterInfoCFv,WaterInfo.o,Map.a,false
-clear__9WaterInfoFv,WaterInfo.o,Map.a,false
+__ct__9WaterInfoFv,WaterInfo.o,Map.a,true
+isInWater__9WaterInfoCFv,WaterInfo.o,Map.a,true
+clear__9WaterInfoFv,WaterInfo.o,Map.a,true
 __ct__10WaterPlantFPCc,WaterPlant.o,Map.a,false
 init__10WaterPlantFRC12JMapInfoIter,WaterPlant.o,Map.a,false
 initAfterPlacement__10WaterPlantFv,WaterPlant.o,Map.a,false

@@ -85,7 +85,7 @@
 | SwitchWatcherHolder.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | TimerSwitch.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% | :x: 
-| WaterInfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| WaterInfo.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | WaterPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% | :eight_pointed_black_star: 
@@ -2007,9 +2007,9 @@
 # WaterInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9WaterInfoFv | :x: |
-| isInWater__9WaterInfoCFv | :x: |
-| clear__9WaterInfoFv | :x: |
+| __ct__9WaterInfoFv | :white_check_mark: |
+| isInWater__9WaterInfoCFv | :white_check_mark: |
+| clear__9WaterInfoFv | :white_check_mark: |
 
 
 # WaterPlant.o
