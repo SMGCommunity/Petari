@@ -90,6 +90,7 @@ namespace MR {
 
     ResourceHolder* createAndAddResourceHolder(const char *);
 
+    void listenNameObjStageSwitchOnAppear(const NameObj *, const StageSwitchCtrl *, const MR::FunctorBase &);
     void listenNameObjStageSwitchOnOffAppear(const NameObj *, const StageSwitchCtrl *, const MR::FunctorBase &, const MR::FunctorBase &);
 
     void requestMovementOn(LiveActor *);
@@ -128,7 +129,8 @@ namespace MR {
 
     void declarePowerStar(const NameObj *);
     void declarePowerStar(const NameObj *, s32);
-
+    void declarePowerStarCoin100();
+    void appearPowerStarContinueCurrentDemo(const NameObj *, const TVec3f &);
     void appearPowerStarWithoutDemo(const NameObj *);
     void requestAppearPowerStar(const NameObj *);
     void requestAppearPowerStar(const NameObj *, const TVec3f &);

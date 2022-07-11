@@ -202,8 +202,8 @@
 | PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | PunchBox.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | PunchingKinoko.o | 0.0% | 0 / 59 | 0.0% | :x: 
-| PurpleCoinHolder.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| PurpleCoinStarter.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| PurpleCoinHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
+| PurpleCoinStarter.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 | 0.0% | :x: 
 | QuestionBoxGalleryObj.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | QuestionCoin.o | 0.0% | 0 / 25 | 0.0% | :x: 
@@ -5229,25 +5229,25 @@
 # PurpleCoinHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16PurpleCoinHolderFv | :x: |
-| initAfterPlacement__16PurpleCoinHolderFv | :x: |
-| start__16PurpleCoinHolderFv | :x: |
-| createPurpleCoinHolder__2MRFv | :x: |
-| addToPurpleCoinHolder__2MRFPC7NameObjP4Coin | :x: |
-| registPurpleCoinStarter__2MRFP17PurpleCoinStarter | :x: |
-| __dt__16PurpleCoinHolderFv | :x: |
+| __ct__16PurpleCoinHolderFv | :white_check_mark: |
+| initAfterPlacement__16PurpleCoinHolderFv | :white_check_mark: |
+| start__16PurpleCoinHolderFv | :white_check_mark: |
+| createPurpleCoinHolder__2MRFv | :white_check_mark: |
+| addToPurpleCoinHolder__2MRFPC7NameObjP4Coin | :white_check_mark: |
+| registPurpleCoinStarter__2MRFP17PurpleCoinStarter | :white_check_mark: |
+| __dt__16PurpleCoinHolderFv | :white_check_mark: |
 
 
 # PurpleCoinStarter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17PurpleCoinStarterFPCc | :x: |
-| init__17PurpleCoinStarterFRC12JMapInfoIter | :x: |
-| setHost__17PurpleCoinStarterFP16PurpleCoinHolder | :x: |
-| start__17PurpleCoinStarterFv | :x: |
-| __cl__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__17PurpleCoinStarterFv | :x: |
+| __ct__17PurpleCoinStarterFPCc | :white_check_mark: |
+| init__17PurpleCoinStarterFRC12JMapInfoIter | :white_check_mark: |
+| setHost__17PurpleCoinStarterFP16PurpleCoinHolder | :white_check_mark: |
+| start__17PurpleCoinStarterFv | :white_check_mark: |
+| __cl__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR61FunctorV0M&lt;P17PurpleCoinStarter,M17PurpleCoinStarterFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__17PurpleCoinStarterFv | :white_check_mark: |
 
 
 # QuarterRollGravityRoomArrow.o

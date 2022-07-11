@@ -56,4 +56,7 @@ namespace MR {
 
     void openWipeWhiteFade(s32);
     void closeWipeWhiteFade(s32);
+
+    void createPurpleCoinCounter();
+    void validatePurpleCoinCounter();
 };
