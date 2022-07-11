@@ -1,4 +1,5 @@
 #include "Game/MapObj/PurpleCoinHolder.h"
+#include "Game/MapObj/Coin.h"
 #include "Game/MapObj/PurpleCoinStarter.h"
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/Util.h"
@@ -25,7 +26,7 @@ namespace MR {
     }
 
     void addToPurpleCoinHolder(const NameObj *pObj, Coin *pCoin) {
-        MR::getSceneObj<PurpleCoinHolder*>(SceneObj_PurpleCoinHolder)->registerActor((LiveActor*)pCoin);
+        MR::getSceneObj<PurpleCoinHolder*>(SceneObj_PurpleCoinHolder)->registerActor(pCoin);
     }
 
     void registPurpleCoinStarter(PurpleCoinStarter *pStarter) {
@@ -36,5 +37,5 @@ namespace MR {
 };
 
 PurpleCoinHolder::~PurpleCoinHolder() {
-    
+
 }
