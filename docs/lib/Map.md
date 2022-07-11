@@ -27,9 +27,9 @@
 | FishGroup.o | 0.0% | 0 / 23 | 0.0% | :x: 
 | Flag.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | GravityDust.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| GroundChecker.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| GroundChecker.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | GroupSwitchWatcher.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| Halo.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| Halo.o | 82.6325411334552% | 22 / 24 | 91.66666666666666% | :eight_pointed_black_star: 
 | HitInfo.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | KCollision.o | 13.093525179856117% | 18 / 31 | 58.06451612903226% | :eight_pointed_black_star: 
 | KCollisionPlus.o | 83.19327731092437% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
@@ -783,9 +783,9 @@
 # GroundChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13GroundCheckerFPCcff | :x: |
-| bringFriction__13GroundCheckerFff | :x: |
-| __dt__13GroundCheckerFv | :x: |
+| __ct__13GroundCheckerFPCcff | :white_check_mark: |
+| bringFriction__13GroundCheckerFff | :white_check_mark: |
+| __dt__13GroundCheckerFv | :white_check_mark: |
 
 
 # GroupSwitchWatcher.o
@@ -800,30 +800,30 @@
 # Halo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__4HaloFPCc | :x: |
-| __dt__11MapObjActorFv | :x: |
+| __ct__4HaloFPCc | :white_check_mark: |
+| __dt__11MapObjActorFv | :white_check_mark: |
 | init__4HaloFRC12JMapInfoIter | :x: |
-| appear__4HaloFv | :x: |
-| getDistance__4HaloCFv | :x: |
-| connectToScene__4HaloFRC19MapObjActorInitInfo | :x: |
-| isDistanceAppear__4HaloCFv | :x: |
+| appear__4HaloFv | :white_check_mark: |
+| getDistance__4HaloCFv | :white_check_mark: |
+| connectToScene__4HaloFRC19MapObjActorInitInfo | :white_check_mark: |
+| isDistanceAppear__4HaloCFv | :white_check_mark: |
 | isDistanceDisappear__4HaloCFv | :x: |
-| exeDisappear__4HaloFv | :x: |
-| __ct__13PowerStarHaloFPCc | :x: |
-| __dt__4HaloFv | :x: |
-| init__13PowerStarHaloFRC12JMapInfoIter | :x: |
-| appear__13PowerStarHaloFv | :x: |
-| getDistance__13PowerStarHaloCFv | :x: |
-| exeWaitScenarioOpeningEnd__13PowerStarHaloFv | :x: |
-| __dt__13PowerStarHaloFv | :x: |
-| __sinit_\Halo_cpp | :x: |
-| __ct__Q27NrvHalo14HostTypeAppearFv | :x: |
-| __ct__Q27NrvHalo17HostTypeDisappearFv | :x: |
-| __ct__Q216NrvPowerStarHalo30HostTypeWaitScenarioOpeningEndFv | :x: |
-| execute__Q216NrvPowerStarHalo30HostTypeWaitScenarioOpeningEndCFP5Spine | :x: |
-| execute__Q27NrvHalo17HostTypeDisappearCFP5Spine | :x: |
-| execute__Q27NrvHalo14HostTypeAppearCFP5Spine | :x: |
-| makeSubModels__11MapObjActorFRC12JMapInfoIterRC19MapObjActorInitInfo | :x: |
+| exeDisappear__4HaloFv | :white_check_mark: |
+| __ct__13PowerStarHaloFPCc | :white_check_mark: |
+| __dt__4HaloFv | :white_check_mark: |
+| init__13PowerStarHaloFRC12JMapInfoIter | :white_check_mark: |
+| appear__13PowerStarHaloFv | :white_check_mark: |
+| getDistance__13PowerStarHaloCFv | :white_check_mark: |
+| exeWaitScenarioOpeningEnd__13PowerStarHaloFv | :white_check_mark: |
+| __dt__13PowerStarHaloFv | :white_check_mark: |
+| __sinit_\Halo_cpp | :white_check_mark: |
+| __ct__Q27NrvHalo14HostTypeAppearFv | :white_check_mark: |
+| __ct__Q27NrvHalo17HostTypeDisappearFv | :white_check_mark: |
+| __ct__Q216NrvPowerStarHalo30HostTypeWaitScenarioOpeningEndFv | :white_check_mark: |
+| execute__Q216NrvPowerStarHalo30HostTypeWaitScenarioOpeningEndCFP5Spine | :white_check_mark: |
+| execute__Q27NrvHalo17HostTypeDisappearCFP5Spine | :white_check_mark: |
+| execute__Q27NrvHalo14HostTypeAppearCFP5Spine | :white_check_mark: |
+| makeSubModels__11MapObjActorFRC12JMapInfoIterRC19MapObjActorInitInfo | :white_check_mark: |
 
 
 # HitInfo.o

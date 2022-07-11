@@ -35,7 +35,10 @@ public:
     MapObjActor(const char *);
     MapObjActor(const char *, const char *);
 
-    virtual ~MapObjActor();
+    virtual ~MapObjActor() {
+
+    }
+
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
     virtual void appear();

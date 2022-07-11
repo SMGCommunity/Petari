@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.h"
+#include "Game/Animation/AnmPlayer.h"
 #include <revolution.h>
 
 class CollisionParts;
@@ -16,6 +17,7 @@ class PartsModel;
 class LodCtrl;
 class CollisionParts;
 class HitSensor;
+class BtkCtrl;
 
 namespace MR {
     enum CollisionScaleType {
@@ -170,7 +172,10 @@ namespace MR {
     void startBva(const LiveActor *, const char *);
     void setBvaFrameAndStop(const LiveActor *, f32);
 
-    BrkCtrl* getBrkCtrl(const LiveActor *);
+    J3DFrameCtrl* getBrkCtrl(const LiveActor *);
+    J3DFrameCtrl* getBtkCtrl(const LiveActor *);
+    J3DFrameCtrl* getBpkCtrl(const LiveActor *);
+    J3DFrameCtrl* getBtpCtrl(const LiveActor *);
 
     void startBrkAndSetFrameAndStop(const LiveActor *, const char *, f32);
     bool tryStartBck(const LiveActor *, const char *, const char *);
@@ -188,11 +193,18 @@ namespace MR {
 
     bool isExistBck(const LiveActor *, const char *);
     bool isExistBva(const LiveActor *, const char *);
+    bool isExistBtk(const LiveActor *, const char *);
+    bool isExistBpk(const LiveActor *, const char *);
+    bool isExistBtp(const LiveActor *, const char *);
+    bool isExistBrk(const LiveActor *, const char *);
 
     bool isBckPlaying(const LiveActor *, const char *);
 
     bool isBckStopped(const LiveActor *);
     bool isBrkStopped(const LiveActor *);
+    bool isBtkStopped(const LiveActor *);
+    bool isBtpStopped(const LiveActor *);
+    bool isBpkStopped(const LiveActor *);
 
     bool isBckOneTimeAndStopped(const LiveActor *);
 
@@ -205,9 +217,11 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor *, const TPos3f &);
 
+    void setBpkFrame(const LiveActor *, f32);
     void stopBck(const LiveActor *);
 
     void startBtp(const LiveActor *, const char *);
+    void setBtpFrame(const LiveActor *, f32);
     void setBtpFrameAndStop(const LiveActor *, f32);
 
     void startBpk(const LiveActor *, const char *);
