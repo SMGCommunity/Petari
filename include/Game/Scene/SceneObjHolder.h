@@ -20,6 +20,7 @@
 #define SceneObj_ShadowVolumeDrawer         0x45
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C
+#define SceneObj_SpinDrawerPathDrawInit     0x4D
 #define SceneObj_NameObjExecuteHolder       0x58
 #define SceneObj_QuakeEffectGenerator       0x5B
 #define SceneObj_HeatHazeDirector           0x5D
@@ -43,4 +44,9 @@ namespace MR {
     NameObj* createSceneObj(int);
     SceneObjHolder* getSceneObjHolder();
     bool isExistSceneObj(int);
+
+    template<class T>
+    inline T getSceneObj(int objID) {
+        return reinterpret_cast<T>(MR::getSceneObjHolder()->getObj(objID));
+    }
 };

@@ -109,7 +109,7 @@
 | OtaKing.o | 0.0% | 0 / 99 | 0.0% | :x: 
 | OtaKingLongFoot.o | 0.0% | 0 / 23 | 0.0% | :x: 
 | OtaKingMagma.o | 0.0% | 0 / 35 | 0.0% | :x: 
-| Polta.o | 0.0% | 0 / 38 | 0.0% | :x: 
+| Polta.o | 3.211009174311927% | 1 / 38 | 2.631578947368421% | :eight_pointed_black_star: 
 | PoltaActionBase.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | PoltaActionSequencer.o | 0.0% | 0 / 27 | 0.0% | :x: 
 | PoltaArm.o | 0.0% | 0 / 39 | 0.0% | :x: 
@@ -3249,7 +3249,7 @@
 # Polta.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct&lt;i&gt;__Q29JGeometry9TQuat4&lt;f&gt;Fiiii_Pv | :x: |
+| __ct&lt;i&gt;__Q29JGeometry9TQuat4&lt;f&gt;Fiiii_Pv | :white_check_mark: |
 | __ct__16BombTeresaHolderFv | :x: |
 | __dt__30DeriveActorGroup&lt;10BombTeresa&gt;Fv | :x: |
 | init__5PoltaFRC12JMapInfoIter | :x: |

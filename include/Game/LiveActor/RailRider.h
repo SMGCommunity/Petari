@@ -40,6 +40,14 @@ public:
     s32 getNextPointNo() const;
     void syncPosDir();
 
+    inline TVec3f getStartPos() {
+        return mStartPos;
+    }
+
+    inline TVec3f getEndPos() {
+        return mEndPos;
+    }
+
     BezierRail* mBezierRail; // _0
     f32 mCoord; // _4
     f32 mSpeed; // _8

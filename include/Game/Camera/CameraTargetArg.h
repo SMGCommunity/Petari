@@ -12,7 +12,13 @@ class CameraTargetArg {
 public:
     CameraTargetArg();
     CameraTargetArg(const LiveActor *);
-    CameraTargetArg(CameraTargetMtx *);
+
+    CameraTargetArg(CameraTargetMtx *pTargetMtx) NO_INLINE {
+        mTargetObj = NULL;
+        mTargetMtx = pTargetMtx;
+        mLiveActor = NULL;
+        mMarioActor = NULL;
+    }
     
     inline INLINE_FUNC_DECL_NO_ARG(CameraTargetArg) {
         mTargetObj = NULL;

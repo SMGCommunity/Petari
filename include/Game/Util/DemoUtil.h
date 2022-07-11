@@ -41,4 +41,6 @@ namespace MR {
     void requestStartTimeKeepDemo(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 
     bool isDemoPartLastStep(const char *);
+
+    void endDemoWaitCameraInterpolating(NameObj *, const char *);
 };

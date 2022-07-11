@@ -12,6 +12,8 @@ namespace MR {
 
     TVec3f* getPlayerRotate();
 
+    TVec3f* getPlayerLastMove();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -65,4 +67,10 @@ namespace MR {
 
     void setPlayerStateWait();
     void setPlayerPos(const char *);
+
+    void endBindAndPlayerJump(LiveActor *, const TVec3f &, u32);
+
+    bool isPlayerPointedBy2POnTriggerButton();
+
+    void endBindAndSpinDriverJump(LiveActor *, const TVec3f &);
 };

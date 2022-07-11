@@ -46,4 +46,6 @@ namespace MR {
     bool isExistCollisionResource(const LiveActor *, const char *);
 
     bool isExistEffectTexMtx(LiveActor *);
+
+    s16 getBckFrameMax(const LiveActor *, const char *);
 };

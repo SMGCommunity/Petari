@@ -256,11 +256,11 @@
 | SpiderThreadPoint.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | SpiderThreadRadialLine.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | SpiderThreadWindCtrl.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| SpinDriver.o | 0.0% | 0 / 59 | 0.0% | :x: 
-| SpinDriverCamera.o | 5.205479452054795% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
+| SpinDriver.o | 83.30125120307989% | 50 / 59 | 84.7457627118644% | :eight_pointed_black_star: 
+| SpinDriverCamera.o | 73.97260273972603% | 13 / 14 | 92.85714285714286% | :eight_pointed_black_star: 
 | SpinDriverOperateRing.o | 45.5535390199637% | 14 / 19 | 73.68421052631578% | :eight_pointed_black_star: 
-| SpinDriverPathDrawer.o | 0.0% | 0 / 28 | 0.0% | :x: 
-| SpinDriverShootPath.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| SpinDriverPathDrawer.o | 38.91752577319588% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
+| SpinDriverShootPath.o | 49.889135254988915% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | SpinDriverUtil.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | SpinLeverSwitch.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | SpinningBox.o | 0.0% | 0 / 35 | 0.0% | :x: 
@@ -6523,37 +6523,37 @@
 # SpinDriver.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10SpinDriverFPCc | :x: |
-| init__10SpinDriverFRC12JMapInfoIter | :x: |
-| initAfterPlacement__10SpinDriverFv | :x: |
-| initParamFromJMapInfo__10SpinDriverFRC12JMapInfoIter | :x: |
-| initShootPath__10SpinDriverFRC12JMapInfoIter | :x: |
-| initEventCamera__10SpinDriverFRC12JMapInfoIter | :x: |
-| appear__10SpinDriverFv | :x: |
-| makeActorAppeared__10SpinDriverFv | :x: |
-| makeActorDead__10SpinDriverFv | :x: |
-| control__10SpinDriverFv | :x: |
-| calcAndSetBaseMtx__10SpinDriverFv | :x: |
-| receiveOtherMsg__10SpinDriverFUlP9HitSensorP9HitSensor | :x: |
-| tryStartShoot__10SpinDriverFv | :x: |
-| tryEndCapture__10SpinDriverFv | :x: |
-| tryShoot__10SpinDriverFv | :x: |
-| tryEndShoot__10SpinDriverFv | :x: |
-| tryForceCancel__10SpinDriverFv | :x: |
-| tryEndCoolDown__10SpinDriverFv | :x: |
-| trySwitchOff__10SpinDriverFv | :x: |
-| exeNonActive__10SpinDriverFv | :x: |
-| exeAppear__10SpinDriverFv | :x: |
-| exeWait__10SpinDriverFv | :x: |
-| exeCapture__10SpinDriverFv | :x: |
-| exeShootStart__10SpinDriverFv | :x: |
-| exeShoot__10SpinDriverFv | :x: |
-| exeCoolDown__10SpinDriverFv | :x: |
-| startBind__10SpinDriverFP9HitSensor | :x: |
-| cancelBind__10SpinDriverFv | :x: |
-| updateBindPosition__10SpinDriverFv | :x: |
-| moveBindPosToCenter__10SpinDriverFv | :x: |
-| updateBindActorMatrix__10SpinDriverFf | :x: |
+| __ct__10SpinDriverFPCc | :white_check_mark: |
+| init__10SpinDriverFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__10SpinDriverFv | :white_check_mark: |
+| initParamFromJMapInfo__10SpinDriverFRC12JMapInfoIter | :white_check_mark: |
+| initShootPath__10SpinDriverFRC12JMapInfoIter | :white_check_mark: |
+| initEventCamera__10SpinDriverFRC12JMapInfoIter | :white_check_mark: |
+| appear__10SpinDriverFv | :white_check_mark: |
+| makeActorAppeared__10SpinDriverFv | :white_check_mark: |
+| makeActorDead__10SpinDriverFv | :white_check_mark: |
+| control__10SpinDriverFv | :white_check_mark: |
+| calcAndSetBaseMtx__10SpinDriverFv | :white_check_mark: |
+| receiveOtherMsg__10SpinDriverFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| tryStartShoot__10SpinDriverFv | :white_check_mark: |
+| tryEndCapture__10SpinDriverFv | :white_check_mark: |
+| tryShoot__10SpinDriverFv | :white_check_mark: |
+| tryEndShoot__10SpinDriverFv | :white_check_mark: |
+| tryForceCancel__10SpinDriverFv | :white_check_mark: |
+| tryEndCoolDown__10SpinDriverFv | :white_check_mark: |
+| trySwitchOff__10SpinDriverFv | :white_check_mark: |
+| exeNonActive__10SpinDriverFv | :white_check_mark: |
+| exeAppear__10SpinDriverFv | :white_check_mark: |
+| exeWait__10SpinDriverFv | :white_check_mark: |
+| exeCapture__10SpinDriverFv | :white_check_mark: |
+| exeShootStart__10SpinDriverFv | :white_check_mark: |
+| exeShoot__10SpinDriverFv | :white_check_mark: |
+| exeCoolDown__10SpinDriverFv | :white_check_mark: |
+| startBind__10SpinDriverFP9HitSensor | :white_check_mark: |
+| cancelBind__10SpinDriverFv | :white_check_mark: |
+| updateBindPosition__10SpinDriverFv | :white_check_mark: |
+| moveBindPosToCenter__10SpinDriverFv | :white_check_mark: |
+| updateBindActorMatrix__10SpinDriverFf | :white_check_mark: |
 | calcBindActorMatrix__10SpinDriverFv | :x: |
 | calcParabolicBindPose__10SpinDriverFv | :x: |
 | turnBindHead__10SpinDriverFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
@@ -6563,42 +6563,42 @@
 | cancelCamera__10SpinDriverFv | :x: |
 | endCamera__10SpinDriverFv | :x: |
 | canStartBind__10SpinDriverCFv | :x: |
-| canBind__10SpinDriverCFP9HitSensor | :x: |
-| __dt__10SpinDriverFv | :x: |
-| __sinit_\SpinDriver_cpp | :x: |
-| __ct__Q213NrvSpinDriver20SpinDriverNrvTryDemoFv | :x: |
-| __ct__Q213NrvSpinDriver22SpinDriverNrvNonActiveFv | :x: |
-| __ct__Q213NrvSpinDriver19SpinDriverNrvAppearFv | :x: |
-| __ct__Q213NrvSpinDriver17SpinDriverNrvWaitFv | :x: |
-| __ct__Q213NrvSpinDriver20SpinDriverNrvCaptureFv | :x: |
-| __ct__Q213NrvSpinDriver23SpinDriverNrvShootStartFv | :x: |
-| __ct__Q213NrvSpinDriver18SpinDriverNrvShootFv | :x: |
-| __ct__Q213NrvSpinDriver21SpinDriverNrvCoolDownFv | :x: |
-| execute__Q213NrvSpinDriver21SpinDriverNrvCoolDownCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver18SpinDriverNrvShootCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver23SpinDriverNrvShootStartCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver20SpinDriverNrvCaptureCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver17SpinDriverNrvWaitCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver19SpinDriverNrvAppearCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver22SpinDriverNrvNonActiveCFP5Spine | :x: |
-| execute__Q213NrvSpinDriver20SpinDriverNrvTryDemoCFP5Spine | :x: |
+| canBind__10SpinDriverCFP9HitSensor | :white_check_mark: |
+| __dt__10SpinDriverFv | :white_check_mark: |
+| __sinit_\SpinDriver_cpp | :white_check_mark: |
+| __ct__Q213NrvSpinDriver20SpinDriverNrvTryDemoFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver22SpinDriverNrvNonActiveFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver19SpinDriverNrvAppearFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver17SpinDriverNrvWaitFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver20SpinDriverNrvCaptureFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver23SpinDriverNrvShootStartFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver18SpinDriverNrvShootFv | :white_check_mark: |
+| __ct__Q213NrvSpinDriver21SpinDriverNrvCoolDownFv | :white_check_mark: |
+| execute__Q213NrvSpinDriver21SpinDriverNrvCoolDownCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver18SpinDriverNrvShootCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver23SpinDriverNrvShootStartCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver20SpinDriverNrvCaptureCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver17SpinDriverNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver19SpinDriverNrvAppearCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver22SpinDriverNrvNonActiveCFP5Spine | :white_check_mark: |
+| execute__Q213NrvSpinDriver20SpinDriverNrvTryDemoCFP5Spine | :white_check_mark: |
 
 
 # SpinDriverCamera.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16SpinDriverCameraFv | :x: |
-| startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| endAppearCamera__16SpinDriverCameraFP9LiveActor | :x: |
-| getAppearCameraFrames__16SpinDriverCameraCFv | :x: |
-| start__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| update__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| cancel__16SpinDriverCameraFv | :x: |
-| end__16SpinDriverCameraFv | :x: |
+| __ct__16SpinDriverCameraFv | :white_check_mark: |
+| startAppearCamera__16SpinDriverCameraFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| endAppearCamera__16SpinDriverCameraFP9LiveActor | :white_check_mark: |
+| getAppearCameraFrames__16SpinDriverCameraCFv | :white_check_mark: |
+| start__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| update__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| cancel__16SpinDriverCameraFv | :white_check_mark: |
+| end__16SpinDriverCameraFv | :white_check_mark: |
 | updateTargetMatrix__16SpinDriverCameraFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isUseAppearCamera__16SpinDriverCameraCFP9LiveActor | :x: |
-| init__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :x: |
-| initAppearCamera__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :x: |
+| isUseAppearCamera__16SpinDriverCameraCFP9LiveActor | :white_check_mark: |
+| init__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :white_check_mark: |
+| initAppearCamera__16SpinDriverCameraFRC12JMapInfoIterP9LiveActor | :white_check_mark: |
 | __ct__15CameraTargetArgFP15CameraTargetMtx | :white_check_mark: |
 | setMtx__15CameraTargetMtxFPA4_f | :white_check_mark: |
 
@@ -6630,47 +6630,47 @@
 # SpinDriverPathDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__22SpinDriverPathDrawInitFv | :x: |
-| __ct__20SpinDriverPathDrawerFP19SpinDriverShootPath | :x: |
+| __ct__22SpinDriverPathDrawInitFv | :white_check_mark: |
+| __ct__20SpinDriverPathDrawerFP19SpinDriverShootPath | :white_check_mark: |
 | initDraw__22SpinDriverPathDrawInitFv | :x: |
-| setSpinDriverPathColorNormal__2MRFv | :x: |
-| setSpinDriverPathColorGreen__2MRFv | :x: |
-| setSpinDriverPathColorPink__2MRFv | :x: |
-| isDrawSpinDriverPathAtOpa__2MRFv | :x: |
-| onDrawSpinDriverPathAtOpa__2MRFv | :x: |
-| offDrawSpinDriverPathAtOpa__2MRFv | :x: |
-| init__20SpinDriverPathDrawerFRC12JMapInfoIter | :x: |
+| setSpinDriverPathColorNormal__2MRFv | :white_check_mark: |
+| setSpinDriverPathColorGreen__2MRFv | :white_check_mark: |
+| setSpinDriverPathColorPink__2MRFv | :white_check_mark: |
+| isDrawSpinDriverPathAtOpa__2MRFv | :white_check_mark: |
+| onDrawSpinDriverPathAtOpa__2MRFv | :white_check_mark: |
+| offDrawSpinDriverPathAtOpa__2MRFv | :white_check_mark: |
+| init__20SpinDriverPathDrawerFRC12JMapInfoIter | :white_check_mark: |
 | calcPositionCount__20SpinDriverPathDrawerCFff | :x: |
 | initPositionList__20SpinDriverPathDrawerFff | :x: |
-| initClipping__20SpinDriverPathDrawerFv | :x: |
-| initPathEnd__20SpinDriverPathDrawerFv | :x: |
-| calcDrawCode__20SpinDriverPathDrawerCFv | :x: |
-| calcDrawBaseCode__20SpinDriverPathDrawerCFv | :x: |
-| setCoord__20SpinDriverPathDrawerFf | :x: |
-| setColorNormal__20SpinDriverPathDrawerFv | :x: |
-| setColorGreen__20SpinDriverPathDrawerFv | :x: |
-| setColorPink__20SpinDriverPathDrawerFv | :x: |
-| setMaskLength__20SpinDriverPathDrawerFf | :x: |
-| setFadeScale__20SpinDriverPathDrawerFf | :x: |
+| initClipping__20SpinDriverPathDrawerFv | :white_check_mark: |
+| initPathEnd__20SpinDriverPathDrawerFv | :white_check_mark: |
+| calcDrawCode__20SpinDriverPathDrawerCFv | :white_check_mark: |
+| calcDrawBaseCode__20SpinDriverPathDrawerCFv | :white_check_mark: |
+| setCoord__20SpinDriverPathDrawerFf | :white_check_mark: |
+| setColorNormal__20SpinDriverPathDrawerFv | :white_check_mark: |
+| setColorGreen__20SpinDriverPathDrawerFv | :white_check_mark: |
+| setColorPink__20SpinDriverPathDrawerFv | :white_check_mark: |
+| setMaskLength__20SpinDriverPathDrawerFf | :white_check_mark: |
+| setFadeScale__20SpinDriverPathDrawerFf | :white_check_mark: |
 | draw__20SpinDriverPathDrawerCFv | :x: |
-| sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
-| __cl__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__20SpinDriverPathDrawerFv | :x: |
-| __dt__22SpinDriverPathDrawInitFv | :x: |
+| sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3&lt;f&gt;ff | :white_check_mark: |
+| __cl__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__20SpinDriverPathDrawerFv | :white_check_mark: |
+| __dt__22SpinDriverPathDrawInitFv | :white_check_mark: |
 
 
 # SpinDriverShootPath.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19SpinDriverShootPathFv | :x: |
-| init__19SpinDriverShootPathFRC12JMapInfoIter | :x: |
-| initUsingParabolic__19SpinDriverShootPathFRC12JMapInfoIterRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setStartPosition__19SpinDriverShootPathFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| calcPosition__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| calcDirection__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;ff | :x: |
+| __ct__19SpinDriverShootPathFv | :white_check_mark: |
+| init__19SpinDriverShootPathFRC12JMapInfoIter | :white_check_mark: |
+| initUsingParabolic__19SpinDriverShootPathFRC12JMapInfoIterRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| setStartPosition__19SpinDriverShootPathFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcPosition__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
+| calcDirection__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;ff | :white_check_mark: |
 | calcInitPose__19SpinDriverShootPathCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| getTotalLength__19SpinDriverShootPathCFv | :x: |
+| getTotalLength__19SpinDriverShootPathCFv | :white_check_mark: |
 | calcClippingInfo__19SpinDriverShootPathFPQ29JGeometry8TVec3&lt;f&gt;Pfff | :x: |
 
 

@@ -10,6 +10,8 @@ namespace MR {
     void initShadowVolumeCylinder(LiveActor *, f32);
     void setShadowDropLength(LiveActor *, const char *, f32);
 
+    void initShadowVolumeFlatModel(LiveActor *, const char *, MtxPtr);
+
     void setShadowVolumeStartDropOffset(LiveActor *, const char *, f32);
     void setShadowVolumeEndDropOffset(LiveActor *, const char *, f32);
 

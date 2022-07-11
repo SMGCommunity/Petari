@@ -1,28 +1,88 @@
-#include "Game/Camera/CameraTargetArg.h"
+#include "Game/MapObj/SpinDriverCamera.h"
 #include "Game/Camera/CameraTargetMtx.h"
 
-CameraTargetArg::CameraTargetArg(CameraTargetMtx *pTargetMtx) {
-    mTargetObj = NULL;
-    mTargetMtx = pTargetMtx;
-    mLiveActor = NULL;
-    mMarioActor = NULL;
+SpinDriverCamera::SpinDriverCamera() {
+    mCamera = NULL;
+    mTargetMtx = NULL;
+    mCameraInfo = NULL;
+    mAppearCameraFrame = 0;
 }
 
-void CameraTargetMtx::setMtx(register MtxPtr mtx) {
-    register TMtx34f &dst = mMatrix;
+void SpinDriverCamera::startAppearCamera(LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
+    if (mCameraInfo) {
+        mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
 
-    __asm {
-        psq_l   f0, 0x00(mtx), 0x0, 0
-        psq_l   f1, 0x08(mtx), 0x0, 0
-        psq_l   f2, 0x10(mtx), 0x0, 0
-        psq_l   f3, 0x18(mtx), 0x0, 0
-        psq_l   f4, 0x20(mtx), 0x0, 0
-        psq_l   f5, 0x28(mtx), 0x0, 0
-        psq_st  f0, 0x00(dst), 0x0, 0
-        psq_st  f1, 0x08(dst), 0x0, 0
-        psq_st  f2, 0x10(dst), 0x0, 0
-        psq_st  f3, 0x18(dst), 0x0, 0
-        psq_st  f4, 0x20(dst), 0x0, 0
-        psq_st  f5, 0x28(dst), 0x0, 0
+        if (mAppearCameraFrame > 0) {
+            MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "出現イベント用", CameraTargetArg(mTargetMtx), -1);
+            TPos3f upPos;
+            MR::makeMtxUpFrontPos(&upPos, a2, a3, a4);
+            mTargetMtx->setMtx(upPos.toMtxPtr());
+        }
+    }
+}
+
+void SpinDriverCamera::endAppearCamera(LiveActor *pActor) {
+    if (mCameraInfo && mAppearCameraFrame > 0) {
+        MR::endMultiActorCamera(pActor, mCameraInfo, "出現イベント用", false, -1);
+    }
+}
+
+u32 SpinDriverCamera::getAppearCameraFrames() const {
+    return mAppearCameraFrame;
+}
+
+void SpinDriverCamera::update(const TVec3f &a1, const TVec3f &a2) {
+    if (mCamera) {
+        switch(mCamera->isEnd()) {
+            case false:
+                mCamera->update();
+                updateTargetMatrix(a1, a2);
+                break;
+        }
+    }
+}
+
+void SpinDriverCamera::cancel() {
+    if (mCamera) {
+        mCamera->endForceSoon();
+    }
+}
+
+void SpinDriverCamera::end() {
+    if (mCamera) {
+        mCamera->endForceAtLanding();
+        mCamera->changeTargetPlayer();
+    }
+}
+
+// SpinDriverCamera::updateTargetMatrix
+
+BOOL SpinDriverCamera::isUseAppearCamera(LiveActor *pActor) const {
+    if (!mCameraInfo) {
+        return false;
+    }
+    
+    u32 frames = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
+    return (-frames & ~frames) >> 31;
+}
+
+void SpinDriverCamera::init(const JMapInfoIter &rIter, LiveActor *pActor) {
+    ActorCameraInfo info(rIter);
+
+    if (info.mCameraSetID != -1) {
+        s32 arg3 = 1;
+        MR::getJMapInfoArg3NoInit(rIter, &arg3);
+        mCamera = new MultiEventCamera();
+        mCamera->setUp(pActor->mName, new ActorCameraInfo(rIter), arg3);
+        mCamera->setEndCameraTypeAtLanding();
+        mTargetMtx =  new CameraTargetMtx("カメラターゲットダミー");
+    }
+}
+
+void SpinDriverCamera::initAppearCamera(const JMapInfoIter &rIter, LiveActor *pActor) {
+    ActorCameraInfo info(rIter);
+    if (info.mCameraSetID != -1) {
+        MR::initMultiActorCamera(pActor, rIter, &mCameraInfo, "出現イベント用");
+        mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
     }
 }

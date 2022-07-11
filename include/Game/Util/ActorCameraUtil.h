@@ -21,5 +21,13 @@ namespace MR {
 
     void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 
-    s32 getActorCameraFrames(const LiveActor *, const ActorCameraInfo *);
+    void initMultiActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **, const char *);
+
+    u32 getActorCameraFrames(const LiveActor *, const ActorCameraInfo *);
+
+    u32 getMultiActorCameraFrames(const LiveActor *, const ActorCameraInfo *, const char *);
+
+    u32 startMultiActorCameraTargetOther(const LiveActor *, const ActorCameraInfo *, const char *, const CameraTargetArg &, s32);
+
+    void endMultiActorCamera(const LiveActor *, const ActorCameraInfo *, const char *, bool, s32);
 };

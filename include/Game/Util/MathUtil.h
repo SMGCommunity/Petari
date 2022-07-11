@@ -163,6 +163,30 @@ namespace MR {
         res += vec_one;
         return res;
     }
+
+    inline TVec3f multVec(const TVec3f &rSrc, f32 mult, f32 mult_2) {
+        TVec3f vec_one(rSrc);
+        vec_one *= mult;
+        TVec3f vec_two(vec_one);
+        vec_two *= mult_2;
+        return vec_two;
+    }
+
+    inline TVec3f multVec(const TVec3f &rSrc, f32 mult) {
+        TVec3f vec(rSrc);
+        vec *= mult;
+        return vec;
+    }
+
+    inline TVec3f multAndAddVec(const TVec3f &rSrc, const TVec3f &rSrc_2, f32 mult, f32 mult_2) {
+        TVec3f vec_one(rSrc);
+        vec_one *= mult;
+        TVec3f vec_two(rSrc_2);
+        vec_two *= mult_2;
+        TVec3f ret(vec_two);
+        ret += vec_one;
+        return ret;
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

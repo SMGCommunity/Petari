@@ -17,6 +17,7 @@
 #include "Game/Util/FileUtil.h"
 #include "Game/Util/FixedPosition.h"
 #include "Game/Util/Functor.h"
+#include "Game/Util/GamePadUtil.h"
 #include "Game/Util/GravityUtil.h"
 #include "Game/Util/HashUtil.h"
 #include "Game/Util/JMapIdInfo.h"

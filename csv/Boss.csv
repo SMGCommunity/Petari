@@ -2561,7 +2561,7 @@ execute__Q215NrvOtaKingMagma25OtaKingMagmaNrvFireAttackCFP5Spine,OtaKingMagma.o,
 execute__Q215NrvOtaKingMagma21OtaKingMagmaNrvAttackCFP5Spine,OtaKingMagma.o,Boss.a,false
 execute__Q215NrvOtaKingMagma25OtaKingMagmaNrvAppearDemoCFP5Spine,OtaKingMagma.o,Boss.a,false
 execute__Q215NrvOtaKingMagma19OtaKingMagmaNrvWaitCFP5Spine,OtaKingMagma.o,Boss.a,false
-__ct<i>__Q29JGeometry9TQuat4<f>Fiiii_Pv,Polta.o,Boss.a,false
+__ct<i>__Q29JGeometry9TQuat4<f>Fiiii_Pv,Polta.o,Boss.a,true
 __ct__16BombTeresaHolderFv,Polta.o,Boss.a,false
 __dt__30DeriveActorGroup<10BombTeresa>Fv,Polta.o,Boss.a,false
 init__5PoltaFRC12JMapInfoIter,Polta.o,Boss.a,false
