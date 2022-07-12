@@ -1199,11 +1199,11 @@ getWatchNode__13RailGraphIterCFv,RailGraphIter.o,Map.a,true
 getCurrentEdge__13RailGraphIterCFv,RailGraphIter.o,Map.a,true
 getWatchEdge__13RailGraphIterCFv,RailGraphIter.o,Map.a,true
 __ct__13RailGraphNodeFv,RailGraphNode.o,Map.a,true
-epsilonEquals__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>f,RailPart.o,Map.a,false
+epsilonEquals__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>f,RailPart.o,Map.a,true
 __ct__8RailPartFv,RailPart.o,Map.a,true
 init__8RailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,RailPart.o,Map.a,true
 initForBezier__8RailPartFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,RailPart.o,Map.a,true
-calcPos__8RailPartCFPQ29JGeometry8TVec3<f>f,RailPart.o,Map.a,false
+calcPos__8RailPartCFPQ29JGeometry8TVec3<f>f,RailPart.o,Map.a,true
 calcVelocity__8RailPartCFPQ29JGeometry8TVec3<f>f,RailPart.o,Map.a,true
 getLength__8RailPartCFffi,RailPart.o,Map.a,true
 getTotalLength__8RailPartCFv,RailPart.o,Map.a,true

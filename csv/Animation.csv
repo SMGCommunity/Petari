@@ -13,7 +13,7 @@ concat__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>FRCQ29JGeometry13SMa
 concat__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>FRCQ29JGeometry13SMatrix34C<f>,AnmPlayer.o,Animation.a,false
 __ct__Q29JGeometry8TVec3<f>Ff,AnmPlayer.o,Animation.a,false
 set<f>__Q29JGeometry8TVec3<f>Ffff_v,AnmPlayer.o,Animation.a,false
-epsilonEquals__Q29JGeometry8TUtil<f>Ffff,AnmPlayer.o,Animation.a,false
+epsilonEquals__Q29JGeometry8TUtil<f>Ffff,AnmPlayer.o,Animation.a,true
 sqrt__Q29JGeometry8TUtil<f>Ff,AnmPlayer.o,Animation.a,false
 set__Q29JGeometry13SMatrix34C<f>Fffffffffffff,AnmPlayer.o,Animation.a,false
 getQuat__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry9TQuat4<f>,AnmPlayer.o,Animation.a,false

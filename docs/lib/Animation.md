@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| AnmPlayer.o | 8.095238095238095% | 9 / 32 | 28.125% | :eight_pointed_black_star: 
+| AnmPlayer.o | 8.843537414965986% | 10 / 32 | 31.25% | :eight_pointed_black_star: 
 | BckCtrl.o | 18.295218295218298% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
 | BpkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | BrkPlayer.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -39,7 +39,7 @@
 | concat__Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;FRCQ29JGeometry13SMatrix34C&lt;f&gt; | :x: |
 | __ct__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
 | set&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;Ffff_v | :x: |
-| epsilonEquals__Q29JGeometry8TUtil&lt;f&gt;Ffff | :x: |
+| epsilonEquals__Q29JGeometry8TUtil&lt;f&gt;Ffff | :white_check_mark: |
 | sqrt__Q29JGeometry8TUtil&lt;f&gt;Ff | :x: |
 | set__Q29JGeometry13SMatrix34C&lt;f&gt;Fffffffffffff | :x: |
 | getQuat__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry9TQuat4&lt;f&gt; | :x: |

@@ -174,7 +174,18 @@ namespace JGeometry {
         void cubic(const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, T);
 
         bool isZero() const;
-        bool epsilonEquals(const TVec3<T> &, T) const;
+        bool epsilonEquals(const TVec3<T> &a1, T a2) const NO_INLINE {
+            bool ret = false;
+            if (JGeometry::TUtil<f32>::epsilonEquals(x, a1.x, a2)) {
+                if (JGeometry::TUtil<f32>::epsilonEquals(y, a1.y, a2)) {
+                    if (JGeometry::TUtil<f32>::epsilonEquals(z, a1.z, a2)) {
+                        ret = true;
+                    }
+                }
+            }
+
+            return ret;
+        }
 
         /* Operators */
         TVec3<T>& operator=(const TVec3<T> &);

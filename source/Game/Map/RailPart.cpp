@@ -21,17 +21,14 @@ void RailPart::initForBezier(const TVec3f &a1, const TVec3f &a2, const TVec3f &a
     mRailPartBezier->set(a1, a2, a3, a4);
 }
 
-#ifdef NON_MATCHING
-// some register moving issues?
 void RailPart::calcPos(TVec3f *pOut, f32 a2) const {
     if (mRailPartLinear) {
-        JMAVECScaleAdd((const Vec*)&mRailPartLinear->_0, (const Vec*)&mRailPartLinear->_C, (Vec*)pOut, a2);
+        JMAVECScaleAdd(mRailPartLinear->_C.toCVec(), mRailPartLinear->_0.toCVec(), pOut->toVec(), a2);
     }
     else {
         mRailPartBezier->calcPos(pOut, a2);
     }
 }
-#endif
 
 void RailPart::calcVelocity(TVec3f *pOut, f32 a2) const {
     if (mRailPartLinear) {

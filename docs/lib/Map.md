@@ -68,7 +68,7 @@
 | RailGraphEdge.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | RailGraphIter.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | RailGraphNode.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| RailPart.o | 60.0% | 9 / 12 | 75.0% | :eight_pointed_black_star: 
+| RailPart.o | 81.33333333333333% | 11 / 12 | 91.66666666666666% | :eight_pointed_black_star: 
 | ScenarioSelectStar.o | 0.0% | 0 / 37 | 0.0% | :x: 
 | SeaGull.o | 54.52127659574468% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
 | Sky.o | 97.39696312364426% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
@@ -1595,11 +1595,11 @@
 # RailPart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| epsilonEquals__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| epsilonEquals__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | __ct__8RailPartFv | :white_check_mark: |
 | init__8RailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | initForBezier__8RailPartFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
-| calcPos__8RailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :x: |
+| calcPos__8RailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | calcVelocity__8RailPartCFPQ29JGeometry8TVec3&lt;f&gt;f | :white_check_mark: |
 | getLength__8RailPartCFffi | :white_check_mark: |
 | getTotalLength__8RailPartCFv | :white_check_mark: |
