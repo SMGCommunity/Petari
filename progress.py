@@ -7,6 +7,18 @@ def truncate(number, digits) -> float:
     stepper = 10.0 ** digits
     return math.trunc(stepper * number) / stepper
 
+def generateFullProgJSON(label, percent, color):
+    json = []
+    json.append("{\n")
+    json.append("\t\"schemaVersion\": 1,\n")
+    json.append(f"\t\"label\": \"{label}\",\n")
+    json.append(f"\t\"message\": \"{percent}%\",\n")
+    json.append(f"\t\"color\": \"{color}\"\n")
+    json.append("}")
+
+    with open(f"data/{label}.json", "w") as w:
+        w.writelines(json)
+
 class Function:
     name = ""
     isCompleted = False
@@ -163,64 +175,99 @@ class Library:
         with open(f"docs/lib/{self.name}.md", "w") as w:
             w.writelines(page)
 
-excludedLibraries = [
-            "ai.a",
-            "aralt.a",
-            "arc.a",
-            "ax.a",
-            "axfx.a",
-            "base.a",
-            "bte.a",
-            "db.a",
-            "dsp.a",
-            "dvd.a",
-            "esp.a",
-            "euart.a",
-            "exi.a",
-            "fs.a",
-            "gd.a",
-            "gx.a",
-            "ipc.a",
-            "libnw4Fr_ut.a",
-            "libnw4r_db.a",
-            "libnw4r_lyt.a",
-            "libnw4r_math.a",
-            "libnw4r_ut.a",
-            "MSL_C.PPCEABI.bare.H.a",
-            "mem.a",
-            "mtx.a",
-            "nand.a",
-            "net.a",
-            "nwc24.a",
-            "NWC24.a",
-            "os.a",
-            "pad.a",
-            "rso.a",
-            "Runtime.PPCEABI.H.a",
-            "RVLFaceLib.a",
-            "sc.a",
-            "si.a",
-            "thp.a",
-            "tpl.a",
-            "TRK_Hollywood_Revolution.a",
-            "usb.a",
-            "vf.a",
-            "vi.a",
-            "wenc.a",
-            "wpad.a",
-            "wud.a",
-            "JAudio2.a",
-            "JKernel.a",
-            "JSupport.a",
-            "JGadget.a",
-            "JUtility.a",
-            "J2DGraph.a",
-            "J3DGraphBase.a",
-            "J3DGraphAnimator.a",
-            "J3DGraphLoader.a",
-            "JMath.a",
-            "JParticle.a",
-            "NdevExi2A.a"
+game_libs = [
+    "Animation.a",
+    "AreaObj.a",
+    "AudioLib.a",
+    "Boss.a",
+    "Camera.a",
+    "Demo.a",
+    "Effect.a",
+    "Enemy.a",
+    "GameAudio.a",
+    "Gravity.a",
+    "LiveActor.a",
+    "Map.a",
+    "MapObj.a",
+    "NameObj.a",
+    "NPC.a",
+    "Player.a",
+    "RhythmLib.a",
+    "Ride.a",
+    "Scene.a",
+    "Screen.a",
+    "Speaker.a",
+    "System.a",
+    "Util.a"
+]
+
+sdk_libs = [
+    "ai.a",
+    "aralt.a",
+    "arc.a",
+    "ax.a",
+    "axfx.a",
+    "base.a",
+    "bte.a",
+    "db.a",
+    "dsp.a",
+    "dvd.a",
+    "esp.a",
+    "euart.a",
+    "exi.a",
+    "fs.a",
+    "gd.a",
+    "gx.a",
+    "ipc.a",
+    "mem.a",
+    "mtx.a",
+    "nand.a",
+    "net.a",
+    "nwc24.a",
+    "NWC24.a",
+    "os.a",
+    "pad.a",
+    "rso.a",
+    "sc.a",
+    "si.a",
+    "thp.a",
+    "tpl.a",
+    "usb.a",
+    "vf.a",
+    "vi.a",
+    "wenc.a",
+    "wpad.a",
+    "wud.a",
+]
+
+nw_libs = [
+    "libnw4Fr_ut.a",
+    "libnw4r_db.a",
+    "libnw4r_lyt.a",
+    "libnw4r_math.a",
+    "libnw4r_ut.a"
+]
+
+jsystem_libs = [
+    "JAudio2.a",
+    "JKernel.a",
+    "JSupport.a",
+    "JGadget.a",
+    "JUtility.a",
+    "J2DGraph.a",
+    "J3DGraphBase.a",
+    "J3DGraphAnimator.a",
+    "J3DGraphLoader.a",
+    "JMath.a",
+    "JParticle.a"
+]
+
+misc_libs = [            
+    "MSL_C.PPCEABI.bare.H.a",
+    "Runtime.PPCEABI.H.a",
+    "RVLFaceLib.a",
+    "TRK_Hollywood_Revolution.a",
+    "NdevExi2A.a"
 ]
 
 lib_percent_colors = {
@@ -265,33 +312,47 @@ csv_files = glob.glob("csv/*.csv")
 for csv_file in sorted(csv_files, key=str.casefold):
     lib_name = Path(csv_file).stem
     lib_arch_name = Path(csv_file).stem + ".a"
-    # we are just going to ignore non-SMG libraries
-    if lib_arch_name not in excludedLibraries:
-        library = Library(lib_name)
 
-        with open(csv_file, "r") as c:
-            csv_reader = csv.reader(c)
+    library = Library(lib_name)
 
-            for row in csv_reader:
-                symbol = row[0]
-                symbol = symbol.replace("&#44;", ",")
-                if symbol == "Symbol Name":
-                    continue
+    with open(csv_file, "r") as c:
+        csv_reader = csv.reader(c)
 
-                obj = row[1]
-                lib = row[2]
-                done = row[3] == "true"
+        for row in csv_reader:
+            symbol = row[0]
+            symbol = symbol.replace("&#44;", ",")
+            if symbol == "Symbol Name":
+                continue
 
-                funcSize = int(func_sizes[symbol].strip("\n"))
-                func = Function(symbol, done, funcSize)
+            obj = row[1]
+            lib = row[2]
+            done = row[3] == "true"
 
-                obj = Object(obj)
-                library.addFunctionToObject(obj, func)
+            funcSize = int(func_sizes[symbol].strip("\n"))
+            func = Function(symbol, done, funcSize)
 
-        libraries[lib_name] = library
+            obj = Object(obj)
+            library.addFunctionToObject(obj, func)
+
+    libraries[lib_name] = library
 
 fullSize = 0
 doneSize = 0
+
+full_game_size = 0
+done_game_size = 0
+
+full_nw_size = 0
+done_nw_size = 0
+
+full_sdk_size = 0
+done_sdk_size = 0
+
+full_jsystem_size = 0
+done_jsystem_size = 0
+
+full_misc_size = 0
+done_misc_size = 0
 
 print("Calculating percentages...")
 
@@ -300,26 +361,48 @@ for key in libraries:
     d, f = lib.calculateProgress()
     fullSize += f
     doneSize += d
-    lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
 
-progPercent = (doneSize / fullSize ) * 100.0
-progNonPercent = int((doneSize / fullSize) * 120.0)
+    libName = f"{lib.getName()}.a"
 
-print(f"Progress: {progPercent}% [{doneSize} / {fullSize}] bytes")
+    if libName in game_libs:
+        full_game_size += f
+        done_game_size += d
+    elif libName in jsystem_libs:
+        full_jsystem_size += f
+        done_jsystem_size += d
+    elif libName in sdk_libs:
+        full_sdk_size += f
+        done_sdk_size += d
+    elif libName in nw_libs:
+        full_nw_size += f
+        done_nw_size += d
+    elif libName in misc_libs:
+        full_misc_size += f
+        done_misc_size += d
+
+    if lib.getName() not in lib_percent_colors:
+        lib.generateJSONTag((d / f ) * 100.0, "ffff66")
+    else:
+        lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
+
+progPercent = (done_game_size / full_game_size ) * 100.0
+progNonPercent = int((done_game_size / full_game_size) * 120.0)
+
+progPercent_jsystem = (done_jsystem_size / full_jsystem_size ) * 100.0
+progPercent_nw = (done_nw_size / full_nw_size ) * 100.0
+progPercent_sdk = (done_game_size / full_game_size ) * 100.0
+progPercent_misc = (done_misc_size / full_misc_size ) * 100.0
+
+print(f"Progress: {progPercent}% [{done_game_size} / {full_game_size}] bytes")
 print(f"You currently have {progNonPercent} / 120 stars.")
 
 print("Generating JSON...")
 
-json = []
-json.append("{\n")
-json.append("\t\"schemaVersion\": 1,\n")
-json.append("\t\"label\": \"decompiled\",\n")
-json.append(f"\t\"message\": \"{progPercent}%\",\n")
-json.append("\t\"color\": \"blue\"\n")
-json.append("}")
-
-with open("data/percent.json", "w") as w:
-    w.writelines(json)
+generateFullProgJSON("game", progPercent, "blue")
+generateFullProgJSON("SDK", progPercent_sdk, "grey")
+generateFullProgJSON("JSystem", progPercent_jsystem, "red")
+generateFullProgJSON("NW4R", progPercent_nw, "green")
+generateFullProgJSON("Misc", progPercent_misc, "purple")
 
 print("Generating markdown pages...")
 
