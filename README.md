@@ -1,5 +1,6 @@
 
-# Petari ![Badge Decompiled] ![Badge JSystem Decompiled] ![Badge SDK Decompiled] ![Badge NW4R Decompiled] ![Badge Misc Decompiled]
+# Petari 
+![Badge Decompiled] ![Badge JSystem Decompiled] ![Badge SDK Decompiled] ![Badge NW4R Decompiled] ![Badge Misc Decompiled]
 *A **Super Mario Galaxy 1 US** Decompilation Project*
 
 <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Animation.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AreaObj.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AudioLib.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Boss.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Camera.json&style=flat"/> 
