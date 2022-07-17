@@ -10,11 +10,11 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | SpkSpeakerCtrl.o | 55.497382198952884% | 15 / 21 | 71.42857142857143% | :eight_pointed_black_star: 
 | SpkSystem.o | 70.3125% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
-| SpkMixingBuffer.o | 35.714285714285715% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
+| SpkMixingBuffer.o | 55.952380952380956% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | SpkWave.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | SpkTable.o | 18.181818181818183% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
 | SpkData.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| SpkSound.o | 27.03804347826087% | 12 / 22 | 54.54545454545454% | :eight_pointed_black_star: 
+| SpkSound.o | 31.11413043478261% | 13 / 22 | 59.09090909090909% | :eight_pointed_black_star: 
 
 
 # SpkSpeakerCtrl.o
@@ -68,7 +68,7 @@
 | __ct__15SpkMixingBufferFP7JKRHeap | :white_check_mark: |
 | mix__15SpkMixingBufferFlPslfl | :x: |
 | getSamples__15SpkMixingBufferCFl | :white_check_mark: |
-| update__15SpkMixingBufferFl | :x: |
+| update__15SpkMixingBufferFl | :white_check_mark: |
 
 
 # SpkWave.o
@@ -107,7 +107,7 @@
 | setRelease__14SpkSoundVolumeFl | :white_check_mark: |
 | setFadeOut__14SpkSoundVolumeFl | :white_check_mark: |
 | calc__14SpkSoundVolumeFRb | :x: |
-| __ct__8SpkSoundFv | :x: |
+| __ct__8SpkSoundFv | :white_check_mark: |
 | __dt__8SpkSoundFv | :x: |
 | update__8SpkSoundFf | :x: |
 | stop__8SpkSoundFl | :white_check_mark: |

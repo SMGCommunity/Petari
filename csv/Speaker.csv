@@ -37,7 +37,7 @@ __dt__21JASMemPool<8SpkSound>Fv,SpkSystem.o,Speaker.a,false
 __ct__15SpkMixingBufferFP7JKRHeap,SpkMixingBuffer.o,Speaker.a,true
 mix__15SpkMixingBufferFlPslfl,SpkMixingBuffer.o,Speaker.a,false
 getSamples__15SpkMixingBufferCFl,SpkMixingBuffer.o,Speaker.a,true
-update__15SpkMixingBufferFl,SpkMixingBuffer.o,Speaker.a,false
+update__15SpkMixingBufferFl,SpkMixingBuffer.o,Speaker.a,true
 __ct__7SpkWaveFv,SpkWave.o,Speaker.a,true
 setResource__7SpkWaveFPv,SpkWave.o,Speaker.a,true
 getWaveSize__7SpkWaveCFl,SpkWave.o,Speaker.a,true
@@ -56,7 +56,7 @@ __ct__14SpkSoundVolumeFv,SpkSound.o,Speaker.a,true
 setRelease__14SpkSoundVolumeFl,SpkSound.o,Speaker.a,true
 setFadeOut__14SpkSoundVolumeFl,SpkSound.o,Speaker.a,true
 calc__14SpkSoundVolumeFRb,SpkSound.o,Speaker.a,false
-__ct__8SpkSoundFv,SpkSound.o,Speaker.a,false
+__ct__8SpkSoundFv,SpkSound.o,Speaker.a,true
 __dt__8SpkSoundFv,SpkSound.o,Speaker.a,false
 update__8SpkSoundFf,SpkSound.o,Speaker.a,false
 stop__8SpkSoundFl,SpkSound.o,Speaker.a,true

@@ -1,5 +1,7 @@
 #include "Game/Speaker/SpkMixingBuffer.h"
+#include "Game/Speaker/SpkSound.h"
 #include "JSystem/JAudio2/JASCalc.h"
+#include "JSystem/JAudio2/JASGlobal.h"
 
 SpkMixingBuffer::SpkMixingBuffer(JKRHeap *pHeap) {
     for (int i = 0; i < 4; i++) {
@@ -18,4 +20,5 @@ const s16* SpkMixingBuffer::getSamples(s32 idx) const {
 
 void SpkMixingBuffer::update(s32 idx) {
     JASCalc::bzero((void*)mSamples[idx], 0x50);
+    JASGlobalInstance<SpkSoundHolder>::sInstance->update(idx);
 }
