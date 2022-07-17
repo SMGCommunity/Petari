@@ -242,7 +242,7 @@
 | SnowFloor.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | SnowFloorTile.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | SnowMan.o | 0.0% | 0 / 28 | 0.0% | :x: 
-| SnowplowSwitch.o | 80.34188034188034% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| SnowplowSwitch.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | SoundEmitter.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | SpaceMine.o | 92.7927927927928% | 14 / 15 | 93.33333333333333% | :eight_pointed_black_star: 
 | SpaceShipStep.o | 0.0% | 0 / 23 | 0.0% | :x: 
@@ -6267,7 +6267,7 @@
 | ------------- | ------------- |
 | __ct__14SnowplowSwitchFPCc | :white_check_mark: |
 | receiveOtherMsg__14SnowplowSwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
-| __dt__14SnowplowSwitchFv | :x: |
+| __dt__14SnowplowSwitchFv | :white_check_mark: |
 | init__14SnowplowSwitchFRC12JMapInfoIter | :white_check_mark: |
 
 

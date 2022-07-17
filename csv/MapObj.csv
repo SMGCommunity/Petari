@@ -4766,7 +4766,7 @@ execute__Q210NrvSnowMan18SnowManNrvWaitBodyCFP5Spine,SnowMan.o,MapObj.a,false
 execute__Q210NrvSnowMan14SnowManNrvWaitCFP5Spine,SnowMan.o,MapObj.a,false
 __ct__14SnowplowSwitchFPCc,SnowplowSwitch.o,MapObj.a,true
 receiveOtherMsg__14SnowplowSwitchFUlP9HitSensorP9HitSensor,SnowplowSwitch.o,MapObj.a,true
-__dt__14SnowplowSwitchFv,SnowplowSwitch.o,MapObj.a,false
+__dt__14SnowplowSwitchFv,SnowplowSwitch.o,MapObj.a,true
 init__14SnowplowSwitchFRC12JMapInfoIter,SnowplowSwitch.o,MapObj.a,true
 __ct__12SoundEmitterFPCc,SoundEmitter.o,MapObj.a,false
 init__12SoundEmitterFRC12JMapInfoIter,SoundEmitter.o,MapObj.a,false
