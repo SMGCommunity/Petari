@@ -259,6 +259,8 @@ namespace MR {
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, CollisionScaleType);
 
+    bool isBinded(const LiveActor *);
+
     bool isBindedGround(const LiveActor *);
     bool isBindedWall(const LiveActor *);
 

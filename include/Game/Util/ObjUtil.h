@@ -102,6 +102,8 @@ namespace MR {
     bool isJudgedToClipFrustum100m(const TVec3f &, f32);
     bool isJudgedToClipFrustum300m(const TVec3f &, f32);
 
+    bool tryRumblePad(const void *, const char *, s32);
+    bool tryRumblePadVeryStrongLong(const void *, s32);
     bool tryRumblePadWeak(const void *, s32);
     bool tryRumblePadVeryWeak(const void *, s32);
     bool tryRumblePadMiddle(const void *, s32);

@@ -242,9 +242,9 @@
 | SnowFloor.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | SnowFloorTile.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | SnowMan.o | 0.0% | 0 / 28 | 0.0% | :x: 
-| SnowplowSwitch.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| SnowplowSwitch.o | 80.34188034188034% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | SoundEmitter.o | 0.0% | 0 / 10 | 0.0% | :x: 
-| SpaceMine.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| SpaceMine.o | 92.7927927927928% | 14 / 15 | 93.33333333333333% | :eight_pointed_black_star: 
 | SpaceShipStep.o | 0.0% | 0 / 23 | 0.0% | :x: 
 | SphereRailDash.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | SpiderCoin.o | 0.0% | 0 / 16 | 0.0% | :x: 
@@ -6265,10 +6265,10 @@
 # SnowplowSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14SnowplowSwitchFPCc | :x: |
-| receiveOtherMsg__14SnowplowSwitchFUlP9HitSensorP9HitSensor | :x: |
+| __ct__14SnowplowSwitchFPCc | :white_check_mark: |
+| receiveOtherMsg__14SnowplowSwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
 | __dt__14SnowplowSwitchFv | :x: |
-| init__14SnowplowSwitchFRC12JMapInfoIter | :x: |
+| init__14SnowplowSwitchFRC12JMapInfoIter | :white_check_mark: |
 
 
 # SoundEmitter.o
@@ -6289,21 +6289,21 @@
 # SpaceMine.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9SpaceMineFPCc | :x: |
-| init__9SpaceMineFRC12JMapInfoIter | :x: |
+| __ct__9SpaceMineFPCc | :white_check_mark: |
+| init__9SpaceMineFRC12JMapInfoIter | :white_check_mark: |
 | isCalcShadowAlways__9SpaceMineCFv | :x: |
-| kill__9SpaceMineFv | :x: |
-| initAfterPlacement__9SpaceMineFv | :x: |
-| attackSensor__9SpaceMineFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__9SpaceMineFUlP9HitSensorP9HitSensor | :x: |
-| exeWait__9SpaceMineFv | :x: |
-| exeAppear__9SpaceMineFv | :x: |
-| __dt__9SpaceMineFv | :x: |
-| __sinit_\SpaceMine_cpp | :x: |
-| __ct__Q212NrvSpaceMine12HostTypeWaitFv | :x: |
-| __ct__Q212NrvSpaceMine14HostTypeAppearFv | :x: |
-| execute__Q212NrvSpaceMine14HostTypeAppearCFP5Spine | :x: |
-| execute__Q212NrvSpaceMine12HostTypeWaitCFP5Spine | :x: |
+| kill__9SpaceMineFv | :white_check_mark: |
+| initAfterPlacement__9SpaceMineFv | :white_check_mark: |
+| attackSensor__9SpaceMineFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__9SpaceMineFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| exeWait__9SpaceMineFv | :white_check_mark: |
+| exeAppear__9SpaceMineFv | :white_check_mark: |
+| __dt__9SpaceMineFv | :white_check_mark: |
+| __sinit_\SpaceMine_cpp | :white_check_mark: |
+| __ct__Q212NrvSpaceMine12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q212NrvSpaceMine14HostTypeAppearFv | :white_check_mark: |
+| execute__Q212NrvSpaceMine14HostTypeAppearCFP5Spine | :white_check_mark: |
+| execute__Q212NrvSpaceMine12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # SpaceShipStep.o

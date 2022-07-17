@@ -50,4 +50,6 @@ namespace MR {
     f32 calcNearestRailCoord(const LiveActor *, const TVec3f &);
 
     void moveCoordAndFollowTrans(LiveActor *, f32);
+
+    bool isExistRail(const LiveActor *);
 };

@@ -126,6 +126,8 @@ namespace MR {
     bool sendMsgEnemyAttackMaximum(HitSensor *, HitSensor *);
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const TVec3f &);
 
+    bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
+
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 
     bool isMsgPlayerHitAll(u32);
@@ -144,6 +146,8 @@ namespace MR {
     bool isMsgItemStartMove(u32);
     bool isMsgItemEndMove(u32);
     bool isMsgInhaleBlackHole(u32);
+
+    bool isMsgInvincibleAttack(u32);
 
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);

@@ -191,6 +191,7 @@ game_libs = [
     "MapObj.a",
     "NameObj.a",
     "NPC.a",
+    "NWC24.a",
     "Player.a",
     "RhythmLib.a",
     "Ride.a",
@@ -224,7 +225,6 @@ sdk_libs = [
     "nand.a",
     "net.a",
     "nwc24.a",
-    "NWC24.a",
     "os.a",
     "pad.a",
     "rso.a",
@@ -390,7 +390,7 @@ progNonPercent = int((done_game_size / full_game_size) * 120.0)
 
 progPercent_jsystem = (done_jsystem_size / full_jsystem_size ) * 100.0
 progPercent_nw = (done_nw_size / full_nw_size ) * 100.0
-progPercent_sdk = (done_game_size / full_game_size ) * 100.0
+progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
 progPercent_misc = (done_misc_size / full_misc_size ) * 100.0
 
 print(f"Progress: {progPercent}% [{done_game_size} / {full_game_size}] bytes")

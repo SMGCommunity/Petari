@@ -187,6 +187,14 @@ namespace MR {
         ret += vec_one;
         return ret;
     }
+
+    inline f32 subtractFromSum(f32 lhs, f32 rhs, f32 sub) {
+        return (rhs + lhs) - sub;
+    }
+
+    inline f32 modAndAdd(f32 a1, f32 a2) {
+        return a1 + (f32)fmod(360.0f + a2, 360.0f);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

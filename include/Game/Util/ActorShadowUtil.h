@@ -47,4 +47,6 @@ namespace MR {
     void setShadowDropPositionPtr(LiveActor *, const char *, const TVec3f *);
 
     void setShadowVolumeCylinderRadius(LiveActor *, const char *, f32);
+
+    void onCalcShadowDropGravity(LiveActor *, const char *);
 };
