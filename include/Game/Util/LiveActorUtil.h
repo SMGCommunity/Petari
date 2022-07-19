@@ -289,4 +289,6 @@ namespace MR {
     f32 getCollisionBoundingSphereRange(const LiveActor *);
 
     bool isExistAnim(const LiveActor *, const char *);
+
+    void setMirrorReflectionInfoFromMtxYUp(const TPos3f &);
 };

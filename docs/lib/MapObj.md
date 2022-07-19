@@ -28,7 +28,7 @@
 | AstroDomeOrbit.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | AstroDomeSky.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | AstroMapBoard.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| AstroMapObj.o | 0.0% | 0 / 40 | 0.0% | :x: 
+| AstroMapObj.o | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
 | AstroMapObjFunction.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | AstroOverlookObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | BallOpener.o | 0.0% | 0 / 17 | 0.0% | :x: 
@@ -234,7 +234,7 @@
 | SimpleBreakableObj.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | SimpleClipPartsObj.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| SimpleMapObj.o | 0.0% | 0 / 32 | 0.0% | :x: 
+| SimpleMapObj.o | 51.60349854227405% | 18 / 32 | 56.25% | :eight_pointed_black_star: 
 | SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | SimpleTimerObj.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | SmallStone.o | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -872,8 +872,8 @@
 | isEndRevival__11AstroMapObjCFv | :x: |
 | isPlayMachineSE__11AstroMapObjCFv | :x: |
 | __ct__14AstroSimpleObjFPCc | :x: |
-| __dt__12SimpleMapObjFv | :x: |
-| __dt__18SimpleMapObjFarMaxFv | :x: |
+| __dt__12SimpleMapObjFv | :white_check_mark: |
+| __dt__18SimpleMapObjFarMaxFv | :white_check_mark: |
 | init__14AstroSimpleObjFRC12JMapInfoIter | :x: |
 | control__14AstroSimpleObjFv | :x: |
 | __sinit_\AstroMapObj_cpp | :x: |
@@ -6082,37 +6082,37 @@
 # SimpleMapObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| init__12SimpleMapObjFRC12JMapInfoIter | :x: |
-| connectToScene__20SimpleEnvironmentObjFRC19MapObjActorInitInfo | :x: |
-| init__18SimpleMapObjFarMaxFRC12JMapInfoIter | :x: |
-| connectToScene__25SimpleMapObjNoSilhouettedFRC19MapObjActorInitInfo | :x: |
+| init__12SimpleMapObjFRC12JMapInfoIter | :white_check_mark: |
+| connectToScene__20SimpleEnvironmentObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| init__18SimpleMapObjFarMaxFRC12JMapInfoIter | :white_check_mark: |
+| connectToScene__25SimpleMapObjNoSilhouettedFRC19MapObjActorInitInfo | :white_check_mark: |
 | initCaseUseSwitchA__28SimpleTextureSwitchChangeObjFRC19MapObjActorInitInfo | :x: |
 | connectToScene__12GlaringLightFRC19MapObjActorInitInfo | :x: |
-| __ct__15SimpleMirrorObjFPCcPCcPA4_f | :x: |
-| calcAndSetBaseMtx__15SimpleMirrorObjFv | :x: |
-| init__25SimpleMirrorReflectionObjFRC12JMapInfoIter | :x: |
-| connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo | :x: |
+| __ct__15SimpleMirrorObjFPCcPCcPA4_f | :white_check_mark: |
+| calcAndSetBaseMtx__15SimpleMirrorObjFv | :white_check_mark: |
+| init__25SimpleMirrorReflectionObjFRC12JMapInfoIter | :white_check_mark: |
+| connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo | :white_check_mark: |
 | getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc | :x: |
-| __ct__15SimpleSeesawObjFPCc | :x: |
+| __ct__15SimpleSeesawObjFPCc | :white_check_mark: |
 | init__15SimpleSeesawObjFRC12JMapInfoIter | :x: |
-| control__15SimpleSeesawObjFv | :x: |
-| attackSensor__16SimpleMapObjPushFP9HitSensorP9HitSensor | :x: |
+| control__15SimpleSeesawObjFv | :white_check_mark: |
+| attackSensor__16SimpleMapObjPushFP9HitSensorP9HitSensor | :white_check_mark: |
 | init__26UFOKinokoUnderConstructionFRC12JMapInfoIter | :x: |
 | makeArchiveListUFOKinokoUnderConstruction__2MRFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| init__20SimpleEnvironmentObjFRC12JMapInfoIter | :x: |
+| init__20SimpleEnvironmentObjFRC12JMapInfoIter | :white_check_mark: |
 | changeTexture__28SimpleTextureSwitchChangeObjFv | :x: |
-| init__15SimpleMirrorObjFRC12JMapInfoIter | :x: |
+| init__15SimpleMirrorObjFRC12JMapInfoIter | :white_check_mark: |
 | getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv | :x: |
 | __cl__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__20SimpleEnvironmentObjFv | :x: |
+| __dt__20SimpleEnvironmentObjFv | :white_check_mark: |
 | __dt__25SimpleMapObjNoSilhouettedFv | :x: |
 | __dt__28SimpleTextureSwitchChangeObjFv | :x: |
 | __dt__12GlaringLightFv | :x: |
-| __dt__15SimpleMirrorObjFv | :x: |
-| __dt__25SimpleMirrorReflectionObjFv | :x: |
-| __dt__15SimpleSeesawObjFv | :x: |
-| __dt__16SimpleMapObjPushFv | :x: |
+| __dt__15SimpleMirrorObjFv | :white_check_mark: |
+| __dt__25SimpleMirrorReflectionObjFv | :white_check_mark: |
+| __dt__15SimpleSeesawObjFv | :white_check_mark: |
+| __dt__16SimpleMapObjPushFv | :white_check_mark: |
 | __dt__26UFOKinokoUnderConstructionFv | :x: |
 
 

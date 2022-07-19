@@ -188,7 +188,7 @@ OSGetCurrentThread,OSThread.o,os.a,false
 OSIsThreadSuspended,OSThread.o,os.a,false
 OSIsThreadTerminated,OSThread.o,os.a,false
 OSDisableScheduler,OSThread.o,os.a,true
-OSEnableScheduler,OSThread.o,os.a,false
+OSEnableScheduler,OSThread.o,os.a,true
 UnsetRun,OSThread.o,os.a,false
 __OSGetEffectivePriority,OSThread.o,os.a,false
 SetEffectivePriority,OSThread.o,os.a,false

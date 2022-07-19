@@ -28,7 +28,7 @@
 | OSReset.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | OSRtc.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | OSSync.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSThread.o | 1.0026737967914439% | 1 / 28 | 3.571428571428571% | :eight_pointed_black_star: 
+| OSThread.o | 2.0053475935828877% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
 | OSTime.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -334,7 +334,7 @@
 | OSIsThreadSuspended | :x: |
 | OSIsThreadTerminated | :x: |
 | OSDisableScheduler | :white_check_mark: |
-| OSEnableScheduler | :x: |
+| OSEnableScheduler | :white_check_mark: |
 | UnsetRun | :x: |
 | __OSGetEffectivePriority | :x: |
 | SetEffectivePriority | :x: |
