@@ -234,7 +234,7 @@
 | SimpleBreakableObj.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | SimpleClipPartsObj.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| SimpleMapObj.o | 95.91836734693877% | 31 / 32 | 96.875% | :eight_pointed_black_star: 
+| SimpleMapObj.o | 100.0% | 32 / 32 | 100.0% | :white_check_mark: 
 | SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | SimpleTimerObj.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | SmallStone.o | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -6092,7 +6092,7 @@
 | calcAndSetBaseMtx__15SimpleMirrorObjFv | :white_check_mark: |
 | init__25SimpleMirrorReflectionObjFRC12JMapInfoIter | :white_check_mark: |
 | connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo | :white_check_mark: |
-| getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc | :x: |
+| getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc | :white_check_mark: |
 | __ct__15SimpleSeesawObjFPCc | :white_check_mark: |
 | init__15SimpleSeesawObjFRC12JMapInfoIter | :white_check_mark: |
 | control__15SimpleSeesawObjFv | :white_check_mark: |

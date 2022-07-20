@@ -42,7 +42,7 @@
 | MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
-| MirrorReflectionModel.o | 86.29441624365482% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| MirrorReflectionModel.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | ModelManager.o | 42.55065554231228% | 29 / 50 | 57.99999999999999% | :eight_pointed_black_star: 
 | ModelObj.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | Nerve.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -716,7 +716,7 @@
 | __ct__21MirrorReflectionModelFPC9LiveActorPCcPCcPA4_f | :white_check_mark: |
 | init__21MirrorReflectionModelFRC12JMapInfoIter | :white_check_mark: |
 | movement__21MirrorReflectionModelFv | :white_check_mark: |
-| calcAnim__21MirrorReflectionModelFv | :x: |
+| calcAnim__21MirrorReflectionModelFv | :white_check_mark: |
 | calcViewAndEntry__21MirrorReflectionModelFv | :white_check_mark: |
 | calcAndSetBaseMtx__21MirrorReflectionModelFv | :white_check_mark: |
 | __dt__21MirrorReflectionModelFv | :white_check_mark: |

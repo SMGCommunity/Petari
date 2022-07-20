@@ -84,12 +84,10 @@ void SimpleMirrorReflectionObj::connectToScene(const MapObjActorInitInfo &rInfo)
 }
 
 namespace {
-    /* NOT MATCHING, left defined for SimpleSeesawObj */
-    SoundEffectDataEntry* getSeParam(const char *pName) NO_INLINE {
-        for (int i = 0; i < 8; i++) {
-            SoundEffectDataEntry* entry = &sSeDataTable[i];
-            if (MR::isEqualString(pName, entry->objectName)) {
-                return entry;
+    const SoundEffectDataEntry* getSeParam(const char *pName) {
+        for (u32 i = 0; i < 8; i++) {
+            if (MR::isEqualString(pName, sSeDataTable[i].objectName)) {
+                return &sSeDataTable[i];
             }
         }
 
@@ -105,7 +103,7 @@ void SimpleSeesawObj::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    SoundEffectDataEntry* entry = getSeParam(mObjectName);
+    const SoundEffectDataEntry* entry = getSeParam(mObjectName);
     const char* sound_name = entry != NULL ? entry->soundName : NULL;
     entry = getSeParam(mObjectName);
     MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != NULL ? entry->_8 : 0.0f);

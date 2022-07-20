@@ -4631,7 +4631,7 @@ __ct__15SimpleMirrorObjFPCcPCcPA4_f,SimpleMapObj.o,MapObj.a,true
 calcAndSetBaseMtx__15SimpleMirrorObjFv,SimpleMapObj.o,MapObj.a,true
 init__25SimpleMirrorReflectionObjFRC12JMapInfoIter,SimpleMapObj.o,MapObj.a,true
 connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo,SimpleMapObj.o,MapObj.a,true
-getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc,SimpleMapObj.o,MapObj.a,false
+getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc,SimpleMapObj.o,MapObj.a,true
 __ct__15SimpleSeesawObjFPCc,SimpleMapObj.o,MapObj.a,true
 init__15SimpleSeesawObjFRC12JMapInfoIter,SimpleMapObj.o,MapObj.a,true
 control__15SimpleSeesawObjFv,SimpleMapObj.o,MapObj.a,true

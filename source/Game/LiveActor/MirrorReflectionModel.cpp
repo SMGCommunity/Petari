@@ -50,24 +50,17 @@ void MirrorReflectionModel::movement() {
     }
 }
 
-#ifdef NON_MATCHING
-// can't get a extra branch to generate (dead code maybe?)
 void MirrorReflectionModel::calcAnim() {
     if (!_94) {
         if (!MR::isDead(this)) {
-            if (!MR::isNoCalcAnim(this)) {
-                if (!MR::isClipped(this)) {
-                    LiveActor::calcAnim();
-                    return;
-                }
-                else {
-                    return;
-                }
+            if (MR::isNoCalcAnim(this) || MR::isClipped(this)) {
+                return;
             }
+
+            LiveActor::calcAnim();
         }
     }
 }
-#endif
 
 void MirrorReflectionModel::calcViewAndEntry() {
     if (!_94) {
