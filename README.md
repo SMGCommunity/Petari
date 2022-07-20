@@ -28,7 +28,7 @@
 [Progress]: docs/PROGRESS.md
 [Build]: docs/Build.md
 
-[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/game.json&style=flat
+[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/Game.json&style=flat
 [Badge JSystem Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/JSystem.json&style=flat
 [Badge SDK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/SDK.json&style=flat
 [Badge NW4R Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/NW4R.json&style=flat

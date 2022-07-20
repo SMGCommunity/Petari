@@ -398,7 +398,7 @@ print(f"You currently have {progNonPercent} / 120 stars.")
 
 print("Generating JSON...")
 
-generateFullProgJSON("game", progPercent, "blue")
+generateFullProgJSON("Game", progPercent, "blue")
 generateFullProgJSON("SDK", progPercent_sdk, "grey")
 generateFullProgJSON("JSystem", progPercent_jsystem, "red")
 generateFullProgJSON("NW4R", progPercent_nw, "green")
