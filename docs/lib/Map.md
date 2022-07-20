@@ -59,7 +59,7 @@
 | OceanSphere.o | 0.0% | 0 / 36 | 0.0% | :x: 
 | OceanSpherePoint.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | PlanetMap.o | 0.0% | 0 / 23 | 0.0% | :x: 
-| PlanetMapCreator.o | 29.97881355932203% | 8 / 39 | 20.51282051282051% | :eight_pointed_black_star: 
+| PlanetMapCreator.o | 32.41525423728814% | 9 / 39 | 23.076923076923077% | :eight_pointed_black_star: 
 | PlanetMapWithoutHighModel.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | QuakeEffectGenerator.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | RaceManager.o | 0.0% | 0 / 95 | 0.0% | :x: 
@@ -1355,7 +1355,7 @@
 | createNameObj&lt;18SimpleClipPartsObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;21PlanetMapFarClippable&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;16HatchWaterPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;12SimpleMapObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12SimpleMapObj&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;18LavaJamboSunPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;13LavaSunPlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12MarblePlanet&gt;__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj | :x: |

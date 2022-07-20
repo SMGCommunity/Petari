@@ -14,6 +14,7 @@
 #include "Game/Gravity/GlobalGravityObj.h"
 #include "Game/Map.h"
 #include "Game/MapObj.h"
+#include "Game/Map/PlanetMapCreator.h"
 
 class AreaObj;
 class NameObj;
@@ -92,7 +93,7 @@ namespace {
 
 
     /* we can organize this after it's done */
-    const NameObjFactory::Name2CreateFunc cCreateTable[100] = {
+    const NameObjFactory::Name2CreateFunc cCreateTable[150] = {
         { "SwitchCube", createBaseOriginCube<SwitchArea>, 0 },
         { "SwitchSphere", createSphere<SwitchArea>, 0 },
         { "SwitchCylinder", createBaseOriginCylinder<SwitchArea>, 0 },
@@ -205,7 +206,24 @@ namespace {
 
         { "ChooChooTrain", createNameObj<ChooChooTrain>, "ChooChooTrain" },
 
+        { "DangerSignBoard", createNameObj<SimpleMapObjPush>, "DangerSignBoard" },
+
+        { "MirrorModelTest", createNameObj<SimpleMirrorReflectionObj>, "MirrorModelTest" },
+        { "MirrorModelPeachCastle", createNameObj<SimpleMirrorReflectionObj>, "MirrorModelPeachCastle" },
+        { "MirrorModelTwinFallLake", createNameObj<SimpleMirrorReflectionObj>, "MirrorModelTwinFallLake" },
+        { "MirrorReflectionTest", createNameObj<SimpleMirrorObj>, "MirrorReflectionTest" },
+        { "MirrorReflectionPeachCastle", createNameObj<SimpleMirrorObj>, "MirrorReflectionPeachCastle" },
+        { "MirrorReflectionTwinFallLake", createNameObj<SimpleMirrorObj>, "MirrorReflectionTwinFallLake" },
+
+        { "PhantomFirewood", createNameObj<SimpleMapObj>, "PhantomFirewood" },
+        { "ArrowBoard", createNameObj<SimpleMapObj>, "ArrowBoard" },
+        { "TeresaRoomGlaringLight", createNameObj<GlaringLight>, "TeresaRoomGlaringLight" },
+        { "SpaceDustWoodA", createNameObj<SimpleEnvironmentObj>, "SpaceDustWoodA" },
+        { "SpaceDustWoodB", createNameObj<SimpleEnvironmentObj>, "SpaceDustWoodB" },
+
         { "BeeFlowerHover", createNameObj<BeeFlowerHover>, "BeeFlowerHover" },
+
+        { "HoneyQueenLeafA", createNameObj<SimpleSeesawObj>, "HoneyQueenLeafA", },
 
         { "DeadLeaves", createNameObj<DeadLeaves>, "DeadLeaves" },
 
@@ -219,6 +237,9 @@ namespace {
         { "CollisionBlocker", createNameObj<CollisionBlocker>, NULL }
     };
 
+    static PlanetEntry sUniquePlanetCreateFuncTable[100] = {
+        { "HeavensDoorInsidePlanet", createNameObj<SimpleMapObj> }
+    };
 
     NameObjFactory::Name2Archive cName2ArchiveNamesTable[0x1B9] = {
         { "AirBubbleGenerator", "AirBubble" }

@@ -1,5 +1,6 @@
 #include "Game/Map/PlanetMapCreator.h"
 #include "Game/Scene/SceneObjHolder.h"
+#include "Game/NameObj/NameObjFactory.h"
 #include "Game/Util.h"
 
 #include <cstdio>
@@ -158,4 +159,9 @@ bool PlanetMapCreatorFunction::isRegisteredObj(const char *pArchive) {
 
 PlanetMapCreator::~PlanetMapCreator() {
 
+}
+
+// this is only here to generate the table until I match functions that use it
+const char* someFunction() {
+    return sUniquePlanetCreateFuncTable[0].mName;
 }

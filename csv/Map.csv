@@ -1004,7 +1004,7 @@ createNameObj<12FurPlanetMap>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,Pl
 createNameObj<18SimpleClipPartsObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
 createNameObj<21PlanetMapFarClippable>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
 createNameObj<16HatchWaterPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
-createNameObj<12SimpleMapObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
+createNameObj<12SimpleMapObj>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,true
 createNameObj<18LavaJamboSunPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
 createNameObj<13LavaSunPlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false
 createNameObj<12MarblePlanet>__30@unnamed@PlanetMapCreator_cpp@FPCc_P7NameObj,PlanetMapCreator.o,Map.a,false

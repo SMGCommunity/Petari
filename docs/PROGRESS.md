@@ -44,12 +44,12 @@
 | [libnw4r_math](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_math.md) | 0.0% |
 | [libnw4r_ut](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_ut.md) | 0.0% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 36.855693868142005% |
-| [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 12.931498709449798% |
+| [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 12.97420756503816% |
 | [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 15.966884730990442% |
 | [mem](https://github.com/shibbo/Petari/blob/master/docs/lib/mem.md) | 0.0% |
 | [MSL_C.PPCEABI.bare.H](https://github.com/shibbo/Petari/blob/master/docs/lib/MSL_C.PPCEABI.bare.H.md) | 0.0% |
 | [mtx](https://github.com/shibbo/Petari/blob/master/docs/lib/mtx.md) | 0.0% |
-| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 26.039161800068705% |
+| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 26.588801099278598% |
 | [nand](https://github.com/shibbo/Petari/blob/master/docs/lib/nand.md) | 0.0% |
 | [net](https://github.com/shibbo/Petari/blob/master/docs/lib/net.md) | 0.0% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.7591369440774989% |

@@ -2,6 +2,7 @@
 
 #include "Game/NameObj/NameObj.h"
 #include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/MapObj.h"
 #include "Game/Util.h"
 
 struct PlanetMapData {
@@ -16,6 +17,11 @@ struct UniqueEntry {
 };
 
 typedef NameObj* (*CreationFuncPtr)(const char *);
+
+struct PlanetEntry {
+    const char* mName;          // _0
+    CreationFuncPtr mFunction;  // _4
+};
 
 namespace {
     static char* sArcName = "PlanetMapDataTable.arc";

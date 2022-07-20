@@ -92,7 +92,7 @@ public:
 
 class SimpleMirrorObj : public MapObjActor {
 public:
-    SimpleMirrorObj(const char *, const char *, MtxPtr);
+    SimpleMirrorObj(const char *pName, const char *a2 = NULL, MtxPtr = NULL);
 
     virtual ~SimpleMirrorObj();
     virtual void init(const JMapInfoIter &);
@@ -134,6 +134,7 @@ class UFOKinokoUnderConstruction : public MapObjActor {
 };
 
 class GlaringLight : public SimpleMapObj {
+public:
     inline GlaringLight(const char *pName) : SimpleMapObj(pName) {
 
     }
