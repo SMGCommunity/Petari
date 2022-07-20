@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.h"
+#include "Game/NameObj/NameObjArchiveListCollector.h"
 
 struct SoundEffectDataEntry {
     const char* objectName; // _0
     const char* soundName;  // _4
-    f32 _4;
+    f32 _8;
 };
 
 namespace {
@@ -19,16 +20,6 @@ namespace {
         { "IceMountainSeesawSlipD", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f },
         { "IceMountainSeesawNoSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f },
     };
-
-    SoundEffectDataEntry* getSeParam(const char *pName) NO_INLINE {
-        for (int i = 0; i < 8; i++) {
-            if (MR::isEqualString(pName, sSeDataTable[i].objectName)) {
-                return &sSeDataTable[i];
-            }
-        }
-
-        return NULL;
-    }
 };
 
 class SimpleMapObj : public MapObjActor {
@@ -119,4 +110,38 @@ public:
     virtual ~SimpleMirrorReflectionObj();
     virtual void init(const JMapInfoIter &);
     virtual void connectToScene(const MapObjActorInitInfo &);
+};
+
+class SimpleTextureSwitchChangeObj : public SimpleMapObj {
+    inline SimpleTextureSwitchChangeObj(const char *pName) : SimpleMapObj(pName) {
+
+    }
+
+    virtual ~SimpleTextureSwitchChangeObj();
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo &);
+    virtual s32 getChangedTextureNo() const;
+
+    void changeTexture();
+};
+
+class UFOKinokoUnderConstruction : public MapObjActor {
+    inline UFOKinokoUnderConstruction(const char *pName) : MapObjActor(pName) {
+
+    }
+
+    virtual ~UFOKinokoUnderConstruction();
+    virtual void init(const JMapInfoIter &);
+};
+
+class GlaringLight : public SimpleMapObj {
+    inline GlaringLight(const char *pName) : SimpleMapObj(pName) {
+
+    }
+
+    virtual ~GlaringLight();
+    virtual void connectToScene(const MapObjActorInitInfo &);
+};
+
+namespace MR {
+    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector *, const JMapInfoIter &);
 };

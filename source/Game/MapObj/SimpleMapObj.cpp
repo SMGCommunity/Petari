@@ -42,8 +42,16 @@ void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo &rInfo)
     }
 }
 
-// SimpleTextureSwitchChangeObj::initCaseUseSwitchA
-// GlaringLight::connectToScene
+void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo &rInfo) {
+    MR::FunctorV0M<SimpleTextureSwitchChangeObj *, void (SimpleTextureSwitchChangeObj::*)()> func = MR::Functor<SimpleTextureSwitchChangeObj>(this, &SimpleTextureSwitchChangeObj::changeTexture);
+    MR::listenStageSwitchOnA(this, func);
+}
+
+void GlaringLight::connectToScene(const MapObjActorInitInfo &rInfo) {
+    if (rInfo.mConnectToScene) {
+        MR::connectToScene(this, 0x22, 5, 0x22, -1);
+    }
+}
 
 SimpleMirrorObj::SimpleMirrorObj(const char *pName, const char *a2, MtxPtr mtx) : MapObjActor(pName) {
     mMtx = mtx;
@@ -75,13 +83,34 @@ void SimpleMirrorReflectionObj::connectToScene(const MapObjActorInitInfo &rInfo)
     MR::connectToSceneMirrorMapObjNoMovement(this);
 }
 
-// @unnamed@SimpleMapObj_cpp@::getSeParam
+namespace {
+    /* NOT MATCHING, left defined for SimpleSeesawObj */
+    SoundEffectDataEntry* getSeParam(const char *pName) NO_INLINE {
+        for (int i = 0; i < 8; i++) {
+            SoundEffectDataEntry* entry = &sSeDataTable[i];
+            if (MR::isEqualString(pName, entry->objectName)) {
+                return entry;
+            }
+        }
+
+        return NULL;
+    }
+};
 
 SimpleSeesawObj::SimpleSeesawObj(const char *pName) : MapObjActor(pName) {
     _C4.identity();
 }
 
-// SimpleSeesawObj::init
+void SimpleSeesawObj::init(const JMapInfoIter &rIter) {
+    MapObjActor::init(rIter);
+    MapObjActorInitInfo info;
+    MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
+    SoundEffectDataEntry* entry = getSeParam(mObjectName);
+    const char* sound_name = entry != NULL ? entry->soundName : NULL;
+    entry = getSeParam(mObjectName);
+    MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != NULL ? entry->_8 : 0.0f);
+    initialize(rIter, info);
+}
 
 void SimpleSeesawObj::control() {
     MapObjActor::control();
@@ -93,6 +122,46 @@ void SimpleMapObjPush::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
+void UFOKinokoUnderConstruction::init(const JMapInfoIter &rIter) {
+    MapObjActor::init(rIter);
+    MapObjActorInitInfo info;
+    info.setupFarClipping(-1.0f);
+    MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
+    MapObjActorUtil::setupInitInfoColorChangeArg0(&info, rIter);
+    MapObjActorUtil::setupInitInfoTextureChangeArg1(&info, rIter);
+    MapObjActorUtil::setupInitInfoShadowLengthArg2(&info, rIter);
+
+    if (MR::isEqualString("UFOKinokoUnderConstruction", mObjectName)) {
+
+        if (MR::isUFOKinokoUnderConstruction()) {
+            info.mModelName = "UFOKinokoUnderConstruction";
+        }
+        else {
+            info.mModelName = "UFOKinokoLandingAstro";
+        }
+    }
+
+    initialize(rIter, info);
+    if (MR::isUFOKinokoBeforeConstruction()) {
+        makeActorDead();
+    }
+}
+
+namespace MR {
+    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter) {
+        const char* archive;
+
+        if (MR::isUFOKinokoBeforeConstruction()) {
+            archive = "UFOKinokoUnderConstruction";
+        }
+        else {
+            archive = "UFOKinokoLandingAstro";
+        }
+
+        pArchiveList->addArchive(archive);
+    }
+};
+
 void SimpleEnvironmentObj::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
@@ -101,7 +170,10 @@ void SimpleEnvironmentObj::init(const JMapInfoIter &rIter) {
     initialize(rIter, info);
 }
 
-// SimpleTextureSwitchChangeObj::changeTexture
+void SimpleTextureSwitchChangeObj::changeTexture() {
+    MR::startBtk(this, "TexChange");
+    MR::setBtkFrameAndStop(this, getChangedTextureNo());
+}
 
 void SimpleMirrorObj::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);
@@ -126,13 +198,25 @@ void SimpleMirrorObj::init(const JMapInfoIter &rIter) {
     MR::invalidateClipping(this);
 }
 
+s32 SimpleTextureSwitchChangeObj::getChangedTextureNo() const {
+    return 1;
+}
+
 SimpleEnvironmentObj::~SimpleEnvironmentObj() {
 
 }
 
-// SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted
-// SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj
-// GlaringLight::~GlaringLight
+SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {
+
+}
+
+SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {
+
+}
+
+GlaringLight::~GlaringLight() {
+
+}
 
 SimpleMirrorObj::~SimpleMirrorObj() {
 
@@ -150,4 +234,6 @@ SimpleMapObjPush::~SimpleMapObjPush() {
 
 }
 
-// UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction
+UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {
+
+}

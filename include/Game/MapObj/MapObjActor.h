@@ -114,6 +114,8 @@ public:
 
     static void setupInitInfoSimpleMapObj(MapObjActorInitInfo *);
 
+    static void setupInitInfoSeesaw(MapObjActorInitInfo *, const JMapInfoIter &, const char *, f32);
+
     static void setupInitInfoColorChangeArg0(MapObjActorInitInfo *, const JMapInfoIter &);
     static void setupInitInfoTextureChangeArg1(MapObjActorInitInfo *, const JMapInfoIter &);
     static void setupInitInfoShadowLengthArg2(MapObjActorInitInfo *, const JMapInfoIter &);

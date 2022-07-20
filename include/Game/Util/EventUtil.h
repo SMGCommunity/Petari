@@ -42,4 +42,7 @@ namespace MR {
     void explainOneUpIfAtFirst();
 
     void incPlayerLeft();
+
+    bool isUFOKinokoBeforeConstruction();
+    bool isUFOKinokoUnderConstruction();
 };

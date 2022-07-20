@@ -234,7 +234,7 @@
 | SimpleBreakableObj.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | SimpleClipPartsObj.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | SimpleFloaterObj.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| SimpleMapObj.o | 51.60349854227405% | 18 / 32 | 56.25% | :eight_pointed_black_star: 
+| SimpleMapObj.o | 95.91836734693877% | 31 / 32 | 96.875% | :eight_pointed_black_star: 
 | SimpleNormalMapObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | SimpleTimerObj.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | SmallStone.o | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -6086,34 +6086,34 @@
 | connectToScene__20SimpleEnvironmentObjFRC19MapObjActorInitInfo | :white_check_mark: |
 | init__18SimpleMapObjFarMaxFRC12JMapInfoIter | :white_check_mark: |
 | connectToScene__25SimpleMapObjNoSilhouettedFRC19MapObjActorInitInfo | :white_check_mark: |
-| initCaseUseSwitchA__28SimpleTextureSwitchChangeObjFRC19MapObjActorInitInfo | :x: |
-| connectToScene__12GlaringLightFRC19MapObjActorInitInfo | :x: |
+| initCaseUseSwitchA__28SimpleTextureSwitchChangeObjFRC19MapObjActorInitInfo | :white_check_mark: |
+| connectToScene__12GlaringLightFRC19MapObjActorInitInfo | :white_check_mark: |
 | __ct__15SimpleMirrorObjFPCcPCcPA4_f | :white_check_mark: |
 | calcAndSetBaseMtx__15SimpleMirrorObjFv | :white_check_mark: |
 | init__25SimpleMirrorReflectionObjFRC12JMapInfoIter | :white_check_mark: |
 | connectToScene__25SimpleMirrorReflectionObjFRC19MapObjActorInitInfo | :white_check_mark: |
 | getSeParam__26@unnamed@SimpleMapObj_cpp@FPCc | :x: |
 | __ct__15SimpleSeesawObjFPCc | :white_check_mark: |
-| init__15SimpleSeesawObjFRC12JMapInfoIter | :x: |
+| init__15SimpleSeesawObjFRC12JMapInfoIter | :white_check_mark: |
 | control__15SimpleSeesawObjFv | :white_check_mark: |
 | attackSensor__16SimpleMapObjPushFP9HitSensorP9HitSensor | :white_check_mark: |
-| init__26UFOKinokoUnderConstructionFRC12JMapInfoIter | :x: |
-| makeArchiveListUFOKinokoUnderConstruction__2MRFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
+| init__26UFOKinokoUnderConstructionFRC12JMapInfoIter | :white_check_mark: |
+| makeArchiveListUFOKinokoUnderConstruction__2MRFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
 | init__20SimpleEnvironmentObjFRC12JMapInfoIter | :white_check_mark: |
-| changeTexture__28SimpleTextureSwitchChangeObjFv | :x: |
+| changeTexture__28SimpleTextureSwitchChangeObjFv | :white_check_mark: |
 | init__15SimpleMirrorObjFRC12JMapInfoIter | :white_check_mark: |
-| getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv | :x: |
-| __cl__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv | :white_check_mark: |
+| __cl__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__20SimpleEnvironmentObjFv | :white_check_mark: |
-| __dt__25SimpleMapObjNoSilhouettedFv | :x: |
-| __dt__28SimpleTextureSwitchChangeObjFv | :x: |
-| __dt__12GlaringLightFv | :x: |
+| __dt__25SimpleMapObjNoSilhouettedFv | :white_check_mark: |
+| __dt__28SimpleTextureSwitchChangeObjFv | :white_check_mark: |
+| __dt__12GlaringLightFv | :white_check_mark: |
 | __dt__15SimpleMirrorObjFv | :white_check_mark: |
 | __dt__25SimpleMirrorReflectionObjFv | :white_check_mark: |
 | __dt__15SimpleSeesawObjFv | :white_check_mark: |
 | __dt__16SimpleMapObjPushFv | :white_check_mark: |
-| __dt__26UFOKinokoUnderConstructionFv | :x: |
+| __dt__26UFOKinokoUnderConstructionFv | :white_check_mark: |
 
 
 # SimpleNormalMapObj.o
