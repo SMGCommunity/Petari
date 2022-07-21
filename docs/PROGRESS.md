@@ -29,7 +29,7 @@
 | [ipc](https://github.com/shibbo/Petari/blob/master/docs/lib/ipc.md) | 0.0% |
 | [J2DGraph](https://github.com/shibbo/Petari/blob/master/docs/lib/J2DGraph.md) | 0.0% |
 | [J3DGraphAnimator](https://github.com/shibbo/Petari/blob/master/docs/lib/J3DGraphAnimator.md) | 0.0% |
-| [J3DGraphBase](https://github.com/shibbo/Petari/blob/master/docs/lib/J3DGraphBase.md) | 0.035463088835037536% |
+| [J3DGraphBase](https://github.com/shibbo/Petari/blob/master/docs/lib/J3DGraphBase.md) | 0.1595838997576689% |
 | [J3DGraphLoader](https://github.com/shibbo/Petari/blob/master/docs/lib/J3DGraphLoader.md) | 0.0% |
 | [JAudio2](https://github.com/shibbo/Petari/blob/master/docs/lib/JAudio2.md) | 0.0% |
 | [JGadget](https://github.com/shibbo/Petari/blob/master/docs/lib/JGadget.md) | 0.0% |
@@ -43,7 +43,7 @@
 | [libnw4r_lyt](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_lyt.md) | 0.0% |
 | [libnw4r_math](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_math.md) | 0.0% |
 | [libnw4r_ut](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_ut.md) | 0.0% |
-| [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 37.76394651913324% |
+| [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 38.87044721069618% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 12.97420756503816% |
 | [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 15.98144546485143% |
 | [mem](https://github.com/shibbo/Petari/blob/master/docs/lib/mem.md) | 0.0% |

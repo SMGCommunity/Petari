@@ -53,8 +53,8 @@ setVertexData__15J3DVertexBufferFP13J3DVertexData,J3DVertex.o,J3DGraphBase.a,fal
 init__15J3DVertexBufferFv,J3DVertex.o,J3DGraphBase.a,false
 __dt__15J3DVertexBufferFv,J3DVertex.o,J3DGraphBase.a,false
 setArray__15J3DVertexBufferCFv,J3DVertex.o,J3DGraphBase.a,false
-__ct__14J3DDrawMtxDataFv,J3DVertex.o,J3DGraphBase.a,false
-__dt__14J3DDrawMtxDataFv,J3DVertex.o,J3DGraphBase.a,false
+__ct__14J3DDrawMtxDataFv,J3DVertex.o,J3DGraphBase.a,true
+__dt__14J3DDrawMtxDataFv,J3DVertex.o,J3DGraphBase.a,true
 frameInit__15J3DVertexBufferFv,J3DVertex.o,J3DGraphBase.a,false
 J3DCalcBBoardMtx__FPA4_f,J3DTransform.o,J3DGraphBase.a,false
 J3DCalcYBBoardMtx__FPA4_f,J3DTransform.o,J3DGraphBase.a,false

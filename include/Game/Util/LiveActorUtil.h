@@ -291,4 +291,7 @@ namespace MR {
     bool isExistAnim(const LiveActor *, const char *);
 
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f &);
+
+    const char* createLowModelObjName(const LiveActor *);
+    const char* createMiddleModelObjName(const LiveActor *);
 };

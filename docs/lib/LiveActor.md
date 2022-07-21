@@ -37,8 +37,8 @@
 | LiveActorFlag.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | LiveActorGroup.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | LiveActorGroupArray.o | 56.44171779141104% | 9 / 13 | 69.23076923076923% | :eight_pointed_black_star: 
-| LodCtrl.o | 62.66318537859008% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
-| MaterialCtrl.o | 0.0% | 0 / 33 | 0.0% | :x: 
+| LodCtrl.o | 86.29242819843343% | 27 / 28 | 96.42857142857143% | :eight_pointed_black_star: 
+| MaterialCtrl.o | 6.504961411245866% | 2 / 33 | 6.0606060606060606% | :eight_pointed_black_star: 
 | MessageSensorHolder.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | MirrorActor.o | 55.00000000000001% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
 | MirrorCamera.o | 32.24932249322493% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
@@ -604,7 +604,7 @@
 # LodCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7LodCtrlFP9LiveActorRC12JMapInfoIter | :x: |
+| __ct__7LodCtrlFP9LiveActorRC12JMapInfoIter | :white_check_mark: |
 | offSyncShadowHost__7LodCtrlFv | :white_check_mark: |
 | appear__7LodCtrlFv | :white_check_mark: |
 | kill__7LodCtrlFv | :white_check_mark: |
@@ -623,22 +623,22 @@
 | invalidateClipping__7LodCtrlFv | :white_check_mark: |
 | showHighModel__7LodCtrlFv | :white_check_mark: |
 | showMiddleModel__7LodCtrlFv | :white_check_mark: |
-| showLowModel__7LodCtrlFv | :x: |
+| showLowModel__7LodCtrlFv | :white_check_mark: |
 | hideAllModel__7LodCtrlFv | :white_check_mark: |
 | setViewCtrlPtr__7LodCtrlFPCbPCbPCbPCb | :white_check_mark: |
 | createLodModel__7LodCtrlFiii | :white_check_mark: |
 | syncMaterialAnimation__7LodCtrlFv | :white_check_mark: |
 | syncJointAnimation__7LodCtrlFv | :white_check_mark: |
 | initLightCtrl__7LodCtrlFv | :white_check_mark: |
-| initLodModel__7LodCtrlCFiiib | :x: |
+| initLodModel__7LodCtrlCFiiib | :white_check_mark: |
 | isExistLodLowModel__15LodCtrlFunctionFPCc | :white_check_mark: |
 
 
 # MaterialCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__12MaterialCtrlFP12J3DModelDataPCc | :x: |
-| update__12MaterialCtrlFv | :x: |
+| __ct__12MaterialCtrlFP12J3DModelDataPCc | :white_check_mark: |
+| update__12MaterialCtrlFv | :white_check_mark: |
 | __ct__7FogCtrlFP12J3DModelDatab | :x: |
 | update__7FogCtrlFv | :x: |
 | __ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor | :x: |

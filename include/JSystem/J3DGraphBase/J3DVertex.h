@@ -9,7 +9,7 @@ public:
     ~J3DDrawMtxData();
 
     u16 mDrawMatrixCount;   // _0
-    u16 _2;
+    u16 mRigidMtxCount;     // _2
     u32 _4;
     u16* mDrawMtxArray;     // _8
 };

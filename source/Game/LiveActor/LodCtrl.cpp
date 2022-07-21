@@ -1,4 +1,5 @@
 #include "Game/LiveActor/LodCtrl.h"
+#include "Game/LiveActor/ClippingDirector.h"
 
 #include <stdio.h>
 
@@ -28,6 +29,29 @@ namespace {
         }
     }
 };
+
+const bool def = false;
+
+LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &rIter) {
+    _0 = 2000.0f;
+    _4 = 3000.0f;
+    _8 = pActor;
+    mActor = pActor;
+    _10 = NULL;
+    _14 = NULL;
+    _18 = 0;
+    _19 = 0;
+    _1A = 1;
+    _1B = 0;
+    _2C = -1;
+    mActorLightCtrl = NULL;
+    _1C = &def;
+    _20 = &def;
+    _24 = &def;
+    _28 = &def;
+    MR::getClippingDirector()->entryLodCtrl(this, rIter);
+    mActorLightCtrl = mActor->mActorLightCtrl;
+}
 
 void LodCtrl::offSyncShadowHost() {
     MR::offShadowVisibleSyncHostAll(mActor);
@@ -182,6 +206,29 @@ void LodCtrl::showMiddleModel() {
     _8 = _10;
 }
 
+void LodCtrl::showLowModel() {
+    if (MR::isDead(_14)) {
+        if (mActorLightCtrl) {
+            _14->mActorLightCtrl->copy(mActorLightCtrl);
+        }
+
+        mActorLightCtrl = _14->mActorLightCtrl;
+        _14->makeActorAppeared();
+        MR::calcAnimDirect(mActor);
+    }
+    else {
+        if (!MR::isHiddenModel(mActor)) {
+            MR::hideModelAndOnCalcAnim(mActor);
+        }
+
+        if (_10 && !MR::isDead(_10)) {
+            _10->makeActorDead();
+        }
+    }
+
+    _8 = _14;
+}
+
 void LodCtrl::hideAllModel() {
     if (!MR::isHiddenModel(mActor)) { 
         MR::hideModelAndOnCalcAnim(mActor);
@@ -251,6 +298,26 @@ void LodCtrl::initLightCtrl() {
     if (_14) {
         MR::initLightCtrl(_14);
     }
+}
+
+ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
+    const char* res = MR::getModelResName(mActor);
+    const char* type = isLowModel ? "Low" : "Middle";
+    char buf[0x100];
+    snprintf(buf, 0x100, "/ObjectData/%s%s.arc", res, type);
+
+    if (!MR::isFileExist(buf, false)) {
+        return NULL;
+    }
+
+    const char* objName = isLowModel ? MR::createLowModelObjName(mActor) : MR::createMiddleModelObjName(mActor);
+    snprintf(buf, 0x100, "%s%s", res, type);
+    ModelObj* obj = new ModelObj(objName, buf, mActor->getBaseMtx(), a1, a2, a3, false);
+    obj->initWithoutIter();
+    obj->makeActorDead();
+    MR::setClippingTypeSphereContainsModelBoundingBox(obj, 100.0f);
+    MR::copyTransRotateScale(mActor, obj);
+    return obj;
 }
 
 bool LodCtrlFunction::isExistLodLowModel(const char *pName) {

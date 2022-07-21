@@ -2,9 +2,9 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry/TBox.h"
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
 
 class J3DModel;
-class J3DModelData;
 class J3DMaterial;
 class LiveActor;
 

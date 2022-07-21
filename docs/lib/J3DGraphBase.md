@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | J3DGD.o | 0.0% | 0 / 36 | 0.0% | :x: 
 | J3DSys.o | 0.0% | 0 / 13 | 0.0% | :x: 
-| J3DVertex.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| J3DVertex.o | 17.647058823529413% | 2 / 8 | 25.0% | :eight_pointed_black_star: 
 | J3DTransform.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | J3DPacket.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | J3DShapeMtx.o | 0.0% | 0 / 41 | 0.0% | :x: 
@@ -90,8 +90,8 @@
 | init__15J3DVertexBufferFv | :x: |
 | __dt__15J3DVertexBufferFv | :x: |
 | setArray__15J3DVertexBufferCFv | :x: |
-| __ct__14J3DDrawMtxDataFv | :x: |
-| __dt__14J3DDrawMtxDataFv | :x: |
+| __ct__14J3DDrawMtxDataFv | :white_check_mark: |
+| __dt__14J3DDrawMtxDataFv | :white_check_mark: |
 | frameInit__15J3DVertexBufferFv | :x: |
 
 
