@@ -16,6 +16,7 @@
  **[❮ Contribute ❯][Contribute]**
  **[❮ CheatSheet ❯][CheatSheet]**
  **[❮ Progress ❯][Progress]**
+ **[❮ SMG2 Decompilation ❯][SMG2]**
 
 ---
 
@@ -27,6 +28,7 @@
 [CheatSheet]: docs/CHEATSHEET.md
 [Progress]: docs/PROGRESS.md
 [Build]: docs/Build.md
+[SMG2]: https://github.com/shibbo/Garigari
 
 [Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/Game.json&style=flat
 [Badge JSystem Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/JSystem.json&style=flat
