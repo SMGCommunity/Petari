@@ -5,7 +5,14 @@
 class Color8 {
 public:
     Color8(_GXColor);
-    Color8(u8, u8, u8, u8);
+
+    Color8(u8 _r, u8 _g, u8 _b, u8 _a) {
+        r = _r;
+        g = _g;
+        b = _b;
+        a = _a;
+    }
+
     Color8(u32 color) {
         mColor = color;
     }

@@ -8,34 +8,6 @@ WarpCube::~WarpCube() {
 
 }
 
-void WarpCube::init(const JMapInfoIter &rIter) {
-    AreaObj::init(rIter);
-
-    s32 groupID = -1;
-    MR::getJMapInfoGroupID(rIter, &groupID);
-
-    if (groupID >= 0) {
-        mMapIdInfo = new JMapIdInfo(groupID, rIter);
-    }
-
-    mCameraInfo = new ActorCameraInfo(rIter);
-
-    s32 local118;
-    MR::getJMapInfoArg0WithInit(rIter, &local118);
-
-    char eventName[0x100];
-    sprintf(eventName, "ワープカメラ %d-%c", groupID, local118 + 65);
-
-    MR::declareEventCamera(mCameraInfo, eventName);
-
-    s32 eventNameLength = strlen(&eventName[0]);
-    mEventName = new char[eventNameLength + 1];
-    strcpy(mEventName, &eventName[0]);
-
-    MR::connectToScene(this, 13, -1, -1, 24);
-    _48 = 0;
-}
-
 void WarpCube::movement() {
     if (_48 != 0) {
         if (_48 == 1) {
@@ -53,8 +25,6 @@ void WarpCube::movement() {
     }
 }
 
-#ifdef NON_MATCHING
-// scaledUp and finalPos are in the wrong order on the stack
 void WarpCube::draw() const {
     TDDraw::setup(0, 1, 0);
     GXSetCullMode(GX_CULL_NONE);
@@ -88,14 +58,33 @@ void WarpCube::draw() const {
         uVar2 = 0x1FCF0010;
     }
 
-    TVec3f scaledUp = up;
-    scaledUp.x *= 120.0f;
-    scaledUp.y *= 120.0f;
-    scaledUp.z *= 120.0f;
-
-    TVec3f finalPos = pos;
-    finalPos.addInline(scaledUp);
-
-    TDDraw::drawSphere(finalPos, 120.0f, uVar2, 16);
+    TDDraw::drawSphere(MR::createVecAndScaleByAndAdd(up, pos), 120.0f, uVar2, 16);
 }
-#endif
+
+void WarpCube::init(const JMapInfoIter &rIter) {
+    AreaObj::init(rIter);
+
+    s32 groupID = -1;
+    MR::getJMapInfoGroupID(rIter, &groupID);
+
+    if (groupID >= 0) {
+        mMapIdInfo = new JMapIdInfo(groupID, rIter);
+    }
+
+    mCameraInfo = new ActorCameraInfo(rIter);
+
+    s32 local118;
+    MR::getJMapInfoArg0WithInit(rIter, &local118);
+
+    char eventName[0x100];
+    sprintf(eventName, "ワープカメラ %d-%c", groupID, local118 + 65);
+
+    MR::declareEventCamera(mCameraInfo, eventName);
+
+    s32 eventNameLength = strlen(&eventName[0]);
+    mEventName = new char[eventNameLength + 1];
+    strcpy(mEventName, &eventName[0]);
+
+    MR::connectToScene(this, 13, -1, -1, 24);
+    _48 = 0;
+}

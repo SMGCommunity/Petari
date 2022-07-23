@@ -3,8 +3,8 @@
 #include "Game/Map/SleepControllerHolder.h"
 #include "Game/Util.h"
 
-AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
-    mType = a1;
+AreaObj::AreaObj(int type, const char *pName) : NameObj(pName) {
+    mType = type;
     mValid = true;
     _15 = true;
     mAwake = true;
@@ -18,7 +18,23 @@ AreaObj::AreaObj(int a1, const char *pName) : NameObj(pName) {
     mObjArg7 = -1;
     mSwitchCtrl = 0;
 
-    /* todo -- assign forms based on a1 */
+    switch(type) {
+        case 0:
+            mForm = new AreaFormCube(0);
+            break;
+        case 1:
+            mForm = new AreaFormCube(1);
+            break;
+        case 2:
+            mForm = new AreaFormSphere();
+            break;
+        case 4:
+            mForm = new AreaFormBowl();
+            break;
+        case 3:
+            mForm = new AreaFormCylinder();
+            break;
+    }
 }
 
 // Issues with functors

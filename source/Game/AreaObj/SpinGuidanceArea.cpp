@@ -1,5 +1,6 @@
 #include "Game/AreaObj/SpinGuidanceArea.h"
 #include "Game/Scene/SceneObjHolder.h"
+#include "Game/Screen/PlayerActionGuidance.h"
 
 SpinGuidanceArea::SpinGuidanceArea(int type, const char *pName) : AreaObj(type, pName) {
 
@@ -9,7 +10,7 @@ SpinGuidanceArea::~SpinGuidanceArea() {
 
 }
 
-/*void SpinGuidanceArea::init(const JMapInfoIter &rIter) {
+void SpinGuidanceArea::init(const JMapInfoIter &rIter) {
     AreaObj::init(rIter);
     MR::createSceneObj(SceneObj_PlayerActionGuidance);
 
@@ -22,4 +23,4 @@ SpinGuidanceArea::~SpinGuidanceArea() {
     else if (MR::isEqualString(objName, "TamakoroMoveGuidanceCube") || MR::isEqualString(objName, "TamakoroJumpGuidanceCube")) {
         MR::getPlayerActionGuidance()->createTamakoroLayout();
     }
-}*/
+}

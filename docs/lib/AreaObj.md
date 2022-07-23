@@ -9,10 +9,10 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
-| AreaFormDrawer.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| AreaObj.o | 62.298387096774185% | 20 / 24 | 83.33333333333334% | :eight_pointed_black_star: 
+| AreaFormDrawer.o | 41.30434782608695% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
+| AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
 | AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% | :eight_pointed_black_star: 
-| AreaObjFollower.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
@@ -40,10 +40,10 @@
 | SimpleBloomArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | SoundEmitterCube.o | 32.66129032258064% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | SoundEmitterSphere.o | 48.8235294117647% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
-| SpinGuidanceArea.o | 47.5% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| SpinGuidanceArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | SunLightArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | SwitchArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| WarpCube.o | 41.40350877192983% | 3 / 8 | 37.5% | :eight_pointed_black_star: 
+| WarpCube.o | 73.33333333333333% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
 | WaterArea.o | 33.89830508474576% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
 
 
@@ -89,14 +89,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __pl__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| __sinit_\AreaFormDrawer_cpp | :x: |
+| __sinit_\AreaFormDrawer_cpp | :white_check_mark: |
 | __ct__6Color8FUcUcUcUc | :x: |
 
 
 # AreaObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7AreaObjFiPCc | :x: |
+| __ct__7AreaObjFiPCc | :white_check_mark: |
 | init__7AreaObjFRC12JMapInfoIter | :white_check_mark: |
 | isInVolume__7AreaObjCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | onSwitchA__7AreaObjFv | :white_check_mark: |
@@ -116,10 +116,10 @@
 | getManagerName__7AreaObjCFv | :white_check_mark: |
 | Functor&lt;7AreaObj&gt;__2MRFP7AreaObjM7AreaObjFPCvPv_v_Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt; | :white_check_mark: |
 | __cl__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFv | :white_check_mark: |
-| clone__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| clone__Q22MR39FunctorV0M&lt;P7AreaObj,M7AreaObjFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__7AreaObjFv | :white_check_mark: |
 | __dt__10AreaObjMgrFv | :white_check_mark: |
-| __dt__Q22MR26AssignableArray&lt;P7AreaObj&gt;Fv | :x: |
+| __dt__Q22MR26AssignableArray&lt;P7AreaObj&gt;Fv | :white_check_mark: |
 
 
 # AreaObjContainer.o
@@ -144,10 +144,10 @@
 # AreaObjFollower.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter | :x: |
-| update__15AreaObjFollowerFv | :x: |
-| addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter | :x: |
-| setGravityFollowHost__18BaseMatrixFollowerFPC7NameObj | :x: |
+| __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter | :white_check_mark: |
+| update__15AreaObjFollowerFv | :white_check_mark: |
+| addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter | :white_check_mark: |
+| setGravityFollowHost__18BaseMatrixFollowerFPC7NameObj | :white_check_mark: |
 
 
 # AstroChangeStageCube.o
@@ -485,7 +485,7 @@
 | ------------- | ------------- |
 | __ct__16SpinGuidanceAreaFiPCc | :white_check_mark: |
 | __dt__16SpinGuidanceAreaFv | :white_check_mark: |
-| init__16SpinGuidanceAreaFRC12JMapInfoIter | :x: |
+| init__16SpinGuidanceAreaFRC12JMapInfoIter | :white_check_mark: |
 
 
 # SunLightArea.o
@@ -515,7 +515,7 @@
 | startEventCamera__11WarpCubeMgrFPC7AreaObj | :x: |
 | endEventCamera__11WarpCubeMgrFv | :x: |
 | movement__8WarpCubeFv | :white_check_mark: |
-| draw__8WarpCubeCFv | :x: |
+| draw__8WarpCubeCFv | :white_check_mark: |
 | init__8WarpCubeFRC12JMapInfoIter | :white_check_mark: |
 
 
