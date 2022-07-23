@@ -38,8 +38,7 @@ namespace MR {
     f32 getLinerValueFromMinMax(f32, f32, f32, f32, f32);
     f32 getEaseInValue(f32, f32, f32, f32);
     f32 getEaseOutValue(f32, f32, f32, f32);
-
-    // MR::getEaseInOutValue
+    f32 getEaseInOutValue(f32, f32, f32, f32);
     // MR::getScaleWithReactionValueZeroToOne
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue

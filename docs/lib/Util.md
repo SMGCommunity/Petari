@@ -43,7 +43,7 @@
 | ModelUtil.o | 2.6072786529060292% | 6 / 69 | 8.695652173913043% | :eight_pointed_black_star: 
 | MtxUtil.o | 5.6675062972292185% | 11 / 79 | 13.924050632911392% | :eight_pointed_black_star: 
 | MultiEventCamera.o | 0.0% | 0 / 18 | 0.0% | :x: 
-| NerveUtil.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| NerveUtil.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | NPCUtil.o | 0.0% | 0 / 76 | 0.0% | :x: 
 | ObjUtil.o | 12.004249291784703% | 40 / 178 | 22.47191011235955% | :eight_pointed_black_star: 
 | ParabolicPath.o | 25.748502994011975% | 4 / 9 | 44.44444444444444% | :eight_pointed_black_star: 
@@ -2544,21 +2544,21 @@
 # NerveUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| isStep__2MRFPC13NerveExecutorl | :x: |
-| isFirstStep__2MRFPC13NerveExecutor | :x: |
-| isLessStep__2MRFPC13NerveExecutorl | :x: |
-| isLessEqualStep__2MRFPC13NerveExecutorl | :x: |
-| isGreaterStep__2MRFPC13NerveExecutorl | :x: |
-| isGreaterEqualStep__2MRFPC13NerveExecutorl | :x: |
-| isIntervalStep__2MRFPC13NerveExecutorl | :x: |
-| isNewNerve__2MRFPC13NerveExecutor | :x: |
-| calcNerveRate__2MRFPC13NerveExecutorl | :x: |
-| calcNerveEaseInRate__2MRFPC13NerveExecutorl | :x: |
-| calcNerveEaseOutRate__2MRFPC13NerveExecutorl | :x: |
-| calcNerveValue__2MRFPC13NerveExecutorlff | :x: |
-| calcNerveEaseInOutValue__2MRFPC13NerveExecutorlff | :x: |
-| calcNerveEaseInOutValue__2MRFPC13NerveExecutorllff | :x: |
-| setNerveAtStep__2MRFP13NerveExecutorPC5Nervel | :x: |
+| isStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isFirstStep__2MRFPC13NerveExecutor | :white_check_mark: |
+| isLessStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isLessEqualStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isGreaterStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isGreaterEqualStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isIntervalStep__2MRFPC13NerveExecutorl | :white_check_mark: |
+| isNewNerve__2MRFPC13NerveExecutor | :white_check_mark: |
+| calcNerveRate__2MRFPC13NerveExecutorl | :white_check_mark: |
+| calcNerveEaseInRate__2MRFPC13NerveExecutorl | :white_check_mark: |
+| calcNerveEaseOutRate__2MRFPC13NerveExecutorl | :white_check_mark: |
+| calcNerveValue__2MRFPC13NerveExecutorlff | :white_check_mark: |
+| calcNerveEaseInOutValue__2MRFPC13NerveExecutorlff | :white_check_mark: |
+| calcNerveEaseInOutValue__2MRFPC13NerveExecutorllff | :white_check_mark: |
+| setNerveAtStep__2MRFP13NerveExecutorPC5Nervel | :white_check_mark: |
 
 
 # NPCUtil.o
