@@ -4,7 +4,7 @@
 | [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.513985045693714% |
 | [aralt](https://github.com/shibbo/Petari/blob/master/docs/lib/aralt.md) | 0.0% |
 | [arc](https://github.com/shibbo/Petari/blob/master/docs/lib/arc.md) | 0.0% |
-| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 48.26536160957042% |
+| [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 48.31973898858075% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
 | [ax](https://github.com/shibbo/Petari/blob/master/docs/lib/ax.md) | 0.0% |
 | [axfx](https://github.com/shibbo/Petari/blob/master/docs/lib/axfx.md) | 0.0% |

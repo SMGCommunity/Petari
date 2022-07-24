@@ -34,7 +34,7 @@ init__14AreaFormSphereFRC12JMapInfoIter,AreaForm.o,AreaObj.a,true
 init__16AreaFormCylinderFRC12JMapInfoIter,AreaForm.o,AreaObj.a,true
 __pl__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>,AreaFormDrawer.o,AreaObj.a,false
 __sinit_\AreaFormDrawer_cpp,AreaFormDrawer.o,AreaObj.a,true
-__ct__6Color8FUcUcUcUc,AreaFormDrawer.o,AreaObj.a,false
+__ct__6Color8FUcUcUcUc,AreaFormDrawer.o,AreaObj.a,true
 __ct__7AreaObjFiPCc,AreaObj.o,AreaObj.a,true
 init__7AreaObjFRC12JMapInfoIter,AreaObj.o,AreaObj.a,true
 isInVolume__7AreaObjCFRCQ29JGeometry8TVec3<f>,AreaObj.o,AreaObj.a,true

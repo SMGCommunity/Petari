@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
-| AreaFormDrawer.o | 41.30434782608695% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
+| AreaFormDrawer.o | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
 | AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% | :eight_pointed_black_star: 
 | AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -90,7 +90,7 @@
 | ------------- | ------------- |
 | __pl__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __sinit_\AreaFormDrawer_cpp | :white_check_mark: |
-| __ct__6Color8FUcUcUcUc | :x: |
+| __ct__6Color8FUcUcUcUc | :white_check_mark: |
 
 
 # AreaObj.o
