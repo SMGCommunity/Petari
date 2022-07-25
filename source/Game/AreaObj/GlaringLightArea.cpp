@@ -2,6 +2,10 @@
 #include "Game/AudioLib/AudSoundObject.h"
 #include "Game/Util/SoundUtil.h"
 
+GlaringLightAreaMgr::GlaringLightAreaMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
+
+}
+
 GlaringLightArea::GlaringLightArea(int type, const char *pName) : AreaObj(type, pName) {
     mSound = NULL;
     mPos.x = 0.0f;
@@ -11,6 +15,10 @@ GlaringLightArea::GlaringLightArea(int type, const char *pName) : AreaObj(type, 
 
 GlaringLightArea::~GlaringLightArea() {
 
+}
+
+GlaringLightAreaMgr::~GlaringLightAreaMgr() {
+    
 }
 
 void GlaringLightArea::init(const JMapInfoIter &rIter) {

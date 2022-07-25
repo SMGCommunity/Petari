@@ -11,7 +11,7 @@
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | AreaFormDrawer.o | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
-| AreaObjContainer.o | 68.48874598070739% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
+| AreaObjContainer.o | 81.35048231511254% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
 | AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -21,12 +21,12 @@
 | BloomArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | CameraRepulsiveArea.o | 45.85987261146497% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
 | ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
-| CollisionArea.o | 25.90489709013485% | 11 / 31 | 35.483870967741936% | :eight_pointed_black_star: 
+| CollisionArea.o | 27.04045422285309% | 20 / 31 | 64.51612903225806% | :eight_pointed_black_star: 
 | CubeCamera.o | 49.26470588235294% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
-| DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
+| DeathArea.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| GlaringLightArea.o | 77.57575757575758% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
+| GlaringLightArea.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | HazeCube.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
 | LightArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -44,7 +44,7 @@
 | SunLightArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | SwitchArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | WarpCube.o | 73.33333333333333% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
-| WaterArea.o | 33.89830508474576% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
+| WaterArea.o | 65.2542372881356% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 
 
 # AreaForm.o
@@ -128,8 +128,8 @@
 | createManager&lt;10AreaObjMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;13CubeCameraMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;11WarpCubeMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
-| createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
+| createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | __ct__16AreaObjContainerFPCc | :white_check_mark: |
@@ -267,15 +267,15 @@
 | __ct__11AreaPolygonFv | :white_check_mark: |
 | __dt__19DynamicCollisionObjFv | :white_check_mark: |
 | init__11AreaPolygonFRC12JMapInfoIter | :x: |
-| receiveOtherMsg__9LiveActorFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgThrow__9LiveActorFP9HitSensorP9HitSensor | :x: |
-| receiveMsgTaken__9LiveActorFP9HitSensorP9HitSensor | :x: |
-| receiveMsgTake__9LiveActorFP9HitSensorP9HitSensor | :x: |
-| receiveMsgEnemyAttack__9LiveActorFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__9LiveActorFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgPush__9LiveActorFP9HitSensorP9HitSensor | :x: |
-| updateHitSensor__9LiveActorFP9HitSensor | :x: |
-| control__9LiveActorFv | :x: |
+| receiveOtherMsg__9LiveActorFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgThrow__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgTaken__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgTake__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgEnemyAttack__9LiveActorFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__9LiveActorFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPush__9LiveActorFP9HitSensorP9HitSensor | :white_check_mark: |
+| updateHitSensor__9LiveActorFP9HitSensor | :white_check_mark: |
+| control__9LiveActorFv | :white_check_mark: |
 
 
 # CubeCamera.o
@@ -300,10 +300,10 @@
 | ------------- | ------------- |
 | __ct__9DeathAreaFiPCc | :white_check_mark: |
 | init__9DeathAreaFRC12JMapInfoIter | :white_check_mark: |
-| movement__9DeathAreaFv | :x: |
+| movement__9DeathAreaFv | :white_check_mark: |
 | isInVolume__9DeathAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getDeathType__9DeathAreaCFv | :white_check_mark: |
-| __dt__9DeathAreaFv | :x: |
+| __dt__9DeathAreaFv | :white_check_mark: |
 | getManagerName__9DeathAreaCFv | :white_check_mark: |
 
 
@@ -332,11 +332,11 @@
 # GlaringLightArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__19GlaringLightAreaMgrFlPCc | :x: |
+| __ct__19GlaringLightAreaMgrFlPCc | :white_check_mark: |
 | __ct__16GlaringLightAreaFiPCc | :white_check_mark: |
 | init__16GlaringLightAreaFRC12JMapInfoIter | :white_check_mark: |
 | __dt__16GlaringLightAreaFv | :white_check_mark: |
-| __dt__19GlaringLightAreaMgrFv | :x: |
+| __dt__19GlaringLightAreaMgrFv | :white_check_mark: |
 | movement__16GlaringLightAreaFv | :white_check_mark: |
 | getManagerName__16GlaringLightAreaCFv | :white_check_mark: |
 
@@ -524,8 +524,8 @@
 | ------------- | ------------- |
 | __ct__9WaterAreaFiPCc | :white_check_mark: |
 | init__9WaterAreaFRC12JMapInfoIter | :x: |
-| __ct__12WaterAreaMgrFlPCc | :x: |
+| __ct__12WaterAreaMgrFlPCc | :white_check_mark: |
 | __dt__9WaterAreaFv | :white_check_mark: |
-| __dt__12WaterAreaMgrFv | :x: |
+| __dt__12WaterAreaMgrFv | :white_check_mark: |
 
 

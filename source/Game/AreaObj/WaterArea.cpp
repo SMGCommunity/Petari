@@ -5,10 +5,6 @@ WaterArea::WaterArea(int type, const char *pName) : AreaObj(type, pName) {
     _3C = 0;
 }
 
-WaterArea::~WaterArea() {
-
-}
-
 #ifdef NON_MATCHING
 // Register mismatch
 void WaterArea::init(const JMapInfoIter &rIter) {
@@ -43,3 +39,15 @@ void WaterArea::init(const JMapInfoIter &rIter) {
     WaterAreaFunction::createWaterAreaHolder();
 }
 #endif
+
+WaterAreaMgr::WaterAreaMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
+
+}
+
+WaterArea::~WaterArea() {
+
+}
+
+WaterAreaMgr::~WaterAreaMgr() {
+
+}

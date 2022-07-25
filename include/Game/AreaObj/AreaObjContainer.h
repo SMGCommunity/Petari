@@ -5,7 +5,9 @@
 #include "Game/NameObj/NameObj.h"
 #include "JSystem/JGeometry/TVec.h"
 #include "Game/AreaObj/CubeCamera.h"
+#include "Game/AreaObj/GlaringLightArea.h"
 #include "Game/AreaObj/WarpCube.h"
+#include "Game/AreaObj/WaterArea.h"
 
 struct AreaObjEntry {
     const char* mName;                          // _0
@@ -30,9 +32,13 @@ namespace {
         { "DeathArea", 0x40, createManager<AreaObjMgr> },
         /* todo -- finish me */
 
+        { "GlaringLightArea", 0x40, createManager<GlaringLightAreaMgr> },
+
         { "WarpCube", 0x40, createManager<WarpCubeMgr> },
 
-        { "LightArea", 0x80, createManager<LightAreaHolder> }
+        { "LightArea", 0x80, createManager<LightAreaHolder> },
+
+        { "Water", 0x40, createManager<WaterAreaMgr> }
     };
 };
 

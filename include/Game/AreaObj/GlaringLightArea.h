@@ -17,3 +17,10 @@ public:
     AudSoundObject *mSound; // _3C
     TVec3f mPos;            // _40
 };
+
+class GlaringLightAreaMgr : public AreaObjMgr {
+public:
+    GlaringLightAreaMgr(s32, const char *);
+
+    virtual ~GlaringLightAreaMgr();
+};

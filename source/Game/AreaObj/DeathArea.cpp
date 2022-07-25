@@ -9,14 +9,14 @@ void DeathArea::init(const JMapInfoIter &rIter) {
     MR::connectToSceneAreaObj(this);
 }
 
-#ifdef NON_MATCHING
-// No cntlzw, rlwinm
 void DeathArea::movement() {
-    if (isInVolume(*MR::getPlayerPos()) && getDeathType() == 0) {
-        MR::forceKillPlayerByAbyss();
+    if (isInVolume(*MR::getPlayerPos())) {
+        bool canKill = getDeathType() == 0;
+        if (canKill) {
+            MR::forceKillPlayerByAbyss();
+        }
     }
 }
-#endif
 
 bool DeathArea::isInVolume(const TVec3f &rVec) const {
     bool ret;
@@ -33,6 +33,10 @@ bool DeathArea::isInVolume(const TVec3f &rVec) const {
 
 s32 DeathArea::getDeathType() const {
     return mObjArg0 != -1 ? mObjArg0 : 0;
+}
+
+DeathArea::~DeathArea() {
+    
 }
 
 const char* DeathArea::getManagerName() const {

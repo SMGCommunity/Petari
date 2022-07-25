@@ -7,6 +7,7 @@ class DeathArea : public AreaObj {
 public:
     DeathArea(int, const char *);
 
+    virtual ~DeathArea();
     virtual void init(const JMapInfoIter &);
     virtual void movement();
     virtual bool isInVolume(const TVec3f &) const;

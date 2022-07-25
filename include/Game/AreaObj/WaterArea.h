@@ -11,3 +11,10 @@ public:
 
     s32 _3C;
 };
+
+class WaterAreaMgr : public AreaObjMgr {
+public:
+    WaterAreaMgr(s32, const char *);
+
+    virtual ~WaterAreaMgr();
+};
