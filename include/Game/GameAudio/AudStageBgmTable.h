@@ -4,5 +4,7 @@
 
 class AudStageBgmTable {
 public:
-    static s32 getBgmId(const char *, s32);
+    static u32 getBgmId(const char *, s32);
+
+    static s32 getBgmState(const char *, s32);
 };

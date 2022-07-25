@@ -11,11 +11,11 @@
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | AreaFormDrawer.o | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
-| AreaObjContainer.o | 27.331189710610932% | 5 / 14 | 35.714285714285715% | :eight_pointed_black_star: 
+| AreaObjContainer.o | 46.30225080385852% | 7 / 14 | 50.0% | :eight_pointed_black_star: 
 | AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| BgmProhibitArea.o | 21.11111111111111% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| BgmProhibitArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | BigBubbleCameraArea.o | 72.02380952380952% | 7 / 10 | 70.0% | :eight_pointed_black_star: 
 | BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
 | BloomArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
@@ -35,7 +35,7 @@
 | MessageArea.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | PlayerSeArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | QuakeEffectArea.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| RestartCube.o | 49.26829268292683% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| RestartCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | ScreenBlurArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | SimpleBloomArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | SoundEmitterCube.o | 32.66129032258064% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
@@ -132,8 +132,8 @@
 | createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| __ct__16AreaObjContainerFPCc | :x: |
-| init__16AreaObjContainerFRC12JMapInfoIter | :x: |
+| __ct__16AreaObjContainerFPCc | :white_check_mark: |
+| init__16AreaObjContainerFRC12JMapInfoIter | :white_check_mark: |
 | getManager__16AreaObjContainerCFPCc | :x: |
 | getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getAreaObjContainer__2MRFv | :white_check_mark: |
@@ -173,11 +173,11 @@
 # BgmProhibitArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__15BgmProhibitAreaFv | :x: |
-| findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc | :x: |
+| __dt__15BgmProhibitAreaFv | :white_check_mark: |
+| findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc | :white_check_mark: |
 | __ct__15BgmProhibitAreaFiPCc | :white_check_mark: |
 | init__15BgmProhibitAreaFRC12JMapInfoIter | :white_check_mark: |
-| movement__15BgmProhibitAreaFv | :x: |
+| movement__15BgmProhibitAreaFv | :white_check_mark: |
 | getManagerName__15BgmProhibitAreaCFv | :white_check_mark: |
 
 
@@ -439,7 +439,7 @@
 | init__11RestartCubeFRC12JMapInfoIter | :white_check_mark: |
 | updatePlayerRestartIdInfo__11RestartCubeFv | :white_check_mark: |
 | __dt__11RestartCubeFv | :white_check_mark: |
-| changeBgm__11RestartCubeFv | :x: |
+| changeBgm__11RestartCubeFv | :white_check_mark: |
 
 
 # ScreenBlurArea.o

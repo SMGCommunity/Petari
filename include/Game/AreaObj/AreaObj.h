@@ -56,6 +56,8 @@ class AreaObjMgr : public NameObj {
 public:
     AreaObjMgr(s32, const char *);
 
+    virtual ~AreaObjMgr();
+
     void entry(AreaObj *);
     AreaObj* find_in(const TVec3f &) const;
 

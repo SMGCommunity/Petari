@@ -1,4 +1,5 @@
 #include "Game/AreaObj/RestartCube.h"
+#include "Game/AudioLib/AudWrap.h"
 #include "Game/System/GameDataTemporaryInGalaxy.h"
 #include "Game/GameAudio/AudStageBgmTable.h"
 
@@ -31,28 +32,61 @@ void RestartCube::updatePlayerRestartIdInfo() {
     }
 }
 
-/*void RestartCube::changeBgm() {
+void RestartCube::changeBgm() {
     if (MR::isPowerStarGetDemoActive()) {
         _48 = true;
+        return;
     }
-    else if (MR::isPlayingStageBgmID(0x2000014)) {
-        _48 = true;
-    }
-    else if (MR::isPlayingStageBgmID(0x200003E)) {
-        _48 = true;
-    }
-    else if (MR::isPlayerDead()) {
-        _48 = true;
-    }
-    else if (!MR::isPlayingStageBgmID(0x2000039)) {
-        s32 id = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
 
-        if (id != -1) {
+    if (MR::isPlayingStageBgmID(0x2000014)) {
+        _48 = true;
+        return;
+    }
 
+    if (MR::isPlayingStageBgmID(0x200003E)) {
+        _48 = 1;
+        return;
+    }
+
+    if (MR::isPlayerDead()) {
+        _48 = 1;
+        return;
+    }
+
+    if (!MR::isPlayingStageBgmID(0x2000039)) {
+        u32 bgmID = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
+
+        if (bgmID + 0x10000 != 0xFFFF) {
+            u32 val = AudWrap::getBgmMgr()->_10;
+            if (val == bgmID && MR::isPlayingStageBgm()) {
+                return;
+            }
+
+            AudWrap::startStageBgm(bgmID, false);
+
+            if (MR::isEqualStageName("ReverseKingdomGalaxy") && bgmID == 0x1010012) {
+                MR::setCubeBgmChangeInvalid();
+            }
+
+            if (MR::isEqualStageName("CannonFleetGalaxy") && bgmID == 0x1010002) {
+                MR::setCubeBgmChangeInvalid();
+            }
+
+            if (MR::isEqualStageName("BattleShipGalaxy") && bgmID == 0x1010002) {
+                MR::setCubeBgmChangeInvalid();
+            }
         }
 
-        if (_44 > -1) {
+        if (_44 >= 0) {
+            s32 state = AudStageBgmTable::getBgmState(MR::getCurrentStageName(), _44);
 
+            if (state >= 0) {
+                AudBgm* bgm = AudWrap::getStageBgm();
+
+                if (bgm) {
+                    bgm->changeTrackMuteState(state, 0);
+                }
+            }
         }
     }
-}*/
+}

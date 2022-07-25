@@ -66,8 +66,8 @@ createManager<12WaterAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjM
 createManager<19GlaringLightAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
 createManager<15LightAreaHolder>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,true
 createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
-__ct__16AreaObjContainerFPCc,AreaObjContainer.o,AreaObj.a,false
-init__16AreaObjContainerFRC12JMapInfoIter,AreaObjContainer.o,AreaObj.a,false
+__ct__16AreaObjContainerFPCc,AreaObjContainer.o,AreaObj.a,true
+init__16AreaObjContainerFRC12JMapInfoIter,AreaObjContainer.o,AreaObj.a,true
 getManager__16AreaObjContainerCFPCc,AreaObjContainer.o,AreaObj.a,false
 getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>,AreaObjContainer.o,AreaObj.a,true
 getAreaObjContainer__2MRFv,AreaObjContainer.o,AreaObj.a,true
@@ -87,11 +87,11 @@ init__15AudioEffectAreaFRC12JMapInfoIter,AudioEffectArea.o,AreaObj.a,true
 movement__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,true
 __dt__15AudioEffectAreaFv,AudioEffectArea.o,AreaObj.a,true
 getManagerName__15AudioEffectAreaCFv,AudioEffectArea.o,AreaObj.a,true
-__dt__15BgmProhibitAreaFv,BgmProhibitArea.o,AreaObj.a,false
-findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc,BgmProhibitArea.o,AreaObj.a,false
+__dt__15BgmProhibitAreaFv,BgmProhibitArea.o,AreaObj.a,true
+findDataElement__29@unnamed@BgmProhibitArea_cpp@FPCc,BgmProhibitArea.o,AreaObj.a,true
 __ct__15BgmProhibitAreaFiPCc,BgmProhibitArea.o,AreaObj.a,true
 init__15BgmProhibitAreaFRC12JMapInfoIter,BgmProhibitArea.o,AreaObj.a,true
-movement__15BgmProhibitAreaFv,BgmProhibitArea.o,AreaObj.a,false
+movement__15BgmProhibitAreaFv,BgmProhibitArea.o,AreaObj.a,true
 getManagerName__15BgmProhibitAreaCFv,BgmProhibitArea.o,AreaObj.a,true
 __ct__19BigBubbleCameraAreaFiPCc,BigBubbleCameraArea.o,AreaObj.a,true
 __dt__14CubeCameraAreaFv,BigBubbleCameraArea.o,AreaObj.a,false
@@ -253,7 +253,7 @@ __ct__11RestartCubeFiPCc,RestartCube.o,AreaObj.a,true
 init__11RestartCubeFRC12JMapInfoIter,RestartCube.o,AreaObj.a,true
 updatePlayerRestartIdInfo__11RestartCubeFv,RestartCube.o,AreaObj.a,true
 __dt__11RestartCubeFv,RestartCube.o,AreaObj.a,true
-changeBgm__11RestartCubeFv,RestartCube.o,AreaObj.a,false
+changeBgm__11RestartCubeFv,RestartCube.o,AreaObj.a,true
 __ct__14ScreenBlurAreaFiPCc,ScreenBlurArea.o,AreaObj.a,true
 init__14ScreenBlurAreaFRC12JMapInfoIter,ScreenBlurArea.o,AreaObj.a,true
 __dt__14ScreenBlurAreaFv,ScreenBlurArea.o,AreaObj.a,true

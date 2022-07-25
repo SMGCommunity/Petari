@@ -17,7 +17,7 @@ namespace {
         return new T(type, pName);
     }
 
-    static AreaObjEntry cCreateTable[8] = {
+    static AreaObjEntry cCreateTable[0x43] = {
         { "SwitchArea", 0x40, createManager<AreaObjMgr> },
         { "RaceJudgeCube", 0x40, createManager<AreaObjMgr> },
         { "NinForceWindCube", 0x40, createManager<AreaObjMgr> },
@@ -41,6 +41,17 @@ public:
 
     AreaObjMgr* getManager(const char *) const;
     AreaObj* getAreaObj(const char *, const TVec3f &) const;
+
+    inline AreaObjMgr* getFirstMgr() const {
+        return mManagerArray[0];
+    }
+
+    inline AreaObjMgr* getLastMgr() const {
+        return mManagerArray[mNumManagers];
+    }
+
+    AreaObjMgr* mManagerArray[0x50];    // _C
+    u32 mNumManagers;                   // _14C
 };
 
 namespace MR {
