@@ -29,3 +29,13 @@ public:
     u32 _3C;
     u32 mZoneID; // _40
 };
+
+class CubeCameraMgr : public AreaObjMgr {
+public:
+    CubeCameraMgr(s32, const char *);
+
+    virtual ~CubeCameraMgr();
+
+    void initAfterLoad();
+    void sort();
+};

@@ -11,7 +11,7 @@
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | AreaFormDrawer.o | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
-| AreaObjContainer.o | 46.30225080385852% | 7 / 14 | 50.0% | :eight_pointed_black_star: 
+| AreaObjContainer.o | 68.48874598070739% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -22,7 +22,7 @@
 | CameraRepulsiveArea.o | 45.85987261146497% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
 | ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | CollisionArea.o | 25.90489709013485% | 11 / 31 | 35.483870967741936% | :eight_pointed_black_star: 
-| CubeCamera.o | 34.55882352941176% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 
+| CubeCamera.o | 49.26470588235294% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
 | DeathArea.o | 56.36363636363636% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
 | DepthOfFieldArea.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -126,8 +126,8 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | createManager&lt;10AreaObjMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
-| createManager&lt;13CubeCameraMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
-| createManager&lt;11WarpCubeMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;13CubeCameraMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
+| createManager&lt;11WarpCubeMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
 | createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
@@ -138,7 +138,7 @@
 | getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getAreaObjContainer__2MRFv | :white_check_mark: |
 | __dt__16AreaObjContainerFv | :white_check_mark: |
-| __dt__11WarpCubeMgrFv | :x: |
+| __dt__11WarpCubeMgrFv | :white_check_mark: |
 
 
 # AreaObjFollower.o
@@ -289,10 +289,10 @@
 | isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | setCurrentCategory__14CubeCameraAreaFl | :white_check_mark: |
 | getCategoryArg__14CubeCameraAreaCFv | :white_check_mark: |
-| __ct__13CubeCameraMgrFlPCc | :x: |
-| initAfterLoad__13CubeCameraMgrFv | :x: |
+| __ct__13CubeCameraMgrFlPCc | :white_check_mark: |
+| initAfterLoad__13CubeCameraMgrFv | :white_check_mark: |
 | sort__13CubeCameraMgrFv | :x: |
-| __dt__13CubeCameraMgrFv | :x: |
+| __dt__13CubeCameraMgrFv | :white_check_mark: |
 
 
 # DeathArea.o

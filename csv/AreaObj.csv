@@ -60,8 +60,8 @@ __dt__7AreaObjFv,AreaObj.o,AreaObj.a,true
 __dt__10AreaObjMgrFv,AreaObj.o,AreaObj.a,true
 __dt__Q22MR26AssignableArray<P7AreaObj>Fv,AreaObj.o,AreaObj.a,true
 createManager<10AreaObjMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,true
-createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
-createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
+createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,true
+createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,true
 createManager<12WaterAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
 createManager<19GlaringLightAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,false
 createManager<15LightAreaHolder>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr,AreaObjContainer.o,AreaObj.a,true
@@ -72,7 +72,7 @@ getManager__16AreaObjContainerCFPCc,AreaObjContainer.o,AreaObj.a,false
 getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>,AreaObjContainer.o,AreaObj.a,true
 getAreaObjContainer__2MRFv,AreaObjContainer.o,AreaObj.a,true
 __dt__16AreaObjContainerFv,AreaObjContainer.o,AreaObj.a,true
-__dt__11WarpCubeMgrFv,AreaObjContainer.o,AreaObj.a,false
+__dt__11WarpCubeMgrFv,AreaObjContainer.o,AreaObj.a,true
 __ct__15AreaObjFollowerFP7AreaObjRC12JMapInfoIter,AreaObjFollower.o,AreaObj.a,true
 update__15AreaObjFollowerFv,AreaObjFollower.o,AreaObj.a,true
 addBaseMatrixFollowerAreaObj__2MRFP7AreaObjRC12JMapInfoIter,AreaObjFollower.o,AreaObj.a,true
@@ -168,10 +168,10 @@ getCameraID__14CubeCameraAreaCFv,CubeCamera.o,AreaObj.a,true
 isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3<f>,CubeCamera.o,AreaObj.a,true
 setCurrentCategory__14CubeCameraAreaFl,CubeCamera.o,AreaObj.a,true
 getCategoryArg__14CubeCameraAreaCFv,CubeCamera.o,AreaObj.a,true
-__ct__13CubeCameraMgrFlPCc,CubeCamera.o,AreaObj.a,false
-initAfterLoad__13CubeCameraMgrFv,CubeCamera.o,AreaObj.a,false
+__ct__13CubeCameraMgrFlPCc,CubeCamera.o,AreaObj.a,true
+initAfterLoad__13CubeCameraMgrFv,CubeCamera.o,AreaObj.a,true
 sort__13CubeCameraMgrFv,CubeCamera.o,AreaObj.a,false
-__dt__13CubeCameraMgrFv,CubeCamera.o,AreaObj.a,false
+__dt__13CubeCameraMgrFv,CubeCamera.o,AreaObj.a,true
 __ct__9DeathAreaFiPCc,DeathArea.o,AreaObj.a,true
 init__9DeathAreaFRC12JMapInfoIter,DeathArea.o,AreaObj.a,true
 movement__9DeathAreaFv,DeathArea.o,AreaObj.a,false

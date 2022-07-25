@@ -99,3 +99,17 @@ void CubeCameraArea::setCurrentCategory(s32 category) {
 s32 CubeCameraArea::getCategoryArg() const {
     return mObjArg3;
 }
+
+CubeCameraMgr::CubeCameraMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
+    CubeCameraArea::sCubeCategory = 1;
+}
+
+void CubeCameraMgr::initAfterLoad() {
+    sort();
+}
+
+// CubeCameraMgr::sort
+
+CubeCameraMgr::~CubeCameraMgr() {
+    
+}
