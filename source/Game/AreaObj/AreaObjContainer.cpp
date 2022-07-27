@@ -21,28 +21,22 @@ void AreaObjContainer::init(const JMapInfoIter &rIter) {
     }
 }
 
+/* this function is nearly impossible to match without context behind the random stack storages */
 AreaObjMgr* AreaObjContainer::getManager(const char *pName) const {
-    AreaObjMgr** first = (AreaObjMgr**)getFirstMgr();
-    while ((AreaObjMgr**)getFirstMgr() != (AreaObjMgr**)getLastMgr()) {
-        const char* str = strstr(pName, (*first)->mName);
-        bool flag = false;
-
-        if (str) {
-            if (str == pName) {
-                flag = true;
-            }
-        }
-
-        if (flag) {
+    const char * str;
+    AreaObjMgr** first = (AreaObjMgr**)&mManagerArray[0];
+    AreaObjMgr** last = (AreaObjMgr**)&mManagerArray[mNumManagers];
+    
+    while ((str && str == pName) == false) {
+        if (++first == last)
             break;
-        }
 
-        first++;
+        str = strstr(pName, (*first)->mName);   
     }
 
     return *first;
 }
-
+ 
 AreaObj* AreaObjContainer::getAreaObj(const char *pName, const TVec3f &rVec) const {
     return getManager(pName)->find_in(rVec);
 }

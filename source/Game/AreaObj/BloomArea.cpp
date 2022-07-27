@@ -1,14 +1,6 @@
 #include "Game/AreaObj/BloomArea.h"
 #include "Game/Util/ScreenUtil.h"
 
-ImageEffectArea::~ImageEffectArea() {
-
-}
-
-bool ImageEffectArea::isSyncWithPlayer() const {
-    return false;
-}
-
 BloomArea::BloomArea(int type, const char *pName) :
     ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {
     _40 = 128;
@@ -45,3 +37,4 @@ void BloomArea::init(const JMapInfoIter &rIter) {
 const char *BloomArea::getManagerName() const {
     return "ImageEffectArea";
 }
+ 

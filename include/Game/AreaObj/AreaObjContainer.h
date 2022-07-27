@@ -6,6 +6,7 @@
 #include "JSystem/JGeometry/TVec.h"
 #include "Game/AreaObj/CubeCamera.h"
 #include "Game/AreaObj/GlaringLightArea.h"
+#include "Game/AreaObj/ImageEffectArea.h"
 #include "Game/AreaObj/WarpCube.h"
 #include "Game/AreaObj/WaterArea.h"
 
@@ -31,6 +32,8 @@ namespace {
         { "EffectCylinder", 0x40, createManager<AreaObjMgr> },
         { "DeathArea", 0x40, createManager<AreaObjMgr> },
         /* todo -- finish me */
+
+        { "ImageEffectArea", 0x20, createManager<ImageEffectAreaMgr> },
 
         { "GlaringLightArea", 0x40, createManager<GlaringLightAreaMgr> },
 

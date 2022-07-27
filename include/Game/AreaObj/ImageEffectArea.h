@@ -12,9 +12,25 @@ public:
     };
 
     ImageEffectArea(EImageEffectType, int, const char *);
-    virtual ~ImageEffectArea();
 
-    virtual bool isSyncWithPlayer() const;
+    virtual ~ImageEffectArea() {
 
-    s32 mEffectType;
+    }
+
+
+    virtual bool isSyncWithPlayer() const {
+        return false;
+    }
+
+    s32 mEffectType;    // _3C
+};
+
+class ImageEffectAreaMgr : public AreaObjMgr {
+public:
+    ImageEffectAreaMgr(s32, const char *);
+
+    virtual ~ImageEffectAreaMgr();
+    virtual void initAfterPlacement();
+
+    void sort();
 };

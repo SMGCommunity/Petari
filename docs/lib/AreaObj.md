@@ -11,15 +11,15 @@
 | AreaForm.o | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | AreaFormDrawer.o | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | AreaObj.o | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
-| AreaObjContainer.o | 81.35048231511254% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
+| AreaObjContainer.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | AreaObjFollower.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | AstroChangeStageCube.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | AudioEffectArea.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | BgmProhibitArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| BigBubbleCameraArea.o | 72.02380952380952% | 7 / 10 | 70.0% | :eight_pointed_black_star: 
+| BigBubbleCameraArea.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
 | BloomArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| CameraRepulsiveArea.o | 45.85987261146497% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
+| CameraRepulsiveArea.o | 59.87261146496815% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
 | ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | CollisionArea.o | 27.04045422285309% | 20 / 31 | 64.51612903225806% | :eight_pointed_black_star: 
 | CubeCamera.o | 49.26470588235294% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
@@ -28,7 +28,7 @@
 | FollowCollisionArea.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | GlaringLightArea.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | HazeCube.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| ImageEffectArea.o | 20.588235294117645% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
+| ImageEffectArea.o | 57.84313725490197% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | LightArea.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | LightAreaHolder.o | 33.33333333333333% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | MercatorTransformCube.o | 12.424503882657463% | 6 / 23 | 26.08695652173913% | :eight_pointed_black_star: 
@@ -131,10 +131,10 @@
 | createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
-| createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :x: |
+| createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr | :white_check_mark: |
 | __ct__16AreaObjContainerFPCc | :white_check_mark: |
 | init__16AreaObjContainerFRC12JMapInfoIter | :white_check_mark: |
-| getManager__16AreaObjContainerCFPCc | :x: |
+| getManager__16AreaObjContainerCFPCc | :white_check_mark: |
 | getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getAreaObjContainer__2MRFv | :white_check_mark: |
 | __dt__16AreaObjContainerFv | :white_check_mark: |
@@ -185,15 +185,15 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__19BigBubbleCameraAreaFiPCc | :white_check_mark: |
-| __dt__14CubeCameraAreaFv | :x: |
-| isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| __dt__14CubeCameraAreaFv | :white_check_mark: |
+| isInVolume__19BigBubbleCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __ct__19BigBubbleSwitchAreaFiPCc | :white_check_mark: |
 | __dt__10SwitchAreaFv | :white_check_mark: |
 | isInVolume__19BigBubbleSwitchAreaCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __dt__19BigBubbleCameraAreaFv | :white_check_mark: |
 | __dt__19BigBubbleSwitchAreaFv | :white_check_mark: |
 | getManagerName__19BigBubbleSwitchAreaCFv | :white_check_mark: |
-| getManagerName__19BigBubbleCameraAreaCFv | :x: |
+| getManagerName__19BigBubbleCameraAreaCFv | :white_check_mark: |
 
 
 # BigBubbleGoalArea.o
@@ -223,14 +223,14 @@
 # CameraRepulsiveArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| scale__Q29JGeometry8TVec3&lt;f&gt;Ff | :x: |
-| __ami__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| scale__Q29JGeometry8TVec3&lt;f&gt;Ff | :white_check_mark: |
+| __ami__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | __dt__19CameraRepulsiveAreaFv | :white_check_mark: |
 | __dt__21CameraRepulsiveSphereFv | :white_check_mark: |
 | __dt__23CameraRepulsiveCylinderFv | :white_check_mark: |
 | getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getManagerName__19CameraRepulsiveAreaCFv | :x: |
+| getManagerName__19CameraRepulsiveAreaCFv | :white_check_mark: |
 
 
 # ChangeBgmCube.o
@@ -354,10 +354,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__15ImageEffectAreaFQ215ImageEffectArea16EImageEffectTypeiPCc | :white_check_mark: |
-| __ct__18ImageEffectAreaMgrFlPCc | :x: |
-| initAfterPlacement__18ImageEffectAreaMgrFv | :x: |
+| __ct__18ImageEffectAreaMgrFlPCc | :white_check_mark: |
+| initAfterPlacement__18ImageEffectAreaMgrFv | :white_check_mark: |
 | sort__18ImageEffectAreaMgrFv | :x: |
-| __dt__18ImageEffectAreaMgrFv | :x: |
+| __dt__18ImageEffectAreaMgrFv | :white_check_mark: |
 
 
 # LightArea.o

@@ -141,7 +141,13 @@ namespace JGeometry {
         void sub(const TVec3<T> &, const TVec3<T> &);
         void mul(const TVec3<T> &);
         void mul(const TVec3<T> &, const TVec3<T> &);
-        void scale(T);
+
+        void scale(T scalar) {
+            x = x * scalar;
+            y = y * scalar;
+            z = z * scalar;
+        }
+    
         void scale(T, const TVec3<T> &);
 
         T setLength(T);
@@ -190,7 +196,21 @@ namespace JGeometry {
         /* Operators */
         TVec3<T>& operator=(const TVec3<T> &);
         TVec3<T>& operator+=(const TVec3<T> &);
-        TVec3<T>& operator-=(const TVec3<T> &);
+        TVec3<T>& operator-=(register const TVec3<T> &src) {
+            register TVec3<T>* dst = this;
+
+            __asm {
+                psq_l f0, 0(dst), 0, 0
+                psq_l f1 0(src), 0, 0
+                psq_l f2, 8(dst), 1, 0
+                ps_sub f0, f0, f1
+                psq_l f3, 8(src), 1, 0
+                ps_sub f1, f2, f3
+                psq_st f0, 0(dst), 0, 0
+                psq_st f1, 8(dst), 1, 0
+            };
+        }
+    
         TVec3<T>& operator*=(T);
 
         TVec3<T> operator+(const TVec3<T> &) const;

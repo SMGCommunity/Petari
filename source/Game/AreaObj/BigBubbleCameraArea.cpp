@@ -18,7 +18,7 @@ bool BigBubbleSwitchArea::isInVolume(const TVec3f &rPos) const {
     }
 
     return false;
-}
+} 
 
 const char *BigBubbleSwitchArea::getManagerName() const {
     return "SwitchArea";
