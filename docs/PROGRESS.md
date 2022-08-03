@@ -72,7 +72,7 @@
 | [tpl](https://github.com/shibbo/Petari/blob/master/docs/lib/tpl.md) | 0.0% |
 | [TRK_Hollywood_Revolution](https://github.com/shibbo/Petari/blob/master/docs/lib/TRK_Hollywood_Revolution.md) | 0.0% |
 | [usb](https://github.com/shibbo/Petari/blob/master/docs/lib/usb.md) | 0.0% |
-| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 7.733650664957958% |
+| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 8.02003373827987% |
 | [vf](https://github.com/shibbo/Petari/blob/master/docs/lib/vf.md) | 0.0% |
 | [vi](https://github.com/shibbo/Petari/blob/master/docs/lib/vi.md) | 0.0% |
 | [wenc](https://github.com/shibbo/Petari/blob/master/docs/lib/wenc.md) | 0.0% |

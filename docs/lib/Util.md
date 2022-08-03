@@ -16,7 +16,7 @@
 | ActorStateUtil.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | ActorSwitchUtil.o | 0.0% | 0 / 34 | 0.0% | :x: 
 | BitArray.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| CameraUtil.o | 0.0% | 0 / 106 | 0.0% | :x: 
+| CameraUtil.o | 10.176579925650557% | 14 / 106 | 13.20754716981132% | :eight_pointed_black_star: 
 | DemoUtil.o | 0.0% | 0 / 79 | 0.0% | :x: 
 | DrawUtil.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | EffectUtil.o | 0.0% | 0 / 43 | 0.0% | :x: 
@@ -682,27 +682,27 @@
 | getCameraViewMtx__2MRFv | :x: |
 | getCameraInvViewMtx__2MRFv | :x: |
 | getCameraProjectionMtx__2MRFv | :x: |
-| getAspect__2MRFv | :x: |
-| getNearZ__2MRFv | :x: |
-| getFarZ__2MRFv | :x: |
-| getFovy__2MRFv | :x: |
+| getAspect__2MRFv | :white_check_mark: |
+| getNearZ__2MRFv | :white_check_mark: |
+| getFarZ__2MRFv | :white_check_mark: |
+| getFovy__2MRFv | :white_check_mark: |
 | setCameraViewMtx__2MRFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;bbRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setNearZ__2MRFf | :x: |
-| setFovy__2MRFf | :x: |
-| setShakeOffset__2MRFff | :x: |
-| getCamPos__2MRFv | :x: |
+| setNearZ__2MRFf | :white_check_mark: |
+| setFovy__2MRFf | :white_check_mark: |
+| setShakeOffset__2MRFff | :white_check_mark: |
+| getCamPos__2MRFv | :white_check_mark: |
 | getCamXdir__2MRFv | :x: |
 | getCamYdir__2MRFv | :x: |
-| getCamZdir__2MRFv | :x: |
+| getCamZdir__2MRFv | :white_check_mark: |
 | createMirrorCamera__2MRFv | :x: |
 | isExistMirrorCamera__2MRFv | :x: |
 | getMirrorCameraViewMtx__2MRFv | :x: |
 | getMirrorModelTexMtx__2MRFv | :x: |
-| completeCameraParameters__2MRFv | :x: |
-| resetCameraMan__2MRFv | :x: |
-| startCameraInterpolation__2MRFUl | :x: |
-| declareEventCamera__2MRFPC15ActorCameraInfoPCc | :x: |
-| endEventCamera__2MRFPC15ActorCameraInfoPCcbl | :x: |
+| completeCameraParameters__2MRFv | :white_check_mark: |
+| resetCameraMan__2MRFv | :white_check_mark: |
+| startCameraInterpolation__2MRFUl | :white_check_mark: |
+| declareEventCamera__2MRFPC15ActorCameraInfoPCc | :white_check_mark: |
+| endEventCamera__2MRFPC15ActorCameraInfoPCcbl | :white_check_mark: |
 | endEventCameraAtLanding__2MRFPC15ActorCameraInfoPCcl | :x: |
 | isEventCameraActive__2MRFv | :x: |
 | isEventCameraActive__2MRFPC15ActorCameraInfoPCc | :x: |

@@ -9,18 +9,18 @@ public:
     virtual ~CameraContext();
 
     void initParams();
-    const TMtx34f *getViewMtx() const;
-    const TMtx34f *getInvViewMtx() const;
-    //getAspect() const;
+    const TPos3f *getViewMtx() const;
+    const TPos3f *getInvViewMtx() const;
+    f32 getAspect() const;
     //setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
     void setNearZ(float);
     void setFovy(float);
     void setShakeOffset(float, float);
     void updateProjectionMtx();
 
-    TMtx34f mView;          // _C
-    TMtx34f mViewInv;       // _3C
-    TMtx34f mProjection;    // _6C
+    TPos3f mView;          // _C
+    TPos3f mViewInv;       // _3C
+    TPos3f mProjection;    // _6C
     f32 _9C;
     f32 _A0;
     f32 _A4;
