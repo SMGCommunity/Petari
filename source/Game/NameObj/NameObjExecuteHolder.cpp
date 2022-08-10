@@ -151,7 +151,9 @@ void NameObjExecuteInfo::requestMovementOff(int a1) {
     MR::requestMovementOff(mExecutedObject);
 }
 
-// NameObjExecuteInfo::findLightInfo
+void NameObjExecuteInfo::findLightInfo() const {
+    SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor()->findLightInfo(reinterpret_cast<LiveActor*>(mExecutedObject), _9, _A);
+}
 
 void NameObjExecuteInfo::connectToScene() {
     _4 = 3;
@@ -394,7 +396,9 @@ namespace MR {
         reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->requestMovementOff(category);
     }
 
-    // MR::findActorLightInfo
+    void MR::findActorLightInfo(const LiveActor *pActor) {
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->getConnectToSceneInfo(pActor)->findLightInfo();
+    }
 };
 
 NameObjExecuteHolder::NameObjExecuteHolder(int count) : NameObj("connectToScene情報保持") {

@@ -14,7 +14,7 @@
 | NameObjAdaptor.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
-| NameObjExecuteHolder.o | 94.73684210526315% | 44 / 49 | 89.79591836734694% | :eight_pointed_black_star: 
+| NameObjExecuteHolder.o | 100.0% | 49 / 49 | 100.0% | :white_check_mark: 
 | NameObjFactory.o | 12.17170602516001% | 59 / 568 | 10.387323943661972% | :eight_pointed_black_star: 
 | NameObjFinder.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -125,12 +125,12 @@
 | requestDisconnect__18NameObjExecuteInfoFPUcb | :white_check_mark: |
 | executeRequirementConnectMovement__18NameObjExecuteInfoFv | :white_check_mark: |
 | executeRequirementDisconnectMovement__18NameObjExecuteInfoFv | :white_check_mark: |
-| executeRequirementConnectDraw__18NameObjExecuteInfoFv | :x: |
-| executeRequirementDisconnectDraw__18NameObjExecuteInfoFv | :x: |
-| executeRequirementDisconnectDrawDelay__18NameObjExecuteInfoFv | :x: |
+| executeRequirementConnectDraw__18NameObjExecuteInfoFv | :white_check_mark: |
+| executeRequirementDisconnectDraw__18NameObjExecuteInfoFv | :white_check_mark: |
+| executeRequirementDisconnectDrawDelay__18NameObjExecuteInfoFv | :white_check_mark: |
 | requestMovementOn__18NameObjExecuteInfoFi | :white_check_mark: |
 | requestMovementOff__18NameObjExecuteInfoFi | :white_check_mark: |
-| findLightInfo__18NameObjExecuteInfoCFv | :x: |
+| findLightInfo__18NameObjExecuteInfoCFv | :white_check_mark: |
 | connectToScene__18NameObjExecuteInfoFv | :white_check_mark: |
 | disconnectToScene__18NameObjExecuteInfoFv | :white_check_mark: |
 | connectToDraw__18NameObjExecuteInfoFv | :white_check_mark: |
@@ -164,7 +164,7 @@
 | executeRequirementDisconnectDrawDelay__2MRFv | :white_check_mark: |
 | requestMovementOnWithCategory__2MRFi | :white_check_mark: |
 | requestMovementOffWithCategory__2MRFi | :white_check_mark: |
-| findActorLightInfo__2MRFPC9LiveActor | :x: |
+| findActorLightInfo__2MRFPC9LiveActor | :white_check_mark: |
 | __ct__20NameObjExecuteHolderFi | :white_check_mark: |
 | __dt__20NameObjExecuteHolderFv | :white_check_mark: |
 
