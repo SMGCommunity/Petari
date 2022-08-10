@@ -95,7 +95,6 @@ namespace MR {
     void endEventCamera(const ActorCameraInfo *pInfo, const char *pEventName, bool a3, s32 a4) {
         MR::getCameraDirector()->endEvent(pInfo->mZoneID, pEventName, a3, a4);
     }
-<<<<<<< HEAD
 
     void declareGlobalEventCameraAbyss(const char *pEventName) {
         MR::getCameraDirector()->declareEvent(0, pEventName);
@@ -107,6 +106,4 @@ namespace MR {
             chunk->_64 = true;
         }
     }
-=======
->>>>>>> 73ad6c3d03880aa4401c52c4ad1ff1221d8f5347
 };
