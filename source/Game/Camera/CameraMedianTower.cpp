@@ -1,5 +1,6 @@
 #include "Game/Camera/CameraMedianTower.h"
 #include "Game/Camera/CamTranslatorMedianTower.h"
+#include "Game/Camera/CameraLocalUtil.h"
 
 CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     mString = NULL;
@@ -18,6 +19,13 @@ CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     _80 = 1.0f;
     _84 = 1;
     _88 = 120;
+}
+
+void CameraMedianTower::reset() {
+    CameraLocalUtil::setPos(this, *CameraLocalUtil::getPos(mCameraMan));
+    CameraLocalUtil::setWatchPos(this, *CameraLocalUtil::getWatchPos(mCameraMan));
+    CameraLocalUtil::setUpVecAndWatchUpVec(this, *CameraLocalUtil::getUpVec(mCameraMan));
+    _84 = 1;
 }
 
 CameraMedianTower::~CameraMedianTower() {

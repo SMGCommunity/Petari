@@ -16,7 +16,7 @@
 | ActorStateUtil.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | ActorSwitchUtil.o | 0.0% | 0 / 34 | 0.0% | :x: 
 | BitArray.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| CameraUtil.o | 0.0% | 0 / 106 | 0.0% | :x: 
+| CameraUtil.o | 10.176579925650557% | 14 / 106 | 13.20754716981132% | :eight_pointed_black_star: 
 | DemoUtil.o | 0.0% | 0 / 79 | 0.0% | :x: 
 | DrawUtil.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | EffectUtil.o | 0.0% | 0 / 43 | 0.0% | :x: 
@@ -30,7 +30,7 @@
 | GamePadUtil.o | 0.0% | 0 / 63 | 0.0% | :x: 
 | GravityUtil.o | 89.94708994708994% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | HashUtil.o | 41.80790960451977% | 7 / 11 | 63.63636363636363% | :eight_pointed_black_star: 
-| JMapUtil.o | 10.631229235880399% | 8 / 86 | 9.30232558139535% | :eight_pointed_black_star: 
+| JMapUtil.o | 100.0% | 86 / 86 | 100.0% | :white_check_mark: 
 | JointUtil.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | LayoutUtil.o | 0.21998742928975487% | 2 / 166 | 1.2048192771084338% | :eight_pointed_black_star: 
 | LightUtil.o | 0.0% | 0 / 5 | 0.0% | :x: 
@@ -682,27 +682,27 @@
 | getCameraViewMtx__2MRFv | :x: |
 | getCameraInvViewMtx__2MRFv | :x: |
 | getCameraProjectionMtx__2MRFv | :x: |
-| getAspect__2MRFv | :x: |
-| getNearZ__2MRFv | :x: |
-| getFarZ__2MRFv | :x: |
-| getFovy__2MRFv | :x: |
+| getAspect__2MRFv | :white_check_mark: |
+| getNearZ__2MRFv | :white_check_mark: |
+| getFarZ__2MRFv | :white_check_mark: |
+| getFovy__2MRFv | :white_check_mark: |
 | setCameraViewMtx__2MRFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;bbRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setNearZ__2MRFf | :x: |
-| setFovy__2MRFf | :x: |
-| setShakeOffset__2MRFff | :x: |
-| getCamPos__2MRFv | :x: |
+| setNearZ__2MRFf | :white_check_mark: |
+| setFovy__2MRFf | :white_check_mark: |
+| setShakeOffset__2MRFff | :white_check_mark: |
+| getCamPos__2MRFv | :white_check_mark: |
 | getCamXdir__2MRFv | :x: |
 | getCamYdir__2MRFv | :x: |
-| getCamZdir__2MRFv | :x: |
+| getCamZdir__2MRFv | :white_check_mark: |
 | createMirrorCamera__2MRFv | :x: |
 | isExistMirrorCamera__2MRFv | :x: |
 | getMirrorCameraViewMtx__2MRFv | :x: |
 | getMirrorModelTexMtx__2MRFv | :x: |
-| completeCameraParameters__2MRFv | :x: |
-| resetCameraMan__2MRFv | :x: |
-| startCameraInterpolation__2MRFUl | :x: |
-| declareEventCamera__2MRFPC15ActorCameraInfoPCc | :x: |
-| endEventCamera__2MRFPC15ActorCameraInfoPCcbl | :x: |
+| completeCameraParameters__2MRFv | :white_check_mark: |
+| resetCameraMan__2MRFv | :white_check_mark: |
+| startCameraInterpolation__2MRFUl | :white_check_mark: |
+| declareEventCamera__2MRFPC15ActorCameraInfoPCc | :white_check_mark: |
+| endEventCamera__2MRFPC15ActorCameraInfoPCcbl | :white_check_mark: |
 | endEventCameraAtLanding__2MRFPC15ActorCameraInfoPCcl | :x: |
 | isEventCameraActive__2MRFv | :x: |
 | isEventCameraActive__2MRFPC15ActorCameraInfoPCc | :x: |
@@ -1349,92 +1349,92 @@
 # JMapUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| isValidInfo__2MRFRC12JMapInfoIter | :x: |
-| isObjectName__2MRFRC12JMapInfoIterPCc | :x: |
-| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :x: |
-| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPf | :x: |
-| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPb | :x: |
-| getJMapInfoTrans__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoMatrixFromRT__2MRFRC12JMapInfoIterPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :x: |
-| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg4WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg7WithInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPb | :x: |
-| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPf | :x: |
-| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPb | :x: |
+| isValidInfo__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isObjectName__2MRFRC12JMapInfoIterPCc | :white_check_mark: |
+| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :white_check_mark: |
+| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPf | :white_check_mark: |
+| getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPb | :white_check_mark: |
+| getJMapInfoTrans__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoMatrixFromRT__2MRFRC12JMapInfoIterPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
+| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg4WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg7WithInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg0NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg1NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg2NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg3NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg4NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg5NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg6NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
+| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPf | :white_check_mark: |
+| getJMapInfoArg7NoInit__2MRFRC12JMapInfoIterPb | :white_check_mark: |
 | isEqualObjectName__2MRFRC12JMapInfoIterPCc | :white_check_mark: |
 | getDemoGroupID__2MRFRC12JMapInfoIter | :white_check_mark: |
 | getDemoGroupLinkID__2MRFRC12JMapInfoIter | :white_check_mark: |
 | getJMapInfoRailArg__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPl | :white_check_mark: |
 | getJMapInfoRailArg0NoInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
-| getRailId__2MRFRC12JMapInfoIterPl | :x: |
+| getRailId__2MRFRC12JMapInfoIterPl | :white_check_mark: |
 | getObjectName__2MRFPPCcRC12JMapInfoIter | :white_check_mark: |
 | isExistJMapArg__2MRFRC12JMapInfoIter | :white_check_mark: |
 | getJMapInfoShapeIdWithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
-| getJMapInfoTransLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoRotateLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoScale__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoV3f__2MRFRC12JMapInfoIterPCcPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg4WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg5WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg6WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoArg7WithInit__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoFollowID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoGroupID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoClippingGroupID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoDemoGroupID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoLinkID__2MRFRC12JMapInfoIterPl | :x: |
-| isConnectedWithRail__2MRFRC12JMapInfoIter | :x: |
-| isExistStageSwitchA__2MRFRC12JMapInfoIter | :x: |
-| isExistStageSwitchB__2MRFRC12JMapInfoIter | :x: |
-| isExistStageSwitchAppear__2MRFRC12JMapInfoIter | :x: |
-| isExistStageSwitchDead__2MRFRC12JMapInfoIter | :x: |
-| isExistStageSwitchSleep__2MRFRC12JMapInfoIter | :x: |
-| getJMapInfoCameraSetID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoViewGroupID__2MRFRC12JMapInfoIterPl | :x: |
-| getJMapInfoMessageID__2MRFRC12JMapInfoIterPl | :x: |
-| getDemoCastID__2MRFRC12JMapInfoIter | :x: |
-| getDemoName__2MRFRC12JMapInfoIter | :x: |
-| getDemoSheetName__2MRFRC12JMapInfoIter | :x: |
-| getNextLinkRailID__2MRFRC12JMapInfoIterPl | :x: |
-| isEqualRailUsage__2MRFRC12JMapInfoIterPCc | :x: |
-| getRailPointPos0__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getRailPointPos1__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getRailPointPos2__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| isLoopRailPathIter__2MRFRC12JMapInfoIter | :x: |
+| getJMapInfoTransLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoRotateLocal__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoScale__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoV3f__2MRFRC12JMapInfoIterPCcPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getJMapInfoArg1WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg2WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg3WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg4WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg5WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg6WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoArg7WithInit__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoFollowID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoGroupID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoClippingGroupID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoDemoGroupID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoLinkID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| isConnectedWithRail__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isExistStageSwitchA__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isExistStageSwitchB__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isExistStageSwitchAppear__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isExistStageSwitchDead__2MRFRC12JMapInfoIter | :white_check_mark: |
+| isExistStageSwitchSleep__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getJMapInfoCameraSetID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoViewGroupID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getJMapInfoMessageID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| getDemoCastID__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getDemoName__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getDemoSheetName__2MRFRC12JMapInfoIter | :white_check_mark: |
+| getNextLinkRailID__2MRFRC12JMapInfoIterPl | :white_check_mark: |
+| isEqualRailUsage__2MRFRC12JMapInfoIterPCc | :white_check_mark: |
+| getRailPointPos0__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getRailPointPos1__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getRailPointPos2__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isLoopRailPathIter__2MRFRC12JMapInfoIter | :white_check_mark: |
 
 
 # JointUtil.o

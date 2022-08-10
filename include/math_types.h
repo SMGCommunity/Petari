@@ -11,3 +11,8 @@ const f32 FLOAT_MAX = 3.4028235e38;
 const f32 FLOAT_ZERO = 0.0f;
 
 const static Vec gZeroVec = { 0.0f, 0.0f, 0.0f };
+
+namespace std {
+    f32 atan2(f32, f32);
+};
+

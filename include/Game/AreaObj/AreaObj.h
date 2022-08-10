@@ -5,7 +5,7 @@
 #include "Game/AreaObj/AreaForm.h"
 #include "Game/NameObj/NameObj.h"
 #include "Game/Map/StageSwitch.h"
-#include "Game/Util.h"
+#include "Game/Util/Array.h"
 
 class AreaObj : public NameObj {
 public:

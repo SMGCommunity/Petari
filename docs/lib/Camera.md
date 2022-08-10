@@ -90,7 +90,7 @@
 | CameraManPause.o | 15.48223350253807% | 7 / 10 | 70.0% | :eight_pointed_black_star: 
 | CameraManSubjective.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | CameraMedianPlanet.o | 8.827238335435057% | 3 / 15 | 20.0% | :eight_pointed_black_star: 
-| CameraMedianTower.o | 9.975062344139651% | 3 / 11 | 27.27272727272727% | :eight_pointed_black_star: 
+| CameraMedianTower.o | 13.341645885286782% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
 | CameraMtxRegParallel.o | 38.59649122807017% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
 | CameraObjParallel.o | 30.198019801980198% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | CameraParallel.o | 18.157894736842106% | 3 / 10 | 30.0% | :eight_pointed_black_star: 
@@ -1255,7 +1255,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__17CameraMedianTowerFPCc | :white_check_mark: |
-| reset__17CameraMedianTowerFv | :x: |
+| reset__17CameraMedianTowerFv | :white_check_mark: |
 | calc__17CameraMedianTowerFv | :x: |
 | createTranslator__17CameraMedianTowerFv | :white_check_mark: |
 | calcFovyPos__17CameraMedianTowerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |

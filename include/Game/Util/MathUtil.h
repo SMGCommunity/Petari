@@ -13,6 +13,7 @@ extern "C" {
 f64 sin(f32);
 f64 cos(f32);
 f64 fmod(f64, f64);
+f64 asin(f32);
 }
 #endif
 

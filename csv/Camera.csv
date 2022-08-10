@@ -704,7 +704,7 @@ getRegisterUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3<f>,CameraMedianPlanet
 calcWatchPos__18CameraMedianPlanetFPQ29JGeometry8TVec3<f>,CameraMedianPlanet.o,Camera.a,false
 calcUpVec__18CameraMedianPlanetFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,CameraMedianPlanet.o,Camera.a,false
 __ct__17CameraMedianTowerFPCc,CameraMedianTower.o,Camera.a,true
-reset__17CameraMedianTowerFv,CameraMedianTower.o,Camera.a,false
+reset__17CameraMedianTowerFv,CameraMedianTower.o,Camera.a,true
 calc__17CameraMedianTowerFv,CameraMedianTower.o,Camera.a,false
 createTranslator__17CameraMedianTowerFv,CameraMedianTower.o,Camera.a,true
 calcFovyPos__17CameraMedianTowerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,CameraMedianTower.o,Camera.a,false

@@ -8,11 +8,11 @@ CameraContext::~CameraContext() {
 
 }
 
-const TMtx34f *CameraContext::getViewMtx() const {
+const TPos3f *CameraContext::getViewMtx() const {
     return &mView;
 }
 
-const TMtx34f *CameraContext::getInvViewMtx() const {
+const TPos3f *CameraContext::getInvViewMtx() const {
     return &mViewInv;
 }
 

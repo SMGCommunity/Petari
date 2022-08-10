@@ -201,7 +201,7 @@ namespace JGeometry {
 
             __asm {
                 psq_l f0, 0(dst), 0, 0
-                psq_l f1 0(src), 0, 0
+                psq_l f1, 0(src), 0, 0
                 psq_l f2, 8(dst), 1, 0
                 ps_sub f0, f0, f1
                 psq_l f3, 8(src), 1, 0

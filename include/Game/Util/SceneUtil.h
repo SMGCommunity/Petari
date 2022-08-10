@@ -56,4 +56,6 @@ namespace MR {
     void incPurpleCoin();
 
     s32 getCoinNum();
+
+    bool isPlacementLocalStage();
 }
