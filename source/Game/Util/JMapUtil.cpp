@@ -3,14 +3,6 @@
 #include "math_types.h"
 #include <stdio.h>
 
-inline bool someStupidInline(f32 a1, f32 a2, f32 a3) {
-    if (a1 - a2 <= a3) {
-        return true;
-    }
-
-    return false;
-}
-
 namespace MR {
     bool isValidInfo(const JMapInfoIter &rIter) {
         return rIter.isValid();
