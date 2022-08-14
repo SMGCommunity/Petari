@@ -1,4 +1,6 @@
 #include "Game/Util.h"
+#include "Game/System/HeapMemoryWatcher.h"
+#include "Game/SingletonHolder.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -46,10 +48,23 @@ namespace MR {
     }
 
     // MR::getAproposHeapForSceneArchive
-    // MR::getStationedHeapNapa
-    // MR::getStationedHeapGDDR3
-    // MR::getSceneHeapNapa
-    // MR::getSceneHeapGDDR3
+    
+    JKRExpHeap* MR::getStationedHeapNapa() {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mStationedHeapNapa;
+    }
+
+    JKRExpHeap* getStationedHeapGDDR3() {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mStationedHeapGDDR;
+    }
+
+    JKRSolidHeap* getSceneHeapNapa() {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mSceneHeapNapa;
+    }
+
+    JKRSolidHeap* getSceneHeapGDDR3() {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mSceneHeapGDDR;
+    }
+
     // MR::getHeapNapa
     // MR::getHeapGDDR3
 

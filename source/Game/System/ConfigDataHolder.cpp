@@ -108,10 +108,10 @@ ConfigDataHolder::ConfigDataHolder() : mChunkHolder(0), mCreateChunk(0), mMiiCre
     mChunkHolder->addChunk(mMiiCreateChunk);
     mChunkHolder->addChunk(mMiscCreateChunk);
     resetAllData();
-    snprintf(mName, 0x10, "config1");
+    std::snprintf(mName, 0x10, "config1");
 }
 
 void ConfigDataHolder::loadFromFileBinary(const char *pName, const u8 *pData, u32 len) {
-    snprintf(mName, 0x10, "%s", pName);
+    std::snprintf(mName, 0x10, "%s", pName);
     mChunkHolder->loadFromFileBinary(pData, len);
 }

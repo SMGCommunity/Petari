@@ -33,7 +33,7 @@
 | [J3DGraphLoader](https://github.com/shibbo/Petari/blob/master/docs/lib/J3DGraphLoader.md) | 0.0% |
 | [JAudio2](https://github.com/shibbo/Petari/blob/master/docs/lib/JAudio2.md) | 0.0% |
 | [JGadget](https://github.com/shibbo/Petari/blob/master/docs/lib/JGadget.md) | 0.0% |
-| [JKernel](https://github.com/shibbo/Petari/blob/master/docs/lib/JKernel.md) | 15.333440205193972% |
+| [JKernel](https://github.com/shibbo/Petari/blob/master/docs/lib/JKernel.md) | 15.621994228919526% |
 | [JMath](https://github.com/shibbo/Petari/blob/master/docs/lib/JMath.md) | 0.0% |
 | [JParticle](https://github.com/shibbo/Petari/blob/master/docs/lib/JParticle.md) | 0.0% |
 | [JSupport](https://github.com/shibbo/Petari/blob/master/docs/lib/JSupport.md) | 32.04951856946355% |
@@ -72,7 +72,7 @@
 | [tpl](https://github.com/shibbo/Petari/blob/master/docs/lib/tpl.md) | 0.0% |
 | [TRK_Hollywood_Revolution](https://github.com/shibbo/Petari/blob/master/docs/lib/TRK_Hollywood_Revolution.md) | 0.0% |
 | [usb](https://github.com/shibbo/Petari/blob/master/docs/lib/usb.md) | 0.0% |
-| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.451949104889437% |
+| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.467641328085156% |
 | [vf](https://github.com/shibbo/Petari/blob/master/docs/lib/vf.md) | 0.0% |
 | [vi](https://github.com/shibbo/Petari/blob/master/docs/lib/vi.md) | 0.0% |
 | [wenc](https://github.com/shibbo/Petari/blob/master/docs/lib/wenc.md) | 0.0% |

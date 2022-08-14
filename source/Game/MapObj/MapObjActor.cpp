@@ -11,6 +11,7 @@
 #include "Game/Util.h"
 
 #include <stdio.h>
+#include <cstring>
 
 NrvMapObjActor::HostTypeDone NrvMapObjActor::HostTypeDone::sInstance;
 NrvMapObjActor::HostTypeMove NrvMapObjActor::HostTypeMove::sInstance;

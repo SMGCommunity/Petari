@@ -3,6 +3,7 @@
 #include "Game/Util.h"
 #include "Game/Util/DirectDraw.h"
 
+
 SpinDriverPathDrawInit::SpinDriverPathDrawInit() : NameObj("スピンドライバーレール描画初期化"),
     mOrangeTexture(NULL), mGreenTexture(NULL), mPinkTexture(NULL), mMaskTexture(NULL), mIsPathAtOpa(false) {
     

@@ -1,7 +1,7 @@
 #include "Game/LiveActor/LiveActorGroupArray.h"
 #include "Game/LiveActor/LiveActor.h"
-
-#include <cstdio>
+#include <stdio.h>
+#include <cstring>
 
 MsgSharedGroup::MsgSharedGroup(const char *pName, s32 a2, const JMapInfoIter &rIter) : LiveActorGroup(_28, a2) {
     mIDInfo = 0;

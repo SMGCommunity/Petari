@@ -9,7 +9,7 @@ class JKRHeap {
 public:
 
     void* alloc(u32, int);
-    void becomeCurrentHeap();
+    JKRHeap* becomeCurrentHeap();
 
     void becomeSystemHeap();
 
@@ -26,6 +26,8 @@ public:
 
     static void setErrorHandler(void (*)(void *, u32, int));
 
+    static void initArena(char **, u32 *, int);
+
     static JKRHeap *sGameHeap; // _806B70A8
     static JKRHeap *sCurrentHeap; // _806B70AC
     static JKRHeap *sRootHeap; // _806B70B0
@@ -38,6 +40,10 @@ public:
     u8 _6A;
     u8 _6B;
 };
+
+/*void * operator new(void * ptr, size_t) { 
+    return ptr; 
+}*/
 
 void* operator new(u32, JKRHeap *, int);
 void* operator new[](u32, int);

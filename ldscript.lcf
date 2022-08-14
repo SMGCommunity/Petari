@@ -17,6 +17,7 @@ SECTIONS {
         .sdata ALIGN(0x20):{}
         .sbss ALIGN(0x20):{}
         .sdata2 ALIGN(0x20):{}
+        .sbss2 ALIGN(0x20):{}
         .stack ALIGN(0x100):{}
     } > text
     _stack_addr = (_f_sdata2 + SIZEOF(.sdata2) + 65536 + 0x7) & ~0x7;

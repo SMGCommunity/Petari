@@ -38,7 +38,7 @@
 | MapPartsUtil.o | 0.0% | 0 / 58 | 0.0% | :x: 
 | MapUtil.o | 0.0% | 0 / 92 | 0.0% | :x: 
 | MathUtil.o | 15.035699286014278% | 31 / 137 | 22.62773722627737% | :eight_pointed_black_star: 
-| MemoryUtil.o | 25.949367088607595% | 8 / 24 | 33.33333333333333% | :eight_pointed_black_star: 
+| MemoryUtil.o | 29.746835443037973% | 12 / 24 | 50.0% | :eight_pointed_black_star: 
 | MessageUtil.o | 0.0% | 0 / 18 | 0.0% | :x: 
 | ModelUtil.o | 2.6072786529060292% | 6 / 69 | 8.695652173913043% | :eight_pointed_black_star: 
 | MtxUtil.o | 5.6675062972292185% | 11 / 79 | 13.924050632911392% | :eight_pointed_black_star: 
@@ -2318,10 +2318,10 @@
 | getHomeButtonLayoutAllocator__2MRFv | :x: |
 | getCurrentHeap__2MRFv | :white_check_mark: |
 | getAproposHeapForSceneArchive__2MRFf | :x: |
-| getStationedHeapNapa__2MRFv | :x: |
-| getStationedHeapGDDR3__2MRFv | :x: |
-| getSceneHeapNapa__2MRFv | :x: |
-| getSceneHeapGDDR3__2MRFv | :x: |
+| getStationedHeapNapa__2MRFv | :white_check_mark: |
+| getStationedHeapGDDR3__2MRFv | :white_check_mark: |
+| getSceneHeapNapa__2MRFv | :white_check_mark: |
+| getSceneHeapGDDR3__2MRFv | :white_check_mark: |
 | getHeapNapa__2MRFPC7JKRHeap | :x: |
 | getHeapGDDR3__2MRFPC7JKRHeap | :x: |
 | becomeCurrentHeap__2MRFP7JKRHeap | :white_check_mark: |

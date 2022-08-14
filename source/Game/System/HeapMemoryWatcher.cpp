@@ -2,6 +2,8 @@
 #include "Game/Util.h"
 #include <revolution/wpad.h>
 
+JKRExpHeap* HeapMemoryWatcher::sRootHeapGDDR3;
+
 namespace {
     JKRExpHeap* createExpHeap(u32 size, JKRHeap *pHeap, bool a3) {
         JKRExpHeap* heap;

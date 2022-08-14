@@ -10,4 +10,7 @@ namespace MR {
     public:
         static OSMutex sMutex;
     };
+    
+    template<int T>
+    OSMutex MutexHolder<T>::sMutex;
 };

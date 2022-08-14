@@ -7,7 +7,7 @@ CaptureScreenDirector::CaptureScreenDirector() : NameObj("画面キャプチャ"
     mTimingType = "Indirect";
     mTexture = NULL;
     _18 = 0;
-    MR::CurrentHeapRestorer heap_restorer(MR::getStationedHeapGDDR3());
+    MR::CurrentHeapRestorer heap_restorer((JKRHeap*)MR::getStationedHeapGDDR3());
     mTexture = new JUTTexture(JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight, GX_TF_RGB565);
 }
 

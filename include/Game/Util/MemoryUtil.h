@@ -6,6 +6,7 @@
 
 class JKRHeap;
 class JKRExpHeap;
+class JKRSolidHeap;
 
 namespace MR {
     void becomeCurrentHeap(JKRHeap *);
@@ -17,11 +18,12 @@ namespace MR {
     void zeroMemory(void *, u32);
     s32 calcCheckSum(const void *, u32);
 
-    JKRHeap* getStationedHeapNapa();
+    JKRExpHeap* getStationedHeapNapa();
+    JKRExpHeap* getStationedHeapGDDR3();
+    JKRSolidHeap* getSceneHeapNapa();
+    JKRSolidHeap* getSceneHeapGDDR3();
 
     JKRHeap* getAproposHeapForSceneArchive(f32);
-
-    JKRHeap* getStationedHeapGDDR3();
 
     void adjustHeapSize(JKRExpHeap *, const char *);
 

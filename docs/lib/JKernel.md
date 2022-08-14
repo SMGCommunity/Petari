@@ -8,8 +8,8 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| JKRHeap.o | 0.0% | 0 / 48 | 0.0% | :x: 
-| JKRExpHeap.o | 0.0% | 0 / 40 | 0.0% | :x: 
+| JKRHeap.o | 0.6504065040650406% | 1 / 48 | 2.083333333333333% | :eight_pointed_black_star: 
+| JKRExpHeap.o | 1.825442099258414% | 1 / 40 | 2.5% | :eight_pointed_black_star: 
 | JKRSolidHeap.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | JKRUnitHeap.o | 0.0% | 0 / 26 | 0.0% | :x: 
 | JKRDisposer.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -43,7 +43,7 @@
 | __dt__7JKRHeapFv | :x: |
 | initArena__7JKRHeapFPPcPUli | :x: |
 | becomeSystemHeap__7JKRHeapFv | :x: |
-| becomeCurrentHeap__7JKRHeapFv | :x: |
+| becomeCurrentHeap__7JKRHeapFv | :white_check_mark: |
 | destroy__7JKRHeapFP7JKRHeap | :x: |
 | alloc__7JKRHeapFUliP7JKRHeap | :x: |
 | alloc__7JKRHeapFUli | :x: |
@@ -89,7 +89,7 @@
 # JKRExpHeap.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| createRoot__10JKRExpHeapFib | :x: |
+| createRoot__10JKRExpHeapFib | :white_check_mark: |
 | create__10JKRExpHeapFUlP7JKRHeapb | :x: |
 | create__10JKRExpHeapFPvUlP7JKRHeapb | :x: |
 | do_destroy__10JKRExpHeapFv | :x: |

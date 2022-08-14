@@ -2079,10 +2079,10 @@ free__Q22MR18NewDeleteAllocatorFP12MEMAllocatorPv,MemoryUtil.o,Util.a,true
 getHomeButtonLayoutAllocator__2MRFv,MemoryUtil.o,Util.a,false
 getCurrentHeap__2MRFv,MemoryUtil.o,Util.a,true
 getAproposHeapForSceneArchive__2MRFf,MemoryUtil.o,Util.a,false
-getStationedHeapNapa__2MRFv,MemoryUtil.o,Util.a,false
-getStationedHeapGDDR3__2MRFv,MemoryUtil.o,Util.a,false
-getSceneHeapNapa__2MRFv,MemoryUtil.o,Util.a,false
-getSceneHeapGDDR3__2MRFv,MemoryUtil.o,Util.a,false
+getStationedHeapNapa__2MRFv,MemoryUtil.o,Util.a,true
+getStationedHeapGDDR3__2MRFv,MemoryUtil.o,Util.a,true
+getSceneHeapNapa__2MRFv,MemoryUtil.o,Util.a,true
+getSceneHeapGDDR3__2MRFv,MemoryUtil.o,Util.a,true
 getHeapNapa__2MRFPC7JKRHeap,MemoryUtil.o,Util.a,false
 getHeapGDDR3__2MRFPC7JKRHeap,MemoryUtil.o,Util.a,false
 becomeCurrentHeap__2MRFP7JKRHeap,MemoryUtil.o,Util.a,true

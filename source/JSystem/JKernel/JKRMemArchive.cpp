@@ -101,7 +101,7 @@ void *JKRMemArchive::fetchResource(void *pData, unsigned long dataSize, SDIFileE
     }
 
     if (pFile->mFileData != NULL) {
-        memcpy(pData, pFile->mFileData, size);
+        std::memcpy(pData, pFile->mFileData, size);
     }
     else {
         s32 compression;

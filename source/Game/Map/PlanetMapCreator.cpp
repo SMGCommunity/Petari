@@ -2,8 +2,8 @@
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/NameObj/NameObjFactory.h"
 #include "Game/Util.h"
-
-#include <cstdio>
+#include <stdio.h>
+#include <cstring>
 
 #ifdef NON_MATCHING
 // scheduling issues

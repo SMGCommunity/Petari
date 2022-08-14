@@ -5,12 +5,14 @@
 class JKRExpHeap : public JKRHeap {
 public:
 
+    JKRExpHeap(void *, u32, JKRHeap *, bool);
+
     static JKRExpHeap* create(void *, u32, JKRHeap *, bool);
     static JKRExpHeap* create(u32, JKRHeap *, bool);
 
-    static void createRoot(int, bool);
+    static JKRExpHeap* createRoot(int, bool);
 
-    u32 _6C;
+    u8 _6C;
     u32 _70;
     u32 _74;
     u32 _78;

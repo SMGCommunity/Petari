@@ -28,3 +28,4 @@ sanity_check.py
 .ninja_log
 .ninja_deps
 build.ninja
+deps.zip

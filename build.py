@@ -6,8 +6,41 @@ import shutil
 import pathlib
 import shutil
 
+# todo -- implement me when SDK libs are decompiled
 sdk_o_paths = [
-    "build/RVL/os/init/__start.o"
+    
+]
+
+
+other_libs = [
+    "deps/EABI/PowerPC_EABI_Support/MetroTRK/TRK_Hollywood_Revolution.a",
+    "deps/EABI/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/LIB/MSL_C.PPCEABI.bare.h.a",
+    "deps/EABI/PowerPC_EABI_Support/Runtime/Lib/Runtime.PPCEABI.H.a",
+    "deps/NDEV/lib/NdevExi2A.a",
+    "deps/nw4r_lib/lyt_init.o",
+    "deps/RVL_SDK/RVL/lib/ai.a",
+    "deps/RVL_SDK/RVL/lib/base.a",
+    "deps/RVL_SDK/RVL/lib/bte.a",
+    "deps/RVL_SDK/RVL/lib/db.a",
+    "deps/RVL_SDK/RVL/lib/dvd.a",
+    "deps/RVL_SDK/RVL/lib/euart.a",
+    "deps/RVL_SDK/RVL/lib/esp.a",
+    "deps/RVL_SDK/RVL/lib/exi.a",
+    "deps/RVL_SDK/RVL/lib/fs.a",
+    "deps/RVL_SDK/RVL/lib/gx.a",
+    "deps/RVL_SDK/RVL/lib/ipc.a",
+    "deps/RVL_SDK/RVL/lib/nand.a",
+    "deps/RVL_SDK/RVL/lib/os.a",
+    "deps/RVL_SDK/RVL/lib/pad.a",
+    "deps/RVL_SDK/RVL/lib/sc.a",
+    "deps/RVL_SDK/RVL/lib/si.a",
+    "deps/RVL_SDK/RVL/lib/usb.a",
+    "deps/RVL_SDK/RVL/lib/WPAD.a",
+    "deps/RVL_SDK/RVL/lib/wud.a",
+    "deps/RVL_SDK/RVL/lib/vi.a",
+
+    "build/JSystem/JKernel/JKRHeap.o",
+    "build/JSystem/JKernel/JKRExpHeap.o",
 ]
 
 def makeArchive(dir):
@@ -45,6 +78,9 @@ def makeElf():
     for sdk_o in sdk_o_paths:
         fileList += f"{sdk_o} "
 
+    for lib_a in other_libs:
+        fileList += f"{lib_a} "
+
     linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
     linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map main.map -o main.elf {fileList}"
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
@@ -64,7 +100,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -Cpp_exceptions off -stdinc -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -D_MSL_USING_MW_C_HEADERS -msgstyle gcc "
+    flags = "-c -Cpp_exceptions off -nostdlib -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -D_MSL_USING_MW_C_HEADERS -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -msgstyle gcc "
     includes = "-i . -I- -i include "
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
@@ -81,16 +117,19 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
         print("Using nonmatching functions")
         flags = flags + " -DNON_MATCHING "
 
+    ppc_root = "deps/EABI/PowerPC_EABI_Support"
+
     rvl_sdk_path = pathlib.Path("deps/RVL_SDK/include")
     nw4r_path = pathlib.Path("deps/NW4R/Library/include")
-    trk_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MetroTRK")
-    runtime_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/Runtime/Inc")
-    msl_c_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include")
-    msl_cpp_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include")
-    msl_c_common_path = pathlib.Path("deps/EABI/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include")
+    trk_path =          pathlib.Path(f"{ppc_root}/MetroTRK")
+    runtime_path =      pathlib.Path(f"{ppc_root}/Runtime/Inc")
+    msl_c_path =        pathlib.Path(f"{ppc_root}/MSL/MSL_C/PPC_EABI/Include")
+    msl_c_common_path = pathlib.Path(f"{ppc_root}/MSL/MSL_C/MSL_Common/Include")
+    msl_cpp_path =      pathlib.Path(f"{ppc_root}/MSL/MSL_C++/MSL_Common/Include")
+    msl_cpp_eabi_path = pathlib.Path(f"{ppc_root}/MSL/MSL_C++/PPC_EABI/Include")
     facelib_path = pathlib.Path("deps/RVLFaceLib/include")
 
-    includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
+    includes += f"-i {nw4r_path} -I- -i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_c_common_path} -I- -i {msl_cpp_path} -I- -i {msl_cpp_eabi_path} "
     flags += includes
 
     tasks = list()

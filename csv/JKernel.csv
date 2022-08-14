@@ -6,7 +6,7 @@ __dt__22JSUList<11JKRDisposer>Fv,JKRHeap.o,JKernel.a,false
 __dt__7JKRHeapFv,JKRHeap.o,JKernel.a,false
 initArena__7JKRHeapFPPcPUli,JKRHeap.o,JKernel.a,false
 becomeSystemHeap__7JKRHeapFv,JKRHeap.o,JKernel.a,false
-becomeCurrentHeap__7JKRHeapFv,JKRHeap.o,JKernel.a,false
+becomeCurrentHeap__7JKRHeapFv,JKRHeap.o,JKernel.a,true
 destroy__7JKRHeapFP7JKRHeap,JKRHeap.o,JKernel.a,false
 alloc__7JKRHeapFUliP7JKRHeap,JKRHeap.o,JKernel.a,false
 alloc__7JKRHeapFUli,JKRHeap.o,JKernel.a,false
@@ -47,7 +47,7 @@ do_getCurrentGroupId__7JKRHeapFv,JKRHeap.o,JKernel.a,false
 dump_sort__7JKRHeapFv,JKRHeap.o,JKernel.a,false
 __pp__25JSUTreeIterator<7JKRHeap>Fv,JKRHeap.o,JKernel.a,false
 __pp__30JSUListIterator<11JKRDisposer>Fi,JKRHeap.o,JKernel.a,false
-createRoot__10JKRExpHeapFib,JKRExpHeap.o,JKernel.a,false
+createRoot__10JKRExpHeapFib,JKRExpHeap.o,JKernel.a,true
 create__10JKRExpHeapFUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
 create__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
 do_destroy__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,false
