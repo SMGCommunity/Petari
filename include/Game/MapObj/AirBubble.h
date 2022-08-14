@@ -11,7 +11,7 @@ public:
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
-    virtual void contorl();
+    virtual void control();
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
