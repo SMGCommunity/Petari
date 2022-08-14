@@ -6,6 +6,50 @@ import shutil
 import pathlib
 import shutil
 
+sdk_o_paths = [
+    "build/RVL/os/init/__start.o"
+]
+
+def makeArchive(dir):
+    fileList = ""
+    for root, dirs, files in os.walk(f"build/Game/{dir}"):
+        for f in files:
+            if f.endswith(".o"):
+                fileList += f"build/Game/{dir}/{f} "
+
+    default_compiler_path = pathlib.Path("GC/3.0a3/")
+    linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
+    linker_flags = f"-nodefaults -xm l -o lib/{dir}.a {fileList}"
+
+    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
+        print("Library creation failed.")
+
+def makeLibArchive():
+    if not os.path.isdir("lib"):
+        os.mkdir("lib")
+
+    for root, dirs, files in os.walk("build/Game"):
+        for dir in dirs:
+            makeArchive(dir)
+
+def makeElf():
+    default_compiler_path = pathlib.Path("GC/3.0a3/")
+
+    fileList = ""
+
+    for root, dirs, files in os.walk("lib"):
+        for f in files:
+            if f.endswith(".a"):
+                fileList += f"{root}\\{f} "
+
+    for sdk_o in sdk_o_paths:
+        fileList += f"{sdk_o} "
+
+    linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
+    linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map main.map -o main.elf {fileList}"
+    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
+            print("Linking failed.")
+
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
 
@@ -13,7 +57,7 @@ def deleteDFiles():
         if dire.endswith(".d"):
             os.remove(os.path.join(os.getcwd(), dire))
 
-def main(compile_non_matching, use_ninja, clean_ninja):
+def main(compile_non_matching, use_ninja, clean_ninja, link):
     if not os.path.exists("deps"):
         print("deps folder not created, please run setup.py!")
         sys.exit(1)
@@ -116,8 +160,7 @@ def main(compile_non_matching, use_ninja, clean_ninja):
             deleteDFiles()
             sys.exit(1)
 
-    else:
-            
+    else:   
         for task in tasks:
             source_path, build_path = task     
 
@@ -136,10 +179,16 @@ def main(compile_non_matching, use_ninja, clean_ninja):
 
     deleteDFiles()
 
+    if link:
+        print("Creating library archives...")
+        makeLibArchive()
+        print("Making final ELF...")
+        makeElf()
     print("Complete.")
 
 def print_help_and_exit():
     print("Usage: build.py [flags...]")
+    print("\t-link: Link the final project together.")
     print("\t-non-matching: Compile non-matching code.")
     print("\t-no-ninja: Do not use ninja even if available.")
     print("\t-clean: Clean old build files before building new when using ninja.")
@@ -151,6 +200,7 @@ if __name__ == "__main__":
     compile_non_matching = False
     use_ninja = True
     clean_ninja = False
+    link = False
 
     for arg in sys.argv[1:]:
         if arg == "-non-matching":
@@ -161,9 +211,11 @@ if __name__ == "__main__":
             clean_ninja = True
         elif arg == "-help":
             print_help_and_exit()
+        elif arg == "-link":
+            link = True
         else:
             print(f"Invalid argument: {arg}")
             print()
             print_help_and_exit()
             
-    main(compile_non_matching, use_ninja, clean_ninja)
+    main(compile_non_matching, use_ninja, clean_ninja, link)

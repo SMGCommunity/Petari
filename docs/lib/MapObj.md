@@ -30,7 +30,7 @@
 | AstroMapBoard.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | AstroMapObj.o | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
 | AstroMapObjFunction.o | 0.0% | 0 / 14 | 0.0% | :x: 
-| AstroOverlookObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| AstroOverlookObj.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BallOpener.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | BallRail.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | Banekiti.o | 0.0% | 0 / 19 | 0.0% | :x: 
@@ -920,9 +920,9 @@
 # AstroOverlookObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16AstroOverlookObjFPCc | :x: |
-| control__16AstroOverlookObjFv | :x: |
-| __dt__16AstroOverlookObjFv | :x: |
+| __ct__16AstroOverlookObjFPCc | :white_check_mark: |
+| control__16AstroOverlookObjFv | :white_check_mark: |
+| __dt__16AstroOverlookObjFv | :white_check_mark: |
 
 
 # BallOpener.o

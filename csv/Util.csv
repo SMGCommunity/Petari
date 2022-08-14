@@ -3423,7 +3423,7 @@ getCylinderRadius__2MRFPC7AreaObj,AreaObjUtil.o,Util.a,false
 tryToUpdatePlayerRestartIdInfo__2MRFRCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
 getWaterAreaObj__2MRFP9WaterInfoRCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
 calcAreaMoveVelocity__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,AreaObjUtil.o,Util.a,false
-getCurrentAstroOverlookAreaObj__2MRFv,AreaObjUtil.o,Util.a,false
+getCurrentAstroOverlookAreaObj__2MRFv,AreaObjUtil.o,Util.a,true
 __ct__18BaseMatrixFollowerFP7NameObjRC12JMapInfoIter,BaseMatrixFollowTargetHolder.o,Util.a,true
 getFollowTargetActor__18BaseMatrixFollowerCFv,BaseMatrixFollowTargetHolder.o,Util.a,true
 calcFollowMatrix__18BaseMatrixFollowerCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,BaseMatrixFollowTargetHolder.o,Util.a,false

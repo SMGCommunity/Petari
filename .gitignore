@@ -11,6 +11,8 @@ deps
 *.id2
 *.nam
 *.til
+*.map
+*.elf
 *.o
 *.out
 *.elf

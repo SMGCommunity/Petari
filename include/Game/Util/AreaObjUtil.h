@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry/TVec.h"
 
 class AreaObj;
+class AreaObjContainer;
 class AreaObjMgr;
 class AreaCubeBoundingBox;
 
@@ -21,4 +22,8 @@ namespace MR {
     void calcCubeRotate(const AreaObj *, TVec3f *);
 
     TBox3f *getCubeLocalBox(const AreaObj *);
+
+    AreaObj* getCurrentAstroOverlookAreaObj();
+
+    AreaObj* getAreaIn(const char *, const TVec3f &);
 };

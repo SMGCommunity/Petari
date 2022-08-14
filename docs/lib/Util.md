@@ -61,7 +61,7 @@
 | SwitchEventFunctorListener.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | SystemUtil.o | 0.0% | 0 / 34 | 0.0% | :x: 
 | TalkUtil.o | 0.0% | 0 / 53 | 0.0% | :x: 
-| AreaObjUtil.o | 6.666666666666667% | 2 / 22 | 9.090909090909092% | :eight_pointed_black_star: 
+| AreaObjUtil.o | 9.481481481481481% | 3 / 22 | 13.636363636363635% | :eight_pointed_black_star: 
 | BaseMatrixFollowTargetHolder.o | 25.97173144876325% | 9 / 25 | 36.0% | :eight_pointed_black_star: 
 | BezierSurface.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | BothDirList.o | 34.705882352941174% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
@@ -3777,7 +3777,7 @@
 | tryToUpdatePlayerRestartIdInfo__2MRFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | getWaterAreaObj__2MRFP9WaterInfoRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcAreaMoveVelocity__2MRFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| getCurrentAstroOverlookAreaObj__2MRFv | :x: |
+| getCurrentAstroOverlookAreaObj__2MRFv | :white_check_mark: |
 
 
 # BaseMatrixFollowTargetHolder.o

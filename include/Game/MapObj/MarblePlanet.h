@@ -35,7 +35,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void control();
     virtual void attackSensor(HitSensor *, HitSensor *);
-    virtual u32 receiveMsgPush(HitSensor *, HitSensor *);
+    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
 
     void exeMove();

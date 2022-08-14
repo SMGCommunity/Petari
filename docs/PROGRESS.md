@@ -45,7 +45,7 @@
 | [libnw4r_ut](https://github.com/shibbo/Petari/blob/master/docs/lib/libnw4r_ut.md) | 0.0% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 38.87044721069618% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 12.97420756503816% |
-| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 15.98144546485143% |
+| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 16.018887351922537% |
 | [mem](https://github.com/shibbo/Petari/blob/master/docs/lib/mem.md) | 0.0% |
 | [MSL_C.PPCEABI.bare.H](https://github.com/shibbo/Petari/blob/master/docs/lib/MSL_C.PPCEABI.bare.H.md) | 0.0% |
 | [mtx](https://github.com/shibbo/Petari/blob/master/docs/lib/mtx.md) | 0.0% |
@@ -72,7 +72,7 @@
 | [tpl](https://github.com/shibbo/Petari/blob/master/docs/lib/tpl.md) | 0.0% |
 | [TRK_Hollywood_Revolution](https://github.com/shibbo/Petari/blob/master/docs/lib/TRK_Hollywood_Revolution.md) | 0.0% |
 | [usb](https://github.com/shibbo/Petari/blob/master/docs/lib/usb.md) | 0.0% |
-| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.427103084829543% |
+| [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.451949104889437% |
 | [vf](https://github.com/shibbo/Petari/blob/master/docs/lib/vf.md) | 0.0% |
 | [vi](https://github.com/shibbo/Petari/blob/master/docs/lib/vi.md) | 0.0% |
 | [wenc](https://github.com/shibbo/Petari/blob/master/docs/lib/wenc.md) | 0.0% |

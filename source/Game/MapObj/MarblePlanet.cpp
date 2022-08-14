@@ -268,7 +268,7 @@ bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSen
     return 0;
 }
 
-u32 MarblePlanetElectron::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
+bool MarblePlanetElectron::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
     if (!MR::isSensorEnemy(a1)) {
         return 0;
     }

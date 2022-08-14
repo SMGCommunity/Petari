@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 #include "Game/NameObj/NameObj.h"
-#include "Game/Util.h"
+#include "Game/Util/JMapIdInfo.h"
 
 class BitFlag128 {
 public:

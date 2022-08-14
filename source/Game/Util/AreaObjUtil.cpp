@@ -3,6 +3,11 @@
 #include "Game/AreaObj/AreaObjContainer.h"
 
 namespace MR {
+
+    inline AreaObj* getAreaIn(const char *pName, const TVec3f &rPos) {
+        return getAreaObjContainer()->getAreaObj(pName, rPos);
+    }
+
     AreaObjMgr* getAreaObjManager(const char *pMgrName) {
         return MR::getAreaObjContainer()->getManager(pMgrName);
     }
@@ -36,5 +41,9 @@ namespace MR {
             default:
                 return -1;
         }
+    }
+
+    AreaObj* getCurrentAstroOverlookAreaObj() {
+        return getAreaIn("AstroOverlookArea", *MR::getPlayerPos());
     }
 };

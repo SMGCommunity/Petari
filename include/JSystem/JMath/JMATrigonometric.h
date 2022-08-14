@@ -5,6 +5,12 @@
 namespace JMath
 {
     template<s32 Len, typename T>
+    class TSinCosTable {
+    public:
+        T mTable[Len];
+    };
+
+    template<s32 Len, typename T>
     class TAtanTable
     {
     public:
