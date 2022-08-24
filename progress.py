@@ -117,7 +117,7 @@ class Library:
         json.append("{\n")
         json.append("\t\"schemaVersion\": 1,\n")
         json.append(f"\t\"label\": \"{self.name}\",\n")
-        json.append(f"\t\"message\": \"{truncate(percent, 5)}%\",\n")
+        json.append(f"\t\"message\": \"{truncate(percent, 3)}%\",\n")
         json.append(f"\t\"color\": \"{color}\"\n")
         json.append("}")
 

@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| JKRHeap.o | 0.6504065040650406% | 1 / 48 | 2.083333333333333% | :eight_pointed_black_star: 
+| JKRHeap.o | 26.504065040650403% | 7 / 48 | 14.583333333333334% | :eight_pointed_black_star: 
 | JKRExpHeap.o | 1.825442099258414% | 1 / 40 | 2.5% | :eight_pointed_black_star: 
 | JKRSolidHeap.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | JKRUnitHeap.o | 0.0% | 0 / 26 | 0.0% | :x: 
@@ -37,26 +37,26 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ct__7JKRHeapFPvUlP7JKRHeapb | :x: |
-| __dt__17JSULink&lt;7JKRHeap&gt;Fv | :x: |
+| __dt__17JSULink&lt;7JKRHeap&gt;Fv | :white_check_mark: |
 | __dt__17JSUTree&lt;7JKRHeap&gt;Fv | :x: |
 | __dt__22JSUList&lt;11JKRDisposer&gt;Fv | :x: |
-| __dt__7JKRHeapFv | :x: |
+| __dt__7JKRHeapFv | :white_check_mark: |
 | initArena__7JKRHeapFPPcPUli | :x: |
 | becomeSystemHeap__7JKRHeapFv | :x: |
 | becomeCurrentHeap__7JKRHeapFv | :white_check_mark: |
 | destroy__7JKRHeapFP7JKRHeap | :x: |
-| alloc__7JKRHeapFUliP7JKRHeap | :x: |
+| alloc__7JKRHeapFUliP7JKRHeap | :white_check_mark: |
 | alloc__7JKRHeapFUli | :x: |
-| free__7JKRHeapFPvP7JKRHeap | :x: |
+| free__7JKRHeapFPvP7JKRHeap | :white_check_mark: |
 | free__7JKRHeapFPv | :x: |
-| callAllDisposer__7JKRHeapFv | :x: |
+| callAllDisposer__7JKRHeapFv | :white_check_mark: |
 | freeAll__7JKRHeapFv | :x: |
 | freeTail__7JKRHeapFv | :x: |
 | resize__7JKRHeapFPvUl | :x: |
 | getFreeSize__7JKRHeapFv | :x: |
 | getMaxFreeBlock__7JKRHeapFv | :x: |
 | getTotalFreeSize__7JKRHeapFv | :x: |
-| findFromRoot__7JKRHeapFPv | :x: |
+| findFromRoot__7JKRHeapFPv | :white_check_mark: |
 | find__7JKRHeapCFPv | :x: |
 | findAllHeap__7JKRHeapCFPv | :x: |
 | dispose_subroutine__7JKRHeapFUlUl | :x: |
