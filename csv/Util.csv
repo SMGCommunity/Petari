@@ -3345,7 +3345,7 @@ initSceneMessage__2MRFv,SystemUtil.o,Util.a,false
 destroySceneMessage__2MRFv,SystemUtil.o,Util.a,false
 resetSystemAndGameStatus__2MRFv,SystemUtil.o,Util.a,false
 stopAllSound__2MRFUl,SystemUtil.o,Util.a,false
-setLayoutDefaultAllocator__2MRFv,SystemUtil.o,Util.a,false
+setLayoutDefaultAllocator__2MRFv,SystemUtil.o,Util.a,true
 isDisplayEncouragePal60Window__2MRFv,SystemUtil.o,Util.a,false
 getPlayerRestartIdInfo__2MRFv,SystemUtil.o,Util.a,false
 setPlayerRestartIdInfo__2MRFRC10JMapIdInfo,SystemUtil.o,Util.a,false

@@ -1,5 +1,5 @@
 Symbol Name, Object File, Library Archive, Matching
-LytInit__Q24nw4r3lytFv,lyt_init.o,libnw4r_lyt.a,false
+LytInit__Q24nw4r3lytFv,lyt_init.o,libnw4r_lyt.a,true
 __ct__Q34nw4r3lyt4PaneFPCQ44nw4r3lyt3res4Pane,lyt_pane.o,libnw4r_lyt.a,false
 __dt__Q34nw4r3lyt4PaneFv,lyt_pane.o,libnw4r_lyt.a,false
 SetName__Q34nw4r3lyt4PaneFPCc,lyt_pane.o,libnw4r_lyt.a,false

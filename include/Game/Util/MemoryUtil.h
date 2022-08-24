@@ -39,7 +39,18 @@ namespace MR {
     public:
         static void* alloc(MEMAllocator *, u32);
         static void free(MEMAllocator *, void *);
+
+        static MEMAllocatorFunc sAllocatorFunc;
+
+        static MEMAllocator sAllocator;
     };
+
+    MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
+        NewDeleteAllocator::alloc, 
+        NewDeleteAllocator::free, 
+    };
+
+    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
 
     template<int T>
     class JKRHeapAllocator {

@@ -59,7 +59,7 @@
 | StarPointerUtil.o | 0.0% | 0 / 108 | 0.0% | :x: 
 | StringUtil.o | 32.678821879382895% | 10 / 36 | 27.77777777777778% | :eight_pointed_black_star: 
 | SwitchEventFunctorListener.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| SystemUtil.o | 0.0% | 0 / 34 | 0.0% | :x: 
+| SystemUtil.o | 1.3937282229965158% | 1 / 34 | 2.941176470588235% | :eight_pointed_black_star: 
 | TalkUtil.o | 0.0% | 0 / 53 | 0.0% | :x: 
 | AreaObjUtil.o | 9.481481481481481% | 3 / 22 | 13.636363636363635% | :eight_pointed_black_star: 
 | BaseMatrixFollowTargetHolder.o | 25.97173144876325% | 9 / 25 | 36.0% | :eight_pointed_black_star: 
@@ -3689,7 +3689,7 @@
 | destroySceneMessage__2MRFv | :x: |
 | resetSystemAndGameStatus__2MRFv | :x: |
 | stopAllSound__2MRFUl | :x: |
-| setLayoutDefaultAllocator__2MRFv | :x: |
+| setLayoutDefaultAllocator__2MRFv | :white_check_mark: |
 | isDisplayEncouragePal60Window__2MRFv | :x: |
 | getPlayerRestartIdInfo__2MRFv | :x: |
 | setPlayerRestartIdInfo__2MRFRC10JMapIdInfo | :x: |

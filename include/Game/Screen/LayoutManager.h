@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nw4r/lyt/drawInfo.h>
+#include "nw4r/lyt/lyt_drawInfo.h"
 
 class LayoutManager {
 public:

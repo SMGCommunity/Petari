@@ -16,8 +16,8 @@ other_libs = [
     "deps/EABI/PowerPC_EABI_Support/MetroTRK/TRK_Hollywood_Revolution.a",
     "deps/EABI/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/LIB/MSL_C.PPCEABI.bare.h.a",
     "deps/EABI/PowerPC_EABI_Support/Runtime/Lib/Runtime.PPCEABI.H.a",
+    "build/nw4r/lyt/lyt_init.o",
     "deps/NDEV/lib/NdevExi2A.a",
-    "deps/nw4r_lib/lyt_init.o",
     "deps/RVL_SDK/RVL/lib/ai.a",
     "deps/RVL_SDK/RVL/lib/base.a",
     "deps/RVL_SDK/RVL/lib/bte.a",
@@ -106,7 +106,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     default_compiler_path = pathlib.Path("GC/3.0a3/")
 
     compiler_exceptions = {
-        #"source\JSystem\JKernel\JKRThread.cpp": "GC/2.5/"
+        #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")
     }
 
     compiler_flags = {
@@ -120,7 +120,6 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     ppc_root = "deps/EABI/PowerPC_EABI_Support"
 
     rvl_sdk_path = pathlib.Path("deps/RVL_SDK/include")
-    nw4r_path = pathlib.Path("deps/NW4R/Library/include")
     trk_path =          pathlib.Path(f"{ppc_root}/MetroTRK")
     runtime_path =      pathlib.Path(f"{ppc_root}/Runtime/Inc")
     msl_c_path =        pathlib.Path(f"{ppc_root}/MSL/MSL_C/PPC_EABI/Include")
@@ -129,7 +128,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     msl_cpp_eabi_path = pathlib.Path(f"{ppc_root}/MSL/MSL_C++/PPC_EABI/Include")
     facelib_path = pathlib.Path("deps/RVLFaceLib/include")
 
-    includes += f"-i {nw4r_path} -I- -i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_c_common_path} -I- -i {msl_cpp_path} -I- -i {msl_cpp_eabi_path} "
+    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_c_common_path} -I- -i {msl_cpp_path} -I- -i {msl_cpp_eabi_path} "
     flags += includes
 
     tasks = list()
@@ -171,7 +170,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
         # Create main compiler rule and exception compilers.
         nw.rule("cc", f"{compiler_path} $flags $in -o $out", "Compiling $in...")
-        exceptionsToRules = { "sample": "value" }
+        exceptionsToRules = { }
         cc_num = 1
         for exc in compiler_exceptions.values():
             if not exc in exceptionsToRules.keys():
@@ -185,6 +184,8 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
             try:
                 if compiler_exceptions[source_path]:
                     rule = exceptionsToRules[compiler_exceptions[source_path]]
+                    path = f"deps/Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe "
+                    nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
             except:
                 pass
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })

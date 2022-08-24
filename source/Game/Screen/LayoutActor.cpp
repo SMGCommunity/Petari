@@ -1,6 +1,5 @@
 #include "Game/Screen/LayoutActor.h"
 #include "Game/Screen/PaneEffectKeeper.h"
-#include <nw4r/lyt/pane.h>
 
 LayoutActor::LayoutActor(const char *pName, bool) : NameObj(pName),
     mManager(NULL), mSpine(NULL), mPaneEffectKeeper(NULL), mStarPointerTargetKeeper(NULL) {

@@ -3,7 +3,7 @@
 #include "Game/System/FileRipper.h"
 #include "Game/System/HeapMemoryWatcher.h"
 #include "Game/SingletonHolder.h"
-#include "nw4r/lyt/init.h"
+#include "nw4r/lyt/lyt_init.h"
 #include "Game/Util.h"
 
 void main(void) {
@@ -24,7 +24,7 @@ void main(void) {
 
     DVDInit();
     VIInit();
-    HeapMemoryWatcher::createRootHeap();
+    //HeapMemoryWatcher::createRootHeap();
     OSInitMutex(&MR::MutexHolder<0>::sMutex);
     OSInitMutex(&MR::MutexHolder<1>::sMutex);
     OSInitMutex(&MR::MutexHolder<2>::sMutex);
@@ -37,9 +37,9 @@ void main(void) {
 
     SingletonHolder<HeapMemoryWatcher>::sInstance->setCurrentHeapToStationedHeap();
     JKRHeap* napaHeap = MR::getStationedHeapNapa();
-    FileRipper::setup(0x20000, napaHeap);
-    GameSystemException::init();
-    MR::initAcosTable();
+    //FileRipper::setup(0x20000, napaHeap);
+    //GameSystemException::init();
+    //MR::initAcosTable();
 
     if (!SingletonHolder<GameSystem>::sInstance) {
         SingletonHolder<GameSystem>::sInstance = new GameSystem();

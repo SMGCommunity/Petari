@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| lyt_init.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| lyt_init.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | lyt_pane.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | lyt_group.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | lyt_layout.o | 0.0% | 0 / 17 | 0.0% | :x: 
@@ -28,7 +28,7 @@
 # lyt_init.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| LytInit__Q24nw4r3lytFv | :x: |
+| LytInit__Q24nw4r3lytFv | :white_check_mark: |
 
 
 # lyt_pane.o
