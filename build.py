@@ -51,7 +51,7 @@ def makeArchive(dir):
                 fileList += f"build/Game/{dir}/{f} "
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
-    linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
+    linker_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwldeppc.exe ")
     linker_flags = f"-nodefaults -xm l -o archives/{dir}.a {fileList}"
 
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
@@ -81,7 +81,7 @@ def makeElf():
     for lib_a in other_libs:
         fileList += f"{lib_a} "
 
-    linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
+    linker_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwldeppc.exe ")
     linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map main.map -o main.elf {fileList}"
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
             print("Linking failed.")
@@ -94,8 +94,8 @@ def deleteDFiles():
             os.remove(os.path.join(os.getcwd(), dire))
 
 def main(compile_non_matching, use_ninja, clean_ninja, link):
-    if not os.path.exists("deps"):
-        print("deps folder not created, please run setup.py!")
+    if not os.path.exists("Compilers"):
+        print("Compilers folder not created, please run setup.py!")
         sys.exit(1)
 
     isNotWindows = os.name != "nt"
@@ -117,18 +117,14 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
         print("Using nonmatching functions")
         flags = flags + " -DNON_MATCHING "
 
-    ppc_root = "deps/EABI/PowerPC_EABI_Support"
+    rvl_sdk_path =      pathlib.Path("libs/RVL_SDK/include")
+    trk_path =          pathlib.Path("libs/MetroTRK/include")
+    runtime_path =      pathlib.Path("libs/Runtime/include")
+    msl_c_path =        pathlib.Path("libs/MSL_C/include")
+    facelib_path =      pathlib.Path("libs/RVLFaceLib/include")
+    jsystem_path =      pathlib.Path("libs/JSystem/include")
 
-    rvl_sdk_path = pathlib.Path("deps/RVL_SDK/include")
-    trk_path =          pathlib.Path(f"{ppc_root}/MetroTRK")
-    runtime_path =      pathlib.Path(f"{ppc_root}/Runtime/Inc")
-    msl_c_path =        pathlib.Path(f"{ppc_root}/MSL/MSL_C/PPC_EABI/Include")
-    msl_c_common_path = pathlib.Path(f"{ppc_root}/MSL/MSL_C/MSL_Common/Include")
-    msl_cpp_path =      pathlib.Path(f"{ppc_root}/MSL/MSL_C++/MSL_Common/Include")
-    msl_cpp_eabi_path = pathlib.Path(f"{ppc_root}/MSL/MSL_C++/PPC_EABI/Include")
-    facelib_path = pathlib.Path("deps/RVLFaceLib/include")
-
-    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_c_common_path} -I- -i {msl_cpp_path} -I- -i {msl_cpp_eabi_path} "
+    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {jsystem_path} "
     flags += includes
 
     tasks = list()
@@ -158,7 +154,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
                 tasks.append((source_path, build_path))
 
-    compiler_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwcceppc.exe ")
+    compiler_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwcceppc.exe ")
     if isNotWindows:
         compiler_path = pathlib.Path(f"wine {compiler_path} ")
 
@@ -184,7 +180,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
             try:
                 if compiler_exceptions[source_path]:
                     rule = exceptionsToRules[compiler_exceptions[source_path]]
-                    path = f"deps/Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe "
+                    path = f"Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe "
                     nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
             except:
                 pass
@@ -206,7 +202,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
             try:
                 if compiler_exceptions[source_path]:
-                    compiler_path = pathlib.Path(f"deps/Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe ")
+                    compiler_path = pathlib.Path(f"Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe ")
                     if isNotWindows:
                         compiler_path = pathlib.Path(f"wine {compiler_path} ")
             except:

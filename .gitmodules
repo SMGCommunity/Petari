@@ -16,3 +16,6 @@
 [submodule "libs/MetroTRK"]
 	path = libs/MetroTRK
 	url = https://github.com/shibbo/MetroTRK.git
+[submodule "libs/RVLFaceLib"]
+	path = libs/RVLFaceLib
+	url = https://github.com/shibbo/RVLFaceLib.git

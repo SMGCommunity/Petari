@@ -202,104 +202,10 @@ game_libs = [
     "Util.a"
 ]
 
-sdk_libs = [
-    "ai.a",
-    "aralt.a",
-    "arc.a",
-    "ax.a",
-    "axfx.a",
-    "base.a",
-    "bte.a",
-    "db.a",
-    "dsp.a",
-    "dvd.a",
-    "esp.a",
-    "euart.a",
-    "exi.a",
-    "fs.a",
-    "gd.a",
-    "gx.a",
-    "ipc.a",
-    "mem.a",
-    "mtx.a",
-    "nand.a",
-    "net.a",
-    "nwc24.a",
-    "os.a",
-    "pad.a",
-    "rso.a",
-    "sc.a",
-    "si.a",
-    "thp.a",
-    "tpl.a",
-    "usb.a",
-    "vf.a",
-    "vi.a",
-    "wenc.a",
-    "wpad.a",
-    "wud.a",
-]
-
-nw_libs = [
-    "libnw4Fr_ut.a",
-    "libnw4r_db.a",
-    "libnw4r_lyt.a",
-    "libnw4r_math.a",
-    "libnw4r_ut.a"
-]
-
-jsystem_libs = [
-    "JAudio2.a",
-    "JKernel.a",
-    "JSupport.a",
-    "JGadget.a",
-    "JUtility.a",
-    "J2DGraph.a",
-    "J3DGraphBase.a",
-    "J3DGraphAnimator.a",
-    "J3DGraphLoader.a",
-    "JMath.a",
-    "JParticle.a"
-]
-
-misc_libs = [            
-    "MSL_C.PPCEABI.bare.H.a",
-    "Runtime.PPCEABI.H.a",
-    "RVLFaceLib.a",
-    "TRK_Hollywood_Revolution.a",
-    "NdevExi2A.a"
-]
-
-lib_percent_colors = {
-    "Animation": "brightgreen",
-    "AreaObj": "green",
-    "AudioLib": "yellow",
-    "Boss": "orange",
-    "Camera": "red",
-    "Demo": "D65076",
-    "Effect": "pink",
-    "Enemy": "magenta",
-    "GameAudio": "teal",
-    "Gravity": "maroon",
-    "LiveActor": "cyan",
-    "Map": "silver",
-    "MapObj": "tan",
-    "NameObj": "indigo",
-    "NPC": "7fffd4",
-    "Player": "ff7f50",
-    "RhythmLib": "088da5",
-    "Ride": "ffff66",
-    "Scene": "a0db8e",
-    "Screen": "ff4040",
-    "Speaker": "daa520",
-    "System": "696969",
-    "Util": "ff6666"
-}
-
 func_sizes = {}
 
 # start by reading function sizes
-with open("data/funcSizes.txt", "r") as file:
+with open("../../data/funcSizes.txt", "r") as file:
     lines = file.readlines()
 
     for line in lines:
@@ -336,73 +242,28 @@ for csv_file in sorted(csv_files, key=str.casefold):
 
     libraries[lib_name] = library
 
-fullSize = 0
-doneSize = 0
-
-full_game_size = 0
-done_game_size = 0
-
-full_nw_size = 0
-done_nw_size = 0
-
 full_sdk_size = 0
 done_sdk_size = 0
 
-full_jsystem_size = 0
-done_jsystem_size = 0
-
-full_misc_size = 0
-done_misc_size = 0
 
 print("Calculating percentages...")
 
 for key in libraries:
     lib = libraries[key]
     d, f = lib.calculateProgress()
-    fullSize += f
-    doneSize += d
 
     libName = f"{lib.getName()}.a"
 
     if libName in game_libs:
-        full_game_size += f
-        done_game_size += d
-    elif libName in jsystem_libs:
-        full_jsystem_size += f
-        done_jsystem_size += d
-    elif libName in sdk_libs:
         full_sdk_size += f
         done_sdk_size += d
-    elif libName in nw_libs:
-        full_nw_size += f
-        done_nw_size += d
-    elif libName in misc_libs:
-        full_misc_size += f
-        done_misc_size += d
 
-    if lib.getName() not in lib_percent_colors:
-        lib.generateJSONTag((d / f ) * 100.0, "ffff66")
-    else:
-        lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
-
-progPercent = (done_game_size / full_game_size ) * 100.0
-progNonPercent = int((done_game_size / full_game_size) * 120.0)
-
-progPercent_jsystem = (done_jsystem_size / full_jsystem_size ) * 100.0
-progPercent_nw = (done_nw_size / full_nw_size ) * 100.0
 progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
-progPercent_misc = (done_misc_size / full_misc_size ) * 100.0
 
-print(f"Progress: {progPercent}% [{done_game_size} / {full_game_size}] bytes")
-print(f"You currently have {progNonPercent} / 120 stars.")
-
+print(f"Progress: {progPercent_sdk}% [{done_sdk_size} / {full_sdk_size}] bytes")
 print("Generating JSON...")
 
-generateFullProgJSON("Game", progPercent, "blue")
-generateFullProgJSON("SDK", progPercent_sdk, "grey")
-generateFullProgJSON("JSystem", progPercent_jsystem, "red")
-generateFullProgJSON("NW4R", progPercent_nw, "green")
-generateFullProgJSON("Misc", progPercent_misc, "purple")
+generateFullProgJSON("Game", progPercent_sdk, "blue")
 
 print("Generating markdown pages...")
 
@@ -415,7 +276,7 @@ for key in libraries:
     lib = libraries[key]
     d, f = lib.calculateProgress()
     libprog = (d / f) * 100.0
-    progressPage.append(f"| [{key}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}.md) | {libprog}% |\n")
+    progressPage.append(f"| [{key}](https://github.com/shibbo/Petari/blob/main/docs/lib/{key}.md) | {libprog}% |\n")
 
 with open("docs/PROGRESS.md", "w") as w:
     w.writelines(progressPage)
