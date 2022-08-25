@@ -52,14 +52,14 @@ def makeArchive(dir):
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
     linker_path = pathlib.Path(f"deps/Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-nodefaults -xm l -o lib/{dir}.a {fileList}"
+    linker_flags = f"-nodefaults -xm l -o archives/{dir}.a {fileList}"
 
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
         print("Library creation failed.")
 
 def makeLibArchive():
-    if not os.path.isdir("lib"):
-        os.mkdir("lib")
+    if not os.path.isdir("archive"):
+        os.mkdir("archive")
 
     for root, dirs, files in os.walk("build/Game"):
         for dir in dirs:
@@ -70,7 +70,7 @@ def makeElf():
 
     fileList = ""
 
-    for root, dirs, files in os.walk("lib"):
+    for root, dirs, files in os.walk("archive"):
         for f in files:
             if f.endswith(".a"):
                 fileList += f"{root}\\{f} "

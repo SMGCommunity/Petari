@@ -1,6 +1,0 @@
-Symbol Name, Object File, Library Archive, Matching
-DBInit,db.o,db.a,false
-__DBExceptionDestinationAux,db.o,db.a,false
-__DBExceptionDestination,db.o,db.a,false
-__DBIsExceptionMarked,db.o,db.a,false
-DBPrintf,db.o,db.a,false
