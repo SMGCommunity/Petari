@@ -51,13 +51,19 @@ def deleteDFiles():
             os.remove(os.path.join(os.getcwd(), dire))
 
 def main(compile_non_matching, use_ninja, clean_ninja, link):
-    if not os.path.exists("Compilers"):
+    if not os.path.exists("../../Compilers"):
         print("Compilers folder not created, please run setup.py!")
         sys.exit(1)
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto -i . -I- -i include "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    includes = "-i . -I- -i include "
+
+    rvl_path =          pathlib.Path("../RVL_SDK/include")
+    runtime_path =      pathlib.Path("../Runtime/include")
+    includes += f"-i {rvl_path } -i {runtime_path} "
+    flags += includes
 
     default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
 

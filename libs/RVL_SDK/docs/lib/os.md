@@ -14,7 +14,7 @@
 | OSArena.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | OSAudioSystem.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSContext.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| OSContext.o | 12.238325281803544% | 4 / 16 | 25.0% | :eight_pointed_black_star: 
 | OSError.o | 24.07809110629067% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
 | OSExec.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -149,8 +149,8 @@
 | ------------- | ------------- |
 | __OSLoadFPUContext | :x: |
 | __OSSaveFPUContext | :x: |
-| OSSaveFPUContext | :x: |
-| OSSetCurrentContext | :x: |
+| OSSaveFPUContext | :white_check_mark: |
+| OSSetCurrentContext | :white_check_mark: |
 | OSGetCurrentContext | :x: |
 | OSSaveContext | :x: |
 | OSLoadContext | :x: |
@@ -160,8 +160,8 @@
 | OSClearContext | :x: |
 | OSInitContext | :x: |
 | OSDumpContext | :x: |
-| OSSwitchFPUContext | :x: |
-| __OSContextInit | :x: |
+| OSSwitchFPUContext | :white_check_mark: |
+| __OSContextInit | :white_check_mark: |
 | OSFillFPUContext | :x: |
 
 

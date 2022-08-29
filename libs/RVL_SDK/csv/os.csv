@@ -73,8 +73,8 @@ DMAErrorHandler,OSCache.o,os.a,true
 __OSCacheInit,OSCache.o,os.a,true
 __OSLoadFPUContext,OSContext.o,os.a,false
 __OSSaveFPUContext,OSContext.o,os.a,false
-OSSaveFPUContext,OSContext.o,os.a,false
-OSSetCurrentContext,OSContext.o,os.a,false
+OSSaveFPUContext,OSContext.o,os.a,true
+OSSetCurrentContext,OSContext.o,os.a,true
 OSGetCurrentContext,OSContext.o,os.a,false
 OSSaveContext,OSContext.o,os.a,false
 OSLoadContext,OSContext.o,os.a,false
@@ -84,8 +84,8 @@ OSSwitchFiberEx,OSContext.o,os.a,false
 OSClearContext,OSContext.o,os.a,false
 OSInitContext,OSContext.o,os.a,false
 OSDumpContext,OSContext.o,os.a,false
-OSSwitchFPUContext,OSContext.o,os.a,false
-__OSContextInit,OSContext.o,os.a,false
+OSSwitchFPUContext,OSContext.o,os.a,true
+__OSContextInit,OSContext.o,os.a,true
 OSFillFPUContext,OSContext.o,os.a,false
 OSReport,OSError.o,os.a,true
 OSVReport,OSError.o,os.a,true

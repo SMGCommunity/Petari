@@ -31,10 +31,10 @@
 [SMG2]: https://github.com/shibbo/Garigari
 
 [Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/Game.json&style=flat
-[Badge JSystem Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/JSystem/main/data/JSystem.json&style=flat
-[Badge SDK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/RVL_SDK/main/data/SDK.json&style=flat
-[Badge NW4R Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/nw4r/main/data/NW4R.json&style=flat
-[Badge MetroTRK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/MetroTRK/main/data/MetroTRK.json&style=flat
-[Badge MSL Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/MSL_C/main/data/MSL.json&style=flat
-[Badge Runtime Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Runtime/main/data/Runtime.json&style=flat
-[Badge RVLFaceLib Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/RVLFaceLib/main/data/RVLFaceLib.json&style=flat
+[Badge JSystem Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/JSystem/data/JSystem.json&style=flat
+[Badge SDK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/RVL_SDK/data/SDK.json&style=flat
+[Badge NW4R Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/nw4r/data/NW4R.json&style=flat
+[Badge MetroTRK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/RVLFaceLib/data/RVLFaceLib.json&style=flat
+[Badge MSL Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/MSL_C/data/MSL.json&style=flat
+[Badge Runtime Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/Runtime/data/Runtime.json&style=flat
+[Badge RVLFaceLib Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/RVLFaceLib/data/RVLFaceLib.json&style=flat

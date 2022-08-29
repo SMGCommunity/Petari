@@ -21,7 +21,7 @@
 | [mtx](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/mtx.md) | 0.0% |
 | [nand](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/nand.md) | 0.0% |
 | [net](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/net.md) | 0.0% |
-| [os](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/os.md) | 4.956085319949812% |
+| [os](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/os.md) | 5.48584971420605% |
 | [pad](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/pad.md) | 0.0% |
 | [rso](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/rso.md) | 0.0% |
 | [sc](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/sc.md) | 0.0% |

@@ -5,7 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "revolution.h"
-#include <cstring>
+#include <cstring.h>
 
 JKRMemArchive::JKRMemArchive() {
 
@@ -101,7 +101,7 @@ void *JKRMemArchive::fetchResource(void *pData, unsigned long dataSize, SDIFileE
     }
 
     if (pFile->mFileData != NULL) {
-        std::memcpy(pData, pFile->mFileData, size);
+        memcpy(pData, pFile->mFileData, size);
     }
     else {
         s32 compression;

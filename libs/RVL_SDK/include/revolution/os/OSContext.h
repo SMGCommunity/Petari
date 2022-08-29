@@ -67,9 +67,54 @@ typedef struct OSContext {
 #define OS_CONTEXT_GQR6     444
 #define OS_CONTEXT_GQR7     448
 
-u32 OSGetStackPointer(void);
+#define OS_CONTEXT_PSF0     456
+#define OS_CONTEXT_PSF1     464
+#define OS_CONTEXT_PSF2     472
+#define OS_CONTEXT_PSF3     480
+#define OS_CONTEXT_PSF4     488
+#define OS_CONTEXT_PSF5     496
+#define OS_CONTEXT_PSF6     504
+#define OS_CONTEXT_PSF7     512
+#define OS_CONTEXT_PSF8     520
+#define OS_CONTEXT_PSF9     528
+#define OS_CONTEXT_PSF10    536
+#define OS_CONTEXT_PSF11    544
+#define OS_CONTEXT_PSF12    552
+#define OS_CONTEXT_PSF13    560
+#define OS_CONTEXT_PSF14    568
+#define OS_CONTEXT_PSF15    576
+#define OS_CONTEXT_PSF16    584
+#define OS_CONTEXT_PSF17    592
+#define OS_CONTEXT_PSF18    600
+#define OS_CONTEXT_PSF19    608
+#define OS_CONTEXT_PSF20    616
+#define OS_CONTEXT_PSF21    624
+#define OS_CONTEXT_PSF22    632
+#define OS_CONTEXT_PSF23    640
+#define OS_CONTEXT_PSF24    648
+#define OS_CONTEXT_PSF25    656
+#define OS_CONTEXT_PSF26    664
+#define OS_CONTEXT_PSF27    672
+#define OS_CONTEXT_PSF28    680
+#define OS_CONTEXT_PSF29    688
+#define OS_CONTEXT_PSF30    696
+#define OS_CONTEXT_PSF31    704
 
+void OSSetCurrentContext(OSContext *);
+OSContext* OSGetCurrentContext(void);
+u32 OSSaveContext(OSContext *);
+void OSLoadContext(OSContext *);
+u32 OSGetStackPointer(void);
+int OSSwitchFiber(u32, u32);
+int OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
+void OSClearContext(OSContext *);
+void OSInitContext(OSContext *, u32, u32);
 void OSDumpContext(OSContext *);
+
+void OSLoadFPUContext(OSContext *);
+void OSSaveFPUContext(OSContext *);
+
+void __OSContextInit(void);
 
 #ifdef __cplusplus
 }
