@@ -4,6 +4,12 @@
 #include <revolution/types.h>
 #include <cstdarg.h>
 
+typedef s64         OSTime;
+typedef u32         OSTick;
+
+OSTick OSGetTick(void);
+OSTime OSGetTime(void);
+
 void OSRegisterVersion(const char *);
 
 inline void* OSPhysicalToCached(u32 addr) {
@@ -16,6 +22,7 @@ void OSVReport(const char *, va_list);
 void OSPanic(const char *, int, const char *, ...);
 
 #include <revolution/base/PPCArch.h>
+#include <revolution/os/OSAlarm.h>
 #include <revolution/os/OSCache.h>
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSInterrupt.h>

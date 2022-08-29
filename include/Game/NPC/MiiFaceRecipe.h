@@ -1,10 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "RVLFaceLibrary/RFL_Types.h"
-#include "RVLFaceLibrary/RFL_MakeTex.h"
-#include "RVLFaceLibrary/RFL_Model.h"
-#include "RVLFaceLibrary/RFL_DataUtility.h"
+#include <RVLFaceLib.h>
 
 class MiiFaceRecipe { 
 public:

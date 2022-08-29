@@ -70,12 +70,15 @@ BOOL OSIsThreadSuspended(OSThread *);
 BOOL OSIsThreadTerminated(OSThread *);
 
 void OSCancelThread(OSThread *);
-
+BOOL OSJoinThread(OSThread *, void **);
 void OSDetachThread(OSThread *);
 
 void OSDetatchThread(OSThread *);
 s32 OSResumeThread(OSThread *);
 s32 OSSuspendThread(OSThread *);
+
+BOOL OSSetThreadPriority(OSThread *, OSPriority);
+OSPriority OSGetThreadPriority(OSThread *);
 
 #ifdef __cplusplus
 }

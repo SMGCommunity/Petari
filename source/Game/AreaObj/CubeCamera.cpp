@@ -1,6 +1,6 @@
 #include "Game/AreaObj/CubeCamera.h"
 
-#include <string.h>
+#include <cstring.h>
 
 CubeCameraArea::CubeCameraArea(int a1, const char *pName) : AreaObj(a1, pName) {
     _3C = 0;

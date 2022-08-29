@@ -2,7 +2,7 @@
 #include "Game/Util.h"
 #include "Game/SingletonHolder.h"
 
-#include <stdio.h>
+#include <cstdio.h>
 #include "revolution.h"
 
 namespace MR {

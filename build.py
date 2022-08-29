@@ -100,7 +100,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -Cpp_exceptions off -nostdlib -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -D_MSL_USING_MW_C_HEADERS -DRVL_SDK -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -msgstyle gcc "
+    flags = "-c -Cpp_exceptions off -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -DEPPC -DHOLLYWOOD_REV -DTRK_INTEGRATION -DGEKKO -DMTX_USE_PS -msgstyle gcc "
     includes = "-i . -I- -i include "
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
@@ -123,8 +123,9 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     msl_c_path =        pathlib.Path("libs/MSL_C/include")
     facelib_path =      pathlib.Path("libs/RVLFaceLib/include")
     jsystem_path =      pathlib.Path("libs/JSystem/include")
+    nw4r_path =         pathlib.Path("libs/nw4r/include")
 
-    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {jsystem_path} "
+    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {jsystem_path} -I- -i {nw4r_path} "
     flags += includes
 
     tasks = list()

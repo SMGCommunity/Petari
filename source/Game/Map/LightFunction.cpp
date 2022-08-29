@@ -2,8 +2,8 @@
 #include "Game/Map/LightDirector.h"
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/Util.h"
-#include <stdio.h>
-#include <cstring>
+#include <cstdio.h>
+#include <cstring.h>
 
 void LightFunction::initLightData() {
     reinterpret_cast<LightDirector*>(MR::getSceneObjHolder()->getObj(SceneObj_LightDirector))->initData();

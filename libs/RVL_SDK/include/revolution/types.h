@@ -34,4 +34,6 @@ typedef int                 BOOL;
 #endif
 #endif
 
+#define AT_ADDRESS(xyz) : (xyz)
+
 #endif // TYPES_H

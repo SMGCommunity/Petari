@@ -1,6 +1,6 @@
 #include "Game/Demo/DemoFunction.h"
-#include <stdio.h>
-#include <cstring>
+#include <cstdio.h>
+#include <cstring.h>
 
 void* DemoFunction::loadDemoArchive() {
     char buf[0x100];

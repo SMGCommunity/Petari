@@ -57,7 +57,16 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto -i . -I- -i include "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    include = "-i . -I- -i include "
+
+    rvl_sdk_path =      pathlib.Path("libs/RVL_SDK/include")
+    trk_path =          pathlib.Path("libs/MetroTRK/include")
+    runtime_path =      pathlib.Path("libs/Runtime/include")
+    msl_c_path =        pathlib.Path("libs/MSL_C/include")
+
+    includes += f"-i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} "
+    flags += includes
 
     default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
 

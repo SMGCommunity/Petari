@@ -1,6 +1,6 @@
 #include "Game/Screen/CaptureScreenDirector.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include <string.h>
+#include <cstring.h>
 
 CaptureScreenDirector::CaptureScreenDirector() : NameObj("画面キャプチャ") {
     _C = NULL;

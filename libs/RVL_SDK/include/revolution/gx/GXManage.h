@@ -5,6 +5,17 @@
 extern "C" {
 #endif
 
+#include <revolution/types.h>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXStruct.h>
+#include <revolution/gx/GXFifo.h>
+
+typedef void (*GXDrawSyncCallback)(u16 token);
+typedef void (*GXDrawDoneCallback)(void);
+
+GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback);
+
+void GXFlush(void);
 void GXPixModeSync(void);
 
 #ifdef __cplusplus

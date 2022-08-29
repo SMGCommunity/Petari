@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include <revolution/mem.h>
+#include <cstring.h>
 #include "JSystem/JKernel/JKRHeap.h"
 
 class JKRHeap;

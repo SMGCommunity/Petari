@@ -64,9 +64,9 @@ void DrawBufferGroup::findLightInfo(LiveActor *pActor, s32 a2) {
 }
 
 #ifdef NON_MATCHING
-// std::mem_fun doesn't get inlined...why? 
+// mem_fun doesn't get inlined...why? 
 void DrawBufferGroup::entry() {
-    std::for_each(_C.mArray.mArr, &_C.mArray.mArr[_C.mArray.mMaxSize], std::mem_fun(&DrawBufferExecuter::calcViewAndEntry));
+    for_each(_C.mArray.mArr, &_C.mArray.mArr[_C.mArray.mMaxSize], mem_fun(&DrawBufferExecuter::calcViewAndEntry));
 }
 #endif
 

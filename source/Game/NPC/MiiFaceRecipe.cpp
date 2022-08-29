@@ -1,5 +1,5 @@
 #include "Game/NPC/MiiFaceRecipe.h"
-#include "RVLFaceLibrary/RFL_Icon.h"
+#include <RVLFaceLib.h>
 
 MiiFaceRecipe::MiiFaceRecipe(RFLDataSource dataSource, int index, RFLResolution resolution, u32 expressionFlags) {
     mDataSource = dataSource;

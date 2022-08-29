@@ -1,7 +1,7 @@
 #include "Game/System/ConfigDataHolder.h"
 #include "JSystem/JSupport/JSUMemoryInputStream.h"
 #include "JSystem/JSupport/JSUMemoryOutputStream.h"
-#include <cstdio>
+#include <cstdio.h>
 
 ConfigDataCreateChunk::ConfigDataCreateChunk() : mData(0) {
   initializeData();
@@ -108,10 +108,10 @@ ConfigDataHolder::ConfigDataHolder() : mChunkHolder(0), mCreateChunk(0), mMiiCre
     mChunkHolder->addChunk(mMiiCreateChunk);
     mChunkHolder->addChunk(mMiscCreateChunk);
     resetAllData();
-    std::snprintf(mName, 0x10, "config1");
+    snprintf(mName, 0x10, "config1");
 }
 
 void ConfigDataHolder::loadFromFileBinary(const char *pName, const u8 *pData, u32 len) {
-    std::snprintf(mName, 0x10, "%s", pName);
+    snprintf(mName, 0x10, "%s", pName);
     mChunkHolder->loadFromFileBinary(pData, len);
 }

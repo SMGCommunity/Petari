@@ -1,7 +1,8 @@
 #include "Game/Util/JMapUtil.h"
 #include "Game/Util.h"
 #include "math_types.h"
-#include <stdio.h>
+#include <cstdio.h>
+#include <cmath.h>
 
 namespace MR {
     bool isValidInfo(const JMapInfoIter &rIter) {
@@ -107,18 +108,18 @@ namespace MR {
             rotateMtx.concat(*placementMtx, rotateMtx);
 
             if (-0.001f <= rotateMtx.mMtx[2][0] - 1.0f) {
-                pOut->x = std::atan2(-rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
+                pOut->x = atan2(-rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
                 pOut->y = -1.5707964f;
                 pOut->z = 0.0f;
             }
             else if (rotateMtx.mMtx[2][0] + 1.0f <= 0.001f) {
-                pOut->x = std::atan2(rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
+                pOut->x = atan2(rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
                 pOut->y = 1.5707964f;
                 pOut->z = 0.0f;
             }
             else {
-                pOut->x = std::atan2(rotateMtx.mMtx[2][1], rotateMtx.mMtx[2][2]);
-                pOut->z = std::atan2(rotateMtx.mMtx[1][0], rotateMtx.mMtx[0][0]);
+                pOut->x = atan2(rotateMtx.mMtx[2][1], rotateMtx.mMtx[2][2]);
+                pOut->z = atan2(rotateMtx.mMtx[1][0], rotateMtx.mMtx[0][0]);
                 pOut->y = asin(-rotateMtx.mMtx[2][0]);
             }
 

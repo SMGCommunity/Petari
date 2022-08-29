@@ -1,8 +1,8 @@
 #include "Game/Util.h"
 #include "Game/System/HeapMemoryWatcher.h"
 #include "Game/SingletonHolder.h"
-#include <stdio.h>
-#include <string.h>
+#include <cstdio.h>
+#include <cstring.h>
 
 namespace MR {
     #ifdef NON_MATCHING

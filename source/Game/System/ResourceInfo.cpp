@@ -1,7 +1,7 @@
 #include "Game/System/ResourceInfo.h"
-#include "string.h"
 #include "Game/Util.h"
-#include <cstdio>
+#include <cstring.h>
+#include <cstdio.h>
 
 ResFileInfo::ResFileInfo() {
     mName = 0;
@@ -97,10 +97,10 @@ const char* ResTable::getResName(const void *pResource) const {
 }
 
 void ResFileInfo::setName(const char *pName, bool stripExt) {
-    size_t len = std::strlen(pName) + 1;
+    size_t len = strlen(pName) + 1;
     mName = new char[len];
 
-    std::snprintf(mName, len, "%s", pName);
+    snprintf(mName, len, "%s", pName);
 
     if (stripExt) {
         char* out = strrchr(mName, '.');

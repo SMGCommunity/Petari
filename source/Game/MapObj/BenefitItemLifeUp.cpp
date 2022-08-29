@@ -1,5 +1,5 @@
 #include "Game/MapObj/BenefitItemLifeUp.h"
-#include <string.h>
+#include <cstring.h>
 
 BenefitItemLifeUp::BenefitItemLifeUp(const char *pName) : BenefitItemObj(pName, "KinokoLifeUp") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {

@@ -3,8 +3,8 @@
 #include "Game/Util.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
-#include <cstring>
-#include <cstdio>
+#include <cstring.h>
+#include <cstdio.h>
 
 StageFileLoader::StageFileLoader(const char *pName) {
     mZoneCount = 0;
@@ -32,15 +32,15 @@ void StageFileLoader::makeStageArchiveNameList() {
     for (int i = 0; i < mZoneCount; i++) {
         const char* zoneName = access.getZoneName(i);
         char path[0x100];
-        std::snprintf(path, 0x100, "/StageData/%s.arc", zoneName);
-        u32 len = std::strlen(path) + 1;
+        snprintf(path, 0x100, "/StageData/%s.arc", zoneName);
+        u32 len = strlen(path) + 1;
         mStageFiles[i] = new char[len];
         MR::copyString(mStageFiles[i], path, len);
     }
 }
 
 void StageFileLoader::makeStageArchiveName(char *buf, u32 len, const char *pZoneName) {
-    std::snprintf(buf, len, "/StageData/%s.arc", pZoneName);
+    snprintf(buf, len, "/StageData/%s.arc", pZoneName);
 }
 
 void StageFileLoader::mountFilesInStageMapFile(const char *pName) {

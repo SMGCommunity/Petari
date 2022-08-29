@@ -2,7 +2,7 @@
 #include "Game/System/GameEventFlag.h"
 #include "Game/System/GameEventFlagTable.h"
 #include "Game/Util.h"
-#include <cstdio>
+#include <cstdio.h>
 
 u32 GameDataConst::getPowerStarNumToOpenGalaxy(const char *pGalaxy) {
     JMapInfo info;
@@ -44,7 +44,7 @@ bool GameDataConst::isGalaxyLuigiArrested(const char *pGalaxy, s32 starId) {
  
 bool GameDataConst::isGalaxyAppearGreenDriver(const char *pGalaxyName) {
     char buf[0x30];
-    std::snprintf(buf, 0x30, "Appear%s", pGalaxyName);
+    snprintf(buf, 0x30, "Appear%s", pGalaxyName);
     return !GameEventFlagTable::isExist(buf) ? false : GameEventFlagTable::isDependedAnother(buf, "SpecialStarGreenAll");
 }
 

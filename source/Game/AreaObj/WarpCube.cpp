@@ -1,8 +1,8 @@
 ﻿#include "Game/AreaObj/WarpCube.h"
 #include "Game/LiveActor/ActorCameraInfo.h"
 #include "Game/Util/DirectDraw.h"
-#include <stdio.h>
-#include <string.h>
+#include <cstdio.h>
+#include <cstring.h>
 
 WarpCube::~WarpCube() {
 
