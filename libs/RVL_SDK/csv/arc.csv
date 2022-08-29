@@ -1,0 +1,13 @@
+Symbol Name, Object File, Library Archive, Matching
+ARCInitHandle,arc.o,arc.a,false
+ARCOpen,arc.o,arc.a,false
+ARCFastOpen,arc.o,arc.a,false
+ARCConvertPathToEntrynum,arc.o,arc.a,false
+entryToPath,arc.o,arc.a,false
+ARCGetStartAddrInMem,arc.o,arc.a,false
+ARCGetLength,arc.o,arc.a,false
+ARCClose,arc.o,arc.a,false
+ARCChangeDir,arc.o,arc.a,false
+ARCOpenDir,arc.o,arc.a,false
+ARCReadDir,arc.o,arc.a,false
+ARCCloseDir,arc.o,arc.a,false

@@ -1,0 +1,13 @@
+| Library | Percentage |
+| ------------- | ------------- |
+| [J2DGraph](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/J2DGraph.md) | 0.0% |
+| [J3DGraphAnimator](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/J3DGraphAnimator.md) | 0.0% |
+| [J3DGraphBase](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/J3DGraphBase.md) | 0.1595838997576689% |
+| [J3DGraphLoader](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/J3DGraphLoader.md) | 0.0% |
+| [JAudio2](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JAudio2.md) | 0.0% |
+| [JGadget](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JGadget.md) | 0.0% |
+| [JKernel](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JKernel.md) | 16.896441167040717% |
+| [JMath](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JMath.md) | 0.0% |
+| [JParticle](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JParticle.md) | 0.0% |
+| [JSupport](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JSupport.md) | 32.04951856946355% |
+| [JUtility](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/JUtility.md) | 4.0283311199645855% |

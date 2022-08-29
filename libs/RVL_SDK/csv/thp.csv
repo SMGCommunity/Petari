@@ -1,0 +1,18 @@
+Symbol Name, Object File, Library Archive, Matching
+THPVideoDecode,THPDec.o,thp.a,false
+__THPReadFrameHeader,THPDec.o,thp.a,false
+__THPReadScaneHeader,THPDec.o,thp.a,false
+__THPReadQuantizationTable,THPDec.o,thp.a,false
+__THPReadHuffmanTableSpecification,THPDec.o,thp.a,false
+__THPPrepBitStream,THPDec.o,thp.a,false
+__THPDecompressYUV,THPDec.o,thp.a,false
+__THPDecompressiMCURow512x448,THPDec.o,thp.a,false
+__THPInverseDCTNoYPos,THPDec.o,thp.a,false
+__THPInverseDCTY8,THPDec.o,thp.a,false
+__THPDecompressiMCURow640x480,THPDec.o,thp.a,false
+__THPDecompressiMCURowNxN,THPDec.o,thp.a,false
+__THPHuffDecodeDCTCompY,THPDec.o,thp.a,false
+__THPHuffDecodeDCTCompU,THPDec.o,thp.a,false
+__THPHuffDecodeDCTCompV,THPDec.o,thp.a,false
+THPInit,THPDec.o,thp.a,false
+THPAudioDecode,THPAudio.o,thp.a,false

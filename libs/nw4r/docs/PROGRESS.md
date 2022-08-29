@@ -1,0 +1,7 @@
+| Library | Percentage |
+| ------------- | ------------- |
+| [libnw4Fr_ut](https://github.com/shibbo/nw4r/blob/main/docs/lib/libnw4Fr_ut.md) | 0.0% |
+| [libnw4r_db](https://github.com/shibbo/nw4r/blob/main/docs/lib/libnw4r_db.md) | 0.0% |
+| [libnw4r_lyt](https://github.com/shibbo/nw4r/blob/main/docs/lib/libnw4r_lyt.md) | 0.1990521327014218% |
+| [libnw4r_math](https://github.com/shibbo/nw4r/blob/main/docs/lib/libnw4r_math.md) | 0.0% |
+| [libnw4r_ut](https://github.com/shibbo/nw4r/blob/main/docs/lib/libnw4r_ut.md) | 0.0% |
