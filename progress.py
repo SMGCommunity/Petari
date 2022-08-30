@@ -205,7 +205,7 @@ game_libs = [
 func_sizes = {}
 
 # start by reading function sizes
-with open("../../data/funcSizes.txt", "r") as file:
+with open("data/funcSizes.txt", "r") as file:
     lines = file.readlines()
 
     for line in lines:

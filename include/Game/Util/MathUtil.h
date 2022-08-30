@@ -204,6 +204,14 @@ namespace MR {
     inline f32 modAndAdd(f32 a1, f32 a2) {
         return a1 + (f32)fmod(360.0f + a2, 360.0f);
     }
+
+    inline f32 modAndAdd(f32 a1, f32 a2, f32 a3) {
+        return a1 + (f32)fmod(a3 + a2, a3);
+    }
+
+    inline f32 add(f32 lhs, f32 rhs) {
+        return lhs + rhs;
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

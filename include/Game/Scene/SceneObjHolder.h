@@ -23,6 +23,7 @@
 #define SceneObj_AllLiveActorGroup          0x30
 #define SceneObj_PlanetGravityManager       0x32
 #define SceneObj_PurpleCoinHolder           0x37
+#define SceneObj_CoinRotater                0x38
 #define SceneObj_AirBubbleHolder            0x39
 #define SceneObj_BigFanHolder               0x3A
 #define SceneObj_ShadowVolumeDrawer         0x45

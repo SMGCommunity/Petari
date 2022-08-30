@@ -79,8 +79,8 @@
 | CoinGroup.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | CoinHolder.o | 41.98606271777003% | 11 / 19 | 57.89473684210527% | :eight_pointed_black_star: 
 | CoinReplica.o | 0.0% | 0 / 10 | 0.0% | :x: 
-| CoinRotater.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| CoinSpot.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| CoinRotater.o | 57.534246575342465% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| CoinSpot.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
@@ -2055,30 +2055,30 @@
 # CoinRotater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CoinRotaterFPCc | :x: |
+| __ct__11CoinRotaterFPCc | :white_check_mark: |
 | movement__11CoinRotaterFv | :x: |
-| createCoinRotater__2MRFv | :x: |
-| getCoinRotateYMatrix__2MRFv | :x: |
-| getCoinHiSpeedRotateYMatrix__2MRFv | :x: |
-| getCoinInWaterRotateYMatrix__2MRFv | :x: |
-| __dt__11CoinRotaterFv | :x: |
+| createCoinRotater__2MRFv | :white_check_mark: |
+| getCoinRotateYMatrix__2MRFv | :white_check_mark: |
+| getCoinHiSpeedRotateYMatrix__2MRFv | :white_check_mark: |
+| getCoinInWaterRotateYMatrix__2MRFv | :white_check_mark: |
+| __dt__11CoinRotaterFv | :white_check_mark: |
 
 
 # CoinSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8CoinSpotFPCc | :x: |
-| init__8CoinSpotFRC12JMapInfoIter | :x: |
-| initSensor__8CoinSpotFv | :x: |
-| exeWait__8CoinSpotFv | :x: |
-| exeIsInTornado__8CoinSpotFv | :x: |
-| attackSensor__8CoinSpotFP9HitSensorP9HitSensor | :x: |
-| __dt__8CoinSpotFv | :x: |
-| __sinit_\CoinSpot_cpp | :x: |
-| __ct__Q211NrvCoinSpot15CoinSpotNrvWaitFv | :x: |
-| __ct__Q211NrvCoinSpot22CoinSpotNrvIsInTornadoFv | :x: |
-| execute__Q211NrvCoinSpot22CoinSpotNrvIsInTornadoCFP5Spine | :x: |
-| execute__Q211NrvCoinSpot15CoinSpotNrvWaitCFP5Spine | :x: |
+| __ct__8CoinSpotFPCc | :white_check_mark: |
+| init__8CoinSpotFRC12JMapInfoIter | :white_check_mark: |
+| initSensor__8CoinSpotFv | :white_check_mark: |
+| exeWait__8CoinSpotFv | :white_check_mark: |
+| exeIsInTornado__8CoinSpotFv | :white_check_mark: |
+| attackSensor__8CoinSpotFP9HitSensorP9HitSensor | :white_check_mark: |
+| __dt__8CoinSpotFv | :white_check_mark: |
+| __sinit_\CoinSpot_cpp | :white_check_mark: |
+| __ct__Q211NrvCoinSpot15CoinSpotNrvWaitFv | :white_check_mark: |
+| __ct__Q211NrvCoinSpot22CoinSpotNrvIsInTornadoFv | :white_check_mark: |
+| execute__Q211NrvCoinSpot22CoinSpotNrvIsInTornadoCFP5Spine | :white_check_mark: |
+| execute__Q211NrvCoinSpot15CoinSpotNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # CollapsePlane.o
