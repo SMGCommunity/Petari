@@ -78,7 +78,7 @@
 | CoinBox.o | 62.745098039215684% | 9 / 10 | 90.0% | :eight_pointed_black_star: 
 | CoinGroup.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | CoinHolder.o | 41.98606271777003% | 11 / 19 | 57.89473684210527% | :eight_pointed_black_star: 
-| CoinReplica.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| CoinReplica.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | CoinRotater.o | 57.534246575342465% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
 | CoinSpot.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | CollapsePlane.o | 0.0% | 0 / 22 | 0.0% | :x: 
@@ -2040,16 +2040,16 @@
 # CoinReplica.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CoinReplicaFPCc | :x: |
-| activeCoin__11CoinReplicaFv | :x: |
-| activeCoinWithGravity__11CoinReplicaFv | :x: |
-| deactiveCoin__11CoinReplicaFv | :x: |
-| removeCoin__11CoinReplicaFv | :x: |
-| init__11CoinReplicaFRC12JMapInfoIter | :x: |
-| Functor&lt;11CoinReplica&gt;__2MRFP11CoinReplicaM11CoinReplicaFPCvPv_v_Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt; | :x: |
-| __cl__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__11CoinReplicaFv | :x: |
+| __ct__11CoinReplicaFPCc | :white_check_mark: |
+| activeCoin__11CoinReplicaFv | :white_check_mark: |
+| activeCoinWithGravity__11CoinReplicaFv | :white_check_mark: |
+| deactiveCoin__11CoinReplicaFv | :white_check_mark: |
+| removeCoin__11CoinReplicaFv | :white_check_mark: |
+| init__11CoinReplicaFRC12JMapInfoIter | :white_check_mark: |
+| Functor&lt;11CoinReplica&gt;__2MRFP11CoinReplicaM11CoinReplicaFPCvPv_v_Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR49FunctorV0M&lt;P11CoinReplica,M11CoinReplicaFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__11CoinReplicaFv | :white_check_mark: |
 
 
 # CoinRotater.o
