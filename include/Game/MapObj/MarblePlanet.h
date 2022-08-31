@@ -14,7 +14,7 @@ public:
     virtual void kill();
     virtual void startClipped();
     virtual void endClipped();
-    virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
 
     void exeScaleUpCore();
     void exeBreakCore();

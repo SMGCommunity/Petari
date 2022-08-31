@@ -294,4 +294,8 @@ namespace MR {
 
     const char* createLowModelObjName(const LiveActor *);
     const char* createMiddleModelObjName(const LiveActor *);
+
+    void addToAttributeGroupSearchTurtle(const LiveActor *);
+
+    void stopSceneAtStep(const LiveActor *, s32, s32);
 };

@@ -121,7 +121,7 @@ void MarblePlanet::kill() {
     LiveActor::kill();
 }
 
-u32 MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
+bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
     if (isNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance)) {
         return 0;
     }

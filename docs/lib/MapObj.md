@@ -49,7 +49,7 @@
 | BlackHole.o | 66.66666666666666% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
 | BlueChip.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% | :x: 
-| BreakableCage.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| BreakableCage.o | 68.64754098360656% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
 | BrightObj.o | 0.0% | 0 / 42 | 0.0% | :x: 
 | BumpAppearPlanet.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | Candlestand.o | 0.0% | 0 / 31 | 0.0% | :x: 
@@ -1322,29 +1322,29 @@
 # BreakableCage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13BreakableCageFPCc | :x: |
+| __ct__13BreakableCageFPCc | :white_check_mark: |
 | init__13BreakableCageFRC12JMapInfoIter | :x: |
-| appear__13BreakableCageFv | :x: |
-| kill__13BreakableCageFv | :x: |
+| appear__13BreakableCageFv | :white_check_mark: |
+| kill__13BreakableCageFv | :white_check_mark: |
 | calcAndSetBaseMtx__13BreakableCageFv | :x: |
-| receiveMsgPlayerAttack__13BreakableCageFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgEnemyAttack__13BreakableCageFUlP9HitSensorP9HitSensor | :x: |
-| initMapToolInfo__13BreakableCageFRC12JMapInfoIter | :x: |
-| initModel__13BreakableCageFPCcRC12JMapInfoIter | :x: |
-| initBaseMtxForCage__13BreakableCageFv | :x: |
-| isTypeCage__13BreakableCageCFv | :x: |
-| isAppearPowerStar__13BreakableCageCFv | :x: |
-| tryBreak__13BreakableCageFv | :x: |
-| exeWait__13BreakableCageFv | :x: |
-| exeBreak__13BreakableCageFv | :x: |
-| __dt__13BreakableCageFv | :x: |
-| __sinit_\BreakableCage_cpp | :x: |
-| __ct__Q216NrvBreakableCage20BreakableCageNrvWaitFv | :x: |
-| __ct__Q216NrvBreakableCage34BreakableCageNrvWaitStartDemoBreakFv | :x: |
-| __ct__Q216NrvBreakableCage21BreakableCageNrvBreakFv | :x: |
-| execute__Q216NrvBreakableCage21BreakableCageNrvBreakCFP5Spine | :x: |
-| execute__Q216NrvBreakableCage34BreakableCageNrvWaitStartDemoBreakCFP5Spine | :x: |
-| execute__Q216NrvBreakableCage20BreakableCageNrvWaitCFP5Spine | :x: |
+| receiveMsgPlayerAttack__13BreakableCageFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgEnemyAttack__13BreakableCageFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initMapToolInfo__13BreakableCageFRC12JMapInfoIter | :white_check_mark: |
+| initModel__13BreakableCageFPCcRC12JMapInfoIter | :white_check_mark: |
+| initBaseMtxForCage__13BreakableCageFv | :white_check_mark: |
+| isTypeCage__13BreakableCageCFv | :white_check_mark: |
+| isAppearPowerStar__13BreakableCageCFv | :white_check_mark: |
+| tryBreak__13BreakableCageFv | :white_check_mark: |
+| exeWait__13BreakableCageFv | :white_check_mark: |
+| exeBreak__13BreakableCageFv | :white_check_mark: |
+| __dt__13BreakableCageFv | :white_check_mark: |
+| __sinit_\BreakableCage_cpp | :white_check_mark: |
+| __ct__Q216NrvBreakableCage20BreakableCageNrvWaitFv | :white_check_mark: |
+| __ct__Q216NrvBreakableCage34BreakableCageNrvWaitStartDemoBreakFv | :white_check_mark: |
+| __ct__Q216NrvBreakableCage21BreakableCageNrvBreakFv | :white_check_mark: |
+| execute__Q216NrvBreakableCage21BreakableCageNrvBreakCFP5Spine | :white_check_mark: |
+| execute__Q216NrvBreakableCage34BreakableCageNrvWaitStartDemoBreakCFP5Spine | :white_check_mark: |
+| execute__Q216NrvBreakableCage20BreakableCageNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # BrightObj.o

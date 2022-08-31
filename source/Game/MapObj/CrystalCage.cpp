@@ -210,7 +210,7 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) 
     return 0;
 }
 
-u32 CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
+bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
     if (mCrystalCageType != 2 && isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
         MR::invalidateClipping(this);
         MR::invalidateCollisionParts(this);

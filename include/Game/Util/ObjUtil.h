@@ -107,6 +107,7 @@ namespace MR {
 
     void registerPreDrawFunction(const MR::FunctorBase &, int);
 
+    bool isJudgedToClipFrustum(const TVec3f &, f32);
     bool isJudgedToClipFrustum100m(const TVec3f &, f32);
     bool isJudgedToClipFrustum300m(const TVec3f &, f32);
 

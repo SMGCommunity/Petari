@@ -74,6 +74,9 @@ namespace MR {
     bool isMsgStarPieceAttack(u32);
     bool isMsgStarPieceReflect(u32);
 
+    bool isMsgEnemyAttackFire(u32);
+    bool isMsgEnemyAttackFireStrong(u32);
+
     bool isMsgFloorTouch(u32);
 
     bool isSensorEnemy(const HitSensor *);

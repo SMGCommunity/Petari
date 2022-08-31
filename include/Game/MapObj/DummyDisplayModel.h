@@ -9,6 +9,7 @@ public:
 };
 
 namespace MR {
+    DummyDisplayModel* createDummyDisplayModel(LiveActor *, const JMapInfoIter &, s32, const TVec3f &, const TVec3f &);
     DummyDisplayModel* createDummyDisplayModelCrystalItem(LiveActor *, s32, const TVec3f &, const TVec3f &);
     DummyDisplayModel* createDummyDisplayModelCrystalItem(LiveActor *, const JMapInfoIter &, const TVec3f &, const TVec3f &);
 

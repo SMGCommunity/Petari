@@ -14,7 +14,7 @@ public:
     virtual void kill();
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
-    virtual u32 receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void exeHit();
