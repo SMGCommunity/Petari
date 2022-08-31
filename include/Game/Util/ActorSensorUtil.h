@@ -94,6 +94,9 @@ namespace MR {
     void validateHitSensors(LiveActor *);
     void invalidateHitSensors(LiveActor *);
 
+    void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
+    void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
+
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);
@@ -130,6 +133,8 @@ namespace MR {
     bool sendMsgEnemyAttackMaximumToDir(HitSensor *, HitSensor *, const TVec3f &);
 
     bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
+
+    bool sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
 
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 

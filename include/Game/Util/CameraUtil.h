@@ -6,6 +6,7 @@
 class LiveActor;
 class ActorCameraInfo;
 class CameraTargetArg;
+class NameObj;
 
 namespace MR {
     TVec3f getCamPos();
@@ -64,6 +65,8 @@ namespace MR {
     void resetCamerLocalOffset();
 
     void drawInitFor2DModel();
+
+    void declareCameraRegisterVec(const NameObj *, u32, TVec3f *);
 
     bool hasStartAnimCamera();
 
