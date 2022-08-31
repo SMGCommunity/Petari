@@ -812,11 +812,11 @@ execute__Q216NrvBreakableCage20BreakableCageNrvWaitCFP5Spine,BreakableCage.o,Map
 calcScreenPosition__23@unnamed@BrightObj_cpp@FPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>>,BrightObj.o,MapObj.a,false
 __ct__10BrightInfoFv,BrightObj.o,MapObj.a,false
 write__10BrightInfoFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>f,BrightObj.o,MapObj.a,false
-endRead__10BrightInfoFv,BrightObj.o,MapObj.a,false
-reset__10BrightInfoFv,BrightObj.o,MapObj.a,false
-__ct__14BrightDrawInfoFv,BrightObj.o,MapObj.a,false
+endRead__10BrightInfoFv,BrightObj.o,MapObj.a,true
+reset__10BrightInfoFv,BrightObj.o,MapObj.a,true
+__ct__14BrightDrawInfoFv,BrightObj.o,MapObj.a,true
 write__14BrightDrawInfoFUsRCQ29JGeometry8TVec3<f>f,BrightObj.o,MapObj.a,false
-__ct__13BrightCamInfoFv,BrightObj.o,MapObj.a,false
+__ct__13BrightCamInfoFv,BrightObj.o,MapObj.a,true
 write__13BrightCamInfoFUsRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry66TProjection3<Q29JGeometry38TMatrix44<Q29JGeometry13SMatrix44C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,BrightObj.o,MapObj.a,false
 __ct__13BrightObjBaseFv,BrightObj.o,MapObj.a,false
 checkVisibilityOfSphere__13BrightObjBaseFUsRC13BrightCamInfo,BrightObj.o,MapObj.a,false

@@ -50,7 +50,7 @@
 | BlueChip.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BlueStarCupsulePlanet.o | 0.0% | 0 / 42 | 0.0% | :x: 
 | BreakableCage.o | 68.64754098360656% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
-| BrightObj.o | 0.0% | 0 / 42 | 0.0% | :x: 
+| BrightObj.o | 10.066127847171199% | 4 / 42 | 9.523809523809524% | :eight_pointed_black_star: 
 | BumpAppearPlanet.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | Candlestand.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% | :x: 
@@ -1353,11 +1353,11 @@
 | calcScreenPosition__23@unnamed@BrightObj_cpp@FPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry66TProjection3&lt;Q29JGeometry38TMatrix44&lt;Q29JGeometry13SMatrix44C&lt;f&gt;&gt;&gt; | :x: |
 | __ct__10BrightInfoFv | :x: |
 | write__10BrightInfoFRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;f | :x: |
-| endRead__10BrightInfoFv | :x: |
-| reset__10BrightInfoFv | :x: |
-| __ct__14BrightDrawInfoFv | :x: |
+| endRead__10BrightInfoFv | :white_check_mark: |
+| reset__10BrightInfoFv | :white_check_mark: |
+| __ct__14BrightDrawInfoFv | :white_check_mark: |
 | write__14BrightDrawInfoFUsRCQ29JGeometry8TVec3&lt;f&gt;f | :x: |
-| __ct__13BrightCamInfoFv | :x: |
+| __ct__13BrightCamInfoFv | :white_check_mark: |
 | write__13BrightCamInfoFUsRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry66TProjection3&lt;Q29JGeometry38TMatrix44&lt;Q29JGeometry13SMatrix44C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __ct__13BrightObjBaseFv | :x: |
 | checkVisibilityOfSphere__13BrightObjBaseFUsRC13BrightCamInfo | :x: |
