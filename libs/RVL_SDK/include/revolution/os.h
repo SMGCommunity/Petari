@@ -7,6 +7,21 @@
 typedef s64         OSTime;
 typedef u32         OSTick;
 
+u32 __OSBusClock : (0x8000 << 16 | 0x00F8); 
+
+#define OS_BUS_CLOCK        __OSBusClock
+#ifndef OS_CORE_CLOCK
+#define OS_CORE_CLOCK       729000000u
+#endif
+#ifndef OS_BUS_CLOCK
+#define OS_BUS_CLOCK        243000000u
+#endif
+#ifndef OS_TIMER_CLOCK
+#define OS_TIMER_CLOCK      (OS_BUS_CLOCK/4)
+#endif
+
+#define OSNanosecondsToTicks( nsec )    (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
+
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
 

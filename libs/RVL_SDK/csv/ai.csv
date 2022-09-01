@@ -1,12 +1,12 @@
 Symbol Name, Object File, Library Archive, Matching
-AIRegisterDMACallback,ai.o,ai.a,false
-AIInitDMA,ai.o,ai.a,false
-AIStartDMA,ai.o,ai.a,false
-AIStopDMA,ai.o,ai.a,false
-AIGetDMAStartAddr,ai.o,ai.a,false
-AIGetDMALength,ai.o,ai.a,false
-AISetDSPSampleRate,ai.o,ai.a,false
-AIInit,ai.o,ai.a,false
-__AIDHandler,ai.o,ai.a,false
-__AICallbackStackSwitch,ai.o,ai.a,false
-__AI_SRC_INIT,ai.o,ai.a,false
+AIRegisterDMACallback,ai.o,ai.a,true
+AIInitDMA,ai.o,ai.a,true
+AIStartDMA,ai.o,ai.a,true
+AIStopDMA,ai.o,ai.a,true
+AIGetDMAStartAddr,ai.o,ai.a,true
+AIGetDMALength,ai.o,ai.a,true
+AISetDSPSampleRate,ai.o,ai.a,true
+AIInit,ai.o,ai.a,true
+__AIDHandler,ai.o,ai.a,true
+__AICallbackStackSwitch,ai.o,ai.a,true
+__AI_SRC_INIT,ai.o,ai.a,true

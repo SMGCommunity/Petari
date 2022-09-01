@@ -3,15 +3,10 @@
 
 #include <revolution/types.h>
 
-#define PI_REG_INTMSK	0x004
+vu32 __PIRegs[0xC] : (0xC000 << 16) + 0x3000;
 
-#define PI_INTMSK_REG_EXMSK_MASK	0x00000010
-#define PI_INTMSK_REG_AIMSK_MASK	0x00000020
-#define PI_INTMSK_REG_DSPMSK_MASK	0x00000040
-#define PI_INTMSK_REG_MEMMSK_MASK	0x00000080
+vu16 __DSPRegs[0x20] : (0xC000 << 16) + 0x5000;
 
-vu32 __PIRegs[(0x02C / 4) + 1] : (0xC000 << 16) + 0x1c003000;
-
-vu16 __DSPRegs[0x0000001F + 1]   : (0xC000 << 16) + 0x0C005000;
+vu32 __AIRegs [0x8] : (0xC000 << 16) + 0x06C00;
 
 #endif // FLIPPER_H
