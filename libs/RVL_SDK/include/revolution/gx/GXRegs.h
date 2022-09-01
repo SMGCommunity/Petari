@@ -25,6 +25,10 @@ extern volatile PPCWGPipe gxfifo: 0xCC008000;
 #define GX_WRITE_F32(f)	 	\
    gxfifo.f32 = (f32)(f);
 
+#define GX_WRITE_REG(reg)	 	\
+   GX_WRITE_U8((0x61));         \
+   GX_WRITE_U32((reg))        \
+
 #ifdef __cplusplus
 }
 #endif
