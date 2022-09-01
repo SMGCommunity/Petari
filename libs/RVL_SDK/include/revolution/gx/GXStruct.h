@@ -33,6 +33,10 @@ typedef struct _GXTexRegion {
     u32 dummy[4];
 } GXTexRegion;
 
+typedef struct _GXTlutRegion {
+    u32 dummy[4];
+} GXTlutRegion;
+
 typedef struct _GXRenderModeObj {
     VITVMode viTVmode;
     u16 fbWidth;
@@ -48,6 +52,10 @@ typedef struct _GXRenderModeObj {
     u8 sample_pattern[12][2];
     u8 vfilter[7];
 } GXRenderModeObj;
+
+typedef struct _GXFogAdjTable {
+    u16 r[10];
+} GXFogAdjTable;
 
 #ifdef __cplusplus
 }

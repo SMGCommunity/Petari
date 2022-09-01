@@ -15,7 +15,7 @@
 | [exi](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/exi.md) | 0.0% |
 | [fs](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/fs.md) | 0.0% |
 | [gd](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/gd.md) | 0.0% |
-| [gx](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/gx.md) | 0.0% |
+| [gx](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/gx.md) | 3.0502169869807814% |
 | [ipc](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/ipc.md) | 0.0% |
 | [mem](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/mem.md) | 0.0% |
 | [mtx](https://github.com/shibbo/RVL_SDK/blob/main/docs/lib/mtx.md) | 0.0% |

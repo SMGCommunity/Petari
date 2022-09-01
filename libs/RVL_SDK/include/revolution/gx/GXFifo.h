@@ -9,7 +9,7 @@ extern "C" {
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
 
-typedef struct GXFifoObj {
+typedef struct _GXFifoObj {
     u8* base;
     u8* top;
     u32 size;
@@ -21,7 +21,7 @@ typedef struct GXFifoObj {
     GXBool wrap;
     GXBool bind_cpu;
     GXBool bind_gp;
-};
+} GXFifoObj;
 
 GXBool GXGetCPUFifo(GXFifoObj *);
 GXBool GXGetGPFifo(GXFifoObj *);

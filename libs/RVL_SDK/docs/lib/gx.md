@@ -18,7 +18,7 @@
 | GXTexture.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | GXBump.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | GXTev.o | 0.0% | 0 / 16 | 0.0% | :x: 
-| GXPixel.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| GXPixel.o | 63.896103896103895% | 11 / 12 | 91.66666666666666% | :eight_pointed_black_star: 
 | GXDisplayList.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | GXTransform.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | GXPerf.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -231,17 +231,17 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | GXSetFog | :x: |
-| GXSetFogRangeAdj | :x: |
-| GXSetBlendMode | :x: |
-| GXSetColorUpdate | :x: |
-| GXSetAlphaUpdate | :x: |
-| GXSetZMode | :x: |
-| GXSetZCompLoc | :x: |
-| GXSetPixelFmt | :x: |
-| GXSetDither | :x: |
-| GXSetDstAlpha | :x: |
-| GXSetFieldMask | :x: |
-| GXSetFieldMode | :x: |
+| GXSetFogRangeAdj | :white_check_mark: |
+| GXSetBlendMode | :white_check_mark: |
+| GXSetColorUpdate | :white_check_mark: |
+| GXSetAlphaUpdate | :white_check_mark: |
+| GXSetZMode | :white_check_mark: |
+| GXSetZCompLoc | :white_check_mark: |
+| GXSetPixelFmt | :white_check_mark: |
+| GXSetDither | :white_check_mark: |
+| GXSetDstAlpha | :white_check_mark: |
+| GXSetFieldMask | :white_check_mark: |
+| GXSetFieldMode | :white_check_mark: |
 
 
 # GXDisplayList.o

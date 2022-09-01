@@ -75,7 +75,8 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
         flags = flags + " -DNON_MATCHING "
 
     runtime_path =      pathlib.Path("../Runtime/include")
-    includes += f"-i {runtime_path } "
+    msl_path =      pathlib.Path("../MSL_C/include")
+    includes += f"-i {runtime_path } -I- -i {msl_path} "
     flags += includes
 
     tasks = list()
