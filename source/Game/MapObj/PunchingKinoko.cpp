@@ -95,7 +95,7 @@ void PunchingKinoko::initCamera(const JMapInfoIter &rIter) {
 
 bool PunchingKinoko::ballMtxCallBack(TPos3f *a1, const JointControllerInfo &joint) {
     TVec3f stack_8;
-    PSVECSubtract((Vec*)&mGroundChecker->mPosition, (Vec*)&mPosition, (Vec*)&stack_8);
+    PSVECSubtract(mGroundChecker->mPosition.toCVec(), mPosition.toCVec(), stack_8.toVec());
     MR::orthogonalize(a1);
     if (!MR::normalizeOrZero(&stack_8)) {
         MR::turnMtxToYDirRate(a1, stack_8, 1.0f);
@@ -160,10 +160,10 @@ void PunchingKinoko::exeWait() {
     TVec3f stack_2C;
     MR::calcPositionUpOffset(&stack_38, this, 130.0f);
 
-    Vec *groundCheckerPos = (Vec*)&mGroundChecker->mPosition;
+    TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_20;
     TVec3f stack_14(stack_38);
-    PSVECSubtract((Vec*)&stack_14, groundCheckerPos, (Vec*)&stack_14);
+    PSVECSubtract(stack_14.toCVec(), groundCheckerPos->toCVec(), stack_14.toVec());
 
     stack_20 = stack_14;
     stack_20.scale(0.008f);
@@ -200,7 +200,7 @@ void PunchingKinoko::exeSwing() {
 
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_14(stack_20);
-    PSVECSubtract((Vec*)&stack_14, (Vec*)groundCheckerPos, (Vec*)&stack_14);
+    PSVECSubtract(stack_14.toCVec(), groundCheckerPos->toCVec(), stack_14.toVec());
 
     TVec3f stack_8(stack_14);
     stack_8.scale(0.008f);
@@ -216,7 +216,7 @@ void PunchingKinoko::exeSwing() {
 
     MR::vecBlend(_9C, mPosition, &_9C, 0.05f);
 
-    if (var3 < 40.0f && PSVECMag((Vec*)&stack_14) < 50.0f) {
+    if (var3 < 40.0f && PSVECMag(stack_14.toCVec()) < 50.0f) {
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
     }
 }
@@ -304,7 +304,7 @@ void PunchingKinoko::exeCrushedEnd() {
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_14;
     TVec3f stack_8(stack_20);
-    PSVECSubtract((Vec*)&stack_8, (Vec*)groundCheckerPos, (Vec*)&stack_8);
+    PSVECSubtract(stack_8.toCVec(), groundCheckerPos->toCVec(), stack_8.toVec());
     stack_14 = stack_8;
     stack_14.scale(0.008f);
     MR::addVelocity(mGroundChecker, stack_14);
