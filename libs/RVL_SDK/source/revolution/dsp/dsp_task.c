@@ -2,7 +2,7 @@
 #include <revolution/dsp/dsp_debug.h>
 
 #define WAIT_FOR_MAIL  \
-    while (DSPCHeckMailTDSP()) { }
+    while (DSPCheckMailTDSP()) { }
 
 DSPTaskInfo* __DSP_curr_task;
 DSPTaskInfo* __DSP_first_task;
