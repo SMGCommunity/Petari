@@ -142,7 +142,7 @@ namespace JGeometry {
         void mul(const TVec3<T> &);
         void mul(const TVec3<T> &, const TVec3<T> &);
 
-        void scale(T scalar) {
+        void scale(T scalar) NO_INLINE {
             x = x * scalar;
             y = y * scalar;
             z = z * scalar;
