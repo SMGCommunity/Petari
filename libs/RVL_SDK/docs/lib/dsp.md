@@ -8,33 +8,33 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| dsp.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| dsp_debug.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| dsp_task.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| dsp.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| dsp_debug.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| dsp_task.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # dsp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| DSPCheckMailToDSP | :x: |
-| DSPCheckMailFromDSP | :x: |
-| DSPReadMailFromDSP | :x: |
-| DSPSendMailToDSP | :x: |
-| DSPAssertInt | :x: |
-| DSPInit | :x: |
+| DSPCheckMailToDSP | :white_check_mark: |
+| DSPCheckMailFromDSP | :white_check_mark: |
+| DSPReadMailFromDSP | :white_check_mark: |
+| DSPSendMailToDSP | :white_check_mark: |
+| DSPAssertInt | :white_check_mark: |
+| DSPInit | :white_check_mark: |
 
 
 # dsp_debug.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __DSP_debug_printf | :x: |
+| __DSP_debug_printf | :white_check_mark: |
 
 
 # dsp_task.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __DSP_exec_task | :x: |
-| __DSP_boot_task | :x: |
-| __DSP_remove_task | :x: |
+| __DSP_exec_task | :white_check_mark: |
+| __DSP_boot_task | :white_check_mark: |
+| __DSP_remove_task | :white_check_mark: |
 
 
