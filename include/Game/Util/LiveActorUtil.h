@@ -2,6 +2,7 @@
 
 #include "JSystem/JGeometry/TVec.h"
 #include "Game/Animation/AnmPlayer.h"
+#include "Game/Util/JMapInfo.h"
 #include <revolution.h>
 
 class CollisionParts;

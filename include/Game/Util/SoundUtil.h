@@ -49,4 +49,6 @@ namespace MR {
     void startCSSound(const char *, const char *, s32);
 
     bool hasME();
+
+    void start2PAttackAssistSound();
 };

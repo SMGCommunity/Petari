@@ -201,7 +201,7 @@
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | PunchBox.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| PunchingKinoko.o | 0.0% | 0 / 59 | 0.0% | :x: 
+| PunchingKinoko.o | 61.49171270718232% | 46 / 59 | 77.96610169491525% | :eight_pointed_black_star: 
 | PurpleCoinHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | PurpleCoinStarter.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 | 0.0% | :x: 
@@ -5165,17 +5165,17 @@
 # PunchingKinoko.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__14PunchingKinokoFPCc | :x: |
-| init__14PunchingKinokoFRC12JMapInfoIter | :x: |
-| initSensor__14PunchingKinokoFv | :x: |
-| initShadow__14PunchingKinokoFv | :x: |
-| initCamera__14PunchingKinokoFRC12JMapInfoIter | :x: |
+| __ct__14PunchingKinokoFPCc | :white_check_mark: |
+| init__14PunchingKinokoFRC12JMapInfoIter | :white_check_mark: |
+| initSensor__14PunchingKinokoFv | :white_check_mark: |
+| initShadow__14PunchingKinokoFv | :white_check_mark: |
+| initCamera__14PunchingKinokoFRC12JMapInfoIter | :white_check_mark: |
 | initJointControl__14PunchingKinokoFv | :x: |
-| ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| makeActorAppeared__14PunchingKinokoFv | :x: |
-| kill__14PunchingKinokoFv | :x: |
-| makeActorDead__14PunchingKinokoFv | :x: |
-| control__14PunchingKinokoFv | :x: |
+| ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| makeActorAppeared__14PunchingKinokoFv | :white_check_mark: |
+| kill__14PunchingKinokoFv | :white_check_mark: |
+| makeActorDead__14PunchingKinokoFv | :white_check_mark: |
+| control__14PunchingKinokoFv | :white_check_mark: |
 | calcAndSetBaseMtx__14PunchingKinokoFv | :x: |
 | attackSensor__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
 | receiveMsgPlayerAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor | :x: |
@@ -5183,47 +5183,47 @@
 | receiveMsgPush__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
 | requestPunch__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
 | requestEnemyBlow__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
-| requestTrample__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
-| requestCrush__14PunchingKinokoFv | :x: |
-| exeWait__14PunchingKinokoFv | :x: |
-| exeSwing__14PunchingKinokoFv | :x: |
-| exePointSnaped__14PunchingKinokoFv | :x: |
-| exePunched__14PunchingKinokoFv | :x: |
-| exePunchedBrake__14PunchingKinokoFv | :x: |
-| exeHitted__14PunchingKinokoFv | :x: |
-| exeCrushed__14PunchingKinokoFv | :x: |
-| exeCrushedEnd__14PunchingKinokoFv | :x: |
-| addVelocityKeepHeight__14PunchingKinokoFv | :x: |
-| isEnablePunched__14PunchingKinokoCFv | :x: |
-| isEnableHitPlayer__14PunchingKinokoCFv | :x: |
-| isEnableEnemyAttack__14PunchingKinokoCFv | :x: |
-| isEnableCrushed__14PunchingKinokoCFv | :x: |
-| isEnableTrample__14PunchingKinokoCFv | :x: |
-| isEnableBlowed__14PunchingKinokoCFv | :x: |
-| isCrushed__14PunchingKinokoCFv | :x: |
-| __sinit_\PunchingKinoko_cpp | :x: |
-| __ct__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitFv | :x: |
-| __ct__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingFv | :x: |
-| __ct__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedFv | :x: |
-| __ct__Q217NrvPunchingKinoko29PunchingKinokoNrvPunchedBrakeFv | :x: |
-| __ct__Q217NrvPunchingKinoko23PunchingKinokoNrvHittedFv | :x: |
-| __ct__Q217NrvPunchingKinoko28PunchingKinokoNrvPointSnapedFv | :x: |
-| __ct__Q217NrvPunchingKinoko24PunchingKinokoNrvCrushedFv | :x: |
-| __ct__Q217NrvPunchingKinoko27PunchingKinokoNrvCrushedEndFv | :x: |
-| execute__Q217NrvPunchingKinoko27PunchingKinokoNrvCrushedEndCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko24PunchingKinokoNrvCrushedCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko28PunchingKinokoNrvPointSnapedCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko23PunchingKinokoNrvHittedCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko29PunchingKinokoNrvPunchedBrakeCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingCFP5Spine | :x: |
-| execute__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitCFP5Spine | :x: |
+| requestTrample__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestCrush__14PunchingKinokoFv | :white_check_mark: |
+| exeWait__14PunchingKinokoFv | :white_check_mark: |
+| exeSwing__14PunchingKinokoFv | :white_check_mark: |
+| exePointSnaped__14PunchingKinokoFv | :white_check_mark: |
+| exePunched__14PunchingKinokoFv | :white_check_mark: |
+| exePunchedBrake__14PunchingKinokoFv | :white_check_mark: |
+| exeHitted__14PunchingKinokoFv | :white_check_mark: |
+| exeCrushed__14PunchingKinokoFv | :white_check_mark: |
+| exeCrushedEnd__14PunchingKinokoFv | :white_check_mark: |
+| addVelocityKeepHeight__14PunchingKinokoFv | :white_check_mark: |
+| isEnablePunched__14PunchingKinokoCFv | :white_check_mark: |
+| isEnableHitPlayer__14PunchingKinokoCFv | :white_check_mark: |
+| isEnableEnemyAttack__14PunchingKinokoCFv | :white_check_mark: |
+| isEnableCrushed__14PunchingKinokoCFv | :white_check_mark: |
+| isEnableTrample__14PunchingKinokoCFv | :white_check_mark: |
+| isEnableBlowed__14PunchingKinokoCFv | :white_check_mark: |
+| isCrushed__14PunchingKinokoCFv | :white_check_mark: |
+| __sinit_\PunchingKinoko_cpp | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko29PunchingKinokoNrvPunchedBrakeFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko23PunchingKinokoNrvHittedFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko28PunchingKinokoNrvPointSnapedFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko24PunchingKinokoNrvCrushedFv | :white_check_mark: |
+| __ct__Q217NrvPunchingKinoko27PunchingKinokoNrvCrushedEndFv | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko27PunchingKinokoNrvCrushedEndCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko24PunchingKinokoNrvCrushedCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko28PunchingKinokoNrvPointSnapedCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko23PunchingKinokoNrvHittedCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko29PunchingKinokoNrvPunchedBrakeCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingCFP5Spine | :white_check_mark: |
+| execute__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitCFP5Spine | :white_check_mark: |
 | __dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv | :x: |
 | calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | __cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__14PunchingKinokoFv | :x: |
+| __dt__14PunchingKinokoFv | :white_check_mark: |
 
 
 # PurpleCoinHolder.o
