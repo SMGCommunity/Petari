@@ -22,15 +22,18 @@ u32 __OSBusClock : (0x8000 << 16 | 0x00F8);
 
 #define OSNanosecondsToTicks( nsec )    (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
 
+void* OSPhysicalToUncached(u32);
+u32 OSCachedToPhysical(const void* caddr);
+
+#define OS_CACHED_REGION_PREFIX 0x8000
+#define OS_BASE_CACHED (OS_CACHED_REGION_PREFIX << 16)
+#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
+#define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
+
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
 
 void OSRegisterVersion(const char *);
-
-inline void* OSPhysicalToCached(u32 addr) {
-    return (void*)(addr | 0x8000 << 16);
-}
-void* OSPhysicalToUncached(u32);
 
 void OSReport(const char *, ...);
 void OSVReport(const char *, va_list);

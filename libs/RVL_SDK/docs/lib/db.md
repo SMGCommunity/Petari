@@ -8,16 +8,16 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| db.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| db.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 
 
 # db.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| DBInit | :x: |
-| __DBExceptionDestinationAux | :x: |
-| __DBExceptionDestination | :x: |
-| __DBIsExceptionMarked | :x: |
-| DBPrintf | :x: |
+| DBInit | :white_check_mark: |
+| __DBExceptionDestinationAux | :white_check_mark: |
+| __DBExceptionDestination | :white_check_mark: |
+| __DBIsExceptionMarked | :white_check_mark: |
+| DBPrintf | :white_check_mark: |
 
 
