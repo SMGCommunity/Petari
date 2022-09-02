@@ -10,8 +10,8 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | mem_heapCommon.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | mem_expHeap.o | 0.0% | 0 / 9 | 0.0% | :x: 
-| mem_allocator.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| mem_list.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| mem_allocator.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| mem_list.o | 91.30434782608695% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 
 
 # mem_heapCommon.o
@@ -39,19 +39,19 @@
 # mem_allocator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| AllocatorAllocForExpHeap_ | :x: |
-| AllocatorFreeForExpHeap_ | :x: |
-| MEMAllocFromAllocator | :x: |
-| MEMFreeToAllocator | :x: |
-| MEMInitAllocatorForExpHeap | :x: |
+| AllocatorAllocForExpHeap_ | :white_check_mark: |
+| AllocatorFreeForExpHeap_ | :white_check_mark: |
+| MEMAllocFromAllocator | :white_check_mark: |
+| MEMFreeToAllocator | :white_check_mark: |
+| MEMInitAllocatorForExpHeap | :white_check_mark: |
 
 
 # mem_list.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | MEMInitList | :x: |
-| MEMAppendListObject | :x: |
-| MEMRemoveListObject | :x: |
-| MEMGetNextListObject | :x: |
+| MEMAppendListObject | :white_check_mark: |
+| MEMRemoveListObject | :white_check_mark: |
+| MEMGetNextListObject | :white_check_mark: |
 
 
