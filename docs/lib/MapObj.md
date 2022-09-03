@@ -201,7 +201,7 @@
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | PunchBox.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| PunchingKinoko.o | 61.49171270718232% | 46 / 59 | 77.96610169491525% | :eight_pointed_black_star: 
+| PunchingKinoko.o | 63.59116022099448% | 48 / 59 | 81.35593220338984% | :eight_pointed_black_star: 
 | PurpleCoinHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | PurpleCoinStarter.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 | 0.0% | :x: 
@@ -5221,8 +5221,8 @@
 | __dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv | :x: |
 | calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| __cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap | :x: |
+| __cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__14PunchingKinokoFv | :white_check_mark: |
 
 
