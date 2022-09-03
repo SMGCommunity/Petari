@@ -80,6 +80,9 @@ s32 OSSuspendThread(OSThread *);
 BOOL OSSetThreadPriority(OSThread *, OSPriority);
 OSPriority OSGetThreadPriority(OSThread *);
 
+s32 OSDisableScheduler(void);
+s32 OSEnableScheduler(void);
+
 #ifdef __cplusplus
 }
 #endif

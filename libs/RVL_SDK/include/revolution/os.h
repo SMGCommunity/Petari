@@ -30,6 +30,9 @@ u32 OSCachedToPhysical(const void* caddr);
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
 #define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
 
+#define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
+#define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
+
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
 
@@ -39,8 +42,15 @@ void OSReport(const char *, ...);
 void OSVReport(const char *, va_list);
 void OSPanic(const char *, int, const char *, ...);
 
+void* OSGetArenaHi(void);
+void* OSGetArenaLo(void);
+
+void OSSetArenaHi(void *);
+void OSSetArenaLo(void *);
+
 #include <revolution/base/PPCArch.h>
 #include <revolution/os/OSAlarm.h>
+#include <revolution/os/OSAlloc.h>
 #include <revolution/os/OSCache.h>
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSInterrupt.h>

@@ -12,6 +12,8 @@ extern "C" {
 #define LC_MAX_DMA_BLOCKS   (128)
 #define LC_MAX_DMA_BYTES    (LC_MAX_DMA_BLOCKS * 32)
 
+void DCINvalidateRange(void *, u32);
+
 void DCEnable(void);
 void DCInvalidate(void *, u32);
 void DCFlushRange(void *, u32);
