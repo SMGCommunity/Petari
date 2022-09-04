@@ -16,6 +16,10 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     void appearMove(const TVec3f &, s32);
+    void exeWait();
+    void exeMove();
+    void exeBreak();
+    bool canSpinGet() const;
 
     TVec3f _8C;
     TVec3f _98;
@@ -28,4 +32,11 @@ public:
     s32 _C4;
     u8 _C8;
     u8 _C9;
+};
+
+namespace NrvAirBubble {
+    NERVE(AirBubbleNrvWait);
+    NERVE(AirBubbleNrvMove);
+    NERVE(AirBubbleNrvBreak);
+    NERVE(AirBubbleNrvKillWait);
 };

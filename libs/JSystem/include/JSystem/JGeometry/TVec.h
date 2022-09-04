@@ -196,7 +196,7 @@ namespace JGeometry {
         /* Operators */
         TVec3<T>& operator=(const TVec3<T> &);
         TVec3<T>& operator+=(const TVec3<T> &);
-        TVec3<T>& operator-=(register const TVec3<T> &src) {
+        TVec3<T>& operator-=(register const TVec3<T> &src) NO_INLINE {
             register TVec3<T>* dst = this;
 
             __asm {
