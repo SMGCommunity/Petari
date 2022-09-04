@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| AirBubble.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| AirBubble.o | 66.18122977346277% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
 | AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% | :x: 
@@ -330,29 +330,29 @@
 # AirBubble.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__9AirBubbleFPCc | :x: |
-| init__9AirBubbleFRC12JMapInfoIter | :x: |
-| initAfterPlacement__9AirBubbleFv | :x: |
-| appear__9AirBubbleFv | :x: |
-| kill__9AirBubbleFv | :x: |
-| control__9AirBubbleFv | :x: |
-| appearMove__9AirBubbleFRCQ29JGeometry8TVec3&lt;f&gt;l | :x: |
+| __ct__9AirBubbleFPCc | :white_check_mark: |
+| init__9AirBubbleFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__9AirBubbleFv | :white_check_mark: |
+| appear__9AirBubbleFv | :white_check_mark: |
+| kill__9AirBubbleFv | :white_check_mark: |
+| control__9AirBubbleFv | :white_check_mark: |
+| appearMove__9AirBubbleFRCQ29JGeometry8TVec3&lt;f&gt;l | :white_check_mark: |
 | exeWait__9AirBubbleFv | :x: |
 | exeMove__9AirBubbleFv | :x: |
-| exeBreak__9AirBubbleFv | :x: |
-| receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor | :x: |
-| canSpinGet__9AirBubbleCFv | :x: |
-| __dt__9AirBubbleFv | :x: |
-| __sinit_\AirBubble_cpp | :x: |
-| __ct__Q212NrvAirBubble16AirBubbleNrvWaitFv | :x: |
-| __ct__Q212NrvAirBubble16AirBubbleNrvMoveFv | :x: |
-| __ct__Q212NrvAirBubble17AirBubbleNrvBreakFv | :x: |
-| __ct__Q212NrvAirBubble20AirBubbleNrvKillWaitFv | :x: |
-| execute__Q212NrvAirBubble20AirBubbleNrvKillWaitCFP5Spine | :x: |
-| execute__Q212NrvAirBubble17AirBubbleNrvBreakCFP5Spine | :x: |
-| execute__Q212NrvAirBubble16AirBubbleNrvMoveCFP5Spine | :x: |
-| execute__Q212NrvAirBubble16AirBubbleNrvWaitCFP5Spine | :x: |
+| exeBreak__9AirBubbleFv | :white_check_mark: |
+| receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| canSpinGet__9AirBubbleCFv | :white_check_mark: |
+| __dt__9AirBubbleFv | :white_check_mark: |
+| __sinit_\AirBubble_cpp | :white_check_mark: |
+| __ct__Q212NrvAirBubble16AirBubbleNrvWaitFv | :white_check_mark: |
+| __ct__Q212NrvAirBubble16AirBubbleNrvMoveFv | :white_check_mark: |
+| __ct__Q212NrvAirBubble17AirBubbleNrvBreakFv | :white_check_mark: |
+| __ct__Q212NrvAirBubble20AirBubbleNrvKillWaitFv | :white_check_mark: |
+| execute__Q212NrvAirBubble20AirBubbleNrvKillWaitCFP5Spine | :white_check_mark: |
+| execute__Q212NrvAirBubble17AirBubbleNrvBreakCFP5Spine | :white_check_mark: |
+| execute__Q212NrvAirBubble16AirBubbleNrvMoveCFP5Spine | :white_check_mark: |
+| execute__Q212NrvAirBubble16AirBubbleNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # AirBubbleGenerator.o
