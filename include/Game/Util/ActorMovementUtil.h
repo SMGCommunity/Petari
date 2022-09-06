@@ -86,4 +86,6 @@ namespace MR {
     f32 calcVelocityLength(const LiveActor *);
 
     void turnDirectionAndGravityH(LiveActor *, const TVec3f &, f32, f32);
+
+    void turnDirectionToTargetDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
 };

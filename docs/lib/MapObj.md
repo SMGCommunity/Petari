@@ -197,7 +197,7 @@
 | PowerStar.o | 66.49572649572649% | 58 / 65 | 89.23076923076924% | :eight_pointed_black_star: 
 | PowerStarAppearPoint.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | PowerStarHolder.o | 0.0% | 0 / 11 | 0.0% | :x: 
-| PressureBase.o | 0.0% | 0 / 48 | 0.0% | :x: 
+| PressureBase.o | 81.69398907103826% | 44 / 48 | 91.66666666666666% | :eight_pointed_black_star: 
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | PunchBox.o | 0.0% | 0 / 21 | 0.0% | :x: 
@@ -5021,52 +5021,52 @@
 # PressureBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17PressureMessengerFP14MsgSharedGroupPCc | :x: |
-| init__17PressureMessengerFRC12JMapInfoIter | :x: |
-| exeSync__17PressureMessengerFv | :x: |
-| __ct__12PressureBaseFPCc | :x: |
-| init__12PressureBaseFRC12JMapInfoIter | :x: |
+| __ct__17PressureMessengerFP14MsgSharedGroupPCc | :white_check_mark: |
+| init__17PressureMessengerFRC12JMapInfoIter | :white_check_mark: |
+| exeSync__17PressureMessengerFv | :white_check_mark: |
+| __ct__12PressureBaseFPCc | :white_check_mark: |
+| init__12PressureBaseFRC12JMapInfoIter | :white_check_mark: |
 | initAfterPlacement__12PressureBaseFv | :x: |
-| calcAndSetBaseMtx__12PressureBaseFv | :x: |
-| control__12PressureBaseFv | :x: |
-| exeBound__12PressureBaseFv | :x: |
-| exeWait__12PressureBaseFv | :x: |
-| exePrepareToShot__12PressureBaseFv | :x: |
-| exeShot__12PressureBaseFv | :x: |
-| attackSensor__12PressureBaseFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__12PressureBaseFUlP9HitSensorP9HitSensor | :x: |
-| receiveOtherMsg__12PressureBaseFUlP9HitSensorP9HitSensor | :x: |
-| startWait__12PressureBaseFv | :x: |
-| startRelax__12PressureBaseFv | :x: |
-| initBullet__12PressureBaseFRC12JMapInfoIter | :x: |
-| shotBullet__12PressureBaseFf | :x: |
+| calcAndSetBaseMtx__12PressureBaseFv | :white_check_mark: |
+| control__12PressureBaseFv | :white_check_mark: |
+| exeBound__12PressureBaseFv | :white_check_mark: |
+| exeWait__12PressureBaseFv | :white_check_mark: |
+| exePrepareToShot__12PressureBaseFv | :white_check_mark: |
+| exeShot__12PressureBaseFv | :white_check_mark: |
+| attackSensor__12PressureBaseFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__12PressureBaseFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveOtherMsg__12PressureBaseFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| startWait__12PressureBaseFv | :white_check_mark: |
+| startRelax__12PressureBaseFv | :white_check_mark: |
+| initBullet__12PressureBaseFRC12JMapInfoIter | :white_check_mark: |
+| shotBullet__12PressureBaseFf | :white_check_mark: |
 | calcJointCannonV__12PressureBaseFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| isShotTypeOnGravity__12PressureBaseCFv | :x: |
-| isShotTypeFollow__12PressureBaseCFv | :x: |
-| __sinit_\PressureBase_cpp | :x: |
-| __ct__Q220NrvPressureMessenger24PressureMessengerNrvSyncFv | :x: |
-| __ct__Q215NrvPressureBase25PressureBaseNrvRelaxStartFv | :x: |
-| __ct__Q215NrvPressureBase24PressureBaseNrvWaitStartFv | :x: |
-| __ct__Q215NrvPressureBase20PressureBaseNrvRelaxFv | :x: |
-| __ct__Q215NrvPressureBase23PressureBaseNrvSyncWaitFv | :x: |
-| __ct__Q215NrvPressureBase24PressureBaseNrvFirstWaitFv | :x: |
-| __ct__Q215NrvPressureBase19PressureBaseNrvWaitFv | :x: |
-| __ct__Q215NrvPressureBase28PressureBaseNrvPrepareToShotFv | :x: |
-| __ct__Q215NrvPressureBase19PressureBaseNrvShotFv | :x: |
-| execute__Q215NrvPressureBase19PressureBaseNrvShotCFP5Spine | :x: |
-| execute__Q215NrvPressureBase28PressureBaseNrvPrepareToShotCFP5Spine | :x: |
-| execute__Q215NrvPressureBase19PressureBaseNrvWaitCFP5Spine | :x: |
-| execute__Q215NrvPressureBase24PressureBaseNrvFirstWaitCFP5Spine | :x: |
-| execute__Q215NrvPressureBase23PressureBaseNrvSyncWaitCFP5Spine | :x: |
-| execute__Q215NrvPressureBase20PressureBaseNrvRelaxCFP5Spine | :x: |
-| execute__Q215NrvPressureBase24PressureBaseNrvWaitStartCFP5Spine | :x: |
-| execute__Q215NrvPressureBase25PressureBaseNrvRelaxStartCFP5Spine | :x: |
-| execute__Q220NrvPressureMessenger24PressureMessengerNrvSyncCFP5Spine | :x: |
-| Functor&lt;12PressureBase&gt;__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt; | :x: |
-| __cl__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__17PressureMessengerFv | :x: |
-| __dt__37JointControlDelegator&lt;12PressureBase&gt;Fv | :x: |
+| isShotTypeOnGravity__12PressureBaseCFv | :white_check_mark: |
+| isShotTypeFollow__12PressureBaseCFv | :white_check_mark: |
+| __sinit_\PressureBase_cpp | :white_check_mark: |
+| __ct__Q220NrvPressureMessenger24PressureMessengerNrvSyncFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase25PressureBaseNrvRelaxStartFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase24PressureBaseNrvWaitStartFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase20PressureBaseNrvRelaxFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase23PressureBaseNrvSyncWaitFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase24PressureBaseNrvFirstWaitFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase19PressureBaseNrvWaitFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase28PressureBaseNrvPrepareToShotFv | :white_check_mark: |
+| __ct__Q215NrvPressureBase19PressureBaseNrvShotFv | :white_check_mark: |
+| execute__Q215NrvPressureBase19PressureBaseNrvShotCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase28PressureBaseNrvPrepareToShotCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase19PressureBaseNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase24PressureBaseNrvFirstWaitCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase23PressureBaseNrvSyncWaitCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase20PressureBaseNrvRelaxCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase24PressureBaseNrvWaitStartCFP5Spine | :white_check_mark: |
+| execute__Q215NrvPressureBase25PressureBaseNrvRelaxStartCFP5Spine | :white_check_mark: |
+| execute__Q220NrvPressureMessenger24PressureMessengerNrvSyncCFP5Spine | :white_check_mark: |
+| Functor&lt;12PressureBase&gt;__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__17PressureMessengerFv | :white_check_mark: |
+| __dt__37JointControlDelegator&lt;12PressureBase&gt;Fv | :white_check_mark: |
 | calcJointMatrix__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 | calcJointMatrixAfterChild__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
 

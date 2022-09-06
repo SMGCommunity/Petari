@@ -19,6 +19,7 @@ class LodCtrl;
 class CollisionParts;
 class HitSensor;
 class BtkCtrl;
+class MsgSharedGroup;
 
 namespace MR {
     enum CollisionScaleType {
@@ -39,7 +40,7 @@ namespace MR {
     void setClippingFar200m(LiveActor *);
     void startBtk(const LiveActor *, const char *);
 
-    LiveActorGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
+    MsgSharedGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
     LiveActorGroup* getGroupFromArray(const LiveActor *);
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
@@ -299,4 +300,6 @@ namespace MR {
     void addToAttributeGroupSearchTurtle(const LiveActor *);
 
     void stopSceneAtStep(const LiveActor *, s32, s32);
+
+    void initJointTransform(const LiveActor *);
 };

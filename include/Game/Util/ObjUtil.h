@@ -75,6 +75,8 @@ namespace MR {
     void connectToSceneMirrorMapObjNoMovement(LiveActor *);
 
     void connectToSceneMirrorMapObjDecoration(LiveActor *);
+
+    void connectToSceneNoShadowedMapObjStrongLight(LiveActor *);
     
     bool isName(const NameObj *, const char *);
     bool isSame(const NameObj *, const NameObj *);

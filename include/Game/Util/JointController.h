@@ -28,10 +28,6 @@ public:
     J3DJoint* mJoint;   // _8
 };
 
-namespace MR {
-    void setJointControllerParam(JointController *, const LiveActor *, const char *);
-};
-
 template<typename T>
 class JointControlDelegator : public JointController {
 public:
@@ -51,4 +47,15 @@ public:
     T* mHost;                       // _C
     func mMtxCalcFunc;             // _10
     func mMtxCalcAfterChildFunc;   // _14
+};
+
+namespace MR {
+    void setJointControllerParam(JointController *, const LiveActor *, const char *);
+
+    template <class T>
+    JointControlDelegator<T>* createJointDelegatorWithNullChildFunc(T *pHost, bool (T::*calcFunc)(TPos3f *, const JointControllerInfo &), const char *pName) {
+        JointControlDelegator<T>* delegator = new JointControlDelegator<T>(pHost, calcFunc, 0);
+        setJointControllerParam(delegator, pHost, pName);
+        return delegator;
+    }
 };
