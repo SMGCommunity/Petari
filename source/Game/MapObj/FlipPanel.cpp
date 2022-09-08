@@ -1,6 +1,6 @@
 #include "Game/MapObj/FlipPanel.h"
 #include "Game/LiveActor/ModelObj.h"
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActorGroupArray.h"
 #include "JSystem/JMath/JMath.h"
 #include "Game/Util.h"
 

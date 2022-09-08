@@ -26,7 +26,7 @@ public:
     bool checkPlayerOnTop();
 
     JointControlDelegator<FlipPanel>* mDelegator;   // _C4
-    LiveActorGroup* mFlipPanelGroup;                // _C8
+    MsgSharedGroup* mFlipPanelGroup;                // _C8
     bool _CC;
     u8 _CD;
     s32 _D0;
@@ -46,7 +46,7 @@ public:
     void exeComplete();
     void exeDemoWait();
 
-    LiveActorGroup* _8C;
+    MsgSharedGroup* _8C;
     s32 _90;
     s32 mDemoDelay;         // _94
     s32 mPowerStarId;       // _98
