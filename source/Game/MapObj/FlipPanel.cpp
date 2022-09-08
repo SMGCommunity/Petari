@@ -24,11 +24,7 @@ void FlipPanel::init(const JMapInfoIter &rIter) {
     info.setupNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance);
     initialize(rIter, info);
     mIsReverse = isObjectName("FipPanelReverse");
-    const char* name = "Panel";
-    bool (FlipPanel::*calcMoveFunc)(TPos3f *, const JointControllerInfo &) = &FlipPanel::calcJointMove;
-    JointControlDelegator<FlipPanel>* delegator = new JointControlDelegator<FlipPanel>(this, calcMoveFunc, 0);
-    MR::setJointControllerParam(delegator, this, name);
-    mDelegator = delegator;
+    mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &FlipPanel::calcJointMove, "Panel");
     mFlipPanelGroup = MR::joinToGroupArray(this, rIter, 0, 0x20);
     MR::invalidateClipping(this);
     MR::startBck(this, "PanelB", 0);
@@ -348,22 +344,23 @@ void FlipPanelObserver::initAfterPlacement() {
     }
 }
 
-#ifdef NON_MATCHING
 bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
-    if(msg == 0x66) {
-        if (_90) {
+    if (msg == 0x66) {
+        if (!_90) {
+            if (_9C) {
+                MR::startSystemME("ME_FLIP_PANEL_INV_OFF_FIRST");
+            }
+            else {
+                MR::startSystemME("ME_FLIP_PANEL_ON_FIRST");
+            }
+        }
+        else {
             if (_9C) {
                 MR::startSystemME("ME_FLIP_PANEL_INV_OFF");
             }
             else {
                 MR::startSystemME("ME_FLIP_PANEL_ON");
             }
-        }
-        else if (_9C) {
-            MR::startSystemME("ME_FLIP_PANEL_INV_OFF_FIRST");
-        }
-        else {
-            MR::startSystemME("ME_FLIP_PANEL_ON_FIRST");
         }
 
         _90++;
@@ -383,7 +380,6 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
 
     return 0;
 }
-#endif
 
 namespace NrvFlipPanel {
     FlipPanelNrvFrontLand FlipPanelNrvFrontLand::sInstance;

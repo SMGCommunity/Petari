@@ -16,8 +16,8 @@ class JointController {
 public:
     JointController();
 
-    virtual s32 calcJointMatrix(TPos3f *, const JointControllerInfo &);
-    virtual s32 calcJointMatrixAfterChild(TPos3f *, const JointControllerInfo &);
+    virtual bool calcJointMatrix(TPos3f *, const JointControllerInfo &);
+    virtual bool calcJointMatrixAfterChild(TPos3f *, const JointControllerInfo &);
 
     void registerCallBack();
     void calcJointMatrixAndSetSystem(J3DJoint *);
@@ -42,6 +42,22 @@ public:
 
     virtual ~JointControlDelegator() {
         
+    }
+
+    virtual bool calcJointMatrix(TPos3f *a1, const JointControllerInfo &a2) {
+        if (mMtxCalcFunc != NULL) {
+            return (mHost->*mMtxCalcFunc)(a1, a2);
+        } else {
+            return false;
+        }
+    }
+
+    virtual bool calcJointMatrixAfterChild(TPos3f *a1, const JointControllerInfo &a2) {
+        if (mMtxCalcAfterChildFunc != NULL) {
+            return (mHost->*mMtxCalcAfterChildFunc)(a1, a2);
+        } else {
+            return false;
+        }
     }
 
     T* mHost;                       // _C

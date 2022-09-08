@@ -112,7 +112,7 @@
 | FirePressureRadiate.o | 0.0% | 0 / 37 | 0.0% | :x: 
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% | :x: 
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| FlipPanel.o | 90.22831050228311% | 40 / 43 | 93.02325581395348% | :eight_pointed_black_star: 
+| FlipPanel.o | 100.0% | 43 / 43 | 100.0% | :white_check_mark: 
 | Fountain.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | GCapture.o | 0.0% | 0 / 70 | 0.0% | :x: 
@@ -201,7 +201,7 @@
 | PrizeRing.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | PTimerSwitch.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | PunchBox.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| PunchingKinoko.o | 63.59116022099448% | 48 / 59 | 81.35593220338984% | :eight_pointed_black_star: 
+| PunchingKinoko.o | 100.0% | 59 / 59 | 100.0% | :white_check_mark: 
 | PurpleCoinHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | PurpleCoinStarter.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | QuarterRollGravityRoomArrow.o | 0.0% | 0 / 26 | 0.0% | :x: 
@@ -2881,7 +2881,7 @@
 | exeComplete__17FlipPanelObserverFv | :white_check_mark: |
 | exeDemoWait__17FlipPanelObserverFv | :white_check_mark: |
 | initAfterPlacement__17FlipPanelObserverFv | :white_check_mark: |
-| receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor | :x: |
+| receiveOtherMsg__17FlipPanelObserverFUlP9HitSensorP9HitSensor | :white_check_mark: |
 | __sinit_\FlipPanel_cpp | :white_check_mark: |
 | __ct__Q212NrvFlipPanel21FlipPanelNrvFrontLandFv | :white_check_mark: |
 | __ct__Q212NrvFlipPanel20FlipPanelNrvBackLandFv | :white_check_mark: |
@@ -2902,8 +2902,8 @@
 | execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine | :white_check_mark: |
 | execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine | :white_check_mark: |
 | __dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv | :white_check_mark: |
-| calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
 | __dt__9FlipPanelFv | :white_check_mark: |
 | __dt__17FlipPanelObserverFv | :white_check_mark: |
 
@@ -5170,19 +5170,19 @@
 | initSensor__14PunchingKinokoFv | :white_check_mark: |
 | initShadow__14PunchingKinokoFv | :white_check_mark: |
 | initCamera__14PunchingKinokoFRC12JMapInfoIter | :white_check_mark: |
-| initJointControl__14PunchingKinokoFv | :x: |
+| initJointControl__14PunchingKinokoFv | :white_check_mark: |
 | ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
 | makeActorAppeared__14PunchingKinokoFv | :white_check_mark: |
 | kill__14PunchingKinokoFv | :white_check_mark: |
 | makeActorDead__14PunchingKinokoFv | :white_check_mark: |
 | control__14PunchingKinokoFv | :white_check_mark: |
-| calcAndSetBaseMtx__14PunchingKinokoFv | :x: |
-| attackSensor__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgEnemyAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgPush__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
-| requestPunch__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
-| requestEnemyBlow__14PunchingKinokoFP9HitSensorP9HitSensor | :x: |
+| calcAndSetBaseMtx__14PunchingKinokoFv | :white_check_mark: |
+| attackSensor__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgEnemyAttack__14PunchingKinokoFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPush__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestPunch__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestEnemyBlow__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
 | requestTrample__14PunchingKinokoFP9HitSensorP9HitSensor | :white_check_mark: |
 | requestCrush__14PunchingKinokoFv | :white_check_mark: |
 | exeWait__14PunchingKinokoFv | :white_check_mark: |
@@ -5218,9 +5218,9 @@
 | execute__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedCFP5Spine | :white_check_mark: |
 | execute__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingCFP5Spine | :white_check_mark: |
 | execute__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitCFP5Spine | :white_check_mark: |
-| __dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv | :x: |
-| calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
+| __dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv | :white_check_mark: |
+| calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
 | __cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv | :white_check_mark: |
 | clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
 | __dt__14PunchingKinokoFv | :white_check_mark: |

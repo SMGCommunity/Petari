@@ -54,6 +54,9 @@ namespace MR {
     void startLevelSoundPlayer(const char *, long);
     void incPlayerOxygen(u32);
 
+    void scatterStarPiecePlayer(u32);
+
+    void startSoundPlayer(const char *, s32);
     void stopSoundPlayer(const char *, u32);
 
     void showPlayer();

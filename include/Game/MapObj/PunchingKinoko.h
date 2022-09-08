@@ -18,6 +18,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor *, HitSensor *);
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
 
     void initShadow();
@@ -42,13 +43,14 @@ public:
 
     bool ballMtxCallBack(TPos3f *, const JointControllerInfo &);
 
+    // some callers will only match if these are marked NO_INLINE, even though they aren't being inlined (???)
     bool isEnablePunched() const;
-    bool isEnableHitPlayer() const;
+    bool isEnableHitPlayer() const NO_INLINE;
     bool isEnableEnemyAttack() const;
     bool isEnableCrushed() const;
     bool isEnableTrample() const;
-    bool isEnableBlowed() const;
-    bool isCrushed() const;
+    bool isEnableBlowed() const NO_INLINE;
+    bool isCrushed() const NO_INLINE;
 
     void addVelocityKeepHeight();
 
@@ -61,7 +63,7 @@ private:
     TVec3f _A8;
     s32 mStarPointerHitCoolDown; // _B4
     bool _B8;
-    s32 _BC;
+    s32 mInvincibleHitCoolDown; // _BC
 };
 
 namespace NrvPunchingKinoko {

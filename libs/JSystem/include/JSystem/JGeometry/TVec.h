@@ -556,6 +556,21 @@ namespace JGeometry {
             }
         }
 
+        inline void setNegatedInline(register const TVec3<T> &rSrc) {
+            register TVec3<T> *rDst = this;
+            register f32 xy;
+            register f32 z;
+
+            __asm {
+                psq_l xy, 0(rSrc), 0, 0
+                ps_neg xy, xy
+                psq_st xy, 0(rDst), 0, 0
+                lfs z, 8(rSrc)
+                fneg z, z
+                stfs z, 8(rDst)
+            }
+        }
+
         inline void multAndSet(TVec3<T> *pDest, T scalar) {
             TVec3<T> mult_res = *this * scalar;
             pDest->x = mult_res.x;
