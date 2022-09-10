@@ -77,6 +77,9 @@ namespace MR {
     bool isMsgEnemyAttackFire(u32);
     bool isMsgEnemyAttackFireStrong(u32);
 
+    bool isMsgToEnemyAttackBlow(u32);
+    bool isMsgToEnemyAttackTrample(u32);
+
     bool isMsgFloorTouch(u32);
 
     bool isSensorEnemy(const HitSensor *);
@@ -135,6 +138,8 @@ namespace MR {
     bool sendMsgEnemyAttackExplosionToBindedSensor(LiveActor *, HitSensor *);
 
     bool sendMsgEnemyAttackToBindedSensor(LiveActor *, HitSensor *);
+
+    bool sendMsgToEnemyAttackBlow(HitSensor *, HitSensor *);
 
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 
