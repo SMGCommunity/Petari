@@ -2,7 +2,7 @@
 #define OS_H
 
 #include <revolution/types.h>
-#include <cstdarg.h>
+#include <cstdarg>
 
 typedef s64         OSTime;
 typedef u32         OSTick;

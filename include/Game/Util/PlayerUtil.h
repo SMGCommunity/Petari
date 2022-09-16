@@ -34,6 +34,8 @@ namespace MR {
 
     bool isPlayerTeresaDisappear();
 
+    bool isPlayerInRush();
+
     f32 getPlayerHitRadius();
 
     void pushPlayerFromArea(const TVec3f &);
@@ -76,4 +78,6 @@ namespace MR {
     bool isPlayerPointedBy2POnTriggerButton();
 
     void endBindAndSpinDriverJump(LiveActor *, const TVec3f &);
+
+    void endBindAndPlayerJumpWithRollLanding(LiveActor *, const TVec3f &, u32);
 };

@@ -1,6 +1,6 @@
 #include <revolution/aralt.h>
 #include <revolution/os.h>
-#include <cstring.h>
+#include <cstring>
 
 static u32 __ARH_BaseAdr;
 

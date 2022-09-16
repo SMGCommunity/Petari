@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstring.h>
+#include <cstring>
 #include <__ppc_eabi_linker.h>
 
 typedef void* ctor_dtor_ptr;

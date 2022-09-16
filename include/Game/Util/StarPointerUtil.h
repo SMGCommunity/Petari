@@ -21,6 +21,8 @@ namespace MR {
 
     bool isStarPointerPointing2POnPressButton(const LiveActor *, const char *, bool, bool);
 
+    bool isStarPointerPointing2POnTriggerButton(const LiveActor *, const char *, bool, bool);
+
     f32 getStarPointerScreenSpeed(u32);
 
     bool calcStarPointerWorldVelocityDirectionOnPlane(TVec3f *, const TVec3f &, const TVec3f &, u32);

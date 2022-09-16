@@ -1,7 +1,7 @@
 #include "Game/MapObj/SpinDriver.h"
 #include "Game/MapObj/SpinDriverUtil.h"
-#include <cstdio.h>
-#include <cstring.h>
+#include <cstdio>
+#include <cstring>
 
 SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
     _8C(NULL), mShootPath(NULL), mSpinDriverCamera(NULL), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), 

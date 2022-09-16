@@ -25,7 +25,7 @@
 | printf.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | signal.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| string.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| string.o | 92.72727272727272% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | strtoul.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -220,14 +220,14 @@
 # string.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| strcpy | :x: |
-| strncpy | :x: |
-| strcat | :x: |
-| strcmp | :x: |
+| strcpy | :white_check_mark: |
+| strncpy | :white_check_mark: |
+| strcat | :white_check_mark: |
+| strcmp | :white_check_mark: |
 | strncmp | :x: |
-| strchr | :x: |
-| strrchr | :x: |
-| strstr | :x: |
+| strchr | :white_check_mark: |
+| strrchr | :white_check_mark: |
+| strstr | :white_check_mark: |
 
 
 # strtold.o

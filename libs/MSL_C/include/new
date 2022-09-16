@@ -1,8 +1,7 @@
 #pragma once
 
-#include <cstring.h>
-
-#define _MSL_THROW throw()
+#include <cstring>
+#include "ansi_params.h"
 
 void* operator new(size_t, void* ptr) _MSL_THROW { 
     return ptr; 

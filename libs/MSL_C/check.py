@@ -51,7 +51,7 @@ class FunctionLibrary:
             self.libraries[library] = symbols
 
         # Load addresses from symbol map
-        with open("data/map_for_dol.map", "r") as input:
+        with open("../../data/map_for_dol.map", "r") as input:
             for line in input:
                 line_split = line.rstrip().split("=")
 
@@ -212,6 +212,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
 
     library = function_library.get_library_from_symbol(mangled_symbol, obj_name)
 
+    print(library)
+
     if library == None:
         print("Could not find library of symbol.")
         return False
@@ -220,7 +222,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         print(f"Library {library} is currently not supported.")
         return False
 
-    obj_files = glob.glob(f"build/*/{library}/{obj_name}", recursive=True)
+    obj_files = glob.glob(f"build/**/{obj_name}", recursive=True)
 
     if len(obj_files) > 1:
         print("Found multiple .o files. This should not happen.")

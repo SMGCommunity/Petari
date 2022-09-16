@@ -6,10 +6,10 @@ extern "C" {
 #endif
 
 #include <va_list.h>
-#include <cstring.h>
+#include <cstring>
 
 int sprintf(char *pStr, const char *pFormat, ...);
-int snprintf(char *pStr, size_t n, const char *pFormat, ...);
+int snprintf(char *pStr, std::size_t n, const char *pFormat, ...);
 int vprintf(const char *, va_list);
 
 int sscanf(const char *, const char *, ...);

@@ -57,7 +57,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    flags = "-c -nodefaults -nostdlib -use_lmw_stmw on -proc gekko -align powerpc -enum int -fp hard -Cpp_exceptions off -rtti off -O4,p -inline auto "
     includes = "-i . -I- -i include "
 
     default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
@@ -76,13 +76,13 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     tasks = list()
 
-    rvl_path =      pathlib.Path("../RVL_SDK/include")
-    trk_path =      pathlib.Path("../MetroTRK/include")
-    runtime_path =  pathlib.Path("../Runtime/include")
-    facelib_path =  pathlib.Path("../RVLFaceLib/include")
-    nw_path =       pathlib.path("../nw4r/include")
+    #rvl_path =      pathlib.Path("../RVL_SDK/include")
+    #trk_path =      pathlib.Path("../MetroTRK/include")
+    #runtime_path =  pathlib.Path("../Runtime/include")
+    #acelib_path =  pathlib.Path("../RVLFaceLib/include")
+    #nw_path =       pathlib.Path("../nw4r/include")
 
-    includes += f"-i {rvl_path} -i {trk_path} -I- -i {runtime_path} -I- -i {facelib_path} -I- -i {nw_path} "
+    #includes += f"-i {rvl_path} -i {trk_path} -I- -i {runtime_path} -I- -i {facelib_path} -I- -i {nw_path} "
     flags += includes
 
     ninjaFound = shutil.which("ninja") is not None

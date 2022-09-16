@@ -1,6 +1,6 @@
 #include "Game/System/DrawBufferGroup.h"
 
-#include <algorithm.h>
+#include <algorithm>
 
 DrawBufferGroup::DrawBufferGroup() : _0(), _C() {
     mCount = 0;

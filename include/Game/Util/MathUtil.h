@@ -130,6 +130,8 @@ namespace MR {
     void getRotatedAxisZ(TVec3f *, const TVec3f &);
     void getRotatedAxisY(TVec3f *, const TVec3f &);
 
+    void turnVecToVecCosOnPlane(TVec3f *, const TVec3f &, const TVec3f &, f32);
+
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
     */
@@ -211,6 +213,10 @@ namespace MR {
 
     inline f32 add(f32 lhs, f32 rhs) {
         return lhs + rhs;
+    }
+
+    inline f32 negFloat(f32 val) {
+        return (val < 0.0f) ? -val : val;
     }
 };
 

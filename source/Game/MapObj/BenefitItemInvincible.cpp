@@ -1,5 +1,5 @@
 #include "Game/MapObj/BenefitItemInvincible.h"
-#include <cstring.h>
+#include <string.h>
 
 namespace {
     const f32 cAppearThrowFwdSpd = 5.0f;

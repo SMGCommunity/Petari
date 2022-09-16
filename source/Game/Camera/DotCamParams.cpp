@@ -1,6 +1,6 @@
 #include "Game/Camera/DotCamParams.h"
-#include <cstdio.h>
-#include <cstring.h>
+#include <cstdio>
+#include <cstring>
 
 DotCamReader::~DotCamReader() {
 

@@ -1,7 +1,7 @@
 #include "Game/AreaObj/AreaObjContainer.h"
 #include "Game/AreaObj/AreaObj.h"
 #include "Game/Scene/SceneObjHolder.h"
-#include <cstring.h>
+#include <string.h>
 
 AreaObjContainer::AreaObjContainer(const char *pName) : NameObj(pName) {
     mNumManagers = 0;

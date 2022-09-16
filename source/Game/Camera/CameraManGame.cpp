@@ -13,7 +13,7 @@
 #include "Game/Camera/CamKarikariEffector.h"
 #include "Game/Camera/CamHeliEffector.h"
 #include "Game/MapObj/GCapture.h"
-#include <cstring.h>
+#include <string.h>
 
 namespace {
     const char *gDefaultCameraName = "デフォルトカメラ";

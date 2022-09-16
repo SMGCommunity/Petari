@@ -2,7 +2,7 @@
 #include "Game/System/GameEventFlag.h"
 #include "Game/System/GameEventFlagTable.h"
 #include "Game/Util.h"
-#include <cstdio.h>
+#include <cstdio>
 
 u32 GameDataConst::getPowerStarNumToOpenGalaxy(const char *pGalaxy) {
     JMapInfo info;

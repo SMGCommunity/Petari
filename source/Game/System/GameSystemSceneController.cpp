@@ -1,6 +1,6 @@
 #include "Game/System/GameSystemSceneController.h"
 
-#include <cstdio.h>
+#include <cstdio>
 
 // SceneControlInfo::SceneControlInfo
 

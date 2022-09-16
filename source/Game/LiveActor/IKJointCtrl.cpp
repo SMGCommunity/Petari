@@ -2,7 +2,7 @@
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
 
-#include <algorithm.h>
+#include <algorithm>
 
 void IKJointCtrl::setEndPosition(const TVec3f &rPos, f32 a2) {
     TVec3f joint_pos;

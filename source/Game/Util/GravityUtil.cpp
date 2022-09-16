@@ -3,7 +3,7 @@
 #include "Game/Util/JMapInfo.h"
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/LiveActor/LiveActor.h"
-#include <cstring.h>
+#include <string.h>
 
 namespace {
 	void getJMapInfoArgPlus(const JMapInfoIter &rIter, const char *pFieldName, f32 *pDest) {

@@ -5,7 +5,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "revolution.h"
-#include <cstring.h>
+#include <cstring>
 
 JKRMemArchive::JKRMemArchive() {
 

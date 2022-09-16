@@ -26,7 +26,7 @@
 #include "Game/Util/PlayerUtil.h"
 #include "Game/Util/ScreenUtil.h"
 #include "Game/Util/SequenceUtil.h"
-#include <cstring.h>
+#include <cstring>
 
 namespace {
     u32 gMovementCounter;

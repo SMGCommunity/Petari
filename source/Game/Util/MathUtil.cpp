@@ -5,7 +5,7 @@
 
 #include "math_types.h"
 
-#include <cmath.h>
+#include <cmath>
 
 namespace MR {
     f32 getRandom(f32 min, f32 max) {

@@ -1,7 +1,7 @@
 #include "Game/LiveActor/VolumeModelDrawer.h"
 #include "Game/Scene/SceneObjHolder.h"
 #include "Game/System/ResourceHolder.h"
-#include <cstdio.h>
+#include <cstdio>
 
 VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル描画初期化") {
     MR::FunctorV0F func(*MR::setupShadowVolumeDraw);

@@ -2,6 +2,7 @@
 #define CMATH_H
 
 #ifdef __cplusplus
+namespace std {
 extern "C" {
 #endif
 
@@ -10,7 +11,8 @@ extern "C" {
 f64 atan2(f64, f64);
 
 #ifdef __cplusplus
-}
+};
+};
 #endif
 
 #endif // CMATH_H

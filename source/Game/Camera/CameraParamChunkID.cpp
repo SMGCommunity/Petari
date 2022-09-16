@@ -1,6 +1,6 @@
 #include "Game/Camera/CameraParamChunkID.h"
-#include <cstdio.h>
-#include <cstring.h>
+#include <cstdio>
+#include <string.h>
 
 CameraParamChunkID::CameraParamChunkID() {
     mZoneID = 0;

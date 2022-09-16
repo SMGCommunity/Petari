@@ -1,6 +1,6 @@
 #include <revolution/types.h>
 #include <revolution/os.h>
-#include <cstdio.h>
+#include <cstdio>
 
 __declspec(weak) void OSReport(const char* msg, ...) {
     va_list mark;

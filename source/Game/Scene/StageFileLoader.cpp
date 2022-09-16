@@ -3,8 +3,8 @@
 #include "Game/Util.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
-#include <cstring.h>
-#include <cstdio.h>
+#include <string.h>
+#include <cstdio>
 
 StageFileLoader::StageFileLoader(const char *pName) {
     mZoneCount = 0;

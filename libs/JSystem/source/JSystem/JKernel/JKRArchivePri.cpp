@@ -1,6 +1,6 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <cstring.h>
+#include <cstring>
 
 #ifdef NON_MATCHING
 // tolower() is inlined

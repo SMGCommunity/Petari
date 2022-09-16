@@ -162,6 +162,8 @@ namespace MR {
 
     bool isMsgInvincibleAttack(u32);
 
+    bool isMsgFireBallAttack(u32);
+
     bool isMsgSpinStormRange(u32);
 
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);

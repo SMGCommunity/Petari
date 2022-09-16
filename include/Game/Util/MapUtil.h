@@ -9,6 +9,7 @@ class TriangleFilterBase;
 
 namespace MR {
     bool isBindedGroundDamageFire(const LiveActor *);
+    bool isBindedGroundSand(const LiveActor *);
 
     bool getFirstPolyOnLineToMapExceptActor(TVec3f * , Triangle *, const TVec3f &, const TVec3f &, const LiveActor *);
 

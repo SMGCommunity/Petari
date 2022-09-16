@@ -1,7 +1,7 @@
 #include "Game/LiveActor/LodCtrl.h"
 #include "Game/LiveActor/ClippingDirector.h"
 
-#include <cstdio.h>
+#include <cstdio>
 
 namespace {
     void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *)) {
