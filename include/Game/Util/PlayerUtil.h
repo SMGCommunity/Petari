@@ -80,4 +80,6 @@ namespace MR {
     void endBindAndSpinDriverJump(LiveActor *, const TVec3f &);
 
     void endBindAndPlayerJumpWithRollLanding(LiveActor *, const TVec3f &, u32);
+
+    void startBckPlayer(const char *, s32);
 };

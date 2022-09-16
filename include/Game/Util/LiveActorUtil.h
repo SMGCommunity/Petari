@@ -170,6 +170,7 @@ namespace MR {
 
     void startBck(const LiveActor *, const char *, const char *);
     void startBckNoInterpole(const LiveActor *, const char *);
+    void startBckWithInterpole(const LiveActor *, const char *, s32);
     void startBrk(const LiveActor *, const char *);
     void startBva(const LiveActor *, const char *);
     void setBvaFrameAndStop(const LiveActor *, f32);

@@ -166,6 +166,8 @@ namespace MR {
 
     bool isMsgSpinStormRange(u32);
 
+    bool isMsgAutoRushBegin(u32);
+
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);
 

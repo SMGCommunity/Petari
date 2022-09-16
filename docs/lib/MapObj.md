@@ -297,8 +297,8 @@
 | WaterfallCaveCover.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | WaterLeakPipe.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | WaterPressure.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| WaterPressureBullet.o | 59.32203389830508% | 11 / 21 | 52.38095238095239% | :eight_pointed_black_star: 
-| WaterPressureBulletHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| WaterPressureBullet.o | 91.28329297820824% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
+| WaterPressureBulletHolder.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | WaveFloatingForce.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | WhirlPool.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | WoodBox.o | 0.0% | 0 / 18 | 0.0% | :x: 
@@ -7656,7 +7656,7 @@
 | ------------- | ------------- |
 | __ct__19WaterPressureBulletFPCc | :white_check_mark: |
 | init__19WaterPressureBulletFRC12JMapInfoIter | :white_check_mark: |
-| kill__19WaterPressureBulletFv | :x: |
+| kill__19WaterPressureBulletFv | :white_check_mark: |
 | control__19WaterPressureBulletFv | :x: |
 | calcAndSetBaseMtx__19WaterPressureBulletFv | :white_check_mark: |
 | shotWaterBullet__19WaterPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;fbbbPP15ActorCameraInfo | :white_check_mark: |
@@ -7664,26 +7664,26 @@
 | exeSpinKill__19WaterPressureBulletFv | :white_check_mark: |
 | attackSensor__19WaterPressureBulletFP9HitSensorP9HitSensor | :white_check_mark: |
 | receiveMsgPlayerAttack__19WaterPressureBulletFUlP9HitSensorP9HitSensor | :white_check_mark: |
-| receiveOtherMsg__19WaterPressureBulletFUlP9HitSensorP9HitSensor | :x: |
+| receiveOtherMsg__19WaterPressureBulletFUlP9HitSensorP9HitSensor | :white_check_mark: |
 | startHostCamera__19WaterPressureBulletCFv | :white_check_mark: |
 | endHostCamera__19WaterPressureBulletCFv | :white_check_mark: |
-| inviteMario__19WaterPressureBulletFP9HitSensor | :x: |
-| updateSuffererMtx__19WaterPressureBulletFv | :x: |
+| inviteMario__19WaterPressureBulletFP9HitSensor | :white_check_mark: |
+| updateSuffererMtx__19WaterPressureBulletFv | :white_check_mark: |
 | __dt__19WaterPressureBulletFv | :white_check_mark: |
-| __sinit_\WaterPressureBullet_cpp | :x: |
-| __ct__Q222NrvWaterPressureBullet25WaterPressureBulletNrvFlyFv | :x: |
-| __ct__Q222NrvWaterPressureBullet30WaterPressureBulletNrvSpinKillFv | :x: |
-| execute__Q222NrvWaterPressureBullet30WaterPressureBulletNrvSpinKillCFP5Spine | :x: |
-| execute__Q222NrvWaterPressureBullet25WaterPressureBulletNrvFlyCFP5Spine | :x: |
+| __sinit_\WaterPressureBullet_cpp | :white_check_mark: |
+| __ct__Q222NrvWaterPressureBullet25WaterPressureBulletNrvFlyFv | :white_check_mark: |
+| __ct__Q222NrvWaterPressureBullet30WaterPressureBulletNrvSpinKillFv | :white_check_mark: |
+| execute__Q222NrvWaterPressureBullet30WaterPressureBulletNrvSpinKillCFP5Spine | :white_check_mark: |
+| execute__Q222NrvWaterPressureBullet25WaterPressureBulletNrvFlyCFP5Spine | :white_check_mark: |
 
 
 # WaterPressureBulletHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__25WaterPressureBulletHolderFPCc | :x: |
-| callEmptyBullet__25WaterPressureBulletHolderFv | :x: |
-| __dt__25WaterPressureBulletHolderFv | :x: |
-| init__25WaterPressureBulletHolderFRC12JMapInfoIter | :x: |
+| __ct__25WaterPressureBulletHolderFPCc | :white_check_mark: |
+| callEmptyBullet__25WaterPressureBulletHolderFv | :white_check_mark: |
+| __dt__25WaterPressureBulletHolderFv | :white_check_mark: |
+| init__25WaterPressureBulletHolderFRC12JMapInfoIter | :white_check_mark: |
 
 
 # WaveFloatingForce.o

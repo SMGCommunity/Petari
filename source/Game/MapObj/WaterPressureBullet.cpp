@@ -1,6 +1,5 @@
 #include "Game/MapObj/WaterPressureBullet.h"
 #include "Game/LiveActor/ActorCameraInfo.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JMath/JMath.h"
 
 WaterPressureBullet::WaterPressureBullet(const char *pName) : LiveActor(pName) {
@@ -42,7 +41,7 @@ void WaterPressureBullet::init(const JMapInfoIter &rIter) {
 
 void WaterPressureBullet::kill() {
     if (MR::isPlayerInRush() && mHostActor) {
-        MR::startBckPlayer("GCaptureBreak", NULL);
+        MR::startBckPlayer("GCaptureBreak", (const char*)NULL);
         MR::endBindAndPlayerJumpWithRollLanding(this, mVelocity, 0);
         mHostActor = NULL;
         endHostCamera();
@@ -53,7 +52,7 @@ void WaterPressureBullet::kill() {
     LiveActor::kill();
 }
 
-#ifndef NON_MATCHING
+#ifdef NON_MATCHING
 void WaterPressureBullet::control() {
     bool v1 = true;
     bool v2 = false;
@@ -133,7 +132,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (mHostActor != NULL && MR::isBckOneTimeAndStopped(mHostActor)) {
-        MR::startBckPlayer("WaterBulletWait", NULL);
+        MR::startBckPlayer("WaterBulletWait", (const char*)NULL);
     }
 
     if (mHostActor != NULL) {
@@ -177,7 +176,7 @@ void WaterPressureBullet::exeFly() {
 
 void WaterPressureBullet::exeSpinKill() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Spin2nd", NULL);
+        MR::startBckPlayer("Spin2nd", (const char*)NULL);
         mVelocity.zero();
         MR::invalidateHitSensors(this);
 
@@ -208,6 +207,41 @@ bool WaterPressureBullet::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor
     return false;
 }
 
+bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
+    if (MR::isDead(this)) {
+        return false;
+    }
+
+    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(a2) && mHostActor == NULL) {
+        if (MR::isDemoActive()) {
+            kill();
+            return false;
+        }
+
+        if (!inviteMario(a2)) {
+            return false;
+        }
+        else {
+            MR::startSound(this, "SE_OJ_W_PRESS_BUBBLE_IN", -1, -1);
+            MR::startSound(mHostActor, "SE_PV_CATCH", -1, -1);
+            return true;
+        }
+    }
+    else if (msg == 152) {
+        return true;
+    }
+    else if (msg == 147) {
+        kill();
+        return true;
+    }
+    else if (msg == 161 && mHostActor != NULL) {
+        updateSuffererMtx();
+        return true;
+    }
+
+    return false;
+}
+
 bool WaterPressureBullet::startHostCamera() const {
     if (_A4 != NULL && mCameraInfo != NULL) {
         MR::startActorCameraNoTarget(_A4, *mCameraInfo, -1);
@@ -226,7 +260,63 @@ bool WaterPressureBullet::endHostCamera() const {
     return false;
 }
 
+bool WaterPressureBullet::inviteMario(HitSensor *pSensor) {
+    MR::tryRumblePadMiddle(this, 0);
+
+    if (MR::isOnGroundPlayer() && MR::isNearAngleDegree(mVelocity, mGravity, 60.0f)) {
+        if (_B1) {
+            TVec3f* vel = &mVelocity;
+            TVec3f* grav = &mGravity;
+            f32 dot = grav->dot(mVelocity);
+            JMAVECScaleAdd(grav->toCVec(), vel->toCVec(), vel->toVec(), -dot);
+        }
+        else {
+            kill();
+            MR::sendArbitraryMsg(76, pSensor, getSensor("body"));
+            return false;
+        }
+    }
+
+    mHostActor = pSensor->mActor;
+    MR::startBckWithInterpole(this, "Touch", 0);
+    MR::startBckPlayer("WaterBulletStart", 2);
+    startHostCamera();
+    MR::setShadowDropLength(this, NULL, 2000.0f);
+    return true;
+}
+
+void WaterPressureBullet::updateSuffererMtx() {
+    TPos3f pos;
+    pos.identity();
+
+    if (isNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvSpinKill::sInstance)) {
+        TVec3f front;
+        MR::calcFrontVec(&front, mHostActor);
+        MR::calcMtxFromGravityAndZAxis(&pos, mHostActor, mGravity, front);
+    }
+    else {
+        MtxPtr mtx = getBaseMtx();
+        pos.setInline(mtx);
+    }
+
+    MR::setBaseTRMtx(this, pos);
+}
+
 WaterPressureBullet::~WaterPressureBullet() {
 
 }
 
+namespace NrvWaterPressureBullet {
+    INIT_NERVE(WaterPressureBulletNrvFly);
+    INIT_NERVE(WaterPressureBulletNrvSpinKill);
+
+    void WaterPressureBulletNrvSpinKill::execute(Spine *pSpine) const {
+        WaterPressureBullet* bullet = reinterpret_cast<WaterPressureBullet*>(pSpine->mExecutor);
+        bullet->exeSpinKill();
+    }
+
+    void WaterPressureBulletNrvFly::execute(Spine *pSpine) const {
+        WaterPressureBullet* bullet = reinterpret_cast<WaterPressureBullet*>(pSpine->mExecutor);
+        bullet->exeFly();
+    }
+};
