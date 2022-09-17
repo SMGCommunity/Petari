@@ -68,5 +68,5 @@ void RaceRail::init(const JMapInfoIter &rIter) {
 
 void PlayerRacer::initRacer() {
     AbstractRacer::initRacer();
-    MR::startBckPlayer("Watch", 0);
+    MR::startBckPlayer("Watch", (char*)NULL);
 }

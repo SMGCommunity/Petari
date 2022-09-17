@@ -132,7 +132,7 @@ HipDropMoveObj::~HipDropMoveObj() {
 }
 
 void HipDropDemoMoveObj::moveStart() {
-    MR::startBckPlayer("Wait", 0);
+    MR::startBckPlayer("Wait", (char*)NULL);
     MtxPtr mtx = MR::getPlayerDemoActor()->getBaseMtx();
     TMtx34f stack_38;
     stack_38.set(mtx);
