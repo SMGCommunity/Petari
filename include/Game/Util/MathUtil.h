@@ -218,6 +218,10 @@ namespace MR {
     inline f32 negFloat(f32 val) {
         return (val < 0.0f) ? -val : val;
     }
+
+    inline s32 mod(s32 val, s32 mod) {
+        return val % mod;
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

@@ -97,6 +97,8 @@ namespace MR {
     void validateHitSensors(LiveActor *);
     void invalidateHitSensors(LiveActor *);
 
+    void calcSensorDirection(TVec3f *, const HitSensor *, const HitSensor *);
+
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 

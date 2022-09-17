@@ -158,6 +158,8 @@ namespace MR {
     void invalidateCollisionParts(LiveActor *);
     void invalidateCollisionParts(CollisionParts *);
 
+    bool isExistCollisionParts(const LiveActor *);
+
     void resetAllCollisionMtx(LiveActor *);
 
     void startAllAnim(const LiveActor *, const char *);

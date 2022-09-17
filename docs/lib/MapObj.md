@@ -12,8 +12,8 @@
 | AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% | :x: 
-| ArrowSwitch.o | 0.0% | 0 / 27 | 0.0% | :x: 
-| ArrowSwitchMulti.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| ArrowSwitch.o | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
+| ArrowSwitchMulti.o | 20.30716723549488% | 6 / 21 | 28.57142857142857% | :eight_pointed_black_star: 
 | ArrowSwitchMultiHolder.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | AssemblyBlock.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | AstroCore.o | 0.0% | 0 / 16 | 0.0% | :x: 
@@ -438,43 +438,43 @@
 # ArrowSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11ArrowSwitchFPCc | :x: |
-| init__11ArrowSwitchFRC12JMapInfoIter | :x: |
-| control__11ArrowSwitchFv | :x: |
-| calcAndSetBaseMtx__11ArrowSwitchFv | :x: |
-| attackSensor__11ArrowSwitchFP9HitSensorP9HitSensor | :x: |
-| receiveMsgPlayerAttack__11ArrowSwitchFUlP9HitSensorP9HitSensor | :x: |
-| receiveMsgPush__11ArrowSwitchFP9HitSensorP9HitSensor | :x: |
-| requestPunch__11ArrowSwitchFP9HitSensorP9HitSensor | :x: |
-| listenOnSwitch__11ArrowSwitchFv | :x: |
-| listenOffSwitch__11ArrowSwitchFv | :x: |
-| exeWait__11ArrowSwitchFv | :x: |
+| __ct__11ArrowSwitchFPCc | :white_check_mark: |
+| init__11ArrowSwitchFRC12JMapInfoIter | :white_check_mark: |
+| control__11ArrowSwitchFv | :white_check_mark: |
+| calcAndSetBaseMtx__11ArrowSwitchFv | :white_check_mark: |
+| attackSensor__11ArrowSwitchFP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPlayerAttack__11ArrowSwitchFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| receiveMsgPush__11ArrowSwitchFP9HitSensorP9HitSensor | :white_check_mark: |
+| requestPunch__11ArrowSwitchFP9HitSensorP9HitSensor | :white_check_mark: |
+| listenOnSwitch__11ArrowSwitchFv | :white_check_mark: |
+| listenOffSwitch__11ArrowSwitchFv | :white_check_mark: |
+| exeWait__11ArrowSwitchFv | :white_check_mark: |
 | exeRotate__11ArrowSwitchFv | :x: |
-| exeLock__11ArrowSwitchFv | :x: |
-| isPlusLimit__11ArrowSwitchCFv | :x: |
-| isMinusLimit__11ArrowSwitchCFv | :x: |
+| exeLock__11ArrowSwitchFv | :white_check_mark: |
+| isPlusLimit__11ArrowSwitchCFv | :white_check_mark: |
+| isMinusLimit__11ArrowSwitchCFv | :white_check_mark: |
 | getOneStep__11ArrowSwitchCFv | :x: |
-| __sinit_\ArrowSwitch_cpp | :x: |
-| __ct__Q214NrvArrowSwitch18ArrowSwitchNrvWaitFv | :x: |
-| __ct__Q214NrvArrowSwitch20ArrowSwitchNrvRotateFv | :x: |
-| __ct__Q214NrvArrowSwitch18ArrowSwitchNrvLockFv | :x: |
-| execute__Q214NrvArrowSwitch18ArrowSwitchNrvLockCFP5Spine | :x: |
-| execute__Q214NrvArrowSwitch20ArrowSwitchNrvRotateCFP5Spine | :x: |
-| execute__Q214NrvArrowSwitch18ArrowSwitchNrvWaitCFP5Spine | :x: |
-| Functor&lt;11ArrowSwitch&gt;__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt; | :x: |
-| __cl__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__11ArrowSwitchFv | :x: |
+| __sinit_\ArrowSwitch_cpp | :white_check_mark: |
+| __ct__Q214NrvArrowSwitch18ArrowSwitchNrvWaitFv | :white_check_mark: |
+| __ct__Q214NrvArrowSwitch20ArrowSwitchNrvRotateFv | :white_check_mark: |
+| __ct__Q214NrvArrowSwitch18ArrowSwitchNrvLockFv | :white_check_mark: |
+| execute__Q214NrvArrowSwitch18ArrowSwitchNrvLockCFP5Spine | :white_check_mark: |
+| execute__Q214NrvArrowSwitch20ArrowSwitchNrvRotateCFP5Spine | :white_check_mark: |
+| execute__Q214NrvArrowSwitch18ArrowSwitchNrvWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;11ArrowSwitch&gt;__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__11ArrowSwitchFv | :white_check_mark: |
 
 
 # ArrowSwitchMulti.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17ArrowSwitchTargetFPCc | :x: |
-| init__17ArrowSwitchTargetFRC12JMapInfoIter | :x: |
-| initAfterPlacement__17ArrowSwitchTargetFv | :x: |
-| onTarget__17ArrowSwitchTargetFv | :x: |
-| offTarget__17ArrowSwitchTargetFv | :x: |
+| __ct__17ArrowSwitchTargetFPCc | :white_check_mark: |
+| init__17ArrowSwitchTargetFRC12JMapInfoIter | :white_check_mark: |
+| initAfterPlacement__17ArrowSwitchTargetFv | :white_check_mark: |
+| onTarget__17ArrowSwitchTargetFv | :white_check_mark: |
+| offTarget__17ArrowSwitchTargetFv | :white_check_mark: |
 | __ct__16ArrowSwitchMultiFPCc | :x: |
 | registerTarget__16ArrowSwitchMultiFP17ArrowSwitchTarget | :x: |
 | init__16ArrowSwitchMultiFRC12JMapInfoIter | :x: |
@@ -485,7 +485,7 @@
 | exeWait__16ArrowSwitchMultiFv | :x: |
 | exeRotate__16ArrowSwitchMultiFv | :x: |
 | __dt__16ArrowSwitchMultiFv | :x: |
-| __dt__17ArrowSwitchTargetFv | :x: |
+| __dt__17ArrowSwitchTargetFv | :white_check_mark: |
 | __sinit_\ArrowSwitchMulti_cpp | :x: |
 | __ct__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitFv | :x: |
 | __ct__Q219NrvArrowSwitchMulti25ArrowSwitchMultiNrvRotateFv | :x: |

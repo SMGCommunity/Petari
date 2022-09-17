@@ -540,6 +540,28 @@ namespace JGeometry {
             }
         }
 
+        inline void negateInlineAndStore(register const TVec3<T> &rSrc, register TVec3<T> &rDest) {
+            register TVec3<T>* dst = this;
+            register f32 xy;
+            register f32 z_neg, x, y, z, z_single;
+
+            __asm {
+                psq_l xy, 0(rSrc), 0, 0
+                lfs z, 8(rSrc)
+                ps_neg xy, xy
+                fneg z_neg, z
+                psq_st xy, 0(dst), 0, 0
+                frsp z_single, z_neg
+                stfs z_neg, 8(dst)
+                lfs x, 0(dst)
+                lfs y, 4(dst)
+                lfs z, 8(dst)
+                stfs x, 0(rDest)
+                stfs y, 4(rDest)
+                stfs z_single, 8(rDest)
+            }
+        }
+
         inline void negateSelf() {
             register TVec3<T>* src = this;
             register TVec3<T>* dst = this;
