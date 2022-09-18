@@ -13,8 +13,8 @@
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% | :x: 
 | ArrowSwitch.o | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
-| ArrowSwitchMulti.o | 20.30716723549488% | 6 / 21 | 28.57142857142857% | :eight_pointed_black_star: 
-| ArrowSwitchMultiHolder.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| ArrowSwitchMulti.o | 82.25255972696246% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
+| ArrowSwitchMultiHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | AssemblyBlock.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | AstroCore.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | AstroCountDownPlate.o | 0.0% | 0 / 24 | 0.0% | :x: 
@@ -475,34 +475,34 @@
 | initAfterPlacement__17ArrowSwitchTargetFv | :white_check_mark: |
 | onTarget__17ArrowSwitchTargetFv | :white_check_mark: |
 | offTarget__17ArrowSwitchTargetFv | :white_check_mark: |
-| __ct__16ArrowSwitchMultiFPCc | :x: |
-| registerTarget__16ArrowSwitchMultiFP17ArrowSwitchTarget | :x: |
-| init__16ArrowSwitchMultiFRC12JMapInfoIter | :x: |
-| control__16ArrowSwitchMultiFv | :x: |
-| calcAndSetBaseMtx__16ArrowSwitchMultiFv | :x: |
-| receiveMsgPlayerAttack__16ArrowSwitchMultiFUlP9HitSensorP9HitSensor | :x: |
-| requestPunch__16ArrowSwitchMultiFP9HitSensorP9HitSensor | :x: |
-| exeWait__16ArrowSwitchMultiFv | :x: |
+| __ct__16ArrowSwitchMultiFPCc | :white_check_mark: |
+| registerTarget__16ArrowSwitchMultiFP17ArrowSwitchTarget | :white_check_mark: |
+| init__16ArrowSwitchMultiFRC12JMapInfoIter | :white_check_mark: |
+| control__16ArrowSwitchMultiFv | :white_check_mark: |
+| calcAndSetBaseMtx__16ArrowSwitchMultiFv | :white_check_mark: |
+| receiveMsgPlayerAttack__16ArrowSwitchMultiFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| requestPunch__16ArrowSwitchMultiFP9HitSensorP9HitSensor | :white_check_mark: |
+| exeWait__16ArrowSwitchMultiFv | :white_check_mark: |
 | exeRotate__16ArrowSwitchMultiFv | :x: |
-| __dt__16ArrowSwitchMultiFv | :x: |
+| __dt__16ArrowSwitchMultiFv | :white_check_mark: |
 | __dt__17ArrowSwitchTargetFv | :white_check_mark: |
-| __sinit_\ArrowSwitchMulti_cpp | :x: |
-| __ct__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitFv | :x: |
-| __ct__Q219NrvArrowSwitchMulti25ArrowSwitchMultiNrvRotateFv | :x: |
-| execute__Q219NrvArrowSwitchMulti25ArrowSwitchMultiNrvRotateCFP5Spine | :x: |
-| execute__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitCFP5Spine | :x: |
+| __sinit_\ArrowSwitchMulti_cpp | :white_check_mark: |
+| __ct__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitFv | :white_check_mark: |
+| __ct__Q219NrvArrowSwitchMulti25ArrowSwitchMultiNrvRotateFv | :white_check_mark: |
+| execute__Q219NrvArrowSwitchMulti25ArrowSwitchMultiNrvRotateCFP5Spine | :white_check_mark: |
+| execute__Q219NrvArrowSwitchMulti23ArrowSwitchMultiNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # ArrowSwitchMultiHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__22ArrowSwitchMultiHolderFv | :x: |
-| __dt__36DeriveActorGroup&lt;16ArrowSwitchMulti&gt;Fv | :x: |
-| findSwitch__22ArrowSwitchMultiHolderFPC10JMapIdInfo | :x: |
-| createArrowSwitchMultiHolder__2MRFv | :x: |
-| registerArrowSwitchMulti__2MRFP16ArrowSwitchMulti | :x: |
-| registerArrowSwitchTarget__2MRFP17ArrowSwitchTarget | :x: |
-| __dt__22ArrowSwitchMultiHolderFv | :x: |
+| __ct__22ArrowSwitchMultiHolderFv | :white_check_mark: |
+| __dt__36DeriveActorGroup&lt;16ArrowSwitchMulti&gt;Fv | :white_check_mark: |
+| findSwitch__22ArrowSwitchMultiHolderFPC10JMapIdInfo | :white_check_mark: |
+| createArrowSwitchMultiHolder__2MRFv | :white_check_mark: |
+| registerArrowSwitchMulti__2MRFP16ArrowSwitchMulti | :white_check_mark: |
+| registerArrowSwitchTarget__2MRFP17ArrowSwitchTarget | :white_check_mark: |
+| __dt__22ArrowSwitchMultiHolderFv | :white_check_mark: |
 
 
 # AssemblyBlock.o

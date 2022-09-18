@@ -109,9 +109,6 @@ bool ArrowSwitch::receiveMsgPush(HitSensor *, HitSensor *) {
     return false;
 }
 
-/* NOTE -- this function doesn't 100% match, there is a small insignificant regswap that doesn't affect functionality
- * TODO -- please fix me!
-*/
 bool ArrowSwitch::requestPunch(HitSensor *a1, HitSensor *a2) {
     if (getSensor("body") != a2) {
         return false;
@@ -144,7 +141,8 @@ bool ArrowSwitch::requestPunch(HitSensor *a1, HitSensor *a2) {
     }
 
     s32 step = _9D ? getOneStep() : -getOneStep();
-    mRotationIdx = (mRotationIdx + step + 4) % 4;
+    mRotationIdx += step;
+    mRotationIdx = (mRotationIdx + 4) % 4;
     _94 = _9D ? -6.0f : 6.0f;
     _9F = 1;
     MR::invalidateClipping(this);

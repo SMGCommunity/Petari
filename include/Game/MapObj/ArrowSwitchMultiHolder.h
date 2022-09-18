@@ -1,7 +1,14 @@
 #pragma once
 
-class ArrowSwitchMulti;
-class ArrowSwitchTarget;
+#include "Game/MapObj/ArrowSwitchMulti.h"
+#include "Game/LiveActor/LiveActorGroup.h"
+
+class ArrowSwitchMultiHolder : public DeriveActorGroup<ArrowSwitchMulti> {
+public:
+    ArrowSwitchMultiHolder();
+
+    ArrowSwitchMulti* findSwitch(const JMapIdInfo *);
+};
 
 namespace MR {
     void createArrowSwitchMultiHolder();
