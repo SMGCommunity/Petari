@@ -15,7 +15,7 @@
 | ArrowSwitch.o | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
 | ArrowSwitchMulti.o | 82.25255972696246% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | ArrowSwitchMultiHolder.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
-| AssemblyBlock.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| AssemblyBlock.o | 87.1111111111111% | 21 / 22 | 95.45454545454545% | :eight_pointed_black_star: 
 | AstroCore.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | AstroCountDownPlate.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | AstroDome.o | 0.0% | 0 / 16 | 0.0% | :x: 
@@ -508,28 +508,28 @@
 # AssemblyBlock.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13AssemblyBlockFPCc | :x: |
-| init__13AssemblyBlockFRC12JMapInfoIter | :x: |
+| __ct__13AssemblyBlockFPCc | :white_check_mark: |
+| init__13AssemblyBlockFRC12JMapInfoIter | :white_check_mark: |
 | exeWait__13AssemblyBlockFv | :x: |
-| exeAssemble__13AssemblyBlockFv | :x: |
-| exeAssembleWait__13AssemblyBlockFv | :x: |
-| exeReturn__13AssemblyBlockFv | :x: |
-| exeTimer__13AssemblyBlockFv | :x: |
-| calcAndSetBaseMtx__13AssemblyBlockFv | :x: |
-| tryStartAssemble__13AssemblyBlockFv | :x: |
-| tryStartReturn__13AssemblyBlockFv | :x: |
-| __dt__13AssemblyBlockFv | :x: |
-| __sinit_\AssemblyBlock_cpp | :x: |
-| __ct__Q216NrvAssemblyBlock20AssemblyBlockNrvWaitFv | :x: |
-| __ct__Q216NrvAssemblyBlock24AssemblyBlockNrvAssembleFv | :x: |
-| __ct__Q216NrvAssemblyBlock28AssemblyBlockNrvAssembleWaitFv | :x: |
-| __ct__Q216NrvAssemblyBlock22AssemblyBlockNrvReturnFv | :x: |
-| __ct__Q216NrvAssemblyBlock21AssemblyBlockNrvTimerFv | :x: |
-| execute__Q216NrvAssemblyBlock21AssemblyBlockNrvTimerCFP5Spine | :x: |
-| execute__Q216NrvAssemblyBlock22AssemblyBlockNrvReturnCFP5Spine | :x: |
-| execute__Q216NrvAssemblyBlock28AssemblyBlockNrvAssembleWaitCFP5Spine | :x: |
-| execute__Q216NrvAssemblyBlock24AssemblyBlockNrvAssembleCFP5Spine | :x: |
-| execute__Q216NrvAssemblyBlock20AssemblyBlockNrvWaitCFP5Spine | :x: |
+| exeAssemble__13AssemblyBlockFv | :white_check_mark: |
+| exeAssembleWait__13AssemblyBlockFv | :white_check_mark: |
+| exeReturn__13AssemblyBlockFv | :white_check_mark: |
+| exeTimer__13AssemblyBlockFv | :white_check_mark: |
+| calcAndSetBaseMtx__13AssemblyBlockFv | :white_check_mark: |
+| tryStartAssemble__13AssemblyBlockFv | :white_check_mark: |
+| tryStartReturn__13AssemblyBlockFv | :white_check_mark: |
+| __dt__13AssemblyBlockFv | :white_check_mark: |
+| __sinit_\AssemblyBlock_cpp | :white_check_mark: |
+| __ct__Q216NrvAssemblyBlock20AssemblyBlockNrvWaitFv | :white_check_mark: |
+| __ct__Q216NrvAssemblyBlock24AssemblyBlockNrvAssembleFv | :white_check_mark: |
+| __ct__Q216NrvAssemblyBlock28AssemblyBlockNrvAssembleWaitFv | :white_check_mark: |
+| __ct__Q216NrvAssemblyBlock22AssemblyBlockNrvReturnFv | :white_check_mark: |
+| __ct__Q216NrvAssemblyBlock21AssemblyBlockNrvTimerFv | :white_check_mark: |
+| execute__Q216NrvAssemblyBlock21AssemblyBlockNrvTimerCFP5Spine | :white_check_mark: |
+| execute__Q216NrvAssemblyBlock22AssemblyBlockNrvReturnCFP5Spine | :white_check_mark: |
+| execute__Q216NrvAssemblyBlock28AssemblyBlockNrvAssembleWaitCFP5Spine | :white_check_mark: |
+| execute__Q216NrvAssemblyBlock24AssemblyBlockNrvAssembleCFP5Spine | :white_check_mark: |
+| execute__Q216NrvAssemblyBlock20AssemblyBlockNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # AstroCore.o

@@ -305,4 +305,8 @@ namespace MR {
     void stopSceneAtStep(const LiveActor *, s32, s32);
 
     void initJointTransform(const LiveActor *);
+
+    void initCollisionPartsAutoEqualScaleOne(LiveActor *, const char *, HitSensor *, MtxPtr);
+
+    PartsModel* createBloomModel(LiveActor *, MtxPtr);
 };

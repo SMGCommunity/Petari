@@ -30,4 +30,11 @@ public:\
 };\
 
 #define INIT_NERVE(name)\
-    name name::sInstance;
+    name name::sInstance;\
+
+#define INIT_NERVE_NEW(name, parent_class, func)\
+    name name::sInstance;\
+    void name::execute(Spine *pSpine) const { \
+        parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
+        actor->func();\
+    }\

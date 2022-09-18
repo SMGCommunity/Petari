@@ -171,4 +171,8 @@ namespace MR {
     void joinToNameObjGroup(NameObj *, const char *);
 
     bool isEndPowerStarAppearDemo(const NameObj *);
+
+    bool tryRegisterNamePosLinkObj(const NameObj *, const JMapInfoIter &);
+
+    bool tryFindLinkNamePos(const NameObj *, const char *, MtxPtr);
 };

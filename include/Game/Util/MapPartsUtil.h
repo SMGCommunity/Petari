@@ -30,7 +30,8 @@ namespace MR {
     bool getMapPartsArgRailRotateSpeed(f32 *, const JMapInfoIter &);
     bool getMapPartsArgRailRotateTime(s32 *, const JMapInfoIter &);
 
-    bool getMapPartsObjectName(char *, u32, const JMapInfoIter &);
+    void getMapPartsObjectName(char *, u32, const JMapInfoIter &);
+    void getMapPartsObjectNameIfExistShapeID(char *, u32, const JMapInfoIter &);
 
     bool hasMapPartsShadow(s32);
 
