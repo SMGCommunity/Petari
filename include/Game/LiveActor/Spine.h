@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.h"
 #include <revolution.h>
 
 class ActorStateKeeper;
+class Nerve;
 
 class Spine
 {

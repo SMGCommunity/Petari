@@ -246,9 +246,9 @@ AssemblyBlock::~AssemblyBlock() {
 }
 
 namespace NrvAssemblyBlock {
-    INIT_NERVE_NEW(AssemblyBlockNrvWait, AssemblyBlock, AssemblyBlock::exeWait);
-    INIT_NERVE_NEW(AssemblyBlockNrvAssemble, AssemblyBlock, AssemblyBlock::exeAssemble);
-    INIT_NERVE_NEW(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssemblyBlock::exeAssembleWait);
-    INIT_NERVE_NEW(AssemblyBlockNrvReturn, AssemblyBlock, AssemblyBlock::exeReturn);
-    INIT_NERVE_NEW(AssemblyBlockNrvTimer, AssemblyBlock, AssemblyBlock::exeTimer);
+    INIT_NERVE(AssemblyBlockNrvWait);
+    INIT_NERVE(AssemblyBlockNrvAssemble);
+    INIT_NERVE(AssemblyBlockNrvAssembleWait);
+    INIT_NERVE(AssemblyBlockNrvReturn);
+    INIT_NERVE(AssemblyBlockNrvTimer);
 };

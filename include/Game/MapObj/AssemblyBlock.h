@@ -31,9 +31,9 @@ public:
 };
 
 namespace NrvAssemblyBlock {
-    NERVE(AssemblyBlockNrvWait);
-    NERVE(AssemblyBlockNrvAssemble);
-    NERVE(AssemblyBlockNrvAssembleWait);
-    NERVE(AssemblyBlockNrvReturn);
-    NERVE(AssemblyBlockNrvTimer);
+    NERVE_DECL(AssemblyBlockNrvWait, AssemblyBlock, AssemblyBlock::exeWait);
+    NERVE_DECL(AssemblyBlockNrvAssemble, AssemblyBlock, AssemblyBlock::exeAssemble);
+    NERVE_DECL(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssemblyBlock::exeAssembleWait);
+    NERVE_DECL(AssemblyBlockNrvReturn, AssemblyBlock, AssemblyBlock::exeReturn);
+    NERVE_DECL(AssemblyBlockNrvTimer, AssemblyBlock, AssemblyBlock::exeTimer);
 };

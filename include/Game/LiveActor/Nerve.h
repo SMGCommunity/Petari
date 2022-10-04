@@ -1,6 +1,6 @@
 #pragma once
 
-class Spine;
+#include "Game/LiveActor/Spine.h"
 
 class Nerve {
 public:
@@ -38,3 +38,27 @@ public:\
         parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
         actor->func();\
     }\
+
+#define NERVE_DECL(name, parent_class, func)\
+class name : public Nerve\
+{\
+public:\
+    name() NO_INLINE {\
+    };\
+    virtual void execute(Spine *pSpine) const {\
+        parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
+        actor->func();\
+    };\
+    static name sInstance;\
+};\
+
+#define NERVE_DECL_NULL(name)\
+class name : public Nerve\
+{\
+public:\
+    name() NO_INLINE {\
+    };\
+    virtual void execute(Spine *pSpine) const {\
+    };\
+    static name sInstance;\
+};\

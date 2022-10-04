@@ -75,7 +75,7 @@
 | SleepController.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | SleepControllerHolder.o | 1.7543859649122806% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
 | SpaceInner.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
-| SphereSelector.o | 0.0% | 0 / 70 | 0.0% | :x: 
+| SphereSelector.o | 8.159866777685263% | 15 / 70 | 21.428571428571427% | :eight_pointed_black_star: 
 | SphereSelectorHandle.o | 0.0% | 0 / 53 | 0.0% | :x: 
 | StageSwitch.o | 66.87116564417178% | 26 / 31 | 83.87096774193549% | :eight_pointed_black_star: 
 | SunshadeMapHolder.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -1802,21 +1802,21 @@
 | getSelectedActorTrans__22SphereSelectorFunctionFv | :x: |
 | calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | __dt__14SphereSelectorFv | :x: |
-| __sinit_\SphereSelector_cpp | :x: |
-| __ct__Q217NrvSphereSelector28SphereSelectorNrvSelectStartFv | :x: |
-| __ct__Q217NrvSphereSelector27SphereSelectorNrvSelectWaitFv | :x: |
-| __ct__Q217NrvSphereSelector29SphereSelectorNrvSelectCancelFv | :x: |
-| __ct__Q217NrvSphereSelector29SphereSelectorNrvConfirmStartFv | :x: |
-| __ct__Q217NrvSphereSelector28SphereSelectorNrvConfirmWaitFv | :x: |
-| __ct__Q217NrvSphereSelector30SphereSelectorNrvConfirmCancelFv | :x: |
-| __ct__Q217NrvSphereSelector26SphereSelectorNrvConfirmedFv | :x: |
-| execute__Q217NrvSphereSelector26SphereSelectorNrvConfirmedCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector30SphereSelectorNrvConfirmCancelCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector28SphereSelectorNrvConfirmWaitCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector29SphereSelectorNrvConfirmStartCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector29SphereSelectorNrvSelectCancelCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector27SphereSelectorNrvSelectWaitCFP5Spine | :x: |
-| execute__Q217NrvSphereSelector28SphereSelectorNrvSelectStartCFP5Spine | :x: |
+| __sinit_\SphereSelector_cpp | :white_check_mark: |
+| __ct__Q217NrvSphereSelector28SphereSelectorNrvSelectStartFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector27SphereSelectorNrvSelectWaitFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector29SphereSelectorNrvSelectCancelFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector29SphereSelectorNrvConfirmStartFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector28SphereSelectorNrvConfirmWaitFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector30SphereSelectorNrvConfirmCancelFv | :white_check_mark: |
+| __ct__Q217NrvSphereSelector26SphereSelectorNrvConfirmedFv | :white_check_mark: |
+| execute__Q217NrvSphereSelector26SphereSelectorNrvConfirmedCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector30SphereSelectorNrvConfirmCancelCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector28SphereSelectorNrvConfirmWaitCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector29SphereSelectorNrvConfirmStartCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector29SphereSelectorNrvSelectCancelCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector27SphereSelectorNrvSelectWaitCFP5Spine | :white_check_mark: |
+| execute__Q217NrvSphereSelector28SphereSelectorNrvSelectStartCFP5Spine | :white_check_mark: |
 | getBaseMtx__20SphereSelectorHandleCFv | :x: |
 
 
