@@ -33,3 +33,4 @@ Compilers.zip
 Compilers/*
 *.ninja
 *.ninja_log
+doxygen/*
