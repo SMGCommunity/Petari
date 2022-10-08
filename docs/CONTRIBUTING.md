@@ -125,7 +125,7 @@ please join our **[Discord]** server.
     ```
 
     If there is a function that does not have this implemented (ie in headers before the new documentation revamp), please take the time to help reimplement them to document this repository better!
-    Note that the documentation website only updates every hour, so wait up to the nearest hour after your pull request has been merged. However, you can preview your changes before merging by running `doxygen`.
+    Note that the documentation website only updates every 15 minutes, so wait up to the nearest 15 minutes after your pull request has been merged. However, you can preview your changes before merging by running `doxygen`.
 
 - At the top of every header place:
 

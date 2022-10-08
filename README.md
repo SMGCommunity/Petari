@@ -15,6 +15,7 @@
  **[❮ Build ❯][Build]**
  **[❮ Contribute ❯][Contribute]**
  **[❮ CheatSheet ❯][CheatSheet]**
+ **[❮ Online Documentation ❯][Docs]**
  **[❮ Progress ❯][Progress]**
  **[❮ SMG2 Decompilation ❯][SMG2]**
 
@@ -26,6 +27,7 @@
 
 [Contribute]: docs/CONTRIBUTING.md
 [CheatSheet]: docs/CHEATSHEET.md
+[Docs]: http://shibbo.net/smg/docs/Petari/doxygen/index.html
 [Progress]: docs/PROGRESS.md
 [Build]: docs/Build.md
 [SMG2]: https://github.com/shibbo/Garigari
