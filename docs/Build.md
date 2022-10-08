@@ -3,7 +3,7 @@
 
 <br>
 
-1. **Obtain** a clean copy of `main.dol` from **Super Mario Galaxy 1**
+1. **Obtain** a clean copy of `main.dol` from **Super Mario Galaxy 1 (Korean)**
 
 <br>
 

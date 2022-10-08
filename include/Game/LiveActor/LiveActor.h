@@ -76,13 +76,13 @@ public:
         return pBinder;
     }
 
-    TVec3f mPosition;                       // _C
-    TVec3f mRotation;                       // _18
-    TVec3f mScale;                          // _24
-    TVec3f mVelocity;                       // _30
-    TVec3f mGravity;                        // _3C
-    ModelManager* mModelManager;            // _48
-    ActorAnimKeeper* mAnimationKeeper;      // _4C
+    /* 0xC */       TVec3f mPosition;                       ///< 3D vector of the actor's position.
+    /* 0x18 */      TVec3f mRotation;                       ///< 3D vector of the actor's rotation.
+    /* 0x24 */      TVec3f mScale;                          ///< 3D vector of the actor's scale.
+    /* 0x30 */      TVec3f mVelocity;                       ///< 3D vector of the actor's velocity.
+    /* 0x3C */      TVec3f mGravity;                        ///< 3D vector of the actor's gravity.
+    /* 0x48 */      ModelManager* mModelManager;            ///< A pointer to a ModelManager instance, used for drawing a 3D model.
+    /* 0x4C */      ActorAnimKeeper* mAnimationKeeper;      ///< A pointer to a ActorAnimKeeper instance, used for stroring and playing model animations.
     Spine* mSpine;                          // _50
     HitSensorKeeper* mSensorKeeper;         // _54
     Binder* mBinder;                        // _58
