@@ -2,6 +2,7 @@
 
 #include "Game/NameObj/NameObj.h"
 
+/// @brief Class that can contain multiple NameObj instances stored in a group.
 class NameObjGroup : public NameObj {
 public:
     NameObjGroup(const char *, int);

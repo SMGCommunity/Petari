@@ -2,6 +2,7 @@
 
 #include "revolution.h"
 
+/// @brief Stores archive names of NameObjs.
 class NameObjArchiveListCollector {
 public:
     NameObjArchiveListCollector();

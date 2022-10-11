@@ -22,6 +22,7 @@ class NameObjArchiveListCollector;
 
 typedef NameObj* (*CreationFuncPtr)(const char *);
 
+/// @brief Class that creates NameObj instances.
 class NameObjFactory {
 public:
     struct Name2CreateFunc {

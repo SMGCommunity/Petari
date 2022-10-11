@@ -5,6 +5,7 @@
 
 class LiveActor;
 
+/// @brief Class that executes NameObjCategoryList instances.
 class NameObjListExecutor {
 public:
     NameObjListExecutor();

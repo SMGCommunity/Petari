@@ -225,6 +225,7 @@ struct CategoryListInitialTable {
     u32 _4;
 };
 
+/// @brief Organizes NameObjs by execution category.
 class NameObjCategoryList {
 public:
 
