@@ -6,7 +6,7 @@
 NameObj::NameObj(const char *pName) {
     mName = pName;
     mFlags = 0;
-    _A = -1;
+    mExecutorIdx = -1;
     SingletonHolder<NameObjRegister>::sInstance->add(this);
 }
 

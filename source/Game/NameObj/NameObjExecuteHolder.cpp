@@ -209,7 +209,7 @@ void NameObjExecuteInfo::disconnectToDraw() {
 
 void NameObjExecuteHolder::registerActor(NameObj *pObj, int a2, int a3, int a4, int a5) {
     mExecuteArray[_14].setConnectInfo(pObj, a2, a3, a4, a5);
-    pObj->_A = _14;
+    pObj->mExecutorIdx = _14;
     _14++;
 }
 
@@ -331,8 +331,8 @@ void NameObjExecuteHolder::requestMovementOff(int idx) {
 }
 
 NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj *pObj) const {
-    if (pObj->_A >= 0) {
-        return &mExecuteArray[pObj->_A];
+    if (pObj->mExecutorIdx >= 0) {
+        return &mExecuteArray[pObj->mExecutorIdx];
     }
 
     return 0;

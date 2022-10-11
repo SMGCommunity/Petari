@@ -2,10 +2,15 @@
 
 #include "Game/LiveActor/Spine.h"
 
+/// @brief Used for executing states of a LiveActor.
 class Nerve {
 public:
-    virtual void execute(Spine *) const = 0;
-    virtual void executeOnEnd(Spine *) const;
+    /// @brief Executes a state based on the host actor.
+    /// @param pSpine The spine that contains the host LiveActor to execute the state for.
+    virtual void execute(Spine *pSpine) const = 0;
+    /// @brief Executes after the last iteration of a state before it executes another state.
+    /// @param pSpine The spine that contains the host LiveActor to execute the state for.
+    virtual void executeOnEnd(Spine *pSpine) const;
 };
 
 #define NERVE(name)\

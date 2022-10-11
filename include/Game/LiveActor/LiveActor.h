@@ -20,9 +20,12 @@ class CollisionParts;
 class ShadowControllerList;
 class StarPointerTarget;
 
+/// @brief The basis of a drawable actor that can contain states (see: Nerve)
 class LiveActor : public NameObj {
 public:
-    LiveActor(const char *);
+    /// @brief Constructs a new LiveActor instance.
+    /// @param pName The new name assigned to the LiveActor.
+    LiveActor(const char *pName);
 
     virtual inline ~LiveActor() {}
 
@@ -35,11 +38,16 @@ public:
     virtual void kill();
     virtual void makeActorDead();
     virtual bool receiveMessage(u32, HitSensor *, HitSensor *);
+
+    /// @brief Gets the base matrix of the model used for the actor.
+    /// @returns A MtxPtr to the base matrix. NULL if there is no model present.
     virtual MtxPtr getBaseMtx() const;
     virtual MtxPtr getTakingMtx() const;
     virtual void startClipped();
     virtual void endClipped();
     virtual void control();
+
+    /// @brief Calculates and sets the base matrix of the actor.
     virtual void calcAndSetBaseMtx();
     virtual void updateHitSensor(HitSensor *);
     virtual void attackSensor(HitSensor *, HitSensor *);
@@ -56,7 +64,11 @@ public:
     void setNerve(const Nerve *);
     bool isNerve(const Nerve *) const;
     s32 getNerveStep() const;
-    HitSensor* getSensor(const char *) const;
+
+    /// @brief Gets a sensor.
+    /// @param pSensorName The name of the sensor to get.
+    /// @returns The sensor that contains the name given. Returns the result of HitSensorKeeper::getSensor or NULL if there is no HitSensorKeeper created.
+    HitSensor* getSensor(const char *pSensorName) const;
     void initModelManagerWithAnm(const char *, const char *, bool);
     void initNerve(const Nerve *);
     void initHitSensor(int);
@@ -82,17 +94,17 @@ public:
     /* 0x30 */      TVec3f mVelocity;                       ///< 3D vector of the actor's velocity.
     /* 0x3C */      TVec3f mGravity;                        ///< 3D vector of the actor's gravity.
     /* 0x48 */      ModelManager* mModelManager;            ///< A pointer to a ModelManager instance, used for drawing a 3D model.
-    /* 0x4C */      ActorAnimKeeper* mAnimationKeeper;      ///< A pointer to a ActorAnimKeeper instance, used for stroring and playing model animations.
+    /* 0x4C */      ActorAnimKeeper* mAnimationKeeper;      ///< A pointer to a ActorAnimKeeper instance, used for storing and playing model animations.
     Spine* mSpine;                          // _50
-    HitSensorKeeper* mSensorKeeper;         // _54
+    /* 0x54 */      HitSensorKeeper* mSensorKeeper;         ///< A pointer to a HitSensorKeeper instance, used for storing HitSensor instances.
     Binder* mBinder;                        // _58
-    RailRider* mRailRider;                  // _5C
+    /* 0x5C */      RailRider* mRailRider;                  ///< A pointer to a RailRider instance, used for allowing the actor to ride on paths.
     EffectKeeper* mEffectKeeper;            // _60
     AudAnmSoundObject* mSoundObject;        // _64
-    LiveActorFlag mFlags;                   // _68
+    /* 0x68 */      LiveActorFlag mFlags;                   ///< Flags relating to drawing, animation calculation, etc.
     ShadowControllerList* mShadowList;      // _74
     CollisionParts* mCollisionParts;        // _78
-    StageSwitchCtrl* mStageSwitchCtrl;      // _7C
+    /* 0x7C */      StageSwitchCtrl* mStageSwitchCtrl;      ///< A pointer to a StageSwitchCtrl instance, used for activating and deactivating switches.
     StarPointerTarget* mStarPointerTarget;  // _80
     ActorLightCtrl* mActorLightCtrl;        // _84
     ActorPadAndCameraCtrl* mCameraCtrl;     // _88
