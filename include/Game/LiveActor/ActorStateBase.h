@@ -5,6 +5,14 @@
 class ActorStateBaseInterface : public NerveExecutor
 {
 public:
+    inline ActorStateBaseInterface(const char *pName) : NerveExecutor(pName) {
+
+    }
+
+    virtual inline ~ActorStateBaseInterface() {
+
+    }
+
     virtual void init();
     virtual void appear();
     virtual void kill();
@@ -17,5 +25,11 @@ public:
 template<typename T>
 class ActorStateBase : public ActorStateBaseInterface {
 public:
-    virtual ~ActorStateBase();
+    inline ActorStateBase(const char *pName) : ActorStateBaseInterface(pName) {
+
+    }
+
+    virtual ~ActorStateBase() {
+
+    }
 };

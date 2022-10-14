@@ -3,6 +3,7 @@
 #include <revolution.h>
 
 namespace MR {
+    
     class BitArray {
     public:
         BitArray(int);

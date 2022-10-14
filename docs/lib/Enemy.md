@@ -107,7 +107,7 @@
 | TerritoryMover.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | Unizo.o | 0.0% | 0 / 65 | 0.0% | :x: 
 | UnizoLauncher.o | 0.0% | 0 / 9 | 0.0% | :x: 
-| WalkerStateBindStarPointer.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| WalkerStateBindStarPointer.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | WalkerStateBlowDamage.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | WalkerStateChase.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | WalkerStateFindPlayer.o | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -5252,16 +5252,16 @@
 # WalkerStateBindStarPointer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__26WalkerStateBindStarPointerFP9LiveActorP19AnimScaleController | :x: |
-| __dt__26ActorStateBase&lt;9LiveActor&gt;Fv | :x: |
-| appear__26WalkerStateBindStarPointerFv | :x: |
-| kill__26WalkerStateBindStarPointerFv | :x: |
-| tryStartPointBind__26WalkerStateBindStarPointerCFv | :x: |
-| exeBind__26WalkerStateBindStarPointerFv | :x: |
-| __dt__26WalkerStateBindStarPointerFv | :x: |
-| __sinit_\WalkerStateBindStarPointer_cpp | :x: |
-| __ct__Q229NrvWalkerStateBindStarPointer33WalkerStateBindStarPointerNrvBindFv | :x: |
-| execute__Q229NrvWalkerStateBindStarPointer33WalkerStateBindStarPointerNrvBindCFP5Spine | :x: |
+| __ct__26WalkerStateBindStarPointerFP9LiveActorP19AnimScaleController | :white_check_mark: |
+| __dt__26ActorStateBase&lt;9LiveActor&gt;Fv | :white_check_mark: |
+| appear__26WalkerStateBindStarPointerFv | :white_check_mark: |
+| kill__26WalkerStateBindStarPointerFv | :white_check_mark: |
+| tryStartPointBind__26WalkerStateBindStarPointerCFv | :white_check_mark: |
+| exeBind__26WalkerStateBindStarPointerFv | :white_check_mark: |
+| __dt__26WalkerStateBindStarPointerFv | :white_check_mark: |
+| __sinit_\WalkerStateBindStarPointer_cpp | :white_check_mark: |
+| __ct__Q229NrvWalkerStateBindStarPointer33WalkerStateBindStarPointerNrvBindFv | :white_check_mark: |
+| execute__Q229NrvWalkerStateBindStarPointer33WalkerStateBindStarPointerNrvBindCFP5Spine | :white_check_mark: |
 
 
 # WalkerStateBlowDamage.o

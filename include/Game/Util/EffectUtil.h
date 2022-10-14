@@ -15,6 +15,8 @@ namespace MR {
 
     void emitEffect(LiveActor *, const char *);
 
+    void addEffect(LiveActor *, const char *);
+
     void onDrawEffect(LiveActor *);
     void offDrawEffect(LiveActor *);
     void forceDeleteEffect(LiveActor *, const char *);

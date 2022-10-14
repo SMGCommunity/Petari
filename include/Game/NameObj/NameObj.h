@@ -41,6 +41,7 @@ public:
     /* 0xA */   s16 mExecutorIdx;       ///< The index into the NameObjExecuteInfo array.
 };
 
+/// @brief Contains static functions to begin and end movement in a NameObj.
 class NameObjFunction {
 public:
     static void requestMovementOn(NameObj *);

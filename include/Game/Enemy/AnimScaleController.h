@@ -11,6 +11,8 @@ public:
     void startCrush();
     void startAnim();
 
+    void startDpdHitVibration();
+
     u8 _0[0xc];
     TVec3f _C;
     u8 _18[0x4];
