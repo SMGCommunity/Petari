@@ -140,7 +140,7 @@
 | JumpHole.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | JumpStand.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | KeySwitch.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
-| KillerGunnerSingle.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| KillerGunnerSingle.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | LargeChain.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | LargeChainParts.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | LavaBallRisingPlanetLava.o | 0.0% | 0 / 15 | 0.0% | :x: 
@@ -3628,22 +3628,22 @@
 # KillerGunnerSingle.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__18KillerGunnerSingleFPCc | :x: |
-| init__18KillerGunnerSingleFRC12JMapInfoIter | :x: |
-| attackSensor__18KillerGunnerSingleFP9HitSensorP9HitSensor | :x: |
-| exeWait__18KillerGunnerSingleFv | :x: |
-| exeCharge__18KillerGunnerSingleFv | :x: |
-| exeShoot__18KillerGunnerSingleFv | :x: |
-| __dt__18KillerGunnerSingleFv | :x: |
-| __sinit_\KillerGunnerSingle_cpp | :x: |
-| __ct__Q221NrvKillerGunnerSingle12HostTypeWaitFv | :x: |
-| __ct__Q221NrvKillerGunnerSingle14HostTypeChargeFv | :x: |
-| __ct__Q221NrvKillerGunnerSingle13HostTypeShootFv | :x: |
-| __ct__Q221NrvKillerGunnerSingle14HostTypeAttackFv | :x: |
-| execute__Q221NrvKillerGunnerSingle14HostTypeAttackCFP5Spine | :x: |
-| execute__Q221NrvKillerGunnerSingle13HostTypeShootCFP5Spine | :x: |
-| execute__Q221NrvKillerGunnerSingle14HostTypeChargeCFP5Spine | :x: |
-| execute__Q221NrvKillerGunnerSingle12HostTypeWaitCFP5Spine | :x: |
+| __ct__18KillerGunnerSingleFPCc | :white_check_mark: |
+| init__18KillerGunnerSingleFRC12JMapInfoIter | :white_check_mark: |
+| attackSensor__18KillerGunnerSingleFP9HitSensorP9HitSensor | :white_check_mark: |
+| exeWait__18KillerGunnerSingleFv | :white_check_mark: |
+| exeCharge__18KillerGunnerSingleFv | :white_check_mark: |
+| exeShoot__18KillerGunnerSingleFv | :white_check_mark: |
+| __dt__18KillerGunnerSingleFv | :white_check_mark: |
+| __sinit_\KillerGunnerSingle_cpp | :white_check_mark: |
+| __ct__Q221NrvKillerGunnerSingle12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q221NrvKillerGunnerSingle14HostTypeChargeFv | :white_check_mark: |
+| __ct__Q221NrvKillerGunnerSingle13HostTypeShootFv | :white_check_mark: |
+| __ct__Q221NrvKillerGunnerSingle14HostTypeAttackFv | :white_check_mark: |
+| execute__Q221NrvKillerGunnerSingle14HostTypeAttackCFP5Spine | :white_check_mark: |
+| execute__Q221NrvKillerGunnerSingle13HostTypeShootCFP5Spine | :white_check_mark: |
+| execute__Q221NrvKillerGunnerSingle14HostTypeChargeCFP5Spine | :white_check_mark: |
+| execute__Q221NrvKillerGunnerSingle12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # LargeChain.o

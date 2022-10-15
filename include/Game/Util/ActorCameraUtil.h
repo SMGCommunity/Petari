@@ -30,4 +30,6 @@ namespace MR {
     u32 startMultiActorCameraTargetOther(const LiveActor *, const ActorCameraInfo *, const char *, const CameraTargetArg &, s32);
 
     void endMultiActorCamera(const LiveActor *, const ActorCameraInfo *, const char *, bool, s32);
+
+    void startRumbleWithShakeCameraWeak(const LiveActor *, const char *, const char *, f32, f32);
 };
