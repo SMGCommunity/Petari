@@ -141,8 +141,8 @@
 | JumpStand.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | KeySwitch.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | KillerGunnerSingle.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
-| LargeChain.o | 0.0% | 0 / 15 | 0.0% | :x: 
-| LargeChainParts.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| LargeChain.o | 68.20276497695853% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
+| LargeChainParts.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | LavaBallRisingPlanetLava.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | LavaBreakColumn.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | LavaFloater.o | 0.0% | 0 / 19 | 0.0% | :x: 
@@ -3649,30 +3649,30 @@
 # LargeChain.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10LargeChainFPCc | :x: |
-| init__10LargeChainFRC12JMapInfoIter | :x: |
-| makeActorAppeared__10LargeChainFv | :x: |
-| makeActorDead__10LargeChainFv | :x: |
-| exeBreak__10LargeChainFv | :x: |
+| __ct__10LargeChainFPCc | :white_check_mark: |
+| init__10LargeChainFRC12JMapInfoIter | :white_check_mark: |
+| makeActorAppeared__10LargeChainFv | :white_check_mark: |
+| makeActorDead__10LargeChainFv | :white_check_mark: |
+| exeBreak__10LargeChainFv | :white_check_mark: |
 | createChainParts__10LargeChainFv | :x: |
 | __defctor__15LargeChainPartsFv | :x: |
-| __dt__15LargeChainPartsFv | :x: |
-| invalidateClippingAllChainParts__10LargeChainFv | :x: |
-| __dt__10LargeChainFv | :x: |
-| __sinit_\LargeChain_cpp | :x: |
-| __ct__Q213NrvLargeChain17LargeChainNrvWaitFv | :x: |
-| __ct__Q213NrvLargeChain18LargeChainNrvBreakFv | :x: |
-| execute__Q213NrvLargeChain18LargeChainNrvBreakCFP5Spine | :x: |
-| execute__Q213NrvLargeChain17LargeChainNrvWaitCFP5Spine | :x: |
+| __dt__15LargeChainPartsFv | :white_check_mark: |
+| invalidateClippingAllChainParts__10LargeChainFv | :white_check_mark: |
+| __dt__10LargeChainFv | :white_check_mark: |
+| __sinit_\LargeChain_cpp | :white_check_mark: |
+| __ct__Q213NrvLargeChain17LargeChainNrvWaitFv | :white_check_mark: |
+| __ct__Q213NrvLargeChain18LargeChainNrvBreakFv | :white_check_mark: |
+| execute__Q213NrvLargeChain18LargeChainNrvBreakCFP5Spine | :white_check_mark: |
+| execute__Q213NrvLargeChain17LargeChainNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # LargeChainParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__15LargeChainPartsFPCc | :x: |
-| breakChainParts__15LargeChainPartsFv | :x: |
-| initChainParts__15LargeChainPartsFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;b | :x: |
-| kill__15LargeChainPartsFv | :x: |
+| __ct__15LargeChainPartsFPCc | :white_check_mark: |
+| breakChainParts__15LargeChainPartsFv | :white_check_mark: |
+| initChainParts__15LargeChainPartsFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;b | :white_check_mark: |
+| kill__15LargeChainPartsFv | :white_check_mark: |
 
 
 # LavaBallRisingPlanetLava.o
