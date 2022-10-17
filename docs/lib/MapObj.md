@@ -143,7 +143,7 @@
 | KillerGunnerSingle.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | LargeChain.o | 68.20276497695853% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | LargeChainParts.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| LavaBallRisingPlanetLava.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| LavaBallRisingPlanetLava.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | LavaBreakColumn.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | LavaFloater.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | LavaGalaxyParts.o | 0.0% | 0 / 7 | 0.0% | :x: 
@@ -3678,21 +3678,21 @@
 # LavaBallRisingPlanetLava.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__24LavaBallRisingPlanetLavaFPCc | :x: |
-| init__24LavaBallRisingPlanetLavaFRC12JMapInfoIter | :x: |
-| exeWait__24LavaBallRisingPlanetLavaFv | :x: |
-| exeScaleUp__24LavaBallRisingPlanetLavaFv | :x: |
-| exeScaleDown__24LavaBallRisingPlanetLavaFv | :x: |
-| __dt__24LavaBallRisingPlanetLavaFv | :x: |
-| __sinit_\LavaBallRisingPlanetLava_cpp | :x: |
-| __ct__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvWaitSmallFv | :x: |
-| __ct__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvWaitBigFv | :x: |
-| __ct__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvScaleUpFv | :x: |
-| __ct__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvScaleDownFv | :x: |
-| execute__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvScaleDownCFP5Spine | :x: |
-| execute__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvScaleUpCFP5Spine | :x: |
-| execute__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvWaitBigCFP5Spine | :x: |
-| execute__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvWaitSmallCFP5Spine | :x: |
+| __ct__24LavaBallRisingPlanetLavaFPCc | :white_check_mark: |
+| init__24LavaBallRisingPlanetLavaFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__24LavaBallRisingPlanetLavaFv | :white_check_mark: |
+| exeScaleUp__24LavaBallRisingPlanetLavaFv | :white_check_mark: |
+| exeScaleDown__24LavaBallRisingPlanetLavaFv | :white_check_mark: |
+| __dt__24LavaBallRisingPlanetLavaFv | :white_check_mark: |
+| __sinit_\LavaBallRisingPlanetLava_cpp | :white_check_mark: |
+| __ct__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvWaitSmallFv | :white_check_mark: |
+| __ct__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvWaitBigFv | :white_check_mark: |
+| __ct__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvScaleUpFv | :white_check_mark: |
+| __ct__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvScaleDownFv | :white_check_mark: |
+| execute__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvScaleDownCFP5Spine | :white_check_mark: |
+| execute__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvScaleUpCFP5Spine | :white_check_mark: |
+| execute__Q227NrvLavaBallRisingPlanetLava34LavaBallRisingPlanetLavaNrvWaitBigCFP5Spine | :white_check_mark: |
+| execute__Q227NrvLavaBallRisingPlanetLava36LavaBallRisingPlanetLavaNrvWaitSmallCFP5Spine | :white_check_mark: |
 
 
 # LavaBreakColumn.o
