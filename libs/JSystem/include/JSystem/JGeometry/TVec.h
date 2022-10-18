@@ -290,6 +290,19 @@ namespace JGeometry {
             };
         }
 
+        inline void setInlinePS_2(register const TVec3<T> &src) {
+            register TVec3<T>* dst = this;
+            register f32 z;
+            register f32 xy;
+
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                lfs z, 8(src)
+                psq_st xy, 0(dst), 0, 0
+                stfs z, 8(dst)
+            };
+        }
+
         inline void setInlineXYPS(register const TVec3<T> &src) {
             register TVec3<T>* dst = this;
             register f32 xy, scalar, _z;

@@ -178,7 +178,7 @@
 | NeedlePlant.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | NormalMapBase.o | 0.0% | 0 / 39 | 0.0% | :x: 
 | NormalMapTestObj.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| Note.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| Note.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | NoteFairy.o | 0.0% | 0 / 39 | 0.0% | :x: 
 | OceanFloaterLandParts.o | 0.0% | 0 / 18 | 0.0% | :x: 
 | OceanSmallTurtle.o | 0.0% | 0 / 29 | 0.0% | :x: 
@@ -4569,27 +4569,27 @@
 # Note.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__4NoteFPCcRCQ29JGeometry8TVec3&lt;f&gt;P9NoteFairy | :x: |
-| init__4NoteFRC12JMapInfoIter | :x: |
-| startCountDown__4NoteFv | :x: |
-| exeWait__4NoteFv | :x: |
-| exeCountDown__4NoteFv | :x: |
-| exeFlyUp__4NoteFv | :x: |
-| control__4NoteFv | :x: |
-| calcAndSetBaseMtx__4NoteFv | :x: |
-| attackSensor__4NoteFP9HitSensorP9HitSensor | :x: |
-| __ct__9NoteGroupFv | :x: |
-| init__9NoteGroupFRC12JMapInfoIter | :x: |
-| movement__9NoteGroupFv | :x: |
-| __dt__4NoteFv | :x: |
-| __dt__9NoteGroupFv | :x: |
-| __sinit_\Note_cpp | :x: |
-| __ct__Q27NrvNote11NoteNrvWaitFv | :x: |
-| __ct__Q27NrvNote16NoteNrvCountDownFv | :x: |
-| __ct__Q27NrvNote12NoteNrvFlyUpFv | :x: |
-| execute__Q27NrvNote12NoteNrvFlyUpCFP5Spine | :x: |
-| execute__Q27NrvNote16NoteNrvCountDownCFP5Spine | :x: |
-| execute__Q27NrvNote11NoteNrvWaitCFP5Spine | :x: |
+| __ct__4NoteFPCcRCQ29JGeometry8TVec3&lt;f&gt;P9NoteFairy | :white_check_mark: |
+| init__4NoteFRC12JMapInfoIter | :white_check_mark: |
+| startCountDown__4NoteFv | :white_check_mark: |
+| exeWait__4NoteFv | :white_check_mark: |
+| exeCountDown__4NoteFv | :white_check_mark: |
+| exeFlyUp__4NoteFv | :white_check_mark: |
+| control__4NoteFv | :white_check_mark: |
+| calcAndSetBaseMtx__4NoteFv | :white_check_mark: |
+| attackSensor__4NoteFP9HitSensorP9HitSensor | :white_check_mark: |
+| __ct__9NoteGroupFv | :white_check_mark: |
+| init__9NoteGroupFRC12JMapInfoIter | :white_check_mark: |
+| movement__9NoteGroupFv | :white_check_mark: |
+| __dt__4NoteFv | :white_check_mark: |
+| __dt__9NoteGroupFv | :white_check_mark: |
+| __sinit_\Note_cpp | :white_check_mark: |
+| __ct__Q27NrvNote11NoteNrvWaitFv | :white_check_mark: |
+| __ct__Q27NrvNote16NoteNrvCountDownFv | :white_check_mark: |
+| __ct__Q27NrvNote12NoteNrvFlyUpFv | :white_check_mark: |
+| execute__Q27NrvNote12NoteNrvFlyUpCFP5Spine | :white_check_mark: |
+| execute__Q27NrvNote16NoteNrvCountDownCFP5Spine | :white_check_mark: |
+| execute__Q27NrvNote11NoteNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # NoteFairy.o

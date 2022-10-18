@@ -132,6 +132,8 @@ namespace MR {
 
     void turnVecToVecCosOnPlane(TVec3f *, const TVec3f &, const TVec3f &, f32);
 
+    void turnVecToPlane(TVec3f *, const TVec3f &, const TVec3f &);
+
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
     */
@@ -221,6 +223,11 @@ namespace MR {
 
     inline s32 mod(s32 val, s32 mod) {
         return val % mod;
+    }
+
+    f32 repeat(f32 a1, f32 a2, f32 a3) {
+        f64 mod = fmod(a3 + (a1 - a2), a3);
+        return mod + a2;
     }
 };
 

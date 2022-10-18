@@ -193,6 +193,8 @@ namespace MR {
     f32 getBtkFrameMax(const LiveActor *);
     void setBckFrameAndStop(const LiveActor *, f32);
 
+    s16 getBrkFrameMax(const LiveActor *, const char *);
+
     void setBtkFrame(LiveActor *, f32);
     void setBtkFrameAndStop(const LiveActor *, f32);
 

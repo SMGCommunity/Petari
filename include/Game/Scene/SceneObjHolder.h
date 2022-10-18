@@ -30,6 +30,7 @@
 #define SceneObj_ShadowSurfaceDrawerInit    0x46
 #define SceneObj_VolumeModelDrawInit        0x4C
 #define SceneObj_SpinDrawerPathDrawInit     0x4D
+#define SceneObj_NoteGroup                  0x4E
 #define SceneObj_ArrowSwitchMultiHolder     0x54
 #define SceneObj_NameObjExecuteHolder       0x58
 #define SceneObj_QuakeEffectGenerator       0x5B
