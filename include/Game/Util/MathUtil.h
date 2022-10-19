@@ -134,6 +134,9 @@ namespace MR {
 
     void turnVecToPlane(TVec3f *, const TVec3f &, const TVec3f &);
 
+    f32 cosDegree(f32);
+    f32 sinDegree(f32);
+
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
     */

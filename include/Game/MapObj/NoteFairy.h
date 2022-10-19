@@ -50,3 +50,15 @@ public:
     s32 mPowerStarSpawnType;        // _D4
     ActorCameraInfo* mCameraInfo;   // _D8
 };
+
+namespace NrvNoteFairy {
+    NERVE_DECL(NoteFairyNrvHide, NoteFairy, NoteFairy::exeHide);
+    NERVE_DECL(NoteFairyNrvStartAppearDemo, NoteFairy, NoteFairy::exeStartAppearDemo);
+    NERVE_DECL(NoteFairyNrvRailMoveStart, NoteFairy, NoteFairy::exeRailMoveStart);
+    NERVE_DECL(NoteFairyNrvDemoAppear, NoteFairy, NoteFairy::exeDemoAppear);
+    NERVE_DECL(NoteFairyNrvAppearNoteBloom, NoteFairy, NoteFairy::exeAppearNoteBloom);
+    NERVE_DECL(NoteFairyNrvAppearNote, NoteFairy, NoteFairy::exeAppearNote);
+    NERVE_DECL(NoteFairyNrvEndWait, NoteFairy, NoteFairy::exeEndWait);
+    NERVE_DECL(NoteFairyNrvSuccessDemo, NoteFairy, NoteFairy::exeSuccessDemo);
+    NERVE_DECL(NoteFairyNrvSuccess, NoteFairy, NoteFairy::exeSuccess);
+};

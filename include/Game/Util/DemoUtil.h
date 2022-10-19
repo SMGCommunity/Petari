@@ -28,6 +28,8 @@ namespace MR {
 
     bool isPowerStarGetDemoActive();
 
+    bool isTimeKeepDemoActive();
+
     bool tryStartDemo(LiveActor *, const char *);
     bool tryStartDemoWithoutCinemaFrame(LiveActor *, const char *);
     bool tryStartDemoRegistered(LiveActor *, const char *);

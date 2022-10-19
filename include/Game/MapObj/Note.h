@@ -32,11 +32,11 @@ public:
 
     void startCountDown();
 
-    /// @brief Begins the countdown sequence that plays the "waiting" animation, and is switched to the countdown nerve when mIsCountdown is set to true by the mParentFairy.
+    /// @brief Begins the countdown sequence that plays the "waiting" animation, and is switched to the countdown nerve when mIsCountdown is set to true by the Note::mParentFairy.
     void exeWait();
-    /// @brief Begins the flashing sequence and if the current step reaches mCounter's value, it calls Note::kill.
+    /// @brief Begins the flashing sequence and if the current step reaches Note::mCounter's value, it calls Note::kill().
     void exeCountDown();
-    /// @brief Scales the note's velocity by -30.0 and then invalidates all hit sensors, and after 10 steps, calls Note::kill.
+    /// @brief Scales the note's velocity by -30.0 and then invalidates all hit sensors, and after 10 steps, calls Note::kill().
     void exeFlyUp();
 
     /* 0x8C */  NoteFairy* mParentFairy;        ///< The parent NoteFairy that this note was spawned from.
@@ -46,6 +46,7 @@ public:
     f32 _AC;
     bool mIsCountdown;          // _B0            
     /* 0xB4 */  FlashingCtrl* mFlashCtrl;       // A pointer to the FlashingCtrl instance that handles the "fading away" effects.
+    u32 _B8;
 };
 
 namespace NrvNote {

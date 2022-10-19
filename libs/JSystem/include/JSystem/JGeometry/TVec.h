@@ -453,16 +453,16 @@ namespace JGeometry {
         inline void subInline(const TVec3<T>& rA) {
             register TVec3<T>* this_vec = this;
             register const TVec3<T>* a = &rA;
-            register f32 bXY, aXY, bZ, aZ;
+            register f32 bZ, aZ, aXY, bXY;
 
             __asm {
                 psq_l     aXY, 0(a), 0, 0
                 psq_l     bXY, 0(this_vec), 0, 0
-                ps_sub    aXY, aXY, bXY
-                psq_st    aXY, 0(this_vec), 0, 0
+                ps_sub    bXY, bXY, aXY
+                psq_st    bXY, 0(this_vec), 0, 0
                 psq_l     aZ, 8(a), 1, 0
                 psq_l     bZ, 8(this_vec), 1, 0
-                ps_sub    aZ, aZ, bZ
+                ps_sub    aZ, bZ, aZ
                 psq_st    aZ, 8(this_vec), 1, 0
             };
         }

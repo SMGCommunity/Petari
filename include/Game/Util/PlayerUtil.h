@@ -82,4 +82,6 @@ namespace MR {
     void endBindAndPlayerJumpWithRollLanding(LiveActor *, const TVec3f &, u32);
 
     void startBckPlayer(const char *, s32);
+
+    void setPlayerFrontVec(const TVec3f &, s32);
 };

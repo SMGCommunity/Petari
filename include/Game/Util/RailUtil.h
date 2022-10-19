@@ -45,6 +45,7 @@ namespace MR {
     bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
     bool getRailPointArg0NoInit(const LiveActor *, s32, f32 *);
 
+    bool getRailArg0WithInit(const LiveActor *, s32 *);
     bool getRailArg1WithInit(const RailRider *, s32 *);
 
     f32 calcNearestRailCoord(const LiveActor *, const TVec3f &);
