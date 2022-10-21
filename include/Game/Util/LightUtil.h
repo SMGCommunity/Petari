@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Util/Color8.h"
+#include "Game/Util/Color.h"
 #include "JSystem/JGeometry.h"
 
 class LiveActor;

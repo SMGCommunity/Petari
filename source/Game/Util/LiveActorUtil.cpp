@@ -200,4 +200,39 @@ namespace MR {
     ActorLightCtrl* getLightCtrl(const LiveActor *pActor) {
         return pActor->mActorLightCtrl;
     }
+
+    bool isStep(const LiveActor *pActor, s32 step) {
+        return pActor->getNerveStep() == step;
+    }
+
+    /*
+    bool isFirstStep(const LiveActor *pActor) {
+        return MR::isStep(pActor, 0);
+    }
+    */
+
+   bool isLessStep(const LiveActor *pActor, s32 step) {
+        return pActor->getNerveStep() < step;
+   }
+
+   bool isLessEqualStep(const LiveActor *pActor, s32 step) {
+        return pActor->getNerveStep() <= step;
+   }
+
+   bool isGreaterStep(const LiveActor *pActor, s32 step) {
+        return pActor->getNerveStep() > step;
+   }
+
+   bool isGreaterEqualStep(const LiveActor *pActor, s32 step) {
+        return pActor->getNerveStep() >= step;
+   }
+
+   bool isIntervalStep(const LiveActor *pActor, s32 step) {
+        s32 curStep = pActor->getNerveStep();
+        s32 ratio = curStep / step;
+        s32 mult = ratio * step;
+        return mult == curStep;
+    }
+
+    
 };

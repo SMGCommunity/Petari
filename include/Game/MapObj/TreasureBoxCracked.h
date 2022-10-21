@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.h"
-#include "Game/Util/Color8.h"
+#include "Game/Util/Color.h"
 
 namespace {
     static Color8 sPointLightColor(0xFF, 0xFF, 0x96, 0xFF);

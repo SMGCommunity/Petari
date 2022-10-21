@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/ShadowDrawer.h"
 #include "Game/LiveActor/ShadowController.h"
-#include "Game/Util/Color8.h"
+#include "Game/Util/Color.h"
 
 class ShadowVolumeDrawInit : public NameObj {
 public:

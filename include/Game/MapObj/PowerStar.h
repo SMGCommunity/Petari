@@ -4,7 +4,7 @@
 #include "Game/NameObj/NameObjArchiveListCollector.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/LiveActor/ModelObj.h"
-#include "Game/Util/Color8.h"
+#include "Game/Util/Color.h"
 #include "JSystem/JGeometry.h"
 
 namespace {

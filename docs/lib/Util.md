@@ -34,7 +34,7 @@
 | JointUtil.o | 0.0% | 0 / 33 | 0.0% | :x: 
 | LayoutUtil.o | 0.21998742928975487% | 2 / 166 | 1.2048192771084338% | :eight_pointed_black_star: 
 | LightUtil.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| LiveActorUtil.o | 6.8181818181818175% | 28 / 345 | 8.115942028985506% | :eight_pointed_black_star: 
+| LiveActorUtil.o | 8.141542002301495% | 34 / 345 | 9.855072463768117% | :eight_pointed_black_star: 
 | MapPartsUtil.o | 0.0% | 0 / 58 | 0.0% | :x: 
 | MapUtil.o | 0.0% | 0 / 92 | 0.0% | :x: 
 | MathUtil.o | 15.035699286014278% | 31 / 137 | 22.62773722627737% | :eight_pointed_black_star: 
@@ -1847,13 +1847,13 @@
 | calcLightPos1__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor | :white_check_mark: |
 | getLightAmbientColor__2MRFPC9LiveActor | :white_check_mark: |
 | getLightCtrl__2MRFPC9LiveActor | :white_check_mark: |
-| isStep__2MRFPC9LiveActorl | :x: |
+| isStep__2MRFPC9LiveActorl | :white_check_mark: |
 | isFirstStep__2MRFPC9LiveActor | :x: |
-| isLessStep__2MRFPC9LiveActorl | :x: |
-| isLessEqualStep__2MRFPC9LiveActorl | :x: |
-| isGreaterStep__2MRFPC9LiveActorl | :x: |
-| isGreaterEqualStep__2MRFPC9LiveActorl | :x: |
-| isIntervalStep__2MRFPC9LiveActorl | :x: |
+| isLessStep__2MRFPC9LiveActorl | :white_check_mark: |
+| isLessEqualStep__2MRFPC9LiveActorl | :white_check_mark: |
+| isGreaterStep__2MRFPC9LiveActorl | :white_check_mark: |
+| isGreaterEqualStep__2MRFPC9LiveActorl | :white_check_mark: |
+| isIntervalStep__2MRFPC9LiveActorl | :white_check_mark: |
 | isNewNerve__2MRFPC9LiveActor | :x: |
 | calcNerveRate__2MRFPC9LiveActorl | :x: |
 | calcNerveRate__2MRFPC9LiveActorll | :x: |
