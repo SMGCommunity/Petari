@@ -16,6 +16,9 @@ namespace MR {
 
     void calcCylinderPos(TVec3f *, const AreaObj *);
 
+    void calcCylinderUpVec(TVec3f *, const AreaObj *);
+    f32 getCylinderRadius(const AreaObj *);
+
     void calcCubePos(const AreaObj *, TVec3f *);
     void calcCubeLocalPos(TVec3f *, const AreaObj *, const TVec3f &);
     

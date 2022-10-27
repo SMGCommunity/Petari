@@ -123,7 +123,7 @@ __dt__19CameraRepulsiveAreaFv,CameraRepulsiveArea.o,AreaObj.a,true
 __dt__21CameraRepulsiveSphereFv,CameraRepulsiveArea.o,AreaObj.a,true
 __dt__23CameraRepulsiveCylinderFv,CameraRepulsiveArea.o,AreaObj.a,true
 getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,true
-getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,false
+getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3<f>,CameraRepulsiveArea.o,AreaObj.a,true
 getManagerName__19CameraRepulsiveAreaCFv,CameraRepulsiveArea.o,AreaObj.a,true
 __ct__13ChangeBgmCubeFiPCc,ChangeBgmCube.o,AreaObj.a,true
 init__13ChangeBgmCubeFRC12JMapInfoIter,ChangeBgmCube.o,AreaObj.a,true

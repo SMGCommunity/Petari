@@ -5,7 +5,7 @@ WaterInfo::WaterInfo() {
 }
 
 bool WaterInfo::isInWater() const {
-    if (_40 || _44 || _48 || _4C) {
+    if (mWaterArea || mOceanBowl || mOceanRing || mOceanSphere) {
         return true;
     }
     
@@ -13,7 +13,7 @@ bool WaterInfo::isInWater() const {
 }
 
 void WaterInfo::clear() {
-    _0 = 0.0f;
+    mCamWaterDepth = 0.0f;
     _4 = 0.0f;
     _8.zero();
     _14 = 0.0f;
@@ -23,8 +23,8 @@ void WaterInfo::clear() {
     _24.zero();
     _30 = -1.0f;
     _34.zero();
-    _40 = 0;
-    _44 = 0;
-    _48 = 0;
-    _4C = 0;
+    mWaterArea = NULL;
+    mOceanBowl = NULL;
+    mOceanRing = NULL;
+    mOceanSphere = NULL;
 }

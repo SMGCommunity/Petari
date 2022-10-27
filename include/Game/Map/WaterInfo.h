@@ -2,6 +2,11 @@
 
 #include "JSystem/JGeometry.h"
 
+class WaterArea;
+class OceanBowl;
+class OceanRing;
+class OceanSphere;
+
 class WaterInfo {
 public:
     WaterInfo();
@@ -9,7 +14,7 @@ public:
     bool isInWater() const;
     void clear();
 
-    f32 _0;
+    f32 mCamWaterDepth;              // _0
     f32 _4;
     TVec3f _8;
     f32 _14;
@@ -19,8 +24,8 @@ public:
     TVec3f _24;
     f32 _30;
     TVec3f _34;
-    u32 _40;
-    u32 _44;
-    u32 _48;
-    u32 _4C;
+    const WaterArea* mWaterArea;     // _40
+    const OceanBowl* mOceanBowl;     // _44
+    const OceanRing* mOceanRing;     // _48
+    const OceanSphere* mOceanSphere; // _4C
 };
