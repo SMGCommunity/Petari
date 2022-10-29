@@ -19,7 +19,7 @@
 | BigBubbleCameraArea.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | BigBubbleGoalArea.o | 79.59183673469387% | 6 / 8 | 75.0% | :eight_pointed_black_star: 
 | BloomArea.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| CameraRepulsiveArea.o | 59.87261146496815% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
+| CameraRepulsiveArea.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | ChangeBgmCube.o | 18.727915194346288% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | CollisionArea.o | 27.04045422285309% | 20 / 31 | 64.51612903225806% | :eight_pointed_black_star: 
 | CubeCamera.o | 49.26470588235294% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
@@ -229,7 +229,7 @@
 | __dt__21CameraRepulsiveSphereFv | :white_check_mark: |
 | __dt__23CameraRepulsiveCylinderFv | :white_check_mark: |
 | getRepulsion__21CameraRepulsiveSphereFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
-| getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getRepulsion__23CameraRepulsiveCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | getManagerName__19CameraRepulsiveAreaCFv | :white_check_mark: |
 
 

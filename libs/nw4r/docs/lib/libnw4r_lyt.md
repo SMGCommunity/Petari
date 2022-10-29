@@ -22,7 +22,7 @@
 | lyt_animation.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | lyt_resourceAccessor.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | lyt_arcResourceAccessor.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| lyt_common.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| lyt_common.o | 8.213256484149856% | 1 / 13 | 7.6923076923076925% | :eight_pointed_black_star: 
 
 
 # lyt_init.o
@@ -323,7 +323,7 @@
 | Copy__Q44nw4r3lyt6detail11TexCoordAryFPCvUc | :x: |
 | IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc | :x: |
 | MultipleAlpha__Q34nw4r3lyt6detailFQ34nw4r2ut5ColorUc | :x: |
-| SetVertexFormat__Q34nw4r3lyt6detailFbUc | :x: |
+| SetVertexFormat__Q34nw4r3lyt6detailFbUc | :white_check_mark: |
 | DrawQuad__Q34nw4r3lyt6detailFRCQ34nw4r4math4VEC2RCQ34nw4r3lyt4SizeUcPA4_CQ34nw4r4math4VEC2PCQ34nw4r2ut5Color | :x: |
 | DrawQuad__Q34nw4r3lyt6detailFRCQ34nw4r4math4VEC2RCQ34nw4r3lyt4SizeUcPA4_CQ34nw4r4math4VEC2PCQ34nw4r2ut5ColorUc | :x: |
 

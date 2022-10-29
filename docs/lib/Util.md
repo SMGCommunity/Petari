@@ -72,7 +72,7 @@
 | GeometryBindUtil.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | IKJoint.o | 7.385229540918163% | 5 / 16 | 31.25% | :eight_pointed_black_star: 
 | JMapIdInfo.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| JMapInfo.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| JMapInfo.o | 17.747440273037544% | 6 / 12 | 50.0% | :eight_pointed_black_star: 
 | JMapLinkInfo.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | JointController.o | 10.526315789473683% | 4 / 10 | 40.0% | :eight_pointed_black_star: 
 | JointRumbler.o | 0.0% | 0 / 7 | 0.0% | :x: 
@@ -3967,13 +3967,13 @@
 # JMapInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8JMapInfoFv | :x: |
-| __dt__8JMapInfoFv | :x: |
-| attach__8JMapInfoFPCv | :x: |
-| setName__8JMapInfoFPCc | :x: |
-| getName__8JMapInfoCFv | :x: |
+| __ct__8JMapInfoFv | :white_check_mark: |
+| __dt__8JMapInfoFv | :white_check_mark: |
+| attach__8JMapInfoFPCv | :white_check_mark: |
+| setName__8JMapInfoFPCc | :white_check_mark: |
+| getName__8JMapInfoCFv | :white_check_mark: |
 | searchItemInfo__8JMapInfoCFPCc | :x: |
-| getValueType__8JMapInfoCFPCc | :x: |
+| getValueType__8JMapInfoCFPCc | :white_check_mark: |
 | getValueFast__8JMapInfoCFiiPPCc | :x: |
 | getValueFast__8JMapInfoCFiiPUl | :x: |
 | getValueFast__8JMapInfoCFiiPl | :x: |

@@ -35,6 +35,7 @@
 #define SceneObj_NameObjExecuteHolder       0x58
 #define SceneObj_QuakeEffectGenerator       0x5B
 #define SceneObj_HeatHazeDirector           0x5D
+#define SceneObj_GalaxyNamePlateDrawer      0x70
 #define SceneObj_PlanetMapCreator           0x74
 
 class NameObj;
