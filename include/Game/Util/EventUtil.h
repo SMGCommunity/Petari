@@ -9,6 +9,23 @@ namespace MR {
 
     bool isOnGameEventFlagChildsRoom();
     bool isOnGameEventFlagLibraryRoom();
+    bool isOnGameEventFlagRosettaTalkAboutTicoInTower();
+    bool isRosettaTalkTorchProgress();
+    bool isRosettaTalkCountDownStart();
+    bool isRosettaTalkAstroDomeRecover();
+    bool isRosettaTalkKoopa();
+    bool isRosettaTalkTorchLecture();
+    bool isKinopioExplorerCompleteTrickComet();
+    bool isKinopioExplorerTalkGoFinalBattle();
+    bool isKinopioExplorerTalkGetGrandStar6();
+    bool isKinopioExplorerTalkGetGrandStar5();
+    bool isKinopioExplorerTalkGetGrandStar4();
+    bool isKinopioExplorerTalkGetGrandStar3();
+    bool isKinopioExplorerTrickComet();
+    bool isKinopioExplorerTalkGetGrandStar2();
+    bool isUFOKinokoBeforeConstruction();
+
+    bool isOnGameEventFlagGreenDriver();
 
     bool hasGrandStar(int);
 

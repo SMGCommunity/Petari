@@ -1,5 +1,6 @@
 #pragma once
 
 namespace MR {
-    void* getGameMessageDirect(const char *);
+    const wchar_t* getGameMessageDirect(const char *);
+    const wchar_t* getGalaxyNameShortOnCurrentLanguage(const char *);
 };

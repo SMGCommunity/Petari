@@ -50,7 +50,7 @@
 | GalaxyMapSelectButton.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | GalaxyMapTicoIcon.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | GalaxyMapTitle.o | 0.0% | 0 / 24 | 0.0% | :x: 
-| GalaxyNamePlate.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| GalaxyNamePlate.o | 16.591928251121075% | 6 / 22 | 27.27272727272727% | :eight_pointed_black_star: 
 | GalaxyNamePlateDrawer.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | GalaxySelectBackButton.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | GalaxySelectInfo.o | 0.0% | 0 / 17 | 0.0% | :x: 
@@ -1288,13 +1288,13 @@
 | __ct__15GalaxyNamePlateFPCcb | :x: |
 | init__15GalaxyNamePlateFRC12JMapInfoIter | :x: |
 | kill__15GalaxyNamePlateFv | :x: |
-| showUnknown__15GalaxyNamePlateFb | :x: |
-| showNew__15GalaxyNamePlateFb | :x: |
-| showOpen__15GalaxyNamePlateFb | :x: |
-| show__15GalaxyNamePlateFPCwb | :x: |
+| showUnknown__15GalaxyNamePlateFb | :white_check_mark: |
+| showNew__15GalaxyNamePlateFb | :white_check_mark: |
+| showOpen__15GalaxyNamePlateFb | :white_check_mark: |
+| show__15GalaxyNamePlateFPCwb | :white_check_mark: |
 | setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| setShowBalloonNozzle__15GalaxyNamePlateFb | :x: |
-| control__15GalaxyNamePlateFv | :x: |
+| setShowBalloonNozzle__15GalaxyNamePlateFb | :white_check_mark: |
+| control__15GalaxyNamePlateFv | :white_check_mark: |
 | show__15GalaxyNamePlateFPCwlbb | :x: |
 | exeAppearReady__15GalaxyNamePlateFv | :x: |
 | exeAppear__15GalaxyNamePlateFv | :x: |

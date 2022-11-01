@@ -22,7 +22,7 @@ const char* ScenarioData::getZoneName(s32 zoneID) const {
 
 s32 ScenarioData::getZoneNum() const {
     if (mZoneList->mData) {
-        return mZoneList->mData->_0;
+        return mZoneList->mData->mNumEntries;
     }
 
     return 0;

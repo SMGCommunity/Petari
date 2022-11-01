@@ -10,7 +10,7 @@ u32 FileSelectFunc::getMiiNameBufferSize() {
 void FileSelectFunc::copyMiiName(u16 *pData, const FileSelectIconID &rIcon) {
     if (rIcon.isFellow()) {
         u32 fellowID = rIcon.getFellowID();
-        void* msg = MR::getGameMessageDirect(sIconNameMessageID[fellowID]);
+        const wchar_t* msg = MR::getGameMessageDirect(sIconNameMessageID[fellowID]);
         MR::copyMemory(pData, msg, 0x16);
     }
     else {

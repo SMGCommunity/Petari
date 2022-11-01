@@ -235,7 +235,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         symtab = elf_file.get_section_by_name('.symtab')
 
         if symtab.get_symbol_by_name(mangled_symbol) is None:
-            print("Could not find symbol in object file. This may be caused by the code not being compiled, the function being in the wrong C++ source file or the function signature being wrong.")
+            print(f"Could not find symbol in object file. This may be caused by the code not being compiled, the function being in the wrong C++ source file or the function signature being wrong. File: {obj_files}")
             return False
 
         compiled_symbol = symtab.get_symbol_by_name(mangled_symbol)[0]

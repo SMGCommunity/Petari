@@ -234,7 +234,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         const JMapData * curData = inf->mData;
         isValid = curData;
 
-        curIdx = isValid ? curData->_0 : 0;
+        curIdx = isValid ? curData->mNumEntries : 0;
     
         if (idx < curIdx) {
             JMapInfoIter iter;
@@ -243,7 +243,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
             return iter;
         }
 
-        curIdx = isValid ? curData->_0 : 0;
+        curIdx = isValid ? curData->mNumEntries : 0;
 
         idx -= curIdx;
 
@@ -298,7 +298,7 @@ void StageDataHolder::updateDataAddress(const MR::AssignableArray<JMapInfo> *pIn
             _E4 = (u32)inf->mData;
         }
 
-        u32 addr = (inf->mData->_C * inf->mData->_0) + ((s32)inf->mData + inf->mData->mDataOffset);
+        u32 addr = (inf->mData->mEntrySize * inf->mData->mNumEntries) + ((s32)inf->mData + inf->mData->mDataOffset);
 
         if (_E8 < addr) {
             _E8 = addr;

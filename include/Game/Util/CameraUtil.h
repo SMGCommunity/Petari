@@ -52,6 +52,8 @@ namespace MR {
 
     void calcScreenPosition(TVec2f *, const TVec3f &);
 
+    bool calcScreenPosition(TVec3f *, const TVec3f &);
+
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 
     void initActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **);

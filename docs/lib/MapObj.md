@@ -29,7 +29,7 @@
 | AstroDomeSky.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | AstroMapBoard.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | AstroMapObj.o | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
-| AstroMapObjFunction.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| AstroMapObjFunction.o | 59.08419497784343% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | AstroOverlookObj.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BallOpener.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | BallRail.o | 0.0% | 0 / 19 | 0.0% | :x: 
@@ -901,16 +901,16 @@
 # AstroMapObjFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getNumGrandStarForRevival__33@unnamed@AstroMapObjFunction_cpp@FPCcl | :x: |
-| getNumGrandStarForOpen__33@unnamed@AstroMapObjFunction_cpp@FPCcl | :x: |
-| makeArchiveListFromArg0__19AstroMapObjFunctionFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| makeArchiveListAstroNamePlate__19AstroMapObjFunctionFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| isAlreadyRevival__19AstroMapObjFunctionFPCcl | :x: |
-| isEnableRevival__19AstroMapObjFunctionFPCcl | :x: |
-| isAlreadyOpen__19AstroMapObjFunctionFPCcl | :x: |
-| isEnableOpen__19AstroMapObjFunctionFPCcl | :x: |
-| getDomeIdFromArg0__19AstroMapObjFunctionFRC12JMapInfoIter | :x: |
-| getModelName__19AstroMapObjFunctionFPCcl | :x: |
+| getNumGrandStarForRevival__33@unnamed@AstroMapObjFunction_cpp@FPCcl | :white_check_mark: |
+| getNumGrandStarForOpen__33@unnamed@AstroMapObjFunction_cpp@FPCcl | :white_check_mark: |
+| makeArchiveListFromArg0__19AstroMapObjFunctionFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| makeArchiveListAstroNamePlate__19AstroMapObjFunctionFP27NameObjArchiveListCollectorRC12JMapInfoIter | :white_check_mark: |
+| isAlreadyRevival__19AstroMapObjFunctionFPCcl | :white_check_mark: |
+| isEnableRevival__19AstroMapObjFunctionFPCcl | :white_check_mark: |
+| isAlreadyOpen__19AstroMapObjFunctionFPCcl | :white_check_mark: |
+| isEnableOpen__19AstroMapObjFunctionFPCcl | :white_check_mark: |
+| getDomeIdFromArg0__19AstroMapObjFunctionFRC12JMapInfoIter | :white_check_mark: |
+| getModelName__19AstroMapObjFunctionFPCcl | :white_check_mark: |
 | createAstroNamePlateParser__19AstroMapObjFunctionFv | :x: |
 | trySetAndShowNamePlate__19AstroMapObjFunctionFP15GalaxyNamePlatePC8JMapInfoRCQ29JGeometry8TVec3&lt;f&gt;PCclb | :x: |
 | tryRegisterMultiDemoAndFunction__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIterRCQ22MR11FunctorBase | :x: |

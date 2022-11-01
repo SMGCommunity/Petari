@@ -20,7 +20,7 @@ public:
     void showNew(bool);
     void showOpen(bool);
     void show(const wchar_t *, bool);
-    void setPos3D(const TVec3f &);a
+    void setPos3D(const TVec3f &);
     void setShowBalloonNozzle(bool);
     void show(const wchar_t *, s32, bool, bool);
 
@@ -28,7 +28,7 @@ public:
     void exeAppear();
     void exeWait();
 
-    const char* mName;                          // _20
+    const char* mGalaxyName;                    // _20
     bool _24;
     bool _25;
     bool mShowBalloonNozzle;                    // _26
