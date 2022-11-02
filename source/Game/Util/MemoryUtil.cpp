@@ -5,6 +5,11 @@
 #include <string.h>
 
 namespace MR {
+    MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
+        NewDeleteAllocator::alloc, 
+        NewDeleteAllocator::free, 
+    };
+
     #ifdef NON_MATCHING
     // shrug
     s32 calcCheckSum(const void *pData, u32 a2) {
