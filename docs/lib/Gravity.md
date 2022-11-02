@@ -18,7 +18,7 @@
 | GravityInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ParallelGravity.o | 80.14354066985646% | 11 / 13 | 84.61538461538461% | :eight_pointed_black_star: 
 | PlanetGravity.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
-| PlanetGravityManager.o | 85.86956521739131% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| PlanetGravityManager.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | PointGravity.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | SegmentGravity.o | 25.115207373271893% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
 | WireGravity.o | 33.5483870967742% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
@@ -204,7 +204,7 @@
 | __ct__20PlanetGravityManagerFPCc | :white_check_mark: |
 | init__20PlanetGravityManagerFRC12JMapInfoIter | :white_check_mark: |
 | calcTotalGravityVector__20PlanetGravityManagerCFPQ29JGeometry8TVec3&lt;f&gt;P11GravityInfoRCQ29JGeometry8TVec3&lt;f&gt;UlUl | :white_check_mark: |
-| registerGravity__20PlanetGravityManagerFP13PlanetGravity | :x: |
+| registerGravity__20PlanetGravityManagerFP13PlanetGravity | :white_check_mark: |
 | __dt__20PlanetGravityManagerFv | :white_check_mark: |
 
 

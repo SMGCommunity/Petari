@@ -8,7 +8,7 @@ void PlanetGravityManager::init(const JMapInfoIter &rIter) {
 
 }
 
-bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pDest, GravityInfo *pInfo, const TVec3f &rPosition, u32 gravityType, u32 host) const {
+bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo *pInfo, const TVec3f &rPosition, u32 gravityType, u32 host) const {
 	TVec3f totalGravity;
 	totalGravity.z = 0.0f;
 	totalGravity.y = 0.0f;
@@ -79,29 +79,35 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pDest, GravityInfo *pI
 	}
 
 	// Store normalized vector as result if necessary
-	if (pDest) {
+	if (pGravity) {
 		MR::normalizeOrZero(&totalGravity);
-		*pDest = totalGravity;
+		*pGravity = totalGravity;
 	}
 
 	return hasCalculated;
 }
 
-#ifdef NON_MATCHING
 void PlanetGravityManager::registerGravity(PlanetGravity *pGravity) {
 	pGravity->mIsRegistered = true;
-	s32 index = mNumGravities++;
+	int index = mNumGravities++;
 	mGravities[index] = pGravity;
 
-	for (s32 i = mNumGravities - 1; i >= 1 ; i--) {
-		PlanetGravity* v7 = mGravities[i];
-		PlanetGravity* v8 = mGravities[i - 1];
+	sortGravities();
+}
 
-		if (v7->mPriority <= v8->mPriority)
+inline void PlanetGravityManager::sortGravities() {
+	for (s32 i = mNumGravities - 1; i >= 1; i--) {
+		if (mGravities[i]->mPriority > mGravities[i - 1]->mPriority) {
+			bubbleDown(i);
+		}
+		else {
 			break;
-
-		mGravities[i - 1] = v7;
-		mGravities[i] = v8;
+		}
 	}
 }
-#endif
+
+inline void PlanetGravityManager::bubbleDown(int i) {
+	PlanetGravity *temp = mGravities[i - 1];
+	mGravities[i - 1] = mGravities[i];
+	mGravities[i] = temp;
+}
