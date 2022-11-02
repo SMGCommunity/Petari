@@ -32,7 +32,7 @@
 | AstroMapObjFunction.o | 59.08419497784343% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | AstroOverlookObj.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | BallOpener.o | 0.0% | 0 / 17 | 0.0% | :x: 
-| BallRail.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| BallRail.o | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | Banekiti.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | BattleShipElevator.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | BeamGoRoundPlanet.o | 0.0% | 0 / 16 | 0.0% | :x: 
@@ -950,25 +950,25 @@
 # BallRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8BallRailFPCc | :x: |
-| init__8BallRailFRC12JMapInfoIter | :x: |
-| control__8BallRailFv | :x: |
-| receiveOtherMsg__8BallRailFUlP9HitSensorP9HitSensor | :x: |
-| initRailPoints__8BallRailFv | :x: |
-| exeWait__8BallRailFv | :x: |
-| exeSetUp__8BallRailFv | :x: |
-| exeRun__8BallRailFv | :x: |
-| __ct__13BallRailPointFv | :x: |
-| __dt__8BallRailFv | :x: |
-| __sinit_\BallRail_cpp | :x: |
-| __ct__Q211NrvBallRail15BallRailNrvWaitFv | :x: |
-| __ct__Q211NrvBallRail16BallRailNrvSetUpFv | :x: |
-| __ct__Q211NrvBallRail14BallRailNrvRunFv | :x: |
-| __ct__Q211NrvBallRail17BallRailNrvNoBindFv | :x: |
-| execute__Q211NrvBallRail17BallRailNrvNoBindCFP5Spine | :x: |
-| execute__Q211NrvBallRail14BallRailNrvRunCFP5Spine | :x: |
-| execute__Q211NrvBallRail16BallRailNrvSetUpCFP5Spine | :x: |
-| execute__Q211NrvBallRail15BallRailNrvWaitCFP5Spine | :x: |
+| __ct__8BallRailFPCc | :white_check_mark: |
+| init__8BallRailFRC12JMapInfoIter | :white_check_mark: |
+| control__8BallRailFv | :white_check_mark: |
+| receiveOtherMsg__8BallRailFUlP9HitSensorP9HitSensor | :white_check_mark: |
+| initRailPoints__8BallRailFv | :white_check_mark: |
+| exeWait__8BallRailFv | :white_check_mark: |
+| exeSetUp__8BallRailFv | :white_check_mark: |
+| exeRun__8BallRailFv | :white_check_mark: |
+| __ct__13BallRailPointFv | :white_check_mark: |
+| __dt__8BallRailFv | :white_check_mark: |
+| __sinit_\BallRail_cpp | :white_check_mark: |
+| __ct__Q211NrvBallRail15BallRailNrvWaitFv | :white_check_mark: |
+| __ct__Q211NrvBallRail16BallRailNrvSetUpFv | :white_check_mark: |
+| __ct__Q211NrvBallRail14BallRailNrvRunFv | :white_check_mark: |
+| __ct__Q211NrvBallRail17BallRailNrvNoBindFv | :white_check_mark: |
+| execute__Q211NrvBallRail17BallRailNrvNoBindCFP5Spine | :white_check_mark: |
+| execute__Q211NrvBallRail14BallRailNrvRunCFP5Spine | :white_check_mark: |
+| execute__Q211NrvBallRail16BallRailNrvSetUpCFP5Spine | :white_check_mark: |
+| execute__Q211NrvBallRail15BallRailNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # Banekiti.o

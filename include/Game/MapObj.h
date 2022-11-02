@@ -2,6 +2,9 @@
 
 #include "Game/MapObj/AirBubble.h"
 #include "Game/MapObj/AirBubbleHolder.h"
+#include "Game/MapObj/ArrowSwitch.h"
+#include "Game/MapObj/ArrowSwitchMulti.h"
+#include "Game/MapObj/AssemblyBlock.h"
 #include "Game/MapObj/BeeFlowerHover.h"
 #include "Game/MapObj/BenefitItemInvincible.h"
 #include "Game/MapObj/BenefitItemLifeUp.h"

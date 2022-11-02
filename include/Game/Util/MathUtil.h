@@ -232,6 +232,14 @@ namespace MR {
         f64 mod = fmod(a3 + (a1 - a2), a3);
         return mod + a2;
     }
+
+    inline void subtractAndSet(TVec3f &a1, const TVec3f &a2, const TVec3f *a3) {
+        a1.set(a2 - *a3);
+    }
+
+    inline void multAndSet(TVec3f *a1, const TVec3f &a2, f32 a3) {
+        a1->set<f32>(a2 * a3);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

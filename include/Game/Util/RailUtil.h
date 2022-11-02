@@ -32,6 +32,8 @@ namespace MR {
     void reverseRailDirection(LiveActor *);
 
     void setRailCoord(LiveActor *, f32);
+    void setRailCoordSpeed(LiveActor *, f32);
+    void accelerateRailCoordSpeed(LiveActor *, f32);
 
     void moveCoord(LiveActor *, f32);
     
@@ -53,4 +55,16 @@ namespace MR {
     void moveCoordAndFollowTrans(LiveActor *, f32);
 
     bool isExistRail(const LiveActor *);
+
+    void moveRailRider(const LiveActor *);
+
+    void moveCoordToEndPos(const LiveActor *);
+
+    void slowDownRailCoordSpeed(const LiveActor *, f32);
+
+    bool isRailGoingToEnd(const LiveActor *);
+
+    f32 getRailCoordSpeed(const LiveActor *);
+
+    void setRailDirectionToEnd(const LiveActor *);
 };
