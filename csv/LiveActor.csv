@@ -764,7 +764,7 @@ __dt__13SpotMarkLightFv,SpotMarkLight.o,LiveActor.a,false
 __ct__13ViewGroupCtrlFv,ViewGroupCtrl.o,LiveActor.a,true
 initActorInfo__13ViewGroupCtrlFP17ClippingActorInfol,ViewGroupCtrl.o,LiveActor.a,true
 initViewGroup__13ViewGroupCtrlFP21ClippingActorInfoList,ViewGroupCtrl.o,LiveActor.a,true
-endInitViewGroupTable__13ViewGroupCtrlFv,ViewGroupCtrl.o,LiveActor.a,false
+endInitViewGroupTable__13ViewGroupCtrlFv,ViewGroupCtrl.o,LiveActor.a,true
 entryLodCtrl__13ViewGroupCtrlFP7LodCtrlRC12JMapInfoIter,ViewGroupCtrl.o,LiveActor.a,true
 update__13ViewGroupCtrlFv,ViewGroupCtrl.o,LiveActor.a,false
 startInitViewGroupTable__13ViewGroupCtrlFv,ViewGroupCtrl.o,LiveActor.a,false

@@ -67,7 +67,7 @@
 | SimpleJ3DModelDrawer.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | Spine.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | SpotMarkLight.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| ViewGroupCtrl.o | 35.294117647058826% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
+| ViewGroupCtrl.o | 35.714285714285715% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
 | VolumeModelDrawer.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 
 
@@ -1134,7 +1134,7 @@
 | __ct__13ViewGroupCtrlFv | :white_check_mark: |
 | initActorInfo__13ViewGroupCtrlFP17ClippingActorInfol | :white_check_mark: |
 | initViewGroup__13ViewGroupCtrlFP21ClippingActorInfoList | :white_check_mark: |
-| endInitViewGroupTable__13ViewGroupCtrlFv | :x: |
+| endInitViewGroupTable__13ViewGroupCtrlFv | :white_check_mark: |
 | entryLodCtrl__13ViewGroupCtrlFP7LodCtrlRC12JMapInfoIter | :white_check_mark: |
 | update__13ViewGroupCtrlFv | :x: |
 | startInitViewGroupTable__13ViewGroupCtrlFv | :x: |
