@@ -43,7 +43,7 @@ LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &rIter) {
     _19 = 0;
     _1A = 1;
     _1B = 0;
-    _2C = -1;
+    mViewGroupID = -1;
     mActorLightCtrl = NULL;
     _1C = &def;
     _20 = &def;

@@ -51,7 +51,7 @@ public:
     const bool* _20;
     const bool* _24;
     const bool* _28;
-    s16 _2C;
+    s16 mViewGroupID;                   // _2C
     ActorLightCtrl* mActorLightCtrl;    // _30
 };
 

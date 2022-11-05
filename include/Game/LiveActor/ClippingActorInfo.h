@@ -3,6 +3,7 @@
 #include "Game/Util.h"
 #include "JSystem/JGeometry/TVec.h"
 
+class ViewGroupCtrlDataEntry;
 class LiveActor;
 
 class ClippingActorInfo {
@@ -21,7 +22,7 @@ public:
     JMapIdInfo* mInfo;  // _C
     s16 mFarClipLevel;  // _10
     s16 _12;
-    u8* _14;
+    ViewGroupCtrlDataEntry* _14;
 };
 
 class ClippingActorInfoList {
