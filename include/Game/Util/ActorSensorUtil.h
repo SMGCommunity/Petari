@@ -188,4 +188,6 @@ namespace MR {
     void setSensorRadius(LiveActor *, const char *, f32);
 
     void setSensorOffset(LiveActor *, const char *, const TVec3f &);
+
+    void invalidateHitSensor(LiveActor *, const char *);
 };

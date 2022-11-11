@@ -156,6 +156,8 @@ namespace JGeometry {
         T squared(const TVec3<T> &) const;
         T angle(const TVec3<T> &rOther) const;
 
+        TVec3<T>& subtract(const TVec3<T> &, const TVec3<T> &);
+
         T dot(const register TVec3<T> &rOther) const NO_INLINE {
             register const JGeometry::TVec3<f32>* this_vec = this;
             __asm {
@@ -611,6 +613,23 @@ namespace JGeometry {
             pDest->x = mult_res.x;
             pDest->y = mult_res.y;
             pDest->z = mult_res.z;
+        }
+
+        inline void multPS(register TVec3<T> &rVec1, register TVec3<T> &rVec2) {
+            register TVec3<T> *rDst = this;
+            register f32 xy_1, xy_2;
+            register f32 z_1, z_2;
+
+            __asm {
+                psq_l xy_1, 0(rVec1), 0, 0
+                psq_l xy_2, 0(rVec2), 0, 0
+                ps_mul xy_2, xy_2, xy_1
+                psq_st xy_2, 0(rDst), 0, 0
+                lfs z_1, 8(rVec2)
+                lfs z_2, 8(rVec1)
+                fmuls z_2, z_1, z_2
+                stfs z_2, 8(rDst)
+            }
         }
 
         T x, y, z;

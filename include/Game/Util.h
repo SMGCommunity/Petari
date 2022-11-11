@@ -4,6 +4,7 @@
 #include "Game/Util/ActorMovementUtil.h"
 #include "Game/Util/ActorSensorUtil.h"
 #include "Game/Util/ActorShadowUtil.h"
+#include "Game/Util/ActorStateUtil.h"
 #include "Game/Util/ActorSwitchUtil.h"
 #include "Game/Util/AreaObjUtil.h"
 #include "Game/Util/Array.h"

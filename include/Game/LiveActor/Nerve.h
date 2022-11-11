@@ -57,6 +57,23 @@ public:\
     static name sInstance;\
 };\
 
+#define NERVE_DECL_ONEND(name, parent_class, func, onEndFunc)\
+class name : public Nerve\
+{\
+public:\
+    name() NO_INLINE {\
+    };\
+    virtual void execute(Spine *pSpine) const {\
+        parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
+        actor->func();\
+    };\
+    virtual void executeOnEnd(Spine *pSpine) const {\
+        parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
+        actor->onEndFunc();\
+    };\
+    static name sInstance;\
+};\
+
 #define NERVE_DECL_NULL(name)\
 class name : public Nerve\
 {\

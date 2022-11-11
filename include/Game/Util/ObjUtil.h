@@ -121,6 +121,8 @@ namespace MR {
     bool tryRumblePadStrong(const void *, s32);
     bool tryRumblePadVeryStrong(const void *, s32);
 
+    bool tryRumbleDefaultHit(const void *, s32);
+
     void declareCoin(const NameObj *, s32);
     void getDeclareRemnantCoinCount(const NameObj *);
     void hopCoin(const NameObj *, const TVec3f &, const TVec3f &);
@@ -165,6 +167,7 @@ namespace MR {
     bool isInDarkMatter(const TVec3f &);
 
     void stopScene(s32);
+    void stopSceneForDefaultHit(s32);
 
     const ResTIMG* loadTexFromArc(const char *, const char *);
 

@@ -16,4 +16,6 @@ namespace MR {
     bool isWallCodeNoAction(const Triangle *);
 
     void setBindTriangleFilter(LiveActor *, TriangleFilterBase *);
+
+    bool checkStikeBallToMap(const TVec3f &, f32);
 };

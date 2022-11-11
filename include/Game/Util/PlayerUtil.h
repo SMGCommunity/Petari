@@ -36,6 +36,8 @@ namespace MR {
 
     bool isPlayerInRush();
 
+    bool isPlayerHipDropFalling();
+
     f32 getPlayerHitRadius();
 
     void pushPlayerFromArea(const TVec3f &);

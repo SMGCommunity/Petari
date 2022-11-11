@@ -40,6 +40,8 @@ namespace MR {
     void setClippingFar200m(LiveActor *);
     void startBtk(const LiveActor *, const char *);
 
+    void setBaseScale(LiveActor *, const TVec3f &);
+
     MsgSharedGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
     LiveActorGroup* getGroupFromArray(const LiveActor *);
 

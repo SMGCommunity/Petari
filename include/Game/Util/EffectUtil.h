@@ -27,4 +27,6 @@ namespace MR {
     void setEffectHostMtx(LiveActor *, const char *, MtxPtr);
 
     void emitEffectHitBetweenSensors(LiveActor *, const HitSensor *, const HitSensor *, f32, const char *);
+
+    void initEffectAfterPlacement(LiveActor *);
 };

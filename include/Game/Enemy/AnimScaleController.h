@@ -1,19 +1,23 @@
 #pragma once
 
 #include "JSystem/JGeometry.h"
+#include "Game/System/NerveExecutor.h"
 
 class AnimScaleParam;
 
-class AnimScaleController {
+class AnimScaleController : public NerveExecutor {
 public:
     AnimScaleController(AnimScaleParam *);
+
+    virtual ~AnimScaleController();
+
     void update();
     void startCrush();
     void startAnim();
 
     void startDpdHitVibration();
 
-    u8 _0[0xc];
+    AnimScaleParam* _8;
     TVec3f _C;
-    u8 _18[0x4];
+    f32 _18;
 };
