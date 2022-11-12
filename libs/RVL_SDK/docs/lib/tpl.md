@@ -8,13 +8,13 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| TPL.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| TPL.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 
 
 # TPL.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TPLBind | :x: |
-| TPLGet | :x: |
+| TPLBind | :white_check_mark: |
+| TPLGet | :white_check_mark: |
 
 

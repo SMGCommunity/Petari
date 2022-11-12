@@ -11,7 +11,7 @@
 | mem_heapCommon.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | mem_expHeap.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | mem_allocator.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| mem_list.o | 91.30434782608695% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| mem_list.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 
 
 # mem_heapCommon.o
@@ -49,7 +49,7 @@
 # mem_list.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| MEMInitList | :x: |
+| MEMInitList | :white_check_mark: |
 | MEMAppendListObject | :white_check_mark: |
 | MEMRemoveListObject | :white_check_mark: |
 | MEMGetNextListObject | :white_check_mark: |

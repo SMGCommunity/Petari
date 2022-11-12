@@ -730,6 +730,14 @@ typedef enum _GXCopyMode {
     GX_COPY_INTLC_ODD   = 3
 } GXCopyMode;
 
+typedef enum _GXTlutFmt {
+    GX_TL_IA8    = 0x0,
+    GX_TL_RGB565 = 0x1,
+    GX_TL_RGB5A3 = 0x2,
+    GX_MAX_TLUTFMT
+
+} GXTlutFmt;
+
 #ifdef __cplusplus
 }
 #endif
