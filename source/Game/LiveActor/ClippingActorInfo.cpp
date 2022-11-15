@@ -30,7 +30,7 @@ void ClippingActorInfo::judgeClipping() {
 
 bool ClippingActorInfo::isJudgedToClip() const {
     s32 farClipLevel = mFarClipLevel;
-    if (_14->_0) {
+    if (_14->_0 == true) {
         farClipLevel = 0;
     }
 
