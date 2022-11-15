@@ -1,5 +1,6 @@
 #include "Game/LiveActor/ClippingActorInfo.h"
 #include "Game/LiveActor/ClippingJudge.h"
+#include "Game/LiveActor/ViewGroupCtrl.h"
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/Util.h"
 
@@ -29,7 +30,7 @@ void ClippingActorInfo::judgeClipping() {
 
 bool ClippingActorInfo::isJudgedToClip() const {
     s32 farClipLevel = mFarClipLevel;
-    if (*_14 == 1) {
+    if (_14->_0) {
         farClipLevel = 0;
     }
 
