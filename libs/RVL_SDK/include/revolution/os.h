@@ -4,6 +4,10 @@
 #include <revolution/types.h>
 #include <cstdarg>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef s64         OSTime;
 typedef u32         OSTick;
 
@@ -48,6 +52,18 @@ void* OSGetArenaLo(void);
 void OSSetArenaHi(void *);
 void OSSetArenaLo(void *);
 
+typedef struct OSIOSRev {
+    u8 _0;
+    u8 major;
+    u8 minor;
+    u8 micro;
+    u8 month;
+    u8 date;
+    u16 year;
+} OSIOSRev;
+
+void __OSGetIOSRev(OSIOSRev *);
+
 #include <revolution/base/PPCArch.h>
 #include <revolution/os/OSAlarm.h>
 #include <revolution/os/OSAlloc.h>
@@ -57,5 +73,9 @@ void OSSetArenaLo(void *);
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSThread.h>
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // OS_H
