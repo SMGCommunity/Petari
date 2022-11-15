@@ -35,7 +35,7 @@
 | OSStateTM.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | OSPlayRecord.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSStateFlags.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSNet.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSPlayTime.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | OSLaunch.o | 0.0% | 0 / 8 | 0.0% | :x: 
@@ -421,7 +421,7 @@
 # OSNet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSInitNet | :x: |
+| __OSInitNet | :white_check_mark: |
 
 
 # OSNandbootInfo.o
