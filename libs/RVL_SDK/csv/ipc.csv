@@ -11,9 +11,9 @@ IpcReplyHandler,ipcclt.o,ipc.a,false
 IPCInterruptHandler,ipcclt.o,ipc.a,false
 IPCCltInit,ipcclt.o,ipc.a,false
 IPCCltReInit,ipcclt.o,ipc.a,false
-__ios_Ipc2,ipcclt.o,ipc.a,false
-IOS_OpenAsync,ipcclt.o,ipc.a,false
-IOS_Open,ipcclt.o,ipc.a,false
+__ios_Ipc2,ipcclt.o,ipc.a,true
+IOS_OpenAsync,ipcclt.o,ipc.a,true
+IOS_Open,ipcclt.o,ipc.a,true
 IOS_CloseAsync,ipcclt.o,ipc.a,false
 IOS_Close,ipcclt.o,ipc.a,false
 IOS_ReadAsync,ipcclt.o,ipc.a,false

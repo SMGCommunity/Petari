@@ -73,6 +73,8 @@ void OSCancelThread(OSThread *);
 BOOL OSJoinThread(OSThread *, void **);
 void OSDetachThread(OSThread *);
 
+void OSSleepThread(OSThreadQueue *);
+
 void OSDetatchThread(OSThread *);
 s32 OSResumeThread(OSThread *);
 s32 OSSuspendThread(OSThread *);

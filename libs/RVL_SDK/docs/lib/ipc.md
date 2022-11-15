@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| ipcclt.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| ipcclt.o | 17.56756756756757% | 3 / 22 | 13.636363636363635% | :eight_pointed_black_star: 
 | memory.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | ipcProfile.o | 0.0% | 0 / 4 | 0.0% | :x: 
 
@@ -34,9 +34,9 @@
 | IPCInterruptHandler | :x: |
 | IPCCltInit | :x: |
 | IPCCltReInit | :x: |
-| __ios_Ipc2 | :x: |
-| IOS_OpenAsync | :x: |
-| IOS_Open | :x: |
+| __ios_Ipc2 | :white_check_mark: |
+| IOS_OpenAsync | :white_check_mark: |
+| IOS_Open | :white_check_mark: |
 | IOS_CloseAsync | :x: |
 | IOS_Close | :x: |
 | IOS_ReadAsync | :x: |
