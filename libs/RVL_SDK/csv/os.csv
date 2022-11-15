@@ -240,7 +240,7 @@ __OSStartPlayRecord,OSPlayRecord.o,os.a,false
 __OSStopPlayRecord,OSPlayRecord.o,os.a,false
 __OSWriteStateFlags,OSStateFlags.o,os.a,false
 __OSReadStateFlags,OSStateFlags.o,os.a,false
-__OSInitNet,OSNet.o,os.a,false
+__OSInitNet,OSNet.o,os.a,true
 __OSCreateNandbootInfo,OSNandbootInfo.o,os.a,false
 __OSWriteNandbootInfo,OSNandbootInfo.o,os.a,false
 OSPlayTimeIsLimited,OSPlayTime.o,os.a,false
