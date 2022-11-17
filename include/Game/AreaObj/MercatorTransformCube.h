@@ -2,11 +2,6 @@
 
 #include "Game/AreaObj/AreaObj.h"
 
-namespace MR {
-    float cos(float);
-    float sin(float);
-}
-
 class MercatorTransformCube : public AreaObj {
 public:
     MercatorTransformCube(int, const char *);

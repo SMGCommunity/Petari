@@ -50,7 +50,7 @@
 | OceanBowlBloomDrawer.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | OceanBowlPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| OceanRing.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| OceanRing.o | 5.137614678899083% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
 | OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OceanRingDrawer.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
@@ -87,7 +87,7 @@
 | WaterAreaHolder.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | WaterInfo.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | WaterPlant.o | 0.0% | 0 / 20 | 0.0% | :x: 
-| WaterPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| WaterPoint.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | WaterRoad.o | 11.782892476812092% | 3 / 49 | 6.122448979591836% | :eight_pointed_black_star: 
 | WhirlPoolAccelerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
 
@@ -1167,8 +1167,8 @@
 | ------------- | ------------- |
 | __ct__9OceanRingFPCc | :x: |
 | init__9OceanRingFRC12JMapInfoIter | :x: |
-| initAfterPlacement__9OceanRingFv | :x: |
-| isInWater__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| initAfterPlacement__9OceanRingFv | :white_check_mark: |
+| isInWater__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
 | calcWaterInfo__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo | :x: |
 | calcNearestPos__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt; | :x: |
 | calcWaveHeight__9OceanRingCFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt; | :x: |
@@ -2040,10 +2040,10 @@
 # WaterPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10WaterPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffff | :x: |
-| initAfterPlacement__10WaterPointFv | :x: |
-| updatePos__10WaterPointFfffff | :x: |
-| calcHeight__10WaterPointCFffffff | :x: |
+| __ct__10WaterPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffff | :white_check_mark: |
+| initAfterPlacement__10WaterPointFv | :white_check_mark: |
+| updatePos__10WaterPointFfffff | :white_check_mark: |
+| calcHeight__10WaterPointCFffffff | :white_check_mark: |
 
 
 # WaterRoad.o

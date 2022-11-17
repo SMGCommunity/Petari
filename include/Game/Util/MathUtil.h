@@ -240,6 +240,9 @@ namespace MR {
     inline void multAndSet(TVec3f *a1, const TVec3f &a2, f32 a3) {
         a1->set<f32>(a2 * a3);
     }
+
+    f32 cos(f32);
+    f32 sin(f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

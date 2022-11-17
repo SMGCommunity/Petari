@@ -22,6 +22,8 @@ namespace JGeometry {
 
         }
 
+        bool intersectsPoint(const TVec3f &) const;
+
         JGeometry::TVec3<T> mMin;   // _0
         JGeometry::TVec3<T> mMax;   // _C
     };
@@ -38,4 +40,5 @@ namespace JGeometry {
 };
 
 typedef JGeometry::TBox3<f32> TBox3f;
+typedef JGeometry::TBox3<JGeometry::TVec3<f32> > TBoxVec3f;
 typedef JGeometry::TDirBox3<f32> TDirBox3f;

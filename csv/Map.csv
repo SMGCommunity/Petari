@@ -861,8 +861,8 @@ movement__16OceanHomeMapCtrlFv,OceanHomeMapCtrl.o,Map.a,false
 __dt__16OceanHomeMapCtrlFv,OceanHomeMapCtrl.o,Map.a,false
 __ct__9OceanRingFPCc,OceanRing.o,Map.a,false
 init__9OceanRingFRC12JMapInfoIter,OceanRing.o,Map.a,false
-initAfterPlacement__9OceanRingFv,OceanRing.o,Map.a,false
-isInWater__9OceanRingCFRCQ29JGeometry8TVec3<f>,OceanRing.o,Map.a,false
+initAfterPlacement__9OceanRingFv,OceanRing.o,Map.a,true
+isInWater__9OceanRingCFRCQ29JGeometry8TVec3<f>,OceanRing.o,Map.a,true
 calcWaterInfo__9OceanRingCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P9WaterInfo,OceanRing.o,Map.a,false
 calcNearestPos__9OceanRingCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>,OceanRing.o,Map.a,false
 calcWaveHeight__9OceanRingCFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>,OceanRing.o,Map.a,false
@@ -1549,10 +1549,10 @@ __cl__Q22MR65FunctorV0M<PC18WaterPlantDrawInit&#44;M18WaterPlantDrawInitFPCvPCv_
 clone__Q22MR65FunctorV0M<PC18WaterPlantDrawInit&#44;M18WaterPlantDrawInitFPCvPCv_v>CFP7JKRHeap,WaterPlant.o,Map.a,false
 __dt__10WaterPlantFv,WaterPlant.o,Map.a,false
 __dt__18WaterPlantDrawInitFv,WaterPlant.o,Map.a,false
-__ct__10WaterPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffff,WaterPoint.o,Map.a,false
-initAfterPlacement__10WaterPointFv,WaterPoint.o,Map.a,false
-updatePos__10WaterPointFfffff,WaterPoint.o,Map.a,false
-calcHeight__10WaterPointCFffffff,WaterPoint.o,Map.a,false
+__ct__10WaterPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffff,WaterPoint.o,Map.a,true
+initAfterPlacement__10WaterPointFv,WaterPoint.o,Map.a,true
+updatePos__10WaterPointFfffff,WaterPoint.o,Map.a,true
+calcHeight__10WaterPointCFffffff,WaterPoint.o,Map.a,true
 scale__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Ff,WaterRoad.o,Map.a,false
 __ct__18WaterRoadModelInfoFP9WaterRoadb,WaterRoad.o,Map.a,false
 initPoints__18WaterRoadModelInfoFP9WaterRoad,WaterRoad.o,Map.a,false

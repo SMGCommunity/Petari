@@ -157,6 +157,7 @@ namespace JGeometry {
         T angle(const TVec3<T> &rOther) const;
 
         TVec3<T>& subtract(const TVec3<T> &, const TVec3<T> &);
+        void subtract(const TVec3<T> &);
 
         T dot(const register TVec3<T> &rOther) const NO_INLINE {
             register const JGeometry::TVec3<f32>* this_vec = this;
@@ -394,6 +395,22 @@ namespace JGeometry {
                 ps_add    totalZ, dstZ, srcZ
                 psq_st    dstXY, 0(dst), 0, 0
                 psq_st    totalZ, 8(dst), 1, 0
+            };
+        }
+
+        inline void addInline_4(register const TVec3<T> &rOther) {
+            register TVec3<T>* dst = this;
+            register f32 bZ, bXY, aZ, aXY;
+
+            __asm {
+                psq_l     bXY, 0(rOther), 0, 0
+                psq_l     bZ, 0(rOther), 1, 0
+                psq_l     aXY, 0(dst), 0, 0
+                psq_l     aZ, 8(dst), 1, 0
+                ps_add    aXY, aXY, bXY
+                ps_add    aZ, aZ, bZ
+                psq_st    aXY, 0(dst), 0, 0
+                psq_st    aZ, 8(dst), 1, 0
             };
         }
 

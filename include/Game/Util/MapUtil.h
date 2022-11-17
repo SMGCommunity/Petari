@@ -18,4 +18,6 @@ namespace MR {
     void setBindTriangleFilter(LiveActor *, TriangleFilterBase *);
 
     bool checkStikeBallToMap(const TVec3f &, f32);
+
+    bool calcMapGround(const TVec3f &, TVec3f *, f32);
 };
