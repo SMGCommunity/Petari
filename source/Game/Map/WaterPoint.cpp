@@ -13,7 +13,7 @@ void WaterPoint::initAfterPlacement() {
 
         if (MR::calcMapGround(v9, &v8, 400.0f)) {
             f32 v2 = ((v8.y - mPosition.y) / 200.0f);
-            f32 v3 = MR::clamp((0.1f + (f32)__fabsf(v2)), 0.1f, 1.0f);
+            f32 v3 = MR::clamp((0.1f + __fabsf(v2)), 0.1f, 1.0f);
             f32 v6 = MR::clamp((30.0f + (255.0f * -v2)), 30.0f, 255.0f);
             f32 v7 = mHeight;
             mAlpha = v6;
