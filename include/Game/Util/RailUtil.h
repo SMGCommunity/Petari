@@ -67,4 +67,6 @@ namespace MR {
     f32 getRailCoordSpeed(const LiveActor *);
 
     void setRailDirectionToEnd(const LiveActor *);
+
+    bool isLoopRail(const LiveActor *);
 };

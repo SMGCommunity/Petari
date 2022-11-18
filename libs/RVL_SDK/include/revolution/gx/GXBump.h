@@ -15,6 +15,8 @@ extern void GXSetIndTexMtx(GXIndTexMtxID, const f32[2][3], s8);
 
 extern void GXSetTevIndWarp(GXTevStageID, GXIndTexStageID, GXBool, GXBool, GXIndTexMtxID);
 
+void GXSetTevDirect(GXTevStageID);
+
 #ifdef __cplusplus
 }
 #endif

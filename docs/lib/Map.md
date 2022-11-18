@@ -52,7 +52,7 @@
 | OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRing.o | 5.137614678899083% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
 | OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OceanRingDrawer.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| OceanRingDrawer.o | 28.51985559566787% | 5 / 21 | 23.809523809523807% | :eight_pointed_black_star: 
 | OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | OceanRingPipeOutside.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -1206,14 +1206,14 @@
 | drawGD__19OceanRingPartDrawerCFPfPfPf | :x: |
 | drawDynamic__19OceanRingPartDrawerCFv | :x: |
 | drawDynamicBloom__19OceanRingPartDrawerCFv | :x: |
-| __ct__15OceanRingDrawerFPC9OceanRing | :x: |
+| __ct__15OceanRingDrawerFPC9OceanRing | :white_check_mark: |
 | update__15OceanRingDrawerFv | :x: |
-| draw__15OceanRingDrawerCFv | :x: |
-| drawBloom__15OceanRingDrawerCFv | :x: |
+| draw__15OceanRingDrawerCFv | :white_check_mark: |
+| drawBloom__15OceanRingDrawerCFv | :white_check_mark: |
 | initParts__15OceanRingDrawerFv | :x: |
-| initDisplayList__15OceanRingDrawerFv | :x: |
+| initDisplayList__15OceanRingDrawerFv | :white_check_mark: |
 | drawGD__15OceanRingDrawerCFv | :x: |
-| loadMaterial__15OceanRingDrawerCFv | :x: |
+| loadMaterial__15OceanRingDrawerCFv | :white_check_mark: |
 | loadMaterialBloom__15OceanRingDrawerCFv | :x: |
 | GDBegin | :x: |
 | GDOverflowCheck | :x: |

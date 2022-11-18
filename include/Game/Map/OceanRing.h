@@ -56,8 +56,8 @@ public:
     TVec3f mNearestPos;                 // _BC
     TVec3f mNearestDir;                 // _C8
     OceanRingDrawer* mRingDrawer;       // _D4
-    TBox3f mBox;                     // _D8
-    TBox3f mClippingBox;             // _F0
+    TBox3f mBox;                        // _D8
+    TBox3f mClippingBox;                // _F0
     TVec3f _108;
     TVec3f mNearestToWatchCam;          // _114
     AudSoundObject* mSoundObj1;         // _120

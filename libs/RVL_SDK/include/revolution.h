@@ -3,6 +3,7 @@
 
 #include <revolution/types.h>
 #include <revolution/dvd.h>
+#include <revolution/gd.h>
 #include <revolution/gx.h>
 #include <revolution/mtx.h>
 #include <revolution/os.h>
