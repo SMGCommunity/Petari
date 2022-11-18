@@ -52,7 +52,7 @@
 | OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRing.o | 5.137614678899083% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
 | OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OceanRingDrawer.o | 28.51985559566787% | 5 / 21 | 23.809523809523807% | :eight_pointed_black_star: 
+| OceanRingDrawer.o | 40.6910778751934% | 6 / 21 | 28.57142857142857% | :eight_pointed_black_star: 
 | OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | OceanRingPipeOutside.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -1214,7 +1214,7 @@
 | initDisplayList__15OceanRingDrawerFv | :white_check_mark: |
 | drawGD__15OceanRingDrawerCFv | :x: |
 | loadMaterial__15OceanRingDrawerCFv | :white_check_mark: |
-| loadMaterialBloom__15OceanRingDrawerCFv | :x: |
+| loadMaterialBloom__15OceanRingDrawerCFv | :white_check_mark: |
 | GDBegin | :x: |
 | GDOverflowCheck | :x: |
 | GDWrite_f32 | :x: |

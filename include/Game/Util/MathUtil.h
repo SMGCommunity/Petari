@@ -208,8 +208,8 @@ namespace MR {
         return (rhs + lhs) - sub;
     }
 
-    inline f32 divideFromSum(f32 lhs, f32 rhs, f32 div) {
-        return (lhs + rhs) / div;
+    inline f32 divideFromDiff(f32 lhs, f32 rhs, f32 div) {
+        return (lhs - rhs) / div;
     }
 
     inline f32 modAndAdd(f32 a1, f32 a2) {

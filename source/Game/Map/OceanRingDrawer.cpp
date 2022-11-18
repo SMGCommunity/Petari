@@ -217,9 +217,6 @@ void OceanRingDrawer::loadMaterial() const {
     GXSetClipMode(GX_CLIP_ENABLE);
 }
 
-#ifdef NON_MATCHING
-/* float regswaps are the worst */
-/* is equiv other then that */
 void OceanRingDrawer::loadMaterialBloom() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
@@ -247,18 +244,14 @@ void OceanRingDrawer::loadMaterialBloom() const {
     GXSetNumIndStages(0);
     TVec3f zDir = MR::getCamZDir();
     f32 v6 = ((MR::clamp(zDir.y, -0.2f, 0.1f) - -0.2f) / 0.30000001f);
-    f32 depth = WaterAreaFunction::getCameraWaterDepth();
-    f32 v8 = MR::clamp(depth, 150.0f, 300.0f);
-    f32 val = 150.0f;
-    f32 v9 = v8 - val;
-    v9 = v9 / val;
-    //f32 v9 = MR::divideFromSum(v8, 150.0f, 150.0f);
+    f32 v8 = MR::clamp(WaterAreaFunction::getCameraWaterDepth(), 150.0f, 300.0f);
+    f32 v9 = MR::divideFromDiff(v8, 150.0f, 150.0f);
 
     if (v6 >= v9) {
-        v9 = v6;
+        v9 = v9;
     }
     else {
-        v9 = v9; 
+        v9 = v6;
     }
 
     f32 v18 = (150.0f + (105.0f * v9));
@@ -285,4 +278,3 @@ void OceanRingDrawer::loadMaterialBloom() const {
     GXSetCullMode(GX_CULL_NONE);
     GXSetClipMode(GX_CLIP_ENABLE);
 }
-#endif

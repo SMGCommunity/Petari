@@ -898,7 +898,7 @@ initParts__15OceanRingDrawerFv,OceanRingDrawer.o,Map.a,false
 initDisplayList__15OceanRingDrawerFv,OceanRingDrawer.o,Map.a,true
 drawGD__15OceanRingDrawerCFv,OceanRingDrawer.o,Map.a,false
 loadMaterial__15OceanRingDrawerCFv,OceanRingDrawer.o,Map.a,true
-loadMaterialBloom__15OceanRingDrawerCFv,OceanRingDrawer.o,Map.a,false
+loadMaterialBloom__15OceanRingDrawerCFv,OceanRingDrawer.o,Map.a,true
 GDBegin,OceanRingDrawer.o,Map.a,false
 GDOverflowCheck,OceanRingDrawer.o,Map.a,false
 GDWrite_f32,OceanRingDrawer.o,Map.a,false
