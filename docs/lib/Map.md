@@ -51,7 +51,7 @@
 | OceanBowlPoint.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRing.o | 5.137614678899083% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
-| OceanRingBloomDrawer.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OceanRingBloomDrawer.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OceanRingDrawer.o | 40.6910778751934% | 6 / 21 | 28.57142857142857% | :eight_pointed_black_star: 
 | OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -1191,10 +1191,10 @@
 # OceanRingBloomDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20OceanRingBloomDrawerFP9OceanRing | :x: |
-| init__20OceanRingBloomDrawerFRC12JMapInfoIter | :x: |
-| draw__20OceanRingBloomDrawerCFv | :x: |
-| __dt__20OceanRingBloomDrawerFv | :x: |
+| __ct__20OceanRingBloomDrawerFP9OceanRing | :white_check_mark: |
+| init__20OceanRingBloomDrawerFRC12JMapInfoIter | :white_check_mark: |
+| draw__20OceanRingBloomDrawerCFv | :white_check_mark: |
+| __dt__20OceanRingBloomDrawerFv | :white_check_mark: |
 
 
 # OceanRingDrawer.o

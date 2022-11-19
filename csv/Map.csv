@@ -880,10 +880,10 @@ draw__9OceanRingCFv,OceanRing.o,Map.a,false
 __dt__9OceanRingFv,OceanRing.o,Map.a,false
 intersectsPoint__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>CFRCQ29JGeometry8TVec3<f>,OceanRing.o,Map.a,false
 getPoint__9OceanRingCFii,OceanRing.o,Map.a,false
-__ct__20OceanRingBloomDrawerFP9OceanRing,OceanRingBloomDrawer.o,Map.a,false
-init__20OceanRingBloomDrawerFRC12JMapInfoIter,OceanRingBloomDrawer.o,Map.a,false
-draw__20OceanRingBloomDrawerCFv,OceanRingBloomDrawer.o,Map.a,false
-__dt__20OceanRingBloomDrawerFv,OceanRingBloomDrawer.o,Map.a,false
+__ct__20OceanRingBloomDrawerFP9OceanRing,OceanRingBloomDrawer.o,Map.a,true
+init__20OceanRingBloomDrawerFRC12JMapInfoIter,OceanRingBloomDrawer.o,Map.a,true
+draw__20OceanRingBloomDrawerCFv,OceanRingBloomDrawer.o,Map.a,true
+__dt__20OceanRingBloomDrawerFv,OceanRingBloomDrawer.o,Map.a,true
 __ct__19OceanRingPartDrawerFPC9OceanRingiibPfPfPf,OceanRingDrawer.o,Map.a,false
 initDisplayList__19OceanRingPartDrawerFPfPfPf,OceanRingDrawer.o,Map.a,false
 draw__19OceanRingPartDrawerCFv,OceanRingDrawer.o,Map.a,false

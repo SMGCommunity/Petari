@@ -11,4 +11,7 @@ public:
     virtual ~OceanRingBloomDrawer();
     virtual void init(const JMapInfoIter &);
     virtual void draw() const;
+
+
+    OceanRing* mRing;   // _C
 };
