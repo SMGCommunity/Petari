@@ -21,6 +21,9 @@ namespace MR {
 	void rotateMtxLocalZDegree(MtxPtr, f32);
 	void preScaleMtx(MtxPtr, f32);
 	void preScaleMtx(MtxPtr, const TVec3f &);
+
+	void preScaleMtx(MtxPtr, f32, f32, f32);
+
 	void scaleMtxToLocalMtx(MtxPtr, MtxPtr, MtxPtr, const TVec3f &);
 	void scaleMtxToLocalMtx(MtxPtr, MtxPtr, const TVec3f &);
 	void scaleMtxToDir(TPos3f *, const TVec3f &, const TVec3f &);

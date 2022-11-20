@@ -58,4 +58,6 @@ namespace MR {
     s32 getCoinNum();
 
     bool isPlacementLocalStage();
+
+    bool isInitializeStateEnd();
 }

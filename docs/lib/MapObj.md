@@ -81,7 +81,7 @@
 | CoinReplica.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | CoinRotater.o | 57.534246575342465% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
 | CoinSpot.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
-| CollapsePlane.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| CollapsePlane.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | CollectCounter.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | CollisionBlocker.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | CrystalCage.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
@@ -2084,28 +2084,28 @@
 # CollapsePlane.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__13CollapsePlaneFPCc | :x: |
-| init__13CollapsePlaneFRC12JMapInfoIter | :x: |
-| exeWait__13CollapsePlaneFv | :x: |
-| exeCollapse__13CollapsePlaneFv | :x: |
-| exeDPDStop__13CollapsePlaneFv | :x: |
-| calcAndSetBaseMtx__13CollapsePlaneFv | :x: |
-| control__13CollapsePlaneFv | :x: |
-| calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| tryDPDStop__13CollapsePlaneFv | :x: |
-| __sinit_\CollapsePlane_cpp | :x: |
-| __ct__Q216NrvCollapsePlane20CollapsePlaneNrvWaitFv | :x: |
-| __ct__Q216NrvCollapsePlane24CollapsePlaneNrvCollapseFv | :x: |
-| __ct__Q216NrvCollapsePlane23CollapsePlaneNrvDPDStopFv | :x: |
-| __ct__Q216NrvCollapsePlane19CollapsePlaneNrvEndFv | :x: |
-| execute__Q216NrvCollapsePlane19CollapsePlaneNrvEndCFP5Spine | :x: |
-| execute__Q216NrvCollapsePlane23CollapsePlaneNrvDPDStopCFP5Spine | :x: |
-| execute__Q216NrvCollapsePlane24CollapsePlaneNrvCollapseCFP5Spine | :x: |
-| execute__Q216NrvCollapsePlane20CollapsePlaneNrvWaitCFP5Spine | :x: |
-| __dt__38JointControlDelegator&lt;13CollapsePlane&gt;Fv | :x: |
-| calcJointMatrix__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| calcJointMatrixAfterChild__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :x: |
-| __dt__13CollapsePlaneFv | :x: |
+| __ct__13CollapsePlaneFPCc | :white_check_mark: |
+| init__13CollapsePlaneFRC12JMapInfoIter | :white_check_mark: |
+| exeWait__13CollapsePlaneFv | :white_check_mark: |
+| exeCollapse__13CollapsePlaneFv | :white_check_mark: |
+| exeDPDStop__13CollapsePlaneFv | :white_check_mark: |
+| calcAndSetBaseMtx__13CollapsePlaneFv | :white_check_mark: |
+| control__13CollapsePlaneFv | :white_check_mark: |
+| calcJointPlane__13CollapsePlaneFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| tryDPDStop__13CollapsePlaneFv | :white_check_mark: |
+| __sinit_\CollapsePlane_cpp | :white_check_mark: |
+| __ct__Q216NrvCollapsePlane20CollapsePlaneNrvWaitFv | :white_check_mark: |
+| __ct__Q216NrvCollapsePlane24CollapsePlaneNrvCollapseFv | :white_check_mark: |
+| __ct__Q216NrvCollapsePlane23CollapsePlaneNrvDPDStopFv | :white_check_mark: |
+| __ct__Q216NrvCollapsePlane19CollapsePlaneNrvEndFv | :white_check_mark: |
+| execute__Q216NrvCollapsePlane19CollapsePlaneNrvEndCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCollapsePlane23CollapsePlaneNrvDPDStopCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCollapsePlane24CollapsePlaneNrvCollapseCFP5Spine | :white_check_mark: |
+| execute__Q216NrvCollapsePlane20CollapsePlaneNrvWaitCFP5Spine | :white_check_mark: |
+| __dt__38JointControlDelegator&lt;13CollapsePlane&gt;Fv | :white_check_mark: |
+| calcJointMatrix__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| calcJointMatrixAfterChild__38JointControlDelegator&lt;13CollapsePlane&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo | :white_check_mark: |
+| __dt__13CollapsePlaneFv | :white_check_mark: |
 
 
 # CollectCounter.o

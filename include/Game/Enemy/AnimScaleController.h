@@ -32,6 +32,8 @@ public:
     void startCrush();
     void startAnim();
 
+    void setParamTight();
+
     void startDpdHitVibration();
 
     AnimScaleParam* _8;
