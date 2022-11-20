@@ -52,7 +52,7 @@
 | OceanHomeMapCtrl.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRing.o | 5.137614678899083% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
 | OceanRingBloomDrawer.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| OceanRingDrawer.o | 40.6910778751934% | 6 / 21 | 28.57142857142857% | :eight_pointed_black_star: 
+| OceanRingDrawer.o | 41.87725631768953% | 7 / 21 | 33.33333333333333% | :eight_pointed_black_star: 
 | OceanRingPipe.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OceanRingPipeInside.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | OceanRingPipeOutside.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -1202,7 +1202,7 @@
 | ------------- | ------------- |
 | __ct__19OceanRingPartDrawerFPC9OceanRingiibPfPfPf | :x: |
 | initDisplayList__19OceanRingPartDrawerFPfPfPf | :x: |
-| draw__19OceanRingPartDrawerCFv | :x: |
+| draw__19OceanRingPartDrawerCFv | :white_check_mark: |
 | drawGD__19OceanRingPartDrawerCFPfPfPf | :x: |
 | drawDynamic__19OceanRingPartDrawerCFv | :x: |
 | drawDynamicBloom__19OceanRingPartDrawerCFv | :x: |

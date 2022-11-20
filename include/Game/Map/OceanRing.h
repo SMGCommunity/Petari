@@ -40,7 +40,7 @@ public:
 
     s32 mWaterPointNum;                 // _8C
     u32 mSegCount;                      // _90
-    u32 mStride;                        // _94
+    s32 mStride;                        // _94
     WaterPoint** mWaterPoints;          // _98
     f32 mWidthMax;                      // _9C
     s32 mObjArg1;                       // _A0

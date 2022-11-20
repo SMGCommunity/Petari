@@ -18,8 +18,8 @@ public:
 
     const OceanRing* mOceanRing;    // _0
     TVec3f mPosition;               // _4
-    u32 _10;
-    u32 _14;
+    int _10;
+    int _14;
     bool _18;
     u8 _19;
     u8 _1A;

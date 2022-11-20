@@ -8,6 +8,64 @@ static u8 unknownVal = 1;
 static GXColor color1 = { 0x28, 0x28, 0x28, 0x14 };
 static GXColor color2 = { 0x76, 0xD7, 0xFF, 0xFF };
 
+#ifdef NON_MATCHING
+/* functionally matches, tiny instruction swap in the beginning */
+OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4, bool a5, f32 *a6, f32 *a7, f32 *a8) {
+    mOceanRing = pRing;
+    _10 = a3;
+    _14 = a4;
+    mPosition.x = 0.0f;
+    mPosition.y = 0.0f;
+    mPosition.z = 0.0f;
+    _18 = a5; 
+    _1C = *a6;
+    _20 = *a7;
+    _24 = *a8;
+    mDispListLength = 0;
+    mDispList = NULL;
+
+    initDisplayList(a6, a7, a8);
+
+    for (int i = 0; i < a4; i++) {
+        int v12 = a3 + i;
+
+        if (i == a4 - 1 && _18) {
+            v12 = 0;
+        }
+
+        mPosition.add(((mOceanRing->mWaterPoints[(v12 * mOceanRing->mStride - 1) + mOceanRing->mStride / 2])->mOrigPos));
+    }
+
+    mPosition.scale(1.0f / a4);
+}
+#endif
+
+#ifndef NON_MATCHING
+void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
+    MR::ProhibitSchedulerAndInterrupts prohibit(false);
+
+    u32 size = (0x50 * _14 * mOceanRing->mStride + 3) >> 5 + 2;
+    mDispList = new(0x20) u8[size];
+    DCInvalidateRange(mDispList, size);
+    GDLObj obj;
+    GDInitGDLObj(&obj, mDispList, size);
+    __GDCurrentDL = &obj;
+    drawGD(a1, a2, a3);
+    GDPadCurr32();
+    mDispListLength = obj.ptr - obj.start;
+    DCStoreRange(mDispList, size);
+}
+#endif
+
+void OceanRingPartDrawer::draw() const {
+    if (PSVECDistance(mPosition.toCVec(), MR::getPlayerPos()->toCVec()) >= 13000.0f) {
+        GXCallDisplayList(mDispList, mDispListLength);
+    }
+    else {
+        drawDynamic();
+    }
+}
+
 OceanRingDrawer::OceanRingDrawer(const OceanRing *pOceanRing) {
     mRing = pOceanRing;
     mDrawerCount = 0;
@@ -83,7 +141,7 @@ void OceanRingDrawer::initDisplayList() {
     DCStoreRange(mDispList, length);
 }
 
-/*
+/*d
 void OceanRingDrawer::drawGD() const {
     s32 flag = 0;
 

@@ -886,7 +886,7 @@ draw__20OceanRingBloomDrawerCFv,OceanRingBloomDrawer.o,Map.a,true
 __dt__20OceanRingBloomDrawerFv,OceanRingBloomDrawer.o,Map.a,true
 __ct__19OceanRingPartDrawerFPC9OceanRingiibPfPfPf,OceanRingDrawer.o,Map.a,false
 initDisplayList__19OceanRingPartDrawerFPfPfPf,OceanRingDrawer.o,Map.a,false
-draw__19OceanRingPartDrawerCFv,OceanRingDrawer.o,Map.a,false
+draw__19OceanRingPartDrawerCFv,OceanRingDrawer.o,Map.a,true
 drawGD__19OceanRingPartDrawerCFPfPfPf,OceanRingDrawer.o,Map.a,false
 drawDynamic__19OceanRingPartDrawerCFv,OceanRingDrawer.o,Map.a,false
 drawDynamicBloom__19OceanRingPartDrawerCFv,OceanRingDrawer.o,Map.a,false
