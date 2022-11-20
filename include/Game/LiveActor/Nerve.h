@@ -13,6 +13,7 @@ public:
     virtual void executeOnEnd(Spine *pSpine) const;
 };
 
+/* Defines a basic nerve class */
 #define NERVE(name)\
 class name : public Nerve\
 {\
@@ -23,6 +24,7 @@ public:\
     static name sInstance;\
 };\
 
+/* Defines a basic nerve that overrides the executeOnEnd function */
 #define NERVE_EXECEND(name)\
 class name : public Nerve\
 {\
@@ -34,9 +36,11 @@ public:\
     static name sInstance;\
 };\
 
+/* Initializes the static instance of a nerve */
 #define INIT_NERVE(name)\
     name name::sInstance;\
 
+/* Initalizes the static instance of a nerve and also defines the body of said nerve's execute function */
 #define INIT_NERVE_NEW(name, parent_class, func)\
     name name::sInstance;\
     void name::execute(Spine *pSpine) const { \
@@ -44,6 +48,7 @@ public:\
         actor->func();\
     }\
 
+/* Declares a nerve and also defines the body of the nerve's execution function, which calls a specified member function */
 #define NERVE_DECL(name, parent_class, func)\
 class name : public Nerve\
 {\
@@ -57,6 +62,7 @@ public:\
     static name sInstance;\
 };\
 
+/* Declares a nerve and also defines the body of the nerve's execution and executeOnEndfunctions, which calls a specified member function */
 #define NERVE_DECL_ONEND(name, parent_class, func, onEndFunc)\
 class name : public Nerve\
 {\
@@ -74,6 +80,7 @@ public:\
     static name sInstance;\
 };\
 
+/* Declares a nerve and also defines the nerve's execute function with an empty body */
 #define NERVE_DECL_NULL(name)\
 class name : public Nerve\
 {\
