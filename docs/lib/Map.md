@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ActorAppearSwitchListener.o | 16.39344262295082% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
-| Air.o | 53.06406685236769% | 12 / 33 | 36.36363636363637% | :eight_pointed_black_star: 
+| Air.o | 100.0% | 33 / 33 | 100.0% | :white_check_mark: 
 | BezierRail.o | 25.177935943060497% | 11 / 21 | 52.38095238095239% | :eight_pointed_black_star: 
 | Butterfly.o | 0.0% | 0 / 37 | 0.0% | :x: 
 | CollisionCategorizedKeeper.o | 7.976794778825235% | 7 / 24 | 29.166666666666668% | :eight_pointed_black_star: 
@@ -113,30 +113,30 @@
 | appearFadeIn__3AirFv | :white_check_mark: |
 | appearFadeOut__3AirFv | :white_check_mark: |
 | exeIn__3AirFv | :white_check_mark: |
-| exeOut__3AirFv | :x: |
-| __ct__16ProjectionMapAirFPCc | :x: |
-| __dt__3AirFv | :x: |
-| initModel__16ProjectionMapAirFPCc | :x: |
-| setFarClipping__3AirFv | :x: |
-| __ct__10AirFar100mFPCc | :x: |
-| setFarClipping__10AirFar100mFv | :x: |
-| __ct__12PriorDrawAirFPCc | :x: |
-| __ct__18PriorDrawAirHolderFv | :x: |
-| add__18PriorDrawAirHolderFP12PriorDrawAir | :x: |
-| isExistValidDrawAir__18PriorDrawAirHolderCFv | :x: |
-| isExistPriorDrawAir__2MRFv | :x: |
-| __sinit_\Air_cpp | :x: |
-| __ct__Q26NrvAir10HostTypeInFv | :x: |
-| __ct__Q26NrvAir11HostTypeOutFv | :x: |
-| execute__Q26NrvAir11HostTypeOutCFP5Spine | :x: |
-| execute__Q26NrvAir10HostTypeInCFP5Spine | :x: |
+| exeOut__3AirFv | :white_check_mark: |
+| __ct__16ProjectionMapAirFPCc | :white_check_mark: |
+| __dt__3AirFv | :white_check_mark: |
+| initModel__16ProjectionMapAirFPCc | :white_check_mark: |
+| setFarClipping__3AirFv | :white_check_mark: |
+| __ct__10AirFar100mFPCc | :white_check_mark: |
+| setFarClipping__10AirFar100mFv | :white_check_mark: |
+| __ct__12PriorDrawAirFPCc | :white_check_mark: |
+| __ct__18PriorDrawAirHolderFv | :white_check_mark: |
+| add__18PriorDrawAirHolderFP12PriorDrawAir | :white_check_mark: |
+| isExistValidDrawAir__18PriorDrawAirHolderCFv | :white_check_mark: |
+| isExistPriorDrawAir__2MRFv | :white_check_mark: |
+| __sinit_\Air_cpp | :white_check_mark: |
+| __ct__Q26NrvAir10HostTypeInFv | :white_check_mark: |
+| __ct__Q26NrvAir11HostTypeOutFv | :white_check_mark: |
+| execute__Q26NrvAir11HostTypeOutCFP5Spine | :white_check_mark: |
+| execute__Q26NrvAir10HostTypeInCFP5Spine | :white_check_mark: |
 | Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt; | :white_check_mark: |
 | __cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv | :white_check_mark: |
 | clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
-| __dt__10AirFar100mFv | :x: |
-| __dt__16ProjectionMapAirFv | :x: |
-| __dt__12PriorDrawAirFv | :x: |
-| __dt__18PriorDrawAirHolderFv | :x: |
+| __dt__10AirFar100mFv | :white_check_mark: |
+| __dt__16ProjectionMapAirFv | :white_check_mark: |
+| __dt__12PriorDrawAirFv | :white_check_mark: |
+| __dt__18PriorDrawAirHolderFv | :white_check_mark: |
 
 
 # BezierRail.o

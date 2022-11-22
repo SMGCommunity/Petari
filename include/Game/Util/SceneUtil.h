@@ -60,4 +60,6 @@ namespace MR {
     bool isPlacementLocalStage();
 
     bool isInitializeStateEnd();
+
+    bool isStageDisablePauseMenu();
 }

@@ -1,4 +1,6 @@
 #include "Game/Map/Air.h"
+#include "Game/LiveActor/MaterialCtrl.h"
+#include "Game/Scene/SceneObjHolder.h"
 #include "Game/Util.h"
 
 Air::Air(const char *pName) : LiveActor(pName) {
@@ -126,4 +128,108 @@ void Air::exeIn() {
             setNerve(&NrvAir::HostTypeOut::sInstance);
         }
     }
+}
+
+void Air::exeOut() {
+    bool flag = false;
+
+    if (_8D && !MR::isStartAnimCameraEnd()) {
+        flag = true;
+    }
+
+    if (!flag) {
+        tryChange();
+
+        if (!MR::isHiddenModel(this) && MR::isAnyAnimStopped(this, "Disappear")) {
+            MR::hideModel(this);
+        }
+
+        f32 distMult = (100.0f * mDistance);
+
+        if (MR::calcDistanceToPlayer(this) < distMult) {
+            MR::showModel(this);
+            MR::tryStartAllAnim(this, "Appear");
+            setNerve(&NrvAir::HostTypeIn::sInstance);
+        }
+    }
+}
+
+Air::~Air() {
+
+}
+
+void ProjectionMapAir::initModel(const char *pModelName) {
+    initModelManagerWithAnm(pModelName, NULL, true);
+    ProjmapEffectMtxSetter* mtxSetter = MR::initDLMakerProjmapEffectMtxSetter(this);
+    MR::newDifferedDLBuffer(this);
+    mtxSetter->updateMtxUseBaseMtx();
+}
+
+void Air::setFarClipping() {
+    MR::setClippingFarMax(this);
+}
+
+AirFar100m::AirFar100m(const char *pName) : Air(pName) {
+
+}
+
+void AirFar100m::setFarClipping() {
+    MR::setClippingFar100m(this);
+}
+
+PriorDrawAir::PriorDrawAir(const char *pName) : Air(pName) {
+    MR::createSceneObj(SceneObj_PriorDrawAirHolder);
+    MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->add(this);
+}
+
+PriorDrawAirHolder::PriorDrawAirHolder() : NameObj("先描画大気保持") {
+    mAirCount = 0;
+}
+
+void PriorDrawAirHolder::add(PriorDrawAir *pAir) {
+    s32 airCnt = mAirCount++;
+    mAirs[airCnt] = pAir;
+}
+
+bool PriorDrawAirHolder::isExistValidDrawAir() const {
+    PriorDrawAir** curAir = (PriorDrawAir**)&mAirs;
+
+    for (; curAir != &mAirs[mAirCount]; *curAir++) {
+        if ((*curAir)->isDrawing()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+namespace MR {
+    bool isExistPriorDrawAir() {
+        if (!MR::isExistSceneObj(SceneObj_PriorDrawAirHolder)) {
+            return false;
+        }
+
+        return MR::getSceneObj<PriorDrawAirHolder*>(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
+    }
+};
+
+namespace NrvAir {
+    INIT_NERVE(HostTypeIn);
+    INIT_NERVE(HostTypeOut);
+};
+
+AirFar100m::~AirFar100m() {
+
+}
+
+ProjectionMapAir::~ProjectionMapAir() {
+
+}
+
+PriorDrawAir::~PriorDrawAir() {
+
+}
+
+PriorDrawAirHolder::~PriorDrawAirHolder() {
+
 }

@@ -31,6 +31,8 @@ namespace MR {
 
     bool isExistIndirectTexture(const LiveActor *);
 
+    bool isAnyAnimStopped(const LiveActor *, const char *);
+
     void validateClipping(LiveActor *);
     void invalidateClipping(LiveActor *);
     void setClippingTypeSphere(LiveActor *, f32);

@@ -24,7 +24,47 @@ public:
     f32 mDistance;  // _90
 };
 
+class ProjectionMapAir : public Air {
+public:
+    ProjectionMapAir(const char *);
+
+    virtual ~ProjectionMapAir();
+    virtual void initModel(const char *);
+};
+
+class AirFar100m : public Air {
+public:
+    AirFar100m(const char *);
+
+    virtual ~AirFar100m();
+    virtual void setFarClipping();
+};
+
+class PriorDrawAir : public Air {
+public:
+    PriorDrawAir(const char *);
+
+    virtual ~PriorDrawAir();
+};
+
+class PriorDrawAirHolder : public NameObj {
+public:
+    PriorDrawAirHolder();
+
+    virtual ~PriorDrawAirHolder();
+
+    void add(PriorDrawAir *);
+    bool isExistValidDrawAir() const;
+
+    PriorDrawAir* mAirs[8];     // _C
+    s32 mAirCount;              // _2C
+};
+
+namespace MR {
+    bool isExistPriorDrawAir();
+};
+
 namespace NrvAir {
-    NERVE(HostTypeIn);
-    NERVE(HostTypeOut);
+    NERVE_DECL(HostTypeIn, Air, Air::exeIn);
+    NERVE_DECL(HostTypeOut, Air, Air::exeOut);
 };

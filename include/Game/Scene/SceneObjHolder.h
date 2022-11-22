@@ -37,6 +37,7 @@
 #define SceneObj_HeatHazeDirector           0x5D
 #define SceneObj_GalaxyNamePlateDrawer      0x70
 #define SceneObj_PlanetMapCreator           0x74
+#define SceneObj_PriorDrawAirHolder         0x75
 
 class NameObj;
 

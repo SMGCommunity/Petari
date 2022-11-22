@@ -20,14 +20,14 @@
 | PlacementInfoOrdered.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | PlacementStateChecker.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | ScenarioSelectScene.o | 0.0% | 0 / 50 | 0.0% | :x: 
-| Scene.o | 0.0% | 0 / 9 | 0.0% | :x: 
-| SceneDataInitializer.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| Scene.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
+| SceneDataInitializer.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | SceneExecutor.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | SceneFactory.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | SceneFunction.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | SceneObjHolder.o | 5.683060109289618% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
 | ScenePlayingResult.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| SceneNameObjListExecutor.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| SceneNameObjListExecutor.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | SceneNameObjMovementController.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | StageDataHolder.o | 25.36162005785921% | 18 / 51 | 35.294117647058826% | :eight_pointed_black_star: 
 | StageFileLoader.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
@@ -382,29 +382,29 @@
 # Scene.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__5SceneFPCc | :x: |
-| __dt__5SceneFv | :x: |
-| init__5SceneFv | :x: |
-| start__5SceneFv | :x: |
-| update__5SceneFv | :x: |
-| draw__5SceneCFv | :x: |
-| calcAnim__5SceneFv | :x: |
-| initNameObjListExecutor__5SceneFv | :x: |
-| initSceneObjHolder__5SceneFv | :x: |
+| __ct__5SceneFPCc | :white_check_mark: |
+| __dt__5SceneFv | :white_check_mark: |
+| init__5SceneFv | :white_check_mark: |
+| start__5SceneFv | :white_check_mark: |
+| update__5SceneFv | :white_check_mark: |
+| draw__5SceneCFv | :white_check_mark: |
+| calcAnim__5SceneFv | :white_check_mark: |
+| initNameObjListExecutor__5SceneFv | :white_check_mark: |
+| initSceneObjHolder__5SceneFv | :white_check_mark: |
 
 
 # SceneDataInitializer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20SceneDataInitializerFv | :x: |
-| startStageFileLoad__20SceneDataInitializerFv | :x: |
-| startStageFileLoadAfterScenarioSelected__20SceneDataInitializerFv | :x: |
-| waitDoneStageFileLoad__20SceneDataInitializerFv | :x: |
-| startActorFileLoadCommon__20SceneDataInitializerFv | :x: |
-| startActorFileLoadScenario__20SceneDataInitializerFv | :x: |
-| startActorPlacement__20SceneDataInitializerFv | :x: |
-| initAfterScenarioSelected__20SceneDataInitializerFv | :x: |
-| __dt__20SceneDataInitializerFv | :x: |
+| __ct__20SceneDataInitializerFv | :white_check_mark: |
+| startStageFileLoad__20SceneDataInitializerFv | :white_check_mark: |
+| startStageFileLoadAfterScenarioSelected__20SceneDataInitializerFv | :white_check_mark: |
+| waitDoneStageFileLoad__20SceneDataInitializerFv | :white_check_mark: |
+| startActorFileLoadCommon__20SceneDataInitializerFv | :white_check_mark: |
+| startActorFileLoadScenario__20SceneDataInitializerFv | :white_check_mark: |
+| startActorPlacement__20SceneDataInitializerFv | :white_check_mark: |
+| initAfterScenarioSelected__20SceneDataInitializerFv | :white_check_mark: |
+| __dt__20SceneDataInitializerFv | :white_check_mark: |
 
 
 # SceneExecutor.o
@@ -496,11 +496,11 @@
 # SceneNameObjListExecutor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| initMovementList__24SceneNameObjListExecutorFv | :x: |
-| initCalcAnimList__24SceneNameObjListExecutorFv | :x: |
-| initCalcViewAndEntryList__24SceneNameObjListExecutorFv | :x: |
-| initDrawList__24SceneNameObjListExecutorFv | :x: |
-| __dt__24SceneNameObjListExecutorFv | :x: |
+| initMovementList__24SceneNameObjListExecutorFv | :white_check_mark: |
+| initCalcAnimList__24SceneNameObjListExecutorFv | :white_check_mark: |
+| initCalcViewAndEntryList__24SceneNameObjListExecutorFv | :white_check_mark: |
+| initDrawList__24SceneNameObjListExecutorFv | :white_check_mark: |
+| __dt__24SceneNameObjListExecutorFv | :white_check_mark: |
 
 
 # SceneNameObjMovementController.o

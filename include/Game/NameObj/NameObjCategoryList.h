@@ -221,8 +221,8 @@ namespace {
 };
 
 struct CategoryListInitialTable {
-    u32 _0;
-    u32 _4;
+    u32 mIndex;     // _0
+    u32 mCount;     // _4
 };
 
 /// @brief Organizes NameObjs by execution category.

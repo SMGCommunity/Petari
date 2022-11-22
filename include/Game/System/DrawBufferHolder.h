@@ -5,9 +5,19 @@
 
 class LiveActor;
 
+struct DrawBufferInitialTable {
+    s32 mDrawBufferType;
+    s32 mCapacity;
+    u32 _8;
+    s32 mDrawCameraType;
+};
+
 class DrawBufferHolder {
 public:
     DrawBufferHolder(s32);
+    DrawBufferHolder();
+
+    void initTable(const DrawBufferInitialTable *, s32);
 
     void allocateActorListBuffer();
     void active(LiveActor *, s32, s32);
@@ -22,4 +32,5 @@ public:
     DrawBufferGroup* mBufferGroup;  // _0
     s32 mBufferGroupCount;          // _4
     MR::Vector<MR::AssignableArray<DrawBufferGroup *> >* _8;
+    u8 _C[0x30-0xC];
 };
