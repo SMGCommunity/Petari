@@ -22,6 +22,9 @@ void GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type);
 
 void GXSetViewport(f32, f32, f32, f32, f32, f32);
 
+void GXSetScissor(u32, u32, u32, u32);
+void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+
 void GXSetClipMode(GXClipMode);
 
 #ifdef __cplusplus

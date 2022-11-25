@@ -181,7 +181,7 @@ __GXSetViewport,GXTransform.o,gx.a,false
 GXSetViewport,GXTransform.o,gx.a,false
 GXGetViewportv,GXTransform.o,gx.a,false
 GXSetZScaleOffset,GXTransform.o,gx.a,false
-GXSetScissor,GXTransform.o,gx.a,false
+GXSetScissor,GXTransform.o,gx.a,true
 GXGetScissor,GXTransform.o,gx.a,false
 GXSetScissorBoxOffset,GXTransform.o,gx.a,false
 GXSetClipMode,GXTransform.o,gx.a,false
