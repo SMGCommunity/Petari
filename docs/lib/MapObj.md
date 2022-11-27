@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AirBubble.o | 66.18122977346277% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
-| AirBubbleGenerator.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| AirBubbleGenerator.o | 67.84140969162996% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% | :x: 
 | ArrowSwitch.o | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
@@ -358,17 +358,17 @@
 # AirBubbleGenerator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__18AirBubbleGeneratorFv | :x: |
-| __ct__18AirBubbleGeneratorFPCc | :x: |
-| init__18AirBubbleGeneratorFRC12JMapInfoIter | :x: |
-| control__18AirBubbleGeneratorFv | :x: |
-| exeWait__18AirBubbleGeneratorFv | :x: |
+| __dt__18AirBubbleGeneratorFv | :white_check_mark: |
+| __ct__18AirBubbleGeneratorFPCc | :white_check_mark: |
+| init__18AirBubbleGeneratorFRC12JMapInfoIter | :white_check_mark: |
+| control__18AirBubbleGeneratorFv | :white_check_mark: |
+| exeWait__18AirBubbleGeneratorFv | :white_check_mark: |
 | exeGenerate__18AirBubbleGeneratorFv | :x: |
 | __sinit_\AirBubbleGenerator_cpp | :x: |
-| __ct__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitFv | :x: |
-| __ct__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateFv | :x: |
-| execute__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateCFP5Spine | :x: |
-| execute__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitCFP5Spine | :x: |
+| __ct__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitFv | :white_check_mark: |
+| __ct__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateFv | :white_check_mark: |
+| execute__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateCFP5Spine | :white_check_mark: |
+| execute__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitCFP5Spine | :white_check_mark: |
 
 
 # AirBubbleHolder.o

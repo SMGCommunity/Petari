@@ -161,6 +161,15 @@ namespace MR {
         return other_vec;
     }
 
+    inline TVec3f createVecAndScaleByAndAdd_2(const TVec3f &rSrc, const TVec3f &rOtherVec) {
+        TVec3f vec(rSrc);
+        vec.scaleInline(120.0f);
+        
+        TVec3f other_vec(rOtherVec);
+        other_vec.addInline_5(vec);
+        return other_vec;
+    }
+
     inline TVec3f negateVector(TVec3f &rVec) {
         return -rVec;
     }
@@ -243,6 +252,13 @@ namespace MR {
 
     inline void multAndSet(TVec3f *a1, const TVec3f &a2, f32 a3) {
         a1->set<f32>(a2 * a3);
+    }
+
+    inline int getRemainder(int ra, int rb) {
+        int quotient = ra / rb;
+        quotient *= rb;
+        int remainder = ra - quotient;
+        return remainder;
     }
 
     f32 cos(f32);

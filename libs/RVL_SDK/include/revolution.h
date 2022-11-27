@@ -2,6 +2,7 @@
 #define REVOLUTION_H
 
 #include <revolution/types.h>
+#include <revolution/arc.h>
 #include <revolution/dvd.h>
 #include <revolution/gd.h>
 #include <revolution/gx.h>

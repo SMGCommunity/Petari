@@ -30,4 +30,16 @@ namespace MR {
         MR::BothDirPtrLink* _4;
         u32 _8;
     };
+
+    template<class T>
+    class BothDirList : public BothDirPtrList {
+    public:
+        inline BothDirList() : BothDirPtrList() {
+
+        }
+
+        ~BothDirList() {
+            
+        }
+    };
 };
