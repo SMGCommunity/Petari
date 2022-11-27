@@ -28,7 +28,7 @@ init__18AirBubbleGeneratorFRC12JMapInfoIter,AirBubbleGenerator.o,MapObj.a,true
 control__18AirBubbleGeneratorFv,AirBubbleGenerator.o,MapObj.a,true
 exeWait__18AirBubbleGeneratorFv,AirBubbleGenerator.o,MapObj.a,true
 exeGenerate__18AirBubbleGeneratorFv,AirBubbleGenerator.o,MapObj.a,false
-__sinit_\AirBubbleGenerator_cpp,AirBubbleGenerator.o,MapObj.a,faltruese
+__sinit_\AirBubbleGenerator_cpp,AirBubbleGenerator.o,MapObj.a,true
 __ct__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitFv,AirBubbleGenerator.o,MapObj.a,true
 __ct__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateFv,AirBubbleGenerator.o,MapObj.a,true
 execute__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateCFP5Spine,AirBubbleGenerator.o,MapObj.a,true

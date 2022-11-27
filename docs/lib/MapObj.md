@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | AirBubble.o | 66.18122977346277% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
-| AirBubbleGenerator.o | 67.84140969162996% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
+| AirBubbleGenerator.o | 72.68722466960352% | 10 / 11 | 90.9090909090909% | :eight_pointed_black_star: 
 | AirBubbleHolder.o | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
 | AnmModelObj.o | 0.0% | 0 / 47 | 0.0% | :x: 
 | ArrowSwitch.o | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
@@ -364,7 +364,7 @@
 | control__18AirBubbleGeneratorFv | :white_check_mark: |
 | exeWait__18AirBubbleGeneratorFv | :white_check_mark: |
 | exeGenerate__18AirBubbleGeneratorFv | :x: |
-| __sinit_\AirBubbleGenerator_cpp | :x: |
+| __sinit_\AirBubbleGenerator_cpp | :white_check_mark: |
 | __ct__Q221NrvAirBubbleGenerator25AirBubbleGeneratorNrvWaitFv | :white_check_mark: |
 | __ct__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateFv | :white_check_mark: |
 | execute__Q221NrvAirBubbleGenerator29AirBubbleGeneratorNrvGenerateCFP5Spine | :white_check_mark: |
