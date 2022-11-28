@@ -113,7 +113,7 @@
 | FlameGun.o | 0.0% | 0 / 27 | 0.0% | :x: 
 | FlexibleSphere.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | FlipPanel.o | 100.0% | 43 / 43 | 100.0% | :white_check_mark: 
-| Fountain.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| Fountain.o | 38.864628820960704% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
 | FountainBig.o | 0.0% | 0 / 21 | 0.0% | :x: 
 | GCapture.o | 0.0% | 0 / 70 | 0.0% | :x: 
 | GCaptureRibbon.o | 0.0% | 0 / 10 | 0.0% | :x: 
@@ -2911,20 +2911,20 @@
 # Fountain.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__8FountainFPCc | :x: |
+| __ct__8FountainFPCc | :white_check_mark: |
 | init__8FountainFRC12JMapInfoIter | :x: |
-| appear__8FountainFv | :x: |
-| startClipped__8FountainFv | :x: |
-| endClipped__8FountainFv | :x: |
+| appear__8FountainFv | :white_check_mark: |
+| startClipped__8FountainFv | :white_check_mark: |
+| endClipped__8FountainFv | :white_check_mark: |
 | attackSensor__8FountainFP9HitSensorP9HitSensor | :x: |
-| exeWait__8FountainFv | :x: |
-| exeMove__8FountainFv | :x: |
-| __dt__8FountainFv | :x: |
-| __sinit_\Fountain_cpp | :x: |
-| __ct__Q211NrvFountain12HostTypeWaitFv | :x: |
-| __ct__Q211NrvFountain12HostTypeMoveFv | :x: |
-| execute__Q211NrvFountain12HostTypeMoveCFP5Spine | :x: |
-| execute__Q211NrvFountain12HostTypeWaitCFP5Spine | :x: |
+| exeWait__8FountainFv | :white_check_mark: |
+| exeMove__8FountainFv | :white_check_mark: |
+| __dt__8FountainFv | :white_check_mark: |
+| __sinit_\Fountain_cpp | :white_check_mark: |
+| __ct__Q211NrvFountain12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q211NrvFountain12HostTypeMoveFv | :white_check_mark: |
+| execute__Q211NrvFountain12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q211NrvFountain12HostTypeWaitCFP5Spine | :white_check_mark: |
 
 
 # FountainBig.o

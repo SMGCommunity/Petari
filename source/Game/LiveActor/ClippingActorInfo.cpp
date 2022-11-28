@@ -27,6 +27,7 @@ void ClippingActorInfo::judgeClipping() {
     }
 }
 
+/*
 bool ClippingActorInfo::isJudgedToClip() const {
     s32 farClipLevel = mFarClipLevel;
     if (*_14 == 1) {
@@ -37,6 +38,7 @@ bool ClippingActorInfo::isJudgedToClip() const {
     ClippingJudge* judge = MR::getClippingJudge();
     return judge->isJudgedToClipFrustum(*_4, val, farClipLevel);
 }
+*/
 
 bool ClippingActorInfo::isGroupClipping() const {
     return mInfo;

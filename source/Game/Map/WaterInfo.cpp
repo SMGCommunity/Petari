@@ -15,14 +15,14 @@ bool WaterInfo::isInWater() const {
 void WaterInfo::clear() {
     mCamWaterDepth = 0.0f;
     _4 = 0.0f;
-    _8.zero();
-    _14 = 0.0f;
-    _18 = 1.0f;
-    _1C = 0.0f;
-    _20 = 0.0f;
-    _24.zero();
-    _30 = -1.0f;
-    _34.zero();
+    mSurfacePos.zero();
+    mSurfaceNormal.x = 0.0f;
+    mSurfaceNormal.y = 1.0f;
+    mSurfaceNormal.z = 0.0f;
+    mWaveHeight = 0.0f;
+    mStreamVec.zero();
+    mEdgeDistance = -1.0f;
+    mEdgePos.zero();
     mWaterArea = NULL;
     mOceanBowl = NULL;
     mOceanRing = NULL;

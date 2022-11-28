@@ -13,6 +13,8 @@ namespace MR {
     bool isEffectValid(const LiveActor *, const char *);
     void deleteEffect(LiveActor *, const char *);
 
+    void deleteEffectAll(LiveActor *);
+
     void emitEffect(LiveActor *, const char *);
 
     void addEffect(LiveActor *, const char *);

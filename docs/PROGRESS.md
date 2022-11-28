@@ -12,8 +12,8 @@
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 56.816792337477075% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 39.26233287229138% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 15.921118600635062% |
-| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 22.31744479921788% |
-| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 27.009618687736175% |
+| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 22.41000946447701% |
+| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 28.65853658536585% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.7591369440774989% |
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/NWC24.md) | 0.0% |
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 0.14184156212575486% |

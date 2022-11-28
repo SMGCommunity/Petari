@@ -4,8 +4,6 @@
 #include "Game/Map/PlanetMapCreator.h"
 #include "Game/Map/StageSwitch.h"
 #include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjExecuteHolder.h"
-#include "Game/NameObj/NameObjGroup.h"
 #include "Game/NameObj/MovementOnOffGroupHolder.h"
 #include "Game/LiveActor/AllLiveActorGroup.h"
 #include "Game/LiveActor/ClippingDirector.h"

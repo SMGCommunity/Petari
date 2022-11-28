@@ -78,17 +78,17 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *p
 
     const CategoryListInitialTable* ent = &pTable[0];
 
-    while(ent->_0 != -1) {
+    while(ent->mIndex != -1) {
         if (!_D) {
-            u32 size = ent->_4;
+            u32 size = ent->mCount;
             NameObj** arr = new NameObj*[size];
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[ent->_0];
+            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[ent->mIndex];
             inf->mNameObjArr.mArr = arr;
             inf->mNameObjArr.mMaxSize = size;
             _C = 1;
         }
 
-        mCategoryInfo.mArr[ent->_0].mCheck = 0;
+        mCategoryInfo.mArr[ent->mIndex].mCheck = 0;
 
         ent++;
     }

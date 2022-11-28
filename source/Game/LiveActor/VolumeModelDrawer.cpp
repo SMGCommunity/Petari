@@ -20,7 +20,7 @@ VolumeModelDrawer::VolumeModelDrawer(const char *pName, const char *pFileName, M
     char buf[0x100];
     snprintf(buf, 0x100, "%s.arc", pFileName);
     ResourceHolder* resHolder = MR::createAndAddResourceHolder(buf);
-    mModelData = (J3DModelData*)resHolder->mTable->getRes(pFileName);
+    mModelData = (J3DModelData*)resHolder->mModelResTable->getRes(pFileName);
 }
 
 void VolumeModelDrawer::draw() const {

@@ -231,7 +231,7 @@ namespace JGeometry {
             }
         }
 
-        TVec3<T> operator*(T scalar) const {
+        TVec3<T> operator*(T scalar) const NO_INLINE {
             TVec3<T> f = *this;
             f.x = this->x * scalar;
             f.y = this->y * scalar;

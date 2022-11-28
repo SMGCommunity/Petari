@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game/Util.h"
-#include "Game/NameObj/NameObjFactory.h"
+
+typedef NameObj* (*CreationFuncPtr)(const char *);
 
 class PlacementInfoOrdered {
 public:
