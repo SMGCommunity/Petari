@@ -56,7 +56,6 @@ namespace MR {
 
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
 
-    void initActorCamera(const LiveActor *, const JMapInfoIter &, ActorCameraInfo **);
     bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
     void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 

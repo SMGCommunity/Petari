@@ -54,7 +54,7 @@
 | BumpAppearPlanet.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | Candlestand.o | 0.0% | 0 / 31 | 0.0% | :x: 
 | CannonFortressBreakStep.o | 0.0% | 0 / 19 | 0.0% | :x: 
-| CapsuleCage.o | 0.0% | 0 / 23 | 0.0% | :x: 
+| CapsuleCage.o | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
 | ChipBase.o | 79.12087912087912% | 36 / 39 | 92.3076923076923% | :eight_pointed_black_star: 
 | ChipCounter.o | 19.971056439942114% | 3 / 30 | 10.0% | :eight_pointed_black_star: 
 | ChipGroup.o | 0.0% | 0 / 17 | 0.0% | :x: 
@@ -276,7 +276,7 @@
 | SubmarineSteam.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | SubmarineVolcanoBigColumn.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | Sun.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| SuperSpinDriver.o | 0.0% | 0 / 94 | 0.0% | :x: 
+| SuperSpinDriver.o | 28.548644338118024% | 49 / 94 | 52.12765957446809% | :eight_pointed_black_star: 
 | SurprisedGalaxy.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | Swinger.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | SwingLight.o | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -1481,29 +1481,29 @@
 # CapsuleCage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__11CapsuleCageFPCc | :x: |
-| init__11CapsuleCageFRC12JMapInfoIter | :x: |
-| exeStartCamera__11CapsuleCageFv | :x: |
-| exeOpen__11CapsuleCageFv | :x: |
-| kill__11CapsuleCageFv | :x: |
-| connectToScene__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| initCaseUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| startOpen__11CapsuleCageFv | :x: |
-| __sinit_\CapsuleCage_cpp | :x: |
-| __ct__Q214NrvCapsuleCage18CapsuleCageNrvWaitFv | :x: |
-| __ct__Q214NrvCapsuleCage25CapsuleCageNrvStartCameraFv | :x: |
-| __ct__Q214NrvCapsuleCage18CapsuleCageNrvOpenFv | :x: |
-| __ct__Q214NrvCapsuleCage23CapsuleCageNrvEndCameraFv | :x: |
-| execute__Q214NrvCapsuleCage23CapsuleCageNrvEndCameraCFP5Spine | :x: |
-| execute__Q214NrvCapsuleCage18CapsuleCageNrvOpenCFP5Spine | :x: |
-| execute__Q214NrvCapsuleCage25CapsuleCageNrvStartCameraCFP5Spine | :x: |
-| execute__Q214NrvCapsuleCage18CapsuleCageNrvWaitCFP5Spine | :x: |
-| initCaseNoUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| initCaseNoUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| initCaseUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :x: |
-| __cl__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__11CapsuleCageFv | :x: |
+| __ct__11CapsuleCageFPCc | :white_check_mark: |
+| init__11CapsuleCageFRC12JMapInfoIter | :white_check_mark: |
+| exeStartCamera__11CapsuleCageFv | :white_check_mark: |
+| exeOpen__11CapsuleCageFv | :white_check_mark: |
+| kill__11CapsuleCageFv | :white_check_mark: |
+| connectToScene__11CapsuleCageFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo | :white_check_mark: |
+| startOpen__11CapsuleCageFv | :white_check_mark: |
+| __sinit_\CapsuleCage_cpp | :white_check_mark: |
+| __ct__Q214NrvCapsuleCage18CapsuleCageNrvWaitFv | :white_check_mark: |
+| __ct__Q214NrvCapsuleCage25CapsuleCageNrvStartCameraFv | :white_check_mark: |
+| __ct__Q214NrvCapsuleCage18CapsuleCageNrvOpenFv | :white_check_mark: |
+| __ct__Q214NrvCapsuleCage23CapsuleCageNrvEndCameraFv | :white_check_mark: |
+| execute__Q214NrvCapsuleCage23CapsuleCageNrvEndCameraCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCapsuleCage18CapsuleCageNrvOpenCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCapsuleCage25CapsuleCageNrvStartCameraCFP5Spine | :white_check_mark: |
+| execute__Q214NrvCapsuleCage18CapsuleCageNrvWaitCFP5Spine | :white_check_mark: |
+| initCaseNoUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseNoUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :white_check_mark: |
+| initCaseUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo | :white_check_mark: |
+| __cl__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__11CapsuleCageFv | :white_check_mark: |
 
 
 # ChipBase.o
@@ -7125,28 +7125,28 @@
 | receiveOtherMsg__15SuperSpinDriverFUlP9HitSensorP9HitSensor | :x: |
 | canBind__15SuperSpinDriverCFP9HitSensorP9HitSensor | :x: |
 | tryBind__15SuperSpinDriverFP9HitSensorP9HitSensor | :x: |
-| tryEndCapture__15SuperSpinDriverFv | :x: |
-| tryForceCancel__15SuperSpinDriverFv | :x: |
-| tryShootStart__15SuperSpinDriverFv | :x: |
-| tryShoot__15SuperSpinDriverFv | :x: |
-| tryEndShoot__15SuperSpinDriverFv | :x: |
-| tryEndCoolDown__15SuperSpinDriverFv | :x: |
-| trySwitchOff__15SuperSpinDriverFv | :x: |
-| requestAppear__15SuperSpinDriverFv | :x: |
-| requestEmptyAppear__15SuperSpinDriverFv | :x: |
-| requestActive__15SuperSpinDriverFv | :x: |
-| requestHide__15SuperSpinDriverFv | :x: |
-| requestShow__15SuperSpinDriverFv | :x: |
-| exeEmptyNonActive__15SuperSpinDriverFv | :x: |
-| exeEmptyAppear__15SuperSpinDriverFv | :x: |
-| exeEmptyWait__15SuperSpinDriverFv | :x: |
-| exeNonActive__15SuperSpinDriverFv | :x: |
-| exeAppear__15SuperSpinDriverFv | :x: |
-| exeWait__15SuperSpinDriverFv | :x: |
-| exeCapture__15SuperSpinDriverFv | :x: |
+| tryEndCapture__15SuperSpinDriverFv | :white_check_mark: |
+| tryForceCancel__15SuperSpinDriverFv | :white_check_mark: |
+| tryShootStart__15SuperSpinDriverFv | :white_check_mark: |
+| tryShoot__15SuperSpinDriverFv | :white_check_mark: |
+| tryEndShoot__15SuperSpinDriverFv | :white_check_mark: |
+| tryEndCoolDown__15SuperSpinDriverFv | :white_check_mark: |
+| trySwitchOff__15SuperSpinDriverFv | :white_check_mark: |
+| requestAppear__15SuperSpinDriverFv | :white_check_mark: |
+| requestEmptyAppear__15SuperSpinDriverFv | :white_check_mark: |
+| requestActive__15SuperSpinDriverFv | :white_check_mark: |
+| requestHide__15SuperSpinDriverFv | :white_check_mark: |
+| requestShow__15SuperSpinDriverFv | :white_check_mark: |
+| exeEmptyNonActive__15SuperSpinDriverFv | :white_check_mark: |
+| exeEmptyAppear__15SuperSpinDriverFv | :white_check_mark: |
+| exeEmptyWait__15SuperSpinDriverFv | :white_check_mark: |
+| exeNonActive__15SuperSpinDriverFv | :white_check_mark: |
+| exeAppear__15SuperSpinDriverFv | :white_check_mark: |
+| exeWait__15SuperSpinDriverFv | :white_check_mark: |
+| exeCapture__15SuperSpinDriverFv | :white_check_mark: |
 | exeShootStart__15SuperSpinDriverFv | :x: |
 | exeShoot__15SuperSpinDriverFv | :x: |
-| updateShootMotion__15SuperSpinDriverFv | :x: |
+| updateShootMotion__15SuperSpinDriverFv | :white_check_mark: |
 | cancelBind__15SuperSpinDriverFv | :x: |
 | endBind__15SuperSpinDriverFv | :x: |
 | updateBindActorMatrix__15SuperSpinDriverFv | :x: |
@@ -7159,38 +7159,38 @@
 | updateOperateRate__15SuperSpinDriverFv | :x: |
 | updateBindPosition__15SuperSpinDriverFf | :x: |
 | calcShootMotionTime__15SuperSpinDriverFv | :x: |
-| addSwingSignRotateY__15SuperSpinDriverFv | :x: |
+| addSwingSignRotateY__15SuperSpinDriverFv | :white_check_mark: |
 | onUse__15SuperSpinDriverFv | :x: |
-| offUse__15SuperSpinDriverFv | :x: |
+| offUse__15SuperSpinDriverFv | :white_check_mark: |
 | isNeedEmptyModel__15SuperSpinDriverCFv | :x: |
 | isRightToUse__15SuperSpinDriverCFv | :x: |
-| createSuperSpinDriverYellow__2MRFPCc | :x: |
-| createSuperSpinDriverGreen__2MRFPCc | :x: |
-| createSuperSpinDriverPink__2MRFPCc | :x: |
-| __sinit_\SuperSpinDriver_cpp | :x: |
-| __ct__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoFv | :x: |
-| __ct__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveFv | :x: |
-| __ct__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearFv | :x: |
-| __ct__Q218NrvSuperSpinDriver27SuperSpinDriverNrvEmptyWaitFv | :x: |
-| __ct__Q218NrvSuperSpinDriver27SuperSpinDriverNrvNonActiveFv | :x: |
-| __ct__Q218NrvSuperSpinDriver24SuperSpinDriverNrvAppearFv | :x: |
-| __ct__Q218NrvSuperSpinDriver22SuperSpinDriverNrvWaitFv | :x: |
-| __ct__Q218NrvSuperSpinDriver25SuperSpinDriverNrvCaptureFv | :x: |
-| __ct__Q218NrvSuperSpinDriver28SuperSpinDriverNrvShootStartFv | :x: |
-| __ct__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootFv | :x: |
-| __ct__Q218NrvSuperSpinDriver26SuperSpinDriverNrvCoolDownFv | :x: |
-| execute__Q218NrvSuperSpinDriver26SuperSpinDriverNrvCoolDownCFP5Spine | :x: |
-| executeOnEnd__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver28SuperSpinDriverNrvShootStartCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvCaptureCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver22SuperSpinDriverNrvWaitCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver24SuperSpinDriverNrvAppearCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver27SuperSpinDriverNrvNonActiveCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver27SuperSpinDriverNrvEmptyWaitCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveCFP5Spine | :x: |
-| execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoCFP5Spine | :x: |
+| createSuperSpinDriverYellow__2MRFPCc | :white_check_mark: |
+| createSuperSpinDriverGreen__2MRFPCc | :white_check_mark: |
+| createSuperSpinDriverPink__2MRFPCc | :white_check_mark: |
+| __sinit_\SuperSpinDriver_cpp | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver27SuperSpinDriverNrvEmptyWaitFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver27SuperSpinDriverNrvNonActiveFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver24SuperSpinDriverNrvAppearFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver22SuperSpinDriverNrvWaitFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver25SuperSpinDriverNrvCaptureFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver28SuperSpinDriverNrvShootStartFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootFv | :white_check_mark: |
+| __ct__Q218NrvSuperSpinDriver26SuperSpinDriverNrvCoolDownFv | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver26SuperSpinDriverNrvCoolDownCFP5Spine | :white_check_mark: |
+| executeOnEnd__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver23SuperSpinDriverNrvShootCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver28SuperSpinDriverNrvShootStartCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvCaptureCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver22SuperSpinDriverNrvWaitCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver24SuperSpinDriverNrvAppearCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver27SuperSpinDriverNrvNonActiveCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver27SuperSpinDriverNrvEmptyWaitCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveCFP5Spine | :white_check_mark: |
+| execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoCFP5Spine | :white_check_mark: |
 | Functor&lt;15SuperSpinDriver&gt;__2MRFP15SuperSpinDriverM15SuperSpinDriverFPCvPv_v_Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt; | :x: |
 | __cl__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFv | :x: |
 | clone__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFP7JKRHeap | :x: |

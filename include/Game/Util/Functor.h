@@ -68,6 +68,11 @@ namespace MR {
         return FunctorV0M<T *, void (T::*)()>(a1, a2);
     }
 
+    template<class T>
+    inline static FunctorV0M<T *, void (T::*)()> Functor_Inline(T* a1, void (T::*a2)()) {
+        return FunctorV0M<T *, void (T::*)()>(a1, a2);
+    }
+
     template<class T, typename U, typename V>
     static FunctorV2M<T *, void (T::*)(U, V), U, V> Functor(T* a1, void (T::*a2)(U, V), U arg_0, V arg_1) {
         return FunctorV2M<T *, void (T::*)(U, V), U, V>(a1, a2, arg_0, arg_1);

@@ -15,7 +15,7 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | NameObjExecuteHolder.o | 100.0% | 49 / 49 | 100.0% | :white_check_mark: 
-| NameObjFactory.o | 14.544250717280955% | 72 / 568 | 12.676056338028168% | :eight_pointed_black_star: 
+| NameObjFactory.o | 15.32774222026043% | 76 / 568 | 13.380281690140844% | :eight_pointed_black_star: 
 | NameObjFinder.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
@@ -477,7 +477,7 @@
 | createNameObj&lt;17CrystalCageMoving&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;9Shellfish&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15RailDemoMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;12SimpleMapObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;12SimpleMapObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;21OceanFloaterLandParts&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;8DashRing&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;20MeteorStrikeLauncher&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -549,7 +549,7 @@
 | createNameObj&lt;22SandCapsulePressGround&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;17RailRotateMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9DriftWood&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;11CapsuleCage&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;11CapsuleCage&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;24LavaBallRisingPlanetLava&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15SimpleSeesawObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;12RosettaChair&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
@@ -560,8 +560,8 @@
 | createNameObj&lt;16PrologueDirector&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;14FlexibleSphere&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;18SimpleClipPartsObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;13AssemblyBlock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;25SimpleMapObjNoSilhouetted&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13AssemblyBlock&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
+| createNameObj&lt;25SimpleMapObjNoSilhouetted&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;18HeavensDoorDemoObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;19MechaKoopaPartsHead&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;21RailMoveObjBreakAtEnd&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |

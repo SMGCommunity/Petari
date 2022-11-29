@@ -415,7 +415,7 @@ createNameObj<11CrystalCage>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameO
 createNameObj<17CrystalCageMoving>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<9Shellfish>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15RailDemoMoveObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<12SimpleMapObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<12SimpleMapObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<21OceanFloaterLandParts>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<8DashRing>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<20MeteorStrikeLauncher>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -487,7 +487,7 @@ createNameObj<13WaterLeakPipe>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Nam
 createNameObj<22SandCapsulePressGround>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<17RailRotateMoveObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9DriftWood>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<11CapsuleCage>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<11CapsuleCage>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<24LavaBallRisingPlanetLava>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15SimpleSeesawObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12RosettaChair>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -498,8 +498,8 @@ createNameObj<10DeadLeaves>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameOb
 createNameObj<16PrologueDirector>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14FlexibleSphere>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<18SimpleClipPartsObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<13AssemblyBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<25SimpleMapObjNoSilhouetted>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<13AssemblyBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createNameObj<25SimpleMapObjNoSilhouetted>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<18HeavensDoorDemoObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<19MechaKoopaPartsHead>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<21RailMoveObjBreakAtEnd>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
