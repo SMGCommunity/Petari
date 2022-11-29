@@ -202,6 +202,32 @@ game_libs = [
     "Util.a"
 ]
 
+lib_percent_colors = {
+    "Animation": "brightgreen",
+    "AreaObj": "green",
+    "AudioLib": "yellow",
+    "Boss": "orange",
+    "Camera": "red",
+    "Demo": "D65076",
+    "Effect": "pink",
+    "Enemy": "magenta",
+    "GameAudio": "teal",
+    "Gravity": "maroon",
+    "LiveActor": "cyan",
+    "Map": "silver",
+    "MapObj": "tan",
+    "NameObj": "indigo",
+    "NPC": "7fffd4",
+    "Player": "ff7f50",
+    "RhythmLib": "088da5",
+    "Ride": "ffff66",
+    "Scene": "a0db8e",
+    "Screen": "ff4040",
+    "Speaker": "daa520",
+    "System": "696969",
+    "Util": "ff6666"
+}
+
 func_sizes = {}
 
 # start by reading function sizes
@@ -257,6 +283,11 @@ for key in libraries:
     if libName in game_libs:
         full_sdk_size += f
         done_sdk_size += d
+
+    if lib.getName() not in lib_percent_colors:
+        lib.generateJSONTag((d / f ) * 100.0, "ffff66")
+    else:
+        lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
 
 progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
 
