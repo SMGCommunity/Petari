@@ -71,6 +71,7 @@
 #include "Game/MapObj/PurpleCoinStarter.h"
 #include "Game/MapObj/RailMoveObj.h"
 #include "Game/MapObj/ReverseGravityRoomPlanet.h"
+#include "Game/MapObj/RotateMoveObj.h"
 #include "Game/MapObj/ShootingStar.h"
 #include "Game/MapObj/SimpleMapObj.h"
 #include "Game/MapObj/SimpleTimerObj.h"

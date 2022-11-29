@@ -15,7 +15,7 @@
 | NameObjArchiveListCollector.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | NameObjCategoryList.o | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | NameObjExecuteHolder.o | 100.0% | 49 / 49 | 100.0% | :white_check_mark: 
-| NameObjFactory.o | 14.290443610681969% | 71 / 568 | 12.5% | :eight_pointed_black_star: 
+| NameObjFactory.o | 14.544250717280955% | 72 / 568 | 12.676056338028168% | :eight_pointed_black_star: 
 | NameObjFinder.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | NameObjGroup.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | NameObjHolder.o | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
@@ -501,7 +501,7 @@
 | createNameObj&lt;16OceanSmallTurtle&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;22SpringWaterFloaterSpot&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;24SeaBottomTriplePropeller&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
-| createNameObj&lt;13RotateMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
+| createNameObj&lt;13RotateMoveObj&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :white_check_mark: |
 | createNameObj&lt;10LargeChain&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;15ItemAppearStone&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |
 | createNameObj&lt;9SnowFloor&gt;__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj | :x: |

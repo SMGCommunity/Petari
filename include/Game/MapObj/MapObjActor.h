@@ -35,7 +35,7 @@ public:
     MapObjActor(const char *);
     MapObjActor(const char *, const char *);
 
-    virtual ~MapObjActor() NO_INLINE {
+    virtual ~MapObjActor() {
 
     }
 
@@ -113,6 +113,8 @@ public:
     static void setupInitInfoTypical(MapObjActorInitInfo *, const char *);
 
     static void setupInitInfoSimpleMapObj(MapObjActorInitInfo *);
+
+    static void setupInitInfoPlanet(MapObjActorInitInfo *);
 
     static void setupInitInfoSeesaw(MapObjActorInitInfo *, const JMapInfoIter &, const char *, f32);
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Inline.h"
+
 class JKRHeap;
 
 namespace MR {
@@ -62,7 +64,7 @@ namespace MR {
     };
 
     template<class T>
-    static FunctorV0M<T *, void (T::*)()> Functor(T* a1, void (T::*a2)()) {
+    static FunctorV0M<T *, void (T::*)()> Functor(T* a1, void (T::*a2)()) NO_INLINE {
         return FunctorV0M<T *, void (T::*)()>(a1, a2);
     }
 

@@ -217,8 +217,8 @@
 | RockCreator.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | RosettaChair.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | RosettaPictureBook.o | 0.0% | 0 / 23 | 0.0% | :x: 
-| RotateMoveObj.o | 0.0% | 0 / 20 | 0.0% | :x: 
-| SandCapsuleInsidePlanet.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| RotateMoveObj.o | 89.16666666666667% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
+| SandCapsuleInsidePlanet.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | SandCapsulePressGround.o | 0.0% | 0 / 36 | 0.0% | :x: 
 | Sandstorm.o | 0.0% | 0 / 46 | 0.0% | :x: 
 | SandUpDownEffectObj.o | 0.0% | 0 / 28 | 0.0% | :x: 
@@ -5636,43 +5636,43 @@
 # RotateMoveObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| init__13RotateMoveObjFRC12JMapInfoIter | :x: |
+| init__13RotateMoveObjFRC12JMapInfoIter | :white_check_mark: |
 | initCaseUseSwitchB__13RotateMoveObjFRC19MapObjActorInitInfo | :x: |
 | initCaseNoUseSwitchB__13RotateMoveObjFRC19MapObjActorInitInfo | :x: |
-| setStateMove__13RotateMoveObjFv | :x: |
-| exeMove__13RotateMoveObjFv | :x: |
-| exeStop__13RotateMoveObjFv | :x: |
-| __sinit_\RotateMoveObj_cpp | :x: |
-| __ct__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnFv | :x: |
-| __ct__Q216NrvRotateMoveObj12HostTypeWaitFv | :x: |
-| __ct__Q216NrvRotateMoveObj12HostTypeMoveFv | :x: |
-| __ct__Q216NrvRotateMoveObj12HostTypeStopFv | :x: |
-| execute__Q216NrvRotateMoveObj12HostTypeStopCFP5Spine | :x: |
-| execute__Q216NrvRotateMoveObj12HostTypeMoveCFP5Spine | :x: |
-| execute__Q216NrvRotateMoveObj12HostTypeWaitCFP5Spine | :x: |
-| execute__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :x: |
-| Functor&lt;13RotateMoveObj&gt;__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt; | :x: |
-| __cl__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__13RotateMoveObjFv | :x: |
+| setStateMove__13RotateMoveObjFv | :white_check_mark: |
+| exeMove__13RotateMoveObjFv | :white_check_mark: |
+| exeStop__13RotateMoveObjFv | :white_check_mark: |
+| __sinit_\RotateMoveObj_cpp | :white_check_mark: |
+| __ct__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnFv | :white_check_mark: |
+| __ct__Q216NrvRotateMoveObj12HostTypeWaitFv | :white_check_mark: |
+| __ct__Q216NrvRotateMoveObj12HostTypeMoveFv | :white_check_mark: |
+| __ct__Q216NrvRotateMoveObj12HostTypeStopFv | :white_check_mark: |
+| execute__Q216NrvRotateMoveObj12HostTypeStopCFP5Spine | :white_check_mark: |
+| execute__Q216NrvRotateMoveObj12HostTypeMoveCFP5Spine | :white_check_mark: |
+| execute__Q216NrvRotateMoveObj12HostTypeWaitCFP5Spine | :white_check_mark: |
+| execute__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnCFP5Spine | :white_check_mark: |
+| Functor&lt;13RotateMoveObj&gt;__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__13RotateMoveObjFv | :white_check_mark: |
 | getRotateSpeed__19MapPartsRotatorBaseCFv | :x: |
 
 
 # SandCapsuleInsidePlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__23SandCapsuleInsidePlanetFPCc | :x: |
-| init__23SandCapsuleInsidePlanetFRC12JMapInfoIter | :x: |
-| initCaseUseSwitchA__23SandCapsuleInsidePlanetFRC19MapObjActorInitInfo | :x: |
-| startOn__23SandCapsuleInsidePlanetFv | :x: |
-| startOff__23SandCapsuleInsidePlanetFv | :x: |
-| __sinit_\SandCapsuleInsidePlanet_cpp | :x: |
-| __ct__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitFv | :x: |
-| execute__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitCFP5Spine | :x: |
-| Functor&lt;23SandCapsuleInsidePlanet&gt;__2MRFP23SandCapsuleInsidePlanetM23SandCapsuleInsidePlanetFPCvPv_v_Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt; | :x: |
-| __cl__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__23SandCapsuleInsidePlanetFv | :x: |
+| __ct__23SandCapsuleInsidePlanetFPCc | :white_check_mark: |
+| init__23SandCapsuleInsidePlanetFRC12JMapInfoIter | :white_check_mark: |
+| initCaseUseSwitchA__23SandCapsuleInsidePlanetFRC19MapObjActorInitInfo | :white_check_mark: |
+| startOn__23SandCapsuleInsidePlanetFv | :white_check_mark: |
+| startOff__23SandCapsuleInsidePlanetFv | :white_check_mark: |
+| __sinit_\SandCapsuleInsidePlanet_cpp | :white_check_mark: |
+| __ct__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitFv | :white_check_mark: |
+| execute__Q226NrvSandCapsuleInsidePlanet30SandCapsuleInsidePlanetNrvWaitCFP5Spine | :white_check_mark: |
+| Functor&lt;23SandCapsuleInsidePlanet&gt;__2MRFP23SandCapsuleInsidePlanetM23SandCapsuleInsidePlanetFPCvPv_v_Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt; | :white_check_mark: |
+| __cl__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFv | :white_check_mark: |
+| clone__Q22MR73FunctorV0M&lt;P23SandCapsuleInsidePlanet,M23SandCapsuleInsidePlanetFPCvPv_v&gt;CFP7JKRHeap | :white_check_mark: |
+| __dt__23SandCapsuleInsidePlanetFv | :white_check_mark: |
 
 
 # SandCapsulePressGround.o
