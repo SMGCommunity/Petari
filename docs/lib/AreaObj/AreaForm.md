@@ -1,0 +1,44 @@
+# AreaForm.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# AreaForm.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| dot__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| set&lt;f&gt;__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;_v | :white_check_mark: |
+| add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| asin__Q29JGeometry8TUtil&lt;f&gt;Ff | :white_check_mark: |
+| mult33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| getValue&lt;f&gt;__12JMapInfoIterCFPCcPf_b | :x: |
+| __ct__12AreaFormCubeFi | :white_check_mark: |
+| init__12AreaFormCubeFRC12JMapInfoIter | :white_check_mark: |
+| isInVolume__12AreaFormCubeCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcWorldPos__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcWorldRotate__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| calcWorldBox__12AreaFormCubeCFPQ29JGeometry11TDirBox3&lt;f&gt; | :white_check_mark: |
+| calcLocalPos__12AreaFormCubeCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| getBaseSize__12AreaFormCubeFv | :white_check_mark: |
+| updateBoxParam__12AreaFormCubeFv | :x: |
+| calcWorldMtx__12AreaFormCubeCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt; | :white_check_mark: |
+| __ct__14AreaFormSphereFv | :white_check_mark: |
+| calcUpVec__14AreaFormSphereCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcPos__14AreaFormSphereCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isInVolume__14AreaFormSphereCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| __ct__12AreaFormBowlFv | :white_check_mark: |
+| init__12AreaFormBowlFRC12JMapInfoIter | :white_check_mark: |
+| isInVolume__12AreaFormBowlCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcUpVec__12AreaFormBowlFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| __ct__16AreaFormCylinderFv | :white_check_mark: |
+| calcPos__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcCenterPos__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcUpVec__16AreaFormCylinderCFPQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| isInVolume__16AreaFormCylinderCFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| calcDir__16AreaFormCylinderFRCQ29JGeometry8TVec3&lt;f&gt; | :white_check_mark: |
+| PSVECSubtract__14JMathInlineVECFPC3VecPC3VecP3Vec | :x: |
+| init__14AreaFormSphereFRC12JMapInfoIter | :white_check_mark: |
+| init__16AreaFormCylinderFRC12JMapInfoIter | :white_check_mark: |

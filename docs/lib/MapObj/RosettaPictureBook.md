@@ -1,0 +1,34 @@
+# RosettaPictureBook.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# RosettaPictureBook.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__18RosettaPictureBookFPCc | :x: |
+| init__18RosettaPictureBookFRC12JMapInfoIter | :x: |
+| appear__18RosettaPictureBookFv | :x: |
+| kill__18RosettaPictureBookFv | :x: |
+| makeArchiveList__18RosettaPictureBookFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
+| control__18RosettaPictureBookFv | :x: |
+| attackSensor__18RosettaPictureBookFP9HitSensorP9HitSensor | :x: |
+| exeWait__18RosettaPictureBookFv | :x: |
+| exeFadeOut__18RosettaPictureBookFv | :x: |
+| exeReading__18RosettaPictureBookFv | :x: |
+| exeFadeIn__18RosettaPictureBookFv | :x: |
+| __dt__18RosettaPictureBookFv | :x: |
+| __sinit_\RosettaPictureBook_cpp | :x: |
+| __ct__Q221NrvRosettaPictureBook15HostTypeNrvWaitFv | :x: |
+| __ct__Q221NrvRosettaPictureBook19HostTypeNrvDemoWaitFv | :x: |
+| __ct__Q221NrvRosettaPictureBook18HostTypeNrvFadeOutFv | :x: |
+| __ct__Q221NrvRosettaPictureBook18HostTypeNrvReadingFv | :x: |
+| __ct__Q221NrvRosettaPictureBook17HostTypeNrvFadeInFv | :x: |
+| execute__Q221NrvRosettaPictureBook17HostTypeNrvFadeInCFP5Spine | :x: |
+| execute__Q221NrvRosettaPictureBook18HostTypeNrvReadingCFP5Spine | :x: |
+| execute__Q221NrvRosettaPictureBook18HostTypeNrvFadeOutCFP5Spine | :x: |
+| execute__Q221NrvRosettaPictureBook19HostTypeNrvDemoWaitCFP5Spine | :x: |
+| execute__Q221NrvRosettaPictureBook15HostTypeNrvWaitCFP5Spine | :x: |

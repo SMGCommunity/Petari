@@ -1,0 +1,29 @@
+# MessageUtil.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# MessageUtil.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| getSystemMessageDirect__2MRFPCc | :x: |
+| getGameMessageDirect__2MRFPCc | :x: |
+| getLayoutMessageDirect__2MRFPCc | :x: |
+| getCurrentGalaxyNameOnCurrentLanguage__2MRFv | :x: |
+| getCurrentScenarioNameOnCurrentLanguage__2MRFv | :x: |
+| getRaceNameOnCurrentLanguage__2MRFi | :x: |
+| isExistGameMessage__2MRFPCc | :x: |
+| getMessageLine__2MRFPwUlPCwUl | :x: |
+| countMessageLine__2MRFPCw | :x: |
+| countMessageChar__2MRFPCw | :x: |
+| countMessageFigure__2MRFl | :x: |
+| getNextMessagePage__2MRFPCw | :x: |
+| getGalaxyNameOnCurrentLanguage__2MRFPCc | :x: |
+| getGalaxyNameShortOnCurrentLanguage__2MRFPCc | :x: |
+| getScenarioNameOnCurrentLanguage__2MRFPCcl | :x: |
+| getLayoutMessageID__2MRFPcPCcPCc | :x: |
+| makeCometMessageID__2MRFPcUlPCc | :x: |
+| isGroupTagId__23MessageEditorMessageTagCFii | :x: |

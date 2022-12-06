@@ -1,0 +1,20 @@
+# BossStinkBugOpeningDemo.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# BossStinkBugOpeningDemo.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__23BossStinkBugOpeningDemoFP12BossStinkBugRC12JMapInfoIter | :x: |
+| appear__23BossStinkBugOpeningDemoFv | :x: |
+| exeDemo__23BossStinkBugOpeningDemoFv | :x: |
+| __dt__23BossStinkBugOpeningDemoFv | :x: |
+| __sinit_\BossStinkBugOpeningDemo_cpp | :x: |
+| __ct__Q226NrvBossStinkBugOpeningDemo34BossStinkBugOpeningDemoNrvTryStartFv | :x: |
+| __ct__Q226NrvBossStinkBugOpeningDemo30BossStinkBugOpeningDemoNrvDemoFv | :x: |
+| execute__Q226NrvBossStinkBugOpeningDemo30BossStinkBugOpeningDemoNrvDemoCFP5Spine | :x: |
+| execute__Q226NrvBossStinkBugOpeningDemo34BossStinkBugOpeningDemoNrvTryStartCFP5Spine | :x: |

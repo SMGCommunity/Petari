@@ -1,0 +1,30 @@
+# WPadHolder.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# WPadHolder.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__16WPadReadDataInfoFv | :x: |
+| getKPadStatus__16WPadReadDataInfoCFUl | :x: |
+| getValidStatusCount__16WPadReadDataInfoCFv | :x: |
+| __ct__10WPadHolderFv | :x: |
+| updateReadDataOnly__10WPadHolderFv | :x: |
+| updateProjectPadData__10WPadHolderFv | :x: |
+| updateInGame__10WPadHolderFv | :x: |
+| update__10WPadHolderFv | :x: |
+| initSensorBarPosition__10WPadHolderFv | :x: |
+| resetPad__10WPadHolderFv | :x: |
+| getWPad__10WPadHolderFl | :x: |
+| setConnectCallback__10WPadHolderFv | :x: |
+| getWPadHolder__24@unnamed@WPadHolder_cpp@Fv | :x: |
+| getWPad__2MRFl | :x: |
+| resetWPad__2MRFv | :x: |
+| setWPadHolderModeHomeButton__2MRFv | :x: |
+| setWPadHolderModeGame__2MRFv | :x: |
+| getHBMKPadData__2MRFP11HBMKPadDatal | :x: |
+| setAutoSleepTimeWiiRemote__2MRFb | :x: |

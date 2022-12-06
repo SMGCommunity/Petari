@@ -1,0 +1,22 @@
+# CameraMan.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# CameraMan.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__9CameraManFPCc | :white_check_mark: |
+| owned__9CameraManFP14CameraDirector | :white_check_mark: |
+| released__9CameraManFP14CameraDirector | :white_check_mark: |
+| activate__9CameraManFP14CameraDirector | :white_check_mark: |
+| deactivate__9CameraManFP14CameraDirector | :white_check_mark: |
+| movement__9CameraManFv | :white_check_mark: |
+| __dt__9CameraManFv | :white_check_mark: |
+| notifyActivate__9CameraManFv | :white_check_mark: |
+| notifyDeactivate__9CameraManFv | :white_check_mark: |
+| calc__9CameraManFv | :white_check_mark: |
+| init__9CameraManFRC12JMapInfoIter | :white_check_mark: |

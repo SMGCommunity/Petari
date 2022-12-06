@@ -149,15 +149,28 @@ class Library:
             elif d != f and d != 0:
                 marker = ":eight_pointed_black_star:"
 
-            page.append(f"| {obj.name} | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% | {marker} \n")
+            obj_page_name = obj.name.replace(".o", "")
 
-        page.append("\n\n")
+            page.append(f"| [{obj.name}](https://github.com/shibbo/Petari/blob/master/docs/lib/{self.name}/{obj_page_name}.md) | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% | {marker} \n")
 
-        # now we can do it per object in the library
+        with open(f"docs/lib/{self.name}.md", "w") as w:
+            w.writelines(page)
+
+        # now that we have written the main page, let's make the object page too
         for obj in self.objects:
-            page.append(f"# {obj.name}\n")
-            page.append("| Symbol | Decompiled? |\n")
-            page.append("| ------------- | ------------- |\n")
+            obj_page = []
+
+            obj_page.append(f"# {obj.name}\n")
+            obj_page.append("| Symbol | Meaning \n")
+            obj_page.append("| ------------- | ------------- \n")
+            obj_page.append("| :x: | Object has not yet been started. \n")
+            obj_page.append("| :eight_pointed_black_star: | Object is in progress. \n")
+            obj_page.append("| :white_check_mark: | Object is completed. \n")
+            obj_page.append("\n\n")
+
+            obj_page.append(f"# {obj.name}\n")
+            obj_page.append("| Symbol | Decompiled? |\n")
+            obj_page.append("| ------------- | ------------- |\n")
 
             for func in obj.getFunctions():
                 marker = ":x:"
@@ -168,12 +181,15 @@ class Library:
                 funcName = func.name.replace("<", "&lt;")
                 funcName = funcName.replace(">", "&gt;")
 
-                page.append(f"| {funcName} | {marker} |\n")
+                obj_page.append(f"| {funcName} | {marker} |\n")
 
-            page.append("\n\n")
+            obj_page_name = obj.name.replace(".o", "")
 
-        with open(f"docs/lib/{self.name}.md", "w") as w:
-            w.writelines(page)
+            if not os.path.exists(f"docs/lib/{self.name}"):
+                os.makedirs(f"docs/lib/{self.name}")
+
+            with open(f"docs/lib/{self.name}/{obj_page_name}.md", "w") as w:
+                w.writelines(obj_page)
 
 game_libs = [
     "Animation.a",

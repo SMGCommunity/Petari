@@ -1,0 +1,25 @@
+# MarioAnimationEfx.o
+| Symbol | Meaning 
+| ------------- | ------------- 
+| :x: | Object has not yet been started. 
+| :eight_pointed_black_star: | Object is in progress. 
+| :white_check_mark: | Object is completed. 
+
+
+# MarioAnimationEfx.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| initCallbackTable__13MarioAnimatorFv | :x: |
+| entryCallback__13MarioAnimatorFPCc | :x: |
+| runningCallback__13MarioAnimatorFv | :x: |
+| closeCallback__13MarioAnimatorFv | :x: |
+| spinEntry__13MarioAnimatorFv | :x: |
+| spinUpdate__13MarioAnimatorFv | :x: |
+| spinClose__13MarioAnimatorFv | :x: |
+| stageInCheck__13MarioAnimatorFv | :x: |
+| throwCheck__13MarioAnimatorFv | :x: |
+| throwEntry__13MarioAnimatorFv | :x: |
+| throwClose__13MarioAnimatorFv | :x: |
+| squatSpinCheck__13MarioAnimatorFv | :x: |
+| walkinClose__13MarioAnimatorFv | :x: |
+| __sinit_\MarioAnimationEfx_cpp | :x: |
