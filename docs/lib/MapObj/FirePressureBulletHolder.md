@@ -9,7 +9,7 @@
 # FirePressureBulletHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__24FirePressureBulletHolderFPCc` | :x: |
-| `callEmptyBullet__24FirePressureBulletHolderFv` | :x: |
-| `__dt__24FirePressureBulletHolderFv` | :x: |
-| `init__24FirePressureBulletHolderFRC12JMapInfoIter` | :x: |
+| `__ct__24FirePressureBulletHolderFPCc` | :white_check_mark: |
+| `callEmptyBullet__24FirePressureBulletHolderFv` | :white_check_mark: |
+| `__dt__24FirePressureBulletHolderFv` | :white_check_mark: |
+| `init__24FirePressureBulletHolderFRC12JMapInfoIter` | :white_check_mark: |
