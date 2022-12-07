@@ -163,9 +163,9 @@ class Library:
             obj_page.append(f"# {obj.name}\n")
             obj_page.append("| Symbol | Meaning \n")
             obj_page.append("| ------------- | ------------- \n")
-            obj_page.append("| :x: | Object has not yet been started. \n")
-            obj_page.append("| :eight_pointed_black_star: | Object is in progress. \n")
-            obj_page.append("| :white_check_mark: | Object is completed. \n")
+            obj_page.append("| :x: | Function has not yet been started. \n")
+            obj_page.append("| :eight_pointed_black_star: | Function is in progress. \n")
+            obj_page.append("| :white_check_mark: | Function is completed. \n")
             obj_page.append("\n\n")
 
             obj_page.append(f"# {obj.name}\n")
@@ -181,7 +181,7 @@ class Library:
                 funcName = func.name.replace("<", "&lt;")
                 funcName = funcName.replace(">", "&gt;")
 
-                obj_page.append(f"| {funcName} | {marker} |\n")
+                obj_page.append(f"| `{funcName}` | {marker} |\n")
 
             obj_page_name = obj.name.replace(".o", "")
 

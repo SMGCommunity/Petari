@@ -1,20 +1,20 @@
 # AudBgmSetting.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # AudBgmSetting.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getMuteState__13AudBgmSettingF10JAISoundIDl | :x: |
-| getExtraChordNum__13AudBgmSettingF10JAISoundIDl | :x: |
-| getSeqIdForMultiBgm__13AudBgmSettingFUl | :x: |
-| getStreamIdForMultiBgm__13AudBgmSettingFUl | :x: |
-| getBeatMulForMultiBgm__13AudBgmSettingFUl | :x: |
-| getIntroBeatsForMultiBgm__13AudBgmSettingFUl | :x: |
-| getLoopBeatsForMultiBgm__13AudBgmSettingFUl | :x: |
-| getLoopStartSamplesForMultiBgm__13AudBgmSettingFUl | :x: |
-| getLoopEndSamplesForMultiBgm__13AudBgmSettingFUl | :x: |
+| `getMuteState__13AudBgmSettingF10JAISoundIDl` | :x: |
+| `getExtraChordNum__13AudBgmSettingF10JAISoundIDl` | :x: |
+| `getSeqIdForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getStreamIdForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getBeatMulForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getIntroBeatsForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getLoopBeatsForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getLoopStartSamplesForMultiBgm__13AudBgmSettingFUl` | :x: |
+| `getLoopEndSamplesForMultiBgm__13AudBgmSettingFUl` | :x: |

@@ -1,44 +1,44 @@
 # RosettaDemoAstroDome.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # RosettaDemoAstroDome.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16RosettaMonologueFv | :x: |
-| __dt__12SimpleLayoutFv | :x: |
-| appear__16RosettaMonologueFv | :x: |
-| calcAnim__16RosettaMonologueFv | :x: |
-| movement__16RosettaMonologueFv | :x: |
-| control__16RosettaMonologueFv | :x: |
-| __ct__27RosettaDemoAstroDomeExplainFP7RosettaRC12JMapInfoIter | :x: |
-| makeArchiveList__27RosettaDemoAstroDomeExplainFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| startDemo__27RosettaDemoAstroDomeExplainFv | :x: |
-| exeDemo__27RosettaDemoAstroDomeExplainFv | :x: |
-| __ct__31RosettaDemoAstroDomeFinalBattleFP7RosettaRC12JMapInfoIter | :x: |
-| EntryDemo&lt;31RosettaDemoAstroDomeFinalBattle&gt;__FP31RosettaDemoAstroDomeFinalBattlePCcPCcRC12JMapInfoIter_v | :x: |
-| startDemo__31RosettaDemoAstroDomeFinalBattleFv | :x: |
-| __ct__24RosettaDemoAstroDomeTalkFP7RosettaRC12JMapInfoIter | :x: |
-| EntryDemo&lt;24RosettaDemoAstroDomeTalk&gt;__FP24RosettaDemoAstroDomeTalkPCcPCcRC12JMapInfoIter_v | :x: |
-| startDemo__24RosettaDemoAstroDomeTalkFv | :x: |
-| __sinit_\RosettaDemoAstroDome_cpp | :x: |
-| __ct__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoFv | :x: |
-| __ct__Q234NrvRosettaDemoAstroDomeFinalBattle49RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemoFv | :x: |
-| __ct__Q227NrvRosettaDemoAstroDomeTalk35RosettaDemoAstroDomeTalkNrvTalkDemoFv | :x: |
-| execute__Q227NrvRosettaDemoAstroDomeTalk35RosettaDemoAstroDomeTalkNrvTalkDemoCFP5Spine | :x: |
-| execute__Q234NrvRosettaDemoAstroDomeFinalBattle49RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemoCFP5Spine | :x: |
-| execute__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoCFP5Spine | :x: |
-| __cl__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __cl__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __cl__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFv | :x: |
-| clone__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFP7JKRHeap | :x: |
-| __dt__27RosettaDemoAstroDomeExplainFv | :x: |
-| __dt__31RosettaDemoAstroDomeFinalBattleFv | :x: |
-| __dt__24RosettaDemoAstroDomeTalkFv | :x: |
-| __dt__16RosettaMonologueFv | :x: |
+| `__ct__16RosettaMonologueFv` | :x: |
+| `__dt__12SimpleLayoutFv` | :x: |
+| `appear__16RosettaMonologueFv` | :x: |
+| `calcAnim__16RosettaMonologueFv` | :x: |
+| `movement__16RosettaMonologueFv` | :x: |
+| `control__16RosettaMonologueFv` | :x: |
+| `__ct__27RosettaDemoAstroDomeExplainFP7RosettaRC12JMapInfoIter` | :x: |
+| `makeArchiveList__27RosettaDemoAstroDomeExplainFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :x: |
+| `startDemo__27RosettaDemoAstroDomeExplainFv` | :x: |
+| `exeDemo__27RosettaDemoAstroDomeExplainFv` | :x: |
+| `__ct__31RosettaDemoAstroDomeFinalBattleFP7RosettaRC12JMapInfoIter` | :x: |
+| `EntryDemo&lt;31RosettaDemoAstroDomeFinalBattle&gt;__FP31RosettaDemoAstroDomeFinalBattlePCcPCcRC12JMapInfoIter_v` | :x: |
+| `startDemo__31RosettaDemoAstroDomeFinalBattleFv` | :x: |
+| `__ct__24RosettaDemoAstroDomeTalkFP7RosettaRC12JMapInfoIter` | :x: |
+| `EntryDemo&lt;24RosettaDemoAstroDomeTalk&gt;__FP24RosettaDemoAstroDomeTalkPCcPCcRC12JMapInfoIter_v` | :x: |
+| `startDemo__24RosettaDemoAstroDomeTalkFv` | :x: |
+| `__sinit_\RosettaDemoAstroDome_cpp` | :x: |
+| `__ct__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoFv` | :x: |
+| `__ct__Q234NrvRosettaDemoAstroDomeFinalBattle49RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemoFv` | :x: |
+| `__ct__Q227NrvRosettaDemoAstroDomeTalk35RosettaDemoAstroDomeTalkNrvTalkDemoFv` | :x: |
+| `execute__Q227NrvRosettaDemoAstroDomeTalk35RosettaDemoAstroDomeTalkNrvTalkDemoCFP5Spine` | :x: |
+| `execute__Q234NrvRosettaDemoAstroDomeFinalBattle49RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemoCFP5Spine` | :x: |
+| `execute__Q230NrvRosettaDemoAstroDomeExplain41RosettaDemoAstroDomeExplainNrvExplainDemoCFP5Spine` | :x: |
+| `__cl__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFv` | :x: |
+| `clone__Q22MR75FunctorV0M&lt;P24RosettaDemoAstroDomeTalk,M24RosettaDemoAstroDomeTalkFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFv` | :x: |
+| `clone__Q22MR89FunctorV0M&lt;P31RosettaDemoAstroDomeFinalBattle,M31RosettaDemoAstroDomeFinalBattleFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFv` | :x: |
+| `clone__Q22MR81FunctorV0M&lt;P27RosettaDemoAstroDomeExplain,M27RosettaDemoAstroDomeExplainFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__dt__27RosettaDemoAstroDomeExplainFv` | :x: |
+| `__dt__31RosettaDemoAstroDomeFinalBattleFv` | :x: |
+| `__dt__24RosettaDemoAstroDomeTalkFv` | :x: |
+| `__dt__16RosettaMonologueFv` | :x: |

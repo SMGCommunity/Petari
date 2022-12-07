@@ -1,24 +1,24 @@
 # PaneEffectKeeper.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # PaneEffectKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__16PaneEffectKeeperFP11LayoutActorPC13LayoutManageriPCc | :x: |
-| init__16PaneEffectKeeperFPC11LayoutActorPC12EffectSystem | :x: |
-| add__16PaneEffectKeeperFPCcPCcPCc | :x: |
-| createEmitter__16PaneEffectKeeperFPCc | :x: |
-| deleteEmitter__16PaneEffectKeeperFPCc | :x: |
-| forceDeleteEmitter__16PaneEffectKeeperFPCc | :x: |
-| deleteEmitterAll__16PaneEffectKeeperFv | :x: |
-| forceDeleteEmitterAll__16PaneEffectKeeperFv | :x: |
-| clear__16PaneEffectKeeperFv | :x: |
-| getEmitter__16PaneEffectKeeperCFPCc | :x: |
-| changeAnim__16PaneEffectKeeperFv | :x: |
-| registerEffect__16PaneEffectKeeperFP12MultiEmitterPCc | :x: |
-| find__16PaneEffectKeeperCFPCc | :x: |
+| `__ct__16PaneEffectKeeperFP11LayoutActorPC13LayoutManageriPCc` | :x: |
+| `init__16PaneEffectKeeperFPC11LayoutActorPC12EffectSystem` | :x: |
+| `add__16PaneEffectKeeperFPCcPCcPCc` | :x: |
+| `createEmitter__16PaneEffectKeeperFPCc` | :x: |
+| `deleteEmitter__16PaneEffectKeeperFPCc` | :x: |
+| `forceDeleteEmitter__16PaneEffectKeeperFPCc` | :x: |
+| `deleteEmitterAll__16PaneEffectKeeperFv` | :x: |
+| `forceDeleteEmitterAll__16PaneEffectKeeperFv` | :x: |
+| `clear__16PaneEffectKeeperFv` | :x: |
+| `getEmitter__16PaneEffectKeeperCFPCc` | :x: |
+| `changeAnim__16PaneEffectKeeperFv` | :x: |
+| `registerEffect__16PaneEffectKeeperFP12MultiEmitterPCc` | :x: |
+| `find__16PaneEffectKeeperCFPCc` | :x: |

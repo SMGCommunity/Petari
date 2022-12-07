@@ -1,29 +1,29 @@
 # MarioActorOffensiveMsg.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # MarioActorOffensiveMsg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| attackOrPushSensor__10MarioActorFP9HitSensorf | :x: |
-| attackOrPushSensorInDamage__10MarioActorFP9HitSensorf | :x: |
-| attackOrPushSensorInRush__10MarioActorFP9HitSensorf | :x: |
-| tryAddClapCoin__10MarioActorFP9HitSensor | :x: |
-| tryTornadoAttack__10MarioActorFP9HitSensor | :x: |
-| isUnderTarget__10MarioActorFP9HitSensor | :x: |
-| tryHipDropAttack__10MarioActorFP9HitSensor | :x: |
-| checkAndTryTrampleAttack__10MarioActorFP9HitSensorfb | :x: |
-| tryTrampleAttack__10MarioActorFP9HitSensor | :x: |
-| cylinderHorizontalCheck__10MarioActorFP9HitSensor | :x: |
-| tryJetAttack__10MarioActorFP9HitSensor | :x: |
-| tryCounterJetAttack__10MarioActorFP9HitSensor | :x: |
-| tryGetItem__10MarioActorFP9HitSensor | :x: |
-| cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;fff | :x: |
-| attackOrPushPolygons__10MarioActorFv | :x: |
-| sendWallTouch__10MarioActorFP9HitSensorP9HitSensor | :x: |
-| sendMsgUpperPunch__10MarioActorFP9HitSensor | :x: |
-| __sinit_\MarioActorOffensiveMsg_cpp | :x: |
+| `attackOrPushSensor__10MarioActorFP9HitSensorf` | :x: |
+| `attackOrPushSensorInDamage__10MarioActorFP9HitSensorf` | :x: |
+| `attackOrPushSensorInRush__10MarioActorFP9HitSensorf` | :x: |
+| `tryAddClapCoin__10MarioActorFP9HitSensor` | :x: |
+| `tryTornadoAttack__10MarioActorFP9HitSensor` | :x: |
+| `isUnderTarget__10MarioActorFP9HitSensor` | :x: |
+| `tryHipDropAttack__10MarioActorFP9HitSensor` | :x: |
+| `checkAndTryTrampleAttack__10MarioActorFP9HitSensorfb` | :x: |
+| `tryTrampleAttack__10MarioActorFP9HitSensor` | :x: |
+| `cylinderHorizontalCheck__10MarioActorFP9HitSensor` | :x: |
+| `tryJetAttack__10MarioActorFP9HitSensor` | :x: |
+| `tryCounterJetAttack__10MarioActorFP9HitSensor` | :x: |
+| `tryGetItem__10MarioActorFP9HitSensor` | :x: |
+| `cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;fff` | :x: |
+| `attackOrPushPolygons__10MarioActorFv` | :x: |
+| `sendWallTouch__10MarioActorFP9HitSensorP9HitSensor` | :x: |
+| `sendMsgUpperPunch__10MarioActorFP9HitSensor` | :x: |
+| `__sinit_\MarioActorOffensiveMsg_cpp` | :x: |

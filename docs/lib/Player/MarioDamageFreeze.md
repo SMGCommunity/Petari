@@ -1,19 +1,19 @@
 # MarioDamageFreeze.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # MarioDamageFreeze.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| doFreeze__5MarioFv | :x: |
-| __ct__11MarioFreezeFP10MarioActor | :x: |
-| close__11MarioFreezeFv | :x: |
-| notice__11MarioFreezeFv | :x: |
-| start__11MarioFreezeFv | :x: |
-| update__11MarioFreezeFv | :x: |
-| __sinit_\MarioDamageFreeze_cpp | :x: |
-| setJumpVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
+| `doFreeze__5MarioFv` | :x: |
+| `__ct__11MarioFreezeFP10MarioActor` | :x: |
+| `close__11MarioFreezeFv` | :x: |
+| `notice__11MarioFreezeFv` | :x: |
+| `start__11MarioFreezeFv` | :x: |
+| `update__11MarioFreezeFv` | :x: |
+| `__sinit_\MarioDamageFreeze_cpp` | :x: |
+| `setJumpVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |

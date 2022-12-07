@@ -1,28 +1,28 @@
 # ChipHolder.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # ChipHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__10ChipHolderFPCcl | :x: |
-| registerChipGroup__10ChipHolderFP9ChipGroup | :x: |
-| findChipGroup__10ChipHolderCFl | :x: |
-| createChipHolder__2MRFl | :x: |
-| getChipHolder__2MRFl | :x: |
-| registerChipGroup__2MRFlP9ChipGroup | :x: |
-| registerChip__2MRFlP8ChipBasel | :x: |
-| noticeGetChip__2MRFlP8ChipBasel | :x: |
-| showChipCounter__2MRFll | :x: |
-| hideChipCounter__2MRFll | :x: |
-| requestStartChipCompleteDemo__2MRFll | :x: |
-| noticeEndChipCompleteDemo__2MRFll | :x: |
-| getGotChipCount__2MRFll | :x: |
-| activateChipLayout__2MRFv | :x: |
-| deactivateChipLayout__2MRFv | :x: |
-| __dt__10ChipHolderFv | :x: |
-| init__10ChipHolderFRC12JMapInfoIter | :x: |
+| `__ct__10ChipHolderFPCcl` | :x: |
+| `registerChipGroup__10ChipHolderFP9ChipGroup` | :x: |
+| `findChipGroup__10ChipHolderCFl` | :x: |
+| `createChipHolder__2MRFl` | :x: |
+| `getChipHolder__2MRFl` | :x: |
+| `registerChipGroup__2MRFlP9ChipGroup` | :x: |
+| `registerChip__2MRFlP8ChipBasel` | :x: |
+| `noticeGetChip__2MRFlP8ChipBasel` | :x: |
+| `showChipCounter__2MRFll` | :x: |
+| `hideChipCounter__2MRFll` | :x: |
+| `requestStartChipCompleteDemo__2MRFll` | :x: |
+| `noticeEndChipCompleteDemo__2MRFll` | :x: |
+| `getGotChipCount__2MRFll` | :x: |
+| `activateChipLayout__2MRFv` | :x: |
+| `deactivateChipLayout__2MRFv` | :x: |
+| `__dt__10ChipHolderFv` | :x: |
+| `init__10ChipHolderFRC12JMapInfoIter` | :x: |

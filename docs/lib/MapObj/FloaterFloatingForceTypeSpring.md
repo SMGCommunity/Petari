@@ -1,33 +1,33 @@
 # FloaterFloatingForceTypeSpring.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # FloaterFloatingForceTypeSpring.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__30FloaterFloatingForceTypeSpringFv | :x: |
-| __ct__18FloaterSpringForceFfff | :x: |
-| addSpringVelocity__18FloaterSpringForceFf | :x: |
-| setSpringBaseValue__18FloaterSpringForceFf | :x: |
-| __ct__30FloaterFloatingForceTypeSpringFP9LiveActorPCc | :x: |
-| init__30FloaterFloatingForceTypeSpringFRC12JMapInfoIter | :x: |
-| start__30FloaterFloatingForceTypeSpringFv | :x: |
-| updateVelocity__30FloaterFloatingForceTypeSpringFv | :x: |
-| updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| soundMoveSE__30FloaterFloatingForceTypeSpringFv | :x: |
-| getCurrentSinkSpeed__30FloaterFloatingForceTypeSpringCFv | :x: |
-| tryOn__30FloaterFloatingForceTypeSpringFv | :x: |
-| tryReturn__30FloaterFloatingForceTypeSpringFv | :x: |
-| exeMove__30FloaterFloatingForceTypeSpringFv | :x: |
-| exeMoveReturn__30FloaterFloatingForceTypeSpringFv | :x: |
-| __sinit_\FloaterFloatingForceTypeSpring_cpp | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeSpring12HostTypeWaitFv | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeSpring12HostTypeMoveFv | :x: |
-| __ct__Q233NrvFloaterFloatingForceTypeSpring18HostTypeMoveReturnFv | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeSpring18HostTypeMoveReturnCFP5Spine | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeSpring12HostTypeMoveCFP5Spine | :x: |
-| execute__Q233NrvFloaterFloatingForceTypeSpring12HostTypeWaitCFP5Spine | :x: |
+| `__dt__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `__ct__18FloaterSpringForceFfff` | :x: |
+| `addSpringVelocity__18FloaterSpringForceFf` | :x: |
+| `setSpringBaseValue__18FloaterSpringForceFf` | :x: |
+| `__ct__30FloaterFloatingForceTypeSpringFP9LiveActorPCc` | :x: |
+| `init__30FloaterFloatingForceTypeSpringFRC12JMapInfoIter` | :x: |
+| `start__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `updateVelocity__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `soundMoveSE__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `getCurrentSinkSpeed__30FloaterFloatingForceTypeSpringCFv` | :x: |
+| `tryOn__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `tryReturn__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `exeMove__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `exeMoveReturn__30FloaterFloatingForceTypeSpringFv` | :x: |
+| `__sinit_\FloaterFloatingForceTypeSpring_cpp` | :x: |
+| `__ct__Q233NrvFloaterFloatingForceTypeSpring12HostTypeWaitFv` | :x: |
+| `__ct__Q233NrvFloaterFloatingForceTypeSpring12HostTypeMoveFv` | :x: |
+| `__ct__Q233NrvFloaterFloatingForceTypeSpring18HostTypeMoveReturnFv` | :x: |
+| `execute__Q233NrvFloaterFloatingForceTypeSpring18HostTypeMoveReturnCFP5Spine` | :x: |
+| `execute__Q233NrvFloaterFloatingForceTypeSpring12HostTypeMoveCFP5Spine` | :x: |
+| `execute__Q233NrvFloaterFloatingForceTypeSpring12HostTypeWaitCFP5Spine` | :x: |

@@ -1,28 +1,28 @@
 # RunawayRabbitCollect.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # RunawayRabbitCollect.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__20RunawayRabbitCollectFPCc | :x: |
-| init__20RunawayRabbitCollectFRC12JMapInfoIter | :x: |
-| initAfterPlacement__20RunawayRabbitCollectFv | :x: |
-| calcCompleteRabbitCount__20RunawayRabbitCollectCFv | :x: |
-| linkMsgCtrl__20RunawayRabbitCollectFv | :x: |
-| noticeAppearRabbit__20RunawayRabbitCollectFP13RunawayRabbit | :x: |
-| noticeCaughtRabbit__20RunawayRabbitCollectFP13RunawayRabbit | :x: |
-| control__20RunawayRabbitCollectFv | :x: |
-| exeWait__20RunawayRabbitCollectFv | :x: |
-| appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3&lt;f&gt; | :x: |
-| exeActive__20RunawayRabbitCollectFv | :x: |
-| __dt__20RunawayRabbitCollectFv | :x: |
-| __sinit_\RunawayRabbitCollect_cpp | :x: |
-| __ct__Q223NrvRunawayRabbitCollect27RunawayRabbitCollectNrvWaitFv | :x: |
-| __ct__Q223NrvRunawayRabbitCollect29RunawayRabbitCollectNrvActiveFv | :x: |
-| execute__Q223NrvRunawayRabbitCollect29RunawayRabbitCollectNrvActiveCFP5Spine | :x: |
-| execute__Q223NrvRunawayRabbitCollect27RunawayRabbitCollectNrvWaitCFP5Spine | :x: |
+| `__ct__20RunawayRabbitCollectFPCc` | :x: |
+| `init__20RunawayRabbitCollectFRC12JMapInfoIter` | :x: |
+| `initAfterPlacement__20RunawayRabbitCollectFv` | :x: |
+| `calcCompleteRabbitCount__20RunawayRabbitCollectCFv` | :x: |
+| `linkMsgCtrl__20RunawayRabbitCollectFv` | :x: |
+| `noticeAppearRabbit__20RunawayRabbitCollectFP13RunawayRabbit` | :x: |
+| `noticeCaughtRabbit__20RunawayRabbitCollectFP13RunawayRabbit` | :x: |
+| `control__20RunawayRabbitCollectFv` | :x: |
+| `exeWait__20RunawayRabbitCollectFv` | :x: |
+| `appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `exeActive__20RunawayRabbitCollectFv` | :x: |
+| `__dt__20RunawayRabbitCollectFv` | :x: |
+| `__sinit_\RunawayRabbitCollect_cpp` | :x: |
+| `__ct__Q223NrvRunawayRabbitCollect27RunawayRabbitCollectNrvWaitFv` | :x: |
+| `__ct__Q223NrvRunawayRabbitCollect29RunawayRabbitCollectNrvActiveFv` | :x: |
+| `execute__Q223NrvRunawayRabbitCollect29RunawayRabbitCollectNrvActiveCFP5Spine` | :x: |
+| `execute__Q223NrvRunawayRabbitCollect27RunawayRabbitCollectNrvWaitCFP5Spine` | :x: |

@@ -1,29 +1,29 @@
 # SideSpikeMoveStep.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # SideSpikeMoveStep.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__17SideSpikeMoveStepFPCc | :x: |
-| init__17SideSpikeMoveStepFRC12JMapInfoIter | :x: |
-| exeWait__17SideSpikeMoveStepFv | :x: |
-| exeDPDStop__17SideSpikeMoveStepFv | :x: |
-| exeDPDStopSync__17SideSpikeMoveStepFv | :x: |
-| calcAndSetBaseMtx__17SideSpikeMoveStepFv | :x: |
-| control__17SideSpikeMoveStepFv | :x: |
-| receiveOtherMsg__17SideSpikeMoveStepFUlP9HitSensorP9HitSensor | :x: |
-| __dt__17SideSpikeMoveStepFv | :x: |
-| __sinit_\SideSpikeMoveStep_cpp | :x: |
-| __ct__Q220NrvSideSpikeMoveStep24SideSpikeMoveStepNrvWaitFv | :x: |
-| __ct__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopFv | :x: |
-| __ct__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncFv | :x: |
-| executeOnEnd__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncCFP5Spine | :x: |
-| execute__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncCFP5Spine | :x: |
-| executeOnEnd__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopCFP5Spine | :x: |
-| execute__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopCFP5Spine | :x: |
-| execute__Q220NrvSideSpikeMoveStep24SideSpikeMoveStepNrvWaitCFP5Spine | :x: |
+| `__ct__17SideSpikeMoveStepFPCc` | :x: |
+| `init__17SideSpikeMoveStepFRC12JMapInfoIter` | :x: |
+| `exeWait__17SideSpikeMoveStepFv` | :x: |
+| `exeDPDStop__17SideSpikeMoveStepFv` | :x: |
+| `exeDPDStopSync__17SideSpikeMoveStepFv` | :x: |
+| `calcAndSetBaseMtx__17SideSpikeMoveStepFv` | :x: |
+| `control__17SideSpikeMoveStepFv` | :x: |
+| `receiveOtherMsg__17SideSpikeMoveStepFUlP9HitSensorP9HitSensor` | :x: |
+| `__dt__17SideSpikeMoveStepFv` | :x: |
+| `__sinit_\SideSpikeMoveStep_cpp` | :x: |
+| `__ct__Q220NrvSideSpikeMoveStep24SideSpikeMoveStepNrvWaitFv` | :x: |
+| `__ct__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopFv` | :x: |
+| `__ct__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncFv` | :x: |
+| `executeOnEnd__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncCFP5Spine` | :x: |
+| `execute__Q220NrvSideSpikeMoveStep31SideSpikeMoveStepNrvDPDStopSyncCFP5Spine` | :x: |
+| `executeOnEnd__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopCFP5Spine` | :x: |
+| `execute__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopCFP5Spine` | :x: |
+| `execute__Q220NrvSideSpikeMoveStep24SideSpikeMoveStepNrvWaitCFP5Spine` | :x: |

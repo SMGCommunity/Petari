@@ -1,25 +1,25 @@
 # PoltaStateAttackGround.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # PoltaStateAttackGround.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__22PoltaStateAttackGroundFP5Polta | :x: |
-| appear__22PoltaStateAttackGroundFv | :x: |
-| exeStart__22PoltaStateAttackGroundFv | :x: |
-| exeAttack__22PoltaStateAttackGroundFv | :x: |
-| exeToWait__22PoltaStateAttackGroundFv | :x: |
-| isEnableAttack__22PoltaStateAttackGroundCFPC9HitSensor | :x: |
-| __dt__22PoltaStateAttackGroundFv | :x: |
-| __sinit_\PoltaStateAttackGround_cpp | :x: |
-| __ct__Q225NrvPoltaStateAttackGround30PoltaStateAttackGroundNrvStartFv | :x: |
-| __ct__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvAttackFv | :x: |
-| __ct__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvToWaitFv | :x: |
-| execute__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvToWaitCFP5Spine | :x: |
-| execute__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvAttackCFP5Spine | :x: |
-| execute__Q225NrvPoltaStateAttackGround30PoltaStateAttackGroundNrvStartCFP5Spine | :x: |
+| `__ct__22PoltaStateAttackGroundFP5Polta` | :x: |
+| `appear__22PoltaStateAttackGroundFv` | :x: |
+| `exeStart__22PoltaStateAttackGroundFv` | :x: |
+| `exeAttack__22PoltaStateAttackGroundFv` | :x: |
+| `exeToWait__22PoltaStateAttackGroundFv` | :x: |
+| `isEnableAttack__22PoltaStateAttackGroundCFPC9HitSensor` | :x: |
+| `__dt__22PoltaStateAttackGroundFv` | :x: |
+| `__sinit_\PoltaStateAttackGround_cpp` | :x: |
+| `__ct__Q225NrvPoltaStateAttackGround30PoltaStateAttackGroundNrvStartFv` | :x: |
+| `__ct__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvAttackFv` | :x: |
+| `__ct__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvToWaitFv` | :x: |
+| `execute__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvToWaitCFP5Spine` | :x: |
+| `execute__Q225NrvPoltaStateAttackGround31PoltaStateAttackGroundNrvAttackCFP5Spine` | :x: |
+| `execute__Q225NrvPoltaStateAttackGround30PoltaStateAttackGroundNrvStartCFP5Spine` | :x: |

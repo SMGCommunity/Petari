@@ -1,36 +1,36 @@
 # Rosetta.o
 | Symbol | Meaning 
 | ------------- | ------------- 
-| :x: | Object has not yet been started. 
-| :eight_pointed_black_star: | Object is in progress. 
-| :white_check_mark: | Object is completed. 
+| :x: | Function has not yet been started. 
+| :eight_pointed_black_star: | Function is in progress. 
+| :white_check_mark: | Function is completed. 
 
 
 # Rosetta.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7RosettaFPCc | :x: |
-| __dt__11FadeStarterFv | :x: |
-| makeArchiveList__7RosettaFP27NameObjArchiveListCollectorRC12JMapInfoIter | :x: |
-| init__7RosettaFRC12JMapInfoIter | :x: |
-| calcAndSetBaseMtx__7RosettaFv | :x: |
-| receiveMsgPlayerAttack__7RosettaFUlP9HitSensorP9HitSensor | :x: |
-| control__7RosettaFv | :x: |
-| branchFunc__7RosettaFUl | :x: |
-| eventFunc__7RosettaFUl | :x: |
-| startDemo__7RosettaFP13NerveExecutor | :x: |
-| endDemo__7RosettaFv | :x: |
-| endDemoWithInterpole__7RosettaFv | :x: |
-| canUpdateStarePos__7RosettaCFv | :x: |
-| exeReaction__7RosettaFv | :x: |
-| __sinit_\Rosetta_cpp | :x: |
-| __ct__Q210NrvRosetta14RosettaNrvDemoFv | :x: |
-| __ct__Q210NrvRosetta18RosettaNrvReactionFv | :x: |
-| execute__Q210NrvRosetta18RosettaNrvReactionCFP5Spine | :x: |
-| execute__Q210NrvRosetta14RosettaNrvDemoCFP5Spine | :x: |
-| TalkMessageFunc&lt;7Rosetta&gt;__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt; | :x: |
-| __cl__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFUl | :x: |
-| clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFv | :x: |
-| clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFP7JKRHeap | :x: |
-| __ct__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt; | :x: |
-| __dt__7RosettaFv | :x: |
+| `__ct__7RosettaFPCc` | :x: |
+| `__dt__11FadeStarterFv` | :x: |
+| `makeArchiveList__7RosettaFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :x: |
+| `init__7RosettaFRC12JMapInfoIter` | :x: |
+| `calcAndSetBaseMtx__7RosettaFv` | :x: |
+| `receiveMsgPlayerAttack__7RosettaFUlP9HitSensorP9HitSensor` | :x: |
+| `control__7RosettaFv` | :x: |
+| `branchFunc__7RosettaFUl` | :x: |
+| `eventFunc__7RosettaFUl` | :x: |
+| `startDemo__7RosettaFP13NerveExecutor` | :x: |
+| `endDemo__7RosettaFv` | :x: |
+| `endDemoWithInterpole__7RosettaFv` | :x: |
+| `canUpdateStarePos__7RosettaCFv` | :x: |
+| `exeReaction__7RosettaFv` | :x: |
+| `__sinit_\Rosetta_cpp` | :x: |
+| `__ct__Q210NrvRosetta14RosettaNrvDemoFv` | :x: |
+| `__ct__Q210NrvRosetta18RosettaNrvReactionFv` | :x: |
+| `execute__Q210NrvRosetta18RosettaNrvReactionCFP5Spine` | :x: |
+| `execute__Q210NrvRosetta14RosettaNrvDemoCFP5Spine` | :x: |
+| `TalkMessageFunc&lt;7Rosetta&gt;__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;` | :x: |
+| `__cl__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFUl` | :x: |
+| `clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFv` | :x: |
+| `clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
+| `__ct__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;` | :x: |
+| `__dt__7RosettaFv` | :x: |
