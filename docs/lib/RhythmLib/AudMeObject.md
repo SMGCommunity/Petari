@@ -9,7 +9,7 @@
 # AudMeObject.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__11AudMeObjectFPQ29JGeometry8TVec3&lt;f&gt;UcP7JKRHeap` | :x: |
+| `__ct__11AudMeObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap` | :x: |
 | `__dt__11AudMeObjectFv` | :x: |
 | `dispose__11AudMeObjectFv` | :x: |
 | `startMe__11AudMeObjectFUl` | :x: |

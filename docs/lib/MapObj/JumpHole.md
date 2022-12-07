@@ -19,7 +19,7 @@
 | `exeSetUp__8JumpHoleFv` | :x: |
 | `exeRailMove__8JumpHoleFv` | :x: |
 | `bindHole__8JumpHoleFv` | :x: |
-| `initParabola__8JumpHoleFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `initParabola__8JumpHoleFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\JumpHole_cpp` | :x: |
 | `__ct__Q211NrvJumpHole15JumpHoleNrvWaitFv` | :x: |
 | `__ct__Q211NrvJumpHole20JumpHoleNrvSetCenterFv` | :x: |

@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__12MarioNullBckFPCc` | :x: |
 | `appear__12MarioNullBckFv` | :x: |
-| `getLastPos__12MarioNullBckFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getLastPos__12MarioNullBckFPQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__12MarioNullBckFv` | :x: |
 | `init__12MarioNullBckFRC12JMapInfoIter` | :x: |
-| `getFramePos__12MarioNullBckFfPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getFramePos__12MarioNullBckFfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |

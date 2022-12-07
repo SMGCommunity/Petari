@@ -22,7 +22,7 @@
 | `setDistanceToLow__7LodCtrlFf` | :white_check_mark: |
 | `setDistanceToMiddleAndLow__7LodCtrlFff` | :white_check_mark: |
 | `LodFuntionCall__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActor_v` | :white_check_mark: |
-| `LodFuntionCall&lt;f&gt;__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActorf_vf_v` | :white_check_mark: |
+| `LodFuntionCall<f>__21@unnamed@LodCtrl_cpp@FP7LodCtrlPFP9LiveActorf_vf_v` | :white_check_mark: |
 | `setClippingTypeSphereContainsModelBoundingBox__7LodCtrlFf` | :white_check_mark: |
 | `setFarClipping__7LodCtrlFf` | :white_check_mark: |
 | `invalidateClipping__7LodCtrlFv` | :white_check_mark: |

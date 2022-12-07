@@ -17,4 +17,4 @@
 | `updateAttackSensorPos__34@unnamed@TombSpiderSensorCtrl_cpp@FP9HitSensorPC9LiveActor` | :x: |
 | `updateAttackSensor__20TombSpiderSensorCtrlFP9HitSensor` | :x: |
 | `initSensor__20TombSpiderSensorCtrlFv` | :x: |
-| `__ct&lt;f&gt;__Q29JGeometry8TVec2&lt;f&gt;Fff_Pv` | :x: |
+| `__ct<f>__Q29JGeometry8TVec2<f>Fff_Pv` | :x: |

@@ -9,4 +9,4 @@
 # SpinDriverUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setShadowAndClipping__14SpinDriverUtilFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;ffPf` | :x: |
+| `setShadowAndClipping__14SpinDriverUtilFP9LiveActorPQ29JGeometry8TVec3<f>ffPf` | :x: |

@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16DinoPackunActionFPCcP10DinoPackun` | :x: |
-| `__dt__28ActorStateBase&lt;10DinoPackun&gt;Fv` | :x: |
+| `__dt__28ActorStateBase<10DinoPackun>Fv` | :x: |
 | `sendBlowAttackMessage__16DinoPackunActionFP9HitSensorP9HitSensorb` | :x: |
 | `sendHitAttackMessage__16DinoPackunActionFP9HitSensorP9HitSensorb` | :x: |
 | `updateTurn__16DinoPackunActionFlf` | :x: |

@@ -61,9 +61,9 @@
 | `execute__Q211NrvLuigiNPC22LuigiNPCNrvTakeOutStarCFP5Spine` | :x: |
 | `execute__Q211NrvLuigiNPC19LuigiNPCNrvReactionCFP5Spine` | :x: |
 | `execute__Q211NrvLuigiNPC15LuigiNPCNrvWaitCFP5Spine` | :x: |
-| `TalkMessageFunc&lt;8LuigiNPC&gt;__FP8LuigiNPCM8LuigiNPCFPCvPvUl_b_49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;` | :x: |
-| `__cl__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;FRC49TalkMessageFuncM&lt;P8LuigiNPC,M8LuigiNPCFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<8LuigiNPC>__FP8LuigiNPCM8LuigiNPCFPCvPvUl_b_49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>` | :x: |
+| `__cl__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFUl` | :x: |
+| `clone__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFv` | :x: |
+| `clone__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>FRC49TalkMessageFuncM<P8LuigiNPC,M8LuigiNPCFPCvPvUl_b>` | :x: |
 | `__dt__8LuigiNPCFv` | :x: |

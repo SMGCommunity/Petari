@@ -17,11 +17,11 @@
 | `setupBinder__19MapObjActorInitInfoFff` | :white_check_mark: |
 | `setupEffect__19MapObjActorInitInfoFPCc` | :white_check_mark: |
 | `setupSound__19MapObjActorInitInfoFl` | :white_check_mark: |
-| `setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setupSoundPos__19MapObjActorInitInfoFPQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setupNoAppearRiddleSE__19MapObjActorInitInfoFv` | :white_check_mark: |
 | `setupHitSensor__19MapObjActorInitInfoFv` | :white_check_mark: |
 | `setupHitSensorCallBack__19MapObjActorInitInfoFv` | :x: |
-| `setupHitSensorParam__19MapObjActorInitInfoFUsfRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setupHitSensorParam__19MapObjActorInitInfoFUsfRCQ29JGeometry8TVec3<f>` | :x: |
 | `setupNerve__19MapObjActorInitInfoFPC5Nerve` | :x: |
 | `setupShadow__19MapObjActorInitInfoFPCc` | :x: |
 | `setupGroupClipping__19MapObjActorInitInfoFl` | :x: |

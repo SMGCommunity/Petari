@@ -18,7 +18,7 @@
 | `fadeIn__10DemoRabbitFv` | :x: |
 | `updateStopVelocity__10DemoRabbitFv` | :x: |
 | `updateNormalVelocity__10DemoRabbitFv` | :x: |
-| `updateRun__10DemoRabbitFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `updateRun__10DemoRabbitFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `updateJump__10DemoRabbitFv` | :x: |
 | `tryGuide__10DemoRabbitFv` | :x: |
 | `tryWait__10DemoRabbitFv` | :x: |
@@ -53,7 +53,7 @@
 | `execute__Q213NrvDemoRabbit18DemoRabbitNrvTalk0CFP5Spine` | :x: |
 | `execute__Q213NrvDemoRabbit17DemoRabbitNrvDemoCFP5Spine` | :x: |
 | `execute__Q213NrvDemoRabbit19DemoRabbitNrvAppearCFP5Spine` | :x: |
-| `Functor&lt;10DemoRabbit&gt;__2MRFP10DemoRabbitM10DemoRabbitFPCvPv_v_Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10DemoRabbit,M10DemoRabbitFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<10DemoRabbit>__2MRFP10DemoRabbitM10DemoRabbitFPCvPv_v_Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10DemoRabbit,M10DemoRabbitFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10DemoRabbitFv` | :x: |

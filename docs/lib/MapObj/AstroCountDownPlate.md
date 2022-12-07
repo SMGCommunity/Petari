@@ -29,7 +29,7 @@
 | `execute__Q222NrvAstroCountDownPlate29AstroCountDownPlateNrvRevivalCFP5Spine` | :x: |
 | `execute__Q222NrvAstroCountDownPlate27AstroCountDownPlateNrvAliveCFP5Spine` | :x: |
 | `execute__Q222NrvAstroCountDownPlate26AstroCountDownPlateNrvDeadCFP5Spine` | :x: |
-| `Functor&lt;19AstroCountDownPlate&gt;__2MRFP19AstroCountDownPlateM19AstroCountDownPlateFPCvPv_v_Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<19AstroCountDownPlate>__2MRFP19AstroCountDownPlateM19AstroCountDownPlateFPCvPv_v_Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v>` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19AstroCountDownPlate,M19AstroCountDownPlateFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__19AstroCountDownPlateFv` | :x: |

@@ -10,5 +10,5 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__13PlantRailInfoFRC12JMapInfoIterf` | :x: |
-| `calcPosAndAxisY__13PlantRailInfoCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `calcNearestPointPos__13PlantRailInfoCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `calcPosAndAxisY__13PlantRailInfoCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f` | :x: |
+| `calcNearestPointPos__13PlantRailInfoCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | :x: |

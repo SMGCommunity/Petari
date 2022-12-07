@@ -33,9 +33,9 @@
 | `execute__Q221NrvPenguinRacerLeader25PenguinRacerLeaderNrvWaitCFP5Spine` | :x: |
 | `@348@exitRacer__18PenguinRacerLeaderFv` | :x: |
 | `@348@resetRacer__18PenguinRacerLeaderFPC11RaceManager` | :x: |
-| `TalkMessageFunc&lt;18PenguinRacerLeader&gt;__FP18PenguinRacerLeaderM18PenguinRacerLeaderFPCvPvUl_b_71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;` | :x: |
-| `__cl__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;FRC71TalkMessageFuncM&lt;P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<18PenguinRacerLeader>__FP18PenguinRacerLeaderM18PenguinRacerLeaderFPCvPvUl_b_71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>` | :x: |
+| `__cl__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFUl` | :x: |
+| `clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFv` | :x: |
+| `clone__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>FRC71TalkMessageFuncM<P18PenguinRacerLeader,M18PenguinRacerLeaderFPCvPvUl_b>` | :x: |
 | `__dt__18PenguinRacerLeaderFv` | :x: |

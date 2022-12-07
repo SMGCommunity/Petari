@@ -9,5 +9,5 @@
 # DodoryuStateBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `calcAttackDir__16DodoryuStateBaseFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcVerticalizedDir__16DodoryuStateBaseFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcAttackDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcVerticalizedDir__16DodoryuStateBaseFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |

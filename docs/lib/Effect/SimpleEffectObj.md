@@ -23,6 +23,6 @@
 | `__ct__Q218NrvSimpleEffectObj12HostTypeMoveFv` | :x: |
 | `execute__Q218NrvSimpleEffectObj12HostTypeMoveCFP5Spine` | :x: |
 | `execute__Q218NrvSimpleEffectObj12HostTypeWaitCFP5Spine` | :x: |
-| `Functor&lt;15SimpleEffectObj&gt;__2MRFP15SimpleEffectObjM15SimpleEffectObjFPCvPv_v_Q22MR57FunctorV0M&lt;P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15SimpleEffectObj>__2MRFP15SimpleEffectObjM15SimpleEffectObjFPCvPv_v_Q22MR57FunctorV0M<P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15SimpleEffectObj,M15SimpleEffectObjFPCvPv_v>CFP7JKRHeap` | :x: |

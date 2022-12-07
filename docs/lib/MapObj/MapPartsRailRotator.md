@@ -22,7 +22,7 @@
 | `updateHostRotateMtx__19MapPartsRailRotatorFv` | :x: |
 | `updateInfo__19MapPartsRailRotatorFl` | :x: |
 | `isReachedTargetAngle__19MapPartsRailRotatorCFv` | :x: |
-| `calcRotateAxisDir__19MapPartsRailRotatorCFQ219MapPartsRailRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcRotateAxisDir__19MapPartsRailRotatorCFQ219MapPartsRailRotator8AxisTypePQ29JGeometry8TVec3<f>` | :x: |
 | `updateRotateMtx__19MapPartsRailRotatorFQ219MapPartsRailRotator8AxisTypef` | :x: |
 | `exeRotate__19MapPartsRailRotatorFv` | :x: |
 | `__sinit_\MapPartsRailRotator_cpp` | :x: |

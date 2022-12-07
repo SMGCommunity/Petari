@@ -13,7 +13,7 @@
 | `__dt__7IceStepFv` | :x: |
 | `init__7IceStepFRC12JMapInfoIter` | :x: |
 | `exeWait__7IceStepFv` | :x: |
-| `setOn__7IceStepFUlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setOn__7IceStepFUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `destroy__7IceStepFv` | :x: |
 | `doHit__7IceStepFv` | :x: |
 | `receiveMsgPlayerAttack__7IceStepFUlP9HitSensorP9HitSensor` | :x: |

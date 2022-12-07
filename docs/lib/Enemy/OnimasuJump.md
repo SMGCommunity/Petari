@@ -20,5 +20,5 @@
 | `startMoveInner__11OnimasuJumpFv` | :x: |
 | `updatePoseInner__11OnimasuJumpFv` | :x: |
 | `getNextPointNo__11OnimasuJumpCFv` | :x: |
-| `__dt__Q22MR38AssignableArray&lt;Q29JGeometry8TVec3&lt;f&gt;&gt;Fv` | :x: |
+| `__dt__Q22MR38AssignableArray<Q29JGeometry8TVec3<f>>Fv` | :x: |
 | `__dt__11OnimasuJumpFv` | :x: |

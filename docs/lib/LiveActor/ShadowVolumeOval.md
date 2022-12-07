@@ -13,4 +13,4 @@
 | `__ct__16ShadowVolumeOvalFv` | :white_check_mark: |
 | `isDraw__16ShadowVolumeOvalCFv` | :white_check_mark: |
 | `loadModelDrawMtx__16ShadowVolumeOvalCFv` | :x: |
-| `setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setSize__16ShadowVolumeOvalFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |

@@ -13,7 +13,7 @@
 | `init__8FireBallFRC12JMapInfoIter` | :x: |
 | `appear__8FireBallFv` | :x: |
 | `kill__8FireBallFv` | :x: |
-| `appearAndThrow__8FireBallFRCQ29JGeometry8TVec3&lt;f&gt;ff` | :x: |
+| `appearAndThrow__8FireBallFRCQ29JGeometry8TVec3<f>ff` | :x: |
 | `control__8FireBallFv` | :x: |
 | `calcAndSetBaseMtx__8FireBallFv` | :x: |
 | `attackSensor__8FireBallFP9HitSensorP9HitSensor` | :x: |

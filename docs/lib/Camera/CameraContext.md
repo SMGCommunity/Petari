@@ -15,7 +15,7 @@
 | `getViewMtx__13CameraContextCFv` | :white_check_mark: |
 | `getInvViewMtx__13CameraContextCFv` | :white_check_mark: |
 | `getAspect__13CameraContextCFv` | :x: |
-| `setViewMtx__13CameraContextFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;bbRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setViewMtx__13CameraContextFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>bbRCQ29JGeometry8TVec3<f>` | :x: |
 | `setNearZ__13CameraContextFf` | :white_check_mark: |
 | `setFovy__13CameraContextFf` | :white_check_mark: |
 | `setShakeOffset__13CameraContextFff` | :white_check_mark: |

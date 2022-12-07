@@ -15,10 +15,10 @@
 | `copyAnmMtxBuffer__9J3DModelXFPC9J3DModelX` | :x: |
 | `viewCalc3__9J3DModelXFUlPA4_f` | :x: |
 | `viewCalcRef__9J3DModelXFUlP8J3DModel` | :x: |
-| `viewCalcRefPos__9J3DModelXFUlP8J3DModelRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `viewCalcRefPos__9J3DModelXFUlP8J3DModelRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `calcNrmMtx2__13J3DMtxBuffer2Fv` | :x: |
 | `calcDrawMtx2__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBuffer` | :x: |
-| `calcDrawMtx3__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBufferRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcDrawMtx3__13J3DMtxBuffer2FUlRC3VecRA3_A4_CfP12J3DMtxBufferRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `directDraw__9J3DModelXFP8J3DModel` | :x: |
 | `drawIn__9J3DModelXFP11J3DMaterialbPA4_fP8J3DModel` | :x: |
 | `simpleDrawSetup__9J3DModelXFP11J3DMaterial` | :x: |

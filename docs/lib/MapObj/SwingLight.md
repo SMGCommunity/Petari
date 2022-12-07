@@ -25,7 +25,7 @@
 | `appearLight__10SwingLightFv` | :x: |
 | `initCaseNoUseSwitchA__13LightCylinderFRC19MapObjActorInitInfo` | :x: |
 | `initCaseUseSwitchA__13LightCylinderFRC19MapObjActorInitInfo` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10SwingLight,M10SwingLightFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10SwingLight,M10SwingLightFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10SwingLight,M10SwingLightFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10SwingLight,M10SwingLightFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13LightCylinderFv` | :x: |
 | `__dt__10SwingLightFv` | :x: |

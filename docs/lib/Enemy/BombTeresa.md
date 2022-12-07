@@ -20,8 +20,8 @@
 | `calcAndSetBaseMtx__10BombTeresaFv` | :x: |
 | `updateNormalVelocity__10BombTeresaFv` | :x: |
 | `updateDriftReleaseVelocity__10BombTeresaFv` | :x: |
-| `rootTongueMtxCallBack__10BombTeresaFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `endTongueMtxCallBack__10BombTeresaFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `rootTongueMtxCallBack__10BombTeresaFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `endTongueMtxCallBack__10BombTeresaFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `attackSensor__10BombTeresaFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__10BombTeresaFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__10BombTeresaFUlP9HitSensorP9HitSensor` | :x: |
@@ -59,8 +59,8 @@
 | `isEnableHitExplosion__10BombTeresaCFv` | :x: |
 | `isEnableStarPieceAttack__10BombTeresaCFv` | :x: |
 | `isEnableShockWave__10BombTeresaCFv` | :x: |
-| `appearNormal__10BombTeresaFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearShadow__10BombTeresaFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearNormal__10BombTeresaFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `appearShadow__10BombTeresaFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `addTeresaSpinPullVelocity__10BombTeresaFf` | :x: |
 | `requestDisperse__10BombTeresaFv` | :x: |
 | `__sinit_\BombTeresa_cpp` | :x: |
@@ -97,8 +97,8 @@
 | `execute__Q213NrvBombTeresa23BombTeresaNrvBallAppearCFP5Spine` | :x: |
 | `execute__Q213NrvBombTeresa25BombTeresaNrvShadowAppearCFP5Spine` | :x: |
 | `execute__Q213NrvBombTeresa19BombTeresaNrvAppearCFP5Spine` | :x: |
-| `__ct__35JointControlDelegator&lt;10BombTeresa&gt;FP10BombTeresaM10BombTeresaFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_bM10BombTeresaFPCvPvPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo_b` | :x: |
-| `__dt__35JointControlDelegator&lt;10BombTeresa&gt;Fv` | :x: |
-| `calcJointMatrix__35JointControlDelegator&lt;10BombTeresa&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__35JointControlDelegator&lt;10BombTeresa&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__ct__35JointControlDelegator<10BombTeresa>FP10BombTeresaM10BombTeresaFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_bM10BombTeresaFPCvPvPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo_b` | :x: |
+| `__dt__35JointControlDelegator<10BombTeresa>Fv` | :x: |
+| `calcJointMatrix__35JointControlDelegator<10BombTeresa>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__35JointControlDelegator<10BombTeresa>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__10BombTeresaFv` | :x: |

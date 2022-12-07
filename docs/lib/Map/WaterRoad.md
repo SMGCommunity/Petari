@@ -9,7 +9,7 @@
 # WaterRoad.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `scale__Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;Ff` | :x: |
+| `scale__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Ff` | :x: |
 | `__ct__18WaterRoadModelInfoFP9WaterRoadb` | :x: |
 | `initPoints__18WaterRoadModelInfoFP9WaterRoad` | :x: |
 | `initDisplayList__18WaterRoadModelInfoFv` | :x: |

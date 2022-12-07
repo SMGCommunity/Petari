@@ -33,6 +33,6 @@
 | `execute__Q216NrvTsukidashikun27TsukidashikunNrvWaitForwardCFP5Spine` | :x: |
 | `execute__Q216NrvTsukidashikun24TsukidashikunNrvWaitBackCFP5Spine` | :x: |
 | `execute__Q216NrvTsukidashikun21TsukidashikunNrvRelaxCFP5Spine` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13Tsukidashikun,M13TsukidashikunFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13Tsukidashikun,M13TsukidashikunFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13Tsukidashikun,M13TsukidashikunFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13Tsukidashikun,M13TsukidashikunFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13TsukidashikunFv` | :x: |

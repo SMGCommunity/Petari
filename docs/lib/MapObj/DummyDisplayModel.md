@@ -16,11 +16,11 @@
 | `makeActorDead__17DummyDisplayModelFv` | :x: |
 | `control__17DummyDisplayModelFv` | :x: |
 | `calcAndSetBaseMtx__17DummyDisplayModelFv` | :x: |
-| `createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPCcl` | :x: |
-| `createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPA4_flRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `createDummyDisplayModelCrystalItem__2MRFP9LiveActorRC12JMapInfoIterRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `createDummyDisplayModelCrystalItem__2MRFP9LiveActorlRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `createDummyDisplayModel__2MRFP9LiveActorRC12JMapInfoIterPA4_flRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `createDummyDisplayModelCrystalItem__2MRFP9LiveActorRC12JMapInfoIterRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `createDummyDisplayModelCrystalItem__2MRFP9LiveActorlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `getDummyDisplayModelId__2MRFRC12JMapInfoIterl` | :x: |
 | `getDummyDisplayModelId__2MRFPC9LiveActor` | :x: |
 | `makeArchiveListDummyDisplayModel__2MRFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :x: |

@@ -19,7 +19,7 @@
 | `doSwingAction__12StringSpiderFfb` | :x: |
 | `reactDPD__12StringSpiderFv` | :x: |
 | `reactStringForce__12StringSpiderFv` | :x: |
-| `isOverStringLength__12StringSpiderFPQ29JGeometry8TVec3&lt;f&gt;Pf` | :x: |
+| `isOverStringLength__12StringSpiderFPQ29JGeometry8TVec3<f>Pf` | :x: |
 | `control__12StringSpiderFv` | :x: |
 | `calcToRootVector__12StringSpiderFv` | :x: |
 | `calcPosture__12StringSpiderFfb` | :x: |

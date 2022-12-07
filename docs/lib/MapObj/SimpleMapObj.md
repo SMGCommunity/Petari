@@ -30,8 +30,8 @@
 | `changeTexture__28SimpleTextureSwitchChangeObjFv` | :white_check_mark: |
 | `init__15SimpleMirrorObjFRC12JMapInfoIter` | :white_check_mark: |
 | `getChangedTextureNo__28SimpleTextureSwitchChangeObjCFv` | :white_check_mark: |
-| `__cl__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR83FunctorV0M&lt;P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR83FunctorV0M<P28SimpleTextureSwitchChangeObj,M28SimpleTextureSwitchChangeObjFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__20SimpleEnvironmentObjFv` | :white_check_mark: |
 | `__dt__25SimpleMapObjNoSilhouettedFv` | :white_check_mark: |
 | `__dt__28SimpleTextureSwitchChangeObjFv` | :white_check_mark: |

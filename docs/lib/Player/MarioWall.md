@@ -21,7 +21,7 @@
 | `fixWallingTop__5MarioFv` | :x: |
 | `checkWallFloorCode__5MarioCFUs` | :x: |
 | `checkWallCode__5MarioCFPCcb` | :x: |
-| `checkWallCodeNorm__5MarioCFUsPQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `checkWallCodeNorm__5MarioCFUsPQ29JGeometry8TVec3<f>b` | :x: |
 | `setWallCancel__5MarioFv` | :x: |
 | `keepDistFrontWall__5MarioFv` | :x: |
 | `isEnableStickWall__5MarioFv` | :x: |

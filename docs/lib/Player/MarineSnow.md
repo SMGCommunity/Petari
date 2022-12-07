@@ -12,4 +12,4 @@
 | `__ct__10MarineSnowFv` | :x: |
 | `view__10MarineSnowFv` | :x: |
 | `clear__10MarineSnowFv` | :x: |
-| `draw__10MarineSnowCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `draw__10MarineSnowCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |

@@ -15,7 +15,7 @@
 | `initShadow__14PunchingKinokoFv` | :white_check_mark: |
 | `initCamera__14PunchingKinokoFRC12JMapInfoIter` | :white_check_mark: |
 | `initJointControl__14PunchingKinokoFv` | :white_check_mark: |
-| `ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
+| `ballMtxCallBack__14PunchingKinokoFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
 | `makeActorAppeared__14PunchingKinokoFv` | :white_check_mark: |
 | `kill__14PunchingKinokoFv` | :white_check_mark: |
 | `makeActorDead__14PunchingKinokoFv` | :white_check_mark: |
@@ -62,9 +62,9 @@
 | `execute__Q217NrvPunchingKinoko24PunchingKinokoNrvPunchedCFP5Spine` | :white_check_mark: |
 | `execute__Q217NrvPunchingKinoko22PunchingKinokoNrvSwingCFP5Spine` | :white_check_mark: |
 | `execute__Q217NrvPunchingKinoko21PunchingKinokoNrvWaitCFP5Spine` | :white_check_mark: |
-| `__dt__39JointControlDelegator&lt;14PunchingKinoko&gt;Fv` | :white_check_mark: |
-| `calcJointMatrix__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
-| `calcJointMatrixAfterChild__39JointControlDelegator&lt;14PunchingKinoko&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
-| `__cl__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR55FunctorV0M&lt;P14PunchingKinoko,M14PunchingKinokoFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__dt__39JointControlDelegator<14PunchingKinoko>Fv` | :white_check_mark: |
+| `calcJointMatrix__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `calcJointMatrixAfterChild__39JointControlDelegator<14PunchingKinoko>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `__cl__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR55FunctorV0M<P14PunchingKinoko,M14PunchingKinokoFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__14PunchingKinokoFv` | :white_check_mark: |

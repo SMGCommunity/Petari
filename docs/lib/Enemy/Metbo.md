@@ -36,7 +36,7 @@
 | `receiveMsgPlayerAttack__5MetboFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgEnemyAttack__5MetboFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__5MetboFUlP9HitSensorP9HitSensor` | :x: |
-| `moveOrFall__5MetboFRCQ22MR14ActorMoveParamPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `moveOrFall__5MetboFRCQ22MR14ActorMoveParamPCQ29JGeometry8TVec3<f>` | :x: |
 | `startSwoon__5MetboFb` | :x: |
 | `tryNonActive__5MetboFv` | :x: |
 | `trySearch__5MetboFv` | :x: |

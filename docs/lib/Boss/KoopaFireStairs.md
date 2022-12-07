@@ -14,7 +14,7 @@
 | `init__15KoopaFireStairsFRC12JMapInfoIter` | :x: |
 | `appear__15KoopaFireStairsFv` | :x: |
 | `makeActorDead__15KoopaFireStairsFv` | :x: |
-| `setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3<f>` | :x: |
 | `exeFly__15KoopaFireStairsFv` | :x: |
 | `exeBreak__15KoopaFireStairsFv` | :x: |
 | `calcAndSetBaseMtx__15KoopaFireStairsFv` | :x: |

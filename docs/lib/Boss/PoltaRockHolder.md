@@ -10,5 +10,5 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__15PoltaRockHolderFv` | :x: |
-| `__dt__28DeriveActorGroup&lt;9PoltaRock&gt;Fv` | :x: |
+| `__dt__28DeriveActorGroup<9PoltaRock>Fv` | :x: |
 | `__dt__15PoltaRockHolderFv` | :x: |

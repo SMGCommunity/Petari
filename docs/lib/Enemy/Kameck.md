@@ -100,7 +100,7 @@
 | `execute__Q29NrvKameck18KameckNrvNonActiveCFP5Spine` | :x: |
 | `execute__Q29NrvKameck19KameckNrvDemoAppearCFP5Spine` | :x: |
 | `execute__Q29NrvKameck20KameckNrvOpeningDemoCFP5Spine` | :x: |
-| `Functor&lt;6Kameck&gt;__2MRFP6KameckM6KameckFPCvPv_v_Q22MR37FunctorV0M&lt;P6Kameck,M6KameckFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR37FunctorV0M&lt;P6Kameck,M6KameckFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR37FunctorV0M&lt;P6Kameck,M6KameckFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<6Kameck>__2MRFP6KameckM6KameckFPCvPv_v_Q22MR37FunctorV0M<P6Kameck,M6KameckFPCvPv_v>` | :x: |
+| `__cl__Q22MR37FunctorV0M<P6Kameck,M6KameckFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR37FunctorV0M<P6Kameck,M6KameckFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__6KameckFv` | :x: |

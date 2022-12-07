@@ -15,7 +15,7 @@
 | `placementMercatorRail__8RailCoinFv` | :x: |
 | `createRailCoin__2MRFPCc` | :x: |
 | `createRailPurpleCoin__2MRFPCc` | :x: |
-| `setPosition__Q222@unnamed@RailCoin_cpp@23RailCoinMercatorDivInfoFlRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setPosition__Q222@unnamed@RailCoin_cpp@23RailCoinMercatorDivInfoFlRCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__8RailCoinFv` | :x: |
 | `placementCoin__8RailCoinFv` | :x: |
 | `getCoinName__8RailCoinCFv` | :x: |

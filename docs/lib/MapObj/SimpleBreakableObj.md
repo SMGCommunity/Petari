@@ -33,9 +33,9 @@
 | `execute__Q221NrvSimpleBreakableObj12HostTypeDemoCFP5Spine` | :x: |
 | `execute__Q221NrvSimpleBreakableObj20HostTypeTryStartDemoCFP5Spine` | :x: |
 | `execute__Q221NrvSimpleBreakableObj12HostTypeWaitCFP5Spine` | :x: |
-| `Functor&lt;18SimpleBreakableObj&gt;__2MRFP18SimpleBreakableObjM18SimpleBreakableObjFPCvPv_v_Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR63FunctorV0M&lt;P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<18SimpleBreakableObj>__2MRFP18SimpleBreakableObjM18SimpleBreakableObjFPCvPv_v_Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v>` | :x: |
+| `__cl__Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR63FunctorV0M<P18SimpleBreakableObj,M18SimpleBreakableObjFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__26SimpleBreakableIndirectObjFv` | :x: |
 | `initCaseNoUseSwitchB__18SimpleBreakableObjFRC19MapObjActorInitInfo` | :x: |
 | `initCaseNoUseSwitchA__18SimpleBreakableObjFRC19MapObjActorInitInfo` | :x: |

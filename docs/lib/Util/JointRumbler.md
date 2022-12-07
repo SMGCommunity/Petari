@@ -15,4 +15,4 @@
 | `reset__12JointRumblerFv` | :x: |
 | `isRumbling__12JointRumblerCFv` | :x: |
 | `updateModelScale__12JointRumblerFf` | :x: |
-| `updateScale__12JointRumblerFPQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `updateScale__12JointRumblerFPQ29JGeometry8TVec3<f>f` | :x: |

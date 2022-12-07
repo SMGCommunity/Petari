@@ -54,8 +54,8 @@
 | `execute__Q214NrvRailMoveObj12HostTypeMoveCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvRailMoveObj23HostTypeWaitForPlayerOnCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvRailMoveObj12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `__cl__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR73FunctorV0M&lt;P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR73FunctorV0M<P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR73FunctorV0M<P23RailMoveObjSwitchShadow,M23RailMoveObjSwitchShadowFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__16RailMoveObjPressFv` | :white_check_mark: |
 | `__dt__21RailMoveObjBreakAtEndFv` | :white_check_mark: |
 | `__dt__19RailMoveIndirectObjFv` | :white_check_mark: |

@@ -12,7 +12,7 @@
 | `__ct__30FloaterFloatingForceTypeNormalFP9LiveActorPCc` | :white_check_mark: |
 | `init__30FloaterFloatingForceTypeNormalFRC12JMapInfoIter` | :white_check_mark: |
 | `start__30FloaterFloatingForceTypeNormalFv` | :white_check_mark: |
-| `updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateHostTrans__30FloaterFloatingForceTypeNormalCFPQ29JGeometry8TVec3<f>` | :x: |
 | `updateVelocity__30FloaterFloatingForceTypeNormalFb` | :x: |
 | `soundMoveSE__30FloaterFloatingForceTypeNormalFv` | :white_check_mark: |
 | `setStateMove__30FloaterFloatingForceTypeNormalFv` | :white_check_mark: |

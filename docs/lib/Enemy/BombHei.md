@@ -31,7 +31,7 @@
 | `exeTaken__7BombHeiFv` | :x: |
 | `exeExplode__7BombHeiFv` | :x: |
 | `calcAndSetBaseMtx__7BombHeiFv` | :x: |
-| `calcJoint__7BombHeiFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJoint__7BombHeiFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `control__7BombHeiFv` | :x: |
 | `attackSensor__7BombHeiFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__7BombHeiFUlP9HitSensorP9HitSensor` | :x: |
@@ -75,7 +75,7 @@
 | `execute__Q210NrvBombHei15HostTypeNrvWaitCFP5Spine` | :x: |
 | `execute__Q210NrvBombHei19HostTypeNrvStartingCFP5Spine` | :x: |
 | `execute__Q210NrvBombHei17HostTypeNrvLaunchCFP5Spine` | :x: |
-| `__dt__31JointControlDelegator&lt;7BombHei&gt;Fv` | :x: |
-| `calcJointMatrix__31JointControlDelegator&lt;7BombHei&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__31JointControlDelegator&lt;7BombHei&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__31JointControlDelegator<7BombHei>Fv` | :x: |
+| `calcJointMatrix__31JointControlDelegator<7BombHei>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__31JointControlDelegator<7BombHei>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__7BombHeiFv` | :x: |

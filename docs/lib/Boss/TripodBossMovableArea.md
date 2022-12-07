@@ -9,16 +9,16 @@
 # TripodBossMovableArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `set&lt;i&gt;__Q29JGeometry8TVec3&lt;f&gt;Fiii_v` | :x: |
+| `set<i>__Q29JGeometry8TVec3<f>Fiii_v` | :x: |
 | `__ct__9HitResultFv` | :x: |
 | `__ct__21TripodBossMovableAreaFv` | :x: |
-| `setCenter__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setBaseAxis__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setFrontVector__21TripodBossMovableAreaFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setCenter__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setBaseAxis__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setFrontVector__21TripodBossMovableAreaFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setRadius__21TripodBossMovableAreaFf` | :x: |
-| `collideSphere__21TripodBossMovableAreaCFP9HitResultRCQ29JGeometry8TVec3&lt;f&gt;fRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcNearLandingPosition__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcLandingNormal__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcLandingFront__21TripodBossMovableAreaCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `collideSphere__21TripodBossMovableAreaCFP9HitResultRCQ29JGeometry8TVec3<f>fRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcNearLandingPosition__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcLandingNormal__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcLandingFront__21TripodBossMovableAreaCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\TripodBossMovableArea_cpp` | :x: |
-| `sqrt&lt;f&gt;__2MRFf_f` | :x: |
+| `sqrt<f>__2MRFf_f` | :x: |

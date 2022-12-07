@@ -9,7 +9,7 @@
 # CameraRotChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `acos__Q29JGeometry8TUtil&lt;f&gt;Ff` | :x: |
+| `acos__Q29JGeometry8TUtil<f>Ff` | :x: |
 | `__ct__16CameraRotCheckerFv` | :white_check_mark: |
 | `update__16CameraRotCheckerFv` | :x: |
 | `__sinit_\CameraRotChecker_cpp` | :x: |

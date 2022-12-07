@@ -16,7 +16,7 @@
 | `__sinit_\MarioActorShadow_cpp` | :x: |
 | `decideShadowMode__10MarioActorFv` | :x: |
 | `calcViewSilhouetteModel__10MarioActorFv` | :x: |
-| `calcCylinderToCenter__10MarioActorFPC7AreaObjPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcCylinderToCenter__10MarioActorFPC7AreaObjPQ29JGeometry8TVec3<f>` | :x: |
 | `calcViewBlurModel__10MarioActorFv` | :x: |
 | `calcViewFootPrint__10MarioActorFv` | :x: |
 | `drawSilhouette__10MarioActorCFv` | :x: |

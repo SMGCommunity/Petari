@@ -21,7 +21,7 @@
 | `isEndDemo__23TripodBossGuardWallPartCFv` | :x: |
 | `exeBreak__23TripodBossGuardWallPartFv` | :x: |
 | `exeRepair__23TripodBossGuardWallPartFv` | :x: |
-| `setHostMatrix__23TripodBossGuardWallPartFPCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `setHostMatrix__23TripodBossGuardWallPartFPCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `setPlacementAngle__23TripodBossGuardWallPartFf` | :x: |
 | `setStartTiming__23TripodBossGuardWallPartFl` | :x: |
 | `__sinit_\TripodBossGuardWallPart_cpp` | :x: |

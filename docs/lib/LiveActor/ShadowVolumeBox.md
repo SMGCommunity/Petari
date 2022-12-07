@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__15ShadowVolumeBoxFv` | :x: |
-| `setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setSize__15ShadowVolumeBoxFRCQ29JGeometry8TVec3<f>` | :x: |
 | `loadModelDrawMtx__15ShadowVolumeBoxCFv` | :x: |
 | `makeVertexBuffer__15ShadowVolumeBoxCFv` | :x: |
 | `drawShape__15ShadowVolumeBoxCFv` | :white_check_mark: |

@@ -13,4 +13,4 @@
 | `loadLightPlayer__2MRFv` | :x: |
 | `initActorLightInfoLightType__2MRFP9LiveActorl` | :x: |
 | `initActorLightInfoDrawBuffer__2MRFP9LiveActorP10DrawBuffer` | :x: |
-| `requestPointLight__2MRFPC9LiveActorQ29JGeometry8TVec3&lt;f&gt;6Color8fl` | :x: |
+| `requestPointLight__2MRFPC9LiveActorQ29JGeometry8TVec3<f>6Color8fl` | :x: |

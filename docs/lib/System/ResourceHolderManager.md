@@ -27,7 +27,7 @@
 | `find__21ResourceHolderManagerFPCc` | :x: |
 | `__ct__34ResourceHolderManagerName2ResourceFv` | :x: |
 | `__ct__24CreateResourceHolderArgsFv` | :x: |
-| `Functor&lt;21ResourceHolderManager,PCc,P24CreateResourceHolderArgs&gt;__2MRFP21ResourceHolderManagerM21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_vPCcP24CreateResourceHolderArgs_Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;` | :x: |
-| `__cl__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR131FunctorV2M&lt;P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<21ResourceHolderManager,PCc,P24CreateResourceHolderArgs>__2MRFP21ResourceHolderManagerM21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_vPCcP24CreateResourceHolderArgs_Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs>` | :x: |
+| `__cl__Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs>CFv` | :white_check_mark: |
+| `clone__Q22MR131FunctorV2M<P21ResourceHolderManager,M21ResourceHolderManagerFPCvPvPCcP24CreateResourceHolderArgs_v,PCc,P24CreateResourceHolderArgs>CFP7JKRHeap` | :white_check_mark: |
 | `__as__34ResourceHolderManagerName2ResourceFRC34ResourceHolderManagerName2Resource` | :x: |

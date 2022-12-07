@@ -10,5 +10,5 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__12PointGravityFv` | :white_check_mark: |
-| `calcOwnGravityVector__12PointGravityCFPQ29JGeometry8TVec3&lt;f&gt;PfRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `updateMtx__12PointGravityFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :white_check_mark: |
+| `calcOwnGravityVector__12PointGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `updateMtx__12PointGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :white_check_mark: |

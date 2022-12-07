@@ -25,9 +25,9 @@
 | `__ct__16StarPointerPeekZFv` | :x: |
 | `setDrawSyncToken__16StarPointerPeekZFv` | :x: |
 | `drawSyncCallback__16StarPointerPeekZFUs` | :x: |
-| `isOnScreenEdge__19StarPointerFunctionFRCQ29JGeometry8TVec2&lt;f&gt;ff` | :x: |
+| `isOnScreenEdge__19StarPointerFunctionFRCQ29JGeometry8TVec2<f>ff` | :x: |
 | `isOnScreenEdge__19StarPointerFunctionFl` | :x: |
-| `forceInsideScreenEdge__19StarPointerFunctionFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `forceInsideScreenEdge__19StarPointerFunctionFPQ29JGeometry8TVec2<f>` | :x: |
 | `getStarPointerDirector__19StarPointerFunctionFv` | :x: |
 | `getNumStarPointer__19StarPointerFunctionFv` | :x: |
 | `getPastPointNum__19StarPointerFunctionFl` | :x: |

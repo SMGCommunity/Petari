@@ -13,7 +13,7 @@
 | `setDrawSyncToken__9TalkPeekZFv` | :x: |
 | `drawSyncCallback__9TalkPeekZFUs` | :x: |
 | `__ct__12TalkDirectorFPCc` | :x: |
-| `__dt__Q22MR50Vector&lt;Q22MR35AssignableArray&lt;P15TalkMessageCtrl&gt;&gt;Fv` | :x: |
+| `__dt__Q22MR50Vector<Q22MR35AssignableArray<P15TalkMessageCtrl>>Fv` | :x: |
 | `init__12TalkDirectorFRC12JMapInfoIter` | :x: |
 | `movement__12TalkDirectorFv` | :x: |
 | `request__12TalkDirectorFP15TalkMessageCtrlb` | :x: |
@@ -69,5 +69,5 @@
 | `talk__9TalkStateFPC15TalkMessageCtrl` | :x: |
 | `clos__9TalkStateFv` | :x: |
 | `term__9TalkStateFPC15TalkMessageCtrl` | :x: |
-| `__dt__Q22MR35AssignableArray&lt;P15TalkMessageCtrl&gt;Fv` | :x: |
+| `__dt__Q22MR35AssignableArray<P15TalkMessageCtrl>Fv` | :x: |
 | `__dt__12TalkDirectorFv` | :x: |

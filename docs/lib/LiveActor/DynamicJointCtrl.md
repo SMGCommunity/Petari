@@ -9,7 +9,7 @@
 # DynamicJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;f&gt;__8JMapInfoCFiPCcPf_Cb` | :x: |
+| `getValue<f>__8JMapInfoCFiPCcPf_Cb` | :x: |
 | `calcJointChildNum__30@unnamed@DynamicJointCtrl_cpp@FP8J3DJoint` | :x: |
 | `__ct__13JointCtrlRateFv` | :x: |
 | `update__13JointCtrlRateFv` | :x: |
@@ -18,7 +18,7 @@
 | `__ct__20DynamicJointCtrlNodeFPC16DynamicJointCtrlPA4_ff` | :x: |
 | `update__20DynamicJointCtrlNodeFP9LiveActorPC20DynamicJointCtrlNode` | :x: |
 | `reset__20DynamicJointCtrlNodeFv` | :x: |
-| `updateJointMtxCallBack__20DynamicJointCtrlNodeFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `updateJointMtxCallBack__20DynamicJointCtrlNodeFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__ct__16DynamicJointCtrlFP9LiveActorPCcPC21DynamicJointCtrlParam` | :x: |
 | `init__16DynamicJointCtrlFv` | :x: |
 | `update__16DynamicJointCtrlFv` | :x: |
@@ -31,6 +31,6 @@
 | `endCtrl__22DynamicJointCtrlKeeperFPCcl` | :white_check_mark: |
 | `reset__22DynamicJointCtrlKeeperFv` | :white_check_mark: |
 | `findJointCtrl__22DynamicJointCtrlKeeperFPCc` | :white_check_mark: |
-| `__dt__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;Fv` | :x: |
-| `calcJointMatrix__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__45JointControlDelegator&lt;20DynamicJointCtrlNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__45JointControlDelegator<20DynamicJointCtrlNode>Fv` | :x: |
+| `calcJointMatrix__45JointControlDelegator<20DynamicJointCtrlNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__45JointControlDelegator<20DynamicJointCtrlNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |

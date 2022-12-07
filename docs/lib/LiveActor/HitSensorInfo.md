@@ -9,6 +9,6 @@
 # HitSensorInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3&lt;f&gt;PA4_fRCQ29JGeometry8TVec3&lt;f&gt;b` | :white_check_mark: |
+| `__ct__13HitSensorInfoFPCcP9HitSensorPCQ29JGeometry8TVec3<f>PA4_fRCQ29JGeometry8TVec3<f>b` | :white_check_mark: |
 | `update__13HitSensorInfoFv` | :x: |
 | `doObjCol__13HitSensorInfoFv` | :white_check_mark: |

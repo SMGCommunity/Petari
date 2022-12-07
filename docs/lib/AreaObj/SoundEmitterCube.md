@@ -13,4 +13,4 @@
 | `__ct__16SoundEmitterCubeFiPCc` | :white_check_mark: |
 | `init__16SoundEmitterCubeFRC12JMapInfoIter` | :white_check_mark: |
 | `movement__16SoundEmitterCubeFv` | :x: |
-| `extend__Q29JGeometry27TBox&lt;Q29JGeometry8TVec3&lt;f&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `extend__Q29JGeometry27TBox<Q29JGeometry8TVec3<f>>FRCQ29JGeometry8TVec3<f>` | :x: |

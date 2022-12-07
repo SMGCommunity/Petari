@@ -9,7 +9,7 @@
 # CameraCover.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `PI__Q29JGeometry8TUtil&lt;f&gt;Fv` | :white_check_mark: |
+| `PI__Q29JGeometry8TUtil<f>Fv` | :white_check_mark: |
 | `__ct__11CameraCoverFPCc` | :white_check_mark: |
 | `movement__11CameraCoverFv` | :white_check_mark: |
 | `draw__11CameraCoverCFv` | :white_check_mark: |

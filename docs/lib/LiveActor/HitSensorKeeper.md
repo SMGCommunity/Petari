@@ -10,9 +10,9 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__15HitSensorKeeperFi` | :white_check_mark: |
-| `add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `add__15HitSensorKeeperFPCcUlUsfP9LiveActorRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `addPos__15HitSensorKeeperFPCcUlUsfP9LiveActorPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `addMtx__15HitSensorKeeperFPCcUlUsfP9LiveActorPA4_fRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `addCallback__15HitSensorKeeperFPCcUlUsfP9LiveActor` | :white_check_mark: |
 | `getSensor__15HitSensorKeeperCFPCc` | :white_check_mark: |
 | `update__15HitSensorKeeperFv` | :white_check_mark: |

@@ -23,7 +23,7 @@
 | `exeTurn__15BossBegomanHeadFv` | :x: |
 | `exeTurnEnd__15BossBegomanHeadFv` | :x: |
 | `calcAndSetBaseMtx__15BossBegomanHeadFv` | :x: |
-| `calcJointEdge__15BossBegomanHeadFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJointEdge__15BossBegomanHeadFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__sinit_\BossBegomanHead_cpp` | :x: |
 | `__ct__Q218NrvBossBegomanHead19HostTypeNrvDemoWaitFv` | :x: |
 | `__ct__Q218NrvBossBegomanHead22HostTypeNrvOpeningDemoFv` | :x: |
@@ -41,7 +41,7 @@
 | `execute__Q218NrvBossBegomanHead17HostTypeNrvOnWaitCFP5Spine` | :x: |
 | `execute__Q218NrvBossBegomanHead22HostTypeNrvOpeningDemoCFP5Spine` | :x: |
 | `execute__Q218NrvBossBegomanHead19HostTypeNrvDemoWaitCFP5Spine` | :x: |
-| `__dt__40JointControlDelegator&lt;15BossBegomanHead&gt;Fv` | :x: |
-| `calcJointMatrix__40JointControlDelegator&lt;15BossBegomanHead&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__40JointControlDelegator&lt;15BossBegomanHead&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__40JointControlDelegator<15BossBegomanHead>Fv` | :x: |
+| `calcJointMatrix__40JointControlDelegator<15BossBegomanHead>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__40JointControlDelegator<15BossBegomanHead>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__15BossBegomanHeadFv` | :x: |

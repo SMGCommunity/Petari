@@ -14,4 +14,4 @@
 | `init__13WaterPressureFRC12JMapInfoIter` | :x: |
 | `initBullet__13WaterPressureFRC12JMapInfoIter` | :x: |
 | `shotBullet__13WaterPressureFf` | :x: |
-| `calcGunPointFromCannon__13WaterPressureFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcGunPointFromCannon__13WaterPressureFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |

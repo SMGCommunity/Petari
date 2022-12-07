@@ -30,10 +30,10 @@
 | `isDependedAnother__18GameEventFlagTableFPCcPCc` | :x: |
 | `getIndexFromHashCode__18GameEventFlagTableFUs` | :x: |
 | `calcSpecialPowerStarNum__18GameEventFlagTableFPCc` | :x: |
-| `sort&lt;PQ226GameEventFlagTableInstance3Key,RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
-| `swap&lt;Q226GameEventFlagTableInstance3Key&gt;__3stdFRQ226GameEventFlagTableInstance3KeyRQ226GameEventFlagTableInstance3Key_v` | :x: |
-| `__sort132&lt;RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
-| `__selection_sort&lt;RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key&gt;__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
+| `sort<PQ226GameEventFlagTableInstance3Key,RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
+| `swap<Q226GameEventFlagTableInstance3Key>__3stdFRQ226GameEventFlagTableInstance3KeyRQ226GameEventFlagTableInstance3Key_v` | :x: |
+| `__sort132<RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
+| `__selection_sort<RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | :x: |
 | `getStarPieceNumToOpenExclamationGalaxy__18GameEventFlagTableFPCc` | :x: |
 | `calcGreenPowerStarNum__18GameEventFlagTableFv` | :x: |
 | `getGalaxyDependedFlags__18GameEventFlagTableFPPCciPCc` | :x: |

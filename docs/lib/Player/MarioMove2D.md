@@ -11,8 +11,8 @@
 | ------------- | ------------- |
 | `check2DMode__5MarioFv` | :x: |
 | `__sinit_\MarioMove2D_cpp` | :x: |
-| `calcMoveDir2D__5MarioFffPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcShadowDir2D__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcMoveDir2D__5MarioFffPQ29JGeometry8TVec3<f>` | :x: |
+| `calcShadowDir2D__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `stick2Dadjust__5MarioFRfRf` | :x: |
 | `set2Dmode__5MarioFb` | :x: |
 | `beforeJumping2D__5MarioFv` | :x: |

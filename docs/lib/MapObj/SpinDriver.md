@@ -42,7 +42,7 @@
 | `updateBindActorMatrix__10SpinDriverFf` | :white_check_mark: |
 | `calcBindActorMatrix__10SpinDriverFv` | :x: |
 | `calcParabolicBindPose__10SpinDriverFv` | :x: |
-| `turnBindHead__10SpinDriverFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `turnBindHead__10SpinDriverFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `calcShootMotionTime__10SpinDriverFv` | :x: |
 | `startCamera__10SpinDriverFv` | :x: |
 | `updateCamera__10SpinDriverFv` | :x: |

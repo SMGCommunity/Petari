@@ -11,8 +11,8 @@
 | ------------- | ------------- |
 | `__ct__9OceanBowlFPCc` | :x: |
 | `init__9OceanBowlFRC12JMapInfoIter` | :x: |
-| `isInWater__9OceanBowlCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcWaterInfo__9OceanBowlCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo` | :x: |
+| `isInWater__9OceanBowlCFRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcWaterInfo__9OceanBowlCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>P9WaterInfo` | :x: |
 | `movement__9OceanBowlFv` | :x: |
 | `initPoints__9OceanBowlFv` | :x: |
 | `updatePoints__9OceanBowlFv` | :x: |

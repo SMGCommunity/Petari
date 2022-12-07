@@ -19,9 +19,9 @@
 | `setupDrawForNW4RLayout__2MRFfb` | :x: |
 | `clearZBuffer__2MRFv` | :x: |
 | `clearAlphaBuffer__2MRFUc` | :x: |
-| `clearAlphaBuffer__2MRFUcRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `clearAlphaBuffer__2MRFUcRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
 | `fillScreenSetup__2MRFRC8_GXColor` | :x: |
-| `fillScreenArea__2MRFRCQ29JGeometry8TVec2&lt;s&gt;RCQ29JGeometry8TVec2&lt;s&gt;` | :x: |
+| `fillScreenArea__2MRFRCQ29JGeometry8TVec2<s>RCQ29JGeometry8TVec2<s>` | :x: |
 | `fillScreen__2MRFRC8_GXColor` | :x: |
 | `setupShadowVolumeDraw__2MRFv` | :x: |
 | `drawSimpleModel__2MRFP12J3DModelData` | :x: |
@@ -30,7 +30,7 @@
 | `getMarioShadowTexForLoad__2MRFv` | :x: |
 | `getMarioShadowVec__2MRFv` | :x: |
 | `setMarioShadowTex__2MRFPC10JUTTexture` | :x: |
-| `setMarioShadowVec__2MRFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setMarioShadowVec__2MRFRCQ29JGeometry8TVec3<f>` | :x: |
 | `loadTexProjectionMtx__2MRFUl` | :x: |
 | `nonFilteredCapture__2MRFP10JUTTexturess` | :x: |
 | `simpleDraw__2MRFP8J3DModelP11J3DMaterial` | :x: |

@@ -27,7 +27,7 @@
 | `initEffect__4RockFv` | :x: |
 | `isBreakByWall__4RockCFv` | :x: |
 | `move__4RockFf` | :x: |
-| `calcBaseMtx__4RockCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcBaseMtx__4RockCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `isInClippingRange__4RockCFv` | :x: |
 | `startSoundWanwanVoice__4RockFv` | :x: |
 | `startRollLevelSound__4RockFb` | :x: |

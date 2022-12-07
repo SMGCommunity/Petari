@@ -12,11 +12,11 @@
 | `__ct__16KarikariDirectorFPCc` | :x: |
 | `isMaxNumCling__16KarikariDirectorCFv` | :x: |
 | `removeAllClingingKarikari__16KarikariDirectorFv` | :x: |
-| `blowOutAllClingingKarikari__16KarikariDirectorFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `blowOutAllClingingKarikari__16KarikariDirectorFRCQ29JGeometry8TVec3<f>` | :x: |
 | `electricKillAllClingingKarikari__16KarikariDirectorFv` | :x: |
 | `movement__16KarikariDirectorFv` | :x: |
 | `clearScratchInfo__16KarikariDirectorFv` | :x: |
-| `requestRelease__16KarikariDirectorFP8KarikariQ29JGeometry8TVec2&lt;f&gt;f` | :x: |
+| `requestRelease__16KarikariDirectorFP8KarikariQ29JGeometry8TVec2<f>f` | :x: |
 | `registCling__16KarikariDirectorFP8Karikari` | :x: |
 | `unregistCling__16KarikariDirectorFP8Karikari` | :x: |
 | `getKarikariClingNum__2MRFv` | :x: |

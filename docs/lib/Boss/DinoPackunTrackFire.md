@@ -10,13 +10,13 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__25DinoPackunTrackFireHolderFl` | :x: |
-| `__dt__39DeriveActorGroup&lt;19DinoPackunTrackFire&gt;Fv` | :x: |
+| `__dt__39DeriveActorGroup<19DinoPackunTrackFire>Fv` | :x: |
 | `__ct__19DinoPackunTrackFireFPCc` | :x: |
 | `init__19DinoPackunTrackFireFRC12JMapInfoIter` | :x: |
 | `control__19DinoPackunTrackFireFv` | :x: |
 | `attackSensor__19DinoPackunTrackFireFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__19DinoPackunTrackFireFUlP9HitSensorP9HitSensor` | :x: |
-| `appearAndSetPos__19DinoPackunTrackFireFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearAndSetPos__19DinoPackunTrackFireFRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeWait__19DinoPackunTrackFireFv` | :x: |
 | `exeGround__19DinoPackunTrackFireFv` | :x: |
 | `__dt__19DinoPackunTrackFireFv` | :x: |

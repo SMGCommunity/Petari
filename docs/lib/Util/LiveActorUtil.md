@@ -9,7 +9,7 @@
 # LiveActorUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `createCollisionParts__27@unnamed@LiveActorUtil_cpp@FP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Q22MR18CollisionScaleTypel` | :x: |
+| `createCollisionParts__27@unnamed@LiveActorUtil_cpp@FP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Q22MR18CollisionScaleTypel` | :x: |
 | `isExistIndirectTexture__2MRFPC9LiveActor` | :x: |
 | `initMirrorReflection__2MRFP9LiveActor` | :x: |
 | `tryCreateCollisionMoveLimit__2MRFP9LiveActorP9HitSensor` | :x: |
@@ -24,7 +24,7 @@
 | `createIndirectPlanetModel__2MRFP9LiveActorPA4_f` | :x: |
 | `tryCreateMirrorActor__2MRFP9LiveActorPCc` | :x: |
 | `changeBckForEffectKeeper__27@unnamed@LiveActorUtil_cpp@FPC9LiveActor` | :x: |
-| `calcCollisionMtx__27@unnamed@LiveActorUtil_cpp@FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PC9LiveActor` | :x: |
+| `calcCollisionMtx__27@unnamed@LiveActorUtil_cpp@FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PC9LiveActor` | :x: |
 | `copyTransRotateScale__2MRFPC9LiveActorP9LiveActor` | :x: |
 | `isOnGround__2MRFPC9LiveActor` | :x: |
 | `isOnGroundCos__2MRFPC9LiveActorf` | :x: |
@@ -34,7 +34,7 @@
 | `isBindedWall__2MRFPC9LiveActorP9HitSensor` | :x: |
 | `isBindedWallOfMap__2MRFPC9LiveActor` | :x: |
 | `isBindedWallOfMoveLimit__2MRFPC9LiveActor` | :x: |
-| `isBindedWallOrSlopeGround__2MRFPC9LiveActorfPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isBindedWallOrSlopeGround__2MRFPC9LiveActorfPQ29JGeometry8TVec3<f>` | :x: |
 | `isBindedRoof__2MRFPC9LiveActor` | :x: |
 | `isBindedRoof__2MRFPC9LiveActorP9HitSensor` | :x: |
 | `isBinded__2MRFPC9LiveActor` | :x: |
@@ -49,7 +49,7 @@
 | `isValidDraw__2MRFPC9LiveActor` | :white_check_mark: |
 | `calcAnimDirect__2MRFP9LiveActor` | :white_check_mark: |
 | `setClippingTypeSphere__2MRFP9LiveActorf` | :x: |
-| `setClippingTypeSphere__2MRFP9LiveActorfPCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setClippingTypeSphere__2MRFP9LiveActorfPCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setClippingTypeSphereContainsModelBoundingBox__2MRFP9LiveActorf` | :white_check_mark: |
 | `setClippingFar50m__2MRFP9LiveActor` | :white_check_mark: |
 | `setClippingFar100m__2MRFP9LiveActor` | :white_check_mark: |
@@ -64,9 +64,9 @@
 | `isClipped__2MRFPC9LiveActor` | :x: |
 | `isInvalidClipping__2MRFPC9LiveActor` | :x: |
 | `setBaseTRMtx__2MRFP9LiveActorPA4_f` | :x: |
-| `setBaseTRMtx__2MRFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
-| `setBaseTRMtx__2MRFP9LiveActorRCQ29JGeometry9TQuat4&lt;f&gt;` | :x: |
-| `setBaseScale__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setBaseTRMtx__2MRFP9LiveActorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
+| `setBaseTRMtx__2MRFP9LiveActorRCQ29JGeometry9TQuat4<f>` | :x: |
+| `setBaseScale__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>` | :x: |
 | `getResourceHolder__2MRFPC9LiveActor` | :x: |
 | `getModelResourceHolder__2MRFPC9LiveActor` | :x: |
 | `getTexFromModel__2MRFPCcPC9LiveActor` | :x: |
@@ -170,7 +170,7 @@
 | `getBpkCtrl__2MRFPC9LiveActor` | :x: |
 | `getBvaCtrl__2MRFPC9LiveActor` | :x: |
 | `updateMaterial__2MRFP9LiveActor` | :x: |
-| `setMirrorReflectionInfoFromMtxYUp__2MRFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `setMirrorReflectionInfoFromMtxYUp__2MRFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `setMirrorReflectionInfoFromModel__2MRFP9LiveActor` | :x: |
 | `changeModelDataTexAll__2MRFP9LiveActorPCcRC7ResTIMG` | :x: |
 | `initJointTransform__2MRFPC9LiveActor` | :x: |
@@ -193,8 +193,8 @@
 | `updateLightCtrl__2MRFP9LiveActor` | :white_check_mark: |
 | `updateLightCtrlDirect__2MRFP9LiveActor` | :white_check_mark: |
 | `loadActorLight__2MRFPC9LiveActor` | :white_check_mark: |
-| `calcLightPos0__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor` | :white_check_mark: |
-| `calcLightPos1__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor` | :white_check_mark: |
+| `calcLightPos0__2MRFPQ29JGeometry8TVec3<f>PC9LiveActor` | :white_check_mark: |
+| `calcLightPos1__2MRFPQ29JGeometry8TVec3<f>PC9LiveActor` | :white_check_mark: |
 | `getLightAmbientColor__2MRFPC9LiveActor` | :white_check_mark: |
 | `getLightCtrl__2MRFPC9LiveActor` | :white_check_mark: |
 | `isStep__2MRFPC9LiveActorl` | :white_check_mark: |
@@ -230,14 +230,14 @@
 | `getGroundHitPos__2MRFPC9LiveActor` | :x: |
 | `getWallHitPos__2MRFPC9LiveActor` | :x: |
 | `getRoofHitPos__2MRFPC9LiveActor` | :x: |
-| `calcWallNormalHorizontal__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor` | :x: |
+| `calcWallNormalHorizontal__2MRFPQ29JGeometry8TVec3<f>PC9LiveActor` | :x: |
 | `calcHitPowerToGround__2MRFPC9LiveActor` | :x: |
 | `calcHitPowerToWall__2MRFPC9LiveActor` | :x: |
 | `getBindedPlaneNum__2MRFPC9LiveActor` | :x: |
 | `getBindedPlaneNormal__2MRFPC9LiveActori` | :x: |
 | `getBindedPlaneSensor__2MRFPC9LiveActori` | :x: |
 | `getBindedFixReactionVector__2MRFPC9LiveActor` | :x: |
-| `setBinderOffsetVec__2MRFP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `setBinderOffsetVec__2MRFP9LiveActorPCQ29JGeometry8TVec3<f>b` | :x: |
 | `setBinderRadius__2MRFP9LiveActorf` | :x: |
 | `getBinderRadius__2MRFPC9LiveActor` | :x: |
 | `setBinderIgnoreMovingCollision__2MRFP9LiveActor` | :x: |
@@ -284,8 +284,8 @@
 | `callRequestMovementOnAllGroupMember__2MRFPC9LiveActor` | :x: |
 | `callInvalidateClippingAllGroupMember__2MRFPC9LiveActor` | :x: |
 | `callValidateClippingAllGroupMember__2MRFPC9LiveActor` | :x: |
-| `countGroupMember&lt;PFP9LiveActor_b&gt;__27@unnamed@LiveActorUtil_cpp@FPC9LiveActorPFP9LiveActor_b_l` | :x: |
-| `countGroupMember&lt;PFPC9LiveActor_b&gt;__27@unnamed@LiveActorUtil_cpp@FPC9LiveActorPFPC9LiveActor_b_l` | :x: |
+| `countGroupMember<PFP9LiveActor_b>__27@unnamed@LiveActorUtil_cpp@FPC9LiveActorPFP9LiveActor_b_l` | :x: |
+| `countGroupMember<PFPC9LiveActor_b>__27@unnamed@LiveActorUtil_cpp@FPC9LiveActorPFPC9LiveActor_b_l` | :x: |
 | `countHideGroupMember__2MRFPC9LiveActor` | :x: |
 | `countShowGroupMember__2MRFPC9LiveActor` | :x: |
 | `addToAttributeGroupSearchTurtle__2MRFPC9LiveActor` | :x: |
@@ -293,9 +293,9 @@
 | `isExistInAttributeGroupSearchTurtle__2MRFPC9LiveActor` | :x: |
 | `isExistInAttributeGroupReflectSpinningBox__2MRFPC9LiveActor` | :x: |
 | `calcGravity__2MRFP9LiveActor` | :x: |
-| `calcGravity__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGravity__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>` | :x: |
 | `calcGravityOrZero__2MRFP9LiveActor` | :x: |
-| `calcGravityOrZero__2MRFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGravityOrZero__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>` | :x: |
 | `initFur__2MRFP9LiveActor` | :x: |
 | `initFurPlanet__2MRFP9LiveActor` | :x: |
 | `initFurPlayer__2MRFP9LiveActor` | :x: |
@@ -305,7 +305,7 @@
 | `initCollisionPartsFromResourceHolder__2MRFP9LiveActorPCcP9HitSensorP14ResourceHolderPA4_f` | :x: |
 | `createCollisionPartsFromLiveActor__2MRFP9LiveActorPCcP9HitSensorQ22MR18CollisionScaleType` | :x: |
 | `createCollisionPartsFromLiveActor__2MRFP9LiveActorPCcP9HitSensorPA4_fQ22MR18CollisionScaleType` | :x: |
-| `createCollisionPartsFromResourceHolder__2MRFP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Q22MR18CollisionScaleType` | :x: |
+| `createCollisionPartsFromResourceHolder__2MRFP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Q22MR18CollisionScaleType` | :x: |
 | `tryCreateCollisionMoveLimit__2MRFP9LiveActorPA4_fP9HitSensor` | :x: |
 | `tryCreateCollisionWaterSurface__2MRFP9LiveActorPA4_fP9HitSensor` | :x: |
 | `tryCreateCollisionSunshade__2MRFP9LiveActorPA4_fP9HitSensor` | :x: |
@@ -343,12 +343,12 @@
 | `createPartsModelEnemy__2MRFP9LiveActorPCcPCcPA4_f` | :x: |
 | `createPartsModelNpc__2MRFP9LiveActorPCcPCcPA4_f` | :x: |
 | `createPartsModelIndirectNpc__2MRFP9LiveActorPCcPCcPA4_f` | :x: |
-| `createPartsModelEnemyAndFix__2MRFP9LiveActorPCcPCcPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc` | :x: |
+| `createPartsModelEnemyAndFix__2MRFP9LiveActorPCcPCcPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc` | :x: |
 | `createPartsModelNpcAndFix__2MRFP9LiveActorPCcPCcPCc` | :x: |
 | `createLodCtrlNPC__2MRFP9LiveActorRC12JMapInfoIter` | :x: |
 | `createLodCtrlPlanet__2MRFP9LiveActorRC12JMapInfoIterfl` | :x: |
 | `createLodCtrlMapObj__2MRFP9LiveActorRC12JMapInfoIterf` | :x: |
-| `createMapFlag__2MRFPCcPCcPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffllf` | :x: |
+| `createMapFlag__2MRFPCcPCcPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffllf` | :x: |
 | `stopSceneAtStep__2MRFPC9LiveActorll` | :x: |
 | `tryRumblePadAndCameraDistanceVeryStrong__2MRFPC9LiveActorfff` | :x: |
 | `tryRumblePadAndCameraDistanceStrong__2MRFPC9LiveActorfff` | :x: |

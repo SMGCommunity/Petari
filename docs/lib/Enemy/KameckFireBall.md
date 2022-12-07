@@ -19,7 +19,7 @@
 | `attackSensor__14KameckFireBallFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__14KameckFireBallFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__14KameckFireBallFUlP9HitSensorP9HitSensor` | :x: |
-| `appearDirection__14KameckFireBallFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearDirection__14KameckFireBallFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setEventListener__14KameckFireBallFP23KameckBeamEventListener` | :x: |
 | `exeWait__14KameckFireBallFv` | :x: |
 | `exeSweep__14KameckFireBallFv` | :x: |

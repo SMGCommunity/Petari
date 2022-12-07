@@ -14,7 +14,7 @@
 | `kill__19WaterPressureBulletFv` | :white_check_mark: |
 | `control__19WaterPressureBulletFv` | :x: |
 | `calcAndSetBaseMtx__19WaterPressureBulletFv` | :white_check_mark: |
-| `shotWaterBullet__19WaterPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;fbbbPP15ActorCameraInfo` | :white_check_mark: |
+| `shotWaterBullet__19WaterPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>fbbbPP15ActorCameraInfo` | :white_check_mark: |
 | `exeFly__19WaterPressureBulletFv` | :white_check_mark: |
 | `exeSpinKill__19WaterPressureBulletFv` | :white_check_mark: |
 | `attackSensor__19WaterPressureBulletFP9HitSensorP9HitSensor` | :white_check_mark: |

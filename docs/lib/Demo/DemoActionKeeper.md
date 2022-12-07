@@ -9,8 +9,8 @@
 # DemoActionKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;l&gt;__8JMapInfoCFiPCcPl_Cb` | :x: |
-| `getValue&lt;PCc&gt;__8JMapInfoCFiPCcPPCc_Cb` | :x: |
+| `getValue<l>__8JMapInfoCFiPCcPl_Cb` | :x: |
+| `getValue<PCc>__8JMapInfoCFiPCcPPCc_Cb` | :x: |
 | `findTalkMessageCtrl__30@unnamed@DemoActionKeeper_cpp@FP9LiveActor` | :x: |
 | `setTalkAnimCtrlInterpole__30@unnamed@DemoActionKeeper_cpp@FP9LiveActorl` | :x: |
 | `__ct__14DemoActionInfoFv` | :x: |

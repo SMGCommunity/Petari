@@ -10,6 +10,6 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__21PoltaGroundRockHolderFv` | :x: |
-| `__dt__35DeriveActorGroup&lt;15PoltaGroundRock&gt;Fv` | :x: |
+| `__dt__35DeriveActorGroup<15PoltaGroundRock>Fv` | :x: |
 | `breakAll__21PoltaGroundRockHolderFv` | :x: |
 | `__dt__21PoltaGroundRockHolderFv` | :x: |

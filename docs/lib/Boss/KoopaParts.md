@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__10KoopaPartsFP5KoopaRC12JMapInfoIter` | :x: |
 | `createKoopaBodyParts__24@unnamed@KoopaParts_cpp@FP9LiveActorPCcPCcPCc` | :x: |
-| `emitFireStairsToPos__10KoopaPartsFPC19KoopaBattleMapStairRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `emitFireStairsToPos__10KoopaPartsFPC19KoopaBattleMapStairRCQ29JGeometry8TVec3<f>b` | :x: |
 | `killFireStairsAll__10KoopaPartsFv` | :x: |
 | `emitFireShort__10KoopaPartsFbb` | :x: |
 | `emitFireLongTime__10KoopaPartsFv` | :x: |

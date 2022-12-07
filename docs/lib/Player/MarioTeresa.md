@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `startTeresaMode__5MarioFv` | :x: |
 | `updateDropFlag__11MarioTeresaFv` | :x: |
-| `getHitWallNorm__5MarioFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getHitWallNorm__5MarioFPQ29JGeometry8TVec3<f>` | :x: |
 | `resetTeresaMode__5MarioFv` | :x: |
 | `resetTeresaMode__11MarioTeresaFv` | :x: |
 | `isTeresaAccel__11MarioTeresaCFv` | :x: |
@@ -25,9 +25,9 @@
 | `procNearGroundControl__11MarioTeresaFv` | :x: |
 | `procDrop__11MarioTeresaFv` | :x: |
 | `addTeresaVerticalVelocity__11MarioTeresaFf` | :x: |
-| `addTeresaHorizontalVelocity__11MarioTeresaFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `doTeresaReflection__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
-| `doTeresaReflection__11MarioTeresaFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `addTeresaHorizontalVelocity__11MarioTeresaFRCQ29JGeometry8TVec3<f>` | :x: |
+| `doTeresaReflection__5MarioFRCQ29JGeometry8TVec3<f>b` | :x: |
+| `doTeresaReflection__11MarioTeresaFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `initTeresaMarioAnimation__10MarioActorFv` | :x: |
 | `startTeresaDisappear__5MarioFv` | :x: |
 | `start__11MarioTeresaFv` | :x: |

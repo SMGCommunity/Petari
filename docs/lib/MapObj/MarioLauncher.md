@@ -60,10 +60,10 @@
 | `execute__Q216NrvMarioLauncher24MarioLauncherNrvPlayerInCFP5Spine` | :x: |
 | `execute__Q216NrvMarioLauncher21MarioLauncherNrvReadyCFP5Spine` | :x: |
 | `execute__Q216NrvMarioLauncher20MarioLauncherNrvWaitCFP5Spine` | :x: |
-| `Functor&lt;13MarioLauncher&gt;__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13MarioLauncher,M13MarioLauncherFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<13MarioLauncher>__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13MarioLauncherFv` | :x: |
 | `__dt__19MarioLauncherLayoutFv` | :x: |
 | `__dt__18MarioLauncherShellFv` | :x: |
-| `isInvalidTriangle__40TriangleFilterDelegator&lt;13MarioLauncher&gt;CFPC8Triangle` | :x: |
+| `isInvalidTriangle__40TriangleFilterDelegator<13MarioLauncher>CFPC8Triangle` | :x: |

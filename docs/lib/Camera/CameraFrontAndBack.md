@@ -14,5 +14,5 @@
 | `reset__18CameraFrontAndBackFv` | :x: |
 | `calc__18CameraFrontAndBackFv` | :x: |
 | `createTranslator__18CameraFrontAndBackFv` | :white_check_mark: |
-| `calcBaseQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcDipQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcBaseQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcDipQuat__18CameraFrontAndBackFPQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |

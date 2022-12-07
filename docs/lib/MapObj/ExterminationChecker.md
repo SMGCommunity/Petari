@@ -9,8 +9,8 @@
 # ExterminationChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `createLiveActor&lt;16SkeletalFishBaby&gt;__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
-| `createLiveActor&lt;8Meramera&gt;__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
+| `createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
+| `createLiveActor<8Meramera>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
 | `__ct__20ExterminationCheckerFPCc` | :x: |
 | `init__20ExterminationCheckerFRC12JMapInfoIter` | :x: |
 | `control__20ExterminationCheckerFv` | :x: |

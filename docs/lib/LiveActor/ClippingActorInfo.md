@@ -13,7 +13,7 @@
 | `judgeClipping__17ClippingActorInfoFv` | :white_check_mark: |
 | `isJudgedToClip__17ClippingActorInfoCFv` | :white_check_mark: |
 | `isGroupClipping__17ClippingActorInfoCFv` | :white_check_mark: |
-| `setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setTypeToSphere__17ClippingActorInfoFfPCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setGroupClippingNo__17ClippingActorInfoFRC12JMapInfoIter` | :x: |
 | `__ct__21ClippingActorInfoListFi` | :white_check_mark: |
 | `add__21ClippingActorInfoListFP17ClippingActorInfo` | :white_check_mark: |

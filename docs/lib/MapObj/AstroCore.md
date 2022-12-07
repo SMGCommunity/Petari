@@ -22,6 +22,6 @@
 | `__ct__Q212NrvAstroCore16AstroCoreNrvGrowFv` | :x: |
 | `execute__Q212NrvAstroCore16AstroCoreNrvGrowCFP5Spine` | :x: |
 | `execute__Q212NrvAstroCore16AstroCoreNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR43FunctorV0M&lt;P9AstroCore,M9AstroCoreFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR43FunctorV0M&lt;P9AstroCore,M9AstroCoreFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR43FunctorV0M<P9AstroCore,M9AstroCoreFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__9AstroCoreFv` | :x: |

@@ -24,6 +24,6 @@
 | `execute__Q221NrvHeavensDoorDemoObj27HeavensDoorDemoObjNrvVanishCFP5Spine` | :x: |
 | `execute__Q221NrvHeavensDoorDemoObj25HeavensDoorDemoObjNrvWaitCFP5Spine` | :x: |
 | `execute__Q221NrvHeavensDoorDemoObj27HeavensDoorDemoObjNrvAppearCFP5Spine` | :x: |
-| `__cl__Q22MR63FunctorV0M&lt;P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR63FunctorV0M&lt;P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR63FunctorV0M<P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR63FunctorV0M<P18HeavensDoorDemoObj,M18HeavensDoorDemoObjFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__18HeavensDoorDemoObjFv` | :x: |

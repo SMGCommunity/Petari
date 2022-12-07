@@ -15,10 +15,10 @@
 | `isFastDrop__10MarioActorCFv` | :x: |
 | `getSpecialMode__10MarioActorCFv` | :x: |
 | `isCameraStateOn__10MarioActorCF25SPECIAL_STATUS_FOR_CAMERA` | :x: |
-| `getFrontVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getSideVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getUpVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getLastMove__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getFrontVec__10MarioActorCFPQ29JGeometry8TVec3<f>` | :x: |
+| `getSideVec__10MarioActorCFPQ29JGeometry8TVec3<f>` | :x: |
+| `getUpVec__10MarioActorCFPQ29JGeometry8TVec3<f>` | :x: |
+| `getLastMove__10MarioActorCFPQ29JGeometry8TVec3<f>` | :x: |
 | `getLastMove__10MarioActorCFv` | :x: |
 | `getTransForCamera__10MarioActorCFv` | :x: |
 | `updateTransForCamera__10MarioActorFv` | :x: |

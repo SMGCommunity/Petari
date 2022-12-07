@@ -9,7 +9,7 @@
 # TombSpiderGland.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15TombSpiderGlandFP9LiveActorPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc` | :x: |
+| `__ct__15TombSpiderGlandFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc` | :x: |
 | `init__15TombSpiderGlandFRC12JMapInfoIter` | :x: |
 | `startActive__15TombSpiderGlandFv` | :x: |
 | `startDamage__15TombSpiderGlandFv` | :x: |

@@ -29,8 +29,8 @@
 | `getCurrentCommonLayers__20ScenarioDataFunctionFPCc` | :x: |
 | `getCurrentScenarioLayers__20ScenarioDataFunctionFPCcl` | :x: |
 | `makeBeginScenarioDataIter__2MRFv` | :x: |
-| `sort&lt;PP12ScenarioData,RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt&gt;__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
-| `swap&lt;P12ScenarioData&gt;__3stdFRP12ScenarioDataRP12ScenarioData_v` | :x: |
-| `__sort132&lt;RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData&gt;__3stdFPP12ScenarioDataPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
-| `__selection_sort&lt;RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData&gt;__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
+| `sort<PP12ScenarioData,RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt>__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
+| `swap<P12ScenarioData>__3stdFRP12ScenarioDataRP12ScenarioData_v` | :x: |
+| `__sort132<RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData>__3stdFPP12ScenarioDataPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
+| `__selection_sort<RQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt,PP12ScenarioData>__3stdFPP12ScenarioDataPP12ScenarioDataRQ232@unnamed@ScenarioDataParser_cpp@16GalaxyNameSortLt_v` | :x: |
 | `__dt__18ScenarioDataParserFv` | :x: |

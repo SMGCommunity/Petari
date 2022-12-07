@@ -14,4 +14,4 @@
 | `reset__22CameraFooFighterPlanetFv` | :x: |
 | `calc__22CameraFooFighterPlanetFv` | :x: |
 | `createTranslator__22CameraFooFighterPlanetFv` | :white_check_mark: |
-| `goRoundBehind__22CameraFooFighterPlanetFRQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `goRoundBehind__22CameraFooFighterPlanetFRQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :x: |

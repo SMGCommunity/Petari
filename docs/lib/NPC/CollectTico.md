@@ -28,6 +28,6 @@
 | `execute__Q214NrvCollectTico26CollectTicoNrvCompleteDemoCFP5Spine` | :x: |
 | `execute__Q214NrvCollectTico26CollectTicoNrvTryStartDemoCFP5Spine` | :x: |
 | `execute__Q214NrvCollectTico18CollectTicoNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11CollectTico,M11CollectTicoFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11CollectTico,M11CollectTicoFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11CollectTico,M11CollectTicoFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11CollectTico,M11CollectTicoFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__11CollectTicoFv` | :x: |

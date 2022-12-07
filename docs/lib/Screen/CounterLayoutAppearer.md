@@ -9,9 +9,9 @@
 # CounterLayoutAppearer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
+| `__ct__21CounterLayoutAppearerFP11LayoutActorRCQ29JGeometry8TVec2<f>` | :white_check_mark: |
 | `update__21CounterLayoutAppearerFv` | :white_check_mark: |
-| `appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
+| `appear__21CounterLayoutAppearerFRCQ29JGeometry8TVec2<f>` | :white_check_mark: |
 | `disappear__21CounterLayoutAppearerFv` | :white_check_mark: |
 | `isAppeared__21CounterLayoutAppearerCFv` | :white_check_mark: |
 | `isDisappeared__21CounterLayoutAppearerCFv` | :white_check_mark: |

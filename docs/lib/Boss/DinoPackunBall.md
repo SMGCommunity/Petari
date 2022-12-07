@@ -14,7 +14,7 @@
 | `init__14DinoPackunBallFRC12JMapInfoIter` | :x: |
 | `control__14DinoPackunBallFv` | :x: |
 | `calcAndSetBaseMtx__14DinoPackunBallFv` | :x: |
-| `addNodeVelocity__14DinoPackunBallFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `addNodeVelocity__14DinoPackunBallFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setWeakSensor__14DinoPackunBallFP9HitSensor` | :x: |
 | `createJointControllerOwn__14DinoPackunBallFP9LiveActorPCc` | :x: |
 | `requestLockPosition__14DinoPackunBallFv` | :x: |
@@ -45,7 +45,7 @@
 | `execute__Q217NrvDinoPackunBall23DinoPackunBallNrvChargeCFP5Spine` | :x: |
 | `execute__Q217NrvDinoPackunBall22DinoPackunBallNrvShootCFP5Spine` | :x: |
 | `execute__Q217NrvDinoPackunBall21DinoPackunBallNrvWaitCFP5Spine` | :x: |
-| `__dt__43JointControlDelegator&lt;18DinoPackunTailNode&gt;Fv` | :x: |
-| `calcJointMatrix__43JointControlDelegator&lt;18DinoPackunTailNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__43JointControlDelegator&lt;18DinoPackunTailNode&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__43JointControlDelegator<18DinoPackunTailNode>Fv` | :x: |
+| `calcJointMatrix__43JointControlDelegator<18DinoPackunTailNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__43JointControlDelegator<18DinoPackunTailNode>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__14DinoPackunBallFv` | :x: |

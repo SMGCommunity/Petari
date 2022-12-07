@@ -13,7 +13,7 @@
 | `__ct__4FlagFPCc` | :x: |
 | `init__4FlagFRC12JMapInfoIter` | :x: |
 | `appear__4FlagFv` | :x: |
-| `setInfoPos__4FlagFPCcPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffllf` | :x: |
+| `setInfoPos__4FlagFPCcPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffllf` | :x: |
 | `movement__4FlagFv` | :x: |
 | `updateFlag__4FlagFv` | :x: |
 | `draw__4FlagCFv` | :x: |

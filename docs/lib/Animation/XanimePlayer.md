@@ -36,7 +36,7 @@
 | `updateBeforeMovement__12XanimePlayerFv` | :x: |
 | `updateAfterMovement__12XanimePlayerFv` | :x: |
 | `updateInterpoleRatio__12XanimePlayerFv` | :x: |
-| `getMainAnimationTrans__12XanimePlayerCFUlPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getMainAnimationTrans__12XanimePlayerCFUlPQ29JGeometry8TVec3<f>` | :x: |
 | `isRun__12XanimePlayerCFPCc` | :x: |
 | `isTerminate__12XanimePlayerCFPCc` | :x: |
 | `isTerminate__12XanimePlayerCFv` | :x: |

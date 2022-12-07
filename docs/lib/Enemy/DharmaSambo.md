@@ -9,9 +9,9 @@
 # DharmaSambo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__dt__Q22MR51Vector&lt;Q22MR36AssignableArray&lt;P16DharmaSamboParts&gt;&gt;Fv` | :x: |
-| `__dt__Q22MR48Vector&lt;Q22MR33AssignableArray&lt;P13FixedPosition&gt;&gt;Fv` | :x: |
-| `mul__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__dt__Q22MR51Vector<Q22MR36AssignableArray<P16DharmaSamboParts>>Fv` | :x: |
+| `__dt__Q22MR48Vector<Q22MR33AssignableArray<P13FixedPosition>>Fv` | :x: |
+| `mul__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__11DharmaSamboFPCc` | :x: |
 | `init__11DharmaSamboFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__11DharmaSamboFv` | :x: |
@@ -92,8 +92,8 @@
 | `execute__Q214NrvDharmaSambo28HostTypeNrvAppearImmediatelyCFP5Spine` | :x: |
 | `execute__Q214NrvDharmaSambo17HostTypeNrvAppearCFP5Spine` | :x: |
 | `execute__Q214NrvDharmaSambo26HostTypeNrvWaitUnderGroundCFP5Spine` | :x: |
-| `copyRotate__13FixedPositionCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__dt__Q22MR33AssignableArray&lt;P13FixedPosition&gt;Fv` | :x: |
-| `__dt__Q22MR36AssignableArray&lt;P16DharmaSamboParts&gt;Fv` | :x: |
+| `copyRotate__13FixedPositionCFPQ29JGeometry8TVec3<f>` | :x: |
+| `__dt__Q22MR33AssignableArray<P13FixedPosition>Fv` | :x: |
+| `__dt__Q22MR36AssignableArray<P16DharmaSamboParts>Fv` | :x: |
 | `__dt__11DharmaSamboFv` | :x: |
 | `__dt__16DharmaSamboPartsFv` | :x: |

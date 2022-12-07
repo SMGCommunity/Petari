@@ -36,7 +36,7 @@
 | `attackSensor__7KoteBugFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__7KoteBugFP9HitSensorP9HitSensor` | :x: |
 | `calcAndSetBaseMtx__7KoteBugFv` | :x: |
-| `calcJoint__7KoteBugFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJoint__7KoteBugFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__sinit_\KoteBug_cpp` | :x: |
 | `__ct__Q210NrvKoteBug21HostTypeNrvNoCalcWaitFv` | :x: |
 | `__ct__Q210NrvKoteBug15HostTypeNrvWaitFv` | :x: |
@@ -75,7 +75,7 @@
 | `execute__Q210NrvKoteBug15HostTypeNrvWaitCFP5Spine` | :x: |
 | `executeOnEnd__Q210NrvKoteBug21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `execute__Q210NrvKoteBug21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
-| `__dt__31JointControlDelegator&lt;7KoteBug&gt;Fv` | :x: |
-| `calcJointMatrix__31JointControlDelegator&lt;7KoteBug&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__31JointControlDelegator&lt;7KoteBug&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__31JointControlDelegator<7KoteBug>Fv` | :x: |
+| `calcJointMatrix__31JointControlDelegator<7KoteBug>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__31JointControlDelegator<7KoteBug>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__7KoteBugFv` | :x: |

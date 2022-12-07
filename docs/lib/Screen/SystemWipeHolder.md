@@ -14,7 +14,7 @@
 | `movement__16SystemWipeHolderFv` | :x: |
 | `calcAnim__16SystemWipeHolderFv` | :x: |
 | `draw__16SystemWipeHolderCFv` | :x: |
-| `setWipeRingCenter__16SystemWipeHolderFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setWipeRingCenter__16SystemWipeHolderFRCQ29JGeometry8TVec3<f>` | :x: |
 | `startGameScreenCapture__16SystemWipeHolderFv` | :x: |
 | `drawGameScreenCapture__16SystemWipeHolderCFv` | :x: |
 | `updateWipe__16SystemWipeHolderFPCc` | :x: |

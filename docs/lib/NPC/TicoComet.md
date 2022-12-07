@@ -49,9 +49,9 @@
 | `execute__Q210NrvTicoEat16TicoEatNrvEatNowCFP5Spine` | :x: |
 | `execute__Q210NrvTicoEat16TicoEatNrvEatPreCFP5Spine` | :x: |
 | `startReactionSound__7TicoEatFv` | :x: |
-| `TalkMessageFunc&lt;9TicoComet&gt;__FP9TicoCometM9TicoCometFPCvPvUl_b_51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;` | :x: |
-| `__cl__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;FRC51TalkMessageFuncM&lt;P9TicoComet,M9TicoCometFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<9TicoComet>__FP9TicoCometM9TicoCometFPCvPvUl_b_51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>` | :x: |
+| `__cl__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFUl` | :x: |
+| `clone__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFv` | :x: |
+| `clone__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>FRC51TalkMessageFuncM<P9TicoComet,M9TicoCometFPCvPvUl_b>` | :x: |
 | `__dt__9TicoCometFv` | :x: |

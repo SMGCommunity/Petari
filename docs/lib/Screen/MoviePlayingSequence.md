@@ -14,7 +14,7 @@
 | `getMovieName__34@unnamed@MoviePlayingSequence_cpp@FPC16MoviePlayingInfo` | :x: |
 | `getMovieName__20MoviePlayingSequenceFQ220MoviePlayingSequence9MovieType` | :x: |
 | `__ct__20MoviePlayingSequenceFPCcl` | :x: |
-| `__dt__Q22MR49Vector&lt;Q22MR34AssignableArray&lt;P14MovieSubtitles&gt;&gt;Fv` | :x: |
+| `__dt__Q22MR49Vector<Q22MR34AssignableArray<P14MovieSubtitles>>Fv` | :x: |
 | `appear__20MoviePlayingSequenceFv` | :x: |
 | `kill__20MoviePlayingSequenceFv` | :x: |
 | `exePlayWait__20MoviePlayingSequenceFv` | :x: |
@@ -50,7 +50,7 @@
 | `execute__Q223NrvMoviePlayingSequence17HostTypePlayStartCFP5Spine` | :x: |
 | `execute__Q223NrvMoviePlayingSequence16HostTypePlayWaitCFP5Spine` | :x: |
 | `execute__Q223NrvMoviePlayingSequence12HostTypeWaitCFP5Spine` | :x: |
-| `__dt__Q22MR40AssignableArray&lt;P20MoviePlayingSequence&gt;Fv` | :x: |
-| `__dt__Q22MR34AssignableArray&lt;P14MovieSubtitles&gt;Fv` | :x: |
+| `__dt__Q22MR40AssignableArray<P20MoviePlayingSequence>Fv` | :x: |
+| `__dt__Q22MR34AssignableArray<P14MovieSubtitles>Fv` | :x: |
 | `__dt__20MoviePlayingSequenceFv` | :x: |
 | `__dt__26MoviePlayingSequenceHolderFv` | :x: |

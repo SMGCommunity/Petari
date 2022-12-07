@@ -9,7 +9,7 @@
 # BossKameck.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct&lt;i&gt;__Q29JGeometry8TVec3&lt;f&gt;Fiii_Pv` | :x: |
+| `__ct<i>__Q29JGeometry8TVec3<f>Fiii_Pv` | :x: |
 | `__dt__9LiveActorFv` | :x: |
 | `__ct__10BossKameckFPCcPCc` | :x: |
 | `getMoveRail__10BossKameckFl` | :x: |
@@ -39,6 +39,6 @@
 | `hitBeam__10BossKameckFl` | :x: |
 | `createBossKameck1__2MRFPCc` | :x: |
 | `start__19BossKameckSequencerFv` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10BossKameck,M10BossKameckFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10BossKameck,M10BossKameckFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10BossKameckFv` | :x: |

@@ -13,8 +13,8 @@
 | `init__7CocoNutFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__7CocoNutFv` | :x: |
 | `startClipped__7CocoNutFv` | :x: |
-| `hit__7CocoNutFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `isPossibleToHit__7CocoNutCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `hit__7CocoNutFRCQ29JGeometry8TVec3<f>f` | :x: |
+| `isPossibleToHit__7CocoNutCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `calcMoveSpeed__7CocoNutCFv` | :x: |
 | `getModelName__7CocoNutFv` | :x: |
 | `getBreakEffectName__7CocoNutFv` | :x: |
@@ -31,7 +31,7 @@
 | `updateRotate__7CocoNutFf` | :x: |
 | `updateGravity__7CocoNutFv` | :x: |
 | `processMove__7CocoNutFv` | :x: |
-| `setFrontVec__7CocoNutFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setFrontVec__7CocoNutFRCQ29JGeometry8TVec3<f>` | :x: |
 | `tryHit__7CocoNutFP9HitSensorP9HitSensor` | :x: |
 | `tryPushedFromActor__7CocoNutFP9HitSensorP9HitSensor` | :x: |
 | `reviseFrontVec__7CocoNutFv` | :x: |
@@ -39,9 +39,9 @@
 | `tryMoveEnd__7CocoNutFv` | :x: |
 | `tryDisappear__7CocoNutFv` | :x: |
 | `isValidPushedFromPlayer__7CocoNutCFPC9HitSensorPC9HitSensor` | :x: |
-| `calcHitSpeedAndFrontVec__7CocoNutCFPfPfPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcHitSpeedAndFrontVec__7CocoNutCFPfPfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `isOnGround__7CocoNutCFv` | :x: |
-| `getWallNormal__7CocoNutCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getWallNormal__7CocoNutCFPQ29JGeometry8TVec3<f>` | :x: |
 | `sendMsgToBindedSensor__7CocoNutFv` | :x: |
 | `sendMsgEnemyAttackToBindedSensor__7CocoNutFP9HitSensor` | :x: |
 | `isValidReceiveMsg__7CocoNutCFPC9HitSensor` | :x: |

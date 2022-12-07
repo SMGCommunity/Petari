@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__19NameObjListExecutorFv` | :white_check_mark: |
 | `__dt__19NameObjListExecutorFv` | :x: |
-| `__dt__Q22MR50Vector&lt;Q22MR35AssignableArray&lt;P15DrawBufferGroup&gt;&gt;Fv` | :x: |
+| `__dt__Q22MR50Vector<Q22MR35AssignableArray<P15DrawBufferGroup>>Fv` | :x: |
 | `init__19NameObjListExecutorFv` | :white_check_mark: |
 | `registerDrawBuffer__19NameObjListExecutorFP9LiveActori` | :white_check_mark: |
 | `allocateDrawBufferActorList__19NameObjListExecutorFv` | :white_check_mark: |

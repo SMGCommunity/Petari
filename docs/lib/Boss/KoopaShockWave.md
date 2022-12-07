@@ -13,7 +13,7 @@
 | `init__14KoopaShockWaveFRC12JMapInfoIter` | :x: |
 | `appear__14KoopaShockWaveFv` | :x: |
 | `makeActorDead__14KoopaShockWaveFv` | :x: |
-| `makeShockWaveMtx__28@unnamed@KoopaShockWave_cpp@FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff` | :x: |
+| `makeShockWaveMtx__28@unnamed@KoopaShockWave_cpp@FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff` | :x: |
 | `exeWaveAttack__14KoopaShockWaveFv` | :x: |
 | `updateHitSensor__14KoopaShockWaveFP9HitSensor` | :x: |
 | `calcAndSetBaseMtx__14KoopaShockWaveFv` | :x: |

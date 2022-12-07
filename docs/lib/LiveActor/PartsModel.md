@@ -16,9 +16,9 @@
 | `movement__10PartsModelFv` | :white_check_mark: |
 | `calcAnim__10PartsModelFv` | :x: |
 | `calcViewAndEntry__10PartsModelFv` | :white_check_mark: |
-| `initFixedPosition__10PartsModelFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc` | :white_check_mark: |
+| `initFixedPosition__10PartsModelFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc` | :white_check_mark: |
 | `initFixedPosition__10PartsModelFPCc` | :white_check_mark: |
-| `initFixedPosition__10PartsModelFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `initFixedPosition__10PartsModelFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `loadFixedPosition__10PartsModelFPCc` | :white_check_mark: |
 | `offFixedPosNormalizeScale__10PartsModelFv` | :white_check_mark: |
 | `calcAndSetBaseMtx__10PartsModelFv` | :white_check_mark: |

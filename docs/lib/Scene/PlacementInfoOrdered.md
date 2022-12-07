@@ -22,6 +22,6 @@
 | `__ct__Q220PlacementInfoOrdered5IndexFv` | :x: |
 | `__dt__Q220PlacementInfoOrdered5IndexFv` | :x: |
 | `__ct__Q220PlacementInfoOrdered9SameIdSetFv` | :x: |
-| `__dt__Q22MR43BothDirList&lt;Q220PlacementInfoOrdered5Index&gt;Fv` | :x: |
+| `__dt__Q22MR43BothDirList<Q220PlacementInfoOrdered5Index>Fv` | :x: |
 | `__dt__Q220PlacementInfoOrdered9SameIdSetFv` | :x: |
 | `attach__20PlacementInfoOrderedFPC8JMapInfoP20PlacementInfoOrdered` | :x: |

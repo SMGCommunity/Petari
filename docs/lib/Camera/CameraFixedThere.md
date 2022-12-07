@@ -14,9 +14,9 @@
 | `calc__16CameraFixedThereFv` | :x: |
 | `createTranslator__16CameraFixedThereFv` | :white_check_mark: |
 | `copyStatusFromPrevCamera__16CameraFixedThereFv` | :x: |
-| `calcEyeDir__16CameraFixedThereFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcEyeDir__16CameraFixedThereFPQ29JGeometry8TVec3<f>` | :x: |
 | `makeAxisAndRoll__16CameraFixedThereFv` | :x: |
-| `updateUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `updateNormalUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3<f>` | :x: |
+| `updateNormalUpVec__16CameraFixedThereFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__16CameraFixedThereFv` | :white_check_mark: |
 | `isCorrectingErpPositionOff__16CameraFixedThereCFv` | :x: |

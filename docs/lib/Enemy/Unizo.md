@@ -41,7 +41,7 @@
 | `doJump__5UnizoFv` | :x: |
 | `doAttack__5UnizoFP9HitSensor` | :x: |
 | `doJumpDown__5UnizoFv` | :x: |
-| `doFireDown__5UnizoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `doFireDown__5UnizoFRCQ29JGeometry8TVec3<f>` | :x: |
 | `doBreak__5UnizoFv` | :x: |
 | `doSpin__5UnizoFv` | :x: |
 | `isBreakGround__5UnizoFv` | :x: |

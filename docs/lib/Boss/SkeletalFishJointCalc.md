@@ -9,4 +9,4 @@
 # SkeletalFishJointCalc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `calcJoint__21SkeletalFishJointCalcFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;P23SkeletalFishRailControlRC19JointControllerInfo` | :x: |
+| `calcJoint__21SkeletalFishJointCalcFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>P23SkeletalFishRailControlRC19JointControllerInfo` | :x: |

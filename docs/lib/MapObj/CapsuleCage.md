@@ -29,6 +29,6 @@
 | `initCaseNoUseSwitchB__11CapsuleCageFRC19MapObjActorInitInfo` | :white_check_mark: |
 | `initCaseNoUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo` | :white_check_mark: |
 | `initCaseUseSwitchA__11CapsuleCageFRC19MapObjActorInitInfo` | :white_check_mark: |
-| `__cl__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR49FunctorV0M&lt;P11CapsuleCage,M11CapsuleCageFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR49FunctorV0M<P11CapsuleCage,M11CapsuleCageFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__11CapsuleCageFv` | :white_check_mark: |

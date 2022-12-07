@@ -28,7 +28,7 @@
 | `startRelax__12PressureBaseFv` | :white_check_mark: |
 | `initBullet__12PressureBaseFRC12JMapInfoIter` | :white_check_mark: |
 | `shotBullet__12PressureBaseFf` | :white_check_mark: |
-| `calcJointCannonV__12PressureBaseFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJointCannonV__12PressureBaseFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `isShotTypeOnGravity__12PressureBaseCFv` | :white_check_mark: |
 | `isShotTypeFollow__12PressureBaseCFv` | :white_check_mark: |
 | `__sinit_\PressureBase_cpp` | :white_check_mark: |
@@ -50,10 +50,10 @@
 | `execute__Q215NrvPressureBase24PressureBaseNrvWaitStartCFP5Spine` | :white_check_mark: |
 | `execute__Q215NrvPressureBase25PressureBaseNrvRelaxStartCFP5Spine` | :white_check_mark: |
 | `execute__Q220NrvPressureMessenger24PressureMessengerNrvSyncCFP5Spine` | :white_check_mark: |
-| `Functor&lt;12PressureBase&gt;__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR51FunctorV0M&lt;P12PressureBase,M12PressureBaseFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<12PressureBase>__2MRFP12PressureBaseM12PressureBaseFPCvPv_v_Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR51FunctorV0M<P12PressureBase,M12PressureBaseFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__17PressureMessengerFv` | :white_check_mark: |
-| `__dt__37JointControlDelegator&lt;12PressureBase&gt;Fv` | :white_check_mark: |
-| `calcJointMatrix__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__37JointControlDelegator&lt;12PressureBase&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__37JointControlDelegator<12PressureBase>Fv` | :white_check_mark: |
+| `calcJointMatrix__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__37JointControlDelegator<12PressureBase>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |

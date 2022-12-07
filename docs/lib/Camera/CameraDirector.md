@@ -56,7 +56,7 @@
 | `isStartAnimCameraEnd__14CameraDirectorCFv` | :white_check_mark: |
 | `getStartAnimCameraFrame__14CameraDirectorCFv` | :white_check_mark: |
 | `endStartAnimCamera__14CameraDirectorFv` | :white_check_mark: |
-| `startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffl` | :x: |
+| `startTalkCamera__14CameraDirectorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffl` | :x: |
 | `endTalkCamera__14CameraDirectorFbl` | :white_check_mark: |
 | `startSubjectiveCamera__14CameraDirectorFl` | :white_check_mark: |
 | `endSubjectiveCamera__14CameraDirectorFl` | :white_check_mark: |
@@ -69,7 +69,7 @@
 | `checkEndOfEventCamera__14CameraDirectorFv` | :x: |
 | `controlCameraSE__14CameraDirectorFv` | :x: |
 | `removeEndEventAtLanding__14CameraDirectorFlPCc` | :x: |
-| `calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;PC15CameraPoseParam` | :x: |
+| `calcViewMtxFromPoseParam__14CameraDirectorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>PC15CameraPoseParam` | :x: |
 | `isPlayableCameraSE__14CameraDirectorFb` | :white_check_mark: |
 | `resetCameraMan__14CameraDirectorFv` | :white_check_mark: |
 | `createStartAnimCamera__14CameraDirectorFv` | :white_check_mark: |

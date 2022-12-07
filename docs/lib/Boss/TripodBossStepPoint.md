@@ -12,7 +12,7 @@
 | `__ct__19TripodBossStepPointFPCc` | :x: |
 | `init__19TripodBossStepPointFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__19TripodBossStepPointFv` | :x: |
-| `setStepPosition__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setStepNormal__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setStepFront__19TripodBossStepPointFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setStepPosition__19TripodBossStepPointFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setStepNormal__19TripodBossStepPointFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setStepFront__19TripodBossStepPointFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__19TripodBossStepPointFv` | :x: |

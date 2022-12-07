@@ -17,7 +17,7 @@
 | `init__30FloaterFloatingForceTypeSpringFRC12JMapInfoIter` | :x: |
 | `start__30FloaterFloatingForceTypeSpringFv` | :x: |
 | `updateVelocity__30FloaterFloatingForceTypeSpringFv` | :x: |
-| `updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateHostVelocity__30FloaterFloatingForceTypeSpringCFPQ29JGeometry8TVec3<f>` | :x: |
 | `soundMoveSE__30FloaterFloatingForceTypeSpringFv` | :x: |
 | `getCurrentSinkSpeed__30FloaterFloatingForceTypeSpringCFv` | :x: |
 | `tryOn__30FloaterFloatingForceTypeSpringFv` | :x: |

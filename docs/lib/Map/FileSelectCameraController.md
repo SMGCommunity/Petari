@@ -14,7 +14,7 @@
 | `appear__26FileSelectCameraControllerFv` | :x: |
 | `kill__26FileSelectCameraControllerFv` | :x: |
 | `goToFarPoint__26FileSelectCameraControllerFv` | :x: |
-| `goToNearPoint__26FileSelectCameraControllerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `goToNearPoint__26FileSelectCameraControllerFRCQ29JGeometry8TVec3<f>` | :x: |
 | `isAtFarPoint__26FileSelectCameraControllerCFv` | :x: |
 | `isAtNearPoint__26FileSelectCameraControllerCFv` | :x: |
 | `isToOrAtFarPoint__26FileSelectCameraControllerCFv` | :x: |

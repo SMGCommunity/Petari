@@ -10,11 +10,11 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `JMAAcosRadian__Ff` | :x: |
-| `crossToPolar__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPfPf` | :x: |
-| `polarToCross__2MRFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;fff` | :x: |
-| `polarToCrossDegree__2MRFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;fff` | :x: |
+| `crossToPolar__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPfPf` | :x: |
+| `polarToCross__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>fff` | :x: |
+| `polarToCrossDegree__2MRFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>fff` | :x: |
 | `diffRadian__2MRFff` | :x: |
-| `diffRadianAroundAxis__2MRFPfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `projectVecOnPlane__2MRFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `diffRadianAroundAxis__2MRFPfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `projectVecOnPlane__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `cosDegree__2MRFf` | :x: |
 | `sinDegree__2MRFf` | :x: |

@@ -33,8 +33,8 @@
 | `draw__11GhostPlayerCFv` | :x: |
 | `receiveGhostPacket__11GhostPlayerFP11GhostPacket` | :x: |
 | `getShiftRatio__FSc` | :x: |
-| `convToFloat__2MRFRQ29JGeometry8TVec3&lt;s&gt;ScPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `convToFloat__2MRFRQ29JGeometry9TVec3&lt;Sc&gt;ScPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `convToFloat__2MRFRQ29JGeometry8TVec3<s>ScPQ29JGeometry8TVec3<f>` | :x: |
+| `convToFloat__2MRFRQ29JGeometry9TVec3<Sc>ScPQ29JGeometry8TVec3<f>` | :x: |
 | `convToFloat__2MRFsScPf` | :x: |
 | `convToFloat__2MRFScScPf` | :x: |
 | `__dt__11GhostPlayerFv` | :x: |

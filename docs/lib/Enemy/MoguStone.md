@@ -9,11 +9,11 @@
 # MoguStone.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `set&lt;i&gt;__Q29JGeometry8TVec4&lt;f&gt;Fiiii_v` | :x: |
+| `set<i>__Q29JGeometry8TVec4<f>Fiiii_v` | :x: |
 | `__ct__9MoguStoneFPCcPCc` | :x: |
 | `init__9MoguStoneFRC12JMapInfoIter` | :x: |
 | `appear__9MoguStoneFv` | :x: |
-| `emit__9MoguStoneFbRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `emit__9MoguStoneFbRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `doBehavior__9MoguStoneFv` | :x: |
 | `startBreakSound__9MoguStoneFv` | :x: |
 | `startThrowLevelSound__9MoguStoneFv` | :x: |
@@ -26,7 +26,7 @@
 | `__ct__11ThrowingIceFPCc` | :x: |
 | `__dt__9MoguStoneFv` | :x: |
 | `init__11ThrowingIceFRC12JMapInfoIter` | :x: |
-| `emitIce__11ThrowingIceFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `emitIce__11ThrowingIceFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fRCQ29JGeometry8TVec3<f>` | :x: |
 | `doBehavior__11ThrowingIceFv` | :x: |
 | `attackSensor__11ThrowingIceFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__11ThrowingIceFUlP9HitSensorP9HitSensor` | :x: |

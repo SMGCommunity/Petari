@@ -25,7 +25,7 @@
 | `initDraw__18WaterPlantDrawInitCFv` | :x: |
 | `__sinit_\WaterPlant_cpp` | :x: |
 | `GXPosition3f32` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<PC18WaterPlantDrawInit,M18WaterPlantDrawInitFPCvPCv_v>CFP7JKRHeap` | :x: |
 | `__dt__10WaterPlantFv` | :x: |
 | `__dt__18WaterPlantDrawInitFv` | :x: |

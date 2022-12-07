@@ -15,8 +15,8 @@
 | `isRequestAttackVs1__19KoopaBattleMapStairCFv` | :x: |
 | `calcRemainTimeToBreak__19KoopaBattleMapStairCFv` | :x: |
 | `isRequestAttackVs3__19KoopaBattleMapStairCFv` | :x: |
-| `updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PfRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll` | :x: |
-| `calcAndSetTargetPos__19KoopaBattleMapStairFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | :x: |
+| `calcAndSetTargetPos__19KoopaBattleMapStairFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `calcTimeRate__19KoopaBattleMapStairCFv` | :x: |
 | `isBreak__19KoopaBattleMapStairCFv` | :x: |
 | `isTypeNormal__19KoopaBattleMapStairCFv` | :x: |

@@ -70,6 +70,6 @@
 | `execute__Q220NrvMechanicKoopaMini15HostTypeNrvTurnCFP5Spine` | :x: |
 | `execute__Q220NrvMechanicKoopaMini21HostTypeNrvWalkOnRailCFP5Spine` | :x: |
 | `execute__Q220NrvMechanicKoopaMini15HostTypeNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR61FunctorV0M&lt;P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR61FunctorV0M&lt;P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR61FunctorV0M<P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR61FunctorV0M<P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__17MechanicKoopaMiniFv` | :x: |

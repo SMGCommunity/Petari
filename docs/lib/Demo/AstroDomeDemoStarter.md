@@ -31,6 +31,6 @@
 | `execute__Q223NrvAstroDomeDemoStarter38AstroDomeDemoStarterNrvSpinDriverStartCFP5Spine` | :x: |
 | `execute__Q223NrvAstroDomeDemoStarter39AstroDomeDemoStarterNrvSpinDriverAppearCFP5Spine` | :x: |
 | `getBaseMtx__20AstroDomeDemoStarterCFv` | :x: |
-| `__cl__Q22MR67FunctorV0M&lt;P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR67FunctorV0M&lt;P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR67FunctorV0M<P20AstroDomeDemoStarter,M20AstroDomeDemoStarterFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__20AstroDomeDemoStarterFv` | :x: |

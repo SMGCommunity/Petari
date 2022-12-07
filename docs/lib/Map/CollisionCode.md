@@ -9,7 +9,7 @@
 # CollisionCode.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;Ul&gt;__12JMapInfoIterCFPCcPUl_b` | :x: |
+| `getValue<Ul>__12JMapInfoIterCFPCcPUl_b` | :x: |
 | `__ct__13CollisionCodeFv` | :white_check_mark: |
 | `__ct__9CodeTableFUl` | :white_check_mark: |
 | `add__9CodeTableFPCcUl` | :white_check_mark: |

@@ -9,7 +9,7 @@
 # TrickRabbitSnow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct&lt;f&gt;__Q29JGeometry9TQuat4&lt;f&gt;Fffff_Pv` | :x: |
+| `__ct<f>__Q29JGeometry9TQuat4<f>Fffff_Pv` | :x: |
 | `__ct__23TrickRabbitSnowListenerFv` | :x: |
 | `__ct__15TrickRabbitSnowFPCc` | :x: |
 | `setListener__15TrickRabbitSnowFP23TrickRabbitSnowListener` | :x: |
@@ -65,6 +65,6 @@
 | `noticeGiveUp__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | :x: |
 | `noticeAppear__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | :x: |
 | `noticeStart__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15TrickRabbitSnowFv` | :x: |

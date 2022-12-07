@@ -25,7 +25,7 @@
 | `__ct__Q26NrvSky14HostTypeChangeFv` | :white_check_mark: |
 | `execute__Q26NrvSky14HostTypeChangeCFP5Spine` | :white_check_mark: |
 | `execute__Q26NrvSky12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `Functor&lt;3Sky&gt;__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR31FunctorV0M&lt;P3Sky,M3SkyFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<3Sky>__2MRFP3SkyM3SkyFPCvPv_v_Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR31FunctorV0M<P3Sky,M3SkyFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__16ProjectionMapSkyFv` | :white_check_mark: |

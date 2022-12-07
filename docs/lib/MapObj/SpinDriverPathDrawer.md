@@ -32,8 +32,8 @@
 | `setMaskLength__20SpinDriverPathDrawerFf` | :white_check_mark: |
 | `setFadeScale__20SpinDriverPathDrawerFf` | :white_check_mark: |
 | `draw__20SpinDriverPathDrawerCFv` | :x: |
-| `sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3&lt;f&gt;ff` | :white_check_mark: |
-| `__cl__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR71FunctorV0M&lt;P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `sendPoint__20SpinDriverPathDrawerCFRCQ29JGeometry8TVec3<f>ff` | :white_check_mark: |
+| `__cl__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR71FunctorV0M<P22SpinDriverPathDrawInit,M22SpinDriverPathDrawInitFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__20SpinDriverPathDrawerFv` | :white_check_mark: |
 | `__dt__22SpinDriverPathDrawInitFv` | :white_check_mark: |

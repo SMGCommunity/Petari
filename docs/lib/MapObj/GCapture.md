@@ -44,8 +44,8 @@
 | `upTractPower__8GCaptureFv` | :x: |
 | `downTractPower__8GCaptureFv` | :x: |
 | `fillGapBindTrans__8GCaptureFv` | :x: |
-| `updateRibbon__8GCaptureFRCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
-| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateRibbon__8GCaptureFRCQ29JGeometry8TVec3<f>l` | :x: |
+| `updateRibbonPointEffectMatrix__8GCaptureFRCQ29JGeometry8TVec3<f>` | :x: |
 | `addRotateAccelPointing__8GCaptureFv` | :x: |
 | `tryAddVelocityReflectJumpCollision__8GCaptureFv` | :x: |
 | `requestTarget__8GCaptureFP18GCaptureTargetable` | :x: |

@@ -36,7 +36,7 @@
 | `execute__Q212NrvButlerMap36ButlerMapNrvLectureDemoShowMapBeforeCFP5Spine` | :x: |
 | `execute__Q212NrvButlerMap25ButlerMapNrvShowGalaxyMapCFP5Spine` | :x: |
 | `execute__Q212NrvButlerMap16ButlerMapNrvTalkCFP5Spine` | :x: |
-| `Functor&lt;9ButlerMap&gt;__2MRFP9ButlerMapM9ButlerMapFPCvPv_v_Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR43FunctorV0M&lt;P9ButlerMap,M9ButlerMapFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<9ButlerMap>__2MRFP9ButlerMapM9ButlerMapFPCvPv_v_Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v>` | :x: |
+| `__cl__Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR43FunctorV0M<P9ButlerMap,M9ButlerMapFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__9ButlerMapFv` | :x: |

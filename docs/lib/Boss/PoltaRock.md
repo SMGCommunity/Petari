@@ -14,7 +14,7 @@
 | `kill__9PoltaRockFv` | :x: |
 | `control__9PoltaRockFv` | :x: |
 | `calcAndSetBaseMtx__9PoltaRockFv` | :x: |
-| `start__9PoltaRockFP5PoltaRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `start__9PoltaRockFP5PoltaRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setColorWhite__9PoltaRockFv` | :x: |
 | `setColorBlack__9PoltaRockFv` | :x: |
 | `setColorYellow__9PoltaRockFv` | :x: |

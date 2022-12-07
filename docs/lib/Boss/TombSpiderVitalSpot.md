@@ -9,7 +9,7 @@
 # TombSpiderVitalSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__19TombSpiderVitalSpotFP9LiveActorPCcRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc` | :x: |
+| `__ct__19TombSpiderVitalSpotFP9LiveActorPCcRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc` | :x: |
 | `init__19TombSpiderVitalSpotFRC12JMapInfoIter` | :x: |
 | `startChance__19TombSpiderVitalSpotFv` | :x: |
 | `endChance__19TombSpiderVitalSpotFv` | :x: |

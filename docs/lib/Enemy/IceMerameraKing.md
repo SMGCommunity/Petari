@@ -9,7 +9,7 @@
 # IceMerameraKing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__dt__Q22MR46Vector&lt;Q22MR31AssignableArray&lt;P11ThrowingIce&gt;&gt;Fv` | :x: |
+| `__dt__Q22MR46Vector<Q22MR31AssignableArray<P11ThrowingIce>>Fv` | :x: |
 | `__ct__15IceMerameraKingFPCc` | :x: |
 | `init__15IceMerameraKingFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__15IceMerameraKingFv` | :x: |
@@ -37,7 +37,7 @@
 | `isDeadAllIce__15IceMerameraKingFv` | :x: |
 | `isEnableThrow__15IceMerameraKingFv` | :x: |
 | `getDeadWeaponAndAppear__15IceMerameraKingFv` | :x: |
-| `calcJoint__15IceMerameraKingFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJoint__15IceMerameraKingFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__ct__24IceMerameraKingShockWaveFv` | :x: |
 | `appear__24IceMerameraKingShockWaveFv` | :x: |
 | `control__24IceMerameraKingShockWaveFv` | :x: |
@@ -81,9 +81,9 @@
 | `executeOnEnd__Q218NrvIceMerameraKing20HostTypeNrvBeginDemoCFP5Spine` | :x: |
 | `execute__Q218NrvIceMerameraKing20HostTypeNrvBeginDemoCFP5Spine` | :x: |
 | `execute__Q218NrvIceMerameraKing17HostTypeNrvSearchCFP5Spine` | :x: |
-| `__dt__40JointControlDelegator&lt;15IceMerameraKing&gt;Fv` | :x: |
-| `calcJointMatrix__40JointControlDelegator&lt;15IceMerameraKing&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__40JointControlDelegator&lt;15IceMerameraKing&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `__dt__Q22MR31AssignableArray&lt;P11ThrowingIce&gt;Fv` | :x: |
+| `__dt__40JointControlDelegator<15IceMerameraKing>Fv` | :x: |
+| `calcJointMatrix__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `__dt__Q22MR31AssignableArray<P11ThrowingIce>Fv` | :x: |
 | `__dt__15IceMerameraKingFv` | :x: |
 | `__dt__24IceMerameraKingShockWaveFv` | :x: |

@@ -107,7 +107,7 @@
 | `execute__Q29NrvTeresa25TeresaNrvAppearFromGroundCFP5Spine` | :x: |
 | `executeOnEnd__Q29NrvTeresa23TeresaNrvAppearFromWallCFP5Spine` | :x: |
 | `execute__Q29NrvTeresa23TeresaNrvAppearFromWallCFP5Spine` | :x: |
-| `isInvalidTriangle__32TriangleFilterDelegator&lt;6Teresa&gt;CFPC8Triangle` | :x: |
+| `isInvalidTriangle__32TriangleFilterDelegator<6Teresa>CFPC8Triangle` | :x: |
 | `__dt__6TeresaFv` | :x: |
 | `__ct__Q29NrvTeresa23TeresaNrvAppearFromWallFv` | :x: |
 | `__ct__Q29NrvTeresa25TeresaNrvAppearFromGroundFv` | :x: |

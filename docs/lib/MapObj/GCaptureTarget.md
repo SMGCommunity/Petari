@@ -43,10 +43,10 @@
 | `@140@getPointableRange__14GCaptureTargetCFv` | :x: |
 | `@140@releaseDistance__14GCaptureTargetCFv` | :x: |
 | `@140@isReleaseForce__14GCaptureTargetCFv` | :x: |
-| `@140@getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `@140@getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3<f>` | :x: |
 | `@140@releasedTarget__14GCaptureTargetFv` | :x: |
 | `@140@decidedTarget__14GCaptureTargetFv` | :x: |
-| `getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getTargetPosition__14GCaptureTargetFPQ29JGeometry8TVec3<f>` | :x: |
 | `releaseDistance__14GCaptureTargetCFv` | :x: |
 | `getPointableRange__14GCaptureTargetCFv` | :x: |
 | `__dt__14GCaptureTargetFv` | :x: |

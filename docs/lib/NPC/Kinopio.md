@@ -26,7 +26,7 @@
 | `calcAndSetBaseMtx__7KinopioFv` | :x: |
 | `receiveMsgPlayerAttack__7KinopioFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__7KinopioFUlP9HitSensorP9HitSensor` | :x: |
-| `faceToVector__7KinopioFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `faceToVector__7KinopioFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `faceToPlayer__7KinopioFf` | :x: |
 | `faceToDefault__7KinopioFf` | :x: |
 | `setDefaultNerve__7KinopioFv` | :x: |
@@ -66,11 +66,11 @@
 | `execute__Q210NrvKinopio13KinopioNrvFarCFP5Spine` | :x: |
 | `execute__Q210NrvKinopio21KinopioNrvTakeOutStarCFP5Spine` | :x: |
 | `execute__Q210NrvKinopio18KinopioNrvReactionCFP5Spine` | :x: |
-| `__dt__31JointControlDelegator&lt;7Kinopio&gt;Fv` | :x: |
-| `calcJointMatrix__31JointControlDelegator&lt;7Kinopio&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__31JointControlDelegator&lt;7Kinopio&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `__cl__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Kinopio,M7KinopioFPCvPvUl_b&gt;` | :x: |
+| `__dt__31JointControlDelegator<7Kinopio>Fv` | :x: |
+| `calcJointMatrix__31JointControlDelegator<7Kinopio>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__31JointControlDelegator<7Kinopio>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `__cl__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFUl` | :x: |
+| `clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFv` | :x: |
+| `clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>FRC47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>` | :x: |
 | `__dt__7KinopioFv` | :x: |

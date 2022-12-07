@@ -10,11 +10,11 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `isHanging__5MarioCFv` | :x: |
-| `fixHangDir__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `fixHangDir__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `isEnableBackHang__5MarioFv` | :x: |
 | `isEnableSideHang__5MarioFv` | :x: |
 | `recordWallPolygon__9MarioHangFPC8Triangle` | :x: |
-| `recordHangNorm__9MarioHangFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `recordHangNorm__9MarioHangFRCQ29JGeometry8TVec3<f>` | :x: |
 | `forceDrop__9MarioHangFv` | :x: |
 | `__ct__9MarioHangFP10MarioActor` | :x: |
 | `close__9MarioHangFv` | :x: |

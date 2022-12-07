@@ -20,7 +20,7 @@
 | `checkSpecialWaitAnimation__5MarioFv` | :x: |
 | `resetSleepTimer__5MarioFv` | :x: |
 | `__ct__9MarioWaitFP10MarioActor` | :x: |
-| `hitPoly__10MarioStateFUcRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor` | :x: |
+| `hitPoly__10MarioStateFUcRCQ29JGeometry8TVec3<f>P9HitSensor` | :x: |
 | `keep__10MarioStateFv` | :x: |
 | `notice__10MarioStateFv` | :x: |
 | `init__10MarioStateFv` | :x: |

@@ -13,7 +13,7 @@
 | `init__10TakoHeiInkFRC12JMapInfoIter` | :x: |
 | `kill__10TakoHeiInkFv` | :x: |
 | `control__10TakoHeiInkFv` | :x: |
-| `start__10TakoHeiInkFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `start__10TakoHeiInkFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b` | :x: |
 | `attackSensor__10TakoHeiInkFP9HitSensorP9HitSensor` | :x: |
 | `exeWait__10TakoHeiInkFv` | :x: |
 | `__dt__10TakoHeiInkFv` | :x: |

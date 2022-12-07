@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__22ArrowSwitchMultiHolderFv` | :white_check_mark: |
-| `__dt__36DeriveActorGroup&lt;16ArrowSwitchMulti&gt;Fv` | :white_check_mark: |
+| `__dt__36DeriveActorGroup<16ArrowSwitchMulti>Fv` | :white_check_mark: |
 | `findSwitch__22ArrowSwitchMultiHolderFPC10JMapIdInfo` | :white_check_mark: |
 | `createArrowSwitchMultiHolder__2MRFv` | :white_check_mark: |
 | `registerArrowSwitchMulti__2MRFP16ArrowSwitchMulti` | :white_check_mark: |

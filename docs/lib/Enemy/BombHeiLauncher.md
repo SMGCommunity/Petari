@@ -24,7 +24,7 @@
 | `__ct__Q218NrvBombHeiLauncher15HostTypeNrvStopFv` | :x: |
 | `execute__Q218NrvBombHeiLauncher15HostTypeNrvStopCFP5Spine` | :x: |
 | `execute__Q218NrvBombHeiLauncher23HostTypeNrvLauncherWaitCFP5Spine` | :x: |
-| `Functor&lt;15BombHeiLauncher&gt;__2MRFP15BombHeiLauncherM15BombHeiLauncherFPCvPv_v_Q22MR57FunctorV0M&lt;P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15BombHeiLauncher>__2MRFP15BombHeiLauncherM15BombHeiLauncherFPCvPv_v_Q22MR57FunctorV0M<P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15BombHeiLauncher,M15BombHeiLauncherFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15BombHeiLauncherFv` | :x: |

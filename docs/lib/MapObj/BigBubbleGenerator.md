@@ -26,7 +26,7 @@
 | `__ct__Q221NrvBigBubbleGenerator27BigBubbleGeneratorNrvActiveFv` | :x: |
 | `execute__Q221NrvBigBubbleGenerator27BigBubbleGeneratorNrvActiveCFP5Spine` | :x: |
 | `execute__Q221NrvBigBubbleGenerator30BigBubbleGeneratorNrvNonActiveCFP5Spine` | :x: |
-| `Functor&lt;18BigBubbleGenerator&gt;__2MRFP18BigBubbleGeneratorM18BigBubbleGeneratorFPCvPv_v_Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR63FunctorV0M&lt;P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<18BigBubbleGenerator>__2MRFP18BigBubbleGeneratorM18BigBubbleGeneratorFPCvPv_v_Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v>` | :x: |
+| `__cl__Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR63FunctorV0M<P18BigBubbleGenerator,M18BigBubbleGeneratorFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__18BigBubbleGeneratorFv` | :x: |

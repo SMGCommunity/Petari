@@ -9,7 +9,7 @@
 # BckCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;l&gt;__12JMapInfoIterCFPCcPl_b` | :x: |
+| `getValue<l>__12JMapInfoIterCFPCcPl_b` | :x: |
 | `__ct__7BckCtrlFP14ResourceHolderPCc` | :x: |
 | `add__7BckCtrlFRC11BckCtrlData` | :x: |
 | `__as__11BckCtrlDataFRC11BckCtrlData` | :x: |

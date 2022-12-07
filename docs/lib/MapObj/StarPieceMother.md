@@ -24,7 +24,7 @@
 | `__ct__Q218NrvStarPieceMother15HostTypeNrvWaitFv` | :x: |
 | `execute__Q218NrvStarPieceMother15HostTypeNrvWaitCFP5Spine` | :x: |
 | `execute__Q218NrvStarPieceMother21HostTypeNrvMoveOnRailCFP5Spine` | :x: |
-| `Functor&lt;15StarPieceMother&gt;__2MRFP15StarPieceMotherM15StarPieceMotherFPCvPv_v_Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15StarPieceMother,M15StarPieceMotherFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15StarPieceMother>__2MRFP15StarPieceMotherM15StarPieceMotherFPCvPv_v_Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15StarPieceMother,M15StarPieceMotherFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15StarPieceMotherFv` | :x: |

@@ -35,6 +35,6 @@
 | `execute__Q219NrvOceanSmallTurtle26OceanSmallTurtleNrvFloatUpCFP5Spine` | :x: |
 | `execute__Q219NrvOceanSmallTurtle30OceanSmallTurtleNrvFloatSignalCFP5Spine` | :x: |
 | `execute__Q219NrvOceanSmallTurtle23OceanSmallTurtleNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR59FunctorV0M&lt;P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR59FunctorV0M&lt;P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR59FunctorV0M<P16OceanSmallTurtle,M16OceanSmallTurtleFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__16OceanSmallTurtleFv` | :x: |

@@ -9,10 +9,10 @@
 # AudSoundObject.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__14AudSoundObjectFPQ29JGeometry8TVec3&lt;f&gt;UcP7JKRHeap` | :x: |
+| `__ct__14AudSoundObjectFPQ29JGeometry8TVec3<f>UcP7JKRHeap` | :x: |
 | `__dt__14AudSoundObjectFv` | :x: |
 | `addToSoundObjHolder__14AudSoundObjectFv` | :x: |
-| `setTrans__14AudSoundObjectFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setTrans__14AudSoundObjectFPQ29JGeometry8TVec3<f>` | :x: |
 | `writePort__14AudSoundObjectFP14JAISoundHandleUlUs` | :x: |
 | `isLimitedSound__14AudSoundObjectF10JAISoundID` | :x: |
 | `startSound__14AudSoundObjectF10JAISoundID` | :x: |

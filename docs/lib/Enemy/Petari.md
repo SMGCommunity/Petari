@@ -56,7 +56,7 @@
 | `appearStarPieceGradually__6PetariFv` | :x: |
 | `appearStarPieceAll__6PetariFv` | :x: |
 | `reflectStarPointer2P__6PetariFv` | :x: |
-| `calcMouthPos__6PetariCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcMouthPos__6PetariCFPQ29JGeometry8TVec3<f>` | :x: |
 | `tryEmitFirstFootPrintEffect__6PetariFv` | :x: |
 | `__dt__6PetariFv` | :x: |
 | `__sinit_\Petari_cpp` | :x: |

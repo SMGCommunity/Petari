@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__19AnimStampControllerFv` | :x: |
 | `init__19AnimStampControllerFlffffff` | :x: |
-| `startAnim__19AnimStampControllerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `startAnim__19AnimStampControllerFRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeAnim__19AnimStampControllerFv` | :x: |
 | `isAnimEnd__19AnimStampControllerCFv` | :x: |
 | `__dt__19AnimStampControllerFv` | :x: |

@@ -18,4 +18,4 @@
 | `execute__Q218NrvMapPartsBreaker13HostTypeBreakCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvMapPartsBreaker22HostTypeReactToTornadoCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvMapPartsBreaker12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `squared__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `squared__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f>` | :x: |

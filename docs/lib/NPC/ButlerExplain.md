@@ -16,6 +16,6 @@
 | `__sinit_\ButlerExplain_cpp` | :x: |
 | `__ct__Q216NrvButlerExplain20ButlerExplainNrvDemoFv` | :x: |
 | `execute__Q216NrvButlerExplain20ButlerExplainNrvDemoCFP5Spine` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13ButlerExplain,M13ButlerExplainFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13ButlerExplain,M13ButlerExplainFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13ButlerExplain,M13ButlerExplainFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13ButlerExplain,M13ButlerExplainFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13ButlerExplainFv` | :x: |

@@ -38,4 +38,4 @@
 | `execute__Q219NrvStarPieceCounter23StarPieceCounterNrvWaitCFP5Spine` | :x: |
 | `execute__Q219NrvStarPieceCounter25StarPieceCounterNrvAppearCFP5Spine` | :x: |
 | `execute__Q219NrvStarPieceCounter23StarPieceCounterNrvHideCFP5Spine` | :x: |
-| `setAppearOffset__21CounterLayoutAppearerFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `setAppearOffset__21CounterLayoutAppearerFRCQ29JGeometry8TVec2<f>` | :x: |

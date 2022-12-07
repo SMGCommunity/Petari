@@ -45,7 +45,7 @@
 | `getInitializeStartIdInfo__2MRFv` | :x: |
 | `getStageArchive__2MRFPCc` | :x: |
 | `getGeneralPosNum__2MRFv` | :x: |
-| `getGeneralPosData__2MRFPPCcPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PP12JMapLinkInfoi` | :x: |
+| `getGeneralPosData__2MRFPPCcPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PP12JMapLinkInfoi` | :x: |
 | `getChildObjNum__2MRFRC12JMapInfoIter` | :x: |
 | `getChildObjName__2MRFPPCcRC12JMapInfoIteri` | :x: |
 | `initChildObj__2MRFP7NameObjRC12JMapInfoIteri` | :x: |

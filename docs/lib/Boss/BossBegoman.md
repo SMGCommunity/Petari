@@ -16,10 +16,10 @@
 | `kill__11BossBegomanFv` | :x: |
 | `control__11BossBegomanFv` | :x: |
 | `setStepBackNerve__11BossBegomanFv` | :x: |
-| `onTouchElectric__11BossBegomanFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `onTouchElectric__11BossBegomanFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setNerveReturn__11BossBegomanFv` | :x: |
 | `getNerveWait__11BossBegomanFv` | :x: |
-| `addVelocityOnPushedFromElectricRail__11BossBegomanFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `addVelocityOnPushedFromElectricRail__11BossBegomanFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `requestAttack__11BossBegomanFv` | :x: |
 | `exePreDemoWait__11BossBegomanFv` | :x: |
 | `exeFirstContactDemo__11BossBegomanFv` | :x: |

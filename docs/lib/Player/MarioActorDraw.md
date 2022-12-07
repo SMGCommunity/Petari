@@ -25,9 +25,9 @@
 | `initFace__10MarioActorFv` | :x: |
 | `updateFace__10MarioActorFv` | :x: |
 | `__sinit_\MarioActorDraw_cpp` | :x: |
-| `Functor&lt;10MarioActor&gt;__2MRFPC10MarioActorM10MarioActorFPCvPCv_v_Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt;` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;PC10MarioActor,M10MarioActorFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<10MarioActor>__2MRFPC10MarioActorM10MarioActorFPCvPCv_v_Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v>` | :x: |
+| `__cl__Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<PC10MarioActor,M10MarioActorFPCvPCv_v>CFP7JKRHeap` | :x: |
 | `initBlur__10MarioActorFv` | :x: |
 | `getJ3DModel__10MarioActorCFv` | :x: |
 | `getModelData__10MarioActorCFv` | :x: |

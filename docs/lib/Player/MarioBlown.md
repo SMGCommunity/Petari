@@ -9,7 +9,7 @@
 # MarioBlown.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `blown__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `blown__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__10MarioBlownFP10MarioActor` | :x: |
 | `close__10MarioBlownFv` | :x: |
 | `start__10MarioBlownFv` | :x: |

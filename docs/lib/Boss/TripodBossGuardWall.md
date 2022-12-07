@@ -35,6 +35,6 @@
 | `execute__Q222NrvTriPodBossGuardWall29TripodBossGuardWallNrvTryDemoCFP5Spine` | :x: |
 | `execute__Q222NrvTriPodBossGuardWall26TripodBossGuardWallNrvWaitCFP5Spine` | :x: |
 | `getBaseMtx__19TripodBossGuardWallCFv` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19TripodBossGuardWall,M19TripodBossGuardWallFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__19TripodBossGuardWallFv` | :x: |

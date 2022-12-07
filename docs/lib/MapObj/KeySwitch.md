@@ -13,7 +13,7 @@
 | `__ct__9KeySwitchFPCc` | :white_check_mark: |
 | `init__9KeySwitchFRC12JMapInfoIter` | :white_check_mark: |
 | `initKeySwitchByOwner__9KeySwitchFRC12JMapInfoIter` | :white_check_mark: |
-| `appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `appearKeySwitch__9KeySwitchFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `exeDemoStart__9KeySwitchFv` | :white_check_mark: |
 | `exeAppear__9KeySwitchFv` | :white_check_mark: |
 | `exeWait__9KeySwitchFv` | :white_check_mark: |

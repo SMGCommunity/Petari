@@ -34,12 +34,12 @@
 | `setForOSResetSystem__17MainLoopFrameworkFv` | :x: |
 | `waitForTick__31@unnamed@MainLoopFramework_cpp@FUlUs` | :x: |
 | `waitDrawDoneAndSetAlarm__31@unnamed@MainLoopFramework_cpp@Fv` | :x: |
-| `__dt__Q22MR37BothDirLink&lt;22MainLoopFrameworkAlarm&gt;Fv` | :x: |
+| `__dt__Q22MR37BothDirLink<22MainLoopFrameworkAlarm>Fv` | :x: |
 | `handleGXAbortAlarm__31@unnamed@MainLoopFramework_cpp@FP7OSAlarmP9OSContext` | :x: |
 | `__sinit_\MainLoopFramework_cpp` | :x: |
 | `getDrawingXfb__6JUTXfbCFv` | :x: |
 | `getManager__6JUTXfbFv` | :x: |
 | `getDisplayingXfbIndex__6JUTXfbCFv` | :x: |
 | `__dt__13J2DOrthoGraphFv` | :x: |
-| `__ct__Q22MR37BothDirList&lt;22MainLoopFrameworkAlarm&gt;Fb` | :x: |
-| `__dt__Q22MR37BothDirList&lt;22MainLoopFrameworkAlarm&gt;Fv` | :x: |
+| `__ct__Q22MR37BothDirList<22MainLoopFrameworkAlarm>Fb` | :x: |
+| `__dt__Q22MR37BothDirList<22MainLoopFrameworkAlarm>Fv` | :x: |

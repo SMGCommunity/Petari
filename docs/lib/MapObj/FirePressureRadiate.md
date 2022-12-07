@@ -25,7 +25,7 @@
 | `startRelax__19FirePressureRadiateFv` | :x: |
 | `updateHitSensor__19FirePressureRadiateFP9HitSensor` | :x: |
 | `calcRadiateEffectMtx__19FirePressureRadiateFv` | :x: |
-| `calcJointCannon__19FirePressureRadiateFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJointCannon__19FirePressureRadiateFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__sinit_\FirePressureRadiate_cpp` | :x: |
 | `__ct__Q222NrvFirePressureRadiate27FirePressureRadiateNrvRelaxFv` | :x: |
 | `__ct__Q222NrvFirePressureRadiate30FirePressureRadiateNrvSyncWaitFv` | :x: |
@@ -39,10 +39,10 @@
 | `execute__Q222NrvFirePressureRadiate26FirePressureRadiateNrvWaitCFP5Spine` | :x: |
 | `execute__Q222NrvFirePressureRadiate30FirePressureRadiateNrvSyncWaitCFP5Spine` | :x: |
 | `execute__Q222NrvFirePressureRadiate27FirePressureRadiateNrvRelaxCFP5Spine` | :x: |
-| `Functor&lt;19FirePressureRadiate&gt;__2MRFP19FirePressureRadiateM19FirePressureRadiateFPCvPv_v_Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<19FirePressureRadiate>__2MRFP19FirePressureRadiateM19FirePressureRadiateFPCvPv_v_Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v>` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19FirePressureRadiate,M19FirePressureRadiateFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__19FirePressureRadiateFv` | :x: |
-| `__dt__44JointControlDelegator&lt;19FirePressureRadiate&gt;Fv` | :x: |
-| `calcJointMatrix__44JointControlDelegator&lt;19FirePressureRadiate&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__44JointControlDelegator&lt;19FirePressureRadiate&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__44JointControlDelegator<19FirePressureRadiate>Fv` | :x: |
+| `calcJointMatrix__44JointControlDelegator<19FirePressureRadiate>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__44JointControlDelegator<19FirePressureRadiate>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |

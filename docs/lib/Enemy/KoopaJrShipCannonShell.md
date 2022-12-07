@@ -17,7 +17,7 @@
 | `receiveMsgPlayerAttack__22KoopaJrShipCannonShellFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgEnemyAttack__22KoopaJrShipCannonShellFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__22KoopaJrShipCannonShellFUlP9HitSensorP9HitSensor` | :x: |
-| `launch__22KoopaJrShipCannonShellFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `launch__22KoopaJrShipCannonShellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `tryFreeze__22KoopaJrShipCannonShellFv` | :x: |
 | `isStateEnableExplosion__22KoopaJrShipCannonShellCFv` | :x: |
 | `explosion__22KoopaJrShipCannonShellFv` | :x: |

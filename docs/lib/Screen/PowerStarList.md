@@ -69,6 +69,6 @@
 | `execute__Q216NrvPowerStarList25PowerStarListNrvDisappearCFP5Spine` | :x: |
 | `execute__Q216NrvPowerStarList20PowerStarListNrvWaitCFP5Spine` | :x: |
 | `execute__Q216NrvPowerStarList22PowerStarListNrvAppearCFP5Spine` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13PowerStarList,M13PowerStarListFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13PowerStarList,M13PowerStarListFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13PowerStarList,M13PowerStarListFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13PowerStarList,M13PowerStarListFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13PowerStarListFv` | :x: |

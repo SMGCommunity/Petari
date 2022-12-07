@@ -10,8 +10,8 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16WPadAccelerationFPC4WPadUl` | :x: |
-| `getAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getPastAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `getAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f>` | :x: |
+| `getPastAcceleration__16WPadAccelerationCFPQ29JGeometry8TVec3<f>l` | :x: |
 | `isStationary__16WPadAccelerationCFv` | :x: |
 | `isBalanced__16WPadAccelerationCFv` | :x: |
 | `update__16WPadAccelerationFv` | :x: |

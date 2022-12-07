@@ -15,10 +15,10 @@
 | `kill__25AstroDomeCameraControllerFv` | :x: |
 | `control__25AstroDomeCameraControllerFv` | :x: |
 | `receiveOtherMsg__25AstroDomeCameraControllerFUlP9HitSensorP9HitSensor` | :x: |
-| `calcZoomOutPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcZoomInTarget__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcZoomInUp__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcZoomOutPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>` | :x: |
+| `calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcZoomInTarget__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcZoomInUp__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>` | :x: |
 | `exeGalaxySelectStart__25AstroDomeCameraControllerFv` | :x: |
 | `exeGalaxySelect__25AstroDomeCameraControllerFv` | :x: |
 | `exeGalaxyConfirmStart__25AstroDomeCameraControllerFv` | :x: |
@@ -37,4 +37,4 @@
 | `execute__Q228NrvAstroDomeCameraController40AstroDomeCameraControllerNrvGalaxySelectCFP5Spine` | :x: |
 | `execute__Q228NrvAstroDomeCameraController45AstroDomeCameraControllerNrvGalaxySelectStartCFP5Spine` | :x: |
 | `__ct__Q225AstroDomeCameraController8PositionFv` | :x: |
-| `reset__Q225AstroDomeCameraController8PositionFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `reset__Q225AstroDomeCameraController8PositionFRCQ29JGeometry8TVec3<f>` | :x: |

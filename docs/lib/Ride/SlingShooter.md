@@ -26,7 +26,7 @@
 | `receiveMsgEnemyAttack__12SlingShooterFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__12SlingShooterFUlP9HitSensorP9HitSensor` | :x: |
 | `calcAndSetBaseMtx__12SlingShooterFv` | :x: |
-| `calcBaseMtx__12SlingShooterFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcBaseMtx__12SlingShooterFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `updateWait__12SlingShooterFv` | :x: |
 | `updateHang__12SlingShooterFv` | :x: |
 | `updateActorMtx__12SlingShooterFv` | :x: |

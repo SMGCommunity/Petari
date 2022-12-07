@@ -19,7 +19,7 @@
 | `initMapToolInfo__9BlackHoleFRC12JMapInfoIter` | :x: |
 | `initModel__9BlackHoleFv` | :white_check_mark: |
 | `initCubeBox__9BlackHoleFv` | :x: |
-| `isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `updateModelScale__9BlackHoleFff` | :white_check_mark: |
 | `exeWait__9BlackHoleFv` | :white_check_mark: |
 | `exeDisappear__9BlackHoleFv` | :white_check_mark: |

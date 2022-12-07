@@ -30,6 +30,6 @@
 | `execute__Q214NrvBalloonfish18HostTypeNrvDashEndCFP5Spine` | :x: |
 | `execute__Q214NrvBalloonfish15HostTypeNrvDashCFP5Spine` | :x: |
 | `execute__Q214NrvBalloonfish15HostTypeNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11Balloonfish,M11BalloonfishFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11Balloonfish,M11BalloonfishFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11Balloonfish,M11BalloonfishFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11Balloonfish,M11BalloonfishFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__11BalloonfishFv` | :x: |

@@ -14,7 +14,7 @@
 | `onSwitchB__12BegomanSpikeFv` | :x: |
 | `appear__12BegomanSpikeFv` | :x: |
 | `control__12BegomanSpikeFv` | :x: |
-| `onTouchElectric__12BegomanSpikeFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `onTouchElectric__12BegomanSpikeFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setNerveReturn__12BegomanSpikeFv` | :x: |
 | `getNerveWait__12BegomanSpikeFv` | :x: |
 | `setNerveLaunch__12BegomanSpikeFv` | :x: |
@@ -84,6 +84,6 @@
 | `executeOnEnd__Q215NrvBegomanSpike21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `execute__Q215NrvBegomanSpike21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `getKind__12BegomanSpikeCFv` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12BegomanSpike,M12BegomanSpikeFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12BegomanSpike,M12BegomanSpikeFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12BegomanSpike,M12BegomanSpikeFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12BegomanSpike,M12BegomanSpikeFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12BegomanSpikeFv` | :x: |

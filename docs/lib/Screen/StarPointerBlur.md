@@ -16,7 +16,7 @@
 | `hide__15StarPointerBlurFv` | :x: |
 | `hideAll__15StarPointerBlurFv` | :x: |
 | `movement__15StarPointerBlurFv` | :x: |
-| `updatePoint__15StarPointerBlurFRCQ29JGeometry8TVec2&lt;f&gt;bPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `updatePoint__15StarPointerBlurFRCQ29JGeometry8TVec2<f>bPQ29JGeometry8TVec2<f>` | :x: |
 | `findDrawPointRange__15StarPointerBlurCFPUsPUs` | :x: |
 | `draw__15StarPointerBlurCFv` | :x: |
 | `draw2__15StarPointerBlurCFv` | :x: |

@@ -15,5 +15,5 @@
 | `read__11GhostPacketFPs` | :x: |
 | `read__11GhostPacketFPPc` | :x: |
 | `read__11GhostPacketFPSc` | :x: |
-| `read__11GhostPacketFPQ29JGeometry9TVec3&lt;Sc&gt;` | :x: |
-| `read__11GhostPacketFPQ29JGeometry8TVec3&lt;s&gt;` | :x: |
+| `read__11GhostPacketFPQ29JGeometry9TVec3<Sc>` | :x: |
+| `read__11GhostPacketFPQ29JGeometry8TVec3<s>` | :x: |

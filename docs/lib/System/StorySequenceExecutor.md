@@ -31,10 +31,10 @@
 | `setNextStageToAstroGalaxyOrDome__21StorySequenceExecutorFP18GalaxyMoveArgument` | :x: |
 | `setNextStageToAstroDome__21StorySequenceExecutorFP18GalaxyMoveArgument` | :x: |
 | `isExecuteDemoLuigiMissing__21StorySequenceExecutorCFPC18GalaxyMoveArgument` | :x: |
-| `getOptionalDemoForClearGalaxy__21StorySequenceExecutorCFPQ22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt;PC18GalaxyMoveArgument` | :x: |
+| `getOptionalDemoForClearGalaxy__21StorySequenceExecutorCFPQ22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>PC18GalaxyMoveArgument` | :x: |
 | `isEqualStageStopCometScheduler__21StorySequenceExecutorFPCc` | :x: |
 | `prepareDemoSequence__21StorySequenceExecutorFPCQ225StorySequenceExecutorType16DemoSequenceInfo` | :x: |
-| `prepareDemoSequence__21StorySequenceExecutorFRCQ22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt;` | :x: |
+| `prepareDemoSequence__21StorySequenceExecutorFRCQ22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>` | :x: |
 | `prepareDemoSequenceButlerFortressDiscover__21StorySequenceExecutorFPC18GalaxyMoveArgumentRC29DemoFortressDiscoverCheckList` | :x: |
 | `tryStartDemo__21StorySequenceExecutorFPCc` | :x: |
 | `tryStartSave__21StorySequenceExecutorFv` | :x: |
@@ -65,5 +65,5 @@
 | `execute__Q235@unnamed@StorySequenceExecutor_cpp@37StorySequenceExecutorPlayDemoSequenceCFP5Spine` | :x: |
 | `execute__Q235@unnamed@StorySequenceExecutor_cpp@37StorySequenceExecutorWaitToSceneStartCFP5Spine` | :x: |
 | `execute__Q235@unnamed@StorySequenceExecutor_cpp@25StorySequenceExecutorIdleCFP5Spine` | :x: |
-| `push_back__Q22MR78Vector&lt;Q22MR63FixedArray&lt;PCQ225StorySequenceExecutorType16DemoSequenceInfo,8&gt;&gt;FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo` | :x: |
+| `push_back__Q22MR78Vector<Q22MR63FixedArray<PCQ225StorySequenceExecutorType16DemoSequenceInfo,8>>FRCPCQ225StorySequenceExecutorType16DemoSequenceInfo` | :x: |
 | `__dt__21StorySequenceExecutorFv` | :x: |

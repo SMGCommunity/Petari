@@ -34,9 +34,9 @@
 | `requestBlowDown__6KuriboFP9HitSensorP9HitSensor` | :x: |
 | `requestAttackSuccess__6KuriboFv` | :x: |
 | `onNoGravitySupport__6KuriboFv` | :x: |
-| `setUp__6KuriboFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearBlowed__6KuriboFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearHipDropped__6KuriboFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry9TQuat4&lt;f&gt;` | :x: |
+| `setUp__6KuriboFRCQ29JGeometry8TVec3<f>RCQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `appearBlowed__6KuriboFRCQ29JGeometry8TVec3<f>RCQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `appearHipDropped__6KuriboFRCQ29JGeometry8TVec3<f>RCQ29JGeometry9TQuat4<f>` | :x: |
 | `tryNonActive__6KuriboFv` | :x: |
 | `tryActive__6KuriboFv` | :x: |
 | `tryEndBlow__6KuriboFv` | :x: |

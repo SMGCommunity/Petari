@@ -54,9 +54,9 @@
 | `@348@startRacer__11TeresaRacerFv` | :x: |
 | `@348@prepRacer__11TeresaRacerFPC11RaceManager` | :x: |
 | `@348@initRacer__11TeresaRacerFv` | :x: |
-| `TalkMessageFunc&lt;11TeresaRacer&gt;__FP11TeresaRacerM11TeresaRacerFPCvPvUl_b_57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;` | :x: |
-| `__cl__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;FRC57TalkMessageFuncM&lt;P11TeresaRacer,M11TeresaRacerFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<11TeresaRacer>__FP11TeresaRacerM11TeresaRacerFPCvPvUl_b_57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>` | :x: |
+| `__cl__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFUl` | :x: |
+| `clone__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFv` | :x: |
+| `clone__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>FRC57TalkMessageFuncM<P11TeresaRacer,M11TeresaRacerFPCvPvUl_b>` | :x: |
 | `__dt__11TeresaRacerFv` | :x: |

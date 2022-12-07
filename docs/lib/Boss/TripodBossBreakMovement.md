@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__23TripodBossBreakMovementFPCc` | :x: |
-| `start__23TripodBossBreakMovementFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
+| `start__23TripodBossBreakMovementFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
 | `movement__23TripodBossBreakMovementFv` | :x: |
 | `setBreakDownLevel__23TripodBossBreakMovementFl` | :x: |
 | `exeStartBreak__23TripodBossBreakMovementFv` | :x: |

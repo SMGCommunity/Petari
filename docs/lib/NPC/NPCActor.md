@@ -17,7 +17,7 @@
 | `makeArchiveList__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :white_check_mark: |
 | `addArchive__8NPCActorFP27NameObjArchiveListCollectorRC12NPCActorItem` | :white_check_mark: |
 | `makeArchiveListDefault__8NPCActorFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :white_check_mark: |
-| `setBaseMtx__8NPCActorFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `setBaseMtx__8NPCActorFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `setBaseMtx__8NPCActorFPA4_f` | :x: |
 | `setInitPose__8NPCActorFv` | :white_check_mark: |
 | `init__8NPCActorFRC12JMapInfoIter` | :white_check_mark: |
@@ -29,11 +29,11 @@
 | `makeActorDead__8NPCActorFv` | :x: |
 | `kill__8NPCActorFv` | :x: |
 | `control__8NPCActorFv` | :x: |
-| `initTalkCtrl__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
-| `initTalkCtrlDirect__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
-| `calcJointScale__8NPCActorFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `initTalkCtrl__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
+| `initTalkCtrlDirect__8NPCActorFRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
+| `calcJointScale__8NPCActorFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `turnToPlayer__8NPCActorFv` | :x: |
-| `calcVecToPlayer__22@unnamed@NPCActor_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PC9LiveActor` | :x: |
+| `calcVecToPlayer__22@unnamed@NPCActor_cpp@FPQ29JGeometry8TVec3<f>PC9LiveActor` | :x: |
 | `turnToPlayer__8NPCActorFf` | :x: |
 | `turnToPlayer__8NPCActorFfff` | :x: |
 | `turnToDefault__8NPCActorFf` | :x: |
@@ -60,6 +60,6 @@
 | `execute__Q211NrvNPCActor15NPCActorNrvTalkCFP5Spine` | :x: |
 | `execute__Q211NrvNPCActor15NPCActorNrvWaitCFP5Spine` | :x: |
 | `execute__Q211NrvNPCActor19NPCActorNrvReactionCFP5Spine` | :x: |
-| `__dt__32JointControlDelegator&lt;8NPCActor&gt;Fv` | :x: |
-| `calcJointMatrix__32JointControlDelegator&lt;8NPCActor&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__32JointControlDelegator&lt;8NPCActor&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__32JointControlDelegator<8NPCActor>Fv` | :x: |
+| `calcJointMatrix__32JointControlDelegator<8NPCActor>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__32JointControlDelegator<8NPCActor>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |

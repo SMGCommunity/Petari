@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16SphereControllerFv` | :x: |
-| `calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `update__16SphereControllerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcMoveVector__16SphereControllerFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `update__16SphereControllerFRCQ29JGeometry8TVec3<f>` | :x: |
 | `doBrake__16SphereControllerCFv` | :x: |
 | `calcJumpPower__16SphereControllerCFv` | :x: |

@@ -19,11 +19,11 @@
 | `getJointName__2MRFPC9LiveActori` | :x: |
 | `getJointNum__2MRFPC9LiveActor` | :x: |
 | `isExistJoint__2MRFPC9LiveActorPCc` | :x: |
-| `copyJointPos__2MRFP8J3DModelPCcPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `copyJointPos__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `copyJointPos__2MRFP8J3DModeliPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `copyJointPos__2MRFPC9LiveActoriPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `copyJointScale__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `copyJointPos__2MRFP8J3DModelPCcPQ29JGeometry8TVec3<f>` | :x: |
+| `copyJointPos__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3<f>` | :x: |
+| `copyJointPos__2MRFP8J3DModeliPQ29JGeometry8TVec3<f>` | :x: |
+| `copyJointPos__2MRFPC9LiveActoriPQ29JGeometry8TVec3<f>` | :x: |
+| `copyJointScale__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3<f>` | :x: |
 | `hideJoint__2MRFP8J3DJoint` | :x: |
 | `hideJoint__2MRFP8J3DModelPCc` | :x: |
 | `hideJoint__2MRFPC9LiveActorPCc` | :x: |

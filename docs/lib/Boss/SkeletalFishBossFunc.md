@@ -9,5 +9,5 @@
 # SkeletalFishBossFunc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3<f>` | :x: |
+| `copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3<f>l` | :x: |

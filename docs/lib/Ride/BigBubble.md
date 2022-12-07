@@ -17,7 +17,7 @@
 | `control__9BigBubbleFv` | :x: |
 | `calcAnim__9BigBubbleFv` | :x: |
 | `draw__9BigBubbleCFv` | :x: |
-| `generate__9BigBubbleFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fbllPC21BigBubbleMoveLimitter` | :x: |
+| `generate__9BigBubbleFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fbllPC21BigBubbleMoveLimitter` | :x: |
 | `setActionType__9BigBubbleFl` | :x: |
 | `setShapeType__9BigBubbleFl` | :x: |
 | `getBaseRadius__9BigBubbleCFv` | :x: |
@@ -48,7 +48,7 @@
 | `exeBreak__9BigBubbleFv` | :x: |
 | `exeEscape__9BigBubbleFv` | :x: |
 | `exeGoal__9BigBubbleFv` | :x: |
-| `addDeformVelocityOuter__9BigBubbleFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `addDeformVelocityOuter__9BigBubbleFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `addDeformVelocityInternalOressure__9BigBubbleFv` | :x: |
 | `addDeformVelocityRebound__9BigBubbleFv` | :x: |
 | `addCoriolisAccel__9BigBubbleFv` | :x: |
@@ -63,10 +63,10 @@
 | `updateMeshPoint__9BigBubbleFv` | :x: |
 | `updateCaptureReduceVolume__9BigBubbleFv` | :x: |
 | `updateCaptureWarningColor__9BigBubbleFv` | :x: |
-| `calcMergePosition__9BigBubbleCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PC9BigBubble` | :x: |
-| `calcLocalDirection__9BigBubbleCFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
-| `getNearAxisIndex__9BigBubbleCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getMergeIndex__9BigBubbleCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcMergePosition__9BigBubbleCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PC9BigBubble` | :x: |
+| `calcLocalDirection__9BigBubbleCFPQ29JGeometry8TVec3<f>l` | :x: |
+| `getNearAxisIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f>` | :x: |
+| `getMergeIndex__9BigBubbleCFRCQ29JGeometry8TVec3<f>` | :x: |
 | `isPushable__9BigBubbleCFv` | :x: |
 | `isBindMario__9BigBubbleCFv` | :x: |
 | `isDraw__9BigBubbleCFv` | :x: |
@@ -89,5 +89,5 @@
 | `execute__Q212NrvBigBubble19BigBubbleNrvCaptureCFP5Spine` | :x: |
 | `execute__Q212NrvBigBubble16BigBubbleNrvWaitCFP5Spine` | :x: |
 | `execute__Q212NrvBigBubble18BigBubbleNrvAppearCFP5Spine` | :x: |
-| `setQT__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry9TQuat4&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setQT__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `getBaseMtx__9BigBubbleCFv` | :x: |

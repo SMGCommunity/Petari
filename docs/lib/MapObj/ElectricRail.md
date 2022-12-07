@@ -15,7 +15,7 @@
 | `init__17ElectricRailPointFRC12JMapInfoIter` | :x: |
 | `attackSensor__17ElectricRailPointFP9HitSensorP9HitSensor` | :x: |
 | `__ct__21ElectricRailSeparatorFv` | :x: |
-| `setup__21ElectricRailSeparatorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setup__21ElectricRailSeparatorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__24ElectricRailShadowDrawerFPC9LiveActorP21ElectricRailSeparatorl` | :x: |
 | `loadModelDrawMtx__24ElectricRailShadowDrawerCFv` | :x: |
 | `drawShape__24ElectricRailShadowDrawerCFv` | :x: |
@@ -39,7 +39,7 @@
 | `drawPlaneGX__12ElectricRailCFffff` | :x: |
 | `initShadow__12ElectricRailFRC12JMapInfoIter` | :x: |
 | `updateHitSensorPos__12ElectricRailFv` | :x: |
-| `calcGravity__12ElectricRailCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGravity__12ElectricRailCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `exeDisappear__12ElectricRailFv` | :x: |
 | `__sinit_\ElectricRail_cpp` | :x: |
 | `__ct__Q215NrvElectricRail19ElectricRailNrvWaitFv` | :x: |
@@ -53,7 +53,7 @@
 | `GDWrite_f32` | :x: |
 | `GDPosition3f32` | :x: |
 | `GXPosition3f32` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12ElectricRail,M12ElectricRailFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12ElectricRail,M12ElectricRailFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__24ElectricRailShadowDrawerFv` | :x: |
 | `__dt__12ElectricRailFv` | :x: |

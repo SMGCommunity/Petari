@@ -48,7 +48,7 @@
 | `getMessage__12TalkFunctionFPC15TalkMessageCtrl` | :x: |
 | `getSubMessage__12TalkFunctionFPC15TalkMessageCtrl` | :x: |
 | `__dt__15TalkMessageCtrlFv` | :x: |
-| `__ct__15TalkMessageCtrlFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
+| `__ct__15TalkMessageCtrlFP9LiveActorRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
 | `inMessageArea__15TalkMessageCtrlCFv` | :x: |
 | `startCamera__15TalkMessageCtrlFl` | :x: |
 | `getBranchID__15TalkMessageCtrlCFv` | :x: |

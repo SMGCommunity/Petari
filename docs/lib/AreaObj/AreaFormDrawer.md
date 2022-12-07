@@ -9,6 +9,6 @@
 # AreaFormDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__pl__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__pl__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\AreaFormDrawer_cpp` | :white_check_mark: |
 | `__ct__6Color8FUcUcUcUc` | :white_check_mark: |

@@ -32,8 +32,8 @@
 | `execute__Q214NrvTypicalDoor12HostTypeOpenCFP5Spine` | :x: |
 | `execute__Q214NrvTypicalDoor20HostTypeCloseForDemoCFP5Spine` | :x: |
 | `execute__Q214NrvTypicalDoor13HostTypeCloseCFP5Spine` | :x: |
-| `Functor&lt;11TypicalDoor&gt;__2MRFP11TypicalDoorM11TypicalDoorFPCvPv_v_Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11TypicalDoor,M11TypicalDoorFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<11TypicalDoor>__2MRFP11TypicalDoorM11TypicalDoorFPCvPv_v_Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v>` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11TypicalDoor,M11TypicalDoorFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15TypicalDoorOpenFv` | :x: |
 | `__dt__16DarknessRoomDoorFv` | :x: |

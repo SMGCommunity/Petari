@@ -24,7 +24,7 @@
 | `exeSelectCancel__14SphereSelectorFv` | :x: |
 | `exeConfirmStart__14SphereSelectorFv` | :x: |
 | `exeConfirmCancel__14SphereSelectorFv` | :x: |
-| `getHandleMtx__28@unnamed@SphereSelector_cpp@FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `getHandleMtx__28@unnamed@SphereSelector_cpp@FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `registerTarget__22SphereSelectorFunctionFP9LiveActor` | :x: |
 | `isPadButton__22SphereSelectorFunctionFv` | :x: |
 | `getSelectStartFrame__22SphereSelectorFunctionFv` | :x: |
@@ -49,8 +49,8 @@
 | `invalidatePointing__22SphereSelectorFunctionFv` | :x: |
 | `isValidPointing__22SphereSelectorFunctionFv` | :x: |
 | `setHandle__22SphereSelectorFunctionFP20SphereSelectorHandle` | :x: |
-| `calcHandledTrans__22SphereSelectorFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcHandledRotateMtx__22SphereSelectorFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcHandledTrans__22SphereSelectorFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
+| `calcHandledRotateMtx__22SphereSelectorFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `getHandleTrans__22SphereSelectorFunctionFv` | :x: |
 | `getHandleRotateSpeed__22SphereSelectorFunctionFv` | :x: |
 | `isHandleHolding__22SphereSelectorFunctionFv` | :x: |
@@ -61,7 +61,7 @@
 | `getPointingTarget__22SphereSelectorFunctionFv` | :x: |
 | `getSelectedTarget__22SphereSelectorFunctionFv` | :x: |
 | `getSelectedActorTrans__22SphereSelectorFunctionFv` | :x: |
-| `calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcOffsetPos__22SphereSelectorFunctionFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__14SphereSelectorFv` | :x: |
 | `__sinit_\SphereSelector_cpp` | :white_check_mark: |
 | `__ct__Q217NrvSphereSelector28SphereSelectorNrvSelectStartFv` | :white_check_mark: |

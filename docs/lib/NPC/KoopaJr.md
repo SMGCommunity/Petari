@@ -47,6 +47,6 @@
 | `execute__Q210NrvKoopaJr19HostTypeReactionEndCFP5Spine` | :x: |
 | `execute__Q210NrvKoopaJr16HostTypeReactionCFP5Spine` | :x: |
 | `execute__Q210NrvKoopaJr12HostTypeWaitCFP5Spine` | :x: |
-| `__cl__Q22MR39FunctorV0M&lt;P7KoopaJr,M7KoopaJrFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR39FunctorV0M&lt;P7KoopaJr,M7KoopaJrFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR39FunctorV0M<P7KoopaJr,M7KoopaJrFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR39FunctorV0M<P7KoopaJr,M7KoopaJrFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__7KoopaJrFv` | :x: |

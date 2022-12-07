@@ -9,7 +9,7 @@
 # Syati.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setEulerZ__Q29JGeometry9TQuat4&lt;f&gt;Ff` | :x: |
+| `setEulerZ__Q29JGeometry9TQuat4<f>Ff` | :x: |
 | `__ct__5SyatiFPCc` | :x: |
 | `init__5SyatiFRC12JMapInfoIter` | :x: |
 | `exeWait__5SyatiFv` | :x: |
@@ -42,8 +42,8 @@
 | `resetScore__5SyatiFv` | :x: |
 | `killAllRings__5SyatiFv` | :x: |
 | `emitRing__5SyatiFv` | :x: |
-| `setupBalloonFollowMtx__5SyatiFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcHeadJoint__5SyatiFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `setupBalloonFollowMtx__5SyatiFRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcHeadJoint__5SyatiFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `control__5SyatiFv` | :x: |
 | `calcAndSetBaseMtx__5SyatiFv` | :x: |
 | `attackSensor__5SyatiFP9HitSensorP9HitSensor` | :x: |
@@ -93,7 +93,7 @@
 | `execute__Q28NrvSyati24SyatiWaitBlankStartEventCFP5Spine` | :x: |
 | `execute__Q28NrvSyati22SyatiFadeoutStartEventCFP5Spine` | :x: |
 | `execute__Q28NrvSyati9SyatiWaitCFP5Spine` | :x: |
-| `__dt__29JointControlDelegator&lt;5Syati&gt;Fv` | :x: |
-| `calcJointMatrix__29JointControlDelegator&lt;5Syati&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__29JointControlDelegator&lt;5Syati&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__29JointControlDelegator<5Syati>Fv` | :x: |
+| `calcJointMatrix__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__5SyatiFv` | :x: |

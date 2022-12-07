@@ -22,7 +22,7 @@
 | `calcAndGetNormal__8TriangleFi` | :white_check_mark: |
 | `calcAndGetEdgeNormal__8TriangleFi` | :white_check_mark: |
 | `calcAndGetPos__8TriangleFi` | :white_check_mark: |
-| `calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `calcForceMovePower__8TriangleCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `getAttributes__8TriangleCFv` | :white_check_mark: |
 | `getBaseMtx__8TriangleCFv` | :white_check_mark: |
 | `getBaseInvMtx__8TriangleCFv` | :white_check_mark: |

@@ -10,6 +10,6 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__dt__19FollowCollisionAreaFv` | :x: |
-| `__ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;PA4_ff` | :x: |
+| `__ct__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>PA4_ff` | :x: |
 | `movement__19FollowCollisionAreaFv` | :x: |
-| `hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `hitCheck__19FollowCollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |

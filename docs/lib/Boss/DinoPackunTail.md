@@ -24,6 +24,6 @@
 | `addAccelKeepBend__14DinoPackunTailFv` | :x: |
 | `addAccelKeepDistance__14DinoPackunTailFv` | :x: |
 | `addAccelToBck__14DinoPackunTailFv` | :x: |
-| `getTailNodePosition__14DinoPackunTailCFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
-| `getEndTailPosition__14DinoPackunTailCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getTailNodePosition__14DinoPackunTailCFPQ29JGeometry8TVec3<f>l` | :x: |
+| `getEndTailPosition__14DinoPackunTailCFPQ29JGeometry8TVec3<f>` | :x: |
 | `getNode__14DinoPackunTailCFUl` | :x: |

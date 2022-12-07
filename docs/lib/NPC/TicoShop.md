@@ -17,11 +17,11 @@
 | `startReactionSound__8TicoShopFv` | :x: |
 | `exeDemo__8TicoShopFv` | :x: |
 | `execute__Q211NrvTicoShop15TicoShopNrvDemoCFP5Spine` | :x: |
-| `TalkMessageFunc&lt;8TicoShop&gt;__FP8TicoShopM8TicoShopFPCvPvUl_b_49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;` | :x: |
-| `__cl__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;FRC49TalkMessageFuncM&lt;P8TicoShop,M8TicoShopFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<8TicoShop>__FP8TicoShopM8TicoShopFPCvPvUl_b_49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>` | :x: |
+| `__cl__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFUl` | :x: |
+| `clone__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFv` | :x: |
+| `clone__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>FRC49TalkMessageFuncM<P8TicoShop,M8TicoShopFPCvPvUl_b>` | :x: |
 | `__dt__8TicoShopFv` | :x: |
 | `__sinit_\TicoShop_cpp` | :x: |
 | `__ct__Q211NrvTicoShop15TicoShopNrvDemoFv` | :x: |

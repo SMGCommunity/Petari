@@ -18,7 +18,7 @@
 | `exeSetCenter__16DragonHeadFlowerFv` | :x: |
 | `exeLaunchReady__16DragonHeadFlowerFv` | :x: |
 | `exeRailMove__16DragonHeadFlowerFv` | :x: |
-| `initParabola__16DragonHeadFlowerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `initParabola__16DragonHeadFlowerFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\DragonHeadFlower_cpp` | :x: |
 | `__ct__Q219NrvDragonHeadFlower23DragonHeadFlowerNrvWaitFv` | :x: |
 | `__ct__Q219NrvDragonHeadFlower28DragonHeadFlowerNrvSetCenterFv` | :x: |

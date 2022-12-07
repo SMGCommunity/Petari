@@ -15,9 +15,9 @@
 | `registerKillFunc__2MRFP15TalkMessageCtrlRC19TalkMessageFuncBase` | :x: |
 | `setMessageArg__2MRFP15TalkMessageCtrli` | :x: |
 | `setMessageArg__2MRFP15TalkMessageCtrlPCw` | :x: |
-| `createTalkCtrl__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
-| `createTalkCtrlDirect__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
-| `createTalkCtrlDirectOnRootNodeAutomatic__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
+| `createTalkCtrl__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
+| `createTalkCtrlDirect__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
+| `createTalkCtrlDirectOnRootNodeAutomatic__2MRFP9LiveActorRC12JMapInfoIterPCcRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
 | `tryTalkNearPlayer__2MRFP15TalkMessageCtrl` | :x: |
 | `tryTalkNearPlayerAtEnd__2MRFP15TalkMessageCtrl` | :x: |
 | `tryTalkForce__2MRFP15TalkMessageCtrl` | :x: |
@@ -34,7 +34,7 @@
 | `tryTalkSelectRight__2MRFP15TalkMessageCtrl` | :x: |
 | `getMessageBalloonFollowMatrix__2MRFPC15TalkMessageCtrl` | :x: |
 | `getMessageBalloonFollowOffset__2MRFPC15TalkMessageCtrl` | :x: |
-| `setMessageBalloonFollowOffset__2MRFP15TalkMessageCtrlRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setMessageBalloonFollowOffset__2MRFP15TalkMessageCtrlRCQ29JGeometry8TVec3<f>` | :x: |
 | `isNearPlayer__2MRFPC15TalkMessageCtrlf` | :x: |
 | `inMessageArea__2MRFPC15TalkMessageCtrl` | :x: |
 | `isTalkNone__2MRFPC15TalkMessageCtrl` | :x: |

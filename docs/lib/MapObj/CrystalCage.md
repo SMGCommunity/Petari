@@ -30,6 +30,6 @@
 | `execute__Q214NrvCrystalCage24CrystalCageNrvBreakAfterCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvCrystalCage19CrystalCageNrvBreakCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvCrystalCage18CrystalCageNrvWaitCFP5Spine` | :white_check_mark: |
-| `__cl__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR49FunctorV0M&lt;P11CrystalCage,M11CrystalCageFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR49FunctorV0M<P11CrystalCage,M11CrystalCageFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR49FunctorV0M<P11CrystalCage,M11CrystalCageFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__11CrystalCageFv` | :white_check_mark: |

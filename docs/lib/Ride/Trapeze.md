@@ -26,7 +26,7 @@
 | `attackSensor__7TrapezeFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__7TrapezeFUlP9HitSensorP9HitSensor` | :x: |
 | `tryJump__7TrapezeFv` | :x: |
-| `updateStick__7TrapezeFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `updateStick__7TrapezeFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `updateStickMtx__7TrapezeFv` | :x: |
 | `updateHangPoint__7TrapezeFv` | :x: |
 | `updateBind__7TrapezeFv` | :x: |
@@ -34,12 +34,12 @@
 | `updateSlideDown__7TrapezeFv` | :x: |
 | `isStartSwingFront__7TrapezeCFv` | :x: |
 | `isStartSwingBack__7TrapezeCFv` | :x: |
-| `drawRope__7TrapezeCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff` | :x: |
+| `drawRope__7TrapezeCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff` | :x: |
 | `__ct__19TrapezeRopeDrawInitFPCc` | :x: |
 | `initDraw__19TrapezeRopeDrawInitCFv` | :x: |
 | `GXPosition3f32` | :x: |
-| `__cl__Q22MR67FunctorV0M&lt;PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR67FunctorV0M&lt;PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR67FunctorV0M<PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR67FunctorV0M<PC19TrapezeRopeDrawInit,M19TrapezeRopeDrawInitFPCvPCv_v>CFP7JKRHeap` | :x: |
 | `__dt__7TrapezeFv` | :x: |
 | `__dt__19TrapezeRopeDrawInitFv` | :x: |
 | `__sinit_\Trapeze_cpp` | :x: |

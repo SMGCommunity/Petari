@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `checkBump__5MarioFv` | :x: |
-| `startBump__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `startBump__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\MarioBump_cpp` | :x: |
 | `__ct__9MarioBumpFP10MarioActor` | :x: |
 | `start__9MarioBumpFv` | :x: |

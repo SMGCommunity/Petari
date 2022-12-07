@@ -9,10 +9,10 @@
 # MultiEmitter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct&lt;s&gt;__Q29JGeometry8TVec3&lt;s&gt;Fsss_Pv` | :x: |
-| `__ct__12MultiEmitterFPCcPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__ct__12MultiEmitterFPCcPA4_fRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__ct__12MultiEmitterFPCcPA4_fPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct<s>__Q29JGeometry8TVec3<s>Fsss_Pv` | :x: |
+| `__ct__12MultiEmitterFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `__ct__12MultiEmitterFPCcPA4_fRCQ29JGeometry8TVec3<f>` | :x: |
+| `__ct__12MultiEmitterFPCcPA4_fPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__12MultiEmitterFPCc` | :x: |
 | `createEmitter__12MultiEmitterFv` | :x: |
 | `createEmitterWithCallBack__12MultiEmitterFP24MultiEmitterCallBackBase` | :x: |
@@ -23,9 +23,9 @@
 | `playCalcAndDeleteForeverEmitter__12MultiEmitterFv` | :x: |
 | `isValid__12MultiEmitterCFv` | :x: |
 | `isExistOneTimeEmitter__12MultiEmitterCFv` | :x: |
-| `setHostSRT__12MultiEmitterFPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setHostSRT__12MultiEmitterFPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>` | :x: |
 | `setHostMtx__12MultiEmitterFPA4_f` | :x: |
-| `setOffset__12MultiEmitterFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setOffset__12MultiEmitterFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setBaseScale__12MultiEmitterFf` | :x: |
 | `setName__12MultiEmitterFPCc` | :x: |
 | `isEqualName__12MultiEmitterCFUs` | :x: |
@@ -45,11 +45,11 @@
 | `playEmitterOffClipped__12MultiEmitterFv` | :x: |
 | `setDrawOrder__12MultiEmitterFl` | :x: |
 | `addChildEmitter__12MultiEmitterFP12MultiEmitter` | :x: |
-| `setGlobalRotationDegree__12MultiEmitterFRCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `setGlobalRotationDegree__12MultiEmitterFRCQ29JGeometry8TVec3<f>l` | :x: |
 | `allocateEmitter__12MultiEmitterFPCc` | :x: |
 | `getValidEmitter__12MultiEmitterFlb` | :x: |
 | `createOneTimeEmitter__12MultiEmitterFv` | :x: |
 | `createForeverEmitter__12MultiEmitterFv` | :x: |
-| `for_each&lt;PP12MultiEmitter,Q23std27mem_fun_t&lt;v,12MultiEmitter&gt;&gt;__3stdFPP12MultiEmitterPP12MultiEmitterQ23std27mem_fun_t&lt;v,12MultiEmitter&gt;_Q23std27mem_fun_t&lt;v,12MultiEmitter&gt;` | :x: |
+| `for_each<PP12MultiEmitter,Q23std27mem_fun_t<v,12MultiEmitter>>__3stdFPP12MultiEmitterPP12MultiEmitterQ23std27mem_fun_t<v,12MultiEmitter>_Q23std27mem_fun_t<v,12MultiEmitter>` | :x: |
 | `setGroupID__13SingleEmitterFUc` | :x: |
-| `push_back__Q22MR32Vector&lt;Q22MR17FixedArray&lt;Us,32&gt;&gt;FRCUs` | :x: |
+| `push_back__Q22MR32Vector<Q22MR17FixedArray<Us,32>>FRCUs` | :x: |

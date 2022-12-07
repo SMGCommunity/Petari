@@ -13,9 +13,9 @@
 | `init__11CocoNutBallFRC12JMapInfoIter` | :x: |
 | `appear__11CocoNutBallFv` | :x: |
 | `kill__11CocoNutBallFv` | :x: |
-| `appearAndThrow__11CocoNutBallFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `appearAndThrow__11CocoNutBallFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `hitBackToPlayer__11CocoNutBallFv` | :x: |
-| `demoBreak__11CocoNutBallFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `demoBreak__11CocoNutBallFRCQ29JGeometry8TVec3<f>` | :x: |
 | `calcAndSetBaseMtx__11CocoNutBallFv` | :x: |
 | `attackSensor__11CocoNutBallFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__11CocoNutBallFUlP9HitSensorP9HitSensor` | :x: |
@@ -24,7 +24,7 @@
 | `calcHitBackVelocitAndGravity__11CocoNutBallFv` | :x: |
 | `isHitBackRight__11CocoNutBallCFv` | :x: |
 | `isHitBackFront__11CocoNutBallCFv` | :x: |
-| `calcHitBackDstPos__11CocoNutBallFPQ29JGeometry8TVec3&lt;f&gt;bb` | :x: |
+| `calcHitBackDstPos__11CocoNutBallFPQ29JGeometry8TVec3<f>bb` | :x: |
 | `tryToKill__11CocoNutBallFb` | :x: |
 | `setVelocityToPlayer__11CocoNutBallFff` | :x: |
 | `freeze__11CocoNutBallFv` | :x: |

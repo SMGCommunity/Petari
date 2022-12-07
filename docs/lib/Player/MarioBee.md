@@ -10,6 +10,6 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `beeMarioOnGround__5MarioFv` | :x: |
-| `entryWallWalkMode__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `entryWallWalkMode__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `beeMarioOnAir__5MarioFv` | :x: |
 | `__sinit_\MarioBee_cpp` | :x: |

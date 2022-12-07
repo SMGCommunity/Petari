@@ -84,6 +84,6 @@
 | `execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerChangeWaveBankCFP5Spine` | :x: |
 | `execute__Q228NrvGameSystemSceneController31GameSystemSceneControllerNormalCFP5Spine` | :x: |
 | `execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerNotInitializedCFP5Spine` | :x: |
-| `Functor&lt;25GameSystemSceneController&gt;__2MRFP25GameSystemSceneControllerM25GameSystemSceneControllerFPCvPv_v_Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR77FunctorV0M&lt;P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<25GameSystemSceneController>__2MRFP25GameSystemSceneControllerM25GameSystemSceneControllerFPCvPv_v_Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>` | :x: |
+| `__cl__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFP7JKRHeap` | :x: |

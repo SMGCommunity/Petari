@@ -15,7 +15,7 @@
 | `__ct__13FootPrintInfoFv` | :x: |
 | `setTexture__9FootPrintFP7ResTIMG` | :x: |
 | `movement__9FootPrintFv` | :x: |
-| `addPrint__9FootPrintFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `addPrint__9FootPrintFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b` | :x: |
 | `draw__9FootPrintCFv` | :x: |
 | `clear__9FootPrintFv` | :x: |
 | `clearForce__9FootPrintFv` | :x: |

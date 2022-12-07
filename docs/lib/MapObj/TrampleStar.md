@@ -28,7 +28,7 @@
 | `offLod__11TrampleStarFv` | :x: |
 | `exeBindingCapture__11TrampleStarFv` | :x: |
 | `exeBindingShoot__11TrampleStarFv` | :x: |
-| `calcNearestVtxIndex__11TrampleStarFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcNearestVtxIndex__11TrampleStarFRCQ29JGeometry8TVec3<f>` | :x: |
 | `draw__11TrampleStarCFv` | :x: |
 | `receiveOtherMsg__11TrampleStarFUlP9HitSensorP9HitSensor` | :x: |
 | `drawSelf__11TrampleStarCFv` | :x: |

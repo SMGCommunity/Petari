@@ -30,7 +30,7 @@
 | `execute__Q218NrvWormEatenPlanet27WormEatenPlanetNrvThirdWaitCFP5Spine` | :x: |
 | `execute__Q218NrvWormEatenPlanet28WormEatenPlanetNrvSecondWaitCFP5Spine` | :x: |
 | `execute__Q218NrvWormEatenPlanet27WormEatenPlanetNrvFirstWaitCFP5Spine` | :x: |
-| `Functor&lt;15WormEatenPlanet&gt;__2MRFP15WormEatenPlanetM15WormEatenPlanetFPCvPv_v_Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15WormEatenPlanet>__2MRFP15WormEatenPlanetM15WormEatenPlanetFPCvPv_v_Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15WormEatenPlanet,M15WormEatenPlanetFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15WormEatenPlanetFv` | :x: |

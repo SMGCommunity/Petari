@@ -15,7 +15,7 @@
 | `__dt__11CocoNutBallFv` | :x: |
 | `__dt__8FireBallFv` | :x: |
 | `__dt__10FireBubbleFv` | :x: |
-| `set__Q29JGeometry8TVec3&lt;f&gt;FRC3Vec` | :x: |
+| `set__Q29JGeometry8TVec3<f>FRC3Vec` | :x: |
 | `__ct__7OtaKingFPCc` | :x: |
 | `init__7OtaKingFRC12JMapInfoIter` | :x: |
 | `movement__7OtaKingFv` | :x: |
@@ -104,7 +104,7 @@
 | `execute__Q210NrvOtaKing20OtaKingNrvAppearDemoCFP5Spine` | :x: |
 | `execute__Q210NrvOtaKing22OtaKingNrvWaitOnSwitchCFP5Spine` | :x: |
 | `repeat__2MRFfff` | :x: |
-| `copyTrans__13FixedPositionCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__cl__Q22MR39FunctorV0M&lt;P7OtaKing,M7OtaKingFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR39FunctorV0M&lt;P7OtaKing,M7OtaKingFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `copyTrans__13FixedPositionCFPQ29JGeometry8TVec3<f>` | :x: |
+| `__cl__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR39FunctorV0M<P7OtaKing,M7OtaKingFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__7OtaKingFv` | :x: |

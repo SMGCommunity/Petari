@@ -11,5 +11,5 @@
 | ------------- | ------------- |
 | `__ct__22BossStinkBugBombHolderFP9LiveActor` | :x: |
 | `__dt__14LiveActorGroupFv` | :x: |
-| `__dt__36DeriveActorGroup&lt;16BossStinkBugBomb&gt;Fv` | :x: |
+| `__dt__36DeriveActorGroup<16BossStinkBugBomb>Fv` | :x: |
 | `__dt__22BossStinkBugBombHolderFv` | :x: |

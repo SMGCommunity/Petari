@@ -25,9 +25,9 @@
 | `__sinit_\MarioActorParts_cpp` | :x: |
 | `update2D__10MarioActorFv` | :x: |
 | `updateThrowVector__10MarioActorFv` | :x: |
-| `createIceFloor__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `createIceFloor__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `createIceWall__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `createIceFloor__10MarioActorFRCQ29JGeometry8TVec3<f>` | :x: |
+| `createIceFloor__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `createIceWall__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `updateBaseMtxTeresa__10MarioActorFPA4_f` | :x: |
 | `finalizeFreezeModel__10MarioActorFv` | :x: |
 | `offTakingFlag__10MarioActorFv` | :x: |

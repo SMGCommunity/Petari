@@ -21,9 +21,9 @@
 | `updateSinglyHorizontalTask__12CameraShakerFv` | :white_check_mark: |
 | `updateInfinityTask__12CameraShakerFv` | :white_check_mark: |
 | `setOffset__12CameraShakerFv` | :white_check_mark: |
-| `addSinglyVerticalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
-| `addSinglyHorizontalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
-| `addInfinityTaskOffset__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
-| `adjustOffsetToScreen__12CameraShakerFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `addSinglyVerticalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f>` | :white_check_mark: |
+| `addSinglyHorizontalTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f>` | :white_check_mark: |
+| `addInfinityTaskOffset__12CameraShakerFPQ29JGeometry8TVec2<f>` | :white_check_mark: |
+| `adjustOffsetToScreen__12CameraShakerFPQ29JGeometry8TVec2<f>` | :x: |
 | `startInfinity__12CameraShakerFUlff` | :white_check_mark: |
 | `__dt__12CameraShakerFv` | :white_check_mark: |

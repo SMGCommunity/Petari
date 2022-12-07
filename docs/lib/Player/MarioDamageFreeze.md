@@ -16,4 +16,4 @@
 | `start__11MarioFreezeFv` | :x: |
 | `update__11MarioFreezeFv` | :x: |
 | `__sinit_\MarioDamageFreeze_cpp` | :x: |
-| `setJumpVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setJumpVec__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |

@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__15PoltaActionBaseFPCcP5Polta` | :x: |
-| `__dt__22ActorStateBase&lt;5Polta&gt;Fv` | :x: |
+| `__dt__22ActorStateBase<5Polta>Fv` | :x: |
 | `updateScreamSensor__15PoltaActionBaseFv` | :x: |
 | `__dt__15PoltaActionBaseFv` | :x: |
 | `updateWait__15PoltaActionBaseFv` | :x: |

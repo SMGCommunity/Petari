@@ -23,8 +23,8 @@
 | `calcPointNo__9SwingRopeCFf` | :x: |
 | `calcFriction__9SwingRopeCFl` | :x: |
 | `addPointGravity__9SwingRopeFv` | :x: |
-| `restrictPointToTail__9SwingRopeFlPCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `restrictPointToHead__9SwingRopeFlRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `restrictPointToTail__9SwingRopeFlPCQ29JGeometry8TVec3<f>f` | :x: |
+| `restrictPointToHead__9SwingRopeFlRCQ29JGeometry8TVec3<f>f` | :x: |
 | `isAllPointsStop__9SwingRopeCFv` | :x: |
 | `isStretched__9SwingRopeCFv` | :x: |
 | `tryJump__9SwingRopeFv` | :x: |
@@ -38,7 +38,7 @@
 | `updateStretchHangUpperPoints__9SwingRopeFv` | :x: |
 | `updateHangLowerPoints__9SwingRopeFv` | :x: |
 | `updateHangLowerPointPos__9SwingRopeFl` | :x: |
-| `sendPoint__23@unnamed@SwingRope_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUlff` | :x: |
+| `sendPoint__23@unnamed@SwingRope_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUlff` | :x: |
 | `drawLine__23@unnamed@SwingRope_cpp@FPC9SwingRopeUlUlffff` | :x: |
 | `drawLineAtHanging__23@unnamed@SwingRope_cpp@FPC9SwingRopeUlUlffffff` | :x: |
 | `drawStop__9SwingRopeCFv` | :x: |
@@ -61,7 +61,7 @@
 | `execute__Q212NrvSwingRope23SwingRopeNrvFreeInvalidCFP5Spine` | :x: |
 | `execute__Q212NrvSwingRope16SwingRopeNrvFreeCFP5Spine` | :x: |
 | `execute__Q212NrvSwingRope16SwingRopeNrvStopCFP5Spine` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR57FunctorV0M<PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<PC14SwingRopeGroup,M14SwingRopeGroupFPCvPCv_v>CFP7JKRHeap` | :x: |
 | `__dt__9SwingRopeFv` | :x: |
 | `__dt__14SwingRopeGroupFv` | :x: |

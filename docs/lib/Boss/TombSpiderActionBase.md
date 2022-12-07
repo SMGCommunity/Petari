@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__20TombSpiderActionBaseFP10TombSpiderPCc` | :x: |
-| `__dt__28ActorStateBase&lt;10TombSpider&gt;Fv` | :x: |
+| `__dt__28ActorStateBase<10TombSpider>Fv` | :x: |
 | `init__20TombSpiderActionBaseFv` | :x: |
 | `appear__20TombSpiderActionBaseFv` | :x: |
 | `updateChanceStart__20TombSpiderActionBaseFv` | :x: |

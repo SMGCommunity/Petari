@@ -9,7 +9,7 @@
 # Plant.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setXYZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setXYZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__5PlantFPCc` | :x: |
 | `init__5PlantFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__5PlantFv` | :x: |

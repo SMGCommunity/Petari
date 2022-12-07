@@ -17,6 +17,6 @@
 | `__ct__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvDemoFv` | :x: |
 | `execute__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvDemoCFP5Spine` | :x: |
 | `execute__Q219NrvTicoDemoGetPower23TicoDemoGetPowerNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR59FunctorV0M&lt;P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR59FunctorV0M&lt;P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR59FunctorV0M<P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR59FunctorV0M<P16TicoDemoGetPower,M16TicoDemoGetPowerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__16TicoDemoGetPowerFv` | :x: |

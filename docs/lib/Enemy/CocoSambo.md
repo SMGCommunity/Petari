@@ -16,7 +16,7 @@
 | `attackSensor__13CocoSamboHeadFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__13CocoSamboHeadFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgEnemyAttack__13CocoSamboHeadFUlP9HitSensorP9HitSensor` | :x: |
-| `updateFrontVecToPlayer__13CocoSamboHeadFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateFrontVecToPlayer__13CocoSamboHeadFRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeFall__13CocoSamboHeadFv` | :x: |
 | `exeFallLand__13CocoSamboHeadFv` | :x: |
 | `exeSwoon__13CocoSamboHeadFv` | :x: |

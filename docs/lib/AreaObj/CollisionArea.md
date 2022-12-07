@@ -9,18 +9,18 @@
 # CollisionArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setLength__Q29JGeometry8TVec3&lt;f&gt;Ff` | :x: |
-| `sub__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__mi__Q29JGeometry8TVec3&lt;f&gt;CFv` | :x: |
-| `inv_sqrt__Q29JGeometry8TUtil&lt;f&gt;Ff` | :x: |
-| `getXDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getYDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `getZDir__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setLength__Q29JGeometry8TVec3<f>Ff` | :x: |
+| `sub__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>` | :x: |
+| `__mi__Q29JGeometry8TVec3<f>CFv` | :x: |
+| `inv_sqrt__Q29JGeometry8TUtil<f>Ff` | :x: |
+| `getXDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
+| `getYDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
+| `getZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__13CollisionAreaFiPCc` | :white_check_mark: |
 | `init__13CollisionAreaFRC12JMapInfoIter` | :white_check_mark: |
 | `movement__13CollisionAreaFv` | :white_check_mark: |
-| `hitCheck__13CollisionAreaFRCQ29JGeometry8TVec3&lt;f&gt;fPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;f` | :white_check_mark: |
+| `hitCheck__13CollisionAreaFRCQ29JGeometry8TVec3<f>fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
+| `setMtx__11AreaPolygonFPA4_fRCQ29JGeometry8TVec3<f>f` | :white_check_mark: |
 | `setSurfaceAndSync__11AreaPolygonFl` | :white_check_mark: |
 | `setSurface__11AreaPolygonFl` | :x: |
 | `invalidate__11AreaPolygonFv` | :white_check_mark: |

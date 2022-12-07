@@ -31,6 +31,6 @@
 | `execute__Q225NrvSpringWaterFloaterSpot32SpringWaterFloaterSpotNrvFloatUpCFP5Spine` | :x: |
 | `execute__Q225NrvSpringWaterFloaterSpot36SpringWaterFloaterSpotNrvFloatSignalCFP5Spine` | :x: |
 | `execute__Q225NrvSpringWaterFloaterSpot29SpringWaterFloaterSpotNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR71FunctorV0M&lt;P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR71FunctorV0M&lt;P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR71FunctorV0M<P22SpringWaterFloaterSpot,M22SpringWaterFloaterSpotFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__22SpringWaterFloaterSpotFv` | :x: |

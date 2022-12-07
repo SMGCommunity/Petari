@@ -30,8 +30,8 @@
 | `makeEulerRotation__8MogucchiFv` | :x: |
 | `updateReferenceMtx__8MogucchiFv` | :x: |
 | `checkHipDrop__8MogucchiCFv` | :x: |
-| `calcAttackDir__8MogucchiCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcScatterVec__8MogucchiFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcAttackDir__8MogucchiCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcScatterVec__8MogucchiFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `receiveAttackBySpinSensor__8MogucchiFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveAttackByBodySensor__8MogucchiFUlP9HitSensorP9HitSensor` | :x: |
 | `updateStrollSpeed__8MogucchiFv` | :x: |

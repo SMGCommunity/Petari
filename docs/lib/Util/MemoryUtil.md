@@ -31,5 +31,5 @@
 | `calcCheckSum__2MRFPCvUl` | :x: |
 | `allocFromWPadHeap__2MRFUl` | :x: |
 | `freeFromWPadHeap__2MRFPv` | :x: |
-| `alloc__Q22MR19JKRHeapAllocator&lt;0&gt;FP12MEMAllocatorUl` | :x: |
-| `free__Q22MR19JKRHeapAllocator&lt;0&gt;FP12MEMAllocatorPv` | :x: |
+| `alloc__Q22MR19JKRHeapAllocator<0>FP12MEMAllocatorUl` | :x: |
+| `free__Q22MR19JKRHeapAllocator<0>FP12MEMAllocatorPv` | :x: |

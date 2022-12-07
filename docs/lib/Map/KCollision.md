@@ -9,8 +9,8 @@
 # KCollision.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__eq__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__dv__Q29JGeometry8TVec3&lt;f&gt;CFf` | :x: |
+| `__eq__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | :x: |
+| `__dv__Q29JGeometry8TVec3<f>CFf` | :x: |
 | `__ct__16KCollisionServerFv` | :white_check_mark: |
 | `init__16KCollisionServerFPvPCv` | :white_check_mark: |
 | `setData__16KCollisionServerFPv` | :white_check_mark: |
@@ -20,11 +20,11 @@
 | `checkArea3D__16KCollisionServerFP4FxyzP4FxyzPP12KC_PrismDataUl` | :x: |
 | `checkSphere__16KCollisionServerFP4FxyzffUlPP12KC_PrismDataPfPUc` | :x: |
 | `checkSphereWithThickness__16KCollisionServerFP4FxyzffUlPP12KC_PrismDataPfPUcf` | :x: |
-| `checkArrow__16KCollisionServerCFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUcPUlPP12KC_PrismDataUl` | :x: |
+| `checkArrow__16KCollisionServerCFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPUcPUlPP12KC_PrismDataUl` | :x: |
 | `KCHitSphere__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUc` | :x: |
 | `KCHitSphereWithThickness__16KCollisionServerFP12KC_PrismDataP4FxyzffPfPUcf` | :x: |
 | `isNearParallelNormal__16KCollisionServerCFPC12KC_PrismData` | :white_check_mark: |
-| `KCHitArrow__16KCollisionServerCFP12KC_PrismDataRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PfPUc` | :x: |
+| `KCHitArrow__16KCollisionServerCFP12KC_PrismDataRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PfPUc` | :x: |
 | `toIndex__16KCollisionServerCFPC12KC_PrismData` | :white_check_mark: |
 | `getFaceNormal__16KCollisionServerCFPC12KC_PrismData` | :white_check_mark: |
 | `getEdgeNormal1__16KCollisionServerCFPC12KC_PrismData` | :white_check_mark: |
@@ -37,6 +37,6 @@
 | `getTriangleNum__16KCollisionServerCFv` | :white_check_mark: |
 | `getAttributes__16KCollisionServerCFUl` | :white_check_mark: |
 | `searchBlock__16KCollisionServerCFPlRCUlRCUlRCUl` | :x: |
-| `setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `find&lt;PP12KC_PrismData,P12KC_PrismData&gt;__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData` | :x: |
+| `setUsingCast__Q216KCollisionServer3V3uFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `find<PP12KC_PrismData,P12KC_PrismData>__3stdFPP12KC_PrismDataPP12KC_PrismDataRCP12KC_PrismData_PP12KC_PrismData` | :x: |
 | `__as__4FxyzFRC4Fxyz` | :white_check_mark: |

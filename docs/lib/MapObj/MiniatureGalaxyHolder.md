@@ -24,6 +24,6 @@
 | `getCometLandMiniatureGalaxy__23MiniatureGalaxyFunctionFv` | :x: |
 | `getCometNameId__23MiniatureGalaxyFunctionFv` | :x: |
 | `getPointingMiniatureGalaxy__23MiniatureGalaxyFunctionFv` | :x: |
-| `__cl__Q22MR69FunctorV0M&lt;P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR69FunctorV0M&lt;P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR69FunctorV0M<P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR69FunctorV0M<P21MiniatureGalaxyHolder,M21MiniatureGalaxyHolderFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__21MiniatureGalaxyHolderFv` | :x: |

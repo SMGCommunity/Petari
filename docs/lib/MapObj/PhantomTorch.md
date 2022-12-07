@@ -29,7 +29,7 @@
 | `execute__Q215NrvPhantomTorch18HostTypeExtinguishCFP5Spine` | :x: |
 | `execute__Q215NrvPhantomTorch14HostTypeAttackCFP5Spine` | :x: |
 | `execute__Q215NrvPhantomTorch12HostTypeWaitCFP5Spine` | :x: |
-| `Functor&lt;12PhantomTorch&gt;__2MRFP12PhantomTorchM12PhantomTorchFPCvPv_v_Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12PhantomTorch,M12PhantomTorchFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<12PhantomTorch>__2MRFP12PhantomTorchM12PhantomTorchFPCvPv_v_Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v>` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12PhantomTorch,M12PhantomTorchFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12PhantomTorchFv` | :x: |

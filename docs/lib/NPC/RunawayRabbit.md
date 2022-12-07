@@ -66,7 +66,7 @@
 | `execute__Q216NrvRunawayRabbit22RunawayRabbitNrvAppearCFP5Spine` | :x: |
 | `execute__Q216NrvRunawayRabbit20RunawayRabbitNrvHideCFP5Spine` | :x: |
 | `execute__Q216NrvRunawayRabbit24RunawayRabbitNrvNoActiveCFP5Spine` | :x: |
-| `isValid__50BaseMatrixFollowValidateDelegator&lt;13RunawayRabbit&gt;CFl` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13RunawayRabbit,M13RunawayRabbitFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13RunawayRabbit,M13RunawayRabbitFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `isValid__50BaseMatrixFollowValidateDelegator<13RunawayRabbit>CFl` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13RunawayRabbitFv` | :x: |

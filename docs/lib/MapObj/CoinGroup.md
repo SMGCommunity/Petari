@@ -15,7 +15,7 @@
 | `appearCoinAll__9CoinGroupFv` | :white_check_mark: |
 | `appearCoinFix__9CoinGroupFv` | :white_check_mark: |
 | `appearCoinAllTimer__9CoinGroupFv` | :white_check_mark: |
-| `setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setCoinTrans__9CoinGroupFlRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `appear__9CoinGroupFv` | :white_check_mark: |
 | `exeAppear__9CoinGroupFv` | :white_check_mark: |
 | `exeDemoAppear__9CoinGroupFv` | :white_check_mark: |
@@ -30,6 +30,6 @@
 | `execute__Q212NrvCoinGroup18CoinGroupNrvAppearCFP5Spine` | :white_check_mark: |
 | `getCoinName__9CoinGroupCFv` | :white_check_mark: |
 | `placementCoin__9CoinGroupFv` | :white_check_mark: |
-| `Functor&lt;9CoinGroup&gt;__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR43FunctorV0M&lt;P9CoinGroup,M9CoinGroupFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<9CoinGroup>__2MRFP9CoinGroupM9CoinGroupFPCvPv_v_Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR43FunctorV0M<P9CoinGroup,M9CoinGroupFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |

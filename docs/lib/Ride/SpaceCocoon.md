@@ -36,10 +36,10 @@
 | `tryRelease__11SpaceCocoonFv` | :x: |
 | `tryAttackMap__11SpaceCocoonFv` | :x: |
 | `isKinopioAttached__11SpaceCocoonCFv` | :x: |
-| `endBind__11SpaceCocoonFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `endBind__11SpaceCocoonFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `endCommandStream__11SpaceCocoonFv` | :x: |
 | `draw__11SpaceCocoonCFv` | :x: |
-| `drawPoints__25@unnamed@SpaceCocoon_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;fffff6Color86Color8fff` | :x: |
+| `drawPoints__25@unnamed@SpaceCocoon_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffff6Color86Color8fff` | :x: |
 | `drawPlane__11SpaceCocoonCFffff6Color86Color8ff` | :x: |
 | `initDraw__11SpaceCocoonCFv` | :x: |
 | `__dt__11SpaceCocoonFv` | :x: |

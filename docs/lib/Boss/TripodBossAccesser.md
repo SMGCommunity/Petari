@@ -37,12 +37,12 @@
 | `tryDamageDemoTripodBoss__2MRFv` | :x: |
 | `requestEndDamageDemoTripodBoss__2MRFv` | :x: |
 | `getTripodBossGravityHostID__2MRFv` | :x: |
-| `setTripodBossJointAttachBaseMatrix__2MRFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
+| `setTripodBossJointAttachBaseMatrix__2MRFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
 | `requestStartTripodBossStepSequence__2MRFl` | :x: |
 | `addTripodBossStepPoint__2MRFP19TripodBossStepPoint` | :x: |
-| `getTripodBossJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
-| `getTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
-| `concatTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
+| `getTripodBossJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
+| `getTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
+| `concatTripodBossAttachJointMatrix__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
 | `isSteppingTripodBossLegID__2MRFl` | :x: |
 | `isSteppingTripodBossJointID__2MRFl` | :x: |
 | `__dt__18TripodBossAccesserFv` | :x: |

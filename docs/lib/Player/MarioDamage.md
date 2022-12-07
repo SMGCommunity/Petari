@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `isDamaging__5MarioCFv` | :x: |
-| `damageLarge__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `damageLarge__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\MarioDamage_cpp` | :x: |
 | `decDamageAfterTimer__5MarioFv` | :x: |
 | `checkDamage__5MarioFv` | :x: |
@@ -18,14 +18,14 @@
 | `damageFloorCheck__5MarioFv` | :x: |
 | `damageWallCheck__5MarioFv` | :x: |
 | `damagePolygonCheck__5MarioFPC8Triangle` | :x: |
-| `flipLarge__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `flipLarge__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `isEnableAddDamage__5MarioCFv` | :x: |
-| `damage__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `damage__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__11MarioDamageFP10MarioActor` | :x: |
 | `start__11MarioDamageFv` | :x: |
-| `setVec__11MarioDamageFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setVec__11MarioDamageFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setVecSize__11MarioDamageFff` | :x: |
-| `stopHead__11MarioDamageFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `stopHead__11MarioDamageFRCQ29JGeometry8TVec3<f>` | :x: |
 | `update__11MarioDamageFv` | :x: |
 | `close__11MarioDamageFv` | :x: |
 | `notice__11MarioDamageFv` | :x: |

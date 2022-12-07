@@ -9,8 +9,8 @@
 # LayoutUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `DynamicCast&lt;PCQ34nw4r3lyt7TextBox,CQ34nw4r3lyt4Pane&gt;__Q24nw4r2utFPCQ34nw4r3lyt4Pane_PCQ34nw4r3lyt7TextBox` | :x: |
-| `DynamicCast&lt;PQ34nw4r3lyt7Picture,Q34nw4r3lyt4Pane&gt;__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7Picture` | :x: |
+| `DynamicCast<PCQ34nw4r3lyt7TextBox,CQ34nw4r3lyt4Pane>__Q24nw4r2utFPCQ34nw4r3lyt4Pane_PCQ34nw4r3lyt7TextBox` | :x: |
+| `DynamicCast<PQ34nw4r3lyt7Picture,Q34nw4r3lyt4Pane>__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7Picture` | :x: |
 | `SetVisible__Q34nw4r3lyt4PaneFb` | :x: |
 | `SetInfluencedAlpha__Q34nw4r3lyt4PaneFb` | :x: |
 | `showPaneRecursive__24@unnamed@LayoutUtil_cpp@FPQ34nw4r3lyt4Pane` | :x: |
@@ -61,17 +61,17 @@
 | `isHiddenPane__2MRFPC11LayoutActorPCc` | :x: |
 | `showScreen__2MRFP11LayoutActor` | :x: |
 | `hideScreen__2MRFP11LayoutActor` | :x: |
-| `setFollowPos__2MRFPCQ29JGeometry8TVec2&lt;f&gt;PC11LayoutActorPCc` | :x: |
+| `setFollowPos__2MRFPCQ29JGeometry8TVec2<f>PC11LayoutActorPCc` | :x: |
 | `setFollowTypeReplace__2MRFPC11LayoutActorPCc` | :x: |
 | `setFollowTypeAdd__2MRFPC11LayoutActorPCc` | :x: |
-| `copyPaneTrans__2MRFPQ29JGeometry8TVec2&lt;f&gt;PC11LayoutActorPCc` | :x: |
+| `copyPaneTrans__2MRFPQ29JGeometry8TVec2<f>PC11LayoutActorPCc` | :x: |
 | `getPaneTransX__2MRFPC11LayoutActorPCc` | :x: |
 | `getPaneTransY__2MRFPC11LayoutActorPCc` | :x: |
 | `setLayoutPosAtPaneTrans__2MRFP11LayoutActorPC11LayoutActorPCc` | :x: |
-| `copyPaneScale__2MRFPQ29JGeometry8TVec2&lt;f&gt;PC11LayoutActorPCc` | :x: |
+| `copyPaneScale__2MRFPQ29JGeometry8TVec2<f>PC11LayoutActorPCc` | :x: |
 | `setPaneScale__2MRFPC11LayoutActorffPCc` | :x: |
 | `setLayoutScaleAtPaneScale__2MRFP11LayoutActorPC11LayoutActorPCc` | :x: |
-| `copyPaneRotate__2MRFPQ29JGeometry8TVec3&lt;f&gt;PC11LayoutActorPCc` | :x: |
+| `copyPaneRotate__2MRFPQ29JGeometry8TVec3<f>PC11LayoutActorPCc` | :x: |
 | `setPaneRotate__2MRFPC11LayoutActorfffPCc` | :x: |
 | `setLayoutScalePosAtPaneScaleTrans__2MRFP11LayoutActorPC11LayoutActorPCc` | :x: |
 | `setLayoutScalePosAtPaneScaleTransIfExecCalcAnim__2MRFP11LayoutActorPC11LayoutActorPCc` | :x: |
@@ -151,7 +151,7 @@
 | `createSimpleLayoutTalkParts__2MRFPCcPCcUl` | :x: |
 | `getPane__2MRFPC11LayoutActorPCc` | :x: |
 | `getRootPane__2MRFPC11LayoutActor` | :x: |
-| `calcTextBoxRectRecursive__2MRFPQ29JGeometry8TBox2&lt;f&gt;PC11LayoutActorPCc` | :x: |
+| `calcTextBoxRectRecursive__2MRFPQ29JGeometry8TBox2<f>PC11LayoutActorPCc` | :x: |
 | `getTextLineNumMaxRecursive__2MRFPC11LayoutActorPCc` | :x: |
 | `invalidateParentAnim__2MRFP11LayoutActor` | :x: |
 | `getCometColorAnimFrameFromId__24@unnamed@LayoutUtil_cpp@Fl` | :x: |
@@ -162,10 +162,10 @@
 | `execute__28TextBoxRecursiveSetArgStringCFPQ34nw4r3lyt7TextBox` | :x: |
 | `execute__28TextBoxRecursiveSetArgNumberCFPQ34nw4r3lyt7TextBox` | :x: |
 | `execute__26TextBoxRecursiveSetMessageCFPQ34nw4r3lyt7TextBox` | :x: |
-| `GetBeginIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;CFv` | :x: |
-| `__rf__Q44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;13ConstIteratorCFv` | :x: |
-| `GetEndIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;CFv` | :x: |
-| `__ne__Q24nw4r2utFQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;13ConstIteratorQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;13ConstIterator` | :x: |
+| `GetBeginIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>CFv` | :x: |
+| `__rf__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>13ConstIteratorCFv` | :x: |
+| `GetEndIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>CFv` | :x: |
+| `__ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>13ConstIteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>13ConstIterator` | :x: |
 | `__as__Q34nw4r2ut4RectFRCQ34nw4r2ut4Rect` | :x: |
 | `setTextBoxNumberRecursive__2MRFP11LayoutActorPCcl` | :white_check_mark: |
 | `clearTextBoxMessageRecursive__2MRFP11LayoutActorPCc` | :white_check_mark: |
@@ -174,4 +174,4 @@
 | `__ct__Q34nw4r3lyt6TexMapFRC9_GXTexObj` | :x: |
 | `draw__10J2DPictureFffUcbbb` | :x: |
 | `getPane__13LayoutManagerCFPCc` | :x: |
-| `set__Q29JGeometry8TBox2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `set__Q29JGeometry8TBox2<f>FRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |

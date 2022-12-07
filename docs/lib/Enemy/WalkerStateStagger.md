@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__23WalkerStateStaggerParamFv` | :x: |
-| `__ct__18WalkerStateStaggerFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P16WalkerStateParamP23WalkerStateStaggerParam` | :x: |
+| `__ct__18WalkerStateStaggerFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP23WalkerStateStaggerParam` | :x: |
 | `appear__18WalkerStateStaggerFv` | :x: |
 | `setPunchDirection__18WalkerStateStaggerFP9HitSensorP9HitSensor` | :x: |
 | `exeStagger__18WalkerStateStaggerFv` | :x: |

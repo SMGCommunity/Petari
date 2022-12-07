@@ -15,9 +15,9 @@
 | `initPoints__12KirairaChainFv` | :x: |
 | `control__12KirairaChainFv` | :x: |
 | `updatePoints__12KirairaChainFv` | :x: |
-| `restrictPointFromTop__12KirairaChainFllRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `restrictPointFromBottom__12KirairaChainFllRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `restrictPointFromTopAndCalcAxis__12KirairaChainFllRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `restrictPointFromBottomAndCalcAxis__12KirairaChainFllRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `restrictPointFromTop__12KirairaChainFllRCQ29JGeometry8TVec3<f>f` | :x: |
+| `restrictPointFromBottom__12KirairaChainFllRCQ29JGeometry8TVec3<f>f` | :x: |
+| `restrictPointFromTopAndCalcAxis__12KirairaChainFllRCQ29JGeometry8TVec3<f>f` | :x: |
+| `restrictPointFromBottomAndCalcAxis__12KirairaChainFllRCQ29JGeometry8TVec3<f>f` | :x: |
 | `draw__12KirairaChainCFv` | :x: |
 | `clamp__2MRFlll` | :x: |

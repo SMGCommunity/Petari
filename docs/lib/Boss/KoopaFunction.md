@@ -46,7 +46,7 @@
 | `emitKoopaFireShortFast__13KoopaFunctionFP5Koopa` | :x: |
 | `emitKoopaFireShortCurve__13KoopaFunctionFP5Koopa` | :x: |
 | `emitKoopaFireLongTime__13KoopaFunctionFP5Koopa` | :x: |
-| `emitFireStairsToTarget__13KoopaFunctionFP5KoopaPC19KoopaBattleMapStairRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `emitFireStairsToTarget__13KoopaFunctionFP5KoopaPC19KoopaBattleMapStairRCQ29JGeometry8TVec3<f>b` | :x: |
 | `killKoopaFireStairsAll__13KoopaFunctionFP5Koopa` | :x: |
 | `emitKoopaShockWave__13KoopaFunctionFP5Koopa` | :x: |
 | `getKoopaPlanet__13KoopaFunctionFP5Koopa` | :x: |

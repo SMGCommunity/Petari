@@ -9,7 +9,7 @@
 # OceanBowlPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__14OceanBowlPointFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct__14OceanBowlPointFRCQ29JGeometry8TVec3<f>` | :x: |
 | `updatePos__14OceanBowlPointFff` | :x: |
 | `calcHeightStatic__14OceanBowlPointFffff` | :x: |
-| `reset__14OceanBowlPointFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `reset__14OceanBowlPointFRCQ29JGeometry8TVec3<f>f` | :x: |

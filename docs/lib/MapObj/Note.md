@@ -9,7 +9,7 @@
 # Note.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__4NoteFPCcRCQ29JGeometry8TVec3&lt;f&gt;P9NoteFairy` | :white_check_mark: |
+| `__ct__4NoteFPCcRCQ29JGeometry8TVec3<f>P9NoteFairy` | :white_check_mark: |
 | `init__4NoteFRC12JMapInfoIter` | :white_check_mark: |
 | `startCountDown__4NoteFv` | :white_check_mark: |
 | `exeWait__4NoteFv` | :white_check_mark: |

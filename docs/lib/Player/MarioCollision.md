@@ -18,11 +18,11 @@
 | `calcDistToCeil__5MarioFb` | :x: |
 | `calcDistToCeilOnPress__5MarioFv` | :x: |
 | `calcDistToCeilHead__5MarioFv` | :x: |
-| `fixTransBetweenWall__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `fixTransBetweenWall__5MarioFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `calcDistWidth__5MarioFv` | :x: |
 | `updateCameraPolygon__5MarioFv` | :x: |
 | `setCameraPolygon__5MarioFPC8Triangle` | :x: |
-| `checkAllWall__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `checkAllWall__5MarioFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `calcFrontFloor__5MarioFv` | :x: |
 | `getWallNorm__5MarioCFv` | :x: |
 | `getSideWallNorm__5MarioCFv` | :x: |
@@ -35,7 +35,7 @@
 | `updateWallFloorCode__5MarioFv` | :x: |
 | `saveLastSafetyTrans__5MarioFv` | :x: |
 | `setNotSafetyTimer__5MarioFv` | :x: |
-| `getLastSafetyTrans__5MarioCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getLastSafetyTrans__5MarioCFPQ29JGeometry8TVec3<f>` | :x: |
 | `checkCurrentFloorCodeSevere__5MarioCFUl` | :x: |
 | `isCurrentFloorSink__5MarioCFv` | :x: |
 | `isCurrentFloorSand__5MarioCFv` | :x: |

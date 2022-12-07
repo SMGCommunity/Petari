@@ -9,7 +9,7 @@
 # Sandstorm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15SunakazeKunTrapFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct__15SunakazeKunTrapFP9LiveActorRCQ29JGeometry8TVec3<f>` | :x: |
 | `init__15SunakazeKunTrapFRC12JMapInfoIter` | :x: |
 | `exeTrap__15SunakazeKunTrapFv` | :x: |
 | `attackSensor__15SunakazeKunTrapFP9HitSensorP9HitSensor` | :x: |

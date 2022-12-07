@@ -64,4 +64,4 @@
 | `execute__Q231@unnamed@NANDErrorSequence_cpp@30NANDErrorSequenceErrorToFreezeCFP5Spine` | :x: |
 | `execute__Q231@unnamed@NANDErrorSequence_cpp@22NANDErrorSequenceErrorCFP5Spine` | :x: |
 | `execute__Q231@unnamed@NANDErrorSequence_cpp@21NANDErrorSequenceIdleCFP5Spine` | :x: |
-| `__dt__40ActorStateBase&lt;22SaveDataHandleSequence&gt;Fv` | :x: |
+| `__dt__40ActorStateBase<22SaveDataHandleSequence>Fv` | :x: |

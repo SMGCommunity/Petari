@@ -14,4 +14,4 @@
 | `registerActor__20DemoSimpleCastHolderFP11LayoutActor` | :white_check_mark: |
 | `registerNameObj__20DemoSimpleCastHolderFP7NameObj` | :white_check_mark: |
 | `movementOnAllCasts__20DemoSimpleCastHolderFv` | :white_check_mark: |
-| `__dt__Q22MR26AssignableArray&lt;P7NameObj&gt;Fv` | :white_check_mark: |
+| `__dt__Q22MR26AssignableArray<P7NameObj>Fv` | :white_check_mark: |

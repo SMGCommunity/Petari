@@ -9,17 +9,17 @@
 # AreaObjContainer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `createManager&lt;10AreaObjMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;13CubeCameraMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;11WarpCubeMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;12WaterAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;19GlaringLightAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;15LightAreaHolder&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
-| `createManager&lt;18ImageEffectAreaMgr&gt;__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<10AreaObjMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<13CubeCameraMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<11WarpCubeMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<12WaterAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<19GlaringLightAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<15LightAreaHolder>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
+| `createManager<18ImageEffectAreaMgr>__30@unnamed@AreaObjContainer_cpp@FlPCc_P10AreaObjMgr` | :white_check_mark: |
 | `__ct__16AreaObjContainerFPCc` | :white_check_mark: |
 | `init__16AreaObjContainerFRC12JMapInfoIter` | :white_check_mark: |
 | `getManager__16AreaObjContainerCFPCc` | :white_check_mark: |
-| `getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `getAreaObj__16AreaObjContainerCFPCcRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `getAreaObjContainer__2MRFv` | :white_check_mark: |
 | `__dt__16AreaObjContainerFv` | :white_check_mark: |
 | `__dt__11WarpCubeMgrFv` | :white_check_mark: |

@@ -70,10 +70,10 @@
 | `execute__Q210NrvTicoFat14TicoFatNrvWaitCFP5Spine` | :x: |
 | `execute__Q210NrvTicoFat14TicoFatNrvPrepCFP5Spine` | :x: |
 | `execute__Q210NrvTicoFat18TicoFatNrvReactionCFP5Spine` | :x: |
-| `__cl__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7TicoFat,M7TicoFatFPCvPvUl_b&gt;` | :x: |
+| `__cl__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFUl` | :x: |
+| `clone__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFv` | :x: |
+| `clone__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>FRC47TalkMessageFuncM<P7TicoFat,M7TicoFatFPCvPvUl_b>` | :x: |
 | `__dt__7TicoFatFv` | :x: |
 | `__sinit_\TicoFat_cpp` | :x: |
 | `__ct__Q210NrvTicoFat18TicoFatNrvReactionFv` | :x: |

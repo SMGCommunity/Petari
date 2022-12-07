@@ -29,6 +29,6 @@
 | `execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvRestCFP5Spine` | :x: |
 | `execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvDownCFP5Spine` | :x: |
 | `execute__Q220NrvSandUpDownTriRock24SandUpDownTriRockNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR61FunctorV0M&lt;P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR61FunctorV0M&lt;P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR61FunctorV0M<P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR61FunctorV0M<P17SandUpDownTriRock,M17SandUpDownTriRockFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__17SandUpDownTriRockFv` | :x: |

@@ -14,5 +14,5 @@
 | `start__9MarioStepFv` | :x: |
 | `update__9MarioStepFv` | :x: |
 | `close__9MarioStepFv` | :x: |
-| `startStep__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `startStep__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\MarioStep_cpp` | :x: |

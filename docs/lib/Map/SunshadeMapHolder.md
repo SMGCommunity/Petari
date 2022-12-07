@@ -10,6 +10,6 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__17SunshadeMapHolderFv` | :x: |
-| `isInShadeFromTheSun__2MRFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `isInShadeFromTheSun__2MRFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `createSunshadeMapHolder__2MRFv` | :x: |
 | `__dt__17SunshadeMapHolderFv` | :x: |

@@ -19,7 +19,7 @@
 | `attackSensor__12KameckTurtleFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__12KameckTurtleFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__12KameckTurtleFUlP9HitSensorP9HitSensor` | :x: |
-| `appearDirection__12KameckTurtleFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearDirection__12KameckTurtleFRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeRun__12KameckTurtleFv` | :x: |
 | `exeWait__12KameckTurtleFv` | :x: |
 | `isEnableAttack__12KameckTurtleCFv` | :x: |

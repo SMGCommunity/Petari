@@ -16,7 +16,7 @@
 | `showNew__15GalaxyNamePlateFb` | :white_check_mark: |
 | `showOpen__15GalaxyNamePlateFb` | :white_check_mark: |
 | `show__15GalaxyNamePlateFPCwb` | :white_check_mark: |
-| `setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setShowBalloonNozzle__15GalaxyNamePlateFb` | :white_check_mark: |
 | `control__15GalaxyNamePlateFv` | :white_check_mark: |
 | `show__15GalaxyNamePlateFPCwlbb` | :x: |

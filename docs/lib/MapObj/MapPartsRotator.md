@@ -25,7 +25,7 @@
 | `initRotateSpeed__15MapPartsRotatorFRC12JMapInfoIter` | :white_check_mark: |
 | `isReachedTargetAngle__15MapPartsRotatorCFv` | :x: |
 | `updateRotateMtx__15MapPartsRotatorFQ215MapPartsRotator8AxisTypef` | :x: |
-| `calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `calcRotateAxisDir__15MapPartsRotatorCFQ215MapPartsRotator8AxisTypePQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `exeRotate__15MapPartsRotatorFv` | :x: |
 | `exeRotateStart__15MapPartsRotatorFv` | :x: |
 | `__dt__15MapPartsRotatorFv` | :white_check_mark: |

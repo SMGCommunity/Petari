@@ -38,7 +38,7 @@
 | `hideMaterial__2MRFPC9LiveActorPCc` | :x: |
 | `showMaterial__2MRFP8J3DModelPCc` | :x: |
 | `showMaterial__2MRFPC9LiveActorPCc` | :x: |
-| `calcFogStartEnd__2MRFQ29JGeometry8TVec3&lt;f&gt;fPfPf` | :x: |
+| `calcFogStartEnd__2MRFQ29JGeometry8TVec3<f>fPfPf` | :x: |
 | `isUseTex__2MRFP11J3DMaterialUs` | :x: |
 | `isNormalTexMtx__2MRFP11J3DMaterial` | :x: |
 | `isUseTexMtx__2MRFP11J3DMaterialUl` | :x: |
@@ -64,7 +64,7 @@
 | `getLightNumMax__2MRFPC9LiveActor` | :x: |
 | `getLightNumMax__2MRFP12J3DModelData` | :x: |
 | `downFracVtx__2MRFP12J3DModelData` | :x: |
-| `calcModelBoundingBox__2MRFPQ29JGeometry8TBox3&lt;f&gt;PC9LiveActor` | :x: |
+| `calcModelBoundingBox__2MRFPQ29JGeometry8TBox3<f>PC9LiveActor` | :x: |
 | `calcModelBoundingRadius__2MRFPfPC9LiveActor` | :x: |
 | `isExistCollisionResource__2MRFPC9LiveActorPCc` | :x: |
 | `isExistModel__2MRFPCc` | :x: |

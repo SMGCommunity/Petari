@@ -23,6 +23,6 @@
 | `isGreenEventPowerStar__2MRFPCcl` | :x: |
 | `isRedEventPowerStar__2MRFPCcl` | :x: |
 | `isGrandEventPowerStar__2MRFPCcl` | :x: |
-| `appearEventPowerStar__2MRFPCclPCQ29JGeometry8TVec3&lt;f&gt;bb` | :x: |
+| `appearEventPowerStar__2MRFPCclPCQ29JGeometry8TVec3<f>bb` | :x: |
 | `isEndEventPowerStarAppearDemo__2MRFPCc` | :x: |
 | `__dt__13EventDirectorFv` | :x: |

@@ -30,7 +30,7 @@
 | `execute__Q213NrvBallBeamer18BallBeamerNrvInterCFP5Spine` | :x: |
 | `execute__Q213NrvBallBeamer19BallBeamerNrvAttackCFP5Spine` | :x: |
 | `execute__Q213NrvBallBeamer17BallBeamerNrvWaitCFP5Spine` | :x: |
-| `Functor&lt;10BallBeamer&gt;__2MRFP10BallBeamerM10BallBeamerFPCvPv_v_Q22MR47FunctorV0M&lt;P10BallBeamer,M10BallBeamerFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10BallBeamer,M10BallBeamerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10BallBeamer,M10BallBeamerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<10BallBeamer>__2MRFP10BallBeamerM10BallBeamerFPCvPv_v_Q22MR47FunctorV0M<P10BallBeamer,M10BallBeamerFPCvPv_v>` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10BallBeamer,M10BallBeamerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10BallBeamer,M10BallBeamerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10BallBeamerFv` | :x: |

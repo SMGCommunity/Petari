@@ -26,7 +26,7 @@
 | `__ct__Q227NrvMapPartsAppearController17HostTypeDisappearFv` | :white_check_mark: |
 | `execute__Q227NrvMapPartsAppearController17HostTypeDisappearCFP5Spine` | :white_check_mark: |
 | `execute__Q227NrvMapPartsAppearController12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `Functor&lt;24MapPartsAppearController&gt;__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR75FunctorV0M&lt;P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<24MapPartsAppearController>__2MRFP24MapPartsAppearControllerM24MapPartsAppearControllerFPCvPv_v_Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR75FunctorV0M<P24MapPartsAppearController,M24MapPartsAppearControllerFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__24MapPartsAppearControllerFv` | :white_check_mark: |

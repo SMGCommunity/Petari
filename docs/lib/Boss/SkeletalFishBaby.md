@@ -25,8 +25,8 @@
 | `exeBind__16SkeletalFishBabyFv` | :x: |
 | `exeBreak__16SkeletalFishBabyFv` | :x: |
 | `exeDead__16SkeletalFishBabyFv` | :x: |
-| `calcJoint__16SkeletalFishBabyFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `damage__16SkeletalFishBabyFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `calcJoint__16SkeletalFishBabyFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `damage__16SkeletalFishBabyFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `calcAndSetBaseMtx__16SkeletalFishBabyFv` | :x: |
 | `initRail__16SkeletalFishBabyFRC12JMapInfoIter` | :x: |
 | `initJoint__16SkeletalFishBabyFv` | :x: |
@@ -43,7 +43,7 @@
 | `executeOnEnd__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvBindCFP5Spine` | :x: |
 | `execute__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvBindCFP5Spine` | :x: |
 | `execute__Q230@unnamed@SkeletalFishBaby_cpp@23SkeletalFishBabyNrvSwimCFP5Spine` | :x: |
-| `__dt__41JointControlDelegator&lt;16SkeletalFishBaby&gt;Fv` | :x: |
-| `calcJointMatrix__41JointControlDelegator&lt;16SkeletalFishBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__41JointControlDelegator&lt;16SkeletalFishBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__41JointControlDelegator<16SkeletalFishBaby>Fv` | :x: |
+| `calcJointMatrix__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__16SkeletalFishBabyFv` | :x: |

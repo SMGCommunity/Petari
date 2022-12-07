@@ -9,5 +9,5 @@
 # CameraTestObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setRotate__Q29JGeometry9TQuat4&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `identity33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Fv` | :x: |
+| `setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>f` | :x: |
+| `identity33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv` | :x: |

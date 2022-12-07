@@ -34,11 +34,11 @@
 | `initShadow__16HammerHeadPackunFv` | :x: |
 | `initLeaf__16HammerHeadPackunFRC12JMapInfoIter` | :x: |
 | `isTargetInRange__16HammerHeadPackunCFv` | :x: |
-| `isInFieldOfView__16HammerHeadPackunCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isInFieldOfView__16HammerHeadPackunCFRCQ29JGeometry8TVec3<f>` | :x: |
 | `isAttackSensorValid__16HammerHeadPackunCFv` | :x: |
 | `isChance__16HammerHeadPackunCFv` | :x: |
-| `calcPlayerDir__16HammerHeadPackunCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `turnTo__16HammerHeadPackunFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `calcPlayerDir__16HammerHeadPackunCFPQ29JGeometry8TVec3<f>` | :x: |
+| `turnTo__16HammerHeadPackunFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `turnToAttackVec__16HammerHeadPackunFl` | :x: |
 | `verticalizeFrontVec__16HammerHeadPackunFv` | :x: |
 | `tryShiftNumb__16HammerHeadPackunFv` | :x: |

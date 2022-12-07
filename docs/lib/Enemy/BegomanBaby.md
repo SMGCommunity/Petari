@@ -13,7 +13,7 @@
 | `__ct__11BegomanBabyFP7NameObjPCc` | :x: |
 | `init__11BegomanBabyFRC12JMapInfoIter` | :x: |
 | `appear__11BegomanBabyFv` | :x: |
-| `appearFromLaunch__11BegomanBabyFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearFromLaunch__11BegomanBabyFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `appearFromGuarder__11BegomanBabyFv` | :x: |
 | `kill__11BegomanBabyFv` | :x: |
 | `killWithGenItem__11BegomanBabyFv` | :x: |
@@ -32,10 +32,10 @@
 | `receiveMsgPlayerAttack__11BegomanBabyFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgTrample__11BegomanBabyFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__11BegomanBabyFUlP9HitSensorP9HitSensor` | :x: |
-| `onTouchElectric__11BegomanBabyFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `onTouchElectric__11BegomanBabyFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setNerveReturn__11BegomanBabyFv` | :x: |
 | `getNerveWait__11BegomanBabyFv` | :x: |
-| `calcHeadJoint__11BegomanBabyFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcHeadJoint__11BegomanBabyFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `calcAndSetBaseMtx__11BegomanBabyFv` | :x: |
 | `__sinit_\BegomanBaby_cpp` | :x: |
 | `__ct__Q214NrvBegomanBaby21HostTypeNrvNoCalcWaitFv` | :x: |
@@ -81,7 +81,7 @@
 | `executeOnEnd__Q214NrvBegomanBaby21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `execute__Q214NrvBegomanBaby21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `getKind__11BegomanBabyCFv` | :x: |
-| `__dt__36JointControlDelegator&lt;11BegomanBaby&gt;Fv` | :x: |
-| `calcJointMatrix__36JointControlDelegator&lt;11BegomanBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__36JointControlDelegator&lt;11BegomanBaby&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__36JointControlDelegator<11BegomanBaby>Fv` | :x: |
+| `calcJointMatrix__36JointControlDelegator<11BegomanBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__36JointControlDelegator<11BegomanBaby>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__11BegomanBabyFv` | :x: |

@@ -9,7 +9,7 @@
 # RabbitStateWaitStart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__20RabbitStateWaitStartFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P15TalkMessageCtrl` | :x: |
+| `__ct__20RabbitStateWaitStartFP9LiveActorPQ29JGeometry8TVec3<f>P15TalkMessageCtrl` | :x: |
 | `setTalkActionName__20RabbitStateWaitStartFPCc` | :x: |
 | `init__20RabbitStateWaitStartFv` | :x: |
 | `appear__20RabbitStateWaitStartFv` | :x: |

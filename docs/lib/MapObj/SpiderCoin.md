@@ -16,7 +16,7 @@
 | `exeTouch__10SpiderCoinFv` | :x: |
 | `exeTouchAndApart__10SpiderCoinFv` | :x: |
 | `calcAndSetBaseMtx__10SpiderCoinFv` | :x: |
-| `tryRub__10SpiderCoinFlPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `tryRub__10SpiderCoinFlPQ29JGeometry8TVec2<f>` | :x: |
 | `__sinit_\SpiderCoin_cpp` | :x: |
 | `__ct__Q213NrvSpiderCoin17SpiderCoinNrvWaitFv` | :x: |
 | `__ct__Q213NrvSpiderCoin18SpiderCoinNrvTouchFv` | :x: |

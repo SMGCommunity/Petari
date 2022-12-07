@@ -12,7 +12,7 @@
 | `__ct__Q217AstroDomeBlueStar12CaptureActorFv` | :x: |
 | `init__Q217AstroDomeBlueStar12CaptureActorFRC12JMapInfoIter` | :x: |
 | `kill__Q217AstroDomeBlueStar12CaptureActorFv` | :x: |
-| `updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | :x: |
 | `__ct__17AstroDomeBlueStarFPCc` | :x: |
 | `init__17AstroDomeBlueStarFRC12JMapInfoIter` | :x: |
 | `appear__17AstroDomeBlueStarFv` | :x: |
@@ -25,7 +25,7 @@
 | `tryStartBind__17AstroDomeBlueStarFPC9LiveActor` | :x: |
 | `isActiveBind__17AstroDomeBlueStarCFv` | :x: |
 | `isValidBindStart__17AstroDomeBlueStarCFv` | :x: |
-| `calcZoomInPos__17AstroDomeBlueStarCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcZoomInPos__17AstroDomeBlueStarCFPQ29JGeometry8TVec3<f>` | :x: |
 | `exeAppear__17AstroDomeBlueStarFv` | :x: |
 | `exeWait__17AstroDomeBlueStarFv` | :x: |
 | `exePointing__17AstroDomeBlueStarFv` | :x: |
@@ -59,8 +59,8 @@
 | `execute__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvPointingCFP5Spine` | :x: |
 | `execute__Q220NrvAstroDomeBlueStar24AstroDomeBlueStarNrvWaitCFP5Spine` | :x: |
 | `execute__Q220NrvAstroDomeBlueStar26AstroDomeBlueStarNrvAppearCFP5Spine` | :x: |
-| `Functor&lt;17AstroDomeBlueStar&gt;__2MRFP17AstroDomeBlueStarM17AstroDomeBlueStarFPCvPv_v_Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR61FunctorV0M&lt;P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<17AstroDomeBlueStar>__2MRFP17AstroDomeBlueStarM17AstroDomeBlueStarFPCvPv_v_Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>` | :x: |
+| `__cl__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__Q217AstroDomeBlueStar12CaptureActorFv` | :x: |
 | `__dt__17AstroDomeBlueStarFv` | :x: |

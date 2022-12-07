@@ -35,9 +35,9 @@
 | `__ct__Q26NrvAir11HostTypeOutFv` | :white_check_mark: |
 | `execute__Q26NrvAir11HostTypeOutCFP5Spine` | :white_check_mark: |
 | `execute__Q26NrvAir10HostTypeInCFP5Spine` | :white_check_mark: |
-| `Functor&lt;3Air&gt;__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR31FunctorV0M&lt;P3Air,M3AirFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<3Air>__2MRFP3AirM3AirFPCvPv_v_Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR31FunctorV0M<P3Air,M3AirFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__10AirFar100mFv` | :white_check_mark: |
 | `__dt__16ProjectionMapAirFv` | :white_check_mark: |
 | `__dt__12PriorDrawAirFv` | :white_check_mark: |

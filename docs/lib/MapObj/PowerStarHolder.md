@@ -12,7 +12,7 @@
 | `__ct__15PowerStarHolderFPCc` | :x: |
 | `init__15PowerStarHolderFRC12JMapInfoIter` | :x: |
 | `registerPowerStar__15PowerStarHolderFP9PowerStari` | :x: |
-| `requestAppearPowerStar__15PowerStarHolderFiPCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `requestAppearPowerStar__15PowerStarHolderFiPCQ29JGeometry8TVec3<f>b` | :x: |
 | `appearPowerStarWithoutDemo__15PowerStarHolderFi` | :x: |
 | `getAppearedPowerStar__15PowerStarHolderCFi` | :x: |
 | `findPowerStarRequestInfo__15PowerStarHolderCFi` | :x: |

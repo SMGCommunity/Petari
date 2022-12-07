@@ -9,7 +9,7 @@
 # Swinger.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__7SwingerFPCQ29JGeometry8TVec3&lt;f&gt;PA4_ffffPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct__7SwingerFPCQ29JGeometry8TVec3<f>PA4_ffffPCQ29JGeometry8TVec3<f>` | :x: |
 | `update__7SwingerFv` | :x: |
-| `accel__7SwingerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `accel__7SwingerFRCQ29JGeometry8TVec3<f>` | :x: |
+| `updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3<f>` | :x: |

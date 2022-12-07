@@ -9,4 +9,4 @@
 # RushEndInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__11RushEndInfoFP9LiveActorUlRCQ29JGeometry8TVec3&lt;f&gt;bUl` | :x: |
+| `__ct__11RushEndInfoFP9LiveActorUlRCQ29JGeometry8TVec3<f>bUl` | :x: |

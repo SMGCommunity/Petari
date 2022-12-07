@@ -15,8 +15,8 @@
 | `setEndDrawShepeOffset__18ShadowVolumeDrawerFf` | :white_check_mark: |
 | `onCutDropShadow__18ShadowVolumeDrawerFv` | :white_check_mark: |
 | `offCutDropShadow__18ShadowVolumeDrawerFv` | :white_check_mark: |
-| `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3&lt;f&gt;PC16ShadowController` | :x: |
+| `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `calcBaseDropPosition__18ShadowVolumeDrawerCFPQ29JGeometry8TVec3<f>PC16ShadowController` | :x: |
 | `calcBaseDropLength__18ShadowVolumeDrawerCFv` | :white_check_mark: |
 | `calcBaseDropLength__18ShadowVolumeDrawerCFPC16ShadowController` | :x: |
 | `loadModelDrawMtx__18ShadowVolumeDrawerCFv` | :white_check_mark: |

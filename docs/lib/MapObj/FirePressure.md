@@ -15,4 +15,4 @@
 | `init__12FirePressureFRC12JMapInfoIter` | :x: |
 | `initBullet__12FirePressureFRC12JMapInfoIter` | :x: |
 | `shotBullet__12FirePressureFf` | :x: |
-| `calcGunPointFromCannon__12FirePressureFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcGunPointFromCannon__12FirePressureFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |

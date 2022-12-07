@@ -31,12 +31,12 @@
 | `exeBlowOut__8KarikariFv` | :x: |
 | `exeInTornado__8KarikariFv` | :x: |
 | `exePress__8KarikariFv` | :x: |
-| `tryBlowOut__8KarikariFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `tryBlowOut__8KarikariFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `tryElectricKill__8KarikariFv` | :x: |
 | `tryHipDropRelease__8KarikariFv` | :x: |
-| `tryDPDRelease__8KarikariFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `tryDPDRelease__8KarikariFRCQ29JGeometry8TVec2<f>` | :x: |
 | `tryDPDAttacked__8KarikariFv` | :x: |
-| `setVelocityFromCursorMove__8KarikariFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `setVelocityFromCursorMove__8KarikariFRCQ29JGeometry8TVec2<f>` | :x: |
 | `makeActorDead__8KarikariFv` | :x: |
 | `kill__8KarikariFv` | :x: |
 | `generateItem__8KarikariFl` | :x: |
@@ -45,7 +45,7 @@
 | `receiveMsgPlayerAttack__8KarikariFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__8KarikariFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgEnemyAttack__8KarikariFUlP9HitSensorP9HitSensor` | :x: |
-| `tryTurnToDirection__8KarikariFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `tryTurnToDirection__8KarikariFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `calcAndSetBaseMtx__8KarikariFv` | :x: |
 | `__dt__8KarikariFv` | :x: |
 | `__sinit_\Karikari_cpp` | :x: |
@@ -85,4 +85,4 @@
 | `execute__Q211NrvKarikari21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `execute__Q211NrvKarikari15HostTypeNrvLandCFP5Spine` | :x: |
 | `execute__Q211NrvKarikari15HostTypeNrvFallCFP5Spine` | :x: |
-| `squared__Q29JGeometry8TVec2&lt;f&gt;CFv` | :x: |
+| `squared__Q29JGeometry8TVec2<f>CFv` | :x: |

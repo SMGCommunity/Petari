@@ -9,7 +9,7 @@
 # SpinningBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getYDir__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getYDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__11SpinningBoxFPCc` | :x: |
 | `init__11SpinningBoxFRC12JMapInfoIter` | :x: |
 | `kill__11SpinningBoxFv` | :x: |
@@ -19,8 +19,8 @@
 | `exeSliding__11SpinningBoxFv` | :x: |
 | `exeSpinning__11SpinningBoxFv` | :x: |
 | `exePointed__11SpinningBoxFv` | :x: |
-| `calcPlanarProjectedVec__11SpinningBoxFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcHitDirection__11SpinningBoxFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcPlanarProjectedVec__11SpinningBoxFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcHitDirection__11SpinningBoxFRCQ29JGeometry8TVec3<f>` | :x: |
 | `generateIceBox__11SpinningBoxFP9HitSensorP9HitSensor` | :x: |
 | `attackSensor__11SpinningBoxFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__11SpinningBoxFUlP9HitSensorP9HitSensor` | :x: |

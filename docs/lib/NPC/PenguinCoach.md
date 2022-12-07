@@ -43,9 +43,9 @@
 | `execute__Q215NrvPenguinCoach26PenguinCoachNrvTakeOutStarCFP5Spine` | :x: |
 | `@348@resetAudience__12PenguinCoachFv` | :x: |
 | `@348@prepAudience__12PenguinCoachFv` | :x: |
-| `TalkMessageFunc&lt;12PenguinCoach&gt;__FP12PenguinCoachM12PenguinCoachFPCvPvUl_b_59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;` | :x: |
-| `__cl__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;FRC59TalkMessageFuncM&lt;P12PenguinCoach,M12PenguinCoachFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<12PenguinCoach>__FP12PenguinCoachM12PenguinCoachFPCvPvUl_b_59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>` | :x: |
+| `__cl__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFUl` | :x: |
+| `clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFv` | :x: |
+| `clone__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>FRC59TalkMessageFuncM<P12PenguinCoach,M12PenguinCoachFPCvPvUl_b>` | :x: |
 | `__dt__12PenguinCoachFv` | :x: |

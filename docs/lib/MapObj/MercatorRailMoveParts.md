@@ -18,7 +18,7 @@
 | `calcAndSetBaseMtx__21MercatorRailMovePartsFv` | :x: |
 | `updatePose__21MercatorRailMovePartsFv` | :x: |
 | `init__21MercatorRailMovePartsFRC12JMapInfoIter` | :x: |
-| `Functor&lt;21MercatorRailMoveParts&gt;__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR69FunctorV0M&lt;P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<21MercatorRailMoveParts>__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>` | :x: |
+| `__cl__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__21MercatorRailMovePartsFv` | :x: |

@@ -24,7 +24,7 @@
 | `getMapPartsObjectName__2MRFPcUlRC12JMapInfoIter` | :x: |
 | `getMapPartsObjectNameIfExistShapeID__2MRFPcUlRC12JMapInfoIter` | :x: |
 | `getMapPartsObjectName__2MRFPcUlPCcl` | :x: |
-| `initMapPartsClipping__2MRFP9LiveActorRC12JMapInfoIterPQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `initMapPartsClipping__2MRFP9LiveActorRC12JMapInfoIterPQ29JGeometry8TVec3<f>b` | :x: |
 | `isMapPartsPressOn__2MRFRC12JMapInfoIter` | :x: |
 | `createMapPartsRailGuideDrawer__2MRFP9LiveActorPCcRC12JMapInfoIter` | :x: |
 | `initMapPartsShadow__2MRFP9LiveActorRC12JMapInfoIter` | :x: |

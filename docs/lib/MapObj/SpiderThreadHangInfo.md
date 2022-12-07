@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__20SpiderThreadHangInfoFv` | :x: |
-| `startBind__20SpiderThreadHangInfoFP9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;P16SpiderThreadPartlRCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `startBind__20SpiderThreadHangInfoFP9LiveActorPCQ29JGeometry8TVec3<f>P16SpiderThreadPartlRCQ29JGeometry8TVec3<f>l` | :x: |
 | `endBind__20SpiderThreadHangInfoFv` | :x: |
 | `startHang__20SpiderThreadHangInfoFv` | :x: |
 | `endHang__20SpiderThreadHangInfoFb` | :x: |

@@ -13,7 +13,7 @@
 | `init__20StarPieceFollowGroupFRC12JMapInfoIter` | :x: |
 | `beginFollowPieces__20StarPieceFollowGroupFv` | :x: |
 | `placementPiece__20StarPieceFollowGroupFl` | :x: |
-| `updateAxises__20StarPieceFollowGroupFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `updateAxises__20StarPieceFollowGroupFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `followPieces__20StarPieceFollowGroupFv` | :x: |
 | `allKillPieces__20StarPieceFollowGroupFv` | :x: |
 | `onSwitchA__20StarPieceFollowGroupFv` | :x: |
@@ -24,6 +24,6 @@
 | `__ct__Q223NrvStarPieceFollowGroup20HostTypeNrvFollowEndFv` | :x: |
 | `execute__Q223NrvStarPieceFollowGroup20HostTypeNrvFollowEndCFP5Spine` | :x: |
 | `execute__Q223NrvStarPieceFollowGroup25HostTypeNrvFollowToPlayerCFP5Spine` | :x: |
-| `__cl__Q22MR67FunctorV0M&lt;P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR67FunctorV0M&lt;P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR67FunctorV0M<P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR67FunctorV0M<P20StarPieceFollowGroup,M20StarPieceFollowGroupFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__20StarPieceFollowGroupFv` | :x: |

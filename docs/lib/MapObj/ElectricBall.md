@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__Q212ElectricBall4BallFv` | :x: |
 | `init__Q212ElectricBall4BallFP9LiveActor` | :x: |
-| `updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `activate__Q212ElectricBall4BallFv` | :x: |
 | `__ct__12ElectricBallFPCc` | :x: |
 | `init__12ElectricBallFRC12JMapInfoIter` | :x: |
@@ -30,9 +30,9 @@
 | `execute__Q215NrvElectricBall14HostTypeAttackCFP5Spine` | :x: |
 | `execute__Q215NrvElectricBall12HostTypeMoveCFP5Spine` | :x: |
 | `execute__Q215NrvElectricBall12HostTypeWaitCFP5Spine` | :x: |
-| `for_each&lt;PQ212ElectricBall4Ball,Q23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;&gt;__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;_Q23std221binder2nd&lt;Q23std120mem_fun1_ref_t&lt;v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;,RCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;&gt;` | :x: |
+| `for_each<PQ212ElectricBall4Ball,Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>>__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>_Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>` | :x: |
 | `getBaseMtx__12ElectricBallCFv` | :x: |
-| `__dt__Q22MR38AssignableArray&lt;Q212ElectricBall4Ball&gt;Fv` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12ElectricBall,M12ElectricBallFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12ElectricBall,M12ElectricBallFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__dt__Q22MR38AssignableArray<Q212ElectricBall4Ball>Fv` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12ElectricBallFv` | :x: |

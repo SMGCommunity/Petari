@@ -18,7 +18,7 @@
 | `noticeCaughtRabbit__20RunawayRabbitCollectFP13RunawayRabbit` | :x: |
 | `control__20RunawayRabbitCollectFv` | :x: |
 | `exeWait__20RunawayRabbitCollectFv` | :x: |
-| `appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearTico__20RunawayRabbitCollectFP11RunawayTicoRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeActive__20RunawayRabbitCollectFv` | :x: |
 | `__dt__20RunawayRabbitCollectFv` | :x: |
 | `__sinit_\RunawayRabbitCollect_cpp` | :x: |

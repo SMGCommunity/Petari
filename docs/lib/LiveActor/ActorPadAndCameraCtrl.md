@@ -9,8 +9,8 @@
 # ActorPadAndCameraCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `tryCreate__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f>` | :x: |
+| `tryCreate__21ActorPadAndCameraCtrlFPC12ModelManagerPCQ29JGeometry8TVec3<f>` | :x: |
 | `update__21ActorPadAndCameraCtrlFv` | :x: |
 | `updateInfoBck__21ActorPadAndCameraCtrlFv` | :x: |
 | `tryUpdateCameraShake__35@unnamed@ActorPadAndCameraCtrl_cpp@FPCc` | :x: |

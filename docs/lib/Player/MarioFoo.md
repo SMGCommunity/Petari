@@ -19,7 +19,7 @@
 | `getGravityVec__8MarioFooCFv` | :x: |
 | `jet__8MarioFooFv` | :x: |
 | `updateTilt__8MarioFooFv` | :x: |
-| `hitWall__8MarioFooFRCQ29JGeometry8TVec3&lt;f&gt;P9HitSensor` | :x: |
+| `hitWall__8MarioFooFRCQ29JGeometry8TVec3<f>P9HitSensor` | :x: |
 | `getStickY__8MarioFooCFv` | :x: |
 | `spin__8MarioFooFv` | :x: |
 | `passRing__8MarioFooFPC9HitSensor` | :x: |

@@ -12,8 +12,8 @@
 | `__ct__14GCaptureRibbonFPCc` | :x: |
 | `draw__14GCaptureRibbonCFv` | :x: |
 | `reset__14GCaptureRibbonFv` | :x: |
-| `lengthen__14GCaptureRibbonFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `shorten__14GCaptureRibbonFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `lengthen__14GCaptureRibbonFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `shorten__14GCaptureRibbonFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `updateAxis__14GCaptureRibbonFv` | :x: |
 | `calcLineWidth__14GCaptureRibbonCFv` | :x: |
 | `__dt__14GCaptureRibbonFv` | :x: |

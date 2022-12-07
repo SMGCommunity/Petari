@@ -19,7 +19,7 @@
 | `appear__14BenefitItemObjFv` | :white_check_mark: |
 | `appearGround__14BenefitItemObjFv` | :white_check_mark: |
 | `appearThrowUp__14BenefitItemObjFv` | :white_check_mark: |
-| `shoot__14BenefitItemObjFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;b` | :white_check_mark: |
+| `shoot__14BenefitItemObjFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>b` | :white_check_mark: |
 | `appearThrowUpQuestionBox__14BenefitItemObjFv` | :white_check_mark: |
 | `control__14BenefitItemObjFv` | :white_check_mark: |
 | `exeWait__14BenefitItemObjFv` | :x: |
@@ -39,8 +39,8 @@
 | `runBck__14BenefitItemObjFPCc` | :white_check_mark: |
 | `runEfx__14BenefitItemObjFPCc` | :white_check_mark: |
 | `stopEfx__14BenefitItemObjFPCc` | :white_check_mark: |
-| `setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `__cl__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR55FunctorV0M&lt;P14BenefitItemObj,M14BenefitItemObjFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `setMtxTrans__2MRFPA4_fRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `__cl__Q22MR55FunctorV0M<P14BenefitItemObj,M14BenefitItemObjFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR55FunctorV0M<P14BenefitItemObj,M14BenefitItemObjFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__15ShadowClipActorFv` | :white_check_mark: |
 | `__sinit_\BenefitItemObj_cpp` | :white_check_mark: |

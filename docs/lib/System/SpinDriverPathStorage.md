@@ -38,5 +38,5 @@
 | `deserialize__21SpinDriverPathStorageFPCUcUl` | :x: |
 | `findFromGalaxy__21SpinDriverPathStorageFPCc` | :x: |
 | `findFromHashCode__21SpinDriverPathStorageFUs` | :x: |
-| `push_back__Q22MR58Vector&lt;Q22MR43AssignableArray&lt;24SpinDriverPathStorageOne&gt;&gt;FRC24SpinDriverPathStorageOne` | :x: |
-| `__dt__Q22MR43AssignableArray&lt;24SpinDriverPathStorageOne&gt;Fv` | :x: |
+| `push_back__Q22MR58Vector<Q22MR43AssignableArray<24SpinDriverPathStorageOne>>FRC24SpinDriverPathStorageOne` | :x: |
+| `__dt__Q22MR43AssignableArray<24SpinDriverPathStorageOne>Fv` | :x: |

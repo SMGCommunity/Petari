@@ -13,7 +13,7 @@
 | `init__16BossStinkBugBombFRC12JMapInfoIter` | :x: |
 | `control__16BossStinkBugBombFv` | :x: |
 | `calcAndSetBaseMtx__16BossStinkBugBombFv` | :x: |
-| `start__16BossStinkBugBombFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `start__16BossStinkBugBombFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `attackSensor__16BossStinkBugBombFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__16BossStinkBugBombFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__16BossStinkBugBombFP9HitSensorP9HitSensor` | :x: |

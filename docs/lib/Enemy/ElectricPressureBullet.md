@@ -12,7 +12,7 @@
 | `__ct__22ElectricPressureBulletFPCc` | :x: |
 | `init__22ElectricPressureBulletFRC12JMapInfoIter` | :x: |
 | `kill__22ElectricPressureBulletFv` | :x: |
-| `shotElectricBullet__22ElectricPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCf` | :x: |
+| `shotElectricBullet__22ElectricPressureBulletFP9LiveActorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCf` | :x: |
 | `exeFly__22ElectricPressureBulletFv` | :x: |
 | `control__22ElectricPressureBulletFv` | :x: |
 | `attackSensor__22ElectricPressureBulletFP9HitSensorP9HitSensor` | :x: |

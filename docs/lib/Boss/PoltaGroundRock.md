@@ -14,7 +14,7 @@
 | `initBreakModel__15PoltaGroundRockFv` | :x: |
 | `control__15PoltaGroundRockFv` | :x: |
 | `calcAndSetBaseMtx__15PoltaGroundRockFv` | :x: |
-| `start__15PoltaGroundRockFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `start__15PoltaGroundRockFP9LiveActorRCQ29JGeometry8TVec3<f>` | :x: |
 | `requestBreak__15PoltaGroundRockFv` | :x: |
 | `attackSensor__15PoltaGroundRockFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__15PoltaGroundRockFUlP9HitSensorP9HitSensor` | :x: |

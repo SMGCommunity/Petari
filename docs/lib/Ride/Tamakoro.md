@@ -13,7 +13,7 @@
 | `init__8TamakoroFRC12JMapInfoIter` | :x: |
 | `initSensor__8TamakoroFv` | :x: |
 | `initJointControl__8TamakoroFv` | :x: |
-| `ringMtxCallBack__8TamakoroFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `ringMtxCallBack__8TamakoroFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `control__8TamakoroFv` | :x: |
 | `calcAndSetBaseMtx__8TamakoroFv` | :x: |
 | `updateBindActorMatrix__8TamakoroFv` | :x: |
@@ -109,7 +109,7 @@
 | `execute__Q211NrvTamakoro20TamakoroNrvBindStartCFP5Spine` | :x: |
 | `execute__Q211NrvTamakoro22TamakoroNrvStandByBindCFP5Spine` | :x: |
 | `execute__Q211NrvTamakoro26TamakoroNrvStandByTutorialCFP5Spine` | :x: |
-| `__dt__32JointControlDelegator&lt;8Tamakoro&gt;Fv` | :x: |
-| `calcJointMatrix__32JointControlDelegator&lt;8Tamakoro&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__32JointControlDelegator&lt;8Tamakoro&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__32JointControlDelegator<8Tamakoro>Fv` | :x: |
+| `calcJointMatrix__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__32JointControlDelegator<8Tamakoro>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__8TamakoroFv` | :x: |

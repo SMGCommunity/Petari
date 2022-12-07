@@ -30,7 +30,7 @@
 | `fadeOutText__20ScenarioSelectLayoutFv` | :x: |
 | `trySelect__20ScenarioSelectLayoutFv` | :x: |
 | `getSelectedStar__20ScenarioSelectLayoutCFv` | :x: |
-| `calcWorldPositionFromScreenPos__20ScenarioSelectLayoutCFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;f` | :x: |
+| `calcWorldPositionFromScreenPos__20ScenarioSelectLayoutCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>f` | :x: |
 | `calcDisplayScenarioNum__20ScenarioSelectLayoutCFPlPl` | :x: |
 | `appearAllStar__20ScenarioSelectLayoutFllb` | :x: |
 | `appearStar__20ScenarioSelectLayoutFlli` | :x: |

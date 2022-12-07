@@ -20,7 +20,7 @@
 | `updateBindPosition__15ScenarioStarterFv` | :x: |
 | `updateBindActorMtx__15ScenarioStarterFv` | :x: |
 | `updateShootMotion__15ScenarioStarterFv` | :x: |
-| `turnBindHead__15ScenarioStarterFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `turnBindHead__15ScenarioStarterFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `calcShootMotionTime__15ScenarioStarterFv` | :x: |
 | `receiveOtherMsg__15ScenarioStarterFUlP9HitSensorP9HitSensor` | :x: |
 | `trySkipTrigger__15ScenarioStarterCFv` | :x: |

@@ -9,11 +9,11 @@
 # FireBubble.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `negate__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `negate__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__10FireBubbleFPCc` | :x: |
 | `init__10FireBubbleFRC12JMapInfoIter` | :x: |
 | `appear__10FireBubbleFv` | :x: |
-| `appear__10FireBubbleFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appear__10FireBubbleFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `kill__10FireBubbleFv` | :x: |
 | `control__10FireBubbleFv` | :x: |
 | `calcAndSetBaseMtx__10FireBubbleFv` | :x: |
@@ -22,7 +22,7 @@
 | `initMapToolInfo__10FireBubbleFRC12JMapInfoIter` | :x: |
 | `updateChaseFrontVec__10FireBubbleFf` | :x: |
 | `updateChaseFrontVecAndVelocity__10FireBubbleFf` | :x: |
-| `calcReflectVelocity__10FireBubbleCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcReflectVelocity__10FireBubbleCFPQ29JGeometry8TVec3<f>` | :x: |
 | `tryChaseEnd__10FireBubbleFv` | :x: |
 | `tryReflect__10FireBubbleFv` | :x: |
 | `killOrWaitToApppear__10FireBubbleFv` | :x: |

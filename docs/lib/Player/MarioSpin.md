@@ -12,7 +12,7 @@
 | `checkTornado__5MarioFv` | :x: |
 | `resetTornado__5MarioFv` | :x: |
 | `calcTornadoTilt__5MarioFv` | :x: |
-| `reflectWallOnSpinning__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;Us` | :x: |
+| `reflectWallOnSpinning__5MarioFRCQ29JGeometry8TVec3<f>Us` | :x: |
 | `forceStopTornado__5MarioFv` | :x: |
 | `startRotationTask__5MarioFUl` | :x: |
 | `doSpinWallEffect__5MarioFv` | :x: |

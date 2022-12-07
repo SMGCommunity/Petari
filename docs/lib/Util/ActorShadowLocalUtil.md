@@ -9,7 +9,7 @@
 # ActorShadowLocalUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;b&gt;__12JMapInfoIterCFPCcPb_b` | :x: |
+| `getValue<b>__12JMapInfoIterCFPCcPb_b` | :x: |
 | `getShadowControllerCount__11ActorShadowFPC9LiveActor` | :x: |
 | `getShadowController__11ActorShadowFPC9LiveActorUl` | :x: |
 | `getShadowController__11ActorShadowFPC9LiveActorPCc` | :x: |

@@ -27,6 +27,6 @@
 | `execute__Q219NrvGravityLightRoad28GravityLightRoadNrvDisappearCFP5Spine` | :x: |
 | `execute__Q219NrvGravityLightRoad23GravityLightRoadNrvDrawCFP5Spine` | :x: |
 | `execute__Q219NrvGravityLightRoad23GravityLightRoadNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR59FunctorV0M&lt;P16GravityLightRoad,M16GravityLightRoadFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR59FunctorV0M&lt;P16GravityLightRoad,M16GravityLightRoadFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR59FunctorV0M<P16GravityLightRoad,M16GravityLightRoadFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__16GravityLightRoadFv` | :x: |

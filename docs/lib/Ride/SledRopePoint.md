@@ -9,6 +9,6 @@
 # SledRopePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__13SledRopePointFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `__ct__13SledRopePointFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `updatePos__13SledRopePointFf` | :x: |
 | `bindToMapCollision__13SledRopePointFf` | :x: |

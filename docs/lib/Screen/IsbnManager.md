@@ -18,4 +18,4 @@
 | `calc__11IsbnManagerFb` | :x: |
 | `draw__11IsbnManagerFv` | :x: |
 | `reset__11IsbnManagerFv` | :x: |
-| `DynamicCast&lt;PQ34nw4r3lyt7TextBox,Q34nw4r3lyt4Pane&gt;__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7TextBox` | :x: |
+| `DynamicCast<PQ34nw4r3lyt7TextBox,Q34nw4r3lyt4Pane>__Q24nw4r2utFPQ34nw4r3lyt4Pane_PQ34nw4r3lyt7TextBox` | :x: |

@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__23KameckBeamEventListenerFv` | :x: |
-| `__ct__25KameckBeamCollisionFilterFPCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `__ct__25KameckBeamCollisionFilterFPCQ29JGeometry8TVec3<f>f` | :x: |
 | `isInvalidParts__25KameckBeamCollisionFilterCFPC14CollisionParts` | :x: |
 | `__ct__10KameckBeamFPCc` | :x: |
 | `init__10KameckBeamFRC12JMapInfoIter` | :x: |
@@ -19,14 +19,14 @@
 | `calcAnim__10KameckBeamFv` | :x: |
 | `attackSensor__10KameckBeamFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__10KameckBeamFUlP9HitSensorP9HitSensor` | :x: |
-| `setWandLocalPosition__10KameckBeamFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setWandLocalPosition__10KameckBeamFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setBeamKind__10KameckBeamFl` | :x: |
 | `setEventListener__10KameckBeamFP23KameckBeamEventListener` | :x: |
 | `resetBeam__10KameckBeamFv` | :x: |
 | `requestFollowWand__10KameckBeamFPA4_ff` | :x: |
 | `requestShootToPlayerGround__10KameckBeamFf` | :x: |
 | `requestShootToPlayerCenter__10KameckBeamFf` | :x: |
-| `requestShoot__10KameckBeamFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `requestShoot__10KameckBeamFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `requestStorm__10KameckBeamFP9HitSensorP9HitSensor` | :x: |
 | `tryShootEnd__10KameckBeamFv` | :x: |
 | `tryChangeTurtle__10KameckBeamFv` | :x: |

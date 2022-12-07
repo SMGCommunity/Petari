@@ -11,5 +11,5 @@
 | ------------- | ------------- |
 | `__ct__11WireGravityFv` | :white_check_mark: |
 | `setPointListSize__11WireGravityFUl` | :white_check_mark: |
-| `addPoint__11WireGravityFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
-| `calcOwnGravityVector__11WireGravityCFPQ29JGeometry8TVec3&lt;f&gt;PfRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `addPoint__11WireGravityFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `calcOwnGravityVector__11WireGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :x: |

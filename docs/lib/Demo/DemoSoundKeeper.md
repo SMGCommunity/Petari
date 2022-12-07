@@ -16,6 +16,6 @@
 | `isPermitBgmChange__15DemoSoundKeeperFv` | :x: |
 | `getTypeString__15DemoSoundKeeperCFv` | :x: |
 | `getName__15DemoSoundKeeperCFv` | :x: |
-| `executeType__42DemoSheetKeeperInfoHolder&lt;13DemoSoundInfo&gt;FPC13DemoSoundInfo` | :x: |
-| `push_back__Q22MR47Vector&lt;Q22MR32AssignableArray&lt;13DemoSoundInfo&gt;&gt;FRC13DemoSoundInfo` | :x: |
+| `executeType__42DemoSheetKeeperInfoHolder<13DemoSoundInfo>FPC13DemoSoundInfo` | :x: |
+| `push_back__Q22MR47Vector<Q22MR32AssignableArray<13DemoSoundInfo>>FRC13DemoSoundInfo` | :x: |
 | `@8@executeType__15DemoSoundKeeperFPC13DemoSoundInfo` | :x: |

@@ -16,7 +16,7 @@
 | `attackSensor__9MagicBellFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__9MagicBellFUlP9HitSensorP9HitSensor` | :x: |
 | `tryRing__9MagicBellFv` | :x: |
-| `startRing__9MagicBellFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `startRing__9MagicBellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__9MagicBellFv` | :x: |
 | `__sinit_\MagicBell_cpp` | :x: |
 | `__ct__Q212NrvMagicBell16MagicBellNrvWaitFv` | :x: |

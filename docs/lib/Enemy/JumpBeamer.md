@@ -54,6 +54,6 @@
 | `execute__Q213NrvJumpBeamer17JumpBeamerNrvWaitCFP5Spine` | :x: |
 | `execute__Q213NrvJumpBeamer15JumpBeamerNrvUpCFP5Spine` | :x: |
 | `execute__Q213NrvJumpBeamer17JumpBeamerNrvHideCFP5Spine` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10JumpBeamer,M10JumpBeamerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10JumpBeamer,M10JumpBeamerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10JumpBeamer,M10JumpBeamerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10JumpBeamer,M10JumpBeamerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10JumpBeamerFv` | :x: |

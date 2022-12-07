@@ -19,7 +19,7 @@
 | `select__18ScenarioSelectStarFv` | :x: |
 | `notSelect__18ScenarioSelectStarFv` | :x: |
 | `isAppearEnd__18ScenarioSelectStarCFv` | :x: |
-| `setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3<f>l` | :x: |
 | `control__18ScenarioSelectStarFv` | :x: |
 | `tryEndPointing__18ScenarioSelectStarFv` | :x: |
 | `updatePos__18ScenarioSelectStarFv` | :x: |

@@ -25,9 +25,9 @@
 | `declareReceiveNum__17StarPieceDirectorFPC7NameObjl` | :x: |
 | `getDeclareRemnantStarPieceCount__17StarPieceDirectorFPC7NameObj` | :x: |
 | `getDeclareRemnantStarPieceCountNotExist__17StarPieceDirectorFPC7NameObj` | :x: |
-| `hopPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;lffbb` | :x: |
-| `appearPieceToDirection__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;lffbb` | :x: |
+| `hopPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `appearPiece__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>lffbb` | :x: |
+| `appearPieceToDirection__17StarPieceDirectorFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lffbb` | :x: |
 | `gotByPlayer__17StarPieceDirectorFv` | :x: |
 | `movement__17StarPieceDirectorFv` | :x: |
 | `updateSound__17StarPieceDirectorFv` | :x: |

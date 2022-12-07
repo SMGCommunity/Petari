@@ -15,7 +15,7 @@
 | `initEventCamera__10TripodBossFRC12JMapInfoIter` | :x: |
 | `initLeg__10TripodBossFRC12JMapInfoIter` | :x: |
 | `initLegIKPlacement__10TripodBossFv` | :x: |
-| `initMovableArea__10TripodBossFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `initMovableArea__10TripodBossFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `initBodyPosition__10TripodBossFv` | :x: |
 | `initBoneInfo__10TripodBossFv` | :x: |
 | `initPose__10TripodBossFv` | :x: |
@@ -60,15 +60,15 @@
 | `isBroken__10TripodBossCFv` | :x: |
 | `isRideMario__10TripodBossCFv` | :x: |
 | `isLeaveMarioNow__10TripodBossCFv` | :x: |
-| `setJointAttachBaseMatrix__10TripodBossFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
+| `setJointAttachBaseMatrix__10TripodBossFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
 | `addStepPoint__10TripodBossFP19TripodBossStepPoint` | :x: |
-| `getBodyMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
-| `getJointMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
-| `getJointAttachMatrix__10TripodBossCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;l` | :x: |
+| `getBodyMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
+| `getJointMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
+| `getJointAttachMatrix__10TripodBossCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>l` | :x: |
 | `requestStartStepSequence__10TripodBossFl` | :x: |
 | `getCurrentStepSequence__10TripodBossFv` | :x: |
 | `getNextStepSequence__10TripodBossFv` | :x: |
-| `calcLegUpVector__10TripodBossFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcLegUpVector__10TripodBossFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `calcDemoMovement__10TripodBossFv` | :x: |
 | `calcBodyMovement__10TripodBossFv` | :x: |
 | `calcLegMovement__10TripodBossFv` | :x: |
@@ -81,7 +81,7 @@
 | `getLegMatrixPtr__10TripodBossCFQ210TripodBoss7PART_IDQ210TripodBoss11SUB_PART_ID` | :x: |
 | `changeBgmState__10TripodBossFv` | :x: |
 | `getPartIDFromBoneID__10TripodBossFl` | :x: |
-| `setAttachBaseMatrix__14TripodBossBoneFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `setAttachBaseMatrix__14TripodBossBoneFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `createTripodBoss__2MRFPCc` | :x: |
 | `createTripod2Boss__2MRFPCc` | :x: |
 | `__sinit_\TripodBoss_cpp` | :x: |
@@ -111,6 +111,6 @@
 | `execute__Q213NrvTripodBoss17TripodBossNrvWaitCFP5Spine` | :x: |
 | `execute__Q213NrvTripodBoss22TripodBossNrvNonActiveCFP5Spine` | :x: |
 | `execute__Q213NrvTripodBoss25TripodBossNrvTryStartDemoCFP5Spine` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10TripodBoss,M10TripodBossFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10TripodBoss,M10TripodBossFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10TripodBoss,M10TripodBossFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10TripodBoss,M10TripodBossFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10TripodBossFv` | :x: |

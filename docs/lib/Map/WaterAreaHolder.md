@@ -22,8 +22,8 @@
 | `entryWhirlPool__17WaterAreaFunctionFP9WhirlPool` | :x: |
 | `entryWhirlPoolAccelerator__17WaterAreaFunctionFP20WhirlPoolAccelerator` | :x: |
 | `createWaterAreaHolder__17WaterAreaFunctionFv` | :x: |
-| `tryInOceanArea__17WaterAreaFunctionFRCQ29JGeometry8TVec3&lt;f&gt;P9WaterInfo` | :x: |
-| `tryInWhirlPoolAccelerator__17WaterAreaFunctionFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `tryInOceanArea__17WaterAreaFunctionFRCQ29JGeometry8TVec3<f>P9WaterInfo` | :x: |
+| `tryInWhirlPoolAccelerator__17WaterAreaFunctionFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `isCameraInWaterForCameraUtil__17WaterAreaFunctionFv` | :x: |
 | `getCameraWaterDepth__17WaterAreaFunctionFv` | :x: |
 | `getCameraWaterInfo__17WaterAreaFunctionFv` | :x: |

@@ -33,7 +33,7 @@
 | `execute__Q222NrvSandUpDownEffectObj41SandUpDownEffectObjNrvFallingRockAndSmokeCFP5Spine` | :x: |
 | `execute__Q222NrvSandUpDownEffectObj33SandUpDownEffectObjNrvFallingRockCFP5Spine` | :x: |
 | `execute__Q222NrvSandUpDownEffectObj26SandUpDownEffectObjNrvWaitCFP5Spine` | :x: |
-| `Functor&lt;19SandUpDownEffectObj&gt;__2MRFP19SandUpDownEffectObjM19SandUpDownEffectObjFPCvPv_v_Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<19SandUpDownEffectObj>__2MRFP19SandUpDownEffectObjM19SandUpDownEffectObjFPCvPv_v_Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__19SandUpDownEffectObjFv` | :x: |

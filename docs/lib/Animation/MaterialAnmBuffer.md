@@ -18,13 +18,13 @@
 | `attachMaterialAnmBuffer__17MaterialAnmBufferFP12J3DModelDatab` | :x: |
 | `modifyDiffFlagBrk__FPUlPC15J3DAnmTevRegKeybPCc` | :x: |
 | `onDiffFlagBpk__2MRFPUlPC14J3DAnmColorKeyPCc` | :x: |
-| `modifyDiffFlag&lt;14J3DAnmColorKey&gt;__FPUlPC14J3DAnmColorKey11J3DDiffFlagbPCcPCc_v` | :x: |
+| `modifyDiffFlag<14J3DAnmColorKey>__FPUlPC14J3DAnmColorKey11J3DDiffFlagbPCcPCc_v` | :x: |
 | `offDiffFlagBpk__2MRFPUlPC14J3DAnmColorKeyPCc` | :x: |
 | `onDiffFlagBtp__2MRFPUlPC16J3DAnmTexPatternPCc` | :x: |
-| `modifyDiffFlag&lt;16J3DAnmTexPattern&gt;__FPUlPC16J3DAnmTexPattern11J3DDiffFlagbPCcPCc_v` | :x: |
+| `modifyDiffFlag<16J3DAnmTexPattern>__FPUlPC16J3DAnmTexPattern11J3DDiffFlagbPCcPCc_v` | :x: |
 | `offDiffFlagBtp__2MRFPUlPC16J3DAnmTexPatternPCc` | :x: |
 | `onDiffFlagBtk__2MRFPUlPC19J3DAnmTextureSRTKeyPCc` | :x: |
-| `modifyDiffFlag&lt;19J3DAnmTextureSRTKey&gt;__FPUlPC19J3DAnmTextureSRTKey11J3DDiffFlagbPCcPCc_v` | :x: |
+| `modifyDiffFlag<19J3DAnmTextureSRTKey>__FPUlPC19J3DAnmTextureSRTKey11J3DDiffFlagbPCcPCc_v` | :x: |
 | `offDiffFlagBtk__2MRFPUlPC19J3DAnmTextureSRTKeyPCc` | :x: |
 | `onDiffFlagBrk__2MRFPUlPC15J3DAnmTevRegKeyPCc` | :x: |
 | `offDiffFlagBrk__2MRFPUlPC15J3DAnmTevRegKeyPCc` | :x: |

@@ -19,9 +19,9 @@
 | `update__26ViewProjmapEffectMtxSetterFv` | :x: |
 | `__ct__22ProjmapEffectMtxSetterFP8J3DModelPC14ResourceHolder` | :x: |
 | `update__22ProjmapEffectMtxSetterFv` | :x: |
-| `getBaseTrans__22ProjmapEffectMtxSetterCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getBaseTrans__22ProjmapEffectMtxSetterCFPQ29JGeometry8TVec3<f>` | :x: |
 | `updateMtxUseBaseMtx__22ProjmapEffectMtxSetterFv` | :x: |
-| `updateMtxUseBaseMtxWithLocalOffset__22ProjmapEffectMtxSetterFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateMtxUseBaseMtxWithLocalOffset__22ProjmapEffectMtxSetterFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__25MirrorReflectionMtxSetterFP8J3DModelPC14ResourceHolder` | :x: |
 | `addUpdatingTexMtxFromTexNo__25MirrorReflectionMtxSetterFP12J3DModelDataUs` | :x: |
 | `addUpdatingTexMtxFromTexCoord__25MirrorReflectionMtxSetterFP11J3DMaterial` | :x: |

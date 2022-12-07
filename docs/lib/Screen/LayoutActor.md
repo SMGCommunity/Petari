@@ -19,7 +19,7 @@
 | `isNerve__11LayoutActorCFPC5Nerve` | :white_check_mark: |
 | `getNerveStep__11LayoutActorCFv` | :white_check_mark: |
 | `getTrans__11LayoutActorCFv` | :x: |
-| `setTrans__11LayoutActorFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `setTrans__11LayoutActorFRCQ29JGeometry8TVec2<f>` | :x: |
 | `getLayoutManager__11LayoutActorCFv` | :white_check_mark: |
 | `createPaneMtxRef__11LayoutActorFPCc` | :x: |
 | `getPaneMtxRef__11LayoutActorFPCc` | :x: |

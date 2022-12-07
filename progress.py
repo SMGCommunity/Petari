@@ -178,10 +178,7 @@ class Library:
                 if func.isCompleted:
                     marker = ":white_check_mark:"
 
-                funcName = func.name.replace("<", "&lt;")
-                funcName = funcName.replace(">", "&gt;")
-
-                obj_page.append(f"| `{funcName}` | {marker} |\n")
+                obj_page.append(f"| `{func.name}` | {marker} |\n")
 
             obj_page_name = obj.name.replace(".o", "")
 

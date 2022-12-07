@@ -13,5 +13,5 @@
 | `reset__16CameraFixedPointFv` | :x: |
 | `calc__16CameraFixedPointFv` | :x: |
 | `createTranslator__16CameraFixedPointFv` | :white_check_mark: |
-| `setParam__16CameraFixedPointFRCQ29JGeometry8TVec3&lt;f&gt;Ul` | :x: |
+| `setParam__16CameraFixedPointFRCQ29JGeometry8TVec3<f>Ul` | :x: |
 | `__dt__16CameraFixedPointFv` | :white_check_mark: |

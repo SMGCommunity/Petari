@@ -16,7 +16,7 @@
 | `calcViewAndEntry__12MiiFacePartsFv` | :x: |
 | `drawOpa__12MiiFacePartsCFPC18RFLDrawCoreSetting` | :x: |
 | `drawXlu__12MiiFacePartsCFPC18RFLDrawCoreSetting` | :x: |
-| `initFixedPosition__12MiiFacePartsFPA4_fRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `initFixedPosition__12MiiFacePartsFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `changeExpressionNormal__12MiiFacePartsFv` | :x: |
 | `changeExpressionBlink__12MiiFacePartsFv` | :x: |
 | `changeFaceModel__12MiiFacePartsFRC13MiiFaceRecipe` | :x: |

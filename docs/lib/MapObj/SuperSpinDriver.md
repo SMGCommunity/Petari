@@ -9,7 +9,7 @@
 # SuperSpinDriver.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setEulerY__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ff` | :x: |
+| `setEulerY__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff` | :x: |
 | `__ct__15SuperSpinDriverFPCcl` | :x: |
 | `init__15SuperSpinDriverFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__15SuperSpinDriverFv` | :x: |
@@ -59,7 +59,7 @@
 | `endBind__15SuperSpinDriverFv` | :x: |
 | `updateBindActorMatrix__15SuperSpinDriverFv` | :x: |
 | `updateBindActorPoseToShoot__15SuperSpinDriverFf` | :x: |
-| `turnBindHead__15SuperSpinDriverFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `turnBindHead__15SuperSpinDriverFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `moveBindPosToCenter__15SuperSpinDriverFv` | :x: |
 | `startPathDraw__15SuperSpinDriverFv` | :x: |
 | `endPathDraw__15SuperSpinDriverFv` | :x: |
@@ -99,7 +99,7 @@
 | `execute__Q218NrvSuperSpinDriver29SuperSpinDriverNrvEmptyAppearCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvSuperSpinDriver32SuperSpinDriverNrvEmptyNonActiveCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvSuperSpinDriver25SuperSpinDriverNrvTryDemoCFP5Spine` | :white_check_mark: |
-| `Functor&lt;15SuperSpinDriver&gt;__2MRFP15SuperSpinDriverM15SuperSpinDriverFPCvPv_v_Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15SuperSpinDriver>__2MRFP15SuperSpinDriverM15SuperSpinDriverFPCvPv_v_Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15SuperSpinDriver,M15SuperSpinDriverFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15SuperSpinDriverFv` | :x: |

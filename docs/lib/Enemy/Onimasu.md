@@ -19,7 +19,7 @@
 | `land__7OnimasuFv` | :x: |
 | `calcTurnDirection__7OnimasuCFPf` | :x: |
 | `updateStompVelocity__7OnimasuFv` | :x: |
-| `calcGravityDir__7OnimasuCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGravityDir__7OnimasuCFPQ29JGeometry8TVec3<f>` | :x: |
 | `getGravityScalar__7OnimasuCFv` | :x: |
 | `getTimeToNextPoint__7OnimasuCFv` | :x: |
 | `emitEffectLand__7OnimasuFv` | :x: |
@@ -27,7 +27,7 @@
 | `exeWait__7OnimasuFv` | :x: |
 | `exeMove__7OnimasuFv` | :x: |
 | `exeStamp__7OnimasuFv` | :x: |
-| `getPolygonOnRailPoint__15OnimasuFunctionFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;PC9LiveActori` | :x: |
+| `getPolygonOnRailPoint__15OnimasuFunctionFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PC9LiveActori` | :x: |
 | `__sinit_\Onimasu_cpp` | :x: |
 | `__ct__Q210NrvOnimasu23HostTypeWaitForSwitchOnFv` | :x: |
 | `__ct__Q210NrvOnimasu12HostTypeWaitFv` | :x: |

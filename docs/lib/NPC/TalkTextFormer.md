@@ -21,7 +21,7 @@
 | `updateTalking__14TalkTextFormerFv` | :x: |
 | `isTextAppearedAll__14TalkTextFormerCFv` | :x: |
 | `IsDerivedFrom__Q44nw4r2ut6detail15RuntimeTypeInfoCFPCQ44nw4r2ut6detail15RuntimeTypeInfo` | :x: |
-| `GetBeginIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;Fv` | :x: |
-| `__rf__Q44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorCFv` | :x: |
-| `GetEndIter__Q34nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;Fv` | :x: |
-| `__ne__Q24nw4r2utFQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8IteratorQ44nw4r2ut28LinkList&lt;Q34nw4r3lyt4Pane,4&gt;8Iterator` | :x: |
+| `GetBeginIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>Fv` | :x: |
+| `__rf__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv` | :x: |
+| `GetEndIter__Q34nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>Fv` | :x: |
+| `__ne__Q24nw4r2utFQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorQ44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8Iterator` | :x: |

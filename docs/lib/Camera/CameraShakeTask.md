@@ -14,7 +14,7 @@
 | `startInfinity__15CameraShakeTaskFUl` | :white_check_mark: |
 | `endForce__15CameraShakeTaskFv` | :white_check_mark: |
 | `movement__15CameraShakeTaskFv` | :white_check_mark: |
-| `getOffset__15CameraShakeTaskCFPQ29JGeometry8TVec2&lt;f&gt;` | :white_check_mark: |
+| `getOffset__15CameraShakeTaskCFPQ29JGeometry8TVec2<f>` | :white_check_mark: |
 | `isEnd__15CameraShakeTaskCFv` | :white_check_mark: |
 | `startCommon__15CameraShakeTaskFUl` | :white_check_mark: |
 | `updatePattern__15CameraShakeTaskFv` | :white_check_mark: |

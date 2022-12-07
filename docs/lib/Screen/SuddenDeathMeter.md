@@ -27,9 +27,9 @@
 | `exeZeroMeterBreak__16SuddenDeathMeterFv` | :x: |
 | `initCount__16SuddenDeathMeterFl` | :x: |
 | `setCount__16SuddenDeathMeterFl` | :x: |
-| `calcMarioHeadPosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `calcPowerUpMeterBasePosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `setPowerUpMeterPosition__16SuddenDeathMeterFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `calcMarioHeadPosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2<f>` | :x: |
+| `calcPowerUpMeterBasePosition__16SuddenDeathMeterCFPQ29JGeometry8TVec2<f>` | :x: |
+| `setPowerUpMeterPosition__16SuddenDeathMeterFRCQ29JGeometry8TVec2<f>` | :x: |
 | `setCountAnimFrame__16SuddenDeathMeterFv` | :x: |
 | `setRecoveryCountAnimFrame__16SuddenDeathMeterFv` | :x: |
 | `__dt__16SuddenDeathMeterFv` | :x: |

@@ -97,6 +97,6 @@
 | `execute__Q233@unnamed@GalaxyMapController_cpp@32GalaxyMapControllerFadeinModeMapCFP5Spine` | :x: |
 | `execute__Q233@unnamed@GalaxyMapController_cpp@31GalaxyMapControllerReadyModeMapCFP5Spine` | :x: |
 | `setColor__8WipeFadeF8_GXColor` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19GalaxyMapController,M19GalaxyMapControllerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__19GalaxyMapControllerFv` | :x: |

@@ -20,4 +20,4 @@
 | `removeIfIsEqualHeap__10FileHolderFP7JKRHeap` | :x: |
 | `removeFile__10FileHolderFPCc` | :white_check_mark: |
 | `findEntry__10FileHolderCFPCc` | :white_check_mark: |
-| `erase__Q22MR54Vector&lt;Q22MR39AssignableArray&lt;P19FileHolderFileEntry&gt;&gt;FPP19FileHolderFileEntry` | :x: |
+| `erase__Q22MR54Vector<Q22MR39AssignableArray<P19FileHolderFileEntry>>FPP19FileHolderFileEntry` | :x: |

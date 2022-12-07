@@ -20,6 +20,6 @@
 | `getDomeIdFromArg0__19AstroMapObjFunctionFRC12JMapInfoIter` | :white_check_mark: |
 | `getModelName__19AstroMapObjFunctionFPCcl` | :white_check_mark: |
 | `createAstroNamePlateParser__19AstroMapObjFunctionFv` | :x: |
-| `trySetAndShowNamePlate__19AstroMapObjFunctionFP15GalaxyNamePlatePC8JMapInfoRCQ29JGeometry8TVec3&lt;f&gt;PCclb` | :x: |
+| `trySetAndShowNamePlate__19AstroMapObjFunctionFP15GalaxyNamePlatePC8JMapInfoRCQ29JGeometry8TVec3<f>PCclb` | :x: |
 | `tryRegisterMultiDemoAndFunction__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIterRCQ22MR11FunctorBase` | :x: |
 | `initilizePeculiar__19AstroMapObjFunctionFPCcP9LiveActorRC12JMapInfoIter` | :x: |

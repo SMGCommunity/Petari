@@ -9,4 +9,4 @@
 # BegomanFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `rotate__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `rotate__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | :x: |

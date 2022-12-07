@@ -14,7 +14,7 @@
 | `initBaseMatrix__8ClipAreaFRC12JMapInfoIter` | :x: |
 | `draw__8ClipAreaCFv` | :x: |
 | `setShape__8ClipAreaFP13ClipAreaShape` | :x: |
-| `isInArea__8ClipAreaCFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `isInArea__8ClipAreaCFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `setClipSphereArea__2MRFP8ClipArea` | :x: |
 | `setClipCenterBoxArea__2MRFP8ClipArea` | :x: |
 | `setClipBottomBoxArea__2MRFP8ClipArea` | :x: |

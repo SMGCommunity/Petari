@@ -12,6 +12,6 @@
 | `__ct__9CameraFixFPCc` | :white_check_mark: |
 | `reset__9CameraFixFv` | :x: |
 | `calc__9CameraFixFv` | :x: |
-| `setParam__9CameraFixFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setParam__9CameraFixFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `createTranslator__9CameraFixFv` | :white_check_mark: |
 | `__dt__9CameraFixFv` | :white_check_mark: |

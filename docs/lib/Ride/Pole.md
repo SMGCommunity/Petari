@@ -34,7 +34,7 @@
 | `tryHandstandTurn__4PoleFv` | :x: |
 | `isEnableTurn__4PoleCFv` | :x: |
 | `updateBindTrans__4PoleFv` | :x: |
-| `calcGravityMtx__4PoleFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcGravityMtx__4PoleFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `updateTopPos__4PoleFf` | :x: |
 | `getPoleSubPadStickX__4PoleCFv` | :x: |
 | `getPoleSubPadStickY__4PoleCFv` | :x: |

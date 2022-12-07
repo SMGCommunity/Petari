@@ -16,7 +16,7 @@
 | `init__18ElectricRailMovingFRC12JMapInfoIter` | :x: |
 | `draw__18ElectricRailMovingCFv` | :x: |
 | `disappear__18ElectricRailMovingFv` | :x: |
-| `isTouchRail__18ElectricRailMovingCFPC9HitSensorPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isTouchRail__18ElectricRailMovingCFPC9HitSensorPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `attackSensor__18ElectricRailMovingFP9HitSensorP9HitSensor` | :x: |
 | `initMapToolInfo__18ElectricRailMovingFRC12JMapInfoIter` | :x: |
 | `initSensor__18ElectricRailMovingFv` | :x: |
@@ -32,7 +32,7 @@
 | `updatePointPosAndModel__18ElectricRailMovingFv` | :x: |
 | `isValidCoord__18ElectricRailMovingCFf` | :x: |
 | `getRepeatedCoord__18ElectricRailMovingCFf` | :x: |
-| `calcPointPos__18ElectricRailMovingCFPQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `calcPointPos__18ElectricRailMovingCFPQ29JGeometry8TVec3<f>f` | :x: |
 | `move__18ElectricRailMovingFv` | :x: |
 | `exeDisappear__18ElectricRailMovingFv` | :x: |
 | `__sinit_\ElectricRailMoving_cpp` | :x: |
@@ -50,6 +50,6 @@
 | `GDTexCoord2f32` | :x: |
 | `GXPosition3f32` | :x: |
 | `GXTexCoord2f32` | :x: |
-| `__cl__Q22MR63FunctorV0M&lt;P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR63FunctorV0M&lt;P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR63FunctorV0M<P18ElectricRailMoving,M18ElectricRailMovingFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__18ElectricRailMovingFv` | :x: |

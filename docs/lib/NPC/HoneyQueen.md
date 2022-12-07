@@ -40,7 +40,7 @@
 | `execute__Q213NrvHoneyQueen17HoneyQueenNrvDemoCFP5Spine` | :x: |
 | `execute__Q213NrvHoneyQueen18HoneyQueenNrvReadyCFP5Spine` | :x: |
 | `execute__Q213NrvHoneyQueen17HoneyQueenNrvWaitCFP5Spine` | :x: |
-| `Functor&lt;10HoneyQueen&gt;__2MRFP10HoneyQueenM10HoneyQueenFPCvPv_v_Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10HoneyQueen,M10HoneyQueenFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<10HoneyQueen>__2MRFP10HoneyQueenM10HoneyQueenFPCvPv_v_Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v>` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10HoneyQueen,M10HoneyQueenFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10HoneyQueenFv` | :x: |

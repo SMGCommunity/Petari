@@ -25,7 +25,7 @@
 | `getDistanceFromRotAxis__21LavaHomeSeesawRotatorCFv` | :x: |
 | `addForceHipDrop__21LavaHomeSeesawRotatorFv` | :x: |
 | `isGoingToReachTargetAngle__21LavaHomeSeesawRotatorCFv` | :x: |
-| `calcRotatedAngle__21LavaHomeSeesawRotatorCFPfRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcRotatedAngle__21LavaHomeSeesawRotatorCFPfRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `tryHipDrop__21LavaHomeSeesawRotatorFv` | :x: |
 | `tryStay__21LavaHomeSeesawRotatorFv` | :x: |
 | `tryRebound__21LavaHomeSeesawRotatorFv` | :x: |

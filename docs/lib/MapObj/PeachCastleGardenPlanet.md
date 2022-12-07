@@ -19,6 +19,6 @@
 | `__ct__Q226NrvPeachCastleGardenPlanet32PeachCastleGardenPlanetNrvDamageFv` | :x: |
 | `execute__Q226NrvPeachCastleGardenPlanet32PeachCastleGardenPlanetNrvDamageCFP5Spine` | :x: |
 | `execute__Q226NrvPeachCastleGardenPlanet30PeachCastleGardenPlanetNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR73FunctorV0M&lt;P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR73FunctorV0M&lt;P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR73FunctorV0M<P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR73FunctorV0M<P23PeachCastleGardenPlanet,M23PeachCastleGardenPlanetFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__23PeachCastleGardenPlanetFv` | :x: |

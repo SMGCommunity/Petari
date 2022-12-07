@@ -9,5 +9,5 @@
 # CamPoseSphereInterpolator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setRotate__Q29JGeometry9TQuat4&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `transform__Q29JGeometry9TQuat4&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;RQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setRotate__Q29JGeometry9TQuat4<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
+| `transform__Q29JGeometry9TQuat4<f>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :x: |

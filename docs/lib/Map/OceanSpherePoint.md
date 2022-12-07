@@ -9,6 +9,6 @@
 # OceanSpherePoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16OceanSpherePointFPCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `__ct__16OceanSpherePointFPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffRCQ29JGeometry8TVec2<f>` | :x: |
 | `updatePos__16OceanSpherePointFfff` | :x: |
 | `calcHeight__16OceanSpherePointCFffff` | :x: |

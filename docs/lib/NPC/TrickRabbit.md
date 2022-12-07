@@ -69,12 +69,12 @@
 | `doJumpStart__11TrickRabbitFv` | :x: |
 | `doJump__11TrickRabbitFv` | :x: |
 | `tearDownWait__11TrickRabbitFv` | :x: |
-| `checkDivingThicket__11TrickRabbitFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `checkDivingThicket__11TrickRabbitFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `selectEdgeStartEvent__11TrickRabbitFP13RailGraphIter` | :x: |
-| `selectEdgeRunnaway__11TrickRabbitFP13RailGraphIterRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `selectEdgeRunnaway__11TrickRabbitFP13RailGraphIterRCQ29JGeometry8TVec3<f>f` | :x: |
 | `startRouteLevelControl__11TrickRabbitFll` | :x: |
 | `controlRouteLevel__11TrickRabbitFv` | :x: |
-| `addMovingAccel__11TrickRabbitFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `addMovingAccel__11TrickRabbitFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `addKeepRouteRange__11TrickRabbitFfff` | :x: |
 | `updateFootPrint__11TrickRabbitFv` | :x: |
 | `isCaughtable__11TrickRabbitCFv` | :x: |

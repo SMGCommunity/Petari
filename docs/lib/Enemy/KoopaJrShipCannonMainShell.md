@@ -16,7 +16,7 @@
 | `calcAndSetBaseMtx__26KoopaJrShipCannonMainShellFv` | :x: |
 | `attackSensor__26KoopaJrShipCannonMainShellFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__26KoopaJrShipCannonMainShellFUlP9HitSensorP9HitSensor` | :x: |
-| `launch__26KoopaJrShipCannonMainShellFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `launch__26KoopaJrShipCannonMainShellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `getBaseScale__26KoopaJrShipCannonMainShellCFv` | :x: |
 | `explosion__26KoopaJrShipCannonMainShellFv` | :x: |
 | `exeFly__26KoopaJrShipCannonMainShellFv` | :x: |

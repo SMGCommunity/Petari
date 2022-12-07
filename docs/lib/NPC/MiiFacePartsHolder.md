@@ -24,8 +24,8 @@
 | `drawExtra__18MiiFacePartsHolderCFv` | :x: |
 | `setTevOpa__18MiiFacePartsHolderCFv` | :x: |
 | `setTevXlu__18MiiFacePartsHolderCFv` | :x: |
-| `__cl__Q22MR39FunctorV0M&lt;P7NameObj,M7NameObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR39FunctorV0M&lt;P7NameObj,M7NameObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
-| `__cl__Q22MR63FunctorV0M&lt;P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR63FunctorV0M&lt;P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR39FunctorV0M<P7NameObj,M7NameObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR39FunctorV0M<P7NameObj,M7NameObjFPCvPv_v>CFP7JKRHeap` | :x: |
+| `__cl__Q22MR63FunctorV0M<P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR63FunctorV0M<P18MiiFacePartsHolder,M18MiiFacePartsHolderFPCvPv_v>CFP7JKRHeap` | :x: |
 | `@24@__dt__18MiiFacePartsHolderFv` | :x: |

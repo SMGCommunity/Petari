@@ -28,5 +28,5 @@
 | `getKPadStatus__4WPadCFUl` | :x: |
 | `getValidStatusCount__4WPadCFv` | :x: |
 | `getEnableAccelPastCount__4WPadCFUl` | :x: |
-| `getAcceleration__4WPadCFPQ29JGeometry8TVec3&lt;f&gt;Ul` | :x: |
-| `getPastAcceleration__4WPadCFPQ29JGeometry8TVec3&lt;f&gt;lUl` | :x: |
+| `getAcceleration__4WPadCFPQ29JGeometry8TVec3<f>Ul` | :x: |
+| `getPastAcceleration__4WPadCFPQ29JGeometry8TVec3<f>lUl` | :x: |

@@ -25,6 +25,6 @@
 | `execute__Q213NrvRingBeamer18RingBeamerNrvInterCFP5Spine` | :x: |
 | `execute__Q213NrvRingBeamer19RingBeamerNrvAttackCFP5Spine` | :x: |
 | `execute__Q213NrvRingBeamer17RingBeamerNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10RingBeamer,M10RingBeamerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10RingBeamer,M10RingBeamerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10RingBeamer,M10RingBeamerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10RingBeamer,M10RingBeamerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10RingBeamerFv` | :x: |

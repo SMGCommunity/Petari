@@ -9,7 +9,7 @@
 # BegomanSpring.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `squared__Q29JGeometry8TVec3&lt;f&gt;CFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `squared__Q29JGeometry8TVec3<f>CFRCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__13BegomanSpringFPCc` | :x: |
 | `init__13BegomanSpringFRC12JMapInfoIter` | :x: |
 | `initEventCameras__13BegomanSpringFRC12JMapInfoIter` | :x: |
@@ -17,7 +17,7 @@
 | `makeActorDead__13BegomanSpringFv` | :x: |
 | `kill__13BegomanSpringFv` | :x: |
 | `control__13BegomanSpringFv` | :x: |
-| `onTouchElectric__13BegomanSpringFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `onTouchElectric__13BegomanSpringFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setNerveReturn__13BegomanSpringFv` | :x: |
 | `getNerveWait__13BegomanSpringFv` | :x: |
 | `exeSignAttack__13BegomanSpringFv` | :x: |
@@ -89,6 +89,6 @@
 | `executeOnEnd__Q216NrvBegomanSpring21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `execute__Q216NrvBegomanSpring21HostTypeNrvNoCalcWaitCFP5Spine` | :x: |
 | `getKind__13BegomanSpringCFv` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13BegomanSpring,M13BegomanSpringFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13BegomanSpring,M13BegomanSpringFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13BegomanSpring,M13BegomanSpringFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13BegomanSpring,M13BegomanSpringFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13BegomanSpringFv` | :x: |

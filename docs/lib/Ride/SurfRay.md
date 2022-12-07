@@ -9,7 +9,7 @@
 # SurfRay.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcWaterShadowPos__21@unnamed@SurfRay_cpp@FPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__7SurfRayFPCcl` | :x: |
 | `init__7SurfRayFRC12JMapInfoIter` | :x: |
 | `exeWaitPlayer__7SurfRayFv` | :x: |

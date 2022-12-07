@@ -31,8 +31,8 @@
 | `exeBreakMeter__11MeterLayoutFv` | :x: |
 | `exeZeroMeter__11MeterLayoutFv` | :x: |
 | `exeZeroMeterBreak__11MeterLayoutFv` | :x: |
-| `calcMarioHeadPosition__11MeterLayoutCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `calcPowerUpMeterBasePosition__11MeterLayoutCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `calcMarioHeadPosition__11MeterLayoutCFPQ29JGeometry8TVec2<f>` | :x: |
+| `calcPowerUpMeterBasePosition__11MeterLayoutCFPQ29JGeometry8TVec2<f>` | :x: |
 | `setAnimBase__11MeterLayoutFv` | :x: |
 | `setCountAnimFrame__11MeterLayoutFv` | :x: |
 | `setRecoveryCountAnimFrame__11MeterLayoutFv` | :x: |

@@ -31,7 +31,7 @@
 | `execute__Q230NrvQuarterRollGravityRoomArrow38QuarterRollGravityRoomArrowNrvRollOffACFP5Spine` | :x: |
 | `execute__Q230NrvQuarterRollGravityRoomArrow37QuarterRollGravityRoomArrowNrvRollOnACFP5Spine` | :x: |
 | `execute__Q230NrvQuarterRollGravityRoomArrow34QuarterRollGravityRoomArrowNrvWaitCFP5Spine` | :x: |
-| `Functor&lt;27QuarterRollGravityRoomArrow&gt;__2MRFP27QuarterRollGravityRoomArrowM27QuarterRollGravityRoomArrowFPCvPv_v_Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR81FunctorV0M&lt;P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<27QuarterRollGravityRoomArrow>__2MRFP27QuarterRollGravityRoomArrowM27QuarterRollGravityRoomArrowFPCvPv_v_Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v>` | :x: |
+| `__cl__Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR81FunctorV0M<P27QuarterRollGravityRoomArrow,M27QuarterRollGravityRoomArrowFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__27QuarterRollGravityRoomArrowFv` | :x: |

@@ -11,4 +11,4 @@
 | ------------- | ------------- |
 | `__dt__11MiiDatabaseFv` | :x: |
 | `__dt__13JKRFileFinderFv` | :white_check_mark: |
-| `__dt__Q22MR32AssignableArray&lt;P12RFLStoreData&gt;Fv` | :x: |
+| `__dt__Q22MR32AssignableArray<P12RFLStoreData>Fv` | :x: |

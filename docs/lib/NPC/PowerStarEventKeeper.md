@@ -17,7 +17,7 @@
 | `isRed__20PowerStarEventKeeperCFPCcl` | :x: |
 | `isGrand__20PowerStarEventKeeperCFPCcl` | :x: |
 | `initStarInfoTableAfterPlacement__20PowerStarEventKeeperFv` | :x: |
-| `requestAppearPowerStar__20PowerStarEventKeeperFPCclPCQ29JGeometry8TVec3&lt;f&gt;bb` | :x: |
+| `requestAppearPowerStar__20PowerStarEventKeeperFPCclPCQ29JGeometry8TVec3<f>bb` | :x: |
 | `isExistPowerStarAtScenario__20PowerStarEventKeeperCFi` | :x: |
 | `isCorrectStarIdWithBBS__20PowerStarEventKeeperCFPCcPCcl` | :x: |
 | `isSuccess__20PowerStarEventKeeperCFPCcl` | :x: |

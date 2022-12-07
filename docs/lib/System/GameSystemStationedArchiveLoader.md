@@ -54,10 +54,10 @@
 | `execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@58GameSystemStationedArchiveLoaderLoadStationedArchiveOthersCFP5Spine` | :x: |
 | `execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@58GameSystemStationedArchiveLoaderLoadStationedArchivePlayerCFP5Spine` | :x: |
 | `execute__Q246@unnamed@GameSystemStationedArchiveLoader_cpp@52GameSystemStationedArchiveLoaderLoadAudio1stWaveDataCFP5Spine` | :x: |
-| `Functor&lt;32GameSystemStationedArchiveLoader,b&gt;__2MRFP32GameSystemStationedArchiveLoaderM32GameSystemStationedArchiveLoaderFPCvPvb_vb_Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt;` | :x: |
-| `__cl__Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt;CFv` | :x: |
-| `clone__Q22MR94FunctorV1M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b&gt;CFP7JKRHeap` | :x: |
-| `__cl__Q22MR91FunctorV0M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR91FunctorV0M&lt;P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<32GameSystemStationedArchiveLoader,b>__2MRFP32GameSystemStationedArchiveLoaderM32GameSystemStationedArchiveLoaderFPCvPvb_vb_Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b>` | :x: |
+| `__cl__Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b>CFv` | :x: |
+| `clone__Q22MR94FunctorV1M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPvb_v,b>CFP7JKRHeap` | :x: |
+| `__cl__Q22MR91FunctorV0M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR91FunctorV0M<P32GameSystemStationedArchiveLoader,M32GameSystemStationedArchiveLoaderFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__32GameSystemStationedArchiveLoaderFv` | :x: |
 | `__dt__22ConditionUsePlayerHeapFv` | :x: |

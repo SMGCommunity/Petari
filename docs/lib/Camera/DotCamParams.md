@@ -19,4 +19,4 @@
 | `__dt__12DotCamReaderFv` | :white_check_mark: |
 | `getVersion__17DotCamReaderInBinCFv` | :white_check_mark: |
 | `init__17DotCamReaderInBinFPCv` | :x: |
-| `getValueVec__17DotCamReaderInBinFPCcPQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `getValueVec__17DotCamReaderInBinFPCcPQ29JGeometry8TVec3<f>` | :white_check_mark: |

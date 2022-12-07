@@ -56,7 +56,7 @@
 | `exeStarPointerBind__8HanachanFv` | :x: |
 | `calcNearestInfectionId__8HanachanFv` | :x: |
 | `isOwnSensor__8HanachanFP9HitSensor` | :x: |
-| `setNerveBlow__8HanachanFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setNerveBlow__8HanachanFRCQ29JGeometry8TVec3<f>` | :x: |
 | `applyPlayerHipDropReaction__8HanachanFv` | :x: |
 | `setNerveAllParts__8HanachanFPC5Nerve` | :x: |
 | `setDelayAllPartsAtId__8HanachanFlll` | :x: |

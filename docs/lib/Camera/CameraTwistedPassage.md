@@ -15,6 +15,6 @@
 | `setParam__20CameraTwistedPassageFllff` | :x: |
 | `createTranslator__20CameraTwistedPassageFv` | :white_check_mark: |
 | `initStartPos__20CameraTwistedPassageFv` | :x: |
-| `calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcNearestCoord__20CameraTwistedPassageCFRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcNearestCoordBetweenTwoRailCoord__20CameraTwistedPassageCFffRCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__20CameraTwistedPassageFv` | :white_check_mark: |

@@ -13,5 +13,5 @@
 | `calcPose__10OnlyCameraFP9CameraMan` | :x: |
 | `calcStartPose__10OnlyCameraFP9CameraMan` | :x: |
 | `calcSafePose__10OnlyCameraFP9CameraMan` | :x: |
-| `moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `moveToIdealPosition__10OnlyCameraFPQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__10OnlyCameraFv` | :white_check_mark: |

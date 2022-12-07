@@ -13,7 +13,7 @@
 | `setDefaultPose__12RosettaChairFv` | :x: |
 | `init__12RosettaChairFRC12JMapInfoIter` | :x: |
 | `startDemo__12RosettaChairFv` | :x: |
-| `Functor&lt;12RosettaChair&gt;__2MRFP12RosettaChairM12RosettaChairFPCvPv_v_Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12RosettaChair,M12RosettaChairFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<12RosettaChair>__2MRFP12RosettaChairM12RosettaChairFPCvPv_v_Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v>` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12RosettaChair,M12RosettaChairFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12RosettaChairFv` | :x: |

@@ -9,9 +9,9 @@
 # Creeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__12CreeperPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PC12CreeperPoint` | :x: |
+| `__ct__12CreeperPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC12CreeperPoint` | :x: |
 | `updateFree__12CreeperPointFv` | :x: |
-| `updateBend__12CreeperPointFbRCQ29JGeometry8TVec3&lt;f&gt;ff` | :x: |
+| `updateBend__12CreeperPointFbRCQ29JGeometry8TVec3<f>ff` | :x: |
 | `updateLocalAxis__12CreeperPointFv` | :x: |
 | `__ct__7CreeperFPCc` | :x: |
 | `init__7CreeperFRC12JMapInfoIter` | :x: |
@@ -26,8 +26,8 @@
 | `tryHangUp__7CreeperFv` | :x: |
 | `tryJump__7CreeperFv` | :x: |
 | `updateHangUp__7CreeperFf` | :x: |
-| `calcAndGetCurrentInfo__7CreeperCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `sendVertex__21@unnamed@Creeper_cpp@FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUlff` | :x: |
+| `calcAndGetCurrentInfo__7CreeperCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
+| `sendVertex__21@unnamed@Creeper_cpp@FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUlff` | :x: |
 | `draw__7CreeperCFv` | :x: |
 | `loadMaterial__7CreeperCFv` | :x: |
 | `__dt__7CreeperFv` | :x: |

@@ -9,7 +9,7 @@
 # AutoEffectInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getValue&lt;PCc&gt;__12JMapInfoIterCFPCcPPCc_b` | :x: |
+| `getValue<PCc>__12JMapInfoIterCFPCcPPCc_b` | :x: |
 | `str2Color__28@unnamed@AutoEffectInfo_cpp@FPCc` | :x: |
 | `isValueOnR__28@unnamed@AutoEffectInfo_cpp@FRC12JMapInfoIterPCc` | :x: |
 | `isValueOnS__28@unnamed@AutoEffectInfo_cpp@FRC12JMapInfoIterPCc` | :x: |

@@ -19,7 +19,7 @@
 | `endClipped__9FlipPanelFv` | :white_check_mark: |
 | `calcAndSetBaseMtx__9FlipPanelFv` | :white_check_mark: |
 | `receiveOtherMsg__9FlipPanelFUlP9HitSensorP9HitSensor` | :white_check_mark: |
-| `calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
+| `calcJointMove__9FlipPanelFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
 | `checkPlayerOnTop__9FlipPanelFv` | :white_check_mark: |
 | `__ct__17FlipPanelObserverFPCc` | :white_check_mark: |
 | `init__17FlipPanelObserverFRC12JMapInfoIter` | :white_check_mark: |
@@ -47,8 +47,8 @@
 | `execute__Q212NrvFlipPanel17FlipPanelNrvFrontCFP5Spine` | :white_check_mark: |
 | `execute__Q212NrvFlipPanel20FlipPanelNrvBackLandCFP5Spine` | :white_check_mark: |
 | `execute__Q212NrvFlipPanel21FlipPanelNrvFrontLandCFP5Spine` | :white_check_mark: |
-| `__dt__33JointControlDelegator&lt;9FlipPanel&gt;Fv` | :white_check_mark: |
-| `calcJointMatrix__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
-| `calcJointMatrixAfterChild__33JointControlDelegator&lt;9FlipPanel&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :white_check_mark: |
+| `__dt__33JointControlDelegator<9FlipPanel>Fv` | :white_check_mark: |
+| `calcJointMatrix__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `calcJointMatrixAfterChild__33JointControlDelegator<9FlipPanel>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
 | `__dt__9FlipPanelFv` | :white_check_mark: |
 | `__dt__17FlipPanelObserverFv` | :white_check_mark: |

@@ -73,5 +73,5 @@
 | `execute__Q212NrvGameScene15GameSceneActionCFP5Spine` | :x: |
 | `execute__Q212NrvGameScene24GameSceneScenarioStarterCFP5Spine` | :x: |
 | `execute__Q212NrvGameScene30GameSceneScenarioOpeningCameraCFP5Spine` | :x: |
-| `__cl__Q22MR69FunctorV0M&lt;P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR69FunctorV0M&lt;P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR69FunctorV0M<P21GameScenePauseControl,M21GameScenePauseControlFPCvPv_v>CFP7JKRHeap` | :x: |

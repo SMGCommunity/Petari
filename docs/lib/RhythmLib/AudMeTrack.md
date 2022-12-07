@@ -60,8 +60,8 @@
 | `getSameME__Q210AudMeTrack5TListFP10AudMeTrackUl` | :x: |
 | `__sinit_\AudMeTrack_cpp` | :x: |
 | `setParams__10JASChannelFRC16JASChannelParams` | :x: |
-| `begin__Q27JGadget28TLinkList&lt;10AudMeTrack,-384&gt;Fv` | :x: |
-| `end__Q27JGadget28TLinkList&lt;10AudMeTrack,-384&gt;Fv` | :x: |
-| `__ne__7JGadgetFQ37JGadget28TLinkList&lt;10AudMeTrack,-384&gt;8iteratorQ37JGadget28TLinkList&lt;10AudMeTrack,-384&gt;8iterator` | :x: |
+| `begin__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv` | :x: |
+| `end__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv` | :x: |
+| `__ne__7JGadgetFQ37JGadget28TLinkList<10AudMeTrack,-384>8iteratorQ37JGadget28TLinkList<10AudMeTrack,-384>8iterator` | :x: |
 | `__ct__Q210AudMeTrack5TListFv` | :x: |
 | `__dt__Q210AudMeTrack5TListFv` | :x: |

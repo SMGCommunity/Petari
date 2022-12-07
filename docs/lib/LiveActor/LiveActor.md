@@ -39,7 +39,7 @@
 | `initShadowControllerList__9LiveActorFUl` | :white_check_mark: |
 | `initActorCollisionParts__9LiveActorFPCcP9HitSensorP14ResourceHolderPA4_fbb` | :x: |
 | `initStageSwitch__9LiveActorFRC12JMapInfoIter` | :white_check_mark: |
-| `initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3&lt;f&gt;PA4_fQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `initActorStarPointerTarget__9LiveActorFfPCQ29JGeometry8TVec3<f>PA4_fQ29JGeometry8TVec3<f>` | :x: |
 | `initActorLightCtrl__9LiveActorFv` | :white_check_mark: |
 | `attackSensor__9LiveActorFP9HitSensorP9HitSensor` | :white_check_mark: |
 | `receiveMsgApart__9LiveActorFP9HitSensorP9HitSensor` | :white_check_mark: |

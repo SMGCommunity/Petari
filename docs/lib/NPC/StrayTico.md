@@ -21,7 +21,7 @@
 | `receiveMsgPlayerAttack__9StrayTicoFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__9StrayTicoFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__9StrayTicoFUlP9HitSensorP9HitSensor` | :x: |
-| `requestCompleteDemo__9StrayTicoFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `requestCompleteDemo__9StrayTicoFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `exeWait__9StrayTicoFv` | :x: |
 | `exeGlad__9StrayTicoFv` | :x: |
 | `exeChase__9StrayTicoFv` | :x: |

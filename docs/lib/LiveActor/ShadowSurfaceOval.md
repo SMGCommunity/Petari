@@ -12,6 +12,6 @@
 | `__ct__17ShadowSurfaceOvalFv` | :x: |
 | `setColor__17ShadowSurfaceOvalF6Color8` | :x: |
 | `setAlpha__17ShadowSurfaceOvalFUc` | :x: |
-| `setSize__17ShadowSurfaceOvalFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setSize__17ShadowSurfaceOvalFRCQ29JGeometry8TVec3<f>` | :x: |
 | `draw__17ShadowSurfaceOvalCFv` | :x: |
 | `__dt__17ShadowSurfaceOvalFv` | :x: |

@@ -68,9 +68,9 @@
 | `execute__Q212NrvCaretaker20CaretakerNrvReactionCFP5Spine` | :x: |
 | `execute__Q212NrvCaretaker23CaretakerNrvTakeOutStarCFP5Spine` | :x: |
 | `__ct__12NPCActorItemFPCc` | :x: |
-| `TalkMessageFunc&lt;9Caretaker&gt;__FP9CaretakerM9CaretakerFPCvPvUl_b_51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;` | :x: |
-| `__cl__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;FRC51TalkMessageFuncM&lt;P9Caretaker,M9CaretakerFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<9Caretaker>__FP9CaretakerM9CaretakerFPCvPvUl_b_51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>` | :x: |
+| `__cl__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFUl` | :x: |
+| `clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFv` | :x: |
+| `clone__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>FRC51TalkMessageFuncM<P9Caretaker,M9CaretakerFPCvPvUl_b>` | :x: |
 | `__dt__9CaretakerFv` | :x: |

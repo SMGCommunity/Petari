@@ -28,7 +28,7 @@
 | `__ct__8AudMeMgrFv` | :x: |
 | `setMeSeq__8AudMeMgrFPv` | :x: |
 | `setMeTable__8AudMeMgrFPv` | :x: |
-| `startMe__8AudMeMgrFUlP11AudMeHandlePCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `startMe__8AudMeMgrFUlP11AudMeHandlePCQ29JGeometry8TVec3<f>` | :x: |
 | `freeDeadMe__8AudMeMgrFv` | :x: |
 | `updateEachMe__8AudMeMgrFv` | :x: |
 | `stopAll__8AudMeMgrFl` | :x: |

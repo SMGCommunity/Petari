@@ -27,7 +27,7 @@
 | `execute__Q212NrvLavaSteam13HostTypeSteamCFP5Spine` | :x: |
 | `execute__Q212NrvLavaSteam23HostTypeWaitForSwitchOnCFP5Spine` | :x: |
 | `execute__Q212NrvLavaSteam12HostTypeWaitCFP5Spine` | :x: |
-| `Functor&lt;9LavaSteam&gt;__2MRFP9LavaSteamM9LavaSteamFPCvPv_v_Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR43FunctorV0M&lt;P9LavaSteam,M9LavaSteamFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<9LavaSteam>__2MRFP9LavaSteamM9LavaSteamFPCvPv_v_Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v>` | :x: |
+| `__cl__Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR43FunctorV0M<P9LavaSteam,M9LavaSteamFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__9LavaSteamFv` | :x: |

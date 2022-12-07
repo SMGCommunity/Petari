@@ -9,10 +9,10 @@
 # WhirlPoolAccelerator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__14WhirlPoolPointFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ffUc` | :x: |
+| `__ct__14WhirlPoolPointFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ffUc` | :x: |
 | `__ct__20WhirlPoolAcceleratorFPCc` | :x: |
 | `init__20WhirlPoolAcceleratorFRC12JMapInfoIter` | :x: |
-| `calcInfo__20WhirlPoolAcceleratorCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcInfo__20WhirlPoolAcceleratorCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `movement__20WhirlPoolAcceleratorFv` | :x: |
 | `initPoints__20WhirlPoolAcceleratorFv` | :x: |
 | `draw__20WhirlPoolAcceleratorCFv` | :x: |

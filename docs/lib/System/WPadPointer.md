@@ -13,8 +13,8 @@
 | `reset__11WPadPointerFv` | :x: |
 | `setSensorBarLevel__11WPadPointerFf` | :x: |
 | `update__11WPadPointerFv` | :x: |
-| `getPointingPos__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `getHorizonVec__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `getPastPointingPos__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt;l` | :x: |
+| `getPointingPos__11WPadPointerCFPQ29JGeometry8TVec2<f>` | :x: |
+| `getHorizonVec__11WPadPointerCFPQ29JGeometry8TVec2<f>` | :x: |
+| `getPastPointingPos__11WPadPointerCFPQ29JGeometry8TVec2<f>l` | :x: |
 | `getEnablePastCount__11WPadPointerCFv` | :x: |
-| `getPointingPosBasedOnScreen__11WPadPointerCFPQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `getPointingPosBasedOnScreen__11WPadPointerCFPQ29JGeometry8TVec2<f>` | :x: |

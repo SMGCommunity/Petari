@@ -15,13 +15,13 @@
 | `drawBloom__14AstroDomeOrbitCFv` | :x: |
 | `setup__14AstroDomeOrbitFl` | :x: |
 | `moveCoord__14AstroDomeOrbitFv` | :x: |
-| `calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3<f>` | :x: |
 | `initDraw__14AstroDomeOrbitCFRC6Color8` | :x: |
 | `drawCelling__14AstroDomeOrbitCFfbf` | :x: |
 | `drawSide__14AstroDomeOrbitCFfbf` | :x: |
 | `calcRepeatedRotateCoord__14AstroDomeOrbitCFf` | :x: |
 | `__sinit_\AstroDomeOrbit_cpp` | :x: |
 | `GXPosition3f32` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR57FunctorV0M<PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<PC14AstroDomeOrbit,M14AstroDomeOrbitFPCvPCv_v>CFP7JKRHeap` | :x: |
 | `__dt__14AstroDomeOrbitFv` | :x: |

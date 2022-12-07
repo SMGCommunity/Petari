@@ -37,8 +37,8 @@
 | `applyParameter__13CameraManGameFv` | :x: |
 | `checkReset__13CameraManGameFv` | :white_check_mark: |
 | `setSafePose__13CameraManGameFv` | :white_check_mark: |
-| `keepAwayWatchPos__13CameraManGameFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcSafeUpVec__13CameraManGameFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `keepAwayWatchPos__13CameraManGameFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
+| `calcSafeUpVec__13CameraManGameFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `createDefaultCamera__13CameraManGameFv` | :white_check_mark: |
 | `createDefaultWaterCamera__13CameraManGameFv` | :white_check_mark: |
 | `createDefaultWaterSurfaceCamera__13CameraManGameFv` | :white_check_mark: |

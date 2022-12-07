@@ -11,8 +11,8 @@
 | ------------- | ------------- |
 | `ddSetVtxFormat__2MRFUl` | :x: |
 | `ddChangeTev__2MRFv` | :x: |
-| `ddSendVtxData__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `ddSendVtxData__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `ddSendVtxData__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>` | :x: |
+| `ddSendVtxData__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>` | :x: |
 | `ddLightingOn__2MRFUs` | :x: |
 | `ddLightingOff__2MRFv` | :x: |
 | `GXPosition3f32` | :x: |

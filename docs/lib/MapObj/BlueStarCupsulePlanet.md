@@ -17,7 +17,7 @@
 | `updatePose__21BlueStarCupsulePlanetFv` | :x: |
 | `decidedTarget__21BlueStarCupsulePlanetFv` | :x: |
 | `releasedTarget__21BlueStarCupsulePlanetFv` | :x: |
-| `getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3<f>` | :x: |
 | `isReleaseForce__21BlueStarCupsulePlanetCFv` | :x: |
 | `getPointableRange__21BlueStarCupsulePlanetCFv` | :x: |
 | `exeWait__21BlueStarCupsulePlanetFv` | :x: |
@@ -40,12 +40,12 @@
 | `execute__Q224NrvBlueStarCupsulePlanet28BlueStarCupsulePlanetNrvWaitCFP5Spine` | :x: |
 | `@140@getPointableRange__21BlueStarCupsulePlanetCFv` | :x: |
 | `@140@isReleaseForce__21BlueStarCupsulePlanetCFv` | :x: |
-| `@140@getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `@140@getTargetPosition__21BlueStarCupsulePlanetFPQ29JGeometry8TVec3<f>` | :x: |
 | `@140@releasedTarget__21BlueStarCupsulePlanetFv` | :x: |
 | `@140@decidedTarget__21BlueStarCupsulePlanetFv` | :x: |
-| `Functor&lt;21BlueStarCupsulePlanet&gt;__2MRFP21BlueStarCupsulePlanetM21BlueStarCupsulePlanetFPCvPv_v_Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR69FunctorV0M&lt;P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<21BlueStarCupsulePlanet>__2MRFP21BlueStarCupsulePlanetM21BlueStarCupsulePlanetFPCvPv_v_Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>` | :x: |
+| `__cl__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__21BlueStarCupsulePlanetFv` | :x: |
 | `releaseDistance__18GCaptureTargetableCFv` | :x: |
 | `canEndHold__18GCaptureTargetableCFv` | :x: |

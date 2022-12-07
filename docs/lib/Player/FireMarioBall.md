@@ -14,7 +14,7 @@
 | `init__13FireMarioBallFRC12JMapInfoIter` | :x: |
 | `appear__13FireMarioBallFv` | :x: |
 | `kill__13FireMarioBallFv` | :x: |
-| `appearAndThrow__13FireMarioBallFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearAndThrow__13FireMarioBallFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `attackSensor__13FireMarioBallFP9HitSensorP9HitSensor` | :x: |
 | `attackFire__13FireMarioBallFP9HitSensor` | :x: |
 | `initSensor__13FireMarioBallFv` | :x: |

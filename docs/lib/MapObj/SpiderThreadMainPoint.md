@@ -10,10 +10,10 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__25SpiderThreadPointNearInfoFv` | :x: |
-| `setInfo__25SpiderThreadPointNearInfoFfP16SpiderThreadPartRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setInfo__25SpiderThreadPointNearInfoFfP16SpiderThreadPartRCQ29JGeometry8TVec3<f>` | :x: |
 | `clear__25SpiderThreadPointNearInfoFv` | :x: |
 | `getPos__25SpiderThreadPointNearInfoCFv` | :x: |
-| `__ct__21SpiderThreadMainPointFRCQ29JGeometry8TVec3&lt;f&gt;i` | :x: |
+| `__ct__21SpiderThreadMainPointFRCQ29JGeometry8TVec3<f>i` | :x: |
 | `addNearMainPoint__21SpiderThreadMainPointFP21SpiderThreadMainPointP16SpiderThreadPart` | :x: |
 | `addNearPartPoint__21SpiderThreadMainPointFP17SpiderThreadPointf` | :x: |
 | `removeNearPoint__21SpiderThreadMainPointFPC17SpiderThreadPoint` | :x: |

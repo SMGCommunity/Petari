@@ -16,8 +16,8 @@
 | `movement__21StarPointerControllerFPCfPCf` | :x: |
 | `storeDataFromCallback__21StarPointerControllerFPCfPCf` | :x: |
 | `storePastPointingData__21StarPointerControllerFv` | :x: |
-| `calcPastPointingPosOnScreen__21StarPointerControllerCFPQ29JGeometry8TVec2&lt;f&gt;l` | :x: |
+| `calcPastPointingPosOnScreen__21StarPointerControllerCFPQ29JGeometry8TVec2<f>l` | :x: |
 | `updateDpdInfo__21StarPointerControllerFv` | :x: |
 | `updateAdditionalInfo__21StarPointerControllerFv` | :x: |
-| `calcViewDistanceZ__21StarPointerControllerFRCQ29JGeometry8TVec3&lt;f&gt;PA4_f` | :x: |
-| `sub__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `calcViewDistanceZ__21StarPointerControllerFRCQ29JGeometry8TVec3<f>PA4_f` | :x: |
+| `sub__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f>` | :x: |

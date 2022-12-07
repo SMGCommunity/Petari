@@ -15,7 +15,7 @@
 | `appear__9AirBubbleFv` | :white_check_mark: |
 | `kill__9AirBubbleFv` | :white_check_mark: |
 | `control__9AirBubbleFv` | :white_check_mark: |
-| `appearMove__9AirBubbleFRCQ29JGeometry8TVec3&lt;f&gt;l` | :white_check_mark: |
+| `appearMove__9AirBubbleFRCQ29JGeometry8TVec3<f>l` | :white_check_mark: |
 | `exeWait__9AirBubbleFv` | :x: |
 | `exeMove__9AirBubbleFv` | :x: |
 | `exeBreak__9AirBubbleFv` | :white_check_mark: |

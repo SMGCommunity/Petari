@@ -24,7 +24,7 @@
 | `kill__8PukupukuFv` | :x: |
 | `updatePoseByRailIgnoreUpScale__8PukupukuFv` | :x: |
 | `rotatePoseByLocalZ__8PukupukuFv` | :x: |
-| `calcGroundHitMtx__8PukupukuCFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcGroundHitMtx__8PukupukuCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `isReadyToJumpFromLand__8PukupukuCFv` | :x: |
 | `exeWait__8PukupukuFv` | :x: |
 | `exeMoveWater__8PukupukuFv` | :x: |
@@ -68,4 +68,4 @@
 | `execute__Q222@unnamed@Pukupuku_cpp@39PukupukuStateLandingLandingJumpFromLandCFP5Spine` | :x: |
 | `execute__Q222@unnamed@Pukupuku_cpp@40PukupukuStateLandingLandingJumpFromWaterCFP5Spine` | :x: |
 | `execute__Q222@unnamed@Pukupuku_cpp@35PukupukuStateLandingLandingMoveLandCFP5Spine` | :x: |
-| `__dt__25ActorStateBase&lt;8Pukupuku&gt;Fv` | :x: |
+| `__dt__25ActorStateBase<8Pukupuku>Fv` | :x: |

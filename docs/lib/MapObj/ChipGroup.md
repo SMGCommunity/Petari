@@ -22,7 +22,7 @@
 | `init__9ChipGroupFRC12JMapInfoIter` | :x: |
 | `noticeGet__9ChipGroupFP8ChipBase` | :x: |
 | `receiveAppearRequest__9ChipGroupFv` | :x: |
-| `__cl__Q22MR43FunctorV0M&lt;P9ChipGroup,M9ChipGroupFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR43FunctorV0M&lt;P9ChipGroup,M9ChipGroupFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13BlueChipGroupFv` | :x: |
 | `__dt__15YellowChipGroupFv` | :x: |

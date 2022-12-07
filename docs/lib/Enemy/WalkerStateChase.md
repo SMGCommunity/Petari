@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__21WalkerStateChaseParamFv` | :x: |
-| `__ct__16WalkerStateChaseFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P16WalkerStateParamP21WalkerStateChaseParam` | :x: |
+| `__ct__16WalkerStateChaseFP9LiveActorPQ29JGeometry8TVec3<f>P16WalkerStateParamP21WalkerStateChaseParam` | :x: |
 | `appear__16WalkerStateChaseFv` | :x: |
 | `exeStart__16WalkerStateChaseFv` | :x: |
 | `exeEnd__16WalkerStateChaseFv` | :x: |

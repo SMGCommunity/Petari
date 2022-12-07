@@ -36,8 +36,8 @@
 | `execute__Q218NrvGeneralMapParts17HostTypeMoveStartCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvGeneralMapParts23HostTypeWaitForPlayerOnCFP5Spine` | :white_check_mark: |
 | `execute__Q218NrvGeneralMapParts12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `Functor&lt;15GeneralMapParts&gt;__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR57FunctorV0M&lt;P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<15GeneralMapParts>__2MRFP15GeneralMapPartsM15GeneralMapPartsFPCvPv_v_Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR57FunctorV0M<P15GeneralMapParts,M15GeneralMapPartsFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `receiveMsg__16MapPartsFunctionFUl` | :white_check_mark: |
-| `push_back__Q22MR48Vector&lt;Q22MR33FixedArray&lt;P16MapPartsFunction,8&gt;&gt;FRCP16MapPartsFunction` | :white_check_mark: |
+| `push_back__Q22MR48Vector<Q22MR33FixedArray<P16MapPartsFunction,8>>FRCP16MapPartsFunction` | :white_check_mark: |

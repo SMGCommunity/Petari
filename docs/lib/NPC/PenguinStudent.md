@@ -26,8 +26,8 @@
 | `execute__Q217NrvPenguinStudent21PenguinStudentNrvSlowCFP5Spine` | :x: |
 | `execute__Q217NrvPenguinStudent21PenguinStudentNrvLeadCFP5Spine` | :x: |
 | `execute__Q217NrvPenguinStudent21PenguinStudentNrvSwimCFP5Spine` | :x: |
-| `__cl__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;FRC63TalkMessageFuncM&lt;P14PenguinStudent,M14PenguinStudentFPCvPvUl_b&gt;` | :x: |
+| `__cl__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFUl` | :x: |
+| `clone__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFv` | :x: |
+| `clone__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>FRC63TalkMessageFuncM<P14PenguinStudent,M14PenguinStudentFPCvPvUl_b>` | :x: |
 | `__dt__14PenguinStudentFv` | :x: |

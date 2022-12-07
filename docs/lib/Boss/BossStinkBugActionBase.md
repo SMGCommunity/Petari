@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__22BossStinkBugActionBaseFPCcP12BossStinkBug` | :x: |
-| `__dt__30ActorStateBase&lt;12BossStinkBug&gt;Fv` | :x: |
+| `__dt__30ActorStateBase<12BossStinkBug>Fv` | :x: |
 | `updateGroundWalk__22BossStinkBugActionBaseFf` | :x: |
 | `updateFlyRoll__22BossStinkBugActionBaseFv` | :x: |
 | `updateFlyRollWait__22BossStinkBugActionBaseFl` | :x: |

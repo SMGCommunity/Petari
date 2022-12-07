@@ -37,7 +37,7 @@
 | `endActorCameraProgrammable__2MRFPC9LiveActorlb` | :x: |
 | `isActiveActorCamera__2MRFPC9LiveActorPC15ActorCameraInfo` | :x: |
 | `isActiveMultiActorCamera__2MRFPC9LiveActorPC15ActorCameraInfoPCc` | :x: |
-| `setProgrammableCameraParam__2MRFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setProgrammableCameraParam__2MRFPC9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `setProgrammableCameraParamFovy__2MRFPC9LiveActorf` | :x: |
 | `initAnimCamera__2MRFPC9LiveActorPC15ActorCameraInfoPCcPCc` | :x: |
 | `endAnimCamera__2MRFPC9LiveActorPC15ActorCameraInfoPCclb` | :x: |

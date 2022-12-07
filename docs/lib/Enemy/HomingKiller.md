@@ -13,7 +13,7 @@
 | `__ct__12HomingKillerFPCc` | :x: |
 | `init__12HomingKillerFRC12JMapInfoIter` | :x: |
 | `appear__12HomingKillerFv` | :x: |
-| `appear__12HomingKillerFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appear__12HomingKillerFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `isMoveStart__12HomingKillerCFv` | :x: |
 | `setChaseStartEndDistance__12HomingKillerFff` | :x: |
 | `control__12HomingKillerFv` | :x: |
@@ -25,7 +25,7 @@
 | `initMapToolInfo__12HomingKillerFRC12JMapInfoIter` | :x: |
 | `calcInitPosture__12HomingKillerFv` | :x: |
 | `updateVelocity__12HomingKillerFv` | :x: |
-| `updateRotateZ__12HomingKillerFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateRotateZ__12HomingKillerFRCQ29JGeometry8TVec3<f>` | :x: |
 | `processMove__12HomingKillerFv` | :x: |
 | `processChase__12HomingKillerFv` | :x: |
 | `isChaseStart__12HomingKillerCFv` | :x: |
@@ -34,8 +34,8 @@
 | `tryBindedBreak__12HomingKillerFv` | :x: |
 | `tryToExplosion__12HomingKillerFP9HitSensorP9HitSensor` | :x: |
 | `sendMsgExplosionToNearActor__12HomingKillerFv` | :x: |
-| `isUpdateChaseFrontVec__12HomingKillerCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcFrontVecToTarget__12HomingKillerCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isUpdateChaseFrontVec__12HomingKillerCFRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcFrontVecToTarget__12HomingKillerCFPQ29JGeometry8TVec3<f>` | :x: |
 | `isValidShowModel__12HomingKillerCFv` | :x: |
 | `isWaterBreak__12HomingKillerCFv` | :x: |
 | `updateBaseMtxNoRotateZ__12HomingKillerFv` | :x: |

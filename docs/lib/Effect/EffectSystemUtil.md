@@ -14,7 +14,7 @@
 | `requestMovementOffAllLoopEmitters__Q22MR6EffectFv` | :x: |
 | `checkEffectSceneUpdate__Q22MR6EffectFPC12EffectSystem` | :x: |
 | `movementEffectNormal__Q22MR6EffectFPC12EffectSystem` | :x: |
-| `drawEffect3D__Q22MR6EffectFPC12EffectSystemRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `drawEffect3D__Q22MR6EffectFPC12EffectSystemRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `drawEffect2D__Q22MR6EffectFPC12EffectSystem` | :x: |
 | `forceDeleteAllEmitters__Q22MR6EffectFPC12EffectSystem` | :x: |
 | `isExistInResource__Q22MR6EffectFPUsPCc` | :x: |
@@ -37,7 +37,7 @@
 | `setLinkSingleEmitter__Q22MR6EffectFP15ParticleEmitterP13SingleEmitter` | :x: |
 | `getLinkSingleEmitter__Q22MR6EffectFPC14JPABaseEmitter` | :x: |
 | `forceDeleteAllOneTimeEmitter__Q22MR6EffectFv` | :x: |
-| `createParticleEmitter__Q22MR6EffectFP15ParticleEmitterP17JPAEmitterManagerRCQ29JGeometry8TVec3&lt;f&gt;UsUcUc` | :x: |
+| `createParticleEmitter__Q22MR6EffectFP15ParticleEmitterP17JPAEmitterManagerRCQ29JGeometry8TVec3<f>UsUcUc` | :x: |
 | `isExistInResource__Q22MR6EffectFPUsPCcl` | :x: |
 | `getEffectAttributeName__Q22MR6EffectFl` | :x: |
 | `createAutoEffect__Q22MR6EffectFPCcPCc` | :x: |

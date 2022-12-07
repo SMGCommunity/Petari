@@ -9,7 +9,7 @@
 # EyeBeamer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getXDir__Q29JGeometry9TQuat4&lt;f&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getXDir__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__9EyeBeamerFPCc` | :x: |
 | `init__9EyeBeamerFRC12JMapInfoIter` | :x: |
 | `initStartNerve__9EyeBeamerFRC12JMapInfoIter` | :x: |
@@ -33,7 +33,7 @@
 | `exeTurn__9EyeBeamerFv` | :x: |
 | `exeGotoPatrol__9EyeBeamerFv` | :x: |
 | `exePatrol__9EyeBeamerFv` | :x: |
-| `isInBeamRange__9EyeBeamerCFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isInBeamRange__9EyeBeamerCFRCQ29JGeometry8TVec3<f>` | :x: |
 | `isOnBeam__9EyeBeamerCFv` | :x: |
 | `__sinit_\EyeBeamer_cpp` | :x: |
 | `__ct__Q212NrvEyeBeamer25EyeBeamerNrvDemoStartWaitFv` | :x: |
@@ -52,6 +52,6 @@
 | `execute__Q212NrvEyeBeamer20EyeBeamerNrvDemoTurnCFP5Spine` | :x: |
 | `execute__Q212NrvEyeBeamer20EyeBeamerNrvDemoWaitCFP5Spine` | :x: |
 | `execute__Q212NrvEyeBeamer25EyeBeamerNrvDemoStartWaitCFP5Spine` | :x: |
-| `__cl__Q22MR43FunctorV0M&lt;P9EyeBeamer,M9EyeBeamerFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR43FunctorV0M&lt;P9EyeBeamer,M9EyeBeamerFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR43FunctorV0M<P9EyeBeamer,M9EyeBeamerFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR43FunctorV0M<P9EyeBeamer,M9EyeBeamerFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__9EyeBeamerFv` | :x: |

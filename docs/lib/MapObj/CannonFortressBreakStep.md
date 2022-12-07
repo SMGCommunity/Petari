@@ -25,6 +25,6 @@
 | `execute__Q226NrvCannonFortressBreakStep30CannonFortressBreakStepNrvFallCFP5Spine` | :x: |
 | `execute__Q226NrvCannonFortressBreakStep35CannonFortressBreakStepNrvFallStartCFP5Spine` | :x: |
 | `execute__Q226NrvCannonFortressBreakStep30CannonFortressBreakStepNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR73FunctorV0M&lt;P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR73FunctorV0M&lt;P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR73FunctorV0M<P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR73FunctorV0M<P23CannonFortressBreakStep,M23CannonFortressBreakStepFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__23CannonFortressBreakStepFv` | :x: |

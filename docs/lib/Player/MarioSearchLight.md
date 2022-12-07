@@ -21,5 +21,5 @@
 | `updateThrowing__10MarioActorFv` | :x: |
 | `calcViewSearchLight__10MarioActorFv` | :x: |
 | `drawSearchLight__10MarioActorCFv` | :x: |
-| `getThrowVec__10MarioActorCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getThrowVec__10MarioActorCFPQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__16MarioSearchLightFv` | :x: |

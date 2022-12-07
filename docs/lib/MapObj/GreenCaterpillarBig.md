@@ -14,7 +14,7 @@
 | `setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor` | :white_check_mark: |
 | `control__23GreenCaterpillarBigBodyFv` | :white_check_mark: |
 | `calcAndSetBaseMtx__23GreenCaterpillarBigBodyFv` | :white_check_mark: |
-| `calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `__ct__19GreenCaterpillarBigFPCc` | :white_check_mark: |
 | `init__19GreenCaterpillarBigFRC12JMapInfoIter` | :white_check_mark: |
 | `startWriggle__19GreenCaterpillarBigFv` | :white_check_mark: |

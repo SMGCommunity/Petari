@@ -13,11 +13,11 @@
 | `init__22TripodBossFixPartsBaseFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__22TripodBossFixPartsBaseFv` | :x: |
 | `initClippingSphere__22TripodBossFixPartsBaseFv` | :x: |
-| `setClippingSphere__22TripodBossFixPartsBaseFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `setClippingSphere__22TripodBossFixPartsBaseFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `makeActorDead__22TripodBossFixPartsBaseFv` | :x: |
 | `calcAndSetBaseMtx__22TripodBossFixPartsBaseFv` | :x: |
 | `receiveOtherMsg__22TripodBossFixPartsBaseFUlP9HitSensorP9HitSensor` | :x: |
-| `calcTripodLocalMatrix__22TripodBossFixPartsBaseFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcTripodLocalMatrix__22TripodBossFixPartsBaseFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `activateTripodBoss__22TripodBossFixPartsBaseFv` | :x: |
 | `startBreakMovement__22TripodBossFixPartsBaseFv` | :x: |
 | `updateBreakMovementMatrix__22TripodBossFixPartsBaseFv` | :x: |

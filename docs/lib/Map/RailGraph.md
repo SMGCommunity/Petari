@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__9RailGraphFv` | :white_check_mark: |
-| `addNode__9RailGraphFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `addNode__9RailGraphFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `connectNodeTwoWay__9RailGraphFllPC13RailGraphEdge` | :white_check_mark: |
 | `__as__13RailGraphEdgeFRC13RailGraphEdge` | :white_check_mark: |
 | `getNode__9RailGraphCFl` | :white_check_mark: |

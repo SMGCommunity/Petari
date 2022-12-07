@@ -24,8 +24,8 @@
 | `execute__Q216NrvRotateMoveObj12HostTypeMoveCFP5Spine` | :white_check_mark: |
 | `execute__Q216NrvRotateMoveObj12HostTypeWaitCFP5Spine` | :white_check_mark: |
 | `execute__Q216NrvRotateMoveObj23HostTypeWaitForPlayerOnCFP5Spine` | :white_check_mark: |
-| `Functor&lt;13RotateMoveObj&gt;__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR53FunctorV0M&lt;P13RotateMoveObj,M13RotateMoveObjFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<13RotateMoveObj>__2MRFP13RotateMoveObjM13RotateMoveObjFPCvPv_v_Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR53FunctorV0M<P13RotateMoveObj,M13RotateMoveObjFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__13RotateMoveObjFv` | :white_check_mark: |
 | `getRotateSpeed__19MapPartsRotatorBaseCFv` | :x: |

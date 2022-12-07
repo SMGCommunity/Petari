@@ -9,13 +9,13 @@
 # GamePadUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getCorePadPointingPosBasedOnScreen__2MRFPQ29JGeometry8TVec2&lt;f&gt;l` | :x: |
-| `getCorePadPointingPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;l` | :x: |
-| `getCorePadPastPointingPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;ll` | :x: |
+| `getCorePadPointingPosBasedOnScreen__2MRFPQ29JGeometry8TVec2<f>l` | :x: |
+| `getCorePadPointingPos__2MRFPQ29JGeometry8TVec2<f>l` | :x: |
+| `getCorePadPastPointingPos__2MRFPQ29JGeometry8TVec2<f>ll` | :x: |
 | `getCorePadEnablePastCount__2MRFl` | :x: |
 | `isCorePadPointInScreen__2MRFl` | :x: |
 | `getCorePadDistanceToDisplay__2MRFl` | :x: |
-| `getCorePadAcceleration__2MRFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `getCorePadAcceleration__2MRFPQ29JGeometry8TVec3<f>l` | :x: |
 | `testCorePadButtonUp__2MRFl` | :x: |
 | `testCorePadButtonDown__2MRFl` | :x: |
 | `testCorePadButtonA__2MRFl` | :x: |
@@ -46,7 +46,7 @@
 | `testSubPadStickTriggerDown__2MRFl` | :x: |
 | `testSubPadStickTriggerLeft__2MRFl` | :x: |
 | `testSubPadStickTriggerRight__2MRFl` | :x: |
-| `getSubPadAcceleration__2MRFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `getSubPadAcceleration__2MRFPQ29JGeometry8TVec3<f>l` | :x: |
 | `isSubPadSwing__2MRFl` | :x: |
 | `isPadSwing__2MRFl` | :x: |
 | `testSystemPadTriggerDecide__2MRFv` | :x: |
@@ -67,7 +67,7 @@
 | `getPlayerLevelC__2MRFv` | :x: |
 | `isGamePadStickOperated__2MRFl` | :x: |
 | `calcWorldStickDirectionXZ__2MRFPfPfl` | :x: |
-| `calcWorldStickDirectionXZ__2MRFPQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `calcWorldStickDirectionXZ__2MRFPQ29JGeometry8TVec3<f>l` | :x: |
 | `getWPadMaxCount__2MRFv` | :x: |
 | `isConnectedWPad__2MRFl` | :x: |
 | `isOperatingWPad__2MRFl` | :x: |

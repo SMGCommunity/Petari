@@ -26,5 +26,5 @@
 | `__ct__Q214NrvLavaFloater12HostTypeSinkFv` | :x: |
 | `execute__Q214NrvLavaFloater12HostTypeSinkCFP5Spine` | :x: |
 | `execute__Q214NrvLavaFloater13HostTypeFloatCFP5Spine` | :x: |
-| `updateHostTrans__20FloaterFloatingForceCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `updateHostVelocity__20FloaterFloatingForceCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `updateHostTrans__20FloaterFloatingForceCFPQ29JGeometry8TVec3<f>` | :x: |
+| `updateHostVelocity__20FloaterFloatingForceCFPQ29JGeometry8TVec3<f>` | :x: |

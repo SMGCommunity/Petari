@@ -18,7 +18,7 @@
 | `draw__16FallOutFieldDrawCFv` | :x: |
 | `createFallOutFieldDraw__2MRFPCc` | :x: |
 | `__sinit_\FallOutFieldDraw_cpp` | :x: |
-| `Functor&lt;16FallOutFieldDraw&gt;__2MRFP16FallOutFieldDrawM16FallOutFieldDrawFPCvPv_v_Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR59FunctorV0M&lt;P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<16FallOutFieldDraw>__2MRFP16FallOutFieldDrawM16FallOutFieldDrawFPCvPv_v_Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v>` | :x: |
+| `__cl__Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR59FunctorV0M<P16FallOutFieldDraw,M16FallOutFieldDrawFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__16FallOutFieldDrawFv` | :x: |

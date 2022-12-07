@@ -40,9 +40,9 @@
 | `execute__Q214NrvAstroMapObj28AstroMapObjNrvAliveAfterDemoCFP5Spine` | :x: |
 | `execute__Q214NrvAstroMapObj19AstroMapObjNrvAliveCFP5Spine` | :x: |
 | `execute__Q214NrvAstroMapObj18AstroMapObjNrvDeadCFP5Spine` | :x: |
-| `Functor&lt;11AstroMapObj&gt;__2MRFP11AstroMapObjM11AstroMapObjFPCvPv_v_Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11AstroMapObj,M11AstroMapObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<11AstroMapObj>__2MRFP11AstroMapObjM11AstroMapObjFPCvPv_v_Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v>` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11AstroMapObj,M11AstroMapObjFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__11AstroMapObjFv` | :x: |
 | `__dt__14AstroSimpleObjFv` | :x: |
 | `initCaseNoUseSwitchB__11AstroMapObjFRC19MapObjActorInitInfo` | :x: |

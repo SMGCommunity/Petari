@@ -17,4 +17,4 @@
 | `close__9MarioTalkFv` | :x: |
 | `start__9MarioTalkFv` | :x: |
 | `__sinit_\MarioTalk_cpp` | :x: |
-| `setLastNonFixMoveVec__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setLastNonFixMoveVec__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |

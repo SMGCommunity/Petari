@@ -31,6 +31,6 @@
 | `execute__Q215NrvQuestionCoin14HostTypeCaughtCFP5Spine` | :x: |
 | `execute__Q215NrvQuestionCoin18HostTypeThrowActorCFP5Spine` | :x: |
 | `execute__Q215NrvQuestionCoin12HostTypeWaitCFP5Spine` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12QuestionCoin,M12QuestionCoinFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12QuestionCoin,M12QuestionCoinFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12QuestionCoinFv` | :x: |

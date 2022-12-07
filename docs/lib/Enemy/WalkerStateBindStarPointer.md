@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__26WalkerStateBindStarPointerFP9LiveActorP19AnimScaleController` | :white_check_mark: |
-| `__dt__26ActorStateBase&lt;9LiveActor&gt;Fv` | :white_check_mark: |
+| `__dt__26ActorStateBase<9LiveActor>Fv` | :white_check_mark: |
 | `appear__26WalkerStateBindStarPointerFv` | :white_check_mark: |
 | `kill__26WalkerStateBindStarPointerFv` | :white_check_mark: |
 | `tryStartPointBind__26WalkerStateBindStarPointerCFv` | :white_check_mark: |

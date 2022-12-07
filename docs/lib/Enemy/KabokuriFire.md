@@ -11,7 +11,7 @@
 | ------------- | ------------- |
 | `__ct__12KabokuriFireFPCc` | :x: |
 | `init__12KabokuriFireFRC12JMapInfoIter` | :x: |
-| `start__12KabokuriFireFRCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `start__12KabokuriFireFRCQ29JGeometry8TVec3<f>b` | :x: |
 | `control__12KabokuriFireFv` | :x: |
 | `attackSensor__12KabokuriFireFP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__12KabokuriFireFUlP9HitSensorP9HitSensor` | :x: |

@@ -15,5 +15,5 @@
 | `load__10JASWaveArcFP7JASHeap` | :x: |
 | `__ct__12JASInstParamFv` | :x: |
 | `__sinit_\OverwriteJAudio_cpp` | :x: |
-| `__ct__38JASMemPool_MultiThreaded&lt;10JASChannel&gt;Fv` | :x: |
-| `__dt__38JASMemPool_MultiThreaded&lt;10JASChannel&gt;Fv` | :x: |
+| `__ct__38JASMemPool_MultiThreaded<10JASChannel>Fv` | :x: |
+| `__dt__38JASMemPool_MultiThreaded<10JASChannel>Fv` | :x: |

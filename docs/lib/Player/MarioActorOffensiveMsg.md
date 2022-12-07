@@ -22,7 +22,7 @@
 | `tryJetAttack__10MarioActorFP9HitSensor` | :x: |
 | `tryCounterJetAttack__10MarioActorFP9HitSensor` | :x: |
 | `tryGetItem__10MarioActorFP9HitSensor` | :x: |
-| `cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3&lt;f&gt;fff` | :x: |
+| `cylinderPushCheck__10MarioActorFRCQ29JGeometry8TVec3<f>fff` | :x: |
 | `attackOrPushPolygons__10MarioActorFv` | :x: |
 | `sendWallTouch__10MarioActorFP9HitSensorP9HitSensor` | :x: |
 | `sendMsgUpperPunch__10MarioActorFP9HitSensor` | :x: |

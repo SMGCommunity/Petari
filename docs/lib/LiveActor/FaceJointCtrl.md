@@ -15,7 +15,7 @@
 | `endCtrl__13FaceJointCtrlFl` | :white_check_mark: |
 | `update__13FaceJointCtrlFv` | :white_check_mark: |
 | `setCallBackFunction__13FaceJointCtrlFv` | :white_check_mark: |
-| `updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `__dt__38JointControlDelegator&lt;13FaceJointCtrl&gt;Fv` | :x: |
-| `calcJointMatrix__38JointControlDelegator&lt;13FaceJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__38JointControlDelegator&lt;13FaceJointCtrl&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `updateJointMtxCallBack__13FaceJointCtrlFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `__dt__38JointControlDelegator<13FaceJointCtrl>Fv` | :x: |
+| `calcJointMatrix__38JointControlDelegator<13FaceJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__38JointControlDelegator<13FaceJointCtrl>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |

@@ -100,6 +100,6 @@
 | `execute__Q215NrvNokonokoLand19HostTypeAppearStartCFP5Spine` | :x: |
 | `execute__Q215NrvNokonokoLand19HostTypeAppearReadyCFP5Spine` | :x: |
 | `init__16MapPartsFunctionFRC12JMapInfoIter` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;P12NokonokoLand,M12NokonokoLandFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;P12NokonokoLand,M12NokonokoLandFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR51FunctorV0M<P12NokonokoLand,M12NokonokoLandFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<P12NokonokoLand,M12NokonokoLandFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__12NokonokoLandFv` | :x: |

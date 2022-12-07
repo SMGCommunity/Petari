@@ -18,7 +18,7 @@
 | `kill__12MarblePlanetFv` | :white_check_mark: |
 | `receiveMsgEnemyAttack__12MarblePlanetFUlP9HitSensorP9HitSensor` | :white_check_mark: |
 | `initCoreAndElectron__12MarblePlanetFv` | :white_check_mark: |
-| `__ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;PCc` | :white_check_mark: |
+| `__ct__20MarblePlanetElectronFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PCc` | :white_check_mark: |
 | `init__20MarblePlanetElectronFRC12JMapInfoIter` | :white_check_mark: |
 | `exeMove__20MarblePlanetElectronFv` | :white_check_mark: |
 | `exeAttack__20MarblePlanetElectronFv` | :white_check_mark: |
@@ -27,7 +27,7 @@
 | `receiveMsgPlayerAttack__20MarblePlanetElectronFUlP9HitSensorP9HitSensor` | :white_check_mark: |
 | `receiveMsgPush__20MarblePlanetElectronFP9HitSensorP9HitSensor` | :white_check_mark: |
 | `crashElectron__20MarblePlanetElectronFP9HitSensor` | :white_check_mark: |
-| `__ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PCc` | :white_check_mark: |
+| `__ct__26MarblePlanetElectronShadowFP9LiveActorRCQ29JGeometry8TVec3<f>PCc` | :white_check_mark: |
 | `init__26MarblePlanetElectronShadowFRC12JMapInfoIter` | :white_check_mark: |
 | `calcAndSetBaseMtx__26MarblePlanetElectronShadowFv` | :white_check_mark: |
 | `__dt__12MarblePlanetFv` | :white_check_mark: |

@@ -9,8 +9,8 @@
 # DodoryuStateLv2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `scale__Q29JGeometry8TVec3&lt;f&gt;FfRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `mult33__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;CFRQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f>` | :x: |
+| `mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__15DodoryuStateLv2FP7DodoryuP17DodoryuChaseParamPCc` | :x: |
 | `init__15DodoryuStateLv2FRC12JMapInfoIter` | :x: |
 | `control__15DodoryuStateLv2Fv` | :x: |
@@ -59,9 +59,9 @@
 | `tryToShiftAppearSign__15DodoryuStateLv2Fv` | :x: |
 | `determinChaseMoreAccelCounter__15DodoryuStateLv2Fv` | :x: |
 | `determinChaseMoreBrakeCounter__15DodoryuStateLv2Fv` | :x: |
-| `turnToward__15DodoryuStateLv2FRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `turnToward__15DodoryuStateLv2FRCQ29JGeometry8TVec3<f>f` | :x: |
 | `addVelocity__15DodoryuStateLv2Fb` | :x: |
-| `calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `calcLimitedRotateMtx__15DodoryuStateLv2FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `isReflectSpinAttack__15DodoryuStateLv2CFv` | :x: |
 | `shiftChaseUnderground__15DodoryuStateLv2Fv` | :x: |
 | `shiftChaseExposingHead__15DodoryuStateLv2Fv` | :x: |
@@ -129,5 +129,5 @@
 | `execute__Q229@unnamed@DodoryuStateLv2_cpp@28DodoryuStateLv2NrvReadyChaseCFP5Spine` | :x: |
 | `executeOnEnd__Q229@unnamed@DodoryuStateLv2_cpp@23DodoryuStateLv2NrvStartCFP5Spine` | :x: |
 | `execute__Q229@unnamed@DodoryuStateLv2_cpp@23DodoryuStateLv2NrvStartCFP5Spine` | :x: |
-| `makeRotate__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
-| `zeroTrans__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Fv` | :x: |
+| `makeRotate__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f` | :x: |
+| `zeroTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv` | :x: |

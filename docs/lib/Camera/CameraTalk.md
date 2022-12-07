@@ -12,6 +12,6 @@
 | `__ct__10CameraTalkFPCc` | :white_check_mark: |
 | `reset__10CameraTalkFv` | :x: |
 | `calc__10CameraTalkFv` | :x: |
-| `setParam__10CameraTalkFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ff` | :x: |
+| `setParam__10CameraTalkFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ff` | :x: |
 | `createTranslator__10CameraTalkFv` | :white_check_mark: |
 | `__dt__10CameraTalkFv` | :white_check_mark: |

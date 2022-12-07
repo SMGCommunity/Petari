@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16TakoHeiInkHolderFv` | :x: |
-| `__dt__30DeriveActorGroup&lt;10TakoHeiInk&gt;Fv` | :x: |
+| `__dt__30DeriveActorGroup<10TakoHeiInk>Fv` | :x: |
 | `createTakoHeiInkHolder__2MRFv` | :x: |
-| `spurtTakoHeiInk__2MRFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `spurtTakoHeiInk__2MRFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__16TakoHeiInkHolderFv` | :x: |

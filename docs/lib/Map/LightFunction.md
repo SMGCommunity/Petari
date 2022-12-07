@@ -21,14 +21,14 @@
 | `getDefaultStepInterpolate__13LightFunctionFv` | :x: |
 | `registerPlayerLightCtrl__13LightFunctionFPC14ActorLightCtrl` | :x: |
 | `registerLightAreaHolder__13LightFunctionFP15LightAreaHolder` | :x: |
-| `tryFindNewAreaLightID__13LightFunctionFRCQ29JGeometry8TVec3&lt;f&gt;P11ZoneLightID` | :x: |
+| `tryFindNewAreaLightID__13LightFunctionFRCQ29JGeometry8TVec3<f>P11ZoneLightID` | :x: |
 | `getAreaLightInfo__13LightFunctionFRC11ZoneLightID` | :x: |
 | `blendActorLightPos__27@unnamed@LightFunction_cpp@FRC9LightInfoRC9LightInfoP9LightInfof` | :x: |
 | `blendActorLightInfo__13LightFunctionFP14ActorLightInfoRC14ActorLightInfoRC14ActorLightInfof` | :x: |
-| `loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3&lt;f&gt;10_GXLightID` | :white_check_mark: |
+| `loadLightDiffuse__27@unnamed@LightFunction_cpp@F8_GXColorRCQ29JGeometry8TVec3<f>10_GXLightID` | :white_check_mark: |
 | `loadLightInfoDiffuse__27@unnamed@LightFunction_cpp@FRC9LightInfo10_GXLightID` | :x: |
 | `loadActorLightInfo__13LightFunctionFPC14ActorLightInfo` | :x: |
 | `loadLightInfoCoin__13LightFunctionFPC13LightInfoCoin` | :x: |
 | `loadPointLightInfo__13LightFunctionFPC14PointLightInfo` | :x: |
 | `loadAllLightWhite__13LightFunctionFv` | :x: |
-| `calcLightWorldPos__13LightFunctionFPQ29JGeometry8TVec3&lt;f&gt;RC9LightInfo` | :x: |
+| `calcLightWorldPos__13LightFunctionFPQ29JGeometry8TVec3<f>RC9LightInfo` | :x: |

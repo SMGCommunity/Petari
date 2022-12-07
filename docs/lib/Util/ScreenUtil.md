@@ -20,8 +20,8 @@
 | `getSafetyFrameWidth__2MRFv` | :x: |
 | `getSafetyFrameLeft__2MRFv` | :x: |
 | `getSafetyFrameRight__2MRFv` | :x: |
-| `convertFrameBufferPosToScreenPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
-| `convertScreenPosToFrameBufferPos__2MRFPQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `convertFrameBufferPosToScreenPos__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
+| `convertScreenPosToFrameBufferPos__2MRFPQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
 | `startToCaptureScreen__2MRFPCc` | :x: |
 | `endToCaptureScreen__2MRFPCc` | :x: |
 | `captureScreenIfAllow__2MRFPCc` | :x: |
@@ -49,7 +49,7 @@
 | `isSystemWipeActive__2MRFv` | :x: |
 | `closeSystemWipeCircleWithCaptureScreen__2MRFl` | :x: |
 | `closeSystemWipeFadeWithCaptureScreen__2MRFl` | :x: |
-| `setWipeCircleCenterPos__2MRFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setWipeCircleCenterPos__2MRFRCQ29JGeometry8TVec3<f>` | :x: |
 | `requestMovementOnImageEffect__2MRFv` | :x: |
 | `setImageEffectControlAuto__2MRFv` | :x: |
 | `turnOffDOFInSubjective__2MRFv` | :x: |

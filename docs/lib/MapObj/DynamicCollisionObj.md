@@ -14,5 +14,5 @@
 | `syncCollision__19DynamicCollisionObjFv` | :white_check_mark: |
 | `updateTriangle__19DynamicCollisionObjFv` | :x: |
 | `updateCollisionHeader__19DynamicCollisionObjFv` | :x: |
-| `__ct__Q29JGeometry8TVec2&lt;f&gt;FRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `__ct__Q29JGeometry8TVec2<f>FRCQ29JGeometry8TVec2<f>` | :x: |
 | `createCollision__19DynamicCollisionObjFv` | :x: |

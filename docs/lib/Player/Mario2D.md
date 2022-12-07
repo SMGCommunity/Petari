@@ -10,5 +10,5 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `stick2DadjustGround__5MarioFRfRf` | :x: |
-| `calcDir2D__5MarioFffPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcDir2D__5MarioFffPQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\Mario2D_cpp` | :x: |

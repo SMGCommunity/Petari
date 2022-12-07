@@ -9,14 +9,14 @@
 # TripodBossKillerGenerater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `set__Q29JGeometry13SMatrix34C&lt;f&gt;FRCQ29JGeometry13SMatrix34C&lt;f&gt;` | :x: |
+| `set__Q29JGeometry13SMatrix34C<f>FRCQ29JGeometry13SMatrix34C<f>` | :x: |
 | `__ct__25TripodBossKillerGeneraterFPCc` | :x: |
 | `init__25TripodBossKillerGeneraterFRC12JMapInfoIter` | :x: |
 | `kill__25TripodBossKillerGeneraterFv` | :x: |
 | `receiveMsgEnemyAttack__25TripodBossKillerGeneraterFUlP9HitSensorP9HitSensor` | :x: |
-| `calcTripodLocalMatrix__25TripodBossKillerGeneraterFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcTripodLocalMatrix__25TripodBossKillerGeneraterFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `activateTripodBoss__25TripodBossKillerGeneraterFv` | :x: |
-| `setLocalMatrix__25TripodBossKillerGeneraterFRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `setLocalMatrix__25TripodBossKillerGeneraterFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `setActiveLebel__25TripodBossKillerGeneraterFl` | :x: |
 | `setHasCollision__25TripodBossKillerGeneraterFb` | :x: |
 | `tryShootSetting__25TripodBossKillerGeneraterFv` | :x: |

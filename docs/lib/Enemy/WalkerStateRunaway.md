@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__23WalkerStateRunawayParamFv` | :x: |
-| `__ct__18WalkerStateRunawayFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P23WalkerStateRunawayParam` | :x: |
+| `__ct__18WalkerStateRunawayFP9LiveActorPQ29JGeometry8TVec3<f>P23WalkerStateRunawayParam` | :x: |
 | `appear__18WalkerStateRunawayFv` | :x: |
 | `tryRunaway__18WalkerStateRunawayFv` | :x: |
 | `tryWait__18WalkerStateRunawayFv` | :x: |

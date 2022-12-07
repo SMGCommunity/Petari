@@ -31,7 +31,7 @@
 | `execute__Q218NrvBegomanLauncher24HostTypeNrvWaitForLaunchCFP5Spine` | :x: |
 | `execute__Q218NrvBegomanLauncher15HostTypeNrvWaitCFP5Spine` | :x: |
 | `execute__Q218NrvBegomanLauncher28HostTypeNrvWaitAfterSwitchOnCFP5Spine` | :x: |
-| `Functor&lt;15BegomanLauncher&gt;__2MRFP15BegomanLauncherM15BegomanLauncherFPCvPv_v_Q22MR57FunctorV0M&lt;P15BegomanLauncher,M15BegomanLauncherFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR57FunctorV0M&lt;P15BegomanLauncher,M15BegomanLauncherFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR57FunctorV0M&lt;P15BegomanLauncher,M15BegomanLauncherFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<15BegomanLauncher>__2MRFP15BegomanLauncherM15BegomanLauncherFPCvPv_v_Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>` | :x: |
+| `__cl__Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__15BegomanLauncherFv` | :x: |

@@ -9,7 +9,7 @@
 # CoconutTreeLeaf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15CoconutTreeLeafFPC20CoconutTreeLeafGroupPA4_fPCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `__ct__15CoconutTreeLeafFPC20CoconutTreeLeafGroupPA4_fPCQ29JGeometry8TVec3<f>` | :x: |
 | `init__15CoconutTreeLeafFRC12JMapInfoIter` | :x: |
 | `update__15CoconutTreeLeafFff` | :x: |
 | `receiveMsgPlayerAttack__15CoconutTreeLeafFUlP9HitSensorP9HitSensor` | :x: |

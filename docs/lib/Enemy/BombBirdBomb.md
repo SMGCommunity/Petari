@@ -14,8 +14,8 @@
 | `kill__12BombBirdBombFv` | :x: |
 | `control__12BombBirdBombFv` | :x: |
 | `calcAndSetBaseMtx__12BombBirdBombFv` | :x: |
-| `hold__12BombBirdBombFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `start__12BombBirdBombFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `hold__12BombBirdBombFRCQ29JGeometry8TVec3<f>` | :x: |
+| `start__12BombBirdBombFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `attackSensor__12BombBirdBombFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPush__12BombBirdBombFP9HitSensorP9HitSensor` | :x: |
 | `receiveMsgPlayerAttack__12BombBirdBombFUlP9HitSensorP9HitSensor` | :x: |

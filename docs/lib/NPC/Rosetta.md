@@ -28,9 +28,9 @@
 | `__ct__Q210NrvRosetta18RosettaNrvReactionFv` | :x: |
 | `execute__Q210NrvRosetta18RosettaNrvReactionCFP5Spine` | :x: |
 | `execute__Q210NrvRosetta14RosettaNrvDemoCFP5Spine` | :x: |
-| `TalkMessageFunc&lt;7Rosetta&gt;__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;` | :x: |
-| `__cl__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFUl` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFv` | :x: |
-| `clone__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;CFP7JKRHeap` | :x: |
-| `__ct__47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;FRC47TalkMessageFuncM&lt;P7Rosetta,M7RosettaFPCvPvUl_b&gt;` | :x: |
+| `TalkMessageFunc<7Rosetta>__FP7RosettaM7RosettaFPCvPvUl_b_47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>` | :x: |
+| `__cl__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFUl` | :x: |
+| `clone__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFv` | :x: |
+| `clone__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>CFP7JKRHeap` | :x: |
+| `__ct__47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>FRC47TalkMessageFuncM<P7Rosetta,M7RosettaFPCvPvUl_b>` | :x: |
 | `__dt__7RosettaFv` | :x: |

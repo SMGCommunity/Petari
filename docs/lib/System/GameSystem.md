@@ -39,5 +39,5 @@
 | `execute__Q213NrvGameSystem29GameSystemInitializeLogoSceneCFP5Spine` | :x: |
 | `execute__Q213NrvGameSystem25GameSystemInitializeAudioCFP5Spine` | :x: |
 | `__dt__10GameSystemFv` | :x: |
-| `__cl__Q22MR65FunctorV0M&lt;P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR65FunctorV0M&lt;P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR65FunctorV0M<P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR65FunctorV0M<P19GameSystemObjHolder,M19GameSystemObjHolderFPCvPv_v>CFP7JKRHeap` | :x: |

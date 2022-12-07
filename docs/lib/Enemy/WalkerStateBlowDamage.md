@@ -9,7 +9,7 @@
 # WalkerStateBlowDamage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__21WalkerStateBlowDamageFP9LiveActorPQ29JGeometry8TVec3&lt;f&gt;P26WalkerStateBlowDamageParam` | :x: |
+| `__ct__21WalkerStateBlowDamageFP9LiveActorPQ29JGeometry8TVec3<f>P26WalkerStateBlowDamageParam` | :x: |
 | `appear__21WalkerStateBlowDamageFv` | :x: |
 | `exeBlow__21WalkerStateBlowDamageFv` | :x: |
 | `__dt__21WalkerStateBlowDamageFv` | :x: |

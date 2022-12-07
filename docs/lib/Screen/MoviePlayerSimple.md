@@ -43,4 +43,4 @@
 | `execute__Q231@unnamed@MoviePlayerSimple_cpp@21MoviePlayerSimpleOpenCFP5Spine` | :x: |
 | `execute__Q231@unnamed@MoviePlayerSimple_cpp@20MoviePlayerSimpleOffCFP5Spine` | :x: |
 | `@32@__dt__17MoviePlayerSimpleFv` | :x: |
-| `__ct__Q29JGeometry8TBox2&lt;s&gt;Fssss` | :x: |
+| `__ct__Q29JGeometry8TBox2<s>Fssss` | :x: |

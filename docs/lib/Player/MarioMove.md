@@ -16,9 +16,9 @@
 | `decideInertia__5MarioFf` | :x: |
 | `decideInertiaOnIce__5MarioFf` | :x: |
 | `decideInertiaOnSlip__5MarioFf` | :x: |
-| `calcShadowDir__5MarioFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `retainMoveDir__5MarioFffPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcMoveDir__5MarioFffPQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `calcShadowDir__5MarioFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
+| `retainMoveDir__5MarioFffPQ29JGeometry8TVec3<f>` | :x: |
+| `calcMoveDir__5MarioFffPQ29JGeometry8TVec3<f>b` | :x: |
 | `checkLockOnHoming__5MarioFv` | :x: |
 | `doLockOnHoming__5MarioFv` | :x: |
 | `fixPositionInTower__5MarioFv` | :x: |

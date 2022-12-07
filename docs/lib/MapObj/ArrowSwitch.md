@@ -32,7 +32,7 @@
 | `execute__Q214NrvArrowSwitch18ArrowSwitchNrvLockCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvArrowSwitch20ArrowSwitchNrvRotateCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvArrowSwitch18ArrowSwitchNrvWaitCFP5Spine` | :white_check_mark: |
-| `Functor&lt;11ArrowSwitch&gt;__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR49FunctorV0M&lt;P11ArrowSwitch,M11ArrowSwitchFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<11ArrowSwitch>__2MRFP11ArrowSwitchM11ArrowSwitchFPCvPv_v_Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR49FunctorV0M<P11ArrowSwitch,M11ArrowSwitchFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__11ArrowSwitchFv` | :white_check_mark: |

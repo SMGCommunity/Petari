@@ -14,11 +14,11 @@
 | `makeArchiveList__11RunawayTicoFP27NameObjArchiveListCollectorRC12JMapInfoIter` | :x: |
 | `init__11RunawayTicoFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__11RunawayTicoFv` | :x: |
-| `appearBushComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearHoleComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearPipeComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `appearMamaComment__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `setPosAfterCaught__11RunawayTicoFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `appearBushComment__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | :x: |
+| `appearHoleComment__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | :x: |
+| `appearPipeComment__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | :x: |
+| `appearMamaComment__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setPosAfterCaught__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setPosAllCaught__11RunawayTicoFv` | :x: |
 | `isStartRunaway__11RunawayTicoCFv` | :x: |
 | `startRunaway__11RunawayTicoFv` | :x: |
@@ -44,7 +44,7 @@
 | `execute__Q214NrvRunawayTico21RunawayTicoNrvWhiteInCFP5Spine` | :x: |
 | `execute__Q214NrvRunawayTico20RunawayTicoNrvGuide1CFP5Spine` | :x: |
 | `execute__Q214NrvRunawayTico20RunawayTicoNrvGuide0CFP5Spine` | :x: |
-| `Functor&lt;11RunawayTico&gt;__2MRFP11RunawayTicoM11RunawayTicoFPCvPv_v_Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11RunawayTico,M11RunawayTicoFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<11RunawayTico>__2MRFP11RunawayTicoM11RunawayTicoFPCvPv_v_Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__11RunawayTicoFv` | :x: |

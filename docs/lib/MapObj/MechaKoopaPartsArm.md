@@ -38,6 +38,6 @@
 | `execute__Q221NrvMechaKoopaPartsArm35MechaKoopaPartsArmNrvMoveStartFrontCFP5Spine` | :white_check_mark: |
 | `execute__Q221NrvMechaKoopaPartsArm29MechaKoopaPartsArmNrvWaitRearCFP5Spine` | :white_check_mark: |
 | `execute__Q221NrvMechaKoopaPartsArm30MechaKoopaPartsArmNrvWaitFrontCFP5Spine` | :white_check_mark: |
-| `__cl__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR63FunctorV0M&lt;P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR63FunctorV0M<P18MechaKoopaPartsArm,M18MechaKoopaPartsArmFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__18MechaKoopaPartsArmFv` | :white_check_mark: |

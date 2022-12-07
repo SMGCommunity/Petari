@@ -25,7 +25,7 @@
 | `execute__Q212NrvUFOKinoko12HostTypeStopCFP5Spine` | :white_check_mark: |
 | `execute__Q212NrvUFOKinoko12HostTypeMoveCFP5Spine` | :white_check_mark: |
 | `execute__Q212NrvUFOKinoko12HostTypeWaitCFP5Spine` | :white_check_mark: |
-| `Functor&lt;9UFOKinoko&gt;__2MRFP9UFOKinokoM9UFOKinokoFPCvPv_v_Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR43FunctorV0M&lt;P9UFOKinoko,M9UFOKinokoFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<9UFOKinoko>__2MRFP9UFOKinokoM9UFOKinokoFPCvPv_v_Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR43FunctorV0M<P9UFOKinoko,M9UFOKinokoFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__9UFOKinokoFv` | :white_check_mark: |

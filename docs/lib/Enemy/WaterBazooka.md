@@ -46,7 +46,7 @@
 | `switchShowOrHide__12WaterBazookaFv` | :x: |
 | `updateElectricLeak__12WaterBazookaFv` | :x: |
 | `damageBazooka__12WaterBazookaFP9HitSensorP9HitSensor` | :x: |
-| `calcJointCannon__12WaterBazookaFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `calcJointCannon__12WaterBazookaFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `getSmokeLevel__12WaterBazookaCFv` | :x: |
 | `tryWaitForBattle__12WaterBazookaFv` | :x: |
 | `tryPanic__12WaterBazookaFv` | :x: |
@@ -61,8 +61,8 @@
 | `tryShotBullet__12WaterBazookaFv` | :x: |
 | `selectBulletElectric__12WaterBazookaFv` | :x: |
 | `tryJumpBackPlayerFromBazooka__12WaterBazookaCFv` | :x: |
-| `calcNearDropPoint__12WaterBazookaCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `calcGunPointFromCannon__12WaterBazookaFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcNearDropPoint__12WaterBazookaCFPQ29JGeometry8TVec3<f>` | :x: |
+| `calcGunPointFromCannon__12WaterBazookaFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `setCameraTargetMtx__12WaterBazookaFv` | :x: |
 | `__sinit_\WaterBazooka_cpp` | :x: |
 | `__ct__Q215NrvWaterBazooka28WaterBazookaNrvWaitForBattleFv` | :x: |
@@ -98,7 +98,7 @@
 | `execute__Q215NrvWaterBazooka18WaterBazookaNrvAimCFP5Spine` | :x: |
 | `execute__Q215NrvWaterBazooka19WaterBazookaNrvWaitCFP5Spine` | :x: |
 | `execute__Q215NrvWaterBazooka28WaterBazookaNrvWaitForBattleCFP5Spine` | :x: |
-| `__dt__37JointControlDelegator&lt;12WaterBazooka&gt;Fv` | :x: |
-| `calcJointMatrix__37JointControlDelegator&lt;12WaterBazooka&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__37JointControlDelegator&lt;12WaterBazooka&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `__dt__37JointControlDelegator<12WaterBazooka>Fv` | :x: |
+| `calcJointMatrix__37JointControlDelegator<12WaterBazooka>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__37JointControlDelegator<12WaterBazooka>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__dt__12WaterBazookaFv` | :x: |

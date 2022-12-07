@@ -63,8 +63,8 @@
 | `execute__Q214NrvMapObjActor12HostTypeMoveCFP5Spine` | :white_check_mark: |
 | `execute__Q214NrvMapObjActor12HostTypeWaitCFP5Spine` | :white_check_mark: |
 | `end__16MapPartsFunctionFv` | :white_check_mark: |
-| `Functor&lt;11MapObjActor&gt;__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;` | :white_check_mark: |
-| `__cl__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR49FunctorV0M&lt;P11MapObjActor,M11MapObjActorFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `Functor<11MapObjActor>__2MRFP11MapObjActorM11MapObjActorFPCvPv_v_Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR49FunctorV0M<P11MapObjActor,M11MapObjActorFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `isOnReverse__19MapPartsRotatorBaseCFv` | :white_check_mark: |
 | `isMoving__19MapPartsRotatorBaseCFv` | :white_check_mark: |

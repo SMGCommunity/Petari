@@ -18,7 +18,7 @@
 | `appear__9PowerStarFv` | :white_check_mark: |
 | `makeActorAppeared__9PowerStarFv` | :white_check_mark: |
 | `requestAppear__9PowerStarFv` | :white_check_mark: |
-| `setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setDemoAppearPos__9PowerStarFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `isEndAppearDemo__9PowerStarCFv` | :white_check_mark: |
 | `offAppearDemo__9PowerStarFv` | :white_check_mark: |
 | `setupColor__9PowerStarFP9LiveActorPC7NameObjl` | :white_check_mark: |
@@ -40,11 +40,11 @@
 | `initShadow__9PowerStarFRC12JMapInfoIter` | :white_check_mark: |
 | `initPosture__9PowerStarFv` | :white_check_mark: |
 | `endAppearDemo__9PowerStarFv` | :white_check_mark: |
-| `getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `getNearestAppearPoint__9PowerStarCFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `getAppearCameraActor__9PowerStarFv` | :white_check_mark: |
 | `getAppearCameraInfo__9PowerStarCFv` | :x: |
 | `requestAppearOrWait__9PowerStarFv` | :white_check_mark: |
-| `calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3&lt;f&gt;f` | :white_check_mark: |
+| `calcAppearDemoRiseTrans__9PowerStarCFPQ29JGeometry8TVec3<f>f` | :white_check_mark: |
 | `processWait__9PowerStarFf` | :x: |
 | `exeAppearDemoRise__9PowerStarFv` | :x: |
 | `exeAppearDemoMove__9PowerStarFv` | :x: |

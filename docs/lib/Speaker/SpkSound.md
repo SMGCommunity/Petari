@@ -29,5 +29,5 @@
 | `updateEachSound__14SpkSoundHolderFl` | :x: |
 | `freeDeadSound__14SpkSoundHolderFl` | :x: |
 | `framework__14SpkSoundHolderFv` | :x: |
-| `__ct__18JSUList&lt;8SpkSound&gt;Fv` | :white_check_mark: |
+| `__ct__18JSUList<8SpkSound>Fv` | :white_check_mark: |
 | `__sinit_\SpkSound_cpp` | :x: |

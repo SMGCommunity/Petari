@@ -16,6 +16,6 @@
 | `executeType__14DemoWipeKeeperFPC12DemoWipeInfo` | :x: |
 | `getTypeString__14DemoWipeKeeperCFv` | :x: |
 | `getName__14DemoWipeKeeperCFv` | :x: |
-| `executeType__41DemoSheetKeeperInfoHolder&lt;12DemoWipeInfo&gt;FPC12DemoWipeInfo` | :x: |
-| `push_back__Q22MR46Vector&lt;Q22MR31AssignableArray&lt;12DemoWipeInfo&gt;&gt;FRC12DemoWipeInfo` | :x: |
+| `executeType__41DemoSheetKeeperInfoHolder<12DemoWipeInfo>FPC12DemoWipeInfo` | :x: |
+| `push_back__Q22MR46Vector<Q22MR31AssignableArray<12DemoWipeInfo>>FRC12DemoWipeInfo` | :x: |
 | `@8@executeType__14DemoWipeKeeperFPC12DemoWipeInfo` | :x: |

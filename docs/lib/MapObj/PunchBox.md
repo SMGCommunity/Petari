@@ -27,6 +27,6 @@
 | `__ct__Q211NrvPunchBox14PunchBoxNrvHitFv` | :x: |
 | `execute__Q211NrvPunchBox14PunchBoxNrvHitCFP5Spine` | :x: |
 | `execute__Q211NrvPunchBox15PunchBoxNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR41FunctorV0M&lt;P8PunchBox,M8PunchBoxFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR41FunctorV0M&lt;P8PunchBox,M8PunchBoxFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR41FunctorV0M<P8PunchBox,M8PunchBoxFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__8PunchBoxFv` | :x: |

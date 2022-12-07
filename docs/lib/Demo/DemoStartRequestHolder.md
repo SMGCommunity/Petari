@@ -25,6 +25,6 @@
 | `find__22DemoStartRequestHolderCFPC7NameObjPCc` | :x: |
 | `findEmpty__22DemoStartRequestHolderCFv` | :x: |
 | `__ct__22DemoStartRequestHolderFv` | :x: |
-| `__ct__Q32MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;8iteratorFPPC13DemoStartInfoPPC13DemoStartInfo` | :x: |
-| `push_back__Q22MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;FRCPC13DemoStartInfo` | :x: |
-| `__pp__Q32MR37FixedRingBuffer&lt;PC13DemoStartInfo,16&gt;8iteratorFv` | :x: |
+| `__ct__Q32MR37FixedRingBuffer<PC13DemoStartInfo,16>8iteratorFPPC13DemoStartInfoPPC13DemoStartInfo` | :x: |
+| `push_back__Q22MR37FixedRingBuffer<PC13DemoStartInfo,16>FRCPC13DemoStartInfo` | :x: |
+| `__pp__Q32MR37FixedRingBuffer<PC13DemoStartInfo,16>8iteratorFv` | :x: |

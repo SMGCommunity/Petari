@@ -15,7 +15,7 @@
 | `isNoWalkFallOnDossun__5MarioCFv` | :x: |
 | `isNotReflectGlassGround__5MarioCFv` | :x: |
 | `isUseAnotherMovingPolygon__5MarioCFv` | :x: |
-| `isUseFooSpecialGravity__5MarioCFRCQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `isUseFooSpecialGravity__5MarioCFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>` | :x: |
 | `__sinit_\MarioSpecial_cpp` | :x: |
 | `updateOnimasu__5MarioFv` | :x: |
 | `isHeadPushEnableArea__5MarioCFv` | :x: |

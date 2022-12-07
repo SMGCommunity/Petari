@@ -9,15 +9,15 @@
 # GrandStarReturnDemoStarter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `add__Q29JGeometry8TVec3&lt;f&gt;FRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__26GrandStarReturnDemoStarterFPCc` | :x: |
 | `init__26GrandStarReturnDemoStarterFRC12JMapInfoIter` | :x: |
 | `appear__26GrandStarReturnDemoStarterFv` | :x: |
 | `control__26GrandStarReturnDemoStarterFv` | :x: |
-| `calcOffsetStarToCore__26GrandStarReturnDemoStarterCFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcOffsetStarToCore__26GrandStarReturnDemoStarterCFPQ29JGeometry8TVec3<f>` | :x: |
 | `updateRailMoveEndDir__26GrandStarReturnDemoStarterFv` | :x: |
 | `emitEffectRush__26GrandStarReturnDemoStarterFv` | :x: |
-| `updateRushStarPos__26GrandStarReturnDemoStarterFRCQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `updateRushStarPos__26GrandStarReturnDemoStarterFRCQ29JGeometry8TVec3<f>l` | :x: |
 | `tryStartStageResult__26GrandStarReturnDemoStarterFPCc` | :x: |
 | `exeMove__26GrandStarReturnDemoStarterFv` | :x: |
 | `exeFlyWait__26GrandStarReturnDemoStarterFv` | :x: |

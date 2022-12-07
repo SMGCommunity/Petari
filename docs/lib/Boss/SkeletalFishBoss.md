@@ -9,8 +9,8 @@
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `negate__Q29JGeometry8TVec3&lt;f&gt;Fv` | :x: |
-| `squared__Q29JGeometry8TVec3&lt;f&gt;CFv` | :x: |
+| `negate__Q29JGeometry8TVec3<f>Fv` | :x: |
+| `squared__Q29JGeometry8TVec3<f>CFv` | :x: |
 | `__ct__16SkeletalFishBossFPCc` | :x: |
 | `init__16SkeletalFishBossFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__16SkeletalFishBossFv` | :x: |
@@ -19,8 +19,8 @@
 | `kill__16SkeletalFishBossFv` | :x: |
 | `control__16SkeletalFishBossFv` | :x: |
 | `calcAnim__16SkeletalFishBossFv` | :x: |
-| `calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3<f>` | :x: |
 | `exeSwim__16SkeletalFishBossFv` | :x: |
 | `exeOpen__16SkeletalFishBossFv` | :x: |
 | `exeOpenWait__16SkeletalFishBossFv` | :x: |
@@ -53,12 +53,12 @@
 | `initCamera__16SkeletalFishBossFv` | :x: |
 | `validateCollision__16SkeletalFishBossFv` | :x: |
 | `invalidateCollision__16SkeletalFishBossFv` | :x: |
-| `getMouthSensorCenterPos__16SkeletalFishBossCFRQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `getMouthSensorCenterPos__16SkeletalFishBossCFRQ29JGeometry8TVec3<f>f` | :x: |
 | `updateCollision__16SkeletalFishBossFv` | :x: |
 | `powerUp__16SkeletalFishBossFv` | :x: |
 | `startDamageAnim__16SkeletalFishBossFv` | :x: |
 | `calcPlanetCenterPosition__16SkeletalFishBossFv` | :x: |
-| `calcGravityCenter__16SkeletalFishBossFPQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcGravityCenter__16SkeletalFishBossFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `resetRail__16SkeletalFishBossFv` | :x: |
 | `updateBgm__16SkeletalFishBossFv` | :x: |
 | `getCurrentBossRail__16SkeletalFishBossFv` | :x: |
@@ -115,11 +115,11 @@
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitCFP5Spine` | :x: |
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenCFP5Spine` | :x: |
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimCFP5Spine` | :x: |
-| `__dt__41JointControlDelegator&lt;16SkeletalFishBoss&gt;Fv` | :x: |
-| `calcJointMatrix__41JointControlDelegator&lt;16SkeletalFishBoss&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__41JointControlDelegator&lt;16SkeletalFishBoss&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `__cl__Q22MR59FunctorV0M&lt;P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR59FunctorV0M&lt;P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__dt__41JointControlDelegator<16SkeletalFishBoss>Fv` | :x: |
+| `calcJointMatrix__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `__cl__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__16SkeletalFishBossFv` | :x: |
 | `__dt__20SkeletalFishBossHeadFv` | :x: |
 | `__dt__25SkeletalFishBossScarFlashFv` | :x: |

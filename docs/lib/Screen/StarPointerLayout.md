@@ -13,7 +13,7 @@
 | `initWithPort__17StarPointerLayoutFl` | :x: |
 | `appear__17StarPointerLayoutFv` | :x: |
 | `kill__17StarPointerLayoutFv` | :x: |
-| `startCommandStream__17StarPointerLayoutFPC9LiveActorPCQ29JGeometry8TVec3&lt;f&gt;b` | :x: |
+| `startCommandStream__17StarPointerLayoutFPC9LiveActorPCQ29JGeometry8TVec3<f>b` | :x: |
 | `endCommandStream__17StarPointerLayoutFPC9LiveActor` | :x: |
 | `forceEndCommandStream__17StarPointerLayoutFv` | :x: |
 | `isCommandStream__17StarPointerLayoutFPC9LiveActor` | :x: |
@@ -35,7 +35,7 @@
 | `control__17StarPointerLayoutFv` | :x: |
 | `setPosition__17StarPointerLayoutFv` | :x: |
 | `rotateTest__17StarPointerLayoutFv` | :x: |
-| `calcPoseNozzle__17StarPointerLayoutFRCQ29JGeometry8TVec2&lt;f&gt;RCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `calcPoseNozzle__17StarPointerLayoutFRCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
 | `changeLayout__17StarPointerLayoutF15StarPointerKind` | :x: |
 | `isChanceToRumble__17StarPointerLayoutCFv` | :x: |
 | `hideBlur__17StarPointerLayoutFv` | :x: |

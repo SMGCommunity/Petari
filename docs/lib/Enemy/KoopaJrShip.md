@@ -9,7 +9,7 @@
 # KoopaJrShip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setEulerZ__Q29JGeometry64TRotation3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;Ff` | :x: |
+| `setEulerZ__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ff` | :x: |
 | `__ct__11KoopaJrShipFPCc` | :x: |
 | `init__11KoopaJrShipFRC12JMapInfoIter` | :x: |
 | `initAfterPlacement__11KoopaJrShipFv` | :x: |
@@ -24,8 +24,8 @@
 | `getNumShootShells__11KoopaJrShipCFv` | :x: |
 | `getPropellerRotSpeed__11KoopaJrShipCFv` | :x: |
 | `updateCoordSpeed__11KoopaJrShipFv` | :x: |
-| `calcLauncherInfo__11KoopaJrShipCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
-| `calcLauncherInfoKiller__11KoopaJrShipCFPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;l` | :x: |
+| `calcLauncherInfo__11KoopaJrShipCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l` | :x: |
+| `calcLauncherInfoKiller__11KoopaJrShipCFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l` | :x: |
 | `shootShell__11KoopaJrShipFl` | :x: |
 | `tryShootAllKillers__11KoopaJrShipFv` | :x: |
 | `shootKiller__11KoopaJrShipFl` | :x: |
@@ -77,7 +77,7 @@
 | `execute__Q214NrvKoopaJrShip23HostTypeMoveFrontAttackCFP5Spine` | :x: |
 | `execute__Q214NrvKoopaJrShip12HostTypeMoveCFP5Spine` | :x: |
 | `execute__Q214NrvKoopaJrShip14HostTypeAppearCFP5Spine` | :x: |
-| `push_back__Q22MR37Vector&lt;Q22MR22FixedArray&lt;P6Kameck,2&gt;&gt;FRCP6Kameck` | :x: |
-| `__cl__Q22MR49FunctorV0M&lt;P11KoopaJrShip,M11KoopaJrShipFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR49FunctorV0M&lt;P11KoopaJrShip,M11KoopaJrShipFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `push_back__Q22MR37Vector<Q22MR22FixedArray<P6Kameck,2>>FRCP6Kameck` | :x: |
+| `__cl__Q22MR49FunctorV0M<P11KoopaJrShip,M11KoopaJrShipFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR49FunctorV0M<P11KoopaJrShip,M11KoopaJrShipFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__11KoopaJrShipFv` | :x: |

@@ -18,7 +18,7 @@
 | `isAntiBlurOff__16CameraParamChunkCFv` | :white_check_mark: |
 | `isCollisionOff__16CameraParamChunkCFv` | :white_check_mark: |
 | `isSubjectiveCameraOff__16CameraParamChunkCFv` | :white_check_mark: |
-| `getVPanAxis__16CameraParamChunkCFPQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `getVPanAxis__16CameraParamChunkCFPQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setCameraType__16CameraParamChunkFPCcPC12CameraHolder` | :white_check_mark: |
 | `setUseFovy__16CameraParamChunkFb` | :white_check_mark: |
 | `setLOfsErpOff__16CameraParamChunkFb` | :white_check_mark: |

@@ -20,7 +20,7 @@
 | `addToClippingTarget__19ClippingActorHolderFP9LiveActor` | :x: |
 | `removeFromClippingTarget__19ClippingActorHolderFP9LiveActor` | :x: |
 | `startGroupClipping__19ClippingActorHolderFP9LiveActorRC12JMapInfoIter` | :x: |
-| `setTypeToSphere__19ClippingActorHolderFP9LiveActorfPCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `setTypeToSphere__19ClippingActorHolderFP9LiveActorfPCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setFarClipLevel__19ClippingActorHolderFP9LiveActorl` | :x: |
 | `find__19ClippingActorHolderCFPC9LiveActor` | :x: |
 | `__dt__19ClippingActorHolderFv` | :white_check_mark: |

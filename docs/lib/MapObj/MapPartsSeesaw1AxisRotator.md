@@ -24,7 +24,7 @@
 | `getDistanceFromRotAxis__26MapPartsSeesaw1AxisRotatorCFv` | :x: |
 | `addForceHipDrop__26MapPartsSeesaw1AxisRotatorFv` | :x: |
 | `isGoingToReachTargetAngle__26MapPartsSeesaw1AxisRotatorCFv` | :x: |
-| `calcRotatedAngle__26MapPartsSeesaw1AxisRotatorCFPfRCQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;` | :x: |
+| `calcRotatedAngle__26MapPartsSeesaw1AxisRotatorCFPfRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
 | `tryHipDrop__26MapPartsSeesaw1AxisRotatorFv` | :x: |
 | `__dt__26MapPartsSeesaw1AxisRotatorFv` | :x: |
 | `__sinit_\MapPartsSeesaw1AxisRotator_cpp` | :x: |

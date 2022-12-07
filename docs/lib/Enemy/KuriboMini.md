@@ -67,6 +67,6 @@
 | `execute__Q213NrvKuriboMini18KuriboMiniNrvChaseCFP5Spine` | :x: |
 | `execute__Q213NrvKuriboMini23KuriboMiniNrvFindPlayerCFP5Spine` | :x: |
 | `execute__Q213NrvKuriboMini19KuriboMiniNrvWanderCFP5Spine` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10KuriboMini,M10KuriboMiniFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10KuriboMini,M10KuriboMiniFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10KuriboMiniFv` | :x: |

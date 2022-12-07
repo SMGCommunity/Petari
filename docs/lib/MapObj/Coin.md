@@ -31,8 +31,8 @@
 | `appearControlPose__4CoinFv` | :white_check_mark: |
 | `appearNonActive__4CoinFv` | :white_check_mark: |
 | `appearFixTimer__4CoinFll` | :white_check_mark: |
-| `appearMove__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;ll` | :white_check_mark: |
-| `appearHop__4CoinFRCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `appearMove__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | :white_check_mark: |
+| `appearHop__4CoinFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `requestActive__4CoinFv` | :white_check_mark: |
 | `requestActiveWithGravity__4CoinFv` | :white_check_mark: |
 | `requestDeactive__4CoinFv` | :white_check_mark: |
@@ -71,6 +71,6 @@
 | `execute__Q27NrvCoin14CoinNrvFixHideCFP5Spine` | :white_check_mark: |
 | `execute__Q27NrvCoin10CoinNrvFixCFP5Spine` | :white_check_mark: |
 | `execute__Q27NrvCoin16CoinNrvNonActiveCFP5Spine` | :white_check_mark: |
-| `__cl__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR33FunctorV0M&lt;P4Coin,M4CoinFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR33FunctorV0M<P4Coin,M4CoinFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__4CoinFv` | :white_check_mark: |

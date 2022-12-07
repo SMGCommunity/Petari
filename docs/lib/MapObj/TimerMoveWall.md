@@ -21,6 +21,6 @@
 | `execute__Q216NrvTimerMoveWall24TimerMoveWallNrvMoveBackCFP5Spine` | :x: |
 | `execute__Q216NrvTimerMoveWall25TimerMoveWallNrvMoveFrontCFP5Spine` | :x: |
 | `execute__Q216NrvTimerMoveWall20TimerMoveWallNrvWaitCFP5Spine` | :x: |
-| `__cl__Q22MR53FunctorV0M&lt;P13TimerMoveWall,M13TimerMoveWallFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR53FunctorV0M&lt;P13TimerMoveWall,M13TimerMoveWallFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `__cl__Q22MR53FunctorV0M<P13TimerMoveWall,M13TimerMoveWallFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR53FunctorV0M<P13TimerMoveWall,M13TimerMoveWallFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__13TimerMoveWallFv` | :x: |

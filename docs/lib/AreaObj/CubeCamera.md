@@ -14,7 +14,7 @@
 | `movement__14CubeCameraAreaFv` | :white_check_mark: |
 | `isValidCameraID__14CubeCameraAreaCFv` | :white_check_mark: |
 | `getCameraID__14CubeCameraAreaCFv` | :white_check_mark: |
-| `isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3&lt;f&gt;` | :white_check_mark: |
+| `isInVolume__14CubeCameraAreaCFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setCurrentCategory__14CubeCameraAreaFl` | :white_check_mark: |
 | `getCategoryArg__14CubeCameraAreaCFv` | :white_check_mark: |
 | `__ct__13CubeCameraMgrFlPCc` | :white_check_mark: |

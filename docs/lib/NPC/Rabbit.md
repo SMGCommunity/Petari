@@ -18,8 +18,8 @@
 | `exeGoal__6RabbitFv` | :x: |
 | `exeFinish__6RabbitFv` | :x: |
 | `calcAndSetBaseMtx__6RabbitFv` | :x: |
-| `calcRailPos__6RabbitFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `isNeedTurn__6RabbitFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `calcRailPos__6RabbitFPQ29JGeometry8TVec3<f>` | :x: |
+| `isNeedTurn__6RabbitFRCQ29JGeometry8TVec3<f>` | :x: |
 | `updateJump__6RabbitFv` | :x: |
 | `exeForwardLand__6RabbitFv` | :x: |
 | `exePreJump__6RabbitFv` | :x: |

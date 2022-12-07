@@ -9,7 +9,7 @@
 # OctahedronBezierSurface.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `calcBezierHandlePoint__37@unnamed@OctahedronBezierSurface_cpp@FPQ29JGeometry8TVec3&lt;f&gt;PQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;RCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `calcBezierHandlePoint__37@unnamed@OctahedronBezierSurface_cpp@FPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `__ct__23OctahedronBezierSurfaceFUl` | :x: |
 | `getVertex__23OctahedronBezierSurfaceCFl` | :x: |
 | `getVertexPtr__23OctahedronBezierSurfaceFl` | :x: |

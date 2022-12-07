@@ -18,6 +18,6 @@
 | `sendTextureVertex__20ImageEffectLocalUtilFll` | :x: |
 | `blurTexture__20ImageEffectLocalUtilFP10JUTTexturellUlff` | :x: |
 | `connectToSceneNormalBloom__2MRFP11BloomEffect` | :x: |
-| `Functor&lt;11BloomEffect&gt;__2MRFPC11BloomEffectM11BloomEffectFPCvPCv_v_Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt;` | :x: |
-| `__cl__Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt;CFv` | :x: |
-| `clone__Q22MR51FunctorV0M&lt;PC11BloomEffect,M11BloomEffectFPCvPCv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<11BloomEffect>__2MRFPC11BloomEffectM11BloomEffectFPCvPCv_v_Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>` | :x: |
+| `__cl__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFv` | :x: |
+| `clone__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFP7JKRHeap` | :x: |

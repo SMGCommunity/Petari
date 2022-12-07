@@ -20,9 +20,9 @@
 | `isClose__8WipeRingCFv` | :x: |
 | `isWipeIn__8WipeRingCFv` | :x: |
 | `isWipeOut__8WipeRingCFv` | :x: |
-| `setCenterPos__8WipeRingFRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `setCenterPos__8WipeRingFRCQ29JGeometry8TVec3<f>` | :x: |
 | `startAnim__8WipeRingFPCc` | :x: |
-| `getMarioCenterPos__8WipeRingFPQ29JGeometry8TVec3&lt;f&gt;` | :x: |
+| `getMarioCenterPos__8WipeRingFPQ29JGeometry8TVec3<f>` | :x: |
 | `calcRadius__8WipeRingCFv` | :x: |
 | `calcMaxRadius__8WipeRingCFv` | :x: |
 | `updatePlayerPos__8WipeRingFv` | :x: |
@@ -36,4 +36,4 @@
 | `execute__Q222@unnamed@WipeRing_cpp@15WipeRingNrvOpenCFP5Spine` | :x: |
 | `execute__Q222@unnamed@WipeRing_cpp@17WipeRingNrvWipeInCFP5Spine` | :x: |
 | `execute__Q222@unnamed@WipeRing_cpp@16WipeRingNrvCloseCFP5Spine` | :x: |
-| `distance__Q29JGeometry8TVec2&lt;f&gt;CFRCQ29JGeometry8TVec2&lt;f&gt;` | :x: |
+| `distance__Q29JGeometry8TVec2<f>CFRCQ29JGeometry8TVec2<f>` | :x: |

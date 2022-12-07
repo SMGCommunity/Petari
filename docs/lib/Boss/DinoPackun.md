@@ -9,7 +9,7 @@
 # DinoPackun.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `set&lt;f&gt;__Q29JGeometry8TVec4&lt;f&gt;FRCQ29JGeometry8TVec4&lt;f&gt;_v` | :x: |
+| `set<f>__Q29JGeometry8TVec4<f>FRCQ29JGeometry8TVec4<f>_v` | :x: |
 | `__ct__Q224@unnamed@DinoPackun_cpp@15DinoPackunParamFv` | :x: |
 | `__ct__10DinoPackunFPCc` | :x: |
 | `init__10DinoPackunFRC12JMapInfoIter` | :x: |
@@ -23,7 +23,7 @@
 | `makeActorDead__10DinoPackunFv` | :x: |
 | `startHitReaction__10DinoPackunFv` | :x: |
 | `isHitReaction__10DinoPackunCFl` | :x: |
-| `hitScaleJoint__10DinoPackunFPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
+| `hitScaleJoint__10DinoPackunFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `getEggShell__10DinoPackunFv` | :x: |
 | `getEggBrokenModel__10DinoPackunFv` | :x: |
 | `getBallModel__10DinoPackunFv` | :x: |
@@ -44,7 +44,7 @@
 | `appearStarPiece__10DinoPackunFl` | :x: |
 | `isSensorEgg__10DinoPackunCFPC9HitSensor` | :x: |
 | `resetPosition__10DinoPackunFv` | :x: |
-| `adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3&lt;f&gt;f` | :x: |
+| `adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `activateParts__10DinoPackunFv` | :x: |
 | `onMovementParts__10DinoPackunFv` | :x: |
 | `onAimTailBall__10DinoPackunFl` | :x: |
@@ -61,10 +61,10 @@
 | `isUseEggShell__19DinoPackunSequencerCFv` | :x: |
 | `init__19DinoPackunSequencerFv` | :x: |
 | `start__19DinoPackunSequencerFv` | :x: |
-| `setTrans__Q29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;FRCQ29JGeometry8TVec3&lt;f&gt;` | :x: |
-| `__dt__35JointControlDelegator&lt;10DinoPackun&gt;Fv` | :x: |
-| `calcJointMatrix__35JointControlDelegator&lt;10DinoPackun&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__35JointControlDelegator&lt;10DinoPackun&gt;FPQ29JGeometry64TPosition3&lt;Q29JGeometry38TMatrix34&lt;Q29JGeometry13SMatrix34C&lt;f&gt;&gt;&gt;RC19JointControllerInfo` | :x: |
-| `__cl__Q22MR47FunctorV0M&lt;P10DinoPackun,M10DinoPackunFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR47FunctorV0M&lt;P10DinoPackun,M10DinoPackunFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>` | :x: |
+| `__dt__35JointControlDelegator<10DinoPackun>Fv` | :x: |
+| `calcJointMatrix__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `calcJointMatrixAfterChild__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
+| `__cl__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__10DinoPackunFv` | :x: |

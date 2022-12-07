@@ -9,5 +9,5 @@
 # WalkerStateFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `isInSightPlayer__19WalkerStateFunctionFPC9LiveActorRCQ29JGeometry8TVec3&lt;f&gt;PC16WalkerStateParam` | :x: |
+| `isInSightPlayer__19WalkerStateFunctionFPC9LiveActorRCQ29JGeometry8TVec3<f>PC16WalkerStateParam` | :x: |
 | `calcPassiveMovement__19WalkerStateFunctionFP9LiveActorPC16WalkerStateParam` | :x: |

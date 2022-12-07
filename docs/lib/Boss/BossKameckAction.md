@@ -10,7 +10,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16BossKameckActionFPCcP10BossKameck` | :x: |
-| `__dt__28ActorStateBase&lt;10BossKameck&gt;Fv` | :x: |
+| `__dt__28ActorStateBase<10BossKameck>Fv` | :x: |
 | `control__23ActorStateBaseInterfaceFv` | :x: |
 | `kill__23ActorStateBaseInterfaceFv` | :x: |
 | `appear__23ActorStateBaseInterfaceFv` | :x: |

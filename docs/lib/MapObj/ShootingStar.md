@@ -23,6 +23,6 @@
 | `execute__Q215NrvShootingStar27HostTypeNrvWaitForNextShootCFP5Spine` | :white_check_mark: |
 | `execute__Q215NrvShootingStar19HostTypeNrvShootingCFP5Spine` | :white_check_mark: |
 | `execute__Q215NrvShootingStar22HostTypeNrvPreShootingCFP5Spine` | :white_check_mark: |
-| `__cl__Q22MR51FunctorV0M&lt;P12ShootingStar,M12ShootingStarFPCvPv_v&gt;CFv` | :white_check_mark: |
-| `clone__Q22MR51FunctorV0M&lt;P12ShootingStar,M12ShootingStarFPCvPv_v&gt;CFP7JKRHeap` | :white_check_mark: |
+| `__cl__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR51FunctorV0M<P12ShootingStar,M12ShootingStarFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__12ShootingStarFv` | :white_check_mark: |

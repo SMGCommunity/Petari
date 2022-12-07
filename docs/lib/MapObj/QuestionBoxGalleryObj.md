@@ -29,7 +29,7 @@
 | `execute__Q224NrvQuestionBoxGalleryObj32QuestionBoxGalleryObjNrvOffStartCFP5Spine` | :x: |
 | `execute__Q224NrvQuestionBoxGalleryObj30QuestionBoxGalleryObjNrvOnWaitCFP5Spine` | :x: |
 | `execute__Q224NrvQuestionBoxGalleryObj31QuestionBoxGalleryObjNrvOnStartCFP5Spine` | :x: |
-| `Functor&lt;21QuestionBoxGalleryObj&gt;__2MRFP21QuestionBoxGalleryObjM21QuestionBoxGalleryObjFPCvPv_v_Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt;` | :x: |
-| `__cl__Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt;CFv` | :x: |
-| `clone__Q22MR69FunctorV0M&lt;P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v&gt;CFP7JKRHeap` | :x: |
+| `Functor<21QuestionBoxGalleryObj>__2MRFP21QuestionBoxGalleryObjM21QuestionBoxGalleryObjFPCvPv_v_Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v>` | :x: |
+| `__cl__Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v>CFv` | :x: |
+| `clone__Q22MR69FunctorV0M<P21QuestionBoxGalleryObj,M21QuestionBoxGalleryObjFPCvPv_v>CFP7JKRHeap` | :x: |
 | `__dt__21QuestionBoxGalleryObjFv` | :x: |

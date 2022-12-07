@@ -15,9 +15,9 @@
 | `initAfterPlacementForAttributeEffect__12EffectKeeperFPA4_f` | :x: |
 | `setBinder__12EffectKeeperFPC6Binder` | :x: |
 | `addEffect__12EffectKeeperFPCcP9LiveActor` | :x: |
-| `registerEffect__12EffectKeeperFPCcPCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCQ29JGeometry8TVec3&lt;f&gt;PCc` | :x: |
+| `registerEffect__12EffectKeeperFPCcPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>PCc` | :x: |
 | `registerEffect__12EffectKeeperFPCcPA4_fPCcPCc` | :x: |
-| `registerEffect__12EffectKeeperFPCcPA4_fPCQ29JGeometry8TVec3&lt;f&gt;PCcPCc` | :x: |
+| `registerEffect__12EffectKeeperFPCcPA4_fPCQ29JGeometry8TVec3<f>PCcPCc` | :x: |
 | `registerEffectWithoutSRT__12EffectKeeperFPCcPCc` | :x: |
 | `registerSyncBckEffect__12EffectKeeperFP12XanimePlayerPCcPCclffb` | :x: |
 | `createEmitter__12EffectKeeperFPCc` | :x: |
@@ -46,4 +46,4 @@
 | `updateFloorCode__12EffectKeeperFv` | :x: |
 | `updateFloorCode__12EffectKeeperFPC8Triangle` | :x: |
 | `isTypeAttributeEffect__12EffectKeeperCFPCc` | :x: |
-| `for_each&lt;PP12MultiEmitter,Q23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt;&gt;__3stdFPP12MultiEmitterPP12MultiEmitterQ23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt;_Q23std51binder2nd&lt;Q23std30mem_fun1_t&lt;v,12MultiEmitter,l&gt;,l&gt;` | :x: |
+| `for_each<PP12MultiEmitter,Q23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l>>__3stdFPP12MultiEmitterPP12MultiEmitterQ23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l>_Q23std51binder2nd<Q23std30mem_fun1_t<v,12MultiEmitter,l>,l>` | :x: |
