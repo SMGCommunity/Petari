@@ -427,7 +427,7 @@ createNameObj<13MarioLauncher>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Nam
 createNameObj<22MarioLauncherAttractor>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12WaterBazooka>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<13WaterPressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<12FirePressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<12FirePressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<18IronCannonLauncher>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<23IronCannonLauncherPoint>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<19FirePressureRadiate>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false

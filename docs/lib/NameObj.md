@@ -15,7 +15,7 @@
 | [NameObjArchiveListCollector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjArchiveListCollector.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [NameObjCategoryList.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjCategoryList.md) | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | [NameObjExecuteHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjExecuteHolder.md) | 100.0% | 49 / 49 | 100.0% | :white_check_mark: 
-| [NameObjFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjFactory.md) | 15.32774222026043% | 76 / 568 | 13.380281690140844% | :eight_pointed_black_star: 
+| [NameObjFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjFactory.md) | 15.504303685720592% | 77 / 568 | 13.556338028169016% | :eight_pointed_black_star: 
 | [NameObjFinder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjFinder.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [NameObjGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjGroup.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | [NameObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjHolder.md) | 35.95505617977528% | 6 / 10 | 60.0% | :eight_pointed_black_star: 

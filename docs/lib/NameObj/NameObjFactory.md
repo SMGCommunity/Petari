@@ -325,7 +325,7 @@
 | `createNameObj<22MarioLauncherAttractor>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<12WaterBazooka>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<13WaterPressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<12FirePressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<12FirePressure>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<18IronCannonLauncher>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<23IronCannonLauncherPoint>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<19FirePressureRadiate>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |

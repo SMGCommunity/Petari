@@ -574,7 +574,7 @@ namespace {
 		{ "WaterBazooka", NULL, "WaterBazooka" },
 		{ "ElectricBazooka", NULL, "ElectricBazooka" },
 		{ "WaterPressure", NULL, "WaterPressure" },
-		{ "FirePressure", NULL, "FirePressure" },
+		{ "FirePressure", createNameObj<FirePressure>, "FirePressure" },
 		{ "IronCannonLauncher", NULL, "IronCannonLauncher" },
 		{ "IronCannonLauncherPoint", NULL, 0 },
 		{ "FirePressureRadiate", NULL, "FirePressure" },

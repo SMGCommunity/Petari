@@ -37,6 +37,7 @@
 #include "Game/MapObj/DashRing.h"
 #include "Game/MapObj/DeadLeaves.h"
 #include "Game/MapObj/FireBar.h"
+#include "Game/MapObj/FirePressure.h"
 #include "Game/MapObj/FlipPanel.h"
 #include "Game/MapObj/Fountain.h"
 #include "Game/MapObj/FountainBig.h"
