@@ -106,7 +106,7 @@
 | [FallingSmallRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallingSmallRock.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [FallOutFieldDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallOutFieldDraw.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [FireBar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FireBar.md) | 71.49877149877149% | 19 / 21 | 90.47619047619048% | :eight_pointed_black_star: 
-| [FirePressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressure.md) | 0.0% | 0 / 7 | 0.0% | :x: 
+| [FirePressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressure.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [FirePressureBullet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureBullet.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | [FirePressureBulletHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureBulletHolder.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [FirePressureRadiate.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureRadiate.md) | 0.0% | 0 / 37 | 0.0% | :x: 
