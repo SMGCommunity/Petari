@@ -51,6 +51,43 @@ please join our **[Discord]** server.
 
     *Version `3.7+`*
 
+- **Any Code IDE (Visual Studio Code recommended)**
+
+    *If you are using Visual Studio Code, add this to `c_cpp_properties.json`:
+
+     ```json
+    {
+        "configurations": [
+            {
+                "name": "Win32",
+                "includePath": [
+                    "${workspaceFolder}/**",
+                    "${workspaceFolder}/libs/JSystem/include",
+                    "${workspaceFolder}/libs/MetroTRK/include",
+                    "${workspaceFolder}/libs/MSL_C/include",
+                    "${workspaceFolder}/libs/nw4r/include",
+                    "${workspaceFolder}/libs/Runtime/include",
+                    "${workspaceFolder}/libs/RVL_SDK/include",
+                    "${workspaceFolder}/libs/RVLFaceLib/include"
+                ],
+                "defines": [
+                    "_DEBUG",
+                    "UNICODE",
+                    "_UNICODE",
+                    "MTX_USE_PS",
+                    "GEKKO",
+                ],
+                "cStandard": "c99",
+                "cppStandard": "c++98",
+                "intelliSenseMode": "windows-msvc-x64"
+            }
+        ],
+        "version": 4
+    }
+    ```
+
+    *This setup will help you include each library without compiler error issues from Intellisense.
+
 <br>
 
 ### Knowledge
