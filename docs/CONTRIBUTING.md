@@ -53,7 +53,7 @@ please join our **[Discord]** server.
 
 - **Any Code IDE (Visual Studio Code recommended)**
 
-    *If you are using Visual Studio Code, add this to `c_cpp_properties.json`:
+    *If you are using Visual Studio Code, add this to* `c_cpp_properties.json`:
 
      ```json
     {
@@ -86,7 +86,7 @@ please join our **[Discord]** server.
     }
     ```
 
-    *This setup will help you include each library without compiler error issues from Intellisense.
+    *This setup will help you include each library without compiler error issues from Intellisense.*
 
 <br>
 
