@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 96 Completed -- (0.0%)
 # TakoHei.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

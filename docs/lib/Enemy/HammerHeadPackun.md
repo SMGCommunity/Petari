@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 61 Completed -- (0.0%)
 # HammerHeadPackun.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

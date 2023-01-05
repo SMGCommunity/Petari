@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 32 / 32 Completed -- (100.0%)
 # SimpleMapObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

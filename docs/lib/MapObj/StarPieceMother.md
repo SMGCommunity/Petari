@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 19 Completed -- (0.0%)
 # StarPieceMother.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 35 Completed -- (0.0%)
 # LavaHomeSeesawRotator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 14 / 19 Completed -- (73.68421052631578%)
 # SpinDriverOperateRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

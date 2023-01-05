@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 59 / 59 Completed -- (100.0%)
 # PunchingKinoko.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

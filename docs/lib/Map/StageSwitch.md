@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 26 / 31 Completed -- (83.87096774193549%)
 # StageSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

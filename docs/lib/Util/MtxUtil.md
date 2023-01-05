@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 11 / 79 Completed -- (13.924050632911392%)
 # MtxUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

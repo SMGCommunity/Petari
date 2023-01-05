@@ -55,13 +55,17 @@ class Object:
     def calculateProgress(self):
         fullSize = 0
         doneSize = 0
+        numFuncs = 0
+        doneFuncs = 0
         for function in self.functions:
             fullSize += function.funcSize
+            numFuncs += 1
             
             if function.isCompleted:
                 doneSize += function.funcSize
+                doneFuncs += 1
 
-        return doneSize, fullSize
+        return doneSize, fullSize, numFuncs, doneFuncs
 
 class Library:
     name = ""
@@ -101,13 +105,18 @@ class Library:
     def calculateProgress(self):
         fullSize = 0
         doneSize = 0
+        funcNum = 0
+        funcDone = 0
 
         for obj in self.objects:
-            d, f = obj.calculateProgress()
+            d, f, func_num, func_done = obj.calculateProgress()
             fullSize += f
             doneSize += d
+            funcNum += func_num
+            funcDone += func_done
         
-        return doneSize, fullSize
+        return doneSize, fullSize, funcNum, funcDone
+
 
     def getName(self):
         return self.name
@@ -138,7 +147,7 @@ class Library:
         page.append("| ------------- | ------------- | ------------- | ------------- | ------------- \n")
 
         for obj in self.objects:
-            d, f = obj.calculateProgress()
+            d, f, pad1, pad2 = obj.calculateProgress()
             prog = (d / f) * 100.0
             funcProg = (obj.totalCompletedFunctions / obj.totalFunctions) * 100.0
 
@@ -166,6 +175,11 @@ class Library:
             obj_page.append("| :x: | Function has not yet been started or is not matching. \n")
             obj_page.append("| :white_check_mark: | Function is completed. \n")
             obj_page.append("\n\n")
+
+            pad1, pad2, numFunc, doneFunc = obj.calculateProgress()
+            percent = (doneFunc / numFunc) * 100.0
+
+            obj_page.append(f"# {doneFunc} / {numFunc} Completed -- ({percent}%)\n")
 
             obj_page.append(f"# {obj.name}\n")
             obj_page.append("| Symbol | Decompiled? |\n")
@@ -283,18 +297,22 @@ for csv_file in sorted(csv_files, key=str.casefold):
 full_sdk_size = 0
 done_sdk_size = 0
 
+num_funcs = 0
+num_done_funcs = 0
 
 print("Calculating percentages...")
 
 for key in libraries:
     lib = libraries[key]
-    d, f = lib.calculateProgress()
+    d, f, funcNum, funcDoneNum = lib.calculateProgress()
 
     libName = f"{lib.getName()}.a"
 
     if libName in game_libs:
         full_sdk_size += f
         done_sdk_size += d
+        num_funcs += funcNum
+        num_done_funcs += funcDoneNum
 
     if lib.getName() not in lib_percent_colors:
         lib.generateJSONTag((d / f ) * 100.0, "ffff66")
@@ -302,8 +320,10 @@ for key in libraries:
         lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
 
 progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
+progPercent_Func = (num_done_funcs / num_funcs) * 100.0
 
 print(f"Progress: {progPercent_sdk}% [{done_sdk_size} / {full_sdk_size}] bytes")
+print(f"Progress: {progPercent_Func}% [{num_done_funcs} / {num_funcs}] functions")
 print("Generating JSON...")
 
 generateFullProgJSON("Game", progPercent_sdk, "blue")
@@ -317,7 +337,7 @@ progressPage.append("| ------------- | ------------- |\n")
 
 for key in libraries:
     lib = libraries[key]
-    d, f = lib.calculateProgress()
+    d, f, pad1, pad2 = lib.calculateProgress()
     libprog = (d / f) * 100.0
     progressPage.append(f"| [{key}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}.md) | {libprog}% |\n")
 

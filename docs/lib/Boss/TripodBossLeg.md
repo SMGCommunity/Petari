@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 90 Completed -- (0.0%)
 # TripodBossLeg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

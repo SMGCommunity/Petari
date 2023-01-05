@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 34 Completed -- (2.941176470588235%)
 # SystemUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

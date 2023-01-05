@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 87 Completed -- (0.0%)
 # CocoSambo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

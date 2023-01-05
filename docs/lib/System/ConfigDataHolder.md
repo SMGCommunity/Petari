@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 23 / 23 Completed -- (100.0%)
 # ConfigDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 10 / 32 Completed -- (31.25%)
 # AnmPlayer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

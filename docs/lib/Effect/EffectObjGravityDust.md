@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 8 Completed -- (0.0%)
 # EffectObjGravityDust.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

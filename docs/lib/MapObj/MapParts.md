@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 8 Completed -- (100.0%)
 # MapParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

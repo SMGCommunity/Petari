@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 6 Completed -- (100.0%)
 # Spine.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

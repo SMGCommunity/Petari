@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 24 Completed -- (0.0%)
 # GalaxyMapTitle.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 14 / 15 Completed -- (93.33333333333333%)
 # SpaceMine.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

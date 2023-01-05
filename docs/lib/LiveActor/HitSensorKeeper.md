@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 16 / 16 Completed -- (100.0%)
 # HitSensorKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

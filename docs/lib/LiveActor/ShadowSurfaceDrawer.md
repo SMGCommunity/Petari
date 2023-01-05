@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 4 Completed -- (50.0%)
 # ShadowSurfaceDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

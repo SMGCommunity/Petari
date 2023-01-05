@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 88 Completed -- (0.0%)
 # Syati.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

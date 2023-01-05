@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 24 / 24 Completed -- (100.0%)
 # CoinGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

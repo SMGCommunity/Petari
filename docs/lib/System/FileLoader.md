@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 16 Completed -- (0.0%)
 # FileLoader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

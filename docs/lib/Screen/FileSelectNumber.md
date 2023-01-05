@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 31 Completed -- (0.0%)
 # FileSelectNumber.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

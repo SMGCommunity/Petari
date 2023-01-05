@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 25 / 25 Completed -- (100.0%)
 # MechaKoopaPartsHead.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

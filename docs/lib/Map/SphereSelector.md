@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 15 / 70 Completed -- (21.428571428571427%)
 # SphereSelector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

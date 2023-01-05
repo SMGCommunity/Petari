@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 89 Completed -- (0.0%)
 # Kuribo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

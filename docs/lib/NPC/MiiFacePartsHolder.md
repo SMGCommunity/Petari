@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 20 Completed -- (5.0%)
 # MiiFacePartsHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

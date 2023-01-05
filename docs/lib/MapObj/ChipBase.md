@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 36 / 39 Completed -- (92.3076923076923%)
 # ChipBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

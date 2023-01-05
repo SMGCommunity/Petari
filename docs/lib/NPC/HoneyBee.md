@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 28 Completed -- (0.0%)
 # HoneyBee.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

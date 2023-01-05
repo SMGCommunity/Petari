@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 48 Completed -- (2.083333333333333%)
 # DemoFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

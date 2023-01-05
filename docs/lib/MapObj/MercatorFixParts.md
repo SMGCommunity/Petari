@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 4 Completed -- (0.0%)
 # MercatorFixParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 12 / 12 Completed -- (100.0%)
 # CoinSpot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

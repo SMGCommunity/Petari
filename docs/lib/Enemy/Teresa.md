@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 119 Completed -- (0.0%)
 # Teresa.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

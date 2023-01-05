@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 5 Completed -- (40.0%)
 # CameraGround.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

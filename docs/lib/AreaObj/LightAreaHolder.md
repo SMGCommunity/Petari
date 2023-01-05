@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 5 Completed -- (60.0%)
 # LightAreaHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

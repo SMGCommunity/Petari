@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 31 Completed -- (58.06451612903226%)
 # KCollision.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

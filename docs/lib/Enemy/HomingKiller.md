@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 69 Completed -- (0.0%)
 # HomingKiller.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

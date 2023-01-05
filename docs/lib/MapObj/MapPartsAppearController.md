@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 21 / 21 Completed -- (100.0%)
 # MapPartsAppearController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

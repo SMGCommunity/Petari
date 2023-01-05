@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 5 Completed -- (80.0%)
 # ImageEffectArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

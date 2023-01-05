@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 66 Completed -- (0.0%)
 # GameScene.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

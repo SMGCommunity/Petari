@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 86 / 86 Completed -- (100.0%)
 # JMapUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 71 / 81 Completed -- (87.65432098765432%)
 # CameraDirector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 10 Completed -- (30.0%)
 # CameraParallel.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 9 Completed -- (33.33333333333333%)
 # BckCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 64 Completed -- (0.0%)
 # PenguinRacer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

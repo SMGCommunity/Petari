@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 26 Completed -- (0.0%)
 # BegomanLauncher.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

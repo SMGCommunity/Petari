@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 21 / 22 Completed -- (95.45454545454545%)
 # AssemblyBlock.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

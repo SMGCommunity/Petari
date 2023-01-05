@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 7 Completed -- (71.42857142857143%)
 # ViewGroupCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

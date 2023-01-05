@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 39 / 68 Completed -- (57.35294117647059%)
 # ShadowController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

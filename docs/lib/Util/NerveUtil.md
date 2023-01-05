@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 15 / 15 Completed -- (100.0%)
 # NerveUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

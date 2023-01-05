@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 8 Completed -- (62.5%)
 # MirrorActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

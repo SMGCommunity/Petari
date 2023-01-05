@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 15 Completed -- (0.0%)
 # SaveDataBannerCreator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

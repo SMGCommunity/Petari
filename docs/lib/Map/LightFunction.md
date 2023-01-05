@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 23 Completed -- (17.391304347826086%)
 # LightFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

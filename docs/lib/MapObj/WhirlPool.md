@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 9 Completed -- (0.0%)
 # WhirlPool.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

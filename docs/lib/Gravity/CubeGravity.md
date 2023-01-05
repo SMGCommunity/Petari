@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 10 Completed -- (10.0%)
 # CubeGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

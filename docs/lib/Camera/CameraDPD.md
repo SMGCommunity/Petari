@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 8 Completed -- (37.5%)
 # CameraDPD.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

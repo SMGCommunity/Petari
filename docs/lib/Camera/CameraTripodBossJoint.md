@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 7 Completed -- (42.857142857142854%)
 # CameraTripodBossJoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

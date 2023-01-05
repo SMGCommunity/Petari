@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 6 Completed -- (83.33333333333334%)
 # ConeGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

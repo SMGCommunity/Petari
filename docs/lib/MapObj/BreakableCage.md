@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 21 / 23 Completed -- (91.30434782608695%)
 # BreakableCage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

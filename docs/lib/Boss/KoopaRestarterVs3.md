@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 4 Completed -- (0.0%)
 # KoopaRestarterVs3.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

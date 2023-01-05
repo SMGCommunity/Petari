@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 23 Completed -- (34.78260869565217%)
 # TalkNodeCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

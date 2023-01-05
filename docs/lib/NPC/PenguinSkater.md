@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 54 Completed -- (0.0%)
 # PenguinSkater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

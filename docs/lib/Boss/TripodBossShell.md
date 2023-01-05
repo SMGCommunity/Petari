@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 14 Completed -- (0.0%)
 # TripodBossShell.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

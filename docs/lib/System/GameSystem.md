@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 32 Completed -- (3.125%)
 # GameSystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

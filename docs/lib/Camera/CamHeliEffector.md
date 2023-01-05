@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 24 Completed -- (8.333333333333332%)
 # CamHeliEffector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

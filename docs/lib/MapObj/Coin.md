@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 65 / 65 Completed -- (100.0%)
 # Coin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 2 Completed -- (50.0%)
 # CamTranslatorTowerPos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

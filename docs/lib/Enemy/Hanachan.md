@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 126 Completed -- (0.0%)
 # Hanachan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

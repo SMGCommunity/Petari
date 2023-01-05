@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 68 Completed -- (0.0%)
 # SurfRay.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

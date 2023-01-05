@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 16 Completed -- (0.0%)
 # NWC24FileAPI.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

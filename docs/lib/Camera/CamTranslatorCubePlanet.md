@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 2 Completed -- (100.0%)
 # CamTranslatorCubePlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

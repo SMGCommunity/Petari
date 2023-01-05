@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 15 / 21 Completed -- (71.42857142857143%)
 # SpkSpeakerCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

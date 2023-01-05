@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 32 Completed -- (0.0%)
 # MaterialAnmBuffer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

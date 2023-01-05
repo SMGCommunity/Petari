@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 18 Completed -- (100.0%)
 # BigFan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 38 Completed -- (2.631578947368421%)
 # Polta.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 11 / 11 Completed -- (100.0%)
 # CameraMan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

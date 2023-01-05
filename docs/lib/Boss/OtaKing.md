@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 99 Completed -- (0.0%)
 # OtaKing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 46 Completed -- (0.0%)
 # EyeBeamer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 13 / 13 Completed -- (100.0%)
 # ActorJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

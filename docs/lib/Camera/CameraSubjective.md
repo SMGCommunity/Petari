@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 6 Completed -- (50.0%)
 # CameraSubjective.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

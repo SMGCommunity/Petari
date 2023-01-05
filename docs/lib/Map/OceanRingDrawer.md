@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 7 / 21 Completed -- (33.33333333333333%)
 # OceanRingDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 10 Completed -- (80.0%)
 # GameDataConst.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

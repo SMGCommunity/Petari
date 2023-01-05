@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 33 / 37 Completed -- (89.1891891891892%)
 # CameraManEvent.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 65 Completed -- (0.0%)
 # CareTaker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

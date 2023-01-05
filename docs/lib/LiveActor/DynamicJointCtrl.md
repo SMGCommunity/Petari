@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 25 Completed -- (32.0%)
 # DynamicJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

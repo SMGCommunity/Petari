@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 83 Completed -- (0.0%)
 # StaffRoll.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

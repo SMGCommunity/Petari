@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 14 / 14 Completed -- (100.0%)
 # TalkMessageInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

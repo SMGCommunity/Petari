@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 4 Completed -- (75.0%)
 # WireGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

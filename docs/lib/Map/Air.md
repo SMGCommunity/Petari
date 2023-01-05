@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 33 / 33 Completed -- (100.0%)
 # Air.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

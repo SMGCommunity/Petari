@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 6 Completed -- (33.33333333333333%)
 # ShadowVolumeBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

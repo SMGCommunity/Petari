@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 40 Completed -- (5.0%)
 # AstroMapObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 39 / 39 Completed -- (100.0%)
 # NoteFairy.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

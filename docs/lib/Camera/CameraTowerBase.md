@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 10 Completed -- (20.0%)
 # CameraTowerBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

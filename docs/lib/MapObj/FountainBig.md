@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 21 Completed -- (0.0%)
 # FountainBig.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

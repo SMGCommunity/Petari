@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 12 / 14 Completed -- (85.71428571428571%)
 # WatchTowerRotateStep.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

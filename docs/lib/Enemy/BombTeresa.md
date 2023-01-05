@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 93 Completed -- (0.0%)
 # BombTeresa.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

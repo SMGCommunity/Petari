@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 20 / 20 Completed -- (100.0%)
 # UFOKinoko.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

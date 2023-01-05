@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 7 Completed -- (28.57142857142857%)
 # BinaryDataChunkHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

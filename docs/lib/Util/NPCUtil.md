@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 76 Completed -- (0.0%)
 # NPCUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

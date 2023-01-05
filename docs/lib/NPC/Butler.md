@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 53 Completed -- (0.0%)
 # Butler.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

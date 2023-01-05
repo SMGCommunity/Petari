@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 7 / 11 Completed -- (63.63636363636363%)
 # HashUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

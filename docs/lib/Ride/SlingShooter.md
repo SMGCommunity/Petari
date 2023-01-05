@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 45 Completed -- (0.0%)
 # SlingShooter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 7 / 8 Completed -- (87.5%)
 # CircleCoinGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

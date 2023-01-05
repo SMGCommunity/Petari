@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 14 / 16 Completed -- (87.5%)
 # ShadowVolumeDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

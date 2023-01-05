@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 17 Completed -- (0.0%)
 # SwitchBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

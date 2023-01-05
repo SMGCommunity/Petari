@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 27 Completed -- (0.0%)
 # BegomanSpringHead.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

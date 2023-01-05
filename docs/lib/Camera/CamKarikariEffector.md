@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 3 Completed -- (33.33333333333333%)
 # CamKarikariEffector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

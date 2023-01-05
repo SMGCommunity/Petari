@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 19 / 37 Completed -- (51.35135135135135%)
 # LiveActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

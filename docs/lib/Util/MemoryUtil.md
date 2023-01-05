@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 12 / 24 Completed -- (50.0%)
 # MemoryUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

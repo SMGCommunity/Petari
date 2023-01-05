@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 10 Completed -- (40.0%)
 # JointController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 13 / 22 Completed -- (59.09090909090909%)
 # SpkSound.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 13 Completed -- (69.23076923076923%)
 # LiveActorGroupArray.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

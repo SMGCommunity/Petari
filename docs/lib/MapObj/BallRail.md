@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 19 / 19 Completed -- (100.0%)
 # BallRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

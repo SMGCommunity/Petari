@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 3 Completed -- (66.66666666666666%)
 # HitSensorInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

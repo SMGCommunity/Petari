@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 31 / 137 Completed -- (22.62773722627737%)
 # MathUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

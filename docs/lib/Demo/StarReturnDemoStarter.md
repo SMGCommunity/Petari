@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 42 Completed -- (0.0%)
 # StarReturnDemoStarter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

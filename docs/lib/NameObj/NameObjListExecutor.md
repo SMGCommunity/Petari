@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 29 / 31 Completed -- (93.54838709677419%)
 # NameObjListExecutor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

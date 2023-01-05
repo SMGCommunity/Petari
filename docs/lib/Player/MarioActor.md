@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 88 Completed -- (1.1363636363636365%)
 # MarioActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

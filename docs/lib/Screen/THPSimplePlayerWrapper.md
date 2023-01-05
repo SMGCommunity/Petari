@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 60 Completed -- (0.0%)
 # THPSimplePlayerWrapper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

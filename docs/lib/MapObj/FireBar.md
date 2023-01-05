@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 19 / 21 Completed -- (90.47619047619048%)
 # FireBar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

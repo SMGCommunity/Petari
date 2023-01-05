@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 11 Completed -- (18.181818181818183%)
 # LightPointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

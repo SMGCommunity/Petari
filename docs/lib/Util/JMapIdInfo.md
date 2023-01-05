@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 5 Completed -- (0.0%)
 # JMapIdInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

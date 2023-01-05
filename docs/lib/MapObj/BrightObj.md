@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 42 Completed -- (9.523809523809524%)
 # BrightObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

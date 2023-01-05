@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 166 Completed -- (1.2048192771084338%)
 # LayoutUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

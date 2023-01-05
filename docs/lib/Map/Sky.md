@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 19 / 20 Completed -- (95.0%)
 # Sky.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

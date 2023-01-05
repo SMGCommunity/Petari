@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 63 Completed -- (0.0%)
 # Overwrite.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 54 Completed -- (16.666666666666664%)
 # NPCActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

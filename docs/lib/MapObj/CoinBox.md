@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 10 Completed -- (90.0%)
 # CoinBox.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

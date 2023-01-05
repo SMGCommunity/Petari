@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 8 Completed -- (75.0%)
 # BigBubbleGoalArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 50 Completed -- (0.0%)
 # KoopaSequencerVs3.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

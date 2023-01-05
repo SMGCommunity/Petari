@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 29 / 32 Completed -- (90.625%)
 # CameraParamChunk.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

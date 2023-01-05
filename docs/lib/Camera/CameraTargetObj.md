@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 21 / 45 Completed -- (46.666666666666664%)
 # CameraTargetObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

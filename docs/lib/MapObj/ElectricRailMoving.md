@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 44 Completed -- (0.0%)
 # ElectricRailMoving.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

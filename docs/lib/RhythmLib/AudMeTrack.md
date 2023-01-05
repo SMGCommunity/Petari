@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 56 Completed -- (0.0%)
 # AudMeTrack.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

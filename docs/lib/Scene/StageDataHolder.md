@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 51 Completed -- (35.294117647058826%)
 # StageDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

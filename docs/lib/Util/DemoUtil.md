@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 79 Completed -- (0.0%)
 # DemoUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

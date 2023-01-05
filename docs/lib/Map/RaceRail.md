@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 20 / 23 Completed -- (86.95652173913044%)
 # RaceRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

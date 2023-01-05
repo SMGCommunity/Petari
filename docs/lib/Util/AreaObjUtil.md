@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 22 Completed -- (13.636363636363635%)
 # AreaObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

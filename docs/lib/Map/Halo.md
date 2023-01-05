@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 22 / 24 Completed -- (91.66666666666666%)
 # Halo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

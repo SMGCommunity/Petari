@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 23 Completed -- (0.0%)
 # PlanetMap.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 7 Completed -- (0.0%)
 # KoopaFigureBall.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

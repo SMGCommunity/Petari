@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 20 Completed -- (90.0%)
 # FloaterFloatingForceTypeNormal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

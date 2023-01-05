@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 7 Completed -- (57.14285714285714%)
 # AirBubbleHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 11 Completed -- (72.72727272727273%)
 # DotCamParams.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

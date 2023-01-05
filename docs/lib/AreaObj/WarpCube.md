@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 8 Completed -- (50.0%)
 # WarpCube.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

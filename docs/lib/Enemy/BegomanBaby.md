@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 76 Completed -- (0.0%)
 # BegomanBaby.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

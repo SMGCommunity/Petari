@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 17 / 20 Completed -- (85.0%)
 # SeaGull.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

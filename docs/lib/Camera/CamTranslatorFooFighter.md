@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 3 Completed -- (100.0%)
 # CamTranslatorFooFighter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

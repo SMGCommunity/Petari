@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 1 / 22 Completed -- (4.545454545454546%)
 # KinopioAstro.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 31 / 31 Completed -- (100.0%)
 # GreenCaterpillarBig.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

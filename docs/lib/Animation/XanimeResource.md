@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 18 Completed -- (0.0%)
 # XanimeResource.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

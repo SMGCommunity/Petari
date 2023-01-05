@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 12 Completed -- (0.0%)
 # MarioWarp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 4 Completed -- (100.0%)
 # SnowplowSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

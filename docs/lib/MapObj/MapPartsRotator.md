@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 24 / 33 Completed -- (72.72727272727273%)
 # MapPartsRotator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

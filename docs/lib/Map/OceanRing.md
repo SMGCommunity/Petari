@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 21 Completed -- (9.523809523809524%)
 # OceanRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

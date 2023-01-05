@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 69 Completed -- (8.695652173913043%)
 # ModelUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

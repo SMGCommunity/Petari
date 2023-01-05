@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 28 / 33 Completed -- (84.84848484848484%)
 # RailRider.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

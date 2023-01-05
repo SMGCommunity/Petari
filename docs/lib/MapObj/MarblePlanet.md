@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 35 / 35 Completed -- (100.0%)
 # MarblePlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

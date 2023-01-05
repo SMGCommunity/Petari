@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 46 Completed -- (10.869565217391305%)
 # XanimeCore.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

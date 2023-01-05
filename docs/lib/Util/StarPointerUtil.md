@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 108 Completed -- (0.0%)
 # StarPointerUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

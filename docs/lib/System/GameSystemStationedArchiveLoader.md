@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 52 Completed -- (0.0%)
 # GameSystemStationedArchiveLoader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 37 / 142 Completed -- (26.056338028169012%)
 # ActorMovementUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

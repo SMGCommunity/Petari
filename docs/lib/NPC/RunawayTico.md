@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 39 Completed -- (0.0%)
 # RunawayTico.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

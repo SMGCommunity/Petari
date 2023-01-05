@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 55 Completed -- (0.0%)
 # Mario.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

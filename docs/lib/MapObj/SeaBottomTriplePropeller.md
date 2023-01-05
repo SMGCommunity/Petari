@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 11 Completed -- (0.0%)
 # SeaBottomTriplePropeller.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

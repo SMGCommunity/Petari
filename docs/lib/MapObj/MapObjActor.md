@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 58 / 59 Completed -- (98.30508474576271%)
 # MapObjActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

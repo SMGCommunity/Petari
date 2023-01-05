@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 13 Completed -- (0.0%)
 # Flag.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

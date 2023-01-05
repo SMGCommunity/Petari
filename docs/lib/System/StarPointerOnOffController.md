@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 38 Completed -- (0.0%)
 # StarPointerOnOffController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

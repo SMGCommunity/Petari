@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 41 Completed -- (0.0%)
 # KoopaJr.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

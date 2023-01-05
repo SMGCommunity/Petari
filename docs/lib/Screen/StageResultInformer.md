@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 74 Completed -- (0.0%)
 # StageResultInformer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

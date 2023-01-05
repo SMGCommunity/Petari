@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 95 Completed -- (0.0%)
 # RaceManager.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 40 / 178 Completed -- (22.47191011235955%)
 # ObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

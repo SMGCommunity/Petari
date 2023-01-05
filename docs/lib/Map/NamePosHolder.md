@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 6 Completed -- (66.66666666666666%)
 # NamePosHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

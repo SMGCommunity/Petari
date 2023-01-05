@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 69 Completed -- (0.0%)
 # TalkBalloon.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

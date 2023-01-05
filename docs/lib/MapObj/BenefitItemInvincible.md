@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 10 / 12 Completed -- (83.33333333333334%)
 # BenefitItemInvincible.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

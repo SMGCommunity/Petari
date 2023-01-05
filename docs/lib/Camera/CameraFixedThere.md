@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 11 Completed -- (27.27272727272727%)
 # CameraFixedThere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

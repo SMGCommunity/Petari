@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 50 Completed -- (0.0%)
 # ScenarioSelectScene.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

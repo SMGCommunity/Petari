@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 25 / 27 Completed -- (92.5925925925926%)
 # ArrowSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 179 Completed -- (0.0%)
 # EventUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

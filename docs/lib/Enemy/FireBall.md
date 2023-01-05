@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 20 Completed -- (0.0%)
 # FireBall.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

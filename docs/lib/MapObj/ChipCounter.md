@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 3 / 30 Completed -- (10.0%)
 # ChipCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

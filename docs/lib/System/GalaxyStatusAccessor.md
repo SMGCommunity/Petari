@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 20 / 26 Completed -- (76.92307692307693%)
 # GalaxyStatusAccessor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

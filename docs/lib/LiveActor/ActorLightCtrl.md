@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 8 / 14 Completed -- (57.14285714285714%)
 # ActorLightCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

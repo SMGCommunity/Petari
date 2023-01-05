@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 5 Completed -- (100.0%)
 # ScreenBlurArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

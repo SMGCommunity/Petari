@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 11 / 14 Completed -- (78.57142857142857%)
 # SpkSystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

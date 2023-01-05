@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 62 Completed -- (0.0%)
 # AudMeSeqParser.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

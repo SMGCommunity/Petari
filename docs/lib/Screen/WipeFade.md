@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 15 Completed -- (0.0%)
 # WipeFade.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

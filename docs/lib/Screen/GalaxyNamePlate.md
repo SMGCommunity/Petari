@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 22 Completed -- (27.27272727272727%)
 # GalaxyNamePlate.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

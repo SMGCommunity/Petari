@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 114 Completed -- (0.0%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

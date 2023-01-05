@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 82 Completed -- (0.0%)
 # Petari.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

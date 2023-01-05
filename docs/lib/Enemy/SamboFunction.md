@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 1 Completed -- (0.0%)
 # SamboFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

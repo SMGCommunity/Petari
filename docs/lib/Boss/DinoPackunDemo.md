@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 28 Completed -- (0.0%)
 # DinoPackunDemo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

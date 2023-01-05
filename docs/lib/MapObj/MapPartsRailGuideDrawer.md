@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 19 Completed -- (21.052631578947366%)
 # MapPartsRailGuideDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 128 Completed -- (0.0%)
 # TrickRabbit.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

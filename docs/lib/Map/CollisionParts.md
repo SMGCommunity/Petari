@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 19 / 30 Completed -- (63.33333333333333%)
 # CollisionParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

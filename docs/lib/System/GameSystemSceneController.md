@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 2 / 78 Completed -- (2.564102564102564%)
 # GameSystemSceneController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

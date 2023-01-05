@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 83 / 568 Completed -- (14.612676056338028%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 13 / 15 Completed -- (86.66666666666667%)
 # NameObjCategoryList.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 20 / 31 Completed -- (64.51612903225806%)
 # CollisionArea.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

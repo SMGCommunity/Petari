@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 10 / 17 Completed -- (58.82352941176471%)
 # DrawSyncManager.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

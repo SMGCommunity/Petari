@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 9 Completed -- (100.0%)
 # PlanetGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

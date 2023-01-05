@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 92 Completed -- (0.0%)
 # MapUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

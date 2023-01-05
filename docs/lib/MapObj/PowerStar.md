@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 58 / 65 Completed -- (89.23076923076924%)
 # PowerStar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

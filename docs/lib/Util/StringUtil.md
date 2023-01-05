@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 10 / 36 Completed -- (27.77777777777778%)
 # StringUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

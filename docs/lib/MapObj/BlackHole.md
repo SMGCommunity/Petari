@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 22 Completed -- (81.81818181818183%)
 # BlackHole.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

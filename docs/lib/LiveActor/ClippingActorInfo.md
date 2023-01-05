@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 12 Completed -- (75.0%)
 # ClippingActorInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

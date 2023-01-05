@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 5 / 25 Completed -- (20.0%)
 # ScenarioDataParser.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

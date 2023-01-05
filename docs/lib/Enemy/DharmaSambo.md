@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 88 Completed -- (0.0%)
 # DharmaSambo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 47 Completed -- (0.0%)
 # AnmModelObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

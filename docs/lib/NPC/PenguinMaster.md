@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 10 Completed -- (0.0%)
 # PenguinMaster.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

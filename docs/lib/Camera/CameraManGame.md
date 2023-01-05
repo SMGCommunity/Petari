@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 52 / 57 Completed -- (91.22807017543859%)
 # CameraManGame.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

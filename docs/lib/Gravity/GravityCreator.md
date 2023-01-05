@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 42 / 42 Completed -- (100.0%)
 # GravityCreator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

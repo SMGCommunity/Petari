@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 174 Completed -- (0.0%)
 # PlayerUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

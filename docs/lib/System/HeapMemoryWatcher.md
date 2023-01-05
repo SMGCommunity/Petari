@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 18 / 19 Completed -- (94.73684210526315%)
 # HeapMemoryWatcher.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

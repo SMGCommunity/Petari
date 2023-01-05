@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 12 / 19 Completed -- (63.1578947368421%)
 # DrawBufferGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

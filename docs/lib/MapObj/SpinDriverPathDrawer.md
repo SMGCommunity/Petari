@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 24 / 28 Completed -- (85.71428571428571%)
 # SpinDriverPathDrawer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

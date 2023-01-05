@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 37 Completed -- (0.0%)
 # TombSpiderAction2nd.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

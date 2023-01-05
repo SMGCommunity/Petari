@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 9 Completed -- (44.44444444444444%)
 # ParabolicPath.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 27 / 28 Completed -- (96.42857142857143%)
 # LodCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

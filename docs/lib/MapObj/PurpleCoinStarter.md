@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 7 / 7 Completed -- (100.0%)
 # PurpleCoinStarter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

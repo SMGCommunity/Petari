@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 10 / 10 Completed -- (100.0%)
 # AnimationRandomPlayer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

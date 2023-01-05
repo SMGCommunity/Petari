@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 4 / 4 Completed -- (100.0%)
 # WaterPoint.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

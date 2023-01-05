@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 20 / 20 Completed -- (100.0%)
 # ReverseGravityRoomPlanet.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

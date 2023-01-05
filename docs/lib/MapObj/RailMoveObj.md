@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 53 / 53 Completed -- (100.0%)
 # RailMoveObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

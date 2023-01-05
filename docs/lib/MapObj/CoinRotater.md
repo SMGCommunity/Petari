@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 7 Completed -- (85.71428571428571%)
 # CoinRotater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 55 Completed -- (0.0%)
 # DodoryuStateLv1.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

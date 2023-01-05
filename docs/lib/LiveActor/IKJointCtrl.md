@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 13 / 26 Completed -- (50.0%)
 # IKJointCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

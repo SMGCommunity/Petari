@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 58 Completed -- (0.0%)
 # Gesso.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 11 / 19 Completed -- (57.89473684210527%)
 # CoinHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

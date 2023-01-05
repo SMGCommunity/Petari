@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 7 / 9 Completed -- (77.77777777777779%)
 # SpinDriverShootPath.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

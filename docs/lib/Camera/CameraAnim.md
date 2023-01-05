@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 23 / 30 Completed -- (76.66666666666667%)
 # CameraAnim.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

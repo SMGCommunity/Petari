@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 49 Completed -- (0.0%)
 # LensFlare.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

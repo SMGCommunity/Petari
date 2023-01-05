@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 94 Completed -- (0.0%)
 # NokonokoLand.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

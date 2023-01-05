@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 9 / 11 Completed -- (81.81818181818183%)
 # DiskGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

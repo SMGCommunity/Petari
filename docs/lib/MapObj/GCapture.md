@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 70 Completed -- (0.0%)
 # GCapture.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 36 / 36 Completed -- (100.0%)
 # CrystalCageMoving.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

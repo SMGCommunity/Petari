@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 6 / 10 Completed -- (60.0%)
 # NameObjHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

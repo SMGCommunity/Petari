@@ -5,6 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
+# 0 / 40 Completed -- (0.0%)
 # DinoPackunBall.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
