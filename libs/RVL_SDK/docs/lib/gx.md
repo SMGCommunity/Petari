@@ -20,7 +20,7 @@
 | GXTev.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | GXPixel.o | 63.896103896103895% | 11 / 12 | 91.66666666666666% | :eight_pointed_black_star: 
 | GXDisplayList.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| GXTransform.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| GXTransform.o | 5.6521739130434785% | 1 / 19 | 5.263157894736842% | :eight_pointed_black_star: 
 | GXPerf.o | 0.0% | 0 / 3 | 0.0% | :x: 
 
 
@@ -269,7 +269,7 @@
 | GXSetViewport | :x: |
 | GXGetViewportv | :x: |
 | GXSetZScaleOffset | :x: |
-| GXSetScissor | :x: |
+| GXSetScissor | :white_check_mark: |
 | GXGetScissor | :x: |
 | GXSetScissorBoxOffset | :x: |
 | GXSetClipMode | :x: |

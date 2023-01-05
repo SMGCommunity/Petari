@@ -14,7 +14,7 @@
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 15.921118600635062% |
 | [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 23.59306909068217% |
 | [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 30.427688079697695% |
-| [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.7591369440774989% |
+| [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 0.921180096873624% |
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/NWC24.md) | 0.0% |
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 0.14184156212575486% |
 | [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib.md) | 0.0% |

@@ -2,7 +2,7 @@ Symbol Name, Object File, Library Archive, Matching
 SetExiInterruptMask,EXIBios.o,exi.a,false
 EXIImm,EXIBios.o,exi.a,false
 EXIImmEx,EXIBios.o,exi.a,false
-EXIDma,EXIBios.o,exi.a,false
+EXIDma,EXIBios.o,exi.a,true
 EXISync,EXIBios.o,exi.a,false
 EXISetExiCallback,EXIBios.o,exi.a,false
 __EXIProbe,EXIBios.o,exi.a,false

@@ -17,50 +17,57 @@ public:
     void setIndirect();
 
     const char* _0;
-    u8 _4;
-    const char* _8;
+    bool mInitModel;                // _4
+    const char* mObjectName;        // _8
     u8 _C;
     u8 _D;
     u8 _E;
     u8 _F;
     const char* _10;
-    f32 _14;
-    f32 _18;
-    f32 _1C;
-    u32 _20;
-    u32 _24;
+    TVec3f mMessageOffset;          // _14
+    MtxPtr mTalkMtx;                // _20
+    const char* mTalkJointName;     // _24
     u8 _28;
-    u8 _29;
-    u8 _2A;
-    u8 _2B;
-    u8 _2C;
+    bool mConnectsToScene;          // _29
+    bool mUseLightCtrl;             // _2A
+    bool mUseEffect;                // _2B
+    bool mUseSounds;                // _2C
+    u8 _2D;
+    u8 _2E;
+    u8 _2F;
     u32 _30;
-    u8 _34;
+    bool mCanBeHitByShell;          // _34
     u8 _35;
     u8 _36;
-    u8 _37;
+    bool mUsesNerves;               // _37
     u8 _38;
+    u8 _39;
+    u8 _3A;
+    u8 _3B;
     f32 _3C;
-    u8 _40;
+    bool mUseHitSensors;            // _40
+    u8 _41;
+    u8 _42;
+    u8 _43;
     u32 _44;
-    f32 _48;
-    TVec3f _4C;
+    f32 mSensorSize;                // _48
+    TVec3f mSensorOffset;           // _4C
     u32 _58;
     u8 _5C;
-    u8 _5D;
+    bool mUseShadow;                // _5D
+    u8 _5E;
+    u8 _5F;
     f32 _60;
-    u8 _64;
+    bool mUseRail;                  // _64
     u8 _65;
     u8 _66;
     u8 _67;
-    u8 _68;
+    bool mUseStarPointer;           // _68
     u32 _6C;
     u32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
+    TVec3f mStarPointerOffs;        // _74
     f32 _80;
-    u32 _84;
+    u32 mSceneConnectionType;       // _84
     NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // _88
     NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // _8C
     NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // _90

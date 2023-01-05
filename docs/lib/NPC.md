@@ -80,7 +80,7 @@
 | [TalkDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkDirector.md) | 0.0% | 0 / 62 | 0.0% | :x: 
 | [TalkMessageCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkMessageCtrl.md) | 0.0% | 0 / 43 | 0.0% | :x: 
 | [TalkMessageInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkMessageInfo.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
-| [TalkNodeCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkNodeCtrl.md) | 0.0% | 0 / 23 | 0.0% | :x: 
+| [TalkNodeCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkNodeCtrl.md) | 14.330218068535824% | 8 / 23 | 34.78260869565217% | :eight_pointed_black_star: 
 | [TurnJointCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TurnJointCtrl.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [TalkState.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkState.md) | 0.0% | 0 / 31 | 0.0% | :x: 
 | [TalkSupportPlayerWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkSupportPlayerWatcher.md) | 0.0% | 0 / 5 | 0.0% | :x: 

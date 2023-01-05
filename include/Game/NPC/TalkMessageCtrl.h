@@ -20,7 +20,7 @@ public:
     TVec3f _1C;
     MtxPtr mMtx;                // _28
     TVec3f _2C;
-    f32 _38;
+    f32 mTalkDistance;          // _38
     u32 _3C;
     u32 _40;
     u8 _44;

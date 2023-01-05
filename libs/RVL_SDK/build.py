@@ -136,7 +136,12 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
                     nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
             except:
                 pass
-            nw.build(build_path, rule, source_path, variables={ 'flags': flags })
+
+            if source_path.endswith("EXIBios.c"):
+                new_flags = flags.replace("-O4,p", "-O2,p")
+                nw.build(build_path, rule, source_path, variables={ 'flags': new_flags })
+            else:
+                nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
 
         # Run clean
