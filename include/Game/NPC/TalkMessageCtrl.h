@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.h"
-#include "Game/NPC/TalkNodeCtrl.h"
 
 class LiveActor;
+class TalkNodeCtrl;
 
 class TalkMessageCtrl : public NameObj {
 public:

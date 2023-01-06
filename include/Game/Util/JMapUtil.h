@@ -118,4 +118,10 @@ namespace MR {
         *pOut = false;
         return ::getJMapInfoArgNoInit(rIter, pName, pOut);
     }
+
+    inline s32 getMessageID(const JMapInfoIter &rIter) {
+        s32 msgId;
+        getJMapInfoMessageID(rIter, &msgId);
+        return msgId;
+    }
 };

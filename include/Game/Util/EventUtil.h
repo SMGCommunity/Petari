@@ -62,4 +62,7 @@ namespace MR {
 
     bool isUFOKinokoBeforeConstruction();
     bool isUFOKinokoUnderConstruction();
+
+    bool isOnMessageAlreadyRead(s8);
+    void onMessageAlreadyRead(s8);
 };
