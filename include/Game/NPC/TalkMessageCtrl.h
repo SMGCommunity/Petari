@@ -23,9 +23,9 @@ public:
     f32 mTalkDistance;          // _38
     u32 _3C;
     u32 _40;
-    u8 _44;
-    u8 _45;
-    u8 _46;
+    bool mIsOnRootNodeAuto;     // _44
+    bool mIsOnReadNodeAuto;     // _45
+    bool mIsStartOnlyFront;     // _46
     u32 _48;
     u32 _4C;
     u32 _50;
