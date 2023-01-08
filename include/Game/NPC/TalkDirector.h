@@ -58,9 +58,9 @@ public:
     bool mIsKinopioExplorerTrickComet;                      // _73
     bool mIsKinopioExplorerTalkGetGrandStar3;               // _74
     bool mIsKinopioExplorerStartMessenger;                  // _75
-    bool mIsKinopioExplorerTalkGetGrandStar3;               // _76
-    bool mIsKinopioExplorerTalkGetGrandStar3;               // _77
-    bool mIsKinopioExplorerTalkGetGrandStar3;               // _78
+    bool mIsKinopioExplorerTalkGetGrandStar4;               // _76
+    bool mIsKinopioExplorerTalkGetGrandStar5;               // _77
+    bool mIsKinopioExplorerTalkGetGrandStar6;               // _78
     bool mIsKinopioExplorerTalkGoFinalBattle;               // _79
     bool mIsEndLuigiHideAndSeek;                            // _7A
     bool mIsKinopioExplorerCompleteTrickComet;              // _7B
