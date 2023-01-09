@@ -78,7 +78,7 @@
 | [StageStateKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/StageStateKeeper.md) | 0.0% | 0 / 1 | 0.0% | :x: 
 | [TalkBalloon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkBalloon.md) | 0.0% | 0 / 69 | 0.0% | :x: 
 | [TalkDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkDirector.md) | 0.0% | 0 / 62 | 0.0% | :x: 
-| [TalkMessageCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkMessageCtrl.md) | 0.0% | 0 / 43 | 0.0% | :x: 
+| [TalkMessageCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkMessageCtrl.md) | 31.20567375886525% | 10 / 43 | 23.25581395348837% | :eight_pointed_black_star: 
 | [TalkMessageInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkMessageInfo.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | [TalkNodeCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TalkNodeCtrl.md) | 53.73831775700935% | 19 / 23 | 82.6086956521739% | :eight_pointed_black_star: 
 | [TurnJointCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/TurnJointCtrl.md) | 0.0% | 0 / 20 | 0.0% | :x: 

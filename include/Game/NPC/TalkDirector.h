@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/NPC/TalkMessageInfo.h"
+#include "Game/NPC/TalkMessageCtrl.h"
 #include "Game/Screen/LayoutActor.h"
 #include <revolution.h>
 
@@ -25,9 +26,24 @@ public:
     void updateMessage();
     void prepTalk(TalkMessageCtrl *, bool, bool, bool);
     void termTalk();
+    void initState(TalkMessageCtrl *);
+    bool isInvalidTalk() const;
+    void appearYesNoSelector(const TalkMessageCtrl *) const;
+    u32 getDemoType(const TalkMessageCtrl *, bool) const;
+    u8 getBranchResult(u16);
+    void initBranchResult();
+    void pauseOff();
+    void balloonOff();
+    bool isSystemTalking() const;
+    bool isNormalTalking();
+    LiveActor* getTalkingActor() const;
+    void exePrep();
+    void exeTalk();
+    void exeSlct();
+    void exeNext();
+    void exeTerm();
 
-
-    MR::AssignableArray<TalkMessageCtrl*> mMsgControls;     // _20
+    MR::AssignableArray<TalkMessageCtrl *> mMsgControls;     // _20
     TalkPeekZ* mPeekZ;                                      // _2C
     TalkBalloonHolder* mBalloonHolder;                      // _30
     TalkStateHolder* mStateHolder;                          // _34

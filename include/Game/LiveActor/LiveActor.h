@@ -87,6 +87,10 @@ public:
     inline bool isBinderValid(Binder *pBinder) {
         return pBinder;
     }
+    
+    inline TVec3f* getPosPtr() {
+        return &mPosition;
+    }
 
     /* 0xC */       TVec3f mPosition;                       ///< 3D vector of the actor's position.
     /* 0x18 */      TVec3f mRotation;                       ///< 3D vector of the actor's rotation.

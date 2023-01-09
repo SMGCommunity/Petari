@@ -21,7 +21,7 @@ public:
     bool isCameraEvent() const;
 
     s32 _0;
-    s16 _4;
+    u16 _4;
     s8 _6;
     u8 mCameraType;
     u8 mTalkType;

@@ -25,6 +25,11 @@ public:
     u16 mNextGroup;      // _6
 };
 
+class MessageNode {
+public:
+    const char* mMessage;   // _0
+};
+
 class TalkNodeCtrl {
 public:
     TalkNodeCtrl();
