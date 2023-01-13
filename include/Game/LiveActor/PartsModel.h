@@ -28,4 +28,5 @@ public:
     bool mCalcOwnMtx;           // _98
     bool _99;
     bool mIsDead;               // _9A
+    bool _9B;
 };

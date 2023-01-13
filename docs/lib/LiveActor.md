@@ -66,6 +66,6 @@
 | [ShadowVolumeSphere.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowVolumeSphere.md) | 56.451612903225815% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | [SimpleJ3DModelDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/SimpleJ3DModelDrawer.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [Spine.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/Spine.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| [SpotMarkLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/SpotMarkLight.md) | 0.0% | 0 / 4 | 0.0% | :x: 
+| [SpotMarkLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/SpotMarkLight.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [ViewGroupCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ViewGroupCtrl.md) | 35.714285714285715% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
 | [VolumeModelDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/VolumeModelDrawer.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
