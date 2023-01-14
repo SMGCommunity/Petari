@@ -1,6 +1,97 @@
 #include "Game/LiveActor/ShadowController.h"
 #include "Game/LiveActor/ShadowDrawer.h"
 
+ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24(false) {
+    mFarClip = 4000.0f;
+    _C.init(0x500);
+    _18.init(0x400);
+    MR::connectToScene(this, 0x2D, -1, -1, -1);
+
+    if (MR::isEqualStageName("AstroGalaxy") || MR::isEqualStageName("PeachCastleGardenGalaxy") || MR::isEqualStageName("PeachCastleFinalGalaxy")) {
+        _24 = true;
+    }
+}
+
+void ShadowControllerHolder::movement() {
+    updateController();
+}
+
+void ShadowControllerHolder::initAfterPlacement() {
+    u32 count = _C.getCount();
+    for (u32 i = 0; i < count; i++) {
+        ShadowController* ctrl = _C[i];
+        ctrl->updateDirection();
+        ctrl->updateProjection();
+    }
+}
+
+void ShadowControllerHolder::updateController() {
+    u32 count = _18.getCount();
+
+    for (u32 i = 0; i < count; i++) {
+        if (_24) {
+            ShadowController* ctrl = _18[i];
+            ctrl->updateFarClipping(mFarClip);
+        }
+
+        ShadowController* ctrl = _18[i];
+        ctrl->update();
+    }
+
+    _18.mCount = 0;
+}
+
+ShadowControllerList::ShadowControllerList(LiveActor *pActor, u32 listCount) : mShadowList(), mHost(pActor) {
+    mShadowList.init(listCount);
+}
+
+void ShadowControllerList::addController(ShadowController *pController) {
+    mShadowList.push_back(pController);
+}
+
+u32 ShadowControllerList::getControllerCount() const {
+    return mShadowList.mCount;
+}
+
+ShadowController* ShadowControllerList::getController(u32 idx) const {
+    return mShadowList[idx];
+}
+
+ShadowController* ShadowControllerList::getController(const char *pName) const {
+    if (mShadowList.mCount == 1) {
+        return mShadowList[0];
+    }
+
+    for (u32 i = 0; i < mShadowList.mCount; i++) {
+        if (MR::isEqualString(pName, mShadowList[i]->mName)) {
+            return mShadowList[i];
+        }
+    }
+
+    return NULL;
+}
+
+void ShadowControllerList::resetCalcCount() {
+    for (u32 i = 0; i < mShadowList.getCount(); i++) {
+        ShadowController* controller = mShadowList[i];
+        controller->_65 = 0;
+        controller->_66 = 0;
+    }
+}
+
+void ShadowControllerList::requestCalc() {
+    for (u32 i = 0; i < mShadowList.getCount(); i++) {
+        mShadowList[i]->requestCalc();
+    }
+}
+
+void ShadowController::requestCalc() {
+    if (!_64) {
+        _64 = 1;
+        appendToHolder();
+    }
+}
+
 void ShadowController::update() {
     if (isDraw()) {
         updateDirection();
@@ -245,4 +336,8 @@ void ShadowController::validate() {
 
 void ShadowController::invalidate() {
     _71 = 0;
+}
+
+ShadowControllerHolder::~ShadowControllerHolder() {
+
 }

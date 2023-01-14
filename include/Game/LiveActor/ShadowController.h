@@ -2,10 +2,44 @@
 
 #include <revolution.h>
 #include "Game/LiveActor/LiveActor.h"
+#include "Game/Scene/SceneObjHolder.h"
 #include "Game/Util.h"
 
 class CollisionPartsFilterBase;
 class ShadowDrawer;
+
+class ShadowController;
+
+class ShadowControllerList {
+public:
+    ShadowControllerList(LiveActor *, u32);
+
+    void addController(ShadowController *);
+    u32 getControllerCount() const;
+    ShadowController* getController(u32) const;
+    ShadowController* getController(const char *) const;
+    void resetCalcCount();
+    void requestCalc();
+
+    MR::Vector<MR::AssignableArray<ShadowController*> > mShadowList;    // _0
+    LiveActor* mHost;                                                   // _C
+};
+
+class ShadowControllerHolder : public NameObj {
+public:
+    ShadowControllerHolder();
+
+    virtual ~ShadowControllerHolder();
+    virtual void initAfterPlacement();
+    virtual void movement();
+
+    void updateController();
+
+    MR::Vector<MR::AssignableArray<ShadowController*> > _C;
+    MR::Vector<MR::AssignableArray<ShadowController*> > _18;
+    bool _24;
+    f32 mFarClip;                                                   // _28
+};
 
 class ShadowController {
 public:
@@ -62,8 +96,12 @@ public:
 
     void updateProjection();
 
+    inline void appendToHolder() {
+        MR::getSceneObj<ShadowControllerHolder*>(SceneObj_ShadowControllerHolder)->_18.push_back(this);
+    }
+
     LiveActor* mActor;                                  // _0
-    const char* pName;                                  // _4
+    const char* mName;                                  // _4
     const char* mGroupName;                             // _8
     ShadowDrawer* mDrawer;                              // _C
     u32 _10;
@@ -91,21 +129,6 @@ public:
     u8 _70;
     u8 _71;
     u8 _72;
-};
-
-class ShadowControllerList {
-public:
-    ShadowControllerList(LiveActor *, u32);
-
-    void addController(ShadowController *);
-    u32 getControllerCount() const;
-    ShadowController* getController(u32) const;
-    ShadowController* getController(const char *) const;
-    void resetCalcCount();
-    void requestCalc();
-
-    MR::Vector<MR::AssignableArray<ShadowController*> > mShadowList;    // _0
-    LiveActor* mHost;                                                   // _C
 };
 
 namespace MR {

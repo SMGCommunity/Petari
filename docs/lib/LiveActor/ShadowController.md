@@ -5,26 +5,26 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 39 / 68 Completed -- (57.35294117647059%)
+# 55 / 68 Completed -- (80.88235294117648%)
 # ShadowController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__22ShadowControllerHolderFv` | :x: |
 | `__ct__16ShadowControllerFP9LiveActorPCc` | :x: |
-| `__ct__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv` | :x: |
-| `__dt__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv` | :x: |
-| `push_back__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>FRCP16ShadowController` | :x: |
-| `movement__22ShadowControllerHolderFv` | :x: |
-| `initAfterPlacement__22ShadowControllerHolderFv` | :x: |
-| `updateController__22ShadowControllerHolderFv` | :x: |
-| `__ct__20ShadowControllerListFP9LiveActorUl` | :x: |
-| `addController__20ShadowControllerListFP16ShadowController` | :x: |
-| `getControllerCount__20ShadowControllerListCFv` | :x: |
-| `getController__20ShadowControllerListCFUl` | :x: |
-| `getController__20ShadowControllerListCFPCc` | :x: |
-| `resetCalcCount__20ShadowControllerListFv` | :x: |
-| `requestCalc__20ShadowControllerListFv` | :x: |
-| `requestCalc__16ShadowControllerFv` | :x: |
+| `__ct__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv` | :white_check_mark: |
+| `__dt__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>Fv` | :white_check_mark: |
+| `push_back__Q22MR51Vector<Q22MR36AssignableArray<P16ShadowController>>FRCP16ShadowController` | :white_check_mark: |
+| `movement__22ShadowControllerHolderFv` | :white_check_mark: |
+| `initAfterPlacement__22ShadowControllerHolderFv` | :white_check_mark: |
+| `updateController__22ShadowControllerHolderFv` | :white_check_mark: |
+| `__ct__20ShadowControllerListFP9LiveActorUl` | :white_check_mark: |
+| `addController__20ShadowControllerListFP16ShadowController` | :white_check_mark: |
+| `getControllerCount__20ShadowControllerListCFv` | :white_check_mark: |
+| `getController__20ShadowControllerListCFUl` | :white_check_mark: |
+| `getController__20ShadowControllerListCFPCc` | :white_check_mark: |
+| `resetCalcCount__20ShadowControllerListFv` | :white_check_mark: |
+| `requestCalc__20ShadowControllerListFv` | :white_check_mark: |
+| `requestCalc__16ShadowControllerFv` | :white_check_mark: |
 | `update__16ShadowControllerFv` | :white_check_mark: |
 | `updateFarClipping__16ShadowControllerFf` | :white_check_mark: |
 | `updateDirection__16ShadowControllerFv` | :x: |
@@ -75,5 +75,5 @@
 | `addShadowController__2MRFP16ShadowController` | :x: |
 | `requestCalcActorShadowAppear__2MRFP9LiveActor` | :x: |
 | `requestCalcActorShadow__2MRFP9LiveActor` | :x: |
-| `__dt__Q22MR36AssignableArray<P16ShadowController>Fv` | :x: |
-| `__dt__22ShadowControllerHolderFv` | :x: |
+| `__dt__Q22MR36AssignableArray<P16ShadowController>Fv` | :white_check_mark: |
+| `__dt__22ShadowControllerHolderFv` | :white_check_mark: |

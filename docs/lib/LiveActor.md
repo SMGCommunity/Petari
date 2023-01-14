@@ -49,7 +49,7 @@
 | [PartsModel.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/PartsModel.md) | 91.37466307277629% | 12 / 13 | 92.3076923076923% | :eight_pointed_black_star: 
 | [RailRider.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/RailRider.md) | 75.37619699042408% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
 | [SensorHitChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/SensorHitChecker.md) | 65.21739130434783% | 10 / 13 | 76.92307692307693% | :eight_pointed_black_star: 
-| [ShadowController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowController.md) | 32.82364933741081% | 39 / 68 | 57.35294117647059% | :eight_pointed_black_star: 
+| [ShadowController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowController.md) | 61.16207951070336% | 55 / 68 | 80.88235294117648% | :eight_pointed_black_star: 
 | [ShadowDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowDrawer.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [ShadowSurfaceBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowSurfaceBox.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [ShadowSurfaceCircle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ShadowSurfaceCircle.md) | 0.0% | 0 / 4 | 0.0% | :x: 

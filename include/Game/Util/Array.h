@@ -76,6 +76,15 @@ namespace MR {
             
         }
 
+        inline s32 getCount() {
+            return mCount;
+        }
+
+        inline void init(s32 cnt) {
+            mArray.mArr = new T::Item[cnt];
+            mArray.mMaxSize = cnt;
+        }
+
         inline void assign(T::Item &pItem, int where) {
             mArray.mArr[where] = pItem;
         }
@@ -100,8 +109,8 @@ namespace MR {
             return mArray.mArr[mCount];
         }
 
-        inline T::Item* getAt(u32 idx) {
-            return mArray[idx];
+        inline T::Item operator[](int idx) const {
+            return mArray.mArr[idx];
         }
 
         T mArray;       // _0
