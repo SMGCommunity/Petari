@@ -110,11 +110,12 @@ MtxPtr LiveActor::getBaseMtx() const {
 #ifdef NON_MATCHING
 // prologue refuses to schedule right for both of these
 void LiveActor::startClipped() {
-    bool flag = 1;
-    mFlags.mIsClipped = flag;
+    HitSensorKeeper* keeper = mSensorKeeper;
 
-    if (mSensorKeeper != 0) {
-        mSensorKeeper->invalidateBySystem();
+    mFlags.onClipped();
+
+    if (keeper != 0) {
+        keeper->invalidateBySystem();
     }
 
     EffectKeeper* effectKeeper = mEffectKeeper;
@@ -123,7 +124,7 @@ void LiveActor::startClipped() {
     }
 
     MR::disconnectToSceneTemporarily(this);
-    
+     
     if (!MR::isNoEntryDrawBuffer(this)) {
         MR::disconnectToDrawTemporarily(this);
     }

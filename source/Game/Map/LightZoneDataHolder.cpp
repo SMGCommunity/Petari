@@ -1,3 +1,4 @@
+#include "Game/AreaObj/LightArea.h"
 #include "Game/Map/LightZoneDataHolder.h"
 #include "Game/Map/LightFunction.h"
 #include "Game/Util.h"

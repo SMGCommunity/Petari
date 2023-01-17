@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/AreaObj/LightArea.h"
-
 #include <revolution.h>
+
+class LightArea;
 
 class ZoneLightID {
 public:

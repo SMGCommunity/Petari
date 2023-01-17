@@ -6,7 +6,6 @@
 #include <revolution.h>
 
 class CollisionParts;
-class LiveActor;
 class LiveActorGroup;
 class Nerve;
 class ResourceHolder;
@@ -20,6 +19,7 @@ class CollisionParts;
 class HitSensor;
 class BtkCtrl;
 class MsgSharedGroup;
+class LiveActor;
 
 namespace MR {
     enum CollisionScaleType {

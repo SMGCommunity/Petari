@@ -4,13 +4,6 @@
 #include "JSystem/JGeometry.h"
 #include <revolution.h>
 
-namespace {
-    bool getJMapInfoRailArg(const JMapInfoIter &rIter, const char *pName, s32 *pOut);
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, s32 *) NO_INLINE;
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, f32 *) NO_INLINE;
-    bool getJMapInfoArgNoInit(const JMapInfoIter &, const char *, bool *) NO_INLINE;
-};
-
 namespace MR {
     bool isValidInfo(const JMapInfoIter &rIter);
     bool isObjectName(const JMapInfoIter &rIter, const char *pName);
@@ -102,21 +95,6 @@ namespace MR {
     template<typename T>
     inline bool getValue(const JMapInfoIter &rIter, const char *pName, T *pOut) {
         return rIter.getValue<T>(pName, pOut);
-    }
-
-    inline bool getArgAndInit(const JMapInfoIter &rIter, const char *pName, s32 *pOut) {
-        *pOut = -1;
-        return ::getJMapInfoArgNoInit(rIter, pName, pOut);
-    }
-
-    inline bool getArgAndInit(const JMapInfoIter &rIter, const char *pName, f32 *pOut) {
-        *pOut = -1.0f;
-        return ::getJMapInfoArgNoInit(rIter, pName, pOut);
-    }
-
-    inline bool getArgAndInit(const JMapInfoIter &rIter, const char *pName, bool *pOut) {
-        *pOut = false;
-        return ::getJMapInfoArgNoInit(rIter, pName, pOut);
     }
 
     inline s32 getMessageID(const JMapInfoIter &rIter) {

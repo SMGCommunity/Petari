@@ -9,6 +9,7 @@ class JMapInfo;
 class LightAreaHolder;
 struct PointLightInfo;
 class ResourceHolder;
+class ActorLightCtrl;
 
 namespace {
     void loadLightDiffuse(_GXColor color, const TVec3f &rPos, _GXLightID lightID) {

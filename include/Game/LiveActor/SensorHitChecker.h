@@ -5,7 +5,6 @@
 #include <revolution.h>
 
 class SensorGroup;
-class NameObj;
 class HitSensor;
 
 class SensorHitChecker : NameObj {
