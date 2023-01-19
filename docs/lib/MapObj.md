@@ -196,7 +196,7 @@
 | [PomponPlant.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PomponPlant.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [PowerStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStar.md) | 66.49572649572649% | 58 / 65 | 89.23076923076924% | :eight_pointed_black_star: 
 | [PowerStarAppearPoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarAppearPoint.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| [PowerStarHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarHolder.md) | 0.0% | 0 / 11 | 0.0% | :x: 
+| [PowerStarHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarHolder.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [PressureBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PressureBase.md) | 81.69398907103826% | 44 / 48 | 91.66666666666666% | :eight_pointed_black_star: 
 | [PrizeRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PrizeRing.md) | 0.0% | 0 / 31 | 0.0% | :x: 
 | [PTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PTimerSwitch.md) | 0.0% | 0 / 24 | 0.0% | :x: 
