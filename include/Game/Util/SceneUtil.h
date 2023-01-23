@@ -15,6 +15,7 @@ namespace MR {
 
     const char* getCurrentStageName();
 
+    s32 getCurrentStagePowerStarNum();
     s32 getZoneNum();
 
     s32 getPlacedRailNum();
@@ -64,4 +65,6 @@ namespace MR {
     bool isInitializeStateEnd();
 
     bool isStageDisablePauseMenu();
+
+    const char* getAppearPowerStarObjName(s32);
 }

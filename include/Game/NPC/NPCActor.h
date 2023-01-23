@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.h"
 #include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/Enemy/AnimScaleController.h"
+#include "Game/Util/JointController.h"
 
 namespace NrvNPCActor {
     NERVE(NPCActorNrvWait);
@@ -95,12 +97,33 @@ public:
     static void addArchive(NameObjArchiveListCollector *, const NPCActorItem &);
     static void makeArchiveListDefault(NameObjArchiveListCollector *, const JMapInfoIter &);
 
+    bool initTalkCtrl(const JMapInfoIter &, const char *, const TVec3f &, MtxPtr);
+    bool initTalkCtrlDirect(const JMapInfoIter &, const char *, const TVec3f &, MtxPtr);
+    bool calcJointScale(TPos3f *, const JointControllerInfo &);
+    void turnToPlayer();
+    void turnToPlayer(f32);
+    void turnToPlayer(f32, f32, f32);
+    void turnToDefault(f32);
+    void setToDefault();
+    void pushNerve(const Nerve *);
+    Nerve* popAndPushNerve(const Nerve *);
+    Nerve* popNerve();
+    bool tryPulNullNerve();
+    bool isEmptyNerve() const;
+    bool isScaleAnim() const;
+    bool isPointingSe() const;
+    void updateReaction();
+    void updateScaleCtrl();
+
+    void exeWait();
+    void exeTalk();
+
     void setInitPose();
 
-    u32 _8C;
-    u32 _90;
-    u32 _94;
-    u32 _98;
+    LodCtrl* mLodCtrl;                                  // _8C
+    TalkMessageCtrl* mMsgCtrl;                          // _90
+    PartsModel* _94;
+    PartsModel* _98;
     u32 _9C;
     TVec4f _A0;
     TVec4f _B0;
@@ -144,13 +167,13 @@ public:
     u8 _127;
     u8 _128;
     f32 _12C;
-    u32 _130;
-    u32 _134;
-    u32 _138;
-    u32 _13C;
-    u32 _140;
+    const char* _130;
+    const char* _134;
+    const char* _138;
+    const char* _13C;
+    AnimScaleController* mScaleController;              // _140
     u32 _144;
-    u32 _148;
+    Nerve* mCurNerve;                                   // _148
     NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // _14C
     NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // _150
     NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // _154

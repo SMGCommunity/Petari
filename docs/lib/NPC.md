@@ -35,7 +35,7 @@
 | [PenguinRacerLeader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/PenguinRacerLeader.md) | 0.0% | 0 / 30 | 0.0% | :x: 
 | [PenguinSkater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/PenguinSkater.md) | 0.0% | 0 / 54 | 0.0% | :x: 
 | [PenguinStudent.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/PenguinStudent.md) | 0.0% | 0 / 22 | 0.0% | :x: 
-| [PowerStarEventKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/PowerStarEventKeeper.md) | 0.0% | 0 / 12 | 0.0% | :x: 
+| [PowerStarEventKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/PowerStarEventKeeper.md) | 34.82587064676617% | 5 / 12 | 41.66666666666667% | :eight_pointed_black_star: 
 | [Rabbit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/Rabbit.md) | 0.0% | 0 / 54 | 0.0% | :x: 
 | [RabbitStateCaught.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/RabbitStateCaught.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [RabbitStateWaitStart.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC/RabbitStateWaitStart.md) | 0.0% | 0 / 37 | 0.0% | :x: 

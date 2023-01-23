@@ -1,11 +1,29 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/LiveActor/LiveActor.h"
 #include "Game/NPC/TalkMessageFunc.h"
 
-class LiveActor;
 class TalkNodeCtrl;
 class ActorCameraInfo;
+
+class CustomTagArg {
+public:
+    inline CustomTagArg(int a1, u32 a2) : mIntArg(a1), _4(a2) { }
+    inline CustomTagArg(const wchar_t *a1, u32 a2) : mCharArg(a1), _4(a2) { }
+
+    inline void operator=(const CustomTagArg &rhs) {
+        mCharArg = rhs.mCharArg;
+        _4 = rhs._4;
+    }
+
+    union {
+        int mIntArg;
+        const wchar_t* mCharArg;
+    };
+
+    u32 _4;
+};
+
 
 class TalkMessageCtrl : public NameObj {
 public:
@@ -39,6 +57,10 @@ public:
     void readMessage();
     bool isSelectYesNo() const;
 
+    void setMessageArg(const CustomTagArg &rArg) {
+        mTagArg = rArg;
+    }
+
     bool inMessageArea() const;
     void startCamera(s32);
     const char* getBranchID() const;
@@ -61,8 +83,7 @@ public:
     TalkMessageFuncBase* mEventFunc;    // _50
     TalkMessageFuncBase* mAnimeFunc;    // _54
     TalkMessageFuncBase* mKillFunc;     // _58
-    u32 _5C;
-    u32 _60;
+    CustomTagArg mTagArg;               // _5C
 };
 
 class TalkFunction {

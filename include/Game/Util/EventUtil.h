@@ -39,6 +39,7 @@ namespace MR {
 
     bool isPowerStarGreenInCurrentStage(s32);
     bool isPowerStarRedInCurrentStage(s32);
+    bool isGrandStarInCurrentStage(s32);
 
     bool isPowerStarGreenAtResultSequence();
     bool isPowerStarRedAtResultSequence();
