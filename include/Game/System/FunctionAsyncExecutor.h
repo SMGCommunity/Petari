@@ -28,3 +28,15 @@ public:
     u8 _3C;
     const char* _40;
 };
+
+class FunctionAsyncExecutorOnMainThread {
+public:
+    FunctionAsyncExecutorOnMainThread(OSThread *);
+
+    u8 _0;
+    u8 _1;
+    u8 _2;
+    u8 _3;
+    OSMessageQueue mQueue;      // _4
+    
+};

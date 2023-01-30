@@ -13,7 +13,7 @@ sdk_o_paths = [
 
 
 other_libs = [
-    "libs/Runtime/lib/Runtime.a"
+    #"libs/Runtime/lib/Runtime.a"
 ]
 
 def makeArchive(dir):

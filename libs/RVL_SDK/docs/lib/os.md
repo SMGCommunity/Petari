@@ -39,7 +39,7 @@
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSPlayTime.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | OSLaunch.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| __ppc_eabi_init.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| __ppc_eabi_init.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # OS.o
@@ -460,8 +460,8 @@
 # __ppc_eabi_init.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __init_user | :x: |
-| __init_cpp | :x: |
-| exit | :x: |
+| __init_user | :white_check_mark: |
+| __init_cpp | :white_check_mark: |
+| exit | :white_check_mark: |
 
 

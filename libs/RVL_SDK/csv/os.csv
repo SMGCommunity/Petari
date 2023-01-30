@@ -259,6 +259,6 @@ __OSRelaunchTitle,OSLaunch.o,os.a,false
 __OSLaunchTitle,OSLaunch.o,os.a,false
 LaunchCommon,OSLaunch.o,os.a,false
 __OSReturnToMenul,OSLaunch.o,os.a,false
-__init_user,__ppc_eabi_init.o,os.a,false
-__init_cpp,__ppc_eabi_init.o,os.a,false
-exit,__ppc_eabi_init.o,os.a,false
+__init_user,__ppc_eabi_init.o,os.a,true
+__init_cpp,__ppc_eabi_init.o,os.a,true
+exit,__ppc_eabi_init.o,os.a,true
