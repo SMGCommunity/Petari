@@ -3,7 +3,7 @@
 
 #include <revolution/types.h>
 
-vu32 __PIRegs[0xC] : (0xC000 << 16) + 0x3000;
+vu32 __PIRegs[0xC] : (0xCC00 << 16) + 0x3000;
 
 vu16 __DSPRegs[0x20] : (0xCC00 << 16) + 0x5000;
 

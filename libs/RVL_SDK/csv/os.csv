@@ -228,9 +228,9 @@ __OSInitSTM,OSStateTM.o,os.a,false
 __OSShutdownToSBY,OSStateTM.o,os.a,false
 __OSHotReset,OSStateTM.o,os.a,false
 __OSSetVIForceDimming,OSStateTM.o,os.a,false
-__OSSetIdleLEDMode,OSStateTM.o,os.a,false
-__OSUnRegisterStateEvent,OSStateTM.o,os.a,false
-__OSVIDimReplyHandler,OSStateTM.o,os.a,false
+__OSSetIdleLEDMode,OSStateTM.o,os.a,true
+__OSUnRegisterStateEvent,OSStateTM.o,os.a,true
+__OSVIDimReplyHandler,OSStateTM.o,os.a,true
 __OSDefaultResetCallback,OSStateTM.o,os.a,false
 __OSDefaultPowerCallback,OSStateTM.o,os.a,false
 __OSStateEventHandler,OSStateTM.o,os.a,false

@@ -8,15 +8,15 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| esp.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| esp.o | 17.078651685393258% | 3 / 10 | 30.0% | :eight_pointed_black_star: 
 
 
 # esp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ESP_InitLib | :x: |
-| ESP_CloseLib | :x: |
-| ESP_LaunchTitle | :x: |
+| ESP_InitLib | :white_check_mark: |
+| ESP_CloseLib | :white_check_mark: |
+| ESP_LaunchTitle | :white_check_mark: |
 | ESP_GetTicketViews | :x: |
 | ESP_DiGetTicketView | :x: |
 | ESP_DiGetTmd | :x: |

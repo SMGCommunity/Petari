@@ -32,7 +32,7 @@
 | OSTime.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| OSStateTM.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| OSStateTM.o | 11.627906976744185% | 3 / 12 | 25.0% | :eight_pointed_black_star: 
 | OSPlayRecord.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSStateFlags.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -394,9 +394,9 @@
 | __OSShutdownToSBY | :x: |
 | __OSHotReset | :x: |
 | __OSSetVIForceDimming | :x: |
-| __OSSetIdleLEDMode | :x: |
-| __OSUnRegisterStateEvent | :x: |
-| __OSVIDimReplyHandler | :x: |
+| __OSSetIdleLEDMode | :white_check_mark: |
+| __OSUnRegisterStateEvent | :white_check_mark: |
+| __OSVIDimReplyHandler | :white_check_mark: |
 | __OSDefaultResetCallback | :x: |
 | __OSDefaultPowerCallback | :x: |
 | __OSStateEventHandler | :x: |

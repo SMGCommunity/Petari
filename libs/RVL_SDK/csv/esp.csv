@@ -1,7 +1,7 @@
 Symbol Name, Object File, Library Archive, Matching
-ESP_InitLib,esp.o,esp.a,false
-ESP_CloseLib,esp.o,esp.a,false
-ESP_LaunchTitle,esp.o,esp.a,false
+ESP_InitLib,esp.o,esp.a,true
+ESP_CloseLib,esp.o,esp.a,true
+ESP_LaunchTitle,esp.o,esp.a,true
 ESP_GetTicketViews,esp.o,esp.a,false
 ESP_DiGetTicketView,esp.o,esp.a,false
 ESP_DiGetTmd,esp.o,esp.a,false
