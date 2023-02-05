@@ -55,6 +55,9 @@ namespace MR {
     void connectToSceneNoSilhouettedMapObjStrongLight(LiveActor *);
 
     void connectToSceneLayout(NameObj *);
+    void connectToSceneLayoutOnPause(NameObj *);
+
+    void connectToSceneTalkLayout(NameObj *);
 
     void connectToSceneCamera(NameObj *);
 

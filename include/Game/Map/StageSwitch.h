@@ -89,13 +89,6 @@ public:
     SwitchIdInfo* mSW_Dead;         // _C
 };
 
-class SwitchEventListener {
-public:
-    virtual void refresh(bool);
-    virtual void listenSwitchOnEvent() = 0;
-    virtual void listenSwitchOffEvent() = 0;
-};
-
 namespace MR {
     StageSwitchCtrl* createStageSwitchCtrl(NameObj *, const JMapInfoIter &);
 };

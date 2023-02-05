@@ -35,6 +35,9 @@ namespace MR {
     void setTextBoxNumberRecursive(LayoutActor *, const char *, s32);
     void clearTextBoxMessageRecursive(LayoutActor *, const char *);
 
+    void setTextBoxGameMessageRecursive(LayoutActor *, const char *, const char *);
+    void setTextBoxLayoutMessageRecursive(LayoutActor *, const char *, const char *);
+    void setTextBoxSystemMessageRecursive(LayoutActor *, const char *, const char *);
     void setTextBoxMessageRecursive(LayoutActor *, const char *, const wchar_t *);
     void setTextBoxFormatRecursive(LayoutActor *, const char *, const wchar_t *, ...);
 
@@ -50,9 +53,14 @@ namespace MR {
     void showLayout(LayoutActor *);
     void hideLayout(LayoutActor *);
 
+    void showPane(LayoutActor *, const char *);
+    void hidePane(LayoutActor *, const char *);
+
     bool isHiddenLayout(const LayoutActor *);
 
     void startAnimAndSetFrameAndStop(LayoutActor *, const char *, f32, u32);
 
     void emitEffect(LayoutActor *, const char *);
+
+    void setCometAnimFromId(LayoutActor *, int, u32);
 };

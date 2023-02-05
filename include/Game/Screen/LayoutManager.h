@@ -1,6 +1,7 @@
 #pragma once
 
 #include "nw4r/lyt/lyt_drawInfo.h"
+#include "nw4r/lyt/lyt_pane.h"
 
 class LayoutManager {
 public:
@@ -10,11 +11,13 @@ public:
     void calcAnim();
     void draw() const;
 
+    nw4r::lyt::Pane* getPane(const char *) const;
+
     u32 _0;
     u32 _4;
     u32 _8;
     nw4r::lyt::DrawInfo mDrawInfo;  // _C
-    u8 _60;
+    bool mIsScreenHidden;           // _60
     u8 _61;
     u8 _62;
     u8 _63;

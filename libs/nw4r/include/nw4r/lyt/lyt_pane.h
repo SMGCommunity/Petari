@@ -8,6 +8,8 @@ namespace nw4r {
         public:
             virtual ~Pane();
 
+            void SetVisible(bool);
+
             u8 _4[0xD0];
         };
     };

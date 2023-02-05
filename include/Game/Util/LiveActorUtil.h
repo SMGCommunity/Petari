@@ -171,6 +171,8 @@ namespace MR {
 
     bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
 
+    bool isBrkOneTimeAndStopped(const LiveActor *);
+
     void setAllAnimFrame(const LiveActor *, const char *, f32);
     void setAllAnimFrameAtEnd(const LiveActor *, const char *);
 

@@ -8,6 +8,9 @@
 static u32 StmImInBuf[8] __attribute__((align(32)));
 static u32 StmImOutBuf[8] __attribute__((align(32)));
 
+static u32 StmVdInBuf[8] __attribute__((align(32)));
+static u32 StmVdOutBuf[8] __attribute__((align(32)));
+
 static u32 StmEhInBuf[8]__attribute__((align(32)));
 static u32 StmEhOutBuf[8] __attribute__((align(32)));
 
@@ -25,6 +28,48 @@ static OSPowerCallback PowerCallback;
 
 static BOOL __OSGetResetButtonStateRaw(void);
 static s32 __OSStateEventHandler(s32, void *);
+static s32 __OSVIDimReplyHandler(s32, void *);
+
+// from a debug build of the OS lib, this function is inlined in __OSSetVIForceDimming
+static int AccessVIDimRegs(void) {
+    int res;
+    res = IOS_IoctlAsync(StmImDesc, 0x5001, StmVdInBuf, 0x20, StmVdOutBuf, 0x20, __OSVIDimReplyHandler, 0);
+    return (res == 0) ? 1 : res;
+}
+
+#ifdef NON_MATCHING
+// inline nonsense again
+s32 __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift) {
+    s32 res;
+    BOOL en;
+
+    if (StmReady == 0) {
+        return -10;
+    }
+
+    en = OSDisableInterrupts();
+
+    if (StmVdInUse != 0) {
+        OSRestoreInterrupts(en);
+        return 0;
+    }
+
+    StmVdInUse = 1;
+    OSRestoreInterrupts(en);
+
+    StmVdInBuf[0] = (isEnabled << 7) | xShift | (8 * yShift);
+    StmVdInBuf[1] = 0;
+    StmVdInBuf[2] = 0;
+    StmVdInBuf[3] = 0;
+    StmVdInBuf[4] = 0;
+    StmVdInBuf[5] = 0xFFFFFFFF;
+    StmVdInBuf[6] = ~0xFFFF;
+    StmVdInBuf[7] = 0;
+    
+    res = AccessVIDimRegs();
+    return res;
+}
+#endif
 
 // this function is inlined but isn't in some games, so thanks
 BOOL __OSGetResetButtonStateRaw(void) {
@@ -83,7 +128,7 @@ s32 __OSUnRegisterStateEvent(void) {
     return ret;
 }
 
-s32 __OSVIDimReplyHandler(void) {
+s32 __OSVIDimReplyHandler(s32 ret, void *pUnused) {
     StmVdInUse = 0;
     return 0;
 }

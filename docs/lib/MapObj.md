@@ -43,7 +43,7 @@
 | [BigBubbleDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigBubbleDrawer.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [BigBubbleGenerator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigBubbleGenerator.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [BigBubbleHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigBubbleHolder.md) | 0.0% | 0 / 15 | 0.0% | :x: 
-| [BigBubbleMoveLimitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigBubbleMoveLimitter.md) | 0.0% | 0 / 7 | 0.0% | :x: 
+| [BigBubbleMoveLimitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigBubbleMoveLimitter.md) | 13.903743315508022% | 1 / 7 | 14.285714285714285% | :eight_pointed_black_star: 
 | [BigFan.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigFan.md) | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | [BigFanHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BigFanHolder.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [BlackHole.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BlackHole.md) | 66.66666666666666% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 

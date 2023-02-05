@@ -687,7 +687,7 @@ addBigBubbleMoveLimitter__2MRFP21BigBubbleMoveLimitter,BigBubbleHolder.o,MapObj.
 isPlayerBindedBigBubble__2MRFv,BigBubbleHolder.o,MapObj.a,false
 __dt__15BigBubbleHolderFv,BigBubbleHolder.o,MapObj.a,false
 init__15BigBubbleHolderFRC12JMapInfoIter,BigBubbleHolder.o,MapObj.a,false
-__ct__21BigBubbleMoveLimitterFPCcl,BigBubbleMoveLimitter.o,MapObj.a,false
+__ct__21BigBubbleMoveLimitterFPCcl,BigBubbleMoveLimitter.o,MapObj.a,true
 init__21BigBubbleMoveLimitterFRC12JMapInfoIter,BigBubbleMoveLimitter.o,MapObj.a,false
 limitPosition__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3<f>f,BigBubbleMoveLimitter.o,MapObj.a,false
 limitVelocity__21BigBubbleMoveLimitterCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f,BigBubbleMoveLimitter.o,MapObj.a,false

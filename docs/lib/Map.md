@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [ActorAppearSwitchListener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/ActorAppearSwitchListener.md) | 16.39344262295082% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
+| [ActorAppearSwitchListener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/ActorAppearSwitchListener.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [Air.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/Air.md) | 100.0% | 33 / 33 | 100.0% | :white_check_mark: 
 | [BezierRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/BezierRail.md) | 25.177935943060497% | 11 / 21 | 52.38095238095239% | :eight_pointed_black_star: 
 | [Butterfly.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/Butterfly.md) | 0.0% | 0 / 37 | 0.0% | :x: 
@@ -17,7 +17,7 @@
 | [CollisionDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/CollisionDirector.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [CollisionParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/CollisionParts.md) | 25.15762925598991% | 19 / 30 | 63.33333333333333% | :eight_pointed_black_star: 
 | [FileSelectCameraController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectCameraController.md) | 0.0% | 0 / 28 | 0.0% | :x: 
-| [FileSelectEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectEffect.md) | 0.0% | 0 / 15 | 0.0% | :x: 
+| [FileSelectEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectEffect.md) | 56.9620253164557% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
 | [FileSelectFunc.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectFunc.md) | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | [FileSelectIconID.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectIconID.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [FileSelectItem.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/FileSelectItem.md) | 0.0% | 0 / 81 | 0.0% | :x: 

@@ -35,6 +35,32 @@ namespace MR {
         U mCallee;
     };
 
+    template<typename T, typename U, typename V>
+    class FunctorV1M : public FunctorBase {
+    public:
+        inline FunctorV1M(T call, U callee, V arg_0) {
+            mCaller = call;
+            mCallee = callee;
+            mArg0 = arg_0;
+        }
+
+        inline FunctorV1M() {
+
+        }
+
+        virtual void operator()() const {
+            (mCaller->*mCallee)(mArg0);
+        }
+
+        virtual FunctorBase* clone(JKRHeap *pHeap) const {
+            return new (pHeap, 0x16) FunctorV1M(*this);
+        };
+
+        T mCaller;
+        U mCallee;
+        V mArg0;
+    };
+
     template<typename T, typename U, typename V, typename W>
     class FunctorV2M : public FunctorBase {
     public:
@@ -71,6 +97,11 @@ namespace MR {
     template<class T>
     inline static FunctorV0M<T *, void (T::*)()> Functor_Inline(T* a1, void (T::*a2)()) {
         return FunctorV0M<T *, void (T::*)()>(a1, a2);
+    }
+
+    template<class T, typename U>
+    static FunctorV1M<T *, void (T::*)(U), U> Functor(T* a1, void (T::*a2)(U), U arg_0) {
+        return FunctorV1M<T *, void (T::*)(U), U>(a1, a2, arg_0);
     }
 
     template<class T, typename U, typename V>

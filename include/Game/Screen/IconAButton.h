@@ -29,8 +29,9 @@ public:
 
     void updateFollowPos();
 
-    TVec3f mFollowPos;          // _20
-    char mFollowPane[0x18];     // _2C
+    TVec2f mFollowPos;              // _20
+    LayoutActor* mFollowActor;      // _28
+    char mFollowPane[0x18];         // _2C
 };
 
 namespace NrvIconAButton {
