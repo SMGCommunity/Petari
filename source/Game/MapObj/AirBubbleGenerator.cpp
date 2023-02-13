@@ -14,13 +14,13 @@ AirBubbleGenerator::AirBubbleGenerator(const char *pName) : LiveActor(pName) {
 void AirBubbleGenerator::init(const JMapInfoIter &rIter) {
     MR::createAirBubbleHolder();
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("AirBubbleGenerator", NULL, false);
+    initModelManagerWithAnm("AirBubbleGenerator", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initNerve(&NrvAirBubbleGenerator::AirBubbleGenerateNrvWait::sInstance);
     initHitSensor(1);
     MR::addBodyMessageSensorReceiver(this);
-    MR::initCollisionParts(this, "AirBubbleGenerator", getSensor(NULL), NULL);
+    MR::initCollisionParts(this, "AirBubbleGenerator", getSensor(nullptr), nullptr);
     MR::getJMapInfoArg0NoInit(rIter, &mSpawnDelay);
     MR::getJMapInfoArg1NoInit(rIter, &mBubbleDuration);
     initSound(2, false);
@@ -52,7 +52,7 @@ void AirBubbleGenerator::exeGenerate() {
 
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_AIR_BUBBLE_APPEAR", -1, -1);
-        MR::startBck(this, "Generate", NULL);
+        MR::startBck(this, "Generate", nullptr);
     }
 
     if (MR::isGreaterStep(this, 6)) {

@@ -1,7 +1,7 @@
 #include "Game/MapObj/Fountain.h"
 
 Fountain::Fountain(const char *pName) : LiveActor(pName) {
-    mFountainName = NULL;
+    mFountainName = nullptr;
     _90.x = 0.0f;
     _90.y = 1.0f;
     _90.z = 0.0f;

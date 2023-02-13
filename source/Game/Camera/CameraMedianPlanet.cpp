@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorMedianPlanet.h"
 
 CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
-    mString = NULL;
+    mString = nullptr;
     mAxisX = 1200.0f;
     mAxisY = 3000.0f;
     mAngleA = 0.7853982f;

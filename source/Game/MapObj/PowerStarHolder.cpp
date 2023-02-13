@@ -24,7 +24,7 @@ void PowerStarHolder::requestAppearPowerStar(int starNum, const TVec3f *pPos, bo
     info->mIsAppear = true;
     PowerStar* star = info->mStar;
 
-    if (pPos != NULL) {
+    if (pPos != nullptr) {
         star->setDemoAppearPos(*pPos);
     }
 
@@ -54,7 +54,7 @@ PowerStar* PowerStarHolder::getAppearedPowerStar(int starNum) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 PowerStarRequestInfo* PowerStarHolder::findPowerStarRequestInfo(int starNum) const {
@@ -66,7 +66,7 @@ PowerStarRequestInfo* PowerStarHolder::findPowerStarRequestInfo(int starNum) con
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 namespace MR {

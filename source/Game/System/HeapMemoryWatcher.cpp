@@ -33,10 +33,10 @@ namespace {
         return heap;
     }
 
-    void destroyHeapAndSetNULL(JKRHeap **pHeap) {
+    void destroyHeapAndSetnullptr(JKRHeap **pHeap) {
         if (*pHeap) {
             JKRHeap::destroy(*pHeap);
-            *pHeap = NULL;
+            *pHeap = nullptr;
         }
     }
 };
@@ -49,7 +49,7 @@ JKRHeap* HeapMemoryWatcher::getHeapNapa(const JKRHeap *pHeap)
     if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR)
         return mSceneHeapNapa;
 
-    return NULL;
+    return nullptr;
 }
 
 JKRHeap* HeapMemoryWatcher::getHeapGDDR3(const JKRHeap *pHeap)
@@ -60,7 +60,7 @@ JKRHeap* HeapMemoryWatcher::getHeapGDDR3(const JKRHeap *pHeap)
     if (pHeap == mSceneHeapNapa || pHeap == mSceneHeapGDDR)
         return mSceneHeapGDDR;
 
-    return NULL;
+    return nullptr;
 }
 
 void HeapMemoryWatcher::createFileCacheHeapOnGameHeap(u32 size) {
@@ -90,25 +90,25 @@ void HeapMemoryWatcher::setCurrentHeapToSceneHeap() {
 }
 
 void HeapMemoryWatcher::destroySceneHeap() {
-    destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapNapa);
-    destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapGDDR);
+    destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapNapa);
+    destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapGDDR);
 }
 
 void HeapMemoryWatcher::destroyGameHeap() {
     if (mSceneHeapNapa) {
-        destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapNapa);
+        destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapNapa);
     }
 
     if (mSceneHeapGDDR) {
-        destroyHeapAndSetNULL((JKRHeap**)&mSceneHeapGDDR);
+        destroyHeapAndSetnullptr((JKRHeap**)&mSceneHeapGDDR);
     }
 
     if (mFileCacheHeap) {
-        destroyHeapAndSetNULL((JKRHeap**)&mFileCacheHeap);
+        destroyHeapAndSetnullptr((JKRHeap**)&mFileCacheHeap);
     }
 
-    destroyHeapAndSetNULL((JKRHeap**)&mGameHeapNapa);
-    destroyHeapAndSetNULL((JKRHeap**)&mGameHeapGDDR);
+    destroyHeapAndSetnullptr((JKRHeap**)&mGameHeapNapa);
+    destroyHeapAndSetnullptr((JKRHeap**)&mGameHeapGDDR);
     createGameHeap();
 }
 
@@ -150,16 +150,16 @@ void HeapMemoryWatcher::createGameHeap() {
 }
 
 HeapMemoryWatcher::HeapMemoryWatcher() {
-    mStationedHeapNapa = NULL;
-    mStationedHeapGDDR = NULL;
-    mGameHeapNapa = NULL;
-    mGameHeapGDDR = NULL;
-    mFileCacheHeap = NULL;
-    mSceneHeapNapa = NULL;
-    mSceneHeapGDDR = NULL;
-    mWPadHeap = NULL;
-    mHomeButtonLayoutHeap = NULL;
-    _24 = NULL;
+    mStationedHeapNapa = nullptr;
+    mStationedHeapGDDR = nullptr;
+    mGameHeapNapa = nullptr;
+    mGameHeapGDDR = nullptr;
+    mFileCacheHeap = nullptr;
+    mSceneHeapNapa = nullptr;
+    mSceneHeapGDDR = nullptr;
+    mWPadHeap = nullptr;
+    mHomeButtonLayoutHeap = nullptr;
+    _24 = nullptr;
     JKRHeap::setErrorHandler(HeapMemoryWatcher::memoryErrorCallback);
     createHeaps(); 
 }

@@ -91,7 +91,7 @@ namespace {
             }
         }
 
-        return NULL;
+        return nullptr;
     }
 };
 
@@ -104,9 +104,9 @@ void SimpleSeesawObj::init(const JMapInfoIter &rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     const SoundEffectDataEntry* entry = getSeParam(mObjectName);
-    const char* sound_name = entry != NULL ? entry->soundName : NULL;
+    const char* sound_name = entry != nullptr ? entry->soundName : nullptr;
     entry = getSeParam(mObjectName);
-    MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != NULL ? entry->_8 : 0.0f);
+    MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != nullptr ? entry->_8 : 0.0f);
     initialize(rIter, info);
 }
 
@@ -184,7 +184,7 @@ void SimpleMirrorObj::init(const JMapInfoIter &rIter) {
     else {
         info.setupHioNode("地形オブジェ");
         info.setupConnectToScene();
-        info.setupEffect(NULL);
+        info.setupEffect(nullptr);
         info.setupSound(4);
         info.setupGroupClipping(0x80);
         info.setupDefaultPos();

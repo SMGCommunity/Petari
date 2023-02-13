@@ -29,7 +29,7 @@ JKRMemArchive::JKRMemArchive(long entryNum, EMountDirection mountDir) : JKRArchi
 
 JKRMemArchive::~JKRMemArchive() {
     if (mIsMounted == true) {
-        if (_6C && mHeader != NULL) {
+        if (_6C && mHeader != nullptr) {
             JKRHeap::free(mHeader, mHeap);
         }
 
@@ -39,7 +39,7 @@ JKRMemArchive::~JKRMemArchive() {
 }
 
 void JKRMemArchive::removeResourceAll() {
-    if (mInfoBlock == NULL) {
+    if (mInfoBlock == nullptr) {
         return;
     }
 
@@ -50,8 +50,8 @@ void JKRMemArchive::removeResourceAll() {
     SDIFileEntry *current = mFiles;
 
     for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-        if (current->mFileData != NULL) {
-            current->mFileData = NULL;
+        if (current->mFileData != nullptr) {
+            current->mFileData = nullptr;
         }
     }
 }
@@ -59,18 +59,18 @@ void JKRMemArchive::removeResourceAll() {
 bool JKRMemArchive::removeResource(void *pResource) {
     SDIFileEntry *file = findPtrResource(pResource);
 
-    if (file == NULL) {
+    if (file == nullptr) {
         return false;
     }
 
-    file->mFileData = NULL;
+    file->mFileData = nullptr;
     return true;
 }
 
 s32 JKRMemArchive::getExpandedResSize(const void *pResource) const {
     SDIFileEntry *file = findPtrResource(pResource);
 
-    if (file == NULL) {
+    if (file == nullptr) {
         return -1;
     }
 
@@ -82,11 +82,11 @@ s32 JKRMemArchive::getExpandedResSize(const void *pResource) const {
 }
 
 void *JKRMemArchive::fetchResource(SDIFileEntry *pFile, unsigned long *pSize) {
-    if (pFile->mFileData == NULL) {
+    if (pFile->mFileData == nullptr) {
         pFile->mFileData = mFileDataStart + pFile->mDataOffset;
     }
 
-    if (pSize != NULL) {
+    if (pSize != nullptr) {
         *pSize = pFile->mDataSize;
     }
 
@@ -100,7 +100,7 @@ void *JKRMemArchive::fetchResource(void *pData, unsigned long dataSize, SDIFileE
         size = dataSize;
     }
 
-    if (pFile->mFileData != NULL) {
+    if (pFile->mFileData != nullptr) {
         memcpy(pData, pFile->mFileData, size);
     }
     else {
@@ -125,7 +125,7 @@ void *JKRMemArchive::fetchResource(void *pData, unsigned long dataSize, SDIFileE
             );
     }
 
-    if (pSize != NULL) {
+    if (pSize != nullptr) {
         *pSize = size;
     }
 
@@ -140,7 +140,7 @@ void JKRMemArchive::fixedInit(long entryNum) {
     mHeap = JKRHeap::sCurrentHeap;
     mEntryNum = entryNum;
 
-    if (gCurrentFileLoader != NULL) {
+    if (gCurrentFileLoader != nullptr) {
         return;
     }
 
@@ -149,7 +149,7 @@ void JKRMemArchive::fixedInit(long entryNum) {
 }
 
 bool JKRMemArchive::mountFixed(void *a1, JKRMemBreakFlag breakFlag) {
-    if (check_mount_already(reinterpret_cast<s32>(a1)) != NULL) {
+    if (check_mount_already(reinterpret_cast<s32>(a1)) != nullptr) {
         return false;
     }
 
@@ -176,12 +176,12 @@ bool JKRMemArchive::mountFixed(void *a1, JKRMemBreakFlag breakFlag) {
 #ifdef NON_MATCHING
 // add r3, r5, r3 instead of add r3, r3, r5
 bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
-    mHeader = NULL;
-    mInfoBlock = NULL;
-    mFileDataStart = NULL;
-    mDirs = NULL;
-    mFiles = NULL;
-    mStringTable = NULL;
+    mHeader = nullptr;
+    mInfoBlock = nullptr;
+    mFileDataStart = nullptr;
+    mDirs = nullptr;
+    mFiles = nullptr;
+    mStringTable = nullptr;
     _6C = false;
     mMountDir = mountDir;
 
@@ -190,7 +190,7 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 
         u8 *pData = JKRDvdRipper::loadToMainRAM(
             entryNum,
-            NULL,
+            nullptr,
             JKR_EXPAND_SWITCH_1,
             0,
             mHeap,
@@ -202,7 +202,7 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 
         mHeader = reinterpret_cast<RarcHeader *>(pData);
 
-        if (pData != NULL) {
+        if (pData != nullptr) {
             DCInvalidateRange(pData, size);
         }
     }
@@ -211,7 +211,7 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 
         u8 *pData = JKRDvdRipper::loadToMainRAM(
             entryNum,
-            NULL,
+            nullptr,
             JKR_EXPAND_SWITCH_1,
             0,
             mHeap,
@@ -223,12 +223,12 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 
         mHeader = reinterpret_cast<RarcHeader * >(pData);
 
-        if (pData != NULL) {
+        if (pData != nullptr) {
             DCInvalidateRange(pData, size);
         }
     }
 
-    if (mHeader == NULL) {
+    if (mHeader == nullptr) {
         mMountMode = MOUNT_MODE_0;
     }
     else {

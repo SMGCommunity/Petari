@@ -20,8 +20,8 @@ bool AreaObj::isValid() const {
 }
 
 AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
-    mForm = NULL;
-    _128 = NULL;
+    mForm = nullptr;
+    _128 = nullptr;
     _12C.zero();
 }
 
@@ -43,7 +43,7 @@ AreaPolygon::~AreaPolygon() {
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
-    _8C = NULL;
+    _8C = nullptr;
     mNrTriangles = 4;
     _94 = 2;
 
@@ -100,7 +100,7 @@ CollisionArea::CollisionArea(int type, const char *pName) : AreaObj(type, pName)
     _58 = false;
     _5C = 0;
     _60 = 0;
-    mPolygon = NULL;
+    mPolygon = nullptr;
     mIsValid = false;
 }
 
@@ -127,7 +127,7 @@ void CollisionArea::init(const JMapInfoIter &rIter) {
     _58 = false;
 
     if (_60 == 0) {
-        mPolygon = NULL;
+        mPolygon = nullptr;
     }
     else {
         mPolygon = new AreaPolygon();
@@ -146,7 +146,7 @@ void CollisionArea::init(const JMapInfoIter &rIter) {
 void CollisionArea::movement() {
     if (!isValid()) {
         if (mIsValid) {
-            if (mPolygon != NULL) {
+            if (mPolygon != nullptr) {
                 MR::invalidateCollisionParts(mPolygon->mParts);
             }
 
@@ -155,7 +155,7 @@ void CollisionArea::movement() {
     }
     else {
         if (!mIsValid) {
-            if (mPolygon != NULL) {
+            if (mPolygon != nullptr) {
                 MR::validateCollisionParts(mPolygon->mParts);
             }
 
@@ -165,7 +165,7 @@ void CollisionArea::movement() {
         if (_54 == -1 && MR::isPlayerTeresaDisappear()) {
             _58 = true;
 
-            if (mPolygon != NULL) {
+            if (mPolygon != nullptr) {
                 MR::invalidateCollisionParts(mPolygon->mParts);
             }
         }
@@ -188,7 +188,7 @@ void CollisionArea::movement() {
                 if (_58) {
                     _58 = false;
 
-                    if (mPolygon != NULL) {
+                    if (mPolygon != nullptr) {
                         MR::validateCollisionParts(mPolygon->mParts);
                     }
                 }

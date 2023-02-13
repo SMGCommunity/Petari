@@ -15,7 +15,7 @@ Camera *CamTranslatorDummy::getCamera() const {
 
 Camera::Camera(const char *pName) : NameObj(pName) {
     mPosParam = new CameraPoseParam();
-    mVPan = NULL;
+    mVPan = nullptr;
     mIsLOfsErpOff = false;
     mZoneMatrix.identity();
 }
@@ -69,7 +69,7 @@ CamTranslatorBase *Camera::createTranslator() {
 }
 
 #ifdef NON_MATCHING
-// mVPan is placed in r3 instead of r0 when comparing with NULL
+// mVPan is placed in r3 instead of r0 when comparing with nullptr
 void Camera::setZoneMtx(long zoneID) {
     if (zoneID <= 0) {
         mZoneMatrix.identity();
@@ -96,7 +96,7 @@ void Camera::setZoneMtx(long zoneID) {
         };
     }
 
-    if (mVPan != NULL) {
+    if (mVPan != nullptr) {
         pan->_60 = 1;
     }
 }

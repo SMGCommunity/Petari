@@ -5,16 +5,16 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 30 Completed -- (0.0%)
+# 6 / 30 Completed -- (20.0%)
 # StarPieceCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16StarPieceCounterFPCc` | :x: |
-| `init__16StarPieceCounterFRC12JMapInfoIter` | :x: |
-| `appear__16StarPieceCounterFv` | :x: |
-| `forceAppear__16StarPieceCounterFb` | :x: |
-| `disappear__16StarPieceCounterFb` | :x: |
-| `isWait__16StarPieceCounterCFv` | :x: |
+| `__ct__16StarPieceCounterFPCc` | :white_check_mark: |
+| `init__16StarPieceCounterFRC12JMapInfoIter` | :white_check_mark: |
+| `appear__16StarPieceCounterFv` | :white_check_mark: |
+| `forceAppear__16StarPieceCounterFb` | :white_check_mark: |
+| `disappear__16StarPieceCounterFb` | :white_check_mark: |
+| `isWait__16StarPieceCounterCFv` | :white_check_mark: |
 | `forceSync__16StarPieceCounterFv` | :x: |
 | `tryOnModeTicoEat__16StarPieceCounterFb` | :x: |
 | `tryOffModeTicoEat__16StarPieceCounterFv` | :x: |

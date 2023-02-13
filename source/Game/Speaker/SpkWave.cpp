@@ -1,7 +1,7 @@
 #include "Game/Speaker/SpkWave.h"
 
 SpkWave::SpkWave() {
-    mResource = NULL;
+    mResource = nullptr;
 }
 
 void SpkWave::setResource(void * pResource) {
@@ -11,7 +11,7 @@ void SpkWave::setResource(void * pResource) {
 }
 
 u32 SpkWave::getWaveSize(long wave) const {
-    if (mResource == NULL) {
+    if (mResource == nullptr) {
         return 0;
     } else {
         return getWaveData(wave)->mSize;
@@ -19,7 +19,7 @@ u32 SpkWave::getWaveSize(long wave) const {
 }
 
 u32 SpkWave::getLoopStartPos(long wave) const {
-    if (mResource == NULL) {
+    if (mResource == nullptr) {
         return 0;
     } else {
         return getWaveData(wave)->mLoopStartPos;
@@ -27,7 +27,7 @@ u32 SpkWave::getLoopStartPos(long wave) const {
 }
 
 u32 SpkWave::getLoopEndPos(long wave) const {
-    if (mResource == NULL) {
+    if (mResource == nullptr) {
         return 0;
     } else {
         return getWaveData(wave)->mLoopEndPos;
@@ -35,7 +35,7 @@ u32 SpkWave::getLoopEndPos(long wave) const {
 }
 
 u8** SpkWave::getWave(long wave) const {
-    if (mResource == NULL) {
+    if (mResource == nullptr) {
         return 0;
     } else {
         return &getWaveData(wave)->mWave;

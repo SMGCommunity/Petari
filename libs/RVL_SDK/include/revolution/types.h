@@ -34,6 +34,12 @@ typedef int                 BOOL;
 #endif
 #endif
 
+#ifndef nullptr
+#ifdef __cplusplus
+#define nullptr             0
+#endif
+#endif
+
 #define AT_ADDRESS(xyz) : (xyz)
 
 #ifndef TRUE

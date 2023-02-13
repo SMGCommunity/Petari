@@ -2,7 +2,7 @@
 #include <new.h>
 
 JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
-    JKRExpHeap* heap = NULL;
+    JKRExpHeap* heap = nullptr;
 
     if (!JKRHeap::sRootHeap) {
         char* stack_C;
@@ -10,7 +10,7 @@ JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
         JKRHeap::initArena(&stack_C, &arenaSize, heapNum);
         char* area = stack_C + 0x90;
         u32 size = arenaSize - 0x90;
-        heap = new(stack_C)JKRExpHeap(area, size, NULL, a2);
+        heap = new(stack_C)JKRExpHeap(area, size, nullptr, a2);
         JKRHeap::sRootHeap = heap;
     }
 

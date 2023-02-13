@@ -2,8 +2,8 @@
 #include "JSystem/JMath/JMath.h"
 
 CrystalCageMoving::CrystalCageMoving(const char *pName) : MapObjActor(pName) {
-    mTicoModel = NULL;
-    mCameraInfo = NULL;
+    mTicoModel = nullptr;
+    mCameraInfo = nullptr;
     _FC.x = 0.0f;
     _FC.y = 0.0f;
     _FC.z = 0.0f;
@@ -32,16 +32,16 @@ void CrystalCageMoving::init(const JMapInfoIter &rIter) {
     _FC.set<f32>(mPosition);
     initDummyModel(rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
-    MR::startBck(this, "Wait", NULL);
+    MR::startBck(this, "Wait", nullptr);
 
     if (MR::isDemoExist("脱出スピドラ出現")) {
-        MR::registerDemoActionNerve(this, &NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance, NULL);
+        MR::registerDemoActionNerve(this, &NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance, nullptr);
     }
 }
 
 void CrystalCageMoving::exeBreakBig() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "CoreWait", NULL);
+        MR::startBck(this, "CoreWait", nullptr);
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
         MR::setSensorRadius(this, "body", 30.0f);
         _108 = 1;
@@ -73,7 +73,7 @@ void CrystalCageMoving::exeBreakAll() {
 
 void CrystalCageMoving::exeDemoTicoMove() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mTicoModel, "Fly", NULL);
+        MR::startBck(mTicoModel, "Fly", nullptr);
         MR::startSound(mTicoModel, "SE_SM_TICO_SPIN", -1, -1);
     }
 
@@ -103,7 +103,7 @@ void CrystalCageMoving::exeDemoTicoStop() {
 
 void CrystalCageMoving::exeDemoTicoChange() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mTicoModel, "Metamorphosis", NULL);
+        MR::startBck(mTicoModel, "Metamorphosis", nullptr);
         MR::startSound(mTicoModel, "SE_SM_TICO_METAMORPHOSE", -1, -1);
         MR::setBckRate(mTicoModel, 1.5f);
     }
@@ -171,7 +171,7 @@ void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
     else {
         f32 radius = pSensor->mRadius;
         TMtx34f joint_mtx;
-        joint_mtx.set(MR::getJointMtx(this, NULL));
+        joint_mtx.set(MR::getJointMtx(this, nullptr));
         TVec3f joint_pos;
         f32 z = joint_mtx.mMtx[2][1];
         f32 y = joint_mtx.mMtx[1][1];
@@ -205,14 +205,14 @@ void CrystalCageMoving::initDummyModel(const JMapInfoIter &rIter) {
     MR::startBrk(mTicoModel, "ColorChange");
     MR::setBrkFrameAndStop(mTicoModel, 0.0f);
 
-    if (MR::isDemoCast(this, NULL)) {
+    if (MR::isDemoCast(this, nullptr)) {
         MR::tryRegisterDemoCast(mTicoModel, rIter);
     }
 }
 
 void CrystalCageMoving::startBreakDemo() {
     MR::startSound(this, "SE_OJ_CRY_CAGE_MV_TICO_APR", -1, -1);
-    MR::requestStartTimeKeepDemo(this, "脱出スピドラ出現", NULL, NULL, "クリスタル破壊");
+    MR::requestStartTimeKeepDemo(this, "脱出スピドラ出現", nullptr, nullptr, "クリスタル破壊");
     MR::hideModel(this);
     ModelObj* tico = mTicoModel;
     tico->mScale.x = 1.0f;

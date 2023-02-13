@@ -2,8 +2,8 @@
 #include <JSystem/JMath/JMath.h>
 
 BallRail::BallRail(const char *pName) : LiveActor(pName) {
-    mRailPoints = NULL;
-    _90 = NULL;
+    mRailPoints = nullptr;
+    _90 = nullptr;
     mNumPoints = 0;
     mAcceleration = 1.5f;
     mDeceleration = 0.995f;
@@ -111,7 +111,7 @@ void BallRail::exeWait() {
     MR::moveCoordToNearestPos(this, *MR::getPlayerPos());
     MR::moveTransToCurrentRailPos(this);
 
-    if (_90 != NULL) {
+    if (_90 != nullptr) {
         setNerve(&NrvBallRail::BallRailNrvSetUp::sInstance);
     }
 }
@@ -178,7 +178,7 @@ void BallRail::exeRun() {
         TVec3f* vec = &actor->mVelocity;
         MR::multAndSet(vec, MR::getRailDirection(this), MR::getRailCoordSpeed(this));
         getSensor("bind")->receiveMessage(178, _90);
-        _90 = NULL;
+        _90 = nullptr;
         setNerve(&NrvBallRail::BallRailNrvNoBind::sInstance);
     }
 }

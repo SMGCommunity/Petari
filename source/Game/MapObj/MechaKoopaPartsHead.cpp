@@ -10,7 +10,7 @@ void MechaKoopaPartsHead::init(const JMapInfoIter &rIter) {
     initInfo.setupHioNode("地形オブジェ");
     initInfo.setupDefaultPos();
     initInfo.setupConnectToScene();
-    initInfo.setupEffect(NULL);
+    initInfo.setupEffect(nullptr);
     initInfo.setupSound(6);
     initInfo.setupNerve(&NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvWait::sInstance);
     initialize(rIter, initInfo);

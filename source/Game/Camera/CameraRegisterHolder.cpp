@@ -59,8 +59,8 @@ void CameraRegisterHolder::initMtx() {
     mNrMatrices = 0;
 
     for (u32 i = 0; i < NR_REGISTERS; i++) {
-        mMatrices[i] = NULL;
-        mMatrixNames[i] = NULL;
+        mMatrices[i] = nullptr;
+        mMatrixNames[i] = nullptr;
     }
 }
 
@@ -68,8 +68,8 @@ void CameraRegisterHolder::initVec() {
     mNrVectors = 0;
     
     for (u32 i = 0; i < NR_REGISTERS; i++) {
-        mVectors[i] = NULL;
-        mVectorNames[i] = NULL;
+        mVectors[i] = nullptr;
+        mVectorNames[i] = nullptr;
     }
 }
 
@@ -77,8 +77,8 @@ void CameraRegisterHolder::initFloat() {
     mNrFloats = 0;
     
     for (u32 i = 0; i < NR_REGISTERS; i++) {
-        mFloats[i] = NULL;
-        mFloatNames[i] = NULL;
+        mFloats[i] = nullptr;
+        mFloatNames[i] = nullptr;
     }
 }
 
@@ -96,7 +96,7 @@ void CameraRegisterHolder::initDummyRegister() {
 }
 
 s32 CameraRegisterHolder::searchName(const char *const *pNames, unsigned long count, const char *pName) const {
-    if (pName == NULL) {
+    if (pName == nullptr) {
         return -1;
     }
 

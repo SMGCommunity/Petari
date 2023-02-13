@@ -2,8 +2,8 @@
 #include "Game/Util.h"
 
 PurpleCoinStarter::PurpleCoinStarter(const char *pName) : NameObj(pName) {
-    mCoinHolder = NULL;
-    mSwitchCtrl = NULL;
+    mCoinHolder = nullptr;
+    mSwitchCtrl = nullptr;
 }
 
 void PurpleCoinStarter::init(const JMapInfoIter &rIter) {

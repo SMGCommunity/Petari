@@ -10,13 +10,13 @@ Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) 
     mCounter = 0;
     _AC = 0.0f;
     mIsCountdown = false;
-    mFlashCtrl = NULL;
+    mFlashCtrl = nullptr;
 }
 
 void Note::init(const JMapInfoIter &rIter) {
     MR::createSceneObj(SceneObj_NoteGroup);
     _90.set(mPosition);
-    initModelManagerWithAnm("Note", NULL, false);
+    initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
     TVec3f offs;
@@ -24,11 +24,11 @@ void Note::init(const JMapInfoIter &rIter) {
     offs.y = 0.0f;
     offs.z = 0.0f;
     MR::addHitSensorMapObj(this, "body", 8, 80.0f, offs);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(&NrvNote::NoteNrvWait::sInstance);
     mFlashCtrl = new FlashingCtrl(this, true);
-    MR::calcGravityAndDropShadowVector(this, &mGravity, NULL, 0);
+    MR::calcGravityAndDropShadowVector(this, &mGravity, nullptr, 0);
     if (MR::isNearZero(mGravity, 0.001f)) {
         mGravity.x = 0.0f;
         mGravity.y = -1.0f;

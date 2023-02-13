@@ -1,7 +1,7 @@
 #include "Game/MapObj/CapsuleCage.h"
 
 CapsuleCage::CapsuleCage(const char *pName) : MapObjActor(pName) {
-    mInfo = NULL;
+    mInfo = nullptr;
 }
 
 void CapsuleCage::init(const JMapInfoIter &rIter) {
@@ -14,7 +14,7 @@ void CapsuleCage::init(const JMapInfoIter &rIter) {
     MR::setBodySensorType(this, 88);
 
     if (!MR::initActorCamera(this, rIter, &mInfo)) {
-        mInfo = NULL;
+        mInfo = nullptr;
     }
 }
 
@@ -40,7 +40,7 @@ void CapsuleCage::exeOpen() {
         MR::tryRumblePadWeak(this, 0);
         MR::shakeCameraWeak();
 
-        if (mInfo != NULL) {
+        if (mInfo != nullptr) {
             setNerve(&NrvCapsuleCage::CapsuleCageNrvEndCamera::sInstance);
         }
         else {
@@ -50,7 +50,7 @@ void CapsuleCage::exeOpen() {
 }
 
 void CapsuleCage::kill() {
-    if (mInfo != NULL) {
+    if (mInfo != nullptr) {
         MR::endActorCamera(this, mInfo, false, -1);
         MR::endDemo(this, cDemoCameraName);
     }
@@ -70,8 +70,8 @@ void CapsuleCage::initCaseUseSwitchB(const MapObjActorInitInfo &rInfo) {
 void CapsuleCage::startOpen() {
     MR::invalidateClipping(this);
 
-    if (mInfo != NULL) {
-        MR::requestStartDemoWithoutCinemaFrame(this, cDemoCameraName, &NrvCapsuleCage::CapsuleCageNrvStartCamera::sInstance, NULL);
+    if (mInfo != nullptr) {
+        MR::requestStartDemoWithoutCinemaFrame(this, cDemoCameraName, &NrvCapsuleCage::CapsuleCageNrvStartCamera::sInstance, nullptr);
     }
     else {
         setNerve(&NrvCapsuleCage::CapsuleCageNrvOpen::sInstance);

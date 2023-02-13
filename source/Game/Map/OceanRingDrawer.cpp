@@ -22,7 +22,7 @@ OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4,
     _20 = *a7;
     _24 = *a8;
     mDispListLength = 0;
-    mDispList = NULL;
+    mDispList = nullptr;
 
     initDisplayList(a6, a7, a8);
 
@@ -69,17 +69,17 @@ void OceanRingPartDrawer::draw() const {
 OceanRingDrawer::OceanRingDrawer(const OceanRing *pOceanRing) {
     mRing = pOceanRing;
     mDrawerCount = 0;
-    mPartDrawers = NULL;
+    mPartDrawers = nullptr;
     _C = 0.0f;
     _10 = 0.0f;
     _14 = 0.0f;
     _18 = 0.0f;
     _1C = 0.0f;
     _20 = 0.0f;
-    mWaterTex = NULL;
-    mWaterIndTex = NULL;
+    mWaterTex = nullptr;
+    mWaterIndTex = nullptr;
     _2C = 0;
-    mDispList = NULL;
+    mDispList = nullptr;
 
     mWaterTex = new JUTTexture(MR::loadTexFromArc("WaterWave.arc", "Water.bti"), 0);
     mWaterIndTex = new JUTTexture(MR::loadTexFromArc("WaterWave.arc", "WaterIndirect.bti"), 0);

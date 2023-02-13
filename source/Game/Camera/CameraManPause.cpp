@@ -3,7 +3,7 @@
 #include "Game/Camera/CameraTargetObj.h"
 
 TMtx34f *CameraTargetObj::getMapBaseMtx() const {
-    return NULL;
+    return nullptr;
 }
 
 CameraManPause::CameraManPause(const char *pName) : CameraMan(pName) {
@@ -36,7 +36,7 @@ void CameraManPause::init(const JMapInfoIter &rIter) {
     _54 = 0.0f;
     _58 = 0.0f;
 
-    if (CameraLocalUtil::getTarget(this) != NULL) {
+    if (CameraLocalUtil::getTarget(this) != nullptr) {
         CameraTargetObj *target = CameraLocalUtil::getTarget(this);
         TVec3f *position = target->getPosition();
 

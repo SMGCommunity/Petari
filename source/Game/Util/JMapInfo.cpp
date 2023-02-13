@@ -2,7 +2,7 @@
 #include "JSystem/JGadget/hashcode.h"
 
 JMapInfo::JMapInfo() {
-    mData = NULL;
+    mData = nullptr;
     mName = "Undifined";
 }
 
@@ -11,7 +11,7 @@ JMapInfo::~JMapInfo() {
 }
 
 bool JMapInfo::attach(const void *pData) {
-    if (pData == NULL) {
+    if (pData == nullptr) {
         return false;
     }
     else {

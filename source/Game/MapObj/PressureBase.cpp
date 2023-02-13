@@ -22,7 +22,7 @@ void PressureMessenger::exeSync() {
 }
 
 PressureBase::PressureBase(const char *pName) : LiveActor(pName) {
-    mJointController = NULL;
+    mJointController = nullptr;
     mFront.x = 0.0f;
     mFront.y = 0.0f;
     mFront.z = 1.0f;
@@ -32,8 +32,8 @@ PressureBase::PressureBase(const char *pName) : LiveActor(pName) {
     mBallSpeed = 30.0f;
     mShotType = 0;
     _B0 = 0;
-    mMessenger = NULL;
-    mGroup = NULL;
+    mMessenger = nullptr;
+    mGroup = nullptr;
     _BC = 0;
 }
 
@@ -41,16 +41,16 @@ void PressureBase::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     const char* objName;
     MR::getObjectName(&objName, rIter);
-    initModelManagerWithAnm(objName, NULL, false);
+    initModelManagerWithAnm(objName, nullptr, false);
     MR::calcFrontVec(&mFront, this);
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 8, 70.0f, TVec3f(0.0f, 30.0f, 0.0f));
     MR::addHitSensorAtJointMapObjSimple(this, "cannon", "Cannon1", 8, 70.0f, TVec3f(40.0f, 0.0f, 0.0f));
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     MR::initShadowVolumeSphere(this, 75.0f);
-    MR::invalidateShadow(this, NULL);
+    MR::invalidateShadow(this, nullptr);
     mJointController = MR::createJointDelegatorWithNullChildFunc<PressureBase>(this, &PressureBase::calcJointCannonV, "Cannon1");
     MR::initJointTransform(this);
     MR::getJMapInfoArg0NoInit(rIter, &mNozzleRotation);
@@ -65,7 +65,7 @@ void PressureBase::init(const JMapInfoIter &rIter) {
     MR::setGroupClipping(this, rIter, 32);
     mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 0x20);
 
-    if (mGroup != NULL) {
+    if (mGroup != nullptr) {
         PressureBase* actor = (PressureBase*)mGroup->getActor(0);
 
         if (this == actor) {
@@ -100,7 +100,7 @@ void PressureBase::init(const JMapInfoIter &rIter) {
 #ifdef NON_MATCHING
 // regswap
 void PressureBase::initAfterPlacement() {
-    if (mMessenger != NULL) {
+    if (mMessenger != nullptr) {
         s32 waitTime = -1;
 
         for (u16 i = 0; i < MR::getGroupFromArray(this)->mObjectCount; ++i) {
@@ -130,10 +130,10 @@ void PressureBase::control() {
 void PressureBase::exeBound() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
-            MR::startBck(this, "SwitchOff", NULL);
+            MR::startBck(this, "SwitchOff", nullptr);
         }
         else {
-            MR::startBck(this, "SwitchOn", NULL);
+            MR::startBck(this, "SwitchOn", nullptr);
         }
     }
 
@@ -169,7 +169,7 @@ void PressureBase::exeWait() {
 
 void PressureBase::exePrepareToShot() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ShotStart", NULL);
+        MR::startBck(this, "ShotStart", nullptr);
     }
 
     if (MR::isBckStopped(this)) {
@@ -180,10 +180,10 @@ void PressureBase::exePrepareToShot() {
 void PressureBase::exeShot() {
     if (MR::isFirstStep(this)) {
         if (_B0) {
-            MR::startBck(this, "ShortShot", NULL);
+            MR::startBck(this, "ShortShot", nullptr);
         }
         else {
-            MR::startBck(this, "Shot", NULL);
+            MR::startBck(this, "Shot", nullptr);
         }
     }
 
@@ -199,7 +199,7 @@ void PressureBase::exeShot() {
     }
 
     if (MR::isBckStopped(this)) {
-        if (mGroup != NULL) {
+        if (mGroup != nullptr) {
             setNerve(&NrvPressureBase::PressureBaseNrvSyncWait::sInstance);
         }
         else {

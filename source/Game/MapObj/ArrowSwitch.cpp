@@ -21,14 +21,14 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
-    initModelManagerWithAnm("ArrowSwitch", NULL, false);
+    initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
     TVec3f up_vec; 
     MR::calcUpVec(&up_vec, this);
     TVec3f neg_up_vec;
     neg_up_vec.negateInlineAndStore(up_vec, mGravity);
     MR::initShadowFromCSV(this, "Shadow");
-    MR::onCalcShadow(this, NULL);
+    MR::onCalcShadow(this, nullptr);
     MR::onCalcGravity(this);
     if (MR::isInAreaObj("PlaneModeCube", mPosition)) {
         initHitSensor(1);
@@ -38,7 +38,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
         initHitSensor(2);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
         MR::addHitSensorMapObjMoveCollision(this, "collision", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-        MR::initCollisionParts(this, "ArrowSwitch", getSensor("collision"), NULL);
+        MR::initCollisionParts(this, "ArrowSwitch", getSensor("collision"), nullptr);
     }
 
     initSound(4, false);
@@ -49,7 +49,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg2WithInit(rIter, &arg);
 
     if (arg >= 0) {
-        MR::setShadowDropLength(this, NULL, arg);
+        MR::setShadowDropLength(this, nullptr, arg);
     }
     
     MR::needStageSwitchWriteA(this, rIter);
@@ -218,7 +218,7 @@ void ArrowSwitch::exeWait() {
         }
 
         MR::validateClipping(this);
-        MR::onCalcShadow(this, NULL);
+        MR::onCalcShadow(this, nullptr);
     }
 }
 
@@ -226,7 +226,7 @@ void ArrowSwitch::exeWait() {
 void ArrowSwitch::exeRotate() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON", -1, -1);
-        MR::onCalcShadow(this, NULL);
+        MR::onCalcShadow(this, nullptr);
 
         if (_9C) {
             MR::invalidateHitSensors(this);
@@ -282,7 +282,7 @@ void ArrowSwitch::exeLock() {
         }
 
         MR::validateClipping(this);
-        MR::onCalcShadow(this, NULL);
+        MR::onCalcShadow(this, nullptr);
     }
 }
 

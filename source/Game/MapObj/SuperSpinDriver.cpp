@@ -14,7 +14,7 @@ bool SuperSpinDriver::tryEndCapture() {
 }
 
 bool SuperSpinDriver::tryForceCancel() {
-    if (_8C == NULL) {
+    if (_8C == nullptr) {
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvCoolDown::sInstance);
         return true;
     }
@@ -108,7 +108,7 @@ void SuperSpinDriver::requestActive() {
 
 void SuperSpinDriver::requestHide() {
     if (!MR::isDead(this)) {
-        if (_8C != NULL) {
+        if (_8C != nullptr) {
             endBind();
         }
 
@@ -170,7 +170,7 @@ void SuperSpinDriver::exeEmptyWait() {
 
 void SuperSpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "NonActive", NULL);
+        MR::startBck(this, "NonActive", nullptr);
         MR::validateClipping(this);
     }
 
@@ -186,7 +186,7 @@ void SuperSpinDriver::exeAppear() {
             MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR", -1, -1);
         }
 
-        MR::startBck(this, "Appear", NULL);
+        MR::startBck(this, "Appear", nullptr);
         _144 = 0.0f;
     }
 
@@ -206,7 +206,7 @@ void SuperSpinDriver::exeAppear() {
 
 void SuperSpinDriver::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", NULL);
+        MR::startBck(this, "Wait", nullptr);
         MR::validateClipping(this);
     }
 
@@ -219,7 +219,7 @@ void SuperSpinDriver::exeWait() {
 
         if (!_17C) {
             MR::emitEffect(this, "SuperSpinDriverLight");
-            MR::startCSSound("CS_SPIN_BIND", NULL, 0);
+            MR::startCSSound("CS_SPIN_BIND", nullptr, 0);
         }
         
     }
@@ -280,9 +280,9 @@ void SuperSpinDriver::updateShootMotion() {
 }
 
 void SuperSpinDriver::cancelBind() {
-    if (_8C != NULL) {
+    if (_8C != nullptr) {
         MR::endBindAndPlayerJump(this, _D0, 0);
-        _8C = NULL;
+        _8C = nullptr;
     }
 
     mSpinDriverCamera->cancel();
@@ -290,12 +290,12 @@ void SuperSpinDriver::cancelBind() {
 
 void SuperSpinDriver::endBind() {
     MR::endBindAndSpinDriverJump(this, _D0);
-    _8C = NULL;
+    _8C = nullptr;
     mSpinDriverCamera->end();
 }
 
 void SuperSpinDriver::startPathDraw() {
-    if (mPathDrawer != NULL) {
+    if (mPathDrawer != nullptr) {
         if (MR::isDead(mPathDrawer)) {
             mPathDrawer->appear();
             MR::emitEffect(this, "EndGlow");
@@ -304,7 +304,7 @@ void SuperSpinDriver::startPathDraw() {
 }
 
 void SuperSpinDriver::endPathDraw() {
-    if (mPathDrawer != NULL) {
+    if (mPathDrawer != nullptr) {
         if (!MR::isDead(mPathDrawer)) {
             MR::emitEffect(this, "EndGlow");
         }
@@ -348,7 +348,7 @@ void SuperSpinDriver::addSwingSignRotateY() {
 }
 
 void SuperSpinDriver::onUse() {
-    if (mEmptyModel != NULL) {
+    if (mEmptyModel != nullptr) {
         mEmptyModel->kill();
     }
 
@@ -356,7 +356,7 @@ void SuperSpinDriver::onUse() {
 }
 
 void SuperSpinDriver::offUse() {
-    if (mEmptyModel != NULL) {
+    if (mEmptyModel != nullptr) {
         mEmptyModel->appear();
     }
 

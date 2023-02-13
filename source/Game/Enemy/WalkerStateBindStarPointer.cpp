@@ -19,13 +19,13 @@ void WalkerStateBindStarPointer::appear() {
 
 void WalkerStateBindStarPointer::kill() {
     mIsDead = true;
-    if (mScaleController != NULL) {
+    if (mScaleController != nullptr) {
         mScaleController->startAnim();
     }
 
     const char* effectName = mHasEffect ? "PointerTouch" : "Touch";
     MR::deleteEffect(mHostActor, effectName);
-    if (MR::isExistBck(mHostActor, NULL)) {
+    if (MR::isExistBck(mHostActor, nullptr)) {
         MR::setBckRate(mHostActor, 1.0f);
     }
 }
@@ -40,11 +40,11 @@ void WalkerStateBindStarPointer::exeBind() {
         mUpdateCounter = 0;
         const char* effectName = mHasEffect ? "PointerTouch" : "Touch";
         MR::emitEffect(mHostActor, effectName);
-        if (MR::isExistBck(mHostActor, NULL)) {
+        if (MR::isExistBck(mHostActor, nullptr)) {
             MR::setBckRate(mHostActor, 0.0f);
         }
 
-        if (mScaleController != NULL) {
+        if (mScaleController != nullptr) {
             mScaleController->startDpdHitVibration();
         }
     }

@@ -5,7 +5,7 @@ FileSelectEffect::FileSelectEffect(const char *pName) : LiveActor(pName) {
 }
 
 void FileSelectEffect::init(const JMapInfoIter &rIter) {
-    initModelManagerWithAnm("MiniatureGalaxySelect", NULL, false);
+    initModelManagerWithAnm("MiniatureGalaxySelect", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
     initNerve(&FileSelectEffectNrvWait::sInstance);

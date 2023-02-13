@@ -12,7 +12,7 @@ void MechaKoopaPartsArm::init(const JMapInfoIter &rIter) {
     info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
     info.setupConnectToScene();
-    info.setupEffect(NULL);
+    info.setupEffect(nullptr);
     info.setupSound(6);
     info.setupNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitRear::sInstance);
     info.setupRotator();
@@ -42,10 +42,10 @@ void MechaKoopaPartsArm::exeMoveStart() {
         MapObjActorUtil::pauseRotator(this);
 
         if (isNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvMoveStartFront::sInstance)) {
-            MR::startBck(this, "Front", NULL);
+            MR::startBck(this, "Front", nullptr);
         }
         else {
-            MR::startBck(this, "Rear", NULL);
+            MR::startBck(this, "Rear", nullptr);
         }
 
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START", -1, -1);
@@ -82,7 +82,7 @@ void MechaKoopaPartsArm::exeMove() {
 
 void MechaKoopaPartsArm::exeBreakStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BreakStart", NULL);
+        MR::startBck(this, "BreakStart", nullptr);
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_FALL_ST", -1, -1);
         MapObjActorUtil::pauseRotator(this);
     }

@@ -4,7 +4,7 @@
 PowerStarEventKeeper::PowerStarEventKeeper() {
     _0 = 1;
     mPowerStarNum = 1;
-    mInfoTbl = NULL;
+    mInfoTbl = nullptr;
     mPowerStarNum = MR::getCurrentStagePowerStarNum();
     initStarInfoTable();
 }
@@ -19,7 +19,7 @@ void PowerStarEventKeeper::initStarInfoTable() {
         inf->_1 = 0;
         inf->_2 = 0;
         inf->_3 = 0;
-        inf->_4 = NULL;
+        inf->_4 = nullptr;
     }
 
     for (s32 i = _0; i < mPowerStarNum; i++) {

@@ -6,7 +6,7 @@ KillerGunnerSingle::KillerGunnerSingle(const char *pName) : LiveActor(pName) {
 
 void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("KillerGunnerSingle", NULL, false);
+    initModelManagerWithAnm("KillerGunnerSingle", nullptr, false);
     MR::connectToSceneEnvironment(this);
     initHitSensor(2);
     TVec3f sensor_offs;
@@ -17,8 +17,8 @@ void KillerGunnerSingle::init(const JMapInfoIter &rIter) {
 
     TVec3f shell_sensor_offs(sShellPos);
     MR::addHitSensorEnemy(this, "shell", 0x10, 250.0f, shell_sensor_offs);
-    MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), NULL);
-    initEffectKeeper(0, NULL, false);
+    MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), nullptr);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     initNerve(&NrvKillerGunnerSingle::HostTypeWait::sInstance);
@@ -55,7 +55,7 @@ void KillerGunnerSingle::exeCharge() {
     MR::startLevelSound(this, "SE_OJ_LV_K_GUNNER_CHARGE", -1, -1, -1);
 
     if (MR::isBtkStopped(this)) {
-        MR::startBck(this, "KillerGunnerSingleShoot", NULL);
+        MR::startBck(this, "KillerGunnerSingleShoot", nullptr);
         MR::emitEffect(this, "KillerGunnerSingleSmoke");
         MR::startSound(this, "SE_OJ_K_GUNNER_FIRE", -1, -1);
         setNerve(&NrvKillerGunnerSingle::HostTypeShoot::sInstance);

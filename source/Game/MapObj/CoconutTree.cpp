@@ -11,11 +11,11 @@ CoconutTree::~CoconutTree() {
 
 void CoconutTree::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("CoconutTree", NULL, false);
+    initModelManagerWithAnm("CoconutTree", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionParts(this, "CoconutTree", getSensor("body"), NULL);
+    MR::initCollisionParts(this, "CoconutTree", getSensor("body"), nullptr);
     MR::setClippingTypeSphere(this, 2000.0f);
     makeActorAppeared();
 }

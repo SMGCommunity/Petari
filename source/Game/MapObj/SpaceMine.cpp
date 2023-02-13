@@ -12,7 +12,7 @@ void SpaceMine::init(const JMapInfoIter &rIter) {
     info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
     info.setupConnectToScene();
-    info.setupEffect(NULL);
+    info.setupEffect(nullptr);
     info.setupSound(2);
     info.setupNerve(&NrvSpaceMine::HostTypeWait::sInstance);
     info.setupRailMover();
@@ -28,7 +28,7 @@ void SpaceMine::init(const JMapInfoIter &rIter) {
     bool isValid = isShadowValid(_D4);
 
     if (isValid) {
-        info.setupShadow(NULL);
+        info.setupShadow(nullptr);
     }
 
     s32 arg1 = -1;
@@ -40,8 +40,8 @@ void SpaceMine::init(const JMapInfoIter &rIter) {
 
     initialize(rIter, info);
     if (isCalcShadowAlways()) {
-        MR::onCalcShadow(this, NULL);
-        MR::onCalcShadowDropGravity(this, NULL);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcShadowDropGravity(this, nullptr);
     }
 }
 
@@ -148,7 +148,7 @@ void SpaceMine::exeAppear() {
     MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR", -1, -1, -1);
 
     if (MR::isStep(this, 120)) {
-        MR::startBck(this, "Appear", NULL);
+        MR::startBck(this, "Appear", nullptr);
         MR::showModel(this);
         MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR", -1, -1);
     }

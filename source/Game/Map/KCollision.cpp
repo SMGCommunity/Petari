@@ -17,7 +17,7 @@ void KCollisionServer::V3u::setUsingCast(const TVec3f &rPos) {
 }
 
 KCollisionServer::KCollisionServer() {
-    mFile = NULL;
+    mFile = nullptr;
     mapInfo = new JMapInfo();
     mMaxVertexDistance = 1.0f;
 }
@@ -25,7 +25,7 @@ KCollisionServer::KCollisionServer() {
 void KCollisionServer::init(void *pData, const void *pMapData) {
     setData(pData);
 
-    if (pMapData != NULL) {
+    if (pMapData != nullptr) {
         mapInfo->attach(pMapData);
     }
 }

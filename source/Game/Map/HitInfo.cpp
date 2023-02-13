@@ -4,9 +4,9 @@
 #include "Game/Util/MathUtil.h"
 
 Triangle::Triangle() {
-    mParts = NULL;
+    mParts = nullptr;
     mIdx = 0xFFFFFFFF;
-    mSensor = NULL;
+    mSensor = nullptr;
     mNormals[0].zero();
     mNormals[1].zero();
     mNormals[2].zero();
@@ -183,7 +183,7 @@ void Triangle::calcForceMovePower(TVec3f *a1, const TVec3f &a2) const {
 JMapInfoIter Triangle::getAttributes() const {
     if (mIdx == 0xFFFFFFFF) {
         JMapInfoIter iter;
-        iter.mInfo = NULL;
+        iter.mInfo = nullptr;
         iter._4 = -1;
 
         return iter;

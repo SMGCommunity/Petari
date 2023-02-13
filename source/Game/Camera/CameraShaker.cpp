@@ -56,7 +56,7 @@ void CameraShaker::stopShakingInfinity(NameObj *pNameObj) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (mInfinityNameObjs[i] == pNameObj) {
             mInfinityTasks[i]->endForce();
-            mInfinityNameObjs[i] = NULL;
+            mInfinityNameObjs[i] = nullptr;
             break;
         }
     }
@@ -100,7 +100,7 @@ void CameraShaker::createInfinityTask() {
         CameraShakeTask *task = new CameraShakeTask(sin);
 
         mInfinityTasks[i] = task;
-        mInfinityNameObjs[i] = NULL;
+        mInfinityNameObjs[i] = nullptr;
     }
 }
 

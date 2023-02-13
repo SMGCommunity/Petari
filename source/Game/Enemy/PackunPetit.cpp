@@ -3,25 +3,25 @@
 #include <JSystem/JMath/JMath.h>
 
 PackunPetit::PackunPetit(const char *pName) : LiveActor(pName) {
-    mScaleController = NULL;
-    mStarPointerState = NULL;
+    mScaleController = nullptr;
+    mStarPointerState = nullptr;
     _94.x = 0.0f;
     _94.y = 0.0f;
     _94.z = 1.0f;
-    mBlownModel = NULL;
+    mBlownModel = nullptr;
     mDontTurn = false;
 }
 
 void PackunPetit::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("PackunPetit", NULL, false);
+    initModelManagerWithAnm("PackunPetit", nullptr, false);
     MR::connectToSceneEnemy(this);
     initHitSensor(3);
     MR::addHitSensorAtJointMapObj(this, "body", "Head", 8, 90.0f, TVec3f(50.0f, 0.0f, 0.0f));
     MR::addHitSensorAtJointEnemyAttack(this, "attack", "Head", 8, 50.0f, TVec3f(50.0f, 0.0f, 0.0f));
     MR::addHitSensorMapObj(this, "stalk", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    initEffectKeeper(2, NULL, false);
-    MR::addEffectHitNormal(this, NULL);
+    initEffectKeeper(2, nullptr, false);
+    MR::addEffectHitNormal(this, nullptr);
     initSound(4, false);
     MR::initLightCtrl(this);
     MR::initShadowFromCSV(this, "Shadow");
@@ -34,7 +34,7 @@ void PackunPetit::init(const JMapInfoIter &rIter) {
     offs.y = 0.0f;
     offs.z = 0.0f;
     MR::initStarPointerTargetAtJoint(this, "Head", 100.0f, offs);
-    mScaleController = new AnimScaleController(NULL);
+    mScaleController = new AnimScaleController(nullptr);
     mStarPointerState = new WalkerStateBindStarPointer(this, mScaleController);
     MR::getJMapInfoArg0NoInit(rIter, &mDontTurn);
     MR::calcFrontVec(&_94, this);
@@ -74,7 +74,7 @@ void PackunPetit::exeWait() {
 
 void PackunPetit::exeFind() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Suspect", NULL);
+        MR::startBck(this, "Suspect", nullptr);
     }
 
     if (MR::isBckStopped(this)) {
@@ -84,7 +84,7 @@ void PackunPetit::exeFind() {
 
 void PackunPetit::exeThreat() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Threat", NULL);
+        MR::startBck(this, "Threat", nullptr);
     }
 
     MR::startLevelSound(this, "SE_EM_LV_PACKUNPETIT_THREAT", -1, -1, -1);
@@ -108,10 +108,10 @@ void PackunPetit::exeThreat() {
 void PackunPetit::exeTurn() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvPackunPetit::PackunPetitNrvLeftTurn::sInstance)) {
-            MR::startBck(this, "TurnLeft", NULL);
+            MR::startBck(this, "TurnLeft", nullptr);
         }
         else {
-            MR::startBck(this, "TurnRight", NULL);
+            MR::startBck(this, "TurnRight", nullptr);
         }
     }
 
@@ -129,7 +129,7 @@ void PackunPetit::exeTurn() {
 
 void PackunPetit::exeAttackStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", NULL);
+        MR::startBck(this, "Attack", nullptr);
     }
 
     if (MR::isStep(this, 70)) {
@@ -139,7 +139,7 @@ void PackunPetit::exeAttackStart() {
 
 void PackunPetit::exeHitWaitForAttack() {
     if (MR::isFirstStep(this) && !MR::isBckPlaying(this, "Attack")) {
-        MR::startBck(this, "Impact", NULL);
+        MR::startBck(this, "Impact", nullptr);
     }
 
     if (MR::isBckStopped(this)) {
@@ -149,7 +149,7 @@ void PackunPetit::exeHitWaitForAttack() {
 
 void PackunPetit::exeHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", NULL);
+        MR::startBck(this, "Hit", nullptr);
     }
 
     if (MR::isBckStopped(this) && !tryTurn()) {
@@ -159,7 +159,7 @@ void PackunPetit::exeHit() {
 
 void PackunPetit::exeTrampleDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Press", NULL);
+        MR::startBck(this, "Press", nullptr);
         MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
         MR::invalidateHitSensors(this);
     }
@@ -175,8 +175,8 @@ void PackunPetit::exePunchDown() {
         MR::invalidateHitSensor(this, "attack");
         mBlownModel->makeActorAppeared();
         MR::copyJointPos(this, "Head", &mBlownModel->mPosition);
-        MR::startBck(mBlownModel, "BlowHead", NULL);
-        MR::startBck(this, "Blow", NULL);
+        MR::startBck(mBlownModel, "BlowHead", nullptr);
+        MR::startBck(this, "Blow", nullptr);
         MR::startBlowHitSound(this);
     }
 
@@ -196,7 +196,7 @@ void PackunPetit::exePunchDown() {
 
 void PackunPetit::exeSwoonStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonStart", NULL);
+        MR::startBck(this, "SwoonStart", nullptr);
     }
 
     if (MR::isBckStopped(this)) {
@@ -206,7 +206,7 @@ void PackunPetit::exeSwoonStart() {
 
 void PackunPetit::exeSwoon() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swoon", NULL);
+        MR::startBck(this, "Swoon", nullptr);
     }
 
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
@@ -218,7 +218,7 @@ void PackunPetit::exeSwoon() {
 
 void PackunPetit::exeSwoonToThreat() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonToThreat", NULL);
+        MR::startBck(this, "SwoonToThreat", nullptr);
     }
 
     if (MR::isBckStopped(this)) {
@@ -415,7 +415,7 @@ bool PackunPetit::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
 }
 
 void PackunPetit::initBlowModel() {
-    mBlownModel = MR::createModelObjMapObjStrongLight("吹っ飛びモデル", "PackunPetitHead", NULL);
+    mBlownModel = MR::createModelObjMapObjStrongLight("吹っ飛びモデル", "PackunPetitHead", nullptr);
     mBlownModel->initWithoutIter();
     MR::initShadowVolumeSphere(mBlownModel, 70.0f);
     MR::invalidateClipping(mBlownModel);

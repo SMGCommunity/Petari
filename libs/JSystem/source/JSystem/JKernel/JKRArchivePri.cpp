@@ -45,7 +45,7 @@ const char *JKRArchive::CArcName::store(const char *pName, char stopChar) {
     mName[length] = 0;
 
     if (*pName == 0) {
-        return NULL;
+        return nullptr;
     }
 
     return pName + 1;
@@ -64,13 +64,13 @@ JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
     _58 = 1;
     mHeap = JKRHeap::findFromRoot(this);
 
-    if (mHeap == NULL) {
+    if (mHeap == nullptr) {
         mHeap = JKRHeap::sCurrentHeap;
     }
 
     mEntryNum = entryNum;
 
-    if (gCurrentFileLoader == NULL) {
+    if (gCurrentFileLoader == nullptr) {
         sCurrentDirIndex = 0;
         gCurrentFileLoader = this;
     }
@@ -83,7 +83,7 @@ JKRArchive::~JKRArchive() {
 void JKRArchive::setExpandSize(SDIFileEntry *pFile, unsigned long size) {
     u32 fileIndex = static_cast<u32>(pFile - mFiles);
 
-    if (mExpandSizes == NULL || fileIndex >= mInfoBlock->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return;
     }
 
@@ -93,7 +93,7 @@ void JKRArchive::setExpandSize(SDIFileEntry *pFile, unsigned long size) {
 u32 JKRArchive::getExpandSize(SDIFileEntry *pFile) const {
     u32 fileIndex = static_cast<u32>(pFile - mFiles);
 
-    if (mExpandSizes == NULL || fileIndex >= mInfoBlock->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return 0;
     }
 
@@ -120,7 +120,7 @@ JKRArchive::SDIDirEntry *JKRArchive::findResType(unsigned long a1) const {
         current++;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 #ifdef NON_MATCHING
@@ -130,7 +130,7 @@ JKRArchive::SDIDirEntry *JKRArchive::findDirectory(const char *pName, unsigned l
     SDIFileEntry *currentFile;
     s32 i;
 
-    if (pName == NULL) {
+    if (pName == nullptr) {
         return &mDirs[dirIndex];
     }
 
@@ -152,7 +152,7 @@ JKRArchive::SDIDirEntry *JKRArchive::findDirectory(const char *pName, unsigned l
         currentFile++;
     }
 
-    return NULL;
+    return nullptr;
 }
 #endif
 
@@ -163,7 +163,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findTypeResource(unsigned long a1, const c
 
         SDIDirEntry *dir = findResType(a1);
 
-        if (dir != NULL) {
+        if (dir != nullptr) {
             SDIFileEntry *current = &mFiles[dir->mFirstFileIndex];
 
             for (s32 i = 0; i < dir->mNrFiles; i++) {
@@ -176,13 +176,13 @@ JKRArchive::SDIFileEntry *JKRArchive::findTypeResource(unsigned long a1, const c
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 #ifdef NON_MATCHING
 // Register mismatch
 JKRArchive::SDIFileEntry *JKRArchive::findFsResource(const char *pName, unsigned long dirIndex) const {
-    if (pName != NULL) {
+    if (pName != nullptr) {
         SDIDirEntry *dir;
         SDIFileEntry *currentFile;
         s32 i;
@@ -198,11 +198,11 @@ JKRArchive::SDIFileEntry *JKRArchive::findFsResource(const char *pName, unsigned
                 if ((currentFile->mFlag & FILE_FLAG_FOLDER) != 0) {
                     return findFsResource(next, currentFile->mDirIndex);
                 }
-                else if (next == NULL) {
+                else if (next == nullptr) {
                     return currentFile;
                 }
                 else {
-                    return NULL;
+                    return nullptr;
                 }
             }
 
@@ -210,7 +210,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findFsResource(const char *pName, unsigned
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 #endif
 
@@ -219,7 +219,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findIdxResource(unsigned long index) const
         return &mFiles[index];
     }
 
-    return NULL;
+    return nullptr;
 }
 
 JKRArchive::SDIFileEntry *JKRArchive::findNameResource(const char *pName) const {
@@ -236,7 +236,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findNameResource(const char *pName) const 
         current++;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 JKRArchive::SDIFileEntry *JKRArchive::findPtrResource(const void *pResource) const {
@@ -250,7 +250,7 @@ JKRArchive::SDIFileEntry *JKRArchive::findPtrResource(const void *pResource) con
         current++;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 JKRArchive::SDIFileEntry *JKRArchive::findIdResource(unsigned short fileID) const {
@@ -271,5 +271,5 @@ JKRArchive::SDIFileEntry *JKRArchive::findIdResource(unsigned short fileID) cons
         }
     }
 
-    return NULL;
+    return nullptr;
 }

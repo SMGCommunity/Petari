@@ -143,12 +143,12 @@ namespace MR {
 SensorHitChecker::~SensorHitChecker() {}
 
 SensorHitChecker::SensorHitChecker(const char *pName) : NameObj(pName) {
-    mPlayerGroup = NULL;
-    mRideGroup = NULL;
-    mEyeGroup = NULL;
-    mSimpleGroup = NULL;
-    mMapObjGroup = NULL;
-    mCharacterGroup = NULL;
+    mPlayerGroup = nullptr;
+    mRideGroup = nullptr;
+    mEyeGroup = nullptr;
+    mSimpleGroup = nullptr;
+    mMapObjGroup = nullptr;
+    mCharacterGroup = nullptr;
 
     mPlayerGroup = new SensorGroup(0x10, "Player");
     mRideGroup = new SensorGroup(0x80, "Ride");
@@ -161,11 +161,11 @@ SensorHitChecker::SensorHitChecker(const char *pName) : NameObj(pName) {
 SensorGroup::SensorGroup(int maxSensors, const char *a2) {
     mMaxSensors = maxSensors;
     mSensorCount = 0;
-    mSensors = NULL;
+    mSensors = nullptr;
     mSensors = new HitSensor*[maxSensors];
 
     for (s32 i = 0; i < mMaxSensors; i++) {
-        mSensors[i] = NULL;
+        mSensors[i] = nullptr;
     }
 }
 
@@ -188,6 +188,6 @@ void SensorGroup::remove(HitSensor *pSensor) {
 
 void SensorGroup::clear() const {
     for (s32 i = 0; i < mSensorCount; i++) {
-        mSensors[i]->mSensorCount = NULL;
+        mSensors[i]->mSensorCount = nullptr;
     }
 }

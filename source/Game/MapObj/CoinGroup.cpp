@@ -2,8 +2,8 @@
 #include "Game/Util.h"
 
 CoinGroup::CoinGroup(const char *pName) : LiveActor(pName) {
-    mCoinArray = NULL;
-    mCameraInfo = NULL;
+    mCoinArray = nullptr;
+    mCameraInfo = nullptr;
     mCoinCount = 0;
     mTimeLimit = -1;
     mIsPurpleCoinGroup = false;

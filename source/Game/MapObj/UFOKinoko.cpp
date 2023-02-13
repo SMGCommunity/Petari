@@ -20,7 +20,7 @@ void UFOKinoko::init(const JMapInfoIter &rIter) {
     info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
     info.setupConnectToScene();
-    info.setupEffect(NULL);
+    info.setupEffect(nullptr);
     info.setupSound(4);
     info.setupGroupClipping(64);
     info.setupSeAppear();
@@ -29,7 +29,7 @@ void UFOKinoko::init(const JMapInfoIter &rIter) {
     info.setupBaseMtxFollowTarget();
     info.setupNerve(&NrvUFOKinoko::HostTypeWait::sInstance);
     if (hasShadow) {
-        info.setupShadow(NULL);
+        info.setupShadow(nullptr);
     }
     MapObjActorUtil::setupInitInfoColorChangeArg0(&info, rIter);
     bool arg7 = true;
@@ -39,7 +39,7 @@ void UFOKinoko::init(const JMapInfoIter &rIter) {
     }
     initialize(rIter, info);
     MapObjActorUtil::startRotator(this);
-    if (MR::isDemoCast(this, NULL)) {
+    if (MR::isDemoCast(this, nullptr)) {
         MR::FunctorV0M<UFOKinoko *, void (UFOKinoko::*)()> functor = MR::Functor<UFOKinoko>(this, &UFOKinoko::startMove);
         MR::tryRegisterDemoActionFunctor(this, functor, "ＵＦＯキノコ登場");
     }
@@ -60,7 +60,7 @@ void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo &) {
 }
 
 void UFOKinoko::startMove() {
-    if (mRailMover != NULL) {
+    if (mRailMover != nullptr) {
         MapObjActorUtil::startRailMover(this);
     }
     setNerve(&NrvUFOKinoko::HostTypeMove::sInstance);
@@ -80,7 +80,7 @@ void UFOKinoko::exeMove() {
         MR::startSound(this, "SE_OJ_UFO_KINOKO_MOVE_ST", -1, -1);
     }
     MR::startLevelSound(this, "SE_OJ_LV_UFO_KINOKO_MOVE", -1, -1, -1);
-    if (mRailMover != NULL && !MapObjActorUtil::isRailMoverWorking(this)) {
+    if (mRailMover != nullptr && !MapObjActorUtil::isRailMoverWorking(this)) {
         setNerve(&NrvUFOKinoko::HostTypeStop::sInstance);
     }
 }

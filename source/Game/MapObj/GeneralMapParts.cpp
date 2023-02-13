@@ -3,17 +3,17 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.h"
 
 GeneralMapParts::GeneralMapParts(const char *pName) : MapParts(pName) {
-    mCameraInfo = NULL;
+    mCameraInfo = nullptr;
     mMoveConditionType = 0;
     mSignMotionType = 0;
     mShadowType = 0;
     mFunctionArray.mCount = 0;
-    mAppearController = NULL;
-    mRailRotator = NULL;
-    mRailMover = NULL;
-    mRotator = NULL;
-    mGuideDrawer = NULL;
-    mRailPosture = NULL;
+    mAppearController = nullptr;
+    mRailRotator = nullptr;
+    mRailMover = nullptr;
+    mRotator = nullptr;
+    mGuideDrawer = nullptr;
+    mRailPosture = nullptr;
     _E4 = 0;
     _E5 = 0;
 }
@@ -55,7 +55,7 @@ void GeneralMapParts::initAfterPlacement() {
         }
 
         if (MR::hasMapPartsShadow(mShadowType)) {
-            MR::onCalcShadowOneTime(this, NULL);
+            MR::onCalcShadowOneTime(this, nullptr);
         }
     }
 }
@@ -217,7 +217,7 @@ void GeneralMapParts::initSensorType(const JMapInfoIter &rIter) {
 }
 
 void GeneralMapParts::initGravity(const JMapInfoIter &rIter) {
-    MR::addBaseMatrixFollowTarget(this, rIter, NULL, NULL);
+    MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
 
     if (!MR::isMapPartsShadowTypeNone(mShadowType)) {
         if (isFixed()) {

@@ -74,7 +74,7 @@ namespace MR {
     }
 
     bool isObjectName(const JMapInfoIter &rIter, const char *pName) {
-        const char *objName = NULL;
+        const char *objName = nullptr;
         if (MR::getObjectName(&objName, rIter)) {
             return MR::isEqualString(pName, objName);
         }
@@ -555,13 +555,13 @@ namespace MR {
     }
 
     const char* getDemoName(const JMapInfoIter &rIter) {
-        const char* name = NULL;
+        const char* name = nullptr;
         rIter.getValue<const char *>("DemoName", &name);
         return name;
     }
 
     const char* getDemoSheetName(const JMapInfoIter &rIter) {
-        const char* name = NULL;
+        const char* name = nullptr;
         rIter.getValue<const char *>("TimeSheetName", &name);
         return name;
     }
@@ -571,7 +571,7 @@ namespace MR {
     }
 
     bool isEqualRailUsage(const JMapInfoIter &rIter, const char *pUsage) {
-        const char* str = NULL;
+        const char* str = nullptr;
         rIter.getValue<const char *>("usage", &str);
         return isEqualStringCase(str, pUsage);
     }

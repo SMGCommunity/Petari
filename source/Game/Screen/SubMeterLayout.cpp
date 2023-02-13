@@ -28,7 +28,7 @@ void SubMeterLayout::requestDeactivate() {
 
 void SubMeterLayout::requestAppear() {
     MR::showLayout(this);
-    MR::startAnim(this, "Appear", NULL);
+    MR::startAnim(this, "Appear", nullptr);
     _20 = 1;
     control();
 }

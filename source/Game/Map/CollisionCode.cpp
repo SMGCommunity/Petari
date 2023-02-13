@@ -57,7 +57,7 @@ const char* CollisionCode::getSoundCodeString(const Triangle &rTriangle) {
 
 const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
     if (!rIter.isValid()) {
-        return "null";
+        return "nullptr";
     }
 
     if (rIter.mInfo->getValueType("Sound_code") == 0) {
@@ -79,7 +79,7 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
         }
     }
 
-    return "null";
+    return "nullptr";
 }
 
 u32 CollisionCode::getCameraID(const Triangle &rTriangle) {
@@ -181,7 +181,7 @@ void CollisionCode::createWallTable() {
 void CollisionCode::createSoundTable() {
     mSoundTable = new CodeTable(0x10);
 
-    mSoundTable->add("null", 0);
+    mSoundTable->add("nullptr", 0);
     mSoundTable->add("Soil", 1);
     mSoundTable->add("Lawn", 2);
     mSoundTable->add("Stone", 3);

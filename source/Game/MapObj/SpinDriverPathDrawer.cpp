@@ -5,7 +5,7 @@
 
 
 SpinDriverPathDrawInit::SpinDriverPathDrawInit() : NameObj("スピンドライバーレール描画初期化"),
-    mOrangeTexture(NULL), mGreenTexture(NULL), mPinkTexture(NULL), mMaskTexture(NULL), mIsPathAtOpa(false) {
+    mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr), mIsPathAtOpa(false) {
     
     void (SpinDriverPathDrawInit::*drawFunc)(void) = &SpinDriverPathDrawInit::initDraw;
     MR::registerPreDrawFunction(MR::Functor(this, drawFunc), 18);
@@ -63,7 +63,7 @@ void SpinDriverPathDrawInit::initDraw() {
     GXSetClipMode(GX_CLIP_ENABLE);
     Color8 color = Color8(0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, (GXColor&)color); 
-    GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+    GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
     mMaskTexture->load(GX_TEXMAP1);
 }
 #endif

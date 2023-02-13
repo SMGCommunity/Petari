@@ -12,7 +12,7 @@ bool OceanRing::isInWater(const TVec3f &rVec) const {
     } 
 
     TVec3f nearPos;
-    f32 pos = calcNearestPos(rVec, &nearPos, NULL, NULL);
+    f32 pos = calcNearestPos(rVec, &nearPos, nullptr, nullptr);
     f32 w = (mWidthMax * calcCurrentWidthRate(pos));
 
     if (PSVECDistance(nearPos.toCVec(), rVec.toCVec()) > w) {
@@ -22,6 +22,6 @@ bool OceanRing::isInWater(const TVec3f &rVec) const {
     TVec3f stack_14(rVec);
     stack_14.subtract(nearPos);
     TVec3f gravVec;
-    MR::calcGravityVector(this, rVec, &gravVec, NULL, 0);
+    MR::calcGravityVector(this, rVec, &gravVec, nullptr, 0);
     return !(stack_14.dot(gravVec) < 0.0f);
 }

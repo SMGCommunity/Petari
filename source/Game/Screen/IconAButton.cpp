@@ -5,7 +5,7 @@
 IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor("Aボタンアイコン", true) {
     mFollowPos.x = 0.0f;
     mFollowPos.y = 0.0f;
-    mFollowActor = NULL;
+    mFollowActor = nullptr;
 
     if (connectToScene) {
         if (connectToPause) {
@@ -30,7 +30,7 @@ void IconAButton::init(const JMapInfoIter &rIter) {
 void IconAButton::setFollowActorPane(LayoutActor *pActor, const char *pName) {
     mFollowActor = pActor;
     snprintf(mFollowPane, sizeof(mFollowPane), "%s", pName);
-    MR::setFollowPos(mFollowPos, this, NULL);
+    MR::setFollowPos(mFollowPos, this, nullptr);
 }
 
 bool IconAButton::isOpen() {
@@ -101,7 +101,7 @@ void IconAButton::control() {
 }
 
 void IconAButton::updateFollowPos() {
-    if (mFollowActor != NULL) {
+    if (mFollowActor != nullptr) {
         MR::copyPaneTrans(&mFollowPos, mFollowActor, mFollowPane);
     }
 }

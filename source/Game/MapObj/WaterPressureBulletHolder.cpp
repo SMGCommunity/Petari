@@ -11,7 +11,7 @@ WaterPressureBullet* WaterPressureBulletHolder::callEmptyBullet() {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 WaterPressureBulletHolder::~WaterPressureBulletHolder() {

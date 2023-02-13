@@ -3,7 +3,7 @@
 #include "Game/Camera/CameraPoseParam.h"
 
 CameraMan::CameraMan(const char *pName) : NameObj(pName) {
-    mDirector = NULL;
+    mDirector = nullptr;
     mPoseParam = new CameraPoseParam();
     mIsActivated = false;
     _15 = false;
@@ -38,7 +38,7 @@ void CameraMan::owned(CameraDirector *pDirector) {
 }
 
 void CameraMan::released(CameraDirector *pDirector) {
-    mDirector = NULL;
+    mDirector = nullptr;
 }
 
 void CameraMan::activate(CameraDirector *pDirector) {

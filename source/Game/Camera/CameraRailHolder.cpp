@@ -13,7 +13,7 @@ CameraRailHolder::RailSet &CameraRailHolder::RailSet::operator=(const RailSet &r
 }
 
 /*CameraRailHolder::CameraRailHolder(const char *pName) : NameObj(pName) {
-    mRails = NULL;
+    mRails = nullptr;
     s32 nrZones = MR::getZoneNum();
     mRails = new ZoneRail[nrZones];
 

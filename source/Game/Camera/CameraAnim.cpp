@@ -180,12 +180,12 @@ CameraAnim::CameraAnim(const char *pName) : Camera(pName) {
     mNrFrames = 0;
     mIsKey = 0;
     mSpeed = 1.0f;
-    mFileDataAccessor = NULL;
+    mFileDataAccessor = nullptr;
     mDataAccessor = new CamAnmDataAccessor();
     mKeyDataAccessor = new KeyCamAnmDataAccessor();
     mNrValues = 0;
     _74 = 0;
-    mFileData = NULL;
+    mFileData = nullptr;
     _7C = 0;
 }
 
@@ -229,7 +229,7 @@ bool CameraAnim::isAnimEnd() const {
 }
 
 u32 CameraAnim::getAnimFrame(unsigned char *pFile) {
-    if (pFile == NULL) {
+    if (pFile == nullptr) {
         return 0;
     }
 

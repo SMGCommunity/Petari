@@ -18,7 +18,7 @@ nw4r::ut::TagProcessorBase<wchar_t>::Operation MessageTagSkipTagProcessor::Proce
         return nw4r::ut::TagProcessorBase<wchar_t>::Process(code, pPrintContext);
     }
     else {
-        return skipTag(NULL, pPrintContext, false);
+        return skipTag(nullptr, pPrintContext, false);
     }
 }
 

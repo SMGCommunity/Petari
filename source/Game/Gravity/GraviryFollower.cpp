@@ -3,7 +3,7 @@
 #include "Game/Gravity.h"
 #include "Game/Util.h"
 
-GraviryFollower::GraviryFollower(GlobalGravityObj *pGravityObj, const JMapInfoIter &rIter) : BaseMatrixFollower(pGravityObj, rIter), mGravity(NULL) {
+GraviryFollower::GraviryFollower(GlobalGravityObj *pGravityObj, const JMapInfoIter &rIter) : BaseMatrixFollower(pGravityObj, rIter), mGravity(nullptr) {
 	mGravity = pGravityObj->getGravity();
 }
 

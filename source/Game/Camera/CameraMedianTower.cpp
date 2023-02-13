@@ -3,7 +3,7 @@
 #include "Game/Camera/CameraLocalUtil.h"
 
 CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
-    mString = NULL;
+    mString = nullptr;
     mWPoint.x = 0.0f;
     mWPoint.y = 0.0f;
     mWPoint.z = 0.0f;

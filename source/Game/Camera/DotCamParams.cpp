@@ -7,14 +7,14 @@ DotCamReader::~DotCamReader() {
 }
 
 DotCamReaderInBin::DotCamReaderInBin(const void *pData) :
-    mVersion(0), _8(NULL), mMapInfo() {
-    mMapIter.mInfo = NULL;
+    mVersion(0), _8(nullptr), mMapInfo() {
+    mMapIter.mInfo = nullptr;
     mMapIter._4 = -1;
     init(pData);
 }
 
 DotCamReaderInBin::~DotCamReaderInBin() {
-    if (_8 != NULL) {
+    if (_8 != nullptr) {
         delete[] _8;
     }
 }
@@ -30,13 +30,13 @@ bool DotCamReaderInBin::hasMoreChunk() const {
 
     if (mMapIter.isValid()) {
         const JMapData *mapData = mMapInfo.mData;
-        s32 iVar2 = mapData != NULL ? mapData->_0 : 0; 
+        s32 iVar2 = mapData != nullptr ? mapData->_0 : 0; 
 
         bool bVar1 = false;
 
         const JMapInfo &mapInfo = mMapInfo;
 
-        if (mMapIter._4 == iVar2 && mMapIter.mInfo != NULL && mapInfo.mData != NULL) {
+        if (mMapIter._4 == iVar2 && mMapIter.mInfo != nullptr && mapInfo.mData != nullptr) {
             if (mMapIter.mInfo->mData == mapInfo.mData) {
                 bVar1 = true;
             }

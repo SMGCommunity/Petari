@@ -13,14 +13,14 @@ void WaterArea::init(const JMapInfoIter &rIter) {
     bool bVar3 = false;
     bool bVar2 = false;
 
-    if (rIter.mInfo != NULL && rIter._4 >= 0) {
+    if (rIter.mInfo != nullptr && rIter._4 >= 0) {
         bVar2 = true;
     }
 
     if (bVar2) {
         s32 iVar1;
 
-        if (rIter.mInfo->mData != NULL) {
+        if (rIter.mInfo->mData != nullptr) {
             iVar1 = rIter.mInfo->mData->_0;
         }
         else {

@@ -5,7 +5,7 @@
 #include "Game/Util.h"
 
 PurpleCoinHolder::PurpleCoinHolder() : DeriveActorGroup<Coin>("パープルコイン管理", 0x100) {
-    mStarter = NULL;
+    mStarter = nullptr;
     MR::declarePowerStarCoin100();
     MR::createPurpleCoinCounter();
 }

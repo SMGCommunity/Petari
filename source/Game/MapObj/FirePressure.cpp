@@ -25,7 +25,7 @@ bool FirePressure::shotBullet(f32 a1) {
     FirePressureBullet* bullet = hldr->callEmptyBullet();
 
     // do we have an empty bullet slot available?
-    if (bullet == NULL) {
+    if (bullet == nullptr) {
         return false;
     }
     else {

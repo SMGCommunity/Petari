@@ -43,7 +43,7 @@ void MapParts::connectToScene() {
 void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
     char name[0x30];
     MR::getMapPartsObjectName(name, 0x30, rIter);
-    initModelManagerWithAnm(name, NULL, false);
+    initModelManagerWithAnm(name, nullptr, false);
     initHitSensor(2);
     TVec3f dist;
     TVec3f lerpVec;
@@ -56,11 +56,11 @@ void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
     if (MR::isExistJoint(this, cFollowjointName)) {
         MtxPtr jointMtx = MR::getJointMtx(this, cFollowjointName);
         MR::initCollisionParts(this, name, sensor, jointMtx);
-        MR::tryCreateCollisionAllOtherCategory(this, jointMtx, sensor, NULL, NULL, NULL);
+        MR::tryCreateCollisionAllOtherCategory(this, jointMtx, sensor, nullptr, nullptr, nullptr);
     }
     else {
-        MR::initCollisionParts(this, name, sensor, NULL);
-        MR::tryCreateCollisionAllOtherCategory(this, sensor, NULL, NULL, NULL);
+        MR::initCollisionParts(this, name, sensor, nullptr);
+        MR::tryCreateCollisionAllOtherCategory(this, sensor, nullptr, nullptr, nullptr);
     }
 
     f32 sensorRange;

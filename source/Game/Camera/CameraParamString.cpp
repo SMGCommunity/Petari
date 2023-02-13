@@ -2,7 +2,7 @@
 #include "revolution.h"
 
 CameraParamString::CameraParamString() {
-    mString = NULL;
+    mString = nullptr;
 }
 
 CameraParamString &CameraParamString::operator=(const CameraParamString &rOther) {
@@ -20,10 +20,10 @@ const char *CameraParamString::getCharPtr() const {
 }
 
 void CameraParamString::copy(const char *pStringOther) {
-    if (pStringOther != NULL && *pStringOther != 0) {
+    if (pStringOther != nullptr && *pStringOther != 0) {
         mString = pStringOther;
     }
     else {
-        mString = NULL;
+        mString = nullptr;
     }
 }

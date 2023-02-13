@@ -3,8 +3,8 @@
 #include "Game/Screen/LuigiLetter.h"
 
 SceneDataInitializer::SceneDataInitializer() : NameObj("SceneDataInitializer") {
-    mFileLoader = NULL;
-    mDataHolder = NULL;
+    mFileLoader = nullptr;
+    mDataHolder = nullptr;
 }
 
 void SceneDataInitializer::startStageFileLoad() {
@@ -19,13 +19,13 @@ void SceneDataInitializer::startStageFileLoad() {
 void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
     NameObjArchiveListCollector collector;
     JMapInfoIter iter;
-    iter.mInfo = NULL;
+    iter.mInfo = nullptr;
     iter._4 = -1;
     LuigiLetter::makeArchiveListForMenu(&collector, iter);
 
     s32 curArchive = 0;
     while (curArchive < collector.mCount) {
-        MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(curArchive), NULL);
+        MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(curArchive), nullptr);
         curArchive++;
     }
 }

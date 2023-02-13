@@ -14,7 +14,7 @@ void DynamicCollisionObj::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToScene(this, 42, 8, -1, 25);
 
-    _8C = NULL;
+    _8C = nullptr;
 }
 
 void DynamicCollisionObj::syncCollision() {

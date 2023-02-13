@@ -4,7 +4,7 @@
 #include <cstring>
 
 SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
-    _8C(NULL), mShootPath(NULL), mSpinDriverCamera(NULL), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), 
+    _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), 
     _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
     
     _11C = 0.0f;
@@ -23,12 +23,12 @@ SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
 
 void SpinDriver::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("SpinDriver", NULL, false);
+    initModelManagerWithAnm("SpinDriver", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initShootPath(rIter);
     MR::offCalcGravity(this);
     TVec3f gravityVector;
-    MR::calcGravityVectorOrZero(this, &gravityVector, NULL, 0);
+    MR::calcGravityVectorOrZero(this, &gravityVector, nullptr, 0);
     if (MR::isNearZero(gravityVector, 0.001f)) {
         gravityVector.set(0.0f, -1.0f, 0.0f);
     }
@@ -40,7 +40,7 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
     MR::addHitSensor(this, "body", 0x64, 0x10, 300.0f, sensorOffs);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initEventCamera(rIter);
     initNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
@@ -301,7 +301,7 @@ bool SpinDriver::trySwitchOff() {
 void SpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        MR::startBck(this, "Wait", NULL);
+        MR::startBck(this, "Wait", nullptr);
         MR::startBpk(this, "Wait");
     }
 
@@ -323,7 +323,7 @@ void SpinDriver::exeAppear() {
             MR::startSound(this, "SE_OJ_SPIN_DRV_APPEAR", -1, -1);
         }
 
-        MR::startBck(this, "Appear", NULL);
+        MR::startBck(this, "Appear", nullptr);
         mSpinDriverCamera->startAppearCamera(this, _E8, _D0, mPosition);
     }
 
@@ -342,7 +342,7 @@ void SpinDriver::exeAppear() {
 void SpinDriver::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        MR::startBck(this, "Wait", NULL);
+        MR::startBck(this, "Wait", nullptr);
         MR::startBpk(this, "Wait");
     }
 
@@ -357,7 +357,7 @@ void SpinDriver::exeWait() {
         MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE", -1, -1, -1);
         if (!_140) {
             MR::emitEffect(this, "SpinDriverLight");
-            MR::startCSSound("CS_SPIN_BIND", NULL, 0);
+            MR::startCSSound("CS_SPIN_BIND", nullptr, 0);
         }
     }
     else {
@@ -376,7 +376,7 @@ void SpinDriver::exeCapture() {
     else {
         if (MR::isFirstStep(this)) {
             MR::startBckPlayer("SpinDriverWait", "SpinDriverCapture");
-            MR::startBck(this, "Active", NULL);
+            MR::startBck(this, "Active", nullptr);
             MR::emitEffect(this, "SpinDriverLight");
         }
 
@@ -404,7 +404,7 @@ void SpinDriver::exeShootStart() {
             MR::deleteEffect(this, "SpinDriverLight");
             MR::emitEffect(this, "SpinDriverStart");
             MR::startBckPlayer("Spin", "SpinDriverShoot");
-            MR::startBck(this, "Active", NULL);
+            MR::startBck(this, "Active", nullptr);
             MR::startBpk(this, "Active");
             startCamera();
         }
@@ -556,7 +556,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
 void SpinDriver::cancelBind() {
     if (_8C) {
         MR::endBindAndPlayerJump(this, _C4, 0);
-        _8C = NULL;
+        _8C = nullptr;
         endCamera();
     }
 }

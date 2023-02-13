@@ -25,7 +25,7 @@ void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
 
     if (!_D8) {
         if (_DC) {
-            MR::setShadowVolumeCylinderRadius(this, NULL, 60.0f);
+            MR::setShadowVolumeCylinderRadius(this, nullptr, 60.0f);
         }
 
         _13A = 0;
@@ -39,7 +39,7 @@ void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
 }
 
 void BenefitItemInvincible::initModelAndEfx() {
-    initModelManagerWithAnm(_120, NULL, false);
+    initModelManagerWithAnm(_120, nullptr, false);
     initEffectKeeper(5, "BenefitItemObj", false);
     initBinder(60.0f, 60.0f, 0);
     initHitSensor(1);

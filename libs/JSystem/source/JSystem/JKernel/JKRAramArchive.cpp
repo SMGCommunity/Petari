@@ -19,11 +19,11 @@ JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArc
 
 /*JKRAramArchive::~JKRAramArchive() {
     if (mIsMounted == true) {
-        if (mInfoBlock != NULL) {
+        if (mInfoBlock != nullptr) {
             SDIFileEntry *current = mFiles;
 
             for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-                if (current->mFileData != NULL) {
+                if (current->mFileData != nullptr) {
                     JKRHeap::free(current->mFileData, mHeap);
                 }
 
@@ -31,8 +31,8 @@ JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArc
             }
         }
 
-        if (mExpandSizes != NULL) {
-            JKRHeap::free(mExpandSizes, NULL);
+        if (mExpandSizes != nullptr) {
+            JKRHeap::free(mExpandSizes, nullptr);
         }
 
         // _68
@@ -43,13 +43,13 @@ JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArc
 }*/
 
 /*s32 JKRAramArchive::getExpandedResSize(const void *pResource) const {
-    if (mExpandSizes == NULL) {
+    if (mExpandSizes == nullptr) {
         return getResSize(pResource);
     }
 
     SDIFileEntry *file = findPtrResource(pResource);
 
-    if (file == NULL) {
+    if (file == nullptr) {
         return -1;
     }
 

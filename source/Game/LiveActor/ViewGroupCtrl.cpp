@@ -2,15 +2,15 @@
 #include "Game/Util/Array.h"
 
 ViewGroupCtrl::ViewGroupCtrl() {
-    mViewCubeMgr = NULL;
+    mViewCubeMgr = nullptr;
     mMaxViewGroupId = 0;
-    mViewGroupData = NULL;
+    mViewGroupData = nullptr;
     mViewCtrlCount = 0;
-    mLodCtrls = NULL;
+    mLodCtrls = nullptr;
     mLodCtrls = new LodCtrl*[0x100];
 
     for (u32 i = 0; i < 0x100; i++) {
-        mLodCtrls[i] = NULL;
+        mLodCtrls[i] = nullptr;
     }
 }
 

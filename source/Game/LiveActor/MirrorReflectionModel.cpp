@@ -17,7 +17,7 @@ MirrorReflectionModel::MirrorReflectionModel(const LiveActor *pActor, const char
 
     mRotation.set(_8C->mRotation);
     mScale.set(_8C->mScale);
-    initModelManagerWithAnm(pInternalName, NULL, false);
+    initModelManagerWithAnm(pInternalName, nullptr, false);
     MR::connectToSceneMirrorMapObjDecoration(this);
 }
 

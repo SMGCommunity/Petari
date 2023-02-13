@@ -10,7 +10,7 @@ void LavaBallRisingPlanetLava::init(const JMapInfoIter &rIter) {
     info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
     info.setupConnectToScene();
-    info.setupEffect(NULL);
+    info.setupEffect(nullptr);
     info.setupSound(4);
     info.setupNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance);
     initialize(rIter, info);

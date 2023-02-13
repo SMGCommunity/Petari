@@ -11,7 +11,7 @@ CrystalSwitch::CrystalSwitch(const char *pName) : LiveActor(pName) {
 
 void CrystalSwitch::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("CrystalSwitch", NULL, false);
+    initModelManagerWithAnm("CrystalSwitch", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     TVec3f sensor_offs;
@@ -23,8 +23,8 @@ void CrystalSwitch::init(const JMapInfoIter &rIter) {
     MR::needStageSwitchWriteA(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &_90);
     initNerve(&NrvCrystalSwitch::CrystalSwitchNrvOff::sInstance);
-    initEffectKeeper(0, NULL, false);
-    MR::startBck(this, "Wait", NULL);
+    initEffectKeeper(0, nullptr, false);
+    MR::startBck(this, "Wait", nullptr);
     MR::startBpk(this, "Off");
     appear();
 }

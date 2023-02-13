@@ -6,8 +6,8 @@ CoinCounter::CoinCounter(const char *pName) : LayoutActor(pName, true) {
     mCoinCount = 0;
     _24 = 0;
     _28 = 0;
-    mLayoutAppearer = NULL;
-    mPaneRumbler = NULL;
+    mLayoutAppearer = nullptr;
+    mPaneRumbler = nullptr;
     mIsAppear = false;
     mFollowPos.x = 0.0f;
     mFollowPos.y = 0.0f;
@@ -18,7 +18,7 @@ void CoinCounter::init(const JMapInfoIter &rIter) {
     MR::createAndAddPaneCtrl(this, "Counter", 1);
     MR::createAndAddPaneCtrl(this, "CoinCounter", 1);
     MR::setFollowPos(&mFollowPos, this, "CoinCounter");
-    initEffectKeeper(0, NULL, NULL);
+    initEffectKeeper(0, nullptr, nullptr);
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
     initNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);

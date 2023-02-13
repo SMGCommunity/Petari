@@ -5,9 +5,9 @@ namespace {
 };
 
 LargeChain::LargeChain(const char *pName) : LiveActor(pName) {
-    _8C = NULL;
-    _90 = NULL;
-    mChainArray = NULL;
+    _8C = nullptr;
+    _90 = nullptr;
+    mChainArray = nullptr;
     mChainCount = 1;
 }
 
@@ -20,7 +20,7 @@ void LargeChain::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObjMovement(this);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvLargeChain::LargeChainNrvBreak::sInstance, NULL);
+        MR::registerDemoActionNerve(this, &NrvLargeChain::LargeChainNrvBreak::sInstance, nullptr);
     }
 
     MR::useStageSwitchSleep(this, rIter);

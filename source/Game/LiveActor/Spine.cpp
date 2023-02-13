@@ -4,7 +4,7 @@
 Spine::Spine(void *pExecutor, const Nerve *pNerve) {
     mExecutor = pExecutor;
     mCurNerve = pNerve;
-    mNextNerve = NULL;
+    mNextNerve = nullptr;
     mStep = 0;
     mStateKeeper = 0;
 }
@@ -33,7 +33,7 @@ const Nerve* Spine::getCurrentNerve() const{
 }
 
 void Spine::changeNerve() {
-    if (mNextNerve == NULL) {
+    if (mNextNerve == nullptr) {
         return;
     }
 
@@ -45,7 +45,7 @@ void Spine::changeNerve() {
     const Nerve* pNextState = mNextNerve;
     mStep = 0;
     mCurNerve = pNextState;
-    mNextNerve = NULL;
+    mNextNerve = nullptr;
 }
 
 void Spine::initStateKeeper(int a2) {

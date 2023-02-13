@@ -3,9 +3,9 @@
 #include <string.h>
 
 CaptureScreenDirector::CaptureScreenDirector() : NameObj("画面キャプチャ") {
-    _C = NULL;
+    _C = nullptr;
     mTimingType = "Indirect";
-    mTexture = NULL;
+    mTexture = nullptr;
     _18 = 0;
     MR::CurrentHeapRestorer heap_restorer((JKRHeap*)MR::getStationedHeapGDDR3());
     mTexture = new JUTTexture(JUTVideo::sManager->mRenderModeObj->fbWidth, JUTVideo::sManager->mRenderModeObj->efbHeight, GX_TF_RGB565);
@@ -64,7 +64,7 @@ const TimingInfo* CaptureScreenDirector::getCurrentTiming() const {
         return findFromName(_C);
     }
 
-    return NULL;
+    return nullptr;
 }
 
 const TimingInfo* CaptureScreenDirector::findFromName(const char *pName) const {
@@ -74,7 +74,7 @@ const TimingInfo* CaptureScreenDirector::findFromName(const char *pName) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 CaptureScreenActor::CaptureScreenActor(u32 scene_arg, const char *pCameraName) : NameObj("画面キャプチャ") {

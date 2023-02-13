@@ -72,4 +72,6 @@ namespace MR {
     bool isGalaxyCometLandInStage(const char *);
 
     int getEncounterGalaxyCometNameId(const char *);
+
+    int getStarPieceNum();
 };

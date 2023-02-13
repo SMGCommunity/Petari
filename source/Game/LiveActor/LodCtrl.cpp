@@ -37,14 +37,14 @@ LodCtrl::LodCtrl(LiveActor *pActor, const JMapInfoIter &rIter) {
     _4 = 3000.0f;
     _8 = pActor;
     mActor = pActor;
-    _10 = NULL;
-    _14 = NULL;
+    _10 = nullptr;
+    _14 = nullptr;
     _18 = 0;
     _19 = 0;
     _1A = 1;
     _1B = 0;
     mViewGroupID = -1;
-    mActorLightCtrl = NULL;
+    mActorLightCtrl = nullptr;
     _1C = &def;
     _20 = &def;
     _24 = &def;
@@ -307,7 +307,7 @@ ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
     snprintf(buf, 0x100, "/ObjectData/%s%s.arc", res, type);
 
     if (!MR::isFileExist(buf, false)) {
-        return NULL;
+        return nullptr;
     }
 
     const char* objName = isLowModel ? MR::createLowModelObjName(mActor) : MR::createMiddleModelObjName(mActor);

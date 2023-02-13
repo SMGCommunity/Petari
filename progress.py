@@ -1,5 +1,9 @@
-import csv, glob, math, os, sys
+import csv, datetime, glob, json, io, math, os, sys
+from git import Repo
 from pathlib import Path
+
+import pandas as pd
+import plotly.express as px
 
 libraries = { }
 
@@ -348,5 +352,45 @@ with open("docs/PROGRESS.md", "w") as w:
 for key in libraries:
     lib = libraries[key]
     lib.generateMarkdown()
+
+# now we do the cool progress drawing chart
+x_axis = [datetime.datetime.now()]
+y_axis = [progPercent_sdk]
+
+# np.seterr(all="ignore")
+
+repo = Repo(".")
+
+for commit in repo.iter_commits(rev='92c1a7e..master'):
+    cur_file = None
+
+    try:
+        cur_file = commit.tree / 'data' / 'percent.json'
+    except:
+        try:
+            cur_file = commit.tree / 'data' / 'game.json'
+        except:
+            try:
+                cur_file = commit.tree / 'data' / 'Game.json'
+            except:
+                pass
+            pass
+        pass
+
+    if cur_file is None:
+        continue
+
+    with io.BytesIO(cur_file.data_stream.read()) as f:
+        try:
+            percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
+            x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
+            y_axis.append(float(percent_str))
+        except:
+            continue
+
+df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
+fig = px.line(df, x='date', y='progress', title='Petari Progress', line_shape='hv', markers=False)
+fig.update_yaxes(ticksuffix='%')
+fig.write_image('prog.png')
 
 print("Done.")

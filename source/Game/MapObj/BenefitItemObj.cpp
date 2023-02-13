@@ -45,11 +45,11 @@ BenefitItemObj::BenefitItemObj(const char *pName, const char *pPowerUp) : LiveAc
     _E4 = 0;
     _12C = 0;
     _EC = 0.0f;
-    mFollowMtx = NULL;
+    mFollowMtx = nullptr;
     _DD = 0;
     _DE = 0;
-    mCameraInfo = NULL;
-    mHitSensorActor = NULL;
+    mCameraInfo = nullptr;
+    mHitSensorActor = nullptr;
     _130 = 0;
     _BC.zero();
     _C8.zero();
@@ -58,7 +58,7 @@ BenefitItemObj::BenefitItemObj(const char *pName, const char *pPowerUp) : LiveAc
 }
 
 void BenefitItemObj::initModelAndEfx() {
-    initModelManagerWithAnm(_120, NULL, false);
+    initModelManagerWithAnm(_120, nullptr, false);
     initEffectKeeper(5, _120, false);
     initBinder(50.0f, 50.0f, 0);
     initHitSensor(1);
@@ -242,28 +242,28 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
 
         if (_DC) {
             MR::initShadowVolumeCylinder(this, 50.0f);
-            MR::setShadowDropLength(this, NULL, shadowDist);
+            MR::setShadowDropLength(this, nullptr, shadowDist);
 
             if (arg7 == -1) {
-                MR::onShadowVolumeCutDropLength(this, NULL);
-                MR::setShadowVolumeEndDropOffset(this, NULL, 50.0f);
+                MR::onShadowVolumeCutDropLength(this, nullptr);
+                MR::setShadowVolumeEndDropOffset(this, nullptr, 50.0f);
             }
 
             if ((_DC & 0x1) != 0) {
                 if ((_DC & 0x2) != 0) {
-                    MR::onCalcShadowDropPrivateGravity(this, NULL);
-                    MR::onCalcShadow(this, NULL);
+                    MR::onCalcShadowDropPrivateGravity(this, nullptr);
+                    MR::onCalcShadow(this, nullptr);
                 }
                 else {
-                    MR::onCalcShadowDropPrivateGravityOneTime(this, NULL);
-                    MR::onCalcShadowOneTime(this, NULL);
+                    MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
+                    MR::onCalcShadowOneTime(this, nullptr);
                 }
             }
             else if ((_DC & 0x2) != 0) {
-                MR::onCalcShadow(this, NULL);
+                MR::onCalcShadow(this, nullptr);
             }
             else {
-                MR::onCalcShadowOneTime(this, NULL);
+                MR::onCalcShadowOneTime(this, nullptr);
             }
 
             if (setClipType) {
@@ -731,10 +731,10 @@ void BenefitItemObj::exeEscape() {
 
     if (_DC && (_DC & 0x2) == 0) {
         if ((_DC & 0x1) != 0) {
-            MR::onCalcShadowOneTime(this, NULL);
+            MR::onCalcShadowOneTime(this, nullptr);
         }
         else {
-            MR::onCalcShadowDropPrivateGravityOneTime(this, NULL);
+            MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
         }
     }
 }
@@ -792,7 +792,7 @@ void BenefitItemObj::setFollowMtx(MtxPtr mtx) {
 }
 
 void BenefitItemObj::runBck(const char *pBckName) {
-    MR::startBck(this, pBckName, NULL);
+    MR::startBck(this, pBckName, nullptr);
 }
 
 void BenefitItemObj::runEfx(const char *pEfxName) {

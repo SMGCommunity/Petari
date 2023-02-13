@@ -7,8 +7,8 @@ CreationFuncPtr NameObjFactory::getCreator(const char *pName) {
         return PlanetMapCreatorFunction::getPlanetMapCreator(pName);
     }
     
-    const Name2CreateFunc* func = NameObjFactory::getName2CreateFunc(pName, NULL);
-    return !func ? NULL : func->mCreationFunc;
+    const Name2CreateFunc* func = NameObjFactory::getName2CreateFunc(pName, nullptr);
+    return !func ? nullptr : func->mCreationFunc;
 }
 
 void NameObjFactory::requestMountObjectArchives(const char *pName, const JMapInfoIter &rIter) {
@@ -16,7 +16,7 @@ void NameObjFactory::requestMountObjectArchives(const char *pName, const JMapInf
     NameObjFactory::getMountObjectArchiveList(&archiveList, pName, rIter);
 
     for (int i = 0; i < archiveList.mCount; i++) {
-        MR::mountAsyncArchiveByObjectOrLayoutName(archiveList.getArchive(i), NULL);
+        MR::mountAsyncArchiveByObjectOrLayoutName(archiveList.getArchive(i), nullptr);
     }
 }
 
@@ -67,7 +67,7 @@ void NameObjFactory::getMountObjectArchiveList(NameObjArchiveListCollector *pArc
         PlanetMapCreatorFunction::makeArchiveList(pArchiveList, rIter, pName);
     }
     else {
-        const Name2CreateFunc* creationFunc = NameObjFactory::getName2CreateFunc(pName, NULL);
+        const Name2CreateFunc* creationFunc = NameObjFactory::getName2CreateFunc(pName, nullptr);
 
         if (creationFunc && creationFunc->mArchiveName != 0) { 
             pArchiveList->addArchive(creationFunc->mArchiveName);

@@ -68,7 +68,7 @@ ShadowController* ShadowControllerList::getController(const char *pName) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void ShadowControllerList::resetCalcCount() {

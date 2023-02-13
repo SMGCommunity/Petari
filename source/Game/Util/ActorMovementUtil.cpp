@@ -131,7 +131,7 @@ namespace MR {
     }
 
     void calcVecFromPlayerH(TVec3f *pFromPlayerHVec, const LiveActor *pActor) {
-        calcVecToTargetPosH(pFromPlayerHVec, pActor, *MR::getPlayerPos(), NULL);
+        calcVecToTargetPosH(pFromPlayerHVec, pActor, *MR::getPlayerPos(), nullptr);
         pFromPlayerHVec->scale(-1.0f);
     }
 
@@ -141,7 +141,7 @@ namespace MR {
         TVec3f *vec = pToTargetHVec;
         PSVECSubtract((Vec*)vec, (Vec*)&pActor->mPosition, (Vec*)vec);
 
-        if (a4 == NULL) {
+        if (a4 == nullptr) {
             MR::vecKillElement(*pToTargetHVec, pActor->mGravity, pToTargetHVec);
         }
         else {
@@ -258,7 +258,7 @@ namespace MR {
     void resetPosition(LiveActor *pActor) {
         MR::clearHitSensors(pActor);
 
-        if (pActor->mBinder != NULL) {
+        if (pActor->mBinder != nullptr) {
             pActor->mBinder->clear();
         }
 
@@ -268,7 +268,7 @@ namespace MR {
 
         MR::calcAnimDirect(pActor);
 
-        if (pActor->mCollisionParts != NULL) {
+        if (pActor->mCollisionParts != nullptr) {
             MR::resetAllCollisionMtx(pActor);
         }
 

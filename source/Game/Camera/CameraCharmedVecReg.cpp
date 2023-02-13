@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorCharmedVecReg.h"
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
-    mString = NULL;
+    mString = nullptr;
     mDist = 1000.0f;
     mAxisX = 0.0f;
     mAxisZ = 0.0f;

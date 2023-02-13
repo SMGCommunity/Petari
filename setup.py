@@ -44,6 +44,34 @@ except ModuleNotFoundError:
     print("Module 'colorama' not found. Installing...")
     install("colorama")
 
+try:
+    import pandas
+    print("Found pandas, continuing...")
+except ModuleNotFoundError:
+    print("Module 'pandas' not found. Installing...")
+    install("pandas")
+
+try:
+    import plotly
+    print("Found plotly, continuing...")
+except ModuleNotFoundError:
+    print("Module 'plotly' not found. Installing...")
+    install("plotly")
+
+try:
+    import git
+    print("Found GitPython, continuing...")
+except ModuleNotFoundError:
+    print("Module 'GitPython' not installed. Installing...")
+    install("GitPython")
+
+try:
+    import kaleido
+    print("Found kaleido, continuing...")
+except ModuleNotFoundError:
+    print("Module 'kaleido' not installed. Installing...")
+    install("kaleido")
+
 if not os.path.exists("Compilers"):
     print("Compilers folder not found, downloading...")
 

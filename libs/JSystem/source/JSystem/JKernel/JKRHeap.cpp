@@ -15,12 +15,12 @@ JKRHeap::~JKRHeap() {
     JKRHeap* current = sCurrentHeap;
 
     if (current == this) {
-        sCurrentHeap = next == NULL ? root : next->getObject();
+        sCurrentHeap = next == nullptr ? root : next->getObject();
     }
 
     JKRHeap* system = sSystemHeap;
     if (system == this) {
-        sSystemHeap = next == NULL ? root : next->getObject();
+        sSystemHeap = next == nullptr ? root : next->getObject();
     }
 } 
 
@@ -41,15 +41,15 @@ void JKRHeap::destroy(JKRHeap *pHeap) {
 }
 
 void* JKRHeap::alloc(u32 size, int align, JKRHeap *pHeap) {
-    if (pHeap != NULL) {
+    if (pHeap != nullptr) {
         return pHeap->alloc(size, align);
     }
 
-    if (JKRHeap::sCurrentHeap != NULL) {
+    if (JKRHeap::sCurrentHeap != nullptr) {
         return JKRHeap::sCurrentHeap->alloc(size, align);
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void* JKRHeap::alloc(u32 size, int align) {
@@ -73,7 +73,7 @@ void JKRHeap::free(void *pData) {
 }
 
 void JKRHeap::callAllDisposer() {
-    while (mDisposerList.mHead != NULL) {
+    while (mDisposerList.mHead != nullptr) {
         reinterpret_cast<JKRDisposer*>(mDisposerList.mHead->mData)->~JKRDisposer();
     }
 }
@@ -93,8 +93,8 @@ s32 JKRHeap::resize(void *pData, u32 size) {
 JKRHeap* JKRHeap::findFromRoot(void *pData) {
     JKRHeap* root = sRootHeap;
 
-    if (root == NULL) { 
-        return NULL; 
+    if (root == nullptr) { 
+        return nullptr; 
     }
 
     if ((void*)root->mStart <= pData && pData < (void*)root->mEnd) {
@@ -127,7 +127,7 @@ JKRHeap* JKRHeap::find(void *pData) const {
         return (JKRHeap*)this;
     } 
 
-    return NULL;
+    return nullptr;
 }
 #endif
 
@@ -139,13 +139,13 @@ void JKRHeap::dispose_subroutine(u32 start, u32 end) {
     JSUListIterator<JKRDisposer> next_it;
     JSUListIterator<JKRDisposer> it = mDisposerList.getFirst();
 
-    for (; it != NULL; it = next_it) {
+    for (; it != nullptr; it = next_it) {
         JKRDisposer* disp = it.getObject();
 
         if ((void*)start <= disp && disp < (void*)end) {
             disp->~JKRDisposer();
 
-            if (last_it == NULL) {
+            if (last_it == nullptr) {
                 next_it = mDisposerList.getFirst();
             }
             else {
@@ -163,11 +163,11 @@ void JKRHeap::dispose_subroutine(u32 start, u32 end) {
 #endif
 
 void* operator new(u32 size) {
-    return JKRHeap::alloc(size, 4, NULL);
+    return JKRHeap::alloc(size, 4, nullptr);
 }
 
 void* operator new(u32 size, int align) {
-    return JKRHeap::alloc(size, align, NULL);
+    return JKRHeap::alloc(size, align, nullptr);
 }
 
 void* operator new(u32 size, JKRHeap *pHeap, int align) {
@@ -175,11 +175,11 @@ void* operator new(u32 size, JKRHeap *pHeap, int align) {
 }
 
 void* operator new[](u32 size) {
-    return JKRHeap::alloc(size, 4, NULL);
+    return JKRHeap::alloc(size, 4, nullptr);
 }
 
 void* operator new[](u32 size, int align) {
-    return JKRHeap::alloc(size, align, NULL);
+    return JKRHeap::alloc(size, align, nullptr);
 }
 
 void* operator new[](u32 size, JKRHeap *pHeap, int align) {
@@ -187,5 +187,5 @@ void* operator new[](u32 size, JKRHeap *pHeap, int align) {
 }
 
 void operator delete(void *pData) {
-    JKRHeap::free(pData, NULL);
+    JKRHeap::free(pData, nullptr);
 }

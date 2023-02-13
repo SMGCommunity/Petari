@@ -392,7 +392,7 @@ void CameraDirector::declareEvent(long zoneID, const char *pName) {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(zoneID, pName);
 
-    mChunkHolder->createChunk(chunkID, NULL);
+    mChunkHolder->createChunk(chunkID, nullptr);
 }
 
 void CameraDirector::started() {
@@ -519,7 +519,7 @@ void CameraDirector::startTalkCamera(const TVec3f &rPosition, const TVec3f &rUp,
 
     CameraParamChunk *chunk = mChunkHolder->getChunk(chunkID);
 
-    if (chunk != NULL) {
+    if (chunk != nullptr) {
         chunk->mGeneralParam->mWPoint.set(rPosition);
         chunk->mGeneralParam->mUp.set(rUp);
 
@@ -710,7 +710,7 @@ void CameraDirector::resetCameraMan() {
 }
 
 void CameraDirector::createStartAnimCamera() {
-    void *data = NULL;
+    void *data = nullptr;
     s32 size = 0;
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
@@ -726,7 +726,7 @@ void CameraDirector::createTalkCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
-    mChunkHolder->createChunk(chunkID, NULL);
+    mChunkHolder->createChunk(chunkID, nullptr);
 
     const char *name2 = gTalkCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
@@ -734,7 +734,7 @@ void CameraDirector::createTalkCamera() {
 
     CameraParamChunk *chunk2 = mChunkHolder->getChunk(chunkID2);
 
-    if (chunk2 != NULL) {
+    if (chunk2 != nullptr) {
         chunk2->setCameraType("CAM_TYPE_TALK", mHolder);
         chunk2->_64 = true;
     }
@@ -745,7 +745,7 @@ void CameraDirector::createSubjectiveCamera() {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
-    mChunkHolder->createChunk(chunkID, NULL);
+    mChunkHolder->createChunk(chunkID, nullptr);
 
     const char *name2 = gSubjectiveCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
@@ -753,7 +753,7 @@ void CameraDirector::createSubjectiveCamera() {
 
     CameraParamChunk *chunk2 = mChunkHolder->getChunk(chunkID2);
 
-    if (chunk2 != NULL) {
+    if (chunk2 != nullptr) {
         chunk2->setCameraType("CAM_TYPE_SUBJECTIVE", mHolder);
         chunk2->_64 = true;
     }

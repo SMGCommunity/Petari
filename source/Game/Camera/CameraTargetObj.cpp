@@ -9,7 +9,7 @@ CameraTargetObj::CameraTargetObj(const char *pName) : NameObj(pName) {
 }
 
 CameraTargetActor::CameraTargetActor(const char *pName) : CameraTargetObj(pName) {
-    mActor = NULL;
+    mActor = nullptr;
     mUp.x = 0.0f;
     mUp.y = 1.0f;
     mUp.z = 0.0f;
@@ -19,7 +19,7 @@ CameraTargetActor::CameraTargetActor(const char *pName) : CameraTargetObj(pName)
     mSide.x = 0.0f;
     mSide.y = 0.0f;
     mSide.z = 1.0f;
-    mCameraArea = NULL;
+    mCameraArea = nullptr;
 }
 
 CameraTargetActor::~CameraTargetActor() {
@@ -31,7 +31,7 @@ void CameraTargetActor::movement() {
         return;
     }
 
-    if (mActor->getBaseMtx() != NULL) {
+    if (mActor->getBaseMtx() != nullptr) {
         MR::calcUpVec(&mUp, mActor);
         MR::calcFrontVec(&mFront, mActor);
         MR::calcSideVec(&mSide, mActor);
@@ -47,8 +47,8 @@ void CameraTargetActor::movement() {
 
     CubeCameraArea *area = reinterpret_cast<CubeCameraArea *>(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
-    if (area == NULL) {
-        mCameraArea = NULL;
+    if (area == nullptr) {
+        mCameraArea = nullptr;
     }
     else {
         mCameraArea = area;
@@ -80,7 +80,7 @@ const TVec3f *CameraTargetActor::getGroundPos() const {
 }
 
 const TVec3f *CameraTargetActor::getGravityVector() const {
-    if (getGravityInfo() != NULL) {
+    if (getGravityInfo() != nullptr) {
         return &getGravityInfo()->mGravityVector;
     }
     else {
@@ -97,7 +97,7 @@ CubeCameraArea *CameraTargetActor::getCubeCameraArea() const {
 }
 
 Triangle *CameraTargetActor::getGroundTriangle() const {
-    return NULL;
+    return nullptr;
 }
 
 CameraTargetPlayer::CameraTargetPlayer(const char *pName) : CameraTargetObj(pName) {
@@ -107,8 +107,8 @@ CameraTargetPlayer::CameraTargetPlayer(const char *pName) : CameraTargetObj(pNam
     mGroundPos.x = 0.0f;
     mGroundPos.y = 0.0f;
     mGroundPos.z = 0.0f;
-    mCameraArea = NULL;
-    mGroundTriangle = NULL;
+    mCameraArea = nullptr;
+    mGroundTriangle = nullptr;
     _58 = 0;
     _5A = true;
 }

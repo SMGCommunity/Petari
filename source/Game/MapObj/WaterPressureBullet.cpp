@@ -11,21 +11,21 @@ WaterPressureBullet::WaterPressureBullet(const char *pName) : LiveActor(pName) {
     _98.z = 0.0f;
     _A4 = 0;
     _A8 = 0.0f;
-    mHostActor = NULL;
+    mHostActor = nullptr;
     _B0 = false;
     _B1 = false;
     _B2 = false;
-    mCameraInfo = NULL;
+    mCameraInfo = nullptr;
 }
 
 void WaterPressureBullet::init(const JMapInfoIter &rIter) {
-    initModelManagerWithAnm("WaterBullet", NULL, false);
+    initModelManagerWithAnm("WaterBullet", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
     MR::addHitSensor(this, "body", 24, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensor(this, "binder", 106, 4, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(100.0f, 0.0f, 0);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     TVec3f offs;
     offs.x = 0.0f;
@@ -33,7 +33,7 @@ void WaterPressureBullet::init(const JMapInfoIter &rIter) {
     offs.z = 0.0f;
     MR::initStarPointerTarget(this, 100.0f, offs);
     MR::initShadowVolumeSphere(this, 75.0f);
-    MR::setShadowDropLength(this, NULL, 1500.0f);
+    MR::setShadowDropLength(this, nullptr, 1500.0f);
     MR::registerDemoSimpleCastAll(this);
     initNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvFly::sInstance);
     makeActorDead();
@@ -41,9 +41,9 @@ void WaterPressureBullet::init(const JMapInfoIter &rIter) {
 
 void WaterPressureBullet::kill() {
     if (MR::isPlayerInRush() && mHostActor) {
-        MR::startBckPlayer("GCaptureBreak", (const char*)NULL);
+        MR::startBckPlayer("GCaptureBreak", (const char*)nullptr);
         MR::endBindAndPlayerJumpWithRollLanding(this, mVelocity, 0);
-        mHostActor = NULL;
+        mHostActor = nullptr;
         endHostCamera();
     }
 
@@ -57,7 +57,7 @@ void WaterPressureBullet::control() {
     bool v1 = true;
     bool v2 = false;
 
-    if (_B2 && mHostActor == NULL) {
+    if (_B2 && mHostActor == nullptr) {
         v2 = true;
     }
 
@@ -113,7 +113,7 @@ void WaterPressureBullet::shotWaterBullet(LiveActor *pActor, const TPos3f &rPos,
     makeActorAppeared();
     MR::validateHitSensors(this);
     MR::invalidateClipping(this);
-    MR::setShadowDropLength(this, NULL, 1500.0f);
+    MR::setShadowDropLength(this, nullptr, 1500.0f);
 
     if (!_B0) {
         MR::onCalcGravity(this);
@@ -124,18 +124,18 @@ void WaterPressureBullet::shotWaterBullet(LiveActor *pActor, const TPos3f &rPos,
 
 void WaterPressureBullet::exeFly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", NULL);
+        MR::startBck(this, "Shot", nullptr);
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Move", NULL);
+        MR::startBck(this, "Move", nullptr);
     }
 
-    if (mHostActor != NULL && MR::isBckOneTimeAndStopped(mHostActor)) {
-        MR::startBckPlayer("WaterBulletWait", (const char*)NULL);
+    if (mHostActor != nullptr && MR::isBckOneTimeAndStopped(mHostActor)) {
+        MR::startBckPlayer("WaterBulletWait", (const char*)nullptr);
     }
 
-    if (mHostActor != NULL) {
+    if (mHostActor != nullptr) {
         MR::startLevelSound(this, "SE_OJ_LV_W_PRESS_BUBBLE_SUS", -1, -1, -1);
     }
 
@@ -143,7 +143,7 @@ void WaterPressureBullet::exeFly() {
         JMAVECScaleAdd(mGravity.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 0.40000001f);
     }
 
-    if (MR::isPadSwing(0) && mHostActor != NULL && !_B2) {
+    if (MR::isPadSwing(0) && mHostActor != nullptr && !_B2) {
         MR::startSound(mHostActor, "SE_PV_TWIST_START", -1, -1);
         MR::startSound(mHostActor, "SE_PM_SPIN_ATTACK", -1, -1);
         MR::tryRumblePadMiddle(this, 0);
@@ -158,7 +158,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (v2) {
-        if (!_B1 || mHostActor == NULL || MR::isBindedGroundSand(this)) {
+        if (!_B1 || mHostActor == nullptr || MR::isBindedGroundSand(this)) {
             kill();
             return;
         }
@@ -176,14 +176,14 @@ void WaterPressureBullet::exeFly() {
 
 void WaterPressureBullet::exeSpinKill() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Spin2nd", (const char*)NULL);
+        MR::startBckPlayer("Spin2nd", (const char*)nullptr);
         mVelocity.zero();
         MR::invalidateHitSensors(this);
 
         if (MR::isPlayerInRush()) {
-            if (mHostActor != NULL) {
+            if (mHostActor != nullptr) {
                 MR::endBindAndPlayerJump(this, mVelocity, 0);
-                mHostActor = NULL;
+                mHostActor = nullptr;
                 endHostCamera();
             }
         }
@@ -212,7 +212,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3)
         return false;
     }
 
-    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(a2) && mHostActor == NULL) {
+    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(a2) && mHostActor == nullptr) {
         if (MR::isDemoActive()) {
             kill();
             return false;
@@ -234,7 +234,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3)
         kill();
         return true;
     }
-    else if (msg == 161 && mHostActor != NULL) {
+    else if (msg == 161 && mHostActor != nullptr) {
         updateSuffererMtx();
         return true;
     }
@@ -243,7 +243,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3)
 }
 
 bool WaterPressureBullet::startHostCamera() const {
-    if (_A4 != NULL && mCameraInfo != NULL) {
+    if (_A4 != nullptr && mCameraInfo != nullptr) {
         MR::startActorCameraNoTarget(_A4, *mCameraInfo, -1);
         return true;
     }
@@ -252,7 +252,7 @@ bool WaterPressureBullet::startHostCamera() const {
 }
 
 bool WaterPressureBullet::endHostCamera() const {
-    if (_A4 != NULL && mCameraInfo != NULL) {
+    if (_A4 != nullptr && mCameraInfo != nullptr) {
         MR::endActorCamera(_A4, *mCameraInfo, true, -1);
         return true;
     }
@@ -281,7 +281,7 @@ bool WaterPressureBullet::inviteMario(HitSensor *pSensor) {
     MR::startBckWithInterpole(this, "Touch", 0);
     MR::startBckPlayer("WaterBulletStart", 2);
     startHostCamera();
-    MR::setShadowDropLength(this, NULL, 2000.0f);
+    MR::setShadowDropLength(this, nullptr, 2000.0f);
     return true;
 }
 

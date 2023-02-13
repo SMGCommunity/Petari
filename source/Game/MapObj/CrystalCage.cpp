@@ -4,8 +4,8 @@
 #include "JSystem/JMath.h"
 
 CrystalCage::CrystalCage(const char *pName) : LiveActor(pName), 
-    mCrystalCageType(0), mBreakObj(NULL), _C4(1), _C8(0), mRumbleCalc(NULL), _D0(0.0f, 1.0f), _DC(gZeroVec), _E8(gZeroVec),
-    mDisplayModel(NULL), _F8(gZeroVec), _104(0), _108(-1), mIsBreakObjVisible(false), mPlayRiddleSFX(false), mHasBinding(false), _110(gZeroVec) {
+    mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _D0(0.0f, 1.0f), _DC(gZeroVec), _E8(gZeroVec),
+    mDisplayModel(nullptr), _F8(gZeroVec), _104(0), _108(-1), mIsBreakObjVisible(false), mPlayRiddleSFX(false), mHasBinding(false), _110(gZeroVec) {
         _94.identity();
 }
 
@@ -29,15 +29,15 @@ void CrystalCage::init(const JMapInfoIter &rIter) {
 
     if (mHasBinding) {
         initBinder(50.0f, 0.0f, 0);
-        MR::setBinderOffsetVec(this, &_110, NULL);
+        MR::setBinderOffsetVec(this, &_110, nullptr);
         MR::setBinderExceptActor(this, this);
     }
 
     if (mCrystalCageType != 2) {
-        initEffectKeeper(0, NULL, false);
+        initEffectKeeper(0, nullptr, false);
     }
 
-    MR::initCollisionParts(this, obj_name, getSensor("body"), NULL);
+    MR::initCollisionParts(this, obj_name, getSensor("body"), nullptr);
 
     f32 range = !mCrystalCageType ? 300.0f : 600.0f;
     MR::setClippingTypeSphere(this, range * mScale.x);
@@ -87,7 +87,7 @@ void CrystalCage::init(const JMapInfoIter &rIter) {
         mRumbleCalc = new RumbleCalculatorCosMultLinear(4.0f, 1.5707964f, 50.0f, 0x14);
     }
 
-    MR::joinToGroupArray(this, rIter, NULL, 0x20);
+    MR::joinToGroupArray(this, rIter, nullptr, 0x20);
     initNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
@@ -184,7 +184,7 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) 
             MR::invalidateCollisionParts(this);
             MR::invalidateHitSensors(this);
             setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
-            MR::startCSSound("CS_SPIN_HIT", NULL, 0);
+            MR::startCSSound("CS_SPIN_HIT", nullptr, 0);
             return 1;
         }
 
@@ -255,7 +255,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter &rIter) {
 }
 
 void CrystalCage::initModel(const char *pName) {
-    initModelManagerWithAnm(pName, NULL, false);
+    initModelManagerWithAnm(pName, nullptr, false);
     TVec3f stack_8;
     stack_8.negateInline_2(mGravity);
     MR::makeMtxUpNoSupportPos(&_94, stack_8, _DC);
@@ -337,7 +337,7 @@ void CrystalCage::exeBreak() {
         }
 
         mBreakObj->appear();
-        MR::startBck(mBreakObj, "Break", NULL);
+        MR::startBck(mBreakObj, "Break", nullptr);
 
         if (mCrystalCageType == 2) {
             MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_BREAK", -1, -1);

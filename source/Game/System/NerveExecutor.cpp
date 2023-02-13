@@ -14,7 +14,7 @@ void NerveExecutor::initNerve(const Nerve *pNerve) {
 }
 
 void NerveExecutor::updateNerve() {
-    if (mSpine  != NULL) {
+    if (mSpine  != nullptr) {
         mSpine->update();
     }
 }

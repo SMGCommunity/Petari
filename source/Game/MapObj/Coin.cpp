@@ -6,9 +6,9 @@
 #include "JSystem/JMath/JMath.h"
 
 Coin::Coin(const char *pName) : LiveActor(pName) {
-    mHostInfo = NULL;
-    mFlashCtrl = NULL;
-    mAirBubble = NULL;
+    mHostInfo = nullptr;
+    mFlashCtrl = nullptr;
+    mAirBubble = nullptr;
     mDropPosition.x = 0.0f;
     mDropPosition.y = 0.0f;
     mDropPosition.z = 0.0f;
@@ -26,14 +26,14 @@ Coin::Coin(const char *pName) : LiveActor(pName) {
 
 void Coin::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm(mIsPurpleCoin ? "PurpleCoin" : "Coin", NULL, false);
+    initModelManagerWithAnm(mIsPurpleCoin ? "PurpleCoin" : "Coin", nullptr, false);
     MR::connectToSceneItemStrongLight(this);
     initHitSensor(1);
     MR::addHitSensor(this, "coin", 0x4A, 4, 55.0f, TVec3f(0.0f, 70.0f, 0.0f));
     initBinder(55.0f, 70.0f, 0);
     MR::setBinderExceptSensorType(this, &mPosition, 10.0f);
     MR::setClippingFar100m(this);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(1, false);
 
     if (MR::isValidInfo(rIter)) {
@@ -49,11 +49,11 @@ void Coin::init(const JMapInfoIter &rIter) {
     initShadow(rIter);
 
     if (mIsNeedBubble) {
-        mAirBubble = MR::createPartsModelNoSilhouettedMapObj(this, "アワ", "AirBubble", NULL);
-        mAirBubble->initFixedPosition(TVec3f(0.0f, 70.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), NULL);
+        mAirBubble = MR::createPartsModelNoSilhouettedMapObj(this, "アワ", "AirBubble", nullptr);
+        mAirBubble->initFixedPosition(TVec3f(0.0f, 70.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), nullptr);
         mAirBubble->makeActorDead();
         MR::registerDemoSimpleCastAll(mAirBubble);
-        MR::startBck(mAirBubble, "Move", NULL);
+        MR::startBck(mAirBubble, "Move", nullptr);
     }
 
     mFlashCtrl = new FlashingCtrl(this, true);
@@ -106,10 +106,10 @@ void Coin::initShadow(const JMapInfoIter &rIter) {
             break;
     }
 
-    MR::setShadowDropPositionPtr(this, NULL, &mDropPosition);
+    MR::setShadowDropPositionPtr(this, nullptr, &mDropPosition);
 
     if (arg_5 > 0.0f) {
-        MR::setShadowDropLength(this, NULL, arg_5);
+        MR::setShadowDropLength(this, nullptr, arg_5);
     }
 }
 
@@ -146,7 +146,7 @@ void Coin::makeActorAppeared() {
 
         mFlashCtrl->end();
         setCalcShadowMode();
-        MR::validateShadow(this, NULL);
+        MR::validateShadow(this, nullptr);
 
         if (!mIsPurpleCoin) {
             mHostInfo->_8++;
@@ -259,8 +259,8 @@ void Coin::exeFixTimer() {
 void Coin::exeMove() { 
     if (MR::isFirstStep(this)) {
         mFlashCtrl->start(_B0);
-        MR::onCalcShadow(this, NULL);
-        MR::onCalcShadowDropPrivateGravity(this, NULL);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcShadowDropPrivateGravity(this, nullptr);
     }
 
     if (MR::isStep(this, mCannotTime)) {
@@ -299,8 +299,8 @@ void Coin::exeMove() {
 
 void Coin::exeControled() {
     if (MR::isFirstStep(this)) {
-        MR::onCalcShadow(this, NULL);
-        MR::onCalcShadowDropPrivateGravity(this, NULL);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcShadowDropPrivateGravity(this, nullptr);
     }
 
     MR::zeroVelocity(this);
@@ -308,8 +308,8 @@ void Coin::exeControled() {
 
 void Coin::exeSpinDrained() {
     if (MR::isFirstStep(this)) {
-        MR::onCalcShadow(this, NULL);
-        MR::onCalcShadowDropPrivateGravity(this, NULL);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcShadowDropPrivateGravity(this, nullptr);
     }
 
     MR::emitEffect(this, "CoinSpinBlur");
@@ -386,7 +386,7 @@ void Coin::appearMove(const TVec3f &a1, const TVec3f &a2, s32 a3, s32 a4) {
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::onBind(this);
-    MR::onCalcShadow(this, NULL);
+    MR::onCalcShadow(this, nullptr);
     mVelocity.set<f32>(a2);
 
     TVec3f stack_14;
@@ -420,7 +420,7 @@ void Coin::appearHop(const TVec3f &a1, const TVec3f &a2) {
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::offBind(this);
-    MR::invalidateShadow(this, NULL);
+    MR::invalidateShadow(this, nullptr);
     mVelocity.set<f32>(a2 * 30.0f);
     mCannotTime = 0;
     setNerve(&NrvCoin::CoinNrvHop::sInstance);
@@ -476,7 +476,7 @@ bool Coin::requestStartControl() {
     MR::validateClipping(this);
     MR::invalidateHitSensors(this);
     MR::offBind(this);
-    MR::onCalcShadow(this, NULL);
+    MR::onCalcShadow(this, nullptr);
     setNerve(&NrvCoin::CoinNrvControled::sInstance);
     mFlashCtrl->end();
     return true;
@@ -490,7 +490,7 @@ bool Coin::requestEndControl() {
     MR::validateClipping(this);
     MR::validateHitSensors(this);
     MR::offBind(this);
-    MR::offCalcShadow(this, NULL);
+    MR::offCalcShadow(this, nullptr);
     setCalcShadowMode();
     mCannotTime = 0;
     setNerve(&NrvCoin::CoinNrvFix::sInstance);
@@ -568,12 +568,12 @@ void Coin::setHostInfo(CoinHostInfo *pInfo) {
 
 void Coin::setCalcShadowMode() {
     if (_B9) {
-        MR::onCalcShadow(this, NULL);
-        MR::onCalcShadowDropPrivateGravity(this, NULL);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcShadowDropPrivateGravity(this, nullptr);
     }
     else {
-        MR::onCalcShadowOneTime(this, NULL);
-        MR::onCalcShadowDropPrivateGravityOneTime(this, NULL);
+        MR::onCalcShadowOneTime(this, nullptr);
+        MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
     }
 }
 

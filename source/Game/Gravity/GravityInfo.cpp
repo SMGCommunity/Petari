@@ -5,7 +5,7 @@ GravityInfo::GravityInfo() {
 	mGravityVector.x = 0.0f;
 	mGravityVector.y = 0.0f;
 	mGravityVector.z = 0.0f;
-	mGravityInstance = NULL;
+	mGravityInstance = nullptr;
 }
 
 void GravityInfo::init() {
@@ -13,5 +13,5 @@ void GravityInfo::init() {
 	mGravityVector.z = 0.0f;
 	mGravityVector.y = 0.0f;
 	mGravityVector.x = 0.0f;
-	mGravityInstance = NULL;
+	mGravityInstance = nullptr;
 }

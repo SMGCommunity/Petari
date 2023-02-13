@@ -23,7 +23,7 @@ u32 CameraTargetObj::getSpecialMode() const {
 }
 
 GravityInfo *CameraTargetObj::getGravityInfo() const {
-    return NULL;
+    return nullptr;
 }
 
 void CameraTargetObj::enableCameraWall() {
@@ -66,7 +66,7 @@ CameraTargetMtx::CameraTargetMtx(const char *pName) : CameraTargetObj(pName) {
     mSide.y = 0.0f;
     mSide.z = 1.0f;
     mInvalidLastMove = false;
-    mCameraArea = NULL;
+    mCameraArea = nullptr;
     mMatrix.identity();
 }
 
@@ -113,14 +113,14 @@ void CameraTargetMtx::movement() {
 
     AreaObj *area = MR::getAreaObj("CubeCamera", mPosition);
 
-    if (area == NULL) {
-        mCameraArea = NULL;
+    if (area == nullptr) {
+        mCameraArea = nullptr;
     }
     else {
         mCameraArea = reinterpret_cast<CubeCameraArea *>(area);
     }
 
-    MR::calcGravityVectorOrZero(this, mPosition, &mGravityVector, NULL, 0);
+    MR::calcGravityVectorOrZero(this, mPosition, &mGravityVector, nullptr, 0);
 }
 #endif
 

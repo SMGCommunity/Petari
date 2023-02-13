@@ -20,7 +20,7 @@ ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo *pInfo) {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 namespace MR {

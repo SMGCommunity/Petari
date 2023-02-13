@@ -122,7 +122,7 @@ please join our **[Discord]** server.
 - Lines should not exceed `100` characters, <br>
   these can be split into multiple lines.
   
-- Use `NULL` instead of `0` when assigning / comparing a pointer.
+- Use `nullptr` instead of `0` when assigning / comparing a pointer in C++ code, use `NULL` in C.
   
   *Only use `0` when assigning or comparing a value.*
 

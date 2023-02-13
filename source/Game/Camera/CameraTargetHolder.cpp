@@ -3,7 +3,7 @@
 #include "Game/LiveActor/LiveActor.h"
 
 CameraTargetHolder::CameraTargetHolder() {
-    mTarget = NULL;
+    mTarget = nullptr;
     mTargetActor = new CameraTargetActor("アクター注目");
     mTargetPlayer = new CameraTargetPlayer("マリオ注目");
 }

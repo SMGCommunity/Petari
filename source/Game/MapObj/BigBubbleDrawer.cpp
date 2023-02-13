@@ -1,8 +1,8 @@
 #include "Game/MapObj/BigBubbleDrawer.h"
 
 BigBubbleDrawer::BigBubbleDrawer() {
-    mBubbleTexture = NULL;
-    mRainbowTexture = NULL;
+    mBubbleTexture = nullptr;
+    mRainbowTexture = nullptr;
     _8 = 0.0f;
     mBubbleTexture = new JUTTexture(MR::loadTexFromArc("BigBubble.arc", "Bubble.bti"), 0);
     mRainbowTexture = new JUTTexture(MR::loadTexFromArc("BigBubble.arc", "Rainbow.bti"), 0);

@@ -42,12 +42,12 @@ CameraParamChunk *CameraParamChunkHolder::createChunk(const CameraParamChunkID &
         return chunk;
     }
     
-    return NULL;
+    return nullptr;
 }
 
 CameraParamChunk *CameraParamChunkHolder::getChunk(const CameraParamChunkID &rID) {
-    if (rID.mName == NULL) {
-        return NULL;
+    if (rID.mName == nullptr) {
+        return nullptr;
     }
 
     return findChunk(rID);
@@ -118,7 +118,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rI
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 CameraParamChunk *CameraParamChunkHolder::findChunk(long zoneID, const char *pName) {
@@ -128,7 +128,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(long zoneID, const char *pNa
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 #ifdef NON_MATCHING
@@ -143,16 +143,16 @@ void CameraParamChunkHolder::loadFile(long zoneID) {
         mCameraVersion = reader.mVersion;
 
         while (reader.hasMoreChunk()) {
-            const char *id = NULL;
+            const char *id = nullptr;
             reader.getValueString("id", &id);
 
             CameraParamChunk *chunk = findChunk(zoneID, id);
 
-            if (chunk != NULL && chunk->_64 != 0) {
+            if (chunk != nullptr && chunk->_64 != 0) {
                 reader.nextToChunk();
             }
             else {
-                if (chunk != NULL) {
+                if (chunk != nullptr) {
                     chunk->load(&reader, mCameraHolder);
                     arrangeChunk(chunk);
                 }

@@ -1,9 +1,9 @@
 #include "Game/MapObj/CollapsePlane.h"
 
 CollapsePlane::CollapsePlane(const char *pName) : MapObjActor(pName) {
-    mScaleController = NULL;
-    mStarPointerBind = NULL;
-    mJointController = NULL;
+    mScaleController = nullptr;
+    mStarPointerBind = nullptr;
+    mJointController = nullptr;
     _D0 = -1;
     mTimer = 140;
 }
@@ -19,17 +19,17 @@ void CollapsePlane::init(const JMapInfoIter &rIter) {
     info.setupProjmapMtx(false);
     info.setupNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
     initialize(rIter, info);
-    initEffectKeeper(1, NULL, false);
+    initEffectKeeper(1, nullptr, false);
     TVec3f offs;
     offs.x = 0.0f;
     offs.y = 0.0f;
     offs.z = 0.0f;
     MR::initStarPointerTarget(this, (200.0f * mScale.x), offs);
-    mScaleController = new AnimScaleController(NULL);
+    mScaleController = new AnimScaleController(nullptr);
     mScaleController->setParamTight();
     mStarPointerBind = new WalkerStateBindStarPointer(this, mScaleController);
     mJointController = MR::createJointDelegatorWithNullChildFunc(this, &CollapsePlane::calcJointPlane, "Plane");
-    MR::initCollisionPartsAutoEqualScale(this, "Move", getSensor(NULL), MR::getJointMtx(this, "Plane"));
+    MR::initCollisionPartsAutoEqualScale(this, "Move", getSensor(nullptr), MR::getJointMtx(this, "Plane"));
     MR::validateCollisionParts(this);
     MR::getJMapInfoArg0NoInit(rIter, &mTimer);
 }

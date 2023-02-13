@@ -15,7 +15,7 @@ JKRDecompCommand::JKRDecompCommand() {
     OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     mThis = this; // Probably a pointer to the data stored at 0x00 instead
     _14 = 0;
-    _1C = NULL;
+    _1C = nullptr;
     _20 = 0;
 }
 
@@ -52,12 +52,12 @@ s32 JKRDecomp::run() {
             continue;
         }
 
-        if (command._14 != NULL) {
+        if (command._14 != nullptr) {
             command._14(reinterpret_cast<u32>(&command));
             continue;
         }
 
-        if (command._1C != NULL) {
+        if (command._1C != nullptr) {
             OSSendMessage(command._1C, reinterpret_cast<OSMessage>(1), OS_MESSAGE_NOBLOCK);
         }
         else {
@@ -67,7 +67,7 @@ s32 JKRDecomp::run() {
 }
 
 JKRDecomp *JKRDecomp::create(long a1) {
-    if (gDecompInstance == NULL) {
+    if (gDecompInstance == nullptr) {
         gDecompInstance = new(JKRHeap::sGameHeap, 0) JKRDecomp(a1);
     }
 
@@ -103,7 +103,7 @@ bool JKRDecomp::sync(JKRDecompCommand *pCommand, int noBlock) {
 }
 
 bool JKRDecomp::orderSync(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long decompressedSize) {
-    JKRDecompCommand *command = prepareCommand(pSrc, pDst, compressedSize, decompressedSize,NULL);
+    JKRDecompCommand *command = prepareCommand(pSrc, pDst, compressedSize, decompressedSize,nullptr);
 
     OSSendMessage(&gMessageQueue, command, OS_MESSAGE_NOBLOCK);
     bool received = sync(command, 0);

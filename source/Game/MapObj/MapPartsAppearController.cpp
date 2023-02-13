@@ -2,7 +2,7 @@
 
 MapPartsAppearController::MapPartsAppearController(LiveActor *pActor) : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;
-    mPostureHolder = NULL;
+    mPostureHolder = nullptr;
     _20 = 0;
 }
 

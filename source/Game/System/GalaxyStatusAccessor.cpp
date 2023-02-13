@@ -33,13 +33,13 @@ const char* GalaxyStatusAccessor::getZoneName(int zoneId) const {
 }
 
 const char* GalaxyStatusAccessor::getCometName(s32 scenario) const {
-    const char *pCometName = NULL;
+    const char *pCometName = nullptr;
 
     if (mScenarioData->getValueString("Comet", scenario, &pCometName)) {
         return pCometName;
     }
     else {
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -84,7 +84,7 @@ bool GalaxyStatusAccessor::isExistAnyComet() const {
             pIsComet = pComet;
         }
         else {
-            pIsComet = NULL;
+            pIsComet = nullptr;
         }
 
         if (pIsComet) {
@@ -100,13 +100,13 @@ s32 GalaxyStatusAccessor::getNormalCometScenarioNo() const {
     const char *pNormal;
 
     for (s32 i = 1; i <= mScenarioData->getScenarioNum(); i++) {
-        const char *pIsNormal = NULL;
+        const char *pIsNormal = nullptr;
 
         if (mScenarioData->getValueString("Comet", i, &pIsNormal)) {
             pNormal = pIsNormal;
         }
         else {
-            pNormal = NULL;
+            pNormal = nullptr;
         }
 
         if (pNormal && !isValidCoin100(i)) {
@@ -121,13 +121,13 @@ s32 GalaxyStatusAccessor::getCoin100CometScenarioNo() const {
     const char *pPurpleComet;
 
     for (s32 i = 1; i <= mScenarioData->getScenarioNum(); i++) {
-        const char *pCometName = NULL;
+        const char *pCometName = nullptr;
 
         if (mScenarioData->getValueString("Comet", i, &pCometName)) {
             pPurpleComet = pCometName;
         }
         else {
-            pPurpleComet = NULL;
+            pPurpleComet = nullptr;
         }
 
         if (pPurpleComet && isValidCoin100(i)) {
@@ -187,13 +187,13 @@ s32 GalaxyStatusAccessor::getNormalScenarioNum() const {
     s32 scenarioNum = 0;
 
     for (s32 i = 0; i < mScenarioData->getScenarioNum(); i++) {
-        const char *pScenarioComet = NULL;
+        const char *pScenarioComet = nullptr;
 
         if (mScenarioData->getValueString("Comet", i + 1, &pScenarioComet)) {
             pCometName = pScenarioComet;
         }
         else {
-            pCometName = NULL;
+            pCometName = nullptr;
         }
         
         if (!pCometName) {
@@ -232,13 +232,13 @@ u32 GalaxyStatusAccessor::getActivePowerStarId(s32 scenario) const {
 
 bool GalaxyStatusAccessor::isValidCoin100(s32 scenario) const {
     const char *pPurpleComet;
-    const char *pCometName = NULL;
+    const char *pCometName = nullptr;
 
     if (mScenarioData->getValueString("Comet", scenario, &pCometName)) {
         pPurpleComet = pCometName;
     }
     else {
-        pPurpleComet = NULL;
+        pPurpleComet = nullptr;
     }
 
     return (pPurpleComet && MR::isEqualString(pPurpleComet, "Purple") || MR::isEqualString(pPurpleComet, "Black"));

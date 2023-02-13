@@ -7,7 +7,7 @@ GlaringLightAreaMgr::GlaringLightAreaMgr(s32 type, const char *pName) : AreaObjM
 }
 
 GlaringLightArea::GlaringLightArea(int type, const char *pName) : AreaObj(type, pName) {
-    mSound = NULL;
+    mSound = nullptr;
     mPos.x = 0.0f;
     mPos.y = 0.0f;
     mPos.z = 0.0f;

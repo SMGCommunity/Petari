@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorMtxRegParallel.h"
 
 CameraMtxRegParallel::CameraMtxRegParallel(const char *pName) : Camera(pName) {
-    mString = NULL;
+    mString = nullptr;
     mAngleB = 0.0f;
     mAngleA = 0.0f;
     mDist = 1000.0f;

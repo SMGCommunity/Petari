@@ -2,23 +2,23 @@
 #include "Game/LiveActor/LodCtrl.h"
 
 HatchWaterPlanet::HatchWaterPlanet(const char *pName) : LiveActor(pName) {
-    mPlanetLODCtrl = NULL;
-    mCollisionParts = NULL;
+    mPlanetLODCtrl = nullptr;
+    mCollisionParts = nullptr;
 }
 
 void HatchWaterPlanet::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("HatchWaterPlanet", NULL, false);
+    initModelManagerWithAnm("HatchWaterPlanet", nullptr, false);
     MR::connectToScenePlanet(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionParts(this, "HatchWaterPlanetBefore", getSensor(NULL), NULL);
-    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HatchWaterPlanetAfter", getSensor(NULL), (MR::CollisionScaleType)2);
+    MR::initCollisionParts(this, "HatchWaterPlanetBefore", getSensor(nullptr), nullptr);
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HatchWaterPlanetAfter", getSensor(nullptr), (MR::CollisionScaleType)2);
     MR::invalidateCollisionParts(mCollisionParts);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvHatchWaterPlanet::HatchWaterPlanetNrvOpen::sInstance, NULL);
+        MR::registerDemoActionNerve(this, &NrvHatchWaterPlanet::HatchWaterPlanetNrvOpen::sInstance, nullptr);
     }
 
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
@@ -35,9 +35,9 @@ void HatchWaterPlanet::control() {
 
 void HatchWaterPlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HatchWaterPlanet", NULL);
+        MR::startBck(this, "HatchWaterPlanet", nullptr);
         MR::startBtk(this, "HatchWaterPlanet");
-        MR::startBck(mPlanetLODCtrl->_14, "HatchWaterPlanetLow", NULL);
+        MR::startBck(mPlanetLODCtrl->_14, "HatchWaterPlanetLow", nullptr);
         MR::setBckFrameAndStop(mPlanetLODCtrl->_14, 1.0f);
         MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ST", -1, -1);
     }

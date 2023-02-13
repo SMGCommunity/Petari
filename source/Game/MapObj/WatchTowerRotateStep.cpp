@@ -10,25 +10,25 @@ WatchTowerRotateStep::WatchTowerRotateStep(const char *pName) : LiveActor(pName)
     mRotDeg.x = 0.0f;
     mRotDeg.y = 0.0f;
     mRotDeg.z = 0.0f;
-    mLifts = NULL;
+    mLifts = nullptr;
 }
 
 void WatchTowerRotateStep::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("WatchTowerRotateStep", NULL, false);
+    initModelManagerWithAnm("WatchTowerRotateStep", nullptr, false);
     MR::connectToSceneMapObj(this);
 
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionParts(this, "WatchTowerRotateStep", getSensor(NULL), NULL);
-    initEffectKeeper(0, NULL, false);
+    MR::initCollisionParts(this, "WatchTowerRotateStep", getSensor(nullptr), nullptr);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false); 
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 1500.0f);
     
     bool demoCast = MR::tryRegisterDemoCast(this, rIter);
 
     if (demoCast) {
-        MR::registerDemoActionNerve(this, &NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance, NULL);
+        MR::registerDemoActionNerve(this, &NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance, nullptr);
     }
 
     MR::calcUpVec(&mRotDeg, this);
@@ -61,13 +61,13 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
         mLifts[i] = new PartsModel(this, "物見の塔リフト", "WatchTowerRotateStepLift", mtx, -1, false);
         mLifts[i]->mCalcOwnMtx = false;
 
-        MR::initCollisionParts(mLifts[i], "WatchTowerRotateStepLift", getSensor(NULL), NULL);
+        MR::initCollisionParts(mLifts[i], "WatchTowerRotateStepLift", getSensor(nullptr), nullptr);
         TVec3f local68 = CALL_INLINE_FUNC(TVec3f, 600.0f, 200.0f, 400.0f);
         MR::initShadowVolumeBox(mLifts[i], local68, mLifts[i]->getBaseMtx());
         MR::setShadowVolumeStartDropOffset(mLifts[i], "WatchTowerRotateStepLift", 300.0f);
         MR::setShadowDropLength(mLifts[i], "WatchTowerRotateStepLift", 370.0f);
 
-        if (MR::isDemoCast(this, NULL)) {
+        if (MR::isDemoCast(this, nullptr)) {
             MR::tryRegisterDemoCast(mLifts[i], rIter);
         }
 

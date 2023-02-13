@@ -2,7 +2,7 @@
 #include "Game/MapObj/PunchingKinoko.h"
 
 PunchingKinoko::PunchingKinoko(const char *pName) : LiveActor(pName),
-    mGroundChecker(NULL), mScaleController(NULL), mDelegator(NULL), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
+    mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {
         mStarPointerHitCoolDown = 0;
         _B8 = true;
         mInvincibleHitCoolDown = -1;
@@ -10,7 +10,7 @@ PunchingKinoko::PunchingKinoko(const char *pName) : LiveActor(pName),
 
 void PunchingKinoko::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("PunchingKinoko", NULL, false);
+    initModelManagerWithAnm("PunchingKinoko", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     MR::calcGravity(this);
     _9C.set(mPosition);
@@ -20,14 +20,14 @@ void PunchingKinoko::init(const JMapInfoIter &rIter) {
     MR::resetPosition(mGroundChecker);
     MR::onCalcGravity(mGroundChecker);
 
-    mScaleController = new AnimScaleController(NULL);
+    mScaleController = new AnimScaleController(nullptr);
 
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     MR::initStarPointerTargetAtPos(this, 70.0f, groundCheckerPos, TVec3f(0, 0, 0));
 
     initShadow();
     initSensor();
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initCamera(rIter);
     initJointControl();
@@ -379,7 +379,7 @@ void PunchingKinoko::exeWait() {
     MR::addVelocity(mGroundChecker, stack_20);
     MR::attenuateVelocity(mGroundChecker, 0.94f);
 
-    if (MR::isStarPointerPointing2POnPressButton(this, NULL, false, false)) {
+    if (MR::isStarPointerPointing2POnPressButton(this, nullptr, false, false)) {
         if (mStarPointerHitCoolDown == 0 && !_B8 && MR::getStarPointerScreenSpeed(1) > 5.0f) {
             stack_2C.set(0.0f, 0.0f, 0.0f);
             if (MR::calcStarPointerWorldVelocityDirectionOnPlane(&stack_2C, mGroundChecker->mPosition, mGravity, 1)) {

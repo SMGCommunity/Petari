@@ -86,6 +86,6 @@ NameObj* SceneObjHolder::newEachObj(int objID) {
             return new PlanetMapCreator("惑星クリエイタ");
     }
 
-    return NULL;
+    return nullptr;
 }
 */

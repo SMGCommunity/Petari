@@ -6,13 +6,13 @@ inline f32 normalizeAngle(f32 a1, f32 a2) {
 }
 
 BreakableCage::BreakableCage(const char *pName) : LiveActor(pName) {
-    mBreakModel = NULL;
+    mBreakModel = nullptr;
     mCageType = CAGE_INVALID;
     mRotationSpeed = 0.0f;
-    mItemModel = NULL;
+    mItemModel = nullptr;
     mIgnoreGravity = false;
     mDelayDeadActivate = false;
-    mCameraInfo = NULL;
+    mCameraInfo = nullptr;
     mMtx.identity();
 }
 
@@ -53,7 +53,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(1);
     MR::addHitSensor(this, "body", 82, 8, v9, stack_C);
-    MR::initCollisionParts(this, modelName, getSensor("body"), NULL);
+    MR::initCollisionParts(this, modelName, getSensor("body"), nullptr);
 
     if (!isTypeCage()) {
         initEffectKeeper(0, name, false);
@@ -131,7 +131,7 @@ void BreakableCage::kill() {
         mBreakModel->kill();
     }
 
-    if (mItemModel != NULL) {
+    if (mItemModel != nullptr) {
         mItemModel->kill();
     }
 }
@@ -219,7 +219,7 @@ void BreakableCage::initMapToolInfo(const JMapInfoIter &rIter) {
 }
 
 void BreakableCage::initModel(const char *pName, const JMapInfoIter &rIter) {
-    initModelManagerWithAnm(pName, NULL, false);
+    initModelManagerWithAnm(pName, nullptr, false);
     if (isTypeCage()) {
         ModelObj* obj = MR::createModelObjMapObjStrongLight("壊れる籠壊れモデル", "BreakableCageBreak", mMtx.toMtxPtr());
         mBreakModel = obj;
@@ -229,12 +229,12 @@ void BreakableCage::initModel(const char *pName, const JMapInfoIter &rIter) {
         MR::registerDemoSimpleCastAll(mBreakModel);
         mBreakModel->makeActorDead();
         mItemModel = MR::createDummyDisplayModel(this, rIter, -1, TVec3f(0.0f, 150.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
-        if (mItemModel != NULL) {
+        if (mItemModel != nullptr) {
             s32 model_id = MR::getDummyDisplayModelId(rIter, -1);
 
             switch (model_id) {
                 case 4:
-                    MR::startBck(mItemModel, "Rotation", NULL);
+                    MR::startBck(mItemModel, "Rotation", nullptr);
                     break;
                 case 7:
                     break;
@@ -281,7 +281,7 @@ bool BreakableCage::isTypeCage() const {
 
 bool BreakableCage::isAppearPowerStar() const {
     bool res = false;
-    if (mItemModel != NULL && MR::getDummyDisplayModelId(mItemModel) == 7) {
+    if (mItemModel != nullptr && MR::getDummyDisplayModelId(mItemModel) == 7) {
         res = true;
     }
  
@@ -290,7 +290,7 @@ bool BreakableCage::isAppearPowerStar() const {
 
 bool BreakableCage::tryBreak() {
     if (isNerve(&NrvBreakableCage::BreakableCageNrvWait::sInstance)) {
-        if (mCameraInfo != NULL) {
+        if (mCameraInfo != nullptr) {
             MR::requestStartDemoWithoutCinemaFrame(this, "破壊", &NrvBreakableCage::BreakableCageNrvBreak::sInstance, &NrvBreakableCage::BreakableCageNrvWaitStartDemoBreak::sInstance);
         }
         else {
@@ -308,7 +308,7 @@ void BreakableCage::exeWait() {
         mRotation.y = normalizeAngle(0.0f, mRotationSpeed + mRotation.y);
     }
 
-    if (mItemModel != NULL) {
+    if (mItemModel != nullptr) {
         if (isAppearPowerStar()) {
             DummyDisplayModel* model = mItemModel;
             mItemModel->mRotation.y = normalizeAngle(0.0f, model->mRotation.y + PowerStar::getPowerStarWaitRotateSpeed());
@@ -321,7 +321,7 @@ void BreakableCage::exeBreak() {
     u32 v3 = 0;
     ActorCameraInfo* inf;
 
-    if (mDelayDeadActivate || mItemModel != NULL || mCageType == (s32)3 || mCageType == CAGE_TRASH) {
+    if (mDelayDeadActivate || mItemModel != nullptr || mCageType == (s32)3 || mCageType == CAGE_TRASH) {
         v3 = 1;
     }
 
@@ -348,21 +348,21 @@ void BreakableCage::exeBreak() {
 
         if (camera) {
             MR::startActorCameraTargetSelf(this, getCamInfo(), -1);
-            if (mBreakModel != NULL) {
+            if (mBreakModel != nullptr) {
                 MR::requestMovementOn(mBreakModel);
             }
         }
 
         if (isTypeCage()) {
             mBreakModel->appear();
-            MR::startBck(mBreakModel, "Break", NULL);
+            MR::startBck(mBreakModel, "Break", nullptr);
         }
         else { 
             MR::emitEffect(this, "Break");
         }
 
         if (isAppearPowerStar()) {
-            if (mItemModel != NULL) {
+            if (mItemModel != nullptr) {
                 MR::requestAppearPowerStar(this, mItemModel->mPosition);
             }
             else {
@@ -372,7 +372,7 @@ void BreakableCage::exeBreak() {
             MR::requestMovementOn(this);
         }
 
-        if (mItemModel != NULL) {
+        if (mItemModel != nullptr) {
             mItemModel->kill();
         }
 
@@ -381,7 +381,7 @@ void BreakableCage::exeBreak() {
         }
     }
 
-    if (isAppearPowerStar() || mCameraInfo != NULL) {
+    if (isAppearPowerStar() || mCameraInfo != nullptr) {
         MR::stopSceneAtStep(this, 2, 16);
     }
     else if (MR::isNearPlayer(this, 1500.0f)) {
@@ -393,7 +393,7 @@ void BreakableCage::exeBreak() {
 
     bool canDoSwitch;
 
-    if (mCameraInfo != NULL) {
+    if (mCameraInfo != nullptr) {
         canDoSwitch = MR::isStep(this, 120);
     }
     else if (isTypeCage()) {
@@ -412,7 +412,7 @@ void BreakableCage::exeBreak() {
             MR::offSwitchB(this);
         }
 
-        if (mCameraInfo != NULL) {
+        if (mCameraInfo != nullptr) {
             MR::endActorCamera(this, getCamInfo(), false, -1);
             MR::endDemo(this, "破壊");
         }

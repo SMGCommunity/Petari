@@ -6,15 +6,15 @@
 
 CameraTargetArg::CameraTargetArg(const LiveActor *pLiveActor) {
     mLiveActor = pLiveActor;
-    mTargetObj = NULL;
-    mTargetMtx = NULL;
-    mMarioActor = NULL;
+    mTargetObj = nullptr;
+    mTargetMtx = nullptr;
+    mMarioActor = nullptr;
 }
 
 void CameraTargetArg::setTarget() const {
     CameraTargetObj* obj = mTargetObj;
 
-    if (obj != NULL) {
+    if (obj != nullptr) {
         CameraDirector *director = MR::getCameraDirector();
         director->setTarget(obj);
         return;
@@ -22,7 +22,7 @@ void CameraTargetArg::setTarget() const {
 
     CameraTargetMtx *mtx = mTargetMtx;
     
-    if (mtx != NULL)  {
+    if (mtx != nullptr)  {
         mtx->invalidateLastMove();
 
         CameraDirector *director = MR::getCameraDirector();
@@ -32,7 +32,7 @@ void CameraTargetArg::setTarget() const {
 
     const LiveActor *liveActor = mLiveActor;
     
-    if (liveActor != NULL) {
+    if (liveActor != nullptr) {
         CameraDirector *director = MR::getCameraDirector();
         director->setTargetActor(liveActor);
         return;
@@ -40,7 +40,7 @@ void CameraTargetArg::setTarget() const {
 
     MarioActor *marioActor = mMarioActor;
     
-    if (marioActor != NULL) {
+    if (marioActor != nullptr) {
         CameraDirector *director = MR::getCameraDirector();
         director->setTargetPlayer(marioActor);
     }

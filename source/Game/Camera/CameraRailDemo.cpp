@@ -24,7 +24,7 @@ CameraTargetObj* CameraRailDemo::calc() {
     }
 
     _58 = _58 + 1;
-    return NULL;
+    return nullptr;
 }
 
 CameraRailDemo::~CameraRailDemo() {

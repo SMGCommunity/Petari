@@ -3,7 +3,7 @@
 #include "JSystem/JSupport/JSUMemoryOutputStream.h"
 
 GameEventFlagStorage::GameEventFlagStorage() {
-    mFlagBitArray = NULL;
+    mFlagBitArray = nullptr;
     mFlagBitArray = new MR::BitArray(GameEventFlagTable::getTableSize());
 }
 

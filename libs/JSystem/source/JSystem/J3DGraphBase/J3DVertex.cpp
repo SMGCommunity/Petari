@@ -3,7 +3,7 @@
 J3DDrawMtxData::J3DDrawMtxData() {
     mDrawMatrixCount = 0;
     _4 = 0;
-    mDrawMtxArray = NULL;
+    mDrawMtxArray = nullptr;
 }
 
 J3DDrawMtxData::~J3DDrawMtxData() {

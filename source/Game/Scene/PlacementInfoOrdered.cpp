@@ -3,10 +3,10 @@
 #ifndef NON_MATCHING
 // functionally equiv, just isn't reloading the array size properly
 PlacementInfoOrdered::PlacementInfoOrdered(int count) {
-    mIndexArray = NULL;
+    mIndexArray = nullptr;
     _4 = 0;
-    mSetArray = NULL;
-    mIdentiferArray = NULL;
+    mSetArray = nullptr;
+    mIdentiferArray = nullptr;
     mCount = count;
     mIndexArray = new Index[count];
     mSetArray = new SameIdSet[count];

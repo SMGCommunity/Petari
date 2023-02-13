@@ -14,20 +14,20 @@ void LargeChainParts::initChainParts(TVec3f *pPos, TVec3f *pRot, TVec3f *pScale,
     mScale.set(*pScale);
 
     if (isFixedPoint) {
-        initModelManagerWithAnm("LargeChainFixPoint", NULL, false);
+        initModelManagerWithAnm("LargeChainFixPoint", nullptr, false);
     }
     else {
-        initModelManagerWithAnm("LargeChain", NULL, false);
+        initModelManagerWithAnm("LargeChain", nullptr, false);
     }
 
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     if (isFixedPoint) {
-        MR::initCollisionParts(this, "LargeChainFixPoint", getSensor("body"), NULL);
+        MR::initCollisionParts(this, "LargeChainFixPoint", getSensor("body"), nullptr);
     }
     else {
-        MR::initCollisionParts(this, "LargeChain", getSensor("body"), NULL);
+        MR::initCollisionParts(this, "LargeChain", getSensor("body"), nullptr);
     }
 
     initEffectKeeper(0, "LargeChain", false);

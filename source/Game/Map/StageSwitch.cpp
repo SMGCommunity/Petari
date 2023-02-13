@@ -29,7 +29,7 @@ ZoneSwitch::ZoneSwitch() : BitFlag128() {
 }
 
 SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter &rIter) {
-    mIDInfo = NULL;
+    mIDInfo = nullptr;
     mIsGlobal = switchID >= 1000;
     mIDInfo = new JMapIdInfo(switchID, rIter);
 }
@@ -150,11 +150,11 @@ SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char *pSwitchName, c
     bool res = rIter.getValue<s32>(pSwitchName, &switchNo);
     
     if (!res) {
-        return NULL;
+        return nullptr;
     }
 
     if (switchNo < 0) {
-        return NULL;
+        return nullptr;
     }
 
     SwitchIdInfo* inf = new SwitchIdInfo(switchNo, rIter);
@@ -218,7 +218,7 @@ StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ
 }
 
 StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter &rIter)
-    : mSW_A(NULL), mSW_B(NULL), mSW_Appear(NULL), mSW_Dead(NULL) {
+    : mSW_A(nullptr), mSW_B(nullptr), mSW_Appear(nullptr), mSW_Dead(nullptr) {
     mSW_A = StageSwitchFunction::createSwitchIdInfo("SW_A", rIter, true);
     mSW_B = StageSwitchFunction::createSwitchIdInfo("SW_B", rIter, true);
     mSW_Appear = StageSwitchFunction::createSwitchIdInfo("SW_APPEAR", rIter, true);

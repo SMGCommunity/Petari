@@ -3,7 +3,7 @@
 
 MaterialCtrl::MaterialCtrl(J3DModelData *pModelData, const char *pMaterialName) {
     mModelData = pModelData;
-    mMaterial = NULL;
+    mMaterial = nullptr;
 
     if (pMaterialName) {
         mMaterial = MR::getMaterial(pModelData, pMaterialName);

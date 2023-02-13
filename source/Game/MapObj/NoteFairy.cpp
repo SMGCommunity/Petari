@@ -17,8 +17,8 @@ NoteFairy::NoteFairy(const char *pName) : LiveActor(pName) {
     mSong = -1;
     mCompletionJingle = -1;
     mNoteCoord = 150.0f;
-    mNoteArray = NULL;
-    mLastGotNote = NULL;
+    mNoteArray = nullptr;
+    mLastGotNote = nullptr;
     mAppearanceType = -1;
     _CC = false;
     _CD = false;
@@ -27,7 +27,7 @@ NoteFairy::NoteFairy(const char *pName) : LiveActor(pName) {
     _D0 = false;
     _D1 = false;
     mPowerStarSpawnType = -1;
-    mCameraInfo = NULL;
+    mCameraInfo = nullptr;
 }
 
 void NoteFairy::init(const JMapInfoIter &rIter) {
@@ -80,7 +80,7 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
     mTimeLimit *= 60;
     mHasDemo = MR::tryRegisterDemoCast(this, rIter);
     initRailRider(rIter);
-    initModelManagerWithAnm("Note", NULL, false);
+    initModelManagerWithAnm("Note", nullptr, false);
     MR::startBrk(this, "Note");
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initEffectKeeper(0, "NoteFairy", false);
@@ -363,7 +363,7 @@ void NoteFairy::exeEndWait() {
 
 void NoteFairy::exeSuccessDemo() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartDemoRegistered(this, NULL);
+        MR::tryStartDemoRegistered(this, nullptr);
     }
 
     if (!MR::isTimeKeepDemoActive()) {
@@ -397,10 +397,10 @@ void NoteFairy::enterDemoAppear(const Nerve *pNerve, bool hasNoFrame) {
     MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
 
     if (hasNoFrame) {
-        MR::requestStartDemo(this, "出現", pNerve, NULL);
+        MR::requestStartDemo(this, "出現", pNerve, nullptr);
     }
     else {
-        MR::requestStartDemoWithoutCinemaFrame(this, "出現", pNerve, NULL);
+        MR::requestStartDemoWithoutCinemaFrame(this, "出現", pNerve, nullptr);
     }
 
     MR::requestMovementOn(MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup));

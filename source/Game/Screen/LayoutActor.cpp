@@ -2,7 +2,7 @@
 #include "Game/Screen/PaneEffectKeeper.h"
 
 LayoutActor::LayoutActor(const char *pName, bool) : NameObj(pName),
-    mManager(NULL), mSpine(NULL), mPaneEffectKeeper(NULL), mStarPointerTargetKeeper(NULL) {
+    mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {
 }
 
 void LayoutActor::movement() {
@@ -58,7 +58,7 @@ s32 LayoutActor::getNerveStep() const {
 /*
 const TVec2f LayoutActor::getTrans() const {
     TVec2f trans;
-    MR::copyPaneTrans(&trans, this, NULL);
+    MR::copyPaneTrans(&trans, this, nullptr);
     MR::convertLayoutPosToScreenPos(&trans, trans);
     return trans;
 }*/

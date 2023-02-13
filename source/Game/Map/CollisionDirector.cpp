@@ -7,8 +7,8 @@
 #define NR_CATEGORIZED_KEEPERS 4
 
 CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
-    mKeepers = NULL;
-    mCode = NULL;
+    mKeepers = nullptr;
+    mCode = nullptr;
 
     mCode = new CollisionCode();
     mKeepers = new CollisionCategorizedKeeper *[NR_CATEGORIZED_KEEPERS];

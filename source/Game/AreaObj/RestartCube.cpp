@@ -4,7 +4,7 @@
 #include "Game/GameAudio/AudStageBgmTable.h"
 
 RestartCube::RestartCube(int type, const char *pName) : AreaObj(type, pName) {
-    mIdInfo = NULL;
+    mIdInfo = nullptr;
     _40 = -1;
     _44 = -1;
     _48 = false;

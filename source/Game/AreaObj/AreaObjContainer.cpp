@@ -12,7 +12,7 @@ void AreaObjContainer::init(const JMapInfoIter &rIter) {
         AreaObjEntry* entry = &cCreateTable[i];
         AreaObjMgr* mgr = entry->mFuncPtr(entry->_4, entry->mName);
         JMapInfoIter iter;
-        iter.mInfo = NULL;
+        iter.mInfo = nullptr;
         iter._4 = -1;
         mgr->init(iter);
         s32 num = mNumManagers;

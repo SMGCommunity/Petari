@@ -11,7 +11,7 @@ FirePressureBullet* FirePressureBulletHolder::callEmptyBullet() {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 FirePressureBulletHolder::~FirePressureBulletHolder() {

@@ -3,7 +3,7 @@
 
 CutBushModelObj::CutBushModelObj(const char *pName, const char *pObjName, bool useLight, MtxPtr mtx) : LiveActor(pName) {
     mMtx = mtx;
-    initModelManagerWithAnm(pObjName, NULL, false);
+    initModelManagerWithAnm(pObjName, nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjWeakLightNoMovement(this);
 
     if (useLight) {

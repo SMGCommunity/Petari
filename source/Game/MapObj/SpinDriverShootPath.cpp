@@ -2,8 +2,8 @@
 #include "JSystem/JMath/JMath.h"
 
 SpinDriverShootPath::SpinDriverShootPath() {
-    mRailRider = NULL;
-    mPath = NULL;
+    mRailRider = nullptr;
+    mPath = nullptr;
     mStartPosition.x = 0.0f;
     mStartPosition.y = 0.0f;
     mStartPosition.z = 0.0f; 

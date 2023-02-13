@@ -128,7 +128,7 @@ s32 AstroMapObjFunction::getDomeIdFromArg0(const JMapInfoIter &rIter) {
 }
 
 const char* AstroMapObjFunction::getModelName(const char *pName, s32 domeIdx) {
-    const char** tbl = NULL;
+    const char** tbl = nullptr;
 
     if (MR::isEqualString(pName, "AstroDome")) {
         tbl = cAstroDomeNameTable;
@@ -143,7 +143,7 @@ const char* AstroMapObjFunction::getModelName(const char *pName, s32 domeIdx) {
         tbl = cAstroStarPlateNameTable;
     }
 
-    if (tbl != NULL) {
+    if (tbl != nullptr) {
         return tbl[domeIdx - 1];
     }
     else {

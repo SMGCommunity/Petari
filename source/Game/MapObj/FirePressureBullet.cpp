@@ -4,14 +4,14 @@ FirePressureBullet::FirePressureBullet(const char *pName) : LiveActor(pName) {
     _8C.x = 0.0f;
     _8C.y = 0.0f;
     _8C.z = 0.0f;
-    mFirePressure = NULL;
+    mFirePressure = nullptr;
     _9C = 0.0f;
     _A0 = false;
     _A1 = false;
 }
 
 void FirePressureBullet::init(const JMapInfoIter  &rIter) {
-    initModelManagerWithAnm("FireBullet", NULL, false);
+    initModelManagerWithAnm("FireBullet", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     TVec3f offs;
@@ -21,7 +21,7 @@ void FirePressureBullet::init(const JMapInfoIter  &rIter) {
     MR::addHitSensorEnemyAttack(this, "body", 8, 100.0f, offs);
     initBinder(100.0f, 0.0f, 0);
     MR::onCalcGravity(this);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::initShadowVolumeSphere(this, 75.0f);
     initNerve(&NrvFirePressureBullet::FirePressureBulletNrvFly::sInstance);
@@ -64,12 +64,12 @@ void FirePressureBullet::shotFireBullet(LiveActor *pActor, const TPos3f &rPos, c
 
 void FirePressureBullet::exeFly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", NULL);
+        MR::startBck(this, "Shot", nullptr);
         MR::startBtk(this, "FireBullet");
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Move", NULL);
+        MR::startBck(this, "Move", nullptr);
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_BULLET", -1, -1, -1);

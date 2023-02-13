@@ -14,7 +14,7 @@ void SpinGuidanceArea::init(const JMapInfoIter &rIter) {
     AreaObj::init(rIter);
     MR::createSceneObj(SceneObj_PlayerActionGuidance);
 
-    const char *objName = NULL;
+    const char *objName = nullptr;
     MR::getObjectName(&objName, rIter);
 
     if (MR::isEqualString(objName, "SpinGuidanceCube")) {

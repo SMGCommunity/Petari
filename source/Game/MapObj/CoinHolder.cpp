@@ -1,7 +1,7 @@
 #include "Game/MapObj/CoinHolder.h"
 #include "Game/MapObj/Coin.h"
 
-CoinHolder::CoinHolder(const char *pName) : DeriveActorGroup<Coin>(pName, 0x200), mHostInfoArr(NULL), mHostInfoCount(0) {
+CoinHolder::CoinHolder(const char *pName) : DeriveActorGroup<Coin>(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
     mHostInfoArr = new CoinHostInfo[0x200];
 }
 
@@ -30,7 +30,7 @@ bool CoinHolder::appearCoinFix(const NameObj *pObj, const TVec3f &a2, s32 a3) {
 
 bool CoinHolder::appearCoinPop(const NameObj *pObj, const TVec3f &a2, s32 a3) {
     TVec3f stack_20;
-    MR::calcGravityVector(this, a2, &stack_20, NULL, NULL);
+    MR::calcGravityVector(this, a2, &stack_20, nullptr, nullptr);
     TVec3f stack_8 = -stack_20 % 25.0f;
     return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
@@ -43,7 +43,7 @@ bool CoinHolder::appearCoinToVelocity(const NameObj *pObj, const TVec3f &a2, con
 
 CoinHostInfo* CoinHolder::declare(const NameObj *pObj, s32 a2) {
     if (a2 < 0) {
-        return NULL;
+        return nullptr;
     }
 
     CoinHostInfo* hostInfo = findHostInfo(pObj);
@@ -74,7 +74,7 @@ CoinHostInfo* CoinHolder::findHostInfo(const NameObj *pObj) const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void CoinHolder::init(const JMapInfoIter &rIter) {

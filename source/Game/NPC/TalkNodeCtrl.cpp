@@ -19,8 +19,8 @@ bool TalkMessageHistory::search(u16 msgID) const {
 
 TalkNodeCtrl::TalkNodeCtrl() : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
     mHistory.mCount = 0;
-    _38 = NULL;
-    mCurrentNode = NULL;
+    _38 = nullptr;
+    mCurrentNode = nullptr;
     mNodeData = -1;
 }
 
@@ -46,7 +46,7 @@ void TalkNodeCtrl::recordTempFlowNode() {
 void TalkNodeCtrl::forwardFlowNode() {
     TalkNode* node = mCurrentNode;
 
-    if (node == NULL) {
+    if (node == nullptr) {
         return;
     }
 
@@ -65,13 +65,13 @@ void TalkNodeCtrl::forwardFlowNode() {
 }
 
 bool TalkNodeCtrl::isExistNextNode() const {
-    return getNextNode() != NULL;
+    return getNextNode() != nullptr;
 }
 
 bool TalkNodeCtrl::isNextNodeMessage() const {
     TalkNode* next = getNextNode();
 
-    if (next != NULL || next->mNodeType != 1) {
+    if (next != nullptr || next->mNodeType != 1) {
         return false;
     }
 
@@ -79,15 +79,15 @@ bool TalkNodeCtrl::isNextNodeMessage() const {
 }
 
 bool TalkNodeCtrl::isCurrentNodeEvent() const {
-    return getCurrentNodeEvent() != NULL;
+    return getCurrentNodeEvent() != nullptr;
 }
 
 TalkNode* TalkNodeCtrl::getNextNode() const {
     TalkNode* node = mCurrentNode;
     u16 idx;
 
-    if (node == NULL) {
-        return NULL;
+    if (node == nullptr) {
+        return nullptr;
     }
 
     if (node->mNodeType == 1) {
@@ -107,51 +107,51 @@ TalkNode* TalkNodeCtrl::getNextNode() const {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 TalkNode* TalkNodeCtrl::getNextNodeBranch() const {
     TalkNode* node = getNextNode();
     
-    if (node == NULL) {
-        return NULL;
+    if (node == nullptr) {
+        return nullptr;
     }
 
-    return node->mNodeType != 2 ? NULL : node;
+    return node->mNodeType != 2 ? nullptr : node;
 }
 
 TalkNode* TalkNodeCtrl::getCurrentNodeBranch() const {
-    if (mCurrentNode != NULL && mCurrentNode->mNodeType == 2) {
+    if (mCurrentNode != nullptr && mCurrentNode->mNodeType == 2) {
         return mCurrentNode;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 TalkNode* TalkNodeCtrl::getCurrentNodeMessage() const {
-    if (mCurrentNode != NULL && mCurrentNode->mNodeType == 1) {
+    if (mCurrentNode != nullptr && mCurrentNode->mNodeType == 1) {
         return mCurrentNode;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 TalkNode* TalkNodeCtrl::getCurrentNodeEvent() const {
-    if (mCurrentNode != NULL && mCurrentNode->mNodeType == 3) {
+    if (mCurrentNode != nullptr && mCurrentNode->mNodeType == 3) {
         return mCurrentNode;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 TalkNode* TalkNodeCtrl::getNextNodeEvent() const {
     TalkNode* node = getNextNode();
     
-    if (node == NULL) {
-        return NULL;
+    if (node == nullptr) {
+        return nullptr;
     }
 
-    return node->mNodeType != 3 ? NULL : node;
+    return node->mNodeType != 3 ? nullptr : node;
 }
 
 void TalkNodeCtrl::updateMessage() {
@@ -159,7 +159,7 @@ void TalkNodeCtrl::updateMessage() {
     u8 groupID;
     TalkNode* cur = mCurrentNode;
 
-    if (cur != NULL) {
+    if (cur != nullptr) {
         if (cur->mNodeType != 1) {
             mMessageInfo._0 = 0;
         } 
@@ -172,7 +172,7 @@ void TalkNodeCtrl::updateMessage() {
 
             TalkNode* nextBranchNode = getNextNodeBranch();
 
-            if (nextBranchNode != NULL) {
+            if (nextBranchNode != nullptr) {
                 mNodeData = nextBranchNode->mIndex;
             }
             else {

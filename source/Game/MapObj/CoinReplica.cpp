@@ -1,7 +1,7 @@
 #include "Game/MapObj/CoinReplica.h"
 
 CoinReplica::CoinReplica(const char *pName) : NameObj(pName) {
-    mCoin = NULL;
+    mCoin = nullptr;
 }
 
 void CoinReplica::activeCoin() {

@@ -18,6 +18,6 @@ void LayoutHolder::initializeArc() {
         mResOther.newFileInfoTable(res_count);
     }
 
-    mount(NULL);
+    mount(nullptr);
 }
 */

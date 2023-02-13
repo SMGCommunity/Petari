@@ -7,7 +7,7 @@ ShootingStar::ShootingStar(const char *pName) : LiveActor(pName), _8C(0, 0, 0), 
 }
 
 void ShootingStar::init(const JMapInfoIter &rIter) {
-    initModelManagerWithAnm("ShootingStar", NULL, false);
+    initModelManagerWithAnm("ShootingStar", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::initDefaultPos(this, rIter);
     _8C = mPosition;
@@ -73,7 +73,7 @@ void ShootingStar::control() {
 
 void ShootingStar::exePreShooting() {
     if (MR::isFirstStep(this)) {
-        MR::calcGravityVector(this, &_A4, NULL, 0);
+        MR::calcGravityVector(this, &_A4, nullptr, 0);
         MR::showModel(this);
         MR::emitEffect(this, "ShooingStarAppear");
         mPosition.x = _8C.x;
@@ -96,7 +96,7 @@ void ShootingStar::exeWaitForNextShoot() {
         }
 
         MR::offCalcAnim(this);
-        MR::invalidateShadow(this, NULL);
+        MR::invalidateShadow(this, nullptr);
     }
 
     if (!MR::getDeclareRemnantStarPieceCount(this)) {
@@ -105,7 +105,7 @@ void ShootingStar::exeWaitForNextShoot() {
 
     if (MR::isGreaterStep(this, _B4)) {
         MR::onCalcAnim(this);
-        MR::validateShadow(this, NULL);
+        MR::validateShadow(this, nullptr);
         setNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
     }
 }

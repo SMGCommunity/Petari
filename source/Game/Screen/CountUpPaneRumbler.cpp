@@ -1,7 +1,7 @@
 #include "Game/Screen/CountUpPaneRumbler.h"
 
 CountUpPaneRumbler::CountUpPaneRumbler(LayoutActor *pActor, const char *pName) {
-    mRumbleCalculator = NULL;
+    mRumbleCalculator = nullptr;
     mFollowPos.x = 0.0f;
     mFollowPos.y = 0.0f;
     mRumbleCalculator = new RumbleCalculatorCosMultLinear(2.0f, HALF_PI, 8.0f, 0xF);

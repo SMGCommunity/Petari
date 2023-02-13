@@ -9,7 +9,7 @@ void TalkMessageCtrl::createMessage(const JMapInfoIter &rIter, const char *pName
     mNodeCtrl = new TalkNodeCtrl();
     mNodeCtrl->createFlowNode(this, rIter, pName, &mCameraInfo);
     
-    if (mNodeCtrl->mCurrentNode != NULL) {
+    if (mNodeCtrl->mCurrentNode != nullptr) {
         mAlreadyDoneFlags = MR::setupAlreadyDoneFlag(((MessageNode*)mNodeCtrl->mCurrentNode)->mMessage, rIter, &_3C);
     }
     else {
@@ -82,7 +82,7 @@ void TalkMessageCtrl::readMessage() {
 bool TalkMessageCtrl::isSelectYesNo() const {
     TalkNode* node = mNodeCtrl->getNextNodeBranch();
 
-    if (node == NULL || node->mIndex != 0) {
+    if (node == nullptr || node->mIndex != 0) {
         return false;
     }
 
@@ -98,7 +98,7 @@ bool TalkMessageCtrl::isSelectYesNo() const {
 
 u32 TalkMessageCtrl::getMessageID() const {
     TalkNodeCtrl* ctrl = mNodeCtrl;
-    if (ctrl->getCurrentNodeMessage() != NULL) {
+    if (ctrl->getCurrentNodeMessage() != nullptr) {
         return ctrl->getCurrentNodeMessage()->mIndex;
     }
     else {
@@ -117,7 +117,7 @@ u32 TalkMessageCtrl::getMessageID() const {
 // TalkMessageCtrl::updateBalloonPos
 
 bool TalkMessageCtrl::isNearPlayer(const TalkMessageCtrl *pCtrl) {
-    if (pCtrl == NULL) {
+    if (pCtrl == nullptr) {
         return true;
     }
 
@@ -141,11 +141,11 @@ void TalkMessageCtrl::startCamera(s32 a1) {
 const char* TalkMessageCtrl::getBranchID() const {
     TalkNode* node = mNodeCtrl->getNextNodeBranch();
 
-    if (node == NULL || node->mIndex != 0 ) {
-        return NULL;
+    if (node == nullptr || node->mIndex != 0 ) {
+        return nullptr;
     }
 
-    const char* result = NULL;
+    const char* result = nullptr;
 
     switch (node->mNextIdx) {
         case 0:

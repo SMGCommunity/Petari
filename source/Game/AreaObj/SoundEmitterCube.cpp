@@ -11,11 +11,11 @@ namespace {
 }
 
 SoundEmitterCube::SoundEmitterCube(int type, const char *pName) : AreaObj(type, pName) {
-    mSoundObj = NULL;
+    mSoundObj = nullptr;
 	_40.x = 0.0f;
 	_40.y = 0.0f;
 	_40.z = 0.0f;
-    mSoundName = NULL;
+    mSoundName = nullptr;
 }
 
 SoundEmitterCube::~SoundEmitterCube() {

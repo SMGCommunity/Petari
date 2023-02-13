@@ -15,7 +15,7 @@ void BenefitItemLifeUp::exeCatch() {
 }
 
 void BenefitItemLifeUp::initModelAndEfx() {
-    initModelManagerWithAnm(_120, NULL, false);
+    initModelManagerWithAnm(_120, nullptr, false);
     initEffectKeeper(5, "BenefitItemObj", false);
     initBinder(50.0f, 50.0f, 0);
     initHitSensor(1);

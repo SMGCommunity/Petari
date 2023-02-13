@@ -8,14 +8,14 @@ namespace {
 JSUList<JKRFileLoader> JKRFileLoader::sFileLoaderList = JSUList<JKRFileLoader>();
 
 JKRFileLoader::JKRFileLoader() : JKRDisposer(), mLoaderLink(this) {
-    mLoaderName = NULL;
+    mLoaderName = nullptr;
     mLoaderType = 0;
     _34 = 0;
 }
 
 JKRFileLoader::~JKRFileLoader() {
     if (gCurrentFileLoader == this) {
-        gCurrentFileLoader = NULL;
+        gCurrentFileLoader = nullptr;
     }
 }
 
@@ -32,18 +32,18 @@ void JKRFileLoader::unmount() {
 }
 
 void *JKRFileLoader::getGlbResource(const char *pName, JKRFileLoader *pLoader) {
-    void *resource = NULL;
+    void *resource = nullptr;
 
-    if (pLoader != NULL) {
+    if (pLoader != nullptr) {
         resource = pLoader->getResource(0, pName);
     }
     else {
         JSUPtrLink *current = sFileLoaderList.mHead;
 
-        while (current != NULL) {
+        while (current != nullptr) {
             resource = reinterpret_cast<JKRFileLoader *>(current->mData)->getResource(0, pName);
 
-            if (resource != NULL) {
+            if (resource != nullptr) {
                 break;
             }
 

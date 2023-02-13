@@ -13,7 +13,7 @@ HitSensor::HitSensor(u32 type, u32 sensorGroupSize, f32 radius, LiveActor *pActo
     mSensorCount = 0;
     mGroupSize = sensorGroupSize;
     mSensors = 0;
-    mSensorGroup = NULL;
+    mSensorGroup = nullptr;
     mValidBySystem = false;
     mValidByHost = true;
     mActor = pActor;
@@ -22,7 +22,7 @@ HitSensor::HitSensor(u32 type, u32 sensorGroupSize, f32 radius, LiveActor *pActo
         mSensors = new HitSensor*[sensorGroupSize];
 
         for (s32 i = 0; i < mGroupSize; i++) {
-            mSensors[i] = NULL;
+            mSensors[i] = nullptr;
         }
     }
 

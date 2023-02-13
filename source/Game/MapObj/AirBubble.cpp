@@ -11,17 +11,17 @@ AirBubble::AirBubble(const char *pName) : LiveActor(pName) {
 void AirBubble::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
-    initModelManagerWithAnm("AirBubble", NULL, false);
+    initModelManagerWithAnm("AirBubble", nullptr, false);
     MR::connectToSceneItem(this);
     initHitSensor(1);
     MR::addHitSensorMapObj(this, "body", 8, 130.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(2, false);
     initNerve(&NrvAirBubble::AirBubbleNrvWait::sInstance);
     _C8 = 0;
     makeActorAppeared();
     MR::setClippingFar100m(this);
-    MR::startBck(this, "Move", NULL);
+    MR::startBck(this, "Move", nullptr);
     _C9 = 0;
 }
 

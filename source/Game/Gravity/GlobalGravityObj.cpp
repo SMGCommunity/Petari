@@ -2,7 +2,7 @@
 #include "Game/Util.h"
 
 GlobalGravityObj::GlobalGravityObj(const char *pName) : LiveActor(pName) {
-	mGravityCreator = NULL;
+	mGravityCreator = nullptr;
 }
 
 void GlobalGravityObj::init(const JMapInfoIter &rIter) {

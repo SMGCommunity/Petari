@@ -3,7 +3,7 @@
 
 PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelName, MtxPtr mtx, int a5, bool a6) : LiveActor(pName) {
     mHost = pActor;
-    mFixedPos = NULL;
+    mFixedPos = nullptr;
     mMtx = mtx;
     mCalcOwnMtx = true;
     _99 = false;
@@ -23,7 +23,7 @@ PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelN
     mRotation.set<f32>(pActor->mRotation);
     mScale.set<f32>(pActor->mScale);
 
-    initModelManagerWithAnm(pModelName, NULL, a6);
+    initModelManagerWithAnm(pModelName, nullptr, a6);
 
     u32 v14 = 43;
     u32 v15 = 11;
@@ -52,7 +52,7 @@ void PartsModel::makeActorDead() {
 
 // 99.9% sure the call to makeActorAppered is meant to be inlined but ¯\_(ツ)_/¯ this matches
 void PartsModel::init(const JMapInfoIter &rIter) {
-    initEffectKeeper(8, NULL, false);
+    initEffectKeeper(8, nullptr, false);
     initSound(8, false);
     MR::isInvalidClipping(this);
     makeActorAppeared();
@@ -122,7 +122,7 @@ void PartsModel::initFixedPosition(MtxPtr mtx, const TVec3f &rLocalTrans, const 
 }
 
 void PartsModel::loadFixedPosition(const char *pJointName) {
-    mFixedPos = new FixedPosition(mHost, pJointName, NULL);
+    mFixedPos = new FixedPosition(mHost, pJointName, nullptr);
     mMtx = (MtxPtr)&mFixedPos->_1C;
 }
 

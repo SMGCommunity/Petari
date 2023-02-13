@@ -13,7 +13,7 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
     _B4 = 0;
 
     if (pName) {
-        initModelManagerWithAnm(pName, NULL, false);
+        initModelManagerWithAnm(pName, nullptr, false);
         MR::connectToSceneMapObj(this);
         _B4 = 1;
     }
@@ -77,7 +77,7 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
     }
 
     initSound(3, false);
-    initEffectKeeper(3, NULL, false);
+    initEffectKeeper(3, nullptr, false);
     appear();
 
     if (_B4) {

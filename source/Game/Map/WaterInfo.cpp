@@ -23,8 +23,8 @@ void WaterInfo::clear() {
     mStreamVec.zero();
     mEdgeDistance = -1.0f;
     mEdgePos.zero();
-    mWaterArea = NULL;
-    mOceanBowl = NULL;
-    mOceanRing = NULL;
-    mOceanSphere = NULL;
+    mWaterArea = nullptr;
+    mOceanBowl = nullptr;
+    mOceanRing = nullptr;
+    mOceanSphere = nullptr;
 }

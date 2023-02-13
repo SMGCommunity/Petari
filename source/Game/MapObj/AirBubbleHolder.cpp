@@ -21,7 +21,7 @@ void AirBubbleHolder::appearAirBubble(const TVec3f &a1, s32 a2) {
         bubble = reinterpret_cast<AirBubble*>(getDeadActor());
     }
     else {
-        bubble = NULL;
+        bubble = nullptr;
     }
 
     if (bubble) {

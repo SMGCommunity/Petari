@@ -2,9 +2,9 @@
 #include "Game/Camera/CameraTargetMtx.h"
 
 SpinDriverCamera::SpinDriverCamera() {
-    mCamera = NULL;
-    mTargetMtx = NULL;
-    mCameraInfo = NULL;
+    mCamera = nullptr;
+    mTargetMtx = nullptr;
+    mCameraInfo = nullptr;
     mAppearCameraFrame = 0;
 }
 

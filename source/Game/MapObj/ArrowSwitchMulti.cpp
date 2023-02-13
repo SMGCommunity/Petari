@@ -3,8 +3,8 @@
 #include "Game/Map/StageSwitch.h"
 
 ArrowSwitchTarget::ArrowSwitchTarget(const char *pName) : NameObj(pName) {
-    mJMapIDInfo = NULL;
-    mStageSwitchCtrl = NULL;
+    mJMapIDInfo = nullptr;
+    mStageSwitchCtrl = nullptr;
     mTargetIdx = -1;
     MR::createArrowSwitchMultiHolder();
 }
@@ -43,7 +43,7 @@ void ArrowSwitchTarget::offTarget() {
 
 
 ArrowSwitchMulti::ArrowSwitchMulti(const char *pName) : LiveActor(pName) {
-    mIDInfo = NULL;
+    mIDInfo = nullptr;
     _A0 = 0.0f;
     _A4 = 0.0f;
     _A8 = 0;
@@ -52,7 +52,7 @@ ArrowSwitchMulti::ArrowSwitchMulti(const char *pName) : LiveActor(pName) {
     MR::createArrowSwitchMultiHolder();
 
     for (u32 i = 0; i < 4; i++) {
-        mTargetArray[i] = NULL;
+        mTargetArray[i] = nullptr;
     }
 }
 
@@ -62,7 +62,7 @@ void ArrowSwitchMulti::registerTarget(ArrowSwitchTarget *pTarget) {
 
 void ArrowSwitchMulti::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("ArrowSwitch", NULL, false);
+    initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     s32 arg;
     MR::getJMapInfoArg0WithInit(rIter, &arg);
@@ -76,7 +76,7 @@ void ArrowSwitchMulti::init(const JMapInfoIter &rIter) {
         initHitSensor(2);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
         MR::addHitSensorMapObjMoveCollision(this, "collision", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-        MR::initCollisionParts(this, "ArrowSwitch", getSensor("collision"), NULL);
+        MR::initCollisionParts(this, "ArrowSwitch", getSensor("collision"), nullptr);
     }
 
     initSound(4, false);

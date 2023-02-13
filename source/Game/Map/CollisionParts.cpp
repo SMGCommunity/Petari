@@ -9,8 +9,8 @@
 #include "Game/Util/SceneUtil.h"
 
 CollisionParts::CollisionParts() {
-    _0 = NULL;
-    mHitSensor = NULL;
+    _0 = nullptr;
+    mHitSensor = nullptr;
     _CC = false;
     _CD = true;
     _CE = false;
@@ -20,7 +20,7 @@ CollisionParts::CollisionParts() {
     _D8 = -1.0f;
     _DC = 1.0f;
     mKeeperIndex = -1;
-    mZone = NULL;
+    mZone = nullptr;
 
     mServer = new KCollisionServer();
 
@@ -245,14 +245,14 @@ void CollisionParts::updateBoundingSphereRangePrivate(float scale) {
 }
 
 const char *CollisionParts::getHostName() const {
-    if (mHitSensor == NULL) {
-        return NULL;
+    if (mHitSensor == nullptr) {
+        return nullptr;
     }
 
     LiveActor *actor = mHitSensor->mActor;
 
-    if (actor == NULL) {
-        return NULL;
+    if (actor == nullptr) {
+        return nullptr;
     }
 
     return actor->mName;

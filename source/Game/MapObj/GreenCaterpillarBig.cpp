@@ -6,7 +6,7 @@ GreenCaterpillarBigBody::GreenCaterpillarBigBody(LiveActor *pCaterpillar, MtxPtr
         mFrontVec.x = 0.0f;
         mFrontVec.y = 0.0f;
         mFrontVec.z = 1.0f;
-        mPlanetLOD = NULL;
+        mPlanetLOD = nullptr;
     }
 
 void GreenCaterpillarBigBody::init(const JMapInfoIter &rIter) {
@@ -14,7 +14,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter &rIter) {
     mPlanetLOD = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLOD->validate();
     MR::calcFrontVec(&mFrontVec, mCaterpillar);
-    MR::startBck(this, "Wait", NULL);
+    MR::startBck(this, "Wait", nullptr);
     makeActorDead();
 }
 
@@ -64,22 +64,22 @@ void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
 }
 
 GreenCaterpillarBig::GreenCaterpillarBig(const char *pName) : LiveActor(pName) {
-    mBodyArray = NULL;
+    mBodyArray = nullptr;
     mBodyArrayLength = 0;
     mCurBodyParts = 0;
     _98 = 0;
     _9C = 0;
     _9D = 0;
-    mPlanetLOD = NULL;
+    mPlanetLOD = nullptr;
 }
 
 void GreenCaterpillarBig::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("GreenCaterpillarBigFace", NULL, false);
+    initModelManagerWithAnm("GreenCaterpillarBigFace", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    initEffectKeeper(0, NULL, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initRailRider(rIter);
     initBodyParts(rIter);
@@ -101,7 +101,7 @@ void GreenCaterpillarBig::exeWriggle() {
             MR::showModel(this);
         }
 
-        MR::startBck(this, "Eat", NULL);
+        MR::startBck(this, "Eat", nullptr);
     }
 
     MR::moveCoordAndFollowTrans(this, 50.0f);
@@ -232,7 +232,7 @@ namespace NrvGreenCaterpillarBig {
     void GreenCaterpillarBigNrvEnd::execute(Spine *pSpine) const {
         GreenCaterpillarBig* caterpillar = reinterpret_cast<GreenCaterpillarBig*>(pSpine->mExecutor);
         if (MR::isFirstStep(caterpillar)) {
-            MR::startBck(caterpillar, "Wait", NULL);
+            MR::startBck(caterpillar, "Wait", nullptr);
         }
     }
 

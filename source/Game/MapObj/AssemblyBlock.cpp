@@ -14,7 +14,7 @@ AssemblyBlock::AssemblyBlock(const char *pName) : LiveActor(pName) {
     _124.z = 0.0f;
     _130 = 0.0f;
     mActivationTime = 300;
-    mBloomModel = NULL;
+    mBloomModel = nullptr;
     _13C = false;
     _8C.identity();
     _BC.identity();
@@ -40,7 +40,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
     }
 
     MR::getMapPartsObjectNameIfExistShapeID(name, 0x100, rIter);
-    initModelManagerWithAnm(name, NULL, false);
+    initModelManagerWithAnm(name, nullptr, false);
 
     if (MR::isEqualString(name, "AssemblyBlockPartsTimerA")) {
         _13C = true;
@@ -62,7 +62,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
 
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionPartsAutoEqualScaleOne(this, name, getSensor(NULL), NULL);
+    MR::initCollisionPartsAutoEqualScaleOne(this, name, getSensor(nullptr), nullptr);
 
     _BC.getTrans(stack_30);
     _EC.getTrans(stack_24);
@@ -92,7 +92,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
         initEffectKeeper(0, "AssemblyBlock", false);
     }
     else {
-        initEffectKeeper(0, NULL, false);
+        initEffectKeeper(0, nullptr, false);
     }
 
     initSound(4, false);

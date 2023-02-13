@@ -1,17 +1,17 @@
 #include "Game/Scene/Scene.h"
 
 Scene::Scene(const char *pName) : NerveExecutor(pName) {
-    mListExecutor = NULL;
+    mListExecutor = nullptr;
     _C = 0;
-    mSceneObjHolder = NULL;
+    mSceneObjHolder = nullptr;
 }
 
 Scene::~Scene() {
-    if (mSceneObjHolder != NULL) {
+    if (mSceneObjHolder != nullptr) {
         delete mSceneObjHolder;
     }
 
-    if (mListExecutor != NULL) {
+    if (mListExecutor != nullptr) {
         delete mListExecutor;
     }
 }
