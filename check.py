@@ -212,6 +212,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
 
     library = function_library.get_library_from_symbol(mangled_symbol, obj_name)
 
+    print(library)
+
     if library == None:
         print("Could not find library of symbol.")
         return False
@@ -221,6 +223,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         return False
 
     obj_files = glob.glob(f"build/*/{library}/{obj_name}", recursive=True)
+
 
     if len(obj_files) > 1:
         print("Found multiple .o files. This should not happen.")

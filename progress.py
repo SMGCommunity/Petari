@@ -353,6 +353,8 @@ for key in libraries:
     lib = libraries[key]
     lib.generateMarkdown()
 
+print("Generating progress graph...")
+
 # now we do the cool progress drawing chart
 x_axis = [datetime.datetime.now()]
 y_axis = [progPercent_sdk]

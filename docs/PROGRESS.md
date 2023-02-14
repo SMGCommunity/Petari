@@ -22,5 +22,5 @@
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 10.954951600893521% |
 | [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 3.9020947950289457% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 49.743881616391576% |
-| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 7.724349605378544% |
+| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 8.840007794991719% |
 | [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.661178747499052% |

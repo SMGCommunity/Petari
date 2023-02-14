@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 5 Completed -- (0.0%)
+# 5 / 5 Completed -- (100.0%)
 # NANDManagerThread.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__17NANDManagerThreadFiiP7JKRHeap` | :x: |
-| `run__17NANDManagerThreadFv` | :x: |
-| `executeWriteSequence__17NANDManagerThreadFP15NANDRequestInfo` | :x: |
-| `executeReadSequence__17NANDManagerThreadFP15NANDRequestInfo` | :x: |
-| `__dt__17NANDManagerThreadFv` | :x: |
+| `__ct__17NANDManagerThreadFiiP7JKRHeap` | :white_check_mark: |
+| `run__17NANDManagerThreadFv` | :white_check_mark: |
+| `executeWriteSequence__17NANDManagerThreadFP15NANDRequestInfo` | :white_check_mark: |
+| `executeReadSequence__17NANDManagerThreadFP15NANDRequestInfo` | :white_check_mark: |
+| `__dt__17NANDManagerThreadFv` | :white_check_mark: |

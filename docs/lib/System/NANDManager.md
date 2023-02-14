@@ -5,27 +5,27 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 20 Completed -- (0.0%)
+# 18 / 20 Completed -- (90.0%)
 # NANDManager.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15NANDRequestInfoFv` | :x: |
-| `init__15NANDRequestInfoFv` | :x: |
-| `isDone__15NANDRequestInfoCFv` | :x: |
-| `setMove__15NANDRequestInfoFPCcPCc` | :x: |
-| `setWriteSeq__15NANDRequestInfoFPCcPCvUlUcUc` | :x: |
-| `setReadSeq__15NANDRequestInfoFPCcPvUlPUl` | :x: |
-| `setCheck__15NANDRequestInfoFUlUlPUl` | :x: |
-| `__ct__11NANDManagerFv` | :x: |
-| `addRequest__11NANDManagerFP15NANDRequestInfo` | :x: |
-| `getCode__14NANDResultCodeCFv` | :x: |
-| `isSuccess__14NANDResultCodeCFv` | :x: |
-| `isSaveDataCorrupted__14NANDResultCodeCFv` | :x: |
-| `isNANDCorrupted__14NANDResultCodeCFv` | :x: |
-| `isMaxBlocks__14NANDResultCodeCFv` | :x: |
-| `isMaxFiles__14NANDResultCodeCFv` | :x: |
-| `isNoExistFile__14NANDResultCodeCFv` | :x: |
-| `isBusyOrAllocFailed__14NANDResultCodeCFv` | :x: |
-| `isUnknown__14NANDResultCodeCFv` | :x: |
+| `__ct__15NANDRequestInfoFv` | :white_check_mark: |
+| `init__15NANDRequestInfoFv` | :white_check_mark: |
+| `isDone__15NANDRequestInfoCFv` | :white_check_mark: |
+| `setMove__15NANDRequestInfoFPCcPCc` | :white_check_mark: |
+| `setWriteSeq__15NANDRequestInfoFPCcPCvUlUcUc` | :white_check_mark: |
+| `setReadSeq__15NANDRequestInfoFPCcPvUlPUl` | :white_check_mark: |
+| `setCheck__15NANDRequestInfoFUlUlPUl` | :white_check_mark: |
+| `__ct__11NANDManagerFv` | :white_check_mark: |
+| `addRequest__11NANDManagerFP15NANDRequestInfo` | :white_check_mark: |
+| `getCode__14NANDResultCodeCFv` | :white_check_mark: |
+| `isSuccess__14NANDResultCodeCFv` | :white_check_mark: |
+| `isSaveDataCorrupted__14NANDResultCodeCFv` | :white_check_mark: |
+| `isNANDCorrupted__14NANDResultCodeCFv` | :white_check_mark: |
+| `isMaxBlocks__14NANDResultCodeCFv` | :white_check_mark: |
+| `isMaxFiles__14NANDResultCodeCFv` | :white_check_mark: |
+| `isNoExistFile__14NANDResultCodeCFv` | :white_check_mark: |
+| `isBusyOrAllocFailed__14NANDResultCodeCFv` | :white_check_mark: |
+| `isUnknown__14NANDResultCodeCFv` | :white_check_mark: |
 | `addRequestToNANDManager__2MRFP15NANDRequestInfo` | :x: |
 | `setDelete__15NANDRequestInfoFPCc` | :x: |
