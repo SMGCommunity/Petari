@@ -1,5 +1,6 @@
 #include "Game/System/NANDManager.h"
 #include "Game/Util.h"
+#include "Game/SingletonHolder.h"
 #include <JSystem/JKernel/JKRExpHeap.h>
 #include <cstdio>
 
@@ -109,4 +110,17 @@ bool NANDResultCode::isBusyOrAllocFailed() const {
 
 bool NANDResultCode::isUnknown() const {
     return mCode == -64;
+}
+
+namespace MR {
+    void addRequestToNANDManager(NANDRequestInfo *pInfo) {
+        SingletonHolder<NANDManager>::sInstance->addRequest(pInfo);
+    }
+};
+
+const char* NANDRequestInfo::setDelete(const char *pName) {
+    init();
+    mRequestStatus = 1;
+    snprintf(mReqStr, sizeof(mReqStr), "%s", pName);
+    return mReqStr;
 }

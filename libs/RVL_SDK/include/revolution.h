@@ -4,6 +4,7 @@
 #include <revolution/types.h>
 #include <revolution/arc.h>
 #include <revolution/dvd.h>
+#include <revolution/fs.h>
 #include <revolution/gd.h>
 #include <revolution/gx.h>
 #include <revolution/mtx.h>

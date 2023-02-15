@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 6 / 7 Completed -- (85.71428571428571%)
+# 7 / 7 Completed -- (100.0%)
 # NerveExecutor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__13NerveExecutorFPCc` | :white_check_mark: |
-| `__dt__13NerveExecutorFv` | :x: |
+| `__dt__13NerveExecutorFv` | :white_check_mark: |
 | `initNerve__13NerveExecutorFPC5Nerve` | :white_check_mark: |
 | `updateNerve__13NerveExecutorFv` | :white_check_mark: |
 | `setNerve__13NerveExecutorFPC5Nerve` | :white_check_mark: |

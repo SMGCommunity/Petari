@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 18 / 20 Completed -- (90.0%)
+# 20 / 20 Completed -- (100.0%)
 # NANDManager.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -27,5 +27,5 @@
 | `isNoExistFile__14NANDResultCodeCFv` | :white_check_mark: |
 | `isBusyOrAllocFailed__14NANDResultCodeCFv` | :white_check_mark: |
 | `isUnknown__14NANDResultCodeCFv` | :white_check_mark: |
-| `addRequestToNANDManager__2MRFP15NANDRequestInfo` | :x: |
-| `setDelete__15NANDRequestInfoFPCc` | :x: |
+| `addRequestToNANDManager__2MRFP15NANDRequestInfo` | :white_check_mark: |
+| `setDelete__15NANDRequestInfoFPCc` | :white_check_mark: |

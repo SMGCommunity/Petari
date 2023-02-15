@@ -59,3 +59,7 @@ public:
 private:
     s32 mCode;      // _0
 };
+
+namespace MR {
+    void addRequestToNANDManager(NANDRequestInfo *);
+};

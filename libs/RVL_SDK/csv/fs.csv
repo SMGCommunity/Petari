@@ -20,7 +20,7 @@ ISFS_GetFileStats,fs.o,fs.a,false
 ISFS_GetFileStatsAsync,fs.o,fs.a,false
 ISFS_Seek,fs.o,fs.a,false
 ISFS_SeekAsync,fs.o,fs.a,false
-ISFS_Read,fs.o,fs.a,false
+ISFS_Read,fs.o,fs.a,true
 ISFS_ReadAsync,fs.o,fs.a,false
 ISFS_Write,fs.o,fs.a,false
 ISFS_WriteAsync,fs.o,fs.a,false

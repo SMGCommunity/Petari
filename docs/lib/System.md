@@ -40,9 +40,9 @@
 | [MainLoopFramework.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/MainLoopFramework.md) | 0.0% | 0 / 34 | 0.0% | :x: 
 | [MessageHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/MessageHolder.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [NANDErrorSequence.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NANDErrorSequence.md) | 0.0% | 0 / 56 | 0.0% | :x: 
-| [NANDManager.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NANDManager.md) | 90.18867924528303% | 18 / 20 | 90.0% | :eight_pointed_black_star: 
+| [NANDManager.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NANDManager.md) | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
 | [NANDManagerThread.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NANDManagerThread.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| [NerveExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NerveExecutor.md) | 67.53246753246754% | 6 / 7 | 85.71428571428571% | :eight_pointed_black_star: 
+| [NerveExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/NerveExecutor.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [OSThreadWrapper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/OSThreadWrapper.md) | 73.4375% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
 | [Overwrite.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/Overwrite.md) | 0.0% | 0 / 63 | 0.0% | :x: 
 | [PauseButtonCheckerInGame.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/PauseButtonCheckerInGame.md) | 0.0% | 0 / 5 | 0.0% | :x: 
