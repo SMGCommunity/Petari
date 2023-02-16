@@ -20,7 +20,7 @@
 | [DrawSyncManager.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/DrawSyncManager.md) | 36.7816091954023% | 10 / 17 | 58.82352941176471% | :eight_pointed_black_star: 
 | [FileHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileHolder.md) | 76.36986301369863% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
 | [FileLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoader.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [FileLoaderThread.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoaderThread.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [FileLoaderThread.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoaderThread.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [FileRipper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileRipper.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [FunctionAsyncExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FunctionAsyncExecutor.md) | 24.47817836812144% | 5 / 17 | 29.411764705882355% | :eight_pointed_black_star: 
 | [GameSystem.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystem.md) | 8.732394366197182% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
