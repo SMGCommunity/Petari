@@ -51,7 +51,7 @@ void KCollisionServer::setData(void *pData) {
 }*/
 
 bool KCollisionServer::isBinaryInitialized(const void *pData) {
-    return reinterpret_cast<const u32 *>(pData)[0] >> 31;
+    return reinterpret_cast<const s32 *>(pData)[0] < 0;
 }
 
 bool KCollisionServer::isNearParallelNormal(const KC_PrismData *pPrism) const {

@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [AudRhythmSeqParser.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudRhythmSeqParser.md) | 0.0% | 0 / 29 | 0.0% | :x: 
-| [AudBgmTempoAdjuster.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudBgmTempoAdjuster.md) | 0.0% | 0 / 7 | 0.0% | :x: 
+| [AudBgmTempoAdjuster.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudBgmTempoAdjuster.md) | 44.03669724770643% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
 | [AudMeTrack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudMeTrack.md) | 0.0% | 0 / 56 | 0.0% | :x: 
 | [AudMeChannelMgr.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudMeChannelMgr.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [AudMeSeqCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib/AudMeSeqCtrl.md) | 0.0% | 0 / 9 | 0.0% | :x: 
