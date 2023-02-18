@@ -8,10 +8,10 @@ import shutil
 
 def makeArchive(dir):
     fileList = ""
-    for root, dirs, files in os.walk(f"build/{dir}"):
+    for root, dirs, files in os.walk(f"build/revolution/{dir}"):
         for f in files:
             if f.endswith(".o"):
-                fileList += f"build/{dir}/{f} "
+                fileList += f"build/revolution/{dir}/{f} "
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
@@ -24,7 +24,7 @@ def makeLibArchive():
     if not os.path.isdir("lib"):
         os.mkdir("lib")
 
-    for root, dirs, files in os.walk("build"):
+    for root, dirs, files in os.walk("build/revolution"):
         for dir in dirs:
             makeArchive(dir)
 
@@ -39,7 +39,7 @@ def makeElf():
                 fileList += f"{root}\\{f} "
 
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map rvl_sdk.map -o rvl_sdk.elf {fileList}"
+    linker_flags = f"-lcf ../../ldscript.lcf -fp hard -proc gekko -map rvl_sdk.map -o rvl_sdk.elf {fileList}"
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
             print("Linking failed.")
 

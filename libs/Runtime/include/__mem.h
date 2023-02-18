@@ -10,7 +10,7 @@ typedef unsigned int u32;
 #pragma section code_type ".init"
 
 void* memcpy(void *, const void *, size_t);
-void __fill_mem(void *, int, u32);
+void __fill_mem(void *, int, unsigned long);
 void* memset(void *, int, size_t);
 
 #ifdef __cplusplus

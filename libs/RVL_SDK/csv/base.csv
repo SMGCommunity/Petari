@@ -16,10 +16,10 @@ PPCMtpmc3,PPCArch.o,base.a,false
 PPCMtpmc4,PPCArch.o,base.a,false
 PPCMffpscr,PPCArch.o,base.a,false
 PPCMtfpscr,PPCArch.o,base.a,false
-PPCMfhid2,PPCArch.o,base.a,false
-PPCMthid2,PPCArch.o,base.a,false
-PPCMfwpar,PPCArch.o,base.a,false
-PPCMtwpar,PPCArch.o,base.a,false
-PPCDisableSpeculation,PPCArch.o,base.a,false
-PPCSetFpNonIEEEMode,PPCArch.o,base.a,false
-PPCMthid4,PPCArch.o,base.a,false
+PPCMfhid2,PPCArch.o,base.a,true
+PPCMthid2,PPCArch.o,base.a,true
+PPCMfwpar,PPCArch.o,base.a,true
+PPCMtwpar,PPCArch.o,base.a,true
+PPCDisableSpeculation,PPCArch.o,base.a,true
+PPCSetFpNonIEEEMode,PPCArch.o,base.a,true
+PPCMthid4,PPCArch.o,base.a,true

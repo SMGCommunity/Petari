@@ -30,8 +30,8 @@ void __unregister_fragment(int id) {
 
     if (id >= 0 && id < 1) {
         info = &fragmentinfo[id];
-        info->exception_info = nullptr;
-        info->TOC = nullptr;
+        info->exception_info = 0;
+        info->TOC = 0;
         info->active = 0;
     }
 }

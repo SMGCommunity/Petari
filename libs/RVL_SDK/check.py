@@ -220,6 +220,8 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         print(f"Library {library} is currently not supported.")
         return False
 
+    print(obj_name)
+
     obj_files = glob.glob(f"build/**/{obj_name}", recursive=True)
 
     if len(obj_files) > 1:
