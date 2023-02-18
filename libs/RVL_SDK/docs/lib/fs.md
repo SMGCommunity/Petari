@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| fs.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| fs.o | 0.5486968449931412% | 1 / 28 | 3.571428571428571% | :eight_pointed_black_star: 
 
 
 # fs.o
@@ -35,7 +35,7 @@
 | ISFS_GetFileStatsAsync | :x: |
 | ISFS_Seek | :x: |
 | ISFS_SeekAsync | :x: |
-| ISFS_Read | :x: |
+| ISFS_Read | :white_check_mark: |
 | ISFS_ReadAsync | :x: |
 | ISFS_Write | :x: |
 | ISFS_WriteAsync | :x: |

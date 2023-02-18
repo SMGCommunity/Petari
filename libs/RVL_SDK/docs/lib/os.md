@@ -29,7 +29,7 @@
 | OSRtc.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | OSSync.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSThread.o | 2.0053475935828877% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
-| OSTime.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSStateTM.o | 11.627906976744185% | 3 / 12 | 25.0% | :eight_pointed_black_star: 
@@ -360,12 +360,12 @@
 # OSTime.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSGetTime | :x: |
-| OSGetTick | :x: |
-| __OSGetSystemTime | :x: |
-| __OSTimeToSystemTime | :x: |
-| GetDates | :x: |
-| OSTicksToCalendarTime | :x: |
+| OSGetTime | :white_check_mark: |
+| OSGetTick | :white_check_mark: |
+| __OSGetSystemTime | :white_check_mark: |
+| __OSTimeToSystemTime | :white_check_mark: |
+| GetDates | :white_check_mark: |
+| OSTicksToCalendarTime | :white_check_mark: |
 
 
 # OSUtf.o

@@ -24,7 +24,12 @@ u32 __OSBusClock : (0x8000 << 16 | 0x00F8);
 #define OS_TIMER_CLOCK      (OS_BUS_CLOCK/4)
 #endif
 
-#define OSNanosecondsToTicks( nsec )    (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
+#define OSNanosecondsToTicks(nsec) (((nsec) * (OS_TIMER_CLOCK / 125000)) / 8000)
+
+#define OSTicksToSeconds(ticks) ((ticks) / OS_TIMER_CLOCK)
+#define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
+#define OSTicksToMicroseconds(ticks) (((ticks) * 8) / (OS_TIMER_CLOCK / 125000))
+#define OSSecondsToTicks(sec) ((sec)  * OS_TIMER_CLOCK)
 
 void* OSPhysicalToUncached(u32);
 u32 OSCachedToPhysical(const void* caddr);

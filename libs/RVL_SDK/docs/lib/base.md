@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| PPCArch.o | 0.0% | 0 / 24 | 0.0% | :x: 
+| PPCArch.o | 44.565217391304344% | 7 / 24 | 29.166666666666668% | :eight_pointed_black_star: 
 
 
 # PPCArch.o
@@ -31,12 +31,12 @@
 | PPCMtpmc4 | :x: |
 | PPCMffpscr | :x: |
 | PPCMtfpscr | :x: |
-| PPCMfhid2 | :x: |
-| PPCMthid2 | :x: |
-| PPCMfwpar | :x: |
-| PPCMtwpar | :x: |
-| PPCDisableSpeculation | :x: |
-| PPCSetFpNonIEEEMode | :x: |
-| PPCMthid4 | :x: |
+| PPCMfhid2 | :white_check_mark: |
+| PPCMthid2 | :white_check_mark: |
+| PPCMfwpar | :white_check_mark: |
+| PPCMtwpar | :white_check_mark: |
+| PPCDisableSpeculation | :white_check_mark: |
+| PPCSetFpNonIEEEMode | :white_check_mark: |
+| PPCMthid4 | :white_check_mark: |
 
 
