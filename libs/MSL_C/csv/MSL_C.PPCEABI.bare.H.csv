@@ -1,6 +1,6 @@
 Symbol Name, Object File, Library Archive, Matching
 Block_link,alloc.o,MSL_C.PPCEABI.bare.H.a,false
-SubBlock_merge_next,alloc.o,MSL_C.PPCEABI.bare.H.a,false
+SubBlock_merge_next,alloc.o,MSL_C.PPCEABI.bare.H.a,true
 deallocate_from_fixed_pools,alloc.o,MSL_C.PPCEABI.bare.H.a,false
 free,alloc.o,MSL_C.PPCEABI.bare.H.a,false
 __close_all,ansi_files.o,MSL_C.PPCEABI.bare.H.a,false
@@ -39,9 +39,9 @@ __copy_longs_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
 __copy_longs_rev_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
 __copy_longs_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
 __copy_longs_rev_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
-__fpclassifyf,math_api.o,MSL_C.PPCEABI.bare.H.a,false
-__signbitd,math_api.o,MSL_C.PPCEABI.bare.H.a,false
-__fpclassifyd,math_api.o,MSL_C.PPCEABI.bare.H.a,false
+__fpclassifyf,math_api.o,MSL_C.PPCEABI.bare.H.a,true
+__signbitd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
+__fpclassifyd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __stdio_atexit,misc_io.o,MSL_C.PPCEABI.bare.H.a,false
 parse_format,printf.o,MSL_C.PPCEABI.bare.H.a,false
 long2str,printf.o,MSL_C.PPCEABI.bare.H.a,false
@@ -67,7 +67,7 @@ strcpy,string.o,MSL_C.PPCEABI.bare.H.a,true
 strncpy,string.o,MSL_C.PPCEABI.bare.H.a,true
 strcat,string.o,MSL_C.PPCEABI.bare.H.a,true
 strcmp,string.o,MSL_C.PPCEABI.bare.H.a,true
-strncmp,string.o,MSL_C.PPCEABI.bare.H.a,false
+strncmp,string.o,MSL_C.PPCEABI.bare.H.a,true
 strchr,string.o,MSL_C.PPCEABI.bare.H.a,true
 strrchr,string.o,MSL_C.PPCEABI.bare.H.a,true
 strstr,string.o,MSL_C.PPCEABI.bare.H.a,true
@@ -93,7 +93,7 @@ wcscpy,wstring.o,MSL_C.PPCEABI.bare.H.a,false
 wcsncpy,wstring.o,MSL_C.PPCEABI.bare.H.a,false
 wcscmp,wstring.o,MSL_C.PPCEABI.bare.H.a,false
 wcschr,wstring.o,MSL_C.PPCEABI.bare.H.a,false
-fwide,wchar_io.o,MSL_C.PPCEABI.bare.H.a,false
+fwide,wchar_io.o,MSL_C.PPCEABI.bare.H.a,true
 __write_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
 __close_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
 abort,abort_exit_ppc_eabi.o,MSL_C.PPCEABI.bare.H.a,false

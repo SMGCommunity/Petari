@@ -10,6 +10,19 @@ __declspec(section ".init") extern funcPtr _dtors[];
 extern void exit(int);
 static void __init_cpp(void);
 
+extern void __OSCacheInit(void);
+extern void __OSFPRInit(void);
+extern void __OSPSInit(void);
+
+asm void __init_hardware(void) {
+    nofralloc
+    bl __OSPSInit
+    bl __OSCacheInit
+    bl __OSCacheInit
+    mtlr r31
+    blr
+}
+
 /* written in assembly to generate the frame allocations */
 asm void __init_user(void) {
     fralloc

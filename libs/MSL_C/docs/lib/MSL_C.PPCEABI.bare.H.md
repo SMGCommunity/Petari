@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| alloc.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| alloc.o | 12.923076923076923% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
 | ansi_files.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | ansi_fp.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -20,18 +20,18 @@
 | mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | mem.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | mem_funcs.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| math_api.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | printf.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | signal.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| string.o | 92.72727272727272% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
+| string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | strtoul.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | wstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| wchar_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | uart_console_io_gcn.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | abort_exit_ppc_eabi.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | math_sun.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -72,7 +72,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | Block_link | :x: |
-| SubBlock_merge_next | :x: |
+| SubBlock_merge_next | :white_check_mark: |
 | deallocate_from_fixed_pools | :x: |
 | free | :x: |
 
@@ -171,9 +171,9 @@
 # math_api.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __fpclassifyf | :x: |
-| __signbitd | :x: |
-| __fpclassifyd | :x: |
+| __fpclassifyf | :white_check_mark: |
+| __signbitd | :white_check_mark: |
+| __fpclassifyd | :white_check_mark: |
 
 
 # misc_io.o
@@ -224,7 +224,7 @@
 | strncpy | :white_check_mark: |
 | strcat | :white_check_mark: |
 | strcmp | :white_check_mark: |
-| strncmp | :x: |
+| strncmp | :white_check_mark: |
 | strchr | :white_check_mark: |
 | strrchr | :white_check_mark: |
 | strstr | :white_check_mark: |
@@ -280,7 +280,7 @@
 # wchar_io.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| fwide | :x: |
+| fwide | :white_check_mark: |
 
 
 # uart_console_io_gcn.o

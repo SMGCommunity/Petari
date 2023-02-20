@@ -5,10 +5,6 @@
 
 #pragma section code_type ".init"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 u16 Pad3Button : 0x800030E4;
 static u8 Debug_BBA = 0;
 
@@ -31,6 +27,7 @@ static u8 __get_debug_bba(void) {
 __declspec(weak) asm void __start(void) {
     nofralloc
     bl __init_registers
+    bl __init_hardware
 }
 
 asm static void __init_registers(void) {
@@ -110,7 +107,3 @@ static void __init_data(void) {
         bssInfo++;
     }
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -1,5 +1,5 @@
 Symbol Name, Object File, Library Archive, Matching
-__OSFPRInit,OS.o,os.a,false
+__OSFPRInit,OS.o,os.a,true
 __OSGetIOSRev,OS.o,os.a,false
 OSGetConsoleType,OS.o,os.a,false
 ClearArena,OS.o,os.a,false
@@ -14,7 +14,7 @@ __OSSetExceptionHandler,OS.o,os.a,true
 __OSGetExceptionHandler,OS.o,os.a,true
 OSExceptionVector,OS.o,os.a,false
 OSDefaultExceptionHandler,OS.o,os.a,false
-__OSPSInit,OS.o,os.a,false
+__OSPSInit,OS.o,os.a,true
 __OSGetDIConfig,OS.o,os.a,false
 OSRegisterVersion,OS.o,os.a,false
 OSGetAppGamename,OS.o,os.a,false
