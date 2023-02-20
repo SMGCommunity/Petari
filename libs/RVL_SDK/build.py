@@ -39,7 +39,6 @@ def makeElf():
                 fileList += f"{root}\\{f} "
 
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    print(fileList)
     linker_flags = f"-lcf ../../ldscript.lcf -fp hard -proc gekko -map rvl_sdk.map -o rvl_sdk.elf {fileList}"
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
             print("Linking failed.")
