@@ -13,7 +13,7 @@
 | ansi_fp.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | buffer_io.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| ctype.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | direct_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | file_io.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | FILE_POS.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -22,9 +22,9 @@
 | mem_funcs.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| printf.o | 0.0% | 0 / 15 | 0.0% | :x: 
+| printf.o | 7.377049180327869% | 2 / 15 | 13.333333333333334% | :eight_pointed_black_star: 
 | scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| signal.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | strtoul.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -36,36 +36,36 @@
 | abort_exit_ppc_eabi.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | math_sun.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_log.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_rem_pio2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_rem_pio2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_atan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_ceil.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_copysign.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_floor.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_ldexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\math_ppc.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_log.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| k_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| k_rem_pio2.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| k_sin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| k_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_atan.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_ceil.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_copysign.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| s_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_ldexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| math_ppc.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
 
 
 # alloc.o
@@ -115,7 +115,7 @@
 # ctype.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| tolower | :x: |
+| tolower | :white_check_mark: |
 
 
 # direct_io.o
@@ -186,7 +186,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | parse_format | :x: |
-| long2str | :x: |
+| long2str | :white_check_mark: |
 | longlong2str | :x: |
 | double2hex | :x: |
 | round_decimal | :x: |
@@ -195,7 +195,7 @@
 | __FileWrite | :x: |
 | __StringWrite | :x: |
 | fprintf | :x: |
-| vprintf | :x: |
+| vprintf | :white_check_mark: |
 | vsnprintf | :x: |
 | vsprintf | :x: |
 | snprintf | :x: |
@@ -214,7 +214,7 @@
 # signal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| raise | :x: |
+| raise | :white_check_mark: |
 
 
 # string.o
@@ -310,181 +310,181 @@
 | strcasecmp | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_acos.o
+# e_acos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_acos | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_asin.o
+# e_asin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_asin | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_atan2.o
+# e_atan2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_atan2 | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_fmod.o
+# e_fmod.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_fmod | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_log.o
+# e_log.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_log | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_log10.o
+# e_log10.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_log10 | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_pow.o
+# e_pow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_pow | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_rem_pio2.o
+# e_rem_pio2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_rem_pio2 | :x: |
+| __ieee754_rem_pio2 | :white_check_mark: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_cos.o
+# k_cos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __kernel_cos | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_rem_pio2.o
+# k_rem_pio2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __kernel_rem_pio2 | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_sin.o
+# k_sin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __kernel_sin | :x: |
+| __kernel_sin | :white_check_mark: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\k_tan.o
+# k_tan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __kernel_tan | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_atan.o
+# s_atan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | atan | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_ceil.o
+# s_ceil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | ceil | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_copysign.o
+# s_copysign.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| copysign | :x: |
+| copysign | :white_check_mark: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_cos.o
+# s_cos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | cos | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_floor.o
+# s_floor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| floor | :x: |
+| floor | :white_check_mark: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_frexp.o
+# s_frexp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | frexp | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_ldexp.o
+# s_ldexp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | ldexp | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_sin.o
+# s_sin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | sin | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\s_tan.o
+# s_tan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | tan | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_acos.o
+# w_acos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | acos | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_asin.o
+# w_asin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | asin | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_atan2.o
+# w_atan2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | atan2 | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_fmod.o
+# w_fmod.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | fmod | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_log10.o
+# w_log10.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | log10 | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_pow.o
+# w_pow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | pow | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\e_sqrt.o
+# e_sqrt.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __ieee754_sqrt | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\math_ppc.o
+# math_ppc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | nan | :x: |
 
 
-# D:\layout\RVL_1.0\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common_Embedded\Math\Double_precision\w_sqrt.o
+# w_sqrt.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | sqrt | :x: |

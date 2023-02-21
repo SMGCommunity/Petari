@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| OS.o | 0.7009345794392523% | 2 / 20 | 10.0% | :eight_pointed_black_star: 
+| OS.o | 8.09968847352025% | 4 / 20 | 20.0% | :eight_pointed_black_star: 
 | OSAlarm.o | 0.0% | 0 / 12 | 0.0% | :x: 
 | OSAlloc.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | OSArena.o | 0.0% | 0 / 13 | 0.0% | :x: 
@@ -45,7 +45,7 @@
 # OS.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSFPRInit | :x: |
+| __OSFPRInit | :white_check_mark: |
 | __OSGetIOSRev | :x: |
 | OSGetConsoleType | :x: |
 | ClearArena | :x: |
@@ -60,7 +60,7 @@
 | __OSGetExceptionHandler | :white_check_mark: |
 | OSExceptionVector | :x: |
 | OSDefaultExceptionHandler | :x: |
-| __OSPSInit | :x: |
+| __OSPSInit | :white_check_mark: |
 | __OSGetDIConfig | :x: |
 | OSRegisterVersion | :x: |
 | OSGetAppGamename | :x: |

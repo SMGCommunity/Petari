@@ -22,7 +22,7 @@ void PPCMtpmc1(u32);
 void PPCMtpmc2(u32);
 void PPCMtpmc3(u32);
 void PPCMtpmc4(u32);
-void PPCMffpscr(void);
+u32 PPCMffpscr(void);
 void PPCMtfpscr(u32);
 u32 PPCMfhid2(void);
 void PPCMthid2(u32);

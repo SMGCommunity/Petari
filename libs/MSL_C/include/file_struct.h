@@ -1,6 +1,8 @@
 #ifndef FILE_STRUCT_H
 #define FILE_STRUCT_H
 
+#include "ansi_params.h"
+
 enum file_kinds {
     file_closed,
     file_disk,
@@ -36,5 +38,9 @@ struct _FILE {
     file_handle handle;
     file_modes mode;
 };
+
+extern FILE __files[];
+
+#define stdout	(&__std(__files[1])) 
 
 #endif // FILE_STRUCT_H

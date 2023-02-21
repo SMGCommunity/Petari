@@ -6,6 +6,8 @@ import shutil
 import pathlib
 import shutil
 
+MSL_ARCH_PATH = "../MSL_C/lib/MSL_C.a"
+
 def makeArchive(dir):
     fileList = ""
     for root, dirs, files in os.walk(f"build/revolution/{dir}"):
@@ -38,8 +40,12 @@ def makeElf():
             if f.endswith(".a"):
                 fileList += f"{root}\\{f} "
 
+    if not os.path.exists(MSL_ARCH_PATH):
+        print("MSL_C library achive not found. Please run 'build.py -link' in the MSL_C folder!")
+        sys.exit(1)
+
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-lcf ../../ldscript.lcf -fp hard -proc gekko -map rvl_sdk.map -o rvl_sdk.elf {fileList}"
+    linker_flags = f"-lcf ../../ldscript.lcf -fp hard -proc gekko -map rvl_sdk.map -o rvl_sdk.elf {MSL_ARCH_PATH} {fileList}"
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
             print("Linking failed.")
 

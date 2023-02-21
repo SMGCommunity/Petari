@@ -8,29 +8,29 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| PPCArch.o | 44.565217391304344% | 7 / 24 | 29.166666666666668% | :eight_pointed_black_star: 
+| PPCArch.o | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 
 
 # PPCArch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PPCMfmsr | :x: |
-| PPCMtmsr | :x: |
-| PPCMfhid0 | :x: |
-| PPCMthid0 | :x: |
-| PPCMfl2cr | :x: |
-| PPCMtl2cr | :x: |
-| PPCMtdec | :x: |
-| PPCSync | :x: |
-| PPCHalt | :x: |
-| PPCMtmmcr0 | :x: |
-| PPCMtmmcr1 | :x: |
-| PPCMtpmc1 | :x: |
-| PPCMtpmc2 | :x: |
-| PPCMtpmc3 | :x: |
-| PPCMtpmc4 | :x: |
-| PPCMffpscr | :x: |
-| PPCMtfpscr | :x: |
+| PPCMfmsr | :white_check_mark: |
+| PPCMtmsr | :white_check_mark: |
+| PPCMfhid0 | :white_check_mark: |
+| PPCMthid0 | :white_check_mark: |
+| PPCMfl2cr | :white_check_mark: |
+| PPCMtl2cr | :white_check_mark: |
+| PPCMtdec | :white_check_mark: |
+| PPCSync | :white_check_mark: |
+| PPCHalt | :white_check_mark: |
+| PPCMtmmcr0 | :white_check_mark: |
+| PPCMtmmcr1 | :white_check_mark: |
+| PPCMtpmc1 | :white_check_mark: |
+| PPCMtpmc2 | :white_check_mark: |
+| PPCMtpmc3 | :white_check_mark: |
+| PPCMtpmc4 | :white_check_mark: |
+| PPCMffpscr | :white_check_mark: |
+| PPCMtfpscr | :white_check_mark: |
 | PPCMfhid2 | :white_check_mark: |
 | PPCMthid2 | :white_check_mark: |
 | PPCMfwpar | :white_check_mark: |

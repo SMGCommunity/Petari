@@ -17,7 +17,7 @@ extern void __OSPSInit(void);
 asm void __init_hardware(void) {
     nofralloc
     bl __OSPSInit
-    bl __OSCacheInit
+    bl __OSFPRInit
     bl __OSCacheInit
     mtlr r31
     blr

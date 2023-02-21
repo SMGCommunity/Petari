@@ -5,7 +5,7 @@
 | [arc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/arc.md) | 0.0% |
 | [ax](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/ax.md) | 0.0% |
 | [axfx](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/axfx.md) | 0.0% |
-| [base](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/base.md) | 44.565217391304344% |
+| [base](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/base.md) | 100.0% |
 | [bte](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/bte.md) | 0.0% |
 | [db](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/db.md) | 100.0% |
 | [dsp](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/dsp.md) | 100.0% |
@@ -21,7 +21,7 @@
 | [mtx](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/mtx.md) | 0.0% |
 | [nand](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/nand.md) | 0.0% |
 | [net](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/net.md) | 0.0% |
-| [os](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/os.md) | 8.281053952321205% |
+| [os](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/os.md) | 8.943259445141504% |
 | [pad](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/pad.md) | 0.0% |
 | [rso](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/rso.md) | 0.0% |
 | [sc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/sc.md) | 0.0% |
