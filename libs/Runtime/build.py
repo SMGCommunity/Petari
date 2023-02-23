@@ -23,21 +23,6 @@ def makeLibArchive():
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
         print("Library creation failed.")
 
-def makeElf():
-    default_compiler_path = pathlib.Path("GC/2.0/")
-
-    fileList = ""
-
-    for root, dirs, files in os.walk("lib"):
-        for f in files:
-            if f.endswith(".a"):
-                fileList += f"{root}\\{f} "
-
-    linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-lcf ../../ldscript.lcf -fp hard -proc gekko -map Runtime.map -o Runtime.elf {fileList}"
-    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
-            print("Linking failed.")
-
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
 
@@ -167,13 +152,11 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     if link:
         print("Creating library archives...")
         makeLibArchive()
-        print("Making final ELF...")
-        makeElf()
     print("Complete.")
 
 def print_help_and_exit():
     print("Usage: build.py [flags...]")
-    print("\t-link: Link the final project together.")
+    print("\t-archive: Link the final project together.")
     print("\t-non-matching: Compile non-matching code.")
     print("\t-no-ninja: Do not use ninja even if available.")
     print("\t-clean: Clean old build files before building new when using ninja.")
@@ -196,7 +179,7 @@ if __name__ == "__main__":
             clean_ninja = True
         elif arg == "-help":
             print_help_and_exit()
-        elif arg == "-link":
+        elif arg == "-archive":
             link = True
         else:
             print(f"Invalid argument: {arg}")
