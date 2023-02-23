@@ -31,3 +31,6 @@ void __fini_cpp_exceptions(void) {
         fragmentID = -2;
     }
 }
+
+__declspec(section ".ctors")
+extern void * const __init_cpp_exceptions_reference = __init_cpp_exceptions;

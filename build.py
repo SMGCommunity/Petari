@@ -1,3 +1,4 @@
+import glob
 import subprocess
 import sys
 import os
@@ -6,15 +7,7 @@ import shutil
 import pathlib
 import shutil
 
-# todo -- implement me when SDK libs are decompiled
-sdk_o_paths = [
-    
-]
-
-
-other_libs = [
-    #"libs/Runtime/lib/Runtime.a"
-]
+arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a"))
 
 def makeArchive(dir):
     fileList = ""
@@ -39,7 +32,8 @@ def makeLibArchive():
             makeArchive(dir)
 
 def makeElf():
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
+    # using 2.6 because others fail for mismatching C files in Runtime
+    default_compiler_path = pathlib.Path("GC/2.6/")
 
     fileList = ""
 
@@ -48,11 +42,8 @@ def makeElf():
             if f.endswith(".a"):
                 fileList += f"{root}\\{f} "
 
-    for sdk_o in sdk_o_paths:
-        fileList += f"{sdk_o} "
-
-    for lib_a in other_libs:
-        fileList += f"{lib_a} "
+    for arch_paths in arch_base_path:
+        fileList += f"{arch_paths} "
 
     linker_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwldeppc.exe ")
     linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map main.map -o main.elf {fileList}"

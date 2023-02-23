@@ -24,7 +24,7 @@ def makeLibArchive():
         print("Library creation failed.")
 
 def makeElf():
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
+    default_compiler_path = pathlib.Path("GC/2.0/")
 
     fileList = ""
 
