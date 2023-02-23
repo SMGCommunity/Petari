@@ -3,7 +3,7 @@
 #include "Game/Camera/CameraParamChunkID.h"
 #include "Game/Camera/DotCamParams.h"
 #include "Game/Util/MathUtil.h"
-#include <string.h>
+#include <cstring>
 
 #ifdef NON_MATCHING
 // String constructor called first instead of last

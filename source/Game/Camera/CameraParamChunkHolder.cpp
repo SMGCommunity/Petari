@@ -6,7 +6,7 @@
 #include "Game/Camera/DotCamParams.h"
 #include "Game/Util/SceneUtil.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <string.h>
+#include <cstring>
 
 #define CHUNK_CAPACITY 0x400
 

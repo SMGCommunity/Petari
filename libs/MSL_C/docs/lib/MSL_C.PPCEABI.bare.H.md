@@ -19,7 +19,7 @@
 | FILE_POS.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | mem.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| mem_funcs.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | printf.o | 7.377049180327869% | 2 / 15 | 13.333333333333334% | :eight_pointed_black_star: 
@@ -162,10 +162,10 @@
 # mem_funcs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __copy_longs_aligned | :x: |
-| __copy_longs_rev_aligned | :x: |
-| __copy_longs_unaligned | :x: |
-| __copy_longs_rev_unaligned | :x: |
+| __copy_longs_aligned | :white_check_mark: |
+| __copy_longs_rev_aligned | :white_check_mark: |
+| __copy_longs_unaligned | :white_check_mark: |
+| __copy_longs_rev_unaligned | :white_check_mark: |
 
 
 # math_api.o

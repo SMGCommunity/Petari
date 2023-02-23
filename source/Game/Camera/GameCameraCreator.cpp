@@ -2,7 +2,7 @@
 #include "Game/Camera/CameraParamChunkHolder.h"
 #include "Game/Camera/GameCameraCreator.h"
 #include "Game/Util/AreaObjUtil.h"
-#include <string.h>
+#include <cstring>
 
 GameCameraCreator::GameCameraCreator(CameraParamChunkHolder *pChunkHolder) {
     mChunkHolder = pChunkHolder;

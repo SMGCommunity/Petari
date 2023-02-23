@@ -3,7 +3,7 @@
 #include "Game/Util.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRFileFinder.h"
-#include <string.h>
+#include <cstring>
 #include <cstdio>
 
 StageFileLoader::StageFileLoader(const char *pName) {

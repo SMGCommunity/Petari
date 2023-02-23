@@ -8,7 +8,7 @@ extern int strcasecmp(const char*, const char*);
 #endif
 
 #include <cstdio>
-#include "string.h"
+#include <cstring>
 #include "Game/Util.h"
 
 namespace MR {

@@ -2,7 +2,8 @@
 #include "Game/System/HeapMemoryWatcher.h"
 #include "Game/SingletonHolder.h"
 #include <cstdio>
-#include <string.h>
+#include <cstring>
+#include <size_t.h>
 
 namespace MR {
     MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
@@ -86,7 +87,7 @@ namespace MR {
     // MR::adjustHeapSize
     // MR::copyMemory
 
-    void fillMemory(void *pDest, u8 a2, std::size_t size) {
+    void fillMemory(void *pDest, u8 a2, size_t size) {
         if (a2 == 0) {
             MR::zeroMemory(pDest, size);
         }

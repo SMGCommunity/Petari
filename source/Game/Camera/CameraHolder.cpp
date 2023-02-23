@@ -45,7 +45,7 @@
 #include "Game/Camera/CameraWaterPlanet.h"
 #include "Game/Camera/CameraWaterPlanetBoss.h"
 #include "Game/Camera/CameraWonderPlanet.h"
-#include <string.h>
+#include <cstring>
 
 struct CameraTableEntry {
     const char *mName;                  // _0

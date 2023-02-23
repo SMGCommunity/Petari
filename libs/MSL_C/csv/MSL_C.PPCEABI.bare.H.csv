@@ -35,10 +35,10 @@ memmove,mem.o,MSL_C.PPCEABI.bare.H.a,false
 memchr,mem.o,MSL_C.PPCEABI.bare.H.a,false
 __memrchr,mem.o,MSL_C.PPCEABI.bare.H.a,false
 memcmp,mem.o,MSL_C.PPCEABI.bare.H.a,false
-__copy_longs_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
-__copy_longs_rev_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
-__copy_longs_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
-__copy_longs_rev_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,false
+__copy_longs_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
+__copy_longs_rev_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
+__copy_longs_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
+__copy_longs_rev_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
 __fpclassifyf,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __signbitd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __fpclassifyd,math_api.o,MSL_C.PPCEABI.bare.H.a,true

@@ -2,7 +2,7 @@
 #include "Game/LiveActor/ActorCameraInfo.h"
 #include "Game/Util/DirectDraw.h"
 #include <cstdio>
-#include <string.h>
+#include <cstring>
 
 WarpCube::~WarpCube() {
 

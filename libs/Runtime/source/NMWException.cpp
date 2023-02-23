@@ -1,6 +1,5 @@
 #include <NMWException.h>
-#include <new.h>
-
+#include <new>
 
 class __partial_array_destructor {
 public:
@@ -10,7 +9,7 @@ public:
     ctor_dtor_ptr mDtorPtr; // _C
     size_t mCurElement;     // _10
 
-    __partial_array_destructor(void *arr, u32 size, u32 count, ctor_dtor_ptr ptr) {
+    __partial_array_destructor(void *arr, unsigned int size, unsigned int count, ctor_dtor_ptr ptr) {
         mArrayStart = arr;
         mElemSize = size;
         mArraySize = count;
@@ -22,7 +21,7 @@ public:
         if (mCurElement < mArraySize && mDtorPtr) {
             for (char* cur = (char*)mArrayStart + (mElemSize * mCurElement); mCurElement > 0; mCurElement--) {
                 cur -= mElemSize;
-                ((void (*)(void *, s16))mDtorPtr)(cur,-1);
+                ((void (*)(void *, short))mDtorPtr)(cur,-1);
             }
         }
     }
@@ -35,7 +34,7 @@ void __construct_array(void *pBlock, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor, siz
 
     char* p = (char*)pBlock;
     for (pad.mCurElement = 0; pad.mCurElement < n; p += size, pad.mCurElement++) {
-        ((void (*)(void *, s16))ctor)(p,1);
+        ((void (*)(void *, short))ctor)(p,1);
     }
 }
 
@@ -53,7 +52,7 @@ void *__construct_new_array(void *block, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor,
 
             char* p;
             for (pad.mCurElement = 0, p = ptr; pad.mCurElement < n; pad.mCurElement++, p += size) {
-                ((void (*)(void *, s16))ctor)(p,1);
+                ((void (*)(void *, short))ctor)(p,1);
             }
         }
     }
@@ -65,7 +64,7 @@ void __destroy_arr(void *pArraySource, ctor_dtor_ptr dtor, size_t size, size_t n
 
     for (cur = (char*)pArraySource + (size * num); num > 0; num--) {
         cur -= size;
-        ((void (*)(void *, s16))dtor)(cur,-1);
+        ((void (*)(void *, short))dtor)(cur,-1);
     }
 }
 
@@ -82,7 +81,7 @@ void __destroy_new_array(void *pArraySource, ctor_dtor_ptr dtor) {
 
             for (i = 0; i < objs; i++) {
                 cur -= obj_size;
-                ((void (*)(void *, s16))dtor)(cur,-1);
+                ((void (*)(void *, short))dtor)(cur,-1);
             }
         }
 
