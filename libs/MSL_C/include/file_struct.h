@@ -32,6 +32,13 @@ typedef struct {
     unsigned int binary : 1;
 } file_modes;
 
+enum io_states {
+    neutral,
+    writing,
+    reading,
+    rereading
+};
+
 typedef struct
 {
 	unsigned int	io_state	: 3;
@@ -42,7 +49,7 @@ typedef struct
 
 typedef unsigned long file_handle;
 typedef struct _FILE FILE;
-typedef int (* __pos_proc)(unsigned long, unsigned long *, int, void *);
+typedef int (* __pos_proc)(unsigned long, long *, int, void *);
 typedef int (* __io_proc)(unsigned long, unsigned char *, size_t *, void *);
 typedef int (* __close_proc)(unsigned long);
 

@@ -23,9 +23,9 @@ __fwrite,direct_io.o,MSL_C.PPCEABI.bare.H.a,false
 fclose,file_io.o,MSL_C.PPCEABI.bare.H.a,false
 fflush,file_io.o,MSL_C.PPCEABI.bare.H.a,false
 __msl_strnicmp,file_io.o,MSL_C.PPCEABI.bare.H.a,false
-_ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,false
-ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,false
-_fseek,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,false
+_ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true
+ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true
+_fseek,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true
 mbtowc,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
 __mbtowc_noconv,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
 __wctomb_noconv,mbstring.o,MSL_C.PPCEABI.bare.H.a,false

@@ -16,7 +16,7 @@
 | ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | direct_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | file_io.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| FILE_POS.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| FILE_POS.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | mem.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -135,9 +135,9 @@
 # FILE_POS.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| _ftell | :x: |
-| ftell | :x: |
-| _fseek | :x: |
+| _ftell | :white_check_mark: |
+| ftell | :white_check_mark: |
+| _fseek | :white_check_mark: |
 
 
 # mbstring.o
