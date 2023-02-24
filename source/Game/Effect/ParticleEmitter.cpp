@@ -21,7 +21,9 @@ void ParticleEmitter::pauseOn() {
     if (mManager && mManager->flags & JPA_EMITTER_PAUSE_FLAG) {
         paused = true;
     }
-    if (paused) return;
+    if (paused) {
+        return;
+    }
     mManager->flags |= JPA_EMITTER_PAUSE_FLAG;
     mPaused = true;
 }
