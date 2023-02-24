@@ -217,11 +217,11 @@ clone__Q22MR10FunctorV0FCFP7JKRHeap,ParticleDrawExecutor.o,Effect.a,false
 __cl__Q22MR10FunctorV0FCFv,ParticleDrawExecutor.o,Effect.a,false
 __cl__Q22MR69FunctorV0M<PC20ParticleDrawExecutor&#44;M20ParticleDrawExecutorFPCvPCv_v>CFv,ParticleDrawExecutor.o,Effect.a,false
 clone__Q22MR69FunctorV0M<PC20ParticleDrawExecutor&#44;M20ParticleDrawExecutorFPCvPCv_v>CFP7JKRHeap,ParticleDrawExecutor.o,Effect.a,false
-__ct__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,false
-invalidate__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,false
-init__15ParticleEmitterFUs,ParticleEmitter.o,Effect.a,false
-pauseOn__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,false
-pauseOff__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,false
+__ct__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,true
+invalidate__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,true
+init__15ParticleEmitterFUs,ParticleEmitter.o,Effect.a,true
+pauseOn__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,true
+pauseOff__15ParticleEmitterFv,ParticleEmitter.o,Effect.a,true
 __ct__21ParticleEmitterHolderFPC12EffectSystemi,ParticleEmitterHolder.o,Effect.a,false
 update__21ParticleEmitterHolderFb,ParticleEmitterHolder.o,Effect.a,false
 forceDeleteAllOneTimeEmitters__21ParticleEmitterHolderFv,ParticleEmitterHolder.o,Effect.a,false

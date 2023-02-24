@@ -21,7 +21,7 @@
 | [MultiEmitterParticleCallBack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitterParticleCallBack.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [ParticleCalcExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleCalcExecutor.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [ParticleDrawExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleDrawExecutor.md) | 0.0% | 0 / 20 | 0.0% | :x: 
-| [ParticleEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleEmitter.md) | 0.0% | 0 / 5 | 0.0% | :x: 
+| [ParticleEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleEmitter.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | [ParticleEmitterHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleEmitterHolder.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ParticleResourceHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleResourceHolder.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [RandomEffectObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/RandomEffectObj.md) | 0.0% | 0 / 8 | 0.0% | :x: 
