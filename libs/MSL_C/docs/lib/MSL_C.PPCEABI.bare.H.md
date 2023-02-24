@@ -12,7 +12,7 @@
 | ansi_files.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | ansi_fp.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| buffer_io.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| buffer_io.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | direct_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | file_io.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -108,8 +108,8 @@
 # buffer_io.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __prep_buffer | :x: |
-| __flush_buffer | :x: |
+| __prep_buffer | :white_check_mark: |
+| __flush_buffer | :white_check_mark: |
 
 
 # ctype.o

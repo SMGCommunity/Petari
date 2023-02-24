@@ -16,8 +16,8 @@ __num2dec_internal,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,false
 __num2dec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,false
 __dec2num,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,false
 abs,arith.o,MSL_C.PPCEABI.bare.H.a,false
-__prep_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,false
-__flush_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,false
+__prep_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
+__flush_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
 tolower,ctype.o,MSL_C.PPCEABI.bare.H.a,true
 __fwrite,direct_io.o,MSL_C.PPCEABI.bare.H.a,false
 fclose,file_io.o,MSL_C.PPCEABI.bare.H.a,false
