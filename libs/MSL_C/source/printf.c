@@ -26,13 +26,13 @@ typedef struct {
 	int				precision;
 } print_format;
 
-static char * long2str(long num, char * buff, print_format format) {
+char * long2str(long num, char * buff, print_format format) {
 	unsigned long unsigned_num, base;
 	char* p;
 	int n, digits;
 	int minus = 0;
 	unsigned_num = num;
-	minus        =   0;
+	minus = 0;
 	
 	p = buff;	
 	*--p = 0;
@@ -137,6 +137,113 @@ static char * long2str(long num, char * buff, print_format format) {
 	return p;
 }
 
+char* longlong2str(long long num, char *pBuf, print_format fmt) {
+	unsigned long long unsigned_num, base;
+	char* p;
+	int n, digits;
+	int minus = 0;
+	unsigned_num = num;
+	minus = 0;
+	p = pBuf;
+	*--p = 0;
+	digits = 0;
+
+	if (!num && !fmt.precision && !(fmt.alternate_form && fmt.conversion_char == 'o')) {
+		return p;
+	}
+
+	switch (fmt.conversion_char) {
+		case 'd':
+		case 'i':
+			base = 10;
+
+			if (num < 0) {
+				if (num != 0x8000000000000000) {
+					unsigned_num = -num;
+				}
+
+				minus = 1;
+			}
+			break;
+		case 'o':
+			base = 8;
+			fmt.sign_options = only_minus;
+			break;
+		case 'u':
+			base = 10;
+			fmt.sign_options = only_minus;
+			break;
+		case 'x':
+		case 'X':
+			base = 16;
+			fmt.sign_options = only_minus;
+			break;
+	}
+
+	do {
+		n = unsigned_num % base;
+		unsigned_num /= base;
+
+		if (n < 10) {
+			n += '0';
+		}
+		else {
+			n -= 10;
+			if (fmt.conversion_char == 'x') {
+				n += 'a';
+			}
+			else {
+				n += 'A';
+			}
+		}
+
+		*--p = n;
+		++digits;
+	} while (unsigned_num != 0);
+
+	if (base == 8 && fmt.alternate_form && *p != '0') {
+		*--p = '0';
+		++digits;
+	}
+
+	if (fmt.justification_options == zero_fill) {
+		fmt.precision = fmt.field_width;
+
+		if (minus || fmt.sign_options != only_minus) {
+			--fmt.precision;
+		}
+
+		if (base == 16 && fmt.alternate_form) {
+			fmt.precision -= 2;
+		}
+	}
+
+	if (pBuf - p + fmt.precision > 509) {
+		return 0;
+	}
+
+	while (digits < fmt.precision) {
+		*--p = '0';
+		++digits;
+	}
+
+	if (base == 16 && fmt.alternate_form) {
+		*--p = fmt.conversion_char;
+		*--p = '0';
+	}
+
+	if (minus) {
+		*--p = '-';
+	}
+	else if (fmt.sign_options == sign_always) {
+		*--p = '+';
+	}
+	else if (fmt.sign_options == space_holder) {
+		*--p = ' ';
+	}
+
+	return p;
+}
 
 extern int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list);
 

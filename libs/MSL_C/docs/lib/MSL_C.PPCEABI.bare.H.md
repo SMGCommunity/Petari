@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | alloc.o | 12.923076923076923% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
 | ansi_files.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| ansi_fp.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| ansi_fp.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | buffer_io.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -22,7 +22,7 @@
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| printf.o | 7.377049180327869% | 2 / 15 | 13.333333333333334% | :eight_pointed_black_star: 
+| printf.o | 14.754098360655737% | 3 / 15 | 20.0% | :eight_pointed_black_star: 
 | scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
@@ -54,7 +54,7 @@
 | s_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| s_ldexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | w_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -87,16 +87,16 @@
 # ansi_fp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ull2dec | :x: |
-| __timesdec | :x: |
-| __str2dec | :x: |
-| __two_exp | :x: |
-| __equals_dec | :x: |
-| __less_dec | :x: |
-| __minus_dec | :x: |
-| __num2dec_internal | :x: |
-| __num2dec | :x: |
-| __dec2num | :x: |
+| __ull2dec | :white_check_mark: |
+| __timesdec | :white_check_mark: |
+| __str2dec | :white_check_mark: |
+| __two_exp | :white_check_mark: |
+| __equals_dec | :white_check_mark: |
+| __less_dec | :white_check_mark: |
+| __minus_dec | :white_check_mark: |
+| __num2dec_internal | :white_check_mark: |
+| __num2dec | :white_check_mark: |
+| __dec2num | :white_check_mark: |
 
 
 # arith.o
@@ -187,7 +187,7 @@
 | ------------- | ------------- |
 | parse_format | :x: |
 | long2str | :white_check_mark: |
-| longlong2str | :x: |
+| longlong2str | :white_check_mark: |
 | double2hex | :x: |
 | round_decimal | :x: |
 | float2str | :x: |
@@ -421,7 +421,7 @@
 # s_ldexp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ldexp | :x: |
+| ldexp | :white_check_mark: |
 
 
 # s_sin.o

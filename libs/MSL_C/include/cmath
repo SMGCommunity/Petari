@@ -6,9 +6,11 @@ namespace std {
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+double atan2(double, double);
 
-f64 atan2(f64, f64);
+int __float_huge[];
+
+#define INFINITY (*(float*) __float_huge)	
 
 #ifdef __cplusplus
 };
