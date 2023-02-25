@@ -7,12 +7,16 @@ extern "C" {
 
 #include <va_list.h>
 #include <cstring>
+#include "file_struct.h"
 
 int sprintf(char *pStr, const char *pFormat, ...);
 int snprintf(char *pStr, unsigned int n, const char *pFormat, ...);
 int vprintf(const char *, va_list);
 
 int sscanf(const char *, const char *, ...);
+
+int fclose(FILE *);
+int fflush(FILE *);
 
 #ifdef __cplusplus
 }

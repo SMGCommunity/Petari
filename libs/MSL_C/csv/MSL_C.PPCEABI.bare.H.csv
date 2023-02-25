@@ -3,8 +3,8 @@ Block_link,alloc.o,MSL_C.PPCEABI.bare.H.a,false
 SubBlock_merge_next,alloc.o,MSL_C.PPCEABI.bare.H.a,true
 deallocate_from_fixed_pools,alloc.o,MSL_C.PPCEABI.bare.H.a,false
 free,alloc.o,MSL_C.PPCEABI.bare.H.a,false
-__close_all,ansi_files.o,MSL_C.PPCEABI.bare.H.a,false
-__flush_all,ansi_files.o,MSL_C.PPCEABI.bare.H.a,false
+__close_all,ansi_files.o,MSL_C.PPCEABI.bare.H.a,true
+__flush_all,ansi_files.o,MSL_C.PPCEABI.bare.H.a,true
 __ull2dec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
 __timesdec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
 __str2dec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true

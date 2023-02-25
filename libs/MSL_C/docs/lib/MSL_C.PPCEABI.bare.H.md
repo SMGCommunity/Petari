@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | alloc.o | 12.923076923076923% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
-| ansi_files.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| ansi_files.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ansi_fp.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | buffer_io.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
@@ -80,8 +80,8 @@
 # ansi_files.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __close_all | :x: |
-| __flush_all | :x: |
+| __close_all | :white_check_mark: |
+| __flush_all | :white_check_mark: |
 
 
 # ansi_fp.o

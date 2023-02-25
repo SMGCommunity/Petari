@@ -3,6 +3,7 @@
 
 #include "ansi_params.h"
 #include "size_t.h"
+#include "wchar_t.h"
 
 enum file_kinds {
     file_closed,
@@ -57,9 +58,11 @@ struct _FILE {
     file_handle handle;
     file_modes mode;
     file_state state;
+    unsigned char is_dyn_alloc;
     unsigned char char_buf;
     unsigned char char_buf_of;
     unsigned char unget_buffer[2];
+    wchar_t ungetwc_buffer[2];
     unsigned long pos;
     unsigned char* buffer;
     unsigned long buffer_size;
@@ -73,6 +76,7 @@ struct _FILE {
     __io_proc write_proc;
     __close_proc close_proc;
     void* ref;
+    struct _FILE* next_file;
 };
 
 extern FILE __files[];

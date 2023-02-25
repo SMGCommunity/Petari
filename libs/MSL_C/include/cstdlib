@@ -1,0 +1,14 @@
+#ifndef CSTDLIB_H
+#define CSTDLIB_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void free(void *);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // CSTDLIB_H
