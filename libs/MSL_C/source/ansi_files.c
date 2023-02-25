@@ -3,7 +3,7 @@
 #include "console_io.h"
 #include <cstdlib>
 
-FILE __files[3] =
+FILE __files[4] =
 {
     {
         0,
@@ -14,7 +14,8 @@ FILE __files[3] =
             file_console,
             file_unoriented,
             0
-            },
+        },
+
         {
             neutral,
             0,
@@ -119,6 +120,45 @@ FILE __files[3] =
         __close_console,
         0,
         &__files[3]
+    },
+
+    {
+        0,
+        {	
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        },
+    
+        {
+            0,
+            0,
+            0,
+            0
+        },
+
+        0,
+        0,
+        0,
+        {0, 0},
+        {0, 0},
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
     }
 };
 
