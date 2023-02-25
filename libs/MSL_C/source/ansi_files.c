@@ -4,117 +4,123 @@
 #include <cstdlib>
 
 FILE __files[3] =
-	{
-		{
-			0,
-			{
-				must_exist,
-				1,
-				1,
-				file_console,
-				file_unoriented,
-				0
-			},
-			{
-				neutral,
-				0,
-				0,
-				0
-			},
+{
+    {
+        0,
+        {
+            must_exist,
+            1,
+            1,
+            file_console,
+            file_unoriented,
+            0
+            },
+        {
+            neutral,
             0,
             0,
-            0,
-			{0, 0},
-            {0, 0},
-			0,
-			stdin_buff,
-			0x100,
-			stdin_buff,
-            0,
-            0,
-            0,
-            0,
-			0,
-			__read_console,
-			__write_console,
-			__close_console,
-			0,
-            &__files[1]
-		},
+            0
+        },
 
-		{
-			1,
-			{	
-				must_exist,
-				2,
-				1,
-				file_console,
-				file_unoriented,
-				0
-			},
-			{
-				neutral,
-				0,
-				0,
-				0
-			},
+        0,
+        0,
+        0,
+        {0, 0},
+        {0, 0},
+        0,
+        stdin_buff,
+        0x100,
+        stdin_buff,
+        0,
+        0,
+        0,
+        0,
+        0,
+        __read_console,
+        __write_console,
+        __close_console,
+        0,
+        &__files[1]
+    },
+
+    {
+        1,
+        {	
+            must_exist,
+            2,
+            1,
+            file_console,
+            file_unoriented,
+            0
+        },
+    
+        {
+            neutral,
             0,
             0,
+            0
+        },
+
+        0,
+        0,
+        0,
+        {0, 0},
+        {0, 0},
+        0,
+        stdout_buff,
+        0x100,
+        stdout_buff,
+        0,
+        0,
+        0,
+        0,
+        0,
+        __read_console,
+        __write_console,
+        __close_console,
+        0,
+        &__files[2]
+    },
+
+    {
+        2,
+        {
+            must_exist,
+            2,	
             0,
-			{0, 0},
-            {0, 0},
-			0,
-			stdout_buff,
-			0x100,
-			stdout_buff,
-			0,
-            0,
-            0,
-            0,
-            0,
-			__read_console,
-			__write_console,
-			__close_console,
-			0,
-            &__files[2]
-		},
-		{
-			2,
-			{
-				must_exist,
-				2,	
-				0,
-				file_console,
-				file_unoriented,
-				0
-			},
-			{
-				neutral,
-				0,
-				0,
-				0
-			},
-            0,
-            0,
-            0,
-			{0, 0},
-            {0, 0},
-			0,
-			stderr_buff,
-			0x100,
-			stderr_buff,
-			0,
+            file_console,
+            file_unoriented,
+            0
+        },
+
+        {
+            neutral,
             0,
             0,
-            0,
-            0,
-			__read_console,
-			__write_console,
-			__close_console,
-			0,
-            &__files[3]
-		}
-	};
+            0
+        },
+
+        0,
+        0,
+        0,
+        {0, 0},
+        {0, 0},
+        0,
+        stderr_buff,
+        0x100,
+        stderr_buff,
+        0,
+        0,
+        0,
+        0,
+        0,
+        __read_console,
+        __write_console,
+        __close_console,
+        0,
+        &__files[3]
+    }
+};
 
 void __close_all(void) {
     FILE* file = &__files[0];
