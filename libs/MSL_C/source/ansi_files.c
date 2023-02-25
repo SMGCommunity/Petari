@@ -10,7 +10,7 @@ FILE __files[3] =
 			{
 				must_exist,
 				1,
-				0,
+				1,
 				file_console,
 				file_unoriented,
 				0
@@ -39,6 +39,7 @@ FILE __files[3] =
 			__write_console,
 			__close_console,
 			0,
+            &__files[1]
 		},
 
 		{
@@ -46,7 +47,7 @@ FILE __files[3] =
 			{	
 				must_exist,
 				2,
-				0,
+				1,
 				file_console,
 				file_unoriented,
 				0
@@ -75,12 +76,13 @@ FILE __files[3] =
 			__write_console,
 			__close_console,
 			0,
+            &__files[2]
 		},
 		{
 			2,
 			{
 				must_exist,
-				3,	
+				2,	
 				0,
 				file_console,
 				file_unoriented,
@@ -110,6 +112,7 @@ FILE __files[3] =
 			__write_console,
 			__close_console,
 			0,
+            &__files[3]
 		}
 	};
 
