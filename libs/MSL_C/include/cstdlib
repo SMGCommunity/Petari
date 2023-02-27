@@ -7,6 +7,8 @@ extern "C" {
 
 void free(void *);
 
+int abs(int);
+
 #ifdef __cplusplus
 }
 #endif

@@ -15,7 +15,7 @@ __minus_dec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
 __num2dec_internal,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
 __num2dec,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
 __dec2num,ansi_fp.o,MSL_C.PPCEABI.bare.H.a,true
-abs,arith.o,MSL_C.PPCEABI.bare.H.a,false
+abs,arith.o,MSL_C.PPCEABI.bare.H.a,true
 __prep_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
 __flush_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
 tolower,ctype.o,MSL_C.PPCEABI.bare.H.a,true
@@ -42,7 +42,7 @@ __copy_longs_rev_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
 __fpclassifyf,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __signbitd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __fpclassifyd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
-__stdio_atexit,misc_io.o,MSL_C.PPCEABI.bare.H.a,false
+__stdio_atexit,misc_io.o,MSL_C.PPCEABI.bare.H.a,true
 parse_format,printf.o,MSL_C.PPCEABI.bare.H.a,false
 long2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
 longlong2str,printf.o,MSL_C.PPCEABI.bare.H.a,true

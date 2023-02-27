@@ -11,7 +11,7 @@
 | alloc.o | 12.923076923076923% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
 | ansi_files.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ansi_fp.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
-| arith.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| arith.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | buffer_io.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | direct_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -21,7 +21,7 @@
 | mem.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| misc_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | printf.o | 14.754098360655737% | 3 / 15 | 20.0% | :eight_pointed_black_star: 
 | scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -102,7 +102,7 @@
 # arith.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| abs | :x: |
+| abs | :white_check_mark: |
 
 
 # buffer_io.o
@@ -179,7 +179,7 @@
 # misc_io.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __stdio_atexit | :x: |
+| __stdio_atexit | :white_check_mark: |
 
 
 # printf.o
