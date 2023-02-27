@@ -19,10 +19,10 @@ abs,arith.o,MSL_C.PPCEABI.bare.H.a,true
 __prep_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
 __flush_buffer,buffer_io.o,MSL_C.PPCEABI.bare.H.a,true
 tolower,ctype.o,MSL_C.PPCEABI.bare.H.a,true
-__fwrite,direct_io.o,MSL_C.PPCEABI.bare.H.a,false
-fclose,file_io.o,MSL_C.PPCEABI.bare.H.a,false
-fflush,file_io.o,MSL_C.PPCEABI.bare.H.a,false
-__msl_strnicmp,file_io.o,MSL_C.PPCEABI.bare.H.a,false
+__fwrite,direct_io.o,MSL_C.PPCEABI.bare.H.a,true
+fclose,file_io.o,MSL_C.PPCEABI.bare.H.a,true
+fflush,file_io.o,MSL_C.PPCEABI.bare.H.a,true
+__msl_strnicmp,file_io.o,MSL_C.PPCEABI.bare.H.a,true
 _ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true
 ftell,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true
 _fseek,FILE_POS.o,MSL_C.PPCEABI.bare.H.a,true

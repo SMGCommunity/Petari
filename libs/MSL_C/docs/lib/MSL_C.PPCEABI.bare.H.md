@@ -14,8 +14,8 @@
 | arith.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | buffer_io.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ctype.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| direct_io.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| file_io.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| direct_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| file_io.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | FILE_POS.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | mem.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -121,15 +121,15 @@
 # direct_io.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __fwrite | :x: |
+| __fwrite | :white_check_mark: |
 
 
 # file_io.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| fclose | :x: |
-| fflush | :x: |
-| __msl_strnicmp | :x: |
+| fclose | :white_check_mark: |
+| fflush | :white_check_mark: |
+| __msl_strnicmp | :white_check_mark: |
 
 
 # FILE_POS.o
