@@ -18,7 +18,7 @@
 | file_io.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | FILE_POS.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| mem.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| mem.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -153,10 +153,10 @@
 # mem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| memmove | :x: |
-| memchr | :x: |
-| __memrchr | :x: |
-| memcmp | :x: |
+| memmove | :white_check_mark: |
+| memchr | :white_check_mark: |
+| __memrchr | :white_check_mark: |
+| memcmp | :white_check_mark: |
 
 
 # mem_funcs.o

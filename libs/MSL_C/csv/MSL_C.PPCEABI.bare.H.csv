@@ -31,10 +31,10 @@ __mbtowc_noconv,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
 __wctomb_noconv,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
 mbstowcs,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
 wcstombs,mbstring.o,MSL_C.PPCEABI.bare.H.a,false
-memmove,mem.o,MSL_C.PPCEABI.bare.H.a,false
-memchr,mem.o,MSL_C.PPCEABI.bare.H.a,false
-__memrchr,mem.o,MSL_C.PPCEABI.bare.H.a,false
-memcmp,mem.o,MSL_C.PPCEABI.bare.H.a,false
+memmove,mem.o,MSL_C.PPCEABI.bare.H.a,true
+memchr,mem.o,MSL_C.PPCEABI.bare.H.a,true
+__memrchr,mem.o,MSL_C.PPCEABI.bare.H.a,true
+memcmp,mem.o,MSL_C.PPCEABI.bare.H.a,true
 __copy_longs_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
 __copy_longs_rev_aligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true
 __copy_longs_unaligned,mem_funcs.o,MSL_C.PPCEABI.bare.H.a,true

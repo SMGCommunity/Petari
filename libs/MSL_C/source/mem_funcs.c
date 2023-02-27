@@ -1,4 +1,4 @@
-#pragma ANSI_strict off
+#include "mem_funcs.h"
 
 #define srcCharPtr	((unsigned char*)pSrc)
 #define destCharPtr	((unsigned char*)pDest)
