@@ -36,7 +36,7 @@
 | abort_exit_ppc_eabi.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | math_sun.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| e_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -313,7 +313,7 @@
 # e_acos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_acos | :x: |
+| __ieee754_acos | :white_check_mark: |
 
 
 # e_asin.o

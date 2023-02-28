@@ -9,8 +9,10 @@ extern "C" {
 double atan2(double, double);
 
 int __float_huge[];
+int __float_nan[];
 
 #define INFINITY (*(float*) __float_huge)	
+#define NAN (*(float*) __float_nan)
 
 #ifdef __cplusplus
 };
