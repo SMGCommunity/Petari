@@ -26,6 +26,13 @@ typedef struct {
 	int				precision;
 } print_format;
 
+typedef struct
+{
+	char* CharStr;
+	size_t MaxCharCount;
+	size_t CharsWritten;
+} __OutStrCtrl;
+
 char * long2str(long num, char * buff, print_format format) {
 	unsigned long unsigned_num, base;
 	char* p;
@@ -247,8 +254,19 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 
 extern int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list);
 
-void* __FileWrite(void *, const char *, size_t) {
-    return;
+void* __FileWrite(void *pFile, const char *pBuffer, size_t char_num) {
+    return (__fwrite(pBuffer, 1, char_num, (FILE*)pFile) == char_num ? pFile : 0);
+}
+
+void* __StringWrite(void *pCtrl, const char *pBuffer, size_t char_num) {
+	size_t chars;
+	void* res;
+	__OutStrCtrl* ctrl = (__OutStrCtrl*)pCtrl;
+
+	chars = ((ctrl->CharsWritten + char_num) <= ctrl->MaxCharCount) ? char_num : ctrl->MaxCharCount - ctrl->CharsWritten;
+	res = (void*)memcpy(ctrl->CharStr + ctrl->CharsWritten, pBuffer, chars);
+	ctrl->CharsWritten += chars;
+	return (void*)1;
 }
 
 int vprintf(const char *pFormat, va_list arg) {
