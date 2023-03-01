@@ -7,6 +7,13 @@ extern "C" {
 #endif
 
 double atan2(double, double);
+double ceil(double);
+double floor(double);
+double frexp(double, int *);
+double ldexp(double, int);
+double sqrt(double);
+
+double scalbn(double, int);
 
 int __float_huge[];
 int __float_nan[];

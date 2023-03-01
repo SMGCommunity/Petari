@@ -97,7 +97,7 @@ fwide,wchar_io.o,MSL_C.PPCEABI.bare.H.a,true
 __write_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
 __close_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
 abort,abort_exit_ppc_eabi.o,MSL_C.PPCEABI.bare.H.a,false
-scalbn,math_sun.o,MSL_C.PPCEABI.bare.H.a,false
+scalbn,math_sun.o,MSL_C.PPCEABI.bare.H.a,true
 stricmp,extras.o,MSL_C.PPCEABI.bare.H.a,false
 strncasecmp,extras.o,MSL_C.PPCEABI.bare.H.a,false
 strcasecmp,extras.o,MSL_C.PPCEABI.bare.H.a,false
@@ -109,10 +109,10 @@ __ieee754_log,e_log.o,MSL_C.PPCEABI.bare.H.a,false
 __ieee754_log10,e_log10.o,MSL_C.PPCEABI.bare.H.a,false
 __ieee754_pow,e_pow.o,MSL_C.PPCEABI.bare.H.a,false
 __ieee754_rem_pio2,e_rem_pio2.o,MSL_C.PPCEABI.bare.H.a,true
-__kernel_cos,k_cos.o,MSL_C.PPCEABI.bare.H.a,false
-__kernel_rem_pio2,k_rem_pio2.o,MSL_C.PPCEABI.bare.H.a,false
+__kernel_cos,k_cos.o,MSL_C.PPCEABI.bare.H.a,true
+__kernel_rem_pio2,k_rem_pio2.o,MSL_C.PPCEABI.bare.H.a,true
 __kernel_sin,k_sin.o,MSL_C.PPCEABI.bare.H.a,true
-__kernel_tan,k_tan.o,MSL_C.PPCEABI.bare.H.a,false
+__kernel_tan,k_tan.o,MSL_C.PPCEABI.bare.H.a,true
 atan,s_atan.o,MSL_C.PPCEABI.bare.H.a,true
 ceil,s_ceil.o,MSL_C.PPCEABI.bare.H.a,true
 copysign,s_copysign.o,MSL_C.PPCEABI.bare.H.a,true

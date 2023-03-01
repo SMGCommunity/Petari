@@ -34,7 +34,7 @@
 | wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | uart_console_io_gcn.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | abort_exit_ppc_eabi.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| math_sun.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| math_sun.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | e_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -44,10 +44,10 @@
 | e_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| k_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| k_rem_pio2.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| k_cos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| k_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | k_sin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| k_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| k_tan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_atan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_ceil.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_copysign.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -299,7 +299,7 @@
 # math_sun.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| scalbn | :x: |
+| scalbn | :white_check_mark: |
 
 
 # extras.o
@@ -361,13 +361,13 @@
 # k_cos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __kernel_cos | :x: |
+| __kernel_cos | :white_check_mark: |
 
 
 # k_rem_pio2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __kernel_rem_pio2 | :x: |
+| __kernel_rem_pio2 | :white_check_mark: |
 
 
 # k_sin.o
@@ -379,7 +379,7 @@
 # k_tan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __kernel_tan | :x: |
+| __kernel_tan | :white_check_mark: |
 
 
 # s_atan.o
