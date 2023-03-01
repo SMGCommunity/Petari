@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+double acos(double);
+double asin(double);
 double atan(double);
 double atan2(double, double);
 double ceil(double);
@@ -16,7 +18,16 @@ double sqrt(double);
 double log(double);
 double log10(double);
 
+double fmod(double, double);
+
+double __ieee754_acos(double);
+double __ieee754_fmod(double, double);
 double __ieee754_log(double);
+double __ieee754_log10(double);
+double __ieee754_pow(double);
+double __ieee754_sqrt(double);
+double __ieee754_atan2(double, double);
+double __ieee754_asin(double);
 
 double scalbn(double, int);
 

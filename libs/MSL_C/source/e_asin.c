@@ -1,7 +1,5 @@
 #include <cmath>
 
-extern double sqrt(double x);
-
 double __ieee754_asin(double x) {
     double t, w, p, q, c, r, s;
     int hx, ix;

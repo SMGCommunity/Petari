@@ -9,4 +9,6 @@ double copysign(double, double);
 double frexp(double, int *);
 double ldexp(double, int);
 
+double nan(const char *);
+
 #endif // MATH_API_H

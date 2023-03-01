@@ -57,15 +57,15 @@
 | s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_acos.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| w_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_atan2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_fmod.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_log10.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_pow.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| math_ppc.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| w_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| math_ppc.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| w_sqrt.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 
 
 # alloc.o
@@ -439,37 +439,37 @@
 # w_acos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| acos | :x: |
+| acos | :white_check_mark: |
 
 
 # w_asin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| asin | :x: |
+| asin | :white_check_mark: |
 
 
 # w_atan2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| atan2 | :x: |
+| atan2 | :white_check_mark: |
 
 
 # w_fmod.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| fmod | :x: |
+| fmod | :white_check_mark: |
 
 
 # w_log10.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| log10 | :x: |
+| log10 | :white_check_mark: |
 
 
 # w_pow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| pow | :x: |
+| pow | :white_check_mark: |
 
 
 # e_sqrt.o
@@ -481,12 +481,12 @@
 # math_ppc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nan | :x: |
+| nan | :white_check_mark: |
 
 
 # w_sqrt.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| sqrt | :x: |
+| sqrt | :white_check_mark: |
 
 
