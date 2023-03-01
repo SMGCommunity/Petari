@@ -9,7 +9,7 @@ double __ieee754_acos(double x) {
 	ix = hx & 0x7FFFFFFF;
 
 	if (ix >= 0x3FF00000) {
-	    if(((ix - 0x3ff00000) | *(1 + (int*)&x)) ==0) {
+	    if (((ix - 0x3ff00000) | *(1 + (int*)&x)) == 0) {
             if (hx > 0) {
                 return 0.0;
             }

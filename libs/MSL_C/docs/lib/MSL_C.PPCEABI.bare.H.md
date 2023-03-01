@@ -37,7 +37,7 @@
 | math_sun.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | e_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| e_asin.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_log.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -48,8 +48,8 @@
 | k_rem_pio2.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | k_sin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | k_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| s_atan.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| s_ceil.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_atan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| s_ceil.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_copysign.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -319,7 +319,7 @@
 # e_asin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_asin | :x: |
+| __ieee754_asin | :white_check_mark: |
 
 
 # e_atan2.o
@@ -385,13 +385,13 @@
 # s_atan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| atan | :x: |
+| atan | :white_check_mark: |
 
 
 # s_ceil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ceil | :x: |
+| ceil | :white_check_mark: |
 
 
 # s_copysign.o
