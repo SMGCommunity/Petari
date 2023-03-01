@@ -38,10 +38,10 @@
 | extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | e_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| e_atan2.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| e_fmod.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| e_log.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| e_log10.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_atan2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| e_fmod.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| e_log.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| e_log10.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | e_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | k_cos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -325,25 +325,25 @@
 # e_atan2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_atan2 | :x: |
+| __ieee754_atan2 | :white_check_mark: |
 
 
 # e_fmod.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_fmod | :x: |
+| __ieee754_fmod | :white_check_mark: |
 
 
 # e_log.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_log | :x: |
+| __ieee754_log | :white_check_mark: |
 
 
 # e_log10.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_log10 | :x: |
+| __ieee754_log10 | :white_check_mark: |
 
 
 # e_pow.o

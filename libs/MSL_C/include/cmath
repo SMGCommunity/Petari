@@ -2,16 +2,21 @@
 #define CMATH_H
 
 #ifdef __cplusplus
-namespace std {
 extern "C" {
 #endif
 
+double atan(double);
 double atan2(double, double);
 double ceil(double);
 double floor(double);
 double frexp(double, int *);
 double ldexp(double, int);
 double sqrt(double);
+
+double log(double);
+double log10(double);
+
+double __ieee754_log(double);
 
 double scalbn(double, int);
 
@@ -22,7 +27,6 @@ int __float_nan[];
 #define NAN (*(float*) __float_nan)
 
 #ifdef __cplusplus
-};
 };
 #endif
 

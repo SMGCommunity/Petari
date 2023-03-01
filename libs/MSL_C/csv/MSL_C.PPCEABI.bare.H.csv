@@ -103,10 +103,10 @@ strncasecmp,extras.o,MSL_C.PPCEABI.bare.H.a,false
 strcasecmp,extras.o,MSL_C.PPCEABI.bare.H.a,false
 __ieee754_acos,e_acos.o,MSL_C.PPCEABI.bare.H.a,true
 __ieee754_asin,e_asin.o,MSL_C.PPCEABI.bare.H.a,true
-__ieee754_atan2,e_atan2.o,MSL_C.PPCEABI.bare.H.a,false
-__ieee754_fmod,e_fmod.o,MSL_C.PPCEABI.bare.H.a,false
-__ieee754_log,e_log.o,MSL_C.PPCEABI.bare.H.a,false
-__ieee754_log10,e_log10.o,MSL_C.PPCEABI.bare.H.a,false
+__ieee754_atan2,e_atan2.o,MSL_C.PPCEABI.bare.H.a,true
+__ieee754_fmod,e_fmod.o,MSL_C.PPCEABI.bare.H.a,true
+__ieee754_log,e_log.o,MSL_C.PPCEABI.bare.H.a,true
+__ieee754_log10,e_log10.o,MSL_C.PPCEABI.bare.H.a,true
 __ieee754_pow,e_pow.o,MSL_C.PPCEABI.bare.H.a,false
 __ieee754_rem_pio2,e_rem_pio2.o,MSL_C.PPCEABI.bare.H.a,true
 __kernel_cos,k_cos.o,MSL_C.PPCEABI.bare.H.a,true
