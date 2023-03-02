@@ -26,7 +26,7 @@
 | [ParticleResourceHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleResourceHolder.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [RandomEffectObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/RandomEffectObj.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [SimpleEffectObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SimpleEffectObj.md) | 0.0% | 0 / 17 | 0.0% | :x: 
-| [SingleEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SingleEmitter.md) | 0.0% | 0 / 8 | 0.0% | :x: 
+| [SingleEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SingleEmitter.md) | 71.28712871287128% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
 | [SpinPullParticleCallBack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SpinPullParticleCallBack.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [SyncBckEffectChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SyncBckEffectChecker.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [SyncBckEffectInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/SyncBckEffectInfo.md) | 0.0% | 0 / 7 | 0.0% | :x: 

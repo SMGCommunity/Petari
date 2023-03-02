@@ -11,6 +11,7 @@ public:
     void init(u16);
     void pauseOn();
     void pauseOff();
+    bool isContinuousParticle() const;
 
     JPAEmitterManager* mManager;    // _0
     bool mPaused;                   // _4
