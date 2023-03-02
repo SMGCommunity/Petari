@@ -19,8 +19,7 @@ void SingleEmitter::deleteEmitter() {
     }
 }
 
-void SingleEmitter::scanParticleEmitter(EffectSystem *pSystem)
-{
+void SingleEmitter::scanParticleEmitter(EffectSystem *pSystem) {
     ParticleEmitter* emitter;
     if (mSpawn == SINGLE_EMITTER_UNDEF_SPAWN) {
         emitter = pSystem->createEmitter(_4, mGroupId, 0);
