@@ -118,7 +118,7 @@ ceil,s_ceil.o,MSL_C.PPCEABI.bare.H.a,true
 copysign,s_copysign.o,MSL_C.PPCEABI.bare.H.a,true
 cos,s_cos.o,MSL_C.PPCEABI.bare.H.a,true
 floor,s_floor.o,MSL_C.PPCEABI.bare.H.a,true
-frexp,s_frexp.o,MSL_C.PPCEABI.bare.H.a,false
+frexp,s_frexp.o,MSL_C.PPCEABI.bare.H.a,true
 ldexp,s_ldexp.o,MSL_C.PPCEABI.bare.H.a,true
 sin,s_sin.o,MSL_C.PPCEABI.bare.H.a,true
 tan,s_tan.o,MSL_C.PPCEABI.bare.H.a,true

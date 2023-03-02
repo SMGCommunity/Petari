@@ -53,7 +53,7 @@
 | s_copysign.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_cos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_frexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_sin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_tan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -415,7 +415,7 @@
 # s_frexp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| frexp | :x: |
+| frexp | :white_check_mark: |
 
 
 # s_ldexp.o
