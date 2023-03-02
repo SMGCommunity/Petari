@@ -30,12 +30,12 @@
 | strtoul.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
-| wstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | uart_console_io_gcn.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| abort_exit_ppc_eabi.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| abort_exit_ppc_eabi.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | math_sun.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| extras.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| extras.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | e_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_atan2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -270,11 +270,11 @@
 # wstring.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| wcslen | :x: |
-| wcscpy | :x: |
-| wcsncpy | :x: |
-| wcscmp | :x: |
-| wcschr | :x: |
+| wcslen | :white_check_mark: |
+| wcscpy | :white_check_mark: |
+| wcsncpy | :white_check_mark: |
+| wcscmp | :white_check_mark: |
+| wcschr | :white_check_mark: |
 
 
 # wchar_io.o
@@ -293,7 +293,7 @@
 # abort_exit_ppc_eabi.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| abort | :x: |
+| abort | :white_check_mark: |
 
 
 # math_sun.o
@@ -305,9 +305,9 @@
 # extras.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| stricmp | :x: |
-| strncasecmp | :x: |
-| strcasecmp | :x: |
+| stricmp | :white_check_mark: |
+| strncasecmp | :white_check_mark: |
+| strcasecmp | :white_check_mark: |
 
 
 # e_acos.o

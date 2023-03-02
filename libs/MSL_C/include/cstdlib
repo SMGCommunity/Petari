@@ -9,6 +9,8 @@ void free(void *);
 
 int abs(int);
 
+void abort(void);
+
 #ifdef __cplusplus
 }
 #endif
