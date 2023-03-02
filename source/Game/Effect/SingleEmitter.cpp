@@ -40,8 +40,9 @@ bool SingleEmitter::isOneTime() const {
 bool SingleEmitter::isValid() const {
     if (mEmitter == nullptr) {
         return false;
+    } else {
+        return mEmitter->mManager;
     }
-    else return mEmitter->mManager;
 }
 
 void SingleEmitter::link(ParticleEmitter *pEmitter) {
