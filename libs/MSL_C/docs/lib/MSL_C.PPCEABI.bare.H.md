@@ -56,7 +56,7 @@
 | s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| s_tan.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_tan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_atan2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -433,7 +433,7 @@
 # s_tan.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| tan | :x: |
+| tan | :white_check_mark: |
 
 
 # w_acos.o

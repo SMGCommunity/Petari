@@ -31,6 +31,10 @@ double __ieee754_asin(double);
 
 double scalbn(double, int);
 
+double __kernel_tan(double, double, int);
+
+int __ieee754_rem_pio2(double, double *);
+
 int __float_huge[];
 int __float_nan[];
 

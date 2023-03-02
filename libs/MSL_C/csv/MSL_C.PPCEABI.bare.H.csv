@@ -121,7 +121,7 @@ floor,s_floor.o,MSL_C.PPCEABI.bare.H.a,true
 frexp,s_frexp.o,MSL_C.PPCEABI.bare.H.a,false
 ldexp,s_ldexp.o,MSL_C.PPCEABI.bare.H.a,true
 sin,s_sin.o,MSL_C.PPCEABI.bare.H.a,false
-tan,s_tan.o,MSL_C.PPCEABI.bare.H.a,false
+tan,s_tan.o,MSL_C.PPCEABI.bare.H.a,true
 acos,w_acos.o,MSL_C.PPCEABI.bare.H.a,true
 asin,w_asin.o,MSL_C.PPCEABI.bare.H.a,true
 atan2,w_atan2.o,MSL_C.PPCEABI.bare.H.a,true
