@@ -15,6 +15,8 @@ double frexp(double, int *);
 double ldexp(double, int);
 double sqrt(double);
 
+double pow(double, double);
+
 double log(double);
 double log10(double);
 
@@ -24,7 +26,7 @@ double __ieee754_acos(double);
 double __ieee754_fmod(double, double);
 double __ieee754_log(double);
 double __ieee754_log10(double);
-double __ieee754_pow(double);
+double __ieee754_pow(double, double);
 double __ieee754_sqrt(double);
 double __ieee754_atan2(double, double);
 double __ieee754_asin(double);

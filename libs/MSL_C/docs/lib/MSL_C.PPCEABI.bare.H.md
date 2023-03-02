@@ -42,7 +42,7 @@
 | e_fmod.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_log.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_log10.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| e_pow.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_pow.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | e_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | k_cos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | k_rem_pio2.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -51,7 +51,7 @@
 | s_atan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_ceil.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_copysign.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| s_cos.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_cos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -349,7 +349,7 @@
 # e_pow.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_pow | :x: |
+| __ieee754_pow | :white_check_mark: |
 
 
 # e_rem_pio2.o
@@ -403,7 +403,7 @@
 # s_cos.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| cos | :x: |
+| cos | :white_check_mark: |
 
 
 # s_floor.o
