@@ -120,7 +120,7 @@ cos,s_cos.o,MSL_C.PPCEABI.bare.H.a,false
 floor,s_floor.o,MSL_C.PPCEABI.bare.H.a,true
 frexp,s_frexp.o,MSL_C.PPCEABI.bare.H.a,false
 ldexp,s_ldexp.o,MSL_C.PPCEABI.bare.H.a,true
-sin,s_sin.o,MSL_C.PPCEABI.bare.H.a,false
+sin,s_sin.o,MSL_C.PPCEABI.bare.H.a,true
 tan,s_tan.o,MSL_C.PPCEABI.bare.H.a,true
 acos,w_acos.o,MSL_C.PPCEABI.bare.H.a,true
 asin,w_asin.o,MSL_C.PPCEABI.bare.H.a,true
@@ -128,6 +128,6 @@ atan2,w_atan2.o,MSL_C.PPCEABI.bare.H.a,true
 fmod,w_fmod.o,MSL_C.PPCEABI.bare.H.a,true
 log10,w_log10.o,MSL_C.PPCEABI.bare.H.a,true
 pow,w_pow.o,MSL_C.PPCEABI.bare.H.a,true
-__ieee754_sqrt,e_sqrt.o,MSL_C.PPCEABI.bare.H.a,false
+__ieee754_sqrt,e_sqrt.o,MSL_C.PPCEABI.bare.H.a,true
 nan,math_ppc.o,MSL_C.PPCEABI.bare.H.a,true
 sqrt,w_sqrt.o,MSL_C.PPCEABI.bare.H.a,true

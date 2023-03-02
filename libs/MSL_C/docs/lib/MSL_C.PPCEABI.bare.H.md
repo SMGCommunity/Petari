@@ -55,7 +55,7 @@
 | s_floor.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_frexp.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | s_ldexp.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| s_sin.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| s_sin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | s_tan.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_acos.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_asin.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -63,7 +63,7 @@
 | w_fmod.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_log10.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_pow.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| e_sqrt.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| e_sqrt.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | math_ppc.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | w_sqrt.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 
@@ -427,7 +427,7 @@
 # s_sin.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| sin | :x: |
+| sin | :white_check_mark: |
 
 
 # s_tan.o
@@ -475,7 +475,7 @@
 # e_sqrt.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ieee754_sqrt | :x: |
+| __ieee754_sqrt | :white_check_mark: |
 
 
 # math_ppc.o
