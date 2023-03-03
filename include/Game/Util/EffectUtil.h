@@ -2,10 +2,16 @@
 
 #include <revolution.h>
 
+class ParticleEmitter;
 class LiveActor;
 class HitSensor;
 
 namespace MR {
+    namespace Effect {
+        void deleteParticleEmitter(ParticleEmitter *);
+        void setLinkSingleEmitter(ParticleEmitter *, SingleEmitter *);
+    };
+
     bool isExistEffectKeeper(const LiveActor *);
 
     bool isRegisteredEffect(const LiveActor *, const char *);
