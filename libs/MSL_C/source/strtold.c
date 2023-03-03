@@ -8,13 +8,13 @@
 extern double nan(const char *);
 extern double __dec2num(const decimal *);
 
-#define LDBL_MAX                    0x1.fffffffffffffP1023L
-#define LDBL_EPSILON                0x1.0000000000000P-52L
-#define LDBL_MIN                    0x1.0000000000000P-1022L
+#define LDBL_MAX					0x1.fffffffffffffP1023L
+#define LDBL_EPSILON				0x1.0000000000000P-52L
+#define LDBL_MIN					0x1.0000000000000P-1022L
 
 #define _MSL_SHRT_MAX				0x7FFF
 #define _MSL_USHRT_MAX				0x7FFF
-#define _MSL_SHRT_MIN               (~_MSL_SHRT_MAX)
+#define _MSL_SHRT_MIN				(~_MSL_SHRT_MAX)
 
 #define SHRT_MAX					_MSL_SHRT_MAX
 #define SHRT_MIN					_MSL_SHRT_MIN
@@ -38,7 +38,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 	long exp_value = 0;
 	int exp_adjust = 0;
 	register long double result = 0.0;
-	int sign_detected   = 0;
+	int sign_detected	= 0;
 	int radix_marker = *(unsigned char*)(__lconv).decimal_point;
 	
 	unsigned char*	chptr;
@@ -102,21 +102,21 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 				if((i == 3) || (i == 8)) {
 					if (sig_negative) {
 						result = -INFINITY;
-                        /* TODO -- I AM A HACK */
-                        __asm {
-                            frsp result, result
-                        };
-                    }
+						/* TODO -- I AM A HACK */
+						__asm {
+							frsp result, result
+						};
+					}
 					else {
 						result = INFINITY;
-                    }
+					}
 
 					*chars_scanned = spaces + i + sign_detected;
 					return result;
 				}
 				else {
 					scan_state = 4096;
-                }
+				}
 
 				break;
 			}
@@ -143,23 +143,23 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 						}
 						else {
 							j++;
-                        }
+						}
 					}
 					nan_arg[j] = '\0';
 						
 					if (sig_negative) {
 						result = -nan(nan_arg);
-                    }
+					}
 					else {
 						result = nan(nan_arg);
-                    }
+					}
 
 					*chars_scanned = spaces + i + j + sign_detected;
 					return result;
 				}
 				else {
 					scan_state = 4096;
-                }
+				}
 				break;
 			}
 
@@ -182,7 +182,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 					}
 					else {
 						scan_state = 4;
-                    }
+					}
 					break;
 				}
 
@@ -206,15 +206,15 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 					}
 					else {
 						scan_state = 64;
-                    }
+					}
 					break;
 				}
 				if (d.sig.length < 20) {
 					d.sig.text[d.sig.length++] = (unsigned char)c;
-                }
+				}
 				else {
 					exp_adjust++;
-                }
+				}
 
 				c = fetch();
 				break;
@@ -237,7 +237,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 				if (d.sig.length < 20) {
 					if ( c != '0' || d.sig.length) {
 						d.sig.text[d.sig.length++] = (unsigned char)c;
-                    }
+					}
 
 					exp_adjust--;
 				}
@@ -256,7 +256,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 			case 128:
 				if (c == '+') {
 					c = fetch();
-                }
+				}
 				else if (c == '-') {
 					c = fetch();
 					exp_negative = 1;
@@ -298,7 +298,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 				exp_value = exp_value*10 + (c - '0');
 				if (exp_value > SHRT_MAX) {
 					*overflow = 1;
-                }
+				}
 
 				c = fetch();
 				break;
@@ -308,9 +308,9 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 				switch(hex_scan_state) {
 					case 1:
 						memset(mantissa, 0, sizeof(mantissa));
-						chptr 			= mantissa;
+						chptr			= mantissa;
 						mantissa_digits = (53 + 3) / 4;
-						intdigits 		= 0;
+						intdigits		= 0;
 						NibbleIndex		= 0;
 						hex_scan_state = 2;
 						c = fetch();
@@ -334,7 +334,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 							else {
 								hex_scan_state = 16;
-                            }
+							}
 							break;
 						}
 
@@ -346,19 +346,19 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 							ui = toupper(c);
 							if (ui >= 'A') {
 								ui = ui - 'A' + 10;
-                            }
+							}
 							else {
 								ui -= '0';
-                            }
+							}
 
 							uch1 = (unsigned char)ui;
 
 							if ((NibbleIndex % 2) != 0) {
 								uch |= uch1;
-                            }
+							}
 							else {
 								uch |= (unsigned char)(uch1 << 4);
-                            }
+							}
 
 							*(chptr + NibbleIndex++ / 2) = uch;
 							c = fetch();
@@ -366,7 +366,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 						else {
 							c = fetch();
-                        }
+						}
 
 						break;
 					
@@ -382,26 +382,26 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 							if (ui >= 'A') {
 								ui = ui - 'A' + 10;
-                            }
+							}
 							else {
 								ui -= '0';
-                            }
+							}
 
 							uch1 = (unsigned char)ui;
 
 							if ((NibbleIndex % 2) != 0) {
 								uch |= uch1;
-                            }
+							}
 							else {
 								uch |= (unsigned char)(uch1 << 4);
-                            }
+							}
 
 							*(chptr + NibbleIndex++ / 2) = uch;
 							c = fetch();
 						}
 						else {
 							c = fetch();
-                        }
+						}
 						break;
 
 					case 16:
@@ -412,7 +412,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 						}
 						else {
 							scan_state = 2048;
-                        }
+						}
 
 						break;
 							
@@ -420,7 +420,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 						exp_digits++;
 						if (c == '-') {
 							expsign = 1;
-                        }
+						}
 						else if (c != '+') {
 							c = unfetch(c);
 							count--;
@@ -460,13 +460,13 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 						if (!isdigit(c)) {
 							scan_state = 2048;
 							break;
-                        }
+						}
 
 						exponent = exponent * 10 + (c - '0');
 
 						if (exp_value > SHRT_MAX) {
 							*overflow = 1;
-                        }
+						}
 
 						exp_digits++;
 						c = fetch();
@@ -493,37 +493,37 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 	if (hex_scan_state == 0) {
 		if (exp_negative) {
 			exp_value = -exp_value;
-        }
+		}
 
-        {
+		{
 			int n = d.sig.length;
 			unsigned char* p = &d.sig.text[n];
 			
 			while (n-- && *--p == '0') {
 				exp_adjust++;
-            }
+			}
 			
 			d.sig.length = (unsigned char)(n + 1);
 			
 			if (d.sig.length == 0) {
 				d.sig.text[d.sig.length++] = '0';
-            }
+			}
 		}
 		
 		exp_value += exp_adjust;
 		
 		if (exp_value < SHRT_MIN || exp_value > SHRT_MAX) {
 			*overflow = 1;
-        }
+		}
 		
 		if (*overflow) {
 			if (exp_negative) {
 				return 0.0;
-            }
+			}
 			else {
 				return sig_negative ? -HUGE_VAL : HUGE_VAL;
-            }
-        }
+			}
+		}
 		
 		d.exponent = (short) exp_value;
 		
@@ -534,12 +534,12 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 		}
 		else if (result > LDBL_MAX) {
 			*overflow = 1;
-			result    = HUGE_VAL;
+			result	  = HUGE_VAL;
 		} 
 		
 		if (sig_negative && success(scan_state)) {
 			result = -result;
-        }
+		}
 		
 		return result;
 	}
@@ -551,7 +551,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 		if (expsign) {
 			exponent = -exponent;
-        }
+		}
 
 		exponent += intdigits*4;
 		
@@ -585,7 +585,7 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 			if (mantissa_bit + 8 > 52) {
 				ui &= 0xff << (52 - mantissa_bit);
-            }
+			}
 			
 			halfbits = (dbl_bit & 7);
 			dbl_bits[dbl_bit>>3] |= (unsigned char)(ui >> halfbits);
@@ -606,19 +606,19 @@ long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* Re
 
 		if (11 > 7) {
 			dbl_bits[1] |= exponent >> 17;
-        }
+		}
 
 		if (11 > 15) {
 			dbl_bits[2] |= exponent >> 9;
-        }
+		}
 
 		if (11 > 23) {
 			dbl_bits[3] |= exponent >> 1;
-        }
+		}
 	
 		if (sig_negative) {
 			dbl_bits[0] |= 0x80;
-        }
+		}
 
 		result = *(long double *)dbl_bits;
 		
