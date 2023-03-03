@@ -17,17 +17,17 @@
 | direct_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | file_io.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | FILE_POS.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| mbstring.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| mbstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | mem.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | printf.o | 16.867989646246766% | 5 / 15 | 33.33333333333333% | :eight_pointed_black_star: 
-| scanf.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| scanf.o | 6.564885496183207% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| strtoul.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| strtoul.o | 86.29518072289156% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
 | wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -143,11 +143,11 @@
 # mbstring.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| mbtowc | :x: |
-| __mbtowc_noconv | :x: |
-| __wctomb_noconv | :x: |
-| mbstowcs | :x: |
-| wcstombs | :x: |
+| mbtowc | :white_check_mark: |
+| __mbtowc_noconv | :white_check_mark: |
+| __wctomb_noconv | :white_check_mark: |
+| mbstowcs | :white_check_mark: |
+| wcstombs | :white_check_mark: |
 
 
 # mem.o
@@ -207,8 +207,8 @@
 | ------------- | ------------- |
 | parse_format | :x: |
 | __sformatter | :x: |
-| __StringRead | :x: |
-| sscanf | :x: |
+| __StringRead | :white_check_mark: |
+| sscanf | :white_check_mark: |
 
 
 # signal.o
@@ -239,8 +239,8 @@
 # strtoul.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __strtoul | :x: |
-| __strtoull | :x: |
+| __strtoul | :white_check_mark: |
+| __strtoull | :white_check_mark: |
 | strtoul | :x: |
 | atoi | :x: |
 

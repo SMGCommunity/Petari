@@ -1,6 +1,13 @@
 #ifndef LOCALE_H
 #define LOCALE_H
 
+#include "ansi_params.h"
+#include "size_t.h"
+#include "wchar_io.h"
+
+typedef int (* __decode_mbyte) (wchar_t *, const char *,  __std(size_t));
+typedef int (* __encode_mbyte) (char *, wchar_t);
+
 struct _loc_coll_cmpt {
     char name[8];
     int char_start;
@@ -11,10 +18,15 @@ struct _loc_coll_cmpt {
 };
 
 struct _loc_ctype_cmpt {
-    char name[8];
-    const unsigned short* ctype_map_ptr;
-    const unsigned char* upper_map_ptr;
-    const unsigned char* lower_map_ptr;
+    char name[8];                               // _0
+    const unsigned short* ctype_map_ptr;        // _8
+    const unsigned char* upper_map_ptr;         // _C
+    const unsigned char* lower_map_ptr;         // _10
+    const unsigned short* wctype_map_ptr;       // _14
+    const wchar_t* wupper_map_ptr;              // _18
+    const wchar_t* wlower_map_ptr;              // _1C
+    __decode_mbyte  decode_mb;
+    __encode_mbyte  encode_wc;
 };
 
 struct __locale {
