@@ -27,7 +27,7 @@
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| strtoul.o | 86.29518072289156% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
+| strtoul.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
@@ -241,8 +241,8 @@
 | ------------- | ------------- |
 | __strtoul | :white_check_mark: |
 | __strtoull | :white_check_mark: |
-| strtoul | :x: |
-| atoi | :x: |
+| strtoul | :white_check_mark: |
+| atoi | :white_check_mark: |
 
 
 # wmem.o

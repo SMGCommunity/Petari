@@ -74,8 +74,8 @@ strstr,string.o,MSL_C.PPCEABI.bare.H.a,true
 __strtold,strtold.o,MSL_C.PPCEABI.bare.H.a,false
 __strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 __strtoull,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
-strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,false
-atoi,strtoul.o,MSL_C.PPCEABI.bare.H.a,false
+strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
+atoi,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 wmemcpy,wmem.o,MSL_C.PPCEABI.bare.H.a,false
 wmemchr,wmem.o,MSL_C.PPCEABI.bare.H.a,false
 parse_format,wprintf.o,MSL_C.PPCEABI.bare.H.a,false

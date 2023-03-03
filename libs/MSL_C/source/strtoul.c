@@ -1,10 +1,11 @@
 #include "stdio_api.h"
 #include <cctype>
+#include <cerrno>
 
 #define final_state(scan_state)	(scan_state & (0x20 | 0x40))
 #define success(scan_state) (scan_state & (0x4 | 0x10 | 0x20))
 #define fetch() (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))
-#define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar)	
+#define unfetch(c) (*ReadProc)(ReadProcArg, c, __UngetAChar)
 
 unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg, int* chars_scanned, int* negative, int* overflow) {
     int scan_state = 1;
@@ -281,7 +282,7 @@ unsigned long long __strtoull(int base, int max_width, int (*ReadProc)(void *, i
     return value;
 }
 
-/*
+
 unsigned long strtoul(const char *str, char **end, int base) {
     unsigned long value;
     int count, negative, overflow;
@@ -290,6 +291,52 @@ unsigned long strtoul(const char *str, char **end, int base) {
     isc.NextChar = (char*)str;
     isc.NullCharDetected = 0;
 
-    value = __strtoul(base, 0xFFFFFFFF, )
+    value = __strtoul(base, 0x7FFFFFFF, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+
+    if (end) {
+        *end = (char*)str + count;
+    }
+
+    if (overflow) {
+        value = 0xFFFFFFFF;
+        errno = 0x22;
+    }
+    else if (negative) {
+        value = -value;
+    }
+
+    return value;
 }
-*/
+
+#define LONG_MIN (-2147483647L - 1)
+#define LONG_MAX 2147483647L
+
+inline long strtol(const char *str, char **end, int base) {
+    unsigned long uvalue;
+    long svalue;
+    int count, negative, overflow;
+
+    __InStrCtrl isc;
+    isc.NextChar = (char*)str;
+    isc.NullCharDetected = 0;
+
+    uvalue = __strtoul(base, 0x7FFFFFFF, &__StringRead, (void*)&isc, &count, &negative, &overflow);
+
+    if (end) {
+        *end = (char*)str + count;
+    }
+
+    if (overflow || (!negative && uvalue > LONG_MAX) || (negative && uvalue > -LONG_MIN)) {
+        svalue = (negative ? -LONG_MIN : LONG_MAX);
+        errno = 0x22;
+    }
+    else {
+        svalue = (negative ? (long)-uvalue : (long)uvalue);
+    }
+
+    return svalue;
+}
+
+int atoi(const char *str) {
+    return (strtol(str, 0, 10));
+}
