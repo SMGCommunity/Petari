@@ -71,7 +71,7 @@ strncmp,string.o,MSL_C.PPCEABI.bare.H.a,true
 strchr,string.o,MSL_C.PPCEABI.bare.H.a,true
 strrchr,string.o,MSL_C.PPCEABI.bare.H.a,true
 strstr,string.o,MSL_C.PPCEABI.bare.H.a,true
-__strtold,strtold.o,MSL_C.PPCEABI.bare.H.a,false
+__strtold,strtold.o,MSL_C.PPCEABI.bare.H.a,true
 __strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 __strtoull,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true

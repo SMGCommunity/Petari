@@ -26,7 +26,7 @@
 | scanf.o | 6.564885496183207% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
-| strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| strtold.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | strtoul.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | wmem.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
@@ -233,7 +233,7 @@
 # strtold.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __strtold | :x: |
+| __strtold | :white_check_mark: |
 
 
 # strtoul.o

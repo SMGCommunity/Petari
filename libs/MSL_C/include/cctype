@@ -16,6 +16,10 @@ inline int isspace(int c) {
     return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->ctype_map_ptr[c] & 0x100); 
 }
 
+inline int isxdigit(int c) { 
+    return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->ctype_map_ptr[c] & 0x400); 
+}
+
 inline int toupper(int c) {
     return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->upper_map_ptr[c]);
 }
