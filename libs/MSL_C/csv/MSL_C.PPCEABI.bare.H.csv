@@ -76,8 +76,8 @@ __strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 __strtoull,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 strtoul,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
 atoi,strtoul.o,MSL_C.PPCEABI.bare.H.a,true
-wmemcpy,wmem.o,MSL_C.PPCEABI.bare.H.a,false
-wmemchr,wmem.o,MSL_C.PPCEABI.bare.H.a,false
+wmemcpy,wmem.o,MSL_C.PPCEABI.bare.H.a,true
+wmemchr,wmem.o,MSL_C.PPCEABI.bare.H.a,true
 parse_format,wprintf.o,MSL_C.PPCEABI.bare.H.a,false
 long2str,wprintf.o,MSL_C.PPCEABI.bare.H.a,false
 longlong2str,wprintf.o,MSL_C.PPCEABI.bare.H.a,false

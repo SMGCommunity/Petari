@@ -28,7 +28,7 @@
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | strtoul.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| wmem.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| wmem.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -248,8 +248,8 @@
 # wmem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| wmemcpy | :x: |
-| wmemchr | :x: |
+| wmemcpy | :white_check_mark: |
+| wmemchr | :white_check_mark: |
 
 
 # wprintf.o
