@@ -527,9 +527,7 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 	return p;
 }
 
-
-#ifdef NON_MATCHING
-/*static*/ char * double2hex(long double num, char * buff, print_format format)  {
+char * double2hex(long double num, char * buff, print_format format)  {
 	char *p;	
 	unsigned char *q;
 	unsigned char working_byte;
@@ -607,8 +605,8 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 	exp_format.precision = 1;
 	exp_format.conversion_char = 'd';
 
-	expbits = 6;
-	expmask = 255;
+	expbits = 11;
+	expmask = 0x7FF;
 
 	snum = ((unsigned char *)&num)[0] << 25;
 	if (TARGET_FLOAT_EXP_BITS > 7)
@@ -619,7 +617,7 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 		snum |= ((unsigned char *)&num)[3] << 1;
 
 	snum	= (snum >> (32 - expbits)) & expmask;
-	exp		= snum - 127;
+	exp		= snum - 0x3FF;
 
 	p = long2str(exp, buff, exp_format);
 	if (format.conversion_char == 'a')
@@ -635,7 +633,7 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 	
 	for (hex_precision = format.precision; hex_precision >= 1; hex_precision--)
 	{
-		if (mantissa_bit < 32)
+		if (mantissa_bit < 64)
 		{
 			int mantissa_byte;
 			
@@ -688,7 +686,6 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 
 	return p;
 }
-#endif
 
 int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list) {
 	return 0;
