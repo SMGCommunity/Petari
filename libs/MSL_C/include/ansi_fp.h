@@ -1,6 +1,8 @@
 #ifndef ANSI_FP
 #define ANSI_FP
 
+#pragma options align=native
+
 typedef struct decimal {
     char sign;
     char _1;
@@ -18,5 +20,10 @@ typedef struct decform {
     char _1;
     short digits;
 } decform;
+
+void __num2dec(const decform *, double, decimal *);
+double __dec2num(const decimal *);
+
+#pragma options align=reset
 
 #endif // ANSI_FP

@@ -61,7 +61,9 @@ class FunctionLibrary:
                 address = int(number_split[4], 16)
                 size = int(number_split[3], 16)
 
-                self.functions[symbol] = (address, size)
+                obj_file = line_split[1].split("~")[1]
+
+                self.functions[symbol] = (address, size, obj_file)
 
     def save(self):
         for library, symbols in self.libraries.items():
@@ -104,7 +106,7 @@ class FunctionLibrary:
 
         return None
 
-    def get_address_from_symbol(self, symbol):
+    def get_address_from_symbol(self, symbol, obj_file):
         if symbol in self.functions:
             return self.functions[symbol][0]
 
@@ -116,6 +118,12 @@ class FunctionLibrary:
 
         return None
 
+    def get_obj_from_symbol(self, symbol):
+        if symbol in self.functions:
+            return self.functions[symbol][2]
+
+        return None
+
     def get_symbols_marked_as_decompiled(self):
         for symbols in self.libraries.values():
             for (symbol, obj_file), values in symbols.items():
@@ -123,8 +131,9 @@ class FunctionLibrary:
                     yield (symbol, obj_file)
 
 def print_help_and_exit():
-    print("Usage: check.py [mangled_symbol] [flags...]")
+    print("Usage: check.py [mangled_symbol] [parent_obj] [flags...]")
     print("\t[mangled_symbol]: name of the symbol that should be checked.")
+    print("\t[parent_obj]: the name of the object file the symbol is contained in. only used if there are multiple objs with the same symbol.")
     print("\t[-all]: run checks on all functions which has been marked as decompiled.")
     print("\t[-compare]: compares decompiled functions.")
     print("\t[-help]: displays this help text.")
@@ -212,8 +221,6 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
 
     library = function_library.get_library_from_symbol(mangled_symbol, obj_name)
 
-    print(library)
-
     if library == None:
         print("Could not find library of symbol.")
         return False
@@ -250,7 +257,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         custom_data = text.data()[custom_offset:custom_offset + custom_size]
 
         # Get original code
-        original_address = function_library.get_address_from_symbol(mangled_symbol)
+        original_address = function_library.get_address_from_symbol(mangled_symbol, obj_name)
         original_size = function_library.get_size_from_symbol(mangled_symbol)
 
         if original_address == None or original_size == None:
@@ -421,6 +428,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         return passed
 
 mangled_symbol = None
+parent_obj = None
 check_all = False
 compare = False
 show_hints = True
@@ -451,6 +459,8 @@ for i in range(1, len(sys.argv)):
         readonly = True
     elif mangled_symbol == None:
         mangled_symbol = arg
+    elif parent_obj == None:
+        parent_obj = arg
     else:
         print(f"Invalid argument: {arg}")
         print()
@@ -553,8 +563,16 @@ if mangled_symbol != None:
         print("Could not find any .o files for the specified symbol.")
         sys.exit(1)
     elif len(obj_names) > 1:
-        print("There are multiple .o files found for the specified symbol. This is currently not supported by the script.")
-        sys.exit(1)
+        if parent_obj is not None:
+            if parent_obj in obj_names:
+                obj_names[0] = parent_obj
+                print(obj_names[0])
+            else:
+                print("There are multiple .o files found for the specified symbol, and the object specified is not found.")
+                sys.exit(1)     
+        else:
+            print("There are multiple .o files found for the specified symbol. Please specify the parent object of this symbol.")
+            sys.exit(1)
 
     check_symbol(function_library, mangled_symbol, obj_names[0], readonly)
 

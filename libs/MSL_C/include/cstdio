@@ -10,7 +10,7 @@ extern "C" {
 #include "file_struct.h"
 
 int sprintf(char *pStr, const char *pFormat, ...);
-int snprintf(char *pStr, unsigned int n, const char *pFormat, ...);
+int snprintf(char *pStr, size_t n, const char *pFormat, ...);
 int vprintf(const char *, va_list);
 
 int sscanf(const char *, const char *, ...);

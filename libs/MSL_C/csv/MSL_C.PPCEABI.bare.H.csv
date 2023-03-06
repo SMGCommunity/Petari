@@ -43,7 +43,7 @@ __fpclassifyf,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __signbitd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __fpclassifyd,math_api.o,MSL_C.PPCEABI.bare.H.a,true
 __stdio_atexit,misc_io.o,MSL_C.PPCEABI.bare.H.a,true
-parse_format,printf.o,MSL_C.PPCEABI.bare.H.a,false
+parse_format,printf.o,MSL_C.PPCEABI.bare.H.a,true
 long2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
 longlong2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
 double2hex,printf.o,MSL_C.PPCEABI.bare.H.a,false
@@ -52,12 +52,12 @@ float2str,printf.o,MSL_C.PPCEABI.bare.H.a,false
 __pformatter,printf.o,MSL_C.PPCEABI.bare.H.a,false
 __FileWrite,printf.o,MSL_C.PPCEABI.bare.H.a,true
 __StringWrite,printf.o,MSL_C.PPCEABI.bare.H.a,true
-fprintf,printf.o,MSL_C.PPCEABI.bare.H.a,false
+fprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 vprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
-vsnprintf,printf.o,MSL_C.PPCEABI.bare.H.a,false
-vsprintf,printf.o,MSL_C.PPCEABI.bare.H.a,false
-snprintf,printf.o,MSL_C.PPCEABI.bare.H.a,false
-sprintf,printf.o,MSL_C.PPCEABI.bare.H.a,false
+vsnprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
+vsprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
+snprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
+sprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 parse_format,scanf.o,MSL_C.PPCEABI.bare.H.a,false
 __sformatter,scanf.o,MSL_C.PPCEABI.bare.H.a,false
 __StringRead,scanf.o,MSL_C.PPCEABI.bare.H.a,true

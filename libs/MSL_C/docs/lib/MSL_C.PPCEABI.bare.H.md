@@ -22,7 +22,7 @@
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| printf.o | 16.867989646246766% | 5 / 15 | 33.33333333333333% | :eight_pointed_black_star: 
+| printf.o | 42.23468507333909% | 11 / 15 | 73.33333333333333% | :eight_pointed_black_star: 
 | scanf.o | 6.564885496183207% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
@@ -185,7 +185,7 @@
 # printf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| parse_format | :x: |
+| parse_format | :white_check_mark: |
 | long2str | :white_check_mark: |
 | longlong2str | :white_check_mark: |
 | double2hex | :x: |
@@ -194,12 +194,12 @@
 | __pformatter | :x: |
 | __FileWrite | :white_check_mark: |
 | __StringWrite | :white_check_mark: |
-| fprintf | :x: |
+| fprintf | :white_check_mark: |
 | vprintf | :white_check_mark: |
-| vsnprintf | :x: |
-| vsprintf | :x: |
-| snprintf | :x: |
-| sprintf | :x: |
+| vsnprintf | :white_check_mark: |
+| vsprintf | :white_check_mark: |
+| snprintf | :white_check_mark: |
+| sprintf | :white_check_mark: |
 
 
 # scanf.o
