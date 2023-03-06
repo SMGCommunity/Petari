@@ -3,7 +3,7 @@
 
 #include "ansi_params.h"
 #include "size_t.h"
-#include "wchar_t.h"
+//#include "wchar_t.h"
 
 enum file_kinds {
     file_closed,

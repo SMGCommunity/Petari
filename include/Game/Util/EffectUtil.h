@@ -5,6 +5,7 @@
 class ParticleEmitter;
 class LiveActor;
 class HitSensor;
+class SingleEmitter;
 
 namespace MR {
     namespace Effect {
