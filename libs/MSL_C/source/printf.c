@@ -690,7 +690,9 @@ char* longlong2str(long long num, char *pBuf, print_format fmt) {
 }
 #endif
 
-extern int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list);
+int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list) {
+	return 0;
+}
 
 void* __FileWrite(void *pFile, const char *pBuffer, size_t char_num) {
     return (__fwrite(pBuffer, 1, char_num, (FILE*)pFile) == char_num ? pFile : 0);

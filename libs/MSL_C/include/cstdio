@@ -7,7 +7,8 @@ extern "C" {
 
 #include <va_list.h>
 #include <cstring>
-#include "file_struct.h"
+
+typedef struct FILE;
 
 int sprintf(char *pStr, const char *pFormat, ...);
 int snprintf(char *pStr, size_t n, const char *pFormat, ...);
