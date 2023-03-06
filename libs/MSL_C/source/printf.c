@@ -626,65 +626,133 @@ char * double2hex(long double num, char * buff, print_format format)  {
 		*--p = 'P';
 	q = (unsigned char *)&num;
 
-	if (TARGET_FLOAT_IMPLICIT_J_BIT)
+	if (TARGET_FLOAT_IMPLICIT_J_BIT) {
 		mantissa_bit = (1 + expbits + format.precision * 4) - 1;
-	else
+	}
+	else {
 		mantissa_bit = (1 + expbits + format.precision * 4) - 4;
+	}
 	
-	for (hex_precision = format.precision; hex_precision >= 1; hex_precision--)
-	{
-		if (mantissa_bit < 64)
-		{
+	for (hex_precision = format.precision; hex_precision >= 1; hex_precision--) {
+		if (mantissa_bit < 64) {
 			int mantissa_byte;
 			
 			mantissa_byte = mantissa_bit >> 3;
 			working_byte = (*(q + mantissa_byte)) >> (7 - (mantissa_bit & 7));
 
-			if ((mantissa_bit & ~7) != ((mantissa_bit - 4) & ~7))
+			if ((mantissa_bit & ~7) != ((mantissa_bit - 4) & ~7)) {
 				working_byte |= ((*(q + (mantissa_byte - 1))) << 8) >> (7 - ((mantissa_bit) & 7));
+			}
 
 			if (!TARGET_FLOAT_IMPLICIT_J_BIT) {
-				if (mantissa_bit == 1 + expbits)
-				{
+				if (mantissa_bit == 1 + expbits) {
 					*--p = radix_marker;							
 					working_byte &= 0x1;
 				}
 			}
 			
-			if ((working_byte &= 0x0f) < 10)
+			if ((working_byte &= 0xF) < 10) {
 				working_byte += '0';
+			}
 			else
-				if (format.conversion_char == 'a')
+				if (format.conversion_char == 'a') {
 					working_byte += 'a' - 10;
-				else
+				}
+				else {
 					working_byte += 'A' - 10;
+				}
 		}
-		else
-			working_byte = '0'; 
+		else {
+			working_byte = '0';
+		} 
 
 		*--p = working_byte;
 		mantissa_bit -= 4;
 	}
 	
-	if (TARGET_FLOAT_IMPLICIT_J_BIT)
-	{
-		if (format.precision || format.alternate_form)
+	if (TARGET_FLOAT_IMPLICIT_J_BIT){
+		if (format.precision || format.alternate_form) {
 			*--p = radix_marker;
+		}
+
 		*--p = '1'; 
 	}
-	if (format.conversion_char == 'a')
+
+	if (format.conversion_char == 'a') {
 		*--p = 'x';
-	else
+	}
+	else {
 		*--p = 'X';
+	}
+
 	*--p = '0';
-	if (dec.sign)
+
+	if (dec.sign) {
 		*--p = '-';
-	else if (format.sign_options == 1)
+	}
+	else if (format.sign_options == 1) {
 		*--p = '+';
-	else if (format.sign_options == 2)
+	}
+	else if (format.sign_options == 2) {
 		*--p = ' ';
+	}
 
 	return p;
+}
+
+void round_decimal(decimal *dec, int new_length) {
+	char c;
+	char* p;
+	int carry;
+
+	if (new_length < 0) {
+return_zero:
+		dec->exponent = 0;
+		dec->sig.length = 1;
+		*dec->sig.text = '0';
+		return;
+	}
+
+	if (new_length >= dec->sig.length) {
+		return;
+	}
+
+	p = (char*)dec->sig.text + new_length + 1;
+	c = *--p - '0';
+
+	if (c == 5) {
+		char* q = &((char*)dec->sig.text)[dec->sig.length];
+
+		while (--q > p && *q == '0');
+		carry = (q == p) ? p[-1] & 1 : 1;
+	}
+	else {
+		carry = (c > 5);
+	}
+
+	while (new_length != 0) {
+		c = *--p - '0' + carry;
+
+		if ((carry = (c > 9)) != 0 || c == 0) {
+			--new_length;
+		}
+		else {
+			*p  = c + '0';
+			break;
+		}
+	}
+
+	if (carry != 0) {
+		dec->exponent += 1;
+		dec->sig.length = 1;
+		*dec->sig.text = '1';
+		return;
+	}
+	else if (new_length == 0) {
+		goto return_zero;
+	}
+
+	dec->sig.length = new_length;
 }
 
 int __pformatter(void *(*WriteProc)(void *, const char *, size_t), void *, const char *, va_list) {
