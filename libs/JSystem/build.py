@@ -45,9 +45,10 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
     includes = "-i . -I- -i include "
 
+    msl_path =          pathlib.Path("../MSL_C/include")
     rvl_path =          pathlib.Path("../RVL_SDK/include")
     runtime_path =      pathlib.Path("../Runtime/include")
-    includes += f"-i {rvl_path } -i {runtime_path} "
+    includes += f"-i {msl_path} -i {rvl_path } -i {runtime_path} "
     flags += includes
 
     default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")

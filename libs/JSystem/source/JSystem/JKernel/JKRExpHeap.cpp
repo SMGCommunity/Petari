@@ -1,5 +1,5 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include <new.h>
+#include <new>
 
 JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     JKRExpHeap* heap = nullptr;

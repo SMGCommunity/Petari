@@ -53,7 +53,7 @@ void *JKRArchive::getResource(const char *pName) {
 void *JKRArchive::getResource(unsigned long a1, const char *pName) {
     SDIFileEntry *file;
 
-    if (a1 == nullptr_MAGIC || a1 == QUESTIONMARK_MAGIC) {
+    if (a1 == NULL_MAGIC || a1 == QUESTIONMARK_MAGIC) {
         file = findNameResource(pName);
     }
     else {
@@ -90,7 +90,7 @@ u32 JKRArchive::readResource(void *a1, unsigned long a2, const char *pName) {
 u32 JKRArchive::readResource(void *a1, unsigned long a2, unsigned long a3, const char *pName) {
     SDIFileEntry *file;
 
-    if (a3 == nullptr_MAGIC || a3 == QUESTIONMARK_MAGIC) {
+    if (a3 == NULL_MAGIC || a3 == QUESTIONMARK_MAGIC) {
         file = findNameResource(pName);
     }
     else {
