@@ -48,8 +48,8 @@ long2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
 longlong2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
 double2hex,printf.o,MSL_C.PPCEABI.bare.H.a,true
 round_decimal,printf.o,MSL_C.PPCEABI.bare.H.a,true
-float2str,printf.o,MSL_C.PPCEABI.bare.H.a,false
-__pformatter,printf.o,MSL_C.PPCEABI.bare.H.a,false
+float2str,printf.o,MSL_C.PPCEABI.bare.H.a,true
+__pformatter,printf.o,MSL_C.PPCEABI.bare.H.a,true
 __FileWrite,printf.o,MSL_C.PPCEABI.bare.H.a,true
 __StringWrite,printf.o,MSL_C.PPCEABI.bare.H.a,true
 fprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true

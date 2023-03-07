@@ -22,7 +22,7 @@
 | mem_funcs.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| printf.o | 55.86712683347713% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 
+| printf.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | scanf.o | 6.564885496183207% | 2 / 4 | 50.0% | :eight_pointed_black_star: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
@@ -190,8 +190,8 @@
 | longlong2str | :white_check_mark: |
 | double2hex | :white_check_mark: |
 | round_decimal | :white_check_mark: |
-| float2str | :x: |
-| __pformatter | :x: |
+| float2str | :white_check_mark: |
+| __pformatter | :white_check_mark: |
 | __FileWrite | :white_check_mark: |
 | __StringWrite | :white_check_mark: |
 | fprintf | :white_check_mark: |

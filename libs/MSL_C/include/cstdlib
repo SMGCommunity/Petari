@@ -1,6 +1,9 @@
 #ifndef CSTDLIB_H
 #define CSTDLIB_H
 
+#include "size_t.h"
+#include "wchar_t.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -10,6 +13,8 @@ void free(void *);
 int abs(int);
 
 void abort(void);
+
+size_t wcstombs(char *, const wchar_t *, size_t);
 
 #ifdef __cplusplus
 }
