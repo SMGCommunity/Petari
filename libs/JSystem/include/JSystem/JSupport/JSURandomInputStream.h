@@ -21,4 +21,6 @@ public:
     virtual s32 getLength() const = 0;
     virtual s32 getPosition() const = 0;
     virtual s32 seekPos(s32, JSUStreamSeekFrom) = 0;
+
+    s32 seek(s32, JSUStreamSeekFrom);
 };

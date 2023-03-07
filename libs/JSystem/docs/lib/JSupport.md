@@ -9,9 +9,9 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | JSUList.o | 89.61538461538461% | 9 / 10 | 90.0% | :eight_pointed_black_star: 
-| JSUInputStream.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| JSUInputStream.o | 46.22641509433962% | 2 / 5 | 40.0% | :eight_pointed_black_star: 
 | JSUOutputStream.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| JSUMemoryStream.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| JSUMemoryStream.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | JSUFileStream.o | 0.0% | 0 / 5 | 0.0% | :x: 
 
 
@@ -33,9 +33,9 @@
 # JSUInputStream.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| read__14JSUInputStreamFPvl | :x: |
+| read__14JSUInputStreamFPvl | :white_check_mark: |
 | skip__14JSUInputStreamFl | :x: |
-| skip__20JSURandomInputStreamFl | :x: |
+| skip__20JSURandomInputStreamFl | :white_check_mark: |
 | seek__20JSURandomInputStreamFl17JSUStreamSeekFrom | :x: |
 | setState__10JSUIosBaseFQ210JSUIosBase8EIoState | :x: |
 
@@ -52,15 +52,15 @@
 # JSUMemoryStream.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| setBuffer__20JSUMemoryInputStreamFPCvl | :x: |
-| readData__20JSUMemoryInputStreamFPvl | :x: |
-| seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom | :x: |
-| setBuffer__21JSUMemoryOutputStreamFPvl | :x: |
-| writeData__21JSUMemoryOutputStreamFPCvl | :x: |
-| seekPos__21JSUMemoryOutputStreamFl17JSUStreamSeekFrom | :x: |
-| getLength__21JSUMemoryOutputStreamCFv | :x: |
-| getPosition__20JSUMemoryInputStreamCFv | :x: |
-| getLength__20JSUMemoryInputStreamCFv | :x: |
+| setBuffer__20JSUMemoryInputStreamFPCvl | :white_check_mark: |
+| readData__20JSUMemoryInputStreamFPvl | :white_check_mark: |
+| seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom | :white_check_mark: |
+| setBuffer__21JSUMemoryOutputStreamFPvl | :white_check_mark: |
+| writeData__21JSUMemoryOutputStreamFPCvl | :white_check_mark: |
+| seekPos__21JSUMemoryOutputStreamFl17JSUStreamSeekFrom | :white_check_mark: |
+| getLength__21JSUMemoryOutputStreamCFv | :white_check_mark: |
+| getPosition__20JSUMemoryInputStreamCFv | :white_check_mark: |
+| getLength__20JSUMemoryInputStreamCFv | :white_check_mark: |
 
 
 # JSUFileStream.o
