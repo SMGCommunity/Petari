@@ -9,5 +9,5 @@
 | [JKernel](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JKernel.md) | 16.896441167040717% |
 | [JMath](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JMath.md) | 0.0% |
 | [JParticle](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JParticle.md) | 0.0% |
-| [JSupport](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JSupport.md) | 32.04951856946355% |
+| [JSupport](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JSupport.md) | 57.63411279229711% |
 | [JUtility](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JUtility.md) | 4.0283311199645855% |

@@ -51,7 +51,7 @@ class FunctionLibrary:
             self.libraries[library] = symbols
 
         # Load addresses from symbol map
-        with open("data/map_for_dol.map", "r") as input:
+        with open("../../data/map_for_dol.map", "r") as input:
             for line in input:
                 line_split = line.rstrip().split("=")
 
