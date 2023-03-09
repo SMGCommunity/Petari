@@ -16,10 +16,10 @@ s32 JSURandomInputStream::skip(s32 amount) {
     return read;
 }
 
-// Not sure how to match the state setting.
-// s32 JSURandomInputStream::seek(s32 offset, JSUStreamSeekFrom whence) {
-//     s32 read = seekPos(offset, whence);
-//     // mState = 1 - (mState & ~IO_ERROR);
-//     mState = (mState & ~IO_ERROR) ? IO_OK : IO_ERROR;
-//     return read;
-// }
+#ifdef NON_MATCHING
+s32 JSURandomInputStream::seek(s32 offset, JSUStreamSeekFrom whence) {
+    s32 read = seekPos(offset, whence);
+    mState = (mState & 0x1) != 0;
+    return read;
+}
+#endif

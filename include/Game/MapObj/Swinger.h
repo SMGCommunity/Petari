@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include <JGeometry.h>
+#include <JSystem/JGeometry.h>
 
 class Swinger {
 public:

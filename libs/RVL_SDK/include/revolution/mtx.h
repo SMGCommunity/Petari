@@ -43,6 +43,8 @@ u32 PSMTXInverse(const Mtx, Mtx);
 
 void PSMTXMultVec(const Mtx, const Vec *, Vec *);
 
+void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
+
 /* C Vector */
 
 f32 C_VECMag(const Vec *);

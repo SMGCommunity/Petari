@@ -25,5 +25,9 @@ public:
 
     void setState(EIoState);
 
-    u8 mState; // _4
+    void clearState(EIoState state) {
+        mState &= ~state;
+    }
+
+    s8 mState; // _4
 };

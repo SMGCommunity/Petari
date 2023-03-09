@@ -156,7 +156,7 @@
 | [LavaSteam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaSteam.md) | 0.0% | 0 / 22 | 0.0% | :x: 
 | [LavaStrangeRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaStrangeRock.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [LotusLeaf.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LotusLeaf.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [MagicBell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MagicBell.md) | 0.0% | 0 / 15 | 0.0% | :x: 
+| [MagicBell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MagicBell.md) | 40.23494860499266% | 11 / 15 | 73.33333333333333% | :eight_pointed_black_star: 
 | [ManholeCover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ManholeCover.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [MapObjActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MapObjActor.md) | 61.95652173913043% | 58 / 59 | 98.30508474576271% | :eight_pointed_black_star: 
 | [MapObjActorInitInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MapObjActorInitInfo.md) | 22.48062015503876% | 11 / 37 | 29.72972972972973% | :eight_pointed_black_star: 

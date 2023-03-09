@@ -38,4 +38,6 @@ namespace MR {
     void emitEffectHitBetweenSensors(LiveActor *, const HitSensor *, const HitSensor *, f32, const char *);
 
     void initEffectAfterPlacement(LiveActor *);
+
+    void setEffectHostSRT(LiveActor *, const char *, const TVec3f *, const TVec3f *, const TVec3f *);
 };
