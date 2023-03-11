@@ -3,6 +3,37 @@
 #include "ctype.h"
 #include "wctype.h"
 
+#pragma options align=native
+#pragma warn_padding off
+struct lconv __lconv = {
+    ".",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    "",
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127
+};
+#pragma warn_padding reset
+#pragma options align=reset
+
 struct _loc_ctype_cmpt _loc_ctyp_C = {
     "C",
     &__ctype_mapC[0],
