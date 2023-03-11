@@ -36,6 +36,50 @@ struct lconv {
     wchar_t* _W_negative_sign;
 };
 
+struct _loc_mon_cmpt {
+    char CmptName[8];
+    char* mon_decimal_point;
+    char* mon_thousands_sep;
+    char* mon_grouping;
+    char* positive_sign;
+    char* negative_sign;
+    char* currency_symbol;
+    char frac_digits;
+    char p_cs_precedes;
+    char n_cs_precedes;
+    char p_sep_by_space;
+    char n_sep_by_space;
+    char p_sign_posn;
+    char n_sign_posn;
+    char* int_curr_symbol;
+    char int_frac_digits;
+    char int_p_cs_precedes; 
+    char int_n_cs_precedes; 
+    char int_p_sep_by_space; 
+    char int_n_sep_by_space; 
+    char int_p_sign_posn; 
+    char int_n_sign_posn; 
+};
+
+struct _loc_num_cmpt {
+    char CmptName[8];
+    char* decimal_point;
+    char* thousands_sep;
+    char* grouping;
+};
+
+struct _loc_time_cmpt {
+    char CmptName[8];
+    char* am_pm;
+    char* DateTime_Format;
+    char* Twelve_hr_format;
+    char* Date_Format;
+    char* Time_Format;
+    char* Day_Names;
+    char* MonthNames;
+    char* TimeZone;
+};
+
 struct _loc_coll_cmpt {
     char name[8];
     int char_start;
@@ -62,6 +106,9 @@ struct __locale {
     char name[0x30];                            // _4
     struct _loc_coll_cmpt* coll_cmpt_ptr;       // _34
     struct _loc_ctype_cmpt* ctype_cmpt_ptr;     // _38
+    struct _loc_mon_cmpt* mon_cmpt_ptr;         // _3C
+	struct _loc_num_cmpt* num_cmpt_ptr;         // _40
+	struct _loc_time_cmpt* time_cmpt_ptr;       // _44
 };
 
 extern struct __locale _current_locale;

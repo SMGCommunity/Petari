@@ -8,42 +8,42 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mainloop.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubevent.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubinit.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msg.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msgbuf.o | 0.0% | 0 / 14 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\serpoll.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\usr_put.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\dispatch.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msghndlr.o | 0.0% | 0 / 16 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\support.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mutex_TRK.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\notify.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\flush_cache.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mem_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\string_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\targimpl.o | 0.0% | 0 / 28 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Export\mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\dolphin_trk_glue.o | 0.0% | 0 / 13 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\targcont.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\target_options.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\UDP_Stubs.o | 0.0% | 0 / 9 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\gamedev\cust_connection\cc\exi2\GCN\EXI2_GDEV_GCN\main.o | 0.0% | 0 / 11 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\gamedev\cust_connection\utils\common\CircleBuffer.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| C:\products\RVL\runtime_libs\gamedev\cust_connection\utils\gc\MWCriticalSection_gc.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| mainloop.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| nubevent.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| nubinit.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| msg.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| msgbuf.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| serpoll.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| usr_put.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| dispatch.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| msghndlr.o | 0.0% | 0 / 16 | 0.0% | :x: 
+| support.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| mutex_TRK.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| notify.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| flush_cache.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| mem_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| string_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| targimpl.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| dolphin_trk_glue.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| targcont.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| target_options.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| UDP_Stubs.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| main.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| CircleBuffer.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| MWCriticalSection_gc.o | 0.0% | 0 / 3 | 0.0% | :x: 
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mainloop.o
+# mainloop.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKNubMainLoop | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubevent.o
+# nubevent.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKDestructEvent | :x: |
@@ -53,7 +53,7 @@
 | TRKInitializeEventQueue | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\nubinit.o
+# nubinit.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKNubWelcome | :x: |
@@ -61,13 +61,13 @@
 | TRKInitializeNub | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msg.o
+# msg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKMessageSend | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msgbuf.o
+# msgbuf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKReadBuffer_ui32 | :x: |
@@ -86,7 +86,7 @@
 | TRKInitializeMessageBuffers | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\serpoll.o
+# serpoll.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKTerminateSerialHandler | :x: |
@@ -96,21 +96,21 @@
 | TRKTestForPacket | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\usr_put.o
+# usr_put.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | usr_put_initialize | :x: |
 | usr_puts_serial | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\dispatch.o
+# dispatch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKDispatchMessage | :x: |
 | TRKInitializeDispatcher | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\msghndlr.o
+# msghndlr.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKDoSetOption | :x: |
@@ -131,7 +131,7 @@
 | GetTRKConnected | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\support.o
+# support.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | HandlePositionFileSupportRequest | :x: |
@@ -141,39 +141,39 @@
 | TRKSuppAccessFile | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mutex_TRK.o
+# mutex_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKReleaseMutex | :x: |
-| TRKAcquireMutex | :x: |
-| TRKInitializeMutex | :x: |
+| TRKReleaseMutex | :white_check_mark: |
+| TRKAcquireMutex | :white_check_mark: |
+| TRKInitializeMutex | :white_check_mark: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\notify.o
+# notify.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKDoNotifyStopped | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\flush_cache.o
+# flush_cache.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRK_flush_cache | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\mem_TRK.o
+# mem_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRK_fill_mem | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\string_TRK.o
+# string_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRK_strlen | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\targimpl.o
+# targimpl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __TRK_get_MSR | :x: |
@@ -206,21 +206,21 @@
 | TRKValidMemory32 | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Processor\ppc\Generic\mpc_7xx_603e.o
+# mpc_7xx_603e.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKSaveExtended1Block | :x: |
 | TRKRestoreExtended1Block | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Export\mslsupp.o
+# mslsupp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | __TRK_write_console | :x: |
 | __read_console | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\dolphin_trk.o
+# dolphin_trk.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | InitMetroTRK | :x: |
@@ -231,13 +231,13 @@
 | EnableMetroTRKInterrupts | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Portable\main_TRK.o
+# main_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRK_main | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\dolphin_trk_glue.o
+# dolphin_trk_glue.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKLoadContext | :x: |
@@ -255,20 +255,20 @@
 | TRKEXICallBack | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\targcont.o
+# targcont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | TRKTargetContinue | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\target_options.o
+# target_options.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | GetUseSerialIO | :x: |
 | SetUseSerialIO | :x: |
 
 
-# C:\products\RVL\runtime_libs\debugger\embedded\MetroTRK\Os\dolphin\UDP_Stubs.o
+# UDP_Stubs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | udp_cc_post_stop | :x: |
@@ -282,7 +282,7 @@
 | udp_cc_initialize | :x: |
 
 
-# C:\products\RVL\runtime_libs\gamedev\cust_connection\cc\exi2\GCN\EXI2_GDEV_GCN\main.o
+# main.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | gdev_cc_initinterrupts | :x: |
@@ -298,7 +298,7 @@
 | OutputData | :x: |
 
 
-# C:\products\RVL\runtime_libs\gamedev\cust_connection\utils\common\CircleBuffer.o
+# CircleBuffer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | CircleBufferReadBytes | :x: |
@@ -307,7 +307,7 @@
 | CBGetBytesAvailableForRead | :x: |
 
 
-# C:\products\RVL\runtime_libs\gamedev\cust_connection\utils\gc\MWCriticalSection_gc.o
+# MWCriticalSection_gc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | MWExitCriticalSection | :x: |

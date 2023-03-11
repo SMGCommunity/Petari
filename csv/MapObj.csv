@@ -2892,7 +2892,7 @@ __ct__Q212NrvMagicBell16MagicBellNrvRingFv,MagicBell.o,MapObj.a,true
 execute__Q212NrvMagicBell16MagicBellNrvRingCFP5Spine,MagicBell.o,MapObj.a,true
 execute__Q212NrvMagicBell16MagicBellNrvWaitCFP5Spine,MagicBell.o,MapObj.a,true
 getBaseMtx__9MagicBellCFv,MagicBell.o,MapObj.a,true
-init__12ManholeCoverFRC12JMapInfoIter,ManholeCover.o,MapObj.a,false
+init__12ManholeCoverFRC12JMapInfoIter,ManholeCover.o,MapObj.a,true
 receiveMsgPlayerAttack__12ManholeCoverFUlP9HitSensorP9HitSensor,ManholeCover.o,MapObj.a,false
 receiveOtherMsg__12ManholeCoverFUlP9HitSensorP9HitSensor,ManholeCover.o,MapObj.a,false
 exeOpen__12ManholeCoverFv,ManholeCover.o,MapObj.a,false

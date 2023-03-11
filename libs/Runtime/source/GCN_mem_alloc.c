@@ -18,7 +18,7 @@ static inline void Init(void) {
     OSSetArenaLo(arenaLo = arenaHi);
 }
 
-void __sys__free(void *ptr) {
+void __sys_free(void *ptr) {
     if (__OSCurrHeap == -1) {
         Init();
     }

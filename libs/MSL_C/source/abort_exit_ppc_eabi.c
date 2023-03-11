@@ -1,5 +1,7 @@
 #include <cstdlib>
 
+void (*__stdio_exit)(void) = 0;
+
 int __aborting = 0;
 
 void abort(void) {

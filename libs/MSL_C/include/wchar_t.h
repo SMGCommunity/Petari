@@ -1,14 +1,17 @@
 #ifndef WCHAR_T_H
 #define WCHAR_T_H
 
-#ifdef __cplusplus
-    extern "C" {
-#endif
+#if (!defined(__cplusplus))
+    #ifdef __cplusplus
+        extern "C" {
+    #endif
 
-typedef unsigned short wchar_t;
+    typedef unsigned short wchar_t;
+    typedef wchar_t wint_t;	
 
-#ifdef __cplusplus
-}
+    #ifdef __cplusplus
+    }
+    #endif
 #endif
 
 #endif // WCHAR_T_H

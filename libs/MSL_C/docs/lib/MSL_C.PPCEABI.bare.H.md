@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| alloc.o | 12.923076923076923% | 1 / 4 | 25.0% | :eight_pointed_black_star: 
+| alloc.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ansi_files.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | ansi_fp.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | arith.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -29,7 +29,7 @@
 | strtold.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | strtoul.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | wmem.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| wprintf.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| wprintf.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | uart_console_io_gcn.o | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -71,10 +71,10 @@
 # alloc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| Block_link | :x: |
+| Block_link | :white_check_mark: |
 | SubBlock_merge_next | :white_check_mark: |
-| deallocate_from_fixed_pools | :x: |
-| free | :x: |
+| deallocate_from_fixed_pools | :white_check_mark: |
+| free | :white_check_mark: |
 
 
 # ansi_files.o
@@ -255,16 +255,16 @@
 # wprintf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| parse_format | :x: |
-| long2str | :x: |
-| longlong2str | :x: |
-| double2hex | :x: |
-| round_decimal | :x: |
-| float2str | :x: |
-| __wpformatter | :x: |
-| __wStringWrite | :x: |
-| swprintf | :x: |
-| vswprintf | :x: |
+| parse_format | :white_check_mark: |
+| long2str | :white_check_mark: |
+| longlong2str | :white_check_mark: |
+| double2hex | :white_check_mark: |
+| round_decimal | :white_check_mark: |
+| float2str | :white_check_mark: |
+| __wpformatter | :white_check_mark: |
+| __wStringWrite | :white_check_mark: |
+| swprintf | :white_check_mark: |
+| vswprintf | :white_check_mark: |
 
 
 # wstring.o
