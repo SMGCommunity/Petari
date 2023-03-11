@@ -11,7 +11,7 @@
 | RFL_System.o | 0.0% | 0 / 22 | 0.0% | :x: 
 | RFL_NANDLoader.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | RFL_NANDAccess.o | 0.0% | 0 / 16 | 0.0% | :x: 
-| RFL_Model.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| RFL_Model.o | 14.0177690029615% | 6 / 18 | 33.33333333333333% | :eight_pointed_black_star: 
 | RFL_MakeTex.o | 0.0% | 0 / 10 | 0.0% | :x: 
 | RFL_Icon.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | RFL_HiddenDatabase.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -101,13 +101,13 @@
 | RFLiInitCharModel | :x: |
 | RFLSetMtx | :x: |
 | RFLSetExpression | :x: |
-| RFLGetFavoriteColor | :x: |
+| RFLGetFavoriteColor | :white_check_mark: |
 | RFLiGetFacelineColor | :x: |
-| RFLLoadDrawSetting | :x: |
-| RFLDrawOpa | :x: |
-| RFLDrawXlu | :x: |
-| RFLLoadVertexSetting | :x: |
-| RFLLoadMaterialSetting | :x: |
+| RFLLoadDrawSetting | :white_check_mark: |
+| RFLDrawOpa | :white_check_mark: |
+| RFLDrawXlu | :white_check_mark: |
+| RFLLoadVertexSetting | :white_check_mark: |
+| RFLLoadMaterialSetting | :white_check_mark: |
 | RFLDrawOpaCore | :x: |
 | RFLDrawXluCore | :x: |
 | RFLiInitCharModelRes | :x: |

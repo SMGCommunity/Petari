@@ -30,9 +30,9 @@ typedef enum {
 	RFLErrcode_Unknown			= 255
 } RFLErrcode;
 
-typedef struct RFLCreateID {
+typedef struct {
 	u8	data[8];
-} _RFLCreateID;
+} RFLCreateID;
 
 typedef struct RFLCharData {
 	u8 data[0x4A];	

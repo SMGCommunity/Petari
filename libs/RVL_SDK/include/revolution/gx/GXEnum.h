@@ -738,6 +738,37 @@ typedef enum _GXTlutFmt {
 
 } GXTlutFmt;
 
+typedef enum _GXTevSwapSel {
+    GX_TEV_SWAP0 = 0,
+    GX_TEV_SWAP1,
+    GX_TEV_SWAP2,
+    GX_TEV_SWAP3,
+    GX_MAX_TEVSWAP
+
+} GXTevSwapSel;
+
+typedef enum _GXPosNrmMtx {
+    GX_PNMTX0 =  0,
+    GX_PNMTX1 =  3,
+    GX_PNMTX2 =  6,
+    GX_PNMTX3 =  9,
+    GX_PNMTX4 = 12,
+    GX_PNMTX5 = 15,
+    GX_PNMTX6 = 18,
+    GX_PNMTX7 = 21,
+    GX_PNMTX8 = 24,
+    GX_PNMTX9 = 27
+
+} GXPosNrmMtx;
+
+typedef enum _GXTevColorChan {
+    GX_CH_RED = 0,
+    GX_CH_GREEN,
+    GX_CH_BLUE,
+    GX_CH_ALPHA
+
+} GXTevColorChan;
+
 #ifdef __cplusplus
 }
 #endif
