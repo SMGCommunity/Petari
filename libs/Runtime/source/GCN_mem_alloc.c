@@ -18,7 +18,7 @@ static inline void Init(void) {
     OSSetArenaLo(arenaLo = arenaHi);
 }
 
-void __sys_free(void *ptr) {
+__declspec(weak) extern void __sys_free(void *ptr) {
     if (__OSCurrHeap == -1) {
         Init();
     }

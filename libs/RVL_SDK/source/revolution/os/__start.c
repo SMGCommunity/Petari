@@ -9,6 +9,7 @@ u16 Pad3Button : 0x800030E4;
 static u8 Debug_BBA = 0;
 
 static void __init_registers(void);
+static void __init_data(void);
 
 static void __check_pad3(void) {
     if ((Pad3Button & 0xEEF) == 0xEEF) {
@@ -28,6 +29,18 @@ __declspec(weak) asm void __start(void) {
     nofralloc
     bl __init_registers
     bl __init_hardware
+    li r0, 0xFFFF
+    stwu r1, -8(r1)
+    stw r0, 4(r1)
+    stw r0, 0(r1)
+    bl __init_data
+
+    li r0, 0
+    lis r6, 0x80000044@ha
+    addi r6, r6, 0x80000044@l
+    stw r0, 0(r6)
+
+    bl __init_user
 }
 
 asm static void __init_registers(void) {

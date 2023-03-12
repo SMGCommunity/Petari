@@ -2,6 +2,12 @@
 #include <revolution/os.h>
 #include <cstdio>
 
+OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+
+OSErrorHandler __OSErrorTable[17];
+u32 __OSFpscrEnableBits = 0xF8;
+
 __declspec(weak) void OSReport(const char* msg, ...) {
     va_list mark;
     va_start(mark, msg);
@@ -34,4 +40,63 @@ __declspec(weak) void OSPanic(const char *pFile, int line_num, const char *msg, 
     }
 
     PPCHalt();
+}
+
+OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
+    OSErrorHandler oldHandler;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    oldHandler = __OSErrorTable[error];
+    __OSErrorTable[error] = handler;
+
+    if (error == 16) {
+        u32 msr;
+        u32 fpscr;
+        OSThread* thread;
+        msr = PPCMfmsr();
+        PPCMtmsr(msr | 0x2000);
+        fpscr = PPCMffpscr();
+
+        if (handler) {
+            for (thread = __OSActiveThreadQueue.head; thread; thread = thread->linkActive.next) {
+                thread->context.srr1 |= 0x800 | 0x100;
+
+                if ((thread->context.state & 1) == 0) {
+                    int i;
+                    thread->context.state |= 1;
+
+                    for (i = 0; i < 32; ++i) {
+                        *(u64*) &thread->context.fpr[i] = (u64) 0xffffffffffffffffLL;
+                        *(u64*) &thread->context.psf[i] = (u64) 0xffffffffffffffffLL;
+                    }
+
+                    thread->context.fpscr = 4;
+                }
+
+                thread->context.fpscr |= __OSFpscrEnableBits & 0xF8;
+                thread->context.fpscr &= 0x6005F8FF;
+            }
+
+            fpscr |= __OSFpscrEnableBits & 0xF8;
+            msr |= 0x800 | 0x100;
+        }
+        else {
+            for (thread = __OSActiveThreadQueue.head; thread; thread = thread->linkActive.next) {
+                thread->context.srr1 &= ~(0x800 | 0x100);
+                thread->context.fpscr &= ~0xF8;
+                thread->context.fpscr &= ~0x6005F8FF;
+            }
+
+            fpscr &= ~0xF8;
+            msr &= ~(0x800 | 0x100);
+        }
+
+        fpscr &= ~(0x6005F8FF);
+        PPCMtfpscr(fpscr);
+        PPCMtmsr(msr);
+    }
+
+    OSRestoreInterrupts(enabled);
+    return oldHandler;
 }

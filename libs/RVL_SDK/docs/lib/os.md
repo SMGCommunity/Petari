@@ -14,8 +14,8 @@
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | OSAudioSystem.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSContext.o | 12.238325281803544% | 4 / 16 | 25.0% | :eight_pointed_black_star: 
-| OSError.o | 24.07809110629067% | 3 / 5 | 60.0% | :eight_pointed_black_star: 
+| OSContext.o | 42.351046698872786% | 9 / 16 | 56.25% | :eight_pointed_black_star: 
+| OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | OSExec.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
@@ -154,12 +154,12 @@
 | OSGetCurrentContext | :x: |
 | OSSaveContext | :x: |
 | OSLoadContext | :x: |
-| OSGetStackPointer | :x: |
-| OSSwitchFiber | :x: |
-| OSSwitchFiberEx | :x: |
-| OSClearContext | :x: |
+| OSGetStackPointer | :white_check_mark: |
+| OSSwitchFiber | :white_check_mark: |
+| OSSwitchFiberEx | :white_check_mark: |
+| OSClearContext | :white_check_mark: |
 | OSInitContext | :x: |
-| OSDumpContext | :x: |
+| OSDumpContext | :white_check_mark: |
 | OSSwitchFPUContext | :white_check_mark: |
 | __OSContextInit | :white_check_mark: |
 | OSFillFPUContext | :x: |
@@ -171,7 +171,7 @@
 | OSReport | :white_check_mark: |
 | OSVReport | :white_check_mark: |
 | OSPanic | :white_check_mark: |
-| OSSetErrorHandler | :x: |
+| OSSetErrorHandler | :white_check_mark: |
 | __OSUnhandledException | :x: |
 
 

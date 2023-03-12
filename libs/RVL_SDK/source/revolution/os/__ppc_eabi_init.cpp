@@ -5,8 +5,8 @@ extern "C" {
 #endif
 
 typedef void (*funcPtr) (void);
-__declspec(section ".init") extern funcPtr _ctors[];
-__declspec(section ".init") extern funcPtr _dtors[];
+__declspec(section ".ctors") extern funcPtr _ctors[];
+__declspec(section ".dtors") extern funcPtr _dtors[];
 extern void exit(int);
 static void __init_cpp(void);
 
