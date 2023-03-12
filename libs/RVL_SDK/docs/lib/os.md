@@ -10,8 +10,8 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | OS.o | 8.09968847352025% | 4 / 20 | 20.0% | :eight_pointed_black_star: 
 | OSAlarm.o | 0.0% | 0 / 12 | 0.0% | :x: 
-| OSAlloc.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| OSArena.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | OSAudioSystem.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSContext.o | 12.238325281803544% | 4 / 16 | 25.0% | :eight_pointed_black_star: 
@@ -87,30 +87,30 @@
 # OSAlloc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| DLInsert | :x: |
-| OSAllocFromHeap | :x: |
-| OSFreeToHeap | :x: |
-| OSSetCurrentHeap | :x: |
-| OSInitAlloc | :x: |
-| OSCreateHeap | :x: |
+| DLInsert | :white_check_mark: |
+| OSAllocFromHeap | :white_check_mark: |
+| OSFreeToHeap | :white_check_mark: |
+| OSSetCurrentHeap | :white_check_mark: |
+| OSInitAlloc | :white_check_mark: |
+| OSCreateHeap | :white_check_mark: |
 
 
 # OSArena.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSGetMEM1ArenaHi | :x: |
-| OSGetMEM2ArenaHi | :x: |
-| OSGetArenaHi | :x: |
-| OSGetMEM1ArenaLo | :x: |
-| OSGetMEM2ArenaLo | :x: |
-| OSGetArenaLo | :x: |
-| OSSetMEM1ArenaHi | :x: |
-| OSSetMEM2ArenaHi | :x: |
-| OSSetArenaHi | :x: |
-| OSSetMEM1ArenaLo | :x: |
-| OSSetMEM2ArenaLo | :x: |
-| OSSetArenaLo | :x: |
-| OSAllocFromMEM1ArenaLo | :x: |
+| OSGetMEM1ArenaHi | :white_check_mark: |
+| OSGetMEM2ArenaHi | :white_check_mark: |
+| OSGetArenaHi | :white_check_mark: |
+| OSGetMEM1ArenaLo | :white_check_mark: |
+| OSGetMEM2ArenaLo | :white_check_mark: |
+| OSGetArenaLo | :white_check_mark: |
+| OSSetMEM1ArenaHi | :white_check_mark: |
+| OSSetMEM2ArenaHi | :white_check_mark: |
+| OSSetArenaHi | :white_check_mark: |
+| OSSetMEM1ArenaLo | :white_check_mark: |
+| OSSetMEM2ArenaLo | :white_check_mark: |
+| OSSetArenaLo | :white_check_mark: |
+| OSAllocFromMEM1ArenaLo | :white_check_mark: |
 
 
 # OSAudioSystem.o

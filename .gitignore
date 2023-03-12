@@ -19,6 +19,7 @@ deps
 *.dol
 *.a
 *.d
+*.txt
 build/**
 compiler
 __pycache__
