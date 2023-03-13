@@ -8,6 +8,8 @@
 extern "C" {
 #endif
 
+#define OSHalt(msg) OSPanic(__FILE__, __LINE__, msg)
+
 typedef s64         OSTime;
 typedef u32         OSTick;
 
@@ -69,16 +71,27 @@ typedef struct OSIOSRev {
 
 void __OSGetIOSRev(OSIOSRev *);
 
+#ifndef ASSERT
+#define ASSERT(exp) ((void) 0)
+#endif
+
+#ifndef ASSERTMSG
+#define ASSERTMSG(exp, msg) ((void) 0)
+#endif
+
 #include <revolution/base/PPCArch.h>
 #include <revolution/os/OSAlarm.h>
 #include <revolution/os/OSAlloc.h>
 #include <revolution/os/OSCache.h>
+#include <revolution/os/OSContext.h>
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSInterrupt.h>
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSReset.h>
 #include <revolution/os/OSThread.h>
+
+void __OSUnhandledException(__OSException, OSContext *, u32, u32);
 
 #ifdef __cplusplus
 }

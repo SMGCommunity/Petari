@@ -5,6 +5,12 @@ static __OSExceptionHandler* OSExceptionTable;
 static f64 ZeroF;
 static f32 ZeroPS[2];
 
+extern u8   __ArenaHi[];
+extern u8   __ArenaLo[];
+extern u32  __DVDLongFileNameFlag;
+extern u32  __PADSpec;
+static BOOL AreWeInitialized = FALSE;
+
 asm void __OSFPRInit(void) {
     nofralloc
     mfmsr r3
@@ -86,6 +92,17 @@ skipPairedSingleInit:
 
     mtfsf 0xFF, fp0
     blr
+}
+
+// __OSGetIOSRev
+// OSGetConsoleType
+// ClearArena
+// ClearMEM2Arena
+// InquiryCallback
+// ReportOSInfo
+
+void OSInit(void) {
+    
 }
 
 __OSExceptionHandler __OSSetExceptionHandler(__OSException ex, __OSExceptionHandler handler) {

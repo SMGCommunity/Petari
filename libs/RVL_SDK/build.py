@@ -47,7 +47,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     flags = "-c -nodefaults -proc gekko -DHOLLYWOOD_REV -DEPPC -enum int -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
     includes = "-i . -I- -i include "
 
-    default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
+    default_compiler_path = pathlib.Path("../../Compilers/GC/3.0/")
 
     compiler_exceptions = {
         #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")

@@ -91,7 +91,12 @@ inline void __OSRegisterStateEvent(void) {
     en = OSDisableInterrupts();
     error = IOS_IoctlAsync(StmEhDesc, 0x1000, StmEhInBuf, 0x20, StmEhOutBuf, 0x20, __OSStateEventHandler, (void*)0);
 
-    StmEhRegistered = (error == 0) ? TRUE : FALSE;
+    if (error == 0) {
+        StmEhRegistered = 1;
+    }
+    else {
+        StmEhRegistered = 0;
+    }
 
     OSRestoreInterrupts(en);
 }
@@ -142,8 +147,8 @@ void __OSDefaultPowerCallback(void) {
 }
 
 // arg seems to be unused and it's only there so we can register our states
-#ifdef NON_MATCHING
-s32 __OSStateEventHandler(s32 ret, void *pUnused) {
+//#ifdef NON_MATCHING
+static s32 __OSStateEventHandler(s32 ret, void *pUnused) {
     int en;
 
     if (ret != 0) {
@@ -179,4 +184,4 @@ s32 __OSStateEventHandler(s32 ret, void *pUnused) {
 
     return 0;
 }
-#endif
+//#endif

@@ -6,6 +6,7 @@
 #include "nw4r/lyt/lyt_init.h"
 #include "Game/Util.h"
 
+/*
 void main(void) {
     __asm {
         li r3, 4
@@ -52,3 +53,4 @@ void main(void) {
         gameSystem->frameLoop();
     }    
 }
+*/

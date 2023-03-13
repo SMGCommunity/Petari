@@ -16,13 +16,13 @@
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSContext.o | 42.351046698872786% | 9 / 16 | 56.25% | :eight_pointed_black_star: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
-| OSExec.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| OSExec.o | 21.309192200557103% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | OSInterrupt.o | 33.471933471933475% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSMemory.o | 0.0% | 0 / 18 | 0.0% | :x: 
+| OSMemory.o | 72.34600262123197% | 17 / 18 | 94.44444444444444% | :eight_pointed_black_star: 
 | OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSReset.o | 0.0% | 0 / 14 | 0.0% | :x: 
@@ -178,12 +178,12 @@
 # OSExec.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PackArgs | :x: |
-| Utf16ToArg | :x: |
-| PackInstallerArgs | :x: |
+| PackArgs | :white_check_mark: |
+| Utf16ToArg | :white_check_mark: |
+| PackInstallerArgs | :white_check_mark: |
 | Run | :x: |
 | Callback | :x: |
-| __OSGetExecParams | :x: |
+| __OSGetExecParams | :white_check_mark: |
 | callback | :x: |
 | __OSLaunchNextFirmware | :x: |
 | __OSLaunchMenu | :x: |
@@ -247,24 +247,24 @@
 # OSMemory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSGetPhysicalMem1Size | :x: |
-| OSGetPhysicalMem2Size | :x: |
-| OSGetConsoleSimulatedMem1Size | :x: |
-| OSGetConsoleSimulatedMem2Size | :x: |
+| OSGetPhysicalMem1Size | :white_check_mark: |
+| OSGetPhysicalMem2Size | :white_check_mark: |
+| OSGetConsoleSimulatedMem1Size | :white_check_mark: |
+| OSGetConsoleSimulatedMem2Size | :white_check_mark: |
 | OnShutdown | :x: |
-| MEMIntrruptHandler | :x: |
-| OSProtectRange | :x: |
-| ConfigMEM1_24MB | :x: |
-| ConfigMEM1_48MB | :x: |
-| ConfigMEM2_52MB | :x: |
-| ConfigMEM2_56MB | :x: |
-| ConfigMEM2_64MB | :x: |
-| ConfigMEM2_112MB | :x: |
-| ConfigMEM2_128MB | :x: |
-| ConfigMEM_ES1_0 | :x: |
-| RealMode | :x: |
-| BATConfig | :x: |
-| __OSInitMemoryProtection | :x: |
+| MEMIntrruptHandler | :white_check_mark: |
+| OSProtectRange | :white_check_mark: |
+| ConfigMEM1_24MB | :white_check_mark: |
+| ConfigMEM1_48MB | :white_check_mark: |
+| ConfigMEM2_52MB | :white_check_mark: |
+| ConfigMEM2_56MB | :white_check_mark: |
+| ConfigMEM2_64MB | :white_check_mark: |
+| ConfigMEM2_112MB | :white_check_mark: |
+| ConfigMEM2_128MB | :white_check_mark: |
+| ConfigMEM_ES1_0 | :white_check_mark: |
+| RealMode | :white_check_mark: |
+| BATConfig | :white_check_mark: |
+| __OSInitMemoryProtection | :white_check_mark: |
 
 
 # OSMutex.o
