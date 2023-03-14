@@ -8,27 +8,27 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| OS.o | 8.09968847352025% | 4 / 20 | 20.0% | :eight_pointed_black_star: 
-| OSAlarm.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| OS.o | 26.090342679127726% | 9 / 20 | 45.0% | :eight_pointed_black_star: 
+| OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | OSAudioSystem.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSContext.o | 42.351046698872786% | 9 / 16 | 56.25% | :eight_pointed_black_star: 
+| OSContext.o | 56.19967793880838% | 11 / 16 | 68.75% | :eight_pointed_black_star: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | OSExec.o | 21.309192200557103% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| OSInterrupt.o | 33.471933471933475% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
+| OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSMemory.o | 72.34600262123197% | 17 / 18 | 94.44444444444444% | :eight_pointed_black_star: 
+| OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSReset.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| OSReset.o | 5.723905723905724% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
 | OSRtc.o | 0.0% | 0 / 9 | 0.0% | :x: 
-| OSSync.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSThread.o | 2.0053475935828877% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
+| OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| OSThread.o | 24.598930481283425% | 13 / 28 | 46.42857142857143% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -53,13 +53,13 @@
 | InquiryCallback | :x: |
 | ReportOSInfo | :x: |
 | OSInit | :x: |
-| OSExceptionInit | :x: |
-| __OSDBIntegrator | :x: |
-| __OSDBJump | :x: |
+| OSExceptionInit | :white_check_mark: |
+| __OSDBIntegrator | :white_check_mark: |
+| __OSDBJump | :white_check_mark: |
 | __OSSetExceptionHandler | :white_check_mark: |
 | __OSGetExceptionHandler | :white_check_mark: |
-| OSExceptionVector | :x: |
-| OSDefaultExceptionHandler | :x: |
+| OSExceptionVector | :white_check_mark: |
+| OSDefaultExceptionHandler | :white_check_mark: |
 | __OSPSInit | :white_check_mark: |
 | __OSGetDIConfig | :x: |
 | OSRegisterVersion | :x: |
@@ -70,18 +70,18 @@
 # OSAlarm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSInitAlarm | :x: |
-| OSCreateAlarm | :x: |
-| InsertAlarm | :x: |
-| OSSetAlarm | :x: |
-| OSSetPeriodicAlarm | :x: |
-| OSCancelAlarm | :x: |
-| DecrementerExceptionCallback | :x: |
-| DecrementerExceptionHandler | :x: |
-| OSSetAlarmTag | :x: |
-| OnReset | :x: |
-| OSSetAlarmUserData | :x: |
-| OSGetAlarmUserData | :x: |
+| __OSInitAlarm | :white_check_mark: |
+| OSCreateAlarm | :white_check_mark: |
+| InsertAlarm | :white_check_mark: |
+| OSSetAlarm | :white_check_mark: |
+| OSSetPeriodicAlarm | :white_check_mark: |
+| OSCancelAlarm | :white_check_mark: |
+| DecrementerExceptionCallback | :white_check_mark: |
+| DecrementerExceptionHandler | :white_check_mark: |
+| OSSetAlarmTag | :white_check_mark: |
+| OnReset | :white_check_mark: |
+| OSSetAlarmUserData | :white_check_mark: |
+| OSGetAlarmUserData | :white_check_mark: |
 
 
 # OSAlloc.o
@@ -152,8 +152,8 @@
 | OSSaveFPUContext | :white_check_mark: |
 | OSSetCurrentContext | :white_check_mark: |
 | OSGetCurrentContext | :x: |
-| OSSaveContext | :x: |
-| OSLoadContext | :x: |
+| OSSaveContext | :white_check_mark: |
+| OSLoadContext | :white_check_mark: |
 | OSGetStackPointer | :white_check_mark: |
 | OSSwitchFiber | :white_check_mark: |
 | OSSwitchFiberEx | :white_check_mark: |
@@ -222,10 +222,10 @@
 | __OSSetInterruptHandler | :white_check_mark: |
 | __OSGetInterruptHandler | :white_check_mark: |
 | __OSInterruptInit | :white_check_mark: |
-| SetInterruptMask | :x: |
+| SetInterruptMask | :white_check_mark: |
 | __OSMaskInterrupts | :white_check_mark: |
 | __OSUnmaskInterrupts | :white_check_mark: |
-| __OSDispatchInterrupt | :x: |
+| __OSDispatchInterrupt | :white_check_mark: |
 | ExternalInterruptHandler | :white_check_mark: |
 
 
@@ -251,7 +251,7 @@
 | OSGetPhysicalMem2Size | :white_check_mark: |
 | OSGetConsoleSimulatedMem1Size | :white_check_mark: |
 | OSGetConsoleSimulatedMem2Size | :white_check_mark: |
-| OnShutdown | :x: |
+| OnShutdown | :white_check_mark: |
 | MEMIntrruptHandler | :white_check_mark: |
 | OSProtectRange | :white_check_mark: |
 | ConfigMEM1_24MB | :white_check_mark: |
@@ -287,7 +287,7 @@
 # OSReset.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSRegisterShutdownFunction | :x: |
+| OSRegisterShutdownFunction | :white_check_mark: |
 | __OSCallShutdownFunctions | :x: |
 | __OSShutdownDevices | :x: |
 | __OSGetDiscState | :x: |
@@ -320,27 +320,27 @@
 # OSSync.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| SystemCallVector | :x: |
-| __OSInitSystemCall | :x: |
+| SystemCallVector | :white_check_mark: |
+| __OSInitSystemCall | :white_check_mark: |
 
 
 # OSThread.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| DefaultSwitchThreadCallback | :x: |
+| DefaultSwitchThreadCallback | :white_check_mark: |
 | __OSThreadInit | :x: |
-| OSInitThreadQueue | :x: |
-| OSGetCurrentThread | :x: |
-| OSIsThreadSuspended | :x: |
-| OSIsThreadTerminated | :x: |
+| OSInitThreadQueue | :white_check_mark: |
+| OSGetCurrentThread | :white_check_mark: |
+| OSIsThreadSuspended | :white_check_mark: |
+| OSIsThreadTerminated | :white_check_mark: |
 | OSDisableScheduler | :white_check_mark: |
 | OSEnableScheduler | :white_check_mark: |
-| UnsetRun | :x: |
-| __OSGetEffectivePriority | :x: |
-| SetEffectivePriority | :x: |
-| __OSPromoteThread | :x: |
-| SelectThread | :x: |
-| __OSReschedule | :x: |
+| UnsetRun | :white_check_mark: |
+| __OSGetEffectivePriority | :white_check_mark: |
+| SetEffectivePriority | :white_check_mark: |
+| __OSPromoteThread | :white_check_mark: |
+| SelectThread | :white_check_mark: |
+| __OSReschedule | :white_check_mark: |
 | OSYieldThread | :x: |
 | OSCreateThread | :x: |
 | OSExitThread | :x: |

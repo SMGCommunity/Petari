@@ -1,15 +1,61 @@
 #include <revolution/os.h>
+#include <revolution/db.h>
+#include <revolution/os/OSBootInfo.h>
+#include <cstring>
+
+#include <__ppc_eabi_linker.h>
 
 static __OSExceptionHandler* OSExceptionTable;
 
+static u32  __OSExceptionLocations[] = {
+    0x100,
+    0x200,
+    0x300,
+    0x400,
+    0x500,
+    0x600,
+    0x700,
+    0x800,
+    0x900,
+    0xC00,
+    0xD00,
+    0xF00,
+    0x1300,
+    0x1400,
+    0x1700
+};
+
+
+void __OSEVStart(void);
+void __OSEVEnd(void);
+void __OSEVSetNumber(void);
+void __DBVECTOR(void);
+void __OSDBINTSTART(void);
+void __OSDBINTEND(void);
+void __OSDBJUMPSTART(void);
+void __OSDBJUMPEND(void);
+
 static f64 ZeroF;
 static f32 ZeroPS[2];
+
+__declspec(weak) BOOL __OSIsGcam = FALSE;
+OSTime __OSStartTime;
+BOOL __OSInIPL = FALSE;
+BOOL __OSInNandBoot = FALSE;
+extern BOOL __OSInReboot;
+static OSBootInfo* BootInfo;
+static u32* BI2DebugFlag;
+static u32 BI2DebugFlagHolder;
 
 extern u8   __ArenaHi[];
 extern u8   __ArenaLo[];
 extern u32  __DVDLongFileNameFlag;
 extern u32  __PADSpec;
 static BOOL AreWeInitialized = FALSE;
+OSExecParams __OSRebootParams;
+
+static void OSExceptionInit(void);
+void OSDefaultExceptionHandler( __OSException exception, OSContext* context );
 
 asm void __OSFPRInit(void) {
     nofralloc
@@ -102,7 +148,187 @@ skipPairedSingleInit:
 // ReportOSInfo
 
 void OSInit(void) {
-    
+    void* bi2StartAddr;
+    void* arenaAddr;
+
+    if (AreWeInitialized == TRUE) {
+        return;
+    }
+
+    AreWeInitialized = TRUE;
+    __OSStartTime = __OSGetSystemTime();
+    OSDisableInterrupts();
+    __OSGetExecParams(&__OSRebootParams);
+
+    PPCMtmmcr0(0);
+    PPCMtmmcr1(0);
+    PPCMtpmc1(0);
+    PPCMtpmc2(0);
+    PPCMtpmc3(0);
+    PPCMtpmc4(0);
+    PPCMthid4(0x83900000);
+    PPCDisableSpeculation();
+    PPCSetFpNonIEEEMode();
+
+    BootInfo = (OSBootInfo*)OSPhysicalToCached(0);
+    BI2DebugFlag = 0;
+    __DVDLongFileNameFlag = 0;
+
+    bi2StartAddr = *(void**)OSPhysicalToCached(0xF4);
+
+    if (bi2StartAddr != 0) {
+        BI2DebugFlag = (u32*)((u32)bi2StartAddr + 0xC);
+        __PADSpec = *(u32*)((u32)bi2StartAddr + 0x24);
+
+        *(u8*)OSPhysicalToCached(0x30E8) = (u8)*BI2DebugFlag;
+        *(u8*)OSPhysicalToCached(0x30E9) = (u8)__PADSpec;
+    }
+    else {
+        if (BootInfo->arenaHi != 0) {
+            BI2DebugFlagHolder = (u32)*(u8*)OSPhysicalToCached(0x30E8);
+            BI2DebugFlag = &BI2DebugFlagHolder;
+            __PADSpec = (u32)*(u8*)OSPhysicalToCached(0x30E9);
+        }
+    }
+
+    __DVDLongFileNameFlag = 1;
+
+    arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x310C);
+
+    if (arenaAddr == 0) {
+        if (OSIsMEM1Region((void*)__ArenaLo)) {
+            arenaAddr = BootInfo->arenaLo == 0 ? (void*)__ArenaLo : BootInfo->arenaLo;
+        
+            if ((BootInfo->arenaLo == 0) && (BI2DebugFlag && (*(BI2DebugFlag) <2))) {
+                arenaAddr = (void*)OSRoundUp32B(_stack_addr);
+            }
+        }
+        else {
+            arenaAddr = (void*)0x80004000;
+        }
+    }
+
+    OSSetMEM1ArenaLo(arenaAddr);
+
+    arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x3110);
+
+    if (arenaAddr != 0) {
+        if (OSIsMEM2Region((void*)__ArenaLo)) {
+            arenaAddr = (void*)__ArenaLo;
+
+            if ((BI2DebugFlag && (*(BI2DebugFlag) < 2))) {
+                arenaAddr = (void*)OSRoundUp32B(_stack_addr);
+            }
+        }
+        else {
+            if ((u32)arenaAddr >= 0x90000000 && (u32)arenaAddr < 0x90000800) {
+                arenaAddr = (void*)0x90000800;
+            }
+        }
+
+        OSSetMEM2ArenaLo(arenaAddr);
+    }
+
+
+    arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x3128);
+
+    if (arenaAddr != 0) {
+        OSSetMEM2ArenaHi(arenaAddr);
+    }
+
+    __OSInitIPCBuffer();
+    OSExceptionInit();
+    __OSInitSystemCall();
+    __OSInitAlarm();
+    __OSModuleInit();
+    __OSInterruptInit();
+    __OSContextInit();
+    __OSCacheInit();
+}
+
+static void OSExceptionInit(void) {
+    __OSException exception;
+    void* destAddr;
+    u32* opCodeAddr;
+    u32 oldOpCode;
+    u8* handlerStart;
+    u32 handlerSize;
+
+    opCodeAddr = (u32*)__OSEVSetNumber;
+    oldOpCode = *opCodeAddr;
+    handlerStart = (u8*)__OSEVStart;
+    handlerSize = (u32)((u8*)__OSEVEnd - (u8*)__OSEVStart);
+    destAddr = (void*)OSPhysicalToCached(0x60);
+
+    if (*(u32*)destAddr == 0) {
+        DBPrintf("Installing OSDBIntegrator\n");
+        memcpy(destAddr, (void*)__OSDBINTSTART, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        DCFlushRangeNoSync(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+        __sync();
+        ICInvalidateRange(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+    }
+
+    for (exception = 0; exception < 15; exception++) {
+        if (BI2DebugFlag && (*BI2DebugFlag >= 2) && __DBIsExceptionMarked(exception)) {
+            DBPrintf(">>> OSINIT: exception %d commandeered by TRK\n", exception);
+            continue;
+        }
+
+        *opCodeAddr = oldOpCode | exception;
+
+        if (__DBIsExceptionMarked(exception)) {
+            DBPrintf(">>> OSINIT: exception %d vectored to debugger\n", exception);
+            memcpy((void*)__DBVECTOR, (void*)__OSDBJUMPSTART, (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART);
+        }
+        else {
+            u32* ops = (u32*)__DBVECTOR;
+            int cb;
+
+            for (cb = 0; cb < (u32)__OSDBJUMPEND - (u32)__OSDBJUMPSTART; cb += 4) {
+                // set op to NOP
+                *ops++ = 0x60000000;
+            }
+        }
+
+        destAddr = (void*)OSPhysicalToCached(__OSExceptionLocations[exception]);
+        memcpy(destAddr, handlerStart, handlerSize);
+        DCFlushRangeNoSync(destAddr, handlerSize);
+        __sync();
+        ICInvalidateRange(destAddr, handlerSize);
+    }
+
+    OSExceptionTable = OSPhysicalToCached(0x3000);
+
+    for (exception = 0; exception < 15; exception++) {
+        __OSSetExceptionHandler(exception, OSDefaultExceptionHandler);
+    }
+
+    *opCodeAddr = oldOpCode;
+    DBPrintf("Exceptions initialized...\n");
+}
+
+static asm void __OSDBIntegrator(void) {
+    nofralloc
+
+entry __OSDBINTSTART
+    li r5, 0x40
+    mflr r3
+    stw r3, 0xC(r5)
+    lwz r3, 0x8(r5)
+    oris r3, r3, 0x8000
+    mtlr r3
+    li r3, 0x30
+    mtmsr r3
+    blr
+
+entry __OSDBINTEND
+}
+
+static asm void __OSDBJump(void) {
+    nofralloc
+entry __OSDBJUMPSTART
+    bla 0x60
+entry __OSDBJUMPEND
 }
 
 __OSExceptionHandler __OSSetExceptionHandler(__OSException ex, __OSExceptionHandler handler) {
@@ -114,6 +340,97 @@ __OSExceptionHandler __OSSetExceptionHandler(__OSException ex, __OSExceptionHand
 
 __OSExceptionHandler __OSGetExceptionHandler(__OSException ex) {
     return OSExceptionTable[ex];
+}
+
+static asm void OSExceptionVector(void) {
+    nofralloc
+entry __OSEVStart
+    mtsprg 0, r4
+    lwz r4, 0xC0
+    stw r3, 12(r4)
+    mfsprg  r3, 0
+    stw r3, 16(r4)
+    stw r5, 20(r4)
+    lhz r3, 418(r4)
+    ori r3, r3, 2
+    sth r3, 418(r4)
+
+    mfcr r3
+    stw r3, 128(r4)
+    mflr r3
+    stw r3, 132(r4)
+    mfctr r3
+    stw r3, 136(r4)
+    mfxer r3
+    stw r3, 140(r3)
+    mfsrr0 r3
+    stw r3, 408(r4)
+    mfsrr1 r3
+    stw r3, 412(r4)
+    mr r5, r3
+
+entry __DBVECTOR
+    nop
+
+    mfmsr r3
+    ori r3, r3, 0x30
+    mtsrr1 r3
+
+entry __OSEVSetNumber
+    addi r3, 0, 0
+
+    lwz r4, 0xD4
+    rlwinm. r5, r5, 0, 30, 30
+    bne recover
+    addis r5, 0, OSDefaultExceptionHandler@ha
+    addi r5, r5, OSDefaultExceptionHandler@l
+    mtsrr0 r5
+    rfi
+
+recover:
+    rlwinm r5, r3, 2, 22, 29
+    lwz r5, 0x3000(r5)
+    mtsrr0 r5
+
+    rfi
+
+entry __OSEVEnd
+    nop
+}
+
+asm void OSDefaultExceptionHandler(register __OSException exception, register OSContext* context) {
+    nofralloc
+    
+    stw r0, 0(context)
+    stw r1, 4(context)
+    stw r2, 8(context)
+    stmw r6, 0x18(context)
+
+    mfspr r0, 0x391
+    stw r0, 0x1A8(context)
+
+    mfspr r0, 0x392
+    stw r0, 0x1AC(context)
+
+    mfspr r0, 0x393
+    stw r0, 0x1B0(context)
+
+    mfspr r0, 0x394
+    stw r0, 0x1B4(context)
+
+    mfspr r0, 0x395
+    stw r0, 0x1B8(context)
+
+    mfspr r0, 0x396
+    stw r0, 0x1BC(context)
+
+    mfspr r0, 0x397
+    stw r0, 0x1C0(context)
+
+    mfdsisr r5
+    mfdar r6
+    stwu r1, -8(r1)
+    b __OSUnhandledException
 }
 
 void __OSPSInit(void) {

@@ -41,6 +41,9 @@ u32 OSCachedToPhysical(const void* caddr);
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
 #define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
 
+#define OSIsMEM1Region(addr) (((u32)(addr) & 0x30000000) == 0x00000000)
+#define OSIsMEM2Region(addr) (((u32)(addr) & 0x30000000) == 0x10000000)
+
 #define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 
@@ -85,13 +88,25 @@ void __OSGetIOSRev(OSIOSRev *);
 #include <revolution/os/OSCache.h>
 #include <revolution/os/OSContext.h>
 #include <revolution/os/OSException.h>
+#include <revolution/os/OSExecParams.h>
 #include <revolution/os/OSInterrupt.h>
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSReset.h>
+#include <revolution/os/OSTime.h>
 #include <revolution/os/OSThread.h>
 
+/* PRIVATE OS FUNCTIONS */
+void __OSInitSystemCall(void);
 void __OSUnhandledException(__OSException, OSContext *, u32, u32);
+void __OSReschedule(void);
+void __OSInitAlarm(void);
+void __OSModuleInit(void);
+void __OSInterruptInit(void);
+void __OSContextInit(void);
+
+extern void __RAS_OSDisableInterrupts_begin(void);
+extern void __RAS_OSDisableInterrupts_end(void);
 
 #ifdef __cplusplus
 }

@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <revolution/types.h>
+#include <revolution/os.h>
 
 typedef struct DBInterface {
     u32 _0;
@@ -16,6 +17,8 @@ typedef struct DBInterface {
 
 void DBInit(void);
 void DBPrintf(char *, ...);
+
+BOOL __DBIsExceptionMarked(__OSException ex);
 
 #ifdef __cplusplus
 }

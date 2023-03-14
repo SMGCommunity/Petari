@@ -9,13 +9,13 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | dvdfs.o | 0.0% | 0 / 13 | 0.0% | :x: 
-| dvd.o | 0.0% | 0 / 54 | 0.0% | :x: 
+| dvd.o | 0.22303325223033255% | 3 / 54 | 5.555555555555555% | :eight_pointed_black_star: 
 | dvdqueue.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | dvderror.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | dvdidutils.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dvdFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | dvdDeviceError.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| dvd_broadway.o | 0.0% | 0 / 30 | 0.0% | :x: 
+| dvd_broadway.o | 0.08609556607834697% | 1 / 30 | 3.3333333333333335% | :eight_pointed_black_star: 
 
 
 # dvdfs.o
@@ -90,9 +90,9 @@
 | __DVDPrepareResetAsync | :x: |
 | Callback | :x: |
 | __DVDPrepareReset | :x: |
-| __DVDTestAlarm | :x: |
-| __DVDStopMotorAsync | :x: |
-| __DVDRestartMotor | :x: |
+| __DVDTestAlarm | :white_check_mark: |
+| __DVDStopMotorAsync | :white_check_mark: |
+| __DVDRestartMotor | :white_check_mark: |
 
 
 # dvdqueue.o
@@ -178,6 +178,6 @@
 | DVDLowUnmaskStatusInterrupts | :x: |
 | DVDLowMaskCoverInterrupt | :x: |
 | DVDLowClearCoverInterrupt | :x: |
-| __DVDLowTestAlarm | :x: |
+| __DVDLowTestAlarm | :white_check_mark: |
 
 

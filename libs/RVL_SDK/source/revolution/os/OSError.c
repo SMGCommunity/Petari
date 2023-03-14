@@ -5,6 +5,9 @@
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
 
+volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0x00D4);
+volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
+
 OSErrorHandler __OSErrorTable[17];
 u32 __OSFpscrEnableBits = 0xF8;
 
@@ -99,4 +102,40 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
 
     OSRestoreInterrupts(enabled);
     return oldHandler;
+}
+
+void __OSUnhandledException(__OSException exception, OSContext *context, u32 dsisr, u32 dar) {
+    OSTime now;
+    now = OSGetTime();
+
+    if (!(context->srr1 & 2)) {
+        OSReport("Non-recoverable Exception %d", exception);
+    }
+    else {
+        if (exception == 6 && (context->srr1 & (0x80000000 >> 11)) && __OSErrorTable[16] != 0) {
+            u32 fpscr;
+            u32 msr;
+            exception = 16;
+            msr = PPCMfmsr();
+            PPCMtmsr(msr | 0x2000);
+
+            if (__OSFPUContext) {
+                OSSaveFPUContext((OSContext*)__OSFPUContext);
+            }
+
+            fpscr = PPCMffpscr();
+            fpscr &= 0x6005F8FF;
+            PPCMtfpscr(fpscr);
+            
+            if (__OSFPUContext == context) {
+                OSDisableScheduler();
+                __OSErrorTable[exception](exception, context, dsisr, dar);
+                context->srr1 &= ~0x2000;
+                __OSFPUContext = 0;
+                context->fpscr &= 0x6005F8FF;
+                OSEnableScheduler();
+                
+            }
+        }
+    }
 }

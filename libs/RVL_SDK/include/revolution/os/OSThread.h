@@ -17,6 +17,8 @@ typedef struct OSMutexQueue OSMutexQueue;
 typedef struct OSMutexLink OSMutexLink;
 typedef struct OSCond OSCond;
 
+typedef void (*OSSwitchThreadCallback)(OSThread *, OSThread *);
+
 struct OSThreadQueue {
     OSThread* head;
     OSThread* tail;

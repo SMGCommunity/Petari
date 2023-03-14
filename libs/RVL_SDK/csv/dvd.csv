@@ -63,9 +63,9 @@ DVDCheckDiskAsync,dvd.o,dvd.a,false
 __DVDPrepareResetAsync,dvd.o,dvd.a,false
 Callback,dvd.o,dvd.a,false
 __DVDPrepareReset,dvd.o,dvd.a,false
-__DVDTestAlarm,dvd.o,dvd.a,false
-__DVDStopMotorAsync,dvd.o,dvd.a,false
-__DVDRestartMotor,dvd.o,dvd.a,false
+__DVDTestAlarm,dvd.o,dvd.a,true
+__DVDStopMotorAsync,dvd.o,dvd.a,true
+__DVDRestartMotor,dvd.o,dvd.a,true
 __DVDClearWaitingQueue,dvdqueue.o,dvd.a,false
 __DVDPushWaitingQueue,dvdqueue.o,dvd.a,false
 __DVDPopWaitingQueue,dvdqueue.o,dvd.a,false
@@ -121,4 +121,4 @@ DVDLowGetImmBufferReg,dvd_broadway.o,dvd.a,false
 DVDLowUnmaskStatusInterrupts,dvd_broadway.o,dvd.a,false
 DVDLowMaskCoverInterrupt,dvd_broadway.o,dvd.a,false
 DVDLowClearCoverInterrupt,dvd_broadway.o,dvd.a,false
-__DVDLowTestAlarm,dvd_broadway.o,dvd.a,false
+__DVDLowTestAlarm,dvd_broadway.o,dvd.a,true

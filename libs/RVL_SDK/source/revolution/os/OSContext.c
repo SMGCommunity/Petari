@@ -215,8 +215,118 @@ OSContext* OSGetCurrentContext(void) {
     return (OSContext*)__OSCurrentContext;
 }
 
-// OSSaveContext
-// OSLoadContext
+asm u32 OSSaveContext(register OSContext* context) {
+    nofralloc
+    stmw r13, context->gpr[13]
+
+    mfspr   r0, 0x391
+    stw     r0, context->gqr[1]
+    mfspr   r0, 0x392
+    stw     r0, context->gqr[2]
+    mfspr   r0, 0x393
+    stw     r0, context->gqr[3]
+    mfspr   r0, 0x394
+    stw     r0, context->gqr[4]
+    mfspr   r0, 0x395
+    stw     r0, context->gqr[5]
+    mfspr   r0, 0x396
+    stw     r0, context->gqr[6]
+    mfspr   r0, 0x397
+    stw     r0, context->gqr[7]
+
+    mfcr    r0
+    stw     r0, context->cr
+
+    mflr    r0
+    stw     r0, context->lr
+    stw     r0, context->srr0
+
+    mfmsr   r0
+    stw     r0, context->srr1
+
+    mfctr   r0
+    stw     r0, context->ctr
+
+    mfxer   r0
+    stw     r0, context->xer
+
+    stw     r1, context->gpr[1]
+    stw     r2, context->gpr[2]
+
+    li      r0, 1
+    stw     r0, context->gpr[3]
+    li      r3, 0
+    blr
+}
+
+asm void OSLoadContext(register OSContext* context) {
+    nofralloc
+
+    lis r4, __RAS_OSDisableInterrupts_begin@ha
+    lwz r6, context->srr0
+    addi r5, r4, __RAS_OSDisableInterrupts_begin@l
+    cmplw r6, r5
+    ble notInRAS
+    lis r4, __RAS_OSDisableInterrupts_end@ha
+    addi r0, r4, __RAS_OSDisableInterrupts_end@l
+    cmplw r6, r0
+    bge notInRAS
+    stw r5, context->srr0
+
+notInRAS:
+    lwz r0, context->gpr[0]
+    lwz r1, context->gpr[1]
+    lwz r2, context->gpr[2]
+    lhz r4, context->state
+    rlwinm. r5, r4, 0, 30, 30
+    beq notexc
+    rlwinm  r4, r4, 0, 31, 29
+    sth r4, context->state
+    lmw r5, context->gpr[5]
+    b misc
+
+notexc:
+    lmw r13, context->gpr[13]
+
+misc:   
+    lwz r4, context->gqr[1]
+    mtspr 0x391, r4
+    lwz r4, context->gqr[2]
+    mtspr 0x392, r4
+    lwz r4, context->gqr[3]
+    mtspr 0x393, r4
+    lwz r4, context->gqr[4]
+    mtspr 0x394, r4
+    lwz r4, context->gqr[5]
+    mtspr 0x395, r4
+    lwz r4, context->gqr[6]
+    mtspr 0x396, r4
+    lwz r4, context->gqr[7]
+    mtspr 0x397, r4
+
+    lwz r4, context->cr
+    mtcr r4
+    lwz r4, context->lr
+    mtlr r4
+    lwz r4, context->ctr
+    mtctr r4
+    lwz r4, context->xer
+    mtxer r4
+
+    mfmsr r4
+    rlwinm r4, r4, 0, 17, 15
+    rlwinm r4, r4, 0, 31, 29
+    mtmsr r4
+
+    lwz r4, context->srr0
+    mtsrr0 r4
+    lwz r4, context->srr1
+    mtsrr1 r4
+
+    lwz r4, context->gpr[4]
+    lwz r3, context->gpr[3]
+    rfi
+}
 
 asm u32 OSGetStackPointer(void) {
     nofralloc

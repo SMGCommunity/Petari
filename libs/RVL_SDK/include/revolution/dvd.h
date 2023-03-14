@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <revolution/types.h>
+#include <revolution/os.h>
 
 typedef struct DVDDiskID DVDDiskID;
 
