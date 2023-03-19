@@ -117,7 +117,7 @@ BOOL OSEnableInterrupts(void) __attribute__((noinline));
 BOOL OSRestoreInterrupts(BOOL) __attribute__((noinline));
 
 __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt, __OSInterruptHandler);
-__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt);
+__OSInterruptHandler __OSGetInterruptHandler(s32);
 void __OSDispatchInterrupt(__OSException, OSContext *);
 void __OSInterruptInit(void); 
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask);

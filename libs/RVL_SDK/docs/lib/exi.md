@@ -8,45 +8,45 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| EXIBios.o | 3.9415130324221233% | 1 / 19 | 5.263157894736842% | :eight_pointed_black_star: 
-| EXIUart.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| EXICommon.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| EXIBios.o | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
+| EXIUart.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| EXICommon.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 
 
 # EXIBios.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| SetExiInterruptMask | :x: |
-| EXIImm | :x: |
-| EXIImmEx | :x: |
+| SetExiInterruptMask | :white_check_mark: |
+| EXIImm | :white_check_mark: |
+| EXIImmEx | :white_check_mark: |
 | EXIDma | :white_check_mark: |
-| EXISync | :x: |
-| EXISetExiCallback | :x: |
-| __EXIProbe | :x: |
-| EXIAttach | :x: |
-| EXIDetach | :x: |
-| EXISelect | :x: |
-| EXIDeselect | :x: |
-| EXIIntrruptHandler | :x: |
-| TCIntrruptHandler | :x: |
-| EXTIntrruptHandler | :x: |
-| EXIInit | :x: |
-| EXILock | :x: |
-| EXIUnlock | :x: |
-| UnlockedHandler | :x: |
-| EXIGetID | :x: |
+| EXISync | :white_check_mark: |
+| EXISetExiCallback | :white_check_mark: |
+| __EXIProbe | :white_check_mark: |
+| EXIAttach | :white_check_mark: |
+| EXIDetach | :white_check_mark: |
+| EXISelect | :white_check_mark: |
+| EXIDeselect | :white_check_mark: |
+| EXIIntrruptHandler | :white_check_mark: |
+| TCIntrruptHandler | :white_check_mark: |
+| EXTIntrruptHandler | :white_check_mark: |
+| EXIInit | :white_check_mark: |
+| EXILock | :white_check_mark: |
+| EXIUnlock | :white_check_mark: |
+| UnlockedHandler | :white_check_mark: |
+| EXIGetID | :white_check_mark: |
 
 
 # EXIUart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ProbeBarnacle | :x: |
-| __OSEnableBarnacle | :x: |
+| ProbeBarnacle | :white_check_mark: |
+| __OSEnableBarnacle | :white_check_mark: |
 
 
 # EXICommon.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| EXIWriteReg | :x: |
+| EXIWriteReg | :white_check_mark: |
 
 

@@ -2,6 +2,7 @@
 #include <revolution/db.h>
 #include <revolution/os/OSBootInfo.h>
 #include <cstring>
+#include "private/flipper.h"
 
 #include <__ppc_eabi_linker.h>
 
@@ -46,6 +47,8 @@ extern BOOL __OSInReboot;
 static OSBootInfo* BootInfo;
 static u32* BI2DebugFlag;
 static u32 BI2DebugFlagHolder;
+
+vu16 __OSDeviceCode : (OS_BASE_CACHED | 0x30E6);
 
 extern u8   __ArenaHi[];
 extern u8   __ArenaLo[];
@@ -140,8 +143,142 @@ skipPairedSingleInit:
     blr
 }
 
-// __OSGetIOSRev
-// OSGetConsoleType
+void __OSGetIOSRev(OSIOSRev* rev) {
+    u32 iosVer, iosBuild;
+    iosVer = *(u32*)OSPhysicalToUncached(0x3140);
+    iosBuild = *(u32*)OSPhysicalToUncached(0x3144);
+
+    rev->reserved = ((iosVer >> 24) & 0xFF);
+    rev->major = ((iosVer >> 16) & 0xFF);
+    rev->minor = ((iosVer >> 8) & 0xFF);
+    rev->micro = (iosVer & 0xFF);
+
+    rev->month = (((iosBuild >> 20) & 0xF) * 10 + ((iosBuild >> 16) & 0xF));
+    rev->date = (((iosBuild >> 12) & 0xF) * 10 + ((iosBuild >> 8) & 0xF));
+    rev->year = (((iosBuild >> 4) & 0xF) * 10 + (iosBuild & 0xF) + 2000);
+    return;
+}
+
+u32 __OSGetHollywoodRev(void) {
+    return (*(u32*)OSPhysicalToCached((0x3138)));
+} 
+
+u32 OSGetConsoleType(void) {
+    u32 hwRev;
+    u32 gddrSize;
+
+    if (BootInfo == NULL || BootInfo->consoleType == 0) {
+        return 0x10000002;
+    }
+
+    hwRev = __OSGetHollywoodRev();
+
+    if (__OSDeviceCode & 0x8000) {
+        switch (__OSDeviceCode & ~0x8000) {
+            case 2:
+            case 3:
+            case 0x203:
+                switch (hwRev) {
+                    case 0:
+                        return 0x10;
+                    case 1:
+                        return 0x11;
+                    case 2:
+                        return 0x12;
+                    case 0x10:
+                        return 0x20;
+                    case 0x11:
+                        return 0x21;
+                }
+
+                if (hwRev > 0x11) {
+                    return 0x21;
+                }
+
+            case 0x202:
+            case 0x201:
+                switch (hwRev) {
+                    case 0:
+                        return 0x10000010;
+                    case 1:
+                        return 0x10000011;
+                    case 2:
+                        return 0x10000012;
+                    case 0x10:
+                        return 0x10000020;
+                    case 0x11:
+                        return 0x10000021;
+                }
+
+                if (hwRev > 0x11) {
+                    return 0x10000031;
+                }
+
+            case 0x300:
+                return 0x100;
+
+            default:
+                break;
+        }
+    }
+
+    gddrSize = OSGetPhysicalMem2Size();
+
+    switch (hwRev) {
+        case 0:
+            if (gddrSize == 0x4000000) {
+                return 0x10;
+            }
+            else {
+                return 0x10000010;
+            }
+
+        case 0x1:
+            if (gddrSize == 0x4000000) {
+                return 0x11;
+            }
+            else {
+                return 0x10000011;
+            }
+
+        case 0x2:
+            if (gddrSize == 0x4000000) {
+                return 0x12;
+            }
+            else {
+                return 0x10000012;
+            }
+
+        case 0x10:
+            if (gddrSize == 0x4000000) {
+                return 0x20;
+            }
+            else {
+                return 0x10000020;
+            }
+
+        case 0x11:
+            if (gddrSize == 0x4000000) {
+                return 0x21;
+            }
+            else {
+                return 0x10000021;
+            }
+    }
+
+    if (hwRev > 0x11) {
+        if (gddrSize == 0x4000000) {
+            return 0x21;
+        }
+        else {
+            return 0x10000031;
+        }
+    }
+
+    return BootInfo->consoleType;
+}
+
+
 // ClearArena
 // ClearMEM2Arena
 // InquiryCallback
@@ -244,6 +381,7 @@ void OSInit(void) {
     __OSInterruptInit();
     __OSContextInit();
     __OSCacheInit();
+    EXIInit();
 }
 
 static void OSExceptionInit(void) {
@@ -449,4 +587,12 @@ void __OSPSInit(void) {
         mtspr 0x396, r3
         mtspr 0x397, r3
     }
+}
+
+u32 __OSGetDIConfig(void) {
+    return __DIRegs[9] & 0xFF;
+}
+
+void OSRegisterVersion(const char *id) {
+    OSReport("%s\n", id);
 }

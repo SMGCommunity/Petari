@@ -37,9 +37,14 @@ void* OSPhysicalToUncached(u32);
 u32 OSCachedToPhysical(const void* caddr);
 
 #define OS_CACHED_REGION_PREFIX 0x8000
+#define OS_UNCACHED_REGION_PREFIX 0xC000
+
 #define OS_BASE_CACHED (OS_CACHED_REGION_PREFIX << 16)
+#define OS_BASE_UNCACHED (OS_UNCACHED_REGION_PREFIX << 16)
+
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
 #define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
+#define OSPhysicalToUncached(paddr) ((void*) ((u32)(paddr) + OS_BASE_UNCACHED))
 
 #define OSIsMEM1Region(addr) (((u32)(addr) & 0x30000000) == 0x00000000)
 #define OSIsMEM2Region(addr) (((u32)(addr) & 0x30000000) == 0x10000000)
@@ -49,6 +54,8 @@ u32 OSCachedToPhysical(const void* caddr);
 
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);
+
+u32 OSGetConsoleType(void);
 
 void OSRegisterVersion(const char *);
 
@@ -63,7 +70,7 @@ void OSSetArenaHi(void *);
 void OSSetArenaLo(void *);
 
 typedef struct OSIOSRev {
-    u8 _0;
+    u8 reserved;
     u8 major;
     u8 minor;
     u8 micro;

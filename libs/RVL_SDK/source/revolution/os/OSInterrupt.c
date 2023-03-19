@@ -63,7 +63,14 @@ BOOL OSRestoreInterrupts(register BOOL level) {
     }
 }
 
-__OSInterruptHandler __OSGetInterruptHandler(__OSInterrupt interrupt) {
+__OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler) {
+    __OSInterruptHandler oldHandler;
+    oldHandler = InterruptHandlerTable[interrupt];
+    InterruptHandlerTable[interrupt] = handler;
+    return oldHandler;
+}
+
+__OSInterruptHandler __OSGetInterruptHandler(s32 interrupt) {
     return InterruptHandlerTable[interrupt];
 }
 

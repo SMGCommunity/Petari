@@ -1,7 +1,7 @@
 Symbol Name, Object File, Library Archive, Matching
 __OSFPRInit,OS.o,os.a,true
-__OSGetIOSRev,OS.o,os.a,false
-OSGetConsoleType,OS.o,os.a,false
+__OSGetIOSRev,OS.o,os.a,true
+OSGetConsoleType,OS.o,os.a,true
 ClearArena,OS.o,os.a,false
 ClearMEM2Arena,OS.o,os.a,false
 InquiryCallback,OS.o,os.a,false
@@ -15,8 +15,8 @@ __OSGetExceptionHandler,OS.o,os.a,true
 OSExceptionVector,OS.o,os.a,true
 OSDefaultExceptionHandler,OS.o,os.a,true
 __OSPSInit,OS.o,os.a,true
-__OSGetDIConfig,OS.o,os.a,false
-OSRegisterVersion,OS.o,os.a,false
+__OSGetDIConfig,OS.o,os.a,true
+OSRegisterVersion,OS.o,os.a,true
 OSGetAppGamename,OS.o,os.a,false
 OSGetAppType,OS.o,os.a,false
 __OSInitAlarm,OSAlarm.o,os.a,true
