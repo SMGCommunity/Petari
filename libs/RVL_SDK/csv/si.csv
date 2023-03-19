@@ -2,11 +2,11 @@ Symbol Name, Object File, Library Archive, Matching
 CompleteTransfer,SIBios.o,si.a,false
 SIInterruptHandler,SIBios.o,si.a,false
 SIInit,SIBios.o,si.a,false
-__SITransfer,SIBios.o,si.a,false
-SISetXY,SIBios.o,si.a,false
-AlarmHandler,SIBios.o,si.a,false
-SITransfer,SIBios.o,si.a,false
+__SITransfer,SIBios.o,si.a,true
+SISetXY,SIBios.o,si.a,true
+AlarmHandler,SIBios.o,si.a,true
+SITransfer,SIBios.o,si.a,true
 GetTypeCallback,SIBios.o,si.a,false
-SIGetType,SIBios.o,si.a,false
+SIGetType,SIBios.o,si.a,true
 SISetSamplingRate,SISamplingRate.o,si.a,false
 SIRefreshSamplingRate,SISamplingRate.o,si.a,false
