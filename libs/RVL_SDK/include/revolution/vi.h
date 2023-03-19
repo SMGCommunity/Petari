@@ -6,4 +6,6 @@
 
 void VIResetDimmingCount();
 
+u32 VIGetCurrentLine();
+
 #endif // VI_H

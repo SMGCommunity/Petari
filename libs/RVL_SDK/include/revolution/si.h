@@ -7,7 +7,8 @@
 extern "C" {
 #endif
 
-typedef void (* SICallback )(s32, u32, OSContext *);
+typedef void (*SICallback)(s32, u32, OSContext *);
+typedef void (*SITypeAndStatusCallback)(s32, u32);
 
 typedef struct SIPacket {
     s32 chan;
@@ -18,6 +19,11 @@ typedef struct SIPacket {
     SICallback callback;
     OSTime fire;
 } SIPacket;
+
+u32 SIGetType(s32);
+
+void SISetSamplingRate(u32);
+void SIRefreshSamplingRate(void);
 
 #ifdef __cplusplus
 }
