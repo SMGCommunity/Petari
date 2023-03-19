@@ -148,7 +148,7 @@ static void GetTypeCallback(s32 chan, u32 error, OSContext* context) {
 }
 
 u32 SIGetType(s32 chan) {
-    static u32 cmdTypeAndStatus = 0 << 24;
+    static u32 cmdTypeAndStatus = 0;
     BOOL enabled;
     u32 type;
     OSTime diff;
