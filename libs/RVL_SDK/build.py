@@ -125,7 +125,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
                 pass
 
             if source_path.endswith("EXIBios.c"):
-                new_flags = flags.replace("-O4,p", "-O2,p")
+                new_flags = flags.replace("-O4,p", "-O3,p")
                 nw.build(build_path, rule, source_path, variables={ 'flags': new_flags })
             else:
                 nw.build(build_path, rule, source_path, variables={ 'flags': flags })
