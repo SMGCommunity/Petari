@@ -8,5 +8,5 @@ AlarmHandler,SIBios.o,si.a,true
 SITransfer,SIBios.o,si.a,true
 GetTypeCallback,SIBios.o,si.a,true
 SIGetType,SIBios.o,si.a,true
-SISetSamplingRate,SISamplingRate.o,si.a,false
-SIRefreshSamplingRate,SISamplingRate.o,si.a,false
+SISetSamplingRate,SISamplingRate.o,si.a,true
+SIRefreshSamplingRate,SISamplingRate.o,si.a,true

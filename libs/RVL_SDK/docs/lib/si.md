@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | SIBios.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
-| SISamplingRate.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| SISamplingRate.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 
 
 # SIBios.o
@@ -29,7 +29,7 @@
 # SISamplingRate.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| SISetSamplingRate | :x: |
-| SIRefreshSamplingRate | :x: |
+| SISetSamplingRate | :white_check_mark: |
+| SIRefreshSamplingRate | :white_check_mark: |
 
 

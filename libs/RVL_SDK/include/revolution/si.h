@@ -22,6 +22,8 @@ typedef struct SIPacket {
 
 u32 SIGetType(s32);
 
+u32 SISetXY(u32, u32);
+
 void SISetSamplingRate(u32);
 void SIRefreshSamplingRate(void);
 
