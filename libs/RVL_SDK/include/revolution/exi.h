@@ -18,6 +18,7 @@ BOOL EXISelect(s32, u32, u32);
 BOOL EXIDeselect(s32);
 BOOL EXILock(s32, u32, EXICallback);
 BOOL EXIUnlock(s32);
+BOOL EXIImmEx(s32, void *, s32, u32);
 
 s32 EXIGetID(s32, u32, u32 *);
 

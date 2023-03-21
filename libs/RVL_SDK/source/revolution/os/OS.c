@@ -382,6 +382,7 @@ void OSInit(void) {
     __OSContextInit();
     __OSCacheInit();
     EXIInit();
+    __OSInitSram();
 }
 
 static void OSExceptionInit(void) {

@@ -26,7 +26,7 @@
 | OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSReset.o | 5.723905723905724% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
-| OSRtc.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSThread.o | 24.598930481283425% | 13 / 28 | 46.42857142857143% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
@@ -306,15 +306,15 @@
 # OSRtc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| WriteSramCallback | :x: |
-| __OSInitSram | :x: |
-| UnlockSram | :x: |
-| __OSSyncSram | :x: |
-| __OSReadROM | :x: |
-| OSGetWirelessID | :x: |
-| OSSetWirelessID | :x: |
-| __OSGetRTCFlags | :x: |
-| __OSClearRTCFlags | :x: |
+| WriteSramCallback | :white_check_mark: |
+| __OSInitSram | :white_check_mark: |
+| UnlockSram | :white_check_mark: |
+| __OSSyncSram | :white_check_mark: |
+| __OSReadROM | :white_check_mark: |
+| OSGetWirelessID | :white_check_mark: |
+| OSSetWirelessID | :white_check_mark: |
+| __OSGetRTCFlags | :white_check_mark: |
+| __OSClearRTCFlags | :white_check_mark: |
 
 
 # OSSync.o
