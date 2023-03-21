@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 13 Completed -- (0.0%)
+# 1 / 13 Completed -- (7.6923076923076925%)
 # ManholeCover.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `init__12ManholeCoverFRC12JMapInfoIter` | :x: |
+| `init__12ManholeCoverFRC12JMapInfoIter` | :white_check_mark: |
 | `receiveMsgPlayerAttack__12ManholeCoverFUlP9HitSensorP9HitSensor` | :x: |
 | `receiveOtherMsg__12ManholeCoverFUlP9HitSensorP9HitSensor` | :x: |
 | `exeOpen__12ManholeCoverFv` | :x: |
