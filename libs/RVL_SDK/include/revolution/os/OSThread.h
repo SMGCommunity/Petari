@@ -87,6 +87,10 @@ OSPriority OSGetThreadPriority(OSThread *);
 s32 OSDisableScheduler(void);
 s32 OSEnableScheduler(void);
 
+void OSClearStack(u8);
+
+void __OSThreadInit(void);
+
 #ifdef __cplusplus
 }
 #endif

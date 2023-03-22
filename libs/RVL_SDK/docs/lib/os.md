@@ -12,7 +12,7 @@
 | OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
-| OSAudioSystem.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| OSAudioSystem.o | 16.943521594684384% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSContext.o | 56.19967793880838% | 11 / 16 | 68.75% | :eight_pointed_black_star: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
@@ -28,7 +28,7 @@
 | OSReset.o | 5.723905723905724% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| OSThread.o | 24.598930481283425% | 13 / 28 | 46.42857142857143% | :eight_pointed_black_star: 
+| OSThread.o | 35.360962566844925% | 14 / 28 | 50.0% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -118,7 +118,7 @@
 | ------------- | ------------- |
 | __AIClockInit | :x: |
 | __OSInitAudioSystem | :x: |
-| __OSStopAudioSystem | :x: |
+| __OSStopAudioSystem | :white_check_mark: |
 
 
 # OSCache.o
@@ -328,7 +328,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | DefaultSwitchThreadCallback | :white_check_mark: |
-| __OSThreadInit | :x: |
+| __OSThreadInit | :white_check_mark: |
 | OSInitThreadQueue | :white_check_mark: |
 | OSGetCurrentThread | :white_check_mark: |
 | OSIsThreadSuspended | :white_check_mark: |

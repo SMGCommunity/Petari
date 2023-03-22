@@ -52,7 +52,7 @@ OSSetArenaLo,OSArena.o,os.a,true
 OSAllocFromMEM1ArenaLo,OSArena.o,os.a,true
 __AIClockInit,OSAudioSystem.o,os.a,false
 __OSInitAudioSystem,OSAudioSystem.o,os.a,false
-__OSStopAudioSystem,OSAudioSystem.o,os.a,false
+__OSStopAudioSystem,OSAudioSystem.o,os.a,true
 DCEnable,OSCache.o,os.a,true
 DCInvalidateRange,OSCache.o,os.a,true
 DCFlushRange,OSCache.o,os.a,true
@@ -182,7 +182,7 @@ __OSClearRTCFlags,OSRtc.o,os.a,true
 SystemCallVector,OSSync.o,os.a,true
 __OSInitSystemCall,OSSync.o,os.a,true
 DefaultSwitchThreadCallback,OSThread.o,os.a,true
-__OSThreadInit,OSThread.o,os.a,false
+__OSThreadInit,OSThread.o,os.a,true
 OSInitThreadQueue,OSThread.o,os.a,true
 OSGetCurrentThread,OSThread.o,os.a,true
 OSIsThreadSuspended,OSThread.o,os.a,true

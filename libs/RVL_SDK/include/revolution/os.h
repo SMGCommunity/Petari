@@ -53,6 +53,7 @@ u32 OSCachedToPhysical(const void* caddr);
 
 #define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
+#define OSDiffTick(tick1, tick0) ((s32) (tick1) - (s32) (tick0))
 
 OSTick OSGetTick(void);
 OSTime OSGetTime(void);

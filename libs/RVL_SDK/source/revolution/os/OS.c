@@ -383,6 +383,7 @@ void OSInit(void) {
     __OSCacheInit();
     EXIInit();
     __OSInitSram();
+    __OSThreadInit();
 }
 
 static void OSExceptionInit(void) {
