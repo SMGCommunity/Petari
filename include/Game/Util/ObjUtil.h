@@ -127,7 +127,7 @@ namespace MR {
     bool tryRumbleDefaultHit(const void *, s32);
 
     void declareCoin(const NameObj *, s32);
-    void getDeclareRemnantCoinCount(const NameObj *);
+    s32 getDeclareRemnantCoinCount(const NameObj *);
     void hopCoin(const NameObj *, const TVec3f &, const TVec3f &);
     void appearCoinFix(const NameObj *, const TVec3f &, s32);
 
@@ -135,6 +135,8 @@ namespace MR {
     void appearCoinPopToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32);
 
     void appearCoinToVelocity(const NameObj *, const TVec3f &, const TVec3f &, s32);
+
+    void appearCoinCircle(const NameObj *, const TVec3f &, s32);
 
     void declareStarPiece(const NameObj *, s32);
     s32 getDeclareRemnantStarPieceCount(const NameObj *);

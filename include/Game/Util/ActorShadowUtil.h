@@ -36,6 +36,8 @@ namespace MR {
 
     void onCalcShadow(LiveActor *, const char *);
 
+    void excludeCalcShadowToMyCollision(LiveActor *, const char *);
+
     void validateShadow(LiveActor *, const char *);
     void validateShadowGroup(LiveActor *, const char *);
     void invalidateShadow(LiveActor *, const char *);
