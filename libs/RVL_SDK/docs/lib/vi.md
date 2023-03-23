@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| vi.o | 2.1739130434782608% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
 | i2c.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | vi3in1.o | 0.0% | 0 / 14 | 0.0% | :x: 
 
@@ -35,8 +35,8 @@
 | VIGetCurrentFrameBuffer | :x: |
 | VISetBlack | :x: |
 | VIGetRetraceCount | :x: |
-| VIGetCurrentLine | :x: |
-| VIGetTvFormat | :x: |
+| VIGetCurrentLine | :white_check_mark: |
+| VIGetTvFormat | :white_check_mark: |
 | VIGetDTVStatus | :x: |
 | __VIDisplayPositionToXY | :x: |
 | VIGetDimmingCount | :x: |

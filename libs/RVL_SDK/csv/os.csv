@@ -5,7 +5,7 @@ OSGetConsoleType,OS.o,os.a,true
 ClearArena,OS.o,os.a,false
 ClearMEM2Arena,OS.o,os.a,false
 InquiryCallback,OS.o,os.a,false
-ReportOSInfo,OS.o,os.a,false
+ReportOSInfo,OS.o,os.a,true
 OSInit,OS.o,os.a,false
 OSExceptionInit,OS.o,os.a,true
 __OSDBIntegrator,OS.o,os.a,true

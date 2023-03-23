@@ -18,8 +18,8 @@ VIGetNextFrameBuffer,vi.o,vi.a,false
 VIGetCurrentFrameBuffer,vi.o,vi.a,false
 VISetBlack,vi.o,vi.a,false
 VIGetRetraceCount,vi.o,vi.a,false
-VIGetCurrentLine,vi.o,vi.a,false
-VIGetTvFormat,vi.o,vi.a,false
+VIGetCurrentLine,vi.o,vi.a,true
+VIGetTvFormat,vi.o,vi.a,true
 VIGetDTVStatus,vi.o,vi.a,false
 __VIDisplayPositionToXY,vi.o,vi.a,false
 VIGetDimmingCount,vi.o,vi.a,false

@@ -60,6 +60,8 @@ OSExecParams __OSRebootParams;
 static void OSExceptionInit(void);
 void OSDefaultExceptionHandler( __OSException exception, OSContext* context );
 
+static const char* __OSVersion = "<< RVL_SDK - OS \trelease build: Jan 30 2008 01:38:43 (0x4199_60831) >>";
+
 asm void __OSFPRInit(void) {
     nofralloc
     mfmsr r3
@@ -282,12 +284,90 @@ u32 OSGetConsoleType(void) {
 // ClearArena
 // ClearMEM2Arena
 // InquiryCallback
-// ReportOSInfo
 
 static void DisableWriteGatherPipe(void) {
     u32 hid2 = PPCMfhid2();
     hid2 &= 0xBFFFFFFF;
     PPCMthid2(hid2);
+}
+
+static void ReportOSInfo(void) {
+    u32 consoleType;
+    u32 sysMemSize;
+    OSIOSRev ios;
+
+    OSReport("\nRevolution OS\n");
+    OSReport("Kernel built : %s %s\n", "Jan 30 2008", "01:38:43");
+    OSReport("Console Type : " );
+
+    consoleType = OSGetConsoleType();
+
+    switch (consoleType & 0xF0000000) {
+        case 0:
+            switch (consoleType) {
+                case 0x11:
+                    OSReport("Pre-production board 1\n");
+                    break;
+                case 0x12:
+                    OSReport("Pre-production board 2-1\n");
+                    break;
+                case 0x20:
+                    OSReport("Pre-production board 2-2\n");
+                    break;
+                case 0x100:
+                    OSReport("RVA 1\n");
+                    break;
+                default:
+                    OSReport("Retail %d\n", consoleType);
+                    break;
+            }
+
+            break;
+
+        case 0x10000000:
+            switch (consoleType) {
+                case 0x10000021:
+                    OSReport("NDEV 2.1\n");
+                    break;
+                case 0x10000020:
+                    OSReport("NDEV 2.0\n");
+                    break;
+                case 0x10000012:
+                    OSReport("NDEV 1.2\n");
+                    break;
+                case 0x10000011:
+                    OSReport("NDEV 1.1\n");
+                    break;
+                case 0x10000010:
+                    OSReport("NDEV 1.0\n");
+                    break;
+                case 0x10000008:
+                    OSReport("Revolution Emulator\n");
+                    break;
+                default:
+                    OSReport("Emulation platform (%08x)\n", consoleType);
+                    break;
+            }
+
+            break;
+
+        case 0x20000000:
+            OSReport("TDEV-based emulation HW%d\n", (consoleType & ~0xF0000000) - 3);
+            break;
+        default:
+            OSReport("%08x\n", consoleType);
+            break;
+    }
+
+
+    __OSGetIOSRev(&ios);
+    OSReport("Firmware     : %d.%d.%d ", ios.major, ios.minor, ios.micro);
+    OSReport("(%d/%d/%d)\n", ios.month, ios.date, ios.year);
+    sysMemSize = (OSGetConsoleSimulatedMem1Size() + OSGetConsoleSimulatedMem2Size());
+    OSReport("Memory %d MB\n", sysMemSize/(1024*1024));
+
+    OSReport("MEM1 Arena : 0x%x - 0x%x\n", OSGetMEM1ArenaLo(), OSGetMEM1ArenaHi());
+    OSReport("MEM2 Arena : 0x%x - 0x%x\n", OSGetMEM2ArenaLo(), OSGetMEM2ArenaHi());
 }
 
 void OSInit(void) {
@@ -355,6 +435,14 @@ void OSInit(void) {
 
     arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x3110);
 
+    if (arenaAddr == NULL) {
+        arenaAddr = BootInfo->arenaHi == NULL ? (void*)__ArenaHi : BootInfo->arenaHi;
+    }
+
+    OSSetMEM1ArenaHi(arenaAddr);
+
+    arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x3124);
+
     if (arenaAddr != 0) {
         if (OSIsMEM2Region((void*)__ArenaLo)) {
             arenaAddr = (void*)__ArenaLo;
@@ -388,6 +476,7 @@ void OSInit(void) {
     __OSContextInit();
     __OSCacheInit();
     EXIInit();
+    SIInit();
     __OSInitSram();
     __OSThreadInit();
     __OSInitAudioSystem();
@@ -396,6 +485,9 @@ void OSInit(void) {
     if (!__OSInIPL) {
         __OSInitMemoryProtection();
     }
+
+    ReportOSInfo();
+    OSRegisterVersion(__OSVersion);
 }
 
 static void OSExceptionInit(void) {

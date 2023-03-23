@@ -51,7 +51,7 @@ void SISetSamplingRate(u32 msec) {
     enabled = OSDisableInterrupts();
     SamplingRate = msec;
 
-    switch (VIGetTVFormat()) {
+    switch (VIGetTvFormat()) {
         case VI_NTSC:
         case VI_MPAL:
         case VI_EURGB60:
