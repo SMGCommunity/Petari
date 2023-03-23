@@ -284,6 +284,12 @@ u32 OSGetConsoleType(void) {
 // InquiryCallback
 // ReportOSInfo
 
+static void DisableWriteGatherPipe(void) {
+    u32 hid2 = PPCMfhid2();
+    hid2 &= 0xBFFFFFFF;
+    PPCMthid2(hid2);
+}
+
 void OSInit(void) {
     void* bi2StartAddr;
     void* arenaAddr;
@@ -385,6 +391,11 @@ void OSInit(void) {
     __OSInitSram();
     __OSThreadInit();
     __OSInitAudioSystem();
+    DisableWriteGatherPipe();
+
+    if (__OSInIPL) {
+        __OSInitMemoryProtection();
+    }
 }
 
 static void OSExceptionInit(void) {
