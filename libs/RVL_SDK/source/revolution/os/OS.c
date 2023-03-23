@@ -393,7 +393,7 @@ void OSInit(void) {
     __OSInitAudioSystem();
     DisableWriteGatherPipe();
 
-    if (__OSInIPL) {
+    if (!__OSInIPL) {
         __OSInitMemoryProtection();
     }
 }
