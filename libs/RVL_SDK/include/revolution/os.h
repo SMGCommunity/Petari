@@ -115,6 +115,7 @@ void __OSInitAlarm(void);
 void __OSModuleInit(void);
 void __OSInterruptInit(void);
 void __OSContextInit(void);
+void __OSInitAudioSystem(void);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);

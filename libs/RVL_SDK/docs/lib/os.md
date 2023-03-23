@@ -12,7 +12,7 @@
 | OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
-| OSAudioSystem.o | 16.943521594684384% | 1 / 3 | 33.33333333333333% | :eight_pointed_black_star: 
+| OSAudioSystem.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSContext.o | 56.19967793880838% | 11 / 16 | 68.75% | :eight_pointed_black_star: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
@@ -116,8 +116,8 @@
 # OSAudioSystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __AIClockInit | :x: |
-| __OSInitAudioSystem | :x: |
+| __AIClockInit | :white_check_mark: |
+| __OSInitAudioSystem | :white_check_mark: |
 | __OSStopAudioSystem | :white_check_mark: |
 
 

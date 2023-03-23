@@ -50,8 +50,8 @@ OSSetMEM1ArenaLo,OSArena.o,os.a,true
 OSSetMEM2ArenaLo,OSArena.o,os.a,true
 OSSetArenaLo,OSArena.o,os.a,true
 OSAllocFromMEM1ArenaLo,OSArena.o,os.a,true
-__AIClockInit,OSAudioSystem.o,os.a,false
-__OSInitAudioSystem,OSAudioSystem.o,os.a,false
+__AIClockInit,OSAudioSystem.o,os.a,true
+__OSInitAudioSystem,OSAudioSystem.o,os.a,true
 __OSStopAudioSystem,OSAudioSystem.o,os.a,true
 DCEnable,OSCache.o,os.a,true
 DCInvalidateRange,OSCache.o,os.a,true

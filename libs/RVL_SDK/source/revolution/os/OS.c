@@ -384,6 +384,7 @@ void OSInit(void) {
     EXIInit();
     __OSInitSram();
     __OSThreadInit();
+    __OSInitAudioSystem();
 }
 
 static void OSExceptionInit(void) {
