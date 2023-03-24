@@ -239,3 +239,261 @@ IOSError IOS_Open(const char *path, u32 flags) {
 error:
     return ret;
 }
+
+IOSError IOS_CloseAsync(IOSFd fd, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 2, cb, cbArg, &rpc);
+
+    if (ret == 0) {
+        ret = __ios__Ipc2(rpc, cb);
+    }
+
+    return ret;
+}
+
+IOSError IOS_Close(IOSFd fd) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 2, 0, 0, &rpc);
+
+    if (ret == 0) {
+        ret = __ios_Ip2(rpc, 0);
+    }
+
+    return ret;
+}
+
+static IOSError __ios_Read(IOSRpcRequest* rpc, void* buf, u32 len) {
+    IOSError ret = 0;
+    IOSResourceRequest* req;
+
+    if (!rpc) {
+        ret = -4;
+        goto error;
+    }
+
+    req = &rpc->request;
+
+    DCInvalidateRange(buf, len);
+    req->args.read.outPtr = (buf) ? (u8*)OSVirtualToPhysical(buf) : 0;
+    req->args.read.outLen = len;
+
+error:
+    return ret;
+}
+
+IOSError IOS_ReadAsync(IOSFd fd, void* buf, u32 len, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 3, cb, cbArg, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Read(rpc, buf, len);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, cb);
+
+error:
+    return ret;
+}
+
+IOSError IOS_Read(IOSFd fd, void* buf, u32 len) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 3, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Read(rpc, buf, len);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, 0);
+
+error:
+    return ret;
+}
+
+static IOSError __ios_Write(IOSRpcRequest* rpc, void* buf, u32 len) {
+    IOSError ret = 0;
+    IOSResourceRequest* req;
+
+    if (!rpc) {
+        ret = -4;
+        goto error;
+    }
+
+    req = &rpc->request;
+    req->args.write.inPtr = (buf) ? (u8*)OSVirtualToPhysical(buf) : 0;
+    req->args.write.inLen = len;
+    DCFlushRange(buf, len);
+
+error:
+    return ret;
+}
+
+IOSError IOS_WriteAsync(IOSFd fd, void* buf, u32 len, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 4, cb, cbArg, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Write(rpc, buf, len);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, cb);
+
+error:
+    return ret;
+}
+
+IOSError IOS_Write(IOSFd fd, void* buf, u32 len) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 4, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Write(rpc, buf, len);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, 0);
+
+error:
+    return ret;
+}
+
+static IOSError __ios_Seek(IOSRpcRequest* rpc, s32 offset, u32 whence) {
+    IOSError ret = 0;
+    IOSResourceRequest* req;
+
+    if (!rpc) {
+        ret = -4;
+        goto error;
+    }
+
+    req = &rpc->request;
+    req->args.seek.offset = offset;
+    req->args.seek.whence = whence;
+
+error:
+    return ret;
+}
+
+IOSError IOS_SeekAsync(IOSFd fd, s32 offset, u32 whence, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 5, cb, cbArg, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Seek(rpc, offset, whence);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, cb);
+
+error:
+    return ret;
+}
+
+IOSError IOS_Seek(IOSFd fd, s32 offset, u32 whence) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 5, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Seek(rpc, offset, whence);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, 0);
+
+error:
+    return ret;
+}
+
+static IOSError __ios_Ioctl(IOSRpcRequest* rpc, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen) {
+    IOSError ret = 0;
+    IOSResourceRequest* req;
+
+    if (!rpc) {
+        ret = -4;
+        goto error;
+    }
+
+    req = &rpc->request;
+
+    req->args.ioctl.cmd = (u32)cmd;
+    req->args.ioctl.outPtr = (output) ? (u8*)OSVirtualToPhysical(output) : 0;
+    req->args.ioctl.outLen = outputLen;
+    req->args.ioctl.inPtr = (input) ? (u8*)OSVirtualToPhysical(input) : 0;
+    req->args.ioctl.inLen = inputLen;
+    
+    DCFlushRange(input, inputLen);
+    DCFlushRange(output, outputLen);
+
+error:
+    return ret;
+}
+
+IOSError IOS_Ioctl(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 6, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ioctl(rpc, cmd, input, inputLen, output, outputLen);
+
+    if (ret != 0) {
+        goto error;
+    }
+
+    ret = __ios_Ipc2(rpc, 0);
+
+error:
+    return ret;
+}
