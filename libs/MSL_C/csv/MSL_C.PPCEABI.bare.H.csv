@@ -58,7 +58,7 @@ vsnprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 vsprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 snprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 sprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
-parse_format,scanf.o,MSL_C.PPCEABI.bare.H.a,false
+parse_format,scanf.o,MSL_C.PPCEABI.bare.H.a,true
 __sformatter,scanf.o,MSL_C.PPCEABI.bare.H.a,false
 __StringRead,scanf.o,MSL_C.PPCEABI.bare.H.a,true
 sscanf,scanf.o,MSL_C.PPCEABI.bare.H.a,true
