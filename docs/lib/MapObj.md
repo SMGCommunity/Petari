@@ -280,7 +280,7 @@
 | [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SurprisedGalaxy.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [Swinger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Swinger.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [SwingLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwingLight.md) | 0.0% | 0 / 20 | 0.0% | :x: 
-| [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwitchBox.md) | 0.0% | 0 / 17 | 0.0% | :x: 
+| [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwitchBox.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | [TimeAppearObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TimeAppearObj.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [TimerMoveWall.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TimerMoveWall.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [TrampleStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TrampleStar.md) | 0.0% | 0 / 32 | 0.0% | :x: 
