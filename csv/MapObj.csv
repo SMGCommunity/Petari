@@ -1517,7 +1517,7 @@ initAfterPlacement__15CutBushModelObjFv,CutBushModelObj.o,MapObj.a,true
 calcAndSetBaseMtx__15CutBushModelObjFv,CutBushModelObj.o,MapObj.a,true
 __dt__15CutBushModelObjFv,CutBushModelObj.o,MapObj.a,true
 __dt__8DashRingFv,DashRing.o,MapObj.a,true
-initCommon__8DashRingFRC12JMapInfoIterPCc,DashRing.o,MapObj.a,false
+initCommon__8DashRingFRC12JMapInfoIterPCc,DashRing.o,MapObj.a,true
 attackSensor__8DashRingFP9HitSensorP9HitSensor,DashRing.o,MapObj.a,false
 control__8DashRingFv,DashRing.o,MapObj.a,false
 calcAndSetBaseMtx__8DashRingFv,DashRing.o,MapObj.a,true

@@ -4,8 +4,6 @@ DashRing::~DashRing() {
 
 }
 
-#ifdef NON_MATCHING
-// tiny regswap
 void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
     MR::initDefaultPos(this, rIter);
     _A4 = 0;
@@ -25,30 +23,13 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
     MR::addHitSensorMapObj(this, "body", 4, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::validateClipping(this);
     calcAxis();
-
-    bool anotherFlag = false;
-    JMapInfo* info = rIter.mInfo;
-    
-    bool flag = false;
     
     _A8 = 300;
     _AC = 120;
     _B0 = 2.5f;
     _B5 = 1;
 
-    if (info && rIter._4 >= 0) {
-        flag = true;
-    }
-
-    if (flag) {
-        s32 data = info->mData ? info->mData->_0 : 0;
-
-        if (rIter._4 < data) {
-            anotherFlag = true;
-        }
-    }
-
-    if (anotherFlag) {
+    if (MR::checkJMapDataEntries(rIter)) {
         s32 arg0 = -1;
         s32 arg1 = -1;
         s32 arg2 = -1;
@@ -88,7 +69,6 @@ void DashRing::initCommon(const JMapInfoIter &rIter, const char *pName) {
 
     _B8 = mPosition;
 }
-#endif
 
 // DashRing::attackSensor
 // DashRing::control

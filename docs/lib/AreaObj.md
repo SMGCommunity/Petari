@@ -44,4 +44,4 @@
 | [SunLightArea.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/SunLightArea.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SwitchArea.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/SwitchArea.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | [WarpCube.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/WarpCube.md) | 73.33333333333333% | 4 / 8 | 50.0% | :eight_pointed_black_star: 
-| [WaterArea.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/WaterArea.md) | 65.2542372881356% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| [WaterArea.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/WaterArea.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
