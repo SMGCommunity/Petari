@@ -94,8 +94,8 @@ wcsncpy,wstring.o,MSL_C.PPCEABI.bare.H.a,true
 wcscmp,wstring.o,MSL_C.PPCEABI.bare.H.a,true
 wcschr,wstring.o,MSL_C.PPCEABI.bare.H.a,true
 fwide,wchar_io.o,MSL_C.PPCEABI.bare.H.a,true
-__write_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
-__close_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,false
+__write_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,true
+__close_console,uart_console_io_gcn.o,MSL_C.PPCEABI.bare.H.a,true
 abort,abort_exit_ppc_eabi.o,MSL_C.PPCEABI.bare.H.a,true
 scalbn,math_sun.o,MSL_C.PPCEABI.bare.H.a,true
 stricmp,extras.o,MSL_C.PPCEABI.bare.H.a,true

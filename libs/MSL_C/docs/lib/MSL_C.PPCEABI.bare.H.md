@@ -32,7 +32,7 @@
 | wprintf.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | wstring.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | wchar_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| uart_console_io_gcn.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| uart_console_io_gcn.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | abort_exit_ppc_eabi.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | math_sun.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | extras.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -286,8 +286,8 @@
 # uart_console_io_gcn.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __write_console | :x: |
-| __close_console | :x: |
+| __write_console | :white_check_mark: |
+| __close_console | :white_check_mark: |
 
 
 # abort_exit_ppc_eabi.o
