@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 5 / 9 Completed -- (55.55555555555556%)
+# 6 / 9 Completed -- (66.66666666666666%)
 # DashRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__dt__8DashRingFv` | :white_check_mark: |
-| `initCommon__8DashRingFRC12JMapInfoIterPCc` | :x: |
+| `initCommon__8DashRingFRC12JMapInfoIterPCc` | :white_check_mark: |
 | `attackSensor__8DashRingFP9HitSensorP9HitSensor` | :x: |
 | `control__8DashRingFv` | :x: |
 | `calcAndSetBaseMtx__8DashRingFv` | :white_check_mark: |

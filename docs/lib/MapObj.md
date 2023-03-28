@@ -88,7 +88,7 @@
 | [CrystalCageMoving.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CrystalCageMoving.md) | 100.0% | 36 / 36 | 100.0% | :white_check_mark: 
 | [CrystalSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CrystalSwitch.md) | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | [CutBushModelObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CutBushModelObj.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| [DashRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DashRing.md) | 19.242902208201894% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
+| [DashRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DashRing.md) | 44.952681388012614% | 6 / 9 | 66.66666666666666% | :eight_pointed_black_star: 
 | [DeadLeaves.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DeadLeaves.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [DesertLandMoveSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DesertLandMoveSwitch.md) | 0.0% | 0 / 28 | 0.0% | :x: 
 | [DesertMovingLand.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DesertMovingLand.md) | 0.0% | 0 / 30 | 0.0% | :x: 
@@ -280,7 +280,7 @@
 | [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SurprisedGalaxy.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [Swinger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Swinger.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [SwingLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwingLight.md) | 0.0% | 0 / 20 | 0.0% | :x: 
-| [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwitchBox.md) | 0.0% | 0 / 17 | 0.0% | :x: 
+| [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwitchBox.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | [TimeAppearObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TimeAppearObj.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [TimerMoveWall.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TimerMoveWall.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [TrampleStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/TrampleStar.md) | 0.0% | 0 / 32 | 0.0% | :x: 

@@ -102,4 +102,32 @@ namespace MR {
         getJMapInfoMessageID(rIter, &msgId);
         return msgId;
     }
+
+    inline bool checkJMapDataEntries(const JMapInfoIter &rIter) {
+        bool flag;
+        bool ret;
+
+        ret = false;
+        flag = false;
+
+        if (rIter.mInfo != nullptr && rIter._4 >= 0) {
+            flag = true;
+        }
+
+        if (flag) {
+            s32 numEntries;
+
+            if (rIter.mInfo->mData != nullptr) {
+                numEntries = rIter.mInfo->mData->mNumEntries;
+            } else {
+                numEntries = 0;
+            }
+
+            if (rIter._4 < numEntries) {
+                ret = true;
+            }
+        }
+
+        return ret;
+    }
 };
