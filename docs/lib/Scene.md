@@ -32,4 +32,4 @@
 | [StageDataHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/StageDataHolder.md) | 25.36162005785921% | 18 / 51 | 35.294117647058826% | :eight_pointed_black_star: 
 | [StageFileLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/StageFileLoader.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [StageResourceLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/StageResourceLoader.md) | 0.0% | 0 / 2 | 0.0% | :x: 
-| [StopSceneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/StopSceneController.md) | 50.0% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
+| [StopSceneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/StopSceneController.md) | 83.53658536585365% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 

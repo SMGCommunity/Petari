@@ -451,7 +451,7 @@ __ct__19StopSceneControllerFv,StopSceneController.o,Scene.a,true
 movement__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,true
 requestStopScene__19StopSceneControllerFl,StopSceneController.o,Scene.a,false
 requestStopSceneDelay__19StopSceneControllerFll,StopSceneController.o,Scene.a,false
-movement__19StopSceneControllerFv,StopSceneController.o,Scene.a,false
-isSceneStopped__19StopSceneControllerCFv,StopSceneController.o,Scene.a,false
-__dt__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,false
-__dt__19StopSceneControllerFv,StopSceneController.o,Scene.a,false
+movement__19StopSceneControllerFv,StopSceneController.o,Scene.a,true
+isSceneStopped__19StopSceneControllerCFv,StopSceneController.o,Scene.a,true
+__dt__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,true
+__dt__19StopSceneControllerFv,StopSceneController.o,Scene.a,true

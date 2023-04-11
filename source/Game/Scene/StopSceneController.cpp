@@ -41,3 +41,22 @@ void StopSceneController::requestStopScene(s32 a1) {
 }
 #endif
 
+// void StopSceneController::requestStopSceneDelay(s32 a1, s32 a2)
+
+void StopSceneController::movement() {
+    if (_10 > 0) {
+        _10--;
+    }
+}
+
+bool StopSceneController::isSceneStopped() const {
+    return _10 > 0;
+}
+
+StopSceneDelayRequest::~StopSceneDelayRequest() {
+
+}
+
+StopSceneController::~StopSceneController() {
+
+}
