@@ -5,31 +5,31 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 24 Completed -- (0.0%)
+# 24 / 24 Completed -- (100.0%)
 # PTimerSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__12PTimerSwitchFPCc` | :x: |
-| `reset__12PTimerSwitchFv` | :x: |
-| `init__12PTimerSwitchFRC12JMapInfoIter` | :x: |
-| `initAfterPlacement__12PTimerSwitchFv` | :x: |
-| `appear__12PTimerSwitchFv` | :x: |
-| `kill__12PTimerSwitchFv` | :x: |
-| `calcAnim__12PTimerSwitchFv` | :x: |
-| `control__12PTimerSwitchFv` | :x: |
-| `calcAndSetBaseMtx__12PTimerSwitchFv` | :x: |
-| `receiveOtherMsg__12PTimerSwitchFUlP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__12PTimerSwitchFUlP9HitSensorP9HitSensor` | :x: |
-| `trySwitchDown__12PTimerSwitchFv` | :x: |
-| `tryOn__12PTimerSwitchFv` | :x: |
-| `exeOff__12PTimerSwitchFv` | :x: |
-| `exeSwitchDown__12PTimerSwitchFv` | :x: |
-| `exeOn__12PTimerSwitchFv` | :x: |
-| `__dt__12PTimerSwitchFv` | :x: |
-| `__sinit_\PTimerSwitch_cpp` | :x: |
-| `__ct__Q215NrvPTimerSwitch18PTimerSwitchNrvOffFv` | :x: |
-| `__ct__Q215NrvPTimerSwitch25PTimerSwitchNrvSwitchDownFv` | :x: |
-| `__ct__Q215NrvPTimerSwitch17PTimerSwitchNrvOnFv` | :x: |
-| `execute__Q215NrvPTimerSwitch17PTimerSwitchNrvOnCFP5Spine` | :x: |
-| `execute__Q215NrvPTimerSwitch25PTimerSwitchNrvSwitchDownCFP5Spine` | :x: |
-| `execute__Q215NrvPTimerSwitch18PTimerSwitchNrvOffCFP5Spine` | :x: |
+| `__ct__12PTimerSwitchFPCc` | :white_check_mark: |
+| `reset__12PTimerSwitchFv` | :white_check_mark: |
+| `init__12PTimerSwitchFRC12JMapInfoIter` | :white_check_mark: |
+| `initAfterPlacement__12PTimerSwitchFv` | :white_check_mark: |
+| `appear__12PTimerSwitchFv` | :white_check_mark: |
+| `kill__12PTimerSwitchFv` | :white_check_mark: |
+| `calcAnim__12PTimerSwitchFv` | :white_check_mark: |
+| `control__12PTimerSwitchFv` | :white_check_mark: |
+| `calcAndSetBaseMtx__12PTimerSwitchFv` | :white_check_mark: |
+| `receiveOtherMsg__12PTimerSwitchFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__12PTimerSwitchFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `trySwitchDown__12PTimerSwitchFv` | :white_check_mark: |
+| `tryOn__12PTimerSwitchFv` | :white_check_mark: |
+| `exeOff__12PTimerSwitchFv` | :white_check_mark: |
+| `exeSwitchDown__12PTimerSwitchFv` | :white_check_mark: |
+| `exeOn__12PTimerSwitchFv` | :white_check_mark: |
+| `__dt__12PTimerSwitchFv` | :white_check_mark: |
+| `__sinit_\PTimerSwitch_cpp` | :white_check_mark: |
+| `__ct__Q215NrvPTimerSwitch18PTimerSwitchNrvOffFv` | :white_check_mark: |
+| `__ct__Q215NrvPTimerSwitch25PTimerSwitchNrvSwitchDownFv` | :white_check_mark: |
+| `__ct__Q215NrvPTimerSwitch17PTimerSwitchNrvOnFv` | :white_check_mark: |
+| `execute__Q215NrvPTimerSwitch17PTimerSwitchNrvOnCFP5Spine` | :white_check_mark: |
+| `execute__Q215NrvPTimerSwitch25PTimerSwitchNrvSwitchDownCFP5Spine` | :white_check_mark: |
+| `execute__Q215NrvPTimerSwitch18PTimerSwitchNrvOffCFP5Spine` | :white_check_mark: |

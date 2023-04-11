@@ -199,7 +199,7 @@
 | [PowerStarHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarHolder.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [PressureBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PressureBase.md) | 81.69398907103826% | 44 / 48 | 91.66666666666666% | :eight_pointed_black_star: 
 | [PrizeRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PrizeRing.md) | 0.0% | 0 / 31 | 0.0% | :x: 
-| [PTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PTimerSwitch.md) | 0.0% | 0 / 24 | 0.0% | :x: 
+| [PTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PTimerSwitch.md) | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | [PunchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PunchBox.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [PunchingKinoko.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PunchingKinoko.md) | 100.0% | 59 / 59 | 100.0% | :white_check_mark: 
 | [PurpleCoinHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PurpleCoinHolder.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
