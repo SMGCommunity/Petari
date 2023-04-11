@@ -5,16 +5,16 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 2 / 78 Completed -- (2.564102564102564%)
+# 5 / 78 Completed -- (6.41025641025641%)
 # GameSystemSceneController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `getAudioSystemWrapper__39@unnamed@GameSystemSceneController_cpp@Fv` | :x: |
-| `__ct__16SceneControlInfoFv` | :x: |
+| `__ct__16SceneControlInfoFv` | :white_check_mark: |
 | `setScene__16SceneControlInfoFPCc` | :white_check_mark: |
 | `setStage__16SceneControlInfoFPCc` | :white_check_mark: |
-| `setStartIdInfo__16SceneControlInfoFRC10JMapIdInfo` | :x: |
-| `__as__10JMapIdInfoFRC10JMapIdInfo` | :x: |
+| `setStartIdInfo__16SceneControlInfoFRC10JMapIdInfo` | :white_check_mark: |
+| `__as__10JMapIdInfoFRC10JMapIdInfo` | :white_check_mark: |
 | `__ct__25GameSystemSceneControllerFv` | :x: |
 | `initAfterStationedResourceLoaded__25GameSystemSceneControllerFv` | :x: |
 | `requestChangeScene__25GameSystemSceneControllerFv` | :x: |

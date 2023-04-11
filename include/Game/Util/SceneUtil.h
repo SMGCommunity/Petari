@@ -67,4 +67,6 @@ namespace MR {
     bool isStageDisablePauseMenu();
 
     const char* getAppearPowerStarObjName(s32);
+
+    JMapIdInfo& getInitializeStartIdInfo();
 }

@@ -11,9 +11,17 @@ public:
 
     JMapIdInfo(long, long);
     JMapIdInfo(long, const JMapInfoIter &);
-    JMapIdInfo(const JMapIdInfo &);
+    JMapIdInfo(const JMapIdInfo &rInf) {
+        _0 = rInf._0;
+        mZoneID = rInf.mZoneID;
+    }
 
     void initalize(s32, const JMapInfoIter &);
+
+    void operator=(const JMapIdInfo &rhs) NO_INLINE {
+        _0 = rhs._0;
+        mZoneID = rhs.mZoneID;
+    }
 
     inline bool operator==(const JMapIdInfo &rOther) const {
         bool ret = false;

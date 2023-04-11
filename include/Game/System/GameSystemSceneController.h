@@ -15,6 +15,9 @@ public:
 
     char mScene[0x20];  // _0
     char mStage[0x20];  // _20
+    u32 _40;
+    u32 _44;
+    JMapIdInfo* _48;
 };
 
 class GameSystemSceneController {
