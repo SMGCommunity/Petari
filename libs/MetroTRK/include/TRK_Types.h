@@ -21,7 +21,7 @@ typedef struct TRKEvent {
     int mBufferIdx;         // _8
 } TRKEvent;
 
-typedef TRKBuffer {
+typedef struct TRKBuffer {
     unsigned char _0[4];
     unsigned int _4;
     int _8;

@@ -446,9 +446,9 @@ makeStageArchiveName__15StageFileLoaderFPcUlPCc,StageFileLoader.o,Scene.a,true
 mountFilesInStageMapFile__15StageFileLoaderFPCc,StageFileLoader.o,Scene.a,true
 tryRequestLoadStageResource__2MRFv,StageResourceLoader.o,Scene.a,false
 isLoadStageScenarioResource__2MRFv,StageResourceLoader.o,Scene.a,false
-__ct__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,false
-__ct__19StopSceneControllerFv,StopSceneController.o,Scene.a,false
-movement__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,false
+__ct__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,true
+__ct__19StopSceneControllerFv,StopSceneController.o,Scene.a,true
+movement__21StopSceneDelayRequestFv,StopSceneController.o,Scene.a,true
 requestStopScene__19StopSceneControllerFl,StopSceneController.o,Scene.a,false
 requestStopSceneDelay__19StopSceneControllerFll,StopSceneController.o,Scene.a,false
 movement__19StopSceneControllerFv,StopSceneController.o,Scene.a,false

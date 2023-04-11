@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 9 Completed -- (0.0%)
+# 3 / 9 Completed -- (33.33333333333333%)
 # StopSceneController.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__21StopSceneDelayRequestFv` | :x: |
-| `__ct__19StopSceneControllerFv` | :x: |
-| `movement__21StopSceneDelayRequestFv` | :x: |
+| `__ct__21StopSceneDelayRequestFv` | :white_check_mark: |
+| `__ct__19StopSceneControllerFv` | :white_check_mark: |
+| `movement__21StopSceneDelayRequestFv` | :white_check_mark: |
 | `requestStopScene__19StopSceneControllerFl` | :x: |
 | `requestStopSceneDelay__19StopSceneControllerFll` | :x: |
 | `movement__19StopSceneControllerFv` | :x: |
