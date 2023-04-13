@@ -6,6 +6,7 @@ import urllib.request
 import os
 import sys
 import subprocess
+import hashlib
 
 def install(what):
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', what])
@@ -77,6 +78,9 @@ if not os.path.exists("Compilers"):
 
     with urllib.request.urlopen("http://shibbo.net/smg/Compilers.zip") as response, open("Compilers.zip", 'wb') as out:
         data = response.read()
+        if hashlib.sha256(data).hexdigest().upper() != "12D439B707D7AECB1BCD5B321DA406310523357128ABADB1493BED212A4A225F":
+            print("Compilers.zip corrupt")
+            sys.exit(1)
         out.write(data)
 
     if os.path.exists("Compilers.zip"):
