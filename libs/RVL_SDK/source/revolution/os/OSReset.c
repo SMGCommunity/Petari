@@ -1,4 +1,8 @@
 #include <revolution/os.h>
+#include <revolution/os/OSExecParams.h>
+#include <private/flipper.h>
+
+extern OSExecParams __OSRebootParams;
 
 typedef struct OSShutdownFunctionQueue
 {
@@ -47,6 +51,19 @@ do {                                                        \
 
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo* info) {
     EnqueuePrio(&ShutdownFunctionQueue, info);
+}
+
+u32 OSGetResetCode(void) {
+    u32 code;
+
+    if (__OSRebootParams.valid) {
+        code = (0x80000000 | __OSRebootParams.restartCode);
+    }
+    else {
+        code = (__PIRegs[9] & 0xFFFFFFF8) >> 3;
+    }
+
+    return code;
 }
 
 void OSResetSystem(int, u32, int) {

@@ -168,7 +168,7 @@ OSReturnToMenu,OSReset.o,os.a,false
 OSReturnToSetting,OSReset.o,os.a,false
 __OSReturnToMenuForError,OSReset.o,os.a,false
 __OSHotResetForError,OSReset.o,os.a,false
-OSGetResetCode,OSReset.o,os.a,false
+OSGetResetCode,OSReset.o,os.a,true
 OSResetSystem,OSReset.o,os.a,false
 WriteSramCallback,OSRtc.o,os.a,true
 __OSInitSram,OSRtc.o,os.a,true

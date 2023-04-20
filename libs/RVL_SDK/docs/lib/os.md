@@ -25,7 +25,7 @@
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSReset.o | 5.723905723905724% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
+| OSReset.o | 7.744107744107744% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSThread.o | 35.360962566844925% | 14 / 28 | 50.0% | :eight_pointed_black_star: 
@@ -299,7 +299,7 @@
 | OSReturnToSetting | :x: |
 | __OSReturnToMenuForError | :x: |
 | __OSHotResetForError | :x: |
-| OSGetResetCode | :x: |
+| OSGetResetCode | :white_check_mark: |
 | OSResetSystem | :x: |
 
 

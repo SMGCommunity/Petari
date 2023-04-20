@@ -20,6 +20,11 @@ struct OSShutdownFunctionInfo {
 void OSResetSystem(int, u32, BOOL);
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
 
+u32 OSGetResetCode(void);
+
+#define OSIsRestart()   \
+            ((OSGetResetCode() & OS_RESETCODE_RESTART) ? TRUE : FALSE)
+
 #ifdef __cplusplus
 }
 #endif
