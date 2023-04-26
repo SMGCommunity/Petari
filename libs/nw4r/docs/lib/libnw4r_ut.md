@@ -8,10 +8,20 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
+| ut_LinkList.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ut_ResFontBase.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | ut_ResFont.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | ut_CharWriter.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | ut_TextWriterBase.o | 0.0% | 0 / 14 | 0.0% | :x: 
+
+
+# ut_LinkList.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __dt__Q44nw4r2ut6detail12LinkListImplFv | :white_check_mark: |
+| Erase__Q44nw4r2ut6detail12LinkListImplFQ54nw4r2ut6detail12LinkListImpl8Iterator | :white_check_mark: |
+| Insert__Q44nw4r2ut6detail12LinkListImplFQ54nw4r2ut6detail12LinkListImpl8IteratorPQ34nw4r2ut12LinkListNode | :white_check_mark: |
+| Erase__Q44nw4r2ut6detail12LinkListImplFPQ34nw4r2ut12LinkListNode | :white_check_mark: |
 
 
 # ut_ResFontBase.o

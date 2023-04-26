@@ -16,5 +16,20 @@ namespace nw4r {
         inline T Clamp(T x, T low, T high) {
             return (x > high) ? high : ((x < low) ? low : x);
         }
+
+        class NonCopyable {
+        protected:
+            NonCopyable() {
+
+            }
+
+            ~NonCopyable() {
+
+            }
+
+        private:
+            NonCopyable(const NonCopyable &);
+            const NonCopyable& operator=(const NonCopyable &);
+        };
     };
 };
