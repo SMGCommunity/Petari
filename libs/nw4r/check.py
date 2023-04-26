@@ -211,7 +211,6 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
     unsupported_libraries = { "TRK_Hollywood_Revolution" }
 
     library = function_library.get_library_from_symbol(mangled_symbol, obj_name)
-    print(library)
 
     if library == None:
         print("Could not find library of symbol.")

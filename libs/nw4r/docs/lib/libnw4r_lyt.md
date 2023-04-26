@@ -22,7 +22,7 @@
 | lyt_animation.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | lyt_resourceAccessor.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | lyt_arcResourceAccessor.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| lyt_common.o | 8.213256484149856% | 1 / 13 | 7.6923076923076925% | :eight_pointed_black_star: 
+| lyt_common.o | 30.11527377521614% | 8 / 13 | 61.53846153846154% | :eight_pointed_black_star: 
 
 
 # lyt_init.o
@@ -313,14 +313,14 @@
 # lyt_common.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| EqualsResName__Q34nw4r3lyt6detailFPCcPCc | :x: |
-| EqualsMaterialName__Q34nw4r3lyt6detailFPCcPCc | :x: |
-| TestFileHeader__Q34nw4r3lyt6detailFRCQ44nw4r3lyt3res16BinaryFileHeaderUl | :x: |
-| __ct__Q44nw4r3lyt6detail11TexCoordAryFv | :x: |
-| Free__Q44nw4r3lyt6detail11TexCoordAryFv | :x: |
+| EqualsResName__Q34nw4r3lyt6detailFPCcPCc | :white_check_mark: |
+| EqualsMaterialName__Q34nw4r3lyt6detailFPCcPCc | :white_check_mark: |
+| TestFileHeader__Q34nw4r3lyt6detailFRCQ44nw4r3lyt3res16BinaryFileHeaderUl | :white_check_mark: |
+| __ct__Q44nw4r3lyt6detail11TexCoordAryFv | :white_check_mark: |
+| Free__Q44nw4r3lyt6detail11TexCoordAryFv | :white_check_mark: |
 | Reserve__Q44nw4r3lyt6detail11TexCoordAryFUc | :x: |
-| SetSize__Q44nw4r3lyt6detail11TexCoordAryFUc | :x: |
-| Copy__Q44nw4r3lyt6detail11TexCoordAryFPCvUc | :x: |
+| SetSize__Q44nw4r3lyt6detail11TexCoordAryFUc | :white_check_mark: |
+| Copy__Q44nw4r3lyt6detail11TexCoordAryFPCvUc | :white_check_mark: |
 | IsModulateVertexColor__Q34nw4r3lyt6detailFPQ34nw4r2ut5ColorUc | :x: |
 | MultipleAlpha__Q34nw4r3lyt6detailFQ34nw4r2ut5ColorUc | :x: |
 | SetVertexFormat__Q34nw4r3lyt6detailFbUc | :white_check_mark: |
