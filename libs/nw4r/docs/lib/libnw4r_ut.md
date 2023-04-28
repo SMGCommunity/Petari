@@ -9,7 +9,12 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ut_LinkList.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| ut_ResFontBase.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| ut_binaryFileFormat.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| ut_CharStrmReader.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ut_TagProcessorBase.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| ut_Font.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| ut_RomFont.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| ut_ResFontBase.o | 0.0% | 0 / 26 | 0.0% | :x: 
 | ut_ResFont.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | ut_CharWriter.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | ut_TextWriterBase.o | 0.0% | 0 / 14 | 0.0% | :x: 
@@ -24,9 +29,70 @@
 | Erase__Q44nw4r2ut6detail12LinkListImplFPQ34nw4r2ut12LinkListNode | :white_check_mark: |
 
 
+# ut_binaryFileFormat.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| IsValidBinaryFile__Q24nw4r2utFPCQ34nw4r2ut16BinaryFileHeaderUlUsUs | :white_check_mark: |
+
+
+# ut_CharStrmReader.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| ReadNextCharUTF8__Q34nw4r2ut14CharStrmReaderFv | :x: |
+| ReadNextCharUTF16__Q34nw4r2ut14CharStrmReaderFv | :x: |
+| ReadNextCharCP1252__Q34nw4r2ut14CharStrmReaderFv | :x: |
+| ReadNextCharSJIS__Q34nw4r2ut14CharStrmReaderFv | :x: |
+
+
+# ut_TagProcessorBase.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __ct__Q34nw4r2ut19TagProcessorBase&lt;c&gt;Fv | :x: |
+| __dt__Q34nw4r2ut19TagProcessorBase&lt;c&gt;Fv | :x: |
+| Process__Q34nw4r2ut19TagProcessorBase&lt;c&gt;FUsPQ34nw4r2ut15PrintContext&lt;c&gt; | :x: |
+| CalcRect__Q34nw4r2ut19TagProcessorBase&lt;c&gt;FPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;c&gt; | :x: |
+| __ct__Q34nw4r2ut19TagProcessorBase&lt;w&gt;Fv | :x: |
+| __dt__Q34nw4r2ut19TagProcessorBase&lt;w&gt;Fv | :x: |
+| Process__Q34nw4r2ut19TagProcessorBase&lt;w&gt;FUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+| CalcRect__Q34nw4r2ut19TagProcessorBase&lt;w&gt;FPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext&lt;w&gt; | :x: |
+
+
+# ut_Font.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| InitReaderFunc__Q34nw4r2ut4FontFQ34nw4r2ut12FontEncoding | :x: |
+
+
+# ut_RomFont.o
+| Symbol | Decompiled? |
+| ------------- | ------------- |
+| __dt__Q34nw4r2ut4FontFv | :x: |
+
+
 # ut_ResFontBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
+| __ct__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
+| __dt__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
+| SetResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFPvPQ34nw4r2ut15FontInformation | :x: |
+| RemoveResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
+| GetWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetAscent__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetDescent__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetBaselinePos__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetCellHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetCellWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetMaxCharWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetType__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetTextureFormat__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetLineFeed__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| GetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
+| SetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseFRCQ34nw4r2ut10CharWidths | :x: |
+| SetAlternateChar__Q44nw4r2ut6detail11ResFontBaseFUs | :x: |
+| SetLineFeed__Q44nw4r2ut6detail11ResFontBaseFi | :x: |
+| GetCharWidth__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
+| GetCharWidths__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
 | GetGlyph__Q44nw4r2ut6detail11ResFontBaseCFPQ34nw4r2ut5GlyphUs | :x: |
 | HasGlyph__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
 | GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
