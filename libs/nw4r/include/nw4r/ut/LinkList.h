@@ -38,8 +38,8 @@ namespace nw4r {
             }
 
         private:
-            Self* mNext;
-            Self* mPrev;
+            Self* mNext;            // _0
+            Self* mPrev;            // _4
 
             friend class detail::LinkListImpl;
         };
@@ -57,6 +57,8 @@ namespace nw4r {
                 typedef const value_type* const_pointer;
                 typedef value_type& reference;
                 typedef const value_type& const_reference;
+
+                class Iterator;
 
                 class Iterator : public detail::Iterator<value_type> {
                 public:
@@ -93,9 +95,11 @@ namespace nw4r {
                         return it;
                     }
                     
-                    explicit Iterator(pointer p) {
-                        mPointer = p;
+                    explicit Iterator(pointer p) : mPointer(p) {
+
                     }
+
+                    friend class LinkListImpl;
 
                     pointer mPointer;
                 };
@@ -116,9 +120,113 @@ namespace nw4r {
                 Iterator Erase(Iterator, Iterator);
                 void Clear();
 
-                size_type mSize;
-                Node mNode;
+                size_type mSize;        // _0
+                Node mNode;             // _4
             };
+        };
+        
+        template<typename T, PtrDiff TNOffset>
+        class LinkList : private detail::LinkListImpl {
+        public:
+
+            explicit LinkList() {
+
+            }
+
+            typedef detail::LinkListImpl Base;
+            typedef LinkList Self;
+            using Base::Node;
+            using Base::size_type;
+            using Base::difference_type;
+
+            typedef Base::Iterator TIt_base_;
+
+            typedef T value_type;
+            typedef value_type* pointer;
+            typedef const value_type* const_pointer;
+            typedef value_type& reference;
+            typedef const value_type& const_reference;
+
+            class Iterator;
+
+            class Iterator : public detail::Iterator<value_type> {
+            public:
+                typedef Iterator TIt;
+                typedef detail::Iterator<value_type> TBaseIt;
+
+                explicit Iterator() {
+
+                }
+
+                explicit Iterator(TIt_base_ it) : it_(it) {}
+
+                reference operator*() const {
+                    pointer p = operator->();
+                    return *p;
+                }
+
+                pointer operator->() const {
+                    return GetPointerFromNode(it_.operator->());
+                }
+
+                TIt &operator++() {
+                    ++it_;
+                    return *this;
+                }
+
+                TIt operator++(int) {
+                    const TIt it(*this):
+                    ++*this;
+                    return it;
+                }
+                
+                TIt &operator--() {
+                    --it_;
+                    return *this;
+                }
+
+                TIt operator--(int) {
+                    const TIt it(*this);
+                    --*this;
+                    return it;
+                }
+
+                TIt_base_ it_;
+
+                friend class Self;
+            };
+
+            Iterator GetBeginIter() {
+                return Iterator(Base::GetBeginIter());
+            }
+
+            Iterator GetEndIter() {
+                return Iterator(Base::GetEndIter());
+            }
+
+            Iterator Insert(Iterator it, pointer p) {
+                return Iterator(Base::Insert(it.it_, GetNodeFromPointer(p)));
+            }
+
+            Iterator Erase(Iterator it) {
+                return Iterator(Base::Erase(it.it_));
+            }
+
+            Iterator Erase(Iterator itFirst, Iterator itLast) {
+                return Iterator(Base::Erase(itFirst.it_, itLast.it_));
+            }
+
+            Iterator Erase(pointer p) {
+                return Iterator(Base::Erase(GetNodeFromPointer(p)));
+            }
+
+            static Node* GetNodeFromPointer(pointer p) {
+                return reinterpret_cast<Node*>(reinterpret_cast<IntPtr>(p) + TNOffset);
+            }
+
+            static pointer GetPointerFromNode(const Node *p) {
+                return reinterpret_cast<pointer>(reinterpret_cast<IntPtr>(p) - TNOffset);
+            }
         };
     };
 };

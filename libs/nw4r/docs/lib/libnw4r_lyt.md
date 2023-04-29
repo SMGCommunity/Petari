@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | lyt_init.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| lyt_pane.o | 0.0% | 0 / 30 | 0.0% | :x: 
+| lyt_pane.o | 7.995495495495495% | 6 / 30 | 20.0% | :eight_pointed_black_star: 
 | lyt_group.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | lyt_layout.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | lyt_picture.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -36,13 +36,13 @@
 | ------------- | ------------- |
 | __ct__Q34nw4r3lyt4PaneFPCQ44nw4r3lyt3res4Pane | :x: |
 | __dt__Q34nw4r3lyt4PaneFv | :x: |
-| SetName__Q34nw4r3lyt4PaneFPCc | :x: |
-| AppendChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane | :x: |
-| RemoveChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane | :x: |
+| SetName__Q34nw4r3lyt4PaneFPCc | :white_check_mark: |
+| AppendChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane | :white_check_mark: |
+| RemoveChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane | :white_check_mark: |
 | GetVtxColor__Q34nw4r3lyt4PaneCFUl | :x: |
-| SetVtxColor__Q34nw4r3lyt4PaneFUlQ34nw4r2ut5Color | :x: |
-| GetColorElement__Q34nw4r3lyt4PaneCFUl | :x: |
-| SetColorElement__Q34nw4r3lyt4PaneFUlUc | :x: |
+| SetVtxColor__Q34nw4r3lyt4PaneFUlQ34nw4r2ut5Color | :white_check_mark: |
+| GetColorElement__Q34nw4r3lyt4PaneCFUl | :white_check_mark: |
+| SetColorElement__Q34nw4r3lyt4PaneFUlUc | :white_check_mark: |
 | GetVtxColorElement__Q34nw4r3lyt4PaneCFUl | :x: |
 | SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc | :x: |
 | FindPaneByName__Q34nw4r3lyt4PaneFPCcb | :x: |
