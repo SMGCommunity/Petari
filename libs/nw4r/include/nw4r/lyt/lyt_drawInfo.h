@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "nw4r/math/types.h"
 #include "nw4r/ut/Rect.h"
 
 namespace nw4r {
@@ -11,7 +12,15 @@ namespace nw4r {
 
             virtual ~DrawInfo();
 
-            Mtx mViewMtx;           // _4
+            bool IsMultipleViewMtxOnDraw() const {
+                return mFlag.mulViewDraw;
+            }
+
+            const math::MTX34& GetViewMtx() const {
+                return mViewMtx;
+            }
+
+            math::MTX34 mViewMtx;           // _4
             ut::Rect mViewRect;     // _34
             f32 _44;
             f32 _48;

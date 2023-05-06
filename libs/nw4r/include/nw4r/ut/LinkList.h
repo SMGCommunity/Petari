@@ -94,6 +94,14 @@ namespace nw4r {
                         --*this;
                         return it;
                     }
+
+                    friend bool operator==(TIt it1, TIt it2) {
+                        return (it1.mPointer == it2.mPointer);
+                    }
+
+                    friend bool operator!=(TIt it1, TIt it2) {
+                        return !(it1 == it2);
+                    }
                     
                     explicit Iterator(pointer p) : mPointer(p) {
 
@@ -175,7 +183,7 @@ namespace nw4r {
                 }
 
                 TIt operator++(int) {
-                    const TIt it(*this):
+                    const TIt it(*this);
                     ++*this;
                     return it;
                 }
@@ -191,6 +199,14 @@ namespace nw4r {
                     return it;
                 }
 
+                friend bool operator==(TIt it1, TIt it2) {
+                    return it1.it_ == it2.it_;
+                }
+
+                friend bool operator!=(TIt it1, TIt it2) {
+                    return !(it1 == it2);
+                }
+
                 TIt_base_ it_;
 
                 friend class Self;
@@ -202,6 +218,14 @@ namespace nw4r {
 
             Iterator GetEndIter() {
                 return Iterator(Base::GetEndIter());
+            }
+
+            void PushFront(pointer p) {
+                Insert(GetBeginIter(), p);
+            }
+
+            void PushBack(pointer p) {
+                Insert(GetEndIter(), p);
             }
 
             Iterator Insert(Iterator it, pointer p) {

@@ -27,6 +27,6 @@ namespace nw4r {
             u32& ToU32ref() {
                 return *reinterpret_cast<u32*>(this);
             }
-        } ATTRIBUTE_ALIGN(4);
+        };
     };
 };

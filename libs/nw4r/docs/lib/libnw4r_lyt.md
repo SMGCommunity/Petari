@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | lyt_init.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| lyt_pane.o | 7.995495495495495% | 6 / 30 | 20.0% | :eight_pointed_black_star: 
+| lyt_pane.o | 53.37837837837838% | 22 / 30 | 73.33333333333333% | :eight_pointed_black_star: 
 | lyt_group.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | lyt_layout.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | lyt_picture.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -45,25 +45,25 @@
 | SetColorElement__Q34nw4r3lyt4PaneFUlUc | :white_check_mark: |
 | GetVtxColorElement__Q34nw4r3lyt4PaneCFUl | :x: |
 | SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc | :x: |
-| FindPaneByName__Q34nw4r3lyt4PaneFPCcb | :x: |
-| FindMaterialByName__Q34nw4r3lyt4PaneFPCcb | :x: |
+| FindPaneByName__Q34nw4r3lyt4PaneFPCcb | :white_check_mark: |
+| FindMaterialByName__Q34nw4r3lyt4PaneFPCcb | :white_check_mark: |
 | CalculateMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
-| Draw__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
-| DrawSelf__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
-| Animate__Q34nw4r3lyt4PaneFUl | :x: |
-| AnimateSelf__Q34nw4r3lyt4PaneFUl | :x: |
-| BindAnimation__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformb | :x: |
-| UnbindAnimation__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformb | :x: |
-| UnbindAllAnimation__Q34nw4r3lyt4PaneFb | :x: |
-| UnbindAnimationSelf__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransform | :x: |
-| AddAnimationLink__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimationLink | :x: |
-| FindAnimationLinkSelf__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransform | :x: |
-| SetAnimationEnable__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformbb | :x: |
+| Draw__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :white_check_mark: |
+| DrawSelf__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :white_check_mark: |
+| Animate__Q34nw4r3lyt4PaneFUl | :white_check_mark: |
+| AnimateSelf__Q34nw4r3lyt4PaneFUl | :white_check_mark: |
+| BindAnimation__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformb | :white_check_mark: |
+| UnbindAnimation__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformb | :white_check_mark: |
+| UnbindAllAnimation__Q34nw4r3lyt4PaneFb | :white_check_mark: |
+| UnbindAnimationSelf__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransform | :white_check_mark: |
+| AddAnimationLink__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimationLink | :white_check_mark: |
+| FindAnimationLinkSelf__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransform | :white_check_mark: |
+| SetAnimationEnable__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformbb | :white_check_mark: |
 | LoadMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
-| GetVtxPos__Q34nw4r3lyt4PaneCFv | :x: |
-| GetMaterial__Q34nw4r3lyt4PaneCFv | :x: |
+| GetVtxPos__Q34nw4r3lyt4PaneCFv | :white_check_mark: |
+| GetMaterial__Q34nw4r3lyt4PaneCFv | :white_check_mark: |
 | GetRuntimeTypeInfo__Q34nw4r3lyt4PaneCFv | :x: |
-| __sinit_\lyt_pane_cpp | :x: |
+| __sinit_\lyt_pane_cpp | :white_check_mark: |
 
 
 # lyt_group.o

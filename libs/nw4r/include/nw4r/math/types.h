@@ -68,7 +68,44 @@ namespace nw4r {
         };
 
         struct MTX34 : public _MTX34 {
+            typedef const f32 (*ConstMtxPtr)[4];
 
+            MTX34() {
+
+            }
+
+            MTX34(const f32 *);
+            MTX34(const Mtx &rhs);
+
+            operator f32*() {
+                return &_00;
+            }
+
+            operator const f32*() const { 
+                return &_00;
+            }
+
+            operator MtxPtr() {
+                return (MtxPtr)&_00;
+            }
+
+            operator ConstMtxPtr() const {
+                return (ConstMtxPtr)&_00;
+            }
         };
+
+        inline MTX34* MTX34Copy(MTX34 *out, const MTX34 *p) {
+            PSMTXCopy(*p, *out);
+            return out;
+        }
+
+        inline MTX34* MTX34Mult(MTX34 *out, const MTX34 *p1, const MTX34 *p2) {
+            PSMTXConcat(*p1, *p2, *out);
+            return out;
+        }
+
+        inline MTX34::MTX34(const Mtx &rhs) {
+            MTX34Copy(this, (MTX34*)&rhs);
+        }
     };
 };

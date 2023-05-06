@@ -44,9 +44,9 @@ namespace nw4r {
             virtual void SetColorElement(u32, u8);
             virtual u8 GetVtxColorElement(u32) const;
             virtual void SetVtxColorElement(u32, u8);
-            virtual Pane* FindPaneByName(const char *, bool);
+            virtual Pane* FindPaneByName(const char *, bool recursive = true);
             virtual Material* FindMaterialByName(const char *, bool);
-            virtual void BindAnimation(AnimTransform *, bool, bool);
+            virtual void BindAnimation(AnimTransform *, bool recursive = true);
             virtual void UnbindAnimation(AnimTransform *, bool);
             virtual void UnbindAllAnimation(bool);
             virtual void UnbindAnimationSelf(AnimTransform *);
@@ -59,8 +59,21 @@ namespace nw4r {
             void InsertChild(PaneList::Iterator, Pane *);
             void RemoveChild(Pane *);
             void SetName(const char *);
+            void AddAnimationLink(AnimationLink *);
 
-            void SetVisible(bool);
+            const math::VEC2 GetVtxPos() const;
+
+            bool IsVisible() const {
+                return detail::TestBit(mFlag, 0);
+            }
+
+            void SetVisible(bool visible) {
+                detail::SetBit(&mFlag, 0, visible);
+            }
+
+            bool IsUserAllocated() const {
+                return mbUserAllocated;
+            }
 
             Pane* mpParent;                     // _C
             PaneList mChildList;                // _10

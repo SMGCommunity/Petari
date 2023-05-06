@@ -21,11 +21,38 @@ namespace nw4r {
                 return mAnimTrans;
             }
 
+            u16 GetIndex() const {
+                return mIdx;
+            }
+
+            bool IsEnable() const {
+                return !mbDisable;
+            }
+
+            void SetEnable(bool en) {
+                mbDisable = !en;
+            }
+
             ut::LinkListNode mLink;
         private:
             AnimTransform* mAnimTrans;
             u16 mIdx;
             bool mbDisable;
+        };
+
+        namespace detail {
+            template<typename T>
+            inline void SetBit(T* pBits, int pos, bool val) {
+                const T mask = T(~(1 << pos));
+                *pBits &= mask;
+                *pBits |= (val ? 1 : 0) << pos;
+            }
+
+            template<typename T>
+            inline bool TestBit(T bits, int pos) {
+                const T mask = T(1 << pos);
+                return 0 != (bits & mask);
+            }
         };
 
         typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationList; 

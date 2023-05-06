@@ -18,10 +18,14 @@ namespace nw4r {
             }
 
             template<typename T>
+            static void DeleteObj(T *);
+
+            template<typename T>
             static T* NewArray(u32);
 
             template<typename T>
             static void DeleteArray(T [], u32);
+
         };
 
         MEMAllocator* Layout::mspAllocator;
@@ -41,6 +45,14 @@ namespace nw4r {
             }
 
             return objAry;
+        }
+
+        template<typename T>
+        void Layout::DeleteObj(T *pObj) {
+            if (pObj != nullptr) {
+                pObj->~T();
+                FreeMemory(pObj);
+            }
         }
 
         template<typename T>
