@@ -769,6 +769,13 @@ typedef enum _GXTevColorChan {
 
 } GXTevColorChan;
 
+typedef enum _GXCITexFmt {
+    GX_TF_C4 = 0x8,
+    GX_TF_C8 = 0x9,
+    GX_TF_C14X2 = 0xA
+
+} GXCITexFmt;
+
 #ifdef __cplusplus
 }
 #endif

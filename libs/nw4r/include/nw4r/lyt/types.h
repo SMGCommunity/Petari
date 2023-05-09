@@ -8,6 +8,11 @@ namespace nw4r {
     namespace lyt {
 
         struct Size {
+            Size(f32 w, f32 h) {
+                width = w;
+                height = h;
+            }
+
             f32 width;
             f32 height;
         };

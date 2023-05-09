@@ -11,6 +11,9 @@ namespace nw4r {
             bool EqualsMaterialName(const char *, const char *);
             bool TestFileHeader(const nw4r::lyt::res::BinaryFileHeader &, u32);
 
+            inline bool IsCITexelFormat(GXTexFmt fmt) {
+                return (fmt == 8 || fmt == 0x9 || fmt == 0xA);
+            }
 
             class TexCoordAry {
             public:

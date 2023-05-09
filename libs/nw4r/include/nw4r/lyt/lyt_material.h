@@ -40,6 +40,8 @@ namespace nw4r {
                 return mbUserAllocated;
             }
 
+            
+
             AnimationList mAnimList;        // _4
             GXColorS10 mTevCols[3];
             ut::Color mTevKCols[4];

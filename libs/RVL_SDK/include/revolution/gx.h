@@ -13,6 +13,7 @@ extern "C" {
 #include <revolution/gx/GXFifo.h>
 #include <revolution/gx/GXFrameBuffer.h>
 #include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXGet.h>
 #include <revolution/gx/GXLighting.h>
 #include <revolution/gx/GXManage.h>
 #include <revolution/gx/GXPixel.h>
