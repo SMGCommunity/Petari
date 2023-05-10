@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include <revolution/tpl.h>
 #include "nw4r/lyt/types.h"
 
 namespace nw4r {
@@ -11,6 +12,7 @@ namespace nw4r {
             void Get(GXTexObj *) const;
             void Get(GXTlutObj *) const;
             void Set(const GXTexObj &);
+            void ReplaceImage(TPLPalettePtr, u32);
 
             void* GetImage() const {
                 return mpImage;
@@ -147,6 +149,8 @@ namespace nw4r {
             void SetAnisotropy(GXAnisotropy an) {
                 mBits.anisotropy = an;
             }
+
+            inline void ReplaceImage(const TPLDescriptor *);
 
             void* mpImage;              // _0
             void* mpPalette;            // _4

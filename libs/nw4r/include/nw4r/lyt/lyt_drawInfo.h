@@ -20,11 +20,10 @@ namespace nw4r {
                 return mViewMtx;
             }
 
-            math::MTX34 mViewMtx;           // _4
-            ut::Rect mViewRect;     // _34
-            f32 _44;
-            f32 _48;
-            f32 mGlobalAlpha;       // _4C
+            math::MTX34 mViewMtx;               // _4
+            ut::Rect mViewRect;                 // _34
+            math::VEC2 mLocationAdjustScale;
+            f32 mGlobalAlpha;                   // _4C
 
             struct {
                 u8 mulViewDraw : 1;

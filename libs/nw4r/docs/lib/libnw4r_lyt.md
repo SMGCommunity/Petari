@@ -17,8 +17,8 @@
 | lyt_window.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | lyt_bounding.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | lyt_material.o | 0.0% | 0 / 76 | 0.0% | :x: 
-| lyt_texMap.o | 74.38423645320196% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
-| lyt_drawInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| lyt_texMap.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| lyt_drawInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | lyt_animation.o | 0.0% | 0 / 15 | 0.0% | :x: 
 | lyt_resourceAccessor.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | lyt_arcResourceAccessor.o | 0.0% | 0 / 7 | 0.0% | :x: 
@@ -260,14 +260,14 @@
 | Get__Q34nw4r3lyt6TexMapCFP9_GXTexObj | :white_check_mark: |
 | Get__Q34nw4r3lyt6TexMapCFP10_GXTlutObj | :white_check_mark: |
 | Set__Q34nw4r3lyt6TexMapFRC9_GXTexObj | :white_check_mark: |
-| ReplaceImage__Q34nw4r3lyt6TexMapFP10TPLPaletteUl | :x: |
+| ReplaceImage__Q34nw4r3lyt6TexMapFP10TPLPaletteUl | :white_check_mark: |
 
 
 # lyt_drawInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__Q34nw4r3lyt8DrawInfoFv | :x: |
-| __dt__Q34nw4r3lyt8DrawInfoFv | :x: |
+| __ct__Q34nw4r3lyt8DrawInfoFv | :white_check_mark: |
+| __dt__Q34nw4r3lyt8DrawInfoFv | :white_check_mark: |
 
 
 # lyt_animation.o

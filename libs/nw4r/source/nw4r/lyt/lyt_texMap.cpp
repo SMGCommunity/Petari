@@ -82,5 +82,31 @@ namespace nw4r {
                 SetAnisotropy(aniso);
             }
         }
+
+        void TexMap::ReplaceImage(TPLPalettePtr ptr, u32 id) {
+            if (reinterpret_cast<u32>(ptr->descriptorArray) < 0x80000000) {
+                TPLBind(ptr);
+            }
+
+            ReplaceImage(TPLGet(ptr, id));
+        }
+
+        void TexMap::ReplaceImage(const TPLDescriptor *pDesc) {
+            const TPLHeader& tpl = *pDesc->textureHeader;
+            SetImage(tpl.data);
+            SetSize(tpl.width, tpl.height);
+            SetTexelFormat(GXTexFmt(tpl.format));
+
+            if (const TPLClutHeader* const clutHdr = pDesc->CLUTHeader) {
+                SetPalette(clutHdr->data);
+                SetPaletteFormat(clutHdr->format);
+                SetPaletteEntryNum(clutHdr->numEntries);
+            }
+            else {
+                SetPalette(0);
+                SetPaletteFormat(GXTlutFmt(0));
+                SetPaletteEntryNum(0);
+            }
+        }
     };
 };
