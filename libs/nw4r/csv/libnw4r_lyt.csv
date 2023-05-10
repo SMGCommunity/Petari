@@ -10,7 +10,7 @@ SetVtxColor__Q34nw4r3lyt4PaneFUlQ34nw4r2ut5Color,lyt_pane.o,libnw4r_lyt.a,true
 GetColorElement__Q34nw4r3lyt4PaneCFUl,lyt_pane.o,libnw4r_lyt.a,true
 SetColorElement__Q34nw4r3lyt4PaneFUlUc,lyt_pane.o,libnw4r_lyt.a,true
 GetVtxColorElement__Q34nw4r3lyt4PaneCFUl,lyt_pane.o,libnw4r_lyt.a,false
-SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc,lyt_pane.o,libnw4r_lyt.a,false
+SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc,lyt_pane.o,libnw4r_lyt.a,true
 FindPaneByName__Q34nw4r3lyt4PaneFPCcb,lyt_pane.o,libnw4r_lyt.a,true
 FindMaterialByName__Q34nw4r3lyt4PaneFPCcb,lyt_pane.o,libnw4r_lyt.a,true
 CalculateMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo,lyt_pane.o,libnw4r_lyt.a,false
@@ -28,7 +28,7 @@ SetAnimationEnable__Q34nw4r3lyt4PaneFPQ34nw4r3lyt13AnimTransformbb,lyt_pane.o,li
 LoadMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo,lyt_pane.o,libnw4r_lyt.a,false
 GetVtxPos__Q34nw4r3lyt4PaneCFv,lyt_pane.o,libnw4r_lyt.a,true
 GetMaterial__Q34nw4r3lyt4PaneCFv,lyt_pane.o,libnw4r_lyt.a,true
-GetRuntimeTypeInfo__Q34nw4r3lyt4PaneCFv,lyt_pane.o,libnw4r_lyt.a,false
+GetRuntimeTypeInfo__Q34nw4r3lyt4PaneCFv,lyt_pane.o,libnw4r_lyt.a,true
 __sinit_\lyt_pane_cpp,lyt_pane.o,libnw4r_lyt.a,true
 __ct__Q34nw4r3lyt5GroupFPCQ44nw4r3lyt3res5GroupPQ34nw4r3lyt4Pane,lyt_group.o,libnw4r_lyt.a,false
 __dt__Q34nw4r3lyt5GroupFv,lyt_group.o,libnw4r_lyt.a,false

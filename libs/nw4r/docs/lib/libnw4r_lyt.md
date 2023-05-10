@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | lyt_init.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| lyt_pane.o | 53.37837837837838% | 22 / 30 | 73.33333333333333% | :eight_pointed_black_star: 
+| lyt_pane.o | 53.71621621621622% | 24 / 30 | 80.0% | :eight_pointed_black_star: 
 | lyt_group.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | lyt_layout.o | 0.0% | 0 / 17 | 0.0% | :x: 
 | lyt_picture.o | 0.0% | 0 / 11 | 0.0% | :x: 
@@ -44,7 +44,7 @@
 | GetColorElement__Q34nw4r3lyt4PaneCFUl | :white_check_mark: |
 | SetColorElement__Q34nw4r3lyt4PaneFUlUc | :white_check_mark: |
 | GetVtxColorElement__Q34nw4r3lyt4PaneCFUl | :x: |
-| SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc | :x: |
+| SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc | :white_check_mark: |
 | FindPaneByName__Q34nw4r3lyt4PaneFPCcb | :white_check_mark: |
 | FindMaterialByName__Q34nw4r3lyt4PaneFPCcb | :white_check_mark: |
 | CalculateMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
@@ -62,7 +62,7 @@
 | LoadMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo | :x: |
 | GetVtxPos__Q34nw4r3lyt4PaneCFv | :white_check_mark: |
 | GetMaterial__Q34nw4r3lyt4PaneCFv | :white_check_mark: |
-| GetRuntimeTypeInfo__Q34nw4r3lyt4PaneCFv | :x: |
+| GetRuntimeTypeInfo__Q34nw4r3lyt4PaneCFv | :white_check_mark: |
 | __sinit_\lyt_pane_cpp | :white_check_mark: |
 
 
