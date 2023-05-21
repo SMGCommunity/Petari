@@ -73,6 +73,18 @@ namespace nw4r {
                 u8 pad[2];
             };
 
+            struct TexMap {
+                TexMap() {
+                    texIdx = 0;
+                    wrapSflt = 0;
+                    wrapTflt = 0;
+                }
+
+                u16 texIdx;
+                u8 wrapSflt;
+                u8 wrapTflt;
+            };
+
             struct Pane {
                 DataBlockHeader blockHeader;
                 u8 flag;

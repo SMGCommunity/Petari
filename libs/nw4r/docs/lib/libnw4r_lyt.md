@@ -16,7 +16,7 @@
 | lyt_textBox.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | lyt_window.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | lyt_bounding.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| lyt_material.o | 0.0% | 0 / 76 | 0.0% | :x: 
+| lyt_material.o | 47.93246037215713% | 18 / 76 | 23.684210526315788% | :eight_pointed_black_star: 
 | lyt_texMap.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | lyt_drawInfo.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | lyt_animation.o | 0.0% | 0 / 15 | 0.0% | :x: 
@@ -225,25 +225,25 @@
 | Init__Q34nw4r3lyt8MaterialFv | :x: |
 | __dt__Q34nw4r3lyt8MaterialFv | :x: |
 | ReserveGXMem__Q34nw4r3lyt8MaterialFUcUcUcUcbUcUcbbbb | :x: |
-| GetTexMapAry__Q34nw4r3lyt8MaterialCFv | :x: |
-| GetTexMapAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetTexSRTAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetTexCoordGenAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetChanCtrlAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetMatColAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetTevSwapAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetAlphaComparePtr__Q34nw4r3lyt8MaterialFv | :x: |
-| GetBlendModePtr__Q34nw4r3lyt8MaterialFv | :x: |
-| GetIndirectStageAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetIndTexSRTAry__Q34nw4r3lyt8MaterialFv | :x: |
-| GetTevStageAry__Q34nw4r3lyt8MaterialFv | :x: |
-| SetName__Q34nw4r3lyt8MaterialFPCc | :x: |
-| SetTextureNum__Q34nw4r3lyt8MaterialFUc | :x: |
+| GetTexMapAry__Q34nw4r3lyt8MaterialCFv | :white_check_mark: |
+| GetTexMapAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetTexSRTAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetTexCoordGenAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetChanCtrlAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetMatColAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetTevSwapAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetAlphaComparePtr__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetBlendModePtr__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetIndirectStageAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetIndTexSRTAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| GetTevStageAry__Q34nw4r3lyt8MaterialFv | :white_check_mark: |
+| SetName__Q34nw4r3lyt8MaterialFPCc | :white_check_mark: |
+| SetTextureNum__Q34nw4r3lyt8MaterialFUc | :white_check_mark: |
 | SetTexCoordGenNum__Q34nw4r3lyt8MaterialFUc | :x: |
-| SetTevStageNum__Q34nw4r3lyt8MaterialFUc | :x: |
-| SetIndStageNum__Q34nw4r3lyt8MaterialFUc | :x: |
-| SetColorElement__Q34nw4r3lyt8MaterialFUls | :x: |
-| SetupGX__Q34nw4r3lyt8MaterialFbUc | :x: |
+| SetTevStageNum__Q34nw4r3lyt8MaterialFUc | :white_check_mark: |
+| SetIndStageNum__Q34nw4r3lyt8MaterialFUc | :white_check_mark: |
+| SetColorElement__Q34nw4r3lyt8MaterialFUls | :white_check_mark: |
+| SetupGX__Q34nw4r3lyt8MaterialFbUc | :white_check_mark: |
 | BindAnimation__Q34nw4r3lyt8MaterialFPQ34nw4r3lyt13AnimTransform | :x: |
 | UnbindAnimation__Q34nw4r3lyt8MaterialFPQ34nw4r3lyt13AnimTransform | :x: |
 | UnbindAllAnimation__Q34nw4r3lyt8MaterialFv | :x: |

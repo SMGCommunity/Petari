@@ -9,6 +9,23 @@ namespace nw4r {
         class TexMap {
         public:
 
+            TexMap() {
+                SetImage(0);
+                SetSize(0, 0);
+                SetTexelFormat(GXTexFmt(0));
+                SetWrapMode(GX_CLAMP, GX_CLAMP);
+                SetMipMap(false);
+                SetFilter(GX_LINEAR, GX_LINEAR);
+                SetLOD(0, 0);
+                SetLODBias(0);
+                SetBiasClampEnable(false);
+                SetEdgeLODEnable(false);
+                SetAnisotropy(GX_ANISO_1);
+                SetPalette(0);
+                SetPaletteFormat(GXTlutFmt(0));
+                SetPaletteEntryNum(0);
+            }
+
             void Get(GXTexObj *) const;
             void Get(GXTlutObj *) const;
             void Set(const GXTexObj &);

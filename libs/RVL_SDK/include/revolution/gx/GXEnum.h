@@ -186,6 +186,72 @@ typedef enum _GXTexMapID {
     GX_TEX_DISABLE = 0x100
 } GXTexMapID;
 
+typedef enum _GXIndTexFormat {
+    GX_ITF_8,
+    GX_ITF_5,
+    GX_ITF_4,
+    GX_ITF_3,
+    GX_MAX_ITFORMAT
+} GXIndTexFormat;
+
+typedef enum _GXIndTexBiasSel {
+    GX_ITB_NONE,	
+    GX_ITB_S,
+    GX_ITB_T,
+    GX_ITB_ST,
+    GX_ITB_U,
+    GX_ITB_SU,
+    GX_ITB_TU,
+    GX_ITB_STU,
+    GX_MAX_ITBIAS
+} GXIndTexBiasSel;
+
+typedef enum _GXIndTexAlphaSel {
+    GX_ITBA_OFF,
+    GX_ITBA_S,
+    GX_ITBA_T,
+    GX_ITBA_U,
+    GX_MAX_ITBALPHA
+} GXIndTexAlphaSel;
+
+typedef enum _GXIndTexMtxID {
+    GX_ITM_OFF,
+    GX_ITM_0,
+    GX_ITM_1,
+    GX_ITM_2,
+    GX_ITM_S0 = 5,
+    GX_ITM_S1,
+    GX_ITM_S2,
+    GX_ITM_T0 = 9,
+    GX_ITM_T1,
+    GX_ITM_T2
+} GXIndTexMtxID;
+
+typedef enum _GXIndTexWrap {
+    GX_ITW_OFF,
+    GX_ITW_256,
+    GX_ITW_128,
+    GX_ITW_64,
+    GX_ITW_32,
+    GX_ITW_16,
+    GX_ITW_0,
+    GX_MAX_ITWRAP
+} GXIndTexWrap;
+
+/********************************/
+typedef enum _GXIndTexScale {
+    GX_ITS_1,
+    GX_ITS_2,
+    GX_ITS_4,
+    GX_ITS_8,
+    GX_ITS_16,
+    GX_ITS_32,
+    GX_ITS_64,
+    GX_ITS_128,
+    GX_ITS_256,
+    GX_MAX_ITSCALE
+} GXIndTexScale;
+
 typedef enum _GXIndTexStageID {
     GX_INDTEXSTAGE0,
     GX_INDTEXSTAGE1,
@@ -630,19 +696,6 @@ typedef enum _GXPrimitive {
     GX_QUADS         = 0x80
 } GXPrimitive;
 
-typedef enum _GXIndTexMtxID {
-    GX_ITM_OFF,
-    GX_ITM_0,
-    GX_ITM_1,
-    GX_ITM_2,
-    GX_ITM_S0 = 5,
-    GX_ITM_S1,
-    GX_ITM_S2,
-    GX_ITM_T0 = 9,
-    GX_ITM_T1,
-    GX_ITM_T2
-} GXIndTexMtxID;
-
 typedef enum _GXPerf0 {
     GX_PERF0_VERTICES,
     GX_PERF0_CLIP_VTX,
@@ -760,6 +813,20 @@ typedef enum _GXPosNrmMtx {
     GX_PNMTX9 = 27
 
 } GXPosNrmMtx;
+
+typedef enum _GXTexMtx {
+    GX_TEXMTX0  = 30,
+    GX_TEXMTX1  = 33,
+    GX_TEXMTX2  = 36,
+    GX_TEXMTX3  = 39,
+    GX_TEXMTX4  = 42,
+    GX_TEXMTX5  = 45,
+    GX_TEXMTX6  = 48,
+    GX_TEXMTX7  = 51,
+    GX_TEXMTX8  = 54,
+    GX_TEXMTX9  = 57,
+    GX_IDENTITY = 60
+} GXTexMtx;
 
 typedef enum _GXTevColorChan {
     GX_CH_RED = 0,

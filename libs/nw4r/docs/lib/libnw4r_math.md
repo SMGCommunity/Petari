@@ -8,15 +8,15 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| math_triangular.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| math_triangular.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | math_types.o | 0.0% | 0 / 1 | 0.0% | :x: 
 
 
 # math_triangular.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| SinFIdx__Q24nw4r4mathFf | :x: |
-| CosFIdx__Q24nw4r4mathFf | :x: |
+| SinFIdx__Q24nw4r4mathFf | :white_check_mark: |
+| CosFIdx__Q24nw4r4mathFf | :white_check_mark: |
 
 
 # math_types.o

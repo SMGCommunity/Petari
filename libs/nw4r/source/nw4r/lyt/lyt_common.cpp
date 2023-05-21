@@ -107,6 +107,16 @@ namespace nw4r {
                     GXSetVtxAttrFmt(GX_VTXFMT0, GXAttr(GX_VA_TEX0 + i), GX_TEX_ST, GX_F32, 0);
                 }
             }
+
+            const ut::Color MultipleAlpha(const ut::Color col, u8 alpha) {
+                ut::Color ret = col;
+
+                if (alpha != 255) {
+                    ret.a = u8(col.a * alpha / 255);
+                }
+
+                return ret;
+            }
         };
     };
 };

@@ -99,6 +99,7 @@ void __OSGetIOSRev(OSIOSRev *);
 #include <revolution/os/OSContext.h>
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSExecParams.h>
+#include <revolution/os/OSFastCast.h>
 #include <revolution/os/OSInterrupt.h>
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>

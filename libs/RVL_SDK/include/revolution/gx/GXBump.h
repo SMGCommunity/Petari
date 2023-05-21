@@ -15,6 +15,10 @@ extern void GXSetIndTexMtx(GXIndTexMtxID, const f32[2][3], s8);
 
 extern void GXSetTevIndWarp(GXTevStageID, GXIndTexStageID, GXBool, GXBool, GXIndTexMtxID);
 
+extern void GXSetTevIndirect(GXTevStageID, GXIndTexStageID, GXIndTexFormat, GXIndTexBiasSel, GXIndTexMtxID, GXIndTexWrap, GXIndTexWrap, GXBool, GXBool, GXIndTexAlphaSel);
+
+extern void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
+
 void GXSetTevDirect(GXTevStageID);
 
 #ifdef __cplusplus

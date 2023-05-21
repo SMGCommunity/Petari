@@ -17,6 +17,9 @@ u32 GXGetTexBufferSize(u16, u16, u32, GXBool, u8);
 void GXInitTexObj(GXTexObj *, void *, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
 void GXInitTexObjLOD(GXTexObj *, GXTexFilter, GXTexFilter, f32, f32, f32, GXBool, GXBool, GXAnisotropy);
 void GXInitTexObjCI(GXTexObj *, void *, u16, u16, GXCITexFmt, GXTexWrapMode, GXTexWrapMode, GXBool, u32);
+void GXInitTexObjTlut(GXTexObj *, u32);
+
+void GXLoadTlut(const GXTlutObj *, u32);
 
 #ifdef __cplusplus
 }

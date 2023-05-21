@@ -3,6 +3,7 @@
 #include <revolution.h>
 #include "nw4r/lyt/lyt_resources.h"
 #include "nw4r/math/types.h"
+#include "nw4r/ut/Color.h"
 
 namespace nw4r {
     namespace lyt {
@@ -30,6 +31,8 @@ namespace nw4r {
             };
 
             void SetVertexFormat(bool, u8);
+            const ut::Color MultipleAlpha(const ut::Color, u8);
+            void MultipleAlpha(ut::Color *, const ut::Color *, u8);
         };
     };
 };
