@@ -218,45 +218,141 @@ namespace nw4r {
                 indFoAdUtAl = u8((format << 0) | ((addPrev ? 1 : 0) << 2) | ((utcLod ? 1 : 0) << 3) | (alphaSel << 4));
             }
 
-            GXTexCoordID GetTexCoordGen() const  { return GXTexCoordID(texCoordGen); }
-            GXTexMapID GetTexMap() const       { return GXTexMapID  ((((swapSel >> 0) & 0x1) << 8) | texMap); }
-            GXChannelID GetColorChan() const    { return GXChannelID(colChan); }
-            GXTevSwapSel GetRasSwapSel() const   { return GXTevSwapSel((swapSel >> 1) & 0x3); }
-            GXTevSwapSel GetTexSwapSel() const   { return GXTevSwapSel((swapSel >> 3) & 0x3); }
+            GXTexCoordID GetTexCoordGen() const { 
+                return GXTexCoordID(texCoordGen); 
+            }
+            
+            GXTexMapID GetTexMap() const { 
+                return GXTexMapID  ((((swapSel >> 0) & 0x1) << 8) | texMap); 
+            }
 
-            GXTevColorArg GetColorInA() const     { return GXTevColorArg(colIn.GetA()); }
-            GXTevColorArg GetColorInB() const     { return GXTevColorArg(colIn.GetB()); }
-            GXTevColorArg GetColorInC() const     { return GXTevColorArg(colIn.GetC()); }
-            GXTevColorArg GetColorInD() const     { return GXTevColorArg(colIn.GetD()); }
+            GXChannelID GetColorChan() const { 
+                return GXChannelID(colChan); 
+            }
 
-            GXTevAlphaArg GetAlphaInA() const     { return GXTevAlphaArg(alpIn.GetA()); }
-            GXTevAlphaArg GetAlphaInB() const     { return GXTevAlphaArg(alpIn.GetB()); }
-            GXTevAlphaArg GetAlphaInC() const     { return GXTevAlphaArg(alpIn.GetC()); }
-            GXTevAlphaArg GetAlphaInD() const     { return GXTevAlphaArg(alpIn.GetD()); }
+            GXTevSwapSel GetRasSwapSel() const { 
+                return GXTevSwapSel((swapSel >> 1) & 0x3); 
+            }
 
-            GXTevOp GetColorOp() const      { return GXTevOp(colIn.GetOp()); }
-            GXTevBias GetColorBias() const    { return GXTevBias(colIn.GetBias()); }
-            GXTevScale GetColorScale() const   { return GXTevScale(colIn.GetScale()); }
-            bool IsColorClamp() const    { return colIn.IsClamp(); }
-            GXTevRegID GetColorOutReg() const  { return GXTevRegID(colIn.GetOutReg()); }
-            GXTevKColorSel GetKColorSel() const    { return GXTevKColorSel(colIn.GetKSel()); }
+            GXTevSwapSel GetTexSwapSel() const { 
+                return GXTevSwapSel((swapSel >> 3) & 0x3); 
+            }
 
-            GXTevOp GetAlphaOp() const      { return GXTevOp(alpIn.GetOp()); }
-            GXTevBias GetAlphaBias() const    { return GXTevBias(alpIn.GetBias()); }
-            GXTevScale GetAlphaScale() const   { return GXTevScale(alpIn.GetScale()); }
-            bool IsAlphaClamp() const    { return alpIn.IsClamp(); }
-            GXTevRegID GetAlphaOutReg() const  { return GXTevRegID(alpIn.GetOutReg()); }
-            GXTevKAlphaSel GetKAlphaSel() const    { return GXTevKAlphaSel(alpIn.GetKSel()); }
+            GXTevColorArg GetColorInA() const { 
+                return GXTevColorArg(colIn.GetA());
+            }
 
-            GXIndTexStageID GetIndStage() const     { return GXIndTexStageID (indStage); }
-            GXIndTexFormat GetIndFormat() const    { return GXIndTexFormat  ((indFoAdUtAl >> 0) & 0x3); }
-            GXIndTexBiasSel GetIndBiasSel() const   { return GXIndTexBiasSel ((indBiMt >> 0) & 0x7); }
-            GXIndTexMtxID GetIndMtxSel() const    { return GXIndTexMtxID   ((indBiMt >> 3) & 0xF); }
-            GXIndTexWrap GetIndWrapS() const     { return GXIndTexWrap    ((indWrap >> 0) & 0x7); }
-            GXIndTexWrap GetIndWrapT() const     { return GXIndTexWrap    ((indWrap >> 3) & 0x7); }
-            bool IsIndAddPrev() const    { return ((indFoAdUtAl >> 2) & 0x1) != 0; }
-            bool IsIndUtcLod() const     { return ((indFoAdUtAl >> 3) & 0x1) != 0; }
-            GXIndTexAlphaSel GetIndAlphaSel() const  { return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3); }
+            GXTevColorArg GetColorInB() const { 
+                return GXTevColorArg(colIn.GetB());
+            }
+
+            GXTevColorArg GetColorInC() const { 
+                return GXTevColorArg(colIn.GetC());
+            }
+
+            GXTevColorArg GetColorInD() const { 
+                return GXTevColorArg(colIn.GetD());
+            }
+
+            GXTevAlphaArg GetAlphaInA() const { 
+                return GXTevAlphaArg(alpIn.GetA()); 
+            }
+
+            GXTevAlphaArg GetAlphaInB() const { 
+                return GXTevAlphaArg(alpIn.GetB()); 
+            }
+
+            GXTevAlphaArg GetAlphaInC() const { 
+                return GXTevAlphaArg(alpIn.GetC()); 
+            }
+
+            GXTevAlphaArg GetAlphaInD() const { 
+                return GXTevAlphaArg(alpIn.GetD()); 
+            }
+
+            GXTevOp GetColorOp() const { 
+                return GXTevOp(colIn.GetOp()); 
+            }
+
+            GXTevBias GetColorBias() const { 
+                return GXTevBias(colIn.GetBias()); 
+            }
+
+            GXTevScale GetColorScale() const { 
+                return GXTevScale(colIn.GetScale()); 
+            }
+
+            bool IsColorClamp() const {                 
+                return colIn.IsClamp(); 
+            }
+
+            GXTevRegID GetColorOutReg() const { 
+                return GXTevRegID(colIn.GetOutReg()); 
+            }
+
+            GXTevKColorSel GetKColorSel() const { 
+                return GXTevKColorSel(colIn.GetKSel()); 
+            }
+
+            GXTevOp GetAlphaOp() const { 
+                return GXTevOp(alpIn.GetOp());
+            }
+
+            GXTevBias GetAlphaBias() const { 
+                return GXTevBias(alpIn.GetBias());
+            }
+
+            GXTevScale GetAlphaScale() const { 
+                return GXTevScale(alpIn.GetScale());
+            }
+
+            bool IsAlphaClamp() const { 
+                return alpIn.IsClamp(); 
+            }
+
+            GXTevRegID GetAlphaOutReg() const { 
+                return GXTevRegID(alpIn.GetOutReg());
+            }
+
+            GXTevKAlphaSel GetKAlphaSel() const { 
+                return GXTevKAlphaSel(alpIn.GetKSel());
+            }
+
+            GXIndTexStageID GetIndStage() const { 
+                return GXIndTexStageID (indStage);
+            }
+
+            GXIndTexFormat GetIndFormat() const { 
+                return GXIndTexFormat  ((indFoAdUtAl >> 0) & 0x3);
+            }
+
+            GXIndTexBiasSel GetIndBiasSel() const { 
+                return GXIndTexBiasSel ((indBiMt >> 0) & 0x7);
+            }
+
+            GXIndTexMtxID GetIndMtxSel() const { 
+                return GXIndTexMtxID   ((indBiMt >> 3) & 0xF);
+            }
+
+            GXIndTexWrap GetIndWrapS() const { 
+                return GXIndTexWrap    ((indWrap >> 0) & 0x7);
+            }
+
+            GXIndTexWrap GetIndWrapT() const { 
+                return GXIndTexWrap    ((indWrap >> 3) & 0x7);
+            }
+
+            bool IsIndAddPrev() const { 
+                return ((indFoAdUtAl >> 2) & 0x1) != 0;
+            }
+
+            bool IsIndUtcLod() const { 
+                return ((indFoAdUtAl >> 3) & 0x1) != 0;
+            }
+
+            GXIndTexAlphaSel GetIndAlphaSel() const  { 
+                return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3);
+            }
 
             u8 texCoordGen;         // _0
             u8 colChan;             // _1
