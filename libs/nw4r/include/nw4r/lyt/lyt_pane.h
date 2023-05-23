@@ -5,6 +5,7 @@
 #include "nw4r/ut/Rect.h"
 #include "nw4r/ut/RuntimeTypeInfo.h"
 #include "nw4r/lyt/lyt_drawInfo.h"
+#include "nw4r/lyt/lyt_resources.h"
 #include "nw4r/lyt/types.h"
 #include <cstddef>
 #include <revolution.h>
@@ -31,6 +32,8 @@ namespace nw4r {
         class Pane : public detail::PaneBase {
         public:
             NW4R_UT_RUNTIME_TYPEINFO;
+
+            Pane(const res::Pane *);
 
             virtual ~Pane();
             virtual void CalculateMtx(const DrawInfo &);
