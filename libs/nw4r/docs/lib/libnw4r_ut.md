@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ut_LinkList.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ut_binaryFileFormat.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| ut_CharStrmReader.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ut_CharStrmReader.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ut_TagProcessorBase.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | ut_Font.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | ut_RomFont.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -38,10 +38,10 @@
 # ut_CharStrmReader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ReadNextCharUTF8__Q34nw4r2ut14CharStrmReaderFv | :x: |
-| ReadNextCharUTF16__Q34nw4r2ut14CharStrmReaderFv | :x: |
-| ReadNextCharCP1252__Q34nw4r2ut14CharStrmReaderFv | :x: |
-| ReadNextCharSJIS__Q34nw4r2ut14CharStrmReaderFv | :x: |
+| ReadNextCharUTF8__Q34nw4r2ut14CharStrmReaderFv | :white_check_mark: |
+| ReadNextCharUTF16__Q34nw4r2ut14CharStrmReaderFv | :white_check_mark: |
+| ReadNextCharCP1252__Q34nw4r2ut14CharStrmReaderFv | :white_check_mark: |
+| ReadNextCharSJIS__Q34nw4r2ut14CharStrmReaderFv | :white_check_mark: |
 
 
 # ut_TagProcessorBase.o
