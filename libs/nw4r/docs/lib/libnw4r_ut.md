@@ -12,9 +12,9 @@
 | ut_binaryFileFormat.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | ut_CharStrmReader.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ut_TagProcessorBase.o | 0.0% | 0 / 8 | 0.0% | :x: 
-| ut_Font.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| ut_Font.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | ut_RomFont.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| ut_ResFontBase.o | 0.0% | 0 / 26 | 0.0% | :x: 
+| ut_ResFontBase.o | 51.82481751824818% | 22 / 26 | 84.61538461538461% | :eight_pointed_black_star: 
 | ut_ResFont.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | ut_CharWriter.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | ut_TextWriterBase.o | 0.0% | 0 / 14 | 0.0% | :x: 
@@ -60,7 +60,7 @@
 # ut_Font.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| InitReaderFunc__Q34nw4r2ut4FontFQ34nw4r2ut12FontEncoding | :x: |
+| InitReaderFunc__Q34nw4r2ut4FontFQ34nw4r2ut12FontEncoding | :white_check_mark: |
 
 
 # ut_RomFont.o
@@ -72,31 +72,31 @@
 # ut_ResFontBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
-| __dt__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
-| SetResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFPvPQ34nw4r2ut15FontInformation | :x: |
-| RemoveResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFv | :x: |
-| GetWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetAscent__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetDescent__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetBaselinePos__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetCellHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetCellWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetMaxCharWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetType__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetTextureFormat__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetLineFeed__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| GetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| SetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseFRCQ34nw4r2ut10CharWidths | :x: |
-| SetAlternateChar__Q44nw4r2ut6detail11ResFontBaseFUs | :x: |
-| SetLineFeed__Q44nw4r2ut6detail11ResFontBaseFi | :x: |
-| GetCharWidth__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
+| __ct__Q44nw4r2ut6detail11ResFontBaseFv | :white_check_mark: |
+| __dt__Q44nw4r2ut6detail11ResFontBaseFv | :white_check_mark: |
+| SetResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFPvPQ34nw4r2ut15FontInformation | :white_check_mark: |
+| RemoveResourceBuffer__Q44nw4r2ut6detail11ResFontBaseFv | :white_check_mark: |
+| GetWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetAscent__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetDescent__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetBaselinePos__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetCellHeight__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetCellWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetMaxCharWidth__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetType__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetTextureFormat__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetLineFeed__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| GetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| SetDefaultCharWidths__Q44nw4r2ut6detail11ResFontBaseFRCQ34nw4r2ut10CharWidths | :white_check_mark: |
+| SetAlternateChar__Q44nw4r2ut6detail11ResFontBaseFUs | :white_check_mark: |
+| SetLineFeed__Q44nw4r2ut6detail11ResFontBaseFi | :white_check_mark: |
+| GetCharWidth__Q44nw4r2ut6detail11ResFontBaseCFUs | :white_check_mark: |
 | GetCharWidths__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
 | GetGlyph__Q44nw4r2ut6detail11ResFontBaseCFPQ34nw4r2ut5GlyphUs | :x: |
 | HasGlyph__Q44nw4r2ut6detail11ResFontBaseCFUs | :x: |
-| GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv | :x: |
-| FindGlyphIndex__Q44nw4r2ut6detail11ResFontBaseCFPCQ34nw4r2ut11FontCodeMapUs | :x: |
+| GetEncoding__Q44nw4r2ut6detail11ResFontBaseCFv | :white_check_mark: |
+| FindGlyphIndex__Q44nw4r2ut6detail11ResFontBaseCFPCQ34nw4r2ut11FontCodeMapUs | :white_check_mark: |
 | GetGlyphFromIndex__Q44nw4r2ut6detail11ResFontBaseCFPQ34nw4r2ut5GlyphUs | :x: |
 
 
