@@ -27,6 +27,10 @@ namespace nw4r {
                 Set(red, green, blue, alpha);
             }
 
+            ~Color() {
+
+            }
+
             void Set(int red, int green, int blue, int alpha) {
                 r = static_cast<u8>(red);
                 g = static_cast<u8>(green);
@@ -35,10 +39,6 @@ namespace nw4r {
             }
 
             Color& operator =(const GXColor &color) {
-                return operator =(*reinterpret_cast<const u32*>(&color));
-            }
-
-            Color& operator =(const Color &color) {
                 return operator =(*reinterpret_cast<const u32*>(&color));
             }
 

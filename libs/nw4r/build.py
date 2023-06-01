@@ -13,7 +13,7 @@ def makeArchive(dir):
             if f.endswith(".o"):
                 fileList += f"build/nw4r/{dir}/{f} "
 
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
+    default_compiler_path = pathlib.Path("GC/3.0/")
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
     linker_flags = f"-nodefaults -xm l -o lib/{dir}.a {fileList}"
 
@@ -42,10 +42,10 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -ipa file -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    flags = "-c -ipa file -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto -g "
     includes = "-i . -I- -i include "
 
-    default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
+    default_compiler_path = pathlib.Path("../../Compilers/GC/3.0/")
 
     compiler_exceptions = {
         #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")

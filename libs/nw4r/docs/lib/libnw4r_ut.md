@@ -13,10 +13,10 @@
 | ut_CharStrmReader.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ut_TagProcessorBase.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | ut_Font.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| ut_RomFont.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| ut_RomFont.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | ut_ResFontBase.o | 51.82481751824818% | 22 / 26 | 84.61538461538461% | :eight_pointed_black_star: 
-| ut_ResFont.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| ut_CharWriter.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| ut_ResFont.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
+| ut_CharWriter.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | ut_TextWriterBase.o | 0.0% | 0 / 14 | 0.0% | :x: 
 
 
@@ -66,7 +66,7 @@
 # ut_RomFont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__Q34nw4r2ut4FontFv | :x: |
+| __dt__Q34nw4r2ut4FontFv | :white_check_mark: |
 
 
 # ut_ResFontBase.o
@@ -103,30 +103,30 @@
 # ut_ResFont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__Q34nw4r2ut7ResFontFv | :x: |
-| __dt__Q34nw4r2ut7ResFontFv | :x: |
-| SetResource__Q34nw4r2ut7ResFontFPv | :x: |
-| RemoveResource__Q34nw4r2ut7ResFontFv | :x: |
-| Rebuild__Q34nw4r2ut7ResFontFPQ34nw4r2ut16BinaryFileHeader | :x: |
+| __ct__Q34nw4r2ut7ResFontFv | :white_check_mark: |
+| __dt__Q34nw4r2ut7ResFontFv | :white_check_mark: |
+| SetResource__Q34nw4r2ut7ResFontFPv | :white_check_mark: |
+| RemoveResource__Q34nw4r2ut7ResFontFv | :white_check_mark: |
+| Rebuild__Q34nw4r2ut7ResFontFPQ34nw4r2ut16BinaryFileHeader | :white_check_mark: |
 
 
 # ut_CharWriter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __dt__Q34nw4r2ut5ColorFv | :x: |
-| __ct__Q34nw4r2ut10CharWriterFv | :x: |
-| SetColorMapping__Q34nw4r2ut10CharWriterFQ34nw4r2ut5ColorQ34nw4r2ut5Color | :x: |
-| SetTextColor__Q34nw4r2ut10CharWriterFQ34nw4r2ut5Color | :x: |
-| __dt__Q34nw4r2ut10CharWriterFv | :x: |
-| SetupGX__Q34nw4r2ut10CharWriterFv | :x: |
-| SetFontSize__Q34nw4r2ut10CharWriterFff | :x: |
-| GetFontWidth__Q34nw4r2ut10CharWriterCFv | :x: |
-| GetFontHeight__Q34nw4r2ut10CharWriterCFv | :x: |
-| GetFontAscent__Q34nw4r2ut10CharWriterCFv | :x: |
-| Print__Q34nw4r2ut10CharWriterFUs | :x: |
-| PrintGlyph__Q34nw4r2ut10CharWriterFfffRCQ34nw4r2ut5Glyph | :x: |
-| UpdateVertexColor__Q34nw4r2ut10CharWriterFv | :x: |
-| SetupGXWithColorMapping__Q34nw4r2ut10CharWriterFQ34nw4r2ut5ColorQ34nw4r2ut5Color | :x: |
+| __dt__Q34nw4r2ut5ColorFv | :white_check_mark: |
+| __ct__Q34nw4r2ut10CharWriterFv | :white_check_mark: |
+| SetColorMapping__Q34nw4r2ut10CharWriterFQ34nw4r2ut5ColorQ34nw4r2ut5Color | :white_check_mark: |
+| SetTextColor__Q34nw4r2ut10CharWriterFQ34nw4r2ut5Color | :white_check_mark: |
+| __dt__Q34nw4r2ut10CharWriterFv | :white_check_mark: |
+| SetupGX__Q34nw4r2ut10CharWriterFv | :white_check_mark: |
+| SetFontSize__Q34nw4r2ut10CharWriterFff | :white_check_mark: |
+| GetFontWidth__Q34nw4r2ut10CharWriterCFv | :white_check_mark: |
+| GetFontHeight__Q34nw4r2ut10CharWriterCFv | :white_check_mark: |
+| GetFontAscent__Q34nw4r2ut10CharWriterCFv | :white_check_mark: |
+| Print__Q34nw4r2ut10CharWriterFUs | :white_check_mark: |
+| PrintGlyph__Q34nw4r2ut10CharWriterFfffRCQ34nw4r2ut5Glyph | :white_check_mark: |
+| UpdateVertexColor__Q34nw4r2ut10CharWriterFv | :white_check_mark: |
+| SetupGXWithColorMapping__Q34nw4r2ut10CharWriterFQ34nw4r2ut5ColorQ34nw4r2ut5Color | :white_check_mark: |
 
 
 # ut_TextWriterBase.o

@@ -40,6 +40,10 @@ namespace nw4r {
                 void GetGlyphFromIndex(Glyph *, u16) const;
                 u16 GetGlyphIndex(CharCode) const;
 
+                inline bool IsManaging(const void *ptr) const {
+                    return mResource == ptr;
+                }
+
                 void* mResource;
                 FontInformation* mFontInfo;
                 mutable CharCode mLastCharCode;

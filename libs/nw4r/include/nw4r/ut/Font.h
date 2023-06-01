@@ -32,9 +32,7 @@ namespace nw4r {
 
             }
 
-            virtual ~Font() {
-
-            }
+            virtual ~Font();
 
             virtual int GetWidth() const = 0;
             virtual int GetHeight() const = 0;

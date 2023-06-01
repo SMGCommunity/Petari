@@ -1,9 +1,21 @@
 #pragma once
 
 #include <revolution.h>
+#include "nw4r/ut/binaryFileFormat.h"
 
 namespace nw4r {
     namespace ut {
+        const u32 BINFILE_SIG_FONT              = NW4R_UT_MAKE_SIGWORD('R','F','N','T');
+        const u32 BINFILE_SIG_FONT_RESOLEVED    = NW4R_UT_MAKE_SIGWORD('R','F','N','U');
+        const u32 BINFILE_SIG_FONTA             = NW4R_UT_MAKE_SIGWORD('R','F','N','A');
+        const u32 BINBLOCK_SIG_FINF             = NW4R_UT_MAKE_SIGWORD('F','I','N','F');
+        const u32 BINBLOCK_SIG_CGLP             = NW4R_UT_MAKE_SIGWORD('C','G','L','P');
+        const u32 BINBLOCK_SIG_TGLP             = NW4R_UT_MAKE_SIGWORD('T','G','L','P');
+        const u32 BINBLOCK_SIG_CWDH             = NW4R_UT_MAKE_SIGWORD('C','W','D','H');
+        const u32 BINBLOCK_SIG_CMAP             = NW4R_UT_MAKE_SIGWORD('C','M','A','P');
+        const u32 BINBLOCK_SIG_GLGR             = NW4R_UT_MAKE_SIGWORD('G','L','G','R');
+        const u32 BINBLOCK_SIG_HTGL             = NW4R_UT_MAKE_SIGWORD('H','T','G','L');
+
         enum FontEncoding {
             UTF8,
             UTF16,
