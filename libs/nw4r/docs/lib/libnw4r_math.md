@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | math_triangular.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| math_types.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| math_types.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 
 
 # math_triangular.o
@@ -22,6 +22,6 @@
 # math_types.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| VEC3TransformNormal__Q24nw4r4mathFPQ34nw4r4math4VEC3PCQ34nw4r4math5MTX34PCQ34nw4r4math4VEC3 | :x: |
+| VEC3TransformNormal__Q24nw4r4mathFPQ34nw4r4math4VEC3PCQ34nw4r4math5MTX34PCQ34nw4r4math4VEC3 | :white_check_mark: |
 
 

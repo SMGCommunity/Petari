@@ -107,5 +107,7 @@ namespace nw4r {
         inline MTX34::MTX34(const Mtx &rhs) {
             MTX34Copy(this, (MTX34*)&rhs);
         }
+
+        VEC3* VECTransformNormal(VEC3 *, const MTX34 *, const VEC3 *);
     };
 };
