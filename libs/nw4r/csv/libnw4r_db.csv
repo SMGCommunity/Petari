@@ -1,7 +1,7 @@
 Symbol Name, Object File, Library Archive, Matching
-Console_Printf__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHeadPCce,db_console.o,libnw4r_db.a,false
-Console_GetTotalLines__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHead,db_console.o,libnw4r_db.a,false
-Assertion_Printf___Q24nw4r2dbFPCce,db_assert.o,libnw4r_db.a,false
-ShowStack___Q24nw4r2dbFUl,db_assert.o,libnw4r_db.a,false
-VPanic__Q24nw4r2dbFPCciPCcP16__va_list_structb,db_assert.o,libnw4r_db.a,false
-Panic__Q24nw4r2dbFPCciPCce,db_assert.o,libnw4r_db.a,false
+Console_Printf__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHeadPCce,db_console.o,libnw4r_db.a,true
+Console_GetTotalLines__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHead,db_console.o,libnw4r_db.a,true
+Assertion_Printf___Q24nw4r2dbFPCce,db_assert.o,libnw4r_db.a,true
+ShowStack___Q24nw4r2dbFUl,db_assert.o,libnw4r_db.a,true
+VPanic__Q24nw4r2dbFPCciPCcP16__va_list_structb,db_assert.o,libnw4r_db.a,true
+Panic__Q24nw4r2dbFPCciPCce,db_assert.o,libnw4r_db.a,true

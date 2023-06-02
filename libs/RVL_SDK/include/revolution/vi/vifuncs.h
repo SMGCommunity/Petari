@@ -2,6 +2,7 @@
 #define VIFUNCS_H
 
 #include <revolution.h>
+#include <revolution/vi/vitypes.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -10,6 +11,9 @@ extern "C" {
 void VIInit(void);
 
 u32 VIGetTVFormat(void);
+
+VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback);
+VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback );
 
 #ifdef __cplusplus
 }

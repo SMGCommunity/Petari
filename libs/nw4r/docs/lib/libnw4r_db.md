@@ -8,23 +8,23 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| db_console.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| db_assert.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| db_console.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| db_assert.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 
 
 # db_console.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| Console_Printf__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHeadPCce | :x: |
-| Console_GetTotalLines__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHead | :x: |
+| Console_Printf__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHeadPCce | :white_check_mark: |
+| Console_GetTotalLines__Q24nw4r2dbFPQ44nw4r2db6detail11ConsoleHead | :white_check_mark: |
 
 
 # db_assert.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| Assertion_Printf___Q24nw4r2dbFPCce | :x: |
-| ShowStack___Q24nw4r2dbFUl | :x: |
-| VPanic__Q24nw4r2dbFPCciPCcP16__va_list_structb | :x: |
-| Panic__Q24nw4r2dbFPCciPCce | :x: |
+| Assertion_Printf___Q24nw4r2dbFPCce | :white_check_mark: |
+| ShowStack___Q24nw4r2dbFUl | :white_check_mark: |
+| VPanic__Q24nw4r2dbFPCciPCcP16__va_list_structb | :white_check_mark: |
+| Panic__Q24nw4r2dbFPCciPCce | :white_check_mark: |
 
 
