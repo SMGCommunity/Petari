@@ -31,7 +31,9 @@ namespace MR {
     void startSound(const LiveActor *, const char *, s32, s32);
     void startSoundObject(AudSoundObject *, const char *);
 
-    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);    
+    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
+
+    void releaseSoundHandle(const LiveActor *, const char *);
 
     void setAudioEffectType(s32, s32);
 
