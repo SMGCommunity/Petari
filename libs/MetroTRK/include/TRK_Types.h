@@ -30,4 +30,6 @@ typedef struct TRKBuffer {
     unsigned char mBuffer[0x87C];
 } TRKBuffer;
 
+typedef int bool;
+
 #endif // TRK_TYPES_H

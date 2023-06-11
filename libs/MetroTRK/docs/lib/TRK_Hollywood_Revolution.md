@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | mainloop.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| nubevent.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| nubevent.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | nubinit.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | msg.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | msgbuf.o | 0.0% | 0 / 14 | 0.0% | :x: 
@@ -46,11 +46,11 @@
 # nubevent.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKDestructEvent | :x: |
-| TRKConstructEvent | :x: |
-| TRKPostEvent | :x: |
-| TRKGetNextEvent | :x: |
-| TRKInitializeEventQueue | :x: |
+| TRKDestructEvent | :white_check_mark: |
+| TRKConstructEvent | :white_check_mark: |
+| TRKPostEvent | :white_check_mark: |
+| TRKGetNextEvent | :white_check_mark: |
+| TRKInitializeEventQueue | :white_check_mark: |
 
 
 # nubinit.o

@@ -3,6 +3,8 @@
 
 #include "TRK_Types.h"
 
+typedef unsigned int DSMutex;
+
 TRKResult TRKReleaseMutex(void *);
 TRKResult TRKAcquireMutex(void *);
 TRKResult TRKInitializeMutex(void *);

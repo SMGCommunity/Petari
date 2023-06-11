@@ -1,10 +1,10 @@
 Symbol Name, Object File, Library Archive, Matching
 TRKNubMainLoop,mainloop.o,TRK_Hollywood_Revolution.a,false
-TRKDestructEvent,nubevent.o,TRK_Hollywood_Revolution.a,false
-TRKConstructEvent,nubevent.o,TRK_Hollywood_Revolution.a,false
-TRKPostEvent,nubevent.o,TRK_Hollywood_Revolution.a,false
-TRKGetNextEvent,nubevent.o,TRK_Hollywood_Revolution.a,false
-TRKInitializeEventQueue,nubevent.o,TRK_Hollywood_Revolution.a,false
+TRKDestructEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
+TRKConstructEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
+TRKPostEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
+TRKGetNextEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
+TRKInitializeEventQueue,nubevent.o,TRK_Hollywood_Revolution.a,true
 TRKNubWelcome,nubinit.o,TRK_Hollywood_Revolution.a,false
 TRKTerminateNub,nubinit.o,TRK_Hollywood_Revolution.a,false
 TRKInitializeNub,nubinit.o,TRK_Hollywood_Revolution.a,false
