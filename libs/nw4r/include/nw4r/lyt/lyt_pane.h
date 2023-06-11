@@ -95,6 +95,7 @@ namespace nw4r {
             char mName[17];                     // _B8
             char mUserData[9];                  // _C9
             u8 mbUserAllocated;                 // _D2
+            u8 pad;                             // _D3
         };
     };
 };

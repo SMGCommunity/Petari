@@ -2,11 +2,20 @@
 
 #include <revolution.h>
 #include "nw4r/lyt/lyt_resources.h"
+#include "nw4r/lyt/lyt_resourceAccessor.h"
 #include "nw4r/math/types.h"
 #include "nw4r/ut/Color.h"
 
 namespace nw4r {
     namespace lyt {
+
+        struct ResBlockSet {
+            const res::TextureList* pTextureList;
+            const res::FontList* pFontList;
+            const res::MaterialList* PMaterialList;
+            ResourceAccessor* pResAccessor;
+        };
+
         namespace detail {
             bool EqualsResName(const char *, const char *);
             bool EqualsMaterialName(const char *, const char *);
