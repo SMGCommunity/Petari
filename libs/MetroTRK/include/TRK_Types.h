@@ -32,4 +32,9 @@ typedef struct TRKBuffer {
 
 typedef int bool;
 
+typedef unsigned char ui8;
+typedef unsigned short ui16;
+typedef unsigned long ui32;
+typedef unsigned long long ui64;
+
 #endif // TRK_TYPES_H

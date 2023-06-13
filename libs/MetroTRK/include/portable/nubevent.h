@@ -20,4 +20,8 @@ typedef struct NubEvent {
 	MessageBufferID		fMessageBufferID;
 } NubEvent;
 
+void TRKConstructEvent(NubEvent *, NubEventType);
+bool TRKGetNextEvent(NubEvent *);
+int TRKPostEvent(const NubEvent *);
+
 #endif // NUBEVENT_H

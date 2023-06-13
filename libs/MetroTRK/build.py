@@ -44,11 +44,11 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     msl_path =          pathlib.Path("../MSL_C/include")
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -fp hard -Cpp_exceptions off -sdata 0 -rtti off -DEPPC -DGEKKO -O4,p -inline auto -i . -I- -i include "
+    flags = "-c -nodefaults -nostdlib -proc gekko -common off -align powerpc -enum int -fp hard -Cpp_exceptions off -use_lmw_stmw on -sdata 0 -sdata2 8 -rostr -rtti off -DEPPC -DGEKKO -O4,p -inline auto -i . -I- -i include "
     includes = f"-i {msl_path} "
     flags += includes
 
-    default_compiler_path = pathlib.Path("../../Compilers/GC/2.6/")
+    default_compiler_path = pathlib.Path("../../Compilers/GC/2.5/")
 
     compiler_exceptions = {
         #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")

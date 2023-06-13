@@ -11,10 +11,10 @@
 | mainloop.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | nubevent.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | nubinit.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| msg.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| msgbuf.o | 0.0% | 0 / 14 | 0.0% | :x: 
-| serpoll.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| usr_put.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| msg.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| msgbuf.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
+| serpoll.o | 51.4018691588785% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| usr_put.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dispatch.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | msghndlr.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | support.o | 0.0% | 0 / 5 | 0.0% | :x: 
@@ -64,43 +64,43 @@
 # msg.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKMessageSend | :x: |
+| TRKMessageSend | :white_check_mark: |
 
 
 # msgbuf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKReadBuffer_ui32 | :x: |
-| TRKReadBuffer_ui8 | :x: |
-| TRKReadBuffer1_ui64 | :x: |
-| TRKAppendBuffer_ui32 | :x: |
-| TRKAppendBuffer_ui8 | :x: |
-| TRKAppendBuffer1_ui64 | :x: |
-| TRKReadBuffer | :x: |
-| TRKAppendBuffer | :x: |
-| TRKSetBufferPosition | :x: |
-| TRKResetBuffer | :x: |
-| TRKReleaseBuffer | :x: |
-| TRKGetBuffer | :x: |
-| TRKGetFreeBuffer | :x: |
-| TRKInitializeMessageBuffers | :x: |
+| TRKReadBuffer_ui32 | :white_check_mark: |
+| TRKReadBuffer_ui8 | :white_check_mark: |
+| TRKReadBuffer1_ui64 | :white_check_mark: |
+| TRKAppendBuffer_ui32 | :white_check_mark: |
+| TRKAppendBuffer_ui8 | :white_check_mark: |
+| TRKAppendBuffer1_ui64 | :white_check_mark: |
+| TRKReadBuffer | :white_check_mark: |
+| TRKAppendBuffer | :white_check_mark: |
+| TRKSetBufferPosition | :white_check_mark: |
+| TRKResetBuffer | :white_check_mark: |
+| TRKReleaseBuffer | :white_check_mark: |
+| TRKGetBuffer | :white_check_mark: |
+| TRKGetFreeBuffer | :white_check_mark: |
+| TRKInitializeMessageBuffers | :white_check_mark: |
 
 
 # serpoll.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKTerminateSerialHandler | :x: |
-| TRKInitializeSerialHandler | :x: |
-| TRKProcessInput | :x: |
-| TRKGetInput | :x: |
+| TRKTerminateSerialHandler | :white_check_mark: |
+| TRKInitializeSerialHandler | :white_check_mark: |
+| TRKProcessInput | :white_check_mark: |
+| TRKGetInput | :white_check_mark: |
 | TRKTestForPacket | :x: |
 
 
 # usr_put.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| usr_put_initialize | :x: |
-| usr_puts_serial | :x: |
+| usr_put_initialize | :white_check_mark: |
+| usr_puts_serial | :white_check_mark: |
 
 
 # dispatch.o
