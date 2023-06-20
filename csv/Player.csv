@@ -1430,7 +1430,7 @@ __sinit_\MarioEnforce_cpp,MarioEnforce.o,Player.a,false
 delTask__5MarioFP15MarioModuleTask,MarioTask.o,Player.a,false
 execTask__5MarioFv,MarioTask.o,Player.a,false
 drawTask__5MarioCFv,MarioTask.o,Player.a,false
-initTask__5MarioFv,MarioTask.o,Player.a,false
+initTask__5MarioFv,MarioTask.o,Player.a,true
 isActiveTask__5MarioFM5MarioFPCvPvUl_b,MarioTask.o,Player.a,false
 isActiveTaskID__5MarioFUl,MarioTask.o,Player.a,false
 pushTask__5MarioFM5MarioFPCvPvUl_bUl,MarioTask.o,Player.a,false

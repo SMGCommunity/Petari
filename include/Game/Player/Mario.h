@@ -46,6 +46,7 @@ class FloorCode;
 
 class Mario : public MarioModule {
 public:
+	typedef bool (Mario::*Task)(const void *, void *, unsigned long);
     Mario(MarioActor *);
 
     virtual void init();
@@ -70,9 +71,6 @@ public:
     void initSound();
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
-
-	//static const DataWrapper<Mario>::Data<Mario::isIgnoreTriangle> sFilterData;
-		//= TriangleFilterDelegator<Mario>::Data<Mario::isIgnoreTriangle>(0, -1);
 
     u32 _8;
     u32 _C;
@@ -417,15 +415,23 @@ public:
     u16 _96A;
 
     // FAKE
-	u32 _96C[4];
+	u32 _96C;
+	u32 _970;
     // NOT FAKE
 
+	u32 _974;
+
+	//Fake
+	u32 _978;
+	//Not fake
+	
     u32 _97C;
 
-    // Fake
-    u32 _980[0x22];
-    //NOT FAKE
-
+	//FAKE
+	u32 _980;
+	//NOT FAKE
+	
+    Task _984[0xb];
     u32 _A08[11];
     u16 _A34;
     u32 _A38;
