@@ -14,7 +14,7 @@ void Mario::initMember() {
 	_2B8.zero();
 	_2C4.zero();
 	_304.zero();
-	_31c.zero();
+	_31C.zero();
 
 	_340 = 0f;
 	_3A4.zero();
@@ -78,6 +78,7 @@ void Mario::initMember() {
 
 	_A40.zero();
 	_A4C.zero();
+	_A58.zero();
 	_A64 = 0f;
 
 	for(int i = 0; i < 0x20; i++) {

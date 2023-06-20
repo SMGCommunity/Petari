@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Player/MarioModule.h"
+#include "Game/Util/TriangleFilter.h"
 
 class MarioActor;
 class MarioFlow;
@@ -70,6 +71,9 @@ public:
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
 
+	//static const DataWrapper<Mario>::Data<Mario::isIgnoreTriangle> sFilterData;
+		//= TriangleFilterDelegator<Mario>::Data<Mario::isIgnoreTriangle>(0, -1);
+
     u32 _8;
     u32 _C;
     u32 _10;
@@ -81,6 +85,11 @@ public:
     u32 _28;
     u32 _2C;
 
+    // FAKE
+	u32 _30;
+	u32 _34;
+    //NOT FAKE
+
 	f32 _38;
 	f32 _3C;
     TVec3f _40;
@@ -90,7 +99,6 @@ public:
     TMtx34f _94;
     TMtx34f _C4;
     TMtx34f _F4;
-
 	f32 _124;
 	f32 _128;
 	u32 _12C;
@@ -111,7 +119,7 @@ public:
     TVec3f _1D8;
 	TVec3f _1E4;
     TVec3f _1F0;
-
+	TVec3f _1FC;
 	TVec3f _208;
 	TVec3f _214;
 	TVec3f _220;
@@ -119,7 +127,6 @@ public:
     TVec3f _238;
     TVec3f _244;
     TVec3f _250;
-
     TVec3f _25C;
     TVec3f _268;
 	u8 _274;
@@ -140,7 +147,7 @@ public:
 	TVec3f _2F8;
 	TVec3f _304;
     TVec3f _310;
-    TVec3f _31c;
+    TVec3f _31C;
 	TVec3f _328;
 	TVec3f _334;
     f32 _340;
@@ -161,9 +168,9 @@ public:
     u16 _3C4;
     u16 _3C6;
     u16 _3C8;
-    u16 _3CE;
-    u16 _3CC;
     u16 _3CA;
+    u16 _3CC;
+    u16 _3CE;
     u16 _3D0;
     u16 _3D2;
     u16 _3D4;
@@ -197,6 +204,7 @@ public:
     u16 _426;
     u16 _428;
     u16 _42A;
+	u16 _42C;
     u32 _430;
     u16 _434;
     u16 _436;
@@ -234,6 +242,10 @@ public:
     TVec3f _4E8;
     TVec3f _4F4;
 
+    // FAKE
+	TVec3f _500;
+    // NOT FAKE
+
     TVec3f _50C;
     TVec3f _518;
     f32 _524;
@@ -249,6 +261,11 @@ public:
 	TVec3f _54C;
     u32 _558;
 
+    // FAKE
+	u32 _55C;
+	u32 _560;
+    //NOT FAKE
+
     s32 _564;
     u32 _568;
     u32 _56C;
@@ -256,17 +273,26 @@ public:
 	u32 _574;
 	u32 _578;
     Triangle* _57C[0x20];
-
     u32 _5FC;
     TVec3f _600;
     u8 _60C;
     u8 _60D;
+
+    // FAKE
+	u32 _610[0xA];
+    // NOT FAKE
 
     u8 _638;
     TVec3f _63C;
     TVec3f _648;
 	TVec3f _654;
     TVec3f _660;
+
+    // fake
+	TVec3f _66C;
+	TVec3f _678;
+	f32 _684;
+    //not fake
 
     TVec3f _688;
 	TVec3f _694;
@@ -366,7 +392,16 @@ public:
     Triangle* _8E8;
 	u8 _8EC;
 
+	//FAKE
+	u32 _8F0;
+	//NOT FAKE
+
     f32 _8F4;
+
+    //FAKE
+	TVec3f _8F8;
+	TVec3f _904;
+    //NOT FAKE
 
     TVec3f _910;
     TVec3f _91C;
@@ -380,14 +415,21 @@ public:
     u16 _962;
     u16 _964[3];
     u16 _96A;
+
+    // FAKE
+	u32 _96C[4];
+    // NOT FAKE
+
     u32 _97C;
 
-    u32 _A08[11];
+    // Fake
+    u32 _980[0x22];
+    //NOT FAKE
 
+    u32 _A08[11];
     u16 _A34;
     u32 _A38;
     u16 _A3C;
-
     TVec3f _A40;
     TVec3f _A4C;
     TVec3f _A58;

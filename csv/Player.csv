@@ -858,7 +858,7 @@ __dt__11MarioHolderFv,MarioHolder.o,Player.a,false
 setMarioActor__11MarioHolderFP10MarioActor,MarioHolder.o,Player.a,false
 getMarioActor__11MarioHolderCFv,MarioHolder.o,Player.a,false
 getMarioHolder__2MRFv,MarioHolder.o,Player.a,false
-initMember__5MarioFv,MarioInit.o,Player.a,false
+initMember__5MarioFv,MarioInit.o,Player.a,true
 isRising__5MarioCFv,MarioJump.o,Player.a,false
 checkWallRiseAndSlipFront__5MarioFv,MarioJump.o,Player.a,false
 tryJump__5MarioFv,MarioJump.o,Player.a,false
