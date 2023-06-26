@@ -106,7 +106,7 @@ public:
 	
 	void setPunchHitTimer(unsigned char);
 	void initEffect();
-	void addSoundObjectHolder();
+	void addSoundObjHolder();
 	void initParts();
 	void initMorphStringTable();
 	void setupSensors();
