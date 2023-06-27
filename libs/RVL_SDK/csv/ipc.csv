@@ -32,7 +32,7 @@ iosCreateHeap,memory.o,ipc.a,true
 __iosAlloc,memory.o,ipc.a,true
 iosAllocAligned,memory.o,ipc.a,true
 iosFree,memory.o,ipc.a,true
-IPCiProfInit,ipcProfile.o,ipc.a,false
-IPCiProfQueueReq,ipcProfile.o,ipc.a,false
-IPCiProfAck,ipcProfile.o,ipc.a,false
-IPCiProfReply,ipcProfile.o,ipc.a,false
+IPCiProfInit,ipcProfile.o,ipc.a,true
+IPCiProfQueueReq,ipcProfile.o,ipc.a,true
+IPCiProfAck,ipcProfile.o,ipc.a,true
+IPCiProfReply,ipcProfile.o,ipc.a,true

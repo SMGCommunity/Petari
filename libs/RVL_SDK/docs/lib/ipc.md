@@ -11,7 +11,7 @@
 | ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | ipcclt.o | 50.73710073710074% | 12 / 22 | 54.54545454545454% | :eight_pointed_black_star: 
 | memory.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| ipcProfile.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| ipcProfile.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 
 
 # ipcMain.o
@@ -65,9 +65,9 @@
 # ipcProfile.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| IPCiProfInit | :x: |
-| IPCiProfQueueReq | :x: |
-| IPCiProfAck | :x: |
-| IPCiProfReply | :x: |
+| IPCiProfInit | :white_check_mark: |
+| IPCiProfQueueReq | :white_check_mark: |
+| IPCiProfAck | :white_check_mark: |
+| IPCiProfReply | :white_check_mark: |
 
 
