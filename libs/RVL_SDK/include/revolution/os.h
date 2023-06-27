@@ -72,6 +72,9 @@ void* OSGetArenaLo(void);
 void OSSetArenaHi(void *);
 void OSSetArenaLo(void *);
 
+void* OSGetMEM2ArenaLo(void);
+void* OSGetMEM2ArenaHi(void);
+
 typedef struct OSIOSRev {
     u8 reserved;
     u8 major;

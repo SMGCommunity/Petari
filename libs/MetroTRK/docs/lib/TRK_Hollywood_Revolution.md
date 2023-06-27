@@ -28,7 +28,7 @@
 | mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| dolphin_trk_glue.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| dolphin_trk_glue.o | 28.289473684210524% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
 | targcont.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | target_options.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | UDP_Stubs.o | 0.0% | 0 / 9 | 0.0% | :x: 
@@ -243,16 +243,16 @@
 | TRKLoadContext | :x: |
 | TRKUARTInterruptHandler | :x: |
 | InitializeProgramEndTrap | :x: |
-| TRK_board_display | :x: |
+| TRK_board_display | :white_check_mark: |
 | UnreserveEXI2Port | :x: |
 | ReserveEXI2Port | :x: |
-| TRKWriteUARTN | :x: |
-| TRKReadUARTN | :x: |
-| TRKPollUART | :x: |
-| EnableEXI2Interrupts | :x: |
+| TRKWriteUARTN | :white_check_mark: |
+| TRKReadUARTN | :white_check_mark: |
+| TRKPollUART | :white_check_mark: |
+| EnableEXI2Interrupts | :white_check_mark: |
 | TRKInitializeIntDrivenUART | :x: |
 | InitMetroTRKCommTable | :x: |
-| TRKEXICallBack | :x: |
+| TRKEXICallBack | :white_check_mark: |
 
 
 # targcont.o

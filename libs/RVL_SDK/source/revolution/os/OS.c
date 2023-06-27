@@ -1,4 +1,5 @@
 #include <revolution/os.h>
+#include <revolution/dvd.h>
 #include <revolution/db.h>
 #include <revolution/os/OSBootInfo.h>
 #include <cstring>
@@ -39,12 +40,15 @@ void __OSDBJUMPEND(void);
 static f64 ZeroF;
 static f32 ZeroPS[2];
 
+static DVDDriveInfo DriveInfo;
+
 __declspec(weak) BOOL __OSIsGcam = FALSE;
 OSTime __OSStartTime;
 BOOL __OSInIPL = FALSE;
 BOOL __OSInNandBoot = FALSE;
 extern BOOL __OSInReboot;
 static OSBootInfo* BootInfo;
+
 static u32* BI2DebugFlag;
 static u32 BI2DebugFlagHolder;
 
@@ -280,10 +284,72 @@ u32 OSGetConsoleType(void) {
     return BootInfo->consoleType;
 }
 
+static void MemClear(void *base, u32 size) {
+    void* lastBase = (size > 0x40000) ? (void*)((u32)base + size - 0x40000) : base;
+    DCZeroRange(base, size);
+    DCFlushRange(lastBase, 0x40000);
+}
 
-// ClearArena
-// ClearMEM2Arena
-// InquiryCallback
+void ClearArena(void) {
+    if (!OSIsRestart()) {
+        MemClear(OSGetArenaLo(), (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+    }
+    else {
+        if (__OSRebootParams.regionStart == NULL || !OSIsMEM1Region((void*)__OSRebootParams.regionStart)) {
+            MemClear(OSGetArenaLo(), (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+        }
+        else {
+            if ((u32)OSGetArenaLo() < (u32)__OSRebootParams.regionStart) {
+                if ((u32)OSGetArenaHi() <= (u32)__OSRebootParams.regionStart) {
+                    MemClear(OSGetArenaLo(), (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+                }
+                else {
+                    MemClear(OSGetArenaLo(), (u32)__OSRebootParams.regionStart - (u32)OSGetArenaLo());
+                
+                    if ((u32)OSGetArenaHi() > (u32)__OSRebootParams.regionEnd) {
+                        MemClear(__OSRebootParams.regionEnd, (u32)OSGetArenaHi() - (u32)__OSRebootParams.regionEnd);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void ClearMEM2Arena(void) {
+    if (!OSIsRestart()) {
+        MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
+    }
+    else {
+        if (__OSRebootParams.regionStart == NULL || !OSIsMEM2Region((void*)__OSRebootParams.regionStart)) {
+            MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
+        }
+        else {
+            if ((u32)OSGEtMEM2ArenaLo() < (u32)__OSRebootParams.regionStart) {
+                if ((u32)OSGetMEM2ArenaHi() <= (u32)__OSRebootParams.regionStart) {
+                    MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
+                }
+                else {
+                    MemClear(OSGetMEM2ArenaLo(), (u32)__OSRebootParams.regionStart - (u32)OSGetMEM2ArenaLo());
+
+                    if ((u32) OSGetMEM2ArenaHi() > (u32)__OSRebootParams.regionEnd) {
+                        MemClear(__OSRebootParams.regionEnd, (u32)OSGetMEM2ArenaHi() - (u32)__OSRebootParams.regionEnd);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void InquiryCallback(s32 res, DVDCommandBlock *block) {
+    switch (block->state) {
+        case 0:
+            __OSDeviceCode = (u16)(0x8000 | DriveInfo.deviceCode);
+            break;
+        default:
+            __OSDeviceCode = 1;
+            break;
+    }
+}
 
 static void DisableWriteGatherPipe(void) {
     u32 hid2 = PPCMfhid2();
@@ -488,6 +554,18 @@ void OSInit(void) {
 
     ReportOSInfo();
     OSRegisterVersion(__OSVersion);
+
+    if (BI2DebugFlag && (*(BI2DebugFlag) >= 2)) {
+        
+    }
+
+    if (!__OSInNandBoot && !__OSInReboot) {
+        ClearArena();
+        ClearMEM2Arena();
+    }
+
+    OSEnableInterrupts();
+    
 }
 
 static void OSExceptionInit(void) {

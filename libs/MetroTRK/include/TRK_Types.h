@@ -37,4 +37,9 @@ typedef unsigned short ui16;
 typedef unsigned long ui32;
 typedef unsigned long long ui64;
 
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+typedef double f64;
+
 #endif // TRK_TYPES_H

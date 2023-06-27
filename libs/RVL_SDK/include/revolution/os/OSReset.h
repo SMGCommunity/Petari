@@ -23,7 +23,7 @@ void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
 u32 OSGetResetCode(void);
 
 #define OSIsRestart()   \
-            ((OSGetResetCode() & OS_RESETCODE_RESTART) ? TRUE : FALSE)
+            ((OSGetResetCode() & 0x80000000) ? TRUE : FALSE)
 
 #ifdef __cplusplus
 }

@@ -62,6 +62,15 @@ typedef struct {
     char* name;
 } DVDDirEntry;
 
+struct DVDDriveInfo {
+    u16 revisionLevel;
+    u16 deviceCode;
+    u32 releaseDate;
+    u8 pad[24];
+};
+
+typedef struct DVDDriveInfo DVDDriveInfo;
+
 void DVDInit(void);
 BOOL DVDOpen(const char *, DVDFileInfo *);
 BOOL DVDFastOpen(s32, DVDFileInfo *);

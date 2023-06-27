@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| OS.o | 54.67289719626168% | 14 / 20 | 70.0% | :eight_pointed_black_star: 
+| OS.o | 74.53271028037383% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
 | OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
@@ -48,9 +48,9 @@
 | __OSFPRInit | :white_check_mark: |
 | __OSGetIOSRev | :white_check_mark: |
 | OSGetConsoleType | :white_check_mark: |
-| ClearArena | :x: |
-| ClearMEM2Arena | :x: |
-| InquiryCallback | :x: |
+| ClearArena | :white_check_mark: |
+| ClearMEM2Arena | :white_check_mark: |
+| InquiryCallback | :white_check_mark: |
 | ReportOSInfo | :white_check_mark: |
 | OSInit | :x: |
 | OSExceptionInit | :white_check_mark: |

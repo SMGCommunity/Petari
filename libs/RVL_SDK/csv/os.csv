@@ -2,9 +2,9 @@ Symbol Name, Object File, Library Archive, Matching
 __OSFPRInit,OS.o,os.a,true
 __OSGetIOSRev,OS.o,os.a,true
 OSGetConsoleType,OS.o,os.a,true
-ClearArena,OS.o,os.a,false
-ClearMEM2Arena,OS.o,os.a,false
-InquiryCallback,OS.o,os.a,false
+ClearArena,OS.o,os.a,true
+ClearMEM2Arena,OS.o,os.a,true
+InquiryCallback,OS.o,os.a,true
 ReportOSInfo,OS.o,os.a,true
 OSInit,OS.o,os.a,false
 OSExceptionInit,OS.o,os.a,true
