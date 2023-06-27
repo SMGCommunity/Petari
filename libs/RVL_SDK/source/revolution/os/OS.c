@@ -4,6 +4,7 @@
 #include <revolution/os/OSBootInfo.h>
 #include <cstring>
 #include "private/flipper.h"
+#include <dolphin.h>
 
 #include <__ppc_eabi_linker.h>
 
@@ -556,7 +557,7 @@ void OSInit(void) {
     OSRegisterVersion(__OSVersion);
 
     if (BI2DebugFlag && (*(BI2DebugFlag) >= 2)) {
-        
+        EnableMetroTRKInterrupts();
     }
 
     if (!__OSInNandBoot && !__OSInReboot) {

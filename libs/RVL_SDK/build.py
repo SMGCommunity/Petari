@@ -63,7 +63,8 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     runtime_path =      pathlib.Path("../Runtime/include")
     msl_path =      pathlib.Path("../MSL_C/include")
-    includes += f"-i {runtime_path } -I- -i {msl_path} "
+    trk_path =      pathlib.Path("../MetroTRK/include")
+    includes += f"-i {runtime_path } -I- -i {msl_path} -I- -i {trk_path} "
     flags += includes
 
     tasks = list()

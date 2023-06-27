@@ -1,4 +1,4 @@
 Symbol Name, Object File, Library Archive, Matching
-EUARTInit,euart.o,euart.a,false
-InitializeUART,euart.o,euart.a,false
-WriteUARTN,euart.o,euart.a,false
+EUARTInit,euart.o,euart.a,true
+InitializeUART,euart.o,euart.a,true
+WriteUARTN,euart.o,euart.a,true

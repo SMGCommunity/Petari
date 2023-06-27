@@ -8,14 +8,14 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| euart.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| euart.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # euart.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| EUARTInit | :x: |
-| InitializeUART | :x: |
-| WriteUARTN | :x: |
+| EUARTInit | :white_check_mark: |
+| InitializeUART | :white_check_mark: |
+| WriteUARTN | :white_check_mark: |
 
 
