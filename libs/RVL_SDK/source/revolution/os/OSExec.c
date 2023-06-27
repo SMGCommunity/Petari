@@ -10,6 +10,8 @@ u32 __OSNextPartitionType = 0;
 
 OSExecParams* __OSExecParamsAddr : OS_BASE_CACHED + 0x30F0;
 
+BOOL __OSInReboot = FALSE;
+
 static BOOL PackArgs(void *addr, s32 argc, char* argv[]) {
     s32 numArgs;
     char* bootInfo2;

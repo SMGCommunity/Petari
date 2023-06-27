@@ -325,7 +325,7 @@ void ClearMEM2Arena(void) {
             MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
         }
         else {
-            if ((u32)OSGEtMEM2ArenaLo() < (u32)__OSRebootParams.regionStart) {
+            if ((u32)OSGetMEM2ArenaLo() < (u32)__OSRebootParams.regionStart) {
                 if ((u32)OSGetMEM2ArenaHi() <= (u32)__OSRebootParams.regionStart) {
                     MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
                 }

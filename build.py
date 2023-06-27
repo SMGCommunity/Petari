@@ -7,7 +7,7 @@ import shutil
 import pathlib
 import shutil
 
-arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a"))
+arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a") + glob.glob("libs\\MetroTRK\\lib\\*.a"))
 
 def makeArchive(dir):
     fileList = ""

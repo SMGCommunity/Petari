@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | ipcclt.o | 50.73710073710074% | 12 / 22 | 54.54545454545454% | :eight_pointed_black_star: 
-| memory.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| memory.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ipcProfile.o | 0.0% | 0 / 4 | 0.0% | :x: 
 
 
@@ -56,10 +56,10 @@
 # memory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| iosCreateHeap | :x: |
-| __iosAlloc | :x: |
-| iosAllocAligned | :x: |
-| iosFree | :x: |
+| iosCreateHeap | :white_check_mark: |
+| __iosAlloc | :white_check_mark: |
+| iosAllocAligned | :white_check_mark: |
+| iosFree | :white_check_mark: |
 
 
 # ipcProfile.o

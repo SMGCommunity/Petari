@@ -28,10 +28,10 @@ __ios_Ioctlv,ipcclt.o,ipc.a,false
 IOS_IoctlvAsync,ipcclt.o,ipc.a,false
 IOS_Ioctlv,ipcclt.o,ipc.a,false
 IOS_IoctlvReboot,ipcclt.o,ipc.a,false
-iosCreateHeap,memory.o,ipc.a,false
-__iosAlloc,memory.o,ipc.a,false
-iosAllocAligned,memory.o,ipc.a,false
-iosFree,memory.o,ipc.a,false
+iosCreateHeap,memory.o,ipc.a,true
+__iosAlloc,memory.o,ipc.a,true
+iosAllocAligned,memory.o,ipc.a,true
+iosFree,memory.o,ipc.a,true
 IPCiProfInit,ipcProfile.o,ipc.a,false
 IPCiProfQueueReq,ipcProfile.o,ipc.a,false
 IPCiProfAck,ipcProfile.o,ipc.a,false

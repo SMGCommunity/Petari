@@ -6,27 +6,22 @@ import shutil
 import pathlib
 import shutil
 
-def makeArchive(dir):
-    fileList = ""
-    for root, dirs, files in os.walk(f"build/{dir}"):
-        for f in files:
-            if f.endswith(".o"):
-                fileList += f"build/{dir}/{f} "
-
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
-    linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-nodefaults -xm l -o lib/{dir}.a {fileList}"
-
-    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
-        print("Library creation failed.")
-
 def makeLibArchive():
     if not os.path.isdir("lib"):
         os.mkdir("lib")
 
-    for root, dirs, files in os.walk("build"):
-        for dir in dirs:
-            makeArchive(dir)
+    fileList = ""
+    for root, dirs, files in os.walk(f"build"):
+        for f in files:
+            if f.endswith(".o"):
+                fileList += f"build/{f} "
+
+    default_compiler_path = pathlib.Path("GC/3.0a3/")
+    linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
+    linker_flags = f"-nodefaults -xm l -o lib/TRK_Hollywood_Revolution.a {fileList}"
+
+    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
+        print("Library creation failed.")
 
 def deleteDFiles():
     dirs = os.listdir(os.getcwd())
