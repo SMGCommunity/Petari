@@ -88,3 +88,35 @@ void MarioActor::calcBaseFrontVec(const TVec3f &rVec) {
 		}
 	}
 }
+
+// NOT MATCHED BENEATH THIS POINT
+
+void MarioActor::playSound(const char *name, long num) {
+	_230 -> playSound(name, num);
+}
+
+void MarioActor::changeAnimation(const char *name, const char *newName) {
+	_230 -> changeAnimation(name, newName);
+}
+
+void MarioActor::changeAnimationNonStop(const char *name) {
+	_230 -> changeAnimationNonStop(name);
+}
+
+void MarioActor::changeAnimationUpper(const char *name) {
+	if(_230 -> _71C) {
+		if(isAnimationRun("基本")) {
+			_230 -> changeAnimationUpper(name, NULL);
+			return;
+		}
+	}
+	_230 -> changeAnimation(name, (const char *)NULL);
+}
+
+void MarioActor::stopAnimation(const char *name) {
+	_230 -> stopAnimation(name, (const char *)NULL);
+}
+
+bool MarioActor::isAnimationRun(const char *name) const {
+	return _230 -> isAnimationRun(name);
+}

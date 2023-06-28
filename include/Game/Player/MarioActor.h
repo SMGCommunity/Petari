@@ -24,7 +24,7 @@ public:
 	void initAfterPlacement();
 	void initAfterOpeningDemo();
 	void calcBaseFrontVec(const TVec3f&);
-	void playSound(const char*, int);
+	void playSound(const char*, long);
 	void changeAnimation(const char*, const char*);
 	void changeAnimationNonStop(const char*);
 	void changeAnimationUpper(const char*);
