@@ -171,7 +171,7 @@ __ct__10MarioActorFPCc,MarioActor.o,Player.a,false
 __dt__10MarioActorFv,MarioActor.o,Player.a,false
 init__10MarioActorFRC12JMapInfoIter,MarioActor.o,Player.a,true
 init2__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l,MarioActor.o,Player.a,false
-initAfterPlacement__10MarioActorFv,MarioActor.o,Player.a,false
+initAfterPlacement__10MarioActorFv,MarioActor.o,Player.a,true
 initAfterOpeningDemo__10MarioActorFv,MarioActor.o,Player.a,false
 calcBaseFrontVec__10MarioActorFRCQ29JGeometry8TVec3<f>,MarioActor.o,Player.a,false
 playSound__10MarioActorFPCcl,MarioActor.o,Player.a,false

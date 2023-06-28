@@ -35,3 +35,23 @@ void MarioActor::init(const JMapInfoIter &rInfo) {
 	}
 	init2(stack_24, stack_18, stack_8);
 }
+
+void MarioActor::initAfterPlacement() {
+	updateGravityVector(true, true);
+	_230 -> _1D8 = _240;
+	_230 -> _1F0 = -_240;
+	_230 -> _1FC = -_240;
+	_300 = _230 -> _1F0;
+	_2d0 = _300;
+	/*TVec3f stack_14 = _240;
+	stack_14.scale(-70f);
+	_2c4 = stack_14;*/
+	_2c4 = _240 % -70f;
+	calcCenterPos();
+	MR::updateHitSensorsAll(this);
+	_360 = getGravityVector();
+	_1c0 = 1;
+	_9f4 = getGravityVector();
+	updateCameraInfo();
+	calcBaseFrontVec(-_240);
+}
