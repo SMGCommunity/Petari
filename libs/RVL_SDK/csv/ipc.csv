@@ -22,12 +22,12 @@ IOS_WriteAsync,ipcclt.o,ipc.a,true
 IOS_Write,ipcclt.o,ipc.a,true
 IOS_SeekAsync,ipcclt.o,ipc.a,true
 IOS_Seek,ipcclt.o,ipc.a,true
-IOS_IoctlAsync,ipcclt.o,ipc.a,false
+IOS_IoctlAsync,ipcclt.o,ipc.a,true
 IOS_Ioctl,ipcclt.o,ipc.a,true
-__ios_Ioctlv,ipcclt.o,ipc.a,false
-IOS_IoctlvAsync,ipcclt.o,ipc.a,false
-IOS_Ioctlv,ipcclt.o,ipc.a,false
-IOS_IoctlvReboot,ipcclt.o,ipc.a,false
+__ios_Ioctlv,ipcclt.o,ipc.a,true
+IOS_IoctlvAsync,ipcclt.o,ipc.a,true
+IOS_Ioctlv,ipcclt.o,ipc.a,true
+IOS_IoctlvReboot,ipcclt.o,ipc.a,true
 iosCreateHeap,memory.o,ipc.a,true
 __iosAlloc,memory.o,ipc.a,true
 iosAllocAligned,memory.o,ipc.a,true

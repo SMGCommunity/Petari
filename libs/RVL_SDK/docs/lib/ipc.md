@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| ipcclt.o | 50.73710073710074% | 12 / 22 | 54.54545454545454% | :eight_pointed_black_star: 
+| ipcclt.o | 78.992628992629% | 17 / 22 | 77.27272727272727% | :eight_pointed_black_star: 
 | memory.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ipcProfile.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 
@@ -45,12 +45,12 @@
 | IOS_Write | :white_check_mark: |
 | IOS_SeekAsync | :white_check_mark: |
 | IOS_Seek | :white_check_mark: |
-| IOS_IoctlAsync | :x: |
+| IOS_IoctlAsync | :white_check_mark: |
 | IOS_Ioctl | :white_check_mark: |
-| __ios_Ioctlv | :x: |
-| IOS_IoctlvAsync | :x: |
-| IOS_Ioctlv | :x: |
-| IOS_IoctlvReboot | :x: |
+| __ios_Ioctlv | :white_check_mark: |
+| IOS_IoctlvAsync | :white_check_mark: |
+| IOS_Ioctlv | :white_check_mark: |
+| IOS_IoctlvReboot | :white_check_mark: |
 
 
 # memory.o

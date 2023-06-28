@@ -3,6 +3,7 @@
 #include "private/iosresclt.h"
 #include "revolution/os.h"
 #include "revolution/ipc/memory.h"
+#include <cstring>
 
 /* a few of these functions were grabbed from debug builds, because many of these are inlined into functions and they are complex */
 
@@ -24,6 +25,14 @@ typedef struct IOSRpcRequest {
     OSThreadQueue thread_queue;
 } IOSRpcRequest;
 
+static IOSRpcRequest *__relnchRpc = 0;
+static IOSRpcRequest *__relnchRpcSave = 0;
+
+#define ROUNDUP(sz)     (((u32)(sz) + 31) & \
+                        ~(u32)(31))
+
+static u8 __rpcBuf[ROUNDUP(sizeof(IOSRpcRequest))] __attribute__ ((aligned(32)));
+
 static struct {
     u32 rcount;
     u32 wcount;
@@ -43,6 +52,17 @@ static u32 strnlen(const u8 *str, u32 n) {
         ++s;
     return (s - str);
 }
+
+void IpcReplyHandler(__OSInterrupt interrupt, OSContext *);
+
+/*
+void IPCInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
+   if ((IPCReadReg(1) & (1 << 4 | 1 << 2)) == (1 << 4 | 1 << 2)) {
+        IpcReplyHandler(interrupt, context);
+   }
+
+   if (())
+}*/
 
 /* this call seems to be inlined */
 static inline IOSRpcRequest* ipcAllocReq(void ){
@@ -82,7 +102,7 @@ static inline void __ipcSendRequest(void) {
 
     rpc = (IOSRpcRequest*)__responses.buf[__responses.rptr];
 
-    if (rpc == NULL) {
+    if (rpc == 0) {
         return;
     }
 
@@ -476,6 +496,28 @@ error:
     return ret;
 }
 
+IOSError IOS_IoctlAsync(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 6, cb, cbArg, &rpc);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ioctl(rpc, cmd, input, inputLen, output, outputLen);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ipc2(rpc, cb);
+
+err:
+    return ret;
+}
+
 IOSError IOS_Ioctl(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen) {
     IOSRpcRequest* rpc;
     IOSError ret = 0;
@@ -495,5 +537,152 @@ IOSError IOS_Ioctl(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u
     ret = __ios_Ipc2(rpc, 0);
 
 error:
+    return ret;
+}
+
+static IOSError __ios_Ioctlv(IOSRpcRequest* rpc, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect) {
+    IOSError ret = 0;
+    IOSResourceRequest* req;
+    IOSResourceIoctlv* v;
+    u32 i, j;
+
+    if (!rpc) {
+        ret = -4;
+        goto err;
+    }
+
+    req = &rpc->request;
+    req->args.ioctlv.cmd = (u32)cmd;
+    req->args.ioctlv.readCount = readCount;
+    req->args.ioctlv.writeCount = writeCount;
+    req->args.ioctlv.vector = vect;
+
+    v = &req->args.ioctlv;
+
+    for (i = 0, j = v->readCount; i < req->args.ioctlv.writeCount; ++i) {
+        DCFlushRange(v->vector[j + i].base, v->vector[j + i].length);
+        v->vector[j + i].base = (v->vector[j + i].base) ? (u8*)OSVirtualToPhysical(v->vector[j + i].base) : 0;
+    }
+
+    for (i = 0; i < req->args.ioctlv.readCount; ++i) {
+        DCFlushRange(v->vector[i].base, v->vector[i].length);
+        v->vector[i].base = (v->vector[i].base) ? (u8*)OSVirtualToPhysical(v->vector[i].base) : 0;
+    }
+
+    DCFlushRange(&v->vector[0], (v->readCount + v->writeCount) * sizeof(IOSIoVector));
+    req->args.ioctlv.vector = (vect) ? (IOSIoVector*)OSVirtualToPhysical(vect) : 0;
+
+err:
+    return ret;
+}
+
+IOSError IOS_IoctlvAsync(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect, IOSIpcCb cb, void* cbArg) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 7, cb, cbArg, &rpc);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ioctlv(rpc, cmd, readCount, writeCount, vect);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ipc2(rpc, cb);
+
+err:
+    return ret;
+}
+
+IOSError IOS_Ioctlv(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+
+    ret = __ios_Ipc1(fd, 7, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ioctlv(rpc, cmd, readCount, writeCount, vect);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    ret = __ios_Ipc2(rpc, 0);
+
+err:
+    return ret;
+}
+
+IOSError IOS_IoctlvReboot(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector *vect) {
+    IOSRpcRequest* rpc;
+    IOSError ret = 0;
+    u32 inten;
+    IOSResourceRequest* req;
+
+    inten = OSDisableInterrupts();
+
+    if (__relnchFl) {
+        OSRestoreInterrupts(inten);
+        ret = -10;
+        goto finish;
+    }
+
+    __relnchFl = 1;
+    OSRestoreInterrupts(inten);
+
+    ret = __ios_Ipc1(fd, 7, 0, 0, &rpc);
+
+    if (ret != 0) {
+        goto err;
+    }
+
+    __relnchRpcSave = rpc;
+    rpc->relaunch_flag = 1;
+
+    ret = __ios_Ioctlv(rpc, cmd, readCount, writeCount, vect);
+    
+    if (ret != 0) {
+        goto err;
+    }
+
+    memcpy(&__rpcBuf, rpc, sizeof(IOSRpcRequest));
+    __relnchRpc = (IOSRpcRequest*)&__rpcBuf;
+    req = &rpc->request;
+
+    OSInitThreadQueue(&__relnchRpc->thread_queue);
+    DCFlushRange(req, sizeof(*req));
+
+    inten = OSDisableInterrupts();
+    ret = __ipcQueueRequest(req);
+
+    if (ret != 0) {
+        OSRestoreInterrupts(inten);
+        goto err;
+    }
+
+    if (__mailboxAck > 0) {
+        __ipcSendRequest();
+    }
+
+    OSSleepThread(&__relnchRpc->thread_queue);
+    OSRestoreInterrupts(inten);
+    ret = (&__relnchRpc->request)->status;
+
+err:
+    __relnchFl = 0;
+    __relnchRpcSave = NULL;
+
+    if (rpc && (ret != 0)) {
+        ipcFree(rpc);
+    }
+
+finish:
     return ret;
 }
