@@ -14,3 +14,24 @@ Triangle &Triangle::operator=(const Triangle &rOther) {
 
     return *this;
 }
+
+static float ZERO = 0f;
+
+void MarioActor::init(const JMapInfoIter &rInfo) {
+	long stack_8 = -1;
+	if(!MR::isValidInfo(rInfo)) return;
+	TVec3f stack_24, stack_18, stack_c;
+
+	MR::getJMapInfoTrans(rInfo, &stack_24);
+	MR::getJMapInfoRotate(rInfo, &stack_18);
+	MR::getJMapInfoScale(rInfo, &stack_c);
+
+	stack_18.x = ZERO + (f32)fmod(stack_18.x - ZERO + 360f, (double)360.0);
+	stack_18.y = ZERO + (f32)fmod(stack_18.y - ZERO + 360f, (double)360.0);
+	stack_18.z = ZERO + (f32)fmod(stack_18.z - ZERO + 360f, (double)360.0);
+
+	if(MR::isExistJMapArg(rInfo)) {
+		MR::getJMapInfoArg0NoInit(rInfo, &stack_8);
+	}
+	init2(stack_24, stack_18, stack_8);
+}
