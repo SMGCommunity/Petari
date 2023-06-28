@@ -47,8 +47,6 @@ namespace MR {
         static MEMAllocator sAllocator;
     };
 
-    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
-
     template<int T>
     class JKRHeapAllocator {
     public:

@@ -11,6 +11,7 @@ namespace MR {
         NewDeleteAllocator::alloc, 
         NewDeleteAllocator::free, 
     };
+	MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
 
     #ifdef NON_MATCHING
     // shrug
