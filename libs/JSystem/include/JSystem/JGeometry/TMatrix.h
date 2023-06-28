@@ -117,6 +117,7 @@ namespace JGeometry {
         void mult(const TVec3f &rSrc, TVec3f &rDest) const;
 
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const;
+        
     };
 
     template<class T>

@@ -45,6 +45,8 @@ void PSMTXMultVec(const Mtx, const Vec *, Vec *);
 
 void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 
+void PSMTXRotAxisRad(Mtx dst, const Vec *, f32);
+
 /* C Vector */
 
 f32 C_VECMag(const Vec *);

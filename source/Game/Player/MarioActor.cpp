@@ -1,4 +1,14 @@
 #include "Game/Map/HitInfo.h"
+#include "Game/Player/MarioActor.h"
+#include "Game/Gravity.h"
+#include "Game/LiveActor/Binder.h"
+#include "Game/Util/CameraUtil.h"
+#include "Game/Player/MarioHolder.h"
+#include "Game/Util/FootPrint.h"
+#include "JSystem/JAudio2/JAIAudible.h"
+#include "JSystem/JMath/JMath.h"
+
+static bool isLuigi;
 
 Triangle &Triangle::operator=(const Triangle &rOther) {
     mParts = rOther.mParts;
@@ -43,9 +53,6 @@ void MarioActor::initAfterPlacement() {
 	_230 -> _1FC = -_240;
 	_300 = _230 -> _1F0;
 	_2d0 = _300;
-	/*TVec3f stack_14 = _240;
-	stack_14.scale(-70f);
-	_2c4 = stack_14;*/
 	_2c4 = _240 % -70f;
 	calcCenterPos();
 	MR::updateHitSensorsAll(this);
@@ -54,4 +61,30 @@ void MarioActor::initAfterPlacement() {
 	_9f4 = getGravityVector();
 	updateCameraInfo();
 	calcBaseFrontVec(-_240);
+}
+
+void MarioActor::initAfterOpeningDemo() {
+	_230 -> changeAnimationNonStop("ウォークイン");
+	_37c = 0;
+}
+
+void MarioActor::calcBaseFrontVec(const TVec3f &rVec) {
+	TVec3f stack_24, j(0f, 1f, 0f);
+	f32 y = j.dot(rVec);
+	if(y < -0.99f) {
+		_258.setInline(0f, 0f, 1f);
+	}
+	else {
+		f32 stack_8;
+		if(MR::makeAxisAndCosignVecToVec(&stack_24, &stack_8, rVec, j)) {
+			TVec3f k(0f, 0f, 1f);
+			Mtx stack_30;
+			PSMTXRotAxisRad(stack_30, stack_24.toCVec(), -JMAAcosRadian(stack_8));
+			PSMTXMultVecSR(stack_30, k.toCVec(), _258.toVec());
+			MR::normalize(&_258);
+		}
+		else {
+			_258.setInline(0f, 0f, 1f);
+		}
+	}
 }
