@@ -13,4 +13,6 @@ namespace MR {
     void copyJointPos(const LiveActor *, const char *, TVec3f *);
 
     bool isExistJoint(const LiveActor *, const char *);
+
+    unsigned long getJointNum(const LiveActor *);
 };

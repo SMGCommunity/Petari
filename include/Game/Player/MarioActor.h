@@ -15,7 +15,7 @@ namespace MR {
 	unsigned int getFrameBufferWidth();
 }
 
-class MarioActor : LiveActor {
+class MarioActor : public LiveActor {
 public:
 	MarioActor(const char*);
 	~MarioActor();
