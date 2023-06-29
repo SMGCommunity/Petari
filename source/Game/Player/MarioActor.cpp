@@ -125,3 +125,10 @@ void MarioActor::changeNullAnimation(const char *name, signed char num) {
 	MR::startBck(_b8c, name, NULL);
 	_b92 = num;
 }
+
+bool MarioActor::isStopNullAnimation() const {
+	if(!MR::isBckStopped(_b8c)) {
+		return MR::isDead(_b8c);
+	}
+	return true;
+}
