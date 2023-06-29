@@ -180,7 +180,7 @@ changeAnimationNonStop__10MarioActorFPCc,MarioActor.o,Player.a,true
 changeAnimationUpper__10MarioActorFPCc,MarioActor.o,Player.a,true
 stopAnimation__10MarioActorFPCc,MarioActor.o,Player.a,true
 isAnimationRun__10MarioActorCFPCc,MarioActor.o,Player.a,true
-changeNullAnimation__10MarioActorFPCcSc,MarioActor.o,Player.a,false
+changeNullAnimation__10MarioActorFPCcSc,MarioActor.o,Player.a,true
 clearNullAnimation__10MarioActorFSc,MarioActor.o,Player.a,false
 isStopNullAnimation__10MarioActorCFv,MarioActor.o,Player.a,false
 changeGameOverAnimation__10MarioActorFv,MarioActor.o,Player.a,false

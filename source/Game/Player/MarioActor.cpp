@@ -7,6 +7,7 @@
 #include "Game/Util/FootPrint.h"
 #include "JSystem/JAudio2/JAIAudible.h"
 #include "JSystem/JMath/JMath.h"
+#include "Game/Player/MarioNullBck.h"
 
 static bool isLuigi;
 
@@ -89,8 +90,6 @@ void MarioActor::calcBaseFrontVec(const TVec3f &rVec) {
 	}
 }
 
-// NOT MATCHED BENEATH THIS POINT
-
 void MarioActor::playSound(const char *name, long num) {
 	_230 -> playSound(name, num);
 }
@@ -119,4 +118,10 @@ void MarioActor::stopAnimation(const char *name) {
 
 bool MarioActor::isAnimationRun(const char *name) const {
 	return _230 -> isAnimationRun(name);
+}
+
+void MarioActor::changeNullAnimation(const char *name, signed char num) {
+	_b8c -> appear();
+	MR::startBck(_b8c, name, NULL);
+	_b92 = num;
 }
