@@ -1,8 +1,9 @@
+#include "private/flipper.h"
 #include "private/iostypes.h"
 #include "private/iosrestypes.h"
 #include "private/iosresclt.h"
 #include "revolution/os.h"
-#include "revolution/ipc/memory.h"
+#include "revolution/ipc.h"
 #include <cstring>
 
 /* a few of these functions were grabbed from debug builds, because many of these are inlined into functions and they are complex */
@@ -46,50 +47,16 @@ static IOSHeapId hid = -1;
 extern void IPCiProfQueueReq(void *, s32);
 
 /* the MSL_C version of strnlen doesn't match when inlined, cool */
-static u32 strnlen(const u8 *str, u32 n) {
+u32 strnlen(const u8 *str, u32 n) {
     const u8 *s = str;
     while (*s && n-- > 0)
         ++s;
     return (s - str);
 }
 
-void IpcReplyHandler(__OSInterrupt interrupt, OSContext *);
-
-/*
-void IPCInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
-   if ((IPCReadReg(1) & (1 << 4 | 1 << 2)) == (1 << 4 | 1 << 2)) {
-        IpcReplyHandler(interrupt, context);
-   }
-
-   if (())
-}*/
-
-/* this call seems to be inlined */
-static inline IOSRpcRequest* ipcAllocReq(void ){
-    IOSRpcRequest* req = NULL;
-    req = iosAllocAligned(hid, 0x40, 0x20);
-    return req;
-}
-
 static inline IOSError ipcFree(IOSRpcRequest *rpc) {
     IOSError ret = 0;
     iosFree(hid, rpc);
-    return ret;
-}
-
-static inline IOSError __ipcQueueRequest(IOSResourceRequest *req) {
-    IOSError ret = 0;
-
-    if (diff(__responses.wcount, __responses.rcount) >= sizeof(__responses.buf) / sizeof(__responses.buf[0])) {
-        ret = -8;
-    }
-    else {
-        __responses.buf[__responses.wptr] = req;
-        __responses.wptr = (__responses.wptr + 1) % (sizeof(__responses.buf) / sizeof(__responses.buf[0]));
-        __responses.wcount++;
-        IPCiProfQueueReq(req, (s32)req->handle);
-    }
-
     return ret;
 }
 
@@ -116,6 +83,202 @@ static inline void __ipcSendRequest(void) {
     __mailboxAck--;
 
     IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4)) | 1 << 0);
+}
+
+void IpcReplyHandler(__OSInterrupt interrupt, OSContext* context) {
+    OSContext exceptionContext;
+    IOSResourceRequest* req;
+    IOSRpcRequest* rep;
+    u32 addr;
+
+    addr = IPCReadReg(2);
+
+    if (!addr) {
+        goto err;
+    }
+
+    rep = (IOSRpcRequest*)OSPhysicalToVirtual(addr);
+    IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4) | 1 << 2));
+    ACRWriteReg(0x30, 0x40000000);
+    req = &rep->request;
+
+    DCInvalidateRange(req, sizeof(*req));
+
+    switch (req->handle) {
+        case 3:
+            req->args.read.outPtr = (req->args.read.outPtr) ? OSPhysicalToVirtual((u32)req->args.read.outPtr) : 0;
+
+            if (req->status > 0) {
+                DCInvalidateRange(req->args.read.outPtr, (u32)req->status);
+            }
+
+            break;
+
+        case 6:
+            req->args.ioctl.outPtr = (req->args.ioctl.outPtr) ? OSPhysicalToVirtual((u32)req->args.ioctl.outPtr) : 0;
+            DCInvalidateRange(req->args.ioctl.inPtr, req->args.ioctl.inLen);
+            DCInvalidateRange(req->args.ioctl.outPtr, req->args.ioctl.outLen);
+            break;
+
+        case 7:
+        {
+            int i;
+            IOSResourceIoctlv* v = &req->args.ioctlv;
+            req->args.ioctlv.vector = (req->args.ioctlv.vector) ? (IOSIoVector*)OSPhysicalToVirtual((u32)req->args.ioctlv.vector) : 0;
+            DCInvalidateRange(&v->vector[0], (req->args.ioctlv.readCount + req->args.ioctlv.writeCount) * sizeof(IOSIoVector));
+
+            for (i = 0; i < (req->args.ioctlv.readCount + req->args.ioctlv.writeCount); ++i) {
+                v->vector[i].base = (v->vector[i].base) ? (u8*)OSPhysicalToVirtual((u32)v->vector[i].base) : 0;
+                DCInvalidateRange(v->vector[i].base, v->vector[i].length);
+            }
+
+            if (__relnchFl && __relnchRpcSave == rep) {
+                __relnchFl = 0;
+
+                if (__mailboxAck < 1) {
+                    __mailboxAck++;
+                }
+            }
+
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    if (rep->cb) {
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(&exceptionContext);
+        rep->cb(req->status, (void*)rep->callback_arg);
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(context);
+        ipcFree(rep);
+    }
+    else {
+        OSWakeupThread(&rep->thread_queue);
+    }
+
+    IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4)) | 1 << 3);
+    IPCiProfReply(req, (s32)req->handle);
+
+err:
+    return;
+}
+
+void IpcAckHandler(__OSInterrupt interrupt, OSContext* context) {
+    IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4)) | 1 << 1);
+    ACRWriteReg(0x30, 0x40000000);
+
+    if (__mailboxAck < 1) {
+        __mailboxAck++;
+        IPCiProfAck();
+    }
+
+    if (__mailboxAck > 0) {
+        if (__relnchFl) {
+            IOSResourceRequest* req = &__relnchRpc->request;
+            req->status = 0;
+            __relnchFl = 0;
+
+            OSWakeupThread(&__relnchRpc->thread_queue);
+            IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4)) | 1 << 3);
+        }
+
+        __ipcSendRequest();
+    }
+}
+
+
+void IPCInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
+   if ((IPCReadReg(1) & (1 << 4 | 1 << 2)) == (1 << 4 | 1 << 2)) {
+        IpcReplyHandler(interrupt, context);
+   }
+
+   if ((IPCReadReg(1)
+        & (1 << 5 | 1 << 1))
+       == (1 << 5 | 1 << 1))
+    {
+        IpcAckHandler(interrupt, context);
+    }
+}
+
+IOSError IPCCltInit(void) {
+    static u32 initialized = 0;
+    u32 i;
+    IOSError ret = 0;
+    void* bufferLo;
+
+    if (initialized) {
+        goto out;
+    }
+
+    initialized = 1;
+
+    IPCInit();
+
+    i = ROUNDUP(32 * (ROUNDUP(sizeof(IOSRpcRequest)) + 64));
+    bufferLo = IPCGetBufferLo();
+
+    if ((void*)((u8*)bufferLo + i) > IPCGetBufferHi()) {
+        ret = -22;
+        goto out;
+    }
+
+    hid = iosCreateHeap(bufferLo, i);
+    IPCSetBufferLo((void*)((u8*)bufferLo + i));
+
+    __OSSetInterruptHandler(27, IPCInterruptHandler);
+    __OSUnmaskInterrupts(16);
+
+    IPCWriteReg(1, (1 << 5 | 1<< 4 | 1 << 3));
+    IPCiProfInit();
+
+out:
+    return ret;
+}
+
+IOSError IPCCltReInit(void) {
+    u32 i;
+    IOSError ret = 0;
+    void* bufferLo;
+
+    i = ROUNDUP(32 * ROUNDUP(sizeof(IOSRpcRequest)));
+    bufferLo = IPCGetBufferLo();
+
+    if ((void*)((u8*)bufferLo + i) > IPCGetBufferHi()) {
+        ret = -22;
+        goto out;
+    }
+
+    hid = iosCreateHeap(bufferLo, i);
+    IPCSetBufferLo((void*)((u8*)bufferLo + i));
+
+out:
+    return ret;
+}
+
+/* this call seems to be inlined */
+static inline IOSRpcRequest* ipcAllocReq(void ){
+    IOSRpcRequest* req = NULL;
+    req = iosAllocAligned(hid, 0x40, 0x20);
+    return req;
+}
+
+static inline IOSError __ipcQueueRequest(IOSResourceRequest *req) {
+    IOSError ret = 0;
+
+    if (diff(__responses.wcount, __responses.rcount) >= sizeof(__responses.buf) / sizeof(__responses.buf[0])) {
+        ret = -8;
+    }
+    else {
+        __responses.buf[__responses.wptr] = req;
+        __responses.wptr = (__responses.wptr + 1) % (sizeof(__responses.buf) / sizeof(__responses.buf[0]));
+        __responses.wcount++;
+        IPCiProfQueueReq(req, (s32)req->handle);
+    }
+
+    return ret;
 }
 
 static inline IOSError __ios_Open(IOSRpcRequest *rpc, const char *path, u32 flags) {

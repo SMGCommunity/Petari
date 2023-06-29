@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
-| ipcclt.o | 78.992628992629% | 17 / 22 | 77.27272727272727% | :eight_pointed_black_star: 
+| ipcclt.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | memory.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ipcProfile.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 
@@ -29,11 +29,11 @@
 # ipcclt.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| strnlen | :x: |
-| IpcReplyHandler | :x: |
-| IPCInterruptHandler | :x: |
-| IPCCltInit | :x: |
-| IPCCltReInit | :x: |
+| strnlen | :white_check_mark: |
+| IpcReplyHandler | :white_check_mark: |
+| IPCInterruptHandler | :white_check_mark: |
+| IPCCltInit | :white_check_mark: |
+| IPCCltReInit | :white_check_mark: |
 | __ios_Ipc2 | :white_check_mark: |
 | IOS_OpenAsync | :white_check_mark: |
 | IOS_Open | :white_check_mark: |

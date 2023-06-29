@@ -7,8 +7,10 @@ extern "C" {
 
 #include <revolution.h>
 
+void IPCiProfInit(void);
 void IPCiProfQueueReq(void *, s32);
 void IPCiProfReply(void *, s32);
+void IPCiProfAck(void);
 
 #ifdef __cplusplus
 }

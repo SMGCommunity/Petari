@@ -6,11 +6,11 @@ IPCWriteReg,ipcMain.o,ipc.a,false
 IPCGetBufferHi,ipcMain.o,ipc.a,false
 IPCGetBufferLo,ipcMain.o,ipc.a,false
 IPCSetBufferLo,ipcMain.o,ipc.a,false
-strnlen,ipcclt.o,ipc.a,false
-IpcReplyHandler,ipcclt.o,ipc.a,false
-IPCInterruptHandler,ipcclt.o,ipc.a,false
-IPCCltInit,ipcclt.o,ipc.a,false
-IPCCltReInit,ipcclt.o,ipc.a,false
+strnlen,ipcclt.o,ipc.a,true
+IpcReplyHandler,ipcclt.o,ipc.a,true
+IPCInterruptHandler,ipcclt.o,ipc.a,true
+IPCCltInit,ipcclt.o,ipc.a,true
+IPCCltReInit,ipcclt.o,ipc.a,true
 __ios_Ipc2,ipcclt.o,ipc.a,true
 IOS_OpenAsync,ipcclt.o,ipc.a,true
 IOS_Open,ipcclt.o,ipc.a,true
