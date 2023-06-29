@@ -15,4 +15,7 @@ namespace MR {
     bool isExistJoint(const LiveActor *, const char *);
 
     unsigned long getJointNum(const LiveActor *);
+
+	unsigned short getJointIndex(const LiveActor *, const char *);
+    
 };

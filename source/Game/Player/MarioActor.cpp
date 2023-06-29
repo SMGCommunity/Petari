@@ -9,6 +9,7 @@
 #include "JSystem/JMath/JMath.h"
 #include "Game/Player/MarioNullBck.h"
 #include "Game/Enemy/KariKariDirector.h"
+#include "Game/Animation/XanimePlayer.h"
 
 static bool isLuigi;
 
@@ -203,5 +204,9 @@ void MarioActor::changeGameOverAnimation() {
 	_b90 = 1;
 	stopEffect("0x021");
 	_a6e = 0;
-	
+}
+
+XjointTransform* MarioActor::getJointCtrl(const char *name) const {
+	XanimeCore *core = _234 -> _c -> mCore;
+	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
