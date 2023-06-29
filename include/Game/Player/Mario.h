@@ -43,6 +43,8 @@ class MarioTalk;
 class MarioMove;
 class Triangle;
 class FloorCode;
+struct SoundList;
+class MarioState;
 
 class Mario : public MarioModule {
 public:
@@ -71,6 +73,9 @@ public:
     void initSound();
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
+    bool isStatusActive(unsigned long) const;
+    bool isSwimming() const;
+	void closeStatus(MarioState *);
 
     u32 _8;
     u32 _C;

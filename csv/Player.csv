@@ -183,7 +183,7 @@ isAnimationRun__10MarioActorCFPCc,MarioActor.o,Player.a,true
 changeNullAnimation__10MarioActorFPCcSc,MarioActor.o,Player.a,true
 clearNullAnimation__10MarioActorFSc,MarioActor.o,Player.a,false
 isStopNullAnimation__10MarioActorCFv,MarioActor.o,Player.a,true
-changeGameOverAnimation__10MarioActorFv,MarioActor.o,Player.a,false
+changeGameOverAnimation__10MarioActorFv,MarioActor.o,Player.a,true
 getJointCtrl__10MarioActorCFPCc,MarioActor.o,Player.a,false
 updateRotationInfo__10MarioActorFv,MarioActor.o,Player.a,false
 exeWait__10MarioActorFv,MarioActor.o,Player.a,false

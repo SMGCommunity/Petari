@@ -8,6 +8,7 @@
 #include "JSystem/JAudio2/JAIAudible.h"
 #include "JSystem/JMath/JMath.h"
 #include "Game/Player/MarioNullBck.h"
+#include "Game/Enemy/KariKariDirector.h"
 
 static bool isLuigi;
 
@@ -131,4 +132,76 @@ bool MarioActor::isStopNullAnimation() const {
 		return MR::isDead(_b8c);
 	}
 	return true;
+}
+
+void MarioActor::changeGameOverAnimation() {
+	int r30 = 0;
+	if(_230 -> isStatusActive(0x12)) _230 -> closeStatus(NULL);
+
+	if(_230 -> isAnimationRun("0x001")) r30 = 0;
+	if(_230 -> isAnimationRun("0x002")) r30 = 0;
+	if(_230 -> isAnimationRun("0x003")) r30 = 0;
+	if(_230 -> isAnimationRun("0x004")) r30 = 0;
+	if(_230 -> isAnimationRun("0x005")) r30 = 1;
+	if(_230 -> isAnimationRun("0x006")) r30 = 1;
+	if(_230 -> isAnimationRun("0x007")) r30 = 2;
+	if(_230 -> isAnimationRun("0x008")) r30 = 2;
+	if(_230 -> isAnimationRun("0x009")) r30 = 3;
+	if(_230 -> isAnimationRun("0x00a")) r30 = 3;
+	if(_230 -> isAnimationRun("0x00b")) r30 = 3;
+	if(_230 -> isAnimationRun("0x00c")) r30 = 4;
+	if(_230 -> isAnimationRun("0x00d")) r30 = 4;
+	if(_230 -> isAnimationRun("0x00e")) r30 = 4;
+	if(_230 -> isAnimationRun("0x00f")) r30 = 5;
+	if(_230 -> isAnimationRun("0x010")) r30 = 5;
+	if(_230 -> isAnimationRun("0x011")) r30 = 6;
+	if(_230 -> isAnimationRun("0x012")) r30 = 6;
+	if(!_230 -> isAnimationRun("0x013") && !_230 -> isStatusActive(0xd));
+	else r30 = -1;
+	if(_230 -> isSwimming()) r30 = 7;
+	if(isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) r30 = 8;
+	if(MR::getKariKariClingNum() && _230 -> _8 >> 0x1e & 1) r30 = 4;
+	if(_39d == 2) r30 = 9;
+	if(_39d == 1) r30 = 10;
+
+	switch(r30) {
+		case 0:
+			_230 -> changeAnimationNonStop("0x015");
+			break;
+		case 1:
+			_230 -> changeAnimationNonStop("0x016");
+			break;
+		case 2:
+			_230 -> changeAnimationNonStop("0x017");
+			break;
+		case 3:
+			_230 -> changeAnimationNonStop("0x018");
+			break;
+		case 4:
+			_230 -> changeAnimationNonStop("0x019");
+			break;
+		case 5:
+			if(_230 -> _8 >> 0x1e & 1) _230 -> changeAnimationNonStop("0x01a");
+			else _230 -> changeAnimationNonStop("0x01b");
+			break;
+		case 6:
+			_230 -> changeAnimationNonStop("0x01c");
+			break;
+		case 7:
+			_230 -> changeAnimationNonStop("0x01d");
+			break;
+		case 8:
+			_230 -> changeAnimationNonStop("0x01e");
+			break;
+		case 9:
+			_230 -> changeAnimationNonStop("0x01f");
+			break;
+		case 10:
+			_230 -> changeAnimationNonStop("0x020");
+			break;
+	}
+	_b90 = 1;
+	stopEffect("0x021");
+	_a6e = 0;
+	
 }
