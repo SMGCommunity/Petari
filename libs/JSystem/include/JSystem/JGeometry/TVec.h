@@ -249,10 +249,6 @@ namespace JGeometry {
             return f;
         }
 
-        Vec multToVec(T scalar) {
-
-        }
-
         TVec3<T> operator/(T) const;
 
         bool operator==(const TVec3<T> &);
@@ -668,6 +664,12 @@ namespace JGeometry {
                 stfs z_2, 8(rDst)
             }
         }
+
+        inline void multAssignInline(T scalar) {
+			x *= scalar;
+			y *= scalar;
+			z *= scalar;
+		}
 
         T x, y, z;
     };

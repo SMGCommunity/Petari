@@ -210,3 +210,32 @@ XjointTransform* MarioActor::getJointCtrl(const char *name) const {
 	XanimeCore *core = _234 -> _c -> mCore;
 	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
+
+void MarioActor::updateRotationInfo() {
+	TRot3f stack_44;
+	PSMTXConcat(getBaseMtx(), _e3c.toMtxPtr(), stack_44.toMtxPtr());
+	MR::makeRTFromMtxPtr(NULL, &mRotation, stack_44.toMtxPtr(), true);
+	if(mRotation.z > 90f && mRotation.x > 90f) {
+		f32 diff = 180f - mRotation.y;
+		mRotation.z = 0f;
+		mRotation.y = diff;
+		mRotation.x = 0f;
+	}
+	stack_44.getEuler(_318);
+	_318.multAssignInline(57.2957763672f);
+	stack_44.getEuler(_324);
+	_324.multAssignInline(57.2957763672f);
+	if(MR::isSameDirection(_240, _230 -> _208, .01f)) _a18 = mRotation;
+	else {
+		TPos3f stack_14;
+		TVec3f stack_8 = -_240;
+		MR::makeMtxUpFront(&stack_14, stack_8, _230 -> _208);
+		MR::makeRTFromMtxPtr(NULL, &_a18, stack_14.toMtxPtr(), true);
+		if(_a18.z > 90f && _a18.x > 90f) {
+			f32 diff = 180f - _a18.y;
+			_a18.z = 0f;
+			_a18.y = diff;
+			_a18.x = 0f;
+		}
+	}
+}
