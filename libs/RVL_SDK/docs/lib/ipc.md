@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| ipcMain.o | 0.0% | 0 / 7 | 0.0% | :x: 
+| ipcMain.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | ipcclt.o | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | memory.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | ipcProfile.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -17,13 +17,13 @@
 # ipcMain.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| IPCInit | :x: |
-| IPCReInit | :x: |
-| IPCReadReg | :x: |
-| IPCWriteReg | :x: |
-| IPCGetBufferHi | :x: |
-| IPCGetBufferLo | :x: |
-| IPCSetBufferLo | :x: |
+| IPCInit | :white_check_mark: |
+| IPCReInit | :white_check_mark: |
+| IPCReadReg | :white_check_mark: |
+| IPCWriteReg | :white_check_mark: |
+| IPCGetBufferHi | :white_check_mark: |
+| IPCGetBufferLo | :white_check_mark: |
+| IPCSetBufferLo | :white_check_mark: |
 
 
 # ipcclt.o

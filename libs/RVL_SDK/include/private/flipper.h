@@ -12,6 +12,7 @@ vu16 __MEMRegs[0x40] : 0xCC004000;
 vu32 __DIRegs[16] : 0xCD006000;
 vu32 __SIRegs[64] : 0xCD006400;
 vu32 __ACRRegs[89] : 0xCD000000;
+vu32 __IPCRegs[4] : 0x33000000;
 
 inline void ACRWriteReg(u32 offset, u32 val) {
     __ACRRegs[offset >> 2] = val;

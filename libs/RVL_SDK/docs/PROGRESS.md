@@ -16,7 +16,7 @@
 | [fs](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/fs.md) | 0.5486968449931412% |
 | [gd](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/gd.md) | 0.0% |
 | [gx](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/gx.md) | 3.3725976441413517% |
-| [ipc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/ipc.md) | 97.59547383309759% |
+| [ipc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/ipc.md) | 100.0% |
 | [mem](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/mem.md) | 9.977827050997783% |
 | [mtx](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/mtx.md) | 0.0% |
 | [nand](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/nand.md) | 0.0% |

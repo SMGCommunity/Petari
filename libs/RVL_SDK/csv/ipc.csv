@@ -1,11 +1,11 @@
 Symbol Name, Object File, Library Archive, Matching
-IPCInit,ipcMain.o,ipc.a,false
-IPCReInit,ipcMain.o,ipc.a,false
-IPCReadReg,ipcMain.o,ipc.a,false
-IPCWriteReg,ipcMain.o,ipc.a,false
-IPCGetBufferHi,ipcMain.o,ipc.a,false
-IPCGetBufferLo,ipcMain.o,ipc.a,false
-IPCSetBufferLo,ipcMain.o,ipc.a,false
+IPCInit,ipcMain.o,ipc.a,true
+IPCReInit,ipcMain.o,ipc.a,true
+IPCReadReg,ipcMain.o,ipc.a,true
+IPCWriteReg,ipcMain.o,ipc.a,true
+IPCGetBufferHi,ipcMain.o,ipc.a,true
+IPCGetBufferLo,ipcMain.o,ipc.a,true
+IPCSetBufferLo,ipcMain.o,ipc.a,true
 strnlen,ipcclt.o,ipc.a,true
 IpcReplyHandler,ipcclt.o,ipc.a,true
 IPCInterruptHandler,ipcclt.o,ipc.a,true
