@@ -239,3 +239,179 @@ void MarioActor::updateRotationInfo() {
 		}
 	}
 }
+
+void MarioActor::exeWait() {
+	if(_fb8 != 0) {
+		_fb8--;
+		if(_fb8 == 0) {
+			setNerve(_fb4);
+			_fb4 = NULL;
+		}
+	}
+}
+
+void MarioActor::movement() {
+	_4bc = 0;
+	_378++;
+	_1e1 = 0;
+	PSMTXCopy(_ae0, _ab0);
+	PSMTXCopy(MR::getCameraViewMatrix(), _ae0);
+	updateCameraInfo();
+	_4a8 = 0;
+	_4ac = 0.785398185253f;
+	LiveActor::movement();
+	TVec3f stack_134(mPosition);
+	stack_134 -= _294;
+	TVec3f stack_128(stack_134);
+	stack_128 -= mVelocity;
+	_27c = stack_134;
+	TVec3f stack_11c(_288);
+	_288 = stack_128;
+	if(MR::isOppositeDirection(_288, stack_11c, 0.01f)) {
+		f32 mag_288 = PSVECMag(_288.toCVec());
+		f32 magStack_11c = PSVECMag(stack_11c.toCVec());
+		if (
+			!MR::isNearZero(mag_288, 0.001f)
+			&& !MR::isNearZero(magStack_11c, 0.001f)
+			&& !MR::isNearZero(mag_288 - magStack_11c, 1f)
+		) {
+			mPosition -= _288 % 0.5f;
+		}
+	}
+	if(PSVECMag(stack_128) > 0.1f) {
+		if(!(_230 -> _8 & 0x00200000)) {
+			if(!MR::isNearZero(mVelocity, 0.001f)) {
+				f32 diffMag = PSVECMag(_294 - _270);
+				f32 vMag = PSVECMag(mVelocity);
+				if(2f * (diffMag + vMag) > vMag) _230 -> stopWalk();
+			}
+		}
+		if(_230 -> _c & 0x00200000 && PSVECMag(stack_134) > PSVECMag(mVelocity)) {
+			if(stack_134.dot(getGravityVec()) < -0f) {
+				TVec3f stack_110;
+				MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
+				if(MR::isNearZero(stack_110, 0.001f)) {
+					MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
+				}
+				stack_110.setLength(PSVECMag(stack_134));
+				_230 -> push(stack_110);
+				if(_230 -> _3BC <= 2) {
+					f32 scale = PSVECMag(stack_128);
+					if(scale > 10f) scale = 10f;
+					_230 -> _2D4 += -getGravityVec() % scale;
+				}
+			}
+		}
+		else if(_230 -> _c & 0x10000000) {
+			TVec3f stack_104(_230 -> _8f8);
+			stack_104.normalizeOrZero();
+			TVec3f stack_f8;
+			f32 fr30 = MR::vecKillElement(stack_134, stack_104, &stack_f8);
+			f32 fr29 = MR::vecKillElement(stack_134, stack_104, &stack_f8);
+			if(PSVECMag(mVelocity) > 20f && fr30 < fr29 * 0.5f) {
+				if(_230 -> isAnimationRun("坂すべり下向きあおむけ")) {
+					_230 -> push(_230 -> _208 % 5f);
+				}
+				else if(_230 -> isAnimationRun("坂すべり上向きうつぶせ")) {
+					_230 -> push(_230 -> _208 % -5f);
+				}
+				_230 -> _14 |= 0x20000000;
+			}
+		}
+		if(_230 -> _c & 0x80000000 && !_9f1) {
+			if(stack_128.dot(getGravityVec()) < -40f) {
+				TVec3f stack_ec(mPosition);
+				TVec3f stack_e0;
+				stack_ec -= getGravityVec() % 100f;
+				Triangle *tmp = _230 -> getTmpPolygon();
+				
+				if(MR::getFirstPolyOnLineToMap(&stack_e0, tmp, stack_ec, getGravityVec() % 200f)) {
+					TVec3f stack_d4;
+					if (
+						MR::vecKillElement(stack_e0 - mPosition, getGravityVec(), &stack_d4) < -5f
+						&& tmp -> _0
+						&& !tmp -> _0 -> _d4
+						&& _230 -> _c % 2 == 0
+					) {
+						_230 -> _130 = mPosition;
+						_230 -> stopJump();
+						_230 -> changeAnimation("基本", "落下");
+						_230 -> updateGroundInfo();
+					}
+				}
+			}
+			else if(stack_128.dot(getGravityVec()) > 40f) {
+				if(_230 -> _4c8 -> isValidTriangle() && MR::isSensorPressObj(_230 -> _4c8 -> _8)) {
+					_230 -> _18 |= 2;
+				}
+				else {
+					for(int i = 0; i < mSpine -> _28; i++) {
+						if(MR::isSensorPressObj(mBinder -> getPlane(i))) _230 -> _18 |= 2
+					}
+				}
+				if((_230 -> _31c - mPosition).dot(getGravityVector()) < 0f) {
+					bool r31 = true;
+					if(_230 -> _45c -> _0 && !_230 -> _45c -> _0 -> _d4) {
+						TVec3f stack_c8;
+						PSMTXMultVec(_230 -> _95c -> _0 -> _64.toMtxPtr(), _230 -> _31c.toCVec(), stack_c8.toVec());
+						TVec3f stack_bc;
+						PSMTXMultVec(_230 -> _95c -> _0 -> _94.toMtxPtr(), stack_c8.toCVec(), stack_bc.toVec());
+						TVec3f stack_b0 = _230 -> _31c - stack_bc;
+						r31 = stack_b0.dot(stack_128) <= 0f;
+					}
+					if(r31) {
+						mPosition = _230 -> _31c;
+						_230 -> _2d4.zero();
+						_230 -> _148.zero();
+						if(!_230 -> _5c && (_230 -> _18 & 2 || _230 -> _30 & 2)) {
+							TVec3f stack_a4(stack_128);
+							stack_a4.normalizeOrZero();
+							_3b4 = stack_a4;
+							setPress(0, 0);
+							_3b0 = 0.1f;
+						}
+					}
+				}
+			}
+		}
+		else if(_230 -> _8 & 0x40000000) {
+			bool r31 = false;
+			for(int i = 0; i < mBinder -> _28; i++) {
+				Plane *plane = mBinder -> getPlane(i);
+				if(!MR::isSensorPressObj(mBinder -> _8) continue;
+				if(_230 -> _368.dot(plane.getNormal(0)) > 0f) {
+					if(_230 -> _72c < 200f) r31 = true;
+					else r31 = tmp.getNormal(6).dot(stack_134) >= 0f;
+				}
+				else if(_230 -> _5FC) {
+					if(MR::isWallCodeNoAction(tmp) || _230 -> isOnimasuBinderPressAction()) {
+						r31 = true;
+						continue;
+					}
+					_3b4 = _230 -> _3C8;
+					_230 -> _10 &= ~(int)4;
+					_230 -> _4c8 = plane;
+					setPress(2, 0);
+					_3b0 = 0.1f;
+					r31 = true;
+				}
+			}
+			if(r31) {
+				TVec3f stack_98;
+				f32 element = MR::vecKillElement(stack_134, _230 -> _368, &stack_98);
+				mPosition -= _230 -> _368 % stack_98;
+			}
+		}
+	}
+	if(_230 -> _18 & 0x20) {
+		_230 -> _18 &= ~(int)0x20;
+		_234 -> update();
+	}
+	_230 -> recordRelativePosition();
+	updateTransForCamera();
+	calcAnimInMovement();
+	_935 = false;
+	_230 -> _2D0 = 0f;
+	_f3c[_f40] = _230 -> _208;
+	_f40 = (_f40 + 1) / _f42 * _f42 - _f40;
+}

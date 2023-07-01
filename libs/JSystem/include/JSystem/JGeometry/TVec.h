@@ -665,12 +665,6 @@ namespace JGeometry {
             }
         }
 
-        inline void multAssignInline(T scalar) {
-			x *= scalar;
-			y *= scalar;
-			z *= scalar;
-		}
-
         T x, y, z;
     };
 
