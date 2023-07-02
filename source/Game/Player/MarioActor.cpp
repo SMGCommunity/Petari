@@ -10,6 +10,7 @@
 #include "Game/Player/MarioNullBck.h"
 #include "Game/Enemy/KariKariDirector.h"
 #include "Game/Animation/XanimePlayer.h"
+#include "Game/Map/CollisionParts.h"
 
 static bool isLuigi;
 
@@ -211,6 +212,30 @@ XjointTransform* MarioActor::getJointCtrl(const char *name) const {
 	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
 
+inline bool bs(const MarioActor &bull, int crap) {
+	return bull._230 -> _C >> (0x20 - crap) & 1;
+}
+
+inline bool bs3(const MarioActor &bull, int crap) {
+	return bull._230 -> _8 >> (0x20 - crap) & 1;
+}
+
+inline bool _bs3(const Mario *bull, int crap) {
+	return bull -> _8 >> (0x20 - crap) & 1;
+} 
+
+inline bool bs2(const MarioActor &bull) {
+	return bull._230 -> _5FC;
+}
+
+bool MarioActor::isTurning() const {
+	return _230 -> _8 >> 0x1c & 1;
+}
+bool MarioActor::isDebugMode() const {
+	return _230 -> _8 >> 9 & 1;
+}
+
+
 void MarioActor::updateRotationInfo() {
 	TRot3f stack_44;
 	PSMTXConcat(getBaseMtx(), _e3c.toMtxPtr(), stack_44.toMtxPtr());
@@ -222,9 +247,9 @@ void MarioActor::updateRotationInfo() {
 		mRotation.x = 0f;
 	}
 	stack_44.getEuler(_318);
-	_318.multAssignInline(57.2957763672f);
+	_318.scaleInline(57.2957763672f);
 	stack_44.getEuler(_324);
-	_324.multAssignInline(57.2957763672f);
+	_324.scaleInline(57.2957763672f);
 	if(MR::isSameDirection(_240, _230 -> _208, .01f)) _a18 = mRotation;
 	else {
 		TPos3f stack_14;
@@ -250,12 +275,16 @@ void MarioActor::exeWait() {
 	}
 }
 
+inline u16 nans(const MarioActor &actor) {
+	return (u16)(actor._f40 + 1) / actor._f42 * actor._f42 - (u16)(actor._f40 + 1);
+}
+
 void MarioActor::movement() {
-	_4bc = 0;
+	__46c = 0;
 	_378++;
 	_1e1 = 0;
-	PSMTXCopy(_ae0, _ab0);
-	PSMTXCopy(MR::getCameraViewMatrix(), _ae0);
+	PSMTXCopy(_ae0.toMtxPtr(), _ab0.toMtxPtr());
+	PSMTXCopy(MR::getCameraViewMtx(), _ae0.toMtxPtr());
 	updateCameraInfo();
 	_4a8 = 0;
 	_4ac = 0.785398185253f;
@@ -273,42 +302,42 @@ void MarioActor::movement() {
 		if (
 			!MR::isNearZero(mag_288, 0.001f)
 			&& !MR::isNearZero(magStack_11c, 0.001f)
-			&& !MR::isNearZero(mag_288 - magStack_11c, 1f)
+			&& MR::isNearZero(mag_288 - magStack_11c, 1f)
 		) {
 			mPosition -= _288 % 0.5f;
 		}
 	}
-	if(PSVECMag(stack_128) > 0.1f) {
-		if(!(_230 -> _8 & 0x00200000)) {
+	if(PSVECMag(stack_128.toCVec()) > 0.1f) {
+		if(!(_230 -> _8 >> 0x15 & 1)) {
 			if(!MR::isNearZero(mVelocity, 0.001f)) {
-				f32 diffMag = PSVECMag(_294 - _270);
-				f32 vMag = PSVECMag(mVelocity);
-				if(2f * (diffMag + vMag) > vMag) _230 -> stopWalk();
+				f32 diffMag = PSVECMag(_294.translateOpposite(_270).toCVec());
+				f32 vMag = PSVECMag(mVelocity.toCVec());
+				if(PSVECMag(stack_128.toCVec()) > 2f * (diffMag + vMag)) _230 -> stopWalk();
 			}
 		}
-		if(_230 -> _c & 0x00200000 && PSVECMag(stack_134) > PSVECMag(mVelocity)) {
+		if(_230 -> _C >> 0x1c & 1 && PSVECMag(mVelocity.toCVec()) < PSVECMag(stack_134.toCVec())) {
 			if(stack_134.dot(getGravityVec()) < -0f) {
 				TVec3f stack_110;
 				MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
 				if(MR::isNearZero(stack_110, 0.001f)) {
 					MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
 				}
-				stack_110.setLength(PSVECMag(stack_134));
+				stack_110.setLength(PSVECMag(stack_134.toCVec()));
 				_230 -> push(stack_110);
 				if(_230 -> _3BC <= 2) {
-					f32 scale = PSVECMag(stack_128);
+					f32 scale = PSVECMag(stack_128.toCVec());
 					if(scale > 10f) scale = 10f;
 					_230 -> _2D4 += -getGravityVec() % scale;
 				}
 			}
 		}
-		else if(_230 -> _c & 0x10000000) {
-			TVec3f stack_104(_230 -> _8f8);
-			stack_104.normalizeOrZero();
+		else if(bs(*this, 4)) {
+			TVec3f stack_104(_230 -> _8F8);
+			MR::normalizeOrZero(&stack_104);
 			TVec3f stack_f8;
 			f32 fr30 = MR::vecKillElement(stack_134, stack_104, &stack_f8);
-			f32 fr29 = MR::vecKillElement(stack_134, stack_104, &stack_f8);
-			if(PSVECMag(mVelocity) > 20f && fr30 < fr29 * 0.5f) {
+			f32 fr29 = MR::vecKillElement(mVelocity, stack_104, &stack_f8);
+			if(PSVECMag(mVelocity.toCVec()) > 20f && fr30 < fr29 * 0.5f) {
 				if(_230 -> isAnimationRun("坂すべり下向きあおむけ")) {
 					_230 -> push(_230 -> _208 % 5f);
 				}
@@ -318,21 +347,21 @@ void MarioActor::movement() {
 				_230 -> _14 |= 0x20000000;
 			}
 		}
-		if(_230 -> _c & 0x80000000 && !_9f1) {
+		if(_bs3(_230, 1) && !_9f1) {
 			if(stack_128.dot(getGravityVec()) < -40f) {
-				TVec3f stack_ec(mPosition);
+				TVec3f stack_ec(mPosition.translateOpposite(getGravityVec() % 100f));
 				TVec3f stack_e0;
-				stack_ec -= getGravityVec() % 100f;
 				Triangle *tmp = _230 -> getTmpPolygon();
 				
 				if(MR::getFirstPolyOnLineToMap(&stack_e0, tmp, stack_ec, getGravityVec() % 200f)) {
 					TVec3f stack_d4;
 					if (
-						MR::vecKillElement(stack_e0 - mPosition, getGravityVec(), &stack_d4) < -5f
-						&& tmp -> _0
-						&& !tmp -> _0 -> _d4
-						&& _230 -> _c % 2 == 0
+						MR::vecKillElement(stack_e0.translateOpposite(mPosition), getGravityVec(), &stack_d4) < -5f
+						&& tmp -> mParts
+						&& !tmp -> mParts -> _D4
+						&& _230 -> _C % 4 != 1
 					) {
+						mPosition = stack_e0;
 						_230 -> _130 = mPosition;
 						_230 -> stopJump();
 						_230 -> changeAnimation("基本", "落下");
@@ -341,31 +370,32 @@ void MarioActor::movement() {
 				}
 			}
 			else if(stack_128.dot(getGravityVec()) > 40f) {
-				if(_230 -> _4c8 -> isValidTriangle() && MR::isSensorPressObj(_230 -> _4c8 -> _8)) {
-					_230 -> _18 |= 2;
+				if(_230 -> _4C8 -> isValid()) {
+					if(MR::isSensorPressObj(_230 -> _4C8 -> mSensor)) _230 -> _18 |= 2;
 				}
 				else {
-					for(int i = 0; i < mSpine -> _28; i++) {
-						if(MR::isSensorPressObj(mBinder -> getPlane(i))) _230 -> _18 |= 2
+					const u32 stop = mBinder -> _28;
+					for(int i = 0; i < stop; i++) {
+						if(MR::isSensorPressObj(mBinder -> getPlane(i) -> mSensor)) _230 -> _18 |= 2;
 					}
 				}
-				if((_230 -> _31c - mPosition).dot(getGravityVector()) < 0f) {
+				if(_230 -> _31C.translateOpposite(mPosition).dot(getGravityVector()) < 0f) {
 					bool r31 = true;
-					if(_230 -> _45c -> _0 && !_230 -> _45c -> _0 -> _d4) {
-						TVec3f stack_c8;
-						PSMTXMultVec(_230 -> _95c -> _0 -> _64.toMtxPtr(), _230 -> _31c.toCVec(), stack_c8.toVec());
-						TVec3f stack_bc;
-						PSMTXMultVec(_230 -> _95c -> _0 -> _94.toMtxPtr(), stack_c8.toCVec(), stack_bc.toVec());
-						TVec3f stack_b0 = _230 -> _31c - stack_bc;
-						r31 = stack_b0.dot(stack_128) <= 0f;
+					CollisionParts *parts = _230 -> _45C -> mParts;
+					if(parts && !_230 -> _45C -> mParts -> _D4) {
+						TVec3f stack_c8, stack_bc, stack_b0;
+						PSMTXMultVec(parts -> mInvBaseMatrix.toMtxPtr(), _230 -> _31C.toCVec(), stack_c8.toVec());
+						PSMTXMultVec(parts -> mPrevBaseMatrix.toMtxPtr(), stack_c8.toCVec(), stack_bc.toVec());
+						stack_b0 = _230 -> _31C.translateOpposite(stack_bc);
+						if(stack_b0.dot(stack_128) > 0f) r31 = false;
 					}
 					if(r31) {
-						mPosition = _230 -> _31c;
-						_230 -> _2d4.zero();
+						mPosition = _230 -> _31C;
+						_230 -> _2D4.zero();
 						_230 -> _148.zero();
-						if(!_230 -> _5c && (_230 -> _18 & 2 || _230 -> _30 & 2)) {
+						if(!bs2(*this) && (_230 -> _18 >> 1 & 1 || _230 -> _30 >> 1 & 1)) {
 							TVec3f stack_a4(stack_128);
-							stack_a4.normalizeOrZero();
+							MR::normalizeOrZero(&stack_a4);
 							_3b4 = stack_a4;
 							setPress(0, 0);
 							_3b0 = 0.1f;
@@ -373,45 +403,48 @@ void MarioActor::movement() {
 					}
 				}
 			}
-		}
-		else if(_230 -> _8 & 0x40000000) {
-			bool r31 = false;
-			for(int i = 0; i < mBinder -> _28; i++) {
-				Plane *plane = mBinder -> getPlane(i);
-				if(!MR::isSensorPressObj(mBinder -> _8) continue;
-				if(_230 -> _368.dot(plane.getNormal(0)) > 0f) {
-					if(_230 -> _72c < 200f) r31 = true;
-					else r31 = tmp.getNormal(6).dot(stack_134) >= 0f;
-				}
-				else if(_230 -> _5FC) {
-					if(MR::isWallCodeNoAction(tmp) || _230 -> isOnimasuBinderPressAction()) {
-						r31 = true;
-						continue;
+			else if(_bs3(_230, 2)) {
+				const u32 stop = mBinder -> _28;
+				bool r31 = false;
+				for(u32 i = 0; i < stop; i++) {
+					const Triangle *plane = mBinder -> getPlane(i);
+					if(!MR::isSensorPressObj(plane -> mSensor)) continue;
+					if(_230 -> _368.dot(*plane -> getNormal(0)) > 0f) {
+						if(_230 -> _72C < 200f) r31 = true;
+						else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
+						else r31 = false;
 					}
-					_3b4 = _230 -> _3C8;
-					_230 -> _10 &= ~(int)4;
-					_230 -> _4c8 = plane;
-					setPress(2, 0);
-					_3b0 = 0.1f;
-					r31 = true;
+					else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
+					else if(_230 -> _5FC) {
+						if(!MR::isWallCodeNoAction(plane) && !_230 -> isOnimasuBinderPressSkip()) {
+							_3b4 = _230 -> _368;
+							_230 -> _10 &= ~(u32)4;
+							*_230 -> _4C8 = *plane;
+							setPress(2, 0);
+							_3b0 = 0.1f;
+						}
+						r31 = true;
+					}
+				}
+				if(r31) {
+					TVec3f stack_98;
+					f32 element = MR::vecKillElement(stack_134, _230 -> _368, &stack_98);
+					mPosition -= _230 -> _368 % element;
 				}
 			}
-			if(r31) {
-				TVec3f stack_98;
-				f32 element = MR::vecKillElement(stack_134, _230 -> _368, &stack_98);
-				mPosition -= _230 -> _368 % stack_98;
-			}
-		}
+		}	
 	}
-	if(_230 -> _18 & 0x20) {
-		_230 -> _18 &= ~(int)0x20;
-		_234 -> update();
+	if(_230 -> _18 >> 5 & 1) {
+		_230 -> _18 &= ~(u32)0x20;
+		_234 -> MarioAnimator::update();
 	}
 	_230 -> recordRelativePosition();
 	updateTransForCamera();
 	calcAnimInMovement();
 	_935 = false;
 	_230 -> _2D0 = 0f;
-	_f3c[_f40] = _230 -> _208;
-	_f40 = (_f40 + 1) / _f42 * _f42 - _f40;
+	_f3c_vec[_f40] = _230 -> _208;
+	//_f40 = -((u16)(_f40 + 1) / tmp * tmp) + (u16)(_f40 + 1);
+	_f40 = (u16)(_f40 + 1) % _f42;
+	//_f40 %= _f42;
 }

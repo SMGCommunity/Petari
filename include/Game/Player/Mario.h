@@ -71,11 +71,22 @@ public:
     void clearSlope();
     void clear2DStick();
     void initSound();
+    void recordRelativePosition();
+	unsigned long initSoundTable(SoundList* list, unsigned long);
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
     bool isStatusActive(unsigned long) const;
     bool isSwimming() const;
+    bool isOnimasuBinderPressSkip() const;
 	void closeStatus(MarioState *);
+	void stopWalk();
+	void push(const TVec3f &);
+	void stopJump();
+	void updateGroundInfo();
+
+	inline bool getFlag(u8 bit) const {
+		return _C >> (0x20 - bit) & 1;
+	}
 
     u32 _8;
     u32 _C;

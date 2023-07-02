@@ -3,4 +3,5 @@
 class FloorCode {
 public:
 	FloorCode();
+	
 };

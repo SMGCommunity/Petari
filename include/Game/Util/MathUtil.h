@@ -10,6 +10,7 @@ static f32 maxDegree = 360.0f;
 static f32 flt_8060FC80[1816];
 
 namespace MR {
+	
     void initAcosTable();
 
     template<typename T>
@@ -62,6 +63,7 @@ namespace MR {
     bool isNearZero(const TVec3f &, f32);
 
     bool isSameDirection(const TVec3f &, const TVec3f &, float);
+	bool isOppositeDirection(const TVec3f &, const TVec3f &, f32);
 
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);
