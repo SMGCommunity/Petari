@@ -220,11 +220,11 @@ inline bool bs2(const MarioActor &bull) {
 	return bull._230 -> _5FC;
 }
 
-inline bool bsa(volatile MarioActor &bull) {
+inline bool bsa(const MarioActor &bull) {
 	return bull._230 -> _8_0;
 }
 
-inline bool bsb(volatile MarioActor &bull) {
+inline bool bsb(const MarioActor &bull) {
 	return bull._230 -> _8_1;
 }
 
