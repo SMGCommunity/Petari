@@ -187,7 +187,7 @@ changeGameOverAnimation__10MarioActorFv,MarioActor.o,Player.a,true
 getJointCtrl__10MarioActorCFPCc,MarioActor.o,Player.a,true
 updateRotationInfo__10MarioActorFv,MarioActor.o,Player.a,false
 exeWait__10MarioActorFv,MarioActor.o,Player.a,true
-movement__10MarioActorFv,MarioActor.o,Player.a,false
+movement__10MarioActorFv,MarioActor.o,Player.a,true
 control__10MarioActorFv,MarioActor.o,Player.a,false
 control2__10MarioActorFv,MarioActor.o,Player.a,false
 controlMain__10MarioActorFv,MarioActor.o,Player.a,false

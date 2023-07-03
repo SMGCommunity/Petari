@@ -216,16 +216,25 @@ inline bool bs(const MarioActor &bull, int crap) {
 	return bull._230 -> _C >> (0x20 - crap) & 1;
 }
 
-inline bool bs3(const MarioActor &bull, int crap) {
-	return bull._230 -> _8 >> (0x20 - crap) & 1;
+inline bool bs3(volatile MarioActor (*bull), int crap)  {
+	return bull -> _230 -> _8 >> (0x20 - crap) & 1;
 }
 
-inline bool _bs3(const Mario *bull, int crap) {
+inline bool _bs3(Mario *bull, int crap) {
 	return bull -> _8 >> (0x20 - crap) & 1;
+}
+
+inline bool volatile bs4(Mario &mario, u32 offset) {
+	u32 flag(mario._8);
+	return flag >> (0x1f - offset) & 1;
 } 
 
 inline bool bs2(const MarioActor &bull) {
 	return bull._230 -> _5FC;
+}
+
+inline bool nannynans(MarioActor &act) {
+	return act._9f1;
 }
 
 bool MarioActor::isTurning() const {
@@ -273,10 +282,6 @@ void MarioActor::exeWait() {
 			_fb4 = NULL;
 		}
 	}
-}
-
-inline u16 nans(const MarioActor &actor) {
-	return (u16)(actor._f40 + 1) / actor._f42 * actor._f42 - (u16)(actor._f40 + 1);
 }
 
 void MarioActor::movement() {
@@ -347,7 +352,7 @@ void MarioActor::movement() {
 				_230 -> _14 |= 0x20000000;
 			}
 		}
-		if(_bs3(_230, 1) && !_9f1) {
+		if(bs3(this, 1) && !nannynans(*this)) {
 			if(stack_128.dot(getGravityVec()) < -40f) {
 				TVec3f stack_ec(mPosition.translateOpposite(getGravityVec() % 100f));
 				TVec3f stack_e0;
@@ -403,7 +408,8 @@ void MarioActor::movement() {
 					}
 				}
 			}
-			else if(_bs3(_230, 2)) {
+		}
+			else if(bs3(this, 2)) {
 				const u32 stop = mBinder -> _28;
 				bool r31 = false;
 				for(u32 i = 0; i < stop; i++) {
@@ -432,7 +438,6 @@ void MarioActor::movement() {
 					mPosition -= _230 -> _368 % element;
 				}
 			}
-		}	
 	}
 	if(_230 -> _18 >> 5 & 1) {
 		_230 -> _18 &= ~(u32)0x20;

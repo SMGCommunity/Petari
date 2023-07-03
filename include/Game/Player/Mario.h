@@ -48,6 +48,12 @@ class MarioState;
 
 class Mario : public MarioModule {
 public:
+	struct BitField {
+		u32 bits;
+		inline bool getBit(u32 bit) volatile {
+			return bits >> (0x20 - bit) & 1;
+		}
+	};
 	typedef bool (Mario::*Task)(const void *, void *, unsigned long);
     Mario(MarioActor *);
 
@@ -88,7 +94,10 @@ public:
 		return _C >> (0x20 - bit) & 1;
 	}
 
-    u32 _8;
+    union {
+		u32 _8;
+		volatile BitField __8;
+	};
     u32 _C;
     u32 _10;
     u32 _14;
