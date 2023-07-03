@@ -156,15 +156,83 @@ public:
     //u32 _C;
     u32 _10;
     u32 _14;
-    u32 _18;
+    union {
+		u32 _18;
+		struct {
+			unsigned _18_0 : 1;
+			unsigned _18_1 : 1;
+			unsigned _18_2 : 1;
+			unsigned _18_3 : 1;
+			unsigned _18_4 : 1;
+			unsigned _18_5 : 1;
+			unsigned _18_6 : 1;
+			unsigned _18_7 : 1;
+			unsigned _18_8 : 1;
+			unsigned _18_9 : 1;
+			unsigned _18_a : 1;
+			unsigned _18_b : 1;
+			unsigned _18_c : 1;
+			unsigned _18_d : 1;
+			unsigned _18_e : 1;
+			unsigned _18_f : 1;
+			unsigned _18_10 : 1;
+			unsigned _18_11 : 1;
+			unsigned _18_12 : 1;
+			unsigned _18_13 : 1;
+			unsigned _18_14 : 1;
+			unsigned _18_15 : 1;
+			unsigned _18_16 : 1;
+			unsigned _18_17 : 1;
+			unsigned _18_18 : 1;
+			unsigned _18_19 : 1;
+			unsigned _18_1a : 1;
+			unsigned _18_1b : 1;
+			unsigned _18_1c : 1;
+			unsigned _18_1d : 1;
+			unsigned _18_1e : 1;
+			unsigned _18_1f : 1;
+		};
+	};
     u32 _1C;
     u32 _20;
     u32 _24;
     u32 _28;
     u32 _2C;
 
-    // FAKE
-	u32 _30;
+
+	unsigned _30_0 : 1;
+	unsigned _30_1 : 1;
+	unsigned _30_2 : 1;
+	unsigned _30_3 : 1;
+	unsigned _30_4 : 1;
+	unsigned _30_5 : 1;
+	unsigned _30_6 : 1;
+	unsigned _30_7 : 1;
+	unsigned _30_8 : 1;
+	unsigned _30_9 : 1;
+	unsigned _30_a : 1;
+	unsigned _30_b : 1;
+	unsigned _30_c : 1;
+	unsigned _30_d : 1;
+	unsigned _30_e : 1;
+	unsigned _30_f : 1;
+	unsigned _30_10 : 1;
+	unsigned _30_11 : 1;
+	unsigned _30_12 : 1;
+	unsigned _30_13 : 1;
+	unsigned _30_14 : 1;
+	unsigned _30_15 : 1;
+	unsigned _30_16 : 1;
+	unsigned _30_17 : 1;
+	unsigned _30_18 : 1;
+	unsigned _30_19 : 1;
+	unsigned _30_1a : 1;
+	unsigned _30_1b : 1;
+	unsigned _30_1c : 1;
+	unsigned _30_1d : 1;
+	unsigned _30_1e : 1;
+	unsigned _30_1f : 1;
+    //FAKE
 	u32 _34;
     //NOT FAKE
 

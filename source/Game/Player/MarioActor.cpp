@@ -212,22 +212,6 @@ XjointTransform* MarioActor::getJointCtrl(const char *name) const {
 	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
 
-inline bool bs(const MarioActor &bull) {
-	return bull._230 -> _8_23;
-}
-
-inline bool bs2(const MarioActor &bull) {
-	return bull._230 -> _5FC;
-}
-
-inline bool bsa(const MarioActor &bull) {
-	return bull._230 -> _8_0;
-}
-
-inline bool bsb(const MarioActor &bull) {
-	return bull._230 -> _8_1;
-}
-
 /*bool MarioActor::isTurning() const {
 	return _230 -> _8 >> 0x1c & 1;
 }
@@ -327,7 +311,7 @@ void MarioActor::movement() {
 				}
 			}
 		}
-		else if(bs(*this)) {
+		else if(isSlipping()) {
 			TVec3f stack_104(_230 -> _8F8);
 			MR::normalizeOrZero(&stack_104);
 			TVec3f stack_f8;
@@ -343,7 +327,7 @@ void MarioActor::movement() {
 				_230 -> _14 |= 0x20000000;
 			}
 		}
-		if(bsa(*this) && !_9f1) {
+		if(isMovingVertical() && !_9f1) {
 			if(stack_128.dot(getGravityVec()) < -40f) {
 				TVec3f stack_ec(mPosition.translateOpposite(getGravityVec() % 100f));
 				TVec3f stack_e0;
@@ -389,7 +373,7 @@ void MarioActor::movement() {
 						mPosition = _230 -> _31C;
 						_230 -> _2D4.zero();
 						_230 -> _148.zero();
-						if(!bs2(*this) && (_230 -> _18 >> 1 & 1 || _230 -> _30 >> 1 & 1)) {
+						if(!_230 -> _5FC && (isHoldJump() || isHoldJumpLastFrame())) {
 							TVec3f stack_a4(stack_128);
 							MR::normalizeOrZero(&stack_a4);
 							_3b4 = stack_a4;
@@ -400,35 +384,35 @@ void MarioActor::movement() {
 				}
 			}
 		}
-			else if(_230 -> _8_1) {
-				const u32 stop = mBinder -> _28;
-				bool r31 = false;
-				for(u32 i = 0; i < stop; i++) {
-					const Triangle *plane = mBinder -> getPlane(i);
-					if(!MR::isSensorPressObj(plane -> mSensor)) continue;
-					if(_230 -> _368.dot(*plane -> getNormal(0)) > 0f) {
-						if(_230 -> _72C < 200f) r31 = true;
-						else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
-						else r31 = false;
-					}
+		else if(_230 -> _8_1) { // Probably uses an inline function
+			const u32 stop = mBinder -> _28;
+			bool r31 = false;
+			for(u32 i = 0; i < stop; i++) {
+				const Triangle *plane = mBinder -> getPlane(i);
+				if(!MR::isSensorPressObj(plane -> mSensor)) continue;
+				if(_230 -> _368.dot(*plane -> getNormal(0)) > 0f) {
+					if(_230 -> _72C < 200f) r31 = true;
 					else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
-					else if(_230 -> _5FC) {
-						if(!MR::isWallCodeNoAction(plane) && !_230 -> isOnimasuBinderPressSkip()) {
-							_3b4 = _230 -> _368;
-							_230 -> _10 &= ~(u32)4;
-							*_230 -> _4C8 = *plane;
-							setPress(2, 0);
-							_3b0 = 0.1f;
-						}
-						r31 = true;
-					}
+					else r31 = false;
 				}
-				if(r31) {
-					TVec3f stack_98;
-					f32 element = MR::vecKillElement(stack_134, _230 -> _368, &stack_98);
-					mPosition -= _230 -> _368 % element;
+				else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
+				else if(_230 -> _5FC) {
+					if(!MR::isWallCodeNoAction(plane) && !_230 -> isOnimasuBinderPressSkip()) {
+						_3b4 = _230 -> _368;
+						_230 -> _10 &= ~(u32)4;
+						*_230 -> _4C8 = *plane;
+						setPress(2, 0);
+						_3b0 = 0.1f;
+					}
+					r31 = true;
 				}
 			}
+			if(r31) {
+				TVec3f stack_98;
+				f32 element = MR::vecKillElement(stack_134, _230 -> _368, &stack_98);
+				mPosition -= _230 -> _368 % element;
+			}
+		}
 	}
 	if(_230 -> _18 >> 5 & 1) {
 		_230 -> _18 &= ~(u32)0x20;
