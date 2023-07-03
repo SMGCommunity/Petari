@@ -162,7 +162,7 @@ void MarioActor::changeGameOverAnimation() {
 	else r30 = -1;
 	if(_230 -> isSwimming()) r30 = 7;
 	if(isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) r30 = 8;
-	//if(MR::getKariKariClingNum() && _230 -> _8 >> 0x1e & 1) r30 = 4; // UNCOMMENT AND MAKE COMPILE ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	if(MR::getKariKariClingNum() && _230 -> _8_1) r30 = 4;
 	if(_39d == 2) r30 = 9;
 	if(_39d == 1) r30 = 10;
 
@@ -183,8 +183,8 @@ void MarioActor::changeGameOverAnimation() {
 			_230 -> changeAnimationNonStop("0x019");
 			break;
 		case 5:
-		//	if(_230 -> _8 >> 0x1e & 1) _230 -> changeAnimationNonStop("0x01a"); UNCOMMENT AND MAKE COMPILE ASAP!!!!!!!!!!!!!!!!!!!!!!!!!
-			//else _230 -> changeAnimationNonStop("0x01b");
+			if(_230 -> _8_1) _230 -> changeAnimationNonStop("0x01a");
+			else _230 -> changeAnimationNonStop("0x01b");
 			break;
 		case 6:
 			_230 -> changeAnimationNonStop("0x01c");
@@ -212,12 +212,12 @@ XjointTransform* MarioActor::getJointCtrl(const char *name) const {
 	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
 
-/*bool MarioActor::isTurning() const {
-	return _230 -> _8 >> 0x1c & 1;
+bool MarioActor::isTurning() const {
+	return _230 -> _8_3;
 }
 bool MarioActor::isDebugMode() const {
-	return _230 -> _8 >> 9 & 1;
-}*/
+	return _230 -> _8_16;
+}
 
 
 void MarioActor::updateRotationInfo() {

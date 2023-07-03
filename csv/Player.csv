@@ -224,7 +224,7 @@ calcAndSetBaseMtx__10MarioActorFv,MarioActor.o,Player.a,false
 setBlendMtxTimer__10MarioActorFUs,MarioActor.o,Player.a,false
 getGroundPos__10MarioActorCFPQ29JGeometry8TVec3<f>,MarioActor.o,Player.a,false
 getShadowPos__10MarioActorCFv,MarioActor.o,Player.a,false
-isTurning__10MarioActorCFv,MarioActor.o,Player.a,false
+isTurning__10MarioActorCFv,MarioActor.o,Player.a,true
 isJumping__10MarioActorCFv,MarioActor.o,Player.a,false
 isJumpRising__10MarioActorCFv,MarioActor.o,Player.a,false
 isPunching__10MarioActorCFv,MarioActor.o,Player.a,false
@@ -234,7 +234,7 @@ isNeedDamageFog__10MarioActorCFv,MarioActor.o,Player.a,false
 isStaggering__10MarioActorCFv,MarioActor.o,Player.a,false
 isSleeping__10MarioActorCFv,MarioActor.o,Player.a,false
 isRefuseTalk__10MarioActorCFv,MarioActor.o,Player.a,false
-isDebugMode__10MarioActorCFv,MarioActor.o,Player.a,false
+isDebugMode__10MarioActorCFv,MarioActor.o,Player.a,true
 jumpHop__10MarioActorFv,MarioActor.o,Player.a,false
 calcCenterPos__10MarioActorFv,MarioActor.o,Player.a,false
 calcHeadPos__10MarioActorFv,MarioActor.o,Player.a,false
