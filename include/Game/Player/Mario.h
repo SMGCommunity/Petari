@@ -48,12 +48,6 @@ class MarioState;
 
 class Mario : public MarioModule {
 public:
-	struct BitField {
-		u32 bits;
-		inline bool getBit(u32 bit) volatile {
-			return bits >> (0x20 - bit) & 1;
-		}
-	};
 	typedef bool (Mario::*Task)(const void *, void *, unsigned long);
     Mario(MarioActor *);
 
@@ -90,15 +84,71 @@ public:
 	void stopJump();
 	void updateGroundInfo();
 
-	inline bool getFlag(u8 bit) const {
-		return _C >> (0x20 - bit) & 1;
-	}
-
-    union {
-		u32 _8;
-		volatile BitField __8;
-	};
-    u32 _C;
+    //u32 _8;
+    unsigned _8_0 : 1;
+    unsigned _8_1 : 1;
+    unsigned _8_2 : 1;
+    unsigned _8_3 : 1;
+    unsigned _8_4 : 1;
+    unsigned _8_5 : 1;
+    unsigned _8_6 : 1;
+    unsigned _8_7 : 1;
+    unsigned _8_8 : 1;
+    unsigned _8_9 : 1;
+    unsigned _8_a : 1;
+    unsigned _8_b : 1;
+    unsigned _8_c : 1;
+    unsigned _8_d : 1;
+    unsigned _8_e : 1;
+    unsigned _8_f : 1;
+    unsigned _8_10 : 1;
+    unsigned _8_11 : 1;
+    unsigned _8_12 : 1;
+    unsigned _8_13 : 1;
+    unsigned _8_14 : 1;
+    unsigned _8_15 : 1;
+    unsigned _8_16 : 1;
+    unsigned _8_17 : 1;
+    unsigned _8_18 : 1;
+    unsigned _8_19 : 1;
+    unsigned _8_1a : 1;
+    unsigned _8_1b : 1;
+    unsigned _8_1c : 1;
+    unsigned _8_1d : 1;
+    unsigned _8_1e : 1;
+    unsigned _8_1f : 1;
+    unsigned _8_20 : 1;
+    unsigned _8_21 : 1;
+    unsigned _8_22 : 1;
+    unsigned _8_23 : 1;
+    unsigned _8_24 : 1;
+    unsigned _8_25 : 1;
+    unsigned _8_26 : 1;
+    unsigned _8_27 : 1;
+    unsigned _8_28 : 1;
+    unsigned _8_29 : 1;
+    unsigned _8_2a : 1;
+    unsigned _8_2b : 1;
+    unsigned _8_2c : 1;
+    unsigned _8_2d : 1;
+    unsigned _8_2e : 1;
+    unsigned _8_2f : 1;
+    unsigned _8_30 : 1;
+    unsigned _8_31 : 1;
+    unsigned _8_32 : 1;
+    unsigned _8_33 : 1;
+    unsigned _8_34 : 1;
+    unsigned _8_35 : 1;
+    unsigned _8_36 : 1;
+    unsigned _8_37 : 1;
+    unsigned _8_38 : 1;
+    unsigned _8_39 : 1;
+    unsigned _8_3a : 1;
+    unsigned _8_3b : 1;
+    unsigned _8_3c : 1;
+    unsigned _8_3d : 1;
+    unsigned _8_3e : 2;
+    //u32 _C;
     u32 _10;
     u32 _14;
     u32 _18;

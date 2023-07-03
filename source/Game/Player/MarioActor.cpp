@@ -162,7 +162,7 @@ void MarioActor::changeGameOverAnimation() {
 	else r30 = -1;
 	if(_230 -> isSwimming()) r30 = 7;
 	if(isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) r30 = 8;
-	if(MR::getKariKariClingNum() && _230 -> _8 >> 0x1e & 1) r30 = 4;
+	//if(MR::getKariKariClingNum() && _230 -> _8 >> 0x1e & 1) r30 = 4; // UNCOMMENT AND MAKE COMPILE ASAP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if(_39d == 2) r30 = 9;
 	if(_39d == 1) r30 = 10;
 
@@ -183,8 +183,8 @@ void MarioActor::changeGameOverAnimation() {
 			_230 -> changeAnimationNonStop("0x019");
 			break;
 		case 5:
-			if(_230 -> _8 >> 0x1e & 1) _230 -> changeAnimationNonStop("0x01a");
-			else _230 -> changeAnimationNonStop("0x01b");
+		//	if(_230 -> _8 >> 0x1e & 1) _230 -> changeAnimationNonStop("0x01a"); UNCOMMENT AND MAKE COMPILE ASAP!!!!!!!!!!!!!!!!!!!!!!!!!
+			//else _230 -> changeAnimationNonStop("0x01b");
 			break;
 		case 6:
 			_230 -> changeAnimationNonStop("0x01c");
@@ -212,37 +212,28 @@ XjointTransform* MarioActor::getJointCtrl(const char *name) const {
 	return core -> getJointTransform(MR::getJointIndex(this, name));
 }
 
-inline bool bs(const MarioActor &bull, int crap) {
-	return bull._230 -> _C >> (0x20 - crap) & 1;
+inline bool bs(const MarioActor &bull) {
+	return bull._230 -> _8_23;
 }
-
-inline bool bs3(volatile MarioActor (*bull), int crap)  {
-	return bull -> _230 -> _8 >> (0x20 - crap) & 1;
-}
-
-inline bool _bs3(Mario *bull, int crap) {
-	return bull -> _8 >> (0x20 - crap) & 1;
-}
-
-inline bool volatile bs4(Mario &mario, u32 offset) {
-	u32 flag(mario._8);
-	return flag >> (0x1f - offset) & 1;
-} 
 
 inline bool bs2(const MarioActor &bull) {
 	return bull._230 -> _5FC;
 }
 
-inline bool nannynans(MarioActor &act) {
-	return act._9f1;
+inline bool bsa(volatile MarioActor &bull) {
+	return bull._230 -> _8_0;
 }
 
-bool MarioActor::isTurning() const {
+inline bool bsb(volatile MarioActor &bull) {
+	return bull._230 -> _8_1;
+}
+
+/*bool MarioActor::isTurning() const {
 	return _230 -> _8 >> 0x1c & 1;
 }
 bool MarioActor::isDebugMode() const {
 	return _230 -> _8 >> 9 & 1;
-}
+}*/
 
 
 void MarioActor::updateRotationInfo() {
@@ -313,14 +304,14 @@ void MarioActor::movement() {
 		}
 	}
 	if(PSVECMag(stack_128.toCVec()) > 0.1f) {
-		if(!(_230 -> _8 >> 0x15 & 1)) {
+		if(!(_230 -> _8_a)) {
 			if(!MR::isNearZero(mVelocity, 0.001f)) {
 				f32 diffMag = PSVECMag(_294.translateOpposite(_270).toCVec());
 				f32 vMag = PSVECMag(mVelocity.toCVec());
 				if(PSVECMag(stack_128.toCVec()) > 2f * (diffMag + vMag)) _230 -> stopWalk();
 			}
 		}
-		if(_230 -> _C >> 0x1c & 1 && PSVECMag(mVelocity.toCVec()) < PSVECMag(stack_134.toCVec())) {
+		if(_230 -> _8_23 && PSVECMag(mVelocity.toCVec()) < PSVECMag(stack_134.toCVec())) {
 			if(stack_134.dot(getGravityVec()) < -0f) {
 				TVec3f stack_110;
 				MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
@@ -336,7 +327,7 @@ void MarioActor::movement() {
 				}
 			}
 		}
-		else if(bs(*this, 4)) {
+		else if(bs(*this)) {
 			TVec3f stack_104(_230 -> _8F8);
 			MR::normalizeOrZero(&stack_104);
 			TVec3f stack_f8;
@@ -352,7 +343,7 @@ void MarioActor::movement() {
 				_230 -> _14 |= 0x20000000;
 			}
 		}
-		if(bs3(this, 1) && !nannynans(*this)) {
+		if(bsa(*this) && !_9f1) {
 			if(stack_128.dot(getGravityVec()) < -40f) {
 				TVec3f stack_ec(mPosition.translateOpposite(getGravityVec() % 100f));
 				TVec3f stack_e0;
@@ -364,7 +355,7 @@ void MarioActor::movement() {
 						MR::vecKillElement(stack_e0.translateOpposite(mPosition), getGravityVec(), &stack_d4) < -5f
 						&& tmp -> mParts
 						&& !tmp -> mParts -> _D4
-						&& _230 -> _C % 4 != 1
+						&& _230 -> _8_3e != 1
 					) {
 						mPosition = stack_e0;
 						_230 -> _130 = mPosition;
@@ -409,7 +400,7 @@ void MarioActor::movement() {
 				}
 			}
 		}
-			else if(bs3(this, 2)) {
+			else if(_230 -> _8_1) {
 				const u32 stop = mBinder -> _28;
 				bool r31 = false;
 				for(u32 i = 0; i < stop; i++) {
@@ -449,7 +440,5 @@ void MarioActor::movement() {
 	_935 = false;
 	_230 -> _2D0 = 0f;
 	_f3c_vec[_f40] = _230 -> _208;
-	//_f40 = -((u16)(_f40 + 1) / tmp * tmp) + (u16)(_f40 + 1);
 	_f40 = (u16)(_f40 + 1) % _f42;
-	//_f40 %= _f42;
 }
