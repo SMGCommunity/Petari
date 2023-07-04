@@ -25,7 +25,7 @@ __VIDisplayPositionToXY,vi.o,vi.a,false
 VIGetDimmingCount,vi.o,vi.a,false
 VIEnableDimming,vi.o,vi.a,false
 VISetTimeToDimming,vi.o,vi.a,false
-VIResetDimmingCount,vi.o,vi.a,false
+VIResetDimmingCount,vi.o,vi.a,true
 __VIResetRFIdle,vi.o,vi.a,false
 WaitMicroTime,i2c.o,vi.a,false
 sendSlaveAddr,i2c.o,vi.a,false

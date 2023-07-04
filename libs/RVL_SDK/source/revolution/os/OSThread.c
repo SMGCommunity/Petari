@@ -90,6 +90,8 @@ do {                                                        \
     (queue)->head = __next;                                 \
 } while (0)
 
+#define IsSuspended(suspendCount)   (0 < (suspendCount))
+
 static inline void OSInitMutexQueue(OSMutexQueue* queue) {
     queue->head = queue->tail = NULL;
 }
@@ -347,4 +349,37 @@ void OSClearStack(u8 val) {
     for (p = __OSCurrentThread->stackEnd + 1; p < (u32*)sp; ++p) {
         *p = pattern;
     }
+}
+
+void OSSleepThread(OSThreadQueue* queue) {
+    BOOL enabled;
+    OSThread* currentThread;
+
+    enabled = OSDisableInterrupts();
+    currentThread = OSGetCurrentThread();
+
+    currentThread->state = 4;
+    currentThread->queue = queue;
+    EnqueuePrio(queue, currentThread, link);
+    RunQueueHint = TRUE;
+    __OSReschedule();
+    OSRestoreInterrupts(enabled);
+}
+
+void OSWakeupThread(OSThreadQueue* queue) {
+    BOOL enabled;
+    OSThread* thread;
+
+    enabled = OSDisableInterrupts();
+    while (queue->head) {
+        DequeueHead(queue, thread, link);
+        thread->state = 1;
+
+        if (!IsSuspended(thread->suspend)) {
+            SetRun(thread);
+        }
+    }
+
+    __OSReschedule();
+    OSRestoreInterrupts(enabled);
 }

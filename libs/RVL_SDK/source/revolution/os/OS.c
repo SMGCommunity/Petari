@@ -1,6 +1,8 @@
 #include <revolution/os.h>
 #include <revolution/dvd.h>
 #include <revolution/db.h>
+#include <revolution/ipc.h>
+#include <revolution/sc.h>
 #include <revolution/os/OSBootInfo.h>
 #include <cstring>
 #include "private/flipper.h"
@@ -42,13 +44,16 @@ static f64 ZeroF;
 static f32 ZeroPS[2];
 
 static DVDDriveInfo DriveInfo;
+static DVDCommandBlock DriveBlock;
 
 __declspec(weak) BOOL __OSIsGcam = FALSE;
 OSTime __OSStartTime;
 BOOL __OSInIPL = FALSE;
 BOOL __OSInNandBoot = FALSE;
 extern BOOL __OSInReboot;
-static OSBootInfo* BootInfo;
+BOOL __OSIsDiag = FALSE;
+
+static OSBootInfo* volatile BootInfo;
 
 static u32* BI2DebugFlag;
 static u32 BI2DebugFlagHolder;
@@ -291,7 +296,7 @@ static void MemClear(void *base, u32 size) {
     DCFlushRange(lastBase, 0x40000);
 }
 
-void ClearArena(void) {
+static void ClearArena(void) NO_INLINE {
     if (!OSIsRestart()) {
         MemClear(OSGetArenaLo(), (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
     }
@@ -316,7 +321,7 @@ void ClearArena(void) {
     }
 }
 
-void ClearMEM2Arena(void) {
+static void ClearMEM2Arena(void) NO_INLINE {
     if (!OSIsRestart()) {
         MemClear(OSGetMEM2ArenaLo(), (u32)OSGetMEM2ArenaHi() - (u32)OSGetMEM2ArenaLo());
     }
@@ -348,6 +353,30 @@ void InquiryCallback(s32 res, DVDCommandBlock *block) {
             break;
         default:
             __OSDeviceCode = 1;
+            break;
+    }
+}
+
+static void CheckTargets(void) {
+    switch (*(u8*)OSPhysicalToCached(0x315C)) {
+        case 0x80:
+            break;
+        case 0x81:
+            OSReport("OS ERROR: boot program is not for RVL target. Please use correct boot program.\n");
+            OSPanic(__FILE__, 0x47E, "Failed to run app");
+            break;
+        default:
+            break;
+    }
+
+    switch (*(u8*)OSPhysicalToCached(0x315D)) {
+        case 0x80:
+            break;
+        case 0x81:
+            OSReport("OS ERROR: apploader[D].img is not for RVL target. Please use correct apploader[D].img.\n");
+            OSPanic(__FILE__, 0x490, "Failed to run app");
+            break;
+        default:
             break;
     }
 }
@@ -441,7 +470,7 @@ void OSInit(void) {
     void* bi2StartAddr;
     void* arenaAddr;
 
-    if (AreWeInitialized == TRUE) {
+    if (AreWeInitialized != FALSE) {
         return;
     }
 
@@ -474,7 +503,7 @@ void OSInit(void) {
         *(u8*)OSPhysicalToCached(0x30E9) = (u8)__PADSpec;
     }
     else {
-        if (BootInfo->arenaHi != 0) {
+        if (((OSBootInfo*)OSPhysicalToCached(0))->arenaHi != NULL) {
             BI2DebugFlagHolder = (u32)*(u8*)OSPhysicalToCached(0x30E8);
             BI2DebugFlag = &BI2DebugFlagHolder;
             __PADSpec = (u32)*(u8*)OSPhysicalToCached(0x30E9);
@@ -485,11 +514,12 @@ void OSInit(void) {
 
     arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x310C);
 
-    if (arenaAddr == 0) {
+    if (arenaAddr == NULL) {
         if (OSIsMEM1Region((void*)__ArenaLo)) {
-            arenaAddr = BootInfo->arenaLo == 0 ? (void*)__ArenaLo : BootInfo->arenaLo;
+            void* tmp = BootInfo->arenaLo;
+            arenaAddr = tmp == NULL ? (void*)__ArenaLo : tmp;
         
-            if ((BootInfo->arenaLo == 0) && (BI2DebugFlag && (*(BI2DebugFlag) <2))) {
+            if (!BootInfo->arenaLo&& (BI2DebugFlag && (*(BI2DebugFlag) < 2))) {
                 arenaAddr = (void*)OSRoundUp32B(_stack_addr);
             }
         }
@@ -503,7 +533,8 @@ void OSInit(void) {
     arenaAddr = (void*)*(u32*)OSPhysicalToCached(0x3110);
 
     if (arenaAddr == NULL) {
-        arenaAddr = BootInfo->arenaHi == NULL ? (void*)__ArenaHi : BootInfo->arenaHi;
+        void* tmp = BootInfo->arenaHi;
+        arenaAddr = tmp == NULL ? (void*)__ArenaHi : tmp;
     }
 
     OSSetMEM1ArenaHi(arenaAddr);
@@ -566,7 +597,47 @@ void OSInit(void) {
     }
 
     OSEnableInterrupts();
-    
+    IPCCltInit();
+
+    if (!__OSInNandBoot && !__OSInReboot) {
+        __OSInitSTM();
+
+        SCInit();
+
+        /* do nothing until SC is not busy */
+        while (SCCheckStatus() == 1) {
+
+        }
+
+        __OSInitNet();
+    }
+
+    if (!__OSInIPL) {
+        CheckTargets();
+        DVDInit();
+
+        if (__OSIsGcam) {
+            __OSDeviceCode = (u16)(0x8000 | 0x1000);
+        }
+        else if (!__OSDeviceCode) {
+            DCInvalidateRange(&DriveInfo, sizeof(DriveInfo));
+            DVDInquiryAsync(&DriveBlock, &DriveInfo, InquiryCallback);
+        }
+
+        if (OSGetAppType() == 0x80 && !__OSInReboot) {
+            if (!__DVDCheckDevice()) {
+                OSReturnToMenu();
+            }
+        }
+    }
+
+    if (!__OSInIPL && !__OSInNandBoot) {
+        __OSInitPlayTime();
+    }
+
+    if (!__OSInIPL && !__OSInNandBoot && !__OSInReboot) {
+        __OSStartPlayRecord();
+    }
 }
 
 static void OSExceptionInit(void) {
@@ -780,4 +851,12 @@ u32 __OSGetDIConfig(void) {
 
 void OSRegisterVersion(const char *id) {
     OSReport("%s\n", id);
+}
+
+const u8 OSGetAppType(void) {
+    if (__OSInIPL) {
+        return 0x40;
+    }
+
+    return *((u8*)OSPhysicalToCached(0x3184));
 }

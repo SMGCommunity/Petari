@@ -1,14 +1,14 @@
 Symbol Name, Object File, Library Archive, Matching
-SCInit,scsystem.o,sc.a,false
+SCInit,scsystem.o,sc.a,true
 SCCheckStatus,scsystem.o,sc.a,false
-SCReloadConfFileAsync,scsystem.o,sc.a,false
-OpenCallbackFromReload,scsystem.o,sc.a,false
-ReadCallbackFromReload,scsystem.o,sc.a,false
-CloseCallbackFromReload,scsystem.o,sc.a,false
-FinishFromReload,scsystem.o,sc.a,false
-CloseCallbackFromReloadError,scsystem.o,sc.a,false
-ParseConfBuf,scsystem.o,sc.a,false
-UnpackItem,scsystem.o,sc.a,false
+SCReloadConfFileAsync,scsystem.o,sc.a,true
+OpenCallbackFromReload,scsystem.o,sc.a,true
+ReadCallbackFromReload,scsystem.o,sc.a,true
+CloseCallbackFromReload,scsystem.o,sc.a,true
+FinishFromReload,scsystem.o,sc.a,true
+CloseCallbackFromReloadError,scsystem.o,sc.a,true
+ParseConfBuf,scsystem.o,sc.a,true
+UnpackItem,scsystem.o,sc.a,true
 DeleteItemByID,scsystem.o,sc.a,false
 CreateItemByID,scsystem.o,sc.a,false
 SCFindByteArrayItem,scsystem.o,sc.a,false

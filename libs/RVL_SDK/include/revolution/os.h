@@ -85,7 +85,7 @@ typedef struct OSIOSRev {
     u16 year;
 } OSIOSRev;
 
-void __OSGetIOSRev(OSIOSRev *);
+const u8 OSGetAppType(void);
 
 #ifndef ASSERT
 #define ASSERT(exp) ((void) 0)
@@ -107,6 +107,8 @@ void __OSGetIOSRev(OSIOSRev *);
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSRtc.h>
+#include <revolution/os/OSPlayRecord.h>
+#include <revolution/os/OSPlayTime.h>
 #include <revolution/os/OSReset.h>
 #include <revolution/os/OSTime.h>
 #include <revolution/os/OSThread.h>
@@ -121,6 +123,9 @@ void __OSInterruptInit(void);
 void __OSContextInit(void);
 void __OSInitAudioSystem(void);
 void __OSInitMemoryProtection(void);
+void __OSGetIOSRev(OSIOSRev *);
+int __OSInitSTM(void);
+void __OSInitNet(void);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);

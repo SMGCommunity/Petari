@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 2.1739130434782608% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
+| vi.o | 2.355072463768116% | 3 / 28 | 10.714285714285714% | :eight_pointed_black_star: 
 | i2c.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | vi3in1.o | 0.0% | 0 / 14 | 0.0% | :x: 
 
@@ -42,7 +42,7 @@
 | VIGetDimmingCount | :x: |
 | VIEnableDimming | :x: |
 | VISetTimeToDimming | :x: |
-| VIResetDimmingCount | :x: |
+| VIResetDimmingCount | :white_check_mark: |
 | __VIResetRFIdle | :x: |
 
 

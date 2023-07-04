@@ -5,6 +5,9 @@
 static timing_s* CurrTiming;
 static u32 CurrTvMode;
 
+static vu32 __VIDimmingFlag_DEV_IDLE[10];
+static volatile BOOL __VIDimmingState = FALSE;
+
 static void GetCurrentDisplayPosition(u32 *hct, u32 *vct) {
     u32 hcount;
     u32 vcount0;
@@ -80,4 +83,13 @@ u32 VIGetTvFormat(void) {
     OSRestoreInterrupts(enabled);
 
     return format;
+}
+
+BOOL __VIResetDev0Idle(void) {
+    __VIDimmingFlag_DEV_IDLE[0] = 0;
+    return TRUE;
+}
+
+BOOL VIResetDimmingCount(void) {
+    return __VIResetDev0Idle();
 }

@@ -6,7 +6,7 @@ ClearArena,OS.o,os.a,true
 ClearMEM2Arena,OS.o,os.a,true
 InquiryCallback,OS.o,os.a,true
 ReportOSInfo,OS.o,os.a,true
-OSInit,OS.o,os.a,false
+OSInit,OS.o,os.a,true
 OSExceptionInit,OS.o,os.a,true
 __OSDBIntegrator,OS.o,os.a,true
 __OSDBJump,OS.o,os.a,true
@@ -18,7 +18,7 @@ __OSPSInit,OS.o,os.a,true
 __OSGetDIConfig,OS.o,os.a,true
 OSRegisterVersion,OS.o,os.a,true
 OSGetAppGamename,OS.o,os.a,false
-OSGetAppType,OS.o,os.a,false
+OSGetAppType,OS.o,os.a,true
 __OSInitAlarm,OSAlarm.o,os.a,true
 OSCreateAlarm,OSAlarm.o,os.a,true
 InsertAlarm,OSAlarm.o,os.a,true
@@ -203,8 +203,8 @@ OSJoinThread,OSThread.o,os.a,false
 OSDetachThread,OSThread.o,os.a,false
 OSResumeThread,OSThread.o,os.a,false
 OSSuspendThread,OSThread.o,os.a,false
-OSSleepThread,OSThread.o,os.a,false
-OSWakeupThread,OSThread.o,os.a,false
+OSSleepThread,OSThread.o,os.a,true
+OSWakeupThread,OSThread.o,os.a,true
 OSSetThreadPriority,OSThread.o,os.a,false
 OSGetThreadPriority,OSThread.o,os.a,false
 SleepAlarmHandler,OSThread.o,os.a,false

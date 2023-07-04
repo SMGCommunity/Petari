@@ -79,6 +79,11 @@ BOOL DVDClose(DVDFileInfo *);
 
 s32 DVDConvertPathToEntrynum(const char *);
 
+BOOL DVDInquiryAsync(DVDCommandBlock *, DVDDriveInfo* , DVDCBCallback);
+
+/* internal funcs */
+BOOL __DVDCheckDevice(void);
+
 #ifdef __cplusplus
 }
 #endif

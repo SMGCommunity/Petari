@@ -1,5 +1,5 @@
 Symbol Name, Object File, Library Archive, Matching
-ISFS_OpenLib,fs.o,fs.a,false
+ISFS_OpenLib,fs.o,fs.a,true
 _isfsFuncCb,fs.o,fs.a,false
 ISFS_CreateDir,fs.o,fs.a,false
 ISFS_CreateDirAsync,fs.o,fs.a,false

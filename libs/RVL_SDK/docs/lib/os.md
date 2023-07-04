@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| OS.o | 74.53271028037383% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
+| OS.o | 97.42990654205607% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
@@ -28,7 +28,7 @@
 | OSReset.o | 7.744107744107744% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| OSThread.o | 35.360962566844925% | 14 / 28 | 50.0% | :eight_pointed_black_star: 
+| OSThread.o | 43.38235294117647% | 16 / 28 | 57.14285714285714% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -52,7 +52,7 @@
 | ClearMEM2Arena | :white_check_mark: |
 | InquiryCallback | :white_check_mark: |
 | ReportOSInfo | :white_check_mark: |
-| OSInit | :x: |
+| OSInit | :white_check_mark: |
 | OSExceptionInit | :white_check_mark: |
 | __OSDBIntegrator | :white_check_mark: |
 | __OSDBJump | :white_check_mark: |
@@ -64,7 +64,7 @@
 | __OSGetDIConfig | :white_check_mark: |
 | OSRegisterVersion | :white_check_mark: |
 | OSGetAppGamename | :x: |
-| OSGetAppType | :x: |
+| OSGetAppType | :white_check_mark: |
 
 
 # OSAlarm.o
@@ -349,8 +349,8 @@
 | OSDetachThread | :x: |
 | OSResumeThread | :x: |
 | OSSuspendThread | :x: |
-| OSSleepThread | :x: |
-| OSWakeupThread | :x: |
+| OSSleepThread | :white_check_mark: |
+| OSWakeupThread | :white_check_mark: |
 | OSSetThreadPriority | :x: |
 | OSGetThreadPriority | :x: |
 | SleepAlarmHandler | :x: |

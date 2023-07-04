@@ -185,3 +185,32 @@ static s32 __OSStateEventHandler(s32 ret, void *pUnused) {
     return 0;
 }
 //#endif
+
+int __OSInitSTM(void) {
+    PowerCallback = __OSDefaultPowerCallback;
+    ResetCallback = __OSDefaultResetCallback;
+    ResetDown = 0;
+
+    if (StmReady) {
+        return 1;
+    }
+
+    StmVdInUse = 0;
+    StmImDesc = IOS_Open("/dev/stm/immediate", 0);
+
+    if (StmImDesc < 0) {
+        StmReady = 0;
+        return 0;
+    }
+
+    StmEhDesc = IOS_Open("/dev/stm/eventhook", 0);
+
+    if (StmEhDesc < 0) {
+        StmReady = 0;
+        return 0;
+    }
+
+    __OSRegisterStateEvent();
+    StmReady = 1;
+    return 1;
+}

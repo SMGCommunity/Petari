@@ -44,7 +44,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -proc gekko -DHOLLYWOOD_REV -DEPPC -enum int -fp hard -Cpp_exceptions off -rtti off -ipa file -DEPPC -DGEKKO -O4,p -inline auto "
+    flags = "-c -nodefaults -proc gekko -DHOLLYWOOD_REV -DEPPC -enum int -fp hard -Cpp_exceptions off -rtti off -ipa file -DEPPC -DGEKKO -align powerpc -enc SJIS -O4,p -inline auto "
     includes = "-i . -I- -i include "
 
     default_compiler_path = pathlib.Path("../../Compilers/GC/3.0/")

@@ -30,7 +30,7 @@ typedef struct {
     u16 hbsCCIR656;
 } timing_s;
 
-void VIResetDimmingCount();
+BOOL VIResetDimmingCount();
 
 u32 VIGetTvFormat();
 

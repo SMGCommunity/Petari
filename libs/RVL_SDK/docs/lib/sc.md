@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| scsystem.o | 0.0% | 0 / 22 | 0.0% | :x: 
+| scsystem.o | 33.96923076923077% | 9 / 22 | 40.909090909090914% | :eight_pointed_black_star: 
 | scapi.o | 0.0% | 0 / 19 | 0.0% | :x: 
 | scapi_prdinfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
 
@@ -16,15 +16,15 @@
 # scsystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| SCInit | :x: |
-| SCCheckStatus | :x: |
-| SCReloadConfFileAsync | :x: |
-| OpenCallbackFromReload | :x: |
-| ReadCallbackFromReload | :x: |
-| CloseCallbackFromReload | :x: |
-| FinishFromReload | :x: |
-| CloseCallbackFromReloadError | :x: |
-| ParseConfBuf | :x: |
+| SCInit | :white_check_mark: |
+| SCCheckStatus | :white_check_mark: |
+| SCReloadConfFileAsync | :white_check_mark: |
+| OpenCallbackFromReload | :white_check_mark: |
+| ReadCallbackFromReload | :white_check_mark: |
+| CloseCallbackFromReload | :white_check_mark: |
+| FinishFromReload | :white_check_mark: |
+| CloseCallbackFromReloadError | :white_check_mark: |
+| ParseConfBuf | :white_check_mark: |
 | UnpackItem | :x: |
 | DeleteItemByID | :x: |
 | CreateItemByID | :x: |
