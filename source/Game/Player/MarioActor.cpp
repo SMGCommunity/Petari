@@ -486,3 +486,31 @@ void MarioActor::control2() {
 		if(_230 -> isDamaging()) _424 = 0;
 	}
 }
+
+void MarioActor::controlMain() {
+	if(_3c0) {
+		_7dc = 0;
+		_930 = 0;
+	}
+	updateActionTrigger();
+	updateControllerSwing();
+	updateControllerSwingLeft();
+	update2D();
+	if(_a61) _a6c++;
+	if(!isEnableMoveMario()) {
+		_7dc = 0;
+		_930 = 0;
+		careMovingObject();
+	}
+	else {
+		mVelocity.zero();
+		updateBehavior();
+		updateRotationInfo();
+		updateTakingPosition();
+		updateSearchLight();
+		updateThrowing();
+		updateBeeWingAnimation();
+		updateFairyStar();
+		_930 = 0;
+	}
+}
