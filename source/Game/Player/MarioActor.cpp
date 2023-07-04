@@ -572,8 +572,7 @@ void MarioActor::updateBindRatio() {
 bool MarioActor::isInPunchTimerRange() const {
 	bool ret = false;
 	if(_3e6) {
-		unsigned long long int evil = 0x4330000000000000 + _945;
-		ret = MR::isInRange(*(double *)&evil - 1.67536527364213599911127852401E-77, 6f, 20f);
+		ret = MR::isInRange(_945, 6f, 20f);
 	}
 	return ret; 
 }
