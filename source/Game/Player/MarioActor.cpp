@@ -52,7 +52,7 @@ void MarioActor::init(const JMapInfoIter &rInfo) {
 }
 
 void MarioActor::initAfterPlacement() {
-	updateGravityVector(true, true);
+	updateGravityVec(true, true);
 	_230 -> _1D8 = _240;
 	_230 -> _1F0 = -_240;
 	_230 -> _1FC = -_240;
@@ -512,5 +512,44 @@ void MarioActor::controlMain() {
 		updateBeeWingAnimation();
 		updateFairyStar();
 		_930 = 0;
+	}
+}
+
+void MarioActor::updateBehavior() {
+	updateLife();
+	updatePlayerMode();
+	_37c++;
+	if(_ef6) _ef6--;
+	if(_3a8) _3a8--;
+	if(_3ac) _3ac--;
+	_264 = mPosition.translateOpposite(_270);
+	_270 = mPosition;
+	updateBindRatio();
+	updateEffect();
+	if(_b94 && !--_b94) {
+		_230 -> stopAnimationUpper("ー投げ回転中", NULL);
+		_230 -> stopAnimation("ー投げ回転中", (const char *)NULL);
+	}
+	updatePunching();
+	if(!doPressing() && !doStun() && !doRush()) { //short circuiting better be intentional
+		updateGravityVec(false, false);
+		if(!tryJumpRush()) {
+			checkPriorRushTarget();
+			if(!tryThrow() && !tryStandardRush()) {
+				if(_230 -> _8_1) initForJump();
+				updateSwingTimer();
+				updateSwingAction();
+				updateThrowVector();
+				lockOnDPD();
+				if(!checkClapCatchStart()) {
+					_7dc = 0;
+					_230 -> Mario::update();
+					updateForCamera();
+					updateTornado();
+					tryCoinPull();
+					_230 -> _18_1a = true;
+				}
+			}
+		}
 	}
 }
