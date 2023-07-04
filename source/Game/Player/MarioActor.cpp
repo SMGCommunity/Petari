@@ -456,3 +456,33 @@ void MarioActor::control() {
 	control2();
 	_294 = mPosition;
 }
+
+void MarioActor::control2() {
+	if((_3d8 && _3d4)  || _3da) {
+		_230 -> _350.zero();
+		_230 -> _35C.zero();
+		_7dc = 0;
+		_930 = 0;
+		mVelocity.zero();
+		_264.zero();
+		_270 = mPosition;
+		if(isMoving() && !MR::isSameMtx(_230 -> _45C -> getPrevBaseMtx() -> toMtxPtr(), _230 -> _45C -> getBaseMtx() -> toMtxPtr())) {
+			_230 -> _130 = mPosition;
+			_230 -> checkEnforceMove();
+			mPosition = _230 -> _130;
+		}
+	}
+	else {
+		if(_bc4) _bc4--;
+		_951 = 0;
+		controlMain();
+		if(!_ea4) {
+			if(!_f44) MR::offBind(this);
+			else MR::onBind(this);
+		}
+		_978 = mVelocity;
+		if(_230 -> _18_b) mBinder -> _1ec &= ~(u32)0x40; // suspected bitfield
+		else mBinder -> _1ec |= 0x40;
+		if(_230 -> isDamaging()) _424 = 0;
+	}
+}

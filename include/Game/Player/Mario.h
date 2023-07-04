@@ -83,6 +83,8 @@ public:
 	void push(const TVec3f &);
 	void stopJump();
 	void updateGroundInfo();
+	void checkEnforceMove();
+	bool isDamaging() const;
 
     //u32 _8;
     union {
