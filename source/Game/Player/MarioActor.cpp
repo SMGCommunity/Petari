@@ -11,6 +11,7 @@
 #include "Game/Enemy/KariKariDirector.h"
 #include "Game/Animation/XanimePlayer.h"
 #include "Game/Map/CollisionParts.h"
+#include "Game/Player/MarioParts.h"
 
 static bool isLuigi;
 
@@ -219,7 +220,6 @@ bool MarioActor::isDebugMode() const {
 	return _230 -> _8_16;
 }
 
-
 void MarioActor::updateRotationInfo() {
 	TRot3f stack_44;
 	PSMTXConcat(getBaseMtx(), _e3c.toMtxPtr(), stack_44.toMtxPtr());
@@ -425,4 +425,34 @@ void MarioActor::movement() {
 	_230 -> _2D0 = 0f;
 	_f3c_vec[_f40] = _230 -> _208;
 	_f40 = (u16)(_f40 + 1) % _f42;
+}
+
+void MarioActor::control() {
+	if(_ee8) {
+		if(MR::tryStartDemoWithoutCinemaFrame(this, "マリオスーパー化")) {
+			_ee8 = false;
+			changeMaxLife(6);
+			MR::stopAnimFrame(this);
+			MR::requestPowerupHPMeter();
+			_230 -> startPadVib("マリオ[変身]");
+			MR::startSystemSE("SE_SY_SUPER_KINOKO_GET", -1, -1);
+			_3da = 0x5a;
+		}
+	}
+	else if(_ee9) {
+		if(MR::tryStartDemoWithoutCinemaFrame(this, "マリオ変身")) {
+			_ee9 = false;
+			_eea = true;
+			if(_3d4 == 6) {
+				MR::requestMovementOn(_9a4);
+				changeTeresaAnimation("change", -1);
+			}
+			_3d8 = 0x40;
+			MR::stopAnimFrame(this);
+			playEffect("変身");
+			_230 -> startPadVib("マリオ[変身]");
+		}
+	}
+	control2();
+	_294 = mPosition;
 }
