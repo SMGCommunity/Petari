@@ -192,7 +192,7 @@ control__10MarioActorFv,MarioActor.o,Player.a,true
 control2__10MarioActorFv,MarioActor.o,Player.a,true
 controlMain__10MarioActorFv,MarioActor.o,Player.a,true
 updateBehavior__10MarioActorFv,MarioActor.o,Player.a,true
-updateBindRatio__10MarioActorFv,MarioActor.o,Player.a,false
+updateBindRatio__10MarioActorFv,MarioActor.o,Player.a,true
 isInPunchTimerRange__10MarioActorCFv,MarioActor.o,Player.a,false
 updatePunching__10MarioActorFv,MarioActor.o,Player.a,false
 doRush__10MarioActorFv,MarioActor.o,Player.a,false
