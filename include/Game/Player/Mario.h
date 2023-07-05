@@ -98,6 +98,43 @@ public:
 	inline bool getPunchFlag3() const { // poor name
 		return _8_19;
 	}
+		struct Nonsense {
+		    unsigned _8_0 : 1;
+		    unsigned _8_1 : 1;
+		    unsigned _8_2 : 1;
+		    unsigned _8_3 : 1;
+		    unsigned _8_4 : 1;
+		    unsigned _8_5 : 1;
+		    unsigned _8_6 : 1;
+		    unsigned _8_7 : 1;
+		    unsigned _8_8 : 1;
+		    unsigned _8_9 : 1;
+		    unsigned _8_a : 1;
+		    unsigned _8_b : 1;
+		    unsigned _8_c : 1;
+		    unsigned _8_d : 1;
+		    unsigned _8_e : 1;
+		    unsigned _8_f : 1;
+		    unsigned _8_10 : 1;
+		    unsigned _8_11 : 1;
+		    unsigned _8_12 : 1;
+		    unsigned _8_13 : 1;
+		    unsigned _8_14 : 1;
+		    unsigned _8_15 : 1;
+		    unsigned _8_16 : 1;
+		    unsigned _8_17 : 1;
+		    unsigned _8_18 : 1;
+		    unsigned _8_19 : 1;
+		    unsigned _8_1a : 1;
+		    unsigned _8_1b : 1;
+		    unsigned _8_1c : 1;
+		    unsigned _8_1d : 1;
+		    unsigned _8_1e : 1;
+		    unsigned _8_1f : 1;
+		    inline bool get8() const {return _8_8;}
+		    inline bool get19() const {return _8_19;}
+		    inline bool get1a() const {return _8_1a;}
+		};
 
 	
     //u32 _8;
@@ -137,6 +174,7 @@ public:
 		    unsigned _8_1e : 1;
 		    unsigned _8_1f : 1;
 		};
+		Nonsense bitfieldStruct;
 	};
     unsigned _8_20 : 1;
     unsigned _8_21 : 1;
