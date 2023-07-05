@@ -21,6 +21,8 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
+    void setHoming();
+
 	XanimeResourceTable* _8;
 	XanimePlayer* _c;
 };

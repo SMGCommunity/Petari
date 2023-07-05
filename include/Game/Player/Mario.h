@@ -86,6 +86,11 @@ public:
 	void checkEnforceMove();
 	bool isDamaging() const;
 	bool tryWallPunch();
+	void decDamageAfterTimer();
+	void incAirWalkTimer();
+	void updateCubeCode();
+	void forceExitSwim();
+	bool isForceStopRush() const;
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;
@@ -572,11 +577,11 @@ public:
     MarioDarkDamage* mDarkDamage;
     MarioFaint* mFaint;
     MarioBlown* mBlown;
-    MarioSwim* mSwim;
-    MarioSlider* mSlider;
-    MarioStep* mStep;
-    MarioBump* mBump;
-    MarioMagic* mMagic;
+    MarioSwim* mSwim; // _884
+    MarioSlider* mSlider; // _888
+    MarioStep* mStep; // _88c
+    MarioBump* mBump; // _890
+    MarioMagic* mMagic; // _894
 	u8 _898;
     MarioFpView* mFpView;
     MarioMove* mMove;

@@ -12,6 +12,10 @@
 #include "Game/Animation/XanimePlayer.h"
 #include "Game/Map/CollisionParts.h"
 #include "Game/Player/MarioParts.h"
+#include "Game/Map/WaterInfo.h"
+#include "Game/Player/MarioSwim.h"
+#include "Game/Screen/GameSceneLayoutHolder.h"
+#include "Game/Player/RushEndInfo.h"
 
 static bool isLuigi;
 
@@ -29,7 +33,6 @@ Triangle &Triangle::operator=(const Triangle &rOther) {
 
     return *this;
 }
-
 
 static float ZERO = 0f;
 
@@ -593,8 +596,8 @@ void MarioActor::updatePunching() {
 		bool r29 = isInPunchTimerRange();
 		if(!_230 -> isSwimming()) r29 = true;
 		if(r29) {
-			const Mario::Nonsense &rNonsense = bs(*this);
-			if(rNonsense.get8() || rNonsense.get1a() || rNonsense.get19()) _230 -> tryWallPunch();
+			const Mario::Nonsense &rNonsense = getStates();
+			if(rNonsense._8_8 || rNonsense._8_1a || rNonsense._8_19) _230 -> tryWallPunch();
 		}
 	}
 	if (
@@ -606,4 +609,65 @@ void MarioActor::updatePunching() {
 	) {
 		_230 -> stopAnimation(NULL, (const char *)NULL);
 	}
+}
+
+bool MarioActor::doRush() {
+	if(_934) {
+		tryCoinPull();
+		tryRushInRush();
+		if(!_934) return false;
+		updateGravityVec(false, false);
+		if(checkClapCatchStart() && _7dc) bodyClap();
+		_7dc = 0;
+		_7e2 = false;
+		_230 -> _130 = mPosition;
+		_230 -> updateGroundInfo();
+		_230 -> updateCubeCode();
+		_230 -> decDamageAfterTimer();
+		if(selectWaterInOutRush(_924)) {
+			WaterInfo stack_44;
+			if(!MR::getWaterAreaObj(&stack_44, mPosition)) _230 -> forceExitSwim();
+		}
+		else if(!selectWaterInOut(_924 -> mActor -> mName)) {
+			s32 initial = _230 -> mSwim -> _144;
+			_230 -> mSwim -> checkWaterCube(false);
+			if((int)_230 -> mSwim -> _144 != initial) {
+				if(_230 -> mSwim -> _144 <= 1 && (u32)initial - 2 <= 1) {
+					playEffectRT("水面ジャンプ水柱", _230 -> mSwim -> _160, _230 -> mSwim -> _16c);
+					emitEffectWaterColumn(_230 -> mSwim -> _160, _230 -> mSwim -> _16c);
+				}
+				else if((u32)initial <= 1 && _230 -> mSwim -> _144 - 2 <= 1) {
+					playEffectRT("水面ジャンプ水柱", -_230 -> _328, _230 -> mSwim -> _16c);
+					emitEffectWaterColumn(_230 -> mSwim -> _160, _230 -> mSwim -> _16c);
+				}
+				if(initial == 2) {
+					_384 = 8;
+					MR::getGameSceneLayoutHolder().changeLifeMeterGround();
+					_230 -> forceExitSwim();
+				}
+				else if(initial == 0) MR::getGameSceneLayoutHolder().changeLifeMeterSwim();
+			}
+		}
+		if(_230 -> isForceStopRush()) {
+			bool received = _924 -> receiveMessage(0x95, getSensor("body"));
+			if(_934 && received) {
+				RushEndInfo stack_20(NULL, 4, TVec3f(0f, 0f, 0f), false, 0);
+				endRush(&stack_20);
+			}
+		}
+		_234 -> setHoming();
+		updateTornado();
+		if(_934 && selectRecoverFlyMeter(_924)) {
+			for(u32 i = 0; i < 4; i++) {
+				_230 -> incAirWalkTimer();
+			}
+		}
+		updateSwingTimer();
+		return true;
+	}
+	else {
+		_7e2 = false;
+		return false;
+	}
+	
 }
