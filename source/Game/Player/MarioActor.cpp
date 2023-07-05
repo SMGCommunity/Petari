@@ -576,3 +576,27 @@ bool MarioActor::isInPunchTimerRange() const {
 	}
 	return ret; 
 }
+
+void MarioActor::updatePunching() {
+	if(_944) {
+		bool r6 = true;
+		_944--;
+		_945++;
+		if(!_946 && !_230 -> _8_b) r6 = false;
+		if(r6 && !_230 -> isSwimming() && !_944 && selectAction("スピン回復エフェクト") == true) {
+			playEffect("スピンリング");
+		}
+		bool r29 = isInPunchTimerRange();
+		if(!_230 -> isSwimming()) r29 = true;
+		if(r29 && !_230 -> _8_8 && !_230 -> getPunchFlag2() && _230 -> getPunchFlag3()) _230 -> tryWallPunch();
+	}
+	if (
+		_230 -> isAnimationRun("ハンマー投げリリース")
+		&& _230 -> _8_1
+		&& !_38c
+		&& !_230 -> _420
+		&& _230 -> Mario::isStickOn()
+	) {
+		_230 -> stopAnimation(NULL, (const char *)NULL);
+	}
+}

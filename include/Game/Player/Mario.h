@@ -85,7 +85,21 @@ public:
 	void updateGroundInfo();
 	void checkEnforceMove();
 	bool isDamaging() const;
+	bool tryWallPunch();
 
+	inline bool getPunchFlag1() const { // poor name
+		return _8_8;
+	}
+
+	inline bool getPunchFlag2() const { // poor name
+		return _8_1a;
+	}
+
+	inline bool getPunchFlag3() const { // poor name
+		return _8_19;
+	}
+
+	
     //u32 _8;
     union {
 		u32 _8;
