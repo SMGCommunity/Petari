@@ -3,6 +3,7 @@
 #include "Game/SingletonHolder.h"
 #include <cstdio>
 #include <cstring>
+#include <mem.h>
 #include <size_t.h>
 
 namespace MR {

@@ -19,12 +19,6 @@ void ClippingInfoGroup::setGroupNo(const JMapInfoIter &rIter) {
     _18 = new JMapIdInfo(MR::createJMapIdInfoFromClippingGroupId(rIter));
 }
 
-// the linker obviously put this here
-JMapIdInfo::JMapIdInfo(const JMapIdInfo &rInfo) {
-    _0 = rInfo._0;
-    mZoneID = rInfo.mZoneID;
-}
-
 void ClippingInfoGroup::registerInfo(ClippingActorInfo *pInfo) {
     _14[_10] = pInfo;
     _10++;

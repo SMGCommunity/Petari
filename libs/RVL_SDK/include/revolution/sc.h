@@ -1,17 +1,26 @@
 #ifndef SC_H
 #define SC_H
 
-#include <revolution/types.h>
-#include <revolution.h>
+#include <revolution/os.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+typedef u8 SCType;
+
+typedef struct {
+    SCType typeInteger;
+    SCType typeByteArray;
+    u32 nameLen;
+    u32 dataSize;
+    char* name;
+    u8* data;
+    u32 packedSize;
+} SCItem;
+
 typedef void (*SCReloadConfFileCallback)(s32 result);
 typedef void (*SCFlushCallback)(u32 result);
-
-typedef u8 SCType;
 
 typedef struct {
         OSThreadQueue threadQueue;
@@ -36,28 +45,6 @@ typedef struct {
         u32 flushResult;
         u32 flushSize;
 } SCControl;
-
-typedef struct {
-    union {
-        u8 u8;
-        s8 s8;
-        u16 u16;
-        s16 s16;
-        u32 u32;
-        s32 s32;
-        u64 u64;
-        s64 s64;
-        u8 longPRecision64[sizeof(u64)];
-    } integer;
-
-    SCType typeInteger;
-    SCType typeByteArray;
-    u32 nameLen;
-    u32 dataSize;
-    char* name;
-    u8* data;
-    u32 packedSize;
-} SCItem;
 
 
 typedef enum {

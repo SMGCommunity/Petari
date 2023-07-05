@@ -1,5 +1,5 @@
 #include "nw4r/lyt/lyt_drawInfo.h"
-#include <cstring>
+#include <mem.h>
 
 namespace nw4r {
     namespace lyt {
