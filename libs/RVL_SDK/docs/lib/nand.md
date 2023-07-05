@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | nand.o | 0.0% | 0 / 30 | 0.0% | :x: 
 | NANDOpenClose.o | 0.0% | 0 / 17 | 0.0% | :x: 
-| NANDCore.o | 0.0% | 0 / 21 | 0.0% | :x: 
+| NANDCore.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | NANDSecret.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | NANDCheck.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | NANDLogging.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -76,27 +76,27 @@
 # NANDCore.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandRemoveTailToken | :x: |
-| nandGetHeadToken | :x: |
-| nandGetRelativeName | :x: |
-| nandConvertPath | :x: |
-| nandIsPrivatePath | :x: |
-| nandIsUnderPrivatePath | :x: |
-| nandIsInitialized | :x: |
-| nandReportErrorCode | :x: |
-| nandConvertErrorCode | :x: |
-| nandGenerateAbsPath | :x: |
-| nandGetParentDirectory | :x: |
-| NANDInit | :x: |
-| nandOnShutdown | :x: |
-| nandShutdownCallback | :x: |
-| NANDGetHomeDir | :x: |
-| nandCallback | :x: |
-| nandGetType | :x: |
-| NANDPrivateGetTypeAsync | :x: |
-| nandGetTypeCallback | :x: |
-| nandGetHomeDir | :x: |
-| NANDInitBanner | :x: |
+| nandRemoveTailToken | :white_check_mark: |
+| nandGetHeadToken | :white_check_mark: |
+| nandGetRelativeName | :white_check_mark: |
+| nandConvertPath | :white_check_mark: |
+| nandIsPrivatePath | :white_check_mark: |
+| nandIsUnderPrivatePath | :white_check_mark: |
+| nandIsInitialized | :white_check_mark: |
+| nandReportErrorCode | :white_check_mark: |
+| nandConvertErrorCode | :white_check_mark: |
+| nandGenerateAbsPath | :white_check_mark: |
+| nandGetParentDirectory | :white_check_mark: |
+| NANDInit | :white_check_mark: |
+| nandOnShutdown | :white_check_mark: |
+| nandShutdownCallback | :white_check_mark: |
+| NANDGetHomeDir | :white_check_mark: |
+| nandCallback | :white_check_mark: |
+| nandGetType | :white_check_mark: |
+| NANDPrivateGetTypeAsync | :white_check_mark: |
+| nandGetTypeCallback | :white_check_mark: |
+| nandGetHomeDir | :white_check_mark: |
+| NANDInitBanner | :white_check_mark: |
 
 
 # NANDSecret.o

@@ -443,7 +443,7 @@ IOSError IOS_Close(IOSFd fd) {
     ret = __ios_Ipc1(fd, 2, 0, 0, &rpc);
 
     if (ret == 0) {
-        ret = __ios_Ip2(rpc, 0);
+        ret = __ios_Ipc2(rpc, 0);
     }
 
     return ret;

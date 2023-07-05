@@ -8,6 +8,7 @@ static IOSFd __fsFd = -1;
 static u32 __fsInitialized = FALSE;
 static char* __devfs = 0;
 static IOSHeapId hId;
+static s32 _asynCnt = 0;
 
 #define ROUNDUP(sz)     (((u32)(sz) + 31) & \
                         ~(u32)(31))
@@ -87,6 +88,118 @@ ISFSError ISFS_OpenLib(void) {
     }
 
 out:
+    return rc;
+}
+
+static IOSError _FSGetStatsCb(IOSError ret, void* ctxt) {
+    __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+    ISFSError rc = 0;
+
+    if (ret == 0) {
+        memcpy(_ctxt->args.stats, _ctxt->ioBuf, sizeof(*_ctxt->args.stats));
+    }
+
+    return rc;
+}
+
+static IOSError _FSReadDirCb(IOSError ret, void* ctxt) {
+    ISFSError rc = 0;
+    __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+
+    if (ret == 0) {
+        u8* ptr;
+        IOSIoVector* v = (IOSIoVector*)_ctxt->ioBuf;
+        ptr = (u8*)ROUNDUP((u8*)&v[4]);
+        ptr = (u8*)ROUNDUP(ptr + 64);
+        *_ctxt->args.num = *(u32 *) ptr;
+    }
+
+    return rc;
+}
+
+static IOSError _FSGetAttrCb(IOSError ret, void* ctxt) {
+    ISFSError rc = 0;
+
+    if (ret == 0) {
+        __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+        ISFSPathAttrArgs* pathAttrArgs = (ISFSPathAttrArgs*)ROUNDUP(_ctxt->ioBuf + 64);
+    
+        *_ctxt->args.ga.ownerId = pathAttrArgs->ownerId;
+        *_ctxt->args.ga.groupId = pathAttrArgs->groupId;
+        *_ctxt->args.ga.attr = pathAttrArgs->attr; 
+        *_ctxt->args.ga.ownerAcc = pathAttrArgs->ownerAccess;
+        *_ctxt->args.ga.groupAcc = pathAttrArgs->groupAccess;
+        *_ctxt->args.ga.othersAcc = pathAttrArgs->othersAccess;
+    }
+
+    return rc;
+}
+
+static IOSError _FSGetUsageCb(IOSError ret, void* ctxt) {
+    ISFSError rc = 0;
+    __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+
+    if (ret == 0) {
+        u8* ptr;
+        IOSIoVector* v = (IOSIoVector*)_ctxt->ioBuf;
+        ptr = (u8*)ROUNDUP((u8*)&v[4]);
+        ptr = (u8*)ROUNDUP(ptr + 64);
+        *_ctxt->args.gu.nblocks = *(u32*)ptr;
+        ptr = (u8*)ROUNDUP(ptr + 4);
+        *_ctxt->args.gu.ninodes = *(u32*)ptr;
+    }
+
+    return rc;
+}
+
+static IOSError _FSGetFileStatsCb(IOSError ret, void* ctxt) {
+    __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+    ISFSError rc = 0;
+
+    if (ret == 0) {
+        memcpy(_ctxt->args.fstats, _ctxt->ioBuf, sizeof(*_ctxt->args.fstats));
+    }
+
+    return rc;
+}
+
+  IOSError _isfsFuncCb(IOSError ret, void* ctxt) {
+    ISFSError rc = 0;
+    __isfsCtxt* _ctxt = (__isfsCtxt*)ctxt;
+    rc = ret;
+
+    if (rc >= 0) {
+        switch (_ctxt->func) {
+            case 1:
+                _FSGetStatsCb(ret, ctxt);
+                break;
+            case 2:
+                _FSReadDirCb(ret, ctxt);
+                break;
+            case 3:
+                _FSGetAttrCb(ret, ctxt);
+                break;
+            case 4:
+                _FSGetUsageCb(ret, ctxt);
+                break;
+            case 5:
+                _FSGetFileStatsCb(ret, ctxt);
+                break;
+            default:
+                break;
+        }
+    }
+
+    _asynCnt = 0;
+
+    if (_ctxt->cb) {
+        _ctxt->cb(rc, _ctxt->ctxt);
+    }
+
+    if (ctxt) {
+        iosFree(hId, ctxt);
+    }
+
     return rc;
 }
 
