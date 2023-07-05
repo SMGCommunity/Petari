@@ -8,13 +8,13 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| fs.o | 0.5486968449931412% | 1 / 28 | 3.571428571428571% | :eight_pointed_black_star: 
+| fs.o | 5.6241426611796985% | 2 / 28 | 7.142857142857142% | :eight_pointed_black_star: 
 
 
 # fs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ISFS_OpenLib | :x: |
+| ISFS_OpenLib | :white_check_mark: |
 | _isfsFuncCb | :x: |
 | ISFS_CreateDir | :x: |
 | ISFS_CreateDirAsync | :x: |

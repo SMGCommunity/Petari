@@ -10,6 +10,18 @@ extern "C" {
 typedef u8 SCType;
 
 typedef struct {
+    union {
+        u8 type_u8;
+        s8 type_s8;
+        u16 type_u16;
+        s16 type_s16;
+        u32 type_u32;
+        s32 type_s32;
+        u64 type_u64;
+        s64 type_s64;
+        u8 longPrecision64[sizeof(u64)];
+    } integer;
+
     SCType typeInteger;
     SCType typeByteArray;
     u32 nameLen;
