@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 19 / 37 Completed -- (51.35135135135135%)
+# 20 / 37 Completed -- (54.054054054054056%)
 # LiveActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__9LiveActorFPCc` | :x: |
+| `__ct__9LiveActorFPCc` | :white_check_mark: |
 | `init__9LiveActorFRC12JMapInfoIter` | :white_check_mark: |
 | `appear__9LiveActorFv` | :white_check_mark: |
 | `makeActorAppeared__9LiveActorFv` | :white_check_mark: |
