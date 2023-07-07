@@ -119,7 +119,9 @@ s32 NANDWrite(NANDFileInfo *, const void *, u32);
 s32 NANDPrivateOpenAsync(const char *, NANDFileInfo *, const u8, NANDCallback, NANDCommandBlock *);
 
 BOOL nandIsInitialized(void);
+s32 nandConvertErrorCode(const ISFSError);
 
+void nandGetParentDirectory(char *, const char *);
 
 #ifdef __cplusplus
 }

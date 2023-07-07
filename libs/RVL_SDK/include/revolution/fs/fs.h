@@ -2,6 +2,7 @@
 #define FS_H
 
 #include <revolution/types.h>
+#include <private/iostypes.h>
 #include <private/iosrestypes.h>
 
 #ifdef __cplusplus
@@ -58,10 +59,23 @@ typedef struct {
     u8 attr;
 } ISFSPathAttrArgs;
 
+typedef struct {
+    u8 path1[64];
+    u8 path2[64];
+} ISFSPathsArgs;
+
 s32 ISFS_Read(s32, u8 *, u32);
 s32 ISFS_ShutdownAsync(ISFSCallback, void *);
 s32 ISFS_ReadDir(const u8 *, u8 *, u32 *);
 s32 ISFS_ReadDirAsync(const u8 *, u8 *, u32 *, ISFSCallback, void *);
+
+s32 ISFS_CloseAsync(IOSFd, ISFSCallback, void *);
+
+s32 ISFS_RenameAsync(const u8 *, const u8 *, ISFSCallback, void *);
+
+s32 ISFS_RenameAsync(const u8 *, const u8 *, ISFSCallback, void *);
+
+s32 ISFS_DeleteAsync(const u8 *, ISFSCallback, void *);
 
 #ifdef __cplusplus
 }

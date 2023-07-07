@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | nand.o | 0.0% | 0 / 30 | 0.0% | :x: 
-| NANDOpenClose.o | 0.0% | 0 / 17 | 0.0% | :x: 
+| NANDOpenClose.o | 16.464088397790057% | 5 / 17 | 29.411764705882355% | :eight_pointed_black_star: 
 | NANDCore.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | NANDSecret.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | NANDCheck.o | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -65,12 +65,12 @@
 | NANDPrivateSafeOpenAsync | :x: |
 | nandSafeOpenAsync | :x: |
 | nandSafeOpenCallback | :x: |
-| nandReadOpenCallback | :x: |
-| NANDSafeCloseAsync | :x: |
-| nandSafeCloseAsync | :x: |
+| nandReadOpenCallback | :white_check_mark: |
+| NANDSafeCloseAsync | :white_check_mark: |
+| nandSafeCloseAsync | :white_check_mark: |
 | nandSafeCloseCallback | :x: |
-| nandReadCloseCallback | :x: |
-| nandCloseCallback | :x: |
+| nandReadCloseCallback | :white_check_mark: |
+| nandCloseCallback | :white_check_mark: |
 
 
 # NANDCore.o

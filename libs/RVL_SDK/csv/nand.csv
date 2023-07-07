@@ -40,12 +40,12 @@ NANDCloseAsync,NANDOpenClose.o,nand.a,false
 NANDPrivateSafeOpenAsync,NANDOpenClose.o,nand.a,false
 nandSafeOpenAsync,NANDOpenClose.o,nand.a,false
 nandSafeOpenCallback,NANDOpenClose.o,nand.a,false
-nandReadOpenCallback,NANDOpenClose.o,nand.a,false
-NANDSafeCloseAsync,NANDOpenClose.o,nand.a,false
-nandSafeCloseAsync,NANDOpenClose.o,nand.a,false
+nandReadOpenCallback,NANDOpenClose.o,nand.a,true
+NANDSafeCloseAsync,NANDOpenClose.o,nand.a,true
+nandSafeCloseAsync,NANDOpenClose.o,nand.a,true
 nandSafeCloseCallback,NANDOpenClose.o,nand.a,false
-nandReadCloseCallback,NANDOpenClose.o,nand.a,false
-nandCloseCallback,NANDOpenClose.o,nand.a,false
+nandReadCloseCallback,NANDOpenClose.o,nand.a,true
+nandCloseCallback,NANDOpenClose.o,nand.a,true
 nandRemoveTailToken,NANDCore.o,nand.a,true
 nandGetHeadToken,NANDCore.o,nand.a,true
 nandGetRelativeName,NANDCore.o,nand.a,true
