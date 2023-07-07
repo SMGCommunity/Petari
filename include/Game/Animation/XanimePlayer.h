@@ -22,6 +22,8 @@ public:
 
     void changeInterpoleFrame(s32);
 
+    const char* getCurrentAnimationName() const;
+
     J3DModel *mModel;            // _0
     J3DModelData* mModelData;   // _4
     u8 _8[0x6C-0x8];

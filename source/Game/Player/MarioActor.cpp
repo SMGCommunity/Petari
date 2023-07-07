@@ -696,3 +696,98 @@ void MarioActor::updateSwingTimer() {
 		}
 	}
 }
+
+void MarioActor::updateSwingAction() {
+	if(isJumping() && _3d4 != 6 && !_230 -> isStatusActive(0x18)) _946 = 0;
+	bool r290 = isRequestRush();
+	bool r30 = false;
+	if(!r290) {
+		if(r290 = isRequestSpinJump2P()) r30 = true;
+	}
+	_1e1 = r290;
+	if(_946) {
+		if(!r290) return;
+		if(!isPunching()) {
+			if(_948) _948 += 0x96;
+			else _948 += 0x12c;
+		}
+		if(!r290) return;
+		tryReleaseBombTeresa();
+		return;
+	}
+	bool r29 = true;
+	if(!r290) return;
+	if(_230 -> isAnimationRun("壁はじき")) r29 = false;
+	if(isJumping() && _230 -> _428) r29 = false;
+	if(_3d4 == 9) r29 = false;
+	if(_230 -> getCurrentStatus() == 1) r29 = false;
+	if(_230 -> isSwimming()) r29 = false;
+	if(_230 -> isStatusActive(0x18)) r29 = false;
+	if(_230 -> isStatusActive(0x13)) r29 = false;
+	if(__468) r29 = false;
+	if(_230 -> isStatusActive(2)) r29 = false;
+	if(_3c0) r29 = false;
+	if(_ea4) r29 = false;
+	if(!r29) return;
+	u8 tmp = selectAction("スピンアタック");
+	switch(tmp) {
+		case 1:
+			bool r291 = true;
+			if(!_230 -> _8_f && isJumping() && !_230 -> isDamaging() && !_230 -> _8_2b) {
+				bool tmp = false;
+				if(_f0c) tmp = true;
+				_230 -> trySpinJump(tmp);
+				setPunchHitTimer(0x19);
+				tryReleaseBombTeresa();
+				if(r30) MR::start2PJumpAssistSound();
+			}
+			else if(!getStates()._8_f && _230 -> isAnimationRun("地上ひねり")) {
+				const char *lastAnimationName = _234 -> _10 -> getCurrentAnimationName();
+				if(_3d4 == 4) {
+					if(!_230 -> isAnimationRun("ハチスピン")) r291 = trySpinPunch();
+				}
+				else r291 = trySpinPunch();
+				_974 = 0;
+				if(lastAnimationName != _234 -> _10 -> getCurrentAnimationName()) {
+					_230 -> playSound("パンチ風切り", -1);
+				}
+			}
+			if(_3d4 == 4) {
+				if(isJumping()) {
+					if(!_230 -> isAnimationRun("ハチスピン空中")) {
+						_230 -> playSound("声スピン", -1);
+						_230 -> playSound("スピンジャンプ", -1);
+					}
+					_230 -> changeAnimation("ハチスピン空中", (const char *)NULL);
+				}
+				else if(!getStates()._8_a && _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL);
+				else _230 -> changeAnimation("ハチスピン", (const char *)NULL);
+			}
+			if(r291) _946 = _23c -> _0[_23c -> _8] -> _426 + 0x22;
+			break;
+		case 2:
+			if(isEnableSpinPunch() && !_230 -> isSwimming()) shootFireBall();
+			break;
+		case 3:
+			if(isEnableSpinPunch()) {
+				doFreezeAttack();
+				setPunchHitTimer(0x1e);
+			}
+			break;
+		case 4:
+			if(_230 -> _418 != 0) break;
+			_230 -> startTeresaDisappear();
+			const Constants *constants = _23c -> _0[_23c -> _8];
+			_946 = constants -> _6c8 + constants -> _426;
+			break;
+		case 5:
+			if(!isEnableSpinPunch()) break;
+			if(isJumping()) _230 -> changeAnimation("ハチスピン空中", (const char *)NULL);
+			else {
+				if(getStates()._8_a || _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL); //Summersault
+				else _230 -> changeAnimation("ハチスピン", (const char *)NULL);
+			}
+			_946 = _23c -> _0[_23c -> _8] -> _426 + 0x22;
+			break;
+	}
+}

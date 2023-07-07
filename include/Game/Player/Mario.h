@@ -91,6 +91,9 @@ public:
 	void updateCubeCode();
 	void forceExitSwim();
 	bool isForceStopRush() const;
+	unsigned long getCurrentStatus() const;
+	bool trySpinJump(unsigned char);
+	void startTeresaDisappear();
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;

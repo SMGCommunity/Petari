@@ -51,6 +51,7 @@ namespace MR {
     bool hasME();
 
     void start2PAttackAssistSound();
+    void start2PJumpAssistSound();
 
     void startDPDHitSound();
     void startDPDFreezeLevelSound(const LiveActor *);

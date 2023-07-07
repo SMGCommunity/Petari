@@ -25,4 +25,5 @@ public:
 
 	XanimeResourceTable* _8;
 	XanimePlayer* _c;
+	XanimePlayer* _10;
 };
