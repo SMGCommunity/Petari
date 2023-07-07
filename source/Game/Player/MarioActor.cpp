@@ -741,7 +741,7 @@ void MarioActor::updateSwingAction() {
 				tryReleaseBombTeresa();
 				if(r30) MR::start2PJumpAssistSound();
 			}
-			else if(!getStates()._8_f && _230 -> isAnimationRun("地上ひねり")) {
+			else if(!getStates()._8_f && !_230 -> isAnimationRun("地上ひねり")) {
 				const char *lastAnimationName = _234 -> _10 -> getCurrentAnimationName();
 				if(_3d4 == 4) {
 					if(!_230 -> isAnimationRun("ハチスピン")) r291 = trySpinPunch();
@@ -760,7 +760,7 @@ void MarioActor::updateSwingAction() {
 					}
 					_230 -> changeAnimation("ハチスピン空中", (const char *)NULL);
 				}
-				else if(!getStates()._8_a && _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL);
+				else if(!getStates()._8_a || _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL);
 				else _230 -> changeAnimation("ハチスピン", (const char *)NULL);
 			}
 			if(r291) _946 = _23c -> _0[_23c -> _8] -> _426 + 0x22;

@@ -197,7 +197,7 @@ isInPunchTimerRange__10MarioActorCFv,MarioActor.o,Player.a,true
 updatePunching__10MarioActorFv,MarioActor.o,Player.a,true
 doRush__10MarioActorFv,MarioActor.o,Player.a,true
 updateSwingTimer__10MarioActorFv,MarioActor.o,Player.a,true
-updateSwingAction__10MarioActorFv,MarioActor.o,Player.a,false
+updateSwingAction__10MarioActorFv,MarioActor.o,Player.a,true
 checkClapCatchStart__10MarioActorFv,MarioActor.o,Player.a,false
 updateRealMtx__10MarioActorFv,MarioActor.o,Player.a,false
 setUpperRotateY__10MarioActorFf,MarioActor.o,Player.a,false
