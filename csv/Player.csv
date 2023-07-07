@@ -202,11 +202,11 @@ checkClapCatchStart__10MarioActorFv,MarioActor.o,Player.a,false
 updateRealMtx__10MarioActorFv,MarioActor.o,Player.a,true
 setUpperRotateY__10MarioActorFf,MarioActor.o,Player.a,false
 decLife__10MarioActorFUs,MarioActor.o,Player.a,true
-decLifeLarge__10MarioActorFv,MarioActor.o,Player.a,false
-decLifeMiddle__10MarioActorFv,MarioActor.o,Player.a,false
-decLifeSmall__10MarioActorFv,MarioActor.o,Player.a,false
-resetWaterLife__10MarioActorFv,MarioActor.o,Player.a,false
-updateLife__10MarioActorFv,MarioActor.o,Player.a,false
+decLifeLarge__10MarioActorFv,MarioActor.o,Player.a,true
+decLifeMiddle__10MarioActorFv,MarioActor.o,Player.a,true
+decLifeSmall__10MarioActorFv,MarioActor.o,Player.a,true
+resetWaterLife__10MarioActorFv,MarioActor.o,Player.a,true
+updateLife__10MarioActorFv,MarioActor.o,Player.a,true
 incLife__10MarioActorFUl,MarioActor.o,Player.a,false
 changeMaxLife__10MarioActorFl,MarioActor.o,Player.a,false
 doPressing__10MarioActorFv,MarioActor.o,Player.a,false

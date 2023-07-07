@@ -843,3 +843,26 @@ void MarioActor::decLife(unsigned short amt) {
 	if(_380 > 3) return;
 	_3e0 = 3;
 }
+
+void MarioActor::decLifeLarge() {
+	decLife(0);
+}
+
+void MarioActor::decLifeMiddle() {
+	decLife(0);
+}
+
+void MarioActor::decLifeSmall() {
+	decLife(0);
+}
+
+void MarioActor::resetWaterLife() {
+	_384 = 8;
+}
+
+void MarioActor::updateLife() {
+	if(!_388) return;
+	if(--_388 != 0) return;
+	if(!_380) return;
+	_380--;
+}
