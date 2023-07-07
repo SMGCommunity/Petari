@@ -113,6 +113,7 @@ public:
 	inline bool get_8_a() const {
 		return _8_a;
 	}
+
 		struct Nonsense {
 		    unsigned _8_0 : 1;
 		    unsigned _8_1 : 1;
@@ -153,7 +154,8 @@ public:
 		    inline bool get1() const {return _8_1;}
 		};
 
-	
+	inline const Nonsense& getStates() const {return bitfieldStruct;}
+
     //u32 _8;
     union {
 		u32 _8;

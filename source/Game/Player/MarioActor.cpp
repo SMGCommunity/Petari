@@ -820,6 +820,6 @@ void MarioActor::updateRealMtx() {
 	_4c4 = stack_38.translateOpposite(stack_44);
 	if(MR::normalizeOrZero(&_4b8)) _4b8 = _230 -> _1F0;
 	if(MR::normalizeOrZero(&_4c4)) _4c4 = -_230 -> _1F0;
-	if(_230 -> get_8_a() && _230 -> get_8_1()) _4c4 = -_230 -> _1F0;
+	if(_230 -> getStates()._8_a && _230 -> _8_1) _4c4 = -_230 -> _1F0;
 	_2ac = stack_44;
 }
