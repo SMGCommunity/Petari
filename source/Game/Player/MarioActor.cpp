@@ -823,3 +823,23 @@ void MarioActor::updateRealMtx() {
 	if(_230 -> getStates()._8_a && _230 -> _8_1) _4c4 = -_230 -> _1F0;
 	_2ac = stack_44;
 }
+
+void MarioActor::decLife(unsigned short amt) {
+	if(_230 -> _8_1f) return;
+	if(_388 > 0 && amt > _388) return;
+	if(amt) {
+		_388 = amt;
+		return;
+	}
+	if(_380) _380--;
+	_388 = 0;
+	if(isLuigi) {
+		if(_3e0 == 3) return;
+		if(_380 > 3) return;
+		_3e0 = 3;
+		return;
+	}
+	if(_3e0 == 3) return;
+	if(_380 > 3) return;
+	_3e0 = 3;
+}
