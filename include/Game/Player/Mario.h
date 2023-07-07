@@ -106,6 +106,13 @@ public:
 	inline bool getPunchFlag3() const { // poor name
 		return _8_19;
 	}
+
+	inline bool get_8_1()  {
+		return _8_1;
+	}
+	inline bool get_8_a() const {
+		return _8_a;
+	}
 		struct Nonsense {
 		    unsigned _8_0 : 1;
 		    unsigned _8_1 : 1;
@@ -142,6 +149,8 @@ public:
 		    inline bool get8() const {return _8_8;}
 		    inline bool get19() const {return _8_19;}
 		    inline bool get1a() const {return _8_1a;}
+		    inline bool geta() const {return _8_a;}
+		    inline bool get1() const {return _8_1;}
 		};
 
 	

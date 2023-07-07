@@ -199,7 +199,7 @@ doRush__10MarioActorFv,MarioActor.o,Player.a,true
 updateSwingTimer__10MarioActorFv,MarioActor.o,Player.a,true
 updateSwingAction__10MarioActorFv,MarioActor.o,Player.a,true
 checkClapCatchStart__10MarioActorFv,MarioActor.o,Player.a,false
-updateRealMtx__10MarioActorFv,MarioActor.o,Player.a,false
+updateRealMtx__10MarioActorFv,MarioActor.o,Player.a,true
 setUpperRotateY__10MarioActorFf,MarioActor.o,Player.a,false
 decLife__10MarioActorFUs,MarioActor.o,Player.a,false
 decLifeLarge__10MarioActorFv,MarioActor.o,Player.a,false

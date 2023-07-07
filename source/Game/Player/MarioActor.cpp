@@ -791,3 +791,35 @@ void MarioActor::updateSwingAction() {
 			break;
 	}
 }
+
+void MarioActor::updateRealMtx() {
+	updateBaseScaleMtx();
+	getRealMtx(_c2c.toMtxPtr(), "HandL");
+	getRealMtx(_c5c.toMtxPtr(), "HandR");
+	PSMTXCopy(MR::getJointMtx(this, "HandL"), _c8c.toMtxPtr());
+	PSMTXCopy(MR::getJointMtx(this, "HandR"), _cbc.toMtxPtr());
+	PSMTXCopy(MR::getJointMtx(this, "Face0"), _cec.toMtxPtr());
+	getRealMtx(_d1c.toMtxPtr(), "FootR");
+	getRealMtx(_d4c.toMtxPtr(), "Spine1");
+	getRealMtx(_d7c.toMtxPtr(), "CapPosition");
+	getRealMtx(_dac.toMtxPtr(), "Hip");
+	getRealMtx(_ddc.toMtxPtr(), "Spine2");
+	TVec3f stack_50;
+	MR::extractMtxTrans(_ddc.toMtxPtr(), &stack_50);
+	if(MR::isNan(stack_50)) {
+		MR::getJointMtx(this, "Spine2");
+		getBaseMtx();
+	}
+	bool r31 = true;
+	if(_230 -> isStatusActive(0x12)) r31 = false;
+	if(!r31) return;
+	TVec3f stack_44, stack_38;
+	MR::extractMtxTrans(_d7c.toMtxPtr(), &stack_44);
+	MR::extractMtxTrans(_dac.toMtxPtr(), &stack_38);
+	_4b8 = stack_44.translateOpposite(stack_38);
+	_4c4 = stack_38.translateOpposite(stack_44);
+	if(MR::normalizeOrZero(&_4b8)) _4b8 = _230 -> _1F0;
+	if(MR::normalizeOrZero(&_4c4)) _4c4 = -_230 -> _1F0;
+	if(_230 -> get_8_a() && _230 -> get_8_1()) _4c4 = -_230 -> _1F0;
+	_2ac = stack_44;
+}
