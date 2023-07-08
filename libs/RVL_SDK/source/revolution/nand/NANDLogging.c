@@ -138,46 +138,37 @@ static void asyncRoutine(ISFSError result, void *ctxt) {
             callbackRoutine(FALSE);
         }
     }
-    else if(s_stage==7)
-    {
+    else if (s_stage == 7) {
         int n = atoi(s_rBuf);
-        if(result == n * 256)
+        if (result == n * 256)
         {
             ret = ISFS_WriteAsync(s_fd, (const u8*)s_wBuf, 256, asyncRoutine, 0);
-            if(ret!=ISFS_ERROR_OK)
-            {
+            if (ret != ISFS_ERROR_OK) {
                 callbackRoutine(FALSE);
             }
         }
-        else
-        {
+        else {
             callbackRoutine(FALSE);
         }
     }
-    else if(s_stage==8)
-    {
-        if(result==256)
-        {
+    else if (s_stage == 8) {
+        if (result == 256) {
             ret = ISFS_CloseAsync(s_fd, asyncRoutine, 0);
-            if(ret!=ISFS_ERROR_OK)
-            {
+
+            if (ret != ISFS_ERROR_OK) {
                 callbackRoutine(FALSE);
             }
         }
-        else
-        {
+        else {
             callbackRoutine(FALSE);
         }
     }
-    else if(s_stage==9)
-    {
-        if(result==ISFS_ERROR_OK)
-        {
+    else if (s_stage == 9) {
+        if (result == ISFS_ERROR_OK) {
             s_fd = -255;
             callbackRoutine(TRUE);
         }
-        else
-        {
+        else {
             callbackRoutine(FALSE);
         }
     }
