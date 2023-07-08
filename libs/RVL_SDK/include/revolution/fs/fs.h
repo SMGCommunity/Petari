@@ -64,12 +64,27 @@ typedef struct {
     u8 path2[64];
 } ISFSPathsArgs;
 
+s32 ISFS_Open(const u8 *, u32);
+s32 ISFS_OpenAsync(const u8 *, u32, ISFSCallback, void *);
+
 s32 ISFS_Read(s32, u8 *, u32);
+s32 ISFS_ReadAsync(IOSFd, u8 *, u32, ISFSCallback, void *);
 s32 ISFS_ShutdownAsync(ISFSCallback, void *);
 s32 ISFS_ReadDir(const u8 *, u8 *, u32 *);
 s32 ISFS_ReadDirAsync(const u8 *, u8 *, u32 *, ISFSCallback, void *);
 
+s32 ISFS_WriteAsync(IOSFd, const u8 *, u32, ISFSCallback, void *);
+
+s32 ISFS_CreateFileAsync(const u8 *, u32, u32, u32, u32, ISFSCallback, void *);
+
+s32 ISFS_SeekAsync(IOSFd, s32 , u32, ISFSCallback, void *);
+
+s32 ISFS_Close(IOSFd);
 s32 ISFS_CloseAsync(IOSFd, ISFSCallback, void *);
+
+s32 ISFS_GetAttrAsync(const u8 *, IOSUid *, IOSGid *, u32 *, u32 *, u32 *, u32 *, ISFSCallback, void *);
+
+s32 ISFS_CreateDirAsync(const u8 *, u32, u32, u32, u32, ISFSCallback, void *);
 
 s32 ISFS_RenameAsync(const u8 *, const u8 *, ISFSCallback, void *);
 

@@ -121,7 +121,10 @@ s32 NANDPrivateOpenAsync(const char *, NANDFileInfo *, const u8, NANDCallback, N
 BOOL nandIsInitialized(void);
 s32 nandConvertErrorCode(const ISFSError);
 
+BOOL nandIsPrivatePath(const char *);
+void nandGenerateAbsPath(char *, const char *);
 void nandGetParentDirectory(char *, const char *);
+void nandGetRelativeName(char *, const char *);
 
 #ifdef __cplusplus
 }
