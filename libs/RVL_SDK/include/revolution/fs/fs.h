@@ -82,6 +82,7 @@ s32 ISFS_SeekAsync(IOSFd, s32 , u32, ISFSCallback, void *);
 s32 ISFS_Close(IOSFd);
 s32 ISFS_CloseAsync(IOSFd, ISFSCallback, void *);
 
+s32 ISFS_GetUsage(const u8 *, u32 *, u32 *);
 s32 ISFS_GetAttrAsync(const u8 *, IOSUid *, IOSGid *, u32 *, u32 *, u32 *, u32 *, ISFSCallback, void *);
 
 s32 ISFS_CreateDirAsync(const u8 *, u32, u32, u32, u32, ISFSCallback, void *);
