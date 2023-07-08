@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| nand.o | 0.0% | 0 / 30 | 0.0% | :x: 
+| nand.o | 100.0% | 30 / 30 | 100.0% | :white_check_mark: 
 | NANDOpenClose.o | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | NANDCore.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | NANDSecret.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -19,36 +19,36 @@
 # nand.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandCreate | :x: |
-| NANDCreate | :x: |
-| NANDPrivateCreate | :x: |
-| NANDPrivateCreateAsync | :x: |
-| NANDDelete | :x: |
-| NANDPrivateDelete | :x: |
-| NANDPrivateDeleteAsync | :x: |
-| NANDRead | :x: |
-| NANDReadAsync | :x: |
-| NANDWrite | :x: |
-| NANDWriteAsync | :x: |
-| NANDSeek | :x: |
-| NANDSeekAsync | :x: |
-| nandCreateDir | :x: |
-| NANDPrivateCreateDir | :x: |
-| NANDPrivateCreateDirAsync | :x: |
-| nandMove | :x: |
-| NANDMove | :x: |
-| NANDGetLength | :x: |
-| nandGetFileStatusAsyncCallback | :x: |
-| NANDGetLengthAsync | :x: |
-| nandComposePerm | :x: |
-| nandSplitPerm | :x: |
-| nandGetStatus | :x: |
-| nandGetStatusCallback | :x: |
-| NANDGetStatus | :x: |
-| NANDPrivateGetStatus | :x: |
-| NANDPrivateGetStatusAsync | :x: |
-| NANDSetUserData | :x: |
-| NANDGetUserData | :x: |
+| nandCreate | :white_check_mark: |
+| NANDCreate | :white_check_mark: |
+| NANDPrivateCreate | :white_check_mark: |
+| NANDPrivateCreateAsync | :white_check_mark: |
+| NANDDelete | :white_check_mark: |
+| NANDPrivateDelete | :white_check_mark: |
+| NANDPrivateDeleteAsync | :white_check_mark: |
+| NANDRead | :white_check_mark: |
+| NANDReadAsync | :white_check_mark: |
+| NANDWrite | :white_check_mark: |
+| NANDWriteAsync | :white_check_mark: |
+| NANDSeek | :white_check_mark: |
+| NANDSeekAsync | :white_check_mark: |
+| nandCreateDir | :white_check_mark: |
+| NANDPrivateCreateDir | :white_check_mark: |
+| NANDPrivateCreateDirAsync | :white_check_mark: |
+| nandMove | :white_check_mark: |
+| NANDMove | :white_check_mark: |
+| NANDGetLength | :white_check_mark: |
+| nandGetFileStatusAsyncCallback | :white_check_mark: |
+| NANDGetLengthAsync | :white_check_mark: |
+| nandComposePerm | :white_check_mark: |
+| nandSplitPerm | :white_check_mark: |
+| nandGetStatus | :white_check_mark: |
+| nandGetStatusCallback | :white_check_mark: |
+| NANDGetStatus | :white_check_mark: |
+| NANDPrivateGetStatus | :white_check_mark: |
+| NANDPrivateGetStatusAsync | :white_check_mark: |
+| NANDSetUserData | :white_check_mark: |
+| NANDGetUserData | :white_check_mark: |
 
 
 # NANDOpenClose.o

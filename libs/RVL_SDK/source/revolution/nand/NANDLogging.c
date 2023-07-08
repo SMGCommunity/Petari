@@ -127,7 +127,7 @@ static void asyncRoutine(ISFSError result, void *ctxt) {
     }
     else if (s_stage == 6) {
         if (result == 256) {
-            int n = atio(s_rBuf);
+            int n = atoi(s_rBuf);
             ret = ISFS_SeekAsync(s_fd, n * 256, 0, asyncRoutine, 0);
 
             if (ret != ISFS_ERROR_OK) {

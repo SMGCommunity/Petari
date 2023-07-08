@@ -430,7 +430,7 @@ IOSError IOS_CloseAsync(IOSFd fd, IOSIpcCb cb, void* cbArg) {
     ret = __ios_Ipc1(fd, 2, cb, cbArg, &rpc);
 
     if (ret == 0) {
-        ret = __ios__Ipc2(rpc, cb);
+        ret = __ios_Ipc2(rpc, cb);
     }
 
     return ret;
