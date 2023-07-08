@@ -13,7 +13,7 @@
 | NANDCore.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | NANDSecret.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | NANDCheck.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| NANDLogging.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| NANDLogging.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # nand.o
@@ -115,8 +115,8 @@
 # NANDLogging.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| reserveFileDescriptor | :x: |
-| NANDLoggingAddMessageAsync | :x: |
-| asyncRoutine | :x: |
+| reserveFileDescriptor | :white_check_mark: |
+| NANDLoggingAddMessageAsync | :white_check_mark: |
+| asyncRoutine | :white_check_mark: |
 
 

@@ -70,6 +70,6 @@ NANDInitBanner,NANDCore.o,nand.a,true
 NANDSecretGetUsage,NANDSecret.o,nand.a,true
 nandCalcUsage,NANDCheck.o,nand.a,true
 NANDCheck,NANDCheck.o,nand.a,true
-reserveFileDescriptor,NANDLogging.o,nand.a,false
-NANDLoggingAddMessageAsync,NANDLogging.o,nand.a,false
-asyncRoutine,NANDLogging.o,nand.a,false
+reserveFileDescriptor,NANDLogging.o,nand.a,true
+NANDLoggingAddMessageAsync,NANDLogging.o,nand.a,true
+asyncRoutine,NANDLogging.o,nand.a,true
