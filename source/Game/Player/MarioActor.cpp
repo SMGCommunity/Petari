@@ -878,3 +878,12 @@ void MarioActor::incLife(unsigned long amt) {
 		}
 	}
 }
+
+void MarioActor::changeMaxLife(long max) {
+	_3e0 = max;
+	while(_380 != max) {
+		if(_380 > max) decLife(0);
+		else if(_380 < max) incLife(1);
+		else break;
+	}
+}

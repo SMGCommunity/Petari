@@ -208,7 +208,7 @@ decLifeSmall__10MarioActorFv,MarioActor.o,Player.a,true
 resetWaterLife__10MarioActorFv,MarioActor.o,Player.a,true
 updateLife__10MarioActorFv,MarioActor.o,Player.a,true
 incLife__10MarioActorFUl,MarioActor.o,Player.a,true
-changeMaxLife__10MarioActorFl,MarioActor.o,Player.a,false
+changeMaxLife__10MarioActorFl,MarioActor.o,Player.a,true
 doPressing__10MarioActorFv,MarioActor.o,Player.a,false
 careMovingObject__10MarioActorFv,MarioActor.o,Player.a,false
 doStun__10MarioActorFv,MarioActor.o,Player.a,false
