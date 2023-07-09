@@ -580,10 +580,6 @@ bool MarioActor::isInPunchTimerRange() const {
 	return ret; 
 }
 
-inline const Mario::Nonsense& bs(const MarioActor &actor) {
-	return actor._230 -> bitfieldStruct;
-}
-
 void MarioActor::updatePunching() {
 	if(_944) {
 		bool r6 = true;
@@ -865,4 +861,20 @@ void MarioActor::updateLife() {
 	if(--_388 != 0) return;
 	if(!_380) return;
 	_380--;
+}
+
+void MarioActor::incLife(unsigned long amt) {
+	if(isEnableNerveChange() && !_3e4) {
+		const u32 tmp = getHealth();
+		if(_380 != _3e0) _230 -> playSound("ライフ回復", -1);
+		_380 += amt;
+		if(_380 >= _3e0) _380 = _3e0;
+		if(tmp == 1 && _234 -> isAnimationStop()) {
+			_234 -> _c -> changeTrackAnimation(3, "ノーマルウエイト");
+			if(_230 -> _970 && strcmp(_230 -> _970, "DamageWait")) {
+				_230 -> startBas(NULL, false, 0f, 0f);
+				setBlink(NULL);
+			}
+		}
+	}
 }

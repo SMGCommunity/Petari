@@ -94,6 +94,7 @@ public:
 	unsigned long getCurrentStatus() const;
 	bool trySpinJump(unsigned char);
 	void startTeresaDisappear();
+	void startBas(const char *, bool, f32, f32);
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;
@@ -635,11 +636,8 @@ public:
     u16 _964[3];
     u16 _96A;
 
-    // FAKE
-	u32 _96C;
-	u32 _970;
-    // NOT FAKE
-
+	HashSortTable* _96C; //Sounds
+	const char* _970; // Sounds or somthing
 	u32 _974;
 
 	//Fake

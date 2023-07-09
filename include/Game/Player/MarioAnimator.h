@@ -22,6 +22,7 @@ public:
     virtual void draw3D() const;
 
     void setHoming();
+    bool isAnimationStop();
 
 	XanimeResourceTable* _8;
 	XanimePlayer* _c;

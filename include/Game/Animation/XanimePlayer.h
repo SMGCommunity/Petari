@@ -21,6 +21,8 @@ public:
     void changeAnimationBck(const char *);
 
     void changeInterpoleFrame(s32);
+    
+    void changeTrackAnimation(unsigned char, const char *);
 
     const char* getCurrentAnimationName() const;
 
