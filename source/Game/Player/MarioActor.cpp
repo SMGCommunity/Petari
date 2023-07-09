@@ -950,3 +950,29 @@ void MarioActor::careMovingObject() {
 	_230 -> checkGround();
 	_230 -> updateFloorCode();
 }
+
+bool MarioActor::doStun() {
+	if(_38c) {
+		_230 -> _18_1a = true;
+		resetSensorCount();
+		if (
+			getStates()._8_1
+			&& !MR::isSameMtx (
+				_230 -> _45C -> getPrevBaseMtx() -> toMtxPtr(),
+				_230 -> _45C -> getBaseMtx() -> toMtxPtr()
+			)
+		) {
+			_230 -> _130 = mPosition;
+			_230 -> checkEnforceMove();
+			mPosition = _230 -> _130;
+		}
+		if(!--_38c) {
+			f32 stack_c, stack_8;
+			getStickValue(&stack_c, &stack_8);
+			if(MR::isNearZero(stack_c, 0.001f) && MR::isNearZero(stack_8, 0.001f) && !getStates()._8_a) _230 -> stopWalk();
+		}
+		_230 -> inputStick();
+		return true;
+	}
+	else return false;
+}

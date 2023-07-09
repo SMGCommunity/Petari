@@ -100,6 +100,7 @@ public:
 	void powerRailMove();
 	void checkGround();
 	void updateFloorCode();
+	void inputStick();
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;
