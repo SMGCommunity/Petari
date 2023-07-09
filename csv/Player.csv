@@ -213,7 +213,7 @@ doPressing__10MarioActorFv,MarioActor.o,Player.a,true
 careMovingObject__10MarioActorFv,MarioActor.o,Player.a,true
 doStun__10MarioActorFv,MarioActor.o,Player.a,true
 scaleMtx__10MarioActorFPA4_f,MarioActor.o,Player.a,true
-updateBaseScaleMtx__10MarioActorFv,MarioActor.o,Player.a,false
+updateBaseScaleMtx__10MarioActorFv,MarioActor.o,Player.a,true
 getRealMtx__10MarioActorCFPA4_fPCc,MarioActor.o,Player.a,false
 getRealPos__10MarioActorCFPCcPQ29JGeometry8TVec3<f>,MarioActor.o,Player.a,false
 getGlobalJointMtx__10MarioActorFPCc,MarioActor.o,Player.a,false

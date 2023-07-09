@@ -1006,3 +1006,8 @@ void MarioActor::scaleMtx(MtxPtr rawMtx) {
 	rawMtx[1][2] = stack_2c.y;
 	rawMtx[2][2] = stack_2c.z;
 }
+
+void MarioActor::updateBaseScaleMtx() {
+	if(_230 -> _8_3c) PSMTXScale(_bf8.toMtxPtr(), mScale.x, mScale.y, mScale.z);
+	else PSMTXIdentity(_bf8.toMtxPtr());
+}

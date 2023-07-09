@@ -44,6 +44,7 @@ u32 PSMTXInverse(const Mtx, Mtx);
 void PSMTXMultVec(const Mtx, const Vec *, Vec *);
 
 void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
+void PSMTXScale(Mtx, f32, f32, f32);
 
 void PSMTXRotAxisRad(Mtx dst, const Vec *, f32);
 
