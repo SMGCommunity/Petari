@@ -95,6 +95,7 @@ public:
 	bool trySpinJump(unsigned char);
 	void startTeresaDisappear();
 	void startBas(const char *, bool, f32, f32);
+	bool checkVerticalPress(bool);
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;

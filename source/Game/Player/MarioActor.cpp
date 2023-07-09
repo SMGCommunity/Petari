@@ -887,3 +887,42 @@ void MarioActor::changeMaxLife(long max) {
 		else break;
 	}
 }
+
+bool MarioActor::doPressing() {
+	if(!_390) return false;
+	switch(_39c) {
+		case 0:
+			if(!_230 -> checkVerticalPress(false)) {
+				if(--_390 == 0x1e && !_380 && isEnableNerveChange()) {
+					setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+				}
+				if(!_390) {
+					_230 -> changeAnimation("つぶれ解除", (const char *)NULL);
+					_f44 = true;
+				}
+			}
+			break;
+		case 2:
+		case 3:
+			if(--_390 == 0x1e && !_380 && isEnableNerveChange()) {
+				setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+			}
+			if(!_390) {
+				_230 -> changeAnimation("つぶれ解除", (const char *)NULL);
+				_f44 = true;
+			}
+			break;
+		case 4:
+			if(_390 > 2) _390--;
+			_230 -> _8_8 = false;
+			_230 -> _8_19 = false;
+			_230 -> _8_1a = false;
+			break;
+	}
+	if(_39c != 1) careMovingObject();
+	_234 -> setSpeed(0f);
+	_230 -> _350.zero();
+	_230 -> _35C.zero();
+	resetSensorCount();
+	return true;
+}

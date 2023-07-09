@@ -209,7 +209,7 @@ resetWaterLife__10MarioActorFv,MarioActor.o,Player.a,true
 updateLife__10MarioActorFv,MarioActor.o,Player.a,true
 incLife__10MarioActorFUl,MarioActor.o,Player.a,true
 changeMaxLife__10MarioActorFl,MarioActor.o,Player.a,true
-doPressing__10MarioActorFv,MarioActor.o,Player.a,false
+doPressing__10MarioActorFv,MarioActor.o,Player.a,true
 careMovingObject__10MarioActorFv,MarioActor.o,Player.a,false
 doStun__10MarioActorFv,MarioActor.o,Player.a,false
 scaleMtx__10MarioActorFPA4_f,MarioActor.o,Player.a,false

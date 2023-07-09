@@ -23,6 +23,7 @@ public:
 
     void setHoming();
     bool isAnimationStop();
+    void setSpeed(f32);
 
 	XanimeResourceTable* _8;
 	XanimePlayer* _c;
