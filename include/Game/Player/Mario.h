@@ -96,6 +96,10 @@ public:
 	void startTeresaDisappear();
 	void startBas(const char *, bool, f32, f32);
 	bool checkVerticalPress(bool);
+	void powerAreaMove();
+	void powerRailMove();
+	void checkGround();
+	void updateFloorCode();
 
 	inline bool getPunchFlag1() const { // poor name
 		return _8_8;

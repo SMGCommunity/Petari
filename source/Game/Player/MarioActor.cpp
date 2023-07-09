@@ -926,3 +926,27 @@ bool MarioActor::doPressing() {
 	resetSensorCount();
 	return true;
 }
+
+void MarioActor::careMovingObject() {
+	if(_1e0) return;
+	if (
+		getStates()._8_1
+		&& !MR::isSameMtx (
+			_230 -> _45C -> getPrevBaseMtx() -> toMtxPtr(),
+			_230 -> _45C -> getBaseMtx() -> toMtxPtr()
+		)
+	) {
+		_230 -> _130 = mPosition;
+		_230 -> checkEnforceMove();
+		mPosition = _230 -> _130;
+	}
+	_230 -> _130 = mPosition;
+	_230 -> _160.zero();
+	_230 -> powerAreaMove();
+	_230 -> powerRailMove();
+	_230 -> _130 += _230 -> _160;
+	_230 -> _160.zero();
+	mPosition = _230 -> _130;
+	_230 -> checkGround();
+	_230 -> updateFloorCode();
+}
