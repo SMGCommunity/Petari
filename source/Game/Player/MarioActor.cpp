@@ -976,3 +976,33 @@ bool MarioActor::doStun() {
 	}
 	else return false;
 }
+
+void MarioActor::scaleMtx(MtxPtr rawMtx) {
+	TVec3f stack_44, stack_38, stack_2c;
+	const TRot3f *mtx = (TRot3f *)rawMtx;
+	f32 fr29 = 0.35f * (1f - _3b0) + 1f;
+	mtx -> getXDir(stack_44);
+	mtx -> getYDir(stack_38);
+	mtx -> getZDir(stack_2c);
+	f32 fr30 = MR::vecKillElement(stack_44, _3b4, &stack_44);
+	f32 fr31 = MR::vecKillElement(stack_38, _3b4, &stack_38);
+	f32 tmp = MR::vecKillElement(stack_2c, _3b4, &stack_2c);
+	tmp *= _3b0;
+	fr30 *= _3b0;
+	fr31 *= _3b0;
+	stack_44.scale(fr29);
+	stack_38.scale(fr29);
+	stack_2c.scale(fr29);
+	stack_44 += _3b4 % fr30;
+	stack_38 += _3b4 % fr31;
+	stack_2c += _3b4 % tmp;
+	rawMtx[0][0] = stack_44.x;
+	rawMtx[1][0] = stack_44.y;
+	rawMtx[2][0] = stack_44.z;
+	rawMtx[0][1] = stack_38.x;
+	rawMtx[1][1] = stack_38.y;
+	rawMtx[2][1] = stack_38.z;
+	rawMtx[0][2] = stack_2c.x;
+	rawMtx[1][2] = stack_2c.y;
+	rawMtx[2][2] = stack_2c.z;
+}
