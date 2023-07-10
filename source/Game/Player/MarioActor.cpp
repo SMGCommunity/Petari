@@ -145,25 +145,25 @@ void MarioActor::changeGameOverAnimation() {
 	int r30 = 0;
 	if(_230 -> isStatusActive(0x12)) _230 -> closeStatus(NULL);
 
-	if(_230 -> isAnimationRun("0x001")) r30 = 0;
-	if(_230 -> isAnimationRun("0x002")) r30 = 0;
-	if(_230 -> isAnimationRun("0x003")) r30 = 0;
-	if(_230 -> isAnimationRun("0x004")) r30 = 0;
-	if(_230 -> isAnimationRun("0x005")) r30 = 1;
-	if(_230 -> isAnimationRun("0x006")) r30 = 1;
-	if(_230 -> isAnimationRun("0x007")) r30 = 2;
-	if(_230 -> isAnimationRun("0x008")) r30 = 2;
-	if(_230 -> isAnimationRun("0x009")) r30 = 3;
-	if(_230 -> isAnimationRun("0x00a")) r30 = 3;
-	if(_230 -> isAnimationRun("0x00b")) r30 = 3;
-	if(_230 -> isAnimationRun("0x00c")) r30 = 4;
-	if(_230 -> isAnimationRun("0x00d")) r30 = 4;
-	if(_230 -> isAnimationRun("0x00e")) r30 = 4;
-	if(_230 -> isAnimationRun("0x00f")) r30 = 5;
-	if(_230 -> isAnimationRun("0x010")) r30 = 5;
-	if(_230 -> isAnimationRun("0x011")) r30 = 6;
-	if(_230 -> isAnimationRun("0x012")) r30 = 6;
-	if(!_230 -> isAnimationRun("0x013") && !_230 -> isStatusActive(0xd));
+	if(_230 -> isAnimationRun("前方小ダメージ")) r30 = 0;
+	if(_230 -> isAnimationRun("後方小ダメージ")) r30 = 0;
+	if(_230 -> isAnimationRun("ファイアラン前兆")) r30 = 0;
+	if(_230 -> isAnimationRun("炎のランナー")) r30 = 0;
+	if(_230 -> isAnimationRun("電気ダメージ")) r30 = 1;
+	if(_230 -> isAnimationRun("電気ダメージ終了")) r30 = 1;
+	if(_230 -> isAnimationRun("炎ダメージ")) r30 = 2;
+	if(_230 -> isAnimationRun("ファイアダンス")) r30 = 2;
+	if(_230 -> isAnimationRun("中ダメージ")) r30 = 3;
+	if(_230 -> isAnimationRun("中ダメージ空中")) r30 = 3;
+	if(_230 -> isAnimationRun("中ダメージ着地")) r30 = 3;
+	if(_230 -> isAnimationRun("中後ダメージ")) r30 = 4;
+	if(_230 -> isAnimationRun("中後ダメージ空中")) r30 = 4;
+	if(_230 -> isAnimationRun("中後ダメージ着地")) r30 = 4;
+	if(_230 -> isAnimationRun("落下")) r30 = 5;
+	if(_230 -> isAnimationRun("空中ふんばり")) r30 = 5;
+	if(_230 -> isAnimationRun("つぶれ")) r30 = 6;
+	if(_230 -> isAnimationRun("つぶれ復帰")) r30 = 6;
+	if(!_230 -> isAnimationRun("氷結") && !_230 -> isStatusActive(0xd));
 	else r30 = -1;
 	if(_230 -> isSwimming()) r30 = 7;
 	if(isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) r30 = 8;
@@ -173,42 +173,42 @@ void MarioActor::changeGameOverAnimation() {
 
 	switch(r30) {
 		case 0:
-			_230 -> changeAnimationNonStop("0x015");
+			_230 -> changeAnimationNonStop("座りダウン");
 			break;
 		case 1:
-			_230 -> changeAnimationNonStop("0x016");
+			_230 -> changeAnimationNonStop("感電ダウン");
 			break;
 		case 2:
-			_230 -> changeAnimationNonStop("0x017");
+			_230 -> changeAnimationNonStop("炎ダウン");
 			break;
 		case 3:
-			_230 -> changeAnimationNonStop("0x018");
+			_230 -> changeAnimationNonStop("仰向けダウン");
 			break;
 		case 4:
-			_230 -> changeAnimationNonStop("0x019");
+			_230 -> changeAnimationNonStop("俯せダウン");
 			break;
 		case 5:
-			if(_230 -> _8_1) _230 -> changeAnimationNonStop("0x01a");
-			else _230 -> changeAnimationNonStop("0x01b");
+			if(_230 -> _8_1) _230 -> changeAnimationNonStop("座りダウン");
+			else _230 -> changeAnimationNonStop("奈落ダウン");
 			break;
 		case 6:
-			_230 -> changeAnimationNonStop("0x01c");
+			_230 -> changeAnimationNonStop("つぶれダウン");
 			break;
 		case 7:
-			_230 -> changeAnimationNonStop("0x01d");
+			_230 -> changeAnimationNonStop("水泳ダウン");
 			break;
 		case 8:
-			_230 -> changeAnimationNonStop("0x01e");
+			_230 -> changeAnimationNonStop("埋まりダウン");
 			break;
 		case 9:
-			_230 -> changeAnimationNonStop("0x01f");
+			_230 -> changeAnimationNonStop("レース負け");
 			break;
 		case 10:
-			_230 -> changeAnimationNonStop("0x020");
+			_230 -> changeAnimationNonStop("水中レース負け");
 			break;
 	}
 	_b90 = 1;
-	stopEffect("0x021");
+	stopEffect("無敵中");
 	_a6e = 0;
 }
 
@@ -403,7 +403,7 @@ void MarioActor::movement() {
 				else if(_230 -> _5FC) {
 					if(!MR::isWallCodeNoAction(plane) && !_230 -> isOnimasuBinderPressSkip()) {
 						_3b4 = _230 -> _368;
-						_230 -> _10 &= ~(u32)4;
+						_230 -> _10 &= ‾(u32)4;
 						*_230 -> _4C8 = *plane;
 						setPress(2, 0);
 						_3b0 = 0.1f;
@@ -419,7 +419,7 @@ void MarioActor::movement() {
 		}
 	}
 	if(_230 -> _18 >> 5 & 1) {
-		_230 -> _18 &= ~(u32)0x20;
+		_230 -> _18 &= ‾(u32)0x20;
 		_234 -> MarioAnimator::update();
 	}
 	_230 -> recordRelativePosition();
@@ -485,7 +485,7 @@ void MarioActor::control2() {
 			else MR::onBind(this);
 		}
 		_978 = mVelocity;
-		if(_230 -> _18_b) mBinder -> _1ec &= ~(u32)0x40; // suspected bitfield
+		if(_230 -> _18_b) mBinder -> _1ec &= ‾(u32)0x40; // suspected bitfield
 		else mBinder -> _1ec |= 0x40;
 		if(_230 -> isDamaging()) _424 = 0;
 	}
@@ -531,8 +531,8 @@ void MarioActor::updateBehavior() {
 	updateBindRatio();
 	updateEffect();
 	if(_b94 && !--_b94) {
-		_230 -> stopAnimationUpper("ー投げ回転中", NULL);
-		_230 -> stopAnimation("ー投げ回転中", (const char *)NULL);
+		_230 -> stopAnimationUpper("ハンマー投げ回転中", NULL);
+		_230 -> stopAnimation("ハンマー投げ回転中", (const char *)NULL);
 	}
 	updatePunching();
 	if(!doPressing() && !doStun() && !doRush()) { //short circuiting better be intentional
@@ -613,7 +613,7 @@ bool MarioActor::doRush() {
 		tryRushInRush();
 		if(!_934) return false;
 		updateGravityVec(false, false);
-		if(checkClapCatchStart() && _7dc) bodyClap();
+		if(!checkClapCatchStart() && _7dc) bodyClap();
 		_7dc = 0;
 		_7e2 = false;
 		_230 -> _130 = mPosition;
@@ -756,7 +756,7 @@ void MarioActor::updateSwingAction() {
 					}
 					_230 -> changeAnimation("ハチスピン空中", (const char *)NULL);
 				}
-				else if(!getStates()._8_a || _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL);
+				else if(getStates()._8_a || _9f1) _230 -> changeAnimation("サマーソルト", (const char *)NULL);
 				else _230 -> changeAnimation("ハチスピン", (const char *)NULL);
 			}
 			if(r291) _946 = _23c -> _0[_23c -> _8] -> _426 + 0x22;
@@ -862,6 +862,8 @@ void MarioActor::updateLife() {
 	if(!_380) return;
 	_380--;
 }
+
+static const char *sMiddleWaterLifeReduction = "水中ライフ減少";
 
 void MarioActor::incLife(unsigned long amt) {
 	if(isEnableNerveChange() && !_3e4) {
