@@ -403,7 +403,7 @@ void MarioActor::movement() {
 				else if(_230 -> _5FC) {
 					if(!MR::isWallCodeNoAction(plane) && !_230 -> isOnimasuBinderPressSkip()) {
 						_3b4 = _230 -> _368;
-						_230 -> _10 &= ‾(u32)4;
+						_230 -> _10 &= ~(u32)4;
 						*_230 -> _4C8 = *plane;
 						setPress(2, 0);
 						_3b0 = 0.1f;
@@ -419,7 +419,7 @@ void MarioActor::movement() {
 		}
 	}
 	if(_230 -> _18 >> 5 & 1) {
-		_230 -> _18 &= ‾(u32)0x20;
+		_230 -> _18 &= ~(u32)0x20;
 		_234 -> MarioAnimator::update();
 	}
 	_230 -> recordRelativePosition();
@@ -485,7 +485,7 @@ void MarioActor::control2() {
 			else MR::onBind(this);
 		}
 		_978 = mVelocity;
-		if(_230 -> _18_b) mBinder -> _1ec &= ‾(u32)0x40; // suspected bitfield
+		if(_230 -> _18_b) mBinder -> _1ec &= ~(u32)0x40; // suspected bitfield
 		else mBinder -> _1ec |= 0x40;
 		if(_230 -> isDamaging()) _424 = 0;
 	}
