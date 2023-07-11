@@ -364,16 +364,16 @@ void MarioActor::movement() {
 					}
 				}
 				if(mMario -> _31C.translateOpposite(mPosition).dot(getGravityVector()) < 0f) {
-					bool r31 = true;
+					bool eject = true;
 					CollisionParts *parts = mMario -> _45C -> mParts;
 					if(parts && !mMario -> _45C -> mParts -> _D4) {
 						TVec3f stack_c8, stack_bc, stack_b0;
 						PSMTXMultVec(parts -> mInvBaseMatrix.toMtxPtr(), mMario -> _31C.toCVec(), stack_c8.toVec());
 						PSMTXMultVec(parts -> mPrevBaseMatrix.toMtxPtr(), stack_c8.toCVec(), stack_bc.toVec());
 						stack_b0 = mMario -> _31C.translateOpposite(stack_bc);
-						if(stack_b0.dot(stack_128) > 0f) r31 = false;
+						if(stack_b0.dot(stack_128) > 0f) eject = false;
 					}
-					if(r31) {
+					if(eject) {
 						mPosition = mMario -> _31C;
 						mMario -> _2D4.zero();
 						mMario -> _148.zero();
@@ -388,18 +388,18 @@ void MarioActor::movement() {
 				}
 			}
 		}
-		else if(mMario -> getMovementStates()._1) { // Probably uses an inline function
+		else if(mMario -> getMovementStates()._1) {
 			const u32 stop = mBinder -> _28;
-			bool r31 = false;
+			bool eject = false;
 			for(u32 i = 0; i < stop; i++) {
 				const Triangle *plane = mBinder -> getPlane(i);
 				if(!MR::isSensorPressObj(plane -> mSensor)) continue;
 				if(mMario -> _368.dot(*plane -> getNormal(0)) > 0f) {
-					if(mMario -> _72C < 200f) r31 = true;
-					else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
-					else r31 = false;
+					if(mMario -> _72C < 200f) eject = true;
+					else if(plane -> getNormal(0) -> dot(stack_134) < 0f) eject = true;
+					else eject = false;
 				}
-				else if(plane -> getNormal(0) -> dot(stack_134) < 0f) r31 = true;
+				else if(plane -> getNormal(0) -> dot(stack_134) < 0f) eject = true;
 				else if(mMario -> _5FC) {
 					if(!MR::isWallCodeNoAction(plane) && !mMario -> isOnimasuBinderPressSkip()) {
 						_3b4 = mMario -> _368;
@@ -408,10 +408,10 @@ void MarioActor::movement() {
 						setPress(2, 0);
 						_3b0 = 0.1f;
 					}
-					r31 = true;
+					eject = true;
 				}
 			}
-			if(r31) {
+			if(eject) {
 				TVec3f stack_98;
 				f32 element = MR::vecKillElement(stack_134, mMario -> _368, &stack_98);
 				mPosition -= mMario -> _368 % element;
