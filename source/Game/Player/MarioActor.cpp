@@ -340,7 +340,11 @@ void MarioActor::movement() {
 				if(MR::getFirstPolyOnLineToMap(&stack_e0, tmp, stack_ec, getGravityVec() % 200f)) {
 					TVec3f stack_d4;
 					if (
-						MR::vecKillElement(stack_e0.translateOpposite(mPosition), getGravityVec(), &stack_d4) < -5f
+						MR::vecKillElement (
+							stack_e0.translateOpposite(mPosition),
+							getGravityVec(),
+							&stack_d4
+						) < -5f
 						&& tmp -> mParts
 						&& !tmp -> mParts -> _D4
 						&& getMovementStates()._3e != 1
@@ -355,12 +359,16 @@ void MarioActor::movement() {
 			}
 			else if(stack_128.dot(getGravityVec()) > 40f) {
 				if(mMario -> _4C8 -> isValid()) {
-					if(MR::isSensorPressObj(mMario -> _4C8 -> mSensor)) mMario -> mDrawStates._1e = true;
+					if(MR::isSensorPressObj(mMario -> _4C8 -> mSensor)) {
+						mMario -> mDrawStates._1e = true;
+					}
 				}
 				else {
 					const u32 stop = mBinder -> _28;
 					for(int i = 0; i < stop; i++) {
-						if(MR::isSensorPressObj(mBinder -> getPlane(i) -> mSensor)) mMario -> mDrawStates._1e = true;
+						if(MR::isSensorPressObj(mBinder -> getPlane(i) -> mSensor)) {
+							mMario -> mDrawStates._1e = true;
+						}
 					}
 				}
 				if(mMario -> _31C.translateOpposite(mPosition).dot(getGravityVector()) < 0f) {
@@ -368,8 +376,16 @@ void MarioActor::movement() {
 					CollisionParts *parts = mMario -> _45C -> mParts;
 					if(parts && !mMario -> _45C -> mParts -> _D4) {
 						TVec3f stack_c8, stack_bc, stack_b0;
-						PSMTXMultVec(parts -> mInvBaseMatrix.toMtxPtr(), mMario -> _31C.toCVec(), stack_c8.toVec());
-						PSMTXMultVec(parts -> mPrevBaseMatrix.toMtxPtr(), stack_c8.toCVec(), stack_bc.toVec());
+						PSMTXMultVec (
+							parts -> mInvBaseMatrix.toMtxPtr(),
+							mMario -> _31C.toCVec(),
+							stack_c8.toVec()
+						);
+						PSMTXMultVec (
+							parts -> mPrevBaseMatrix.toMtxPtr(),
+							stack_c8.toCVec(),
+							stack_bc.toVec()
+						);
 						stack_b0 = mMario -> _31C.translateOpposite(stack_bc);
 						if(stack_b0.dot(stack_128) > 0f) eject = false;
 					}
@@ -470,7 +486,13 @@ void MarioActor::control2() {
 		mVelocity.zero();
 		_264.zero();
 		_270 = mPosition;
-		if(getMovementStates()._1 && !MR::isSameMtx(mMario -> _45C -> getPrevBaseMtx() -> toMtxPtr(), mMario -> _45C -> getBaseMtx() -> toMtxPtr())) {
+		if (
+			getMovementStates()._1
+			&& !MR::isSameMtx (
+				mMario -> _45C -> getPrevBaseMtx() -> toMtxPtr(),
+				mMario -> _45C -> getBaseMtx() -> toMtxPtr()
+			)
+		) {
 			mMario -> _130 = mPosition;
 			mMario -> checkEnforceMove();
 			mPosition = mMario -> _130;
@@ -485,7 +507,7 @@ void MarioActor::control2() {
 			else MR::onBind(this);
 		}
 		_978 = mVelocity;
-		if(getDrawStates()._b) mBinder -> _1ec &= ~(u32)0x40; // suspected bitfield
+		if(getDrawStates()._b) mBinder -> _1ec &= ~(u32)0x40;
 		else mBinder -> _1ec |= 0x40;
 		if(mMario -> isDamaging()) _424 = 0;
 	}
@@ -586,7 +608,12 @@ void MarioActor::updatePunching() {
 		_944--;
 		_945++;
 		if(!_946 && !getMovementStates()._2b) canSpinring = false;
-		if(canSpinring && !mMario -> isSwimming() && !_944 && selectAction("スピン回復エフェクト") == true) {
+		if (
+			canSpinring
+			&& !mMario -> isSwimming()
+			&& !_944
+			&& selectAction("スピン回復エフェクト") == true
+		) {
 			playEffect("スピンリング");
 		}
 		bool canPunch = isInPunchTimerRange();
@@ -729,7 +756,12 @@ void MarioActor::updateSwingAction() {
 	switch(action) {
 		case 1:
 			bool didSpinPunch = true;
-			if(!mMario -> mMovementStates._f && isJumping() && !mMario -> isDamaging() && !mMario -> mMovementStates._2b) {
+			if (
+				!mMario -> mMovementStates._f
+				&& isJumping()
+				&& !mMario -> isDamaging()
+				&& !mMario -> mMovementStates._2b
+			) {
 				bool tmp = false;
 				if(_f0c) tmp = true;
 				mMario -> trySpinJump(tmp);
@@ -756,7 +788,9 @@ void MarioActor::updateSwingAction() {
 					}
 					mMario -> changeAnimation("ハチスピン空中", (const char *)NULL);
 				}
-				else if(getMovementStates()._a || _9f1) mMario -> changeAnimation("サマーソルト", (const char *)NULL);
+				else if(getMovementStates()._a || _9f1) {
+					mMario -> changeAnimation("サマーソルト", (const char *)NULL);
+				}
 				else mMario -> changeAnimation("ハチスピン", (const char *)NULL);
 			}
 			if(didSpinPunch) _946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
@@ -780,7 +814,9 @@ void MarioActor::updateSwingAction() {
 			if(!isEnableSpinPunch()) break;
 			if(isJumping()) mMario -> changeAnimation("ハチスピン空中", (const char *)NULL);
 			else {
-				if(getMovementStates()._a || _9f1) mMario -> changeAnimation("サマーソルト", (const char *)NULL); //Summersault
+				if(getMovementStates()._a || _9f1) {
+					mMario -> changeAnimation("サマーソルト", (const char *)NULL); //Summersault
+				}
 				else mMario -> changeAnimation("ハチスピン", (const char *)NULL);
 			}
 			_946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
@@ -971,7 +1007,11 @@ bool MarioActor::doStun() {
 		if(!--_38c) {
 			f32 stickX, stickY;
 			getStickValue(&stickX, &stickY);
-			if(MR::isNearZero(stickX, 0.001f) && MR::isNearZero(stickY, 0.001f) && !getMovementStates()._a) mMario -> stopWalk();
+			if (
+				MR::isNearZero(stickX, 0.001f)
+				&& MR::isNearZero(stickY, 0.001f)
+				&& !getMovementStates()._a
+			) mMario -> stopWalk();
 		}
 		mMario -> inputStick();
 		return true;
