@@ -432,9 +432,9 @@ void MarioActor::movement() {
 }
 
 void MarioActor::control() {
-	if(_ee8) {
-		if(MR::tryStartDemoWithoutCinemaFrame(this, "マリオスーパー化")) {
-			_ee8 = false;
+	if(mSuperKinokoCollected) {
+		if(MR::tryStartDemoWithoutCinemaFrame(this, "マリオスーパー化")) { // 6-up camera
+			mSuperKinokoCollected = false;
 			changeMaxLife(6);
 			MR::stopAnimFrame(this);
 			MR::requestPowerupHPMeter();
@@ -443,10 +443,10 @@ void MarioActor::control() {
 			_3da = 0x5a;
 		}
 	}
-	else if(_ee9) {
+	else if(mPowerupCollected) {
 		if(MR::tryStartDemoWithoutCinemaFrame(this, "マリオ変身")) {
-			_ee9 = false;
-			_eea = true;
+			mPowerupCollected = false;
+			mTransforming = true;
 			if(_3d4 == 6) {
 				MR::requestMovementOn(_9a4);
 				changeTeresaAnimation("change", -1);
@@ -535,7 +535,7 @@ void MarioActor::updateBehavior() {
 		mMario -> stopAnimation("ハンマー投げ回転中", (const char *)NULL);
 	}
 	updatePunching();
-	if(!doPressing() && !doStun() && !doRush()) { //short circuiting better be intentional
+	if(!doPressing() && !doStun() && !doRush()) {
 		updateGravityVec(false, false);
 		if(!tryJumpRush()) {
 			checkPriorRushTarget();
@@ -582,23 +582,23 @@ bool MarioActor::isInPunchTimerRange() const {
 
 void MarioActor::updatePunching() {
 	if(_944) {
-		bool r6 = true;
+		bool canSpinring = true;
 		_944--;
 		_945++;
-		if(!_946 && !getMovementStates()._2b) r6 = false;
-		if(r6 && !mMario -> isSwimming() && !_944 && selectAction("スピン回復エフェクト") == true) {
+		if(!_946 && !getMovementStates()._2b) canSpinring = false;
+		if(canSpinring && !mMario -> isSwimming() && !_944 && selectAction("スピン回復エフェクト") == true) {
 			playEffect("スピンリング");
 		}
-		bool r29 = isInPunchTimerRange();
-		if(!mMario -> isSwimming()) r29 = true;
-		if(r29) {
+		bool canPunch = isInPunchTimerRange();
+		if(!mMario -> isSwimming()) canPunch = true;
+		if(canPunch) {
 			const Mario::MovementStates &moveStates = getMovementStates();
 			if(moveStates._8 || moveStates._1a || moveStates._19) mMario -> tryWallPunch();
 		}
 	}
 	if (
 		mMario -> isAnimationRun("ハンマー投げリリース")
-		&& getMovementStates()._1
+		&& mMario -> getMovementStates()._1
 		&& !_38c
 		&& !mMario -> _420
 		&& mMario -> Mario::isStickOn()
@@ -695,54 +695,54 @@ void MarioActor::updateSwingTimer() {
 
 void MarioActor::updateSwingAction() {
 	if(isJumping() && _3d4 != 6 && !mMario -> isStatusActive(0x18)) _946 = 0;
-	bool r290 = isRequestRush();
-	bool r30 = false;
-	if(!r290) {
-		if(r290 = isRequestSpinJump2P()) r30 = true;
+	bool requestRush = isRequestRush();
+	bool requestSpinJump2P = false;
+	if(!requestRush) {
+		if(requestRush = isRequestSpinJump2P()) requestSpinJump2P = true;
 	}
-	_1e1 = r290;
+	_1e1 = requestRush;
 	if(_946) {
-		if(!r290) return;
+		if(!requestRush) return;
 		if(!isPunching()) {
 			if(_948) _948 += 0x96;
 			else _948 += 0x12c;
 		}
-		if(!r290) return;
+		if(!requestRush) return;
 		tryReleaseBombTeresa();
 		return;
 	}
-	bool r29 = true;
-	if(!r290) return;
-	if(mMario -> isAnimationRun("壁はじき")) r29 = false;
-	if(isJumping() && mMario -> _428) r29 = false;
-	if(_3d4 == 9) r29 = false;
-	if(mMario -> getCurrentStatus() == 1) r29 = false;
-	if(mMario -> isSwimming()) r29 = false;
-	if(mMario -> isStatusActive(0x18)) r29 = false;
-	if(mMario -> isStatusActive(0x13)) r29 = false;
-	if(_468.x) r29 = false;
-	if(mMario -> isStatusActive(2)) r29 = false;
-	if(_3c0) r29 = false;
-	if(_ea4) r29 = false;
-	if(!r29) return;
-	u8 tmp = selectAction("スピンアタック");
-	switch(tmp) {
+	bool canRush = true;
+	if(!requestRush) return;
+	if(mMario -> isAnimationRun("壁はじき")) canRush = false;
+	if(isJumping() && mMario -> _428) canRush = false;
+	if(_3d4 == 9) canRush = false;
+	if(mMario -> getCurrentStatus() == 1) canRush = false;
+	if(mMario -> isSwimming()) canRush = false;
+	if(mMario -> isStatusActive(0x18)) canRush = false;
+	if(mMario -> isStatusActive(0x13)) canRush = false;
+	if(_468l.x) canRush = false;
+	if(mMario -> isStatusActive(2)) canRush = false;
+	if(_3c0) canRush = false;
+	if(_ea4) canRush = false;
+	if(!canRush) return;
+	u8 action = selectAction("スピンアタック");
+	switch(action) {
 		case 1:
-			bool r291 = true;
+			bool didSpinPunch = true;
 			if(!mMario -> mMovementStates._f && isJumping() && !mMario -> isDamaging() && !mMario -> mMovementStates._2b) {
 				bool tmp = false;
 				if(_f0c) tmp = true;
 				mMario -> trySpinJump(tmp);
 				setPunchHitTimer(0x19);
 				tryReleaseBombTeresa();
-				if(r30) MR::start2PJumpAssistSound();
+				if(requestSpinJump2P) MR::start2PJumpAssistSound();
 			}
 			else if(!getMovementStates()._f && !mMario -> isAnimationRun("地上ひねり")) {
 				const char *lastAnimationName = mMarioAnim -> _10 -> getCurrentAnimationName();
 				if(_3d4 == 4) {
-					if(!mMario -> isAnimationRun("ハチスピン")) r291 = trySpinPunch();
+					if(!mMario -> isAnimationRun("ハチスピン")) didSpinPunch = trySpinPunch();
 				}
-				else r291 = trySpinPunch();
+				else didSpinPunch = trySpinPunch();
 				_974 = 0;
 				if(lastAnimationName != mMarioAnim -> _10 -> getCurrentAnimationName()) {
 					mMario -> playSound("パンチ風切り", -1);
@@ -759,7 +759,7 @@ void MarioActor::updateSwingAction() {
 				else if(getMovementStates()._a || _9f1) mMario -> changeAnimation("サマーソルト", (const char *)NULL);
 				else mMario -> changeAnimation("ハチスピン", (const char *)NULL);
 			}
-			if(r291) _946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
+			if(didSpinPunch) _946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
 			break;
 		case 2:
 			if(isEnableSpinPunch() && !mMario -> isSwimming()) shootFireBall();
