@@ -102,177 +102,115 @@ public:
 	void updateFloorCode();
 	void inputStick();
 
-	inline bool getPunchFlag1() const { // poor name
-		return _8_8;
-	}
-
-	inline bool getPunchFlag2() const { // poor name
-		return _8_1a;
-	}
-
-	inline bool getPunchFlag3() const { // poor name
-		return _8_19;
-	}
-
-	inline bool get_8_1()  {
-		return _8_1;
-	}
-	inline bool get_8_a() const {
-		return _8_a;
-	}
-
-		struct Nonsense {
-		    unsigned _8_0 : 1;
-		    unsigned _8_1 : 1;
-		    unsigned _8_2 : 1;
-		    unsigned _8_3 : 1;
-		    unsigned _8_4 : 1;
-		    unsigned _8_5 : 1;
-		    unsigned _8_6 : 1;
-		    unsigned _8_7 : 1;
-		    unsigned _8_8 : 1;
-		    unsigned _8_9 : 1;
-		    unsigned _8_a : 1;
-		    unsigned _8_b : 1;
-		    unsigned _8_c : 1;
-		    unsigned _8_d : 1;
-		    unsigned _8_e : 1;
-		    unsigned _8_f : 1;
-		    unsigned _8_10 : 1;
-		    unsigned _8_11 : 1;
-		    unsigned _8_12 : 1;
-		    unsigned _8_13 : 1;
-		    unsigned _8_14 : 1;
-		    unsigned _8_15 : 1;
-		    unsigned _8_16 : 1;
-		    unsigned _8_17 : 1;
-		    unsigned _8_18 : 1;
-		    unsigned _8_19 : 1;
-		    unsigned _8_1a : 1;
-		    unsigned _8_1b : 1;
-		    unsigned _8_1c : 1;
-		    unsigned _8_1d : 1;
-		    unsigned _8_1e : 1;
-		    unsigned _8_1f : 1;
-		    inline bool get8() const {return _8_8;}
-		    inline bool get19() const {return _8_19;}
-		    inline bool get1a() const {return _8_1a;}
-		    inline bool geta() const {return _8_a;}
-		    inline bool get1() const {return _8_1;}
-		};
-
-	inline const Nonsense& getStates() const {return bitfieldStruct;}
-
-    //u32 _8;
-    union {
-		u32 _8;
-		struct {
-		    unsigned _8_0 : 1;
-		    unsigned _8_1 : 1;
-		    unsigned _8_2 : 1;
-		    unsigned _8_3 : 1;
-		    unsigned _8_4 : 1;
-		    unsigned _8_5 : 1;
-		    unsigned _8_6 : 1;
-		    unsigned _8_7 : 1;
-		    unsigned _8_8 : 1;
-		    unsigned _8_9 : 1;
-		    unsigned _8_a : 1;
-		    unsigned _8_b : 1;
-		    unsigned _8_c : 1;
-		    unsigned _8_d : 1;
-		    unsigned _8_e : 1;
-		    unsigned _8_f : 1;
-		    unsigned _8_10 : 1;
-		    unsigned _8_11 : 1;
-		    unsigned _8_12 : 1;
-		    unsigned _8_13 : 1;
-		    unsigned _8_14 : 1;
-		    unsigned _8_15 : 1;
-		    unsigned _8_16 : 1;
-		    unsigned _8_17 : 1;
-		    unsigned _8_18 : 1;
-		    unsigned _8_19 : 1;
-		    unsigned _8_1a : 1;
-		    unsigned _8_1b : 1;
-		    unsigned _8_1c : 1;
-		    unsigned _8_1d : 1;
-		    unsigned _8_1e : 1;
-		    unsigned _8_1f : 1;
-		};
-		Nonsense bitfieldStruct;
+	struct MovementStates {
+	    unsigned _0 : 1;
+	    unsigned _1 : 1;
+	    unsigned _2 : 1;
+	    unsigned _3 : 1;
+	    unsigned _4 : 1;
+	    unsigned _5 : 1;
+	    unsigned _6 : 1;
+	    unsigned _7 : 1;
+	    unsigned _8 : 1;
+	    unsigned _9 : 1;
+	    unsigned _a : 1;
+	    unsigned _b : 1;
+	    unsigned _c : 1;
+	    unsigned _d : 1;
+	    unsigned _e : 1;
+	    unsigned _f : 1;
+	    unsigned _10 : 1;
+	    unsigned _11 : 1;
+	    unsigned _12 : 1;
+	    unsigned _13 : 1;
+	    unsigned _14 : 1;
+	    unsigned _15 : 1;
+	    unsigned _16 : 1;
+	    unsigned _17 : 1;
+	    unsigned _18 : 1;
+	    unsigned _19 : 1;
+	    unsigned _1a : 1;
+	    unsigned _1b : 1;
+	    unsigned _1c : 1;
+	    unsigned _1d : 1;
+	    unsigned _1e : 1;
+	    unsigned _1f : 1;
+	    unsigned _20 : 1;
+	    unsigned _21 : 1;
+	    unsigned _22 : 1;
+	    unsigned _23 : 1;
+	    unsigned _24 : 1;
+	    unsigned _25 : 1;
+	    unsigned _26 : 1;
+	    unsigned _27 : 1;
+	    unsigned _28 : 1;
+	    unsigned _29 : 1;
+	    unsigned _2a : 1;
+	    unsigned _2b : 1;
+	    unsigned _2c : 1;
+	    unsigned _2d : 1;
+	    unsigned _2e : 1;
+	    unsigned _2f : 1;
+	    unsigned _30 : 1;
+	    unsigned _31 : 1;
+	    unsigned _32 : 1;
+	    unsigned _33 : 1;
+	    unsigned _34 : 1;
+	    unsigned _35 : 1;
+	    unsigned _36 : 1;
+	    unsigned _37 : 1;
+	    unsigned _38 : 1;
+	    unsigned _39 : 1;
+	    unsigned _3a : 1;
+	    unsigned _3b : 1;
+	    unsigned _3c : 1;
+	    unsigned _3d : 1;
+	    unsigned _3e : 2;
 	};
-    unsigned _8_20 : 1;
-    unsigned _8_21 : 1;
-    unsigned _8_22 : 1;
-    unsigned _8_23 : 1;
-    unsigned _8_24 : 1;
-    unsigned _8_25 : 1;
-    unsigned _8_26 : 1;
-    unsigned _8_27 : 1;
-    unsigned _8_28 : 1;
-    unsigned _8_29 : 1;
-    unsigned _8_2a : 1;
-    unsigned _8_2b : 1;
-    unsigned _8_2c : 1;
-    unsigned _8_2d : 1;
-    unsigned _8_2e : 1;
-    unsigned _8_2f : 1;
-    unsigned _8_30 : 1;
-    unsigned _8_31 : 1;
-    unsigned _8_32 : 1;
-    unsigned _8_33 : 1;
-    unsigned _8_34 : 1;
-    unsigned _8_35 : 1;
-    unsigned _8_36 : 1;
-    unsigned _8_37 : 1;
-    unsigned _8_38 : 1;
-    unsigned _8_39 : 1;
-    unsigned _8_3a : 1;
-    unsigned _8_3b : 1;
-    unsigned _8_3c : 1;
-    unsigned _8_3d : 1;
-    unsigned _8_3e : 2;
-    //u32 _C;
+	struct DrawStates {
+		unsigned _0 : 1;
+		unsigned _1 : 1;
+		unsigned _2 : 1;
+		unsigned _3 : 1;
+		unsigned _4 : 1;
+		unsigned _5 : 1;
+		unsigned _6 : 1;
+		unsigned _7 : 1;
+		unsigned _8 : 1;
+		unsigned _9 : 1;
+		unsigned _a : 1;
+		unsigned _b : 1;
+		unsigned _c : 1;
+		unsigned _d : 1;
+		unsigned _e : 1;
+		unsigned _f : 1;
+		unsigned _10 : 1;
+		unsigned _11 : 1;
+		unsigned _12 : 1;
+		unsigned _13 : 1;
+		unsigned _14 : 1;
+		unsigned _15 : 1;
+		unsigned _16 : 1;
+		unsigned _17 : 1;
+		unsigned _18 : 1;
+		unsigned _19 : 1;
+		unsigned _1a : 1;
+		unsigned _1b : 1;
+		unsigned _1c : 1;
+		unsigned _1d : 1;
+		unsigned _1e : 1;
+		unsigned _1f : 1;
+	};
+
+	inline const MovementStates& getMovementStates() const {return mMovementStates;}
+	inline const DrawStates& getDrawStates() const {return mDrawStates;}
+	inline const DrawStates& getPrevDrawStates() const {return mPrevDrawStates;}
+
+	MovementStates mMovementStates; // _8
+
     u32 _10;
     u32 _14;
-    union {
-		u32 _18;
-		struct {
-			unsigned _18_0 : 1;
-			unsigned _18_1 : 1;
-			unsigned _18_2 : 1;
-			unsigned _18_3 : 1;
-			unsigned _18_4 : 1;
-			unsigned _18_5 : 1;
-			unsigned _18_6 : 1;
-			unsigned _18_7 : 1;
-			unsigned _18_8 : 1;
-			unsigned _18_9 : 1;
-			unsigned _18_a : 1;
-			unsigned _18_b : 1;
-			unsigned _18_c : 1;
-			unsigned _18_d : 1;
-			unsigned _18_e : 1;
-			unsigned _18_f : 1;
-			unsigned _18_10 : 1;
-			unsigned _18_11 : 1;
-			unsigned _18_12 : 1;
-			unsigned _18_13 : 1;
-			unsigned _18_14 : 1;
-			unsigned _18_15 : 1;
-			unsigned _18_16 : 1;
-			unsigned _18_17 : 1;
-			unsigned _18_18 : 1;
-			unsigned _18_19 : 1;
-			unsigned _18_1a : 1;
-			unsigned _18_1b : 1;
-			unsigned _18_1c : 1;
-			unsigned _18_1d : 1;
-			unsigned _18_1e : 1;
-			unsigned _18_1f : 1;
-		};
-	};
+	DrawStates mDrawStates; // _18
     u32 _1C;
     u32 _20;
     u32 _24;
@@ -280,38 +218,7 @@ public:
     u32 _2C;
 
 
-	unsigned _30_0 : 1;
-	unsigned _30_1 : 1;
-	unsigned _30_2 : 1;
-	unsigned _30_3 : 1;
-	unsigned _30_4 : 1;
-	unsigned _30_5 : 1;
-	unsigned _30_6 : 1;
-	unsigned _30_7 : 1;
-	unsigned _30_8 : 1;
-	unsigned _30_9 : 1;
-	unsigned _30_a : 1;
-	unsigned _30_b : 1;
-	unsigned _30_c : 1;
-	unsigned _30_d : 1;
-	unsigned _30_e : 1;
-	unsigned _30_f : 1;
-	unsigned _30_10 : 1;
-	unsigned _30_11 : 1;
-	unsigned _30_12 : 1;
-	unsigned _30_13 : 1;
-	unsigned _30_14 : 1;
-	unsigned _30_15 : 1;
-	unsigned _30_16 : 1;
-	unsigned _30_17 : 1;
-	unsigned _30_18 : 1;
-	unsigned _30_19 : 1;
-	unsigned _30_1a : 1;
-	unsigned _30_1b : 1;
-	unsigned _30_1c : 1;
-	unsigned _30_1d : 1;
-	unsigned _30_1e : 1;
-	unsigned _30_1f : 1;
+	DrawStates mPrevDrawStates; // _30
     //FAKE
 	u32 _34;
     //NOT FAKE
