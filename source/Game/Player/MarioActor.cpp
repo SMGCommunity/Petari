@@ -319,9 +319,9 @@ void MarioActor::movement() {
 			TVec3f stack_104(mMario -> _8F8);
 			MR::normalizeOrZero(&stack_104);
 			TVec3f stack_f8;
-			f32 fr30 = MR::vecKillElement(stack_134, stack_104, &stack_f8);
-			f32 fr29 = MR::vecKillElement(mVelocity, stack_104, &stack_f8);
-			if(PSVECMag(mVelocity.toCVec()) > 20f && fr30 < fr29 * 0.5f) {
+			f32 elementA = MR::vecKillElement(stack_134, stack_104, &stack_f8);
+			f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_f8);
+			if(PSVECMag(mVelocity.toCVec()) > 20f && elementA < elementB * 0.5f) {
 				if(mMario -> isAnimationRun("坂すべり下向きあおむけ")) {
 					mMario -> push(mMario -> _208 % 5f);
 				}
@@ -560,8 +560,8 @@ void MarioActor::updateBehavior() {
 
 void MarioActor::updateBindRatio() {
 	if(!_934 && !MR::isNearZero(_978.translateOpposite(_264), 0.001f)) {
-		f32 fr31 = PSVECMag(_978.toCVec());
-		if(fr31 / PSVECMag(_978.translateOpposite(_264).toCVec()) < 2f) {
+		f32 mag = PSVECMag(_978.toCVec());
+		if(mag / PSVECMag(_978.translateOpposite(_264).toCVec()) < 2f) {
 			_984 += 0.1f;
 		}
 		else {
@@ -806,9 +806,9 @@ void MarioActor::updateRealMtx() {
 		MR::getJointMtx(this, "Spine2");
 		getBaseMtx();
 	}
-	bool r31 = true;
-	if(mMario -> isStatusActive(0x12)) r31 = false;
-	if(!r31) return;
+	bool notStatus12 = true;
+	if(mMario -> isStatusActive(0x12)) notStatus12 = false;
+	if(!notStatus12) return;
 	TVec3f stack_44, stack_38;
 	MR::extractMtxTrans(_d7c.toMtxPtr(), &stack_44);
 	MR::extractMtxTrans(_dac.toMtxPtr(), &stack_38);
@@ -827,17 +827,17 @@ void MarioActor::decLife(unsigned short amt) {
 		_388 = amt;
 		return;
 	}
-	if(_380) _380--;
+	if(mHealth) mHealth--;
 	_388 = 0;
 	if(isLuigi) {
-		if(_3e0 == 3) return;
-		if(_380 > 3) return;
-		_3e0 = 3;
+		if(mMaxHealth == 3) return;
+		if(mHealth > 3) return;
+		mMaxHealth = 3;
 		return;
 	}
-	if(_3e0 == 3) return;
-	if(_380 > 3) return;
-	_3e0 = 3;
+	if(mMaxHealth == 3) return;
+	if(mHealth > 3) return;
+	mMaxHealth = 3;
 }
 
 void MarioActor::decLifeLarge() {
@@ -859,19 +859,19 @@ void MarioActor::resetWaterLife() {
 void MarioActor::updateLife() {
 	if(!_388) return;
 	if(--_388 != 0) return;
-	if(!_380) return;
-	_380--;
+	if(!mHealth) return;
+	mHealth--;
 }
 
 static const char *sMiddleWaterLifeReduction = "水中ライフ減少";
 
 void MarioActor::incLife(unsigned long amt) {
 	if(isEnableNerveChange() && !_3e4) {
-		const u32 tmp = getHealth();
-		if(_380 != _3e0) mMario -> playSound("ライフ回復", -1);
-		_380 += amt;
-		if(_380 >= _3e0) _380 = _3e0;
-		if(tmp == 1 && mMarioAnim -> isAnimationStop()) {
+		const u32 health = getHealth();
+		if(mHealth != mMaxHealth) mMario -> playSound("ライフ回復", -1);
+		mHealth += amt;
+		if(mHealth >= mMaxHealth) mHealth = mMaxHealth;
+		if(health == 1 && mMarioAnim -> isAnimationStop()) {
 			mMarioAnim -> _c -> changeTrackAnimation(3, "ノーマルウエイト");
 			if(mMario -> _970 && strcmp(mMario -> _970, "DamageWait")) {
 				mMario -> startBas(NULL, false, 0f, 0f);
@@ -882,10 +882,10 @@ void MarioActor::incLife(unsigned long amt) {
 }
 
 void MarioActor::changeMaxLife(long max) {
-	_3e0 = max;
-	while(_380 != max) {
-		if(_380 > max) decLife(0);
-		else if(_380 < max) incLife(1);
+	mMaxHealth = max;
+	while(mHealth != max) {
+		if(mHealth > max) decLife(0);
+		else if(mHealth < max) incLife(1);
 		else break;
 	}
 }
@@ -895,7 +895,7 @@ bool MarioActor::doPressing() {
 	switch(_39c) {
 		case 0:
 			if(!mMario -> checkVerticalPress(false)) {
-				if(--_390 == 0x1e && !_380 && isEnableNerveChange()) {
+				if(--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
 					setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
 				}
 				if(!_390) {
@@ -906,7 +906,7 @@ bool MarioActor::doPressing() {
 			break;
 		case 2:
 		case 3:
-			if(--_390 == 0x1e && !_380 && isEnableNerveChange()) {
+			if(--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
 				setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
 			}
 			if(!_390) {
@@ -969,9 +969,9 @@ bool MarioActor::doStun() {
 			mPosition = mMario -> _130;
 		}
 		if(!--_38c) {
-			f32 stack_c, stack_8;
-			getStickValue(&stack_c, &stack_8);
-			if(MR::isNearZero(stack_c, 0.001f) && MR::isNearZero(stack_8, 0.001f) && !getMovementStates()._a) mMario -> stopWalk();
+			f32 stickX, stickY;
+			getStickValue(&stickX, &stickY);
+			if(MR::isNearZero(stickX, 0.001f) && MR::isNearZero(stickY, 0.001f) && !getMovementStates()._a) mMario -> stopWalk();
 		}
 		mMario -> inputStick();
 		return true;
@@ -980,33 +980,33 @@ bool MarioActor::doStun() {
 }
 
 void MarioActor::scaleMtx(MtxPtr rawMtx) {
-	TVec3f stack_44, stack_38, stack_2c;
+	TVec3f i, j, k;
 	const TRot3f *mtx = (TRot3f *)rawMtx;
-	f32 fr29 = 0.35f * (1f - _3b0) + 1f;
-	mtx -> getXDir(stack_44);
-	mtx -> getYDir(stack_38);
-	mtx -> getZDir(stack_2c);
-	f32 fr30 = MR::vecKillElement(stack_44, _3b4, &stack_44);
-	f32 fr31 = MR::vecKillElement(stack_38, _3b4, &stack_38);
-	f32 tmp = MR::vecKillElement(stack_2c, _3b4, &stack_2c);
-	tmp *= _3b0;
-	fr30 *= _3b0;
-	fr31 *= _3b0;
-	stack_44.scale(fr29);
-	stack_38.scale(fr29);
-	stack_2c.scale(fr29);
-	stack_44 += _3b4 % fr30;
-	stack_38 += _3b4 % fr31;
-	stack_2c += _3b4 % tmp;
-	rawMtx[0][0] = stack_44.x;
-	rawMtx[1][0] = stack_44.y;
-	rawMtx[2][0] = stack_44.z;
-	rawMtx[0][1] = stack_38.x;
-	rawMtx[1][1] = stack_38.y;
-	rawMtx[2][1] = stack_38.z;
-	rawMtx[0][2] = stack_2c.x;
-	rawMtx[1][2] = stack_2c.y;
-	rawMtx[2][2] = stack_2c.z;
+	f32 scalar = 0.35f * (1f - _3b0) + 1f;
+	mtx -> getXDir(i);
+	mtx -> getYDir(j);
+	mtx -> getZDir(k);
+	f32 elementX = MR::vecKillElement(i, _3b4, &i);
+	f32 elementY = MR::vecKillElement(j, _3b4, &j);
+	f32 elementZ = MR::vecKillElement(k, _3b4, &k);
+	elementZ *= _3b0;
+	elementX *= _3b0;
+	elementY *= _3b0;
+	i.scale(scalar);
+	j.scale(scalar);
+	k.scale(scalar);
+	i += _3b4 % elementX;
+	j += _3b4 % elementY;
+	k += _3b4 % elementZ;
+	rawMtx[0][0] = i.x;
+	rawMtx[1][0] = i.y;
+	rawMtx[2][0] = i.z;
+	rawMtx[0][1] = j.x;
+	rawMtx[1][1] = j.y;
+	rawMtx[2][1] = j.z;
+	rawMtx[0][2] = k.x;
+	rawMtx[1][2] = k.y;
+	rawMtx[2][2] = k.z;
 }
 
 void MarioActor::updateBaseScaleMtx() {
