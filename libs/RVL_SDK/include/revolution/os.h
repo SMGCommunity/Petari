@@ -126,6 +126,7 @@ void __OSInitMemoryProtection(void);
 void __OSGetIOSRev(OSIOSRev *);
 int __OSInitSTM(void);
 void __OSInitNet(void);
+void __OSPromoteThread(OSThread *, OSPriority);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);

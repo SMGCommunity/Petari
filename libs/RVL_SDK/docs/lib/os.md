@@ -23,7 +23,7 @@
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSReset.o | 7.744107744107744% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
@@ -270,11 +270,11 @@
 # OSMutex.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSInitMutex | :x: |
-| OSLockMutex | :x: |
-| OSUnlockMutex | :x: |
-| __OSUnlockAllMutex | :x: |
-| OSTryLockMutex | :x: |
+| OSInitMutex | :white_check_mark: |
+| OSLockMutex | :white_check_mark: |
+| OSUnlockMutex | :white_check_mark: |
+| __OSUnlockAllMutex | :white_check_mark: |
+| OSTryLockMutex | :white_check_mark: |
 
 
 # OSReboot.o

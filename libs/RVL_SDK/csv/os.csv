@@ -149,11 +149,11 @@ ConfigMEM_ES1_0,OSMemory.o,os.a,true
 RealMode,OSMemory.o,os.a,true
 BATConfig,OSMemory.o,os.a,true
 __OSInitMemoryProtection,OSMemory.o,os.a,true
-OSInitMutex,OSMutex.o,os.a,false
-OSLockMutex,OSMutex.o,os.a,false
-OSUnlockMutex,OSMutex.o,os.a,false
-__OSUnlockAllMutex,OSMutex.o,os.a,false
-OSTryLockMutex,OSMutex.o,os.a,false
+OSInitMutex,OSMutex.o,os.a,true
+OSLockMutex,OSMutex.o,os.a,true
+OSUnlockMutex,OSMutex.o,os.a,true
+__OSUnlockAllMutex,OSMutex.o,os.a,true
+OSTryLockMutex,OSMutex.o,os.a,true
 __OSReboot,OSReboot.o,os.a,false
 OSGetSaveRegion,OSReboot.o,os.a,false
 OSRegisterShutdownFunction,OSReset.o,os.a,true
