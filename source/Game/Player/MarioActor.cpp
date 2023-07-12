@@ -16,6 +16,11 @@
 #include "Game/Player/MarioSwim.h"
 #include "Game/Screen/GameSceneLayoutHolder.h"
 #include "Game/Player/RushEndInfo.h"
+#include "Game/Player/MarioConst.h"
+#include "Game/Player/MarioEffect.h"
+#include "Game/Player/MarioAnimator.h"
+#include "Game/Player/MarioShadow.h"
+#include "Game/Player/MarioMessenger.h"
 
 static bool gIsLuigi;
 
