@@ -18,7 +18,13 @@ namespace MR {
 class MarioActor : public LiveActor {
 public:
 	MarioActor(const char*);
+
 	~MarioActor();
+
+	virtual void getFrontVec(TVec3f *) const;
+	virtual void getLastMove(TVec3f *) const;
+	virtual TVec3f getLastMove() const;
+	
 	void init(const JMapInfoIter&);
 	void init2(const TVec3f&, const TVec3f&, long);
 	void initAfterPlacement();
