@@ -22,7 +22,7 @@
 #include "Game/Player/MarioShadow.h"
 #include "Game/Player/MarioMessenger.h"
 
-static bool gIsLuigi;
+static bool sIsLuigi;
 
 Triangle &Triangle::operator=(const Triangle &rOther) {
     mParts = rOther.mParts;
@@ -870,7 +870,7 @@ void MarioActor::decLife(unsigned short amt) {
 	}
 	if(mHealth) mHealth--;
 	_388 = 0;
-	if(gIsLuigi) {
+	if(sIsLuigi) {
 		if(mMaxHealth == 3) return;
 		if(mHealth > 3) return;
 		mMaxHealth = 3;
