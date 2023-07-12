@@ -36,4 +36,8 @@ u32 VIGetTvFormat();
 
 u32 VIGetCurrentLine();
 
+void VISetBlack(BOOL);
+void VIFlush();
+void VIWaitForRetrace();
+
 #endif // VI_H

@@ -287,7 +287,289 @@ err:
     return (itemp->dataSize != 0);
 }
 
-void __SCClearDirtyFlag(void) {
+static BOOL FindItemByID(SCItemID id, SCItem* itemp) {
+    u8* conf = __SCGetConfBuf();
+    u16* refp;
+
+    if (id < ItemIDMaxPlus1 && ItemIDOffsetTblOffset != 0) {
+        refp = (u16*)(conf + ItemIDOffsetTblOffset);
+        if (refp[-id] != 0) {
+            return UnpackItem(conf + *(u16*)(conf + refp[-id]), itemp);
+        }
+    }
+
+    return FALSE;
+}
+
+static void __SCSetDirtyFlag(void);
+
+void DeleteItemByID(SCItemID id) {
+    u8* conf = __SCGetConfBuf();
+    u32 targetRef, initialTopOfFreeSpace, moveSize, shrinkSize, i;
+    u16* refp, *itemOfsTop, *itemOfsTargetp, *itemOfsEndp, *itemOfsp;
+
+    if (id < ItemIDMaxPlus1 && ItemIDOffsetTblOffset != 0) {
+        refp = (u16 *)(conf + ItemIDOffsetTblOffset);
+        targetRef = refp[-id];
+
+        if (targetRef != 0 && ItemNumTotal != 0) {
+            itemOfsTop = (u16*)(conf + 4);
+            itemOfsTargetp = (u16 *)(conf + targetRef);
+            itemOfsEndp = itemOfsTop + ItemNumTotal;
+            initialTopOfFreeSpace = *itemOfsEndp;
+            shrinkSize = 2 + (itemOfsTargetp[1] - itemOfsTargetp[0]);
+
+            moveSize = *itemOfsTargetp - (targetRef + 4);
+            memmove(conf + targetRef, conf + targetRef + 4, moveSize);
+
+            for (itemOfsp = itemOfsEndp - 1; itemOfsp >= itemOfsTop; itemOfsp--) {
+                if (itemOfsp < itemOfsTargetp) {
+                    *itemOfsp -= 2;
+                } else {
+                    *itemOfsp -= shrinkSize;
+                }
+            }
+
+            memmove(conf + itemOfsTargetp[0], conf + (itemOfsTargetp[0] + shrinkSize), initialTopOfFreeSpace - (itemOfsTargetp[0] + shrinkSize));
+            memset(conf + (initialTopOfFreeSpace - shrinkSize), 0, shrinkSize);
+
+            for (i = 0; i < ItemIDMaxPlus1; i++) {
+                if (refp[-i] < targetRef) {
+                    // empty branch?
+                } else if (refp[-i] > targetRef) {
+                    refp[-i] -= 2;
+                } else {
+                    refp[-i] = 0;
+                }
+            }
+            ItemRestSize += shrinkSize;
+            ItemNumTotal--;
+            *(u16*)(conf + 4) = (u16)ItemNumTotal;
+            __SCSetDirtyFlag();
+        }
+    }
+}
+
+BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
+{
+    u8  *conf = __SCGetConfBuf();
+    u8  *p;
+    u32 nameLen;
+    u32 packedSize = sizeof(SCType);
+    NameAndID   *tblp = NameAndIDTbl;
+    char        *name;
+    u32 topOfFreeSpace;
+    u16 *refp;
+    u16 *itemOfsTop;
+    u16 *itemOfsEndp;
+    u16 *itemOfsp;
+
+    if (id < ItemIDMaxPlus1 && data != NULL && ItemNumTotal < 0xFFFF && ItemIDOffsetTblOffset != 0) {
+
+        switch (type) {
+          case 0xE0:
+          case 0x60:
+            size = 1;
+            break;
+
+          case 0x80:
+            size = 2;
+            break;
+
+          case 0xA0:
+            size = 4;
+            break;
+
+          case 0xC0:
+            size = 8;
+            break;
+
+          case 0x40:
+            if (size == 0 || size > 65536) {
+                goto error;
+            }
+            if (size > 256) {
+                packedSize += 2;
+                type = 0x20;
+            } else {
+                packedSize += 1;
+            }
+            break;
+
+          default:
+            goto error;
+        }
+
+        packedSize += size;
+
+        while ((name = tblp->name) != NULL) {
+            if (tblp->id == id) {
+                break;
+            }
+
+            tblp++;
+        }
+
+        if (name == NULL) {
+            goto error;
+        }
+
+        nameLen = strlen(name);
+        if (nameLen > 32) {
+            goto error;
+        }
+
+        packedSize += nameLen;
+        if (ItemRestSize < (2 + packedSize)) {
+            goto error;
+        }
+
+
+        itemOfsTop  = (u16 *)(conf + 6);
+        itemOfsEndp = itemOfsTop + ItemNumTotal;
+        topOfFreeSpace = *itemOfsEndp;
+        memmove(conf + (itemOfsTop[0] + 2), conf + itemOfsTop[0], topOfFreeSpace - itemOfsTop[0]);
+
+        itemOfsp = itemOfsTop;
+        do {
+            *itemOfsp += 2;
+            itemOfsp++;
+        } while (itemOfsp <= itemOfsEndp);
+
+        topOfFreeSpace = *itemOfsEndp;
+        p = (u8 *)(conf + topOfFreeSpace);
+
+        *p = (SCType)(type | (nameLen - 1));
+        memcpy(p + sizeof(SCType), name, nameLen);
+        p += sizeof(SCType) + nameLen;
+        if (type == 0x40) {
+            *p++ = (u8)(size - 1);
+        } else if (type == 0x20) {
+            *p++ = (u8)((size - 1) >> 8);
+            *p++ = (u8)(size - 1);
+        }
+        memcpy(p, data, size);
+        p += size;
+
+        refp = (u16 *)(conf + ItemIDOffsetTblOffset);
+        refp[-id] = (u16)((u8 *)itemOfsEndp - conf);
+        itemOfsEndp[1] = (u16)(itemOfsEndp[0] + packedSize);
+        ItemRestSize -= 2 + packedSize;
+        ItemNumTotal++;
+        *(u16 *)(conf + 4) = (u16)ItemNumTotal;
+        __SCSetDirtyFlag();
+
+        return TRUE;
+    }
+
+error:
+    return FALSE;
+}
+
+BOOL SCFindByteArrayItem(void* data, u32 size, SCItemID id) {
+    SCItem item;
+    BOOL result = FALSE;
+    BOOL enabled = OSDisableInterrupts();
+
+    if (data != NULL && FindItemByID(id, &item) && item.typeByteArray != 0 && item.dataSize == size) {
+        memcpy(data, item.data, size);
+        result = TRUE;
+    }
+
+    OSRestoreInterrupts(enabled);
+    return result;
+}
+
+BOOL SCReplaceByteArrayItem(const void* data, u32 size, SCItemID id) {
+    SCItem  item;
+    BOOL    result = FALSE;
+    BOOL    enabled = OSDisableInterrupts();
+
+    if (data != NULL) {
+        if (FindItemByID(id, &item)) {
+            if (item.typeByteArray != 0 && item.dataSize == size) {
+                if (memcmp(item.data, data, size) != 0) {
+                    memcpy(item.data, data, size);
+                    __SCSetDirtyFlag();
+                }
+
+                result = TRUE;
+                goto finish;
+            } 
+            else {
+                DeleteItemByID(id);
+            }
+        }
+        result = CreateItemByID(id, 0x40, data, size);
+    }
+
+finish:
+    OSRestoreInterrupts(enabled);
+    return result;
+}
+
+static BOOL SCFindIntegerItem(void* data, SCItemID id, SCType type) {
+    SCItem item;
+    BOOL result = FALSE;
+    BOOL enabled = OSDisableInterrupts();
+
+    if (FindItemByID(id, &item) && item.typeInteger == type) {
+        memcpy(data, item.data, item.dataSize);
+        result = TRUE;
+    }
+
+    OSRestoreInterrupts(enabled);
+    return result;
+}
+
+BOOL SCReplaceIntegerItem(const void* data, SCItemID id, SCType type) NO_INLINE {
+    SCItem item;
+    BOOL result = FALSE;
+    BOOL enabled = OSDisableInterrupts();
+
+    if (FindItemByID(id, &item)) {
+        if (item.typeInteger == type) {
+            if (memcmp(item.data, data, item.dataSize) != 0) {
+                memcpy(item.data, data, item.dataSize);
+                __SCSetDirtyFlag();
+            }
+
+            result = TRUE;
+            goto finish;
+        } 
+        else {
+            DeleteItemByID(id);
+        }
+    }
+
+    result = CreateItemByID(id, type, data, 0);
+
+finish:
+    OSRestoreInterrupts(enabled);
+    return result;
+}
+
+BOOL SCFindU8Item(u8* data, SCItemID id) {
+    return SCFindIntegerItem(data, id, 0x60);
+}
+
+BOOL SCFindS8Item(s8* data, SCItemID id) {
+    return SCFindIntegerItem(data, id, 0x60);
+}
+
+BOOL SCFindU32Item(u32* data, SCItemID id) {
+    return SCFindIntegerItem(data, id, 0xA0);
+}
+
+BOOL SCReplaceU8Item(u8 data, SCItemID id) {
+    return SCReplaceIntegerItem(&data, id, 0x60);
+}
+
+static void __SCSetDirtyFlag(void) {
+    DirtyFlag = TRUE;
+}
+
+static void __SCClearDirtyFlag(void) {
     DirtyFlag = FALSE;
 }
 

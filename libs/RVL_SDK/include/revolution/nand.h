@@ -98,8 +98,11 @@ typedef void (*NANDCallback)(s32, NANDCommandBlock *);
 s32 NANDInit(void);
 
 s32 NANDCreate(const char *, u8, u8);
+s32 NANDPrivateCreate(const char *, u8, u8);
 
 s32 NANDOpen(const char *, NANDFileInfo *, u8);
+s32 NANDPrivateOpen(const char *, NANDFileInfo *, u8);
+s32 NANDPrivateOpenAsync(const char *, NANDFileInfo *, const u8, NANDCallback, NANDCommandBlock *);
 
 s32 NANDClose(NANDFileInfo *);
 s32 NANDCloseAsync(NANDFileInfo *, NANDCallback, NANDCommandBlock *);
@@ -115,8 +118,6 @@ s32 NANDMove(const char *, const char *);
 s32 NANDCheck(u32, u32, u32 *);
 
 s32 NANDWrite(NANDFileInfo *, const void *, u32);
-
-s32 NANDPrivateOpenAsync(const char *, NANDFileInfo *, const u8, NANDCallback, NANDCommandBlock *);
 
 BOOL nandIsInitialized(void);
 s32 nandConvertErrorCode(const ISFSError);

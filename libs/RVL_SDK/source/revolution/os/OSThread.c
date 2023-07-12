@@ -11,12 +11,6 @@ static OSThread IdleThread;
 static OSThread DefaultThread;
 static OSContext IdleContext;
 
-OSThread* __OSCurrentThread     : (OS_BASE_CACHED | 0x00E4);
-OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
-
-volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0xD4);
-volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0xD8);
-
 static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 
 void UnsetRun(OSThread *) __attribute__((noinline));

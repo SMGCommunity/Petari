@@ -99,6 +99,11 @@ typedef enum {
     SC_ITEM_ID_MAX_PLUS1
 } SCItemID;
 
+typedef struct {
+  u8 mode;
+  u8 led;
+} SCIdleModeInfo;
+
 #define SC_TYPE_MASK                ((SCType)0xe0)
 #define SC_NAME_LENGTH_MASK         ((SCType)~SC_TYPE_MASK)
 
@@ -111,6 +116,12 @@ u32 __SCGetConfBufSize(void);
 
 void SCInit(void);
 u32 SCCheckStatus(void);
+u32 SCGetCounterBias(void);
+
+BOOL SCGetIdleMode(SCIdleModeInfo *);
+
+BOOL SCFindByteArrayItem(void *, u32, SCItemID);
+BOOL SCFindU32Item(u32 *, SCItemID);
 
 #ifdef __cplusplus
 }

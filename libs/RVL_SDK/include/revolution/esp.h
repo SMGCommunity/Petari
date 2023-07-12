@@ -44,7 +44,7 @@ typedef struct {
 
 typedef struct {
     u32 code;
-    u32 playLimit;
+    u32 limit;
 } ESLpEntry;
 
 typedef struct {

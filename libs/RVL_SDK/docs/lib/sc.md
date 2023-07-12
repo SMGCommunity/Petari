@@ -8,8 +8,8 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| scsystem.o | 35.87692307692308% | 9 / 22 | 40.909090909090914% | :eight_pointed_black_star: 
-| scapi.o | 0.0% | 0 / 19 | 0.0% | :x: 
+| scsystem.o | 74.46153846153845% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
+| scapi.o | 6.5743944636678195% | 2 / 19 | 10.526315789473683% | :eight_pointed_black_star: 
 | scapi_prdinfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
 
 
@@ -26,15 +26,15 @@
 | CloseCallbackFromReloadError | :white_check_mark: |
 | ParseConfBuf | :white_check_mark: |
 | UnpackItem | :white_check_mark: |
-| DeleteItemByID | :x: |
-| CreateItemByID | :x: |
-| SCFindByteArrayItem | :x: |
-| SCReplaceByteArrayItem | :x: |
-| SCReplaceIntegerItem | :x: |
-| SCFindU8Item | :x: |
-| SCFindS8Item | :x: |
-| SCFindU32Item | :x: |
-| SCReplaceU8Item | :x: |
+| DeleteItemByID | :white_check_mark: |
+| CreateItemByID | :white_check_mark: |
+| SCFindByteArrayItem | :white_check_mark: |
+| SCReplaceByteArrayItem | :white_check_mark: |
+| SCReplaceIntegerItem | :white_check_mark: |
+| SCFindU8Item | :white_check_mark: |
+| SCFindS8Item | :white_check_mark: |
+| SCFindU32Item | :white_check_mark: |
+| SCReplaceU8Item | :white_check_mark: |
 | __SCFlushSyncCallback | :x: |
 | SCFlushAsync | :x: |
 | MyNandCallback | :x: |
@@ -46,12 +46,12 @@
 | SCGetAspectRatio | :x: |
 | SCGetDisplayOffsetH | :x: |
 | SCGetEuRgb60Mode | :x: |
-| SCGetIdleMode | :x: |
+| SCGetIdleMode | :white_check_mark: |
 | SCGetLanguage | :x: |
 | SCGetProgressiveMode | :x: |
 | SCGetScreenSaverMode | :x: |
 | SCGetSoundMode | :x: |
-| SCGetCounterBias | :x: |
+| SCGetCounterBias | :white_check_mark: |
 | SCGetBtDeviceInfoArray | :x: |
 | SCSetBtDeviceInfoArray | :x: |
 | SCGetBtCmpDevInfoArray | :x: |

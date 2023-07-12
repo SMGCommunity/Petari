@@ -37,7 +37,7 @@
 | OSStateFlags.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSPlayTime.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| OSPlayTime.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSLaunch.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | __ppc_eabi_init.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
@@ -434,14 +434,14 @@
 # OSPlayTime.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSPlayTimeIsLimited | :x: |
-| __OSPlayTimeRebootCallback | :x: |
-| __OSPlayTimeFadeLastAIDCallback | :x: |
-| __OSWriteExpiredFlag | :x: |
-| __OSPlayTimeRebootThread | :x: |
-| __OSPlayTimeAlarmExpired | :x: |
-| __OSGetPlayTime | :x: |
-| __OSInitPlayTime | :x: |
+| OSPlayTimeIsLimited | :white_check_mark: |
+| __OSPlayTimeRebootCallback | :white_check_mark: |
+| __OSPlayTimeFadeLastAIDCallback | :white_check_mark: |
+| __OSWriteExpiredFlag | :white_check_mark: |
+| __OSPlayTimeRebootThread | :white_check_mark: |
+| __OSPlayTimeAlarmExpired | :white_check_mark: |
+| __OSGetPlayTime | :white_check_mark: |
+| __OSInitPlayTime | :white_check_mark: |
 
 
 # OSLaunch.o

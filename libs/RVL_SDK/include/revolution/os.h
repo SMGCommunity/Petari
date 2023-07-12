@@ -13,7 +13,8 @@ extern "C" {
 typedef s64         OSTime;
 typedef u32         OSTick;
 
-u32 __OSBusClock : (0x8000 << 16 | 0x00F8); 
+u32 __OSBusClock : (0x8000 << 16 | 0x00F8);
+u32 __MEM2End : (0x8000 << 16 | 0x3128);
 
 #define OS_BUS_CLOCK        __OSBusClock
 #ifndef OS_CORE_CLOCK

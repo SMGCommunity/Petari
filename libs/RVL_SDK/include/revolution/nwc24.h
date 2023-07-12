@@ -1,6 +1,9 @@
 #ifndef NWC24_H
 #define NWC24_H
 
+#include <revolution/types.h>
+#include <revolution.h>
+
 typedef enum NWC24Err
 {
     NWC24_OK                    = 0,
@@ -58,5 +61,20 @@ typedef enum NWC24Err
     NWC24_ERR_OTHER_REGION      = -52
     
 } NWC24Err;
+
+void NWC24iRegister(void);
+BOOL NWC24iIsAsyncRequestPending(void);
+
+int NWC24IsMsgLibOpened(void);
+int NWC24IsMsgLibOpenedByTool(void);
+int NWC24IsMsgLibOpenBlocking(void);
+
+NWC24Err NWC24iIoctlResourceManager(const char *, IOSFd, s32, void *, u32, void *, u32);
+NWC24Err NWC24iIoctlResourceManagerAsync(const char *, IOSFd, s32, void *, u32, void *, u32, IOSError *);
+
+NWC24Err NWC24iOpenResourceManager(const char *, const char *, IOSFd *, u32);
+NWC24Err NWC24iCloseResourceManager(const char *, IOSFd);
+
+NWC24Err NWC24iSetScriptMode(s32);
 
 #endif // NWC24_H
