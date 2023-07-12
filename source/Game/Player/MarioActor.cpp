@@ -17,7 +17,7 @@
 #include "Game/Screen/GameSceneLayoutHolder.h"
 #include "Game/Player/RushEndInfo.h"
 
-static bool isLuigi;
+static bool gIsLuigi;
 
 Triangle &Triangle::operator=(const Triangle &rOther) {
     mParts = rOther.mParts;
@@ -98,39 +98,39 @@ void MarioActor::calcBaseFrontVec(const TVec3f &rVec) {
 	}
 }
 
-void MarioActor::playSound(const char *name, long num) {
-	mMario -> playSound(name, num);
+void MarioActor::playSound(const char *pName, long duration) {
+	mMario -> playSound(pName, duration);
 }
 
-void MarioActor::changeAnimation(const char *name, const char *newName) {
-	mMario -> changeAnimation(name, newName);
+void MarioActor::changeAnimation(const char *pName, const char *pNewName) {
+	mMario -> changeAnimation(pName, pNewName);
 }
 
-void MarioActor::changeAnimationNonStop(const char *name) {
-	mMario -> changeAnimationNonStop(name);
+void MarioActor::changeAnimationNonStop(const char *pName) {
+	mMario -> changeAnimationNonStop(pName);
 }
 
-void MarioActor::changeAnimationUpper(const char *name) {
+void MarioActor::changeAnimationUpper(const char *pName) {
 	if(!mMario -> _71C) {
 		if(isAnimationRun("基本")) {
-			mMario -> changeAnimationUpper(name, nullptr);
+			mMario -> changeAnimationUpper(pName, nullptr);
 			return;
 		}
 	}
-	mMario -> changeAnimation(name, (const char *)nullptr);
+	mMario -> changeAnimation(pName, (const char *)nullptr);
 }
 
-void MarioActor::stopAnimation(const char *name) {
-	mMario -> stopAnimation(name, (const char *)nullptr);
+void MarioActor::stopAnimation(const char *pName) {
+	mMario -> stopAnimation(pName, (const char *)nullptr);
 }
 
-bool MarioActor::isAnimationRun(const char *name) const {
-	return mMario -> isAnimationRun(name);
+bool MarioActor::isAnimationRun(const char *pName) const {
+	return mMario -> isAnimationRun(pName);
 }
 
-void MarioActor::changeNullAnimation(const char *name, signed char num) {
+void MarioActor::changeNullAnimation(const char *pName, signed char num) {
 	mNullAnimation -> appear();
-	MR::startBck(mNullAnimation, name, nullptr);
+	MR::startBck(mNullAnimation, pName, nullptr);
 	_b92 = num;
 }
 
@@ -212,9 +212,9 @@ void MarioActor::changeGameOverAnimation() {
 	_a6e = false;
 }
 
-XjointTransform* MarioActor::getJointCtrl(const char *name) const {
-	XanimeCore *core = mMarioAnim -> _c -> mCore;
-	return core -> getJointTransform(MR::getJointIndex(this, name));
+XjointTransform* MarioActor::getJointCtrl(const char *pName) const {
+	XanimeCore *pCore = mMarioAnim -> _c -> mCore;
+	return pCore -> getJointTransform(MR::getJointIndex(this, pName));
 }
 
 bool MarioActor::isTurning() const {
@@ -335,9 +335,9 @@ void MarioActor::movement() {
 			if(stack_128.dot(getGravityVec()) < -40f) {
 				TVec3f stack_ec(mPosition.translateOpposite(getGravityVec() % 100f));
 				TVec3f stack_e0;
-				Triangle *tmp = mMario -> getTmpPolygon();
+				Triangle *pTmp = mMario -> getTmpPolygon();
 				
-				if(MR::getFirstPolyOnLineToMap(&stack_e0, tmp, stack_ec, getGravityVec() % 200f)) {
+				if(MR::getFirstPolyOnLineToMap(&stack_e0, pTmp, stack_ec, getGravityVec() % 200f)) {
 					TVec3f stack_d4;
 					if (
 						MR::vecKillElement (
@@ -345,8 +345,8 @@ void MarioActor::movement() {
 							getGravityVec(),
 							&stack_d4
 						) < -5f
-						&& tmp -> mParts
-						&& !tmp -> mParts -> _D4
+						&& pTmp -> mParts
+						&& !pTmp -> mParts -> _D4
 						&& getMovementStates()._3e != 1
 					) {
 						mPosition = stack_e0;
@@ -770,13 +770,13 @@ void MarioActor::updateSwingAction() {
 				if(requestSpinJump2P) MR::start2PJumpAssistSound();
 			}
 			else if(!getMovementStates()._f && !mMario -> isAnimationRun("地上ひねり")) {
-				const char *lastAnimationName = mMarioAnim -> _10 -> getCurrentAnimationName();
+				const char *pLastAnimationName = mMarioAnim -> _10 -> getCurrentAnimationName();
 				if(_3d4 == 4) {
 					if(!mMario -> isAnimationRun("ハチスピン")) didSpinPunch = trySpinPunch();
 				}
 				else didSpinPunch = trySpinPunch();
 				_974 = 0;
-				if(lastAnimationName != mMarioAnim -> _10 -> getCurrentAnimationName()) {
+				if(pLastAnimationName != mMarioAnim -> _10 -> getCurrentAnimationName()) {
 					mMario -> playSound("パンチ風切り", -1);
 				}
 			}
@@ -807,8 +807,8 @@ void MarioActor::updateSwingAction() {
 		case 4:
 			if(mMario -> _418 != 0) break;
 			mMario -> startTeresaDisappear();
-			const Constants *constants = mConst -> _0[mConst -> _8];
-			_946 = constants -> _6c8 + constants -> _426;
+			const Constants *pConstants = mConst -> _0[mConst -> _8];
+			_946 = pConstants -> _6c8 + pConstants -> _426;
 			break;
 		case 5:
 			if(!isEnableSpinPunch()) break;
@@ -865,7 +865,7 @@ void MarioActor::decLife(unsigned short amt) {
 	}
 	if(mHealth) mHealth--;
 	_388 = 0;
-	if(isLuigi) {
+	if(gIsLuigi) {
 		if(mMaxHealth == 3) return;
 		if(mHealth > 3) return;
 		mMaxHealth = 3;
@@ -1021,11 +1021,11 @@ bool MarioActor::doStun() {
 
 void MarioActor::scaleMtx(MtxPtr rawMtx) {
 	TVec3f i, j, k;
-	const TRot3f *mtx = (TRot3f *)rawMtx;
+	const TRot3f *pMtx = (TRot3f *)rawMtx;
 	f32 scalar = 0.35f * (1f - _3b0) + 1f;
-	mtx -> getXDir(i);
-	mtx -> getYDir(j);
-	mtx -> getZDir(k);
+	pMtx -> getXDir(i);
+	pMtx -> getYDir(j);
+	pMtx -> getZDir(k);
 	f32 elementX = MR::vecKillElement(i, _3b4, &i);
 	f32 elementY = MR::vecKillElement(j, _3b4, &j);
 	f32 elementZ = MR::vecKillElement(k, _3b4, &k);
