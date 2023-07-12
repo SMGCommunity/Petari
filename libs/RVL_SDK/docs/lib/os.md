@@ -14,7 +14,7 @@
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | OSAudioSystem.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSContext.o | 56.19967793880838% | 11 / 16 | 68.75% | :eight_pointed_black_star: 
+| OSContext.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | OSExec.o | 21.309192200557103% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -147,22 +147,22 @@
 # OSContext.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSLoadFPUContext | :x: |
-| __OSSaveFPUContext | :x: |
+| __OSLoadFPUContext | :white_check_mark: |
+| __OSSaveFPUContext | :white_check_mark: |
 | OSSaveFPUContext | :white_check_mark: |
 | OSSetCurrentContext | :white_check_mark: |
-| OSGetCurrentContext | :x: |
+| OSGetCurrentContext | :white_check_mark: |
 | OSSaveContext | :white_check_mark: |
 | OSLoadContext | :white_check_mark: |
 | OSGetStackPointer | :white_check_mark: |
 | OSSwitchFiber | :white_check_mark: |
 | OSSwitchFiberEx | :white_check_mark: |
 | OSClearContext | :white_check_mark: |
-| OSInitContext | :x: |
+| OSInitContext | :white_check_mark: |
 | OSDumpContext | :white_check_mark: |
 | OSSwitchFPUContext | :white_check_mark: |
 | __OSContextInit | :white_check_mark: |
-| OSFillFPUContext | :x: |
+| OSFillFPUContext | :white_check_mark: |
 
 
 # OSError.o
