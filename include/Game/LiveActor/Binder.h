@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game/Map/HitInfo.h"
+
 class Binder {
 public:
     void clear();
