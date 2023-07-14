@@ -3,7 +3,7 @@
 void Mario::initMember() {
     _40.zero();
     _4C.zero();
-    _F4.identity();
+    PSMTXIdentity(_F4.toMtxPtr());
     _130.zero();
     _16C.zero();
     _178.zero();
@@ -58,9 +58,9 @@ void Mario::initMember() {
     _790.zero();
     _7C4.zero();
     _7D4.zero();
-    _7E4.identity();
+    PSMTXIdentity(_7E4.toMtxPtr());
     _814.zero();
-    _824.identity();
+    PSMTXIdentity(_824.toMtxPtr());
 
     _8B0.zero();
     _8BC.zero();
