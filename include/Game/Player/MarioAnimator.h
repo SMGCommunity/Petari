@@ -26,6 +26,6 @@ public:
     void setSpeed(f32);
 
     XanimeResourceTable* _8;
-    XanimePlayer* _c;
+    XanimePlayer* _C;
     XanimePlayer* _10;
 };

@@ -14,5 +14,5 @@ public:
     u32 _144;
     u8 _148[0x18];
     TVec3f _160;
-    TVec3f _16c;
+    TVec3f _16C;
 };
