@@ -15,7 +15,7 @@ public:
         
     }
 
-    virtual f32 getStickY() const;
+    //virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f &);
     virtual void addVelocity(const TVec3f &, f32);
     virtual void init() = 0;
