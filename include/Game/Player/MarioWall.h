@@ -4,5 +4,5 @@ class MarioActor;
 
 class MarioWall {
 public:
-	MarioWall(MarioActor *);
+    MarioWall(MarioActor *);
 };

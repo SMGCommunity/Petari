@@ -4,5 +4,5 @@
 
 class MarioNullBck : public LiveActor {
 public:
-	void appear();
+    void appear();
 };

@@ -8,9 +8,9 @@ public:
     void setTriangleFilter(TriangleFilterBase *);
     const Triangle* getPlane(int) const;
 
-	int _0;
-	int _4;
-	int _8;
+    int _0;
+    int _4;
+    int _8;
     TMtx34f *_c;
     const TVec3f *_10;
     const TVec3f *_14;

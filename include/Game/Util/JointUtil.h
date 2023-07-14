@@ -16,6 +16,6 @@ namespace MR {
 
     unsigned long getJointNum(const LiveActor *);
 
-	unsigned short getJointIndex(const LiveActor *, const char *);
+    unsigned short getJointIndex(const LiveActor *, const char *);
     
 };

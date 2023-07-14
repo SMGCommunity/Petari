@@ -2,5 +2,5 @@
 
 class CollisionShadow {
 public:
-	CollisionShadow(f32, f32);
+    CollisionShadow(f32, f32);
 };

@@ -4,5 +4,5 @@
 
 class MarioMessenger {
 public:
-	MarioMessenger(HitSensor *);
+    MarioMessenger(HitSensor *);
 };

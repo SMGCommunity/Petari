@@ -7,8 +7,8 @@ class MarioActor;
 class MarioSwim : public MarioModule {
 public:
     MarioSwim(MarioActor *);
-	
-	void checkWaterCube(bool);
+    
+    void checkWaterCube(bool);
     
     u8 _8[0x13c];
     u32 _144;

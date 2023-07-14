@@ -2,12 +2,12 @@
 
 class MarioHolder {
 public:
-	void setMarioActor(MarioActor* actor);
+    void setMarioActor(MarioActor* actor);
 };
 
 class MarioActor;
 
 
 namespace MR {
-	MarioHolder* getMarioHolder();
+    MarioHolder* getMarioHolder();
 }

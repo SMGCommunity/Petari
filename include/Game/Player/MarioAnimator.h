@@ -5,7 +5,7 @@ class MarioModule;
 
 class MarioAnimator : public MarioModule {
 public:
-	MarioAnimator(MarioActor *);
+    MarioAnimator(MarioActor *);
 
     virtual void init();
     virtual bool proc(u32);
@@ -25,7 +25,7 @@ public:
     bool isAnimationStop();
     void setSpeed(f32);
 
-	XanimeResourceTable* _8;
-	XanimePlayer* _c;
-	XanimePlayer* _10;
+    XanimeResourceTable* _8;
+    XanimePlayer* _c;
+    XanimePlayer* _10;
 };

@@ -4,5 +4,5 @@ class MarioActor;
 
 class MarioEffect {
 public:
-	MarioEffect(MarioActor *);
+    MarioEffect(MarioActor *);
 };

@@ -2,6 +2,6 @@
 
 class FloorCode {
 public:
-	FloorCode();
-	
+    FloorCode();
+    
 };
