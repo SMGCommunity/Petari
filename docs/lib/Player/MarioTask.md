@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 20 Completed -- (0.0%)
+# 1 / 20 Completed -- (5.0%)
 # MarioTask.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `delTask__5MarioFP15MarioModuleTask` | :x: |
 | `execTask__5MarioFv` | :x: |
 | `drawTask__5MarioCFv` | :x: |
-| `initTask__5MarioFv` | :x: |
+| `initTask__5MarioFv` | :white_check_mark: |
 | `isActiveTask__5MarioFM5MarioFPCvPvUl_b` | :x: |
 | `isActiveTaskID__5MarioFUl` | :x: |
 | `pushTask__5MarioFM5MarioFPCvPvUl_bUl` | :x: |

@@ -5,8 +5,8 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 1 Completed -- (0.0%)
+# 1 / 1 Completed -- (100.0%)
 # MarioInit.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `initMember__5MarioFv` | :x: |
+| `initMember__5MarioFv` | :white_check_mark: |

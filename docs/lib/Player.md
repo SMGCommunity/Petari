@@ -16,7 +16,7 @@
 | [JetTurtleShadow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/JetTurtleShadow.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [MarineSnow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarineSnow.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [Mario.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/Mario.md) | 0.0% | 0 / 55 | 0.0% | :x: 
-| [MarioActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActor.md) | 0.5966239813736903% | 1 / 88 | 1.1363636363636365% | :eight_pointed_black_star: 
+| [MarioActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActor.md) | 44.965075669383005% | 43 / 88 | 48.86363636363637% | :eight_pointed_black_star: 
 | [MarioActorDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorDraw.md) | 0.0% | 0 / 36 | 0.0% | :x: 
 | [MarioActorPunch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorPunch.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [MarioActorCamera.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorCamera.md) | 0.0% | 0 / 15 | 0.0% | :x: 
@@ -59,7 +59,7 @@
 | [MarioFlow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioFlow.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [MarioFoo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioFoo.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [MarioHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioHolder.md) | 0.0% | 0 / 5 | 0.0% | :x: 
-| [MarioInit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioInit.md) | 0.0% | 0 / 1 | 0.0% | :x: 
+| [MarioInit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioInit.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [MarioJump.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioJump.md) | 0.0% | 0 / 45 | 0.0% | :x: 
 | [MarioMessenger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioMessenger.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [MarioModule.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioModule.md) | 0.0% | 0 / 90 | 0.0% | :x: 
@@ -94,7 +94,7 @@
 | [MarioStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioStep.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [MarioBump.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioBump.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [MarioEnforce.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioEnforce.md) | 0.0% | 0 / 22 | 0.0% | :x: 
-| [MarioTask.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioTask.md) | 0.0% | 0 / 20 | 0.0% | :x: 
+| [MarioTask.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioTask.md) | 1.9428571428571426% | 1 / 20 | 5.0% | :eight_pointed_black_star: 
 | [MarioTeresa.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioTeresa.md) | 0.0% | 0 / 32 | 0.0% | :x: 
 | [MarioMagic.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioMagic.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [MarioWarp.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioWarp.md) | 0.0% | 0 / 12 | 0.0% | :x: 
