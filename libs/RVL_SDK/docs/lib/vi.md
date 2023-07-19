@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 2.355072463768116% | 3 / 28 | 10.714285714285714% | :eight_pointed_black_star: 
+| vi.o | 18.695652173913043% | 9 / 28 | 32.142857142857146% | :eight_pointed_black_star: 
 | i2c.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | vi3in1.o | 0.0% | 0 / 14 | 0.0% | :x: 
 
@@ -23,17 +23,17 @@
 | getTiming | :x: |
 | __VIInit | :x: |
 | VIInit | :x: |
-| VIWaitForRetrace | :x: |
-| setFbbRegs | :x: |
-| setHorizontalRegs | :x: |
-| setVerticalRegs | :x: |
+| VIWaitForRetrace | :white_check_mark: |
+| setFbbRegs | :white_check_mark: |
+| setHorizontalRegs | :white_check_mark: |
+| setVerticalRegs | :white_check_mark: |
 | VIConfigure | :x: |
 | VIConfigurePan | :x: |
-| VIFlush | :x: |
+| VIFlush | :white_check_mark: |
 | VISetNextFrameBuffer | :x: |
 | VIGetNextFrameBuffer | :x: |
 | VIGetCurrentFrameBuffer | :x: |
-| VISetBlack | :x: |
+| VISetBlack | :white_check_mark: |
 | VIGetRetraceCount | :x: |
 | VIGetCurrentLine | :white_check_mark: |
 | VIGetTvFormat | :white_check_mark: |

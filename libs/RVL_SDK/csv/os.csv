@@ -100,7 +100,7 @@ Callback,OSExec.o,os.a,false
 __OSGetExecParams,OSExec.o,os.a,true
 callback,OSExec.o,os.a,false
 __OSLaunchNextFirmware,OSExec.o,os.a,false
-__OSLaunchMenu,OSExec.o,os.a,false
+__OSLaunchMenu,OSExec.o,os.a,true
 __OSBootDolSimple,OSExec.o,os.a,false
 __OSBootDol,OSExec.o,os.a,false
 ScreenReport,OSFatal.o,os.a,false
@@ -167,7 +167,7 @@ __OSReturnToMenu,OSReset.o,os.a,false
 OSReturnToMenu,OSReset.o,os.a,false
 OSReturnToSetting,OSReset.o,os.a,false
 __OSReturnToMenuForError,OSReset.o,os.a,false
-__OSHotResetForError,OSReset.o,os.a,false
+__OSHotResetForError,OSReset.o,os.a,true
 OSGetResetCode,OSReset.o,os.a,true
 OSResetSystem,OSReset.o,os.a,false
 WriteSramCallback,OSRtc.o,os.a,true
@@ -226,8 +226,8 @@ OSSetPowerCallback,OSStateTM.o,os.a,false
 OSGetResetButtonState,OSStateTM.o,os.a,false
 __OSInitSTM,OSStateTM.o,os.a,false
 __OSShutdownToSBY,OSStateTM.o,os.a,false
-__OSHotReset,OSStateTM.o,os.a,false
-__OSSetVIForceDimming,OSStateTM.o,os.a,false
+__OSHotReset,OSStateTM.o,os.a,true
+__OSSetVIForceDimming,OSStateTM.o,os.a,true
 __OSSetIdleLEDMode,OSStateTM.o,os.a,true
 __OSUnRegisterStateEvent,OSStateTM.o,os.a,true
 __OSVIDimReplyHandler,OSStateTM.o,os.a,true
@@ -238,8 +238,8 @@ PlayRecordAlarmCallback,OSPlayRecord.o,os.a,false
 PlayRecordCallback,OSPlayRecord.o,os.a,false
 __OSStartPlayRecord,OSPlayRecord.o,os.a,false
 __OSStopPlayRecord,OSPlayRecord.o,os.a,false
-__OSWriteStateFlags,OSStateFlags.o,os.a,false
-__OSReadStateFlags,OSStateFlags.o,os.a,false
+__OSWriteStateFlags,OSStateFlags.o,os.a,true
+__OSReadStateFlags,OSStateFlags.o,os.a,true
 __OSInitNet,OSNet.o,os.a,true
 __OSCreateNandbootInfo,OSNandbootInfo.o,os.a,false
 __OSWriteNandbootInfo,OSNandbootInfo.o,os.a,false

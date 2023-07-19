@@ -73,7 +73,7 @@ typedef struct {
     u16 index;
     ESContentType type;
     u64 size;
-    IOSCCertSigType hash;
+    IOSCHash hash;
 } ESContentMeta;
 
 typedef struct {

@@ -17,6 +17,7 @@ typedef u32 IOSEvent;
 
 typedef u8 IOSCName[64];
 typedef u8 IOSCSigDummy[60];
+typedef u8 IOSCHash[20];
 
 typedef u8 CSLOSEccPublicKey[60];
 typedef u8 CSLOSRsaSig2048[256];

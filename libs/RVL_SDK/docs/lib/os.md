@@ -16,7 +16,7 @@
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSContext.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
-| OSExec.o | 21.309192200557103% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
+| OSExec.o | 24.72144846796657% | 5 / 11 | 45.45454545454545% | :eight_pointed_black_star: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
@@ -25,16 +25,16 @@
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSReset.o | 7.744107744107744% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
+| OSReset.o | 11.447811447811448% | 3 / 14 | 21.428571428571427% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSThread.o | 91.31016042780749% | 23 / 28 | 82.14285714285714% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| OSStateTM.o | 11.627906976744185% | 3 / 12 | 25.0% | :eight_pointed_black_star: 
+| OSStateTM.o | 32.55813953488372% | 5 / 12 | 41.66666666666667% | :eight_pointed_black_star: 
 | OSPlayRecord.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSStateFlags.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| OSStateFlags.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | OSPlayTime.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
@@ -186,7 +186,7 @@
 | __OSGetExecParams | :white_check_mark: |
 | callback | :x: |
 | __OSLaunchNextFirmware | :x: |
-| __OSLaunchMenu | :x: |
+| __OSLaunchMenu | :white_check_mark: |
 | __OSBootDolSimple | :x: |
 | __OSBootDol | :x: |
 
@@ -298,7 +298,7 @@
 | OSReturnToMenu | :x: |
 | OSReturnToSetting | :x: |
 | __OSReturnToMenuForError | :x: |
-| __OSHotResetForError | :x: |
+| __OSHotResetForError | :white_check_mark: |
 | OSGetResetCode | :white_check_mark: |
 | OSResetSystem | :x: |
 
@@ -392,8 +392,8 @@
 | OSGetResetButtonState | :x: |
 | __OSInitSTM | :x: |
 | __OSShutdownToSBY | :x: |
-| __OSHotReset | :x: |
-| __OSSetVIForceDimming | :x: |
+| __OSHotReset | :white_check_mark: |
+| __OSSetVIForceDimming | :white_check_mark: |
 | __OSSetIdleLEDMode | :white_check_mark: |
 | __OSUnRegisterStateEvent | :white_check_mark: |
 | __OSVIDimReplyHandler | :white_check_mark: |
@@ -414,8 +414,8 @@
 # OSStateFlags.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSWriteStateFlags | :x: |
-| __OSReadStateFlags | :x: |
+| __OSWriteStateFlags | :white_check_mark: |
+| __OSReadStateFlags | :white_check_mark: |
 
 
 # OSNet.o

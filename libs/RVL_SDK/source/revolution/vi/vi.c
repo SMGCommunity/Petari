@@ -2,11 +2,34 @@
 #include <revolution/vi.h>
 #include "private/flipper.h"
 
-static timing_s* CurrTiming;
-static u32 CurrTvMode;
+static volatile u32 retraceCount;
+static volatile u32 flushFlag;
+static volatile u32 flushFlag3in1;
+static OSThreadQueue retraceQueue;
 
 static vu32 __VIDimmingFlag_DEV_IDLE[10];
 static volatile BOOL __VIDimmingState = FALSE;
+
+#define ToPhysical(fb)  (u32)(((u32)(fb)) & 0x3FFFFFFF)
+#define IS_LOWER_16MB(x) ((x) < 16*1024*1024)
+#define ONES(x) ((1 << (x)) - 1)
+
+#define VI_NUMREGS (sizeof(__VIRegs)/sizeof(__VIRegs[0]))
+
+static vu32 changeMode = 0;
+static vu64 changed = 0;
+static u16 regs[VI_NUMREGS];
+
+static vu32 shdwChangeMode = 0;
+static vu64 shdwChanged = 0;
+static u16 shdwRegs[VI_NUMREGS];
+
+static HorVer_s HorVer;
+static timing_s* CurrTiming;
+static u32 CurrTvMode;
+
+static u32 NextBufAddr;
+static u32 CurrBufAddr;
 
 static void GetCurrentDisplayPosition(u32 *hct, u32 *vct) {
     u32 hcount;
@@ -25,6 +48,152 @@ static void GetCurrentDisplayPosition(u32 *hct, u32 *vct) {
     *vct = vcount;
 }
 
+static void calcFbbs(u32 bufAddr, u16 panPosX, u16 panPosY, u8 wordPerLine, VIXFBMode xfbMode, u16 dispPosY, u32* tfbb, u32* bfbb) {
+    u32 bytesPerLine, xoffInWords;
+    xoffInWords = (u32)panPosX / 16;
+    bytesPerLine = (u32)wordPerLine * 32;
+
+    *tfbb = bufAddr + xoffInWords * 32 + bytesPerLine * panPosY;
+    *bfbb = (xfbMode == VI_XFBMODE_SF) ? *tfbb : (*tfbb + bytesPerLine);
+
+    if (dispPosY % 2 == 1) {
+        u32 tmp = *tfbb;
+        *tfbb = *bfbb;
+        *bfbb = tmp;
+    }
+
+    *tfbb = ToPhysical(*tfbb);
+    *bfbb = ToPhysical(*bfbb);
+}
+
+void setFbbRegs(HorVer_s* HorVer, u32* tfbb, u32* bfbb, u32* rtfbb, u32* rbfbb) {
+    u32 shifted;
+    calcFbbs(HorVer->bufAddr, HorVer->PanPosX, HorVer->AdjustedPanPosY, HorVer->wordPerLine, HorVer->FBMode, HorVer->AdjustedDispPosY, tfbb, bfbb);
+
+    if (HorVer->threeD) {
+        calcFbbs(HorVer->rbufAddr, HorVer->PanPosX, HorVer->AdjustedPanPosY, HorVer->wordPerLine, HorVer->FBMode, HorVer->AdjustedDispPosY, rtfbb, rbfbb);
+    }
+
+    if (IS_LOWER_16MB(*tfbb) && IS_LOWER_16MB(*bfbb) && IS_LOWER_16MB(*rtfbb) && IS_LOWER_16MB(*rbfbb)) {
+        shifted = 0;
+    }
+    else {
+        shifted = 1;
+    }
+
+    if (shifted) {
+        *tfbb >>= 5;
+        *bfbb >>= 5;
+        *rtfbb >>= 5;
+        *rbfbb >>= 5;
+    }
+
+    regs[0xF] = (u16)(*tfbb & 0xFFFF);
+    changed |= (1ull << (63 - (0xF)));
+
+    regs[0xE] = (u16)((((*tfbb >> 16))) | HorVer->xof << 8 | shifted << 12);
+    changed |= (1ull << (63 - (0xE)));
+
+    regs[0x13] = (u16)(*bfbb & 0xFFFF);
+    changed |= (1ull << (63 - (0x13)));
+
+    regs[0x12] = (u16)(*bfbb >> 16);
+    changed |= (1ull << (63 - (0x12)));
+
+    if (HorVer->threeD) {
+        regs[0x11] = *rtfbb & 0xffff;
+        changed |= (1ull << (63 - (0x11)));
+
+        regs[0x10] = *rtfbb >> 16;
+        changed |= (1ull << (63 - (0x10)));
+
+        regs[0x15] = *rbfbb & 0xFFFF;
+        changed |= (1ull << (63 - (0x15)));
+
+        regs[0x16] = *rbfbb >> 16;
+        changed |= (1ull << (63 - (0x14)));
+    }
+}
+
+void setHorizontalRegs(timing_s* tm, u16 dispPosX, u16 dispSizeX) {
+    u32 hbe, hbs, hbeLo, hbeHi;
+
+    regs[0x3] = (u16)tm->hlw;
+    changed |= (1ull << (63 - (0x3)));
+
+    regs[2] = (u16)(tm->hce | tm->hcs << 8);
+    changed |= (1ull << (63 - (0x2)));
+
+    if (HorVer.tv == 8) {
+        hbe = (u32)(tm->hbe640 + 172);
+        hbs = tm->hbs640;
+    }
+    else {
+        hbe = (u32)(tm->hbe640 - 40 + dispPosX);
+        hbs = (u32)(tm->hbs640 + 40 + dispPosX - (720 - dispSizeX));
+    }
+
+    hbeLo = hbe & ONES(9);
+    hbeHi = hbe >> 9;
+
+    regs[5] = (u16)(tm->hsy | hbeLo << 7);
+    changed |= (1ull << (63 - (0x05)));
+
+    regs[4] = (u16)(hbeHi| hbs << 1);
+    changed |= (1ull << (63 - (0x04)));
+}
+
+void setVerticalRegs(u16 dispPosY, u16 dispSizeY, u8 equ, u16 acv, u16 prbOdd, u16 prbEven, u16 psbOdd, u16 psbEven, BOOL black) {
+    u16 actualPrbOdd, actualPrbEven, actualPsbOdd, actualPsbEven, actualAcv, c, d;
+
+    if ((HorVer.nonInter == 2) || (HorVer.nonInter == 3)) {
+        c = 1;
+        d = 2;
+    }
+    else {
+        c = 2;
+        d = 1;
+    }
+
+    if (dispPosY % 2 == 0) {
+        actualPrbOdd = (u16)(prbOdd + d * dispPosY);
+        actualPsbOdd = (u16)(psbOdd + d * ((c * acv - dispSizeY) - dispPosY));
+        actualPrbEven = (u16)(prbEven + d * dispPosY);
+        actualPsbEven = (u16)(psbEven + d * ((c * acv - dispSizeY) - dispPosY));
+    }
+    else {
+        actualPrbOdd = (u16)(prbEven + d * dispPosY);
+        actualPsbOdd = (u16)(psbEven + d * ((c * acv - dispSizeY) - dispPosY));
+        actualPrbEven = (u16)(prbOdd + d * dispPosY);
+        actualPsbEven = (u16)(psbOdd + d * ((c * acv - dispSizeY) - dispPosY));
+    }
+
+    actualAcv = (u16)(dispSizeY / c);
+
+    if (black) {
+        actualPrbOdd += 2 * actualAcv - 2;
+        actualPsbOdd += 2;
+        actualPrbEven += 2 * actualAcv - 2;
+        actualPsbEven += 2;
+        actualAcv = 0;
+    }
+
+    regs[0] = (u16)(equ | actualAcv << 4);
+    changed |= (1ull << (63 - (0x00)));
+
+    regs[7] = (u16)actualPrbOdd;
+    changed |= (1ull << (63 - (0x07)));
+
+    regs[6] = (u16)actualPsbOdd;
+    changed |= (1ull << (63 - (0x06)));
+
+    regs[9] = (u16)actualPrbEven;
+    changed |= (1ull << (63 - (0x09)));
+
+    regs[8] = (u16)actualPsbEven;
+    changed |= (1ull << (63 - (0x08)));
+}
+
 static u32 getCurrentHalfLine(void) {
     u32 hcount;
     u32 vcount;
@@ -32,6 +201,31 @@ static u32 getCurrentHalfLine(void) {
     GetCurrentDisplayPosition(&hcount, &vcount);
 
     return ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
+}
+
+void VIWaitForRetrace(void) {
+    BOOL enabled;
+    u32 count;
+    
+    enabled = OSDisableInterrupts();
+    count = retraceCount;
+
+    do {
+        OSSleepThread(&retraceQueue);
+    } while (count == retraceCount);
+
+    OSRestoreInterrupts(enabled);
+}
+
+void VISetBlack(BOOL black) {
+    BOOL enabled;
+    timing_s* tm;
+
+    enabled = OSDisableInterrupts();
+    HorVer.black = black;
+    tm = HorVer.timing;
+    setVerticalRegs(HorVer.AdjustedDispPosY, HorVer.DispSizeY, tm->equ, tm->acv, tm->prbOdd, tm->prbEven, tm->psbOdd, tm->psbEven, HorVer.black);
+    OSRestoreInterrupts(enabled);
 }
 
 u32 VIGetCurrentLine(void) {
@@ -49,6 +243,42 @@ u32 VIGetCurrentLine(void) {
     }
 
     return (halfLine >> 1);
+}
+
+static s32 cntlzd(u64 bit) {
+    u32 hi, lo;
+    s32 value;
+
+    hi = (u32)(bit >> 32);
+    lo = (u32)(bit & 0xFFFFFFFF);
+    value = __cntlzw(hi);
+
+    if (value < 32) {
+        return value;
+    }
+
+    return (32 + __cntlzw(lo));
+}
+
+void VIFlush(void) {
+    BOOL enabled;
+    s32 regIndex;
+
+    enabled = OSDisableInterrupts();
+    shdwChangeMode |= changeMode;
+    changeMode = 0;
+    shdwChanged |= changed;
+
+    while (changed) {
+        regIndex = cntlzd(changed);
+        shdwRegs[regIndex] = regs[regIndex];
+        changed &= ~(1ull << (63 - (regIndex)));
+    }
+
+    flushFlag = 1;
+    flushFlag3in1 = 1;
+    NextBufAddr = HorVer.bufAddr;
+    OSRestoreInterrupts(enabled);
 }
 
 u32 VIGetTvFormat(void) {

@@ -76,6 +76,8 @@ void OSSetArenaLo(void *);
 void* OSGetMEM2ArenaLo(void);
 void* OSGetMEM2ArenaHi(void);
 
+void* OSAllocFromMEM1ArenaLo(u32, u32);
+
 typedef struct OSIOSRev {
     u8 reserved;
     u8 major;
@@ -108,6 +110,7 @@ const u8 OSGetAppType(void);
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSRtc.h>
+#include <revolution/os/OSStateFlags.h>
 #include <revolution/os/OSPlayRecord.h>
 #include <revolution/os/OSPlayTime.h>
 #include <revolution/os/OSReset.h>

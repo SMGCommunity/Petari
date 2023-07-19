@@ -25,10 +25,44 @@ typedef struct {
     u8 hcs;
     u8 hce;
     u8 hbe640;
-    u8 hbs640;
+    u16 hbs640;
     u8 hbeCCIR656;
     u16 hbsCCIR656;
 } timing_s;
+
+typedef struct {
+    u16 DispPosX;
+    u16 DispPosY;
+    u16 DispSizeX;
+    u16 DispSizeY;
+    u16 AdjustedDispPosX;
+    u16 AdjustedDispPosY;
+    u16 AdjustedDispSizeY;
+    u16 AdjustedPanPosY;
+    u16 AdjustedPanSizeY;
+    u16 FBSizeX;
+    u16 FBSizeY;
+    u16 PanPosX;
+    u16 PanPosY;
+    u16 PanSizeX;
+    u16 PanSizeY;
+    VIXFBMode FBMode;
+    u32 nonInter;
+    u32 tv;
+    u8 wordPerLine;
+    u8 std;
+    u8 wpl;
+    u32 bufAddr;
+    u32 tfbb;
+    u32 bfbb;
+    u8 xof;
+    BOOL black;
+    BOOL threeD;
+    u32 rbufAddr;
+    u32 rtfbb;
+    u32 rbfbb;
+    timing_s* timing;
+} HorVer_s;
 
 BOOL VIResetDimmingCount();
 

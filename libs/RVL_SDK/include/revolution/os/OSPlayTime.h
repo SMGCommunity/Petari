@@ -1,6 +1,8 @@
 #ifndef OSPLAYTIME_H
 #define OSPLAYTIME_H
 
+#include <revolution/esp.h>
+
 typedef enum {
     OSPLAYTIME_PERMANENT        = 0,
     OSPLAYTIME_LIMITED          = 1,
@@ -12,5 +14,8 @@ typedef enum {
 typedef void (*OSPlayTimeCallbackFunc)(void);
 
 void __OSInitPlayTime(void);
+BOOL __OSWriteExpiredFlagIfSet(void);
+BOOL OSPlayTimeIsLimited(void);
+s32 __OSGetPlayTime(ESTicketView *, __OSPlayTimeType *, u32 *);
 
 #endif // OSPLAYTIME_H

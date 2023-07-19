@@ -7,6 +7,7 @@ extern "C" {
 
 #include <revolution/types.h>
 #include <revolution/os.h>
+#include <stdbool.h>
 
 typedef struct DVDDiskID DVDDiskID;
 
@@ -42,6 +43,7 @@ struct DVDCommandBlock {
 
 typedef struct DVDFileInfo  DVDFileInfo;
 typedef void (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
+typedef void (*DVDLowCallback)(u32 intType);
 
 struct DVDFileInfo {
     DVDCommandBlock cb;
@@ -69,6 +71,23 @@ struct DVDDriveInfo {
     u8 pad[24];
 };
 
+typedef struct diRegVals {
+    u32 ImmRegVal;
+    u32 CoverRegVal;
+    u32 pad[6];
+} diRegVals_t;
+
+typedef struct diCommand {
+    u8 theCommand;
+    u8 pad1[3];
+    u32 arg[5];
+    u32 pad2[2];
+} diCommand_t;
+
+typedef struct DVDVideoReportKey {
+    u8 data[32];
+} DVDVideoReportKey;
+
 typedef struct DVDDriveInfo DVDDriveInfo;
 
 void DVDInit(void);
@@ -83,6 +102,14 @@ BOOL DVDInquiryAsync(DVDCommandBlock *, DVDDriveInfo* , DVDCBCallback);
 
 /* internal funcs */
 BOOL __DVDCheckDevice(void);
+
+/* dvdqueue */
+void __DVDClearWaitingQueue(void);
+DVDCommandBlock* __DVDPopWaitingQueue(void);
+BOOL __DVDDequeueWaitingQueue(DVDCommandBlock *);
+
+/* dvd_broadway */
+bool DVDLowClearCoverInterrupt(DVDLowCallback);
 
 #ifdef __cplusplus
 }

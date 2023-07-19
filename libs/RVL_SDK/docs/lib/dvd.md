@@ -10,12 +10,12 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | dvdfs.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | dvd.o | 0.22303325223033255% | 3 / 54 | 5.555555555555555% | :eight_pointed_black_star: 
-| dvdqueue.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| dvdqueue.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | dvderror.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | dvdidutils.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dvdFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | dvdDeviceError.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| dvd_broadway.o | 0.08609556607834697% | 1 / 30 | 3.3333333333333335% | :eight_pointed_black_star: 
+| dvd_broadway.o | 100.0% | 30 / 30 | 100.0% | :white_check_mark: 
 
 
 # dvdfs.o
@@ -98,12 +98,12 @@
 # dvdqueue.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __DVDClearWaitingQueue | :x: |
-| __DVDPushWaitingQueue | :x: |
-| __DVDPopWaitingQueue | :x: |
-| __DVDCheckWaitingQueue | :x: |
-| __DVDGetNextWaitingQueue | :x: |
-| __DVDDequeueWaitingQueue | :x: |
+| __DVDClearWaitingQueue | :white_check_mark: |
+| __DVDPushWaitingQueue | :white_check_mark: |
+| __DVDPopWaitingQueue | :white_check_mark: |
+| __DVDCheckWaitingQueue | :white_check_mark: |
+| __DVDGetNextWaitingQueue | :white_check_mark: |
+| __DVDDequeueWaitingQueue | :white_check_mark: |
 
 
 # dvderror.o
@@ -149,35 +149,35 @@
 # dvd_broadway.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| doTransactionCallback | :x: |
-| doPrepareCoverRegisterCallback | :x: |
-| DVDLowFinalize | :x: |
-| DVDLowInit | :x: |
-| DVDLowReadDiskID | :x: |
-| DVDLowOpenPartition | :x: |
-| DVDLowOpenPartitionWithTmdAndTicketView | :x: |
-| DVDLowGetNoDiscBufferSizes | :x: |
-| DVDLowGetNoDiscOpenPartitionParams | :x: |
-| DVDLowClosePartition | :x: |
-| DVDLowUnencryptedRead | :x: |
-| DVDLowStopMotor | :x: |
-| DVDLowInquiry | :x: |
-| DVDLowRequestError | :x: |
-| DVDLowSetSpinupFlag | :x: |
-| DVDLowReset | :x: |
-| DVDLowAudioBufferConfig | :x: |
-| DVDLowReportKey | :x: |
-| DVDLowSetMaximumRotation | :x: |
-| DVDLowRead | :x: |
-| DVDLowSeek | :x: |
-| DVDLowGetCoverRegister | :x: |
-| DVDLowGetStatusRegister | :x: |
-| DVDLowPrepareCoverRegister | :x: |
-| DVDLowPrepareStatusRegister | :x: |
-| DVDLowGetImmBufferReg | :x: |
-| DVDLowUnmaskStatusInterrupts | :x: |
-| DVDLowMaskCoverInterrupt | :x: |
-| DVDLowClearCoverInterrupt | :x: |
+| doTransactionCallback | :white_check_mark: |
+| doPrepareCoverRegisterCallback | :white_check_mark: |
+| DVDLowFinalize | :white_check_mark: |
+| DVDLowInit | :white_check_mark: |
+| DVDLowReadDiskID | :white_check_mark: |
+| DVDLowOpenPartition | :white_check_mark: |
+| DVDLowOpenPartitionWithTmdAndTicketView | :white_check_mark: |
+| DVDLowGetNoDiscBufferSizes | :white_check_mark: |
+| DVDLowGetNoDiscOpenPartitionParams | :white_check_mark: |
+| DVDLowClosePartition | :white_check_mark: |
+| DVDLowUnencryptedRead | :white_check_mark: |
+| DVDLowStopMotor | :white_check_mark: |
+| DVDLowInquiry | :white_check_mark: |
+| DVDLowRequestError | :white_check_mark: |
+| DVDLowSetSpinupFlag | :white_check_mark: |
+| DVDLowReset | :white_check_mark: |
+| DVDLowAudioBufferConfig | :white_check_mark: |
+| DVDLowReportKey | :white_check_mark: |
+| DVDLowSetMaximumRotation | :white_check_mark: |
+| DVDLowRead | :white_check_mark: |
+| DVDLowSeek | :white_check_mark: |
+| DVDLowGetCoverRegister | :white_check_mark: |
+| DVDLowGetStatusRegister | :white_check_mark: |
+| DVDLowPrepareCoverRegister | :white_check_mark: |
+| DVDLowPrepareStatusRegister | :white_check_mark: |
+| DVDLowGetImmBufferReg | :white_check_mark: |
+| DVDLowUnmaskStatusInterrupts | :white_check_mark: |
+| DVDLowMaskCoverInterrupt | :white_check_mark: |
+| DVDLowClearCoverInterrupt | :white_check_mark: |
 | __DVDLowTestAlarm | :white_check_mark: |
 
 

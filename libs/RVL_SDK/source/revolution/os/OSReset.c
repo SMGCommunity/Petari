@@ -2,6 +2,9 @@
 #include <revolution/os/OSExecParams.h>
 #include <private/flipper.h>
 
+extern BOOL __OSInNandBoot;
+extern BOOL __OSInReboot;
+
 extern OSExecParams __OSRebootParams;
 
 typedef struct OSShutdownFunctionQueue
@@ -51,6 +54,16 @@ do {                                                        \
 
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo* info) {
     EnqueuePrio(&ShutdownFunctionQueue, info);
+}
+
+void __OSHotResetForError(void) {
+    if (__OSInNandBoot || __OSInReboot) {
+        __OSInitSTM();
+    }
+
+    __OSHotReset();
+
+    OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
 }
 
 u32 OSGetResetCode(void) {
