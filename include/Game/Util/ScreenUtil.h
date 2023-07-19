@@ -46,6 +46,7 @@ namespace MR {
     void forceToBlankCinemaFrame();
 
     void requestOneUp();
+    void requestPowerupHPMeter();
 
 
     void startToCaptureScreen(const char *);
