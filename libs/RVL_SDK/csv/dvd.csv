@@ -90,8 +90,8 @@ __DVDShowFatalMessage,dvdFatal.o,dvd.a,false
 DVDSetAutoFatalMessaging,dvdFatal.o,dvd.a,false
 __DVDGetAutoFatalMessaging,dvdFatal.o,dvd.a,false
 __DVDPrintFatalMessage,dvdFatal.o,dvd.a,false
-lowCallback,dvdDeviceError.o,dvd.a,false
-__DVDCheckDevice,dvdDeviceError.o,dvd.a,false
+lowCallback,dvdDeviceError.o,dvd.a,true
+__DVDCheckDevice,dvdDeviceError.o,dvd.a,true
 doTransactionCallback,dvd_broadway.o,dvd.a,true
 doPrepareCoverRegisterCallback,dvd_broadway.o,dvd.a,true
 DVDLowFinalize,dvd_broadway.o,dvd.a,true

@@ -14,7 +14,7 @@
 | dvderror.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | dvdidutils.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dvdFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| dvdDeviceError.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| dvdDeviceError.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dvd_broadway.o | 100.0% | 30 / 30 | 100.0% | :white_check_mark: 
 
 
@@ -142,8 +142,8 @@
 # dvdDeviceError.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| lowCallback | :x: |
-| __DVDCheckDevice | :x: |
+| lowCallback | :white_check_mark: |
+| __DVDCheckDevice | :white_check_mark: |
 
 
 # dvd_broadway.o

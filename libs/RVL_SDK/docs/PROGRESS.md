@@ -9,7 +9,7 @@
 | [bte](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/bte.md) | 0.0% |
 | [db](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/db.md) | 100.0% |
 | [dsp](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/dsp.md) | 100.0% |
-| [dvd](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/dvd.md) | 27.100152738380974% |
+| [dvd](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/dvd.md) | 28.911193541348464% |
 | [esp](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/esp.md) | 100.0% |
 | [euart](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/euart.md) | 100.0% |
 | [exi](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/exi.md) | 100.0% |

@@ -111,6 +111,11 @@ BOOL __DVDDequeueWaitingQueue(DVDCommandBlock *);
 /* dvd_broadway */
 bool DVDLowClearCoverInterrupt(DVDLowCallback);
 
+u32 DVDLowGetImmBufferReg(void);
+bool DVDLowRequestError(DVDLowCallback);
+bool DVDLowUnencryptedRead(void*, u32, u32, DVDLowCallback);
+bool DVDLowReportKey(DVDVideoReportKey *, u32, u32, DVDLowCallback);
+
 #ifdef __cplusplus
 }
 #endif

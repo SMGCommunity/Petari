@@ -78,6 +78,8 @@ void* OSGetMEM2ArenaHi(void);
 
 void* OSAllocFromMEM1ArenaLo(u32, u32);
 
+u32 OSGetPhysicalMem2Size(void);
+
 typedef struct OSIOSRev {
     u8 reserved;
     u8 major;
@@ -134,6 +136,8 @@ void __OSPromoteThread(OSThread *, OSPriority);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
+
+void OSFatal(GXColor, GXColor, const char *);
 
 #ifdef __cplusplus
 }
