@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| dvdfs.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| dvdfs.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | dvd.o | 0.22303325223033255% | 3 / 54 | 5.555555555555555% | :eight_pointed_black_star: 
 | dvdqueue.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | dvderror.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
@@ -21,19 +21,19 @@
 # dvdfs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __DVDFSInit | :x: |
-| DVDConvertPathToEntrynum | :x: |
-| DVDFastOpen | :x: |
-| DVDOpen | :x: |
-| DVDClose | :x: |
-| entryToPath | :x: |
-| DVDReadAsyncPrio | :x: |
-| cbForReadAsync | :x: |
-| DVDReadPrio | :x: |
-| cbForReadSync | :x: |
-| DVDOpenDir | :x: |
-| DVDReadDir | :x: |
-| DVDCloseDir | :x: |
+| __DVDFSInit | :white_check_mark: |
+| DVDConvertPathToEntrynum | :white_check_mark: |
+| DVDFastOpen | :white_check_mark: |
+| DVDOpen | :white_check_mark: |
+| DVDClose | :white_check_mark: |
+| entryToPath | :white_check_mark: |
+| DVDReadAsyncPrio | :white_check_mark: |
+| cbForReadAsync | :white_check_mark: |
+| DVDReadPrio | :white_check_mark: |
+| cbForReadSync | :white_check_mark: |
+| DVDOpenDir | :white_check_mark: |
+| DVDReadDir | :white_check_mark: |
+| DVDCloseDir | :white_check_mark: |
 
 
 # dvd.o
