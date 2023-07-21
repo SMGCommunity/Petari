@@ -12,8 +12,8 @@
 | dvd.o | 0.22303325223033255% | 3 / 54 | 5.555555555555555% | :eight_pointed_black_star: 
 | dvdqueue.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | dvderror.o | 0.0% | 0 / 13 | 0.0% | :x: 
-| dvdidutils.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| dvdFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| dvdidutils.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| dvdFatal.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | dvdDeviceError.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dvd_broadway.o | 100.0% | 30 / 30 | 100.0% | :white_check_mark: 
 
@@ -127,16 +127,16 @@
 # dvdidutils.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| DVDCompareDiskID | :x: |
+| DVDCompareDiskID | :white_check_mark: |
 
 
 # dvdFatal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __DVDShowFatalMessage | :x: |
-| DVDSetAutoFatalMessaging | :x: |
-| __DVDGetAutoFatalMessaging | :x: |
-| __DVDPrintFatalMessage | :x: |
+| __DVDShowFatalMessage | :white_check_mark: |
+| DVDSetAutoFatalMessaging | :white_check_mark: |
+| __DVDGetAutoFatalMessaging | :white_check_mark: |
+| __DVDPrintFatalMessage | :white_check_mark: |
 
 
 # dvdDeviceError.o

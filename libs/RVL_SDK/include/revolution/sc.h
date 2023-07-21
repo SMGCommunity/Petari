@@ -123,6 +123,8 @@ BOOL SCGetIdleMode(SCIdleModeInfo *);
 BOOL SCFindByteArrayItem(void *, u32, SCItemID);
 BOOL SCFindU32Item(u32 *, SCItemID);
 
+s8 SCGetProductGameRegion(void);
+
 #ifdef __cplusplus
 }
 #endif
