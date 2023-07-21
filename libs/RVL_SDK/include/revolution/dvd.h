@@ -88,6 +88,29 @@ typedef struct DVDVideoReportKey {
     u8 data[32];
 } DVDVideoReportKey;
 
+typedef struct DVDCommandInfo DVDCommandInfo;
+struct DVDCommandInfo {
+    u32 command;
+    u32 offset;
+    u32 length;
+    u32 intType;
+    u32 tick;
+};
+
+typedef struct DVDErrorInfo DVDErrorInfo;
+struct DVDErrorInfo {
+    char gameName[4];
+    u8 diskNumber;
+    u8 gameVersion;
+    u8 reserved0[2];
+    u32 error;
+    u32 dateTime;
+    u32 status;
+    u8 reserved1[4];
+    u32 nextOffset;
+    DVDCommandInfo lastCommand[5];
+};
+
 typedef struct DVDDriveInfo DVDDriveInfo;
 
 void DVDInit(void);
@@ -115,6 +138,7 @@ u32 DVDLowGetImmBufferReg(void);
 bool DVDLowRequestError(DVDLowCallback);
 bool DVDLowUnencryptedRead(void*, u32, u32, DVDLowCallback);
 bool DVDLowReportKey(DVDVideoReportKey *, u32, u32, DVDLowCallback);
+bool DVDLowPrepareStatusRegister(DVDLowCallback);
 
 #ifdef __cplusplus
 }

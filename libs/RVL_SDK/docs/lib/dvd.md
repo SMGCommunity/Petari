@@ -11,7 +11,7 @@
 | dvdfs.o | 0.0% | 0 / 13 | 0.0% | :x: 
 | dvd.o | 0.22303325223033255% | 3 / 54 | 5.555555555555555% | :eight_pointed_black_star: 
 | dvdqueue.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| dvderror.o | 0.0% | 0 / 13 | 0.0% | :x: 
+| dvderror.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | dvdidutils.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | dvdFatal.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | dvdDeviceError.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
@@ -109,19 +109,19 @@
 # dvderror.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| cbForNandClose | :x: |
-| cbForNandWrite | :x: |
-| cbForNandSeek | :x: |
-| cbForNandWrite0 | :x: |
-| cbForNandSeek2 | :x: |
-| cbForNandRead | :x: |
-| cbForNandSeek0 | :x: |
-| cbForNandSeek1 | :x: |
-| cbForNandOpen | :x: |
-| cbForNandCreate | :x: |
-| cbForNandCreateDir | :x: |
-| cbForPrepareStatusRegister | :x: |
-| __DVDStoreErrorCode | :x: |
+| cbForNandClose | :white_check_mark: |
+| cbForNandWrite | :white_check_mark: |
+| cbForNandSeek | :white_check_mark: |
+| cbForNandWrite0 | :white_check_mark: |
+| cbForNandSeek2 | :white_check_mark: |
+| cbForNandRead | :white_check_mark: |
+| cbForNandSeek0 | :white_check_mark: |
+| cbForNandSeek1 | :white_check_mark: |
+| cbForNandOpen | :white_check_mark: |
+| cbForNandCreate | :white_check_mark: |
+| cbForNandCreateDir | :white_check_mark: |
+| cbForPrepareStatusRegister | :white_check_mark: |
+| __DVDStoreErrorCode | :white_check_mark: |
 
 
 # dvdidutils.o
