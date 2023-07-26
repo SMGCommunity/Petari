@@ -25,7 +25,7 @@ SCGetAspectRatio,scapi.o,sc.a,false
 SCGetDisplayOffsetH,scapi.o,sc.a,false
 SCGetEuRgb60Mode,scapi.o,sc.a,false
 SCGetIdleMode,scapi.o,sc.a,true
-SCGetLanguage,scapi.o,sc.a,false
+SCGetLanguage,scapi.o,sc.a,true
 SCGetProgressiveMode,scapi.o,sc.a,false
 SCGetScreenSaverMode,scapi.o,sc.a,false
 SCGetSoundMode,scapi.o,sc.a,false
@@ -40,6 +40,6 @@ SCSetWpadMotorMode,scapi.o,sc.a,false
 SCGetWpadSensorBarPosition,scapi.o,sc.a,false
 SCGetWpadSpeakerVolume,scapi.o,sc.a,false
 SCSetWpadSpeakerVolume,scapi.o,sc.a,false
-__SCF1,scapi_prdinfo.o,sc.a,false
-SCGetProductArea,scapi_prdinfo.o,sc.a,false
+__SCF1,scapi_prdinfo.o,sc.a,true
+SCGetProductArea,scapi_prdinfo.o,sc.a,true
 SCGetProductGameRegion,scapi_prdinfo.o,sc.a,false

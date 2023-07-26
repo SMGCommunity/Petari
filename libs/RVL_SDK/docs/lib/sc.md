@@ -9,8 +9,8 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | scsystem.o | 74.46153846153845% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
-| scapi.o | 6.5743944636678195% | 2 / 19 | 10.526315789473683% | :eight_pointed_black_star: 
-| scapi_prdinfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| scapi.o | 15.916955017301039% | 3 / 19 | 15.789473684210526% | :eight_pointed_black_star: 
+| scapi_prdinfo.o | 78.98089171974523% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 
 
 # scsystem.o
@@ -47,7 +47,7 @@
 | SCGetDisplayOffsetH | :x: |
 | SCGetEuRgb60Mode | :x: |
 | SCGetIdleMode | :white_check_mark: |
-| SCGetLanguage | :x: |
+| SCGetLanguage | :white_check_mark: |
 | SCGetProgressiveMode | :x: |
 | SCGetScreenSaverMode | :x: |
 | SCGetSoundMode | :x: |
@@ -67,8 +67,8 @@
 # scapi_prdinfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __SCF1 | :x: |
-| SCGetProductArea | :x: |
+| __SCF1 | :white_check_mark: |
+| SCGetProductArea | :white_check_mark: |
 | SCGetProductGameRegion | :x: |
 
 

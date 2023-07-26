@@ -121,9 +121,14 @@ u32 SCGetCounterBias(void);
 BOOL SCGetIdleMode(SCIdleModeInfo *);
 
 BOOL SCFindByteArrayItem(void *, u32, SCItemID);
+BOOL SCFindU8Item(u8* , SCItemID);
 BOOL SCFindU32Item(u32 *, SCItemID);
 
 s8 SCGetProductGameRegion(void);
+
+BOOL __SCF1(const char *, char *, u32);
+
+s8 SCGetProductArea(void);
 
 #ifdef __cplusplus
 }
