@@ -137,6 +137,8 @@ void __OSPromoteThread(OSThread *, OSPriority);
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
 
+#include <revolution/gx.h>
+
 void OSFatal(GXColor, GXColor, const char *);
 
 #ifdef __cplusplus

@@ -7,6 +7,7 @@ extern "C" {
 
 #include <revolution/types.h>
 #include <revolution/os.h>
+#include <revolution/esp.h>
 #include <stdbool.h>
 
 typedef struct DVDDiskID DVDDiskID;
@@ -44,6 +45,7 @@ struct DVDCommandBlock {
 typedef struct DVDFileInfo  DVDFileInfo;
 typedef void (*DVDCallback)(s32 result, DVDFileInfo* fileInfo);
 typedef void (*DVDLowCallback)(u32 intType);
+typedef void (*DVDOptionalCommandChecker)(DVDCommandBlock* block, void (*cb)(u32));
 
 struct DVDFileInfo {
     DVDCommandBlock cb;
@@ -63,6 +65,19 @@ typedef struct {
     BOOL isDir;
     char* name;
 } DVDDirEntry;
+
+typedef struct DVDBB2 DVDBB2;
+
+struct DVDBB2 {
+    u32 bootFilePosition;
+    u32 FSTPosition;
+    u32 FSTLength;
+    u32 FSTMaxLength;
+    void* FSTAddress;
+    u32 userPosition;
+    u32 userLength;
+    u32 padding0;
+};
 
 struct DVDDriveInfo {
     u16 revisionLevel;
@@ -111,6 +126,45 @@ struct DVDErrorInfo {
     DVDCommandInfo lastCommand[5];
 };
 
+typedef struct DVDGamePartition {
+    ESTicket ticket;
+    u32 tmdSize;
+    ESTitleMeta* tmd;
+    u32 certBlobSize;
+    void* certBlob;      
+    u8* h3Hashes;
+    u8* encryptedArea;
+} DVDGamePartition;
+
+typedef struct DVDPartitionInfo {
+    DVDGamePartition* gamePartition;
+    u32 type;
+} DVDPartitionInfo;
+
+typedef struct DVDGameTOC {
+    u32 numGamePartitions;
+    DVDPartitionInfo* partitionInfos;
+} DVDGameTOC;
+
+typedef struct DVDPartitionParams  DVDPartitionParams;
+
+struct DVDPartitionParams {
+    ESTicket ticket;
+    u8 padding0[OSRoundUp32B(sizeof(ESTicket)) - sizeof(ESTicket)];
+    ESTicketView ticketView;
+    u8 padding1[OSRoundUp32B(sizeof(ESTicketView)) - sizeof(ESTicketView)];
+    u32 numTmdBytes;
+    u8 padding2[28];
+    ESTitleMeta tmd;
+    u8 padding3[OSRoundUp32B(sizeof(ESTitleMeta)) - sizeof(ESTitleMeta)];
+    u32 numCertBytes;
+    u8 padding4[28];
+    u8 certificates[4096];
+    u32 dataWordOffset;
+    u8 padding5[28];
+    u8 h3Hash[98304];
+};
+
 typedef struct DVDDriveInfo DVDDriveInfo;
 
 void DVDInit(void);
@@ -131,10 +185,15 @@ BOOL DVDInquiryAsync(DVDCommandBlock *, DVDDriveInfo* , DVDCBCallback);
 /* internal funcs */
 BOOL __DVDCheckDevice(void);
 
+BOOL DVDCompareDiskID(const DVDDiskID *, const DVDDiskID *);
+
 /* dvdqueue */
 void __DVDClearWaitingQueue(void);
 DVDCommandBlock* __DVDPopWaitingQueue(void);
 BOOL __DVDDequeueWaitingQueue(DVDCommandBlock *);
+BOOL __DVDCheckWaitingQueue(void);
+BOOL __DVDPushWaitingQueue(s32, DVDCommandBlock *);
+DVDCommandBlock* __DVDGetNextWaitingQueue();
 
 /* dvd_broadway */
 bool DVDLowClearCoverInterrupt(DVDLowCallback);
@@ -144,6 +203,40 @@ bool DVDLowRequestError(DVDLowCallback);
 bool DVDLowUnencryptedRead(void*, u32, u32, DVDLowCallback);
 bool DVDLowReportKey(DVDVideoReportKey *, u32, u32, DVDLowCallback);
 bool DVDLowPrepareStatusRegister(DVDLowCallback);
+bool DVDLowMaskCoverInterrupt(void);
+bool DVDLowInit(void);
+bool DVDLowUnmaskStatusInterrupts(void);
+bool DVDLowRead(void *, u32, u32, DVDLowCallback);
+bool DVDLowStopMotor(bool, bool, DVDLowCallback);
+bool DVDLowSetSpinupFlag(u32);
+bool DVDLowReset(DVDLowCallback);
+bool DVDLowSeek(u32, DVDLowCallback);
+bool DVDLowOpenPartitionWithTmdAndTicketView(const u32, const ESTicketView* const, const u32, const ESTitleMeta* const, const u32, const u8* const, DVDLowCallback);
+bool DVDLowOpenPartition(const u32, const ESTicket* const, const u32, const u8* const, ESTitleMeta *, DVDLowCallback);
+bool DVDLowPrepareCoverRegister(DVDLowCallback);
+u32 DVDLowGetCoverRegister(void);
+bool DVDLowReadDiskID(DVDDiskID *, DVDLowCallback);
+bool DVDLowRequestAudioStatus(u32, DVDLowCallback);
+bool DVDLowAudioStream(u32, u32, u32, DVDLowCallback);
+bool DVDLowAudioBufferConfig(bool enable, u32 size, DVDLowCallback callback);
+bool DVDLowInquiry(DVDDriveInfo *, DVDLowCallback);
+bool DVDLowClosePartition(DVDLowCallback);
+bool DVDLowSetMaximumRotation(u32, DVDLowCallback);
+bool DVDLowGetNoDiscBufferSizes(const u32, u32 *, u32 *, DVDLowCallback);
+bool DVDLowGetNoDiscOpenPartitionParams(const u32, ESTicket *, u32 *, ESTitleMeta *, u32 *, u8 *, u32 *, u8 *, DVDLowCallback);
+
+/* dvdFatal */
+BOOL DVDSetAutoFatalMessaging(BOOL);
+void __DVDPrintFatalMessage(void);
+BOOL __DVDGetAutoFatalMessaging(void);
+
+/* dvderror */
+ void __DVDStoreErrorCode(u32, DVDCBCallback);
+
+/* dvdfs */
+void __DVDFSInit(void);
+
+#define DVD_RESETCOVER_TIMELAG_TICKS2  OSMillisecondsToTicks(100)
 
 #ifdef __cplusplus
 }
