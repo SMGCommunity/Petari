@@ -33,7 +33,7 @@
 | OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSStateTM.o | 32.55813953488372% | 5 / 12 | 41.66666666666667% | :eight_pointed_black_star: 
-| OSPlayRecord.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OSPlayRecord.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSStateFlags.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -405,10 +405,10 @@
 # OSPlayRecord.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PlayRecordAlarmCallback | :x: |
-| PlayRecordCallback | :x: |
-| __OSStartPlayRecord | :x: |
-| __OSStopPlayRecord | :x: |
+| PlayRecordAlarmCallback | :white_check_mark: |
+| PlayRecordCallback | :white_check_mark: |
+| __OSStartPlayRecord | :white_check_mark: |
+| __OSStopPlayRecord | :white_check_mark: |
 
 
 # OSStateFlags.o

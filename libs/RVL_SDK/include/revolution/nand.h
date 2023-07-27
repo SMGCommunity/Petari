@@ -102,6 +102,7 @@ s32 NANDPrivateCreate(const char *, u8, u8);
 
 s32 NANDOpen(const char *, NANDFileInfo *, u8);
 s32 NANDPrivateOpen(const char *, NANDFileInfo *, u8);
+s32 NANDOpenAsync(const char *, NANDFileInfo *, u8, NANDCallback, NANDCommandBlock *);
 s32 NANDPrivateOpenAsync(const char *, NANDFileInfo *, const u8, NANDCallback, NANDCommandBlock *);
 
 s32 NANDClose(NANDFileInfo *);

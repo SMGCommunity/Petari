@@ -234,10 +234,10 @@ __OSVIDimReplyHandler,OSStateTM.o,os.a,true
 __OSDefaultResetCallback,OSStateTM.o,os.a,false
 __OSDefaultPowerCallback,OSStateTM.o,os.a,false
 __OSStateEventHandler,OSStateTM.o,os.a,false
-PlayRecordAlarmCallback,OSPlayRecord.o,os.a,false
-PlayRecordCallback,OSPlayRecord.o,os.a,false
-__OSStartPlayRecord,OSPlayRecord.o,os.a,false
-__OSStopPlayRecord,OSPlayRecord.o,os.a,false
+PlayRecordAlarmCallback,OSPlayRecord.o,os.a,true
+PlayRecordCallback,OSPlayRecord.o,os.a,true
+__OSStartPlayRecord,OSPlayRecord.o,os.a,true
+__OSStopPlayRecord,OSPlayRecord.o,os.a,true
 __OSWriteStateFlags,OSStateFlags.o,os.a,true
 __OSReadStateFlags,OSStateFlags.o,os.a,true
 __OSInitNet,OSNet.o,os.a,true
