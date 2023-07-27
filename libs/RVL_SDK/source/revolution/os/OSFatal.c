@@ -223,7 +223,7 @@ void OSFatal(GXColor fg, GXColor bg, const char* msg) {
     FatalParam.fg = fg;
     FatalParam.bg = bg;
     FatalParam.msg = msg;
-    OSSWitchFiber((u32)Halt, (u32)OSGetArenaHi());
+    OSSwitchFiber((u32)Halt, (u32)OSGetArenaHi());
 }
 
 static void Halt(void) {
