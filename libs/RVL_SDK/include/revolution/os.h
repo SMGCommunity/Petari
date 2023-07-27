@@ -92,6 +92,11 @@ typedef struct OSIOSRev {
 
 const u8 OSGetAppType(void);
 
+char* OSUTF8to32(const char *, u32 *);
+u16* OSUTF16to32(const u16 *, u32 *);
+u8 OSUTF32toANSI(u32);
+u16 OSUTF32toSJIS(u32);
+
 #ifndef ASSERT
 #define ASSERT(exp) ((void) 0)
 #endif
@@ -108,6 +113,7 @@ const u8 OSGetAppType(void);
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSExecParams.h>
 #include <revolution/os/OSFastCast.h>
+#include <revolution/os/OSFont.h>
 #include <revolution/os/OSInterrupt.h>
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>

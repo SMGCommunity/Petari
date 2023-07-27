@@ -32,6 +32,8 @@ void OSSetGbsMode(u16);
 u16 OSGetWirelessID(s32);
 void OSSetWirelessID(s32, u16);
 
+BOOL __OSReadROM(void *, s32, s32);
+
 void __OSInitSram(void);
 
 #endif // OSRTC_H

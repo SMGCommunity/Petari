@@ -18,7 +18,7 @@
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | OSExec.o | 24.72144846796657% | 5 / 11 | 45.45454545454545% | :eight_pointed_black_star: 
 | OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| OSFont.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -30,7 +30,7 @@
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSThread.o | 91.31016042780749% | 23 / 28 | 82.14285714285714% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OSUtf.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSStateTM.o | 32.55813953488372% | 5 / 12 | 41.66666666666667% | :eight_pointed_black_star: 
 | OSPlayRecord.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
@@ -203,14 +203,14 @@
 # OSFont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| GetFontCode | :x: |
-| Decode | :x: |
-| OSSetFontEncode | :x: |
-| ReadFont | :x: |
-| OSLoadFont | :x: |
-| ParseStringS | :x: |
-| ParseStringW | :x: |
-| OSGetFontTexel | :x: |
+| GetFontCode | :white_check_mark: |
+| Decode | :white_check_mark: |
+| OSSetFontEncode | :white_check_mark: |
+| ReadFont | :white_check_mark: |
+| OSLoadFont | :white_check_mark: |
+| ParseStringS | :white_check_mark: |
+| ParseStringW | :white_check_mark: |
+| OSGetFontTexel | :white_check_mark: |
 
 
 # OSInterrupt.o
@@ -371,10 +371,10 @@
 # OSUtf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSUTF8to32 | :x: |
-| OSUTF16to32 | :x: |
-| OSUTF32toANSI | :x: |
-| OSUTF32toSJIS | :x: |
+| OSUTF8to32 | :white_check_mark: |
+| OSUTF16to32 | :white_check_mark: |
+| OSUTF32toANSI | :white_check_mark: |
+| OSUTF32toSJIS | :white_check_mark: |
 
 
 # OSIpc.o
