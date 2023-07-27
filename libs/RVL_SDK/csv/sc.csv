@@ -42,4 +42,4 @@ SCGetWpadSpeakerVolume,scapi.o,sc.a,false
 SCSetWpadSpeakerVolume,scapi.o,sc.a,false
 __SCF1,scapi_prdinfo.o,sc.a,true
 SCGetProductArea,scapi_prdinfo.o,sc.a,true
-SCGetProductGameRegion,scapi_prdinfo.o,sc.a,false
+SCGetProductGameRegion,scapi_prdinfo.o,sc.a,true

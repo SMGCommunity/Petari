@@ -119,6 +119,7 @@ u16 OSUTF32toSJIS(u32);
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSRtc.h>
 #include <revolution/os/OSStateFlags.h>
+#include <revolution/os/OSStateTM.h>
 #include <revolution/os/OSPlayRecord.h>
 #include <revolution/os/OSPlayTime.h>
 #include <revolution/os/OSReset.h>

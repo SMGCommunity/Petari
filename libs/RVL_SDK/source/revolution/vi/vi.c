@@ -31,6 +31,298 @@ static u32 CurrTvMode;
 static u32 NextBufAddr;
 static u32 CurrBufAddr;
 
+static VIRetraceCallback PreCB;
+static VIRetraceCallback PostCB;
+
+static timing_s timing[] = {
+    {
+        6,
+        240,
+        24,
+        25,
+        3,
+        2,
+        12,
+        13,
+        12,
+        13,
+        520,
+        519,
+        520,
+        519,
+        525,
+        429,
+        64,
+        71,
+        105,
+        162,
+        373,
+        122,
+        412,
+    },
+    {
+        6,
+        240,
+        24,
+        24,
+        4,
+        4,
+        12,
+        12,
+        12,
+        12,
+        520,
+        520,
+        520,
+        520,
+        526,
+        429,
+        64,
+        71,
+        105,
+        162,
+        373,
+        122,
+        412,
+    },
+
+    {
+        5,
+        287,
+        35,
+        36,
+        1,
+        0,
+        13,
+        12,
+        11,
+        10,
+        619,
+        618,
+        617,
+        620,
+        625,
+        432,
+        64,
+        75,
+        106,
+        172,
+        380,
+        133,
+        420,
+    },
+
+    {
+        5,
+        287,
+        33,
+        33,
+        2,
+        2,
+        13,
+        11,
+        13,
+        11,
+        619,
+        621,
+        619,
+        621,
+        624,
+        432,
+        64,
+        75,
+        106,
+        172,
+        380,
+        133,
+        420,
+    },
+
+    {
+        6,
+        240,
+        24,
+        25,
+        3,
+        2,
+        16,
+        15,
+        14,
+        13,
+        518,
+        517,
+        516,
+        519,
+        525,
+        429,
+        64,
+        78,
+        112,
+        162,
+        373,
+        122,
+        412,
+    },
+
+    {
+        6,
+        240,
+        24,
+        24,
+        4,
+        4,
+        16,
+        14,
+        16,
+        14,
+        518,
+        520,
+        518,
+        520,
+        526,
+        429,
+        64,
+        78,
+        112,
+        162,
+        373,
+        122,
+        412,
+    },
+
+    {
+        12,
+        480,
+        48,
+        48,
+        6,
+        6,
+        24,
+        24,
+        24,
+        24,
+        1038,
+        1038,
+        1038,
+        1038,
+        1050,
+        429,
+        64,
+        71,
+        105,
+        162,
+        373,
+        122,
+        412,
+    },
+
+    {
+        12,
+        480,
+        44,
+        44,
+        10,
+        10,
+        24,
+        24,
+        24,
+        24,
+        1038,
+        1038,
+        1038,
+        1038,
+        1050,
+        429,
+        64,
+        71,
+        105,
+        168,
+        379,
+        122,
+        412,
+    },
+
+    {
+        6,
+        241,
+        24,
+        25,
+        1,
+        0,
+        12,
+        13,
+        12,
+        13,
+        520,
+        519,
+        520,
+        519,
+        525,
+        429,
+        64,
+        71,
+        105,
+        159,
+        370,
+        122,
+        412,
+    },
+
+    {
+        12,
+        480,
+        48,
+        48,
+        6,
+        6,
+        24,
+        24,
+        24,
+        24,
+        1038,
+        1038,
+        1038,
+        1038,
+        1050,
+        429,
+        64,
+        71,
+        105,
+        180,
+        391,
+        122,
+        412,
+    },
+
+    {
+        10,
+        576,
+        62,
+        62,
+        6,
+        6,
+        20,
+        20,
+        20,
+        20,
+        1240,
+        1240,
+        1240,
+        1240,
+        1250,
+        432,
+        64,
+        75,
+        106,
+        172,
+        380,
+        122,
+        412,
+    }
+};
+
+static timing_s* timingExtra = NULL;
+
 static void GetCurrentDisplayPosition(u32 *hct, u32 *vct) {
     u32 hcount;
     u32 vcount0;
@@ -203,10 +495,90 @@ static u32 getCurrentHalfLine(void) {
     return ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
 }
 
+VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback cb) {
+    BOOL enabled;
+    VIRetraceCallback oldcb = PreCB;
+    enabled = OSDisableInterrupts();
+    PreCB = cb;
+    OSRestoreInterrupts(enabled);
+    return oldcb;
+}
+
+
+VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback cb) {
+    BOOL enabled;
+    VIRetraceCallback oldcb = PostCB;
+    enabled = OSDisableInterrupts();
+    PostCB = cb;
+    OSRestoreInterrupts(enabled);
+    return oldcb;
+}
+
+static timing_s* getTiming(VITVMode mode) {
+    switch (mode) {
+      case VI_TVMODE_NTSC_INT:
+        return &timing[0];
+        break;
+      case VI_TVMODE_NTSC_DS:
+        return &timing[1];
+        break;
+      case VI_TVMODE_PAL_INT:
+        return &timing[2];
+        break;
+      case VI_TVMODE_PAL_DS:
+        return &timing[3];
+        break;
+      case VI_TVMODE_EURGB60_INT:
+        return &timing[0];
+        break;
+      case VI_TVMODE_EURGB60_DS:
+        return &timing[1];
+        break;
+      case VI_TVMODE_MPAL_INT:
+        return &timing[4];
+        break;
+      case VI_TVMODE_MPAL_DS:
+        return &timing[5];
+        break;
+      case VI_TVMODE_NTSC_PROG:
+      case VI_TVMODE_MPAL_PROG:
+      case VI_TVMODE_EURGB60_PROG:
+        return &timing[6];
+        break;
+      case VI_TVMODE_NTSC_3D:
+        return &timing[7];
+        break;
+      case VI_TVMODE_DEBUG_PAL_INT:
+        return &timing[2];
+        break;
+      case VI_TVMODE_DEBUG_PAL_DS:
+        return &timing[3];
+        break;
+      case VI_TVMODE_GCA_INT:
+        return &timing[8];
+        break;
+      case VI_TVMODE_GCA_PROG:
+        return &timing[9];
+        break;
+      case VI_TVMODE_PAL_PROG:
+        return &timing[10];
+        break;
+      case VI_TVMODE_EXTRA_INT:
+      case VI_TVMODE_EXTRA_DS:
+      case VI_TVMODE_EXTRA_PROG:
+      case VI_TVMODE_HD720_PROG:
+        return timingExtra;
+        break;
+    }
+
+    return NULL;
+}
+
+
 void VIWaitForRetrace(void) {
     BOOL enabled;
     u32 count;
-    
+
     enabled = OSDisableInterrupts();
     count = retraceCount;
 
@@ -295,7 +667,7 @@ u32 VIGetTvFormat(void) {
         case 8:
             format = 0;
             break;
-        
+
         case 1:
         case 4:
             format = 1;

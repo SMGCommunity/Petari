@@ -17,7 +17,7 @@
 | OSContext.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
 | OSExec.o | 24.72144846796657% | 5 / 11 | 45.45454545454545% | :eight_pointed_black_star: 
-| OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OSFatal.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSFont.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -25,7 +25,7 @@
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSReset.o | 11.447811447811448% | 3 / 14 | 21.428571428571427% | :eight_pointed_black_star: 
+| OSReset.o | 84.006734006734% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSThread.o | 91.31016042780749% | 23 / 28 | 82.14285714285714% | :eight_pointed_black_star: 
@@ -194,10 +194,10 @@
 # OSFatal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ScreenReport | :x: |
-| ConfigureVideo | :x: |
-| OSFatal | :x: |
-| Halt | :x: |
+| ScreenReport | :white_check_mark: |
+| ConfigureVideo | :white_check_mark: |
+| OSFatal | :white_check_mark: |
+| Halt | :white_check_mark: |
 
 
 # OSFont.o
@@ -288,14 +288,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | OSRegisterShutdownFunction | :white_check_mark: |
-| __OSCallShutdownFunctions | :x: |
-| __OSShutdownDevices | :x: |
-| __OSGetDiscState | :x: |
-| OSRebootSystem | :x: |
-| OSShutdownSystem | :x: |
-| OSRestart | :x: |
-| __OSReturnToMenu | :x: |
-| OSReturnToMenu | :x: |
+| __OSCallShutdownFunctions | :white_check_mark: |
+| __OSShutdownDevices | :white_check_mark: |
+| __OSGetDiscState | :white_check_mark: |
+| OSRebootSystem | :white_check_mark: |
+| OSShutdownSystem | :white_check_mark: |
+| OSRestart | :white_check_mark: |
+| __OSReturnToMenu | :white_check_mark: |
+| OSReturnToMenu | :white_check_mark: |
 | OSReturnToSetting | :x: |
 | __OSReturnToMenuForError | :x: |
 | __OSHotResetForError | :white_check_mark: |

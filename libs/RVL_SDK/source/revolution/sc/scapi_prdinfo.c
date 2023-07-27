@@ -103,3 +103,34 @@ BOOL __SCF1(const char* keyword, char* buf, u32 bufSize) {
 
     return FALSE;
 }
+
+typedef struct {
+    s8 game;
+    char string[3];
+} SCProductGameRegionAndString;
+
+static SCProductGameRegionAndString ProductGameRegionAndStringTbl[] = {
+    0, "JP",
+    1, "US",
+    2, "EU",
+    4, "KR",
+    5, "CN",
+    -1
+};
+
+s8 SCGetProductGameRegion(void) {
+    char buf[3];
+    SCProductGameRegionAndString* p = ProductGameRegionAndStringTbl;
+
+    if (__SCF1("GAME", buf, sizeof(buf))) {
+        while (p->game != -1) {
+            if (strcmp(p->string, buf) == 0) {
+                return p->game;
+            }
+
+            p++;
+        }
+    }
+
+    return -1;
+}

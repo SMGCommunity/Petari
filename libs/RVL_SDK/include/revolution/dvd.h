@@ -187,6 +187,9 @@ BOOL __DVDCheckDevice(void);
 
 BOOL DVDCompareDiskID(const DVDDiskID *, const DVDDiskID *);
 
+void __DVDPrepareReset(void);
+u32 __DVDGetCoverStatus(void);
+
 /* dvdqueue */
 void __DVDClearWaitingQueue(void);
 DVDCommandBlock* __DVDPopWaitingQueue(void);

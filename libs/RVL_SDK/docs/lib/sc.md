@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | scsystem.o | 74.46153846153845% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
 | scapi.o | 15.916955017301039% | 3 / 19 | 15.789473684210526% | :eight_pointed_black_star: 
-| scapi_prdinfo.o | 78.98089171974523% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| scapi_prdinfo.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # scsystem.o
@@ -69,6 +69,6 @@
 | ------------- | ------------- |
 | __SCF1 | :white_check_mark: |
 | SCGetProductArea | :white_check_mark: |
-| SCGetProductGameRegion | :x: |
+| SCGetProductGameRegion | :white_check_mark: |
 
 

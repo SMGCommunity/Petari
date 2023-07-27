@@ -1852,6 +1852,17 @@ static BOOL __DVDLowBreak(void) {
     return TRUE;
 }
 
+void DVDPause(void) {
+    BOOL level = OSDisableInterrupts();
+    PauseFlag = TRUE;
+
+    if (executing == NULL) {
+        PausingFlag = TRUE;
+    }
+
+    OSRestoreInterrupts(level);
+}
+
 void DVDResume(void) {
     BOOL enabled = OSDisableInterrupts();
     PauseFlag = FALSE;
@@ -2070,6 +2081,32 @@ s32 DVDCancel(DVDCommandBlock* block) {
 
 static void cbForCancelSync(s32 result, DVDCommandBlock* block) {
     OSWakeupThread(&__DVDThreadQueue);
+}
+
+BOOL DVDCancelAllAsync(DVDCBCallback callback) {
+    BOOL enabled, retVal;
+    DVDCommandBlock* p;
+
+    enabled = OSDisableInterrupts();
+    DVDPause();
+
+    while ((p = __DVDPopWaitingQueue()) != 0) {
+        DVDCancelAsync(p, NULL);
+    }
+
+    if (executing) {
+        retVal = DVDCancelAsync(executing, callback);
+    }
+    else {
+        retVal = TRUE;
+        if (callback) {
+            (*callback)(0, NULL);
+        }
+    }
+
+    DVDResume();
+    OSRestoreInterrupts(enabled);
+    return retVal;
 }
 
 DVDDiskID* DVDGetCurrentDiskID(void) {

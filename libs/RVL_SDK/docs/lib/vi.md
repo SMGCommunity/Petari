@@ -8,9 +8,9 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 18.695652173913043% | 9 / 28 | 32.142857142857146% | :eight_pointed_black_star: 
-| i2c.o | 0.0% | 0 / 3 | 0.0% | :x: 
-| vi3in1.o | 0.0% | 0 / 14 | 0.0% | :x: 
+| vi.o | 22.463768115942027% | 12 / 28 | 42.857142857142854% | :eight_pointed_black_star: 
+| i2c.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
+| vi3in1.o | 1.2354152367879203% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
 
 
 # vi.o
@@ -18,9 +18,9 @@
 | ------------- | ------------- |
 | OnShutdown | :x: |
 | __VIRetraceHandler | :x: |
-| VISetPreRetraceCallback | :x: |
-| VISetPostRetraceCallback | :x: |
-| getTiming | :x: |
+| VISetPreRetraceCallback | :white_check_mark: |
+| VISetPostRetraceCallback | :white_check_mark: |
+| getTiming | :white_check_mark: |
 | __VIInit | :x: |
 | VIInit | :x: |
 | VIWaitForRetrace | :white_check_mark: |
@@ -49,9 +49,9 @@
 # i2c.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| WaitMicroTime | :x: |
-| sendSlaveAddr | :x: |
-| __VISendI2CData | :x: |
+| WaitMicroTime | :white_check_mark: |
+| sendSlaveAddr | :white_check_mark: |
+| __VISendI2CData | :white_check_mark: |
 
 
 # vi3in1.o
@@ -69,7 +69,7 @@
 | VISetTrapFilter | :x: |
 | __VISetRGBOverDrive | :x: |
 | VISetRGBModeImm | :x: |
-| __VISetRGBModeImm | :x: |
+| __VISetRGBModeImm | :white_check_mark: |
 | __VISetRevolutionModeSimple | :x: |
 
 

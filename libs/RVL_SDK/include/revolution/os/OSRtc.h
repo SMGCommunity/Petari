@@ -33,6 +33,8 @@ u16 OSGetWirelessID(s32);
 void OSSetWirelessID(s32, u16);
 
 BOOL __OSReadROM(void *, s32, s32);
+BOOL __OSGetRTCFlags(u32 *);
+BOOL __OSClearRTCFlags(void);
 
 void __OSInitSram(void);
 

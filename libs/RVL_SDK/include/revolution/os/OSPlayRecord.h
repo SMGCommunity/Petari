@@ -12,5 +12,6 @@ typedef struct {
 } OSPlayRecord;
 
 void __OSStartPlayRecord(void);
+void __OSStopPlayRecord(void);
 
 #endif // OSPLAYRECORD_H

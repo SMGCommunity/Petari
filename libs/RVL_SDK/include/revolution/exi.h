@@ -22,6 +22,8 @@ BOOL EXILock(s32, u32, EXICallback);
 BOOL EXIUnlock(s32);
 BOOL EXIImmEx(s32, void *, s32, u32);
 
+EXICallback EXISetExiCallback(s32, EXICallback);
+
 BOOL EXIWriteReg(s32, u32, u32, void *, s32);
 
 s32 EXIGetID(s32, u32, u32 *);

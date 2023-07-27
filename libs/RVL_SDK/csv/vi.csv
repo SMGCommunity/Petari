@@ -1,9 +1,9 @@
 Symbol Name, Object File, Library Archive, Matching
 OnShutdown,vi.o,vi.a,false
 __VIRetraceHandler,vi.o,vi.a,false
-VISetPreRetraceCallback,vi.o,vi.a,false
-VISetPostRetraceCallback,vi.o,vi.a,false
-getTiming,vi.o,vi.a,false
+VISetPreRetraceCallback,vi.o,vi.a,true
+VISetPostRetraceCallback,vi.o,vi.a,true
+getTiming,vi.o,vi.a,true
 __VIInit,vi.o,vi.a,false
 VIInit,vi.o,vi.a,false
 VIWaitForRetrace,vi.o,vi.a,true
@@ -27,9 +27,9 @@ VIEnableDimming,vi.o,vi.a,false
 VISetTimeToDimming,vi.o,vi.a,false
 VIResetDimmingCount,vi.o,vi.a,true
 __VIResetRFIdle,vi.o,vi.a,false
-WaitMicroTime,i2c.o,vi.a,false
-sendSlaveAddr,i2c.o,vi.a,false
-__VISendI2CData,i2c.o,vi.a,false
+WaitMicroTime,i2c.o,vi.a,true
+sendSlaveAddr,i2c.o,vi.a,true
+__VISendI2CData,i2c.o,vi.a,true
 __VISetYUVSEL,vi3in1.o,vi.a,false
 __VISetFilter4EURGB60,vi3in1.o,vi.a,false
 __VISetCGMS,vi3in1.o,vi.a,false
@@ -42,5 +42,5 @@ __VISetTrapFilter,vi3in1.o,vi.a,false
 VISetTrapFilter,vi3in1.o,vi.a,false
 __VISetRGBOverDrive,vi3in1.o,vi.a,false
 VISetRGBModeImm,vi3in1.o,vi.a,false
-__VISetRGBModeImm,vi3in1.o,vi.a,false
+__VISetRGBModeImm,vi3in1.o,vi.a,true
 __VISetRevolutionModeSimple,vi3in1.o,vi.a,false
