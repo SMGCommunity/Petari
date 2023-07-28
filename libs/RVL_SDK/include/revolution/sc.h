@@ -122,13 +122,16 @@ BOOL SCGetIdleMode(SCIdleModeInfo *);
 
 BOOL SCFindByteArrayItem(void *, u32, SCItemID);
 BOOL SCFindU8Item(u8* , SCItemID);
+BOOL SCFindS8Item(s8 *, SCItemID);
 BOOL SCFindU32Item(u32 *, SCItemID);
 
 s8 SCGetProductGameRegion(void);
 
 BOOL __SCF1(const char *, char *, u32);
 
+s8 SCGetDisplayOffsetH(void);
 s8 SCGetProductArea(void);
+u8 SCGetScreenSaverMode(void);
 
 #ifdef __cplusplus
 }

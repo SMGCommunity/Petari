@@ -22,12 +22,12 @@ __SCFlushSyncCallback,scsystem.o,sc.a,false
 SCFlushAsync,scsystem.o,sc.a,false
 MyNandCallback,scsystem.o,sc.a,false
 SCGetAspectRatio,scapi.o,sc.a,false
-SCGetDisplayOffsetH,scapi.o,sc.a,false
-SCGetEuRgb60Mode,scapi.o,sc.a,false
+SCGetDisplayOffsetH,scapi.o,sc.a,true
+SCGetEuRgb60Mode,scapi.o,sc.a,true
 SCGetIdleMode,scapi.o,sc.a,true
 SCGetLanguage,scapi.o,sc.a,true
 SCGetProgressiveMode,scapi.o,sc.a,false
-SCGetScreenSaverMode,scapi.o,sc.a,false
+SCGetScreenSaverMode,scapi.o,sc.a,true
 SCGetSoundMode,scapi.o,sc.a,false
 SCGetCounterBias,scapi.o,sc.a,true
 SCGetBtDeviceInfoArray,scapi.o,sc.a,false

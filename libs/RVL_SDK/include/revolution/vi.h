@@ -83,11 +83,86 @@ typedef struct VIGammaObj {
     u16 yout[7];
 } VIGammaObj;
 
+typedef enum _VITimeToDIM {
+    VI_DM_DEFAULT = 0,
+    VI_DM_10M,
+    VI_DM_15M
+} VITimeToDIM;
+
+typedef enum _VIACPType {
+    VI_ACP_OFF = 1,
+    VI_ACP_TYPE1 = 2,
+    VI_ACP_TYPE2 = 3,
+    VI_ACP_TYPE3 = 4
+} VIACPType;
+
+typedef enum _VIGamma {
+    VI_GM_0_1 = 1,
+    VI_GM_0_2,
+    VI_GM_0_3,
+    VI_GM_0_4,
+    VI_GM_0_5,
+    VI_GM_0_6,
+    VI_GM_0_7,
+    VI_GM_0_8,
+    VI_GM_0_9,
+    VI_GM_1_0,
+    VI_GM_1_1,
+    VI_GM_1_2,
+    VI_GM_1_3,
+    VI_GM_1_4,
+    VI_GM_1_5,
+    VI_GM_1_6,
+    VI_GM_1_7,
+    VI_GM_1_8,
+    VI_GM_1_9,
+    VI_GM_2_0,
+    VI_GM_2_1,
+    VI_GM_2_2,
+    VI_GM_2_3,
+    VI_GM_2_4,
+    VI_GM_2_5,
+    VI_GM_2_6,
+    VI_GM_2_7,
+    VI_GM_2_8,
+    VI_GM_2_9,
+    VI_GM_3_0
+} VIGamma;
+
+typedef enum _VIOverDrive {
+	VI_ODV_L1 = 0,
+    VI_ODV_L2 = 1,
+    VI_ODV_L3 = 2,
+    VI_ODV_L4 = 3,
+    VI_ODV_L5 = 4,
+    VI_ODV_L6 = 5
+} VIOverDrive;
+
+typedef struct VIMacroVisionObj {
+    u8 m[26];
+} VIMacroVisionObj;
+
+extern VIMacroVisionObj VINtscACPType1;
+extern VIMacroVisionObj VINtscACPType2;
+extern VIMacroVisionObj VINtscACPType3;
+extern VIMacroVisionObj VIPalACPType1;
+extern VIMacroVisionObj VIPalACPType2;
+extern VIMacroVisionObj VIPalACPType3;
+extern VIMacroVisionObj VIEurgb60ACPType1;
+extern VIMacroVisionObj VIEurgb60ACPType2;
+extern VIMacroVisionObj VIEurgb60ACPType3;
+extern VIMacroVisionObj VIMpalACPType1;
+extern VIMacroVisionObj VIMpalACPType2;
+extern VIMacroVisionObj VIMpalACPType3;
+extern VIMacroVisionObj VIProgressiveACPType;
+extern VIMacroVisionObj VIZeroACPType;
+
 BOOL VIResetDimmingCount();
 
 u32 VIGetTvFormat();
 
 u32 VIGetCurrentLine();
+u32 VIGetScanMode(void);
 
 void VISetBlack(BOOL);
 void VIFlush();
@@ -97,6 +172,8 @@ void VISetNextFrameBuffer(void *);
 
 void VIConfigure(const GXRenderModeObj *);
 void VIConfigurePan(u16, u16, u16, u16);
+
+void __VISetRevolutionModeSimple();
 
 typedef u8 VIBool;
 #define VI_FALSE ((VIBool)0) 

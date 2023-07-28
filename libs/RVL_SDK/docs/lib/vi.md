@@ -8,33 +8,33 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 22.463768115942027% | 12 / 28 | 42.857142857142854% | :eight_pointed_black_star: 
+| vi.o | 71.8840579710145% | 19 / 28 | 67.85714285714286% | :eight_pointed_black_star: 
 | i2c.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| vi3in1.o | 1.2354152367879203% | 1 / 14 | 7.142857142857142% | :eight_pointed_black_star: 
+| vi3in1.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 
 
 # vi.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OnShutdown | :x: |
+| OnShutdown | :white_check_mark: |
 | __VIRetraceHandler | :x: |
 | VISetPreRetraceCallback | :white_check_mark: |
 | VISetPostRetraceCallback | :white_check_mark: |
 | getTiming | :white_check_mark: |
-| __VIInit | :x: |
-| VIInit | :x: |
+| __VIInit | :white_check_mark: |
+| VIInit | :white_check_mark: |
 | VIWaitForRetrace | :white_check_mark: |
 | setFbbRegs | :white_check_mark: |
 | setHorizontalRegs | :white_check_mark: |
 | setVerticalRegs | :white_check_mark: |
-| VIConfigure | :x: |
-| VIConfigurePan | :x: |
+| VIConfigure | :white_check_mark: |
+| VIConfigurePan | :white_check_mark: |
 | VIFlush | :white_check_mark: |
-| VISetNextFrameBuffer | :x: |
+| VISetNextFrameBuffer | :white_check_mark: |
 | VIGetNextFrameBuffer | :x: |
 | VIGetCurrentFrameBuffer | :x: |
 | VISetBlack | :white_check_mark: |
-| VIGetRetraceCount | :x: |
+| VIGetRetraceCount | :white_check_mark: |
 | VIGetCurrentLine | :white_check_mark: |
 | VIGetTvFormat | :white_check_mark: |
 | VIGetDTVStatus | :x: |
@@ -57,19 +57,19 @@
 # vi3in1.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __VISetYUVSEL | :x: |
-| __VISetFilter4EURGB60 | :x: |
-| __VISetCGMS | :x: |
-| __VISetWSS | :x: |
-| __VISetClosedCaption | :x: |
-| __VISetMacrovision | :x: |
-| __VISetGammaImm | :x: |
-| __VISetGamma | :x: |
-| __VISetTrapFilter | :x: |
-| VISetTrapFilter | :x: |
-| __VISetRGBOverDrive | :x: |
-| VISetRGBModeImm | :x: |
+| __VISetYUVSEL | :white_check_mark: |
+| __VISetFilter4EURGB60 | :white_check_mark: |
+| __VISetCGMS | :white_check_mark: |
+| __VISetWSS | :white_check_mark: |
+| __VISetClosedCaption | :white_check_mark: |
+| __VISetMacrovision | :white_check_mark: |
+| __VISetGammaImm | :white_check_mark: |
+| __VISetGamma | :white_check_mark: |
+| __VISetTrapFilter | :white_check_mark: |
+| VISetTrapFilter | :white_check_mark: |
+| __VISetRGBOverDrive | :white_check_mark: |
+| VISetRGBModeImm | :white_check_mark: |
 | __VISetRGBModeImm | :white_check_mark: |
-| __VISetRevolutionModeSimple | :x: |
+| __VISetRevolutionModeSimple | :white_check_mark: |
 
 
