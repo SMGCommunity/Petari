@@ -15,6 +15,9 @@ else:
         subprocess.call("python build.py -archive", cwd=f"libs/{lib}")
 
 subprocess.call("python build.py -link")
-subprocess.call("python make_dol.py main.elf main.dol")
+
+if subprocess.call("python make_dol.py main.elf main.dol") == 1:
+    print("NOT OK...")
+    sys.exit(1)
 
 print("OK")
