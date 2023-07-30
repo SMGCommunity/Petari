@@ -27,6 +27,8 @@ void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
 
 void GXSetClipMode(GXClipMode);
 
+void __GXSetMatrixIndex(GXAttr);
+
 #ifdef __cplusplus
 }
 #endif

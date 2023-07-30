@@ -12,6 +12,8 @@ static void __VIRetraceHandler(__OSInterrupt, OSContext *);
 static volatile u32 retraceCount;
 static volatile u32 flushFlag;
 static volatile u32 flushFlag3in1;
+static vu32 vsync_timing_err_cnt    = 0;
+static vu32 vsync_timing_test_flag = 0;
 
 static volatile BOOL __VIDimming_All_Clear = FALSE;
 static volatile BOOL __VIDimmingFlag_Enable;
@@ -26,6 +28,9 @@ static vu32 __VIDimmingFlag_RF_IDLE;
 static vu32 __VIDimmingFlag_SI_IDLE;
 static vu32 __VIDimmingFlag_DEV_IDLE[10];
 static volatile BOOL __VIDimmingState = FALSE;
+
+extern VIVideo Vdac_Flag_Region;
+extern volatile u32 Vdac_Flag_Changed = 0;
 
 static OSThreadQueue retraceQueue;
 
@@ -56,6 +61,7 @@ static u32 FBSet = 0;
 
 static VIRetraceCallback PreCB;
 static VIRetraceCallback PostCB;
+static VIPositionCallback PositionCallback = NULL;
 
 static u32 encoderType;
 static s16 displayOffsetH = 0;
@@ -441,7 +447,7 @@ static void GetCurrentDisplayPosition(u32 *hct, u32 *vct) {
     *vct = vcount;
 }
 
-static u32 getCurrentFieldEvenOn(void);
+static u32 getCurrentFieldEvenOdd(void);
 static s32 cntlzd(u64);
 
 static BOOL VISetRegs(void) {
@@ -463,6 +469,285 @@ static BOOL VISetRegs(void) {
     }
     else {
         return FALSE;
+    }
+}
+
+extern DVDCommandBlock __DVDStopMotorCommandBlock;
+
+static void __VIRetraceHandler(__OSInterrupt interrupt, OSContext* context) {
+    OSContext exceptionContext;
+    u16 reg;
+    u32 inter = 0;
+    u32 regIndex;
+    static u32 old_dtvStatus = 999;
+    static u32 old_tvtype = 999;
+    u32 now_dtvStatus = 0;
+    u32 now_tvtype    = 0;
+    static BOOL __VIDimmingFlag_Enable_old = TRUE;
+    static BOOL __VIDVDStopFlag_Enable_old = TRUE;
+    u32 i;
+    static u32 DimmingON_Pending = 0;
+    static u32 DimmingOFF_Pending = 0;
+    
+    reg = __VIRegs[0x18];
+    if (reg & 0x8000) {
+        __VIRegs[0x18] = (u16)(reg & ~0x8000);
+        inter |= 1;
+    }
+
+    reg = __VIRegs[0x1A];
+    if (reg & 0x8000) {
+        __VIRegs[0x1A] = (u16)(reg & ~0x8000);
+        inter |= 2;
+    }
+
+    reg = __VIRegs[0x1C];
+    if (reg & 0x8000) {
+        __VIRegs[0x1C] = (u16)(reg & ~0x8000);
+        inter |= 4;
+    }
+
+    reg = __VIRegs[0x1E];
+    if (reg & 0x8000) {
+        __VIRegs[0x1E] = (u16)(reg & ~0x8000);
+        inter |= 8;
+    }
+
+    reg = __VIRegs[0x1E];
+
+    if ((inter & 4) || (inter & 8)) {
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(&exceptionContext);
+
+        if (PositionCallback) {
+            s16 x, y;
+            __VIGetCurrentPosition(&x, &y);
+            (*PositionCallback)(x, y);
+        }
+
+        OSClearContext(&exceptionContext);
+        OSSetCurrentContext(context);
+        return;
+    }
+
+    retraceCount++;
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+
+    if (PreCB) {
+        (*PreCB)(retraceCount);
+    }
+    
+    if (vsync_timing_test_flag) {
+        u32 hcount, vcount;
+
+        GetCurrentDisplayPosition(&hcount, &vcount);
+
+        if(!((vcount == 1) || (vcount == (CurrTiming->nhlines / 2 + 1)))) {
+            vsync_timing_err_cnt++;
+        }
+    }
+
+    if (flushFlag) {
+        if (VISetRegs()) {
+            flushFlag = 0;
+            SIRefreshSamplingRate();
+        }
+    }
+
+    now_dtvStatus = VIGetDTVStatus();
+    if(now_dtvStatus != old_dtvStatus) {
+        __VISetYUVSEL((VIBool)now_dtvStatus);
+    }
+
+    old_dtvStatus = now_dtvStatus;
+    now_tvtype = VIGetTvFormat();
+
+    if (now_tvtype != old_tvtype) {
+        if (now_tvtype == VI_EURGB60) {
+            __VISetFilter4EURGB60(VI_ENABLE);
+        }
+        else {
+            __VISetFilter4EURGB60(VI_DISABLE);
+        }
+        
+        switch (now_tvtype) {
+            case VI_PAL:
+                switch(g_current_time_to_dim) {
+                    case VI_DM_10M:
+                        NEW_TIME_TO_DIMMING = 30000;
+                        break;
+                    case VI_DM_15M:
+                        NEW_TIME_TO_DIMMING = 45000;
+                        break;
+                    default:
+                        NEW_TIME_TO_DIMMING = 15000;
+                        break;
+                }
+                THD_TIME_TO_DVD_STOP = 90000;
+                break;
+            default:
+                switch(g_current_time_to_dim) {
+                    case VI_DM_10M:
+                        NEW_TIME_TO_DIMMING = 36000;
+                        break;
+                    case VI_DM_15M:
+                        NEW_TIME_TO_DIMMING = 54000;
+                        break;
+                    default:
+                        NEW_TIME_TO_DIMMING = 18000;
+                        break;
+                }
+                THD_TIME_TO_DVD_STOP = 108000;
+                break;
+        }
+    
+        _gIdleCount_dimming = 0;
+        _gIdleCount_dvd = 0;
+    }
+
+    old_tvtype = now_tvtype;
+    
+    
+    if (flushFlag3in1) {
+        while (Vdac_Flag_Changed) {
+            regIndex = (u32)__cntlzw(Vdac_Flag_Changed);
+            regIndex = (u32)(1 << (31 - regIndex));
+            
+            switch(regIndex) {
+                case 1:
+                    __VISetCGMS();
+                    break;
+                case 2:
+                    __VISetWSS();
+                    break;
+                case 4:
+                    __VISetClosedCaption();
+                    break;
+                case 8:
+                    __VISetMacrovision();
+                    break;
+                case 0x10:
+                    __VISetGamma();
+                    break;
+                case 0x20:
+                    __VISetTrapFilter();
+                    break;
+                case 0x40:
+                    __VISetRGBOverDrive();
+                    break;
+                case 0x80:
+                    __VISetRGBModeImm();
+                    break;
+            }
+
+            Vdac_Flag_Changed &= ~regIndex;
+        }
+
+        flushFlag3in1 = 0;
+    }
+    
+    
+    if (PostCB) {
+        OSClearContext(&exceptionContext);
+        (*PostCB)(retraceCount);
+    }
+
+    OSWakeupThread(&retraceQueue);
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(context);
+    
+    if (__VIDimming_All_Clear == TRUE) {
+        if(__OSSetVIForceDimming(FALSE, 0, 0) == TRUE) {
+            __VIDimming_All_Clear = FALSE;
+            _gIdleCount_dimming = 0;
+        }
+    }
+    
+    for (i = 0; i < 10; i++) {
+        if(__VIDimmingFlag_DEV_IDLE[i] == 0) {
+            __VIDimmingFlag_DEV_IDLE[0] = 0;
+            break;
+        }
+    }
+    
+    if(__VIDimmingFlag_RF_IDLE && __VIDimmingFlag_SI_IDLE && __VIDimmingFlag_DEV_IDLE[0]) {
+        if ((__VIDimmingFlag_Enable == TRUE) && (_gIdleCount_dimming < 0xFFFFFFFF)) {
+            _gIdleCount_dimming++;
+        }
+        
+        if ((__VIDVDStopFlag_Enable == TRUE) && (_gIdleCount_dvd < 0xFFFFFFFF)) {
+            _gIdleCount_dvd++;
+        }
+    }
+    else {
+        if (_gIdleCount_dimming >= THD_TIME_TO_DIMMING) {
+            DimmingOFF_Pending = 1;
+        }
+        if (_gIdleCount_dvd >= THD_TIME_TO_DVD_STOP) {
+            __DVDRestartMotor();
+        }
+
+        _gIdleCount_dimming = 0;
+        _gIdleCount_dvd = 0;
+        THD_TIME_TO_DIMMING = NEW_TIME_TO_DIMMING;
+    }
+    
+    if (__VIDimmingFlag_Enable_old != __VIDimmingFlag_Enable) {
+        if (__VIDimmingFlag_Enable == FALSE) {
+            if (_gIdleCount_dimming >= THD_TIME_TO_DIMMING) {
+                DimmingOFF_Pending = 1;
+            }
+        }
+
+        _gIdleCount_dimming = 0;
+        THD_TIME_TO_DIMMING = NEW_TIME_TO_DIMMING;
+    }
+    
+    if (_gIdleCount_dimming == THD_TIME_TO_DIMMING) {
+        DimmingON_Pending = 1;
+    }
+    
+    if (DimmingOFF_Pending) {
+        if (__OSSetVIForceDimming(FALSE, 2, 2) == TRUE) {
+            DimmingOFF_Pending = 0;
+            __VIDimmingState = FALSE;
+        }
+    }
+
+    if (DimmingON_Pending) {
+        if (__OSSetVIForceDimming(TRUE, 2, 2) == TRUE) {
+            DimmingON_Pending = 0;
+            __VIDimmingState = TRUE;
+        }
+    }
+
+    if (__VIDVDStopFlag_Enable_old != __VIDVDStopFlag_Enable) {
+        if (__VIDVDStopFlag_Enable == FALSE) {
+            if (_gIdleCount_dvd >= THD_TIME_TO_DVD_STOP) {
+                __DVDRestartMotor();
+            }
+        }
+        _gIdleCount_dvd = 0;
+    }
+    
+    if(_gIdleCount_dvd  == THD_TIME_TO_DVD_STOP) {
+        __DVDStopMotorAsync(&__DVDStopMotorCommandBlock, NULL);
+    }
+
+    __VIDimmingFlag_RF_IDLE = 1;
+    __VIDimmingFlag_SI_IDLE = 1;
+
+    for(i = 0; i < 10; i++)
+    {
+        __VIDimmingFlag_DEV_IDLE[i] = 1;
+    }
+    
+    __VIDimmingFlag_Enable_old = __VIDimmingFlag_Enable;
+    __VIDVDStopFlag_Enable_old = __VIDVDStopFlag_Enable;
+    
+    if ((NEW_TIME_TO_DIMMING > _gIdleCount_dimming) && (__VIDimmingState == FALSE)) {
+        THD_TIME_TO_DIMMING = NEW_TIME_TO_DIMMING;
     }
 }
 
@@ -641,7 +926,7 @@ static u32 getCurrentHalfLine(void) {
     return ((vcount - 1) << 1) + ((hcount - 1) / CurrTiming->hlw);
 }
 
-static u32 getCurrentFieldEvenOn(void) {
+static u32 getCurrentFieldEvenOdd(void) {
     return (getCurrentHalfLine() < CurrTiming->nhlines) ? 1u : 0u;
 }
 
@@ -1291,6 +1576,99 @@ u32 VIGetScanMode(void) {
     OSRestoreInterrupts(enabled);
 
     return scanMode;
+}
+
+u32 VIGetDTVStatus(void) {
+    u32 dtvStatus;
+    BOOL enabled;
+
+    enabled = OSDisableInterrupts();
+    dtvStatus = ((((unsigned long)(__VIRegs[0x37])) & 0x00000003) >> 0);
+    OSRestoreInterrupts(enabled);
+
+    return (dtvStatus & 0x01);
+}
+
+void __VIDisplayPositionToXY(u32 hct, u32 vct, s16 *x, s16 *y) {
+    u32 halfLine = ((vct - 1) << 1) + ( (hct-1) / CurrTiming->hlw );
+
+    if (HorVer.nonInter == VI_INTERLACE) {
+        if (halfLine < CurrTiming->nhlines) {
+            if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbOdd) {
+                *y = -1;
+            }
+            else if (halfLine >= CurrTiming->nhlines - CurrTiming->psbOdd) {
+                *y = -1;
+            }
+            else {
+                *y = (s16)((halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd) & ~1);
+            }
+        }
+        else {
+            halfLine -= CurrTiming->nhlines;
+            
+            if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbEven) {
+                *y = -1;
+            }
+            else if (halfLine >= CurrTiming->nhlines - CurrTiming->psbEven) {
+                *y = -1;
+            }
+            else {
+                *y = (s16)(( (halfLine - CurrTiming->equ * 3 - CurrTiming->prbEven) & ~1)+1);
+            }
+        }
+    }
+    else if (HorVer.nonInter == VI_NON_INTERLACE) {
+        if (halfLine >= CurrTiming->nhlines) {
+            halfLine -= CurrTiming->nhlines;
+        }
+        
+        if (halfLine < CurrTiming->equ*3 + CurrTiming->prbOdd) {
+            *y = -1;
+        }
+        else if (halfLine >= CurrTiming->nhlines - CurrTiming->psbOdd) {
+            *y = -1;
+        }
+        else {
+            *y = (s16)((halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd) & ~1);
+        }
+    }
+    else if (HorVer.nonInter == VI_PROGRESSIVE) {
+        if (halfLine < CurrTiming->nhlines) {
+            if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbOdd) {
+                *y = -1;
+            }
+            else if (halfLine >= CurrTiming->nhlines - CurrTiming->psbOdd) {
+                *y = -1;
+            }
+            else {
+                *y = (s16)(halfLine - CurrTiming->equ * 3 - CurrTiming->prbOdd);
+            }
+        }
+        else {
+            halfLine -= CurrTiming->nhlines;
+
+            if (halfLine < CurrTiming->equ * 3 + CurrTiming->prbEven) {
+                *y = -1;
+            }
+            else if (halfLine >= CurrTiming->nhlines - CurrTiming->psbEven) {
+                *y = -1;
+            }
+            else 
+                *y = (s16)((halfLine - CurrTiming->equ*3 - CurrTiming->prbEven) & ~1);
+        }
+    }
+
+    *x = (s16)(hct - 1);
+}
+
+void __VIGetCurrentPosition(s16 *x, s16 *y)
+{
+    u32 hcount;
+    u32 vcount;
+
+    GetCurrentDisplayPosition(&hcount, &vcount);
+    __VIDisplayPositionToXY(hcount, vcount, x, y);
 }
 
 BOOL __VIResetDev0Idle(void) {

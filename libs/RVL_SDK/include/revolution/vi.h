@@ -157,6 +157,11 @@ extern VIMacroVisionObj VIMpalACPType3;
 extern VIMacroVisionObj VIProgressiveACPType;
 extern VIMacroVisionObj VIZeroACPType;
 
+typedef void (*VIPositionCallback)(s16, s16);
+
+void __VIGetCurrentPosition(s16 *, s16 *);
+u32 VIGetDTVStatus(void);
+
 BOOL VIResetDimmingCount();
 
 u32 VIGetTvFormat();

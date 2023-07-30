@@ -1,6 +1,6 @@
 Symbol Name, Object File, Library Archive, Matching
 OnShutdown,vi.o,vi.a,true
-__VIRetraceHandler,vi.o,vi.a,false
+__VIRetraceHandler,vi.o,vi.a,true
 VISetPreRetraceCallback,vi.o,vi.a,true
 VISetPostRetraceCallback,vi.o,vi.a,true
 getTiming,vi.o,vi.a,true
@@ -21,7 +21,7 @@ VIGetRetraceCount,vi.o,vi.a,true
 VIGetCurrentLine,vi.o,vi.a,true
 VIGetTvFormat,vi.o,vi.a,true
 VIGetDTVStatus,vi.o,vi.a,false
-__VIDisplayPositionToXY,vi.o,vi.a,false
+__VIDisplayPositionToXY,vi.o,vi.a,true
 VIGetDimmingCount,vi.o,vi.a,false
 VIEnableDimming,vi.o,vi.a,false
 VISetTimeToDimming,vi.o,vi.a,false
