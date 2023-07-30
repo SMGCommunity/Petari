@@ -92,7 +92,7 @@ static void ClearConfBuf(u8* bufp) {
     if (size > 12) {
         memcpy(bufp, "SCv0", 4);
         memcpy(bufp + 0x3FFC, "SCed", 4);
-        *(u16*)bufp = 8;
+        *((u16*)bufp + 3) = 8;
     }
 }
 
@@ -610,8 +610,6 @@ u32 SCCheckStatus(void) {
 
     return ret;
 }
-
-// SCCheckStatus
 
 static s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback) {
    u32 i;

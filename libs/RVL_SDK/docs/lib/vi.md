@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| vi.o | 71.8840579710145% | 19 / 28 | 67.85714285714286% | :eight_pointed_black_star: 
+| vi.o | 95.68840579710145% | 21 / 28 | 75.0% | :eight_pointed_black_star: 
 | i2c.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | vi3in1.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 
@@ -17,7 +17,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | OnShutdown | :white_check_mark: |
-| __VIRetraceHandler | :x: |
+| __VIRetraceHandler | :white_check_mark: |
 | VISetPreRetraceCallback | :white_check_mark: |
 | VISetPostRetraceCallback | :white_check_mark: |
 | getTiming | :white_check_mark: |
@@ -38,7 +38,7 @@
 | VIGetCurrentLine | :white_check_mark: |
 | VIGetTvFormat | :white_check_mark: |
 | VIGetDTVStatus | :x: |
-| __VIDisplayPositionToXY | :x: |
+| __VIDisplayPositionToXY | :white_check_mark: |
 | VIGetDimmingCount | :x: |
 | VIEnableDimming | :x: |
 | VISetTimeToDimming | :x: |

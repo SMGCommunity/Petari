@@ -5,6 +5,9 @@
 extern "C" {
 #endif
 
+#define PHY_ADDR_MASK ~((~0x3FFF) << 16)
+#define GX_PHY_ADDR(a)  ((u32)a & PHY_ADDR_MASK)
+
 typedef struct _GXData {
     u16 vNumNot;
     u16 bpSentNot;
@@ -84,6 +87,7 @@ typedef struct _GXData {
     GXBool inDispList;
     GXBool dlSaveContext;
     GXBool abtWaitPECopy;
+    GXBool xfDisable;
     u8 dirtyVAT;
     u32 dirtyState;
 } GXData;

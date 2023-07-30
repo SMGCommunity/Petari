@@ -756,7 +756,7 @@ entry __OSEVStart
     mfctr r3
     stw r3, 136(r4)
     mfxer r3
-    stw r3, 140(r3)
+    stw r3, 140(r4)
     mfsrr0 r3
     stw r3, 408(r4)
     mfsrr1 r3

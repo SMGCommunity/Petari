@@ -288,7 +288,7 @@ s32 ESP_GetConsumption(ESTicketId ticketId, ESLpEntry* entries, u32* nEntries) {
     u8 __esBuf[256] __attribute__ ((aligned(32)));
     IOSIoVector* v = (IOSIoVector *)(__esBuf + 256 - 6 * sizeof(IOSIoVector));
     ESTicketId* p1 = (ESTicketId*)__esBuf;
-    u32* p2 = (u32*)(__esBuf + 16);
+    u32* p2 = (u32*)(__esBuf + 32);
 
     if (__esFd < 0) {
         rv = -1017;

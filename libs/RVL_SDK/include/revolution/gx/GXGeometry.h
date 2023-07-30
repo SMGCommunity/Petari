@@ -21,9 +21,19 @@ void GXSetTexCoordGen2(GXTexCoordID, GXTexGenType, GXTexGenSrc, u32, GXBool, u32
 
 void GXSetNumTexGens(u8);
 
+
 static inline void GXEnd(void) {
     
 }
+
+void __GXSetSUTexRegs(void);
+void __GXSetVCD(void);
+void __GXSetVAT(void);
+void __GXCalculateVLim(void);
+void __GXSetGenMode(void);
+void __GXUpdateBPMask(void);
+void __GXSetProjection(void);
+void __GXSetViewport(void);
 
 #ifdef __cplusplus
 }
