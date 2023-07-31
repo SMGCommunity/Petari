@@ -8,8 +8,8 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| JKRHeap.o | 26.504065040650403% | 7 / 48 | 14.583333333333334% | :eight_pointed_black_star: 
-| JKRExpHeap.o | 1.825442099258414% | 1 / 40 | 2.5% | :eight_pointed_black_star: 
+| JKRHeap.o | 65.04065040650406% | 43 / 48 | 89.58333333333334% | :eight_pointed_black_star: 
+| JKRExpHeap.o | 6.845407872219053% | 6 / 40 | 15.0% | :eight_pointed_black_star: 
 | JKRSolidHeap.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | JKRUnitHeap.o | 0.0% | 0 / 26 | 0.0% | :x: 
 | JKRDisposer.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -36,54 +36,54 @@
 # JKRHeap.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__7JKRHeapFPvUlP7JKRHeapb | :x: |
+| __ct__7JKRHeapFPvUlP7JKRHeapb | :white_check_mark: |
 | __dt__17JSULink&lt;7JKRHeap&gt;Fv | :white_check_mark: |
-| __dt__17JSUTree&lt;7JKRHeap&gt;Fv | :x: |
+| __dt__17JSUTree&lt;7JKRHeap&gt;Fv | :white_check_mark: |
 | __dt__22JSUList&lt;11JKRDisposer&gt;Fv | :x: |
-| __dt__7JKRHeapFv | :white_check_mark: |
-| initArena__7JKRHeapFPPcPUli | :x: |
-| becomeSystemHeap__7JKRHeapFv | :x: |
+| __dt__7JKRHeapFv | :x: |
+| initArena__7JKRHeapFPPcPUli | :white_check_mark: |
+| becomeSystemHeap__7JKRHeapFv | :white_check_mark: |
 | becomeCurrentHeap__7JKRHeapFv | :white_check_mark: |
-| destroy__7JKRHeapFP7JKRHeap | :x: |
+| destroy__7JKRHeapFP7JKRHeap | :white_check_mark: |
 | alloc__7JKRHeapFUliP7JKRHeap | :white_check_mark: |
-| alloc__7JKRHeapFUli | :x: |
+| alloc__7JKRHeapFUli | :white_check_mark: |
 | free__7JKRHeapFPvP7JKRHeap | :white_check_mark: |
-| free__7JKRHeapFPv | :x: |
+| free__7JKRHeapFPv | :white_check_mark: |
 | callAllDisposer__7JKRHeapFv | :white_check_mark: |
-| freeAll__7JKRHeapFv | :x: |
-| freeTail__7JKRHeapFv | :x: |
-| resize__7JKRHeapFPvUl | :x: |
-| getFreeSize__7JKRHeapFv | :x: |
-| getMaxFreeBlock__7JKRHeapFv | :x: |
-| getTotalFreeSize__7JKRHeapFv | :x: |
+| freeAll__7JKRHeapFv | :white_check_mark: |
+| freeTail__7JKRHeapFv | :white_check_mark: |
+| resize__7JKRHeapFPvUl | :white_check_mark: |
+| getFreeSize__7JKRHeapFv | :white_check_mark: |
+| getMaxFreeBlock__7JKRHeapFv | :white_check_mark: |
+| getTotalFreeSize__7JKRHeapFv | :white_check_mark: |
 | findFromRoot__7JKRHeapFPv | :white_check_mark: |
 | find__7JKRHeapCFPv | :x: |
 | findAllHeap__7JKRHeapCFPv | :x: |
 | dispose_subroutine__7JKRHeapFUlUl | :x: |
-| dispose__7JKRHeapFPvUl | :x: |
-| dispose__7JKRHeapFPvPv | :x: |
-| dispose__7JKRHeapFv | :x: |
-| copyMemory__7JKRHeapFPvPvUl | :x: |
-| JKRDefaultMemoryErrorRoutine__FPvUli | :x: |
-| setErrorHandler__7JKRHeapFPFPvUli_v | :x: |
-| __nw__FUl | :x: |
-| __nw__FUli | :x: |
-| __nw__FUlP7JKRHeapi | :x: |
-| __nwa__FUl | :x: |
-| __nwa__FUli | :x: |
-| __nwa__FUlP7JKRHeapi | :x: |
-| __dl__FPv | :x: |
-| __dla__FPv | :x: |
-| state_register__7JKRHeapCFPQ27JKRHeap6TStateUl | :x: |
-| state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState | :x: |
-| state_dump__7JKRHeapCFRCQ27JKRHeap6TState | :x: |
-| setAltAramStartAdr__7JKRHeapFUl | :x: |
-| getAltAramStartAdr__7JKRHeapFv | :x: |
-| do_changeGroupID__7JKRHeapFUc | :x: |
-| do_getCurrentGroupId__7JKRHeapFv | :x: |
-| dump_sort__7JKRHeapFv | :x: |
-| __pp__25JSUTreeIterator&lt;7JKRHeap&gt;Fv | :x: |
-| __pp__30JSUListIterator&lt;11JKRDisposer&gt;Fi | :x: |
+| dispose__7JKRHeapFPvUl | :white_check_mark: |
+| dispose__7JKRHeapFPvPv | :white_check_mark: |
+| dispose__7JKRHeapFv | :white_check_mark: |
+| copyMemory__7JKRHeapFPvPvUl | :white_check_mark: |
+| JKRDefaultMemoryErrorRoutine__FPvUli | :white_check_mark: |
+| setErrorHandler__7JKRHeapFPFPvUli_v | :white_check_mark: |
+| __nw__FUl | :white_check_mark: |
+| __nw__FUli | :white_check_mark: |
+| __nw__FUlP7JKRHeapi | :white_check_mark: |
+| __nwa__FUl | :white_check_mark: |
+| __nwa__FUli | :white_check_mark: |
+| __nwa__FUlP7JKRHeapi | :white_check_mark: |
+| __dl__FPv | :white_check_mark: |
+| __dla__FPv | :white_check_mark: |
+| state_register__7JKRHeapCFPQ27JKRHeap6TStateUl | :white_check_mark: |
+| state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState | :white_check_mark: |
+| state_dump__7JKRHeapCFRCQ27JKRHeap6TState | :white_check_mark: |
+| setAltAramStartAdr__7JKRHeapFUl | :white_check_mark: |
+| getAltAramStartAdr__7JKRHeapFv | :white_check_mark: |
+| do_changeGroupID__7JKRHeapFUc | :white_check_mark: |
+| do_getCurrentGroupId__7JKRHeapFv | :white_check_mark: |
+| dump_sort__7JKRHeapFv | :white_check_mark: |
+| __pp__25JSUTreeIterator&lt;7JKRHeap&gt;Fv | :white_check_mark: |
+| __pp__30JSUListIterator&lt;11JKRDisposer&gt;Fi | :white_check_mark: |
 
 
 # JKRExpHeap.o
@@ -93,7 +93,7 @@
 | create__10JKRExpHeapFUlP7JKRHeapb | :x: |
 | create__10JKRExpHeapFPvUlP7JKRHeapb | :x: |
 | do_destroy__10JKRExpHeapFv | :x: |
-| __ct__10JKRExpHeapFPvUlP7JKRHeapb | :x: |
+| __ct__10JKRExpHeapFPvUlP7JKRHeapb | :white_check_mark: |
 | __dt__10JKRExpHeapFv | :x: |
 | do_alloc__10JKRExpHeapFUli | :x: |
 | allocFromHead__10JKRExpHeapFUli | :x: |
@@ -121,10 +121,10 @@
 | check__10JKRExpHeapFv | :x: |
 | dump__10JKRExpHeapFv | :x: |
 | dump_sort__10JKRExpHeapFv | :x: |
-| initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc | :x: |
-| allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc | :x: |
-| allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc | :x: |
-| getHeapBlock__Q210JKRExpHeap9CMemBlockFPv | :x: |
+| initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc | :white_check_mark: |
+| allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc | :white_check_mark: |
+| allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc | :white_check_mark: |
+| getHeapBlock__Q210JKRExpHeap9CMemBlockFPv | :white_check_mark: |
 | state_register__10JKRExpHeapCFPQ27JKRHeap6TStateUl | :x: |
 | state_compare__10JKRExpHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState | :x: |
 | do_getCurrentGroupId__10JKRExpHeapFv | :x: |

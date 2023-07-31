@@ -1,6 +1,7 @@
 #include "Game/System/HeapMemoryWatcher.h"
 #include "Game/Util.h"
 #include <revolution/wpad.h>
+#include <revolution/os.h>
 
 JKRExpHeap* HeapMemoryWatcher::sRootHeapGDDR3;
 
@@ -112,16 +113,18 @@ void HeapMemoryWatcher::destroyGameHeap() {
     createGameHeap();
 }
 
-#ifdef NON_MATCHING
-// some reguse issues
 void HeapMemoryWatcher::createRootHeap() {
+    JKRExpHeap* heap;
+    void* newHi;
+    u32 arenaHi, arenaLo;
+    
     JKRExpHeap::createRoot(1, true);
-    u32 arenaLo = (u32)OSGetMEM2ArenaLo();
-    u32 arenaHi = (u32)OSGetMEM2ArenaHi();
-    void* newHi = (void*)(arenaLo + 0xE00000);
+    arenaLo = (u32)OSGetMEM2ArenaLo();
+    arenaHi = (u32)OSGetMEM2ArenaHi();
+    newHi = (void*)(arenaLo + 0xE00000);
     OSSetMEM2ArenaHi(newHi);
     JKRHeap::setAltAramStartAdr(arenaLo);
-    JKRExpHeap* heap = JKRExpHeap::create(newHi, arenaHi - (u32)newHi, JKRHeap::sRootHeap, true);
+    heap = JKRExpHeap::create(newHi, arenaHi - (u32)newHi, JKRHeap::sRootHeap, true);
 
     if (MR::isEqualCurrentHeap(heap)) {
         JKRHeap::sRootHeap->becomeCurrentHeap();
@@ -129,7 +132,6 @@ void HeapMemoryWatcher::createRootHeap() {
 
     HeapMemoryWatcher::sRootHeapGDDR3 = heap;
 }
-#endif
 
 void HeapMemoryWatcher::createHeaps() {
     MR::CurrentHeapRestorer chr = MR::CurrentHeapRestorer(JKRHeap::sRootHeap);

@@ -5,6 +5,22 @@
 class JKRExpHeap : public JKRHeap {
 public:
 
+    class CMemBlock {
+    public:
+
+        void initiate(CMemBlock *, CMemBlock *, u32, u8, u8);
+        CMemBlock* allocFore(u32, u8, u8, u8, u8);
+        CMemBlock* allocBack(u32, u8, u8, u8, u8);
+        static CMemBlock* getHeapBlock(void *);
+
+        u16 mMagic;             // _0
+        u8 mFlags;              // _2
+        u8 mGroupId;            // _3
+        u32 mSize;              // _4
+        CMemBlock* mPrev;       // _8
+        CMemBlock* mNext;       // _C
+    };
+
     JKRExpHeap(void *, u32, JKRHeap *, bool);
 
     virtual ~JKRExpHeap();
@@ -33,10 +49,13 @@ public:
 
     static JKRExpHeap* createRoot(int, bool);
 
-    u8 _6C;
+    u8 mAllocMode;          // _6C
+    u8 mCurrentGroupId;     // _6D
+    u8 _6E;
     u32 _70;
     u32 _74;
-    u32 _78;
-    u32 _7C;
-    u32 _80;
+    CMemBlock* mHeadFreeList;   // _78
+    CMemBlock* mTailFreeList;   // _7C
+    CMemBlock* mHeadUsedList;   // _80
+    CMemBlock* mTailUsedList;   // _84
 };

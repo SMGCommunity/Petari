@@ -507,7 +507,7 @@ setCurrentHeapToGameHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,tru
 setCurrentHeapToSceneHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
 destroySceneHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
 destroyGameHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
-createRootHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,false
+createRootHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
 createHeaps__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
 createGameHeap__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true
 __ct__17HeapMemoryWatcherFv,HeapMemoryWatcher.o,System.a,true

@@ -14,6 +14,8 @@ static void __init_data(void);
 extern void OSInit(void);
 extern void DBInit(void);
 
+extern void main(void);
+
 void InitMetroTRK(void) {
     return;
 }
@@ -23,10 +25,6 @@ void InitMetroTRK_BBA(void) {
 }
 
 void exit(void) {
-    return;
-}
-
-void main(int, char *) {
     return;
 }
 

@@ -6,7 +6,7 @@
 #include "nw4r/lyt/lyt_init.h"
 #include "Game/Util.h"
 
-/*
+
 void main(void) {
     __asm {
         li r3, 4
@@ -25,12 +25,12 @@ void main(void) {
 
     DVDInit();
     VIInit();
-    //HeapMemoryWatcher::createRootHeap();
+    HeapMemoryWatcher::createRootHeap();
     OSInitMutex(&MR::MutexHolder<0>::sMutex);
     OSInitMutex(&MR::MutexHolder<1>::sMutex);
     OSInitMutex(&MR::MutexHolder<2>::sMutex);
     nw4r::lyt::LytInit();
-    MR::setLayoutDefaultAllocator();
+    /*MR::setLayoutDefaultAllocator();
 
     if (!SingletonHolder<HeapMemoryWatcher>::sInstance) {
         SingletonHolder<HeapMemoryWatcher>::sInstance = new HeapMemoryWatcher();
@@ -51,6 +51,5 @@ void main(void) {
 
     while (true) {
         gameSystem->frameLoop();
-    }    
+    }*/
 }
-*/
