@@ -2,10 +2,6 @@
 
 #include <revolution/types.h>
 
-	struct int24 {
-		unsigned num: 24;
-	};
-
 class JASSeqReader {
 public:
 	void init();
@@ -17,9 +13,9 @@ public:
 	u32 readMidiValue();
 	void* getStackPtr(u32) const;
 
-	void* _0;
-	void* _4;
-	u32 _8;
-	void* _C[8];
+	u8* _0;
+	u8* _4;
+	u32 mNumStacks;
+	u8* mStackPtrs[8];
 	u16 _2C[8];
 };

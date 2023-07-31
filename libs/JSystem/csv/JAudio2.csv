@@ -198,10 +198,10 @@ setIntrMask__10JASSeqCtrlFUl,JASSeqCtrl.o,JAudio2.a,true
 clrIntrMask__10JASSeqCtrlFUl,JASSeqCtrl.o,JAudio2.a,true
 retIntr__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,true
 findIntr__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,true
-checkIntr__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,false
-timerProcess__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,false
-__sinit_\JASSeqCtrl_cpp,JASSeqCtrl.o,JAudio2.a,false
-__ct__12JASSeqParserFv,JASSeqCtrl.o,JAudio2.a,false
+checkIntr__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,true
+timerProcess__10JASSeqCtrlFv,JASSeqCtrl.o,JAudio2.a,true
+__sinit_\JASSeqCtrl_cpp,JASSeqCtrl.o,JAudio2.a,true
+__ct__12JASSeqParserFv,JASSeqCtrl.o,JAudio2.a,true
 conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition,JASSeqParser.o,JAudio2.a,false
 writeReg__12JASSeqParserFP8JASTrackUlUl,JASSeqParser.o,JAudio2.a,false
 readReg__12JASSeqParserCFP8JASTrackUl,JASSeqParser.o,JAudio2.a,false
