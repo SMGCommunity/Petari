@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | JKRHeap.o | 65.04065040650406% | 43 / 48 | 89.58333333333334% | :eight_pointed_black_star: 
-| JKRExpHeap.o | 6.845407872219053% | 6 / 40 | 15.0% | :eight_pointed_black_star: 
+| JKRExpHeap.o | 12.492869366799772% | 8 / 40 | 20.0% | :eight_pointed_black_star: 
 | JKRSolidHeap.o | 0.0% | 0 / 20 | 0.0% | :x: 
 | JKRUnitHeap.o | 0.0% | 0 / 26 | 0.0% | :x: 
 | JKRDisposer.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -92,10 +92,10 @@
 | createRoot__10JKRExpHeapFib | :white_check_mark: |
 | create__10JKRExpHeapFUlP7JKRHeapb | :x: |
 | create__10JKRExpHeapFPvUlP7JKRHeapb | :x: |
-| do_destroy__10JKRExpHeapFv | :x: |
+| do_destroy__10JKRExpHeapFv | :white_check_mark: |
 | __ct__10JKRExpHeapFPvUlP7JKRHeapb | :white_check_mark: |
 | __dt__10JKRExpHeapFv | :x: |
-| do_alloc__10JKRExpHeapFUli | :x: |
+| do_alloc__10JKRExpHeapFUli | :white_check_mark: |
 | allocFromHead__10JKRExpHeapFUli | :x: |
 | allocFromHead__10JKRExpHeapFUl | :x: |
 | allocFromTail__10JKRExpHeapFUli | :x: |

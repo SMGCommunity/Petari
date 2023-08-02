@@ -44,6 +44,11 @@ public:
     virtual void state_register(TState *, u32) const;
     virtual bool state_compare(const TState &, const TState &) const;
 
+    void* allocFromHead(u32);
+    void* allocFromHead(u32, int);
+    void* allocFromTail(u32);
+    void* allocFromTail(u32, int);
+
     static JKRExpHeap* create(void *, u32, JKRHeap *, bool);
     static JKRExpHeap* create(u32, JKRHeap *, bool);
 

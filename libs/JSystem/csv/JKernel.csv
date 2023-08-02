@@ -50,10 +50,10 @@ __pp__30JSUListIterator<11JKRDisposer>Fi,JKRHeap.o,JKernel.a,true
 createRoot__10JKRExpHeapFib,JKRExpHeap.o,JKernel.a,true
 create__10JKRExpHeapFUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
 create__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
-do_destroy__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,false
+do_destroy__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,true
 __ct__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,true
 __dt__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,false
-do_alloc__10JKRExpHeapFUli,JKRExpHeap.o,JKernel.a,false
+do_alloc__10JKRExpHeapFUli,JKRExpHeap.o,JKernel.a,true
 allocFromHead__10JKRExpHeapFUli,JKRExpHeap.o,JKernel.a,false
 allocFromHead__10JKRExpHeapFUl,JKRExpHeap.o,JKernel.a,false
 allocFromTail__10JKRExpHeapFUli,JKRExpHeap.o,JKernel.a,false

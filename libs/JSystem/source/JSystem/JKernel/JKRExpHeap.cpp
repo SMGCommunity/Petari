@@ -1,7 +1,6 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include <new>
-
-
 
 JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     JKRExpHeap* heap = nullptr;
@@ -19,6 +18,64 @@ JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     heap->mAllocMode = 1;
     return heap;
 }
+
+void JKRExpHeap::do_destroy() {
+    if (_6E) {
+        JKRHeap* heap = mChildTree.getParent()->getObject();
+
+        if (heap != nullptr) {
+            this->~JKRExpHeap();
+            JKRHeap::free(this, heap);
+        }
+    }
+    else {
+        this->~JKRExpHeap();
+    }
+}
+
+void* JKRExpHeap::do_alloc(u32 size, int align) {
+    void* ptr;
+    OSLockMutex(&mMutex);
+
+    if (size < 4) {
+        size = 4;
+    }
+
+    if (align >= 0) {
+        if (align <= 4) {
+            ptr = allocFromHead(size);
+        }
+        else {
+            ptr = allocFromHead(size, align);
+        }
+    }
+    else {
+        if (-align <= 4) {
+            ptr = allocFromTail(size);
+        }
+        else {
+            ptr = allocFromTail(size, -align);
+        }
+    }
+
+    if (ptr == nullptr) {
+        JUTWarningConsole_f(":::cannot alloc memory (0x%x byte).\n", size);
+
+        if (JKRHeap::mErrorFlag == true) {
+            if (JKRHeap::mErrorHandler) {
+                (*JKRHeap::mErrorHandler)(this, size, align);
+            }
+        }
+    }
+
+    OSUnlockMutex(&mMutex);
+    return ptr;
+}
+
+// JKRExpHeap::allocFromHead
+// JKRExpHeap::allocFromTail
+
+
 
 JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error)
     : JKRHeap(data, size, parent, error) {
