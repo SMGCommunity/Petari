@@ -9,17 +9,17 @@ class FileHolderFileEntry {
 public:
     FileHolderFileEntry(const char *, JKRHeap *, void *);
     ~FileHolderFileEntry();
-
+    
     void waitReadDone();
     void setContext(void *, JKRHeap *);
-    
-    s32 mEntryNum;          // _0
-    void* mContents;        // _4
-    JKRHeap* mHeap;         // _8
-    u32 _C; 
-    OSMessageQueue mQueue;  // _10
-    OSMessage mMessage;     // _30
-    u8 _34;
+
+    s32 mEntryNum;              // _0
+    void* mContext;             // _4
+    JKRHeap* mHeap;             // _8
+    s32 mState;                 // _C
+    OSMessageQueue mQueue;      // _10
+    OSMessage mMessage;         // _30
+    bool mContextSet;           // _34
 };
 
 class FileHolder {

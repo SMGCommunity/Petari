@@ -2,41 +2,41 @@
 
 FileHolderFileEntry::FileHolderFileEntry(const char *pName, JKRHeap *pHeap, void *pData) {
     mEntryNum = DVDConvertPathToEntrynum(pName);
-    mContents = 0;
+    mContext = 0;
     mHeap = pHeap;
-    _C = 0;
-    _34 = 1;
+    mState = 0;
+    mContextSet = true;
 
     OSInitMessageQueue(&mQueue, &mMessage, 1);
 
     if (pData) {
-        _34 = 0;
-        mContents = pData;
+        mContextSet = false;
+        mContext = pData;
     }
 }
 
 FileHolderFileEntry::~FileHolderFileEntry() {
-    if (_34) {
-        if (mContents) { 
-            delete (u8*)mContents;
+    if (mContextSet) {
+        if (mContext) { 
+            delete (u8*)mContext;
         }
     }
 }
 
 void FileHolderFileEntry::waitReadDone() {
-    if (_C != 2) {
+    if (mState != 2) {
         OSMessage msg;
         OSReceiveMessage(&mQueue, &msg, 1);
-        _C = 2;
+        mState = 2;
     }
 }
 
 void FileHolderFileEntry::setContext(void *pData, JKRHeap *pHeap) {
-    mContents = pData;
+    mContext = pData;
     mHeap = pHeap;
 
     OSSendMessage(&mQueue, 0, 0);
-    _C = 1;
+    mState = 1;
 }
 
 FileHolder::FileHolder() {
@@ -56,7 +56,7 @@ bool FileHolder::isExist(const char *pFile) const {
 }
 
 void* FileHolder::getContext(const char *pFile) const {
-    return findEntry(pFile)->mContents;
+    return findEntry(pFile)->mContext;
 }
 
 // FileHolder::removeIfIsEqualHeap
