@@ -41,9 +41,6 @@ public:
 	u32 calcSeekAmt(u32 intr) const {
 		return ((int24*)(intr + mSeqData - 1))->num;
 	}
-	inline u8* getData() {
-		return mSeqData;
-	}
 
 	JASSeqParser* _3C;
 	s32 _40;

@@ -266,50 +266,15 @@ s32 JASSeqParser::cmdJmpF(JASTrack *track, u32 *args) {
 	if(conditionCheck(track, (BranchCondition)args[0])) track->_4 = track->mSeqData + args[1];;
 	return 0;
 }
-u32 mull(u32 a) {
-	u32 tmp = a;
-	a *= 2;
-	a += tmp;
-	return a;
+
+inline void mult3(u32 &a) {
+	a = a * 2 + a;
 }
 
-inline u32 mull3(const JASTrack *track, u32 a, u32 b) {
-	return track->calcSeekAmt(a + b);
-}
-
-inline u32 dumb(u32 r4, u8* base, u32 r5) {
-	return ((int24*)(r4 + r5 + base))->num;
-}
-
-/*inline u8* stupid(u8 *base) {
-	return track->mSeqData + track->calcSeekAmt(a);
-}*/
-inline s32 getArg1(u32 *args) {return args[1];}
-inline u32 mult(u32 a) {return a + a * 2;}
-inline void multtt(u32 &a) {a = a * 2 + a;}
 s32 JASSeqParser::cmdJmpTable(JASTrack *track, u32 *args) {
-	//u32 r4 = args[0] + args[0] * 2;
-	//u8 *tmp = track->mSeqData;
-	//u32 r5 = args[1];
-	//r4 += args[0] * 2;
-	//u8 *tmp = track->mSeqData;
-	//r4 += args[0];
-	//u8 *tmp = track->mSeqData + r4;
-	//u32 tmp = mull(args[0]);
-    //track->_4 = track->mSeqData + mull3(track, args[0] * 2 + args[0], args[1]);
-    /*u32 tmp = args[0] * 2 + args[0];
-    tmp += args[1];
-    track->_4 = stupid(track, tmp);*/
-    /*u32 tmp = args[0] * 2 + args[0];
-    track->_4 = track->mSeqData + dumb(tmp, track->mSeqData - 1, args[1]);*/
-    //u32 num = ;
-    //u32 res = ((int24*)(args[1] + args[0] * 2 + args[0] - 1))->num;
-    //u8* realBase = base;
     u32 r4 = args[0];
-    u8* base = track->getData();
-    u32 r5 = args[1];
-    multtt(r4);// += args[0] * 2;
-    track->_4 = base + ((int24*)(r5 + r4 + 0 + base - 1))->num;
+    mult3(r4);
+    track->_4 = track->mSeqData + track->calcSeekAmt(args[1] + r4);
     return 0;
 }
 /*s32 JASSeqParser::cmdCallTable(JASTrack *track, u32 *args) {
