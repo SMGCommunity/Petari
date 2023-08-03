@@ -7,6 +7,10 @@
 
 class JASTrack;
 class JASSeqParser;
+struct int24 {
+	u8 padding;
+	unsigned num: 24;
+};
 
 class JASSeqCtrl : public JASSeqReader {
 public:
@@ -33,8 +37,12 @@ public:
 	void checkIntr();
 	void timerProcess();
 
-	u32 calcSeekAmt(s32 intr) const {
-		return *(u32*)(intr + _0 - 1) & 0xffffff;
+
+	u32 calcSeekAmt(u32 intr) const {
+		return ((int24*)(intr + mSeqData - 1))->num;
+	}
+	inline u8* getData() {
+		return mSeqData;
 	}
 
 	JASSeqParser* _3C;

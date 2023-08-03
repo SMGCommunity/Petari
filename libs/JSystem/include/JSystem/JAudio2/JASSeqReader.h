@@ -4,6 +4,7 @@
 
 class JASSeqReader {
 public:
+
 	void init();
 	void init(void *);
 	bool call(u32);
@@ -13,7 +14,7 @@ public:
 	u32 readMidiValue();
 	void* getStackPtr(u32) const;
 
-	u8* _0;
+	u8* mSeqData;
 	u8* _4;
 	u32 mNumStacks;
 	u8* mStackPtrs[8];

@@ -34,11 +34,11 @@ void JASSeqCtrl::init() {
 
 void JASSeqCtrl::start(void *passMeForFun, u32 offset) {
 	JASSeqReader::init();
-	_4 = _0 + offset;
+	_4 = mSeqData + offset;
 }
 
 int JASSeqCtrl::tickProc(JASTrack *track) {
-	if(!_0) return 0;
+	if(!mSeqData) return 0;
 	interrupt(JASSeqCtrl::INTR_6);
 	timerProcess();
 	if(_51) {
@@ -94,7 +94,7 @@ void JASSeqCtrl::checkIntr() {
 		intr = intr * 3 + _48;
 		u32 offset = calcSeekAmt(intr);
 		_44 = _4;
-		_4 = _0 + offset;
+		_4 = mSeqData + offset;
 	}
 }
 
