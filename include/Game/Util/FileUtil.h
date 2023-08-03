@@ -21,7 +21,7 @@ namespace MR {
     void* createAndAddArchive(void *, JKRHeap *, const char *);
     void getMountedArchiveAndHeap(const char *, JKRArchive **, JKRHeap **);
     void removeFileConsideringLanguage(const char *);
-    void removeResourceAndFileHOlderIfIsEqualHeap(JKRHeap *);
+    void removeResourceAndFileHolderIfIsEqualHeap(JKRHeap *);
     void decompressFileFromArchive(JKRArchive *, const char *, JKRHeap *, int);
     bool isLoadedFile(const char *);
     bool isMountedArchive(const char *);

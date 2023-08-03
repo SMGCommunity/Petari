@@ -48,6 +48,7 @@ public:
     void* allocFromHead(u32, int);
     void* allocFromTail(u32);
     void* allocFromTail(u32, int);
+    bool isEmpty();
 
     static JKRExpHeap* create(void *, u32, JKRHeap *, bool);
     static JKRExpHeap* create(u32, JKRHeap *, bool);

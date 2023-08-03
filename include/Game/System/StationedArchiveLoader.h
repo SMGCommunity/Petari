@@ -5,6 +5,7 @@
 #include <revolution.h>
 
 class StationedArchiveLoader {
+public:
     class Condition {
     public:
         virtual ~Condition();
