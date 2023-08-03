@@ -1,202 +1,94 @@
-#include <revolution.h>
+#include "Game/System/StationedArchiveLoader.h"
+#include "Game/System/ResourceHolderManager.h"
+#include "Game/SingletonHolder.h"
+#include "Game/Util.h"
 
-namespace MR {
-    struct StationedFileInfo {
-        s32 mHeapType;              // _0
-        s32 mLoadType;              // _4
-        const char* mArchive;       // _8
-    };
+StationedArchiveLoader::Condition::~Condition() {
 
-    const StationedFileInfo cStationedFileInfo[] = {
-        { 0, 2, "/ObjectData/MarioAnime.arc"},
-        { 0, 2, "/ObjectData/BoneMario.arc"},
-        { 0, 2, "/ObjectData/Mario.arc"},
-        { 0, 2, "/ObjectData/MarioFace.arc"},
-        { 0, 2, "/ObjectData/MarioShadow.arc"},
-        { 1, 2, "/ObjectData/MarioTornado.arc"},
-        { 0, 3, "/ObjectData/MarioAnime.arc"},
-        { 0, 3, "/ObjectData/BoneLuigi.arc"},
-        { 0, 3, "/ObjectData/Luigi.arc"},
-        { 0, 3, "/ObjectData/LuigiFace.arc"},
-        { 0, 3, "/ObjectData/LuigiShadow.arc"},
-        { 1, 3, "/ObjectData/LuigiTornado.arc"},
-        { 0, 4, "/ObjectData/MarioHandL.arc"},
-        { 0, 4, "/ObjectData/MarioHandR.arc"},
-        { 0, 4, "/ObjectData/MarioDummyItem.arc"},
-        { 0, 4, "/ObjectData/IceStep.arc"},
-        { 0, 4, "/ObjectData/MarioFireBall.arc"},
-        { 1, 4, "/ObjectData/MarineSnow.arc"},
-        { 1, 4, "/ObjectData/MarioFreezeIce.arc"},
-        { 1, 4, "/ObjectData/SpinTico.arc"},
-        { 1, 4, "/ObjectData/Coin.arc"},
-        { 1, 4, "/ObjectData/KinokoOneUp.arc"},
-        { 1, 4, "/ObjectData/KinokoLifeUp.arc"},
-        { 1, 4, "/ObjectData/PowerUpLife.arc"},
-        { 1, 4, "/ObjectData/Kinoko.arc"},
-        { 1, 4, "/ObjectData/SearchLightCone.arc"},
-        { 1, 4, "/ObjectData/ShadowVolumeCylinder.arc"},
-        { 1, 4, "/ObjectData/ShadowVolumeSphere.arc"},
-        { 1, 4, "/ObjectData/ShadowVolumeOval.arc"},
-        { 1, 4, "/ObjectData/StarPiece.arc"},
-        { 1, 4, "/ObjectData/WaterColumn.arc"},
-        { 1, 4, "/ObjectData/YellowChip.arc"},
-        { 1, 4, "/ObjectData/StarPointerBlur.arc"},
-        { 1, 4, "/ObjectData/PowerStar.arc"},
-        { 1, 4, "/ObjectData/Koura.arc"},
-        { 1, 4, "/ObjectData/RailPoint.arc"},
-        { 1, 5, "/LayoutData/ScenarioSelect.arc"},
-        { 1, 5, "/LayoutData/BackButton.arc"},
-        { 1, 4, "/ObjectData/ScenarioSelectSky.arc"},
-        { 1, 5, "/LayoutData/MapTicoIcon.arc"},
-        { 1, 5, "/LayoutData/GalaxyNamePlate.arc"},
-        { 1, 5, "/LayoutData/IconComet.arc"},
-        { 1, 5, "/LayoutData/MapTitle.arc"},
-        { 1, 5, "/LayoutData/GalaxyDetail.arc"},
-        { 1, 5, "/LayoutData/ResultWindow.arc"},
-        { 1, 5, "/LayoutData/MapGalaxyIcon.arc"},
-        { 1, 5, "/LayoutData/IconMario.arc"},
-        { 1, 5, "/LayoutData/MapButton.arc"},
-        { 1, 5, "/LayoutData/MapDomeIcon.arc"},
-        { 1, 5, "/LayoutData/AllStarList.arc"},
-        { 1, 4, "/ObjectData/SuperSpinDriver.arc"},
-        { 1, 5, "/LayoutData/PauseMenu.arc"},
-        { 1, 5, "/LayoutData/MapGalaxyBG.arc"},
-        { 1, 5, "/LayoutData/MapGrandGalaxy.arc"},
-        { 1, 4, "/ObjectData/SpinDriverPath.arc"},
-        { 1, 4, "/ObjectData/MarioHair.arc"},
-        { 1, 4, "/ObjectData/VROrbit.arc"},
-        { 1, 4, "/ObjectData/Butler.arc"},
-        { 1, 4, "/ObjectData/GalaxyInfoTexture.arc"},
-        { 1, 4, "/ObjectData/Butterfly.arc"},
-        { 1, 4, "/ObjectData/AstroNamePlateData.arc"},
-        { 1, 4, "/ObjectData/SuperSpinDriverShadow.arc"},
-        { 1, 5, "/LayoutData/StarPieceTargetMeter.arc"},
-        { 1, 4, "/ObjectData/KinopioGoodsPickel.arc"},
-        { 1, 4, "/ObjectData/SignBoard.arc"},
-        { 1, 4, "/ObjectData/TicoLow.arc"},
-        { 1, 4, "/ObjectData/CutBush.arc"},
-        { 1, 4, "/ObjectData/CrystalBox.arc"},
-        { 1, 4, "/ObjectData/TicoMiddle.arc"},
-        { 1, 4, "/ObjectData/DemoAstroReturn.arc"},
-        { 1, 4, "/ObjectData/AstroMapBoard.arc"},
-        { 1, 4, "/ObjectData/KinopioLow.arc"},
-        { 1, 4, "/ObjectData/SuperSpinDriverEmpty.arc"},
-        { 1, 4, "/ObjectData/PowerupFoo.arc"},
-        { 1, 4, "/ObjectData/KinopioGoodsMailBag.arc"},
-        { 1, 4, "/ObjectData/WoodBox.arc"},
-        { 1, 4, "/ObjectData/TicoFatGoodsStarPiece.arc"},
-        { 1, 4, "/ObjectData/KinopioMiddle.arc"},
-        { 1, 4, "/ObjectData/WoodBoxBreak.arc"},
-        { 1, 4, "/ObjectData/CrystalBoxBreak.arc"},
-        { 1, 4, "/ObjectData/KinopioGoodsLight.arc"},
-        { 1, 4, "/ObjectData/AstroDecoratePartsA.arc"},
-        { 1, 4, "/ObjectData/KinopioGoodsRucksack.arc"},
-        { 1, 4, "/ObjectData/MiniSurprisedGalaxy.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateObservatory.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateWell.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateBedRoom.arc"},
-        { 1, 4, "/ObjectData/WarpPod.arc"},
-        { 1, 4, "/ObjectData/RosettaLow.arc"},
-        { 1, 4, "/ObjectData/AstroCore.arc"},
-        { 1, 4, "/ObjectData/AstroDecoratePartsGearA.arc"},
-        { 1, 4, "/ObjectData/Tico.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateMachine.arc"},
-        { 1, 4, "/ObjectData/TicoFat.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateKitchen.arc"},
-        { 1, 4, "/ObjectData/AstroRotateStepB.arc"},
-        { 1, 4, "/ObjectData/AstroParking.arc"},
-        { 1, 4, "/ObjectData/AstroStarPlateTower.arc"},
-        { 1, 4, "/ObjectData/RosettaMiddle.arc"},
-        { 1, 4, "/ObjectData/Kinopio.arc"},
-        { 1, 4, "/ObjectData/AstroBaseCenterTop.arc"},
-        { 1, 4, "/ObjectData/GrandStar.arc"},
-        { 1, 4, "/ObjectData/AstroBaseKitchen.arc"},
-        { 1, 4, "/ObjectData/AstroBaseCenterA.arc"},
-        { 1, 4, "/ObjectData/AstroLibrary.arc"},
-        { 1, 4, "/ObjectData/AstroRotateStepA.arc"},
-        { 1, 4, "/ObjectData/AstroBaseCenterB.arc"},
-        { 1, 4, "/ObjectData/AstroBaseC.arc"},
-        { 1, 4, "/ObjectData/AstroDomeEntranceMachine.arc"},
-        { 1, 4, "/ObjectData/AstroDomeEntranceBedRoom.arc"},
-        { 1, 4, "/ObjectData/AstroDomeEntranceObservatory.arc"},
-        { 1, 4, "/ObjectData/AstroDomeEntranceKitchen.arc"},
-        { 1, 4, "/ObjectData/AstroChildRoom.arc"},
-        { 1, 4, "/ObjectData/TicoCometGoodsStar.arc"},
-        { 1, 4, "/ObjectData/LuigiNPCLow.arc"},
-        { 1, 4, "/ObjectData/LuigiNPCMiddle.arc"},
-        { 1, 4, "/ObjectData/TicoComet.arc"},
-        { 1, 4, "/ObjectData/GlareGlow.arc"},
-        { 1, 4, "/ObjectData/GlareLine.arc"},
-        { 1, 4, "/ObjectData/LensFlare.arc"},
-        { 1, 4, "/ObjectData/Sun.arc"},
-        { 1, 5, "/LayoutData/GalaxyInfo.arc"},
-        { 1, 5, "/LayoutData/GalaxySelect.arc"},
-        { 1, 4, "/ObjectData/GCaptureRibbon.arc"},
-        { 1, 4, "/ObjectData/MiniatureGalaxySelect.arc"},
-        { 1, 4, "/ObjectData/AstroDomeDemoCamera.arc"},
-        { 1, 4, "/ObjectData/MiniatureGalaxyShadow.arc"},
-        { 1, 4, "/ObjectData/AstroDomeCometBloom.arc"},
-        { 1, 4, "/ObjectData/GCaptureTarget.arc"},
-        { 1, 4, "/ObjectData/AstroDomeDemoAstroGalaxy.arc"},
-        { 1, 4, "/ObjectData/AstroDomeComet.arc"},
-        { 1, 4, "/ObjectData/MiniatureGalaxyUnknown.arc"},
-        { 1, 4, "/ObjectData/DemoSheet.arc"},
-        { 1, 4, "/ObjectData/LightData.arc"},
-        { 1, 4, "/ObjectData/NPCData.arc"},
-        { 1, 5, "/LayoutData/AirMeter.arc"},
-        { 1, 5, "/LayoutData/BatteryInfo.arc"},
-        { 1, 5, "/LayoutData/BlueChipCounter.arc"},
-        { 1, 5, "/LayoutData/CameraInfo.arc"},
-        { 1, 5, "/LayoutData/CinemaFrame.arc"},
-        { 1, 5, "/LayoutData/CinemaSuper.arc"},
-        { 1, 5, "/LayoutData/CoinCounter.arc"},
-        { 1, 5, "/LayoutData/CollectCounter.arc"},
-        { 1, 5, "/LayoutData/CometScreenFilter.arc"},
-        { 1, 5, "/LayoutData/CommandStream.arc"},
-        { 1, 5, "/LayoutData/DPDPointer.arc"},
-        { 1, 5, "/LayoutData/DPDPointerSub.arc"},
-        { 1, 5, "/LayoutData/DPDPointerNumber.arc"},
-        { 1, 5, "/LayoutData/FlyMeter.arc"},
-        { 1, 5, "/LayoutData/GetStar.arc"},
-        { 1, 5, "/LayoutData/HitPointMeter.arc"},
-        { 1, 5, "/LayoutData/SuddenDeathMeter.arc"},
-        { 1, 5, "/LayoutData/IconAButton.arc"},
-        { 1, 5, "/LayoutData/IconSave.arc"},
-        { 1, 5, "/LayoutData/InformationWindow.arc"},
-        { 1, 5, "/LayoutData/OneUp.arc"},
-        { 1, 5, "/LayoutData/PlayerLeft.arc"},
-        { 1, 5, "/LayoutData/PointerGuidance.arc"},
-        { 1, 5, "/LayoutData/PurpleCoinCounter.arc"},
-        { 1, 5, "/LayoutData/RetryButton.arc"},
-        { 1, 5, "/LayoutData/SelectButton.arc"},
-        { 1, 5, "/LayoutData/SignBoardBalloon.arc"},
-        { 1, 5, "/LayoutData/StageTitle.arc"},
-        { 1, 5, "/LayoutData/StarCounter.arc"},
-        { 1, 5, "/LayoutData/StarPieceCounter.arc"},
-        { 1, 5, "/LayoutData/SysInfoWindow.arc"},
-        { 1, 5, "/LayoutData/SysInfoWindowMini.arc"},
-        { 1, 5, "/LayoutData/TalkBalloonEvent.arc"},
-        { 1, 5, "/LayoutData/TalkBalloonStretch.arc"},
-        { 1, 5, "/LayoutData/TalkBalloonLetter.arc"},
-        { 1, 5, "/LayoutData/TooBad.arc"},
-        { 1, 5, "/LayoutData/WipeKoopa.arc"},
-        { 1, 5, "/LayoutData/WipeRing.arc"},
-        { 1, 5, "/LayoutData/YellowChipCounter.arc"},
-        { 1, 0, "/HomeButton2/SpeakerSe.arc"},
-        { 1, 0, "/HomeButton2/home.csv"},
-        { 1, 0, "/HomeButton2/config.txt"},
-        { 1, 1, "/ParticleData/Effect.arc"},
-        { 1, 1, "/StageData/ObjNameTable.arc"},
-        { 1, 4, "/ObjectData/ErrorMessageImage.arc"},
-        { 1, 4, "/ObjectData/PlanetMapDataTable.arc"},
-        { 1, 5, "/LayoutData/TimeLimit.arc"},
-        { 1, 5, "/LayoutData/TimeUp.arc"},
-        { 1, 0, "/ModuleData/HomeButtonMenuWrapperRSO.rso"},
-        { 1, 0, "/ModuleData/product.sel"},
-        { 1, 4, "/ObjectData/SaveIconBanner.arc"},
-        { 1, 0, "/LayoutData/HomeButton.arc"},
-        { 1, 1, "/LayoutData/Font.arc"},
-        { 1, 1, "/MessageData/Message.arc"},
-        { 1, 5, "/LayoutData/GameOver.arc"}
-    };
-};
+}
+
+JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFileInfo *pInfo) const {
+    return nullptr;
+}
+
+JKRHeap* StationedArchiveLoader::getProperHeap(const MR::StationedFileInfo *pInfo) {
+    switch (pInfo->mHeapType) {
+        case 0:
+            return (JKRHeap*)MR::getStationedHeapNapa();
+            break;
+        case 1:
+            return (JKRHeap*)MR::getStationedHeapGDDR3();
+            break;
+    }
+    
+    return nullptr;
+}
+
+void StationedArchiveLoader::loadResourcesFromTable(const StationedArchiveLoader::Condition &rCondition) {
+    const MR::StationedFileInfo* info = MR::getStationedFileInfoTable();
+
+    while (info->mArchive != nullptr) {
+        if (rCondition.isExecute(info)) {
+            JKRHeap* heap = rCondition.getProperHeap(info);
+
+            if (heap == nullptr) {
+                heap = StationedArchiveLoader::getProperHeap(info);
+            }
+
+            switch (info->mLoadType) {
+                case 0:
+                    MR::loadToMainRAM(info->mArchive, nullptr, heap, JKRDvdRipper::ALLOC_DIRECTION_1);
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    MR::mountArchive(info->mArchive, heap);
+                    break;
+            }
+        }
+
+        info++;
+    }
+}
+
+void StationedArchiveLoader::createAndAddResourcesFromTable(const StationedArchiveLoader::Condition &rCondition) {
+    const MR::StationedFileInfo* info = MR::getStationedFileInfoTable();
+
+    while (info->mArchive != nullptr) {
+        if (rCondition.isExecute(info)) {
+            switch (info->mLoadType) {
+                case 2:
+                    SingletonHolder<ResourceHolderManager>::sInstance->createAndAddStationed(info->mArchive);
+                    break;
+                case 5:
+                    SingletonHolder<ResourceHolderManager>::sInstance->createAndAddLayoutHolderStationed(info->mArchive);
+                    break;
+            }
+        }
+        
+        info++;
+    }
+}
+
+void StationedArchiveLoader::loadScenarioData(JKRHeap* pHeap) {
+    DVDDir dir;
+    DVDDirEntry entry;
+    DVDOpenDir("/StageData", &dir);
+
+    while (DVDReadDir(&dir, &entry) != 0) {
+        if (entry.isDir == false) {
+            continue;
+        }
+
+        char name[0x100];
+        MR::makeScenarioArchiveFileName(name, 0x100, entry.name);
+
+        if (MR::isFileExist(name, false)) {
+            MR::mountArchive(name, pHeap);
+        }
+    }
+
+    DVDCloseDir(&dir);
+}

@@ -23,5 +23,8 @@ class ResourceHolderManager {
 public:
     void createResourceHolder(char const *, CreateResourceHolderArgs *);
 
+    void createAndAddLayoutHolderStationed(const char *);
+    void createAndAddStationed(const char *);
+
     static void startCreateResourceHolderOnMainThread(const char *, CreateResourceHolderArgs *);
 };

@@ -34,7 +34,7 @@
 | [GameSystemStationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemStationedArchiveLoader.md) | 0.0% | 0 / 52 | 0.0% | :x: 
 | [GameSystemSceneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemSceneController.md) | 3.651266766020864% | 5 / 78 | 6.41025641025641% | :eight_pointed_black_star: 
 | [GameSystemResetAndPowerProcess.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemResetAndPowerProcess.md) | 0.0% | 0 / 36 | 0.0% | :x: 
-| [HeapMemoryWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/HeapMemoryWatcher.md) | 89.85507246376811% | 18 / 19 | 94.73684210526315% | :eight_pointed_black_star: 
+| [HeapMemoryWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/HeapMemoryWatcher.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [Language.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/Language.md) | 38.392857142857146% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
 | [LayoutHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/LayoutHolder.md) | 10.961968680089486% | 2 / 12 | 16.666666666666664% | :eight_pointed_black_star: 
 | [MainLoopFramework.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/MainLoopFramework.md) | 0.0% | 0 / 34 | 0.0% | :x: 
@@ -54,8 +54,8 @@
 | [ScenarioDataParser.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ScenarioDataParser.md) | 9.16955017301038% | 5 / 25 | 20.0% | :eight_pointed_black_star: 
 | [ShapePacketUserData.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ShapePacketUserData.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [StarPointerOnOffController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StarPointerOnOffController.md) | 0.0% | 0 / 38 | 0.0% | :x: 
-| [StationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedArchiveLoader.md) | 0.0% | 0 / 6 | 0.0% | :x: 
-| [StationedFileInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedFileInfo.md) | 0.0% | 0 / 1 | 0.0% | :x: 
+| [StationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedArchiveLoader.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| [StationedFileInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedFileInfo.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [WPad.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPad.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [WPadAcceleration.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadAcceleration.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [WPadButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadButton.md) | 0.0% | 0 / 29 | 0.0% | :x: 

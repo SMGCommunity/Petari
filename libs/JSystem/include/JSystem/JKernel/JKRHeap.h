@@ -65,6 +65,19 @@ public:
     void dispose_subroutine(u32, u32);
     s32 getTotalFreeSize();
 
+    u32 getMaxAllocatableSize(int a1) NO_INLINE {
+        u32 v4 = (u32)getMaxFreeBlock();
+        return ~(a1 - 1) & (getFreeSize() - ((a1 - 1) & (a1 - (v4 & 0xF))));
+    }
+
+    inline u8* getStart() const {
+        return mStart;
+    }
+
+    inline u8* getEnd() const {
+        return mEnd;
+    }
+
     static JKRHeap* findFromRoot(void *);
 
 

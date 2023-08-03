@@ -2,6 +2,9 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include <new>
 
+#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+
 JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     JKRExpHeap* heap = nullptr;
 
@@ -16,6 +19,72 @@ JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     }
 
     heap->mAllocMode = 1;
+    return heap;
+}
+
+JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* pParent, bool errorFlag) {
+    if (!pParent) {
+        pParent = JKRHeap::sRootHeap;
+    }
+
+    if (size == 0xFFFFFFFF) {
+        size = pParent->getMaxAllocatableSize(0x10);
+    }
+ 
+    u32 alignedSize = ALIGN_PREV(size, 0x10);
+    u32 heapSize = ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
+
+    if (alignedSize < 0xA0) {
+        return nullptr;
+    }
+
+    u8* mem = (u8*)JKRHeap::alloc(alignedSize, 16, pParent);
+    u8* data = (mem + heapSize);
+    if (mem == nullptr) {
+        return nullptr;
+    }
+
+    JKRExpHeap* heap = new(mem)JKRExpHeap(data, alignedSize - heapSize, pParent, errorFlag);
+
+    if (heap == nullptr) {
+        JKRHeap::free(mem, nullptr);
+        return nullptr;
+    }
+
+    heap->mAllocMode = 0;
+    return heap;
+}
+
+JKRExpHeap* JKRExpHeap::create(void* ptr, u32 size, JKRHeap* pParent, bool errorFlag) {
+    JKRHeap* parent;
+
+    if (pParent == nullptr) {
+        parent = sRootHeap->find(ptr);
+
+        if (parent == nullptr) {
+            return nullptr;
+        }
+    }
+    else {
+        parent = pParent;
+    }
+
+    JKRExpHeap* heap = nullptr;
+    u32 heapSize = ALIGN_NEXT(sizeof(JKRExpHeap), 0x10);
+
+    if (size < heapSize) {
+        return nullptr;
+    }
+
+    void* data = (u8*)ptr + heapSize;
+    u32 alignSize = ALIGN_PREV((u32)ptr + size - (u32)data, 0x10);
+    if (ptr != nullptr) {
+        heap = new(ptr)JKRExpHeap(data, alignSize, parent, errorFlag);
+    }
+
+    heap->mAllocMode = 1;
+    heap->_70 = ptr;
+    heap->_74 = size;
     return heap;
 }
 

@@ -57,7 +57,7 @@ public:
     u8 mAllocMode;          // _6C
     u8 mCurrentGroupId;     // _6D
     u8 _6E;
-    u32 _70;
+    void* _70;
     u32 _74;
     CMemBlock* mHeadFreeList;   // _78
     CMemBlock* mTailFreeList;   // _7C

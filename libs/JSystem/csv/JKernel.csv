@@ -48,8 +48,8 @@ dump_sort__7JKRHeapFv,JKRHeap.o,JKernel.a,true
 __pp__25JSUTreeIterator<7JKRHeap>Fv,JKRHeap.o,JKernel.a,true
 __pp__30JSUListIterator<11JKRDisposer>Fi,JKRHeap.o,JKernel.a,true
 createRoot__10JKRExpHeapFib,JKRExpHeap.o,JKernel.a,true
-create__10JKRExpHeapFUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
-create__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,false
+create__10JKRExpHeapFUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,true
+create__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,true
 do_destroy__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,true
 __ct__10JKRExpHeapFPvUlP7JKRHeapb,JKRExpHeap.o,JKernel.a,true
 __dt__10JKRExpHeapFv,JKRExpHeap.o,JKernel.a,false

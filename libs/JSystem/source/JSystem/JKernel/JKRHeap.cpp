@@ -185,7 +185,7 @@ JKRHeap* JKRHeap::findFromRoot(void *pData) {
 
     return root->findAllHeap(pData);
 }
-
+ 
 /* functionally equiv but not matching */
 JKRHeap* JKRHeap::find(void *pData) const {
     if (mStart <= pData && pData < mEnd) {
@@ -205,6 +205,25 @@ JKRHeap* JKRHeap::find(void *pData) const {
         // this is to avoid returning a const JKRHeap ptr
         return const_cast<JKRHeap*>(this);
     } 
+
+    return nullptr;
+}
+
+/* same here */
+JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
+    if (mChildTree.getNumChildren() != 0) {
+        for (JSUTreeIterator<JKRHeap> iterator(mChildTree.getFirstChild()); iterator != mChildTree.getEndChild(); ++iterator) {
+            JKRHeap* heap = iterator->findAllHeap(ptr);
+
+            if (heap != nullptr) {
+                return heap;
+            }
+        }
+    }
+
+    if (mStart <= ptr && ptr < mEnd) {
+        return const_cast<JKRHeap*>(this);
+    }
 
     return nullptr;
 }
