@@ -213,7 +213,7 @@ cmdRet__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdRetF__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdJmp__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdJmpF__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
-cmdJmpTable__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,false
+cmdJmpTable__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdCallTable__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,false
 cmdLoopS__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,false
 cmdLoopE__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,false
