@@ -305,9 +305,9 @@ s32 JASSeqParser::cmdJmpTable(JASTrack *track, u32 *args) {
     //u32 res = ((int24*)(args[1] + args[0] * 2 + args[0] - 1))->num;
     u8* base = track->getData();
     //u8* realBase = base;
-    u32 r4 = args[0] * 2;
+    u32 r4 = args[0];
     u32 r5 = args[1];
-    r4 += args[0];
+    r4 += args[0] * 2;
     track->_4 = base + ((int24*)(r5 + base + r4 - 1))->num;
     return 0;
 }
