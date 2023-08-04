@@ -6,6 +6,11 @@
 class FunctionAsyncExecInfo {
 public:
     FunctionAsyncExecInfo(MR::FunctorBase *, int, const char *);
+
+    FunctionAsyncExecInfo() {
+        
+    }
+
     ~FunctionAsyncExecInfo();
 
     void execute();
@@ -33,10 +38,13 @@ class FunctionAsyncExecutorOnMainThread {
 public:
     FunctionAsyncExecutorOnMainThread(OSThread *);
 
+    void update();
+
     u8 _0;
     u8 _1;
     u8 _2;
     u8 _3;
     OSMessageQueue mQueue;      // _4
-    
+    OSMessage mMsgArray[0x40];  // _24
+    OSThread* mThread;          // _124
 };

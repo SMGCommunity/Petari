@@ -55,3 +55,22 @@ s32 FunctionAsyncExecutorThread::run() {
         info->_C = 1;
     }
 }
+
+FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) {
+    mThread = pThread;
+    _0 = 0;
+    OSInitMessageQueue(&mQueue, mMsgArray, 0x40);
+}
+
+void FunctionAsyncExecutorOnMainThread::update() {
+    OSMessage msg;
+    FunctionAsyncExecInfo* info;
+    if (OSReceiveMessage(&mQueue, &msg, 0)) {
+        _0 = 1;
+        info = (FunctionAsyncExecInfo*)msg;
+        info->mPriority = OSGetThreadPriority(OSGetCurrentThread());
+        info->execute();
+        OSSendMessage(&info->mQueue, 0, 0);
+        info->_C = 1;
+    }
+}

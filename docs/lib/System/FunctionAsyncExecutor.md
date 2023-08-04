@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 5 / 17 Completed -- (29.411764705882355%)
+# 7 / 17 Completed -- (41.17647058823529%)
 # FunctionAsyncExecutor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -14,8 +14,8 @@
 | `execute__21FunctionAsyncExecInfoFv` | :white_check_mark: |
 | `__ct__27FunctionAsyncExecutorThreadFP7JKRHeap` | :white_check_mark: |
 | `run__27FunctionAsyncExecutorThreadFv` | :white_check_mark: |
-| `__ct__33FunctionAsyncExecutorOnMainThreadFP8OSThread` | :x: |
-| `update__33FunctionAsyncExecutorOnMainThreadFv` | :x: |
+| `__ct__33FunctionAsyncExecutorOnMainThreadFP8OSThread` | :white_check_mark: |
+| `update__33FunctionAsyncExecutorOnMainThreadFv` | :white_check_mark: |
 | `__ct__21FunctionAsyncExecutorFv` | :x: |
 | `update__21FunctionAsyncExecutorFv` | :x: |
 | `start__21FunctionAsyncExecutorFRCQ22MR11FunctorBaseiPCc` | :x: |
