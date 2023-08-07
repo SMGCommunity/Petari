@@ -70,11 +70,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     default_compiler_path = pathlib.Path("GC/3.0a3/")
 
     compiler_exceptions = {
-        #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")
-    }
-
-    compiler_flags = {
-        #"GC/2.5", flags
+        #"source\Game\System\FunctionAsyncExecutor.cpp": pathlib.Path("GC/2.6/")
     }
 
     if compile_non_matching:
@@ -149,6 +145,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
                     nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
             except:
                 pass
+
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
 

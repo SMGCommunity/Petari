@@ -11,7 +11,7 @@ namespace {
             val = 1;
         }
 
-        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContents, true, pInfo->mFileEntry->mHeap, (FileRipper::AllocDirection)val);
+        return FileRipper::loadToMainRAM(pInfo->mFileName, (u8*)pInfo->mFileEntry->mContext, true, pInfo->mFileEntry->mHeap, (FileRipper::AllocDirection)val);
     }
 };
 

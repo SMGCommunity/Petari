@@ -2,23 +2,29 @@
 
 #include "Game/System/OSThreadWrapper.h"
 #include "Game/Util.h"
+#include <JSystem/JKernel/JKRExpHeap.h>
+#include <JSystem/JKernel/JKRUnitHeap.h>
 
 class FunctionAsyncExecInfo {
 public:
     FunctionAsyncExecInfo(MR::FunctorBase *, int, const char *);
 
     FunctionAsyncExecInfo() {
-        
+
     }
 
     ~FunctionAsyncExecInfo();
 
     void execute();
+    
+    inline bool isSame(const char *pStr) {
+        return MR::strcasecmp(_8, pStr) == 0;
+    }
 
     MR::FunctorBase* mFunc;     // _0
     int mPriority;              // _4
     const char* _8;
-    u8 _C;
+    bool _C;
     OSMessageQueue mQueue;      // _10
     OSMessage mMessage;         // _30
 };
@@ -30,7 +36,7 @@ public:
     virtual ~FunctionAsyncExecutorThread();
     virtual s32 run();
 
-    u8 _3C;
+    bool mIsSuspended;      // _3C
     const char* _40;
 };
 
@@ -47,4 +53,40 @@ public:
     OSMessageQueue mQueue;      // _4
     OSMessage mMsgArray[0x40];  // _24
     OSThread* mThread;          // _124
+};
+
+struct FunctionAsyncHolder {
+    FunctionAsyncExecInfo* _0;
+    FunctionAsyncExecInfo* _4;
+    u32 _8;
+    FunctionAsyncExecInfo* _C;
+};
+
+class FunctionAsyncExecutor {
+public:
+    FunctionAsyncExecutor();
+
+    void update();
+    void start(const MR::FunctorBase &, int, const char *);
+    bool startOnMainThread(const MR::FunctorBase &, const char *);
+    void waitForEnd(const char *);
+    bool isEnd(const char *) const;
+    OSThread* getOSThread(const char *);
+    FunctionAsyncExecInfo* createAndAddExecInfo(const MR::FunctorBase &, int, const char *);
+    FunctionAsyncExecutorThread* getSuspendThread();
+
+    inline FunctionAsyncExecInfo* const* first() const {
+        return &mHolders[0];
+    }
+
+    inline FunctionAsyncExecInfo* const* last() const {
+        return &mHolders[_40C];
+    }
+
+    FunctionAsyncExecutorThread* mThreads[2];               // _0
+    FunctionAsyncExecutorOnMainThread* mMainThreadExec;     // _8
+    FunctionAsyncExecInfo* mHolders[0x100];
+    u32 _40C;
+    JKRUnitHeap* _410;
+    JKRExpHeap* _414;
 };

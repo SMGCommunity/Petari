@@ -22,7 +22,7 @@
 | [FileLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoader.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [FileLoaderThread.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoaderThread.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [FileRipper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileRipper.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [FunctionAsyncExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FunctionAsyncExecutor.md) | 33.776091081593925% | 7 / 17 | 41.17647058823529% | :eight_pointed_black_star: 
+| [FunctionAsyncExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FunctionAsyncExecutor.md) | 91.46110056925995% | 16 / 17 | 94.11764705882352% | :eight_pointed_black_star: 
 | [GameSystem.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystem.md) | 8.732394366197182% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
 | [GameSystemDimmingWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemDimmingWatcher.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [GameSystemErrorWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemErrorWatcher.md) | 0.0% | 0 / 23 | 0.0% | :x: 
