@@ -3,6 +3,10 @@
 
 #include "size_t.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int strncmp(const char *, const char *, size_t);
 
 void* memcpy(void *, const void *, unsigned long);
@@ -25,5 +29,9 @@ char* strcat(char *, const char *);
 char* strncpy(char *, const char *, size_t);
 char* strchr(const char *, int);
 char* strrchr(const char *, int);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // CSTRING_H

@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 enum JKRMemBreakFlag {
+    JKR_MEM_BREAK_FLAG_0 = 0,
     JKR_MEM_BREAK_FLAG_1 = 1
 };
 

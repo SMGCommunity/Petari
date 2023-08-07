@@ -8,8 +8,8 @@ __ct__23AlreadyDoneFlagInGalaxyFi,AlreadyDoneFlagInGalaxy.o,System.a,true
 clear__23AlreadyDoneFlagInGalaxyFv,AlreadyDoneFlagInGalaxy.o,System.a,true
 setupFlag__23AlreadyDoneFlagInGalaxyFPCcRC12JMapInfoIterPUl,AlreadyDoneFlagInGalaxy.o,System.a,false
 updateValue__23AlreadyDoneFlagInGalaxyFiUl,AlreadyDoneFlagInGalaxy.o,System.a,false
-__ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc,ArchiveHolder.o,System.a,false
-__dt__25ArchiveHolderArchiveEntryFv,ArchiveHolder.o,System.a,false
+__ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc,ArchiveHolder.o,System.a,true
+__dt__25ArchiveHolderArchiveEntryFv,ArchiveHolder.o,System.a,true
 __ct__13ArchiveHolderFv,ArchiveHolder.o,System.a,false
 createAndAdd__13ArchiveHolderFPvP7JKRHeapPCc,ArchiveHolder.o,System.a,false
 getArchive__13ArchiveHolderCFPCc,ArchiveHolder.o,System.a,false

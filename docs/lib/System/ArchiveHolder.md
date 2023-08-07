@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 8 Completed -- (0.0%)
+# 2 / 8 Completed -- (25.0%)
 # ArchiveHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc` | :x: |
-| `__dt__25ArchiveHolderArchiveEntryFv` | :x: |
+| `__ct__25ArchiveHolderArchiveEntryFPvP7JKRHeapPCc` | :white_check_mark: |
+| `__dt__25ArchiveHolderArchiveEntryFv` | :white_check_mark: |
 | `__ct__13ArchiveHolderFv` | :x: |
 | `createAndAdd__13ArchiveHolderFPvP7JKRHeapPCc` | :x: |
 | `getArchive__13ArchiveHolderCFPCc` | :x: |
