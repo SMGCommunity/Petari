@@ -10,31 +10,23 @@ public:
 	typedef u16 (*Callback)(JASTrack *, u16);
 
 	enum BranchCondition {
-		COND0 = 0,
-		COND1,
-		COND2,
-		COND3,
-		COND4,
-		COND5
+		COND_ALWAYS = 0,
+		COND_NULL,
+		COND_NONNULL,
+		COND_1,
+		COND_NEGATIVE,
+		COND_POSITIVE
 	};
 
 	static Callback sCallbackFunc;
 	struct Command {
 		CommandFunc func;
 		u16 numArgs;
-		u16 _E;
+		u16 argWidths;
 	};
-	template<unsigned int I>
-	class CommandTable {
-		public:
-		Command commands[I];
-		inline Command* getCmd(u32 code) {
-			return commands + code;
-		}
-	};
-	static CommandTable<0x60> sCmdInfo;
+	static Command sCmdInfo[0x60];
 		
-	static CommandTable<0xff> sExtCmdInfo;
+	static Command sExtCmdInfo[0xff];
 
 	JASSeqParser();
 	

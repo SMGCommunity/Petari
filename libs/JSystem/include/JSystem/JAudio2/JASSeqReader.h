@@ -14,9 +14,9 @@ public:
 	u32 readMidiValue();
 	void* getStackPtr(u32) const;
 
-	u8* mSeqData;
-	u8* _4;
+	void *mSeqBuff;
+	void *mSeqCursor;
 	u32 mNumStacks;
-	u8* mStackPtrs[8];
-	u16 _2C[8];
+	void *mStackPtrs[8];
+	u16 mLoopTimers[8];
 };

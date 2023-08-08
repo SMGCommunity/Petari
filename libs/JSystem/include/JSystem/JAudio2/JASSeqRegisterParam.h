@@ -3,12 +3,12 @@
 class JASRegisterParam {
 public:
 	enum RegID {
-		R0,
-		R1,
-		R2,
-		R3,
-		R4,
-		R5
+		REG_A,
+		REG_B,
+		REG_S,
+		REG_F,
+		REG_X,
+		REG_Y
 	};
 	u32 read(RegID);
 	void write(RegID, u32);

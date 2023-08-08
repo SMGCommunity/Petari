@@ -39,16 +39,16 @@ public:
 
 
 	u32 calcSeekAmt(u32 intr) const {
-		return ((int24*)(intr + mSeqData - 1))->num;
+		return ((int24*)(intr + (u8 *)mSeqBuff - 1))->num;
 	}
 
-	JASSeqParser* _3C;
-	s32 _40;
-	u8* _44;
+	JASSeqParser *mParser;
+	s32 mTimer;
+	void* mCursorSwap;
 	s32 _48;
 	u16 _4C;
 	u16 _4E;
-	u8 _50;
+	u8 mIntTimer;
 	bool _51;
 	u32 _54;
 	u32 _58;

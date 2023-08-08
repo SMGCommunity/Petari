@@ -5,13 +5,13 @@ JASSeqParser JASSeqCtrl::sDefaultParser = JASSeqParser();
 
 JASSeqCtrl::JASSeqCtrl() {
 	JASSeqReader::init();
-	_3C = &sDefaultParser;
-	_40 = 0;
-	_44 = 0;
+	mParser = &sDefaultParser;
+	mTimer = 0;
+	mCursorSwap = nullptr;
 	_48 = 0;
 	_4C = 0;
 	_4E = 0;
-	_50 = 0;
+	mIntTimer = 0;
 	_51 = false;
 	_54 = 0;
 	_58 = 0;
@@ -20,36 +20,36 @@ JASSeqCtrl::JASSeqCtrl() {
 
 void JASSeqCtrl::init() {
 	JASSeqReader::init();
-	_3C = &sDefaultParser;
-	_40 = 0;
-	_44 = 0;
+	mParser = &sDefaultParser;
+	mTimer = 0;
+	mCursorSwap = nullptr;
 	_48 = 0;
 	_4C = 0;
 	_4E = 0;
-	_50 = 0;
+	mIntTimer = 0;
 	_54 = 0;
 	_58 = 0;
 	_51 = false;
 }
 
-void JASSeqCtrl::start(void *passMeForFun, u32 offset) {
+void JASSeqCtrl::start(void *unused, u32 offset) {
 	JASSeqReader::init();
-	_4 = mSeqData + offset;
+	mSeqCursor = (void *)((u8 *)mSeqBuff + offset);
 }
 
 int JASSeqCtrl::tickProc(JASTrack *track) {
-	if(!mSeqData) return 0;
+	if(!mSeqBuff) return 0;
 	interrupt(JASSeqCtrl::INTR_6);
 	timerProcess();
 	if(_51) {
 		if(!track->checkNoteStop(0)) return 0;
 		_51 = false;
 	}
-	if(_40 > 0) _40--;
+	if(mTimer > 0) mTimer--;
 	checkIntr();
 	
-	while((!_40 || _44) && !_51) {
-		if(_3C->parse(track) < 0) return -1;
+	while((!mTimer || mCursorSwap) && !_51) {
+		if(mParser->parse(track) < 0) return -1;
 	}
 
 	return 0;
@@ -70,9 +70,9 @@ void JASSeqCtrl::clrIntrMask(u32 mask) {
 }
 
 bool JASSeqCtrl::retIntr() {
-	if(!_44) return false;
-	_4 = _44;
-	_44 = 0;
+	if(!mCursorSwap) return false;
+	mSeqCursor = mCursorSwap;
+	mCursorSwap = nullptr;
 	return true;
 }
 
@@ -90,11 +90,11 @@ s32 JASSeqCtrl::findIntr() {
 
 void JASSeqCtrl::checkIntr() {
 	s32 intr;
-	if(!_44 && (intr = findIntr()) >= 0) {
+	if(!mCursorSwap && (intr = findIntr()) >= 0) {
 		intr = intr * 3 + _48;
 		u32 offset = calcSeekAmt(intr);
-		_44 = _4;
-		_4 = mSeqData + offset;
+		mCursorSwap = mSeqCursor;
+		mSeqCursor = (void *)((u8 *)mSeqBuff + offset);
 	}
 }
 
@@ -102,8 +102,8 @@ void JASSeqCtrl::timerProcess() {
 	if(_54 != 0) {
 		if(!--_54) {
 			interrupt(INTR_5);
-			if(_50) {
-				if(--_50) {
+			if(mIntTimer) {
+				if(--mIntTimer) {
 					_54 = _58;
 				}
 			}
