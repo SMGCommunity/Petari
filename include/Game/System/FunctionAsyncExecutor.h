@@ -2,8 +2,9 @@
 
 #include "Game/System/OSThreadWrapper.h"
 #include "Game/Util.h"
-#include <JSystem/JKernel/JKRExpHeap.h>
-#include <JSystem/JKernel/JKRUnitHeap.h>
+
+class JKRExpHeap;
+class JKRUnitHeap;
 
 class FunctionAsyncExecInfo {
 public:

@@ -1,5 +1,4 @@
 #include "Game/System/FunctionAsyncExecutor.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include <revolution.h>
 
 FunctionAsyncExecInfo::FunctionAsyncExecInfo(MR::FunctorBase *pFuncPtr, int a2, const char *a3) {
@@ -88,8 +87,7 @@ FunctionAsyncExecutor::FunctionAsyncExecutor() {
         OSResumeThread(thread->mThread);
     }
 
-    /* CW won't override the new call for some reason */
-    mMainThreadExec = new(_410, 0) FunctionAsyncExecutorOnMainThread(OSGetCurrentThread());
+    mMainThreadExec = new FunctionAsyncExecutorOnMainThread(OSGetCurrentThread());
     _410 = JKRUnitHeap::create(0x34, 0x34A8, 4, MR::getCurrentHeap(), false);
     _414 = JKRExpHeap::create(0x2800, MR::getCurrentHeap(), false);
 }
@@ -180,10 +178,12 @@ OSThread* FunctionAsyncExecutor::getOSThread(const char *pName) {
 
 FunctionAsyncExecInfo* FunctionAsyncExecutor::createAndAddExecInfo(const MR::FunctorBase &rBase, int priority, const char *pName) {
     MR::FunctorBase* func = rBase.clone(_414);
-    FunctionAsyncExecInfo* info = new FunctionAsyncExecInfo(func, priority, pName);
+    FunctionAsyncExecInfo* info = new(_410, 0) FunctionAsyncExecInfo(func, priority, pName);
 
     OSLockMutex(&MR::MutexHolder<2>::sMutex);
-    mHolders[_40C++] = info;
+    s32 cnt = _40C;
+    _40C = cnt + 1;
+    mHolders[cnt] = info;
     OSUnlockMutex(&MR::MutexHolder<2>::sMutex);
     return info;
 }

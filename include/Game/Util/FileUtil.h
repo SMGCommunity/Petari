@@ -2,6 +2,8 @@
 
 #include "revolution.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRUnitHeap.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 
 class JKRArchive;
