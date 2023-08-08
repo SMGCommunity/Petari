@@ -33,7 +33,7 @@ public:
 	void noteOn(u32, u32, u32);
 	void noteOff(u32, u16);
 	
-	JASTrackPort _5C;
+	JASTrackPort mPorts;
 	JASRegisterParam _80;
 	u8 _84[0xA8];
 	JASTrack *mParent;

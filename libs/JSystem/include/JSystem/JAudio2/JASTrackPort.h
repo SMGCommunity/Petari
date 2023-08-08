@@ -4,10 +4,14 @@
 
 class JASTrackPort {
 public:
-    s32 checkImport(u32) const;
-    s32 checkExport(u32) const;
+    u16 readImport(u32);
+    u16 readExport(u32);
+    void writeImport(u32, u16);
+    void writeExport(u32, u16);
+    bool checkImport(u32) const;
+    bool checkExport(u32) const;
 
-    u16 _0;
-    u16 _2;
-    u16 _4[0x10];
+    u16 mImport;
+    u16 mExport;
+    u16 mPorts[0x10];
 };

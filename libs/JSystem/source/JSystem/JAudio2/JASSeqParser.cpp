@@ -187,7 +187,7 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 		case 0xD:
 		case 0xE:
 		case 0xF:
-			track->_5C._4[reg - 0x40] = value;
+			track->mPorts.mPorts[reg - 0x40] = value;
 			break;
 		case 0x22:
 			track->setTimeBase(value);
@@ -277,7 +277,7 @@ u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
 			case 0xD:
 			case 0xE:
 			case 0xF:
-				ret = track->_5C._4[reg - 0x40];
+				ret = track->mPorts.mPorts[reg - 0x40];
 				break;
 			// Create a bitmap of the current track's children
 			case 0x20:
@@ -292,7 +292,7 @@ u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
 				break;
 			case 0x21:
 				if(!track->mNumStacks) return 0;
-				ret = track->_5C._4[track->mNumStacks - 0x20 + 5];
+				ret = track->mPorts.mPorts[track->mNumStacks - 0x20 + 5];
 				break;
 			case 0x22:
 				ret = track->mTimerBase;
@@ -490,11 +490,11 @@ s32 JASSeqParser::cmdChildReadPort(JASTrack *track, u32 *args) {
     return 0;
 }
 s32 JASSeqParser::cmdCheckPortImport(JASTrack *track, u32 *args) {
-    track->_80.write(JASRegisterParam::REG_F, track->_5C.checkImport(args[0]));
+    track->_80.write(JASRegisterParam::REG_F, track->mPorts.checkImport(args[0]));
     return 0;
 }
 s32 JASSeqParser::cmdCheckPortExport(JASTrack *track, u32 *args) {
-    track->_80.write(JASRegisterParam::REG_F, track->_5C.checkExport(args[0]));
+    track->_80.write(JASRegisterParam::REG_F, track->mPorts.checkExport(args[0]));
     return 0;
 }
 s32 JASSeqParser::cmdWait(JASTrack *track, u32 *args) {
@@ -733,31 +733,31 @@ s32 JASSeqParser::cmdDump(JASTrack *track, u32 *args) {
 
 	JASReport(
 		" PORT 0-3: 0x%04x 0x%04x 0x%04x 0x%04x",
-		track->_5C._4[0],
-		track->_5C._4[1],
-		track->_5C._4[2],
-		track->_5C._4[3]
+		track->mPorts.mPorts[0],
+		track->mPorts.mPorts[1],
+		track->mPorts.mPorts[2],
+		track->mPorts.mPorts[3]
 	);
 	JASReport(
 		" PORT 4-7: 0x%04x 0x%04x 0x%04x 0x%04x",
-		track->_5C._4[4],
-		track->_5C._4[5],
-		track->_5C._4[6],
-		track->_5C._4[7]
+		track->mPorts.mPorts[4],
+		track->mPorts.mPorts[5],
+		track->mPorts.mPorts[6],
+		track->mPorts.mPorts[7]
 	);
 	JASReport(
 		" PORT 8-B: 0x%04x 0x%04x 0x%04x 0x%04x",
-		track->_5C._4[8],
-		track->_5C._4[9],
-		track->_5C._4[0xA],
-		track->_5C._4[0xB]
+		track->mPorts.mPorts[8],
+		track->mPorts.mPorts[9],
+		track->mPorts.mPorts[0xA],
+		track->mPorts.mPorts[0xB]
 	);
 	JASReport(
 		" PORT C-F: 0x%04x 0x%04x 0x%04x 0x%04x",
-		track->_5C._4[0xC],
-		track->_5C._4[0xD],
-		track->_5C._4[0xE],
-		track->_5C._4[0xF]
+		track->mPorts.mPorts[0xC],
+		track->mPorts.mPorts[0xD],
+		track->mPorts.mPorts[0xE],
+		track->mPorts.mPorts[0xF]
 	);
 	JASReport("");
 
