@@ -1,7 +1,7 @@
 #include "JSystem/JAudio2/JASSeqReader.h"
 
 void JASSeqReader::init() {
-	_0 = nullptr;
+	mSeqData = nullptr;
 	_4 = nullptr;
 	mNumStacks = 0;
 	for(u32 i = 0; i < 8; i++) {
@@ -11,7 +11,7 @@ void JASSeqReader::init() {
 }
 
 void JASSeqReader::init(void *buf) {
-	_0 = (u8*)buf;
+	mSeqData = (u8*)buf;
 	_4 = (u8*)buf;
 	mNumStacks = 0;
 	for(u32 i = 0; i < 8; i++) {
@@ -24,7 +24,7 @@ bool JASSeqReader::call(u32 num) {
 	if(mNumStacks >= 8) return false;
 	else {
 		mStackPtrs[mNumStacks++] = _4;
-		_4 = _0 + num;
+		_4 = mSeqData + num;
 		return true;
 	}
 }

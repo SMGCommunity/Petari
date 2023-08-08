@@ -4,6 +4,8 @@
 
 #include "JSystem/JAudio2/JASSeqRegisterParam.h"
 #include "JSystem/JAudio2/JASSeqCtrl.h"
+#include "JSystem/JAudio2/JASTrackPort.h"
+#include "JSystem/JAudio2/JASOscillator.h"
 
 class JASTrack : public JASSeqCtrl {
 public:
@@ -14,11 +16,27 @@ public:
 	void setSeqData(void *, u32);
 	void start();
 	void call(u32);
+	u16 readPortSelf(u32);
+	u16 readPort(u32);
+	void writePortSelf(u32, u16);
+	void writePort(u32, u16);
+	void setLatestKey(u8);
+	void setOscScale(u32, f32);
+	void setOscTable(u32, const JASOscillator::Point *);
+	void setOscAdsr(s16, s16, s16, s16, u16);
+	void connectBus(int, int);
+	void setTempo(u16);
+	void setFIR(const u16 *);
+	void setIIR(const u16 *);
+	void setParam(u32, f32, u32);
+	void gateOn(u32, u32 , f32, u32);
+	void noteOn(u32, u32, u32);
+	void noteOff(u32, u16);
 	
-	u32 _5C;
-	u16 _60[0x10];
+	JASTrackPort _5C;
 	JASRegisterParam _80;
-	u8 _84[0xAC];
+	u8 _84[0xA8];
+	JASTrack *mParent;
 	JASTrack *mChildren[0x10];
 	u8 _170[0x70];
 	f32 _1E0;

@@ -6,7 +6,8 @@ class JASTrack;
 
 class JASSeqParser {
 public:
-	typedef s32 (JASSeqParser::*Command)(const void *, void *, JASTrack *, u32 *);
+	typedef s32 (JASSeqParser::*CommandFunc)(JASTrack *, u32 *);
+	typedef u16 (*Callback)(JASTrack *, u16);
 
 	enum BranchCondition {
 		COND0 = 0,
@@ -17,14 +18,32 @@ public:
 		COND5
 	};
 
+	static Callback sCallbackFunc;
+	struct Command {
+		CommandFunc func;
+		u16 numArgs;
+		u16 _E;
+	};
+	template<unsigned int I>
+	class CommandTable {
+		public:
+		Command commands[I];
+		inline Command* getCmd(u32 code) {
+			return commands + code;
+		}
+	};
+	static CommandTable<0x60> sCmdInfo;
+		
+	static CommandTable<0xff> sExtCmdInfo;
+
 	JASSeqParser();
 	
 	virtual ~JASSeqParser();
-	virtual int parse(JASTrack *);
+	virtual s32 parse(JASTrack *);
 	virtual void execNoteOnMidi(JASTrack *, u32, u32, u32);
 	virtual void execNoteOnGate(JASTrack *, u32, u32, u32, u32);
 	virtual void execNoteOff(JASTrack *, u32);
-	virtual void execCommand(JASTrack *, JASSeqParser::Command, u32, u32 *);
+	virtual s32 execCommand(JASTrack *, JASSeqParser::CommandFunc, u32, u32 *);
 
 	bool conditionCheck(JASTrack *, BranchCondition);
 	void writeReg(JASTrack *, u32, u32);
@@ -61,6 +80,7 @@ public:
 	s32 cmdBusConnect(JASTrack *, u32 *);
 	s32 cmdSetIntTable(JASTrack *, u32 *);
 	s32 cmdSetInterrupt(JASTrack *, u32 *);
+	s32 cmdDisInterrupt(JASTrack *, u32 *);
 	s32 cmdClrI(JASTrack *, u32 *);
 	s32 cmdRetI(JASTrack *, u32 *);
 	s32 cmdIntTimer(JASTrack *, u32 *);
@@ -74,19 +94,19 @@ public:
 	s32 cmdBankPrg(JASTrack *, u32 *);
 	s32 cmdBank(JASTrack *, u32 *);
 	s32 cmdPrg(JASTrack *, u32 *);
-	s32 cmdI(JASTrack *, u32 *);
-	s32 cmdII(JASTrack *, u32 *);
-	s32 cmdE(JASTrack *, u32 *);
-	s32 cmdEI(JASTrack *, u32 *);
+	s32 cmdParamI(JASTrack *, u32 *);
+	s32 cmdParamII(JASTrack *, u32 *);
+	s32 cmdParamE(JASTrack *, u32 *);
+	s32 cmdParamEI(JASTrack *, u32 *);
 	s32 cmdReg(JASTrack *, u32 *);
 	s32 cmdRegLoad(JASTrack *, u32 *);
 	s32 cmdRegUni(JASTrack *, u32 *);
 	s32 cmdRegTblLoad(JASTrack *, u32 *);
 	s32 cmdDump(JASTrack *, u32 *);
 	s32 cmdPrintf(JASTrack *, u32 *);
-	void parseNoteOff(JASTrack *, u8);
-	void parseNoteOne(JASTrack *, u8);
-	void parseCommand(JASTrack *, u8, u16);
-	void parseRegCommand(JASTrack *, int);
+	s32 parseNoteOff(JASTrack *, u8);
+	s32 parseNoteOn(JASTrack *, u8);
+	s32 parseCommand(JASTrack *, u8, u16);
+	s32 parseRegCommand(JASTrack *, int);
 	
 };
