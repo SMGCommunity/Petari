@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [AlreadyDoneFlagInGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/AlreadyDoneFlagInGalaxy.md) | 58.98876404494382% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
-| [ArchiveHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ArchiveHolder.md) | 27.586206896551722% | 2 / 8 | 25.0% | :eight_pointed_black_star: 
+| [ArchiveHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ArchiveHolder.md) | 75.47892720306514% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
 | [AudSystemWrapper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/AudSystemWrapper.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [BinaryDataChunkHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/BinaryDataChunkHolder.md) | 16.877637130801688% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
 | [BinaryDataContentAccessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/BinaryDataContentAccessor.md) | 0.0% | 0 / 12 | 0.0% | :x: 

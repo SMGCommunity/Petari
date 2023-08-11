@@ -56,13 +56,6 @@ public:
     OSThread* mThread;          // _124
 };
 
-struct FunctionAsyncHolder {
-    FunctionAsyncExecInfo* _0;
-    FunctionAsyncExecInfo* _4;
-    u32 _8;
-    FunctionAsyncExecInfo* _C;
-};
-
 class FunctionAsyncExecutor {
 public:
     FunctionAsyncExecutor();
