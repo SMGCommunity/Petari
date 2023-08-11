@@ -190,7 +190,7 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 			track->mPorts.mPorts[reg - 0x40] = value;
 			break;
 		case 0x22:
-			track->setTimeBase(value);
+			track->setTimebase(value);
 			break;
 		case 0x23:
 			track->_22A = value;

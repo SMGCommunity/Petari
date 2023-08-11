@@ -22,6 +22,15 @@ const JASOscillator::Point JASTrack::sPitchEnvOsc[4] = {
     {0, 0, 0}
 };
 
+JASTrack::JASTrack() : JASSeqCtrl(), _80(), _180(this), _1D0(1), _240(0), _248() {
+    _170[0] = &_180;
+    for(u32 i = 1; i < 4; i++) {
+        _170[i] = nullptr;
+    }
+    init();
+}
+
+
 JASTrack::~JASTrack() {
     for(int i = 1; i < 4; i++) {
         delete _170[i];
@@ -126,11 +135,16 @@ JASTrack::TChannelMgr::TChannelMgr(JASTrack *track) : _20(), _48(0), _4C(track) 
     }
 }
 
-JASChannelParams::JASChannelParams() {
-    init();
+void JASChannelParams::init() {
+    _0[0] = 1f;
+    _0[1] = 1f;
+    _0[2] = 0f;
+    _0[3] = 0.5f;
+    _0[4] = 0f;
+    _0[5] = 0f;
 }
 
-inline void JASChannelParams::init() {
+JASChannelParams::JASChannelParams() {
     _0[0] = 1f;
     _0[1] = 1f;
     _0[2] = 0f;
