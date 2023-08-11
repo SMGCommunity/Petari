@@ -58,7 +58,7 @@ __dt__Q210JASPortCmd9TPortHeadFv,JASCmdStack.o,JAudio2.a,false
 __ct__8JASTrackFv,JASTrack.o,JAudio2.a,true
 __dt__8JASTrackFv,JASTrack.o,JAudio2.a,true
 setChannelMgrCount__8JASTrackFUl,JASTrack.o,JAudio2.a,true
-init__8JASTrackFv,JASTrack.o,JAudio2.a,false
+init__8JASTrackFv,JASTrack.o,JAudio2.a,true
 initTimed__8JASTrackFv,JASTrack.o,JAudio2.a,false
 inherit__8JASTrackFRC8JASTrack,JASTrack.o,JAudio2.a,false
 assignExtBuffer__8JASTrackFUlP14JASSoundParams,JASTrack.o,JAudio2.a,false

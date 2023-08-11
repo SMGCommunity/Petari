@@ -21,12 +21,6 @@ public:
 	f32 _0[6];
 };
 
-struct Stupid {
-	u16 _0;
-	u16 get() const {return _0;}
-	~Stupid();
-};
-
 class JASTrack : public JASSeqCtrl, public JASPoolAllocObject_MultiThreaded<JASTrack> {
 public:
 
@@ -35,86 +29,18 @@ public:
 
 	static JASBank sDefaultBankTable[0100];
 
-	struct Bitfield {
-		s32 _240;
-		bool _244_0: 1;
-		u8 _244_1: 1;
-		bool _244_2: 1;
-		bool _244_3: 1;
-		bool _244_4: 1;
-		bool _244_5: 1;
-		u8 _244_6: 1;
-		//unsigned char _244_7: 1;
-
-		Bitfield();
-
-		Bitfield(Bitfield base, u8 num) {
-		//	base.set(num);
-			*this = base;
-		}
-
-		const Bitfield& operator=(const u8 &num) {
-			*this = Bitfield(*this, num);
-			return *this;
-		}
-
-		/*void set(u8 stuff) {
-			const Bitfield BF = *(const Bitfield *)&stuff;
-			_244_0 = BF._244_0;
-			_244_1 = BF._244_1;
-			_244_2 = BF._244_2;
-			_244_5 = BF._244_5;
-			_244_3 = BF._244_3;
-			_244_4 = BF._244_4;
-			_244_6 = BF._244_6;
-		}*/
-
-	void biggerScaryFunction() {
-
-	}
-
-	void bigScaryFunction() {
-		biggerScaryFunction();
-	}
-
-		void bs();
+	union LLFlags {
+		struct {
+			bool _0: 1;
+			bool _1: 1;
+			bool _2: 1;
+			bool _3: 1;
+			bool _4: 1;
+			bool _5: 1;
+			bool _6: 1;
+		};
+		u8 byteRepr;
 	};
-
-	/*inline void mutate(u32 arg) {
-		 _22E = arg;
-    _230 = 0xC;
-    _231 = 0x40;
-    _232 = 0;
-    _233 = 0x64;
-    _234 = 0x150;
-    _236 = 0x210;
-    _238 = 0x352;
-    _23A = 0x412;
-    _23C = 0;
-    _23E = 0;
-    for(u32 i = 0; i < 8; i++) {
-        _1F4[i] = 0;
-    }
-    _1F4[0] = 0x7fff;
-    for(u32 i = 0; i < 8; i++) {
-        _204[i] = 0;
-    }
-    _204[0] = 0x7fff;
-    _214 = 0;
-    
-    /*trueBs();
-    readValue();*/
-    //JASTrack::Bitfield bf = {false, false, true, false, false, true, false};
-	/*_255._244_0 = false;
-    _255._244_1 = false;
-    _255._244_2 = true;
-    _255._244_5 = true;
-    _255._244_3 = false;
-    _255._244_4 = false;
-    _255._244_6 = false;
-
-    _240 = 0;
-	}*/
 
 	struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
 		TChannelMgr(JASTrack *);
@@ -199,34 +125,6 @@ public:
 	u16 readPort(u32);
 	void writePortSelf(u32, u16);
 	void writePort(u32, u16);
-
-	/*inline void trueBs() {
-    //initBitfield();
-    //_244 = (((_244 & 0xffffff3f) | 0x24) & 0xffffffe7);
-    //_244 &= 0xfffffffd;
-    //_240 = 0;
-    for(u32 i = 0; i < 8; i++) {
-        _1F4[i] = 0;
-    }
-    _1F4[0] = 0x7fff;
-    for(u32 i = 0; i < 8; i++) {
-        _204[i] = 0;
-    }
-    _204[0] = 0x7fff;
-    _214 = 0;
-    
-	_255._244_0 = false;
-    _255._244_1 = false;
-    _255._244_2 = true;
-    _255._244_5 = true;
-    _255._244_3 = false;
-    _255._244_4 = false;
-    _255._244_6 = _214;
-	}*/
-
-	void readValue() {
-		//_240 = _214;
-	}
 	
 	JASTrackPort mPorts; // _5C
 	JASRegisterParam _80;
@@ -271,14 +169,7 @@ public:
 	u16 _23A;
 	u16 _23C;
 	u16 _23E;
-	//s32 _240;
-	union {
-		struct {
-			s32 _240;
-			u8 _244;
-		};
-		Bitfield _255;
-	};
+	volatile s32 _240;
+	volatile LLFlags _244;
 	JGadget::TLinkListNode _248;
-	//JASTrack *_250; // probably part of the link list
 };
