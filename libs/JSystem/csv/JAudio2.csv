@@ -55,9 +55,9 @@ execCommandStay__Q210JASPortCmd9TPortHeadFv,JASCmdStack.o,JAudio2.a,false
 __sinit_\JASCmdStack_cpp,JASCmdStack.o,JAudio2.a,false
 __ct__Q210JASPortCmd9TPortHeadFv,JASCmdStack.o,JAudio2.a,false
 __dt__Q210JASPortCmd9TPortHeadFv,JASCmdStack.o,JAudio2.a,false
-__ct__8JASTrackFv,JASTrack.o,JAudio2.a,false
-__dt__8JASTrackFv,JASTrack.o,JAudio2.a,false
-setChannelMgrCount__8JASTrackFUl,JASTrack.o,JAudio2.a,false
+__ct__8JASTrackFv,JASTrack.o,JAudio2.a,true
+__dt__8JASTrackFv,JASTrack.o,JAudio2.a,true
+setChannelMgrCount__8JASTrackFUl,JASTrack.o,JAudio2.a,true
 init__8JASTrackFv,JASTrack.o,JAudio2.a,false
 initTimed__8JASTrackFv,JASTrack.o,JAudio2.a,false
 inherit__8JASTrackFRC8JASTrack,JASTrack.o,JAudio2.a,false
@@ -109,7 +109,7 @@ seqMain__8JASTrackFv,JASTrack.o,JAudio2.a,false
 cbSeqMain__Q28JASTrack5TListFPv,JASTrack.o,JAudio2.a,false
 append__Q28JASTrack5TListFP8JASTrack,JASTrack.o,JAudio2.a,false
 seqMain__Q28JASTrack5TListFv,JASTrack.o,JAudio2.a,false
-__ct__Q28JASTrack11TChannelMgrFP8JASTrack,JASTrack.o,JAudio2.a,false
+__ct__Q28JASTrack11TChannelMgrFP8JASTrack,JASTrack.o,JAudio2.a,true
 init__Q28JASTrack11TChannelMgrFv,JASTrack.o,JAudio2.a,false
 releaseAll__Q28JASTrack11TChannelMgrFv,JASTrack.o,JAudio2.a,false
 noteOff__Q28JASTrack11TChannelMgrFUlUs,JASTrack.o,JAudio2.a,false
@@ -168,8 +168,8 @@ setKey__10JASChannelFl,JASTrack.o,JAudio2.a,false
 setVelocity__10JASChannelFUl,JASTrack.o,JAudio2.a,false
 setVibrate__10JASChannelFff,JASTrack.o,JAudio2.a,false
 setTremolo__10JASChannelFff,JASTrack.o,JAudio2.a,false
-__ct__16JASChannelParamsFv,JASTrack.o,JAudio2.a,false
-init__16JASChannelParamsFv,JASTrack.o,JAudio2.a,false
+__ct__16JASChannelParamsFv,JASTrack.o,JAudio2.a,true
+init__16JASChannelParamsFv,JASTrack.o,JAudio2.a,true
 setPauseFlag__10JASChannelFb,JASTrack.o,JAudio2.a,false
 setDepth__6JASLfoFf,JASTrack.o,JAudio2.a,false
 setPitch__6JASLfoFf,JASTrack.o,JAudio2.a,false
@@ -178,7 +178,7 @@ __ct__19JASDefaultBankTableFv,JASTrack.o,JAudio2.a,false
 __ct__17JASBankTable<256>Fv,JASTrack.o,JAudio2.a,false
 __ct__11JASBankListFv,JASTrack.o,JAudio2.a,false
 __ct__Q28JASTrack5TListFv,JASTrack.o,JAudio2.a,false
-init__12JASTrackPortFv,JASTrackPort.o,JAudio2.a,false
+init__12JASTrackPortFv,JASTrackPort.o,JAudio2.a,true
 readImport__12JASTrackPortFUl,JASTrackPort.o,JAudio2.a,true
 readExport__12JASTrackPortFUl,JASTrackPort.o,JAudio2.a,true
 writeImport__12JASTrackPortFUlUs,JASTrackPort.o,JAudio2.a,true

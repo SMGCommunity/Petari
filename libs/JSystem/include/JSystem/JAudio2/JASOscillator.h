@@ -2,5 +2,11 @@
 
 class JASOscillator {
 public:
-    struct Point {};
+    struct Point {
+        const Point& operator=(const Point &);
+
+        s16 _0;
+        s16 _2;
+        s16 _4;
+    };
 };

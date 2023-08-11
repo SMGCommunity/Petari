@@ -32,3 +32,15 @@ class JASPoolAllocObject : public JASMemPool<T> {
 public:
     static JASPoolAllocObject<T> memPool_;
 };
+
+template<typename T>
+class JASMemPool_MultiThreaded : public JASGenericMemPool {
+
+};
+
+template<typename T>
+class JASPoolAllocObject_MultiThreaded {
+public:
+    static void* operator new(u32);
+    static void operator delete(void *, u32);
+};

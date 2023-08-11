@@ -4,6 +4,7 @@
 
 class JASTrackPort {
 public:
+    void init();
     u16 readImport(u32);
     u16 readExport(u32);
     void writeImport(u32, u16);
