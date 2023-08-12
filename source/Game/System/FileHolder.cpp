@@ -44,11 +44,12 @@ FileHolder::FileHolder() {
     mArray.mArray.mMaxSize = 0x180;
 }
 
-void FileHolder::add(const char *pName, JKRHeap *pHeap, void *pData) {
-    FileHolderFileEntry* entry = new FileHolderFileEntry(pName, pHeap, pData);
+FileHolderFileEntry* FileHolder::add(const char *pName, JKRHeap *pHeap, void *pData) {
+    FileHolderFileEntry* entry = new(pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
     s32 count = mArray.mCount;
     mArray.mCount++;
     mArray.mArray.mArr[count] = entry;
+    return entry;
 }
 
 bool FileHolder::isExist(const char *pFile) const {
