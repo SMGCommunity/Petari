@@ -6,6 +6,7 @@
 #include "Game/System/FileHolder.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
+#include <cstdio>
 
 class JKRArchive;
 
@@ -21,7 +22,7 @@ public:
     JKRMemArchive* receiveArchive(const char *);
     void receiveAllRequestedFile();
     JKRMemArchive* createAndAddArchive(void *, JKRHeap *, const char *);
-    void getMountedArchiveAndHeap(const char *, JKRArchive **, JKRHeap **);
+    void getMountedArchiveAndHeap(const char *, JKRArchive **, JKRHeap **) const;
     void clearRequestFileInfo(bool);
     void removeHolderIfIsEqualHeap(JKRHeap *);
     void removeFile(const char *);

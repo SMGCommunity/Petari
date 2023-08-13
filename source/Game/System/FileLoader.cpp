@@ -91,3 +91,53 @@ void FileLoader::receiveAllRequestedFile() {
 JKRMemArchive* FileLoader::createAndAddArchive(void* pData, JKRHeap* pHeap, const char* pName) {
     return mArchiveHolder->createAndAdd(pData, pHeap, pName)->mArchive;
 }
+
+void FileLoader::getMountedArchiveAndHeap(const char* pName, JKRArchive** pArchive, JKRHeap** pHeap) const {
+    mArchiveHolder->getArchiveAndHeap(pName, pArchive, pHeap);
+}
+
+void FileLoader::clearRequestFileInfo(bool) {
+    mRequestedFileCount = nullptr;
+}
+
+void FileLoader::removeHolderIfIsEqualHeap(JKRHeap* pHeap) {
+    mFileHolder->removeIfIsEqualHeap(pHeap);
+    mArchiveHolder->removeIfIsEqualHeap(pHeap);
+}
+
+void FileLoader::removeFile(const char* pName) {
+    mFileHolder->removeFile(pName);
+}
+
+bool FileLoader::isNeedToLoad(const char* pName) const {
+    const RequestFileInfo* info = getRequestFileInfoConst(pName);
+    return (info == nullptr) ? false : mFileHolder->isExist(pName) == false;
+}
+
+const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) const {
+    for (u32 i = 0; i < mRequestedFileCount; i++) {
+        RequestFileInfo* info = &mRequestFileInfos[i];
+
+        if (MR::isEqualStringCase(info->mFileName, pName)) {
+            return info;
+        }
+    }
+
+    return nullptr;
+}
+
+#ifdef NON_MATCHING
+// string load is in the wrong spot for some reason
+RequestFileInfo* FileLoader::addRequest(const char* pName) {
+    OSMutex* mutex = &mMutex;
+    OSLockMutex(mutex);
+    s32 count = mRequestedFileCount;
+    mRequestedFileCount = count + 1;
+    RequestFileInfo* info = &mRequestFileInfos[count];
+    info->mFileEntry = nullptr;
+    info->_88 = 0;
+    snprintf(info->mFileName, sizeof(info->mFileName), "%s", pName);
+    OSUnlockMutex(mutex);
+    return info;
+}
+#endif
