@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 19 Completed -- (0.0%)
+# 3 / 19 Completed -- (15.789473684210526%)
 # WPadHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16WPadReadDataInfoFv` | :x: |
-| `getKPadStatus__16WPadReadDataInfoCFUl` | :x: |
-| `getValidStatusCount__16WPadReadDataInfoCFv` | :x: |
+| `__ct__16WPadReadDataInfoFv` | :white_check_mark: |
+| `getKPadStatus__16WPadReadDataInfoCFUl` | :white_check_mark: |
+| `getValidStatusCount__16WPadReadDataInfoCFv` | :white_check_mark: |
 | `__ct__10WPadHolderFv` | :x: |
 | `updateReadDataOnly__10WPadHolderFv` | :x: |
 | `updateProjectPadData__10WPadHolderFv` | :x: |

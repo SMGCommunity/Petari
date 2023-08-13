@@ -7,6 +7,7 @@
 #include <revolution/fs.h>
 #include <revolution/gd.h>
 #include <revolution/gx.h>
+#include <revolution/kpad.h>
 #include <revolution/mtx.h>
 #include <revolution/nand.h>
 #include <revolution/os.h>
