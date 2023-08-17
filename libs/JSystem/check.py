@@ -31,16 +31,34 @@ class FunctionLibrary:
             with open(pathlib.Path(f"csv/{file}"), "r") as input:
                 is_first_line = True
                 for line in input:
+                    print(line)
                     if is_first_line:
                         is_first_line = False
                         continue
+                    bracketCounter = 0
+                    replacements = []
+                    for i, c in enumerate(line):
+                        if c == '<':
+                            bracketCounter += 1
+                        elif c == '>':
+                            bracketCounter -= 1
+                        elif bracketCounter > 0 and c == ',':
+                            replacements += [i]
+                    offset = 0
+                    for i in replacements:
+                        line = line[:i + offset] + '&#44;' + line[i + offset + 1:]
+                        offset += 4
+                    if len(replacements) > 0:
+                        print(line)
 
                     line_split = line.rstrip().split(",")
 
-                    symbol = line_split[0].replace("&#44;", ",")
+                    symbol = line_split[0]
+                            
                     
                     obj_file = line_split[1]
                     library_name = line_split[2]
+                    print(line)
                     matches = line_split[3] == "true"
 
                     if (symbol, obj_file) in symbols:
