@@ -110,5 +110,5 @@ JUTReportConsole,JUTConsole.o,JUtility.a,false
 JUTWarningConsole_f_va,JUTConsole.o,JUtility.a,false
 getLinePtr__10JUTConsoleCFi,JUTConsole.o,JUtility.a,false
 drawString_scale__7JUTFontFffffPCcb,JUTConsole.o,JUtility.a,false
-end__Q27JGadget27TLinkList<10JUTConsole&#44;-24>Fv,JUTConsole.o,JUtility.a,false
-begin__Q27JGadget27TLinkList<10JUTConsole&#44;-24>Fv,JUTConsole.o,JUtility.a,false
+end__Q27JGadget27TLinkList<10JUTConsole,-24>Fv,JUTConsole.o,JUtility.a,false
+begin__Q27JGadget27TLinkList<10JUTConsole,-24>Fv,JUTConsole.o,JUtility.a,false

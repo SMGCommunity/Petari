@@ -21,13 +21,26 @@ public:
 	f32 _0[6];
 };
 
+class JASCriticalSection {
+public:
+	JASCriticalSection();
+	~JASCriticalSection();
+	u8 _0[8];
+};
+
+struct JASDefaultBankTable {
+    JASDefaultBankTable();
+    ~JASDefaultBankTable();
+    u8 _40C[0x40C];
+};
+
 class JASTrack : public JASSeqCtrl, public JASPoolAllocObject_MultiThreaded<JASTrack> {
 public:
 
-	static const JASOscillator::Point sEnvOsc[4];
-	static const JASOscillator::Point sPitchEnvOsc[4];
+	static const JASOscillator::Data sEnvOsc;
+	static const JASOscillator::Data sPitchEnvOsc;
 
-	static JASBank sDefaultBankTable[0100];
+	static JASDefaultBankTable sDefaultBankTable;
 
 	union LLFlags {
 		struct {
@@ -45,19 +58,28 @@ public:
 	struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
 		TChannelMgr(JASTrack *);
 		void init();
+        void releaseAll();
+        bool noteOff(u32, u16);
+        void setPauseFlag(bool);
 
-		u32 _0[8];
+		JASChannel* _0[8];
 		JASChannelParams _20;
 		u16 _38[8];
-		u32 _48;
+		JASSoundParams* _48;
 		JASTrack *_4C;
+	};
+
+	struct Timed {
+		f32 _0;
+		f32 _4;
+		u32 _8;
 	};
 
 	JASTrack();
 	
 	~JASTrack();
 	
-	void seqMain();
+	s32 seqMain();
 
 	void init();
 	void initTimed();
@@ -66,15 +88,16 @@ public:
 	void stopSeq();
 	
 	void start();
+    JASChannel* channelStart(TChannelMgr *, u32, u32, u32);
 
 	void close();
 
-	void tickProc();
+	int tickProc();
 
 	void inherit(const JASTrack &);
 
 	JASTrack* openChild(u32);
-	void connectChild(u32, JASTrack *);
+	bool connectChild(u32, JASTrack *);
 	void closeChild(u32);
 	JASTrack* getRootTrack();
 	
@@ -89,11 +112,11 @@ public:
 	void updateTempo();
 	void updateSeq(bool, f32);
 	void updateChannel(JASChannel *, JASDsp::TChannel *);
-	void channelUpdateCalback(u32, JASChannel *, JASDsp::TChannel *, void *);
+	static void channelUpdateCallback(u32, JASChannel *, JASDsp::TChannel *, void *);
 
-	void gateOn(u32, u32, f32, u32);
-	void noteOn(u32, u32, u32);
-	void noteOff(u32, u16);
+	bool gateOn(u32, u32, f32, u32);
+	bool noteOn(u32, u32, u32);
+	bool noteOff(u32, u16);
 	void noteOffAll(u16);
 	bool checkNoteStop(u32) const;
 
@@ -109,7 +132,7 @@ public:
 	void setTempoRate(f32);
 	void setParam(u32, f32, u32);
 
-	f32 getTransposeTotal() const;
+	s32 getTransposeTotal() const;
 	bool isMute() const;
 
 	void overwriteOsc(JASChannel *);
@@ -117,9 +140,9 @@ public:
 	void setOscTable(u32, const JASOscillator::Point *);
 	void setOscAdsr(s16, s16, s16, s16, u16);
 
-	void setFIR(const u16 *);
-	void setIIR(const u16 *);
-	void seqTimeToDSPTime(f32);
+	void setFIR(const s16 *);
+	void setIIR(const s16 *);
+	u32 seqTimeToDspTime(f32);
 	
 	u16 readPortSelf(u32);
 	u16 readPort(u32);
@@ -128,16 +151,17 @@ public:
 	
 	JASTrackPort mPorts; // _5C
 	JASRegisterParam _80;
-	u8 _84[0x60];
-	JASOscillator::Point _E4[4];
-	JASOscillator::Point _FC[4];
+	u8 _84[0x18];
+	Timed _9C[6];
+	JASOscillator::Data _E4[2];
+	//JASOscillator::Point _FC[4];
 	JASOscillator::Point _114[4];
 	JASTrack *mParent; // _12C
 	JASTrack *mChildren[0x10]; // _130
 	TChannelMgr* _170[4];
 	TChannelMgr _180;
 	u32 _1D0;
-	JASBank* _1D4;
+	JASDefaultBankTable* _1D4;
 	f32 _1D8;
 	f32 _1DC;
 	f32 _1E0;
@@ -146,8 +170,8 @@ public:
 	f32 _1EC;
 	u16 _1F0;
 	u16 _1F2;
-	u16 _1F4[8];
-	u16 _204[8];
+	s16 _1F4[8];
+	s16 _204[8];
 	u8 _214;
 	f32 _218;
 	f32 _21C;
@@ -163,13 +187,27 @@ public:
 	u8 _231;
 	u8 _232;
 	u8 _233;
-	u16 _234;
-	u16 _236;
-	u16 _238;
-	u16 _23A;
-	u16 _23C;
-	u16 _23E;
+	u16 _234[6];
 	volatile s32 _240;
-	volatile LLFlags _244;
+	volatile LLFlags _244; // Volatility seems to depend upon which union field we use
 	JGadget::TLinkListNode _248;
+
+	struct TList;
+	
+	static TList sTrackList;
 };
+
+struct JASTrack::TList : public JGADGET_LINK_LIST(JASTrack, _248) {
+    TList();
+    ~TList();
+    
+    static s32 cbSeqMain(void *);
+    void append(JASTrack *);
+    void seqMain();
+    u8 _0[0xC];
+    bool _C;
+};
+
+namespace JGadget {
+    bool operator!=(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator);
+}

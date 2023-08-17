@@ -37,7 +37,8 @@ class FunctionLibrary:
 
                     line_split = line.rstrip().split(",")
 
-                    symbol = line_split[0]
+                    symbol = line_split[0].replace("&#44;", ",")
+                    
                     obj_file = line_split[1]
                     library_name = line_split[2]
                     matches = line_split[3] == "true"
