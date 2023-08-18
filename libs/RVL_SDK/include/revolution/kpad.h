@@ -57,6 +57,10 @@ typedef struct KPADStatus {
 } KPADStatus;
 
 void KPADSetBtnRepeat(s32, f32, f32);
+void KPADSetSensorHeight(s32, f32);
+void KPADSetPosParam(s32, f64, f64);
+void KPADSetHoriParam(s32, f64, f64);
+void KPADSetDistParam(s32, f64, f64);
 
 #ifdef __cplusplus
 }

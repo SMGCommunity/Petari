@@ -2,7 +2,7 @@
 #include "Game/Util/MathUtil.h"
 #include "Game/AreaObj/MercatorTransformCube.h"
 
-CameraShakePatternSingly::CameraShakePatternSingly(float a1) {
+CameraShakePatternSingly::CameraShakePatternSingly(float a1)  : CameraShakePattern() {
     _8 = a1;
     mDirection.x = 0.0f;
     mDirection.y = 1.0f;

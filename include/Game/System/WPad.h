@@ -15,6 +15,7 @@ class WPad {
 public:
     WPad(s32);
 
+    u32 getValidStatusCount() const;
     KPADStatus* getKPadStatus(u32) const;
 
     s32 mChannel;                           // _0

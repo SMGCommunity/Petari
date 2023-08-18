@@ -55,6 +55,8 @@ namespace MR {
 
     ResTIMG* getScreenResTIMG();
 
+    s32 getScreenWidth();
+
     void openWipeWhiteFade(s32);
     void closeWipeWhiteFade(s32);
 
