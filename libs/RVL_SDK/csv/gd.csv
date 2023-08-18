@@ -1,8 +1,8 @@
 Symbol Name, Object File, Library Archive, Matching
-GDInitGDLObj,GDBase.o,gd.a,false
-GDFlushCurrToMem,GDBase.o,gd.a,false
-GDPadCurr32,GDBase.o,gd.a,false
-GDOverflowed,GDBase.o,gd.a,false
+GDInitGDLObj,GDBase.o,gd.a,true
+GDFlushCurrToMem,GDBase.o,gd.a,true
+GDPadCurr32,GDBase.o,gd.a,true
+GDOverflowed,GDBase.o,gd.a,true
 GDSetVtxDescv,GDGeometry.o,gd.a,false
 GDSetArray,GDGeometry.o,gd.a,false
 GDSetArrayRaw,GDGeometry.o,gd.a,false

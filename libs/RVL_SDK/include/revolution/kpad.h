@@ -8,10 +8,10 @@
 extern "C" {
 #endif
 
-struct Vec2 {
+typedef struct Vec2 {
     f32 x;
     f32 y;
-};
+} Vec2; 
 
 typedef union KPADEXStatus {
     struct {
