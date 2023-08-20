@@ -27,7 +27,7 @@
 | [rso](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/rso.md) | 0.0% |
 | [sc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/sc.md) | 71.65620473201352% |
 | [si](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/si.md) | 100.0% |
-| [thp](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/thp.md) | 0.0% |
+| [thp](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/thp.md) | 100.0% |
 | [tpl](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/tpl.md) | 100.0% |
 | [usb](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/usb.md) | 0.0% |
 | [vf](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/vf.md) | 0.0% |
