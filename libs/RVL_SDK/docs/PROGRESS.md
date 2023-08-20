@@ -2,7 +2,7 @@
 | ------------- | ------------- |
 | [ai](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/ai.md) | 100.0% |
 | [aralt](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/aralt.md) | 0.0% |
-| [arc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/arc.md) | 0.0% |
+| [arc](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/arc.md) | 100.0% |
 | [ax](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/ax.md) | 0.0% |
 | [axfx](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/axfx.md) | 0.0% |
 | [base](https://github.com/shibbo/Petari/tree/master/libs/RVL_SDK/docs/lib/base.md) | 100.0% |
