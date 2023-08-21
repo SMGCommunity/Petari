@@ -652,7 +652,7 @@ void JASTrack::TList::append(JASTrack *track) {
 
 void JASTrack::TList::seqMain() {
     JGADGET_LINK_LIST(JASTrack, _248)::iterator iter, next;
-    for(iter = JGADGET_LINK_LIST(JASTrack, _248)::iterator(_0.begin()); iter != JGADGET_LINK_LIST(JASTrack, _248)::iterator(_0.end()); iter = next) {
+    for(iter = JGADGET_LINK_LIST(JASTrack, _248)::iterator(_0.begin()); iter != _0.end(); iter = next) {
         next = iter;
         ++next;
         if(iter->seqMain() < 0) {

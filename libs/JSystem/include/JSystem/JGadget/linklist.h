@@ -59,6 +59,7 @@ namespace JGadget {
             iterator() NO_INLINE;
             inline iterator(iteratorData data) : curr(data.curr) {}
             iterator(TLinkListNode *) NO_INLINE;
+            inline iterator(TLinkListNode *node, bool pretend) : curr(node) {}
             iterator(const iterator &) NO_INLINE;
             iterator& operator++() NO_INLINE;
             TLinkListNode* operator->() const NO_INLINE;
@@ -88,8 +89,8 @@ namespace JGadget {
             iterator() NO_INLINE : TNodeLinkList::iterator() {}
             inline iterator(TLinkListNode *iter) : curr(iter) {}
             iterator(TNodeLinkList::iterator iter) NO_INLINE : TNodeLinkList::iterator(iter) {}
-            iterator(const iterator &rOther) {
-                curr = rOther.curr;
+            iterator(const iterator &rOther) : TNodeLinkList::iterator(rOther.curr, false) {
+                //curr = rOther.curr;
             }
             const iterator& operator=(const iterator &rOther) NO_INLINE {
                 TIterator<std::bidirectional_iterator_tag, T>::operator=(rOther);

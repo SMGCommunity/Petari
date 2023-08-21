@@ -58,7 +58,7 @@ public:
 
 class JASBankList {
 public:
-    JASBankList();
+    JASBankList() NO_INLINE;
 
     virtual JASBank* getBank(u32) const = 0;
 };
