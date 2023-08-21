@@ -3,7 +3,10 @@
 #include "JSystem/JAudio2/JASSoundParams.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASLfo.h"
+
 #include <cstring>
+#include <revolution/os.h>
 
 static const JASOscillator::Point data[4] = {
     {0, 0, 0x7fff},
@@ -644,16 +647,16 @@ void JASTrack::TList::append(JASTrack *track) {
         if(!JASDriver::registerSubFrameCallback(cbSeqMain, this)) return;
         _C = true;
     }
-    Push_back(track);
+    _0.Push_back(track);
 }
 
 void JASTrack::TList::seqMain() {
-    iterator iter, next;
-    for(iter = begin(); iter != end(); iter = next) {
+    JGADGET_LINK_LIST(JASTrack, _248)::iterator iter, next;
+    for(iter = JGADGET_LINK_LIST(JASTrack, _248)::iterator(_0.begin()); iter != JGADGET_LINK_LIST(JASTrack, _248)::iterator(_0.end()); iter = next) {
         next = iter;
         ++next;
         if(iter->seqMain() < 0) {
-            Remove(*iter);
+            _0.Remove(*iter);
             if(iter->_244._3) delete *iter;
         }
     }
@@ -717,11 +720,95 @@ template<typename T>
 JASMemPool_MultiThreaded<T> JASPoolAllocObject_MultiThreaded<T>::memPool_ = JASMemPool_MultiThreaded<T>();
 
 namespace JGadget {
+    
     TLinkListNode::TLinkListNode() : mPrev(nullptr), mNext(nullptr) {}
+    
+    TNodeLinkList::iterator::iteratorData TNodeLinkList::end() {
+        return iterator::iteratorData(iterator(&mEnd).curr);
+    }
+
+    TNodeLinkList::iterator::iterator(TLinkListNode *node) {
+        curr = node;
+    }
+
+    TNodeLinkList::iterator::iterator(const TNodeLinkList::iterator &rOther) : curr(rOther.curr) {}
+
+    TNodeLinkList::iterator::iterator() {}
+
+    TNodeLinkList::iterator::iteratorData TNodeLinkList::begin() {
+        return iterator::iteratorData(iterator(mEnd.getNext()).curr);
+    }
+
+    TLinkListNode* TLinkListNode::getNext() const {
+        return mNext;
+    }
+
+    TNodeLinkList::iterator& TNodeLinkList::iterator::operator++() {
+        curr = curr->getNext();
+        return *this;
+    }
+
+    TLinkListNode* TNodeLinkList::iterator::operator->() const {
+        return curr;
+    }
+
+    bool operator!= (
+        JGADGET_LINK_LIST(JASTrack, _248)::iterator a,
+        JGADGET_LINK_LIST(JASTrack, _248)::iterator b
+    ) {
+        return !(a == b);
+    }
+
+    bool operator== (
+        JGADGET_LINK_LIST(JASTrack, _248)::iterator a,
+        JGADGET_LINK_LIST(JASTrack, _248)::iterator b
+    ) {
+        return (TNodeLinkList::iterator)a == (TNodeLinkList::iterator)b;
+    }
+
+    bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) {
+        return a.curr == b.curr;
+    }
+
+    TNodeLinkList::TNodeLinkList() : mEnd() {
+        Initialize_();
+    }
 }
-namespace JGadget {
-template class TLinkList<JASTrack, -584>;
+
+JASTrack::TList::~TList() {}
+
+JASTrack::TList::TList() : _0(), _C(false) {}
+
+JASCriticalSection::JASCriticalSection() {
+    success = OSDisableInterrupts();
 }
+
+JASDefaultBankTable::JASDefaultBankTable() : JASBankTable(), JASGlobalInstance(true) {}
+
+JASDefaultBankTable::~JASDefaultBankTable() {}
+
+void JASChannel::setUpdateTimer(u32 timer) {
+    _14 = timer;
+}
+
+void JASChannel::setKey(s32 key) {
+    _C8 = key;
+}
+
+void JASChannel::setVelocity(u32 velocity) {
+    _CA = velocity;
+}
+
+void JASChannel::setVibrate(f32 a, f32 b) {
+    _5C.setDepth(a);
+    _5C.setPitch(b);
+}
+
+void JASChannel::setTremolo(f32 a, f32 b) {
+    _74.setDepth(a);
+    _74.setPitch(b);
+}
+
 void JASChannelParams::init() {
     _0[0] = 1f;
     _0[1] = 1f;
@@ -740,3 +827,16 @@ JASChannelParams::JASChannelParams() {
     _0[5] = 0f;
 }
 
+void JASChannel::setPauseFlag(bool flag) {
+    _4 = flag;
+}
+
+void JASLfo::setDepth(f32 depth) {
+    _C = depth;
+}
+
+void JASLfo::setPitch(f32 pitch) {
+    _10 = pitch;
+}
+
+JASBankList::JASBankList() {}

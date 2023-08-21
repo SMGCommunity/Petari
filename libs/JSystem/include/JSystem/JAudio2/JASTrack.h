@@ -10,9 +10,72 @@
 #include "JSystem/JAudio2/JASBank.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
+#include <mem.h>
+
+template<typename T>
+class JASGlobalInstance {
+public:
+    static T *sInstance;
+    
+    JASGlobalInstance(bool flag) NO_INLINE {
+        if(!flag) return;
+        /*T *instance = (T *)this;
+        if(this) instance = (T *)((u8 *)this - sizeof(T));*/
+        sInstance = (T *)this;
+    }
+
+    ~JASGlobalInstance() NO_INLINE {
+        if(sInstance == (T *)this) sInstance = nullptr;
+    };
+};
 
 class JASSoundParams;
 class JASChannel;
+
+template<typename T>
+class JASPtrTable {
+public:
+    JASPtrTable(T **ptrTable, u32 len) NO_INLINE {
+        mLen = len;
+        mPtrTable = ptrTable;
+        memset(mPtrTable, 0, len * sizeof(T *));
+    }
+    T* get(u32 idx) const NO_INLINE {
+        if(idx >= mLen) return nullptr;
+        return mPtrTable[idx];
+    }
+
+    T **mPtrTable; // _0
+    u32 mLen; // _4
+};
+
+template<typename T, u32 LEN>
+class JASPtrArray : public JASPtrTable<T> {
+public:
+    JASPtrArray() NO_INLINE : JASPtrTable(mPtrArray, LEN) {}
+    T *mPtrArray[LEN];
+};
+
+class JASBankList {
+public:
+    JASBankList();
+
+    virtual JASBank* getBank(u32) const = 0;
+};
+
+template<u32 LEN>
+class JASBankTable : public JASBankList {
+public:
+    JASBankTable() NO_INLINE : JASBankList(), mBanks() {
+        
+    }
+
+    virtual JASBank* getBank(u32 idx) const NO_INLINE {
+        return mBanks.get(idx);
+    }
+
+    JASPtrArray<JASBank, LEN> mBanks;
+};
 
 class JASChannelParams {
 public:
@@ -23,15 +86,16 @@ public:
 
 class JASCriticalSection {
 public:
-	JASCriticalSection();
-	~JASCriticalSection();
-	u8 _0[8];
+	JASCriticalSection() NO_INLINE;
+    inline JASCriticalSection(const JASCriticalSection &rOther) : success(rOther.success) {}
+	~JASCriticalSection() NO_INLINE;
+	u32 success;
 };
 
-struct JASDefaultBankTable {
+class JASDefaultBankTable : public JASBankTable<0x100>, public JASGlobalInstance<JASDefaultBankTable> {
+public:
     JASDefaultBankTable();
     ~JASDefaultBankTable();
-    u8 _40C[0x40C];
 };
 
 class JASTrack : public JASSeqCtrl, public JASPoolAllocObject_MultiThreaded<JASTrack> {
@@ -197,17 +261,19 @@ public:
 	static TList sTrackList;
 };
 
-struct JASTrack::TList : public JGADGET_LINK_LIST(JASTrack, _248) {
+struct JASTrack::TList {
     TList();
     ~TList();
     
     static s32 cbSeqMain(void *);
     void append(JASTrack *);
     void seqMain();
-    u8 _0[0xC];
+    JGADGET_LINK_LIST(JASTrack, _248) _0;
     bool _C;
 };
 
 namespace JGadget {
-    bool operator!=(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator);
+    bool operator!=(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator) NO_INLINE;
+    bool operator==(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator) NO_INLINE;
+    bool operator==(TNodeLinkList::iterator, TNodeLinkList::iterator) NO_INLINE;
 }
