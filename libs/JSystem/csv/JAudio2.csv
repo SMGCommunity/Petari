@@ -73,7 +73,7 @@ openChild__8JASTrackFUl,JASTrack.o,JAudio2.a,true
 connectBus__8JASTrackFii,JASTrack.o,JAudio2.a,true
 setLatestKey__8JASTrackFUc,JASTrack.o,JAudio2.a,true
 noteOn__8JASTrackFUlUlUl,JASTrack.o,JAudio2.a,true
-gateOn__8JASTrackFUlUlfUl,JASTrack.o,JAudio2.a,false
+gateOn__8JASTrackFUlUlfUl,JASTrack.o,JAudio2.a,true
 noteOff__8JASTrackFUlUs,JASTrack.o,JAudio2.a,true
 checkNoteStop__8JASTrackCFUl,JASTrack.o,JAudio2.a,true
 overwriteOsc__8JASTrackFP10JASChannel,JASTrack.o,JAudio2.a,true
@@ -157,7 +157,7 @@ alloc__35JASMemPool_MultiThreaded<8JASTrack>FUl,JASTrack.o,JAudio2.a,true
 __ct__Q317JASThreadingModel71InterruptsDisable<50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>>4LockFRC50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>,JASTrack.o,JAudio2.a,true
 __ct__Q317JASThreadingModel56InterruptsDisable<35JASMemPool_MultiThreaded<8JASTrack>>4LockFRC35JASMemPool_MultiThreaded<8JASTrack>,JASTrack.o,JAudio2.a,true
 __ct__18JASCriticalSectionFv,JASTrack.o,JAudio2.a,true
-get__21JASPtrTable<7JASBank>CFUl,JASTrack.o,JAudio2.a,false
+get__21JASPtrTable<7JASBank>CFUl,JASTrack.o,JAudio2.a,true
 __ct__25JASPtrArray<7JASBank&#44;256>Fv,JASTrack.o,JAudio2.a,true
 __ct__21JASPtrTable<7JASBank>FPP7JASBankUl,JASTrack.o,JAudio2.a,true
 __ct__40JASGlobalInstance<19JASDefaultBankTable>Fb,JASTrack.o,JAudio2.a,true

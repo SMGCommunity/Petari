@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | hashcode.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| linklist.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| linklist.o | 5.3097345132743365% | 1 / 6 | 16.666666666666664% | :eight_pointed_black_star: 
 
 
 # hashcode.o
@@ -26,6 +26,6 @@
 | Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode | :x: |
 | Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode | :x: |
 | Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode | :x: |
-| Initialize___Q27JGadget13TNodeLinkListFv | :x: |
+| Initialize___Q27JGadget13TNodeLinkListFv | :white_check_mark: |
 
 
