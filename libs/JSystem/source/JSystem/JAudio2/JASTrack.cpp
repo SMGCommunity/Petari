@@ -763,7 +763,7 @@ namespace JGadget {
         JGADGET_LINK_LIST(JASTrack, _248)::iterator a,
         JGADGET_LINK_LIST(JASTrack, _248)::iterator b
     ) {
-        return (TNodeLinkList::iterator)a == (TNodeLinkList::iterator)b;
+        return TNodeLinkList::iterator(a.curr, false) == TNodeLinkList::iterator(b.curr, false);
     }
 
     bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) {
