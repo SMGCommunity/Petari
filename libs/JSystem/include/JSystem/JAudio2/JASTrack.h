@@ -19,8 +19,6 @@ public:
     
     JASGlobalInstance(bool flag) NO_INLINE {
         if(!flag) return;
-        /*T *instance = (T *)this;
-        if(this) instance = (T *)((u8 *)this - sizeof(T));*/
         sInstance = (T *)this;
     }
 

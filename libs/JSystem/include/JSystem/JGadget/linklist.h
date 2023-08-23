@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <revolution/types.h>
 
+#include "Inline.h"
+
 #define JGADGET_LINK_LIST(type, node) JGadget::TLinkList<type, -offsetof(type, node)>
 
 namespace std {
@@ -44,6 +46,7 @@ namespace JGadget {
     };
     class TLinkListNode {
     public:
+        INLINE_FUNC_DECL_NO_ARG(TLinkListNode) : mPrev(nullptr), mNext(nullptr) {}
         TLinkListNode() NO_INLINE;
         TLinkListNode* getNext() const NO_INLINE;
         TLinkListNode *mNext;
@@ -55,6 +58,7 @@ namespace JGadget {
             struct iteratorData {
                 TLinkListNode *curr;
                 inline iteratorData(TLinkListNode *curr) : curr(curr) {}
+                inline bool operator!=(const iteratorData &rOther) {return curr == rOther.curr;}
             };
             iterator() NO_INLINE;
             inline iterator(iteratorData data) : curr(data.curr) {}
@@ -63,6 +67,7 @@ namespace JGadget {
             iterator(const iterator &) NO_INLINE;
             iterator& operator++() NO_INLINE;
             TLinkListNode* operator->() const NO_INLINE;
+            inline iteratorData getData() const {return iteratorData(curr);}
             TLinkListNode *curr;
         };
         TNodeLinkList() NO_INLINE;
@@ -71,7 +76,14 @@ namespace JGadget {
         iterator::iteratorData begin() NO_INLINE;
         iterator::iteratorData end() NO_INLINE;
         iterator::iteratorData Insert(iterator, TLinkListNode *);
+        TLinkListNode* Erase(TLinkListNode *);
         void Remove(TLinkListNode *);
+
+        INLINE_FUNC_DECL_NO_ARG(TNodeLinkList) : CALL_INLINE_FUNC_NO_ARG(mEnd) {
+            Initialize_();
+        }
+
+        void splice(iterator, TNodeLinkList &, iterator);
         u32 _0;
         TLinkListNode mEnd;
     };
@@ -111,7 +123,7 @@ namespace JGadget {
             }
         };
         
-        TLinkList() NO_INLINE : TNodeLinkList() {}
+        TLinkList() : TNodeLinkList() {}
 
         ~TLinkList() NO_INLINE {};
         
