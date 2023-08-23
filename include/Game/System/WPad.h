@@ -18,6 +18,11 @@ public:
     u32 getValidStatusCount() const;
     KPADStatus* getKPadStatus(u32) const;
 
+    void update();
+    void resetPad();
+
+    static void getInfoCallback(s32, s32);
+
     s32 mChannel;                           // _0
     u32 _4;
     WPadButton* mButtons;                   // _8

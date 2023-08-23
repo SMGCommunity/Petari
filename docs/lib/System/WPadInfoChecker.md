@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 6 Completed -- (0.0%)
+# 6 / 6 Completed -- (100.0%)
 # WPadInfoChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15WPadInfoCheckerFP4WPad` | :x: |
-| `getBattery__15WPadInfoCheckerCFv` | :x: |
-| `successGetInfo__15WPadInfoCheckerFv` | :x: |
-| `startCheck__15WPadInfoCheckerFv` | :x: |
-| `reset__15WPadInfoCheckerFv` | :x: |
-| `update__15WPadInfoCheckerFv` | :x: |
+| `__ct__15WPadInfoCheckerFP4WPad` | :white_check_mark: |
+| `getBattery__15WPadInfoCheckerCFv` | :white_check_mark: |
+| `successGetInfo__15WPadInfoCheckerFv` | :white_check_mark: |
+| `startCheck__15WPadInfoCheckerFv` | :white_check_mark: |
+| `reset__15WPadInfoCheckerFv` | :white_check_mark: |
+| `update__15WPadInfoCheckerFv` | :white_check_mark: |

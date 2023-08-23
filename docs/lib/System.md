@@ -59,9 +59,9 @@
 | [WPad.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPad.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [WPadAcceleration.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadAcceleration.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [WPadButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadButton.md) | 100.0% | 29 / 29 | 100.0% | :white_check_mark: 
-| [WPadHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHolder.md) | 8.450704225352112% | 3 / 19 | 15.789473684210526% | :eight_pointed_black_star: 
+| [WPadHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHolder.md) | 35.774647887323944% | 8 / 19 | 42.10526315789473% | :eight_pointed_black_star: 
 | [WPadHVSwing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHVSwing.md) | 0.0% | 0 / 4 | 0.0% | :x: 
-| [WPadInfoChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadInfoChecker.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [WPadInfoChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadInfoChecker.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [WPadLeaveWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadLeaveWatcher.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [WPadPointer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadPointer.md) | 44.48051948051948% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | [WPadRumble.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadRumble.md) | 0.0% | 0 / 14 | 0.0% | :x: 

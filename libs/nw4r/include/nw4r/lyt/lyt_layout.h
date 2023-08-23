@@ -18,6 +18,12 @@ namespace nw4r {
             }
 
             template<typename T>
+            static T* NewObj();
+
+            template<typename T, typename Param>
+            static T* NewObj(Param param);
+
+            template<typename T>
             static void DeleteObj(T *);
 
             template<typename T>
@@ -29,6 +35,16 @@ namespace nw4r {
         };
 
         MEMAllocator* Layout::mspAllocator;
+
+        template<typename T>
+        T*
+        Layout::NewObj() {
+            if (void* pMem = Layout::AllocMemory(sizeof(T))) {
+                return new (pMem) T();
+            }
+
+            return 0;
+        }
 
         template<typename T>
         T* Layout::NewArray(u32 num) {

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 3 / 19 Completed -- (15.789473684210526%)
+# 8 / 19 Completed -- (42.10526315789473%)
 # WPadHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -14,12 +14,12 @@
 | `getValidStatusCount__16WPadReadDataInfoCFv` | :white_check_mark: |
 | `__ct__10WPadHolderFv` | :x: |
 | `updateReadDataOnly__10WPadHolderFv` | :x: |
-| `updateProjectPadData__10WPadHolderFv` | :x: |
-| `updateInGame__10WPadHolderFv` | :x: |
-| `update__10WPadHolderFv` | :x: |
+| `updateProjectPadData__10WPadHolderFv` | :white_check_mark: |
+| `updateInGame__10WPadHolderFv` | :white_check_mark: |
+| `update__10WPadHolderFv` | :white_check_mark: |
 | `initSensorBarPosition__10WPadHolderFv` | :x: |
-| `resetPad__10WPadHolderFv` | :x: |
-| `getWPad__10WPadHolderFl` | :x: |
+| `resetPad__10WPadHolderFv` | :white_check_mark: |
+| `getWPad__10WPadHolderFl` | :white_check_mark: |
 | `setConnectCallback__10WPadHolderFv` | :x: |
 | `getWPadHolder__24@unnamed@WPadHolder_cpp@Fv` | :x: |
 | `getWPad__2MRFl` | :x: |
