@@ -1,5 +1,7 @@
 #include "JSystem/JGadget/hashcode.h"
 
+#pragma c9x_alias_by_type on
+
 namespace JGadget {
     s32 doCrazyThings(s32 &term, s32 seed) {return term = seed;}
     inline u32 helper(const char *data, s32 &term) {s32 acc = 0;
@@ -37,16 +39,16 @@ namespace JGadget {
         //char tmpValue2;
         s32 term = 0;
         s32 &terminator = term;
-        char tmp;
-        for(;(tmp = *data) != term;) {
-            doCrazyThings(terminator, terminator);
+        for(;*data != term;) {
             //terminator = *data - *data;
             //s32 tmp2 = tmp1;
             //tmp1 = acc + 1;
             //tmp1 = tmp2;
           //  doCrazyThings(tmp1, tmp1);
-            //tmp = ;
-            acc = acc * 31 + *data;
+            s32 tmp = acc * 31;
+            acc = *data;
+            doCrazyThings(terminator, terminator);
+            acc += tmp;
             data++;
             //acc += tmp;
         }
