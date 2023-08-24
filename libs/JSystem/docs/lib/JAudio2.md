@@ -21,7 +21,7 @@
 | JASTrackPort.o | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | JASRegisterParam.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | JASSeqCtrl.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
-| JASSeqParser.o | 98.55382967327263% | 68 / 69 | 98.55072463768117% | :eight_pointed_black_star: 
+| JASSeqParser.o | 100.0% | 69 / 69 | 100.0% | :white_check_mark: 
 | JASSeqReader.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | JASAramStream.o | 0.0% | 0 / 24 | 0.0% | :x: 
 | JASBank.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -371,7 +371,7 @@
 | cmdWritePort__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
 | cmdParentWritePort__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
 | cmdChildWritePort__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
-| cmdParentReadPort__12JASSeqParserFP8JASTrackPUl | :x: |
+| cmdParentReadPort__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
 | cmdChildReadPort__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
 | cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |
 | cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl | :white_check_mark: |

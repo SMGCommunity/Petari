@@ -15,19 +15,19 @@ namespace JGadget {
         //char tmpValue2;
         s32 term = 0;
         s32 &terminator = term;
-        //char &uni = unimportant;
-        char unimportant;
-        while(gg(unimportant, data, term)) {
+        char tt;
+        while(*data != term) {
             //terminator = *data - *data;
             //s32 tmp2 = tmp1;
             //tmp1 = acc + 1;
             //tmp1 = tmp2;
           //  doCrazyThings(tmp1, tmp1);
             //unimportant = *data;
-            s32 tmp = acc * 31;
-            acc = unimportant;
             doCrazyThings(terminator, terminator);
+            tt = *data;
             data++;
+            s32 tmp = acc * 31;
+            acc = tt;
             acc += tmp;
             //acc += tmp;
         }
@@ -48,7 +48,29 @@ namespace JGadget {
         //s32 tmp1 = 0;
         // = 0;
         //char tmpValue2;
-        helper(acc, data);
+        //doCrazyThings(acc, acc);
+        //s32 tmp1 = 0;
+        // = 0;
+        //char tmpValue2;
+        s32 term = 0;
+        s32 &terminator = term;
+        char tt;
+        while(*data != term) {
+            //terminator = *data - *data;
+            //s32 tmp2 = tmp1;
+            //tmp1 = acc + 1;
+            //tmp1 = tmp2;
+          //  doCrazyThings(tmp1, tmp1);
+            //unimportant = *data;
+            //terminator = 0;
+            //tt = *data;
+            doCrazyThings(terminator, terminator);
+            data++;
+            s32 tmp = acc * 31;
+            acc = tt;
+            acc += tmp;
+            //acc += tmp;
+        }
         return acc;
 
         /*s32 r4 = 0, acc = 0;

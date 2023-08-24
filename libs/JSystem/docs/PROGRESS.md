@@ -4,8 +4,8 @@
 | [J3DGraphAnimator](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/J3DGraphAnimator.md) | 0.0% |
 | [J3DGraphBase](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/J3DGraphBase.md) | 0.1595838997576689% |
 | [J3DGraphLoader](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/J3DGraphLoader.md) | 0.0% |
-| [JAudio2](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JAudio2.md) | 19.627536290814458% |
-| [JGadget](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JGadget.md) | 4.761904761904762% |
+| [JAudio2](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JAudio2.md) | 19.737323628674826% |
+| [JGadget](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JGadget.md) | 89.68253968253968% |
 | [JKernel](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JKernel.md) | 16.896441167040717% |
 | [JMath](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JMath.md) | 0.48192771084337355% |
 | [JParticle](https://github.com/shibbo/Petari/blob/master/libs/JSystem/docs/lib/JParticle.md) | 0.0% |
