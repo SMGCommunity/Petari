@@ -90,7 +90,8 @@ public:
 	u32 success;
 };
 
-class JASDefaultBankTable : public JASBankTable<0x100>, public JASGlobalInstance<JASDefaultBankTable> {
+class JASDefaultBankTable
+    : public JASBankTable<0x100>, public JASGlobalInstance<JASDefaultBankTable> {
 public:
     JASDefaultBankTable();
     ~JASDefaultBankTable();
@@ -103,19 +104,6 @@ public:
 	static const JASOscillator::Data sPitchEnvOsc;
 
 	static JASDefaultBankTable sDefaultBankTable;
-
-	union LLFlags {
-		struct {
-			bool _0: 1;
-			bool _1: 1;
-			bool _2: 1;
-			bool _3: 1;
-			bool _4: 1;
-			bool _5: 1;
-			bool _6: 1;
-		};
-		u8 byteRepr;
-	};
 
 	struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
 		TChannelMgr(JASTrack *);
@@ -226,8 +214,8 @@ public:
 	TChannelMgr mInitialMgr; // _180
 	u32 mNumChannels; // _1D0
 	JASDefaultBankTable* mBankTable; // _1D4
-	f32 _1D8;
-	f32 _1DC;
+	f32 mPlaytime; // _1D8
+	f32 mSampleInterval; // _1DC
 	f32 _1E0;
 	f32 _1E4;
 	f32 _1E8;
@@ -253,10 +241,24 @@ public:
 	u8 _230;
 	u8 _231;
 	u8 _232;
-	u8 _233;
+
+    // Percentage latency for notes scheduled with gateOn (can be < 100% to schedule notes sooner)
+	u8 mGateLatency; // _233
 	u16 mBuses[6]; // _234
 	volatile s32 _240;
-	volatile LLFlags _244; // Volatility seems to depend upon which union field we use
+
+	union {
+		struct {
+			bool mPauseFlag: 1;
+			bool mIsMute: 1;
+			bool mIsDirectlyPlayed: 1;
+			bool mIsOwnedByParent: 1;
+			bool mReadyToPlay: 1;
+			bool mInvalidateSeq: 1;
+			bool mIsStopped: 1;
+		};
+		volatile u8 byteRepr;
+	};
 	JGadget::TLinkListNode mNode; // mNode
 
 	struct TList;
@@ -265,18 +267,29 @@ public:
 };
 
 struct JASTrack::TList {
+    typedef JGADGET_LINK_LIST(JASTrack, mNode) InternalList;
+    
     TList();
     ~TList();
     
     static s32 cbSeqMain(void *);
     void append(JASTrack *);
     void seqMain();
-    JGADGET_LINK_LIST(JASTrack, mNode) _0;
-    bool _C;
+    InternalList mList; // _0
+    bool mIsInit; // _C
 };
 
 namespace JGadget {
-    bool operator!=(JGADGET_LINK_LIST(JASTrack, mNode)::iterator, JGADGET_LINK_LIST(JASTrack, mNode)::iterator) NO_INLINE;
-    bool operator==(JGADGET_LINK_LIST(JASTrack, mNode)::iterator, JGADGET_LINK_LIST(JASTrack, mNode)::iterator) NO_INLINE;
+
+    bool operator!= (
+        JASTrack::TList::InternalList::iterator,
+        JASTrack::TList::InternalList::iterator
+    ) NO_INLINE;
+    
+    bool operator== (
+        JASTrack::TList::InternalList::iterator,
+        JASTrack::TList::InternalList::iterator
+    ) NO_INLINE;
+    
     bool operator==(TNodeLinkList::iterator, TNodeLinkList::iterator) NO_INLINE;
 }

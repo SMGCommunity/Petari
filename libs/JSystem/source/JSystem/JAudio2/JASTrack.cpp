@@ -53,15 +53,19 @@ void JASTrack::init() {
     mPorts.init();
     initTimed();
     mRegs.init();
+    
     memcpy(_E4, &sEnvOsc, 0x18);
     memcpy(_E4 + 1, &sPitchEnvOsc, 0x18);
     for(int i = 0; i < 4; i++) {
         mAdsr[i] = sDefaultAdsr[i];
     }
+    
     mParent = nullptr;
+
     for(u32 i = 0; i < 0x10; i++) {
         mChildren[i] = nullptr;
     }
+
     mMgrs[0]->init();
     mNumChannels = 1;
     for(int i = 1; i < 4; i++) {
@@ -70,15 +74,20 @@ void JASTrack::init() {
             mMgrs[i] = nullptr;
         }
     }
+
     mBankTable = &sDefaultBankTable;
-    _1D8 = 1f;
-    _1DC = 1f;
+
+    mPlaytime = 1f;
+    mSampleInterval = 1f;
+
     _1E0 = 0f;
     _1E4 = 1f;
     _1E8 = 0f;
     _1EC = 1f;
+
     _1F0 = 0;
     _1F2 = 0;
+
     _218 = 1f;
     _224 = 0;
     _220 = 0;
@@ -86,20 +95,24 @@ void JASTrack::init() {
     mTimebase = 48;
     mTempoRate = 1.0f;
     updateTempo();
+
     mTransposeAmt = 0;
     mPitch = 0x3C;
+
     mBank = 0;
     mPrg = 0xF0;
     _230 = 0xC;
     _231 = 0x40;
     _232 = 0;
-    _233 = 100;
+    mGateLatency = 100;
+    
     mBuses[0] = 0x150;
     mBuses[1] = 0x210;
     mBuses[2] = 0x352;
     mBuses[3] = 0x412;
     mBuses[4] = 0;
     mBuses[5] = 0;
+
     for(u32 i = 0; i < 8; i++) {
         mFIRFilter[i] = 0;
     }
@@ -109,18 +122,16 @@ void JASTrack::init() {
     }
     mIIRFilter[0] = 0x7fff;
     mFilterMode = 0;
-    LLFlags tmp;
-    tmp.byteRepr = _244.byteRepr;
-    tmp._0 = false;
-    tmp._1 = false;
-    tmp._2 = true;
-    tmp._5 = true;
-    tmp._3 = false;
-    tmp._4 = false;
-    tmp._6 = false;
-    _244.byteRepr = tmp.byteRepr;
-    _240 = 0;
 
+    mPauseFlag = false;
+    mIsMute = false;
+    mIsDirectlyPlayed = true;
+    mInvalidateSeq = true;
+    mIsOwnedByParent = false;
+    mReadyToPlay = false;
+    mIsStopped = false;
+    byteRepr = byteRepr;
+    _240 = 0;
 }
 
 void JASTrack::initTimed() {
@@ -130,6 +141,7 @@ void JASTrack::initTimed() {
     _9C[2]._0 = 0f;
     _9C[4]._0 = 0f;
     _9C[5]._0 = 0f;
+    
     for(u32 i = 0; i < 6; i++) {
         _9C[i]._8 = 0;
         _9C[i]._4 = _9C[i]._0;
@@ -137,12 +149,16 @@ void JASTrack::initTimed() {
 }
 
 void JASTrack::inherit(const JASTrack &rParent) {
-    _244._2 = rParent._244._2;
+    mIsDirectlyPlayed = rParent.mIsDirectlyPlayed;
+    
     mBank = rParent.mBank;
     mPrg = rParent.mPrg;
+
     _231 = rParent._231;
     _232 = rParent._232;
+
     _220 = rParent._220;
+
     for(u32 i = 0; i < 8; i++) {
         mFIRFilter[i] = rParent.mFIRFilter[i];
     }
@@ -150,22 +166,23 @@ void JASTrack::inherit(const JASTrack &rParent) {
         mIIRFilter[i] = rParent.mIIRFilter[i];
     }
     mFilterMode = rParent.mFilterMode;
+
     for(u32 i = 0; i < 6; i++) {
         mBuses[i] = rParent.mBuses[i];
     }
 }
 
-void JASTrack::assignExtBuffer(u32 channel, JASSoundParams *buffer) {
-    mMgrs[channel]->_48 = buffer;
+void JASTrack::assignExtBuffer(u32 mgr, JASSoundParams *buffer) {
+    mMgrs[mgr]->_48 = buffer;
 }
 
-void JASTrack::setSeqData(void *data, u32 a) {
-    JASSeqCtrl::start(data, a);
+void JASTrack::setSeqData(void *data, u32 offset) {
+    JASSeqCtrl::start(data, offset);
 }
 
 void JASTrack::startSeq() {
     {
-        JASCriticalSection section;
+        JASCriticalSection lock;
         sTrackList.append(this);
         _240 = 1;
     }
@@ -174,8 +191,8 @@ void JASTrack::startSeq() {
 
 void JASTrack::stopSeq() {
     {
-        JASCriticalSection section;
-        _244._6 = true;
+        JASCriticalSection lock;
+        mIsStopped = true;
     }
 }
 
@@ -185,11 +202,11 @@ void JASTrack::start() {
 
 void JASTrack::close() {
     for(int i = 0; i < 0x10; i++) {
-    JASTrack *currChild;
+        JASTrack *currChild;
         currChild = mChildren[i];
         if(currChild) {
             currChild->close();
-            if(currChild->_244._3) {
+            if(currChild->mIsOwnedByParent) {
                 delete currChild;
                 mChildren[i] = nullptr;
             }
@@ -214,7 +231,7 @@ void JASTrack::closeChild(u32 idx) {
     if(child = mChildren[idx]) {
         getRootTrack()->updateSeq(false, 1f);
         child->close();
-        if(child->_244._3) {
+        if(child->mIsOwnedByParent) {
             delete child;
             mChildren[idx] = nullptr;
         }
@@ -231,10 +248,9 @@ JASTrack* JASTrack::openChild(u32 idx) {
                 getRootTrack()->updateSeq(false, 1f);
                 child->close();
             case 2:
-                //const bool tmp = child->_244._3;
-                bool tmp = (bool)child->_244._3;
+                bool tmp = child->mIsOwnedByParent;
                 child->init();
-                child->_244._3 = tmp;
+                child->mIsOwnedByParent = tmp;
                 mChildren[idx] = nullptr;
                 connectChild(idx, child);
                 break;
@@ -242,7 +258,7 @@ JASTrack* JASTrack::openChild(u32 idx) {
     }
     else {
         if(!(child = new JASTrack())) return nullptr;
-        child->_244._3 = true;
+        child->mIsOwnedByParent = true;
         connectChild(idx, child);
     }
     child->setChannelMgrCount(mNumChannels);
@@ -250,8 +266,8 @@ JASTrack* JASTrack::openChild(u32 idx) {
     return child;
 }
 
-void JASTrack::connectBus(int a, int b) {
-    mBuses[a] = b;
+void JASTrack::connectBus(int idx, int bus) {
+    mBuses[idx] = bus;
 }
 
 void JASTrack::setLatestKey(u8 key) {
@@ -259,75 +275,81 @@ void JASTrack::setLatestKey(u8 key) {
     mPitch += getTransposeTotal();
 }
 
-bool JASTrack::noteOn(u32 a, u32 b, u32 c) {
+bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
     if(isMute()) return false;
     bool ret = true;
-    b += getTransposeTotal();
+    pitch += getTransposeTotal();
     for(u32 i = 0; i < mNumChannels; i++) {
         if(mMgrs[i]) {
-            mMgrs[i]->noteOff(a, 0);
-            JASChannel *res;
-            if(!(res = channelStart(mMgrs[i], b, c, 0))) ret = false;
-            mMgrs[i]->mChannels[a] = res;
+            mMgrs[i]->noteOff(channelNum, 0);
+            JASChannel *channel;
+            if(!(channel = channelStart(mMgrs[i], pitch, c, 0))) ret = false;
+            mMgrs[i]->mChannels[channelNum] = channel;
         }
     }
     return ret;
 }
 
-bool JASTrack::gateOn(u32 a, u32 b, f32 f1, u32 c) {
-    a += getTransposeTotal();
-    if(_233 != 100) f1 *= _233 / 100f;
-    s32 r1a;
-    u32 r19;
-    u32 dspTime = seqTimeToDspTime(f1);
-    r19 = c & 1;
-    u32 goofy = ((u32)((c & 6) != 0)) ? 0 : dspTime;
-    u32 tmp;
-    if(r19) tmp = mPitch;
-    else tmp = a;
-    r1a = a - tmp;
+bool JASTrack::gateOn(u32 transposedPitch, u32 velocity, f32 seqTime, u32 flags) {
+    
+    transposedPitch += getTransposeTotal();
+    if(mGateLatency != 100) seqTime *= mGateLatency / 100f;
+    s32 pitchDelta;
+    u32 isSweep;
+    u32 dspTime = seqTimeToDspTime(seqTime);
+    isSweep = flags & 1;
+
+    // We only can schedule future notes if we do not want to immediately play the next note?
+    u32 updateTimer = (flags & 6) != 0 ? 0 : dspTime;
+
+    u32 pitch;
+    if(isSweep) pitch = mPitch;
+    else pitch = transposedPitch;
+    pitchDelta = transposedPitch - pitch;
     for(u32 i = 0; i < mNumChannels; i++) {
-        TChannelMgr *channel = mMgrs[i];
-        if(channel) {
-            if(_244._4) {
-                channel->noteOff(0, 0);
+        TChannelMgr *mgr = mMgrs[i];
+        if(mgr) {
+            if(mReadyToPlay) {
+                mgr->noteOff(0, 0);
                 if(!isMute()) {
-                    channel->mChannels[0] = channelStart(channel, tmp, b, goofy);
+                    mgr->mChannels[0] = channelStart(mgr, pitch, velocity, updateTimer);
                 }
             }
             else {
-                JASChannel *llChannel = channel->mChannels[0];
-                if(llChannel) {
-                    llChannel->setKey(tmp - llChannel->_E1);
-                    llChannel->setVelocity(b);
-                    llChannel->setUpdateTimer(goofy);
+                JASChannel *channel = mgr->mChannels[0];
+                if(channel) {
+                    channel->setKey(pitch - channel->_E1);
+                    channel->setVelocity(velocity);
+                    channel->setUpdateTimer(updateTimer);
                 }
             }
-            JASChannel *llChannel;
-            if(r19 && (llChannel = channel->mChannels[0])) llChannel->setKeySweepTarget(r1a, dspTime);
+            JASChannel *channel;
+            if(isSweep && (channel = mgr->mChannels[0])) {
+                channel->setKeySweepTarget(pitchDelta, dspTime);
+            }
         }
     }
-    mPitch = a;
-    ((LLFlags*)&_244)->_4 = c & 2;
+    mPitch = transposedPitch;
+    mReadyToPlay = flags & 2;
     return true;
 }
 
 bool JASTrack::noteOff(u32 a, u16 b) {
     bool ret = true;
     for(u32 i = 0; i < mNumChannels; i++) {
-        TChannelMgr *channel = mMgrs[i];
-        if(channel) {
-            if(!channel->noteOff(a, b)) ret = false;
+        TChannelMgr *mgr = mMgrs[i];
+        if(mgr) {
+            if(!mgr->noteOff(a, b)) ret = false;
         }
     }
     return ret;
 }
 
-bool JASTrack::checkNoteStop(u32 a) const {
+bool JASTrack::checkNoteStop(u32 channel) const {
     for(u32 i = 0; i < mNumChannels; i++) {
-        TChannelMgr *channel = mMgrs[i];
-        if(channel) {
-            if(channel->mChannels[a]) return false;
+        TChannelMgr *mgr = mMgrs[i];
+        if(mgr) {
+            if(mgr->mChannels[channel]) return false;
         } 
     }
     return true;
@@ -353,8 +375,8 @@ void JASTrack::updateTimedParam() {
 void JASTrack::updateTrack(f32 num) {
     updateTempo();
     for(u32 i = 0; i < mNumChannels; i++) {
-        TChannelMgr *channel = mMgrs[i];
-        if(channel) {
+        TChannelMgr *mgr = mMgrs[i];
+        if(mgr) {
             f32 fr8 = _9C[0]._0;
             fr8 *= fr8;
             f32 fr9 = 1f;
@@ -362,7 +384,7 @@ void JASTrack::updateTrack(f32 num) {
             f32 frb = (_9C[3]._0 - 0.5f) * _218;
             f32 frc = _9C[2]._0;
             f32 frd = _9C[4]._0;
-            JASSoundParams *params = channel->_48;
+            JASSoundParams *params = mgr->_48;
             if(params) {
                 fr8 *= params->_0[0];
                 fr9 *= params->_0[2];
@@ -372,24 +394,24 @@ void JASTrack::updateTrack(f32 num) {
             }
             frb *= num;
             if(!mParent) {
-                channel->mChannelParams._0[0] = fr8;
-                channel->mChannelParams._0[1] = fr9;
-                channel->mChannelParams._0[3] = frb;
-                channel->mChannelParams._0[4] = frc;
-                channel->mChannelParams._0[5] = frd;
-                channel->mChannelParams._0[2] = fra;
+                mgr->mChannelParams._0[0] = fr8;
+                mgr->mChannelParams._0[1] = fr9;
+                mgr->mChannelParams._0[3] = frb;
+                mgr->mChannelParams._0[4] = frc;
+                mgr->mChannelParams._0[5] = frd;
+                mgr->mChannelParams._0[2] = fra;
             }
             else {
-                TChannelMgr *channelParent = mParent->mMgrs[i];
-                if(!channelParent) channelParent = mParent->mMgrs[0];
-                channel->mChannelParams._0[0] = channelParent->mChannelParams._0[0] * fr8;
-                channel->mChannelParams._0[1] = channelParent->mChannelParams._0[1] * fr9;
-                channel->mChannelParams._0[3] = channelParent->mChannelParams._0[3] - 0.5f + frb;
-                channel->mChannelParams._0[4] = channelParent->mChannelParams._0[4] + frc;
-                channel->mChannelParams._0[5] = channelParent->mChannelParams._0[5] + frd;
-                channel->mChannelParams._0[2] = channelParent->mChannelParams._0[2] + fra;
+                TChannelMgr *mgrParent = mParent->mMgrs[i];
+                if(!mgrParent) mgrParent = mParent->mMgrs[0];
+                mgr->mChannelParams._0[0] = mgrParent->mChannelParams._0[0] * fr8;
+                mgr->mChannelParams._0[1] = mgrParent->mChannelParams._0[1] * fr9;
+                mgr->mChannelParams._0[3] = mgrParent->mChannelParams._0[3] - 0.5f + frb;
+                mgr->mChannelParams._0[4] = mgrParent->mChannelParams._0[4] + frc;
+                mgr->mChannelParams._0[5] = mgrParent->mChannelParams._0[5] + frd;
+                mgr->mChannelParams._0[2] = mgrParent->mChannelParams._0[2] + fra;
             }
-            channel->mChannelParams._0[3] += 0.5f;
+            mgr->mChannelParams._0[3] += 0.5f;
         }
     }
 }
@@ -397,28 +419,28 @@ void JASTrack::updateTrack(f32 num) {
 void JASTrack::updateTempo() {
     if(!mParent) {
         f32 rate = JASDriver::getDacRate();
-        _1DC = mTempoRate * (1.33333337307f * (mTimebase * mTempo) / rate);
+        mSampleInterval = mTempoRate * (1.33333337307f * (mTimebase * mTempo) / rate);
     }
     else {
         mTempo = mParent->mTempo;
         mTimebase = mParent->mTimebase;
-        _1DC = mParent->_1DC;
+        mSampleInterval = mParent->mSampleInterval;
     }
 }
 
-void JASTrack::updateSeq(bool toggle, f32 num) {
-    if(!toggle) toggle = _244._5;
-    _244._5 = false;
-    if(toggle) updateTrack(num);
+void JASTrack::updateSeq(bool update, f32 num) {
+    if(!update) update = mInvalidateSeq;
+    mInvalidateSeq = false;
+    if(update) updateTrack(num);
     num *= _218;
-    for(int i = 0; i < 0x10; i++) { // Probably a template
+    for(int i = 0; i < 0x10; i++) {
         JASTrack *child = mChildren[i];
-        if(child && child->_240 == 1) child->updateSeq(toggle, num);
+        if(child && child->_240 == 1) child->updateSeq(update, num);
     }
 }
 
 u32 JASTrack::seqTimeToDspTime(f32 seqTime) {
-    if(_244._2) seqTime /= _1DC;
+    if(mIsDirectlyPlayed) seqTime /= mSampleInterval;
     else {
         seqTime *= 120f / mTimebase;
         seqTime *= JASDriver::getSubFrames() / 10f;
@@ -426,8 +448,8 @@ u32 JASTrack::seqTimeToDspTime(f32 seqTime) {
     return seqTime;
 }
 
-void JASTrack::setParam(u32 a, f32 value, u32 b) {
-    Timed &timed = _9C[a];
+void JASTrack::setParam(u32 param, f32 value, u32 b) {
+    Timed &timed = _9C[param];
     timed._4 = value;
     if(!b) timed._0 = timed._4;
     timed._8 = b;
@@ -443,14 +465,14 @@ void JASTrack::noteOffAll(u16 a) {
     }
 }
 
-void JASTrack::mute(bool toggle) {
-    _244._1 = toggle;
-    if(!toggle) return;
+void JASTrack::mute(bool isMute) {
+    mIsMute = isMute;
+    if(!isMute) return;
     noteOffAll(10);
 }
 
-void JASTrack::setOscScale(u32 a, f32 num) {
-    _E4[a]._10 = num;
+void JASTrack::setOscScale(u32 a, f32 scale) {
+    _E4[a]._10 = scale;
 }
 
 void JASTrack::setOscTable(u32 a, const JASOscillator::Point *point) {
@@ -469,17 +491,17 @@ void JASTrack::setOscAdsr(s16 attack, s16 delay, s16 sustain, s16 release, u16 e
     _224 = e; 
 }
 
-void JASTrack::setFIR(const s16 *FIR) {
+void JASTrack::setFIR(const s16 *FIRFilter) {
     for(u32 i = 0; i < 8; i++) {
-        mFIRFilter[i] = FIR[i];
+        mFIRFilter[i] = FIRFilter[i];
     }
     mFilterMode &= 0x20;
     mFilterMode |= 8;
 }
 
-void JASTrack::setIIR(const s16 *IIR) {
+void JASTrack::setIIR(const s16 *IIRFilter) {
     for(u32 i = 0; i < 8; i++) {
-        mIIRFilter[i] = IIR[i];
+        mIIRFilter[i] = IIRFilter[i];
     }
     mFilterMode |= 0x20;
 }
@@ -503,22 +525,22 @@ u16 JASTrack::readPort(u32 port) {
     return mPorts.readExport(port);
 }
 
-void JASTrack::setChannelPauseFlag(bool flag) {
+void JASTrack::setChannelPauseFlag(bool pauseFlag) {
     for(int i = 0; i < mNumChannels; i++) {
-        TChannelMgr *channel = mMgrs[i];
-        if(channel) channel->setPauseFlag(flag);
+        TChannelMgr *mgr = mMgrs[i];
+        if(mgr) mgr->setPauseFlag(pauseFlag);
     }
     for(int i = 0; i < 0x10; i++) {
         JASTrack *child = mChildren[i];
-        if(child) child->setChannelPauseFlag(flag);
+        if(child) child->setChannelPauseFlag(pauseFlag);
     }
 }
 
-void JASTrack::pause(bool flag) {
-    if(((LLFlags*)&_244)->_0 != flag) {
-        ((LLFlags*)&_244)->_0 = flag;
-        setChannelPauseFlag(flag);
-        JASSeqCtrl::interrupt((JASSeqCtrl::IntrType)!flag);
+void JASTrack::pause(bool pauseFlag) {
+    if(mPauseFlag != pauseFlag) {
+        mPauseFlag = pauseFlag;
+        setChannelPauseFlag(pauseFlag);
+        JASSeqCtrl::interrupt((JASSeqCtrl::IntrType)!pauseFlag);
     }
 }
 
@@ -531,27 +553,27 @@ bool JASTrack::isMute() const {
     bool ret;
     if(mParent) {
         ret = false;
-        if(_244._1 || mParent->isMute()) ret = true;
+        if(mIsMute || mParent->isMute()) ret = true;
     }
-    else ret = _244._1;
+    else ret = mIsMute;
     return ret;
 }
 
 void JASTrack::setTempo(u16 tempo) {
     mTempo = tempo;
-    _244._5 = true;
+    mInvalidateSeq = true;
     updateTempo();
 }
 
 void JASTrack::setTempoRate(f32 rate) {
     mTempoRate = rate;
-    _244._5 = true;
+    mInvalidateSeq = true;
     updateTempo();
 }
 
 void JASTrack::setTimebase(u16 timebase) {
     mTimebase = timebase;
-    _244._5 = true;
+    mInvalidateSeq = true;
     updateTempo();
 }
 
@@ -564,7 +586,9 @@ void JASTrack::updateChannel(JASChannel *channel, JASDsp::TChannel *dspChannel) 
     dspChannel->setDistFilter(32767f * _9C[5]._0);
 }
 
-void JASTrack::channelUpdateCallback(u32 a, JASChannel *channel, JASDsp::TChannel *dspChannel, void *data) {
+void JASTrack::channelUpdateCallback (
+    u32 a, JASChannel *channel, JASDsp::TChannel *dspChannel, void *data
+) {
     TChannelMgr *mgr = (TChannelMgr *)data;
     JASTrack *track = mgr->mParentTrack;
     switch(a) {
@@ -596,10 +620,10 @@ JASTrack* JASTrack::getRootTrack() {
 }
 
 int JASTrack::tickProc() {
-    if(_244._0) return 0;
+    if(mPauseFlag) return 0;
     int succ = JASSeqCtrl::tickProc(this);
     updateTimedParam();
-    _244._5 = true;
+    mInvalidateSeq = true;
     if(succ < 0) return -1;
     for(int i = 0; i < 0x10; i++) {
         JASTrack *child = mChildren[i];
@@ -607,7 +631,7 @@ int JASTrack::tickProc() {
             if(child->tickProc() < 0) {
                 getRootTrack()->updateSeq(false, 1f);
                 child->close();
-                if(child->_244._3) {
+                if(child->mIsOwnedByParent) {
                     delete child;
                     mChildren[i] = nullptr;
                 }
@@ -618,21 +642,21 @@ int JASTrack::tickProc() {
 }
 
 s32 JASTrack::seqMain() {
-    if(_244._6) {
+    if(mIsStopped) {
         updateSeq(true, 1f);
         close();
         return -1;
     }
     f32 step = 1f;
-    while(_1D8 >= step) {
-        _1D8 -= step;
+    while(mPlaytime >= step) {
+        mPlaytime -= step;
         if(tickProc() < 0) {
             updateSeq(false, 1f);
             close();
             return -1;
         }
     }
-    _1D8 += _1DC;
+    mPlaytime += mSampleInterval;
     updateSeq(false, step);
     return 0;
 }
@@ -643,26 +667,27 @@ s32 JASTrack::TList::cbSeqMain(void *self) {
 }
 
 void JASTrack::TList::append(JASTrack *track) {
-    if(!_C) {
+    if(!mIsInit) {
         if(!JASDriver::registerSubFrameCallback(cbSeqMain, this)) return;
-        _C = true;
+        mIsInit = true;
     }
-    _0.Push_back(track);
+    mList.Push_back(track);
 }
 
 void JASTrack::TList::seqMain() {
-    JGADGET_LINK_LIST(JASTrack, mNode)::iterator iter, next;
-    for(iter = JGADGET_LINK_LIST(JASTrack, mNode)::iterator(_0.begin()); iter != _0.end(); iter = next) {
+    InternalList::iterator iter, next;
+    for(iter = InternalList::iterator(mList.begin()); iter != mList.end(); iter = next) {
         next = iter;
         ++next;
         if(iter->seqMain() < 0) {
-            _0.Remove(*iter);
-            if(iter->_244._3) delete *iter;
+            mList.Remove(*iter);
+            if(iter->mIsOwnedByParent) delete *iter;
         }
     }
 }
 
-JASTrack::TChannelMgr::TChannelMgr(JASTrack *track) : mChannelParams(), _48(0), mParentTrack(track) {
+JASTrack::TChannelMgr::TChannelMgr(JASTrack *track)
+    : mChannelParams(), _48(0), mParentTrack(track) {
     for(u32 i = 0; i < 8; i++) {
         mChannels[i] = nullptr;
     }
@@ -716,9 +741,6 @@ JASDefaultBankTable JASTrack::sDefaultBankTable = JASDefaultBankTable();
 
 JASTrack::TList JASTrack::sTrackList = JASTrack::TList();
 
-template<typename T>
-JASMemPool_MultiThreaded<T> JASPoolAllocObject_MultiThreaded<T>::memPool_ = JASMemPool_MultiThreaded<T>();
-
 namespace JGadget {
     
     TLinkListNode::TLinkListNode() : mPrev(nullptr), mNext(nullptr) {}
@@ -753,15 +775,15 @@ namespace JGadget {
     }
 
     bool operator!= (
-        JGADGET_LINK_LIST(JASTrack, mNode)::iterator a,
-        JGADGET_LINK_LIST(JASTrack, mNode)::iterator b
+        JASTrack::TList::InternalList::iterator a,
+        JASTrack::TList::InternalList::iterator b
     ) {
         return !(a == b);
     }
 
     bool operator== (
-        JGADGET_LINK_LIST(JASTrack, mNode)::iterator a,
-        JGADGET_LINK_LIST(JASTrack, mNode)::iterator b
+        JASTrack::TList::InternalList::iterator a,
+        JASTrack::TList::InternalList::iterator b
     ) {
         return TNodeLinkList::iterator(a.curr, false) == TNodeLinkList::iterator(b.curr, false);
     }
@@ -777,7 +799,7 @@ namespace JGadget {
 
 JASTrack::TList::~TList() {}
 
-JASTrack::TList::TList() : _0(), _C(false) {}
+JASTrack::TList::TList() : mList(), mIsInit(false) {}
 
 JASCriticalSection::JASCriticalSection() {
     success = OSDisableInterrupts();

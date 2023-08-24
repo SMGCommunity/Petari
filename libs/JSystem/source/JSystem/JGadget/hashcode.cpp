@@ -1,5 +1,5 @@
 #include "JSystem/JGadget/hashcode.h"
-/*
+
 //#pragma optimization_level 0
 
 namespace JGadget {
@@ -65,6 +65,6 @@ namespace JGadget {
         //doCrazyThings(tmp, tmp);
         acc += tmp;
         return acc;*/
-/*    }
+    }
     
-}*/
+}

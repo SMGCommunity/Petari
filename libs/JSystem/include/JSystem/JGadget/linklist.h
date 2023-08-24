@@ -84,7 +84,7 @@ namespace JGadget {
         }
 
         void splice(iterator, TNodeLinkList &, iterator);
-        u32 _0;
+        u32 mLen;
         TLinkListNode mEnd;
     };
     template<typename T, int NODE_OFFSET>
@@ -95,7 +95,8 @@ namespace JGadget {
             public TNodeLinkList::iterator
         {
             struct iteratorData : TNodeLinkList::iterator::iteratorData {
-                inline iteratorData(TLinkListNode *curr) : TNodeLinkList::iterator::iteratorData(curr) {}
+                inline iteratorData(TLinkListNode *curr)
+                    : TNodeLinkList::iterator::iteratorData(curr) {}
             };
             inline iterator(iteratorData data) : TNodeLinkList::iterator(data) {}
             iterator() NO_INLINE : TNodeLinkList::iterator() {}

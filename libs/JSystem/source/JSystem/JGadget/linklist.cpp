@@ -17,21 +17,22 @@ namespace JGadget {
             Insert(iterator(iterator::iteratorData(a.curr)), nodeB);
         }
     }
-    TNodeLinkList::iterator::iteratorData TNodeLinkList::Insert(iterator iter, TLinkListNode *node) {
+    TNodeLinkList::iterator::iteratorData TNodeLinkList::Insert
+        (iterator iter, TLinkListNode *node) {
         TLinkListNode *next = iter.curr;
         TLinkListNode *prev = next->mPrev;
         node->mNext = next;
         node->mPrev = prev;
         next->mPrev = node;
         prev->mNext = node;
-        _0++;
+        mLen++;
         return iterator::iteratorData(node);
     }
     TLinkListNode* TNodeLinkList::Erase(TLinkListNode *node) {
         TLinkListNode *next = node->mNext, *prev = node->mPrev;
         next->mPrev = prev;
         prev->mNext = next;
-        _0--;
+        mLen--;
         return next;
     }
     void TNodeLinkList::Remove(TLinkListNode *node) {
@@ -50,7 +51,7 @@ namespace JGadget {
         }
     }
     void TNodeLinkList::Initialize_() {
-        _0 = 0;
+        mLen = 0;
         mEnd.mNext = &mEnd;
         mEnd.mPrev = &mEnd;
     }

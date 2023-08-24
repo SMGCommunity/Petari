@@ -224,7 +224,7 @@ cmdReadPort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdWritePort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdParentWritePort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdChildWritePort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
-cmdParentReadPort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,false
+cmdParentReadPort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdChildReadPort__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdCheckPortImport__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true
 cmdCheckPortExport__12JASSeqParserFP8JASTrackPUl,JASSeqParser.o,JAudio2.a,true

@@ -199,7 +199,7 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 			track->_230 = value;
 			break;
 		case 0x25:
-			track->_233 = value;
+			track->mGateLatency = value;
 			break;
 		case 0x26:
 			track->_220 = value;
@@ -304,7 +304,7 @@ u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
 				ret = track->_230;
 				break;
 			case 0x25:
-				ret = track->_233;
+				ret = track->mGateLatency;
 				break;
 			case 0x26:
 				ret = track->_220;

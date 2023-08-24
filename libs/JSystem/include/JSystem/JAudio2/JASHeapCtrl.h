@@ -64,3 +64,7 @@ public:
         memPool_.free(addr, size);
     }
 };
+
+template<typename T>
+JASMemPool_MultiThreaded<T> JASPoolAllocObject_MultiThreaded<T>::memPool_
+    = JASMemPool_MultiThreaded<T>();
