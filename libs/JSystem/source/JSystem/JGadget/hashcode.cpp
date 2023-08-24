@@ -1,27 +1,36 @@
 #include "JSystem/JGadget/hashcode.h"
-
-#pragma c9x_alias_by_type on
+/*
+//#pragma optimization_level 0
 
 namespace JGadget {
     s32 doCrazyThings(s32 &term, s32 seed) {return term = seed;}
-    inline u32 helper(const char *data, s32 &term) {s32 acc = 0;
-        //s32 terminator = *data - *data;
+    inline bool gg(char &dst, const char *data, s32 terminator) {
+        dst = *data;
+        return *data != terminator;
+    }
+    inline void helper(s32 &acc, const char *data) {
+        //doCrazyThings(acc, acc);
         //s32 tmp1 = 0;
         // = 0;
         //char tmpValue2;
-        for(;*data != term;) {
-            doCrazyThings(term, term);
+        s32 term = 0;
+        s32 &terminator = term;
+        //char &uni = unimportant;
+        char unimportant;
+        while(gg(unimportant, data, term)) {
             //terminator = *data - *data;
             //s32 tmp2 = tmp1;
             //tmp1 = acc + 1;
             //tmp1 = tmp2;
           //  doCrazyThings(tmp1, tmp1);
+            //unimportant = *data;
             s32 tmp = acc * 31;
-            acc = *data;
-            acc += tmp;
+            acc = unimportant;
+            doCrazyThings(terminator, terminator);
             data++;
+            acc += tmp;
+            //acc += tmp;
         }
-        return acc;
     }
     void mull(s32 &a, s32 b) {a = b * 31;}
     inline void function(const char *data, s32 &r4, s32 &acc, char &r6) {
@@ -32,26 +41,14 @@ namespace JGadget {
             data++;
         }
     }
+    char doubleBS(char &a, char b) {return a = b;}
     u32 getHashCode(const char *data) {
         s32 acc = 0;
+        //doCrazyThings(acc, acc);
         //s32 tmp1 = 0;
         // = 0;
         //char tmpValue2;
-        s32 term = 0;
-        s32 &terminator = term;
-        for(;*data != term;) {
-            //terminator = *data - *data;
-            //s32 tmp2 = tmp1;
-            //tmp1 = acc + 1;
-            //tmp1 = tmp2;
-          //  doCrazyThings(tmp1, tmp1);
-            s32 tmp = acc * 31;
-            acc = *data;
-            doCrazyThings(terminator, terminator);
-            acc += tmp;
-            data++;
-            //acc += tmp;
-        }
+        helper(acc, data);
         return acc;
 
         /*s32 r4 = 0, acc = 0;
@@ -68,6 +65,6 @@ namespace JGadget {
         //doCrazyThings(tmp, tmp);
         acc += tmp;
         return acc;*/
-    }
+/*    }
     
-}
+}*/

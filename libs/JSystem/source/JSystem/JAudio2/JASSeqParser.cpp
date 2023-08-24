@@ -4,7 +4,7 @@
 #include "JSystem/JAudio2/JASReport.h"
 
 // At address 80560cb8
-const static u16 sIIRCutoff[0x208] = {
+const static s16 sIIRCutoff[0x208] = {
     0x0000, 0x0000, 0x0000, 0x8048, 0x947C, 0x8048, 0x96D0, 0x8048,
     0x94C8, 0x8048, 0x95D4, 0x8048, 0x9534, 0x8048, 0x954C, 0x8048,
     0x9590, 0x8048, 0x9708, 0x0F5C, 0x0A3D, 0x4665, 0x1E73, 0x0F5E,
@@ -571,11 +571,11 @@ s32 JASSeqParser::cmdNop(JASTrack *track, u32 *args) {
     return 0;
 }
 s32 JASSeqParser::cmdFIRSet(JASTrack *track, u32 *args) {
-    track->setFIR((const u16 *)((u8 *)track->mSeqBuff + args[0]));
+    track->setFIR((const s16 *)((u8 *)track->mSeqBuff + args[0]));
     return 0;
 }
 s32 JASSeqParser::cmdIIRSet(JASTrack *track, u32 *args) {
-	u16 iir[4];
+	s16 iir[4];
 	for(u32 i = 0; i < 4; i++) {
 		iir[i] = args[i];
 	}

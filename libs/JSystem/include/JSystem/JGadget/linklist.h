@@ -123,7 +123,7 @@ namespace JGadget {
             }
         };
         
-        TLinkList() : TNodeLinkList() {}
+        TLinkList() NO_INLINE : TNodeLinkList() {}
 
         ~TLinkList() NO_INLINE {};
         
