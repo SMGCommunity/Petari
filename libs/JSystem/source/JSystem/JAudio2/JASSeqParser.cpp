@@ -149,7 +149,7 @@ JASSeqParser::Command JASSeqParser::sExtCmdInfo[0xff] = {
 };
 
 bool JASSeqParser::conditionCheck(JASTrack *track, BranchCondition cond) {
-	u16 res = track->_80.read(JASRegisterParam::REG_F);
+	u16 res = track->mRegs.read(JASRegisterParam::REG_F);
 	switch(cond) {
 		case JASSeqParser::COND_ALWAYS:
 			return true;
@@ -168,8 +168,8 @@ bool JASSeqParser::conditionCheck(JASTrack *track, BranchCondition cond) {
 }
 
 void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
-	track->_80.write(JASRegisterParam::REG_F, value);
-	if(reg < 0x40) track->_80.write((JASRegisterParam::RegID)reg, value);
+	track->mRegs.write(JASRegisterParam::REG_F, value);
+	if(reg < 0x40) track->mRegs.write((JASRegisterParam::RegID)reg, value);
 	else switch(reg - 0x40) {
 		case 0:
 		case 1:
@@ -193,7 +193,7 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 			track->setTimebase(value);
 			break;
 		case 0x23:
-			track->_22A = value;
+			track->mTransposeAmt = value;
 			break;
 		case 0x24:
 			track->_230 = value;
@@ -205,10 +205,10 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 			track->_220 = value;
 			break;
 		case 0x27:
-			track->_22C = (u8)value;
+			track->mBank = (u8)value;
 			break;
 		case 0x28:
-			track->_22E = (u8)value;
+			track->mPrg = (u8)value;
 			break;
 		case 0x29:
 			track->_218 = value;
@@ -257,7 +257,7 @@ void JASSeqParser::writeReg(JASTrack *track, u32 reg, u32 value) {
 }
 
 u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
-	if(reg < 0x40) return track->_80.read((JASRegisterParam::RegID)reg);
+	if(reg < 0x40) return track->mRegs.read((JASRegisterParam::RegID)reg);
 	else {
 		u32 ret = 0;
 		switch(reg - 0x40) {
@@ -295,10 +295,10 @@ u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
 				ret = track->mPorts.mPorts[track->mNumStacks - 0x20 + 5];
 				break;
 			case 0x22:
-				ret = track->mTimerBase;
+				ret = track->mTimebase;
 				break;
 			case 0x23:
-				ret = track->_22A;
+				ret = track->mTransposeAmt;
 				break;
 			case 0x24:
 				ret = track->_230;
@@ -310,10 +310,10 @@ u32 JASSeqParser::readReg(JASTrack *track, u32 reg) const {
 				ret = track->_220;
 				break;
 			case 0x27:
-				ret = track->_22C;
+				ret = track->mBank;
 				break;
 			case 0x28:
-				ret = track->_22E;
+				ret = track->mPrg;
 				break;
 			case 0x29: {
 				f32 tmp = track->_218;
@@ -490,11 +490,11 @@ s32 JASSeqParser::cmdChildReadPort(JASTrack *track, u32 *args) {
     return 0;
 }
 s32 JASSeqParser::cmdCheckPortImport(JASTrack *track, u32 *args) {
-    track->_80.write(JASRegisterParam::REG_F, track->mPorts.checkImport(args[0]));
+    track->mRegs.write(JASRegisterParam::REG_F, track->mPorts.checkImport(args[0]));
     return 0;
 }
 s32 JASSeqParser::cmdCheckPortExport(JASTrack *track, u32 *args) {
-    track->_80.write(JASRegisterParam::REG_F, track->mPorts.checkExport(args[0]));
+    track->mRegs.write(JASRegisterParam::REG_F, track->mPorts.checkExport(args[0]));
     return 0;
 }
 s32 JASSeqParser::cmdWait(JASTrack *track, u32 *args) {
@@ -557,7 +557,7 @@ s32 JASSeqParser::cmdIntTimer(JASTrack *track, u32 *args) {
 s32 JASSeqParser::cmdSyncCPU(JASTrack *track, u32 *args) {
 	u16 value = -1;
 	if(sCallbackFunc) value = sCallbackFunc(track, args[0]);
-    track->_80.write(JASRegisterParam::REG_F, value);
+    track->mRegs.write(JASRegisterParam::REG_F, value);
     return 0;
 }
 s32 JASSeqParser::cmdTempo(JASTrack *track, u32 *args) {
@@ -588,16 +588,16 @@ s32 JASSeqParser::cmdIIRCutOff(JASTrack *track, u32 *args) {
 }
 s32 JASSeqParser::cmdBankPrg(JASTrack *track, u32 *args) {
 	u32 arg0 = args[0];
-    track->_22C = (u8)(arg0 >> 8);
-    track->_22E = (u8)arg0;
+    track->mBank = (u8)(arg0 >> 8);
+    track->mPrg = (u8)arg0;
     return 0;
 }
 s32 JASSeqParser::cmdBank(JASTrack *track, u32 *args) {
-    track->_22C = (u8)args[0];
+    track->mBank = (u8)args[0];
     return 0;
 }
 s32 JASSeqParser::cmdPrg(JASTrack *track, u32 *args) {
-    track->_22E = (u8)args[0];
+    track->mPrg = (u8)args[0];
     return 0;
 }
 s32 JASSeqParser::cmdParamI(JASTrack *track, u32 *args) {
@@ -719,14 +719,14 @@ s32 JASSeqParser::cmdDump(JASTrack *track, u32 *args) {
 	JASReport("");
 
 
-	u32 ra = track->_80.read(JASRegisterParam::REG_A),
-		rb = track->_80.read(JASRegisterParam::REG_B),
-		rs = track->_80.read(JASRegisterParam::REG_S);
+	u32 ra = track->mRegs.read(JASRegisterParam::REG_A),
+		rb = track->mRegs.read(JASRegisterParam::REG_B),
+		rs = track->mRegs.read(JASRegisterParam::REG_S);
 	JASReport(" REG_A: 0x%04x REG_B: 0x%04x REG_S: 0x%04x", ra, rb, rs);
 
-	u32 rx = track->_80.read(JASRegisterParam::REG_X),
-		ry = track->_80.read(JASRegisterParam::REG_Y),
-		rf = track->_80.read(JASRegisterParam::REG_F);
+	u32 rx = track->mRegs.read(JASRegisterParam::REG_X),
+		ry = track->mRegs.read(JASRegisterParam::REG_Y),
+		rf = track->mRegs.read(JASRegisterParam::REG_F);
 	JASReport(" REG_X: 0x%04x REG_Y: 0x%04x REG_F: 0x%04x", rx, ry, rf);
 	JASReport("");
 

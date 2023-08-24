@@ -51,7 +51,7 @@ template<typename T, u32 LEN>
 class JASPtrArray : public JASPtrTable<T> {
 public:
     JASPtrArray() NO_INLINE : JASPtrTable(mPtrArray, LEN) {}
-    T *mPtrArray[LEN];
+    T *mPtrArray[LEN]; // _8
 };
 
 class JASBankList {
@@ -124,11 +124,11 @@ public:
         bool noteOff(u32, u16);
         void setPauseFlag(bool);
 
-		JASChannel* _0[8];
-		JASChannelParams _20;
+		JASChannel* mChannels[8]; // _0
+		JASChannelParams mChannelParams; // _20
 		u16 _38[8];
 		JASSoundParams* _48;
-		JASTrack *_4C;
+		JASTrack *mParentTrack; // _4C
 	};
 
 	struct Timed {
@@ -190,8 +190,11 @@ public:
 	void setTimebase(u16);
 	void setSeqData(void *, u32);
 	void setLatestKey(u8);
+    
+    //Accept the tempo in units of bpm
 	void setTempo(u16);
-	void setTempoRate(f32);
+
+    void setTempoRate(f32);
 	void setParam(u32, f32, u32);
 
 	s32 getTransposeTotal() const;
@@ -212,18 +215,17 @@ public:
 	void writePort(u32, u16);
 	
 	JASTrackPort mPorts; // _5C
-	JASRegisterParam _80;
+	JASRegisterParam mRegs; // _80
 	u8 _84[0x18];
 	Timed _9C[6];
 	JASOscillator::Data _E4[2];
-	//JASOscillator::Point _FC[4];
-	JASOscillator::Point _114[4];
+	JASOscillator::Point mAdsr[4]; // _114
 	JASTrack *mParent; // _12C
 	JASTrack *mChildren[0x10]; // _130
-	TChannelMgr* _170[4];
-	TChannelMgr _180;
-	u32 _1D0;
-	JASDefaultBankTable* _1D4;
+	TChannelMgr* mMgrs[4]; // _170
+	TChannelMgr mInitialMgr; // _180
+	u32 mNumChannels; // _1D0
+	JASDefaultBankTable* mBankTable; // _1D4
 	f32 _1D8;
 	f32 _1DC;
 	f32 _1E0;
@@ -232,27 +234,30 @@ public:
 	f32 _1EC;
 	u16 _1F0;
 	u16 _1F2;
-	s16 _1F4[8];
-	s16 _204[8];
-	u8 _214;
+	s16 mFIRFilter[8]; // _1F4
+	s16 mIIRFilter[8]; // _204
+	u8 mFilterMode;
 	f32 _218;
-	f32 _21C;
+	f32 mTempoRate; // _21C
 	u32 _220;
 	u16 _224;
-	u16 _226;
-	u16 mTimerBase; // _228
-	s8 _22A;
-	u8 _22B;
-	u16 _22C;
-	u16 _22E;
+
+    /* Unit: bpm */
+	u16 mTempo; // _226
+
+    u16 mTimebase; // _228
+	s8 mTransposeAmt; // _22A
+	u8 mPitch; // _22B
+	u16 mBank; // _22C
+	u16 mPrg; // _22E
 	u8 _230;
 	u8 _231;
 	u8 _232;
 	u8 _233;
-	u16 _234[6];
+	u16 mBuses[6]; // _234
 	volatile s32 _240;
 	volatile LLFlags _244; // Volatility seems to depend upon which union field we use
-	JGadget::TLinkListNode _248;
+	JGadget::TLinkListNode mNode; // mNode
 
 	struct TList;
 	
@@ -266,12 +271,12 @@ struct JASTrack::TList {
     static s32 cbSeqMain(void *);
     void append(JASTrack *);
     void seqMain();
-    JGADGET_LINK_LIST(JASTrack, _248) _0;
+    JGADGET_LINK_LIST(JASTrack, mNode) _0;
     bool _C;
 };
 
 namespace JGadget {
-    bool operator!=(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator) NO_INLINE;
-    bool operator==(JGADGET_LINK_LIST(JASTrack, _248)::iterator, JGADGET_LINK_LIST(JASTrack, _248)::iterator) NO_INLINE;
+    bool operator!=(JGADGET_LINK_LIST(JASTrack, mNode)::iterator, JGADGET_LINK_LIST(JASTrack, mNode)::iterator) NO_INLINE;
+    bool operator==(JGADGET_LINK_LIST(JASTrack, mNode)::iterator, JGADGET_LINK_LIST(JASTrack, mNode)::iterator) NO_INLINE;
     bool operator==(TNodeLinkList::iterator, TNodeLinkList::iterator) NO_INLINE;
 }
