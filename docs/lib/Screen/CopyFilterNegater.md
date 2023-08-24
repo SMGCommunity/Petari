@@ -5,9 +5,9 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 2 Completed -- (0.0%)
+# 2 / 2 Completed -- (100.0%)
 # CopyFilterNegater.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__17CopyFilterNegaterFv` | :x: |
-| `__dt__17CopyFilterNegaterFv` | :x: |
+| `__ct__17CopyFilterNegaterFv` | :white_check_mark: |
+| `__dt__17CopyFilterNegaterFv` | :white_check_mark: |

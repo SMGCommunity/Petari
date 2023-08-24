@@ -22,7 +22,7 @@
 | [CinemaFrame.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CinemaFrame.md) | 0.0% | 0 / 28 | 0.0% | :x: 
 | [CoinCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CoinCounter.md) | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | [CometRetryButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CometRetryButton.md) | 0.0% | 0 / 22 | 0.0% | :x: 
-| [CopyFilterNegater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CopyFilterNegater.md) | 0.0% | 0 / 2 | 0.0% | :x: 
+| [CopyFilterNegater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CopyFilterNegater.md) | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | [CounterLayoutAppearer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CounterLayoutAppearer.md) | 92.21789883268482% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | [CounterLayoutController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CounterLayoutController.md) | 0.0% | 0 / 25 | 0.0% | :x: 
 | [CountUpPaneRumbler.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CountUpPaneRumbler.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
@@ -116,7 +116,7 @@
 | [SceneWipeHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SceneWipeHolder.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenAlphaCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenAlphaCapture.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenBlurEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenBlurEffect.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [ScreenPreserver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenPreserver.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [ScreenPreserver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenPreserver.md) | 53.125% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
 | [SimpleLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SimpleLayout.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [StaffRoll.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/StaffRoll.md) | 0.0% | 0 / 83 | 0.0% | :x: 
 | [StageResultInformer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/StageResultInformer.md) | 0.0% | 0 / 74 | 0.0% | :x: 
