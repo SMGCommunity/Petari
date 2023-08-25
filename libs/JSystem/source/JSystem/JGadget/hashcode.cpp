@@ -4,9 +4,9 @@
 
 namespace JGadget {
     s32 doCrazyThings(s32 &term, s32 seed) {return term = seed;}
-    inline bool gg(char &dst, const char *data, s32 terminator) {
-        dst = *data;
-        return *data != terminator;
+    inline bool gg(u8 &dst, const char *data, s32 terminator) {
+        //dst = *data;
+        return (s8)dst != terminator;
     }
     inline void helper(s32 &acc, const char *data) {
         //doCrazyThings(acc, acc);
@@ -54,8 +54,9 @@ namespace JGadget {
         //char tmpValue2;
         s32 term = 0;
         s32 &terminator = term;
-        char tt;
-        while(*data != term) {
+        u8 tt;// = *data;
+        //char &ttt = tt;
+        while(gg(tt, data, term)) {
             //terminator = *data - *data;
             //s32 tmp2 = tmp1;
             //tmp1 = acc + 1;
@@ -64,11 +65,15 @@ namespace JGadget {
             //unimportant = *data;
             //terminator = 0;
             //tt = *data;
-            doCrazyThings(terminator, terminator);
+            //ttt = *data;
+            //s32 tmp = ;
+            //acc = 0;
             data++;
-            s32 tmp = acc * 31;
-            acc = tt;
-            acc += tmp;
+            acc = (s8)tt + acc * 31;
+            doCrazyThings(terminator, terminator);
+            //tt++;
+            //acc += tmp;
+            tt = *data;
             //acc += tmp;
         }
         return acc;
