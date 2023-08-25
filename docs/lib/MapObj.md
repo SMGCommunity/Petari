@@ -128,7 +128,7 @@
 | [HipDropSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropSwitch.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [HipDropTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropTimerSwitch.md) | 0.0% | 0 / 23 | 0.0% | :x: 
 | [HitWallTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HitWallTimerSwitch.md) | 0.0% | 0 / 26 | 0.0% | :x: 
-| [IceStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IceStep.md) | 0.0% | 0 / 15 | 0.0% | :x: 
+| [IceStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IceStep.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [IceVolcanoUpDownPlane.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IceVolcanoUpDownPlane.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [InvisiblePolygonObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObj.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [InvisiblePolygonObjGCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObjGCapture.md) | 0.0% | 0 / 3 | 0.0% | :x: 

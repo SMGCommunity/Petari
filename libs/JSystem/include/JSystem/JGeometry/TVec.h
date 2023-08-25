@@ -442,6 +442,24 @@ namespace JGeometry {
             };
         }
 
+        inline void addInline6(register const TVec3<T> &rOther) {
+            register TVec3<T>* dst = this;
+            //register f32 _2, _1, _0;
+            register f32 totalZ, dstZ, dstXY,  srcZ, srcXY;
+
+
+            __asm volatile {
+                psq_l     dstXY, 0(dst), 0, 0
+                psq_l     srcXY, 0(rOther), 0, 0
+                psq_l     dstZ, 8(dst), 1, 0
+                ps_add    dstXY, dstXY, srcXY
+                psq_l     srcZ, 8(rOther), 1, 0
+                ps_add    totalZ, dstZ, srcZ
+                psq_st    dstXY, 0(dst), 0, 0
+                psq_st    totalZ, 8(dst), 1, 0
+            };
+        }
+
         inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {
             register TVec3<T>* dst = this;
             register const TVec3<T>* a = &rA;

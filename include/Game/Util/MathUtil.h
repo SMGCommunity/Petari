@@ -206,6 +206,16 @@ namespace MR {
         return ret;
     }
 
+    inline TVec3f multVecNoCtor(const TVec3f& rSrc, f32 mult) {
+        return rSrc * mult;
+    }
+
+    inline TVec3f thisSucks(const TVec3f& rSrc, const TVec3f& rBase) {
+        TVec3f hurr(rBase);
+        hurr.addInline6(rSrc);
+        return hurr;
+    }
+
     inline f32 subtractFromSum(f32 lhs, f32 rhs, f32 sub) {
         return (rhs + lhs) - sub;
     }

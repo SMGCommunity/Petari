@@ -163,6 +163,10 @@ namespace MR {
     void invalidateCollisionParts(LiveActor *);
     void invalidateCollisionParts(CollisionParts *);
 
+    void offUpdateCollisionParts(LiveActor *);
+
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor *);
+
     bool isExistCollisionParts(const LiveActor *);
 
     void resetAllCollisionMtx(LiveActor *);
