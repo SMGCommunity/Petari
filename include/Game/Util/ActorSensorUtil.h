@@ -170,6 +170,10 @@ namespace MR {
 
     bool isMsgAutoRushBegin(u32);
 
+    bool isMsgExplosionAttack(u32);
+
+    bool isMsgUpdateBaseMtx(u32);
+
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);
 
