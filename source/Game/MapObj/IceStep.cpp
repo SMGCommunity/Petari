@@ -1,7 +1,7 @@
 #include "Game/MapObj/IceStep.h"
 
 IceStep::IceStep(const char *pName) : LiveActor(pName) {
-    
+
 }
 
 IceStep::~IceStep() {
@@ -66,8 +66,8 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this); 
-    TVec3f hurr(MR::multVecNoCtor(MR::multVecNoCtor(upVec, v8), 0.2f));
-    mPosition = MR::thisSucks(hurr, rPosition);
+    TVec3f multVec(MR::multVecNoCtor(MR::multVecNoCtor(upVec, v8), 0.2f));
+    mPosition = MR::addVec(multVec, rPosition);
   
     MR::startBck(this, "Start", nullptr);
     MR::startBpk(this, "Start");

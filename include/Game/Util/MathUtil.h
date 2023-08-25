@@ -210,7 +210,7 @@ namespace MR {
         return rSrc * mult;
     }
 
-    inline TVec3f thisSucks(const TVec3f& rSrc, const TVec3f& rBase) {
+    inline TVec3f addVec(const TVec3f& rSrc, const TVec3f& rBase) {
         TVec3f hurr(rBase);
         hurr.addInline6(rSrc);
         return hurr;
