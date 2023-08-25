@@ -5,7 +5,7 @@
 namespace JGadget {
     s32 doCrazyThings(s32 &term, s32 seed) {return term = seed;}
     inline bool gg(u8 &dst, const char *data, s32 terminator) {
-        //dst = *data;
+        *(u8 *)&dst = *data;
         return (s8)dst != terminator;
     }
     inline void helper(s32 &acc, const char *data) {
@@ -41,7 +41,7 @@ namespace JGadget {
             data++;
         }
     }
-    char doubleBS(char &a, char b) {return a = b;}
+    u8 doubleBS(u8 &a, u8 b) {return a = b;}
     u32 getHashCode(const char *data) {
         s32 acc = 0;
         //doCrazyThings(acc, acc);
@@ -52,9 +52,10 @@ namespace JGadget {
         //s32 tmp1 = 0;
         // = 0;
         //char tmpValue2;
+        u8 tt;// = *data;
+        //doubleBS(tt, tt);
         s32 term = 0;
         s32 &terminator = term;
-        u8 tt;// = *data;
         //char &ttt = tt;
         while(gg(tt, data, term)) {
             //terminator = *data - *data;
@@ -73,7 +74,9 @@ namespace JGadget {
             doCrazyThings(terminator, terminator);
             //tt++;
             //acc += tmp;
-            tt = *data;
+
+            //tt = *data;
+
             //acc += tmp;
         }
         return acc;
