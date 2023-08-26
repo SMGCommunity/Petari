@@ -10,9 +10,12 @@ namespace JGadget {
         s32 &acc;
         u8 &tt;
     };
-    inline bool gg(u8 &dst, const char *data, s32 terminator) {
+    u8 doubleBS(u8 &a, u8 b) {return a = b;}
+    inline bool gg(u8 &dst, const char *data, s32 terminator, const u8 &stupid) {
         //*((char *)data - 1) = dst;
         //const_cast<stupidididid &>(out2) = reinterpret_cast<volatile stupidididid &>(dst);
+        //doubleBS(dst, dst);
+        const_cast<u8 &>(stupid) = dst;
         dst = *data;
         return (s8)dst != terminator;
     }
@@ -32,10 +35,10 @@ namespace JGadget {
             data++;
         }
     }
-    char doubleBS(char &a, char b) {return a = b;}
 
     // I hate this stupid function so fucking much
     //#pragma opt_unroll_loops on
+    
     u32 getHashCode(const char *data) {
         int i = 0;
         s32 acc = 0;
@@ -46,12 +49,13 @@ namespace JGadget {
         
         s32 term = 0;
         s32 &terminator = term;
+        const u8 &stupid = 0;
 
         u8 tt;// = data[i];
         //u8 &ttt = tt;
         //u8 &ttt = tt;
         //const stupidididid useless; 
-        for(; (s8)tt != term; tt = data[i]) {
+        for(; gg(tt, data + i, term, stupid); ) {
             //s32 &accc = acc;
             //if(gg(tt, data, term, useless)) break;
             //terminator = *data - *data;
@@ -65,8 +69,8 @@ namespace JGadget {
             //ttt = *data;
             //s32 tmp = ;
             //acc = 0;
-            acc = (s8)tt + acc * 31;
             doCrazyThings(terminator, terminator);
+            acc = (s8)tt + acc * 31;
             i++;
             //tt++;
             //acc += tmp;
