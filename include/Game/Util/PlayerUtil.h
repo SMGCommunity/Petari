@@ -14,6 +14,8 @@ namespace MR {
 
     TVec3f* getPlayerLastMove();
 
+    TVec3f* getPlayerVelocity();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -21,6 +23,10 @@ namespace MR {
     bool isPlayerBindedBigBubble();
 
     bool isPlayerHidden();
+
+    bool isPlayerHipDropLand();
+
+    bool isPlayerSwingAction();
 
     bool isNearPlayerAnyTime(const LiveActor *, f32);
 
