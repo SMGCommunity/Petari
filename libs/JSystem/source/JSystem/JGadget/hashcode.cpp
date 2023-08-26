@@ -33,7 +33,11 @@ namespace JGadget {
         }
     }
     char doubleBS(char &a, char b) {return a = b;}
+
+    // I hate this stupid function so fucking much
+    //#pragma opt_unroll_loops on
     u32 getHashCode(const char *data) {
+        int i = 0;
         s32 acc = 0;
         //doCrazyThings(acc, acc);
         //s32 tmp1 = 0;
@@ -43,10 +47,12 @@ namespace JGadget {
         s32 term = 0;
         s32 &terminator = term;
 
-        u8 tt;
+        u8 tt;// = data[i];
+        //u8 &ttt = tt;
         //u8 &ttt = tt;
         //const stupidididid useless; 
-        while(gg(tt, data, term)) {
+        for(; (s8)tt != term; tt = data[i]) {
+            //s32 &accc = acc;
             //if(gg(tt, data, term, useless)) break;
             //terminator = *data - *data;
             //s32 tmp2 = tmp1;
@@ -59,9 +65,9 @@ namespace JGadget {
             //ttt = *data;
             //s32 tmp = ;
             //acc = 0;
-            data++;
             acc = (s8)tt + acc * 31;
             doCrazyThings(terminator, terminator);
+            i++;
             //tt++;
             //acc += tmp;
             //tt = *data;
