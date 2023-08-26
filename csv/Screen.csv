@@ -1,8 +1,8 @@
 Symbol Name, Object File, Library Archive, Matching
-THPGXRestore,THPDraw.o,Screen.a,false
-THPGXYuv2RgbSetup,THPDraw.o,Screen.a,false
-THPGXSetTexObjFilter,THPDraw.o,Screen.a,false
-THPGXYuv2RgbDraw,THPDraw.o,Screen.a,false
+THPGXRestore,THPDraw.o,Screen.a,true
+THPGXYuv2RgbSetup,THPDraw.o,Screen.a,true
+THPGXSetTexObjFilter,THPDraw.o,Screen.a,true
+THPGXYuv2RgbDraw,THPDraw.o,Screen.a,true
 __ct__10BackButtonFPCcb,BackButton.o,Screen.a,false
 appear__10BackButtonFv,BackButton.o,Screen.a,false
 disappear__10BackButtonFv,BackButton.o,Screen.a,false

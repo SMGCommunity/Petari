@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [THPDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/THPDraw.md) | 0.0% | 0 / 4 | 0.0% | :x: 
+| [THPDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/THPDraw.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [BackButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BackButton.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [BatteryInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BatteryInfo.md) | 0.0% | 0 / 43 | 0.0% | :x: 
 | [BloomEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BloomEffect.md) | 0.0% | 0 / 20 | 0.0% | :x: 

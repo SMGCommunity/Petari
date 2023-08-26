@@ -20,7 +20,7 @@
 | [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib.md) | 1.2661566868900025% |
 | [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 0.0% |
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 12.230081906180192% |
-| [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 4.049762816408139% |
+| [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 4.721456294186062% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 49.743881616391576% |
 | [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 13.663158920393649% |
 | [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 9.661178747499052% |

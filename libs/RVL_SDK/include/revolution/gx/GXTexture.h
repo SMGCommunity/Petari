@@ -21,6 +21,8 @@ void GXInitTexObjTlut(GXTexObj *, u32);
 
 void GXLoadTlut(const GXTlutObj *, u32);
 
+void GXInvalidateTexAll(void);
+
 #ifdef __cplusplus
 }
 #endif

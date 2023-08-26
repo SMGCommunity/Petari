@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 4 Completed -- (0.0%)
+# 4 / 4 Completed -- (100.0%)
 # THPDraw.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `THPGXRestore` | :x: |
-| `THPGXYuv2RgbSetup` | :x: |
-| `THPGXSetTexObjFilter` | :x: |
-| `THPGXYuv2RgbDraw` | :x: |
+| `THPGXRestore` | :white_check_mark: |
+| `THPGXYuv2RgbSetup` | :white_check_mark: |
+| `THPGXSetTexObjFilter` | :white_check_mark: |
+| `THPGXYuv2RgbDraw` | :white_check_mark: |
