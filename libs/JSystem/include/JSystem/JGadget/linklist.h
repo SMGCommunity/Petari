@@ -7,8 +7,6 @@
 
 #define JGADGET_LINK_LIST(type, node) JGadget::TLinkList<type, -offsetof(type, node)>
 
-// Is pragma opt_classresults off maybe?
-
 namespace std {
     struct input_iterator_tag {};
     struct forward_iterator_tag : public input_iterator_tag {};

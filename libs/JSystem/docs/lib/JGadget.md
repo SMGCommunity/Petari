@@ -8,14 +8,14 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| hashcode.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| hashcode.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | linklist.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 
 
 # hashcode.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| getHashCode__7JGadgetFPCc | :x: |
+| getHashCode__7JGadgetFPCc | :white_check_mark: |
 
 
 # linklist.o
