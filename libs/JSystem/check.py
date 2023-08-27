@@ -37,7 +37,9 @@ class FunctionLibrary:
 
                     line_split = line.rstrip().split(",")
 
-                    symbol = line_split[0]
+                    # We need to substitute any escaped commas in the symbol name
+                    symbol = line_split[0].replace("&#44;", ",")
+
                     obj_file = line_split[1]
                     library_name = line_split[2]
                     matches = line_split[3] == "true"
@@ -69,6 +71,9 @@ class FunctionLibrary:
                 output.write("Symbol Name, Object File, Library Archive, Matching\n")
 
                 for (symbol, obj_file), values in symbols.items():
+                    # Because the symbols are stored in a csv file, we need to escape any commas in the symbol name
+                    # so that the commas do not confuse the parser script
+                    symbol = symbol.replace(",", "&#44;");
                     output.write(f"{symbol},{obj_file},{values[0]},{str(values[1]).lower()}\n")
 
     def get_obj_names_from_symbol(self, symbol_lookup):
@@ -313,10 +318,10 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 assert(len(original_operands) == len(custom_operands))
 
                 # First check common r2 and r13 issues
-                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STW, PPC_INS_LFS }:
+                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STW, PPC_INS_STB, PPC_INS_LFS }:
                     assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
-                    # lbz, lwz, stw and lfs are sometimes used with r13, which is a pointer to a read-write
+                    # lbz, lwz, stw, stb and lfs are sometimes used with r13, which is a pointer to a read-write
                     # small data area (SDA). When compiling custom code, this SDA is not generated,
                     # so the register is set to r0 and the displacement is set to 0.
 

@@ -2,6 +2,8 @@
 
 #include <revolution.h>
 
+#include "JSystem/JAudio2/JASTaskThread.h"
+
 class JASGenericMemPool {
 public:
     JASGenericMemPool();
@@ -32,3 +34,37 @@ class JASPoolAllocObject : public JASMemPool<T> {
 public:
     static JASPoolAllocObject<T> memPool_;
 };
+
+template<typename T>
+class JASMemPool_MultiThreaded : public JASGenericMemPool {
+public:
+    void *alloc(u32 size) NO_INLINE {
+        {
+            JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded>::Lock lock(*this);
+            return JASGenericMemPool::alloc(size);
+        }
+    }
+    void free(void *addr, u32 size) NO_INLINE {
+        {
+            JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded>::Lock lock(*this);
+            JASGenericMemPool::free(addr, size);
+        }
+    }
+};
+
+template<typename T>
+class JASPoolAllocObject_MultiThreaded {
+public:
+    static JASMemPool_MultiThreaded<T> memPool_;
+
+    static void* operator new(u32 size) NO_INLINE {
+        return memPool_.alloc(size);
+    }
+    static void operator delete(void *addr, u32 size) NO_INLINE {
+        memPool_.free(addr, size);
+    }
+};
+
+template<typename T>
+JASMemPool_MultiThreaded<T> JASPoolAllocObject_MultiThreaded<T>::memPool_
+    = JASMemPool_MultiThreaded<T>();
