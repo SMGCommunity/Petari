@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <revolution/types.h>
 
+#include "JSystem/JGadget/predicate.h"
+
 #include "Inline.h"
 
 #define JGADGET_LINK_LIST(type, node) JGadget::TLinkList<type, -offsetof(type, node)>
@@ -55,32 +57,53 @@ namespace JGadget {
     class TNodeLinkList {
     public:
         struct iterator {
-            struct iteratorData {
-                TLinkListNode *curr;
-                inline iteratorData(TLinkListNode *curr) : curr(curr) {}
-                inline bool operator!=(const iteratorData &rOther) {return curr == rOther.curr;}
-            };
             iterator() NO_INLINE;
-            inline iterator(iteratorData data) : curr(data.curr) {}
             iterator(TLinkListNode *) NO_INLINE;
-            inline iterator(TLinkListNode *node, bool pretend) : curr(node) {}
             iterator(const iterator &) NO_INLINE;
             iterator& operator++() NO_INLINE;
             TLinkListNode* operator->() const NO_INLINE;
-            inline iteratorData getData() const {return iteratorData(curr);}
+            INLINE_FUNC_DECL(iterator, TLinkListNode *node) : curr(node) {}
             TLinkListNode *curr;
         };
         TNodeLinkList() NO_INLINE;
         ~TNodeLinkList();
         void Initialize_() NO_INLINE;
-        iterator::iteratorData begin() NO_INLINE;
-        iterator::iteratorData end() NO_INLINE;
-        iterator::iteratorData Insert(iterator, TLinkListNode *);
+        TLinkListNode* begin() NO_INLINE;
+        TLinkListNode* end() NO_INLINE;
+        TLinkListNode* Insert(iterator, TLinkListNode *);
         TLinkListNode* Erase(TLinkListNode *);
         void Remove(TLinkListNode *);
 
         INLINE_FUNC_DECL_NO_ARG(TNodeLinkList) : CALL_INLINE_FUNC_NO_ARG(mEnd) {
             Initialize_();
+        }
+
+        template<typename T>
+        inline void Remove_if(T p, TNodeLinkList &removed) {
+            TLinkListNode *curr, *end, *removedEnd;
+            removedEnd = &removed.mEnd;
+            curr = mEnd.mNext;
+            end = &mEnd;
+            while(curr != end) {
+                TLinkListNode *prev = curr;
+                if(p(curr)) {
+                    curr = curr->mNext;
+                    removed.splice (
+                        CALL_INLINE_FUNC (iterator, removedEnd),
+                        *this,
+                        CALL_INLINE_FUNC(iterator, prev)
+                    );
+                }
+                else curr = curr->mNext;
+            }
+            
+        }
+
+        template<typename T>
+        inline void remove_if(T p) {
+            TNodeLinkList CALL_INLINE_FUNC_NO_ARG(removed);
+            Remove_if(p, removed);
+            //return ret;
         }
 
         void splice(iterator, TNodeLinkList &, iterator);
@@ -94,17 +117,11 @@ namespace JGadget {
             public TIterator<std::bidirectional_iterator_tag, T>,
             public TNodeLinkList::iterator
         {
-            struct iteratorData : TNodeLinkList::iterator::iteratorData {
-                inline iteratorData(TLinkListNode *curr)
-                    : TNodeLinkList::iterator::iteratorData(curr) {}
-            };
-            inline iterator(iteratorData data) : TNodeLinkList::iterator(data) {}
             iterator() NO_INLINE : TNodeLinkList::iterator() {}
-            inline iterator(TLinkListNode *iter) : curr(iter) {}
+            iterator(TLinkListNode *iter) : CALL_INLINE_FUNC(TNodeLinkList::iterator, iter) {}
             iterator(TNodeLinkList::iterator iter) NO_INLINE : TNodeLinkList::iterator(iter) {}
-            iterator(const iterator &rOther) : TNodeLinkList::iterator(rOther.curr, false) {
-                //curr = rOther.curr;
-            }
+            iterator(const iterator &rOther)
+                : CALL_INLINE_FUNC(TNodeLinkList::iterator, rOther.curr) {}
             const iterator& operator=(const iterator &rOther) NO_INLINE {
                 TIterator<std::bidirectional_iterator_tag, T>::operator=(rOther);
                 curr = rOther.curr;
@@ -128,33 +145,26 @@ namespace JGadget {
 
         ~TLinkList() NO_INLINE {};
         
-        iterator::iteratorData begin() NO_INLINE {
-            return iterator::iteratorData(
-                iterator(
-                    TNodeLinkList::iterator(
-                        TNodeLinkList::begin()
-                    )
-                ).curr
-            );
+        TLinkListNode* begin() NO_INLINE {
+            return iterator(CALL_INLINE_FUNC(TNodeLinkList::iterator, TNodeLinkList::begin())).curr;
         }
         
-        iterator::iteratorData end() NO_INLINE {
-            return iterator::iteratorData(iterator(TNodeLinkList::end()).curr);
+        TLinkListNode* end() NO_INLINE {
+            return iterator(CALL_INLINE_FUNC(TNodeLinkList::iterator, TNodeLinkList::end())).curr;
         }
         void Push_back(T *element) NO_INLINE {
-            Insert(iterator(end()), element);
+            Insert(end(), element);
         }
-        iterator::iteratorData Insert(iterator pos, T *element) NO_INLINE {
-            return iterator::iteratorData(
-                iterator(
-                    TNodeLinkList::iterator(
-                        TNodeLinkList::Insert(
-                            TNodeLinkList::iterator(pos.curr, false),
-                            Element_toNode(element)
-                        )
+        TLinkListNode* Insert(iterator pos, T *element) NO_INLINE {
+            return iterator (
+                CALL_INLINE_FUNC (
+                    TNodeLinkList::iterator,
+                    TNodeLinkList::Insert (
+                        CALL_INLINE_FUNC(TNodeLinkList::iterator, pos.curr),
+                        Element_toNode(element)
                     )
-                ).curr
-            );
+                )
+            ).curr;
         }
         static TLinkListNode* Element_toNode(T *element) NO_INLINE {
             return (TLinkListNode *)((u8 *)element - NODE_OFFSET);

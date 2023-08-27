@@ -1,4 +1,5 @@
 #include "JSystem/JGadget/linklist.h"
+#include "JSystem/JGadget/predicate.h"
 
 namespace JGadget {
     inline const JGadget::TLinkListNode *getNode(const JGadget::TNodeLinkList::iterator &self) {
@@ -14,11 +15,11 @@ namespace JGadget {
         if(!flag) {
             TLinkListNode *nodeB = b.curr;
             list.Erase(nodeB);
-            Insert(iterator(iterator::iteratorData(a.curr)), nodeB);
+            Insert(CALL_INLINE_FUNC(iterator, a.curr), nodeB);
         }
     }
-    TNodeLinkList::iterator::iteratorData TNodeLinkList::Insert
-        (iterator iter, TLinkListNode *node) {
+    
+    TLinkListNode* TNodeLinkList::Insert(iterator iter, TLinkListNode *node) {
         TLinkListNode *next = iter.curr;
         TLinkListNode *prev = next->mPrev;
         node->mNext = next;
@@ -26,7 +27,7 @@ namespace JGadget {
         next->mPrev = node;
         prev->mNext = node;
         mLen++;
-        return iterator::iteratorData(node);
+        return node;
     }
     TLinkListNode* TNodeLinkList::Erase(TLinkListNode *node) {
         TLinkListNode *next = node->mNext, *prev = node->mPrev;
@@ -36,19 +37,7 @@ namespace JGadget {
         return next;
     }
     void TNodeLinkList::Remove(TLinkListNode *node) {
-        TLinkListNode *curr, *end, *tmpCurr, *&last = node;
-        TNodeLinkList CALL_INLINE_FUNC_NO_ARG(tmp);
-        tmpCurr = &tmp.mEnd;
-        curr = mEnd.mNext;
-        end = &mEnd;
-        for( ;curr != end; ) {
-            TLinkListNode *prev = curr;
-            if(curr == last) {
-                curr = curr->mNext;
-                tmp.splice(iterator(tmpCurr, false), *this, iterator(prev, false));
-            }
-            else curr = curr->mNext;
-        }
+        remove_if(TPRIsEqual_pointer_<TLinkListNode>(node));
     }
     void TNodeLinkList::Initialize_() {
         mLen = 0;

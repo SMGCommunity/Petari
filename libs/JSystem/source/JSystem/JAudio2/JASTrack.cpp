@@ -745,8 +745,8 @@ namespace JGadget {
     
     TLinkListNode::TLinkListNode() : mPrev(nullptr), mNext(nullptr) {}
     
-    TNodeLinkList::iterator::iteratorData TNodeLinkList::end() {
-        return iterator::iteratorData(iterator(&mEnd).curr);
+    TLinkListNode* TNodeLinkList::end() {
+        return iterator(&mEnd).curr;
     }
 
     TNodeLinkList::iterator::iterator(TLinkListNode *node) {
@@ -757,8 +757,8 @@ namespace JGadget {
 
     TNodeLinkList::iterator::iterator() {}
 
-    TNodeLinkList::iterator::iteratorData TNodeLinkList::begin() {
-        return iterator::iteratorData(iterator(mEnd.getNext()).curr);
+    TLinkListNode* TNodeLinkList::begin() {
+        return iterator(mEnd.getNext()).curr;
     }
 
     TLinkListNode* TLinkListNode::getNext() const {
@@ -785,7 +785,8 @@ namespace JGadget {
         JASTrack::TList::InternalList::iterator a,
         JASTrack::TList::InternalList::iterator b
     ) {
-        return TNodeLinkList::iterator(a.curr, false) == TNodeLinkList::iterator(b.curr, false);
+        return CALL_INLINE_FUNC(TNodeLinkList::iterator, a.curr)
+            == CALL_INLINE_FUNC(TNodeLinkList::iterator, b.curr);
     }
 
     bool operator==(TNodeLinkList::iterator a, TNodeLinkList::iterator b) {

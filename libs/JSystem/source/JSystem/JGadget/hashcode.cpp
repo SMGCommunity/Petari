@@ -1,20 +1,8 @@
 #include "JSystem/JGadget/hashcode.h"
+#include "JSystem/JGadget/predicate.h"
 
 namespace JGadget {
     namespace {
-        template<typename T>
-        class TPRIsEnd_value_ {
-        public:
-
-            TPRIsEnd_value_(T value) : end(value) {}
-            
-            template<typename U>
-            inline bool operator()(U const other) {
-                return other == end;
-            }
-        private:
-            T end;
-        };
         template<typename T>
         inline u32 getHashCode_(const T *data, TPRIsEnd_value_<T> p) {
             u32 hash = 0;
