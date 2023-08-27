@@ -2,10 +2,13 @@
 #include "JSystem/JGadget/predicate.h"
 
 namespace JGadget {
+    
     inline const JGadget::TLinkListNode *getNode(const JGadget::TNodeLinkList::iterator &self) {
         return self.curr;
     }
+
     TNodeLinkList::~TNodeLinkList() {}
+
     void TNodeLinkList::splice(iterator a, TNodeLinkList &list, iterator b) {
         TLinkListNode *&curr = b.curr;
         TLinkListNode *&aCurr = a.curr;
@@ -29,6 +32,7 @@ namespace JGadget {
         mLen++;
         return node;
     }
+
     TLinkListNode* TNodeLinkList::Erase(TLinkListNode *node) {
         TLinkListNode *next = node->mNext, *prev = node->mPrev;
         next->mPrev = prev;
@@ -36,9 +40,11 @@ namespace JGadget {
         mLen--;
         return next;
     }
+
     void TNodeLinkList::Remove(TLinkListNode *node) {
         remove_if(TPRIsEqual_pointer_<TLinkListNode>(node));
     }
+
     void TNodeLinkList::Initialize_() {
         mLen = 0;
         mEnd.mNext = &mEnd;
