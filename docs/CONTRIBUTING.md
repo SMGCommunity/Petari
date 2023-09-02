@@ -265,4 +265,4 @@ do not mangle to the same symbol.
 
 <!----------------------------------------------------------------------------->
 
-[Discord]: https://discord.gg/k7ZKzSDsVq
+[Discord]: https://discord.gg/QnZ4cKkZm3
