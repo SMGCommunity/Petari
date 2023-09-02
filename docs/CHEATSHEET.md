@@ -1,7 +1,5 @@
 # Super Mario Galaxy 1 Cheatsheet
 
-The new cheatsheet is located [here](http://shibbo.net/decomp/).
-
 ## Symbols
 
 There are specific ways that CodeWarrior mangles symbols when overloading operators for classes.
