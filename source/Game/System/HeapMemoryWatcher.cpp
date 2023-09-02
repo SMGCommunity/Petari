@@ -136,7 +136,7 @@ void HeapMemoryWatcher::createRootHeap() {
 void HeapMemoryWatcher::createHeaps() {
     MR::CurrentHeapRestorer chr = MR::CurrentHeapRestorer(JKRHeap::sRootHeap);
     createExpHeap(0x40000, JKRHeap::sRootHeap, false)->becomeSystemHeap();
-    _24 = createSolidHeap(0x1E0000, JKRHeap::sRootHeap);
+    mAudSystemHeap = createSolidHeap(0x1E0000, JKRHeap::sRootHeap);
     mStationedHeapNapa = createExpHeap(0x900000, JKRHeap::sRootHeap, false);
     JKRHeap* gddr = HeapMemoryWatcher::sRootHeapGDDR3;
     u32 thing = ((WPADGetWorkMemorySize() + 0x1F) & 0xFFFFFFE0) + 208;
@@ -161,7 +161,7 @@ HeapMemoryWatcher::HeapMemoryWatcher() {
     mSceneHeapGDDR = nullptr;
     mWPadHeap = nullptr;
     mHomeButtonLayoutHeap = nullptr;
-    _24 = nullptr;
+    mAudSystemHeap = nullptr;
     JKRHeap::setErrorHandler(HeapMemoryWatcher::memoryErrorCallback);
     createHeaps(); 
 }

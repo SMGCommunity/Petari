@@ -30,7 +30,7 @@
 | [GameSystemFontHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFontHolder.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [GameSystemFrameControl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFrameControl.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [GameSystemFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFunction.md) | 0.0% | 0 / 48 | 0.0% | :x: 
-| [GameSystemObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemObjHolder.md) | 0.0% | 0 / 20 | 0.0% | :x: 
+| [GameSystemObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemObjHolder.md) | 55.87583148558758% | 12 / 20 | 60.0% | :eight_pointed_black_star: 
 | [GameSystemStationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemStationedArchiveLoader.md) | 19.795221843003414% | 9 / 52 | 17.307692307692307% | :eight_pointed_black_star: 
 | [GameSystemSceneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemSceneController.md) | 3.651266766020864% | 5 / 78 | 6.41025641025641% | :eight_pointed_black_star: 
 | [GameSystemResetAndPowerProcess.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemResetAndPowerProcess.md) | 0.0% | 0 / 36 | 0.0% | :x: 

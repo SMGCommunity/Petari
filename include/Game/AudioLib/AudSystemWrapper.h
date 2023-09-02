@@ -17,6 +17,10 @@ public:
     void resumeReset();
     void receiveResouceForInitialize();
 
+    void requestResourceForInitialize();
+
+    void updateAudioSystem();
+
     AudSystem* mSystem;                 // _0
     JKRSolidHeap* _4;
     JKRHeap* _8;

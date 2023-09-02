@@ -63,4 +63,6 @@ namespace MR {
     void emitEffect(LayoutActor *, const char *);
 
     void setCometAnimFromId(LayoutActor *, int, u32);
+
+    void createAndAddLayoutHolderRawData(const char *);
 };

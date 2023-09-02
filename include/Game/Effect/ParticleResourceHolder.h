@@ -25,6 +25,6 @@ public:
     JPAResourceManager* mResourceMgr;   // _0
     JMapInfo* mAutoEffectList;          // _4
     JMapInfo* mParticleNames;           // _8
-    Particle mParticles[1024];          // _C
+    Particle mParticles[512];          // _C
     int mNumParticles;                  // _100C
 };

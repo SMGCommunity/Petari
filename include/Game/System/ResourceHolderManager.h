@@ -21,10 +21,15 @@ public:
 
 class ResourceHolderManager { 
 public:
+    ResourceHolderManager();
+
     void createResourceHolder(char const *, CreateResourceHolderArgs *);
 
     void createAndAddLayoutHolderStationed(const char *);
     void createAndAddStationed(const char *);
 
     static void startCreateResourceHolderOnMainThread(const char *, CreateResourceHolderArgs *);
+
+    ResourceHolderManagerName2Resource mResources[0x200];           // _0
+    u32 mNumResources;                                              // _2000
 };
