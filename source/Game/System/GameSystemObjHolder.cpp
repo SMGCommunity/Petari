@@ -131,7 +131,12 @@ void GameSystemObjHolder::initRenderMode() {
     mRenderModeObj->field_rendering = obj->mFieldRendering;
     mRenderModeObj->aa = obj->mAA;
 
-    // some loop here I can't figure out
+    /*for (int i = 0; i < 12; i++) {
+        for (int j = 0; j < 3; j++) {
+            u8* pattern = obj->mSamplePattern[i][j];
+            mRenderModeObj->sample_pattern[i][j] = pattern;
+        }
+    }*/
 
     mRenderModeObj->vfilter[0] = obj->mFilter[0];
     mRenderModeObj->vfilter[1] = obj->mFilter[1];

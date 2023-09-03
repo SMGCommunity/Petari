@@ -25,16 +25,22 @@ JKRHeap* StationedArchiveLoader::getProperHeap(const MR::StationedFileInfo *pInf
 }
 
 void StationedArchiveLoader::loadResourcesFromTable(const StationedArchiveLoader::Condition &rCondition) {
+    // grab the stationed file info table
     const MR::StationedFileInfo* info = MR::getStationedFileInfoTable();
 
+    // while the current archive is not nullptr (the last entry in the list is a null entry)
     while (info->mArchive != nullptr) {
+        // if the condition of the loader is to execute the loading of archives
         if (rCondition.isExecute(info)) {
+            // grab the proper heap for loading the archive (0 = NAPA, 1 = GDDR)
             JKRHeap* heap = rCondition.getProperHeap(info);
 
+            // if there is not a specific proper heap to use, we try the archive loader's specified heap
             if (heap == nullptr) {
                 heap = StationedArchiveLoader::getProperHeap(info);
             }
 
+            // load the file into memory based on the load type
             switch (info->mLoadType) {
                 case 0:
                     MR::loadToMainRAM(info->mArchive, nullptr, heap, JKRDvdRipper::ALLOC_DIRECTION_1);
@@ -49,6 +55,7 @@ void StationedArchiveLoader::loadResourcesFromTable(const StationedArchiveLoader
             }
         }
 
+        // increment to next entry
         info++;
     }
 }

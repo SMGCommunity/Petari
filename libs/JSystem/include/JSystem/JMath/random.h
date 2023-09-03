@@ -7,9 +7,9 @@ namespace JMath {
     public:
         TRandom_fast_(u32);
 
-        inline u32 rand() {
+        /*inline u32 rand() {
             return mSeed = 0x19660d * mEntropy + 0x3c6ef35f;;
-        }
+        }*/
 
         u32 mSeed;
     };
