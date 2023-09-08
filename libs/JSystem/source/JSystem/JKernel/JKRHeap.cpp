@@ -11,12 +11,14 @@ void* JKRHeap::mCodeEnd;
 void* JKRHeap::mUserRamStart;
 void* JKRHeap::mUserRamEnd;
 
+JKRErrorHandler JKRHeap::mErrorHandler;
+
 static bool byte_806B26D8;
 static bool byte_806B70B8;
 
 u32 JKRHeap::mMemorySize;
 
-static u32 ARALT_AramStartAddr = 0x90000000;
+u32 JKRHeap::ARALT_AramStartAddr = 0x90000000;
 
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);

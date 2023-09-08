@@ -13,6 +13,10 @@ public:
         CMemBlock* allocBack(u32, u8, u8, u8, u8);
         static CMemBlock* getHeapBlock(void *);
 
+        void* getContent() const { 
+            return (void*)(this + 1); 
+        }
+
         u16 mMagic;             // _0
         u8 mFlags;              // _2
         u8 mGroupId;            // _3
@@ -49,6 +53,10 @@ public:
     void* allocFromTail(u32);
     void* allocFromTail(u32, int);
     bool isEmpty();
+
+    void appendUsedList(JKRExpHeap::CMemBlock *);
+    void setFreeBlock(CMemBlock *, CMemBlock *, CMemBlock *);
+    void removeFreeBlock(CMemBlock *);
 
     static JKRExpHeap* create(void *, u32, JKRHeap *, bool);
     static JKRExpHeap* create(u32, JKRHeap *, bool);

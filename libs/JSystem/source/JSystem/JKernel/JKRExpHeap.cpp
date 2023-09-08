@@ -5,6 +5,12 @@
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
+static u32 DBfoundSize;
+static u32 DBfoundOffset;
+static JKRExpHeap::CMemBlock* DBfoundBlock;
+static JKRExpHeap::CMemBlock* DBnewFreeBlock;
+static JKRExpHeap::CMemBlock* DBnewUsedBlock;
+
 JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
     JKRExpHeap* heap = nullptr;
 
@@ -141,7 +147,7 @@ void* JKRExpHeap::do_alloc(u32 size, int align) {
     return ptr;
 }
 
-// JKRExpHeap::allocFromHead
+// JKRExpheap::allocFromHead
 // JKRExpHeap::allocFromTail
 
 
