@@ -1,13 +1,13 @@
 Symbol Name, Object File, Library Archive, Matching
-TRKNubMainLoop,mainloop.o,TRK_Hollywood_Revolution.a,false
+TRKNubMainLoop,mainloop.o,TRK_Hollywood_Revolution.a,true
 TRKDestructEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
 TRKConstructEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
 TRKPostEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
 TRKGetNextEvent,nubevent.o,TRK_Hollywood_Revolution.a,true
 TRKInitializeEventQueue,nubevent.o,TRK_Hollywood_Revolution.a,true
-TRKNubWelcome,nubinit.o,TRK_Hollywood_Revolution.a,false
-TRKTerminateNub,nubinit.o,TRK_Hollywood_Revolution.a,false
-TRKInitializeNub,nubinit.o,TRK_Hollywood_Revolution.a,false
+TRKNubWelcome,nubinit.o,TRK_Hollywood_Revolution.a,true
+TRKTerminateNub,nubinit.o,TRK_Hollywood_Revolution.a,true
+TRKInitializeNub,nubinit.o,TRK_Hollywood_Revolution.a,true
 TRKMessageSend,msg.o,TRK_Hollywood_Revolution.a,true
 TRKReadBuffer_ui32,msgbuf.o,TRK_Hollywood_Revolution.a,true
 TRKReadBuffer_ui8,msgbuf.o,TRK_Hollywood_Revolution.a,true
@@ -30,8 +30,8 @@ TRKGetInput,serpoll.o,TRK_Hollywood_Revolution.a,true
 TRKTestForPacket,serpoll.o,TRK_Hollywood_Revolution.a,false
 usr_put_initialize,usr_put.o,TRK_Hollywood_Revolution.a,true
 usr_puts_serial,usr_put.o,TRK_Hollywood_Revolution.a,true
-TRKDispatchMessage,dispatch.o,TRK_Hollywood_Revolution.a,false
-TRKInitializeDispatcher,dispatch.o,TRK_Hollywood_Revolution.a,false
+TRKDispatchMessage,dispatch.o,TRK_Hollywood_Revolution.a,true
+TRKInitializeDispatcher,dispatch.o,TRK_Hollywood_Revolution.a,true
 TRKDoSetOption,msghndlr.o,TRK_Hollywood_Revolution.a,false
 TRKDoStop,msghndlr.o,TRK_Hollywood_Revolution.a,false
 TRKDoStep,msghndlr.o,TRK_Hollywood_Revolution.a,false
@@ -60,10 +60,10 @@ TRKDoNotifyStopped,notify.o,TRK_Hollywood_Revolution.a,false
 TRK_flush_cache,flush_cache.o,TRK_Hollywood_Revolution.a,false
 TRK_fill_mem,mem_TRK.o,TRK_Hollywood_Revolution.a,false
 TRK_strlen,string_TRK.o,TRK_Hollywood_Revolution.a,false
-__TRK_get_MSR,targimpl.o,TRK_Hollywood_Revolution.a,false
-__TRK_set_MSR,targimpl.o,TRK_Hollywood_Revolution.a,false
+__TRK_get_MSR,targimpl.o,TRK_Hollywood_Revolution.a,true
+__TRK_set_MSR,targimpl.o,TRK_Hollywood_Revolution.a,true
 TRK_ppc_memcpy,targimpl.o,TRK_Hollywood_Revolution.a,false
-TRKInterruptHandler,targimpl.o,TRK_Hollywood_Revolution.a,false
+TRKInterruptHandler,targimpl.o,TRK_Hollywood_Revolution.a,true
 TRKExceptionHandler,targimpl.o,TRK_Hollywood_Revolution.a,false
 TRKSwapAndGo,targimpl.o,TRK_Hollywood_Revolution.a,false
 TRKInterruptHandlerEnableInterrupts,targimpl.o,TRK_Hollywood_Revolution.a,false

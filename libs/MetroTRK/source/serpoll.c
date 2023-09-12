@@ -55,23 +55,3 @@ void TRKGetInput(void) {
         TRKPostEvent(&event);
     }
 }
-
-MessageBufferID TRKTestForPacket(void) {
-    int dbgErr, err;
-    MessageBufferID id;
-    MessageBuffer* b;
-    int bytes, i;
-
-    bytes = TRKPollUART();
-
-    if (bytes > 0) {
-        dbgErr = TRKGetFreeBuffer(&id, &b);
-        TRKSetBufferPosition(b, 0);
-
-        err = TRKReadUARTN(b->fData, 0x40);
-
-        if (err == 0) {
-            TRKAppendBuffer_ui8(b, b->fData, 0x40);
-        }
-    }
-}
