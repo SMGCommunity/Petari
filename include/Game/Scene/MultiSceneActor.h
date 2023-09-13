@@ -9,7 +9,10 @@ class MultiSceneActor : public NameObj {
 public:
     MultiSceneActor(const char *, const char *, bool);
 
-    virtual ~MultiSceneActor();
+    virtual ~MultiSceneActor() {
+
+    }
+
     virtual void init(const JMapInfoIter &);
     virtual void movement();
     virtual void calcAnim();
@@ -31,4 +34,30 @@ public:
     EffectSystem* mEffectSystem;                // _38
     MultiSceneEffectKeeper* mEffectKeeper;      // _3C
     Spine* mNerve;                              // _40
+};
+
+class MultiScene {
+public:
+    static void startBck(MultiSceneActor *, const char *);
+    static void startBtk(MultiSceneActor *, const char *);
+    static void startBtp(MultiSceneActor *, const char *);
+    static void startBva(MultiSceneActor *, const char *);
+    static void setBtpFrameAndStop(MultiSceneActor *, f32);
+    static void setBvaFrameAndStop(MultiSceneActor *, f32);
+    static bool isBckStopped(MultiSceneActor *);
+    static bool isStep(const MultiSceneActor *, s32);
+    static bool isFirstStep(const MultiSceneActor *);
+    static bool isGreaterStep(const MultiSceneActor *, s32);
+    static bool isLessStep(const MultiSceneActor *, s32);
+    static bool isLessEqualStep(const MultiSceneActor *, s32);
+    static void setNerveAtStep(MultiSceneActor *, const Nerve *, s32);
+    static void setNerveAtBckStopped(MultiSceneActor *, const Nerve *);
+    static f32 calcNerveRate(const MultiSceneActor *, s32);
+    static f32 calcNerveRate(const MultiSceneActor *, s32, s32);
+    static f32 calcNerveEaseOutRate(const MultiSceneActor *, s32);
+    static f32 calcNerveValue(const MultiSceneActor *, s32, f32, f32);
+    static void emitEffect(const MultiSceneActor *, const char *);
+    static void deleteEffectAll(const MultiSceneActor *);
+    static void forceDeleteEffectAll(const MultiSceneActor *);
+    static MtxPtr getJointMtx(const MultiSceneActor *, const char *);
 };

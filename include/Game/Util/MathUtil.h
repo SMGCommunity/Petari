@@ -3,6 +3,7 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
+#include <JSystem/JMath/JMATrigonometric.h>
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
@@ -232,6 +233,11 @@ namespace MR {
         return a1 + (f32)fmod(a3 + a2, a3);
     }
 
+    inline f32 modAndSubtract(f32 a1,  f32 a3, f32 a4) {
+        f32 mod = fmod((a3 + (a1 - a4)), a3);
+        return a4 + mod;
+    }
+
     inline f32 add(f32 lhs, f32 rhs) {
         return lhs + rhs;
     }
@@ -265,7 +271,24 @@ namespace MR {
     }
 
     f32 cos(f32);
-    f32 sin(f32);
+    f32 sin(f32 val) {
+        /*f32 res;
+
+        if (val < 0.0f) {
+            res = -JMath::sSinCosTable.sinShort(-2607.5945f * val);
+        }
+        else {
+            res = JMath::sSinCosTable.sinShort(2607.5945f * val);
+        }
+
+        return res;*/
+
+        return JMath::sSinCosTable.sinLap(val);
+    }
+
+    inline f32 sin_inline(f32 val) {
+        return JMath::sSinCosTable.sinLap(val);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

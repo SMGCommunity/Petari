@@ -23,6 +23,17 @@ namespace JMath
 
         f32 sinShort(s8 v) const { return table[static_cast<u8>(v) >> 3].a1; }
         f32 cosShort(s8 v) const { return table[static_cast<u8>(v) >> 3].b1; }
+    
+        inline f32 sinLap(f32 v) {
+            if (v < 0.0f) {
+                v *= -2607.5945f;
+                return -table[(u16)v & 0x3FFF].a1;
+            }
+            else {
+                v *= 2607.5945f;
+                return table[(u16)v & 0x3FFF].a1; 
+            }
+        }
     };
 
     template<s32 Len, typename T>

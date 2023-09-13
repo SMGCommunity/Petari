@@ -69,7 +69,7 @@
 | [RailGraphIter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/RailGraphIter.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [RailGraphNode.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/RailGraphNode.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [RailPart.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/RailPart.md) | 81.33333333333333% | 11 / 12 | 91.66666666666666% | :eight_pointed_black_star: 
-| [ScenarioSelectStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/ScenarioSelectStar.md) | 0.0% | 0 / 37 | 0.0% | :x: 
+| [ScenarioSelectStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/ScenarioSelectStar.md) | 35.44631306597672% | 8 / 37 | 21.62162162162162% | :eight_pointed_black_star: 
 | [SeaGull.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/SeaGull.md) | 54.52127659574468% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
 | [Sky.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/Sky.md) | 97.39696312364426% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | [SleepController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/SleepController.md) | 0.0% | 0 / 3 | 0.0% | :x: 

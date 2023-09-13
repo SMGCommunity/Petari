@@ -5,23 +5,23 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 37 Completed -- (0.0%)
+# 8 / 37 Completed -- (21.62162162162162%)
 # ScenarioSelectStar.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__dt__15MultiSceneActorFv` | :x: |
-| `__ct__18ScenarioSelectStarFP12EffectSystem` | :x: |
+| `__ct__18ScenarioSelectStarFP12EffectSystem` | :white_check_mark: |
 | `init__18ScenarioSelectStarFRC12JMapInfoIter` | :x: |
-| `calcViewAndEntry__18ScenarioSelectStarFv` | :x: |
-| `appear__18ScenarioSelectStarFv` | :x: |
+| `calcViewAndEntry__18ScenarioSelectStarFv` | :white_check_mark: |
+| `appear__18ScenarioSelectStarFv` | :white_check_mark: |
 | `kill__18ScenarioSelectStarFv` | :x: |
-| `tryPointing__18ScenarioSelectStarFv` | :x: |
+| `tryPointing__18ScenarioSelectStarFv` | :white_check_mark: |
 | `select__18ScenarioSelectStarFv` | :x: |
 | `notSelect__18ScenarioSelectStarFv` | :x: |
-| `isAppearEnd__18ScenarioSelectStarCFv` | :x: |
-| `setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3<f>l` | :x: |
-| `control__18ScenarioSelectStarFv` | :x: |
-| `tryEndPointing__18ScenarioSelectStarFv` | :x: |
+| `isAppearEnd__18ScenarioSelectStarCFv` | :white_check_mark: |
+| `setup__18ScenarioSelectStarFliRCQ29JGeometry8TVec3<f>l` | :white_check_mark: |
+| `control__18ScenarioSelectStarFv` | :white_check_mark: |
+| `tryEndPointing__18ScenarioSelectStarFv` | :white_check_mark: |
 | `updatePos__18ScenarioSelectStarFv` | :x: |
 | `exeAppear__18ScenarioSelectStarFv` | :x: |
 | `exeNotPointing__18ScenarioSelectStarFv` | :x: |
