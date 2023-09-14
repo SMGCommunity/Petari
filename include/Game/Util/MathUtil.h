@@ -33,7 +33,7 @@ namespace MR {
     f32 getEaseInValue(f32, f32, f32, f32);
     f32 getEaseOutValue(f32, f32, f32, f32);
     f32 getEaseInOutValue(f32, f32, f32, f32);
-    // MR::getScaleWithReactionValueZeroToOne
+    f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue
     void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, TVec3f &rSrc);
