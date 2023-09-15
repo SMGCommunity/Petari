@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 63 Completed -- (0.0%)
+# 28 / 63 Completed -- (44.44444444444444%)
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__20ScenarioSelectLayoutFP12EffectSystemPC13CameraContext` | :x: |
-| `init__20ScenarioSelectLayoutFRC12JMapInfoIter` | :x: |
+| `__ct__20ScenarioSelectLayoutFP12EffectSystemPC13CameraContext` | :white_check_mark: |
+| `init__20ScenarioSelectLayoutFRC12JMapInfoIter` | :white_check_mark: |
 | `appear__20ScenarioSelectLayoutFv` | :x: |
 | `kill__20ScenarioSelectLayoutFv` | :x: |
 | `movement__20ScenarioSelectLayoutFv` | :x: |
@@ -46,29 +46,29 @@
 | `exeAfterScenarioSelected__20ScenarioSelectLayoutFv` | :x: |
 | `exeDisappear__20ScenarioSelectLayoutFv` | :x: |
 | `exeCancel__20ScenarioSelectLayoutFv` | :x: |
-| `exeAppearCometWarning__20ScenarioSelectLayoutFv` | :x: |
-| `exeWaitCometWarning__20ScenarioSelectLayoutFv` | :x: |
-| `__dt__20ScenarioSelectLayoutFv` | :x: |
-| `__sinit_\ScenarioSelectLayout_cpp` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout33ScenarioSelectLayoutNrvAppearStarFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvAppearFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvWaitScenarioSelectFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvDecideFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvAfterScenarioSelectedFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout32ScenarioSelectLayoutNrvDisappearFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvCancelFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout36ScenarioSelectLayoutNrvCancelFadeOutFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvAppearCometWarningFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout39ScenarioSelectLayoutNrvWaitCometWarningFv` | :x: |
-| `__ct__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvDisappearCometWarningFv` | :x: |
-| `execute__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvDisappearCometWarningCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout39ScenarioSelectLayoutNrvWaitCometWarningCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvAppearCometWarningCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout36ScenarioSelectLayoutNrvCancelFadeOutCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvCancelCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout32ScenarioSelectLayoutNrvDisappearCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvAfterScenarioSelectedCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvDecideCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvWaitScenarioSelectCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvAppearCFP5Spine` | :x: |
-| `execute__Q223NrvScenarioSelectLayout33ScenarioSelectLayoutNrvAppearStarCFP5Spine` | :x: |
+| `exeAppearCometWarning__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeWaitCometWarning__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `__dt__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `__sinit_\ScenarioSelectLayout_cpp` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout33ScenarioSelectLayoutNrvAppearStarFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvAppearFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvWaitScenarioSelectFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvDecideFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvAfterScenarioSelectedFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout32ScenarioSelectLayoutNrvDisappearFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvCancelFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout36ScenarioSelectLayoutNrvCancelFadeOutFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvAppearCometWarningFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout39ScenarioSelectLayoutNrvWaitCometWarningFv` | :white_check_mark: |
+| `__ct__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvDisappearCometWarningFv` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvDisappearCometWarningCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout39ScenarioSelectLayoutNrvWaitCometWarningCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvAppearCometWarningCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout36ScenarioSelectLayoutNrvCancelFadeOutCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvCancelCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout32ScenarioSelectLayoutNrvDisappearCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout44ScenarioSelectLayoutNrvAfterScenarioSelectedCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvDecideCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout41ScenarioSelectLayoutNrvWaitScenarioSelectCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout29ScenarioSelectLayoutNrvAppearCFP5Spine` | :white_check_mark: |
+| `execute__Q223NrvScenarioSelectLayout33ScenarioSelectLayoutNrvAppearStarCFP5Spine` | :white_check_mark: |

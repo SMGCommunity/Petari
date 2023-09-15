@@ -3,7 +3,7 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
-#include <JSystem/JMath/JMATrigonometric.h>
+//#include <JSystem/JMath/JMATrigonometric.h>
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
@@ -271,24 +271,7 @@ namespace MR {
     }
 
     f32 cos(f32);
-    f32 sin(f32 val) {
-        /*f32 res;
-
-        if (val < 0.0f) {
-            res = -JMath::sSinCosTable.sinShort(-2607.5945f * val);
-        }
-        else {
-            res = JMath::sSinCosTable.sinShort(2607.5945f * val);
-        }
-
-        return res;*/
-
-        return JMath::sSinCosTable.sinLap(val);
-    }
-
-    inline f32 sin_inline(f32 val) {
-        return JMath::sSinCosTable.sinLap(val);
-    }
+    f32 sin(f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

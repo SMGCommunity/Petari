@@ -258,10 +258,10 @@ lib_percent_colors = {
     "Util": "ff6666"
 }
 
-noGraph = False
+doGraph = False
 
-if "-nographgen" in sys.argv:
-    noGraph = True
+if "-graph" in sys.argv:
+    doGraph = True
 
 func_sizes = {}
 
@@ -358,7 +358,7 @@ for key in libraries:
     lib = libraries[key]
     lib.generateMarkdown()
 
-if not noGraph:
+if doGraph:
     print("Generating progress graph...")
 
     # now we do the cool progress drawing chart

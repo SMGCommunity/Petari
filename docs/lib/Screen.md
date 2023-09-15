@@ -111,7 +111,7 @@
 | [PurpleCoinCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/PurpleCoinCounter.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [ReplaceTagProcessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ReplaceTagProcessor.md) | 0.0% | 0 / 12 | 0.0% | :x: 
 | [SaveIcon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SaveIcon.md) | 0.0% | 0 / 4 | 0.0% | :x: 
-| [ScenarioSelectLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioSelectLayout.md) | 0.0% | 0 / 63 | 0.0% | :x: 
+| [ScenarioSelectLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioSelectLayout.md) | 21.309963099630995% | 28 / 63 | 44.44444444444444% | :eight_pointed_black_star: 
 | [ScenarioTitle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioTitle.md) | 0.0% | 0 / 14 | 0.0% | :x: 
 | [SceneWipeHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SceneWipeHolder.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenAlphaCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenAlphaCapture.md) | 0.0% | 0 / 9 | 0.0% | :x: 

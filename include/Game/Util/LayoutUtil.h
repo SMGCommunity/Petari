@@ -4,11 +4,14 @@
 #include "JSystem/JGeometry.h"
 
 class LayoutActor;
+class Nerve;
 
 namespace MR {
     void createAndAddPaneCtrl(LayoutActor *, const char *, u32);
 
     void startPaneAnim(LayoutActor *, const char *, const char *, u32);
+
+    void showPaneRecursive(LayoutActor *, const char *);
 
     void startAnim(LayoutActor *, const char *, u32);
 
@@ -42,6 +45,7 @@ namespace MR {
     void setTextBoxFormatRecursive(LayoutActor *, const char *, const wchar_t *, ...);
 
     bool isFirstStep(const LayoutActor *);
+    bool isGreaterStep(const LayoutActor *, s32);
 
     bool isDead(const LayoutActor *);
 
@@ -64,5 +68,22 @@ namespace MR {
 
     void setCometAnimFromId(LayoutActor *, int, u32);
 
+    void setCometPaneAnimFromId(LayoutActor *, const char *, int, u32);
+
     void createAndAddLayoutHolderRawData(const char *);
+
+    void setEffectHostMtx(LayoutActor *, const char *, MtxPtr);
+
+    void addStarPointerTargetCircle(LayoutActor *, const char *, f32, const TVec2f &, const char *);
+
+    void startPaneAnimAtFirstStep(LayoutActor *, const char *, const char *, u32);
+
+    void setNerveAtPaneAnimStopped(LayoutActor *, const char *, const Nerve *, u32);
+
+    void setNerveAtStep(LayoutActor *, const Nerve *, s32);
+
+    void setTextBoxGameMessageRecursive(LayoutActor *, const char *, const char *);
+    void setTextBoxArgGameMessageRecursive(LayoutActor *, const char *, const char *, s32);
+
+    bool isStep(const LayoutActor *, s32);
 };

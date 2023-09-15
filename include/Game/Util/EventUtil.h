@@ -74,4 +74,6 @@ namespace MR {
     int getEncounterGalaxyCometNameId(const char *);
 
     int getStarPieceNum();
+
+    const char* getCometNameFromId(int);
 };

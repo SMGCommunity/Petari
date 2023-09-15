@@ -45,6 +45,8 @@ public:
 
     void updateSpine();
 
+    void initPointingTarget(int);
+
     LayoutManager* mManager;                                    // _C
     Spine* mSpine;                                              // _10
     PaneEffectKeeper* mPaneEffectKeeper;                        // _14
