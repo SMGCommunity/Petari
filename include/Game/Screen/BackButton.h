@@ -13,6 +13,9 @@ public:
     virtual void appear();
     virtual void control();
 
+    void disappear();
+    bool isHidden() const;
+
     ButtonPaneController* mController;      // _20
     u8 _24;
     u8 _25;

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 28 / 63 Completed -- (44.44444444444444%)
+# 34 / 63 Completed -- (53.96825396825397%)
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -40,12 +40,12 @@
 | `startAnimAllNewPane__20ScenarioSelectLayoutFPCc` | :x: |
 | `setAnimRateAllNewPane__20ScenarioSelectLayoutFf` | :x: |
 | `exeAppearStar__20ScenarioSelectLayoutFv` | :x: |
-| `exeAppear__20ScenarioSelectLayoutFv` | :x: |
-| `exeWaitScenarioSelect__20ScenarioSelectLayoutFv` | :x: |
-| `exeDecide__20ScenarioSelectLayoutFv` | :x: |
-| `exeAfterScenarioSelected__20ScenarioSelectLayoutFv` | :x: |
-| `exeDisappear__20ScenarioSelectLayoutFv` | :x: |
-| `exeCancel__20ScenarioSelectLayoutFv` | :x: |
+| `exeAppear__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeWaitScenarioSelect__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeDecide__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeAfterScenarioSelected__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeDisappear__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `exeCancel__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `exeAppearCometWarning__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `exeWaitCometWarning__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `__dt__20ScenarioSelectLayoutFv` | :white_check_mark: |

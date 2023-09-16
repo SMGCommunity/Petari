@@ -7,9 +7,13 @@ class LayoutActor;
 class Nerve;
 
 namespace MR {
+    void setEffectRate(LayoutActor *, const char *, f32);
+    void setEffectDirectionalSpeed(LayoutActor *, const char *, f32);
+
     void createAndAddPaneCtrl(LayoutActor *, const char *, u32);
 
     void startPaneAnim(LayoutActor *, const char *, const char *, u32);
+    void startPaneAnimAtStep(LayoutActor *, const char *, const char *, s32, u32);
 
     void showPaneRecursive(LayoutActor *, const char *);
 
@@ -19,6 +23,7 @@ namespace MR {
     void setPaneAnimFrameAndStop(LayoutActor *, const char *, f32, u32);
 
     void setAnimRate(LayoutActor *, f32, u32);
+    void setPaneAnimRate(LayoutActor *, const char *, f32, u32);
 
     f32 getAnimFrame(const LayoutActor *, u32);
 
@@ -86,4 +91,8 @@ namespace MR {
     void setTextBoxArgGameMessageRecursive(LayoutActor *, const char *, const char *, s32);
 
     bool isStep(const LayoutActor *, s32);
+
+    void hideLayout(LayoutActor *);
+
+    f32 calcNerveEaseInValue(const LayoutActor *, s32, s32, f32, f32);
 };

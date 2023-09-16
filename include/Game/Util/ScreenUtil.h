@@ -26,6 +26,8 @@ namespace MR {
     void forceOpenWipeFade();
     void openWipeFade(f32);
 
+    void openSystemWipeWhiteFade(s32);
+
     bool isStageBeginTitleWipe();
     bool isStageBeginFadeWipe();
     bool isStageBeginWithoutWipe();
@@ -62,4 +64,8 @@ namespace MR {
 
     void createPurpleCoinCounter();
     void validatePurpleCoinCounter();
+
+    bool isSystemWipeActive();
+
+    void closeSystemWipeWhiteFade(s32);
 };

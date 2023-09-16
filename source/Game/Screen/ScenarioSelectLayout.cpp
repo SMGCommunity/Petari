@@ -1,4 +1,5 @@
 #include "Game/Screen/ScenarioSelectLayout.h"
+#include "Game/Effect/MultiEmitter.h"
 
 namespace {
     const char* const cStarPaneName[] = {
@@ -94,6 +95,109 @@ void ScenarioSelectLayout::exeDisappearCometWarning() {
  
 void ScenarioSelectLayout::exeCancelFadeOut() {
     kill();
+}
+
+void ScenarioSelectLayout::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::setPaneAnimRate(this, "ScenarioSelect", 1.0f, 0);
+        setAnimRateAllNewPane(1.0f);
+    }
+
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::setNerveAtPaneAnimStopped(this, "ScenarioSelect", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitScenarioSelect::sInstance, 0);
+}
+
+void ScenarioSelectLayout::exeWaitScenarioSelect() {
+    if (MR::isFirstStep(this)) {
+        startAnimAllNewPane("NewWait");
+        mBackButton->appear();
+    }
+
+    updateSelectedScenario();
+    updateScenarioText();
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+
+    if (!tryCancel()) {
+        if (trySelect()) {
+            _28 = 1;
+            MR::startSystemSE("SE_SY_DECIDE_1", -1, -1);
+            MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
+            mBackButton->disappear();
+            setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDecide::sInstance);
+        }
+    }
+}
+
+void ScenarioSelectLayout::exeDecide() {
+    if (MR::isFirstStep(this)) {
+        for (s32 i = 0; i < 7; i++) {
+            if (!mStars[i]->_30) {
+                if (mStars[i] == getSelectedStar()) {
+                    mStars[i]->select();
+                }
+                else {
+                    mStars[i]->notSelect();
+                }
+            }
+        }
+
+        startAnimAllNewPane("End");
+    }
+
+    updateScenarioText();
+    MR::startSystemSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::setNerveAtStep(this,  &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance, 40);
+}
+
+void ScenarioSelectLayout::exeAfterScenarioSelected() {
+    MR::startPaneAnimAtStep(this, "ScenarioFrame", "End", 60, 0);
+    updateScenarioText();
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    f32 v2 = MR::calcNerveEaseInValue(this, 60, 150, 2.0f, 15.0f);
+    f32 v3 = MR::calcNerveEaseInValue(this, 60, 150, 9.0f, 15.0f);
+    MR::setEffectRate(this, "ScenarioSelectEffect", v2);
+    MR::setEffectDirectionalSpeed(this, "ScenarioSelectEffect", v3);
+
+    if (MR::isStep(this, 180)) {
+        MR::stopStageBGM(30);
+        MR::closeSystemWipeWhiteFade(30);
+    }
+}
+
+void ScenarioSelectLayout::exeDisappear() {
+    if (MR::isFirstStep(this)) {
+        MR::hideLayout(this);
+        MR::getEffect(this, "ScenarioSelectEffect")->forceDelete(mEffectSystem);
+    
+        for (s32 i = 0; i < 7; i++) {
+            ScenarioSelectStar* star = mStars[i];
+
+            if (!star->_30) {
+                star->kill();
+            }
+        }
+
+        mScenarioSky->kill();
+        MR::openSystemWipeWhiteFade(180);
+    }
+
+    if (!MR::isSystemWipeActive()) {
+        kill();
+    }
+}
+
+void ScenarioSelectLayout::exeCancel() {
+    if (MR::isFirstStep(this)) {
+        mSelectedScenarioNo = -1;
+    }
+
+    updateScenarioText();
+
+    if (mBackButton->isHidden()) {
+        MR::closeSystemWipeCircleWithCaptureScreen(90);
+        MR::stopStageBGM(1);
+        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
+    }
 }
 
 void ScenarioSelectLayout::exeAppearCometWarning() {

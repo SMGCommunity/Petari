@@ -7,6 +7,8 @@ class ParticleEmitter;
 class LiveActor;
 class HitSensor;
 class SingleEmitter;
+class MultiEmitter;
+class LayoutActor;
 
 namespace MR {
     namespace Effect {
@@ -24,6 +26,8 @@ namespace MR {
     void deleteEffectAll(LiveActor *);
 
     void emitEffect(LiveActor *, const char *);
+
+    MultiEmitter* getEffect(const LayoutActor *, const char *);
 
     void addEffect(LiveActor *, const char *);
 
