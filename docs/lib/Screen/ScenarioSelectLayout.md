@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 34 / 63 Completed -- (53.96825396825397%)
+# 42 / 63 Completed -- (66.66666666666666%)
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -29,17 +29,17 @@
 | `fadeInText__20ScenarioSelectLayoutFv` | :x: |
 | `fadeOutText__20ScenarioSelectLayoutFv` | :x: |
 | `trySelect__20ScenarioSelectLayoutFv` | :x: |
-| `getSelectedStar__20ScenarioSelectLayoutCFv` | :x: |
+| `getSelectedStar__20ScenarioSelectLayoutCFv` | :white_check_mark: |
 | `calcWorldPositionFromScreenPos__20ScenarioSelectLayoutCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>f` | :x: |
 | `calcDisplayScenarioNum__20ScenarioSelectLayoutCFPlPl` | :x: |
 | `appearAllStar__20ScenarioSelectLayoutFllb` | :x: |
-| `appearStar__20ScenarioSelectLayoutFlli` | :x: |
-| `isAppearStarEndAll__20ScenarioSelectLayoutCFv` | :x: |
-| `tryCancel__20ScenarioSelectLayoutFv` | :x: |
-| `setPlayerLeft__20ScenarioSelectLayoutFv` | :x: |
-| `startAnimAllNewPane__20ScenarioSelectLayoutFPCc` | :x: |
-| `setAnimRateAllNewPane__20ScenarioSelectLayoutFf` | :x: |
-| `exeAppearStar__20ScenarioSelectLayoutFv` | :x: |
+| `appearStar__20ScenarioSelectLayoutFlli` | :white_check_mark: |
+| `isAppearStarEndAll__20ScenarioSelectLayoutCFv` | :white_check_mark: |
+| `tryCancel__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `setPlayerLeft__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `startAnimAllNewPane__20ScenarioSelectLayoutFPCc` | :white_check_mark: |
+| `setAnimRateAllNewPane__20ScenarioSelectLayoutFf` | :white_check_mark: |
+| `exeAppearStar__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `exeAppear__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `exeWaitScenarioSelect__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `exeDecide__20ScenarioSelectLayoutFv` | :white_check_mark: |

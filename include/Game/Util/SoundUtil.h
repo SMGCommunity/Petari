@@ -9,6 +9,7 @@ namespace MR {
     void startCurrentStageBGM();
     void startBossBGM(s32);
 
+    void startStageBGM(const char *, bool);
     void startStageBGMFromStageName(const char *, const char * , s32);
 
     void stopStageBGM(u32);
@@ -61,4 +62,6 @@ namespace MR {
     s32 getRemixMelodyNoteNum(s32);
 
     void startSystemLevelSE(const char *, s32, s32);
+
+    void permitTrigSE();
 };

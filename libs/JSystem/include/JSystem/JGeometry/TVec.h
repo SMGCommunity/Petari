@@ -443,6 +443,7 @@ namespace JGeometry {
         }
 
         inline void addInline6(register const TVec3<T> &rOther) {
+            #ifndef __INTELLISENSE__
             register TVec3<T>* dst = this;
             //register f32 _2, _1, _0;
             register f32 totalZ, dstZ, dstXY,  srcZ, srcXY;
@@ -458,6 +459,7 @@ namespace JGeometry {
                 psq_st    dstXY, 0(dst), 0, 0
                 psq_st    totalZ, 8(dst), 1, 0
             };
+            #endif
         }
 
         inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {

@@ -1,5 +1,6 @@
 #include "Game/Screen/ScenarioSelectLayout.h"
 #include "Game/Effect/MultiEmitter.h"
+#include "Game/System/GalaxyStatusAccessor.h"
 
 namespace {
     const char* const cStarPaneName[] = {
@@ -88,6 +89,150 @@ void ScenarioSelectLayout::init(const JMapInfoIter &rIter) {
     initNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance);
 }
 
+/*
+bool ScenarioSelectLayout::trySelect() {
+    if (!MR::testDPDMenuPadDecideTrigger() || mSelectedScenarioNo <= 0) {
+        return false;
+    }
+
+    if (MR::isStarPointerInScreen(0)) {
+        return false;
+    }
+
+    for (s32 i = 0; i < 7; i++) {
+        if (!mStars[i]->_30 && !mStars[i]->_44) {
+            mSelectedScenarioNo = mStars[i]->mFrame;
+            return true;
+        }
+    }
+
+    return false;
+}
+*/
+
+ScenarioSelectStar* ScenarioSelectLayout::getSelectedStar() const {
+    for (s32 i = 0; i < 7; i++) {
+        if (!mStars[i]->_30 && mSelectedScenarioNo == mStars[i]->mFrame) {
+            return mStars[i];
+        }
+    }
+
+    return nullptr;
+}
+
+// ScenarioSelectLayout::calcWorldPositionFromScreenPos
+// ScenarioSelectLayout::calcDisplayScenarioNum
+
+/*
+void ScenarioSelectLayout::appearAllStar(s32 starCount, s32 a3, bool a4) {
+    if (MR::isScenarioDecided()) {
+        s32 v7 = 2;
+
+        if (a4) {
+            v7 = 0;
+        }
+
+        appearStar(0, MR::getCurrentScenarioNo(), v7);
+    }
+    else {
+        for (s32 i = 0; i < starCount; i++) {
+            s32 v10;
+            
+            if (a4) {
+                v10 = starCount % 80;
+            }
+            else {
+                v10 = 2;
+            }
+
+            appearStar(i, i + 1, v10);
+        }
+
+        s32 v11 = 3;
+
+        for (s32 j = 0; ; j++) {
+            s32 v14 = MR::getCurrentStageNormalScenarioNum();
+
+            if (j >= MR::getCurrentStagePowerStarNum() - v14) {
+                break;
+            }
+
+            s32 v13 = j + MR::getCurrentStageNormalScenarioNum() + 1;
+
+            if (MR::hasPowerStarInCurrentStage(v13)) {
+                appearStar(v11++, v13, (a4 == 0) - 1 + 2);
+            }
+        }
+    }
+}
+*/
+
+void ScenarioSelectLayout::appearStar(s32 starIdx, s32 a2, int a3) {
+    ScenarioSelectStar* star = mStars[starIdx];
+    TVec2f starPane;
+    MR::copyPaneTrans(&starPane, this, cStarPaneName[starIdx]);
+    TVec3f worldPos;
+    calcWorldPositionFromScreenPos(&worldPos, starPane, 1000.0f);
+    star->setup(a2, a3, worldPos, starIdx);
+    star->appear();
+}
+
+bool ScenarioSelectLayout::isAppearStarEndAll() const {
+    for (s32 i = 0; i < 7; i++) {
+        if (!mStars[i]->_30 && !mStars[i]->isAppearEnd()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool ScenarioSelectLayout::tryCancel() {
+    if (mBackButton->_24) {
+        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);
+        return true;
+    }
+    else if (MR::testCorePadTriggerB(0)) {
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        mBackButton->disappear();
+        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void ScenarioSelectLayout::setPlayerLeft() {
+    MR::setTextBoxGameMessageRecursive(this, "ShaMario", "PlayerLeft");
+    s32 playerLeft = MR::getPlayerLeft();
+    MR::setTextBoxNumberRecursive(this, "ShaMarioNum", playerLeft);
+
+    if (MR::getPlayerLeft() >= 10) {
+        _A0 = "MarioPosition10";
+    }
+    else {
+        _A0 = "MarioPosition01";
+    }
+}
+
+void ScenarioSelectLayout::startAnimAllNewPane(const char *pAnim) {
+    MR::startPaneAnim(this, "New", pAnim, 0);
+    MR::startPaneAnim(this, "NewStarGreen", pAnim, 0);
+
+    for (u32 i = 0; i < 2; i++) {
+        MR::startPaneAnim(this, cQuestionPaneName[i], pAnim, 0);
+    }
+}
+
+void ScenarioSelectLayout::setAnimRateAllNewPane(f32 rate) {
+    MR::setPaneAnimRate(this, "New", rate, 0);
+    MR::setPaneAnimRate(this, "NewStarGreen", rate, 0);
+
+    for (u32 i = 0; i < 2; i++) {
+        MR::setPaneAnimRate(this, cQuestionPaneName[i], rate, 0);
+    }
+}
+
 void ScenarioSelectLayout::exeDisappearCometWarning() {
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometEnd", 0);
     MR::setNerveAtPaneAnimStopped(this, "CometAppear", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance, 0);
@@ -95,6 +240,47 @@ void ScenarioSelectLayout::exeDisappearCometWarning() {
  
 void ScenarioSelectLayout::exeCancelFadeOut() {
     kill();
+}
+
+void ScenarioSelectLayout::exeAppearStar() {
+    if (MR::isFirstStep(this)) {
+        MR::permitTrigSE();
+        MR::getEffect(this, "ScenarioSelectEffect")->create(mEffectSystem);
+        MR::setEffectRate(this, "ScenarioSelectEffect", 2.0f);
+        MR::setEffectDirectionalSpeed(this, "ScenarioSelectEffect", 9.0f);
+
+        if (!MR::isPlayingStageBgmName("BGM_SENARIO_SEL")) {
+            MR::startStageBGM("BGM_SENARIO_SE_2", 0);
+        }
+    }
+
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SE_FLY", -1, -1);
+
+    if (isAppearStarEndAll()) {
+        s32 scenarioNo;
+        bool needsAppearComet;
+        if (!MR::isScenarioDecided()) {
+            needsAppearComet = false;
+        }
+        else {
+            scenarioNo = MR::getCurrentScenarioNo();
+            needsAppearComet = false;
+            GalaxyStatusAccessor galaxyAccessor = MR::makeCurrentGalaxyStatusAccessor();
+
+            if (galaxyAccessor.isCometStar(scenarioNo)) {
+                if (scenarioNo == MR::getEncounterGalaxyCometPowerStarId(MR::getCurrentStageName())) {
+                    needsAppearComet = true;
+                }
+            }
+        }
+
+        if (needsAppearComet) {
+            setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance);
+        }
+        else {
+            setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance);
+        }
+    }
 }
 
 void ScenarioSelectLayout::exeAppear() {
