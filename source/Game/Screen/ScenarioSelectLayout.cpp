@@ -1,6 +1,7 @@
 #include "Game/Screen/ScenarioSelectLayout.h"
 #include "Game/Effect/MultiEmitter.h"
 #include "Game/System/GalaxyStatusAccessor.h"
+#include "Game/Util.h"
 
 namespace {
     const char* const cStarPaneName[] = {
@@ -87,6 +88,73 @@ void ScenarioSelectLayout::init(const JMapInfoIter &rIter) {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
     initNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance);
+}
+
+// void ScenarioSelectLayout::appear
+
+void ScenarioSelectLayout::kill() {
+    for (s32 i = 0; i < 7; i++) {
+        ScenarioSelectStar* star = mStars[i];
+
+        if (!star->_30) {
+            star->kill();
+        }
+    }
+
+    mScenarioSky->kill();
+    mBackButton->kill();
+    LayoutActor::kill();
+}
+
+void ScenarioSelectLayout::movement() {
+    LayoutActor::movement();
+
+    for (s32 i = 0; i < 7; i++) {
+        mStars[i]->movement();
+    }
+
+    mScenarioSky->movement();
+    mBackButton->movement();
+}
+
+void ScenarioSelectLayout::calcAnim() {
+    LayoutActor::calcAnim();
+
+    for (s32 i = 0; i < 7; i++) {
+        mStars[i]->calcAnim();
+    }
+
+    mScenarioSky->calcAnim();
+    mBackButton->calcAnim();
+}
+
+void ScenarioSelectLayout::draw() const {
+    LayoutActor::draw();
+    mBackButton->draw();
+}
+
+void ScenarioSelectLayout::calcViewAndEntryStarModel() {
+    for (s32 i = 0; i < 7; i++) {
+        mStars[i]->calcViewAndEntry();
+    }
+
+    mScenarioSky->calcViewAndEntry();
+}
+
+s32 ScenarioSelectLayout::getSelectedScenarioNo() const {
+    return mSelectedScenarioNo;
+}
+
+bool ScenarioSelectLayout::isReadyToDisappear() const {
+    if (isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance)) {
+        return MR::isGreaterStep(this, 210);
+    }
+
+    return false;
+}
+
+void ScenarioSelectLayout::disappear() {
+    setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappear::sInstance);
 }
 
 /*

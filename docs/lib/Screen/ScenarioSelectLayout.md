@@ -5,20 +5,20 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 42 / 63 Completed -- (66.66666666666666%)
+# 48 / 63 Completed -- (76.19047619047619%)
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__20ScenarioSelectLayoutFP12EffectSystemPC13CameraContext` | :white_check_mark: |
 | `init__20ScenarioSelectLayoutFRC12JMapInfoIter` | :white_check_mark: |
 | `appear__20ScenarioSelectLayoutFv` | :x: |
-| `kill__20ScenarioSelectLayoutFv` | :x: |
-| `movement__20ScenarioSelectLayoutFv` | :x: |
-| `calcAnim__20ScenarioSelectLayoutFv` | :x: |
-| `draw__20ScenarioSelectLayoutCFv` | :x: |
-| `calcViewAndEntryStarModel__20ScenarioSelectLayoutFv` | :x: |
+| `kill__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `movement__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `calcAnim__20ScenarioSelectLayoutFv` | :white_check_mark: |
+| `draw__20ScenarioSelectLayoutCFv` | :white_check_mark: |
+| `calcViewAndEntryStarModel__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `getSelectedScenarioNo__20ScenarioSelectLayoutCFv` | :x: |
-| `isReadyToDisappear__20ScenarioSelectLayoutCFv` | :x: |
+| `isReadyToDisappear__20ScenarioSelectLayoutCFv` | :white_check_mark: |
 | `disappear__20ScenarioSelectLayoutFv` | :x: |
 | `isAppearStarEnd__20ScenarioSelectLayoutCFv` | :x: |
 | `isEndAnimStartStep__20ScenarioSelectLayoutCFv` | :x: |

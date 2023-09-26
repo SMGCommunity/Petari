@@ -3,7 +3,7 @@
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
 
-class LayoutActor;
+class Layout;
 class Nerve;
 
 namespace MR {

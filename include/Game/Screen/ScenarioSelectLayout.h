@@ -22,6 +22,7 @@ public:
     s32 getSelectedScenarioNo() const;
     bool isReadyToDisappear() const;
     void disappear();
+    bool isAppearStarEnd() const;
     bool isEndAnimStartStep() const;
     bool isCanceled() const;
     void updateSelectedScenario();
