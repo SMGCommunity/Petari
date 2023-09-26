@@ -282,6 +282,9 @@ namespace MR {
     bool isBindedGround(const LiveActor *);
     bool isBindedWall(const LiveActor *);
 
+    bool isBindedGroundIce(const LiveActor *);
+    bool isBindedGroundWater(const LiveActor *);
+
     bool isActionEnd(const LiveActor *);
 
     void setMirrorReflectionInfoFromModel(LiveActor *);

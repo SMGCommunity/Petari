@@ -131,6 +131,11 @@ namespace MR {
     f32 cosDegree(f32);
     f32 sinDegree(f32);
 
+    // this must not be declared as inline. some callers inline it and some do not
+    static f32 max(f32 x, f32 y) {
+        return x >= y ? x : y;
+    }
+
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
     */

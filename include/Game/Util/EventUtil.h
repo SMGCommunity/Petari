@@ -65,6 +65,8 @@ namespace MR {
     bool isUFOKinokoBeforeConstruction();
     bool isUFOKinokoUnderConstruction();
 
+    bool isStarPieceCounterStop();
+
     void updateAlreadyDoneFlag(int, u32);
     bool isOnMessageAlreadyRead(s8);
     void onMessageAlreadyRead(s8);

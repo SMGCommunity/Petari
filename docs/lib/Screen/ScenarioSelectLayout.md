@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 48 / 63 Completed -- (76.19047619047619%)
+# 49 / 63 Completed -- (77.77777777777779%)
 # ScenarioSelectLayout.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -17,7 +17,7 @@
 | `calcAnim__20ScenarioSelectLayoutFv` | :white_check_mark: |
 | `draw__20ScenarioSelectLayoutCFv` | :white_check_mark: |
 | `calcViewAndEntryStarModel__20ScenarioSelectLayoutFv` | :white_check_mark: |
-| `getSelectedScenarioNo__20ScenarioSelectLayoutCFv` | :x: |
+| `getSelectedScenarioNo__20ScenarioSelectLayoutCFv` | :white_check_mark: |
 | `isReadyToDisappear__20ScenarioSelectLayoutCFv` | :white_check_mark: |
 | `disappear__20ScenarioSelectLayoutFv` | :x: |
 | `isAppearStarEnd__20ScenarioSelectLayoutCFv` | :x: |
