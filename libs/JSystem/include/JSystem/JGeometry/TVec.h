@@ -103,6 +103,11 @@ namespace JGeometry {
             };
         }
 
+        // Scaling constructor
+        inline TVec3<T>(const TVec3<T> &rSrc, f32 scalar) : TVec3(rSrc) {
+            scale(scalar);
+        }
+
         /* General operations */
         void set(const Vec &rSrc);
 

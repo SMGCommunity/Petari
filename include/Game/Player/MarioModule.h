@@ -15,14 +15,14 @@ public:
         
     }
 
-    //virtual f32 getStickY() const;
+    virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f &);
     virtual void addVelocity(const TVec3f &, f32);
     virtual void init() = 0;
     virtual bool proc(u32) = 0;
     virtual bool start() = 0;
     virtual bool close() = 0;
-    virtual bool update() = 0;
+    virtual bool update() = 0; // Return false = sleep?
     virtual bool notice() = 0;
     virtual bool keep() = 0;
     virtual bool postureCtrl(MtxPtr) = 0;
@@ -98,7 +98,6 @@ public:
     void startPadVib(u32);
     void startPadVib(const char *);
     f32 getStickX() const;
-    f32 getStickY() const;
     f32 getStickP() const;
     bool checkTrgA() const;
     bool checkLvlA() const;

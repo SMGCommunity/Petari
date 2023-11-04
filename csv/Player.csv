@@ -1109,7 +1109,7 @@ startRotationTask__5MarioFUl,MarioSpin.o,Player.a,false
 doSpinWallEffect__5MarioFv,MarioSpin.o,Player.a,false
 taskOnRotation__5MarioFUl,MarioSpin.o,Player.a,false
 __sinit_\MarioSpin_cpp,MarioSpin.o,Player.a,false
-__ct__10MarioStateFP10MarioActorUl,MarioState.o,Player.a,false
+__ct__10MarioStateFP10MarioActorUl,MarioState.o,Player.a,true
 proc__10MarioStateFUl,MarioState.o,Player.a,false
 sendStateMsg__5MarioFUl,MarioState.o,Player.a,false
 updatePosture__5MarioFPA4_f,MarioState.o,Player.a,false
@@ -1197,7 +1197,7 @@ forceExitSwim__5MarioFv,MarioSwim.o,Player.a,false
 setDamage__9MarioSwimFRCQ29JGeometry8TVec3<f>Us,MarioSwim.o,Player.a,false
 checkStartSwim__5MarioFv,MarioSwim.o,Player.a,false
 startSwim__5MarioFv,MarioSwim.o,Player.a,false
-__ct__9MarioSwimFP10MarioActor,MarioSwim.o,Player.a,false
+__ct__9MarioSwimFP10MarioActor,MarioSwim.o,Player.a,true
 init__9MarioSwimFv,MarioSwim.o,Player.a,false
 start__9MarioSwimFv,MarioSwim.o,Player.a,false
 getSurface__9MarioSwimCFv,MarioSwim.o,Player.a,false
