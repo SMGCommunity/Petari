@@ -2,7 +2,7 @@
 
 #include "Game/Player/MarioModule.h"
 
-class MarioState : MarioModule {
+class MarioState : public MarioModule {
 public:
 
     MarioState(MarioActor *, u32);

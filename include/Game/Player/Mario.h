@@ -101,6 +101,11 @@ public:
     void checkGround();
     void updateFloorCode();
     void inputStick();
+    void tryJump();
+    void tryForcePowerJump(TVec3f, bool);
+    const TVec3f& getShadowNorm() const;
+    void setSideVec(const TVec3f &);
+    void setFrontVecKeepSide(const TVec3f &);
 
     struct MovementStates {
         unsigned _0 : 1;

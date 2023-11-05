@@ -66,6 +66,8 @@ namespace MR {
 
     bool isStageDisablePauseMenu();
 
+    bool isStageSwimAngleLimit();
+
     const char* getAppearPowerStarObjName(s32);
 
     JMapIdInfo& getInitializeStartIdInfo();

@@ -24,6 +24,7 @@ public:
     void setHoming();
     bool isAnimationStop();
     void setSpeed(f32);
+    void forceSetBlendWeight(const f32 *);
 
     XanimeResourceTable* _8;
     XanimePlayer* _C;

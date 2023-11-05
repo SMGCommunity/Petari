@@ -112,12 +112,13 @@ public:
     bool isSlipPolygon(const Triangle *) const;
     u32 getFloorCode() const;
     void calcPolygonAngleD(const Triangle *) const;
-    void calcAngleD(const TVec3f &) const;
+    f32 calcAngleD(const TVec3f &) const;
     Triangle* getTmpPolygon() const;
     bool sendPunch(HitSensor *, bool);
     HitSensor* getSensor(const Triangle *) const;
     f32 marioAcos(f32) const;
     bool isInputDisable() const;
+    void stopEffect(const char *);
 
     MarioActor* mActor;     // _4
 };

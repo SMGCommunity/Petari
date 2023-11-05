@@ -24,7 +24,23 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
     
-    void checkWaterCube(bool);
+    bool checkWaterCube(bool);
+    void onSurface();
+    void doJetJump(u8);
+    void updateLifeByTime();
+    void surfacePaddle();
+    void flowOnWave(f32);
+    void checkWaterBottom();
+    void spin();
+    void decideVelocity();
+    void procBuoyancy();
+    void decideAnimation();
+    void decideEffect(bool);
+    void updateTilt();
+    void jet();
+    void pushedByWaterWall();
+    
+    f32 getSurface() const;
 
     virtual TVec3f& getGravityVec() const;
 
@@ -61,12 +77,8 @@ public:
     f32 _54;
     f32 _58;
     f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    f32 _70;
-    f32 _74;
+    TVec3f _60;
+    TVec3f _6C;
     u8 _78;
     u16 _7A;
     u16 _7C;

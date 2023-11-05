@@ -95,6 +95,7 @@ public:
     bool isSleeping() const;
     bool isRefuseTalk() const;
     bool isDebugMode() const;
+    bool isRequestSpin() const;
 
     void jumpHop();
     void calcCenterPos();

@@ -25,6 +25,8 @@ namespace MR {
     
     void calcCubeRotate(const AreaObj *, TVec3f *);
 
+    bool calcWhirlPoolAccelInfo(const TVec3f &, TVec3f *);
+
     TBox3f *getCubeLocalBox(const AreaObj *);
 
     AreaObj* getCurrentAstroOverlookAreaObj();
