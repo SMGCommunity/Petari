@@ -5,6 +5,7 @@
 
 class Layout;
 class Nerve;
+class LayoutActor;
 
 namespace MR {
     void setEffectRate(LayoutActor *, const char *, f32);

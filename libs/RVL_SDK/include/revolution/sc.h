@@ -2,13 +2,17 @@
 #define SC_H
 
 #include <revolution/os.h>
-#include <private/scprivate.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef u8 SCType;
+
+typedef struct {
+    u8 mode;
+    u8 led;
+} SCIdleModeInfo;
 
 typedef struct {
     union {
@@ -34,28 +38,6 @@ typedef struct {
 
 typedef void (*SCReloadConfFileCallback)(s32 result);
 typedef void (*SCFlushCallback)(u32 result);
-
-typedef struct {
-    /*union {
-        u8 u8;
-        s8 s8;
-        u16 u16;
-        s16 s16;
-        u32 u32;
-        s32 s32;
-        u64 u64;
-        s64 s64;
-        u8 longPrecision64[sizeof(u64)];
-    } integer;*/
-
-    SCType typeInteger;
-    SCType typeByteArray;
-    u32 nameLen;
-    u32 dataSize;
-    char* name;
-    u8* data;
-    u32 packedSize;
-} SCItem;
 
 typedef enum {
     SC_ITEM_ID_IPL_COUNTER_BIAS,
