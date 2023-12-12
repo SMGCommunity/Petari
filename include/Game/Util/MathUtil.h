@@ -3,6 +3,7 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
+//#include <JSystem/JMath/JMATrigonometric.h>
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
@@ -10,6 +11,7 @@ static f32 maxDegree = 360.0f;
 static f32 flt_8060FC80[1816];
 
 namespace MR {
+    
     void initAcosTable();
 
     template<typename T>
@@ -31,7 +33,7 @@ namespace MR {
     f32 getEaseInValue(f32, f32, f32, f32);
     f32 getEaseOutValue(f32, f32, f32, f32);
     f32 getEaseInOutValue(f32, f32, f32, f32);
-    // MR::getScaleWithReactionValueZeroToOne
+    f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue
     void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, TVec3f &rSrc);
@@ -42,7 +44,7 @@ namespace MR {
     void makeAxisUpSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisVerticalZX(TVec3f *, const TVec3f &);
     void makeAxisCrossPlane(TVec3f *, TVec3f *, const TVec3f &);
-    void makeAxisAndCosignVecToVec(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
+    bool makeAxisAndCosignVecToVec(TVec3f *, f32 *, const TVec3f &, const TVec3f &);
     f32 calcPerpendicFootToLine(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
     f32 calcPerpendicFootToLineInside(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
 
@@ -62,6 +64,7 @@ namespace MR {
     bool isNearZero(const TVec3f &, f32);
 
     bool isSameDirection(const TVec3f &, const TVec3f &, float);
+    bool isOppositeDirection(const TVec3f &, const TVec3f &, f32);
 
     f32 diffAngleAbs(f32, f32);
     f32 normalizeAngleAbs(f32);
@@ -127,6 +130,11 @@ namespace MR {
 
     f32 cosDegree(f32);
     f32 sinDegree(f32);
+
+    // this must not be declared as inline. some callers inline it and some do not
+    static f32 max(f32 x, f32 y) {
+        return x >= y ? x : y;
+    }
 
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
@@ -204,6 +212,16 @@ namespace MR {
         return ret;
     }
 
+    inline TVec3f multVecNoCtor(const TVec3f& rSrc, f32 mult) {
+        return rSrc * mult;
+    }
+
+    inline TVec3f addVec(const TVec3f& rSrc, const TVec3f& rBase) {
+        TVec3f hurr(rBase);
+        hurr.addInline6(rSrc);
+        return hurr;
+    }
+
     inline f32 subtractFromSum(f32 lhs, f32 rhs, f32 sub) {
         return (rhs + lhs) - sub;
     }
@@ -218,6 +236,11 @@ namespace MR {
 
     inline f32 modAndAdd(f32 a1, f32 a2, f32 a3) {
         return a1 + (f32)fmod(a3 + a2, a3);
+    }
+
+    inline f32 modAndSubtract(f32 a1,  f32 a3, f32 a4) {
+        f32 mod = fmod((a3 + (a1 - a4)), a3);
+        return a4 + mod;
     }
 
     inline f32 add(f32 lhs, f32 rhs) {

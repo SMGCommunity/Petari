@@ -9,6 +9,8 @@ public:
 
     virtual ~JUTVideo();
 
+    static JUTVideo* createManager(const _GXRenderModeObj *);
+
     _GXRenderModeObj* mRenderModeObj;   // _4
     u32 _8;
     u32 mRetraceCount;                  // _C

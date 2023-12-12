@@ -71,6 +71,8 @@ OSThread* OSGetCurrentThread(void);
 BOOL OSIsThreadSuspended(OSThread *);
 BOOL OSIsThreadTerminated(OSThread *);
 
+BOOL OSCreateThread(OSThread *, void* (*func)(void*), void *, void *, u32, OSPriority, u16);
+void OSExitThread(void *);
 void OSCancelThread(OSThread *);
 BOOL OSJoinThread(OSThread *, void **);
 void OSDetachThread(OSThread *);
@@ -92,6 +94,14 @@ s32 OSEnableScheduler(void);
 void OSClearStack(u8);
 
 void __OSThreadInit(void);
+
+OSThread* __OSRecentThread : (0x8000 << 16 | 0x00E0);
+
+OSThread* __OSCurrentThread     : (OS_BASE_CACHED | 0x00E4);
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+
+volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0xD4);
+volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0xD8);
 
 #ifdef __cplusplus
 }

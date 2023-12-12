@@ -7,6 +7,7 @@ class AreaObj;
 class AreaObjContainer;
 class AreaObjMgr;
 class AreaCubeBoundingBox;
+class WaterInfo;
 
 namespace MR {
     AreaObjMgr* getAreaObjManager(const char *);
@@ -29,4 +30,6 @@ namespace MR {
     AreaObj* getCurrentAstroOverlookAreaObj();
 
     AreaObj* getAreaIn(const char *, const TVec3f &);
+
+    AreaObj* getWaterAreaObj(WaterInfo *, const TVec3f &);
 };

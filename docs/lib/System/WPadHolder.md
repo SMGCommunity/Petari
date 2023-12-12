@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 19 Completed -- (0.0%)
+# 8 / 19 Completed -- (42.10526315789473%)
 # WPadHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16WPadReadDataInfoFv` | :x: |
-| `getKPadStatus__16WPadReadDataInfoCFUl` | :x: |
-| `getValidStatusCount__16WPadReadDataInfoCFv` | :x: |
+| `__ct__16WPadReadDataInfoFv` | :white_check_mark: |
+| `getKPadStatus__16WPadReadDataInfoCFUl` | :white_check_mark: |
+| `getValidStatusCount__16WPadReadDataInfoCFv` | :white_check_mark: |
 | `__ct__10WPadHolderFv` | :x: |
 | `updateReadDataOnly__10WPadHolderFv` | :x: |
-| `updateProjectPadData__10WPadHolderFv` | :x: |
-| `updateInGame__10WPadHolderFv` | :x: |
-| `update__10WPadHolderFv` | :x: |
+| `updateProjectPadData__10WPadHolderFv` | :white_check_mark: |
+| `updateInGame__10WPadHolderFv` | :white_check_mark: |
+| `update__10WPadHolderFv` | :white_check_mark: |
 | `initSensorBarPosition__10WPadHolderFv` | :x: |
-| `resetPad__10WPadHolderFv` | :x: |
-| `getWPad__10WPadHolderFl` | :x: |
+| `resetPad__10WPadHolderFv` | :white_check_mark: |
+| `getWPad__10WPadHolderFl` | :white_check_mark: |
 | `setConnectCallback__10WPadHolderFv` | :x: |
 | `getWPadHolder__24@unnamed@WPadHolder_cpp@Fv` | :x: |
 | `getWPad__2MRFl` | :x: |

@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | JMath.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| random.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| random.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | JMATrigonometric.o | 0.0% | 0 / 6 | 0.0% | :x: 
 
 
@@ -26,7 +26,7 @@
 # random.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __ct__Q25JMath13TRandom_fast_FUl | :x: |
+| __ct__Q25JMath13TRandom_fast_FUl | :white_check_mark: |
 
 
 # JMATrigonometric.o

@@ -8,12 +8,12 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| Pad.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| Pad.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 
 
 # Pad.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __PADDisableRecalibration | :x: |
+| __PADDisableRecalibration | :white_check_mark: |
 
 

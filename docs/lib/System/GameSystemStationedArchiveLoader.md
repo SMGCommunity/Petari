@@ -5,19 +5,19 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 52 Completed -- (0.0%)
+# 9 / 52 Completed -- (17.307692307692307%)
 # GameSystemStationedArchiveLoader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `isExecute__22ConditionIfIsNotPlayerCFPCQ22MR17StationedFileInfo` | :x: |
-| `__ct__22ConditionUsePlayerHeapFv` | :x: |
-| `isExecute__22ConditionUsePlayerHeapCFPCQ22MR17StationedFileInfo` | :x: |
-| `getProperHeap__22ConditionUsePlayerHeapCFPCQ22MR17StationedFileInfo` | :x: |
-| `__ct__16PlayerHeapHolderFv` | :x: |
-| `adjust__16PlayerHeapHolderFv` | :x: |
-| `dispose__16PlayerHeapHolderFv` | :x: |
-| `setIsDataMario__16PlayerHeapHolderFb` | :x: |
-| `createHeap__16PlayerHeapHolderFUlP7JKRHeap` | :x: |
+| `isExecute__22ConditionIfIsNotPlayerCFPCQ22MR17StationedFileInfo` | :white_check_mark: |
+| `__ct__22ConditionUsePlayerHeapFv` | :white_check_mark: |
+| `isExecute__22ConditionUsePlayerHeapCFPCQ22MR17StationedFileInfo` | :white_check_mark: |
+| `getProperHeap__22ConditionUsePlayerHeapCFPCQ22MR17StationedFileInfo` | :white_check_mark: |
+| `__ct__16PlayerHeapHolderFv` | :white_check_mark: |
+| `adjust__16PlayerHeapHolderFv` | :white_check_mark: |
+| `dispose__16PlayerHeapHolderFv` | :white_check_mark: |
+| `setIsDataMario__16PlayerHeapHolderFb` | :white_check_mark: |
+| `createHeap__16PlayerHeapHolderFUlP7JKRHeap` | :white_check_mark: |
 | `__ct__32GameSystemStationedArchiveLoaderFv` | :x: |
 | `update__32GameSystemStationedArchiveLoaderFv` | :x: |
 | `isDone__32GameSystemStationedArchiveLoaderCFv` | :x: |

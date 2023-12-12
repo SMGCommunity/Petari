@@ -20,6 +20,7 @@ struct OSShutdownFunctionInfo {
 void OSReturnToMenu(void);
 void OSResetSystem(int, u32, BOOL);
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
+BOOL __OSCallShutdownFunctions(BOOL, u32);
 
 u32 OSGetResetCode(void);
 

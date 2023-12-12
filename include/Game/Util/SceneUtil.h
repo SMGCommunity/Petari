@@ -69,4 +69,8 @@ namespace MR {
     const char* getAppearPowerStarObjName(s32);
 
     JMapIdInfo& getInitializeStartIdInfo();
+
+    bool isScenarioDecided();
+
+    s32 getCurrentStageNormalScenarioNum();
 }

@@ -32,6 +32,7 @@ typedef f32 (*Mtx44Ptr)[4];
 /* C Matrix */
 void C_MTXIdentity(Mtx);
 void C_MTXCopy(const Mtx, Mtx);
+void C_MTXOrtho(Mtx44, f32, f32, f32, f32, f32, f32);
 
 /* Paired Single Matrix */
 void PSMTXIdentity(Mtx);
@@ -44,6 +45,9 @@ u32 PSMTXInverse(const Mtx, Mtx);
 void PSMTXMultVec(const Mtx, const Vec *, Vec *);
 
 void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
+void PSMTXScale(Mtx, f32, f32, f32);
+
+void PSMTXRotAxisRad(Mtx dst, const Vec *, f32);
 
 /* C Vector */
 

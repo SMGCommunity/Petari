@@ -42,7 +42,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,s -sdata 4 -sdata2 4 -inline auto -ipa file "
     includes = "-i . -I- -i include "
 
     msl_path =          pathlib.Path("../MSL_C/include")

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "revolution.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 
 class JKRArchive;
+class JKRHeap;
 
 namespace MR { 
     bool isFileExist(const char *, bool);
@@ -21,8 +21,8 @@ namespace MR {
     void* createAndAddArchive(void *, JKRHeap *, const char *);
     void getMountedArchiveAndHeap(const char *, JKRArchive **, JKRHeap **);
     void removeFileConsideringLanguage(const char *);
-    void removeResourceAndFileHOlderIfIsEqualHeap(JKRHeap *);
-    void decompressFileFromArchive(JKRArchive *, const char *, JKRHeap *, int);
+    void removeResourceAndFileHolderIfIsEqualHeap(JKRHeap *);
+    void* decompressFileFromArchive(JKRArchive *, const char *, JKRHeap *, int);
     bool isLoadedFile(const char *);
     bool isMountedArchive(const char *);
     bool isLoadedObjectOrLayoutArchive(const char *);

@@ -66,7 +66,11 @@ namespace JGeometry {
         }
 
         template<typename T>
-        TVec3(T _x, T _y, T _z);
+        inline TVec3(T _x, T _y, T _z) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
 
         TVec3(T val) {
             x = val;
@@ -177,7 +181,19 @@ namespace JGeometry {
     
         void negate();
         void negate(const TVec3<T> &rSrc);
-        void normalize(const TVec3<T> &rSrc);
+        float normalize(const TVec3<T> &rSrc);
+
+        inline TVec3<T> translate(const TVec3<T>& rSrc) const {
+            TVec3<T> tmp(*this);
+            tmp += rSrc;
+            return tmp;
+        }
+
+        inline TVec3<T> translateOpposite(const TVec3<T> &rSrc) const {
+            TVec3<T> tmp(*this);
+            tmp -= rSrc;
+            return tmp;
+        }
 
         template<typename S>
         void cubic(const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, const TVec3<T> &, T);
@@ -243,10 +259,6 @@ namespace JGeometry {
             TVec3<T> f = *this;
             f.scale(scalar);
             return f;
-        }
-
-        Vec multToVec(T scalar) {
-
         }
 
         TVec3<T> operator/(T) const;
@@ -428,6 +440,26 @@ namespace JGeometry {
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    aXY, 8(dst), 1, 0
             };
+        }
+
+        inline void addInline6(register const TVec3<T> &rOther) {
+            #ifndef __INTELLISENSE__
+            register TVec3<T>* dst = this;
+            //register f32 _2, _1, _0;
+            register f32 totalZ, dstZ, dstXY,  srcZ, srcXY;
+
+
+            __asm volatile {
+                psq_l     dstXY, 0(dst), 0, 0
+                psq_l     srcXY, 0(rOther), 0, 0
+                psq_l     dstZ, 8(dst), 1, 0
+                ps_add    dstXY, dstXY, srcXY
+                psq_l     srcZ, 8(rOther), 1, 0
+                ps_add    totalZ, dstZ, srcZ
+                psq_st    dstXY, 0(dst), 0, 0
+                psq_st    totalZ, 8(dst), 1, 0
+            };
+            #endif
         }
 
         inline void subInline(const TVec3<T>& rA, const TVec3<T>& rB) {

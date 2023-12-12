@@ -40,7 +40,7 @@ public:
     JKRSolidHeap* mSceneHeapGDDR;       // _18
     JKRExpHeap* mWPadHeap;              // _1C
     JKRExpHeap* mHomeButtonLayoutHeap;  // _20
-    JKRSolidHeap* _24;
+    JKRSolidHeap* mAudSystemHeap;       // _24
 
     static JKRExpHeap* sRootHeapGDDR3;
 };

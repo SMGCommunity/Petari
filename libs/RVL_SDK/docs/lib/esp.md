@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| esp.o | 17.078651685393258% | 3 / 10 | 30.0% | :eight_pointed_black_star: 
+| esp.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 
 
 # esp.o
@@ -17,12 +17,12 @@
 | ESP_InitLib | :white_check_mark: |
 | ESP_CloseLib | :white_check_mark: |
 | ESP_LaunchTitle | :white_check_mark: |
-| ESP_GetTicketViews | :x: |
-| ESP_DiGetTicketView | :x: |
-| ESP_DiGetTmd | :x: |
-| ESP_GetTmdView | :x: |
-| ESP_GetDataDir | :x: |
-| ESP_GetTitleId | :x: |
-| ESP_GetConsumption | :x: |
+| ESP_GetTicketViews | :white_check_mark: |
+| ESP_DiGetTicketView | :white_check_mark: |
+| ESP_DiGetTmd | :white_check_mark: |
+| ESP_GetTmdView | :white_check_mark: |
+| ESP_GetDataDir | :white_check_mark: |
+| ESP_GetTitleId | :white_check_mark: |
+| ESP_GetConsumption | :white_check_mark: |
 
 

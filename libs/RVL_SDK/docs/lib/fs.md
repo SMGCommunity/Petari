@@ -8,39 +8,39 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| fs.o | 0.5486968449931412% | 1 / 28 | 3.571428571428571% | :eight_pointed_black_star: 
+| fs.o | 100.0% | 28 / 28 | 100.0% | :white_check_mark: 
 
 
 # fs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ISFS_OpenLib | :x: |
-| _isfsFuncCb | :x: |
-| ISFS_CreateDir | :x: |
-| ISFS_CreateDirAsync | :x: |
-| ISFS_ReadDir | :x: |
-| ISFS_ReadDirAsync | :x: |
-| ISFS_GetAttr | :x: |
-| ISFS_GetAttrAsync | :x: |
-| ISFS_Delete | :x: |
-| ISFS_DeleteAsync | :x: |
-| ISFS_Rename | :x: |
-| ISFS_RenameAsync | :x: |
-| ISFS_GetUsage | :x: |
-| ISFS_CreateFile | :x: |
-| ISFS_CreateFileAsync | :x: |
-| ISFS_Open | :x: |
-| ISFS_OpenAsync | :x: |
-| ISFS_GetFileStats | :x: |
-| ISFS_GetFileStatsAsync | :x: |
-| ISFS_Seek | :x: |
-| ISFS_SeekAsync | :x: |
+| ISFS_OpenLib | :white_check_mark: |
+| _isfsFuncCb | :white_check_mark: |
+| ISFS_CreateDir | :white_check_mark: |
+| ISFS_CreateDirAsync | :white_check_mark: |
+| ISFS_ReadDir | :white_check_mark: |
+| ISFS_ReadDirAsync | :white_check_mark: |
+| ISFS_GetAttr | :white_check_mark: |
+| ISFS_GetAttrAsync | :white_check_mark: |
+| ISFS_Delete | :white_check_mark: |
+| ISFS_DeleteAsync | :white_check_mark: |
+| ISFS_Rename | :white_check_mark: |
+| ISFS_RenameAsync | :white_check_mark: |
+| ISFS_GetUsage | :white_check_mark: |
+| ISFS_CreateFile | :white_check_mark: |
+| ISFS_CreateFileAsync | :white_check_mark: |
+| ISFS_Open | :white_check_mark: |
+| ISFS_OpenAsync | :white_check_mark: |
+| ISFS_GetFileStats | :white_check_mark: |
+| ISFS_GetFileStatsAsync | :white_check_mark: |
+| ISFS_Seek | :white_check_mark: |
+| ISFS_SeekAsync | :white_check_mark: |
 | ISFS_Read | :white_check_mark: |
-| ISFS_ReadAsync | :x: |
-| ISFS_Write | :x: |
-| ISFS_WriteAsync | :x: |
-| ISFS_Close | :x: |
-| ISFS_CloseAsync | :x: |
-| ISFS_ShutdownAsync | :x: |
+| ISFS_ReadAsync | :white_check_mark: |
+| ISFS_Write | :white_check_mark: |
+| ISFS_WriteAsync | :white_check_mark: |
+| ISFS_Close | :white_check_mark: |
+| ISFS_CloseAsync | :white_check_mark: |
+| ISFS_ShutdownAsync | :white_check_mark: |
 
 

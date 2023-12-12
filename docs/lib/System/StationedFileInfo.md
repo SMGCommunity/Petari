@@ -5,8 +5,8 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 1 Completed -- (0.0%)
+# 1 / 1 Completed -- (100.0%)
 # StationedFileInfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getStationedFileInfoTable__2MRFv` | :x: |
+| `getStationedFileInfoTable__2MRFv` | :white_check_mark: |

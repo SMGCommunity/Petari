@@ -301,6 +301,11 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
             original_operands = original_instruction.operands
             custom_operands = custom_instruction.operands
 
+            if original_instruction.bytes == custom_instruction.bytes:
+                print(f"{Fore.GREEN}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
+                continue
+
+
             if str(original_instruction) == str(custom_instruction):
                 print(f"{Fore.GREEN}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
                 # Fully identical, nothing to be checked

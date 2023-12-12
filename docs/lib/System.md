@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [AlreadyDoneFlagInGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/AlreadyDoneFlagInGalaxy.md) | 58.98876404494382% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
-| [ArchiveHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ArchiveHolder.md) | 0.0% | 0 / 8 | 0.0% | :x: 
+| [ArchiveHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ArchiveHolder.md) | 75.47892720306514% | 7 / 8 | 87.5% | :eight_pointed_black_star: 
 | [AudSystemWrapper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/AudSystemWrapper.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [BinaryDataChunkHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/BinaryDataChunkHolder.md) | 16.877637130801688% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
 | [BinaryDataContentAccessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/BinaryDataContentAccessor.md) | 0.0% | 0 / 12 | 0.0% | :x: 
@@ -19,10 +19,10 @@
 | [DrawBufferHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/DrawBufferHolder.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [DrawSyncManager.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/DrawSyncManager.md) | 36.7816091954023% | 10 / 17 | 58.82352941176471% | :eight_pointed_black_star: 
 | [FileHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileHolder.md) | 76.36986301369863% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
-| [FileLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoader.md) | 0.0% | 0 / 16 | 0.0% | :x: 
+| [FileLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoader.md) | 90.3954802259887% | 15 / 16 | 93.75% | :eight_pointed_black_star: 
 | [FileLoaderThread.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileLoaderThread.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [FileRipper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FileRipper.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [FunctionAsyncExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FunctionAsyncExecutor.md) | 24.47817836812144% | 5 / 17 | 29.411764705882355% | :eight_pointed_black_star: 
+| [FunctionAsyncExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/FunctionAsyncExecutor.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | [GameSystem.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystem.md) | 8.732394366197182% | 1 / 32 | 3.125% | :eight_pointed_black_star: 
 | [GameSystemDimmingWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemDimmingWatcher.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [GameSystemErrorWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemErrorWatcher.md) | 0.0% | 0 / 23 | 0.0% | :x: 
@@ -30,11 +30,11 @@
 | [GameSystemFontHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFontHolder.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [GameSystemFrameControl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFrameControl.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [GameSystemFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemFunction.md) | 0.0% | 0 / 48 | 0.0% | :x: 
-| [GameSystemObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemObjHolder.md) | 0.0% | 0 / 20 | 0.0% | :x: 
-| [GameSystemStationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemStationedArchiveLoader.md) | 0.0% | 0 / 52 | 0.0% | :x: 
+| [GameSystemObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemObjHolder.md) | 55.87583148558758% | 12 / 20 | 60.0% | :eight_pointed_black_star: 
+| [GameSystemStationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemStationedArchiveLoader.md) | 19.795221843003414% | 9 / 52 | 17.307692307692307% | :eight_pointed_black_star: 
 | [GameSystemSceneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemSceneController.md) | 3.651266766020864% | 5 / 78 | 6.41025641025641% | :eight_pointed_black_star: 
 | [GameSystemResetAndPowerProcess.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/GameSystemResetAndPowerProcess.md) | 0.0% | 0 / 36 | 0.0% | :x: 
-| [HeapMemoryWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/HeapMemoryWatcher.md) | 89.85507246376811% | 18 / 19 | 94.73684210526315% | :eight_pointed_black_star: 
+| [HeapMemoryWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/HeapMemoryWatcher.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [Language.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/Language.md) | 38.392857142857146% | 2 / 7 | 28.57142857142857% | :eight_pointed_black_star: 
 | [LayoutHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/LayoutHolder.md) | 10.961968680089486% | 2 / 12 | 16.666666666666664% | :eight_pointed_black_star: 
 | [MainLoopFramework.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/MainLoopFramework.md) | 0.0% | 0 / 34 | 0.0% | :x: 
@@ -54,16 +54,16 @@
 | [ScenarioDataParser.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ScenarioDataParser.md) | 9.16955017301038% | 5 / 25 | 20.0% | :eight_pointed_black_star: 
 | [ShapePacketUserData.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/ShapePacketUserData.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [StarPointerOnOffController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StarPointerOnOffController.md) | 0.0% | 0 / 38 | 0.0% | :x: 
-| [StationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedArchiveLoader.md) | 0.0% | 0 / 6 | 0.0% | :x: 
-| [StationedFileInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedFileInfo.md) | 0.0% | 0 / 1 | 0.0% | :x: 
+| [StationedArchiveLoader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedArchiveLoader.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| [StationedFileInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/StationedFileInfo.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [WPad.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPad.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [WPadAcceleration.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadAcceleration.md) | 0.0% | 0 / 9 | 0.0% | :x: 
-| [WPadButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadButton.md) | 0.0% | 0 / 29 | 0.0% | :x: 
-| [WPadHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHolder.md) | 0.0% | 0 / 19 | 0.0% | :x: 
+| [WPadButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadButton.md) | 100.0% | 29 / 29 | 100.0% | :white_check_mark: 
+| [WPadHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHolder.md) | 35.774647887323944% | 8 / 19 | 42.10526315789473% | :eight_pointed_black_star: 
 | [WPadHVSwing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadHVSwing.md) | 0.0% | 0 / 4 | 0.0% | :x: 
-| [WPadInfoChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadInfoChecker.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [WPadInfoChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadInfoChecker.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [WPadLeaveWatcher.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadLeaveWatcher.md) | 0.0% | 0 / 5 | 0.0% | :x: 
-| [WPadPointer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadPointer.md) | 0.0% | 0 / 9 | 0.0% | :x: 
+| [WPadPointer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadPointer.md) | 44.48051948051948% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | [WPadRumble.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadRumble.md) | 0.0% | 0 / 14 | 0.0% | :x: 
 | [WPadRumbleData.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadRumbleData.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [WPadStick.o](https://github.com/shibbo/Petari/blob/master/docs/lib/System/WPadStick.md) | 0.0% | 0 / 3 | 0.0% | :x: 

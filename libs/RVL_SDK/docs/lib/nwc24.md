@@ -12,21 +12,21 @@
 | NWC24FileAPI.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | NWC24Config.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | NWC24Utils.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| NWC24Manage.o | 0.0% | 0 / 11 | 0.0% | :x: 
+| NWC24Manage.o | 12.719298245614036% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
 | NWC24MsgObj.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | NWC24MBoxCtrl.o | 0.0% | 0 / 14 | 0.0% | :x: 
 | NWC24Mime.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | NWC24Parser.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | NWC24MsgCommit.o | 0.0% | 0 / 19 | 0.0% | :x: 
-| NWC24Schedule.o | 0.0% | 0 / 10 | 0.0% | :x: 
+| NWC24Schedule.o | 49.60254372019078% | 6 / 10 | 60.0% | :eight_pointed_black_star: 
 | NWC24DateParser.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | NWC24FriendList.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | NWC24SecretFList.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | NWC24UserId.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| NWC24Time.o | 0.0% | 0 / 5 | 0.0% | :x: 
-| NWC24Ipc.o | 0.0% | 0 / 6 | 0.0% | :x: 
+| NWC24Time.o | 11.78343949044586% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
+| NWC24Ipc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | NWC24Download.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| NWC24System.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| NWC24System.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 
 
 # NWC24StdAPI.o
@@ -91,13 +91,13 @@
 # NWC24Manage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| NWC24iRegister | :x: |
+| NWC24iRegister | :white_check_mark: |
 | NWC24OpenLib | :x: |
 | NWC24OpenLibInternal | :x: |
 | NWC24CloseLib | :x: |
-| NWC24IsMsgLibOpened | :x: |
-| NWC24IsMsgLibOpenedByTool | :x: |
-| NWC24IsMsgLibOpenBlocking | :x: |
+| NWC24IsMsgLibOpened | :white_check_mark: |
+| NWC24IsMsgLibOpenedByTool | :white_check_mark: |
+| NWC24IsMsgLibOpenBlocking | :white_check_mark: |
 | NWC24BlockOpenMsgLib | :x: |
 | NWC24iSetNewMsgArrived | :x: |
 | NWC24GetErrorCode | :x: |
@@ -185,16 +185,16 @@
 # NWC24Schedule.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| NWC24SuspendScheduler | :x: |
-| NWC24ResumeScheduler | :x: |
-| NWC24iSetScriptMode | :x: |
+| NWC24SuspendScheduler | :white_check_mark: |
+| NWC24ResumeScheduler | :white_check_mark: |
+| NWC24iSetScriptMode | :white_check_mark: |
 | NWC24iRequestGenerateUserId | :x: |
 | NWC24iTrySuspendForOpenLib | :x: |
 | NWC24iResumeForCloseLib | :x: |
-| ExecSuspendScheduler | :x: |
+| ExecSuspendScheduler | :white_check_mark: |
 | ExecTrySuspendScheduler | :x: |
-| ExecResumeScheduler | :x: |
-| ExecNoParamCommand | :x: |
+| ExecResumeScheduler | :white_check_mark: |
+| ExecNoParamCommand | :white_check_mark: |
 
 
 # NWC24DateParser.o
@@ -237,18 +237,18 @@
 | NWC24iGetUniversalTime | :x: |
 | NWC24iGetTimeDifference | :x: |
 | NWC24iSetRtcCounter | :x: |
-| NWC24iSynchronizeRtcCounter | :x: |
+| NWC24iSynchronizeRtcCounter | :white_check_mark: |
 
 
 # NWC24Ipc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| NWC24iOpenResourceManager | :x: |
-| NWC24iCloseResourceManager | :x: |
-| NWC24iIoctlResourceManager | :x: |
-| NWC24iIoctlResourceManagerAsync | :x: |
-| NWC24iIsAsyncRequestPending | :x: |
-| CallbackAsyncIpc | :x: |
+| NWC24iOpenResourceManager | :white_check_mark: |
+| NWC24iCloseResourceManager | :white_check_mark: |
+| NWC24iIoctlResourceManager | :white_check_mark: |
+| NWC24iIoctlResourceManagerAsync | :white_check_mark: |
+| NWC24iIsAsyncRequestPending | :white_check_mark: |
+| CallbackAsyncIpc | :white_check_mark: |
 
 
 # NWC24Download.o
@@ -265,7 +265,7 @@
 # NWC24System.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| NWC24iPrepareShutdown | :x: |
-| NWC24Shutdown | :x: |
+| NWC24iPrepareShutdown | :white_check_mark: |
+| NWC24Shutdown | :white_check_mark: |
 
 

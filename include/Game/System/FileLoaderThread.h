@@ -11,7 +11,7 @@ struct RequestFileInfo {
     FileHolderFileEntry* mFileEntry;        // _8C
 };
 
-class FileLoaderThread : OSThreadWrapper {
+class FileLoaderThread : public OSThreadWrapper {
 public:
     FileLoaderThread(int, int, JKRHeap *);
 

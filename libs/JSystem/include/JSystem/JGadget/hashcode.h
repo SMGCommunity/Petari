@@ -1,6 +1,7 @@
 #pragma once
 
-class JGadget {
-public:
-    static u32 getHashCode(const char *);
+#include <revolution.h>
+
+namespace JGadget {
+    u32 getHashCode(const char *);
 };

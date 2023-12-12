@@ -5,7 +5,9 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "Inline.h"
 
-// this inherits JKRDisposer
+typedef void (*JKRErrorHandler)(void*, u32, int);
+void JKRDefaultMemoryErrorRoutine(void *, u32, int);
+
 class JKRHeap : public JKRDisposer {
 public:
 
@@ -43,6 +45,12 @@ public:
     void* alloc(u32, int);
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
+    bool dispose(void *, u32);
+    void dispose(void *, void *);
+    void dispose();
+    static void copyMemory(void *, void *, u32);
+    static JKRErrorHandler setErrorHandler(JKRErrorHandler);
+
 
     void freeAll();
     void freeTail();
@@ -55,6 +63,20 @@ public:
     JKRHeap* find(void *) const;
     JKRHeap* findAllHeap(void *) const;
     void dispose_subroutine(u32, u32);
+    s32 getTotalFreeSize();
+
+    u32 getMaxAllocatableSize(int a1) NO_INLINE {
+        u32 v4 = (u32)getMaxFreeBlock();
+        return ~(a1 - 1) & (getFreeSize() - ((a1 - 1) & (a1 - (v4 & 0xF))));
+    }
+
+    inline u8* getStart() const {
+        return mStart;
+    }
+
+    inline u8* getEnd() const {
+        return mEnd;
+    }
 
     static JKRHeap* findFromRoot(void *);
 
@@ -65,15 +87,22 @@ public:
     static void destroy(JKRHeap *);
 
     static void setAltAramStartAdr(u32);
+    static u32 getAltAramStartAdr();
 
-    static void setErrorHandler(void (*)(void *, u32, int));
+    static bool initArena(char **, u32 *, int);
 
-    static void initArena(char **, u32 *, int);
+    static JKRHeap* sGameHeap; // _806B70A8
+    static JKRHeap* sCurrentHeap; // _806B70AC
+    static JKRHeap* sRootHeap; // _806B70B0
+    static JKRHeap* sSystemHeap;
 
-    static JKRHeap *sGameHeap; // _806B70A8
-    static JKRHeap *sCurrentHeap; // _806B70AC
-    static JKRHeap *sRootHeap; // _806B70B0
-    static JKRHeap *sSystemHeap;
+    static JKRErrorHandler mErrorHandler;
+
+    static void* mCodeStart;
+    static void* mCodeEnd;
+    static void* mUserRamStart;
+    static void* mUserRamEnd;
+    static u32 mMemorySize;
 
     static u32 ARALT_AramStartAddr;
 
@@ -95,7 +124,7 @@ public:
     u8 _3F;
     JSUTree<JKRHeap> mChildTree;        // _40
     JSUList<JKRDisposer> mDisposerList; // _5C
-    u8 _68;
+    bool mErrorFlag;                    // _68
     u8 _69;
     u8 _6A;
     u8 _6B;

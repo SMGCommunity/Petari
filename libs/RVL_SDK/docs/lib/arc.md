@@ -8,23 +8,23 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| arc.o | 0.0% | 0 / 12 | 0.0% | :x: 
+| arc.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 
 
 # arc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ARCInitHandle | :x: |
-| ARCOpen | :x: |
-| ARCFastOpen | :x: |
-| ARCConvertPathToEntrynum | :x: |
-| entryToPath | :x: |
-| ARCGetStartAddrInMem | :x: |
-| ARCGetLength | :x: |
-| ARCClose | :x: |
-| ARCChangeDir | :x: |
-| ARCOpenDir | :x: |
-| ARCReadDir | :x: |
-| ARCCloseDir | :x: |
+| ARCInitHandle | :white_check_mark: |
+| ARCOpen | :white_check_mark: |
+| ARCFastOpen | :white_check_mark: |
+| ARCConvertPathToEntrynum | :white_check_mark: |
+| entryToPath | :white_check_mark: |
+| ARCGetStartAddrInMem | :white_check_mark: |
+| ARCGetLength | :white_check_mark: |
+| ARCClose | :white_check_mark: |
+| ARCChangeDir | :white_check_mark: |
+| ARCOpenDir | :white_check_mark: |
+| ARCReadDir | :white_check_mark: |
+| ARCCloseDir | :white_check_mark: |
 
 

@@ -3,6 +3,7 @@
 #include "Game/Util.h"
 
 class TalkNode;
+class TalkMessageInfo;
 
 class MessageData {
 public:
@@ -19,9 +20,10 @@ public:
     JMapInfo* mIDTable;     // _0
     void* mInfoBlock;       // _4
     void* mDataBlock;       // _8
-
+    u32 _C;
     void* mFlowBlock;       // _10
-
+    u32 _14;
+    u32 _18;
     void* mFLI1Block;       // _1C
 };
 

@@ -23,9 +23,8 @@ namespace nw4r {
 
         // not quite there yet
         Pane::~Pane() {
-            PaneList::Iterator it = mChildList.GetBeginIter();
-    
-            while (it != mChildList.GetBeginIter()) {
+
+            for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter();) {
                 PaneList::Iterator currIt = it++;
                 mChildList.Erase(currIt);
 

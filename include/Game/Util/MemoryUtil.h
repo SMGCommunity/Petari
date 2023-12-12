@@ -5,6 +5,8 @@
 #include <cstring>
 #include <size_t.h>
 #include "JSystem/JKernel/JKRHeap.h"
+#include "Game/SingletonHolder.h"
+#include "Game/System/HeapMemoryWatcher.h"
 
 class JKRHeap;
 class JKRExpHeap;
@@ -29,6 +31,10 @@ namespace MR {
 
     void adjustHeapSize(JKRExpHeap *, const char *);
 
+    inline JKRSolidHeap* getAudHeap() {
+        return SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap;
+    }
+
     class CurrentHeapRestorer {
     public:
         CurrentHeapRestorer(JKRHeap *);
@@ -46,8 +52,6 @@ namespace MR {
 
         static MEMAllocator sAllocator;
     };
-
-    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
 
     template<int T>
     class JKRHeapAllocator {

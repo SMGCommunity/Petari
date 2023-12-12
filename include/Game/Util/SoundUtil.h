@@ -9,6 +9,7 @@ namespace MR {
     void startCurrentStageBGM();
     void startBossBGM(s32);
 
+    void startStageBGM(const char *, bool);
     void startStageBGMFromStageName(const char *, const char * , s32);
 
     void stopStageBGM(u32);
@@ -30,7 +31,9 @@ namespace MR {
     void startSound(const LiveActor *, const char *, s32, s32);
     void startSoundObject(AudSoundObject *, const char *);
 
-    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);    
+    void startLevelSound(const LiveActor *, const char *, s32, s32, s32);
+
+    void releaseSoundHandle(const LiveActor *, const char *);
 
     void setAudioEffectType(s32, s32);
 
@@ -51,6 +54,7 @@ namespace MR {
     bool hasME();
 
     void start2PAttackAssistSound();
+    void start2PJumpAssistSound();
 
     void startDPDHitSound();
     void startDPDFreezeLevelSound(const LiveActor *);
@@ -60,4 +64,6 @@ namespace MR {
     s32 getRemixMelodyNoteNum(s32);
 
     void startSystemLevelSE(const char *, s32, s32);
+
+    void permitTrigSE();
 };

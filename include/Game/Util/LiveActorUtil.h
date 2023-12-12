@@ -75,6 +75,7 @@ namespace MR {
     void hideModelIfHidden(LiveActor *);
 
     void hideModelAndOnCalcAnim(LiveActor *);
+    void stopAnimFrame(LiveActor *);
 
     ResourceHolder* getResourceHolder(const LiveActor *);
     ResourceHolder* getModelResourceHolder(const LiveActor *);
@@ -161,6 +162,10 @@ namespace MR {
 
     void invalidateCollisionParts(LiveActor *);
     void invalidateCollisionParts(CollisionParts *);
+
+    void offUpdateCollisionParts(LiveActor *);
+
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor *);
 
     bool isExistCollisionParts(const LiveActor *);
 
@@ -276,6 +281,9 @@ namespace MR {
 
     bool isBindedGround(const LiveActor *);
     bool isBindedWall(const LiveActor *);
+
+    bool isBindedGroundIce(const LiveActor *);
+    bool isBindedGroundWater(const LiveActor *);
 
     bool isActionEnd(const LiveActor *);
 

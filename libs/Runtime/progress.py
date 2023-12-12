@@ -1,5 +1,9 @@
-import csv, glob, math, os, sys
+import csv, datetime, glob, json, io, math, os, sys
+from git import Repo
 from pathlib import Path
+
+import pandas as pd
+import plotly.express as px
 
 libraries = { }
 
@@ -179,6 +183,10 @@ runtime_lib = [
     "Runtime.PPCEABI.H.a"
 ]
 
+lib_percent_colors = {
+    "Runtime.PPCEABI.H": "brightgreen"
+}
+
 func_sizes = {}
 
 # start by reading function sizes
@@ -235,6 +243,11 @@ for key in libraries:
         full_sdk_size += f
         done_sdk_size += d
 
+    if lib.getName() not in lib_percent_colors:
+        lib.generateJSONTag((d / f ) * 100.0, "ffff66")
+    else:
+        lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
+
 progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
 
 print(f"Progress: {progPercent_sdk}% [{done_sdk_size} / {full_sdk_size}] bytes")
@@ -262,5 +275,47 @@ with open("docs/PROGRESS.md", "w") as w:
 for key in libraries:
     lib = libraries[key]
     lib.generateMarkdown()
+
+print("Generating progress graph...")
+
+# now we do the cool progress drawing chart
+x_axis = [datetime.datetime.now()]
+y_axis = [progPercent_sdk]
+
+# np.seterr(all="ignore")
+
+repo = Repo("../../")
+
+for commit in repo.iter_commits(rev='4ca2eed..master'):
+    cur_file = None
+
+    try:
+        cur_file = commit.tree / 'libs' / 'Runtime' / 'data' / 'percent.json'
+    except:
+        try:
+            cur_file = commit.tree / 'libs' / 'Runtime' / 'data' / 'runtime.json'
+        except:
+            try:
+                cur_file = commit.tree / 'libs' / 'Runtime' / 'data' / 'Runtime.json'
+            except:
+                pass
+            pass
+        pass
+
+    if cur_file is None:
+        continue
+
+    with io.BytesIO(cur_file.data_stream.read()) as f:
+        try:
+            percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
+            x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
+            y_axis.append(float(percent_str))
+        except:
+            continue
+
+df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
+fig = px.line(df, x='date', y='progress', title='Runtime Progress', line_shape='hv', markers=False)
+fig.update_yaxes(ticksuffix='%')
+fig.write_image('prog.png')
 
 print("Done.")

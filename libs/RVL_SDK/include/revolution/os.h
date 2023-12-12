@@ -13,7 +13,8 @@ extern "C" {
 typedef s64         OSTime;
 typedef u32         OSTick;
 
-u32 __OSBusClock : (0x8000 << 16 | 0x00F8); 
+u32 __OSBusClock : (0x8000 << 16 | 0x00F8);
+u32 __MEM2End : (0x8000 << 16 | 0x3128);
 
 #define OS_BUS_CLOCK        __OSBusClock
 #ifndef OS_CORE_CLOCK
@@ -72,8 +73,14 @@ void* OSGetArenaLo(void);
 void OSSetArenaHi(void *);
 void OSSetArenaLo(void *);
 
+void OSSetMEM2ArenaHi(void *);
+
 void* OSGetMEM2ArenaLo(void);
 void* OSGetMEM2ArenaHi(void);
+
+void* OSAllocFromMEM1ArenaLo(u32, u32);
+
+u32 OSGetPhysicalMem2Size(void);
 
 typedef struct OSIOSRev {
     u8 reserved;
@@ -86,6 +93,11 @@ typedef struct OSIOSRev {
 } OSIOSRev;
 
 const u8 OSGetAppType(void);
+
+char* OSUTF8to32(const char *, u32 *);
+u16* OSUTF16to32(const u16 *, u32 *);
+u8 OSUTF32toANSI(u32);
+u16 OSUTF32toSJIS(u32);
 
 #ifndef ASSERT
 #define ASSERT(exp) ((void) 0)
@@ -103,10 +115,13 @@ const u8 OSGetAppType(void);
 #include <revolution/os/OSException.h>
 #include <revolution/os/OSExecParams.h>
 #include <revolution/os/OSFastCast.h>
+#include <revolution/os/OSFont.h>
 #include <revolution/os/OSInterrupt.h>
 #include <revolution/os/OSMessage.h>
 #include <revolution/os/OSMutex.h>
 #include <revolution/os/OSRtc.h>
+#include <revolution/os/OSStateFlags.h>
+#include <revolution/os/OSStateTM.h>
 #include <revolution/os/OSPlayRecord.h>
 #include <revolution/os/OSPlayTime.h>
 #include <revolution/os/OSReset.h>
@@ -126,9 +141,14 @@ void __OSInitMemoryProtection(void);
 void __OSGetIOSRev(OSIOSRev *);
 int __OSInitSTM(void);
 void __OSInitNet(void);
+void __OSPromoteThread(OSThread *, OSPriority);
 
 extern void __RAS_OSDisableInterrupts_begin(void);
 extern void __RAS_OSDisableInterrupts_end(void);
+
+#include <revolution/gx.h>
+
+void OSFatal(GXColor, GXColor, const char *);
 
 #ifdef __cplusplus
 }

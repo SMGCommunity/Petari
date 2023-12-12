@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 34 Completed -- (0.0%)
+# 6 / 34 Completed -- (17.647058823529413%)
 # MultiSceneActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15MultiSceneActorFPCcPCcb` | :x: |
+| `__ct__15MultiSceneActorFPCcPCcb` | :white_check_mark: |
 | `init__15MultiSceneActorFRC12JMapInfoIter` | :x: |
-| `movement__15MultiSceneActorFv` | :x: |
-| `calcAnim__15MultiSceneActorFv` | :x: |
+| `movement__15MultiSceneActorFv` | :white_check_mark: |
+| `calcAnim__15MultiSceneActorFv` | :white_check_mark: |
 | `calcViewAndEntry__15MultiSceneActorFv` | :x: |
 | `appear__15MultiSceneActorFv` | :x: |
 | `kill__15MultiSceneActorFv` | :x: |
-| `initEffect__15MultiSceneActorFP12EffectSystemiPCc` | :x: |
+| `initEffect__15MultiSceneActorFP12EffectSystemiPCc` | :white_check_mark: |
 | `setNerve__15MultiSceneActorFPC5Nerve` | :x: |
-| `isNerve__15MultiSceneActorCFPC5Nerve` | :x: |
-| `initNerve__15MultiSceneActorFPC5Nerve` | :x: |
+| `isNerve__15MultiSceneActorCFPC5Nerve` | :white_check_mark: |
+| `initNerve__15MultiSceneActorFPC5Nerve` | :white_check_mark: |
 | `startBck__10MultiSceneFP15MultiSceneActorPCc` | :x: |
 | `startBtk__10MultiSceneFP15MultiSceneActorPCc` | :x: |
 | `startBtp__10MultiSceneFP15MultiSceneActorPCc` | :x: |

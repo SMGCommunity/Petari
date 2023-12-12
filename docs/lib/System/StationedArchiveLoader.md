@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 6 Completed -- (0.0%)
+# 6 / 6 Completed -- (100.0%)
 # StationedArchiveLoader.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__dt__Q222StationedArchiveLoader9ConditionFv` | :x: |
-| `getProperHeap__Q222StationedArchiveLoader9ConditionCFPCQ22MR17StationedFileInfo` | :x: |
-| `getProperHeap__22StationedArchiveLoaderFPCQ22MR17StationedFileInfo` | :x: |
-| `loadResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition` | :x: |
-| `createAndAddResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition` | :x: |
-| `loadScenarioData__22StationedArchiveLoaderFP7JKRHeap` | :x: |
+| `__dt__Q222StationedArchiveLoader9ConditionFv` | :white_check_mark: |
+| `getProperHeap__Q222StationedArchiveLoader9ConditionCFPCQ22MR17StationedFileInfo` | :white_check_mark: |
+| `getProperHeap__22StationedArchiveLoaderFPCQ22MR17StationedFileInfo` | :white_check_mark: |
+| `loadResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition` | :white_check_mark: |
+| `createAndAddResourcesFromTable__22StationedArchiveLoaderFRCQ222StationedArchiveLoader9Condition` | :white_check_mark: |
+| `loadScenarioData__22StationedArchiveLoaderFP7JKRHeap` | :white_check_mark: |

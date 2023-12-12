@@ -6,4 +6,6 @@
 
 MessageBufferID TRKTestForPacket();
 
+extern void* gTRKInputPendingPtr;
+
 #endif // SERPOLL_H

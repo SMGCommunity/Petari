@@ -159,3 +159,46 @@ void __OSGetExecParams(OSExecParams *params) {
         params->valid = FALSE;
     }
 }
+
+#define TITLE_ID ((((u64)1) << 32) | (2))
+
+void __OSLaunchMenu(void) {
+    u8 i;
+    s32 rc;
+    u32 ticketCnt = 1;
+    ESTicketView* t;
+    ESSysVersion version = 0x0000000100000003;
+    GXColor bg = { 0, 0, 0, 0};
+    GXColor fg = { 255, 255, 255, 0 };
+
+    OSSetArenaLo((void*)0x81280000);
+    OSSetArenaHi((void*)0x812F0000);
+    rc = ESP_InitLib();
+
+    if (rc != 0) {
+        return;
+    }
+
+    rc = ESP_GetTicketViews(TITLE_ID, NULL, &ticketCnt);
+
+    if (ticketCnt != 1 || rc != 0) {
+        return;
+    }
+
+    t = (ESTicketView*)OSAllocFromMEM1ArenaLo(OSRoundUp32B(sizeof(ESTicketView) * ticketCnt), 32);
+    rc = ESP_GetTicketViews(TITLE_ID, t, &ticketCnt);
+
+    if (rc != 0) {
+        return;
+    }
+
+    rc = ESP_LaunchTitle(TITLE_ID, t);
+
+    if (rc != 0) {
+        return;
+    }
+
+    while (1) { 
+
+    }
+}

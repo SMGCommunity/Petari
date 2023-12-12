@@ -3,12 +3,19 @@
 #include <revolution.h>
 #include "JSystem/JGeometry.h"
 
-class LayoutActor;
+class Layout;
+class Nerve;
 
 namespace MR {
+    void setEffectRate(LayoutActor *, const char *, f32);
+    void setEffectDirectionalSpeed(LayoutActor *, const char *, f32);
+
     void createAndAddPaneCtrl(LayoutActor *, const char *, u32);
 
     void startPaneAnim(LayoutActor *, const char *, const char *, u32);
+    void startPaneAnimAtStep(LayoutActor *, const char *, const char *, s32, u32);
+
+    void showPaneRecursive(LayoutActor *, const char *);
 
     void startAnim(LayoutActor *, const char *, u32);
 
@@ -16,6 +23,7 @@ namespace MR {
     void setPaneAnimFrameAndStop(LayoutActor *, const char *, f32, u32);
 
     void setAnimRate(LayoutActor *, f32, u32);
+    void setPaneAnimRate(LayoutActor *, const char *, f32, u32);
 
     f32 getAnimFrame(const LayoutActor *, u32);
 
@@ -42,6 +50,7 @@ namespace MR {
     void setTextBoxFormatRecursive(LayoutActor *, const char *, const wchar_t *, ...);
 
     bool isFirstStep(const LayoutActor *);
+    bool isGreaterStep(const LayoutActor *, s32);
 
     bool isDead(const LayoutActor *);
 
@@ -63,4 +72,27 @@ namespace MR {
     void emitEffect(LayoutActor *, const char *);
 
     void setCometAnimFromId(LayoutActor *, int, u32);
+
+    void setCometPaneAnimFromId(LayoutActor *, const char *, int, u32);
+
+    void createAndAddLayoutHolderRawData(const char *);
+
+    void setEffectHostMtx(LayoutActor *, const char *, MtxPtr);
+
+    void addStarPointerTargetCircle(LayoutActor *, const char *, f32, const TVec2f &, const char *);
+
+    void startPaneAnimAtFirstStep(LayoutActor *, const char *, const char *, u32);
+
+    void setNerveAtPaneAnimStopped(LayoutActor *, const char *, const Nerve *, u32);
+
+    void setNerveAtStep(LayoutActor *, const Nerve *, s32);
+
+    void setTextBoxGameMessageRecursive(LayoutActor *, const char *, const char *);
+    void setTextBoxArgGameMessageRecursive(LayoutActor *, const char *, const char *, s32);
+
+    bool isStep(const LayoutActor *, s32);
+
+    void hideLayout(LayoutActor *);
+
+    f32 calcNerveEaseInValue(const LayoutActor *, s32, s32, f32, f32);
 };

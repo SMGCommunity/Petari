@@ -71,6 +71,8 @@ namespace MR {
 
     void restrictVelocity(LiveActor *, f32);
 
+    bool calcVelocityAreaMoveOnGround(TVec3f *, const LiveActor *);
+
     void turnDirectionToGround(const LiveActor *, TVec3f *);
 
     void calcMtxFromGravityAndZAxis(TPos3f *, const LiveActor *, const TVec3f &, const TVec3f &);

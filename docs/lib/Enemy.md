@@ -85,7 +85,7 @@
 | [OtaRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/OtaRock.md) | 0.0% | 0 / 43 | 0.0% | :x: 
 | [PackunPetit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/PackunPetit.md) | 94.65550547327753% | 66 / 67 | 98.50746268656717% | :eight_pointed_black_star: 
 | [Petari.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Petari.md) | 0.0% | 0 / 82 | 0.0% | :x: 
-| [Poihana.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Poihana.md) | 0.0% | 0 / 95 | 0.0% | :x: 
+| [Poihana.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Poihana.md) | 75.04648568240981% | 88 / 95 | 92.63157894736842% | :eight_pointed_black_star: 
 | [Pukupuku.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Pukupuku.md) | 0.0% | 0 / 60 | 0.0% | :x: 
 | [RingBeam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/RingBeam.md) | 0.0% | 0 / 23 | 0.0% | :x: 
 | [RingBeamer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/RingBeamer.md) | 0.0% | 0 / 19 | 0.0% | :x: 

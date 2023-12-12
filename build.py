@@ -7,7 +7,7 @@ import shutil
 import pathlib
 import shutil
 
-arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a") + glob.glob("libs\\MetroTRK\\lib\\*.a"))
+arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a") + glob.glob("libs\\MetroTRK\\lib\\*.a") + glob.glob("libs\\JSystem\\lib\\*.a"))
 
 def makeArchive(dir):
     fileList = ""
@@ -64,17 +64,13 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -Cpp_exceptions off -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc "
+    flags = "-c -Cpp_exceptions off -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc "
     includes = "-i . -I- -i include "
 
     default_compiler_path = pathlib.Path("GC/3.0a3/")
 
     compiler_exceptions = {
-        #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")
-    }
-
-    compiler_flags = {
-        #"GC/2.5", flags
+        #"source\Game\System\FunctionAsyncExecutor.cpp": pathlib.Path("GC/2.6/")
     }
 
     if compile_non_matching:
@@ -85,11 +81,12 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     trk_path =          pathlib.Path("libs/MetroTRK/include")
     runtime_path =      pathlib.Path("libs/Runtime/include")
     msl_c_path =        pathlib.Path("libs/MSL_C/include")
+    msl_cpp_path =      pathlib.Path("libs/MSL_C++/include")
     facelib_path =      pathlib.Path("libs/RVLFaceLib/include")
     jsystem_path =      pathlib.Path("libs/JSystem/include")
     nw4r_path =         pathlib.Path("libs/nw4r/include")
 
-    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {jsystem_path} -I- -i {nw4r_path} "
+    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {jsystem_path} -I- -i {nw4r_path} "
     flags += includes
 
     tasks = list()
@@ -149,6 +146,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
                     nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
             except:
                 pass
+
             nw.build(build_path, rule, source_path, variables={ 'flags': flags })
         nw.close()
 

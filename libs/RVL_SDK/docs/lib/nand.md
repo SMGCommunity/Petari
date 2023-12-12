@@ -8,115 +8,115 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| nand.o | 0.0% | 0 / 30 | 0.0% | :x: 
-| NANDOpenClose.o | 0.0% | 0 / 17 | 0.0% | :x: 
-| NANDCore.o | 0.0% | 0 / 21 | 0.0% | :x: 
-| NANDSecret.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| NANDCheck.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| NANDLogging.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| nand.o | 100.0% | 30 / 30 | 100.0% | :white_check_mark: 
+| NANDOpenClose.o | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
+| NANDCore.o | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
+| NANDSecret.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| NANDCheck.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
+| NANDLogging.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # nand.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandCreate | :x: |
-| NANDCreate | :x: |
-| NANDPrivateCreate | :x: |
-| NANDPrivateCreateAsync | :x: |
-| NANDDelete | :x: |
-| NANDPrivateDelete | :x: |
-| NANDPrivateDeleteAsync | :x: |
-| NANDRead | :x: |
-| NANDReadAsync | :x: |
-| NANDWrite | :x: |
-| NANDWriteAsync | :x: |
-| NANDSeek | :x: |
-| NANDSeekAsync | :x: |
-| nandCreateDir | :x: |
-| NANDPrivateCreateDir | :x: |
-| NANDPrivateCreateDirAsync | :x: |
-| nandMove | :x: |
-| NANDMove | :x: |
-| NANDGetLength | :x: |
-| nandGetFileStatusAsyncCallback | :x: |
-| NANDGetLengthAsync | :x: |
-| nandComposePerm | :x: |
-| nandSplitPerm | :x: |
-| nandGetStatus | :x: |
-| nandGetStatusCallback | :x: |
-| NANDGetStatus | :x: |
-| NANDPrivateGetStatus | :x: |
-| NANDPrivateGetStatusAsync | :x: |
-| NANDSetUserData | :x: |
-| NANDGetUserData | :x: |
+| nandCreate | :white_check_mark: |
+| NANDCreate | :white_check_mark: |
+| NANDPrivateCreate | :white_check_mark: |
+| NANDPrivateCreateAsync | :white_check_mark: |
+| NANDDelete | :white_check_mark: |
+| NANDPrivateDelete | :white_check_mark: |
+| NANDPrivateDeleteAsync | :white_check_mark: |
+| NANDRead | :white_check_mark: |
+| NANDReadAsync | :white_check_mark: |
+| NANDWrite | :white_check_mark: |
+| NANDWriteAsync | :white_check_mark: |
+| NANDSeek | :white_check_mark: |
+| NANDSeekAsync | :white_check_mark: |
+| nandCreateDir | :white_check_mark: |
+| NANDPrivateCreateDir | :white_check_mark: |
+| NANDPrivateCreateDirAsync | :white_check_mark: |
+| nandMove | :white_check_mark: |
+| NANDMove | :white_check_mark: |
+| NANDGetLength | :white_check_mark: |
+| nandGetFileStatusAsyncCallback | :white_check_mark: |
+| NANDGetLengthAsync | :white_check_mark: |
+| nandComposePerm | :white_check_mark: |
+| nandSplitPerm | :white_check_mark: |
+| nandGetStatus | :white_check_mark: |
+| nandGetStatusCallback | :white_check_mark: |
+| NANDGetStatus | :white_check_mark: |
+| NANDPrivateGetStatus | :white_check_mark: |
+| NANDPrivateGetStatusAsync | :white_check_mark: |
+| NANDSetUserData | :white_check_mark: |
+| NANDGetUserData | :white_check_mark: |
 
 
 # NANDOpenClose.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandOpen | :x: |
-| NANDOpen | :x: |
-| NANDPrivateOpen | :x: |
-| NANDOpenAsync | :x: |
-| NANDPrivateOpenAsync | :x: |
-| nandOpenCallback | :x: |
-| NANDClose | :x: |
-| NANDCloseAsync | :x: |
-| NANDPrivateSafeOpenAsync | :x: |
-| nandSafeOpenAsync | :x: |
-| nandSafeOpenCallback | :x: |
-| nandReadOpenCallback | :x: |
-| NANDSafeCloseAsync | :x: |
-| nandSafeCloseAsync | :x: |
-| nandSafeCloseCallback | :x: |
-| nandReadCloseCallback | :x: |
-| nandCloseCallback | :x: |
+| nandOpen | :white_check_mark: |
+| NANDOpen | :white_check_mark: |
+| NANDPrivateOpen | :white_check_mark: |
+| NANDOpenAsync | :white_check_mark: |
+| NANDPrivateOpenAsync | :white_check_mark: |
+| nandOpenCallback | :white_check_mark: |
+| NANDClose | :white_check_mark: |
+| NANDCloseAsync | :white_check_mark: |
+| NANDPrivateSafeOpenAsync | :white_check_mark: |
+| nandSafeOpenAsync | :white_check_mark: |
+| nandSafeOpenCallback | :white_check_mark: |
+| nandReadOpenCallback | :white_check_mark: |
+| NANDSafeCloseAsync | :white_check_mark: |
+| nandSafeCloseAsync | :white_check_mark: |
+| nandSafeCloseCallback | :white_check_mark: |
+| nandReadCloseCallback | :white_check_mark: |
+| nandCloseCallback | :white_check_mark: |
 
 
 # NANDCore.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandRemoveTailToken | :x: |
-| nandGetHeadToken | :x: |
-| nandGetRelativeName | :x: |
-| nandConvertPath | :x: |
-| nandIsPrivatePath | :x: |
-| nandIsUnderPrivatePath | :x: |
-| nandIsInitialized | :x: |
-| nandReportErrorCode | :x: |
-| nandConvertErrorCode | :x: |
-| nandGenerateAbsPath | :x: |
-| nandGetParentDirectory | :x: |
-| NANDInit | :x: |
-| nandOnShutdown | :x: |
-| nandShutdownCallback | :x: |
-| NANDGetHomeDir | :x: |
-| nandCallback | :x: |
-| nandGetType | :x: |
-| NANDPrivateGetTypeAsync | :x: |
-| nandGetTypeCallback | :x: |
-| nandGetHomeDir | :x: |
-| NANDInitBanner | :x: |
+| nandRemoveTailToken | :white_check_mark: |
+| nandGetHeadToken | :white_check_mark: |
+| nandGetRelativeName | :white_check_mark: |
+| nandConvertPath | :white_check_mark: |
+| nandIsPrivatePath | :white_check_mark: |
+| nandIsUnderPrivatePath | :white_check_mark: |
+| nandIsInitialized | :white_check_mark: |
+| nandReportErrorCode | :white_check_mark: |
+| nandConvertErrorCode | :white_check_mark: |
+| nandGenerateAbsPath | :white_check_mark: |
+| nandGetParentDirectory | :white_check_mark: |
+| NANDInit | :white_check_mark: |
+| nandOnShutdown | :white_check_mark: |
+| nandShutdownCallback | :white_check_mark: |
+| NANDGetHomeDir | :white_check_mark: |
+| nandCallback | :white_check_mark: |
+| nandGetType | :white_check_mark: |
+| NANDPrivateGetTypeAsync | :white_check_mark: |
+| nandGetTypeCallback | :white_check_mark: |
+| nandGetHomeDir | :white_check_mark: |
+| NANDInitBanner | :white_check_mark: |
 
 
 # NANDSecret.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| NANDSecretGetUsage | :x: |
+| NANDSecretGetUsage | :white_check_mark: |
 
 
 # NANDCheck.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| nandCalcUsage | :x: |
-| NANDCheck | :x: |
+| nandCalcUsage | :white_check_mark: |
+| NANDCheck | :white_check_mark: |
 
 
 # NANDLogging.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| reserveFileDescriptor | :x: |
-| NANDLoggingAddMessageAsync | :x: |
-| asyncRoutine | :x: |
+| reserveFileDescriptor | :white_check_mark: |
+| NANDLoggingAddMessageAsync | :white_check_mark: |
+| asyncRoutine | :white_check_mark: |
 
 

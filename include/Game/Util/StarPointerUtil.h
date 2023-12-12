@@ -26,4 +26,8 @@ namespace MR {
     f32 getStarPointerScreenSpeed(u32);
 
     bool calcStarPointerWorldVelocityDirectionOnPlane(TVec3f *, const TVec3f &, const TVec3f &, u32);
+
+    void createStarPointerLayout();
+
+    bool isStarPointerInScreen(s32);
 };

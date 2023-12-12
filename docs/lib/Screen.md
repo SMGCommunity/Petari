@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [THPDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/THPDraw.md) | 0.0% | 0 / 4 | 0.0% | :x: 
+| [THPDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/THPDraw.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [BackButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BackButton.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [BatteryInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BatteryInfo.md) | 0.0% | 0 / 43 | 0.0% | :x: 
 | [BloomEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BloomEffect.md) | 0.0% | 0 / 20 | 0.0% | :x: 
@@ -22,7 +22,7 @@
 | [CinemaFrame.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CinemaFrame.md) | 0.0% | 0 / 28 | 0.0% | :x: 
 | [CoinCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CoinCounter.md) | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | [CometRetryButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CometRetryButton.md) | 0.0% | 0 / 22 | 0.0% | :x: 
-| [CopyFilterNegater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CopyFilterNegater.md) | 0.0% | 0 / 2 | 0.0% | :x: 
+| [CopyFilterNegater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CopyFilterNegater.md) | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | [CounterLayoutAppearer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CounterLayoutAppearer.md) | 92.21789883268482% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
 | [CounterLayoutController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CounterLayoutController.md) | 0.0% | 0 / 25 | 0.0% | :x: 
 | [CountUpPaneRumbler.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CountUpPaneRumbler.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
@@ -111,12 +111,12 @@
 | [PurpleCoinCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/PurpleCoinCounter.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [ReplaceTagProcessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ReplaceTagProcessor.md) | 0.0% | 0 / 12 | 0.0% | :x: 
 | [SaveIcon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SaveIcon.md) | 0.0% | 0 / 4 | 0.0% | :x: 
-| [ScenarioSelectLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioSelectLayout.md) | 0.0% | 0 / 63 | 0.0% | :x: 
+| [ScenarioSelectLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioSelectLayout.md) | 56.27306273062731% | 49 / 63 | 77.77777777777779% | :eight_pointed_black_star: 
 | [ScenarioTitle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScenarioTitle.md) | 0.0% | 0 / 14 | 0.0% | :x: 
 | [SceneWipeHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SceneWipeHolder.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenAlphaCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenAlphaCapture.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenBlurEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenBlurEffect.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [ScreenPreserver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenPreserver.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [ScreenPreserver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ScreenPreserver.md) | 53.125% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
 | [SimpleLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SimpleLayout.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [StaffRoll.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/StaffRoll.md) | 0.0% | 0 / 83 | 0.0% | :x: 
 | [StageResultInformer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/StageResultInformer.md) | 0.0% | 0 / 74 | 0.0% | :x: 

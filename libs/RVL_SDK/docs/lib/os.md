@@ -14,30 +14,30 @@
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | OSAudioSystem.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | OSCache.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSContext.o | 56.19967793880838% | 11 / 16 | 68.75% | :eight_pointed_black_star: 
+| OSContext.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | OSError.o | 59.219088937093275% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
-| OSExec.o | 21.309192200557103% | 4 / 11 | 36.36363636363637% | :eight_pointed_black_star: 
-| OSFatal.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSFont.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| OSExec.o | 24.72144846796657% | 5 / 11 | 45.45454545454545% | :eight_pointed_black_star: 
+| OSFatal.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| OSFont.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
-| OSMutex.o | 0.0% | 0 / 5 | 0.0% | :x: 
+| OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSReset.o | 7.744107744107744% | 2 / 14 | 14.285714285714285% | :eight_pointed_black_star: 
+| OSReset.o | 84.006734006734% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| OSThread.o | 43.38235294117647% | 16 / 28 | 57.14285714285714% | :eight_pointed_black_star: 
+| OSThread.o | 91.31016042780749% | 23 / 28 | 82.14285714285714% | :eight_pointed_black_star: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| OSUtf.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OSUtf.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| OSStateTM.o | 11.627906976744185% | 3 / 12 | 25.0% | :eight_pointed_black_star: 
-| OSPlayRecord.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| OSStateFlags.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| OSStateTM.o | 32.55813953488372% | 5 / 12 | 41.66666666666667% | :eight_pointed_black_star: 
+| OSPlayRecord.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| OSStateFlags.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSNet.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | OSNandbootInfo.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| OSPlayTime.o | 0.0% | 0 / 8 | 0.0% | :x: 
+| OSPlayTime.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSLaunch.o | 0.0% | 0 / 8 | 0.0% | :x: 
 | __ppc_eabi_init.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
@@ -147,22 +147,22 @@
 # OSContext.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSLoadFPUContext | :x: |
-| __OSSaveFPUContext | :x: |
+| __OSLoadFPUContext | :white_check_mark: |
+| __OSSaveFPUContext | :white_check_mark: |
 | OSSaveFPUContext | :white_check_mark: |
 | OSSetCurrentContext | :white_check_mark: |
-| OSGetCurrentContext | :x: |
+| OSGetCurrentContext | :white_check_mark: |
 | OSSaveContext | :white_check_mark: |
 | OSLoadContext | :white_check_mark: |
 | OSGetStackPointer | :white_check_mark: |
 | OSSwitchFiber | :white_check_mark: |
 | OSSwitchFiberEx | :white_check_mark: |
 | OSClearContext | :white_check_mark: |
-| OSInitContext | :x: |
+| OSInitContext | :white_check_mark: |
 | OSDumpContext | :white_check_mark: |
 | OSSwitchFPUContext | :white_check_mark: |
 | __OSContextInit | :white_check_mark: |
-| OSFillFPUContext | :x: |
+| OSFillFPUContext | :white_check_mark: |
 
 
 # OSError.o
@@ -186,7 +186,7 @@
 | __OSGetExecParams | :white_check_mark: |
 | callback | :x: |
 | __OSLaunchNextFirmware | :x: |
-| __OSLaunchMenu | :x: |
+| __OSLaunchMenu | :white_check_mark: |
 | __OSBootDolSimple | :x: |
 | __OSBootDol | :x: |
 
@@ -194,23 +194,23 @@
 # OSFatal.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| ScreenReport | :x: |
-| ConfigureVideo | :x: |
-| OSFatal | :x: |
-| Halt | :x: |
+| ScreenReport | :white_check_mark: |
+| ConfigureVideo | :white_check_mark: |
+| OSFatal | :white_check_mark: |
+| Halt | :white_check_mark: |
 
 
 # OSFont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| GetFontCode | :x: |
-| Decode | :x: |
-| OSSetFontEncode | :x: |
-| ReadFont | :x: |
-| OSLoadFont | :x: |
-| ParseStringS | :x: |
-| ParseStringW | :x: |
-| OSGetFontTexel | :x: |
+| GetFontCode | :white_check_mark: |
+| Decode | :white_check_mark: |
+| OSSetFontEncode | :white_check_mark: |
+| ReadFont | :white_check_mark: |
+| OSLoadFont | :white_check_mark: |
+| ParseStringS | :white_check_mark: |
+| ParseStringW | :white_check_mark: |
+| OSGetFontTexel | :white_check_mark: |
 
 
 # OSInterrupt.o
@@ -270,11 +270,11 @@
 # OSMutex.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSInitMutex | :x: |
-| OSLockMutex | :x: |
-| OSUnlockMutex | :x: |
-| __OSUnlockAllMutex | :x: |
-| OSTryLockMutex | :x: |
+| OSInitMutex | :white_check_mark: |
+| OSLockMutex | :white_check_mark: |
+| OSUnlockMutex | :white_check_mark: |
+| __OSUnlockAllMutex | :white_check_mark: |
+| OSTryLockMutex | :white_check_mark: |
 
 
 # OSReboot.o
@@ -288,17 +288,17 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | OSRegisterShutdownFunction | :white_check_mark: |
-| __OSCallShutdownFunctions | :x: |
-| __OSShutdownDevices | :x: |
-| __OSGetDiscState | :x: |
-| OSRebootSystem | :x: |
-| OSShutdownSystem | :x: |
-| OSRestart | :x: |
-| __OSReturnToMenu | :x: |
-| OSReturnToMenu | :x: |
+| __OSCallShutdownFunctions | :white_check_mark: |
+| __OSShutdownDevices | :white_check_mark: |
+| __OSGetDiscState | :white_check_mark: |
+| OSRebootSystem | :white_check_mark: |
+| OSShutdownSystem | :white_check_mark: |
+| OSRestart | :white_check_mark: |
+| __OSReturnToMenu | :white_check_mark: |
+| OSReturnToMenu | :white_check_mark: |
 | OSReturnToSetting | :x: |
 | __OSReturnToMenuForError | :x: |
-| __OSHotResetForError | :x: |
+| __OSHotResetForError | :white_check_mark: |
 | OSGetResetCode | :white_check_mark: |
 | OSResetSystem | :x: |
 
@@ -342,13 +342,13 @@
 | SelectThread | :white_check_mark: |
 | __OSReschedule | :white_check_mark: |
 | OSYieldThread | :x: |
-| OSCreateThread | :x: |
-| OSExitThread | :x: |
-| OSCancelThread | :x: |
-| OSJoinThread | :x: |
-| OSDetachThread | :x: |
-| OSResumeThread | :x: |
-| OSSuspendThread | :x: |
+| OSCreateThread | :white_check_mark: |
+| OSExitThread | :white_check_mark: |
+| OSCancelThread | :white_check_mark: |
+| OSJoinThread | :white_check_mark: |
+| OSDetachThread | :white_check_mark: |
+| OSResumeThread | :white_check_mark: |
+| OSSuspendThread | :white_check_mark: |
 | OSSleepThread | :white_check_mark: |
 | OSWakeupThread | :white_check_mark: |
 | OSSetThreadPriority | :x: |
@@ -371,10 +371,10 @@
 # OSUtf.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSUTF8to32 | :x: |
-| OSUTF16to32 | :x: |
-| OSUTF32toANSI | :x: |
-| OSUTF32toSJIS | :x: |
+| OSUTF8to32 | :white_check_mark: |
+| OSUTF16to32 | :white_check_mark: |
+| OSUTF32toANSI | :white_check_mark: |
+| OSUTF32toSJIS | :white_check_mark: |
 
 
 # OSIpc.o
@@ -392,8 +392,8 @@
 | OSGetResetButtonState | :x: |
 | __OSInitSTM | :x: |
 | __OSShutdownToSBY | :x: |
-| __OSHotReset | :x: |
-| __OSSetVIForceDimming | :x: |
+| __OSHotReset | :white_check_mark: |
+| __OSSetVIForceDimming | :white_check_mark: |
 | __OSSetIdleLEDMode | :white_check_mark: |
 | __OSUnRegisterStateEvent | :white_check_mark: |
 | __OSVIDimReplyHandler | :white_check_mark: |
@@ -405,17 +405,17 @@
 # OSPlayRecord.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| PlayRecordAlarmCallback | :x: |
-| PlayRecordCallback | :x: |
-| __OSStartPlayRecord | :x: |
-| __OSStopPlayRecord | :x: |
+| PlayRecordAlarmCallback | :white_check_mark: |
+| PlayRecordCallback | :white_check_mark: |
+| __OSStartPlayRecord | :white_check_mark: |
+| __OSStopPlayRecord | :white_check_mark: |
 
 
 # OSStateFlags.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSWriteStateFlags | :x: |
-| __OSReadStateFlags | :x: |
+| __OSWriteStateFlags | :white_check_mark: |
+| __OSReadStateFlags | :white_check_mark: |
 
 
 # OSNet.o
@@ -434,14 +434,14 @@
 # OSPlayTime.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSPlayTimeIsLimited | :x: |
-| __OSPlayTimeRebootCallback | :x: |
-| __OSPlayTimeFadeLastAIDCallback | :x: |
-| __OSWriteExpiredFlag | :x: |
-| __OSPlayTimeRebootThread | :x: |
-| __OSPlayTimeAlarmExpired | :x: |
-| __OSGetPlayTime | :x: |
-| __OSInitPlayTime | :x: |
+| OSPlayTimeIsLimited | :white_check_mark: |
+| __OSPlayTimeRebootCallback | :white_check_mark: |
+| __OSPlayTimeFadeLastAIDCallback | :white_check_mark: |
+| __OSWriteExpiredFlag | :white_check_mark: |
+| __OSPlayTimeRebootThread | :white_check_mark: |
+| __OSPlayTimeAlarmExpired | :white_check_mark: |
+| __OSGetPlayTime | :white_check_mark: |
+| __OSInitPlayTime | :white_check_mark: |
 
 
 # OSLaunch.o

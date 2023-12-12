@@ -37,6 +37,7 @@ volatile PPCWGPipe GXWGFifo : 0xCC008000;
     }
 
 __GXCDEF(GXPosition, 3, f32)
+__GXCDEF(GXPosition, 3, s16)
 
 __GXCDEF(GXColor, 1, u32)
 

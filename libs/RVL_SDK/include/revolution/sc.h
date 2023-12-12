@@ -8,6 +8,30 @@
 extern "C" {
 #endif
 
+typedef u8 SCType;
+
+typedef struct {
+    union {
+        u8 type_u8;
+        s8 type_s8;
+        u16 type_u16;
+        s16 type_s16;
+        u32 type_u32;
+        s32 type_s32;
+        u64 type_u64;
+        s64 type_s64;
+        u8 longPrecision64[sizeof(u64)];
+    } integer;
+
+    SCType typeInteger;
+    SCType typeByteArray;
+    u32 nameLen;
+    u32 dataSize;
+    char* name;
+    u8* data;
+    u32 packedSize;
+} SCItem;
+
 typedef void (*SCReloadConfFileCallback)(s32 result);
 typedef void (*SCFlushCallback)(u32 result);
 
@@ -106,6 +130,22 @@ u32 __SCGetConfBufSize(void);
 
 void SCInit(void);
 u32 SCCheckStatus(void);
+u32 SCGetCounterBias(void);
+
+BOOL SCGetIdleMode(SCIdleModeInfo *);
+
+BOOL SCFindByteArrayItem(void *, u32, SCItemID);
+BOOL SCFindU8Item(u8* , SCItemID);
+BOOL SCFindS8Item(s8 *, SCItemID);
+BOOL SCFindU32Item(u32 *, SCItemID);
+
+s8 SCGetProductGameRegion(void);
+
+BOOL __SCF1(const char *, char *, u32);
+
+s8 SCGetDisplayOffsetH(void);
+s8 SCGetProductArea(void);
+u8 SCGetScreenSaverMode(void);
 
 #ifdef __cplusplus
 }

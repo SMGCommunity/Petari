@@ -15,7 +15,7 @@
 | [IntermissionScene.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/IntermissionScene.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [LogoScene.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/LogoScene.md) | 0.0% | 0 / 37 | 0.0% | :x: 
 | [MultiSceneEffectKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/MultiSceneEffectKeeper.md) | 0.0% | 0 / 11 | 0.0% | :x: 
-| [MultiSceneActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/MultiSceneActor.md) | 0.0% | 0 / 34 | 0.0% | :x: 
+| [MultiSceneActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/MultiSceneActor.md) | 38.41059602649007% | 6 / 34 | 17.647058823529413% | :eight_pointed_black_star: 
 | [PlayTimerScene.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/PlayTimerScene.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [PlacementInfoOrdered.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/PlacementInfoOrdered.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [PlacementStateChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene/PlacementStateChecker.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 

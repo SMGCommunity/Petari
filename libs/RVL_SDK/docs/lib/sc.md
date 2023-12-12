@@ -8,16 +8,16 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| scsystem.o | 33.96923076923077% | 9 / 22 | 40.909090909090914% | :eight_pointed_black_star: 
-| scapi.o | 0.0% | 0 / 19 | 0.0% | :x: 
-| scapi_prdinfo.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| scsystem.o | 74.46153846153845% | 18 / 22 | 81.81818181818183% | :eight_pointed_black_star: 
+| scapi.o | 40.484429065743946% | 6 / 19 | 31.57894736842105% | :eight_pointed_black_star: 
+| scapi_prdinfo.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # scsystem.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | SCInit | :white_check_mark: |
-| SCCheckStatus | :white_check_mark: |
+| SCCheckStatus | :x: |
 | SCReloadConfFileAsync | :white_check_mark: |
 | OpenCallbackFromReload | :white_check_mark: |
 | ReadCallbackFromReload | :white_check_mark: |
@@ -25,16 +25,16 @@
 | FinishFromReload | :white_check_mark: |
 | CloseCallbackFromReloadError | :white_check_mark: |
 | ParseConfBuf | :white_check_mark: |
-| UnpackItem | :x: |
-| DeleteItemByID | :x: |
-| CreateItemByID | :x: |
-| SCFindByteArrayItem | :x: |
-| SCReplaceByteArrayItem | :x: |
-| SCReplaceIntegerItem | :x: |
-| SCFindU8Item | :x: |
-| SCFindS8Item | :x: |
-| SCFindU32Item | :x: |
-| SCReplaceU8Item | :x: |
+| UnpackItem | :white_check_mark: |
+| DeleteItemByID | :white_check_mark: |
+| CreateItemByID | :white_check_mark: |
+| SCFindByteArrayItem | :white_check_mark: |
+| SCReplaceByteArrayItem | :white_check_mark: |
+| SCReplaceIntegerItem | :white_check_mark: |
+| SCFindU8Item | :white_check_mark: |
+| SCFindS8Item | :white_check_mark: |
+| SCFindU32Item | :white_check_mark: |
+| SCReplaceU8Item | :white_check_mark: |
 | __SCFlushSyncCallback | :x: |
 | SCFlushAsync | :x: |
 | MyNandCallback | :x: |
@@ -44,14 +44,14 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | SCGetAspectRatio | :x: |
-| SCGetDisplayOffsetH | :x: |
-| SCGetEuRgb60Mode | :x: |
-| SCGetIdleMode | :x: |
-| SCGetLanguage | :x: |
+| SCGetDisplayOffsetH | :white_check_mark: |
+| SCGetEuRgb60Mode | :white_check_mark: |
+| SCGetIdleMode | :white_check_mark: |
+| SCGetLanguage | :white_check_mark: |
 | SCGetProgressiveMode | :x: |
-| SCGetScreenSaverMode | :x: |
+| SCGetScreenSaverMode | :white_check_mark: |
 | SCGetSoundMode | :x: |
-| SCGetCounterBias | :x: |
+| SCGetCounterBias | :white_check_mark: |
 | SCGetBtDeviceInfoArray | :x: |
 | SCSetBtDeviceInfoArray | :x: |
 | SCGetBtCmpDevInfoArray | :x: |
@@ -67,8 +67,8 @@
 # scapi_prdinfo.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __SCF1 | :x: |
-| SCGetProductArea | :x: |
-| SCGetProductGameRegion | :x: |
+| __SCF1 | :white_check_mark: |
+| SCGetProductArea | :white_check_mark: |
+| SCGetProductGameRegion | :white_check_mark: |
 
 

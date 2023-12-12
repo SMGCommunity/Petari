@@ -71,6 +71,7 @@ namespace MR {
 
     bool isMsgLockOnStarPieceShoot(u32);
 
+    bool isMsgHitmarkEmit(u32);
     bool isMsgStarPieceAttack(u32);
     bool isMsgStarPieceReflect(u32);
 
@@ -169,6 +170,10 @@ namespace MR {
     bool isMsgSpinStormRange(u32);
 
     bool isMsgAutoRushBegin(u32);
+
+    bool isMsgExplosionAttack(u32);
+
+    bool isMsgUpdateBaseMtx(u32);
 
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);

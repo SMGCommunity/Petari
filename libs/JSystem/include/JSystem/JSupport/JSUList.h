@@ -92,7 +92,7 @@ public:
 
     }
 
-    ~JSUList() NO_INLINE {
+    ~JSUList() {
 
     };
 
@@ -179,7 +179,7 @@ public:
 template<typename T>
 class JSUTree : public JSUList<T>, public JSULink<T> {
 public:
-    JSUTree(T *pOwner) : JSUList<T>, JSULink<T>(pOwner) {
+    __inline JSUTree(T *pOwner) : JSUList<T>(), JSULink<T>(pOwner) {
 
     }
 

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 18 / 19 Completed -- (94.73684210526315%)
+# 19 / 19 Completed -- (100.0%)
 # HeapMemoryWatcher.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -22,7 +22,7 @@
 | `setCurrentHeapToSceneHeap__17HeapMemoryWatcherFv` | :white_check_mark: |
 | `destroySceneHeap__17HeapMemoryWatcherFv` | :white_check_mark: |
 | `destroyGameHeap__17HeapMemoryWatcherFv` | :white_check_mark: |
-| `createRootHeap__17HeapMemoryWatcherFv` | :x: |
+| `createRootHeap__17HeapMemoryWatcherFv` | :white_check_mark: |
 | `createHeaps__17HeapMemoryWatcherFv` | :white_check_mark: |
 | `createGameHeap__17HeapMemoryWatcherFv` | :white_check_mark: |
 | `__ct__17HeapMemoryWatcherFv` | :white_check_mark: |

@@ -33,7 +33,7 @@
 | [HitSensorInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/HitSensorInfo.md) | 30.09259259259259% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | [HitSensorKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/HitSensorKeeper.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | [IKJointCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/IKJointCtrl.md) | 30.705882352941178% | 13 / 26 | 50.0% | :eight_pointed_black_star: 
-| [LiveActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActor.md) | 28.770053475935832% | 19 / 37 | 51.35135135135135% | :eight_pointed_black_star: 
+| [LiveActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActor.md) | 34.973262032085564% | 20 / 37 | 54.054054054054056% | :eight_pointed_black_star: 
 | [LiveActorFlag.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActorFlag.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [LiveActorGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActorGroup.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [LiveActorGroupArray.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActorGroupArray.md) | 56.44171779141104% | 9 / 13 | 69.23076923076923% | :eight_pointed_black_star: 

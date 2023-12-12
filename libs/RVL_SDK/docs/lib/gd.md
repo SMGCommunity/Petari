@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| GDBase.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| GDBase.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | GDGeometry.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | GDIndirect.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | GDLight.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -21,10 +21,10 @@
 # GDBase.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| GDInitGDLObj | :x: |
-| GDFlushCurrToMem | :x: |
-| GDPadCurr32 | :x: |
-| GDOverflowed | :x: |
+| GDInitGDLObj | :white_check_mark: |
+| GDFlushCurrToMem | :white_check_mark: |
+| GDPadCurr32 | :white_check_mark: |
+| GDOverflowed | :white_check_mark: |
 
 
 # GDGeometry.o

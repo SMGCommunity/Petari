@@ -26,6 +26,8 @@ namespace MR {
     void forceOpenWipeFade();
     void openWipeFade(f32);
 
+    void openSystemWipeWhiteFade(s32);
+
     bool isStageBeginTitleWipe();
     bool isStageBeginFadeWipe();
     bool isStageBeginWithoutWipe();
@@ -46,6 +48,7 @@ namespace MR {
     void forceToBlankCinemaFrame();
 
     void requestOneUp();
+    void requestPowerupHPMeter();
 
 
     void startToCaptureScreen(const char *);
@@ -54,9 +57,15 @@ namespace MR {
 
     ResTIMG* getScreenResTIMG();
 
+    s32 getScreenWidth();
+
     void openWipeWhiteFade(s32);
     void closeWipeWhiteFade(s32);
 
     void createPurpleCoinCounter();
     void validatePurpleCoinCounter();
+
+    bool isSystemWipeActive();
+
+    void closeSystemWipeWhiteFade(s32);
 };

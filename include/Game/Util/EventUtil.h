@@ -59,10 +59,13 @@ namespace MR {
 
     void explainOneUpIfAtFirst();
 
+    s32 getPlayerLeft();
     void incPlayerLeft();
 
     bool isUFOKinokoBeforeConstruction();
     bool isUFOKinokoUnderConstruction();
+
+    bool isStarPieceCounterStop();
 
     void updateAlreadyDoneFlag(int, u32);
     bool isOnMessageAlreadyRead(s8);
@@ -74,4 +77,8 @@ namespace MR {
     int getEncounterGalaxyCometNameId(const char *);
 
     int getStarPieceNum();
+
+    const char* getCometNameFromId(int);
+
+    s32 getEncounterGalaxyCometPowerStarId(const char *);
 };

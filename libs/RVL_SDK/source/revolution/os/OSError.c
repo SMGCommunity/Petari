@@ -2,12 +2,6 @@
 #include <revolution/os.h>
 #include <cstdio>
 
-OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
-OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
-
-volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0x00D4);
-volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0x00D8);
-
 OSErrorHandler __OSErrorTable[17];
 u32 __OSFpscrEnableBits = 0xF8;
 
