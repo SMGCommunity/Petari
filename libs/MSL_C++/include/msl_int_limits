@@ -1,3 +1,5 @@
+#pramga once
+
 namespace std {
     template<unsigned char b> = (unsigned char)(~0)>
     struct __char {

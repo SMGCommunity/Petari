@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 40 / 178 Completed -- (22.47191011235955%)
+# 47 / 178 Completed -- (26.40449438202247%)
 # ObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -91,8 +91,8 @@
 | `joinToMovementOnOffGroup__2MRFPCcP7NameObjUl` | :x: |
 | `onMovementOnOffGroup__2MRFPCc` | :x: |
 | `registerPreDrawFunction__2MRFRCQ22MR11FunctorBasei` | :x: |
-| `createDrawAdaptor__2MRFPCcRCQ22MR11FunctorBase` | :x: |
-| `createAdaptorAndConnectToDrawBloomModel__2MRFPCcRCQ22MR11FunctorBase` | :x: |
+| `createDrawAdaptor__2MRFPCcRCQ22MR11FunctorBase` | :white_check_mark: |
+| `createAdaptorAndConnectToDrawBloomModel__2MRFPCcRCQ22MR11FunctorBase` | :white_check_mark: |
 | `listenNameObjStageSwitchOnAppear__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBase` | :x: |
 | `listenNameObjStageSwitchOnOffAppear__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBaseRCQ22MR11FunctorBase` | :x: |
 | `listenNameObjStageSwitchOnA__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBase` | :x: |
@@ -100,11 +100,11 @@
 | `listenNameObjStageSwitchOnB__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBase` | :x: |
 | `listenNameObjStageSwitchOffB__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBase` | :x: |
 | `listenNameObjStageSwitchOnOffB__2MRFPC7NameObjPC15StageSwitchCtrlRCQ22MR11FunctorBaseRCQ22MR11FunctorBase` | :x: |
-| `createAndAddResourceHolder__2MRFPCc` | :x: |
-| `loadResourceFromArc__2MRFPCcPCc` | :x: |
-| `isExistResourceInArc__2MRFPCcPCc` | :x: |
-| `loadTexFromArc__2MRFPCcPCc` | :x: |
-| `loadTexFromArc__2MRFPCc` | :x: |
+| `createAndAddResourceHolder__2MRFPCc` | :white_check_mark: |
+| `loadResourceFromArc__2MRFPCcPCc` | :white_check_mark: |
+| `isExistResourceInArc__2MRFPCcPCc` | :white_check_mark: |
+| `loadTexFromArc__2MRFPCcPCc` | :white_check_mark: |
+| `loadTexFromArc__2MRFPCc` | :white_check_mark: |
 | `isExistFileInArcLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :x: |
 | `isExistFileInArc__2MRFPC14ResourceHolderPCce` | :x: |
 | `tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :x: |

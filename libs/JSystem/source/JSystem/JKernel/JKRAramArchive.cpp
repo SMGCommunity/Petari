@@ -1,6 +1,6 @@
-#include "JSystem/JKernel/JKRAram.h"
-#include "JSystem/JKernel/JKRAramArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRAram.hpp"
+#include "JSystem/JKernel/JKRAramArchive.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 
 JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_ARAM) {
     mMountDir = mountDir;

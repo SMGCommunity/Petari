@@ -67,7 +67,7 @@
 | [ClipAreaDropLaser.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaDropLaser.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [ClipAreaHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaHolder.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [ClipAreaMovable.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaMovable.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [ClipAreaShape.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaShape.md) | 45.59585492227979% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
+| [ClipAreaShape.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaShape.md) | 48.44559585492228% | 7 / 13 | 53.84615384615385% | :eight_pointed_black_star: 
 | [ClipFieldFillDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldFillDraw.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [ClipFieldMapParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldMapParts.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [ClipFieldSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldSwitch.md) | 0.0% | 0 / 4 | 0.0% | :x: 

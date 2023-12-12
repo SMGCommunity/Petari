@@ -1,10 +1,10 @@
-#include "JSystem/JKernel/JKRAramArchive.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRCompArchive.h"
-#include "JSystem/JKernel/JKRDvdArchive.h"
-#include "JSystem/JKernel/JKRFileFinder.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
+#include "JSystem/JKernel/JKRAramArchive.hpp"
+#include "JSystem/JKernel/JKRArchive.hpp"
+#include "JSystem/JKernel/JKRCompArchive.hpp"
+#include "JSystem/JKernel/JKRDvdArchive.hpp"
+#include "JSystem/JKernel/JKRFileFinder.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JKernel/JKRMemArchive.hpp"
 #include "revolution.h"
 
 bool JKRArchive::becomeCurrent(const char *pName) {

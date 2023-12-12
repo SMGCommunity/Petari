@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRThread.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRThread.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 
 JSUList<JKRThread> JKRThread::sThreadList = JSUList<JKRThread>(false);
 JSUList<JKRTask> JKRThread::sTaskList = JSUList<JKRTask>();

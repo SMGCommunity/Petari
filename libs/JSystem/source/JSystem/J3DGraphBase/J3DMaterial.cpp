@@ -1,4 +1,4 @@
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
 
 J3DAlphaComp::J3DAlphaComp() {
     u16 val = sUnk;

@@ -1,9 +1,9 @@
-#include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JAudio2/JASChannel.h"
-#include "JSystem/JAudio2/JASSoundParams.h"
-#include "JSystem/JAudio2/JASAiCtrl.h"
-#include "JSystem/JAudio2/JASDriverIF.h"
-#include "JSystem/JAudio2/JASLfo.h"
+#include "JSystem/JAudio2/JASTrack.hpp"
+#include "JSystem/JAudio2/JASChannel.hpp"
+#include "JSystem/JAudio2/JASSoundParams.hpp"
+#include "JSystem/JAudio2/JASAiCtrl.hpp"
+#include "JSystem/JAudio2/JASDriverIF.hpp"
+#include "JSystem/JAudio2/JASLfo.hpp"
 
 #include <cstring>
 #include <revolution/os.h>
@@ -15,9 +15,9 @@ static const JASOscillator::Point sDefaultAdsr[4] = {
     {0xe, 0, 0}
 };
 
-const JASOscillator::Data JASTrack::sEnvOsc = {0, 1f, 0, 0, 1f, 0f};
+const JASOscillator::Data JASTrack::sEnvOsc = {0, 1.0f, 0, 0, 1.0f, 0.0f};
 
-const JASOscillator::Data JASTrack::sPitchEnvOsc = {1, 1f, 0, 0, 1f, 0f};
+const JASOscillator::Data JASTrack::sPitchEnvOsc = {1, 1.0f, 0, 0, 1.0f, 0.0f};
 
 JASTrack::JASTrack() : JASSeqCtrl(), mRegs(), mInitialMgr(this), mNumChannels(1), _240(0), mNode() {
     mMgrs[0] = &mInitialMgr;

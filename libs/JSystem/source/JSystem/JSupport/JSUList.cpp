@@ -1,4 +1,4 @@
-#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JSupport/JSUList.hpp"
 
 JSUPtrLink::JSUPtrLink(void *pData) {
     mData = pData;

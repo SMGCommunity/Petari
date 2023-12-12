@@ -1,5 +1,5 @@
-#include "JSystem/JGadget/linklist.h"
-#include "JSystem/JGadget/predicate.h"
+#include "JSystem/JGadget/linklist.hpp"
+#include "JSystem/JGadget/predicate.hpp"
 
 namespace JGadget {
     

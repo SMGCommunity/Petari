@@ -1,4 +1,4 @@
-#include "JSystem/J3DGraphBase/J3DVertex.h"
+#include "JSystem/J3DGraphBase/J3DVertex.hpp"
 
 J3DDrawMtxData::J3DDrawMtxData() {
     mDrawMatrixCount = 0;

@@ -1,9 +1,9 @@
-#include "JSystem/JKernel/JKRAram.h"
-#include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/JKRDvdRipper.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRAram.hpp"
+#include "JSystem/JKernel/JKRDecomp.hpp"
+#include "JSystem/JKernel/JKRDvdRipper.hpp"
+#include "JSystem/JKernel/JKRMemArchive.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JUtility/JUTException.hpp"
 #include "revolution.h"
 #include <cstring>
 

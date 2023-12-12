@@ -3,6 +3,7 @@
 
 #include <revolution/types.h>
 #include <revolution/os/OSContext.h>
+#include <revolution/os/OSException.h>
 
 #ifdef __cplusplus
 extern "C" {

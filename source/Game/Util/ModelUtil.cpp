@@ -1,7 +1,7 @@
 #include "Game/Util/ModelUtil.h"
 
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
+#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
 #include "JSystem/J3DGraphBase/J3DShapePacket.h"
 #include "JSystem/JUtility/JUTNameTab.h"

@@ -1,4 +1,4 @@
-#include "JSystem/JAudio2/JASTrackPort.h"
+#include "JSystem/JAudio2/JASTrackPort.hpp"
 
 void JASTrackPort::init() {
     for(u32 i = 0; i < 0x10; i++) {

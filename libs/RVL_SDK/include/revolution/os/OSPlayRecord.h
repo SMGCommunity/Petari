@@ -1,6 +1,9 @@
 #ifndef OSPLAYRECORD_H
 #define OSPLAYRECORD_H
 
+#include <revolution/types.h>
+#include <revolution/os/OSTime.h>
+
 typedef struct {
     u32 checkSum;
     u16 titleName[2][21];

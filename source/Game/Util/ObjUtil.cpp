@@ -1,5 +1,19 @@
-#include "Game/Util.h"
 #include "Game/NameObj/NameObjExecuteHolder.h"
+#include "Game/NameObj/NameObjAdaptor.h"
+#include "Game/System/ResourceHolder.h"
+#include "Game/System/ResourceHolderManager.h"
+#include "Game/Util/ObjUtil.h"
+#include <cstdio>
+#include <va_list.h>
+
+class LiveActor;
+
+namespace {
+    const JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list* pFormat) {
+            char buf[0x100];
+            vsnprintf(buf, 0x100, pArchive, pFormat);
+    }
+};
 
 namespace MR {
     void connectToScene(LiveActor *pActor, int a2, int a3, int a4, int a5) {
@@ -189,5 +203,52 @@ namespace MR {
         MR::registerNameObjToExecuteHolder(pObj, 0xD, -1, -1, -1);
         MR::connectToSceneTemporarily(pObj);
         MR::connectToDrawTemporarily(pObj);
+    }
+
+    NameObjAdaptor* createDrawAdaptor(const char *pName, const MR::FunctorBase &rFunctor) {
+        NameObjAdaptor* adaptor = new NameObjAdaptor(pName);
+        adaptor->connectToDraw(rFunctor);
+        return adaptor;
+    }
+
+    NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char *pName, const MR::FunctorBase &rFunctor) {
+        NameObjAdaptor* adaptor = new NameObjAdaptor(pName);
+        adaptor->connectToDraw(rFunctor);
+        MR::registerNameObjToExecuteHolder(adaptor, -1, -1, -1, 0x36);
+        MR::connectToSceneTemporarily(adaptor);
+        MR::connectToDrawTemporarily(adaptor);
+        return adaptor;
+    }
+
+    ResourceHolder* createAndAddResourceHolder(const char* pResource) {
+        return SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pResource, nullptr);
+    }
+
+    void* loadResourceFromArc(const char* pArchive, const char* pFile) {
+        ResourceHolder* holder = createAndAddResourceHolder(pArchive);
+        return holder->mFileInfoTable->getRes(pFile);
+    }
+
+    bool isExistResourceInArc(const char* pArchive, const char* pFile) {
+        ResourceHolder* holder = createAndAddResourceHolder(pArchive);
+        return holder->mFileInfoTable->isExistRes(pFile);
+    }
+
+    const ResTIMG* loadTexFromArc(const char* pArchive, const char* pFile) {
+        return static_cast<const ResTIMG*>(loadResourceFromArc(pArchive, pFile));
+    }
+
+    const ResTIMG* loadTexFromArc(const char* pArchive) {
+        char arcBuf[0x100];
+        snprintf(arcBuf, 0x100, "%s.arc", pArchive);
+        char texBuf[0x100];
+        snprintf(texBuf, 0x100, "%s.bti", pArchive);
+        return loadTexFromArc(arcBuf, texBuf);
+    }
+
+    const JMapInfo* createCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
+        va_list list;
+        va_start(list, pFormat);
+        return ::tryCreateCsvParserLocal(pHolder, pFormat, &list);
     }
 };

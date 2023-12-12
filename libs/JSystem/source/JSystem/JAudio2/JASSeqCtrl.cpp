@@ -1,5 +1,5 @@
-#include "JSystem/JAudio2/JASSeqCtrl.h"
-#include "JSystem/JAudio2/JASTrack.h"
+#include "JSystem/JAudio2/JASSeqCtrl.hpp"
+#include "JSystem/JAudio2/JASTrack.hpp"
 
 JASSeqParser JASSeqCtrl::sDefaultParser = JASSeqParser();
 

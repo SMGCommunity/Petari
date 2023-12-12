@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JKernel/JKRExpHeap.hpp"
+#include "JSystem/JUtility/JUTConsole.hpp"
 #include <new>
 
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))

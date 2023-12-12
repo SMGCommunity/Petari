@@ -1,7 +1,7 @@
 #ifndef KPAD_H
 #define KPAD_H
 
-#include <revolution.h>
+#include <revolution/types.h>
 #include <revolution/mtx.h>
 
 #ifdef __cplusplus

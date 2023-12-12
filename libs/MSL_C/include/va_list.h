@@ -5,13 +5,12 @@
 extern "C" {
 #endif
 
-typedef struct {
+typedef struct __va_list_struct {
     char gpr;
     char fpr;
-    char _2;
-    char _3;
-    char* _4;
-    char* _8;
+    char reserved[2];
+    char* input_arg_area;
+    char* reg_save_area;
 } __va_list[1];
 
 typedef __va_list va_list;

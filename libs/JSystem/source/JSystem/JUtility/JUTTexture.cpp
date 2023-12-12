@@ -1,5 +1,5 @@
-#include "JSystem/JUtility/JUTTexture.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTTexture.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <revolution.h>
 
 JUTTexture::JUTTexture(const ResTIMG *pImgData, u8 a2) {

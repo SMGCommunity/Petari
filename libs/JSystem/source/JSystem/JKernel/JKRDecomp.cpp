@@ -1,6 +1,6 @@
-#include "JSystem/JKernel/JKRDecomp.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRDecomp.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JKernel/JKRAramPiece.hpp"
 #include "revolution.h"
 
 #define NR_MESSAGES 8

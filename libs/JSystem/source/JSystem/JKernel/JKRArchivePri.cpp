@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <cstring>
 
 #ifdef NON_MATCHING

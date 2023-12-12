@@ -1,7 +1,7 @@
 #ifndef OSTIME_H
 #define OSTIME_H
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,7 +1,7 @@
 #ifndef VIFUNCS_H
 #define VIFUNCS_H
 
-#include <revolution.h>
+#include <revolution/types.h>
 #include <revolution/vi/vitypes.h>
 
 #ifdef __cplusplus

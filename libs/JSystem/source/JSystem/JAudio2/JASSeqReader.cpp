@@ -1,4 +1,4 @@
-#include "JSystem/JAudio2/JASSeqReader.h"
+#include "JSystem/JAudio2/JASSeqReader.hpp"
 
 void JASSeqReader::init() {
 	mSeqBuff = nullptr;

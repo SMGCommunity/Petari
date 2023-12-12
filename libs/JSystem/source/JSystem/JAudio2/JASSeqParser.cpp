@@ -1,7 +1,7 @@
-#include "JSystem/JAudio2/JASSeqParser.h"
-#include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JMath/random.h"
-#include "JSystem/JAudio2/JASReport.h"
+#include "JSystem/JAudio2/JASSeqParser.hpp"
+#include "JSystem/JAudio2/JASTrack.hpp"
+#include "JSystem/JMath/random.hpp"
+#include "JSystem/JAudio2/JASReport.hpp"
 
 // At address 80560cb8
 const static s16 sIIRCutoff[0x208] = {

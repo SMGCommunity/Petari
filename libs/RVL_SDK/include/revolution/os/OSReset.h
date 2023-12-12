@@ -1,7 +1,7 @@
 #ifndef OSRESET_H
 #define OSRESET_H
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

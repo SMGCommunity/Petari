@@ -1,7 +1,6 @@
-#ifndef ALGORITHM_H
-#define ALGORITHM_H
+#pragma once
 
-#include <functional.h>
+#include <functional.hpp>
 
 template<class InputIterator, class Function>
 inline Function for_each(InputIterator first, InputIterator last, Function f) {

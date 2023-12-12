@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 typedef struct {
     u8 data[32];

@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JUtility/JUTException.hpp"
 #include <revolution/os/OSBootInfo.h>
 
 JKRHeap* JKRHeap::sCurrentHeap;

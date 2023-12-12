@@ -1,4 +1,4 @@
-#include "JSystem/JMath/JMath.h"
+#include "JSystem/JMath/JMath.hpp"
 
 // this is a different type but it works for now
 f32 sLookupTable[1024];

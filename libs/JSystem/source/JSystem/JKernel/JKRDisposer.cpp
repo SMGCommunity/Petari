@@ -1,5 +1,5 @@
-#include "JSystem/JKernel/JKRDisposer.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRDisposer.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 
 JKRDisposer::JKRDisposer() : mLink(this) {
     mHeap = JKRHeap::findFromRoot(this);

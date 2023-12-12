@@ -1,5 +1,5 @@
-#include "JSystem/JGadget/hashcode.h"
-#include "JSystem/JGadget/predicate.h"
+#include "JSystem/JGadget/hashcode.hpp"
+#include "JSystem/JGadget/predicate.hpp"
 
 namespace JGadget {
     namespace {
