@@ -1,4 +1,4 @@
-#include "nw4r/lyt/lyt_drawInfo.h"
+#include "nw4r/lyt/lyt_drawInfo.hpp"
 #include <mem.h>
 
 namespace nw4r {

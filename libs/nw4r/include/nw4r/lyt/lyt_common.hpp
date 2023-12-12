@@ -1,10 +1,10 @@
 #pragma once
 
 #include <revolution.h>
-#include "nw4r/lyt/lyt_resources.h"
-#include "nw4r/lyt/lyt_resourceAccessor.h"
-#include "nw4r/math/types.h"
-#include "nw4r/ut/Color.h"
+#include "nw4r/lyt/lyt_resources.hpp"
+#include "nw4r/lyt/lyt_resourceAccessor.hpp"
+#include "nw4r/math/types.hpp"
+#include "nw4r/ut/Color.hpp"
 
 namespace nw4r {
     namespace lyt {

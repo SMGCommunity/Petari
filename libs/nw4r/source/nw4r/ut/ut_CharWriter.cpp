@@ -1,4 +1,4 @@
-#include "nw4r/ut/CharWriter.h"
+#include "nw4r/ut/CharWriter.hpp"
 
 namespace {
     void SetupGXCommon() {

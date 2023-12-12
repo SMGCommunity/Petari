@@ -1,4 +1,4 @@
-#include "nw4r/ut/ResFontBase.h"
+#include "nw4r/ut/ResFontBase.hpp"
 
 namespace nw4r {
     namespace ut {

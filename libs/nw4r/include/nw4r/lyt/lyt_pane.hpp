@@ -1,12 +1,12 @@
 #pragma once
 
-#include "nw4r/ut/Color.h"
-#include "nw4r/ut/LinkList.h"
-#include "nw4r/ut/Rect.h"
-#include "nw4r/ut/RuntimeTypeInfo.h"
-#include "nw4r/lyt/lyt_drawInfo.h"
-#include "nw4r/lyt/lyt_resources.h"
-#include "nw4r/lyt/types.h"
+#include "nw4r/ut/Color.hpp"
+#include "nw4r/ut/LinkList.hpp"
+#include "nw4r/ut/Rect.hpp"
+#include "nw4r/ut/RuntimeTypeInfo.hpp"
+#include "nw4r/lyt/lyt_drawInfo.hpp"
+#include "nw4r/lyt/lyt_resources.hpp"
+#include "nw4r/lyt/types.hpp"
 #include <cstddef>
 #include <revolution.h>
 
@@ -27,7 +27,9 @@ namespace nw4r {
         };
 
         class Pane;
+        #ifdef __MWERKS__
         typedef ut::LinkList<Pane, offsetof(detail::PaneBase, mLink)> PaneList;
+        #endif
 
         class Pane : public detail::PaneBase {
         public:
@@ -59,7 +61,9 @@ namespace nw4r {
             virtual void LoadMtx(const DrawInfo &);
 
             void AppendChild(Pane *);
+
             void InsertChild(PaneList::Iterator, Pane *);
+
             void RemoveChild(Pane *);
             void SetName(const char *);
             void AddAnimationLink(AnimationLink *);

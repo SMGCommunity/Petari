@@ -1,7 +1,7 @@
-#include "nw4r/lyt/lyt_common.h"
-#include "nw4r/lyt/lyt_layout.h"
-#include "nw4r/lyt/types.h"
-#include "nw4r/ut/inlines.h"
+#include "nw4r/lyt/lyt_common.hpp"
+#include "nw4r/lyt/lyt_layout.hpp"
+#include "nw4r/lyt/types.hpp"
+#include "nw4r/ut/inlines.hpp"
 #include <cstring>
 
 namespace nw4r {

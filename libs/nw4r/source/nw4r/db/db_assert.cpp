@@ -1,5 +1,5 @@
-#include "nw4r/db/assert.h"
-#include "nw4r/db/console.h"
+#include "nw4r/db/assert.hpp"
+#include "nw4r/db/console.hpp"
 #include <revolution.h>
 
 namespace nw4r {

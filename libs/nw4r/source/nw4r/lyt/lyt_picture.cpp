@@ -1,5 +1,5 @@
-#include "nw4r/lyt/lyt_picture.h"
-#include "nw4r/lyt/lyt_layout.h"
+#include "nw4r/lyt/lyt_picture.hpp"
+#include "nw4r/lyt/lyt_layout.hpp"
 
 namespace nw4r {
     namespace lyt {

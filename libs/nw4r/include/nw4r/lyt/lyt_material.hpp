@@ -1,8 +1,8 @@
 #pragma once
 
-#include "nw4r/lyt/types.h"
-#include "nw4r/lyt/lyt_texMap.h"
-#include "nw4r/ut/Color.h"
+#include "nw4r/lyt/types.hpp"
+#include "nw4r/lyt/lyt_texMap.hpp"
+#include "nw4r/ut/Color.hpp"
 
 namespace nw4r {
     namespace lyt {

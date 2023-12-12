@@ -2,7 +2,7 @@
 
 #include <revolution.h>
 #include <revolution/tpl.h>
-#include "nw4r/lyt/types.h"
+#include "nw4r/lyt/types.hpp"
 
 namespace nw4r {
     namespace lyt {

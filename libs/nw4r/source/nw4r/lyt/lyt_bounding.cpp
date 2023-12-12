@@ -1,4 +1,4 @@
-#include "nw4r/lyt/lyt_bounding.h"
+#include "nw4r/lyt/lyt_bounding.hpp"
 
 namespace nw4r {
     namespace lyt {

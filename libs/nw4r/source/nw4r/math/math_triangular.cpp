@@ -1,5 +1,5 @@
-#include "nw4r/math/triangular.h"
-#include "nw4r/math/arithmetic.h"
+#include "nw4r/math/triangular.hpp"
+#include "nw4r/math/arithmetic.hpp"
 
 namespace nw4r {
     namespace math {

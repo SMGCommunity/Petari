@@ -1,5 +1,5 @@
-#include "nw4r/lyt/lyt_texMap.h"
-#include "nw4r/lyt/lyt_common.h"
+#include "nw4r/lyt/lyt_texMap.hpp"
+#include "nw4r/lyt/lyt_common.hpp"
 
 namespace nw4r {
     namespace lyt {

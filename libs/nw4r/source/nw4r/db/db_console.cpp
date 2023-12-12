@@ -1,4 +1,4 @@
-#include "nw4r/db/console.h"
+#include "nw4r/db/console.hpp"
 #include <cstdarg>
 
 namespace nw4r {

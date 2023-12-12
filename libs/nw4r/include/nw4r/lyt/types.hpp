@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw4r/math/types.h"
-#include "nw4r/ut/LinkList.h"
+#include "nw4r/math/types.hpp"
+#include "nw4r/ut/LinkList.hpp"
 #include <cstddef>
 
 namespace nw4r {
@@ -520,7 +520,9 @@ namespace nw4r {
             }
         };
 
-        typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationList; 
+        #ifdef __MWERKS__
+        typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationList;
+        #endif
     };
 };
 

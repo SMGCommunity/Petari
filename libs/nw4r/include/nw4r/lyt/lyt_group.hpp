@@ -1,7 +1,7 @@
 #pragma once
 
-#include <nw4r/lyt/lyt_pane.h>
-#include <nw4r/ut/LinkList.h>
+#include "nw4r/lyt/lyt_pane.hpp"
+#include "nw4r/ut/LinkList.hpp"
 
 namespace nw4r {
     namespace lyt {

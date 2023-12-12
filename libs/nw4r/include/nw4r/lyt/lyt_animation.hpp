@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "nw4r/ut/LinkList.h"
+#include "nw4r/ut/LinkList.hpp"
 
 namespace nw4r {
     namespace lyt {

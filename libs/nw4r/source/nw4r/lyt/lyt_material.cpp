@@ -1,8 +1,8 @@
-#include "nw4r/lyt/lyt_common.h"
-#include "nw4r/lyt/lyt_material.h"
-#include "nw4r/lyt/lyt_texMap.h"
-#include "nw4r/math/triangular.h"
-#include "nw4r/math/arithmetic.h"
+#include "nw4r/lyt/lyt_common.hpp"
+#include "nw4r/lyt/lyt_material.hpp"
+#include "nw4r/lyt/lyt_texMap.hpp"
+#include "nw4r/math/triangular.hpp"
+#include "nw4r/math/arithmetic.hpp"
 #include <cstring>
 #include <new>
 

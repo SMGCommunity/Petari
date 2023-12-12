@@ -1,9 +1,9 @@
 #pragma once
 
-#include "nw4r/lyt/lyt_pane.h"
-#include "nw4r/lyt/lyt_common.h"
-#include "nw4r/lyt/lyt_material.h"
-#include "nw4r/ut/RuntimeTypeInfo.h"
+#include "nw4r/lyt/lyt_pane.hpp"
+#include "nw4r/lyt/lyt_common.hpp"
+#include "nw4r/lyt/lyt_material.hpp"
+#include "nw4r/ut/RuntimeTypeInfo.hpp"
 
 namespace nw4r {
     namespace lyt {

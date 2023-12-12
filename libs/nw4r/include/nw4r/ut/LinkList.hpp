@@ -1,7 +1,7 @@
 #pragma once
 
-#include "nw4r/misc.h"
-#include "nw4r/ut/inlines.h"
+#include "nw4r/misc.hpp"
+#include "nw4r/ut/inlines.hpp"
 #include <revolution.h>
 
 namespace nw4r {
@@ -209,7 +209,7 @@ namespace nw4r {
 
                 TIt_base_ it_;
 
-                friend class Self;
+                friend class LinkList;
             };
 
             Iterator GetBeginIter() {

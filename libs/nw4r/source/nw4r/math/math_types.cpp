@@ -1,4 +1,4 @@
-#include "nw4r/math/types.h"
+#include "nw4r/math/types.hpp"
 
 namespace nw4r {
     namespace math {

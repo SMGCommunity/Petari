@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "nw4r/ut/CharStrmReader.h"
-#include "nw4r/ut/fontResourceFormat.h"
+#include "nw4r/ut/CharStrmReader.hpp"
+#include "nw4r/ut/fontResourceFormat.hpp"
 
 namespace nw4r {
     namespace ut {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "nw4r/ut/binaryFileFormat.h"
+#include "nw4r/ut/binaryFileFormat.hpp"
 
 namespace nw4r {
     namespace ut {

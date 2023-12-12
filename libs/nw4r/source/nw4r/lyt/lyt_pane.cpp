@@ -1,9 +1,9 @@
-#include "nw4r/lyt/lyt_pane.h"
-#include "nw4r/lyt/lyt_animation.h"
-#include "nw4r/lyt/lyt_material.h"
-#include "nw4r/lyt/lyt_common.h"
-#include "nw4r/lyt/lyt_layout.h"
-#include "nw4r/math/types.h"
+#include "nw4r/lyt/lyt_pane.hpp"
+#include "nw4r/lyt/lyt_animation.hpp"
+#include "nw4r/lyt/lyt_material.hpp"
+#include "nw4r/lyt/lyt_common.hpp"
+#include "nw4r/lyt/lyt_layout.hpp"
+#include "nw4r/math/types.hpp"
 #include <cstring>
 
 namespace nw4r {

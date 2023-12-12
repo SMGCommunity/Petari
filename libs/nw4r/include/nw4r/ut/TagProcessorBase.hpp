@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nw4r/ut/Rect.h"
+#include "nw4r/ut/Rect.hpp"
 #include <revolution.h>
 
 namespace nw4r {

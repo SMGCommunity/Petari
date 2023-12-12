@@ -1,9 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include <nw4r/math/types.h>
-#include <nw4r/ut/Color.h>
-#include <nw4r/ut/Font.h>
+#include <nw4r/math/types.hpp>
+#include <nw4r/ut/Color.hpp>
+#include <nw4r/ut/Font.hpp>
 
 namespace nw4r {
     namespace ut {

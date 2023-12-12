@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "nw4r/math/types.h"
-#include "nw4r/ut/Rect.h"
+#include "nw4r/math/types.hpp"
+#include "nw4r/ut/Rect.hpp"
 
 namespace nw4r {
     namespace lyt {
