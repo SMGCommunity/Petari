@@ -1,8 +1,8 @@
 #ifndef SC_H
 #define SC_H
 
-#include <revolution/types.h>
-#include <revolution.h>
+#include <revolution/os.h>
+#include <private/scprivate.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,34 +11,8 @@ extern "C" {
 typedef void (*SCReloadConfFileCallback)(s32 result);
 typedef void (*SCFlushCallback)(u32 result);
 
-typedef u8 SCType;
-
 typedef struct {
-        OSThreadQueue threadQueue;
-        NANDFileInfo nandFileInfo;
-        NANDCommandBlock nandCommandBlock;
-
-        union {
-            u8 nandType;
-            NANDStatus nandStatus;
-        } u;
-
-        u8 nandStep;
-        u8 nandNeedClose;
-        u8 reloadFileCount;
-        SCReloadConfFileCallback reloadCallback;
-        s32 reloadResult;
-        const char* reloadFileName[2];
-        u8* reloadBufp[2];
-        u32 reloadSizeExpected[2];
-        u32 reloadedSize[2];
-        SCFlushCallback flushCallback;
-        u32 flushResult;
-        u32 flushSize;
-} SCControl;
-
-typedef struct {
-    union {
+    /*union {
         u8 u8;
         s8 s8;
         u16 u16;
@@ -47,8 +21,8 @@ typedef struct {
         s32 s32;
         u64 u64;
         s64 s64;
-        u8 longPRecision64[sizeof(u64)];
-    } integer;
+        u8 longPrecision64[sizeof(u64)];
+    } integer;*/
 
     SCType typeInteger;
     SCType typeByteArray;
@@ -58,7 +32,6 @@ typedef struct {
     u8* data;
     u32 packedSize;
 } SCItem;
-
 
 typedef enum {
     SC_ITEM_ID_IPL_COUNTER_BIAS,
@@ -100,8 +73,29 @@ typedef enum {
     SC_ITEM_ID_MAX_PLUS1
 } SCItemID;
 
-#define SC_TYPE_MASK                ((SCType)0xe0)
-#define SC_NAME_LENGTH_MASK         ((SCType)~SC_TYPE_MASK)
+typedef struct {
+        OSThreadQueue threadQueue;
+        NANDFileInfo nandFileInfo;
+        NANDCommandBlock nandCommandBlock;
+
+        union {
+            u8 nandType;
+            NANDStatus nandStatus;
+        } u;
+
+        u8 nandStep;
+        u8 nandNeedClose;
+        u8 reloadFileCount;
+        SCReloadConfFileCallback reloadCallback;
+        s32 reloadResult;
+        const char* reloadFileName[2];
+        u8* reloadBufp[2];
+        u32 reloadSizeExpected[2];
+        u32 reloadedSize[2];
+        SCFlushCallback flushCallback;
+        u32 flushResult;
+        u32 flushSize;
+} SCControl;
 
 s32 SCReloadConfFileAsync(u8 *, u32, SCReloadConfFileCallback);
 
