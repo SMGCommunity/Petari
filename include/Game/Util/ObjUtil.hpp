@@ -90,8 +90,8 @@ namespace MR {
     void requestMovementOn(NameObj *);
     void requestMovementOff(NameObj *);
     
-    JMapInfo* createCsvParser(const char *, const char *, ...);
-    JMapInfo* tryCreateCsvParser(const ResourceHolder *, const char *, ...);
+    const JMapInfo* createCsvParser(const char *, const char *, ...);
+    const JMapInfo* tryCreateCsvParser(const ResourceHolder *, const char *, ...);
     s32 getCsvDataElementNum(const JMapInfo *);
 
     void getCsvDataS32(s32 *, const JMapInfo *, const char *, s32);

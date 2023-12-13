@@ -2469,8 +2469,8 @@ loadTexFromArc__2MRFPCcPCc,ObjUtil.o,Util.a,true
 loadTexFromArc__2MRFPCc,ObjUtil.o,Util.a,true
 isExistFileInArcLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct,ObjUtil.o,Util.a,false
 isExistFileInArc__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,false
-tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct,ObjUtil.o,Util.a,false
-createCsvParser__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,false
+tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct,ObjUtil.o,Util.a,true
+createCsvParser__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,true
 createCsvParser__2MRFPCcPCce,ObjUtil.o,Util.a,false
 tryCreateCsvParser__2MRFPC9LiveActorPCce,ObjUtil.o,Util.a,false
 tryCreateCsvParser__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,false

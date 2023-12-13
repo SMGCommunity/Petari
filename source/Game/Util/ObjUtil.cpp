@@ -7,13 +7,19 @@
 #include <va_list.h>
 
 class LiveActor;
-
+ 
 namespace {
-    const JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list* pFormat) {
+    const JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
             char buf[0x100];
-            vsnprintf(buf, 0x100, pArchive, *pFormat);
+            vsnprintf(buf, 0x100, pArchive, pFormat);
 
-            return nullptr;
+            if (!pHolder->mFileInfoTable->isExistRes(buf)) {
+                return nullptr;
+            }
+
+            JMapInfo* inf = new JMapInfo();
+            inf->attach(pHolder->mFileInfoTable->getRes(buf));
+            return inf;
     }
 };
 
@@ -251,6 +257,12 @@ namespace MR {
     const JMapInfo* createCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
         va_list list;
         va_start(list, pFormat);
-        return ::tryCreateCsvParserLocal(pHolder, pFormat, &list);
+        return ::tryCreateCsvParserLocal(pHolder, pFormat, list);
     }
+
+    #ifdef NON_MATCHING
+    const JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
+        return MR::createCsvParser(SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr), pArchive, pFormat);   
+    }
+    #endif
 };

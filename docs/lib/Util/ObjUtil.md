@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 47 / 178 Completed -- (26.40449438202247%)
+# 49 / 178 Completed -- (27.52808988764045%)
 # ObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -107,8 +107,8 @@
 | `loadTexFromArc__2MRFPCc` | :white_check_mark: |
 | `isExistFileInArcLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :x: |
 | `isExistFileInArc__2MRFPC14ResourceHolderPCce` | :x: |
-| `tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :x: |
-| `createCsvParser__2MRFPC14ResourceHolderPCce` | :x: |
+| `tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :white_check_mark: |
+| `createCsvParser__2MRFPC14ResourceHolderPCce` | :white_check_mark: |
 | `createCsvParser__2MRFPCcPCce` | :x: |
 | `tryCreateCsvParser__2MRFPC9LiveActorPCce` | :x: |
 | `tryCreateCsvParser__2MRFPC14ResourceHolderPCce` | :x: |
