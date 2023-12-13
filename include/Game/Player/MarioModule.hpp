@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution/types.h>
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class Mario;
 class MarioActor;

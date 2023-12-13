@@ -1,4 +1,4 @@
-#include "Game/MapObj/BenefitItemInvincible.h"
+#include "Game/MapObj/BenefitItemInvincible.hpp"
 #include <cstring>
 
 namespace {

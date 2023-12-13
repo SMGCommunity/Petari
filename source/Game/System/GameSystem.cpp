@@ -1,10 +1,10 @@
-#include "Game/System/GameSystem.h"
-#include "Game/System/GameSystemException.h"
-#include "Game/System/FileRipper.h"
-#include "Game/System/HeapMemoryWatcher.h"
-#include "Game/SingletonHolder.h"
-#include "nw4r/lyt/lyt_init.h"
-#include "Game/Util.h"
+#include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemException.hpp"
+#include "Game/System/FileRipper.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "nw4r/lyt/lyt_init.hpp"
+#include "Game/Util.hpp"
 
 
 void main(void) {

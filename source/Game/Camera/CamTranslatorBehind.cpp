@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorBehind.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorBehind.hpp"
 
 void CamTranslatorBehind::setParam(const CameraParamChunk *pChunk) {
 	TVec2f angle;

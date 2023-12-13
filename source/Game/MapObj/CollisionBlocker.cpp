@@ -1,4 +1,4 @@
-#include "Game/MapObj/CollisionBlocker.h"
+#include "Game/MapObj/CollisionBlocker.hpp"
 
 CollisionBlocker::CollisionBlocker(const char *pName) : LiveActor(pName) {
 

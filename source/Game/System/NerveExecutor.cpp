@@ -1,4 +1,4 @@
-#include "Game/System/NerveExecutor.h"
+#include "Game/System/NerveExecutor.hpp"
 
 NerveExecutor::NerveExecutor(const char *a1) : mSpine(0) {
 

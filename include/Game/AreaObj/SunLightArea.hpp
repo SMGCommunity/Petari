@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
+#include "Game/AreaObj/AreaObj.hpp"
 
 class SunLightArea : public AreaObj {
 public:

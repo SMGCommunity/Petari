@@ -1,5 +1,5 @@
-#include "Game/MapObj/CoinHolder.h"
-#include "Game/MapObj/Coin.h"
+#include "Game/MapObj/CoinHolder.hpp"
+#include "Game/MapObj/Coin.hpp"
 
 CoinHolder::CoinHolder(const char *pName) : DeriveActorGroup<Coin>(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
     mHostInfoArr = new CoinHostInfo[0x200];

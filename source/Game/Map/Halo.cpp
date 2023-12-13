@@ -1,4 +1,4 @@
-#include "Game/Map/Halo.h"
+#include "Game/Map/Halo.hpp"
 
 Halo::Halo(const char *pName) : MapObjActor(pName) {
     mDistance = 70.0f;

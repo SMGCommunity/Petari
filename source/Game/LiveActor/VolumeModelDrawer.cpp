@@ -1,6 +1,10 @@
-#include "Game/LiveActor/VolumeModelDrawer.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/System/ResourceHolder.h"
+#include "Game/LiveActor/VolumeModelDrawer.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/System/ResourceHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
 VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル描画初期化") {

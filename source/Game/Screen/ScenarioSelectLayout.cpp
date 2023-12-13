@@ -1,7 +1,7 @@
-#include "Game/Screen/ScenarioSelectLayout.h"
-#include "Game/Effect/MultiEmitter.h"
-#include "Game/System/GalaxyStatusAccessor.h"
-#include "Game/Util.h"
+#include "Game/Screen/ScenarioSelectLayout.hpp"
+#include "Game/Effect/MultiEmitter.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char* const cStarPaneName[] = {

@@ -1,4 +1,4 @@
-#include "Game/MapObj/GreenCaterpillarBig.h"
+#include "Game/MapObj/GreenCaterpillarBig.hpp"
 
 GreenCaterpillarBigBody::GreenCaterpillarBigBody(LiveActor *pCaterpillar, MtxPtr mtx) :
     ModelObj("オオムイムイ体", "GreenCaterpillarBigBody", mtx, -2, -2, -2, false) {

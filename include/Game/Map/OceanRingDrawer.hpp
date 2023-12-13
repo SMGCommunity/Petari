@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include <JSystem/JGeometry.h>
-#include <JSystem/JUtility/JUTTexture.h>
+#include <JSystem/JGeometry.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 class OceanRing;
 

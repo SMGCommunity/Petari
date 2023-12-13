@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTwistedPassage.h"
-#include "Game/Camera/CamTranslatorTwistedPassage.h"
+#include "Game/Camera/CameraTwistedPassage.hpp"
+#include "Game/Camera/CamTranslatorTwistedPassage.hpp"
 
 CameraTwistedPassage::CameraTwistedPassage(const char *pName) : Camera(pName) {
     _4C = 0;

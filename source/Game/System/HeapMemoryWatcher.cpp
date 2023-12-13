@@ -1,5 +1,5 @@
-#include "Game/System/HeapMemoryWatcher.h"
-#include "Game/Util.h"
+#include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/Util.hpp"
 #include <revolution/wpad.h>
 #include <revolution/os.h>
 

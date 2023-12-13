@@ -1,4 +1,4 @@
-#include "Game/MapObj/LargeChainParts.h"
+#include "Game/MapObj/LargeChainParts.hpp"
 
 LargeChainParts::LargeChainParts(const char *pName) : LiveActor(pName) {
     

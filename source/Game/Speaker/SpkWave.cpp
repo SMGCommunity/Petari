@@ -1,4 +1,4 @@
-#include "Game/Speaker/SpkWave.h"
+#include "Game/Speaker/SpkWave.hpp"
 
 SpkWave::SpkWave() {
     mResource = nullptr;

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTripodBossJoint.h"
-#include "Game/Camera/CamTranslatorTripodBossJoint.h"
+#include "Game/Camera/CameraTripodBossJoint.hpp"
+#include "Game/Camera/CamTranslatorTripodBossJoint.hpp"
 
 CameraTripodBossJoint::CameraTripodBossJoint(const char *pName) : Camera(pName) {
     mAngleB = 0.0f;

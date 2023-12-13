@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.h"
-#include "Game/Util.h"
+#include "JSystem/JGeometry.hpp"
+#include "Game/Util.hpp"
 
 class LiveActor;
 class Triangle;

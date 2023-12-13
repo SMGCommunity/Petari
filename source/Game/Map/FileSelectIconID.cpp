@@ -1,4 +1,4 @@
-#include "Game/Map/FileSelectIconID.h"
+#include "Game/Map/FileSelectIconID.hpp"
 
 FileSelectIconID::FileSelectIconID() {
     _0 = false;

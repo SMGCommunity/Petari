@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
-#include "Game/NameObj/NameObj.h"
+#include "Game/Camera/Camera.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class CameraDead : public Camera {
 public:

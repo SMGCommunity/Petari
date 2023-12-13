@@ -1,5 +1,5 @@
-#include "Game/MapObj/BeeFlowerHover.h"
-#include "Game/LiveActor/LodCtrl.h"
+#include "Game/MapObj/BeeFlowerHover.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 BeeFlowerHover::BeeFlowerHover(const char *pName) : LiveActor(pName) {
     mLodCtrlPlanet = 0;

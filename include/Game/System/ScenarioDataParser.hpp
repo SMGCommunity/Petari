@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Util/JMapInfo.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
 class GalaxyStatusAccessor;

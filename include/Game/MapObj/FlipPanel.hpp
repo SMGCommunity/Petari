@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/Util/JointController.h"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/Util/JointController.hpp"
 
 namespace {
     static u32 sBloomSyncStep;

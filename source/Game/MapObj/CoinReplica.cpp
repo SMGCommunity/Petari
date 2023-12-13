@@ -1,4 +1,4 @@
-#include "Game/MapObj/CoinReplica.h"
+#include "Game/MapObj/CoinReplica.hpp"
 
 CoinReplica::CoinReplica(const char *pName) : NameObj(pName) {
     mCoin = nullptr;

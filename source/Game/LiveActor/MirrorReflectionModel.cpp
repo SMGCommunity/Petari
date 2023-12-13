@@ -1,5 +1,5 @@
-#include "Game/LiveActor/MirrorReflectionModel.h"
-#include "Game/NameObj/NameObjExecuteHolder.h"
+#include "Game/LiveActor/MirrorReflectionModel.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
 
 MirrorReflectionModel::MirrorReflectionModel(const LiveActor *pActor, const char *pName, const char *pInternalName, MtxPtr mtx) : LiveActor(pName) {
     _8C = pActor;

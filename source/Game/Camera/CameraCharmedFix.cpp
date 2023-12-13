@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraCharmedFix.h"
-#include "Game/Camera/CamTranslatorCharmedFix.h"
+#include "Game/Camera/CameraCharmedFix.hpp"
+#include "Game/Camera/CamTranslatorCharmedFix.hpp"
 
 CameraCharmedFix::CameraCharmedFix(const char *pName) : Camera(pName) {
     mAxis.x = 0.0f;

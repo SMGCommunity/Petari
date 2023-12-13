@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/CameraTargetArg.h"
-#include "Game/Util/JMapInfo.h"
+#include "Game/Camera/CameraTargetArg.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
 class ActorCameraInfo;

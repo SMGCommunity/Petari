@@ -1,5 +1,5 @@
-#include "Game/AreaObj/HazeCube.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/AreaObj/HazeCube.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 HazeCube::HazeCube(int type, const char *pName) : AreaObj(type, pName) {
     _3C = 1000.0f;

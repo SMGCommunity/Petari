@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
-#include "JSystem/JGeometry/TQuat.h"
+#include "Game/Camera/Camera.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
 
 class CameraFrontAndBack : public Camera {
 public:

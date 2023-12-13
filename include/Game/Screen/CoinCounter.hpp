@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
-#include "Game/Screen/CountUpPaneRumbler.h"
-#include "Game/Screen/CounterLayoutAppearer.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/CountUpPaneRumbler.hpp"
+#include "Game/Screen/CounterLayoutAppearer.hpp"
 
 class CoinCounter : public LayoutActor {
 public:

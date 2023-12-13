@@ -1,4 +1,4 @@
-#include "Game/Speaker/SpkData.h"
+#include "Game/Speaker/SpkData.hpp"
 
 SpkData::SpkData(JKRArchive * archive) {
     mArchive = archive;

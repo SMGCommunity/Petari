@@ -1,6 +1,6 @@
-#include "Game/MapObj/BigFanHolder.h"
-#include "Game/MapObj/BigFan.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/MapObj/BigFanHolder.hpp"
+#include "Game/MapObj/BigFan.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", 0x20) {
 

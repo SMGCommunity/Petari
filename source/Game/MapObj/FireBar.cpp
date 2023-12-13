@@ -1,6 +1,6 @@
-#include "Game/MapObj/FireBar.h"
-#include "Game/Util.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/FireBar.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 FireBarBall::~FireBarBall() {
 

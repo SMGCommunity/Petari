@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ActorStateBase.h"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 
 class WalkerStateBindStarPointer : public ActorStateBase<LiveActor> {
 public:

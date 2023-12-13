@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraWaterPlanet.h"
-#include "Game/Camera/CamTranslatorWaterPlanet.h"
+#include "Game/Camera/CameraWaterPlanet.hpp"
+#include "Game/Camera/CamTranslatorWaterPlanet.hpp"
 
 CameraWaterPlanet::CameraWaterPlanet(const char *pName) : Camera(pName) {
     mAxisX = 500.0f;

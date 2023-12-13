@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraInwardTower.h"
+#include "Game/Camera/CameraInwardTower.hpp"
 
 class CamTranslatorInwardTower : public CamTranslatorBase {
 public:

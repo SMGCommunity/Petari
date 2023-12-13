@@ -1,5 +1,8 @@
-#include "Game/Scene/MultiSceneActor.h"
-#include <JSystem/J3DGraphAnimator/J3DModel.h>
+#include "Game/Scene/MultiSceneActor.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 MultiSceneActor::MultiSceneActor(const char *pName, const char *pModelName, bool a3) : NameObj(pName) {
     mTranslation.x = 0.0f;

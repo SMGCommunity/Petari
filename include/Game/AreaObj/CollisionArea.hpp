@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/MapObj/DynamicCollisionObj.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/MapObj/DynamicCollisionObj.hpp"
 
 class AreaPolygon : public DynamicCollisionObj {
 public:

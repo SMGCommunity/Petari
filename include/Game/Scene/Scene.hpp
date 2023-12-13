@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.h"
-#include "Game/Scene/SceneNameObjListExecutor.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/System/NerveExecutor.hpp"
+#include "Game/Scene/SceneNameObjListExecutor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 class Scene : public NerveExecutor {
 public:

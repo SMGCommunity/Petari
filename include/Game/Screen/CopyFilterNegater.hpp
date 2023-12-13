@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JUtility/JUTVideo.h>
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 class CopyFilterNegater {
 public:

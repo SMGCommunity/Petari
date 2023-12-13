@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorMedianTower.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorMedianTower.hpp"
 
 #ifdef NON_MATCHING
 // Instruction order, register mismatch

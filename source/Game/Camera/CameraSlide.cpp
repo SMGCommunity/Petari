@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraSlide.h"
-#include "Game/Camera/CamTranslatorSlide.h"
+#include "Game/Camera/CameraSlide.hpp"
+#include "Game/Camera/CamTranslatorSlide.hpp"
 
 CameraSlide::CameraSlide(const char *pName) : Camera(pName) {
     mAxis.x = 1.0f;

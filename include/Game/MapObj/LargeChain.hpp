@@ -1,5 +1,5 @@
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/LargeChainParts.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/LargeChainParts.hpp"
 
 class LargeChain : public LiveActor {
 public:

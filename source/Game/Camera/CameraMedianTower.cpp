@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraMedianTower.h"
-#include "Game/Camera/CamTranslatorMedianTower.h"
-#include "Game/Camera/CameraLocalUtil.h"
+#include "Game/Camera/CameraMedianTower.hpp"
+#include "Game/Camera/CamTranslatorMedianTower.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
 
 CameraMedianTower::CameraMedianTower(const char *pName) : Camera(pName) {
     mString = nullptr;

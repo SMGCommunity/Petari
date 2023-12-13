@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorTripodPlanet.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorTripodPlanet.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorTripodPlanet::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

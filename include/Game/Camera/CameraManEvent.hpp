@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Camera/CameraMan.h"
-#include "Game/Camera/CameraTargetArg.h"
-#include "Inline.h"
+#include "Game/Camera/CameraMan.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
+#include "Inline.hpp"
 
 class CameraHolder;
 class CameraParamChunk;

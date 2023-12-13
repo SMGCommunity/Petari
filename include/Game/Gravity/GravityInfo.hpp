@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Gravity/PlanetGravity.h"
+#include "Game/Gravity/PlanetGravity.hpp"
 
 class GravityInfo {
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Map/FileSelectIconID.h"
+#include "Game/Map/FileSelectIconID.hpp"
 
 namespace { 
     static const char* sIconNameMessageID[5] = {

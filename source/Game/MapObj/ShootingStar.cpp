@@ -1,4 +1,4 @@
-#include "Game/MapObj/ShootingStar.h"
+#include "Game/MapObj/ShootingStar.hpp"
 
 ShootingStar::ShootingStar(const char *pName) : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 1), _A4(0, -1, 0) {
     _B0 = 5;

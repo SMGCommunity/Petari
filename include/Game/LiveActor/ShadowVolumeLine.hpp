@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/ShadowVolumeDrawer.h"
+#include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 
 class ShadowVolumeLine : public ShadowVolumeDrawer {
 public:

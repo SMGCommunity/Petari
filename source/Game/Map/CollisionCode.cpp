@@ -1,6 +1,6 @@
-#include "Game/Map/CollisionCode.h"
+#include "Game/Map/CollisionCode.hpp"
 
-#include "Game/Util/HashUtil.h"
+#include "Game/Util/HashUtil.hpp"
 
 CollisionCode::CollisionCode()
     : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {

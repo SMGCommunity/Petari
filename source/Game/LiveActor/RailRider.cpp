@@ -1,4 +1,4 @@
-#include "Game/LiveActor/RailRider.h"
+#include "Game/LiveActor/RailRider.hpp"
 
 RailRider::RailRider(const JMapInfoIter &rIter) {
     mBezierRail = nullptr;

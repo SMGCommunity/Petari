@@ -1,6 +1,6 @@
-#include "Game/LiveActor/HitSensorKeeper.h"
-#include "Game/LiveActor/HitSensorInfo.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 
 HitSensorKeeper::HitSensorKeeper(int sensorCount) {

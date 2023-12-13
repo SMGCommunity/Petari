@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/CameraTargetObj.h"
-#include "JSystem/JGeometry/TMatrix.h"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class CameraTargetMtx : public CameraTargetObj {
 public:

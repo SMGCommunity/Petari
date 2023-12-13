@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 
 class IconAButton : public LayoutActor {
 public:

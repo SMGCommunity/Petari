@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Map/HitInfo.h"
+#include "Game/Map/HitInfo.hpp"
 
 class Binder {
 public:

@@ -1,4 +1,4 @@
-#include "Game/MapObj/MapPartsAppearController.h"
+#include "Game/MapObj/MapPartsAppearController.hpp"
 
 MapPartsAppearController::MapPartsAppearController(LiveActor *pActor) : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;

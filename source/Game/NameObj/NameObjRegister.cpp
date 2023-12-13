@@ -1,4 +1,4 @@
-#include "Game/NameObj/NameObjRegister.h"
+#include "Game/NameObj/NameObjRegister.hpp"
 
 void NameObjRegister::setCurrentHolder(NameObjHolder *pHolder) {
     mHolder = pHolder;

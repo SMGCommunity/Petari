@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorCubePlanet.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorCubePlanet.hpp"
 
 void CamTranslatorCubePlanet::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

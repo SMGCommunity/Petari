@@ -1,4 +1,4 @@
-#include "Game/MapObj/FirePressureBullet.h"
+#include "Game/MapObj/FirePressureBullet.hpp"
 
 FirePressureBullet::FirePressureBullet(const char *pName) : LiveActor(pName) {
     _8C.x = 0.0f;

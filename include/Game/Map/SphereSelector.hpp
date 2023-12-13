@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 class SphereSelector : public LiveActor {
 public:

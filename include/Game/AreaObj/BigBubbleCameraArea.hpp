@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/AreaObj/CubeCamera.h"
-#include "Game/AreaObj/SwitchArea.h"
+#include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/AreaObj/SwitchArea.hpp"
 
 class BigBubbleSwitchArea : public SwitchArea {
 public:

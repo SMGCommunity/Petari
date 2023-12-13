@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraParamString.h"
+#include "Game/Camera/CameraParamString.hpp"
 #include "revolution.h"
 
 CameraParamString::CameraParamString() {

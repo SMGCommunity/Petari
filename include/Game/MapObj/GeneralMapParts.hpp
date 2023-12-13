@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Game/MapObj/MapParts.h"
-#include "Game/MapObj/MapPartsRailGuideDrawer.h"
-#include "Game/MapObj/MapPartsRailMover.h"
-#include "Game/MapObj/MapPartsRailRotator.h"
-#include "Game/MapObj/MapPartsRailPosture.h"
-#include "Game/MapObj/MapPartsRotator.h"
-#include "Game/MapObj/MapPartsAppearController.h"
-#include "Game/Util/Array.h"
+#include "Game/MapObj/MapParts.hpp"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/Util/Array.hpp"
 
 class GeneralMapParts : public MapParts {
 public:

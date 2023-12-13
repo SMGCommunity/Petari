@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraMan.h"
+#include "Game/Camera/CameraMan.hpp"
 
 class CameraSubjective;
 

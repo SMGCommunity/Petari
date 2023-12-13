@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorFix.h"
-#include "Game/Camera/CameraCalc.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorFix.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 
 #ifdef NON_MATCHING
 // Trouble with negateInline

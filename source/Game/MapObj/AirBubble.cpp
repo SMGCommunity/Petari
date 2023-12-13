@@ -1,4 +1,4 @@
-#include "Game/MapObj/AirBubble.h"
+#include "Game/MapObj/AirBubble.hpp"
 
 AirBubble::AirBubble(const char *pName) : LiveActor(pName) {
     _A4.x = 0.0f;

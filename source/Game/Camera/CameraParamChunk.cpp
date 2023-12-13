@@ -1,8 +1,8 @@
-#include "Game/Camera/CameraHolder.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CameraParamChunkID.h"
-#include "Game/Camera/DotCamParams.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraHolder.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CameraParamChunkID.hpp"
+#include "Game/Camera/DotCamParams.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <cstring>
 
 #ifdef NON_MATCHING

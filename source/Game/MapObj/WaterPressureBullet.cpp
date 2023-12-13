@@ -1,6 +1,6 @@
-#include "Game/MapObj/WaterPressureBullet.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/WaterPressureBullet.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 WaterPressureBullet::WaterPressureBullet(const char *pName) : LiveActor(pName) {
     _8C.x = 0.0f;

@@ -1,6 +1,6 @@
-#include "Game/AreaObj/CubeCamera.h"
-#include "Game/Camera/CameraTargetMtx.h"
-#include "Game/Util/GravityUtil.h"
+#include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/Util/GravityUtil.hpp"
 
 void CameraTargetObj::init(const JMapInfoIter &rIter) {
 

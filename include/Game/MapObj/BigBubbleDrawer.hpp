@@ -1,9 +1,9 @@
 #pragma once
 
-#include "JSystem/JUtility/JUTTexture.h"
-#include "JSystem/JGeometry.h"
+#include "JSystem/JUtility/JUTTexture.hpp"
+#include "JSystem/JGeometry.hpp"
 #include <revolution.h>
-#include "Game/Util.h"
+#include "Game/Util.hpp"
 
 namespace {
     static Color8 sTevColor0(0xE0E0E0FF);

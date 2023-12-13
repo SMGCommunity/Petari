@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util.hpp"
 
 class ClippingActorInfo;
 

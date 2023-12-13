@@ -1,5 +1,5 @@
-#include "Game/MapObj/BreakableCage.h"
-#include "Game/MapObj/PowerStar.h"
+#include "Game/MapObj/BreakableCage.hpp"
+#include "Game/MapObj/PowerStar.hpp"
 
 inline f32 normalizeAngle(f32 a1, f32 a2) {
     return a1 + (f32)fmod(360.0f + (a2 - a1), 360.0f);

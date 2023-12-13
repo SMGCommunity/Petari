@@ -1,4 +1,4 @@
-#include "Game/Speaker/SpkSpeakerCtrl.h"
+#include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include <revolution/wpad.h>
 
 SpkSoundHandle sAdjustSoundHandle[4];

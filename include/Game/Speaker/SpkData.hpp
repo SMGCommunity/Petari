@@ -1,8 +1,8 @@
 #pragma once
 
-#include "JSystem/JKernel/JKRArchive.h"
-#include "Game/Speaker/SpkTable.h"
-#include "Game/Speaker/SpkWave.h"
+#include "JSystem/JKernel/JKRArchive.hpp"
+#include "Game/Speaker/SpkTable.hpp"
+#include "Game/Speaker/SpkWave.hpp"
 #include "revolution.h"
 
 // This is something JKernel related, but idk what it is for the time being.

@@ -1,7 +1,7 @@
-#include "Game/LiveActor/MirrorActor.h"
-#include "Game/LiveActor/MirrorCamera.h"
-#include "Game/NameObj/NameObjExecuteHolder.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/LiveActor/MirrorActor.hpp"
+#include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 MirrorActor::~MirrorActor() {
 

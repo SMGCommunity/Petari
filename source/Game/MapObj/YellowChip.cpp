@@ -1,4 +1,4 @@
-#include "Game/MapObj/YellowChip.h"
+#include "Game/MapObj/YellowChip.hpp"
 
 YellowChip::YellowChip(const char *pName) : ChipBase(pName, 1, "YellowChip") {
 

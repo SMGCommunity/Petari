@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include <revolution.h>
 

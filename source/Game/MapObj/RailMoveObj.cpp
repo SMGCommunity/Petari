@@ -1,7 +1,7 @@
-#include "Game/MapObj/RailMoveObj.h"
-#include "Game/MapObj/MapPartsRailMover.h"
-#include "Game/MapObj/MapPartsRailRotator.h"
-#include "Game/MapObj/StageEffectDataTable.h"
+#include "Game/MapObj/RailMoveObj.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/MapObj/StageEffectDataTable.hpp"
 
 RailMoveObj::RailMoveObj(const char *pName) : MapObjActor(pName) {
     _C4.setZero();

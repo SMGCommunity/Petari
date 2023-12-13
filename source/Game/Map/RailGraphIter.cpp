@@ -1,4 +1,4 @@
-#include "Game/Map/RailGraphIter.h"
+#include "Game/Map/RailGraphIter.hpp"
 
 RailGraphIter::RailGraphIter(const RailGraph *pGraph) {
     mGraph = pGraph;

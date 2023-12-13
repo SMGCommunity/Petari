@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/ModelObj.h"
+#include "Game/LiveActor/ModelObj.hpp"
 
 class FireBarBall : public ModelObj {
 public:

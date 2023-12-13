@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorRaceFollow.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorRaceFollow.hpp"
 
 void CamTranslatorRaceFollow::setParam(const CameraParamChunk *pChunk) {
 	f32 wPointX;

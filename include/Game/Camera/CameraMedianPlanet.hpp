@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Camera/Camera.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class CameraMedianPlanet : public Camera {
 public:

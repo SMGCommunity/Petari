@@ -1,6 +1,6 @@
-#include "Game/Util/JMapUtil.h"
-#include "Game/Util.h"
-#include "math_types.h"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util.hpp"
+#include "math_types.hpp"
 #include <cstdio>
 #include <cmath>
 

@@ -1,4 +1,4 @@
-#include "Game/MapObj/ItemAppearStone.h"
+#include "Game/MapObj/ItemAppearStone.hpp"
 
 ItemAppearStone::ItemAppearStone(const char *pName) : LiveActor(pName) {
 

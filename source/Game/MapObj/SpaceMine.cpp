@@ -1,4 +1,4 @@
-#include "Game/MapObj/SpaceMine.h"
+#include "Game/MapObj/SpaceMine.hpp"
 
 SpaceMine::SpaceMine(const char *pName) : MapObjActor(pName), mClippingRange(gZeroVec) {
     _C4 = 1.0f;

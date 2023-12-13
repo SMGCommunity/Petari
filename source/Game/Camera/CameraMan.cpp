@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraDirector.h"
-#include "Game/Camera/CameraMan.h"
-#include "Game/Camera/CameraPoseParam.h"
+#include "Game/Camera/CameraDirector.hpp"
+#include "Game/Camera/CameraMan.hpp"
+#include "Game/Camera/CameraPoseParam.hpp"
 
 CameraMan::CameraMan(const char *pName) : NameObj(pName) {
     mDirector = nullptr;

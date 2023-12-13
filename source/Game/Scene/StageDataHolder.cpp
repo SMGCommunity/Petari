@@ -1,7 +1,7 @@
-#include "Game/Scene/StageDataHolder.h"
-#include "Game/Scene/StageResourceLoader.h"
-#include "Game/System/ScenarioDataParser.h"
-#include "JSystem/JKernel/JKRArchive.h"
+#include "Game/Scene/StageDataHolder.hpp"
+#include "Game/Scene/StageResourceLoader.hpp"
+#include "Game/System/ScenarioDataParser.hpp"
+#include "JSystem/JKernel/JKRArchive.hpp"
 
 void StageDataHolder::init(const JMapInfoIter &rIter) {
     if (!mZoneID) {

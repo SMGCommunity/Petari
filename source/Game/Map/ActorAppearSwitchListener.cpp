@@ -1,6 +1,6 @@
-#include "Game/Map/ActorAppearSwitchListener.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/Map/ActorAppearSwitchListener.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 ActorAppearSwitchListener::ActorAppearSwitchListener(LiveActor *pActor, bool usesOn, bool usesOff) : SwitchEventListener() {
     mActor = pActor;

@@ -1,6 +1,6 @@
-#include "Game/LiveActor/ClippingGroupHolder.h"
-#include "Game/LiveActor/ClippingActorInfo.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/ClippingGroupHolder.hpp"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 ClippingInfoGroup::ClippingInfoGroup(const char *pGroupName, int count) : NameObj(pGroupName) {
     _C = count;

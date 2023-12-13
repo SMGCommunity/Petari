@@ -1,4 +1,4 @@
-#include "Game/Gravity.h"
+#include "Game/Gravity.hpp"
 
 template<>
 bool TVec3f::isZero() const {

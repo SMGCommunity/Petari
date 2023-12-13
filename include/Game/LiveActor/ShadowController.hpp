@@ -1,9 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 class CollisionPartsFilterBase;
 class ShadowDrawer;

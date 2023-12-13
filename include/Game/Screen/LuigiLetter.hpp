@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
 class LuigiLetter {
 public:

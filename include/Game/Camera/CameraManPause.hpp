@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/CameraMan.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Camera/CameraMan.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class CameraManPause : public CameraMan {
 public:

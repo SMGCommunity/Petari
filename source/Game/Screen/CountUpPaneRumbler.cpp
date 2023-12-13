@@ -1,4 +1,4 @@
-#include "Game/Screen/CountUpPaneRumbler.h"
+#include "Game/Screen/CountUpPaneRumbler.hpp"
 
 CountUpPaneRumbler::CountUpPaneRumbler(LayoutActor *pActor, const char *pName) {
     mRumbleCalculator = nullptr;

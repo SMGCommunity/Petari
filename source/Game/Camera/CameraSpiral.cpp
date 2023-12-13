@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraSpiral.h"
-#include "Game/Camera/CamTranslatorSpiral.h"
+#include "Game/Camera/CameraSpiral.hpp"
+#include "Game/Camera/CamTranslatorSpiral.hpp"
 
 CameraSpiral::CameraSpiral(const char *pName) : Camera(pName) {
     _4C = 60;

@@ -1,4 +1,4 @@
-#include "Game/NameObj/NameObjCategoryList.h"
+#include "Game/NameObj/NameObjCategoryList.hpp"
 
 NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, func func_ptr, bool a4, const char * /* unused */) {
     func new_ptr;

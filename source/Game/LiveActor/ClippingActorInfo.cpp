@@ -1,7 +1,7 @@
-#include "Game/LiveActor/ClippingActorInfo.h"
-#include "Game/LiveActor/ClippingJudge.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/ClippingJudge.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 ClippingActorInfo::ClippingActorInfo(LiveActor *pActor) {
     mActor = pActor;

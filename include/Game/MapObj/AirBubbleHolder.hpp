@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class AirBubbleHolder : public LiveActorGroup {
 public:

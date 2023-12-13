@@ -1,5 +1,5 @@
-#include "Game/MapObj/MapObjActorInitInfo.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 
 // scheduling issues with the paired single set

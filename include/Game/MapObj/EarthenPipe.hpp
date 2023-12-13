@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
-#include "Game/LiveActor/PartsModel.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 
 class EarthenPipe : public LiveActor {
 public:

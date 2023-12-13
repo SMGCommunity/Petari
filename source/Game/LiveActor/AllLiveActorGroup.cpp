@@ -1,6 +1,6 @@
-#include "Game/LiveActor/AllLiveActorGroup.h"
-#include "Game/LiveActor/ClippingDirector.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00) {
     _18 = 0;

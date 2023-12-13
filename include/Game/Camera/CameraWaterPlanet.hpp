@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
+#include "Game/Camera/Camera.hpp"
 
 class CameraWaterPlanet : public Camera {
 public:

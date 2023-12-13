@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/Speaker/SpkData.h"
-#include "Game/Speaker/SpkMixingBuffer.h"
-#include "Game/Speaker/SpkSound.h"
-#include "JSystem/JAudio2/JASGlobal.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "Game/Speaker/SpkData.hpp"
+#include "Game/Speaker/SpkMixingBuffer.hpp"
+#include "Game/Speaker/SpkSound.hpp"
+#include "JSystem/JAudio2/JASGlobal.hpp"
+#include "JSystem/JAudio2/JASHeapCtrl.hpp"
 
 class SpkSystem : JASGlobalInstance<SpkSystem> {
 public:

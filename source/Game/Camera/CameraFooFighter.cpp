@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraFooFighter.h"
-#include "Game/Camera/CamTranslatorFooFighter.h"
+#include "Game/Camera/CameraFooFighter.hpp"
+#include "Game/Camera/CamTranslatorFooFighter.hpp"
 
 CameraFooFighter::CameraFooFighter(const char *pName) : Camera(pName) {
     mAxisY = 300.0f;

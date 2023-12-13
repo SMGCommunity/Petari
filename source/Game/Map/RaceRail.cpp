@@ -1,5 +1,5 @@
-#include "Game/Map/RaceRail.h"
-#include "Game/Util.h"
+#include "Game/Map/RaceRail.hpp"
+#include "Game/Util.hpp"
 
 RaceRail::RaceRail(const char *pName) : NameObj(pName) {
 

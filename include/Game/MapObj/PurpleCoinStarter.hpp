@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Map/StageSwitch.h"
-#include "Game/MapObj/PurpleCoinHolder.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/MapObj/PurpleCoinHolder.hpp"
 
 class PurpleCoinStarter : public NameObj {
 public:

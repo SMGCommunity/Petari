@@ -1,4 +1,4 @@
-#include "Game/MapObj/SuperSpinDriver.h"
+#include "Game/MapObj/SuperSpinDriver.hpp"
 
 /* it seems like this file was compiled with an earlier compiler version */
 

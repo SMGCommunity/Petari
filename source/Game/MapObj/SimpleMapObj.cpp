@@ -1,4 +1,4 @@
-#include "Game/MapObj/SimpleMapObj.h"
+#include "Game/MapObj/SimpleMapObj.hpp"
 
 void SimpleMapObj::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);

@@ -1,4 +1,4 @@
-#include "Game/Demo/DemoActionKeeper.h"
+#include "Game/Demo/DemoActionKeeper.hpp"
 
 void DemoActionInfo::registerCast(LiveActor *pActor) {
     mCastList[mCastCount] = pActor;

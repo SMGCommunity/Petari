@@ -1,4 +1,4 @@
-#include "Game/MapObj/ManholeCover.h"
+#include "Game/MapObj/ManholeCover.hpp"
 
 void ManholeCover::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);

@@ -1,4 +1,4 @@
-#include "Game/System/Language.h"
+#include "Game/System/Language.hpp"
 
 #include <revolution/sc.h>
 

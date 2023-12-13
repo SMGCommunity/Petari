@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Map/StageSwitch.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Map/StageSwitch.hpp"
 
 class SwitchWatcher : public NameObj {
 public:

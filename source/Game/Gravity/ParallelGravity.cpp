@@ -1,7 +1,7 @@
-#include "Game/Gravity.h"
-#include "Game/Util.h"
-#include "JSystem/JMath.h"
-#include "Inline.h"
+#include "Game/Gravity.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath.hpp"
+#include "Inline.hpp"
 
 ParallelGravity::ParallelGravity() :
 	PlanetGravity(),

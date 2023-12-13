@@ -1,6 +1,6 @@
-#include "Game/MapObj/ItemBlock.h"
-#include "Game/Util.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/MapObj/ItemBlock.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvItemBlock {
 	INIT_NERVE(ItemBlockNrvStandby);

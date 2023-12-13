@@ -1,6 +1,6 @@
-#include "Game/Util.h"
-#include "Game/System/HeapMemoryWatcher.h"
-#include "Game/SingletonHolder.h"
+#include "Game/Util.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <cstdio>
 #include <cstring>
 #include <mem.h>

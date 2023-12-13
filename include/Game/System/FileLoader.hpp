@@ -1,11 +1,11 @@
 #pragma once
 
 #include "revolution.h"
-#include "Game/System/ArchiveHolder.h"
-#include "Game/System/FileLoaderThread.h"
-#include "Game/System/FileHolder.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "Game/System/ArchiveHolder.hpp"
+#include "Game/System/FileLoaderThread.hpp"
+#include "Game/System/FileHolder.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JKernel/JKRDvdRipper.hpp"
 #include <cstdio>
 
 class JKRArchive;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TBox.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry/TBox.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class AreaObj;
 class AreaObjContainer;

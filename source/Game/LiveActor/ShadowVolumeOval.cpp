@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowVolumeOval.h"
+#include "Game/LiveActor/ShadowVolumeOval.hpp"
 
 ShadowVolumeOval::ShadowVolumeOval() : ShadowVolumeModel("影描画[ボリューム楕球]") {
     mSize.x = 100.0f;

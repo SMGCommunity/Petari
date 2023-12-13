@@ -1,5 +1,5 @@
-#include "Game/Map/RailGraphEdge.h"
-#include "Game/Util.h"
+#include "Game/Map/RailGraphEdge.hpp"
+#include "Game/Util.hpp"
 
 RailGraphEdge::RailGraphEdge() {
     _4 = -1;

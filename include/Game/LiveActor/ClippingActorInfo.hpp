@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class ViewGroupCtrlDataEntry;
 class LiveActor;

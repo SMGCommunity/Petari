@@ -1,6 +1,6 @@
-#include "Game/Screen/CoinCounter.h"
-#include "Game/Screen/CounterLayoutController.h"
-#include "Game/Util.h"
+#include "Game/Screen/CoinCounter.hpp"
+#include "Game/Screen/CounterLayoutController.hpp"
+#include "Game/Util.hpp"
 
 CoinCounter::CoinCounter(const char *pName) : LayoutActor(pName, true) {
     mCoinCount = 0;

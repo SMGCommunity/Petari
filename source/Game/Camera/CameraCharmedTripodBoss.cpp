@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraCharmedTripodBoss.h"
-#include "Game/Camera/CamTranslatorCharmedTripodBoss.h"
+#include "Game/Camera/CameraCharmedTripodBoss.hpp"
+#include "Game/Camera/CamTranslatorCharmedTripodBoss.hpp"
 
 CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char *pName) : Camera(pName) {
     _4C = -1;

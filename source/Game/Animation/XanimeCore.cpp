@@ -1,4 +1,4 @@
-#include "Game/Animation/XanimeCore.h"
+#include "Game/Animation/XanimeCore.hpp"
 
 void XanimeTrack::init() {
     _0 = 0;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
 class CocoNut : public LiveActor {
 public:

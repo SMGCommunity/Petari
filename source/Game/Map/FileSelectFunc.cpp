@@ -1,6 +1,6 @@
-#include "Game/Map/FileSelectFunc.h"
-#include "Game/Map/FileSelectIconID.h"
-#include "Game/Util.h"
+#include "Game/Map/FileSelectFunc.hpp"
+#include "Game/Map/FileSelectIconID.hpp"
+#include "Game/Util.hpp"
 #include "RVLFaceLib.h"
 
 u32 FileSelectFunc::getMiiNameBufferSize() {

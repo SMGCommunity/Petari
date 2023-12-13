@@ -1,4 +1,4 @@
-#include "Game/Util/MtxUtil.h"
+#include "Game/Util/MtxUtil.hpp"
 
 namespace MR {
     void setMtxTrans(MtxPtr mtx, f32 x, f32 y, f32 z) {

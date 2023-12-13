@@ -1,4 +1,4 @@
-#include "Game/Util/LayoutUtil.h"
+#include "Game/Util/LayoutUtil.hpp"
 
 namespace MR {
     void setTextBoxNumberRecursive(LayoutActor *pActor, const char *pText, s32 a3) {

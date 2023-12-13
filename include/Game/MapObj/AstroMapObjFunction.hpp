@@ -1,10 +1,13 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/Functor.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class GalaxyNamePlate;
 class LiveActor;
+class JMapInfo;
 
 namespace {
     s32 getNumGrandStarForRevival(const char *, s32) NO_INLINE;

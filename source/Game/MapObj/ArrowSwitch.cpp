@@ -1,4 +1,4 @@
-#include "Game/MapObj/ArrowSwitch.h"
+#include "Game/MapObj/ArrowSwitch.hpp"
 #include <cmath>
 
 namespace {

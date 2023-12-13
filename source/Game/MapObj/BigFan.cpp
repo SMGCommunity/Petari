@@ -1,7 +1,7 @@
-#include "Game/MapObj/BigFan.h"
-#include "Game/MapObj/BigFanHolder.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/BigFan.hpp"
+#include "Game/MapObj/BigFanHolder.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 BigFan::BigFan(const char *pName) : LiveActor(pName) {
     mWindModel = 0;

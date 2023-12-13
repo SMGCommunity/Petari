@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Gravity/GravityCreator.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Gravity/GravityCreator.hpp"
 
 class GlobalGravityObj : public LiveActor {
 public:

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <JSystem/JKernel/JKRArchive.h>
-#include <JSystem/JKernel/JKRExpHeap.h>
-#include <JSystem/JKernel/JKRSolidHeap.h> 
+#include <JSystem/JKernel/JKRArchive.hpp>
+#include <JSystem/JKernel/JKRExpHeap.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp> 
 
 class AudSystemWrapper {
 public:

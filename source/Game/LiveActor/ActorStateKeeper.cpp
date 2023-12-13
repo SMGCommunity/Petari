@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ActorStateKeeper.h"
-#include "Game/LiveActor/Nerve.h"
+#include "Game/LiveActor/ActorStateKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 bool ActorStateKeeper::updateCurrentState() {
     return (!mCurrentState) ? false : ((ActorStateBaseInterface*)mCurrentState->mExecutor)->update();

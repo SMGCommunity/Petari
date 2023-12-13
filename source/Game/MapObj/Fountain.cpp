@@ -1,4 +1,4 @@
-#include "Game/MapObj/Fountain.h"
+#include "Game/MapObj/Fountain.hpp"
 
 Fountain::Fountain(const char *pName) : LiveActor(pName) {
     mFountainName = nullptr;

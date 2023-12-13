@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObjHolder.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/Util.hpp"
 
 class NameObjListExecutor;
 

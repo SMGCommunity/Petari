@@ -1,6 +1,6 @@
-#include "Game/MapObj/RotateMoveObj.h"
-#include "Game/MapObj/StageEffectDataTable.h"
-#include "Game/MapObj/MapPartsRotator.h"
+#include "Game/MapObj/RotateMoveObj.hpp"
+#include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/MapObj/MapPartsRotator.hpp"
 
 void RotateMoveObj::init(const JMapInfoIter &rIter) {
     MapObjActor::init(rIter);

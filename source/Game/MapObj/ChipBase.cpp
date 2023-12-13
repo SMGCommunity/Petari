@@ -1,5 +1,5 @@
-#include "Game/MapObj/ChipBase.h"
-#include "Game/MapObj/ChipHolder.h"
+#include "Game/MapObj/ChipBase.hpp"
+#include "Game/MapObj/ChipHolder.hpp"
 
 ChipBase::ChipBase(const char *pName, s32 chipType, const char *pChipName) : LiveActor(pName) {
     mFlashingCtrl = 0;

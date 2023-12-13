@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Inline.h"
-#include <JSystem/JKernel/JKRHeap.h>
+#include "Inline.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 class TalkMessageFuncBase {
 public:

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Game/Gravity/ConeGravity.h"
-#include "Game/Gravity/CubeGravity.h"
-#include "Game/Gravity/DiskGravity.h"
-#include "Game/Gravity/DiskTorusGravity.h"
-#include "Game/Gravity/ParallelGravity.h"
-#include "Game/Gravity/PointGravity.h"
-#include "Game/Gravity/SegmentGravity.h"
-#include "Game/Gravity/WireGravity.h"
-#include "Game/LiveActor/RailRider.h"
-#include "Game/Util/JMapInfo.h"
+#include "Game/Gravity/ConeGravity.hpp"
+#include "Game/Gravity/CubeGravity.hpp"
+#include "Game/Gravity/DiskGravity.hpp"
+#include "Game/Gravity/DiskTorusGravity.hpp"
+#include "Game/Gravity/ParallelGravity.hpp"
+#include "Game/Gravity/PointGravity.hpp"
+#include "Game/Gravity/SegmentGravity.hpp"
+#include "Game/Gravity/WireGravity.hpp"
+#include "Game/LiveActor/RailRider.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 class GravityCreator {
 public:

@@ -1,5 +1,5 @@
-#include "Game/Map/CollisionCategorizedKeeper.h"
-#include "Game/Map/CollisionParts.h"
+#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionParts.hpp"
 
 TVec3f CollisionParts::getTrans() {
     TVec3f translation;

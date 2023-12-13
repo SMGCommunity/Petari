@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraTargetArg.h"
+#include "Game/Camera/CameraTargetArg.hpp"
 
 CameraTargetArg::CameraTargetArg() {
     mTargetObj = nullptr;

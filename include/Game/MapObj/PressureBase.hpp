@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/LiveActorGroupArray.h"
-#include "Game/Util/JointController.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/Util/JointController.hpp"
 
 class PressureMessenger : public LiveActor {
 public:

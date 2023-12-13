@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 class Coin;
 class NameObj;

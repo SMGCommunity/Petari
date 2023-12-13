@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraFollow.h"
-#include "Game/Camera/CameraTargetObj.h"
-#include "Game/Camera/CamTranslatorFollow.h"
+#include "Game/Camera/CameraFollow.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Camera/CamTranslatorFollow.hpp"
 
 bool CameraTargetObj::isJumping() const {
     return false;

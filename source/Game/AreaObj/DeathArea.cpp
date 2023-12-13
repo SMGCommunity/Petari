@@ -1,4 +1,4 @@
-#include "Game/AreaObj/DeathArea.h"
+#include "Game/AreaObj/DeathArea.hpp"
 
 DeathArea::DeathArea(int a1, const char *pName) : AreaObj(a1, pName) {
 

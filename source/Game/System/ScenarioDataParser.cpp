@@ -1,5 +1,5 @@
-#include "Game/System/ScenarioDataParser.h"
-#include "Game/Util.h"
+#include "Game/System/ScenarioDataParser.hpp"
+#include "Game/Util.hpp"
 
 bool ScenarioData::getValueString(const char *pKey, s32 a2, const char **pOut) const {
     ScenarioDataIter inf = getScenarioDataIter(a2);

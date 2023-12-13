@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraCharmedVecReg.h"
+#include "Game/Camera/CameraCharmedVecReg.hpp"
 
 class CamTranslatorCharmedVecReg : public CamTranslatorBase {
 public:

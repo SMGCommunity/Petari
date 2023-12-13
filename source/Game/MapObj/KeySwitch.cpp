@@ -1,5 +1,5 @@
-#include "Game/MapObj/KeySwitch.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/KeySwitch.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 KeySwitch::~KeySwitch() {
 

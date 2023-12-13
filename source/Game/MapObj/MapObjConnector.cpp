@@ -1,6 +1,6 @@
-#include "Game/MapObj/MapObjConnector.h"
-#include "Game/Util.h"
-#include "JSystem/JMath.h"
+#include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath.hpp"
 
 MapObjConnector::MapObjConnector(LiveActor *pActor) {
     mHost = pActor;

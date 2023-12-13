@@ -1,4 +1,4 @@
-#include "Game/MapObj/BenefitItemLifeUp.h"
+#include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include <cstring>
 
 BenefitItemLifeUp::BenefitItemLifeUp(const char *pName) : BenefitItemObj(pName, "KinokoLifeUp") {

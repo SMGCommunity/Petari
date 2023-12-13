@@ -1,5 +1,5 @@
-#include "Game/Util/JointController.h"
-#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "Game/Util/JointController.hpp"
+#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
 
 JointController::JointController() {
     mModel = 0;

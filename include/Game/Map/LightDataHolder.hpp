@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class LightInfo {
 public:

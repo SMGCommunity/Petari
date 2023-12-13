@@ -1,7 +1,7 @@
-#include "Game/LiveActor/HitSensorInfo.h"
-#include "Game/LiveActor/HitSensor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 HitSensorInfo::HitSensorInfo(const char *pName, HitSensor *pSensor, const TVec3f *a3, MtxPtr mtx, const register TVec3f &a5, bool a6) {
     mName = pName;

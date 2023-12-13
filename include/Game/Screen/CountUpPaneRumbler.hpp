@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
-#include "Game/Util.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Util.hpp"
 
 class CountUpPaneRumbler {
 public:

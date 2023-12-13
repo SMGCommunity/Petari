@@ -1,9 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Map/CollisionParts.h"
-#include "Game/Map/HitInfo.h"
-#include "Game/NameObj/NameObj.h"
+#include "Game/Map/CollisionParts.hpp"
+#include "Game/Map/HitInfo.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class CollisionZone;
 

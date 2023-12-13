@@ -1,4 +1,4 @@
-#include "Game/Demo/DemoCastGroup.h"
+#include "Game/Demo/DemoCastGroup.hpp"
 
 DemoCastGroup::DemoCastGroup(const char *pName) : NameObj(pName) {
     mInfo = 0;

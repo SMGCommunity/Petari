@@ -1,4 +1,4 @@
-#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRArchive.hpp"
 
 s32 JKRArchive::getExpandedResSize(const void* pResource) const
 {

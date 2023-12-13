@@ -1,5 +1,5 @@
-#include "Game/AreaObj/LightArea.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/LightArea.hpp"
+#include "Game/Util.hpp"
 
 LightArea::LightArea(int type, const char *pName) : AreaObj(type, pName) {
     mPlacedZoneID = -1;

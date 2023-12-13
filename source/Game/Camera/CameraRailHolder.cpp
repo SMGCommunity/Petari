@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraRailHolder.h"
-#include "Game/Util/SceneUtil.h"
+#include "Game/Camera/CameraRailHolder.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 CameraRailHolder::ZoneRail::ZoneRail() {
     _0 = 0;

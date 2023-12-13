@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorMtxRegParallel.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorMtxRegParallel.hpp"
 
 void CamTranslatorMtxRegParallel::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

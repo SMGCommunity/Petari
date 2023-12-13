@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry/THex.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry/THex.hpp"
 
 class ClippingJudge : public NameObj {
 public:

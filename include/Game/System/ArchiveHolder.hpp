@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JKernel/JKRMemArchive.h>
+#include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <revolution.h>
 
 class ArchiveHolderArchiveEntry {

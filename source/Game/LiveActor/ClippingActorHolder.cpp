@@ -1,6 +1,6 @@
-#include "Game/LiveActor/ClippingActorHolder.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ClippingActorHolder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 ClippingActorHolder::ClippingActorHolder() : NameObj("クリッピングアクター保持") {
     _C = 0;

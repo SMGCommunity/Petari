@@ -1,5 +1,5 @@
-#include "Game/AreaObj/WaterArea.h"
-#include "Game/Map/WaterAreaHolder.h"
+#include "Game/AreaObj/WaterArea.hpp"
+#include "Game/Map/WaterAreaHolder.hpp"
 
 WaterArea::WaterArea(int type, const char *pName) : AreaObj(type, pName) {
     _3C = 0;

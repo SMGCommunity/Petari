@@ -1,4 +1,4 @@
-#include "Game/MapObj/CrystalSwitch.h"
+#include "Game/MapObj/CrystalSwitch.hpp"
 
 /* Note -- this file was compiled super early on in the game's life, so it was compiled under -O2 where the release build is -O4,p. Keep this in mind! */
 

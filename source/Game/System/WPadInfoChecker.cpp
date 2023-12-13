@@ -1,4 +1,4 @@
-#include "Game/System/WPadInfoChecker.h"
+#include "Game/System/WPadInfoChecker.hpp"
 
 WPadInfoChecker::WPadInfoChecker(WPad *pPad) {
     mPad = pPad;

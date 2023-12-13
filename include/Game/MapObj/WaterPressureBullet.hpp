@@ -1,6 +1,6 @@
 #pragma
 
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class WaterPressureBullet : public LiveActor {
 public:

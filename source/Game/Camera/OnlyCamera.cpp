@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraPoseParam.h"
-#include "Game/Camera/OnlyCamera.h"
+#include "Game/Camera/CameraPoseParam.hpp"
+#include "Game/Camera/OnlyCamera.hpp"
 
 OnlyCamera::OnlyCamera(const char *pName) : NameObj(pName) {
     mPoseParam = new CameraPoseParam();

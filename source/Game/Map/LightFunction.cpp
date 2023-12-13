@@ -1,8 +1,8 @@
-#include "Game/AreaObj/LightArea.h"
-#include "Game/Map/LightFunction.h"
-#include "Game/Map/LightDirector.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/LightArea.hpp"
+#include "Game/Map/LightFunction.hpp"
+#include "Game/Map/LightDirector.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 #include <cstring>
 

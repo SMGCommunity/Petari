@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class FloaterFloatingForce : public MapPartsFunction {
 public:

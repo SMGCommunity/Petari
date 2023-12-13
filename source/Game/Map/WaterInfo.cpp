@@ -1,4 +1,4 @@
-#include "Game/Map/WaterInfo.h"
+#include "Game/Map/WaterInfo.hpp"
 
 WaterInfo::WaterInfo() {
     clear();

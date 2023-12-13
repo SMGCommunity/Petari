@@ -1,5 +1,5 @@
-#include "Game/Gravity.h"
-#include "Game/Util.h"
+#include "Game/Gravity.hpp"
+#include "Game/Util.hpp"
 
 PlanetGravity::PlanetGravity() {
 	mRange = -1.0f;

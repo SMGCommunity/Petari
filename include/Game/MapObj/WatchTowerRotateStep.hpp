@@ -1,7 +1,7 @@
 #pragma once 
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/PartsModel.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 
 class WatchTowerRotateStep : public LiveActor {
 public:

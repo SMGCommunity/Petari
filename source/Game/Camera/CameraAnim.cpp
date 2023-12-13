@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraAnim.h"
-#include "Game/Camera/CamTranslatorAnim.h"
+#include "Game/Camera/CameraAnim.hpp"
+#include "Game/Camera/CamTranslatorAnim.hpp"
 
 KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.h"
-#include "Game/LiveActor/ActorStateBase.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 
 class ActorStateKeeper {
 public:

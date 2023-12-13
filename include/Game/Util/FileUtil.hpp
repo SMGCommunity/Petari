@@ -1,7 +1,7 @@
 #pragma once
 
 #include "revolution.h"
-#include "JSystem/JKernel/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRDvdRipper.hpp"
 
 class JKRArchive;
 class JKRHeap;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.h"
-#include "Game/NameObj/NameObj.h"
+#include "JSystem/JGeometry.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class CoinRotater : public NameObj {
 public:

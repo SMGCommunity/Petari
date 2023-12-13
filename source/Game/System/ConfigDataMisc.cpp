@@ -1,6 +1,6 @@
-#include "Game/System/ConfigDataMisc.h"
-#include "JSystem/JSupport/JSUMemoryInputStream.h"
-#include "JSystem/JSupport/JSUMemoryOutputStream.h"
+#include "Game/System/ConfigDataMisc.hpp"
+#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
+#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
 
 ConfigDataMisc::ConfigDataMisc() {
     mData = 1;

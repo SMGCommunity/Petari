@@ -1,4 +1,4 @@
-#include "Game/Map/SphereSelector.h"
+#include "Game/Map/SphereSelector.hpp"
 
 inline void SphereSelector::exeConfirm() {
     if (MR::isFirstStep(this)) {

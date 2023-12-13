@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Effect/ParticleEmitter.h"
+#include "Game/Effect/ParticleEmitter.hpp"
 
 class EffectSystem;
 

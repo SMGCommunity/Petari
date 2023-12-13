@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/MapObj/MapPartsRailGuideDrawer.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
 
 class LiveActor;
 

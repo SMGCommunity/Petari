@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorCharmedVecReg.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorCharmedVecReg.hpp"
 
 void CamTranslatorCharmedVecReg::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

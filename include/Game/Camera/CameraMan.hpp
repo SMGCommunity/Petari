@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry/TMatrix.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class CameraDirector;
 class CameraPoseParam;

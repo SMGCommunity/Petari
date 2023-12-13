@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/HitSensor.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include <revolution.h>
 
 class SensorGroup;

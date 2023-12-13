@@ -1,5 +1,5 @@
-#include "Game/Map/WaterPoint.h"
-#include "Game/Util.h"
+#include "Game/Map/WaterPoint.hpp"
+#include "Game/Util.hpp"
 
 WaterPoint::WaterPoint(const TVec3f &rPos, const TVec3f &rUpVec, f32 coordAcrossRail, f32 coordOnRail, f32 height, f32 flowSpeedRate) :
     mPosition(rPos), mOrigPos(rPos), mCoordAcrossRail(coordAcrossRail), mCoordOnRail(coordOnRail), mUpVec(rUpVec), mHeight(height), mFlowSpeedRate(flowSpeedRate), mAlpha(-1) {

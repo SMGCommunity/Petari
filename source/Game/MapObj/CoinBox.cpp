@@ -1,4 +1,4 @@
-#include "Game/MapObj/CoinBox.h"
+#include "Game/MapObj/CoinBox.hpp"
 
 CoinBox::CoinBox(const char *pName) : LiveActor(pName) {
 

@@ -1,4 +1,4 @@
-#include "Game/MapObj/BrightObj.h"
+#include "Game/MapObj/BrightObj.hpp"
 
 BrightInfo::BrightInfo() {
     reset();

@@ -1,5 +1,5 @@
-#include "Game/MapObj/CutBushModelObj.h"
-#include "Game/Util.h"
+#include "Game/MapObj/CutBushModelObj.hpp"
+#include "Game/Util.hpp"
 
 CutBushModelObj::CutBushModelObj(const char *pName, const char *pObjName, bool useLight, MtxPtr mtx) : LiveActor(pName) {
     mMtx = mtx;

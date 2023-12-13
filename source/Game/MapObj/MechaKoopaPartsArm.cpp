@@ -1,5 +1,5 @@
-#include "Game/MapObj/MechaKoopaPartsArm.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MechaKoopaPartsArm.hpp"
+#include "Game/Util.hpp"
 
 MechaKoopaPartsArm::MechaKoopaPartsArm(const char *pName) : MapObjActor(pName) {
     mIsRightArm = false;

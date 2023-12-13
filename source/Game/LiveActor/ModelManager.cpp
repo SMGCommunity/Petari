@@ -1,6 +1,6 @@
-#include "Game/LiveActor/ModelManager.h"
-#include "Game/LiveActor/DisplayListMaker.h"
-#include "Game/Animation/XanimePlayer.h"
+#include "Game/LiveActor/ModelManager.hpp"
+#include "Game/LiveActor/DisplayListMaker.hpp"
+#include "Game/Animation/XanimePlayer.hpp"
 
 void ModelManager::update() {
     XanimePlayer* player = mXanimePlayer;

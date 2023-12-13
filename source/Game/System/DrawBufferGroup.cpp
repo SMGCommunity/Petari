@@ -1,4 +1,4 @@
-#include "Game/System/DrawBufferGroup.h"
+#include "Game/System/DrawBufferGroup.hpp"
 
 #include <algorithm>
 

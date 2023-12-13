@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Util.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class AreaForm {
 public:

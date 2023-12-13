@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraGround.h"
-#include "Game/Camera/CamTranslatorGround.h"
+#include "Game/Camera/CameraGround.hpp"
+#include "Game/Camera/CamTranslatorGround.hpp"
 
 CameraGround::CameraGround(const char *pName) : Camera(pName) {
     mAngleA = 0.0f;

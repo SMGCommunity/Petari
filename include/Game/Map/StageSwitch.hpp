@@ -2,8 +2,8 @@
 
 #include <revolution.h>
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Util/JMapIdInfo.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
 
 class BitFlag128 {
 public:

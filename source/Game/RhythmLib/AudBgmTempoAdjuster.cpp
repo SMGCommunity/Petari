@@ -1,5 +1,5 @@
-#include "Game/RhythmLib/AudBgmTempoAdjuster.h"
-#include "Game/AudioLib/AudParams.h"
+#include "Game/RhythmLib/AudBgmTempoAdjuster.hpp"
+#include "Game/AudioLib/AudParams.hpp"
 
 AudBgmTempoAdjuster::AudBgmTempoAdjuster() {
     mStream = nullptr;

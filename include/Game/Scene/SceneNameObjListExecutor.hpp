@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObjListExecutor.h"
+#include "Game/NameObj/NameObjListExecutor.hpp"
 
 namespace {
     const CategoryListInitialTable cMovementListInitTable = {};

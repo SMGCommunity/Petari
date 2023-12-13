@@ -1,5 +1,5 @@
-#include "Game/NameObj/NameObjGroup.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/Util.hpp"
 
 NameObjGroup::NameObjGroup(const char *pGroupName, int maxCount) : NameObj(pGroupName) {
     _C = 0;

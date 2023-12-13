@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ViewGroupCtrl.h"
-#include "Game/Util/Array.h"
+#include "Game/LiveActor/ViewGroupCtrl.hpp"
+#include "Game/Util/Array.hpp"
 
 ViewGroupCtrl::ViewGroupCtrl() {
     mViewCubeMgr = nullptr;

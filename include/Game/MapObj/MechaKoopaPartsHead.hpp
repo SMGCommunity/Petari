@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
+#include "Game/MapObj/MapObjActor.hpp"
 
 namespace {
     const char* sDemoPartNameBreak = "壊れ開始";

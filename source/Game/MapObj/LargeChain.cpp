@@ -1,4 +1,4 @@
-#include "Game/MapObj/LargeChain.h"
+#include "Game/MapObj/LargeChain.hpp"
 
 namespace {
     static f32 sPartsLength = 200.0f;

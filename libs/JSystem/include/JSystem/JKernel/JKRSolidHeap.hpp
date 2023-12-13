@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.hpp"
 
 class JKRSolidHeap : public JKRHeap {
 public:

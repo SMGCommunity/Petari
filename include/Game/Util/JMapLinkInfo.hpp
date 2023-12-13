@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
+#include "Game/Util/JMapInfo.hpp"
 
 namespace {
     static const char* sFollowInfoTagName[3] = {

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/MaterialCtrl.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/Util.hpp"
 
 MaterialCtrl::MaterialCtrl(J3DModelData *pModelData, const char *pMaterialName) {
     mModelData = pModelData;

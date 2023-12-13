@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Screen/SurfingGuidance.h"
+#include "Game/System/NerveExecutor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Screen/SurfingGuidance.hpp"
 
 class TalkMessageCtrl;
 

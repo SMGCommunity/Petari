@@ -1,5 +1,5 @@
-#include "Game/Speaker/SpkSound.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "Game/Speaker/SpkSound.hpp"
+#include "JSystem/JAudio2/JASHeapCtrl.hpp"
 
 void SpkSoundHandle::releaseSound() {
     if (!mSound) {

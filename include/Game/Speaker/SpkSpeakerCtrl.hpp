@@ -2,9 +2,9 @@
 
 #include <revolution.h>
 #include <revolution/wenc.h>
-#include "Game/AudioLib/AudSpeakerWrap.h"
-#include "Game/Speaker/SpkMixingBuffer.h"
-#include "Game/Speaker/SpkSound.h"
+#include "Game/AudioLib/AudSpeakerWrap.hpp"
+#include "Game/Speaker/SpkMixingBuffer.hpp"
+#include "Game/Speaker/SpkSound.hpp"
 
 struct SpeakerInfo {
     u8 _0;

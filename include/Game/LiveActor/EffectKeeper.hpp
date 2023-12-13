@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class Binder;
 class ResourceHolder;

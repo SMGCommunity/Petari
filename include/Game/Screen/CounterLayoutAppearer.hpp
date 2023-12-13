@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
-#include "Game/System/NerveExecutor.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class CounterLayoutAppearer : public NerveExecutor {
 public:

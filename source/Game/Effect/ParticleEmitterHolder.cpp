@@ -1,5 +1,5 @@
-#include "Game/Effect/EffectSystem.h"
-#include "Game/Effect/ParticleEmitterHolder.h"
+#include "Game/Effect/EffectSystem.hpp"
+#include "Game/Effect/ParticleEmitterHolder.hpp"
 
 // Not sure how to make this match.
 // ParticleEmitterHolder::ParticleEmitterHolder(EffectSystem const *pEffectSystem, int numEmitters) {

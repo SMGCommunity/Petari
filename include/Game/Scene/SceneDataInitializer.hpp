@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Scene/StageFileLoader.h"
-#include "Game/Scene/StageDataHolder.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Scene/StageFileLoader.hpp"
+#include "Game/Scene/StageDataHolder.hpp"
 
 class SceneDataInitializer : public NameObj {
 public:

@@ -1,4 +1,4 @@
-#include "Game/Gravity.h"
+#include "Game/Gravity.hpp"
 
 ConeGravity::ConeGravity() : PlanetGravity() {
 	_88 = 360.0f;

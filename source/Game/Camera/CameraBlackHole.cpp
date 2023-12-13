@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraBlackHole.h"
-#include "Game/Camera/CamTranslatorBlackHole.h"
+#include "Game/Camera/CameraBlackHole.hpp"
+#include "Game/Camera/CamTranslatorBlackHole.hpp"
 
 CameraBlackHole::CameraBlackHole(const char *pName) : Camera(pName) {
     _4C = 1.0f;

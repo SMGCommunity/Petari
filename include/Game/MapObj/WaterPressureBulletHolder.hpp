@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/MapObj/WaterPressureBullet.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/MapObj/WaterPressureBullet.hpp"
 
 class WaterPressureBulletHolder : public NameObj {
 public:

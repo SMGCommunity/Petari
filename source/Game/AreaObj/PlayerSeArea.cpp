@@ -1,4 +1,4 @@
-#include "Game/AreaObj/PlayerSeArea.h"
+#include "Game/AreaObj/PlayerSeArea.hpp"
 
 PlayerSeArea::PlayerSeArea(int type, const char *pName) : AreaObj(type, pName) {
 

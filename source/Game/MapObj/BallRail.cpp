@@ -1,5 +1,5 @@
-#include "Game/MapObj/BallRail.h"
-#include <JSystem/JMath/JMath.h>
+#include "Game/MapObj/BallRail.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 BallRail::BallRail(const char *pName) : LiveActor(pName) {
     mRailPoints = nullptr;

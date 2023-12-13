@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Enemy/WalkerStateBindStarPointer.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 
 class PackunPetit : public LiveActor {
 public:

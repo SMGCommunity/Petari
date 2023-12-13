@@ -4,7 +4,8 @@ class NameObj;
 class Coin;
 class CoinHostInfo;
 
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class CoinHolder : public DeriveActorGroup<Coin> {
 public:

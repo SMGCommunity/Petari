@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapIdInfo.h"
+#include "Game/Util/JMapIdInfo.hpp"
 
 namespace MR {
     void requestChangeStageInGameMoving(const char *, s32, const JMapIdInfo &);

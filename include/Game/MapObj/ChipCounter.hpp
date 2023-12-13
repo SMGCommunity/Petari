@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/CollectCounter.h"
-#include "Game/Screen/LayoutActor.h"
+#include "Game/MapObj/CollectCounter.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 
 namespace {
     static s32 sChipPainCount = 0x5;

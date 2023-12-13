@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution.h>
+#include "Game/System/ResourceHolder.hpp"
 
 class ResourceHolderManagerName2Resource {
 public:

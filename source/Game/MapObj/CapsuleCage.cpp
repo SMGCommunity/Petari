@@ -1,4 +1,4 @@
-#include "Game/MapObj/CapsuleCage.h"
+#include "Game/MapObj/CapsuleCage.hpp"
 
 CapsuleCage::CapsuleCage(const char *pName) : MapObjActor(pName) {
     mInfo = nullptr;

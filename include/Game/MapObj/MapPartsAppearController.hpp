@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
-#include "Game/Util/PostureHolder.h"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include "Game/Util/PostureHolder.hpp"
 
 class MapPartsAppearController : public MapPartsFunction {
 public:

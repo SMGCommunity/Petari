@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Util.h"
-#include "Game/System/BinaryDataChunkHolder.h"
-#include "Game/System/GameEventFlag.h"
+#include "Game/Util.hpp"
+#include "Game/System/BinaryDataChunkHolder.hpp"
+#include "Game/System/GameEventFlag.hpp"
 
 class GameEventFlagStorage : public BinaryDataChunkBase {
 public:

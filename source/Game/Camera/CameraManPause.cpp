@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraLocalUtil.h"
-#include "Game/Camera/CameraManPause.h"
-#include "Game/Camera/CameraTargetObj.h"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraManPause.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 
 TMtx34f *CameraTargetObj::getMapBaseMtx() const {
     return nullptr;

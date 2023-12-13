@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraFixedThere.h"
-#include "Game/Camera/CamTranslatorFixedThere.h"
+#include "Game/Camera/CameraFixedThere.hpp"
+#include "Game/Camera/CamTranslatorFixedThere.hpp"
 
 CameraFixedThere::CameraFixedThere(const char *pName) : Camera(pName) {
     _4C = 0;

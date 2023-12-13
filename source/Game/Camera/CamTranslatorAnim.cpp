@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraAnim.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorAnim.h"
+#include "Game/Camera/CameraAnim.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorAnim.hpp"
 
 void CamTranslatorAnim::setParam(const CameraParamChunk *pChunk) {
     CameraAnim *camera = mCamera;

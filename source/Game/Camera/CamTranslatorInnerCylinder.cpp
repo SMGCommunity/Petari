@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorInnerCylinder.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorInnerCylinder.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorInnerCylinder::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

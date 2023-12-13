@@ -1,4 +1,4 @@
-#include "Game/MapObj/MechaKoopaPartsHead.h"
+#include "Game/MapObj/MechaKoopaPartsHead.hpp"
 
 MechaKoopaPartsHead::MechaKoopaPartsHead(const char *pName) : MapObjActor(pName) {
 

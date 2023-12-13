@@ -1,13 +1,13 @@
-#include "Game/System/GameSystemObjHolder.h"
-#include "Game/System/ErrorArchive.h"
-#include "Game/System/FileLoader.h"
-#include "Game/System/HeapMemoryWatcher.h"
-#include "Game/System/Language.h"
-#include "Game/System/ResourceHolderManager.h"
-#include "Game/System/NANDManager.h"
-#include "Game/SingletonHolder.h"
-#include "Game/Util/RenderMode.h"
-#include <JSystem/JUtility/JUTVideo.h>
+#include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/ErrorArchive.hpp"
+#include "Game/System/FileLoader.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/System/Language.hpp"
+#include "Game/System/ResourceHolderManager.hpp"
+#include "Game/System/NANDManager.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/Util/RenderMode.hpp"
+#include <JSystem/JUtility/JUTVideo.hpp>
 #include <cstdio>
 
 GameSystemObjHolder::GameSystemObjHolder() : 

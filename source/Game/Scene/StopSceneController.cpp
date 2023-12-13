@@ -1,5 +1,5 @@
-#include "Game/Scene/StopSceneController.h"
-#include "Game/Util.h"
+#include "Game/Scene/StopSceneController.hpp"
+#include "Game/Util.hpp"
 
 StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延発行") {
     _C = 0;

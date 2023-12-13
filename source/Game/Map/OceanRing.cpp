@@ -1,4 +1,4 @@
-#include "Game/Map/OceanRing.h"
+#include "Game/Map/OceanRing.hpp"
 
 void OceanRing::initAfterPlacement() {
     for (s32 i = 0; i < mWaterPointNum; i++) {

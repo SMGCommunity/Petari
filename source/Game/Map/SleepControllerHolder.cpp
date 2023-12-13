@@ -1,4 +1,4 @@
-#include "Game/AreaObj/AreaObj.h"
+#include "Game/AreaObj/AreaObj.hpp"
 
 void AreaObj::awake() {
     mAwake = true;

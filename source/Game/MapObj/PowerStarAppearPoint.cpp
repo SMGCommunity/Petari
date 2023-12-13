@@ -1,5 +1,5 @@
-#include "Game/MapObj/PowerStarAppearPoint.h"
-#include "Game/Util.h"
+#include "Game/MapObj/PowerStarAppearPoint.hpp"
+#include "Game/Util.hpp"
 
 PowerStarAppearPoint::PowerStarAppearPoint(const char *pName) : LiveActor(pName) {
     mCameraInfo = 0;

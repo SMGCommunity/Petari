@@ -1,4 +1,4 @@
-#include "Game/MapObj/SnowplowSwitch.h"
+#include "Game/MapObj/SnowplowSwitch.hpp"
 
 SnowplowSwitch::SnowplowSwitch(const char *pName) : LiveActor(pName) {
     _8C = 0;

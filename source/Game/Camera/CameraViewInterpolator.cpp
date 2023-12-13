@@ -1,1 +1,1 @@
-#include "Game/Camera/CameraViewInterpolator.h"
+#include "Game/Camera/CameraViewInterpolator.hpp"

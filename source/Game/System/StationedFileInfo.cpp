@@ -1,5 +1,5 @@
 #include <revolution.h>
-#include "Game/System/StationedFileInfo.h"
+#include "Game/System/StationedFileInfo.hpp"
 
 namespace MR {
     const StationedFileInfo cStationedFileInfo[] = {

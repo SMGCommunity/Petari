@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraMtxRegParallel.h"
-#include "Game/Camera/CamTranslatorMtxRegParallel.h"
+#include "Game/Camera/CameraMtxRegParallel.hpp"
+#include "Game/Camera/CamTranslatorMtxRegParallel.hpp"
 
 CameraMtxRegParallel::CameraMtxRegParallel(const char *pName) : Camera(pName) {
     mString = nullptr;

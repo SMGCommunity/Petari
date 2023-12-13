@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/Swinger.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/Swinger.hpp"
 
 class MagicBell : public LiveActor {
 public:

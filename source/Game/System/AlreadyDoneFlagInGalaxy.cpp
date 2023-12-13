@@ -1,7 +1,7 @@
-#include "Game/System/AlreadyDoneFlagInGalaxy.h"
-#include "Game/Util/HashUtil.h"
-#include "Game/Util/JMapUtil.h"
-#include "Game/Util/SceneUtil.h"
+#include "Game/System/AlreadyDoneFlagInGalaxy.hpp"
+#include "Game/Util/HashUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 AlreadyDoneInfo::AlreadyDoneInfo() {
     _0 = 0;

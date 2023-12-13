@@ -1,9 +1,13 @@
 #pragma once
 
-#include "Game/Effect/EffectSystem.h"
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/ModelManager.h"
-#include "Game/Scene/MultiSceneEffectKeeper.h"
+#include "Game/Effect/EffectSystem.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
+#include "Game/Scene/MultiSceneEffectKeeper.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+
+class Nerve;
+class Spine;
 
 class MultiSceneActor : public NameObj {
 public:

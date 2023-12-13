@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Game/Effect/ParticleResourceHolder.h"
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjHolder.h"
-#include "Game/NameObj/NameObjRegister.h"
-#include "Game/Screen/CaptureScreenDirector.h"
-#include "Game/Screen/ScreenPreserver.h"
-#include "Game/Screen/StarPointerDirector.h"
-#include "Game/System/AudSystemWrapper.h"
-#include "Game/System/FunctionAsyncExecutor.h"
-#include "Game/System/MessageHolder.h"
-#include "Game/System/WPadHolder.h"
-#include <JSystem/JMath/random.h>
+#include "Game/Effect/ParticleResourceHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/Screen/CaptureScreenDirector.hpp"
+#include "Game/Screen/ScreenPreserver.hpp"
+#include "Game/Screen/StarPointerDirector.hpp"
+#include "Game/System/AudSystemWrapper.hpp"
+#include "Game/System/FunctionAsyncExecutor.hpp"
+#include "Game/System/MessageHolder.hpp"
+#include "Game/System/WPadHolder.hpp"
+#include <JSystem/JMath/random.hpp>
 
 class GameSystemObjHolder {
 public:

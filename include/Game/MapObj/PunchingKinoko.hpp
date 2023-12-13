@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Map/GroundChecker.h"
-#include "Game/Util/JointController.h"
-#include "Game/Enemy/AnimScaleController.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/GroundChecker.hpp"
+#include "Game/Util/JointController.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
 
 class PunchingKinoko : public LiveActor {
 public:

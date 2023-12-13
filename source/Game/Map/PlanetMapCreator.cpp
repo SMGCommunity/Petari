@@ -1,7 +1,7 @@
-#include "Game/Map/PlanetMapCreator.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/NameObj/NameObjFactory.h"
-#include "Game/Util.h"
+#include "Game/Map/PlanetMapCreator.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 #include <cstring>
 

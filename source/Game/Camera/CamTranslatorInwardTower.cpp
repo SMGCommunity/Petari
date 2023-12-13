@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorInwardTower.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorInwardTower.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorInwardTower::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

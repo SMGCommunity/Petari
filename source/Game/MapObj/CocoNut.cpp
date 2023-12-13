@@ -1,8 +1,8 @@
-#include "Game/MapObj/CocoNut.h"
-#include "Game/LiveActor/Spine.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
-#include "Game/Util.h"
-#include "JSystem/JMath.h"
+#include "Game/MapObj/CocoNut.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath.hpp"
 
 inline void negateInternalInline(const TVec3f &src, TVec3f *dst) {
 	JGeometry::negateInternal((f32 *)&src, (f32 *)dst);

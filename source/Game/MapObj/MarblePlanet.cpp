@@ -1,6 +1,6 @@
-#include "Game/MapObj/MarblePlanet.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "JSystem/JMath.h"
+#include "Game/MapObj/MarblePlanet.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "JSystem/JMath.hpp"
 
 MarblePlanet::MarblePlanet(const char *pName) : LiveActor(pName) {
     mCorePlanetModel = 0;

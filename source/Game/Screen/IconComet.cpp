@@ -1,4 +1,6 @@
-#include "Game/Screen/IconComet.h"
+#include "Game/Screen/IconComet.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 
 IconComet::IconComet() : LayoutActor("コメットアイコン", true) {
 

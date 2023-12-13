@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraRaceFollow.h"
-#include "Game/Camera/CamTranslatorRaceFollow.h"
+#include "Game/Camera/CameraRaceFollow.hpp"
+#include "Game/Camera/CamTranslatorRaceFollow.hpp"
 
 CameraRaceFollow::CameraRaceFollow(const char *pName) : Camera(pName) {
     mWPointX = 500.0f;

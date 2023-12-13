@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObjGroup.h"
-#include "Game/Demo/DemoCastGroup.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/Demo/DemoCastGroup.hpp"
+#include "Game/Util.hpp"
 
 class DemoCastGroupHolder : public NameObjGroup {
 public:

@@ -1,4 +1,4 @@
-#include "Game/MapObj/MagicBell.h"
+#include "Game/MapObj/MagicBell.hpp"
 
 MagicBell::MagicBell(const char *pName) : LiveActor(pName) {
     _8C = nullptr;

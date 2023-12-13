@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/BenefitItemObj.h"
+#include "Game/MapObj/BenefitItemObj.hpp"
 
 class BenefitItemLifeUp : public BenefitItemObj {
 public:

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <JSystem/JGeometry.h>
-#include <JSystem/J3DGraphAnimator/J3DModel.h>
+#include <JSystem/JGeometry.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 class ClipAreaShape {
 public:

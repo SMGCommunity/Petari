@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/Demo/DemoCtrlBase.h"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/Demo/DemoCtrlBase.hpp"
 
 namespace {
     const char* cMoveBckName = "Move";

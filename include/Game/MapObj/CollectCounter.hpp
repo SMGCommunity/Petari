@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class CollectCounter : public LayoutActor {
 public:

@@ -1,6 +1,6 @@
-#include "Game/LiveActor/IKJointCtrl.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/IKJointCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 #include <algorithm>
 

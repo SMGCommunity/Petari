@@ -1,5 +1,5 @@
-#include "Game/LiveActor/Spine.h"
-#include "Game/LiveActor/ActorStateKeeper.h"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/LiveActor/ActorStateKeeper.hpp"
 
 Spine::Spine(void *pExecutor, const Nerve *pNerve) {
     mExecutor = pExecutor;

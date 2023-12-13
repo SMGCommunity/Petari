@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/LiveActorFlag.h"
-#include "Game/LiveActor/ActorAnimKeeper.h"
-#include "Game/LiveActor/ActorLightCtrl.h"
-#include "Game/LiveActor/EffectKeeper.h"
-#include "Game/LiveActor/HitSensorKeeper.h"
-#include "Game/LiveActor/ModelManager.h"
-#include "Game/LiveActor/ShadowController.h"
-#include "Game/LiveActor/Spine.h"
-#include "Game/LiveActor/RailRider.h"
-#include "Game/Map/StageSwitch.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActorFlag.hpp"
+#include "Game/LiveActor/ActorAnimKeeper.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/EffectKeeper.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
+#include "Game/LiveActor/ShadowController.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/LiveActor/RailRider.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;

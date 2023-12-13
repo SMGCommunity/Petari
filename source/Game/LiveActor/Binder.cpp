@@ -1,4 +1,4 @@
-#include "Game/Map/HitInfo.h"
+#include "Game/Map/HitInfo.hpp"
 
 HitInfo &HitInfo::operator=(const HitInfo &rOther) {
     mParentTriangle.mParts = rOther.mParentTriangle.mParts;

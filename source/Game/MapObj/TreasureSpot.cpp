@@ -1,5 +1,5 @@
-#include "Game/MapObj/TreasureSpot.h"
-#include "Game/Util.h"
+#include "Game/MapObj/TreasureSpot.hpp"
+#include "Game/Util.hpp"
 
 TreasureSpot::TreasureSpot(const char *pName) : MapObjActor(pName) {
     mIsCoinFlower = false;

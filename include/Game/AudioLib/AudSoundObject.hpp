@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JAudio2/JAUSoundObject.h"
+#include "JSystem/JAudio2/JAUSoundObject.hpp"
 
 class JAISoundHandle;
 class JKRHeap;

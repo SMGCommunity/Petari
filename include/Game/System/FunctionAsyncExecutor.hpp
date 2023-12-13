@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/OSThreadWrapper.h"
-#include "Game/Util.h"
+#include "Game/System/OSThreadWrapper.hpp"
+#include "Game/Util.hpp"
 
 class JKRExpHeap;
 class JKRUnitHeap;

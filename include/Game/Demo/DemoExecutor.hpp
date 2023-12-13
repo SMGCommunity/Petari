@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Demo/DemoCastGroup.h"
+#include "Game/Demo/DemoCastGroup.hpp"
 
 class DemoExecutor : public DemoCastGroup {
 public:

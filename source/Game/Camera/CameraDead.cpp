@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraDead.h"
-#include "Game/Camera/CameraTargetObj.h"
-#include "Game/Camera/CamTranslatorDead.h"
+#include "Game/Camera/CameraDead.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Camera/CamTranslatorDead.hpp"
 
 f32 CameraTargetObj::getRadius() const {
     return 150.0f;

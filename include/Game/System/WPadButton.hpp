@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/WPad.h"
+#include "Game/System/WPad.hpp"
 
 class WPadButton {
 public:

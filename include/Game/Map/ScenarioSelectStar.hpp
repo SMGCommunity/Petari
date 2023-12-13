@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Scene/MultiSceneActor.h"
-#include "Game/MapObj/PowerStar.h"
+#include "Game/Scene/MultiSceneActor.hpp"
+#include "Game/MapObj/PowerStar.hpp"
 
 class ScenarioSelectStar : public MultiSceneActor {
 public:

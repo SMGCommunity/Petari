@@ -175,7 +175,7 @@ public:
     JSULink<T>* mLink;
 };
 
-/* from https://github.com/zeldaret/tp/blob/master/include/JSystem/JSupport/JSUList.h */
+/* from https://github.com/zeldaret/tp/blob/master/include/JSystem/JSupport/JSUList.hpp */
 template<typename T>
 class JSUTree : public JSUList<T>, public JSULink<T> {
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/Spine.h"
+#include "Game/LiveActor/Spine.hpp"
 
 /// @brief Used for executing states of a LiveActor.
 class Nerve {

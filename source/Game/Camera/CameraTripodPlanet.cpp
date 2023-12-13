@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTripodPlanet.h"
-#include "Game/Camera/CamTranslatorTripodPlanet.h"
+#include "Game/Camera/CameraTripodPlanet.hpp"
+#include "Game/Camera/CamTranslatorTripodPlanet.hpp"
 
 CameraTripodPlanet::CameraTripodPlanet(const char *pName) : Camera(pName) {
     mAxis.x = 0.0f;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/NANDManagerThread.h"
+#include "Game/System/NANDManagerThread.hpp"
 #include <revolution.h>
 
 class NANDRequestInfo;

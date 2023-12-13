@@ -1,6 +1,6 @@
-#include "Game/Map/OceanRingBloomDrawer.h"
-#include "Game/Map/OceanRingDrawer.h"
-#include "Game/Map/OceanRing.h"
+#include "Game/Map/OceanRingBloomDrawer.hpp"
+#include "Game/Map/OceanRingDrawer.hpp"
+#include "Game/Map/OceanRing.hpp"
 
 OceanRingBloomDrawer::OceanRingBloomDrawer(OceanRing *pRing) : NameObj("オーシャンリング[ブルーム描画]") {
     mRing = pRing;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry.h"
+#include "JSystem/JGeometry.hpp"
 #include <revolution.h>
 
 class RailGraphIter;

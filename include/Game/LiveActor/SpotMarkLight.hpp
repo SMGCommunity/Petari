@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/PartsModel.h"
+#include "Game/LiveActor/PartsModel.hpp"
 
 class SpotMarkLight : public PartsModel {
 public:

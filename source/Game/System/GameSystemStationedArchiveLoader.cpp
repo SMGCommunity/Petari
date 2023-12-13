@@ -1,5 +1,5 @@
-#include "Game/System/GameSystemStationedArchiveLoader.h"
-#include "Game/Util.h"
+#include "Game/System/GameSystemStationedArchiveLoader.hpp"
+#include "Game/Util.hpp"
 
 bool ConditionIfIsNotPlayer::isExecute(const MR::StationedFileInfo *pInfo) const {
     bool result = false;

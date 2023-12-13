@@ -1,4 +1,4 @@
-#include "Game/Screen/MessageTagSkipTagProcessor.h"
+#include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 
 MessageTagSkipTagProcessor::MessageTagSkipTagProcessor() : nw4r::ut::TagProcessorBase<wchar_t>() {
 

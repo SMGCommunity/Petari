@@ -1,11 +1,11 @@
-#include "Game/Camera/CameraHolder.h"
-#include "Game/Camera/CameraLocalUtil.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CameraParamChunkHolder.h"
-#include "Game/Camera/CameraParamChunkID.h"
-#include "Game/Camera/DotCamParams.h"
-#include "Game/Util/SceneUtil.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "Game/Camera/CameraHolder.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CameraParamChunkHolder.hpp"
+#include "Game/Camera/CameraParamChunkID.hpp"
+#include "Game/Camera/DotCamParams.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <cstring>
 
 #define CHUNK_CAPACITY 0x400

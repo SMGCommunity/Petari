@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraRailDemo.h"
-#include "Game/Camera/CamTranslatorRailDemo.h"
+#include "Game/Camera/CameraRailDemo.hpp"
+#include "Game/Camera/CamTranslatorRailDemo.hpp"
 
 CameraRailDemo::CameraRailDemo(const char *pName) : Camera(pName) {
     

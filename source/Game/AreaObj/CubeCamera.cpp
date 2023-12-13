@@ -1,4 +1,4 @@
-#include "Game/AreaObj/CubeCamera.h"
+#include "Game/AreaObj/CubeCamera.hpp"
 
 #include <cstring>
 

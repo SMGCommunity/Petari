@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowVolumeOvalPole.h"
+#include "Game/LiveActor/ShadowVolumeOvalPole.hpp"
 
 ShadowVolumeOvalPole::~ShadowVolumeOvalPole() {
 

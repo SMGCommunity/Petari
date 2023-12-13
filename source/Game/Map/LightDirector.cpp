@@ -1,6 +1,6 @@
-#include "Game/Map/LightDirector.h"
-#include "Game/Map/LightFunction.h"
-#include "Game/Util.h"
+#include "Game/Map/LightDirector.hpp"
+#include "Game/Map/LightFunction.hpp"
+#include "Game/Util.hpp"
 
 void LightDirector::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObjMovement(this);

@@ -1,4 +1,4 @@
-#include "Game/Util/StringUtil.h"
+#include "Game/Util/StringUtil.hpp"
 
 // the linker will fix me when we are linking to the codewarrior libs
 #ifdef __cplusplus
@@ -9,7 +9,7 @@ extern int strcasecmp(const char*, const char*);
 
 #include <cstdio>
 #include <cstring>
-#include "Game/Util.h"
+#include "Game/Util.hpp"
 
 namespace MR {
     void addPictureFontCode(wchar_t *pStr, int code) {

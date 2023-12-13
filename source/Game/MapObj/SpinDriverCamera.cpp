@@ -1,5 +1,5 @@
-#include "Game/MapObj/SpinDriverCamera.h"
-#include "Game/Camera/CameraTargetMtx.h"
+#include "Game/MapObj/SpinDriverCamera.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
 
 SpinDriverCamera::SpinDriverCamera() {
     mCamera = nullptr;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/Util/IKJoint.h"
-#include "Game/Util/JointController.h"
-#include "JSystem/JGeometry/TMatrix.h"
-#include "Inline.h"
+#include "Game/Util/IKJoint.hpp"
+#include "Game/Util/JointController.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "Inline.hpp"
 
 class LiveActor;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraAnim.h"
+#include "Game/Camera/CameraAnim.hpp"
 
 class CameraParamChunk;
 

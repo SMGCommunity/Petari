@@ -1,4 +1,4 @@
-#include "Game/Screen/CopyFilterNegater.h"
+#include "Game/Screen/CopyFilterNegater.hpp"
 
 CopyFilterNegater::CopyFilterNegater() {
     mRenderObj = JUTVideo::sManager->mRenderModeObj;

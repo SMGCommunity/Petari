@@ -1,5 +1,5 @@
-#include "Game/MapObj/PTimerSwitch.h"
-#include "Game/Map/CollisionParts.h"
+#include "Game/MapObj/PTimerSwitch.hpp"
+#include "Game/Map/CollisionParts.hpp"
 
 PTimerSwitch::PTimerSwitch(const char *pName) : LiveActor(pName) {
 	mSwitchCollision = nullptr;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 class AllLiveActorGroup : public LiveActorGroup {
 public:

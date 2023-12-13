@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/FloaterFloatingForce.h"
+#include "Game/MapObj/FloaterFloatingForce.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 class FloaterFloatingForceTypeNormal : public FloaterFloatingForce {
 public:

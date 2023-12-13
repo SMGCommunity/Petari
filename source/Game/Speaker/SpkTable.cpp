@@ -1,4 +1,4 @@
-#include "Game/Speaker/SpkTable.h"
+#include "Game/Speaker/SpkTable.hpp"
 
 /*
 SpkTable::SpkTable() {

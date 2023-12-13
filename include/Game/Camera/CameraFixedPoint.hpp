@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/Camera.h"
+#include "Game/Camera/Camera.hpp"
 
 class CameraFixedPoint : public Camera {
 public:

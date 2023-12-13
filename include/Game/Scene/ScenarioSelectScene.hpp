@@ -1,4 +1,4 @@
-#include "Game/Scene/Scene.h"
+#include "Game/Scene/Scene.hpp"
 
 class ScenarioSelectScene : public Scene {
 public:

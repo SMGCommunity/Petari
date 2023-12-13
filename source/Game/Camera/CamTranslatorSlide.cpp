@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorSlide.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorSlide.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 /*void CamTranslatorSlide::setParam(const CameraParamChunk *pChunk) {
 	CameraGeneralParam *general = pChunk->mGeneralParam;

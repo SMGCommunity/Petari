@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraWaterFollow.h"
+#include "Game/Camera/CameraWaterFollow.hpp"
 
 class CamTranslatorWaterFollow : public CamTranslatorBase {
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraTowerPos.h"
+#include "Game/Camera/CameraTowerPos.hpp"
 
 class CamTranslatorTowerPos : public CamTranslatorBase {
 public:

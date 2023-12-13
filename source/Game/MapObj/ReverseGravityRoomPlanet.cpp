@@ -1,4 +1,4 @@
-#include "Game/MapObj/ReverseGravityRoomPlanet.h"
+#include "Game/MapObj/ReverseGravityRoomPlanet.hpp"
 
 ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char *pName) : MapObjActor(pName) {
 

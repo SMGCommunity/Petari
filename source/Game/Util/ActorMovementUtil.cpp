@@ -1,12 +1,12 @@
-#include "Game/Util.h"
-#include "Game/LiveActor/Binder.h"
-#include "Game/LiveActor/HitSensor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ShadowController.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "JSystem/JGeometry.h"
-#include "JSystem/JMath/JMath.h"
-#include "math_types.h"
+#include "Game/Util.hpp"
+#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ShadowController.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "JSystem/JGeometry.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "math_types.hpp"
 
 namespace MR {
     f32 calcDistance(const HitSensor *pSensor1, const HitSensor *pSensor2, TVec3f *a3) {

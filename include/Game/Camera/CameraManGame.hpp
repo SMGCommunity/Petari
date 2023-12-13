@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/AreaObj/CubeCamera.h"
-#include "Game/Camera/CameraMan.h"
+#include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/Camera/CameraMan.hpp"
 
 class Camera;
 class CameraHolder;

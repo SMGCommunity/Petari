@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JParticle/JPAResourceManager.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JParticle/JPAResourceManager.hpp"
 #include <revolution.h>
 
 class ResTIMG;

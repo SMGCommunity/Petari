@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/ActorJointCtrl.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/LodCtrl.h"
+#include "Game/LiveActor/ActorJointCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 class ModelObj : public LiveActor {
 public:

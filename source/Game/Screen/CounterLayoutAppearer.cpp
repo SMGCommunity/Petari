@@ -1,4 +1,6 @@
-#include "Game/Screen/CounterLayoutAppearer.h"
+#include "Game/Screen/CounterLayoutAppearer.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 static f32 zero = 0.0f;
 

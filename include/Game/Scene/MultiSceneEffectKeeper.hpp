@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/ModelManager.h"
+#include "Game/LiveActor/ModelManager.hpp"
 
 class MultiEmitter;
 class MultiSceneActor;

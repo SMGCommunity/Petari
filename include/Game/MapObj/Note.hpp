@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/LiveActor/FlashingCtrl.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/FlashingCtrl.hpp"
 
 class NoteFairy;
 

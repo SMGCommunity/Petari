@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/MapObj/PowerStarAppearPoint.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Util/Color.h"
-#include "JSystem/JGeometry.h"
+#include "Game/MapObj/PowerStarAppearPoint.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util/Color.hpp"
+#include "JSystem/JGeometry.hpp"
 
 namespace {
     const char* cAppearDemoName = "パワースター出現";

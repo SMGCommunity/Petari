@@ -1,9 +1,9 @@
-#include "Game/NameObj/NameObjExecuteHolder.h"
-#include "Game/NameObj/NameObjListExecutor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/System/GameSystem.h" 
-#include "Game/SingletonHolder.h"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjListExecutor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/System/GameSystem.hpp" 
+#include "Game/SingletonHolder.hpp"
 
 NameObjExecuteInfo::NameObjExecuteInfo() {
     mExecutedObject = 0;

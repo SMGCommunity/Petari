@@ -1,4 +1,4 @@
-#include "Game/Screen/StarPieceCounter.h"
+#include "Game/Screen/StarPieceCounter.hpp"
 
 StarPieceCounter::StarPieceCounter(const char *pName) : LayoutActor(pName, true) {
     mStarPieceNum = 0;

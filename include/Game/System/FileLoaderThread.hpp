@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/OSThreadWrapper.h"
-#include "Game/System/FileHolder.h"
+#include "Game/System/OSThreadWrapper.hpp"
+#include "Game/System/FileHolder.hpp"
 
 struct RequestFileInfo {
     u32 _0;

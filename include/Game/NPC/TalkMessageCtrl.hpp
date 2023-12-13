@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/NPC/TalkMessageFunc.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 
 class TalkNodeCtrl;
 class ActorCameraInfo;

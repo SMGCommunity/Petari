@@ -1,9 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Map/LightDataHolder.h"
-#include "Game/Map/LightZoneDataHolder.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Map/LightDataHolder.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class JMapInfo;
 class LightAreaHolder;

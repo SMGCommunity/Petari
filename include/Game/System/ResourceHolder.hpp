@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/System/ResourceInfo.h"
-#include "Game/Animation/BckCtrl.h"
-#include <JSystem/JKernel/JKRHeap.h>
-#include <JSystem/JKernel/JKRArchive.h>
-#include <JSystem/JKernel/JKRFileFinder.h>
+#include "Game/System/ResourceInfo.hpp"
+#include "Game/Animation/BckCtrl.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JKernel/JKRArchive.hpp>
+#include <JSystem/JKernel/JKRFileFinder.hpp>
 
 class MaterialAnmBuffer;
 class J3DModelData;

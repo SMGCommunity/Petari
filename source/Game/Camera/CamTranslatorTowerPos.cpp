@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorTowerPos.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorTowerPos.hpp"
 
 #ifdef NON_MATCHING
 // fmuls operand order, same as CamTranslatorTower::setParam()

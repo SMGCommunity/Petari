@@ -1,5 +1,5 @@
-#include "Game/MapObj/SpinDriver.h"
-#include "Game/MapObj/SpinDriverUtil.h"
+#include "Game/MapObj/SpinDriver.hpp"
+#include "Game/MapObj/SpinDriverUtil.hpp"
 #include <cstdio>
 #include <cstring>
 

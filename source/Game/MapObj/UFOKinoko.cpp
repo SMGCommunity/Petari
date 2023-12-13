@@ -1,7 +1,7 @@
-#include "Game/MapObj/UFOKinoko.h"
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/MapObj/MapObjActorInitInfo.h"
-#include "Game/MapObj/StageEffectDataTable.h"
+#include "Game/MapObj/UFOKinoko.hpp"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/MapObj/StageEffectDataTable.hpp"
 
 UFOKinoko::UFOKinoko(const char *pName) : MapObjActor(pName) {
 

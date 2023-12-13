@@ -1,5 +1,5 @@
-#include "Game/AreaObj/BloomArea.h"
-#include "Game/Util/ScreenUtil.h"
+#include "Game/AreaObj/BloomArea.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 
 BloomArea::BloomArea(int type, const char *pName) :
     ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/ChipBase.h"
+#include "Game/MapObj/ChipBase.hpp"
 
 class YellowChip : public ChipBase {
 public:

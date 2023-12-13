@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraFixedPoint.h"
-#include "Game/Camera/CamTranslatorFixedPoint.h"
+#include "Game/Camera/CameraFixedPoint.hpp"
+#include "Game/Camera/CamTranslatorFixedPoint.hpp"
 
 CameraFixedPoint::CameraFixedPoint(const char *pName) : Camera(pName) {
     _4C = 0.0f;

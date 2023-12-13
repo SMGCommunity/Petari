@@ -1,4 +1,4 @@
-#include "Game/Screen/GalaxyNamePlate.h"
+#include "Game/Screen/GalaxyNamePlate.hpp"
 
 void GalaxyNamePlate::showUnknown(bool a1) {
     show(MR::getGameMessageDirect("GalaxyNameShort_Unkonwn"), 0, true, a1);

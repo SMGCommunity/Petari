@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/BinaryDataChunkHolder.h"
-#include "Game/System/ConfigDataMii.h"
-#include "Game/System/ConfigDataMisc.h"
+#include "Game/System/BinaryDataChunkHolder.hpp"
+#include "Game/System/ConfigDataMii.hpp"
+#include "Game/System/ConfigDataMisc.hpp"
 
 class ConfigDataCreateChunk : public BinaryDataChunkBase {
 public:

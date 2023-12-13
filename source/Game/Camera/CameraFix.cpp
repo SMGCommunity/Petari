@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraFix.h"
-#include "Game/Camera/CameraTargetMtx.h"
-#include "Game/Camera/CamTranslatorFix.h"
+#include "Game/Camera/CameraFix.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/Camera/CamTranslatorFix.hpp"
 
 CameraFix::CameraFix(const char *pName) : Camera(pName) {
     _4C = 0.0f;

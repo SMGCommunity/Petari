@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/BinaryDataChunkHolder.h"
+#include "Game/System/BinaryDataChunkHolder.hpp"
 
 class ConfigDataMisc : public BinaryDataChunkBase {
 public:

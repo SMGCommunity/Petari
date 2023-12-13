@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorFrontAndBack.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorFrontAndBack.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 #ifdef NON_MATCHING
 // Register mismatch

@@ -1,5 +1,5 @@
-#include "Game/MapObj/BenefitItemObj.h"
-#include "JSystem/JGeometry/TUtil.h"
+#include "Game/MapObj/BenefitItemObj.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 
 s16 def = 600;
 static f32 zero = 0.0f;

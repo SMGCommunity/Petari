@@ -1,7 +1,7 @@
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/AreaObj/AreaObjFollower.h"
-#include "Game/Map/SleepControllerHolder.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/AreaObj/AreaObjFollower.hpp"
+#include "Game/Map/SleepControllerHolder.hpp"
+#include "Game/Util.hpp"
 
 AreaObj::AreaObj(int type, const char *pName) : NameObj(pName) {
     mType = type;

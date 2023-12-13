@@ -1,4 +1,4 @@
-#include "Game/MapObj/FirePressureBulletHolder.h"
+#include "Game/MapObj/FirePressureBulletHolder.hpp"
 
 FirePressureBulletHolder::FirePressureBulletHolder(const char *pName) : NameObj(pName) {
 

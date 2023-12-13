@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/CameraTargetArg.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
+#include "Game/Camera/CameraTargetArg.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 
 class MultiEventCamera {
 public:

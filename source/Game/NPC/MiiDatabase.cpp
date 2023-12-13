@@ -1,4 +1,4 @@
-#include "JSystem/JKernel/JKRFileFinder.h"
+#include "JSystem/JKernel/JKRFileFinder.hpp"
 
 JKRFileFinder::~JKRFileFinder() {
 

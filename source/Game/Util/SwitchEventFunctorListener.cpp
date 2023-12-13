@@ -1,4 +1,4 @@
-#include "Game/Util/SwitchEventFunctorListener.h"
+#include "Game/Util/SwitchEventFunctorListener.hpp"
 
 SwitchEventFunctorListener::SwitchEventFunctorListener() {
     mOnFunctor = 0;

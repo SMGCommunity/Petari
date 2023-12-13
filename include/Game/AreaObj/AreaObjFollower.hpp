@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/Util/BaseMatrixFollowTargetHolder.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/Util.hpp"
 
 class AreaObjFollower : public BaseMatrixFollower {
 public:

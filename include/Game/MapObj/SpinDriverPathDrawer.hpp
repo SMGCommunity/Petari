@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/SpinDriverShootPath.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 class SpinDriverPathDrawInit : public NameObj {
 public:

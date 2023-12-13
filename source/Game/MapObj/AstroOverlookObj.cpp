@@ -1,4 +1,4 @@
-#include "Game/MapObj/AstroOverlookObj.h"
+#include "Game/MapObj/AstroOverlookObj.hpp"
 
 AstroOverlookObj::AstroOverlookObj(const char *pName) : LiveActor(pName) {
     _8C = 0;

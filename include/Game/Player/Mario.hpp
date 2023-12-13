@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Player/MarioModule.h"
-#include "Game/Util/TriangleFilter.h"
+#include "Game/Player/MarioModule.hpp"
+#include "Game/Util/TriangleFilter.hpp"
 
 class MarioActor;
 class MarioFlow;

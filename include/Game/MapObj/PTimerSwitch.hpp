@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/MapObjConnector.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/MapObjConnector.hpp"
 
 class PTimerSwitch : public LiveActor {
 public:

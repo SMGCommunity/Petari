@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util/MultiEventCamera.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/MultiEventCamera.hpp"
 
 class SpinDriverCamera {
 public:

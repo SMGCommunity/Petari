@@ -1,8 +1,8 @@
-#include "Game/Scene/StageFileLoader.h"
-#include "Game/System/GalaxyStatusAccessor.h"
-#include "Game/Util.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "JSystem/JKernel/JKRFileFinder.h"
+#include "Game/Scene/StageFileLoader.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JKernel/JKRArchive.hpp"
+#include "JSystem/JKernel/JKRFileFinder.hpp"
 #include <cstring>
 #include <cstdio>
 

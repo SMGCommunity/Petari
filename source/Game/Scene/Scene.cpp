@@ -1,4 +1,4 @@
-#include "Game/Scene/Scene.h"
+#include "Game/Scene/Scene.hpp"
 
 Scene::Scene(const char *pName) : NerveExecutor(pName) {
     mListExecutor = nullptr;

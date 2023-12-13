@@ -1,5 +1,6 @@
-#include "Game/Map/NamePosHolder.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/Map/NamePosHolder.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 NamePosHolder::NamePosHolder() : NameObj("位置テーブル保持") {
     mPosNum = 0;

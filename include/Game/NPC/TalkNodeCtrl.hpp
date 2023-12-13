@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NPC/TalkMessageInfo.h"
-#include "Game/NPC/TalkMessageCtrl.h"
+#include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
 
 class RecursiveHelper;
 

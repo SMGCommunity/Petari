@@ -1,5 +1,5 @@
-#include "Game/NameObj/MovementOnOffGroupHolder.h"
-#include "Game/Util.h"
+#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
+#include "Game/Util.hpp"
 
 MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char *pName) : NameObj(pName) {
     mCount = 0;

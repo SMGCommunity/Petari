@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraCharmedVecReg.h"
-#include "Game/Camera/CamTranslatorCharmedVecReg.h"
+#include "Game/Camera/CameraCharmedVecReg.hpp"
+#include "Game/Camera/CamTranslatorCharmedVecReg.hpp"
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char *pName) : Camera(pName) {
     mString = nullptr;

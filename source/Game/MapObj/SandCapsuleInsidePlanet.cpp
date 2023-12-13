@@ -1,4 +1,4 @@
-#include "Game/MapObj/SandCapsuleInsidePlanet.h"
+#include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
 
 SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char *pName) : MapObjActor(pName) {
 

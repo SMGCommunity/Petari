@@ -1,5 +1,5 @@
-#include "Game/AreaObj/DepthOfFieldArea.h"
-#include "Game/Util/ScreenUtil.h"
+#include "Game/AreaObj/DepthOfFieldArea.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 
 DepthOfFieldArea::DepthOfFieldArea(int type, const char *pName) :
     ImageEffectArea(IMAGE_EFFECT_TYPE_DOF, type, pName) {

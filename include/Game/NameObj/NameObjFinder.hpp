@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObjHolder.h"
+#include "Game/NameObj/NameObjHolder.hpp"
 
 class NameObj;
 

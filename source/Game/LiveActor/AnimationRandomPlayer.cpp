@@ -1,5 +1,5 @@
-#include "Game/LiveActor/AnimationRandomPlayer.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/AnimationRandomPlayer.hpp"
+#include "Game/Util.hpp"
 
 NrvAnimationRandomPlayer::HostTypeWait NrvAnimationRandomPlayer::HostTypeWait::sInstance;
 NrvAnimationRandomPlayer::HostTypePlay NrvAnimationRandomPlayer::HostTypePlay::sInstance;

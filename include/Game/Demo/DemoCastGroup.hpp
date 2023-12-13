@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util.hpp"
 
 class LiveActor;
 

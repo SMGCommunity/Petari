@@ -1,7 +1,7 @@
 #pragma once
 
 #include "revolution.h"
-#include "Game/Util.h"
+#include "Game/Util.hpp"
 
 class J3DModel;
 class LiveActor;

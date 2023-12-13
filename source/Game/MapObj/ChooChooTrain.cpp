@@ -1,6 +1,6 @@
-#include "Game/MapObj/ChooChooTrain.h"
-#include "Game/Util.h"
-#include "Game/Util/Array.h"
+#include "Game/MapObj/ChooChooTrain.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
 
 ChooChooTrain::ChooChooTrain(const char *pName) : LiveActor(pName), mModelArray() {
     _98.x = 0.0f;

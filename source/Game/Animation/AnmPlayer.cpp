@@ -1,6 +1,6 @@
-#include "Game/Animation/AnmPlayer.h"
-#include "Game/Util.h"
-#include "Game/System/ResourceInfo.h"
+#include "Game/Animation/AnmPlayer.hpp"
+#include "Game/Util.hpp"
+#include "Game/System/ResourceInfo.hpp"
 
 AnmPlayerBase::AnmPlayerBase(const ResTable *pTable) : 
     mResourceTable(pTable), mData(0), mFrameCtrl(0) {

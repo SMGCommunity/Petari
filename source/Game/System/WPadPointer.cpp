@@ -1,6 +1,6 @@
-#include "Game/System/WPadPointer.h"
-#include "Game/Util.h"
-#include <JSystem/JUtility/JUTVideo.h>
+#include "Game/System/WPadPointer.hpp"
+#include "Game/Util.hpp"
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 #ifdef NON_MATCHING
 // arrays are generating a constructor for some reason

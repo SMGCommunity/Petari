@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorFooFighter.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorFooFighter.hpp"
 
 CamTranslatorFooFighter::CamTranslatorFooFighter(CameraFooFighter *pCamera) {
 	mCamera = pCamera;

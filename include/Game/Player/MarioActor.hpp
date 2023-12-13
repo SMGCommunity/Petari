@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Player/Mario.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Player/Mario.hpp"
 
 class FootPrint;
 class JAIAudible;

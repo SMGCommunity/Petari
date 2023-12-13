@@ -1,4 +1,4 @@
-#include "Game/MapObj/LavaBallRisingPlanetLava.h"
+#include "Game/MapObj/LavaBallRisingPlanetLava.hpp"
 
 LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char *pName) : MapObjActor(pName) {
 

@@ -1,6 +1,6 @@
-#include "Game/Enemy/PackunPetit.h"
-#include "Game/LiveActor/ModelObj.h"
-#include <JSystem/JMath/JMath.h>
+#include "Game/Enemy/PackunPetit.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 PackunPetit::PackunPetit(const char *pName) : LiveActor(pName) {
     mScaleController = nullptr;

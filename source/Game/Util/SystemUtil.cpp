@@ -1,6 +1,6 @@
-#include "Game/Util/SystemUtil.h"
-#include "Game/Util/MemoryUtil.h"
-#include "nw4r/lyt/lyt_layout.h"
+#include "Game/Util/SystemUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "nw4r/lyt/lyt_layout.hpp"
 
 namespace MR {
     void setLayoutDefaultAllocator() {

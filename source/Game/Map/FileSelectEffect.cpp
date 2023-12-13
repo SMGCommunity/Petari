@@ -1,4 +1,4 @@
-#include "Game/Map/FileSelectEffect.h"
+#include "Game/Map/FileSelectEffect.hpp"
 
 FileSelectEffect::FileSelectEffect(const char *pName) : LiveActor(pName) {
     mEffectFrame = 0.0f;

@@ -1,6 +1,6 @@
-#include "Game/AreaObj/GlaringLightArea.h"
-#include "Game/AudioLib/AudSoundObject.h"
-#include "Game/Util/SoundUtil.h"
+#include "Game/AreaObj/GlaringLightArea.hpp"
+#include "Game/AudioLib/AudSoundObject.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 GlaringLightAreaMgr::GlaringLightAreaMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
 

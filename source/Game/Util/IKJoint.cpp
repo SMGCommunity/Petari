@@ -1,5 +1,5 @@
-#include "Game/Util/IKJoint.h"
-#include "Game/Util.h"
+#include "Game/Util/IKJoint.hpp"
+#include "Game/Util.hpp"
 
 IKJoint::IKJoint() : mRootBoneLength(100.0f), mMiddleBoneLength(100.0f), _0(), _30(), _60() {
     _0.identity();

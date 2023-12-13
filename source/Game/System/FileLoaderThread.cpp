@@ -1,7 +1,7 @@
-#include "Game/System/FileLoaderThread.h"
-#include "Game/System/FileRipper.h"
+#include "Game/System/FileLoaderThread.hpp"
+#include "Game/System/FileRipper.hpp"
 
-#include "Inline.h"
+#include "Inline.hpp"
 
 namespace {
     void* loadFileUsingRipper(RequestFileInfo *pInfo) NO_INLINE {

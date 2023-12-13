@@ -1,12 +1,12 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/ClippingJudge.h"
-#include "Game/LiveActor/ClippingActorHolder.h"
-#include "Game/LiveActor/ClippingGroupHolder.h"
-#include "Game/LiveActor/LodCtrl.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/ClippingJudge.hpp"
+#include "Game/LiveActor/ClippingActorHolder.hpp"
+#include "Game/LiveActor/ClippingGroupHolder.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/Util.hpp"
 
 class LiveActor;
 

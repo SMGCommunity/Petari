@@ -1,5 +1,5 @@
-#include "Game/Map/LightDataHolder.h"
-#include "Game/Util.h"
+#include "Game/Map/LightDataHolder.hpp"
+#include "Game/Util.hpp"
 
 LightDataHolder::LightDataHolder() {
     mLightCount = 0;

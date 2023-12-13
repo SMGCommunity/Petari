@@ -1,8 +1,8 @@
-#include "Game/Gravity.h"
-#include "Game/Util/GravityUtil.h"
-#include "Game/Util/JMapInfo.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/Gravity.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include <cstring>
 
 namespace {

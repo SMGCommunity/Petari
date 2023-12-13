@@ -1,4 +1,4 @@
-#include "Game/NPC/TalkMessageInfo.h"
+#include "Game/NPC/TalkMessageInfo.hpp"
 
 TalkMessageInfo::TalkMessageInfo() {
     _0 = 0;

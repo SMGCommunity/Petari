@@ -1,6 +1,6 @@
-#include "Game/NameObj/NameObjFactory.h"
-#include "Game/Map/PlanetMapCreator.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Map/PlanetMapCreator.hpp"
+#include "Game/Util.hpp"
 
 CreationFuncPtr NameObjFactory::getCreator(const char *pName) {
     if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {

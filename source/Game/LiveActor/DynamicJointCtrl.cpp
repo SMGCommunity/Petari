@@ -1,5 +1,5 @@
-#include "Game/LiveActor/DynamicJointCtrl.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/DynamicJointCtrl.hpp"
+#include "Game/Util.hpp"
 
 #ifdef NON_MATCHING
 // scheduling issues

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/ClippingActorInfo.h"
-#include "Game/LiveActor/LodCtrl.h"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 struct ViewGroupCtrlDataEntry {
     bool _0;

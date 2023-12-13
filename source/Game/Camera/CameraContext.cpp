@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraContext.h"
+#include "Game/Camera/CameraContext.hpp"
 
 CameraContext::CameraContext() : NameObj("カメラコンテキスト") {
     initParams();

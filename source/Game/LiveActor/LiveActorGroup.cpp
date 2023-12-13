@@ -1,6 +1,6 @@
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 LiveActorGroup::LiveActorGroup(const char *pName, int count) : NameObjGroup(pName, count) {
 

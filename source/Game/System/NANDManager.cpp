@@ -1,7 +1,7 @@
-#include "Game/System/NANDManager.h"
-#include "Game/Util.h"
-#include "Game/SingletonHolder.h"
-#include <JSystem/JKernel/JKRExpHeap.h>
+#include "Game/System/NANDManager.hpp"
+#include "Game/Util.hpp"
+#include "Game/SingletonHolder.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <cstdio>
 
 NANDRequestInfo::NANDRequestInfo() {

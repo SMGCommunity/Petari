@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/AreaObj/ImageEffectArea.h"
+#include "Game/AreaObj/ImageEffectArea.hpp"
 
 class ScreenBlurArea : public ImageEffectArea {
 public:

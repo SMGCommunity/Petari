@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraTowerBase.h"
+#include "Game/Camera/CameraTowerBase.hpp"
 
 CameraTowerBase::CameraTowerBase(const char *pName) : Camera(pName) {
     _4C = 0.0f;

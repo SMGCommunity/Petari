@@ -1,6 +1,6 @@
-#include "Game/MapObj/AssemblyBlock.h"
-#include "Game/LiveActor/PartsModel.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/AssemblyBlock.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 namespace {
     static const char* sReturnPosName = "合体ブロック故郷点";

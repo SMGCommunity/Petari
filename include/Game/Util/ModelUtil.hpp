@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TBox.h"
+#include "JSystem/JGeometry/TBox.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 
 class J3DModel;

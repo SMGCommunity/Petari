@@ -1,4 +1,4 @@
-#include "Game/Scene/PlacementInfoOrdered.h"
+#include "Game/Scene/PlacementInfoOrdered.hpp"
 
 #ifndef NON_MATCHING
 // functionally equiv, just isn't reloading the array size properly

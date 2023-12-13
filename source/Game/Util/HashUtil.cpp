@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/HashUtil.h"
+#include "Game/Util/HashUtil.hpp"
 
 HashSortTable::HashSortTable(u32 cnt) {
     mHashCodes = new u32[cnt];

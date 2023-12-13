@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorFollow.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorFollow.hpp"
 
 CamTranslatorFollow::CamTranslatorFollow(CameraFollow *pCamera) {
 	mCamera = pCamera;

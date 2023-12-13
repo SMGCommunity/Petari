@@ -1,6 +1,6 @@
-#include "Game/MapObj/HipDropMoveObj.h"
-#include "Game/MapObj/StageEffectDataTable.h"
-#include "Game/Util.h"
+#include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/Util.hpp"
 
 HipDropDemoMoveObj::~HipDropDemoMoveObj() {
     

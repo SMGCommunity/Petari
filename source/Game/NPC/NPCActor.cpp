@@ -1,5 +1,5 @@
-#include "Game/NPC/NPCActor.h"
-#include "Game/Util.h"
+#include "Game/NPC/NPCActor.hpp"
+#include "Game/Util.hpp"
 
 NPCActorCaps::NPCActorCaps(const char *pName) {
     _0 = pName;

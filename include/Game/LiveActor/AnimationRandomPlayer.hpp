@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/System/NerveExecutor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class AnimationRandomPlayer : public NerveExecutor {
 public:

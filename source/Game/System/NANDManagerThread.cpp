@@ -1,5 +1,5 @@
-#include "Game/System/NANDManagerThread.h"
-#include "Game/System/NANDManager.h"
+#include "Game/System/NANDManagerThread.hpp"
+#include "Game/System/NANDManager.hpp"
 
 NANDManagerThread::NANDManagerThread(int a1, int a2, JKRHeap *pHeap) : OSThreadWrapper(0x8000, a2, a1, pHeap) {
 

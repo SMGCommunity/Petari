@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Screen/MessageTagSkipTagProcessor.h"
+#include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 
 namespace {
     u8 clampU8(s32 val) {

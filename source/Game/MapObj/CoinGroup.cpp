@@ -1,5 +1,5 @@
-#include "Game/MapObj/CoinGroup.h"
-#include "Game/Util.h"
+#include "Game/MapObj/CoinGroup.hpp"
+#include "Game/Util.hpp"
 
 CoinGroup::CoinGroup(const char *pName) : LiveActor(pName) {
     mCoinArray = nullptr;

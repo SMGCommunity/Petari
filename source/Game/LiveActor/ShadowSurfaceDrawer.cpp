@@ -1,8 +1,8 @@
-#include "Game/LiveActor/ShadowSurfaceDrawer.h"
-#include "Game/LiveActor/ShadowVolumeDrawer.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util/Functor.h"
-#include "Game/Util/DirectDraw.h"
+#include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
+#include "Game/LiveActor/ShadowVolumeDrawer.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/DirectDraw.hpp"
 
 /*
 ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char *pName) : NameObj(pName) {

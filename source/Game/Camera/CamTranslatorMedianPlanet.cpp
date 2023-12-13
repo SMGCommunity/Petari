@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorMedianPlanet.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorMedianPlanet.hpp"
 
 CamTranslatorMedianPlanet::CamTranslatorMedianPlanet(CameraMedianPlanet *pCamera) {
 	mCamera = pCamera;

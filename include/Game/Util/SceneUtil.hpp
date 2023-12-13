@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
+
+class JMapLinkInfo;
+class JMapIdInfo;
 
 namespace MR {
     s32 getPlacedZoneId(const JMapInfoIter &);

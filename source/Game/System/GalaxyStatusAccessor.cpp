@@ -1,8 +1,8 @@
-#include "Game/System/GalaxyStatusAccessor.h"
-#include "Game/System/GameDataFunction.h"
-#include "Game/System/GameDataConst.h"
-#include "Game/System/ScenarioDataParser.h"
-#include "Game/Util.h"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataFunction.hpp"
+#include "Game/System/GameDataConst.hpp"
+#include "Game/System/ScenarioDataParser.hpp"
+#include "Game/Util.hpp"
 
 GalaxyStatusAccessor::GalaxyStatusAccessor(const ScenarioData *pScenarioData) {
     mScenarioData = pScenarioData;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Animation/XanimeCore.h"
+#include "Game/Animation/XanimeCore.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
 
 class XanimeResourceTable;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/ArrowSwitchMulti.h"
-#include "Game/LiveActor/LiveActorGroup.h"
+#include "Game/MapObj/ArrowSwitchMulti.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 
 class ArrowSwitchMultiHolder : public DeriveActorGroup<ArrowSwitchMulti> {
 public:

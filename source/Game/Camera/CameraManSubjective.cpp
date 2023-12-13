@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraLocalUtil.h"
-#include "Game/Camera/CameraManSubjective.h"
-#include "Game/Camera/CameraSubjective.h"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraManSubjective.hpp"
+#include "Game/Camera/CameraSubjective.hpp"
 
 CameraManSubjective::CameraManSubjective(const char *pName) : CameraMan(pName) {
     mCamera = new CameraSubjective("主観カメラ");

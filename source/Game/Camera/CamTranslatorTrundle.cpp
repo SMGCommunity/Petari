@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorTrundle.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorTrundle.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorTrundle::setParam(const CameraParamChunk *pChunk) {
 	CameraTrundle *camera;

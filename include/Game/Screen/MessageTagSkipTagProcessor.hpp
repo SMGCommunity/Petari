@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nw4r/ut/TagProcessorBase.h"
+#include "nw4r/ut/TagProcessorBase.hpp"
 
 class MessageTagSkipTagProcessor : public nw4r::ut::TagProcessorBase<wchar_t> {
 public:

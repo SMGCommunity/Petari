@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ShadowVolumeDrawer.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/LiveActor/ShadowVolumeDrawer.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 namespace {
     static Color8 sShapeColor(0xC0, 0xC0, 0, 4);

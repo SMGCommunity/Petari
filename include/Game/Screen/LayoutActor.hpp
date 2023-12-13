@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/Spine.h"
-#include "Game/Screen/LayoutActorFlag.h"
-#include "Game/Screen/LayoutManager.h"
-#include "JSystem/JGeometry.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Screen/LayoutActorFlag.hpp"
+#include "Game/Screen/LayoutManager.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class PaneEffectKeeper;
 class StarPointerLayoutTargetKeeper;

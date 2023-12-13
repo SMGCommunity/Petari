@@ -1,8 +1,8 @@
-#include "Game/MapObj/PurpleCoinHolder.h"
-#include "Game/MapObj/Coin.h"
-#include "Game/MapObj/PurpleCoinStarter.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util.h"
+#include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/MapObj/Coin.hpp"
+#include "Game/MapObj/PurpleCoinStarter.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 PurpleCoinHolder::PurpleCoinHolder() : DeriveActorGroup<Coin>("パープルコイン管理", 0x100) {
     mStarter = nullptr;

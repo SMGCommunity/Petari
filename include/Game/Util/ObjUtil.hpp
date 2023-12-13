@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/Util/Functor.h"
+#include "Game/Util/Functor.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class NameObj;
 class LayoutActor;

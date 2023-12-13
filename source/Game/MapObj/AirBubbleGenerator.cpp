@@ -1,5 +1,5 @@
-#include "Game/MapObj/AirBubbleGenerator.h"
-#include "Game/MapObj/AirBubbleHolder.h"
+#include "Game/MapObj/AirBubbleGenerator.hpp"
+#include "Game/MapObj/AirBubbleHolder.hpp"
 
 AirBubbleGenerator::~AirBubbleGenerator() {
 

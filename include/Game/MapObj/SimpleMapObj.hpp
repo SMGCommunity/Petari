@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
 struct SoundEffectDataEntry {
     const char* objectName; // _0

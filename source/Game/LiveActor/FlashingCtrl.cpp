@@ -1,5 +1,5 @@
-#include "Game/LiveActor/FlashingCtrl.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/Util.hpp"
 
 FlashingCtrl::FlashingCtrl(LiveActor *pActor, bool toggleDraw) : NameObj("点滅") {
     mActor = pActor;

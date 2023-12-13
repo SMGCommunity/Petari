@@ -1,6 +1,6 @@
-#include "Game/AreaObj/LightAreaHolder.h"
-#include "Game/Map/LightZoneDataHolder.h"
-#include "Game/Map/LightFunction.h"
+#include "Game/AreaObj/LightAreaHolder.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
+#include "Game/Map/LightFunction.hpp"
 
 LightAreaHolder::LightAreaHolder(s32 type, const char *pName) : AreaObjMgr(type, pName) {
     LightFunction::registerLightAreaHolder(this);

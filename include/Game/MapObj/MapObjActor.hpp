@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/MapObjActorInitInfo.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 class LodCtrl;
 class MapPartsRailMover;

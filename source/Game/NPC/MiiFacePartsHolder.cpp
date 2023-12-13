@@ -1,4 +1,4 @@
-#include "Game/NPC/MiiFacePartsHolder.h"
+#include "Game/NPC/MiiFacePartsHolder.hpp"
 
 MiiFacePartsHolder::MiiFacePartsHolder(int numParts) : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer() {
     _30 = 0;

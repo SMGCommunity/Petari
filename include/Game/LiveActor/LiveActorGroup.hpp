@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObjGroup.h"
+#include "Game/NameObj/NameObjGroup.hpp"
 
 class LiveActor;
 

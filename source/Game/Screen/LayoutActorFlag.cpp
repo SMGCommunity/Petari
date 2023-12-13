@@ -1,4 +1,4 @@
-#include "Game/Screen/LayoutActorFlag.h"
+#include "Game/Screen/LayoutActorFlag.hpp"
 
 LayoutActorFlag::LayoutActorFlag() {
     mIsDead = true;

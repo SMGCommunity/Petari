@@ -1,4 +1,5 @@
-#include "Game/Screen/SubMeterLayout.h"
+#include "Game/Screen/SubMeterLayout.hpp"
+#include "Game/Util.hpp"
 
 SubMeterLayout::SubMeterLayout(const char *pName, const char *pLayoutName) : LayoutActor(pName, true) {
     MR::connectToSceneLayout(this);

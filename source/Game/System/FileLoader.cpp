@@ -1,5 +1,5 @@
-#include "Game/System/FileLoader.h"
-#include "Game/Util.h"
+#include "Game/System/FileLoader.hpp"
+#include "Game/Util.hpp"
 
 FileLoader::FileLoader() {
     mLoaderThread = nullptr;

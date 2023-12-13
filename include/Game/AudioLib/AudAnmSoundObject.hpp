@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/AudioLib/AudSoundObject.h"
+#include "Game/AudioLib/AudSoundObject.hpp"
 
 class JAISoundStarter;
 class JASSoundParams;

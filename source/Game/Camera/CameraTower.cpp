@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTower.h"
-#include "Game/Camera/CamTranslatorTower.h"
+#include "Game/Camera/CameraTower.hpp"
+#include "Game/Camera/CamTranslatorTower.hpp"
 
 CameraTower::CameraTower(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;

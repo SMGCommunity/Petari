@@ -1,4 +1,4 @@
-#include "Game/MapObj/BigBubbleMoveLimitter.h"
+#include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 
 BigBubbleMoveLimitter::BigBubbleMoveLimitter(const char *pName, s32 a2) : NameObj(pName),
     _C(-1), _10(0, 0, 0), _1C(0, 1, 0), _28(1, 0, 0), _34(0, 1, 0), _40(0, 0, 1) {

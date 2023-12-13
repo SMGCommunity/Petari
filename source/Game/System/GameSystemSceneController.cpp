@@ -1,5 +1,5 @@
-#include "Game/System/GameSystemSceneController.h"
-#include "Game/Util.h"
+#include "Game/System/GameSystemSceneController.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 SceneControlInfo::SceneControlInfo() {

@@ -1,7 +1,7 @@
-#include "Game/Map/RailGraph.h"
-#include "Game/Map/RailGraphEdge.h"
-#include "Game/Map/RailGraphIter.h"
-#include "Game/Map/RailGraphNode.h"
+#include "Game/Map/RailGraph.hpp"
+#include "Game/Map/RailGraphEdge.hpp"
+#include "Game/Map/RailGraphIter.hpp"
+#include "Game/Map/RailGraphNode.hpp"
 
 RailGraph::RailGraph() {
     mNodes = 0;

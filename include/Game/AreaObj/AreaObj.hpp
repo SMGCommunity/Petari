@@ -2,10 +2,10 @@
 
 #include "revolution.h"
 
-#include "Game/AreaObj/AreaForm.h"
-#include "Game/NameObj/NameObj.h"
-#include "Game/Map/StageSwitch.h"
-#include "Game/Util/Array.h"
+#include "Game/AreaObj/AreaForm.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/Util/Array.hpp"
 
 class AreaObj : public NameObj {
 public:

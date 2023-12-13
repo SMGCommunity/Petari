@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraRegisterHolder.h"
+#include "Game/Camera/CameraRegisterHolder.hpp"
 #include <cstring>
 
 const char *sDummyMatrixName = "ダミーマトリクス";

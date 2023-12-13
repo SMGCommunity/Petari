@@ -1,4 +1,4 @@
-#include "Game/Player/Mario.h"
+#include "Game/Player/Mario.hpp"
 
 void Mario::initMember() {
     _40.zero();

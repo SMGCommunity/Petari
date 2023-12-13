@@ -1,6 +1,6 @@
-﻿#include "Game/AreaObj/WarpCube.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
-#include "Game/Util/DirectDraw.h"
+﻿#include "Game/AreaObj/WarpCube.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Util/DirectDraw.hpp"
 #include <cstdio>
 #include <cstring>
 

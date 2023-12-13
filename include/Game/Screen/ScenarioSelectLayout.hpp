@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/Screen/BackButton.h"
-#include "Game/Screen/LayoutActor.h"
-#include "Game/Camera/CameraContext.h"
-#include "Game/Map/ScenarioSelectStar.h"
+#include "Game/Screen/BackButton.hpp"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Camera/CameraContext.hpp"
+#include "Game/Map/ScenarioSelectStar.hpp"
 
 class ScenarioSelectLayout : public LayoutActor {
 public:

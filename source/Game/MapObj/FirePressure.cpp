@@ -1,7 +1,7 @@
-#include "Game/MapObj/FirePressure.h"
-#include "Game/MapObj/FirePressureBulletHolder.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include <JSystem/JMath/JMath.h>
+#include "Game/MapObj/FirePressure.hpp"
+#include "Game/MapObj/FirePressureBulletHolder.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 FirePressure::~FirePressure() {
 

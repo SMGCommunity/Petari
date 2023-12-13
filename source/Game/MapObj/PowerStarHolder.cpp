@@ -1,5 +1,5 @@
-#include "Game/MapObj/PowerStarHolder.h"
-#include "Game/NPC/EventDirector.h"
+#include "Game/MapObj/PowerStarHolder.hpp"
+#include "Game/NPC/EventDirector.hpp"
 
 PowerStarHolder::PowerStarHolder(const char *pName) : NameObj(pName) {
     mNumInfos = 0;

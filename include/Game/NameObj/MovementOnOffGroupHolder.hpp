@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjGroup.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjGroup.hpp"
 
 class MovementOnOffGroupHolder : public NameObj {
 public:

@@ -1,7 +1,7 @@
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/HitSensorKeeper.h"
-#include "Game/Util.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor *pActor, const char *pSensorName, u32 sensorType, u16 sensorGroupSize, f32 radius, const TVec3f &a6) {

@@ -1,6 +1,6 @@
-#include "Game/AreaObj/AreaForm.h"
-#include "JSystem/JMath/JMath.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/AreaForm.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "Game/Util.hpp"
 
 AreaFormCube::AreaFormCube(int a1) {
     _4 = 0;

@@ -1,5 +1,5 @@
-#include "Game/AreaObj/MercatorTransformCube.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/AreaObj/MercatorTransformCube.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 MercatorTransformCube::MercatorTransformCube(int type, const char *pName) : AreaObj(type, pName) {
     _3C.identity();

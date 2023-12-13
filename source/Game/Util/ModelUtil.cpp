@@ -1,10 +1,10 @@
-#include "Game/Util/ModelUtil.h"
+#include "Game/Util/ModelUtil.hpp"
 
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h"
-#include "JSystem/J3DGraphBase/J3DShapePacket.h"
-#include "JSystem/JUtility/JUTNameTab.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.hpp"
+#include "JSystem/J3DGraphBase/J3DShapePacket.hpp"
+#include "JSystem/JUtility/JUTNameTab.hpp"
 
 namespace MR {
     u32 getMaterialNo(J3DModelData *pModelData, const char *pMaterialName) {

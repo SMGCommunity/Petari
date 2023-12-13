@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Map/RaceManager.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/RaceManager.hpp"
 
 class ActorCameraInfo;
 

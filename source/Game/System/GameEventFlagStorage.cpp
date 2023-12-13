@@ -1,6 +1,6 @@
-#include "Game/System/GameEventFlagStorage.h"
-#include "Game/System/GameEventFlagTable.h"
-#include "JSystem/JSupport/JSUMemoryOutputStream.h"
+#include "Game/System/GameEventFlagStorage.hpp"
+#include "Game/System/GameEventFlagTable.hpp"
+#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
 
 GameEventFlagStorage::GameEventFlagStorage() {
     mFlagBitArray = nullptr;

@@ -1,4 +1,5 @@
-#include "Game/Screen/ScreenPreserver.h"
+#include "Game/Screen/ScreenPreserver.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 
 ScreenPreserver::ScreenPreserver() : NameObj("") {
     mIsActive = false;

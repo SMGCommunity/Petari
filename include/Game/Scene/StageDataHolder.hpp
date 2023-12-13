@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Scene/PlacementStateChecker.h"
-#include "Game/Scene/PlacementInfoOrdered.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Scene/PlacementStateChecker.hpp"
+#include "Game/Scene/PlacementInfoOrdered.hpp"
+#include "Game/Util.hpp"
 
 class StageDataHolder : public NameObj {
 public:

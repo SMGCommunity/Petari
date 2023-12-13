@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/System/GameSystemSceneController.h"
+#include "Game/System/GameSystemSceneController.hpp"
 
 class GameSystem {
 public:

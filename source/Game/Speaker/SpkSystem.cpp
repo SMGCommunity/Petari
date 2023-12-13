@@ -1,5 +1,5 @@
-#include "Game/Speaker/SpkSystem.h"
-#include "Game/Speaker/SpkSpeakerCtrl.h"
+#include "Game/Speaker/SpkSystem.hpp"
+#include "Game/Speaker/SpkSpeakerCtrl.hpp"
 
 SpkSystem::SpkSystem(JKRHeap *pHeap) : JASGlobalInstance(this) {
     mData = nullptr;

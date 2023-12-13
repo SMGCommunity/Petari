@@ -1,9 +1,9 @@
-#include "Game/Util/MathUtil.h"
-#include "JSystem/JGeometry/TUtil.h"
-#include "JSystem/JMath/JMath.h"
-#include "JSystem/JMath/JMATrigonometric.h"
+#include "Game/Util/MathUtil.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
-#include "math_types.h"
+#include "math_types.hpp"
 
 #include <cmath>
 

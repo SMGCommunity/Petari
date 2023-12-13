@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/ShadowVolumeModel.h"
+#include "Game/LiveActor/ShadowVolumeModel.hpp"
 
 class ShadowVolumeSphere : public ShadowVolumeModel {
 public:

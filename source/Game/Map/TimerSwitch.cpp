@@ -1,4 +1,4 @@
-#include "Game/Map/TimerSwitch.h"
+#include "Game/Map/TimerSwitch.hpp"
 
 TimerSwitch::TimerSwitch(const char *pName) : LiveActor(pName) {
     mTimerLength = -1;

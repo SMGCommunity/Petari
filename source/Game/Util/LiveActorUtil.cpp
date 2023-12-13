@@ -1,8 +1,8 @@
-#include "Game/Util.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ActorLightCtrl.h"
-#include "Game/LiveActor/ClippingDirector.h"
-#include "Game/Map/LightFunction.h"
+#include "Game/Util.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include "Game/Map/LightFunction.hpp"
 
 namespace MR {
     void initDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {

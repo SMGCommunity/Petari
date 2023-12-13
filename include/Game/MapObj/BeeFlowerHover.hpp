@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/MapPartsRailMover.h"
-#include "Game/MapObj/MapPartsRailPosture.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
 
 class BeeFlowerHover : public LiveActor {
 public:

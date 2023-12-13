@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/ResourceInfo.h"
-#include "JSystem/JKernel/JKRArchive.h"
-#include "nw4r/lyt/lyt_resourceAccessor.h"
+#include "Game/System/ResourceInfo.hpp"
+#include "JSystem/JKernel/JKRArchive.hpp"
+#include "nw4r/lyt/lyt_resourceAccessor.hpp"
 
 typedef const char* Something;
 

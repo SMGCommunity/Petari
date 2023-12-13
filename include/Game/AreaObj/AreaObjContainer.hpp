@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/AreaObj/LightAreaHolder.h"
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry/TVec.h"
-#include "Game/AreaObj/CubeCamera.h"
-#include "Game/AreaObj/GlaringLightArea.h"
-#include "Game/AreaObj/ImageEffectArea.h"
-#include "Game/AreaObj/WarpCube.h"
-#include "Game/AreaObj/WaterArea.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/AreaObj/LightAreaHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/AreaObj/CubeCamera.hpp"
+#include "Game/AreaObj/GlaringLightArea.hpp"
+#include "Game/AreaObj/ImageEffectArea.hpp"
+#include "Game/AreaObj/WarpCube.hpp"
+#include "Game/AreaObj/WaterArea.hpp"
 
 struct AreaObjEntry {
     const char* mName;                          // _0

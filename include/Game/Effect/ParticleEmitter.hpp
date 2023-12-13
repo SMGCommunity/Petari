@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JParticle/JPAEmitterManager.h"
+#include "JSystem/JParticle/JPAEmitterManager.hpp"
 #include <revolution.h>
 
 class ParticleEmitter {

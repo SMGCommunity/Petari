@@ -1,4 +1,4 @@
-#include "Game/NPC/MiiFaceRecipe.h"
+#include "Game/NPC/MiiFaceRecipe.hpp"
 #include <RVLFaceLib.h>
 
 MiiFaceRecipe::MiiFaceRecipe(RFLDataSource dataSource, int index, RFLResolution resolution, u32 expressionFlags) {

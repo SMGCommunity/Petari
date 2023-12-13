@@ -1,5 +1,5 @@
-#include "Game/Map/SpaceInner.h"
-#include "Game/Util.h"
+#include "Game/Map/SpaceInner.hpp"
+#include "Game/Util.hpp"
 
 NrvSpaceInner::HostTypeAppear NrvSpaceInner::HostTypeAppear::sInstance;
 NrvSpaceInner::HostTypeDisappear NrvSpaceInner::HostTypeDisappear::sInstance;

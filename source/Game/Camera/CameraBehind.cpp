@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraBehind.h"
-#include "Game/Camera/CamTranslatorBehind.h"
+#include "Game/Camera/CameraBehind.hpp"
+#include "Game/Camera/CamTranslatorBehind.hpp"
 
 CameraBehind::CameraBehind(const char *pName) : Camera(pName) {
     mAngleB = 0.5235988f;

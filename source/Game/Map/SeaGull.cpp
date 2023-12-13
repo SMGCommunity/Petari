@@ -1,5 +1,5 @@
-#include "Game/Map/SeaGull.h"
-#include "Game/Util.h"
+#include "Game/Map/SeaGull.hpp"
+#include "Game/Util.hpp"
 
 NrvSeaGull::SeaGullNrvHoverFront NrvSeaGull::SeaGullNrvHoverFront::sInstance;
 NrvSeaGull::SeaGullNrvHoverLeft NrvSeaGull::SeaGullNrvHoverLeft::sInstance;

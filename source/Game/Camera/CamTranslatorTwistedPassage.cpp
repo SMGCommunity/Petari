@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorTwistedPassage.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorTwistedPassage.hpp"
 
 void CamTranslatorTwistedPassage::setParam(const CameraParamChunk *pChunk) {
 	mCamera->setParam(

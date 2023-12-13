@@ -1,5 +1,5 @@
-#include "Game/NPC/PowerStarEventKeeper.h"
-#include "Game/Util.h"
+#include "Game/NPC/PowerStarEventKeeper.hpp"
+#include "Game/Util.hpp"
 
 PowerStarEventKeeper::PowerStarEventKeeper() {
     _0 = 1;

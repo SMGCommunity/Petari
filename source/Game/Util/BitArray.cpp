@@ -1,5 +1,5 @@
-#include "Game/Util/BitArray.h"
-#include "Game/Util.h"
+#include "Game/Util/BitArray.hpp"
+#include "Game/Util.hpp"
 
 namespace MR {
     BitArray::BitArray(int num) :

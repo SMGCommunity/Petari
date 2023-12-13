@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGeometry.hpp"
 #include <revolution.h>
 
 namespace MR {

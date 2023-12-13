@@ -1,5 +1,5 @@
-#include "Game/Map/WaterRoad.h"
-#include "Game/Util.h"
+#include "Game/Map/WaterRoad.hpp"
+#include "Game/Util.hpp"
 
 void WaterRoadModelInfo::initDisplayList() {
     MR::ProhibitSchedulerAndInterrupts scheduler(false);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Gravity/PlanetGravity.h"
+#include "Game/Gravity/PlanetGravity.hpp"
 
 class SegmentGravity : public PlanetGravity {
 public:

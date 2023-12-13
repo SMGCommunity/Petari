@@ -1,7 +1,7 @@
-#include "Game/Camera/Camera.h"
-#include "Game/Camera/CameraHeightArrange.h"
-#include "Game/Camera/CameraPoseParam.h"
-#include "Game/Camera/CameraTargetObj.h"
+#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraHeightArrange.hpp"
+#include "Game/Camera/CameraPoseParam.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 
 bool CameraTargetObj::isFastDrop() const {
     return false;

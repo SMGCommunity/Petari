@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.h"
-#include "Game/System/NerveExecutor.h"
+#include "JSystem/JGeometry.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class AnimScaleParam {
 public:

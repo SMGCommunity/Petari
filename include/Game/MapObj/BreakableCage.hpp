@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/MapObj/DummyDisplayModel.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/DummyDisplayModel.hpp"
 
 namespace {
     Vec cHitSensorOffsetCage;

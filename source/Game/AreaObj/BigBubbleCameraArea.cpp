@@ -1,4 +1,4 @@
-#include "Game/AreaObj/BigBubbleCameraArea.h"
+#include "Game/AreaObj/BigBubbleCameraArea.hpp"
 
 SwitchArea::~SwitchArea() {
 

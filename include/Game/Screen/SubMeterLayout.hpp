@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
+#include "Game/Screen/LayoutActor.hpp"
 
 namespace {
     static f32 sScreenOffsetX = 60.0f;

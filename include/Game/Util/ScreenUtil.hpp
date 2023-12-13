@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TVec.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 namespace MR {
     void closeSystemWipeCircleWithCaptureScreen(s32);

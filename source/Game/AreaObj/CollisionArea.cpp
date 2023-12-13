@@ -1,9 +1,9 @@
-﻿#include "Game/AreaObj/CollisionArea.h"
-#include "Game/MapObj/DynamicCollisionObj.h"
-#include "Game/Util/JMapUtil.h"
-#include "Game/Util/LiveActorUtil.h"
-#include "Game/Util/PlayerUtil.h"
-#include "Inline.h"
+﻿#include "Game/AreaObj/CollisionArea.hpp"
+#include "Game/MapObj/DynamicCollisionObj.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Inline.hpp"
 
 DynamicCollisionObj::~DynamicCollisionObj() {
 

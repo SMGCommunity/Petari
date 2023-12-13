@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorTripodBoss.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorTripodBoss.hpp"
 
 void CamTranslatorTripodBoss::setParam(const CameraParamChunk *pChunk) {
 	CameraTripodBoss *camera;

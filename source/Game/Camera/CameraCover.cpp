@@ -1,6 +1,7 @@
-#include "Game/Camera/CameraCover.h"
-#include "Game/Screen/ImageEffectLocalUtil.h"
-#include "Game/Scene/SceneFunction.h"
+#include "Game/Camera/CameraCover.hpp"
+#include "Game/Screen/ImageEffectLocalUtil.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const f32 sAngleThreshold = (JGeometry::TUtil<f32>::PI() * 60.0f) / 180.0f;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "JSystem/JGeometry.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "JSystem/JGeometry.hpp"
 #include <revolution.h>
 
 const Mtx qMtx2_1 = {};

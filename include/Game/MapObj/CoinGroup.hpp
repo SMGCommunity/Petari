@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/Coin.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/Coin.hpp"
 
 class CoinGroup : public LiveActor {
 public:

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/MaterialCtrl.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/MaterialCtrl.hpp"
 
 class MirrorReflectionModel;
 class SpaceInner;

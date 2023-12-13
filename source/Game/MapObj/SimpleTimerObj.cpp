@@ -1,4 +1,4 @@
-#include "Game/MapObj/SimpleTimerObj.h"
+#include "Game/MapObj/SimpleTimerObj.hpp"
 
 SimpleTimerObj::SimpleTimerObj(const char *pName) : MapObjActor(pName) {
     mFlashingCtrl = 0;

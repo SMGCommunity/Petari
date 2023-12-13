@@ -1,5 +1,5 @@
-#include "Game/LiveActor/MessageSensorHolder.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/MessageSensorHolder.hpp"
+#include "Game/Util.hpp"
 
 MessageSensorHolder::MessageSensorHolder(const char *pName) : LiveActor(pName) {
 

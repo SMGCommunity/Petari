@@ -1,4 +1,4 @@
-#include "Game/System/WPadButton.h"
+#include "Game/System/WPadButton.hpp"
 
 WPadButton::WPadButton(const WPad* pPad) {
     mPad = pPad;

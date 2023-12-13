@@ -1,5 +1,5 @@
-#include "Game/MapObj/DeadLeaves.h"
-#include "Game/MapObj/MapObjActorInitInfo.h"
+#include "Game/MapObj/DeadLeaves.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 DeadLeaves::DeadLeaves(const char *pName) : MapObjActor(pName) {
     mItemType = -1;

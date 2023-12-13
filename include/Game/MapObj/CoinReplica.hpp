@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/MapObj/Coin.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/MapObj/Coin.hpp"
 
 class CoinReplica : public NameObj {
 public:

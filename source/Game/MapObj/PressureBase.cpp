@@ -1,4 +1,4 @@
-#include "Game/MapObj/PressureBase.h"
+#include "Game/MapObj/PressureBase.hpp"
 
 PressureMessenger::PressureMessenger(MsgSharedGroup *pGroup, const char *pName) : LiveActor(pName) {
     mSharedGroup = pGroup;

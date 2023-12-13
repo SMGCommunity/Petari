@@ -1,7 +1,7 @@
-#include "Game/Map/Air.h"
-#include "Game/LiveActor/MaterialCtrl.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util.h"
+#include "Game/Map/Air.hpp"
+#include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 Air::Air(const char *pName) : LiveActor(pName) {
     _8C = 0;

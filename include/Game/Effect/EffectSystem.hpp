@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
 #include <revolution.h>
-#include <JSystem/JParticle/JPAEmitterManager.h>
+#include <JSystem/JParticle/JPAEmitterManager.hpp>
 
 class AutoEffectGroupHolder;
 class ParticleEmitter;

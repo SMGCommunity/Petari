@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/ShadowDrawer.h"
-#include "Game/LiveActor/ShadowController.h"
-#include "Game/Util/Color.h"
+#include "Game/LiveActor/ShadowDrawer.hpp"
+#include "Game/LiveActor/ShadowController.hpp"
+#include "Game/Util/Color.hpp"
 
 class ShadowVolumeDrawInit : public NameObj {
 public:

@@ -1,4 +1,4 @@
-#include "Game/MapObj/WaterPressureBulletHolder.h"
+#include "Game/MapObj/WaterPressureBulletHolder.hpp"
 
 WaterPressureBulletHolder::WaterPressureBulletHolder(const char *pName) : NameObj(pName) {
     

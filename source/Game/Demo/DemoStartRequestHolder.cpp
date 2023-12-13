@@ -1,4 +1,4 @@
-#include "Game/Demo/DemoStartRequestHolder.h"
+#include "Game/Demo/DemoStartRequestHolder.hpp"
 
 #ifdef NON_MATCHING
 // reg scheduling issues, 0x40 / 0x9C are likely a part of FixedRingRuffer ctor

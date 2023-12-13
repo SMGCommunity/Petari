@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/StationedFileInfo.h"
-#include <JSystem/JKernel/JKRHeap.h>
+#include "Game/System/StationedFileInfo.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <revolution.h>
 
 class StationedArchiveLoader {

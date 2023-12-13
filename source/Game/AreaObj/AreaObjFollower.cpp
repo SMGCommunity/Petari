@@ -1,4 +1,4 @@
-#include "Game/AreaObj/AreaObjFollower.h"
+#include "Game/AreaObj/AreaObjFollower.hpp"
 
 AreaObjFollower::AreaObjFollower(AreaObj *pAreaObj, const JMapInfoIter &rIter) : BaseMatrixFollower(pAreaObj, rIter) {
     mObj = pAreaObj;

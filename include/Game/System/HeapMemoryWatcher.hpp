@@ -1,9 +1,9 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
-#include "Inline.h"
+#include "JSystem/JKernel/JKRExpHeap.hpp"
+#include "JSystem/JKernel/JKRSolidHeap.hpp"
+#include "Inline.hpp"
 
 namespace {
     JKRExpHeap* createExpHeap(u32, JKRHeap *, bool) NO_INLINE;

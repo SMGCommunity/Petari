@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class HitSensor;
 class MapPartsRailGuideDrawer;

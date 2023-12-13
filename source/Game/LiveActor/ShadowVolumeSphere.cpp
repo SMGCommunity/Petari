@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowVolumeSphere.h"
+#include "Game/LiveActor/ShadowVolumeSphere.hpp"
 
 ShadowVolumeSphere::~ShadowVolumeSphere() {
 

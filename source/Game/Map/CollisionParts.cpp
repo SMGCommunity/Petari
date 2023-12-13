@@ -1,12 +1,12 @@
-#include "Game/Boss/BossStinkBug.h"
-#include "Game/Camera/CameraPolygonCodeUtil.h"
-#include "Game/Map/CollisionCategorizedKeeper.h"
-#include "Game/Map/CollisionDirector.h"
-#include "Game/Map/CollisionParts.h"
-#include "Game/Map/KCollision.h"
-#include "Game/LiveActor/HitSensor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util/SceneUtil.h"
+#include "Game/Boss/BossStinkBug.hpp"
+#include "Game/Camera/CameraPolygonCodeUtil.hpp"
+#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionDirector.hpp"
+#include "Game/Map/CollisionParts.hpp"
+#include "Game/Map/KCollision.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 CollisionParts::CollisionParts() {
     _0 = nullptr;

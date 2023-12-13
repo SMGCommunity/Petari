@@ -4,9 +4,9 @@
 #include <revolution/mem.h>
 #include <cstring>
 #include <size_t.h>
-#include "JSystem/JKernel/JKRHeap.h"
-#include "Game/SingletonHolder.h"
-#include "Game/System/HeapMemoryWatcher.h"
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
 
 class JKRHeap;
 class JKRExpHeap;

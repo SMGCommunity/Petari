@@ -1,4 +1,4 @@
-#include "Game/Util.h"
+#include "Game/Util.hpp"
 
 namespace MR {
     BothDirPtrLink::BothDirPtrLink(void *pLink) :

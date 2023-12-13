@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
+#include "Game/MapObj/MapPartsFunction.hpp"
 
 class MapPartsRailPosture : public MapPartsFunction {
 public:

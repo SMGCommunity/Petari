@@ -1,6 +1,6 @@
-#include "Game/System/FileLoader.h"
-#include "Game/Util.h"
-#include "Game/SingletonHolder.h"
+#include "Game/System/FileLoader.hpp"
+#include "Game/Util.hpp"
+#include "Game/SingletonHolder.hpp"
 
 #include <cstdio>
 #include "revolution.h"

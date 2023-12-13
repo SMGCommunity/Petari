@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util.h"
-#include "Game/System/DrawBufferExecuter.h"
+#include "Game/Util.hpp"
+#include "Game/System/DrawBufferExecuter.hpp"
 
 class LiveActor;
 

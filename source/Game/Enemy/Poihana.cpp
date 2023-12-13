@@ -1,6 +1,6 @@
-﻿#include "Game/Enemy/Poihana.h"
-#include "Game/Util.h"
-#include "JSystem/JMath/JMath.h"
+﻿#include "Game/Enemy/Poihana.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 namespace {
 	const Vec sNormalBinderPos = { 0.0f, 130.0f, 120.0f };

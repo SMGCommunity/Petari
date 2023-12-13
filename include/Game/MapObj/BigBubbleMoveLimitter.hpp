@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class BigBubbleMoveLimitter : public NameObj {
 public:

@@ -1,8 +1,8 @@
-#include "Game/Camera/CameraDirector.h"
-#include "Game/Camera/CameraTargetArg.h"
-#include "Game/Camera/CameraTargetObj.h"
-#include "Game/Camera/CameraTargetMtx.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/Camera/CameraDirector.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 CameraTargetArg::CameraTargetArg(const LiveActor *pLiveActor) {
     mLiveActor = pLiveActor;

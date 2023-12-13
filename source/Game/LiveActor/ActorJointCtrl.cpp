@@ -1,8 +1,8 @@
-#include "Game/LiveActor/ActorJointCtrl.h"
-#include "Game/LiveActor/DynamicJointCtrl.h"
-#include "Game/LiveActor/FaceJointCtrl.h"
-#include "Game/LiveActor/IKJointCtrl.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/ActorJointCtrl.hpp"
+#include "Game/LiveActor/DynamicJointCtrl.hpp"
+#include "Game/LiveActor/FaceJointCtrl.hpp"
+#include "Game/LiveActor/IKJointCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 ActorJointCtrl::ActorJointCtrl(LiveActor *pActor) {
     mActor = pActor;

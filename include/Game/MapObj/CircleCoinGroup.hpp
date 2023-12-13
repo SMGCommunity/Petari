@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/CoinGroup.h"
+#include "Game/MapObj/CoinGroup.hpp"
 
 class CircleCoinGroup : public CoinGroup {
 public:

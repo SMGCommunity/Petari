@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorFixedThere.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorFixedThere.hpp"
 
 void CamTranslatorFixedThere::setParam(const CameraParamChunk *pChunk) {
 	CameraFixedThere *camera = mCamera;

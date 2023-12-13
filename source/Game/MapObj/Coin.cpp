@@ -1,9 +1,9 @@
-#include "Game/MapObj/Coin.h"
-#include "Game/MapObj/CoinHolder.h"
-#include "Game/MapObj/CoinRotater.h"
-#include "Game/MapObj/PurpleCoinHolder.h"
-#include "Game/Util.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/Coin.hpp"
+#include "Game/MapObj/CoinHolder.hpp"
+#include "Game/MapObj/CoinRotater.hpp"
+#include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 Coin::Coin(const char *pName) : LiveActor(pName) {
     mHostInfo = nullptr;

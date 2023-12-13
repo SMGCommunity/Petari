@@ -1,7 +1,7 @@
-#include "Game/Map/ScenarioSelectStar.h"
-#include "Game/MapObj/PowerStar.h"
-#include "Game/Util.h"
-//#include <JSystem/JMath/JMATrigonometric.h>
+#include "Game/Map/ScenarioSelectStar.hpp"
+#include "Game/MapObj/PowerStar.hpp"
+#include "Game/Util.hpp"
+//#include <JSystem/JMath/JMATrigonometric.hpp>
 
 ScenarioSelectStar::ScenarioSelectStar(EffectSystem *pSystem) : MultiSceneActor("シナリオ選択のスター", "PowerStar", false),
     _44(0), mFrame(1), _4C(0), _50(0), _54(0.0f), _5C(gZeroVec), _68(gZeroVec) {

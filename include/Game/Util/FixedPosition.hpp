@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.h"
-#include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include <revolution.h>
 
 class LiveActor;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/OSThreadWrapper.h"
+#include "Game/System/OSThreadWrapper.hpp"
 
 class NANDRequestInfo;
 

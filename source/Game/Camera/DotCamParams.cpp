@@ -1,4 +1,4 @@
-#include "Game/Camera/DotCamParams.h"
+#include "Game/Camera/DotCamParams.hpp"
 #include <cstdio>
 #include <cstring>
 

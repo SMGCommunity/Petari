@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Enemy/AnimScaleController.h"
-#include "Game/Enemy/WalkerStateBindStarPointer.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 
 #define POIHANA_BEHAVIOR_NORMAL 0
 #define POIHANA_BEHAVIOR_SLEEP 1

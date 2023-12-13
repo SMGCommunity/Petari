@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraRailWatch.h"
-#include "Game/Camera/CamTranslatorRailWatch.h"
+#include "Game/Camera/CameraRailWatch.hpp"
+#include "Game/Camera/CamTranslatorRailWatch.hpp"
 
 CameraRailWatch::CameraRailWatch(const char *pName) : Camera(pName) {
     _4C = 0;

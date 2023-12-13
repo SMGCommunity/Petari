@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ActorStateBase.h"
+#include "Game/LiveActor/ActorStateBase.hpp"
 
 bool ActorStateBaseInterface::update() {
     updateNerve();

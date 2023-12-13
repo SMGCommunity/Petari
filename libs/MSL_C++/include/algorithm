@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
 
 #include <functional.hpp>
 

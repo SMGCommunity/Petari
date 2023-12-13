@@ -1,5 +1,5 @@
-#include "Game/MapObj/MarioLauncherAttractor.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MarioLauncherAttractor.hpp"
+#include "Game/Util.hpp"
 
 MarioLauncherAttractor::MarioLauncherAttractor(const char *pName) : LiveActor(pName) {
 	mGravityCreator = nullptr;

@@ -1,6 +1,6 @@
-#include "Game/Effect/EffectSystem.h"
-#include "Game/Effect/SingleEmitter.h"
-#include "Game/Util/EffectUtil.h"
+#include "Game/Effect/EffectSystem.hpp"
+#include "Game/Effect/SingleEmitter.hpp"
+#include "Game/Util/EffectUtil.hpp"
 
 SingleEmitter::SingleEmitter() {
     mEmitter = nullptr;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
 
 class PlacementStateChecker : public NameObj {
 public:

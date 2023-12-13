@@ -1,5 +1,5 @@
-#include "Game/Screen/IconAButton.h"
-#include "Game/Util.h"
+#include "Game/Screen/IconAButton.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor("Aボタンアイコン", true) {

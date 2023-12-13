@@ -1,4 +1,4 @@
-#include "Game/AreaObj/SimpleBloomArea.h"
+#include "Game/AreaObj/SimpleBloomArea.hpp"
 
 SimpleBloomArea::SimpleBloomArea(int type, const char *pName) :
     ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {

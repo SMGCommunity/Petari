@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorDPD.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorDPD.hpp"
 
 void CamTranslatorDPD::setParam(const CameraParamChunk *pChunk) {
 	CameraDPD *camera;

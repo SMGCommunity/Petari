@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/Functor.h"
+#include "Game/Util/Functor.hpp"
 
 namespace MR {
     bool isScreen16Per9();

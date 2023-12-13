@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/Util/JMapInfo.h"
+#include "Game/Util/JMapInfo.hpp"
 
 class JMapIdInfo {
 public:

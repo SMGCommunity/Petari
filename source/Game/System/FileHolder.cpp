@@ -1,4 +1,4 @@
-#include "Game/System/FileHolder.h"
+#include "Game/System/FileHolder.hpp"
 
 FileHolderFileEntry::FileHolderFileEntry(const char *pName, JKRHeap *pHeap, void *pData) {
     mEntryNum = DVDConvertPathToEntrynum(pName);

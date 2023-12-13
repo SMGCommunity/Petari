@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 struct TimingInfo {
     const char* name;   // _0

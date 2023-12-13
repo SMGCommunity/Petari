@@ -1,6 +1,6 @@
-#include "Game/System/ConfigDataHolder.h"
-#include "JSystem/JSupport/JSUMemoryInputStream.h"
-#include "JSystem/JSupport/JSUMemoryOutputStream.h"
+#include "Game/System/ConfigDataHolder.hpp"
+#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
+#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
 #include <cstdio>
 
 ConfigDataCreateChunk::ConfigDataCreateChunk() : mData(0) {

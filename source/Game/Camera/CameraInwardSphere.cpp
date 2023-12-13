@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraInwardSphere.h"
-#include "Game/Camera/CamTranslatorInwardSphere.h"
+#include "Game/Camera/CameraInwardSphere.hpp"
+#include "Game/Camera/CamTranslatorInwardSphere.hpp"
 
 CameraInwardSphere::CameraInwardSphere(const char *pName) : Camera(pName) {
     mDist = 1500.0f;

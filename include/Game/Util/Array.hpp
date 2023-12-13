@@ -1,7 +1,7 @@
 #pragma once
 
 #include "revolution.h"
-#include "Inline.h"
+#include "Inline.hpp"
 
 namespace MR {
     template<class T>

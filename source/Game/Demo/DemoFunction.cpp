@@ -1,4 +1,4 @@
-#include "Game/Demo/DemoFunction.h"
+#include "Game/Demo/DemoFunction.hpp"
 #include <cstdio>
 #include <cstring>
 

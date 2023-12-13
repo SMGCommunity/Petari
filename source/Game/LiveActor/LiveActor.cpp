@@ -1,10 +1,10 @@
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/AllLiveActorGroup.h"
-#include "Game/LiveActor/Binder.h"
-#include "Game/LiveActor/ClippingDirector.h"
-#include "Game/LiveActor/ActorPadAndCameraCtrl.h"
-#include "Game/NameObj/NameObjExecuteHolder.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include "Game/LiveActor/ActorPadAndCameraCtrl.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Util.hpp"
 
 LiveActor::LiveActor(const char* pName) : NameObj(pName), 
     mPosition(0.0f), mRotation(0.0f), mScale(1.0f), mVelocity(0.0f), mGravity(0.0f, -1.0f, 0.0f),

@@ -1,4 +1,4 @@
-#include "Game/Map/KCollision.h"
+#include "Game/Map/KCollision.hpp"
 
 /*bool KCollisionServer::isInsideMinMaxInLocalSpace(const V3u &point) const {
     bool inside = false;

@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowVolumeLine.h"
+#include "Game/LiveActor/ShadowVolumeLine.hpp"
 
 ShadowVolumeLine::ShadowVolumeLine() : ShadowVolumeDrawer("影描画[ボリュームライン]") {
     mFromShadowController = 0;

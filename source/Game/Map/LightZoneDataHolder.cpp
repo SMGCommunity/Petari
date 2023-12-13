@@ -1,7 +1,7 @@
-#include "Game/AreaObj/LightArea.h"
-#include "Game/Map/LightZoneDataHolder.h"
-#include "Game/Map/LightFunction.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/LightArea.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
+#include "Game/Map/LightFunction.hpp"
+#include "Game/Util.hpp"
 
 ZoneLightID::ZoneLightID() {
     _0 = -1;

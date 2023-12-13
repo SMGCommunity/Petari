@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nw4r/lyt/lyt_resourceAccessor.h"
+#include "nw4r/lyt/lyt_resourceAccessor.hpp"
 
 namespace nw4r {
     namespace lyt {

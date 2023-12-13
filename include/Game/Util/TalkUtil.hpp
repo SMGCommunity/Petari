@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NPC/TalkMessageFunc.h"
+#include "Game/NPC/TalkMessageFunc.hpp"
 
 class TalkMessageCtrl;
 

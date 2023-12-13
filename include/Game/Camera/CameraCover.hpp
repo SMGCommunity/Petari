@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Screen/CaptureScreenDirector.h"
-#include "JSystem/JGeometry/TMatrix.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Screen/CaptureScreenDirector.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class CameraCover : public NameObj {
 public:

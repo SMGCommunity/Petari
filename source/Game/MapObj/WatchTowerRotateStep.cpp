@@ -1,6 +1,6 @@
-#include "Game/MapObj/WatchTowerRotateStep.h"
-#include "Game/Util.h"
-#include "Inline.h"
+#include "Game/MapObj/WatchTowerRotateStep.hpp"
+#include "Game/Util.hpp"
+#include "Inline.hpp"
 
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance;
 NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance;

@@ -1,5 +1,5 @@
-#include "Game/MapObj/MapPartsRailGuidePoint.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MapPartsRailGuidePoint.hpp"
+#include "Game/Util.hpp"
 
 MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor *pActor, const char *pName, f32 a3, bool a4) : LiveActor("レイル点") {
     _8C = a3;

@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraParamChunkID.h"
+#include "Game/Camera/CameraParamChunkID.hpp"
 #include <cstdio>
 #include <cstring>
 

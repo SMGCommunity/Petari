@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Map/RailGraph.h"
-#include "Game/Map/RailGraphEdge.h"
-#include "Game/Map/RailGraphNode.h"
+#include "Game/Map/RailGraph.hpp"
+#include "Game/Map/RailGraphEdge.hpp"
+#include "Game/Map/RailGraphNode.hpp"
 
 class RailGraphIter {
 public:

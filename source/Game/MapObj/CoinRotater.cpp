@@ -1,5 +1,8 @@
-#include "Game/MapObj/CoinRotater.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/MapObj/CoinRotater.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 CoinRotater::CoinRotater(const char *pName) : NameObj(pName) {
     _C = 0.0f;

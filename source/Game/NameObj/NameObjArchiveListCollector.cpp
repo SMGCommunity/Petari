@@ -1,5 +1,5 @@
-#include "Game/NameObj/NameObjArchiveListCollector.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 
 NameObjArchiveListCollector::NameObjArchiveListCollector() {
     mCount = 0;

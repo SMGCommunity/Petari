@@ -1,4 +1,4 @@
-#include "Game/System/SysConfigFile.h"
+#include "Game/System/SysConfigFile.hpp"
 
 SysConfigChunk::SysConfigChunk() {
     initHeaderSerializer();

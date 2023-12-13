@@ -1,4 +1,4 @@
-#include "Game/AreaObj/ImageEffectArea.h"
+#include "Game/AreaObj/ImageEffectArea.hpp"
 
 ImageEffectArea::ImageEffectArea(EImageEffectType effectType, int type, const char *pName) :
     AreaObj(type, pName) {

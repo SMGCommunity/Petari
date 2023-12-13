@@ -1,4 +1,4 @@
-#include "Game/Util/RumbleCalculator.h"
+#include "Game/Util/RumbleCalculator.hpp"
 
 RumbleCalculator::RumbleCalculator(f32 a2, f32 a3, f32 a4, u32 a5) {
     _4 = a5;

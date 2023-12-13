@@ -2,8 +2,8 @@
 
 #include <cmath>
 #include <revolution.h>
-#include "JSystem/JGeometry.h"
-//#include <JSystem/JMath/JMATrigonometric.h>
+#include "JSystem/JGeometry.hpp"
+//#include <JSystem/JMath/JMATrigonometric.hpp>
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;

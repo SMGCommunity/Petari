@@ -1,5 +1,5 @@
-#include "Game/LiveActor/PartsModel.h" 
-#include "Game/NameObj/NameObjExecuteHolder.h"
+#include "Game/LiveActor/PartsModel.hpp" 
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
 
 PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelName, MtxPtr mtx, int a5, bool a6) : LiveActor(pName) {
     mHost = pActor;

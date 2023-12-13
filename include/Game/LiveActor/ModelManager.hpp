@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Animation/AnmPlayer.h"
+#include "Game/Animation/AnmPlayer.hpp"
 
 class BckCtrl;
 class BrkCtrl;

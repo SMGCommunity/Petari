@@ -1,5 +1,5 @@
-#include "Game/Animation/BckCtrl.h"
-#include "Game/Util.h"
+#include "Game/Animation/BckCtrl.hpp"
+#include "Game/Util.hpp"
 
 void BckCtrl::overWrite(const BckCtrlData &rNew) {
     if (MR::isEqualStringCase(rNew._0, sDefaultPlayDataName)) {

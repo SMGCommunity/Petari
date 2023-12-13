@@ -1,9 +1,9 @@
-#include "Game/Map/BezierRail.h"
-#include "Game/Map/RailPart.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Map/BezierRail.hpp"
+#include "Game/Map/RailPart.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 
-#include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 namespace {
     void calcRailDirection(TVec3f *pOut, const RailPart *pRailPart, f32 a3) {

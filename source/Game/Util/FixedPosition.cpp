@@ -1,5 +1,5 @@
-#include "Game/Util.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/Util.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 FixedPosition::FixedPosition(const LiveActor *pActor, const char *pJointName, const TVec3f &rLocalTrans, const TVec3f &a4) {
     MtxPtr jointMtx = MR::getJointMtx(pActor, pJointName);

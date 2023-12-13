@@ -1,5 +1,5 @@
-#include "Game/MapObj/CoconutTree.h"
-#include "Game/Util.h"
+#include "Game/MapObj/CoconutTree.hpp"
+#include "Game/Util.hpp"
 
 CoconutTree::CoconutTree(const char *pName) : LiveActor(pName) {
 

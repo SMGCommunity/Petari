@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class MapPartsBreaker : MapPartsFunction {
 public:

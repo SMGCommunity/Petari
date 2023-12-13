@@ -1,8 +1,8 @@
-#include "Game/MapObj/PowerStar.h"
-#include "Game/MapObj/PowerStarHolder.h"
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/Util.h"
-#include "JSystem/JMath.h"
+#include "Game/MapObj/PowerStar.hpp"
+#include "Game/MapObj/PowerStarHolder.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath.hpp"
 
 const GXColor lightColor[5] = { { 0x96, 0x96, 0x32, 0 },
                                         { 0x32, 0x32, 0x96, 0 },

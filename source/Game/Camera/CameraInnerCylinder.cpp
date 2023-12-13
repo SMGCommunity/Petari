@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraInnerCylinder.h"
-#include "Game/Camera/CamTranslatorInnerCylinder.h"
+#include "Game/Camera/CameraInnerCylinder.hpp"
+#include "Game/Camera/CamTranslatorInnerCylinder.hpp"
 
 CameraInnerCylinder::CameraInnerCylinder(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;

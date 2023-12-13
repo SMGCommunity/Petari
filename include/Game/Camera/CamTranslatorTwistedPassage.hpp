@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraTwistedPassage.h"
+#include "Game/Camera/CameraTwistedPassage.hpp"
 
 class CamTranslatorTwistedPassage : public CamTranslatorBase {
 public:

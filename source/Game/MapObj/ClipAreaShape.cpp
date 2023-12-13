@@ -1,5 +1,5 @@
-#include "Game/MapObj/ClipAreaShape.h"
-#include <Game/Util.h>
+#include "Game/MapObj/ClipAreaShape.hpp"
+#include <Game/Util.hpp>
 
 ClipAreaShape::ClipAreaShape(const char *pName) : mModelData(nullptr) {
     mModelData = MR::getJ3DModelData(pName);

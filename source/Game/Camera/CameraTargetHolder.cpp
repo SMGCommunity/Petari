@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraTargetHolder.h"
-#include "Game/Camera/CameraTargetObj.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/Camera/CameraTargetHolder.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 CameraTargetHolder::CameraTargetHolder() {
     mTarget = nullptr;

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ClippingJudge.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ClippingJudge.hpp"
+#include "Game/Util.hpp"
 
 ClippingJudge::ClippingJudge(const char *pName) : NameObj(pName), mFrustum() {
     for (s32 i = 0; i < 8; i++) {

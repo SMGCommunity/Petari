@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util.hpp"
 #include <revolution.h>
 
 class LiveActor;

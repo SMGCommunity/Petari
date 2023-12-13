@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 class SurfingGuidance : public LayoutActor {
 public:

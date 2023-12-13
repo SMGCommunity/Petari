@@ -1,5 +1,5 @@
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JGadget/hashcode.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGadget/hashcode.hpp"
 
 JMapInfo::JMapInfo() {
     mData = nullptr;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
-#include "JSystem/JGeometry.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class BaseMatrixFollowValidater {
 public:

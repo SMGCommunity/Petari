@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/System/NerveExecutor.h"
-#include "Inline.h"
+#include "Game/System/NerveExecutor.hpp"
+#include "Inline.hpp"
 
 namespace MR {
     bool isStep(const NerveExecutor *pExecutor, s32 step) NO_INLINE;

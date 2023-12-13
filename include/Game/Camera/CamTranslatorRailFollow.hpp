@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraRailFollow.h"
+#include "Game/Camera/CameraRailFollow.hpp"
 
 class CamTranslatorRailFollow : public CamTranslatorBase {
 public:

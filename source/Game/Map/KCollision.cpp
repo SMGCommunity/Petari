@@ -1,6 +1,6 @@
-#include "Game/Map/KCollision.h"
-#include "Game/Util/JMapInfo.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Map/KCollision.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 Fxyz &Fxyz::operator=(const Fxyz &rOther) {
     x = rOther.x;

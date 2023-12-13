@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParallel.h"
-#include "Game/Camera/CamTranslatorParallel.h"
+#include "Game/Camera/CameraParallel.hpp"
+#include "Game/Camera/CamTranslatorParallel.hpp"
 
 CameraParallel::CameraParallel(const char *pName) : Camera(pName) {
     mAngleB = 0.0f;

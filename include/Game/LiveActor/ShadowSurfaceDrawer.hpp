@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/ShadowDrawer.h"
+#include "Game/LiveActor/ShadowDrawer.hpp"
 
 class ShadowSurfaceDrawInit : public NameObj {
 public:

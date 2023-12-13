@@ -1,5 +1,5 @@
-#include "Game/MapObj/TimeAppearObj.h"
-#include "Game/Util.h"
+#include "Game/MapObj/TimeAppearObj.hpp"
+#include "Game/Util.hpp"
 
 TimeAppearObj::TimeAppearObj(const char *pName) : MapObjActor(pName), mTimer(0x1E) {
 

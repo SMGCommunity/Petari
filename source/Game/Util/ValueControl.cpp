@@ -1,4 +1,4 @@
-#include "Game/Util/ValueControl.h"
+#include "Game/Util/ValueControl.hpp"
 
 ValueControl::ValueControl(int a1) {
     _0 = 0;

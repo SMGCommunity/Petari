@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowDrawer.h"
+#include "Game/LiveActor/ShadowDrawer.hpp"
 
 ShadowDrawer::ShadowDrawer(const char *pName) : NameObj(pName) {
     mController = 0;

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraDPD.h"
-#include "Game/Camera/CamTranslatorDPD.h"
+#include "Game/Camera/CameraDPD.hpp"
+#include "Game/Camera/CamTranslatorDPD.hpp"
 
 CameraDPD::CameraDPD(const char *pName) : Camera(pName) {
     _4C = 0.0f;

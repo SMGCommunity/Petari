@@ -1,5 +1,5 @@
 #include <revolution.h>
-#include "Game/MapObj/PunchingKinoko.h"
+#include "Game/MapObj/PunchingKinoko.hpp"
 
 PunchingKinoko::PunchingKinoko(const char *pName) : LiveActor(pName),
     mGroundChecker(nullptr), mScaleController(nullptr), mDelegator(nullptr), _98(-1), _9C(0, 0, 0), _A8(0, 1, 0) {

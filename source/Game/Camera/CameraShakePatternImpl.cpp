@@ -1,6 +1,6 @@
-#include "Game/Camera/CameraShakePatternImpl.h"
-#include "Game/Util/MathUtil.h"
-#include "Game/AreaObj/MercatorTransformCube.h"
+#include "Game/Camera/CameraShakePatternImpl.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/AreaObj/MercatorTransformCube.hpp"
 
 CameraShakePatternSingly::CameraShakePatternSingly(float a1)  : CameraShakePattern() {
     _8 = a1;

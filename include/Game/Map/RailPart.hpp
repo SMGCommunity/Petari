@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.h"
-#include "Game/Map/BezierRail.h"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Map/BezierRail.hpp"
 
 class LinearRailPart;
 

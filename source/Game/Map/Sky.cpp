@@ -1,6 +1,6 @@
-#include "Game/Map/Sky.h"
-#include "Game/LiveActor/MirrorReflectionModel.h"
-#include "Game/Map/SpaceInner.h"
+#include "Game/Map/Sky.hpp"
+#include "Game/LiveActor/MirrorReflectionModel.hpp"
+#include "Game/Map/SpaceInner.hpp"
 
 NrvSky::HostTypeWait NrvSky::HostTypeWait::sInstance;
 NrvSky::HostTypeChange NrvSky::HostTypeChange::sInstance;

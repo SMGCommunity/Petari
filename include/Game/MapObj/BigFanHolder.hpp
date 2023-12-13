@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class BigFan;
 

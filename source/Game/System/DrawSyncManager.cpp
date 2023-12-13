@@ -1,4 +1,4 @@
-#include "Game/System/DrawSyncManager.h"
+#include "Game/System/DrawSyncManager.hpp"
 
 DrawSyncManager* DrawSyncManager::start(u32 a1, s32 a2) {
     if (!DrawSyncManager::sInstance) {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 
 namespace {
     static const char* cDemoName = "カギ出現";

@@ -1,7 +1,7 @@
-#include "Game/MapObj/Note.h"
-#include "Game/MapObj/NoteFairy.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Screen/NoteCounter.h"
+#include "Game/MapObj/Note.hpp"
+#include "Game/MapObj/NoteFairy.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/NoteCounter.hpp"
 
 Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) : LiveActor(pName) {
     mParentFairy = pParent;

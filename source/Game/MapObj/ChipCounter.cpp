@@ -1,6 +1,6 @@
-#include "Game/MapObj/ChipCounter.h"
-#include "Game/NPC/TalkDirector.h"
-#include "Game/Util.h"
+#include "Game/MapObj/ChipCounter.hpp"
+#include "Game/NPC/TalkDirector.hpp"
+#include "Game/Util.hpp"
 
 ChipCounter::ChipCounter(const char *pName, s32 type) : LayoutActor(pName, true) {
     mCollectCounter = 0;

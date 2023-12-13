@@ -1,5 +1,5 @@
-#include "Game/LiveActor/LiveActorGroupArray.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include <cstdio>
 #include <cstring>
 

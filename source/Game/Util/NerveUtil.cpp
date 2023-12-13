@@ -1,5 +1,5 @@
-#include "Game/Util/NerveUtil.h"
-#include "Game/Util.h"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util.hpp"
 
 namespace MR {
     bool isStep(const NerveExecutor *pExecutor, s32 step) {

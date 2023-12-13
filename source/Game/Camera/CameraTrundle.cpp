@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTrundle.h"
-#include "Game/Camera/CamTranslatorTrundle.h"
+#include "Game/Camera/CameraTrundle.hpp"
+#include "Game/Camera/CamTranslatorTrundle.hpp"
 
 CameraTrundle::CameraTrundle(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;

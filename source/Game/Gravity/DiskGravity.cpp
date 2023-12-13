@@ -1,6 +1,6 @@
-#include "Game/Gravity.h"
-#include "Game/Util.h"
-#include "Inline.h"
+#include "Game/Gravity.hpp"
+#include "Game/Util.hpp"
+#include "Inline.hpp"
 
 DiskGravity::DiskGravity() :
 	PlanetGravity(),

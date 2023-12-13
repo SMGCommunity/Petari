@@ -1,6 +1,6 @@
-#include "Game/MapObj/MapParts.h"
-#include "JSystem/JMath/JMath.h"
-#include "math_types.h"
+#include "Game/MapObj/MapParts.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "math_types.hpp"
 
 MapParts::~MapParts() {
 

@@ -1,6 +1,6 @@
-#include "Game/Scene/SceneDataInitializer.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Screen/LuigiLetter.h"
+#include "Game/Scene/SceneDataInitializer.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/LuigiLetter.hpp"
 
 SceneDataInitializer::SceneDataInitializer() : NameObj("SceneDataInitializer") {
     mFileLoader = nullptr;

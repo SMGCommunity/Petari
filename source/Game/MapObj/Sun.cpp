@@ -1,5 +1,5 @@
-#include "Game/MapObj/Sun.h"
-#include "Game/Util.h"
+#include "Game/MapObj/Sun.hpp"
+#include "Game/Util.hpp"
 
 Sun::Sun(const char *pName) : LiveActor(pName) {
 

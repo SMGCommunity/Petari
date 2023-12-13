@@ -1,7 +1,7 @@
-#include "Game/MapObj/CrystalCage.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Util.h"
-#include "JSystem/JMath.h"
+#include "Game/MapObj/CrystalCage.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JMath.hpp"
 
 CrystalCage::CrystalCage(const char *pName) : LiveActor(pName), 
     mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _D0(0.0f, 1.0f), _DC(gZeroVec), _E8(gZeroVec),

@@ -1,4 +1,4 @@
-#include "Game/MapObj/DashRing.h"
+#include "Game/MapObj/DashRing.hpp"
 
 DashRing::~DashRing() {
 

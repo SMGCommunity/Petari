@@ -1,6 +1,6 @@
-#include "Game/System/FunctionAsyncExecutor.h"
-#include <JSystem/JKernel/JKRUnitHeap.h>
-#include "Game/Util.h"
+#include "Game/System/FunctionAsyncExecutor.hpp"
+#include <JSystem/JKernel/JKRUnitHeap.hpp>
+#include "Game/Util.hpp"
 #include <revolution.h>
 
 FunctionAsyncExecInfo::FunctionAsyncExecInfo(MR::FunctorBase *pFuncPtr, int a2, const char *a3) {

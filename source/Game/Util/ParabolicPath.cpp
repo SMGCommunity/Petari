@@ -1,5 +1,5 @@
-#include "Game/Util/ParabolicPath.h"
-#include "Game/Util.h"
+#include "Game/Util/ParabolicPath.hpp"
+#include "Game/Util.hpp"
 
 ParabolicPath::ParabolicPath() : mPosition(0, 0, 0), mAxisY(0, 1, 0), mAxisZ(0, 0, 1) {
     _24 = 0.0f;

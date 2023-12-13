@@ -1,4 +1,4 @@
-#include "Game/LiveActor/SpotMarkLight.h"
+#include "Game/LiveActor/SpotMarkLight.hpp"
 
 SpotMarkLight::SpotMarkLight(LiveActor *pActor, f32 a3, f32 a4, MtxPtr mtx) : PartsModel(pActor, "マーク光柱", "SpotMarkLight", mtx, -1, false) {
     _9B = false;

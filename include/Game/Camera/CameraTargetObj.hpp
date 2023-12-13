@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class CubeCameraArea;
 class GravityInfo;

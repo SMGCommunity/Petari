@@ -1,4 +1,4 @@
-#include "Game/Demo/DemoCastGroupHolder.h"
+#include "Game/Demo/DemoCastGroupHolder.hpp"
 
 DemoCastGroupHolder::DemoCastGroupHolder() : NameObjGroup("デモ関係者グループ保持", 0x20) {
 

@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ActorCameraInfo.h"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 
 ActorCameraInfo::ActorCameraInfo(const JMapInfoIter &rIter) {
     mCameraSetID = -1;

@@ -1,5 +1,5 @@
-#include "Game/MapObj/ArrowSwitchMultiHolder.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 ArrowSwitchMultiHolder::ArrowSwitchMultiHolder() : DeriveActorGroup("複数方向矢印スイッチ管理", 0x10) {
 

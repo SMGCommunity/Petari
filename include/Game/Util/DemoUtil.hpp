@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.h"
-#include "Game/Util/Functor.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/Functor.hpp"
 class NameObj;
 class LiveActor;
 

@@ -1,4 +1,4 @@
-#include "Game/System/LayoutHolder.h"
+#include "Game/System/LayoutHolder.hpp"
 
 LayoutHolder::LayoutHolder(JKRArchive &rArchive) : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
     initializeArc();

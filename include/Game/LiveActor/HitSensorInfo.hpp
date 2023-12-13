@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
 
 class HitSensor;

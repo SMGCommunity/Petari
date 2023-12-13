@@ -1,6 +1,6 @@
-#include "Game/LiveActor/SensorHitChecker.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/SensorHitChecker.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 void SensorHitChecker::init(const JMapInfoIter &rIter) {
     MR::connectToScene(this, 5, -1, -1, -1);

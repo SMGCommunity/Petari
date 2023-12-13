@@ -1,5 +1,6 @@
-#include "Game/MapObj/MapPartsRotator.h"
-#include "Game/LiveActor/Spine.h"
+#include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Util.hpp"
 
 #ifdef NON_MATCHING
 // floating reg order on the inlined matrix set, but oh well

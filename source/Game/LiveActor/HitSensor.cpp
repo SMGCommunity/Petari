@@ -1,6 +1,6 @@
-#include "Game/LiveActor/HitSensor.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/SensorHitChecker.h"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/SensorHitChecker.hpp"
 
 // fuck this shit, sensorGroupSize is getting turned into a u32 becuase literally nothing else will match
 // whatever

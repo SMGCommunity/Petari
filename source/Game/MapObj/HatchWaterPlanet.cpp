@@ -1,5 +1,5 @@
-#include "Game/MapObj/HatchWaterPlanet.h"
-#include "Game/LiveActor/LodCtrl.h"
+#include "Game/MapObj/HatchWaterPlanet.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 HatchWaterPlanet::HatchWaterPlanet(const char *pName) : LiveActor(pName) {
     mPlanetLODCtrl = nullptr;

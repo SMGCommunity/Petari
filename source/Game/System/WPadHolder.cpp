@@ -1,6 +1,6 @@
-#include "Game/System/WPadHolder.h"
-#include "Game/System/WPad.h"
-#include "Game/Util.h"
+#include "Game/System/WPadHolder.hpp"
+#include "Game/System/WPad.hpp"
+#include "Game/Util.hpp"
 
 WPadReadDataInfo::WPadReadDataInfo() {
     mStatusArray = nullptr;

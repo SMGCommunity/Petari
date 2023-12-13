@@ -1,4 +1,4 @@
-#include "Game/AreaObj/ScreenBlurArea.h"
+#include "Game/AreaObj/ScreenBlurArea.hpp"
 
 ScreenBlurArea::ScreenBlurArea(int type, const char *pName) :
     ImageEffectArea(IMAGE_EFFECT_TYPE_BLUR, type, pName) {

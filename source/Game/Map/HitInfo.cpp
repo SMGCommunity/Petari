@@ -1,7 +1,7 @@
-#include "Game/Map/CollisionParts.h"
-#include "Game/Map/HitInfo.h"
-#include "Game/Map/KCollision.h"
-#include "Game/Util/MathUtil.h"
+#include "Game/Map/CollisionParts.hpp"
+#include "Game/Map/HitInfo.hpp"
+#include "Game/Map/KCollision.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 Triangle::Triangle() {
     mParts = nullptr;

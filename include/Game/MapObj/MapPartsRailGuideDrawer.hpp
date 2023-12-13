@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
-#include "Game/MapObj/MapPartsRailGuidePoint.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include "Game/MapObj/MapPartsRailGuidePoint.hpp"
+#include "Game/Util.hpp"
 
 class MapPartsRailGuideDrawer : public MapPartsFunction {
 public:

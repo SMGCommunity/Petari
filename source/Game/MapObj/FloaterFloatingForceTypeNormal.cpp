@@ -1,6 +1,7 @@
-#include "Game/MapObj/FloaterFloatingForceTypeNormal.h"
-#include "Game/MapObj/FloaterFunction.h"
-#include "Game/LiveActor/Spine.h"
+#include "Game/MapObj/FloaterFloatingForceTypeNormal.hpp"
+#include "Game/MapObj/FloaterFunction.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
 
 FloaterFloatingForceTypeNormal::FloaterFloatingForceTypeNormal(LiveActor *pActor, const char *pName) : FloaterFloatingForce(pActor, pName) {
     mRotateAngle = 0.0f;

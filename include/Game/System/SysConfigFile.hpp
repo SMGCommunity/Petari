@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/System/BinaryDataContentAccessor.h"
-#include "Game/System/BinaryDataChunkHolder.h"
+#include "Game/System/BinaryDataContentAccessor.hpp"
+#include "Game/System/BinaryDataChunkHolder.hpp"
 
 class SysConfigChunk : public BinaryDataChunkBase {
 public:

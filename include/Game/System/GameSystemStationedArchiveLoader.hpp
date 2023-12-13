@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/StationedArchiveLoader.h"
-#include <JSystem/JKernel/JKRHeap.h>
-#include <JSystem/JKernel/JKRExpHeap.h>
+#include "Game/System/StationedArchiveLoader.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 
 class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
 public:

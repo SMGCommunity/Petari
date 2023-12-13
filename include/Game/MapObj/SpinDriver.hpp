@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/MapObj/SpinDriverCamera.h"
-#include "Game/MapObj/SpinDriverShootPath.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/MapObj/SpinDriverCamera.hpp"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
 
 namespace {
     static s32 cSpaceFlyStartFrame = 0xA;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/LiveActor/ClippingActorInfo.h"
-#include "Game/LiveActor/LodCtrl.h"
-#include "Game/LiveActor/ViewGroupCtrl.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ViewGroupCtrl.hpp"
 
 namespace {
     static int sActorNumMax;

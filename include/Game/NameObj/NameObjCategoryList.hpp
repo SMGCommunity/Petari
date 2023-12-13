@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjHolder.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/Util.hpp"
 
 #define CATEGORY_MOVEMENT_00 0x00
 #define CATEGORY_MOVEMENT_STOP_SCENE_DELAY_REQUEST 0x01

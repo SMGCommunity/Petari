@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraBlackHole.h"
+#include "Game/Camera/CameraBlackHole.hpp"
 
 class CamTranslatorBlackHole : public CamTranslatorBase {
 public:

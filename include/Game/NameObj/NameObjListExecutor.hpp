@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObjCategoryList.h"
-#include "Game/System/DrawBufferHolder.h"
+#include "Game/NameObj/NameObjCategoryList.hpp"
+#include "Game/System/DrawBufferHolder.hpp"
 
 class LiveActor;
 

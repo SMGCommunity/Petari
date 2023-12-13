@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/Map/LightDataHolder.h"
-#include "Game/Map/LightPointCtrl.h"
-#include "Game/Map/LightZoneDataHolder.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Map/LightDataHolder.hpp"
+#include "Game/Map/LightPointCtrl.hpp"
+#include "Game/Map/LightZoneDataHolder.hpp"
+#include "Game/System/ResourceHolder.hpp"
 
 class LightDirector : public NameObj {
 public:

@@ -2,7 +2,7 @@
 
 #include <revolution.h>
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphBase/J3DStruct.h"
+#include "JSystem/J3DGraphBase/J3DStruct.hpp"
 
 class MaterialCtrl {
 public:

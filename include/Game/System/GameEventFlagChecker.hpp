@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/GameEventFlagTable.h"
+#include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameDataHolder.h"
 
 class GameEventFlagChecker {

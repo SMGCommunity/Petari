@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
-#include "Game/Util/SpringValue.h"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include "Game/Util/SpringValue.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class SpringStep {
 public:

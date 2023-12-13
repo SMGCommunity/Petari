@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class AstroOverlookObj : public LiveActor {
 public:

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
-#include "Game/Screen/CounterLayoutAppearer.h"
-#include "Game/Screen/CountUpPaneRumbler.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/CounterLayoutAppearer.hpp"
+#include "Game/Screen/CountUpPaneRumbler.hpp"
 
 class StarPieceCounter : public LayoutActor {
 public:

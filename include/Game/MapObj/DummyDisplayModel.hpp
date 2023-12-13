@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/PartsModel.h"
-#include "JSystem/JGeometry.h"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class DummyDisplayModel : public PartsModel {
 public:

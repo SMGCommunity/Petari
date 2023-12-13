@@ -1,5 +1,5 @@
-#include "Game/MapObj/CollectCounter.h"
-#include "Game/Util.h"
+#include "Game/MapObj/CollectCounter.hpp"
+#include "Game/Util.hpp"
 
 CollectCounter::CollectCounter(const char *pName) : LayoutActor(pName, true) {
     mFollowPosition.x = 0.0f;

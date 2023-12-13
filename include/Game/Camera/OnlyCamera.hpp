@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class CameraMan;
 class CameraPoseParam;

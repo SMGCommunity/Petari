@@ -1,5 +1,5 @@
-#include "Game/System/ResourceInfo.h"
-#include "Game/Util.h"
+#include "Game/System/ResourceInfo.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 #include <cstdio>
 #include <size_t.h>

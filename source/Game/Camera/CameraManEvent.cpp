@@ -1,12 +1,13 @@
-#include "Game/Camera/Camera.h"
-#include "Game/Camera/CamTranslatorAnim.h"
-#include "Game/Camera/CameraDirector.h"
-#include "Game/Camera/CameraHeightArrange.h"
-#include "Game/Camera/CameraLocalUtil.h"
-#include "Game/Camera/CameraManEvent.h"
-#include "Game/Camera/CameraHolder.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CameraParamChunkHolder.h"
+#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CamTranslatorAnim.hpp"
+#include "Game/Camera/CameraDirector.hpp"
+#include "Game/Camera/CameraHeightArrange.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraManEvent.hpp"
+#include "Game/Camera/CameraHolder.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CameraParamChunkHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
 
 #ifdef NON_MATCHING
 // Constructor for mTargetArg is called. The constructor exists in the symbol so 

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util.hpp"
 
 ModelObj::ModelObj(const char *pName, const char *pModelName, MtxPtr mtxPtr, int a4, int a5, int a6, bool a7) : LiveActor(pName) {
     mMtx = mtxPtr;

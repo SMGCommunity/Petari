@@ -1,4 +1,4 @@
-#include "Game/AreaObj/BgmProhibitArea.h"
+#include "Game/AreaObj/BgmProhibitArea.hpp"
 
 BgmProhibitArea::~BgmProhibitArea() {
 

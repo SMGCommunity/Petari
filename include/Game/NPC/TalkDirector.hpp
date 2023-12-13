@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/NPC/TalkMessageInfo.h"
-#include "Game/NPC/TalkMessageCtrl.h"
-#include "Game/Screen/LayoutActor.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 #include <revolution.h>
 
 class ActorCameraInfo;

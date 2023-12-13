@@ -1,7 +1,7 @@
-#include "Game/System/ConfigDataMii.h"
-#include "Game/Util.h"
-#include "JSystem/JSupport/JSUMemoryInputStream.h"
-#include "JSystem/JSupport/JSUMemoryOutputStream.h"
+#include "Game/System/ConfigDataMii.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
+#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
 
 ConfigDataMii::ConfigDataMii() {
     _4 = 0;

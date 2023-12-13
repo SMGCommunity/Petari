@@ -1,4 +1,4 @@
-#include "Game/MapObj/FountainBig.h"
+#include "Game/MapObj/FountainBig.hpp"
 
 FountainBig::FountainBig(const char *pName) : LiveActor(pName) {
     mClippingRadius.x = 0.0f;

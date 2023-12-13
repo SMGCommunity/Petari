@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/PressureBase.h"
+#include "Game/MapObj/PressureBase.hpp"
 
 class FirePressure : public PressureBase {
 public:

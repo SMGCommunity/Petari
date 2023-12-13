@@ -1,7 +1,7 @@
 #pragma once
 
 #include "revolution.h"
-#include "Inline.h"
+#include "Inline.hpp"
 
 class CameraTargetObj;
 class CameraTargetMtx;

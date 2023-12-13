@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "JSystem/JKernel/JKRDisposer.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "JSystem/JKernel/JKRDisposer.hpp"
 
 class MiiFacePartsHolder : public LiveActorGroup, JKRDisposer {
 public:

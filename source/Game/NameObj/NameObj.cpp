@@ -1,7 +1,7 @@
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjRegister.h"
-#include "Game/SingletonHolder.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/Util.hpp"
 
 NameObj::NameObj(const char *pName) {
     mName = pName;

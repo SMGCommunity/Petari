@@ -1,4 +1,4 @@
-#include "Game/Enemy/WalkerStateBindStarPointer.h"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 
 WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor *pActor, AnimScaleController *pController) : ActorStateBase("歩行型スターポインタ拘束") {
     mHostActor = pActor;

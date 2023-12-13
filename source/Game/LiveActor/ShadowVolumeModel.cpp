@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ShadowVolumeModel.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/ShadowVolumeModel.hpp"
+#include "Game/Util.hpp"
 
 ShadowVolumeModel::ShadowVolumeModel(const char *pName) : ShadowVolumeDrawer(pName) {
     mModelData = 0;

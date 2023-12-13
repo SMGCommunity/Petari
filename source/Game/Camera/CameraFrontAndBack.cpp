@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraFrontAndBack.h"
-#include "Game/Camera/CamTranslatorFrontAndBack.h"
+#include "Game/Camera/CameraFrontAndBack.hpp"
+#include "Game/Camera/CamTranslatorFrontAndBack.hpp"
 
 CameraFrontAndBack::CameraFrontAndBack(const char *pName) : Camera(pName) {
     mWPoint.x = 0.0f;

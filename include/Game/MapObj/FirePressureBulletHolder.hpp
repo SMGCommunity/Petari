@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
-#include "Game/MapObj/FirePressureBullet.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/MapObj/FirePressureBullet.hpp"
 
 class FirePressureBulletHolder : public NameObj {
 public:

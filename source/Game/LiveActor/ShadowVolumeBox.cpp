@@ -1,4 +1,4 @@
-#include "Game/LiveActor/ShadowVolumeBox.h"
+#include "Game/LiveActor/ShadowVolumeBox.hpp"
 
 void ShadowVolumeBox::setSize(const TVec3f &rSize) {
     mSize.set(rSize);

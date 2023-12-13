@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
-#include "Game/Enemy/AnimScaleController.h"
-#include "Game/Util/JointController.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Util/JointController.hpp"
 
 namespace NrvNPCActor {
     NERVE(NPCActorNrvWait);

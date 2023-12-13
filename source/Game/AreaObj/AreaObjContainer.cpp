@@ -1,6 +1,6 @@
-#include "Game/AreaObj/AreaObjContainer.h"
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/AreaObj/AreaObjContainer.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include <cstring>
 
 AreaObjContainer::AreaObjContainer(const char *pName) : NameObj(pName) {

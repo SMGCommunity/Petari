@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
 
 class JMapInfo;

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraWaterFollow.h"
-#include "Game/Camera/CamTranslatorWaterFollow.h"
+#include "Game/Camera/CameraWaterFollow.hpp"
+#include "Game/Camera/CamTranslatorWaterFollow.hpp"
 
 CameraWaterFollow::CameraWaterFollow(const char *pName) : Camera(pName) {
     mAxisY = 300.0f;

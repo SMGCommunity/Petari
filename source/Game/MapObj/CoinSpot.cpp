@@ -1,4 +1,4 @@
-#include "Game/MapObj/CoinSpot.h"
+#include "Game/MapObj/CoinSpot.hpp"
 
 CoinSpot::CoinSpot(const char *pName) : LiveActor(pName) {
     _8C = 8;

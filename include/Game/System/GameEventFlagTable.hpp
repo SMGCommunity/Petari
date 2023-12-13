@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/System/GameEventFlag.h"
+#include "Game/System/GameEventFlag.hpp"
 
 #include <revolution.h>
 

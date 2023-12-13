@@ -1,7 +1,7 @@
-#include "Game/MapObj/MapPartsFloatingForce.h"
-#include "Game/MapObj/FloaterFunction.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MapPartsFloatingForce.hpp"
+#include "Game/MapObj/FloaterFunction.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) {
     mSpringValue = 0;

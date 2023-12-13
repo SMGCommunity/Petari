@@ -1,5 +1,5 @@
-#include "Game/MapObj/MapPartsRailGuideDrawer.h"
-#include "Game/Util.h"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
+#include "Game/Util.hpp"
 
 void MapPartsRailGuideDrawer::start() {
     show();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util.h"
+#include "Game/Util.hpp"
 
 class LiveActor;
 class Nerve;

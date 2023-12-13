@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Map/WaterInfo.h"
-#include "Game/Map/WaterPoint.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/WaterInfo.hpp"
+#include "Game/Map/WaterPoint.hpp"
 
 class AudSoundObject;
 class OceanRingDrawer;

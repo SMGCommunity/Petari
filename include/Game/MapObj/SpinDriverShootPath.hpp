@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "Game/LiveActor/RailRider.h"
-#include "Game/Util/ParabolicPath.h"
+#include "Game/LiveActor/RailRider.hpp"
+#include "Game/Util/ParabolicPath.hpp"
 
 class SpinDriverShootPath {
 public:

@@ -2,8 +2,8 @@
 
 #include <revolution.h>
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphAnimator/J3DMtxCalc.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "JSystem/J3DGraphAnimator/J3DMtxCalc.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class XtransformInfo {
 public:

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ClippingDirector.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮") {
     mJudge = 0;

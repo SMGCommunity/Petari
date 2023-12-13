@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.h"
+#include "Game/Screen/LayoutActor.hpp"
 
 class PlayerActionGuidance : public LayoutActor {
 public:

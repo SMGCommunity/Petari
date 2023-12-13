@@ -1,5 +1,5 @@
-#include "Game/MapObj/PurpleCoinStarter.h"
-#include "Game/Util.h"
+#include "Game/MapObj/PurpleCoinStarter.hpp"
+#include "Game/Util.hpp"
 
 PurpleCoinStarter::PurpleCoinStarter(const char *pName) : NameObj(pName) {
     mCoinHolder = nullptr;

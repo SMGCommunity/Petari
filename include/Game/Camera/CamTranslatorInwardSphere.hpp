@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraInwardSphere.h"
+#include "Game/Camera/CameraInwardSphere.hpp"
 
 class CamTranslatorInwardSphere : public CamTranslatorBase {
 public:

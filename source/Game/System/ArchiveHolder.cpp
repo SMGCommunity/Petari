@@ -1,5 +1,5 @@
-#include "Game/System/ArchiveHolder.h"
-#include "Game/Util.h"
+#include "Game/System/ArchiveHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 
 ArchiveHolderArchiveEntry::ArchiveHolderArchiveEntry(void *pData, JKRHeap *pHeap, const char *pName) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/MapObj/PowerStar.h"
+#include "Game/MapObj/PowerStar.hpp"
 
 struct PowerStarRequestInfo {
     PowerStar* mStar;       // _0

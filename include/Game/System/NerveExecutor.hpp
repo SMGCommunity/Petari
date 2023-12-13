@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/Spine.h"
+#include "Game/LiveActor/Spine.hpp"
 
 class NerveExecutor {
 public:

@@ -1,6 +1,6 @@
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjHolder.h"
-#include "Game/Util.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/Util.hpp"
 
 NameObjHolder::NameObjHolder(int a1) : 
     mObjs(0), _4(0), mObjCount(0), _4C(0) {

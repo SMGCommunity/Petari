@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Camera/CameraParamChunkID.h"
-#include "Game/NameObj/NameObj.h"
-#include "JSystem/JGeometry.h"
+#include "Game/Camera/CameraParamChunkID.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "JSystem/JGeometry.hpp"
 
 class CameraCover;
 class CameraDirector;

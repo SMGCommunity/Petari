@@ -1,7 +1,7 @@
-#include "Game/Camera/CameraShaker.h"
-#include "Game/Camera/CameraShakePatternImpl.h"
-#include "Game/Camera/CameraShakeTask.h"
-#include "Game/Util/CameraUtil.h"
+#include "Game/Camera/CameraShaker.hpp"
+#include "Game/Camera/CameraShakePatternImpl.hpp"
+#include "Game/Camera/CameraShakeTask.hpp"
+#include "Game/Util/CameraUtil.hpp"
 
 f32 sVerticalTaskTable[7] = {
     0.08f,

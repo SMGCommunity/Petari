@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActorGroup.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util.hpp"
 
 class HitSensor;
 

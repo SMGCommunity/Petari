@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
 
 /// @brief Class that can contain multiple NameObj instances stored in a group.
 class NameObjGroup : public NameObj {

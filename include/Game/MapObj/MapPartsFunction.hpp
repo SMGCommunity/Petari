@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.h"
+#include "Game/NameObj/NameObj.hpp"
 
 class LiveActor;
 class Spine;
+class Nerve;
 
 class MapPartsFunction : public NameObj {
 public:

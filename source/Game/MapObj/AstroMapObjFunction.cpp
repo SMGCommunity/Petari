@@ -1,5 +1,5 @@
-#include "Game/MapObj/AstroMapObjFunction.h"
-#include "Game/Demo/AstroDemoFunction.h"
+#include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/Demo/AstroDemoFunction.hpp"
 #include <cstdio>
 
 namespace {

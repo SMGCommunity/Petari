@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Camera/CameraParamString.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Camera/CameraParamString.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class CameraHolder;
 class CameraParamChunkID;

@@ -1,4 +1,4 @@
-#include "Game/MapObj/CircleCoinGroup.h"
+#include "Game/MapObj/CircleCoinGroup.hpp"
 
 
 CircleCoinGroup::CircleCoinGroup(const char *pName) : CoinGroup(pName) {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Map/Air.h"
-#include "Game/Map/Halo.h"
-#include "Game/Map/SeaGull.h"
-#include "Game/Map/Sky.h"
-#include "Game/Map/SpaceInner.h"
-#include "Game/Map/TimerSwitch.h"
+#include "Game/Map/Air.hpp"
+#include "Game/Map/Halo.hpp"
+#include "Game/Map/SeaGull.hpp"
+#include "Game/Map/Sky.hpp"
+#include "Game/Map/SpaceInner.hpp"
+#include "Game/Map/TimerSwitch.hpp"

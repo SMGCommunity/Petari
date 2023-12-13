@@ -1,8 +1,8 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry/TVec.h"
-#include "JSystem/JGeometry/TMatrix.h"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class LiveActor;
 class HitSensor;

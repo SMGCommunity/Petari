@@ -1,6 +1,6 @@
-#include "Game/MapObj/ArrowSwitchMulti.h"
-#include "Game/MapObj/ArrowSwitchMultiHolder.h"
-#include "Game/Map/StageSwitch.h"
+#include "Game/MapObj/ArrowSwitchMulti.hpp"
+#include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
+#include "Game/Map/StageSwitch.hpp"
 
 ArrowSwitchTarget::ArrowSwitchTarget(const char *pName) : NameObj(pName) {
     mJMapIDInfo = nullptr;

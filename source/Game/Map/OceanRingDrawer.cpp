@@ -1,7 +1,7 @@
-#include "Game/Map/OceanRingDrawer.h"
-#include "Game/Map/OceanRing.h"
-#include "Game/Map/WaterAreaHolder.h"
-#include "Game/Util.h"
+#include "Game/Map/OceanRingDrawer.hpp"
+#include "Game/Map/OceanRing.hpp"
+#include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Util.hpp"
 
 static u8 unknownVal = 1;
 

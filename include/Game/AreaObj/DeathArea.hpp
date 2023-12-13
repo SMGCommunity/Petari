@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
-#include "Inline.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Inline.hpp"
 
 class DeathArea : public AreaObj {
 public:

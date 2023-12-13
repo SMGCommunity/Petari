@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.h"
+#include "Game/LiveActor/HitSensor.hpp"
 
 class MarioMessenger {
 public:

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/MapObj/SpinDriverCamera.h"
-#include "Game/MapObj/SpinDriverOperateRing.h"
-#include "Game/MapObj/SpinDriverShootPath.h"
-#include "Game/MapObj/SpinDriverPathDrawer.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/MapObj/SpinDriverCamera.hpp"
+#include "Game/MapObj/SpinDriverOperateRing.hpp"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
+#include "Game/MapObj/SpinDriverPathDrawer.hpp"
 
 namespace {
     static f32 sCanBindTime = 90.0f;

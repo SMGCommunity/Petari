@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraPoseParam.h"
+#include "Game/Camera/CameraPoseParam.hpp"
 
 CameraPoseParam::CameraPoseParam() {
     _0.x = 0.0f;

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraRailFollow.h"
-#include "Game/Camera/CamTranslatorRailFollow.h"
+#include "Game/Camera/CameraRailFollow.hpp"
+#include "Game/Camera/CamTranslatorRailFollow.hpp"
 
 CameraRailFollow::CameraRailFollow(const char *pName) : Camera(pName) {
     _4C = 0;

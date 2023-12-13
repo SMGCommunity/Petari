@@ -1,6 +1,6 @@
-#include "Game/NPC/TalkNodeCtrl.h"
-#include "Game/System/MessageHolder.h"
-#include "Game/Util.h"
+#include "Game/NPC/TalkNodeCtrl.hpp"
+#include "Game/System/MessageHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 void TalkMessageHistory::entry(u16 msgID) {

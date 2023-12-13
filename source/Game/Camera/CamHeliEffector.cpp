@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraTargetObj.h"
-#include "Game/Camera/CamHeliEffector.h"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Camera/CamHeliEffector.hpp"
 
 bool CameraTargetObj::isCameraStateOn(unsigned long a1) const {
     return false;

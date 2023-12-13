@@ -1,5 +1,5 @@
-#include "Game/MapObj/FloaterFloatingForce.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/MapObj/FloaterFloatingForce.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 FloaterFloatingForce::~FloaterFloatingForce() {
 

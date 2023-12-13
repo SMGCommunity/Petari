@@ -1,8 +1,8 @@
-﻿#include "Game/Map/CollisionCategorizedKeeper.h"
-#include "Game/Map/CollisionCode.h"
-#include "Game/Map/CollisionDirector.h"
-#include "Game/Scene/SceneObjHolder.h"
-#include "Game/Util/ObjUtil.h"
+﻿#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionCode.hpp"
+#include "Game/Map/CollisionDirector.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 #define NR_CATEGORIZED_KEEPERS 4
 

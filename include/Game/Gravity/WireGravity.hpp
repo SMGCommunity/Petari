@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/Gravity/PlanetGravity.h"
-#include "Game/Util/Array.h"
+#include "Game/Gravity/PlanetGravity.hpp"
+#include "Game/Util/Array.hpp"
 
 class WireGravity : public PlanetGravity {
 public:

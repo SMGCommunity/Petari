@@ -1,4 +1,4 @@
-#include "Game/Camera/CameraSubjective.h"
+#include "Game/Camera/CameraSubjective.hpp"
 
 CameraSubjective::CameraSubjective(const char *pName) : Camera(pName) {
     _4C = 0.0f;

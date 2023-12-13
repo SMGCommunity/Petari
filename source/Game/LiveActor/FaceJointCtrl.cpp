@@ -1,6 +1,6 @@
-#include "Game/LiveActor/FaceJointCtrl.h"
-#include "Game/LiveActor/DynamicJointCtrl.h"
-#include "Game/Util/JointController.h"
+#include "Game/LiveActor/FaceJointCtrl.hpp"
+#include "Game/LiveActor/DynamicJointCtrl.hpp"
+#include "Game/Util/JointController.hpp"
 
 FaceJointCtrl::FaceJointCtrl(LiveActor *pActor) {
     mHostActor = pActor;

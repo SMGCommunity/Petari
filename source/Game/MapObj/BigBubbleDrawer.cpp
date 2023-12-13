@@ -1,4 +1,4 @@
-#include "Game/MapObj/BigBubbleDrawer.h"
+#include "Game/MapObj/BigBubbleDrawer.hpp"
 
 BigBubbleDrawer::BigBubbleDrawer() {
     mBubbleTexture = nullptr;

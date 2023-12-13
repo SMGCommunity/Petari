@@ -1,9 +1,9 @@
-#include "Game/Camera/Camera.h"
-#include "Game/Camera/CameraHeightArrange.h"
-#include "Game/Camera/CameraMan.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CameraPoseParam.h"
-#include "Game/Util/SceneUtil.h"
+#include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraHeightArrange.hpp"
+#include "Game/Camera/CameraMan.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CameraPoseParam.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 void CamTranslatorDummy::setParam(const CameraParamChunk *pChunk) {
 

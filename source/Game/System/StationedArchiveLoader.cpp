@@ -1,7 +1,7 @@
-#include "Game/System/StationedArchiveLoader.h"
-#include "Game/System/ResourceHolderManager.h"
-#include "Game/SingletonHolder.h"
-#include "Game/Util.h"
+#include "Game/System/StationedArchiveLoader.hpp"
+#include "Game/System/ResourceHolderManager.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/Util.hpp"
 
 StationedArchiveLoader::Condition::~Condition() {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/Util.h"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/Util.hpp"
 
 struct BgmMuteSet {
     const char* mGalaxyName;

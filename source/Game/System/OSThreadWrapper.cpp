@@ -1,5 +1,5 @@
-#include "Game/System/OSThreadWrapper.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "Game/System/OSThreadWrapper.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 
 OSThreadWrapper::OSThreadWrapper(u32 a1, int a2, int a3, JKRHeap *pHeap) {
     if (!pHeap) {

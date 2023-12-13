@@ -1,4 +1,4 @@
-#include "Game/MapObj/IceStep.h"
+#include "Game/MapObj/IceStep.hpp"
 
 IceStep::IceStep(const char *pName) : LiveActor(pName) {
 

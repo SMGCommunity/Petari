@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JUtility/JUTTexture.h"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 namespace ImageEffectLocalUtil {
     enum ETexDrawType {

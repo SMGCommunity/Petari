@@ -1,4 +1,4 @@
-#include "Game/Util/BaseMatrixFollowTargetHolder.h"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
 BaseMatrixFollower::BaseMatrixFollower(NameObj *pObj, const JMapInfoIter &rIter) {
     mFollowerObj = pObj;

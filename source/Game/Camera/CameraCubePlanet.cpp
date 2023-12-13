@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraCubePlanet.h"
-#include "Game/Camera/CamTranslatorCubePlanet.h"
+#include "Game/Camera/CameraCubePlanet.hpp"
+#include "Game/Camera/CamTranslatorCubePlanet.hpp"
 
 CameraCubePlanet::CameraCubePlanet(const char *pName) : Camera(pName) {
     mDist = 3000.0f;

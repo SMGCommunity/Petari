@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Inline.h"
+#include "Inline.hpp"
 
 class JKRHeap;
 

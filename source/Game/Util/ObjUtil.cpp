@@ -1,8 +1,8 @@
-#include "Game/NameObj/NameObjExecuteHolder.h"
-#include "Game/NameObj/NameObjAdaptor.h"
-#include "Game/System/ResourceHolder.h"
-#include "Game/System/ResourceHolderManager.h"
-#include "Game/Util/ObjUtil.h"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/System/ResourceHolder.hpp"
+#include "Game/System/ResourceHolderManager.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 #include <va_list.h>
 
@@ -11,7 +11,9 @@ class LiveActor;
 namespace {
     const JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list* pFormat) {
             char buf[0x100];
-            vsnprintf(buf, 0x100, pArchive, pFormat);
+            vsnprintf(buf, 0x100, pArchive, *pFormat);
+
+            return nullptr;
     }
 };
 

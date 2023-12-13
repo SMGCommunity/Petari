@@ -1,6 +1,6 @@
-#include "Game/Demo/DemoSimpleCastHolder.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util.h"
+#include "Game/Demo/DemoSimpleCastHolder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 DemoSimpleCastHolder::DemoSimpleCastHolder(s32 liveActorCount, s32 layoutActorCount, s32 nameObjCount) {
     mLiveActors.mMaxSize = 0;

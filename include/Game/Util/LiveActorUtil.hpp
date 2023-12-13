@@ -1,8 +1,8 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.h"
-#include "Game/Animation/AnmPlayer.h"
-#include "Game/Util/JMapInfo.h"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Animation/AnmPlayer.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
 class CollisionParts;

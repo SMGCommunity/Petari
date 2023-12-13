@@ -1,6 +1,6 @@
-#include "Game/Map/RailPart.h"
+#include "Game/Map/RailPart.hpp"
 
-#include "JSystem/JMath/JMath.h"
+#include "JSystem/JMath/JMath.hpp"
 
 RailPart::RailPart()
     : mRailPartLinear(0), mRailPartBezier(0) {

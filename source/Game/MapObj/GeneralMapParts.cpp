@@ -1,6 +1,6 @@
-#include "Game/MapObj/GeneralMapParts.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/Util/BaseMatrixFollowTargetHolder.h"
+#include "Game/MapObj/GeneralMapParts.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
 GeneralMapParts::GeneralMapParts(const char *pName) : MapParts(pName) {
     mCameraInfo = nullptr;

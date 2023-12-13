@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraInnerCylinder.h"
+#include "Game/Camera/CameraInnerCylinder.hpp"
 
 class CamTranslatorInnerCylinder : public CamTranslatorBase {
 public:

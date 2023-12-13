@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorRailDemo.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorRailDemo.hpp"
 
 void CamTranslatorRailDemo::setParam(const CameraParamChunk *pChunk) {
 	mCamera->setParam(

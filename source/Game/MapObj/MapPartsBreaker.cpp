@@ -1,5 +1,5 @@
-#include "Game/MapObj/MapPartsBreaker.h"
-#include "Game/LiveActor/LiveActor.h"
+#include "Game/MapObj/MapPartsBreaker.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 void MapPartsBreaker::exeReactToTornado() {
     if (isFirstStep()) {

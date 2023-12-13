@@ -1,7 +1,7 @@
-#include "Game/System/GameDataConst.h"
-#include "Game/System/GameEventFlag.h"
-#include "Game/System/GameEventFlagTable.h"
-#include "Game/Util.h"
+#include "Game/System/GameDataConst.hpp"
+#include "Game/System/GameEventFlag.hpp"
+#include "Game/System/GameEventFlagTable.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 u32 GameDataConst::getPowerStarNumToOpenGalaxy(const char *pGalaxy) {

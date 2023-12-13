@@ -1,5 +1,5 @@
-#include "Game/Scene/PlacementStateChecker.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/Scene/PlacementStateChecker.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 PlacementStateChecker::PlacementStateChecker(const char *pName) : NameObj(pName), mCurrentZoneId(-1) {
 

@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraMedianPlanet.h"
-#include "Game/Camera/CamTranslatorMedianPlanet.h"
+#include "Game/Camera/CameraMedianPlanet.hpp"
+#include "Game/Camera/CamTranslatorMedianPlanet.hpp"
 
 CameraMedianPlanet::CameraMedianPlanet(const char *pName) : Camera(pName) {
     mString = nullptr;

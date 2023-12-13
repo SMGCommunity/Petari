@@ -1,9 +1,9 @@
-#include "Game/Util.h"
-#include "Game/LiveActor/ActorCameraInfo.h"
-#include "Game/Camera/CameraContext.h"
-#include "Game/Camera/CameraDirector.h"
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Scene/SceneObjHolder.h"
+#include "Game/Util.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Camera/CameraContext.hpp"
+#include "Game/Camera/CameraDirector.hpp"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 namespace MR {
     f32 getAspect() {

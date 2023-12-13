@@ -1,6 +1,6 @@
-#include "Game/MapObj/SwitchBox.h"
-#include "Game/Util.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/MapObj/SwitchBox.hpp"
+#include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 SwitchBox::SwitchBox(const char *pName) : LiveActor(pName) {
 

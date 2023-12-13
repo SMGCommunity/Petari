@@ -1,5 +1,5 @@
-#include "Game/Map/LightPointCtrl.h"
-#include "Game/Map/LightFunction.h"
+#include "Game/Map/LightPointCtrl.hpp"
+#include "Game/Map/LightFunction.hpp"
 
 LightPointCtrl::LightPointCtrl() {
     _0 = -1;

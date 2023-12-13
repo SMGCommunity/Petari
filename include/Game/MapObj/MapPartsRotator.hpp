@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsFunction.h"
-#include "Game/LiveActor/Nerve.h"
+#include "Game/MapObj/MapPartsFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class MapPartsRotatorBase : public MapPartsFunction {
 public:

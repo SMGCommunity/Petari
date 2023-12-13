@@ -1,6 +1,6 @@
-#include "Game/Util/AreaObjUtil.h"
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/AreaObj/AreaObjContainer.h"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/AreaObj/AreaObjContainer.hpp"
 
 namespace MR {
 

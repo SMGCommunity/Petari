@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.h"
-#include "JSystem/JGeometry/TMatrix.h"
-#include "JSystem/JGeometry/TVec.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class CollisionParts;
 class HitSensor;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/ModelObj.h"
-#include "Game/Util.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util.hpp"
 
 class ChooChooTrain : public LiveActor {
 public:

@@ -1,5 +1,5 @@
-#include "Game/LiveActor/LodCtrl.h"
-#include "Game/LiveActor/ClippingDirector.h"
+#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ClippingDirector.hpp"
 
 #include <cstdio>
 

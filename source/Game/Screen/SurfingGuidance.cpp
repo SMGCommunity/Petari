@@ -1,5 +1,5 @@
-#include "Game/Screen/SurfingGuidance.h"
-#include "Game/Util.h"
+#include "Game/Screen/SurfingGuidance.hpp"
+#include "Game/Util.hpp"
 
 SurfingGuidance::SurfingGuidance() : LayoutActor("サーフィンガイダンス", true) {
     _20 = 0;

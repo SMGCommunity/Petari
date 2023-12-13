@@ -1,5 +1,5 @@
-#include "Game/MapObj/SpinDriverShootPath.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 SpinDriverShootPath::SpinDriverShootPath() {
     mRailRider = nullptr;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.h"
-#include "Game/LiveActor/FlashingCtrl.h"
-#include "Game/LiveActor/PartsModel.h"
-#include "Game/NameObj/NameObjArchiveListCollector.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
 class CoinHostInfo {
 public:

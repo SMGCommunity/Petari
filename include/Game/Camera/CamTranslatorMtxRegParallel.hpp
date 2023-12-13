@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Camera/CameraMtxRegParallel.h"
+#include "Game/Camera/CameraMtxRegParallel.hpp"
 
 class CamTranslatorMtxRegParallel : public CamTranslatorBase {
 public:

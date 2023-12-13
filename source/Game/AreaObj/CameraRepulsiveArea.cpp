@@ -1,4 +1,4 @@
-#include "Game/AreaObj/CameraRepulsiveArea.h"
+#include "Game/AreaObj/CameraRepulsiveArea.hpp"
 
 CameraRepulsiveArea::~CameraRepulsiveArea() {
 

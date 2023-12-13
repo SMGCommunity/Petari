@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/Animation/AnmPlayer.h"
-#include "Game/LiveActor/LiveActor.h"
-#include "JSystem/JUtility/JUTTexture.h"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 class NormalMapBase : public LiveActor {
 public:

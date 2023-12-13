@@ -1,7 +1,7 @@
 #pragma once
 
 #include <revolution.h>
-#include "JSystem/JGeometry.h"
+#include "JSystem/JGeometry.hpp"
 
 struct PowerStarInfo {
     u8 _0;

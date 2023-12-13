@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/Enemy/WalkerStateBindStarPointer.h"
-#include "Game/Util/JointController.h"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/Util/JointController.hpp"
 
 class CollapsePlane : public MapObjActor {
 public:

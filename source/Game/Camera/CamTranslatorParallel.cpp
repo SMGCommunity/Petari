@@ -1,5 +1,5 @@
-#include "Game/Camera/CameraParamChunk.h"
-#include "Game/Camera/CamTranslatorParallel.h"
+#include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Camera/CamTranslatorParallel.hpp"
 
 void CamTranslatorParallel::setParam(const CameraParamChunk *pChunk) {
 	TVec2f angle;

@@ -1,5 +1,6 @@
-#include "Game/Screen/LayoutActor.h"
-#include "Game/Screen/PaneEffectKeeper.h"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/PaneEffectKeeper.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 
 LayoutActor::LayoutActor(const char *pName, bool) : NameObj(pName),
     mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {

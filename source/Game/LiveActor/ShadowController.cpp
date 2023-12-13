@@ -1,5 +1,5 @@
-#include "Game/LiveActor/ShadowController.h"
-#include "Game/LiveActor/ShadowDrawer.h"
+#include "Game/LiveActor/ShadowController.hpp"
+#include "Game/LiveActor/ShadowDrawer.hpp"
 
 ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24(false) {
     mFarClip = 4000.0f;

@@ -1,5 +1,5 @@
-#include "Game/MapObj/CrystalCageMoving.h"
-#include "JSystem/JMath/JMath.h"
+#include "Game/MapObj/CrystalCageMoving.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 CrystalCageMoving::CrystalCageMoving(const char *pName) : MapObjActor(pName) {
     mTicoModel = nullptr;

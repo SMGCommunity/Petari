@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/MapObj/MapObjActor.h"
-#include "Game/LiveActor/ModelObj.h"
+#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 
 namespace {
     TVec3f sDummyModelOffset;
