@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 49 / 178 Completed -- (27.52808988764045%)
+# 50 / 178 Completed -- (28.08988764044944%)
 # ObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -109,7 +109,7 @@
 | `isExistFileInArc__2MRFPC14ResourceHolderPCce` | :x: |
 | `tryCreateCsvParserLocal__21@unnamed@ObjUtil_cpp@FPC14ResourceHolderPCcP16__va_list_struct` | :white_check_mark: |
 | `createCsvParser__2MRFPC14ResourceHolderPCce` | :white_check_mark: |
-| `createCsvParser__2MRFPCcPCce` | :x: |
+| `createCsvParser__2MRFPCcPCce` | :white_check_mark: |
 | `tryCreateCsvParser__2MRFPC9LiveActorPCce` | :x: |
 | `tryCreateCsvParser__2MRFPC14ResourceHolderPCce` | :x: |
 | `getCsvDataElementNum__2MRFPC8JMapInfo` | :x: |

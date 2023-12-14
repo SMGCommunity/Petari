@@ -45,7 +45,7 @@
 | [MultiEventCamera.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/MultiEventCamera.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [NerveUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/NerveUtil.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [NPCUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/NPCUtil.md) | 0.0% | 0 / 76 | 0.0% | :x: 
-| [ObjUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/ObjUtil.md) | 19.86543909348442% | 49 / 178 | 27.52808988764045% | :eight_pointed_black_star: 
+| [ObjUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/ObjUtil.md) | 21.10481586402266% | 50 / 178 | 28.08988764044944% | :eight_pointed_black_star: 
 | [ParabolicPath.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/ParabolicPath.md) | 25.748502994011975% | 4 / 9 | 44.44444444444444% | :eight_pointed_black_star: 
 | [PlayerUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/PlayerUtil.md) | 0.0% | 0 / 174 | 0.0% | :x: 
 | [RailGraphUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Util/RailGraphUtil.md) | 0.0% | 0 / 18 | 0.0% | :x: 
