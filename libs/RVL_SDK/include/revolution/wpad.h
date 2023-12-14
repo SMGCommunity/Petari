@@ -29,6 +29,8 @@ BOOL WPADIsSpeakerEnabled(s32);
 s32 WPADControlSpeaker(s32, u32, WPADCallback);
 u8 WPADGetSpeakerVolume(void);
 
+u8 WPADGetSensorBarPosition(void);
+
 void WPADDisconnect(s32);
 
 s32 WPADGetInfoAsync(s32, WPADInfo *, WPADCallback);

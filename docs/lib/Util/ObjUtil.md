@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 50 / 178 Completed -- (28.08988764044944%)
+# 55 / 178 Completed -- (30.89887640449438%)
 # ObjUtil.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -112,11 +112,11 @@
 | `createCsvParser__2MRFPCcPCce` | :white_check_mark: |
 | `tryCreateCsvParser__2MRFPC9LiveActorPCce` | :x: |
 | `tryCreateCsvParser__2MRFPC14ResourceHolderPCce` | :x: |
-| `getCsvDataElementNum__2MRFPC8JMapInfo` | :x: |
-| `getCsvDataStr__2MRFPPCcPC8JMapInfoPCcl` | :x: |
-| `getCsvDataStrOrNULL__2MRFPPCcPC8JMapInfoPCcl` | :x: |
-| `getCsvDataS32__2MRFPlPC8JMapInfoPCcl` | :x: |
-| `getCsvDataU8__2MRFPUcPC8JMapInfoPCcl` | :x: |
+| `getCsvDataElementNum__2MRFPC8JMapInfo` | :white_check_mark: |
+| `getCsvDataStr__2MRFPPCcPC8JMapInfoPCcl` | :white_check_mark: |
+| `getCsvDataStrOrNULL__2MRFPPCcPC8JMapInfoPCcl` | :white_check_mark: |
+| `getCsvDataS32__2MRFPlPC8JMapInfoPCcl` | :white_check_mark: |
+| `getCsvDataU8__2MRFPUcPC8JMapInfoPCcl` | :white_check_mark: |
 | `getCsvDataF32__2MRFPfPC8JMapInfoPCcl` | :x: |
 | `getCsvDataBool__2MRFPbPC8JMapInfoPCcl` | :x: |
 | `getCsvDataVec__2MRFP3VecPC8JMapInfoPCcl` | :x: |

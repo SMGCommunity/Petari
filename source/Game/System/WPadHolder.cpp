@@ -1,6 +1,8 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPad.hpp"
-#include "Game/Util.hpp"
+#include "Game/System/WPadPointer.hpp"
+#include <revolution/wpad.h>
+#include "Game/Util/MemoryUtil.hpp"
 
 WPadReadDataInfo::WPadReadDataInfo() {
     mStatusArray = nullptr;
@@ -21,14 +23,13 @@ u32 WPadReadDataInfo::getValidStatusCount() const {
     return mValidStatusCount;
 }
 
-#ifdef NON_MATCHING
 void WPadHolder::updateReadDataOnly() {
-    for (s32 i = 0; i < 4u; i++) {
-        WPadReadDataInfo* info = &mDataInfoArray[i];
+    WPadReadDataInfo* info;
+    for (s32 i = 0; i < 4; i++) {
+        info = &mDataInfoArray[i];
         info->mValidStatusCount = KPADRead(i, info->mStatusArray, 0x78);
     }
 }
-#endif
 
 void WPadHolder::updateProjectPadData() {
     for (s32 i = 0; i < 2u; i++) {
@@ -60,7 +61,23 @@ void WPadHolder::update() {
     }
 }
 
-// WPadHolder::initSensorBarPosition
+void WPadHolder::initSensorBarPosition() {
+    u8 barPos = WPADGetSensorBarPosition();
+    f32 lvl = 0.0f;
+
+    switch (barPos) {
+        case 1:
+            lvl = 0.34999999;
+            break;
+         case 0:
+            lvl = -0.15000001;
+            break;
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mPads[i]->mPointer->setSensorBarLevel(lvl);
+    }
+}
 
 void WPadHolder::resetPad() {
     KPADReset();

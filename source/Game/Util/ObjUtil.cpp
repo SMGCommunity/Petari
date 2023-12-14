@@ -264,4 +264,52 @@ namespace MR {
         ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);   
     }
+
+    // MR::tryCreateCsvParser
+
+    s32 getCsvDataElementNum(const JMapInfo *pMapInfo) {
+        if (pMapInfo->mData != nullptr) {
+            return pMapInfo->mData->mNumEntries;
+        }
+
+        return 0;
+    }
+
+    void getCsvDataStr(const char **pOut , const JMapInfo *pMapInfo, const char *pKey, s32 idx) {
+        int v7 = pMapInfo->searchItemInfo(pKey);
+
+        if (v7 >= 0) {
+            pMapInfo->getValueFast(idx, v7, pOut);
+        }
+    }
+
+    void getCsvDataStrOrNULL(const char **pOut, const JMapInfo *pMapInfo, const char *pKey, s32 idx) {
+        getCsvDataStr(pOut, pMapInfo, pKey, idx);
+        if (*pOut[0] == 0) {
+            *pOut = nullptr;
+        }
+    }
+
+    void getCsvDataS32(s32 *pOut, const JMapInfo *pMapInfo, const char *pKey, s32 idx) {
+        pMapInfo->getValue<s32>(idx, pKey, pOut);
+    }
+
+    void getCsvDataU8(u8 *pOut, const JMapInfo *pMapInfo, const char *pKey, s32 idx) {
+        s32 val = 0;
+        pMapInfo->getValue<s32>(idx, pKey, &val);
+        *pOut = val;
+    }
+
+    #ifdef NON_MATCHING
+    void getCsvDataF32(f32 *pOut, const JMapInfo *pMapInfo, const char *pKey, s32 idx) {
+        int v7 = pMapInfo->searchItemInfo(pKey);
+
+        if (v7 >= 0) {
+            *pOut = *((f32*)(pMapInfo->mData->mNumEntries + pMapInfo->mData->mDataOffset + idx * (pMapInfo->mData->mEntrySize + static_cast<const JMapItem*>(&pMapInfo->mData->mItems)[v7].mOffsData)));
+        }
+    }
+    #endif
+    
+    // MR::getCsvDataBool
+
 };

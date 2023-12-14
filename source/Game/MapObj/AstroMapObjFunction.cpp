@@ -152,7 +152,7 @@ const char* AstroMapObjFunction::getModelName(const char *pName, s32 domeIdx) {
 }
 
 #ifndef NON_MATCHING
-JMapInfo* AstroMapObjFunction::createAstroNamePlateParser() {
+const JMapInfo* AstroMapObjFunction::createAstroNamePlateParser() {
     char buf[0x40];
     snprintf(buf, 0x40, "%s.arc", cAstroNamePlateArcName);
     return MR::createCsvParser(buf, cAstroNamePlateFileName);

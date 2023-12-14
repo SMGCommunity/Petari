@@ -2474,11 +2474,11 @@ createCsvParser__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,true
 createCsvParser__2MRFPCcPCce,ObjUtil.o,Util.a,true
 tryCreateCsvParser__2MRFPC9LiveActorPCce,ObjUtil.o,Util.a,false
 tryCreateCsvParser__2MRFPC14ResourceHolderPCce,ObjUtil.o,Util.a,false
-getCsvDataElementNum__2MRFPC8JMapInfo,ObjUtil.o,Util.a,false
-getCsvDataStr__2MRFPPCcPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
-getCsvDataStrOrNULL__2MRFPPCcPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
-getCsvDataS32__2MRFPlPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
-getCsvDataU8__2MRFPUcPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
+getCsvDataElementNum__2MRFPC8JMapInfo,ObjUtil.o,Util.a,true
+getCsvDataStr__2MRFPPCcPC8JMapInfoPCcl,ObjUtil.o,Util.a,true
+getCsvDataStrOrNULL__2MRFPPCcPC8JMapInfoPCcl,ObjUtil.o,Util.a,true
+getCsvDataS32__2MRFPlPC8JMapInfoPCcl,ObjUtil.o,Util.a,true
+getCsvDataU8__2MRFPUcPC8JMapInfoPCcl,ObjUtil.o,Util.a,true
 getCsvDataF32__2MRFPfPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
 getCsvDataBool__2MRFPbPC8JMapInfoPCcl,ObjUtil.o,Util.a,false
 getCsvDataVec__2MRFP3VecPC8JMapInfoPCcl,ObjUtil.o,Util.a,false

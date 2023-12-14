@@ -943,11 +943,11 @@ __ct__16WPadReadDataInfoFv,WPadHolder.o,System.a,true
 getKPadStatus__16WPadReadDataInfoCFUl,WPadHolder.o,System.a,true
 getValidStatusCount__16WPadReadDataInfoCFv,WPadHolder.o,System.a,true
 __ct__10WPadHolderFv,WPadHolder.o,System.a,false
-updateReadDataOnly__10WPadHolderFv,WPadHolder.o,System.a,false
+updateReadDataOnly__10WPadHolderFv,WPadHolder.o,System.a,true
 updateProjectPadData__10WPadHolderFv,WPadHolder.o,System.a,true
 updateInGame__10WPadHolderFv,WPadHolder.o,System.a,true
 update__10WPadHolderFv,WPadHolder.o,System.a,true
-initSensorBarPosition__10WPadHolderFv,WPadHolder.o,System.a,false
+initSensorBarPosition__10WPadHolderFv,WPadHolder.o,System.a,true
 resetPad__10WPadHolderFv,WPadHolder.o,System.a,true
 getWPad__10WPadHolderFl,WPadHolder.o,System.a,true
 setConnectCallback__10WPadHolderFv,WPadHolder.o,System.a,false

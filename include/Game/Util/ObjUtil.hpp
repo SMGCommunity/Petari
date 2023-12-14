@@ -94,9 +94,14 @@ namespace MR {
     const JMapInfo* tryCreateCsvParser(const ResourceHolder *, const char *, ...);
     s32 getCsvDataElementNum(const JMapInfo *);
 
+    void getCsvDataStr(const char **, const JMapInfo *, const char *, s32) NO_INLINE;
+    void getCsvDataStrOrNULL(const char **, const JMapInfo *, const char *, s32);
     void getCsvDataS32(s32 *, const JMapInfo *, const char *, s32);
-    void getCsvDataStr(const char **, const JMapInfo *, const char *, s32);
+    void getCsvDataU8(u8 *, const JMapInfo *, const char *, s32);
+    void getCsvDataF32(f32 *, const JMapInfo *, const char *, s32);
     void getCsvDataBool(bool *, const JMapInfo *, const char *, s32);
+    void getCsvDataVec(Vec *, const JMapInfo *, const char *, s32);
+    void getCsvDataColor(GXColor *, const JMapInfo *, const char *, s32);
 
     ResourceHolder* createAndAddResourceHolder(const char *);
 
