@@ -51,7 +51,7 @@ void WPadHolder::update() {
     updateReadDataOnly();
     updateProjectPadData();
 
-    switch (_C) {
+    switch (mHolderMode) {
         case 1:
             updateInGame();
             break;
