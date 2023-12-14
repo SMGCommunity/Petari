@@ -260,9 +260,8 @@ namespace MR {
         return ::tryCreateCsvParserLocal(pHolder, pFormat, list);
     }
 
-    #ifdef NON_MATCHING
     const JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
-        return MR::createCsvParser(SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr), pArchive, pFormat);   
+        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
+        return MR::createCsvParser(holder, pFormat);   
     }
-    #endif
 };
