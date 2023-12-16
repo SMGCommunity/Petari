@@ -102,7 +102,7 @@ public:
     void updateFloorCode();
     void inputStick();
     void tryJump();
-    void tryForcePowerJump(TVec3f, bool);
+    void tryForcePowerJump(const TVec3f &, bool);
     const TVec3f& getShadowNorm() const;
     void setSideVec(const TVec3f &);
     void setFrontVecKeepSide(const TVec3f &);
@@ -214,7 +214,7 @@ public:
     MovementStates mMovementStates; // _8
 
     MovementStates _10;
-    u32 _14;
+    
     DrawStates mDrawStates; // _18
     DrawStates _1C;
     u32 _20;

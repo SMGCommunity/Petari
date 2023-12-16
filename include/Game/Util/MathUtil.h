@@ -67,8 +67,8 @@ namespace MR {
 
     f32 diffAngleAbs(f32, f32);
     f32 diffAngleAbs(const TVec3f &, const TVec3f &);
-    f32 diffAngleAbsHorizontal(TVec3f, TVec3f, TVec3f);
-    f32 diffAngleSignedHorizontal(TVec3f, TVec3f, TVec3f);
+    f32 diffAngleAbsHorizontal(const TVec3f &, const TVec3f &, const TVec3f &);
+    f32 diffAngleSignedHorizontal(const TVec3f &, const TVec3f &, const TVec3f &);
     f32 normalizeAngleAbs(f32);
     bool isAngleBetween(f32, f32, f32);
     f32 blendAngle(f32, f32, f32);

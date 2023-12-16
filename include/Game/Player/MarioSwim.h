@@ -2,6 +2,7 @@
 
 #include "Game/Player/MarioState.h"
 #include "Game/Player/WaterInfo.h"
+#include "Game/Player/MarioConst.h"
 
 class MarioActor;
 class MarineSnow;
@@ -43,6 +44,76 @@ public:
     f32 getSurface() const;
 
     virtual TVec3f& getGravityVec() const;
+
+    /*inline f32 helper1(f32 a, const Constants *c) {
+        return helper2(a, c->_4F4);
+    }
+
+    inline f32 helper2(f32 a, f32 b) {
+        return _4C * b + helper3(a, b);
+    }
+
+    inline f32 helper3(f32 a, f32 b) {
+        return a * (1.f - b);
+    }*/
+
+    /*inline f32 helper1(f32 a, const Constants *c) {
+        return _4C * getConstants(mActor->mConst)->_4F4 + a * (1.f - c->_4F4);
+    }*/
+
+    /*inline f32 arith1(f32 f, const Constants *c) {
+        //f32 val = ;
+        //f32 r = f * (1.f - val);
+        //f32 l = _4C * val;
+        return _4C * c->_4F4 + helper1(f, c->_4F4);
+    }*/
+
+    inline void prep(const Constants *c, f32 &out1, f32 &out2) {
+        out1 = getStickY();
+        out2 = c->_4F4;
+    }
+    inline void prep2(const Constants *c, f32 &out1, f32 &out2) {
+        out1 = getStickX();
+        out2 = c->_4F8;
+    }
+    inline void prep3(const Constants *c, f32 &out1, f32 &out2) {
+        out1 = getStickY();
+        out2 = c->_4EC;
+    }
+    inline void prep4(const Constants *c, f32 &out1, f32 &out2) {
+        out1 = getStickX();
+        out2 = c->_4F0;
+    }
+
+    inline f32 helper1(f32 b) {
+        return _4C * b;
+    }
+
+    inline f32 helper2(f32 a, f32 b) {
+        return a * (1f - b);
+    }
+
+    inline f32 helper3(f32 r, f32 l) {
+        return l + r;
+    }
+
+    template<class F>
+    inline void handleFunStuff(f32 f, const Constants *constant) {
+        f32 val = F::get(constant);
+        f32 r = f * (1.f - val);
+        f32 l = _4C * val;
+        _4C = l + r;
+    }
+    
+    inline void arith2(f32 f, const Constants *c) {
+        f32 val = c->_4EC;
+        f32 r = f * (1.f - val);
+        f32 l = _4C * val;
+        _4C = l + r;
+    }
+    inline bool check7Aand7C() const {
+        return _7A || _7C;
+    }
 
     MarineSnow* _14;
     u8 _18;

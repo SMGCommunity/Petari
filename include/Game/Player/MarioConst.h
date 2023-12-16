@@ -27,7 +27,9 @@ struct Constants {
     f32 _534;
     f32 _538;
     f32 _53C;
-    u8 _540[8];
+    f32 _540;
+    f32 _544;
+    f32 _548;
     f32 _54C;
     u16 _550;
     u16 _552;
@@ -45,5 +47,5 @@ public:
     MarioConst();
 
     const Constants* _0[2];
-    unsigned long _8; //luigi toggle?
+    u32 _8; //luigi toggle?
 };
