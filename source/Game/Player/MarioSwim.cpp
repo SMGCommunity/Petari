@@ -359,7 +359,7 @@ bool MarioSwim::update() {
                     getPlayer()->_10._1F = true;
                 }
                 bool tmp2 = false;
-                if(((_32 && _7A) || _7C) && (_28 >= tmp || _1C)) tmp2 = true;
+                if((!_32 || (_7A || _7C)) && (_28 >= tmp || _1C)) tmp2 = true;
                 if(mActor->isRequestSpin()) tmp2 = true;
                 if(tmp2) {
                     if(_24 > 6) {
@@ -491,15 +491,12 @@ bool MarioSwim::update() {
                     if(getStickY() < 0f) fr1c += 2f * -getStickY();
                     _50 *= fr1c;
                 }
-                else if(checkTrgZ()) {
-                    bool tmp = !(_7A || _7C);
-                    if(tmp) {
-                        stopAnimationUpper("水泳水面初期移動", nullptr);
-                        changeAnimation("水泳潜り", (const char *)nullptr);
-                        playEffect("水面Ｚ沈降");
-                        playSound("水面潜り", -1);
-                        _32 = getConstants(mActor->mConst)->_554;
-                    }
+                else if(checkTrgZ() && !check7Aand7C()) {
+                    stopAnimationUpper("水泳水面初期移動", nullptr);
+                    changeAnimation("水泳潜り", (const char *)nullptr);
+                    playEffect("水面Ｚ沈降");
+                    playSound("水面潜り", -1);
+                    _32 = getConstants(mActor->mConst)->_554;
                 }
                 else if(checkLvlZ() == 0) res = 0f;
                 else {
@@ -626,7 +623,7 @@ bool MarioSwim::update() {
                 _5C = _5C * getConstants(mActor->mConst)->_5BC + fr1d * (1f - getConstants(mActor->mConst)->_5BC);
             }
             else _5C = _5C * (1f - fr1e) + fr1d * fr1e;
-            if(check7Aand7C() && !_8A) changeAnimation("水泳ターン下", (const char *)nullptr);
+            if(!check7Aand7C() && !_8A) changeAnimation("水泳ターン下", (const char *)nullptr);
             r1b = false;
         }
         if(r1b) stopAnimation("水泳ターン下", (const char *)nullptr);
