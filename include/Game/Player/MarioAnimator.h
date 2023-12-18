@@ -25,6 +25,7 @@ public:
     bool isAnimationStop();
     void setSpeed(f32);
     void forceSetBlendWeight(const f32 *);
+    void waterToGround();
 
     XanimeResourceTable* _8;
     XanimePlayer* _C;

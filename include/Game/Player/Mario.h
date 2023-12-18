@@ -89,7 +89,10 @@ public:
     void decDamageAfterTimer();
     void incAirWalkTimer();
     void updateCubeCode();
-    void forceExitSwim();
+    void startSwim();
+    bool checkStartSwim();
+    bool forceExitSwim();
+    bool forceStartSwimAndShoot(const TVec3f &);
     bool isForceStopRush() const;
     unsigned long getCurrentStatus() const;
     bool trySpinJump(unsigned char);
@@ -104,8 +107,12 @@ public:
     void tryJump();
     void tryForcePowerJump(const TVec3f &, bool);
     const TVec3f& getShadowNorm() const;
+    const TVec3f& getWallNorm() const;
     void setSideVec(const TVec3f &);
     void setFrontVecKeepSide(const TVec3f &);
+    void lockGroundCheck(void *, bool);
+    void checkBaseTransBall();
+    void changeStatus(MarioState *);
 
     struct MovementStates {
         unsigned _0 : 1;

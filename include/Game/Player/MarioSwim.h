@@ -40,6 +40,8 @@ public:
     void updateTilt();
     void jet();
     void pushedByWaterWall();
+    void setDamage(const TVec3f &, u16);
+    void updateUnderwater();
     
     f32 getSurface() const;
 
