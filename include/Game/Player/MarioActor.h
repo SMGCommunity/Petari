@@ -183,6 +183,7 @@ public:
     void setBlink(const char *);
     void resetSensorCount();
     void getStickValue(f32 *, f32 *);
+    const HitSensor& getCarrySensor() const;
 
     inline u32 getHealth() const {
         return mHealth;

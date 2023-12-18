@@ -110,6 +110,10 @@ public:
     const TVec3f& getWallNorm() const;
     void setSideVec(const TVec3f &);
     void setFrontVecKeepSide(const TVec3f &);
+    void setFrontVecKeepUp(const TVec3f &, f32);
+    void setFrontVecKeepUp(const TVec3f &, u32);
+    void setFrontVecKeepUp(const TVec3f &);
+    void forceSetHeadVecKeepSide(const TVec3f &);
     void lockGroundCheck(void *, bool);
     void checkBaseTransBall();
     void changeStatus(MarioState *);

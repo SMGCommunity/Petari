@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Player/MarioState.h"
-#include "Game/Player/WaterInfo.h"
+#include "Game/Map/WaterInfo.h"
 #include "Game/Player/MarioConst.h"
 
 class MarioActor;
@@ -42,6 +42,7 @@ public:
     void pushedByWaterWall();
     void setDamage(const TVec3f &, u16);
     void updateUnderwater();
+    void startJet(u32);
     
     f32 getSurface() const;
 
@@ -181,7 +182,7 @@ public:
     u16 _EE;
     u16 _F0;
     WaterInfo _F4;
-    u32 _144;
+    s32 _144;
     TVec3f _148;
     TVec3f _154;
     TVec3f _160;

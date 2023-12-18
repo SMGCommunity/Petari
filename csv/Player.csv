@@ -1199,7 +1199,7 @@ checkStartSwim__5MarioFv,MarioSwim.o,Player.a,true
 startSwim__5MarioFv,MarioSwim.o,Player.a,true
 __ct__9MarioSwimFP10MarioActor,MarioSwim.o,Player.a,true
 init__9MarioSwimFv,MarioSwim.o,Player.a,true
-start__9MarioSwimFv,MarioSwim.o,Player.a,false
+start__9MarioSwimFv,MarioSwim.o,Player.a,true
 getSurface__9MarioSwimCFv,MarioSwim.o,Player.a,false
 update__9MarioSwimFv,MarioSwim.o,Player.a,false
 procBuoyancy__9MarioSwimFv,MarioSwim.o,Player.a,false

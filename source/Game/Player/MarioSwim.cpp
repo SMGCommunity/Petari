@@ -6,8 +6,30 @@
 #include "Game/Player/MarioAnimator.h"
 #include "Game/Util/SceneUtil.h"
 #include "Game/AreaObj/AreaObj.h"
+#include "Game/Screen/GameSceneLayoutHolder.h"
 
 namespace {
+    f32 cFrontAcc[40] = {
+        -0.2f, -0.2f, -0.2f, -0.1f, -0.1f, -0.1f, -0.1f, -0.1f,
+        -0.f,  -0.f,   0.f,   0.f,   0.f,   0.f,   0.f,   0.f,
+         0.f,   0.2f,  0.2f,  0.2f,  0.3f,  0.3f,  0.4f,  0.5f,
+         0.5f,  0.5f,  0.5f,  0.5f,  0.4f,  0.4f,  0.3f,  0.3f,
+         0.2f,  0.2f,  0.1f,  0.1f,  0.1f,  0.1f,  0.1f,  0.f
+    };
+
+    f32 cFrontAccSpin[30] = {
+         0.f,  0.f,  0.f,  0.f,  0.f,  8.f,  6.f,  4.f,
+         2.f,  1.f,  0.f,  0.f,  0.f,  0.f,  0.f,  0.f,
+         0.f,  0.f,  0.f,  0.f, -1.f, -1.f, -1.f, -1.f,
+        -1.f, -1.f, -1.f, -1.f, -1.f, -1.f
+    };
+
+    f32 cFrontAccSpinSurface[20] = {
+        0.f, 0.f, 0.f, 0.f, 0.f, 8.f, 6.f, 4.f,
+        2.f, 1.f, 0.f, 0.f, 0.f, 0.f, 0.f, 0.f,
+        0.f, 0.f, 0.f, 0.f
+    };
+    
     f32 cWeightTable[16] = {
         1f,    0f,    0f,    0f,
         0f,    1f,    0f,    0f,
@@ -15,6 +37,8 @@ namespace {
         0f,    0f,    0f,    1f,
         //0f,    0f,    0.75f, 0.25f
     };
+
+    f32 cWeightTableSP[4] = {0.f, 0.f, 0.75f, 0.25f};
 
 
     // In non-const mem region?
@@ -226,6 +250,12 @@ void MarioSwim::init() {
     _EA = getConstants(mActor->mConst)->_528;
 }
 
+//const f32 HALF_PI = 1.74532938004f;
+
+inline f32 getSpecialNumber() {
+    return 1.74532938004f;
+}
+
 bool MarioSwim::start() {
     _7C = 0;
     _4C = 0.f;
@@ -263,7 +293,7 @@ bool MarioSwim::start() {
     _1F = 0;
     _22 = 0;
     _58 = 0.f;
-    if(getPlayer()->getMovementStates()._0 || getPlayer()->_488 <= 100.f) {
+    if(!getPlayer()->getMovementStates()._0 || getPlayer()->_488 <= 100.f) {
         _58 = getConstants(mActor->mConst)->_500;
     }
     _9C = 1;
@@ -278,13 +308,13 @@ bool MarioSwim::start() {
     if(isAnimationRun("飛び込みジャンプ")) r1e = 1;
     if(isAnimationRun("後方飛び込みジャンプ")) {
         r1e = 1;
-        setFrontVecKeepUp(-getFrontVec(), -1.f);
+        getPlayer()->setFrontVecKeepUp(-getFrontVec(), -1.f);
     }
-    if(!mActor->_468) _8A = 0;
+    if(!mActor->_468l.x) _8A = 0;
     if(_9D == 4) r1d = 1;
-    if(_8A && getPlayer()->getMovementStates()->_0) {
-        if(getPlayer()->_10._1E) _1E = 2;
-        else getPlayer()->_8._0 = false;
+    if(_8A && getPlayer()->getMovementStates()._0) {
+        if(!getPlayer()->_10._1E) r1e = 2;
+        else getPlayer()->mMovementStates._0 = false;
     }
     getPlayer()->_10._1E = false;
     if(isAnimationRun("リングダッシュ")) r1e = 2;
@@ -295,7 +325,7 @@ bool MarioSwim::start() {
     stopAnimationUpper(nullptr, nullptr);
     changeAnimation(nullptr, "水泳基本");
     changeAnimationNonStop("水泳基本");
-    getPlayer()->_8._1 = false;
+    getPlayer()->mMovementStates._1 = false;
     f32 fr1f = _1A4;
     _2C = 0;
     _32 = 0;
@@ -306,10 +336,11 @@ bool MarioSwim::start() {
     _3A = 0;
     _1C = 0;
     if(fr1f < -_19C) {
-        mActor->emitEffectWaterColumn(-_160, _160 % fr1f - getTrans());
+        MarioActor *actor = mActor;
+        actor->emitEffectWaterColumn(-_160, getTrans() - _160 % fr1f);
     }
     else mActor->emitEffectWaterColumn(_160, _16C);
-    if((getPlayer()->getMovementStates()._0 || getPlayer()._488 > 100.f) && r1e) {
+    if(!getPlayer()->getMovementStates()._0 || getPlayer()->_488 > 100.f || r1e) {
         TVec3f stack_44;
         _24 = 0;
         Mario *mario = getPlayer();
@@ -320,13 +351,15 @@ bool MarioSwim::start() {
         fr1f = MR::clamp(fr1f, 0.f, 1.f);
         if(_19) _19 = 0;
         if(_144 == 3) {
+            f32 ftmp = getConstants(mActor->mConst)->_4B4;
+            f32 ftmp2 = (0.2f + 0.1f * fr1f);
             _34 = 0x3C;
-            _54 = (0.2f + 0.1f * fr1f) * getConstants(mActor->mConst)->_4B4;
+            _54 = ftmp2 * ftmp;
         }
         else if(getPlayer()->getMovementStates()._B || r1e) {
             _54 = 10.f;
             if(_8A) changeAnimationNonStop("水泳ジェット");
-            else changeAnimation("水泳ジャンプダイブ回転", nullptr);
+            else changeAnimation("水泳ジャンプダイブ回転", (const char*)nullptr);
             playEffect("水面Ｚ沈降");
             switch(r1e) {
                 case 0:
@@ -343,20 +376,23 @@ bool MarioSwim::start() {
                     _2E = getConstants(mActor->mConst)->_566;
                     break;
             }
-            _5C = cLimitAngleSink * (1.f - fr1f) + fr1f * 1.74532938004f;
+            f32 ftmp2 = cLimitAngleSink * (1.f - fr1f);
+            //ftmp2 *= cLimitAngleSink;
+            //f32 ftmp = fr1f * 1.74532938004f;
+            _5C = ftmp2 + fr1f * getSpecialNumber();
             TVec3f stack_38(_60);
             stack_38.y = -10.f;
             MR::normalize(&stack_38);
             getPlayer()->forceSetHeadVecKeepSide(stack_38);
         }
-        else if(fr1d) {
-            changeAnimation("水上ダメージ着水", nullptr);
+        else if(r1d) {
+            changeAnimation("水上ダメージ着水", (const char*)nullptr);
             _2E = getConstants(mActor->mConst)->_51E;
             _AE = 0x78;
         }
         else {
             _54 = (0.2f + 0.1f * fr1f) * getConstants(mActor->mConst)->_4B4;
-            changeAnimation("水泳ジャンプダイブ", nullptr);
+            changeAnimation("水泳ジャンプダイブ", (const char*)nullptr);
             mActor->setBlendMtxTimer(8);
             _2C = 15;
             _2E = getConstants(mActor->mConst)->_51C;
@@ -366,18 +402,16 @@ bool MarioSwim::start() {
                 f32 ftmp = (getPlayer()->_488 / 200.f);
                 _2C *= ftmp;
                 _2E *= ftmp;
-                setBlendMtxTimer(8.f * ftmp);
+                mActor->setBlendMtxTimer(8.f * ftmp);
             }
         }
     }
     else if(_19) {
         _AE = 0x5A;
         MR::vecKillElement(mActor->getLastMove(), _6C, &_A0);
-        _A0 *= 0.5f;
-        _A4 *= 0.5f;
-        _A8 *= 0.5f;
+        _A0.scaleInline(0.5f);
     }
-    if(mActor->_468) {
+    if(mActor->_468l.x) {
         if(!_8A) {
             if(mActor->getCarrySensor().isType(15) || mActor->getCarrySensor().isType(16)) {
                 u32 r1b = 0;
@@ -410,6 +444,13 @@ inline f32 stupid(f32 l, f32 r) {
 inline f32 stupidV2(f32 l, f32 r) {
     return l + r * l;
 }
+
+void dummyFunction() {
+    cFrontAcc[0] = 1.f;
+    cFrontAccSpin[0] = 1.f;
+    cFrontAccSpinSurface[0] = 1.f;
+    cWeightTableSP[0] = 1.f;
+};
 
 
 /* The worthlesser variable, as its name suggests, has no purpose.

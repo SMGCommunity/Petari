@@ -333,7 +333,7 @@ void MarioActor::movement() {
                 else if(mMario -> isAnimationRun("坂すべり上向きうつぶせ")) {
                     mMario -> push(mMario -> _208 % -5f);
                 }
-                mMario -> _14 |= 0x20000000;
+                mMario -> mDrawStates._2 = true;
             }
         }
         if(getMovementStates()._0 && !_9F1) {
@@ -424,7 +424,7 @@ void MarioActor::movement() {
                 else if(mMario -> _5FC) {
                     if(!MR::isWallCodeNoAction(plane) && !mMario -> isOnimasuBinderPressSkip()) {
                         _3B4 = mMario -> _368;
-                        mMario -> _10 &= ~(u32)4;
+                        mMario -> _10._3E = false;
                         *mMario -> _4C8 = *plane;
                         setPress(2, 0);
                         _3B0 = 0.1f;
@@ -670,10 +670,10 @@ bool MarioActor::doRush() {
                 }
                 if(initial == 2) {
                     _384 = 8;
-                    MR::getGameSceneLayoutHolder().changeLifeMeterGround();
+                    MR::getGameSceneLayoutHolder().changeLifeMeterModeGround();
                     mMario -> forceExitSwim();
                 }
-                else if(initial == 0) MR::getGameSceneLayoutHolder().changeLifeMeterSwim();
+                else if(initial == 0) MR::getGameSceneLayoutHolder().changeLifeMeterModeWater();
             }
         }
         if(mMario -> isForceStopRush()) {
