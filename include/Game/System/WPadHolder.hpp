@@ -26,6 +26,7 @@ public:
     void initSensorBarPosition();
     void resetPad();
     WPad* getWPad(s32);
+    static void setConnectCallback();
 
     WPad* mPads[2];                             // _0
     WPadReadDataInfo* mDataInfoArray;           // _8

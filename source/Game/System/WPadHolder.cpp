@@ -1,8 +1,16 @@
+#include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadPointer.hpp"
 #include <revolution/wpad.h>
 #include "Game/Util/MemoryUtil.hpp"
+
+namespace {
+    WPadHolder* getWPadHolder() NO_INLINE {
+        return SingletonHolder<GameSystem>::sInstance->mObjHolder->mWPadHolder;
+    }
+};
 
 WPadReadDataInfo::WPadReadDataInfo() {
     mStatusArray = nullptr;
@@ -21,6 +29,23 @@ KPADStatus* WPadReadDataInfo::getKPadStatus(u32 idx) const {
 
 u32 WPadReadDataInfo::getValidStatusCount() const {
     return mValidStatusCount;
+}
+
+WPadHolder::WPadHolder() {
+    mDataInfoArray = nullptr;
+    mHolderMode = 1;
+    WPADRegisterAllocator(MR::allocFromWPadHeap, MR::freeFromWPadHeap);
+    KPADInit();
+    mDataInfoArray = new WPadReadDataInfo[4];
+
+    for (u32 i = 0; i < 2; i++) {
+        WPad* pad = new WPad(i);
+        mPads[i] = pad;
+        pad->setReadInfo(&mDataInfoArray[i]);
+    }
+
+    setConnectCallback();
+    initSensorBarPosition();
 }
 
 void WPadHolder::updateReadDataOnly() {
@@ -94,3 +119,29 @@ WPad* WPadHolder::getWPad(s32 idx) {
 
     return nullptr; 
 }
+
+namespace MR {
+    WPad* getWPad(s32 idx) {
+        return ::getWPadHolder()->getWPad(idx);
+    }
+
+    void resetWPad() {
+        ::getWPadHolder()->resetPad();
+    }
+
+    void setWPadHolderModeHomeButton() {
+        WPadHolder* holder = ::getWPadHolder();
+        holder->mHolderMode = 0;
+    }
+
+    void setWPadHolderModeGame() {
+        WPadHolder* holder = ::getWPadHolder();
+        holder->mHolderMode = 1;
+    }
+
+    // getHBMKPadData
+
+    void setAutoSleepTimeWiiRemote(bool a1) {
+        WPADSetAutoSleepTime(a1 != false ? 15 : 5);
+    }
+};

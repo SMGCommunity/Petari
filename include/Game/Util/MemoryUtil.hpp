@@ -22,6 +22,9 @@ namespace MR {
     void zeroMemory(void *, u32);
     s32 calcCheckSum(const void *, u32);
 
+    void* allocFromWPadHeap(u32);
+    u8 freeFromWPadHeap(void *);
+
     JKRExpHeap* getStationedHeapNapa();
     JKRExpHeap* getStationedHeapGDDR3();
     JKRSolidHeap* getSceneHeapNapa();

@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 10 / 19 Completed -- (52.63157894736842%)
+# 17 / 19 Completed -- (89.47368421052632%)
 # WPadHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__16WPadReadDataInfoFv` | :white_check_mark: |
 | `getKPadStatus__16WPadReadDataInfoCFUl` | :white_check_mark: |
 | `getValidStatusCount__16WPadReadDataInfoCFv` | :white_check_mark: |
-| `__ct__10WPadHolderFv` | :x: |
+| `__ct__10WPadHolderFv` | :white_check_mark: |
 | `updateReadDataOnly__10WPadHolderFv` | :white_check_mark: |
 | `updateProjectPadData__10WPadHolderFv` | :white_check_mark: |
 | `updateInGame__10WPadHolderFv` | :white_check_mark: |
@@ -21,10 +21,10 @@
 | `resetPad__10WPadHolderFv` | :white_check_mark: |
 | `getWPad__10WPadHolderFl` | :white_check_mark: |
 | `setConnectCallback__10WPadHolderFv` | :x: |
-| `getWPadHolder__24@unnamed@WPadHolder_cpp@Fv` | :x: |
-| `getWPad__2MRFl` | :x: |
-| `resetWPad__2MRFv` | :x: |
-| `setWPadHolderModeHomeButton__2MRFv` | :x: |
-| `setWPadHolderModeGame__2MRFv` | :x: |
+| `getWPadHolder__24@unnamed@WPadHolder_cpp@Fv` | :white_check_mark: |
+| `getWPad__2MRFl` | :white_check_mark: |
+| `resetWPad__2MRFv` | :white_check_mark: |
+| `setWPadHolderModeHomeButton__2MRFv` | :white_check_mark: |
+| `setWPadHolderModeGame__2MRFv` | :white_check_mark: |
 | `getHBMKPadData__2MRFP11HBMKPadDatal` | :x: |
-| `setAutoSleepTimeWiiRemote__2MRFb` | :x: |
+| `setAutoSleepTimeWiiRemote__2MRFb` | :white_check_mark: |

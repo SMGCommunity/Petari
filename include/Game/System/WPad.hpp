@@ -10,6 +10,7 @@ class WPadRumble;
 class WPadStick;
 class WPadLeaveWatcher;
 class WPadInfoChecker;
+class WPadReadDataInfo;
 
 class WPad {
 public:
@@ -17,6 +18,7 @@ public:
 
     u32 getValidStatusCount() const;
     KPADStatus* getKPadStatus(u32) const;
+    void setReadInfo(WPadReadDataInfo *);
 
     void update();
     void resetPad();

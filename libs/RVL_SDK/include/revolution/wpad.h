@@ -8,6 +8,10 @@
 extern "C" {
 #endif
 
+typedef void (*WPADCallback)(s32, s32);
+typedef void* (*WPADAlloc)(u32);
+typedef u8 (*WPADFree)(void*);
+
 typedef struct WPADInfo {
     BOOL dpd;
     BOOL speaker;
@@ -20,9 +24,7 @@ typedef struct WPADInfo {
     u8 firmware;
 } WPADInfo;
 
-
-typedef void (*WPADCallback)(s32, s32);
-
+void WPADRegisterAllocator(WPADAlloc, WPADFree);
 u32 WPADGetWorkMemorySize(void);
 
 BOOL WPADIsSpeakerEnabled(s32);
@@ -34,6 +36,8 @@ u8 WPADGetSensorBarPosition(void);
 void WPADDisconnect(s32);
 
 s32 WPADGetInfoAsync(s32, WPADInfo *, WPADCallback);
+
+void WPADSetAutoSleepTime(u8);
 
 #ifdef __cplusplus
 }
