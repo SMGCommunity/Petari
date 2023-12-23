@@ -8,7 +8,7 @@ setSpeakerOnCallback__14SpkSpeakerCtrlFll,SpkSpeakerCtrl.o,Speaker.a,true
 setSpeakerPlay__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 startPlayCallback__14SpkSpeakerCtrlFll,SpkSpeakerCtrl.o,Speaker.a,false
 setSpeakerOff__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
-retryConnection__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,false
+retryConnection__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 reconnect__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 framework__14SpkSpeakerCtrlFv,SpkSpeakerCtrl.o,Speaker.a,true
 reconnectProcess__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true

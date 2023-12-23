@@ -43,6 +43,15 @@ public:
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
 
+    static void initInfoDefaults(s32 idx) {
+        sSpeakerInfo[idx]._0 = 1;
+        sSpeakerInfo[idx]._1 = 0;
+        sSpeakerInfo[idx]._24 = 0;
+        SpkSpeakerCtrl::initReconnect(idx);
+        sSpeakerInfo[idx]._30 = -1;
+        SpkSpeakerCtrl::setSpeakerOn(idx);
+    }
+
     static SpeakerInfo sSpeakerInfo[4];
 
     static SpkMixingBuffer* sMixingBuffer;

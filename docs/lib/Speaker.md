@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [SpkSpeakerCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker/SpkSpeakerCtrl.md) | 55.497382198952884% | 15 / 21 | 71.42857142857143% | :eight_pointed_black_star: 
+| [SpkSpeakerCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker/SpkSpeakerCtrl.md) | 58.289703315881326% | 16 / 21 | 76.19047619047619% | :eight_pointed_black_star: 
 | [SpkSystem.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker/SpkSystem.md) | 70.3125% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | [SpkMixingBuffer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker/SpkMixingBuffer.md) | 55.952380952380956% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
 | [SpkWave.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker/SpkWave.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 

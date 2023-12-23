@@ -1,5 +1,6 @@
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include <revolution/wpad.h>
+#include <mem.h>
 
 SpkSoundHandle sAdjustSoundHandle[4];
 
@@ -11,19 +12,11 @@ void SpkSpeakerCtrl::setMixingBuffer(SpkMixingBuffer *pMixingBuffer) {
 
 // SpkSpeakerCtrl::setup
 
-#ifdef NON_MATCHING
-// reguse issues
 void SpkSpeakerCtrl::connect(s32 idx) {
     BOOL state = OSDisableInterrupts();
-    sSpeakerInfo[idx]._0 = 1;
-    sSpeakerInfo[idx]._1 = 0;
-    sSpeakerInfo[idx]._24 = 0;
-    SpkSpeakerCtrl::initReconnect(idx);
-    sSpeakerInfo[idx]._30 = -1;
-    SpkSpeakerCtrl::setSpeakerOn(idx);
+    initInfoDefaults(idx);
     OSRestoreInterrupts(state);
 }
-#endif
 
 void SpkSpeakerCtrl::setSpeakerOn(s32 idx) {
     BOOL state = OSDisableInterrupts();
@@ -68,7 +61,27 @@ void SpkSpeakerCtrl::setSpeakerPlay(s32 idx) {
     OSRestoreInterrupts(state);
 }
 
-// SpkSpeakerCtrl::startPlayCallback
+#ifdef NON_MATCHING
+void SpkSpeakerCtrl::startPlayCallback(s32 idx, s32 a2) {
+    BOOL enabled = OSDisableInterrupts();
+
+    if (!enabled) {
+        SpeakerInfo* inf = &sSpeakerInfo[idx];
+        inf->_1 = 1;
+        inf->_22 = 1;
+        inf->_24 = 0;
+        inf->_30 = 28800;
+        memset(&sSpeakerInfo[idx]._2, 0, 0x20);
+    }
+    else {
+        if (enabled == -3) {
+            sSpeakerInfo[idx]._24 = 2;
+        }
+    }
+
+    OSRestoreInterrupts(enabled);
+}
+#endif
 
 void SpkSpeakerCtrl::setSpeakerOff(s32 idx) {
     sSpeakerInfo[idx]._1 = 0;
@@ -77,10 +90,11 @@ void SpkSpeakerCtrl::setSpeakerOff(s32 idx) {
     WPADControlSpeaker(idx, 0, 0);
 }
 
-#ifdef NON_MATCHING
-// fun switch case mismatches
 void SpkSpeakerCtrl::retryConnection(s32 idx) {
     switch (sSpeakerInfo[idx]._24) {
+        case 0:
+        case 3:
+            break;
         case 1:
             SpkSpeakerCtrl::setSpeakerOn(idx);
             break;
@@ -89,7 +103,6 @@ void SpkSpeakerCtrl::retryConnection(s32 idx) {
             break;
     }
 }
-#endif
 
 void SpkSpeakerCtrl::reconnect(s32 idx) {
     if (sSpeakerInfo[idx]._0) {

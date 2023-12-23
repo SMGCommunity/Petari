@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 15 / 21 Completed -- (71.42857142857143%)
+# 16 / 21 Completed -- (76.19047619047619%)
 # SpkSpeakerCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -18,7 +18,7 @@
 | `setSpeakerPlay__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `startPlayCallback__14SpkSpeakerCtrlFll` | :x: |
 | `setSpeakerOff__14SpkSpeakerCtrlFl` | :white_check_mark: |
-| `retryConnection__14SpkSpeakerCtrlFl` | :x: |
+| `retryConnection__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `reconnect__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `framework__14SpkSpeakerCtrlFv` | :white_check_mark: |
 | `reconnectProcess__14SpkSpeakerCtrlFl` | :white_check_mark: |

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution/types.h>
+
 struct SomeStruct {
     u32 _0;
     u32 _4;
