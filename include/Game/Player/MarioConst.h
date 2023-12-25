@@ -3,6 +3,8 @@
 class MarioActor;
 
 struct Constants { 
+    
+    
     u8 _0[0x426]; // dummy variable
     u16 _426;
     u8 _428[0x8C];
@@ -11,10 +13,7 @@ struct Constants {
     f32 _4E0;
     f32 _4E4;
     f32 _4E8;
-    f32 _4EC;
-    f32 _4F0;
-    f32 _4F4;
-    f32 _4F8;
+    f32 _4EC[4];
     f32 _4FC;
     f32 _500;
     u8 _504[0x10];
@@ -50,6 +49,10 @@ struct Constants {
     u8 _5C0[0x108];
     u16 _6C8;
 };
+
+inline f32 getSwimValue(f32, u32 idx, const Constants *c) {
+    return c->_4EC[idx];
+}
 
 class MarioConst {
 public:

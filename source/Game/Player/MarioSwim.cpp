@@ -1,7 +1,6 @@
 #include "Game/Player/MarioSwim.h"
 #include "Game/Player/MarineSnow.h"
 #include "Game/Player/MarioConst.h"
-#include "Game/Player/Mario.h"
 #include "Game/Player/MarioActor.h"
 #include "Game/Player/MarioAnimator.h"
 #include "Game/Util/SceneUtil.h"
@@ -56,17 +55,6 @@ namespace {
 
 static inline const Constants* getConstants(const MarioConst *constSelector) {
     return constSelector->_0[constSelector->_8];
-}
-
-class Constants_4F4 {
-public:
-    static inline f32 get(const Constants *c) {
-        return c->_4F4;
-    }
-};
-
-static inline TVec3f get380(const MarioSwim &marioSwim) {
-    return marioSwim.getPlayer()->_380;
 }
 
 bool Mario::isSwimming() const {
@@ -489,6 +477,17 @@ inline f32 stupidV2(f32 l, f32 r) {
     return l + r * l;
 }
 
+/*
+ * 
+ * ***********************************************
+ * IMPORTANT: THIS FUNCTION SHOULD BE DELETED ONCE
+ * THIS OBJECT FILE MATCHES
+ * ***********************************************
+ *
+ * This function is only present so that the
+ * compiler does not cull these variables
+ *
+ */
 void dummyFunction() {
     cFrontAcc[0] = 1.f;
     cFrontAccSpin[0] = 1.f;
@@ -611,12 +610,12 @@ bool MarioSwim::update() {
         getPlayer()->mDrawStates._F
         && _19C > 0.963775992393f
         && MR::diffAngleAbsHorizontal (
-            -get380(*this),
+            -getPlayer380(),
             getWorldPadDir(),
             getPlayer()->getAirGravityVec()
         ) < 0.196349546313f
     ) {
-        if(calcAngleD(get380(*this)) >= 30f) {
+        if(calcAngleD(getPlayer380()) >= 30f) {
             _9E = 5;
             return false;
         }
@@ -790,8 +789,9 @@ bool MarioSwim::update() {
                         _1E = 0;
                     }
 
-                  f32 a, b;
-                  prep(getConstants(mActor->mConst), a, b);
+                  f32 a;
+                  f32 b;
+                  b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
                 //f32 r = ;
                 //f32 l = _4C * b;
                 //_4C = stupid(a * (1.f - b), _4C * b);
@@ -800,7 +800,7 @@ bool MarioSwim::update() {
                   
                 //handleFunStuff<Constants_4F4>(getStickY(), getConstants(mActor->mConst));
                      
-                    _50 = 2.5f * (getStickX() * (1f - getConstants(mActor->mConst)->_4F8));
+                    _50 = 2.5f * (getStickX() * (1f - getConstants(mActor->mConst)->_4EC[3]));
                     f32 fr1c = 1f;
                     if(getStickY() < 0f) fr1c += 2f * -getStickY();
                     _50 *= fr1c;
@@ -814,11 +814,12 @@ bool MarioSwim::update() {
                 }
                 else if(checkLvlZ() == 0) res = 0f;
                 else {
-                    arith2(getStickP(), getConstants(mActor->mConst));
-                    //_4C = _4C * getConstants(mActor->mConst)->_4EC + getStickP() * (1f - getConstants(mActor->mConst)->_4EC);
+                    f32 a, b;
+                    b = getSwimValue(a = getStickP(), 0, getConstants(mActor->mConst));
+                    _4C = _4C * b + stupid(a, b);
                 }
             }
-            _50 *= getConstants(mActor->mConst)->_4F0;
+            _50 *= getConstants(mActor->mConst)->_4EC[1];
         }
         else {
             if(!_8C && _1A4 > 200f && checkTrgZ() && !_32 && !_2E && !_8A && !check7Aand7C()) {
@@ -829,16 +830,12 @@ bool MarioSwim::update() {
                 _32 = getConstants(mActor->mConst)->_554;
             }
             if(_8A) {
-                //_4C = _4C * getConstants(mActor->mConst)->_4F4 + getStickY() * (1f - getConstants(mActor->mConst)->_4F4);
-                //_4C = arith1(getStickY(), getConstants(mActor->mConst));
-                  f32 a, b;
-                  prep(getConstants(mActor->mConst), a, b);
-                //f32 r = ;
-                //f32 l = _4C * b;
-                //_4C = stupid(a * (1.f - b), _4C * b);
+                  f32 a;
+                  f32 b;
+                  b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
                 _4C = _4C * b + stupid(a, b);
                 
-                  prep2(getConstants(mActor->mConst), a, b);
+                  b = getSwimValue(a = getStickX(), 3, getConstants(mActor->mConst));
                 //f32 r = ;
                 //f32 l = _4C * b;
                 //_4C = stupid(a * (1.f - b), _4C * b);
@@ -847,12 +844,12 @@ bool MarioSwim::update() {
             }
             else {
                 f32 a, b;
-                  prep3(getConstants(mActor->mConst), a, b);
+                b = getSwimValue(a = getStickY(), 0, getConstants(mActor->mConst));
                 //f32 r = ;
                 //f32 l = _4C * b;
                 //_4C = stupid(a * (1.f - b), _4C * b);
                 _4C = _4C * b + stupid(a, b);
-                  prep4(getConstants(mActor->mConst), a, b);
+                b = getSwimValue(a = getStickX(), 1, getConstants(mActor->mConst));
                 //f32 r = ;
                 //f32 l = _4C * b;
                 //_4C = stupid(a * (1.f - b), _4C * b);
