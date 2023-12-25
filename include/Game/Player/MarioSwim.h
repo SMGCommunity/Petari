@@ -50,6 +50,43 @@ public:
 
     virtual TVec3f& getGravityVec() const;
 
+    /* The worthlesser variable, as its name suggests, has no purpose.
+       It achieves nothing in life. Its existence is completely devoid of value.
+       Nevertheless, the compiler left evidence of this forgettable variable behind.
+       As a result, we know that it existed, but we do not know how precisely it achieved nothing.
+    
+       Summary:
+       worthlesser does not impact the behavior of this function.
+    
+     */
+
+    static inline f32 getWorthlessNumber() {
+        return 0.523598790169f;
+    }
+    
+    inline void funReferenceTime(bool &worthlesser) {
+        if(_5C > 1.57079637051f) worthlesser = true;
+        else {
+            if(_3C > 0x1E) {
+                _1E = 1;
+            }
+            worthlesser = false;
+            if(getStickY() > 0f) {
+                f32 stickY = getStickY();
+                    // Note: The binary does not tell us whether this comparison is > or <.
+                    // It is not == because that generates an fcmpu instruction, not fcmpo.
+                    // It is not <= or >= because those generate cror instructions.
+                if(getWorthlessNumber() + getWorthlessNumber() * stickY < _5C
+    
+                    // This comparison needs to be present for the compiler to optimize the condition
+                    // accurately.
+                    && worthlesser
+                ) return;
+            }
+        }
+        worthlesser = true;
+    }
+
     inline TVec3f getPlayer380() const {
         return getPlayer()->_380;
     }

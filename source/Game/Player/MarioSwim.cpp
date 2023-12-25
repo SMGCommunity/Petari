@@ -473,105 +473,9 @@ inline f32 procAngle(f32 l, f32 r) {
     return l * (1f - r);
 }
 
-inline f32 stupidV2(f32 l, f32 r) {
-    return l + r * l;
-}
-
-/*
- * 
- * ***********************************************
- * IMPORTANT: THIS FUNCTION SHOULD BE DELETED ONCE
- * THIS OBJECT FILE MATCHES
- * ***********************************************
- *
- * This function is only present so that the
- * compiler does not cull these variables
- *
- */
-void dummyFunction() {
-    cFrontAcc[0] = 1.f;
-    cFrontAccSpin[0] = 1.f;
-    cFrontAccSpinSurface[0] = 1.f;
-    cWeightTableSP[0] = 1.f;
-};
-
-
-/* The worthlesser variable, as its name suggests, has no purpose.
-   It achieves nothing in life. Its existence is completely devoid of value.
-   Nevertheless, the compiler left evidence of this forgettable variable behind.
-   As a result, we know that it existed, but we do not know how precisely it achieved nothing.
-
-   Summary:
-   worthlesser does not impact the behavior of this function.
-
- */
-inline void funReferenceTime(MarioSwim &self, bool &worthlesser) {
-    if(self._5C > 1.57079637051f) worthlesser = true;
-    else {
-        if(self._3C > 0x1E) {
-            self._1E = 1;
-        }
-        worthlesser = false;
-        if(self.getStickY() > 0f
-            // Note: The binary does not tell us whether this comparison is > or <.
-            // It is not == because that generates an fcmpu instruction, not fcmpo.
-            // It is not <= or >= because those generate cror instructions.
-            && stupidV2(0.523598790169f, self.getStickY()) < self._5C
-
-            // This comparison needs to be present for the compiler to optimize the condition
-            // accurately.
-            && worthlesser
-        ) return;
-    }
-    worthlesser = true;
-}
-
+// possibly related to other calculations that take similar form?
 inline f32 calculate(f32 stick) {
     return cLimitAngleSink + (cLimitAngleWait - cLimitAngleSink) * stick;
-}
-
-static inline f32 gg(f32 a) {
-    a = 0.01f * a;
-    if(a <= 0.01f) a = 0.01f;
-    return a;
-
-}
-
-static inline f32 ggg(const MarioSwim &self) {
-        if(self._19) {
-            return gg(12.f - self._54);
-        }
-        else {
-            return 0.01f * (10f - self._54);
-        }
-
-}
-
-static inline f32 gggg(const MarioSwim &self, f32 a) {
-        if(self._8A) a *= 3.f;
-        return a;
-}
-
-static inline f32 fixFRegIssue(const MarioSwim &self) {
-        return gggg(self, ggg(self));
-}
-
-static inline f32 get4E8(MarioActor &constSelectors) {
-    const MarioConst &constSelector = *constSelectors.mConst;
-    return constSelector._0[constSelector._8]->_4E8;
-}
-
-static inline f32 get4E4(MarioActor &constSelectors) {
-    const MarioConst &constSelector = *constSelectors.mConst;
-    return constSelector._0[constSelector._8]->_4E4;
-}
-
-static inline f32 calcRadFor60(const MarioSwim &self) {
-    return self._50 * getConstants(self.mActor->mConst)->_4E4;
-}
-
-static inline bool angleGTNegative(f32 l, f32 r) {
-    return l < -r;
 }
 
 static inline TVec3f createAndScale(f32 scalar, const TVec3f &v) {
@@ -581,7 +485,7 @@ static inline TVec3f createAndScale(f32 scalar, const TVec3f &v) {
 }
 
 bool MarioSwim::update() {
-    bool r1e = false; // 1f = 805cbc80
+    bool r1e = false;
     _24++;
     if(_22) {
         _9E = 5;
@@ -634,7 +538,6 @@ bool MarioSwim::update() {
         _4C = 0f;
     }
     _6C = -getPlayer()->getAirGravityVec();
-    // ftmp is reg swapped from 1e to 1d
     f32 fTmp = getSurface() - 30f;
     if(_1B0) _1B0--;
     if(_19 || (_20 && checkTrgA())) {
@@ -667,7 +570,6 @@ bool MarioSwim::update() {
                 }
                 if(mActor->isRequestSpinJump2P()) {
                     _28 = tmp;
-                    // rlwimi write bit is wrong reg, probably bc tmp is wrong reg
                     getPlayer()->_1C._A = true;
                     getPlayer()->_10._1F = true;
                 }
@@ -676,9 +578,7 @@ bool MarioSwim::update() {
                 if(mActor->isRequestSpin()) tmp2 = true;
                 if(tmp2) {
                     if(_24 > 6) {
-                        // res is reg swapped from fr1d to fr1b
                         f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
-                        //tmp = 0;
                         getPlayer()->mMovementStates._5 = false;
                         getPlayer()->_278 = res;
                         getPlayer()->tryJump();
@@ -701,13 +601,11 @@ bool MarioSwim::update() {
             _2C = 0;
         }
         if(_7C > 10) {
-            // res is regswapped from 1d to 1b
             f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
             TVec3f stack_188;
             mActor->getLastMove(&stack_188);
-            // res2 is regswapped the same way as res
             f32 res2 = MR::vecKillElement(stack_188, getGravityVec(), &stack_188);
             if(res2 > -10f) res2 = -10f;
             stack_188 += getGravityVec() % res2;
@@ -722,7 +620,6 @@ bool MarioSwim::update() {
             return false;
         }
         if(_8C && getPlayer()->_488 - _19C > 200f) {
-            // Regswap as per usual
             f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
@@ -740,7 +637,6 @@ bool MarioSwim::update() {
             PSVECCrossProduct(_60.toCVec(), rShadowNorm.toCVec(), stack_17C.toVec());
             PSVECCrossProduct(rShadowNorm.toCVec(), stack_17C.toCVec(), stack_170.toVec());
             if(-_19C + _1A4 > 1000f) _1A = 1;
-            // dot1 should be in fr1e, ends up in fr1d
             f32 dot1 = _60.dot(stack_170);
             f32 dot2 = _60.dot(rShadowNorm);
             if(dot2 >= 0f) {
@@ -839,7 +735,7 @@ bool MarioSwim::update() {
             }
         }
         if(!_20 && !_3C && _2C) {
-            _5C += res * (_4C * getConstants(mActor->mConst)->_4E0); // Sequentially after the other setting of res
+            _5C += res * (_4C * getConstants(mActor->mConst)->_4E0);
         }
 
         if (
@@ -851,7 +747,7 @@ bool MarioSwim::update() {
         if(!checkLvlA() && !checkLvlZ() && !_2C && _54 < cTurnMotionSpeed) {
             bool worthless;
             bool &worthlesser = worthless;
-            funReferenceTime(*this, worthlesser);
+            funReferenceTime(worthlesser);
             if(!_20 && !_AE && _19C < -400f) {
                 _3C++;
                 if(MR::getRandom() < 0.03f) playSound("水中ウエイト", -1);
@@ -905,10 +801,8 @@ bool MarioSwim::update() {
             fr1d = getConstants(mActor->mConst)->_54C;
         }
         bool r1b = true;
-        //f32 prod = fr1d * fr1e;
         _5C = _5C * (1f - fr1e) + fr1d * fr1e;
         if(_3C && !_AE && !_32 && getStickY() > 0f) {
-            //wrong register
             f32 fr1c = 3.14159274101f / getConstants(mActor->mConst)->_5B8;
             f32 tmpsticky = getStickY();
             fr1d = 0.523598790169f + tmpsticky * (fr1c - 0.523598790169f);
@@ -927,10 +821,18 @@ bool MarioSwim::update() {
         if(MR::isStageSwimAngleLimit()) _5C = MR::clamp(_5C, 0.872664690018f, 2.26892805099f);
     }
     
-    // 802fc7d8
     if((_20 || (_19 && isStickOn())) && !_8A) {
         TVec3f stack_164(getWorldPadDir());
-        f32 res = MR::clamp(fixFRegIssue(*this) * getConstants(mActor->mConst)->_518, 0f, 1f);
+        f32 tmp;
+            if(_19) {
+                tmp = 0.01f * (12.f - _54);
+                if(tmp <= 0.01f) tmp = 0.01f;
+            }
+            else {
+                tmp = 0.01f * (10.f - _54);
+            }
+        if(_8A) tmp *= 3.f;
+        f32 res = MR::clamp(tmp * getConstants(mActor->mConst)->_518, 0f, 1f);
         f32 diffAngle = MR::diffAngleAbs(_60, stack_164);
         if(diffAngle > 0f) {
             if(diffAngle < res) _60 = stack_164;
@@ -938,7 +840,7 @@ bool MarioSwim::update() {
         }
     }
     else {
-        f32 tmp = fr1f + get4E8(*mActor);
+        f32 tmp = fr1f + getConstants(mActor->mConst)->_4E8;
         MR::rotAxisVecRad(_60, -_6C, &_60, tmp * (_50 * getConstants(mActor->mConst)->_4E4));
     }
     TVec3f stack_158(_60);
@@ -967,9 +869,7 @@ bool MarioSwim::update() {
         PSVECCrossProduct(stack_14C.toCVec(), stack_140.toCVec(), stack_110.toVec());
     }
     if(!_8A) decideVelocity();
-    //f32 fr1d = _54;
     TVec3f stack_104 = createAndScale(_54, stack_110);
-    //stack_104.scale(fr1d);
     if(_19 && _6C.dot(stack_110) > 0f) {
         f32 mag = PSVECMag(stack_104.toCVec());
         MR::vecKillElement(stack_104, _6C, &stack_104);
@@ -1020,7 +920,6 @@ bool MarioSwim::update() {
                     )
                 ;
                 if (!cond) {
-                    // Probably some inline function for the magnitude
                     if(PSVECMag((stack_F8 - _154).toCVec()) < 10f) addVelocity(stack_F8 - _154);
                     _154 = stack_F8;
                 }
@@ -1079,3 +978,21 @@ bool MarioSwim::update() {
     pushedByWaterWall();
     return true;
 }
+
+/*
+ * 
+ * ***********************************************
+ * IMPORTANT: THIS FUNCTION SHOULD BE DELETED ONCE
+ * THIS OBJECT FILE MATCHES
+ * ***********************************************
+ *
+ * This function is only present so that the
+ * compiler does not cull these variables
+ *
+ */
+void dummyFunction() {
+    cFrontAcc[0] = 1.f;
+    cFrontAccSpin[0] = 1.f;
+    cFrontAccSpinSurface[0] = 1.f;
+    cWeightTableSP[0] = 1.f;
+};
