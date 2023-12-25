@@ -469,7 +469,7 @@ f32 MarioSwim::getSurface() const {
     return fr1f + fr1d * (fr1e * (MR::sin(ftmp + funConversions3(_24)) - 1.f));
 }
                     
-inline f32 stupid(f32 l, f32 r) {
+inline f32 procAngle(f32 l, f32 r) {
     return l * (1f - r);
 }
 
@@ -776,7 +776,6 @@ bool MarioSwim::update() {
     }
     f32 fr1f = 1f - MR::clamp(_54 / getConstants(mActor->mConst)->_4B4, 0f, 1f);
     if(_1A4 - _19C < 400f) fr1f = 0f;
-    //bool lameStupid = MR::clamp(0.f, 0.f, 1.f) > 0.f;
     if(_38) _38--;
     else {
         f32 res = fr1f;
@@ -789,16 +788,10 @@ bool MarioSwim::update() {
                         _1E = 0;
                     }
 
-                  f32 a;
-                  f32 b;
-                  b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
-                //f32 r = ;
-                //f32 l = _4C * b;
-                //_4C = stupid(a * (1.f - b), _4C * b);
-                _4C = _4C * b + stupid(a, b);
-                  
-                  
-                //handleFunStuff<Constants_4F4>(getStickY(), getConstants(mActor->mConst));
+                    f32 a;
+                    f32 b;
+                    b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
+                    _4C = _4C * b + procAngle(a, b);
                      
                     _50 = 2.5f * (getStickX() * (1f - getConstants(mActor->mConst)->_4EC[3]));
                     f32 fr1c = 1f;
@@ -816,7 +809,7 @@ bool MarioSwim::update() {
                 else {
                     f32 a, b;
                     b = getSwimValue(a = getStickP(), 0, getConstants(mActor->mConst));
-                    _4C = _4C * b + stupid(a, b);
+                    _4C = _4C * b + procAngle(a, b);
                 }
             }
             _50 *= getConstants(mActor->mConst)->_4EC[1];
@@ -830,30 +823,19 @@ bool MarioSwim::update() {
                 _32 = getConstants(mActor->mConst)->_554;
             }
             if(_8A) {
-                  f32 a;
-                  f32 b;
-                  b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
-                _4C = _4C * b + stupid(a, b);
-                
-                  b = getSwimValue(a = getStickX(), 3, getConstants(mActor->mConst));
-                //f32 r = ;
-                //f32 l = _4C * b;
-                //_4C = stupid(a * (1.f - b), _4C * b);
-                _50 = _50 * b + stupid(a, b);
-                 //_50 = _50 * getConstants(mActor->mConst)->_4F8 + getStickX() * (1f - getConstants(mActor->mConst)->_4F8);
+                f32 a;
+                f32 b;
+                b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
+                _4C = _4C * b + procAngle(a, b);
+                b = getSwimValue(a = getStickX(), 3, getConstants(mActor->mConst));
+                _50 = _50 * b + procAngle(a, b);
             }
             else {
                 f32 a, b;
                 b = getSwimValue(a = getStickY(), 0, getConstants(mActor->mConst));
-                //f32 r = ;
-                //f32 l = _4C * b;
-                //_4C = stupid(a * (1.f - b), _4C * b);
-                _4C = _4C * b + stupid(a, b);
+                _4C = _4C * b + procAngle(a, b);
                 b = getSwimValue(a = getStickX(), 1, getConstants(mActor->mConst));
-                //f32 r = ;
-                //f32 l = _4C * b;
-                //_4C = stupid(a * (1.f - b), _4C * b);
-                _50 = _50 * b + stupid(a, b);
+                _50 = _50 * b + procAngle(a, b);
             }
         }
         if(!_20 && !_3C && _2C) {
