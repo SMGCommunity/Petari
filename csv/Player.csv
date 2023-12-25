@@ -1200,7 +1200,7 @@ startSwim__5MarioFv,MarioSwim.o,Player.a,true
 __ct__9MarioSwimFP10MarioActor,MarioSwim.o,Player.a,true
 init__9MarioSwimFv,MarioSwim.o,Player.a,true
 start__9MarioSwimFv,MarioSwim.o,Player.a,true
-getSurface__9MarioSwimCFv,MarioSwim.o,Player.a,false
+getSurface__9MarioSwimCFv,MarioSwim.o,Player.a,true
 update__9MarioSwimFv,MarioSwim.o,Player.a,true
 procBuoyancy__9MarioSwimFv,MarioSwim.o,Player.a,false
 flowOnWave__9MarioSwimFf,MarioSwim.o,Player.a,false

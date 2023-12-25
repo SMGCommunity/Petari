@@ -9,6 +9,7 @@ class MarineSnow;
 
 class MarioSwim : public MarioState {
 public:
+
     MarioSwim(MarioActor *);
 
     virtual void init();

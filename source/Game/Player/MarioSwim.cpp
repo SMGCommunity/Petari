@@ -436,6 +436,50 @@ bool MarioSwim::start() {
     _9E = 0;
     return true;
 }
+
+static inline f32 getTwoPi() {
+    return 6.28318548203f;
+}
+
+static inline f32 funConversions1(u32 a) {
+    u16 tmp = 0x708;
+    return a * getTwoPi() / tmp;
+}
+
+static inline f32 funConversions2(u32 a) {
+    u16 tmp = 0x1F4;
+    return a * getTwoPi() / tmp;
+}
+
+static inline f32 funConversions3(u32 a) {
+    u16 tmp = 0xB4;
+    return a * getTwoPi() / tmp;
+}
+
+static inline f32 funVecTime(const MarioSwim &self) {
+    return self.getTrans().y - self._19C;
+}
+
+static inline f32 funCalcTime() {
+    f32 tmp = 0.f; // This line is included only to fix a register allocation mismatch
+    return 40.f;
+}
+
+f32 MarioSwim::getSurface() const {
+    //const TVec3f &tmp = getTrans();
+    f32 fr1f = funVecTime(*this);
+    f32 fr1e = funCalcTime();
+    f32 fr1d = 0.00999999977648f;
+    //f32 &fr1eref = fr1e;
+    //f32 &fr1dref = fr1d;
+    //fr1eref = fr1e;
+    //f32 fr1f = tmp.y - _19C;
+    f32 fr1c = 0.0299999993294f;
+    //u16 veryImportantVariable = 0x708;
+    fr1d = 1.f + fr1d * MR::sin(funConversions1(_24));
+    f32 ftmp = fr1c * MR::sin(funConversions2(_24));
+    return fr1f + fr1d * (fr1e * (MR::sin(ftmp + funConversions3(_24)) - 1.f));
+}
                     
 inline f32 stupid(f32 l, f32 r) {
     return l * (1f - r);
