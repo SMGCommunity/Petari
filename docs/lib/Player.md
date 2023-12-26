@@ -76,13 +76,13 @@
 | [MarioSound.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSound.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [MarioSpecial.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSpecial.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [MarioSpin.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSpin.md) | 0.0% | 0 / 9 | 0.0% | :x: 
-| [MarioState.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioState.md) | 0.0% | 0 / 11 | 0.0% | :x: 
+| [MarioState.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioState.md) | 3.0716723549488054% | 1 / 11 | 9.090909090909092% | :eight_pointed_black_star: 
 | [MarioStick.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioStick.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [MarioSukekiyo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSukekiyo.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [MarioTalk.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioTalk.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [MarioWall.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioWall.md) | 0.0% | 0 / 26 | 0.0% | :x: 
 | [MarioHang.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioHang.md) | 0.0% | 0 / 17 | 0.0% | :x: 
-| [MarioSwim.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSwim.md) | 0.0% | 0 / 61 | 0.0% | :x: 
+| [MarioSwim.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSwim.md) | 35.801903015017764% | 11 / 61 | 18.0327868852459% | :eight_pointed_black_star: 
 | [MarioSwimDamage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSwimDamage.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [MarioAccess.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioAccess.md) | 0.0% | 0 / 86 | 0.0% | :x: 
 | [MarioSlip.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioSlip.md) | 0.0% | 0 / 6 | 0.0% | :x: 
