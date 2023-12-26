@@ -30,11 +30,10 @@ namespace {
     };
     
     f32 cWeightTable[16] = {
-        1f,    0f,    0f,    0f,
-        0f,    1f,    0f,    0f,
-        0f,    0f,    1f,    0f,
-        0f,    0f,    0f,    1f,
-        //0f,    0f,    0.75f, 0.25f
+        1.f,    0.f,    0.f,    0.f,
+        0.f,    1.f,    0.f,    0.f,
+        0.f,    0.f,    1.f,    0.f,
+        0.f,    0.f,    0.f,    1.f,
     };
 
     f32 cWeightTableSP[4] = {0.f, 0.f, 0.75f, 0.25f};
@@ -43,18 +42,14 @@ namespace {
     // In non-const mem region?
 
     f32 cLimitAngleSink = 0f;
-    f32 cNeutralAngleWait = 0f; //   00003444 000004 806b62a4 0060b244  4 cNeutralAngleWait__23@unnamed@MarioSwim_cpp@ 	Player.a MarioSwim.o (53914)
+    f32 cNeutralAngleWait = 0f;
     f32 cLimitAngleWait = 0f;
     f32 cUpperAngleWait = 0f;
 
     // In const mem region?
-    const f32 cTurnMotionSpeed = 5f; //  00000cb4 000004 806b22d4 00607274  4 cTurnMotionSpeed__23@unnamed@MarioSwim_cpp@ 	Player.a MarioSwim.o (50574)
+    const f32 cTurnMotionSpeed = 5f;
 
 
-}
-
-static inline const Constants* getConstants(const MarioConst *constSelector) {
-    return constSelector->_0[constSelector->_8];
 }
 
 bool Mario::isSwimming() const {
@@ -138,7 +133,9 @@ void Mario::startSwim() {
         _735 = 0;
         mMovementStates._3E = 0;
         mMovementStates._12 = false;
-        if(mMovementStates._8 || mMovementStates._1A || mMovementStates._19) addVelocity(getWallNorm(), 50.f);
+        if(mMovementStates._8 || mMovementStates._1A || mMovementStates._19) {
+            addVelocity(getWallNorm(), 50.f);
+        }
         getPlayer()->lockGroundCheck(mSwim, true);
         checkBaseTransBall();
         mActor->_F44 = false;
@@ -235,10 +232,8 @@ MarioSwim::MarioSwim(MarioActor *actor) : MarioState(actor, 6), _F4() {
 }
 
 void MarioSwim::init() {
-    _EA = getConstants(mActor->mConst)->_528;
+    _EA = mActor->getConst().getConstants()->_528;
 }
-
-//const f32 HALF_PI = 1.74532938004f;
 
 inline f32 getSpecialNumber() {
     return 1.74532938004f;
@@ -251,7 +246,7 @@ bool MarioSwim::start() {
     _54 = 0.f;
     _7A = 0;
     _E8 = 0;
-    _EA = getConstants(mActor->mConst)->_528;
+    _EA = mActor->getConst().getConstants()->_528;
     _EE = 0x78;
     _F0 = 0;
     _AC = 0;
@@ -282,7 +277,7 @@ bool MarioSwim::start() {
     _22 = 0;
     _58 = 0.f;
     if(!getPlayer()->getMovementStates()._0 || getPlayer()->_488 <= 100.f) {
-        _58 = getConstants(mActor->mConst)->_500;
+        _58 = mActor->getConst().getConstants()->_500;
     }
     _9C = 1;
     if(checkLvlA()) _9C = 0;
@@ -339,7 +334,7 @@ bool MarioSwim::start() {
         fr1f = MR::clamp(fr1f, 0.f, 1.f);
         if(_19) _19 = 0;
         if(_144 == 3) {
-            f32 ftmp = getConstants(mActor->mConst)->_4B4;
+            f32 ftmp = mActor->getConst().getConstants()->_4B4;
             f32 ftmp2 = (0.2f + 0.1f * fr1f);
             _34 = 0x3C;
             _54 = ftmp2 * ftmp;
@@ -352,22 +347,21 @@ bool MarioSwim::start() {
             switch(r1e) {
                 case 0:
                 case 1:
-                    _2C = getConstants(mActor->mConst)->_55C;
-                    _2E = getConstants(mActor->mConst)->_562;
+                    _2C = mActor->getConst().getConstants()->_55C;
+                    _2E = mActor->getConst().getConstants()->_562;
                     break;
                 case 2:
-                    _2C = getConstants(mActor->mConst)->_55E;
-                    _2E = getConstants(mActor->mConst)->_564;
+                    _2C = mActor->getConst().getConstants()->_55E;
+                    _2E = mActor->getConst().getConstants()->_564;
                     break;
                 case 3:
-                    _2C = getConstants(mActor->mConst)->_560;
-                    _2E = getConstants(mActor->mConst)->_566;
+                    _2C = mActor->getConst().getConstants()->_560;
+                    _2E = mActor->getConst().getConstants()->_566;
                     break;
             }
+            // Possibly related to similar operations? (eg getSwimValue(), etc)
             f32 ftmp2 = cLimitAngleSink * (1.f - fr1f);
-            //ftmp2 *= cLimitAngleSink;
-            //f32 ftmp = fr1f * 1.74532938004f;
-            _5C = ftmp2 + fr1f * getSpecialNumber();
+            _5C = fr1f * getSpecialNumber() + ftmp2;
             TVec3f stack_38(_60);
             stack_38.y = -10.f;
             MR::normalize(&stack_38);
@@ -375,15 +369,15 @@ bool MarioSwim::start() {
         }
         else if(r1d) {
             changeAnimation("水上ダメージ着水", (const char*)nullptr);
-            _2E = getConstants(mActor->mConst)->_51E;
+            _2E = mActor->getConst().getConstants()->_51E;
             _AE = 0x78;
         }
         else {
-            _54 = (0.2f + 0.1f * fr1f) * getConstants(mActor->mConst)->_4B4;
+            _54 = (0.2f + 0.1f * fr1f) * mActor->getConst().getConstants()->_4B4;
             changeAnimation("水泳ジャンプダイブ", (const char*)nullptr);
             mActor->setBlendMtxTimer(8);
             _2C = 15;
-            _2E = getConstants(mActor->mConst)->_51C;
+            _2E = mActor->getConst().getConstants()->_51C;
             _20 = 1;
             _5C = 1.49599659443f;
             if(getPlayer()->_488 < 200.f) {
@@ -429,18 +423,7 @@ static inline f32 getTwoPi() {
     return 6.28318548203f;
 }
 
-static inline f32 funConversions1(u32 a) {
-    u16 tmp = 0x708;
-    return a * getTwoPi() / tmp;
-}
-
-static inline f32 funConversions2(u32 a) {
-    u16 tmp = 0x1F4;
-    return a * getTwoPi() / tmp;
-}
-
-static inline f32 funConversions3(u32 a) {
-    u16 tmp = 0xB4;
+static inline f32 funConversions1(u32 a, u16 tmp) {
     return a * getTwoPi() / tmp;
 }
 
@@ -454,26 +437,25 @@ static inline f32 funCalcTime() {
 }
 
 f32 MarioSwim::getSurface() const {
-    //const TVec3f &tmp = getTrans();
     f32 fr1f = funVecTime(*this);
     f32 fr1e = funCalcTime();
     f32 fr1d = 0.00999999977648f;
-    //f32 &fr1eref = fr1e;
-    //f32 &fr1dref = fr1d;
-    //fr1eref = fr1e;
-    //f32 fr1f = tmp.y - _19C;
     f32 fr1c = 0.0299999993294f;
-    //u16 veryImportantVariable = 0x708;
-    fr1d = 1.f + fr1d * MR::sin(funConversions1(_24));
-    f32 ftmp = fr1c * MR::sin(funConversions2(_24));
-    return fr1f + fr1d * (fr1e * (MR::sin(ftmp + funConversions3(_24)) - 1.f));
+    u16 tmp = 1800;
+    fr1d = 1.f + fr1d * MR::sin(funConversions1(_24, tmp));
+    tmp = 500;
+    f32 ftmp = fr1c * MR::sin(funConversions1(_24, tmp));
+    tmp = 180;
+
+    // I love sin composition
+    return fr1f + fr1d * (fr1e * (MR::sin(ftmp + funConversions1(_24, tmp)) - 1.f));
 }
                     
 inline f32 procAngle(f32 l, f32 r) {
     return l * (1f - r);
 }
 
-// possibly related to other calculations that take similar form?
+// possibly related to other calculations that take similar form? (eg getSwimValue)
 inline f32 calculate(f32 stick) {
     return cLimitAngleSink + (cLimitAngleWait - cLimitAngleSink) * stick;
 }
@@ -558,7 +540,14 @@ bool MarioSwim::update() {
                 if(isAnimationRun("水上一掻き")) tmp = 0x1E;
                 if(checkLvlA()) {
                     if(_9C && (!isAnimationRun("水上一掻き") || !_28)) _28++;
-                    if((_1B0 || _8A || getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._32) && checkTrgA()) {
+                    if(
+                        (
+                            _1B0
+                            || _8A
+                            || getPlayer()->mMovementStates._8
+                            || getPlayer()->mMovementStates._32
+                        ) && checkTrgA()
+                    ) {
                         _28 = tmp;
                     }
                 }
@@ -578,7 +567,7 @@ bool MarioSwim::update() {
                 if(mActor->isRequestSpin()) tmp2 = true;
                 if(tmp2) {
                     if(_24 > 6) {
-                        f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
+                        f32 res = MR::clamp(_54 / mActor->getConst().getConstants()->_520, 0f, 1f);
                         getPlayer()->mMovementStates._5 = false;
                         getPlayer()->_278 = res;
                         getPlayer()->tryJump();
@@ -601,7 +590,7 @@ bool MarioSwim::update() {
             _2C = 0;
         }
         if(_7C > 10) {
-            f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
+            f32 res = MR::clamp(_54 / mActor->getConst().getConstants()->_520, 0f, 1f);
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
             TVec3f stack_188;
@@ -620,10 +609,10 @@ bool MarioSwim::update() {
             return false;
         }
         if(_8C && getPlayer()->_488 - _19C > 200f) {
-            f32 res = MR::clamp(_54 / getConstants(mActor->mConst)->_520, 0f, 1f);
+            f32 res = MR::clamp(_54 / mActor->getConst().getConstants()->_520, 0f, 1f);
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
-            getPlayer()->tryForcePowerJump((mActor->getLastMove() % 2f).translate(_6C % 10f), false);
+            getPlayer()->tryForcePowerJump((mActor->getLastMove()% 2f).translate(_6C % 10f), false);
             _9E = 2;
             changeAnimationNonStop("リングダッシュ");
             return false;
@@ -653,7 +642,7 @@ bool MarioSwim::update() {
             if(_8A && getPlayer()->_488 < 100f) {
                 _42 = 2;
                 playEffect("水底接触");
-                _54 *= getConstants(mActor->mConst)->_53C;
+                _54 *= mActor->getConst().getConstants()->_53C;
             }
         }
         _1F = 0;
@@ -664,13 +653,13 @@ bool MarioSwim::update() {
     }
     if(_32 && --_32 == 0) {
         r1e = true;
-        _5C = getConstants(mActor->mConst)->_54C;
-        _2C = getConstants(mActor->mConst)->_550;
-        _2E = getConstants(mActor->mConst)->_552;
-        _54 = getConstants(mActor->mConst)->_558;
+        _5C = mActor->getConst().getConstants()->_54C;
+        _2C = mActor->getConst().getConstants()->_550;
+        _2E = mActor->getConst().getConstants()->_552;
+        _54 = mActor->getConst().getConstants()->_558;
         _38 = 0x14;
     }
-    f32 fr1f = 1f - MR::clamp(_54 / getConstants(mActor->mConst)->_4B4, 0f, 1f);
+    f32 fr1f = 1f - MR::clamp(_54 / mActor->getConst().getConstants()->_4B4, 0f, 1f);
     if(_1A4 - _19C < 400f) fr1f = 0f;
     if(_38) _38--;
     else {
@@ -679,17 +668,17 @@ bool MarioSwim::update() {
             if(!_18) {
                 if(_8A) {
                     if(getStickY() > 0.707000017166f) {
-                        _5C = getConstants(mActor->mConst)->_54C;
+                        _5C = mActor->getConst().getConstants()->_54C;
                         _20 = 0;
                         _1E = 0;
                     }
 
                     f32 a;
                     f32 b;
-                    b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
+                    b = getSwimValue(a = getStickY(), 2, mActor->getConst().getConstants());
                     _4C = _4C * b + procAngle(a, b);
                      
-                    _50 = 2.5f * (getStickX() * (1f - getConstants(mActor->mConst)->_4EC[3]));
+                    _50 = 2.5f * (getStickX() * (1f - mActor->getConst().getConstants()->_4EC[3]));
                     f32 fr1c = 1f;
                     if(getStickY() < 0f) fr1c += 2f * -getStickY();
                     _50 *= fr1c;
@@ -699,16 +688,16 @@ bool MarioSwim::update() {
                     changeAnimation("水泳潜り", (const char *)nullptr);
                     playEffect("水面Ｚ沈降");
                     playSound("水面潜り", -1);
-                    _32 = getConstants(mActor->mConst)->_554;
+                    _32 = mActor->getConst().getConstants()->_554;
                 }
                 else if(checkLvlZ() == 0) res = 0f;
                 else {
                     f32 a, b;
-                    b = getSwimValue(a = getStickP(), 0, getConstants(mActor->mConst));
+                    b = getSwimValue(a = getStickP(), 0, mActor->getConst().getConstants());
                     _4C = _4C * b + procAngle(a, b);
                 }
             }
-            _50 *= getConstants(mActor->mConst)->_4EC[1];
+            _50 *= mActor->getConst().getConstants()->_4EC[1];
         }
         else {
             if(!_8C && _1A4 > 200f && checkTrgZ() && !_32 && !_2E && !_8A && !check7Aand7C()) {
@@ -716,26 +705,26 @@ bool MarioSwim::update() {
                 changeAnimation("水泳潜り", (const char*)nullptr);
                 playSound("水中潜り", -1);
                 playEffect("水面Ｚ沈降");
-                _32 = getConstants(mActor->mConst)->_554;
+                _32 = mActor->getConst().getConstants()->_554;
             }
             if(_8A) {
                 f32 a;
                 f32 b;
-                b = getSwimValue(a = getStickY(), 2, getConstants(mActor->mConst));
+                b = getSwimValue(a = getStickY(), 2, mActor->getConst().getConstants());
                 _4C = _4C * b + procAngle(a, b);
-                b = getSwimValue(a = getStickX(), 3, getConstants(mActor->mConst));
+                b = getSwimValue(a = getStickX(), 3, mActor->getConst().getConstants());
                 _50 = _50 * b + procAngle(a, b);
             }
             else {
                 f32 a, b;
-                b = getSwimValue(a = getStickY(), 0, getConstants(mActor->mConst));
+                b = getSwimValue(a = getStickY(), 0, mActor->getConst().getConstants());
                 _4C = _4C * b + procAngle(a, b);
-                b = getSwimValue(a = getStickX(), 1, getConstants(mActor->mConst));
+                b = getSwimValue(a = getStickX(), 1, mActor->getConst().getConstants());
                 _50 = _50 * b + procAngle(a, b);
             }
         }
         if(!_20 && !_3C && _2C) {
-            _5C += res * (_4C * getConstants(mActor->mConst)->_4E0);
+            _5C += res * (_4C * mActor->getConst().getConstants()->_4E0);
         }
 
         if (
@@ -778,16 +767,18 @@ bool MarioSwim::update() {
             if(_1A4 < 300f && -_19C < 100f) fr1c = cNeutralAngleWait;
             fr1d = cNeutralAngleWait + (fr1c - cNeutralAngleWait) * getStickY();
         }
-        else if(getStickY() < 0f) fr1d = cLimitAngleSink + (cLimitAngleWait - cLimitAngleSink) * -getStickY();
+        else if(getStickY() < 0f) {
+            fr1d = cLimitAngleSink + (cLimitAngleWait - cLimitAngleSink) * -getStickY();
+        }
         f32 fr1e = 0.05f;
         if(_54 > 5f && (fr1e -= fr1e * (5f / _54)) < 0f) fr1e = 0f;
         if(_8A) {
             switch(_88) {
                 case 0:
-                    fr1e *= getConstants(mActor->mConst)->_52C;
+                    fr1e *= mActor->getConst().getConstants()->_52C;
                     break;
                 default:
-                    fr1e *= getConstants(mActor->mConst)->_530;
+                    fr1e *= mActor->getConst().getConstants()->_530;
                     break;
             }
         }
@@ -798,16 +789,17 @@ bool MarioSwim::update() {
         if(_19) fr1d = 0.523598790169f;
         if(_32) {
             fr1e = 0.15f;
-            fr1d = getConstants(mActor->mConst)->_54C;
+            fr1d = mActor->getConst().getConstants()->_54C;
         }
         bool r1b = true;
         _5C = _5C * (1f - fr1e) + fr1d * fr1e;
         if(_3C && !_AE && !_32 && getStickY() > 0f) {
-            f32 fr1c = 3.14159274101f / getConstants(mActor->mConst)->_5B8;
+            f32 fr1c = 3.14159274101f / mActor->getConst().getConstants()->_5B8;
             f32 tmpsticky = getStickY();
             fr1d = 0.523598790169f + tmpsticky * (fr1c - 0.523598790169f);
             if(_5C < fr1d) {
-                _5C = _5C * getConstants(mActor->mConst)->_5BC + fr1d * (1f - getConstants(mActor->mConst)->_5BC);
+                _5C = _5C * mActor->getConst().getConstants()->_5BC
+                    + fr1d * (1f - mActor->getConst().getConstants()->_5BC);
             }
             else _5C = _5C * (1f - fr1e) + fr1d * fr1e;
             if(!check7Aand7C() && !_8A) changeAnimation("水泳ターン下", (const char *)nullptr);
@@ -815,7 +807,7 @@ bool MarioSwim::update() {
         }
         if(r1b) stopAnimation("水泳ターン下", (const char *)nullptr);
         if(_32) {
-            _5C = MR::clamp(_5C, 0.523598790169f, getConstants(mActor->mConst)->_54C);
+            _5C = MR::clamp(_5C, 0.523598790169f, mActor->getConst().getConstants()->_54C);
         }
         else _5C = MR::clamp(_5C, cLimitAngleWait, cUpperAngleWait);
         if(MR::isStageSwimAngleLimit()) _5C = MR::clamp(_5C, 0.872664690018f, 2.26892805099f);
@@ -832,7 +824,7 @@ bool MarioSwim::update() {
                 tmp = 0.01f * (10.f - _54);
             }
         if(_8A) tmp *= 3.f;
-        f32 res = MR::clamp(tmp * getConstants(mActor->mConst)->_518, 0f, 1f);
+        f32 res = MR::clamp(tmp * mActor->getConst().getConstants()->_518, 0f, 1f);
         f32 diffAngle = MR::diffAngleAbs(_60, stack_164);
         if(diffAngle > 0f) {
             if(diffAngle < res) _60 = stack_164;
@@ -840,8 +832,8 @@ bool MarioSwim::update() {
         }
     }
     else {
-        f32 tmp = fr1f + getConstants(mActor->mConst)->_4E8;
-        MR::rotAxisVecRad(_60, -_6C, &_60, tmp * (_50 * getConstants(mActor->mConst)->_4E4));
+        f32 tmp = fr1f + mActor->getConst().getConstants()->_4E8;
+        MR::rotAxisVecRad(_60, -_6C, &_60, tmp * (_50 * mActor->mConst->getConstants()->_4E4));
     }
     TVec3f stack_158(_60);
     MR::vecKillElement(_60, _6C, &_60);
@@ -883,7 +875,7 @@ bool MarioSwim::update() {
     else {
         fr2 = _30 / 25f;
     }
-    f32 fr1d = fr2 + (1f - fr2) * getConstants(mActor->mConst)->_514;
+    f32 fr1d = fr2 + (1f - fr2) * mActor->getConst().getConstants()->_514;
     stack_104 += _6C % element % fr1d;
     addVelocity(stack_104);
     u16 fr1b = _2E;
@@ -934,7 +926,7 @@ bool MarioSwim::update() {
         }
     }
     if(_8A) {
-        addVelocity(_184, getConstants(mActor->mConst)->_534);
+        addVelocity(_184, mActor->getConst().getConstants()->_534);
     }
     else addVelocity(_184);
     TVec3f stack_EC(_184);

@@ -57,6 +57,9 @@ inline f32 getSwimValue(f32, u32 idx, const Constants *c) {
 class MarioConst {
 public:
     MarioConst();
+    inline const Constants* getConstants() const {
+        return _0[_8];
+    }
 
     const Constants* _0[2];
     u32 _8; //luigi toggle?

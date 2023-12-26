@@ -185,6 +185,10 @@ public:
     void getStickValue(f32 *, f32 *);
     const HitSensor& getCarrySensor() const;
 
+    const MarioConst& getConst() const {
+        return *mConst;
+    }
+
     inline u32 getHealth() const {
         return mHealth;
     }
