@@ -1,11 +1,11 @@
 #pragma once
 
-class MarioActor;
-class MarioModule;
+#include "Game/Player/MarioModule.h"
 
-class MarioAnimator : public MarioModule {
+class MarioState : public MarioModule {
 public:
-    MarioAnimator(MarioActor *);
+
+    MarioState(MarioActor *, u32);
 
     virtual void init();
     virtual bool proc(u32);
@@ -21,13 +21,7 @@ public:
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
 
-    void setHoming();
-    bool isAnimationStop();
-    void setSpeed(f32);
-    void forceSetBlendWeight(const f32 *);
-    void waterToGround();
-
-    XanimeResourceTable* _8;
-    XanimePlayer* _C;
-    XanimePlayer* _10;
+    u32 _8;
+    u32 _C;
+    u8 _10;
 };

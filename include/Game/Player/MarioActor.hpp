@@ -25,9 +25,9 @@ public:
 
     ~MarioActor();
 
-    virtual void getFrontVec(TVec3f *) const;
+    virtual const TVec3f& getLastMove() const;
     virtual void getLastMove(TVec3f *) const;
-    virtual TVec3f getLastMove() const;
+    virtual void getFrontVec(TVec3f *) const;
     
     void init(const JMapInfoIter&);
     void init2(const TVec3f&, const TVec3f&, long);
@@ -95,6 +95,7 @@ public:
     bool isSleeping() const;
     bool isRefuseTalk() const;
     bool isDebugMode() const;
+    bool isRequestSpin() const;
 
     void jumpHop();
     void calcCenterPos();
@@ -182,6 +183,11 @@ public:
     void setBlink(const char *);
     void resetSensorCount();
     void getStickValue(f32 *, f32 *);
+    const HitSensor& getCarrySensor() const;
+
+    const MarioConst& getConst() const {
+        return *mConst;
+    }
 
     inline u32 getHealth() const {
         return mHealth;

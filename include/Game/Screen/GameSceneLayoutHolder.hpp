@@ -2,8 +2,8 @@
 
 class GameSceneLayoutHolder {
 public:
-    void changeLifeMeterGround();
-    void changeLifeMeterSwim();
+    void changeLifeMeterModeGround();
+    void changeLifeMeterModeWater();
 };
 
 namespace MR {
