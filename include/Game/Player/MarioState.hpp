@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Player/MarioModule.h"
+#include "Game/Player/MarioModule.hpp"
 
 class MarioState : public MarioModule {
 public:

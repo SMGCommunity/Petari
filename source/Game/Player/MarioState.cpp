@@ -1,4 +1,4 @@
-#include "Game/Player/MarioState.h"
+#include "Game/Player/MarioState.hpp"
 
 MarioState::MarioState(MarioActor *actor, u32 number) {
     mActor = actor;

@@ -1,11 +1,11 @@
-#include "Game/Player/MarioSwim.h"
-#include "Game/Player/MarineSnow.h"
-#include "Game/Player/MarioConst.h"
-#include "Game/Player/MarioActor.h"
-#include "Game/Player/MarioAnimator.h"
-#include "Game/Util/SceneUtil.h"
-#include "Game/AreaObj/AreaObj.h"
-#include "Game/Screen/GameSceneLayoutHolder.h"
+#include "Game/Player/MarioSwim.hpp"
+#include "Game/Player/MarineSnow.hpp"
+#include "Game/Player/MarioConst.hpp"
+#include "Game/Player/MarioActor.hpp"
+#include "Game/Player/MarioAnimator.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
+#include "Game/Screen/GameSceneLayoutHolder.hpp"
 
 namespace {
     f32 cFrontAcc[40] = {

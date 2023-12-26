@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/Player/MarioState.h"
-#include "Game/Map/WaterInfo.h"
-#include "Game/Player/MarioConst.h"
-#include "Game/Player/Mario.h"
+#include "Game/Player/MarioState.hpp"
+#include "Game/Map/WaterInfo.hpp"
+#include "Game/Player/MarioConst.hpp"
+#include "Game/Player/Mario.hpp"
 
 class MarioActor;
 class MarineSnow;
