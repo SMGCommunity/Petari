@@ -49,6 +49,10 @@ namespace MR {
     void declareGlobalEventCameraFixedThere(const char *, bool, f32);
     void declareGlobalEventCameraDead(const char *, f32, s32, s32);
     void declareEventCameraAnim(const ActorCameraInfo *, const char *, void *);
+    void declareBlackHoleCamera(const char *);
+    void declareGlobalEventCamera(const char *);
+    void declareEventCameraProgrammable(const char *);
+    void setGameCameraTargetToPlayer();
 
     void calcScreenPosition(TVec2f *, const TVec3f &);
 

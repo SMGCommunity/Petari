@@ -167,7 +167,7 @@ draw3D__10MarioStateCFv,Mario.o,Player.a,false
 isInvalidTriangle__31TriangleFilterDelegator<5Mario>CFPC8Triangle,Mario.o,Player.a,false
 __as__8TriangleFRC8Triangle,MarioActor.o,Player.a,true
 getEuler__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>,MarioActor.o,Player.a,false
-__ct__10MarioActorFPCc,MarioActor.o,Player.a,false
+__ct__10MarioActorFPCc,MarioActor.o,Player.a,true
 __dt__10MarioActorFv,MarioActor.o,Player.a,false
 init__10MarioActorFRC12JMapInfoIter,MarioActor.o,Player.a,true
 init2__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l,MarioActor.o,Player.a,false
@@ -1019,7 +1019,7 @@ stick2Dadjust__5MarioFRfRf,MarioMove2D.o,Player.a,false
 set2Dmode__5MarioFb,MarioMove2D.o,Player.a,false
 beforeJumping2D__5MarioFv,MarioMove2D.o,Player.a,false
 afterLanding2D__5MarioFv,MarioMove2D.o,Player.a,false
-clear2DStick__5MarioFv,MarioMove2D.o,Player.a,false
+clear2DStick__5MarioFv,MarioMove2D.o,Player.a,true
 set25Dmode__5MarioFPC7AreaObj,MarioMove25D.o,Player.a,false
 update25Dmode__5MarioFv,MarioMove25D.o,Player.a,false
 updateAxisFromMode__5MarioFUc,MarioMove25D.o,Player.a,false
@@ -1078,8 +1078,8 @@ update__10MarioSkateFv,MarioSkate.o,Player.a,false
 close__10MarioSkateFv,MarioSkate.o,Player.a,false
 __sinit_\MarioSkate_cpp,MarioSkate.o,Player.a,false
 notice__10MarioSkateFv,MarioSkate.o,Player.a,false
-initSoundTable__5MarioFP9SoundListUl,MarioSound.o,Player.a,false
-initSound__5MarioFv,MarioSound.o,Player.a,false
+initSoundTable__5MarioFP9SoundListUl,MarioSound.o,Player.a,true
+initSound__5MarioFv,MarioSound.o,Player.a,true
 playSoundJ__5MarioFPCcl,MarioSound.o,Player.a,false
 stopSoundJ__5MarioFPCcUl,MarioSound.o,Player.a,false
 startBas__5MarioFPCcbff,MarioSound.o,Player.a,false
@@ -1340,7 +1340,7 @@ endRemoteDemo__11MarioAccessFPC11RushEndInfo,MarioAccess.o,Player.a,false
 isInWaterMode__11MarioAccessFv,MarioAccess.o,Player.a,false
 changeItemStatus__11MarioAccessFl,MarioAccess.o,Player.a,false
 __sinit_\MarioAccess_cpp,MarioAccess.o,Player.a,false
-clearSlope__5MarioFv,MarioSlip.o,Player.a,false
+clearSlope__5MarioFv,MarioSlip.o,Player.a,true
 isEnableSlopeMove__5MarioCFv,MarioSlip.o,Player.a,false
 moveSlopeSlide__5MarioFv,MarioSlip.o,Player.a,false
 slopeMove__5MarioFv,MarioSlip.o,Player.a,false

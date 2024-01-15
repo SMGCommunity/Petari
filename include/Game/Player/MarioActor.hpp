@@ -310,7 +310,9 @@ public:
     u32 _398;;
     u8 _39C;
     u8 _39D;
-    u8 _39E[0xa];
+    u8 _39E;
+    u32 _3A0;
+    u32 _3A4;
     u16 _3A8;
     u16 _3AA;
     u16 _3AC;
@@ -356,7 +358,7 @@ public:
     u8 _483;
     TVec3f _484;
     f32 _490;
-    u8 _494[4];
+    u32 _494;
     FixedPosition* _498;
     FixedPosition* _49C;
     u32 _4A0;
@@ -419,7 +421,7 @@ public:
     u8 _9B6[0x16];
     f32 _9CC;
     f32 _9D0;
-    u8 _9D4[4];
+    u32 _9D4;
     TVec3f _9D8;
     u8 _9E4[0xc];
     bool _9F0;
@@ -546,7 +548,8 @@ public:
     u16 _EF2;
     u16 _EF4;
     u16 _EF6;
-    u8 _EF8[8];
+    u32 _EF8;
+    u32 _EFC;
     u8 _F00;
     //padding
     u32 _F04;
@@ -593,7 +596,7 @@ public:
     TVec3f _FA8;
     const Nerve* _FB4;
     u16 _FB8;
-    u8 _FBC[0x10];
+    u8 _FBA[0x12];
     bool _FCC;
     bool _FCD;
 };

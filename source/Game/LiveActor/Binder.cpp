@@ -1,4 +1,5 @@
 #include "Game/Map/HitInfo.hpp"
+#include "Game/LiveActor/Binder.hpp"
 
 HitInfo &HitInfo::operator=(const HitInfo &rOther) {
     mParentTriangle.mParts = rOther.mParentTriangle.mParts;
@@ -18,4 +19,16 @@ HitInfo &HitInfo::operator=(const HitInfo &rOther) {
     _88 = rOther._88;
 
     return *this;
+}
+
+Binder::Binder(TMtx34f *mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, unsigned int c) :
+_C(mtx), _10(v1), _14(v2), _18(a), _1C(b), _24(c), _30(0,0,0), _C8(131076.953125f),
+_158(131076.953125f), _1E8(131076.953125f) {
+	if(!_24) _2C = NULL;
+	else {
+		new HitInfo[_24];
+	}
+	clear();
+	_1EC |= 0xc0;
+	_1EC &= 3;
 }

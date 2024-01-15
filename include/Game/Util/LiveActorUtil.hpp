@@ -19,6 +19,7 @@ class CollisionParts;
 class HitSensor;
 class BtkCtrl;
 class MsgSharedGroup;
+class ResTIMG;
 class LiveActor;
 
 namespace MR {
@@ -67,6 +68,7 @@ namespace MR {
     void onBind(LiveActor *);
     void offBind(LiveActor *);
 
+    
     bool isCalcGravity(const LiveActor *);
 
     void showModel(LiveActor *);
@@ -324,5 +326,6 @@ namespace MR {
 
     void initCollisionPartsAutoEqualScaleOne(LiveActor *, const char *, HitSensor *, MtxPtr);
 
+	ResTIMG* getTexFromArc(const char *, const LiveActor *);
     PartsModel* createBloomModel(LiveActor *, MtxPtr);
 };

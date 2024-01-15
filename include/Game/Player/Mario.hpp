@@ -222,12 +222,30 @@ public:
     inline const DrawStates& getDrawStates() const {return mDrawStates;}
     inline const DrawStates& getPrevDrawStates() const {return mPrevDrawStates;}
 
-    MovementStates mMovementStates; // _8
+    union {
+        MovementStates mMovementStates; // _8
+        struct {
+            u32 mMovementStates_LOW_WORD; // _8
+            u32 mMovementStates_HIGH_WORD; // _C
+        };
+    };
 
-    MovementStates _10;
+    union {
+        MovementStates _10;
+        struct {
+            u32 _10_LOW_WORD; // _10
+            u32 _10_HIGH_WORD; // _14
+        };
+    };
     
-    DrawStates mDrawStates; // _18
-    DrawStates _1C;
+    union {
+        DrawStates mDrawStates; // _18
+        u32 mDrawStates_WORD;
+    };
+    union {
+        DrawStates _1C;
+        u32 _1C_WORD;
+    };
     u32 _20;
     u32 _24;
     u32 _28;
@@ -426,10 +444,17 @@ public:
     TVec3f _600;
     u8 _60C;
     u8 _60D;
-
-    // FAKE
-    u32 _610[0xA];
-    // NOT FAKE
+    u8 _60E;
+    u8 _60F;
+	u8 _610;
+	u8 _611;
+	f32 _614;
+	f32 _618;
+	f32 _61C;
+	f32 _620;
+	u32 _624;
+	TVec3f _628;
+	f32 _634;
 
     u8 _638;
     TVec3f _63C;
@@ -437,11 +462,9 @@ public:
     TVec3f _654;
     TVec3f _660;
 
-    // fake
-    TVec3f _66C;
-    TVec3f _678;
-    f32 _684;
-    //not fake
+    u32 _66C;
+    TVec3f _670;
+    TVec3f _67C;
 
     TVec3f _688;
     TVec3f _694;

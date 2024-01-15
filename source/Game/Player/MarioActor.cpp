@@ -39,6 +39,191 @@ Triangle &Triangle::operator=(const Triangle &rOther) {
     return *this;
 }
 
+MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
+	initMember();
+	mMario = new Mario(this);
+	_930 = 0;
+	_468l.x = 0;
+	mMaxHealth = 3;
+	mHealth = 3;
+	_384 = 8;
+
+	if(MR::isPlayerLuigi()) {
+		mMaxHealth = 3;
+		mHealth = 3;
+	}
+	
+	if(MR::isGalaxyDarkCometAppearInCurrentStage()) {
+		mMaxHealth = 1;
+		mHealth = 1;
+	}
+	init2D();
+	_989=0;
+	_41C=0;
+	_420=0;
+	_37C=0;
+	_92C=0;
+	_388=0;
+	_38C=0;
+	_390=0;
+	_394=0;
+	_398=0;
+	_3A4=0;
+	_3A8=0;
+	_3AA=0;
+	_944=0;
+	_946=0;
+	_BC4=0;
+	_948=0;
+	_94C=0;
+	_94E=0;
+	_94A=0;
+	_47C=0;
+	_3DC=0;
+	_3D8=0;
+	_3DA=0;
+	_3AC=0;
+	_B94=0;
+	_378=0;
+	_6D4=0f;
+	mSuperKinokoCollected=false;
+	mPowerupCollected=false;
+	mTransforming=false;
+	_950=0;
+	_951=0;
+	_974=0;
+	_39C=0;
+	_3B0=0.000003814697265625f;
+
+	_3B4.zero();
+
+	_3C1=false;
+	_211=0;
+	_468l.y=0;
+	_468l.z=0;
+	_474=0;
+	_924=nullptr;
+	_928=0;
+	_480=0;
+	_481=0;
+	_482=0;
+	_483=0;
+	
+	_484.zero();
+	
+	_B92=0;
+	_3D4=0;
+	_3D6=0;
+	_3D2=1;
+	_3DF=0;
+	_3DE=0;
+	_EEB=1;
+	_9D4=0;
+
+	_9CC=0f;
+	_9D0=0f;
+
+	_9D8.zero();
+
+	_9F1=false;
+	_9F2=false;
+	_EA4=false;
+	_EA5=false;
+	_FCC=false;
+	_FCD=false;
+
+	_EA8.identity();
+	_3EC.identity();
+
+	_1F0.zero();
+	_1FC.zero();
+
+	_F4C = 0;
+	_208 = 1000f;
+
+	_F50.zero();
+	_F5C.zero();
+	_F68.zero();
+
+	for(int i = 0; i < 6; i++) {
+		_A28[i] = 0;
+	}
+
+	_A61=false;
+
+	_A64=0xff;
+	
+	_A68=1f;
+
+	_A6C=0;
+	_B48=nullptr;
+	_934=false;
+	_7E2=0;
+	_EF6=0;
+	_424=0;
+	_4A4=0;
+	_6D0=0;
+	_3A0=0;
+	_EFC=0;
+	_EF8=0;
+	_E9C=0;
+	
+	_EA0=1f;
+
+	_3C4.zero();
+
+	_3D0=0;
+	_7DE=0;
+	_3C0=false;
+	_B90=false;
+	_B91=false;
+	_39D=0;
+	_B96=0;
+	_EF0=0;
+	_EF2=0;
+	_EF4=0x78;
+	_1AA=0;
+	_1AC=0f;
+
+	_1B0.set(0xFF, 0xFF, 0xFF, 0);
+
+	_1B5=false;
+	_988=0;
+
+	_F10=2;
+	_F12=2;
+
+	_F14=3;
+	_F16=3;
+
+	_F18=0xb;
+
+	_F1A=3;
+
+	_F0E=7;
+
+	resetPadSwing();
+
+	_F0D=0;
+
+	_F1C=0x3C;
+	_F1E=0x3C;
+
+	_1E1=0;
+	_F24=0;
+	_F28=0;
+
+	_C2C.identity();
+	_C5C.identity();
+	_D1C.identity();
+	_D4C.identity();
+	_D7C.identity();
+
+	_1B4 = 0;
+	_1C3 = false;
+	_1E0 = false;
+}
+
 static float BASE_ROTATION = 0f;
 
 void MarioActor::init(const JMapInfoIter &rInfo) {
@@ -58,6 +243,141 @@ void MarioActor::init(const JMapInfoIter &rInfo) {
         MR::getJMapInfoArg0NoInit(rInfo, &initialAnimation);
     }
     init2(position, rotation, initialAnimation);
+}
+
+struct DUMMY {
+    u8 _0[0x30];
+};
+
+void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) {
+	_8C = 1;
+	sIsLuigi = false;
+	if(MR::isPlayerLuigi()) sIsLuigi = true;
+	mPosition.set(a);
+	mRotation.set(b);
+	mScale.set(TVec3f(1f, 1f, 1f));
+	mMario -> setHeadAndFrontVecFromRotate(mRotation);
+	mMario -> _290 = mMario -> _310;
+	updateBaseScaleMtx();
+	_A18 = mRotation;
+	initDrawAndModel();
+	_C28 = new DUMMY[MR::getJointNum(this)];
+	MR::connectToScene(this, 0x25, 0x9, 0x14, 0x22);
+	MR::initLightCtrlForPlayer(this);
+	mMarioAnim = new MarioAnimator(this);
+	mMarioEffect = new MarioEffect(this);
+	_214 = new CollisionShadow(100f,360f);
+	mConst = new MarioConst();
+	if(sIsLuigi) mConst -> _8 = 1;
+	mMario -> initAfterConst();
+	_36C = new GravityInfo();
+	_374 = 0f;
+	initNerve(&NrvMarioActor::MarioActorNrvWait::sInstance);
+	_FB4 = 0;
+	_FB8 = 0;
+	initActionMatrix();
+	initBinder(60f, 1f, 8);
+	_2C4.x = 0f;
+	_2C4.y = 70f;
+	_2C4.z = 0f;
+	mBinder -> _1EC &= 0xFFFFFF7F;
+	MR::setBinderOffsetVec(this, &_2C4, false);
+
+    mBinder -> setTriangleFilter (
+        TriangleFilterDelegator<MarioActor>::allocateDelegator(this, &MarioActor::binderFilter)
+    );
+    
+	mBinder -> _1EC |= 0x10;
+	initEffect();
+	MR::invalidateClipping(this);
+
+	_240.setInline(0f, -1f, 0f);
+	
+	_24C = _240;
+	_334 = 0;
+	_336 = 0;
+	_338 = 0;
+	
+	_264.zero();
+	_270 = mPosition;
+	calcCenterPos();
+	initSound(0x10, 0);
+	addSoundObjHolder();
+	initParts();
+	initMorphStringTable();
+	MR::declareGlobalEventCameraAbyss("奈落カメラ");
+	MR::declareBlackHoleCamera("ブラックホール");
+	MR::declareGlobalEventCameraDead("昇天カメラ", 0.34999999404f, 0x78, 0x3C);
+	MR::declareGlobalEventCamera("水中フォロー");
+	MR::declareGlobalEventCamera("水中プラネット");
+	MR::declareGlobalEventCamera("水上フォロー");
+	MR::declareGlobalEventCamera("引き戻し");
+	MR::declareEventCameraProgrammable("変身初出カメラ");
+	_2B8 = mPosition;
+	_33C = mPosition;
+	_348.zero();
+	_354.zero();
+	setupSensors();
+	MR::getMarioHolder() -> setMarioActor(this);
+	_1BC = new MarioMessenger(getSensor("dummy"));
+	_300 = mMario -> _1F0;
+	_2D0 = _300;
+	_330 = 0;
+	_332 = 0;
+	MR::setGameCameraTargetToPlayer();
+	_A0C = 0;
+	_B48 = new FootPrint("足跡", 0x100, -1);
+	_B48 -> setTexture(MR::getTexFromArc("Footprint.bti", this));
+	switch(initialAnimation) {
+		case 1:
+			mMario -> changeAnimation("基本", (const char *)nullptr);
+			break;
+		case 2:
+			mMario -> changeAnimationNonStop("ウォークイン");
+			break;
+		default:
+			mMario -> changeAnimation("ステージインA", (const char *)nullptr);
+			break;
+	}
+	updateTransForCamera();
+	_F44 = 1;
+	_984 = 0f;
+	_978.zero();
+	_27C.zero();
+	_288.zero();
+	_498 = new FixedPosition(this, "HandR", TVec3f(0f, 0f, 0f), TVec3f(0f, 0f, 0f));
+	_49C = new FixedPosition(this, "HandR", TVec3f(76.3300018311f, 15.6899995804f, 88.9899978638f),
+		TVec3f(1.79999995232f, 52.5099983215f, 39.5800018311f));
+	_494 = 0;
+	_4B0 = 35f;
+	_4B4 = 60f;
+	_4B8.setInline(0f, 1f, 0f);
+	_4C4 = -_4B8;
+	_482 = true;
+	appear();
+	_482 = false; // do we change this to control appearances?
+	_1C6 = 0;
+	_1C8 = 0f;
+	_1CC = 0f;
+	_1D0 = 0;
+	_1D1 = 0;
+	_A24 = 0;
+	_A25 = 0;
+	_1D8 = new (0x20) MarioActor::FBO[MR::getFrameBufferWidth()];
+	_1DC = new (0x20) MarioActor::FBO[MR::getFrameBufferWidth()];
+	_1E4 = 0f;
+	_1E8 = 0;
+	_1EC = 0f;
+	_F3C = new JAIAudible[0x1E];
+	_F40 = 0;
+	_F42 = 1;
+	for(int i = 0; i < 0x1E; i++) {
+		JAIAudible &rAudible = _F3C[i];
+		rAudible._0 = 1f;
+		rAudible._4 = 0f;
+		rAudible._8 = 0f;
+	}
+	_8C = 0; //is this to indicate that we are in the process of initialization?
 }
 
 void MarioActor::initAfterPlacement() {

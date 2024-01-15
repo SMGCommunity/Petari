@@ -3,7 +3,6 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
-//#include <JSystem/JMath/JMATrigonometric.hpp>
 
 static f32 minDegree = 0.0f;
 static f32 maxDegree = 360.0f;
@@ -36,7 +35,7 @@ namespace MR {
     f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
     // MR::getConvergeVibrationValue
     // MR::getReduceVibrationValue
-    void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, TVec3f &rSrc);
+    void separateScalarAndDirection(f32 *pScalar, TVec3f *pDirection, const TVec3f &rSrc);
 
     void makeAxisFrontUp(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisFrontSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
