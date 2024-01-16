@@ -11,26 +11,13 @@ class Triangle;
 
 class MarioModule {
 public:
-    inline MarioModule() {
+    inline MarioModule(MarioActor *actor) : mActor(actor) {
         
     }
 
     virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f &);
     virtual void addVelocity(const TVec3f &, f32);
-    virtual void init() = 0;
-    virtual bool proc(u32) = 0;
-    virtual bool start() = 0;
-    virtual bool close() = 0;
-    virtual bool update() = 0; // Return false = sleep?
-    virtual bool notice() = 0;
-    virtual bool keep() = 0;
-    virtual bool postureCtrl(MtxPtr) = 0;
-    virtual void hitWall(const TVec3f &, HitSensor *) = 0;
-    virtual void hitPoly(u8, const TVec3f &, HitSensor *);
-    virtual bool passRing(const HitSensor *) = 0;
-    virtual f32 getBlurOffset() const = 0;
-    virtual void draw3D() const = 0;
 
     Mario* getPlayer() const;
     MarioAnimator* getAnimator() const;

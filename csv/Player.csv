@@ -818,7 +818,7 @@ stopCommonEffect__10MarioActorFPCc,MarioEffect.o,Player.a,false
 stopEffect__10MarioActorFPCc,MarioEffect.o,Player.a,false
 stopEffectForce__10MarioActorFPCc,MarioEffect.o,Player.a,false
 updateEffect__10MarioActorFv,MarioEffect.o,Player.a,false
-__ct__11MarioEffectFP10MarioActor,MarioEffect.o,Player.a,false
+__ct__11MarioEffectFP10MarioActor,MarioEffect.o,Player.a,true
 playSwingEffect__11MarioEffectFv,MarioEffect.o,Player.a,false
 doCubeEffect__11MarioEffectFv,MarioEffect.o,Player.a,false
 taskOnEffectCheck__5MarioFUl,MarioEffect.o,Player.a,false
