@@ -556,8 +556,8 @@ __sinit_\MarioActorTakeMsg_cpp,MarioActorTakeMsg.o,Player.a,false
 initBlackHoleOut__10MarioActorFv,MarioActorBlackHole.o,Player.a,false
 exeGameOverBlackHole2__10MarioActorFv,MarioActorBlackHole.o,Player.a,false
 __sinit_\MarioActorBlackHole_cpp,MarioActorBlackHole.o,Player.a,false
-__ct__13MarioAnimatorFP10MarioActor,MarioAnimator.o,Player.a,false
-init__13MarioAnimatorFv,MarioAnimator.o,Player.a,false
+__ct__13MarioAnimatorFP10MarioActor,MarioAnimator.o,Player.a,true
+init__13MarioAnimatorFv,MarioAnimator.o,Player.a,true
 isAnimationStop__13MarioAnimatorCFv,MarioAnimator.o,Player.a,false
 targetWeight__13MarioAnimatorFPfff,MarioAnimator.o,Player.a,false
 setWalkWeight__13MarioAnimatorFPCf,MarioAnimator.o,Player.a,false

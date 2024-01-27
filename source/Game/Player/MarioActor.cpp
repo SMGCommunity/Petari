@@ -22,8 +22,6 @@
 #include "Game/Player/MarioShadow.hpp"
 #include "Game/Player/MarioMessenger.hpp"
 
-static bool sIsLuigi;
-
 Triangle &Triangle::operator=(const Triangle &rOther) {
     mParts = rOther.mParts;
     mIdx = rOther.mIdx;
@@ -251,8 +249,8 @@ struct DUMMY {
 
 void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) {
 	_8C = 1;
-	sIsLuigi = false;
-	if(MR::isPlayerLuigi()) sIsLuigi = true;
+	gIsLuigi = false;
+	if(MR::isPlayerLuigi()) gIsLuigi = true;
 	mPosition.set(a);
 	mRotation.set(b);
 	mScale.set(TVec3f(1f, 1f, 1f));
@@ -268,7 +266,7 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) 
 	mMarioEffect = new MarioEffect(this);
 	_214 = new CollisionShadow(100f,360f);
 	mConst = new MarioConst();
-	if(sIsLuigi) mConst -> _8 = 1;
+	if(gIsLuigi) mConst -> _8 = 1;
 	mMario -> initAfterConst();
 	_36C = new GravityInfo();
 	_374 = 0f;
@@ -1190,7 +1188,7 @@ void MarioActor::decLife(unsigned short amt) {
     }
     if(mHealth) mHealth--;
     _388 = 0;
-    if(sIsLuigi) {
+    if(gIsLuigi) {
         if(mMaxHealth == 3) return;
         if(mHealth > 3) return;
         mMaxHealth = 3;

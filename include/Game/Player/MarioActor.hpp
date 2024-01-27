@@ -19,6 +19,8 @@ namespace MR {
     unsigned int getFrameBufferWidth();
 }
 
+bool gIsLuigi; // (10000 - cc68)(r13)
+
 class MarioActor : public LiveActor {
 public:
     MarioActor(const char*);
@@ -345,10 +347,7 @@ public:
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    union {
-        TVec3f _468;
-        JGeometry::TVec3<long> _468l;
-    };
+    JGeometry::TVec3<long> _468l;
     u32 _474;
     f32 _478;
     u32 _47C;

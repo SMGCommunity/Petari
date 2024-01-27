@@ -53,6 +53,7 @@ public:
 
     virtual bool postureCtrl(MtxPtr);
 
+    void update();
     void setHeadAndFrontVecFromRotate(const TVec3f &);
     void initAfterConst();
     void initMember();
