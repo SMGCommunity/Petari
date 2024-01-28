@@ -259,7 +259,10 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) 
 	updateBaseScaleMtx();
 	_A18 = mRotation;
 	initDrawAndModel();
+
+    // Matrix?
 	_C28 = new DUMMY[MR::getJointNum(this)];
+    
 	MR::connectToScene(this, 0x25, 0x9, 0x14, 0x22);
 	MR::initLightCtrlForPlayer(this);
 	mMarioAnim = new MarioAnimator(this);
