@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 6 Completed -- (0.0%)
+# 1 / 6 Completed -- (16.666666666666664%)
 # MarioSlip.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `clearSlope__5MarioFv` | :x: |
+| `clearSlope__5MarioFv` | :white_check_mark: |
 | `isEnableSlopeMove__5MarioCFv` | :x: |
 | `moveSlopeSlide__5MarioFv` | :x: |
 | `slopeMove__5MarioFv` | :x: |

@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 11 Completed -- (0.0%)
+# 2 / 11 Completed -- (18.181818181818183%)
 # MarioSound.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `initSoundTable__5MarioFP9SoundListUl` | :x: |
-| `initSound__5MarioFv` | :x: |
+| `initSoundTable__5MarioFP9SoundListUl` | :white_check_mark: |
+| `initSound__5MarioFv` | :white_check_mark: |
 | `playSoundJ__5MarioFPCcl` | :x: |
 | `stopSoundJ__5MarioFPCcUl` | :x: |
 | `startBas__5MarioFPCcbff` | :x: |

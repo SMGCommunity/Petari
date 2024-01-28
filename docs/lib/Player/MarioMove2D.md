@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 9 Completed -- (0.0%)
+# 1 / 9 Completed -- (11.11111111111111%)
 # MarioMove2D.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -17,4 +17,4 @@
 | `set2Dmode__5MarioFb` | :x: |
 | `beforeJumping2D__5MarioFv` | :x: |
 | `afterLanding2D__5MarioFv` | :x: |
-| `clear2DStick__5MarioFv` | :x: |
+| `clear2DStick__5MarioFv` | :white_check_mark: |

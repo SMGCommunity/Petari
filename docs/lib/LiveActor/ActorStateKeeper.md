@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 3 / 6 Completed -- (50.0%)
+# 6 / 6 Completed -- (100.0%)
 # ActorStateKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16ActorStateKeeperFi` | :x: |
-| `addState__16ActorStateKeeperFP23ActorStateBaseInterfacePC5NervePCc` | :x: |
+| `__ct__16ActorStateKeeperFi` | :white_check_mark: |
+| `addState__16ActorStateKeeperFP23ActorStateBaseInterfacePC5NervePCc` | :white_check_mark: |
 | `updateCurrentState__16ActorStateKeeperFv` | :white_check_mark: |
 | `startState__16ActorStateKeeperFPC5Nerve` | :white_check_mark: |
 | `endState__16ActorStateKeeperFPC5Nerve` | :white_check_mark: |
-| `findStateInfo__16ActorStateKeeperFPC5Nerve` | :x: |
+| `findStateInfo__16ActorStateKeeperFPC5Nerve` | :white_check_mark: |

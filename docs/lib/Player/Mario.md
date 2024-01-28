@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 55 Completed -- (0.0%)
+# 1 / 55 Completed -- (1.8181818181818181%)
 # Mario.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__5MarioFP10MarioActor` | :x: |
+| `__ct__5MarioFP10MarioActor` | :white_check_mark: |
 | `updateAndClearStrideParameter__5MarioFv` | :x: |
 | `checkKeyLock__5MarioFv` | :x: |
 | `updateTimers__5MarioFv` | :x: |

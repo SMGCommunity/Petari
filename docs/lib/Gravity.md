@@ -9,7 +9,7 @@
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [ConeGravity.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/ConeGravity.md) | 19.306930693069308% | 5 / 6 | 83.33333333333334% | :eight_pointed_black_star: 
-| [CubeGravity.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/CubeGravity.md) | 1.3597033374536465% | 1 / 10 | 10.0% | :eight_pointed_black_star: 
+| [CubeGravity.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/CubeGravity.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [DiskGravity.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/DiskGravity.md) | 33.33333333333333% | 9 / 11 | 81.81818181818183% | :eight_pointed_black_star: 
 | [DiskTorusGravity.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/DiskTorusGravity.md) | 20.99644128113879% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | [GlobalGravityObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity/GlobalGravityObj.md) | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 35 Completed -- (0.0%)
+# 1 / 35 Completed -- (2.857142857142857%)
 # MarioEffect.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -33,7 +33,7 @@
 | `stopEffect__10MarioActorFPCc` | :x: |
 | `stopEffectForce__10MarioActorFPCc` | :x: |
 | `updateEffect__10MarioActorFv` | :x: |
-| `__ct__11MarioEffectFP10MarioActor` | :x: |
+| `__ct__11MarioEffectFP10MarioActor` | :white_check_mark: |
 | `playSwingEffect__11MarioEffectFv` | :x: |
 | `doCubeEffect__11MarioEffectFv` | :x: |
 | `taskOnEffectCheck__5MarioFUl` | :x: |
