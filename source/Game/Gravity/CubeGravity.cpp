@@ -163,7 +163,7 @@ bool CubeGravity::calcFaceGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 	mPosition.getTrans(trans);
 	MR::separateScalarAndDirection(&distance, &antiFaceDir, antiFaceDir);
 	float gravityMagnitude = antiFaceDir.dot(trans - rPosition) / distance;
-	if(gravityMagnitude < 0.0) gravityMagnitude = 0.0;
+	if(gravityMagnitude < 0.f) gravityMagnitude = 0.f;
 	*pDest = antiFaceDir;
 	*pScalar = gravityMagnitude;
 	return true;
