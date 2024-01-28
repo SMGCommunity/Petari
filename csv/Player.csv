@@ -1078,7 +1078,7 @@ update__10MarioSkateFv,MarioSkate.o,Player.a,false
 close__10MarioSkateFv,MarioSkate.o,Player.a,false
 __sinit_\MarioSkate_cpp,MarioSkate.o,Player.a,false
 notice__10MarioSkateFv,MarioSkate.o,Player.a,false
-initSoundTable__5MarioFP9SoundListUl,MarioSound.o,Player.a,false
+initSoundTable__5MarioFP9SoundListUl,MarioSound.o,Player.a,true
 initSound__5MarioFv,MarioSound.o,Player.a,true
 playSoundJ__5MarioFPCcl,MarioSound.o,Player.a,false
 stopSoundJ__5MarioFPCcUl,MarioSound.o,Player.a,false
