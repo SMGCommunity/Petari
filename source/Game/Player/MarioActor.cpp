@@ -303,14 +303,14 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) 
 	addSoundObjHolder();
 	initParts();
 	initMorphStringTable();
-	MR::declareGlobalEventCameraAbyss("å¥ˆè½ã‚«ãƒ¡ãƒ©");
-	MR::declareBlackHoleCamera("ãƒ–ãƒ©ãƒƒã‚¯ãƒ›ãƒ¼ãƒ«");
-	MR::declareGlobalEventCameraDead("æ˜‡å¤©ã‚«ãƒ¡ãƒ©", 0.34999999404f, 0x78, 0x3C);
-	MR::declareGlobalEventCamera("æ°´ä¸­ãƒ•ã‚©ãƒ­ãƒ¼");
-	MR::declareGlobalEventCamera("æ°´ä¸­ãƒ—ãƒ©ãƒãƒƒãƒˆ");
-	MR::declareGlobalEventCamera("æ°´ä¸Šãƒ•ã‚©ãƒ­ãƒ¼");
-	MR::declareGlobalEventCamera("å¼•ãæˆ»ã—");
-	MR::declareEventCameraProgrammable("å¤‰èº«åˆå‡ºã‚«ãƒ¡ãƒ©");
+	MR::declareGlobalEventCameraAbyss("“Ş—ƒJƒƒ‰");
+	MR::declareBlackHoleCamera("ƒuƒ‰ƒbƒNƒz[ƒ‹");
+	MR::declareGlobalEventCameraDead("¸“VƒJƒƒ‰", 0.34999999404f, 0x78, 0x3C);
+	MR::declareGlobalEventCamera("…’†ƒtƒHƒ[");
+	MR::declareGlobalEventCamera("…’†ƒvƒ‰ƒlƒbƒg");
+	MR::declareGlobalEventCamera("…ãƒtƒHƒ[");
+	MR::declareGlobalEventCamera("ˆø‚«–ß‚µ");
+	MR::declareEventCameraProgrammable("•Ïg‰oƒJƒƒ‰");
 	_2B8 = mPosition;
 	_33C = mPosition;
 	_348.zero();
@@ -324,17 +324,17 @@ void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation) 
 	_332 = 0;
 	MR::setGameCameraTargetToPlayer();
 	_A0C = 0;
-	_B48 = new FootPrint("è¶³è·¡", 0x100, -1);
+	_B48 = new FootPrint("‘«Õ", 0x100, -1);
 	_B48 -> setTexture(MR::getTexFromArc("Footprint.bti", this));
 	switch(initialAnimation) {
 		case 1:
-			mMario -> changeAnimation("åŸºæœ¬", (const char *)nullptr);
+			mMario -> changeAnimation("Šî–{", (const char *)nullptr);
 			break;
 		case 2:
-			mMario -> changeAnimationNonStop("ã‚¦ã‚©ãƒ¼ã‚¯ã‚¤ãƒ³");
+			mMario -> changeAnimationNonStop("ƒEƒH[ƒNƒCƒ“");
 			break;
 		default:
-			mMario -> changeAnimation("ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¤ãƒ³A", (const char *)nullptr);
+			mMario -> changeAnimation("ƒXƒe[ƒWƒCƒ“A", (const char *)nullptr);
 			break;
 	}
 	updateTransForCamera();
@@ -396,7 +396,7 @@ void MarioActor::initAfterPlacement() {
 }
 
 void MarioActor::initAfterOpeningDemo() {
-    mMario -> changeAnimationNonStop("ã‚¦ã‚©ãƒ¼ã‚¯ã‚¤ãƒ³");
+    mMario -> changeAnimationNonStop("ƒEƒH[ƒNƒCƒ“");
     _37C = 0;
 }
 
@@ -435,7 +435,7 @@ void MarioActor::changeAnimationNonStop(const char *pName) {
 
 void MarioActor::changeAnimationUpper(const char *pName) {
     if(!mMario -> _71C) {
-        if(isAnimationRun("åŸºæœ¬")) {
+        if(isAnimationRun("Šî–{")) {
             mMario -> changeAnimationUpper(pName, nullptr);
             return;
         }
@@ -468,25 +468,25 @@ void MarioActor::changeGameOverAnimation() {
     int animation = 0;
     if(mMario -> isStatusActive(0x12)) mMario -> closeStatus(nullptr);
 
-    if(mMario -> isAnimationRun("å‰æ–¹å°ãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 0;
-    if(mMario -> isAnimationRun("å¾Œæ–¹å°ãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 0;
-    if(mMario -> isAnimationRun("ãƒ•ã‚¡ã‚¤ã‚¢ãƒ©ãƒ³å‰å…†")) animation = 0;
-    if(mMario -> isAnimationRun("ç‚ã®ãƒ©ãƒ³ãƒŠãƒ¼")) animation = 0;
-    if(mMario -> isAnimationRun("é›»æ°—ãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 1;
-    if(mMario -> isAnimationRun("é›»æ°—ãƒ€ãƒ¡ãƒ¼ã‚¸çµ‚äº†")) animation = 1;
-    if(mMario -> isAnimationRun("ç‚ãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 2;
-    if(mMario -> isAnimationRun("ãƒ•ã‚¡ã‚¤ã‚¢ãƒ€ãƒ³ã‚¹")) animation = 2;
-    if(mMario -> isAnimationRun("ä¸­ãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 3;
-    if(mMario -> isAnimationRun("ä¸­ãƒ€ãƒ¡ãƒ¼ã‚¸ç©ºä¸­")) animation = 3;
-    if(mMario -> isAnimationRun("ä¸­ãƒ€ãƒ¡ãƒ¼ã‚¸ç€åœ°")) animation = 3;
-    if(mMario -> isAnimationRun("ä¸­å¾Œãƒ€ãƒ¡ãƒ¼ã‚¸")) animation = 4;
-    if(mMario -> isAnimationRun("ä¸­å¾Œãƒ€ãƒ¡ãƒ¼ã‚¸ç©ºä¸­")) animation = 4;
-    if(mMario -> isAnimationRun("ä¸­å¾Œãƒ€ãƒ¡ãƒ¼ã‚¸ç€åœ°")) animation = 4;
-    if(mMario -> isAnimationRun("è½ä¸‹")) animation = 5;
-    if(mMario -> isAnimationRun("ç©ºä¸­ãµã‚“ã°ã‚Š")) animation = 5;
-    if(mMario -> isAnimationRun("ã¤ã¶ã‚Œ")) animation = 6;
-    if(mMario -> isAnimationRun("ã¤ã¶ã‚Œå¾©å¸°")) animation = 6;
-    if(!mMario -> isAnimationRun("æ°·çµ") && !mMario -> isStatusActive(0xd));
+    if(mMario -> isAnimationRun("‘O•û¬ƒ_ƒ[ƒW")) animation = 0;
+    if(mMario -> isAnimationRun("Œã•û¬ƒ_ƒ[ƒW")) animation = 0;
+    if(mMario -> isAnimationRun("ƒtƒ@ƒCƒAƒ‰ƒ“‘O’›")) animation = 0;
+    if(mMario -> isAnimationRun("‰Š‚Ìƒ‰ƒ“ƒi[")) animation = 0;
+    if(mMario -> isAnimationRun("“d‹Cƒ_ƒ[ƒW")) animation = 1;
+    if(mMario -> isAnimationRun("“d‹Cƒ_ƒ[ƒWI—¹")) animation = 1;
+    if(mMario -> isAnimationRun("‰Šƒ_ƒ[ƒW")) animation = 2;
+    if(mMario -> isAnimationRun("ƒtƒ@ƒCƒAƒ_ƒ“ƒX")) animation = 2;
+    if(mMario -> isAnimationRun("’†ƒ_ƒ[ƒW")) animation = 3;
+    if(mMario -> isAnimationRun("’†ƒ_ƒ[ƒW‹ó’†")) animation = 3;
+    if(mMario -> isAnimationRun("’†ƒ_ƒ[ƒW’…’n")) animation = 3;
+    if(mMario -> isAnimationRun("’†Œãƒ_ƒ[ƒW")) animation = 4;
+    if(mMario -> isAnimationRun("’†Œãƒ_ƒ[ƒW‹ó’†")) animation = 4;
+    if(mMario -> isAnimationRun("’†Œãƒ_ƒ[ƒW’…’n")) animation = 4;
+    if(mMario -> isAnimationRun("—‰º")) animation = 5;
+    if(mMario -> isAnimationRun("‹ó’†‚Ó‚ñ‚Î‚è")) animation = 5;
+    if(mMario -> isAnimationRun("‚Â‚Ô‚ê")) animation = 6;
+    if(mMario -> isAnimationRun("‚Â‚Ô‚ê•œ‹A")) animation = 6;
+    if(!mMario -> isAnimationRun("•XŒ‹") && !mMario -> isStatusActive(0xd));
     else animation = -1;
     if(mMario -> isSwimming()) animation = 7;
     if(isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) animation = 8;
@@ -496,42 +496,42 @@ void MarioActor::changeGameOverAnimation() {
 
     switch(animation) {
         case 0:
-            mMario -> changeAnimationNonStop("åº§ã‚Šãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("À‚èƒ_ƒEƒ“");
             break;
         case 1:
-            mMario -> changeAnimationNonStop("æ„Ÿé›»ãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("Š´“dƒ_ƒEƒ“");
             break;
         case 2:
-            mMario -> changeAnimationNonStop("ç‚ãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("‰Šƒ_ƒEƒ“");
             break;
         case 3:
-            mMario -> changeAnimationNonStop("ä»°å‘ã‘ãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("‹ÂŒü‚¯ƒ_ƒEƒ“");
             break;
         case 4:
-            mMario -> changeAnimationNonStop("ä¿¯ã›ãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("˜ë‚¹ƒ_ƒEƒ“");
             break;
         case 5:
-            if(mMario -> getMovementStates()._1) mMario -> changeAnimationNonStop("åº§ã‚Šãƒ€ã‚¦ãƒ³");
-            else mMario -> changeAnimationNonStop("å¥ˆè½ãƒ€ã‚¦ãƒ³");
+            if(mMario -> getMovementStates()._1) mMario -> changeAnimationNonStop("À‚èƒ_ƒEƒ“");
+            else mMario -> changeAnimationNonStop("“Ş—ƒ_ƒEƒ“");
             break;
         case 6:
-            mMario -> changeAnimationNonStop("ã¤ã¶ã‚Œãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("‚Â‚Ô‚êƒ_ƒEƒ“");
             break;
         case 7:
-            mMario -> changeAnimationNonStop("æ°´æ³³ãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("…‰jƒ_ƒEƒ“");
             break;
         case 8:
-            mMario -> changeAnimationNonStop("åŸ‹ã¾ã‚Šãƒ€ã‚¦ãƒ³");
+            mMario -> changeAnimationNonStop("–„‚Ü‚èƒ_ƒEƒ“");
             break;
         case 9:
-            mMario -> changeAnimationNonStop("ãƒ¬ãƒ¼ã‚¹è² ã‘");
+            mMario -> changeAnimationNonStop("ƒŒ[ƒX•‰‚¯");
             break;
         case 10:
-            mMario -> changeAnimationNonStop("æ°´ä¸­ãƒ¬ãƒ¼ã‚¹è² ã‘");
+            mMario -> changeAnimationNonStop("…’†ƒŒ[ƒX•‰‚¯");
             break;
     }
     _B90 = true;
-    stopEffect("ç„¡æ•µä¸­");
+    stopEffect("–³“G’†");
     _A6E = false;
 }
 
@@ -645,10 +645,10 @@ void MarioActor::movement() {
             f32 elementA = MR::vecKillElement(stack_134, stack_104, &stack_F8);
             f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
             if(PSVECMag(mVelocity.toCVec()) > 20f && elementA < elementB * 0.5f) {
-                if(mMario -> isAnimationRun("å‚ã™ã¹ã‚Šä¸‹å‘ãã‚ãŠã‚€ã‘")) {
+                if(mMario -> isAnimationRun("â‚·‚×‚è‰ºŒü‚«‚ ‚¨‚Ş‚¯")) {
                     mMario -> push(mMario -> _208 % 5f);
                 }
-                else if(mMario -> isAnimationRun("å‚ã™ã¹ã‚Šä¸Šå‘ãã†ã¤ã¶ã›")) {
+                else if(mMario -> isAnimationRun("â‚·‚×‚èãŒü‚«‚¤‚Â‚Ô‚¹")) {
                     mMario -> push(mMario -> _208 % -5f);
                 }
                 mMario -> mDrawStates._2 = true;
@@ -675,7 +675,7 @@ void MarioActor::movement() {
                         mPosition = stack_E0;
                         mMario -> _130 = mPosition;
                         mMario -> stopJump();
-                        mMario -> changeAnimation("åŸºæœ¬", "è½ä¸‹");
+                        mMario -> changeAnimation("Šî–{", "—‰º");
                         mMario -> updateGroundInfo();
                     }
                 }
@@ -772,18 +772,18 @@ void MarioActor::movement() {
 
 void MarioActor::control() {
     if(mSuperKinokoCollected) {
-        if(MR::tryStartDemoWithoutCinemaFrame(this, "ãƒãƒªã‚ªã‚¹ãƒ¼ãƒ‘ãƒ¼åŒ–")) { // 6-up camera
+        if(MR::tryStartDemoWithoutCinemaFrame(this, "ƒ}ƒŠƒIƒX[ƒp[‰»")) { // 6-up camera
             mSuperKinokoCollected = false;
             changeMaxLife(6);
             MR::stopAnimFrame(this);
             MR::requestPowerupHPMeter();
-            mMario -> startPadVib("ãƒãƒªã‚ª[å¤‰èº«]");
+            mMario -> startPadVib("ƒ}ƒŠƒI[•Ïg]");
             MR::startSystemSE("SE_SY_SUPER_KINOKO_GET", -1, -1);
             _3DA = 0x5a;
         }
     }
     else if(mPowerupCollected) {
-        if(MR::tryStartDemoWithoutCinemaFrame(this, "ãƒãƒªã‚ªå¤‰èº«")) {
+        if(MR::tryStartDemoWithoutCinemaFrame(this, "ƒ}ƒŠƒI•Ïg")) {
             mPowerupCollected = false;
             mTransforming = true;
             if(_3D4 == 6) {
@@ -792,8 +792,8 @@ void MarioActor::control() {
             }
             _3D8 = 0x40;
             MR::stopAnimFrame(this);
-            playEffect("å¤‰èº«");
-            mMario -> startPadVib("ãƒãƒªã‚ª[å¤‰èº«]");
+            playEffect("•Ïg");
+            mMario -> startPadVib("ƒ}ƒŠƒI[•Ïg]");
         }
     }
     control2();
@@ -876,8 +876,8 @@ void MarioActor::updateBehavior() {
     updateBindRatio();
     updateEffect();
     if(_B94 && !--_B94) {
-        mMario -> stopAnimationUpper("ãƒãƒ³ãƒãƒ¼æŠ•ã’å›è»¢ä¸­", nullptr);
-        mMario -> stopAnimation("ãƒãƒ³ãƒãƒ¼æŠ•ã’å›è»¢ä¸­", (const char *)nullptr);
+        mMario -> stopAnimationUpper("ƒnƒ“ƒ}[“Š‚°‰ñ“]’†", nullptr);
+        mMario -> stopAnimation("ƒnƒ“ƒ}[“Š‚°‰ñ“]’†", (const char *)nullptr);
     }
     updatePunching();
     if(!doPressing() && !doStun() && !doRush()) {
@@ -935,9 +935,9 @@ void MarioActor::updatePunching() {
             canSpinring
             && !mMario -> isSwimming()
             && !_944
-            && selectAction("ã‚¹ãƒ”ãƒ³å›å¾©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ") == true
+            && selectAction("ƒXƒsƒ“‰ñ•œƒGƒtƒFƒNƒg") == true
         ) {
-            playEffect("ã‚¹ãƒ”ãƒ³ãƒªãƒ³ã‚°");
+            playEffect("ƒXƒsƒ“ƒŠƒ“ƒO");
         }
         bool canPunch = isInPunchTimerRange();
         if(!mMario -> isSwimming()) canPunch = true;
@@ -947,7 +947,7 @@ void MarioActor::updatePunching() {
         }
     }
     if (
-        mMario -> isAnimationRun("ãƒãƒ³ãƒãƒ¼æŠ•ã’ãƒªãƒªãƒ¼ã‚¹")
+        mMario -> isAnimationRun("ƒnƒ“ƒ}[“Š‚°ƒŠƒŠ[ƒX")
         && mMario -> getMovementStates()._1
         && !_38C
         && !mMario -> _420
@@ -979,11 +979,11 @@ bool MarioActor::doRush() {
             mMario -> mSwim -> checkWaterCube(false);
             if((int)mMario -> mSwim -> _144 != initial) {
                 if(mMario -> mSwim -> _144 <= 1 && (u32)initial - 2 <= 1) {
-                    playEffectRT("æ°´é¢ã‚¸ãƒ£ãƒ³ãƒ—æ°´æŸ±", mMario -> mSwim -> _160, mMario -> mSwim -> _16C);
+                    playEffectRT("…–ÊƒWƒƒƒ“ƒv…’Œ", mMario -> mSwim -> _160, mMario -> mSwim -> _16C);
                     emitEffectWaterColumn(mMario -> mSwim -> _160, mMario -> mSwim -> _16C);
                 }
                 else if((u32)initial <= 1 && mMario -> mSwim -> _144 - 2 <= 1) {
-                    playEffectRT("æ°´é¢ã‚¸ãƒ£ãƒ³ãƒ—æ°´æŸ±", -mMario -> _328, mMario -> mSwim -> _16C);
+                    playEffectRT("…–ÊƒWƒƒƒ“ƒv…’Œ", -mMario -> _328, mMario -> mSwim -> _16C);
                     emitEffectWaterColumn(mMario -> mSwim -> _160, mMario -> mSwim -> _16C);
                 }
                 if(initial == 2) {
@@ -1025,7 +1025,7 @@ void MarioActor::updateSwingTimer() {
         if(_94C && --_94C == 6) _94E = 5;
         if(_94E && --_94E == 0) {
             mMario -> startPadVib((unsigned long)0);
-            mMario -> playSound("ã‚¹ãƒ”ãƒ³å›å¾©çµ‚äº†", -1);
+            mMario -> playSound("ƒXƒsƒ“‰ñ•œI—¹", -1);
             Color8 stack_8;
             stack_8.set(0x50, 0x80, 0xc8, 0);
             _1AA = 0xf;
@@ -1035,8 +1035,8 @@ void MarioActor::updateSwingTimer() {
         }
         if(_946) {
             if(--_946 == 0x18) {
-                selectAction("ã‚¹ãƒ”ãƒ³å›å¾©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ");
-                stopEffectForce("ã‚¹ãƒ”ãƒ³ãƒªãƒ³ã‚°");
+                selectAction("ƒXƒsƒ“‰ñ•œƒGƒtƒFƒNƒg");
+                stopEffectForce("ƒXƒsƒ“ƒŠƒ“ƒO");
             }
             if(_946 == 0xd) _94C = 0x13;
         }
@@ -1063,7 +1063,7 @@ void MarioActor::updateSwingAction() {
     }
     bool canRush = true;
     if(!requestRush) return;
-    if(mMario -> isAnimationRun("å£ã¯ã˜ã")) canRush = false;
+    if(mMario -> isAnimationRun("•Ç‚Í‚¶‚«")) canRush = false;
     if(isJumping() && mMario -> _428) canRush = false;
     if(_3D4 == 9) canRush = false;
     if(mMario -> getCurrentStatus() == 1) canRush = false;
@@ -1075,7 +1075,7 @@ void MarioActor::updateSwingAction() {
     if(_3C0) canRush = false;
     if(_EA4) canRush = false;
     if(!canRush) return;
-    u8 action = selectAction("ã‚¹ãƒ”ãƒ³ã‚¢ã‚¿ãƒƒã‚¯");
+    u8 action = selectAction("ƒXƒsƒ“ƒAƒ^ƒbƒN");
     switch(action) {
         case 1:
             bool didSpinPunch = true;
@@ -1092,29 +1092,29 @@ void MarioActor::updateSwingAction() {
                 tryReleaseBombTeresa();
                 if(requestSpinJump2P) MR::start2PJumpAssistSound();
             }
-            else if(!getMovementStates()._F && !mMario -> isAnimationRun("åœ°ä¸Šã²ã­ã‚Š")) {
+            else if(!getMovementStates()._F && !mMario -> isAnimationRun("’nã‚Ğ‚Ë‚è")) {
                 const char *pLastAnimationName = mMarioAnim -> _10 -> getCurrentAnimationName();
                 if(_3D4 == 4) {
-                    if(!mMario -> isAnimationRun("ãƒãƒã‚¹ãƒ”ãƒ³")) didSpinPunch = trySpinPunch();
+                    if(!mMario -> isAnimationRun("ƒnƒ`ƒXƒsƒ“")) didSpinPunch = trySpinPunch();
                 }
                 else didSpinPunch = trySpinPunch();
                 _974 = 0;
                 if(pLastAnimationName != mMarioAnim -> _10 -> getCurrentAnimationName()) {
-                    mMario -> playSound("ãƒ‘ãƒ³ãƒé¢¨åˆ‡ã‚Š", -1);
+                    mMario -> playSound("ƒpƒ“ƒ`•—Ø‚è", -1);
                 }
             }
             if(_3D4 == 4) {
                 if(isJumping()) {
-                    if(!mMario -> isAnimationRun("ãƒãƒã‚¹ãƒ”ãƒ³ç©ºä¸­")) {
-                        mMario -> playSound("å£°ã‚¹ãƒ”ãƒ³", -1);
-                        mMario -> playSound("ã‚¹ãƒ”ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—", -1);
+                    if(!mMario -> isAnimationRun("ƒnƒ`ƒXƒsƒ“‹ó’†")) {
+                        mMario -> playSound("ºƒXƒsƒ“", -1);
+                        mMario -> playSound("ƒXƒsƒ“ƒWƒƒƒ“ƒv", -1);
                     }
-                    mMario -> changeAnimation("ãƒãƒã‚¹ãƒ”ãƒ³ç©ºä¸­", (const char *)nullptr);
+                    mMario -> changeAnimation("ƒnƒ`ƒXƒsƒ“‹ó’†", (const char *)nullptr);
                 }
                 else if(getMovementStates()._A || _9F1) {
-                    mMario -> changeAnimation("ã‚µãƒãƒ¼ã‚½ãƒ«ãƒˆ", (const char *)nullptr);
+                    mMario -> changeAnimation("ƒTƒ}[ƒ\ƒ‹ƒg", (const char *)nullptr);
                 }
-                else mMario -> changeAnimation("ãƒãƒã‚¹ãƒ”ãƒ³", (const char *)nullptr);
+                else mMario -> changeAnimation("ƒnƒ`ƒXƒsƒ“", (const char *)nullptr);
             }
             if(didSpinPunch) _946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
             break;
@@ -1135,12 +1135,12 @@ void MarioActor::updateSwingAction() {
             break;
         case 5:
             if(!isEnableSpinPunch()) break;
-            if(isJumping()) mMario -> changeAnimation("ãƒãƒã‚¹ãƒ”ãƒ³ç©ºä¸­", (const char *)nullptr);
+            if(isJumping()) mMario -> changeAnimation("ƒnƒ`ƒXƒsƒ“‹ó’†", (const char *)nullptr);
             else {
                 if(getMovementStates()._A || _9F1) {
-                    mMario -> changeAnimation("ã‚µãƒãƒ¼ã‚½ãƒ«ãƒˆ", (const char *)nullptr); //Summersault
+                    mMario -> changeAnimation("ƒTƒ}[ƒ\ƒ‹ƒg", (const char *)nullptr); //Summersault
                 }
-                else mMario -> changeAnimation("ãƒãƒã‚¹ãƒ”ãƒ³", (const char *)nullptr);
+                else mMario -> changeAnimation("ƒnƒ`ƒXƒsƒ“", (const char *)nullptr);
             }
             _946 = mConst -> _0[mConst -> _8] -> _426 + 0x22;
             break;
@@ -1222,16 +1222,16 @@ void MarioActor::updateLife() {
     mHealth--;
 }
 
-static const char *sMiddleWaterLifeReduction = "æ°´ä¸­ãƒ©ã‚¤ãƒ•æ¸›å°‘";
+static const char *sMiddleWaterLifeReduction = "…’†ƒ‰ƒCƒtŒ¸­";
 
 void MarioActor::incLife(unsigned long amt) {
     if(isEnableNerveChange() && !_3E4) {
         const u32 health = getHealth();
-        if(mHealth != mMaxHealth) mMario -> playSound("ãƒ©ã‚¤ãƒ•å›å¾©", -1);
+        if(mHealth != mMaxHealth) mMario -> playSound("ƒ‰ƒCƒt‰ñ•œ", -1);
         mHealth += amt;
         if(mHealth >= mMaxHealth) mHealth = mMaxHealth;
         if(health == 1 && mMarioAnim -> isAnimationStop()) {
-            mMarioAnim -> _C -> changeTrackAnimation(3, "ãƒãƒ¼ãƒãƒ«ã‚¦ã‚¨ã‚¤ãƒˆ");
+            mMarioAnim -> _C -> changeTrackAnimation(3, "ƒm[ƒ}ƒ‹ƒEƒGƒCƒg");
             if(mMario -> _970 && strcmp(mMario -> _970, "DamageWait")) {
                 mMario -> startBas(nullptr, false, 0f, 0f);
                 setBlink(nullptr);
@@ -1258,7 +1258,7 @@ bool MarioActor::doPressing() {
                     setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
                 }
                 if(!_390) {
-                    mMario -> changeAnimation("ã¤ã¶ã‚Œè§£é™¤", (const char *)nullptr);
+                    mMario -> changeAnimation("‚Â‚Ô‚ê‰ğœ", (const char *)nullptr);
                     _F44 = true;
                 }
             }
@@ -1269,7 +1269,7 @@ bool MarioActor::doPressing() {
                 setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
             }
             if(!_390) {
-                mMario -> changeAnimation("ã¤ã¶ã‚Œè§£é™¤", (const char *)nullptr);
+                mMario -> changeAnimation("‚Â‚Ô‚ê‰ğœ", (const char *)nullptr);
                 _F44 = true;
             }
             break;

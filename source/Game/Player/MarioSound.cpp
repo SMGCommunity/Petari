@@ -1,24 +1,35 @@
-/*#include "Game/Player/Mario.h"
+#include "Game/Player/Mario.hpp"
 #include <cstring>
 
 struct SoundList {
 	const char *name;
-	const char* _4;
+	u32 _4;
 
 	u32 _8;
 	u32 _C;
 	
 	u32 _10;
-	const char* _14;
-	SoundList(const char *name, const char* offset) : name(name), _4(offset), _8(0), _C(0), _10(0), _14(0) {}
+	u32 _14;
+	//SoundList(const char *name, const char* offset) : name(name), _4(offset), _8(0), _C(0), _10(0), _14(0) {}
 };
 
-static SoundList soundlist[0x3] = {
+static SoundList soundlist[0x3];/* = {
 	SoundList("声小ジャンプ", (const char*)0x10000),
 	SoundList("声中ジャンプ", (const char*)0x10001),
 	SoundList("声大ジャンプ", (const char*)0x10002),
+};*/
+
+struct SoundSwapList {
+    const char *name;
+
+    u32 offset1;
+    u32 offset2;
+    u32 offset3;
 };
-static const char* soundswaplist[4] = {"", NULL, NULL, NULL};
+
+static SoundSwapList soundswaplist[1] = {
+    {"", 0, 0, 0}
+};
 
 void Mario::initSound() {
 	unsigned long length = initSoundTable(soundlist, 0);
@@ -30,8 +41,13 @@ void Mario::initSound() {
 	_970 = 0;
 }
 
-unsigned long Mario::initSoundTable(SoundList *list, unsigned long globalTablePosition) {
-	const char** currswap = soundswaplist + globalTablePosition;
+struct OffsetView {
+    u32 offset;
+    u8 padding[12];
+};
+
+u32 Mario::initSoundTable(SoundList *list, u32 globalTablePosition) {
+	const OffsetView *currswap = (const OffsetView *)((const char *)soundswaplist + globalTablePosition);
 	SoundList *pos = list;
 	int i = 0;
 	while(true) {
@@ -42,15 +58,15 @@ unsigned long Mario::initSoundTable(SoundList *list, unsigned long globalTablePo
 		if(globalTablePosition > 0) {
 			int j = 0;
 			while(true) {
-				if(soundswaplist[j][0] == '\0') break;
-				if(strcmp(pos -> name, soundswaplist[j]) == 0) {
-					if(currswap[j] != 0) pos -> _14 = currswap[j];
+				if(soundswaplist[j].name[0] == '\0') break;
+				if(strcmp(pos -> name, soundswaplist[j].name) == 0) {
+					if(currswap[j].offset != 0) pos -> _14 = currswap[j].offset;
 					break;
 				}
-				j += 4;
+				j++;
 			}
 		}
 		i++;
 	}
 	return i;
-}*/
+}

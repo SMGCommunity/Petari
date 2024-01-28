@@ -39,8 +39,7 @@
 #include "Game/Player/MarioMapCode.hpp"
 #include "Game/Map/HitInfo.hpp"
 
-Mario::Mario(MarioActor *actor) {
-	mActor = actor;
+Mario::Mario(MarioActor *actor) : MarioModule(actor) {
 	initMember();
 	_160.zero();
 	_13C.zero();

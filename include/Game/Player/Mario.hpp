@@ -441,7 +441,7 @@ public:
 	f32 _618;
 	f32 _61C;
 	f32 _620;
-	u32 _624;
+	u8 _624;
 	TVec3f _628;
 	f32 _634;
 
@@ -451,7 +451,7 @@ public:
     TVec3f _654;
     TVec3f _660;
 
-    u32 _66C;
+    u8 _66C;
     TVec3f _670;
     TVec3f _67C;
 
@@ -496,23 +496,23 @@ public:
     u16 _76C;
     f32 _770;
     u16 _774;
-    MarioRabbit* mRabbit;
-    MarioFoo* mFoo;
-    MarioSukekiyo* mSukekiyo;
-    MarioBury* mBury;
-    MarioWait* mWait;
-    MarioClimb* mClimb;
+    MarioRabbit* mRabbit; // _778
+    MarioFoo* mFoo; // _77C
+    MarioSukekiyo* mSukekiyo; // _780
+    MarioBury* mBury; // _784
+    MarioWait* mWait; // _788
+    MarioClimb* mClimb; // _78C
     TVec3f _790;
-    MarioHang* mHang;
-    MarioRecovery* mRecovery;
-    MarioWarp* mWarp;
-    MarioFlip* mFlip;
-    MarioSideStep* mSideStep;
-    MarioFrontStep* mFrontStep;
-    MarioSkate* mSkate;
-    MarioTalk* mTalk;
-    MarioTeresa* mTeresa;
-    MarioDamage* mDamage;
+    MarioHang* mHang; // _79C
+    MarioRecovery* mRecovery; // _7A0
+    MarioWarp* mWarp; // _7A4
+    MarioFlip* mFlip; // _7A8
+    MarioSideStep* mSideStep; // _7AC
+    MarioFrontStep* mFrontStep; // _7B0
+    MarioSkate* mSkate; // _7B4
+    MarioTalk* mTalk; // _7B8
+    MarioTeresa* mTeresa; // _7BC
+    MarioDamage* mDamage; // _7C0
     TVec3f _7C4;
     u16 _7D0;
     TVec3f _7D4;
@@ -521,26 +521,26 @@ public:
     TVec3f _814;
     Triangle* _820;
     TMtx34f _824;
-    MarioFlow* mFlow;
-    MarioFireDamage* mFireDamage;
-    MarioFireDance* mFireDance;
-    MarioFireRun* mFireRun;
-    MarioParalyze* mParalyze;
-    MarioStun* mStun;
-    MarioCrush* mCrush;
-    MarioFreeze* mFreeze;
-    MarioAbyssDamage* mAbyssDamage;
-    MarioDarkDamage* mDarkDamage;
-    MarioFaint* mFaint;
-    MarioBlown* mBlown;
+    MarioFlow* mFlow; // _854
+    MarioFireDamage* mFireDamage; // _858
+    MarioFireDance* mFireDance; // _85C
+    MarioFireRun* mFireRun; // _860
+    MarioParalyze* mParalyze; // _864
+    MarioStun* mStun; // _868
+    MarioCrush* mCrush; // _86C
+    MarioFreeze* mFreeze; // _870
+    MarioAbyssDamage* mAbyssDamage; // _874
+    MarioDarkDamage* mDarkDamage; // _878
+    MarioFaint* mFaint; // _87C
+    MarioBlown* mBlown; // _880
     MarioSwim* mSwim; // _884
     MarioSlider* mSlider; // _888
     MarioStep* mStep; // _88c
     MarioBump* mBump; // _890
     MarioMagic* mMagic; // _894
     u8 _898;
-    MarioFpView* mFpView;
-    MarioMove* mMove;
+    MarioFpView* mFpView; // _89C
+    MarioMove* mMove; // _8A0
     TVec3f _8A4;
     TVec3f _8B0;
     TVec3f _8BC;
