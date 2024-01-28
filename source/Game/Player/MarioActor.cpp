@@ -41,7 +41,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 	initMember();
 	mMario = new Mario(this);
 	_930 = 0;
-	_468l.x = 0;
+	_468.x = 0;
 	mMaxHealth = 3;
 	mHealth = 3;
 	_384 = 8;
@@ -97,8 +97,8 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
 	_3C1=false;
 	_211=0;
-	_468l.y=0;
-	_468l.z=0;
+	_468.y=0;
+	_468.z=0;
 	_474=0;
 	_924=nullptr;
 	_928=0;
@@ -590,7 +590,7 @@ void MarioActor::exeWait() {
 }
 
 void MarioActor::movement() {
-    _468l.y = 0;
+    _468.y = 0;
     _378++;
     _1E1 = 0;
     PSMTXCopy(_AE0.toMtxPtr(), _AB0.toMtxPtr());
@@ -1073,7 +1073,7 @@ void MarioActor::updateSwingAction() {
     if(mMario -> isSwimming()) canRush = false;
     if(mMario -> isStatusActive(0x18)) canRush = false;
     if(mMario -> isStatusActive(0x13)) canRush = false;
-    if(_468l.x) canRush = false;
+    if(_468.x) canRush = false;
     if(mMario -> isStatusActive(2)) canRush = false;
     if(_3C0) canRush = false;
     if(_EA4) canRush = false;

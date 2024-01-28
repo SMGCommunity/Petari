@@ -293,7 +293,7 @@ bool MarioSwim::start() {
         r1e = 1;
         getPlayer()->setFrontVecKeepUp(-getFrontVec(), -1.f);
     }
-    if(!mActor->_468l.x) _8A = 0;
+    if(!mActor->_468.x) _8A = 0;
     if(_9D == 4) r1d = 1;
     if(_8A && getPlayer()->getMovementStates()._0) {
         if(!getPlayer()->_10._1E) r1e = 2;
@@ -393,7 +393,7 @@ bool MarioSwim::start() {
         MR::vecKillElement(mActor->getLastMove(), _6C, &_A0);
         _A0.scaleInline(0.5f);
     }
-    if(mActor->_468l.x) {
+    if(mActor->_468.x) {
         if(!_8A) {
             if(mActor->getCarrySensor().isType(15) || mActor->getCarrySensor().isType(16)) {
                 u32 r1b = 0;

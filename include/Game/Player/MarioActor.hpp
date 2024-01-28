@@ -347,7 +347,7 @@ public:
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    JGeometry::TVec3<long> _468l;
+    JGeometry::TVec3<long> _468;
     u32 _474;
     f32 _478;
     u32 _47C;

@@ -2,6 +2,8 @@
 
 #include <revolution/types.h>
 
+class ResourceHolder;
+
 class XanimeSwapTable {
 public:
     const char *original;
@@ -109,6 +111,7 @@ public:
 
 class XanimeResourceTable {
 public:
+
     XanimeResourceTable (
 
         ResourceHolder *,
