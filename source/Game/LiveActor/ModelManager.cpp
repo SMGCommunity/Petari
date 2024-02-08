@@ -187,7 +187,7 @@ bool ModelManager::isBvaPlaying(const char *pName) const {
 
 void ModelManager::initJointTransform() {
     J3DModel* model = getJ3DModel();
-    mXanimePlayer->mCore->enableJointTranform(model->mModelData);
+    mXanimePlayer->mCore->enableJointTransform(model->mModelData);
 }
 
 ResourceHolder* ModelManager::getModelResourceHolder() const {

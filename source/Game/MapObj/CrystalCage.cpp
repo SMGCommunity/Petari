@@ -261,7 +261,7 @@ void CrystalCage::initModel(const char *pName) {
     MR::makeMtxUpNoSupportPos(&_94, stack_8, _DC);
 
     if (mCrystalCageType == 2) {
-        mBreakObj = MR::createModelObjMapObjStrongLight("クリスタルケージ[小]壊れモデル", "CrystalCageLBreak", (MtxPtr)&_94);
+        mBreakObj = MR::createModelObjMapObjStrongLight("クリスタルケージ[大]壊れモデル", "CrystalCageLBreak", (MtxPtr)&_94);
     }
     else {
         mBreakObj = MR::createModelObjMapObjStrongLight("クリスタルケージ[小]壊れモデル", "CrystalCageSBreak", (MtxPtr)&_94);

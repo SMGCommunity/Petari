@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 61 Completed -- (0.0%)
+# 11 / 61 Completed -- (18.0327868852459%)
 # MarioSwim.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `isSwimming__5MarioCFv` | :x: |
-| `forceStartSwimAndShoot__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
-| `forceExitSwim__5MarioFv` | :x: |
-| `setDamage__9MarioSwimFRCQ29JGeometry8TVec3<f>Us` | :x: |
-| `checkStartSwim__5MarioFv` | :x: |
-| `startSwim__5MarioFv` | :x: |
-| `__ct__9MarioSwimFP10MarioActor` | :x: |
-| `init__9MarioSwimFv` | :x: |
-| `start__9MarioSwimFv` | :x: |
-| `getSurface__9MarioSwimCFv` | :x: |
-| `update__9MarioSwimFv` | :x: |
+| `isSwimming__5MarioCFv` | :white_check_mark: |
+| `forceStartSwimAndShoot__5MarioFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `forceExitSwim__5MarioFv` | :white_check_mark: |
+| `setDamage__9MarioSwimFRCQ29JGeometry8TVec3<f>Us` | :white_check_mark: |
+| `checkStartSwim__5MarioFv` | :white_check_mark: |
+| `startSwim__5MarioFv` | :white_check_mark: |
+| `__ct__9MarioSwimFP10MarioActor` | :white_check_mark: |
+| `init__9MarioSwimFv` | :white_check_mark: |
+| `start__9MarioSwimFv` | :white_check_mark: |
+| `getSurface__9MarioSwimCFv` | :white_check_mark: |
+| `update__9MarioSwimFv` | :white_check_mark: |
 | `procBuoyancy__9MarioSwimFv` | :x: |
 | `flowOnWave__9MarioSwimFf` | :x: |
 | `decideVelocity__9MarioSwimFv` | :x: |

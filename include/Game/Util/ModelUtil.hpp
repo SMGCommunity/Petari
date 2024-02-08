@@ -12,6 +12,7 @@ namespace MR {
     bool isExistModel(const char *);
 
     J3DModel* getJ3DModel(const LiveActor *);
+    J3DModelData* getJ3DModelData(const LiveActor *);
     J3DModelData* getJ3DModelData(const char *);
 
     void calcJ3DModel(LiveActor *);

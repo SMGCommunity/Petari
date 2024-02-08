@@ -4,6 +4,12 @@
 #include "Game/LiveActor/ActorStateBase.hpp"
 
 class ActorStateKeeper {
+private:
+	struct State {
+		ActorStateBaseInterface* mInterface;
+		const Nerve* mNerve;
+		const char* mName;
+	};
 public:
     ActorStateKeeper(int);
 
@@ -11,10 +17,10 @@ public:
     bool updateCurrentState();
     void startState(const Nerve *);
     void endState(const Nerve *);
-    Spine* findStateInfo(const Nerve *);
+    State* findStateInfo(const Nerve *);
 
-    s32 _0;
-    u32 _4;
-    ActorStateBaseInterface* mNerves;           // _8
-    Spine* mCurrentState;                       // _C
+    s32 mStatesCapacity;
+    s32 mLength;
+    State* mStates;           // _8
+    State* mCurrentState;           // _C
 };

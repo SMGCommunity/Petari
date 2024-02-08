@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 18 Completed -- (0.0%)
+# 1 / 18 Completed -- (5.555555555555555%)
 # XanimeResource.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -24,6 +24,6 @@
 | `getIndex__19XanimeResourceTableCFP15XanimeDirectoryPCc` | :x: |
 | `getGroupInfo__19XanimeResourceTableCFPCcP15XanimeDirectory` | :x: |
 | `createSortTable__19XanimeResourceTableFv` | :x: |
-| `init__15XanimeGroupInfoFv` | :x: |
+| `init__15XanimeGroupInfoFv` | :white_check_mark: |
 | `findResMotion__19XanimeResourceTableCFPCc` | :x: |
 | `findStringMotion__19XanimeResourceTableCFPCc` | :x: |

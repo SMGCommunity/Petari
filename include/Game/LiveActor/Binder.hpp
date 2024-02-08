@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Game/Util/TriangleFilter.hpp"
 #include "Game/Map/HitInfo.hpp"
 
 class Binder {
 public:
+	Binder(TMtx34f *, const TVec3f *, const TVec3f *, f32, f32, unsigned int);
     void clear();
     void setTriangleFilter(TriangleFilterBase *);
     const Triangle* getPlane(int) const;

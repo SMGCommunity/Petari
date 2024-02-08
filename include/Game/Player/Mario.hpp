@@ -51,20 +51,9 @@ public:
     typedef bool (Mario::*Task)(const void *, void *, unsigned long);
     Mario(MarioActor *);
 
-    virtual void init();
-    virtual bool proc(u32);
-    virtual bool start();
-    virtual bool close();
-    virtual bool update();
-    virtual bool notice();
-    virtual bool keep();
     virtual bool postureCtrl(MtxPtr);
-    virtual void hitWall(const TVec3f &, HitSensor *);
-    virtual void hitPoly(u8, const TVec3f &, HitSensor *);
-    virtual bool passRing(const HitSensor *);
-    virtual f32 getBlurOffset() const;
-    virtual void draw3D() const;
 
+    void update();
     void setHeadAndFrontVecFromRotate(const TVec3f &);
     void initAfterConst();
     void initMember();
@@ -89,7 +78,10 @@ public:
     void decDamageAfterTimer();
     void incAirWalkTimer();
     void updateCubeCode();
-    void forceExitSwim();
+    void startSwim();
+    bool checkStartSwim();
+    bool forceExitSwim();
+    bool forceStartSwimAndShoot(const TVec3f &);
     bool isForceStopRush() const;
     unsigned long getCurrentStatus() const;
     bool trySpinJump(unsigned char);
@@ -101,6 +93,19 @@ public:
     void checkGround();
     void updateFloorCode();
     void inputStick();
+    void tryJump();
+    void tryForcePowerJump(const TVec3f &, bool);
+    const TVec3f& getShadowNorm() const;
+    const TVec3f& getWallNorm() const;
+    void setSideVec(const TVec3f &);
+    void setFrontVecKeepSide(const TVec3f &);
+    void setFrontVecKeepUp(const TVec3f &, f32);
+    void setFrontVecKeepUp(const TVec3f &, u32);
+    void setFrontVecKeepUp(const TVec3f &);
+    void forceSetHeadVecKeepSide(const TVec3f &);
+    void lockGroundCheck(void *, bool);
+    void checkBaseTransBall();
+    void changeStatus(MarioState *);
 
     struct MovementStates {
         unsigned _0 : 1;
@@ -206,12 +211,30 @@ public:
     inline const DrawStates& getDrawStates() const {return mDrawStates;}
     inline const DrawStates& getPrevDrawStates() const {return mPrevDrawStates;}
 
-    MovementStates mMovementStates; // _8
+    union {
+        MovementStates mMovementStates; // _8
+        struct {
+            u32 mMovementStates_LOW_WORD; // _8
+            u32 mMovementStates_HIGH_WORD; // _C
+        };
+    };
 
-    u32 _10;
-    u32 _14;
-    DrawStates mDrawStates; // _18
-    u32 _1C;
+    union {
+        MovementStates _10;
+        struct {
+            u32 _10_LOW_WORD; // _10
+            u32 _10_HIGH_WORD; // _14
+        };
+    };
+    
+    union {
+        DrawStates mDrawStates; // _18
+        u32 mDrawStates_WORD;
+    };
+    union {
+        DrawStates _1C;
+        u32 _1C_WORD;
+    };
     u32 _20;
     u32 _24;
     u32 _28;
@@ -410,10 +433,17 @@ public:
     TVec3f _600;
     u8 _60C;
     u8 _60D;
-
-    // FAKE
-    u32 _610[0xA];
-    // NOT FAKE
+    u8 _60E;
+    u8 _60F;
+	u8 _610;
+	u8 _611;
+	f32 _614;
+	f32 _618;
+	f32 _61C;
+	f32 _620;
+	u8 _624;
+	TVec3f _628;
+	f32 _634;
 
     u8 _638;
     TVec3f _63C;
@@ -421,11 +451,9 @@ public:
     TVec3f _654;
     TVec3f _660;
 
-    // fake
-    TVec3f _66C;
-    TVec3f _678;
-    f32 _684;
-    //not fake
+    u8 _66C;
+    TVec3f _670;
+    TVec3f _67C;
 
     TVec3f _688;
     TVec3f _694;
@@ -468,23 +496,23 @@ public:
     u16 _76C;
     f32 _770;
     u16 _774;
-    MarioRabbit* mRabbit;
-    MarioFoo* mFoo;
-    MarioSukekiyo* mSukekiyo;
-    MarioBury* mBury;
-    MarioWait* mWait;
-    MarioClimb* mClimb;
+    MarioRabbit* mRabbit; // _778
+    MarioFoo* mFoo; // _77C
+    MarioSukekiyo* mSukekiyo; // _780
+    MarioBury* mBury; // _784
+    MarioWait* mWait; // _788
+    MarioClimb* mClimb; // _78C
     TVec3f _790;
-    MarioHang* mHang;
-    MarioRecovery* mRecovery;
-    MarioWarp* mWarp;
-    MarioFlip* mFlip;
-    MarioSideStep* mSideStep;
-    MarioFrontStep* mFrontStep;
-    MarioSkate* mSkate;
-    MarioTalk* mTalk;
-    MarioTeresa* mTeresa;
-    MarioDamage* mDamage;
+    MarioHang* mHang; // _79C
+    MarioRecovery* mRecovery; // _7A0
+    MarioWarp* mWarp; // _7A4
+    MarioFlip* mFlip; // _7A8
+    MarioSideStep* mSideStep; // _7AC
+    MarioFrontStep* mFrontStep; // _7B0
+    MarioSkate* mSkate; // _7B4
+    MarioTalk* mTalk; // _7B8
+    MarioTeresa* mTeresa; // _7BC
+    MarioDamage* mDamage; // _7C0
     TVec3f _7C4;
     u16 _7D0;
     TVec3f _7D4;
@@ -493,26 +521,26 @@ public:
     TVec3f _814;
     Triangle* _820;
     TMtx34f _824;
-    MarioFlow* mFlow;
-    MarioFireDamage* mFireDamage;
-    MarioFireDance* mFireDance;
-    MarioFireRun* mFireRun;
-    MarioParalyze* mParalyze;
-    MarioStun* mStun;
-    MarioCrush* mCrush;
-    MarioFreeze* mFreeze;
-    MarioAbyssDamage* mAbyssDamage;
-    MarioDarkDamage* mDarkDamage;
-    MarioFaint* mFaint;
-    MarioBlown* mBlown;
+    MarioFlow* mFlow; // _854
+    MarioFireDamage* mFireDamage; // _858
+    MarioFireDance* mFireDance; // _85C
+    MarioFireRun* mFireRun; // _860
+    MarioParalyze* mParalyze; // _864
+    MarioStun* mStun; // _868
+    MarioCrush* mCrush; // _86C
+    MarioFreeze* mFreeze; // _870
+    MarioAbyssDamage* mAbyssDamage; // _874
+    MarioDarkDamage* mDarkDamage; // _878
+    MarioFaint* mFaint; // _87C
+    MarioBlown* mBlown; // _880
     MarioSwim* mSwim; // _884
     MarioSlider* mSlider; // _888
     MarioStep* mStep; // _88c
     MarioBump* mBump; // _890
     MarioMagic* mMagic; // _894
     u8 _898;
-    MarioFpView* mFpView;
-    MarioMove* mMove;
+    MarioFpView* mFpView; // _89C
+    MarioMove* mMove; // _8A0
     TVec3f _8A4;
     TVec3f _8B0;
     TVec3f _8BC;

@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 11 Completed -- (0.0%)
+# 1 / 11 Completed -- (9.090909090909092%)
 # MarioState.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__10MarioStateFP10MarioActorUl` | :x: |
+| `__ct__10MarioStateFP10MarioActorUl` | :white_check_mark: |
 | `proc__10MarioStateFUl` | :x: |
 | `sendStateMsg__5MarioFUl` | :x: |
 | `updatePosture__5MarioFPA4_f` | :x: |

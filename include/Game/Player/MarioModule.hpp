@@ -11,26 +11,13 @@ class Triangle;
 
 class MarioModule {
 public:
-    inline MarioModule() {
+    inline MarioModule(MarioActor *actor) : mActor(actor) {
         
     }
 
-    //virtual f32 getStickY() const;
+    virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f &);
     virtual void addVelocity(const TVec3f &, f32);
-    virtual void init() = 0;
-    virtual bool proc(u32) = 0;
-    virtual bool start() = 0;
-    virtual bool close() = 0;
-    virtual bool update() = 0;
-    virtual bool notice() = 0;
-    virtual bool keep() = 0;
-    virtual bool postureCtrl(MtxPtr) = 0;
-    virtual void hitWall(const TVec3f &, HitSensor *) = 0;
-    virtual void hitPoly(u8, const TVec3f &, HitSensor *);
-    virtual bool passRing(const HitSensor *) = 0;
-    virtual f32 getBlurOffset() const = 0;
-    virtual void draw3D() const = 0;
 
     Mario* getPlayer() const;
     MarioAnimator* getAnimator() const;
@@ -88,7 +75,7 @@ public:
     void playEffectSRT(const char *, f32, const TVec3f &, const TVec3f &);
     void stopEFfect(const char *);
     void stopEffectForce(const char *);
-    void playSound(const char *, s32);
+    bool playSound(const char *, s32);
     void stopSound(const char *, u32);
     void startCamVib(u32);
     TVec3f& getCamPos() const;
@@ -98,7 +85,6 @@ public:
     void startPadVib(u32);
     void startPadVib(const char *);
     f32 getStickX() const;
-    f32 getStickY() const;
     f32 getStickP() const;
     bool checkTrgA() const;
     bool checkLvlA() const;
@@ -113,12 +99,13 @@ public:
     bool isSlipPolygon(const Triangle *) const;
     u32 getFloorCode() const;
     void calcPolygonAngleD(const Triangle *) const;
-    void calcAngleD(const TVec3f &) const;
+    f32 calcAngleD(const TVec3f &) const;
     Triangle* getTmpPolygon() const;
     bool sendPunch(HitSensor *, bool);
     HitSensor* getSensor(const Triangle *) const;
     f32 marioAcos(f32) const;
     bool isInputDisable() const;
+    void stopEffect(const char *);
 
     MarioActor* mActor;     // _4
 };

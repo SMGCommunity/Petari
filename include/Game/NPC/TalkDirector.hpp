@@ -98,7 +98,6 @@ public:
     bool mIsOnGameEventFlagViewNormalEnding;                // _8B
 };
 
-
 namespace MR {
     bool isActiveTalkBalloonShort();
 };

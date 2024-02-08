@@ -5,16 +5,16 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 43 / 88 Completed -- (48.86363636363637%)
+# 45 / 88 Completed -- (51.13636363636363%)
 # MarioActor.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__as__8TriangleFRC8Triangle` | :white_check_mark: |
 | `getEuler__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
-| `__ct__10MarioActorFPCc` | :x: |
+| `__ct__10MarioActorFPCc` | :white_check_mark: |
 | `__dt__10MarioActorFv` | :x: |
 | `init__10MarioActorFRC12JMapInfoIter` | :white_check_mark: |
-| `init2__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | :x: |
+| `init2__10MarioActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | :white_check_mark: |
 | `initAfterPlacement__10MarioActorFv` | :white_check_mark: |
 | `initAfterOpeningDemo__10MarioActorFv` | :white_check_mark: |
 | `calcBaseFrontVec__10MarioActorFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |

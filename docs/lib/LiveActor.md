@@ -15,7 +15,7 @@
 | [ActorLightCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorLightCtrl.md) | 35.978835978835974% | 8 / 14 | 57.14285714285714% | :eight_pointed_black_star: 
 | [ActorPadAndCameraCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorPadAndCameraCtrl.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [ActorStateBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorStateBase.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| [ActorStateKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorStateKeeper.md) | 46.42857142857143% | 3 / 6 | 50.0% | :eight_pointed_black_star: 
+| [ActorStateKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorStateKeeper.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [AllLiveActorGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/AllLiveActorGroup.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [AnimationRandomPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/AnimationRandomPlayer.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [Binder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/Binder.md) | 3.778866340097971% | 1 / 20 | 5.0% | :eight_pointed_black_star: 

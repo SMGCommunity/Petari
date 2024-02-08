@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 45 Completed -- (0.0%)
+# 2 / 45 Completed -- (4.444444444444445%)
 # MarioAnimator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__13MarioAnimatorFP10MarioActor` | :x: |
-| `init__13MarioAnimatorFv` | :x: |
+| `__ct__13MarioAnimatorFP10MarioActor` | :white_check_mark: |
+| `init__13MarioAnimatorFv` | :white_check_mark: |
 | `isAnimationStop__13MarioAnimatorCFv` | :x: |
 | `targetWeight__13MarioAnimatorFPfff` | :x: |
 | `setWalkWeight__13MarioAnimatorFPCf` | :x: |
