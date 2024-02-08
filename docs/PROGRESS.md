@@ -21,6 +21,6 @@
 | [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 0.0% |
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 13.849590469099033% |
 | [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 6.315748206421598% |
-| [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 50.65452475811042% |
+| [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 54.75241889584519% |
 | [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 14.681379713534055% |
 | [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 10.090099514848767% |

@@ -38,6 +38,8 @@ void WPADDisconnect(s32);
 s32 WPADGetInfoAsync(s32, WPADInfo *, WPADCallback);
 
 void WPADSetAutoSleepTime(u8);
+BOOL WPADCanSendStreamData(s32);
+s32 WPADSendStreamData(s32, void *, u16);
 
 #ifdef __cplusplus
 }

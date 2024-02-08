@@ -38,18 +38,17 @@ public:
     static void reconnectProcess(s32);
     static void initReconnect(s32);
     static void continuousUsingProcess(s32);
-    static void updateSpekaer(OSAlarm *, OSContext *);
+    static void updateSpeaker(OSAlarm *, OSContext *);
     static bool isEnable(s32);
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
 
     static void initInfoDefaults(s32 idx) {
-        sSpeakerInfo[idx]._0 = 1;
-        sSpeakerInfo[idx]._1 = 0;
-        sSpeakerInfo[idx]._24 = 0;
-        SpkSpeakerCtrl::initReconnect(idx);
-        sSpeakerInfo[idx]._30 = -1;
-        SpkSpeakerCtrl::setSpeakerOn(idx);
+        
+    }
+
+    static inline SpeakerInfo& getSpeakerInfo(s32 idx) {
+        return sSpeakerInfo[idx];
     }
 
     static SpeakerInfo sSpeakerInfo[4];

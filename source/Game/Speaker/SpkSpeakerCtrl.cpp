@@ -14,7 +14,12 @@ void SpkSpeakerCtrl::setMixingBuffer(SpkMixingBuffer *pMixingBuffer) {
 
 void SpkSpeakerCtrl::connect(s32 idx) {
     BOOL state = OSDisableInterrupts();
-    initInfoDefaults(idx);
+    sSpeakerInfo[idx]._0 = 1;
+    sSpeakerInfo[idx]._1 = 0;
+    sSpeakerInfo[idx]._24 = 0;
+    SpkSpeakerCtrl::initReconnect(idx);
+    sSpeakerInfo[idx]._30 = -1;
+    SpkSpeakerCtrl::setSpeakerOn(idx);
     OSRestoreInterrupts(state);
 }
 
@@ -159,7 +164,45 @@ void SpkSpeakerCtrl::continuousUsingProcess(s32 idx) {
     }
 }
 
-// SpkSpeakerCtrl::updateSpeaker
+void SpkSpeakerCtrl::updateSpeaker(OSAlarm *, OSContext *) {
+    for (s32 i = 0; i < 4; i++) {
+        if (sMixingBuffer != nullptr) {
+            SpeakerInfo& inf = getSpeakerInfo(i);
+
+            if (inf._1) {
+                if (!inf._23) {
+                    if (sMixingBuffer->update(i)) {
+                        bool v5 = true;
+
+                        if (inf._1 && sMixingBuffer != nullptr) {
+                            BOOL en = OSDisableInterrupts();
+
+                            if (!WPADCanSendStreamData(i)) {
+                                
+                                OSRestoreInterrupts(en);
+                            }
+                            else {
+                                if (inf._22) {
+                                    v5 = false;
+                                    inf._22 = 0;
+                                }
+
+                                const s16* samples = sMixingBuffer->getSamples(i);
+                                u8 data[16];
+                                WENCGetEncodeData(&inf._2, v5, samples, 40, data);
+                                WPADSendStreamData(i, data, 0x14);
+                                OSRestoreInterrupts(en);
+                            }
+                        }
+                    }
+                    else {
+                        inf._22 = 1;
+                    }
+                }
+            }
+        }
+    }
+}
 
 bool SpkSpeakerCtrl::isEnable(s32 idx) {
     bool ret = false;

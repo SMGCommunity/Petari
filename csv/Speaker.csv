@@ -14,7 +14,7 @@ framework__14SpkSpeakerCtrlFv,SpkSpeakerCtrl.o,Speaker.a,true
 reconnectProcess__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 initReconnect__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 continuousUsingProcess__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
-updateSpeaker__14SpkSpeakerCtrlFP7OSAlarmP9OSContext,SpkSpeakerCtrl.o,Speaker.a,false
+updateSpeaker__14SpkSpeakerCtrlFP7OSAlarmP9OSContext,SpkSpeakerCtrl.o,Speaker.a,true
 isEnable__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true
 extensionProcess__14SpkSpeakerCtrlFll,SpkSpeakerCtrl.o,Speaker.a,true
 getDeviceVolume__14SpkSpeakerCtrlFl,SpkSpeakerCtrl.o,Speaker.a,true

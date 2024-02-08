@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 16 / 21 Completed -- (76.19047619047619%)
+# 17 / 21 Completed -- (80.95238095238095%)
 # SpkSpeakerCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -24,7 +24,7 @@
 | `reconnectProcess__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `initReconnect__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `continuousUsingProcess__14SpkSpeakerCtrlFl` | :white_check_mark: |
-| `updateSpeaker__14SpkSpeakerCtrlFP7OSAlarmP9OSContext` | :x: |
+| `updateSpeaker__14SpkSpeakerCtrlFP7OSAlarmP9OSContext` | :white_check_mark: |
 | `isEnable__14SpkSpeakerCtrlFl` | :white_check_mark: |
 | `extensionProcess__14SpkSpeakerCtrlFll` | :white_check_mark: |
 | `getDeviceVolume__14SpkSpeakerCtrlFl` | :white_check_mark: |
