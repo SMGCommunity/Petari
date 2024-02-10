@@ -4,7 +4,6 @@
 
 class MarioState : public MarioModule {
 public:
-
     MarioState(MarioActor *, u32);
 
     virtual void init();
