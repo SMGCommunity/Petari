@@ -1939,7 +1939,7 @@ XanimeSingleBckTable singleAnimeTable[0x124] = {
         0, // animationHash
         0, // fileHash
     },
-}
+};
 
 XanimeGroupInfo marioAnimeTable[0x134] = {
     {
