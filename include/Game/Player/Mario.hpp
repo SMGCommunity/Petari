@@ -102,6 +102,7 @@ public:
     void setFrontVecKeepUp(const TVec3f &, f32);
     void setFrontVecKeepUp(const TVec3f &, u32);
     void setFrontVecKeepUp(const TVec3f &);
+    void setFrontVec(const TVec3f &);
     void forceSetHeadVecKeepSide(const TVec3f &);
     void lockGroundCheck(void *, bool);
     void checkBaseTransBall();
@@ -585,11 +586,8 @@ public:
     u32 _978;
     //Not fake
     
-    u32 _97C;
-
-    //FAKE
-    u32 _980;
-    //NOT FAKE
+    MarioState* _97C;
+    MarioState* _980;
     
     Task _984[0xb];
     u32 _A08[11];
