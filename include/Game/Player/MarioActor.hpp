@@ -19,34 +19,34 @@ namespace MR {
     unsigned int getFrameBufferWidth();
 }
 
-bool gIsLuigi; // (10000 - cc68)(r13)
+bool gIsLuigi;    // (cc68 - 10000)(r13)
 
 class MarioActor : public LiveActor {
 public:
-    MarioActor(const char*);
+    MarioActor(const char *);
 
     ~MarioActor();
 
-    virtual const TVec3f& getLastMove() const;
+    virtual const TVec3f &getLastMove() const;
     virtual void getLastMove(TVec3f *) const;
     virtual void getFrontVec(TVec3f *) const;
-    
-    void init(const JMapInfoIter&);
-    void init2(const TVec3f&, const TVec3f&, long);
+
+    void init(const JMapInfoIter &);
+    void init2(const TVec3f &, const TVec3f &, long);
     void initAfterPlacement();
     void initAfterOpeningDemo();
-    void calcBaseFrontVec(const TVec3f&);
-    void playSound(const char*, long);
-    void changeAnimation(const char*, const char*);
-    void changeAnimationNonStop(const char*);
-    void changeAnimationUpper(const char*);
-    void stopAnimation(const char*);
-    bool isAnimationRun(const char*) const;
-    void changeNullAnimation(const char*, signed char);
+    void calcBaseFrontVec(const TVec3f &);
+    void playSound(const char *, long);
+    void changeAnimation(const char *, const char *);
+    void changeAnimationNonStop(const char *);
+    void changeAnimationUpper(const char *);
+    void stopAnimation(const char *);
+    bool isAnimationRun(const char *) const;
+    void changeNullAnimation(const char *, signed char);
     void clearNullAnimation(signed char);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
-    XjointTransform* getJointCtrl(const char*) const;
+    XjointTransform *getJointCtrl(const char *) const;
     void updateRotationInfo();
     void exeWait();
     void movement();
@@ -76,16 +76,16 @@ public:
     bool doStun();
     void scaleMtx(MtxPtr);
     void updateBaseScaleMtx();
-    void getRealMtx(f32 (*) [4], const char*);
-    void getGlobalJointMtx(const char*);
+    void getRealMtx(f32 (*)[4], const char *);
+    void getGlobalJointMtx(const char *);
     void calcAnimInMovement();
-    void forceSetBaseMtx(f32 (*) [4]);
+    void forceSetBaseMtx(f32 (*)[4]);
     void calcAnim();
     void calcAndSetBaseMtx();
     void setBlendMtxTimer(unsigned short);
-    void getGroundPos(TVec3f* dst) const;
+    void getGroundPos(TVec3f *dst) const;
     void getShadowPos() const;
-    
+
     bool isTurning() const;
     bool isJumping() const;
     bool isJumpRising() const;
@@ -115,8 +115,8 @@ public:
     void forceGameOverSink();
 
     void updateCameraInfo();
-    bool binderFilter(const Triangle*);
-    
+    bool binderFilter(const Triangle *);
+
     void setPunchHitTimer(unsigned char);
     void initEffect();
     void addSoundObjHolder();
@@ -134,8 +134,8 @@ public:
     void resetPadSwing();
     void initActionMatrix();
 
-    TVec3f& getGravityVec();
-    TVec3f& getGravityVector();
+    TVec3f &getGravityVec();
+    TVec3f &getGravityVector();
     void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char *, long);
 
@@ -185,27 +185,17 @@ public:
     void setBlink(const char *);
     void resetSensorCount();
     void getStickValue(f32 *, f32 *);
-    const HitSensor& getCarrySensor() const;
+    const HitSensor &getCarrySensor() const;
 
-    const MarioConst& getConst() const {
-        return *mConst;
-    }
+    const MarioConst &getConst() const { return *mConst; }
 
-    inline u32 getHealth() const {
-        return mHealth;
-    }
+    inline u32 getHealth() const { return mHealth; }
 
-    inline const Mario::MovementStates& getMovementStates() const {
-        return mMario -> mMovementStates;
-    }
+    inline const Mario::MovementStates &getMovementStates() const { return mMario->mMovementStates; }
 
-    inline const Mario::DrawStates& getDrawStates() const {
-        return mMario -> mDrawStates;
-    }
+    inline const Mario::DrawStates &getDrawStates() const { return mMario->mDrawStates; }
 
-    inline const Mario::DrawStates& getPrevDrawStates() const {
-        return mMario -> mPrevDrawStates;
-    }
+    inline const Mario::DrawStates &getPrevDrawStates() const { return mMario->mPrevDrawStates; }
 
     struct FBO {
         u32 _0;
@@ -213,15 +203,13 @@ public:
     };
 
     u8 _8C;
-    //padding
-    u8 _90[4];
-    //u32 _90;
+    u32 _90;
     u32 _94[0x40];
-    u8 _98[0xc];
-    //padding
+    u32 _194;
+    u32 _198;
+    u32 _19C;
     u8 _1A0;
     u8 _1A1;
-    //padding
     f32 _1A4;
     u16 _1A8;
     u16 _1AA;
@@ -229,9 +217,8 @@ public:
     Color8 _1B0;
     u8 _1B4;
     bool _1B5;
-    //padding
-    u8 _1B8[4];
-    MarioMessenger* _1BC;
+    u32 _1B8;
+    MarioMessenger *_1BC;
     bool _1C0;
     bool _1C1;
     bool _1C2;
@@ -243,29 +230,34 @@ public:
     u8 _1D0;
     u8 _1D1;
     f32 _1D4;
-    FBO* _1D8;
-    FBO* _1DC;
+    FBO *_1D8;
+    FBO *_1DC;
     bool _1E0;
     u8 _1E1;
     u8 _1E2;
-    //padding
+    // padding
     f32 _1E4;
     u16 _1E8;
-    //padding
+    // padding
     f32 _1EC;
     TVec3f _1F0;
     TVec3f _1FC;
     f32 _208;
-    u8 _20C[4];
+    u32 _20C;
     u8 _210;
     u8 _211;
-    //padding
-    CollisionShadow* _214;
-    u8 _218[0x18];
-    Mario* mMario; // _230
-    MarioAnimator* mMarioAnim; // _234
-    MarioEffect* mMarioEffect; // _238
-    MarioConst* mConst; // _23C
+    // padding
+    CollisionShadow *_214;
+    u32 _218;
+    u32 _21C;
+    u32 _220;
+    u32 _224;
+    u32 _228;
+    u32 _22C;
+    Mario *mMario;                // _230
+    MarioAnimator *mMarioAnim;    // _234
+    MarioEffect *mMarioEffect;    // _238
+    MarioConst *mConst;           // _23C
     TVec3f _240;
     TVec3f _24C;
     TVec3f _258;
@@ -291,25 +283,26 @@ public:
     u16 _334;
     u16 _336;
     u16 _338;
-    //padding
+    // padding
     TVec3f _33C;
     TVec3f _348;
     TVec3f _354;
     TVec3f _360;
-    GravityInfo* _36C;
+    GravityInfo *_36C;
     u8 _370;
-    //padding
+    // padding
     f32 _374;
     u16 _378;
-    //padding
+    // padding
     u32 _37C;
-    u32 mHealth;
+    u32 mHealth;    // _380
     u32 _384;
     u32 _388;
     u16 _38C;
     u32 _390;
     u32 _394;
-    u32 _398;;
+    u32 _398;
+    ;
     u8 _39C;
     u8 _39D;
     u8 _39E;
@@ -318,12 +311,12 @@ public:
     u16 _3A8;
     u16 _3AA;
     u16 _3AC;
-    //padding
+    // padding
     float _3B0;
     TVec3f _3B4;
     bool _3C0;
     bool _3C1;
-    //padding
+    // padding
     TVec3f _3C4;
     u16 _3D0;
     u16 _3D2;
@@ -334,20 +327,23 @@ public:
     u16 _3DC;
     u8 _3DE;
     u8 _3DF;
-    u32 mMaxHealth;
+    u32 mMaxHealth;    // _3E0
     bool _3E4;
     bool _3E5;
     bool _3E6;
     bool _3E7;
     bool _3E8;
-    //padding
+    // padding
     TMtx34f _3EC;
     u32 _41C;
     u32 _420;
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    JGeometry::TVec3<long> _468;
+    union {
+        JGeometry::TVec3<long> _468;
+        TVec3f _468f;
+    };
     u32 _474;
     f32 _478;
     u32 _47C;
@@ -358,8 +354,8 @@ public:
     TVec3f _484;
     f32 _490;
     u32 _494;
-    FixedPosition* _498;
-    FixedPosition* _49C;
+    FixedPosition *_498;
+    FixedPosition *_49C;
     u32 _4A0;
     u32 _4A4;
     u32 _4A8;
@@ -369,7 +365,7 @@ public:
     TVec3f _4B8;
     TVec3f _4C4;
     u32 _4C8[0x80];
-    //padding
+    // padding
     u8 _6D0;
     f32 _6D4;
     f32 _6D8;
@@ -378,16 +374,14 @@ public:
     u16 _7DE;
     u16 _7E0;
     u8 _7E2;
-    //padding
     u32 _7E4[0x40];
     u8 _8E4[0x40];
-    HitSensor* _924;
+    HitSensor *_924;
     u32 _928;
     u32 _92C;
     u32 _930;
     bool _934;
     bool _935;
-    //padding
     TVec3f _938;
     u8 _944;
     u8 _945;
@@ -398,62 +392,73 @@ public:
     u16 _94E;
     u8 _950;
     u8 _951;
-    //padding
     u32 _954[8];
     u8 _974;
-    //padding
     TVec3f _978;
     f32 _984;
     u8 _988;
     u8 _989;
-    //padding
     u32 _98C;
     u8 _990;
-    //padding
-    u8 _991[0x13];
-    MarioParts* _9A4;
+    u32 _994;
+    u32 _998;
+    u32 _99C;
+    u32 _9A0;
+    MarioParts *_9A4;
     f32 _9A8;
     f32 _9AC;
     f32 _9B0;
     u16 _9B4;
-    //padding
-    u8 _9B6[0x16];
+    u32 _9B8;
+    u32 _9BC;
+    u32 _9C0;
+    u32 _9C4;
+    u32 _9C8;
     f32 _9CC;
     f32 _9D0;
     u32 _9D4;
     TVec3f _9D8;
-    u8 _9E4[0xc];
+    u32 _9E4;
+    u32 _9E8;
+    u32 _9EC;
     bool _9F0;
     bool _9F1;
     u16 _9F2;
     TVec3f _9F4;
-    u8 _A00[8];
+    u32 _A00;
+    u32 _A04;
     u8 _A08;
     u8 _A09;
     u8 _A0A;
     u8 _A0B;
     u8 _A0C;
-    u8 _A10[8];
+    u32 _A10;
+    u32 _A14;
     TVec3f _A18;
     u8 _A24;
     u8 _A25;
-    //padding
+    // padding
     u32 _A28[6];
-    u8 _A40[0x18];
+    u32 _A40;
+    u32 _A44;
+    u32 _A48;
+    u32 _A4C;
+    u32 _A50;
+    u32 _A54;
     u8 _A58;
     u8 _A59;
     u8 _A5A;
     u8 _A5B;
-    u8 _A5C[4];
+    u32 _A5C;
     bool _A60;
     bool _A61;
     bool _A62;
-    //padding
+    // padding
     u32 _A64;
     f32 _A68;
     u16 _A6C;
     bool _A6E;
-    //padding
+    // padding
     u32 _A70[8];
     u32 _A90[8];
     TMtx34f _AB0;
@@ -461,7 +466,7 @@ public:
     u16 _B10;
     u16 _B12;
     u16 _B14;
-    //padding
+    // padding
     TVec3f _B18;
     f32 _B24;
     f32 _B28;
@@ -472,48 +477,49 @@ public:
     f32 _B3C;
     f32 _B40;
     u32 _B44;
-    FootPrint* _B48;
+    FootPrint *_B48;
     u32 _B4C;
     u16 _B50;
-    //padding
+    // padding
     u32 _B54[3];
     u16 _B60;
-    //padding
+    // padding
     u32 _B64;
     u8 _B68;
-    //padding
+    // padding
     u16 _B6A;
     u32 _B6C;
     u16 _B70;
     u8 _B72;
-    //padding
+    // padding
     u16 _B74;
-    //padding
+    // padding
     u32 _B78;
     u32 _B7C;
     u32 _B80;
     u32 _B84;
     u16 _B88;
-    //padding
-    MarioNullBck* mNullAnimation;
+    MarioNullBck *mNullAnimation;    // _B8C
     bool _B90;
     bool _B91;
     s8 _B92;
-    //padding
+    // padding
     u16 _B94;
     u8 _B96;
 
     u32 _B98;
-    
+
     u16 _B9C;
     u16 _B9E;
-    u8 _BA0[0xc];
+    u32 _BA0;
+    u32 _BA4;
+    u32 _BA8;
     TVec3f _BAC;
     TVec3f _BB8;
     u16 _BC4;
     TMtx34f _BC8;
     TMtx34f _BF8;
-    void* _C28;
+    void *_C28;
     TMtx34f _C2C;
     TMtx34f _C5C;
     TMtx34f _C8C;
@@ -535,14 +541,14 @@ public:
     TMtx34f _EA8;
     TVec3f _ED8;
     u32 _EE4;
-    bool mSuperKinokoCollected; // _EE8
-    bool mPowerupCollected; // _EE9
-    bool mTransforming; // _EEA
+    bool mSuperKinokoCollected;    // _EE8
+    bool mPowerupCollected;        // _EE9
+    bool mTransforming;            // _EEA
     bool _EEB;
     bool _EEC;
     bool _EED;
     bool _EEE;
-    //padding
+    // padding
     u16 _EF0;
     u16 _EF2;
     u16 _EF4;
@@ -550,7 +556,7 @@ public:
     u32 _EF8;
     u32 _EFC;
     u8 _F00;
-    //padding
+    // padding
     u32 _F04;
     u32 _F08;
     bool _F0C;
@@ -566,36 +572,39 @@ public:
     u16 _F1E;
     u8 _F20;
     u8 _F21;
-    //padding
+    // padding
     u32 _F24;
     u16 _F28;
-    //padding
+    // padding
     TVec3f _F2C;
     u8 _F38;
-    //padding
+    // padding
     union {
-        JAIAudible* _F3C;
-        TVec3f* _F3C_vec;
+        JAIAudible *_F3C;
+        TVec3f *_F3C_vec;
     };
     u16 _F40;
-    u16 _F42; 
+    u16 _F42;
     bool _F44;
-    //padding
+    // padding
     u32 _F48;
     u32 _F4C;
     TVec3f _F50;
     TVec3f _F5C;
     TVec3f _F68;
     u8 _F74;
-    //padding
+    // padding
     TVec3f _F78;
     TVec3f _F84;
     TVec3f _F90;
     TVec3f _F9C;
     TVec3f _FA8;
-    const Nerve* _FB4;
+    const Nerve *_FB4;
     u16 _FB8;
-    u8 _FBA[0x12];
+    u32 _FBC;
+    u32 _FC0;
+    u32 _FC4;
+    u32 _FC8;
     bool _FCC;
     bool _FCD;
 };
@@ -610,4 +619,4 @@ namespace NrvMarioActor {
     NERVE(MarioActorNrvGameOverSink);
     NERVE(MarioActorNrvTimeWait);
     NERVE(MarioActorNrvNoRush);
-}
+}    // namespace NrvMarioActor

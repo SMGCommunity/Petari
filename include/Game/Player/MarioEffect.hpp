@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/Player/MarioModule.hpp"
-#include "JSystem/JParticle/MultiEmitterCallBack.hpp"
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JParticle/MultiEmitterCallBack.hpp"
 
 class MarioActor;
 class JPABaseEmitter;
@@ -18,7 +18,7 @@ struct SomeData {
 class MarioEffect : public MarioModule, public MultiEmitterCallBackBase {
 public:
     MarioEffect(MarioActor *);
-    
+
     virtual void execute(JPABaseEmitter *);
 
     // We can infer from the multiple inheritance that this destructor was declared after execute
@@ -33,5 +33,4 @@ public:
     Color8 _20;
     TMtx34f _24;
     SomeData _54[0x100];
-    
 };

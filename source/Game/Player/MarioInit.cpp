@@ -1,6 +1,7 @@
 #include "Game/Player/Mario.hpp"
 
-void Mario::initMember() {
+void Mario::initMember()
+{
     _40.zero();
     _4C.zero();
     PSMTXIdentity(_F4.toMtxPtr());
@@ -69,7 +70,7 @@ void Mario::initMember() {
     _8EC = 0;
     _8F4 = 0f;
 
-    for(int i = 0; i < 11; i++) {
+    for (int i = 0; i < 11; i++) {
         _A08[i] = 0;
     }
 
@@ -81,7 +82,7 @@ void Mario::initMember() {
     _A58.zero();
     _A64 = 0f;
 
-    for(int i = 0; i < 0x20; i++) {
+    for (int i = 0; i < 0x20; i++) {
         _A6C[i] = 0;
     }
 }

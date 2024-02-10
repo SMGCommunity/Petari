@@ -347,7 +347,7 @@ changeHandMaterial__10MarioActorFv,MarioActorHand.o,Player.a,false
 updateHandAtMorph__10MarioActorFv,MarioActorHand.o,Player.a,false
 drawHand__10MarioActorCFv,MarioActorHand.o,Player.a,false
 drawIndirectHand__10MarioActorCFv,MarioActorHand.o,Player.a,false
-initMember__10MarioActorFv,MarioActorInit.o,Player.a,false
+initMember__10MarioActorFv,MarioActorInit.o,Player.a,true
 __sinit_\MarioActorInit_cpp,MarioActorInit.o,Player.a,false
 resetPadSwing__10MarioActorFv,MarioActorPad.o,Player.a,false
 isRequestHipDrop__10MarioActorCFv,MarioActorPad.o,Player.a,false
