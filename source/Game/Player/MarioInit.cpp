@@ -10,14 +10,14 @@ void Mario::initMember()
     _178.zero();
     _1B4.zero();
     _274 = 0;
-    _280 = 0f;
+    _280 = 0.0f;
     _284.zero();
     _2B8.zero();
     _2C4.zero();
     _304.zero();
     _31C.zero();
 
-    _340 = 0f;
+    _340 = 0.0f;
     _3A4.zero();
     _3B0.zero();
 
@@ -26,7 +26,7 @@ void Mario::initMember()
     _438 = 0;
     _448.zero();
 
-    _454 = 0f;
+    _454 = 0.0f;
     _48C.zero();
     _498.zero();
     _4BC.zero();
@@ -39,8 +39,8 @@ void Mario::initMember()
     _688.zero();
     _694.zero();
 
-    _6CC = 0f;
-    _6C8 = 0f;
+    _6CC = 0.0f;
+    _6C8 = 0.0f;
     _6D0.zero();
     _6DC.zero();
     _6E8.zero();
@@ -48,7 +48,7 @@ void Mario::initMember()
     _700.zero();
     _70C.zero();
 
-    _718 = 0f;
+    _718 = 0.0f;
     _71D = 0;
     _71F = 0;
     _720 = 0;
@@ -68,7 +68,7 @@ void Mario::initMember()
     _8DC.zero();
 
     _8EC = 0;
-    _8F4 = 0f;
+    _8F4 = 0.0f;
 
     for (int i = 0; i < 11; i++) {
         _A08[i] = 0;

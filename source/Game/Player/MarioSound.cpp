@@ -12,7 +12,7 @@ struct SoundList {
     u32 _14;
 };
 
-static SoundList soundlist[206] = {
+SoundList soundlist[206] = {
     {
         "声小ジャンプ",    // name
         0x10000,           // _4

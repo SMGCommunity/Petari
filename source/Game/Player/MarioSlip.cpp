@@ -2,10 +2,10 @@
 
 void Mario::clearSlope()
 {
-    _8F0 = 0f;
+    _8F0 = 0.0f;
     mMovementStates._23 = false;
     _8F8.zero();
-    _280 = 0f;
+    _280 = 0.0f;
     _910.zero();
     _284.zero();
     _3C2 = 0;
