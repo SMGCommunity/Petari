@@ -10,9 +10,14 @@ public:
     const char *swapped;
 };
 
+class XanimeBckTable {
+public:
+    const char *animationName;
+};
+
 class XanimeGroupInfo {
 public:
-    const char *_0;
+    XanimeBckTable mParent; // _0
     f32 _4;
     u32 _8;
     f32 _C;
@@ -28,11 +33,6 @@ public:
     const char *_48;
 
     void init();
-};
-
-class XanimeBckTable {
-public:
-    const char *animationName;
 };
 
 class XanimeSingleBckTable {
