@@ -61,7 +61,7 @@ public:
     void clear2DStick();
     void initSound();
     void recordRelativePosition();
-    unsigned long initSoundTable(SoundList* list, unsigned long);
+    unsigned long initSoundTable(SoundList *list, unsigned long);
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
     bool isStatusActive(unsigned long) const;
@@ -95,13 +95,14 @@ public:
     void inputStick();
     void tryJump();
     void tryForcePowerJump(const TVec3f &, bool);
-    const TVec3f& getShadowNorm() const;
-    const TVec3f& getWallNorm() const;
+    const TVec3f &getShadowNorm() const;
+    const TVec3f &getWallNorm() const;
     void setSideVec(const TVec3f &);
     void setFrontVecKeepSide(const TVec3f &);
     void setFrontVecKeepUp(const TVec3f &, f32);
     void setFrontVecKeepUp(const TVec3f &, u32);
     void setFrontVecKeepUp(const TVec3f &);
+    void setFrontVec(const TVec3f &);
     void forceSetHeadVecKeepSide(const TVec3f &);
     void lockGroundCheck(void *, bool);
     void checkBaseTransBall();
@@ -207,28 +208,28 @@ public:
         unsigned _1F : 1;
     };
 
-    inline const MovementStates& getMovementStates() const {return mMovementStates;}
-    inline const DrawStates& getDrawStates() const {return mDrawStates;}
-    inline const DrawStates& getPrevDrawStates() const {return mPrevDrawStates;}
+    inline const MovementStates &getMovementStates() const { return mMovementStates; }
+    inline const DrawStates &getDrawStates() const { return mDrawStates; }
+    inline const DrawStates &getPrevDrawStates() const { return mPrevDrawStates; }
 
     union {
-        MovementStates mMovementStates; // _8
+        MovementStates mMovementStates;    // _8
         struct {
-            u32 mMovementStates_LOW_WORD; // _8
-            u32 mMovementStates_HIGH_WORD; // _C
+            u32 mMovementStates_LOW_WORD;     // _8
+            u32 mMovementStates_HIGH_WORD;    // _C
         };
     };
 
     union {
         MovementStates _10;
         struct {
-            u32 _10_LOW_WORD; // _10
-            u32 _10_HIGH_WORD; // _14
+            u32 _10_LOW_WORD;     // _10
+            u32 _10_HIGH_WORD;    // _14
         };
     };
-    
+
     union {
-        DrawStates mDrawStates; // _18
+        DrawStates mDrawStates;    // _18
         u32 mDrawStates_WORD;
     };
     union {
@@ -240,11 +241,10 @@ public:
     u32 _28;
     u32 _2C;
 
-
-    DrawStates mPrevDrawStates; // _30
-    //FAKE
+    DrawStates mPrevDrawStates;    // _30
+    // FAKE
     u32 _34;
-    //NOT FAKE
+    // NOT FAKE
 
     f32 _38;
     f32 _3C;
@@ -369,30 +369,30 @@ public:
     TVec3f _43C;
     TVec3f _448;
     f32 _454;
-    TriangleFilterDelegator<Mario>* _458;
-    Triangle* _45C;
-    Triangle* _460;
-    Triangle* _464;
-    Triangle* _468;
-    Triangle* _46C;
-    Triangle* _470;
-    Triangle* _474;
-    Triangle* _478;
-    Triangle* _47C;
-    Triangle* _480;
-    Triangle* _484;
+    TriangleFilterDelegator<Mario> *_458;
+    Triangle *_45C;
+    Triangle *_460;
+    Triangle *_464;
+    Triangle *_468;
+    Triangle *_46C;
+    Triangle *_470;
+    Triangle *_474;
+    Triangle *_478;
+    Triangle *_47C;
+    Triangle *_480;
+    Triangle *_484;
     f32 _488;
     TVec3f _48C;
     TVec3f _498;
     TVec3f _4A4;
     TVec3f _4B0;
     TVec3f _4BC;
-    Triangle* _4C8;
-    Triangle* _4CC;
-    Triangle* _4D0;
-    Triangle* _4D4;
-    Triangle* _4D8;
-    Triangle* _4DC;
+    Triangle *_4C8;
+    Triangle *_4CC;
+    Triangle *_4D0;
+    Triangle *_4D4;
+    Triangle *_4D8;
+    Triangle *_4DC;
     f32 _4E0;
     f32 _4E4;
     TVec3f _4E8;
@@ -420,7 +420,7 @@ public:
     // FAKE
     u32 _55C;
     u32 _560;
-    //NOT FAKE
+    // NOT FAKE
 
     s32 _564;
     u32 _568;
@@ -428,22 +428,22 @@ public:
     u8 _570;
     u32 _574;
     u32 _578;
-    Triangle* _57C[0x20];
+    Triangle *_57C[0x20];
     u32 _5FC;
     TVec3f _600;
     u8 _60C;
     u8 _60D;
     u8 _60E;
     u8 _60F;
-	u8 _610;
-	u8 _611;
-	f32 _614;
-	f32 _618;
-	f32 _61C;
-	f32 _620;
-	u8 _624;
-	TVec3f _628;
-	f32 _634;
+    u8 _610;
+    u8 _611;
+    f32 _614;
+    f32 _618;
+    f32 _61C;
+    f32 _620;
+    u8 _624;
+    TVec3f _628;
+    f32 _634;
 
     u8 _638;
     TVec3f _63C;
@@ -490,79 +490,79 @@ public:
     f32 _74C;
     u32 _750;
     u32 _754;
-    MarioWall* mWall;
+    MarioWall *mWall;
     TVec3f _75C;
-    MarioStick* mStick;
+    MarioStick *mStick;
     u16 _76C;
     f32 _770;
     u16 _774;
-    MarioRabbit* mRabbit; // _778
-    MarioFoo* mFoo; // _77C
-    MarioSukekiyo* mSukekiyo; // _780
-    MarioBury* mBury; // _784
-    MarioWait* mWait; // _788
-    MarioClimb* mClimb; // _78C
+    MarioRabbit *mRabbit;        // _778
+    MarioFoo *mFoo;              // _77C
+    MarioSukekiyo *mSukekiyo;    // _780
+    MarioBury *mBury;            // _784
+    MarioWait *mWait;            // _788
+    MarioClimb *mClimb;          // _78C
     TVec3f _790;
-    MarioHang* mHang; // _79C
-    MarioRecovery* mRecovery; // _7A0
-    MarioWarp* mWarp; // _7A4
-    MarioFlip* mFlip; // _7A8
-    MarioSideStep* mSideStep; // _7AC
-    MarioFrontStep* mFrontStep; // _7B0
-    MarioSkate* mSkate; // _7B4
-    MarioTalk* mTalk; // _7B8
-    MarioTeresa* mTeresa; // _7BC
-    MarioDamage* mDamage; // _7C0
+    MarioHang *mHang;              // _79C
+    MarioRecovery *mRecovery;      // _7A0
+    MarioWarp *mWarp;              // _7A4
+    MarioFlip *mFlip;              // _7A8
+    MarioSideStep *mSideStep;      // _7AC
+    MarioFrontStep *mFrontStep;    // _7B0
+    MarioSkate *mSkate;            // _7B4
+    MarioTalk *mTalk;              // _7B8
+    MarioTeresa *mTeresa;          // _7BC
+    MarioDamage *mDamage;          // _7C0
     TVec3f _7C4;
     u16 _7D0;
     TVec3f _7D4;
-    Triangle* _7E0;
+    Triangle *_7E0;
     TMtx34f _7E4;
     TVec3f _814;
-    Triangle* _820;
+    Triangle *_820;
     TMtx34f _824;
-    MarioFlow* mFlow; // _854
-    MarioFireDamage* mFireDamage; // _858
-    MarioFireDance* mFireDance; // _85C
-    MarioFireRun* mFireRun; // _860
-    MarioParalyze* mParalyze; // _864
-    MarioStun* mStun; // _868
-    MarioCrush* mCrush; // _86C
-    MarioFreeze* mFreeze; // _870
-    MarioAbyssDamage* mAbyssDamage; // _874
-    MarioDarkDamage* mDarkDamage; // _878
-    MarioFaint* mFaint; // _87C
-    MarioBlown* mBlown; // _880
-    MarioSwim* mSwim; // _884
-    MarioSlider* mSlider; // _888
-    MarioStep* mStep; // _88c
-    MarioBump* mBump; // _890
-    MarioMagic* mMagic; // _894
+    MarioFlow *mFlow;                  // _854
+    MarioFireDamage *mFireDamage;      // _858
+    MarioFireDance *mFireDance;        // _85C
+    MarioFireRun *mFireRun;            // _860
+    MarioParalyze *mParalyze;          // _864
+    MarioStun *mStun;                  // _868
+    MarioCrush *mCrush;                // _86C
+    MarioFreeze *mFreeze;              // _870
+    MarioAbyssDamage *mAbyssDamage;    // _874
+    MarioDarkDamage *mDarkDamage;      // _878
+    MarioFaint *mFaint;                // _87C
+    MarioBlown *mBlown;                // _880
+    MarioSwim *mSwim;                  // _884
+    MarioSlider *mSlider;              // _888
+    MarioStep *mStep;                  // _88c
+    MarioBump *mBump;                  // _890
+    MarioMagic *mMagic;                // _894
     u8 _898;
-    MarioFpView* mFpView; // _89C
-    MarioMove* mMove; // _8A0
+    MarioFpView *mFpView;    // _89C
+    MarioMove *mMove;        // _8A0
     TVec3f _8A4;
     TVec3f _8B0;
     TVec3f _8BC;
-    Triangle* _8C8;
-    Triangle* _8CC;
-    Triangle* _8D0;
+    Triangle *_8C8;
+    Triangle *_8CC;
+    Triangle *_8D0;
     u32 _8D4;
     u32 _8D8;
     TVec3f _8DC;
-    Triangle* _8E8;
+    Triangle *_8E8;
     u8 _8EC;
 
-    //FAKE
+    // FAKE
     u32 _8F0;
-    //NOT FAKE
+    // NOT FAKE
 
     f32 _8F4;
 
-    //FAKE
+    // FAKE
     TVec3f _8F8;
     TVec3f _904;
-    //NOT FAKE
+    // NOT FAKE
 
     TVec3f _910;
     TVec3f _91C;
@@ -571,26 +571,23 @@ public:
     TVec3f _938;
     TVec3f _944;
     TVec3f _950;
-    FloorCode* _95C;
+    FloorCode *_95C;
     u16 _960;
     u16 _962;
     u16 _964[3];
     u16 _96A;
 
-    HashSortTable* _96C; //Sounds
-    const char* _970; // Sounds or somthing
+    HashSortTable *_96C;    // Sounds
+    const char *_970;       // Sounds or somthing
     u32 _974;
 
-    //Fake
+    // Fake
     u32 _978;
-    //Not fake
-    
-    u32 _97C;
+    // Not fake
 
-    //FAKE
-    u32 _980;
-    //NOT FAKE
-    
+    MarioState *_97C;
+    MarioState *_980;
+
     Task _984[0xb];
     u32 _A08[11];
     u16 _A34;

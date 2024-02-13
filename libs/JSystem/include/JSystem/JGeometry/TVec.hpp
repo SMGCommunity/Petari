@@ -67,11 +67,7 @@ namespace JGeometry {
         }
 
         template<typename T>
-        inline TVec3(T _x, T _y, T _z) {
-            x = _x;
-            y = _y;
-            z = _z;
-        }
+        TVec3(T _x, T _y, T _z);
 
         TVec3(T val) {
             x = val;
@@ -706,6 +702,13 @@ namespace JGeometry {
 
         T x, y, z;
     };
+
+    /*template<>
+    TVec3<f32>::TVec3(int _x, int _y, int _z) {
+        x = _x;
+        y = _y;
+        x = _z;
+    }*/
 
     template<typename T>
     struct TVec4 {

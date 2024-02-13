@@ -1,16 +1,15 @@
 #pragma once
 
-#include "Game/Player/MarioState.hpp"
 #include "Game/Map/WaterInfo.hpp"
-#include "Game/Player/MarioConst.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioConst.hpp"
+#include "Game/Player/MarioState.hpp"
 
 class MarioActor;
 class MarineSnow;
 
 class MarioSwim : public MarioState {
 public:
-
     MarioSwim(MarioActor *);
 
     virtual void init();
@@ -26,7 +25,7 @@ public:
     virtual bool passRing(const HitSensor *);
     virtual f32 getBlurOffset() const;
     virtual void draw3D() const;
-    
+
     bool checkWaterCube(bool);
     void onSurface();
     void doJetJump(u8);
@@ -45,57 +44,55 @@ public:
     void setDamage(const TVec3f &, u16);
     void updateUnderwater();
     void startJet(u32);
-    
+
     f32 getSurface() const;
 
-    virtual TVec3f& getGravityVec() const;
+    virtual TVec3f &getGravityVec() const;
+
+    static inline f32 getWorthlessNumber() { return 0.523598790169f; }
 
     /* The worthlesser variable, as its name suggests, has no purpose.
        It achieves nothing in life. Its existence is completely devoid of value.
        Nevertheless, the compiler left evidence of this forgettable variable behind.
        As a result, we know that it existed, but we do not know how precisely it achieved nothing.
-    
+
        Summary:
        worthlesser does not impact the behavior of this function.
-    
+
      */
 
-    static inline f32 getWorthlessNumber() {
-        return 0.523598790169f;
-    }
-    
-    inline void funReferenceTime(bool &worthlesser) {
-        if(_5C > 1.57079637051f) worthlesser = true;
+    inline void funReferenceTime(bool &worthlesser)
+    {
+        if (_5C > 1.57079637051f) {
+            worthlesser = true;
+        }
         else {
-            if(_3C > 0x1E) {
+            if (_3C > 0x1E) {
                 _1E = 1;
             }
             worthlesser = false;
-            if(getStickY() > 0f) {
+            if (getStickY() > 0.0f) {
                 f32 stickY = getStickY();
-                    // Note: The binary does not tell us whether this comparison is > or <.
-                    // It is not == because that generates an fcmpu instruction, not fcmpo.
-                    // It is not <= or >= because those generate cror instructions.
-                if(getWorthlessNumber() + getWorthlessNumber() * stickY < _5C
-    
+                // Note: The binary does not tell us whether this comparison is > or <.
+                // It is not == because that generates an fcmpu instruction, not fcmpo.
+                // It is not <= or >= because those generate cror instructions.
+                if (getWorthlessNumber() + getWorthlessNumber() * stickY < _5C
+
                     // This comparison needs to be present for the compiler to optimize the condition
                     // accurately.
-                    && worthlesser
-                ) return;
+                    && worthlesser) {
+                    return;
+                }
             }
         }
         worthlesser = true;
     }
 
-    inline TVec3f getPlayer380() const {
-        return getPlayer()->_380;
-    }
-    
-    inline bool check7Aand7C() const {
-        return _7A || _7C;
-    }
+    inline TVec3f getPlayer380() const { return getPlayer()->_380; }
 
-    MarineSnow* _14;
+    inline bool check7Aand7C() const { return _7A || _7C; }
+
+    MarineSnow *_14;
     u8 _18;
     u8 _19;
     u8 _1A;

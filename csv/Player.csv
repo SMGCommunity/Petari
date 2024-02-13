@@ -134,7 +134,7 @@ setFrontVec__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,false
 setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>f,Mario.o,Player.a,false
 setFrontVecKeepUpAngle__5MarioFRCQ29JGeometry8TVec3<f>f,Mario.o,Player.a,false
 setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>Ul,Mario.o,Player.a,false
-setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,false
+setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,true
 setFrontVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,false
 setHeadAndFrontVecFromRotate__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,false
 forceSetHeadVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f>,Mario.o,Player.a,false
@@ -347,7 +347,7 @@ changeHandMaterial__10MarioActorFv,MarioActorHand.o,Player.a,false
 updateHandAtMorph__10MarioActorFv,MarioActorHand.o,Player.a,false
 drawHand__10MarioActorCFv,MarioActorHand.o,Player.a,false
 drawIndirectHand__10MarioActorCFv,MarioActorHand.o,Player.a,false
-initMember__10MarioActorFv,MarioActorInit.o,Player.a,false
+initMember__10MarioActorFv,MarioActorInit.o,Player.a,true
 __sinit_\MarioActorInit_cpp,MarioActorInit.o,Player.a,false
 resetPadSwing__10MarioActorFv,MarioActorPad.o,Player.a,false
 isRequestHipDrop__10MarioActorCFv,MarioActorPad.o,Player.a,false
@@ -853,11 +853,11 @@ calcRingAcc__8MarioFooFv,MarioFoo.o,Player.a,false
 draw3D__8MarioFooCFv,MarioFoo.o,Player.a,false
 getBlurOffset__8MarioFooCFv,MarioFoo.o,Player.a,false
 __sinit_\MarioFoo_cpp,MarioFoo.o,Player.a,false
-__ct__11MarioHolderFv,MarioHolder.o,Player.a,false
-__dt__11MarioHolderFv,MarioHolder.o,Player.a,false
-setMarioActor__11MarioHolderFP10MarioActor,MarioHolder.o,Player.a,false
-getMarioActor__11MarioHolderCFv,MarioHolder.o,Player.a,false
-getMarioHolder__2MRFv,MarioHolder.o,Player.a,false
+__ct__11MarioHolderFv,MarioHolder.o,Player.a,true
+__dt__11MarioHolderFv,MarioHolder.o,Player.a,true
+setMarioActor__11MarioHolderFP10MarioActor,MarioHolder.o,Player.a,true
+getMarioActor__11MarioHolderCFv,MarioHolder.o,Player.a,true
+getMarioHolder__2MRFv,MarioHolder.o,Player.a,true
 initMember__5MarioFv,MarioInit.o,Player.a,true
 isRising__5MarioCFv,MarioJump.o,Player.a,false
 checkWallRiseAndSlipFront__5MarioFv,MarioJump.o,Player.a,false

@@ -18,7 +18,7 @@ const s16* SpkMixingBuffer::getSamples(s32 idx) const {
     return mSamples[idx];
 }
 
-void SpkMixingBuffer::update(s32 idx) {
+bool SpkMixingBuffer::update(s32 idx) {
     JASCalc::bzero((void*)mSamples[idx], 0x50);
-    JASGlobalInstance<SpkSoundHolder>::sInstance->update(idx);
+    return JASGlobalInstance<SpkSoundHolder>::sInstance->update(idx);
 }

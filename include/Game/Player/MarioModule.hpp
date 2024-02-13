@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution/types.h>
 #include "Game/LiveActor/LiveActor.hpp"
+#include <revolution/types.h>
 
 class Mario;
 class MarioActor;
@@ -11,20 +11,18 @@ class Triangle;
 
 class MarioModule {
 public:
-    inline MarioModule(MarioActor *actor) : mActor(actor) {
-        
-    }
+    inline MarioModule(MarioActor *actor) : mActor(actor) {}
 
     virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f &);
     virtual void addVelocity(const TVec3f &, f32);
 
-    Mario* getPlayer() const;
-    MarioAnimator* getAnimator() const;
-    TVec3f& getShadowPos() const;
-    TVec3f& getGravityVec() const;
-    TVec3f& getAirGravityVec() const;
-    TVec3f& getFrontVec() const;
+    Mario *getPlayer() const;
+    MarioAnimator *getAnimator() const;
+    TVec3f &getShadowPos() const;
+    TVec3f &getGravityVec() const;
+    TVec3f &getAirGravityVec() const;
+    TVec3f &getFrontVec() const;
     bool isStatusActiveID(u32) const;
     bool isStatusActiveS(MarioState *) const;
     u16 getPlayerMode() const;
@@ -43,8 +41,8 @@ public:
     bool isAnimationRun(const char *) const;
     bool isAnimationTerminate(const char *) const;
     bool isAnimationTerminateUPper(const char *) const;
-    const char* getAnimationStringPointer(const char *) const;
-    const char* getCurrentBckName() const;
+    const char *getAnimationStringPointer(const char *) const;
+    const char *getCurrentBckName() const;
     void changeAnimationUpper(const char *, const char *);
     void changeAnimationUpperWeak(const char *, const char *);
     void stopAnimationUpper(const char *, const char *);
@@ -57,15 +55,15 @@ public:
     void setYangleOffset(f32);
     bool isStickOn() const;
     bool isStickFull() const;
-    TVec3f& getWorldPadDir() const;
+    TVec3f &getWorldPadDir() const;
     bool calcWorldPadDir(TVec3f *, f32, f32, bool);
     void addVelocityAfter(const TVec3f &);
     void clearVelocity();
-    TVec3f& getVelocity() const;
+    TVec3f &getVelocity() const;
     void addTrans(const TVec3f &, const char *);
     void cutGravityElementFromJumpVec(bool);
     void cutVecElementFromJumpVec(const TVec3f &);
-    TVec3f& getJumpVec() const;
+    TVec3f &getJumpVec() const;
     void setJumpVec(const TVec3f &);
     void playEffect(const char *);
     void playEffectTarns(const char *, const TVec3f &);
@@ -78,10 +76,10 @@ public:
     bool playSound(const char *, s32);
     void stopSound(const char *, u32);
     void startCamVib(u32);
-    TVec3f& getCamPos() const;
-    TVec3f& getCamDirX() const;
-    TVec3f& getCamDirY() const;
-    TVec3f& getCamDirZ() const;
+    TVec3f &getCamPos() const;
+    TVec3f &getCamDirX() const;
+    TVec3f &getCamDirY() const;
+    TVec3f &getCamDirZ() const;
     void startPadVib(u32);
     void startPadVib(const char *);
     f32 getStickX() const;
@@ -92,20 +90,20 @@ public:
     bool checkLvlZ() const;
     bool checkPreLvlZ() const;
     bool checkSquat(bool);
-    TVec3f& getTrans() const;
-    const Triangle* getGroundPolygon() const;
+    TVec3f &getTrans() const;
+    const Triangle *getGroundPolygon() const;
     bool isOnSlipGround() const;
     bool isSlipFloorCode(s32) const;
     bool isSlipPolygon(const Triangle *) const;
     u32 getFloorCode() const;
     void calcPolygonAngleD(const Triangle *) const;
     f32 calcAngleD(const TVec3f &) const;
-    Triangle* getTmpPolygon() const;
+    Triangle *getTmpPolygon() const;
     bool sendPunch(HitSensor *, bool);
-    HitSensor* getSensor(const Triangle *) const;
+    HitSensor *getSensor(const Triangle *) const;
     f32 marioAcos(f32) const;
     bool isInputDisable() const;
     void stopEffect(const char *);
 
-    MarioActor* mActor;     // _4
+    MarioActor *mActor;    // _4
 };

@@ -1,7 +1,8 @@
-#include "Game/Map/HitInfo.hpp"
 #include "Game/LiveActor/Binder.hpp"
+#include "Game/Map/HitInfo.hpp"
 
-HitInfo &HitInfo::operator=(const HitInfo &rOther) {
+HitInfo &HitInfo::operator=(const HitInfo &rOther)
+{
     mParentTriangle.mParts = rOther.mParentTriangle.mParts;
     mParentTriangle.mIdx = rOther.mParentTriangle.mIdx;
     mParentTriangle.mSensor = rOther.mParentTriangle.mSensor;
@@ -21,14 +22,19 @@ HitInfo &HitInfo::operator=(const HitInfo &rOther) {
     return *this;
 }
 
-Binder::Binder(TMtx34f *mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, unsigned int c) :
-_C(mtx), _10(v1), _14(v2), _18(a), _1C(b), _24(c), _30(0,0,0), _C8(131076.953125f),
-_158(131076.953125f), _1E8(131076.953125f) {
-	if(!_24) _2C = NULL;
-	else {
-		new HitInfo[_24];
-	}
-	clear();
-	_1EC |= 0xc0;
-	_1EC &= 3;
+Binder::Binder(MtxPtr mtx, const TVec3f *v1, const TVec3f *v2, f32 a, f32 b, u32 c) : BinderParent(mtx), _10(v1), _14(v2), _18(a), _1C(b), _20(0), _24(c), _28(0), _2C(0), _30(0, 0, 0), _3C(), _CC(), _15C(), _C8(131076.953125f), _158(131076.953125f), _1E8(131076.953125f)
+{
+    if (!_24) {
+        _2C = nullptr;
+    }
+    else {
+        _2C = new HitInfo[_24];
+    }
+    clear();
+    _1EC._0 = true;
+    _1EC._1 = true;
+    _1EC._2 = false;
+    _1EC._3 = false;
+    _1EC._4 = false;
+    _1EC._5 = false;
 }

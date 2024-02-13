@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Player/MarioModule.hpp"
-#include "Game/Player/Mario.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
+#include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioModule.hpp"
 
 class MarioActor;
 class XanimeResourceTable;
@@ -24,17 +24,17 @@ public:
     void change(const char *);
     void changeDefaultUpper(const char *);
 
-    inline void f1(const char *name) {
-        getPlayer()->startBas(nullptr, false, 0.f, 0.f);
-    
+    inline void f1(const char *name)
+    {
+        getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
+
         _C->setDefaultAnimation(name);
         change(name);
-        
     }
 
-    XanimeResourceTable* _8;
-    XanimePlayer* _C;
-    XanimePlayer* _10;
+    XanimeResourceTable *_8;
+    XanimePlayer *_C;
+    XanimePlayer *_10;
     u8 _14;
     u8 _15;
     u8 _16;
@@ -59,6 +59,6 @@ public:
     f32 _110;
     u32 _114;
     f32 _118;
-    
+
     u8 _11C[8];
 };
