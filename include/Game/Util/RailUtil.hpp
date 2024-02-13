@@ -47,6 +47,8 @@ namespace MR {
     bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
     bool getRailPointArg0NoInit(const LiveActor *, s32, f32 *);
 
+    bool getRailPointArg0WithInit(const LiveActor *, s32, s32 *);
+
     bool getRailArg0WithInit(const LiveActor *, s32 *);
     bool getRailArg1WithInit(const RailRider *, s32 *);
 
