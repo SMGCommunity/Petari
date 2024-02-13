@@ -117,6 +117,12 @@ namespace JGeometry {
         template<typename T>
         void set(T _x, T _y, T _z);
 
+        void setZYX(T val) {
+            z = val;
+            y = val;
+            x = val;
+        }
+
         template<typename T>
         void setAll(T val);
 

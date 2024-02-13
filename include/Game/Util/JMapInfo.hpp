@@ -15,6 +15,13 @@ class JMapInfo;
 
 class JMapInfoIter {
 public:
+    inline JMapInfoIter() { }
+
+    inline JMapInfoIter(JMapInfo* pInfo, s32 val) {
+        mInfo = pInfo;
+        _4 = val;
+    }
+
     template<typename T>
     bool getValue(const char *, T *) const;
 

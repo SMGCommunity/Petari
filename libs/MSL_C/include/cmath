@@ -46,6 +46,7 @@ double __kernel_tan(double, double, int);
 
 int __ieee754_rem_pio2(double, double *);
 
+#ifdef __MWERKS__
 int __float_huge[];
 int __float_nan[];
 int __double_huge[];
@@ -53,7 +54,7 @@ int __double_huge[];
 #define INFINITY (*(float*) __float_huge)	
 #define NAN (*(float*) __float_nan)
 #define HUGE_VAL (*(double*) __double_huge) 
-
+#endif
 
 #ifdef __cplusplus
 };

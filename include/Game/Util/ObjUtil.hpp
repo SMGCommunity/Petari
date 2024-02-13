@@ -92,6 +92,7 @@ namespace MR {
     
     const JMapInfo* createCsvParser(const char *, const char *, ...);
     const JMapInfo* tryCreateCsvParser(const ResourceHolder *, const char *, ...);
+    const JMapInfo* tryCreateCsvParser(const LiveActor *, const char *, ...);
     s32 getCsvDataElementNum(const JMapInfo *);
 
     void getCsvDataStr(const char **, const JMapInfo *, const char *, s32) NO_INLINE;
