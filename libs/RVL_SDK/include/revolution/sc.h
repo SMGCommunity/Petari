@@ -2,6 +2,7 @@
 #define SC_H
 
 #include <revolution/os.h>
+#include <revolution/nand.h>
 
 #ifdef __cplusplus
 extern "C" {

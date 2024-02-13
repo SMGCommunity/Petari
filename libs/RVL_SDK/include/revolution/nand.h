@@ -2,6 +2,7 @@
 #define NAND_H
 
 #include <revolution/types.h>
+#include <revolution/fs.h>
 #include <revolution/nand/nandlogging.h>
 
 #ifdef __cplusplus

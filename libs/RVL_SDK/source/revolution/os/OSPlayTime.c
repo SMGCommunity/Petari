@@ -1,6 +1,7 @@
 #include <revolution/ai.h>
 #include <revolution/os.h>
 #include <revolution/esp.h>
+#include <revolution/nand.h>
 
 OSThread* __OSExpireThread;
 OSAlarm __OSExpireAlarm;

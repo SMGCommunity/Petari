@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <wstring.h>
+#include <revolution/os.h>
 #include <revolution/os/OSExecParams.h>
 #include <revolution/os/OSTIme.h>
 #include <revolution/types.h>

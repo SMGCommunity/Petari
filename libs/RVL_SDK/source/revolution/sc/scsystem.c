@@ -218,7 +218,7 @@ u32 ParseConfBuf(u8* bufp, u32 bufSize) {
         for (loopItem = 0; loopItem < numItems; loopItem++) {
             p = bufTop + itemOfsp[loopItem];
 
-            if (nameLen == (u32)(((*p) & SC_NAME_LENGTH_MASK) + 1) && memcmp(name, p + sizeof(SCType), nameLen) == 0) {
+            if (nameLen == (u32)(((*p) & ~0xE0) + 1) && memcmp(name, p + sizeof(SCType), nameLen) == 0) {
                 runtimeRefp[-tblp->id] = (u16)((u8 *)(&itemOfsp[loopItem]) - bufTop);
                 break;
             }
@@ -240,9 +240,9 @@ static BOOL UnpackItem(const u8* bufp, SCItem* itemp) {
     SCType type;
 
     memset(itemp, 0, sizeof(SCItem));
-    type = (u8)(*bufp & SC_TYPE_MASK);
+    type = (u8)(*bufp & 0xE0);
     itemp->name = (char*)(bufp + sizeof(SCType));
-    itemp->nameLen = (u32)((*bufp & SC_NAME_LENGTH_MASK) + 1);
+    itemp->nameLen = (u32)((*bufp & ~0xE0) + 1);
     itemp->data = (u8*)(bufp + sizeof(SCType) + itemp->nameLen);
 
     switch (type) {

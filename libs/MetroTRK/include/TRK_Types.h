@@ -30,10 +30,12 @@ typedef struct TRKBuffer {
     unsigned char mBuffer[0x87C];
 } TRKBuffer;
 
-typedef int bool;
 #define true    1
 #define false   0
+
+#ifndef NULL
 #define NULL    0
+#endif
 
 typedef unsigned char ui8;
 typedef unsigned short ui16;
