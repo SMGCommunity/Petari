@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 1 / 55 Completed -- (1.8181818181818181%)
+# 2 / 55 Completed -- (3.6363636363636362%)
 # Mario.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -33,7 +33,7 @@
 | `setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `setFrontVecKeepUpAngle__5MarioFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>Ul` | :x: |
-| `setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
+| `setFrontVecKeepUp__5MarioFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `setFrontVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `setHeadAndFrontVecFromRotate__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |
 | `forceSetHeadVecKeepSide__5MarioFRCQ29JGeometry8TVec3<f>` | :x: |

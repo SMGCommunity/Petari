@@ -18,7 +18,7 @@
 | [ActorStateKeeper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ActorStateKeeper.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [AllLiveActorGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/AllLiveActorGroup.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [AnimationRandomPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/AnimationRandomPlayer.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
-| [Binder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/Binder.md) | 3.778866340097971% | 1 / 20 | 5.0% | :eight_pointed_black_star: 
+| [Binder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/Binder.md) | 8.257522743177047% | 2 / 20 | 10.0% | :eight_pointed_black_star: 
 | [ClippingActorHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ClippingActorHolder.md) | 55.48523206751055% | 9 / 15 | 60.0% | :eight_pointed_black_star: 
 | [ClippingActorInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ClippingActorInfo.md) | 72.31404958677686% | 9 / 12 | 75.0% | :eight_pointed_black_star: 
 | [ClippingDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/ClippingDirector.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 

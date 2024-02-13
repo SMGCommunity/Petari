@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 1 / 20 Completed -- (5.0%)
+# 2 / 20 Completed -- (10.0%)
 # Binder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__6BinderFPA4_fPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>ffUl` | :x: |
+| `__ct__6BinderFPA4_fPCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>ffUl` | :white_check_mark: |
 | `setTriangleFilter__6BinderFP18TriangleFilterBase` | :x: |
 | `setCollisionPartsFilter__6BinderFP24CollisionPartsFilterBase` | :x: |
 | `clear__6BinderFv` | :x: |
