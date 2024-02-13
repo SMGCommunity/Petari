@@ -1,9 +1,18 @@
 #include "Game/Boss/SkeletalFishBossInfo.hpp"
 #include "Game/Boss/SkeletalFishBoss.hpp"
+#include <cstdio>
 
 namespace {
     static const char* sParamFileName = "Param";
     static const char* sParamNameLevelNum = "LevelNum";
+    static const char* sParamNameEnergy = "EnergyLv";
+    static const char* sParamNameSpeed = "SpeedLv";
+    static const char* sParamNameRailID = "RailIDLv";
+    static const char* sParamNameGuardOffset = "GuardOffsetLv";
+    static const char* sParamNameGuardAppearNum = "GuardAppearNumLv";
+    static const char* sParamNameGuard = "Id";
+    static const char* sParamNameGuardPos = "GuardPosLv";
+    static const char* sParamNameGuardWait = "GuardWaitLv";
 };
 
 SkeletalFishBossInfo::SkeletalFishBossInfo(SkeletalFishBoss *pBoss, s32 levelNum, s32 guardNum, const char *pDesc) : NameObj(pDesc) {
@@ -57,8 +66,42 @@ SkeletalFishBossInfo::GuardStatus::GuardStatus() {
 
 }
 
-// SkeletalFishBossInfo::loadLevelStatus
-// SkeletalFishBossInfo::loadGuardStatus
+void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter &rIter) {
+    s32 levelNum;
+
+    if (rIter.getValue<s32>(::sParamNameLevelNum, &levelNum)) {
+        if (levelNum > mLevelNum) {
+            levelNum = mLevelNum;
+        }
+
+        for (s32 i = 0; i < levelNum; i++) {
+            char nameBuf[0x80];
+            snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameEnergy, i);
+            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mEnergyLevel);
+            snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameSpeed, i);
+            rIter.getValue<f32>(nameBuf, &getLevelStatus(i)->mSpeedLevel);
+            snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameRailID, i);
+            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mRailIDLevel);
+            snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameGuardOffset, i);
+            rIter.getValue<f32>(nameBuf, &getLevelStatus(i)->mGuardOffsLevel);
+            snprintf(nameBuf, sizeof(nameBuf), "%s%d", ::sParamNameGuardAppearNum, i);
+            rIter.getValue<s32>(nameBuf, &getLevelStatus(i)->mGuardAppearNumLevel);
+            loadGuardStatus(rIter, i, mLevelStatusArray[i].mGuardAppearNumLevel);
+        }
+    }
+}
+
+void SkeletalFishBossInfo::loadGuardStatus(const JMapInfoIter &rIter, s32 levelIdx, s32 guardLevel) {
+    LevelStatus* status = &mLevelStatusArray[levelIdx];
+
+    for (s32 i = 0; i < guardLevel; i++) {
+        char buf[0x80];
+        snprintf(buf, sizeof(buf), "%s%d%s%d", ::sParamNameGuardPos, levelIdx, ::sParamNameGuard, i);
+        MR::getJMapInfoV3f(rIter, buf, &status->getGuardStatus(i)->mGuardPosLevel);
+        snprintf(buf, sizeof(buf), "%s%d%s%d", ::sParamNameGuardWait, levelIdx, ::sParamNameGuard, i);
+        rIter.getValue<s32>(buf, &status->getGuardStatus(i)->mGuardWaitLevelID);
+    }
+}
 
 SkeletalFishBossInfo::~SkeletalFishBossInfo() {
 
