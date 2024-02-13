@@ -5,9 +5,9 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 2 Completed -- (0.0%)
+# 2 / 2 Completed -- (100.0%)
 # SkeletalFishBossFunc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3<f>` | :x: |
-| `copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3<f>l` | :x: |
+| `getNearestGuardPosID__20SkeletalFishBossFuncFRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `copyGuardPos__20SkeletalFishBossFuncFPQ29JGeometry8TVec3<f>l` | :white_check_mark: |
