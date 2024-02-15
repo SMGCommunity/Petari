@@ -364,7 +364,7 @@ public:
     f32 _4B4;
     TVec3f _4B8;
     TVec3f _4C4;
-    u32 _4C8[0x80];
+    u32 _4D0[0x80];
     // padding
     u8 _6D0;
     f32 _6D4;

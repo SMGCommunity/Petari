@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 7 Completed -- (0.0%)
+# 7 / 7 Completed -- (100.0%)
 # SkeletalFishBossRailHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__26SkeletalFishBossRailHolderFPCc` | :x: |
-| `add__26SkeletalFishBossRailHolderFP20SkeletalFishBossRail` | :x: |
-| `getInOrder__26SkeletalFishBossRailHolderCFl` | :x: |
-| `getByID__26SkeletalFishBossRailHolderCFl` | :x: |
-| `getSkeletalFishBossRailHolder__2MRFv` | :x: |
-| `createSkeletalFishBossRailHolder__2MRFv` | :x: |
-| `__dt__26SkeletalFishBossRailHolderFv` | :x: |
+| `__ct__26SkeletalFishBossRailHolderFPCc` | :white_check_mark: |
+| `add__26SkeletalFishBossRailHolderFP20SkeletalFishBossRail` | :white_check_mark: |
+| `getInOrder__26SkeletalFishBossRailHolderCFl` | :white_check_mark: |
+| `getByID__26SkeletalFishBossRailHolderCFl` | :white_check_mark: |
+| `getSkeletalFishBossRailHolder__2MRFv` | :white_check_mark: |
+| `createSkeletalFishBossRailHolder__2MRFv` | :white_check_mark: |
+| `__dt__26SkeletalFishBossRailHolderFv` | :white_check_mark: |

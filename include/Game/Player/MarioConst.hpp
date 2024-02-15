@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution.h>
+
 class MarioActor;
 
 struct Constants {

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <revolution.h>
+#include "Game/NameObj/NameObj.hpp"
+
 class HitSensor;
 
 class MarioMessenger : public NameObj {
