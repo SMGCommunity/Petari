@@ -140,7 +140,7 @@
 | [SkeletalFishGuard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishGuard.md) | 0.0% | 0 / 62 | 0.0% | :x: 
 | [SkeletalFishGuardHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishGuardHolder.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [SkeletalFishJointCalc.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishJointCalc.md) | 0.0% | 0 / 1 | 0.0% | :x: 
-| [SkeletalFishRailControl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishRailControl.md) | 0.0% | 0 / 6 | 0.0% | :x: 
+| [SkeletalFishRailControl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishRailControl.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [TombSpider.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/TombSpider.md) | 0.0% | 0 / 41 | 0.0% | :x: 
 | [TombSpiderAcid.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/TombSpiderAcid.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [TombSpiderAction1st.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/TombSpiderAction1st.md) | 0.0% | 0 / 38 | 0.0% | :x: 

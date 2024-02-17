@@ -52,7 +52,7 @@ namespace MR {
     bool getRailArg0WithInit(const LiveActor *, s32 *);
     bool getRailArg1WithInit(const RailRider *, s32 *);
 
-    f32 calcNearestRailCoord(const LiveActor *, const TVec3f &);
+    f64 calcNearestRailCoord(const LiveActor *, const TVec3f &);
 
     void moveCoordAndFollowTrans(LiveActor *, f32);
 
@@ -71,4 +71,6 @@ namespace MR {
     void setRailDirectionToEnd(const LiveActor *);
 
     bool isLoopRail(const LiveActor *);
+
+    const TVec3f& getRailPointPosEnd(const LiveActor *);
 };
