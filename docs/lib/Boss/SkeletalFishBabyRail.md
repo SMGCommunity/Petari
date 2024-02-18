@@ -5,10 +5,10 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 3 Completed -- (0.0%)
+# 3 / 3 Completed -- (100.0%)
 # SkeletalFishBabyRail.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__20SkeletalFishBabyRailFPCc` | :x: |
-| `init__20SkeletalFishBabyRailFRC12JMapInfoIter` | :x: |
-| `__dt__20SkeletalFishBabyRailFv` | :x: |
+| `__ct__20SkeletalFishBabyRailFPCc` | :white_check_mark: |
+| `init__20SkeletalFishBabyRailFRC12JMapInfoIter` | :white_check_mark: |
+| `__dt__20SkeletalFishBabyRailFv` | :white_check_mark: |

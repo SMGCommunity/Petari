@@ -36,6 +36,7 @@
 #define SceneObj_NameObjExecuteHolder       0x58
 #define SceneObj_QuakeEffectGenerator       0x5B
 #define SceneObj_HeatHazeDirector           0x5D
+#define SceneObj_SkeletalFishBabyRailHolder 0x67
 #define SceneObj_SkeletalFishRailHolder     0x68
 #define SceneObj_FirePressureBulletHolder   0x6A
 #define SceneObj_GalaxyNamePlateDrawer      0x70
