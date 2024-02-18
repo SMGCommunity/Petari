@@ -5,19 +5,19 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 12 Completed -- (0.0%)
+# 12 / 12 Completed -- (100.0%)
 # SkeletalFishBabyRailHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__29SkeletalFishBabyRailGroupNodeFl` | :x: |
-| `addChild__29SkeletalFishBabyRailGroupNodeFP20SkeletalFishBabyRail` | :x: |
-| `tidy__29SkeletalFishBabyRailGroupNodeFv` | :x: |
-| `createChild__29SkeletalFishBabyRailGroupNodeFv` | :x: |
-| `__ct__26SkeletalFishBabyRailHolderFPCc` | :x: |
-| `initAfterPlacement__26SkeletalFishBabyRailHolderFv` | :x: |
-| `add__26SkeletalFishBabyRailHolderFP20SkeletalFishBabyRail` | :x: |
-| `createGroup__26SkeletalFishBabyRailHolderFl` | :x: |
-| `getSkeletalFishBabyRailHolder__2MRFv` | :x: |
-| `createSkeletalFishBabyRailHolder__2MRFv` | :x: |
-| `__dt__26SkeletalFishBabyRailHolderFv` | :x: |
-| `__ct__31SkeletalFishBabyRailSetLinkNodeFv` | :x: |
+| `__ct__29SkeletalFishBabyRailGroupNodeFl` | :white_check_mark: |
+| `addChild__29SkeletalFishBabyRailGroupNodeFP20SkeletalFishBabyRail` | :white_check_mark: |
+| `tidy__29SkeletalFishBabyRailGroupNodeFv` | :white_check_mark: |
+| `createChild__29SkeletalFishBabyRailGroupNodeFv` | :white_check_mark: |
+| `__ct__26SkeletalFishBabyRailHolderFPCc` | :white_check_mark: |
+| `initAfterPlacement__26SkeletalFishBabyRailHolderFv` | :white_check_mark: |
+| `add__26SkeletalFishBabyRailHolderFP20SkeletalFishBabyRail` | :white_check_mark: |
+| `createGroup__26SkeletalFishBabyRailHolderFl` | :white_check_mark: |
+| `getSkeletalFishBabyRailHolder__2MRFv` | :white_check_mark: |
+| `createSkeletalFishBabyRailHolder__2MRFv` | :white_check_mark: |
+| `__dt__26SkeletalFishBabyRailHolderFv` | :white_check_mark: |
+| `__ct__31SkeletalFishBabyRailSetLinkNodeFv` | :white_check_mark: |
