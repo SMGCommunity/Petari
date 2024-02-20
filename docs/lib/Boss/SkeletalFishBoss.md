@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 114 Completed -- (0.0%)
+# 34 / 114 Completed -- (29.82456140350877%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -84,42 +84,42 @@
 | `init__25SkeletalFishBossScarFlashFRC12JMapInfoIter` | :x: |
 | `appear__25SkeletalFishBossScarFlashFv` | :x: |
 | `control__25SkeletalFishBossScarFlashFv` | :x: |
-| `__sinit_\SkeletalFishBoss_cpp` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@24SkeletalFishBossNrvCloseFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvBiteFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@25SkeletalFishBossNrvDamageFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDownFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvDeadDamageFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDeadFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearWaitFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearDemoFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@30SkeletalFishBossNrvPowerUpDemoFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDeadDemoFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@28SkeletalFishBossNrvBreakDemoFv` | :x: |
-| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDemoWaitFv` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDemoWaitCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@28SkeletalFishBossNrvBreakDemoCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDeadDemoCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@30SkeletalFishBossNrvPowerUpDemoCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearDemoCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearWaitCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDeadCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvDeadDamageCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDownCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@25SkeletalFishBossNrvDamageCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvBiteCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@24SkeletalFishBossNrvCloseCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenCFP5Spine` | :x: |
-| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimCFP5Spine` | :x: |
+| `__sinit_\SkeletalFishBoss_cpp` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@24SkeletalFishBossNrvCloseFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvBiteFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@25SkeletalFishBossNrvDamageFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDownFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvDeadDamageFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDeadFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearWaitFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearDemoFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@30SkeletalFishBossNrvPowerUpDemoFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDeadDemoFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@28SkeletalFishBossNrvBreakDemoFv` | :white_check_mark: |
+| `__ct__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDemoWaitFv` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDemoWaitCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@28SkeletalFishBossNrvBreakDemoCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvDeadDemoCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@30SkeletalFishBossNrvPowerUpDemoCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearDemoCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvAppearWaitCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDeadCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@29SkeletalFishBossNrvDeadDamageCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvDownCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@25SkeletalFishBossNrvDamageCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvBiteCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@24SkeletalFishBossNrvCloseCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenCFP5Spine` | :white_check_mark: |
+| `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimCFP5Spine` | :white_check_mark: |
 | `__dt__41JointControlDelegator<16SkeletalFishBoss>Fv` | :x: |
 | `calcJointMatrix__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
 | `__cl__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFv` | :x: |
 | `clone__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFP7JKRHeap` | :x: |
-| `__dt__16SkeletalFishBossFv` | :x: |
-| `__dt__20SkeletalFishBossHeadFv` | :x: |
-| `__dt__25SkeletalFishBossScarFlashFv` | :x: |
+| `__dt__16SkeletalFishBossFv` | :white_check_mark: |
+| `__dt__20SkeletalFishBossHeadFv` | :white_check_mark: |
+| `__dt__25SkeletalFishBossScarFlashFv` | :white_check_mark: |

@@ -6,7 +6,7 @@
 
 class SkeletalFishGuard;
 class SkeletalFishGuardHolder;
-class SkeletalBossScarFlash;
+class SkeletalFishBossScarFlash;
 class SkeletalFishBossHead;
 class SkeletalFishBossInfo;
 class SkeletalFishRailControl;
@@ -85,7 +85,7 @@ public:
     u32 _C0;
     CollisionParts** mPartsArray;                   // _C4
     SkeletalFishBossHead* mBossHead;                // _C8
-    SkeletalBossScarFlash* mScarFlash;              // _CC
+    SkeletalFishBossScarFlash* mScarFlash;              // _CC
     ModelObj* mBreakModel;                          // _D0
     HitSensor* _D4;
     TPos3f _D8;
@@ -111,9 +111,14 @@ public:
     s32 _1B4;
 };
 
-class SkeletalBossScarFlash : public PartsModel {
+class SkeletalFishBossScarFlash : public PartsModel {
 public:
+    SkeletalFishBossScarFlash(LiveActor *);
 
+    virtual ~SkeletalFishBossScarFlash();
+    virtual void init(const JMapInfoIter &);
+    virtual void appear();
+    virtual void control();
 };
 
 class SkeletalFishBossHead : public PartsModel {
@@ -128,4 +133,22 @@ public:
     
     void updateCollisionMtx();
     void createSubModel();
+};
+
+namespace {
+    NERVE_DECL(SkeletalFishBossNrvSwim, SkeletalFishBoss, SkeletalFishBoss::exeSwim);
+    NERVE_DECL(SkeletalFishBossNrvOpen, SkeletalFishBoss, SkeletalFishBoss::exeOpen);
+    NERVE_DECL(SkeletalFishBossNrvOpenWait, SkeletalFishBoss, SkeletalFishBoss::exeOpenWait);
+    NERVE_DECL(SkeletalFishBossNrvClose, SkeletalFishBoss, SkeletalFishBoss::exeClose);
+    NERVE_DECL(SkeletalFishBossNrvBite, SkeletalFishBoss, SkeletalFishBoss::exeBite);
+    NERVE_DECL(SkeletalFishBossNrvDamage, SkeletalFishBoss, SkeletalFishBoss::exeDamage);
+    NERVE_DECL(SkeletalFishBossNrvDown, SkeletalFishBoss, SkeletalFishBoss::exeDown);
+    NERVE_DECL(SkeletalFishBossNrvDeadDamage, SkeletalFishBoss, SkeletalFishBoss::exeDeadDamage);
+    NERVE_DECL(SkeletalFishBossNrvDead, SkeletalFishBoss, SkeletalFishBoss::exeDead);
+    NERVE_DECL(SkeletalFishBossNrvAppearWait, SkeletalFishBoss, SkeletalFishBoss::exeAppearWait);
+    NERVE_DECL(SkeletalFishBossNrvAppearDemo, SkeletalFishBoss, SkeletalFishBoss::exeAppearDemo);
+    NERVE_DECL(SkeletalFishBossNrvPowerUpDemo, SkeletalFishBoss, SkeletalFishBoss::exePowerUpDemo);
+    NERVE_DECL(SkeletalFishBossNrvDeadDemo, SkeletalFishBoss, SkeletalFishBoss::exeDeadDemo);
+    NERVE_DECL(SkeletalFishBossNrvBreakDemo, SkeletalFishBoss, SkeletalFishBoss::exeBreakDemo);
+    NERVE_DECL(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, SkeletalFishBoss::exeDemoWait);
 };
