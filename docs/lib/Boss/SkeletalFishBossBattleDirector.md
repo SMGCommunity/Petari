@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 14 Completed -- (0.0%)
+# 14 / 14 Completed -- (100.0%)
 # SkeletalFishBossBattleDirector.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__30SkeletalFishBossBattleDirectorFP16SkeletalFishBoss` | :x: |
-| `initiate__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `startPowerUpDemo1__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `startPowerUpDemo2__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `playGuardAnim__30SkeletalFishBossBattleDirectorFPCcl` | :x: |
-| `movement__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `tryColumnCollision__30SkeletalFishBossBattleDirectorFP9HitSensor` | :x: |
-| `pauseOffCast__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `endPowerUpDemo1__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `endPowerUpDemo2__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `killGuard__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `appearBirdLouse__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `killBirdLouse__30SkeletalFishBossBattleDirectorFv` | :x: |
-| `__dt__30SkeletalFishBossBattleDirectorFv` | :x: |
+| `__ct__30SkeletalFishBossBattleDirectorFP16SkeletalFishBoss` | :white_check_mark: |
+| `initiate__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `startPowerUpDemo1__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `startPowerUpDemo2__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `playGuardAnim__30SkeletalFishBossBattleDirectorFPCcl` | :white_check_mark: |
+| `movement__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `tryColumnCollision__30SkeletalFishBossBattleDirectorFP9HitSensor` | :white_check_mark: |
+| `pauseOffCast__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `endPowerUpDemo1__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `endPowerUpDemo2__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `killGuard__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `appearBirdLouse__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `killBirdLouse__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |
+| `__dt__30SkeletalFishBossBattleDirectorFv` | :white_check_mark: |

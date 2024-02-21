@@ -328,4 +328,6 @@ namespace MR {
 
 	ResTIMG* getTexFromArc(const char *, const LiveActor *);
     PartsModel* createBloomModel(LiveActor *, MtxPtr);
+
+    CollisionParts* getCollisionParts(const LiveActor *);
 };
