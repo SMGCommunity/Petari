@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 34 / 114 Completed -- (29.82456140350877%)
+# 38 / 114 Completed -- (33.33333333333333%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -80,10 +80,10 @@
 | `attackSensor__20SkeletalFishBossHeadFP9HitSensorP9HitSensor` | :x: |
 | `updateCollisionMtx__20SkeletalFishBossHeadFv` | :x: |
 | `createSubModel__20SkeletalFishBossHeadFv` | :x: |
-| `__ct__25SkeletalFishBossScarFlashFP9LiveActor` | :x: |
-| `init__25SkeletalFishBossScarFlashFRC12JMapInfoIter` | :x: |
-| `appear__25SkeletalFishBossScarFlashFv` | :x: |
-| `control__25SkeletalFishBossScarFlashFv` | :x: |
+| `__ct__25SkeletalFishBossScarFlashFP9LiveActor` | :white_check_mark: |
+| `init__25SkeletalFishBossScarFlashFRC12JMapInfoIter` | :white_check_mark: |
+| `appear__25SkeletalFishBossScarFlashFv` | :white_check_mark: |
+| `control__25SkeletalFishBossScarFlashFv` | :white_check_mark: |
 | `__sinit_\SkeletalFishBoss_cpp` | :white_check_mark: |
 | `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimFv` | :white_check_mark: |
 | `__ct__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenFv` | :white_check_mark: |

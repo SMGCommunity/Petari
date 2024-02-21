@@ -1,5 +1,26 @@
 #include "Game/Boss/SkeletalFishBoss.hpp"
 
+SkeletalFishBossScarFlash::SkeletalFishBossScarFlash(LiveActor *pActor) : PartsModel(pActor, "スカルシャーク傷跡エフェクトモデル", "SkeletalFishBossScarFlash", nullptr, 0x12, false) {
+    initFixedPosition("Head");
+}
+
+void SkeletalFishBossScarFlash::init(const JMapInfoIter &rIter) {
+    PartsModel::init(rIter);
+    makeActorDead();
+}
+
+void SkeletalFishBossScarFlash::appear() {
+    LiveActor::appear();
+    MR::startBck(this, "Damage", nullptr);
+    MR::startBrk(this, "Damage");
+}
+
+void SkeletalFishBossScarFlash::control() {
+    if (MR::isBckStopped(this)) {
+        kill();
+    }
+}
+
 namespace {
     INIT_NERVE(SkeletalFishBossNrvSwim);
     INIT_NERVE(SkeletalFishBossNrvOpen);

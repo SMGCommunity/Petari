@@ -133,6 +133,15 @@ public:
     
     void updateCollisionMtx();
     void createSubModel();
+
+    TMtx34f _9C;
+    CollisionParts* _CC;
+    TMtx34f _D0;
+    CollisionParts* _100;
+    ModelObj** _104;
+    u32 _108;
+    ModelObj** _10C;
+    u8 _114;
 };
 
 namespace {

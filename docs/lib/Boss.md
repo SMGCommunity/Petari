@@ -131,7 +131,7 @@
 | [SkeletalFishBaby.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBaby.md) | 0.0% | 0 / 38 | 0.0% | :x: 
 | [SkeletalFishBabyRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBabyRail.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SkeletalFishBabyRailHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBabyRailHolder.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
-| [SkeletalFishBoss.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBoss.md) | 5.522345573583831% | 34 / 114 | 29.82456140350877% | :eight_pointed_black_star: 
+| [SkeletalFishBoss.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBoss.md) | 7.856532877882152% | 38 / 114 | 33.33333333333333% | :eight_pointed_black_star: 
 | [SkeletalFishBossBattleDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossBattleDirector.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | [SkeletalFishBossFunc.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossFunc.md) | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | [SkeletalFishBossInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossInfo.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
