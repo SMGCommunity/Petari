@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 79 / 114 Completed -- (69.2982456140351%)
+# 84 / 114 Completed -- (73.68421052631578%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -115,11 +115,11 @@
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@27SkeletalFishBossNrvOpenWaitCFP5Spine` | :white_check_mark: |
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvOpenCFP5Spine` | :white_check_mark: |
 | `execute__Q230@unnamed@SkeletalFishBoss_cpp@23SkeletalFishBossNrvSwimCFP5Spine` | :white_check_mark: |
-| `__dt__41JointControlDelegator<16SkeletalFishBoss>Fv` | :x: |
-| `calcJointMatrix__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
-| `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
-| `__cl__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFv` | :x: |
-| `clone__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFP7JKRHeap` | :x: |
+| `__dt__41JointControlDelegator<16SkeletalFishBoss>Fv` | :white_check_mark: |
+| `calcJointMatrix__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `calcJointMatrixAfterChild__41JointControlDelegator<16SkeletalFishBoss>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `__cl__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR59FunctorV0M<P16SkeletalFishBoss,M16SkeletalFishBossFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__16SkeletalFishBossFv` | :white_check_mark: |
 | `__dt__20SkeletalFishBossHeadFv` | :white_check_mark: |
 | `__dt__25SkeletalFishBossScarFlashFv` | :white_check_mark: |
