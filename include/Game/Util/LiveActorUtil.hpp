@@ -278,6 +278,7 @@ namespace MR {
     bool tryCreateMirrorActor(LiveActor *, const char *);
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, CollisionScaleType);
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, MtxPtr, CollisionScaleType);
 
     bool isBinded(const LiveActor *);
 

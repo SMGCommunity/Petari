@@ -14,6 +14,13 @@ namespace MR {
     void createNormalBloom();
     void createSimpleBloom();
 
+    bool isNormalBloomOn();
+    void turnOnNormalBloom();
+    void setNormalBloomIntensity(u8);
+    void setNormalBloomThreshold(u8);
+    void setNormalBloomBlurIntensity1(u8);
+    void setNormalBloomBlurIntensity2(u8);
+
     void createScreenBlur();
     void startCenterScreenBlur(long, float, unsigned char, long, long);
 

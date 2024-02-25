@@ -7,7 +7,7 @@
 class SensorGroup;
 class HitSensor;
 
-class SensorHitChecker : NameObj {
+class SensorHitChecker : public NameObj {
 public:
     SensorHitChecker(const char *);
 

@@ -94,4 +94,6 @@ namespace MR {
     void startBckPlayer(const char *, s32);
 
     void setPlayerFrontVec(const TVec3f &, s32);
+
+    void hidePlayer();
 };

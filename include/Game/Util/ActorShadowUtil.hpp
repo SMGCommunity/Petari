@@ -4,12 +4,15 @@
 #include <revolution.h>
 
 class LiveActor;
+class HitSensor;
 
 namespace MR {
     void initShadowVolumeBox(LiveActor *, const TVec3f &);
     void initShadowVolumeBox(LiveActor *, const TVec3f &, MtxPtr);
     void initShadowVolumeCylinder(LiveActor *, f32);
     void setShadowDropLength(LiveActor *, const char *, f32);
+
+    void addShadowVolumeFlatModel(LiveActor *, const char *, const char *, MtxPtr);
 
     void initShadowVolumeFlatModel(LiveActor *, const char *, MtxPtr);
 
@@ -36,6 +39,7 @@ namespace MR {
 
     void onCalcShadow(LiveActor *, const char *);
 
+    void excludeCalcShadowToSensorAll(LiveActor *, const HitSensor *);
     void excludeCalcShadowToMyCollision(LiveActor *, const char *);
 
     void validateShadow(LiveActor *, const char *);

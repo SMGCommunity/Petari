@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Util/JointController.hpp"
@@ -11,11 +12,23 @@ class SkeletalFishBossHead;
 class SkeletalFishBossInfo;
 class SkeletalFishRailControl;
 class SkeletalFishBossBattleDirector;
+class SkeletalFishBossRail;
 
 class SkeletalFishBoss : public LiveActor {
 public:
 
-    typedef void (SkeletalFishBoss::*SceneFunc)(const void *, void *);
+    struct SensorToCollider {
+        const char* mJointName;
+        const char* mColliderName;
+    };
+
+    struct JointToShadow {
+        const char* mName;
+        const char* mJointName;
+        const char* mShadowName;
+    };
+
+    typedef void (SkeletalFishBoss::*SceneFunc)(void);
 
     virtual ~SkeletalFishBoss();
     virtual void init(const JMapInfoIter &);
@@ -54,18 +67,18 @@ public:
     void initHead();
     void initScarFlash();
     void initBreakModel();
-    void initSwitch();
+    void initSwitch(const JMapInfoIter &);
     void createGuards();
     void initShadow();
     void initCamera();
     void validateCollision();
     void invalidateCollision();
-    void getMouthSensorCenterPos(TVec3f &, f32);
+    void getMouthSensorCenterPos(TVec3f &, f32) const;
     void updateCollision();
     void powerUp();
     void startDamageAnim();
     void calcPlanetCenterPosition();
-    void calcGravityCenter(TVec3f *, const TVec3f &, const TVec3f &);
+    bool calcGravityCenter(TVec3f *, const TVec3f &, const TVec3f &);
     void resetRail();
     void updateBgm();
     LiveActor* getCurrentBossRail();
@@ -82,7 +95,7 @@ public:
     bool isEnableToBeDamaged() const;
 
     JointController* mControllers[0xD];
-    u32 _C0;
+    s32* mJointIndicies;                            // _C0
     CollisionParts** mPartsArray;                   // _C4
     SkeletalFishBossHead* mBossHead;                // _C8
     SkeletalFishBossScarFlash* mScarFlash;              // _CC
@@ -94,15 +107,13 @@ public:
     s32 _110;
     u32 _114;
     u32 _118;
-    u32 _11C;
+    CameraTargetMtx* mCameraTargetMtx;              // _11C
     TPos3f _120;
     TPos3f _150;
-    f32 _180;
-    f32 _184;
-    f32 _188;
+    TVec3f _180;
     SceneFunc mSceneFunc;                           // _18C
-    u32 _198;
-    Nerve* _19C;
+    const char* mCurScene;                          // _198
+    const Nerve* mSceneNerve;                             // _19C
     s32 _1A0;
     s32 _1A4;
     SkeletalFishBossInfo* mBossInfo;                // _1A8
@@ -141,6 +152,7 @@ public:
     ModelObj** _104;
     u32 _108;
     ModelObj** _10C;
+    u32 _110;
     u8 _114;
 };
 

@@ -160,7 +160,19 @@ namespace JGeometry {
 
         T setLength(T);
         T setLength(const TVec3<T>, T);
-        T squared() const;
+        T squared() const {
+            register const JGeometry::TVec3<f32>* this_vec = this;
+
+            __asm {
+                psq_l f2, 0(this_vec), 0, 0
+                lfs f0, 8(this_vec)
+                ps_mul f2, f2, f2
+                ps_madd f1, f0, f0, f2
+                ps_sum0 f1, f1, f2, f2
+                blr
+            };
+        }
+
         T squared(const TVec3<T> &) const;
         T angle(const TVec3<T> &rOther) const;
 
@@ -183,7 +195,19 @@ namespace JGeometry {
 
         void zero();
     
-        void negate();
+        void negate() {
+            register const JGeometry::TVec3<f32>* this_vec = this;
+            
+            __asm {
+                psq_l f1, 0(this_vec), 0, 0
+                lfs f0, 8(this_vec)
+                ps_neg f1, f1
+                fneg f0, f0
+                psq_st f1, 0(this_vec), 0, 0
+                stfs f0, 8(this_vec)
+            };
+        }
+
         void negate(const TVec3<T> &rSrc);
         float normalize(const TVec3<T> &rSrc);
 

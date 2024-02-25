@@ -33,6 +33,13 @@ public:
         mLiveActor = NULL;
         mMarioActor = NULL;
     }
+
+    inline CameraTargetArg(CameraTargetObj *pTargetObj, CameraTargetMtx *pMtx, const LiveActor *pActor, MarioActor *pMario) {
+        mTargetObj = pTargetObj;
+        mTargetMtx = pMtx;
+        mLiveActor = pActor;
+        mMarioActor = pMario;
+    }
     
     void setTarget() const;
 
