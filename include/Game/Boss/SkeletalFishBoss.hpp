@@ -30,6 +30,8 @@ public:
 
     typedef void (SkeletalFishBoss::*SceneFunc)(void);
 
+    SkeletalFishBoss(const char *);
+
     virtual ~SkeletalFishBoss();
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();

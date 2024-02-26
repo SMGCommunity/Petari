@@ -3003,8 +3003,8 @@ __dt__26SkeletalFishBabyRailHolderFv,SkeletalFishBabyRailHolder.o,Boss.a,true
 __ct__31SkeletalFishBabyRailSetLinkNodeFv,SkeletalFishBabyRailHolder.o,Boss.a,true
 negate__Q29JGeometry8TVec3<f>Fv,SkeletalFishBoss.o,Boss.a,true
 squared__Q29JGeometry8TVec3<f>CFv,SkeletalFishBoss.o,Boss.a,true
-__ct__16SkeletalFishBossFPCc,SkeletalFishBoss.o,Boss.a,false
-init__16SkeletalFishBossFRC12JMapInfoIter,SkeletalFishBoss.o,Boss.a,false
+__ct__16SkeletalFishBossFPCc,SkeletalFishBoss.o,Boss.a,true
+init__16SkeletalFishBossFRC12JMapInfoIter,SkeletalFishBoss.o,Boss.a,true
 initAfterPlacement__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 makeActorAppeared__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 appear__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
@@ -3056,7 +3056,7 @@ updateBgm__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 getCurrentBossRail__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 stopScene__16SkeletalFishBossFPCcPC5NerveM16SkeletalFishBossFPCvPv_v,SkeletalFishBoss.o,Boss.a,true
 startCamera__16SkeletalFishBossFPCc,SkeletalFishBoss.o,Boss.a,true
-resetCamera__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,false
+resetCamera__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 playDamageBrk__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 startAppearDemo__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true
 endAppearDemo__16SkeletalFishBossFv,SkeletalFishBoss.o,Boss.a,true

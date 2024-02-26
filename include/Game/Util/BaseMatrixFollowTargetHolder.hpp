@@ -2,8 +2,9 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry.hpp"
+#include <revolution.h>
+
+class JMapLinkInfo;
 
 class BaseMatrixFollowValidater {
 public:

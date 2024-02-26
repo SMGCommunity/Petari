@@ -54,6 +54,8 @@ namespace MR {
     void declareEventCameraProgrammable(const char *);
     void setGameCameraTargetToPlayer();
 
+    void setProgrammableCameraParam(const char *, const TVec3f &, const TVec3f &, const TVec3f &, bool);
+
     void calcScreenPosition(TVec2f *, const TVec3f &);
 
     bool calcScreenPosition(TVec3f *, const TVec3f &);
@@ -82,4 +84,6 @@ namespace MR {
     void calcScreenPosition(TVec2f *, const TVec3f &);
 
     bool isCameraInWater();
+
+    void startGlobalEventCameraTargetPlayer(const char *, s32);
 };

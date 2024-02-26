@@ -37,8 +37,85 @@ namespace {
     };
 };
 
-// SkeletalFishBoss::SkeletalFishBoss
-// SkeletalFishBoss::init
+SkeletalFishBoss::SkeletalFishBoss(const char *pName) : LiveActor(pName) {
+    mJointIndicies = nullptr;
+    mPartsArray = nullptr;
+    mBossHead = nullptr;
+    mScarFlash = nullptr;
+    mBreakModel = nullptr;
+    _D4 = nullptr;
+    mRailControl = new SkeletalFishRailControl();
+    mBossDirector = nullptr;
+    _110 = 0;
+    _114 = 3;
+    _118 = 0;
+    mCameraTargetMtx = nullptr;
+    _180.x = 0.0f;
+    _180.y = 0.0f;
+    _180.z = 0.0f;
+    mSceneFunc = nullptr;
+    mCurScene = nullptr;
+    mSceneNerve = nullptr;
+    _1A0 = 3;
+    _1A4 = 4;
+    mBossInfo = nullptr;
+    mGuardHolder = nullptr;
+    _1B0 = 0;
+    _1B4 = -1;
+
+    for (u32 i = 0; i < 0xD; i++) {
+        mControllers[i] = nullptr;
+    }
+
+    _D8.identity();
+    _120.identity();
+    _150.identity();
+}
+
+void SkeletalFishBoss::init(const JMapInfoIter &rIter) {
+    initModelManagerWithAnm("SkeletalFishBoss", nullptr, false);
+    MR::initDefaultPos(this, rIter);
+    MR::getJMapInfoArg0NoInit(rIter, &_1A0);
+    MR::getJMapInfoArg1NoInit(rIter, &_1A4);
+    initLevelStatus();
+    mBossInfo->initWithoutIter();
+    JMath::gekko_ps_copy12(&_150, MR::getZonePlacementMtx(rIter));
+    initSwitch(rIter);
+    initJoint();
+    initHead();
+    initScarFlash();
+    initBreakModel();
+    initCollision();
+    initEffectKeeper(1, "SkeketalFishBoss", false);
+    initSound(4, false);
+    initNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    MR::invalidateClipping(this);
+    MR::setClippingTypeSphere(this, 1000.0f);
+    mBossDirector = new SkeletalFishBossBattleDirector(this);
+    MR::joinToGroupArray(this, rIter, nullptr, 32);
+    MR::connectToSceneCollisionEnemy(this);
+
+    if (MR::tryRegisterDemoCast(this, rIter)) {
+        MR::tryRegisterDemoCast(mBossHead, rIter);
+    }
+
+    MR::initLightCtrl(this);
+    initShadow();
+    initCamera();
+    createGuards();
+    MR::createNormalBloom();
+    MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
+    MR::declareCameraRegisterVec(this, 0, &mPosition);
+    MR::declarePowerStar(this);
+    MR::declareStarPiece(this, 0x19);
+    MR::createCenterScreenBlur();
+    MR::startBck(this, "Swim", nullptr);
+    MR::startBck(mBossHead, "Wait", nullptr);
+    MR::startBrk(this, "Base");
+    MR::startBrk(mBossHead, "Base");
+    MR::startBva(this, "Normal");
+    MR::startBva(mBossHead, "Normal");
+}
 
 void SkeletalFishBoss::initAfterPlacement() {
     NameObj::initAfterPlacement();
@@ -343,7 +420,23 @@ void SkeletalFishBoss::startCamera(const char *pCameraName) {
     MR::startEventCamera(&cameraInfo, pCameraName, target, 0);
 }
 
-// SkeletalFishBoss::resetCamera
+void SkeletalFishBoss::resetCamera() {
+    MR::startGlobalEventCameraTargetPlayer("デモ終了後カメラ", 0);
+    TPos3f mtxPos;
+    JMath::gekko_ps_copy12(&mtxPos, MR::getPlayerBaseMtx());
+    TVec3f pos;
+    mtxPos.getTrans(pos);
+    TVec3f stack_2C;
+    f32 z = mtxPos.mMtx[2][1];
+    f32 y = mtxPos.mMtx[1][1];
+    f32 x = mtxPos.mMtx[0][1];
+    stack_2C.set(x, y, z);
+    TVec3f stack_20;
+    TVec3f stack_14 = pos + MR::createVecAndScale(stack_2C, 1200.0f);
+    stack_2C.setInlinePS_2(stack_14);
+    mtxPos.getZDir(stack_20);
+    MR::setProgrammableCameraParam("デモ終了後カメラ", pos, stack_20, stack_2C, true);
+}
 
 void SkeletalFishBoss::playDamageBrk() {
     char buf[0x80];

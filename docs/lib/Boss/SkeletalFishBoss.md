@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 84 / 114 Completed -- (73.68421052631578%)
+# 87 / 114 Completed -- (76.31578947368422%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `negate__Q29JGeometry8TVec3<f>Fv` | :white_check_mark: |
 | `squared__Q29JGeometry8TVec3<f>CFv` | :white_check_mark: |
-| `__ct__16SkeletalFishBossFPCc` | :x: |
-| `init__16SkeletalFishBossFRC12JMapInfoIter` | :x: |
+| `__ct__16SkeletalFishBossFPCc` | :white_check_mark: |
+| `init__16SkeletalFishBossFRC12JMapInfoIter` | :white_check_mark: |
 | `initAfterPlacement__16SkeletalFishBossFv` | :white_check_mark: |
 | `makeActorAppeared__16SkeletalFishBossFv` | :white_check_mark: |
 | `appear__16SkeletalFishBossFv` | :white_check_mark: |
@@ -64,7 +64,7 @@
 | `getCurrentBossRail__16SkeletalFishBossFv` | :white_check_mark: |
 | `stopScene__16SkeletalFishBossFPCcPC5NerveM16SkeletalFishBossFPCvPv_v` | :white_check_mark: |
 | `startCamera__16SkeletalFishBossFPCc` | :white_check_mark: |
-| `resetCamera__16SkeletalFishBossFv` | :x: |
+| `resetCamera__16SkeletalFishBossFv` | :white_check_mark: |
 | `playDamageBrk__16SkeletalFishBossFv` | :white_check_mark: |
 | `startAppearDemo__16SkeletalFishBossFv` | :white_check_mark: |
 | `endAppearDemo__16SkeletalFishBossFv` | :white_check_mark: |

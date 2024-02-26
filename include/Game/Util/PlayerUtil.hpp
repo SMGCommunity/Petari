@@ -18,6 +18,8 @@ namespace MR {
 
     TVec3f* getPlayerVelocity();
 
+    MtxPtr getPlayerBaseMtx();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
