@@ -86,4 +86,9 @@ namespace MR {
     bool isCameraInWater();
 
     void startGlobalEventCameraTargetPlayer(const char *, s32);
+
+    bool isEventCameraActive();
+    bool isEventCameraActive(const ActorCameraInfo *, const char *);
+
+    void endGlobalEventCamera(const char *, s32, bool);
 };

@@ -22,7 +22,7 @@ namespace MR {
     void setNormalBloomBlurIntensity2(u8);
 
     void createScreenBlur();
-    void startCenterScreenBlur(long, float, unsigned char, long, long);
+    void startCenterScreenBlur(s32, f32, u8, s32, s32);
 
     void createDepthOfFieldBlur();
     void turnOffDOFInSubjective();
@@ -75,4 +75,6 @@ namespace MR {
     bool isSystemWipeActive();
 
     void closeSystemWipeWhiteFade(s32);
+
+    void setImageEffectControlAuto();
 };

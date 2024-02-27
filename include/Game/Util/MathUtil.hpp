@@ -277,6 +277,10 @@ namespace MR {
         return remainder;
     }
 
+    inline f32 getZero() {
+        return 0.0f;
+    }
+
     f32 cos(f32);
     f32 sin(f32);
 };

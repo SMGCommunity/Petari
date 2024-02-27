@@ -34,6 +34,10 @@ namespace JMath
                 return table[(u16)v & 0x3FFF].a1; 
             }
         }
+
+        inline f32 get(f32 v) {
+            return table[(u16)v & 0x3FFF].b1;
+        }
     };
 
     template<s32 Len, typename T>

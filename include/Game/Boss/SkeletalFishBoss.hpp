@@ -28,6 +28,12 @@ public:
         const char* mShadowName;
     };
 
+    struct HitPos {
+        const char* mName;
+        const char* mSensorName;
+        Vec mOffset;
+    };
+
     typedef void (SkeletalFishBoss::*SceneFunc)(void);
 
     SkeletalFishBoss(const char *);
@@ -102,12 +108,12 @@ public:
     SkeletalFishBossHead* mBossHead;                // _C8
     SkeletalFishBossScarFlash* mScarFlash;              // _CC
     ModelObj* mBreakModel;                          // _D0
-    HitSensor* _D4;
+    const HitSensor* _D4;
     TPos3f _D8;
     SkeletalFishRailControl* mRailControl;          // _108
     SkeletalFishBossBattleDirector* mBossDirector;  // _10C
     s32 _110;
-    u32 _114;
+    s32 _114;
     u32 _118;
     CameraTargetMtx* mCameraTargetMtx;              // _11C
     TPos3f _120;
@@ -151,10 +157,8 @@ public:
     CollisionParts* _CC;
     TMtx34f _D0;
     CollisionParts* _100;
-    ModelObj** _104;
-    u32 _108;
-    ModelObj** _10C;
-    u32 _110;
+    ModelObj* mLightModels[2];              // _104
+    ModelObj* mBloomModels[2];              // _10C
     u8 _114;
 };
 

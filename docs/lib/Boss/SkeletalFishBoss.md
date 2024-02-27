@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 87 / 114 Completed -- (76.31578947368422%)
+# 114 / 114 Completed -- (100.0%)
 # SkeletalFishBoss.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -17,25 +17,25 @@
 | `makeActorAppeared__16SkeletalFishBossFv` | :white_check_mark: |
 | `appear__16SkeletalFishBossFv` | :white_check_mark: |
 | `kill__16SkeletalFishBossFv` | :white_check_mark: |
-| `control__16SkeletalFishBossFv` | :x: |
-| `calcAnim__16SkeletalFishBossFv` | :x: |
-| `calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :x: |
-| `damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3<f>` | :x: |
-| `exeSwim__16SkeletalFishBossFv` | :x: |
-| `exeOpen__16SkeletalFishBossFv` | :x: |
-| `exeOpenWait__16SkeletalFishBossFv` | :x: |
-| `exeClose__16SkeletalFishBossFv` | :x: |
-| `exeBite__16SkeletalFishBossFv` | :x: |
-| `exeDamage__16SkeletalFishBossFv` | :x: |
-| `exeDown__16SkeletalFishBossFv` | :x: |
-| `exeDeadDamage__16SkeletalFishBossFv` | :x: |
-| `exeDead__16SkeletalFishBossFv` | :x: |
-| `exeAppearWait__16SkeletalFishBossFv` | :x: |
-| `exeAppearDemo__16SkeletalFishBossFv` | :x: |
-| `exePowerUpDemo__16SkeletalFishBossFv` | :x: |
-| `exeDeadDemo__16SkeletalFishBossFv` | :x: |
-| `exeBreakDemo__16SkeletalFishBossFv` | :x: |
-| `exeDemoWait__16SkeletalFishBossFv` | :x: |
+| `control__16SkeletalFishBossFv` | :white_check_mark: |
+| `calcAnim__16SkeletalFishBossFv` | :white_check_mark: |
+| `calcJoint__16SkeletalFishBossFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | :white_check_mark: |
+| `damage__16SkeletalFishBossFPC9HitSensorRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `exeSwim__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeOpen__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeOpenWait__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeClose__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeBite__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDamage__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDown__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDeadDamage__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDead__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeAppearWait__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeAppearDemo__16SkeletalFishBossFv` | :white_check_mark: |
+| `exePowerUpDemo__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDeadDemo__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeBreakDemo__16SkeletalFishBossFv` | :white_check_mark: |
+| `exeDemoWait__16SkeletalFishBossFv` | :white_check_mark: |
 | `notifyAttack__16SkeletalFishBossFP17SkeletalFishGuard` | :white_check_mark: |
 | `getCurrentRail__16SkeletalFishBossFv` | :white_check_mark: |
 | `getBodyThickness__16SkeletalFishBossCFv` | :white_check_mark: |
@@ -49,7 +49,7 @@
 | `initBreakModel__16SkeletalFishBossFv` | :white_check_mark: |
 | `initSwitch__16SkeletalFishBossFRC12JMapInfoIter` | :white_check_mark: |
 | `createGuards__16SkeletalFishBossFv` | :white_check_mark: |
-| `initShadow__16SkeletalFishBossFv` | :x: |
+| `initShadow__16SkeletalFishBossFv` | :white_check_mark: |
 | `initCamera__16SkeletalFishBossFv` | :white_check_mark: |
 | `validateCollision__16SkeletalFishBossFv` | :white_check_mark: |
 | `invalidateCollision__16SkeletalFishBossFv` | :white_check_mark: |
@@ -73,13 +73,13 @@
 | `startDeadDemo__16SkeletalFishBossFv` | :white_check_mark: |
 | `endBreakDemo__16SkeletalFishBossFv` | :white_check_mark: |
 | `isEnableToBeDamaged__16SkeletalFishBossCFv` | :white_check_mark: |
-| `__ct__20SkeletalFishBossHeadFP9LiveActor` | :x: |
-| `movement__20SkeletalFishBossHeadFv` | :x: |
-| `calcAnim__20SkeletalFishBossHeadFv` | :x: |
-| `receiveMsgPlayerAttack__20SkeletalFishBossHeadFUlP9HitSensorP9HitSensor` | :x: |
-| `attackSensor__20SkeletalFishBossHeadFP9HitSensorP9HitSensor` | :x: |
-| `updateCollisionMtx__20SkeletalFishBossHeadFv` | :x: |
-| `createSubModel__20SkeletalFishBossHeadFv` | :x: |
+| `__ct__20SkeletalFishBossHeadFP9LiveActor` | :white_check_mark: |
+| `movement__20SkeletalFishBossHeadFv` | :white_check_mark: |
+| `calcAnim__20SkeletalFishBossHeadFv` | :white_check_mark: |
+| `receiveMsgPlayerAttack__20SkeletalFishBossHeadFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `attackSensor__20SkeletalFishBossHeadFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `updateCollisionMtx__20SkeletalFishBossHeadFv` | :white_check_mark: |
+| `createSubModel__20SkeletalFishBossHeadFv` | :white_check_mark: |
 | `__ct__25SkeletalFishBossScarFlashFP9LiveActor` | :white_check_mark: |
 | `init__25SkeletalFishBossScarFlashFRC12JMapInfoIter` | :white_check_mark: |
 | `appear__25SkeletalFishBossScarFlashFv` | :white_check_mark: |

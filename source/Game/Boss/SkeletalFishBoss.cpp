@@ -4,15 +4,18 @@
 #include "Game/Boss/SkeletalFishBossRail.hpp"
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 #include "Game/Boss/SkeletalFishGuardHolder.hpp"
+#include "Game/Boss/SkeletalFishJointCalc.hpp"
 #include "Game/Boss/SkeletalFishRailControl.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include <cstdio>
 #include <JSystem/JMath/JMath.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 namespace {
     static SkeletalFishBoss::SensorToCollider sColInfo[0xE] = {
@@ -29,12 +32,39 @@ namespace {
         { "Joint11", "BackBone11" },
         { "Joint12", "BackFin" },
         { "LeftFinJoint", "LeftFinJoint" },
-        { "RightFinJoint", "RightFinJoint" },
+        { "RightFinJoint", "RightFinJoint" }
     };
 
+    static SkeletalFishBoss::HitPos sHitPosData[0x10] = {
+        { "Wound0", "Head", { 26.144243f, 414.56268f, 552.11462} }
+    };
+};
+
+namespace {
+    char* test[] = {
+        "Shadow00",
+        "Joint02",
+        "SkeletalFishBossShadow"
+    };
     static SkeletalFishBoss::JointToShadow sShadowInfo = {
          "Shadow00", "Joint02", "SkeletalFishBossShadow"
-    };
+    };  
+
+    inline SkeletalFishBoss::JointToShadow& testInline() {
+        return sShadowInfo;
+    }
+
+    inline const char* getName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mName;
+    }
+
+    inline const char* getShadowName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mShadowName;
+    }
+
+    inline const char* getJointName(SkeletalFishBoss::JointToShadow& jointToShadow) {
+        return jointToShadow.mJointName;
+    }
 };
 
 SkeletalFishBoss::SkeletalFishBoss(const char *pName) : LiveActor(pName) {
@@ -145,13 +175,428 @@ void SkeletalFishBoss::kill() {
     mScarFlash->kill();
 }
 
-// SkeletalFishBoss::control
-// SkeletalFishBoss::calcAnim
-// SkeletalFishBoss::calcJoint
-// SkeletalFishBoss::damage
-// SkeletalFishBoss::exeSwim
+void SkeletalFishBoss::control() {
+    ActorCameraInfo info(-1, 0);
 
-// ...
+    if (MR::isEventCameraActive(&info, "デモ終了後カメラ") && MR::isGreaterEqualStep(this, 60)) {
+        MR::endGlobalEventCamera("デモ終了後カメラ", -1, true);
+    }
+
+    if (!isNerve(&::SkeletalFishBossNrvDead::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearWait::sInstance)) {
+        bool isInDemo = false;
+
+        if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
+            || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance)
+            ||  isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
+                isInDemo = true;
+        }
+
+        if (!isInDemo) {
+            mRailControl->update();
+            mRailControl->getPos(&mPosition, 0.0f);
+            updateCollision();
+            mGuardHolder->movement();
+            updateBgm();
+        }
+
+        mBossDirector->tryColumnCollision(mBossHead->getSensor("body"));
+    }
+}
+
+void SkeletalFishBoss::calcAnim() {
+    LiveActor::calcAnim();
+    TVec3f zDir;
+    MR::getCameraInvViewMtx()->getZDir(zDir);
+    zDir.negate();
+
+    if (!MR::isNoCalcAnim(this)) {
+        SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
+        f32 idx_mult;
+        f32 val = MR::getZero();
+        idx_mult = 2607.5945f;
+        JMath::TSinCosTable<14, f32>* tbl = &JMath::sSinCosTable; 
+
+        TPos3f jointMtx;
+        JMath::gekko_ps_copy12(&jointMtx, MR::getJointMtx(this, shadow->mJointName));
+        TVec3f trans;
+        jointMtx.getTrans(trans);
+        TVec3f gravity;
+        MR::calcGravityVector(this, trans, &gravity, nullptr, 0);
+        f32 v4 = 1.8325958f;
+        v4 = (v4 < val) ? -v4 : v4;
+
+        f32 v10 = (v4 * idx_mult);
+        f64 e = tbl->get(v10);
+
+        if (zDir.dot(gravity) < e) {
+            MR::invalidateShadow(this, shadow->mName); 
+        }
+        else {
+            MR::validateShadow(this, shadow->mName);
+        }
+
+        MR::setShadowDropPosition(this, shadow->mName, trans);
+        MR::setShadowDropDirection(this, shadow->mName, gravity);
+    }
+
+    mBossHead->updateCollisionMtx();
+}
+
+bool SkeletalFishBoss::calcJoint(TPos3f *pJointPos, const JointControllerInfo &rInfo) {
+    if (mJointIndicies[rInfo._4->_14] == -1) {
+        return false;
+    }
+
+    SkeletalFishJointCalc::calcJoint(pJointPos, &_120, mRailControl, rInfo);
+    return true;
+}
+
+void SkeletalFishBoss::damage(const HitSensor *pSensor, const TVec3f &rStarPieceOffs) {
+    if (isEnableToBeDamaged()) {
+        _D4 = pSensor;
+        MR::shakeCameraStrong();
+        playDamageBrk();
+
+        u32 numHitsLeft = _114;
+        _114--;
+
+        if (_114 == 1 && _110 + 1 == _1A0) {
+            MR::emitEffect(this, "SkeltalDamageLast");
+        }
+
+        if (_114 <= 0) {
+            if (_110 + 1 == _1A0) {
+                setNerve(&::SkeletalFishBossNrvDeadDamage::sInstance);
+            }
+            else if (MR::isDemoExist("スカルシャークデモ")) {
+                setNerve(&::SkeletalFishBossNrvDown::sInstance);
+            }
+        }
+        else {
+            u32 numStarPiece = (_110 + 1 == _1A0) ? 15 : 10;
+            MR::appearStarPiece(this, rStarPieceOffs, numStarPiece, 10.0f, 14.0f, false);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+            setNerve(&::SkeletalFishBossNrvDamage::sInstance);
+        }
+    }
+}
+
+void SkeletalFishBoss::exeSwim() {
+    if (MR::isFirstStep(this)) {
+        if (!MR::isBckPlaying(this, "Swim")) {
+            MR::startBckWithInterpole(this, "Swim", 60);
+            MR::startBckWithInterpole(mBossHead, "Wait", 60);
+        }
+
+        mGuardHolder->validate();
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    TVec3f mouthPos;
+    getMouthSensorCenterPos(mouthPos, 5000.0f);
+
+    bool isClose = PSVECDistance(mouthPos.toCVec(), MR::getPlayerPos()->toCVec()) < 5000.0f;
+
+    if (isClose) {
+        setNerve(&::SkeletalFishBossNrvOpen::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeOpen() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mBossHead, "Open", nullptr);
+        MR::startSound(mBossHead, "SE_B_SKL_BOSS_MOUTH_OPEN", -1, -1);
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isBckStopped(mBossHead)) {
+        MR::startBck(mBossHead, "OpenWait", nullptr);
+        setNerve(&::SkeletalFishBossNrvOpenWait::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeOpenWait() {
+    TVec3f mouthPos;
+    getMouthSensorCenterPos(mouthPos, 7800.0f);
+    bool isClose = PSVECDistance(mouthPos.toCVec(), MR::getPlayerPos()->toCVec()) < 7000.0f;
+
+    if (isClose) {
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    }
+    else {
+        setNerve(&::SkeletalFishBossNrvClose::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeClose() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mBossHead, "Close", nullptr);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_CLOSE", -1, -1);
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isBckStopped(mBossHead)) {
+        MR::startBck(mBossHead, "Wait", nullptr);
+        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeBite() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mBossHead, "Bite", nullptr);
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isBckStopped(mBossHead)) {
+        MR::startBck(mBossHead, "Wait", nullptr);
+        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeDamage() {
+    if (MR::isFirstStep(this)) {
+        startDamageAnim();
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_S", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        mGuardHolder->invalidate();
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isBckStopped(this)) {
+        if (_114 == 2) {
+            MR::startBrk(this, "Damage1Color");
+            MR::startBrk(mBossHead, "Damage1Color");
+        }
+        else if (_114 == 1) {
+            MR::startBrk(this, "Damage2Color");
+            MR::startBrk(mBossHead, "Damage2Color");
+        }
+
+        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+        MR::appearStarPiece(this, mPosition, 6, 10.0f, 40.0f, false);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+    }
+}
+
+void SkeletalFishBoss::exeDown() {
+    if (MR::isFirstStep(this)) {
+        startDamageAnim();
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_L", -1, -1);
+        MR::startSystemSE("SE_SY_BOSS_DAMAGE_3", -1, -1);
+        mGuardHolder->invalidate();
+
+        if (_110 == 1) {
+            MR::startBva(this, "Crack");
+            MR::startBva(mBossHead, "Crack");
+        }
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isStep(this, 120)) {
+        stopScene("スカルシャークパワーアップ", &::SkeletalFishBossNrvPowerUpDemo::sInstance, &SkeletalFishBoss::startPowerUpDemo);
+    }
+}
+
+void SkeletalFishBoss::exeDeadDamage() {
+    if (MR::isFirstStep(this)) {
+        startDamageAnim();
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_LAST", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+        mGuardHolder->invalidate();
+        mGuardHolder->killAll();
+        mBossHead->_114 = 0;
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+
+    if (MR::isStep(this, 120)) {
+        MR::stopStageBGM(30);
+        stopScene("スカルシャーク死亡", &::SkeletalFishBossNrvDeadDemo::sInstance, &SkeletalFishBoss::startDeadDemo);
+    }
+}
+
+void SkeletalFishBoss::exeDead() {
+    if (MR::isFirstStep(this)) {
+        Mtx pos;
+        if (MR::tryFindNamePos("マリオ再セット位置2", pos)) {
+            MR::setPlayerBaseMtx(pos);
+        }
+
+        resetCamera();
+    }
+    else {
+        ActorCameraInfo info(-1, 0);
+        bool isCameraActive = MR::isEventCameraActive(&info, "デモ終了後カメラ") == false;
+        if (isCameraActive) {
+            kill();
+        }
+    }
+}
+
+void SkeletalFishBoss::exeAppearWait() {
+    if (!MR::isPlayerInBind() && !MR::isEventCameraActive()) {
+        stopScene("スカルシャーク出現", &::SkeletalFishBossNrvAppearDemo::sInstance, &SkeletalFishBoss::startAppearDemo);
+    }
+}
+
+void SkeletalFishBoss::exeAppearDemo() {
+    if (MR::isFirstStep(this)) {
+        MR::showModel(this);
+        MR::startBck(this, "BattleStart", nullptr);
+        MR::startBck(mBossHead, "BattleStart", nullptr);
+        MR::stopStageBGM(60);
+        mBossDirector->appearBirdLouse();
+        mGuardHolder->invalidate();
+    }
+
+    if (MR::isStep(this, 280)) {
+        MR::startStageBGM("MBGM_BOSS_09_A", false);
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_APPEAR", -1, -1, -1);
+
+    if (MR::isBckStopped(this)) {
+        if (!MR::isPlayingStageBgm()) {
+            MR::startStageBGM("MBGM_BOSS_09_A", false);
+        }
+
+        _1B4 = 120;
+        mBossDirector->killBirdLouse();
+        endAppearDemo();
+    }
+}
+
+void SkeletalFishBoss::exePowerUpDemo() {
+    if (MR::isFirstStep(this)) {
+        MR::showModel(this);
+        powerUp();
+        mGuardHolder->invalidate();
+        mGuardHolder->forceKillAll();
+        mRailControl->_14 = 60.0f;
+
+        if (_110 == 1) {
+            MR::startBck(this, "PowerUp1", nullptr);
+            MR::startBck(mBossHead, "PowerUp1", nullptr);
+            mBossDirector->startPowerUpDemo1();
+        }
+        else {
+            MR::startBck(this, "PowerUp2", nullptr);
+            MR::startBck(mBossHead, "PowerUp2", nullptr);
+            mBossDirector->startPowerUpDemo2();
+        }
+
+        mBossDirector->appearBirdLouse();
+
+        if (_110 > 1) {
+            MR::stopStageBGM(30);
+        }
+    }
+
+    if (_110 == 2 && MR::isStep(this, 240)) {
+        MR::startAtmosphereSE("SE_BM_SKL_GUARD_COME_FRONT", -1, -1);
+    }
+
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_POW_UP", -1, -1, -1);
+
+    if (MR::isBckStopped(this)) {
+        if (_110 > 1) {
+            MR::startStageBGM("MBGM_BOSS_09_B", false);
+        }
+
+        _1B4 = 120;
+        mBossDirector->killBirdLouse();
+        endPowerUpDemo();
+    }
+}
+
+void SkeletalFishBoss::exeDeadDemo() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Down", nullptr);
+        MR::startBrk(this, "Down");
+        MR::startBck(mBossHead, "Down", nullptr);
+        MR::startBrk(mBossHead, "Down");
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN", -1, -1);
+        MR::setImageEffectControlAuto();
+        mGuardHolder->invalidate();
+        mBossDirector->appearBirdLouse();
+    }
+
+    if (MR::isStep(this, 30)) {
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_BODY_SOLID", -1, -1);
+    }
+
+    if (MR::isLessStep(this, 218)) {
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_DIE", -1, -1, -1);
+    }
+
+    if (MR::isBckStopped(this)) {
+        mBossDirector->killBirdLouse();
+        MR::overlayWithPreviousScreen(2);
+        setNerve(&::SkeletalFishBossNrvBreakDemo::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeBreakDemo() {
+    if (MR::isFirstStep(this)) {
+        MR::hideModel(this);
+        mBossHead->kill();
+        mBreakModel->makeActorAppeared();
+        MR::requestMovementOn(mBreakModel);
+        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBrk(mBreakModel, "Break");
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE", -1, -1);
+        mGuardHolder->invalidate();
+        mBossDirector->appearBirdLouse();
+        MR::tryRumblePadMiddle(this, 0);
+    }
+
+    if (MR::isStep(this, 204)) {
+        MR::tryRumblePadStrong(this, 0);
+    }
+
+    if (MR::isStep(this, 206)) {
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE_2", -1, -1);
+    }
+
+    if (MR::isStep(this, 0)) {
+        MR::startCenterScreenBlur(60, 5.0f, 0x50, 5, 30);
+    }
+
+    if (MR::isStep(this, 200)) {
+        MR::startCenterScreenBlur(60, 80.0f, 0x50, 5, 30);
+    }
+
+    if (MR::isBckStopped(mBreakModel)) {
+        MR::startAfterBossBGM();
+        mBossDirector->killBirdLouse();
+        endBreakDemo();
+        setNerve(&::SkeletalFishBossNrvDead::sInstance);
+    }
+}
+
+void SkeletalFishBoss::exeDemoWait() {
+    if (MR::tryStartDemo(this, mCurScene)) {
+        (this->*mSceneFunc)();
+        MR::requestMovementOn(this);
+        MR::requestMovementOn(mBossHead);
+        MR::requestMovementOn(mScarFlash);
+        mBossDirector->pauseOffCast();
+        setNerve(mSceneNerve);
+    }
+}
 
 void SkeletalFishBoss::notifyAttack(SkeletalFishGuard *pGuard) {
     mGuardHolder->notifyAttack(pGuard);
@@ -259,14 +704,17 @@ void SkeletalFishBoss::createGuards() {
     mGuardHolder = new SkeletalFishGuardHolder(this, _1A4, "スカルシャークガード管理");
 }
 
-#ifdef NON_MATCHING
 void SkeletalFishBoss::initShadow() {
     MR::initShadowController(this, 1);
-    MR::addShadowVolumeFlatModel(this, "Shadow00", sShadowInfo.mShadowName, MR::getJointMtx(this, sShadowInfo.mJointName));
-    MR::setShadowDropLength(this, sShadowInfo.mName, 4000.0f);
+    SkeletalFishBoss::JointToShadow& shadow = testInline();
+    const char** bruh = (const char**)test;
+    const char* name = bruh[0];
+    MtxPtr mtx = MR::getJointMtx(this, bruh[1]);
+    //SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
+    MR::addShadowVolumeFlatModel(this, name, test[2], mtx);
+    MR::setShadowDropLength(this, name, 4000.0f);
     MR::excludeCalcShadowToSensorAll(this, mBossHead->getSensor("body"));
 }
-#endif
 
 void SkeletalFishBoss::initCamera() {
     ActorCameraInfo cameraInfo(-1, 0);
@@ -576,6 +1024,137 @@ bool SkeletalFishBoss::isEnableToBeDamaged() const {
     }
 
     return isDmg;
+}
+
+SkeletalFishBossHead::SkeletalFishBossHead(LiveActor *pActor) : PartsModel(pActor, "スカルシャーク頭", "SkeletalFishBossHeadA", nullptr, 0x12, false) {
+    initFixedPosition("Head");
+    initHitSensor(17);
+    MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
+
+    for (u32 i = 0; i < 0xD; i++) {
+        //SkeletalFishBoss::HitPos* data = &sHitPosData[i];
+        TVec3f offset(sHitPosData[i].mOffset);
+        //offset.setInlinePS((TVec3f)data->mOffset);
+        offset.scale(9.0f / 10.0f);
+        MR::addHitSensorAtJointEnemyAttack(this, sHitPosData[i].mName, sHitPosData[i].mSensorName, 8, 270.0f, offset);
+    }
+
+    MR::initLightCtrl(this);
+    _9C.identity();
+    _CC = MR::createCollisionPartsFromLiveActor(this, "Head", getSensor("body"), (MR::CollisionScaleType)2);
+    MR::validateCollisionParts(_CC);
+    _D0.identity();
+    _100 = MR::createCollisionPartsFromLiveActor(this, "Jow", getSensor("body"), (MR::CollisionScaleType)2);
+    MR::validateCollisionParts(_100);
+    MR::addToAttributeGroupSearchTurtle(this);
+    createSubModel();
+}
+
+void SkeletalFishBossHead::attackSensor(HitSensor *a1, HitSensor *a2) {
+    if (MR::isSensor(a1, "body")) {
+        LiveActor* host = mHost;
+        bool curFlag = false;
+
+        if (host->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance)
+            || host->isNerve(&::SkeletalFishBossNrvDead::sInstance)) {
+                curFlag = true;
+        }
+
+        if (!curFlag) {
+            if (MR::isSensorPlayer(a2)) {
+                curFlag = false;
+
+                if (host->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance)
+                    || host->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance)
+                    || host->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
+                        curFlag = true;
+                }
+
+                if (!curFlag) {
+                    if (host->isNerve(&::SkeletalFishBossNrvDamage::sInstance)) {
+                        MR::sendMsgPush(a2, a1);
+                    }
+                    else {
+                        MR::sendMsgPush(a2, a1);
+
+                        if (host->isNerve(&::SkeletalFishBossNrvOpenWait::sInstance)) {
+                            host->setNerve(&::SkeletalFishBossNrvBite::sInstance);
+                        }
+                    }
+                }
+            }
+            else if (!MR::isSensorEnemyAttack(a1) && MR::isSensorEnemy(a2)) {
+                MR::sendMsgEnemyAttack(a2, a1);
+            }
+        }
+    }
+}
+
+void SkeletalFishBossHead::movement() {
+    PartsModel::movement();
+
+    if (_114) {
+        if (MR::isConnectToDrawTemporarily(this) && !MR::isHiddenModel(this)) {
+            if (!MR::isConnectToDrawTemporarily(mLightModels[0])) {
+                for (s32 i = 0; i < 2; i++) {
+                    MR::disconnectToDrawTemporarily(mLightModels[i]);
+                    MR::disconnectToDrawTemporarily(mBloomModels[i]);
+                }
+            }
+        }
+        else if (MR::isConnectToDrawTemporarily(mLightModels[0])) {
+            for (s32 i = 0; i < 2; i++) {
+                MR::connectToDrawTemporarily(mLightModels[i]);
+                MR::connectToDrawTemporarily(mBloomModels[i]);
+            }
+        }
+    }
+    else if (MR::isConnectToDrawTemporarily(mLightModels[0])) {
+        for (s32 i = 0; i < 2; i++) {
+            MR::disconnectToDrawTemporarily(mLightModels[i]);
+            MR::disconnectToDrawTemporarily(mBloomModels[i]);
+        }
+    }
+}
+
+void SkeletalFishBossHead::calcAnim() {
+    PartsModel::calcAnim();
+
+    if (MR::isConnectToDrawTemporarily(this)) {
+        for (s32 i = 0; i < 2; i++) {
+            mLightModels[i]->calcAnim();
+            mBloomModels[i]->calcAnim();
+        }
+    }
+}
+
+bool SkeletalFishBossHead::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
+    if (MR::isMsgJetTurtleAttack(msg)) {
+        SkeletalFishBoss* boss = (SkeletalFishBoss*)mHost;
+        boss->damage(a3, a2->mPosition);
+        return true;
+    }
+
+    return MR::isMsgStarPieceReflect(msg);
+}
+
+void SkeletalFishBossHead::updateCollisionMtx() {
+    JMath::gekko_ps_copy12(&_9C, MR::getJointMtx(this, "Head"));
+    JMath::gekko_ps_copy12(&_D0, MR::getJointMtx(this, "Jow"));
+}
+
+void SkeletalFishBossHead::createSubModel() {
+    const char* coneMdls[2] = { "LightConeLeft", "LightConeRight" };
+
+    for (s32 i = 0; i < 2; i++) {
+        mLightModels[i] = new ModelObj("眼光", "SkeletalFishBossLight", MR::getJointMtx(this, coneMdls[i]), 18, -1, -1, false);
+        mLightModels[i]->initWithoutIter();
+        MR::invalidateClipping(mLightModels[i]);
+
+        mBloomModels[i] = new ModelObj("眼光ブルーム", "SkeletalFishBossLightBloom", MR::getJointMtx(this, coneMdls[i]), 30, -1, -1, false);
+        mBloomModels[i]->initWithoutIter();
+        MR::invalidateClipping(mBloomModels[i]);
+    }
 }
 
 SkeletalFishBossScarFlash::SkeletalFishBossScarFlash(LiveActor *pActor) : PartsModel(pActor, "スカルシャーク傷跡エフェクトモデル", "SkeletalFishBossScarFlash", nullptr, 0x12, false) {
