@@ -786,7 +786,7 @@ void SkeletalFishBoss::calcPlanetCenterPosition() {
     TVec3f firstPnt;
     MR::calcRailPointPos(&firstPnt, MR::getSkeletalFishBossRailHolder()->getInOrder(0), 0);
     TVec3f secondPnt;
-    MR::calcRailPointPos(&firstPnt, MR::getSkeletalFishBossRailHolder()->getInOrder(0), 1);
+    MR::calcRailPointPos(&secondPnt, MR::getSkeletalFishBossRailHolder()->getInOrder(0), 1);
     calcGravityCenter(&_180, firstPnt, secondPnt);
 }
 
