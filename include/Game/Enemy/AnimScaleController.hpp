@@ -33,7 +33,7 @@ public:
     void startAnim();
 
     void setParamTight();
-
+    void startHitReaction();
     void startDpdHitVibration();
 
     AnimScaleParam* _8;

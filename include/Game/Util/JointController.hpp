@@ -50,6 +50,12 @@ public:
         mMtxCalcAfterChildFunc = calcAfterChild;
     }
 
+    inline JointControlDelegator(func calcFunc, T *pHost, func calcAfterChild) : JointController() {
+        mHost = pHost;
+        mMtxCalcFunc = calcAfterChild;
+        mMtxCalcAfterChildFunc = calcFunc;
+    }
+
     virtual ~JointControlDelegator() {
         
     }
@@ -81,6 +87,13 @@ namespace MR {
     template <class T>
     JointControlDelegator<T>* createJointDelegatorWithNullChildFunc(T *pHost, bool (T::*calcFunc)(TPos3f *, const JointControllerInfo &), const char *pName) {
         JointControlDelegator<T>* delegator = new JointControlDelegator<T>(pHost, calcFunc, 0);
+        setJointControllerParam(delegator, pHost, pName);
+        return delegator;
+    }
+    
+    template <class T>
+    JointControlDelegator<T>* createJointDelegatorWithNullMtxFunc(T *pHost, bool (T::*calcFunc)(TPos3f *, const JointControllerInfo &), const char *pName) {
+        JointControlDelegator<T>* delegator = new JointControlDelegator<T>(calcFunc, pHost, 0);
         setJointControllerParam(delegator, pHost, pName);
         return delegator;
     }

@@ -128,7 +128,7 @@
 | [PoltaStatePunch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/PoltaStatePunch.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [PoltaStateStagger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/PoltaStateStagger.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [PoltaWaitStart.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/PoltaWaitStart.md) | 0.0% | 0 / 3 | 0.0% | :x: 
-| [SkeletalFishBaby.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBaby.md) | 0.0% | 0 / 38 | 0.0% | :x: 
+| [SkeletalFishBaby.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBaby.md) | 97.75171065493646% | 37 / 38 | 97.36842105263158% | :eight_pointed_black_star: 
 | [SkeletalFishBabyRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBabyRail.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SkeletalFishBabyRailHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBabyRailHolder.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | [SkeletalFishBoss.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBoss.md) | 100.0% | 114 / 114 | 100.0% | :white_check_mark: 

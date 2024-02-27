@@ -11,28 +11,7 @@
 #define JMAP_VALUE_TYPE_STRING_PTR 6
 #define JMAP_VALUE_TYPE_NULL 7
 
-class JMapInfo;
-
-class JMapInfoIter {
-public:
-    inline JMapInfoIter() { }
-
-    inline JMapInfoIter(JMapInfo* pInfo, s32 val) {
-        mInfo = pInfo;
-        _4 = val;
-    }
-
-    template<typename T>
-    bool getValue(const char *, T *) const;
-
-    bool isValid() const;
-
-    bool operator==(const JMapInfoIter &) const;
-
-    JMapInfo* mInfo; // _0
-    s32 _4;
-};
-
+class JMapInfoIter;
 
 struct JMapItem {
     u32 mHash;      // _0
@@ -77,4 +56,48 @@ public:
 
     const JMapData* mData; // _0
     const char* mName; // _4
+};
+
+class JMapInfoIter {
+public:
+    inline JMapInfoIter() { }
+
+    inline JMapInfoIter(JMapInfo* pInfo, s32 val) {
+        mInfo = pInfo;
+        _4 = val;
+    }
+
+    template<typename T>
+    bool getValue(const char *, T *) const;
+
+    bool isValid() const NO_INLINE{
+        bool valid = false;
+        bool v3 = false;
+        JMapInfo* info = mInfo;
+        if (info && _4 >= 0) {
+            v3 = true;
+        }
+
+        if (v3) {        
+            s32 pos = _4;
+            s32 num;
+            if (info->mData) {
+                num = info->mData->mNumEntries;
+            }
+            else {
+                num = 0;
+            }
+
+            if (pos < num) {
+                valid = true;
+            }
+        }
+
+        return valid;
+    }
+
+    bool operator==(const JMapInfoIter &) const;
+
+    JMapInfo* mInfo; // _0
+    s32 _4;
 };
