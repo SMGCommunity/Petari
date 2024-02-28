@@ -46,9 +46,7 @@ public:
 
     u32 _8C;
     SkeletalFishBoss* mFishBoss;                    // _90
-    f32 _94;
-    f32 _98;
-    f32 _9C;
+    TVec3f _94;
     u32 _A0;
     TVec3f _A4;
     f32 _B0;

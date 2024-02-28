@@ -245,6 +245,11 @@ namespace MR {
         return a4 + mod;
     }
 
+    inline f32 modAndSubtract_2(f32 a1, f32 a2, f32 a3) {
+        f32 mod = fmod((a3 + (a1 - a2)), a3);
+        return a3 + mod;
+    }
+
     inline f32 add(f32 lhs, f32 rhs) {
         return lhs + rhs;
     }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Boss/SkeletalFishBossInfo.hpp"
 #include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
@@ -101,6 +102,10 @@ public:
     void startDeadDemo();
     void endBreakDemo();
     bool isEnableToBeDamaged() const;
+
+    SkeletalFishBossInfo::LevelStatus* getLevelStatus() const {
+        return mBossInfo->getLevelStatus(_110);
+    }
 
     JointController* mControllers[0xD];
     s32* mJointIndicies;                            // _C0
