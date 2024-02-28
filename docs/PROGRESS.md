@@ -3,7 +3,7 @@
 | [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.860149543062863% |
 | [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 57.68352365415987% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
-| [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 7.105706617845923% |
+| [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 7.696548567624357% |
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 34.12644987572494% |
 | [Demo](https://github.com/shibbo/Petari/blob/master/docs/lib/Demo.md) | 3.7442572741194486% |
 | [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect.md) | 1.855215360664245% |

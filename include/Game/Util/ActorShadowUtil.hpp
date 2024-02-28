@@ -14,6 +14,7 @@ namespace MR {
 
     void addShadowVolumeFlatModel(LiveActor *, const char *, const char *, MtxPtr);
 
+    void initShadowVolumeFlatModel(LiveActor *, const char *);
     void initShadowVolumeFlatModel(LiveActor *, const char *, MtxPtr);
 
     void setShadowVolumeStartDropOffset(LiveActor *, const char *, f32);

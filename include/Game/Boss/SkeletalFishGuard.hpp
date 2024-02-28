@@ -25,6 +25,14 @@ public:
     void exeStraight();
     void exeKill();
     void exeNumb();
+
+    inline void exeOnEndNumb() {
+        MR::deleteEffect(this, "PointerTouchManual");
+        mScaleController->startAnim();
+    }
+
+    inline void exeWait();
+
     void appearNaturally();
     void appearForce();
     void killNaturally();
@@ -56,7 +64,7 @@ public:
     s32 mAttackDelay;                               // _C0
     f32 _C4;
     f32 _C8;
-    u32 _CC;
+    const Nerve* _CC;
     TVec3f _D0;
     TVec3f _DC;
     TVec3f _E8;
@@ -64,4 +72,16 @@ public:
     TVec3f _100;
     TVec3f _10C;
     AnimScaleController* mScaleController;          // _118
+};
+
+namespace {
+    NERVE_DECL(SkeletalFishGuardNrvWait, SkeletalFishGuard, SkeletalFishGuard::exeWait);
+    NERVE_DECL(SkeletalFishGuardNrvAppear, SkeletalFishGuard, SkeletalFishGuard::exeAppear);
+    NERVE_DECL(SkeletalFishGuardNrvNormal, SkeletalFishGuard, SkeletalFishGuard::exeNormal);
+    NERVE_DECL(SkeletalFishGuardNrvApart, SkeletalFishGuard, SkeletalFishGuard::exeApart);
+    NERVE_DECL(SkeletalFishGuardNrvFollow, SkeletalFishGuard, SkeletalFishGuard::exeFollow);
+    NERVE_DECL(SkeletalFishGuardNrvStraight, SkeletalFishGuard, SkeletalFishGuard::exeStraight);
+    NERVE_DECL_NULL(SkeletalFishGuardNrvDefence);
+    NERVE_DECL(SkeletalFishGuardNrvKill, SkeletalFishGuard, SkeletalFishGuard::exeKill);
+    NERVE_DECL_ONEND(SkeletalFishGuardNrvNumb, SkeletalFishGuard, SkeletalFishGuard::exeNumb, SkeletalFishGuard::exeOnEndNumb);
 };

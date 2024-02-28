@@ -20,6 +20,8 @@ public:
     void registerEffect(const char *, MtxPtr, const TVec3f *, const char *, const char *);
     void registerEffectWithoutSRT(const char *, const char *);
 
+    void forceDeleteEmitterAll();
+
     void enableSort();
     void playEmitterOffClipped();
     void stopEmitterOnClipped();

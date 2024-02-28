@@ -47,4 +47,6 @@ namespace MR {
     void initEffectAfterPlacement(LiveActor *);
 
     void setEffectHostSRT(LiveActor *, const char *, const TVec3f *, const TVec3f *, const TVec3f *);
+
+    void emitEffectWithScale(LiveActor *, const char *, f32, s32);
 };
