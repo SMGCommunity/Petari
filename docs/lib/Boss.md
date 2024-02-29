@@ -137,7 +137,7 @@
 | [SkeletalFishBossInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossInfo.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [SkeletalFishBossRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossRail.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [SkeletalFishBossRailHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishBossRailHolder.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
-| [SkeletalFishGuard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishGuard.md) | 36.49914821124361% | 33 / 62 | 53.2258064516129% | :eight_pointed_black_star: 
+| [SkeletalFishGuard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishGuard.md) | 40.45996592844974% | 36 / 62 | 58.06451612903226% | :eight_pointed_black_star: 
 | [SkeletalFishGuardHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishGuardHolder.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [SkeletalFishJointCalc.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishJointCalc.md) | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | [SkeletalFishRailControl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/SkeletalFishRailControl.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 33 / 62 Completed -- (53.2258064516129%)
+# 36 / 62 Completed -- (58.06451612903226%)
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -20,7 +20,7 @@
 | `init__17SkeletalFishGuardFRC12JMapInfoIter` | :white_check_mark: |
 | `initAfterPlacement__17SkeletalFishGuardFv` | :white_check_mark: |
 | `appear__17SkeletalFishGuardFv` | :white_check_mark: |
-| `control__17SkeletalFishGuardFv` | :x: |
+| `control__17SkeletalFishGuardFv` | :white_check_mark: |
 | `exeAppear__17SkeletalFishGuardFv` | :white_check_mark: |
 | `exeNormal__17SkeletalFishGuardFv` | :x: |
 | `exeApart__17SkeletalFishGuardFv` | :x: |
@@ -40,8 +40,8 @@
 | `rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :x: |
 | `tryShiftApart__17SkeletalFishGuardFv` | :x: |
-| `tryShiftStraight__17SkeletalFishGuardFv` | :x: |
-| `tryShiftKill__17SkeletalFishGuardFv` | :x: |
+| `tryShiftStraight__17SkeletalFishGuardFv` | :white_check_mark: |
+| `tryShiftKill__17SkeletalFishGuardFv` | :white_check_mark: |
 | `turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
 | `lookToPlayer__17SkeletalFishGuardFff` | :x: |
 | `calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l` | :x: |

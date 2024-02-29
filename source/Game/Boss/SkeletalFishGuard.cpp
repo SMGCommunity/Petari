@@ -1,5 +1,6 @@
 #include "Game/Boss/SkeletalFishGuard.hpp"
 #include "Game/Boss/SkeletalFishBoss.hpp"
+#include "Game/Map/WaterInfo.hpp"
 #include <JSystem/JMath.hpp>
 
 void SkeletalFishGuard::init(const JMapInfoIter &rIter) {
@@ -325,8 +326,28 @@ void SkeletalFishGuard::initSensor() {
 // SkeletalFishGuard::rotateHorizontal
 // SkeletalFishGuard::rotateVertical
 // SkeletalFishGuard::tryShiftApart
-// SkeletalFishGuard::tryShiftStraight
-// SkeletalFishGuard::tryShiftKill
+
+bool SkeletalFishGuard::tryShiftStraight() {
+    TVec3f pos(*MR::getPlayerCenterPos());
+    JMathInlineVEC::PSVECSubtract(pos.toCVec(), mPosition.toCVec(), pos.toVec());
+    if (_D0.dot(pos) < 0.0f) {
+        setNerve(&::SkeletalFishGuardNrvStraight::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool SkeletalFishGuard::tryShiftKill() {
+    WaterInfo info;
+    if (MR::getWaterAreaObj(&info, mPosition)) {
+        return false;
+    }
+
+    setNerve(&::SkeletalFishGuardNrvKill::sInstance);
+    return true;
+}
+
 // SkeletalFishGuard::turn
 // SkeletalFishGuard::lookToPlayer
 // SkeletalFishGuard::calcTarget

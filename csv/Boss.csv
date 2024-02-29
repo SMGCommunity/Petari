@@ -3186,8 +3186,8 @@ calcTransAndFront__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
 rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,false
 rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,false
 tryShiftApart__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
-tryShiftStraight__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
-tryShiftKill__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
+tryShiftStraight__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
+tryShiftKill__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,false
 lookToPlayer__17SkeletalFishGuardFff,SkeletalFishGuard.o,Boss.a,false
 calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l,SkeletalFishGuard.o,Boss.a,false
