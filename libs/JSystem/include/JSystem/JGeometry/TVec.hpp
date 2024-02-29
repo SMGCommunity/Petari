@@ -4,6 +4,7 @@
 #include "Inline.hpp"
 #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
     void negateInternal(const f32 *rSrc, f32 *rDest);
@@ -240,28 +241,37 @@ namespace JGeometry {
             return ret;
         }
 
-        /* Operators */
         TVec3<T>& operator=(const TVec3<T> &);
-        TVec3<T>& operator+=(const TVec3<T> &);
-        TVec3<T>& operator-=(register const TVec3<T> &src) NO_INLINE {
-            register TVec3<T>* dst = this;
-
-            __asm {
-                psq_l f0, 0(dst), 0, 0
-                psq_l f1, 0(src), 0, 0
-                psq_l f2, 8(dst), 1, 0
-                ps_sub f0, f0, f1
-                psq_l f3, 8(src), 1, 0
-                ps_sub f1, f2, f3
-                psq_st f0, 0(dst), 0, 0
-                psq_st f1, 8(dst), 1, 0
-            };
-        }
-    
-        TVec3<T>& operator*=(T);
-
-        TVec3<T> operator+(const TVec3<T> &) const;
+        TVec3<T> operator*=(T);
         TVec3<T> operator-(const TVec3<T> &) const;
+        TVec3<T> operator*(T scalar) const {
+            TVec3<T> f = *this;
+            f.scale(scalar);
+            return f;
+        }
+
+        TVec3<T> operator-(const TVec3<T> &rhs) {
+            TVec3<T> vec = *this;
+            JMathInlineVEC::PSVECSubtract(vec.toCVec(), rhs.toCVec(), vec.toVec());
+            return vec;
+        }
+
+        TVec3<T>& operator-=(const TVec3<T> &rhs) {
+            JMathInlineVEC::PSVECSubtract(toCVec(), rhs.toCVec(), toVec());
+            return *this;
+        }
+
+        TVec3<T> operator+(const TVec3<T> &rhs) const {
+            TVec3<T> vec = *this;
+            JMathInlineVEC::PSVECAdd(vec.toCVec(), rhs.toCVec(), vec.toVec());
+            return vec;
+        }
+
+        TVec3<T>& operator+=(const TVec3<T> &rhs) {
+            JMathInlineVEC::PSVECAdd(toCVec(), rhs.toCVec(), toVec());
+            return *this;
+        }
+
         const TVec3<T> operator-() const NO_INLINE {
             register f32 z, xy;
             __asm {
@@ -273,14 +283,6 @@ namespace JGeometry {
                 stfs z, 8(r3)
                 blr
             }
-        }
-
-        TVec3<T> operator*(T scalar) const NO_INLINE {
-            TVec3<T> f = *this;
-            f.x = this->x * scalar;
-            f.y = this->y * scalar;
-            f.z = this->z * scalar;
-            return f;
         }
 
         TVec3<T> operator%(T scalar) const {

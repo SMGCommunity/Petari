@@ -3166,8 +3166,8 @@ __ct__17SkeletalFishGuardFP16SkeletalFishBossPCc,SkeletalFishGuard.o,Boss.a,fals
 init__17SkeletalFishGuardFRC12JMapInfoIter,SkeletalFishGuard.o,Boss.a,true
 initAfterPlacement__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 appear__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
-control__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
-exeAppear__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
+control__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
+exeAppear__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 exeNormal__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
 exeApart__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false
 exeFollow__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,false

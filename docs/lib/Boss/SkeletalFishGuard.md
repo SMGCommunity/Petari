@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 32 / 62 Completed -- (51.61290322580645%)
+# 33 / 62 Completed -- (53.2258064516129%)
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -21,7 +21,7 @@
 | `initAfterPlacement__17SkeletalFishGuardFv` | :white_check_mark: |
 | `appear__17SkeletalFishGuardFv` | :white_check_mark: |
 | `control__17SkeletalFishGuardFv` | :x: |
-| `exeAppear__17SkeletalFishGuardFv` | :x: |
+| `exeAppear__17SkeletalFishGuardFv` | :white_check_mark: |
 | `exeNormal__17SkeletalFishGuardFv` | :x: |
 | `exeApart__17SkeletalFishGuardFv` | :x: |
 | `exeFollow__17SkeletalFishGuardFv` | :x: |

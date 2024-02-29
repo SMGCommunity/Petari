@@ -31,9 +31,30 @@ void SkeletalFishGuard::appear() {
     MR::validateShadow(this, nullptr);
 }
 
-// SkeletalFishGuard::control
+void SkeletalFishGuard::control() {
+    mScaleController->updateNerve();
 
+    if (mAttackDelay > 0) {
+        mAttackDelay--;
+    }
+
+    if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance)
+        && !isNerve(&::SkeletalFishGuardNrvApart::sInstance)) {
+        
+        if (MR::isBinded(this)) {
+            MR::isBindedGround(this);
+            MR::isBindedWall(this);
+            MR::isBindedRoof(this);
+            setNerve(&::SkeletalFishGuardNrvKill::sInstance);
+        }
+    }
+}
+
+/* the stack on this function is not correct
+    but the layers of inlines are extremely complex
+*/
 void SkeletalFishGuard::exeAppear() {
+    TVec3f v32;
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::startBck(this, "Swim", nullptr);
@@ -47,65 +68,46 @@ void SkeletalFishGuard::exeAppear() {
         JGeometry::negateInternal((f32*)&mGravity, (f32*)&v27);
         _D0.set(v27);
         _10C.set(mPosition);
-        f32 v2 = MR::getRandom(-1.0f, 1.0f);
-        f32 v3 = MR::getRandom(-1.0f, 1.0f);
-        f32 v4 = MR::getRandom(-1.0f, 1.0f);
-        _DC.set(v4, v3, v2);
+        _DC.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
     }
 
-    TVec3f v32;
+    
     MR::calcGravityVector(this, _10C, &v32, nullptr, false);
-    TVec3f v26(v32);
-    v26.scale(1000.0f);
-    TVec3f v31(_10C);
-    JMathInlineVEC::PSVECSubtract(v31.toCVec(), v26.toCVec(), v31.toVec());
-    s32 v5 = getNerveStep();
-    calcTarget(&_E8, &_F4, &_100, 300 - v5);
-    TVec3f v30(_DC);
+    TVec3f v31 = _10C - v32 * 1000.0f;
+    s32 v5 = 300 - getNerveStep();
+    calcTarget(&_E8, &_F4, &_100, v5);
+    TVec3f v30 = _DC;
     f32 v6 = v32.dot(v30);
-    JMAVECScaleAdd(v32.toCVec(), v30.toCVec(), v30.toVec(), -v6);
+    //JMAVECScaleAdd(v32.toCVec(), v30.toCVec(), v30.toVec(), -v6);
     MR::normalizeOrZero(&v30);
-    TVec3f v25(v30);
-    v25.scale(500.0f);
-    JMathInlineVEC::PSVECAdd(v31.toCVec(), v25.toCVec(), v31.toVec());
-    TVec3f v24(0.0f, 1.0f, 0.0f);
-    JMathInlineVEC::PSVECAdd(v30.toCVec(), v24.toCVec(), v30.toVec());
+    v31 += v30 * 500.0f;
+    v30 += TVec3f(0.0f, 1.0f, 0.0f);
     MR::normalize(&v30);
-    TVec3f v29(mPosition);
+    TVec3f v29 = mPosition;
 
     if (getNerveStep() < 99) {
         s32 v7 = getNerveStep();
-        TVec3f v21(0.0f, 1.0f, 0.0f);
-        TVec3f v22(v21);
-        v22.scale(0.0f);
-        TVec3f v23(v22);
-        v23.scale(v7);
-        TVec3f v19(v30);
-        v19.scale(10.0f);
-        TVec3f v20(v19);
-        v20.scale(v7);
-        mPosition.cubic<f32>(_10C, v23, v20, v31, v7);
+        s32 max = 0x63;
+        f32 scaled = v7 / (f32)max;
+        TVec3f temp_vec = TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max;
+        TVec3f temp_vec2 = v30 * 10.0f * (f32)max;
+        mPosition.cubic<f32>(_10C, temp_vec, temp_vec2, v31, scaled);
     }
     else {
-        f32 v9 = getNerveStep() - (const int)0x63;
+        f32 v9 = (getNerveStep() - 0x63);
+        s32 max = 0xC9;
+        f32 scaled = v9 / (f32)max;
         f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentBossRail());
-        TVec3f v17(v30);
-        v17.scale(10.0f);
-        TVec3f v18(v17);
-        v18.scale(v9);
-        TVec3f v15(_100);
-        v15.scale(v11);
-        TVec3f v16(v15);
-        v16.scale(v9);
-        mPosition.cubic<f32>(v31, v18, v16, _F4, v9);
+        TVec3f temp_vec = v30 * 10.0f * (f32)max;
+        TVec3f temp_vec2 = _100 * v11 * (f32)max;
+        mPosition.cubic<f32>(v31, temp_vec, temp_vec2, _F4, scaled);
     }
 
-    TVec3f v28(mPosition);
-    JMathInlineVEC::PSVECSubtract(v28.toCVec(), v29.toCVec(), v28.toVec());
+    TVec3f v28 = mPosition - v29;
 
     if (!MR::isNearZero(v28, 0.001f)) {
-        _D0.setInlinePS(v28);
-        MR::normalize(&v28);
+        _D0.setInlinePS_2(v28);
+        MR::normalize(&_D0);
     }
 
     MR::calcGravity(this);
@@ -124,7 +126,59 @@ void SkeletalFishGuard::exeNormal() {
     tryShiftApart();
 }
 
-// SkeletalFishGuard::exeApart
+/*
+void SkeletalFishGuard::exeApart() {
+    if (MR::isFirstStep(this)) {
+        TVec3f* grav = &mGravity;
+        f32 dot = grav->dot(_A4);
+        TVec3f v15;
+        JMAVECScaleAdd(grav->toCVec(), _A4.toCVec(), v15.toVec(), -dot);
+        _B0 = grav->dot(_A4 - v15);
+        _A4.set(v15);
+        MR::startBck(this, "Turn", nullptr);
+        MR::startBrk(this, "Attack");
+        mAttackDelay = 0;
+    }
+
+    f32 v3 = (f32)getNerveStep() / 80.0f;
+    TVec3f v14(_A4);
+
+    if (!MR::isNearZero(v14, 0.001f)) {
+        MR::normalize(&v14);
+        f32 sqr = v14.squared();
+        if (sqr > 0.0000038146973f) {
+            f32 inv = JGeometry::TUtil<f32>::inv_sqrt(sqr);
+            v14.scale(inv * 0.30000001f);
+        }
+
+        f32 v6 = _A4.squared();
+        if (v14.squared() >= v6) {
+            _A4.z = 0.0f;
+            _A4.y = 0.0f;
+            _A4.x = 0.0f;
+        }
+        else {
+            TVec3f v10 = v14 * 0.30000001f;
+            JMathInlineVEC::PSVECSubtract(_A4.toCVec(), v10.toCVec(), _A4.toVec());
+        }
+    }
+
+    f32 v7 = (_B0 * v3);
+    TVec3f grav(mGravity);
+    MR::calcGravity(this);
+    TQuat4f quat;
+    quat.setRotate(grav, mGravity);
+    quat.transform(_D0);
+    quat.transform(_A4);
+    lookToPlayer((v3 * (v3 * 18.849556f)) / 180.0f, ((v3 * (v3 * 18.849556f)) / 180.0f));
+    mPosition = (_A4 + (mGravity * v7)) + mPosition;
+    MR::calcGravity(this);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    MR::setNerveAtStep(this, &::SkeletalFishGuardNrvFollow::sInstance, 80);
+}
+*/
+
 // SkeletalFishGuard::exeFollow
 // SkeletalFishGuard::exeStraight
 
