@@ -118,6 +118,7 @@ namespace MR {
     T converge(T, T, T);
 
     f32 clamp(f32, f32, f32);
+    s32 clamp(s32, s32, s32);
 
     f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
 

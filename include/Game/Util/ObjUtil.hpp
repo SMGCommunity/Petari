@@ -166,6 +166,7 @@ namespace MR {
 
     void shakeCameraWeak();
     void shakeCameraNormal();
+    void shakeCameraNormalWeak();
     void shakeCameraStrong();
     void shakeCameraVeryStrong();
     void shakeCameraInfinity(NameObj *, f32, f32);

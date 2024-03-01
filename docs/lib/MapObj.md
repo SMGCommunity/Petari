@@ -16,7 +16,7 @@
 | [ArrowSwitchMulti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ArrowSwitchMulti.md) | 82.25255972696246% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [ArrowSwitchMultiHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ArrowSwitchMultiHolder.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [AssemblyBlock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AssemblyBlock.md) | 87.1111111111111% | 21 / 22 | 95.45454545454545% | :eight_pointed_black_star: 
-| [AstroCore.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroCore.md) | 0.0% | 0 / 16 | 0.0% | :x: 
+| [AstroCore.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroCore.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | [AstroCountDownPlate.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroCountDownPlate.md) | 0.0% | 0 / 24 | 0.0% | :x: 
 | [AstroDome.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDome.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [AstroDomeAsteroid.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeAsteroid.md) | 0.0% | 0 / 10 | 0.0% | :x: 
