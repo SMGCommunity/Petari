@@ -56,7 +56,7 @@ namespace MR {
 
     void setProgrammableCameraParam(const char *, const TVec3f &, const TVec3f &, const TVec3f &, bool);
 
-    void calcScreenPosition(TVec2f *, const TVec3f &);
+    bool calcScreenPosition(TVec2f *, const TVec3f &);
 
     bool calcScreenPosition(TVec3f *, const TVec3f &);
 
@@ -80,8 +80,6 @@ namespace MR {
     void endStartAnimCamera();
 
     void pauseOffCameraDirector();
-
-    void calcScreenPosition(TVec2f *, const TVec3f &);
 
     bool isCameraInWater();
 

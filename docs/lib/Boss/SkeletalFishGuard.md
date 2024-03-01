@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 36 / 62 Completed -- (58.06451612903226%)
+# 45 / 62 Completed -- (72.58064516129032%)
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -25,7 +25,7 @@
 | `exeNormal__17SkeletalFishGuardFv` | :x: |
 | `exeApart__17SkeletalFishGuardFv` | :x: |
 | `exeFollow__17SkeletalFishGuardFv` | :x: |
-| `exeStraight__17SkeletalFishGuardFv` | :x: |
+| `exeStraight__17SkeletalFishGuardFv` | :white_check_mark: |
 | `exeKill__17SkeletalFishGuardFv` | :white_check_mark: |
 | `exeNumb__17SkeletalFishGuardFv` | :white_check_mark: |
 | `appearNaturally__17SkeletalFishGuardFv` | :white_check_mark: |
@@ -33,22 +33,22 @@
 | `killNaturally__17SkeletalFishGuardFv` | :white_check_mark: |
 | `waitAttack__17SkeletalFishGuardFl` | :white_check_mark: |
 | `calcAndSetBaseMtx__17SkeletalFishGuardFv` | :white_check_mark: |
-| `attackSensor__17SkeletalFishGuardFP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__17SkeletalFishGuardFUlP9HitSensorP9HitSensor` | :x: |
+| `attackSensor__17SkeletalFishGuardFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__17SkeletalFishGuardFUlP9HitSensorP9HitSensor` | :white_check_mark: |
 | `initSensor__17SkeletalFishGuardFv` | :white_check_mark: |
-| `calcTransAndFront__17SkeletalFishGuardFv` | :x: |
-| `rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :x: |
+| `calcTransAndFront__17SkeletalFishGuardFv` | :white_check_mark: |
+| `rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :white_check_mark: |
 | `rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :x: |
-| `tryShiftApart__17SkeletalFishGuardFv` | :x: |
+| `tryShiftApart__17SkeletalFishGuardFv` | :white_check_mark: |
 | `tryShiftStraight__17SkeletalFishGuardFv` | :white_check_mark: |
 | `tryShiftKill__17SkeletalFishGuardFv` | :white_check_mark: |
 | `turn__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>f` | :x: |
-| `lookToPlayer__17SkeletalFishGuardFff` | :x: |
+| `lookToPlayer__17SkeletalFishGuardFff` | :white_check_mark: |
 | `calcTarget__17SkeletalFishGuardFPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>l` | :x: |
-| `isInScreen__17SkeletalFishGuardCFv` | :x: |
+| `isInScreen__17SkeletalFishGuardCFv` | :white_check_mark: |
 | `isPlayerInAttackRange__17SkeletalFishGuardCFv` | :x: |
 | `isLineOfSightClear__17SkeletalFishGuardCFv` | :x: |
-| `tryShiftNumb__17SkeletalFishGuardFPC5Nerve` | :x: |
+| `tryShiftNumb__17SkeletalFishGuardFPC5Nerve` | :white_check_mark: |
 | `__dt__17SkeletalFishGuardFv` | :white_check_mark: |
 | `__sinit_\SkeletalFishGuard_cpp` | :white_check_mark: |
 | `__ct__Q231@unnamed@SkeletalFishGuard_cpp@24SkeletalFishGuardNrvWaitFv` | :white_check_mark: |

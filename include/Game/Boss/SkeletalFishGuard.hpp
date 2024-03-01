@@ -39,7 +39,7 @@ public:
     void waitAttack(s32);
     void initSensor();
     void calcTransAndFront();
-    void rotateHorizotal(const TVec3f &, f32);
+    void rotateHorizontal(const TVec3f &, f32);
     void rotateVertical(const TVec3f &, f32);
     bool tryShiftApart();
     bool tryShiftStraight();

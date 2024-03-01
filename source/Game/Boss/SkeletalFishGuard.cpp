@@ -127,7 +127,7 @@ void SkeletalFishGuard::exeNormal() {
     tryShiftApart();
 }
 
-/*
+#ifdef NON_MATCHING
 void SkeletalFishGuard::exeApart() {
     if (MR::isFirstStep(this)) {
         TVec3f* grav = &mGravity;
@@ -178,10 +178,66 @@ void SkeletalFishGuard::exeApart() {
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
     MR::setNerveAtStep(this, &::SkeletalFishGuardNrvFollow::sInstance, 80);
 }
-*/
+#endif
 
-// SkeletalFishGuard::exeFollow
-// SkeletalFishGuard::exeStraight
+#ifdef NON_MATCHING
+void SkeletalFishGuard::exeFollow() {
+    if (MR::isFirstStep(this)) {
+        _C4 = 0.0f;
+        MR::startBck(this, "Attack", nullptr);
+        MR::startBrk(this, "Attack");
+        MR::startSound(this, "SE_BM_SKL_GUARD_ATTACK_START", -1, -1);
+    }
+
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    mPosition += _D0 * _C4;
+    _C4 += 0.80000001f;
+    if (_C4 >= 22.0f) {
+        _C4 = 22.0f;
+    }
+
+    f32 dist = PSVECDistance(MR::getPlayerCenterPos()->toCVec(), mPosition.toCVec());
+    f32 v6 = 0.0f;
+    f32 v7 = (dist - 1000.0f) / 500.0f;
+    if (v7 >= 0.0f) {
+        v6 = 1.0f;
+
+        if (v7 <= 1.0f) {
+            v6 = ((dist - 1000.0f) / 500.0f);
+        }
+    }
+
+    lookToPlayer((((1.5f * (1.0f - ((1.0f - v6) * (1.0f - v6)))) * 3.1415927f) / 180.0f), (((1.0f - ((1.0f - v6) * (1.0f - v6))) * 3.1415927f) / 180.0f));
+    MR::calcGravity(this);
+
+    if (!tryShiftNumb(&::SkeletalFishGuardNrvFollow::sInstance)) {
+        tryShiftStraight();
+    }
+}
+#endif
+
+void SkeletalFishGuard::exeStraight() {
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "AttackNear");
+    }
+
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    mPosition += _D0 * _C4;
+
+    _C4 += 0.80000001f;
+    if (_C4 >= 22.0f) {
+        _C4 = 22.0f;
+    }
+
+    MR::calcGravity(this);
+    if (!tryShiftNumb(&::SkeletalFishGuardNrvStraight::sInstance)) {
+        tryShiftKill();
+    }
+}
 
 void SkeletalFishGuard::exeKill() {
     if (MR::isFirstStep(this)) {
@@ -313,8 +369,39 @@ void SkeletalFishGuard::exeWait() {
     MR::setNerveAtStep(this, &::SkeletalFishGuardNrvAppear::sInstance, _A0);
 }
 
-// SkeletalFishGuard::attackSensor
-// SkeletalFishGuard::receiveMsgPlayerAttack
+void SkeletalFishGuard::attackSensor(HitSensor *a2, HitSensor *a3) {
+    if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance) && (!isNerve(&::SkeletalFishGuardNrvNormal::sInstance) || getNerveStep() >= 2)) {
+        if (MR::isSensorPlayer(a3) && MR::sendMsgEnemyAttackStrong(a3, a2)) {
+            setNerve(&::SkeletalFishGuardNrvKill::sInstance);
+        }
+        else {
+            MR::sendMsgPush(a3, a2);
+        }
+    }
+}
+
+bool SkeletalFishGuard::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+    if (isNerve(&::SkeletalFishGuardNrvKill::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgStarPieceReflect(msg)) {
+        return true;
+    }
+
+    if (isNerve(&::SkeletalFishGuardNrvNormal::sInstance) && getNerveStep() < 2) {
+        return false;
+    }
+
+    if (MR::isMsgJetTurtleAttack(msg)) {
+        MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+        setNerve(&::SkeletalFishGuardNrvKill::sInstance);
+        return true;
+    }
+
+    return false;
+}
 
 void SkeletalFishGuard::initSensor() {
     initHitSensor(2);
@@ -322,10 +409,55 @@ void SkeletalFishGuard::initSensor() {
     MR::addHitSensorAtJointEnemy(this, "body", "Joint02", 16, 120.0f, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
-// SkeletalFishGuard::calcTransAndFront
-// SkeletalFishGuard::rotateHorizontal
+void SkeletalFishGuard::calcTransAndFront() {
+    calcTarget(&_E8, &_F4, &_100, 0);
+    _D0.set(_100);
+    JMathInlineVEC::PSVECSubtract(_F4.toCVec(), mPosition.toCVec(), _A4.toVec());
+    mPosition.set(_F4);
+}
+
+void SkeletalFishGuard::rotateHorizontal(const TVec3f &a2, f32 scalar) {
+    TVec3f* grav = &mGravity;
+    f32 dot = grav->dot(a2);
+    TVec3f v10;
+    JMAVECScaleAdd(grav->toCVec(), a2.toCVec(), v10.toVec(), -dot);
+    if (!MR::isNearZero(v10, 0.001f)) {
+        MR::normalize(&v10);
+        TVec3f* v11 = &_D0;
+        TVec3f* g = &mGravity;
+        f32 v8 = g->dot(*v11);
+        TVec3f v9;
+        JMAVECScaleAdd(g->toCVec(), _D0.toCVec(), v9.toVec(), -v8);
+        if (!MR::isNearZero(v9, 0.001f)) {
+            MR::normalize(&v9);
+            turn(v11, v9, v10, scalar);
+        }
+    }
+}
+
 // SkeletalFishGuard::rotateVertical
-// SkeletalFishGuard::tryShiftApart
+
+bool SkeletalFishGuard::tryShiftApart() {
+    if (mAttackDelay > 0) {
+        return false;
+    }
+
+    if (!isInScreen()) {
+        return false;
+    }
+
+    if (!isPlayerInAttackRange()) {
+        return false;
+    }
+
+    if (!isLineOfSightClear()) {
+        return false;
+    }
+
+    mFishBoss->notifyAttack(this);
+    setNerve(&::SkeletalFishGuardNrvApart::sInstance);
+    return true;
+}
 
 bool SkeletalFishGuard::tryShiftStraight() {
     TVec3f pos(*MR::getPlayerCenterPos());
@@ -349,12 +481,37 @@ bool SkeletalFishGuard::tryShiftKill() {
 }
 
 // SkeletalFishGuard::turn
-// SkeletalFishGuard::lookToPlayer
+
+void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
+    TVec3f pos(*MR::getPlayerCenterPos());
+    pos -= mPosition;
+
+    if (!MR::isNearZero(pos, 0.001f)) {
+        MR::normalize(&pos);
+        rotateHorizontal(pos, a2);
+        rotateVertical(pos, a3);
+    }
+}
+
 // SkeletalFishGuard::calcTarget
-// SkeletalFishGuard::isInScreen
+
+bool SkeletalFishGuard::isInScreen() const {
+    TVec2f screen;
+    return MR::calcScreenPosition(&screen, mPosition);
+}
+
 // SkeletalFishGuard::isPlayerInAttackRange
 // SkeletalFishGuard::isLineOfSightClear
-// SkeletalFishGuard::tryShiftNumb
+
+bool SkeletalFishGuard::tryShiftNumb(const Nerve *pNerve) {
+    if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        _CC = pNerve;
+        setNerve(&::SkeletalFishGuardNrvNumb::sInstance);
+        return true;
+    }
+
+    return false;
+}
 
 SkeletalFishGuard::~SkeletalFishGuard() {
 
