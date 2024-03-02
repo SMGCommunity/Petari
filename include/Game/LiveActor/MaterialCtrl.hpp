@@ -34,6 +34,15 @@ public:
     J3DGXColor* mColor;     // _10
 };
 
+class TexMtxCtrl : public MaterialCtrl {
+public:
+    TexMtxCtrl(J3DModelData *, const char *);
+
+    void setTexMtx(u32, J3DTexMtx *);
+
+    J3DTexMtx* mMatricies[8];       // _C
+};
+
 class ProjmapEffectMtxSetter {
 public:
     void updateMtxUseBaseMtx();

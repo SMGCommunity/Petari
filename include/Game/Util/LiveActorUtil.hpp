@@ -21,6 +21,7 @@ class BtkCtrl;
 class MsgSharedGroup;
 class ResTIMG;
 class LiveActor;
+class TexMtxCtrl;
 
 namespace MR {
     enum CollisionScaleType {
@@ -331,4 +332,6 @@ namespace MR {
     PartsModel* createBloomModel(LiveActor *, MtxPtr);
 
     CollisionParts* getCollisionParts(const LiveActor *);
+
+    TexMtxCtrl* initDLMakerTexMtx(LiveActor *, const char *);
 };

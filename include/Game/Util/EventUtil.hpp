@@ -81,4 +81,8 @@ namespace MR {
     const char* getCometNameFromId(int);
 
     s32 getEncounterGalaxyCometPowerStarId(const char *);
+
+    s32 getPowerStarLeftToDisplayCountDownPlate();
+
+    bool isOnGameEventFlagViewNormalEnding();
 };

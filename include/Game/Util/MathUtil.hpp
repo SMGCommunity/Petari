@@ -122,6 +122,8 @@ namespace MR {
 
     f32 getScaleWithReactionValueZeroToOne(f32, f32, f32);
 
+    f32 getConvergeVibrationValue(f32, f32, f32, f32, f32);
+
     void calcReboundVelocity(TVec3f *, const TVec3f &, f32, f32);
 
     void getRotatedAxisZ(TVec3f *, const TVec3f &);

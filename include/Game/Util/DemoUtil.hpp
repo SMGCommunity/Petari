@@ -6,11 +6,13 @@ class NameObj;
 class LiveActor;
 
 namespace MR {
+    bool tryRegisterDemoCast(LiveActor *, const char *, const JMapInfoIter &);
     bool tryRegisterDemoCast(LiveActor *, const JMapInfoIter &);
 
     bool isDemoCast(const LiveActor *, const char *);
 
     void registerDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
+    bool tryRegisterDemoActionFunctorDirect(const LiveActor *, const MR::FunctorBase &, const char *, const char *);
 
     void registerDemoActionNerve(const LiveActor *, const Nerve *, const char *);
     bool tryRegisterDemoActionFunctor(const LiveActor *, const MR::FunctorBase &, const char *);

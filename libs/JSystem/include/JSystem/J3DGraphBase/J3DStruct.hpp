@@ -1,6 +1,8 @@
 #pragma once
 
 #include <revolution.h>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class J3DGXColor {
 public:
@@ -30,3 +32,31 @@ public:
     _GXColor mColor;    // _14
     u16 mTable[10];     //  _18
 };
+
+struct J3DTextureSRTInfo {
+    f32 mScaleX;        // _0
+    f32 mScaleY;        // _4
+    s16 mRotation;      // _8
+    s16 mPad;           // _A
+    f32 mTransX;        // _C
+    f32 mTransY;        // _10
+};
+
+struct J3DTexMtxInfo {
+
+    void operator=(const J3DTexMtxInfo &);
+
+    u8 mProjection;                     // _0
+    u8 mInfo;                           // _1
+    s16 mPad;                           // _2
+    TVec3f mCenter;                     // _4
+    J3DTextureSRTInfo mSRTInfo;         // _10
+    Mtx44 mEffectMtx;                    // _24
+};
+
+struct J3DTexMtx {
+    J3DTexMtxInfo mInfo;
+    Mtx mOutputMatrix;
+};
+
+static J3DTexMtxInfo j3dDefaultTexMtxInfo;
