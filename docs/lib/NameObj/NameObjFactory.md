@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 83 / 568 Completed -- (14.612676056338028%)
+# 90 / 568 Completed -- (15.845070422535212%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -208,10 +208,10 @@
 | `createNameObj<7Dodoryu>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<7OtaKing>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<5Polta>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<16SkeletalFishBoss>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<16SkeletalFishBaby>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<20SkeletalFishBabyRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<20SkeletalFishBossRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<16SkeletalFishBoss>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<16SkeletalFishBaby>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<20SkeletalFishBabyRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<20SkeletalFishBossRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<10TombSpider>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<27TripodBossBaseJointPosition>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<25TripodBossKillerGenerater>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
@@ -429,9 +429,9 @@
 | `createNameObj<21PhantomShipBoxFloater>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<19InvisiblePolygonObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<13AstroMapBoard>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<9AstroCore>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<19AstroCountDownPlate>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<9AstroDome>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<9AstroCore>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<19AstroCountDownPlate>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<9AstroDome>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<11AstroMapObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<14AstroEffectObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<26UFOKinokoUnderConstruction>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |

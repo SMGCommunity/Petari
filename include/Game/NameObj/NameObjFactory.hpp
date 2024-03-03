@@ -11,6 +11,7 @@
 #include "Game/AreaObj/DepthOfFieldArea.hpp"
 #include "Game/AreaObj/LightArea.hpp"
 #include "Game/AreaObj/SwitchArea.hpp"
+#include "Game/Boss.hpp"
 #include "Game/Gravity/GlobalGravityObj.hpp"
 #include "Game/Enemy.hpp"
 #include "Game/Map.hpp"
@@ -362,10 +363,10 @@ namespace {
 		{ "KoopaVs3", NULL, "Koopa" },
 		{ "OtaKing", NULL, 0 },
 		{ "Polta", NULL, "Polta" },
-		{ "SkeletalFishBoss", NULL, "SkeletalFishBoss" },
-		{ "SkeletalFishBaby", NULL, "SnakeFish" },
-		{ "SkeletalFishBabyRail", NULL, 0 },
-		{ "SkeletalFishBossRail", NULL, 0 },
+		{ "SkeletalFishBoss", createNameObj<SkeletalFishBoss>, "SkeletalFishBoss" },
+		{ "SkeletalFishBaby", createNameObj<SkeletalFishBaby>, "SnakeFish" },
+		{ "SkeletalFishBabyRail", createNameObj<SkeletalFishBabyRail>, 0 },
+		{ "SkeletalFishBossRail", createNameObj<SkeletalFishBossRail>, 0 },
 		{ "TombSpider", NULL, "TombSpider" },
 		{ "BossKameck", NULL, "BossKameck" },
 		{ "BossKameck2", NULL, "BossKameck" },
@@ -1036,9 +1037,9 @@ namespace {
 		{ "CannonUnderConstructionB", createNameObj<SimpleMapObj>, "CannonUnderConstructionB" },
 		{ "GhostShipCavePipeCollision", NULL, "GhostShipCavePipeCollision" },
 		{ "AstroMapBoard", NULL, "AstroMapBoard" },
-		{ "AstroCore", NULL, "AstroCore" },
-		{ "AstroCountDownPlate", NULL, "AstroCountDownPlate" },
-		{ "AstroDome", NULL, 0 },
+		{ "AstroCore", createNameObj<AstroCore>, "AstroCore" },
+		{ "AstroCountDownPlate", createNameObj<AstroCountDownPlate>, "AstroCountDownPlate" },
+		{ "AstroDome", createNameObj<AstroDome>, 0 },
 		{ "AstroDomeEntrance", NULL, 0 },
 		{ "AstroStarPlate", NULL, 0 },
 		{ "AstroBaseA", NULL, "AstroBaseA" },

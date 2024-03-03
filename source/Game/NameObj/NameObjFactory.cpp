@@ -5,7 +5,7 @@
 CreationFuncPtr NameObjFactory::getCreator(const char *pName) {
     if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {
         return PlanetMapCreatorFunction::getPlanetMapCreator(pName);
-    }
+    } 
     
     const Name2CreateFunc* func = NameObjFactory::getName2CreateFunc(pName, nullptr);
     return !func ? nullptr : func->mCreationFunc;
@@ -27,7 +27,7 @@ bool NameObjFactory::isReadResourceFromDVD(const char *pName, const JMapInfoIter
     for (int i = 0; i < archiveList.mCount; i++) {
         if (!MR::isLoadedObjectOrLayoutArchive(archiveList.getArchive(i))) {
             return true;
-        }
+        } 
     }
 
     return false;
