@@ -333,7 +333,7 @@ createNameObj<16ArrowSwitchMulti>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,
 createNameObj<17ArrowSwitchTarget>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<16AstroOverlookObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<21BlueStarCupsulePlanet>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<6BigFan>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<6BigFan>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<17ClipAreaDropLaser>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12RevolvingWay>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12SoundEmitter>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -343,11 +343,11 @@ createNameObj<16DragonHeadFlower>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,
 createNameObj<18SimpleBreakableObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14SphereRailDash>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14SnowplowSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<14FallDownBridge>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<11RockCreator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<10PlantGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<10SmallStone>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<13Tsukidashikun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -390,8 +390,8 @@ createNameObj<18MorphItemNeoTeresa>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameOb
 createNameObj<15MorphItemNeoIce>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<16MorphItemNeoFire>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<15MorphItemNeoFoo>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<9AirBubble>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<18AirBubbleGenerator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<9AirBubble>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
+createNameObj<18AirBubbleGenerator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<9Butterfly>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<11PomponPlant>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<10LavaGeyser>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false

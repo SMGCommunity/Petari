@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 90 / 568 Completed -- (15.845070422535212%)
+# 95 / 568 Completed -- (16.725352112676056%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -232,7 +232,7 @@
 | `createNameObj<17ArrowSwitchTarget>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<16AstroOverlookObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<21BlueStarCupsulePlanet>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<6BigFan>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<6BigFan>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<17ClipAreaDropLaser>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<12RevolvingWay>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<12SoundEmitter>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
@@ -242,11 +242,11 @@
 | `createNameObj<18SimpleBreakableObj>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<14SphereRailDash>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<14SnowplowSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<14FallDownBridge>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<11RockCreator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<10PlantGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<10SmallStone>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<13Tsukidashikun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
@@ -289,8 +289,8 @@
 | `createNameObj<15MorphItemNeoIce>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<16MorphItemNeoFire>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<15MorphItemNeoFoo>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<9AirBubble>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<18AirBubbleGenerator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<9AirBubble>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<18AirBubbleGenerator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<9Butterfly>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<11PomponPlant>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<10LavaGeyser>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |

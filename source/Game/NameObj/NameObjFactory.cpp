@@ -5,7 +5,7 @@
 CreationFuncPtr NameObjFactory::getCreator(const char *pName) {
     if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {
         return PlanetMapCreatorFunction::getPlanetMapCreator(pName);
-    } 
+    }
     
     const Name2CreateFunc* func = NameObjFactory::getName2CreateFunc(pName, nullptr);
     return !func ? nullptr : func->mCreationFunc;
