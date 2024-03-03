@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 50 Completed -- (0.0%)
+# 2 / 50 Completed -- (4.0%)
 # EarthenPipe.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -28,8 +28,8 @@
 | `calcTrans__11EarthenPipeFf` | :x: |
 | `processBgmPlayerIn__11EarthenPipeFv` | :x: |
 | `processBgmPlayerOut__11EarthenPipeFv` | :x: |
-| `__ct__19EarthenPipeMediatorFv` | :x: |
-| `entry__19EarthenPipeMediatorFP11EarthenPipeRC12JMapInfoIter` | :x: |
+| `__ct__19EarthenPipeMediatorFv` | :white_check_mark: |
+| `entry__19EarthenPipeMediatorFP11EarthenPipeRC12JMapInfoIter` | :white_check_mark: |
 | `__dt__11EarthenPipeFv` | :x: |
 | `__dt__19EarthenPipeMediatorFv` | :x: |
 | `__sinit_\EarthenPipe_cpp` | :x: |

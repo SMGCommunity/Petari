@@ -1673,8 +1673,8 @@ receiveOtherMsg__11EarthenPipeFUlP9HitSensorP9HitSensor,EarthenPipe.o,MapObj.a,f
 calcTrans__11EarthenPipeFf,EarthenPipe.o,MapObj.a,false
 processBgmPlayerIn__11EarthenPipeFv,EarthenPipe.o,MapObj.a,false
 processBgmPlayerOut__11EarthenPipeFv,EarthenPipe.o,MapObj.a,false
-__ct__19EarthenPipeMediatorFv,EarthenPipe.o,MapObj.a,false
-entry__19EarthenPipeMediatorFP11EarthenPipeRC12JMapInfoIter,EarthenPipe.o,MapObj.a,false
+__ct__19EarthenPipeMediatorFv,EarthenPipe.o,MapObj.a,true
+entry__19EarthenPipeMediatorFP11EarthenPipeRC12JMapInfoIter,EarthenPipe.o,MapObj.a,true
 __dt__11EarthenPipeFv,EarthenPipe.o,MapObj.a,false
 __dt__19EarthenPipeMediatorFv,EarthenPipe.o,MapObj.a,false
 __sinit_\EarthenPipe_cpp,EarthenPipe.o,MapObj.a,false

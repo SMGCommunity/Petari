@@ -96,7 +96,7 @@
 | [DriftWood.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DriftWood.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [DummyDisplayModel.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DummyDisplayModel.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [DynamicCollisionObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/DynamicCollisionObj.md) | 14.285714285714285% | 3 / 7 | 42.857142857142854% | :eight_pointed_black_star: 
-| [EarthenPipe.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/EarthenPipe.md) | 0.0% | 0 / 50 | 0.0% | :x: 
+| [EarthenPipe.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/EarthenPipe.md) | 5.599472990777339% | 2 / 50 | 4.0% | :eight_pointed_black_star: 
 | [ElectricBall.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ElectricBall.md) | 0.0% | 0 / 27 | 0.0% | :x: 
 | [ElectricRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ElectricRail.md) | 0.0% | 0 / 48 | 0.0% | :x: 
 | [ElectricRailHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ElectricRailHolder.md) | 0.0% | 0 / 17 | 0.0% | :x: 
