@@ -19,7 +19,7 @@
 | [AstroCore.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroCore.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | [AstroCountDownPlate.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroCountDownPlate.md) | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | [AstroDome.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDome.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
-| [AstroDomeAsteroid.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeAsteroid.md) | 0.0% | 0 / 10 | 0.0% | :x: 
+| [AstroDomeAsteroid.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeAsteroid.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [AstroDomeBlueStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeBlueStar.md) | 0.0% | 0 / 55 | 0.0% | :x: 
 | [AstroDomeCameraController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeCameraController.md) | 0.0% | 0 / 29 | 0.0% | :x: 
 | [AstroDomeComet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeComet.md) | 0.0% | 0 / 16 | 0.0% | :x: 
