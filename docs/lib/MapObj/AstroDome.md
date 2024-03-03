@@ -5,23 +5,23 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 16 Completed -- (0.0%)
+# 16 / 16 Completed -- (100.0%)
 # AstroDome.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__9AstroDomeFPCc` | :x: |
-| `init__9AstroDomeFRC12JMapInfoIter` | :x: |
-| `appear__9AstroDomeFv` | :x: |
-| `exeWait__9AstroDomeFv` | :x: |
-| `exeDisappear__9AstroDomeFv` | :x: |
-| `exeAppear__9AstroDomeFv` | :x: |
-| `control__9AstroDomeFv` | :x: |
-| `receiveOtherMsg__9AstroDomeFUlP9HitSensorP9HitSensor` | :x: |
-| `__dt__9AstroDomeFv` | :x: |
-| `__sinit_\AstroDome_cpp` | :x: |
-| `__ct__Q212NrvAstroDome16AstroDomeNrvWaitFv` | :x: |
-| `__ct__Q212NrvAstroDome21AstroDomeNrvDisappearFv` | :x: |
-| `__ct__Q212NrvAstroDome18AstroDomeNrvAppearFv` | :x: |
-| `execute__Q212NrvAstroDome18AstroDomeNrvAppearCFP5Spine` | :x: |
-| `execute__Q212NrvAstroDome21AstroDomeNrvDisappearCFP5Spine` | :x: |
-| `execute__Q212NrvAstroDome16AstroDomeNrvWaitCFP5Spine` | :x: |
+| `__ct__9AstroDomeFPCc` | :white_check_mark: |
+| `init__9AstroDomeFRC12JMapInfoIter` | :white_check_mark: |
+| `appear__9AstroDomeFv` | :white_check_mark: |
+| `exeWait__9AstroDomeFv` | :white_check_mark: |
+| `exeDisappear__9AstroDomeFv` | :white_check_mark: |
+| `exeAppear__9AstroDomeFv` | :white_check_mark: |
+| `control__9AstroDomeFv` | :white_check_mark: |
+| `receiveOtherMsg__9AstroDomeFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `__dt__9AstroDomeFv` | :white_check_mark: |
+| `__sinit_\AstroDome_cpp` | :white_check_mark: |
+| `__ct__Q212NrvAstroDome16AstroDomeNrvWaitFv` | :white_check_mark: |
+| `__ct__Q212NrvAstroDome21AstroDomeNrvDisappearFv` | :white_check_mark: |
+| `__ct__Q212NrvAstroDome18AstroDomeNrvAppearFv` | :white_check_mark: |
+| `execute__Q212NrvAstroDome18AstroDomeNrvAppearCFP5Spine` | :white_check_mark: |
+| `execute__Q212NrvAstroDome21AstroDomeNrvDisappearCFP5Spine` | :white_check_mark: |
+| `execute__Q212NrvAstroDome16AstroDomeNrvWaitCFP5Spine` | :white_check_mark: |
