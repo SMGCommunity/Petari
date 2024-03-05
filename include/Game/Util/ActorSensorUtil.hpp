@@ -95,6 +95,8 @@ namespace MR {
     bool tryGetItem(HitSensor *, HitSensor *);
     TVec3f* getSensorPos(const HitSensor *);
 
+    bool isValidHitSensor(LiveActor *, const char *);
+
     void validateHitSensors(LiveActor *);
     void invalidateHitSensors(LiveActor *);
 

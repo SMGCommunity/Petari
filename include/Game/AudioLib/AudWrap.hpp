@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/AudioLib/AudBgm.hpp"
+#include <revolution.h>
 
 // temp
 class AudBgmMgr {

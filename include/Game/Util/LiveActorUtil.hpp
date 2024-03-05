@@ -59,6 +59,9 @@ namespace MR {
     bool isValidCalcViewAndEntry(const LiveActor *);
     bool isValidDraw(const LiveActor *);
 
+    bool isValidCollisionParts(LiveActor *);
+    void setCollisionMtx(LiveActor *);
+
     void invalidateClipping(LiveActor *);
 
     bool isClipped(const LiveActor *);
@@ -256,6 +259,7 @@ namespace MR {
     ModelObj* createModelObjIndirectMapObj(const char *, const char *, MtxPtr);
     ModelObj* createModelObjNoSilhouettedMapObj(const char *, const char *, MtxPtr);
     ModelObj* createModelObjNpc(const char *, const char *, MtxPtr);
+    PartsModel* createPartsModelMapObj(LiveActor *, const char *, const char *, MtxPtr);
 
     void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
 

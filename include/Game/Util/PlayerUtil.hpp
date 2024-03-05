@@ -93,9 +93,18 @@ namespace MR {
 
     void endBindAndPlayerJumpWithRollLanding(LiveActor *, const TVec3f &, u32);
 
+    void endBindAndPLayerForceWeakGravityJumpInputOff(LiveActor *, const TVec3f &);
+
     void startBckPlayer(const char *, s32);
 
     void setPlayerFrontVec(const TVec3f &, s32);
 
     void hidePlayer();
+
+    bool isPlayerSwimming();
+
+    void startBckPlayer(const char *, const char *);
+    bool isBckStoppedPlayer();
+
+    f64 getBckFrameMaxPlayer();
 };

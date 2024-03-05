@@ -12,19 +12,21 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void calcAnim();
     virtual void makeActorAppeared();
-    virtual MtxPtr getBaseMtx();
+    virtual MtxPtr getBaseMtx() const;
     virtual void control();
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
     bool tryShowUp();
     bool tryHideDown();
-    bool isNerveShowUp();
+    bool isNerveShowUp() const;
     void exeWait();
     void exeReady();
     void exePlayerIn();
     void exeTargetPipeShowUp();
     void exePlayerOut();
     void exeInvalid();
+    inline void exeWaitToHideDown();
+    inline void exeWaitToShowUp();
     void exeShowUp();
     void exeHideDown();
     void calcTrans(f32);
@@ -43,7 +45,7 @@ public:
     MtxPtr mTopJointMtx;                // _B4
     MtxPtr mBottomJointMtx;             // _B8
     TPos3f _BC;
-    u32 _EC;
+    LiveActor* mHostActor;              // _EC
     TPos3f _F0;
     TMtx34f _120;
     TMtx34f _150;
@@ -61,7 +63,7 @@ public:
     bool _19D;
     bool _19E;
     bool _19F;
-    ActorCameraInfo** mCameraInfo;      // _1A0
+    ActorCameraInfo* mCameraInfo;      // _1A0
 };
 
 class EarthenPipeMediator : public NameObj {
@@ -80,4 +82,19 @@ public:
 
     s32 mNumEntries;                // _C
     Entry* mPipeEntries;            // _10
+};
+
+namespace NrvEarthenPipe {
+    NERVE_DECL(EarthenPipeNrvHideDown, EarthenPipe, EarthenPipe::exeHideDown);
+    NERVE_DECL(EarthenPipeNrvWaitToHideDown, EarthenPipe, EarthenPipe::exeWaitToHideDown);
+    NERVE_DECL(EarthenPipeNrvShowUp, EarthenPipe, EarthenPipe::exeShowUp);
+    NERVE_DECL(EarthenPipeNrvWaitToShowUp, EarthenPipe, EarthenPipe::exeWaitToShowUp);
+    NERVE_DECL_NULL(EarthenPipeNrvShow);
+    NERVE_DECL_NULL(EarthenPipeNrvHide);
+    NERVE_DECL(EarthenPipeNrvInvalid, EarthenPipe, EarthenPipe::exeInvalid);
+    NERVE_DECL(EarthenPipeNrvPlayerOut, EarthenPipe, EarthenPipe::exePlayerOut);
+    NERVE_DECL(EarthenPipeNrvTargetPipeShowUp, EarthenPipe, EarthenPipe::exeTargetPipeShowUp);
+    NERVE_DECL(EarthenPipeNrvPlayerIn, EarthenPipe, EarthenPipe::exePlayerIn);
+    NERVE_DECL(EarthenPipeNrvReady, EarthenPipe, EarthenPipe::exeReady);
+    NERVE_DECL(EarthenPipeNrvWait, EarthenPipe, EarthenPipe::exeWait);
 };

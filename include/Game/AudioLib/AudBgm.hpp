@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution.h>
+
 class AudBgm {
 public:
     virtual void init() = 0;
