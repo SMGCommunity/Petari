@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [ModelChangableObjFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/ModelChangableObjFactory.md) | 0.0% | 0 / 13 | 0.0% | :x: 
+| [ModelChangableObjFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/ModelChangableObjFactory.md) | 14.814814814814813% | 2 / 13 | 15.384615384615385% | :eight_pointed_black_star: 
 | [MovementOnOffGroupHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/MovementOnOffGroupHolder.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [NameObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObj.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | [NameObjAdaptor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj/NameObjAdaptor.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
