@@ -7,7 +7,7 @@ public:
     Color8() {}
     Color8(_GXColor);
 
-    Color8(u8 _r, u8 _g, u8 _b, u8 _a) {
+    Color8(u8 _r, u8 _g, u8 _b, u8 _a) NO_INLINE {
         r = _r;
         g = _g;
         b = _b;
