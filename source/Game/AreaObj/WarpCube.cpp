@@ -8,6 +8,26 @@ WarpCube::~WarpCube() {
 
 }
 
+// WarpCubeMgr::getPairCube
+
+void WarpCubeMgr::setInvalidateTimer(AreaObj *pObj, u16 a2) {
+    reinterpret_cast<WarpCube*>(pObj)->_48 = a2;
+    reinterpret_cast<WarpCube*>(pObj)->mValid = false;
+}
+
+void WarpCubeMgr::startEventCamera(const AreaObj *pAreaObj) {
+    WarpCube* cube = (WarpCube*)pAreaObj;
+    MR::startEventCameraNoTarget(cube->mCameraInfo, cube->mEventName, -1);
+    mWarpCube = cube;
+}
+
+void WarpCubeMgr::endEventCamera() {
+    if (mWarpCube != nullptr) {
+        MR::endEventCamera(mWarpCube->mCameraInfo, mWarpCube->mEventName, true, -1);
+        mWarpCube = nullptr;
+    }
+}
+
 void WarpCube::movement() {
     if (_48 != 0) {
         if (_48 == 1) {

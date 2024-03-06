@@ -27,12 +27,16 @@ public:
 class WarpCubeMgr : public AreaObjMgr {
 public:
     inline WarpCubeMgr(s32 type, const char *pName) : AreaObjMgr(type, pName) {
-        _1C = 0;
+        mWarpCube = 0;
     }
 
     virtual ~WarpCubeMgr() {
         
     }
 
-    u32 _1C;
+    void setInvalidateTimer(AreaObj *, u16);
+    void startEventCamera(const AreaObj *);
+    void endEventCamera();
+
+    const WarpCube* mWarpCube;      // _1C
 };

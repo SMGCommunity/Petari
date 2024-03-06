@@ -25,6 +25,7 @@ namespace MR {
     void loadProjectionMtx();
 
     void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, long);
+    void startEventCameraNoTarget(const ActorCameraInfo *, const char *, s32);
 
     f32 getAspect();
     f32 getNearZ();

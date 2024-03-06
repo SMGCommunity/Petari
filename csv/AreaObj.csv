@@ -285,9 +285,9 @@ isUpdate__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
 getManagerName__10SwitchAreaCFv,SwitchArea.o,AreaObj.a,true
 __dt__8WarpCubeFv,WarpCube.o,AreaObj.a,true
 getPairCube__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,false
-setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs,WarpCube.o,AreaObj.a,false
-startEventCamera__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,false
-endEventCamera__11WarpCubeMgrFv,WarpCube.o,AreaObj.a,false
+setInvalidateTimer__11WarpCubeMgrFP7AreaObjUs,WarpCube.o,AreaObj.a,true
+startEventCamera__11WarpCubeMgrFPC7AreaObj,WarpCube.o,AreaObj.a,true
+endEventCamera__11WarpCubeMgrFv,WarpCube.o,AreaObj.a,true
 movement__8WarpCubeFv,WarpCube.o,AreaObj.a,true
 draw__8WarpCubeCFv,WarpCube.o,AreaObj.a,true
 init__8WarpCubeFRC12JMapInfoIter,WarpCube.o,AreaObj.a,true
