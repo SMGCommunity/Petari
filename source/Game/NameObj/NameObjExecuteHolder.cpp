@@ -79,12 +79,13 @@ void NameObjExecuteInfo::requestConnect(u8 *pData) {
 }
 
 void NameObjExecuteInfo::requestDisconnect(u8 *pData, bool a2) {
+    u8 val;
     switch (*pData) {
         case 1:
             *pData = 2;
             break;
         case 3:
-            u8 val = 6;
+            val = 6;
             if (a2) {
                 val = 7;
             }
