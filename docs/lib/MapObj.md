@@ -103,7 +103,7 @@
 | [ElectricRailMoving.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ElectricRailMoving.md) | 0.0% | 0 / 44 | 0.0% | :x: 
 | [ExterminationChecker.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ExterminationChecker.md) | 92.11822660098522% | 19 / 21 | 90.47619047619048% | :eight_pointed_black_star: 
 | [FallDownBridge.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallDownBridge.md) | 0.0% | 0 / 11 | 0.0% | :x: 
-| [FallingSmallRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallingSmallRock.md) | 0.0% | 0 / 11 | 0.0% | :x: 
+| [FallingSmallRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallingSmallRock.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [FallOutFieldDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FallOutFieldDraw.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [FireBar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FireBar.md) | 71.49877149877149% | 19 / 21 | 90.47619047619048% | :eight_pointed_black_star: 
 | [FirePressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressure.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
