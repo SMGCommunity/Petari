@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 18 / 21 Completed -- (85.71428571428571%)
+# 19 / 21 Completed -- (90.47619047619048%)
 # ExterminationChecker.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
 | `createLiveActor<8Meramera>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | :x: |
 | `__ct__20ExterminationCheckerFPCc` | :white_check_mark: |
-| `init__20ExterminationCheckerFRC12JMapInfoIter` | :x: |
+| `init__20ExterminationCheckerFRC12JMapInfoIter` | :white_check_mark: |
 | `control__20ExterminationCheckerFv` | :white_check_mark: |
 | `exeWatching__20ExterminationCheckerFv` | :white_check_mark: |
 | `exeTryStartDemoAppear__20ExterminationCheckerFv` | :white_check_mark: |

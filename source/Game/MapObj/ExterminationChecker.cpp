@@ -12,7 +12,41 @@ ExterminationChecker::ExterminationChecker(const char *pName) : LiveActor(pName)
     _A1 = 0;
 }
 
-// ExterminationChecker::init
+void ExterminationChecker::init(const JMapInfoIter &rIter) {
+    MR::connectToSceneMapObjMovement(this);
+    s32 objNum = MR::getChildObjNum(rIter);
+    mGroup = new LiveActorGroup("アクター管理", objNum); 
+
+    for (s32 i = 0; i < objNum; i++) {
+        const char* objName = nullptr; 
+        MR::getChildObjName(&objName, rIter, i);
+        LiveActor* actor = findEntry(objName)(MR::getJapaneseObjectName(objName));
+        MR::initChildObj(actor, rIter, i);
+        mGroup->registerActor(actor);
+    }
+
+    MR::invalidateClipping(this);
+    MR::useStageSwitchSleep(this, rIter);
+
+    if (_A1) {
+        mKeySwitch = new KeySwitch("全滅用キースイッチ");
+        mKeySwitch->initKeySwitchByOwner(rIter);
+    }
+
+    if (_A0) {
+        MR::declarePowerStar(this);
+    }
+
+    initNerve(&NrvExterminationChecker::ExterminationCheckerNrvWatching::sInstance);
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        MR::syncStageSwitchAppear(this);
+        makeActorDead();
+    }
+    else {
+        makeActorAppeared();
+    }
+}
 
 void ExterminationChecker::control() {
 

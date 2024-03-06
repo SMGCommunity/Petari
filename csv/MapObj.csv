@@ -1843,7 +1843,7 @@ __dt__18ElectricRailMovingFv,ElectricRailMoving.o,MapObj.a,false
 createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor,ExterminationChecker.o,MapObj.a,false
 createLiveActor<8Meramera>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor,ExterminationChecker.o,MapObj.a,false
 __ct__20ExterminationCheckerFPCc,ExterminationChecker.o,MapObj.a,true
-init__20ExterminationCheckerFRC12JMapInfoIter,ExterminationChecker.o,MapObj.a,false
+init__20ExterminationCheckerFRC12JMapInfoIter,ExterminationChecker.o,MapObj.a,true
 control__20ExterminationCheckerFv,ExterminationChecker.o,MapObj.a,true
 exeWatching__20ExterminationCheckerFv,ExterminationChecker.o,MapObj.a,true
 exeTryStartDemoAppear__20ExterminationCheckerFv,ExterminationChecker.o,MapObj.a,true

@@ -4,6 +4,27 @@
 
 class KeySwitch;
 
+typedef LiveActor* (*CreationFunc)(const char*);
+
+struct ExterminationEntry {
+    const char* mChildName;
+    CreationFunc mCreationFunc;
+};
+
+namespace {
+    template<typename T>
+    LiveActor* createLiveActor(const char *pName) {
+        return new T(pName);
+    }
+
+    // we will define the creation funcs later
+    static const ExterminationEntry sCreateTable[3]= {
+        { "ChildKuribo", nullptr },
+        { "ChildSkeletalFishBaby", nullptr },
+        { "ChildMeramera", nullptr }
+    };
+};
+
 class ExterminationChecker : public LiveActor {
 public:
     ExterminationChecker(const char *);
@@ -16,6 +37,16 @@ public:
     void exeTryStartDemoAppear();
     void exeAppearStar();
     void exeAppearKeySwitch();
+
+    inline CreationFunc findEntry(const char *pName) {
+        for (s32 j = 0; j < 3; j++) {
+            if (sCreateTable[j].mChildName && MR::isEqualStringCase(sCreateTable[j].mChildName, pName)) {
+                return sCreateTable[j].mCreationFunc;
+            }
+        }
+
+        return nullptr;
+    }
 
     LiveActorGroup* mGroup;         // _8C
     KeySwitch* mKeySwitch;          // _90

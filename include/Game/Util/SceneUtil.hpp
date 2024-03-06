@@ -7,10 +7,15 @@
 
 class JMapLinkInfo;
 class JMapIdInfo;
+class NameObj;
 
 namespace MR {
     s32 getPlacedZoneId(const JMapInfoIter &);
     s32 getCurrentPlacementZoneId();
+
+    s32 getChildObjNum(const JMapInfoIter &);
+    void getChildObjName(const char **, const JMapInfoIter &, int);
+    void initChildObj(NameObj *, const JMapInfoIter &, int);
 
     const char* getCurrentPlacementZoneName();
 
@@ -78,4 +83,6 @@ namespace MR {
     bool isScenarioDecided();
 
     s32 getCurrentStageNormalScenarioNum();
+
+    const char* getJapaneseObjectName(const char *);
 }
