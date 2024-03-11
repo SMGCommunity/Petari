@@ -109,7 +109,7 @@
 | [FirePressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressure.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [FirePressureBullet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureBullet.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | [FirePressureBulletHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureBulletHolder.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| [FirePressureRadiate.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureRadiate.md) | 0.0% | 0 / 37 | 0.0% | :x: 
+| [FirePressureRadiate.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FirePressureRadiate.md) | 42.90060851926978% | 24 / 37 | 64.86486486486487% | :eight_pointed_black_star: 
 | [FlameGun.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FlameGun.md) | 0.0% | 0 / 27 | 0.0% | :x: 
 | [FlexibleSphere.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FlexibleSphere.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [FlipPanel.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FlipPanel.md) | 100.0% | 43 / 43 | 100.0% | :white_check_mark: 

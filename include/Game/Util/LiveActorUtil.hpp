@@ -2,11 +2,11 @@
 
 #include "JSystem/JGeometry/TVec.hpp"
 #include "Game/Animation/AnmPlayer.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
 class CollisionParts;
-class LiveActorGroup;
 class Nerve;
 class ResourceHolder;
 class ActorLightCtrl;
@@ -48,6 +48,10 @@ namespace MR {
 
     MsgSharedGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
     LiveActorGroup* getGroupFromArray(const LiveActor *);
+
+    inline s32 getGroupCountFromArray(const LiveActor *pActor) {
+        return getGroupFromArray(pActor)->mObjectCount;
+    }
 
     void copyTransRotateScale(const LiveActor *, LiveActor *);
     bool isDead(const LiveActor *);
@@ -205,6 +209,7 @@ namespace MR {
 
     void setBrkRate(const LiveActor *, f32);
 
+    void setBckFrame(const LiveActor *, f32);
     f32 getBckFrameMax(const LiveActor *);
     f32 getBrkFrameMax(const LiveActor *);
     f32 getBtkFrameMax(const LiveActor *);
