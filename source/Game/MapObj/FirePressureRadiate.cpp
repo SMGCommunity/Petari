@@ -13,7 +13,49 @@ FirePressureRadiate::FirePressureRadiate(const char *pName) : LiveActor(pName) {
     mRadiateMtx.identity();
 }
 
-// FirePressureRadiate::init
+void FirePressureRadiate::init(const JMapInfoIter &rIter) {
+    MR::initDefaultPos(this, rIter);
+    initModelManagerWithAnm("FirePressure", nullptr, false);
+    MR::connectToSceneNoShadowedMapObjStrongLight(this);
+    initHitSensor(3);
+    MR::addHitSensorMapObj(this, "body", 8, 70.0f, TVec3f(0.0f, 30.0f, 0.0f));
+    MR::addHitSensorAtJointMapObj(this, "cannon", "Cannon1", 8, 70.0f, TVec3f(40.0f, 0.0f, 0.0f));
+    MR::addHitSensorCallbackEnemyAttack(this, "radiaet", 8, 50.0f);
+    MR::invalidateHitSensor(this, "radiate");
+    initEffectKeeper(0, nullptr, false);
+    MR::setEffectHostMtx(this, "Fire", mRadiateMtx.mMtx);
+    MR::setEffectHostMtx(this, "FireInd", mRadiateMtx.mMtx);
+    initSound(4, false);
+    MR::getJMapInfoArg0NoInit(rIter, &mCannonRotation);
+    MR::getJMapInfoArg1NoInit(rIter, &mWaitTime);
+    MR::getJMapInfoArg2NoInit(rIter, &mShootTime);
+    mJointController = MR::createJointDelegatorWithNullChildFunc(this, &FirePressureRadiate::calcJointCannon, "Cannon1");
+    MR::initJointTransform(this);
+    MR::calcGravity(this);
+    MR::setGroupClipping(this, rIter, 16);
+    mGroup = MR::joinToGroupArray(this, rIter, "ファイアプレッシャー（放射）軍団", 16);
+
+    if (MR::tryRegisterDemoCast(this, rIter)) {
+        MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &FirePressureRadiate::startRelax), nullptr);
+    }
+
+    if (MR::useStageSwitchWriteA(this, rIter)) {
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &FirePressureRadiate::startWait), MR::Functor(this, &FirePressureRadiate::startRelax));
+        initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance);
+    }
+    else {
+        initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+    }
+
+    MR::useStageSwitchSleep(this, rIter);
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        makeActorDead();
+    }
+    else {
+        makeActorAppeared();
+    }
+}
 
 void FirePressureRadiate::initAfterPlacement() {
     if (mGroup != nullptr) {
@@ -122,10 +164,40 @@ void FirePressureRadiate::control() {
     }
 }
 
-// FirePressureRadiate::attackSensor
-// FirePressureRadiate::receiveOtherMsg
-// FirePressureRadiate::startWait
-// FirePressureRadiate::startRelax
+void FirePressureRadiate::attackSensor(HitSensor *a1, HitSensor *a2) {
+    if (MR::isSensorEnemyAttack(a1) && MR::isSensorPlayerOrRide(a2)) {
+        MR::sendMsgEnemyAttackFire(a2, a1);
+    }
+    else if (MR::isSensorMapObj(a1) && (MR::isSensorPlayer(a2) || MR::isSensorEnemy(a2))) {
+        MR::sendMsgPush(a2, a1);
+    }
+}
+
+bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *) {
+    if (msg == 105) {
+        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
+        return true;
+    }
+    else if (msg == 104) {
+        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void FirePressureRadiate::startWait() {
+    if (isNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance)) {
+        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+    }
+}
+
+void FirePressureRadiate::startRelax() {
+    if (!isNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance)) {
+        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance);
+    }
+}
+
 // FirePressureRadiate::updateHitSensor
 
 void FirePressureRadiate::calcRadiateEffectMtx() {
