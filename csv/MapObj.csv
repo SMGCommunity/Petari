@@ -1159,11 +1159,11 @@ draw__17ClipFieldFillDrawCFv,ClipFieldFillDraw.o,MapObj.a,false
 createClipFieldFillDraw__2MRFPCc,ClipFieldFillDraw.o,MapObj.a,false
 createVolumeDrawSpotLight__2MRFPCc,ClipFieldFillDraw.o,MapObj.a,false
 __dt__17ClipFieldFillDrawFv,ClipFieldFillDraw.o,MapObj.a,false
-__ct__17ClipFieldMapPartsFPCc,ClipFieldMapParts.o,MapObj.a,false
-control__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
-connectToScene__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
-__dt__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
-init__17ClipFieldMapPartsFRC12JMapInfoIter,ClipFieldMapParts.o,MapObj.a,false
+__ct__17ClipFieldMapPartsFPCc,ClipFieldMapParts.o,MapObj.a,true
+control__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,true
+connectToScene__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,true
+__dt__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,true
+init__17ClipFieldMapPartsFRC12JMapInfoIter,ClipFieldMapParts.o,MapObj.a,true
 __dt__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,true
 __ct__15ClipFieldSwitchFPCc,ClipFieldSwitch.o,MapObj.a,true
 control__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,true

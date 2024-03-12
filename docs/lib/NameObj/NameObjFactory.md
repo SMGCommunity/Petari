@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 95 / 568 Completed -- (16.725352112676056%)
+# 97 / 568 Completed -- (17.077464788732392%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -274,7 +274,7 @@
 | `createNameObj<18KillerGunnerSingle>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<9PowerStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<20PowerStarAppearPoint>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
-| `createNameObj<7CocoNut>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<7CocoNut>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<11CoconutTree>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<20CoconutTreeLeafGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<13CollapsePlane>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
@@ -496,7 +496,7 @@
 | `createNameObj<15TransparentWall>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<15MiniatureGalaxy>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<15SurprisedGalaxy>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<15ClipFieldSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<15ClipFieldSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<18GroupSwitchWatcher>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<8RaceRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<11TimerSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |

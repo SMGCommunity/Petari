@@ -69,7 +69,7 @@
 | [ClipAreaMovable.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaMovable.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [ClipAreaShape.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipAreaShape.md) | 48.44559585492228% | 7 / 13 | 53.84615384615385% | :eight_pointed_black_star: 
 | [ClipFieldFillDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldFillDraw.md) | 0.0% | 0 / 10 | 0.0% | :x: 
-| [ClipFieldMapParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldMapParts.md) | 0.0% | 0 / 5 | 0.0% | :x: 
+| [ClipFieldMapParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldMapParts.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | [ClipFieldSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ClipFieldSwitch.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [CocoNut.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CocoNut.md) | 82.36% | 55 / 58 | 94.82758620689656% | :eight_pointed_black_star: 
 | [CoconutTree.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CoconutTree.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 

@@ -28,7 +28,7 @@ bool NameObjFactory::isReadResourceFromDVD(const char *pName, const JMapInfoIter
         if (!MR::isLoadedObjectOrLayoutArchive(archiveList.getArchive(i))) {
             return true;
         } 
-    }
+    } 
 
     return false;
 }
