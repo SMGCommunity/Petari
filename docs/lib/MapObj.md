@@ -295,7 +295,7 @@
 | [WarpPod.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WarpPod.md) | 0.0% | 0 / 22 | 0.0% | :x: 
 | [WatchTowerRotateStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WatchTowerRotateStep.md) | 85.85131894484412% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
 | [WaterfallCaveCover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterfallCaveCover.md) | 0.0% | 0 / 9 | 0.0% | :x: 
-| [WaterLeakPipe.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterLeakPipe.md) | 0.0% | 0 / 22 | 0.0% | :x: 
+| [WaterLeakPipe.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterLeakPipe.md) | 100.0% | 22 / 22 | 100.0% | :white_check_mark: 
 | [WaterPressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressure.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [WaterPressureBullet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBullet.md) | 91.28329297820824% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [WaterPressureBulletHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBulletHolder.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
