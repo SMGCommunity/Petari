@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 4 Completed -- (0.0%)
+# 4 / 4 Completed -- (100.0%)
 # ClipFieldSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__dt__15ClipFieldSwitchFv` | :x: |
-| `__ct__15ClipFieldSwitchFPCc` | :x: |
-| `control__15ClipFieldSwitchFv` | :x: |
-| `init__15ClipFieldSwitchFRC12JMapInfoIter` | :x: |
+| `__dt__15ClipFieldSwitchFv` | :white_check_mark: |
+| `__ct__15ClipFieldSwitchFPCc` | :white_check_mark: |
+| `control__15ClipFieldSwitchFv` | :white_check_mark: |
+| `init__15ClipFieldSwitchFRC12JMapInfoIter` | :white_check_mark: |

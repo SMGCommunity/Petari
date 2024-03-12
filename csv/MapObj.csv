@@ -1164,10 +1164,10 @@ control__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
 connectToScene__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
 __dt__17ClipFieldMapPartsFv,ClipFieldMapParts.o,MapObj.a,false
 init__17ClipFieldMapPartsFRC12JMapInfoIter,ClipFieldMapParts.o,MapObj.a,false
-__dt__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,false
-__ct__15ClipFieldSwitchFPCc,ClipFieldSwitch.o,MapObj.a,false
-control__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,false
-init__15ClipFieldSwitchFRC12JMapInfoIter,ClipFieldSwitch.o,MapObj.a,false
+__dt__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,true
+__ct__15ClipFieldSwitchFPCc,ClipFieldSwitch.o,MapObj.a,true
+control__15ClipFieldSwitchFv,ClipFieldSwitch.o,MapObj.a,true
+init__15ClipFieldSwitchFRC12JMapInfoIter,ClipFieldSwitch.o,MapObj.a,true
 __ct__7CocoNutFPCc,CocoNut.o,MapObj.a,true
 init__7CocoNutFRC12JMapInfoIter,CocoNut.o,MapObj.a,true
 initAfterPlacement__7CocoNutFv,CocoNut.o,MapObj.a,true
