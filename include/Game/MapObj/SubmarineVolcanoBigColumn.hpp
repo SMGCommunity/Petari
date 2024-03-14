@@ -19,5 +19,10 @@ public:
     void initBreakModel(const char *);
 
     ModelObj* mBreakModel;          // _8C
-    u8 _90;
+    bool mIsSmallColumn;            // _90
+};
+
+namespace NrvSubmarineVolcanoBigColumn {
+    NERVE_DECL(SubmarineVolcanoBigColumnNrvWait, SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumn::exeWait);
+    NERVE_DECL(SubmarineVolcanoBigColumnNrvBreak, SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumn::exeBreak);
 };

@@ -274,7 +274,7 @@
 | [StarPieceMother.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/StarPieceMother.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [StarPieceSpot.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/StarPieceSpot.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [SubmarineSteam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SubmarineSteam.md) | 0.0% | 0 / 13 | 0.0% | :x: 
-| [SubmarineVolcanoBigColumn.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SubmarineVolcanoBigColumn.md) | 0.0% | 0 / 14 | 0.0% | :x: 
+| [SubmarineVolcanoBigColumn.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SubmarineVolcanoBigColumn.md) | 87.95180722891565% | 13 / 14 | 92.85714285714286% | :eight_pointed_black_star: 
 | [Sun.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Sun.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SuperSpinDriver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SuperSpinDriver.md) | 28.548644338118024% | 49 / 94 | 52.12765957446809% | :eight_pointed_black_star: 
 | [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SurprisedGalaxy.md) | 0.0% | 0 / 13 | 0.0% | :x: 

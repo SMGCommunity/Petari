@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 14 Completed -- (0.0%)
+# 13 / 14 Completed -- (92.85714285714286%)
 # SubmarineVolcanoBigColumn.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__25SubmarineVolcanoBigColumnFPCc` | :x: |
-| `init__25SubmarineVolcanoBigColumnFRC12JMapInfoIter` | :x: |
-| `kill__25SubmarineVolcanoBigColumnFv` | :x: |
+| `__ct__25SubmarineVolcanoBigColumnFPCc` | :white_check_mark: |
+| `init__25SubmarineVolcanoBigColumnFRC12JMapInfoIter` | :white_check_mark: |
+| `kill__25SubmarineVolcanoBigColumnFv` | :white_check_mark: |
 | `exeWait__25SubmarineVolcanoBigColumnFv` | :x: |
-| `exeBreak__25SubmarineVolcanoBigColumnFv` | :x: |
-| `pauseOff__25SubmarineVolcanoBigColumnFv` | :x: |
-| `receiveMsgEnemyAttack__25SubmarineVolcanoBigColumnFUlP9HitSensorP9HitSensor` | :x: |
-| `initBreakModel__25SubmarineVolcanoBigColumnFPCc` | :x: |
-| `__dt__25SubmarineVolcanoBigColumnFv` | :x: |
-| `__sinit_\SubmarineVolcanoBigColumn_cpp` | :x: |
-| `__ct__Q228NrvSubmarineVolcanoBigColumn32SubmarineVolcanoBigColumnNrvWaitFv` | :x: |
-| `__ct__Q228NrvSubmarineVolcanoBigColumn33SubmarineVolcanoBigColumnNrvBreakFv` | :x: |
-| `execute__Q228NrvSubmarineVolcanoBigColumn33SubmarineVolcanoBigColumnNrvBreakCFP5Spine` | :x: |
-| `execute__Q228NrvSubmarineVolcanoBigColumn32SubmarineVolcanoBigColumnNrvWaitCFP5Spine` | :x: |
+| `exeBreak__25SubmarineVolcanoBigColumnFv` | :white_check_mark: |
+| `pauseOff__25SubmarineVolcanoBigColumnFv` | :white_check_mark: |
+| `receiveMsgEnemyAttack__25SubmarineVolcanoBigColumnFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `initBreakModel__25SubmarineVolcanoBigColumnFPCc` | :white_check_mark: |
+| `__dt__25SubmarineVolcanoBigColumnFv` | :white_check_mark: |
+| `__sinit_\SubmarineVolcanoBigColumn_cpp` | :white_check_mark: |
+| `__ct__Q228NrvSubmarineVolcanoBigColumn32SubmarineVolcanoBigColumnNrvWaitFv` | :white_check_mark: |
+| `__ct__Q228NrvSubmarineVolcanoBigColumn33SubmarineVolcanoBigColumnNrvBreakFv` | :white_check_mark: |
+| `execute__Q228NrvSubmarineVolcanoBigColumn33SubmarineVolcanoBigColumnNrvBreakCFP5Spine` | :white_check_mark: |
+| `execute__Q228NrvSubmarineVolcanoBigColumn32SubmarineVolcanoBigColumnNrvWaitCFP5Spine` | :white_check_mark: |
