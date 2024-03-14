@@ -47,7 +47,7 @@ void SubmarineVolcanoBigColumn::kill() {
 
 #ifdef NON_MATCHING
 void SubmarineVolcanoBigColumn::exeWait() {
-    if (_90) {
+    if (mIsSmallColumn) {
         if (MR::isStep(this, 360)) {
             TVec3f upVec;
             MR::calcUpVec(&upVec, this);
