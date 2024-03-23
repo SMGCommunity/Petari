@@ -38,6 +38,7 @@ void NameObjHolder::callMethodAllObj(func functionPtr) {
 
     NameObj** start = mObjs;
     NameObj** end = &mObjs[mObjCount];
+    function = functionPtr;
 
     while (start != end) {
         (*start->*function)();

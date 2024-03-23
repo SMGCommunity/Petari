@@ -108,4 +108,6 @@ namespace MR {
     bool isBckStoppedPlayer();
 
     f64 getBckFrameMaxPlayer();
+
+    LiveActor* getCurrentRushActor();
 };

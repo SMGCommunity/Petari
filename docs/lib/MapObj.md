@@ -11,7 +11,7 @@
 | [AirBubble.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AirBubble.md) | 66.18122977346277% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
 | [AirBubbleGenerator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AirBubbleGenerator.md) | 72.68722466960352% | 10 / 11 | 90.9090909090909% | :eight_pointed_black_star: 
 | [AirBubbleHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AirBubbleHolder.md) | 44.05594405594406% | 4 / 7 | 57.14285714285714% | :eight_pointed_black_star: 
-| [AnmModelObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AnmModelObj.md) | 0.0% | 0 / 47 | 0.0% | :x: 
+| [AnmModelObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AnmModelObj.md) | 100.0% | 47 / 47 | 100.0% | :white_check_mark: 
 | [ArrowSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ArrowSwitch.md) | 83.86727688787185% | 25 / 27 | 92.5925925925926% | :eight_pointed_black_star: 
 | [ArrowSwitchMulti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ArrowSwitchMulti.md) | 82.25255972696246% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [ArrowSwitchMultiHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ArrowSwitchMultiHolder.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 

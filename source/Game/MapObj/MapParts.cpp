@@ -2,6 +2,10 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 
+namespace {
+    const char* cFollowjointName = "Move";
+};
+
 MapParts::~MapParts() {
 
 }

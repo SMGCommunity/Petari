@@ -204,10 +204,12 @@ namespace MR {
 
         static bool isExistStageEffectData(const char *);
 
+        static void rumblePadMoving(LiveActor *, const char *);
         static void rumblePadStart(LiveActor *, const char *);
         static void rumblePadStop(LiveActor *, const char *);
 
         static void shakeCameraMoving(NameObj *, const char *);
+        static void shakeStopCamera(LiveActor *, const char *);
         static void stopShakingCameraMoving(NameObj *, const char *);
     };
 };

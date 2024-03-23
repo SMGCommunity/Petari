@@ -2,12 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
-namespace {
-    const char* cFollowJointName = "Move";
-    const char* cAnimFileName = "Move";
-    const char* cEndLoopEffectName = "EndLoop";
-};
-
 class AnmModelObj : public MapObjActor {
 public:
     AnmModelObj(const char *);
@@ -27,7 +21,61 @@ public:
     virtual void moveInner();
     virtual void stopInner();
 
+    inline void exeWait();
     void exeMove();
     void exeDone();
 
+    TVec3f mJointPos;         // _C4
+};
+
+class AnmModelSwitchMove : public AnmModelObj {
+public:
+    AnmModelSwitchMove(const char *);
+
+    virtual ~AnmModelSwitchMove();
+    virtual void init(const JMapInfoIter &);
+    virtual bool isOnStartAnmTrigger() const;
+};
+
+class AnmModelGroundOnMove : public AnmModelObj {
+public:
+    AnmModelGroundOnMove(const char *);
+
+    virtual ~AnmModelGroundOnMove();
+    virtual void init(const JMapInfoIter &);
+    virtual void control();
+    virtual bool isOnStartAnmTrigger() const;
+    virtual bool isKilledAtMoveDone() const;
+};
+
+class AnmModelBindMove : public AnmModelObj {
+public:
+    AnmModelBindMove(const char *);
+
+    virtual ~AnmModelBindMove();
+    virtual void init(const JMapInfoIter &);
+    virtual void control();
+    virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+    virtual bool isOnStartAnmTrigger() const;
+    virtual bool isKilledAtMoveDone() const;
+    virtual bool isRepeat() const;
+};
+
+class AnmModelSwitchMoveEventCamera : public AnmModelSwitchMove {
+public:
+    AnmModelSwitchMoveEventCamera(const char *);
+
+    virtual ~AnmModelSwitchMoveEventCamera();
+    virtual void init(const JMapInfoIter &);
+    virtual bool isDone() const;
+    virtual void startInner();
+    virtual void stopInner();
+
+    ActorCameraInfo* mCameraInfo;       // _D0
+};
+
+namespace NrvAnmModelObj {
+    NERVE_DECL(HostTypeWait, AnmModelObj, AnmModelObj::exeWait);
+    NERVE_DECL(HostTypeMove, AnmModelObj, AnmModelObj::exeMove);
+    NERVE_DECL(HostTypeDone, AnmModelObj, AnmModelObj::exeDone);
 };

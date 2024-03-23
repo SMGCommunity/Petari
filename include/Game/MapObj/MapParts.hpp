@@ -2,10 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-namespace {
-    const char* cFollowjointName = "Move";
-};
-
 class MapParts : public LiveActor {
 public:
     MapParts(const char *);
