@@ -16,3 +16,7 @@ public:
 
     TMtx34f _3C;
 };
+
+namespace MR {
+    void initDefaultPosForMercator(LiveActor *, const JMapInfoIter &, bool);
+};

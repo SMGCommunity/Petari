@@ -32,7 +32,7 @@ public:
 
     }
 
-    virtual s32 receiveMsg(u32) {
+    virtual bool receiveMsg(u32) {
         return 0;
     }
 

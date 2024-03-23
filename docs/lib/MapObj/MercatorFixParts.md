@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 4 Completed -- (0.0%)
+# 4 / 4 Completed -- (100.0%)
 # MercatorFixParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16MercatorFixPartsFPCc` | :x: |
-| `receiveOtherMsg__16MercatorFixPartsFUlP9HitSensorP9HitSensor` | :x: |
-| `__dt__16MercatorFixPartsFv` | :x: |
-| `init__16MercatorFixPartsFRC12JMapInfoIter` | :x: |
+| `__ct__16MercatorFixPartsFPCc` | :white_check_mark: |
+| `receiveOtherMsg__16MercatorFixPartsFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `__dt__16MercatorFixPartsFv` | :white_check_mark: |
+| `init__16MercatorFixPartsFRC12JMapInfoIter` | :white_check_mark: |

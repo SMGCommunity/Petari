@@ -11,7 +11,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void start();
     virtual void end();
-    virtual s32 receiveMsg(u32);
+    virtual bool receiveMsg(u32);
 
     void storeCurrentPosture();
     void initSwitchMessenger(const JMapInfoIter &);
