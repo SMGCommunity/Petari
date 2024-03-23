@@ -17,6 +17,7 @@ public:
     void calcVertexPosition();
     void calcGeneratixLength();
     void setPosition(const TVec3f &);
+    void setDirection(const TVec3f &);
 
     TVec3f _0;
     TVec3f _C;

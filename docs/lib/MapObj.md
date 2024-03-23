@@ -31,7 +31,7 @@
 | [AstroMapObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObj.md) | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
 | [AstroMapObjFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObjFunction.md) | 59.08419497784343% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | [AstroOverlookObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroOverlookObj.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| [BallOpener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallOpener.md) | 0.0% | 0 / 17 | 0.0% | :x: 
+| [BallOpener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallOpener.md) | 56.747404844290664% | 15 / 17 | 88.23529411764706% | :eight_pointed_black_star: 
 | [BallRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallRail.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [Banekiti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Banekiti.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 0.0% | 0 / 13 | 0.0% | :x: 

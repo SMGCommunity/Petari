@@ -161,7 +161,7 @@ namespace JGeometry {
 
         T setLength(T);
         T setLength(const TVec3<T>, T);
-        T squared() const {
+        T squared() const NO_INLINE {
             register const JGeometry::TVec3<f32>* this_vec = this;
 
             __asm {
