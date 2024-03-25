@@ -143,9 +143,9 @@ void MarioActor::initMember()
     }
 
     _468f.zero();
-    _468.x = 0;
-    _468.y = 0;
-    _468.z = 0;
+    _468f.x = 0;
+    _468f.y = 0;
+    _468f.z = 0;
     _474 = 0;
     _478 = 10.0f;
     _47C = 0;
@@ -167,7 +167,7 @@ void MarioActor::initMember()
     _4B8.zero();
     _4C4.zero();
     for (int i = 0; i < 0x80; i++) {
-        _4C8[i] = 0;
+        _4D0[i] = 0;
     }
     _6D0 = 0;
     _6D4 = 10.0f;

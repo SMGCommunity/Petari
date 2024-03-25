@@ -3,6 +3,7 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/ActorPadAndCameraCtrl.hpp"
+#include "Game/LiveActor/RailRider.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util.hpp"
 

@@ -9,7 +9,6 @@
 #include "Game/LiveActor/ModelManager.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/Spine.hpp"
-#include "Game/LiveActor/RailRider.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
@@ -19,6 +18,7 @@ class Binder;
 class CollisionParts;
 class ShadowControllerList;
 class StarPointerTarget;
+class RailRider;
 
 /// @brief The basis of a drawable actor that can contain states (see: Nerve)
 class LiveActor : public NameObj {

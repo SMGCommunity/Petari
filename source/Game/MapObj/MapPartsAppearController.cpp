@@ -33,27 +33,27 @@ void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter &rIter) {
     }
 }
 
-s32 MapPartsAppearController::receiveMsg(u32 msg) {
+bool MapPartsAppearController::receiveMsg(u32 msg) {
     if (msg == 207) {
         if (MR::isDead(mHost)) {
-            return 0;
+            return false;
         }
 
         if (!isNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance)) {
-            return 0;
+            return false;
         }
 
         if (MR::hasMapPartsVanishSignMotion(mSignMotionType)) {
             setNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance);
-            return 1;
+            return true;
         }
         else {
             killHost();
-            return 1;
+            return true;
         }
     }
     else {
-        return 0;
+        return false;
     }
 }
 

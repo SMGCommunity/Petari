@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/MapObj/MapPartsFunction.hpp"
+#include <JSystem/JGeometry.hpp>
 
 class MapPartsRailPointPassChecker;
 
@@ -14,7 +15,7 @@ public:
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
-    virtual s32 receiveMsg(u32);
+    virtual bool receiveMsg(u32);
     virtual void control();
 
     void moveToInitPos();

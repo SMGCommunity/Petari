@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/MapObj/MapPartsFunction.hpp"
+#include <JSystem/JGeometry.hpp>
 
 class MapPartsRailRotator : public MapPartsFunction {
 public:

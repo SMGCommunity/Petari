@@ -2,7 +2,7 @@
 
 #include <revolution.h>
 
-f32 JMASinRadian(f32);
+f32 JMAAsinRadian(f32);
 f32 JMACosRadian(f32);
 
 f32 JMAAcosRadian(f32);
