@@ -167,7 +167,7 @@
 | [MechaKoopaPartsArm.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MechaKoopaPartsArm.md) | 100.0% | 32 / 32 | 100.0% | :white_check_mark: 
 | [MechaKoopaPartsHead.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MechaKoopaPartsHead.md) | 100.0% | 25 / 25 | 100.0% | :white_check_mark: 
 | [MercatorFixParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MercatorFixParts.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| [MercatorRailMoveParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MercatorRailMoveParts.md) | 0.0% | 0 / 13 | 0.0% | :x: 
+| [MercatorRailMoveParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MercatorRailMoveParts.md) | 31.963470319634702% | 7 / 13 | 53.84615384615385% | :eight_pointed_black_star: 
 | [MercatorRotateParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MercatorRotateParts.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [MeteoContainer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MeteoContainer.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [MeteorStrike.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MeteorStrike.md) | 0.0% | 0 / 25 | 0.0% | :x: 

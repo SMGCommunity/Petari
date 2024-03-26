@@ -19,4 +19,6 @@ public:
 
 namespace MR {
     void initDefaultPosForMercator(LiveActor *, const JMapInfoIter &, bool);
+
+    void convertMercatorPlaneToSphereTransAndRotate(TVec3f *, TPos3f *, const TVec3f &, bool);
 };
