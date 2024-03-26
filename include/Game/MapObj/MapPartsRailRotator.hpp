@@ -22,6 +22,8 @@ public:
     void updateInfo(s32);
     bool isReachedTargetAngle() const;
 
+    void initWithRotateMtx(const JMapInfoIter &, MtxPtr);
+
     void exeRotate();
 
     u32 _18;

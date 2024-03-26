@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 7 / 13 Completed -- (53.84615384615385%)
+# 13 / 13 Completed -- (100.0%)
 # MercatorRailMoveParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -15,10 +15,10 @@
 | `startMove__21MercatorRailMovePartsFv` | :white_check_mark: |
 | `endMove__21MercatorRailMovePartsFv` | :white_check_mark: |
 | `control__21MercatorRailMovePartsFv` | :white_check_mark: |
-| `calcAndSetBaseMtx__21MercatorRailMovePartsFv` | :x: |
-| `updatePose__21MercatorRailMovePartsFv` | :x: |
-| `init__21MercatorRailMovePartsFRC12JMapInfoIter` | :x: |
-| `Functor<21MercatorRailMoveParts>__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>` | :x: |
-| `__cl__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFv` | :x: |
-| `clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap` | :x: |
+| `calcAndSetBaseMtx__21MercatorRailMovePartsFv` | :white_check_mark: |
+| `updatePose__21MercatorRailMovePartsFv` | :white_check_mark: |
+| `init__21MercatorRailMovePartsFRC12JMapInfoIter` | :white_check_mark: |
+| `Functor<21MercatorRailMoveParts>__2MRFP21MercatorRailMovePartsM21MercatorRailMovePartsFPCvPv_v_Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>` | :white_check_mark: |
+| `__cl__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR69FunctorV0M<P21MercatorRailMoveParts,M21MercatorRailMovePartsFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
 | `__dt__21MercatorRailMovePartsFv` | :white_check_mark: |
