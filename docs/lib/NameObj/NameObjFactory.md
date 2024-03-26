@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 97 / 568 Completed -- (17.077464788732392%)
+# 99 / 568 Completed -- (17.429577464788732%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -245,7 +245,7 @@
 | `createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<14FallDownBridge>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<11RockCreator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<10PlantGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<10SmallStone>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
@@ -253,7 +253,7 @@
 | `createNameObj<9RailBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<9ItemBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<12ShootingStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
-| `createNameObj<8FlameGun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<8FlameGun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<16BenefitItemOneUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<17BenefitItemLifeUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<21BenefitItemInvincible>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |

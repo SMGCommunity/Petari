@@ -346,7 +346,7 @@ createNameObj<14SnowplowSwitch>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Na
 createNameObj<8BallRail>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<14FallDownBridge>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<11RockCreator>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
-createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<14MeteoContainer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<9MagicBell>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<10PlantGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<10SmallStone>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
@@ -354,7 +354,7 @@ createNameObj<13Tsukidashikun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,Nam
 createNameObj<9RailBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<9ItemBlock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<12ShootingStar>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
-createNameObj<8FlameGun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
+createNameObj<8FlameGun>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<16BenefitItemOneUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,false
 createNameObj<17BenefitItemLifeUp>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
 createNameObj<21BenefitItemInvincible>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj,NameObjFactory.o,NameObj.a,true
