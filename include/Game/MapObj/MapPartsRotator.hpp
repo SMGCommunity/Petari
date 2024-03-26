@@ -8,6 +8,8 @@ class MapPartsRotatorBase : public MapPartsFunction {
 public:
     virtual ~MapPartsRotatorBase();
 
+    virtual TMtx34f& getRotateMtx() const = 0;
+
     virtual bool isMoving() const {
         return false;
     }

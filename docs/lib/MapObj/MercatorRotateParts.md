@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 7 Completed -- (0.0%)
+# 7 / 7 Completed -- (100.0%)
 # MercatorRotateParts.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__19MercatorRotatePartsFPCc` | :x: |
-| `initAfterPlacement__19MercatorRotatePartsFv` | :x: |
-| `receiveOtherMsg__19MercatorRotatePartsFUlP9HitSensorP9HitSensor` | :x: |
-| `control__19MercatorRotatePartsFv` | :x: |
-| `calcAndSetBaseMtx__19MercatorRotatePartsFv` | :x: |
-| `init__19MercatorRotatePartsFRC12JMapInfoIter` | :x: |
-| `__dt__19MercatorRotatePartsFv` | :x: |
+| `__ct__19MercatorRotatePartsFPCc` | :white_check_mark: |
+| `initAfterPlacement__19MercatorRotatePartsFv` | :white_check_mark: |
+| `receiveOtherMsg__19MercatorRotatePartsFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `control__19MercatorRotatePartsFv` | :white_check_mark: |
+| `calcAndSetBaseMtx__19MercatorRotatePartsFv` | :white_check_mark: |
+| `init__19MercatorRotatePartsFRC12JMapInfoIter` | :white_check_mark: |
+| `__dt__19MercatorRotatePartsFv` | :white_check_mark: |
