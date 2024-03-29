@@ -87,7 +87,7 @@ namespace JGeometry {
             setInline(rSrc);
         }*/
 
-        inline TVec3<T>(const register Vec &rSrc) {
+        inline TVec3<T>(const register Vec &rSrc) NO_INLINE {
             register TVec3<T>* dst = this;
             register const Vec* src = &rSrc;
             register f32 z;

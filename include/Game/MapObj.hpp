@@ -44,6 +44,7 @@
 #include "Game/MapObj/CutBushModelObj.hpp"
 #include "Game/MapObj/DashRing.hpp"
 #include "Game/MapObj/DeadLeaves.hpp"
+#include "Game/MapObj/EarthenPipe.hpp"
 #include "Game/MapObj/FireBar.hpp"
 #include "Game/MapObj/FirePressure.hpp"
 #include "Game/MapObj/FlameGun.hpp"

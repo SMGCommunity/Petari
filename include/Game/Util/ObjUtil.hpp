@@ -123,6 +123,8 @@ namespace MR {
     bool isJudgedToClipFrustum100m(const TVec3f &, f32);
     bool isJudgedToClipFrustum300m(const TVec3f &, f32);
 
+    bool isJudgedToNearClip(const TVec3f &, f32);
+
     bool tryRumblePad(const void *, const char *, s32);
     bool tryRumblePadVeryStrongLong(const void *, s32);
     bool tryRumblePadWeak(const void *, s32);
@@ -152,7 +154,7 @@ namespace MR {
     void clearGotCountStarPieceReceiver(const NameObj *);
     void hopStarPiece(const NameObj *, const TVec3f &, const TVec3f &);
     bool appearStarPiece(const NameObj *, const TVec3f &, s32, f32, f32, bool);
-    void appearStarPieceToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32, f32, f32, bool);
+    bool appearStarPieceToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32, f32, f32, bool);
 
     void declarePowerStar(const NameObj *);
     void declarePowerStar(const NameObj *, s32);
