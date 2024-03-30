@@ -5,17 +5,17 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 17 Completed -- (0.0%)
+# 4 / 17 Completed -- (23.52941176470588%)
 # ChipGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__9ChipGroupFPCcl` | :x: |
 | `updateUIRange__9ChipGroupFv` | :x: |
 | `movement__9ChipGroupFv` | :x: |
-| `registerChip__9ChipGroupFP8ChipBase` | :x: |
-| `noticeEndCompleteDemo__9ChipGroupFv` | :x: |
-| `getGotCount__9ChipGroupCFv` | :x: |
-| `isComplete__9ChipGroupCFv` | :x: |
+| `registerChip__9ChipGroupFP8ChipBase` | :white_check_mark: |
+| `noticeEndCompleteDemo__9ChipGroupFv` | :white_check_mark: |
+| `getGotCount__9ChipGroupCFv` | :white_check_mark: |
+| `isComplete__9ChipGroupCFv` | :white_check_mark: |
 | `__ct__13BlueChipGroupFPCc` | :x: |
 | `__dt__9ChipGroupFv` | :x: |
 | `__ct__15YellowChipGroupFPCc` | :x: |

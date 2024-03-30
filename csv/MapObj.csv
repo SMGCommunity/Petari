@@ -1015,10 +1015,10 @@ execute__Q214NrvChipCounter18ChipCounterNrvHideCFP5Spine,ChipCounter.o,MapObj.a,
 __ct__9ChipGroupFPCcl,ChipGroup.o,MapObj.a,false
 updateUIRange__9ChipGroupFv,ChipGroup.o,MapObj.a,false
 movement__9ChipGroupFv,ChipGroup.o,MapObj.a,false
-registerChip__9ChipGroupFP8ChipBase,ChipGroup.o,MapObj.a,false
-noticeEndCompleteDemo__9ChipGroupFv,ChipGroup.o,MapObj.a,false
-getGotCount__9ChipGroupCFv,ChipGroup.o,MapObj.a,false
-isComplete__9ChipGroupCFv,ChipGroup.o,MapObj.a,false
+registerChip__9ChipGroupFP8ChipBase,ChipGroup.o,MapObj.a,true
+noticeEndCompleteDemo__9ChipGroupFv,ChipGroup.o,MapObj.a,true
+getGotCount__9ChipGroupCFv,ChipGroup.o,MapObj.a,true
+isComplete__9ChipGroupCFv,ChipGroup.o,MapObj.a,true
 __ct__13BlueChipGroupFPCc,ChipGroup.o,MapObj.a,false
 __dt__9ChipGroupFv,ChipGroup.o,MapObj.a,false
 __ct__15YellowChipGroupFPCc,ChipGroup.o,MapObj.a,false
