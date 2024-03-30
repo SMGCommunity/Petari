@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 29 / 51 Completed -- (56.86274509803921%)
+# 32 / 51 Completed -- (62.745098039215684%)
 # Rock.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__4RockFfPCc` | :x: |
-| `init__4RockFRC12JMapInfoIter` | :x: |
-| `appear__4RockFv` | :x: |
+| `__ct__4RockFfPCc` | :white_check_mark: |
+| `init__4RockFRC12JMapInfoIter` | :white_check_mark: |
+| `appear__4RockFv` | :white_check_mark: |
 | `kill__4RockFv` | :white_check_mark: |
 | `getAppearFrame__4RockFv` | :white_check_mark: |
 | `getType__4RockFRC12JMapInfoIter` | :white_check_mark: |

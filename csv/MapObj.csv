@@ -4161,9 +4161,9 @@ addAccelMoment__12RevolvingWayFv,RevolvingWay.o,MapObj.a,false
 __sinit_\RevolvingWay_cpp,RevolvingWay.o,MapObj.a,false
 __ct__Q215NrvRevolvingWay19RevolvingWayNrvWaitFv,RevolvingWay.o,MapObj.a,false
 execute__Q215NrvRevolvingWay19RevolvingWayNrvWaitCFP5Spine,RevolvingWay.o,MapObj.a,false
-__ct__4RockFfPCc,Rock.o,MapObj.a,false
-init__4RockFRC12JMapInfoIter,Rock.o,MapObj.a,false
-appear__4RockFv,Rock.o,MapObj.a,false
+__ct__4RockFfPCc,Rock.o,MapObj.a,true
+init__4RockFRC12JMapInfoIter,Rock.o,MapObj.a,true
+appear__4RockFv,Rock.o,MapObj.a,true
 kill__4RockFv,Rock.o,MapObj.a,true
 getAppearFrame__4RockFv,Rock.o,MapObj.a,true
 getType__4RockFRC12JMapInfoIter,Rock.o,MapObj.a,true

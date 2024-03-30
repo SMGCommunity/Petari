@@ -6,9 +6,118 @@ namespace {
     const Vec cWeakSensorOffset = { 0.0f, 0.0f, -150.0f };
 };
 
-// Rock::Rock
-// Rock::init
-// Rock::appear
+Rock::Rock(f32 a1, const char *pName) : LiveActor(pName),
+    mParentCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), 
+    _98(a1), _9C(0), _9D(0), _A0(gZeroVec), _AC(255.0f), _B0(0.0f), 
+    _E4(gZeroVec), mCurrentRailPoint(-1), _F0(1.5f), _F8(gZeroVec), 
+    _104(0.0f, 1.0f), _110(0), _114(0), mBarkTimer(0), _11C(0), _120(gZeroVec),
+    _12C(nullptr), _130(0), _134(8), _138(0.0f), mRollSoundTimer(0), _140(0)
+     {
+    
+    _B4.identity();
+}
+
+void Rock::init(const JMapInfoIter &rIter) {
+    mRockType = Rock::getType(rIter);
+
+    if (mRockType != NormalRock) {
+        switch (mRockType) {
+            case WanwanRolling:
+                setName("ワンワン");
+                break;
+            case WanwanRollingMini:
+                setName("ミニワンワン");
+                break;
+            case WanwanRollingGold:
+                setName("ゴールドワンワン");
+                MR::declarePowerStar(this);
+                break;
+        }
+
+        _134 = 45;
+    }
+
+    initMapToolInfo(rIter);
+    initModel();
+    MR::connectToSceneNoShadowedMapObjStrongLight(this);
+    MR::initLightCtrl(this);
+    initSensor();
+    initBinder(_AC, 0.0f, 0);
+    initRailRider(rIter);
+    initEffect();
+
+    MR::initStarPointerTarget(this, 275.0f * (mRockType == WanwanRollingMini ? 0.30000001f : mScale.x), TVec3f(0.0f));
+    initSound(5, false);
+
+    f32 shadowDrop;
+    if (MR::getJMapInfoArg4NoInit(rIter, &shadowDrop)) {
+        f32 radius;
+
+        if (mRockType == WanwanRollingMini) {
+            radius = 0.30000001f;
+        }
+        else {
+            radius = mScale.x;
+        }
+
+        MR::initShadowVolumeCylinder(this, 225.0f * radius);
+        MR::setShadowDropLength(this, nullptr, shadowDrop);
+    }
+    else {
+        f32 radius;
+        if (mRockType == WanwanRollingMini) {
+            radius = 0.30000001f;
+        }
+        else {
+            radius = mScale.x;
+        }
+
+        MR::initShadowVolumeSphere(this, 225.0f * radius);
+    }
+
+    initNerve(&NrvRock::RockNrvAppear::sInstance);
+    makeActorDead();
+}
+
+void Rock::appear() {
+    _E4.zero();
+    _110 = 0;
+    _F0 = 1.5f;
+    mCurrentRailPoint = -1;
+    _130 = 0;
+    mPosition.set(_A0);
+    _F8.set(_A0);
+    mRotation.zero();
+
+    if (!MR::isZeroGravity(this)) {
+        MR::calcGravity(this);
+    }
+
+    MR::moveCoordAndTransToNearestRailPos(this);
+    MR::showModel(this);
+    MR::invalidateClipping(this);
+    MR::validateHitSensors(this);
+    MR::vecKillElement(MR::getRailDirection(this), mGravity, &_104);
+    MR::normalize(&_104);
+
+    if (mRockType == NormalRock) {
+        setBtkForEnvironmentMap(this, "Size");
+        
+    }
+    else if (mRockType == WanwanRolling) {
+        setBtkForEnvironmentMap(this, "WanwanRolling");
+    }
+
+    LiveActor::appear();
+    if (!MR::isLoopRail(this)) {
+        MR::offBind(this);
+        setNerve(&NrvRock::RockNrvAppear::sInstance);
+    }
+    else {
+        MR::onBind(this);
+        setNerve(&NrvRock::RockNrvMove::sInstance);
+    }
+}
 
 void Rock::kill() {
     LiveActor::kill();
