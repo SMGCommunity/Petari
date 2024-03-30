@@ -985,7 +985,7 @@ execute__Q211NrvChipBase19ChipBaseNrvDeactiveCFP5Spine,ChipBase.o,MapObj.a,true
 __ct__11ChipCounterFPCcl,ChipCounter.o,MapObj.a,true
 init__11ChipCounterFRC12JMapInfoIter,ChipCounter.o,MapObj.a,true
 control__11ChipCounterFv,ChipCounter.o,MapObj.a,true
-setCount__11ChipCounterFl,ChipCounter.o,MapObj.a,false
+setCount__11ChipCounterFl,ChipCounter.o,MapObj.a,true
 requestShow__11ChipCounterFll,ChipCounter.o,MapObj.a,false
 requestComplete__11ChipCounterFl,ChipCounter.o,MapObj.a,false
 requestHide__11ChipCounterFl,ChipCounter.o,MapObj.a,false

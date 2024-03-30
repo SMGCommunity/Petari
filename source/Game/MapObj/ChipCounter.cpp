@@ -2,6 +2,18 @@
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static s32 sChipPainCount = 0x5;
+
+    static const char* sChipPainName[5] = {
+        "Chip1",
+        "Chip2",
+        "Chip3",
+        "Chip4",
+        "Chip5"
+    };
+};
+
 ChipCounter::ChipCounter(const char *pName, s32 type) : LayoutActor(pName, true) {
     mCollectCounter = 0;
     mCount = 0;
@@ -55,5 +67,26 @@ void ChipCounter::control() {
     MR::setAnimFrameAndStop(this, (_30 * 20.0f), 1);
 }
 
-// ChipCounter::setCount
+void ChipCounter::setCount(s32 count) {
+    mCollectCounter->setCount(count);
+    mCount = count;
 
+    for (s32 i = 0; i < sChipPainCount; i++) {
+        if (i < mCount - 1) {
+            MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 1.0f, 0);
+            continue;
+        }
+
+        if (i == mCount - 1) {
+            if (i == sChipPainCount - 1) {
+                MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 1.0f, 0);
+                continue;
+            }
+
+            MR::startPaneAnim(this, sChipPainName[i], "ChipGet", 0);
+        }
+        else {
+            MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 0.0f, 0);
+        }
+    }
+}

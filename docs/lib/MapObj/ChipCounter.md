@@ -5,14 +5,14 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 3 / 30 Completed -- (10.0%)
+# 4 / 30 Completed -- (13.333333333333334%)
 # ChipCounter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__11ChipCounterFPCcl` | :white_check_mark: |
 | `init__11ChipCounterFRC12JMapInfoIter` | :white_check_mark: |
 | `control__11ChipCounterFv` | :white_check_mark: |
-| `setCount__11ChipCounterFl` | :x: |
+| `setCount__11ChipCounterFl` | :white_check_mark: |
 | `requestShow__11ChipCounterFll` | :x: |
 | `requestComplete__11ChipCounterFl` | :x: |
 | `requestHide__11ChipCounterFl` | :x: |

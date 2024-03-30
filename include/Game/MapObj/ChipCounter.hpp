@@ -3,18 +3,6 @@
 #include "Game/MapObj/CollectCounter.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
-namespace {
-    static s32 sChipPainCount = 0x5;
-
-    static const char* sChipPainName[5] = {
-        "Chip1",
-        "Chip2",
-        "Chip3",
-        "Chip4",
-        "Chip5"
-    };
-};
-
 class ChipCounter : public LayoutActor {
 public:
     ChipCounter(const char *, s32);

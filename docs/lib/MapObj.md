@@ -56,7 +56,7 @@
 | [CannonFortressBreakStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CannonFortressBreakStep.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [CapsuleCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CapsuleCage.md) | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
 | [ChipBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipBase.md) | 79.12087912087912% | 36 / 39 | 92.3076923076923% | :eight_pointed_black_star: 
-| [ChipCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipCounter.md) | 19.971056439942114% | 3 / 30 | 10.0% | :eight_pointed_black_star: 
+| [ChipCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipCounter.md) | 28.364688856729376% | 4 / 30 | 13.333333333333334% | :eight_pointed_black_star: 
 | [ChipGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipGroup.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [ChipHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipHolder.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [ChooChooTrain.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChooChooTrain.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
