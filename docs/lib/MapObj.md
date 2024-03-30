@@ -215,7 +215,7 @@
 | [RevolvingWay.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RevolvingWay.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [Rock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Rock.md) | 32.54091971940764% | 32 / 51 | 62.745098039215684% | :eight_pointed_black_star: 
 | [RockCreator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RockCreator.md) | 0.0% | 0 / 17 | 0.0% | :x: 
-| [RosettaChair.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RosettaChair.md) | 0.0% | 0 / 8 | 0.0% | :x: 
+| [RosettaChair.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RosettaChair.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [RosettaPictureBook.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RosettaPictureBook.md) | 0.0% | 0 / 23 | 0.0% | :x: 
 | [RotateMoveObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/RotateMoveObj.md) | 89.16666666666667% | 17 / 20 | 85.0% | :eight_pointed_black_star: 
 | [SandCapsuleInsidePlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SandCapsuleInsidePlanet.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
