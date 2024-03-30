@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 4 / 17 Completed -- (23.52941176470588%)
+# 9 / 17 Completed -- (52.94117647058824%)
 # ChipGroup.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -16,13 +16,13 @@
 | `noticeEndCompleteDemo__9ChipGroupFv` | :white_check_mark: |
 | `getGotCount__9ChipGroupCFv` | :white_check_mark: |
 | `isComplete__9ChipGroupCFv` | :white_check_mark: |
-| `__ct__13BlueChipGroupFPCc` | :x: |
-| `__dt__9ChipGroupFv` | :x: |
-| `__ct__15YellowChipGroupFPCc` | :x: |
+| `__ct__13BlueChipGroupFPCc` | :white_check_mark: |
+| `__dt__9ChipGroupFv` | :white_check_mark: |
+| `__ct__15YellowChipGroupFPCc` | :white_check_mark: |
 | `init__9ChipGroupFRC12JMapInfoIter` | :x: |
 | `noticeGet__9ChipGroupFP8ChipBase` | :x: |
 | `receiveAppearRequest__9ChipGroupFv` | :x: |
 | `__cl__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFv` | :x: |
 | `clone__Q22MR43FunctorV0M<P9ChipGroup,M9ChipGroupFPCvPv_v>CFP7JKRHeap` | :x: |
-| `__dt__13BlueChipGroupFv` | :x: |
-| `__dt__15YellowChipGroupFv` | :x: |
+| `__dt__13BlueChipGroupFv` | :white_check_mark: |
+| `__dt__15YellowChipGroupFv` | :white_check_mark: |

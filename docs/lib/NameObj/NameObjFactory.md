@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 99 / 568 Completed -- (17.429577464788732%)
+# 101 / 568 Completed -- (17.781690140845072%)
 # NameObjFactory.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -449,8 +449,8 @@
 | `createNameObj<12QuestionCoin>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<8BlueChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<10YellowChip>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
-| `createNameObj<13BlueChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
-| `createNameObj<15YellowChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
+| `createNameObj<13BlueChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
+| `createNameObj<15YellowChipGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :white_check_mark: |
 | `createNameObj<9StarPiece>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<14StarPieceGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |
 | `createNameObj<20StarPieceFollowGroup>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | :x: |

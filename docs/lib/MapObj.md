@@ -57,7 +57,7 @@
 | [CapsuleCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CapsuleCage.md) | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
 | [ChipBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipBase.md) | 79.12087912087912% | 36 / 39 | 92.3076923076923% | :eight_pointed_black_star: 
 | [ChipCounter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipCounter.md) | 28.364688856729376% | 4 / 30 | 13.333333333333334% | :eight_pointed_black_star: 
-| [ChipGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipGroup.md) | 8.47723704866562% | 4 / 17 | 23.52941176470588% | :eight_pointed_black_star: 
+| [ChipGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipGroup.md) | 24.175824175824175% | 9 / 17 | 52.94117647058824% | :eight_pointed_black_star: 
 | [ChipHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipHolder.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [ChooChooTrain.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChooChooTrain.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [CircleCoinGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CircleCoinGroup.md) | 48.616600790513836% | 7 / 8 | 87.5% | :eight_pointed_black_star: 

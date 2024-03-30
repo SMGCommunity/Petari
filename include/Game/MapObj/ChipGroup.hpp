@@ -24,6 +24,8 @@ public:
     void noticeEndCompleteDemo();
     s32 getGotCount() const;
     bool isComplete() const;
+    void noticeGet(ChipBase *);
+    void receiveAppearRequest();
 
     /*inline ChipEntry** first() {
         return &mChips;
@@ -48,4 +50,18 @@ public:
     u32 _68;
     u8 _6C;
     u8 _6D;
+};
+
+class BlueChipGroup : public ChipGroup {
+public:
+    BlueChipGroup(const char *);
+
+    virtual ~BlueChipGroup();
+};
+
+class YellowChipGroup : public ChipGroup {
+public:
+    YellowChipGroup(const char *);
+
+    virtual ~YellowChipGroup();
 };

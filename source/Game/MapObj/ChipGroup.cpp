@@ -37,3 +37,27 @@ bool ChipGroup::isComplete() const {
 
     return true;
 }
+
+BlueChipGroup::BlueChipGroup(const char *pName) : ChipGroup(pName, 0) {
+
+}
+
+ChipGroup::~ChipGroup() {
+
+}
+
+YellowChipGroup::YellowChipGroup(const char *pName) : ChipGroup(pName, 1) {
+
+}
+
+// ChipGroup::init
+// ChipGroup::noticeGet
+// ChipGroup::receiveAppearRequest
+
+BlueChipGroup::~BlueChipGroup() {
+
+}
+
+YellowChipGroup::~YellowChipGroup() {
+
+}

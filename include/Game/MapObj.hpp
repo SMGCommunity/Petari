@@ -25,6 +25,7 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 #include "Game/MapObj/ChipBase.hpp"
 #include "Game/MapObj/ChipCounter.hpp"
+#include "Game/MapObj/ChipGroup.hpp"
 #include "Game/MapObj/ChooChooTrain.hpp"
 #include "Game/MapObj/CircleCoinGroup.hpp"
 #include "Game/MapObj/ClipFieldMapParts.hpp"
