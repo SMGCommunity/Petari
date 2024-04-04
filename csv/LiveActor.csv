@@ -414,10 +414,10 @@ initLodModel__7LodCtrlCFiiib,LodCtrl.o,LiveActor.a,true
 isExistLodLowModel__15LodCtrlFunctionFPCc,LodCtrl.o,LiveActor.a,true
 __ct__12MaterialCtrlFP12J3DModelDataPCc,MaterialCtrl.o,LiveActor.a,true
 update__12MaterialCtrlFv,MaterialCtrl.o,LiveActor.a,true
-__ct__7FogCtrlFP12J3DModelDatab,MaterialCtrl.o,LiveActor.a,false
+__ct__7FogCtrlFP12J3DModelDatab,MaterialCtrl.o,LiveActor.a,true
 update__7FogCtrlFv,MaterialCtrl.o,LiveActor.a,false
-__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor,MaterialCtrl.o,LiveActor.a,false
-updateMaterial__12MatColorCtrlFP11J3DMaterial,MaterialCtrl.o,LiveActor.a,false
+__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor,MaterialCtrl.o,LiveActor.a,true
+updateMaterial__12MatColorCtrlFP11J3DMaterial,MaterialCtrl.o,LiveActor.a,true
 __ct__26ViewProjmapEffectMtxSetterFP12J3DModelData,MaterialCtrl.o,LiveActor.a,false
 update__26ViewProjmapEffectMtxSetterFv,MaterialCtrl.o,LiveActor.a,false
 __ct__22ProjmapEffectMtxSetterFP8J3DModelPC14ResourceHolder,MaterialCtrl.o,LiveActor.a,false

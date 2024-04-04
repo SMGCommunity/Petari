@@ -38,7 +38,7 @@
 | [LiveActorGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActorGroup.md) | 100.0% | 7 / 7 | 100.0% | :white_check_mark: 
 | [LiveActorGroupArray.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LiveActorGroupArray.md) | 56.44171779141104% | 9 / 13 | 69.23076923076923% | :eight_pointed_black_star: 
 | [LodCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/LodCtrl.md) | 86.29242819843343% | 27 / 28 | 96.42857142857143% | :eight_pointed_black_star: 
-| [MaterialCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/MaterialCtrl.md) | 6.504961411245866% | 2 / 33 | 6.0606060606060606% | :eight_pointed_black_star: 
+| [MaterialCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/MaterialCtrl.md) | 19.845644983461963% | 5 / 33 | 15.151515151515152% | :eight_pointed_black_star: 
 | [MessageSensorHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/MessageSensorHolder.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [MirrorActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/MirrorActor.md) | 55.00000000000001% | 5 / 8 | 62.5% | :eight_pointed_black_star: 
 | [MirrorCamera.o](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor/MirrorCamera.md) | 32.24932249322493% | 7 / 12 | 58.333333333333336% | :eight_pointed_black_star: 

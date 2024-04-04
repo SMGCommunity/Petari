@@ -15,6 +15,14 @@ public:
     void newSharedDisplayList(u32);
     void clear();
 
+    inline u16 getMaterialCount() {
+        return mMaterialTable.getMaterialCount();
+    }
+
+    inline J3DMaterial* getMaterial(u16 idx) {
+        return mMaterialTable.mMaterials[idx];
+    }
+
     u32 _4;
     u32 _8;
     u32 _C;

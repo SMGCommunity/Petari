@@ -21,7 +21,9 @@ public:
 
     virtual void update();
 
-    J3DFogInfo mFogInfo;    // _C
+    J3DFogInfo mFogInfo;            // _C
+    s32 mNumMaterials;              // _38
+    J3DMaterial** mMaterials;       // _3C
 };
 
 class MatColorCtrl : public MaterialCtrl {
@@ -31,7 +33,7 @@ public:
     virtual void updateMaterial(J3DMaterial *);
     
     u32 mColorChoice;       // _C
-    J3DGXColor* mColor;     // _10
+    const J3DGXColor* mColor;     // _10
 };
 
 class TexMtxCtrl : public MaterialCtrl {

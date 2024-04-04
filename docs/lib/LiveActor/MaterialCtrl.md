@@ -5,16 +5,16 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 2 / 33 Completed -- (6.0606060606060606%)
+# 5 / 33 Completed -- (15.151515151515152%)
 # MaterialCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__12MaterialCtrlFP12J3DModelDataPCc` | :white_check_mark: |
 | `update__12MaterialCtrlFv` | :white_check_mark: |
-| `__ct__7FogCtrlFP12J3DModelDatab` | :x: |
+| `__ct__7FogCtrlFP12J3DModelDatab` | :white_check_mark: |
 | `update__7FogCtrlFv` | :x: |
-| `__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor` | :x: |
-| `updateMaterial__12MatColorCtrlFP11J3DMaterial` | :x: |
+| `__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor` | :white_check_mark: |
+| `updateMaterial__12MatColorCtrlFP11J3DMaterial` | :white_check_mark: |
 | `__ct__26ViewProjmapEffectMtxSetterFP12J3DModelData` | :x: |
 | `update__26ViewProjmapEffectMtxSetterFv` | :x: |
 | `__ct__22ProjmapEffectMtxSetterFP8J3DModelPC14ResourceHolder` | :x: |

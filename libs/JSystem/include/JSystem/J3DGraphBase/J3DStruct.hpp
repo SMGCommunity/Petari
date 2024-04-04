@@ -20,7 +20,7 @@ public:
         
     }
 
-    J3DFogInfo operator=(const J3DFogInfo &);
+    J3DFogInfo& operator=(const J3DFogInfo &);
 
     u8 mFogType;        // _0
     u8 _1;
@@ -60,3 +60,18 @@ struct J3DTexMtx {
 };
 
 static J3DTexMtxInfo j3dDefaultTexMtxInfo;
+
+class J3DLightInfo {
+public:
+    Vec mLightPosition;         // _0
+    Vec mLightDirection;        // _C
+    GXColor mColor;             // _18
+    Vec mCosAtten;              // _1C
+    Vec mDistAtten;             // _28
+};
+
+class J3DLightObj {
+public:
+    J3DLightInfo mInfo;
+    GXLightObj mLightObj;
+};

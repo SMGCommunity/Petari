@@ -12,6 +12,10 @@ public:
 
     virtual ~J3DMaterialTable();
 
+    inline u16 getMaterialCount() {
+        return mMaterialCount;
+    }
+
     u16 mMaterialCount;             // _4
     u16 mUniqueMaterialCount;       // _6 
     J3DMaterial** mMaterials;       // _8
