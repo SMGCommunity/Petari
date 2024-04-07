@@ -23,7 +23,7 @@
 | math_api.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | misc_io.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | printf.o | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
-| scanf.o | 34.65648854961832% | 3 / 4 | 75.0% | :eight_pointed_black_star: 
+| scanf.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | signal.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | strtold.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
@@ -206,7 +206,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | parse_format | :white_check_mark: |
-| __sformatter | :x: |
+| __sformatter | :white_check_mark: |
 | __StringRead | :white_check_mark: |
 | sscanf | :white_check_mark: |
 

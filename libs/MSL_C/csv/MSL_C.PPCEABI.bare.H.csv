@@ -59,7 +59,7 @@ vsprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 snprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 sprintf,printf.o,MSL_C.PPCEABI.bare.H.a,true
 parse_format,scanf.o,MSL_C.PPCEABI.bare.H.a,true
-__sformatter,scanf.o,MSL_C.PPCEABI.bare.H.a,false
+__sformatter,scanf.o,MSL_C.PPCEABI.bare.H.a,true
 __StringRead,scanf.o,MSL_C.PPCEABI.bare.H.a,true
 sscanf,scanf.o,MSL_C.PPCEABI.bare.H.a,true
 raise,signal.o,MSL_C.PPCEABI.bare.H.a,true
