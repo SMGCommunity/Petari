@@ -8,6 +8,8 @@ extern "C" {
 #include <revolution/types.h>
 #include <revolution/gx.h>
 
+void GXGetViewportv(f32 *);
+
 u32 GXGetTexObjTlut(const GXTexObj *);
 
 void GXGetTexObjAll(const GXTexObj *, void **, u16 *, u16 *, GXTexFmt *, GXTexWrapMode *, GXTexWrapMode *, GXBool *);

@@ -42,7 +42,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     isNotWindows = os.name != "nt"
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -DEPPC -DGEKKO -O4,p -inline auto "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -ipa file -DEPPC -DGEKKO -O4,p -inline auto -volatileasm "
     include = "-i . -I- -i include "
 
     rvl_sdk_path =      pathlib.Path("..//RVL_SDK/include")

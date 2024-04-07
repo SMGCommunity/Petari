@@ -52,4 +52,8 @@ typedef int                 BOOL;
 #define FALSE   0
 #endif
 
+#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
+#define ROUND_UP_PTR(x, align)                                                 \
+    ((void*)((((u32)(x)) + (align)-1) & (~((align)-1))))
+
 #endif // TYPES_H

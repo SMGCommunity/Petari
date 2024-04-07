@@ -33,6 +33,7 @@ typedef f32 (*Mtx44Ptr)[4];
 void C_MTXIdentity(Mtx);
 void C_MTXCopy(const Mtx, Mtx);
 void C_MTXOrtho(Mtx44, f32, f32, f32, f32, f32, f32);
+void C_MTXPerspective(Mtx44, f32, f32, f32, f32);
 
 /* Paired Single Matrix */
 void PSMTXIdentity(Mtx);

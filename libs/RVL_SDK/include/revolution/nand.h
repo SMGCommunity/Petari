@@ -28,6 +28,29 @@ extern "C" {
 #define NAND_RESULT_UNKNOWN        (-64)
 #define NAND_RESULT_FATAL_ERROR   (-128)
 
+typedef enum {
+    NAND_ACCESS_NONE,
+    NAND_ACCESS_READ,
+    NAND_ACCESS_WRITE,
+    NAND_ACCESS_RW
+} NANDAccessType;
+
+typedef enum {
+    // Read/write by owner
+    NAND_PERM_RUSR = (NAND_ACCESS_READ << 4),
+    NAND_PERM_WUSR = (NAND_ACCESS_WRITE << 4),
+    // Read/write by group
+    NAND_PERM_RGRP = (NAND_ACCESS_READ << 2),
+    NAND_PERM_WGRP = (NAND_ACCESS_WRITE << 2),
+    // Read/write by other
+    NAND_PERM_ROTH = (NAND_ACCESS_READ << 0),
+    NAND_PERM_WOTH = (NAND_ACCESS_WRITE << 0),
+    // Read/write by all
+    NAND_PERM_RALL = NAND_PERM_RUSR | NAND_PERM_RGRP | NAND_PERM_ROTH,
+    NAND_PERM_WALL = NAND_PERM_WUSR | NAND_PERM_WGRP | NAND_PERM_WOTH,
+    NAND_PERM_RWALL = NAND_PERM_RALL | NAND_PERM_WALL
+} NANDPermission;
+
 typedef struct NANDFileInfo
 {
     s32  fileDescriptor;
@@ -95,6 +118,7 @@ typedef struct {
 void NANDInitBanner(NANDBanner *, u32, const u16 *, const u16 *);
 
 typedef void (*NANDCallback)(s32, NANDCommandBlock *);
+typedef void (*NANDAsyncCallback)(s32 result, struct NANDCommandBlock* block);
 
 s32 NANDInit(void);
 

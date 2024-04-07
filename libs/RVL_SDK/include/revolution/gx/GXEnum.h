@@ -45,6 +45,15 @@ typedef enum _GXAttr {
     GX_VA_NULL     = 0xff
 } GXAttr;
 
+/*
+typedef enum _GXCopyClamp {
+    GX_CLAMP_NONE,
+    GX_CLAMP_TOP,
+    GX_CLAMP_BOTTOM,
+    GX_CLAMP_ALL,
+} GXCopyClamp;
+*/
+
 typedef enum _GXVtxFmt {
     GX_VTXFMT0 = 0,
     GX_VTXFMT1,

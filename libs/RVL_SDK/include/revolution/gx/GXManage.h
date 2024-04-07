@@ -17,6 +17,7 @@ GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback);
 
 void GXFlush(void);
 void GXPixModeSync(void);
+void GXDrawDone(void);
 
 #ifdef __cplusplus
 }

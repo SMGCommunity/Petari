@@ -40,12 +40,19 @@ volatile PPCWGPipe GXWGFifo;
         return;               \
     }
 
+__GXCDEF(GXPosition, 2, f32)
+
 __GXCDEF(GXPosition, 3, f32)
 __GXCDEF(GXPosition, 3, s16)
 
 __GXCDEF(GXColor, 1, u32)
 
 __GXCDEF(GXTexCoord, 2, u16)
+__GXCDEF( GXTexCoord, 2, s16)
+
+__GXCDEFX(GXPosition1x8,  1, u8)
+__GXCDEFX(GXNormal1x8,  1, u8)
+__GXCDEFX(GXTexCoord1x8,  1, u8)
 
 #ifdef __cplusplus
 }

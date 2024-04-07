@@ -24,6 +24,14 @@ typedef struct WPADInfo {
     u8 firmware;
 } WPADInfo;
 
+typedef enum {
+    WPAD_RESULT_ERR_3 = -3,
+    WPAD_RESULT_ERR_2,
+    WPAD_RESULT_ERR_1,
+
+    WPAD_RESULT_SUCCESS = 0,
+} WPADResult;
+
 void WPADRegisterAllocator(WPADAlloc, WPADFree);
 u32 WPADGetWorkMemorySize(void);
 
