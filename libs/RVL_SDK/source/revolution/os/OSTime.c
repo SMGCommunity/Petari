@@ -1,4 +1,5 @@
 #include <revolution/os/OSTime.h>
+#include <revolution/os.h>
 
 static int YearDays[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
 static int LeapYearDays[] = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335 };
@@ -55,7 +56,7 @@ static int GetLeapDays(int year) {
     return (year + 3) / 4 - (year - 1) / 100 + (year - 1) / 400; 
 }
 
-static void GetDates(s32 days, OSCalendarTime *pTime);
+static void GetDates(s32 days, OSCalendarTime *pTime) NO_INLINE;
 
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *pTime) {
     int numDays;

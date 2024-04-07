@@ -1,4 +1,5 @@
 #include <revolution/vi.h>
+#include <revolution/os.h>
 
 static VIVideo Vdac_Flag_Region;
 volatile u32 Vdac_Flag_Changed = 0;
