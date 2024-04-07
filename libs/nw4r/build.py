@@ -15,7 +15,7 @@ def makeArchive(dir):
 
     default_compiler_path = pathlib.Path("GC/3.0/")
     linker_path = pathlib.Path(f"../../Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-nodefaults -xm l -o lib/{dir}.a {fileList}"
+    linker_flags = f"-nodefaults -xm l -o lib/nw4r_{dir}.a {fileList}"
 
     if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
         print("Library creation failed.")
