@@ -301,7 +301,7 @@ int __StringRead(void *pPtr, int ch, int act) {
 }
 
 static int __sformatter(int (*ReadProc)(void *, int, int), void * ReadProcArg, 
-														const char * format_str, va_list arg, int is_secure)  /*- mm 990325 -*/
+														const char * format_str, va_list arg, int is_secure)
 {
 	int num_chars, chars_read, items_assigned, conversions;
 	int base, negative, overflow;
