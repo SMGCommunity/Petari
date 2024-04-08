@@ -1048,7 +1048,7 @@ DSError TRKTargetAccessExtended1(u32 firstRegister, u32 lastRegister, MessageBuf
     return err;
 }
 
-/* 
+
 DSError TRKTargetAccessFP(u32 firstRegister, u32 lastRegister,
                           MessageBuffer *b, size_t *registerStorageSize,
                           s32 read)
@@ -1094,9 +1094,9 @@ DSError TRKTargetAccessFP(u32 firstRegister, u32 lastRegister,
     gTRKExceptionStatus = savedException;
 
     return err;
-} */
+}
 
-/*
+
 DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister,
                           MessageBuffer *b, size_t *registerStorageSize,
                           s32 read)
@@ -1130,7 +1130,7 @@ DSError TRKTargetAccessDefault(u32 firstRegister, u32 lastRegister,
     gTRKExceptionStatus = savedException;
 
     return err;
-}*/
+}
 
 DSError TRKTargetReadInstruction(InstructionType *readData,
                                 void *virtualAddress)
@@ -1149,7 +1149,7 @@ DSError TRKTargetReadInstruction(InstructionType *readData,
 
 void* TRKTargetTranslate(u32*);
 
-/*
+
 DSError TRKTargetAccessMemory(void *Data,
                         void *virtualAddress,
                         size_t *memorySize,
@@ -1211,6 +1211,6 @@ DSError TRKTargetAccessMemory(void *Data,
 
     return err;
 }
-*/
+
 
 // TRKValidMemory32

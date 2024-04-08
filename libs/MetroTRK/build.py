@@ -39,11 +39,11 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     msl_path =          pathlib.Path("../MSL_C/include")
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -common off -align powerpc -enum int -fp hard -Cpp_exceptions off -use_lmw_stmw on -sdata 0 -sdata2 8 -rostr -rtti off -DEPPC -DGEKKO -O4,p -inline auto,smart -i . -I- -i include "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -fp hard -Cpp_exceptions off -char signed  -pool off -use_lmw_stmw on -rostr -rtti off -DEPPC -DGEKKO -O4,p -inline auto,smart -i . -I- -i include "
     includes = f"-i {msl_path} "
     flags += includes
 
-    default_compiler_path = pathlib.Path("../../Compilers/GC/3.0a3/")
+    default_compiler_path = pathlib.Path("../../Compilers/Wii/1.7/")
 
     compiler_exceptions = {
         #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")

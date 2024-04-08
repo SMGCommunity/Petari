@@ -23,15 +23,15 @@
 | flush_cache.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | mem_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| targimpl.o | 61.91616766467066% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
+| targimpl.o | 89.88023952095809% | 27 / 28 | 96.42857142857143% | :eight_pointed_black_star: 
 | mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dolphin_trk_glue.o | 28.289473684210524% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
-| targcont.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| target_options.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| UDP_Stubs.o | 0.0% | 0 / 9 | 0.0% | :x: 
+| targcont.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| target_options.o | 42.857142857142854% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| UDP_Stubs.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | main.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | CircleBuffer.o | 0.0% | 0 / 4 | 0.0% | :x: 
 | MWCriticalSection_gc.o | 0.0% | 0 / 3 | 0.0% | :x: 
@@ -199,10 +199,10 @@
 | TRKPostInterruptEvent | :white_check_mark: |
 | TRKTargetAccessExtended2 | :white_check_mark: |
 | TRKTargetAccessExtended1 | :white_check_mark: |
-| TRKTargetAccessFP | :x: |
-| TRKTargetAccessDefault | :x: |
+| TRKTargetAccessFP | :white_check_mark: |
+| TRKTargetAccessDefault | :white_check_mark: |
 | TRKTargetReadInstruction | :white_check_mark: |
-| TRKTargetAccessMemory | :x: |
+| TRKTargetAccessMemory | :white_check_mark: |
 | TRKValidMemory32 | :x: |
 
 
@@ -258,28 +258,28 @@
 # targcont.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKTargetContinue | :x: |
+| TRKTargetContinue | :white_check_mark: |
 
 
 # target_options.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | GetUseSerialIO | :x: |
-| SetUseSerialIO | :x: |
+| SetUseSerialIO | :white_check_mark: |
 
 
 # UDP_Stubs.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| udp_cc_post_stop | :x: |
-| udp_cc_pre_continue | :x: |
-| udp_cc_peek | :x: |
-| udp_cc_write | :x: |
-| udp_cc_read | :x: |
-| udp_cc_close | :x: |
-| udp_cc_open | :x: |
-| udp_cc_shutdown | :x: |
-| udp_cc_initialize | :x: |
+| udp_cc_post_stop | :white_check_mark: |
+| udp_cc_pre_continue | :white_check_mark: |
+| udp_cc_peek | :white_check_mark: |
+| udp_cc_write | :white_check_mark: |
+| udp_cc_read | :white_check_mark: |
+| udp_cc_close | :white_check_mark: |
+| udp_cc_open | :white_check_mark: |
+| udp_cc_shutdown | :white_check_mark: |
+| udp_cc_initialize | :white_check_mark: |
 
 
 # main.o

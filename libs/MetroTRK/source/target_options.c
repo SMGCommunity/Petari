@@ -1,9 +1,14 @@
-static unsigned char bUseSerialIO;
+#include "TRK_Types.h"
 
-unsigned char GetUseSerialIO(void) {
+static u8 bUseSerialIO;
+
+/* this is about as close as you are going to get */
+u8 GetUseSerialIO(void)
+{
     return bUseSerialIO;
 }
 
-void SetUseSerialIO(unsigned char use) {
-    bUseSerialIO = use;
+void SetUseSerialIO(u8 result) {
+    bUseSerialIO = result;
+    return;
 }
