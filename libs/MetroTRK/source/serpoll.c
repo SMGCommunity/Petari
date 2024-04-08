@@ -15,7 +15,7 @@ typedef struct FramingState {
     MessageBufferID fBufferID;
     MessageBuffer* fBuffer;
     ReceiverState fReceiveState;
-    bool fEscape;
+    int fEscape;
     FCSType fFCS;
 } FramingState;
 
@@ -54,4 +54,40 @@ void TRKGetInput(void) {
         gTRKFramingState.fBufferID = -1;
         TRKPostEvent(&event);
     }
+}
+
+MessageBufferID TRKTestForPacket(void) {
+    MessageBufferID bufferID;
+    MessageBufferID replyID;
+    MessageBuffer *msgbuf;
+    int data[16];
+
+    if (TRKPollUART() <= kNoError) {
+        return -1;
+    }
+
+    replyID = TRKGetFreeBuffer(&bufferID, &msgbuf);
+    TRKSetBufferPosition(msgbuf, 0);
+
+    if (TRKReadUARTN(data, 0x40) == 0) {
+        TRKAppendBuffer_ui8(msgbuf, (const u8*)data, 0x40);
+        replyID = bufferID;
+
+        if ((data[0] - 0x40 ) > 0) {
+            char buffer[0x880];
+            if (TRKReadUARTN(buffer, (u32)(data[0] - 0x40)) == 0) {
+                TRKAppendBuffer_ui8(msgbuf, (const u8*)buffer, data[0]);
+            }
+            else {
+                TRKReleaseBuffer(replyID);
+                replyID = -1;
+            }
+        }
+    }
+    else {
+        TRKReleaseBuffer(replyID);
+        replyID = -1;
+    }
+
+    return replyID;
 }

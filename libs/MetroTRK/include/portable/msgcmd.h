@@ -28,4 +28,34 @@ typedef enum {
 	kDSPositionFile = 0xD4
 } MessageCommandID;
 
+typedef enum DSFileHandle {
+    kDSStdin  = 0x00,
+    kDSStdout = 0x01,
+    kDSStderr = 0x02
+} DSFileHandle;
+
+typedef enum DSIOResult {
+    kDSIONoError    = 0x00,
+    kDSIOError      = 0x01,
+    kDSIOEOF        = 0x02
+} DSIOResult;
+
+typedef enum
+{
+    kDSStepIntoCount = 0x00,            /* Exec count instructions & stop */
+    kDSStepIntoRange = 0x01,            /* Exec until PC is out of specified range */
+    kDSStepOverCount = 0x10,            /* Step over 1*count instructions & stop */
+    kDSStepOverRange = 0x11             /* Step over until PC is out of specified range */
+} DSMessageStepOptions;
+
+#define DSFetch_s8(_p_)     (*((s8 *)_p_))
+#define DSFetch_s16(_p_)    (*((s16 *)_p_))
+#define DSFetch_s32(_p_)    (*((s32 *)_p_))
+#define DSFetch_s64(_p_)    (*((s64 *)_p_))
+
+#define DSFetch_u8(_p_)     (*((u8 *)_p_))
+#define DSFetch_u16(_p_)    (*((u16 *)_p_))
+#define DSFetch_u32(_p_)    (*((u32 *)_p_))
+#define DSFetch_u64(_p_)    (*((u64 *)_p_))
+
 #endif // MSGCMD_H

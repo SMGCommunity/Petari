@@ -4,7 +4,7 @@
 #include "portable/serpoll.h"
 #include "dolphin.h"
 
-bool gTRKBigEndian;
+s32 gTRKBigEndian;
 
 void TRKNubWelcome(void) {
 	TRK_board_display("MetroTRK for Revolution v0.1");
@@ -15,9 +15,9 @@ DSError TRKTerminateNub(void) {
 	return kNoError;
 }
 
-bool TRKInitializeEndian(void) {
+s32 TRKInitializeEndian(void) {
 	ui8 bendian[4];
-	bool result = false;
+	s32 result = false;
 	gTRKBigEndian = true;
 
 	bendian[0] = 0x12;

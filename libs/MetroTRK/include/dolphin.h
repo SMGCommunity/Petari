@@ -44,9 +44,9 @@ typedef struct TRKState_PPC {
 	ui32 MSR; //0x8c
 	ui32 DAR; //0x90
 	ui32 DSISR; //0x94
-	bool stopped; //0x98
-	bool inputActivated; //0x9c
-	ui8* inputPendingPtr; //0xA0
+	s32 stopped; //0x98
+	s32 inputActivated; //0x9c
+	volatile u8* inputPendingPtr;
 } TRKState_PPC;
 
 #endif // DOLPHIN_H

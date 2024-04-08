@@ -3,6 +3,6 @@
 
 #include "TRK_Types.h"
 
-extern bool gTRKBigEndian;
+extern s32 gTRKBigEndian;
 
 #endif // NUBINIT_H

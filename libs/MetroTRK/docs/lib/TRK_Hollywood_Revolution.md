@@ -13,17 +13,17 @@
 | nubinit.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | msg.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | msgbuf.o | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
-| serpoll.o | 51.4018691588785% | 4 / 5 | 80.0% | :eight_pointed_black_star: 
+| serpoll.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | usr_put.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dispatch.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | msghndlr.o | 0.0% | 0 / 16 | 0.0% | :x: 
 | support.o | 0.0% | 0 / 5 | 0.0% | :x: 
 | mutex_TRK.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| notify.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| flush_cache.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| mem_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| string_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
-| targimpl.o | 6.287425149700598% | 3 / 28 | 10.714285714285714% | :eight_pointed_black_star: 
+| notify.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| flush_cache.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| mem_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| string_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
+| targimpl.o | 61.91616766467066% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
 | mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
@@ -93,7 +93,7 @@
 | TRKInitializeSerialHandler | :white_check_mark: |
 | TRKProcessInput | :white_check_mark: |
 | TRKGetInput | :white_check_mark: |
-| TRKTestForPacket | :x: |
+| TRKTestForPacket | :white_check_mark: |
 
 
 # usr_put.o
@@ -152,25 +152,25 @@
 # notify.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKDoNotifyStopped | :x: |
+| TRKDoNotifyStopped | :white_check_mark: |
 
 
 # flush_cache.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRK_flush_cache | :x: |
+| TRK_flush_cache | :white_check_mark: |
 
 
 # mem_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRK_fill_mem | :x: |
+| TRK_fill_mem | :white_check_mark: |
 
 
 # string_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRK_strlen | :x: |
+| TRK_strlen | :white_check_mark: |
 
 
 # targimpl.o
@@ -178,30 +178,30 @@
 | ------------- | ------------- |
 | __TRK_get_MSR | :white_check_mark: |
 | __TRK_set_MSR | :white_check_mark: |
-| TRK_ppc_memcpy | :x: |
+| TRK_ppc_memcpy | :white_check_mark: |
 | TRKInterruptHandler | :white_check_mark: |
-| TRKExceptionHandler | :x: |
-| TRKSwapAndGo | :x: |
-| TRKInterruptHandlerEnableInterrupts | :x: |
-| ReadFPSCR | :x: |
-| WriteFPSCR | :x: |
-| TRKTargetSetInputPendingPtr | :x: |
-| TRKTargetStop | :x: |
-| TRKTargetSetStopped | :x: |
-| TRKTargetStopped | :x: |
-| TRKTargetSupportRequest | :x: |
-| TRKTargetGetPC | :x: |
-| TRKTargetStepOutOfRange | :x: |
-| TRKTargetSingleStep | :x: |
-| TRKTargetAddExceptionInfo | :x: |
-| TRKTargetAddStopInfo | :x: |
-| TRKTargetInterrupt | :x: |
-| TRKPostInterruptEvent | :x: |
-| TRKTargetAccessExtended2 | :x: |
-| TRKTargetAccessExtended1 | :x: |
+| TRKExceptionHandler | :white_check_mark: |
+| TRKSwapAndGo | :white_check_mark: |
+| TRKInterruptHandlerEnableInterrupts | :white_check_mark: |
+| ReadFPSCR | :white_check_mark: |
+| WriteFPSCR | :white_check_mark: |
+| TRKTargetSetInputPendingPtr | :white_check_mark: |
+| TRKTargetStop | :white_check_mark: |
+| TRKTargetSetStopped | :white_check_mark: |
+| TRKTargetStopped | :white_check_mark: |
+| TRKTargetSupportRequest | :white_check_mark: |
+| TRKTargetGetPC | :white_check_mark: |
+| TRKTargetStepOutOfRange | :white_check_mark: |
+| TRKTargetSingleStep | :white_check_mark: |
+| TRKTargetAddExceptionInfo | :white_check_mark: |
+| TRKTargetAddStopInfo | :white_check_mark: |
+| TRKTargetInterrupt | :white_check_mark: |
+| TRKPostInterruptEvent | :white_check_mark: |
+| TRKTargetAccessExtended2 | :white_check_mark: |
+| TRKTargetAccessExtended1 | :white_check_mark: |
 | TRKTargetAccessFP | :x: |
 | TRKTargetAccessDefault | :x: |
-| TRKTargetReadInstruction | :x: |
+| TRKTargetReadInstruction | :white_check_mark: |
 | TRKTargetAccessMemory | :x: |
 | TRKValidMemory32 | :x: |
 

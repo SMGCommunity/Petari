@@ -53,8 +53,8 @@ int TRKPostEvent(const NubEvent *copiedEvent) {
     return result;
 }
 
-bool TRKGetNextEvent(NubEvent* resultEvent) {
-    bool result = 0;
+s32 TRKGetNextEvent(NubEvent* resultEvent) {
+    s32 result = 0;
 
     TRKAcquireMutex(&gTRKEventQueue.fMutex);
 

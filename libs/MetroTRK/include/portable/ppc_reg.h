@@ -1,6 +1,12 @@
 #ifndef PPC_REG_H
 #define PPC_REG_H
 
+#include "TRK_Types.h"
+
+typedef u32       DefaultType;
+typedef u32       Extended1Type;
+typedef u64       FloatType;
+
 typedef struct Default_PPC{
 	ui32 GPR[32];
 	ui32 PC;
@@ -9,6 +15,18 @@ typedef struct Default_PPC{
 	ui32 CTR;
 	ui32 XER;
 } Default_PPC;
+
+typedef DefaultType    PCType;
+typedef u32            InstructionType;
+typedef u16            ExceptionCauseType;
+
+typedef struct StopInfo_PPC
+{
+    PCType PC;
+    InstructionType PCInstruction;
+    ExceptionCauseType exceptionID;
+    u8 pad[2];
+} StopInfo_PPC;
 
 typedef struct Float_PPC{
 	ui64 FPR[32];

@@ -21,7 +21,7 @@ typedef struct NubEvent {
 } NubEvent;
 
 void TRKConstructEvent(NubEvent *, NubEventType);
-bool TRKGetNextEvent(NubEvent *);
+int TRKGetNextEvent(NubEvent *);
 int TRKPostEvent(const NubEvent *);
 
 #endif // NUBEVENT_H

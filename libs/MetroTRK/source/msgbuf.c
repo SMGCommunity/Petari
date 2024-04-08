@@ -267,7 +267,7 @@ void TRKReleaseBuffer(MessageBufferID bufferID) {
     }
 }
 
-void TRKSetBufferUsed(MessageBuffer *buffer, bool flag) {
+void TRKSetBufferUsed(MessageBuffer *buffer, s32 flag) {
     buffer->fInUse = flag;
 }
 

@@ -7,8 +7,8 @@
 void TRKNubMainLoop(void) {
 	MessageBuffer* msg;
 	NubEvent event;
-	bool var_r31 = false;
-	bool var_r30 = false;
+	s32 var_r31 = false;
+	s32 var_r30 = false;
 
 	while (var_r31 == false) {
 		if (TRKGetNextEvent(&event) != false) {
