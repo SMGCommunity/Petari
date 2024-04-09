@@ -43,7 +43,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
     includes = f"-i {msl_path} "
     flags += includes
 
-    default_compiler_path = pathlib.Path("../../Compilers/Wii/1.7/")
+    default_compiler_path = pathlib.Path("../../Compilers/Wii/1.1/")
 
     compiler_exceptions = {
         #"source\JSystem\JKernel\JKRHeap.cpp": pathlib.Path("GC/1.2.5/")

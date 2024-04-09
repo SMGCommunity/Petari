@@ -25,7 +25,7 @@
 | string_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | targimpl.o | 89.88023952095809% | 27 / 28 | 96.42857142857143% | :eight_pointed_black_star: 
 | mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| mslsupp.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| mslsupp.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dolphin_trk_glue.o | 28.289473684210524% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
@@ -216,8 +216,8 @@
 # mslsupp.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __TRK_write_console | :x: |
-| __read_console | :x: |
+| __TRK_write_console | :white_check_mark: |
+| __read_console | :white_check_mark: |
 
 
 # dolphin_trk.o

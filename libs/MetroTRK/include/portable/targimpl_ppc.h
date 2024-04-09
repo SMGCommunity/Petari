@@ -19,4 +19,10 @@ typedef enum MemoryAccessOptions
     kDebuggerMemory
 } MemoryAccessOptions;
 
+typedef enum ValidMemoryOptions
+{
+    kValidMemoryReadable,
+    kValidMemoryWriteable
+} ValidMemoryOptions;
+
 #endif // TARGIMPL_PPC_H

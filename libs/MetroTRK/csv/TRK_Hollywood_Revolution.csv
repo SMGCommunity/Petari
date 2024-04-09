@@ -90,8 +90,8 @@ TRKTargetAccessMemory,targimpl.o,TRK_Hollywood_Revolution.a,true
 TRKValidMemory32,targimpl.o,TRK_Hollywood_Revolution.a,false
 TRKSaveExtended1Block,mpc_7xx_603e.o,TRK_Hollywood_Revolution.a,false
 TRKRestoreExtended1Block,mpc_7xx_603e.o,TRK_Hollywood_Revolution.a,false
-__TRK_write_console,mslsupp.o,TRK_Hollywood_Revolution.a,false
-__read_console,mslsupp.o,TRK_Hollywood_Revolution.a,false
+__TRK_write_console,mslsupp.o,TRK_Hollywood_Revolution.a,true
+__read_console,mslsupp.o,TRK_Hollywood_Revolution.a,true
 InitMetroTRK,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
 InitMetroTRK_BBA,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
 TRKInitializeTarget,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
