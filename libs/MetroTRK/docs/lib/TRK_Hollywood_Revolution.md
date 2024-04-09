@@ -24,7 +24,7 @@
 | mem_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | string_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | targimpl.o | 89.88023952095809% | 27 / 28 | 96.42857142857143% | :eight_pointed_black_star: 
-| mpc_7xx_603e.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| mpc_7xx_603e.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | mslsupp.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
 | main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
@@ -209,8 +209,8 @@
 # mpc_7xx_603e.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRKSaveExtended1Block | :x: |
-| TRKRestoreExtended1Block | :x: |
+| TRKSaveExtended1Block | :white_check_mark: |
+| TRKRestoreExtended1Block | :white_check_mark: |
 
 
 # mslsupp.o
