@@ -8,7 +8,7 @@ inline IOError __access_file(u32 handle, u8 *buffer,
 IOError __read_file(u32 handle, u8 *buffer, size_t *count, __ref_con ref_con);
 
 /* it will not inline __write_file but it matches otherwise */
-static IOError __TRK_write_console(u32 handle, u8 *buffer, size_t *count, __ref_con ref_con) {
+IOError __TRK_write_console(u32 handle, u8 *buffer, size_t *count, __ref_con ref_con) {
     if ((GetUseSerialIO() & 0xFF) == 0) {
         return 1;
     }
