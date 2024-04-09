@@ -27,7 +27,7 @@
 | mpc_7xx_603e.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | mslsupp.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | dolphin_trk.o | 0.0% | 0 / 6 | 0.0% | :x: 
-| main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
+| main_TRK.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | dolphin_trk_glue.o | 28.289473684210524% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
 | targcont.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | target_options.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
@@ -234,7 +234,7 @@
 # main_TRK.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| TRK_main | :x: |
+| TRK_main | :white_check_mark: |
 
 
 # dolphin_trk_glue.o

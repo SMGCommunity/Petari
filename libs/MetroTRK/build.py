@@ -39,7 +39,7 @@ def main(compile_non_matching, use_ninja, clean_ninja, link):
 
     msl_path =          pathlib.Path("../MSL_C/include")
 
-    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -fp hard -Cpp_exceptions off -char signed  -pool off -use_lmw_stmw on -rostr -rtti off -DEPPC -DGEKKO -O4,p -inline auto,smart -i . -I- -i include "
+    flags = "-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -fp hard -Cpp_exceptions off -char signed  -pool off -ipa file -use_lmw_stmw on -rostr -rtti off -DEPPC -DGEKKO -O4,p -inline auto,smart -i . -I- -i include "
     includes = f"-i {msl_path} "
     flags += includes
 

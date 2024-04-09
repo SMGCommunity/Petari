@@ -98,7 +98,7 @@ TRKInitializeTarget,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
 __TRK_copy_vectors,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
 TRKTargetTranslate,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
 EnableMetroTRKInterrupts,dolphin_trk.o,TRK_Hollywood_Revolution.a,false
-TRK_main,main_TRK.o,TRK_Hollywood_Revolution.a,false
+TRK_main,main_TRK.o,TRK_Hollywood_Revolution.a,true
 TRKLoadContext,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,false
 TRKUARTInterruptHandler,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,false
 InitializeProgramEndTrap,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,false
