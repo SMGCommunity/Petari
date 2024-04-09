@@ -30,7 +30,7 @@
 | main_TRK.o | 0.0% | 0 / 1 | 0.0% | :x: 
 | dolphin_trk_glue.o | 28.289473684210524% | 6 / 13 | 46.15384615384615% | :eight_pointed_black_star: 
 | targcont.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| target_options.o | 42.857142857142854% | 1 / 2 | 50.0% | :eight_pointed_black_star: 
+| target_options.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | UDP_Stubs.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | main.o | 0.0% | 0 / 11 | 0.0% | :x: 
 | CircleBuffer.o | 0.0% | 0 / 4 | 0.0% | :x: 
@@ -264,7 +264,7 @@
 # target_options.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| GetUseSerialIO | :x: |
+| GetUseSerialIO | :white_check_mark: |
 | SetUseSerialIO | :white_check_mark: |
 
 

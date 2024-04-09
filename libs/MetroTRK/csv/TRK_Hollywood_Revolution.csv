@@ -113,7 +113,7 @@ TRKInitializeIntDrivenUART,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,false
 InitMetroTRKCommTable,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,false
 TRKEXICallBack,dolphin_trk_glue.o,TRK_Hollywood_Revolution.a,true
 TRKTargetContinue,targcont.o,TRK_Hollywood_Revolution.a,true
-GetUseSerialIO,target_options.o,TRK_Hollywood_Revolution.a,false
+GetUseSerialIO,target_options.o,TRK_Hollywood_Revolution.a,true
 SetUseSerialIO,target_options.o,TRK_Hollywood_Revolution.a,true
 udp_cc_post_stop,UDP_Stubs.o,TRK_Hollywood_Revolution.a,true
 udp_cc_pre_continue,UDP_Stubs.o,TRK_Hollywood_Revolution.a,true
