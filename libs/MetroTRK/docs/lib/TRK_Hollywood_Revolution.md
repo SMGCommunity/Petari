@@ -32,9 +32,9 @@
 | targcont.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | target_options.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | UDP_Stubs.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
-| main.o | 0.0% | 0 / 11 | 0.0% | :x: 
-| CircleBuffer.o | 0.0% | 0 / 4 | 0.0% | :x: 
-| MWCriticalSection_gc.o | 0.0% | 0 / 3 | 0.0% | :x: 
+| main.o | 10.795454545454545% | 1 / 11 | 9.090909090909092% | :eight_pointed_black_star: 
+| CircleBuffer.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
+| MWCriticalSection_gc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 
 
 # mainloop.o
@@ -295,23 +295,23 @@
 | gdev_cc_open | :x: |
 | gdev_cc_shutdown | :x: |
 | gdev_cc_initialize | :x: |
-| OutputData | :x: |
+| OutputData | :white_check_mark: |
 
 
 # CircleBuffer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| CircleBufferReadBytes | :x: |
-| CircleBufferWriteBytes | :x: |
-| CircleBufferInitialize | :x: |
-| CBGetBytesAvailableForRead | :x: |
+| CircleBufferReadBytes | :white_check_mark: |
+| CircleBufferWriteBytes | :white_check_mark: |
+| CircleBufferInitialize | :white_check_mark: |
+| CBGetBytesAvailableForRead | :white_check_mark: |
 
 
 # MWCriticalSection_gc.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| MWExitCriticalSection | :x: |
-| MWEnterCriticalSection | :x: |
-| MWInitializeCriticalSection | :x: |
+| MWExitCriticalSection | :white_check_mark: |
+| MWEnterCriticalSection | :white_check_mark: |
+| MWInitializeCriticalSection | :white_check_mark: |
 
 
