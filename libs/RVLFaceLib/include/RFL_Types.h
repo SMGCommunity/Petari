@@ -116,6 +116,16 @@ typedef enum {
     RFLResolution_256M = 256 | 128 | 64 | 32
 } RFLResolution;
 
+typedef enum {
+    RFLExpFlag_Normal = (1 << RFLExp_Normal),
+    RFLExpFlag_Smile = (1 << RFLExp_Smile),
+    RFLExpFlag_Anger = (1 << RFLExp_Anger),
+    RFLExpFlag_Sorrow = (1 << RFLExp_Sorrow),
+    RFLExpFlag_Surprise = (1 << RFLExp_Surprise),
+    RFLExpFlag_Blink = (1 << RFLExp_Blink),
+    RFLExpFlag_OpenMouth = (1 << RFLExp_OpenMouth),
+} RFLExpFlag;
+
 typedef enum { RFLSex_Male, RFLSex_Female, RFLSex_All } RFLSex;
 
 /**

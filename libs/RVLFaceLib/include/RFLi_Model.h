@@ -139,6 +139,10 @@ inline void RFLiSetCoordinateData(const RFLiCoordinateData* data) {
     coordinateData = *data;
 }
 
+inline RFLiCoordinateData* RFLiGetCoordinateData(void) {
+    return &coordinateData;
+}
+
 u32 RFLiGetExpressionNum(u32 exprFlags);
 void RFLiInitCharModel(RFLCharModel* model, RFLiCharInfo* info, void* work,
                        RFLResolution res, u32 exprFlags);
