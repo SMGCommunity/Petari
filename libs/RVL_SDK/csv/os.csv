@@ -127,10 +127,10 @@ __OSUnmaskInterrupts,OSInterrupt.o,os.a,true
 __OSDispatchInterrupt,OSInterrupt.o,os.a,true
 ExternalInterruptHandler,OSInterrupt.o,os.a,true
 __OSModuleInit,OSLink.o,os.a,true
-OSInitMessageQueue,OSMessage.o,os.a,false
-OSSendMessage,OSMessage.o,os.a,false
-OSReceiveMessage,OSMessage.o,os.a,false
-OSJamMessage,OSMessage.o,os.a,false
+OSInitMessageQueue,OSMessage.o,os.a,true
+OSSendMessage,OSMessage.o,os.a,true
+OSReceiveMessage,OSMessage.o,os.a,true
+OSJamMessage,OSMessage.o,os.a,true
 OSGetPhysicalMem1Size,OSMemory.o,os.a,true
 OSGetPhysicalMem2Size,OSMemory.o,os.a,true
 OSGetConsoleSimulatedMem1Size,OSMemory.o,os.a,true

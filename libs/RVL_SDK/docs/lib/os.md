@@ -21,7 +21,7 @@
 | OSFont.o | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | OSInterrupt.o | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | OSLink.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
-| OSMessage.o | 0.0% | 0 / 4 | 0.0% | :x: 
+| OSMessage.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
 | OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -238,10 +238,10 @@
 # OSMessage.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| OSInitMessageQueue | :x: |
-| OSSendMessage | :x: |
-| OSReceiveMessage | :x: |
-| OSJamMessage | :x: |
+| OSInitMessageQueue | :white_check_mark: |
+| OSSendMessage | :white_check_mark: |
+| OSReceiveMessage | :white_check_mark: |
+| OSJamMessage | :white_check_mark: |
 
 
 # OSMemory.o

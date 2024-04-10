@@ -255,6 +255,11 @@ lib_percent_colors = {
     "wud": "016eee",
 }
 
+doGraph = False
+
+if "-graph" in sys.argv:
+    doGraph = True
+
 func_sizes = {}
 
 # start by reading function sizes
@@ -344,46 +349,47 @@ for key in libraries:
     lib = libraries[key]
     lib.generateMarkdown()
 
-print("Generating progress graph...")
+if doGraph:
+    print("Generating progress graph...")
 
-# now we do the cool progress drawing chart
-x_axis = [datetime.datetime.now()]
-y_axis = [progPercent_sdk]
+    # now we do the cool progress drawing chart
+    x_axis = [datetime.datetime.now()]
+    y_axis = [progPercent_sdk]
 
-# np.seterr(all="ignore")
+    # np.seterr(all="ignore")
 
-repo = Repo("../../")
+    repo = Repo("../../")
 
-for commit in repo.iter_commits(rev='92c1a7e..master'):
-    cur_file = None
+    for commit in repo.iter_commits(rev='92c1a7e..master'):
+        cur_file = None
 
-    try:
-        cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'percent.json'
-    except:
         try:
-            cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'sdk.json'
+            cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'percent.json'
         except:
             try:
-                cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'SDK.json'
+                cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'sdk.json'
             except:
+                try:
+                    cur_file = commit.tree / 'libs' / 'RVL_SDK' / 'data' / 'SDK.json'
+                except:
+                    pass
                 pass
             pass
-        pass
 
-    if cur_file is None:
-        continue
-
-    with io.BytesIO(cur_file.data_stream.read()) as f:
-        try:
-            percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
-            x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
-            y_axis.append(float(percent_str))
-        except:
+        if cur_file is None:
             continue
 
-df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
-fig = px.line(df, x='date', y='progress', title='RVL_SDK Progress', line_shape='hv', markers=False)
-fig.update_yaxes(ticksuffix='%')
-fig.write_image('prog.png')
+        with io.BytesIO(cur_file.data_stream.read()) as f:
+            try:
+                percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
+                x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
+                y_axis.append(float(percent_str))
+            except:
+                continue
+
+    df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
+    fig = px.line(df, x='date', y='progress', title='RVL_SDK Progress', line_shape='hv', markers=False)
+    fig.update_yaxes(ticksuffix='%')
+    fig.write_image('prog.png')
 
 print("Done.")

@@ -25,4 +25,6 @@ typedef enum ValidMemoryOptions
     kValidMemoryWriteable
 } ValidMemoryOptions;
 
+void SetUseSerialIO(u8);
+
 #endif // TARGIMPL_PPC_H

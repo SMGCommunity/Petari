@@ -53,6 +53,12 @@ typedef double f64;
 typedef char s8;
 typedef short s16;
 typedef int s32;
+typedef long long s64;
+
+#define DSFetch_u8(_p_)     (*((u8 *)_p_))
+#define DSFetch_u16(_p_)    (*((u16 *)_p_))
+#define DSFetch_u32(_p_)    (*((u32 *)_p_))
+#define DSFetch_u64(_p_)    (*((u64 *)_p_))
 
 
 #endif // TRK_TYPES_H

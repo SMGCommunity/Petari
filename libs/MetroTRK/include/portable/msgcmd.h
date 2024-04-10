@@ -48,6 +48,29 @@ typedef enum
     kDSStepOverRange = 0x11             /* Step over until PC is out of specified range */
 } DSMessageStepOptions;
 
+typedef enum
+{
+    kDSReplyNoError                 = 0x00, /* no error */
+    kDSReplyError                   = 0x01, /* generic error in CWDS message */
+    kDSReplyPacketSizeError         = 0x02, /* unexpected pkt size in send msg */
+    kDSReplyCWDSError               = 0x03, /* internal error occurred in CWDS */
+    kDSReplyEscapeError             = 0x04, /* escape followed by frame flag */
+    kDSReplyBadFCS                  = 0x05, /* bad FCS in packet */
+    kDSReplyOverflow                = 0x06, /* packet too long */
+
+    kDSReplyUnsupportedCommandError = 0x10, /* command not supported */
+    kDSReplyParameterError          = 0x11, /* command param out of range */
+    kDSReplyUnsupportedOptionError  = 0x12, /* an option was not supported */
+    kDSReplyInvalidMemoryRange      = 0x13, /* read/write to invalid memory */
+    kDSReplyInvalidRegisterRange    = 0x14, /* read/write invalid registers */
+    kDSReplyCWDSException           = 0x15, /* exception occurred in CWDS */
+    kDSReplyNotStopped              = 0x16, /* targeted system or thread is running */
+
+    kDSReplyOsError                 = 0x20, /* general OS-related error */
+    kDSReplyInvalidProcessId        = 0x21, /* request specified invalid process */
+    kDSReplyInvalidThreadId         = 0x22  /* request specified invalid thread */
+} DSReplyError;
+
 #define DSFetch_s8(_p_)     (*((s8 *)_p_))
 #define DSFetch_s16(_p_)    (*((s16 *)_p_))
 #define DSFetch_s32(_p_)    (*((s32 *)_p_))
