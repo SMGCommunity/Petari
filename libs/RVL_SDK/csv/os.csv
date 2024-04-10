@@ -154,8 +154,8 @@ OSLockMutex,OSMutex.o,os.a,true
 OSUnlockMutex,OSMutex.o,os.a,true
 __OSUnlockAllMutex,OSMutex.o,os.a,true
 OSTryLockMutex,OSMutex.o,os.a,true
-__OSReboot,OSReboot.o,os.a,false
-OSGetSaveRegion,OSReboot.o,os.a,false
+__OSReboot,OSReboot.o,os.a,true
+OSGetSaveRegion,OSReboot.o,os.a,true
 OSRegisterShutdownFunction,OSReset.o,os.a,true
 __OSCallShutdownFunctions,OSReset.o,os.a,true
 __OSShutdownDevices,OSReset.o,os.a,true

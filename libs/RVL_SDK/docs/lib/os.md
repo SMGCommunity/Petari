@@ -24,7 +24,7 @@
 | OSMessage.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSMemory.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | OSMutex.o | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
-| OSReboot.o | 0.0% | 0 / 2 | 0.0% | :x: 
+| OSReboot.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
 | OSReset.o | 84.006734006734% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
@@ -280,8 +280,8 @@
 # OSReboot.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| __OSReboot | :x: |
-| OSGetSaveRegion | :x: |
+| __OSReboot | :white_check_mark: |
+| OSGetSaveRegion | :white_check_mark: |
 
 
 # OSReset.o
