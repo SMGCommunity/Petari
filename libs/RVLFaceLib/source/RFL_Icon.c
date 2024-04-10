@@ -17,7 +17,7 @@ RFLErrcode RFLMakeIcon(void *buf, RFLDataSource source, RFLMiddleDB *middleDB, u
     return err;
 }
 
-RFLErrcode RFLiMakeIcon(void* buf, RFLiCharInfo* info, RFLExpression expression,
+void RFLiMakeIcon(void* buf, RFLiCharInfo* info, RFLExpression expression,
                         const RFLIconSetting* setting) {
     RFLCharModel model;               // sp+218
     void* modelBuf;                   // sp+84

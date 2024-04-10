@@ -13,7 +13,7 @@
 | RFL_NANDAccess.o | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | RFL_Model.o | 100.0% | 18 / 18 | 100.0% | :white_check_mark: 
 | RFL_MakeTex.o | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
-| RFL_Icon.o | 10.875331564986737% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
+| RFL_Icon.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | RFL_HiddenDatabase.o | 100.0% | 1 / 1 | 100.0% | :white_check_mark: 
 | RFL_Database.o | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | RFL_Controller.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
@@ -135,7 +135,7 @@
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | RFLMakeIcon | :white_check_mark: |
-| RFLiMakeIcon | :x: |
+| RFLiMakeIcon | :white_check_mark: |
 | RFLSetIconDrawDoneCallback | :white_check_mark: |
 
 

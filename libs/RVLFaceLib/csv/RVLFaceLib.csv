@@ -83,7 +83,7 @@ RFLiDrawQuad,RFL_MakeTex.o,RVLFaceLib.a,true
 RFLiGetMaxMaskRsl,RFL_MakeTex.o,RVLFaceLib.a,true
 RFLiGetMaskBufSize,RFL_MakeTex.o,RVLFaceLib.a,true
 RFLMakeIcon,RFL_Icon.o,RVLFaceLib.a,true
-RFLiMakeIcon,RFL_Icon.o,RVLFaceLib.a,false
+RFLiMakeIcon,RFL_Icon.o,RVLFaceLib.a,true
 RFLSetIconDrawDoneCallback,RFL_Icon.o,RVLFaceLib.a,true
 RFLiInitHiddenDatabase,RFL_HiddenDatabase.o,RVLFaceLib.a,true
 RFLiInitDatabase,RFL_Database.o,RVLFaceLib.a,true
