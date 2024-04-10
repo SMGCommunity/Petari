@@ -17,7 +17,7 @@ OSDefaultExceptionHandler,OS.o,os.a,true
 __OSPSInit,OS.o,os.a,true
 __OSGetDIConfig,OS.o,os.a,true
 OSRegisterVersion,OS.o,os.a,true
-OSGetAppGamename,OS.o,os.a,false
+OSGetAppGamename,OS.o,os.a,true
 OSGetAppType,OS.o,os.a,true
 __OSInitAlarm,OSAlarm.o,os.a,true
 OSCreateAlarm,OSAlarm.o,os.a,true

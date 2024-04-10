@@ -6,7 +6,6 @@
 #include <revolution/os/OSBootInfo.h>
 #include <cstring>
 #include "private/flipper.h"
-#include <dolphin.h>
 
 #include <__ppc_eabi_linker.h>
 
@@ -45,7 +44,7 @@ static f32 ZeroPS[2];
 
 static DVDDriveInfo DriveInfo;
 static DVDCommandBlock DriveBlock;
-
+static char GameNameBuffer[5];
 __declspec(weak) BOOL __OSIsGcam = FALSE;
 OSTime __OSStartTime;
 BOOL __OSInIPL = FALSE;
@@ -851,6 +850,26 @@ u32 __OSGetDIConfig(void) {
 
 void OSRegisterVersion(const char *id) {
     OSReport("%s\n", id);
+}
+
+static const char* AppGameNameForSysMenu = "HAEA";
+
+const char* OSGetAppGamename(void) {
+    const char* appNameSrc = (char*)OSPhysicalToCached(0x3194);
+
+    if (__OSInIPL) {
+        appNameSrc = AppGameNameForSysMenu;
+    }
+    else if ((*appNameSrc < '0') || ('9' < *appNameSrc && *appNameSrc < 'A') || ('Z' < *appNameSrc)) {
+        appNameSrc = (char*)OSPhysicalToCached(0x3180);
+    }
+
+    GameNameBuffer[0] = *appNameSrc++;
+    GameNameBuffer[1] = *appNameSrc++;
+    GameNameBuffer[2] = *appNameSrc++;
+    GameNameBuffer[3] = *appNameSrc;
+    GameNameBuffer[4] = 0x00;
+    return GameNameBuffer;
 }
 
 const u8 OSGetAppType(void) {

@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| OS.o | 97.42990654205607% | 19 / 20 | 95.0% | :eight_pointed_black_star: 
+| OS.o | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
 | OSAlarm.o | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | OSAlloc.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSArena.o | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
@@ -63,7 +63,7 @@
 | __OSPSInit | :white_check_mark: |
 | __OSGetDIConfig | :white_check_mark: |
 | OSRegisterVersion | :white_check_mark: |
-| OSGetAppGamename | :x: |
+| OSGetAppGamename | :white_check_mark: |
 | OSGetAppType | :white_check_mark: |
 
 
