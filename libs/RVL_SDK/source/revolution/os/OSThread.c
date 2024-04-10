@@ -647,3 +647,52 @@ void OSClearStack(u8 val) {
         *p = pattern;
     }
 }
+
+BOOL OSSetThreadPriority(OSThread* thread, OSPriority priority) {
+    BOOL enabled;
+
+    if (priority < 0 || priority > 31) {
+        return FALSE;
+    }
+
+    enabled = OSDisableInterrupts();
+
+    if (thread->base != priority) {
+        thread->base = priority;
+        UpdatePriority(thread);
+        __OSReschedule();
+    }
+
+    OSRestoreInterrupts(enabled);
+    return TRUE;
+}
+
+OSPriority OSGetThreadPriority(OSThread* thread) {
+    return thread->base;
+}
+
+static void SleepAlarmHandler(OSAlarm *alarm, OSContext *context) {
+    OSResumeThread((OSThread*)OSGetAlarmUserData(alarm));
+}
+
+void OSSleepTicks(OSTime tick) {
+    BOOL enabled;
+    OSThread* current;
+    OSAlarm sleepAlarm;
+
+    enabled = OSDisableInterrupts();
+    current = OSGetCurrentThread();
+
+    if (current == NULL) {
+        OSRestoreInterrupts(enabled);
+        return;
+    }
+
+    OSCreateAlarm(&sleepAlarm);
+    OSSetAlarmTag(&sleepAlarm, (u32)current);
+    OSSetAlarmUserData(&sleepAlarm, (void*)current);
+    OSSetAlarm(&sleepAlarm, tick, SleepAlarmHandler);
+    OSSuspendThread(current);
+    OSCancelAlarm(&sleepAlarm);
+    OSRestoreInterrupts(enabled);
+}

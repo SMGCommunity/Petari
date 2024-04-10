@@ -28,7 +28,7 @@
 | OSReset.o | 84.006734006734% | 11 / 14 | 78.57142857142857% | :eight_pointed_black_star: 
 | OSRtc.o | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | OSSync.o | 100.0% | 2 / 2 | 100.0% | :white_check_mark: 
-| OSThread.o | 91.31016042780749% | 23 / 28 | 82.14285714285714% | :eight_pointed_black_star: 
+| OSThread.o | 100.0% | 28 / 28 | 100.0% | :white_check_mark: 
 | OSTime.o | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | OSUtf.o | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | OSIpc.o | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -341,7 +341,7 @@
 | __OSPromoteThread | :white_check_mark: |
 | SelectThread | :white_check_mark: |
 | __OSReschedule | :white_check_mark: |
-| OSYieldThread | :x: |
+| OSYieldThread | :white_check_mark: |
 | OSCreateThread | :white_check_mark: |
 | OSExitThread | :white_check_mark: |
 | OSCancelThread | :white_check_mark: |
@@ -351,10 +351,10 @@
 | OSSuspendThread | :white_check_mark: |
 | OSSleepThread | :white_check_mark: |
 | OSWakeupThread | :white_check_mark: |
-| OSSetThreadPriority | :x: |
-| OSGetThreadPriority | :x: |
-| SleepAlarmHandler | :x: |
-| OSSleepTicks | :x: |
+| OSSetThreadPriority | :white_check_mark: |
+| OSGetThreadPriority | :white_check_mark: |
+| SleepAlarmHandler | :white_check_mark: |
+| OSSleepTicks | :white_check_mark: |
 
 
 # OSTime.o

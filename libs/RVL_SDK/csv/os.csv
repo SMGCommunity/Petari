@@ -195,7 +195,7 @@ SetEffectivePriority,OSThread.o,os.a,true
 __OSPromoteThread,OSThread.o,os.a,true
 SelectThread,OSThread.o,os.a,true
 __OSReschedule,OSThread.o,os.a,true
-OSYieldThread,OSThread.o,os.a,false
+OSYieldThread,OSThread.o,os.a,true
 OSCreateThread,OSThread.o,os.a,true
 OSExitThread,OSThread.o,os.a,true
 OSCancelThread,OSThread.o,os.a,true
@@ -205,10 +205,10 @@ OSResumeThread,OSThread.o,os.a,true
 OSSuspendThread,OSThread.o,os.a,true
 OSSleepThread,OSThread.o,os.a,true
 OSWakeupThread,OSThread.o,os.a,true
-OSSetThreadPriority,OSThread.o,os.a,false
-OSGetThreadPriority,OSThread.o,os.a,false
-SleepAlarmHandler,OSThread.o,os.a,false
-OSSleepTicks,OSThread.o,os.a,false
+OSSetThreadPriority,OSThread.o,os.a,true
+OSGetThreadPriority,OSThread.o,os.a,true
+SleepAlarmHandler,OSThread.o,os.a,true
+OSSleepTicks,OSThread.o,os.a,true
 OSGetTime,OSTime.o,os.a,true
 OSGetTick,OSTime.o,os.a,true
 __OSGetSystemTime,OSTime.o,os.a,true
