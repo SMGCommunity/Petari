@@ -2,9 +2,11 @@
 
 #include <revolution.h>
 #include "Inline.hpp"
-#include "math_types.hpp"
+//#include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
+
+extern Vec gZeroVec;
 
 namespace JGeometry {
     void negateInternal(const f32 *rSrc, f32 *rDest);

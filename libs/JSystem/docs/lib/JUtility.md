@@ -12,7 +12,7 @@
 | JUTPalette.o | 0.0% | 0 / 3 | 0.0% | :x: 
 | JUTNameTab.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | JUTFont.o | 0.0% | 0 / 2 | 0.0% | :x: 
-| JUTException.o | 0.0% | 0 / 28 | 0.0% | :x: 
+| JUTException.o | 6.821026282853566% | 3 / 28 | 10.714285714285714% | :eight_pointed_black_star: 
 | JUTDirectPrint.o | 0.0% | 0 / 9 | 0.0% | :x: 
 | JUTAssert.o | 0.0% | 0 / 7 | 0.0% | :x: 
 | JUTVideo.o | 0.0% | 0 / 13 | 0.0% | :x: 
@@ -70,9 +70,9 @@
 | __ct__12JUTExceptionFP14JUTDirectPrint | :x: |
 | create__12JUTExceptionFP14JUTDirectPrint | :x: |
 | run__12JUTExceptionFv | :x: |
-| errorHandler__12JUTExceptionFUsP9OSContextUlUl | :x: |
+| errorHandler__12JUTExceptionFUsP9OSContextUlUl | :white_check_mark: |
 | panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct | :x: |
-| panic_f__12JUTExceptionFPCciPCce | :x: |
+| panic_f__12JUTExceptionFPCciPCce | :white_check_mark: |
 | showFloatSub__12JUTExceptionFif | :x: |
 | showFloat__12JUTExceptionFP9OSContext | :x: |
 | searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl | :x: |
@@ -83,7 +83,7 @@
 | showGPRMap__12JUTExceptionFP9OSContext | :x: |
 | showSRR0Map__12JUTExceptionFP9OSContext | :x: |
 | printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl | :x: |
-| isEnablePad__12JUTExceptionCFv | :x: |
+| isEnablePad__12JUTExceptionCFv | :white_check_mark: |
 | printContext__12JUTExceptionFUsP9OSContextUlUl | :x: |
 | waitTime__12JUTExceptionFl | :x: |
 | createFB__12JUTExceptionFv | :x: |

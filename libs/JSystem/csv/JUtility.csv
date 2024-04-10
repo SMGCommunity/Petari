@@ -26,9 +26,9 @@ drawString_size_scale__7JUTFontFffffPCcUlb,JUTFont.o,JUtility.a,false
 __ct__12JUTExceptionFP14JUTDirectPrint,JUTException.o,JUtility.a,false
 create__12JUTExceptionFP14JUTDirectPrint,JUTException.o,JUtility.a,false
 run__12JUTExceptionFv,JUTException.o,JUtility.a,false
-errorHandler__12JUTExceptionFUsP9OSContextUlUl,JUTException.o,JUtility.a,false
+errorHandler__12JUTExceptionFUsP9OSContextUlUl,JUTException.o,JUtility.a,true
 panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct,JUTException.o,JUtility.a,false
-panic_f__12JUTExceptionFPCciPCce,JUTException.o,JUtility.a,false
+panic_f__12JUTExceptionFPCciPCce,JUTException.o,JUtility.a,true
 showFloatSub__12JUTExceptionFif,JUTException.o,JUtility.a,false
 showFloat__12JUTExceptionFP9OSContext,JUTException.o,JUtility.a,false
 searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl,JUTException.o,JUtility.a,false
@@ -39,7 +39,7 @@ showMapInfo_subroutine__12JUTExceptionFUlb,JUTException.o,JUtility.a,false
 showGPRMap__12JUTExceptionFP9OSContext,JUTException.o,JUtility.a,false
 showSRR0Map__12JUTExceptionFP9OSContext,JUTException.o,JUtility.a,false
 printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl,JUTException.o,JUtility.a,false
-isEnablePad__12JUTExceptionCFv,JUTException.o,JUtility.a,false
+isEnablePad__12JUTExceptionCFv,JUTException.o,JUtility.a,true
 printContext__12JUTExceptionFUsP9OSContextUlUl,JUTException.o,JUtility.a,false
 waitTime__12JUTExceptionFl,JUTException.o,JUtility.a,false
 createFB__12JUTExceptionFv,JUTException.o,JUtility.a,false

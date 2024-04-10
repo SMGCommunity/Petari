@@ -87,6 +87,8 @@ void* OSAllocFromMEM1ArenaLo(u32, u32);
 
 u32 OSGetPhysicalMem2Size(void);
 
+void OSProtectRange(u32, void *, u32, u32);
+
 typedef struct OSIOSRev {
     u8 reserved;
     u8 major;

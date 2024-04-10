@@ -13,7 +13,9 @@ void VIInit(void);
 u32 VIGetTVFormat(void);
 
 VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback);
-VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback );
+VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback);
+
+void* VIGetCurrentFrameBuffer(void);
 
 #ifdef __cplusplus
 }

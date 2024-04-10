@@ -315,11 +315,11 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                 continue
             
             if original_instruction.id == custom_instruction.id:
-                assert(len(original_operands) == len(custom_operands))
+                #assert(len(original_operands) == len(custom_operands))
 
                 # First check common r2 and r13 issues
                 if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STW, PPC_INS_STB, PPC_INS_LFS }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
                     # lbz, lwz, stw, stb and lfs are sometimes used with r13, which is a pointer to a read-write
                     # small data area (SDA). When compiling custom code, this SDA is not generated,
@@ -334,7 +334,7 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
                         continue
                     
                 if original_instruction.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
                     # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
 

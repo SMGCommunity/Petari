@@ -45,7 +45,7 @@ public:
     void* _5C;
     JKRThread::TLoad _60;
     u32 _74;
-    u32 _78;
+    void* _78;
 
     static JSUList<JKRThread> sThreadList;
     static JSUList<JKRTask> sTaskList;
