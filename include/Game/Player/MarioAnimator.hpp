@@ -16,7 +16,7 @@ public:
     void update();
 
     void setHoming();
-    bool isAnimationStop();
+    bool isAnimationStop() const;
     void setSpeed(f32);
     void forceSetBlendWeight(const f32 *);
     void waterToGround();

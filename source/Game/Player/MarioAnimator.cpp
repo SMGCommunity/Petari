@@ -61,3 +61,7 @@ void MarioAnimator::init()
     _10->mCore->shareJointTransform(_C->mCore);
     PSMTXCopy(MR::tmpMtxRotYRad(3.14159274101f), _DC.toMtxPtr());
 }
+
+bool MarioAnimator::isAnimationStop() const {
+    return _C->_5C - _C->_60 == 0;
+}

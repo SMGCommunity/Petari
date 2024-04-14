@@ -37,7 +37,10 @@ public:
 
     J3DModel *mModel;            // _0
     J3DModelData* mModelData;   // _4
-    u8 _8[0x6C-0x8];
+    u8 _8[0x5C-8];
+    u32 _5C;
+    u32 _60;
+    u8 _64[8];
     XanimeCore* mCore;          // _6C
     u8 _70[0x1C];
 };
