@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "Game/Animation/XanimeCore.hpp"
+#include "Game/Animation/XanimeResource.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
 
 class XanimeResourceTable;
@@ -27,20 +28,28 @@ public:
 
     const char* getCurrentAnimationName() const;
 
+    const char* getCurrentBckName() const;
+
     void setDefaultAnimation(const char *);
 
     void changeAnimation(const char *);
+    
+    void changeAnimation(const XanimeGroupInfo *);
 
     inline XanimeCore* getCore() {
         return mCore;
     }
 
     J3DModel *mModel;            // _0
-    J3DModelData* mModelData;   // _4
+    J3DModelData *mModelData;   // _4
     u8 _8[0x5C-8];
-    u32 _5C;
-    u32 _60;
+    const XanimeGroupInfo *mDefaultAnimation; // _5C
+    const XanimeGroupInfo *mStopAnimation; // _60
     u8 _64[8];
-    XanimeCore* mCore;          // _6C
-    u8 _70[0x1C];
+    XanimeCore *mCore;          // _6C
+    XanimeResourceTable *mResourceTable; // _70
+    u8 _74[0x8];
+    bool _7C;
+    bool _7D;
+    u8 _7E[0x8C - 0x7E];
 };

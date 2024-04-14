@@ -17,7 +17,7 @@ public:
 
 class XanimeGroupInfo {
 public:
-    XanimeBckTable mParent; // _0
+    XanimeBckTable mParent;    // _0
     f32 _4;
     u32 _8;
     f32 _C;
@@ -37,71 +37,71 @@ public:
 
 class XanimeSingleBckTable {
 public:
-    XanimeBckTable parent; // _0
-    
-    const char *fileName; // _4
-    u32 animationHash; // _8
-    u32 fileHash; // _C
+    XanimeBckTable parent;    // _0
+
+    const char *fileName;    // _4
+    u32 animationHash;       // _8
+    u32 fileHash;            // _C
 };
 
 class XanimeDoubleBckTable {
 public:
-    XanimeBckTable parent; // _0
-    
-    const char *fileName1; // _4
+    XanimeBckTable parent;    // _0
+
+    const char *fileName1;    // _4
     f32 _8;
-    
-    const char *fileName2; // _C
+
+    const char *fileName2;    // _C
     f32 _10;
 };
 
 class XanimeTripleBckTable {
 public:
-    XanimeBckTable parent; // _0
-    
-    const char *fileName1; // _4
+    XanimeBckTable parent;    // _0
+
+    const char *fileName1;    // _4
     f32 _8;
-    
-    const char *fileName2; // _C
+
+    const char *fileName2;    // _C
     f32 _10;
 
-    const char *fileName3; // _14;
+    const char *fileName3;    // _14;
     f32 _18;
 };
 
 class XanimeQuadBckTable {
 public:
-    XanimeBckTable parent; // _0
-    
-    const char *fileName1; // _4
+    XanimeBckTable parent;    // _0
+
+    const char *fileName1;    // _4
     f32 _8;
-    
-    const char *fileName2; // _C
+
+    const char *fileName2;    // _C
     f32 _10;
 
-    const char *fileName3; // _14;
+    const char *fileName3;    // _14;
     f32 _18;
-    
-    const char *fileName4; // _1C;
+
+    const char *fileName4;    // _1C;
     f32 _20;
 };
 
 // Size is 0x14
 class XanimeOfsInfo {
 public:
-    XanimeBckTable parent; // _0
-    
+    XanimeBckTable parent;    // _0
+
     f32 _4;
     f32 _8;
     f32 _C;
     u32 _10;
 };
 
-//size is 0x18
+// size is 0x18
 class XanimeAuxInfo {
 public:
-    XanimeBckTable parent; // _0
-    
+    XanimeBckTable parent;    // _0
+
     u8 _4;
     u32 _8;
 
@@ -111,24 +111,19 @@ public:
 
 class XanimeResourceTable {
 public:
-
-    XanimeResourceTable (
+    XanimeResourceTable(
 
         ResourceHolder *,
 
-        XanimeGroupInfo *,
-        XanimeAuxInfo *,
-        XanimeOfsInfo *,
+        XanimeGroupInfo *, XanimeAuxInfo *, XanimeOfsInfo *,
 
-        XanimeBckTable *,
-        XanimeBckTable *,
-        XanimeBckTable *,
-        XanimeBckTable *,
+        XanimeBckTable *, XanimeBckTable *, XanimeBckTable *, XanimeBckTable *,
 
-        XanimeSwapTable *
-    );
+        XanimeSwapTable *);
 
     XanimeResourceTable(ResourceHolder *);
+
+    const XanimeGroupInfo* getGroupInfo(const char *) const;
 
     u8 _0[0x78];
 };

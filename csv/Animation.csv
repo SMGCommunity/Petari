@@ -169,7 +169,7 @@ getMainAnimationTrans__12XanimePlayerCFUlPQ29JGeometry8TVec3<f>,XanimePlayer.o,A
 isRun__12XanimePlayerCFPCc,XanimePlayer.o,Animation.a,false
 isTerminate__12XanimePlayerCFPCc,XanimePlayer.o,Animation.a,false
 isTerminate__12XanimePlayerCFv,XanimePlayer.o,Animation.a,false
-setDefaultAnimation__12XanimePlayerFPCc,XanimePlayer.o,Animation.a,false
+setDefaultAnimation__12XanimePlayerFPCc,XanimePlayer.o,Animation.a,true
 runDefaultAnimation__12XanimePlayerFv,XanimePlayer.o,Animation.a,false
 isAnimationRunSimple__12XanimePlayerCFv,XanimePlayer.o,Animation.a,false
 getCurrentAnimationName__12XanimePlayerCFv,XanimePlayer.o,Animation.a,false

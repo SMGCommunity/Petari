@@ -23,6 +23,7 @@ public:
     void initCallbackTable();
     void change(const char *);
     void changeDefaultUpper(const char *);
+    void entryCallback(const char *);
 
     inline void f1(const char *name)
     {
@@ -32,7 +33,11 @@ public:
         change(name);
     }
 
-    XanimeResourceTable *_8;
+    inline bool isTeresaClear() const {
+        return !isPlayerModeTeresa();
+    }
+
+    XanimeResourceTable *mResourceTable; // _8
     XanimePlayer *_C;
     XanimePlayer *_10;
     u8 _14;
@@ -57,7 +62,7 @@ public:
     u8 _10D;
     u8 _10E;
     f32 _110;
-    u32 _114;
+    const char *mCurrBck; // _114
     f32 _118;
 
     u8 _11C[8];

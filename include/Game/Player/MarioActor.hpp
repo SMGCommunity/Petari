@@ -44,6 +44,7 @@ public:
     bool isAnimationRun(const char *) const;
     void changeNullAnimation(const char *, signed char);
     void clearNullAnimation(signed char);
+    void changeSpecialModeAnimation(const char *);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform *getJointCtrl(const char *) const;
