@@ -180,7 +180,7 @@ checkPass__12XanimePlayerCFf,XanimePlayer.o,Animation.a,false
 getSimpleGroup__12XanimePlayerCFv,XanimePlayer.o,Animation.a,false
 duplicateSimpleGroup__12XanimePlayerFv,XanimePlayer.o,Animation.a,false
 __ct__15XanimeFrameCtrlFv,XanimePlayer.o,Animation.a,false
-changeCurrentAnimation__12XanimePlayerFPC15XanimeGroupInfo,XanimePlayer.o,Animation.a,false
+changeCurrentAnimation__12XanimePlayerFPC15XanimeGroupInfo,XanimePlayer.o,Animation.a,true
 __dt__15XanimeFrameCtrlFv,XanimePlayer.o,Animation.a,false
 init__19XanimeResourceTableFv,XanimeResource.o,Animation.a,false
 getGroupInfo__19XanimeResourceTableCFPCc,XanimeResource.o,Animation.a,false

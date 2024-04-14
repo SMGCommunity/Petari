@@ -33,8 +33,9 @@ public:
     void setDefaultAnimation(const char *);
 
     void changeAnimation(const char *);
-    
     void changeAnimation(const XanimeGroupInfo *);
+
+    void changeCurrentAnimation(const XanimeGroupInfo *);
 
     inline XanimeCore* getCore() {
         return mCore;
@@ -44,8 +45,9 @@ public:
     J3DModelData *mModelData;   // _4
     u8 _8[0x5C-8];
     const XanimeGroupInfo *mDefaultAnimation; // _5C
-    const XanimeGroupInfo *mStopAnimation; // _60
-    u8 _64[8];
+    const XanimeGroupInfo *mCurrentAnimation; // _60
+    const XanimeGroupInfo *mPrevAnimation; // _64
+    const XanimeGroupInfo *_68;
     XanimeCore *mCore;          // _6C
     XanimeResourceTable *mResourceTable; // _70
     u8 _74[0x8];

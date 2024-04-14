@@ -582,11 +582,11 @@ getUpperFrame__13MarioAnimatorCFv,MarioAnimator.o,Player.a,false
 setWalkMode__13MarioAnimatorFv,MarioAnimator.o,Player.a,false
 calc__13MarioAnimatorFv,MarioAnimator.o,Player.a,false
 change__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,false
-changeUpper__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,false
+changeUpper__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,true
 stopUpper__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,false
-changeDefault__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,false
+changeDefault__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,true
 isDefaultAnimationRun__13MarioAnimatorCFPCc,MarioAnimator.o,Player.a,false
-changeDefaultUpper__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,false
+changeDefaultUpper__13MarioAnimatorFPCc,MarioAnimator.o,Player.a,true
 getUpperJointID__13MarioAnimatorCFv,MarioAnimator.o,Player.a,false
 updateJointRumble__13MarioAnimatorFv,MarioAnimator.o,Player.a,false
 addRumblePower__13MarioAnimatorFfUl,MarioAnimator.o,Player.a,false
