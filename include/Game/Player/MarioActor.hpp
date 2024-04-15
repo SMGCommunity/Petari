@@ -14,6 +14,10 @@ class MarioEffect;
 class MarioAnimator;
 class MarioMessenger;
 class CollisionShadow;
+class DLchanger;
+class J3DModelX;
+class TornadoMario;
+class ModelHolder;
 
 namespace MR {
     unsigned int getFrameBufferWidth();
@@ -131,6 +135,15 @@ public:
     void init2D();
 
     void initDrawAndModel();
+    bool isAllHidden() const;
+    
+    void drawMarioModel() const;
+
+    // Called by drawMarioModel
+    void drawSpinInhibit() const;
+    void drawSphereMask() const;
+    bool drawDarkMask() const;
+    void drawHand() const;
 
     void resetPadSwing();
     void initActionMatrix();
@@ -204,12 +217,11 @@ public:
     };
 
     u8 _8C;
-    u32 _90;
+    DLchanger *mDLchanger;
     u32 _94[0x40];
-    u32 _194;
-    u32 _198;
-    u32 _19C;
-    u8 _1A0;
+    u8 *DL[2];
+    u32 DLSize;
+    u8 currDL;
     u8 _1A1;
     f32 _1A4;
     u16 _1A8;
@@ -303,7 +315,6 @@ public:
     u32 _390;
     u32 _394;
     u32 _398;
-    ;
     u8 _39C;
     u8 _39D;
     u8 _39E;
@@ -399,7 +410,7 @@ public:
     f32 _984;
     u8 _988;
     u8 _989;
-    u32 _98C;
+    TornadoMario *mTornadoMario;
     u8 _990;
     u32 _994;
     u32 _998;
@@ -423,14 +434,14 @@ public:
     u32 _9E8;
     u32 _9EC;
     bool _9F0;
-    bool _9F1;
+    bool mAlphaEnable;
     u16 _9F2;
     TVec3f _9F4;
     u32 _A00;
     u32 _A04;
     u8 _A08;
     u8 _A09;
-    u8 _A0A;
+    u8 mCurrModel;
     u8 _A0B;
     u8 _A0C;
     u32 _A10;
@@ -439,7 +450,7 @@ public:
     u8 _A24;
     u8 _A25;
     // padding
-    u32 _A28[6];
+    J3DModelX *mModels[6];
     u32 _A40;
     u32 _A44;
     u32 _A48;
@@ -450,7 +461,7 @@ public:
     u8 _A59;
     u8 _A5A;
     u8 _A5B;
-    u32 _A5C;
+    ModelHolder *_A5C;
     bool _A60;
     bool _A61;
     bool _A62;

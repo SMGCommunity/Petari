@@ -263,7 +263,7 @@ initTornadoMario__10MarioActorFv,MarioActorDraw.o,Player.a,false
 initBoneMario__10MarioActorFv,MarioActorDraw.o,Player.a,false
 changeDisplayMode__10MarioActorFUc,MarioActorDraw.o,Player.a,false
 calcViewAndEntry__10MarioActorFv,MarioActorDraw.o,Player.a,false
-drawMarioModel__10MarioActorCFv,MarioActorDraw.o,Player.a,false
+drawMarioModel__10MarioActorCFv,MarioActorDraw.o,Player.a,true
 isAllHidden__10MarioActorCFv,MarioActorDraw.o,Player.a,false
 swapTextureInit__10MarioActorFv,MarioActorDraw.o,Player.a,false
 initFace__10MarioActorFv,MarioActorDraw.o,Player.a,false
