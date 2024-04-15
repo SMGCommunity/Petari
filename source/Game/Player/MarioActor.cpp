@@ -125,7 +125,7 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
 
     _9D8.zero();
 
-    _9F1 = false;
+    mAlphaEnable = false;
     _9F2 = false;
     _EA4 = false;
     _EA5 = false;
@@ -146,7 +146,7 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
     _F68.zero();
 
     for (int i = 0; i < 6; i++) {
-        _A28[i] = 0;
+        mModels[i] = nullptr;
     }
 
     _A61 = false;
@@ -614,7 +614,7 @@ void MarioActor::changeGameOverAnimation()
 
 XjointTransform *MarioActor::getJointCtrl(const char *pName) const
 {
-    XanimeCore *pCore = mMarioAnim->_C->mCore;
+    XanimeCore *pCore = mMarioAnim->mXanimePlayer->mCore;
     return pCore->getJointTransform(MR::getJointIndex(this, pName));
 }
 
@@ -740,7 +740,7 @@ void MarioActor::movement()
                 mMario->mDrawStates._2 = true;
             }
         }
-        if (getMovementStates()._0 && !_9F1) {
+        if (getMovementStates()._0 && !mAlphaEnable) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
                 TVec3f stack_EC(mPosition.translateOpposite(getGravityVec() % 100.0f));
                 TVec3f stack_E0;
@@ -1249,7 +1249,7 @@ void MarioActor::updateSwingAction()
             }
         }
         else if (!getMovementStates()._F && !mMario->isAnimationRun("地上ひねり")) {
-            const char *pLastAnimationName = mMarioAnim->_10->getCurrentAnimationName();
+            const char *pLastAnimationName = mMarioAnim->mXanimePlayerUpper->getCurrentAnimationName();
             if (_3D4 == 4) {
                 if (!mMario->isAnimationRun("ハチスピン")) {
                     didSpinPunch = trySpinPunch();
@@ -1259,7 +1259,7 @@ void MarioActor::updateSwingAction()
                 didSpinPunch = trySpinPunch();
             }
             _974 = 0;
-            if (pLastAnimationName != mMarioAnim->_10->getCurrentAnimationName()) {
+            if (pLastAnimationName != mMarioAnim->mXanimePlayerUpper->getCurrentAnimationName()) {
                 mMario->playSound("パンチ風切り", -1);
             }
         }
@@ -1271,7 +1271,7 @@ void MarioActor::updateSwingAction()
                 }
                 mMario->changeAnimation("ハチスピン空中", (const char *)nullptr);
             }
-            else if (getMovementStates()._A || _9F1) {
+            else if (getMovementStates()._A || mAlphaEnable) {
                 mMario->changeAnimation("サマーソルト", (const char *)nullptr);
             }
             else {
@@ -1309,7 +1309,7 @@ void MarioActor::updateSwingAction()
             mMario->changeAnimation("ハチスピン空中", (const char *)nullptr);
         }
         else {
-            if (getMovementStates()._A || _9F1) {
+            if (getMovementStates()._A || mAlphaEnable) {
                 mMario->changeAnimation("サマーソルト", (const char *)nullptr);    // Summersault
             }
             else {
@@ -1447,7 +1447,7 @@ void MarioActor::incLife(unsigned long amt)
             mHealth = mMaxHealth;
         }
         if (health == 1 && mMarioAnim->isAnimationStop()) {
-            mMarioAnim->_C->changeTrackAnimation(3, "ノーマルウエイト");
+            mMarioAnim->mXanimePlayer->changeTrackAnimation(3, "ノーマルウエイト");
             if (mMario->_970 && strcmp(mMario->_970, "DamageWait")) {
                 mMario->startBas(nullptr, false, 0.0f, 0.0f);
                 setBlink(nullptr);

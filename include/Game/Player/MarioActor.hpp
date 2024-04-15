@@ -217,11 +217,11 @@ public:
     };
 
     u8 _8C;
-    DLchanger *mDLchanger;
+    DLchanger *mDLchanger; // _90
     u32 _94[0x40];
-    u8 *DL[2];
-    u32 DLSize;
-    u8 currDL;
+    u8 *mDL[2]; // _194
+    u32 mDLSize; // _19C
+    u8 mCurrDL; // _1A0
     u8 _1A1;
     f32 _1A4;
     u16 _1A8;
@@ -410,7 +410,7 @@ public:
     f32 _984;
     u8 _988;
     u8 _989;
-    TornadoMario *mTornadoMario;
+    TornadoMario *mTornadoMario; // _98C
     u8 _990;
     u32 _994;
     u32 _998;
@@ -434,14 +434,14 @@ public:
     u32 _9E8;
     u32 _9EC;
     bool _9F0;
-    bool mAlphaEnable;
+    bool mAlphaEnable; // _9F1
     u16 _9F2;
     TVec3f _9F4;
     u32 _A00;
     u32 _A04;
     u8 _A08;
     u8 _A09;
-    u8 mCurrModel;
+    u8 mCurrModel; // _A0A
     u8 _A0B;
     u8 _A0C;
     u32 _A10;

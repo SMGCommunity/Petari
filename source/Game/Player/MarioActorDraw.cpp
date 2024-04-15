@@ -67,7 +67,7 @@ void MarioActor::drawMarioModel() const {
                 model->setDynamicDL(nullptr, 0);
             }
             else {
-                model->setDynamicDL(DL[currDL], DLSize);
+                model->setDynamicDL(mDL[mCurrDL], mDLSize);
             }
         }
 
@@ -90,7 +90,7 @@ void MarioActor::drawMarioModel() const {
     
     if(!MR::isHiddenModel(_A5C)) {
         J3DModelX *cool = (J3DModelX *)MR::getJ3DModel(_A5C);
-        cool->setDynamicDL(DL[currDL], DLSize);
+        cool->setDynamicDL(mDL[mCurrDL], mDLSize);
         cool->directDraw(nullptr);
     }
     

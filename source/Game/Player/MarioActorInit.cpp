@@ -3,14 +3,14 @@
 void MarioActor::initMember()
 {
     _8C = 0;
-    _90 = 0;
+    mDLchanger = nullptr;
     for (int i = 0; i < 0x40; i++) {
         _94[i] = 0;
     }
-    _194 = 0;
-    _198 = 0;
-    _19C = 0;
-    _1A0 = 0;
+    mDL[0] = nullptr;
+    mDL[1] = nullptr;
+    mDLSize = 0;
+    mCurrDL = 0;
     _1A1 = 0;
     _1A4 = 10.0f;
     _1A8 = 0;
@@ -209,7 +209,7 @@ void MarioActor::initMember()
     _988 = 0;
     _984 = 10.0f;
     _989 = 0;
-    _98C = 0;
+    mTornadoMario = nullptr;
     _990 = 0;
     _994 = 0;
     _998 = 0;
@@ -233,14 +233,14 @@ void MarioActor::initMember()
     _9E8 = 0;
     _9EC = 0;
     _9F0 = 0;
-    _9F1 = 0;
+    mAlphaEnable = false;
     _9F2 = 0;
     _9F4.zero();
     _A00 = 0;
     _A04 = 0;
     _A08 = 0;
     _A09 = 0;
-    _A0A = 0;
+    mCurrModel = 0;
     _A0B = 0;
     _A0C = 0;
     _A10 = 0;
@@ -249,7 +249,7 @@ void MarioActor::initMember()
     _A24 = 0;
     _A25 = 0;
     for (int i = 0; i < 6; i++) {
-        _A28[i] = 0;
+        mModels[i] = nullptr;
     }
     _A40 = 0;
     _A44 = 0;
