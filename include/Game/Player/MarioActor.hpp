@@ -450,7 +450,7 @@ public:
     u8 _A24;
     u8 _A25;
     // padding
-    J3DModelX *mModels[6];
+    J3DModelX *mModels[6]; // _A28
     u32 _A40;
     u32 _A44;
     u32 _A48;

@@ -39,7 +39,7 @@ void MarioAnimator::init()
     _10C = 0;
     _10D = 0;
     mUpperDefaultSet = false;
-    mCurrBck = 0;
+    mCurrBck = nullptr;
     _118 = 0.0f;
     _70 = 0.0f;
     _74 = 0;
