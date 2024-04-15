@@ -68,18 +68,21 @@ bool MarioAnimator::isAnimationStop() const
     return mXanimePlayer->mCurrentAnimation == mXanimePlayer->mDefaultAnimation;
 }
 
-void MarioAnimator::change(const char *name) {
+void MarioAnimator::change(const char *name)
+{
 
-    if(mActor->_B90) return;
+    if (mActor->_B90) {
+        return;
+    }
 
-    if(!isTeresaClear()) {
+    if (!isTeresaClear()) {
         mXanimePlayer->changeAnimation(name);
     }
 
     const char *bck = mXanimePlayer->getCurrentBckName();
-    if(bck) {
+    if (bck) {
         const XanimeGroupInfo *info = mXanimePlayer->mCurrentAnimation;
-        if(info->_18 == 2) {
+        if (info->_18 == 2) {
             f32 arg1 = info->_14, arg2 = info->_10;
             getPlayer()->startBas(bck, false, arg1, arg2);
         }
@@ -95,22 +98,24 @@ void MarioAnimator::change(const char *name) {
     mActor->changeSpecialModeAnimation(name);
     mCurrBck = bck;
     entryCallback(name);
-    
 }
 
-void MarioAnimator::changeUpper(const char *name) {
+void MarioAnimator::changeUpper(const char *name)
+{
     mXanimePlayerUpper->changeAnimation(name);
     _6C = true;
 }
 
-void MarioAnimator::changeDefault(const char *name) {
+void MarioAnimator::changeDefault(const char *name)
+{
     getPlayer()->startBas(nullptr, false, 0.0f, 0.0f);
 
     mXanimePlayer->setDefaultAnimation(name);
 }
 
-void MarioAnimator::changeDefaultUpper(const char *name) {
-    if(name) {
+void MarioAnimator::changeDefaultUpper(const char *name)
+{
+    if (name) {
         mUpperDefaultSet = true;
         mXanimePlayerUpper->setDefaultAnimation(name);
     }

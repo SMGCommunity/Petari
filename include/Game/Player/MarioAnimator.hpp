@@ -34,13 +34,11 @@ public:
         mXanimePlayer->setDefaultAnimation(name);
     }
 
-    inline bool isTeresaClear() const {
-        return !isPlayerModeTeresa();
-    }
+    inline bool isTeresaClear() const { return !isPlayerModeTeresa(); }
 
-    XanimeResourceTable *mResourceTable; // _8
-    XanimePlayer *mXanimePlayer; // _C
-    XanimePlayer *mXanimePlayerUpper; // _10
+    XanimeResourceTable *mResourceTable;    // _8
+    XanimePlayer *mXanimePlayer;            // _C
+    XanimePlayer *mXanimePlayerUpper;       // _10
     u8 _14;
     u8 _15;
     u8 _16;
@@ -61,9 +59,9 @@ public:
     TMtx34f _DC;
     u8 _10C;
     u8 _10D;
-    bool mUpperDefaultSet; // _10E
+    bool mUpperDefaultSet;    // _10E
     f32 _110;
-    const char *mCurrBck; // _114
+    const char *mCurrBck;    // _114
     f32 _118;
 
     u8 _11C[8];

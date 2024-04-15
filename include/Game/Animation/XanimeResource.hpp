@@ -123,7 +123,7 @@ public:
 
     XanimeResourceTable(ResourceHolder *);
 
-    const XanimeGroupInfo* getGroupInfo(const char *) const;
+    const XanimeGroupInfo *getGroupInfo(const char *) const;
 
     u8 _0[0x78];
 };

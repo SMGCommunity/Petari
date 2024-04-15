@@ -2,6 +2,4 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class TornadoMario : public LiveActor {
-
-};
+class TornadoMario : public LiveActor {};
