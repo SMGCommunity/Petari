@@ -43,7 +43,7 @@
 | [ItemGenerator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/ItemGenerator.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [Jellyfish.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Jellyfish.md) | 0.0% | 0 / 44 | 0.0% | :x: 
 | [JellyfishElectric.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/JellyfishElectric.md) | 0.0% | 0 / 38 | 0.0% | :x: 
-| [Jiraira.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Jiraira.md) | 0.0% | 0 / 27 | 0.0% | :x: 
+| [Jiraira.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Jiraira.md) | 56.10510046367851% | 24 / 27 | 88.88888888888889% | :eight_pointed_black_star: 
 | [JumpBeamer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/JumpBeamer.md) | 0.0% | 0 / 48 | 0.0% | :x: 
 | [JumpGuarder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/JumpGuarder.md) | 0.0% | 0 / 56 | 0.0% | :x: 
 | [JumpSpider.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/JumpSpider.md) | 0.0% | 0 / 60 | 0.0% | :x: 
