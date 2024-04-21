@@ -262,7 +262,7 @@
 | [SpinDriverPathDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverPathDrawer.md) | 38.91752577319588% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 
 | [SpinDriverShootPath.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverShootPath.md) | 49.889135254988915% | 7 / 9 | 77.77777777777779% | :eight_pointed_black_star: 
 | [SpinDriverUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverUtil.md) | 0.0% | 0 / 1 | 0.0% | :x: 
-| [SpinLeverSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinLeverSwitch.md) | 0.0% | 0 / 16 | 0.0% | :x: 
+| [SpinLeverSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinLeverSwitch.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
 | [SpinningBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinningBox.md) | 0.0% | 0 / 35 | 0.0% | :x: 
 | [SpringJetWater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpringJetWater.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [SpringWaterFloaterSpot.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpringWaterFloaterSpot.md) | 0.0% | 0 / 25 | 0.0% | :x: 

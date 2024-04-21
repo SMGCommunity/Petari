@@ -5,23 +5,23 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 16 Completed -- (0.0%)
+# 16 / 16 Completed -- (100.0%)
 # SpinLeverSwitch.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__15SpinLeverSwitchFPCc` | :x: |
-| `init__15SpinLeverSwitchFRC12JMapInfoIter` | :x: |
-| `exeWait__15SpinLeverSwitchFv` | :x: |
-| `exeSwitchOn__15SpinLeverSwitchFv` | :x: |
-| `initAfterPlacement__15SpinLeverSwitchFv` | :x: |
-| `calcAndSetBaseMtx__15SpinLeverSwitchFv` | :x: |
-| `attackSensor__15SpinLeverSwitchFP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__15SpinLeverSwitchFUlP9HitSensorP9HitSensor` | :x: |
-| `__dt__15SpinLeverSwitchFv` | :x: |
-| `__sinit_\SpinLeverSwitch_cpp` | :x: |
-| `__ct__Q218NrvSpinLeverSwitch22SpinLeverSwitchNrvWaitFv` | :x: |
-| `__ct__Q218NrvSpinLeverSwitch26SpinLeverSwitchNrvSwitchOnFv` | :x: |
-| `__ct__Q218NrvSpinLeverSwitch21SpinLeverSwitchNrvEndFv` | :x: |
-| `execute__Q218NrvSpinLeverSwitch21SpinLeverSwitchNrvEndCFP5Spine` | :x: |
-| `execute__Q218NrvSpinLeverSwitch26SpinLeverSwitchNrvSwitchOnCFP5Spine` | :x: |
-| `execute__Q218NrvSpinLeverSwitch22SpinLeverSwitchNrvWaitCFP5Spine` | :x: |
+| `__ct__15SpinLeverSwitchFPCc` | :white_check_mark: |
+| `init__15SpinLeverSwitchFRC12JMapInfoIter` | :white_check_mark: |
+| `exeWait__15SpinLeverSwitchFv` | :white_check_mark: |
+| `exeSwitchOn__15SpinLeverSwitchFv` | :white_check_mark: |
+| `initAfterPlacement__15SpinLeverSwitchFv` | :white_check_mark: |
+| `calcAndSetBaseMtx__15SpinLeverSwitchFv` | :white_check_mark: |
+| `attackSensor__15SpinLeverSwitchFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__15SpinLeverSwitchFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `__dt__15SpinLeverSwitchFv` | :white_check_mark: |
+| `__sinit_\SpinLeverSwitch_cpp` | :white_check_mark: |
+| `__ct__Q218NrvSpinLeverSwitch22SpinLeverSwitchNrvWaitFv` | :white_check_mark: |
+| `__ct__Q218NrvSpinLeverSwitch26SpinLeverSwitchNrvSwitchOnFv` | :white_check_mark: |
+| `__ct__Q218NrvSpinLeverSwitch21SpinLeverSwitchNrvEndFv` | :white_check_mark: |
+| `execute__Q218NrvSpinLeverSwitch21SpinLeverSwitchNrvEndCFP5Spine` | :white_check_mark: |
+| `execute__Q218NrvSpinLeverSwitch26SpinLeverSwitchNrvSwitchOnCFP5Spine` | :white_check_mark: |
+| `execute__Q218NrvSpinLeverSwitch22SpinLeverSwitchNrvWaitCFP5Spine` | :white_check_mark: |
