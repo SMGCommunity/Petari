@@ -34,7 +34,7 @@
 | [BallOpener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallOpener.md) | 56.747404844290664% | 15 / 17 | 88.23529411764706% | :eight_pointed_black_star: 
 | [BallRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallRail.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [Banekiti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Banekiti.md) | 0.0% | 0 / 19 | 0.0% | :x: 
-| [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 0.0% | 0 / 13 | 0.0% | :x: 
+| [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 7.462686567164178% | 1 / 13 | 7.6923076923076925% | :eight_pointed_black_star: 
 | [BeamGoRoundPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeamGoRoundPlanet.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [BeeFlowerHover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeeFlowerHover.md) | 82.1311475409836% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [BenefitItemInvincible.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BenefitItemInvincible.md) | 62.95454545454545% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
@@ -189,7 +189,7 @@
 | [PhantomShipBridge.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PhantomShipBridge.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [PhantomShipHandle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PhantomShipHandle.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [PhantomTorch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PhantomTorch.md) | 0.0% | 0 / 24 | 0.0% | :x: 
-| [PicketSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PicketSwitch.md) | 0.0% | 0 / 13 | 0.0% | :x: 
+| [PicketSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PicketSwitch.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | [PlantGroup.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PlantGroup.md) | 0.0% | 0 / 38 | 0.0% | :x: 
 | [PlantPoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PlantPoint.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [PlantRailInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PlantRailInfo.md) | 0.0% | 0 / 3 | 0.0% | :x: 

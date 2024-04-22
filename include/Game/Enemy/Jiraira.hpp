@@ -6,6 +6,7 @@ class Jiraira : public LiveActor {
     public:
         Jiraira(const char *);
 
+        virtual ~Jiraira();
         virtual void appear();
         virtual void kill();
         virtual void control();
