@@ -238,7 +238,7 @@
 | [SimpleNormalMapObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SimpleNormalMapObj.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [SimpleTimerObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SimpleTimerObj.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [SmallStone.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SmallStone.md) | 0.0% | 0 / 20 | 0.0% | :x: 
-| [SnowCapsulePlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SnowCapsulePlanet.md) | 0.0% | 0 / 11 | 0.0% | :x: 
+| [SnowCapsulePlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SnowCapsulePlanet.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [SnowFloor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SnowFloor.md) | 0.0% | 0 / 22 | 0.0% | :x: 
 | [SnowFloorTile.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SnowFloorTile.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [SnowMan.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SnowMan.md) | 0.0% | 0 / 28 | 0.0% | :x: 

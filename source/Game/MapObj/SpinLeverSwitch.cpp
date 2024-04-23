@@ -5,7 +5,7 @@ SpinLeverSwitch::SpinLeverSwitch(const char *pName) : LiveActor(pName) {
     mConnector = new MapObjConnector(this);
 }   
 
-SpinLeverSwitch::~SpinLeverSwitch( ){
+SpinLeverSwitch::~SpinLeverSwitch(){
 
 }
 

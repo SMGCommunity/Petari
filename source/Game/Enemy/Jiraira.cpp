@@ -6,6 +6,10 @@ Jiraira::Jiraira(const char *pName) : LiveActor(pName) {
     _90 = 500.0f;
 }
 
+Jiraira::~Jiraira() {
+
+}
+
 void Jiraira::appear() {
     LiveActor::appear();
     getSensor("explode")->invalidate();

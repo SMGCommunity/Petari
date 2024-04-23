@@ -4,6 +4,10 @@ PicketSwitch::PicketSwitch(const char *pName) : LiveActor(pName) {
 
 }
 
+PicketSwitch::~PicketSwitch() {
+
+}
+
 void PicketSwitch::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchWriteA(this, rIter);
@@ -82,4 +86,3 @@ namespace NrvPicketSwitch {
 		pActor->exeLastDrop();
 	}        
 };
-
