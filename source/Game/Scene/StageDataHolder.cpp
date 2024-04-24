@@ -90,13 +90,11 @@ void StageDataHolder::initPlacement() {
     _10C->initPlacement();
 }
 
-#ifdef NON_MATCHING
-JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
+JMapInfo& StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
     JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
     JMapInfoIter pathIter = inf->findElement<s32>("l_id", idx, 0);
     return getCommonPathPointInfoFromRailDataIndex(pOut, pathIter._4);
 }
-#endif
 
 s32 StageDataHolder::getCurrentStartCameraId() const {
     JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
