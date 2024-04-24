@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 44 Completed -- (0.0%)
+# 2 / 44 Completed -- (4.545454545454546%)
 # XanimePlayer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -40,7 +40,7 @@
 | `isRun__12XanimePlayerCFPCc` | :x: |
 | `isTerminate__12XanimePlayerCFPCc` | :x: |
 | `isTerminate__12XanimePlayerCFv` | :x: |
-| `setDefaultAnimation__12XanimePlayerFPCc` | :x: |
+| `setDefaultAnimation__12XanimePlayerFPCc` | :white_check_mark: |
 | `runDefaultAnimation__12XanimePlayerFv` | :x: |
 | `isAnimationRunSimple__12XanimePlayerCFv` | :x: |
 | `getCurrentAnimationName__12XanimePlayerCFv` | :x: |
@@ -51,5 +51,5 @@
 | `getSimpleGroup__12XanimePlayerCFv` | :x: |
 | `duplicateSimpleGroup__12XanimePlayerFv` | :x: |
 | `__ct__15XanimeFrameCtrlFv` | :x: |
-| `changeCurrentAnimation__12XanimePlayerFPC15XanimeGroupInfo` | :x: |
+| `changeCurrentAnimation__12XanimePlayerFPC15XanimeGroupInfo` | :white_check_mark: |
 | `__dt__15XanimeFrameCtrlFv` | :x: |

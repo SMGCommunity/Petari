@@ -1,6 +1,6 @@
 | Library | Percentage |
 | ------------- | ------------- |
-| [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 4.860149543062863% |
+| [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation.md) | 5.303240099695375% |
 | [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj.md) | 58.14029363784665% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/AudioLib.md) | 0.0% |
 | [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 8.487111739863108% |
@@ -16,7 +16,7 @@
 | [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 33.210237031947784% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 2.155878467635403% |
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/NWC24.md) | 0.0% |
-| [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 7.650950848076646% |
+| [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 7.8301638397445155% |
 | [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib.md) | 1.2661566868900025% |
 | [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 0.0% |
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 13.849590469099033% |

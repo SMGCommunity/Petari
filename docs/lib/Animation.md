@@ -18,5 +18,5 @@
 | [LayoutAnmPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/LayoutAnmPlayer.md) | 0.0% | 0 / 5 | 0.0% | :x: 
 | [MaterialAnmBuffer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/MaterialAnmBuffer.md) | 0.0% | 0 / 32 | 0.0% | :x: 
 | [XanimeCore.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/XanimeCore.md) | 4.778761061946903% | 5 / 46 | 10.869565217391305% | :eight_pointed_black_star: 
-| [XanimePlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/XanimePlayer.md) | 0.0% | 0 / 44 | 0.0% | :x: 
+| [XanimePlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/XanimePlayer.md) | 2.5579536370903275% | 2 / 44 | 4.545454545454546% | :eight_pointed_black_star: 
 | [XanimeResource.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Animation/XanimeResource.md) | 2.824858757062147% | 1 / 18 | 5.555555555555555% | :eight_pointed_black_star: 

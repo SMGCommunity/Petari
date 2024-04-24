@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 36 Completed -- (0.0%)
+# 1 / 36 Completed -- (2.7777777777777777%)
 # MarioActorDraw.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -19,7 +19,7 @@
 | `initBoneMario__10MarioActorFv` | :x: |
 | `changeDisplayMode__10MarioActorFUc` | :x: |
 | `calcViewAndEntry__10MarioActorFv` | :x: |
-| `drawMarioModel__10MarioActorCFv` | :x: |
+| `drawMarioModel__10MarioActorCFv` | :white_check_mark: |
 | `isAllHidden__10MarioActorCFv` | :x: |
 | `swapTextureInit__10MarioActorFv` | :x: |
 | `initFace__10MarioActorFv` | :x: |

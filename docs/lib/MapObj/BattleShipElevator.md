@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 13 Completed -- (0.0%)
+# 1 / 13 Completed -- (7.6923076923076925%)
 # BattleShipElevator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__18BattleShipElevatorFPCc` | :x: |
+| `__ct__18BattleShipElevatorFPCc` | :white_check_mark: |
 | `init__18BattleShipElevatorFRC12JMapInfoIter` | :x: |
 | `exeMove__18BattleShipElevatorFv` | :x: |
 | `control__18BattleShipElevatorFv` | :x: |

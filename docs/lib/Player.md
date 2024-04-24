@@ -17,7 +17,7 @@
 | [MarineSnow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarineSnow.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [Mario.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/Mario.md) | 15.283018867924527% | 2 / 55 | 3.6363636363636362% | :eight_pointed_black_star: 
 | [MarioActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActor.md) | 54.35098952270081% | 45 / 88 | 51.13636363636363% | :eight_pointed_black_star: 
-| [MarioActorDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorDraw.md) | 0.0% | 0 / 36 | 0.0% | :x: 
+| [MarioActorDraw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorDraw.md) | 6.765957446808511% | 1 / 36 | 2.7777777777777777% | :eight_pointed_black_star: 
 | [MarioActorPunch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorPunch.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [MarioActorCamera.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorCamera.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [MarioActorClap.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorClap.md) | 0.0% | 0 / 2 | 0.0% | :x: 
@@ -39,7 +39,7 @@
 | [MarioActorRushMsg.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorRushMsg.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [MarioActorTakeMsg.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorTakeMsg.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [MarioActorBlackHole.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioActorBlackHole.md) | 0.0% | 0 / 3 | 0.0% | :x: 
-| [MarioAnimator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioAnimator.md) | 5.331991951710262% | 2 / 45 | 4.444444444444445% | :eight_pointed_black_star: 
+| [MarioAnimator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioAnimator.md) | 7.0757880617035545% | 6 / 45 | 13.333333333333334% | :eight_pointed_black_star: 
 | [MarioAnimationEfx.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioAnimationEfx.md) | 0.0% | 0 / 14 | 0.0% | :x: 
 | [MarioWait.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioWait.md) | 0.0% | 0 / 15 | 0.0% | :x: 
 | [MarioClimb.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Player/MarioClimb.md) | 0.0% | 0 / 6 | 0.0% | :x: 

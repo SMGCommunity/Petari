@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 2 / 45 Completed -- (4.444444444444445%)
+# 6 / 45 Completed -- (13.333333333333334%)
 # MarioAnimator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__13MarioAnimatorFP10MarioActor` | :white_check_mark: |
 | `init__13MarioAnimatorFv` | :white_check_mark: |
-| `isAnimationStop__13MarioAnimatorCFv` | :x: |
+| `isAnimationStop__13MarioAnimatorCFv` | :white_check_mark: |
 | `targetWeight__13MarioAnimatorFPfff` | :x: |
 | `setWalkWeight__13MarioAnimatorFPCf` | :x: |
 | `setBlendWeight__13MarioAnimatorFPCff` | :x: |
@@ -35,11 +35,11 @@
 | `setWalkMode__13MarioAnimatorFv` | :x: |
 | `calc__13MarioAnimatorFv` | :x: |
 | `change__13MarioAnimatorFPCc` | :x: |
-| `changeUpper__13MarioAnimatorFPCc` | :x: |
+| `changeUpper__13MarioAnimatorFPCc` | :white_check_mark: |
 | `stopUpper__13MarioAnimatorFPCc` | :x: |
-| `changeDefault__13MarioAnimatorFPCc` | :x: |
+| `changeDefault__13MarioAnimatorFPCc` | :white_check_mark: |
 | `isDefaultAnimationRun__13MarioAnimatorCFPCc` | :x: |
-| `changeDefaultUpper__13MarioAnimatorFPCc` | :x: |
+| `changeDefaultUpper__13MarioAnimatorFPCc` | :white_check_mark: |
 | `getUpperJointID__13MarioAnimatorCFv` | :x: |
 | `updateJointRumble__13MarioAnimatorFv` | :x: |
 | `addRumblePower__13MarioAnimatorFfUl` | :x: |
