@@ -1,5 +1,6 @@
 #include "Game/MapObj/ArrowSwitch.hpp"
 #include <cmath>
+#include "math_types.hpp"
 
 namespace {
     const f32 sRotYTargetList[4] = { 0.0f, 90.0f, 180.0f, -90.0f };

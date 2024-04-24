@@ -14,6 +14,10 @@ class MarioEffect;
 class MarioAnimator;
 class MarioMessenger;
 class CollisionShadow;
+class DLchanger;
+class J3DModelX;
+class TornadoMario;
+class ModelHolder;
 
 namespace MR {
     unsigned int getFrameBufferWidth();
@@ -44,6 +48,7 @@ public:
     bool isAnimationRun(const char *) const;
     void changeNullAnimation(const char *, signed char);
     void clearNullAnimation(signed char);
+    void changeSpecialModeAnimation(const char *);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform *getJointCtrl(const char *) const;
@@ -130,6 +135,15 @@ public:
     void init2D();
 
     void initDrawAndModel();
+    bool isAllHidden() const;
+
+    void drawMarioModel() const;
+
+    // Called by drawMarioModel
+    void drawSpinInhibit() const;
+    void drawSphereMask() const;
+    bool drawDarkMask() const;
+    void drawHand() const;
 
     void resetPadSwing();
     void initActionMatrix();
@@ -203,12 +217,11 @@ public:
     };
 
     u8 _8C;
-    u32 _90;
+    DLchanger *mDLchanger;    // _90
     u32 _94[0x40];
-    u32 _194;
-    u32 _198;
-    u32 _19C;
-    u8 _1A0;
+    u8 *mDL[2];     // _194
+    u32 mDLSize;    // _19C
+    u8 mCurrDL;     // _1A0
     u8 _1A1;
     f32 _1A4;
     u16 _1A8;
@@ -302,7 +315,6 @@ public:
     u32 _390;
     u32 _394;
     u32 _398;
-    ;
     u8 _39C;
     u8 _39D;
     u8 _39E;
@@ -398,7 +410,7 @@ public:
     f32 _984;
     u8 _988;
     u8 _989;
-    u32 _98C;
+    TornadoMario *mTornadoMario;    // _98C
     u8 _990;
     u32 _994;
     u32 _998;
@@ -422,14 +434,14 @@ public:
     u32 _9E8;
     u32 _9EC;
     bool _9F0;
-    bool _9F1;
+    bool mAlphaEnable;    // _9F1
     u16 _9F2;
     TVec3f _9F4;
     u32 _A00;
     u32 _A04;
     u8 _A08;
     u8 _A09;
-    u8 _A0A;
+    u8 mCurrModel;    // _A0A
     u8 _A0B;
     u8 _A0C;
     u32 _A10;
@@ -438,7 +450,7 @@ public:
     u8 _A24;
     u8 _A25;
     // padding
-    u32 _A28[6];
+    J3DModelX *mModels[6];    // _A28
     u32 _A40;
     u32 _A44;
     u32 _A48;
@@ -449,7 +461,7 @@ public:
     u8 _A59;
     u8 _A5A;
     u8 _A5B;
-    u32 _A5C;
+    ModelHolder *_A5C;
     bool _A60;
     bool _A61;
     bool _A62;

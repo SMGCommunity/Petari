@@ -2,6 +2,7 @@
 #include "Game/MapObj/SpinDriverUtil.hpp"
 #include <cstdio>
 #include <cstring>
+#include "math_types.hpp"
 
 SpinDriver::SpinDriver(const char *pName) : LiveActor(pName),
     _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), 

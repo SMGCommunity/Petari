@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 
 class LiveActor;
+class J3DModel;
 
 namespace MR {
     MtxPtr getJointMtx(const LiveActor *, int);
@@ -11,6 +12,9 @@ namespace MR {
 
     void copyJointPos(const LiveActor *, int, TVec3f *);
     void copyJointPos(const LiveActor *, const char *, TVec3f *);
+
+    void showJoint(J3DModel *, const char *);
+    void hideJoint(J3DModel *, const char *);
 
     bool isExistJoint(const LiveActor *, const char *);
 
