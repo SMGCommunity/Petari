@@ -102,8 +102,8 @@ createManager__17JUTConsoleManagerFP7JKRHeap,JUTConsole.o,JUtility.a,false
 appendConsole__17JUTConsoleManagerFP10JUTConsole,JUTConsole.o,JUtility.a,false
 removeConsole__17JUTConsoleManagerFP10JUTConsole,JUTConsole.o,JUtility.a,false
 draw__17JUTConsoleManagerCFv,JUTConsole.o,JUtility.a,false
-drawDirect__17JUTConsoleManagerCFb,JUTConsole.o,JUtility.a,false
-setDirectConsole__17JUTConsoleManagerFP10JUTConsole,JUTConsole.o,JUtility.a,false
+drawDirect__17JUTConsoleManagerCFb,JUTConsole.o,JUtility.a,true
+setDirectConsole__17JUTConsoleManagerFP10JUTConsole,JUTConsole.o,JUtility.a,true
 JUTReportConsole_f_va,JUTConsole.o,JUtility.a,false
 JUTReportConsole_f,JUTConsole.o,JUtility.a,false
 JUTReportConsole,JUTConsole.o,JUtility.a,false

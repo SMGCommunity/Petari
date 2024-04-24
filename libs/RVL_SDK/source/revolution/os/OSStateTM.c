@@ -29,6 +29,39 @@ static OSPowerCallback PowerCallback;
 static BOOL __OSGetResetButtonStateRaw(void);
 static s32 __OSStateEventHandler(s32, void *);
 static s32 __OSVIDimReplyHandler(s32, void *);
+static void __OSDefaultResetCallback(void);
+static void __OSDefaultPowerCallback(void);
+static void __OSRegisterStateEvent(void);
+
+#ifdef NON_MATCHING
+OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
+    BOOL enabled;
+    OSPowerCallback prevCallback;
+
+    enabled = OSDisableInterrupts();
+    prevCallback = PowerCallback;
+
+    if (callback) {
+        PowerCallback = callback;
+    }
+    else {
+        PowerCallback = __OSDefaultPowerCallback;
+    }
+
+    if (!StmEhRegistered) {
+        __OSRegisterStateEvent();
+    }
+
+    OSRestoreInterrupts(enabled);
+
+    if (prevCallback == __OSDefaultResetCallback) {
+        return NULL;
+    }
+    else {
+        return prevCallback;
+    }
+}
+#endif
 
 // from a debug build of the OS lib, this function is inlined in __OSSetVIForceDimming
 static int AccessVIDimRegs(void) {
@@ -76,23 +109,6 @@ BOOL __OSGetResetButtonStateRaw(void) {
     return (!(__PIRegs[0] & 0x10000)) ? TRUE : FALSE;
 }
 
-// same with this one
-inline void __OSRegisterStateEvent(void) {
-    s32 error;
-    s32 en;
-    en = OSDisableInterrupts();
-    error = IOS_IoctlAsync(StmEhDesc, 0x1000, StmEhInBuf, 0x20, StmEhOutBuf, 0x20, __OSStateEventHandler, (void*)0);
-
-    if (error == 0) {
-        StmEhRegistered = 1;
-    }
-    else {
-        StmEhRegistered = 0;
-    }
-
-    OSRestoreInterrupts(en);
-}
-
 s32 __OSSetIdleLEDMode(u32 led_mode) {
     s32 ret;
 
@@ -128,6 +144,22 @@ s32 __OSUnRegisterStateEvent(void) {
 s32 __OSVIDimReplyHandler(s32 ret, void *pUnused) {
     StmVdInUse = 0;
     return 0;
+}
+
+static void __OSRegisterStateEvent(void) {
+    int err, enabled;
+    enabled = OSDisableInterrupts();
+
+    err = IOS_IoctlAsync(StmEhDesc, 0x1000, StmEhInBuf, 0x20, StmEhOutBuf, 0x20, __OSStateEventHandler, (void*)0);
+
+    if (err == IOS_ERROR_OK) {
+        StmEhRegistered = 1;
+    }
+    else {
+        StmEhRegistered = 0;
+    }
+
+    OSRestoreInterrupts(enabled);
 }
 
 void __OSDefaultResetCallback(void) {

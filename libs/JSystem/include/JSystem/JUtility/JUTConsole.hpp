@@ -13,6 +13,13 @@ class JUTConsole : public JKRDisposer {
 public:
     static void print_f(const char *, ...);
 
+    enum EConsoleType {
+        CONSOLE_TYPE_0 = 0,
+        CONSOLE_TYPE_1 = 1,
+        CONSOLE_TYPE_2 = 2,
+    };
+
+    void doDraw(EConsoleType) const;
     u32 getOutput() const { return mOutput; }
 
     JGadget::TLinkListNode mListNode;           // _18
@@ -38,4 +45,23 @@ public:
     bool _69;
     bool _6A;
     bool _6B;
+};
+
+class JUTConsoleManager {
+public:
+    JUTConsoleManager();
+
+    void appendConsole(JUTConsole *);
+    void removeConsole(JUTConsole *);
+    void draw() const;
+    void drawDirect(bool) const;
+    void setDirectConsole(JUTConsole *);
+
+    static JUTConsoleManager* createManager(JKRHeap *);
+
+    typedef JGadget::TLinkList<JUTConsole, -offsetof(JUTConsole, mListNode)> ConsoleList;
+
+    ConsoleList mList;                  // _0
+    JUTConsole* mActiveConsole;         // _C
+    JUTConsole* mDirectConsole;         // _10
 };
