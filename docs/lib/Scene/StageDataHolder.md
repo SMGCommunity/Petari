@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 18 / 51 Completed -- (35.294117647058826%)
+# 21 / 51 Completed -- (41.17647058823529%)
 # StageDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -22,7 +22,7 @@
 | `requestFileLoadCommon__15StageDataHolderFv` | :white_check_mark: |
 | `requestFileLoadScenario__15StageDataHolderFv` | :white_check_mark: |
 | `initPlacement__15StageDataHolderFv` | :white_check_mark: |
-| `getCommonPathPointInfo__15StageDataHolderCFPPC8JMapInfoi` | :x: |
+| `getCommonPathPointInfo__15StageDataHolderCFPPC8JMapInfoi` | :white_check_mark: |
 | `getCommonPathPointInfoFromRailDataIndex__15StageDataHolderCFPPC8JMapInfoi` | :x: |
 | `getCommonPathInfoElementNum__15StageDataHolderCFv` | :x: |
 | `getStartPosNum__15StageDataHolderCFv` | :x: |
@@ -33,11 +33,11 @@
 | `getGeneralPosInfoFromDataIndex__15StageDataHolderCFi` | :x: |
 | `getChildObjNum__15StageDataHolderCFRC12JMapInfoIter` | :x: |
 | `getChildObjInfoFromDataIndex__15StageDataHolderCFRC12JMapInfoIteri` | :x: |
-| `findPlacedStageDataHolder__15StageDataHolderCFRC12JMapInfoIter` | :x: |
+| `findPlacedStageDataHolder__15StageDataHolderCFRC12JMapInfoIter` | :white_check_mark: |
 | `getStageDataHolderFromZoneId__15StageDataHolderCFi` | :white_check_mark: |
 | `getStageDataHolderFromZoneId__15StageDataHolderFi` | :x: |
 | `isPlacedZone__15StageDataHolderCFi` | :white_check_mark: |
-| `getJapaneseObjectName__15StageDataHolderCFPCc` | :x: |
+| `getJapaneseObjectName__15StageDataHolderCFPCc` | :white_check_mark: |
 | `getStageArchiveResource__15StageDataHolderFPCc` | :white_check_mark: |
 | `getStageArchiveResourceSize__15StageDataHolderFPv` | :white_check_mark: |
 | `initPlacementMario__15StageDataHolderFv` | :x: |

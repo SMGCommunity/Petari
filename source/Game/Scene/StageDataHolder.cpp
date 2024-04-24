@@ -117,25 +117,23 @@ void StageDataHolder::getStartCameraIdInfoFromStartDataIndex(JMapIdInfo *pInfo, 
     pInfo->initalize(cameraID, copy);
 }
 
-#ifdef NON_MATCHING
 const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfoIter &rIter) const {
-    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->_C * rIter._4;
+    s32 data = (s32)rIter.mInfo->mData + rIter.mInfo->mData->mDataOffset + rIter.mInfo->mData->mEntrySize * rIter._4;
 
-    if (_E4 > data || data >= _E8) {
-        for (s32 i = 0; i < mStageDataHolderCount; i++) {
-            const StageDataHolder* holder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
-
-            if (holder) {
-                return holder;
-            }
-        }
-
-        return 0;
+    if (_E4 <= data && data < _E8) {
+        return this;
     }
 
-    return this;
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        const StageDataHolder* holder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
+
+        if (holder) {
+            return holder; 
+        }
+    }
+
+    return nullptr;
 }
-#endif
 
 const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) const {
     if (zoneID == 0) {
@@ -172,22 +170,17 @@ bool StageDataHolder::isPlacedZone(int zoneID) const {
     return false;
 }
 
-#ifdef NON_MATCHING
-// stack nonsense
 const char* StageDataHolder::getJapaneseObjectName(const char *pName) const {
     const JMapInfoIter englishName = mObjNameTbl->findElement<const char *>("en_name", pName, 0);
-    const JMapInfoIter copy = englishName;
-    const JMapInfoIter last = mObjNameTbl->end();
 
-    if (copy == last) {
+    if (englishName == mObjNameTbl->end()) {
         return 0;
     }
 
     const char* japaneseName;
-    last.mInfo->getValue<const char *>(englishName._4, "jp_name", &japaneseName);
+    englishName.mInfo->getValue<const char *>(englishName._4, "jp_name", &japaneseName);
     return japaneseName;
 }
-#endif
 
 void* StageDataHolder::getStageArchiveResource(const char *pName) {
     return mArchive->getResource(0x3F3F3F3F, pName);
