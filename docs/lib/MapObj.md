@@ -34,7 +34,7 @@
 | [BallOpener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallOpener.md) | 56.747404844290664% | 15 / 17 | 88.23529411764706% | :eight_pointed_black_star: 
 | [BallRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallRail.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [Banekiti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Banekiti.md) | 0.0% | 0 / 19 | 0.0% | :x: 
-| [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 7.462686567164178% | 1 / 13 | 7.6923076923076925% | :eight_pointed_black_star: 
+| [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | [BeamGoRoundPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeamGoRoundPlanet.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [BeeFlowerHover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeeFlowerHover.md) | 82.1311475409836% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [BenefitItemInvincible.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BenefitItemInvincible.md) | 62.95454545454545% | 10 / 12 | 83.33333333333334% | :eight_pointed_black_star: 
@@ -256,7 +256,7 @@
 | [SpiderThreadPoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpiderThreadPoint.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [SpiderThreadRadialLine.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpiderThreadRadialLine.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [SpiderThreadWindCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpiderThreadWindCtrl.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [SpinDriver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriver.md) | 83.30125120307989% | 50 / 59 | 84.7457627118644% | :eight_pointed_black_star: 
+| [SpinDriver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriver.md) | 76.13089509143407% | 49 / 59 | 83.05084745762711% | :eight_pointed_black_star: 
 | [SpinDriverCamera.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverCamera.md) | 73.97260273972603% | 13 / 14 | 92.85714285714286% | :eight_pointed_black_star: 
 | [SpinDriverOperateRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverOperateRing.md) | 45.5535390199637% | 14 / 19 | 73.68421052631578% | :eight_pointed_black_star: 
 | [SpinDriverPathDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SpinDriverPathDrawer.md) | 38.91752577319588% | 24 / 28 | 85.71428571428571% | :eight_pointed_black_star: 

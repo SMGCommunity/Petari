@@ -42,6 +42,8 @@ namespace MR {
     void requestStartDemoMarioPuppetableWithoutCinmeaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
 
+    void requestStartTimeKeepDemoMarioPuppetable(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
+
     void requestStartTimeKeepDemo(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 
     bool isDemoPartLastStep(const char *);

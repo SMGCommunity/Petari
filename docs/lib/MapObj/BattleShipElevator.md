@@ -5,20 +5,20 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 1 / 13 Completed -- (7.6923076923076925%)
+# 13 / 13 Completed -- (100.0%)
 # BattleShipElevator.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__18BattleShipElevatorFPCc` | :white_check_mark: |
-| `init__18BattleShipElevatorFRC12JMapInfoIter` | :x: |
-| `exeMove__18BattleShipElevatorFv` | :x: |
-| `control__18BattleShipElevatorFv` | :x: |
-| `receiveOtherMsg__18BattleShipElevatorFUlP9HitSensorP9HitSensor` | :x: |
-| `__dt__18BattleShipElevatorFv` | :x: |
-| `__sinit_\BattleShipElevator_cpp` | :x: |
-| `__ct__Q221NrvBattleShipElevator25BattleShipElevatorNrvWaitFv` | :x: |
-| `__ct__Q221NrvBattleShipElevator25BattleShipElevatorNrvMoveFv` | :x: |
-| `__ct__Q221NrvBattleShipElevator24BattleShipElevatorNrvEndFv` | :x: |
-| `execute__Q221NrvBattleShipElevator24BattleShipElevatorNrvEndCFP5Spine` | :x: |
-| `execute__Q221NrvBattleShipElevator25BattleShipElevatorNrvMoveCFP5Spine` | :x: |
-| `execute__Q221NrvBattleShipElevator25BattleShipElevatorNrvWaitCFP5Spine` | :x: |
+| `init__18BattleShipElevatorFRC12JMapInfoIter` | :white_check_mark: |
+| `exeMove__18BattleShipElevatorFv` | :white_check_mark: |
+| `control__18BattleShipElevatorFv` | :white_check_mark: |
+| `receiveOtherMsg__18BattleShipElevatorFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `__dt__18BattleShipElevatorFv` | :white_check_mark: |
+| `__sinit_\BattleShipElevator_cpp` | :white_check_mark: |
+| `__ct__Q221NrvBattleShipElevator25BattleShipElevatorNrvWaitFv` | :white_check_mark: |
+| `__ct__Q221NrvBattleShipElevator25BattleShipElevatorNrvMoveFv` | :white_check_mark: |
+| `__ct__Q221NrvBattleShipElevator24BattleShipElevatorNrvEndFv` | :white_check_mark: |
+| `execute__Q221NrvBattleShipElevator24BattleShipElevatorNrvEndCFP5Spine` | :white_check_mark: |
+| `execute__Q221NrvBattleShipElevator25BattleShipElevatorNrvMoveCFP5Spine` | :white_check_mark: |
+| `execute__Q221NrvBattleShipElevator25BattleShipElevatorNrvWaitCFP5Spine` | :white_check_mark: |
