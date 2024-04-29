@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 50 / 59 Completed -- (84.7457627118644%)
+# 49 / 59 Completed -- (83.05084745762711%)
 # SpinDriver.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |

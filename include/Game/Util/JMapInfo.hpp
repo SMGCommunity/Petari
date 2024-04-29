@@ -67,6 +67,12 @@ public:
         _4 = val;
     }
 
+    inline JMapInfoIter& operator=(const JMapInfoIter &rIter) {
+        mInfo = rIter.mInfo;
+        _4 = rIter._4;
+        return *this;
+    }
+
     template<typename T>
     bool getValue(const char *, T *) const;
 
@@ -95,6 +101,8 @@ public:
 
         return valid;
     }
+
+    
 
     bool operator==(const JMapInfoIter &) const;
 

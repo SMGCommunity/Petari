@@ -1,3 +1,4 @@
+#include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
@@ -103,7 +104,7 @@ s32 StageDataHolder::getCurrentStartCameraId() const {
 
     if (ret) {
         return cameraID;
-    }
+    } 
 
     return -1;
 }
@@ -188,6 +189,18 @@ void* StageDataHolder::getStageArchiveResource(const char *pName) {
 
 s32 StageDataHolder::getStageArchiveResourceSize(void *pData) {
     return mArchive->getResSize(pData);
+}
+
+void StageDataHolder::initPlacementMario() {
+    JMapInfoIter iter = makeCurrentMarioJMapInfoIter();
+    MR::setCurrentPlacementZoneId(MR::getPlacedZoneId(iter));
+    const char* objName = "";
+    MR::getObjectName(&objName, iter);
+    CreationFuncPtr funcPtr = NameObjFactory::getCreator(objName);
+
+    NameObj* obj = funcPtr("マリオアクター"); 
+    obj->init(iter);
+    MR::clearCurrentPlacementZoneId();
 }
 
 void StageDataHolder::initTableData() {

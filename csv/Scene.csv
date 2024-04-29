@@ -418,7 +418,7 @@ isPlacedZone__15StageDataHolderCFi,StageDataHolder.o,Scene.a,true
 getJapaneseObjectName__15StageDataHolderCFPCc,StageDataHolder.o,Scene.a,true
 getStageArchiveResource__15StageDataHolderFPCc,StageDataHolder.o,Scene.a,true
 getStageArchiveResourceSize__15StageDataHolderFPv,StageDataHolder.o,Scene.a,true
-initPlacementMario__15StageDataHolderFv,StageDataHolder.o,Scene.a,false
+initPlacementMario__15StageDataHolderFv,StageDataHolder.o,Scene.a,true
 makeMarioJMapInfoIter__15StageDataHolderCFRC10JMapIdInfo,StageDataHolder.o,Scene.a,false
 makeCurrentMarioJMapInfoIter__15StageDataHolderCFv,StageDataHolder.o,Scene.a,false
 initJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCc,StageDataHolder.o,Scene.a,false

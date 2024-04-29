@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 21 / 51 Completed -- (41.17647058823529%)
+# 22 / 51 Completed -- (43.13725490196079%)
 # StageDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -40,7 +40,7 @@
 | `getJapaneseObjectName__15StageDataHolderCFPCc` | :white_check_mark: |
 | `getStageArchiveResource__15StageDataHolderFPCc` | :white_check_mark: |
 | `getStageArchiveResourceSize__15StageDataHolderFPv` | :white_check_mark: |
-| `initPlacementMario__15StageDataHolderFv` | :x: |
+| `initPlacementMario__15StageDataHolderFv` | :white_check_mark: |
 | `makeMarioJMapInfoIter__15StageDataHolderCFRC10JMapIdInfo` | :x: |
 | `makeCurrentMarioJMapInfoIter__15StageDataHolderCFv` | :x: |
 | `initJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCc` | :x: |

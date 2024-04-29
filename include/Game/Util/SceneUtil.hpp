@@ -11,7 +11,9 @@ class NameObj;
 
 namespace MR {
     s32 getPlacedZoneId(const JMapInfoIter &);
+    void setCurrentPlacementZoneId(s32);
     s32 getCurrentPlacementZoneId();
+    void clearCurrentPlacementZoneId();
 
     s32 getChildObjNum(const JMapInfoIter &);
     void getChildObjName(const char **, const JMapInfoIter &, int);
