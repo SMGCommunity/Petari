@@ -43,7 +43,7 @@ bool PrizeRing::isReadyToPass() const {
         return false;
     }
     else {
-        isNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
+        return isNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
     }
 }
 
@@ -52,7 +52,7 @@ bool PrizeRing::isReadyToKill() const {
         return false;
     }
     else {
-        isNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
+        return isNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
     }
 }
 
