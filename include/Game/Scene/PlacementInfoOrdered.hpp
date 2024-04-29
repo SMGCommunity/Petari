@@ -47,6 +47,8 @@ public:
     SameIdSet* createSameIdSet(const Identifier &);
     Index* createIndex(const JMapInfoIter &);
 
+    void attach(const JMapInfo *, PlacementInfoOrdered *);
+
     Index* mIndexArray;             // _0
     u32 _4;
     SameIdSet* mSetArray;           // _8

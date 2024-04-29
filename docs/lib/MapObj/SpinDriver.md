@@ -32,7 +32,7 @@
 | `exeAppear__10SpinDriverFv` | :white_check_mark: |
 | `exeWait__10SpinDriverFv` | :white_check_mark: |
 | `exeCapture__10SpinDriverFv` | :white_check_mark: |
-| `exeShootStart__10SpinDriverFv` | :white_check_mark: |
+| `exeShootStart__10SpinDriverFv` | :x: |
 | `exeShoot__10SpinDriverFv` | :white_check_mark: |
 | `exeCoolDown__10SpinDriverFv` | :white_check_mark: |
 | `startBind__10SpinDriverFP9HitSensor` | :white_check_mark: |

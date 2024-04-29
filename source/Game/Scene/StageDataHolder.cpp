@@ -1,8 +1,68 @@
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Scene/PlacementInfoOrdered.hpp"
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
+
+namespace {
+    static bool isPrioPlacementObjInfo(const char *pName) NO_INLINE {
+        return MR::isEqualStringCase(pName, "AreaObjInfo") 
+            || MR::isEqualStringCase(pName, "PlanetObjInfo")
+            || MR::isEqualStringCase(pName, "DemoObjInfo")
+            || MR::isEqualStringCase(pName, "CameraCubeInfo");
+    }
+
+    static void calcPlacementInfoNum(int *a1, int *a2, const MR::AssignableArray<JMapInfo> &rArray) NO_INLINE {
+        JMapInfo* cur = rArray.mArr;
+        *a1 = 0;
+        *a2 = 0;
+
+        while (cur != &rArray.mArr[rArray.mMaxSize]) {
+            if (::isPrioPlacementObjInfo(cur->getName())) {
+                int size;
+                
+                if (cur->mData != nullptr) {
+                    size = cur->mData->mNumEntries;
+                }
+                else {
+                    size = 0;
+                }
+
+                *a1 += size;
+            }
+            else {
+                int size;
+
+                if (cur->mData != nullptr) {
+                    size = cur->mData->mNumEntries;
+                }
+                else {
+                    size = 0;
+                }
+
+                *a2 += size;
+            }
+
+            cur++;
+        }
+    }
+
+    static void attachJmpInfoToPlacementInfoOrdered(PlacementInfoOrdered *a1, PlacementInfoOrdered *a2, PlacementInfoOrdered *a3, const MR::AssignableArray<JMapInfo> &rArray) NO_INLINE {
+        JMapInfo* cur = rArray.mArr;
+
+        while (cur != &rArray.mArr[rArray.mMaxSize]) {
+            if (::isPrioPlacementObjInfo(cur->getName())) {
+                a1->attach(cur, nullptr);
+            }
+            else {
+                a2->attach(cur, a3);
+            }
+            
+            cur++;
+        }
+    }
+};
 
 void StageDataHolder::init(const JMapInfoIter &rIter) {
     if (!mZoneID) {
@@ -209,6 +269,37 @@ void StageDataHolder::initTableData() {
 
     mObjNameTbl = new JMapInfo();
     mObjNameTbl->attach(tableFile);
+}
+
+void StageDataHolder::initPlacementInfoOrderedCommon() {
+    int v12, v11;
+    ::calcPlacementInfoNum(&v12, &v11, _EC);
+
+    s32 v2 = 0;
+    s32 v3 = 0;
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        int v10, v9;
+        ::calcPlacementInfoNum(&v10, &v9, mStageDataArray[i]->_EC);
+        v12 += v10;
+        v11 += v9;
+    }
+
+    _FC = new PlacementInfoOrdered(v12);
+    _100 = new PlacementInfoOrdered(v11);
+    _10C = new PlacementInfoOrdered(0x20);
+    ::attachJmpInfoToPlacementInfoOrdered(_FC, _100, _10C, _EC);
+
+    s32 v7 = 0;
+    s32 v8 = 0;
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        ::attachJmpInfoToPlacementInfoOrdered(_FC, _100, _10C, mStageDataArray[i]->_EC);
+        i++;
+    }
+
+    _FC->sort();
+    _100->sort();
 }
 
 JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *pInfoArr, const char *pName) const {

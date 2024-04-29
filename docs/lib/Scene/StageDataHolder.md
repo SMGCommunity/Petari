@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 22 / 51 Completed -- (43.13725490196079%)
+# 26 / 51 Completed -- (50.98039215686274%)
 # StageDataHolder.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -13,9 +13,9 @@
 | `end__8JMapInfoCFv` | :x: |
 | `findElement<PCc>__8JMapInfoCFPCcPCci_12JMapInfoIter` | :x: |
 | `__eq__12JMapInfoIterCFRC12JMapInfoIter` | :x: |
-| `isPrioPlacementObjInfo__29@unnamed@StageDataHolder_cpp@FPCc` | :x: |
-| `calcPlacementInfoNum__29@unnamed@StageDataHolder_cpp@FPiPiRCQ22MR26AssignableArray<8JMapInfo>` | :x: |
-| `attachJmpInfoToPlacementInfoOrdered__29@unnamed@StageDataHolder_cpp@FP20PlacementInfoOrderedP20PlacementInfoOrderedP20PlacementInfoOrderedRCQ22MR26AssignableArray<8JMapInfo>` | :x: |
+| `isPrioPlacementObjInfo__29@unnamed@StageDataHolder_cpp@FPCc` | :white_check_mark: |
+| `calcPlacementInfoNum__29@unnamed@StageDataHolder_cpp@FPiPiRCQ22MR26AssignableArray<8JMapInfo>` | :white_check_mark: |
+| `attachJmpInfoToPlacementInfoOrdered__29@unnamed@StageDataHolder_cpp@FP20PlacementInfoOrderedP20PlacementInfoOrderedP20PlacementInfoOrderedRCQ22MR26AssignableArray<8JMapInfo>` | :white_check_mark: |
 | `__ct__15StageDataHolderFPCcib` | :x: |
 | `init__15StageDataHolderFRC12JMapInfoIter` | :white_check_mark: |
 | `initAfterScenarioSelected__15StageDataHolderFv` | :white_check_mark: |
@@ -49,7 +49,7 @@
 | `initLayerJmpInfo__15StageDataHolderFPQ22MR26AssignableArray<8JMapInfo>PCcPCcUl` | :x: |
 | `attachJmpInfoToArray__15StageDataHolderFP8JMapInfoPCc` | :x: |
 | `initTableData__15StageDataHolderFv` | :white_check_mark: |
-| `initPlacementInfoOrderedCommon__15StageDataHolderFv` | :x: |
+| `initPlacementInfoOrderedCommon__15StageDataHolderFv` | :white_check_mark: |
 | `initPlacementInfoOrderedScenario__15StageDataHolderFv` | :x: |
 | `findJmpInfoFromArray__15StageDataHolderCFPCQ22MR26AssignableArray<8JMapInfo>PCc` | :white_check_mark: |
 | `getStartJMapInfoIterFromStartDataIndex__15StageDataHolderCFi` | :x: |
