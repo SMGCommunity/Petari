@@ -198,7 +198,7 @@
 | [PowerStarAppearPoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarAppearPoint.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [PowerStarHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PowerStarHolder.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [PressureBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PressureBase.md) | 81.69398907103826% | 44 / 48 | 91.66666666666666% | :eight_pointed_black_star: 
-| [PrizeRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PrizeRing.md) | 72.77992277992279% | 27 / 31 | 87.09677419354838% | :eight_pointed_black_star: 
+| [PrizeRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PrizeRing.md) | 78.57142857142857% | 28 / 31 | 90.32258064516128% | :eight_pointed_black_star: 
 | [PTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PTimerSwitch.md) | 100.0% | 24 / 24 | 100.0% | :white_check_mark: 
 | [PunchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PunchBox.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [PunchingKinoko.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/PunchingKinoko.md) | 100.0% | 59 / 59 | 100.0% | :white_check_mark: 

@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 27 / 31 Completed -- (87.09677419354838%)
+# 28 / 31 Completed -- (90.32258064516128%)
 # PrizeRing.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -14,7 +14,7 @@
 | `appear__9PrizeRingFv` | :white_check_mark: |
 | `kill__9PrizeRingFv` | :white_check_mark: |
 | `setLife__9PrizeRingFi` | :white_check_mark: |
-| `setNumber__9PrizeRingFi` | :x: |
+| `setNumber__9PrizeRingFi` | :white_check_mark: |
 | `setNervePass__9PrizeRingFv` | :white_check_mark: |
 | `isReadyToPass__9PrizeRingCFv` | :white_check_mark: |
 | `isReadyToKill__9PrizeRingCFv` | :white_check_mark: |

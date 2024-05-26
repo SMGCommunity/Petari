@@ -34,6 +34,12 @@ void PrizeRing::setLife(int num) {
     _90 = num;
 }
 
+void PrizeRing::setNumber(int num) {
+    f32 pNum = num - 1.0f;
+    MR::startBva(this, "Number");
+    MR::setBvaFrameAndStop(this, pNum);
+}
+
 void PrizeRing::setNervePass() {
     setNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
 }
@@ -107,7 +113,15 @@ void PrizeRing::exePass() {
         setNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
     }
 }
-
+/*
+bool PrizeRing::isPassed() const {
+    if (!PrizeRing::isReadyToPass()) {
+        if (!isNerve(&NrvPrizeRing::PrizeRingPass::sInstance)) {
+            return PrizeRing::isReadyToKill();
+        }
+    }
+}
+*/
 
 void PrizeRing::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {

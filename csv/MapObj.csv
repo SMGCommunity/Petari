@@ -3798,7 +3798,7 @@ init__9PrizeRingFRC12JMapInfoIter,PrizeRing.o,MapObj.a,true
 appear__9PrizeRingFv,PrizeRing.o,MapObj.a,true
 kill__9PrizeRingFv,PrizeRing.o,MapObj.a,true
 setLife__9PrizeRingFi,PrizeRing.o,MapObj.a,true
-setNumber__9PrizeRingFi,PrizeRing.o,MapObj.a,false
+setNumber__9PrizeRingFi,PrizeRing.o,MapObj.a,true
 setNervePass__9PrizeRingFv,PrizeRing.o,MapObj.a,true
 isReadyToPass__9PrizeRingCFv,PrizeRing.o,MapObj.a,true
 isReadyToKill__9PrizeRingCFv,PrizeRing.o,MapObj.a,true
