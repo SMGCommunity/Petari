@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [AnimScaleController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/AnimScaleController.md) | 0.0% | 0 / 31 | 0.0% | :x: 
 | [AnimStampController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/AnimStampController.md) | 0.0% | 0 / 11 | 0.0% | :x: 
-| [BallBeamer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BallBeamer.md) | 0.0% | 0 / 25 | 0.0% | :x: 
+| [BallBeamer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BallBeamer.md) | 53.31125827814569% | 22 / 25 | 88.0% | :eight_pointed_black_star: 
 | [Balloonfish.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Balloonfish.md) | 0.0% | 0 / 24 | 0.0% | :x: 
 | [BasaBasa.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BasaBasa.md) | 0.0% | 0 / 77 | 0.0% | :x: 
 | [BegomanBaby.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BegomanBaby.md) | 0.0% | 0 / 76 | 0.0% | :x: 
