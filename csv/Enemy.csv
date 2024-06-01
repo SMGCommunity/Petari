@@ -1680,13 +1680,13 @@ execute__Q220NrvJellyfishElectric36JellyfishElectricNrvWaitWithLeftTurnCFP5Spine
 execute__Q220NrvJellyfishElectric37JellyfishElectricNrvWaitWithRightTurnCFP5Spine,JellyfishElectric.o,Enemy.a,false
 execute__Q220NrvJellyfishElectric24JellyfishElectricNrvWaitCFP5Spine,JellyfishElectric.o,Enemy.a,false
 __ct__7JirairaFPCc,Jiraira.o,Enemy.a,true
-init__7JirairaFRC12JMapInfoIter,Jiraira.o,Enemy.a,false
+init__7JirairaFRC12JMapInfoIter,Jiraira.o,Enemy.a,true
 appear__7JirairaFv,Jiraira.o,Enemy.a,true
 kill__7JirairaFv,Jiraira.o,Enemy.a,true
 control__7JirairaFv,Jiraira.o,Enemy.a,true
 exeWait__7JirairaFv,Jiraira.o,Enemy.a,true
 exeStepped__7JirairaFv,Jiraira.o,Enemy.a,true
-exeExplode__7JirairaFv,Jiraira.o,Enemy.a,false
+exeExplode__7JirairaFv,Jiraira.o,Enemy.a,true
 exePreRecover__7JirairaFv,Jiraira.o,Enemy.a,true
 exeRecover__7JirairaFv,Jiraira.o,Enemy.a,true
 attackSensor__7JirairaFP9HitSensorP9HitSensor,Jiraira.o,Enemy.a,false

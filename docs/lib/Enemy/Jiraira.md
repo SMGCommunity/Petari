@@ -5,18 +5,18 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 24 / 27 Completed -- (88.88888888888889%)
+# 26 / 27 Completed -- (96.29629629629629%)
 # Jiraira.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__7JirairaFPCc` | :white_check_mark: |
-| `init__7JirairaFRC12JMapInfoIter` | :x: |
+| `init__7JirairaFRC12JMapInfoIter` | :white_check_mark: |
 | `appear__7JirairaFv` | :white_check_mark: |
 | `kill__7JirairaFv` | :white_check_mark: |
 | `control__7JirairaFv` | :white_check_mark: |
 | `exeWait__7JirairaFv` | :white_check_mark: |
 | `exeStepped__7JirairaFv` | :white_check_mark: |
-| `exeExplode__7JirairaFv` | :x: |
+| `exeExplode__7JirairaFv` | :white_check_mark: |
 | `exePreRecover__7JirairaFv` | :white_check_mark: |
 | `exeRecover__7JirairaFv` | :white_check_mark: |
 | `attackSensor__7JirairaFP9HitSensorP9HitSensor` | :x: |
