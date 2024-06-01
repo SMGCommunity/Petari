@@ -119,7 +119,6 @@ namespace JGeometry {
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const;
         
     };
-
     template<class T>
     struct TRotation3 : public T {
     public:
@@ -161,7 +160,7 @@ namespace JGeometry {
         void setRotate(const TVec3f &, f32);
 
         void mult33(TVec3f &) const;
-        void mult33(const TVec3f &, TVec3f &) const;
+        void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
 
         inline void getXDirInline(TVec3f &rDest) const {
             f32 z = mMtx[2][0];
@@ -170,16 +169,132 @@ namespace JGeometry {
             rDest.set(x, y, z);
         }
 
-#ifdef NON_MATCHING
-        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDest) const {
-            rDest.set<f32>(
-                rSrc.z * mMtx[0][2] + (rSrc.y * mMtx[0][0] + (rSrc.x * mMtx[0][1])),
-                rSrc.z * mMtx[1][2] + (rSrc.y * mMtx[1][0] + (rSrc.x * mMtx[1][1])),
-                rSrc.z * mMtx[2][2] + (rSrc.y * mMtx[2][0] + (rSrc.x * mMtx[2][1]))
-                );
+        inline f32 helpA(const TVec3f &rSrc) const {
+            return rSrc.z * mMtx[0][2] + rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1];
         }
-#endif
+        inline f32 helpB(const TVec3f &rSrc) const {
+            return rSrc.z * mMtx[1][2] + rSrc.x * mMtx[1][0] + rSrc.y * mMtx[1][1];
+        }
+        inline f32 helpC(const TVec3f &rSrc) const {
+            return rSrc.z * mMtx[2][2] + rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1];
+        }
+
+        template<typename U>
+        inline U sum(U a, U b) const {
+            return a + b;
+        }
+
+
+void stupidM(const TVec3f &rSrc, f32 &x, f32 &y, f32 &z) const {
+            x = rSrc.z * mMtx[0][2] + rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1];
+             y = rSrc.z * mMtx[1][2] + rSrc.x * mMtx[1][0] + rSrc.y * mMtx[1][1];
+             z = rSrc.z * mMtx[2][2] + rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1];
+}
+
+//#ifdef NON_MATCHING
+       // template<typename U>
+        inline void mult33Inline(const TVec3f &rDst, TVec3f &rSrc) const {
+            /*TVec3f CALL_INLINE_FUNC(c1, mMtx[0][0], mMtx[1][0], mMtx[2][0]),
+                CALL_INLINE_FUNC(c2, mMtx[0][1], mMtx[1][1], mMtx[2][1]),
+                CALL_INLINE_FUNC(c3, mMtx[0][2], mMtx[1][2], mMtx[2][2]);
+            c1.scaleInline(rSrc.x);
+            c2.scaleInline(rSrc.y);
+            c3.scaleInline(rSrc.z);
+            TVec3f res = c1 + c2 + c3;*/
+           /* f32 x, y, z;
+            z = rSrc.y * mMtx[2][1];
+            z += rSrc.x * mMtx[2][0];
+            z += rSrc.z * mMtx[2][2];
+            y = rSrc.y * mMtx[1][1];
+            y += rSrc.x * mMtx[1][0];
+            x = rSrc.y * mMtx[0][1];
+
+            x += rSrc.x * mMtx[0][0];
+
+            x += rSrc.z * mMtx[0][2];
+            y += rSrc.z * mMtx[1][2];*/
+            
+    f32 a21;
+    f32 &a21p = a21;
+    f32 a31 = mMtx[2][0];
+    //f32 vx = rDst.x;
+    a21 = mMtx[1][0];
+    f32 a11 = mMtx[0][0];
+    f32 a32 = mMtx[2][1];
+    //f32 vy = rDst.y;
+    f32 a22 = mMtx[1][1];
+    f32 a12 = mMtx[0][1];
+    f32 a33 = mMtx[2][2];
+    //f32 vz = rDst.z;
+    f32 a13 = mMtx[0][2];
+    f32 a23 = mMtx[1][2];
+
+    rSrc.set(rDst.x * a11 + rDst.y * a12 + rDst.z * a13, rDst.x * a21 + rDst.y * a22 + rDst.z * a23, rDst.x * a31 + rDst.y * a32 + rDst.z * a33);
+           /* f32 x1, x2, x3, y1, y2, y3, z1, z2, z3;
+            
+            y3 = mMtx[2][1];
+            y2 = mMtx[1][1];
+            y1 = mMtx[0][1];
+            
+            x3 = mMtx[2][0];
+            x2 = mMtx[1][0];
+            x1 = mMtx[0][0];
+            
+            z3 = mMtx[2][2];
+            z2 = mMtx[1][2];
+            z1 = mMtx[0][2];
+            
+            y3 = rSrc.y * y3;
+            y2 = rSrc.y * y2;
+            y1 = rSrc.y * y1;
+
+            x3 = rSrc.x * x3;
+            x2 = rSrc.x * x2;
+            x1 = rSrc.x * x1;
+            
+            z3 = rSrc.z * z3;
+            z2 = rSrc.z * z2;
+            z1 = rSrc.z * z1;*/
+            //f32 c1 = mMtx[2][1], c2 = mMtx[1][1], c3 = mMtx[1][0];
+            //c1 *= rSrc.y;
+            //c2 *= rSrc.y;
+            //c3 *= rSrc.y;
+
+            //f32 x, y, z;
+            //stupidM(rSrc, x, y, z);
+    
+            //f32 x = mMtx[0][2] * rSrc.z + mMtx[0][0] * rSrc.x + mMtx[0][1] * rSrc.y;
+            //f32 y = mMtx[1][2] * rSrc.z + mMtx[1][0] * rSrc.x + mMtx[1][1] * rSrc.y;
+            //f32 z = mMtx[2][2] * rSrc.z + mMtx[2][0] * rSrc.x + mMtx[2][1] * rSrc.y;
+
+            
+            //rDest.set(x, y, z
+                //res.x, res.y, res.z
+                /*y1 + x1 + z1,
+                y2 + x2 + z2,
+                y3 + x3 + z3*/
+                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[0]),
+                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[1]),
+                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[2])
+  /*              rSrc.z * mMtx[0][2] + (rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1]),
+                rSrc.z * mMtx[1][2] + (rSrc.x * mMtx[1][0] + rSrc.y * mMtx[1][1]),
+                rSrc.z * mMtx[2][2] + (rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1])
+*/
+                //rSrc.z * mMtx[0][2] + rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1],
+                //rSrc.x * mMtx[1][2] + rSrc.y * mMtx[1][0] + rSrc.z * mMtx[1][1],
+                //rSrc.z * mMtx[2][2] + rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1]
+                //helpA(rSrc),
+                //helpB(rSrc),
+                //helpC(rSrc)
+                
+                //);
+        }
+//#endif
     };
+    
+        inline f32 helper(const Vec &rSrc, const Vec &mtx) {
+            return rSrc.y * mtx.y + rSrc.x  * mtx.x + rSrc.z * mtx.z;
+        }
 
     template<class T>
     struct TPosition3 : public TRotation3<T> {

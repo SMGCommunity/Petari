@@ -2,6 +2,83 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "Game/Util.hpp"
 
+inline f32 getElement(const TRot3f &rot) {
+    return rot.mMtx[1][0];
+}
+
+template<>
+void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
+    /*f32 z, y, x;
+    z = rDst.x * mMtx[2][0];
+    y = rDst.x * mMtx[1][0];
+    x = rDst.x * mMtx[0][0];
+    f32 tmp = mMtx[2][1];
+    z += rDst.y * tmp;
+    y = rDst.y * mMtx[1][1] + y;
+    x = rDst.y * mMtx[0][1] + x;
+    x = rDst.z * mMtx[0][2] + x;
+    y = rDst.z * mMtx[1][2] + y;
+    z += rDst.z * mMtx[2][2];*/
+    //f32 a21;
+    //f32 &a21p = a21;
+    //f32 x, y, z;
+    //f32 vx, vy, vz, z, y, x, a31, a21, a11;
+    //f32 vx, vy, vz;
+    f32 a31 = mMtx[2][0];
+    //vx = rDst.x;
+    f32 a21 = mMtx[1][0];
+    f32 a11 = mMtx[0][0];
+
+    f32 z = rDst.x * a31;
+
+    /*f32 z = rDst.x * a31;
+    f32 y = rDst.x * a21;
+    f32 x = rDst.x * a11;*/
+    
+    f32 a32 = mMtx[2][1];
+    
+    f32 y = rDst.x * a21;
+    //vy = rDst.y;
+    
+    f32 x = rDst.x * a11;
+    
+    f32 a22 = mMtx[1][1];
+    f32 z2 = rDst.y * a32;
+    f32 a12 = mMtx[0][1];
+
+    f32 y2 = rDst.y * a22;
+    
+    f32 a33 = mMtx[2][2];
+    
+    f32 x2 = rDst.y * a12;
+    //vz = rDst.z;
+    f32 a13 = mMtx[0][2];
+
+    y += y2;
+    f32 a23 = mMtx[1][2];
+
+    x += x2;
+    f32 x4 = rDst.z * a13;
+    f32 y4 = rDst.z * a23;
+    z += z2;
+    f32 z4 = rDst.z * a33;
+    x += x4;
+    y += y4;
+    z += z4;
+    //x += vz * a13;
+    //y += vz * a23;
+    //z += vz * a33;
+
+    /*f32 z2 = z + rDst.z * a33;
+    f32 y2 = y + rDst.z * a23;
+    f32 x2 = x + rDst.z * a13;*/
+    //x = vx * a11 + vy * a12 + vz * a13;
+    //y = vx * a21 + vy * a22 + vz * a23;
+    //z = vx * a31 + vy * a32 + vz * a33;
+    rSrc.set(x, y, z);
+    
+}
+
 AreaFormCube::AreaFormCube(int a1) {
     _4 = 0;
     _8 = a1;
