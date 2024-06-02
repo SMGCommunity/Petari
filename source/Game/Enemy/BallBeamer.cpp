@@ -1,7 +1,7 @@
 #include "Game/Enemy/BallBeamer.hpp"
 
 BallBeamer::BallBeamer(const char *pName) : LiveActor(pName) {
-    _8C = 0;
+    mBeams = nullptr;
     _90 = false;
     _98.identity();
 }
@@ -64,7 +64,7 @@ void BallBeamer::syncSwitchOffA() {
 }
 
 void BallBeamer::syncSwitchOnB() {
-
+    
 }
 
 void BallBeamer::setupAttack() {
@@ -76,6 +76,10 @@ void BallBeamer::setupAttack() {
     }
 }
 
+void BallBeamer::tryAttack() {
+
+}
+
 void BallBeamer::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
@@ -85,10 +89,6 @@ void BallBeamer::exeWait() {
     if (MR::isNearPlayer(this, 3000.0f)) {
         BallBeamer::setupAttack();
     }
-}
-
-void BallBeamer::tryAttack() {
-
 }
 
 void BallBeamer::exeAttack() {

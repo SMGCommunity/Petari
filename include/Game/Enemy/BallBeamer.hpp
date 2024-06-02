@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Enemy/RingBeam.hpp"
+
 
 class BallBeamer : public LiveActor {
     public:
@@ -22,7 +24,7 @@ class BallBeamer : public LiveActor {
         void exeAttack();
         void exeInter();
 
-        s32 _8C; //wrong
+        RingBeam** mBeams;
         bool _90;
         TMtx34f _98;
 
