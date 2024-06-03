@@ -52,3 +52,7 @@ void ScenarioDataIter::goNext() {
 ScenarioDataParser::~ScenarioDataParser() {
 
 }
+
+namespace MR {
+
+}

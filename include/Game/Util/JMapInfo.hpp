@@ -34,6 +34,12 @@ public:
     JMapInfo();
     ~JMapInfo();
 
+    inline JMapInfo& operator=(const JMapInfo &rhs) {
+        mData = rhs.mData;
+        mName = rhs.mName;
+        return *this;
+    }
+
     bool attach(const void *);
     void setName(const char *pName);
     const char* getName() const;

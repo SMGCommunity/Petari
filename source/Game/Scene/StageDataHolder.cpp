@@ -4,6 +4,7 @@
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
+#include <cstdio>
 
 namespace {
     static bool isPrioPlacementObjInfo(const char *pName) NO_INLINE {
@@ -151,10 +152,18 @@ void StageDataHolder::initPlacement() {
     _10C->initPlacement();
 }
 
-JMapInfo& StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
+JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
     JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
     JMapInfoIter pathIter = inf->findElement<s32>("l_id", idx, 0);
     return getCommonPathPointInfoFromRailDataIndex(pOut, pathIter._4);
+}
+
+JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo **pInfo, int idx) const {
+    JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
+    char buf[0x80];
+    snprintf(buf, sizeof(buf), "CommonPathPointInfo.%d", idx);
+    *pInfo = findJmpInfoFromArray(&mPathObjs, buf);
+    return *inf;
 }
 
 s32 StageDataHolder::getCurrentStartCameraId() const {

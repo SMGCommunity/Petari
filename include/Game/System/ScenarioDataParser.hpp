@@ -46,8 +46,12 @@ public:
 };
 
 namespace ScenarioDataFunction {
-    ScenarioDataParser* getScenarioDataParser();
+    ScenarioDataParser getScenarioDataParser();
 
     u32 getCurrentCommonLayers(const char *);
     u32 getCurrentScenarioLayers(const char *, s32);
+};
+
+namespace MR {
+    ScenarioDataIter makeBeginScenarioDataIter();
 };
