@@ -124,7 +124,7 @@
 | [HatchWaterPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HatchWaterPlanet.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | [HeavensDoorDemoObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HeavensDoorDemoObj.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [HipDropMoveObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropMoveObj.md) | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
-| [HipDropRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropRock.md) | 0.0% | 0 / 15 | 0.0% | :x: 
+| [HipDropRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropRock.md) | 86.6822429906542% | 14 / 15 | 93.33333333333333% | :eight_pointed_black_star: 
 | [HipDropSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropSwitch.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [HipDropTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HipDropTimerSwitch.md) | 0.0% | 0 / 23 | 0.0% | :x: 
 | [HitWallTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HitWallTimerSwitch.md) | 0.0% | 0 / 26 | 0.0% | :x: 
