@@ -33,7 +33,7 @@
 | [AstroOverlookObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroOverlookObj.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [BallOpener.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallOpener.md) | 56.747404844290664% | 15 / 17 | 88.23529411764706% | :eight_pointed_black_star: 
 | [BallRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BallRail.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
-| [Banekiti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Banekiti.md) | 0.0% | 0 / 19 | 0.0% | :x: 
+| [Banekiti.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Banekiti.md) | 100.0% | 19 / 19 | 100.0% | :white_check_mark: 
 | [BattleShipElevator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BattleShipElevator.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | [BeamGoRoundPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeamGoRoundPlanet.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [BeeFlowerHover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BeeFlowerHover.md) | 82.1311475409836% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
