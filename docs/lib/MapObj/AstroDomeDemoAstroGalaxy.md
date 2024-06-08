@@ -5,10 +5,10 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 3 Completed -- (0.0%)
+# 3 / 3 Completed -- (100.0%)
 # AstroDomeDemoAstroGalaxy.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__24AstroDomeDemoAstroGalaxyFPCc` | :x: |
-| `init__24AstroDomeDemoAstroGalaxyFRC12JMapInfoIter` | :x: |
-| `__dt__24AstroDomeDemoAstroGalaxyFv` | :x: |
+| `__ct__24AstroDomeDemoAstroGalaxyFPCc` | :white_check_mark: |
+| `init__24AstroDomeDemoAstroGalaxyFRC12JMapInfoIter` | :white_check_mark: |
+| `__dt__24AstroDomeDemoAstroGalaxyFv` | :white_check_mark: |

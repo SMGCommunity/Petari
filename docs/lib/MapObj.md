@@ -23,7 +23,7 @@
 | [AstroDomeBlueStar.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeBlueStar.md) | 0.0% | 0 / 55 | 0.0% | :x: 
 | [AstroDomeCameraController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeCameraController.md) | 0.0% | 0 / 29 | 0.0% | :x: 
 | [AstroDomeComet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeComet.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [AstroDomeDemoAstroGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeDemoAstroGalaxy.md) | 0.0% | 0 / 3 | 0.0% | :x: 
+| [AstroDomeDemoAstroGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeDemoAstroGalaxy.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [AstroDomeGalaxySelector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeGalaxySelector.md) | 0.0% | 0 / 37 | 0.0% | :x: 
 | [AstroDomeOrbit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeOrbit.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [AstroDomeSky.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeSky.md) | 0.0% | 0 / 31 | 0.0% | :x: 
