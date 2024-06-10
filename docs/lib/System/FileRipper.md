@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 7 Completed -- (0.0%)
+# 1 / 7 Completed -- (14.285714285714285%)
 # FileRipper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `setup__10FileRipperFUlP7JKRHeap` | :x: |
-| `checkCompressed__10FileRipperFPCUc` | :x: |
+| `checkCompressed__10FileRipperFPCUc` | :white_check_mark: |
 | `loadToMainRAM__10FileRipperFPCcPUcbP7JKRHeapQ210FileRipper14AllocDirection` | :x: |
 | `decompressFromDVD__10FileRipperFP11DVDFileInfoPvUlUlPCUcUl` | :x: |
 | `decompressSzsSub__10FileRipperFPUcPUc` | :x: |

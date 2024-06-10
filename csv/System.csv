@@ -170,7 +170,7 @@ loadToMainRAM__16FileLoaderThreadFP15RequestFileInfo,FileLoaderThread.o,System.a
 mountArchiveAndStartCreateResource__16FileLoaderThreadFP15RequestFileInfo,FileLoaderThread.o,System.a,true
 __dt__16FileLoaderThreadFv,FileLoaderThread.o,System.a,true
 setup__10FileRipperFUlP7JKRHeap,FileRipper.o,System.a,false
-checkCompressed__10FileRipperFPCUc,FileRipper.o,System.a,false
+checkCompressed__10FileRipperFPCUc,FileRipper.o,System.a,true
 loadToMainRAM__10FileRipperFPCcPUcbP7JKRHeapQ210FileRipper14AllocDirection,FileRipper.o,System.a,false
 decompressFromDVD__10FileRipperFP11DVDFileInfoPvUlUlPCUcUl,FileRipper.o,System.a,false
 decompressSzsSub__10FileRipperFPUcPUc,FileRipper.o,System.a,false
