@@ -67,5 +67,6 @@ namespace MR {
 
     void startSystemLevelSE(const char *, s32, s32);
 
+    void submitTrigSE();
     void permitTrigSE();
 };

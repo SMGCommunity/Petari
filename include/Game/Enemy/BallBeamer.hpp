@@ -10,16 +10,16 @@ class BallBeamer : public LiveActor {
         BallBeamer(const char *);
         
         virtual void init(const JMapInfoIter &);
-        virtual void syncSwitchOnA();
-        virtual void syncSwitchOffA();
-        virtual void syncSwitchOnB();
-        virtual void setupAttack();
-        virtual void tryAttack();
         virtual void attackSensor(HitSensor *pSender, HitSensor *pReceiver);
         virtual bool receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver);
         virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver);
 
         static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
+        void syncSwitchOnA();
+        void syncSwitchOffA();
+        void syncSwitchOnB();
+        void setupAttack();
+        void tryAttack();
         void exeWait();
         void exeAttack();
         void exeInter();
@@ -27,7 +27,6 @@ class BallBeamer : public LiveActor {
         RingBeam** mBeams;
         bool _90;
         TMtx34f _98;
-
 
 };
 

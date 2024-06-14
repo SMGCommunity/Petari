@@ -7,6 +7,8 @@ namespace MR {
 
     bool isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(s32);
 
+    bool isOnGameEventFlagViewCompleteEndingMarioAndLuigi();
+
     bool isOnGameEventFlagChildsRoom();
     bool isOnGameEventFlagLibraryRoom();
     bool isOnGameEventFlagRosettaTalkAboutTicoInTower();
@@ -29,6 +31,8 @@ namespace MR {
 
     bool hasGrandStar(int);
 
+    bool isGalaxyAppearGreenDriver(const char *);
+    void onGameEventFlagGalaxyOpen(const char *);
     bool hasPowerStarInCurrentStage(s32);
 
     bool hasPowerStarAtResultSequence();

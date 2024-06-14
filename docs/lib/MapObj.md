@@ -277,7 +277,7 @@
 | [SubmarineVolcanoBigColumn.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SubmarineVolcanoBigColumn.md) | 87.95180722891565% | 13 / 14 | 92.85714285714286% | :eight_pointed_black_star: 
 | [Sun.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Sun.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SuperSpinDriver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SuperSpinDriver.md) | 28.548644338118024% | 49 / 94 | 52.12765957446809% | :eight_pointed_black_star: 
-| [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SurprisedGalaxy.md) | 0.0% | 0 / 13 | 0.0% | :x: 
+| [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SurprisedGalaxy.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
 | [Swinger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Swinger.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [SwingLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwingLight.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/SwitchBox.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
