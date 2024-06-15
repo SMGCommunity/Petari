@@ -114,7 +114,7 @@
 | [FlexibleSphere.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FlexibleSphere.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [FlipPanel.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FlipPanel.md) | 100.0% | 43 / 43 | 100.0% | :white_check_mark: 
 | [Fountain.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Fountain.md) | 38.864628820960704% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
-| [FountainBig.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FountainBig.md) | 0.0% | 0 / 21 | 0.0% | :x: 
+| [FountainBig.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/FountainBig.md) | 100.0% | 21 / 21 | 100.0% | :white_check_mark: 
 | [GCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/GCapture.md) | 0.0% | 0 / 70 | 0.0% | :x: 
 | [GCaptureRibbon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/GCaptureRibbon.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [GCaptureTarget.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/GCaptureTarget.md) | 0.0% | 0 / 41 | 0.0% | :x: 
