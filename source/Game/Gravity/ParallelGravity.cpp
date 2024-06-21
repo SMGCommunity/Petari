@@ -63,7 +63,7 @@ void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) 
 
 void ParallelGravity::setRangeBox(const TPos3f &rMtx) {
     mLocalMtx = rMtx;
-	updateIdentityMtx();
+    updateIdentityMtx();
 }
 
 void ParallelGravity::setRangeCylinder(f32 radius, f32 height) {

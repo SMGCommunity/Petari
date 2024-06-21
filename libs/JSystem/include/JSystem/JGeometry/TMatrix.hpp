@@ -2,6 +2,7 @@
 
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
+#include <cmath>
 
 namespace JGeometry {
     template<typename T>
@@ -104,6 +105,7 @@ namespace JGeometry {
         }
 
         T mMtx[3][4];
+        typedef T type;
     };
 
     template<typename T>
@@ -117,11 +119,12 @@ namespace JGeometry {
         void mult(const TVec3f &rSrc, TVec3f &rDest) const;
 
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const;
-        
+        typedef T::type type;
     };
     template<class T>
     struct TRotation3 : public T {
     public:
+    typedef T::type type;
         void identity33();
 
         void getXDir(TVec3f &rDest) const NO_INLINE {
@@ -156,8 +159,100 @@ namespace JGeometry {
         void getScale(TVec3f &rDest) const;
         void setScale(const TVec3f &rSrc);
 
+
+        /*void helper(const TVec3<type> &stack_8, type fr1ex, type fr1ey) {
+            
+            //f32 (1.0f - fr1ex) = 1.0f - fr1ex;  
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * (stack_8.x * stack_8.x);
+            mMtx[0][1] = (1.0f - fr1ex) * stack_8.x * stack_8.y - fr1ey * stack_8.z;
+            mMtx[0][2] = (1.0f - fr1ex) * stack_8.x * stack_8.z + fr1ey * stack_8.y;
+            mMtx[1][0] = (1.0f - fr1ex) * stack_8.x * stack_8.y + fr1ey * stack_8.z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * (stack_8.y * stack_8.y);
+            mMtx[1][2] = (1.0f - fr1ex) * stack_8.y * stack_8.z - fr1ey * stack_8.x;
+            mMtx[2][0] = (1.0f - fr1ex) * stack_8.x * stack_8.z - fr1ey * stack_8.y;
+            mMtx[2][1] = (1.0f - fr1ex) * stack_8.y * stack_8.z + fr1ey * stack_8.x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * (stack_8.z * stack_8.z);
+
+        }
         void setRotate(const TVec3f &, const TVec3f &);
+        void setRotate(TVec3<type> &mLocalDirection, type fr1e) NO_INLINE {
+            TVec3<type> stack_8;
+            stack_8.set(mLocalDirection);
+            PSVECMag(stack_8.toCVec());
+            PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+            //f32 fr1ey = , fr1ex = ;
+            helper(stack_8, cos(fr1e), sin(fr1e));
+            //f32 fr1ex, fr1ey;
+        
+            // 8 reg -- 3 for stack_8, 3 for calculation, 1 for fr1ex, 1 for 1.0f - fr1ex
+            
+        }*/
         void setRotate(const TVec3f &, f32);
+        inline void help(f32 x, f32 y, f32 z, f32 fr1ex, f32 fr1ey) {
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * yy(x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * yy(y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * yy(z);
+        }
+        inline void multP(TVec3<type> &v) const {
+            T::mult(v, v);
+        }
+        void INLINE_FUNC_DECL(setRotate, const TVec3f &mLocalDirection, f32 fr1e) {
+            //union {TVec3f stack_81; const Vec stack_8;};
+            //stack_81.setInline(mLocalDirection);
+            //const TVec3f &stack_8 = *(const TVec3f*)&bs;
+            TVec3f stack_8;
+            stack_8.set(mLocalDirection);
+            PSVECMag(stack_8.toCVec());
+            PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+            //const TVec3f stack_8 = stack_8;
+        
+            //f32 fr1ex, fr1ey;
+        
+            // 8 reg -- 3 for stack_8, 3 for calculation, 1 for fr1ex, 1 for 1.0f - fr1ex
+            f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+        
+            //f32 fr1ex, fr1ey;
+        
+            // 8 reg -- 3 for stack_8, 3 for calculation, 1 for fr1ex, 1 for 1.0f - fr1ex
+            //f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+            f32 x, y, z;
+            //f32 &rx = x, &ry = y, &rz = z;
+            x = stack_8.x;
+            y = stack_8.y;
+            z = stack_8.z;
+            f32 xx = x * x;
+            f32 yx = y * y;
+            f32 zz = z * z;
+            //f32 yy = y * y;
+            //f32 diff = 1.0f - fr1ex;
+
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * (x * x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * (y * y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * (z * z);
+            
+            //f32 (1.0f - fr1ex) = 1.0f - fr1ex;  
+            /*mMtx[0][0] = fr1ex + (1.0f - fr1ex) * yy(x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * yy(y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * yy(z);*/
+        }
 
         void mult33(TVec3f &) const;
         void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
@@ -291,6 +386,13 @@ void stupidM(const TVec3f &rSrc, f32 &x, f32 &y, f32 &z) const {
         }
 //#endif
     };
+
+inline f32 yy(f32 y) {
+    return y * y;
+}
+inline f32 g(f32 x) {
+    return cos(x);
+}
     
         inline f32 helper(const Vec &rSrc, const Vec &mtx) {
             return rSrc.y * mtx.y + rSrc.x  * mtx.x + rSrc.z * mtx.z;

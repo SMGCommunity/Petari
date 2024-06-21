@@ -23,9 +23,9 @@ setRadius__11DiskGravityFf,DiskGravity.o,Gravity.a,true
 setValidDegee__11DiskGravityFf,DiskGravity.o,Gravity.a,true
 setBothSide__11DiskGravityFb,DiskGravity.o,Gravity.a,true
 setEnableEdgeGravity__11DiskGravityFb,DiskGravity.o,Gravity.a,true
-calcOwnGravityVector__11DiskGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>,DiskGravity.o,Gravity.a,false
+calcOwnGravityVector__11DiskGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>,DiskGravity.o,Gravity.a,true
 updateMtx__11DiskGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>,DiskGravity.o,Gravity.a,true
-updateLocalParam__11DiskGravityFv,DiskGravity.o,Gravity.a,false
+updateLocalParam__11DiskGravityFv,DiskGravity.o,Gravity.a,true
 __ct__16DiskTorusGravityFv,DiskTorusGravity.o,Gravity.a,true
 setPosition__16DiskTorusGravityFRCQ29JGeometry8TVec3<f>,DiskTorusGravity.o,Gravity.a,true
 setDirection__16DiskTorusGravityFRCQ29JGeometry8TVec3<f>,DiskTorusGravity.o,Gravity.a,true
