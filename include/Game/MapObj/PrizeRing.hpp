@@ -21,16 +21,13 @@ class PrizeRing : public ModelObj {
         virtual void init(const JMapInfoIter &);
         virtual void appear();
         virtual void kill();
-        virtual void setLife(int);
-        virtual void setNumber(int);
-        virtual void setNervePass();
-        virtual bool isReadyToPass() const;
-        virtual bool isReadyToKill() const;
-        virtual bool isPassed() const;
         virtual void attackSensor(HitSensor *pSender, HitSensor *pReceiver);
-        virtual void playSound() const;
-        virtual bool isOnTriggerTimeoutFlash() const;
 
+        void setLife(int);
+        void setNumber(int);
+        void setNervePass();
+        bool isReadyToPass() const;
+        bool isReadyToKill() const;
         void exeStart();
         void exeLoop();
         void exeTimeout();
@@ -40,6 +37,9 @@ class PrizeRing : public ModelObj {
             }
         }
         void exePass();
+        bool isPassed() const;
+        void playSound() const;            
+        bool isOnTriggerTimeoutFlash() const;
 
         int _90;
 

@@ -13,6 +13,6 @@ public:
     };
 
     static void setup(u32, JKRHeap *);
-
+    static s32 checkCompressed(const u8 *);
     static void* loadToMainRAM(const char *, u8 *, bool, JKRHeap *, AllocDirection);
 };

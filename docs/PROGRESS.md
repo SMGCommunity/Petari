@@ -12,7 +12,7 @@
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 73.07927450580803% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 42.577224527431994% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Map.md) | 17.65918333240488% |
-| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 31.922848911585145% |
+| [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj.md) | 32.27750678634203% |
 | [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/NameObj.md) | 33.210237031947784% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/NPC.md) | 2.155878467635403% |
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/NWC24.md) | 0.0% |
@@ -22,5 +22,5 @@
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 17.116530156366345% |
 | [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 6.315748206421598% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 54.75241889584519% |
-| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 14.681379713534055% |
+| [System](https://github.com/shibbo/Petari/blob/master/docs/lib/System.md) | 14.730098411770436% |
 | [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Util.md) | 10.090099514848767% |
