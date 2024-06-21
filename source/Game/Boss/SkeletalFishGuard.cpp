@@ -501,7 +501,44 @@ bool SkeletalFishGuard::isInScreen() const {
 }
 
 // SkeletalFishGuard::isPlayerInAttackRange
-// SkeletalFishGuard::isLineOfSightClear
+
+#ifdef NON_MATCHING
+// pretty close
+bool SkeletalFishGuard::isLineOfSightClear() const {
+    TVec3f v12(*MR::getPlayerCenterPos());
+    JMathInlineVEC::PSVECSubtract(v12.toCVec(), mPosition.toCVec(), v12.toVec());
+    
+    if (Collision::checkStrikeLineToMap(mPosition, v12, 0, nullptr, nullptr)) {
+        return false;
+    }
+
+    TVec3f v10 = MR::getCamPos();
+    JMathInlineVEC::PSVECSubtract(v10.toCVec(), mPosition.toCVec(), v10.toVec());
+    
+    if (Collision::checkStrikeLineToMap(mPosition, v10, 0, nullptr, nullptr)) {
+        return false; 
+    }
+
+    TVec3f v11(_E8);
+    JMathInlineVEC::PSVECSubtract(v11.toCVec(), mPosition.toCVec(), v11.toVec());
+    f32 v4 = _100.dot(v11);
+    JMAVECScaleAdd(_100.toCVec(), v11.toCVec(), v11.toVec(), -v4);
+    f32 v5 = _100.dot(v12);
+    JMAVECScaleAdd(_100.toCVec(), v12.toCVec(), v12.toVec(), -v5);
+    bool ret = true;
+
+    if (!MR::isNearZero(v11, 0.001f) && !MR::isNearZero(v12, 0.001f)) {
+        f32 v6 = PSVECMag(v11.toCVec());
+        f32 thick = mFishBoss->getBodyThickness();
+        f64 angle = JMAAsinRadian(thick / v6);
+        if (v11.angle(v12) < angle) {
+            return false;
+        }
+    }
+
+    return true;
+}
+#endif
 
 bool SkeletalFishGuard::tryShiftNumb(const Nerve *pNerve) {
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {

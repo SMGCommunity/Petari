@@ -9,7 +9,7 @@ class CameraTargetArg;
 class NameObj;
 
 namespace MR {
-    TVec3f getCamPos();
+    const TVec3f getCamPos();
 
     f32 calcCameraDistanceZ(const TVec3f &);
 
