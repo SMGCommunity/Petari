@@ -306,7 +306,7 @@ void SkeletalFishBoss::exeSwim() {
 void SkeletalFishBoss::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mBossHead, "Open", nullptr);
-        MR::startSound(mBossHead, "SE_B_SKL_BOSS_MOUTH_OPEN", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN", -1, -1);
     }
 
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
