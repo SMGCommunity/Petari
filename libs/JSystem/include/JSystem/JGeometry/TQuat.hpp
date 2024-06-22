@@ -17,6 +17,8 @@ namespace JGeometry {
             w = _w;
         }
 
+        void set(T, T, T, T);
+
         /* General operations */
         void normalize();
         void normalize(const TQuat4<T> &rSrc);

@@ -2,6 +2,7 @@
 #include "Game/Boss/SkeletalFishBoss.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include <JSystem/JMath.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 void SkeletalFishGuard::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
@@ -507,7 +508,37 @@ bool SkeletalFishGuard::tryShiftKill() {
     return true;
 }
 
-// SkeletalFishGuard::turn
+#ifdef NON_MATCHING
+// very close. small instruction swap.
+void SkeletalFishGuard::turn(TVec3f *a1, const TVec3f &a2, const TVec3f &a3, f32 a4) {
+    TQuat4f quat;
+
+    f32 angle = a2.angle(a3);
+    f32 v10 = 1.0f;
+
+    if (angle > a4) {
+        v10 = (a4 / angle);
+    }
+
+    TVec3f v15;
+    PSVECCrossProduct(a2.toCVec(), a3.toCVec(), v15.toVec());
+    f32 v11 = PSVECMag(v15.toCVec());
+    f32 factor = 1.0f / 262144.0f;
+
+    if (v11 <= factor) {
+        quat.set(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+    else {
+        f32 v12 = a2.dot(a3);
+        f32 v13 = (v10 * (0.5f * JMath::sAtanTable.atan2_(v11, v12)));
+        f32 v14 = sin(v13);
+        quat.scale((v14 / v11), v15);
+        quat.w = cos(v13);
+    }
+
+    quat.transform(*a1);
+}
+#endif
 
 void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
     TVec3f pos(*MR::getPlayerCenterPos());
