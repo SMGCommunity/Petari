@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 45 / 62 Completed -- (72.58064516129032%)
+# 46 / 62 Completed -- (74.19354838709677%)
 # SkeletalFishGuard.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -38,7 +38,7 @@
 | `initSensor__17SkeletalFishGuardFv` | :white_check_mark: |
 | `calcTransAndFront__17SkeletalFishGuardFv` | :white_check_mark: |
 | `rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :white_check_mark: |
-| `rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :x: |
+| `rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f` | :white_check_mark: |
 | `tryShiftApart__17SkeletalFishGuardFv` | :white_check_mark: |
 | `tryShiftStraight__17SkeletalFishGuardFv` | :white_check_mark: |
 | `tryShiftKill__17SkeletalFishGuardFv` | :white_check_mark: |

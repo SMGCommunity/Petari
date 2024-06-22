@@ -3184,7 +3184,7 @@ receiveMsgPlayerAttack__17SkeletalFishGuardFUlP9HitSensorP9HitSensor,SkeletalFis
 initSensor__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 calcTransAndFront__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 rotateHorizontal__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,true
-rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,false
+rotateVertical__17SkeletalFishGuardFRCQ29JGeometry8TVec3<f>f,SkeletalFishGuard.o,Boss.a,true
 tryShiftApart__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 tryShiftStraight__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true
 tryShiftKill__17SkeletalFishGuardFv,SkeletalFishGuard.o,Boss.a,true

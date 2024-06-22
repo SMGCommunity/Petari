@@ -435,7 +435,34 @@ void SkeletalFishGuard::rotateHorizontal(const TVec3f &a2, f32 scalar) {
     }
 }
 
-// SkeletalFishGuard::rotateVertical
+void SkeletalFishGuard::rotateVertical(const TVec3f &a2, f32 a3) {
+    TVec3f v12;
+    PSVECCrossProduct(mGravity.toCVec(), _D0.toCVec(), v12.toVec());
+
+    if (!MR::isNearZero(v12, 0.001f)) {
+        MR::normalize(&v12);
+        f32 angle = mGravity.angle(a2);
+        f32 v7 = (angle - mGravity.angle(_D0));
+
+        if (v7 > 0.0f) {
+            if (v7 > a3) {
+                v7 = a3;
+            }
+        }
+        else {
+            if (v7 < -a3) {
+                v7 = -a3;
+            }
+        }
+
+        f32 v8 = (0.5f * v7);
+        f32 v9 = sin(v8);
+        TQuat4f v10;
+        v10.scale(v9, v12);
+        v10.w = cos(v8);
+        v10.transform(_D0);
+    }
+}
 
 bool SkeletalFishGuard::tryShiftApart() {
     if (mAttackDelay > 0) {
