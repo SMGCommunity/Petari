@@ -582,9 +582,9 @@ bool SkeletalFishGuard::isInScreen() const {
 
 #ifdef NON_MATCHING
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
-    const TVec3f* posPtr = &mPosition;
+    const Vec* posPtr = mPosition.toCVec();
     TVec3f v7(*MR::getPlayerCenterPos());
-    JMathInlineVEC::PSVECSubtract(v7.toCVec(), posPtr->toCVec(), v7.toVec());
+    JMathInlineVEC::PSVECSubtract(v7.toCVec(), posPtr, v7.toVec());
 
     if (PSVECMag(v7.toCVec()) > 5000.0f) {
         return false;
@@ -595,16 +595,13 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     }
 
     MR::normalize(&v7);
-    f32 v5 = (MR::isLessThan(180.0f, 0.0f)) ? -180.0f : 180.0f;
-    f32 v8 = (45.511112f * v5);
-    f32 v6 = JMASCos(v8);
-
+    f32 lap = JMath::sSinCosTable.cosLap(180.0f);
     f32 dot = v7.dot(_D0);
-    if (dot < v6) {
-        return true;
+    if (dot < lap) {
+        return false;
     }
     
-    return false;
+    return true; 
 }
 #endif
 

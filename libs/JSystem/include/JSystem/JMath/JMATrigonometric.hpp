@@ -35,6 +35,16 @@ namespace JMath
             }
         }
 
+        inline f32 cosLap(f32 v) {
+            if (v < 0.0f) {
+                v = -v;
+            }
+
+            v = 45.511112f * v;
+    
+            return table[(u16)v & 0x3FFF].b1;
+        }
+
         inline f32 get(f32 v) {
             return table[(u16)v & 0x3FFF].b1;
         }
