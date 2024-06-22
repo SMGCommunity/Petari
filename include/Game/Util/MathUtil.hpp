@@ -289,6 +289,14 @@ namespace MR {
         return 0.0f;
     }
 
+    inline bool isLessThan(f32 lhs, f32 rhs) {
+        if (lhs < rhs) {
+            return true;
+        }
+        
+        return false;
+    }
+
     f32 cos(f32);
     f32 sin(f32);
 };
