@@ -74,6 +74,8 @@ namespace MR {
 
     bool getCurrentRailPointArg0WithInit(const LiveActor *, s32 *);
     bool getCurrentRailPointArg1WithInit(const LiveActor *, s32 *);
+    bool getCurrentRailPointArg0NoInit(const LiveActor *, s32 *);
+    bool getCurrentRailPointArg1NoInit(const LiveActor *, s32 *);
 
     const TVec3f& getRailPointPosEnd(const LiveActor *);
     void calcRailEndPointPos(TVec3f *, const LiveActor *);

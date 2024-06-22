@@ -20,7 +20,7 @@
 | [BegomanSpike.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BegomanSpike.md) | 0.0% | 0 / 78 | 0.0% | :x: 
 | [BegomanSpring.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BegomanSpring.md) | 0.0% | 0 / 83 | 0.0% | :x: 
 | [BegomanSpringHead.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BegomanSpringHead.md) | 0.0% | 0 / 27 | 0.0% | :x: 
-| [Birikyu.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Birikyu.md) | 0.0% | 0 / 42 | 0.0% | :x: 
+| [Birikyu.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/Birikyu.md) | 88.57453754080522% | 40 / 42 | 95.23809523809523% | :eight_pointed_black_star: 
 | [BombBird.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BombBird.md) | 0.0% | 0 / 54 | 0.0% | :x: 
 | [BombBirdBomb.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BombBirdBomb.md) | 0.0% | 0 / 21 | 0.0% | :x: 
 | [BombHei.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy/BombHei.md) | 0.0% | 0 / 70 | 0.0% | :x: 
