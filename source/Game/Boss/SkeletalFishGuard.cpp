@@ -551,7 +551,29 @@ void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
     }
 }
 
-// SkeletalFishGuard::calcTarget
+#ifdef NON_MATCHING
+// functionally equiv. just needs stack work
+void SkeletalFishGuard::calcTarget(TVec3f *a1, TVec3f *a2, TVec3f *a3, s32 a4) {
+    f32 v11 = MR::getRailCoord(mFishBoss->getCurrentRail());
+    f32 v13 = (_94.z + (v11 + (MR::getRailCoordSpeed(mFishBoss->getCurrentRail()) * a4)));
+    MR::calcRailPosAtCoord(a1, mFishBoss->getCurrentRail(), v13);
+    MR::calcRailDirectionAtCoord(a3, mFishBoss->getCurrentRail(), v13);
+    TVec3f v22;
+    MR::calcGravityVector(this, *a1, &v22, nullptr, 0);
+    TVec3f v21;
+    PSVECCrossProduct(a3->toCVec(), v22.toCVec(), v21.toVec());
+    MR::normalizeOrZero(&v21);
+    f32 v16 = -_94.y;
+    TVec3f v18(v22);
+    v18.scale(v16);
+    f32 v17 = _94.x;
+    TVec3f v19(v21);
+    v19.scale(v17);
+    TVec3f v20(v19);
+    JMathInlineVEC::PSVECAdd(v20.toCVec(), v18.toCVec(), v20.toVec());
+    JMathInlineVEC::PSVECAdd(a1->toCVec(), v20.toCVec(), a2->toVec());
+}
+#endif
 
 bool SkeletalFishGuard::isInScreen() const {
     TVec2f screen;
