@@ -18,7 +18,7 @@
 | [MultiEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitter.md) | 0.0% | 0 / 44 | 0.0% | :x: 
 | [MultiEmitterAccess.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitterAccess.md) | 0.0% | 0 / 22 | 0.0% | :x: 
 | [MultiEmitterCallBack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitterCallBack.md) | 0.0% | 0 / 34 | 0.0% | :x: 
-| [MultiEmitterParticleCallBack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitterParticleCallBack.md) | 0.0% | 0 / 4 | 0.0% | :x: 
+| [MultiEmitterParticleCallBack.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/MultiEmitterParticleCallBack.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [ParticleCalcExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleCalcExecutor.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [ParticleDrawExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleDrawExecutor.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [ParticleEmitter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect/ParticleEmitter.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 

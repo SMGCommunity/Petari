@@ -6,7 +6,7 @@
 | [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss.md) | 8.556806124784156% |
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 34.12644987572494% |
 | [Demo](https://github.com/shibbo/Petari/blob/master/docs/lib/Demo.md) | 3.7442572741194486% |
-| [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect.md) | 1.855215360664245% |
+| [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect.md) | 2.2184743124026984% |
 | [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy.md) | 3.845633425676012% |
 | [GameAudio](https://github.com/shibbo/Petari/blob/master/docs/lib/GameAudio.md) | 0.0% |
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 73.07927450580803% |

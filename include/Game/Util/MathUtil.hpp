@@ -227,6 +227,12 @@ namespace MR {
         return hurr;
     }
 
+    inline TVec3f subVec(const TVec3f& rSrc, const TVec3f& rBase) {
+        TVec3f hurr(rBase);
+        JMathInlineVEC::PSVECSubtract(hurr.toCVec(), rSrc.toCVec(), hurr.toVec());
+        return hurr;
+    }
+
     inline f32 subtractFromSum(f32 lhs, f32 rhs, f32 sub) {
         return (rhs + lhs) - sub;
     }

@@ -1,6 +1,7 @@
 #pragma once
 
 class JPABaseEmitter;
+class JPABaseParticle;
 
 class JPAEmitterCallBack {
     virtual ~JPAEmitterCallBack();
@@ -11,7 +12,14 @@ class JPAEmitterCallBack {
     virtual void init(JPABaseEmitter *) = 0;
 };
 
-class MultiEmitterCallBackBase : public JPAEmitterCallBack {
-    virtual ~MultiEmitterCallBackBase();
-    virtual void init(JPABaseEmitter *);
+class JPAParticleCallBack {
+public:
+    virtual ~JPAParticleCallBack();
+    virtual void execute(JPABaseEmitter *, JPABaseParticle *) {
+
+    }
+
+    virtual void draw(JPABaseEmitter *, JPABaseParticle *) {
+
+    }
 };
