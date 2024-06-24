@@ -24,47 +24,45 @@ void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
     //f32 x, y, z;
     //f32 vx, vy, vz, z, y, x, a31, a21, a11;
     //f32 vx, vy, vz;
-    f32 a31 = mMtx[2][0];
-    //vx = rDst.x;
-    f32 a21 = mMtx[1][0];
-    f32 a11 = mMtx[0][0];
+    f32 vx, vy, vz, a32, a22, a12, a31, a21, a11, a13, a33, a23;
+    a32 = mMtx[2][1];
+    //vy = rDst.y;
+    
+    a22 = mMtx[1][1];
+    a12 = mMtx[0][1];
+    a31 = mMtx[2][0];
+    a21 = mMtx[1][0];
+    a11 = mMtx[0][0];
+    
+    a33 = mMtx[2][2];
+    a13 = mMtx[0][2];
+    a23 = mMtx[1][2];
+    vx = rDst.x;
+    vy = rDst.y;
+    vz = rDst.z;
 
-    f32 z = rDst.x * a31;
+
+    //vx = rDst.x;
+
+    //f32 z, y, x;
+
+    //z = vx * a31 + vy * a32;
+    
+    //y = vx * a21 + vy * a22;
+    
+    //x = vx * a11 + vy * a12;
 
     /*f32 z = rDst.x * a31;
     f32 y = rDst.x * a21;
     f32 x = rDst.x * a11;*/
     
-    f32 a32 = mMtx[2][1];
-    
-    f32 y = rDst.x * a21;
-    //vy = rDst.y;
-    
-    f32 x = rDst.x * a11;
-    
-    f32 a22 = mMtx[1][1];
-    f32 z2 = rDst.y * a32;
-    f32 a12 = mMtx[0][1];
 
-    f32 y2 = rDst.y * a22;
     
-    f32 a33 = mMtx[2][2];
-    
-    f32 x2 = rDst.y * a12;
-    //vz = rDst.z;
-    f32 a13 = mMtx[0][2];
 
-    y += y2;
-    f32 a23 = mMtx[1][2];
-
-    x += x2;
-    f32 x4 = rDst.z * a13;
-    f32 y4 = rDst.z * a23;
-    z += z2;
-    f32 z4 = rDst.z * a33;
-    x += x4;
-    y += y4;
-    z += z4;
+ 
+    //x = vz * a13 + x;
+    //y = vz * a23 + y;
+    //z = vz * a33 + z;
     //x += vz * a13;
     //y += vz * a23;
     //z += vz * a33;
@@ -75,7 +73,7 @@ void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
     //x = vx * a11 + vy * a12 + vz * a13;
     //y = vx * a21 + vy * a22 + vz * a23;
     //z = vx * a31 + vy * a32 + vz * a33;
-    rSrc.set(x, y, z);
+    rSrc.set(vz * a13 + (vx * a11 + vy * a12), vz * a23 + (vx * a21 + vy * a22), vz * a33 + (vx * a31 + vy * a32));
     
 }
 
