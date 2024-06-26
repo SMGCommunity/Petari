@@ -3,6 +3,19 @@
 #include "Game/Map/WaterInfo.hpp"
 #include <JSystem/JMath.hpp>
 
+// JGeometry functions are painful to match, so this just gives the gist
+#ifdef NON_MATCHING
+template<>
+void TVec3f::cubic(const TVec3f &rv1, const TVec3f &rv2, const TVec3f &rv3, const TVec3f &rv4, f32 a) {
+    set(
+        rv3 * (a * a * a - a * a)
+        + rv2 * (a + a * a * a - 2 * a * a)
+        + rv1 * (1 + 2 * a * a * a - 3 * a * a)
+        + rv4 * (3 * a * a - 2 * a * a * a)
+    );
+}
+#endif
+
 void SkeletalFishGuard::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
     MR::addToAttributeGroupSearchTurtle(this);
