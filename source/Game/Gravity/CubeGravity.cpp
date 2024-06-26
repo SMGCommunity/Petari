@@ -2,6 +2,38 @@
 #include "Game/Util/MathUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+#define REGION_NEGATIVE_X 0
+#define REGION_BETWEEN_X 1
+#define REGION_POSITIVE_X 2
+
+#define REGION_NEGATIVE_Y 0
+#define REGION_BETWEEN_Y 3
+#define REGION_POSITIVE_Y 6
+
+#define REGION_NEGATIVE_Z 0
+#define REGION_BETWEEN_Z 9
+#define REGION_POSITIVE_Z 18
+
+#define ENCODE_REGION(x, y, z) \
+    (x + y + z)
+
+#define REGION_X_FACE_POSITIVE ENCODE_REGION(REGION_POSITIVE_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)
+#define REGION_X_FACE_NEGATIVE ENCODE_REGION(REGION_NEGATIVE_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)
+#define REGION_Y_FACE_POSITIVE ENCODE_REGION(REGION_BETWEEN_X, REGION_POSITIVE_Y, REGION_BETWEEN_Z)
+#define REGION_Y_FACE_NEGATIVE ENCODE_REGION(REGION_BETWEEN_X, REGION_NEGATIVE_Y, REGION_BETWEEN_Z)
+#define REGION_Z_FACE_POSITIVE ENCODE_REGION(REGION_BETWEEN_X, REGION_BETWEEN_Y, REGION_POSITIVE_Z)
+#define REGION_Z_FACE_NEGATIVE ENCODE_REGION(REGION_BETWEEN_X, REGION_BETWEEN_Y, REGION_NEGATIVE_Z)
+
+#define AXIS_X 1
+#define AXIS_Y 3
+#define AXIS_Z 9
+
+#define ENCODE_EDGE(axis, half1, half2) \
+    (axis + half1 + half2)
+
+#define ENCODE_CORNER(signumx, signumy, signumz) \
+    ((signumx + 1) + (signumy + 1) * 3 + (signumz + 1) * 9)
+
 template <>
 bool TVec3f::isZero() const
 {
@@ -55,11 +87,11 @@ void CubeGravity::updateMtx(const TPos3f &rMtx)
     mPosition.concat(rMtx, mCube);
     TVec3f dir;
     mPosition.getXDir(dir);
-    lenX = VECMag(dir.toCVec());
+    lenX = PSVECMag(dir.toCVec());
     mPosition.getYDir(dir);
-    lenY = VECMag(dir.toCVec());
+    lenY = PSVECMag(dir.toCVec());
     mPosition.getZDir(dir);
-    lenZ = VECMag(dir.toCVec());
+    lenZ = PSVECMag(dir.toCVec());
 }
 
 bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const
@@ -103,17 +135,17 @@ int CubeGravity::calcGravityArea(const TVec3f &rPosition) const
         if ((mActiveFaces & 2) != 2) {
             return -1;
         }
-        area = 0;
+        area = REGION_NEGATIVE_X;
     }
     else {
         if (xDirDistance <= lenX) {
-            area = 1;
+            area = REGION_BETWEEN_X;
         }
         else {
             if ((mActiveFaces & 1) != 1) {
                 return -1;
             }
-            area = 2;
+            area = REGION_POSITIVE_X;
         }
     }
 
@@ -121,16 +153,17 @@ int CubeGravity::calcGravityArea(const TVec3f &rPosition) const
         if ((mActiveFaces & 8) != 8) {
             return -1;
         }
+        area += REGION_NEGATIVE_Y;
     }
     else {
         if (yDirDistance <= lenY) {
-            area += 3;
+            area += REGION_BETWEEN_Y;
         }
         else {
             if ((mActiveFaces & 4) != 4) {
                 return -1;
             }
-            area += 6;
+            area += REGION_POSITIVE_Y;
         }
     }
 
@@ -138,16 +171,17 @@ int CubeGravity::calcGravityArea(const TVec3f &rPosition) const
         if ((mActiveFaces & 32) != 32) {
             return -1;
         }
+        area += REGION_NEGATIVE_Z;
     }
     else {
         if (zDirDistance <= lenZ) {
-            area += 9;
+            area += REGION_BETWEEN_Z;
         }
         else {
             if ((mActiveFaces & 16) != 16) {
                 return -1;
             }
-            area += 18;
+            area += REGION_POSITIVE_Z;
         }
     }
 
@@ -158,46 +192,48 @@ bool CubeGravity::calcFaceGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 {
     TVec3f antiFaceDir;    // Negative of the normal vector of the face an object is on
     switch (area) {
-    case 4:
-        mPosition.getZDir(antiFaceDir);
-        break;
-    case 10:
-        mPosition.getYDir(antiFaceDir);
-        break;
-    case 12:
-        mPosition.getXDir(antiFaceDir);
-        break;
-    case 14:
-        mPosition.getXDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
-        break;
-    case 16:
-        mPosition.getYDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
-        break;
-    case 22:
-        mPosition.getZDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
-        break;
-    default:
-        return false;
+        
+        case REGION_Z_FACE_NEGATIVE:
+            mPosition.getZDir(antiFaceDir);
+            break;
+
+        case REGION_Y_FACE_NEGATIVE:
+            mPosition.getYDir(antiFaceDir);
+            break;
+
+        case REGION_X_FACE_NEGATIVE:
+            mPosition.getXDir(antiFaceDir);
+            break;
+
+        case REGION_X_FACE_POSITIVE:
+            mPosition.getXDir(antiFaceDir);
+            JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+            break;
+
+        case REGION_Y_FACE_POSITIVE:
+            mPosition.getYDir(antiFaceDir);
+            JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+            break;
+
+        case REGION_Z_FACE_POSITIVE:
+            mPosition.getZDir(antiFaceDir);
+            JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+            break;
+
+        default:
+            return false;
     }
     TVec3f trans;
-    f32 distance;    // Double-check what this really is
+    f32 length;
     mPosition.getTrans(trans);
-    MR::separateScalarAndDirection(&distance, &antiFaceDir, antiFaceDir);
-    float gravityMagnitude = antiFaceDir.dot(trans - rPosition) / distance;
-    if (gravityMagnitude < 0.f) {
-        gravityMagnitude = 0.f;
+    MR::separateScalarAndDirection(&length, &antiFaceDir, antiFaceDir);
+    float height = antiFaceDir.dot(trans - rPosition) - length;
+    if (height < 0.0f) {
+        height = 0.0f;
     }
     *pDest = antiFaceDir;
-    *pScalar = gravityMagnitude;
+    *pScalar = height;
     return true;
-}
-
-void helperFunc1(const TVec3f &a, TVec3f &b, const TVec3f &c)
-{
-    JMAVECScaleAdd(a.toCVec(), c.toCVec(), b.toVec(), -a.dot(c));
 }
 
 TVec3f negate(const TVec3f &in)
@@ -209,122 +245,164 @@ TVec3f negate(const TVec3f &in)
 
 bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
-    if (!(((area & 1) ^ ((area & 0x80000000) >> 31)) - ((area & 0x80000000) >> 31)) || area == 13) {
+    // There is a mistake here: so long as area is not both even and negative, the function will not
+    // return here. The intent is that area should be neither even nor negative, since all edges
+    // are odd and positive. However, this mistake does not really matter since the switch will
+    // return if this does not.
+    if (!(((area & 1) ^ ((area & 0x80000000) >> 31)) - ((area & 0x80000000) >> 31))
+        || area == ENCODE_REGION(REGION_BETWEEN_X, REGION_BETWEEN_Y, REGION_BETWEEN_Z)) {
         return false;
     }
-    TVec3f stack_140, stack_134, xDir, yDir, zDir, trans, stack_f8;
+    
+    TVec3f edgeVector, edgeTranslation, xDir, yDir, zDir, trans, positionOppositeInOrthogonalPlane;
+    
     mPosition.getXDir(xDir);
     mPosition.getYDir(yDir);
     mPosition.getZDir(zDir);
+
     switch (area) {
-    case 1:
-        stack_140 = xDir;
-        stack_134 = negate(yDir) - zDir;
-        break;
-    case 3:
-        stack_140 = yDir;
-        stack_134 = negate(xDir) - zDir;
-        break;
-    case 5:
-        stack_140 = yDir;
-        stack_134 = xDir - zDir;
-        break;
-    case 7:
-        stack_140 = xDir;
-        stack_134 = yDir - zDir;
-        break;
-    case 9:
-        stack_140 = zDir;
-        stack_134 = negate(xDir) - yDir;
-        break;
-    case 11:
-        stack_140 = zDir;
-        stack_134 = xDir + yDir;
-        break;
-    case 15:
-        stack_140 = zDir;
-        stack_134 = negate(xDir).translate(yDir);
-        break;
-    case 17:
-        stack_140 = zDir;
-        stack_134 = xDir.translate(yDir);
-        break;
-    case 19:
-        stack_140 = xDir;
-        stack_134 = negate(yDir).translate(zDir);
-        break;
-    case 21:
-        stack_140 = yDir;
-        stack_134 = negate(xDir).translate(zDir);
-        break;
-    case 23:
-        stack_140 = yDir;
-        stack_134 = xDir.translate(zDir);
-        break;
-    case 25:
-        stack_140 = xDir;
-        stack_134 = yDir.translate(zDir);
-        break;
-    default:
-        return false;
+
+        case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_NEGATIVE_Z):
+            edgeVector = xDir;
+            edgeTranslation = negate(yDir) - zDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_Y, REGION_NEGATIVE_X, REGION_NEGATIVE_Z):
+            edgeVector = yDir;
+            edgeTranslation = negate(xDir) - zDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_Y, REGION_POSITIVE_X, REGION_NEGATIVE_Z):
+            edgeVector = yDir;
+            edgeTranslation = xDir - zDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_X, REGION_POSITIVE_Y, REGION_NEGATIVE_Z):
+            edgeVector = xDir;
+            edgeTranslation = yDir - zDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_Z, REGION_NEGATIVE_X, REGION_NEGATIVE_Y):
+            edgeVector = zDir;
+            edgeTranslation = negate(xDir) - yDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_Z, REGION_POSITIVE_X, REGION_NEGATIVE_Y):
+            edgeVector = zDir;
+            edgeTranslation = xDir - yDir;
+            break;
+
+        case ENCODE_EDGE(AXIS_Z, REGION_NEGATIVE_X, REGION_POSITIVE_Y):
+            edgeVector = zDir;
+            edgeTranslation = negate(xDir).translate(yDir);
+            break;
+
+        case ENCODE_EDGE(AXIS_Z, REGION_POSITIVE_X, REGION_POSITIVE_Y):
+            edgeVector = zDir;
+            edgeTranslation = xDir.translate(yDir);
+            break;
+
+        case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_POSITIVE_Z):
+            edgeVector = xDir;
+            edgeTranslation = negate(yDir).translate(zDir);
+            break;
+
+        case ENCODE_EDGE(AXIS_Y, REGION_NEGATIVE_X, REGION_POSITIVE_Z):
+            edgeVector = yDir;
+            edgeTranslation = negate(xDir).translate(zDir);
+            break;
+
+        case ENCODE_EDGE(AXIS_Y, REGION_POSITIVE_X, REGION_POSITIVE_Z):
+            edgeVector = yDir;
+            edgeTranslation = xDir.translate(zDir);
+            break;
+
+        case ENCODE_EDGE(AXIS_X, REGION_POSITIVE_Y, REGION_POSITIVE_Z):
+            edgeVector = xDir;
+            edgeTranslation = yDir.translate(zDir);
+            break;
+
+        default:
+            return false;
+
     }
+
     mPosition.getTrans(trans);
-    stack_134 += trans;
-    MR::normalizeOrZero(&stack_140);
-    helperFunc1(stack_140, stack_f8, stack_134 - rPosition);
-    if (stack_f8.isZero()) {
-        pDest->normalize(stack_134 - trans);
+    edgeTranslation += trans;
+
+    MR::normalizeOrZero(&edgeVector);
+
+    positionOppositeInOrthogonalPlane.rejection(edgeTranslation - rPosition, edgeVector);
+
+    if (positionOppositeInOrthogonalPlane.isZero()) {
+        pDest->normalize(edgeTranslation - trans);
         *pScalar = 0.0;
     }
     else {
-        *pScalar = pDest->normalize(stack_f8);
+        *pScalar = pDest->normalize(positionOppositeInOrthogonalPlane);
     }
+
     return true;
 }
 
 bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
-    TVec3f stack_140, xDir, yDir, zDir, trans;
+    TVec3f vertex, xDir, yDir, zDir, trans;
+    
     mPosition.getXDir(xDir);
     mPosition.getYDir(yDir);
     mPosition.getZDir(zDir);
+
     switch (area) {
-    case 0:
-        stack_140 = negate(xDir) - yDir - zDir;
-        break;
-    case 2:
-        stack_140 = xDir - yDir - zDir;
-        break;
-    case 6:
-        stack_140 = negate(xDir).translate(yDir) - zDir;
-        break;
-    case 8:
-        stack_140 = xDir.translate(yDir) - zDir;
-        break;
-    case 18:
-        stack_140 = (negate(xDir) - yDir).translate(zDir);
-        break;
-    case 20:
-        stack_140 = (xDir - yDir).translate(zDir);
-        break;
-    case 24:
-        stack_140 = negate(xDir).translate(yDir).translate(zDir);
-        break;
-    case 26:
-        stack_140 = xDir.translate(yDir).translate(zDir);
-        break;
-    default:
-        return false;
+        
+        case ENCODE_CORNER(-1, -1, -1):
+            vertex = negate(xDir) - yDir - zDir;
+            break;
+            
+        case ENCODE_CORNER(1, -1, -1):
+            vertex = xDir - yDir - zDir;
+            break;
+            
+        case ENCODE_CORNER(-1, 1, -1):
+            vertex = negate(xDir).translate(yDir) - zDir;
+            break;
+            
+        case ENCODE_CORNER(1, 1, -1):
+            vertex = xDir.translate(yDir) - zDir;
+            break;
+            
+        case ENCODE_CORNER(-1, -1, 1):
+            vertex = (negate(xDir) - yDir).translate(zDir);
+            break;
+            
+        case ENCODE_CORNER(1, -1, 1):
+            vertex = (xDir - yDir).translate(zDir);
+            break;
+            
+        case ENCODE_CORNER(-1, 1, 1):
+            vertex = negate(xDir).translate(yDir).translate(zDir);
+            break;
+            
+        case ENCODE_CORNER(1, 1, 1):
+            vertex = xDir.translate(yDir).translate(zDir);
+            break;
+            
+        default:
+            return false;
+            
     }
+    
     mPosition.getTrans(trans);
-    stack_140 += trans;
-    TVec3f stack_104 = stack_140 - rPosition;
-    if (stack_104.isZero()) {
+    vertex += trans;
+
+    TVec3f gravity = vertex - rPosition;
+    if (gravity.isZero()) {
         *pScalar = 0.0;
-        pDest->normalize(stack_140 - trans);
+        pDest->normalize(vertex - trans);
     }
     else {
-        *pScalar = pDest->normalize(stack_104);
+        *pScalar = pDest->normalize(gravity);
     }
+
     return true;
 }

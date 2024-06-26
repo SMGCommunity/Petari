@@ -208,6 +208,11 @@ namespace JGeometry {
 
         T squared(const TVec3<T> &) const;
         T angle(const TVec3<T> &rOther) const;
+        
+
+        inline void rejection(const TVec3<T> &rVec, const TVec3<T> &rNormal) {
+            JMAVECScaleAdd(rNormal.toCVec(), rVec.toCVec(), toVec(), -rNormal.dot(rVec));
+        }
 
         TVec3<T> &subtract(const TVec3<T> &, const TVec3<T> &);
         void subtract(const TVec3<T> &);
