@@ -31,7 +31,6 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TV
 	return true;
 }
 
-#ifdef NON_MATCHING
 void ParallelGravity::updateMtx(const TPos3f &rMtx) {
 	rMtx.mult33Inline(mPlaneUpVec, mWorldPlaneUpVec);
 	rMtx.mult(mPlanePosition, mWorldPlanePosition);
@@ -49,7 +48,6 @@ void ParallelGravity::updateMtx(const TPos3f &rMtx) {
 		mExtentZ = tempDir.squared();
 	}
 }
-#endif
 
 void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) {
 	// Up vector

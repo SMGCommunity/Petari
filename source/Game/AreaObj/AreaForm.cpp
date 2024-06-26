@@ -7,26 +7,10 @@ inline f32 getElement(const TRot3f &rot) {
 }
 
 template<>
-void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
-    /*f32 z, y, x;
-    z = rDst.x * mMtx[2][0];
-    y = rDst.x * mMtx[1][0];
-    x = rDst.x * mMtx[0][0];
-    f32 tmp = mMtx[2][1];
-    z += rDst.y * tmp;
-    y = rDst.y * mMtx[1][1] + y;
-    x = rDst.y * mMtx[0][1] + x;
-    x = rDst.z * mMtx[0][2] + x;
-    y = rDst.z * mMtx[1][2] + y;
-    z += rDst.z * mMtx[2][2];*/
-    //f32 a21;
-    //f32 &a21p = a21;
-    //f32 x, y, z;
-    //f32 vx, vy, vz, z, y, x, a31, a21, a11;
-    //f32 vx, vy, vz;
-    f32 vx, vy, vz, a32, a22, a12, a31, a21, a11, a13, a33, a23;
+void TRot3f::mult33(const TVec3f &rSrc, TVec3f &rDst) const {
+    f32 a32, a22, a12, a31, a21, a11, a13, a33, a23;
     a32 = mMtx[2][1];
-    //vy = rDst.y;
+    //vy = rSrc.y;
     
     a22 = mMtx[1][1];
     a12 = mMtx[0][1];
@@ -37,12 +21,9 @@ void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
     a33 = mMtx[2][2];
     a13 = mMtx[0][2];
     a23 = mMtx[1][2];
-    vx = rDst.x;
-    vy = rDst.y;
-    vz = rDst.z;
 
 
-    //vx = rDst.x;
+    //vx = rSrc.x;
 
     //f32 z, y, x;
 
@@ -52,9 +33,9 @@ void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
     
     //x = vx * a11 + vy * a12;
 
-    /*f32 z = rDst.x * a31;
-    f32 y = rDst.x * a21;
-    f32 x = rDst.x * a11;*/
+    /*f32 z = rSrc.x * a31;
+    f32 y = rSrc.x * a21;
+    f32 x = rSrc.x * a11;*/
     
 
     
@@ -67,13 +48,13 @@ void TRot3f::mult33(const TVec3f &rDst, TVec3f &rSrc) const {
     //y += vz * a23;
     //z += vz * a33;
 
-    /*f32 z2 = z + rDst.z * a33;
-    f32 y2 = y + rDst.z * a23;
-    f32 x2 = x + rDst.z * a13;*/
+    /*f32 z2 = z + rSrc.z * a33;
+    f32 y2 = y + rSrc.z * a23;
+    f32 x2 = x + rSrc.z * a13;*/
     //x = vx * a11 + vy * a12 + vz * a13;
     //y = vx * a21 + vy * a22 + vz * a23;
     //z = vx * a31 + vy * a32 + vz * a33;
-    rSrc.set(vz * a13 + (vx * a11 + vy * a12), vz * a23 + (vx * a21 + vy * a22), vz * a33 + (vx * a31 + vy * a32));
+    rDst.set(rSrc.z * a13 + (rSrc.x * a11 + rSrc.y * a12), rSrc.z * a23 + (rSrc.x * a21 + rSrc.y * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
     
 }
 

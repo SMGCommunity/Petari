@@ -1478,7 +1478,7 @@ execute__Q229@unnamed@DodoryuStateLv1_cpp@28DodoryuStateLv1NrvAppearSignCFP5Spin
 executeOnEnd__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvHideCFP5Spine,DodoryuStateLv1.o,Boss.a,false
 execute__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvHideCFP5Spine,DodoryuStateLv1.o,Boss.a,false
 scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f>,DodoryuStateLv2.o,Boss.a,true
-mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>,DodoryuStateLv2.o,Boss.a,false
+mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>,DodoryuStateLv2.o,Boss.a,true
 __ct__15DodoryuStateLv2FP7DodoryuP17DodoryuChaseParamPCc,DodoryuStateLv2.o,Boss.a,false
 init__15DodoryuStateLv2FRC12JMapInfoIter,DodoryuStateLv2.o,Boss.a,false
 control__15DodoryuStateLv2Fv,DodoryuStateLv2.o,Boss.a,false

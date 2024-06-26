@@ -41,11 +41,27 @@ namespace MR {
     void makeAxisFrontSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisUpFront(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
     void makeAxisUpSide(TVec3f *, TVec3f *, const TVec3f &, const TVec3f &);
+
+    /* 
+     * Generate an orthogonal vector to the second argument, starting by projecting the z-vector
+     * into the plane orthogonal to the second argument. If the z-vector is parallel to the second
+     * argument, the x-vector is instead projected into the orthognal plane. Regardless, the
+     * normalized result is placed into the first argument.
+     */
     void makeAxisVerticalZX(TVec3f *, const TVec3f &);
+
     void makeAxisCrossPlane(TVec3f *, TVec3f *, const TVec3f &);
     bool makeAxisAndCosignVecToVec(TVec3f *, f32 *, const TVec3f &, const TVec3f &);
-    f32 calcPerpendicFootToLine(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
-    f32 calcPerpendicFootToLineInside(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
+
+    /*
+     * Projects rPoint onto the directed line defined by rTip and rTail and places the result into pOut
+     */
+    f32 calcPerpendicFootToLine(TVec3f *pOut, const TVec3f &rPoint, const TVec3f &rTip, const TVec3f &rTail);
+    
+    /*
+     * Same as above, except the result of the projection is clamped between rTip and rTail
+     */
+    f32 calcPerpendicFootToLineInside(TVec3f *pOut, const TVec3f &rPoint, const TVec3f &rTip, const TVec3f &rTail);
 
     void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, float, float);
 

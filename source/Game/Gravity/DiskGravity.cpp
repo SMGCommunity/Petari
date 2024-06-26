@@ -11,8 +11,8 @@ DiskGravity::DiskGravity() :
 	mLocalNormal(0, 1, 0),
 	mWorldNormal(0, 1, 0),
 	mSideDirection(1, 0, 0),
-	mSideVecOrtho(1, 0, 0),
-	mWorldSideDir(1, 0, 0)
+	mOppositeSideVecOrtho(1, 0, 0),
+	mWorldOppositeSideVecOrtho(1, 0, 0)
 {
 	mLocalRadius = 2500.0f;
 	mWorldRadius = 2500.0f;
@@ -68,7 +68,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 	f32 distanceToCentralAxis;
 	MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnDiskPlane, dirOnDiskPlane);
 
-	if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldSideDir) < mValidCos)
+	if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldOppositeSideVecOrtho) < mValidCos)
 		return false;
 
 	TVec3f gravity(0, 0, 0);
@@ -125,13 +125,13 @@ void DiskGravity::updateLocalParam() {
     }
     mValidCos = JMath::sSinCosTable.getDeg(degreeForTable);
     if(MR::isNearZero(mLocalNormal, 0.00100000005f)) {
-        mSideVecOrtho.zero();
+        mOppositeSideVecOrtho.zero();
         return;
     }
-    JMAVECScaleAdd(mLocalNormal.toCVec(), mSideDirection.toCVec(), mSideVecOrtho.toVec(), -mLocalNormal.dot(mSideDirection));
-    MR::normalizeOrZero(&mSideVecOrtho);
-    if(MR::isNearZero(mSideVecOrtho, 0.00100000005f)) {
-        mSideVecOrtho.zero();
+    JMAVECScaleAdd(mLocalNormal.toCVec(), mSideDirection.toCVec(), mOppositeSideVecOrtho.toVec(), -mLocalNormal.dot(mSideDirection));
+    MR::normalizeOrZero(&mOppositeSideVecOrtho);
+    if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
+        mOppositeSideVecOrtho.zero();
         return;
     }
 
@@ -139,13 +139,13 @@ void DiskGravity::updateLocalParam() {
     rot.CALL_INLINE_FUNC(setRotate, mLocalNormal, 0.5f * mValidDegree * (PI / 180));
     rArtifact = false;
     if(!artifact) 
-        rot.mult(mSideVecOrtho, mSideVecOrtho);
+        rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
 }
 
 void DiskGravity::updateMtx(const TPos3f &rMtx) {
 	rMtx.mult(mLocalPosition, mWorldPosition);
 	rMtx.mult33(mLocalNormal, mWorldNormal);
-	rMtx.mult33(mSideVecOrtho, mWorldSideDir);
+	rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
 
 	f32 axisScale;
 	MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);

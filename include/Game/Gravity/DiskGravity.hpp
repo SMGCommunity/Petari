@@ -29,10 +29,9 @@ public:
 
     TVec3f mSideDirection;    // _58
 
-    // 0 rad in local space
-    TVec3f mSideVecOrtho;    // _64
-                             // Transformed 0 rad
-    TVec3f mWorldSideDir;    // _70
+    
+    TVec3f mOppositeSideVecOrtho;    // _64
+    TVec3f mWorldOppositeSideVecOrtho;    // _70
 
     // Radius of the circular face of the disk
     f32 mLocalRadius;    // _7C

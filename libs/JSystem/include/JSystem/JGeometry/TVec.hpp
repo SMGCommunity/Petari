@@ -153,7 +153,8 @@ namespace JGeometry {
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
 #if __MWERKS__
-            psq_l f3, 0(rSrc), 0, 0 psq_st f0, 0(this_vec), 0, 0
+            psq_l f3, 0(rSrc), 0, 0
+            psq_st f0, 0(this_vec), 0, 0
 #endif
         }
 
@@ -187,6 +188,22 @@ namespace JGeometry {
                 blr
             }
             ;
+        }
+
+        
+        inline T squaredInline() const
+        {
+            register const JGeometry::TVec3<f32> *this_vec = this;
+            register f32 _xy, _z;
+
+            __asm {
+                psq_l _xy, 0(this_vec), 0, 0
+                lfs _z, 8(this_vec)
+                ps_mul _xy, _xy, _xy
+                ps_madd _z, _z, _z, _xy
+                ps_sum0 _z, _z, _xy, _xy
+            };
+            return _z;
         }
 
         T squared(const TVec3<T> &) const;
@@ -316,6 +333,13 @@ namespace JGeometry {
         {
             TVec3<T> f = *this;
             f.scale(scalar);
+            return f;
+        }
+
+        inline TVec3<T> multInline2(T scalar) const
+        {
+            TVec3<T> f(*this);
+            f.scaleInline(scalar);
             return f;
         }
 
@@ -517,6 +541,34 @@ namespace JGeometry {
             ;
         }
 
+        inline void addInline_7(register const TVec3<T> &rOther)
+        {
+            register TVec3<T> *dst = this;
+            register f32 sumZ, bZ, aZ, bXY, aXY;
+
+            __asm {
+                psq_l     bXY, 0(rOther), 0, 0
+                psq_l     aXY, 0(dst), 0, 0
+                psq_l     aZ, 8(dst), 1, 0
+                ps_add    aXY, aXY, bXY
+                psq_l     bZ, 8(rOther), 1, 0
+                ps_add    sumZ, aZ, bZ
+                psq_st    aXY, 0(dst), 0, 0
+                psq_st    sumZ, 8(dst), 1, 0
+            }
+            ;
+        }
+
+        inline TVec3<T> _madd(const TVec3<T> &v) const {
+            TVec3<T> ret(*this);
+            ret.addInline_7(v);
+            return ret;
+        }
+
+        inline TVec3<T> madd(f32 scale, const TVec3<T> &v) const {
+            return _madd(v * scale);
+        }
+
         inline void addInline6(register const TVec3<T> &rOther)
         {
             register TVec3<T> *dst = this;
@@ -524,7 +576,16 @@ namespace JGeometry {
             register f32 totalZ, dstZ, dstXY, srcZ, srcXY;
 
 #if __MWERKS__
-            __asm volatile {psq_l dstXY, 0(dst), 0, 0 psq_l srcXY, 0(rOther), 0, 0 psq_l dstZ, 8(dst), 1, 0 ps_add dstXY, dstXY, srcXY psq_l srcZ, 8(rOther), 1, 0 ps_add totalZ, dstZ, srcZ psq_st dstXY, 0(dst), 0, 0 psq_st totalZ, 8(dst), 1, 0};
+            __asm volatile {
+                psq_l dstXY, 0(dst), 0, 0
+                psq_l srcXY, 0(rOther), 0, 0
+                psq_l dstZ, 8(dst), 1, 0
+                ps_add dstXY, dstXY, srcXY
+                psq_l srcZ, 8(rOther), 1, 0
+                ps_add totalZ, dstZ, srcZ
+                psq_st dstXY, 0(dst), 0, 0
+                psq_st totalZ, 8(dst), 1, 0
+            };
 #endif
         }
 
@@ -606,6 +667,23 @@ namespace JGeometry {
                 psq_st    aZ, 8(this_vec), 1, 0
             }
             ;
+        }
+
+        inline void subInline4(register const TVec3<T> &rVec)
+        {
+            register const TVec3<T> *this_vec = this;
+            //register const TVec3<T> *a = &rVec;
+            register f32 z_2, z_1, xy_2, xy_1, z_ret, xy_ret;
+            __asm {
+                psq_l xy_2, 0(rVec), 0, 0
+                psq_l xy_1, 0(this_vec), 0, 0
+                psq_l z_1, 8(this_vec), 1, 0
+                ps_sub xy_ret, xy_1, xy_2
+                psq_l z_2, 8(rVec), 1, 0
+                ps_sub z_ret, z_1, z_2
+                psq_st xy_ret, 0(this_vec), 0, 0
+                psq_st z_ret, 8(this_vec), 1, 0
+            };
         }
 
         inline const TVec3<T> negateInline() const
@@ -767,6 +845,26 @@ namespace JGeometry {
                 fmuls z_2, z_1, z_2
                 stfs z_2, 8(rDst)
             }
+        }
+
+        inline f32 squareDistancePS(const register TVec3<T> &rVec1) const
+        {
+            register const TVec3<T> *this_vec = this;
+            register f32 yz_1, x_1;
+            register f32 yz_2, x_2;
+            register f32 ret;
+            __asm {
+                psq_l yz_1, 4(this_vec), 0, 0
+                psq_l yz_2, 4(rVec1), 0, 0
+                psq_l x_1, 0(this_vec), 0, 0
+                ps_sub yz_2, yz_1, yz_2
+                psq_l x_2, 0(rVec1), 0, 0
+                ps_sub x_2, x_1, x_2
+                ps_mul yz_2, yz_2, yz_2
+                ps_madd ret, x_2, x_2, yz_2
+                ps_sum0 ret, ret, yz_2, yz_2
+            };
+            return ret;
         }
 
         T x, y, z;

@@ -254,6 +254,60 @@ namespace JGeometry {
             mMtx[2][2] = fr1ex + (1.0f - fr1ex) * yy(z);*/
         }
 
+        void setRotateInline2(const TVec3f &mLocalDirection, f32 fr1e) {
+            //union {TVec3f stack_81; const Vec stack_8;};
+            //stack_81.setInline(mLocalDirection);
+            //const TVec3f &stack_8 = *(const TVec3f*)&bs;
+            TVec3f stack_8;
+            // We can just accept that nobody wants to go through the effort of controlling
+            // when this does/does not get inlined
+            stack_8.setInline(mLocalDirection);
+            PSVECMag(stack_8.toCVec());
+            PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+            //const TVec3f stack_8 = stack_8;
+        
+            //f32 fr1ex, fr1ey;
+        
+            // 8 reg -- 3 for stack_8, 3 for calculation, 1 for fr1ex, 1 for 1.0f - fr1ex
+            f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+        
+            //f32 fr1ex, fr1ey;
+        
+            // 8 reg -- 3 for stack_8, 3 for calculation, 1 for fr1ex, 1 for 1.0f - fr1ex
+            //f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+            f32 x, y, z;
+            //f32 &rx = x, &ry = y, &rz = z;
+            x = stack_8.x;
+            y = stack_8.y;
+            z = stack_8.z;
+            f32 xx = x * x;
+            f32 yx = y * y;
+            f32 zz = z * z;
+            //f32 yy = y * y;
+            //f32 diff = 1.0f - fr1ex;
+
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * (x * x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * (y * y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * (z * z);
+            
+            //f32 (1.0f - fr1ex) = 1.0f - fr1ex;  
+            /*mMtx[0][0] = fr1ex + (1.0f - fr1ex) * yy(x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * yy(y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * yy(z);*/
+        }
+
         void mult33(TVec3f &) const;
         void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
 
@@ -286,106 +340,87 @@ void stupidM(const TVec3f &rSrc, f32 &x, f32 &y, f32 &z) const {
              z = rSrc.z * mMtx[2][2] + rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1];
 }
 
-//#ifdef NON_MATCHING
-       // template<typename U>
-        inline void mult33Inline(const TVec3f &rDst, TVec3f &rSrc) const {
-            /*TVec3f CALL_INLINE_FUNC(c1, mMtx[0][0], mMtx[1][0], mMtx[2][0]),
-                CALL_INLINE_FUNC(c2, mMtx[0][1], mMtx[1][1], mMtx[2][1]),
-                CALL_INLINE_FUNC(c3, mMtx[0][2], mMtx[1][2], mMtx[2][2]);
-            c1.scaleInline(rSrc.x);
-            c2.scaleInline(rSrc.y);
-            c3.scaleInline(rSrc.z);
-            TVec3f res = c1 + c2 + c3;*/
-           /* f32 x, y, z;
-            z = rSrc.y * mMtx[2][1];
-            z += rSrc.x * mMtx[2][0];
-            z += rSrc.z * mMtx[2][2];
-            y = rSrc.y * mMtx[1][1];
-            y += rSrc.x * mMtx[1][0];
-            x = rSrc.y * mMtx[0][1];
-
-            x += rSrc.x * mMtx[0][0];
-
-            x += rSrc.z * mMtx[0][2];
-            y += rSrc.z * mMtx[1][2];*/
+        inline void math(f32 &dstX, f32 &dstY, f32 &dstZ, const f32 &srcX, const f32 &srcY) const {
+            dstZ = addd(mMtx[2][0] * srcX , mMtx[2][1] * srcY);
+            dstY = addd(mMtx[1][0] * srcX , mMtx[1][1] * srcY);
+            dstX = addd(mMtx[0][0] * srcX , mMtx[0][1] * srcY);
             
-    f32 a21;
-    f32 &a21p = a21;
-    f32 a31 = mMtx[2][0];
-    //f32 vx = rDst.x;
-    a21 = mMtx[1][0];
-    f32 a11 = mMtx[0][0];
-    f32 a32 = mMtx[2][1];
-    //f32 vy = rDst.y;
-    f32 a22 = mMtx[1][1];
-    f32 a12 = mMtx[0][1];
-    f32 a33 = mMtx[2][2];
-    //f32 vz = rDst.z;
-    f32 a13 = mMtx[0][2];
-    f32 a23 = mMtx[1][2];
-
-    rSrc.set(rDst.x * a11 + rDst.y * a12 + rDst.z * a13, rDst.x * a21 + rDst.y * a22 + rDst.z * a23, rDst.x * a31 + rDst.y * a32 + rDst.z * a33);
-           /* f32 x1, x2, x3, y1, y2, y3, z1, z2, z3;
-            
-            y3 = mMtx[2][1];
-            y2 = mMtx[1][1];
-            y1 = mMtx[0][1];
-            
-            x3 = mMtx[2][0];
-            x2 = mMtx[1][0];
-            x1 = mMtx[0][0];
-            
-            z3 = mMtx[2][2];
-            z2 = mMtx[1][2];
-            z1 = mMtx[0][2];
-            
-            y3 = rSrc.y * y3;
-            y2 = rSrc.y * y2;
-            y1 = rSrc.y * y1;
-
-            x3 = rSrc.x * x3;
-            x2 = rSrc.x * x2;
-            x1 = rSrc.x * x1;
-            
-            z3 = rSrc.z * z3;
-            z2 = rSrc.z * z2;
-            z1 = rSrc.z * z1;*/
-            //f32 c1 = mMtx[2][1], c2 = mMtx[1][1], c3 = mMtx[1][0];
-            //c1 *= rSrc.y;
-            //c2 *= rSrc.y;
-            //c3 *= rSrc.y;
-
-            //f32 x, y, z;
-            //stupidM(rSrc, x, y, z);
-    
-            //f32 x = mMtx[0][2] * rSrc.z + mMtx[0][0] * rSrc.x + mMtx[0][1] * rSrc.y;
-            //f32 y = mMtx[1][2] * rSrc.z + mMtx[1][0] * rSrc.x + mMtx[1][1] * rSrc.y;
-            //f32 z = mMtx[2][2] * rSrc.z + mMtx[2][0] * rSrc.x + mMtx[2][1] * rSrc.y;
-
-            
-            //rDest.set(x, y, z
-                //res.x, res.y, res.z
-                /*y1 + x1 + z1,
-                y2 + x2 + z2,
-                y3 + x3 + z3*/
-                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[0]),
-                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[1]),
-                //helper(*rSrc.toCVec(), *(const Vec*)mMtx[2])
-  /*              rSrc.z * mMtx[0][2] + (rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1]),
-                rSrc.z * mMtx[1][2] + (rSrc.x * mMtx[1][0] + rSrc.y * mMtx[1][1]),
-                rSrc.z * mMtx[2][2] + (rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1])
-*/
-                //rSrc.z * mMtx[0][2] + rSrc.x * mMtx[0][0] + rSrc.y * mMtx[0][1],
-                //rSrc.x * mMtx[1][2] + rSrc.y * mMtx[1][0] + rSrc.z * mMtx[1][1],
-                //rSrc.z * mMtx[2][2] + rSrc.x * mMtx[2][0] + rSrc.y * mMtx[2][1]
-                //helpA(rSrc),
-                //helpB(rSrc),
-                //helpC(rSrc)
-                
-                //);
         }
-//#endif
+        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDst) const {
+            /*f32 z, y, x;
+            z = rSrc.x * mMtx[2][0];
+            y = rSrc.x * mMtx[1][0];
+            x = rSrc.x * mMtx[0][0];
+            f32 tmp = mMtx[2][1];
+            z += rSrc.y * tmp;
+            y = rSrc.y * mMtx[1][1] + y;
+            x = rSrc.y * mMtx[0][1] + x;
+            x = rSrc.z * mMtx[0][2] + x;
+            y = rSrc.z * mMtx[1][2] + y;
+            z += rSrc.z * mMtx[2][2];*/
+            //f32 a21;
+            //f32 &a21p = a21;
+            //f32 x, y, z;
+            //f32 vx, vy, vz, z, y, x, a31, a21, a11;
+            //f32 vx, vy, vz;
+            f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
+            a32 = mMtx[2][1];
+            //vy = rSrc.y;
+            
+            a22 = mMtx[1][1];
+            a12 = mMtx[0][1];
+            a31 = mMtx[2][0];
+            a21 = mMtx[1][0];
+            a11 = mMtx[0][0];
+            
+            a33 = mMtx[2][2];
+            a13 = mMtx[0][2];
+            a23 = mMtx[1][2];
+        
+        
+            //vx = rSrc.x;
+        
+            //f32 z, y, x;
+        
+            //z = vx * a31 + vy * a32;
+            
+            //y = vx * a21 + vy * a22;
+            
+            //x = vx * a11 + vy * a12;
+        
+            /*f32 z = rSrc.x * a31;
+            f32 y = rSrc.x * a21;
+            f32 x = rSrc.x * a11;*/
+            
+        
+            
+        
+         
+            //x = vz * a13 + x;
+            //y = vz * a23 + y;
+            //z = vz * a33 + z;
+            //x += vz * a13;
+            //y += vz * a23;
+            //z += vz * a33;
+        
+            /*f32 z2 = z + rSrc.z * a33;
+            f32 y2 = y + rSrc.z * a23;
+            f32 x2 = x + rSrc.z * a13;*/
+            //x = vx * a11 + vy * a12 + vz * a13;
+            //y = vx * a21 + vy * a22 + vz * a23;
+            //z = vx * a31 + vy * a32 + vz * a33;
+            f32 x, y;
+            vx = rSrc.x;
+            vy = rSrc.y;
+            //y = (vx * a21 + vy * a22);
+            x = (vx * a11 + vy * a12);
+            rDst.set(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+        }
     };
+
+    inline f32 dot(f32 x, f32 y, f32 z, f32 x2, f32 y2, f32 z2) {
+        return x2 * x + y2 * y + z2 * z;
+    }
 
 inline f32 yy(f32 y) {
     return y * y;
