@@ -79,16 +79,12 @@ void SegmentGravity::updateLocalParam() {
     bool artifact = true;
     bool &rArtifact = artifact;
 
-    f32 degree = 0.5f * mValidSideDegree;
-    if(degree < 0.0f) {
-        rArtifact = false;
-        degree = -degree;
-    }
-    mValidSideCos = JMath::sSinCosTable.getDeg(degree);
+    mValidSideCos = JMath::sSinCosTable.cosLap(0.5f * mValidSideDegree);
 
     TVec3f localAxis = mGravityPoints[1] - mGravityPoints[0];
     MR::normalizeOrZero(&localAxis);
     if(MR::isNearZero(localAxis, 0.00100000005f)) {
+        rArtifact = false;
         mOppositeSideVecOrtho.zero();
         return;
     }

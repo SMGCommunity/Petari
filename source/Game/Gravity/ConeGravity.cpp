@@ -20,12 +20,7 @@ void ConeGravity::setEnableBottom(bool val) {
 }
 
 void ConeGravity::setTopCutRate(f32 val) {
-	if (val < 0.0f)
-		val = 0.0f;
-	else if (val > 1.0f)
-		val = 1.0f;
-
-	mTopCutRate = val;
+	mTopCutRate = val < 0.0f ? 0.0f : val > 1.0f ? 1.0f : val;
 }
 
 inline f32 absfInline(f32 &orig, f32 v) {
@@ -180,9 +175,6 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         return true;
     }
     
-    // This appears to be an error made by the programmers. In this case, rPos and pointOfAttraction should
-    //be swapped as arguments to this function. As is, any object outside the edge of ConeGravity
-    // will get repelled from the axis (not attracted to the axis)
     return calcGravityFromMassPosition(pDest, pScalar, rPos, pointOfAttraction);
 }
 

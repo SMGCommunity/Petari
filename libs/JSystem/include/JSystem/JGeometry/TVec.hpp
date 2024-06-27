@@ -61,7 +61,11 @@ namespace JGeometry {
     struct TVec3 {
     public:
         /* Constructors */
-        inline TVec3() {}
+
+        // This constructor must be associated with data so that the array constructor
+        // will use this (effectively empty) constructor. Otherwise, the compiler does not pass
+        // this constructor to the implicit array constructor.
+        inline TVec3() {0.0f;}
 
         template <typename U>
         INLINE_FUNC_DECL(TVec3, U _x, U _y, U _z)
@@ -464,7 +468,7 @@ namespace JGeometry {
                 psq_l     aXY, 0(dst), 0, 0
                 psq_l     bXY, 0(rOther), 0, 0
                 psq_l     aZ, 8(dst), 1, 0
-                psq_l     bZ, 0(rOther), 1, 0
+                psq_l     bZ, 8(rOther), 1, 0
                 ps_add    bXY, aXY, bXY
                 ps_add    bZ, aZ, bZ
                 psq_st    bXY, 0(dst), 0, 0
@@ -599,8 +603,8 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register const TVec3<T> *a = &rA;
             register const TVec3<T> *b = &rB;
-            register f32 aXY, aZ, bZ, bXY;
-            z = rB.z;
+            register f32 aXY, bZ, aZ, bXY;
+            z = rA.z;
 
             __asm {
                 psq_l     aXY, 0(a), 0, 0
@@ -608,9 +612,9 @@ namespace JGeometry {
                 psq_l     aZ, 8(dst), 1, 0
                 psq_l     bZ, 8(b), 1, 0
                 ps_sub    bXY, aXY, bXY
-                ps_sub    bZ, aZ, bZ
+                ps_sub    aZ, aZ, bZ
                 psq_st    bXY, 0(dst), 0, 0
-                psq_st    bZ, 8(dst), 1, 0
+                psq_st    aZ, 8(dst), 1, 0
             }
             ;
         }

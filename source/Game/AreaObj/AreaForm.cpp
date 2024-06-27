@@ -10,7 +10,6 @@ template<>
 void TRot3f::mult33(const TVec3f &rSrc, TVec3f &rDst) const {
     f32 a32, a22, a12, a31, a21, a11, a13, a33, a23;
     a32 = mMtx[2][1];
-    //vy = rSrc.y;
     
     a22 = mMtx[1][1];
     a12 = mMtx[0][1];
@@ -21,39 +20,6 @@ void TRot3f::mult33(const TVec3f &rSrc, TVec3f &rDst) const {
     a33 = mMtx[2][2];
     a13 = mMtx[0][2];
     a23 = mMtx[1][2];
-
-
-    //vx = rSrc.x;
-
-    //f32 z, y, x;
-
-    //z = vx * a31 + vy * a32;
-    
-    //y = vx * a21 + vy * a22;
-    
-    //x = vx * a11 + vy * a12;
-
-    /*f32 z = rSrc.x * a31;
-    f32 y = rSrc.x * a21;
-    f32 x = rSrc.x * a11;*/
-    
-
-    
-
- 
-    //x = vz * a13 + x;
-    //y = vz * a23 + y;
-    //z = vz * a33 + z;
-    //x += vz * a13;
-    //y += vz * a23;
-    //z += vz * a33;
-
-    /*f32 z2 = z + rSrc.z * a33;
-    f32 y2 = y + rSrc.z * a23;
-    f32 x2 = x + rSrc.z * a13;*/
-    //x = vx * a11 + vy * a12 + vz * a13;
-    //y = vx * a21 + vy * a22 + vz * a23;
-    //z = vx * a31 + vy * a32 + vz * a33;
     rDst.set(rSrc.z * a13 + (rSrc.x * a11 + rSrc.y * a12), rSrc.z * a23 + (rSrc.x * a21 + rSrc.y * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
     
 }

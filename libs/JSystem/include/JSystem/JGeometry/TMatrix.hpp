@@ -190,6 +190,7 @@ namespace JGeometry {
             PSVECMag(stack_8.toCVec());
             PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
             f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+            f32 x, y, z;
             x = stack_8.x;
             y = stack_8.y;
             z = stack_8.z;

@@ -38,8 +38,18 @@ namespace JMath {
             }
         }
 
+
+        inline f32 cosLap(f32 v) {
+            if (v < 0.0f) {
+                v = -v;
+            }
+
+            // 45.511112f == LEN / TWO_PI * PI / 180
+            v = 45.511112f * v;
+    
+            return table[(u16)v & LEN - 1].b1;
+        }
         inline f32 get(f32 v) { return table[(u16)(LEN / TWO_PI * v) & LEN - 1].b1; }
-        inline f32 getDeg(f32 v) { return table[(u16)(LEN / TWO_PI * PI / 180 * v) & LEN - 1].b1; }
     };
 
     template <s32 Len, typename T>

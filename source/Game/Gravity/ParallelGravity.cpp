@@ -52,8 +52,8 @@ void ParallelGravity::updateMtx(const TPos3f &rMtx) {
 void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) {
 	// Up vector
 	mPlaneUpVec.setInline(rPlaneUp);
-	VECMag(reinterpret_cast<const Vec*>(&mPlaneUpVec)); // unused result
-	VECNormalize(reinterpret_cast<const Vec*>(&mPlaneUpVec), reinterpret_cast<Vec*>(&mPlaneUpVec));
+	PSVECMag(mPlaneUpVec.toCVec()); // unused result
+	PSVECNormalize(mPlaneUpVec.toCVec(), mPlaneUpVec.toVec());
 
 	// Position
 	mPlanePosition = rPlanePos;
@@ -74,11 +74,11 @@ void ParallelGravity::setRangeType(RANGE_TYPE rangeType) {
 }
 
 void ParallelGravity::setBaseDistance(f32 val) {
-	if (val >= 0.0f) {
-		mBaseDistance = val;
+	if (val < 0.0f) {
+		mBaseDistance = 2000.0f;
 	}
 	else {
-		mBaseDistance = 0.0f;
+		mBaseDistance = val;
 	}
 }
 
@@ -157,26 +157,23 @@ bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const 
 }
 
 bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const {
-	TVec3f v12;
+	f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
-	// Check height range
-	TVec3f v11(rPosition - mWorldPlanePosition);
-	f32 v6 = mWorldPlaneUpVec.dot(v11);
-
-	if (v6 < 0.0f || mCylinderHeight < v6) {
+	if (height < 0.0f || mCylinderHeight < height) {
 		return false;
 	}
+    
+	TVec3f positionOnWorldPlane;
 
 	// Check radius range
-	TVec3f v10(rPosition - mWorldPlanePosition);
-	f32 v8 = mWorldPlaneUpVec.dot(v10);
-	JMAVECScaleAdd(reinterpret_cast<const Vec*>(&mWorldPlaneUpVec), reinterpret_cast<const Vec*>(&v10), reinterpret_cast<Vec*>(&v12), -v8);
+	positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
-	f32 radius = VECMag(reinterpret_cast<const Vec*>(&v12));
+	f32 radius = PSVECMag(positionOnWorldPlane.toCVec());
 
-	if (radius > mCylinderRadius)
+	if (radius > mCylinderRadius) {
 		return false;
-
+    }
+    
 	// Set speed
 	*pScalar = mBaseDistance + radius;
 

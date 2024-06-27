@@ -118,13 +118,9 @@ void DiskGravity::updateLocalParam() {
     bool artifact = false;
     bool &rArtifact = artifact;
 
-    f32 degreeForTable = 0.5f * mValidDegree;
-    if(degreeForTable < 0.0f) {
-        rArtifact = true;
-        degreeForTable = -degreeForTable;
-    }
-    mValidCos = JMath::sSinCosTable.getDeg(degreeForTable);
+    mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);
     if(MR::isNearZero(mLocalNormal, 0.00100000005f)) {
+        rArtifact = true;
         mOppositeSideVecOrtho.zero();
         return;
     }
