@@ -325,7 +325,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
     else {
         TVec3f stack_30;
         TVec3f stack_24;
-        JGeometry::negateInternal((f32*)&mScale, (f32*)&stack_30);
+        JGeometry::negateInternal((f32*)&mGravity, (f32*)&stack_30);
         PSVECCrossProduct(stack_30.toCVec(), _D0.toCVec(), stack_24.toVec());
 
         if (MR::isNearZero(stack_24, 0.001f)) {
