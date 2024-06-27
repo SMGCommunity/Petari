@@ -1,0 +1,11 @@
+*.c text
+*.cpp text
+*.h text
+*.hpp text
+*.csv text
+*.json text
+*.md text
+
+archive/* binary
+*.png binary
+
