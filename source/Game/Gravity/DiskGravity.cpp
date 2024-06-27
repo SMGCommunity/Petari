@@ -106,10 +106,6 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 	return true;
 }
 
-f32 degToRad(f32 deg) {
-    return  deg;
-}
-
 void DiskGravity::updateLocalParam() {
     TRot3f rot;
 
@@ -134,8 +130,9 @@ void DiskGravity::updateLocalParam() {
     rot.identity();
     rot.CALL_INLINE_FUNC(setRotate, mLocalNormal, 0.5f * mValidDegree * (PI / 180));
     rArtifact = false;
-    if(!artifact) 
+    if(!artifact) {
         rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
+    }
 }
 
 void DiskGravity::updateMtx(const TPos3f &rMtx) {

@@ -9,9 +9,9 @@ template<>
 void TVec3f::cubic(const TVec3f &rv1, const TVec3f &rv2, const TVec3f &rv3, const TVec3f &rv4, f32 a) {
     set(
         rv3 * (a * a * a - a * a)
-        + rv2 * (a + a * a * a - 2 * a * a)
-        + rv1 * (1 + 2 * a * a * a - 3 * a * a)
-        + rv4 * (3 * a * a - 2 * a * a * a)
+        + rv2 * (a + a * a * a - 2.0f * a * a)
+        + rv1 * (1.0f + 2.0f * a * a * a - 3.0f * a * a)
+        + rv4 * (3.0f * a * a - 2.0f * a * a * a)
     );
 }
 #endif

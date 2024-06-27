@@ -49,10 +49,10 @@ namespace JGeometry {
         void zero();
 
         /* Operators */
-        TVec2<T> &operator=(const TVec2<T> &rSrc);
-        TVec2<T> &operator+(const TVec2<T> &rOther) const;
-        TVec2<T> &operator-(const TVec2<T> &rOther) const;
-        TVec2<T> &operator*(f32 scale) const;
+        TVec2<T>& operator=(const TVec2<T> &rSrc);
+        TVec2<T>& operator+(const TVec2<T> &rOther) const;
+        TVec2<T>& operator-(const TVec2<T> &rOther) const;
+        TVec2<T>& operator*(f32 scale) const;
 
         T x, y;
     };
@@ -62,9 +62,9 @@ namespace JGeometry {
     public:
         /* Constructors */
 
-        // This constructor must be associated with data so that the array constructor
+        // This constructor must be associated with data so that construct_new_array
         // will use this (effectively empty) constructor. Otherwise, the compiler does not pass
-        // this constructor to the implicit array constructor.
+        // any constructor to construct_new_array. See WireGravity::setPointListSize for more details.
         inline TVec3() {0.0f;}
 
         template <typename U>
@@ -109,8 +109,7 @@ namespace JGeometry {
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
-            }
-            ;
+            };
         }
 
         /* General operations */
@@ -149,8 +148,7 @@ namespace JGeometry {
                 ps_add f0, f1, f0
                 psq_st f2, 0(this_vec), 0, 0
                 psq_st f0, 8(this_vec), 0, 0
-            }
-            ;
+            };
         }
 
         void addXY(const register TVec3<T> &rSrc) NO_INLINE
@@ -190,8 +188,7 @@ namespace JGeometry {
                 ps_madd f1, f0, f0, f2
                 ps_sum0 f1, f1, f2, f2
                 blr
-            }
-            ;
+            };
         }
 
         
@@ -214,11 +211,12 @@ namespace JGeometry {
         T angle(const TVec3<T> &rOther) const;
         
 
-        inline void rejection(const TVec3<T> &rVec, const TVec3<T> &rNormal) {
+        inline void rejection(const TVec3<T> &rVec, const TVec3<T> &rNormal) 
+        {
             JMAVECScaleAdd(rNormal.toCVec(), rVec.toCVec(), toVec(), -rNormal.dot(rVec));
         }
 
-        TVec3<T> &subtract(const TVec3<T> &, const TVec3<T> &);
+        TVec3<T>& subtract(const TVec3<T> &, const TVec3<T> &);
         void subtract(const TVec3<T> &);
 
         T dot(const register TVec3<T> &rOther) const NO_INLINE
@@ -233,8 +231,7 @@ namespace JGeometry {
                 ps_madd f1, f0, f1, f2
                 ps_sum0 f1, f1, f2, f2
                 blr
-            }
-            ;
+            };
         }
 
         void zero();
@@ -250,8 +247,7 @@ namespace JGeometry {
                 fneg f0, f0
                 psq_st f1, 0(this_vec), 0, 0
                 stfs f0, 8(this_vec)
-            }
-            ;
+            };
         }
 
         void negate(const TVec3<T> &rSrc);
@@ -289,7 +285,7 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3<T> &operator=(const TVec3<T> &);
+        TVec3<T>& operator=(const TVec3<T> &);
         TVec3<T> operator*=(T);
         TVec3<T> operator*(T scalar) const NO_INLINE
         {
@@ -305,7 +301,7 @@ namespace JGeometry {
             return vec;
         }
 
-        TVec3<T> &operator-=(const TVec3<T> &rhs) NO_INLINE
+        TVec3<T>& operator-=(const TVec3<T> &rhs) NO_INLINE
         {
             JMathInlineVEC::PSVECSubtract(toCVec(), rhs.toCVec(), toVec());
             return *this;
@@ -318,7 +314,7 @@ namespace JGeometry {
             return vec;
         }
 
-        TVec3<T> &operator+=(const TVec3<T> &rhs) NO_INLINE
+        TVec3<T>& operator+=(const TVec3<T> &rhs) NO_INLINE
         {
             JMathInlineVEC::PSVECAdd(toCVec(), rhs.toCVec(), toVec());
             return *this;
@@ -335,7 +331,7 @@ namespace JGeometry {
                 psq_st xy, 0(r3), 0, 0
                 stfs z, 8(r3)
                 blr
-            }
+            };
         }
 
         TVec3<T> operator%(T scalar) const
@@ -393,8 +389,7 @@ namespace JGeometry {
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
-            }
-            ;
+            };
         }
 
         inline void setInlinePS_2(register const TVec3<T> &src)
@@ -408,8 +403,7 @@ namespace JGeometry {
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
-            }
-            ;
+            };
         }
 
         inline void setInlineXYPS(register const TVec3<T> &src)
@@ -421,8 +415,8 @@ namespace JGeometry {
                 psq_l xy, 0(src), 0, 0
                 lfs _z, 8(src)
                 psq_st xy, 0(dst), 0, 0
-            }
-            ;
+            };
+
             scalar = 500.0f;
 
             f32 __z = _z;
@@ -448,8 +442,7 @@ namespace JGeometry {
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
-            }
-            ;
+            };
         }
 
         inline void scaleInline(T scale)
@@ -473,8 +466,7 @@ namespace JGeometry {
                 ps_add    bZ, aZ, bZ
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    bZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void addInline2(register const TVec3<T> &rOther)
@@ -491,8 +483,7 @@ namespace JGeometry {
                 psq_l     _0, 8(rOther), 1, 0
                 ps_add    _0, _1, _0
                 psq_st    _0, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void addInline3(register const TVec3<T> &rOther)
@@ -510,8 +501,7 @@ namespace JGeometry {
                 ps_add    totalZ, dstZ, srcZ
                 psq_st    dstXY, 0(dst), 0, 0
                 psq_st    totalZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void addInline_4(register const TVec3<T> &rOther)
@@ -528,8 +518,7 @@ namespace JGeometry {
                 ps_add    aZ, aZ, bZ
                 psq_st    aXY, 0(dst), 0, 0
                 psq_st    aZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void addInline_5(register const TVec3<T> &rOther)
@@ -546,36 +535,7 @@ namespace JGeometry {
                 ps_add    aXY, bZ, aZ
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    aXY, 8(dst), 1, 0
-            }
-            ;
-        }
-
-        inline void addInline_7(register const TVec3<T> &rOther)
-        {
-            register TVec3<T> *dst = this;
-            register f32 sumZ, bZ, aZ, bXY, aXY;
-
-            __asm {
-                psq_l     bXY, 0(rOther), 0, 0
-                psq_l     aXY, 0(dst), 0, 0
-                psq_l     aZ, 8(dst), 1, 0
-                ps_add    aXY, aXY, bXY
-                psq_l     bZ, 8(rOther), 1, 0
-                ps_add    sumZ, aZ, bZ
-                psq_st    aXY, 0(dst), 0, 0
-                psq_st    sumZ, 8(dst), 1, 0
-            }
-            ;
-        }
-
-        inline TVec3<T> _madd(const TVec3<T> &v) const {
-            TVec3<T> ret(*this);
-            ret.addInline_7(v);
-            return ret;
-        }
-
-        inline TVec3<T> madd(f32 scale, const TVec3<T> &v) const {
-            return _madd(v * scale);
+            };
         }
 
         inline void addInline6(register const TVec3<T> &rOther)
@@ -598,6 +558,33 @@ namespace JGeometry {
 #endif
         }
 
+        inline void addInline_7(register const TVec3<T> &rOther)
+        {
+            register TVec3<T> *dst = this;
+            register f32 sumZ, bZ, aZ, bXY, aXY;
+
+            __asm {
+                psq_l     bXY, 0(rOther), 0, 0
+                psq_l     aXY, 0(dst), 0, 0
+                psq_l     aZ, 8(dst), 1, 0
+                ps_add    aXY, aXY, bXY
+                psq_l     bZ, 8(rOther), 1, 0
+                ps_add    sumZ, aZ, bZ
+                psq_st    aXY, 0(dst), 0, 0
+                psq_st    sumZ, 8(dst), 1, 0
+            };
+        }
+
+        inline TVec3<T> _madd(const TVec3<T> &v) const {
+            TVec3<T> ret(*this);
+            ret.addInline_7(v);
+            return ret;
+        }
+
+        inline TVec3<T> madd(f32 scale, const TVec3<T> &v) const {
+            return _madd(v * scale);
+        }
+
         inline void subInline(const TVec3<T> &rA, const TVec3<T> &rB)
         {
             register TVec3<T> *dst = this;
@@ -615,8 +602,7 @@ namespace JGeometry {
                 ps_sub    aZ, aZ, bZ
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    aZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void subInline2(const TVec3<T> &rA, const TVec3<T> &rB)
@@ -635,8 +621,7 @@ namespace JGeometry {
                 psq_l     bZ, 8(b), 1, 0
                 ps_sub    aZ, aZ, bZ
                 psq_st    aZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void subInline3(const TVec3<T> &rA, const TVec3<T> &rB)
@@ -655,8 +640,7 @@ namespace JGeometry {
                 psq_l     aZ, 8(a), 1, 0
                 ps_sub    aZ, aZ, bZ
                 psq_st    aZ, 8(dst), 1, 0
-            }
-            ;
+            };
         }
 
         inline void subInline(const TVec3<T> &rA)
@@ -674,8 +658,7 @@ namespace JGeometry {
                 psq_l     bZ, 8(this_vec), 1, 0
                 ps_sub    aZ, bZ, aZ
                 psq_st    aZ, 8(this_vec), 1, 0
-            }
-            ;
+            };
         }
 
         inline void subInline4(register const TVec3<T> &rVec)
@@ -709,7 +692,7 @@ namespace JGeometry {
                 lfs       z, 8(src)
                 fneg      z, z
                 stfs      z, 8(dest)
-            }
+            };
 
             return ret;
         }
@@ -728,7 +711,7 @@ namespace JGeometry {
                 lfs       z, 8(src)
                 fneg      z, z
                 stfs      z, 8(dest)
-            }
+            };
 
             TVec3f trueRet = TVec3f(ret);
             trueRet.scale(scalar);
@@ -748,7 +731,7 @@ namespace JGeometry {
                 fneg z, z
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
-            }
+            };
         }
 
         inline void negateInline_2(register const TVec3<T> &rSrc)
@@ -764,7 +747,7 @@ namespace JGeometry {
                 lfs z, 8(rSrc)
                 fneg z, z
                 stfs z, 8(dst)
-            }
+            };
         }
 
         inline TVec3<T> negateInline_2() const
@@ -794,7 +777,7 @@ namespace JGeometry {
                 stfs x, 0(rDest)
                 stfs y, 4(rDest)
                 stfs z_single, 8(rDest)
-            }
+            };
         }
 
         inline void negateSelf()
@@ -811,7 +794,7 @@ namespace JGeometry {
                 lfs z, 8(src)
                 fneg z, z
                 stfs z, 8(dst)
-            }
+            };
         }
 
         inline void setNegatedInline(register const TVec3<T> &rSrc)
@@ -827,7 +810,7 @@ namespace JGeometry {
                 lfs z, 8(rSrc)
                 fneg z, z
                 stfs z, 8(rDst)
-            }
+            };
         }
 
         inline void multAndSet(TVec3<T> *pDest, T scalar)
@@ -853,7 +836,7 @@ namespace JGeometry {
                 lfs z_2, 8(rVec1)
                 fmuls z_2, z_1, z_2
                 stfs z_2, 8(rDst)
-            }
+            };
         }
 
         inline f32 squareDistancePS(const register TVec3<T> &rVec1) const

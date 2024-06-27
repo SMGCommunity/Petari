@@ -46,8 +46,7 @@ bool TVec3f::isZero() const
 		ps_mul    f1, f1, f1
 		ps_madd   sum, sum, sum, f1
 		ps_sum0   sum, sum, f1, f1
-    }
-    ;
+    };
 
     return sum <= 0.0000038146973f;
 }
@@ -75,9 +74,9 @@ CubeGravity::CubeGravity() : PlanetGravity()
     mPosition.identity();
 }
 
-void CubeGravity::setCube(const TPos3f &cube)
+void CubeGravity::setCube(const TPos3f &rCube)
 {
-    mCube = cube;
+    mCube = rCube;
 
     updateIdentityMtx();
 }

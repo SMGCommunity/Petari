@@ -105,7 +105,6 @@ namespace JGeometry {
         }
 
         T mMtx[3][4];
-        typedef T type;
     };
 
     template<typename T>
@@ -119,12 +118,10 @@ namespace JGeometry {
         void mult(const TVec3f &rSrc, TVec3f &rDest) const;
 
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const;
-        typedef T::type type;
     };
     template<class T>
     struct TRotation3 : public T {
     public:
-    typedef T::type type;
         void identity33();
 
         void getXDir(TVec3f &rDest) const NO_INLINE {
@@ -160,15 +157,15 @@ namespace JGeometry {
         void setScale(const TVec3f &rSrc);
         void setRotate(const TVec3f &, f32);
         void INLINE_FUNC_DECL(setRotate, const TVec3f &mLocalDirection, f32 fr1e) {
-            TVec3f stack_8;
-            stack_8.set(mLocalDirection);
-            PSVECMag(stack_8.toCVec());
-            PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+            TVec3f v;
+            v.set(mLocalDirection);
+            PSVECMag(v.toCVec());
+            PSVECNormalize(v.toCVec(), v.toVec());
             f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
             f32 x, y, z;
-            x = stack_8.x;
-            y = stack_8.y;
-            z = stack_8.z;
+            x = v.x;
+            y = v.y;
+            z = v.z;
             f32 xx = x * x;
             f32 yx = y * y;
             f32 zz = z * z;
@@ -185,15 +182,15 @@ namespace JGeometry {
 
         void setRotateInline2(const TVec3f &mLocalDirection, f32 fr1e) {
             // The only difference from the first setRotate is that we use setInline instead of set
-            TVec3f stack_8;
-            stack_8.setInline(mLocalDirection);
-            PSVECMag(stack_8.toCVec());
-            PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+            TVec3f v;
+            v.setInline(mLocalDirection);
+            PSVECMag(v.toCVec());
+            PSVECNormalize(v.toCVec(), v.toVec());
             f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
             f32 x, y, z;
-            x = stack_8.x;
-            y = stack_8.y;
-            z = stack_8.z;
+            x = v.x;
+            y = v.y;
+            z = v.z;
             f32 xx = x * x;
             f32 yx = y * y;
             f32 zz = z * z;
@@ -236,21 +233,6 @@ namespace JGeometry {
             rDst.set(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
         }
     };
-
-    inline f32 dot(f32 x, f32 y, f32 z, f32 x2, f32 y2, f32 z2) {
-        return x2 * x + y2 * y + z2 * z;
-    }
-
-inline f32 yy(f32 y) {
-    return y * y;
-}
-inline f32 g(f32 x) {
-    return cos(x);
-}
-    
-        inline f32 helper(const Vec &rSrc, const Vec &mtx) {
-            return rSrc.y * mtx.y + rSrc.x  * mtx.x + rSrc.z * mtx.z;
-        }
 
     template<class T>
     struct TPosition3 : public TRotation3<T> {

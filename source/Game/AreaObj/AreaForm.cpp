@@ -2,10 +2,6 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "Game/Util.hpp"
 
-inline f32 getElement(const TRot3f &rot) {
-    return rot.mMtx[1][0];
-}
-
 template<>
 void TRot3f::mult33(const TVec3f &rSrc, TVec3f &rDst) const {
     f32 a32, a22, a12, a31, a21, a11, a13, a33, a23;
