@@ -9,6 +9,7 @@ class HitSensor;
 class SingleEmitter;
 class MultiEmitter;
 class LayoutActor;
+class MultiEmitterParticleCallBack;
 
 namespace MR {
     namespace Effect {
@@ -25,6 +26,7 @@ namespace MR {
 
     void pauseOffEffectAll(LiveActor *);
 
+    void deleteEffect(LiveActor *, const char *);
     void deleteEffectAll(LiveActor *);
 
     void emitEffect(LiveActor *, const char *);
@@ -49,4 +51,6 @@ namespace MR {
     void setEffectHostSRT(LiveActor *, const char *, const TVec3f *, const TVec3f *, const TVec3f *);
 
     void emitEffectWithScale(LiveActor *, const char *, f32, s32);
+
+    void emitEffectWithParticleCallBack(LiveActor *, const char *, MultiEmitterParticleCallBack *);
 };

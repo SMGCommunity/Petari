@@ -52,7 +52,7 @@
 | [BreakableCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BreakableCage.md) | 68.64754098360656% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
 | [BrightObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BrightObj.md) | 10.066127847171199% | 4 / 42 | 9.523809523809524% | :eight_pointed_black_star: 
 | [BumpAppearPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BumpAppearPlanet.md) | 0.0% | 0 / 19 | 0.0% | :x: 
-| [Candlestand.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Candlestand.md) | 0.0% | 0 / 31 | 0.0% | :x: 
+| [Candlestand.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Candlestand.md) | 34.360189573459714% | 17 / 31 | 54.83870967741935% | :eight_pointed_black_star: 
 | [CannonFortressBreakStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CannonFortressBreakStep.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [CapsuleCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CapsuleCage.md) | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
 | [ChipBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipBase.md) | 79.12087912087912% | 36 / 39 | 92.3076923076923% | :eight_pointed_black_star: 
