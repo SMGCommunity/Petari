@@ -339,6 +339,7 @@ namespace MR {
     void initJointTransform(const LiveActor *);
 
     void initCollisionPartsAutoEqualScaleOne(LiveActor *, const char *, HitSensor *, MtxPtr);
+    void initCollisionPartsFromResourceHolder(LiveActor *, const char *, HitSensor *, ResourceHolder *, MtxPtr);
 
 	ResTIMG* getTexFromArc(const char *, const LiveActor *);
     PartsModel* createBloomModel(LiveActor *, MtxPtr);
