@@ -252,10 +252,10 @@ bool GalaxyStatusAccessor::isHiddenStar(s32 scenario) const {
 
 namespace MR {
     GalaxyStatusAccessor makeGalaxyStatusAccessor(const char *pGalaxyName) {
-        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(pGalaxyName);
+        return ScenarioDataFunction::getScenarioDataParser().makeAccessor(pGalaxyName);
     }
 
     GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor() {
-        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(MR::getCurrentStageName());
+        return ScenarioDataFunction::getScenarioDataParser().makeAccessor(MR::getCurrentStageName());
     }
 };

@@ -34,7 +34,7 @@ namespace MR {
         MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->setShakeOffset(a1, a2);
     }
 
-    TVec3f getCamPos() {
+    const TVec3f getCamPos() {
         TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f pos;
         MR::extractMtxTrans(viewMtx.toMtxPtr(), &pos);
