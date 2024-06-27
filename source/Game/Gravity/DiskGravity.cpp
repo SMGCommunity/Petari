@@ -1,18 +1,20 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 #include "Inline.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <math_types.hpp>
 
 DiskGravity::DiskGravity() :
 	PlanetGravity(),
 	CALL_INLINE_FUNC(mLocalPosition, 0.0f, 50.0f, 0.0f),
-	CALL_INLINE_FUNC(mTranslation, 0.0f, 50.0f, 0.0f),
-	mLocalDirection(0, 1, 0),
-	mRotation(0, 1, 0),
+	CALL_INLINE_FUNC(mWorldPosition, 0.0f, 50.0f, 0.0f),
+	mLocalNormal(0, 1, 0),
+	mWorldNormal(0, 1, 0),
 	mSideDirection(1, 0, 0),
-	mSideVecOrtho(1, 0, 0),
-	mWorldSideDir(1, 0, 0)
+	mOppositeSideVecOrtho(1, 0, 0),
+	mWorldOppositeSideVecOrtho(1, 0, 0)
 {
-	mRadius = 2500.0f;
+	mLocalRadius = 2500.0f;
 	mWorldRadius = 2500.0f;
 	mValidDegree = 360.0f;
 	mValidCos = -1.0f;
@@ -25,8 +27,8 @@ void DiskGravity::setLocalPosition(const TVec3f &rLocalPos) {
 }
 
 void DiskGravity::setLocalDirection(const TVec3f &rLocalDir) {
-	mLocalDirection.set(rLocalDir);
-	MR::normalizeOrZero(&mLocalDirection);
+	mLocalNormal.set(rLocalDir);
+	MR::normalizeOrZero(&mLocalNormal);
 	updateLocalParam();
 }
 
@@ -36,7 +38,7 @@ void DiskGravity::setSideDirection(const TVec3f &rSideDir) {
 }
 
 void DiskGravity::setRadius(f32 val) {
-	mRadius = val;
+	mLocalRadius = val;
 }
 
 void DiskGravity::setValidDegee(f32 val) {
@@ -52,52 +54,40 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
 	mEnableEdgeGravity = val;
 }
 
-#ifdef NON_MATCHING
-// matching this with the stack is fucking impossible
 bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
-	TVec3f dirToPos;
-	dirToPos = rPosition - mTranslation;
-	f32 dot = dirToPos.dot(mRotation);
+    
+	TVec3f relativePos;
+	relativePos = rPosition - mWorldPosition;
 
-	if (!mEnableBothSide && dot < 0.0f)
+    f32 centralAxisY = relativePos.dot(mWorldNormal);
+
+	if (!mEnableBothSide && centralAxisY < 0.0f)
 		return false;
 
-	TVec3f v33 = dirToPos - mRotation * dot;
-	f32 scalar;
-	MR::separateScalarAndDirection(&scalar, &v33, v33);
+	TVec3f dirOnDiskPlane = relativePos - mWorldNormal * centralAxisY;
+	f32 distanceToCentralAxis;
+	MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnDiskPlane, dirOnDiskPlane);
 
-	if (mValidCos > -1.0f && v33.dot(mWorldSideDir) < mValidCos)
+	if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldOppositeSideVecOrtho) < mValidCos)
 		return false;
 
 	TVec3f gravity(0, 0, 0);
 	f32 distance = 0.0f;
 
-	if (scalar <= mWorldRadius) {
-		// This entire thing doesn't make much sense
-		const TVec3f* grav;
-
-		if (dot >= 0.0f) {
-			TVec3f neg;
-			neg.negateInline_2(mRotation);
-			grav = &neg;
-		}
-		else {
-			grav = &mRotation;
-		}
-
-		gravity = *grav;
-		distance = __fabsf(dot);
+	if (distanceToCentralAxis <= mWorldRadius) {
+		gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline_2() : mWorldNormal;
+		distance = __fabsf(centralAxisY);
 	}
 	else {
-		if (!mEnableBothSide) {
+		if (!mEnableEdgeGravity) {
 			return false;
 		}
+        
+		TVec3f closestEdgePoint;
+		closestEdgePoint.set(dirOnDiskPlane * mWorldRadius);
+		closestEdgePoint.addInline2(mWorldPosition);
 
-		TVec3f v31;
-		v31.set(v33 * mWorldRadius);
-		v31.addInline2(mTranslation);
-
-		gravity = v31 - rPosition;
+		gravity = closestEdgePoint - rPosition;
 		MR::separateScalarAndDirection(&distance, &gravity, gravity);
 	}
 
@@ -115,14 +105,42 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 
 	return true;
 }
-#endif
+
+void DiskGravity::updateLocalParam() {
+    TRot3f rot;
+
+    // Both of these variables are present because the codegen indicates they should be.
+    // In the final game, however, they have no behavioral effect and are not given any memory.
+    bool artifact = false;
+    bool &rArtifact = artifact;
+
+    mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);
+    if(MR::isNearZero(mLocalNormal, 0.00100000005f)) {
+        rArtifact = true;
+        mOppositeSideVecOrtho.zero();
+        return;
+    }
+    JMAVECScaleAdd(mLocalNormal.toCVec(), mSideDirection.toCVec(), mOppositeSideVecOrtho.toVec(), -mLocalNormal.dot(mSideDirection));
+    MR::normalizeOrZero(&mOppositeSideVecOrtho);
+    if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
+        mOppositeSideVecOrtho.zero();
+        return;
+    }
+
+    rot.identity();
+    rot.CALL_INLINE_FUNC(setRotate, mLocalNormal, 0.5f * mValidDegree * (PI / 180));
+    rArtifact = false;
+    if(!artifact) {
+        rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
+    }
+}
 
 void DiskGravity::updateMtx(const TPos3f &rMtx) {
-	rMtx.mult(mLocalPosition, mTranslation);
-	rMtx.mult33(mLocalDirection, mRotation);
-	rMtx.mult33(mSideVecOrtho, mWorldSideDir);
+	rMtx.mult(mLocalPosition, mWorldPosition);
+	rMtx.mult33(mLocalNormal, mWorldNormal);
+	rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
 
-	f32 _8;
-	MR::separateScalarAndDirection(&_8, &mRotation, mRotation);
-	mWorldRadius = mRadius * _8;
+	f32 axisScale;
+	MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);
+	mWorldRadius = mLocalRadius * axisScale;
 }

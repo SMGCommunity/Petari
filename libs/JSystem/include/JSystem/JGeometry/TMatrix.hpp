@@ -2,6 +2,7 @@
 
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
+#include <cmath>
 
 namespace JGeometry {
     template<typename T>
@@ -117,9 +118,7 @@ namespace JGeometry {
         void mult(const TVec3f &rSrc, TVec3f &rDest) const;
 
         void multTranspose(const TVec3f &a1, const TVec3f &a2) const;
-        
     };
-
     template<class T>
     struct TRotation3 : public T {
     public:
@@ -156,12 +155,58 @@ namespace JGeometry {
 
         void getScale(TVec3f &rDest) const;
         void setScale(const TVec3f &rSrc);
-
-        void setRotate(const TVec3f &, const TVec3f &);
         void setRotate(const TVec3f &, f32);
+        void INLINE_FUNC_DECL(setRotate, const TVec3f &mLocalDirection, f32 fr1e) {
+            TVec3f v;
+            v.set(mLocalDirection);
+            PSVECMag(v.toCVec());
+            PSVECNormalize(v.toCVec(), v.toVec());
+            f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+            f32 x, y, z;
+            x = v.x;
+            y = v.y;
+            z = v.z;
+            f32 xx = x * x;
+            f32 yx = y * y;
+            f32 zz = z * z;
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * (x * x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * (y * y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * (z * z);
+        }
+
+        void setRotateInline2(const TVec3f &mLocalDirection, f32 fr1e) {
+            // The only difference from the first setRotate is that we use setInline instead of set
+            TVec3f v;
+            v.setInline(mLocalDirection);
+            PSVECMag(v.toCVec());
+            PSVECNormalize(v.toCVec(), v.toVec());
+            f32 fr1ey = sin(fr1e), fr1ex = cos(fr1e);
+            f32 x, y, z;
+            x = v.x;
+            y = v.y;
+            z = v.z;
+            f32 xx = x * x;
+            f32 yx = y * y;
+            f32 zz = z * z;
+            mMtx[0][0] = fr1ex + (1.0f - fr1ex) * (x * x);
+            mMtx[0][1] = (1.0f - fr1ex) * x * y - fr1ey * z;
+            mMtx[0][2] = (1.0f - fr1ex) * x * z + fr1ey * y;
+            mMtx[1][0] = (1.0f - fr1ex) * x * y + fr1ey * z;
+            mMtx[1][1] = fr1ex + (1.0f - fr1ex) * (y * y);
+            mMtx[1][2] = (1.0f - fr1ex) * y * z - fr1ey * x;
+            mMtx[2][0] = (1.0f - fr1ex) * x * z - fr1ey * y;
+            mMtx[2][1] = (1.0f - fr1ex) * y * z + fr1ey * x;
+            mMtx[2][2] = fr1ex + (1.0f - fr1ex) * (z * z);
+        }
 
         void mult33(TVec3f &) const;
-        void mult33(const TVec3f &, TVec3f &) const;
+        void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
 
         inline void getXDirInline(TVec3f &rDest) const {
             f32 z = mMtx[2][0];
@@ -170,15 +215,23 @@ namespace JGeometry {
             rDest.set(x, y, z);
         }
 
-#ifdef NON_MATCHING
-        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDest) const {
-            rDest.set<f32>(
-                rSrc.z * mMtx[0][2] + (rSrc.y * mMtx[0][0] + (rSrc.x * mMtx[0][1])),
-                rSrc.z * mMtx[1][2] + (rSrc.y * mMtx[1][0] + (rSrc.x * mMtx[1][1])),
-                rSrc.z * mMtx[2][2] + (rSrc.y * mMtx[2][0] + (rSrc.x * mMtx[2][1]))
-                );
+        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDst) const {
+            f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
+            a32 = mMtx[2][1];
+            a22 = mMtx[1][1];
+            a12 = mMtx[0][1];
+            a31 = mMtx[2][0];
+            a21 = mMtx[1][0];
+            a11 = mMtx[0][0];
+            a33 = mMtx[2][2];
+            a13 = mMtx[0][2];
+            a23 = mMtx[1][2];
+            f32 x, y;
+            vx = rSrc.x;
+            vy = rSrc.y;
+            x = (vx * a11 + vy * a12);
+            rDst.set(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
         }
-#endif
     };
 
     template<class T>

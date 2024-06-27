@@ -63,7 +63,7 @@
 | [DodoryuMove.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuMove.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [DodoryuStateBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuStateBase.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [DodoryuStateLv1.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuStateLv1.md) | 0.0% | 0 / 55 | 0.0% | :x: 
-| [DodoryuStateLv2.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuStateLv2.md) | 0.0% | 0 / 122 | 0.0% | :x: 
+| [DodoryuStateLv2.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuStateLv2.md) | 1.349014181943964% | 2 / 122 | 1.639344262295082% | :eight_pointed_black_star: 
 | [DodoryuStateWait.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuStateWait.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [DodoryuUtil.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/DodoryuUtil.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [Koopa.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/Koopa.md) | 0.0% | 0 / 15 | 0.0% | :x: 
