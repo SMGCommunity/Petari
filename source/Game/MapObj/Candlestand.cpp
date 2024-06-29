@@ -110,12 +110,89 @@ void Candlestand::makeActorAppeared() {
     }
 }
 
-// startClipped
-// endClipped
-// attackSensor
-// receiveMsgPlayerAttack
-// receiveMsgEnemyAttack
-// receiveOtherMsg
+void Candlestand::startClipped() {
+    MapObjActor::startClipped();
+
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+        deleteEffectFire();
+    }
+}
+
+void Candlestand::endClipped() {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+        emitEffectFire();
+    }
+
+    MapObjActor::endClipped();
+}
+
+void Candlestand::attackSensor(HitSensor* a2, HitSensor *a3) {
+    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+        f32 range = mScale.x * 50.0f;
+        f32 radius = a3->mRadius;
+        if (MR::isNear(a2, a3, range + radius)) {
+            if (MR::sendMsgEnemyAttackFire(a3, a2)) {
+                setNerve(&NrvCandlestand::HostTypeAttack::sInstance);
+            }
+        }
+    }
+}
+
+bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+    if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
+        return false;
+    }
+
+    if (!MR::isMsgFireBallAttack(msg)) {
+        return false;
+    }
+
+    f32 range = mScale.x * 150.0f;
+    f32 radius = a3->mRadius;
+
+    if (!MR::isNear(a3, a4, range + radius)) {
+        return false;
+    }
+
+    setNerve(&NrvCandlestand::HostTypeFire::sInstance);
+    return true;
+}
+
+bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor *a3, HitSensor *a4) {
+    if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
+        return false;
+    }
+
+    if (!MR::isMsgEnemyAttackFire(msg)) {
+        return false;
+    }
+
+    f32 range = mScale.x * 150.0f;
+    f32 radius = a3->mRadius;
+
+    if (!MR::isNear(a3, a4, range + radius)) {
+        return false;
+    }
+
+    setNerve(&NrvCandlestand::HostTypeFire::sInstance);
+    return true;
+}
+
+bool Candlestand::receiveOtherMsg(u32 msg, HitSensor *a3, HitSensor *a4) {
+    if (MR::isInSpinStormRange(msg, a3, a4, (350.0f * mScale.x)) && isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+        if (getParam(mObjectName)->mCanUseSwitch) {
+            setNerve(&NrvCandlestand::HostTypeFlicker::sInstance);
+            return true;
+        }
+        else {
+            setNerve(&NrvCandlestand::HostTypeExtinguish::sInstance);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 void Candlestand::emitEffectFire() {
     if (isObjectName("TeresaMansionCandlestand")) {
@@ -148,11 +225,77 @@ void Candlestand::emitEffectExtinguishFire() {
 }
 
 // appearItem
-// exeFire
-// exeExtinguish
-// exeFlicker
-// exeAttack
-// exeBurn
+
+void Candlestand::exeFire() {
+    if (MR::isFirstStep(this)) {
+        emitEffectFire();
+        MR::startSound(this, "SE_OJ_FIRE_STAND_IGNIT", -1, -1);
+    }
+
+    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+
+    if (MR::isStep(this, 60)) {
+        if (MR::isValidSwitchA(this)) {
+            MR::onSwitchA(this);
+        }
+
+        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+    }
+}
+
+void Candlestand::exeExtinguish() {
+    if (MR::isFirstStep(this)) {
+        deleteEffectFire();
+        emitEffectExtinguishFire();
+        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF", -1, -1);
+    }
+
+    if (MR::isStep(this, 15)) {
+        if (MR::isValidSwitchA(this)) {
+            MR::offSwitchA(this);
+        }
+
+        appearItem();
+
+        if (getParam(mObjectName)->mCanUseSwitch) {
+            setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
+        }
+    }
+}
+
+void Candlestand::exeFlicker() {
+    if (MR::isFirstStep(this)) {
+        deleteEffectFire();
+
+        if (isObjectName("TeresaMansionCandlestand")) {
+            MR::emitEffect(this, "Extinguish01");
+            MR::emitEffect(this, "Extinguish02");
+        }
+        else {
+            MR::emitEffect(this, "Extinguish");
+        }
+
+        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF", -1, -1);
+    }
+
+    if (MR::isStep(this, 30)) {
+        emitEffectFire();
+        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+    }
+}
+
+void Candlestand::exeAttack() {
+    if (MR::isStep(this, 0x1E)) {
+        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+    }
+    else {
+        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+    }
+}
+
+void Candlestand::exeBurn() {
+    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+}
 
 Candlestand::~Candlestand() {
 
