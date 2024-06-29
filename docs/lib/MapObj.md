@@ -27,7 +27,7 @@
 | [AstroDomeGalaxySelector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeGalaxySelector.md) | 0.0% | 0 / 37 | 0.0% | :x: 
 | [AstroDomeOrbit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeOrbit.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [AstroDomeSky.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeSky.md) | 0.0% | 0 / 31 | 0.0% | :x: 
-| [AstroMapBoard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapBoard.md) | 0.0% | 0 / 8 | 0.0% | :x: 
+| [AstroMapBoard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapBoard.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [AstroMapObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObj.md) | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
 | [AstroMapObjFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObjFunction.md) | 59.08419497784343% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | [AstroOverlookObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroOverlookObj.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
