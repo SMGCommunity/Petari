@@ -11,8 +11,8 @@ PointGravity::PointGravity() :
 
 bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
 	TVec3f direction;
-	direction.subInline(rPosition, mTranslation);
-	f32 scalar = VECMag((Vec*)&direction);
+	direction.subInline(mTranslation, rPosition);
+	f32 scalar = PSVECMag((Vec*)&direction);
 
 	// Epsilon-equals zero? If so, direction is the zero vector.
 	if (MR::isNearZero(scalar, 0.01f)) {
@@ -32,7 +32,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 	// Update result vector & scalar if applicable
 	else {
 		if (pDest) {
-			pDest->setInlinePS(direction);
+			pDest->setInlinePS_2(direction);
 		}
 		if (pScalar) {
 			*pScalar = scalar;

@@ -15,15 +15,19 @@ public:
 	void setEdgeValid(u32 index, bool val);
 	void updateLocalParam();
 
+    // Represents the centers of each base of the cylinder
 	TVec3f mGravityPoints[2]; // _28
-	TVec3f _40[2];
+	TVec3f mWorldGravityPoints[2]; // _40
+    
 	TVec3f mSideVector;       // _58
-	TVec3f _64;
-	TVec3f _70;
-	TVec3f _7C;
-	f32 _88;
-	f32 mSideDegree;          // _8C
-	f32 _90;
-	f32 _94[2];
+	TVec3f mOppositeSideVecOrtho;
+    TVec3f mWorldOppositeSideVecOrtho;
+    
+	TVec3f mAxis;   // _7C
+	f32 mAxisLength;    // _88
+    
+	f32 mValidSideDegree;          // _8C
+	f32 mValidSideCos;  // _90
+	f32 mHemisphereExtension[2];    // _94
 	bool mEdges[2];           // _9C
 };

@@ -4,6 +4,19 @@
 #include <JSystem/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
+// JGeometry functions are painful to match, so this just gives the gist
+#ifdef NON_MATCHING
+template<>
+void TVec3f::cubic(const TVec3f &rv1, const TVec3f &rv2, const TVec3f &rv3, const TVec3f &rv4, f32 a) {
+    set(
+        rv3 * (a * a * a - a * a)
+        + rv2 * (a + a * a * a - 2.0f * a * a)
+        + rv1 * (1.0f + 2.0f * a * a * a - 3.0f * a * a)
+        + rv4 * (3.0f * a * a - 2.0f * a * a * a)
+    );
+}
+#endif
+
 void SkeletalFishGuard::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
     MR::addToAttributeGroupSearchTurtle(this);

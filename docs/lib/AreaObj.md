@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [AreaForm.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/AreaForm.md) | 74.60148777895856% | 28 / 33 | 84.84848484848484% | :eight_pointed_black_star: 
+| [AreaForm.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/AreaForm.md) | 77.78958554729012% | 29 / 33 | 87.87878787878788% | :eight_pointed_black_star: 
 | [AreaFormDrawer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/AreaFormDrawer.md) | 52.17391304347826% | 2 / 3 | 66.66666666666666% | :eight_pointed_black_star: 
 | [AreaObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/AreaObj.md) | 88.91129032258065% | 23 / 24 | 95.83333333333334% | :eight_pointed_black_star: 
 | [AreaObjContainer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/AreaObj/AreaObjContainer.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 

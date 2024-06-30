@@ -17,11 +17,11 @@ public:
 	void setBothSide(bool val);
 
 	TVec3f mLocalPosition;  // _28
-	TVec3f mTranslation;
+	TVec3f mTranslation;    // _34
 	TVec3f mLocalDirection; // _40
-	TVec3f mRotation;
+	TVec3f mRotation;       // _4C
 	f32 mRadius;            // _58
-	f32 _5C;
+	f32 mWorldRadius;       // _5C
 	f32 mDiskRadius;        // _60
 	s32 mEdgeType;          // _64
 	bool mEnableBothSide;   // _68

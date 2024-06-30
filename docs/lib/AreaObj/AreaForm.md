@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 28 / 33 Completed -- (84.84848484848484%)
+# 29 / 33 Completed -- (87.87878787878788%)
 # AreaForm.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -13,7 +13,7 @@
 | `set<f>__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>_v` | :white_check_mark: |
 | `add__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `asin__Q29JGeometry8TUtil<f>Ff` | :white_check_mark: |
-| `mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :x: |
+| `mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `getValue<f>__12JMapInfoIterCFPCcPf_b` | :x: |
 | `__ct__12AreaFormCubeFi` | :white_check_mark: |
 | `init__12AreaFormCubeFRC12JMapInfoIter` | :white_check_mark: |

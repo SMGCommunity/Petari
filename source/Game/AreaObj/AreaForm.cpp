@@ -2,6 +2,24 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "Game/Util.hpp"
 
+template<>
+void TRot3f::mult33(const TVec3f &rSrc, TVec3f &rDst) const {
+    f32 a32, a22, a12, a31, a21, a11, a13, a33, a23;
+    a32 = mMtx[2][1];
+    
+    a22 = mMtx[1][1];
+    a12 = mMtx[0][1];
+    a31 = mMtx[2][0];
+    a21 = mMtx[1][0];
+    a11 = mMtx[0][0];
+    
+    a33 = mMtx[2][2];
+    a13 = mMtx[0][2];
+    a23 = mMtx[1][2];
+    rDst.set(rSrc.z * a13 + (rSrc.x * a11 + rSrc.y * a12), rSrc.z * a23 + (rSrc.x * a21 + rSrc.y * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+    
+}
+
 AreaFormCube::AreaFormCube(int a1) {
     _4 = 0;
     _8 = a1;

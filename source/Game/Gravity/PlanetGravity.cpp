@@ -84,7 +84,7 @@ bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar
 	TVec3f direction;
 	f32 scalar;
 
-	direction.subInline(rPosition, rMassPosition);
+	direction.subInline(rMassPosition, rPosition);
 	MR::separateScalarAndDirection(&scalar, &direction, direction);
 
 	if (!isInRangeDistance(scalar))

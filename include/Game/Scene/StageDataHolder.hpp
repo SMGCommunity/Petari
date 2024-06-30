@@ -15,8 +15,8 @@ public:
     void requestFileLoadCommon();
     void requestFileLoadScenario();
     void initPlacement();
-    JMapInfo& getCommonPathPointInfo(const JMapInfo **, int) const;
-    JMapInfo& getCommonPathPointInfoFromRailDataIndex(const JMapInfo **, int) const;
+    JMapInfo getCommonPathPointInfo(const JMapInfo **, int) const;
+    JMapInfo getCommonPathPointInfoFromRailDataIndex(const JMapInfo **, int) const;
     s32 getCommonPathInfoElementNum() const;
     s32 getStartPosNum() const;
     s32 getCurrentStartZoneId() const;

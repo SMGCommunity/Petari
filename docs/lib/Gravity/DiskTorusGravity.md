@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 7 / 9 Completed -- (77.77777777777779%)
+# 9 / 9 Completed -- (100.0%)
 # DiskTorusGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -16,5 +16,5 @@
 | `setDiskRadius__16DiskTorusGravityFf` | :white_check_mark: |
 | `setEdgeType__16DiskTorusGravityFl` | :white_check_mark: |
 | `setBothSide__16DiskTorusGravityFb` | :white_check_mark: |
-| `updateMtx__16DiskTorusGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :x: |
-| `calcOwnGravityVector__16DiskTorusGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :x: |
+| `updateMtx__16DiskTorusGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :white_check_mark: |
+| `calcOwnGravityVector__16DiskTorusGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
