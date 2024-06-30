@@ -5903,7 +5903,7 @@ __ct__25WaterPressureBulletHolderFPCc,WaterPressureBulletHolder.o,MapObj.a,true
 callEmptyBullet__25WaterPressureBulletHolderFv,WaterPressureBulletHolder.o,MapObj.a,true
 __dt__25WaterPressureBulletHolderFv,WaterPressureBulletHolder.o,MapObj.a,true
 init__25WaterPressureBulletHolderFRC12JMapInfoIter,WaterPressureBulletHolder.o,MapObj.a,true
-__ct__17WaveFloatingForceFPC9LiveActorlfb,WaveFloatingForce.o,MapObj.a,false
+__ct__17WaveFloatingForceFPC9LiveActorlfb,WaveFloatingForce.o,MapObj.a,true
 update__17WaveFloatingForceFv,WaveFloatingForce.o,MapObj.a,false
 getCurrentValue__17WaveFloatingForceCFv,WaveFloatingForce.o,MapObj.a,false
 updateNormal__17WaveFloatingForceFv,WaveFloatingForce.o,MapObj.a,false
