@@ -29,12 +29,12 @@ namespace JMath {
         inline f32 sinLap(f32 v)
         {
             if (v < 0.0f) {
-                v *= -LEN / TWO_PI;
-                return -table[(u16)v & LEN - 1].a1;
+                f32 tmp = v * -LEN / TWO_PI;
+                return -table[(u16)tmp & LEN - 1].a1;
             }
             else {
-                v *= LEN / TWO_PI;
-                return table[(u16)v & LEN - 1].a1;
+                f32 tmp = v * LEN / TWO_PI;
+                return table[(u16)tmp & LEN - 1].a1;
             }
         }
 

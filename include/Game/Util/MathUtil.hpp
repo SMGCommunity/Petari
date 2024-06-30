@@ -319,6 +319,10 @@ namespace MR {
         return false;
     }
 
+    inline f64 normalizePhase(f32 value, f32 initial, f32 offset, f32 modulus) {
+        return (initial + fmod((offset + (value - initial)), modulus));
+    }
+
     f32 cos(f32);
     f32 sin(f32);
 };
