@@ -347,4 +347,6 @@ namespace MR {
     CollisionParts* getCollisionParts(const LiveActor *);
 
     TexMtxCtrl* initDLMakerTexMtx(LiveActor *, const char *);
+
+    void changeModelDataTexAll(LiveActor *, const char *, const ResTIMG &);
 };

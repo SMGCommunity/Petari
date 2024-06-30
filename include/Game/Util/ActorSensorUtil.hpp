@@ -198,4 +198,6 @@ namespace MR {
 
     void validateHitSensor(LiveActor *, const char *);
     void invalidateHitSensor(LiveActor *, const char *);
+
+    bool isInSpinStormRange(u32, HitSensor *, HitSensor *, f32);
 };

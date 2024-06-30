@@ -89,4 +89,5 @@ namespace MR {
     s32 getPowerStarLeftToDisplayCountDownPlate();
 
     bool isOnGameEventFlagViewNormalEnding();
+    bool isButlerMapAppear();
 };
