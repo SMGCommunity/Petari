@@ -63,6 +63,7 @@ namespace MR {
     void captureScreenIfAllow(const char *);
 
     ResTIMG* getScreenResTIMG();
+    ResTIMG* getGalaxyMapResTIMG();
 
     s32 getScreenWidth();
 

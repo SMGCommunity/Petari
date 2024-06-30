@@ -5,6 +5,7 @@
 
 class Candlestand : public MapObjActor {
 public:
+    Candlestand(const char *);
 
     virtual ~Candlestand();
     virtual void init(const JMapInfoIter &);
@@ -29,4 +30,13 @@ public:
     s32 mItem;                                      // _C4
     bool mHasItemAppear;                            // _C8
     SpinPullParticleCallBack* mSpinPtclCb;          // _CC
+};
+
+namespace NrvCandlestand {
+    NERVE_DECL_NULL(HostTypeWaitFire);
+    NERVE_DECL(HostTypeFire, Candlestand, Candlestand::exeFire);
+    NERVE_DECL(HostTypeBurn, Candlestand, Candlestand::exeBurn);
+    NERVE_DECL(HostTypeAttack, Candlestand, Candlestand::exeAttack);
+    NERVE_DECL(HostTypeExtinguish, Candlestand, Candlestand::exeExtinguish);
+    NERVE_DECL(HostTypeFlicker, Candlestand, Candlestand::exeFlicker);
 };

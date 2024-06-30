@@ -52,7 +52,7 @@ namespace MR {
     HitSensor* addHitSensorCallbackEnemyAttack(LiveActor *, const char *, u16, f32);
     HitSensor* addHitSensorCallbackEye(LiveActor *, const char *, u16, f32);
 
-    void addBodyMessageSensorMapObj(LiveActor *);
+    HitSensor* addBodyMessageSensorMapObj(LiveActor *);
     void addBodyMessageSensor(LiveActor *, u32);
     HitSensor* addBodyMessageSensorMapObjMoveCollision(LiveActor *);
     HitSensor* addBodyMessageSensorReceiver(LiveActor *);
@@ -198,4 +198,6 @@ namespace MR {
 
     void validateHitSensor(LiveActor *, const char *);
     void invalidateHitSensor(LiveActor *, const char *);
+
+    bool isInSpinStormRange(u32, HitSensor *, HitSensor *, f32);
 };

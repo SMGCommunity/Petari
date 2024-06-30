@@ -130,8 +130,8 @@
 | [HitWallTimerSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/HitWallTimerSwitch.md) | 0.0% | 0 / 26 | 0.0% | :x: 
 | [IceStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IceStep.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [IceVolcanoUpDownPlane.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IceVolcanoUpDownPlane.md) | 0.0% | 0 / 7 | 0.0% | :x: 
-| [InvisiblePolygonObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObj.md) | 0.0% | 0 / 6 | 0.0% | :x: 
-| [InvisiblePolygonObjGCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObjGCapture.md) | 0.0% | 0 / 3 | 0.0% | :x: 
+| [InvisiblePolygonObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObj.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
+| [InvisiblePolygonObjGCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/InvisiblePolygonObjGCapture.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [IronCannonShell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/IronCannonShell.md) | 0.0% | 0 / 27 | 0.0% | :x: 
 | [ItemAppearStone.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ItemAppearStone.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [ItemBlock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ItemBlock.md) | 74.88479262672811% | 23 / 26 | 88.46153846153845% | :eight_pointed_black_star: 
