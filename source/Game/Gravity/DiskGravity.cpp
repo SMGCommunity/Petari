@@ -128,7 +128,7 @@ void DiskGravity::updateLocalParam() {
     }
 
     rot.identity();
-    rot.CALL_INLINE_FUNC(setRotate, mLocalNormal, 0.5f * mValidDegree * (PI / 180));
+    rot.setRotateInline(mLocalNormal, 0.5f * mValidDegree * (PI / 180));
     rArtifact = false;
     if(!artifact) {
         rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
