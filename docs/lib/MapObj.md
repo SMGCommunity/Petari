@@ -299,7 +299,7 @@
 | [WaterPressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressure.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [WaterPressureBullet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBullet.md) | 91.28329297820824% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [WaterPressureBulletHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBulletHolder.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| [WaveFloatingForce.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaveFloatingForce.md) | 0.0% | 0 / 5 | 0.0% | :x: 
+| [WaveFloatingForce.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaveFloatingForce.md) | 13.17365269461078% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
 | [WhirlPool.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WhirlPool.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [WoodBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WoodBox.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [WormEatenPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WormEatenPlanet.md) | 0.0% | 0 / 25 | 0.0% | :x: 

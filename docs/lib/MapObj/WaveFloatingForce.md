@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 5 Completed -- (0.0%)
+# 1 / 5 Completed -- (20.0%)
 # WaveFloatingForce.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__17WaveFloatingForceFPC9LiveActorlfb` | :x: |
+| `__ct__17WaveFloatingForceFPC9LiveActorlfb` | :white_check_mark: |
 | `update__17WaveFloatingForceFv` | :x: |
 | `getCurrentValue__17WaveFloatingForceCFv` | :x: |
 | `updateNormal__17WaveFloatingForceFv` | :x: |
