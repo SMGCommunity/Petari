@@ -215,22 +215,48 @@ namespace JGeometry {
             rDest.set(x, y, z);
         }
 
-        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDst) const {
-            f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
-            a32 = mMtx[2][1];
-            a22 = mMtx[1][1];
-            a12 = mMtx[0][1];
-            a31 = mMtx[2][0];
-            a21 = mMtx[1][0];
-            a11 = mMtx[0][0];
-            a33 = mMtx[2][2];
-            a13 = mMtx[0][2];
-            a23 = mMtx[1][2];
-            f32 x, y;
-            vx = rSrc.x;
-            vy = rSrc.y;
-            x = (vx * a11 + vy * a12);
-            rDst.set(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+        inline void zeroTrans() {
+            mMtx[0][3] = 0.0f;
+            mMtx[1][3] = 0.0f;
+            mMtx[2][3] = 0.0f;
+        }
+
+        inline void makeRotateInline(const TVec3f &rVec, f32 r) {
+            zeroTrans();
+            setRotateInline(rVec, r);
+        }
+
+        inline void setRotateInline(const TVec3f &vec1, f32 r) {
+            TVec3f vec;
+            PSVECMag(vec1.toCVec());
+            PSVECNormalize(vec.toCVec(), vec.toVec());
+            f32 s = sin(r);
+            f32 c = cos(r);
+            f32 negc = (1.0f - c);
+            f32 x = vec.x;
+            f32 y = vec.y;
+            f32 z = vec.z;
+
+            mMtx[0][0] = (negc * (x * x) + c); 
+            mMtx[0][1] = (y * (negc * x)) - (s * z);  
+            mMtx[0][2] = (z * (negc * x)) + (s * y);
+            mMtx[1][0] = (y * (negc * x)) + (s * z);
+            mMtx[1][1] = (negc * (y * y) + c);
+            mMtx[1][2] = (z * (negc * y)) - (s * x);
+            mMtx[2][0] = (z * (negc * x)) - (s * y);
+            mMtx[2][1] = (z * (negc * y)) + (s * x);
+            mMtx[2][2] = (negc * (z * z) + c);
+        }
+
+
+
+#ifdef NON_MATCHING
+        inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDest) const {
+            rDest.set<f32>(
+                rSrc.z * mMtx[0][2] + (rSrc.y * mMtx[0][0] + (rSrc.x * mMtx[0][1])),
+                rSrc.z * mMtx[1][2] + (rSrc.y * mMtx[1][0] + (rSrc.x * mMtx[1][1])),
+                rSrc.z * mMtx[2][2] + (rSrc.y * mMtx[2][0] + (rSrc.x * mMtx[2][1]))
+                );
         }
     };
 

@@ -27,7 +27,7 @@
 | [AstroDomeGalaxySelector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeGalaxySelector.md) | 0.0% | 0 / 37 | 0.0% | :x: 
 | [AstroDomeOrbit.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeOrbit.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [AstroDomeSky.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroDomeSky.md) | 0.0% | 0 / 31 | 0.0% | :x: 
-| [AstroMapBoard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapBoard.md) | 0.0% | 0 / 8 | 0.0% | :x: 
+| [AstroMapBoard.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapBoard.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [AstroMapObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObj.md) | 4.513540621865597% | 2 / 40 | 5.0% | :eight_pointed_black_star: 
 | [AstroMapObjFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroMapObjFunction.md) | 59.08419497784343% | 10 / 14 | 71.42857142857143% | :eight_pointed_black_star: 
 | [AstroOverlookObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/AstroOverlookObj.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
@@ -52,7 +52,7 @@
 | [BreakableCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BreakableCage.md) | 68.64754098360656% | 21 / 23 | 91.30434782608695% | :eight_pointed_black_star: 
 | [BrightObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BrightObj.md) | 10.066127847171199% | 4 / 42 | 9.523809523809524% | :eight_pointed_black_star: 
 | [BumpAppearPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/BumpAppearPlanet.md) | 0.0% | 0 / 19 | 0.0% | :x: 
-| [Candlestand.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Candlestand.md) | 0.0% | 0 / 31 | 0.0% | :x: 
+| [Candlestand.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/Candlestand.md) | 79.02843601895735% | 29 / 31 | 93.54838709677419% | :eight_pointed_black_star: 
 | [CannonFortressBreakStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CannonFortressBreakStep.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [CapsuleCage.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/CapsuleCage.md) | 100.0% | 23 / 23 | 100.0% | :white_check_mark: 
 | [ChipBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/ChipBase.md) | 79.12087912087912% | 36 / 39 | 92.3076923076923% | :eight_pointed_black_star: 
@@ -299,7 +299,7 @@
 | [WaterPressure.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressure.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [WaterPressureBullet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBullet.md) | 91.28329297820824% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [WaterPressureBulletHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaterPressureBulletHolder.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
-| [WaveFloatingForce.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaveFloatingForce.md) | 0.0% | 0 / 5 | 0.0% | :x: 
+| [WaveFloatingForce.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WaveFloatingForce.md) | 13.17365269461078% | 1 / 5 | 20.0% | :eight_pointed_black_star: 
 | [WhirlPool.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WhirlPool.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [WoodBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WoodBox.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [WormEatenPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/WormEatenPlanet.md) | 0.0% | 0 / 25 | 0.0% | :x: 
