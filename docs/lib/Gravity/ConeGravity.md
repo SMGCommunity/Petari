@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 5 / 6 Completed -- (83.33333333333334%)
+# 6 / 6 Completed -- (100.0%)
 # ConeGravity.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -14,4 +14,4 @@
 | `setEnableBottom__11ConeGravityFb` | :white_check_mark: |
 | `setTopCutRate__11ConeGravityFf` | :white_check_mark: |
 | `updateMtx__11ConeGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | :white_check_mark: |
-| `calcOwnGravityVector__11ConeGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :x: |
+| `calcOwnGravityVector__11ConeGravityCFPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>` | :white_check_mark: |

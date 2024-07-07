@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 122 Completed -- (0.0%)
+# 2 / 122 Completed -- (1.639344262295082%)
 # DodoryuStateLv2.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f>` | :x: |
-| `mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :x: |
+| `scale__Q29JGeometry8TVec3<f>FfRCQ29JGeometry8TVec3<f>` | :white_check_mark: |
+| `mult33__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>CFRQ29JGeometry8TVec3<f>` | :white_check_mark: |
 | `__ct__15DodoryuStateLv2FP7DodoryuP17DodoryuChaseParamPCc` | :x: |
 | `init__15DodoryuStateLv2FRC12JMapInfoIter` | :x: |
 | `control__15DodoryuStateLv2Fv` | :x: |
