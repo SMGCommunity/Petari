@@ -56,7 +56,7 @@
 | [OceanRingPipe.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanRingPipe.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [OceanRingPipeInside.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanRingPipeInside.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [OceanRingPipeOutside.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanRingPipeOutside.md) | 0.0% | 0 / 11 | 0.0% | :x: 
-| [OceanSphere.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanSphere.md) | 0.0% | 0 / 36 | 0.0% | :x: 
+| [OceanSphere.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanSphere.md) | 2.21224751522924% | 1 / 36 | 2.7777777777777777% | :eight_pointed_black_star: 
 | [OceanSpherePoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/OceanSpherePoint.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [PlanetMap.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/PlanetMap.md) | 0.0% | 0 / 23 | 0.0% | :x: 
 | [PlanetMapCreator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Map/PlanetMapCreator.md) | 32.41525423728814% | 9 / 39 | 23.076923076923077% | :eight_pointed_black_star: 

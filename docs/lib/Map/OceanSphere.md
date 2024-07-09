@@ -5,11 +5,11 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 36 Completed -- (0.0%)
+# 1 / 36 Completed -- (2.7777777777777777%)
 # OceanSphere.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f` | :x: |
+| `setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f` | :white_check_mark: |
 | `__ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
 | `update__16OceanSpherePlaneFfff` | :x: |
 | `__ct__20OceanSpherePlaneEdgeFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | :x: |
