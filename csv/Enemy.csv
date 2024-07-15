@@ -539,7 +539,7 @@ execute__Q220NrvBegomanSpringHead19HostTypeNrvHopStartCFP5Spine,BegomanSpringHea
 execute__Q220NrvBegomanSpringHead15HostTypeNrvWaitCFP5Spine,BegomanSpringHead.o,Enemy.a,false
 __ct__7BirikyuFPCc,Birikyu.o,Enemy.a,true
 init__7BirikyuFRC12JMapInfoIter,Birikyu.o,Enemy.a,true
-initAfterPlacement__7BirikyuFv,Birikyu.o,Enemy.a,false
+initAfterPlacement__7BirikyuFv,Birikyu.o,Enemy.a,true
 appear__7BirikyuFv,Birikyu.o,Enemy.a,true
 getHitRadius__7BirikyuCFv,Birikyu.o,Enemy.a,true
 getCenterJointName__7BirikyuCFv,Birikyu.o,Enemy.a,true
@@ -555,7 +555,7 @@ initShadow__7BirikyuFv,Birikyu.o,Enemy.a,true
 tryStopPointing__7BirikyuFv,Birikyu.o,Enemy.a,true
 goMove__7BirikyuFv,Birikyu.o,Enemy.a,true
 exeMove__7BirikyuFv,Birikyu.o,Enemy.a,true
-exeMoveCircle__7BirikyuFv,Birikyu.o,Enemy.a,false
+exeMoveCircle__7BirikyuFv,Birikyu.o,Enemy.a,true
 exeWaitAtEdge__7BirikyuFv,Birikyu.o,Enemy.a,true
 exeAttack__7BirikyuFv,Birikyu.o,Enemy.a,true
 exeStopPointing__7BirikyuFv,Birikyu.o,Enemy.a,true

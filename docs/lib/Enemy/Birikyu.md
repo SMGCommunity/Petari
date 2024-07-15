@@ -5,13 +5,13 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 40 / 42 Completed -- (95.23809523809523%)
+# 42 / 42 Completed -- (100.0%)
 # Birikyu.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__7BirikyuFPCc` | :white_check_mark: |
 | `init__7BirikyuFRC12JMapInfoIter` | :white_check_mark: |
-| `initAfterPlacement__7BirikyuFv` | :x: |
+| `initAfterPlacement__7BirikyuFv` | :white_check_mark: |
 | `appear__7BirikyuFv` | :white_check_mark: |
 | `getHitRadius__7BirikyuCFv` | :white_check_mark: |
 | `getCenterJointName__7BirikyuCFv` | :white_check_mark: |
@@ -27,7 +27,7 @@
 | `tryStopPointing__7BirikyuFv` | :white_check_mark: |
 | `goMove__7BirikyuFv` | :white_check_mark: |
 | `exeMove__7BirikyuFv` | :white_check_mark: |
-| `exeMoveCircle__7BirikyuFv` | :x: |
+| `exeMoveCircle__7BirikyuFv` | :white_check_mark: |
 | `exeWaitAtEdge__7BirikyuFv` | :white_check_mark: |
 | `exeAttack__7BirikyuFv` | :white_check_mark: |
 | `exeStopPointing__7BirikyuFv` | :white_check_mark: |

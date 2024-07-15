@@ -7,7 +7,7 @@
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Camera.md) | 34.12644987572494% |
 | [Demo](https://github.com/shibbo/Petari/blob/master/docs/lib/Demo.md) | 3.7442572741194486% |
 | [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Effect.md) | 2.2184743124026984% |
-| [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy.md) | 3.845633425676012% |
+| [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Enemy.md) | 3.920409631175268% |
 | [GameAudio](https://github.com/shibbo/Petari/blob/master/docs/lib/GameAudio.md) | 0.0% |
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Gravity.md) | 100.0% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/LiveActor.md) | 42.577224527431994% |
