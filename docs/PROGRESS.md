@@ -18,7 +18,7 @@
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/NWC24.md) | 0.0% |
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Player.md) | 7.8301638397445155% |
 | [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/RhythmLib.md) | 1.2661566868900025% |
-| [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 0.0% |
+| [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride.md) | 6.181993549748319% |
 | [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Scene.md) | 17.116530156366345% |
 | [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen.md) | 6.315748206421598% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Speaker.md) | 54.75241889584519% |

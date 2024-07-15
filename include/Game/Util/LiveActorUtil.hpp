@@ -198,6 +198,7 @@ namespace MR {
     void startBva(const LiveActor *, const char *);
     void setBvaFrameAndStop(const LiveActor *, f32);
 
+    J3DFrameCtrl* getBckCtrl(const LiveActor *);
     J3DFrameCtrl* getBrkCtrl(const LiveActor *);
     J3DFrameCtrl* getBtkCtrl(const LiveActor *);
     J3DFrameCtrl* getBpkCtrl(const LiveActor *);

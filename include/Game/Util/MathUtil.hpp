@@ -253,6 +253,14 @@ namespace MR {
         return (rhs + lhs) - sub;
     }
 
+    inline f32 subtractFromSum_2(f32 lhs, f32 rhs, f32 sub) {
+        return (180.0f + (rhs + lhs)) - sub;
+    }    
+
+    inline f32 subtractFromSum_3(f32 a1, f32 a2) {
+        return a1 - a2;
+    }        
+
     inline f32 divideFromDiff(f32 lhs, f32 rhs, f32 div) {
         return (lhs - rhs) / div;
     }

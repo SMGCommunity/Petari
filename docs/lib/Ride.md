@@ -16,7 +16,7 @@
 | [Plant.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/Plant.md) | 0.0% | 0 / 64 | 0.0% | :x: 
 | [PlantLeaf.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/PlantLeaf.md) | 0.0% | 0 / 12 | 0.0% | :x: 
 | [PlantStalk.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/PlantStalk.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [Pole.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/Pole.md) | 0.0% | 0 / 62 | 0.0% | :x: 
+| [Pole.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/Pole.md) | 100.0% | 62 / 62 | 100.0% | :white_check_mark: 
 | [SledRopePoint.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/SledRopePoint.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [SlingShooter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/SlingShooter.md) | 0.0% | 0 / 45 | 0.0% | :x: 
 | [SpaceCocoon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Ride/SpaceCocoon.md) | 0.0% | 0 / 64 | 0.0% | :x: 
