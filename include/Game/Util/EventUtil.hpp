@@ -3,8 +3,6 @@
 #include <revolution.h>
 
 namespace MR {
-    bool isOnGameEventFlagRosettaTalkAboutTicoInTower();
-
     bool isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(s32);
 
     bool isOnGameEventFlagViewCompleteEndingMarioAndLuigi();
@@ -27,6 +25,7 @@ namespace MR {
     bool isKinopioExplorerTalkGetGrandStar2();
     bool isUFOKinokoBeforeConstruction();
 
+    bool isOnGameEventFlagUseAstroDome();
     bool isOnGameEventFlagGreenDriver();
 
     bool hasGrandStar(int);

@@ -11,6 +11,8 @@ namespace MR {
     void initStarPointerTargetAtMtx(LiveActor *, f32, MtxPtr, const TVec3f &);
     void initStarPointerTargetAtJoint(LiveActor *, const char *, f32, const TVec3f &);
 
+    bool isStarPointerPointingPane(const LayoutActor*, const char*, s32, bool, const char*);
+
     void startStarPointerModePowerStarGetDemo(void *); 
 
     f32 calcPointRadius2D(const TVec3f &, f32);

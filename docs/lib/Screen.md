@@ -15,7 +15,7 @@
 | [BloomEffectSimple.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BloomEffectSimple.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [BombTimerLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BombTimerLayout.md) | 0.0% | 0 / 25 | 0.0% | :x: 
 | [BrosButton.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/BrosButton.md) | 0.0% | 0 / 21 | 0.0% | :x: 
-| [ButtonPaneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ButtonPaneController.md) | 0.0% | 0 / 55 | 0.0% | :x: 
+| [ButtonPaneController.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/ButtonPaneController.md) | 100.0% | 55 / 55 | 100.0% | :white_check_mark: 
 | [CameraInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CameraInfo.md) | 0.0% | 0 / 30 | 0.0% | :x: 
 | [CaptureScreenDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CaptureScreenDirector.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | [CenterScreenBlur.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/CenterScreenBlur.md) | 0.0% | 0 / 16 | 0.0% | :x: 
@@ -132,7 +132,7 @@
 | [SubMeterLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SubMeterLayout.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [SuddenDeathMeter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SuddenDeathMeter.md) | 0.0% | 0 / 41 | 0.0% | :x: 
 | [SurfingGuidance.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SurfingGuidance.md) | 100.0% | 42 / 42 | 100.0% | :white_check_mark: 
-| [SysInfoWindow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SysInfoWindow.md) | 0.0% | 0 / 32 | 0.0% | :x: 
+| [SysInfoWindow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SysInfoWindow.md) | 82.68608414239482% | 31 / 32 | 96.875% | :eight_pointed_black_star: 
 | [SystemWipeHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/SystemWipeHolder.md) | 0.0% | 0 / 11 | 0.0% | :x: 
 | [THPSimplePlayerWrapper.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/THPSimplePlayerWrapper.md) | 0.0% | 0 / 60 | 0.0% | :x: 
 | [TimeLimitLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Screen/TimeLimitLayout.md) | 0.0% | 0 / 37 | 0.0% | :x: 

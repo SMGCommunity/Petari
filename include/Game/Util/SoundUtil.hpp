@@ -3,6 +3,7 @@
 #include <revolution.h>
 
 class AudSoundObject;
+class LiveActor;
 
 namespace MR {
 

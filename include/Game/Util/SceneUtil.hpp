@@ -58,6 +58,8 @@ namespace MR {
 
     bool isEqualStageName(const char *);
 
+    bool isStageBeginPrologueEvent();
+
     bool isStageKoopaVs();
     bool isStageKoopaVs3();
 
