@@ -40,6 +40,8 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+#ifdef NON_MATCHING
+// A lot is wrong here
 void LavaSteam::initAfterPlacement() {
     TMtx34f mtx;
     mtx.identity();
@@ -73,8 +75,10 @@ void LavaSteam::initAfterPlacement() {
     //_98.set(mtx.mMtx[0][1], mtx.mMtx[1][1], (sinz*cosy));
     MR::normalize(&_8C);
 }
+#endif
 
-// squareDistancePS
+#ifdef NON_MATCHING
+// Incomplete
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
@@ -89,12 +93,15 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     } // END OF FUNC
 }
+#endif
 
 void LavaSteam::startClipped() {
     LiveActor::startClipped();
     MR::deleteEffectAll(this);
 }
 
+#ifdef NON_MATCHING
+// Instruction swap
 void LavaSteam::endClipped() {
     LiveActor::endClipped();
     isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
@@ -103,7 +110,9 @@ void LavaSteam::endClipped() {
 void LavaSteam::startSteam() {
     setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
+#endif
 
+#ifdef NON_MATCHING
 void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
@@ -123,6 +132,7 @@ void LavaSteam::exeWait() {
     if (MR::isGreaterStep(this, 120))
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
+#endif
 
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
@@ -138,6 +148,9 @@ void LavaSteam::exeSteam() {
     }
 }
 
+LavaSteam::~LavaSteam() {
+
+}
 namespace NrvLavaSteam {
     void HostTypeSteamEnd::execute(Spine* pSpine) const {
         LavaSteam* pActor = (LavaSteam*)pSpine->mExecutor;

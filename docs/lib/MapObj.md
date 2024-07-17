@@ -153,7 +153,7 @@
 | [LavaJamboSunPlanet.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaJamboSunPlanet.md) | 0.0% | 0 / 14 | 0.0% | :x: 
 | [LavaProminence.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaProminence.md) | 0.0% | 0 / 37 | 0.0% | :x: 
 | [LavaProminenceTriple.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaProminenceTriple.md) | 0.0% | 0 / 11 | 0.0% | :x: 
-| [LavaSteam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaSteam.md) | 0.0% | 0 / 22 | 0.0% | :x: 
+| [LavaSteam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaSteam.md) | 38.47352024922118% | 14 / 22 | 63.63636363636363% | :eight_pointed_black_star: 
 | [LavaStrangeRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LavaStrangeRock.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [LotusLeaf.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/LotusLeaf.md) | 0.0% | 0 / 16 | 0.0% | :x: 
 | [MagicBell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/MapObj/MagicBell.md) | 40.23494860499266% | 11 / 15 | 73.33333333333333% | :eight_pointed_black_star: 
