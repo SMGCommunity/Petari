@@ -9,10 +9,12 @@ public:
     virtual ~BossKameckMoveRail();
     virtual void init(const JMapInfoIter &);
 
+    inline s32 getIdx(s32) const;
+
     void calcMovePosition(TVec3f *, s32) const;
     s32 calcRandomIndex(s32) const;
     s32 calcRandomStoppableIndex(s32) const;
 
     s32 _8C;
-    u32 _90;
+    s32 _90;
 };
