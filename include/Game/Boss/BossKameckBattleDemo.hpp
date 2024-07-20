@@ -41,6 +41,8 @@ public:
     void updateCastPose();
 
     BossKameckDemoPosition* mDemoPos;           // _10
+    const Nerve* _14;
+    u32 _18;
 };
 
 namespace NrvBossKamecBattleDemo {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Boss/BossKameckAction.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
@@ -24,7 +25,7 @@ public:
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
-    u32 _8;
-    u32 _C;
-    BossKameckBattleDemo* mBattleDemo;
+    BossKameck* mBossKameck;                    // _8
+    BossKameckAction* _C; // not really sure what this is.
+    BossKameckBattleDemo* mBattleDemo;          // _10
 };

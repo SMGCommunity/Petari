@@ -16,7 +16,7 @@
 | [BossKameckBarrier.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckBarrier.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [BossKameckBattleDemo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckBattleDemo.md) | 0.0% | 0 / 44 | 0.0% | :x: 
 | [BossKameckBattlePattarn.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckBattlePattarn.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
-| [BossKameckSequencer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckSequencer.md) | 0.0% | 0 / 9 | 0.0% | :x: 
+| [BossKameckSequencer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckSequencer.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [BossKameckMoveRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckMoveRail.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [BossKameckVs1.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckVs1.md) | 0.0% | 0 / 26 | 0.0% | :x: 
 | [BossKameckVs2.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckVs2.md) | 0.0% | 0 / 29 | 0.0% | :x: 
