@@ -1,7 +1,8 @@
 #pragma once
 
-class LiveActor;
-class ActorStateBaseInterface;
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
+
 class Nerve;
 
 namespace MR {

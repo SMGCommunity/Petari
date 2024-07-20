@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
 
 class CollisionPartsFilterBase;
 class ShadowDrawer;
