@@ -48,6 +48,8 @@ namespace MR {
     void invalidateShadow(LiveActor *, const char *);
     void invalidateShadowAll(LiveActor *);
 
+    void validateShadowAll(LiveActor *);
+
     void initShadowFromCSV(LiveActor *, const char *);
 
     void initShadowSurfaceCircle(LiveActor *, f32);

@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/Functor.hpp"
+
 class NameObj;
 class LiveActor;
 
@@ -41,6 +42,8 @@ namespace MR {
 
     void requestStartDemoMarioPuppetableWithoutCinmeaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
+
+    bool tryStartDemoMarioPuppetable(LiveActor *, const char *);
 
     void requestStartTimeKeepDemoMarioPuppetable(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 

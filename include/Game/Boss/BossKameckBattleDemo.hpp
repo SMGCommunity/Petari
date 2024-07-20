@@ -2,6 +2,7 @@
 
 #include "Game/Boss/BossKameckAction.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 
 class BossKameck;
 
@@ -11,6 +12,8 @@ public:
 
     virtual ~BossKameckDemoPosition();
     virtual void init(const JMapInfoIter &);
+
+    ActorCameraInfo* mCameraInfo;           // _8C
 };
 
 class BossKameckBattleDemo : public BossKameckAction {
@@ -41,8 +44,8 @@ public:
     void updateCastPose();
 
     BossKameckDemoPosition* mDemoPos;           // _10
-    const Nerve* _14;
-    u32 _18;
+    const Nerve* mDemoNerve;                    // _14
+    const char* mCurDemoName;                   // _18
 };
 
 namespace NrvBossKamecBattleDemo {

@@ -5,7 +5,7 @@
 
 class BossKameck;
 
-class BossKameckAction : ActorStateBase<BossKameck> {
+class BossKameckAction : public ActorStateBase<BossKameck> {
 public:
     BossKameckAction(const char *, BossKameck *);
 
