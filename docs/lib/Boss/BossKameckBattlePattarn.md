@@ -5,10 +5,10 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 3 Completed -- (0.0%)
+# 3 / 3 Completed -- (100.0%)
 # BossKameckBattlePattarn.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__23BossKameckBattlePattarnFPlb` | :x: |
-| `initPattarn__23BossKameckBattlePattarnFPl` | :x: |
-| `goNextPattarn__23BossKameckBattlePattarnFv` | :x: |
+| `__ct__23BossKameckBattlePattarnFPlb` | :white_check_mark: |
+| `initPattarn__23BossKameckBattlePattarnFPl` | :white_check_mark: |
+| `goNextPattarn__23BossKameckBattlePattarnFv` | :white_check_mark: |
