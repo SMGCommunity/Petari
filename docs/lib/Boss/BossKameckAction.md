@@ -5,19 +5,19 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 12 Completed -- (0.0%)
+# 12 / 12 Completed -- (100.0%)
 # BossKameckAction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16BossKameckActionFPCcP10BossKameck` | :x: |
-| `__dt__28ActorStateBase<10BossKameck>Fv` | :x: |
-| `control__23ActorStateBaseInterfaceFv` | :x: |
-| `kill__23ActorStateBaseInterfaceFv` | :x: |
-| `appear__23ActorStateBaseInterfaceFv` | :x: |
-| `init__23ActorStateBaseInterfaceFv` | :x: |
-| `__dt__16BossKameckActionFv` | :x: |
-| `receiveOtherMsg__16BossKameckActionFUlP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPush__16BossKameckActionFP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgEnemyAttack__16BossKameckActionFUlP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__16BossKameckActionFUlP9HitSensorP9HitSensor` | :x: |
-| `attackSensor__16BossKameckActionFP9HitSensorP9HitSensor` | :x: |
+| `__ct__16BossKameckActionFPCcP10BossKameck` | :white_check_mark: |
+| `__dt__28ActorStateBase<10BossKameck>Fv` | :white_check_mark: |
+| `control__23ActorStateBaseInterfaceFv` | :white_check_mark: |
+| `kill__23ActorStateBaseInterfaceFv` | :white_check_mark: |
+| `appear__23ActorStateBaseInterfaceFv` | :white_check_mark: |
+| `init__23ActorStateBaseInterfaceFv` | :white_check_mark: |
+| `__dt__16BossKameckActionFv` | :white_check_mark: |
+| `receiveOtherMsg__16BossKameckActionFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPush__16BossKameckActionFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgEnemyAttack__16BossKameckActionFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__16BossKameckActionFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `attackSensor__16BossKameckActionFP9HitSensorP9HitSensor` | :white_check_mark: |

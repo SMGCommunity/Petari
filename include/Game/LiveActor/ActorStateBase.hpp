@@ -13,11 +13,23 @@ public:
 
     }
 
-    virtual void init();
-    virtual void appear();
-    virtual void kill();
+    virtual void init() {
+        return;
+    }
+
+    virtual void appear() {
+        mIsDead = 0;
+    }
+
+    virtual void kill() {
+        mIsDead = 1;
+    }
+
     virtual bool update();
-    virtual void control();
+
+    virtual void control() {
+        return;
+    }
 
     u8 mIsDead; // _8
 };

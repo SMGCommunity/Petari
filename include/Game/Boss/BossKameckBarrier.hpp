@@ -16,5 +16,5 @@ public:
 };
 
 namespace NrvBossKameckBarrier {
-    NERVE_DECL_EXE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait)
+    NERVE_DECL_EXE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);
 };

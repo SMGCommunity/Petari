@@ -24,5 +24,7 @@ public:
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
+    u32 _8;
+    u32 _C;
     BossKameckBattleDemo* mBattleDemo;
 };

@@ -71,7 +71,7 @@ public:\
     };\
     virtual void execute(Spine *pSpine) const {\
         parent_class* actor = reinterpret_cast<parent_class*>(pSpine->mExecutor);\
-        actor->exe##executor_name##();\
+        actor->exe##executor_name();\
     };\
     static name sInstance;\
 };\
