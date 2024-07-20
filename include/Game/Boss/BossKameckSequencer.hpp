@@ -11,7 +11,9 @@ class BossKameckSequencer : public NerveExecutor {
 public:
     BossKameckSequencer(const char *);
 
-    virtual ~BossKameckSequencer();
+    inline virtual ~BossKameckSequencer() {
+        
+    }
 
     virtual void start() {
 

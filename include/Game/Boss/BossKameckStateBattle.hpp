@@ -8,7 +8,7 @@ class BossKameckMoveRail;
 class BossKameckBattlePattarn;
 class KameckBeamEventListener;
 
-class BossKameckStateBattle : public NerveExecutor {
+class BossKameckStateBattle : public ActorStateBase<BossKameck> {
 public:
     BossKameckStateBattle(BossKameck *);
 
