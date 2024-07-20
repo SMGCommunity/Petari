@@ -292,11 +292,14 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3<T>& operator=(const TVec3<T> &rhs) {
+        TVec3<T>& operator=(const TVec3<T> &rhs);
+
+        /*TVec3<T>& operator=(const TVec3<T> &rhs) {
             TVec3<T> f = *this;
             JGeometry::setTVec3f((const f32*)rhs, (f32*)f);
             return f;
-        }
+        }*/
+
         TVec3<f32>& operator*=(f32 scalar) {
             scale(scalar);
             return *this;

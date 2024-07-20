@@ -61,7 +61,7 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
 #endif
 
 void CounterLayoutAppearer::exeAppear() {
-    updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, 0)));
+    updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, (u32)0)));
     if (MR::isAnimStopped(mLayout, 0)) {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvShow::sInstance);
     }
@@ -72,7 +72,7 @@ void CounterLayoutAppearer::exeDisappear() {
         MR::startAnim(mLayout, "End", 0);
     }
 
-    updateLayoutOffset((1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, 0))));
+    updateLayoutOffset((1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, (u32)0))));
 
     if (MR::isAnimStopped(mLayout, 0)) {
         setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
