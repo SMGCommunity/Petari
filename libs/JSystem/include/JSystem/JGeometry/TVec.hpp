@@ -191,6 +191,13 @@ namespace JGeometry {
             };
         }
 
+        inline void scaleAdd(f32 val, const TVec3<f32> &a1, const TVec3<f32> &a2) {
+            JMAVECScaleAdd(a1.toCVec(), a2.toCVec(), this->toVec(), val);
+        }
+
+        inline void cross(const TVec3<f32> &a1, const TVec3<f32> &a2) {
+            PSVECCrossProduct(a1.toCVec(), a2.toCVec(), this->toVec());
+        }
         
         inline T squaredInline() const
         {
@@ -285,8 +292,16 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3<T>& operator=(const TVec3<T> &);
-        TVec3<T> operator*=(T);
+        TVec3<T>& operator=(const TVec3<T> &rhs) {
+            TVec3<T> f = *this;
+            JGeometry::setTVec3f((const f32*)rhs, (f32*)f);
+            return f;
+        }
+        TVec3<f32>& operator*=(f32 scalar) {
+            scale(scalar);
+            return *this;
+        }
+
         TVec3<T> operator*(T scalar) const NO_INLINE
         {
             TVec3<T> f = *this;
@@ -901,6 +916,16 @@ namespace JGeometry {
 
         T x, y, z, h;
     };
+
+    void setTVec3f(register const f32 *src, register f32 *dst) {
+        __asm {
+            psq_l   f0, 0(src), 0, 0
+            lfs     f1, 8(src)
+            psq_st  f0, 0(dst), 0, 0
+            stfs    f1, 8(dst)
+        };
+    }
+
 };    // namespace JGeometry
 
 typedef JGeometry::TVec2<f32> TVec2f;
