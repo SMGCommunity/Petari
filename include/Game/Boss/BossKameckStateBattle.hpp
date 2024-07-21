@@ -1,14 +1,19 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
+#include "Game/Boss/BossKameckHolder.hpp"
 #include "Game/System/NerveExecutor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class BossKameck;
 class BossKameckMoveRail;
 class BossKameckBattlePattarn;
 class KameckBeamEventListener;
+class HitSensor;
+class KameckBeam;
 
-class BossKameckStateBattle : public ActorStateBase<BossKameck> {
+class BossKameckStateBattle : public BossKameckStateHolder {
 public:
     BossKameckStateBattle(BossKameck *);
 
@@ -44,16 +49,16 @@ public:
     bool isEnableDamage() const;
     bool isEnableGuard() const;
 
-    BossKameck* mBossKameck;                        // _C
+    //BossKameck* mBossKameck;                      // _C
     BossKameckMoveRail* mMoveRail;                  // _10
     BossKameckBattlePattarn* mBattlePattarn;        // _14
-    u32 _18;
+    KameckBeam* mBeam;                              // _18
     KameckBeamEventListener* mBeamListener;         // _1C
     TVec3f _20;
     s32 _2C;
     u32 _30;
     u32 _34;
-    u32 _38;
+    s32 _38;
     u8 _3C;
     u8 _3D;
 };

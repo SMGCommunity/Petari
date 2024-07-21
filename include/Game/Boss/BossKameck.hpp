@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActiveActorList.hpp"
 
 class BossKameckMoveRail;
+class KameckHolder;
+class ActorJointCtrl;
+class KameckBeamEventListener;
 
 class BossKameck : public LiveActor {
 public:
@@ -33,4 +37,17 @@ public:
     void appearStarPieceToUp(s32);
     void startDemo();
     void hitBeam(s32);
+
+    const char* _8C;
+    TQuat4f _90;
+    TVec3f _A0;
+    u32 _AC;
+    KameckHolder* mKameckHolder;                // _B0
+    ActorJointCtrl* mJointCtrl;                 // _B4
+    ActiveActorList* mActorList;                // _B8
+    KameckBeamEventListener* mBeamListener;     // _BC
+    BossKameckMoveRail* mMoveRail;              // _C0
+    u32 _C4;
+    TVec3f _C8;
+    s32 _D4;
 };

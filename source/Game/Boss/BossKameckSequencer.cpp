@@ -60,7 +60,3 @@ bool BossKameckSequencer::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2)
 
     return false;
 }
-
-BossKameckSequencer::~BossKameckSequencer() {
-
-}

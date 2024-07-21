@@ -5,23 +5,23 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 56 Completed -- (0.0%)
+# 10 / 56 Completed -- (17.857142857142858%)
 # BossKameckStateBattle.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
 | `__ct__21BossKameckStateBattleFP10BossKameck` | :x: |
 | `init__21BossKameckStateBattleFv` | :x: |
 | `appear__21BossKameckStateBattleFv` | :x: |
-| `setMoveRail__21BossKameckStateBattleFP18BossKameckMoveRail` | :x: |
-| `setBattlePattarn__21BossKameckStateBattleFP23BossKameckBattlePattarn` | :x: |
-| `attackSensor__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__21BossKameckStateBattleFUlP9HitSensorP9HitSensor` | :x: |
-| `requestDamage__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :x: |
-| `requestGuard__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :x: |
-| `control__21BossKameckStateBattleFv` | :x: |
-| `tryAttackWait__21BossKameckStateBattleFv` | :x: |
-| `trySummonKameck__21BossKameckStateBattleFv` | :x: |
-| `tryChargeBram__21BossKameckStateBattleFv` | :x: |
+| `setMoveRail__21BossKameckStateBattleFP18BossKameckMoveRail` | :white_check_mark: |
+| `setBattlePattarn__21BossKameckStateBattleFP23BossKameckBattlePattarn` | :white_check_mark: |
+| `attackSensor__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__21BossKameckStateBattleFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `requestDamage__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `requestGuard__21BossKameckStateBattleFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `control__21BossKameckStateBattleFv` | :white_check_mark: |
+| `tryAttackWait__21BossKameckStateBattleFv` | :white_check_mark: |
+| `trySummonKameck__21BossKameckStateBattleFv` | :white_check_mark: |
+| `tryChargeBram__21BossKameckStateBattleFv` | :white_check_mark: |
 | `startMove__21BossKameckStateBattleFv` | :x: |
 | `exeWait__21BossKameckStateBattleFv` | :x: |
 | `exeMove__21BossKameckStateBattleFv` | :x: |
