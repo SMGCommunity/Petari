@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/Boss/BossKameckHolder.hpp"
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
@@ -13,7 +12,7 @@ class KameckBeamEventListener;
 class HitSensor;
 class KameckBeam;
 
-class BossKameckStateBattle : public BossKameckStateHolder {
+class BossKameckStateBattle : public ActorStateBase<BossKameck> {
 public:
     BossKameckStateBattle(BossKameck *);
 
@@ -49,7 +48,7 @@ public:
     bool isEnableDamage() const;
     bool isEnableGuard() const;
 
-    //BossKameck* mBossKameck;                      // _C
+    BossKameck* mBossKameck;                      // _C
     BossKameckMoveRail* mMoveRail;                  // _10
     BossKameckBattlePattarn* mBattlePattarn;        // _14
     KameckBeam* mBeam;                              // _18

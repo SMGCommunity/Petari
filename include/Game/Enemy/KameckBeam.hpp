@@ -18,6 +18,8 @@ public:
 
     void setEventListener(KameckBeamEventListener *);
 
+    void requestShootToPlayerGround(f32);
+
     u32 _8C;
     u32 _90;
     u32 _94;

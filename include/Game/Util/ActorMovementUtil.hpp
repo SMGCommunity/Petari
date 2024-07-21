@@ -51,6 +51,10 @@ namespace MR {
     bool isInWater(const LiveActor *, const TVec3f &);
     bool isInDeath(const LiveActor *, const TVec3f &);
 
+    void addVelocityAwayFromTarget(LiveActor *, const TVec3f &, f32, f32, f32, f32);
+
+    void turnDirectionToPlayerDegree(const LiveActor *, TVec3f *, f32);
+
     void makeMtxTR(MtxPtr, const LiveActor *);
     void makeMtxTRS(MtxPtr, const LiveActor *);
     void makeMtxTransRotateY(MtxPtr, const LiveActor *);
@@ -92,4 +96,10 @@ namespace MR {
     void turnDirectionToTargetUseGroundNormalDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
 
     void turnDirectionToTargetDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
+
+    void addVelocityMoveToTarget(LiveActor *, const TVec3f &, f32, f32, f32, f32);
+
+    void addVelocityKeepHeight(LiveActor *, const TVec3f &, f32, f32, f32);
+
+    void turnDirectionToTarget(const LiveActor *, TVec3f *, const TVec3f &, f32);
 };
