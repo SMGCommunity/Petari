@@ -75,8 +75,8 @@ namespace JGeometry {
             z = _z;
         }
 
-        template <typename U>
-        TVec3(U _x, U _y, U _z);
+        //template <typename U>
+        //TVec3(U _x, U _y, U _z);
 
         TVec3(T val)
         {
@@ -89,6 +89,13 @@ namespace JGeometry {
         {
             x = _xy;
             y = _xy;
+            z = _z;
+        }
+
+        template<typename T>
+        TVec3(T _x, T _y , T _z) {
+            x = _x;
+            y = _y;
             z = _z;
         }
 

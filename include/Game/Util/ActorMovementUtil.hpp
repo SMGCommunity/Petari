@@ -102,4 +102,6 @@ namespace MR {
     void addVelocityKeepHeight(LiveActor *, const TVec3f &, f32, f32, f32);
 
     void turnDirectionToTarget(const LiveActor *, TVec3f *, const TVec3f &, f32);
+
+    void makeQuatAndFrontFromRotate(TQuat4f *, TVec3f *, const LiveActor *);
 };

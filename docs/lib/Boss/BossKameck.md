@@ -5,40 +5,40 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 33 Completed -- (0.0%)
+# 31 / 33 Completed -- (93.93939393939394%)
 # BossKameck.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct<i>__Q29JGeometry8TVec3<f>Fiii_Pv` | :x: |
-| `__dt__9LiveActorFv` | :x: |
-| `__ct__10BossKameckFPCcPCc` | :x: |
-| `getMoveRail__10BossKameckFl` | :x: |
-| `startSequence__10BossKameckFv` | :x: |
-| `startDemoAppearKameck__10BossKameckFv` | :x: |
-| `endDemoAppearKameck__10BossKameckFv` | :x: |
-| `appearKameck__10BossKameckFv` | :x: |
-| `deadKameck__10BossKameckFv` | :x: |
-| `getLivingKameckNum__10BossKameckCFv` | :x: |
-| `appearStarPieceToPlayer__10BossKameckFl` | :x: |
-| `makeActorDead__10BossKameckFv` | :x: |
-| `control__10BossKameckFv` | :x: |
-| `calcAndSetBaseMtx__10BossKameckFv` | :x: |
-| `attackSensor__10BossKameckFP9HitSensorP9HitSensor` | :x: |
-| `receiveMsgPlayerAttack__10BossKameckFUlP9HitSensorP9HitSensor` | :x: |
-| `endDemo__10BossKameckFv` | :x: |
+| `__ct<i>__Q29JGeometry8TVec3<f>Fiii_Pv` | :white_check_mark: |
+| `__dt__9LiveActorFv` | :white_check_mark: |
+| `__ct__10BossKameckFPCcPCc` | :white_check_mark: |
+| `getMoveRail__10BossKameckFl` | :white_check_mark: |
+| `startSequence__10BossKameckFv` | :white_check_mark: |
+| `startDemoAppearKameck__10BossKameckFv` | :white_check_mark: |
+| `endDemoAppearKameck__10BossKameckFv` | :white_check_mark: |
+| `appearKameck__10BossKameckFv` | :white_check_mark: |
+| `deadKameck__10BossKameckFv` | :white_check_mark: |
+| `getLivingKameckNum__10BossKameckCFv` | :white_check_mark: |
+| `appearStarPieceToPlayer__10BossKameckFl` | :white_check_mark: |
+| `makeActorDead__10BossKameckFv` | :white_check_mark: |
+| `control__10BossKameckFv` | :white_check_mark: |
+| `calcAndSetBaseMtx__10BossKameckFv` | :white_check_mark: |
+| `attackSensor__10BossKameckFP9HitSensorP9HitSensor` | :white_check_mark: |
+| `receiveMsgPlayerAttack__10BossKameckFUlP9HitSensorP9HitSensor` | :white_check_mark: |
+| `endDemo__10BossKameckFv` | :white_check_mark: |
 | `setPose__10BossKameckFPA4_f` | :x: |
-| `killAllBeam__10BossKameckFv` | :x: |
+| `killAllBeam__10BossKameckFv` | :white_check_mark: |
 | `updatePose__10BossKameckFv` | :x: |
-| `createBossKameck2__2MRFPCc` | :x: |
-| `hitBeam__27BossKameckBeamEventListenerFl` | :x: |
-| `init__10BossKameckFRC12JMapInfoIter` | :x: |
-| `initKameckHolder__10BossKameckFRC12JMapInfoIter` | :x: |
-| `initMoveRail__10BossKameckFRC12JMapInfoIter` | :x: |
-| `appearStarPieceToUp__10BossKameckFl` | :x: |
-| `startDemo__10BossKameckFv` | :x: |
-| `hitBeam__10BossKameckFl` | :x: |
-| `createBossKameck1__2MRFPCc` | :x: |
-| `start__19BossKameckSequencerFv` | :x: |
-| `__cl__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFv` | :x: |
-| `clone__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFP7JKRHeap` | :x: |
-| `__dt__10BossKameckFv` | :x: |
+| `createBossKameck2__2MRFPCc` | :white_check_mark: |
+| `hitBeam__27BossKameckBeamEventListenerFl` | :white_check_mark: |
+| `init__10BossKameckFRC12JMapInfoIter` | :white_check_mark: |
+| `initKameckHolder__10BossKameckFRC12JMapInfoIter` | :white_check_mark: |
+| `initMoveRail__10BossKameckFRC12JMapInfoIter` | :white_check_mark: |
+| `appearStarPieceToUp__10BossKameckFl` | :white_check_mark: |
+| `startDemo__10BossKameckFv` | :white_check_mark: |
+| `hitBeam__10BossKameckFl` | :white_check_mark: |
+| `createBossKameck1__2MRFPCc` | :white_check_mark: |
+| `start__19BossKameckSequencerFv` | :white_check_mark: |
+| `__cl__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFv` | :white_check_mark: |
+| `clone__Q22MR47FunctorV0M<P10BossKameck,M10BossKameckFPCvPv_v>CFP7JKRHeap` | :white_check_mark: |
+| `__dt__10BossKameckFv` | :white_check_mark: |

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
 #include "Game/Animation/AnmPlayer.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -160,6 +161,7 @@ namespace MR {
     void initCollisionPartsAutoEqualScale(LiveActor *, const char *, HitSensor *, MtxPtr);
     
     void setBaseTRMtx(LiveActor *, MtxPtr);
+    void setBaseTRMtx(LiveActor *, const TQuat4f &);
     void setBaseTRMtx(LiveActor *, const TPos3f &);
 
     void setClippingFar(LiveActor *, f32);

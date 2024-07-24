@@ -9,6 +9,13 @@ namespace JGeometry {
         /* Constructors */
         inline TQuat4() {}
 
+        inline TQuat4(T xyz, T _w) {
+            x = xyz;
+            y = xyz;
+            z = xyz;
+            w = _w;
+        }
+
         template<typename T>
         TQuat4(T _x, T _y, T _z, T _w) {
             x = _x;

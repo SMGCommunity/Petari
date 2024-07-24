@@ -11,7 +11,7 @@
 | [BossAccessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossAccessor.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [BossBegoman.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossBegoman.md) | 0.0% | 0 / 92 | 0.0% | :x: 
 | [BossBegomanHead.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossBegomanHead.md) | 100.0% | 36 / 36 | 100.0% | :white_check_mark: 
-| [BossKameck.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameck.md) | 0.0% | 0 / 33 | 0.0% | :x: 
+| [BossKameck.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameck.md) | 84.37821171634121% | 31 / 33 | 93.93939393939394% | :eight_pointed_black_star: 
 | [BossKameckAction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckAction.md) | 100.0% | 12 / 12 | 100.0% | :white_check_mark: 
 | [BossKameckBarrier.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckBarrier.md) | 100.0% | 8 / 8 | 100.0% | :white_check_mark: 
 | [BossKameckBattleDemo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Boss/BossKameckBattleDemo.md) | 100.0% | 44 / 44 | 100.0% | :white_check_mark: 

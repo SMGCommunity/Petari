@@ -2,7 +2,22 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class KameckBeamEventListener;
+class KameckBeamEventListener {
+public:
+    KameckBeamEventListener();
+
+    virtual void hitBeam(s32);
+};
+
+class KameckBeamCollisionFilter {
+public:
+    KameckBeamCollisionFilter(const TVec3f *, f32);
+
+    virtual bool isInvalidParts(const CollisionParts *) const;
+
+    TVec3f* _4;
+    f32 _8;
+};
 
 class KameckBeam : public LiveActor {
 public:
