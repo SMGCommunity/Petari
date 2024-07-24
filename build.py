@@ -3,218 +3,86 @@ import subprocess
 import sys
 import os
 import shutil
-
+from ninja_syntax import Writer
 import pathlib
 import shutil
 
-arch_base_path = list(glob.glob("archive/*.a") + glob.glob("libs/RVL_SDK/lib/*.a") + glob.glob("libs\\MSL_C\\lib\\*.a") + glob.glob("libs\\Runtime\\lib\\*.a") + glob.glob("libs\\MetroTRK\\lib\\*.a") + glob.glob("libs\\JSystem\\lib\\*.a")) + glob.glob("libs\\nw4r\\lib\\*.a")
+INCLUDE_DIRS = [ "include", 
+                "libs\\JSystem\\include", 
+                "libs\\MetroTRK\\include", 
+                "libs\\MSL_C\\include", 
+                "libs\\MSL_C++\\include", 
+                "libs\\nw4r\\include", 
+                "libs\\Runtime\\include", 
+                "libs\\RVL_SDK\\include", 
+                "libs\\RVLFaceLib\\include" ]
 
-def makeArchive(dir):
-    fileList = ""
-    for root, dirs, files in os.walk(f"build/Game/{dir}"):
-        for f in files:
-            if f.endswith(".o"):
-                fileList += f"build/Game/{dir}/{f} "
+LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "MSL_C++", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
 
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
-    linker_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-nodefaults -xm l -o archive/{dir}.a {fileList}"
 
-    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
-        print("Library creation failed.")
+incdirs = ""
+for dir in INCLUDE_DIRS:
+    incdirs += f'-I- -i {dir} '
 
-def makeLibArchive():
-    if not os.path.isdir("archive"):
-        os.mkdir("archive")
+COMPILER_CMD = f"-c -Cpp_exceptions off -maxerrors 1 -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc {incdirs}"
+COMPILER_PATH = pathlib.Path("Compilers\\GC\\3.0a3\\mwcceppc.exe")
 
-    for root, dirs, files in os.walk("build/Game"):
-        for dir in dirs:
-            makeArchive(dir)
+LIBRARY_COMPILER_ARGS = {
+    "Game": COMPILER_CMD,
+    "JSystem": COMPILER_CMD,
+    "MetroTRK": COMPILER_CMD,
+    "MSL_C": f"-c -nodefaults -nostdlib -use_lmw_stmw on -proc gekko -readonlystrings -rostr -align powerpc -ipa file -enum int -fp hard -Cpp_exceptions on -rtti off -O4,p -sdata2 8 -inline auto,level=2 {incdirs}",
+    "MSL_C++": COMPILER_CMD,
+    "nw4r": COMPILER_CMD,
+    "Runtime": f"-c -nodefaults -nostdlib -proc gekko -use_lmw_stmw on -enum int -fp hard -rtti off -Cpp_exceptions on -O4 -inline auto {incdirs}",
+    "RVL_SDK": f"-c -nodefaults -proc gekko -DHOLLYWOOD_REV -DEPPC -sdata 8 -sdata2 8 -enum int -fp hard -Cpp_exceptions off -rtti off -ipa file -DEPPC -DGEKKO -align powerpc -enc SJIS -O4,p -inline auto {incdirs}",
+    "RVLFaceLib": f"-c -nodefaults -nostdlib -proc gekko -align powerpc -enum int -enc SJIS -fp hard -Cpp_exceptions off -rtti off -ipa file -DEPPC -DGEKKO -O4,p -inline auto -volatileasm {incdirs}"
+}
 
-def makeElf():
-    # using 2.6 because others fail for mismatching C files in Runtime
-    default_compiler_path = pathlib.Path("GC/2.6/")
+LIBRARY_COMPILER = {
+    "Game": COMPILER_PATH,
+    "JSystem": COMPILER_PATH,
+    "MetroTRK": COMPILER_PATH,
+    "MSL_C": COMPILER_PATH,
+    "MSL_C++": COMPILER_PATH,
+    "nw4r": COMPILER_PATH,
+    "Runtime": COMPILER_PATH,
+    "RVL_SDK": pathlib.Path("Compilers\\GC\\3.0\\mwcceppc.exe"),
+    "RVLFaceLib": COMPILER_PATH
+}
 
-    fileList = ""
+SOURCE_FILE_EXTS = [ ".c", ".cpp", ".s" ]
 
-    for root, dirs, files in os.walk("archive"):
-        for f in files:
-            if f.endswith(".a"):
-                fileList += f"{root}\\{f} "
+def genNinja(lib, tasks):
+    with open('build.ninja', 'w') as ninja_file:
+        ninja_writer = Writer(ninja_file)
+        ninja_writer.rule("compile", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out',description=f'Compiling $in')
 
-    for arch_paths in arch_base_path:
-        fileList += f"{arch_paths} "
-
-    linker_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwldeppc.exe ")
-    linker_flags = f"-lcf ldscript.lcf -fp hard -proc gekko -map main.map -o main.elf {fileList}"
-    if subprocess.call(f"{linker_path} {linker_flags}", shell=True) == 1:
-            print("Linking failed.")
-
-def deleteDFiles():
-    dirs = os.listdir(os.getcwd())
-
-    for dire in dirs:
-        if dire.endswith(".d"):
-            os.remove(os.path.join(os.getcwd(), dire))
-
-def main(compile_non_matching, use_ninja, clean_ninja, link):
-    if not os.path.exists("Compilers"):
-        print("Compilers folder not created, please run setup.py!")
-        sys.exit(1)
-
-    isNotWindows = os.name != "nt"
-
-    flags = "-c -Cpp_exceptions off -maxerrors 1 -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc "
-    includes = "-i . -I- -i include "
-
-    default_compiler_path = pathlib.Path("GC/3.0a3/")
-
-    compiler_exceptions = {
-        #"source\Game\System\FunctionAsyncExecutor.cpp": pathlib.Path("GC/2.6/")
-    }
-
-    if compile_non_matching:
-        print("Using nonmatching functions")
-        flags = flags + " -DNON_MATCHING "
-
-    rvl_sdk_path =      pathlib.Path("libs/RVL_SDK/include")
-    trk_path =          pathlib.Path("libs/MetroTRK/include")
-    runtime_path =      pathlib.Path("libs/Runtime/include")
-    msl_c_path =        pathlib.Path("libs/MSL_C/include")
-    msl_cpp_path =      pathlib.Path("libs/MSL_C++/include")
-    facelib_path =      pathlib.Path("libs/RVLFaceLib/include")
-    jsystem_path =      pathlib.Path("libs/JSystem/include")
-    nw4r_path =         pathlib.Path("libs/nw4r/include")
-
-    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {jsystem_path} -I- -i {nw4r_path} "
-    flags += includes
-
-    tasks = list()
-
-    ninjaFound = shutil.which("ninja") is not None
-    if not ninjaFound and use_ninja:
-        print("Ninja was not found in your PATH. Compilation will be slow!")
-    useNinja = ninjaFound and use_ninja
-    if not useNinja:
-        if os.path.exists("build"):
-                shutil.rmtree("build", ignore_errors=True)
-
-    for root, dirs, files in os.walk("source"):
-        for file in files:
-            if file.endswith(".cpp"):
-                source_path = os.path.join(root, file)
-                build_path = source_path.replace("source", "build", 1).replace(".cpp", ".o")
-
-                os.makedirs(os.path.dirname(build_path), exist_ok=True)
-
-                tasks.append((source_path, build_path))
-            elif file.endswith(".c"):
-                source_path = os.path.join(root, file)
-                build_path = source_path.replace("source", "build", 1).replace(".c", ".o")
-
-                os.makedirs(os.path.dirname(build_path), exist_ok=True)
-
-                tasks.append((source_path, build_path))
-
-    compiler_path = pathlib.Path(f"Compilers/{default_compiler_path}/mwcceppc.exe ")
-    if isNotWindows:
-        compiler_path = pathlib.Path(f"wine {compiler_path} ")
-
-    if useNinja:
-        # Use ninja build system to generate a build script.
-        from ninja import ninja_syntax
-        bo = open("build.ninja", "w")
-        nw = ninja_syntax.Writer(bo)
-
-        # Create main compiler rule and exception compilers.
-        nw.rule("cc", f"{compiler_path} $flags $in -o $out", "Compiling $in...")
-        exceptionsToRules = { }
-        cc_num = 1
-        for exc in compiler_exceptions.values():
-            if not exc in exceptionsToRules.keys():
-                exceptionsToRules[exc] = f"cc_{cc_num}"
-                cc_num += 1
-
-        nw.newline()
         for task in tasks:
             source_path, build_path = task
-            rule = "cc"
-            try:
-                if compiler_exceptions[source_path]:
-                    rule = exceptionsToRules[compiler_exceptions[source_path]]
-                    path = f"Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe "
-                    nw.rule(f"{rule}", f"{path} $flags $in -o $out", "Compiling $in [With different compiler]...")
-            except:
-                pass
+            ninja_writer.build(outputs=[build_path], rule="compile", inputs=[source_path])
 
-            nw.build(build_path, rule, source_path, variables={ 'flags': flags })
-        nw.close()
+def compileLibrary(name, path):
+    compile_tasks = list()
 
-        # Run clean
-        if clean_ninja:
-            subprocess.call("ninja -t clean", shell=True)
-    
-        # Call ninja to run said build script.
-        if subprocess.call("ninja", shell=True) == 1:
-            deleteDFiles()
-            sys.exit(1)
+    if name == "Game":
+        path = "source"
+    # fixing this lib later
+    elif name == "MetroTRK":
+        return
 
-    else:   
-        for task in tasks:
-            source_path, build_path = task     
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            for ext in SOURCE_FILE_EXTS:
+                if file.endswith(ext):
+                    source_path = os.path.join(root, file)
+                    build_path = source_path.replace("source", "build", 1).replace(ext, ".o")
 
-            try:
-                if compiler_exceptions[source_path]:
-                    compiler_path = pathlib.Path(f"Compilers/{compiler_exceptions[source_path]}/mwcceppc.exe ")
-                    if isNotWindows:
-                        compiler_path = pathlib.Path(f"wine {compiler_path} ")
-            except:
-                pass
+                    os.makedirs(os.path.dirname(build_path), exist_ok=True)
+                    compile_tasks.append((source_path, build_path))
 
-            print(f"Compiling {source_path}...")
-            if subprocess.call(f"{compiler_path} {flags} {source_path} -o {build_path}", shell=True) == 1:
-                    deleteDFiles()
-                    sys.exit(1)
+    genNinja(name, compile_tasks)
+    subprocess.run(['ninja', '-f', 'build.ninja'], check=True)
 
-    deleteDFiles()
-
-    if link:
-        print("Creating library archives...")
-        makeLibArchive()
-        print("Making final ELF...")
-        makeElf()
-    print("Complete.")
-
-def print_help_and_exit():
-    print("Usage: build.py [flags...]")
-    print("\t-link: Link the final project together.")
-    print("\t-non-matching: Compile non-matching code.")
-    print("\t-no-ninja: Do not use ninja even if available.")
-    print("\t-clean: Clean old build files before building new when using ninja.")
-    print("\t-help: Displays this help text")
-
-    sys.exit(0)
-
-if __name__ == "__main__":
-    compile_non_matching = False
-    use_ninja = True
-    clean_ninja = False
-    link = False
-
-    for arg in sys.argv[1:]:
-        if arg == "-non-matching":
-            compile_non_matching = True
-        elif arg == "-no-ninja":
-            use_ninja = False
-        elif arg == "-clean":
-            clean_ninja = True
-        elif arg == "-help":
-            print_help_and_exit()
-        elif arg == "-link":
-            link = True
-        else:
-            print(f"Invalid argument: {arg}")
-            print()
-            print_help_and_exit()
-            
-    main(compile_non_matching, use_ninja, clean_ninja, link)
+for lib in LIBRARIES:
+    compileLibrary(lib, f"libs\\{lib}\\source")

@@ -77,6 +77,6 @@ NWC24Err NWC24iCloseResourceManager(const char *, IOSFd);
 
 NWC24Err NWC24iSetScriptMode(s32);
 
-#include <nwc24/NWC24MsgObj.h>
+#include <revolution/nwc24/NWC24MsgObj.h>
 
 #endif // NWC24_H

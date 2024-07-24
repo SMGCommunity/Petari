@@ -8,11 +8,11 @@ typedef struct DestructorChain {
 DestructorChain* __global_destructor_chain;
 
 void* __register_global_object(void *pObj, void *pDtor, void *pReg) {
-    DestructorChain* chain = pReg;
+    DestructorChain* chain = (DestructorChain*)pReg;
     chain->next = __global_destructor_chain;
     chain->dtor = pDtor;
     chain->obj = pObj;
-    __global_destructor_chain = pReg;
+    __global_destructor_chain = (DestructorChain*)pReg;
     return pObj;
 }
 

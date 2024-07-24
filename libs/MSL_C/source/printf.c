@@ -21,6 +21,8 @@ typedef long long intmax_t;
 #define PTRDIFF __typeof__((char*)0-(char*)0)
 typedef PTRDIFF ptrdiff_t;
 
+size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile);
+
 enum justification_options {
 	left_justification,
 	right_justification,

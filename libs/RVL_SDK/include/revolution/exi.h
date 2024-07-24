@@ -2,12 +2,13 @@
 #define EXI_H
 
 #include "revolution/os.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-const u32 __EXIFreq;
+extern const u32 __EXIFreq;
 
 typedef void (*EXICallback)(s32 chan, OSContext* context);
 

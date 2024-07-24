@@ -1,8 +1,10 @@
 #ifndef RVL_SDK_NWC24_MSG_OBJ_H
 #define RVL_SDK_NWC24_MSG_OBJ_H
-//#include <revolution/NWC24/NWC24Types.h>
-#include <revolution/NWC24/NWC24Utils.h>
+#include <revolution/nwc24/NWC24Types.h>
+#include <revolution/nwc24/NWC24Utils.h>
 #include <types.h>
+#include <cstdlib>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
