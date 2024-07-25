@@ -1,24 +1,12 @@
 import csv, datetime, glob, json, io, math, os, sys
 from git import Repo
 from pathlib import Path
-
+from colorama import Fore, Style
 import pandas as pd
 import plotly.express as px
 
-LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "MSL_C++", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
-
-LIBRARY_ARCHIVES = {
-    "Game", [ "Animation.a", "AreaObj.a", "AudioLib.a", "Boss.a", "Camera.a", "Demo.a", "Effect.a", "Enemy.a", "GameAudio.a", "Gravity.a", "LiveActor.a", "Map.a", "MapObj.a", "NameObj.a", "NPC.a", "NWC24.a", "Player.a", "RhythmLib.a", "Ride.a", "Scene.a", "Screen.a", "Speaker.a", "System.a", "Util.a"],
-    "JSystem", [ "JAudio2.a", "JKernel.a", "JSupport.a", "JGadget.a", "JUtility.a", "J2DGraph.a", "J3DGraphBase.a", "J3DGraphAnimator.a", "J3DGraphLoader.a", "JMath.a", "JParticle.a" ],
-    "MSL_C", [ "MSL_C.PPCEABI.bare.H.a" ],
-    "MetroTRK", [ "TRK_Hollywood_Revolution.a" ],
-    "nw4r", [ "libnw4r_db.a", "libnw4r_lyt.a", "libnw4r_math.a", "libnw4r_ut.a" ],
-    "RVLFaceLib", [ "RVLFaceLib.a" ],
-    "RVL_SDK", [ "ai.a", "aralt.a", "arc.a", "ax.a", "axfx.a", "base.a", "bte.a", "db.a", "dsp.a", "dvd.a", "esp.a", "euart.a", "exi.a", "fs.a", "gd.a", "gx.a", "ipc.a", "mem.a", "mtx.a", "nand.a", "net.a", "nwc24.a","os.a","pad.a","rso.a","sc.a","si.a","thp.a","tpl.a","usb.a","vf.a","vi.a","wenc.a","wpad.a","wud.a" ],
-    "Runtime", [ "Runtime.PPCEABI.H.a" ]
-}
-
-libraries = { }
+# MSL_C++ will not have any progress to generate
+LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
 
 def truncate(number, digits) -> float:
     stepper = 10.0 ** digits
@@ -33,17 +21,21 @@ def generateFullProgJSON(label, percent, color):
     json.append(f"\t\"color\": \"{color}\"\n")
     json.append("}")
 
-    with open(f"data/{label}.json", "w") as w:
-        w.writelines(json)
+    if label != "Game":
+        with open(f"libs/{label}/data/{label}.json", "w") as w:
+            w.writelines(json)
+    else:
+        with open(f"data/{label}.json", "w") as w:
+            w.writelines(json)
 
 class Function:
     name = ""
-    isCompleted = False
+    status = ""
     funcSize = 0
 
-    def __init__(self, name, isComplete, funcSize):
+    def __init__(self, name, status, funcSize):
         self.name = name
-        self.isCompleted = isComplete
+        self.status = status
         self.funcSize = funcSize
 
 class Object:
@@ -51,18 +43,26 @@ class Object:
     functions = []
     totalFunctions = 0
     totalCompletedFunctions = 0
+    totalNonMatchingMinorFunctions = 0
+    totalNonMatchingMajorFunctions = 0
 
     def __init__(self, name):
         self.name = name
         self.functions = list()
         self.totalFunctions = 0
         self.totalCompletedFunctions = 0
+        self.totalNonMatchingMinorFunctions = 0
+        self.totalNonMatchingMajorFunctions = 0
 
     def addFunction(self, function):
         self.functions.append(function)
 
-        if function.isCompleted:
+        if function.status == "true":
             self.totalCompletedFunctions += 1
+        elif function.status == "minor":
+            self.totalNonMatchingMinorFunctions += 1
+        elif function.status == "major":
+            self.totalNonMatchingMajorFunctions += 1
         
         self.totalFunctions += 1
 
@@ -71,24 +71,38 @@ class Object:
 
     def calculateProgress(self):
         fullSize = 0
-        doneSize = 0
+        matchingSize = 0
+        minorSize = 0
+        majorSize = 0
         numFuncs = 0
-        doneFuncs = 0
+        matchingFuncs = 0
+        minorFuncs = 0
+        majorFuncs = 0
+
         for function in self.functions:
             fullSize += function.funcSize
             numFuncs += 1
             
-            if function.isCompleted:
-                doneSize += function.funcSize
-                doneFuncs += 1
+            if function.status == "true":
+                matchingSize += function.funcSize
+                matchingFuncs += 1
+            elif function.status == "minor":
+                minorSize += function.funcSize
+                minorFuncs += 1
+            elif function.status == "major":
+                majorSize += function.funcSize
+                majorFuncs += 1
 
-        return doneSize, fullSize, numFuncs, doneFuncs
+        return matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs
+        #return doneSize, fullSize, numFuncs, doneFuncs
 
-class Library:
+class Archive:
+    parent = ""
     name = ""
     objects = []
 
-    def __init__(self, name):
+    def __init__(self, parent, name):
+        self.parent = parent
         self.name = name
         self.objects = list()
 
@@ -118,21 +132,32 @@ class Library:
                 return True
 
         return False
+    
+    def getName(self):
+        return self.name
 
     def calculateProgress(self):
         fullSize = 0
-        doneSize = 0
-        funcNum = 0
-        funcDone = 0
+        matchingSize = 0
+        minorSize = 0
+        majorSize = 0
+        numFuncs = 0
+        matchingFuncs = 0
+        minorFuncs = 0
+        majorFuncs = 0
 
         for obj in self.objects:
-            d, f, func_num, func_done = obj.calculateProgress()
-            fullSize += f
-            doneSize += d
-            funcNum += func_num
-            funcDone += func_done
+            match_size, minor_size, major_size, full_size, num_funcs, matching_funcs, minor_funcs, major_funcs = obj.calculateProgress()
+            fullSize += full_size
+            matchingSize += match_size
+            minorSize += minor_size
+            majorSize += major_size
+            numFuncs += num_funcs
+            matchingFuncs += matching_funcs
+            minorFuncs += minor_funcs
+            majorFuncs += major_funcs
         
-        return doneSize, fullSize, funcNum, funcDone
+        return matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs
 
 
     def getName(self):
@@ -147,8 +172,12 @@ class Library:
         json.append(f"\t\"color\": \"{color}\"\n")
         json.append("}")
 
-        with open(f"data/json/{self.name}.json", "w") as w:
-            w.writelines(json)
+        if self.parent != "Game":
+            with open(f"libs\\{self.parent}\\data\\json\\{self.name}.json", "w") as w:
+                w.writelines(json)
+        else:
+            with open(f"data\\json\\{self.name}.json", "w") as w:
+                w.writelines(json)
 
     def generateMarkdown(self):
         # first we are going to generate the tables for the object files themselves in the library
@@ -164,22 +193,25 @@ class Library:
         page.append("| ------------- | ------------- | ------------- | ------------- | ------------- \n")
 
         for obj in self.objects:
-            d, f, pad1, pad2 = obj.calculateProgress()
-            prog = (d / f) * 100.0
+            matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = obj.calculateProgress()
+            prog = (matchingSize / fullSize) * 100.0
             funcProg = (obj.totalCompletedFunctions / obj.totalFunctions) * 100.0
 
             marker = ":x:"
 
-            if d == f:
+            if matchingSize == fullSize:
                 marker = ":white_check_mark:"
-            elif d != f and d != 0:
+            elif matchingSize != fullSize and matchingSize != 0:
                 marker = ":eight_pointed_black_star:"
 
             obj_page_name = obj.name.replace(".o", "")
 
-            page.append(f"| [{obj.name}](https://github.com/shibbo/Petari/blob/master/docs/lib/{self.name}/{obj_page_name}.md) | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% | {marker} \n")
+            page.append(f"| [{obj.name}](https://github.com/shibbo/Petari/blob/master/docs/lib/{self.parent}/{self.name}/{obj_page_name}.md) | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% | {marker} \n")
 
-        with open(f"docs/lib/{self.name}.md", "w") as w:
+        if not os.path.exists(f"docs\\lib\\{self.parent}"):
+            os.makedirs(f"docs\\lib\\{self.parent}")
+
+        with open(f"docs/lib/{self.parent}/{self.name}.md", "w") as w:
             w.writelines(page)
 
         # now that we have written the main page, let's make the object page too
@@ -193,10 +225,10 @@ class Library:
             obj_page.append("| :white_check_mark: | Function is completed. \n")
             obj_page.append("\n\n")
 
-            pad1, pad2, numFunc, doneFunc = obj.calculateProgress()
-            percent = (doneFunc / numFunc) * 100.0
+            matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = obj.calculateProgress()
+            percent = (matchingFuncs / numFuncs) * 100.0
 
-            obj_page.append(f"# {doneFunc} / {numFunc} Completed -- ({percent}%)\n")
+            obj_page.append(f"# {matchingFuncs} / {numFuncs} Completed -- ({percent}%)\n")
 
             obj_page.append(f"# {obj.name}\n")
             obj_page.append("| Symbol | Decompiled? |\n")
@@ -205,178 +237,166 @@ class Library:
             for func in obj.getFunctions():
                 marker = ":x:"
 
-                if func.isCompleted:
+                if func.status == "true":
                     marker = ":white_check_mark:"
 
                 obj_page.append(f"| `{func.name}` | {marker} |\n")
 
             obj_page_name = obj.name.replace(".o", "")
 
-            if not os.path.exists(f"docs/lib/{self.name}"):
-                os.makedirs(f"docs/lib/{self.name}")
+            if not os.path.exists(f"docs\\lib\\{self.parent}\\{self.name}"):
+                os.makedirs(f"docs\\lib\\{self.parent}\\{self.name}")
 
-            with open(f"docs/lib/{self.name}/{obj_page_name}.md", "w") as w:
+            with open(f"docs\\lib\\{self.parent}\\{self.name}\\{obj_page_name}.md", "w") as w:
                 w.writelines(obj_page)
 
-game_libs = [
-    "Animation.a",
-    "AreaObj.a",
-    "AudioLib.a",
-    "Boss.a",
-    "Camera.a",
-    "Demo.a",
-    "Effect.a",
-    "Enemy.a",
-    "GameAudio.a",
-    "Gravity.a",
-    "LiveActor.a",
-    "Map.a",
-    "MapObj.a",
-    "NameObj.a",
-    "NPC.a",
-    "NWC24.a",
-    "Player.a",
-    "RhythmLib.a",
-    "Ride.a",
-    "Scene.a",
-    "Screen.a",
-    "Speaker.a",
-    "System.a",
-    "Util.a"
-]
+libraries = {}
 
-lib_percent_colors = {
-    "Animation": "brightgreen",
-    "AreaObj": "green",
-    "AudioLib": "yellow",
-    "Boss": "orange",
-    "Camera": "red",
-    "Demo": "D65076",
-    "Effect": "pink",
-    "Enemy": "magenta",
-    "GameAudio": "teal",
-    "Gravity": "maroon",
-    "LiveActor": "cyan",
-    "Map": "silver",
-    "MapObj": "tan",
-    "NameObj": "indigo",
-    "NPC": "7fffd4",
-    "Player": "ff7f50",
-    "RhythmLib": "088da5",
-    "Ride": "ffff66",
-    "Scene": "a0db8e",
-    "Screen": "ff4040",
-    "Speaker": "daa520",
-    "System": "696969",
-    "Util": "ff6666"
-}
+def doProgress(parent_lib):
+    # start by reading function sizes
+    func_sizes = {}
+    archives = []
+    
+    with open("data\\funcSizes.txt", "r") as file:
+        lines = file.readlines()
 
-doGraph = False
+        for line in lines:
+            spl = line.split('=')
+            sym = spl[0]
+            func_sizes[sym] = spl[1].split(',', 1)[1]
 
-if "-graph" in sys.argv:
-    doGraph = True
-
-func_sizes = {}
-
-# start by reading function sizes
-with open("data/funcSizes.txt", "r") as file:
-    lines = file.readlines()
-
-    for line in lines:
-        spl = line.split('=')
-        sym = spl[0]
-        func_sizes[sym] = spl[1].split(',', 1)[1]
-
-csv_files = glob.glob("csv/*.csv")
-
-for csv_file in sorted(csv_files, key=str.casefold):
-    lib_name = Path(csv_file).stem
-    lib_arch_name = Path(csv_file).stem + ".a"
-
-    library = Library(lib_name)
-
-    with open(csv_file, "r") as c:
-        csv_reader = csv.reader(c)
-
-        for row in csv_reader:
-            symbol = row[0]
-            symbol = symbol.replace("&#44;", ",")
-            if symbol == "Symbol Name":
-                continue
-
-            obj = row[1]
-            lib = row[2]
-            done = row[3] == "true"
-
-            funcSize = int(func_sizes[symbol].strip("\n"))
-            func = Function(symbol, done, funcSize)
-
-            obj = Object(obj)
-            library.addFunctionToObject(obj, func)
-
-    libraries[lib_name] = library
-
-full_sdk_size = 0
-done_sdk_size = 0
-
-num_funcs = 0
-num_done_funcs = 0
-
-print("Calculating percentages...")
-
-for key in libraries:
-    lib = libraries[key]
-    d, f, funcNum, funcDoneNum = lib.calculateProgress()
-
-    libName = f"{lib.getName()}.a"
-
-    if libName in game_libs:
-        full_sdk_size += f
-        done_sdk_size += d
-        num_funcs += funcNum
-        num_done_funcs += funcDoneNum
-
-    if lib.getName() not in lib_percent_colors:
-        lib.generateJSONTag((d / f ) * 100.0, "ffff66")
+    if parent_lib != "Game":
+        csv_files = glob.glob(f"libs\\{parent_lib}\\csv\\*.csv")
     else:
-        lib.generateJSONTag((d / f ) * 100.0, lib_percent_colors[lib.getName()])
+        csv_files = glob.glob("csv\\*.csv")
 
-progPercent_sdk = (done_sdk_size / full_sdk_size ) * 100.0
-progPercent_Func = (num_done_funcs / num_funcs) * 100.0
+    for csv_file in sorted(csv_files, key=str.casefold):
+        lib_name = Path(csv_file).stem
+        lib_arch_name = Path(csv_file).stem + ".a"
 
-print(f"Progress: {progPercent_sdk}% [{done_sdk_size} / {full_sdk_size}] bytes")
-print(f"Progress: {progPercent_Func}% [{num_done_funcs} / {num_funcs}] functions")
-print("Generating JSON...")
+        archive = Archive(parent_lib, lib_name)
 
-generateFullProgJSON("Game", progPercent_sdk, "blue")
+        with open(csv_file, "r") as c:
+            csv_reader = csv.reader(c)
 
-print("Generating markdown pages...")
+            for row in csv_reader:
+                symbol = row[0]
+                symbol = symbol.replace("&#44;", ",")
+                if symbol == "Symbol Name":
+                    continue
 
-# now we generate our progress page
+                obj = row[1]
+                lib = row[2]
+                status = row[3]
+
+                funcSize = int(func_sizes[symbol].strip("\n"))
+                func = Function(symbol, status, funcSize)
+
+                obj = Object(obj)
+                archive.addFunctionToObject(obj, func)
+
+        archives.append(archive)
+    libraries[parent_lib] = archives
+
+for lib in LIBRARIES:
+    doProgress(lib)
+
+game_matching_done = 0
+game_minor = 0
+game_major = 0
+game_total = 0
+
+game_funcs_matching = 0
+game_funcs_minor = 0
+game_funcs_major = 0
+game_funcs_total = 0
+
+# progress page
 progressPage = []
-progressPage.append("| Library | Percentage |\n")
-progressPage.append("| ------------- | ------------- |\n")
 
 for key in libraries:
-    lib = libraries[key]
-    d, f, pad1, pad2 = lib.calculateProgress()
-    libprog = (d / f) * 100.0
-    progressPage.append(f"| [{key}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}.md) | {libprog}% |\n")
+    cur_matching_done = 0
+    cur_minor = 0
+    cur_major = 0
+    cur_total = 0
+
+    cur_funcs_matching = 0
+    cur_funcs_minor = 0
+    cur_funcs_major = 0
+    cur_funcs_total = 0
+
+    progressPage.append(f"# {key}\n")
+    progressPage.append("| Library | Percentage |\n")
+    progressPage.append("| ------------- | ------------- |\n")
+
+    for arch in libraries[key]:
+        arch.generateMarkdown()
+        matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = arch.calculateProgress()
+        
+        # we are really only doing calculations for our main game
+        if key == "Game":
+            game_matching_done += matchingSize
+            game_minor += minorSize
+            game_major += majorSize
+            game_total += fullSize
+            game_funcs_matching += matchingFuncs
+            game_funcs_minor += minorFuncs
+            game_funcs_major += majorFuncs
+            game_funcs_total += numFuncs
+        else:
+            cur_matching_done += matchingSize
+            cur_minor += minorSize
+            cur_major += majorSize
+            cur_total += fullSize
+            cur_funcs_matching += matchingFuncs
+            cur_funcs_minor += minorFuncs
+            cur_funcs_major += majorFuncs
+            cur_funcs_total += numFuncs
+    
+        libprog = (matchingSize / fullSize) * 100.0
+
+        lib_tag_color = "red"
+
+        if libprog == 100:
+            lib_tag_color = "gold"
+        elif libprog != 0:
+            lib_tag_color = "yellow"
+        elif libprog > 70 and libprog < 100:
+            lib_tag_color = "green"
+
+        arch.generateJSONTag(libprog, lib_tag_color)
+
+        archName = arch.getName()
+        progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
+
+    if key != "Game":
+        cur_lib_prog = (cur_matching_done / cur_total) * 100.0
+        generateFullProgJSON(key, cur_lib_prog, "blue")
 
 with open("docs/PROGRESS.md", "w") as w:
     w.writelines(progressPage)
 
-# now we write the progress page for each library
-for key in libraries:
-    lib = libraries[key]
-    lib.generateMarkdown()
+# printing game specific stuff
+prog = (game_matching_done / game_total) * 100.0
+prog_minor = (game_minor / game_total) * 100.0
+prog_major = (game_major / game_total) * 100.0
+prog_total = prog + prog_minor + prog_major
+total_size = game_matching_done + game_funcs_minor + game_funcs_major
+func_prog = (game_funcs_matching / game_funcs_total)
+print(f"Functions: {truncate(func_prog, 4)}% [{game_funcs_matching} / {game_funcs_total}]")
+print(f"{Fore.BLUE}decompiled:{Style.RESET_ALL} {truncate(prog_total, 4)}% [{total_size} / {game_total}]")
+print(f"{Fore.GREEN}matching:{Style.RESET_ALL} {truncate(prog, 4)}% [{game_funcs_matching} / {game_total}]")
+print(f"{Fore.YELLOW}non-matching (minor):{Style.RESET_ALL} {truncate(prog_minor, 4)}% [{game_funcs_minor} / {game_total}]")
+print(f"{Fore.RED}non-matching (major):{Style.RESET_ALL} {truncate(prog_major, 4)}% [{game_funcs_major} / {game_total}]")
 
-if doGraph:
+generateFullProgJSON("Game", prog_total, "blue")
+
+if "-graph" in sys.argv:
     print("Generating progress graph...")
 
     # now we do the cool progress drawing chart
     x_axis = [datetime.datetime.now()]
-    y_axis = [progPercent_sdk]
+    y_axis = [prog_total]
 
     # np.seterr(all="ignore")
 
@@ -413,5 +433,3 @@ if doGraph:
     fig = px.line(df, x='date', y='progress', title='Petari Progress', line_shape='hv', markers=False)
     fig.update_yaxes(ticksuffix='%')
     fig.write_image('prog.png')
-
-print("Done.")
