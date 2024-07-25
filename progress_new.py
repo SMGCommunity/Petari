@@ -128,6 +128,9 @@ class Archive:
                 return True
 
         return False
+    
+    def getName(self):
+        return self.name
 
     def calculateProgress(self):
         fullSize = 0
@@ -300,8 +303,14 @@ game_funcs_minor = 0
 game_funcs_major = 0
 game_funcs_total = 0
 
+# progress page
+progressPage = []
+
 for key in libraries:
-    
+    progressPage.append(f"# {key}\n")
+    progressPage.append("| Library | Percentage |\n")
+    progressPage.append("| ------------- | ------------- |\n")
+
     for arch in libraries[key]:
         arch.generateMarkdown()
         matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = arch.calculateProgress()
@@ -316,6 +325,13 @@ for key in libraries:
             game_funcs_minor += minorFuncs
             game_funcs_major += majorFuncs
             game_funcs_total += numFuncs
+    
+        libprog = (matchingSize / fullSize) * 100.0
+        archName = arch.getName()
+        progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
+
+with open("docs/PROGRESS.md", "w") as w:
+    w.writelines(progressPage)
 
 # printing game specific stuff
 prog = (game_matching_done / game_total) * 100.0
