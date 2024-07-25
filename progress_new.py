@@ -12,7 +12,7 @@ def truncate(number, digits) -> float:
     stepper = 10.0 ** digits
     return math.trunc(stepper * number) / stepper
 
-def generateFullProgJSON(lib, label, percent, color):
+def generateFullProgJSON(label, percent, color):
     json = []
     json.append("{\n")
     json.append("\t\"schemaVersion\": 1,\n")
@@ -21,7 +21,7 @@ def generateFullProgJSON(lib, label, percent, color):
     json.append(f"\t\"color\": \"{color}\"\n")
     json.append("}")
 
-    with open(f"libs/{lib}/data/{label}.json", "w") as w:
+    with open(f"libs/{label}/data/{label}.json", "w") as w:
         w.writelines(json)
 
 class Function:
@@ -174,6 +174,7 @@ class Archive:
         else:
             with open(f"data\\json\\{self.name}.json", "w") as w:
                 w.writelines(json)
+
     def generateMarkdown(self):
         # first we are going to generate the tables for the object files themselves in the library
         page = []
@@ -310,6 +311,16 @@ game_funcs_total = 0
 progressPage = []
 
 for key in libraries:
+    cur_matching_done = 0
+    cur_minor = 0
+    cur_major = 0
+    cur_total = 0
+
+    cur_funcs_matching = 0
+    cur_funcs_minor = 0
+    cur_funcs_major = 0
+    cur_funcs_total = 0
+
     progressPage.append(f"# {key}\n")
     progressPage.append("| Library | Percentage |\n")
     progressPage.append("| ------------- | ------------- |\n")
@@ -328,6 +339,15 @@ for key in libraries:
             game_funcs_minor += minorFuncs
             game_funcs_major += majorFuncs
             game_funcs_total += numFuncs
+        else:
+            cur_matching_done += matchingSize
+            cur_minor += minorSize
+            cur_major += majorSize
+            cur_total += fullSize
+            cur_funcs_matching += matchingFuncs
+            cur_funcs_minor += minorFuncs
+            cur_funcs_major += majorFuncs
+            cur_funcs_total += numFuncs
     
         libprog = (matchingSize / fullSize) * 100.0
 
@@ -344,6 +364,10 @@ for key in libraries:
 
         archName = arch.getName()
         progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
+
+    if key != "Game":
+        cur_lib_prog = (cur_matching_done / cur_total) * 100.0
+        generateFullProgJSON(key, cur_lib_prog, "blue")
 
 with open("docs/PROGRESS.md", "w") as w:
     w.writelines(progressPage)
