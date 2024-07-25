@@ -5,6 +5,19 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 
+LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "MSL_C++", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
+
+LIBRARY_ARCHIVES = {
+    "Game", [ "Animation.a", "AreaObj.a", "AudioLib.a", "Boss.a", "Camera.a", "Demo.a", "Effect.a", "Enemy.a", "GameAudio.a", "Gravity.a", "LiveActor.a", "Map.a", "MapObj.a", "NameObj.a", "NPC.a", "NWC24.a", "Player.a", "RhythmLib.a", "Ride.a", "Scene.a", "Screen.a", "Speaker.a", "System.a", "Util.a"],
+    "JSystem", [ "JAudio2.a", "JKernel.a", "JSupport.a", "JGadget.a", "JUtility.a", "J2DGraph.a", "J3DGraphBase.a", "J3DGraphAnimator.a", "J3DGraphLoader.a", "JMath.a", "JParticle.a" ],
+    "MSL_C", [ "MSL_C.PPCEABI.bare.H.a" ],
+    "MetroTRK", [ "TRK_Hollywood_Revolution.a" ],
+    "nw4r", [ "libnw4r_db.a", "libnw4r_lyt.a", "libnw4r_math.a", "libnw4r_ut.a" ],
+    "RVLFaceLib", [ "RVLFaceLib.a" ],
+    "RVL_SDK", [ "ai.a", "aralt.a", "arc.a", "ax.a", "axfx.a", "base.a", "bte.a", "db.a", "dsp.a", "dvd.a", "esp.a", "euart.a", "exi.a", "fs.a", "gd.a", "gx.a", "ipc.a", "mem.a", "mtx.a", "nand.a", "net.a", "nwc24.a","os.a","pad.a","rso.a","sc.a","si.a","thp.a","tpl.a","usb.a","vf.a","vi.a","wenc.a","wpad.a","wud.a" ],
+    "Runtime", [ "Runtime.PPCEABI.H.a" ]
+}
+
 libraries = { }
 
 def truncate(number, digits) -> float:
