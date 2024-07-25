@@ -1,23 +1,12 @@
 import csv, datetime, glob, json, io, math, os, sys
 from git import Repo
 from pathlib import Path
-
+from colorama import Fore, Style
 import pandas as pd
 import plotly.express as px
 
 # MSL_C++ will not have any progress to generate
 LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
-
-LIBRARY_ARCHIVES = {
-    "Game": ["Animation.a", "AreaObj.a", "AudioLib.a", "Boss.a", "Camera.a", "Demo.a", "Effect.a", "Enemy.a", "GameAudio.a", "Gravity.a", "LiveActor.a", "Map.a", "MapObj.a", "NameObj.a", "NPC.a", "NWC24.a", "Player.a", "RhythmLib.a", "Ride.a", "Scene.a", "Screen.a", "Speaker.a", "System.a", "Util.a"],
-    "JSystem": ["JAudio2.a", "JKernel.a", "JSupport.a", "JGadget.a", "JUtility.a", "J2DGraph.a", "J3DGraphBase.a", "J3DGraphAnimator.a", "J3DGraphLoader.a", "JMath.a", "JParticle.a"],
-    "MSL_C": ["MSL_C.PPCEABI.bare.H.a"],
-    "MetroTRK": ["TRK_Hollywood_Revolution.a"],
-    "nw4r": ["libnw4r_db.a", "libnw4r_lyt.a", "libnw4r_math.a", "libnw4r_ut.a"],
-    "RVLFaceLib": ["RVLFaceLib.a"],
-    "RVL_SDK": ["ai.a", "aralt.a", "arc.a", "ax.a", "axfx.a", "base.a", "bte.a", "db.a", "dsp.a", "dvd.a", "esp.a", "euart.a", "exi.a", "fs.a", "gd.a", "gx.a", "ipc.a", "mem.a", "mtx.a", "nand.a", "net.a", "nwc24.a", "os.a", "pad.a", "rso.a", "sc.a", "si.a", "thp.a", "tpl.a", "usb.a", "vf.a", "vi.a", "wenc.a", "wpad.a", "wud.a"],
-    "Runtime": ["Runtime.PPCEABI.H.a"]
-}
 
 def truncate(number, digits) -> float:
     stepper = 10.0 ** digits
@@ -37,12 +26,12 @@ def generateFullProgJSON(lib, label, percent, color):
 
 class Function:
     name = ""
-    isCompleted = False
+    status = ""
     funcSize = 0
 
-    def __init__(self, name, isComplete, funcSize):
+    def __init__(self, name, status, funcSize):
         self.name = name
-        self.isCompleted = isComplete
+        self.status = status
         self.funcSize = funcSize
 
 class Object:
@@ -50,18 +39,26 @@ class Object:
     functions = []
     totalFunctions = 0
     totalCompletedFunctions = 0
+    totalNonMatchingMinorFunctions = 0
+    totalNonMatchingMajorFunctions = 0
 
     def __init__(self, name):
         self.name = name
         self.functions = list()
         self.totalFunctions = 0
         self.totalCompletedFunctions = 0
+        self.totalNonMatchingMinorFunctions = 0
+        self.totalNonMatchingMajorFunctions = 0
 
     def addFunction(self, function):
         self.functions.append(function)
 
-        if function.isCompleted:
+        if function.status == "true":
             self.totalCompletedFunctions += 1
+        elif function.status == "minor":
+            self.totalNonMatchingMinorFunctions += 1
+        elif function.status == "major":
+            self.totalNonMatchingMajorFunctions += 1
         
         self.totalFunctions += 1
 
@@ -70,18 +67,30 @@ class Object:
 
     def calculateProgress(self):
         fullSize = 0
-        doneSize = 0
+        matchingSize = 0
+        minorSize = 0
+        majorSize = 0
         numFuncs = 0
-        doneFuncs = 0
+        matchingFuncs = 0
+        minorFuncs = 0
+        majorFuncs = 0
+
         for function in self.functions:
             fullSize += function.funcSize
             numFuncs += 1
             
-            if function.isCompleted:
-                doneSize += function.funcSize
-                doneFuncs += 1
+            if function.status == "true":
+                matchingSize += function.funcSize
+                matchingFuncs += 1
+            elif function.status == "minor":
+                minorSize += function.funcSize
+                minorFuncs += 1
+            elif function.status == "major":
+                majorSize += function.funcSize
+                majorFuncs += 1
 
-        return doneSize, fullSize, numFuncs, doneFuncs
+        return matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs
+        #return doneSize, fullSize, numFuncs, doneFuncs
 
 class Archive:
     parent = ""
@@ -122,18 +131,26 @@ class Archive:
 
     def calculateProgress(self):
         fullSize = 0
-        doneSize = 0
-        funcNum = 0
-        funcDone = 0
+        matchingSize = 0
+        minorSize = 0
+        majorSize = 0
+        numFuncs = 0
+        matchingFuncs = 0
+        minorFuncs = 0
+        majorFuncs = 0
 
         for obj in self.objects:
-            d, f, func_num, func_done = obj.calculateProgress()
-            fullSize += f
-            doneSize += d
-            funcNum += func_num
-            funcDone += func_done
+            match_size, minor_size, major_size, full_size, num_funcs, matching_funcs, minor_funcs, major_funcs = obj.calculateProgress()
+            fullSize += full_size
+            matchingSize += match_size
+            minorSize += minor_size
+            majorSize += major_size
+            numFuncs += num_funcs
+            matchingFuncs += matching_funcs
+            minorFuncs += minor_funcs
+            majorFuncs += major_funcs
         
-        return doneSize, fullSize, funcNum, funcDone
+        return matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs
 
 
     def getName(self):
@@ -165,15 +182,15 @@ class Archive:
         page.append("| ------------- | ------------- | ------------- | ------------- | ------------- \n")
 
         for obj in self.objects:
-            d, f, pad1, pad2 = obj.calculateProgress()
-            prog = (d / f) * 100.0
+            matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = obj.calculateProgress()
+            prog = (matchingSize / fullSize) * 100.0
             funcProg = (obj.totalCompletedFunctions / obj.totalFunctions) * 100.0
 
             marker = ":x:"
 
-            if d == f:
+            if matchingSize == fullSize:
                 marker = ":white_check_mark:"
-            elif d != f and d != 0:
+            elif matchingSize != fullSize and matchingSize != 0:
                 marker = ":eight_pointed_black_star:"
 
             obj_page_name = obj.name.replace(".o", "")
@@ -197,10 +214,10 @@ class Archive:
             obj_page.append("| :white_check_mark: | Function is completed. \n")
             obj_page.append("\n\n")
 
-            pad1, pad2, numFunc, doneFunc = obj.calculateProgress()
-            percent = (doneFunc / numFunc) * 100.0
+            matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = obj.calculateProgress()
+            percent = (matchingFuncs / numFuncs) * 100.0
 
-            obj_page.append(f"# {doneFunc} / {numFunc} Completed -- ({percent}%)\n")
+            obj_page.append(f"# {matchingFuncs} / {numFuncs} Completed -- ({percent}%)\n")
 
             obj_page.append(f"# {obj.name}\n")
             obj_page.append("| Symbol | Decompiled? |\n")
@@ -209,7 +226,7 @@ class Archive:
             for func in obj.getFunctions():
                 marker = ":x:"
 
-                if func.isCompleted:
+                if func.status == "true":
                     marker = ":white_check_mark:"
 
                 obj_page.append(f"| `{func.name}` | {marker} |\n")
@@ -259,10 +276,10 @@ def doProgress(parent_lib):
 
                 obj = row[1]
                 lib = row[2]
-                done = row[3] == "true"
+                status = row[3]
 
                 funcSize = int(func_sizes[symbol].strip("\n"))
-                func = Function(symbol, done, funcSize)
+                func = Function(symbol, status, funcSize)
 
                 obj = Object(obj)
                 archive.addFunctionToObject(obj, func)
@@ -273,6 +290,42 @@ def doProgress(parent_lib):
 for lib in LIBRARIES:
     doProgress(lib)
 
+game_matching_done = 0
+game_minor = 0
+game_major = 0
+game_total = 0
+
+game_funcs_matching = 0
+game_funcs_minor = 0
+game_funcs_major = 0
+game_funcs_total = 0
+
 for key in libraries:
+    
     for arch in libraries[key]:
         arch.generateMarkdown()
+        matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = arch.calculateProgress()
+        
+        # we are really only doing calculations for our main game
+        if key == "Game":
+            game_matching_done += matchingSize
+            game_minor += minorSize
+            game_major += majorSize
+            game_total += fullSize
+            game_funcs_matching += matchingFuncs
+            game_funcs_minor += minorFuncs
+            game_funcs_major += majorFuncs
+            game_funcs_total += numFuncs
+
+# printing game specific stuff
+prog = (game_matching_done / game_total) * 100.0
+prog_minor = (game_minor / game_total) * 100.0
+prog_major = (game_major / game_total) * 100.0
+prog_total = prog + prog_minor + prog_major
+total_size = game_matching_done + game_funcs_minor + game_funcs_major
+func_prog = (game_funcs_matching / game_funcs_total)
+print(f"Functions: {truncate(func_prog, 4)}% [{game_funcs_matching} / {game_funcs_total}]")
+print(f"{Fore.BLUE}decompiled:{Style.RESET_ALL} {truncate(prog_total, 4)}% [{total_size} / {game_total}]")
+print(f"{Fore.GREEN}matching:{Style.RESET_ALL} {truncate(prog, 4)}% [{game_funcs_matching} / {game_total}]")
+print(f"{Fore.YELLOW}non-matching (minor):{Style.RESET_ALL} {truncate(prog_minor, 4)}% [{game_funcs_minor} / {game_total}]")
+print(f"{Fore.RED}non-matching (major):{Style.RESET_ALL} {truncate(prog_major, 4)}% [{game_funcs_major} / {game_total}]")

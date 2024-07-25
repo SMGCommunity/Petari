@@ -148,9 +148,9 @@ calcAndSetBaseMtx__10BossKameckFv,BossKameck.o,Boss.a,true
 attackSensor__10BossKameckFP9HitSensorP9HitSensor,BossKameck.o,Boss.a,true
 receiveMsgPlayerAttack__10BossKameckFUlP9HitSensorP9HitSensor,BossKameck.o,Boss.a,true
 endDemo__10BossKameckFv,BossKameck.o,Boss.a,true
-setPose__10BossKameckFPA4_f,BossKameck.o,Boss.a,false
+setPose__10BossKameckFPA4_f,BossKameck.o,Boss.a,minor
 killAllBeam__10BossKameckFv,BossKameck.o,Boss.a,true
-updatePose__10BossKameckFv,BossKameck.o,Boss.a,false
+updatePose__10BossKameckFv,BossKameck.o,Boss.a,minor
 createBossKameck2__2MRFPCc,BossKameck.o,Boss.a,true
 hitBeam__27BossKameckBeamEventListenerFl,BossKameck.o,Boss.a,true
 init__10BossKameckFRC12JMapInfoIter,BossKameck.o,Boss.a,true
