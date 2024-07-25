@@ -159,7 +159,7 @@ class Archive:
     def getName(self):
         return self.name
 
-    def generateJSONTag(lib, self, percent, color):
+    def generateJSONTag(self, percent, color):
         json = []
         json.append("{\n")
         json.append("\t\"schemaVersion\": 1,\n")
@@ -168,9 +168,12 @@ class Archive:
         json.append(f"\t\"color\": \"{color}\"\n")
         json.append("}")
 
-        with open(f"libs\\{lib}\\data\\json\\{self.name}.json", "w") as w:
-            w.writelines(json)
-
+        if self.parent != "Game":
+            with open(f"libs\\{self.parent}\\data\\json\\{self.name}.json", "w") as w:
+                w.writelines(json)
+        else:
+            with open(f"data\\json\\{self.name}.json", "w") as w:
+                w.writelines(json)
     def generateMarkdown(self):
         # first we are going to generate the tables for the object files themselves in the library
         page = []
@@ -327,6 +330,18 @@ for key in libraries:
             game_funcs_total += numFuncs
     
         libprog = (matchingSize / fullSize) * 100.0
+
+        lib_tag_color = "red"
+
+        if libprog == 100:
+            lib_tag_color = "gold"
+        elif libprog != 0:
+            lib_tag_color = "yellow"
+        elif libprog > 70 and libprog < 100:
+            lib_tag_color = "green"
+
+        arch.generateJSONTag(libprog, lib_tag_color)
+
         archName = arch.getName()
         progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
 
