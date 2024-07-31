@@ -76,7 +76,7 @@ namespace JGeometry {
         }
 
         //template <typename U>
-        //TVec3(U _x, U _y, U _z);
+        TVec3(U _x, U _y, U _z);
 
         TVec3(T val)
         {

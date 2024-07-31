@@ -1,3 +1,6 @@
+void __sys_free(void *ptr);
+void* memset(void *, int, int);
+
 typedef struct Block {
     struct Block* prev;
     struct Block* next;

@@ -24,6 +24,12 @@ typedef long long intmax_t;
 #define PTRDIFF __typeof__((char*)0-(char*)0)
 typedef PTRDIFF ptrdiff_t;
 
+wchar_t* wcscpy(wchar_t *pDest, const wchar_t *pSrc);
+size_t strlen(const char *pStr);
+void* memchr(const void *, int, size_t);
+int mbtowc(wchar_t *pDest, const char *s, size_t num);
+int vswprintf(wchar_t *s, size_t n, const wchar_t *format, va_list arg);
+
 enum justification_options {
 	left_justification,
 	right_justification,
@@ -998,7 +1004,7 @@ wchar_t* float2str(long double num, wchar_t *wbuff, print_format format) {
 	}
 
     pw = wbuff - strlen(p) - 1;
-    mbstowcs(pw, p, srlen(p));
+    mbstowcs(pw, p, strlen(p));
 	return pw;
 }
 

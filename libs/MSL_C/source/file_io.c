@@ -2,6 +2,12 @@
 #include "file_struct.h"
 #include "locale.h"
 
+int fflush(FILE *);
+void free(void *);
+int __flush_all(void);
+long ftell(FILE *);
+int __flush_buffer(FILE *, size_t *);
+
 inline int tolower_inline(int c) {
     return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
 }

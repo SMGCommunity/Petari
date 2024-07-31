@@ -33,6 +33,9 @@ typedef unsigned char char_map[32];
 
 extern long double __strtold(int max_width, int (*ReadProc)(void *, int, int), void* ReadProcArg, int* chars_scanned, int* overflow);
 extern unsigned long long __strtoull(int base, int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg, int* chars_scanned, int* negative, int* overflow);
+extern unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void *, int, int), void *ReadProcArg, int* chars_scanned, int* negative, int* overflow);
+
+int mbtowc(wchar_t *pDest, const char *s, size_t num);
 
 typedef struct {
 	unsigned char	suppress_assignment;

@@ -4,6 +4,10 @@
 #include "string_api.h"
 #include "wchar_io.h"
 
+void __stdio_atexit(void);
+void* memcpy(void *, const void *, unsigned long);
+int _fseek(FILE *, long, int);
+
 size_t __fwrite(const void *pPtr, size_t memb_size, size_t num_memb, FILE *pFile) {
     unsigned char* cur_ptr;
     size_t num_bytes, rem_bytes, bytes_written;

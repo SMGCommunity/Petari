@@ -4,6 +4,8 @@
 #include "locale.h"
 #include <wchar_t.h>
 
+typedef wchar_t wint_t;	
+
 inline int iswdigit(wint_t c) {
     return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->wctype_map_ptr[c] & 0x8);
 }
