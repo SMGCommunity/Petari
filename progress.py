@@ -298,138 +298,142 @@ def doProgress(parent_lib):
         archives.append(archive)
     libraries[parent_lib] = archives
 
-for lib in LIBRARIES:
-    doProgress(lib)
+def genProgress(doGraph = False):
+    for lib in LIBRARIES:
+        doProgress(lib)
 
-game_matching_done = 0
-game_minor = 0
-game_major = 0
-game_total = 0
+    game_matching_done = 0
+    game_minor = 0
+    game_major = 0
+    game_total = 0
 
-game_funcs_matching = 0
-game_funcs_minor = 0
-game_funcs_major = 0
-game_funcs_total = 0
+    game_funcs_matching = 0
+    game_funcs_minor = 0
+    game_funcs_major = 0
+    game_funcs_total = 0
 
-# progress page
-progressPage = []
+    # progress page
+    progressPage = []
 
-for key in libraries:
-    cur_matching_done = 0
-    cur_minor = 0
-    cur_major = 0
-    cur_total = 0
+    for key in libraries:
+        cur_matching_done = 0
+        cur_minor = 0
+        cur_major = 0
+        cur_total = 0
 
-    cur_funcs_matching = 0
-    cur_funcs_minor = 0
-    cur_funcs_major = 0
-    cur_funcs_total = 0
+        cur_funcs_matching = 0
+        cur_funcs_minor = 0
+        cur_funcs_major = 0
+        cur_funcs_total = 0
 
-    progressPage.append(f"# {key}\n")
-    progressPage.append("| Library | Percentage |\n")
-    progressPage.append("| ------------- | ------------- |\n")
+        progressPage.append(f"# {key}\n")
+        progressPage.append("| Library | Percentage |\n")
+        progressPage.append("| ------------- | ------------- |\n")
 
-    for arch in libraries[key]:
-        arch.generateMarkdown()
-        matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = arch.calculateProgress()
+        for arch in libraries[key]:
+            arch.generateMarkdown()
+            matchingSize, minorSize, majorSize, fullSize, numFuncs, matchingFuncs, minorFuncs, majorFuncs = arch.calculateProgress()
+            
+            # we are really only doing calculations for our main game
+            if key == "Game":
+                game_matching_done += matchingSize
+                game_minor += minorSize
+                game_major += majorSize
+                game_total += fullSize
+                game_funcs_matching += matchingFuncs
+                game_funcs_minor += minorFuncs
+                game_funcs_major += majorFuncs
+                game_funcs_total += numFuncs
+            else:
+                cur_matching_done += matchingSize
+                cur_minor += minorSize
+                cur_major += majorSize
+                cur_total += fullSize
+                cur_funcs_matching += matchingFuncs
+                cur_funcs_minor += minorFuncs
+                cur_funcs_major += majorFuncs
+                cur_funcs_total += numFuncs
         
-        # we are really only doing calculations for our main game
-        if key == "Game":
-            game_matching_done += matchingSize
-            game_minor += minorSize
-            game_major += majorSize
-            game_total += fullSize
-            game_funcs_matching += matchingFuncs
-            game_funcs_minor += minorFuncs
-            game_funcs_major += majorFuncs
-            game_funcs_total += numFuncs
-        else:
-            cur_matching_done += matchingSize
-            cur_minor += minorSize
-            cur_major += majorSize
-            cur_total += fullSize
-            cur_funcs_matching += matchingFuncs
-            cur_funcs_minor += minorFuncs
-            cur_funcs_major += majorFuncs
-            cur_funcs_total += numFuncs
-    
-        libprog = (matchingSize / fullSize) * 100.0
+            libprog = (matchingSize / fullSize) * 100.0
 
-        lib_tag_color = "red"
+            lib_tag_color = "red"
 
-        if libprog == 100:
-            lib_tag_color = "gold"
-        elif libprog != 0:
-            lib_tag_color = "yellow"
-        elif libprog > 70 and libprog < 100:
-            lib_tag_color = "green"
+            if libprog == 100:
+                lib_tag_color = "gold"
+            elif libprog != 0:
+                lib_tag_color = "yellow"
+            elif libprog > 70 and libprog < 100:
+                lib_tag_color = "green"
 
-        arch.generateJSONTag(libprog, lib_tag_color)
+            arch.generateJSONTag(libprog, lib_tag_color)
 
-        archName = arch.getName()
-        progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
+            archName = arch.getName()
+            progressPage.append(f"| [{archName}](https://github.com/shibbo/Petari/blob/master/docs/lib/{key}/{archName}.md) | {libprog}% |\n")
 
-    if key != "Game":
-        cur_lib_prog = (cur_matching_done / cur_total) * 100.0
-        generateFullProgJSON(key, cur_lib_prog, "blue")
+        if key != "Game":
+            cur_lib_prog = (cur_matching_done / cur_total) * 100.0
+            generateFullProgJSON(key, cur_lib_prog, "blue")
 
-with open("docs/PROGRESS.md", "w") as w:
-    w.writelines(progressPage)
+    with open("docs/PROGRESS.md", "w") as w:
+        w.writelines(progressPage)
 
-# printing game specific stuff
-prog = (game_matching_done / game_total) * 100.0
-prog_minor = (game_minor / game_total) * 100.0
-prog_major = (game_major / game_total) * 100.0
-prog_total = prog + prog_minor + prog_major
-total_size = game_matching_done + game_funcs_minor + game_funcs_major
-func_prog = (game_funcs_matching / game_funcs_total)
-print(f"Functions: {truncate(func_prog, 4)}% [{game_funcs_matching} / {game_funcs_total}]")
-print(f"{Fore.BLUE}decompiled:{Style.RESET_ALL} {truncate(prog_total, 4)}% [{total_size} / {game_total}]")
-print(f"{Fore.GREEN}matching:{Style.RESET_ALL} {truncate(prog, 4)}% [{game_funcs_matching} / {game_total}]")
-print(f"{Fore.YELLOW}non-matching (minor):{Style.RESET_ALL} {truncate(prog_minor, 4)}% [{game_funcs_minor} / {game_total}]")
-print(f"{Fore.RED}non-matching (major):{Style.RESET_ALL} {truncate(prog_major, 4)}% [{game_funcs_major} / {game_total}]")
+    # printing game specific stuff
+    prog = (game_matching_done / game_total) * 100.0
+    prog_minor = (game_minor / game_total) * 100.0
+    prog_major = (game_major / game_total) * 100.0
+    prog_total = prog + prog_minor + prog_major
+    total_size = game_matching_done + game_funcs_minor + game_funcs_major
+    func_prog = (game_funcs_matching / game_funcs_total)
+    print(f"Functions: {truncate(func_prog, 4)}% [{game_funcs_matching} / {game_funcs_total}]")
+    print(f"{Fore.BLUE}decompiled:{Style.RESET_ALL} {truncate(prog_total, 4)}% [{total_size} / {game_total}]")
+    print(f"{Fore.GREEN}matching:{Style.RESET_ALL} {truncate(prog, 4)}% [{game_funcs_matching} / {game_total}]")
+    print(f"{Fore.YELLOW}non-matching (minor):{Style.RESET_ALL} {truncate(prog_minor, 4)}% [{game_funcs_minor} / {game_total}]")
+    print(f"{Fore.RED}non-matching (major):{Style.RESET_ALL} {truncate(prog_major, 4)}% [{game_funcs_major} / {game_total}]")
 
-generateFullProgJSON("Game", prog_total, "blue")
+    generateFullProgJSON("Game", prog_total, "blue")
 
-if "-graph" in sys.argv:
-    print("Generating progress graph...")
+    if doGraph:
+        print("Generating progress graph...")
 
-    # now we do the cool progress drawing chart
-    x_axis = [datetime.datetime.now()]
-    y_axis = [prog_total]
+        # now we do the cool progress drawing chart
+        x_axis = [datetime.datetime.now()]
+        y_axis = [prog_total]
 
-    # np.seterr(all="ignore")
+        # np.seterr(all="ignore")
 
-    repo = Repo(".")
+        repo = Repo(".")
 
-    for commit in repo.iter_commits(rev='92c1a7e..master'):
-        cur_file = None
+        for commit in repo.iter_commits(rev='92c1a7e..master'):
+            cur_file = None
 
-        try:
-            cur_file = commit.tree / 'data' / 'percent.json'
-        except:
             try:
-                cur_file = commit.tree / 'data' / 'game.json'
+                cur_file = commit.tree / 'data' / 'percent.json'
             except:
                 try:
-                    cur_file = commit.tree / 'data' / 'Game.json'
+                    cur_file = commit.tree / 'data' / 'game.json'
                 except:
+                    try:
+                        cur_file = commit.tree / 'data' / 'Game.json'
+                    except:
+                        pass
                     pass
                 pass
-            pass
 
-        if cur_file is None:
-            continue
-
-        with io.BytesIO(cur_file.data_stream.read()) as f:
-            try:
-                percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
-                x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
-                y_axis.append(float(percent_str))
-            except:
+            if cur_file is None:
                 continue
 
-    df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
-    fig = px.line(df, x='date', y='progress', title='Petari Progress', line_shape='hv', markers=False)
-    fig.update_yaxes(ticksuffix='%')
-    fig.write_image('prog.png')
+            with io.BytesIO(cur_file.data_stream.read()) as f:
+                try:
+                    percent_str = json.loads(f.read().decode('utf-8'))['message'].strip("%")
+                    x_axis.append(datetime.datetime.fromtimestamp(commit.committed_date))
+                    y_axis.append(float(percent_str))
+                except:
+                    continue
+
+        df = pd.DataFrame({'date': x_axis, 'progress': y_axis})
+        fig = px.line(df, x='date', y='progress', title='Petari Progress', line_shape='hv', markers=False)
+        fig.update_yaxes(ticksuffix='%')
+        fig.write_image('prog.png')
+
+if __name__ == "__main__":
+    genProgress()

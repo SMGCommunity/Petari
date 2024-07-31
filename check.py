@@ -13,9 +13,14 @@ from capstone import *
 from capstone.ppc import *
 import pathlib
 from collections import OrderedDict
+import progress
+
+# MSL_C++ has no real source files to check
+LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
 
 class FunctionLibrary:
-    def __init__(self):
+    def __init__(self, parent):
+        self.parent = parent
         self.libraries = dict()
         self.functions = dict()
 
@@ -23,12 +28,17 @@ class FunctionLibrary:
         self.libraries.clear()
         self.functions.clear()
 
+        basePath = f"libs\\{self.parent}\\csv"
+
+        if self.parent == "Game":
+            basePath = "csv"
+
         # Load CSV files
-        for file in os.listdir("csv"):            
+        for file in os.listdir(basePath):            
             library = file[0:file.rfind(".")]
             symbols = OrderedDict()
 
-            with open(pathlib.Path(f"csv/{file}"), "r") as input:
+            with open(pathlib.Path(f"{basePath}/{file}"), "r") as input:
                 is_first_line = True
                 for line in input:
                     if is_first_line:
@@ -64,8 +74,13 @@ class FunctionLibrary:
                 self.functions[symbol] = (address, size)
 
     def save(self):
+        basePath = f"libs\\{self.parent}\\csv"
+
+        if self.parent == "Game":
+            basePath = "csv"
+
         for library, symbols in self.libraries.items():
-            with open(f"csv/{library}.csv", "w") as output:
+            with open(f"{basePath}\\{library}.csv", "w") as output:
                 output.write("Symbol Name, Object File, Library Archive, Matching\n")
 
                 for (symbol, obj_file), values in symbols.items():
@@ -122,27 +137,13 @@ class FunctionLibrary:
                 if values[1] == True:
                     yield (symbol, obj_file)
 
-def print_help_and_exit():
-    print("Usage: check.py [mangled_symbol] [flags...]")
-    print("\t[mangled_symbol]: name of the symbol that should be checked.")
-    print("\t[-all]: run checks on all functions which has been marked as decompiled.")
-    print("\t[-compare]: compares decompiled functions.")
-    print("\t[-help]: displays this help text.")
-    print("\t[-only-errors]: displays only error messages.")
-    print("\t[-no-hints]: don't display hint messages.")
-    print("\t[-no-warnings]: don't display warning messages.")
-    print("\t[-no-errors]: don't display error messages.")
-    print("\t[-readonly]: don't mark or unmark any functions as decompiled.")
-
-    sys.exit(0)
-
 def is_dol_correct():
     with open("baserom.dol", "rb") as input:
         data = input.read()
 
         hash = hashlib.sha256(data).hexdigest().upper()
         return hash == "8B7F28D193170F998F92E02EA638107822FB72073691D0893EB18857BE0C6FCF" or hash == "69F93FCC0FA34837347B5AC05168BC783ADCACB3C02697CFDA087A3B63ABC9E0"
-
+    
 def get_code_from_dol(address, size):
     with open("baserom.dol", "rb") as input:
         data = input.read()
@@ -154,51 +155,10 @@ def get_code_from_dol(address, size):
         offset = address - start_address
 
         return data[txt_offset + offset:txt_offset + offset + size]
-
-def print_error(message):
-    global show_errors
-
-    if show_errors:
-        print(f"ERROR: {message}")
-
-def print_warning(message):
-    global show_warnings
-
-    if show_warnings:
-        print(f"WARNING: {message}")
-
-def print_hint(message):
-    global show_hints
-
-    if show_hints:
-        print(f"HINT: {message}")
-
-def print_instruction_comparison_error(message, original, custom):
-    global show_errors
-
-    if show_errors:
-        print_error(message)
-        print_instruction_comparison(original, custom)
-
-def print_instruction_comparison_warning(message, original, custom):
-    global show_warnings
-
-    if show_warnings:
-        print_warning(message)
-        print_instruction_comparison(original, custom)
-
-def print_instruction_comparison_hint(message, original, custom):
-    global show_hints
-
-    if show_hints:
-        print_hint(message)
-        print_instruction_comparison(original, custom)
-
-def print_instruction_comparison(original, custom):
-    print(f"\tOriginal: {original}")
-    print(f"\tCustom:   {custom}")
-
-def check_symbol(function_library, mangled_symbol, obj_name, readonly):
+    
+isChange = False
+    
+def check_symbol(function_library, mangled_symbols, printInstrs):
     black_listed_instructions = {
         PPC_INS_VMSUMSHM, PPC_INS_VMHADDSHS, PPC_INS_XXSLDWI, PPC_INS_VSEL,
         PPC_INS_XVSUBSP, PPC_INS_XXSEL, PPC_INS_XVMULSP, PPC_INS_XVDIVSP,
@@ -208,353 +168,226 @@ def check_symbol(function_library, mangled_symbol, obj_name, readonly):
         PPC_INS_MFESR, PPC_INS_MFDEAR, PPC_INS_MTESR, PPC_INS_MTDEAR, PPC_INS_MFICCR, PPC_INS_MFASR
     }
 
-    unsupported_libraries = { "TRK_Hollywood_Revolution" }
+    objs = { }
 
-    library = function_library.get_library_from_symbol(mangled_symbol, obj_name)
+    for sym in mangled_symbols:
+        names = function_library.get_obj_names_from_symbol(sym)
 
-    if library == None:
-        print("Could not find library of symbol.")
-        return False
+        if len(names) != 0:
+            objs[sym] = names[0]
 
-    if library in unsupported_libraries:
-        print(f"Library {library} is currently not supported.")
-        return False
+    if len(objs) == 0:
+        return 1
+    
+    obj_files = {}
 
-    obj_files = glob.glob(f"build/*/{library}/{obj_name}", recursive=True)
+    # associate the symbols with their relative object files
+    for key in objs:
+        if function_library.parent == "Game":
+            obj_files[key] = glob.glob(f"build\\Game\\*\\{objs[key]}", recursive=True)
+        else:
+            obj_files[key] = glob.glob(f"libs\\{function_library.parent}\\build\\{function_library.parent}\\*\\{objs[key]}")
 
+    for key in obj_files:
+        if printInstrs:
+            print(f"{key} ===============================================================")
+        if len(obj_files[key]) == 0:
+            print(f"Failed to find object file for symbol {key}")
+            continue
+        elif len(obj_files[key]) > 1:
+            print(f"There are multiple objects associated with {key}...")
+            continue
 
-    if len(obj_files) > 1:
-        print("Found multiple .o files. This should not happen.")
-        return False
+        with open(pathlib.Path(obj_files[key][0]), "rb") as input:
+            elf_file = ELFFile(input)
+            symtab = elf_file.get_section_by_name('.symtab')
 
-    if len(obj_files) == 0:
-        print("Could not find any .o files for the function.")
-        return False
-
-    with open(pathlib.Path(obj_files[0]), "rb") as input:
-        elf_file = ELFFile(input)
-        symtab = elf_file.get_section_by_name('.symtab')
-
-        if symtab.get_symbol_by_name(mangled_symbol) is None:
-            print(f"Could not find symbol in object file. This may be caused by the code not being compiled, the function being in the wrong C++ source file or the function signature being wrong. File: {obj_files}")
-            return False
-
-        compiled_symbol = symtab.get_symbol_by_name(mangled_symbol)[0]
-
-        # Get custom code
-        custom_offset = compiled_symbol["st_value"]
-        custom_size = compiled_symbol['st_size']
-
-        text = elf_file.get_section_by_name('.text')
-        custom_data = text.data()[custom_offset:custom_offset + custom_size]
-
-        # Get original code
-        original_address = function_library.get_address_from_symbol(mangled_symbol)
-        original_size = function_library.get_size_from_symbol(mangled_symbol)
-
-        if original_address == None or original_size == None:
-            print("Could not find address and/or size for symbol")
-            return False
-
-        original_data = get_code_from_dol(original_address, original_size)
-
-        if original_data == None:
-            print("Could not get data from DOL file.")
-            return False
-
-        cs = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN)
-        cs.detail = True
-        cs.imm_unsigned = False
-
-        original_instructions = list(cs.disasm(original_data, 0))
-        custom_instructions = list(cs.disasm(custom_data, 0))
-
-        error_count = 0
-        warning_count = 0
-        hint_count = 0
-
-        # Capstone doesn't seem to handle paired single instructions
-        # If any is found, it just stops disassembling
-        if 4 * len(original_instructions) != original_size:
-            print_warning(f"Only {len(original_instructions)} out of the {original_size // 4} original instructions were loaded.")
-            warning_count += 1
-
-        if 4 * len(custom_instructions) != custom_size:
-            print_warning(f"Only {len(custom_instructions)} out of the {custom_size // 4} custom instructions were loaded.")
-            warning_count += 1
-
-        if original_size > custom_size:
-            print_error("Original code contains more instructions than custom code.")
-            error_count += 1
-        elif original_size < custom_size:
-            print_error("Original code contains less instructions than custom code.")
-            error_count += 1
-
-        for i in range(min(len(original_instructions), len(custom_instructions))):
-            line = i * 4
-            line_string = f"{hex(line)} (Original: {hex(original_address + line)})"
-
-            original_instruction = original_instructions[i]            
-            custom_instruction = custom_instructions[i]
-
-            original_operands = original_instruction.operands
-            custom_operands = custom_instruction.operands
-
-            if str(original_instruction) == str(custom_instruction):
-                print(f"{Fore.GREEN}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                # Fully identical, nothing to be checked
-                continue
-
-            if original_instruction in black_listed_instructions:
-                print_warning(f"Skipping blacklisted instruction at line {line_string}.")
-                warning_count += 1
-                continue
+            if symtab.get_symbol_by_name(key) is None:
+                print(f"Could not find symbol in object file. This may be caused by the code not being compiled, the function being in the wrong C++ source file or the function signature being wrong. File: {obj_files}")
+                return
             
-            if original_instruction.id == custom_instruction.id:
-                assert(len(original_operands) == len(custom_operands))
+            compiled_symbol = symtab.get_symbol_by_name(key)[0]
+            custom_offset = compiled_symbol["st_value"]
+            custom_size = compiled_symbol['st_size']
 
-                # First check common r2 and r13 issues
-                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STB, PPC_INS_STW, PPC_INS_LFS }:
-                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
+            text = elf_file.get_section_by_name('.text')
+            custom_data = text.data()[custom_offset:custom_offset + custom_size]
 
-                    # lbz, lwz, stb, stw and lfs are sometimes used with r13, which is a pointer to a read-write
-                    # small data area (SDA). When compiling custom code, this SDA is not generated,
-                    # so the register is set to r0 and the displacement is set to 0.
+            original_address = function_library.get_address_from_symbol(key)
+            original_size = function_library.get_size_from_symbol(key)
 
-                    # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
-                    if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].reg == PPC_REG_R0 and\
-                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                        #print_instruction_comparison_hint(f"Skipping r13 issue at line {line_string}.", original_instruction, custom_instruction)
+            if original_address == None or original_size == None:
+                print("Could not find address and/or size for symbol")
+                return
+            
+            original_data = get_code_from_dol(original_address, original_size)
+
+            if original_data == None:
+                print("Could not get data from DOL file.")
+                return
+            
+            cs = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN | CS_MODE_PS)
+            cs.detail = True
+            cs.imm_unsigned = False
+
+            original_instructions = list(cs.disasm(original_data, 0))
+            custom_instructions = list(cs.disasm(custom_data, 0))
+
+            error_count = 0
+            warning_count = 0
+            hint_count = 0
+
+            instr_count = len(original_instructions)
+            custom_count = len(custom_instructions)
+
+            if instr_count != custom_count:
+                print("Original instruction count is not the same as custom instruction count.")
+                return
+            
+            for i in range(instr_count):
+                orig = original_instructions[i]
+                cust = custom_instructions[i]
+
+                orig_operands = orig.operands
+                cust_operands = cust.operands
+
+                if str(orig) == str(cust):
+                    if printInstrs:
+                        print(f"{Fore.GREEN}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                    # Fully identical, nothing to be checked
+                    continue
+
+                if orig.id == cust.id:
+                    assert(len(orig_operands) == len(cust_operands))
+
+                    # First check common r2 and r13 issues
+                    if orig.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STB, PPC_INS_STW, PPC_INS_LFS }:
+
+                        # lbz, lwz, stb, stw and lfs are sometimes used with r13, which is a pointer to a read-write
+                        # small data area (SDA). When compiling custom code, this SDA is not generated,
+                        # so the register is set to r0 and the displacement is set to 0.
+
+                        # Original must be (instr) rX, X(r13) and custom must be (instr) rX, 0(r0)
+                        if orig_operands[1].reg == PPC_REG_R13 and cust_operands[1].reg == PPC_REG_R0 and\
+                                cust_operands[1].mem.disp == 0 and orig_operands[0].reg == cust_operands[0].reg:
+                            if printInstrs:
+                                print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                            hint_count += 1
+                            continue
+                        
+                    if orig.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
+
+                        # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
+
+                        # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
+                        if orig_operands[1].reg == PPC_REG_R2 and cust_operands[1].reg == PPC_REG_R0 and\
+                                cust_operands[1].mem.disp == 0 and orig_operands[0].reg == cust_operands[0].reg:
+                            if printInstrs:
+                                print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                            hint_count += 1 
+                            continue
+
+                    # Check if all registers are equal
+                    registers_equal = True 
+
+                    for j in range(len(orig_operands)):
+                        if orig_operands[j].reg != cust_operands[j].reg:
+                            registers_equal = False
+                            break
+
+                    if registers_equal:
+                        if printInstrs:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        warning_count += 1
+                    elif orig.id == PPC_INS_ADDI:
+                        if printInstrs:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        warning_count += 1
+                    elif orig.id == PPC_INS_LIS:
+                        if printInstrs:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        warning_count += 1
+                    elif orig.id in { PPC_INS_B, PPC_INS_BL }:
+                        if printInstrs:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        warning_count += 1
+                    elif orig.id in { PPC_INS_LFS }:
+                        if (cust_operands[j].reg == 0):
+                            if printInstrs:
+                                print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                    else:
+                        if printInstrs:
+                            print(f"{Fore.RED}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        error_count += 1                
+                elif orig.id == PPC_INS_ADDI and cust.id == PPC_INS_LI:
+                    assert(len(orig_operands) == 3 and len(cust_operands) == 2)
+                    if orig_operands[1].reg == PPC_REG_R13 and cust_operands[1].imm == 0 and\
+                            orig_operands[0].reg == cust_operands[0].reg:
+                        if printInstrs:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
                         hint_count += 1
-                        continue
-                    
-                if original_instruction.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
-                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
-
-                    # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
-
-                    # Original must be (instr) rX, X(r2) and custom must be (instr) rX, 0(0)
-                    if original_operands[1].reg == PPC_REG_R2 and custom_operands[1].reg == PPC_REG_R0 and\
-                            custom_operands[1].mem.disp == 0 and original_operands[0].reg == custom_operands[0].reg:
-                        print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                        #print_instruction_comparison_hint(f"Skipping r2 issue at line {line_string}.", original_instruction, custom_instruction)
-                        hint_count += 1 
-                        continue
-
-                # Check if all registers are equal
-                registers_equal = True 
-
-                for j in range(len(original_operands)):
-                    if original_operands[j].reg != custom_operands[j].reg:
-                        registers_equal = False
-                        break
-
-                if registers_equal:
-                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_warning(f"Registers are identical but the instruction is not identical at line {line_string}.", original_instruction, custom_instruction)
-                    warning_count += 1
-                elif original_instruction.id == PPC_INS_ADDI:
-                    # addi is commonly used when loading addresses
-                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_warning(f"Skipping addi instruction at line {line_string}.", original_instruction, custom_instruction)
-                    warning_count += 1
-                elif original_instruction.id == PPC_INS_LIS:
-                    # Same as addi
-                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_warning(f"Skipping lis instruction at line {line_string}.", original_instruction, custom_instruction)
-                    warning_count += 1
-                elif original_instruction.id in { PPC_INS_B, PPC_INS_BL }:
-                    # bl is used to call most functions, and since the functions are likely to be placed
-                    # differently it's not possible to compare it
-                    # If a function ends with a function call, and the returned value from the function, then b is sometimes used for branching
-                    # to that function. Then it's not possible to compare this
-                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_warning(f"Skipping branch instruction at line {line_string}.", original_instruction, custom_instruction)
-                    warning_count += 1                
+                    else:
+                        if printInstrs:
+                            print(f"{Fore.RED}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                        error_count += 1
                 else:
-                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
-                    error_count += 1                
-            elif original_instruction.id == PPC_INS_ADDI and custom_instruction.id == PPC_INS_LI:
-                assert(len(original_operands) == 3 and len(custom_operands) == 2)
-
-                # This is caused by the read-write SDA, pointed by r13, is not generated in the custom code.
-
-                # Original must be addi rX, r13, X and custom must be li rX, 0
-                if original_operands[1].reg == PPC_REG_R13 and custom_operands[1].imm == 0 and\
-                        original_operands[0].reg == custom_operands[0].reg:
-                    print(f"{Fore.YELLOW}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_hint(f"Found addi / li mismatch at line {line_string}.", original_instruction, custom_instruction)
-                    hint_count += 1
-                else:
-                    print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                    #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
+                    if printInstrs:
+                        print(f"{Fore.RED}{str(orig):<80}{cust}{Style.RESET_ALL}")
                     error_count += 1
-            else:
-                print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
-                #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
-                error_count += 1
 
-        print()
-        print(f"Check finished with {error_count} error(s), {warning_count} warning(s) and {hint_count} hint(s).")
+            print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Check finished with {Fore.RED}{error_count} error(s){Style.RESET_ALL}, {Fore.YELLOW}{warning_count} warning(s){Style.RESET_ALL} and {Fore.BLUE}{hint_count} hint(s).{Style.RESET_ALL}")
+            parent_lib = function_library.get_library_from_symbol(key, objs[key])
+            is_decompiled = function_library.is_marked_decompiled(parent_lib, key, objs[key])
+            passed = error_count == 0
 
-        is_decompiled = function_library.is_marked_decompiled(library, mangled_symbol, obj_name)
-        passed = error_count == 0
-
-        if not readonly:
             if passed:
                 if is_decompiled:
-                    print("Function already marked as decompiled.")
+                    print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Function already marked as decompiled.")
                 else:
                     print("Marking as decompiled...")
-                    function_library.mark_symbol_decompiled(library, mangled_symbol, obj_name, True)
+                    function_library.mark_symbol_decompiled(parent_lib, key, objs[key], True)
+                    isChange = True
             else:
                 if is_decompiled:
-                    print("Function is marked as decompiled, but does not match.")
+                    print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Function is marked as decompiled, but does not match.")
                     print("Unmarking as decompiled...")
-                    function_library.mark_symbol_decompiled(library, mangled_symbol, obj_name, False)
+                    function_library.mark_symbol_decompiled(parent_lib, key, objs[key], False)
+                    isChange = True
                 else:
                     print("Function is not marked as decompiled, and does not match either.")
-
-        return passed
-
-mangled_symbol = None
-check_all = False
-compare = False
-show_hints = True
-show_warnings = True
-show_errors = True
-readonly = False
-
-for i in range(1, len(sys.argv)):
-    arg = sys.argv[i]
-
-    if arg == "-all":
-        check_all = True
-    elif arg == "-compare":
-        compare = True
-    elif arg == "-help":
-        print_help_and_exit()
-    elif arg == "-only-errors":
-        show_hints = False
-        show_warnings = False
-        show_errors = True
-    elif arg == "-no-hints":
-        show_hints = False
-    elif arg == "-no-warnings":
-        show_warnings = False
-    elif arg == "-no-errors":
-        show_errors = False
-    elif arg == "-readonly":
-        readonly = True
-    elif mangled_symbol == None:
-        mangled_symbol = arg
-    else:
-        print(f"Invalid argument: {arg}")
-        print()
-        print_help_and_exit()
-
-if mangled_symbol == None and not check_all and not compare:
-    print_help_and_exit()
 
 if not is_dol_correct():
     print("DOL file is not valid.")
     sys.exit(1)
 
-function_library = FunctionLibrary()
-function_library.load()
+objs_to_check = []
+funcs_to_check = []
+printInstrs = False
 
-if check_all:
-    success_count = 0
-    total_count = 0
+function_libraries = {}
 
-    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
-        print(f"Checking {symbol}...")
-        total_count += 1
-        
-        if check_symbol(function_library, symbol, obj_name, True):
-            success_count += 1
+for i in range(1, len(sys.argv)):
+    arg = sys.argv[i]
 
-        print()
+    if arg.endswith(".o"):
+        objs_to_check.append(arg)
+    elif arg == "-print":
+        printInstrs = True
+    else:
+        funcs_to_check.append(arg)
 
-    print(f"{success_count} function(s) out of the {total_count} function(s), which were marked as decompiled, passed the check.")
-    print(f"{total_count - success_count} function(s) failed the check.")
+for lib in LIBRARIES:
+    function_library = FunctionLibrary(lib)
+    function_library.load()
+    function_libraries[lib] = function_library
 
-if compare:
-    success_count_a = 0
-    fail_count_a = 0
-    matched_a = set()
-    failed_a = set()
+for lib in LIBRARIES:
+    if len(funcs_to_check) > 0:
+        # do we even need to check this library?
+        isInLib = function_libraries[lib].get_obj_names_from_symbol(funcs_to_check[0]) != []
 
-    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
-        print(f"Checking {symbol}...")
-        
-        if check_symbol(function_library, symbol, obj_name, True):
-            success_count_a += 1
-            matched_a.add((symbol, obj_name))
-        else:
-            fail_count_a += 1
-            failed_a.add((symbol, obj_name))
+        if isInLib:
+            check_symbol(function_libraries[lib], funcs_to_check, printInstrs)
 
-        print()
-
-    print()
-    print()
-    print("First run of tests are now done.")
-    print("Now, please make the code changes you wish to test, and then recompile everything.")
-    input("Press Enter to contiue...")
-    
-    success_count_b = 0
-    fail_count_b = 0
-    matched_b = set()
-    failed_b = set()
-
-    for (symbol, obj_name) in function_library.get_symbols_marked_as_decompiled():
-        print(f"Checking {symbol}...")
-        
-        if check_symbol(function_library, symbol, obj_name, True):
-            success_count_b += 1
-            matched_b.add((symbol, obj_name))
-        else:
-            fail_count_b += 1
-            failed_b.add((symbol, obj_name))
-
-            print()
-            
-    print()
-    print()
-    print("Second run of tests are now done.")
-    print()
-    
-    print(f"First run: {success_count_a} matched and {fail_count_a} failed.")
-    print(f"Second run: {success_count_b} matched and {fail_count_b} failed.")
-    print()
-
-    print("The following functions matched during the first run and failed during the second test:")
-
-    for matched in matched_a:
-        if matched in failed_b:
-            print(f"{matched[0]} in {matched[1]}")
-
-    print()
-    print("The following functions failed during the first run and matched during the second test:")
-
-    for failed in failed_a:
-        if failed in matched_b:
-            print(f"{failed[0]} in {failed[1]}")
-
-
-if mangled_symbol != None:
-    obj_names = function_library.get_obj_names_from_symbol(mangled_symbol)
-
-    if len(obj_names) == 0:
-        print("Could not find any .o files for the specified symbol.")
-        sys.exit(1)
-    elif len(obj_names) > 1:
-        print("There are multiple .o files found for the specified symbol. This is currently not supported by the script.")
-        sys.exit(1)
-
-    check_symbol(function_library, mangled_symbol, obj_names[0], readonly)
-
-function_library.save()
+if isChange:
+    progress.genProgress()
