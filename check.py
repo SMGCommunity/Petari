@@ -50,13 +50,13 @@ class FunctionLibrary:
                     symbol = line_split[0]
                     obj_file = line_split[1]
                     library_name = line_split[2]
-                    matches = line_split[3] == "true"
+                    status = line_split[3]
 
                     if (symbol, obj_file) in symbols:
                         print(f"Duplicate symbol {symbol} in .o file {obj_file}.")
                         sys.exit(1)
 
-                    symbols[(symbol, obj_file)] = (library_name, matches)
+                    symbols[(symbol, obj_file)] = (library_name, status)
 
             self.libraries[library] = symbols
 
@@ -96,7 +96,7 @@ class FunctionLibrary:
 
         return names
 
-    def is_marked_decompiled(self, library_name, symbol, obj_file):
+    def get_function_status(self, library_name, symbol, obj_file):
         if library_name in self.libraries:
             library = self.libraries[library_name]
             
@@ -105,12 +105,12 @@ class FunctionLibrary:
 
         return False
 
-    def mark_symbol_decompiled(self, library_name, symbol, obj_file, decompiled):
+    def mark_symbol_status(self, library_name, symbol, obj_file, status):
         if library_name in self.libraries:
             library = self.libraries[library_name]
             
             if (symbol, obj_file) in library:
-                library[(symbol, obj_file)] = (library[(symbol, obj_file)][0], decompiled)
+                library[(symbol, obj_file)] = (library[(symbol, obj_file)][0], status)
 
     def get_library_from_symbol(self, symbol, obj_file):
         for library, symbols in self.libraries.items():
@@ -156,9 +156,9 @@ def get_code_from_dol(address, size):
 
         return data[txt_offset + offset:txt_offset + offset + size]
     
-isChange = False
-    
 def check_symbol(function_library, mangled_symbols, printInstrs):
+    symbol_rets = []
+
     black_listed_instructions = {
         PPC_INS_VMSUMSHM, PPC_INS_VMHADDSHS, PPC_INS_XXSLDWI, PPC_INS_VSEL,
         PPC_INS_XVSUBSP, PPC_INS_XXSEL, PPC_INS_XVMULSP, PPC_INS_XVDIVSP,
@@ -177,7 +177,7 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
             objs[sym] = names[0]
 
     if len(objs) == 0:
-        return 1
+        return []
     
     obj_files = {}
 
@@ -204,7 +204,8 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
 
             if symtab.get_symbol_by_name(key) is None:
                 print(f"Could not find symbol in object file. This may be caused by the code not being compiled, the function being in the wrong C++ source file or the function signature being wrong. File: {obj_files}")
-                return
+                symbol_rets.append(1)
+                continue
             
             compiled_symbol = symtab.get_symbol_by_name(key)[0]
             custom_offset = compiled_symbol["st_value"]
@@ -218,13 +219,15 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
 
             if original_address == None or original_size == None:
                 print("Could not find address and/or size for symbol")
-                return
+                symbol_rets.append(1)
+                continue
             
             original_data = get_code_from_dol(original_address, original_size)
 
             if original_data == None:
                 print("Could not get data from DOL file.")
-                return
+                symbol_rets.append(1)
+                continue
             
             cs = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN | CS_MODE_PS)
             cs.detail = True
@@ -242,7 +245,8 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
 
             if instr_count != custom_count:
                 print("Original instruction count is not the same as custom instruction count.")
-                return
+                symbol_rets.append(1)
+                continue
             
             for i in range(instr_count):
                 orig = original_instructions[i]
@@ -337,24 +341,30 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
 
             print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Check finished with {Fore.RED}{error_count} error(s){Style.RESET_ALL}, {Fore.YELLOW}{warning_count} warning(s){Style.RESET_ALL} and {Fore.BLUE}{hint_count} hint(s).{Style.RESET_ALL}")
             parent_lib = function_library.get_library_from_symbol(key, objs[key])
-            is_decompiled = function_library.is_marked_decompiled(parent_lib, key, objs[key])
+            is_decompiled = function_library.get_function_status(parent_lib, key, objs[key])
             passed = error_count == 0
 
             if passed:
-                if is_decompiled:
+                if is_decompiled == "true":
                     print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Function already marked as decompiled.")
                 else:
                     print("Marking as decompiled...")
-                    function_library.mark_symbol_decompiled(parent_lib, key, objs[key], True)
-                    isChange = True
+                    function_library.mark_symbol_status(parent_lib, key, objs[key], "true")
+                    symbol_rets.append(0)
+                    continue
             else:
-                if is_decompiled:
+                if is_decompiled == "true":
                     print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Function is marked as decompiled, but does not match.")
                     print("Unmarking as decompiled...")
-                    function_library.mark_symbol_decompiled(parent_lib, key, objs[key], False)
-                    isChange = True
+                    function_library.mark_symbol_status(parent_lib, key, objs[key], "false")
+                    symbol_rets.append(0)
+                    continue
                 else:
                     print("Function is not marked as decompiled, and does not match either.")
+
+            symbol_rets.append(1)
+
+    return symbol_rets
 
 if not is_dol_correct():
     print("DOL file is not valid.")
@@ -381,13 +391,26 @@ for lib in LIBRARIES:
     function_library.load()
     function_libraries[lib] = function_library
 
+libsChanged = []
+
 for lib in LIBRARIES:
     if len(funcs_to_check) > 0:
         # do we even need to check this library?
-        isInLib = function_libraries[lib].get_obj_names_from_symbol(funcs_to_check[0]) != []
+        isAnyInLib = False
 
-        if isInLib:
-            check_symbol(function_libraries[lib], funcs_to_check, printInstrs)
+        for func in funcs_to_check:
+            if function_libraries[lib].get_obj_names_from_symbol(func) != []:
+                isAnyInLib = True
+                break
 
-if isChange:
+        if isAnyInLib:
+            rets = check_symbol(function_libraries[lib], funcs_to_check, printInstrs)
+
+            if len(rets) > 0 and 0 in rets:
+                libsChanged.append(lib)
+
+for lib in libsChanged:
+    function_libraries[lib].save()
+    
+if len(libsChanged) > 0:
     progress.genProgress()
