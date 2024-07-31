@@ -5,7 +5,6 @@ import os
 import shutil
 from ninja_syntax import Writer
 import pathlib
-import shutil
 
 INCLUDE_DIRS = [ "include", 
                 "libs\\JSystem\\include", 
@@ -18,7 +17,6 @@ INCLUDE_DIRS = [ "include",
                 "libs\\RVLFaceLib\\include" ]
 
 LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "MSL_C++", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
-
 
 incdirs = ""
 for dir in INCLUDE_DIRS:
@@ -53,16 +51,28 @@ LIBRARY_COMPILER = {
 
 SOURCE_FILE_EXTS = [ ".c", ".cpp", ".s" ]
 
+def cleanLibraryBuild(lib):
+    if lib == "Game":
+        build_path = "build"
+    else:
+        build_path = f"libs\\{lib}\\build"
+
+    if os.path.exists(build_path):
+        shutil.rmtree(build_path)
+
 def genNinja(lib, tasks):
-    with open('build.ninja', 'w') as ninja_file:
+    with open(f'build_{lib}.ninja', 'w') as ninja_file:
         ninja_writer = Writer(ninja_file)
-        ninja_writer.rule("compile", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out',description=f'Compiling $in')
+        ninja_writer.rule("compile", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out', description=f'Compiling $in')
 
         for task in tasks:
             source_path, build_path = task
             ninja_writer.build(outputs=[build_path], rule="compile", inputs=[source_path])
 
-def compileLibrary(name, path):
+def compileLibrary(name, path, clean):
+    if clean:
+        cleanLibraryBuild(name)
+    
     compile_tasks = list()
 
     if name == "Game":
@@ -82,7 +92,9 @@ def compileLibrary(name, path):
                     compile_tasks.append((source_path, build_path))
 
     genNinja(name, compile_tasks)
-    subprocess.run(['ninja', '-f', 'build.ninja'], check=True)
+    subprocess.run(['ninja', '-f', f'build_{name}.ninja'], check=True)
+
+clean = '-clean' in sys.argv
 
 for lib in LIBRARIES:
-    compileLibrary(lib, f"libs\\{lib}\\source")
+    compileLibrary(lib, f"libs\\{lib}\\source", clean)
