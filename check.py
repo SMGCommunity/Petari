@@ -244,7 +244,7 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
             custom_count = len(custom_instructions)
 
             if instr_count != custom_count:
-                print("Original instruction count is not the same as custom instruction count.")
+                print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Original instruction count is not the same as custom instruction count.")
                 symbol_rets.append(1)
                 continue
             
@@ -315,7 +315,7 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
                         if printInstrs:
                             print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
                         warning_count += 1
-                    elif orig.id in { PPC_INS_LFS }:
+                    elif orig.id in { PPC_INS_LFS, PPC_INS_LWZ }:
                         if (cust_operands[j].reg == 0):
                             if printInstrs:
                                 print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
@@ -360,7 +360,7 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
                     symbol_rets.append(0)
                     continue
                 else:
-                    print("Function is not marked as decompiled, and does not match either.")
+                    print(f"[{Fore.YELLOW}{key}{Style.RESET_ALL}] Function is not marked as decompiled, and does not match either.")
 
             symbol_rets.append(1)
 
@@ -376,15 +376,43 @@ printInstrs = False
 
 function_libraries = {}
 
-for i in range(1, len(sys.argv)):
-    arg = sys.argv[i]
+# no args means we are checking the recently compiled files
+if len(sys.argv) == 1:
+    printInstrs = True
+    obj_files = []
 
-    if arg.endswith(".o"):
-        objs_to_check.append(arg)
-    elif arg == "-print":
-        printInstrs = True
-    else:
-        funcs_to_check.append(arg)
+    with open("data\\changed.txt", "r") as f:
+        lines = f.readlines()
+
+        for line in lines:
+            objs_to_check.append(line.strip("\n"))
+
+    if len(objs_to_check) == 0:
+        print("There are no functions to check.")
+        sys.exit(1)
+
+    for obj in objs_to_check:
+        with open(obj, "rb") as input:
+            elf_file = ELFFile(input)
+            symtab = elf_file.get_section_by_name('.symtab')
+
+            for symbol in symtab.iter_symbols():
+                section = symbol['st_shndx']
+                if isinstance(section, int) and symbol.name != '':
+                    section_name = elf_file.get_section(section).name
+
+                    if section_name == '.text':
+                        funcs_to_check.append(symbol.name)
+else:
+    for i in range(1, len(sys.argv)):
+        arg = sys.argv[i]
+
+        if arg.endswith(".o"):
+            objs_to_check.append(arg)
+        elif arg == "-print":
+            printInstrs = True
+        else:
+            funcs_to_check.append(arg)
 
 for lib in LIBRARIES:
     function_library = FunctionLibrary(lib)

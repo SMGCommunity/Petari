@@ -88,7 +88,7 @@ namespace MR {
 
 	void makeMtxTR(MtxPtr, const LiveActor *);
 
-	void setMtxTrans(MtxPtr mtx, const TVec3f &rVec) {
+	void setMtxTrans(MtxPtr mtx, const TVec3f &rVec); /*{
 		MR::setMtxTrans(mtx, rVec.x, rVec.y, rVec.z);
-	}
+	}*/
 };

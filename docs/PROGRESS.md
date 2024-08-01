@@ -14,7 +14,7 @@
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/LiveActor.md) | 42.577224527431994% |
 | [Map](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Map.md) | 17.787309899169962% |
 | [MapObj](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj.md) | 32.920259181062725% |
-| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj.md) | 33.210237031947784% |
+| [NameObj](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj.md) | 33.1329440054964% |
 | [NPC](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NPC.md) | 2.155878467635403% |
 | [NWC24](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NWC24.md) | 0.0% |
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Player.md) | 7.8301638397445155% |

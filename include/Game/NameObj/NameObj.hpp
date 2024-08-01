@@ -37,7 +37,7 @@ public:
 
     /* 0x4 */   const char* mName;      ///< A string to identify the NameObj.
     /* 0x8 */   volatile u16 mFlags;    ///< Flags in relation to movement.
-    /* 0xA */   s16 mExecutorIdx;       ///< The index into the NameObjExecuteInfo array.
+    /* 0xA */   u16 mExecutorIdx;       ///< The index into the NameObjExecuteInfo array.
 };
 
 /// @brief Contains static functions to begin and end movement in a NameObj.

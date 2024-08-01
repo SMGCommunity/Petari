@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 16 / 16 Completed -- (100.0%)
+# 15 / 16 Completed -- (93.75%)
 # NameObj.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -19,7 +19,7 @@
 | `calcViewAndEntry__7NameObjFv` | :white_check_mark: |
 | `initWithoutIter__7NameObjFv` | :white_check_mark: |
 | `setName__7NameObjFPCc` | :white_check_mark: |
-| `executeMovement__7NameObjFv` | :white_check_mark: |
+| `executeMovement__7NameObjFv` | :x: |
 | `requestSuspend__7NameObjFv` | :white_check_mark: |
 | `requestResume__7NameObjFv` | :white_check_mark: |
 | `syncWithFlags__7NameObjFv` | :white_check_mark: |

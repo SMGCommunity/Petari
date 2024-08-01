@@ -5,6 +5,7 @@ import os
 import shutil
 from ninja_syntax import Writer
 import pathlib
+import hashlib
 
 INCLUDE_DIRS = [ "include", 
                 "libs\\JSystem\\include", 
@@ -24,6 +25,26 @@ for dir in INCLUDE_DIRS:
 
 COMPILER_CMD = f"-c -Cpp_exceptions off -maxerrors 1 -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc {incdirs}"
 COMPILER_PATH = pathlib.Path("Compilers\\GC\\3.0a3\\mwcceppc.exe")
+HASHES_BASE_PATH = pathlib.Path("data\\hashes.txt")
+CHANGED_PATH = pathlib.Path("data\\changed.txt")
+
+# if we don't have this file, create it
+if not os.path.exists(CHANGED_PATH):
+    open(CHANGED_PATH, 'a').close()
+
+# our hashes that we are starting out with
+start_hashes = {}
+
+if os.path.exists(HASHES_BASE_PATH):
+    with open(HASHES_BASE_PATH, "r") as f:
+        lines = f.readlines()
+
+        for line in lines:
+            line = line.strip("\n")
+            spl = line.split("=")
+            obj = spl[0]
+            hash = spl[1]
+            start_hashes[obj] = hash
 
 LIBRARY_COMPILER_ARGS = {
     "Game": COMPILER_CMD,
@@ -109,3 +130,39 @@ for lib in LIBRARIES:
 
 genNinja(all_tasks)
 subprocess.run(['ninja', '-f', 'build.ninja'], check=True)
+
+obj_hashes = {}
+changed_objs = []
+
+for lib in LIBRARIES:
+    objs = []
+
+    if lib == "Game":
+        objs = glob.glob(f"build\\Game\\*\\*.o", recursive=True)
+    else:
+        objs = glob.glob(f"libs\\{lib}\\build\\{lib}\\*\\*.o")
+    
+    # generate our hashes
+    for obj in objs:
+        obj_hashes[obj] = hashlib.md5(open(obj,'rb').read()).hexdigest()
+
+# now we determine what objects were changed based on comparing the two MD5 hashes
+for obj in obj_hashes:
+    if obj in start_hashes:
+        if start_hashes[obj] != obj_hashes[obj]:
+            changed_objs.append(obj)
+
+# do we have changed objs?
+# if we do, then we write those changed objects to our text file
+# if not, we clear the file
+if len(changed_objs) > 0:
+    with open(CHANGED_PATH, "w") as w:
+        for obj in changed_objs:
+            w.write(f"{obj}\n")
+else:
+    open(CHANGED_PATH, 'w').close()
+
+# write our new hashes
+with open(HASHES_BASE_PATH, "w") as w:
+    for obj in obj_hashes:
+        w.write(f"{obj}={obj_hashes[obj]}\n")

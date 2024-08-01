@@ -10,7 +10,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- 
 | [ModelChangableObjFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/ModelChangableObjFactory.md) | 14.814814814814813% | 2 / 13 | 15.384615384615385% | :eight_pointed_black_star: 
 | [MovementOnOffGroupHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/MovementOnOffGroupHolder.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
-| [NameObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/NameObj.md) | 100.0% | 16 / 16 | 100.0% | :white_check_mark: 
+| [NameObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/NameObj.md) | 92.96875% | 15 / 16 | 93.75% | :eight_pointed_black_star: 
 | [NameObjAdaptor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/NameObjAdaptor.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [NameObjArchiveListCollector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/NameObjArchiveListCollector.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [NameObjCategoryList.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/NameObj/NameObjCategoryList.md) | 87.30964467005076% | 13 / 15 | 86.66666666666667% | :eight_pointed_black_star: 

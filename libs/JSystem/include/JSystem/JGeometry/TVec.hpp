@@ -927,14 +927,14 @@ namespace JGeometry {
         T x, y, z, h;
     };
 
-    void setTVec3f(register const f32 *src, register f32 *dst) {
+    void setTVec3f(register const f32 *src, register f32 *dst); /*{
         __asm {
             psq_l   f0, 0(src), 0, 0
             lfs     f1, 8(src)
             psq_st  f0, 0(dst), 0, 0
             stfs    f1, 8(dst)
         };
-    }
+    }*/
 
 };    // namespace JGeometry
 

@@ -28,7 +28,7 @@ calcAnim__7NameObjFv,NameObj.o,NameObj.a,true
 calcViewAndEntry__7NameObjFv,NameObj.o,NameObj.a,true
 initWithoutIter__7NameObjFv,NameObj.o,NameObj.a,true
 setName__7NameObjFPCc,NameObj.o,NameObj.a,true
-executeMovement__7NameObjFv,NameObj.o,NameObj.a,true
+executeMovement__7NameObjFv,NameObj.o,NameObj.a,minor
 requestSuspend__7NameObjFv,NameObj.o,NameObj.a,true
 requestResume__7NameObjFv,NameObj.o,NameObj.a,true
 syncWithFlags__7NameObjFv,NameObj.o,NameObj.a,true
