@@ -60,26 +60,29 @@ def cleanLibraryBuild(lib):
     if os.path.exists(build_path):
         shutil.rmtree(build_path)
 
-def genNinja(lib, tasks):
-    with open(f'build_{lib}.ninja', 'w') as ninja_file:
+def fixLibName(name):
+    return name.replace("++", "pp")
+
+def genNinja(tasks):
+    with open('build.ninja', 'w') as ninja_file:
         ninja_writer = Writer(ninja_file)
-        ninja_writer.rule("compile", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out', description=f'Compiling $in')
+        for lib in LIBRARIES:
+            libName = fixLibName(lib)
+            ninja_writer.rule(f"compile_{libName}", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out', description=f'Compiling $in')
 
         for task in tasks:
-            source_path, build_path = task
-            ninja_writer.build(outputs=[build_path], rule="compile", inputs=[source_path])
+            lib, source_path, build_path = task
+            libName = fixLibName(lib)
+            ninja_writer.build(outputs=[build_path], rule=f"compile_{libName}", inputs=[source_path])
 
-def compileLibrary(name, path, clean):
-    if clean:
-        cleanLibraryBuild(name)
-    
+def collectTasks(name, path):
     compile_tasks = list()
 
     if name == "Game":
         path = "source"
     # fixing this lib later
     elif name == "MetroTRK":
-        return
+        return compile_tasks
 
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -89,12 +92,20 @@ def compileLibrary(name, path, clean):
                     build_path = source_path.replace("source", "build", 1).replace(ext, ".o")
 
                     os.makedirs(os.path.dirname(build_path), exist_ok=True)
-                    compile_tasks.append((source_path, build_path))
+                    compile_tasks.append((name, source_path, build_path))
 
-    genNinja(name, compile_tasks)
-    subprocess.run(['ninja', '-f', f'build_{name}.ninja'], check=True)
+    return compile_tasks
 
 clean = '-clean' in sys.argv
 
+if clean:
+    for lib in LIBRARIES:
+        cleanLibraryBuild(lib)
+
+all_tasks = []
 for lib in LIBRARIES:
-    compileLibrary(lib, f"libs\\{lib}\\source", clean)
+    tasks = collectTasks(lib, f"libs\\{lib}\\source")
+    all_tasks.extend(tasks)
+
+genNinja(all_tasks)
+subprocess.run(['ninja', '-f', 'build.ninja'], check=True)
