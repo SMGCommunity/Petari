@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 53 / 56 Completed -- (94.64285714285714%)
+# 55 / 56 Completed -- (98.21428571428571%)
 # BossKameckStateBattle.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -26,14 +26,14 @@
 | `exeWait__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeMove__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeHideMoveStart__21BossKameckStateBattleFv` | :white_check_mark: |
-| `exeHideMove__21BossKameckStateBattleFv` | :x: |
+| `exeHideMove__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeHideMoveEnd__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeSummonKameckWait__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeSummonKameck__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeAttackWait__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeAttack__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeDamage__21BossKameckStateBattleFv` | :white_check_mark: |
-| `exeRecover__21BossKameckStateBattleFv` | :x: |
+| `exeRecover__21BossKameckStateBattleFv` | :white_check_mark: |
 | `exeGuard__21BossKameckStateBattleFv` | :white_check_mark: |
 | `selectStoppablePosition__21BossKameckStateBattleFv` | :white_check_mark: |
 | `selectPosition__21BossKameckStateBattleFv` | :white_check_mark: |

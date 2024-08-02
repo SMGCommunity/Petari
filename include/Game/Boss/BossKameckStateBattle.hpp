@@ -55,8 +55,8 @@ public:
     KameckBeamEventListener* mBeamListener;         // _1C
     TVec3f _20;
     s32 _2C;
-    u32 _30;
-    u32 _34;
+    s32 _30;
+    s32 _34;
     s32 _38;
     u8 _3C;
     u8 _3D;

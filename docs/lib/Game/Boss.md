@@ -20,7 +20,7 @@
 | [BossKameckMoveRail.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossKameckMoveRail.md) | 100.0% | 6 / 6 | 100.0% | :white_check_mark: 
 | [BossKameckVs1.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossKameckVs1.md) | 100.0% | 26 / 26 | 100.0% | :white_check_mark: 
 | [BossKameckVs2.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossKameckVs2.md) | 100.0% | 29 / 29 | 100.0% | :white_check_mark: 
-| [BossKameckStateBattle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossKameckStateBattle.md) | 85.37774167343623% | 53 / 56 | 94.64285714285714% | :eight_pointed_black_star: 
+| [BossKameckStateBattle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossKameckStateBattle.md) | 96.91307879772543% | 55 / 56 | 98.21428571428571% | :eight_pointed_black_star: 
 | [BossStinkBug.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossStinkBug.md) | 0.0% | 0 / 46 | 0.0% | :x: 
 | [BossStinkBugActionBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossStinkBugActionBase.md) | 0.0% | 0 / 45 | 0.0% | :x: 
 | [BossStinkBugActionFlyHigh.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss/BossStinkBugActionFlyHigh.md) | 0.0% | 0 / 49 | 0.0% | :x: 
