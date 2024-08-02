@@ -146,7 +146,7 @@
 | [LavaBallRisingPlanetLava.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaBallRisingPlanetLava.md) | 100.0% | 15 / 15 | 100.0% | :white_check_mark: 
 | [LavaBreakColumn.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaBreakColumn.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [LavaFloater.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaFloater.md) | 0.0% | 0 / 19 | 0.0% | :x: 
-| [LavaGalaxyParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaGalaxyParts.md) | 0.0% | 0 / 7 | 0.0% | :x: 
+| [LavaGalaxyParts.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaGalaxyParts.md) | 28.57142857142857% | 5 / 7 | 71.42857142857143% | :eight_pointed_black_star: 
 | [LavaGeyser.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaGeyser.md) | 0.0% | 0 / 25 | 0.0% | :x: 
 | [LavaHomeSeesaw.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaHomeSeesaw.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [LavaHomeVolcanoFlow.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaHomeVolcanoFlow.md) | 0.0% | 0 / 14 | 0.0% | :x: 

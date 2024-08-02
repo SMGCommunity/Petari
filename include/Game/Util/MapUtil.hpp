@@ -24,6 +24,7 @@ namespace MR {
     bool checkStikeBallToMap(const TVec3f &, f32);
 
     bool calcMapGround(const TVec3f &, TVec3f *, f32);
+    bool calcMapGroundUpper(TVec3f *, const LiveActor *);
 
     bool trySetMoveLimitCollision(LiveActor *);
 };

@@ -48,4 +48,6 @@ public:
 class ProjmapEffectMtxSetter {
 public:
     void updateMtxUseBaseMtx();
+
+    void updateMtxUseBaseMtxWithLocalOffset(const TVec3f &);
 };
