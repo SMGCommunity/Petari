@@ -319,6 +319,9 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
                         if (cust_operands[j].reg == 0):
                             if printInstrs:
                                 print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
+                    elif orig.id in { PPC_INS_LFD }:
+                        if cust_operands[j].type == 2:
+                            print(f"{Fore.YELLOW}{str(orig):<80}{cust}{Style.RESET_ALL}")
                     else:
                         if printInstrs:
                             print(f"{Fore.RED}{str(orig):<80}{cust}{Style.RESET_ALL}")
