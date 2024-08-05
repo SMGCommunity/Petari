@@ -291,7 +291,7 @@
 | [TypicalDoor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/TypicalDoor.md) | 0.0% | 0 / 28 | 0.0% | :x: 
 | [UFOBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/UFOBase.md) | 0.0% | 0 / 26 | 0.0% | :x: 
 | [UFOKinoko.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/UFOKinoko.md) | 100.0% | 20 / 20 | 100.0% | :white_check_mark: 
-| [ValveSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/ValveSwitch.md) | 0.0% | 0 / 21 | 0.0% | :x: 
+| [ValveSwitch.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/ValveSwitch.md) | 87.11656441717791% | 20 / 21 | 95.23809523809523% | :eight_pointed_black_star: 
 | [WarpPod.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/WarpPod.md) | 0.0% | 0 / 22 | 0.0% | :x: 
 | [WatchTowerRotateStep.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/WatchTowerRotateStep.md) | 85.85131894484412% | 12 / 14 | 85.71428571428571% | :eight_pointed_black_star: 
 | [WaterfallCaveCover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/WaterfallCaveCover.md) | 0.0% | 0 / 9 | 0.0% | :x: 
