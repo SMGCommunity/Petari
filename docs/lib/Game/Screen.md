@@ -80,7 +80,7 @@
 | [LogoFader.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/LogoFader.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [LuigiLetter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/LuigiLetter.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [Manual2P.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/Manual2P.md) | 0.0% | 0 / 30 | 0.0% | :x: 
-| [MarioMeter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/MarioMeter.md) | 0.0% | 0 / 11 | 0.0% | :x: 
+| [MarioMeter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/MarioMeter.md) | 100.0% | 11 / 11 | 100.0% | :white_check_mark: 
 | [MarioSubMeter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/MarioSubMeter.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
 | [MessageTagSkipTagProcessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/MessageTagSkipTagProcessor.md) | 37.5% | 3 / 13 | 23.076923076923077% | :eight_pointed_black_star: 
 | [MeterLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/MeterLayout.md) | 0.0% | 0 / 53 | 0.0% | :x: 

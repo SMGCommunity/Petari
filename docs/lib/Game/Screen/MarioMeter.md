@@ -5,18 +5,18 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 11 Completed -- (0.0%)
+# 11 / 11 Completed -- (100.0%)
 # MarioMeter.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__10MarioMeterFPCc` | :x: |
-| `initLifeCount__10MarioMeterFl` | :x: |
-| `setLifeCount__10MarioMeterFl` | :x: |
-| `powerUp__10MarioMeterFv` | :x: |
-| `requestForceAppearHPMeter__10MarioMeterFv` | :x: |
-| `requestPlayerMoving__10MarioMeterFv` | :x: |
-| `requestPlayerStopped__10MarioMeterFv` | :x: |
-| `activate__10MarioMeterFv` | :x: |
-| `deactivate__10MarioMeterFv` | :x: |
-| `__dt__10MarioMeterFv` | :x: |
-| `init__10MarioMeterFRC12JMapInfoIter` | :x: |
+| `__ct__10MarioMeterFPCc` | :white_check_mark: |
+| `initLifeCount__10MarioMeterFl` | :white_check_mark: |
+| `setLifeCount__10MarioMeterFl` | :white_check_mark: |
+| `powerUp__10MarioMeterFv` | :white_check_mark: |
+| `requestForceAppearHPMeter__10MarioMeterFv` | :white_check_mark: |
+| `requestPlayerMoving__10MarioMeterFv` | :white_check_mark: |
+| `requestPlayerStopped__10MarioMeterFv` | :white_check_mark: |
+| `activate__10MarioMeterFv` | :white_check_mark: |
+| `deactivate__10MarioMeterFv` | :white_check_mark: |
+| `__dt__10MarioMeterFv` | :white_check_mark: |
+| `init__10MarioMeterFRC12JMapInfoIter` | :white_check_mark: |
