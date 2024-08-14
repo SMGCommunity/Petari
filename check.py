@@ -44,9 +44,9 @@ def check_symbol(function_library, mangled_symbols, printInstrs):
     # associate the symbols with their relative object files
     for key in objs:
         if function_library.parent == "Game":
-            obj_files[key] = glob.glob(f"build\\Game\\*\\{objs[key]}", recursive=True)
+            obj_files[key] = glob.glob(f"build/Game/*/{objs[key]}", recursive=True)
         else:
-            obj_files[key] = glob.glob(f"libs\\{function_library.parent}\\build\\{function_library.parent}\\*\\{objs[key]}")
+            obj_files[key] = glob.glob(f"libs/{function_library.parent}/build/{function_library.parent}/*/{objs[key]}")
 
     for key in obj_files:
         if printInstrs:
@@ -244,7 +244,7 @@ if len(sys.argv) == 1:
     printInstrs = True
     obj_files = []
 
-    with open("data\\changed.txt", "r") as f:
+    with open("data/changed.txt", "r") as f:
         lines = f.readlines()
 
         for line in lines:

@@ -173,10 +173,10 @@ class Archive:
         json.append("}")
 
         if self.parent != "Game":
-            with open(f"libs\\{self.parent}\\data\\json\\{self.name}.json", "w") as w:
+            with open(f"libs/{self.parent}/data/json/{self.name}.json", "w") as w:
                 w.writelines(json)
         else:
-            with open(f"data\\json\\{self.name}.json", "w") as w:
+            with open(f"data/json/{self.name}.json", "w") as w:
                 w.writelines(json)
 
     def generateMarkdown(self):
@@ -208,8 +208,8 @@ class Archive:
 
             page.append(f"| [{obj.name}](https://github.com/shibbo/Petari/blob/master/docs/lib/{self.parent}/{self.name}/{obj_page_name}.md) | {prog}% | {obj.totalCompletedFunctions} / {obj.totalFunctions} | {funcProg}% | {marker} \n")
 
-        if not os.path.exists(f"docs\\lib\\{self.parent}"):
-            os.makedirs(f"docs\\lib\\{self.parent}")
+        if not os.path.exists(f"docs/lib/{self.parent}"):
+            os.makedirs(f"docs/lib/{self.parent}")
 
         with open(f"docs/lib/{self.parent}/{self.name}.md", "w") as w:
             w.writelines(page)
@@ -244,10 +244,10 @@ class Archive:
 
             obj_page_name = obj.name.replace(".o", "")
 
-            if not os.path.exists(f"docs\\lib\\{self.parent}\\{self.name}"):
-                os.makedirs(f"docs\\lib\\{self.parent}\\{self.name}")
+            if not os.path.exists(f"docs/lib/{self.parent}/{self.name}"):
+                os.makedirs(f"docs/lib/{self.parent}/{self.name}")
 
-            with open(f"docs\\lib\\{self.parent}\\{self.name}\\{obj_page_name}.md", "w") as w:
+            with open(f"docs/lib/{self.parent}/{self.name}/{obj_page_name}.md", "w") as w:
                 w.writelines(obj_page)
 
 libraries = {}
@@ -257,7 +257,7 @@ def doProgress(parent_lib):
     func_sizes = {}
     archives = []
     
-    with open("data\\funcSizes.txt", "r") as file:
+    with open("data/funcSizes.txt", "r") as file:
         lines = file.readlines()
 
         for line in lines:
@@ -266,9 +266,9 @@ def doProgress(parent_lib):
             func_sizes[sym] = spl[1].split(',', 1)[1]
 
     if parent_lib != "Game":
-        csv_files = glob.glob(f"libs\\{parent_lib}\\csv\\*.csv")
+        csv_files = glob.glob(f"libs/{parent_lib}/csv/*.csv")
     else:
-        csv_files = glob.glob("csv\\*.csv")
+        csv_files = glob.glob("csv/*.csv")
 
     for csv_file in sorted(csv_files, key=str.casefold):
         lib_name = Path(csv_file).stem

@@ -19,8 +19,8 @@
 | [DemoCtrlBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoCtrlBase.md) | 0.0% | 0 / 7 | 0.0% | :x: 
 | [DemoDirector.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoDirector.md) | 0.0% | 0 / 18 | 0.0% | :x: 
 | [DemoExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoExecutor.md) | 0.0% | 0 / 28 | 0.0% | :x: 
-| [DemoExecutorFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoExecutorFunction.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [DemoFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoFunction.md) | 1.8094089264173705% | 1 / 48 | 2.083333333333333% | :eight_pointed_black_star: 
+| [DemoExecutorFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoExecutorFunction.md) | 64.14141414141415% | 14 / 16 | 87.5% | :eight_pointed_black_star: 
+| [DemoFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoFunction.md) | 100.0% | 48 / 48 | 100.0% | :white_check_mark: 
 | [DemoKoopaJrShip.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoKoopaJrShip.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [DemoPadRumbler.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoPadRumbler.md) | 0.0% | 0 / 2 | 0.0% | :x: 
 | [DemoParamCommonDataTable.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo/DemoParamCommonDataTable.md) | 0.0% | 0 / 7 | 0.0% | :x: 

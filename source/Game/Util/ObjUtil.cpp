@@ -9,7 +9,7 @@
 class LiveActor;
  
 namespace {
-    const JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
+    JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
             char buf[0x100];
             vsnprintf(buf, 0x100, pArchive, pFormat);
 
@@ -254,13 +254,13 @@ namespace MR {
         return loadTexFromArc(arcBuf, texBuf);
     }
 
-    const JMapInfo* createCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
+    JMapInfo* createCsvParser(const ResourceHolder* pHolder, const char* pFormat, ...) {
         va_list list;
         va_start(list, pFormat);
         return ::tryCreateCsvParserLocal(pHolder, pFormat, list);
     }
 
-    const JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
+    JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
         ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);   
     }
