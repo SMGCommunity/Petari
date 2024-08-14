@@ -91,7 +91,8 @@ def genNinja(tasks):
             libName = fixLibName(lib)
             cmd = f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out'
             if os.name != "nt":
-                cmd = f"wine {cmd}"
+                wine = os.getenv("WINE", "wine")
+                cmd = f"{wine} {cmd}"
             ninja_writer.rule(f"compile_{libName}", command=cmd, description=f'Compiling $in')
 
         for task in tasks:

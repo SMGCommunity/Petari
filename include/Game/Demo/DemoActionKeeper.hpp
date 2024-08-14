@@ -5,6 +5,7 @@
 
 class LiveActor;
 class Nerve;
+class DemoExecutor;
 
 class DemoActionInfo {
 public:
