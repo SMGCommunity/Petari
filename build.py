@@ -151,6 +151,8 @@ for obj in obj_hashes:
     if obj in start_hashes:
         if start_hashes[obj] != obj_hashes[obj]:
             changed_objs.append(obj)
+    else:
+        changed_objs.append(obj)
 
 # do we have changed objs?
 # if we do, then we write those changed objects to our text file
