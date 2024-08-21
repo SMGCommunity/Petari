@@ -22,8 +22,8 @@ public:
     void resetCalcCount();
     void requestCalc();
 
-    MR::Vector<MR::AssignableArray<ShadowController*> > mShadowList;    // _0
-    LiveActor* mHost;                                                   // _C
+    MR::Vector<MR::AssignableArray<ShadowController*> > mShadowList;    // 0x0
+    LiveActor* mHost;                                                   // 0xC
 };
 
 class ShadowControllerHolder : public NameObj {
@@ -39,7 +39,7 @@ public:
     MR::Vector<MR::AssignableArray<ShadowController*> > _C;
     MR::Vector<MR::AssignableArray<ShadowController*> > _18;
     bool _24;
-    f32 mFarClip;                                                   // _28
+    f32 mFarClip;                                                   // 0x28
 };
 
 class ShadowController {
@@ -101,18 +101,18 @@ public:
         MR::getSceneObj<ShadowControllerHolder*>(SceneObj_ShadowControllerHolder)->_18.push_back(this);
     }
 
-    LiveActor* mActor;                                  // _0
-    const char* mName;                                  // _4
-    const char* mGroupName;                             // _8
-    ShadowDrawer* mDrawer;                              // _C
+    LiveActor* mActor;                                  // 0x0
+    const char* mName;                                  // 0x4
+    const char* mGroupName;                             // 0x8
+    ShadowDrawer* mDrawer;                              // 0xC
     u32 _10;
-    CollisionPartsFilterBase* mCollisionPartsFilter;    // _14
+    CollisionPartsFilterBase* mCollisionPartsFilter;    // 0x14
     MtxPtr _18;
     MtxPtr _1C;
-    const TVec3f* mDropPos;                              // _20
-    const TVec3f* mDropDir;                              // _24
-    TVec3f* mProjPos;                                    // _28
-    TVec3f* mProjNorm;                                   // _2C
+    const TVec3f* mDropPos;                              // 0x20
+    const TVec3f* mDropDir;                              // 0x24
+    TVec3f* mProjPos;                                    // 0x28
+    TVec3f* mProjNorm;                                   // 0x2C
     TVec3f _30;
     TVec3f _3C;
     TVec3f _48;
@@ -125,8 +125,8 @@ public:
     u8 _65;
     u8 _66;
     u8 _67;
-    f32 mStartOffset;                                   // _68
-    f32 mDropLength;                                    // _6C
+    f32 mStartOffset;                                   // 0x68
+    f32 mDropLength;                                    // 0x6C
     u8 _70;
     u8 _71;
     u8 _72;

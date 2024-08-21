@@ -31,7 +31,7 @@ public:
     static s32 sCubeCategory;
 
     u32 _3C;
-    u32 mZoneID; // _40
+    u32 mZoneID; // 0x40
 };
 
 class CubeCameraMgr : public AreaObjMgr {

@@ -21,9 +21,9 @@ public:
 
     TMtx34f _8C;
     f32 _BC;
-    LodCtrl* mLodCtrlPlanet;            // _C0
-    MapPartsRailMover* mRailMover;      // _C4
-    MapPartsRailPosture* mRailPosture;  // _C8
+    LodCtrl* mLodCtrlPlanet;            // 0xC0
+    MapPartsRailMover* mRailMover;      // 0xC4
+    MapPartsRailPosture* mRailPosture;  // 0xC8
     TVec3f _CC;
 };
 

@@ -15,7 +15,7 @@ public:
     f32 beatProc(f32);
     f32 calcAdjustRate(f32, f32);
 
-    JAIStream* mStream;     // _0
+    JAIStream* mStream;     // 0x0
     f32 _4;
     u32 _8;
     u32 _C;

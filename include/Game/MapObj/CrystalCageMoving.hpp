@@ -30,9 +30,9 @@ public:
     void startBreakDemo();
     bool isNerveTypeEnd() const;
 
-    ModelObj* mTicoModel;           // _C4
+    ModelObj* mTicoModel;           // 0xC4
     TPos3f _C8;
-    ActorCameraInfo* mCameraInfo;   // _F8
+    ActorCameraInfo* mCameraInfo;   // 0xF8
     TVec3f _FC;
     u8 _108;
 };

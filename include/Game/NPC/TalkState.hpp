@@ -36,5 +36,5 @@ public:
 
     virtual u32 getPageCount() const;
     
-    u32 mMessageID;     // _C
+    u32 mMessageID;     // 0xC
 };

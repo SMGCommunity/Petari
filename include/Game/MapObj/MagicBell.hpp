@@ -19,9 +19,9 @@ public:
     void startRing(const TVec3f &, const TVec3f &);
 
     Swinger* _8C;
-    MtxPtr mSurface2Mtx;        // _90
+    MtxPtr mSurface2Mtx;        // 0x90
     Swinger* _94;
-    MtxPtr mSurface1Mtx;        // _98
+    MtxPtr mSurface1Mtx;        // 0x98
     TVec3f _9C;
 };
 

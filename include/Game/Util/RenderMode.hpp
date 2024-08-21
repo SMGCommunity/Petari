@@ -6,20 +6,20 @@ class RenderModeObj {
 public:
     static u32 getViWidthMax();
 
-    VITVMode mTVMode;                    // _0
-    u16 mFrameBufWidth;             // _4
-    u16 mEFBHeight;                 // _6
-    u16 mXFBHeight;                 // _8
-    u16 mXOrigin;                   // _A
-    u16 mYOrigin;                   // _C
-    u16 mVIWidth;                   // _E
-    u16 mVIHeight;                  // _10
+    VITVMode mTVMode;                    // 0x0
+    u16 mFrameBufWidth;             // 0x4
+    u16 mEFBHeight;                 // 0x6
+    u16 mXFBHeight;                 // 0x8
+    u16 mXOrigin;                   // 0xA
+    u16 mYOrigin;                   // 0xC
+    u16 mVIWidth;                   // 0xE
+    u16 mVIHeight;                  // 0x10
     u16 _12;
-    VIXFBMode mMode;                // _14
-    u8 mFieldRendering;             // _18
-    u8 mAA;                         // _19
-    u8 mSamplePattern[12][2];       // _1A
-    u8 mFilter[7];                  // _32
+    VIXFBMode mMode;                // 0x14
+    u8 mFieldRendering;             // 0x18
+    u8 mAA;                         // 0x19
+    u8 mSamplePattern[12][2];       // 0x1A
+    u8 mFilter[7];                  // 0x32
 };
 
 namespace MR {

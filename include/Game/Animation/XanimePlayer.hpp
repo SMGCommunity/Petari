@@ -39,15 +39,15 @@ public:
 
     inline XanimeCore *getCore() { return mCore; }
 
-    J3DModel *mModel;            // _0
-    J3DModelData *mModelData;    // _4
+    J3DModel *mModel;            // 0x0
+    J3DModelData *mModelData;    // 0x4
     u8 _8[0x5C - 8];
-    const XanimeGroupInfo *mDefaultAnimation;    // _5C
-    const XanimeGroupInfo *mCurrentAnimation;    // _60
-    const XanimeGroupInfo *mPrevAnimation;       // _64
+    const XanimeGroupInfo *mDefaultAnimation;    // 0x5C
+    const XanimeGroupInfo *mCurrentAnimation;    // 0x60
+    const XanimeGroupInfo *mPrevAnimation;       // 0x64
     const XanimeGroupInfo *_68;
-    XanimeCore *mCore;                      // _6C
-    XanimeResourceTable *mResourceTable;    // _70
+    XanimeCore *mCore;                      // 0x6C
+    XanimeResourceTable *mResourceTable;    // 0x70
     u8 _74[0x8];
     bool _7C;
     bool _7D;

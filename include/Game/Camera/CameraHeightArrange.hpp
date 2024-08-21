@@ -17,7 +17,7 @@ public:
     void updateHeightAndOffset();
     TVec3f *getGlobalAxis();
 
-    Camera *mCamera;        // _C
+    Camera *mCamera;        // 0xC
     u8 _10;
     u8 _11;
     u8 _12;
@@ -42,18 +42,18 @@ public:
     u32 _5C;
     u8 _60;
     u8 _61[3];
-    TVec3f mGlobalAxis;     // _64
+    TVec3f mGlobalAxis;     // 0x64
     f32 _70;
     f32 _74;
-    f32 mUpper;             // _78
-    f32 mLower;             // _7C
-    u32 mGndInt;            // _80
-    f32 mUPlay;             // _84
-    f32 mLPlay;             // _88
-    u32 mPushDelay;         // _8C
-    u32 mPushDelayLow;      // _90
-    u32 mUDown;             // _94
-    u8 mVPanUse;            // _98
+    f32 mUpper;             // 0x78
+    f32 mLower;             // 0x7C
+    u32 mGndInt;            // 0x80
+    f32 mUPlay;             // 0x84
+    f32 mLPlay;             // 0x88
+    u32 mPushDelay;         // 0x8C
+    u32 mPushDelayLow;      // 0x90
+    u32 mUDown;             // 0x94
+    u8 mVPanUse;            // 0x98
     u8 _99[3];
-    TVec3f mVPanAxis;       // _9C
+    TVec3f mVPanAxis;       // 0x9C
 };

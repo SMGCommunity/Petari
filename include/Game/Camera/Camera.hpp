@@ -30,7 +30,7 @@ public:
     virtual void setParam(const CameraParamChunk *);
     virtual Camera *getCamera() const;
 
-    Camera *mCamera;    // _4
+    Camera *mCamera;    // 0x4
 };
 
 class Camera : public NameObj {
@@ -58,10 +58,10 @@ public:
     void setZoneMtx(long);
     void createVPanObj();
 
-    CameraMan *mCameraMan;      // _C
-    CameraPoseParam *mPosParam; // _10
-    CameraHeightArrange *mVPan; // _14
-    bool mIsLOfsErpOff;         // _18
+    CameraMan *mCameraMan;      // 0xC
+    CameraPoseParam *mPosParam; // 0x10
+    CameraHeightArrange *mVPan; // 0x14
+    bool mIsLOfsErpOff;         // 0x18
     u8 _19[3];
-    TMtx34f mZoneMatrix;        // _1C
+    TMtx34f mZoneMatrix;        // 0x1C
 };

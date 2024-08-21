@@ -6,9 +6,9 @@
 #define NR_MESSAGES 8
 
 namespace {
-    JKRDecomp *gDecompInstance; // _806B71D8
-    OSMessage gMessage[NR_MESSAGES]; // _8060D038
-    OSMessageQueue gMessageQueue; // _8060D058
+    JKRDecomp *gDecompInstance; // 0x806B71D8
+    OSMessage gMessage[NR_MESSAGES]; // 0x8060D038
+    OSMessageQueue gMessageQueue; // 0x8060D058
 }
 
 JKRDecompCommand::JKRDecompCommand() {

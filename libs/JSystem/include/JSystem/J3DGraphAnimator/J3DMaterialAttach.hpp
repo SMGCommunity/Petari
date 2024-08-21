@@ -16,13 +16,13 @@ public:
         return mMaterialCount;
     }
 
-    u16 mMaterialCount;             // _4
-    u16 mUniqueMaterialCount;       // _6 
-    J3DMaterial** mMaterials;       // _8
-    JUTNameTab* mNameTable;         // _C
-    J3DMaterial* mUniqueMaterials;  // _10
-    J3DTexture* mTexture;           // _14
-    JUTNameTab* mTextureNameTable;  // _18
+    u16 mMaterialCount;             // 0x4
+    u16 mUniqueMaterialCount;       // 0x6 
+    J3DMaterial** mMaterials;       // 0x8
+    JUTNameTab* mNameTable;         // 0xC
+    J3DMaterial* mUniqueMaterials;  // 0x10
+    J3DTexture* mTexture;           // 0x14
+    JUTNameTab* mTextureNameTable;  // 0x18
     u16 _1C;
     u8 _1E;
     u8 _1F;

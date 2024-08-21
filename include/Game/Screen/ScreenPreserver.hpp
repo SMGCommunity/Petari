@@ -13,6 +13,6 @@ public:
     void activate();
     void deactivate();
 
-    bool mIsActive;     // _C
+    bool mIsActive;     // 0xC
     u8 _D[3];
 };

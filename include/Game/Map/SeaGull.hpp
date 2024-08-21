@@ -18,7 +18,7 @@ public:
     void exeHoverRight();
     void updateHover();
 
-    SeaGullGroup* mSeaGullGroup;    // _8C
+    SeaGullGroup* mSeaGullGroup;    // 0x8C
     s32 _90;
     bool _94;
     s32 _98;

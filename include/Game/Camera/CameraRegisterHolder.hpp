@@ -25,16 +25,16 @@ public:
 
     s32 searchName(const char *const *, unsigned long, const char *) const;
 
-    u32 mNrMatrices;                            // _C
-    MtxPtr mMatrices[NR_REGISTERS];             // _10
-    const char *mMatrixNames[NR_REGISTERS];     // _110
-    u32 mNrVectors;                             // _210
-    const TVec3f *mVectors[NR_REGISTERS];       // _214
-    const char *mVectorNames[NR_REGISTERS];     // _314
-    u32 mNrFloats;                              // _414
-    const float *mFloats[NR_REGISTERS];         // _418
-    const char *mFloatNames[NR_REGISTERS];      // _518
-    TMtx34f mDummyMatrix;                       // _618
-    TVec3f mDummyVector;                        // _648
-    f32 mDummyFloat;                            // _654
+    u32 mNrMatrices;                            // 0xC
+    MtxPtr mMatrices[NR_REGISTERS];             // 0x10
+    const char *mMatrixNames[NR_REGISTERS];     // 0x110
+    u32 mNrVectors;                             // 0x210
+    const TVec3f *mVectors[NR_REGISTERS];       // 0x214
+    const char *mVectorNames[NR_REGISTERS];     // 0x314
+    u32 mNrFloats;                              // 0x414
+    const float *mFloats[NR_REGISTERS];         // 0x418
+    const char *mFloatNames[NR_REGISTERS];      // 0x518
+    TMtx34f mDummyMatrix;                       // 0x618
+    TVec3f mDummyVector;                        // 0x648
+    f32 mDummyFloat;                            // 0x654
 };

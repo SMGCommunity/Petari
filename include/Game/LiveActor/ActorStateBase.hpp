@@ -31,7 +31,7 @@ public:
         return;
     }
 
-    u8 mIsDead; // _8
+    u8 mIsDead; // 0x8
 };
 
 template<typename T>

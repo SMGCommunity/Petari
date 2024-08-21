@@ -31,7 +31,7 @@ public:
     void doHit();
 
     Mtx _8C;
-    u16 mTimer;         // _BC
+    u16 mTimer;         // 0xBC
 };
 
 namespace NrvIceStep {

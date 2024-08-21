@@ -10,8 +10,8 @@ class ParticleResourceHolder {
 public:
 
     struct Particle {
-        const char* mGroupName; // _0
-        int mCount;             // _4
+        const char* mGroupName; // 0x0
+        int mCount;             // 0x4
     };
 
     ParticleResourceHolder(const char *);
@@ -22,9 +22,9 @@ public:
     JMapInfo* getAutoEffectListBinary() const;
     int getAutoEffectNum(const char *) const;
 
-    JPAResourceManager* mResourceMgr;   // _0
-    JMapInfo* mAutoEffectList;          // _4
-    JMapInfo* mParticleNames;           // _8
-    Particle mParticles[512];          // _C
-    int mNumParticles;                  // _100C
+    JPAResourceManager* mResourceMgr;   // 0x0
+    JMapInfo* mAutoEffectList;          // 0x4
+    JMapInfo* mParticleNames;           // 0x8
+    Particle mParticles[512];          // 0xC
+    int mNumParticles;                  // 0x100C
 };

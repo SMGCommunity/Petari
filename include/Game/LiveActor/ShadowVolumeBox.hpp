@@ -16,7 +16,7 @@ public:
     void setSize(const TVec3f &);
     void makeVertexBuffer() const;
 
-    TVec3f mSize;   // _1C
+    TVec3f mSize;   // 0x1C
     TVec3f _28;
     TVec3f _34;
     TVec3f _40;

@@ -13,6 +13,6 @@ public:
     NameObjGroup* createGroup(const char *, u32);
     NameObjGroup* findGroupFromName(const char *) const;
 
-    NameObjGroup* mGroups[0x20];    // _C
-    s32 mCount;                     // _8C
+    NameObjGroup* mGroups[0x20];    // 0xC
+    s32 mCount;                     // 0x8C
 };

@@ -5,9 +5,9 @@
 
 class LightInfo {
 public:
-    _GXColor mColor;    // _0
-    TVec3f mPos;        // _4
-    u8 mIsFollowCamera; // _10
+    _GXColor mColor;    // 0x0
+    TVec3f mPos;        // 0x4
+    u8 mIsFollowCamera; // 0x10
 };
 
 class LightInfoCoin : public LightInfo {
@@ -31,20 +31,20 @@ public:
 
     void operator=(const ActorLightInfo &);
 
-    LightInfo mInfo0;   // _0
-    LightInfo mInfo1;   // _14
-    u8 mAlpha2;         // _28
-    _GXColor mColor;    // _29
+    LightInfo mInfo0;   // 0x0
+    LightInfo mInfo1;   // 0x14
+    u8 mAlpha2;         // 0x28
+    _GXColor mColor;    // 0x29
 };
 
 struct AreaLightInfo {
-    const char* mAreaLightName;     // _0
-    s32 mInterpolate;               // _4
-    bool mFix;                      // _8
-    ActorLightInfo mPlayerLight;    // _C
-    ActorLightInfo mStrongLight;    // _3C
-    ActorLightInfo mWeakLight;      // _6C
-    ActorLightInfo mPlanetLight;    // _9C
+    const char* mAreaLightName;     // 0x0
+    s32 mInterpolate;               // 0x4
+    bool mFix;                      // 0x8
+    ActorLightInfo mPlayerLight;    // 0xC
+    ActorLightInfo mStrongLight;    // 0x3C
+    ActorLightInfo mWeakLight;      // 0x6C
+    ActorLightInfo mPlanetLight;    // 0x9C
 };
 
 namespace {
@@ -61,7 +61,7 @@ public:
     const char* getDefaultAreaLightName() const;
     s32 getDefaultStepInterpolate() const;
 
-    s32 mLightCount;            // _0
-    AreaLightInfo* mLights;    // _4
+    s32 mLightCount;            // 0x0
+    AreaLightInfo* mLights;    // 0x4
     LightInfoCoin _8;
 };

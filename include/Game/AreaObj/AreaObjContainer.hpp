@@ -11,9 +11,9 @@
 #include "Game/AreaObj/WaterArea.hpp"
 
 struct AreaObjEntry {
-    const char* mName;                          // _0
-    int _4;                                     // _4
-    AreaObjMgr* (*mFuncPtr)(s32, const char *); // _8
+    const char* mName;                          // 0x0
+    int _4;                                     // 0x4
+    AreaObjMgr* (*mFuncPtr)(s32, const char *); // 0x8
 };
 
 namespace {
@@ -63,8 +63,8 @@ public:
         return mManagerArray[mNumManagers];
     }
 
-    AreaObjMgr* mManagerArray[0x50];    // _C
-    u32 mNumManagers;                   // _14C
+    AreaObjMgr* mManagerArray[0x50];    // 0xC
+    u32 mNumManagers;                   // 0x14C
 };
 
 namespace MR {

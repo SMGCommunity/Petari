@@ -8,9 +8,9 @@ public:
     ArchiveHolderArchiveEntry(void *, JKRHeap *, const char *);
     ~ArchiveHolderArchiveEntry();
 
-    JKRMemArchive* mArchive;        // _0
-    JKRHeap* mHeap;                 // _4
-    char* mArchiveName;             // _8
+    JKRMemArchive* mArchive;        // 0x0
+    JKRHeap* mHeap;                 // 0x4
+    char* mArchiveName;             // 0x8
 };
 
 class ArchiveHolder {
@@ -31,8 +31,8 @@ public:
     void removeIfIsEqualHeap(JKRHeap *);
     ArchiveHolderArchiveEntry* findEntry(const char *) const;
 
-    ArchiveHolderArchiveEntry** mEntries;           // _0
-    s32 mMaxEntries;                                // _4
-    s32 mCurEntryNum;                               // _8
-    OSMutex mMutex;                                 // _C
+    ArchiveHolderArchiveEntry** mEntries;           // 0x0
+    s32 mMaxEntries;                                // 0x4
+    s32 mCurEntryNum;                               // 0x8
+    OSMutex mMutex;                                 // 0xC
 };

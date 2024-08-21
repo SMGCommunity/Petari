@@ -29,10 +29,10 @@ public:
     bool calcEdgeGravity(const TVec3f &rPosition, s32, TVec3f *pDest, f32 *pScalar) const;
     bool calcCornerGravity(const TVec3f &rPosition, s32, TVec3f *pDest, f32 *pScalar) const;
     
-    TPos3f mCube;        // _28
-    TPos3f mPosition;    // _58
-    f32 lenX;            // _88
-    f32 lenY;            // _8C
-    f32 lenZ;            // _90
-    u8 mActiveFaces;     // _94
+    TPos3f mCube;        // 0x28
+    TPos3f mPosition;    // 0x58
+    f32 lenX;            // 0x88
+    f32 lenY;            // 0x8C
+    f32 lenZ;            // 0x90
+    u8 mActiveFaces;     // 0x94
 };

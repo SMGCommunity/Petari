@@ -14,8 +14,8 @@ public:
     void updateTalking();
     bool isTextAppearedAll() const;
 
-    LayoutActor* mHostActor;    // _0
-    const wchar_t* mMsg;        // _4
+    LayoutActor* mHostActor;    // 0x0
+    const wchar_t* mMsg;        // 0x4
     u32 _8;
-    const char* mPaneName;      // _C
+    const char* mPaneName;      // 0xC
 };

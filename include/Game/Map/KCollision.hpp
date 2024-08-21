@@ -7,11 +7,11 @@
 class JMapInfo;
 
 struct KC_PrismData {
-    f32 mHeight;                // _0
-    u16 mPositionIndex;         // _4
-    u16 mNormalIndex;           // _6
-    u16 mEdgeIndices[3];        // _8
-    u16 mAttribute;             // _E
+    f32 mHeight;                // 0x0
+    u16 mPositionIndex;         // 0x4
+    u16 mNormalIndex;           // 0x6
+    u16 mEdgeIndices[3];        // 0x8
+    u16 mAttribute;             // 0xE
 };
 
 class Fxyz {
@@ -27,29 +27,29 @@ public:
 
 struct KCLFile {
     union {
-        TVec3f *mPos;           // _0
-        u32 mPosOffset;         // _0
+        TVec3f *mPos;           // 0x0
+        u32 mPosOffset;         // 0x0
     };
     union {
-        TVec3f *mNorms;         // _4
-        u32 mNormOffset;        // _4
+        TVec3f *mNorms;         // 0x4
+        u32 mNormOffset;        // 0x4
     };
     union {
-        KC_PrismData *mPrisms;  // _8
-        u32 mPrismOffset;       // _8
+        KC_PrismData *mPrisms;  // 0x8
+        u32 mPrismOffset;       // 0x8
     };
     union {
-        void *mOctree;          // _C
-        u32 mOctreeOffset;      // _C
+        void *mOctree;          // 0xC
+        u32 mOctreeOffset;      // 0xC
     };
-    f32 mThickness;             // _10
-    TVec3f mMin;                // _14
-    s32 mXMask;                 // _20
-    s32 mYMask;                 // _24
-    s32 mZMask;                 // _28
-    s32 mBlockWidthShift;       // _2C
-    s32 mBlockXShift;           // _30
-    s32 mBlockXYShift;          // _34
+    f32 mThickness;             // 0x10
+    TVec3f mMin;                // 0x14
+    s32 mXMask;                 // 0x20
+    s32 mYMask;                 // 0x24
+    s32 mZMask;                 // 0x28
+    s32 mBlockWidthShift;       // 0x2C
+    s32 mBlockXShift;           // 0x30
+    s32 mBlockXYShift;          // 0x34
 };
 
 class KCollisionServer {
@@ -98,7 +98,7 @@ public:
     bool outCheck(const TVec3f *, const TVec3f *, V3u *, V3u *) const;
     void objectSpaceToLocalSpace(V3u *, const TVec3f &) const;
 
-    KCLFile* mFile;         // _0
-    JMapInfo *mapInfo;      // _4
-    f32 mMaxVertexDistance; // _8
+    KCLFile* mFile;         // 0x0
+    JMapInfo *mapInfo;      // 0x4
+    f32 mMaxVertexDistance; // 0x8
 };

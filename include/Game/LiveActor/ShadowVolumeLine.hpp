@@ -15,8 +15,8 @@ public:
     void setFromWidth(f32);
     void setToWidth(f32);
 
-    const ShadowController* mFromShadowController;    // _1C
-    const ShadowController* mToShadowController;      // _20
-    f32 mFromWidth;                             // _24
-    f32 mToWidth;                               // _28
+    const ShadowController* mFromShadowController;    // 0x1C
+    const ShadowController* mToShadowController;      // 0x20
+    f32 mFromWidth;                             // 0x24
+    f32 mToWidth;                               // 0x28
 };

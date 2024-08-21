@@ -18,8 +18,8 @@ public:
     void createCameras();
     Camera *getCameraInner(long) const;
 
-    s32 mDefaultCameraIndex;                // _C
-    Camera **mCameras;                      // _10
-    CamTranslatorBase **mTranslators;      // _14
-    CamTranslatorBase *mDefaultTranslator; // _18
+    s32 mDefaultCameraIndex;                // 0xC
+    Camera **mCameras;                      // 0x10
+    CamTranslatorBase **mTranslators;      // 0x14
+    CamTranslatorBase *mDefaultTranslator; // 0x18
 };

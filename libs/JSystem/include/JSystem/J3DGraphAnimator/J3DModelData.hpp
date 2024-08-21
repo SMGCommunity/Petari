@@ -26,11 +26,11 @@ public:
     u32 _4;
     u32 _8;
     u32 _C;
-    J3DJointTree mJointTree;            // _10
-    J3DMaterialTable mMaterialTable;    // _58
+    J3DJointTree mJointTree;            // 0x10
+    J3DMaterialTable mMaterialTable;    // 0x58
     u32 _78;
     u16 _7C;
     u32 _80;
     u32 _84;
-    J3DVertexData mVertexData;          // _88
+    J3DVertexData mVertexData;          // 0x88
 };

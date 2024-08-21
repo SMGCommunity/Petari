@@ -128,4 +128,4 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask);
 }
 #endif
 
-#endif  // __OSINTERRUPT_H__
+#endif  // 0x_OSINTERRUPT_H__

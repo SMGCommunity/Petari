@@ -12,5 +12,5 @@ public:
 
     FirePressureBullet* callEmptyBullet();
 
-    FirePressureBullet* mBullets[0x8];  // _C
+    FirePressureBullet* mBullets[0x8];  // 0xC
 };

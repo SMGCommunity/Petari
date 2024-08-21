@@ -15,5 +15,5 @@ public:
     virtual void notifyActivate();
     virtual void notifyDeactivate();
 
-    CameraSubjective *mCamera;  // _48
+    CameraSubjective *mCamera;  // 0x48
 };

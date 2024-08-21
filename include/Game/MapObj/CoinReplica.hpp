@@ -15,5 +15,5 @@ public:
     void deactiveCoin();
     void removeCoin();
 
-    Coin* mCoin;    // _C
+    Coin* mCoin;    // 0xC
 };

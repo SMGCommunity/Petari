@@ -44,7 +44,7 @@ public:
     u32 _30;
     u32 _34;
     u32 _38;
-    void *mHashDatas;   // _3C
-    JKRHeap *mHeap;     // _40
+    void *mHashDatas;   // 0x3C
+    JKRHeap *mHeap;     // 0x40
     u32 _44;
 };

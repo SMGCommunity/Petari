@@ -15,9 +15,9 @@ public:
     void calcBaseQuat(TQuat4f *, const TQuat4f &);
     void calcDipQuat(TQuat4f *, const TQuat4f &, const TQuat4f &);
 
-    TVec3f mWPoint; // _4C
-    TVec3f mAxis;   // _58
-    f32 mAngleA;    // _64
-    f32 mAngleB;    // _68
-    f32 mDist;      // _6C
+    TVec3f mWPoint; // 0x4C
+    TVec3f mAxis;   // 0x58
+    f32 mAngleA;    // 0x64
+    f32 mAngleB;    // 0x68
+    f32 mDist;      // 0x6C
 };

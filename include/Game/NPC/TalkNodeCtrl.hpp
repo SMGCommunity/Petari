@@ -11,23 +11,23 @@ public:
     void entry(u16);
     bool search(u16) const;
 
-    u16 mHistory[0x10];     // _0
-    s32 mCount;             // _20
+    u16 mHistory[0x10];     // 0x0
+    s32 mCount;             // 0x20
 };
 
 class TalkNode {
 public:
 
-    u8 mNodeType;       // _0
-    u8 mGroupID;        // _1
-    u16 mIndex;         // _2
-    u16 mNextIdx;       // _4
-    u16 mNextGroup;      // _6
+    u8 mNodeType;       // 0x0
+    u8 mGroupID;        // 0x1
+    u16 mIndex;         // 0x2
+    u16 mNextIdx;       // 0x4
+    u16 mNextGroup;      // 0x6
 };
 
 class MessageNode {
 public:
-    const char* mMessage;   // _0
+    const char* mMessage;   // 0x0
 };
 
 class TalkNodeCtrl {
@@ -56,11 +56,11 @@ public:
     void initNodeRecursive(TalkMessageCtrl *, const JMapInfoIter &, ActorCameraInfo *, RecursiveHelper *);
 
     u32 _0;
-    s32 mCurrentNodeIdx;            // _4
-    TalkMessageInfo mMessageInfo;   // _8
-    TalkMessageHistory mHistory;    // _14
+    s32 mCurrentNodeIdx;            // 0x4
+    TalkMessageInfo mMessageInfo;   // 0x8
+    TalkMessageHistory mHistory;    // 0x14
     TalkNode* _38;
-    TalkNode* mCurrentNode;         // _3C
-    TalkNode* mFlowNode;            // _40
-    s16 mNodeData;                  // _44
+    TalkNode* mCurrentNode;         // 0x3C
+    TalkNode* mFlowNode;            // 0x40
+    s16 mNodeData;                  // 0x44
 };

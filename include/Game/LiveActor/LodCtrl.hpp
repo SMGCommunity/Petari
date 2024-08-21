@@ -40,7 +40,7 @@ public:
     f32 _0;
     f32 _4;
     LiveActor* _8;
-    LiveActor* mActor;                  // _C
+    LiveActor* mActor;                  // 0xC
     ModelObj* _10;
     ModelObj* _14;
     u8 _18;
@@ -51,8 +51,8 @@ public:
     const bool* _20;
     const bool* _24;
     const bool* _28;
-    s16 mViewGroupID;                   // _2C
-    ActorLightCtrl* mActorLightCtrl;    // _30
+    s16 mViewGroupID;                   // 0x2C
+    ActorLightCtrl* mActorLightCtrl;    // 0x30
 };
 
 class LodCtrlFunction {

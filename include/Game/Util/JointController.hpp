@@ -34,8 +34,8 @@ public:
     void calcJointMatrixAfterChildAndSetSystem(J3DJoint *);
     static void staticCallBack(J3DJoint *, int);
 
-    J3DModel* mModel;   // _4
-    J3DJoint* mJoint;   // _8
+    J3DModel* mModel;   // 0x4
+    J3DJoint* mJoint;   // 0x8
 };
 
 template<typename T>
@@ -76,9 +76,9 @@ public:
         }
     }
 
-    T* mHost;                       // _C
-    func mMtxCalcFunc;             // _10
-    func mMtxCalcAfterChildFunc;   // _14
+    T* mHost;                       // 0xC
+    func mMtxCalcFunc;             // 0x10
+    func mMtxCalcAfterChildFunc;   // 0x14
 };
 
 namespace MR {

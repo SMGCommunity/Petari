@@ -12,10 +12,10 @@ public:
     void addSpringVelocity(f32);
     void setSpringBaseValue(f32);
 
-    f32 mCondition;             // _0
-    f32 mSpeed;                 // _4
-    f32 mAngle;                 // _8
-    SpringValue* mSpringValue;  // _C
+    f32 mCondition;             // 0x0
+    f32 mSpeed;                 // 0x4
+    f32 mAngle;                 // 0x8
+    SpringValue* mSpringValue;  // 0xC
 };
 
 class MapPartsFloatingForce : public MapPartsFunction {
@@ -38,12 +38,12 @@ public:
     void exeMoveSpring();
     void exeMoveReturn();
 
-    SpringStep* mSpringStep;    // _18
-    const char* mObjectName;    // _1C
+    SpringStep* mSpringStep;    // 0x18
+    const char* mObjectName;    // 0x1C
     f32 _20;
-    f32 mRotateAngle;           // _24
-    f32 mRotateSpeed;           // _28
-    s32 mRotateAccelType;       // _2C
+    f32 mRotateAngle;           // 0x24
+    f32 mRotateSpeed;           // 0x28
+    s32 mRotateAccelType;       // 0x2C
     TVec3f _30;
     f32 _3C;
     f32 _40;

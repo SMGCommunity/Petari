@@ -18,12 +18,12 @@ public:
     void endMove();
     void updatePose();
 
-    MapPartsRailMover* mRailMover;                      // _8C
-    MapPartsRailRotator* mRailRotator;                  // _90
-    MapPartsAppearController* mAppearController;        // _94
-    TMtx34f mRotateMtx;                                 // _98
-    TVec3f mLocalTrans;                                 // _C8
-    TVec3f mLocalRotation;                              // _D4
+    MapPartsRailMover* mRailMover;                      // 0x8C
+    MapPartsRailRotator* mRailRotator;                  // 0x90
+    MapPartsAppearController* mAppearController;        // 0x94
+    TMtx34f mRotateMtx;                                 // 0x98
+    TVec3f mLocalTrans;                                 // 0xC8
+    TVec3f mLocalRotation;                              // 0xD4
     TVec3f _E0;
-    bool mIsNotMoving;                                  // _EC
+    bool mIsNotMoving;                                  // 0xEC
 };

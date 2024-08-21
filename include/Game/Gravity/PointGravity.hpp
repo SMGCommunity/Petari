@@ -9,6 +9,6 @@ public:
 	virtual void updateMtx(const TPos3f &rMtx);
 	virtual bool calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const;
 
-	TVec3f mOrigPosition; // _28
-	TVec3f mTranslation; // _34
+	TVec3f mOrigPosition; // 0x28
+	TVec3f mTranslation; // 0x34
 };

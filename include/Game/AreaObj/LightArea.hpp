@@ -11,5 +11,5 @@ public:
 
     virtual const char* getManagerName() const;
 
-    s32 mPlacedZoneID;  // _3C
+    s32 mPlacedZoneID;  // 0x3C
 };

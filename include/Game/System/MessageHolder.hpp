@@ -17,14 +17,14 @@ public:
 
     bool isValidBranchNode(u32) const;
 
-    JMapInfo* mIDTable;     // _0
-    void* mInfoBlock;       // _4
-    void* mDataBlock;       // _8
+    JMapInfo* mIDTable;     // 0x0
+    void* mInfoBlock;       // 0x4
+    void* mDataBlock;       // 0x8
     u32 _C;
-    void* mFlowBlock;       // _10
+    void* mFlowBlock;       // 0x10
     u32 _14;
     u32 _18;
-    void* mFLI1Block;       // _1C
+    void* mFLI1Block;       // 0x1C
 };
 
 class MessageHolder {
@@ -36,9 +36,9 @@ public:
     void initSystemData();
     void initGameData();
 
-    MessageData* mSystemMessage;        // _0
-    MessageData* mGameMessage;          // _4
-    MessageData* mSceneData;            // _8
+    MessageData* mSystemMessage;        // 0x0
+    MessageData* mGameMessage;          // 0x4
+    MessageData* mSceneData;            // 0x8
 };
 
 class MessageSystem {
@@ -53,10 +53,10 @@ public:
     };
 
     struct FlowNodeEvent {
-        u8 mFlowType;       // _0
-        u8 mEventType;      // _1
-        u16 mBranchID;      // _2
-        u32 mArg;           // _4
+        u8 mFlowType;       // 0x0
+        u8 mEventType;      // 0x1
+        u16 mBranchID;      // 0x2
+        u32 mArg;           // 0x4
     };
 
     static inline TalkNode* getCurrentBranchNodeFromSceneMsg(u32 idx) {

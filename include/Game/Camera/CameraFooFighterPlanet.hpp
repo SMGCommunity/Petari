@@ -13,7 +13,7 @@ public:
 
     void goRoundBehind(TVec3f &, TVec3f &, TVec3f &);
 
-    f32 mAxisX;     // _4C
-    f32 mAxisY;     // _50
-    f32 mAngleA;    // _54
+    f32 mAxisX;     // 0x4C
+    f32 mAxisY;     // 0x50
+    f32 mAngleA;    // 0x54
 };

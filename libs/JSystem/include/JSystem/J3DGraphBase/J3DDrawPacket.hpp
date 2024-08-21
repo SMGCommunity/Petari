@@ -10,10 +10,10 @@ public:
     virtual ~J3DDrawPacket();
 
     u32 _C;
-    u32 mFlags;             // _10
+    u32 mFlags;             // 0x10
     u32 _14;
     u32 _18;
     u32 _1C;
-    J3DDisplayListObj* mDL; // _20
+    J3DDisplayListObj* mDL; // 0x20
     u32 _24;
 };

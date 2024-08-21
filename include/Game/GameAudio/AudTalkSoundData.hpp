@@ -6,5 +6,5 @@ class JAISoundID {
 public:
     JAISoundID(unsigned long);
 
-    u32 mID;    // _0
+    u32 mID;    // 0x0
 };

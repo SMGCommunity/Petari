@@ -105,5 +105,5 @@ public:
     bool isInputDisable() const;
     void stopEffect(const char *);
 
-    MarioActor *mActor;    // _4
+    MarioActor *mActor;    // 0x4
 };

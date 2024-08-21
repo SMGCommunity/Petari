@@ -20,11 +20,11 @@ public:
 };
 
 struct DynamicJointCtrlParam {
-    f32 mGravity;               // _0
-    f32 mFriction;              // _4
-    f32 mAccelRatetoBckPos;     // _8
-    f32 mBendMaxDegree;         // _C
-    const char* mJointName;     // _10
+    f32 mGravity;               // 0x0
+    f32 mFriction;              // 0x4
+    f32 mAccelRatetoBckPos;     // 0x8
+    f32 mBendMaxDegree;         // 0xC
+    const char* mJointName;     // 0x10
 };
 
 class DynamicJointCtrlNode;
@@ -38,12 +38,12 @@ public:
     void reset();
     void setCallBackFunction();
 
-    LiveActor* mActor;                  // _0
-    const char* mName;                  // _4
+    LiveActor* mActor;                  // 0x0
+    const char* mName;                  // 0x4
     u32 _8;
-    DynamicJointCtrlNode** mCtrlNodes;  // _C
-    DynamicJointCtrlParam* mParams;     // _10
-    JointCtrlRate* mControlRate;        // _14
+    DynamicJointCtrlNode** mCtrlNodes;  // 0xC
+    DynamicJointCtrlParam* mParams;     // 0x10
+    JointCtrlRate* mControlRate;        // 0x14
 };
 
 class DynamicJointCtrlNode {
@@ -60,7 +60,7 @@ public:
     MtxPtr _28;
     u32 _2C;
     u32 _30;
-    DynamicJointCtrl* mParentControl;   // _34
+    DynamicJointCtrl* mParentControl;   // 0x34
 };
 
 class DynamicJointCtrlKeeper {
@@ -74,7 +74,7 @@ public:
     void reset();
     DynamicJointCtrl* findJointCtrl(const char *);
 
-    LiveActor* mActor;              // _0
+    LiveActor* mActor;              // 0x0
     s32 _4;
-    DynamicJointCtrl** mControls;   // _8
+    DynamicJointCtrl** mControls;   // 0x8
 };

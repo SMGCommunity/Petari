@@ -7,5 +7,5 @@ public:
     CopyFilterNegater();
     ~CopyFilterNegater();
 
-    GXRenderModeObj* mRenderObj;        // _0  
+    GXRenderModeObj* mRenderObj;        // 0x0  
 };

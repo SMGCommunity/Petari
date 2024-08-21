@@ -91,9 +91,9 @@ public:
 
     static bool initArena(char **, u32 *, int);
 
-    static JKRHeap* sGameHeap; // _806B70A8
-    static JKRHeap* sCurrentHeap; // _806B70AC
-    static JKRHeap* sRootHeap; // _806B70B0
+    static JKRHeap* sGameHeap; // 0x806B70A8
+    static JKRHeap* sCurrentHeap; // 0x806B70AC
+    static JKRHeap* sRootHeap; // 0x806B70B0
     static JKRHeap* sSystemHeap;
 
     static JKRErrorHandler mErrorHandler;
@@ -114,17 +114,17 @@ public:
         return (void*)mEnd;
     }
 
-    OSMutex mMutex;                     // _18
-    u8* mStart;                         // _30
-    u8* mEnd;                           // _34
-    u32 mSize;                          // _38
+    OSMutex mMutex;                     // 0x18
+    u8* mStart;                         // 0x30
+    u8* mEnd;                           // 0x34
+    u32 mSize;                          // 0x38
     u8 _3C;
     u8 _3D;
     u8 _3E;
     u8 _3F;
-    JSUTree<JKRHeap> mChildTree;        // _40
-    JSUList<JKRDisposer> mDisposerList; // _5C
-    bool mErrorFlag;                    // _68
+    JSUTree<JKRHeap> mChildTree;        // 0x40
+    JSUList<JKRDisposer> mDisposerList; // 0x5C
+    bool mErrorFlag;                    // 0x68
     u8 _69;
     u8 _6A;
     u8 _6B;

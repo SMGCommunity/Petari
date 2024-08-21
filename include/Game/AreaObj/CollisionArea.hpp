@@ -17,7 +17,7 @@ public:
     void validate();
 
     u8 _120[4];
-    AreaForm *mForm;    // _124
+    AreaForm *mForm;    // 0x124
     MtxPtr _128;
     TVec3f _12C;
     f32 _138;
@@ -42,7 +42,7 @@ public:
     u8 _59[3];
     s32 _5C;
     s32 _60;
-    AreaPolygon *mPolygon;  // _64
-    bool mIsValid;          // _68
+    AreaPolygon *mPolygon;  // 0x64
+    bool mIsValid;          // 0x68
     u8 _69[3];
 };

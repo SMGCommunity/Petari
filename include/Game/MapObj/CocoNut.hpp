@@ -79,13 +79,13 @@ private:
 	TPos3f _108;
 	s32 _138;
 	bool _13C;
-	TVec3f mSpawnPosition; // _140
+	TVec3f mSpawnPosition; // 0x140
 	bool _14C;
 	TVec3f _150;
-	bool mSphericalShadow; // _15C, also affects some other properties besides shadow
-	bool mRespawnWhenOutOfView; // _15D
+	bool mSphericalShadow; // 0x15C, also affects some other properties besides shadow
+	bool mRespawnWhenOutOfView; // 0x15D
 	bool _15E; // something about clipping
-	bool mContinueRolling; // _15F
+	bool mContinueRolling; // 0x15F
 };
 
 namespace NrvCocoNut {

@@ -16,7 +16,7 @@ public:
     void disappear();
     bool isHidden() const;
 
-    ButtonPaneController* mController;      // _20
+    ButtonPaneController* mController;      // 0x20
     u8 _24;
     u8 _25;
 };

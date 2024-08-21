@@ -15,6 +15,6 @@ public:
     virtual void makeActorDead();
     virtual void control();
 
-    LodCtrl* mLodCtrl;                          // _8C
-    ProjmapEffectMtxSetter* mMtxSetter;         // _90
+    LodCtrl* mLodCtrl;                          // 0x8C
+    ProjmapEffectMtxSetter* mMtxSetter;         // 0x90
 };

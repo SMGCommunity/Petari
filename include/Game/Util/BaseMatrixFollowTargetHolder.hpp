@@ -21,9 +21,9 @@ public:
 
     TMtx34f _0;
     const TPos3f* _30;
-    LiveActor* mActor;                      // _34
-    const JMapLinkInfo* mLinkInfo;          // _38
-    BaseMatrixFollowValidater* mValidater;  // _3C
+    LiveActor* mActor;                      // 0x34
+    const JMapLinkInfo* mLinkInfo;          // 0x38
+    BaseMatrixFollowValidater* mValidater;  // 0x3C
 };
 
 class BaseMatrixFollower {
@@ -41,10 +41,10 @@ public:
     bool isEnableFollow() const;
     bool isValid() const;
 
-    JMapLinkInfo* mLinkInfo;                // _4
-    NameObj* mFollowerObj;                  // _8
-    BaseMatrixFollowTarget* mFollowTarget;  // _C
-    s32 mFollowID;                          // _10
+    JMapLinkInfo* mLinkInfo;                // 0x4
+    NameObj* mFollowerObj;                  // 0x8
+    BaseMatrixFollowTarget* mFollowTarget;  // 0xC
+    s32 mFollowID;                          // 0x10
 };
 
 class BaseMatrixFollowTargetHolder : public NameObj {
@@ -56,8 +56,8 @@ public:
     virtual void initAfterPlacement();
     virtual void movement();
 
-    MR::Vector<MR::AssignableArray<BaseMatrixFollower*> > mFollowers;       // _C
-    MR::Vector<MR::AssignableArray<BaseMatrixFollowTarget*> > mTargets;     // _18
+    MR::Vector<MR::AssignableArray<BaseMatrixFollower*> > mFollowers;       // 0xC
+    MR::Vector<MR::AssignableArray<BaseMatrixFollowTarget*> > mTargets;     // 0x18
 };
 
 namespace MR {

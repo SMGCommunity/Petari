@@ -18,6 +18,6 @@ public:
     void startActorPlacement();
     void initAfterScenarioSelected();
 
-    StageFileLoader* mFileLoader;   // _C
-    StageDataHolder* mDataHolder;   // _10
+    StageFileLoader* mFileLoader;   // 0xC
+    StageDataHolder* mDataHolder;   // 0x10
 };

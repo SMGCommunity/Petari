@@ -18,7 +18,7 @@ public:
     void exeBreak();
     void startBreak();
 
-    bool mIsRightArm;   // _C4
+    bool mIsRightArm;   // 0xC4
 };
 
 namespace NrvMechaKoopaPartsArm {

@@ -20,7 +20,7 @@ public:
     void bindHole();
 
     BindCone* _8C;
-    HitSensor* mSensor;         // _90
+    HitSensor* mSensor;         // 0x90
     TVec3f _94;
     TVec3f _A0;
     TVec3f _AC;

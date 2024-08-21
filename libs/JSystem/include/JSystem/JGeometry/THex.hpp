@@ -23,7 +23,7 @@ namespace JGeometry {
             return false;
         }*/
 
-        TPartition3<f32> mPlanes[0x6];  // _0
+        TPartition3<f32> mPlanes[0x6];  // 0x0
     };
 };
 

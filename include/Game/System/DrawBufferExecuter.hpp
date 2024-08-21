@@ -20,8 +20,8 @@ public:
 
     u8 _0[0x8];
     u32 _8;
-    const char* mName; // _C
+    const char* mName; // 0xC
     u32 _10;
     u32 _14;
-    u32 mDrawBufferCount; // _18
+    u32 mDrawBufferCount; // 0x18
 };

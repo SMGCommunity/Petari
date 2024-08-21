@@ -14,9 +14,9 @@ public:
     void setPosAndDirection(LiveActor *);
     void calcBodyDir(LiveActor *, TVec3f *);
 
-    LiveActor* mCaterpillar;    // _90
-    TVec3f mFrontVec;           // _94
-    LodCtrl* mPlanetLOD;        // _A0
+    LiveActor* mCaterpillar;    // 0x90
+    TVec3f mFrontVec;           // 0x94
+    LodCtrl* mPlanetLOD;        // 0xA0
 };
 
 class GreenCaterpillarBig : public LiveActor {
@@ -37,13 +37,13 @@ public:
     void fixBodyPartsOnRail();
     void leaveApple();
 
-    GreenCaterpillarBigBody** mBodyArray;   // _8C
-    s32 mBodyArrayLength;                   // _90
-    s32 mCurBodyParts;                      // _94
+    GreenCaterpillarBigBody** mBodyArray;   // 0x8C
+    s32 mBodyArrayLength;                   // 0x90
+    s32 mCurBodyParts;                      // 0x94
     s32 _98;
     u8 _9C;
     u8 _9D;
-    LodCtrl* mPlanetLOD;                    // _A0
+    LodCtrl* mPlanetLOD;                    // 0xA0
 };
 
 namespace NrvGreenCaterpillarBig {

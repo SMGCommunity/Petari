@@ -21,4 +21,4 @@ extern void* __va_arg(void*, int);
 }
 #endif
 
-#endif // __cstdarg
+#endif // 0x_cstdarg

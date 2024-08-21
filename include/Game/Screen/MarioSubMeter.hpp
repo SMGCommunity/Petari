@@ -20,7 +20,7 @@ public:
     void activate();
     void deactivate();
 
-    SubMeterLayout* mFlyMeter;     // _C
-    SubMeterLayout* mAirMeter;     // _10
-    SubMeterLayout* mActiveMeter;  // _14
+    SubMeterLayout* mFlyMeter;     // 0xC
+    SubMeterLayout* mAirMeter;     // 0x10
+    SubMeterLayout* mActiveMeter;  // 0x14
 };

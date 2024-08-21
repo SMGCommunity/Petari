@@ -65,25 +65,25 @@ public:
     void startCamera(s32);
     const char* getBranchID() const;
 
-    LiveActor* mHostActor;              // _C
-    TalkNodeCtrl* mNodeCtrl;            // _10
-    s32 mZoneID;                        // _14
+    LiveActor* mHostActor;              // 0xC
+    TalkNodeCtrl* mNodeCtrl;            // 0x10
+    s32 mZoneID;                        // 0x14
     u32 _18;
     TVec3f _1C;
-    MtxPtr mMtx;                        // _28
+    MtxPtr mMtx;                        // 0x28
     TVec3f _2C;
-    f32 mTalkDistance;                  // _38
+    f32 mTalkDistance;                  // 0x38
     u32 _3C;
-    u32 mAlreadyDoneFlags;              // _40
-    bool mIsOnRootNodeAuto;             // _44
-    bool mIsOnReadNodeAuto;             // _45
-    bool mIsStartOnlyFront;             // _46
-    ActorCameraInfo* mCameraInfo;       // _48
-    TalkMessageFuncBase* mBranchFunc;   // _4C
-    TalkMessageFuncBase* mEventFunc;    // _50
-    TalkMessageFuncBase* mAnimeFunc;    // _54
-    TalkMessageFuncBase* mKillFunc;     // _58
-    CustomTagArg mTagArg;               // _5C
+    u32 mAlreadyDoneFlags;              // 0x40
+    bool mIsOnRootNodeAuto;             // 0x44
+    bool mIsOnReadNodeAuto;             // 0x45
+    bool mIsStartOnlyFront;             // 0x46
+    ActorCameraInfo* mCameraInfo;       // 0x48
+    TalkMessageFuncBase* mBranchFunc;   // 0x4C
+    TalkMessageFuncBase* mEventFunc;    // 0x50
+    TalkMessageFuncBase* mAnimeFunc;    // 0x54
+    TalkMessageFuncBase* mKillFunc;     // 0x58
+    CustomTagArg mTagArg;               // 0x5C
 };
 
 class TalkFunction {

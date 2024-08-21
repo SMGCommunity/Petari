@@ -4,10 +4,10 @@
 #include <JSystem/J3DGraphBase/J3DStruct.hpp>
 
 struct J3DBlendInfo {
-    u8 mType;           // _0
-    u8 mSrcFactor;      // _1
-    u8 mDstFactor;      // _2
-    u8 mOp;             // _3
+    u8 mType;           // 0x0
+    u8 mSrcFactor;      // 0x1
+    u8 mDstFactor;      // 0x2
+    u8 mOp;             // 0x3
 };
 
 class J3DBlend : public J3DBlendInfo { };
@@ -24,7 +24,7 @@ struct J3DColorChanInfo {
 };
 
 struct J3DColorChan {
-    u16 mColorChanID;       // _0
+    u16 mColorChanID;       // 0x0
 };
 
 struct J3DZModeInfo {

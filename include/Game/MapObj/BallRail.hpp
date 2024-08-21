@@ -27,12 +27,12 @@ public:
     void exeRun();
     inline void exeNoBind();
 
-    BallRailPoint* mRailPoints; // _8C
+    BallRailPoint* mRailPoints; // 0x8C
     HitSensor* _90;
     TVec3f _94;
-    s32 mNumPoints;             // _A0
-    f32 mAcceleration;          // _A4
-    f32 mDeceleration;          // _A8
+    s32 mNumPoints;             // 0xA0
+    f32 mAcceleration;          // 0xA4
+    f32 mDeceleration;          // 0xA8
     f32 _AC;
 };
 

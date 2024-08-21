@@ -11,7 +11,7 @@ public:
         Index();
         ~Index();
 
-        MR::BothDirPtrLink mLink;   // _0
+        MR::BothDirPtrLink mLink;   // 0x0
         u32 _10;
         s32 _14;
     };
@@ -24,16 +24,16 @@ public:
         u32 _0;
         s32 _4;
         u32 _8;
-        MR::BothDirPtrList mList;   // _C
+        MR::BothDirPtrList mList;   // 0xC
     };
 
     class Identifier {
     public:
-        const char* mName;      // _0
+        const char* mName;      // 0x0
         s32 _4;
         u32 _8;
         u32 _C;
-        JMapInfoIter mInfoIter; // _10
+        JMapInfoIter mInfoIter; // 0x10
     };
 
     PlacementInfoOrdered(int);
@@ -49,11 +49,11 @@ public:
 
     void attach(const JMapInfo *, PlacementInfoOrdered *);
 
-    Index* mIndexArray;             // _0
+    Index* mIndexArray;             // 0x0
     u32 _4;
-    SameIdSet* mSetArray;           // _8
-    Identifier** mIdentiferArray;   // _C
-    int mCount;                     // _10
+    SameIdSet* mSetArray;           // 0x8
+    Identifier** mIdentiferArray;   // 0xC
+    int mCount;                     // 0x10
 };
 
 namespace {

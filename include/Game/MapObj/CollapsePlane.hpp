@@ -19,11 +19,11 @@ public:
     bool calcJointPlane(TPos3f *, const JointControllerInfo &);
     bool tryDPDStop();
 
-    AnimScaleController* mScaleController;          // _C4
-    WalkerStateBindStarPointer* mStarPointerBind;   // _C8
-    JointController* mJointController;              // _CC
+    AnimScaleController* mScaleController;          // 0xC4
+    WalkerStateBindStarPointer* mStarPointerBind;   // 0xC8
+    JointController* mJointController;              // 0xCC
     s32 _D0;
-    s32 mTimer;                                     // _D4
+    s32 mTimer;                                     // 0xD4
 };
 
 namespace NrvCollapsePlane {

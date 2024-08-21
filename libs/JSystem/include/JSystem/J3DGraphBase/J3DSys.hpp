@@ -4,7 +4,7 @@
 
 class J3DSys {
 public:
-    Mtx mViewMtx;   // _0
+    Mtx mViewMtx;   // 0x0
     static Mtx mCurrentMtx;
 };
 

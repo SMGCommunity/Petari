@@ -6,12 +6,12 @@ class NameObj;
 class LiveActor;
 
 struct StageEffectSoundData {
-    const char* objectName;             // _0
-    const char* startSoundEffect;       // _4
-    const char* movingSoundEffect;      // _8
-    const char* stopSoundEffect;        // _C
-    u32 stopSoundEffectSteps;           // _10
-    s32 soundEffectType;                // _14
+    const char* objectName;             // 0x0
+    const char* startSoundEffect;       // 0x4
+    const char* movingSoundEffect;      // 0x8
+    const char* stopSoundEffect;        // 0xC
+    u32 stopSoundEffectSteps;           // 0x10
+    s32 soundEffectType;                // 0x14
 };
 
 namespace {

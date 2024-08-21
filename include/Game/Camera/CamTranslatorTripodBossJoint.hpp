@@ -11,5 +11,5 @@ public:
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
 
-	CameraTripodBossJoint *mCamera;	// _4
+	CameraTripodBossJoint *mCamera;	// 0x4
 };

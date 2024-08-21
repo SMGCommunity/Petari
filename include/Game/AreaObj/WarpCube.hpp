@@ -17,9 +17,9 @@ public:
     virtual void movement();
     virtual void draw() const;
 
-    JMapIdInfo *mMapIdInfo;         // _3C
-    ActorCameraInfo *mCameraInfo;   // _40
-    char *mEventName;               // _44
+    JMapIdInfo *mMapIdInfo;         // 0x3C
+    ActorCameraInfo *mCameraInfo;   // 0x40
+    char *mEventName;               // 0x44
     u16 _48;
     u8 _4A[2];
 };
@@ -38,5 +38,5 @@ public:
     void startEventCamera(const AreaObj *);
     void endEventCamera();
 
-    const WarpCube* mWarpCube;      // _1C
+    const WarpCube* mWarpCube;      // 0x1C
 };

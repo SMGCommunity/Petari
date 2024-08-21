@@ -13,14 +13,14 @@ public:
     virtual ~DemoDirector();
     virtual void movement();
 
-    bool mIsActive;                             // _C
+    bool mIsActive;                             // 0xC
     s32 _10;
     u8 _14;
     DemoCastGroupHolder* _18;
     DemoCastGroupHolder* _1C;
     DemoSimpleCastHolder* _20;
     s32 _24;
-    DemoStartRequestHolder* mStartReqHolder;    // _28
+    DemoStartRequestHolder* mStartReqHolder;    // 0x28
     NameObj* _2C;
     const char* _30;
     s32 _34;

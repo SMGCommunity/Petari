@@ -29,8 +29,8 @@ public:
     void clear();
 
     const char* _0;
-    ResourceHolder* mResourceHolder;    // _4
-    const char* mResourceName;          // _8
+    ResourceHolder* mResourceHolder;    // 0x4
+    const char* mResourceName;          // 0x8
     u32 _C;
     u32 _10;
     u32 _14;

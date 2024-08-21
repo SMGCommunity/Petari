@@ -13,15 +13,15 @@ namespace nw4r {
                 height = h;
             }
 
-            f32 width;      // _0
-            f32 height;     // _4
+            f32 width;      // 0x0
+            f32 height;     // 0x4
         };
 
         struct InflationLRTB {
-            f32 l;      // _0
-            f32 r;      // _4
-            f32 t;      // _8
-            f32 b;      // _C
+            f32 l;      // 0x0
+            f32 r;      // 0x4
+            f32 t;      // 0x8
+            f32 b;      // 0xC
         };
 
         struct ChanCtrl {
@@ -42,10 +42,10 @@ namespace nw4r {
                 return GXColorSrc(matSrcAlp);
             }
 
-            u8 matSrcCol;       // _0
-            u8 matSrcAlp;       // _1
-            u8 reserve1;        // _2
-            u8 reserve2;        // _3
+            u8 matSrcCol;       // 0x0
+            u8 matSrcAlp;       // 0x1
+            u8 reserve1;        // 0x2
+            u8 reserve2;        // 0x3
         };
 
         struct TexSRT {
@@ -78,10 +78,10 @@ namespace nw4r {
                 return texMtx;
             }
 
-            u8 texGenType;      // _0
-            u8 texGenSrc;       // _1
-            u8 texMtx;          // _2
-            u8 reserve;         // _3
+            u8 texGenType;      // 0x0
+            u8 texGenSrc;       // 0x1
+            u8 texMtx;          // 0x2
+            u8 reserve;         // 0x3
         };
 
         struct IndirectStage {
@@ -113,10 +113,10 @@ namespace nw4r {
                 return GXIndTexScale(scaleT);
             }
 
-            u8 texCoordGen;     // _0
-            u8 texMap;          // _1
-            u8 scaleS;          // _2
-            u8 scaleT;          // _3
+            u8 texCoordGen;     // 0x0
+            u8 texMap;          // 0x1
+            u8 scaleS;          // 0x2
+            u8 scaleT;          // 0x3
         };
 
         struct TevStageInOp {
@@ -171,10 +171,10 @@ namespace nw4r {
                 return u8((cl >> 3) & 0x1F);
             }
 
-            u8 ab;      // _0
-            u8 cd;      // _1
-            u8 op;      // _2
-            u8 cl;      // _3
+            u8 ab;      // 0x0
+            u8 cd;      // 0x1
+            u8 op;      // 0x2
+            u8 cl;      // 0x3
         };
 
         struct TevStage {
@@ -354,16 +354,16 @@ namespace nw4r {
                 return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3);
             }
 
-            u8 texCoordGen;         // _0
-            u8 colChan;             // _1
-            u8 texMap;              // _2
-            u8 swapSel;             // _3
-            TevStageInOp colIn;     // _4
-            TevStageInOp alpIn;     // _8
-            u8 indStage;            // _C
-            u8 indBiMt;             // _D
-            u8 indWrap;             // _E
-            u8 indFoAdUtAl;         // _F
+            u8 texCoordGen;         // 0x0
+            u8 colChan;             // 0x1
+            u8 texMap;              // 0x2
+            u8 swapSel;             // 0x3
+            TevStageInOp colIn;     // 0x4
+            TevStageInOp alpIn;     // 0x8
+            u8 indStage;            // 0xC
+            u8 indBiMt;             // 0xD
+            u8 indWrap;             // 0xE
+            u8 indFoAdUtAl;         // 0xF
         };
 
         struct TevSwapMode {
@@ -391,7 +391,7 @@ namespace nw4r {
                 return GXTevColorChan(GX_CH_RED + ((swap >> 6) & 0x3));
             }
 
-            u8 swap;            // _4
+            u8 swap;            // 0x4
         };
 
         struct AlphaCompare {
@@ -427,10 +427,10 @@ namespace nw4r {
                 return ref1;
             }
 
-            u8 comp;        // _0
-            u8 op;          // _1
-            u8 ref0;        // _2
-            u8 ref1;        // _3
+            u8 comp;        // 0x0
+            u8 op;          // 0x1
+            u8 ref0;        // 0x2
+            u8 ref1;        // 0x3
         };
 
         struct BlendMode {

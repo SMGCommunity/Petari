@@ -22,5 +22,5 @@ public:
     u32 _10;
     u32 _14;
     u32 _18;
-    BinaryDataContentHeaderSerializer* mSerializer; // _1C
+    BinaryDataContentHeaderSerializer* mSerializer; // 0x1C
 };

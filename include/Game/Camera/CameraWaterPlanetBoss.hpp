@@ -12,9 +12,9 @@ public:
     virtual bool isEnableToReset() const;
     virtual CamTranslatorBase *createTranslator();
 
-    f32 mAxisY;     // _4C
-    f32 mAxisX;     // _50
-    f32 mDist;      // _54
+    f32 mAxisY;     // 0x4C
+    f32 mAxisX;     // 0x50
+    f32 mDist;      // 0x54
     f32 _58;
     u32 _5C;
     f32 _60;
@@ -22,13 +22,13 @@ public:
     f32 _68;
     bool _6C;
     u8 _6D[3];
-    f32 mWPointX;   // _70
-    f32 mWPointY;   // _74
-    f32 mWPointZ;   // _78
-    f32 mAxisZ;     // _7C
-    f32 mUpY;       // _80
-    f32 mUpX;       // _84
-    f32 mUpZ;       // _88
+    f32 mWPointX;   // 0x70
+    f32 mWPointY;   // 0x74
+    f32 mWPointZ;   // 0x78
+    f32 mAxisZ;     // 0x7C
+    f32 mUpY;       // 0x80
+    f32 mUpX;       // 0x84
+    f32 mUpZ;       // 0x88
     bool _8C;
     u8 _8D[3];
     u32 _90;

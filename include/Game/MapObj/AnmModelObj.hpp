@@ -25,7 +25,7 @@ public:
     void exeMove();
     void exeDone();
 
-    TVec3f mJointPos;         // _C4
+    TVec3f mJointPos;         // 0xC4
 };
 
 class AnmModelSwitchMove : public AnmModelObj {
@@ -71,7 +71,7 @@ public:
     virtual void startInner();
     virtual void stopInner();
 
-    ActorCameraInfo* mCameraInfo;       // _D0
+    ActorCameraInfo* mCameraInfo;       // 0xD0
 };
 
 namespace NrvAnmModelObj {

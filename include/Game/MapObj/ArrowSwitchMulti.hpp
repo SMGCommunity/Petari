@@ -13,9 +13,9 @@ public:
     void onTarget();
     void offTarget();
 
-    JMapIdInfo* mJMapIDInfo;                // _C
-    StageSwitchCtrl* mStageSwitchCtrl;      // _10
-    s32 mTargetIdx;                         // _14
+    JMapIdInfo* mJMapIDInfo;                // 0xC
+    StageSwitchCtrl* mStageSwitchCtrl;      // 0x10
+    s32 mTargetIdx;                         // 0x14
 };
 
 class ArrowSwitchMulti : public LiveActor {
@@ -33,8 +33,8 @@ public:
     void exeWait();
     void exeRotate();
 
-    JMapIdInfo* mIDInfo;                    // _8C
-    ArrowSwitchTarget* mTargetArray[4];     // _90
+    JMapIdInfo* mIDInfo;                    // 0x8C
+    ArrowSwitchTarget* mTargetArray[4];     // 0x90
     f32 _A0;
     f32 _A4;
     u32 _A8;

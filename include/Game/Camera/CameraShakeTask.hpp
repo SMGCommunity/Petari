@@ -16,9 +16,9 @@ public:
     void updatePattern();
     void updateInterval();
 
-    CameraShakePattern *mPattern;   // _0
-    bool mHasEnded;                 // _4
-    bool mIsInfinite;               // _5
+    CameraShakePattern *mPattern;   // 0x0
+    bool mHasEnded;                 // 0x4
+    bool mIsInfinite;               // 0x5
     u8 _6[2];
     u32 _8;
     u32 _C;

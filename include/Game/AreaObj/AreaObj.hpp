@@ -36,20 +36,20 @@ public:
     void awake();
     void sleep();
 
-    AreaForm* mForm;              // _C
-    int mType;                    // _10
-    bool mValid;                  // _14
+    AreaForm* mForm;              // 0xC
+    int mType;                    // 0x10
+    bool mValid;                  // 0x14
     bool _15;
-    bool mAwake;                  // _16
-    s32 mObjArg0;                 // _18
-    s32 mObjArg1;                 // _1C
-    s32 mObjArg2;                 // _20
-    s32 mObjArg3;                 // _24
-    s32 mObjArg4;                 // _28
-    s32 mObjArg5;                 // _2C
-    s32 mObjArg6;                 // _30
-    s32 mObjArg7;                 // _34
-    StageSwitchCtrl* mSwitchCtrl; // _38
+    bool mAwake;                  // 0x16
+    s32 mObjArg0;                 // 0x18
+    s32 mObjArg1;                 // 0x1C
+    s32 mObjArg2;                 // 0x20
+    s32 mObjArg3;                 // 0x24
+    s32 mObjArg4;                 // 0x28
+    s32 mObjArg5;                 // 0x2C
+    s32 mObjArg6;                 // 0x30
+    s32 mObjArg7;                 // 0x34
+    StageSwitchCtrl* mSwitchCtrl; // 0x38
 };
 
 class AreaObjMgr : public NameObj {
@@ -61,6 +61,6 @@ public:
     void entry(AreaObj *);
     AreaObj* find_in(const TVec3f &) const;
 
-    MR::Vector<MR::AssignableArray<AreaObj*> > mArray; // _C
+    MR::Vector<MR::AssignableArray<AreaObj*> > mArray; // 0xC
     s32 _18;
 };

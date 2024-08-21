@@ -12,5 +12,5 @@ public:
 
     void arrangeRound();
 
-    f32 upZ;    // _8C
+    f32 upZ;    // 0x8C
 };

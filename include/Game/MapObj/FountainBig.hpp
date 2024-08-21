@@ -17,8 +17,8 @@ public:
     void exeSpout();
     void exeSpoutEnd();
 
-    TVec3f mClippingRadius;     // _8C
-    s32 mSpoutTimer;            // _98
+    TVec3f mClippingRadius;     // 0x8C
+    s32 mSpoutTimer;            // 0x98
 };
 
 namespace NrvFountainBig {

@@ -12,7 +12,7 @@ public:
     void connect();
     void connect(LiveActor *);
 
-    LiveActor* mHost;   // _0
+    LiveActor* mHost;   // 0x0
     u32 _4;
     TMtx34f _8;
 };

@@ -1,13 +1,13 @@
 #include "Game/MapObj/Candlestand.hpp"
 
 struct Param {
-    const char* mObjName;           // _0
-    f32 mClippingRadius;            // _4
-    f32 mSensorRange;               // _8
+    const char* mObjName;           // 0x0
+    f32 mClippingRadius;            // 0x4
+    f32 mSensorRange;               // 0x8
     f32 _C;
     f32 _10;
     f32 _14;
-    bool mCanUseSwitch;             // _18
+    bool mCanUseSwitch;             // 0x18
 };
 
 namespace {
@@ -16,26 +16,26 @@ namespace {
             "PhantomCandlestand", 
             500.0f,                     // mClippingRadius
             50.0f,                      // mSensorRange
-            220.0f,                     // _C
-            0.0f,                       // _14
+            220.0f,                     // 0xC
+            0.0f,                       // 0x14
             false                       // mCanUseSwitch
         },
         {
             "TeresaMansionCandlestand", 
             800.0f,                     // mClippingRadius
             70.0f,                      // mSensorRange
-            300.0f,                     // _C
-            220.0f,                     // _10
-            -5.0f,                      // _14
+            300.0f,                     // 0xC
+            220.0f,                     // 0x10
+            -5.0f,                      // 0x14
             false                       // mCanUseSwitch
         },
         {
             "CandlestandIceVolcano", 
             500.0f,                     // mClippingRadius
             150.0f,                     // mSensorRange
-            220.0f,                     // _C
-            0.0f,                       // _10
-            0.0f,                       // _14
+            220.0f,                     // 0xC
+            0.0f,                       // 0x10
+            0.0f,                       // 0x14
             true                       // mCanUseSwitch
         }
     };

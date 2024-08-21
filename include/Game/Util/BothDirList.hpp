@@ -11,8 +11,8 @@ namespace MR {
         BothDirPtrLink(void *);
         ~BothDirPtrLink();
 
-        void* mPtr; // _0
-        BothDirPtrList* mPtrList; // _4
+        void* mPtr; // 0x0
+        BothDirPtrList* mPtrList; // 0x4
         u32 _8;
         u32 _C;
     };

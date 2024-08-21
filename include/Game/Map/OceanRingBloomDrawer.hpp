@@ -13,5 +13,5 @@ public:
     virtual void draw() const;
 
 
-    OceanRing* mRing;   // _C
+    OceanRing* mRing;   // 0xC
 };

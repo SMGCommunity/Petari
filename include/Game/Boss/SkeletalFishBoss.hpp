@@ -108,29 +108,29 @@ public:
     }
 
     JointController* mControllers[0xD];
-    s32* mJointIndicies;                            // _C0
-    CollisionParts** mPartsArray;                   // _C4
-    SkeletalFishBossHead* mBossHead;                // _C8
-    SkeletalFishBossScarFlash* mScarFlash;              // _CC
-    ModelObj* mBreakModel;                          // _D0
+    s32* mJointIndicies;                            // 0xC0
+    CollisionParts** mPartsArray;                   // 0xC4
+    SkeletalFishBossHead* mBossHead;                // 0xC8
+    SkeletalFishBossScarFlash* mScarFlash;              // 0xCC
+    ModelObj* mBreakModel;                          // 0xD0
     const HitSensor* _D4;
     TPos3f _D8;
-    SkeletalFishRailControl* mRailControl;          // _108
-    SkeletalFishBossBattleDirector* mBossDirector;  // _10C
+    SkeletalFishRailControl* mRailControl;          // 0x108
+    SkeletalFishBossBattleDirector* mBossDirector;  // 0x10C
     s32 _110;
     s32 _114;
     u32 _118;
-    CameraTargetMtx* mCameraTargetMtx;              // _11C
+    CameraTargetMtx* mCameraTargetMtx;              // 0x11C
     TPos3f _120;
     TPos3f _150;
     TVec3f _180;
-    SceneFunc mSceneFunc;                           // _18C
-    const char* mCurScene;                          // _198
-    const Nerve* mSceneNerve;                             // _19C
+    SceneFunc mSceneFunc;                           // 0x18C
+    const char* mCurScene;                          // 0x198
+    const Nerve* mSceneNerve;                             // 0x19C
     s32 _1A0;
     s32 _1A4;
-    SkeletalFishBossInfo* mBossInfo;                // _1A8
-    SkeletalFishGuardHolder* mGuardHolder;          // _1AC
+    SkeletalFishBossInfo* mBossInfo;                // 0x1A8
+    SkeletalFishGuardHolder* mGuardHolder;          // 0x1AC
     u32 _1B0;
     s32 _1B4;
 };
@@ -162,8 +162,8 @@ public:
     CollisionParts* _CC;
     TMtx34f _D0;
     CollisionParts* _100;
-    ModelObj* mLightModels[2];              // _104
-    ModelObj* mBloomModels[2];              // _10C
+    ModelObj* mLightModels[2];              // 0x104
+    ModelObj* mBloomModels[2];              // 0x10C
     u8 _114;
 };
 

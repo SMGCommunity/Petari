@@ -213,23 +213,23 @@ public:
     inline const DrawStates &getPrevDrawStates() const { return mPrevDrawStates; }
 
     union {
-        MovementStates mMovementStates;    // _8
+        MovementStates mMovementStates;    // 0x8
         struct {
-            u32 mMovementStates_LOW_WORD;     // _8
-            u32 mMovementStates_HIGH_WORD;    // _C
+            u32 mMovementStates_LOW_WORD;     // 0x8
+            u32 mMovementStates_HIGH_WORD;    // 0xC
         };
     };
 
     union {
         MovementStates _10;
         struct {
-            u32 _10_LOW_WORD;     // _10
-            u32 _10_HIGH_WORD;    // _14
+            u32 _10_LOW_WORD;     // 0x10
+            u32 _10_HIGH_WORD;    // 0x14
         };
     };
 
     union {
-        DrawStates mDrawStates;    // _18
+        DrawStates mDrawStates;    // 0x18
         u32 mDrawStates_WORD;
     };
     union {
@@ -241,7 +241,7 @@ public:
     u32 _28;
     u32 _2C;
 
-    DrawStates mPrevDrawStates;    // _30
+    DrawStates mPrevDrawStates;    // 0x30
     // FAKE
     u32 _34;
     // NOT FAKE
@@ -496,23 +496,23 @@ public:
     u16 _76C;
     f32 _770;
     u16 _774;
-    MarioRabbit *mRabbit;        // _778
-    MarioFoo *mFoo;              // _77C
-    MarioSukekiyo *mSukekiyo;    // _780
-    MarioBury *mBury;            // _784
-    MarioWait *mWait;            // _788
-    MarioClimb *mClimb;          // _78C
+    MarioRabbit *mRabbit;        // 0x778
+    MarioFoo *mFoo;              // 0x77C
+    MarioSukekiyo *mSukekiyo;    // 0x780
+    MarioBury *mBury;            // 0x784
+    MarioWait *mWait;            // 0x788
+    MarioClimb *mClimb;          // 0x78C
     TVec3f _790;
-    MarioHang *mHang;              // _79C
-    MarioRecovery *mRecovery;      // _7A0
-    MarioWarp *mWarp;              // _7A4
-    MarioFlip *mFlip;              // _7A8
-    MarioSideStep *mSideStep;      // _7AC
-    MarioFrontStep *mFrontStep;    // _7B0
-    MarioSkate *mSkate;            // _7B4
-    MarioTalk *mTalk;              // _7B8
-    MarioTeresa *mTeresa;          // _7BC
-    MarioDamage *mDamage;          // _7C0
+    MarioHang *mHang;              // 0x79C
+    MarioRecovery *mRecovery;      // 0x7A0
+    MarioWarp *mWarp;              // 0x7A4
+    MarioFlip *mFlip;              // 0x7A8
+    MarioSideStep *mSideStep;      // 0x7AC
+    MarioFrontStep *mFrontStep;    // 0x7B0
+    MarioSkate *mSkate;            // 0x7B4
+    MarioTalk *mTalk;              // 0x7B8
+    MarioTeresa *mTeresa;          // 0x7BC
+    MarioDamage *mDamage;          // 0x7C0
     TVec3f _7C4;
     u16 _7D0;
     TVec3f _7D4;
@@ -521,26 +521,26 @@ public:
     TVec3f _814;
     Triangle *_820;
     TMtx34f _824;
-    MarioFlow *mFlow;                  // _854
-    MarioFireDamage *mFireDamage;      // _858
-    MarioFireDance *mFireDance;        // _85C
-    MarioFireRun *mFireRun;            // _860
-    MarioParalyze *mParalyze;          // _864
-    MarioStun *mStun;                  // _868
-    MarioCrush *mCrush;                // _86C
-    MarioFreeze *mFreeze;              // _870
-    MarioAbyssDamage *mAbyssDamage;    // _874
-    MarioDarkDamage *mDarkDamage;      // _878
-    MarioFaint *mFaint;                // _87C
-    MarioBlown *mBlown;                // _880
-    MarioSwim *mSwim;                  // _884
-    MarioSlider *mSlider;              // _888
-    MarioStep *mStep;                  // _88c
-    MarioBump *mBump;                  // _890
-    MarioMagic *mMagic;                // _894
+    MarioFlow *mFlow;                  // 0x854
+    MarioFireDamage *mFireDamage;      // 0x858
+    MarioFireDance *mFireDance;        // 0x85C
+    MarioFireRun *mFireRun;            // 0x860
+    MarioParalyze *mParalyze;          // 0x864
+    MarioStun *mStun;                  // 0x868
+    MarioCrush *mCrush;                // 0x86C
+    MarioFreeze *mFreeze;              // 0x870
+    MarioAbyssDamage *mAbyssDamage;    // 0x874
+    MarioDarkDamage *mDarkDamage;      // 0x878
+    MarioFaint *mFaint;                // 0x87C
+    MarioBlown *mBlown;                // 0x880
+    MarioSwim *mSwim;                  // 0x884
+    MarioSlider *mSlider;              // 0x888
+    MarioStep *mStep;                  // 0x88c
+    MarioBump *mBump;                  // 0x890
+    MarioMagic *mMagic;                // 0x894
     u8 _898;
-    MarioFpView *mFpView;    // _89C
-    MarioMove *mMove;        // _8A0
+    MarioFpView *mFpView;    // 0x89C
+    MarioMove *mMove;        // 0x8A0
     TVec3f _8A4;
     TVec3f _8B0;
     TVec3f _8BC;

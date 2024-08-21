@@ -18,12 +18,12 @@ public:
      * point from the center of the base of the cone to the apex. The translation column represents
      * the location of the center of the base of the cone, and the z column is unused.
      */
-	TPos3f mLocalMtx;   // _28
-	TPos3f mWorldMtx;   // _58
+	TPos3f mLocalMtx;   // 0x28
+	TPos3f mWorldMtx;   // 0x58
     
-	f32 mValidDegree;   // _88; set in ctor but never used
-	f32 mValidCos;      // _8C; set in ctor but never used
-	f32 mWorldRadius;   // _90
-	bool mEnableBottom; // _94
-	f32 mTopCutRate;    // _98
+	f32 mValidDegree;   // 0x88; set in ctor but never used
+	f32 mValidCos;      // 0x8C; set in ctor but never used
+	f32 mWorldRadius;   // 0x90
+	bool mEnableBottom; // 0x94
+	f32 mTopCutRate;    // 0x98
 };

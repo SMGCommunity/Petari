@@ -35,11 +35,11 @@ public:
     bool testReleaseZ() const;
     bool isChangeAnyState() const;
 
-    const WPad* mPad;       // _0
-    u32 mHold;              // _4
+    const WPad* mPad;       // 0x0
+    u32 mHold;              // 0x4
     u32 _8;
-    u32 mRelease;           // _C
+    u32 mRelease;           // 0xC
     u32 _10;
-    f32 mDelaySec;          // _14
-    f32 mPulseSec;          // _18
+    f32 mDelaySec;          // 0x14
+    f32 mPulseSec;          // 0x18
 };

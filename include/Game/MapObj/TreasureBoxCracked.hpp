@@ -25,10 +25,10 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
 
-    CollisionParts* mBoxCollider;   // _8C
+    CollisionParts* mBoxCollider;   // 0x8C
     TMtx34f _90;
     u32 _C0;
-    s32 mOpenCondition;             // _C4
+    s32 mOpenCondition;             // 0xC4
     u32 _C8;
     u32 _CC;
     TVec3f _D0;

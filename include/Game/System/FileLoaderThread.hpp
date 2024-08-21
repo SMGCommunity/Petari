@@ -5,10 +5,10 @@
 
 struct RequestFileInfo {
     u32 _0;
-    s32 mRequestType;                       // _4
-    char mFileName[0x80];                  // _8
+    s32 mRequestType;                       // 0x4
+    char mFileName[0x80];                  // 0x8
     u32 _88;
-    FileHolderFileEntry* mFileEntry;        // _8C
+    FileHolderFileEntry* mFileEntry;        // 0x8C
 };
 
 class FileLoaderThread : public OSThreadWrapper {

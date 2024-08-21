@@ -33,17 +33,17 @@ public:
     void exeWait();
     void exeMoveStart();
 
-    ActorCameraInfo* mCameraInfo;                                       // _98
-    s32 mMoveConditionType;                                             // _9C
-    s32 mSignMotionType;                                                // _A0
-    s32 mShadowType;                                                    // _A4
-    MR::Vector<MR::FixedArray<MapPartsFunction *, 8> > mFunctionArray;  // _A8
-    MapPartsAppearController* mAppearController;                        // _CC
-    MapPartsRailRotator* mRailRotator;                                  // _D0
-    MapPartsRailMover* mRailMover;                                      // _D4
-    MapPartsRotator* mRotator;                                          // _D8
-    MapPartsRailGuideDrawer* mGuideDrawer;                              // _DC
-    MapPartsRailPosture* mRailPosture;                                  // _E0
+    ActorCameraInfo* mCameraInfo;                                       // 0x98
+    s32 mMoveConditionType;                                             // 0x9C
+    s32 mSignMotionType;                                                // 0xA0
+    s32 mShadowType;                                                    // 0xA4
+    MR::Vector<MR::FixedArray<MapPartsFunction *, 8> > mFunctionArray;  // 0xA8
+    MapPartsAppearController* mAppearController;                        // 0xCC
+    MapPartsRailRotator* mRailRotator;                                  // 0xD0
+    MapPartsRailMover* mRailMover;                                      // 0xD4
+    MapPartsRotator* mRotator;                                          // 0xD8
+    MapPartsRailGuideDrawer* mGuideDrawer;                              // 0xDC
+    MapPartsRailPosture* mRailPosture;                                  // 0xE0
     u8 _E4;
     u8 _E5;
 };

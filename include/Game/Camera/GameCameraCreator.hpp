@@ -14,8 +14,8 @@ public:
     void scanStartPos(); // TODO
     void scanArea(); // TODO
 
-    CameraParamChunkHolder *mChunkHolder;   // _0
+    CameraParamChunkHolder *mChunkHolder;   // 0x0
     const char *_4;
     s32 _8;
-    u8 mCodes[0x100];                       // _C
+    u8 mCodes[0x100];                       // 0xC
 };

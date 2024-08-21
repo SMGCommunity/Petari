@@ -22,36 +22,36 @@ public:
 
     J3DFogInfo& operator=(const J3DFogInfo &);
 
-    u8 mFogType;        // _0
+    u8 mFogType;        // 0x0
     u8 _1;
     u16 _2;
-    f32 mStartZ;        // _4
-    f32 mEndZ;          // _8
-    f32 mNearZ;         // _C
-    f32 mFarZ;          // _10
-    _GXColor mColor;    // _14
+    f32 mStartZ;        // 0x4
+    f32 mEndZ;          // 0x8
+    f32 mNearZ;         // 0xC
+    f32 mFarZ;          // 0x10
+    _GXColor mColor;    // 0x14
     u16 mTable[10];     //  _18
 };
 
 struct J3DTextureSRTInfo {
-    f32 mScaleX;        // _0
-    f32 mScaleY;        // _4
-    s16 mRotation;      // _8
-    s16 mPad;           // _A
-    f32 mTransX;        // _C
-    f32 mTransY;        // _10
+    f32 mScaleX;        // 0x0
+    f32 mScaleY;        // 0x4
+    s16 mRotation;      // 0x8
+    s16 mPad;           // 0xA
+    f32 mTransX;        // 0xC
+    f32 mTransY;        // 0x10
 };
 
 struct J3DTexMtxInfo {
 
     void operator=(const J3DTexMtxInfo &);
 
-    u8 mProjection;                     // _0
-    u8 mInfo;                           // _1
-    s16 mPad;                           // _2
-    TVec3f mCenter;                     // _4
-    J3DTextureSRTInfo mSRTInfo;         // _10
-    Mtx44 mEffectMtx;                    // _24
+    u8 mProjection;                     // 0x0
+    u8 mInfo;                           // 0x1
+    s16 mPad;                           // 0x2
+    TVec3f mCenter;                     // 0x4
+    J3DTextureSRTInfo mSRTInfo;         // 0x10
+    Mtx44 mEffectMtx;                    // 0x24
 };
 
 struct J3DTexMtx {
@@ -63,11 +63,11 @@ static J3DTexMtxInfo j3dDefaultTexMtxInfo;
 
 class J3DLightInfo {
 public:
-    Vec mLightPosition;         // _0
-    Vec mLightDirection;        // _C
-    GXColor mColor;             // _18
-    Vec mCosAtten;              // _1C
-    Vec mDistAtten;             // _28
+    Vec mLightPosition;         // 0x0
+    Vec mLightDirection;        // 0xC
+    GXColor mColor;             // 0x18
+    Vec mCosAtten;              // 0x1C
+    Vec mDistAtten;             // 0x28
 };
 
 class J3DLightObj {

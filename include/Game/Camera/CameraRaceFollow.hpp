@@ -13,10 +13,10 @@ public:
 
     void goRound();
 
-    f32 mWPointX;   // _4C
-    f32 mWPointY;   // _50
-    f32 mAngleA;    // _54
+    f32 mWPointX;   // 0x4C
+    f32 mWPointY;   // 0x50
+    f32 mAngleA;    // 0x54
     bool _58;
     u8 _59[3];
-    f32 mWPointZ;   // _5C
+    f32 mWPointZ;   // 0x5C
 };

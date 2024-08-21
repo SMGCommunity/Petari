@@ -11,9 +11,9 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    f32 mDist;      // _4C
-    f32 mAngleA;    // _50
-    f32 mAngleB;    // _54
+    f32 mDist;      // 0x4C
+    f32 mAngleA;    // 0x50
+    f32 mAngleB;    // 0x54
     f32 _58;
     f32 _5C;
     f32 _60;

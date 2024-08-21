@@ -13,7 +13,7 @@ public:
     void pauseOff();
     bool isContinuousParticle() const;
 
-    JPAEmitterManager* mManager;    // _0
-    bool mPaused;                   // _4
-    bool mStopped;                  // _5 Not sure if it is stopped, but good chance it is.
+    JPAEmitterManager* mManager;    // 0x0
+    bool mPaused;                   // 0x4
+    bool mStopped;                  // 0x5 Not sure if it is stopped, but good chance it is.
 };

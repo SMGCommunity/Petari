@@ -20,17 +20,17 @@ namespace nw4r {
                 return mViewMtx;
             }
 
-            math::MTX34 mViewMtx;               // _4
-            ut::Rect mViewRect;                 // _34
+            math::MTX34 mViewMtx;               // 0x4
+            ut::Rect mViewRect;                 // 0x34
             math::VEC2 mLocationAdjustScale;
-            f32 mGlobalAlpha;                   // _4C
+            f32 mGlobalAlpha;                   // 0x4C
 
             struct {
                 u8 mulViewDraw : 1;
                 u8 influencedAlpha : 1;
                 u8 locationAdjust : 1;
                 u8 invisiblePaneCalculateMtx : 1;
-            } mFlag;                // _50
+            } mFlag;                // 0x50
         };
     };
 };

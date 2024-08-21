@@ -11,10 +11,10 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    TVec3f mWPoint;    // _4C
-    TVec3f mAxis;      // _58
-    f32 mDist;      // _64
-    f32 mAngleA;    // _68
-    f32 mAngleB;    // _6C
-    f32 mUpX;       // _70
+    TVec3f mWPoint;    // 0x4C
+    TVec3f mAxis;      // 0x58
+    f32 mDist;      // 0x64
+    f32 mAngleA;    // 0x68
+    f32 mAngleB;    // 0x6C
+    f32 mUpX;       // 0x70
 };

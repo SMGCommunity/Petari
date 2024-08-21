@@ -10,15 +10,15 @@ typedef enum {
 
 typedef struct _TRKMessage {
     unsigned char _0[8];
-    unsigned int mMessageLength;    // _8
+    unsigned int mMessageLength;    // 0x8
     unsigned int _C;
-    unsigned int mMessage;          // _10
+    unsigned int mMessage;          // 0x10
 } TRKMessage;
 
 typedef struct TRKEvent {
-    int mEventType;         // _0
+    int mEventType;         // 0x0
     int _4;
-    int mBufferIdx;         // _8
+    int mBufferIdx;         // 0x8
 } TRKEvent;
 
 typedef struct TRKBuffer {

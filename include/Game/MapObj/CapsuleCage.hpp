@@ -24,7 +24,7 @@ public:
     void exeOpen();
     void startOpen();
 
-    ActorCameraInfo* mInfo;     // _C4
+    ActorCameraInfo* mInfo;     // 0xC4
 };
 
 namespace NrvCapsuleCage {

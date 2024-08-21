@@ -36,6 +36,6 @@ public:
 
     ClippingInfoGroup* findGroup(const JMapInfoIter &);
 
-    s32 mNumGroups;                         // _C
-    ClippingInfoGroup** mInfoGroups;         // _10
+    s32 mNumGroups;                         // 0xC
+    ClippingInfoGroup** mInfoGroups;         // 0x10
 };

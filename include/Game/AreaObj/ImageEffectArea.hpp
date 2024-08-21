@@ -22,7 +22,7 @@ public:
         return false;
     }
 
-    s32 mEffectType;    // _3C
+    s32 mEffectType;    // 0x3C
 };
 
 class ImageEffectAreaMgr : public AreaObjMgr {

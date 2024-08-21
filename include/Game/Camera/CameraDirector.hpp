@@ -41,7 +41,7 @@ public:
      
     virtual char *getBuffer(unsigned long);
 
-    char mBuffer[0x100]; // _C
+    char mBuffer[0x100]; // 0xC
 };
 
 #define CAMERA_MAN_CAPACITY 8
@@ -132,7 +132,7 @@ public:
     void createTalkCamera();
     void createSubjectiveCamera();
     
-    // _15C[0] and _15C[1] seems to be a struct of size 0x88 with the following layout:
+    // 0x15C[0] and _15C[1] seems to be a struct of size 0x88 with the following layout:
     // 0x00: mZoneID
     // 0x04: mName
     // 0x84: unknown
@@ -140,24 +140,24 @@ public:
     // These are the only members which have been found accessed
 
     CameraTargetObj *_C;
-    CameraManStack *mStack;                     // _10
-    OnlyCamera *mOnlyCamera;                    // _14
-    CameraPoseParam *mPoseParam1;               // _18
-    CameraPoseParam *mPoseParam2;               // _1C
-    CameraHolder *mHolder;                      // _20
-    CameraParamChunkHolder *mChunkHolder;       // _24
-    GameCameraCreator *mCameraCreator;          // _28
-    CameraRailHolder *mRailHolder;              // _2C
-    CameraRegisterHolder *mRegisterHolder;      // _30
-    CameraTargetHolder *mTargetHolder;          // _34
-    CameraShaker *mShaker;                      // _38
-    CameraViewInterpolator *mViewInterpolator;  // _3C
-    CameraCover *mCover;                        // _40
-    CameraRotChecker *mRotChecker;              // _44
-    CameraManGame *mCameraManGame;              // _48
-    CameraManEvent *mCameraManEvent;            // _4C
-    CameraManPause *mCameraManPause;            // _50
-    CameraManSubjective *mCameraManSubjective;  // _54
+    CameraManStack *mStack;                     // 0x10
+    OnlyCamera *mOnlyCamera;                    // 0x14
+    CameraPoseParam *mPoseParam1;               // 0x18
+    CameraPoseParam *mPoseParam2;               // 0x1C
+    CameraHolder *mHolder;                      // 0x20
+    CameraParamChunkHolder *mChunkHolder;       // 0x24
+    GameCameraCreator *mCameraCreator;          // 0x28
+    CameraRailHolder *mRailHolder;              // 0x2C
+    CameraRegisterHolder *mRegisterHolder;      // 0x30
+    CameraTargetHolder *mTargetHolder;          // 0x34
+    CameraShaker *mShaker;                      // 0x38
+    CameraViewInterpolator *mViewInterpolator;  // 0x3C
+    CameraCover *mCover;                        // 0x40
+    CameraRotChecker *mRotChecker;              // 0x44
+    CameraManGame *mCameraManGame;              // 0x48
+    CameraManEvent *mCameraManEvent;            // 0x4C
+    CameraManPause *mCameraManPause;            // 0x50
+    CameraManSubjective *mCameraManSubjective;  // 0x54
     bool _58;
     u8 _59[3];
     s32 _5C[2][34];
@@ -165,13 +165,13 @@ public:
     bool _170;
     u8 _171[3];
     s32 _174;
-    bool mStartCameraCreated;                   // _178
+    bool mStartCameraCreated;                   // 0x178
     u8 _179[3];
-    CameraTargetMtx *mTargetMatrix;             // _17C
+    CameraTargetMtx *mTargetMatrix;             // 0x17C
     TMtx34f _180;
-    bool mRequestCameraManReset;                // _1B0
+    bool mRequestCameraManReset;                // 0x1B0
     bool _1B1;
-    bool mIsSubjectiveCamera;                   // _1B2
+    bool mIsSubjectiveCamera;                   // 0x1B2
     bool _1B3;
     s32 _1B4;
     u8 _1B8[4];

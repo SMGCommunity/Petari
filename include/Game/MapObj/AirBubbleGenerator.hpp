@@ -14,8 +14,8 @@ public:
     void exeGenerate();
 
     u32 _8C;
-    s32 mSpawnDelay;        // _90
-    s32 mBubbleDuration;    // _94
+    s32 mSpawnDelay;        // 0x90
+    s32 mBubbleDuration;    // 0x94
 };
 
 namespace NrvAirBubbleGenerator {

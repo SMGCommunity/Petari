@@ -30,10 +30,10 @@ public:
     const RequestFileInfo* getRequestFileInfoConst(const char *) const;
     RequestFileInfo* addRequest(const char *);
 
-    FileLoaderThread* mLoaderThread;        // _0
-    OSMutex mMutex;                         // _4
-    RequestFileInfo* mRequestFileInfos;     // _1C
-    s32 mRequestedFileCount;                // _20
-    FileHolder* mFileHolder;                // _24
-    ArchiveHolder* mArchiveHolder;          // _28
+    FileLoaderThread* mLoaderThread;        // 0x0
+    OSMutex mMutex;                         // 0x4
+    RequestFileInfo* mRequestFileInfos;     // 0x1C
+    s32 mRequestedFileCount;                // 0x20
+    FileHolder* mFileHolder;                // 0x24
+    ArchiveHolder* mArchiveHolder;          // 0x28
 };

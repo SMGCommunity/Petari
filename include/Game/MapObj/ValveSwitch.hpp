@@ -22,7 +22,7 @@ public:
 
     LiveActor* _8C;
     TPos3f _90;
-    MapObjConnector* mObjConnector;     // _C0
+    MapObjConnector* mObjConnector;     // 0xC0
     bool _C4;
 };
 

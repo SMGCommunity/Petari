@@ -4,8 +4,8 @@
 #include "JSystem/JUtility/JUTTexture.hpp"
 
 struct TimingInfo {
-    const char* name;   // _0
-    s32 timing;         // _4
+    const char* name;   // 0x0
+    s32 timing;         // 0x4
     u32 _8;
     u32 _C;
 };
@@ -38,8 +38,8 @@ public:
     const TimingInfo* findFromName(const char *) const;
 
     const char* _C;
-    const char* mTimingType;    // _10
-    JUTTexture* mTexture;       // _14
+    const char* mTimingType;    // 0x10
+    JUTTexture* mTexture;       // 0x14
     u8 _18;
 };
 
@@ -50,5 +50,5 @@ public:
     virtual ~CaptureScreenActor();
     virtual void draw() const;
 
-    const char* mCameraName;    // _C
+    const char* mCameraName;    // 0xC
 };

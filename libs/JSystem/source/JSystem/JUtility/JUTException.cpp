@@ -5,12 +5,12 @@
 
 
 struct CallbackObject {
-    CallbackFunc callback;                  // _0
-    u16 error;                              // _4
-    u16 pad;                                // _6
-    OSContext* context;                     // _8
-    int param_3;                            // _C
-    int param_4;                            // _10
+    CallbackFunc callback;                  // 0x0
+    u16 error;                              // 0x4
+    u16 pad;                                // 0x6
+    OSContext* context;                     // 0x8
+    int param_3;                            // 0xC
+    int param_4;                            // 0x10
 };
 
 static CallbackObject exCallbackObject;

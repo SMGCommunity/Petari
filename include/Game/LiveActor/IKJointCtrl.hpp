@@ -8,13 +8,13 @@
 class LiveActor;
 
 struct IKJointCtrlParam {
-    const char* mName;      // _0
-    f32 mNearLimitRate;     // _4
-    f32 mFarLimitRate;      // _8
-    f32 mEndDirMaxDegree;   // _C
-    f32 mEndLocalDirX;      // _10
-    f32 mEndLocalDirY;      // _14
-    f32 mEndLocalDirZ;      // _18
+    const char* mName;      // 0x0
+    f32 mNearLimitRate;     // 0x4
+    f32 mFarLimitRate;      // 0x8
+    f32 mEndDirMaxDegree;   // 0xC
+    f32 mEndLocalDirX;      // 0x10
+    f32 mEndLocalDirY;      // 0x14
+    f32 mEndLocalDirZ;      // 0x18
 };
 
 class IKJointCtrl {
@@ -32,22 +32,22 @@ public:
     void disableCallBack();
     void enableCallBack();
 
-    const char* mName;                                      // _0
+    const char* mName;                                      // 0x0
     TMtx34f _4;
     TMtx34f _34;
-    LiveActor* mActor;                                      // _64
-    IKJoint* mJoint;                                        // _68
-    JointControlDelegator<IKJointCtrl>* mRootCtrl;          // _6C
-    JointControlDelegator<IKJointCtrl>* mMiddleCtrl;        // _70
-    JointControlDelegator<IKJointCtrl>* mEndCtrl;           // _74
+    LiveActor* mActor;                                      // 0x64
+    IKJoint* mJoint;                                        // 0x68
+    JointControlDelegator<IKJointCtrl>* mRootCtrl;          // 0x6C
+    JointControlDelegator<IKJointCtrl>* mMiddleCtrl;        // 0x70
+    JointControlDelegator<IKJointCtrl>* mEndCtrl;           // 0x74
     TVec3f _78;
-    TVec3f mEndLocalDir;                                    // _84
+    TVec3f mEndLocalDir;                                    // 0x84
     f32 _90;
     f32 _94;
     f32 _98;
-    f32 mNearLimitRate;                                     // _9C
-    f32 mFarLimitRate;                                      // _A0
-    f32 mEndDirMaxDegree;                                   // _A4
+    f32 mNearLimitRate;                                     // 0x9C
+    f32 mFarLimitRate;                                      // 0xA0
+    f32 mEndDirMaxDegree;                                   // 0xA4
     f32 _A8;
     f32 _AC;
     u16 _B0;
@@ -72,10 +72,10 @@ public:
     void setCallBackFunction();
     IKJointCtrl* findIKJointCtrl(const char *);
 
-    IKJointCtrl** mControls;    // _0
-    s32 mNumControls;           // _4
+    IKJointCtrl** mControls;    // 0x0
+    s32 mNumControls;           // 0x4
     s32 _8;
-    LiveActor* mActor;          // _C
+    LiveActor* mActor;          // 0xC
     u8 _10;
 };
 

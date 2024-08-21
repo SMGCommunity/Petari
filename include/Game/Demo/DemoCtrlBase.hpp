@@ -16,7 +16,7 @@ public:
     bool isExistEndFrame() const;
     bool tryStart();
 
-    LiveActor* mActor;  // _0
+    LiveActor* mActor;  // 0x0
     u32 _4;
     const char* _8;
     s32 _C;

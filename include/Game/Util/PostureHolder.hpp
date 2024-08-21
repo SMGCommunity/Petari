@@ -9,7 +9,7 @@ public:
     void store(const LiveActor *);
     void restore(LiveActor *);
 
-    TVec3f mScale;      // _0
-    TVec3f mRotation;   // _C
-    TVec3f mPosition;   // _18
+    TVec3f mScale;      // 0x0
+    TVec3f mRotation;   // 0xC
+    TVec3f mPosition;   // 0x18
 };

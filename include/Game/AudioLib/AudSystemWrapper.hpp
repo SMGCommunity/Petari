@@ -21,16 +21,16 @@ public:
 
     void updateAudioSystem();
 
-    AudSystem* mSystem;                 // _0
+    AudSystem* mSystem;                 // 0x0
     JKRSolidHeap* _4;
     JKRHeap* _8;
-    void* mSMRData;                     // _C
-    JKRArchive* mJaiSeqArchive;         // _10
-    JKRArchive* mJaiCordArchive;        // _14
-    JKRArchive* mJaiMeArchive;          // _18
-    JKRArchive* mJaiRemixSeqArchive;    // _1C
+    void* mSMRData;                     // 0xC
+    JKRArchive* mJaiSeqArchive;         // 0x10
+    JKRArchive* mJaiCordArchive;        // 0x14
+    JKRArchive* mJaiMeArchive;          // 0x18
+    JKRArchive* mJaiRemixSeqArchive;    // 0x1C
     JKRExpHeap* _20;
-    void* mSpeakerData;                 // _24
+    void* mSpeakerData;                 // 0x24
     u8 _28;
     u8 _29;
     u8 _2A;

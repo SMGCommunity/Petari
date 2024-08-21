@@ -20,9 +20,9 @@ public:
 
     NameObj* find(const char *);
 
-    NameObj** mObjs; // _0
+    NameObj** mObjs; // 0x0
     u32 _4;
-    u32 mObjCount; // _8
+    u32 mObjCount; // 0x8
     u8 _C[0x4C-0xC];
     u32 _4C;
 };

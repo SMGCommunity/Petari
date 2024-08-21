@@ -13,8 +13,8 @@ public:
     void exeOpen();
     void exeWaitAfterOpen();
 
-    LodCtrl* mPlanetLODCtrl;            // _8C
-    CollisionParts* mCollisionParts;    // _90
+    LodCtrl* mPlanetLODCtrl;            // 0x8C
+    CollisionParts* mCollisionParts;    // 0x90
 };
 
 namespace NrvHatchWaterPlanet {

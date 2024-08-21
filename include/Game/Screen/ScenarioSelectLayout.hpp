@@ -54,20 +54,20 @@ public:
     void exeDisappearCometWarning();
     inline void exeCancelFadeOut();
 
-    s32 mSelectedScenarioNo;                // _24
+    s32 mSelectedScenarioNo;                // 0x24
     u32 _24;
     u8 _28;
-    TMtx34f mEffectHostMtx;                 // _2C
-    ScenarioSelectStar** mStars;            // _5C
-    MultiSceneActor* mScenarioSky;          // _60
-    EffectSystem* mEffectSystem;            // _64
-    const CameraContext* mCameraContext;    // _68
-    TVec2f mNewTextFollowPos;               // _6C
-    TVec2f mNewGreenTextFollowPos;          // _74
-    TVec2f mQuestionPane[2];                // _7C
-    TVec2f mStarTopFollowPos;               // _8C
-    BackButton* mBackButton;                // _94
-    TVec2f mMarioIconFollowPos;             // _98
+    TMtx34f mEffectHostMtx;                 // 0x2C
+    ScenarioSelectStar** mStars;            // 0x5C
+    MultiSceneActor* mScenarioSky;          // 0x60
+    EffectSystem* mEffectSystem;            // 0x64
+    const CameraContext* mCameraContext;    // 0x68
+    TVec2f mNewTextFollowPos;               // 0x6C
+    TVec2f mNewGreenTextFollowPos;          // 0x74
+    TVec2f mQuestionPane[2];                // 0x7C
+    TVec2f mStarTopFollowPos;               // 0x8C
+    BackButton* mBackButton;                // 0x94
+    TVec2f mMarioIconFollowPos;             // 0x98
     const char* _A0;
     u32 _A4;
     s32 _A8;

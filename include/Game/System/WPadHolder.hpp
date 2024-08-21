@@ -11,8 +11,8 @@ public:
     KPADStatus* getKPadStatus(u32) const;
     u32 getValidStatusCount() const;
 
-    KPADStatus* mStatusArray;       // _0 
-    u32 mValidStatusCount;          // _4
+    KPADStatus* mStatusArray;       // 0x0 
+    u32 mValidStatusCount;          // 0x4
 };
 
 class WPadHolder {
@@ -28,7 +28,7 @@ public:
     WPad* getWPad(s32);
     static void setConnectCallback();
 
-    WPad* mPads[2];                             // _0
-    WPadReadDataInfo* mDataInfoArray;           // _8
-    u32 mHolderMode;                            // _C
+    WPad* mPads[2];                             // 0x0
+    WPadReadDataInfo* mDataInfoArray;           // 0x8
+    u32 mHolderMode;                            // 0xC
 };

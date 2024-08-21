@@ -12,7 +12,7 @@ public:
 
     void exeWait();
 
-    const char* mBossName;          // _8C
+    const char* mBossName;          // 0x8C
 };
 
 namespace NrvBossKameckBarrier {

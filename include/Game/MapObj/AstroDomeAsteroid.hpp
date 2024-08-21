@@ -21,7 +21,7 @@ public:
         MR::setBckRate(this, 1.0f);
     }
 
-    TPos3f mRotationMtx;        // _8C
+    TPos3f mRotationMtx;        // 0x8C
 };
 
 namespace NrvAstroDomeAsteroid {

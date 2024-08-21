@@ -18,17 +18,17 @@ public:
     void setShakeOffset(float, float);
     void updateProjectionMtx();
 
-    TPos3f mView;          // _C
-    TPos3f mViewInv;       // _3C
-    TPos3f mProjection;    // _6C
+    TPos3f mView;          // 0xC
+    TPos3f mViewInv;       // 0x3C
+    TPos3f mProjection;    // 0x6C
     f32 _9C;
     f32 _A0;
     f32 _A4;
     f32 _A8;
     f32 _AC;
-    f32 mNearZ;             // _B0
-    f32 mFarZ;              // _B4
-    f32 mFovy;              // _B8
-    f32 mShakeOffsetX;      // _BC
-    f32 mShakeOffsetY;      // _C0
+    f32 mNearZ;             // 0xB0
+    f32 mFarZ;              // 0xB4
+    f32 mFovy;              // 0xB8
+    f32 mShakeOffsetX;      // 0xBC
+    f32 mShakeOffsetY;      // 0xC0
 };

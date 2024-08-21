@@ -9,5 +9,5 @@ public:
     virtual ~PowerStarAppearPoint();
     virtual void init(const JMapInfoIter &);
 
-    ActorCameraInfo* mCameraInfo;   // _8C
+    ActorCameraInfo* mCameraInfo;   // 0x8C
 };

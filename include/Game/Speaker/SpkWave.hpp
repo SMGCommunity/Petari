@@ -20,5 +20,5 @@ public:
     u8** getWave(long) const;
     WaveData* getWaveData(long) const;
 
-    void* mResource;    // _0, Raw data of AudioRes/SpkRes/SpkRes.arc
+    void* mResource;    // 0x0, Raw data of AudioRes/SpkRes/SpkRes.arc
 };

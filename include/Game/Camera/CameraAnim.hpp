@@ -4,47 +4,47 @@
 #include "revolution.h"
 
 struct CanmFileHeader {
-    u8 mMagic[4];       // _0
-    u8 mType[4];        // _4
+    u8 mMagic[4];       // 0x0
+    u8 mType[4];        // 0x4
     s32 _8;
     s32 _C;
     s32 _10;
     s32 _14;
-    u32 mNrFrames;      // _18
-    u32 mValueOffset;   // _1C
+    u32 mNrFrames;      // 0x18
+    u32 mValueOffset;   // 0x1C
 };
 
 struct CanmKeyFrameComponentInfo {
-    u32 mCount;     // _0
-    u32 mOffset;    // _4
-    u32 mType;      // _8
+    u32 mCount;     // 0x0
+    u32 mOffset;    // 0x4
+    u32 mType;      // 0x8
 };
 
 struct CanmKeyFrameInfo {
-    CanmKeyFrameComponentInfo mPosX;        // _0
-    CanmKeyFrameComponentInfo mPosY;        // _C
-    CanmKeyFrameComponentInfo mPosZ;        // _18
-    CanmKeyFrameComponentInfo mWatchPosX;   // _24
-    CanmKeyFrameComponentInfo mWatchPosY;   // _30
-    CanmKeyFrameComponentInfo mWatchPosZ;   // _3C
-    CanmKeyFrameComponentInfo mTwist;       // _48
-    CanmKeyFrameComponentInfo mFovy;        // _54
+    CanmKeyFrameComponentInfo mPosX;        // 0x0
+    CanmKeyFrameComponentInfo mPosY;        // 0xC
+    CanmKeyFrameComponentInfo mPosZ;        // 0x18
+    CanmKeyFrameComponentInfo mWatchPosX;   // 0x24
+    CanmKeyFrameComponentInfo mWatchPosY;   // 0x30
+    CanmKeyFrameComponentInfo mWatchPosZ;   // 0x3C
+    CanmKeyFrameComponentInfo mTwist;       // 0x48
+    CanmKeyFrameComponentInfo mFovy;        // 0x54
 };
 
 struct CamnFrameComponentInfo {
-    u32 mCount;     // _0
-    u32 mOffset;    // _4
+    u32 mCount;     // 0x0
+    u32 mOffset;    // 0x4
 };
 
 struct CanmFrameInfo {
-    CamnFrameComponentInfo mPosX;       // _0
-    CamnFrameComponentInfo mPosY;       // _8
-    CamnFrameComponentInfo mPosZ;       // _10
-    CamnFrameComponentInfo mWatchPosX;  // _18
-    CamnFrameComponentInfo mWatchPosY;  // _20
-    CamnFrameComponentInfo mWatchPosZ;  // _28
-    CamnFrameComponentInfo mTwist;      // _30
-    CamnFrameComponentInfo mFovy;       // _38
+    CamnFrameComponentInfo mPosX;       // 0x0
+    CamnFrameComponentInfo mPosY;       // 0x8
+    CamnFrameComponentInfo mPosZ;       // 0x10
+    CamnFrameComponentInfo mWatchPosX;  // 0x18
+    CamnFrameComponentInfo mWatchPosY;  // 0x20
+    CamnFrameComponentInfo mWatchPosZ;  // 0x28
+    CamnFrameComponentInfo mTwist;      // 0x30
+    CamnFrameComponentInfo mFovy;       // 0x38
 };
 
 class BaseCamAnmDataAccessor {
@@ -85,8 +85,8 @@ public:
     float get4f(float, unsigned long, unsigned long) const;
     float calcHermite(float, float, float, float, float, float, float) const;
 
-    CanmKeyFrameInfo *mInfo;    // _4
-    f32 *mValues;               // _8
+    CanmKeyFrameInfo *mInfo;    // 0x4
+    f32 *mValues;               // 0x8
 };
 
 class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
@@ -106,8 +106,8 @@ public:
 
     float get(float, unsigned long, unsigned long) const;
 
-    CanmFrameInfo *mInfo;   // _4
-    f32 *mValues;           // _8
+    CanmFrameInfo *mInfo;   // 0x4
+    f32 *mValues;           // 0x8
 };
 
 class CameraAnim : public Camera {
@@ -129,17 +129,17 @@ public:
     
     s32 _4C;
     s32 _50;
-    u32 mNrFrames;                              // _54
-    u8 mIsKey;                                  // _58
+    u32 mNrFrames;                              // 0x54
+    u8 mIsKey;                                  // 0x58
     u8 _59[3];
-    f32 mSpeed;                                 // _5C
-    f32 mCurrentFrame;                          // _60
-    BaseCamAnmDataAccessor *mFileDataAccessor;  // _64
-    CamAnmDataAccessor *mDataAccessor;          // _68
-    KeyCamAnmDataAccessor *mKeyDataAccessor;    // _6C
+    f32 mSpeed;                                 // 0x5C
+    f32 mCurrentFrame;                          // 0x60
+    BaseCamAnmDataAccessor *mFileDataAccessor;  // 0x64
+    CamAnmDataAccessor *mDataAccessor;          // 0x68
+    KeyCamAnmDataAccessor *mKeyDataAccessor;    // 0x6C
     u32 mNrValues;
     s32 _74;
-    u8 *mFileData;                              // _78
+    u8 *mFileData;                              // 0x78
     u8 _7C;
     u8 _7D[3];
 };

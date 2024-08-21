@@ -21,8 +21,8 @@ public:
     public:
         ChunkFIFOItem();
 
-        CameraParamChunkEvent *mChunk;  // _0
-        CameraTargetArg mTargetArg;     // _4
+        CameraParamChunkEvent *mChunk;  // 0x0
+        CameraTargetArg mTargetArg;     // 0x4
         u32 _14;
     };
     
@@ -32,8 +32,8 @@ public:
             
         }
 
-        ChunkFIFOItem mFirst;   // _0
-        ChunkFIFOItem mSecond;  // _18
+        ChunkFIFOItem mFirst;   // 0x0
+        ChunkFIFOItem mSecond;  // 0x18
     };
 
     CameraManEvent(CameraHolder *, CameraParamChunkHolder *, const char *);
@@ -76,11 +76,11 @@ public:
     bool isInFIFO(CameraParamChunk *) const;
     bool isAnimCameraEnd(long, const char *) const;
 
-    CameraHolder *mHolder;                      // _48
-    CameraParamChunkHolder *mChunkHolder;       // _4C
-    Camera *mCamera;                            // _50
-    ChunkFIFOItemPair mItems[NR_FIFO_ITEMS];    // _54
-    CameraParamChunkEvent *mChunk;              // _B4
+    CameraHolder *mHolder;                      // 0x48
+    CameraParamChunkHolder *mChunkHolder;       // 0x4C
+    Camera *mCamera;                            // 0x50
+    ChunkFIFOItemPair mItems[NR_FIFO_ITEMS];    // 0x54
+    CameraParamChunkEvent *mChunk;              // 0xB4
     u32 _B8;
     bool _BC;
     u8 _BD[3];

@@ -54,9 +54,9 @@ public:
     void exeBreak();
     void exeFreeze();
 
-    RockCreator* mParentCreator;        // _8C
-    Type mRockType;                     // _90
-    ModelObj* mBreakModel;              // _94
+    RockCreator* mParentCreator;        // 0x8C
+    Type mRockType;                     // 0x90
+    ModelObj* mBreakModel;              // 0x94
     f32 _98;
     u8 _9C;
     bool _9D;
@@ -66,7 +66,7 @@ public:
     TMtx34f _B4;
     TVec3f _E4;
     f32 _F0;
-    s32 mCurrentRailPoint;              // _F4
+    s32 mCurrentRailPoint;              // 0xF4
     TVec3f _F8;
     TVec3f _104;
     u32 _110;
@@ -74,14 +74,14 @@ public:
     u8 _115;
     u8 _116;
     u8 _117;
-    s32 mBarkTimer;                     // _118
+    s32 mBarkTimer;                     // 0x118
     u32 _11C;
     TVec3f _120;
     const Nerve* _12C;
     u32 _130;
     u32 _134;
     f32 _138;
-    s32 mRollSoundTimer;                // _13C
+    s32 mRollSoundTimer;                // 0x13C
     s32 _140;
 };
 

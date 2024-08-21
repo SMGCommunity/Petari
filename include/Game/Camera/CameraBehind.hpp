@@ -13,8 +13,8 @@ public:
     
     void calcPosAndUp();
 
-    f32 mAngleB;    // _4C
-    f32 mAngleA;    // _50
-    f32 mDist;      // _54
-    f32 mAxisX;     // _58
+    f32 mAngleB;    // 0x4C
+    f32 mAngleA;    // 0x50
+    f32 mDist;      // 0x54
+    f32 mAxisX;     // 0x58
 };

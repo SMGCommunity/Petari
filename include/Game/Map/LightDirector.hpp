@@ -19,10 +19,10 @@ public:
     void loadLightCoin() const;
 
     u32 _C;
-    LightDataHolder* mHolder;           // _10
-    LightZoneDataHolder* mZoneHolder;   // _14
+    LightDataHolder* mHolder;           // 0x10
+    LightZoneDataHolder* mZoneHolder;   // 0x14
     u32 _18;
     u32 _1C; // ActorLightCtrl
-    LightPointCtrl* mPointCtrl;         // _20
-    ResourceHolder* mResourceHolder;    // _24
+    LightPointCtrl* mPointCtrl;         // 0x20
+    ResourceHolder* mResourceHolder;    // 0x24
 };

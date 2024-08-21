@@ -17,7 +17,7 @@ public:
     bool get(int) const;
     void set(int, bool);
 
-    u32 mFlags[0x4];    // _0
+    u32 mFlags[0x4];    // 0x0
 };
 
 class ZoneSwitch : public BitFlag128 {
@@ -31,15 +31,15 @@ public:
 
     s32 getSwitchNo() const;
 
-    JMapIdInfo* mIDInfo;    // _0
-    bool mIsGlobal;         // _4
+    JMapIdInfo* mIDInfo;    // 0x0
+    bool mIsGlobal;         // 0x4
 };
 
 class StageSwitchContainer : public NameObj {
 public:
     struct ContainerSwitch {
-        s32 mData;              // _0
-        ZoneSwitch* mSwitch;    // _4
+        s32 mData;              // 0x0
+        ZoneSwitch* mSwitch;    // 0x4
     };
 
     StageSwitchContainer();
@@ -50,9 +50,9 @@ public:
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo &);
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo &);
 
-    ContainerSwitch mSwitches[20];  // _C
-    s32 mCount;                     // _AC
-    ZoneSwitch* mGlobalSwitches;    // _B0
+    ContainerSwitch mSwitches[20];  // 0xC
+    s32 mCount;                     // 0xAC
+    ZoneSwitch* mGlobalSwitches;    // 0xB0
 };
 
 class StageSwitchFunction {
@@ -83,10 +83,10 @@ public:
     bool isOnAllSwitchAfterB(int) const;
     bool isOnAnyOneSwitchAfterB(int) const;
 
-    SwitchIdInfo* mSW_A;            // _0
-    SwitchIdInfo* mSW_B;            // _4
-    SwitchIdInfo* mSW_Appear;       // _8
-    SwitchIdInfo* mSW_Dead;         // _C
+    SwitchIdInfo* mSW_A;            // 0x0
+    SwitchIdInfo* mSW_B;            // 0x4
+    SwitchIdInfo* mSW_Appear;       // 0x8
+    SwitchIdInfo* mSW_Dead;         // 0xC
 };
 
 namespace MR {

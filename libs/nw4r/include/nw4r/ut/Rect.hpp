@@ -14,10 +14,10 @@ namespace nw4r {
                 mBottom = bottom;
             }
 
-            f32 mLeft;      // _0
-            f32 mTop;       // _4
-            f32 mRight;     // _8
-            f32 mBottom;    // _C
+            f32 mLeft;      // 0x0
+            f32 mTop;       // 0x4
+            f32 mRight;     // 0x8
+            f32 mBottom;    // 0xC
         };
     };
 };

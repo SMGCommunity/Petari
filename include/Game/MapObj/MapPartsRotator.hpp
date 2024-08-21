@@ -57,19 +57,19 @@ public:
     void exeRotateStart();
 
     f32 _18;
-    f32 mRotateAngle;       // _1C
-    s32 mRotateStopTime;    // _20
-    f32 mTargetAngle;       // _24
-    f32 mRotateSpeed;       // _28
-    f32 mAngle;             // _2C
-    s32 mRotateAxis;        // _30
-    s32 mRotateAccelType;   // _34
-    s32 mRotateType;        // _38
-    s32 mSignMotionType;    // _3C
+    f32 mRotateAngle;       // 0x1C
+    s32 mRotateStopTime;    // 0x20
+    f32 mTargetAngle;       // 0x24
+    f32 mRotateSpeed;       // 0x28
+    f32 mAngle;             // 0x2C
+    s32 mRotateAxis;        // 0x30
+    s32 mRotateAccelType;   // 0x34
+    s32 mRotateType;        // 0x38
+    s32 mSignMotionType;    // 0x3C
     TMtx34f _40;
     TMtx34f _70;
     f32 _A0;
-    bool mIsOnReverse;  // _A4
+    bool mIsOnReverse;  // 0xA4
 };
 
 namespace NrvMapPartsRotator {

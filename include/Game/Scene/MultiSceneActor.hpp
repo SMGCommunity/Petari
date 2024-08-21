@@ -30,14 +30,14 @@ public:
     bool isNerve(const Nerve *) const;
     void initNerve(const Nerve *);
 
-    TVec3f mTranslation;                        // _C
-    TVec3f mRotation;                           // _18
-    TVec3f mScale;                              // _24
+    TVec3f mTranslation;                        // 0xC
+    TVec3f mRotation;                           // 0x18
+    TVec3f mScale;                              // 0x24
     bool _30;
-    ModelManager* mModelMgr;                    // _34
-    EffectSystem* mEffectSystem;                // _38
-    MultiSceneEffectKeeper* mEffectKeeper;      // _3C
-    Spine* mNerve;                              // _40
+    ModelManager* mModelMgr;                    // 0x34
+    EffectSystem* mEffectSystem;                // 0x38
+    MultiSceneEffectKeeper* mEffectKeeper;      // 0x3C
+    Spine* mNerve;                              // 0x40
 };
 
 class MultiScene {

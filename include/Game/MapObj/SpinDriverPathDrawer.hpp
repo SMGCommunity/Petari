@@ -12,11 +12,11 @@ public:
 
     void initDraw();
 
-    JUTTexture* mOrangeTexture; // _C
-    JUTTexture* mGreenTexture;  // _10
-    JUTTexture* mPinkTexture;   // _14
-    JUTTexture* mMaskTexture;   // _18
-    bool mIsPathAtOpa;          // _1C
+    JUTTexture* mOrangeTexture; // 0xC
+    JUTTexture* mGreenTexture;  // 0x10
+    JUTTexture* mPinkTexture;   // 0x14
+    JUTTexture* mMaskTexture;   // 0x18
+    bool mIsPathAtOpa;          // 0x1C
 };
 
 class SpinDriverPathDrawer : public LiveActor {
@@ -41,20 +41,20 @@ public:
     void setFadeScale(f32);
     void sendPoint(const TVec3f &, f32, f32);
 
-    SpinDriverShootPath* mShootPath;    // _8C
+    SpinDriverShootPath* mShootPath;    // 0x8C
     TVec3f* _90;
     TVec3f* _94;
     TVec3f* _98;
     void* _9C;
-    s32 mPositionCount;                 // _A0
+    s32 mPositionCount;                 // 0xA0
     u32 _A4;
     u32 _A8;
     f32 _AC;
     f32 _B0;
-    s32 mColor;                         // _B4
+    s32 mColor;                         // 0xB4
     f32 _B8;
-    f32 mFadeScale;                     // _BC
-    f32 mMaskLength;                    // _C0
+    f32 mFadeScale;                     // 0xBC
+    f32 mMaskLength;                    // 0xC0
 };
 
 namespace MR {

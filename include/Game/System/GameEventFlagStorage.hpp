@@ -17,5 +17,5 @@ public:
     void set(const GameEventFlag *, bool);
     bool isOn(const GameEventFlag *) const;
 
-    MR::BitArray* mFlagBitArray;    // _4
+    MR::BitArray* mFlagBitArray;    // 0x4
 };

@@ -13,6 +13,6 @@ public:
     bool isRumbling() const;
     void connectPane(LayoutActor *, const char *);
 
-    RumbleCalculatorCosMultLinear* mRumbleCalculator;   // _0
-    TVec2f mFollowPos;                                  // _4
+    RumbleCalculatorCosMultLinear* mRumbleCalculator;   // 0x0
+    TVec2f mFollowPos;                                  // 0x4
 };

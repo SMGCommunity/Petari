@@ -14,8 +14,8 @@ public:
 
     void addChildPacket(J3DPacket *);
 
-    J3DPacket* mNext;   // _4
-    J3DPacket* mFirst;  // _8
+    J3DPacket* mNext;   // 0x4
+    J3DPacket* mFirst;  // 0x8
 };
 
 class J3DDisplayListObj {
@@ -35,6 +35,6 @@ public:
 
     u32 _0;
     u32 _4;
-    u32 mSize;      // _8
-    u32 mMaxSize;   // _C
+    u32 mSize;      // 0x8
+    u32 mMaxSize;   // 0xC
 };

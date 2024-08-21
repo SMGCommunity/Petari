@@ -28,5 +28,5 @@ public:
     u32 getParam32(int) const;
     wchar_t* getParamPtr(int) const;
 
-    const wchar_t* mMessage;    // _0
+    const wchar_t* mMessage;    // 0x0
 };

@@ -41,14 +41,14 @@ public:
         }
     }
 
-    TMtx34f mMatrix;                // _10
-    TVec3f mPosition;               // _40
-    TVec3f mLastMove;               // _4C
-    TVec3f mGravityVector;          // _58
-    TVec3f mUp;                     // _64
-    TVec3f mFront;                  // _70
-    TVec3f mSide;                   // _7C
-    bool mInvalidLastMove;          // _88
+    TMtx34f mMatrix;                // 0x10
+    TVec3f mPosition;               // 0x40
+    TVec3f mLastMove;               // 0x4C
+    TVec3f mGravityVector;          // 0x58
+    TVec3f mUp;                     // 0x64
+    TVec3f mFront;                  // 0x70
+    TVec3f mSide;                   // 0x7C
+    bool mInvalidLastMove;          // 0x88
     u8 _89[3];
-    CubeCameraArea *mCameraArea;    // _8C
+    CubeCameraArea *mCameraArea;    // 0x8C
 };

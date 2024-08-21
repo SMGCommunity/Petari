@@ -41,14 +41,14 @@ public:
     static bool isNeedBubble(const JMapInfoIter &);
     static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
 
-    FlashingCtrl* mFlashingCtrl;    // _8C
-    MapPartsRailMover* mRailMover;  // _90
-    PartsModel* mAirBubble;         // _94
-    const char* mChipName;          // _98
-    LiveActor* mHost;               // _9C
-    TVec3f mClippingRange;          // _A0
-    s32 mGroupID;                   // _AC
-    s32 mChipType;                  // _B0
+    FlashingCtrl* mFlashingCtrl;    // 0x8C
+    MapPartsRailMover* mRailMover;  // 0x90
+    PartsModel* mAirBubble;         // 0x94
+    const char* mChipName;          // 0x98
+    LiveActor* mHost;               // 0x9C
+    TVec3f mClippingRange;          // 0xA0
+    s32 mGroupID;                   // 0xAC
+    s32 mChipType;                  // 0xB0
     bool _B4;
     bool _B5;
 };

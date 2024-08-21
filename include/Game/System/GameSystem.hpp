@@ -15,13 +15,13 @@ public:
     void frameLoop();
 
     u32 _8;
-    GameSequenceDirector* mSeqDirector;             // _C
+    GameSequenceDirector* mSeqDirector;             // 0xC
     u32 _10;
     u32 _14;
     u32 _18;
     u32 _1C;
-    GameSystemObjHolder* mObjHolder;                // _20
-    GameSystemSceneController* mSceneController;    // _24
+    GameSystemObjHolder* mObjHolder;                // 0x20
+    GameSystemSceneController* mSceneController;    // 0x24
     u32 _28;
     u32 _2C;
     u32 _30;

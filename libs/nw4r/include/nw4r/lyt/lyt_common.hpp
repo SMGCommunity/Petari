@@ -34,9 +34,9 @@ namespace nw4r {
                 void SetSize(u8);
                 void Copy(const void *, u8);
 
-                u8 mCap;                    // _0
-                u8 mNum;                    // _1
-                math::VEC2 (*mpData)[4];    // _4
+                u8 mCap;                    // 0x0
+                u8 mNum;                    // 0x1
+                math::VEC2 (*mpData)[4];    // 0x4
             };
 
             void SetVertexFormat(bool, u8);

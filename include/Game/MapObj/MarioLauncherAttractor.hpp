@@ -9,7 +9,7 @@ class MarioLauncherAttractor : public LiveActor {
 	virtual ~MarioLauncherAttractor() {}
 	virtual void init(const JMapInfoIter &rIter);
 
-	PointGravityCreator* mGravityCreator; // _8C
+	PointGravityCreator* mGravityCreator; // 0x8C
 };
 
 namespace NrvMarioLauncherAttractor {

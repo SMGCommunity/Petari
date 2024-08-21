@@ -217,11 +217,11 @@ public:
     };
 
     u8 _8C;
-    DLchanger *mDLchanger;    // _90
+    DLchanger *mDLchanger;    // 0x90
     u32 _94[0x40];
-    u8 *mDL[2];     // _194
-    u32 mDLSize;    // _19C
-    u8 mCurrDL;     // _1A0
+    u8 *mDL[2];     // 0x194
+    u32 mDLSize;    // 0x19C
+    u8 mCurrDL;     // 0x1A0
     u8 _1A1;
     f32 _1A4;
     u16 _1A8;
@@ -267,10 +267,10 @@ public:
     u32 _224;
     u32 _228;
     u32 _22C;
-    Mario *mMario;                // _230
-    MarioAnimator *mMarioAnim;    // _234
-    MarioEffect *mMarioEffect;    // _238
-    MarioConst *mConst;           // _23C
+    Mario *mMario;                // 0x230
+    MarioAnimator *mMarioAnim;    // 0x234
+    MarioEffect *mMarioEffect;    // 0x238
+    MarioConst *mConst;           // 0x23C
     TVec3f _240;
     TVec3f _24C;
     TVec3f _258;
@@ -308,7 +308,7 @@ public:
     u16 _378;
     // padding
     u32 _37C;
-    u32 mHealth;    // _380
+    u32 mHealth;    // 0x380
     u32 _384;
     u32 _388;
     u16 _38C;
@@ -339,7 +339,7 @@ public:
     u16 _3DC;
     u8 _3DE;
     u8 _3DF;
-    u32 mMaxHealth;    // _3E0
+    u32 mMaxHealth;    // 0x3E0
     bool _3E4;
     bool _3E5;
     bool _3E6;
@@ -410,7 +410,7 @@ public:
     f32 _984;
     u8 _988;
     u8 _989;
-    TornadoMario *mTornadoMario;    // _98C
+    TornadoMario *mTornadoMario;    // 0x98C
     u8 _990;
     u32 _994;
     u32 _998;
@@ -434,14 +434,14 @@ public:
     u32 _9E8;
     u32 _9EC;
     bool _9F0;
-    bool mAlphaEnable;    // _9F1
+    bool mAlphaEnable;    // 0x9F1
     u16 _9F2;
     TVec3f _9F4;
     u32 _A00;
     u32 _A04;
     u8 _A08;
     u8 _A09;
-    u8 mCurrModel;    // _A0A
+    u8 mCurrModel;    // 0xA0A
     u8 _A0B;
     u8 _A0C;
     u32 _A10;
@@ -450,7 +450,7 @@ public:
     u8 _A24;
     u8 _A25;
     // padding
-    J3DModelX *mModels[6];    // _A28
+    J3DModelX *mModels[6];    // 0xA28
     u32 _A40;
     u32 _A44;
     u32 _A48;
@@ -511,7 +511,7 @@ public:
     u32 _B80;
     u32 _B84;
     u16 _B88;
-    MarioNullBck *mNullAnimation;    // _B8C
+    MarioNullBck *mNullAnimation;    // 0xB8C
     bool _B90;
     bool _B91;
     s8 _B92;
@@ -553,9 +553,9 @@ public:
     TMtx34f _EA8;
     TVec3f _ED8;
     u32 _EE4;
-    bool mSuperKinokoCollected;    // _EE8
-    bool mPowerupCollected;        // _EE9
-    bool mTransforming;            // _EEA
+    bool mSuperKinokoCollected;    // 0xEE8
+    bool mPowerupCollected;        // 0xEE9
+    bool mTransforming;            // 0xEEA
     bool _EEB;
     bool _EEC;
     bool _EED;

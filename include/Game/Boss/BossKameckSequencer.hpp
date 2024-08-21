@@ -27,7 +27,7 @@ public:
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
 
-    BossKameck* mBossKameck;                    // _8
+    BossKameck* mBossKameck;                    // 0x8
     BossKameckAction* _C; // not really sure what this is.
-    BossKameckBattleDemo* mBattleDemo;          // _10
+    BossKameckBattleDemo* mBattleDemo;          // 0x10
 };

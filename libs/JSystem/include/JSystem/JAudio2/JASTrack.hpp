@@ -43,15 +43,15 @@ public:
         return mPtrTable[idx];
     }
 
-    T **mPtrTable; // _0
-    u32 mLen; // _4
+    T **mPtrTable; // 0x0
+    u32 mLen; // 0x4
 };
 
 template<typename T, u32 LEN>
 class JASPtrArray : public JASPtrTable<T> {
 public:
     JASPtrArray() NO_INLINE : JASPtrTable(mPtrArray, LEN) {}
-    T *mPtrArray[LEN]; // _8
+    T *mPtrArray[LEN]; // 0x8
 };
 
 class JASBankList {
@@ -112,11 +112,11 @@ public:
         bool noteOff(u32, u16);
         void setPauseFlag(bool);
 
-		JASChannel* mChannels[8]; // _0
-		JASChannelParams mChannelParams; // _20
+		JASChannel* mChannels[8]; // 0x0
+		JASChannelParams mChannelParams; // 0x20
 		u16 _38[8];
 		JASSoundParams* _48;
-		JASTrack *mParentTrack; // _4C
+		JASTrack *mParentTrack; // 0x4C
 	};
 
 	struct Timed {
@@ -202,49 +202,49 @@ public:
 	void writePortSelf(u32, u16);
 	void writePort(u32, u16);
 	
-	JASTrackPort mPorts; // _5C
-	JASRegisterParam mRegs; // _80
+	JASTrackPort mPorts; // 0x5C
+	JASRegisterParam mRegs; // 0x80
 	u8 _84[0x18];
 	Timed _9C[6];
 	JASOscillator::Data _E4[2];
-	JASOscillator::Point mAdsr[4]; // _114
-	JASTrack *mParent; // _12C
-	JASTrack *mChildren[0x10]; // _130
-	TChannelMgr* mMgrs[4]; // _170
-	TChannelMgr mInitialMgr; // _180
-	u32 mNumChannels; // _1D0
-	JASDefaultBankTable* mBankTable; // _1D4
-	f32 mPlaytime; // _1D8
-	f32 mSampleInterval; // _1DC
+	JASOscillator::Point mAdsr[4]; // 0x114
+	JASTrack *mParent; // 0x12C
+	JASTrack *mChildren[0x10]; // 0x130
+	TChannelMgr* mMgrs[4]; // 0x170
+	TChannelMgr mInitialMgr; // 0x180
+	u32 mNumChannels; // 0x1D0
+	JASDefaultBankTable* mBankTable; // 0x1D4
+	f32 mPlaytime; // 0x1D8
+	f32 mSampleInterval; // 0x1DC
 	f32 _1E0;
 	f32 _1E4;
 	f32 _1E8;
 	f32 _1EC;
 	u16 _1F0;
 	u16 _1F2;
-	s16 mFIRFilter[8]; // _1F4
-	s16 mIIRFilter[8]; // _204
+	s16 mFIRFilter[8]; // 0x1F4
+	s16 mIIRFilter[8]; // 0x204
 	u8 mFilterMode;
 	f32 _218;
-	f32 mTempoRate; // _21C
+	f32 mTempoRate; // 0x21C
 	u32 _220;
 	u16 _224;
 
     /* Unit: bpm */
-	u16 mTempo; // _226
+	u16 mTempo; // 0x226
 
-    u16 mTimebase; // _228
-	s8 mTransposeAmt; // _22A
-	u8 mPitch; // _22B
-	u16 mBank; // _22C
-	u16 mPrg; // _22E
+    u16 mTimebase; // 0x228
+	s8 mTransposeAmt; // 0x22A
+	u8 mPitch; // 0x22B
+	u16 mBank; // 0x22C
+	u16 mPrg; // 0x22E
 	u8 _230;
 	u8 _231;
 	u8 _232;
 
     // Percentage latency for notes scheduled with gateOn (can be < 100% to schedule notes sooner)
-	u8 mGateLatency; // _233
-	u16 mBuses[6]; // _234
+	u8 mGateLatency; // 0x233
+	u16 mBuses[6]; // 0x234
 	volatile s32 _240;
 
 	union {
@@ -275,8 +275,8 @@ struct JASTrack::TList {
     static s32 cbSeqMain(void *);
     void append(JASTrack *);
     void seqMain();
-    InternalList mList; // _0
-    bool mIsInit; // _C
+    InternalList mList; // 0x0
+    bool mIsInit; // 0xC
 };
 
 namespace JGadget {

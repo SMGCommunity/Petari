@@ -22,26 +22,26 @@ public:
     void doDraw(EConsoleType) const;
     u32 getOutput() const { return mOutput; }
 
-    JGadget::TLinkListNode mListNode;           // _18
+    JGadget::TLinkListNode mListNode;           // 0x18
     u32 _20;
-    int mMaxLines;                              // _24
-    u8* mBuf;                                   // _28
+    int mMaxLines;                              // 0x24
+    u8* mBuf;                                   // 0x28
     bool _2C;
     int _30;
     int _34;
     int _38;
     int _3C;
-    int mPositionX;                             // _40
-    int mPositionY;                             // _44
-    u32 mHeight;                                // _48
-    JUTFont* mFont;                             // _4C
-    f32 mFontSizeX;                             // _50
-    f32 mFontSizeY;                             // _54
-    int mOutput;                                // _58
+    int mPositionX;                             // 0x40
+    int mPositionY;                             // 0x44
+    u32 mHeight;                                // 0x48
+    JUTFont* mFont;                             // 0x4C
+    f32 mFontSizeX;                             // 0x50
+    f32 mFontSizeY;                             // 0x54
+    int mOutput;                                // 0x58
     JUtility::TColor _5C;
     JUtility::TColor _60;
     int _64;
-    bool mVisible;                              // _68
+    bool mVisible;                              // 0x68
     bool _69;
     bool _6A;
     bool _6B;
@@ -61,7 +61,7 @@ public:
 
     typedef JGadget::TLinkList<JUTConsole, -offsetof(JUTConsole, mListNode)> ConsoleList;
 
-    ConsoleList mList;                  // _0
-    JUTConsole* mActiveConsole;         // _C
-    JUTConsole* mDirectConsole;         // _10
+    ConsoleList mList;                  // 0x0
+    JUTConsole* mActiveConsole;         // 0xC
+    JUTConsole* mDirectConsole;         // 0x10
 };

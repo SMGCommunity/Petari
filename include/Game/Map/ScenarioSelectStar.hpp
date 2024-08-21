@@ -30,7 +30,7 @@ public:
     void exeNotSelected();
 
     int _44;
-    s32 mFrame;             // _48
+    s32 mFrame;             // 0x48
     s32 _4C;
     u8 _50;
     f32 _54;

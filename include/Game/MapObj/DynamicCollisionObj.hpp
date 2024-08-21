@@ -26,12 +26,12 @@ public:
     void createCollision();
 
     void *_8C;
-    CollisionParts *mParts;     // _90
+    CollisionParts *mParts;     // 0x90
     u16 _94;
-    u16 mNrTriangles;           // _96
-    TVec3f *mPositions;         // _98
+    u16 mNrTriangles;           // 0x96
+    TVec3f *mPositions;         // 0x98
     TVec3f *_9C;
-    TriangleIndexing *mIndices; // _A0
+    TriangleIndexing *mIndices; // 0xA0
     u32 _A4;
     u32 _A8;
     u32 _AC;

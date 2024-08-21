@@ -29,13 +29,13 @@ public:
     void loadMaterialHigh(const WaterRoad *) const;
     void loadMaterialLow() const;
 
-    bool mIsLow;        // _0
+    bool mIsLow;        // 0x0
     u32 _4;
     s32 _8;
     u32 _C;
     TVec3f* _10;
     TVec3s* _14;
     f32* _18;
-    u32 mDLLength;      // _1C
-    const void* mList;  // _20
+    u32 mDLLength;      // 0x1C
+    const void* mList;  // 0x20
 };

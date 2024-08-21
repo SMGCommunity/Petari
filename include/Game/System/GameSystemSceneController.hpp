@@ -13,8 +13,8 @@ public:
     void setStage(const char *);
     void setStartIdInfo(const JMapIdInfo &);
 
-    char mScene[0x20];  // _0
-    char mStage[0x20];  // _20
+    char mScene[0x20];  // 0x0
+    char mStage[0x20];  // 0x20
     u32 _40;
     u32 _44;
     JMapIdInfo* _48;
@@ -25,5 +25,5 @@ public:
     NameObjListExecutor* getNameObjListExecutor() const;
 
     u8 _0[0xA8];
-    NameObjHolder* mObjHolder;     // _A8
+    NameObjHolder* mObjHolder;     // 0xA8
 };

@@ -13,5 +13,5 @@ public:
 
     void calcGunPointFromCannon(TPos3f *);
 
-    bool mDisableCollsion;  // _8D
+    bool mDisableCollsion;  // 0x8D
 };

@@ -43,13 +43,13 @@ public:
     void exeStopAtPoint();
     void exeStopAtEnd();
 
-    MapPartsRailPointPassChecker* mRailPointPassChecker;    // _18
-    s32 mMoveConditionType;                                 // _1C
-    s32 mMoveStopType;                                      // _20
-    s32 mSignMotionType;                                    // _24
+    MapPartsRailPointPassChecker* mRailPointPassChecker;    // 0x18
+    s32 mMoveConditionType;                                 // 0x1C
+    s32 mMoveStopType;                                      // 0x20
+    s32 mSignMotionType;                                    // 0x24
     TVec3f _28;
     f32 _34;
-    s32 mStopTime;                                          // _38
+    s32 mStopTime;                                          // 0x38
     f32 _3C;
     u32 _40;
     f32 _44;

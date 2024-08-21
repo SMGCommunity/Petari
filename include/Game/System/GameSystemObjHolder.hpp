@@ -37,19 +37,19 @@ public:
     void initGameController();
     void initDisplay();
 
-    NameObjHolder* mObjHolder;                      // _0
-    ParticleResourceHolder* mParticleResHolder;     // _4
-    GXRenderModeObj* mRenderModeObj;                // _8
+    NameObjHolder* mObjHolder;                      // 0x0
+    ParticleResourceHolder* mParticleResHolder;     // 0x4
+    GXRenderModeObj* mRenderModeObj;                // 0x8
     void* _C;
     void* _10;
     void* _14;
-    CaptureScreenDirector* mCaptureScreenDir;       // _18
-    ScreenPreserver* mScreenPreserver;              // _1C
-    AudSystemWrapper* mSysWrapper;                  // _20
-    WPadHolder* mWPadHolder;                        // _24
-    FunctionAsyncExecutor* mAsyncExec;              // _28
-    MessageHolder* mMsgHolder;                      // _2C
-    StarPointerDirector* mStarPointerDir;           // _30
-    JMath::TRandom_fast_ mRandom;                   // _34
-    u32 mLanguage;                                  // _38
+    CaptureScreenDirector* mCaptureScreenDir;       // 0x18
+    ScreenPreserver* mScreenPreserver;              // 0x1C
+    AudSystemWrapper* mSysWrapper;                  // 0x20
+    WPadHolder* mWPadHolder;                        // 0x24
+    FunctionAsyncExecutor* mAsyncExec;              // 0x28
+    MessageHolder* mMsgHolder;                      // 0x2C
+    StarPointerDirector* mStarPointerDir;           // 0x30
+    JMath::TRandom_fast_ mRandom;                   // 0x34
+    u32 mLanguage;                                  // 0x38
 };

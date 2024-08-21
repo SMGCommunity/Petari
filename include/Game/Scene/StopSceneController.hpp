@@ -25,6 +25,6 @@ public:
     void requestStopSceneDelay(s32, s32);
     bool isSceneStopped() const;
 
-    NameObjGroup* mDelayRequests;       // _C
+    NameObjGroup* mDelayRequests;       // 0xC
     s32 _10;
 };

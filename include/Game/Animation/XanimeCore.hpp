@@ -71,7 +71,7 @@ public:
     void init();
 
     u32 _0;
-    f32 mWeight;    // _4
+    f32 mWeight;    // 0x4
     f32 _8;
     u8 _C;
 };
@@ -97,13 +97,13 @@ public:
     XjointTransform* getJointTransform(unsigned long) const;
 
     u8 _4;
-    u8 mTrackCount;                     // _5
+    u8 mTrackCount;                     // 0x5
     u8 _6;
-    u32 mJointCount;                    // _8
+    u32 mJointCount;                    // 0x8
     u16 _C;
-    XjointInfo* mJointList;             // _10
-    XjointTransform* mTransformList;    // _14
-    XanimeTrack* mTrackList;            // _18
+    XjointInfo* mJointList;             // 0x10
+    XjointTransform* mTransformList;    // 0x14
+    XanimeTrack* mTrackList;            // 0x18
     f32 _1C;
     f32 _20;
     f32 _24;

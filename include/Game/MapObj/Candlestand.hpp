@@ -27,9 +27,9 @@ public:
     inline void exeAttack();
     inline void exeBurn();
 
-    s32 mItem;                                      // _C4
-    bool mHasItemAppear;                            // _C8
-    SpinPullParticleCallBack* mSpinPtclCb;          // _CC
+    s32 mItem;                                      // 0xC4
+    bool mHasItemAppear;                            // 0xC8
+    SpinPullParticleCallBack* mSpinPtclCb;          // 0xCC
 };
 
 namespace NrvCandlestand {

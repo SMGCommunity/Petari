@@ -8,6 +8,6 @@ class ClipArea : public LiveActor {
 public:
     ClipArea(const char *);
 
-    TPos3f mBaseMatrix;             // _8C
-    ClipAreaShape* mShape;          // _BC
+    TPos3f mBaseMatrix;             // 0x8C
+    ClipAreaShape* mShape;          // 0xBC
 };

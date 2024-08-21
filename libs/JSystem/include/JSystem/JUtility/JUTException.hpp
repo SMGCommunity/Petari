@@ -17,11 +17,11 @@ public:
     void changeFrameBuffer(void *, u16, u16);
 
 public:
-    _GXRenderModeObj* mRenderMode;      // _0
-    u32 mSize;                          // _4
+    _GXRenderModeObj* mRenderMode;      // 0x0
+    u32 mSize;                          // 0x4
     u32 _8;
     u16 _C;
-    u16 mGamma;                         // _E
+    u16 mGamma;                         // 0xE
     bool _10;
     u8 _11[3];
 };
@@ -51,15 +51,15 @@ public:
     static u32 sConsoleBufferSize;
     static JUTConsole* sConsole;
 
-    JUTExternalFB* mFrameMemory;            // _7C
-    JUTDirectPrint* mDirectPrint;           // _80
+    JUTExternalFB* mFrameMemory;            // 0x7C
+    JUTDirectPrint* mDirectPrint;           // 0x80
     u32 _84;
-    //JUTGamePad* mGamePad;                   // _84
-    JUTGamePad::EPadPort mGamePadPort;      // _88
-    s32 mPrintWaitTime0;                    // _8C
-    s32 mPrintWaitTime1;                    // _90
-    u32 mTraceSuppress;                     // _94
+    //JUTGamePad* mGamePad;                   // 0x84
+    JUTGamePad::EPadPort mGamePadPort;      // 0x88
+    s32 mPrintWaitTime0;                    // 0x8C
+    s32 mPrintWaitTime1;                    // 0x90
+    u32 mTraceSuppress;                     // 0x94
     u32 _98;
-    u32 mPrintFlags;                        // _9C
-    u32 mStackPointer;                      // _A0
+    u32 mPrintFlags;                        // 0x9C
+    u32 mStackPointer;                      // 0xA0
 };

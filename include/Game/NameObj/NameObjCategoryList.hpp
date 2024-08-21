@@ -216,13 +216,13 @@ namespace {
             (pNameObj->*mNameObjFunc)();
         }
 
-        T mNameObjFunc; // _4
+        T mNameObjFunc; // 0x4
     };
 };
 
 struct CategoryListInitialTable {
-    u32 mIndex;     // _0
-    u32 mCount;     // _4
+    u32 mIndex;     // 0x0
+    u32 mCount;     // 0x4
 };
 
 /// @brief Organizes NameObjs by execution category.
@@ -234,10 +234,10 @@ public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::AssignableArray<NameObj *> mNameObjArr; // _0
+        MR::AssignableArray<NameObj *> mNameObjArr; // 0x0
         u32 _8;
         MR::FunctorBase* _C;
-        u32 mCheck;                                 // _10
+        u32 mCheck;                                 // 0x10
     };
 
     NameObjCategoryList(u32, const CategoryListInitialTable *, func, bool, const char *);
@@ -252,7 +252,7 @@ public:
     void registerExecuteBeforeFunction(const MR::FunctorBase &, int);
     void initTable(u32, const CategoryListInitialTable *);
 
-    MR::AssignableArray<NameObjCategoryList::CategoryInfo> mCategoryInfo;   // _0
+    MR::AssignableArray<NameObjCategoryList::CategoryInfo> mCategoryInfo;   // 0x0
 
     union {
         NameObjRealDelegator<func>* mDelegator;

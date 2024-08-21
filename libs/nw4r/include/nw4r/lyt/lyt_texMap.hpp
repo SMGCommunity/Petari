@@ -169,14 +169,14 @@ namespace nw4r {
 
             inline void ReplaceImage(const TPLDescriptor *);
 
-            void* mpImage;              // _0
-            void* mpPalette;            // _4
-            u16 mWidth;                 // _8
-            u16 mHeight;                // _A
-            f32 mMinLOD;                // _C
-            f32 mMaxLOD;                // _10
-            u16 mLODBias;               // _14
-            u16 mPaletteEntryNum;       // _16
+            void* mpImage;              // 0x0
+            void* mpPalette;            // 0x4
+            u16 mWidth;                 // 0x8
+            u16 mHeight;                // 0xA
+            f32 mMinLOD;                // 0xC
+            f32 mMaxLOD;                // 0x10
+            u16 mLODBias;               // 0x14
+            u16 mPaletteEntryNum;       // 0x16
 
             struct {
                 u32 textureFormat   : 4;

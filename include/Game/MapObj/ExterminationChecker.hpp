@@ -48,9 +48,9 @@ public:
         return nullptr;
     }
 
-    LiveActorGroup* mGroup;         // _8C
-    KeySwitch* mKeySwitch;          // _90
-    TVec3f mKeySwitchPos;           // _94
+    LiveActorGroup* mGroup;         // 0x8C
+    KeySwitch* mKeySwitch;          // 0x90
+    TVec3f mKeySwitchPos;           // 0x94
     u8 _A0;
     u8 _A1;
 };

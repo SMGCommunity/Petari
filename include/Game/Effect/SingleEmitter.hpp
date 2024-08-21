@@ -22,8 +22,8 @@ public:
     void link(ParticleEmitter *);
     void unlink();
 
-    ParticleEmitter* mEmitter;  // _0
-    u16 _4;                     // _4
-    u8 mGroupId;                // _6
-    s8 mSpawn;                  // _7
+    ParticleEmitter* mEmitter;  // 0x0
+    u16 _4;                     // 0x4
+    u8 mGroupId;                // 0x6
+    s8 mSpawn;                  // 0x7
 };

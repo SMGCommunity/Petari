@@ -42,14 +42,14 @@ public:
     void exeWait();
     void exeBreak();
 
-    TPos3f mMtx;                                // _8C
-    ModelObj* mBreakModel;                      // _BC
-    CageType mCageType;                         // _C0
-    f32 mRotationSpeed;                         // _C4
-    DummyDisplayModel* mItemModel;              // _C8
-    bool mIgnoreGravity;                        // _CC
-    bool mDelayDeadActivate;                    // _CD
-    const ActorCameraInfo* mCameraInfo;      // _D0
+    TPos3f mMtx;                                // 0x8C
+    ModelObj* mBreakModel;                      // 0xBC
+    CageType mCageType;                         // 0xC0
+    f32 mRotationSpeed;                         // 0xC4
+    DummyDisplayModel* mItemModel;              // 0xC8
+    bool mIgnoreGravity;                        // 0xCC
+    bool mDelayDeadActivate;                    // 0xCD
+    const ActorCameraInfo* mCameraInfo;      // 0xD0
 };
 
 namespace NrvBreakableCage {

@@ -43,11 +43,11 @@ public:
     inline void exeDPDSwoon();
     inline void exeNonActiveOnEnd();
 
-    AnimScaleController* mScaleController;          // _8C
-    WalkerStateBindStarPointer* mStarPointerState;  // _90
+    AnimScaleController* mScaleController;          // 0x8C
+    WalkerStateBindStarPointer* mStarPointerState;  // 0x90
     TVec3f _94;
-    ModelObj* mBlownModel;                          // _A0
-    bool mDontTurn;                                 // _A4
+    ModelObj* mBlownModel;                          // 0xA0
+    bool mDontTurn;                                 // 0xA4
 };
 
 namespace NrvPackunPetit {

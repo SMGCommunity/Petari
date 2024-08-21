@@ -55,7 +55,7 @@ public:
     bool isExist(int) const;
     NameObj* newEachObj(int);
 
-    NameObj* mSceneObjs[0x7B];      // _0
+    NameObj* mSceneObjs[0x7B];      // 0x0
 };
 
 namespace MR {

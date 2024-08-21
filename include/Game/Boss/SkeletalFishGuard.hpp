@@ -53,7 +53,7 @@ public:
     bool tryShiftNumb(const Nerve *);
 
     u32 _8C;
-    SkeletalFishBoss* mFishBoss;                    // _90
+    SkeletalFishBoss* mFishBoss;                    // 0x90
     TVec3f _94;
     u32 _A0;
     TVec3f _A4;
@@ -61,7 +61,7 @@ public:
     f32 _B4;
     f32 _B8;
     f32 _BC;
-    s32 mAttackDelay;                               // _C0
+    s32 mAttackDelay;                               // 0xC0
     f32 _C4;
     f32 _C8;
     const Nerve* _CC;
@@ -71,7 +71,7 @@ public:
     TVec3f _F4;
     TVec3f _100;
     TVec3f _10C;
-    AnimScaleController* mScaleController;          // _118
+    AnimScaleController* mScaleController;          // 0x118
 };
 
 namespace {
