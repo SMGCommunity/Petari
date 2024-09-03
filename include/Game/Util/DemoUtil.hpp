@@ -26,6 +26,7 @@ namespace MR {
     void registerDemoSimpleCastAll(NameObj *);
 
     bool isDemoActive();
+    bool isDemoActive(const char *);
 
     bool isDemoExist(const char *);
 
@@ -44,6 +45,9 @@ namespace MR {
     void requestStartDemoWithoutCinemaFrame(LiveActor *, const char *, const Nerve *, const Nerve *);
 
     bool tryStartDemoMarioPuppetable(LiveActor *, const char *);
+
+    bool tryStartTimeKeepDemoMarioPuppetable(LiveActor *, const char *, const char *);
+    bool tryStartTimeKeepDemoMarioPuppetable(NameObj *, const char *, const char *);
 
     void requestStartTimeKeepDemoMarioPuppetable(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 

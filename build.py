@@ -7,15 +7,15 @@ from ninja_syntax import Writer
 import pathlib
 import hashlib
 
-INCLUDE_DIRS = [ "include", 
-                "libs\\JSystem\\include", 
-                "libs\\MetroTRK\\include", 
-                "libs\\MSL_C\\include", 
-                "libs\\MSL_C++\\include", 
-                "libs\\nw4r\\include", 
-                "libs\\Runtime\\include", 
-                "libs\\RVL_SDK\\include", 
-                "libs\\RVLFaceLib\\include" ]
+INCLUDE_DIRS = [ "include",
+                "libs/JSystem/include",
+                "libs/MetroTRK/include",
+                "libs/MSL_C/include",
+                "libs/MSL_C++/include",
+                "libs/nw4r/include",
+                "libs/Runtime/include",
+                "libs/RVL_SDK/include",
+                "libs/RVLFaceLib/include" ]
 
 LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "MSL_C++", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
 
@@ -24,9 +24,9 @@ for dir in INCLUDE_DIRS:
     incdirs += f'-I- -i {dir} '
 
 COMPILER_CMD = f"-c -Cpp_exceptions off -maxerrors 1 -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc {incdirs}"
-COMPILER_PATH = pathlib.Path("Compilers\\GC\\3.0a3\\mwcceppc.exe")
-HASHES_BASE_PATH = pathlib.Path("data\\hashes.txt")
-CHANGED_PATH = pathlib.Path("data\\changed.txt")
+COMPILER_PATH = pathlib.Path("Compilers/GC/3.0a3/mwcceppc.exe")
+HASHES_BASE_PATH = pathlib.Path("data/hashes.txt")
+CHANGED_PATH = pathlib.Path("data/changed.txt")
 
 # if we don't have this file, create it
 if not os.path.exists(CHANGED_PATH):
@@ -66,7 +66,7 @@ LIBRARY_COMPILER = {
     "MSL_C++": COMPILER_PATH,
     "nw4r": COMPILER_PATH,
     "Runtime": COMPILER_PATH,
-    "RVL_SDK": pathlib.Path("Compilers\\GC\\3.0\\mwcceppc.exe"),
+    "RVL_SDK": pathlib.Path("Compilers/GC/3.0/mwcceppc.exe"),
     "RVLFaceLib": COMPILER_PATH
 }
 
@@ -76,7 +76,7 @@ def cleanLibraryBuild(lib):
     if lib == "Game":
         build_path = "build"
     else:
-        build_path = f"libs\\{lib}\\build"
+        build_path = f"libs/{lib}/build"
 
     if os.path.exists(build_path):
         shutil.rmtree(build_path)
@@ -89,7 +89,11 @@ def genNinja(tasks):
         ninja_writer = Writer(ninja_file)
         for lib in LIBRARIES:
             libName = fixLibName(lib)
-            ninja_writer.rule(f"compile_{libName}", command=f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out', description=f'Compiling $in')
+            cmd = f'{LIBRARY_COMPILER[lib]} {LIBRARY_COMPILER_ARGS[lib]} $in -o $out'
+            if os.name != "nt":
+                wine = os.getenv("WINE", "wine")
+                cmd = f"{wine} {cmd}"
+            ninja_writer.rule(f"compile_{libName}", command=cmd, description=f'Compiling $in')
 
         for task in tasks:
             lib, source_path, build_path = task
@@ -125,7 +129,7 @@ if clean:
 
 all_tasks = []
 for lib in LIBRARIES:
-    tasks = collectTasks(lib, f"libs\\{lib}\\source")
+    tasks = collectTasks(lib, f"libs/{lib}/source")
     all_tasks.extend(tasks)
 
 genNinja(all_tasks)
@@ -138,9 +142,9 @@ for lib in LIBRARIES:
     objs = []
 
     if lib == "Game":
-        objs = glob.glob(f"build\\Game\\*\\*.o", recursive=True)
+        objs = glob.glob(f"build/Game/*/*.o", recursive=True)
     else:
-        objs = glob.glob(f"libs\\{lib}\\build\\{lib}\\*\\*.o")
+        objs = glob.glob(f"libs/{lib}/build/{lib}/*/*.o")
     
     # generate our hashes
     for obj in objs:

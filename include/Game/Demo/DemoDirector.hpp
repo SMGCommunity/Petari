@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
+#include "Game/Demo/DemoTimeKeeper.hpp"
+#include "Game/Demo/DemoSubPartKeeper.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 class DemoCastGroupHolder;
 class DemoSimpleCastHolder;
@@ -13,13 +17,17 @@ public:
     virtual ~DemoDirector();
     virtual void movement();
 
+    void registerDemoSimpleCast(LiveActor *);
+    void registerDemoSimpleCast(LayoutActor *);
+    void registerDemoSimpleCast(NameObj *);
+
     bool mIsActive;                             // 0xC
-    s32 _10;
+    DemoExecutor* mExecutor;                    // 0x10
     u8 _14;
     DemoCastGroupHolder* _18;
     DemoCastGroupHolder* _1C;
     DemoSimpleCastHolder* _20;
-    s32 _24;
+    ResourceHolder* mResourceHolder;            // 0x24
     DemoStartRequestHolder* mStartReqHolder;    // 0x28
     NameObj* _2C;
     const char* _30;

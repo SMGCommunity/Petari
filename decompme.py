@@ -13,21 +13,21 @@ import helpers
 import glob
 import pathlib
 
-INCLUDE_DIRS = [ "include", 
-                "libs\\JSystem\\include", 
-                "libs\\MetroTRK\\include", 
-                "libs\\MSL_C\\include", 
-                "libs\\MSL_C++\\include", 
-                "libs\\nw4r\\include", 
-                "libs\\Runtime\\include", 
-                "libs\\RVL_SDK\\include", 
-                "libs\\RVLFaceLib\\include" ]
+INCLUDE_DIRS = [ "include",
+                "libs/JSystem/include",
+                "libs/MetroTRK/include",
+                "libs/MSL_C/include",
+                "libs/MSL_C++/include",
+                "libs/nw4r/include",
+                "libs/Runtime/include",
+                "libs/RVL_SDK/include",
+                "libs/RVLFaceLib/include" ]
 
 LIBRARIES = [ "Game", "JSystem", "MetroTRK", "MSL_C", "nw4r", "Runtime", "RVL_SDK", "RVLFaceLib" ]
 
 incdirs = " ".join([f'-I- -i {dir}' for dir in INCLUDE_DIRS])
 PREPROC_CMD = f"-EP {incdirs}"
-COMPILER_PATH = pathlib.Path("Compilers\\GC\\3.0a3\\mwcceppc.exe")
+COMPILER_PATH = pathlib.Path("Compilers/GC/3.0a3/mwcceppc.exe")
 COMPILER_CMD = f"-c -Cpp_exceptions off -maxerrors 1 -nodefaults -proc gekko -fp hard -lang=c++ -ipa file -inline auto,level=2 -O4,s -rtti off -sdata 4 -sdata2 4 -align powerpc -enum int -msgstyle gcc"
 
 if len(sys.argv) < 2:
@@ -67,9 +67,9 @@ if objName is None:
 filename = objName.replace(".o", ".cpp")
 
 if containedLib == "Game":
-    glob_path = f"source\\Game\\**\\{filename}"
+    glob_path = f"source/Game/**/{filename}"
 else:
-    glob_path = f"libs\\{containedLib}\\**\\{filename}"
+    glob_path = f"libs/{containedLib}/**/{filename}"
 
 for n in glob.glob(glob_path, recursive=True):
     path = n

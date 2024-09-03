@@ -15,7 +15,7 @@ class FunctionLibrary:
         self.libraries.clear()
         self.functions.clear()
 
-        basePath = f"libs\\{self.parent}\\csv"
+        basePath = f"libs/{self.parent}/csv"
 
         if self.parent == "Game":
             basePath = "csv"
@@ -61,13 +61,13 @@ class FunctionLibrary:
                 self.functions[symbol] = (address, size)
 
     def save(self):
-        basePath = f"libs\\{self.parent}\\csv"
+        basePath = f"libs/{self.parent}/csv"
 
         if self.parent == "Game":
             basePath = "csv"
 
         for library, symbols in self.libraries.items():
-            with open(f"{basePath}\\{library}.csv", "w") as output:
+            with open(f"{basePath}/{library}.csv", "w") as output:
                 output.write("Symbol Name, Object File, Library Archive, Matching\n")
 
                 for (symbol, obj_file), values in symbols.items():
