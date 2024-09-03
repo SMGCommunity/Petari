@@ -2880,7 +2880,7 @@ execute__Q212NrvLotusLeaf12HostTypeWaitCFP5Spine,LotusLeaf.o,MapObj.a,false
 __ct__9MagicBellFPCc,MagicBell.o,MapObj.a,true
 init__9MagicBellFRC12JMapInfoIter,MagicBell.o,MapObj.a,true
 exeWait__9MagicBellFv,MagicBell.o,MapObj.a,true
-exeRing__9MagicBellFv,MagicBell.o,MapObj.a,false
+exeRing__9MagicBellFv,MagicBell.o,MapObj.a,minor
 attackSensor__9MagicBellFP9HitSensorP9HitSensor,MagicBell.o,MapObj.a,true
 receiveMsgPlayerAttack__9MagicBellFUlP9HitSensorP9HitSensor,MagicBell.o,MapObj.a,false
 tryRing__9MagicBellFv,MagicBell.o,MapObj.a,false

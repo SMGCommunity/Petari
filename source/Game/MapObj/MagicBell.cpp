@@ -53,8 +53,9 @@ void MagicBell::exeWait() {
     }
 }
 
-/*
-void MagicBell::exeRing() {
+// Minor mismatch: "squaredInline" near the bottom gets its registers swapped
+void MagicBell::exeRing()
+{
     if (MR::isFirstStep(this)) {
         if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
             MR::onSwitchA(this);
@@ -69,16 +70,46 @@ void MagicBell::exeRing() {
 
     if (_8C->_20.dot(_94->_20) < 0.94999999f) {
         TVec3f v17(_8C->_20);
-        v17 = v17 - _94->_20;
-        f32 dot = _94->_20.dot(v17);
-        v17.x = v17.x - (dot * _94->_20.x);
-        v17.y = v17.y - (dot * _94->_20.y);
-        v17.z = v17.z - (dot * _94->_20.z);
+        v17.subtract(_94->_20);
+        f32 v3 = _94->_20.dot(v17);
+        v17.x -= v3 * _94->_20.x;
+        v17.y -= v3 * _94->_20.y;
+        v17.z -= v3 * _94->_20.z;
         MR::normalizeOrZero(&v17);
+        f32 v4 = _8C->mAcceleration.dot(v17);
+        f32 v5 = _94->mAcceleration.dot(v17);
 
+        f32 v6 = v5 >= 0.0f ? 0.0f : v5;
+
+        if (v4 - v6 > 0.0f) {
+            f32 v7 = v5 >= 0.0f ? 0.0f : v5;
+
+            v17.scale(v4 - v7);
+            v17.subtract(_94->mAcceleration);
+            _94->accel(v17);
+            _9C.set(_94->_8);
+        }
+        PSMTXCopy(_8C->_60.toMtxPtr(), mSurface2Mtx);
+        PSMTXCopy(_94->_60.toMtxPtr(), mSurface1Mtx);
+        TVec3f v16(0.0f, 0.0f, 0.0f);
+        MR::setMtxTrans(mSurface2Mtx, v16.x, v16.y, v16.z);
+        TVec3f v15(0.0f, 0.0f, 0.0f);
+        MR::setMtxTrans(mSurface1Mtx, v15.x, v15.y, v15.z);
+        PSMTXScaleApply(mSurface2Mtx, mSurface2Mtx, mScale.x, mScale.y, mScale.z);
+        PSMTXScaleApply(mSurface1Mtx, mSurface1Mtx, mScale.x, mScale.y, mScale.z);
+        MR::setMtxTrans(mSurface2Mtx, mPosition.x, mPosition.y, mPosition.z);
+        MR::setMtxTrans(mSurface1Mtx, mPosition.x, mPosition.y, mPosition.z);
+
+        if ((!MR::isGreaterStep(this, 10) || !tryRing())) {
+            if (_8C->_20.y < -0.99f) {
+                if (_8C->mAcceleration.squaredInline() < 0.01f) {
+                    MR::deleteEffect(this, "Ring");
+                    setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
+                }
+            }
+        }
     }
 }
-*/
 
 void MagicBell::attackSensor(HitSensor *a1, HitSensor *a2) {
     if (MR::isSensorPlayer(a2)) {
