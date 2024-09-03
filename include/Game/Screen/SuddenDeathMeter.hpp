@@ -37,12 +37,12 @@ public:
     void setCountAnimFrame();
     void setRecoveryCountAnimFrame();
 
-    CountUpPaneRumbler *mCountUpPaneRumbler;    // _20
-    TVec2f mFollowPosW;                         // _24
-    TVec2f _2C;                                 // _2C
-    s32 mCount;                                 // _34
-    f32 _38;                                    // _38
-    f32 _3C;                                    // _3C
+    CountUpPaneRumbler *mCountUpPaneRumbler;    // 0x20
+    TVec2f mFollowPosW;                         // 0x24
+    TVec2f _2C;                                 // 0x2C
+    s32 mCount;                                 // 0x34
+    f32 _38;                                    // 0x38
+    f32 _3C;                                    // 0x3C
 };
 
 namespace NrvSuddenDeathMeter {

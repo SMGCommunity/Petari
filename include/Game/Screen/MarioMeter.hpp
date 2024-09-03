@@ -22,7 +22,7 @@ public:
     void activate();
     void deactivate();
 
-    MeterLayout *mHitPointMeter;            // _C
-    SuddenDeathMeter* mSuddenDeathMeter;    // _10
-    bool mUseSuddenDeath;                   // _14
+    MeterLayout *mHitPointMeter;            // 0xC
+    SuddenDeathMeter* mSuddenDeathMeter;    // 0x10
+    bool mUseSuddenDeath;                   // 0x14
 };

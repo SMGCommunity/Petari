@@ -40,15 +40,15 @@ public:
     void setCountAnimFrame();
     void setRecoveryCountAnimFrame();
 
-    CountUpPaneRumbler* mCountUpPaneRumbler;    // _20
-    s32 _24;                                    // _24
-    s32 _28;                                    // _28
-    TVec2f mFollowPos;                          // _2C
-    TVec2f mFollowPosW;                         // _34
-    TVec2f _38;                                 // _38
-    s32 mCount;                                 // _44
-    f32 _48;                                    // _48
-    f32 _4C;                                    // _4C
+    CountUpPaneRumbler* mCountUpPaneRumbler;    // 0x20
+    s32 _24;                                    // 0x24
+    s32 _28;                                    // 0x28
+    TVec2f mFollowPos;                          // 0x2C
+    TVec2f mFollowPosW;                         // 0x34
+    TVec2f _38;                                 // 0x38
+    s32 mCount;                                 // 0x44
+    f32 _48;                                    // 0x48
+    f32 _4C;                                    // 0x4C
 };
 
 namespace NrvMeterLayout {
