@@ -15,11 +15,11 @@ public:
     void operator=(const BckCtrlData &);
 
     const char* _0;
-    s16 mPlayFrame;     // _4
-    s16 mStartFrame;    // _6
-    s16 mEndFrame;      // _8
-    s16 mRepeatFrame;   // _A
-    s16 mInterpole;     // _C
+    s16 mPlayFrame;     // 0x4
+    s16 mStartFrame;    // 0x6
+    s16 mEndFrame;      // 0x8
+    s16 mRepeatFrame;   // 0xA
+    s16 mInterpole;     // 0xC
     u8 _E;
     u8 _F;
     u8 _10;
@@ -39,8 +39,8 @@ public:
     void overWrite(const BckCtrlData &);
     void changeBckSetting(const char *, XanimePlayer *) const;
 
-    BckCtrlData mDefaultCtrlData;   // _0
-    BckCtrlData* mControlData;      // _14
-    u32 mControlDataCount;          // _18
+    BckCtrlData mDefaultCtrlData;   // 0x0
+    BckCtrlData* mControlData;      // 0x14
+    u32 mControlDataCount;          // 0x18
     u32 _1C;
 };

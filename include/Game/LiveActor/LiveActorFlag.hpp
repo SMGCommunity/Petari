@@ -8,13 +8,13 @@ public:
         mIsClipped = true;
     }
 
-    bool mIsDead;               // _0
-    bool mIsStoppedAnim;        // _1
-    bool mIsNoCalcAnim;         // _2
-    bool mIsNoCalcView;         // _3
-    bool mIsHiddenModel;        // _4
-    bool mIsNoBind;             // _5
-    bool mIsCalcGravity;        // _6
-    bool mIsClipped;            // _7
-    bool mIsInvalidClipping;    // _8
+    bool mIsDead;               // 0x0
+    bool mIsStoppedAnim;        // 0x1
+    bool mIsNoCalcAnim;         // 0x2
+    bool mIsNoCalcView;         // 0x3
+    bool mIsHiddenModel;        // 0x4
+    bool mIsNoBind;             // 0x5
+    bool mIsCalcGravity;        // 0x6
+    bool mIsClipped;            // 0x7
+    bool mIsInvalidClipping;    // 0x8
 };

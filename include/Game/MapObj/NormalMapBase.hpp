@@ -32,32 +32,32 @@ public:
     void loadDirectLightTex(_GXTexMapID) const;
 
     JUTTexture* _90;
-    JUTTexture* mNormalTex;     // _94
+    JUTTexture* mNormalTex;     // 0x94
     u8 _98[0xDC-0x98];
-    void* mImagePtr;            // _DC
+    void* mImagePtr;            // 0xDC
     u32 _E0;
-    s32 nGradTexMode;           // _E4
+    s32 nGradTexMode;           // 0xE4
     u32 _E8;
     u32 _EC;
     u8 _F0[0x124-0xF0];
-    u8 mBackLightMode;          // _124
-    Color10 mTevColor0;         // _128
-    Color10 mTevColor1;         // _130
-    u8 mLightAMode;             // _13C
-    u8 mLightBMode;             // _13D
-    u16 mHardLightColorMask;    // _13E
-    u16 mHardLightAlphaMask;    // _140
-    u8 mAmbColor;               // _142
-    u8 mMatColor;               // _143
-    u8 mAmbAlpha;               // _144
-    u8 mMatAlpha;               // _145
-    u16 mUseModelLightReg;      // _146
-    u16 mUseModelTevReg;        // _148
+    u8 mBackLightMode;          // 0x124
+    Color10 mTevColor0;         // 0x128
+    Color10 mTevColor1;         // 0x130
+    u8 mLightAMode;             // 0x13C
+    u8 mLightBMode;             // 0x13D
+    u16 mHardLightColorMask;    // 0x13E
+    u16 mHardLightAlphaMask;    // 0x140
+    u8 mAmbColor;               // 0x142
+    u8 mMatColor;               // 0x143
+    u8 mAmbAlpha;               // 0x144
+    u8 mMatAlpha;               // 0x145
+    u16 mUseModelLightReg;      // 0x146
+    u16 mUseModelTevReg;        // 0x148
     u16 _14A;
-    BtkPlayer* mBtkPlayer;      // _14C
+    BtkPlayer* mBtkPlayer;      // 0x14C
     u8 _150;
     u8 _151[0x184-0x151];
-    MtxPtr _184[0x10];             // _184
+    MtxPtr _184[0x10];             // 0x184
 
     JUTTexture* _4B8;
     u32 _4BC;

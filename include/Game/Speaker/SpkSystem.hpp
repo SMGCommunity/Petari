@@ -20,8 +20,8 @@ public:
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
 
-    JKRHeap* mHeap;                 // _0
-    SpkData* mData;                 // _4
-    SpkMixingBuffer* mMixBuffer;    // _8
-    SpkSoundHolder* mSoundHolder;   // _C
+    JKRHeap* mHeap;                 // 0x0
+    SpkData* mData;                 // 0x4
+    SpkMixingBuffer* mMixBuffer;    // 0x8
+    SpkSoundHolder* mSoundHolder;   // 0xC
 };

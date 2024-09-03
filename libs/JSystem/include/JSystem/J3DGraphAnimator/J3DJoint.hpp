@@ -4,7 +4,7 @@
 
 class J3DJoint {
 public:
-    void* mJointData;       // _0
-    void* mJointCallback;   // _4
+    void* mJointData;       // 0x0
+    void* mJointCallback;   // 0x4
     u8 _8[0x5C-0x8];
 };

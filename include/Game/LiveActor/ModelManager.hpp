@@ -61,14 +61,14 @@ public:
 
     void changeBckSetting(const char *, const char *, XanimePlayer *);
 
-    BtkPlayer* mBtkPlayer;                  // _0
-    BrkPlayer* mBrkPlayer;                  // _4
-    BtpPlayer* mBtpPlayer;                  // _8
-    BpkPlayer* mBpkPlayer;                  // _C
-    BvaPlayer* mBvaPlayer;                  // _10
-    XanimeResourceTable* mResourceTable;    // _14
-    XanimePlayer* mXanimePlayer;            // _18
-    J3DModel* mModel;                       // _1C
-    ResourceHolder* mModelResourceHolder;   // _20
-    DisplayListMaker* mDisplayListMaker;    // _24
+    BtkPlayer* mBtkPlayer;                  // 0x0
+    BrkPlayer* mBrkPlayer;                  // 0x4
+    BtpPlayer* mBtpPlayer;                  // 0x8
+    BpkPlayer* mBpkPlayer;                  // 0xC
+    BvaPlayer* mBvaPlayer;                  // 0x10
+    XanimeResourceTable* mResourceTable;    // 0x14
+    XanimePlayer* mXanimePlayer;            // 0x18
+    J3DModel* mModel;                       // 0x1C
+    ResourceHolder* mModelResourceHolder;   // 0x20
+    DisplayListMaker* mDisplayListMaker;    // 0x24
 };

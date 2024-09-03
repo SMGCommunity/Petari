@@ -29,13 +29,13 @@ public:
     void prependVolumeList(JSULink<JKRFileLoader> *);
     void removeVolumeList(JSULink<JKRFileLoader> *);
 
-    static JSUList<JKRFileLoader> sFileLoaderList; // _8060CF9C
-    static JKRFileLoader *gCurrentFileLoader; // _806B7140;
+    static JSUList<JKRFileLoader> sFileLoaderList; // 0x8060CF9C
+    static JKRFileLoader *gCurrentFileLoader; // 0x806B7140;
 
-    JSULink<JKRFileLoader> mLoaderLink; // _18
-    char *mLoaderName;                  // _28
-    u32 mLoaderType;                    // _2C
-    bool mIsMounted;                    // _30
+    JSULink<JKRFileLoader> mLoaderLink; // 0x18
+    char *mLoaderName;                  // 0x28
+    u32 mLoaderType;                    // 0x2C
+    bool mIsMounted;                    // 0x30
     u8 _31[3];
     u32 _34;
 };

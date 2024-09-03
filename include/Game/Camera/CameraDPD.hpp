@@ -21,14 +21,14 @@ public:
     bool _90;
     u8 _91[3];
     u32 _94;
-    f32 mDist;      // _98
+    f32 mDist;      // 0x98
     f32 _9C;
-    f32 mAngleA;    // _A0
-    f32 mAngleB;    // _A4
-    f32 mWPointZ;   // _A8
-    f32 mWPointX;   // _AC
-    f32 mWPointY;   // _B0
+    f32 mAngleA;    // 0xA0
+    f32 mAngleB;    // 0xA4
+    f32 mWPointZ;   // 0xA8
+    f32 mWPointX;   // 0xAC
+    f32 mWPointY;   // 0xB0
     bool _B4;
     u8 _B5[3];
-    f32 mUpX;       // _B8
+    f32 mUpX;       // 0xB8
 };

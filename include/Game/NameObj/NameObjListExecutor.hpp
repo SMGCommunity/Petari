@@ -41,8 +41,8 @@ public:
     void drawXlu(int);
     void executeDraw(int);
 
-    DrawBufferHolder* mBufferHolder;    // _4
-    NameObjCategoryList* mMovementList; // _8
-    NameObjCategoryList* mCalcAnimList; // _C
-    NameObjCategoryList* mDrawList;     // _10
+    DrawBufferHolder* mBufferHolder;    // 0x4
+    NameObjCategoryList* mMovementList; // 0x8
+    NameObjCategoryList* mCalcAnimList; // 0xC
+    NameObjCategoryList* mDrawList;     // 0x10
 };

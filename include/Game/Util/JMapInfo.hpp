@@ -14,19 +14,19 @@
 class JMapInfoIter;
 
 struct JMapItem {
-    u32 mHash;      // _0
-    u32 mMask;      // _4
-    u16 mOffsData;  // _8
-    u8 mShift;      // _A
-    u8 mType;       // _B
+    u32 mHash;      // 0x0
+    u32 mMask;      // 0x4
+    u16 mOffsData;  // 0x8
+    u8 mShift;      // 0xA
+    u8 mType;       // 0xB
 };
 
 struct JMapData {
-    s32 mNumEntries;    // _0
-    s32 mNumFields;     // _4
-    s32 mDataOffset;    // _8
-    u32 mEntrySize;     // _C
-    const JMapItem mItems;   // _10
+    s32 mNumEntries;    // 0x0
+    s32 mNumFields;     // 0x4
+    s32 mDataOffset;    // 0x8
+    u32 mEntrySize;     // 0xC
+    const JMapItem mItems;   // 0x10
 };
 
 class JMapInfo {
@@ -60,8 +60,8 @@ public:
     bool getValueFast(int, int, unsigned long *) const;
     bool getValueFast(int, int, long *) const;
 
-    const JMapData* mData; // _0
-    const char* mName; // _4
+    const JMapData* mData; // 0x0
+    const char* mName; // 0x4
 };
 
 class JMapInfoIter {
@@ -112,6 +112,6 @@ public:
 
     bool operator==(const JMapInfoIter &) const;
 
-    JMapInfo* mInfo; // _0
+    JMapInfo* mInfo; // 0x0
     s32 _4;
 };

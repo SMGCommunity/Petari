@@ -22,13 +22,13 @@ public:
     void exeWait();
     void exeDisappear();
 
-    s32 mCoinCount;                             // _20
+    s32 mCoinCount;                             // 0x20
     s32 _24;
     s32 _28;
-    CounterLayoutAppearer* mLayoutAppearer;     // _2C
-    CountUpPaneRumbler* mPaneRumbler;           // _30
-    bool mIsAppear;                             // _34
-    TVec2f mFollowPos;                          // _38
+    CounterLayoutAppearer* mLayoutAppearer;     // 0x2C
+    CountUpPaneRumbler* mPaneRumbler;           // 0x30
+    bool mIsAppear;                             // 0x34
+    TVec2f mFollowPos;                          // 0x38
 };
 
 namespace NrvCoinCounter {

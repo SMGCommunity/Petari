@@ -24,8 +24,8 @@ namespace JGeometry {
 
         bool intersectsPoint(const TVec3f &) const;
 
-        JGeometry::TVec3<T> mMin;   // _0
-        JGeometry::TVec3<T> mMax;   // _C
+        JGeometry::TVec3<T> mMin;   // 0x0
+        JGeometry::TVec3<T> mMax;   // 0xC
     };
 
     template<typename T>

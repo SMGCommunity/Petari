@@ -36,10 +36,10 @@ public:
     void activate(CameraDirector *);
     void deactivate(CameraDirector *);
     
-    CameraDirector *mDirector;      // _C
-    CameraPoseParam *mPoseParam;    // _10
-    bool mIsActivated;              // _14
+    CameraDirector *mDirector;      // 0xC
+    CameraPoseParam *mPoseParam;    // 0x10
+    bool mIsActivated;              // 0x14
     bool _15;
     u8 _16[2];
-    TMtx34f mMatrix;                // _18
+    TMtx34f mMatrix;                // 0x18
 };

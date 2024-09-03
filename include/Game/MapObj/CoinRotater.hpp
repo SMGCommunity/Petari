@@ -13,9 +13,9 @@ public:
     f32 _C;
     f32 _10;
     f32 _14;
-    TMtx34f mRotateYMtx;        // _18
-    TMtx34f mHiSpeedRotateYMtx; // _48
-    TMtx34f mWaterRotateMtx;    // _78
+    TMtx34f mRotateYMtx;        // 0x18
+    TMtx34f mHiSpeedRotateYMtx; // 0x48
+    TMtx34f mWaterRotateMtx;    // 0x78
 };
 
 namespace MR {

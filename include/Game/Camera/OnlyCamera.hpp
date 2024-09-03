@@ -16,7 +16,7 @@ public:
     //calcSafePose(CameraMan *);
     //moveToIdealPosition(TVec3f *);
 
-    CameraPoseParam *mPoseParam;    // _C
+    CameraPoseParam *mPoseParam;    // 0xC
     bool _10;
     bool _11;
     u8 _12[2];

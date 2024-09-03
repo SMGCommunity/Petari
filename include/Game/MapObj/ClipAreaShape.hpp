@@ -13,7 +13,7 @@ public:
     bool isInArea(const TVec3f &, f32, const TPos3f &, const TVec3f &) const;
     void drawVolumeShape(const TPos3f &, const TVec3f &) const;
 
-    J3DModelData* mModelData;        // _4
+    J3DModelData* mModelData;        // 0x4
 };
 
 class ClipAreaShapeCone : public ClipAreaShape {
@@ -34,7 +34,7 @@ public:
     virtual bool isInArea(const TVec3f &) const;
     virtual void calcVolumeMatrix(TPos3f *, const TPos3f &, const TVec3f &) const;
 
-    f32 mRadius;        // _8
+    f32 mRadius;        // 0x8
 };
 
 class ClipAreaShapeBox : public ClipAreaShape {
@@ -44,6 +44,6 @@ public:
     virtual bool isInArea(const TVec3f &) const;
     virtual void calcVolumeMatrix(TPos3f *, const TPos3f &, const TVec3f &) const;
 
-    f32 mRadius;        // _8
+    f32 mRadius;        // 0x8
     s32 _C;
 };

@@ -13,7 +13,7 @@ public:
 
     void exeSpin();
 
-    s32 mItemType;  // _C4
+    s32 mItemType;  // 0xC4
 };
 
 namespace NrvDeadLeaves {

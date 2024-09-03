@@ -34,9 +34,9 @@ public:
     void exeSelectWait();
     void exeSelectStart();
 
-    LiveActorGroup* mSphereGroup;   // _8C
+    LiveActorGroup* mSphereGroup;   // 0x8C
 
-    bool mIsPointingInvalid;        // _B0
+    bool mIsPointingInvalid;        // 0xB0
 };
 
 class SphereSelectorFunction {

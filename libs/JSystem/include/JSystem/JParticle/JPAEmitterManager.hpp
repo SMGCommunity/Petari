@@ -12,6 +12,6 @@ public:
 
     void calc(u8);
 
-    u32 _0[0x3D];   // _0
-    s32 flags;      // _F4
+    u32 _0[0x3D];   // 0x0
+    s32 flags;      // 0xF4
 };

@@ -16,13 +16,13 @@ typedef struct {
 } ARCHeader;
 
 typedef struct {
-    void* archiveStartAddr;     // _0
-    void* FSTStart;             // _4
-    void* fileStart;            // _8
-    u32 entryNum;               // _C
-    char* FSTStringStart;       // _10
-    u32 FSTLength;              // _14
-    u32 currDir;                // _18
+    void* archiveStartAddr;     // 0x0
+    void* FSTStart;             // 0x4
+    void* fileStart;            // 0x8
+    u32 entryNum;               // 0xC
+    char* FSTStringStart;       // 0x10
+    u32 FSTLength;              // 0x14
+    u32 currDir;                // 0x18
 } ARCHandle;
 
 typedef struct {

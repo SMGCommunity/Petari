@@ -49,14 +49,14 @@ enum argument_options {
 };
 
 typedef struct {
-	unsigned char	justification_options;		// _0
-	unsigned char 	sign_options;				// _1
-	unsigned char 	precision_specified;		// _2
-	unsigned char	alternate_form;				// _3
-	unsigned char 	argument_options;			// _4
-	unsigned char	conversion_char;			// _5
-	int			  	field_width;				// _8
-	int				precision;					// _C
+	unsigned char	justification_options;		// 0x0
+	unsigned char 	sign_options;				// 0x1
+	unsigned char 	precision_specified;		// 0x2
+	unsigned char	alternate_form;				// 0x3
+	unsigned char 	argument_options;			// 0x4
+	unsigned char	conversion_char;			// 0x5
+	int			  	field_width;				// 0x8
+	int				precision;					// 0xC
 } print_format;
 
 typedef struct {

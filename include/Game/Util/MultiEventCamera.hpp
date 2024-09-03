@@ -25,12 +25,12 @@ public:
     void endCamera();
     void changeTarget(const CameraTargetArg &);
 
-    const char* mName;              // _0
-    s32 mCameraCount;               // _4
+    const char* mName;              // 0x0
+    s32 mCameraCount;               // 0x4
     s32 _8;
     u32 _C;
     u32 _10;
-    u32 mCameraType;                // _14
-    ActorCameraInfo* mCameraInfo;   // _18
-    CameraTargetArg mTarget;        // _1C
+    u32 mCameraType;                // 0x14
+    ActorCameraInfo* mCameraInfo;   // 0x18
+    CameraTargetArg mTarget;        // 0x1C
 };

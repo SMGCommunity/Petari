@@ -47,9 +47,9 @@ public:
 
     void initPointingTarget(int);
 
-    LayoutManager* mManager;                                    // _C
-    Spine* mSpine;                                              // _10
-    PaneEffectKeeper* mPaneEffectKeeper;                        // _14
-    StarPointerLayoutTargetKeeper* mStarPointerTargetKeeper;    // _18
-    LayoutActorFlag mFlags;                                     // _1C
+    LayoutManager* mManager;                                    // 0xC
+    Spine* mSpine;                                              // 0x10
+    PaneEffectKeeper* mPaneEffectKeeper;                        // 0x14
+    StarPointerLayoutTargetKeeper* mStarPointerTargetKeeper;    // 0x18
+    LayoutActorFlag mFlags;                                     // 0x1C
 };

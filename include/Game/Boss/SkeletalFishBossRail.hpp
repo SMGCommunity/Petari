@@ -17,7 +17,7 @@ public:
     void linkFillUpNamePosID();
 
     s32 _8C;
-    bool* mFillUpFlags;          // _90
-    s32* mNamePosIDs;           // _94
+    bool* mFillUpFlags;          // 0x90
+    s32* mNamePosIDs;           // 0x94
     f32 _98;
 };

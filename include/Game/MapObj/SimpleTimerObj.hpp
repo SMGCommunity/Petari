@@ -15,9 +15,9 @@ public:
 
     void exeTimer();
 
-    FlashingCtrl* mFlashingCtrl;    // _C4
-    s32 mTimer;                     // _C8
-    s32 mTimeLeft;                  // _CC
+    FlashingCtrl* mFlashingCtrl;    // 0xC4
+    s32 mTimer;                     // 0xC8
+    s32 mTimeLeft;                  // 0xCC
 };
 
 namespace NrvSimpleTimerObj {

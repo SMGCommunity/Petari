@@ -17,9 +17,9 @@ public:
     void calcIdealPose();
     void calcRound();
 
-    f32 mAngleB;    // _4C
-    f32 mAngleA;    // _50
-    f32 mDist;      // _54
+    f32 mAngleB;    // 0x4C
+    f32 mAngleA;    // 0x50
+    f32 mDist;      // 0x54
     bool _58;
     bool _59;
     u8 _5A[2];

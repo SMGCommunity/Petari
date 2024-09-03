@@ -23,25 +23,25 @@ public:
     void exeBreak();
     void exeBreakAfter();
 
-    s32 mCrystalCageType;                           // _8C
-    ModelObj* mBreakObj;                            // _90
+    s32 mCrystalCageType;                           // 0x8C
+    ModelObj* mBreakObj;                            // 0x90
     TPos3f _94;
     s32 _C4;
     s32 _C8;
-    RumbleCalculatorCosMultLinear* mRumbleCalc;     // _CC
+    RumbleCalculatorCosMultLinear* mRumbleCalc;     // 0xCC
     TVec3f _D0;
     TVec3f _DC;
     TVec3f _E8;
-    DummyDisplayModel* mDisplayModel;               // _F4
+    DummyDisplayModel* mDisplayModel;               // 0xF4
     TVec3f _F8;
     bool _104;
     u8 _105;
     u8 _106;
     u8 _107;
     s32 _108;
-    bool mIsBreakObjVisible;                        // _10C
-    bool mPlayRiddleSFX;                            // _10D
-    bool mHasBinding;                               // _10E
+    bool mIsBreakObjVisible;                        // 0x10C
+    bool mPlayRiddleSFX;                            // 0x10D
+    bool mHasBinding;                               // 0x10E
     u8 _10F;
     TVec3f _110;
 };

@@ -42,8 +42,8 @@ public:
     void adjustOffsetToScreen(TVec2f *); // TODO
     void startInfinity(unsigned long, float, float);
 
-    CameraShakeTask *mVerticalTasks[NR_VERTICAL_TASKS];         // _C
-    CameraShakeTask *mHorizontalTasks[NR_HORIZONTAL_TASKS];     // _28
-    CameraShakeTask *mInfinityTasks[NR_INFINITY_TASKS];         // _34
-    NameObj *mInfinityNameObjs[NR_INFINITY_TASKS];              // _44
+    CameraShakeTask *mVerticalTasks[NR_VERTICAL_TASKS];         // 0xC
+    CameraShakeTask *mHorizontalTasks[NR_HORIZONTAL_TASKS];     // 0x28
+    CameraShakeTask *mInfinityTasks[NR_INFINITY_TASKS];         // 0x34
+    NameObj *mInfinityNameObjs[NR_INFINITY_TASKS];              // 0x44
 };

@@ -11,5 +11,5 @@ public:
 	virtual void setParam(const CameraParamChunk *);
 	virtual Camera *getCamera() const;
 
-	CameraCharmedVecReg *mCamera;	// _4
+	CameraCharmedVecReg *mCamera;	// 0x4
 };

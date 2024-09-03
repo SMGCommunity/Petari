@@ -22,7 +22,7 @@ public:
 
     void exeMove();
 
-    const char* mObjectName;    // _8C
+    const char* mObjectName;    // 0x8C
 };
 
 class HipDropDemoMoveObj : public HipDropMoveObj {
@@ -33,7 +33,7 @@ public:
     virtual void moveStart();
     virtual void moving();
 
-    TMtx34f mMtx;   // _90
+    TMtx34f mMtx;   // 0x90
 };
 
 namespace NrvHipDropMoveObj {

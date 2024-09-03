@@ -27,7 +27,7 @@ class DemoStartRequestHolder {
 public:
     DemoStartRequestHolder();
 
-    DemoStartInfo* mStartInfos[0x10];                               // _0
+    DemoStartInfo* mStartInfos[0x10];                               // 0x0
     u32 _40;
     const DemoStartInfo* _44;
     u8 _48[0x84-0x48];

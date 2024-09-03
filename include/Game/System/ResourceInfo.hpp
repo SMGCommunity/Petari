@@ -8,12 +8,12 @@ public:
 
     void setName(const char *, bool);
 
-    void* mResource; // _0
+    void* mResource; // 0x0
     u32 _4;
     u32 _8;
     u32 _C;
-    char* mName;    // _10
-    u32 mHashCode;  // _14
+    char* mName;    // 0x10
+    u32 mHashCode;  // 0x14
 };
 
 class ResTable {
@@ -32,8 +32,8 @@ public:
     const char* findResName(const void *) const;
     const char* getResName(const void *) const;
 
-    ResFileInfo* mFileInfoTable;    // _0
-    u32 mCount;                     // _4
+    ResFileInfo* mFileInfoTable;    // 0x0
+    u32 mCount;                     // 0x4
 
 private:
     void* findRes(const char *) const;

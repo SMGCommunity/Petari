@@ -35,8 +35,8 @@ JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArc
             JKRHeap::free(mExpandSizes, nullptr);
         }
 
-        // _68
-        // _64
+        // 0x68
+        // 0x64
 
         mIsMounted = false;
     }

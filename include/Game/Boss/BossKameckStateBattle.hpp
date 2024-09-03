@@ -48,11 +48,11 @@ public:
     bool isEnableDamage() const;
     bool isEnableGuard() const;
 
-    BossKameck* mBossKameck;                      // _C
-    BossKameckMoveRail* mMoveRail;                  // _10
-    BossKameckBattlePattarn* mBattlePattarn;        // _14
-    KameckBeam* mBeam;                              // _18
-    KameckBeamEventListener* mBeamListener;         // _1C
+    BossKameck* mBossKameck;                      // 0xC
+    BossKameckMoveRail* mMoveRail;                  // 0x10
+    BossKameckBattlePattarn* mBattlePattarn;        // 0x14
+    KameckBeam* mBeam;                              // 0x18
+    KameckBeamEventListener* mBeamListener;         // 0x1C
     TVec3f _20;
     s32 _2C;
     s32 _30;

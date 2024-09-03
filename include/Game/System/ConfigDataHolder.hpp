@@ -14,7 +14,7 @@ public:
     virtual s32 deserialize(const u8 *, u32);
     virtual void initializeData();
 
-    bool mData;    // _4
+    bool mData;    // 0x4
 };
 
 class ConfigDataHolder {
@@ -38,9 +38,9 @@ public:
     void makeFileBinary(u8 *, u32);
     void loadFromFileBinary(const char *, const u8 *, u32);
 
-    BinaryDataChunkHolder* mChunkHolder;    // _0
-    ConfigDataCreateChunk* mCreateChunk;    // _4
-    ConfigDataMii* mMiiCreateChunk;         // _8
-    ConfigDataMisc* mMiscCreateChunk;       // _C
-    char mName[0x10];                       // _10
+    BinaryDataChunkHolder* mChunkHolder;    // 0x0
+    ConfigDataCreateChunk* mCreateChunk;    // 0x4
+    ConfigDataMii* mMiiCreateChunk;         // 0x8
+    ConfigDataMisc* mMiscCreateChunk;       // 0xC
+    char mName[0x10];                       // 0x10
 };

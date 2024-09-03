@@ -11,7 +11,7 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    TVec3f mAxis;   // _4C
-    TVec3f mUp;     // _58
-    TVec3f mWPoint; // _64
+    TVec3f mAxis;   // 0x4C
+    TVec3f mUp;     // 0x58
+    TVec3f mWPoint; // 0x64
 };

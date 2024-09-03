@@ -9,5 +9,5 @@ public:
 
     virtual void init(const JMapInfoIter &);
 
-    s32 mZoneID;    // _3C
+    s32 mZoneID;    // 0x3C
 };

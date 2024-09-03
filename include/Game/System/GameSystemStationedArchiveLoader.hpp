@@ -12,9 +12,9 @@ public:
     virtual bool isExecute(const MR::StationedFileInfo *) const;
     virtual JKRExpHeap* getProperHeap(const MR::StationedFileInfo *) const;
 
-    JKRExpHeap* mNapaHeap;     // _4
-    JKRExpHeap* mGDDRHeap;     // _8
-    bool mIsDataMario;      // _C
+    JKRExpHeap* mNapaHeap;     // 0x4
+    JKRExpHeap* mGDDRHeap;     // 0x8
+    bool mIsDataMario;      // 0xC
 };
 
 class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
@@ -36,8 +36,8 @@ public:
     void dispose();
     void setIsDataMario(bool);
 
-    ConditionUsePlayerHeap* mCondition;         // _0
-    JKRExpHeap* mNapaHeap;                      // _4
-    JKRExpHeap* mGDDRHeap;                      // _8
-    bool mIsDataMario;                          // _C
+    ConditionUsePlayerHeap* mCondition;         // 0x0
+    JKRExpHeap* mNapaHeap;                      // 0x4
+    JKRExpHeap* mGDDRHeap;                      // 0x8
+    bool mIsDataMario;                          // 0xC
 };

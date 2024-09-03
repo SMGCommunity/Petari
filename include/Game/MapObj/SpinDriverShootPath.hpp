@@ -17,8 +17,8 @@ public:
     f32 getTotalLength() const;
     void calcClippingInfo(TVec3f *, f32 *, f32, f32);
 
-    RailRider* mRailRider;  // _0
-    ParabolicPath* mPath;   // _4
-    TVec3f mStartPosition;  // _8
-    bool mUsesParabolic;    // _14
+    RailRider* mRailRider;  // 0x0
+    ParabolicPath* mPath;   // 0x4
+    TVec3f mStartPosition;  // 0x8
+    bool mUsesParabolic;    // 0x14
 };

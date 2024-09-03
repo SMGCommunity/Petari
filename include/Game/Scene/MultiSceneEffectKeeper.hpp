@@ -12,8 +12,8 @@ public:
     void init(const MultiSceneActor *, const EffectSystem *);
     void clear();
 
-    MultiEmitter** mEmitters;       // _0
-    u32 mEmitterNum;                // _4
+    MultiEmitter** mEmitters;       // 0x0
+    u32 mEmitterNum;                // 0x4
     u32 _8;
-    const char* mResName;           // _C
+    const char* mResName;           // 0xC
 };

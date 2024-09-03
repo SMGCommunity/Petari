@@ -26,11 +26,11 @@ public:
     void exeAppear();
     void exeDemoAppear();
 
-    Coin** mCoinArray;              // _8C
-    ActorCameraInfo* mCameraInfo;   // _90
-    u32 mCoinCount;                 // _94
-    s32 mTimeLimit;                 // _98
-    bool mIsPurpleCoinGroup;        // _9C
+    Coin** mCoinArray;              // 0x8C
+    ActorCameraInfo* mCameraInfo;   // 0x90
+    u32 mCoinCount;                 // 0x94
+    s32 mTimeLimit;                 // 0x98
+    bool mIsPurpleCoinGroup;        // 0x9C
 };
 
 namespace NrvCoinGroup {

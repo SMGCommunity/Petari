@@ -50,7 +50,7 @@ public:
     s16 _BA;
     TVec3f _BC;
     TVec3f _C8;
-    MtxPtr mFollowMtx;              // _D4
+    MtxPtr mFollowMtx;              // 0xD4
     u8 _D8;
     u8 _D9;
     u8 _DA;
@@ -71,11 +71,11 @@ public:
     f32 _EC;
     Mtx _F0;
     const char* _120;
-    FlashingCtrl* mFlashCtrl;       // _124
-    ActorCameraInfo* mCameraInfo;   // _128
+    FlashingCtrl* mFlashCtrl;       // 0x124
+    ActorCameraInfo* mCameraInfo;   // 0x128
     u32 _12C;
     u32 _130;
-    LiveActor* mHitSensorActor;     // _134
+    LiveActor* mHitSensorActor;     // 0x134
     u8 _138;
     u8 _139;
     u16 _13A;

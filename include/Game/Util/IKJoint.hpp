@@ -17,6 +17,6 @@ public:
     TPos3f _0;
     TPos3f _30;
     TPos3f _60;
-    f32 mRootBoneLength;    // _90
-    f32 mMiddleBoneLength;  // _94
+    f32 mRootBoneLength;    // 0x90
+    f32 mMiddleBoneLength;  // 0x94
 };

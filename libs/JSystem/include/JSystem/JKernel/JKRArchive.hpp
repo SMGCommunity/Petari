@@ -43,56 +43,56 @@ public:
     };
 
     struct RarcHeader {
-        u32 mMagic;             // _0
-        u32 mFileSize;          // _4
-        u32 mHeaderSize;        // _8
-        u32 mFileDataOffset;    // _C
-        u32 mTotalDataSize;     // _10
-        u32 mMRamDataSize;      // _14
-        u32 mARamDataSize;      // _18
+        u32 mMagic;             // 0x0
+        u32 mFileSize;          // 0x4
+        u32 mHeaderSize;        // 0x8
+        u32 mFileDataOffset;    // 0xC
+        u32 mTotalDataSize;     // 0x10
+        u32 mMRamDataSize;      // 0x14
+        u32 mARamDataSize;      // 0x18
         u32 _1C;
     };
 
     struct RarcInfoBlock {
-        u32 mNrDirs;                // _0
-        u32 mDirOffset;             // _4
-        u32 mNrFiles;               // _8
-        u32 mFileOffset;            // _C
-        u32 mStringTableSize;       // _10
-        u32 mStringTableOffset;     // _14
-        u16 mNextAvailableFileID;   // _18
-        u16 mFileIDIsIndex;         // _1A
+        u32 mNrDirs;                // 0x0
+        u32 mDirOffset;             // 0x4
+        u32 mNrFiles;               // 0x8
+        u32 mFileOffset;            // 0xC
+        u32 mStringTableSize;       // 0x10
+        u32 mStringTableOffset;     // 0x14
+        u16 mNextAvailableFileID;   // 0x18
+        u16 mFileIDIsIndex;         // 0x1A
         u32 _1C;
     };
 
     struct SDIFileEntry {
-        u16 mFileID;            // _0
-        u16 mHash;              // _2
-        u32 mFlag : 8;          // _4
-        u32 mNameOffset : 24;   // _5
+        u16 mFileID;            // 0x0
+        u16 mHash;              // 0x2
+        u32 mFlag : 8;          // 0x4
+        u32 mNameOffset : 24;   // 0x5
         union {
-            u32 mDataOffset;    // _8
-            u32 mDirIndex;      // _8
+            u32 mDataOffset;    // 0x8
+            u32 mDirIndex;      // 0x8
         };
         union {
-            u32 mDataSize;      // _C
+            u32 mDataSize;      // 0xC
         };
-        void *mFileData;        // _10
+        void *mFileData;        // 0x10
     };
 
     struct SDIDirEntry {
-        u32 mID;                // _0
-        u32 mNameOffset;        // _4
-        u16 mHash;              // _8
-        u16 mNrFiles;           // _A
-        u32 mFirstFileIndex;    // _C
+        u32 mID;                // 0x0
+        u32 mNameOffset;        // 0x4
+        u16 mHash;              // 0x8
+        u16 mNrFiles;           // 0xA
+        u32 mFirstFileIndex;    // 0xC
     };
 
     struct SDirEntry {
-        u8 mFileFlag;   // _0
+        u8 mFileFlag;   // 0x0
         u8 _1;
-        u16 mFileID;    // _2
-        char *mName;    // _4
+        u16 mFileID;    // 0x2
+        char *mName;    // 0x4
     };
 
     class CArcName {
@@ -104,9 +104,9 @@ public:
         const char *store(const char *);
         const char *store(const char *, char);
 
-        u16 mHash;                          // _0
-        u16 mLength;                        // _2
-        char mName[MAX_NAME_LENGTH + 1];    // _4
+        u16 mHash;                          // 0x0
+        u16 mLength;                        // 0x2
+        char mName[MAX_NAME_LENGTH + 1];    // 0x4
     };
 
     JKRArchive();
@@ -150,18 +150,18 @@ public:
     SDIFileEntry *findPtrResource(const void *) const;
     SDIFileEntry *findIdResource(unsigned short) const;
 
-    static u32 sCurrentDirIndex; // _806B7148
+    static u32 sCurrentDirIndex; // 0x806B7148
 
-    JKRHeap *mHeap;             // _38
-    u8 mMountMode;              // _3C
+    JKRHeap *mHeap;             // 0x38
+    u8 mMountMode;              // 0x3C
     u8 _3D[3];
-    s32 mEntryNum;              // _40
-    RarcInfoBlock *mInfoBlock;  // _44
-    SDIDirEntry *mDirs;         // _48
-    SDIFileEntry *mFiles;       // _4C
-    u32 *mExpandSizes;          // _50
-    char *mStringTable;         // _54
+    s32 mEntryNum;              // 0x40
+    RarcInfoBlock *mInfoBlock;  // 0x44
+    SDIDirEntry *mDirs;         // 0x48
+    SDIFileEntry *mFiles;       // 0x4C
+    u32 *mExpandSizes;          // 0x50
+    char *mStringTable;         // 0x54
     u32 _58;
     s32 _5C;
-    u32 mMountDir;              // _60
+    u32 mMountDir;              // 0x60
 };

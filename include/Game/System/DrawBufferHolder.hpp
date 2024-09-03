@@ -29,8 +29,8 @@ public:
     void drawOpa(s32) const;
     void drawXlu(s32) const;
 
-    DrawBufferGroup* mBufferGroup;  // _0
-    s32 mBufferGroupCount;          // _4
+    DrawBufferGroup* mBufferGroup;  // 0x0
+    s32 mBufferGroupCount;          // 0x4
     MR::Vector<MR::AssignableArray<DrawBufferGroup *> >* _8;
     u8 _C[0x30-0xC];
 };

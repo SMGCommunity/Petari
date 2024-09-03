@@ -29,5 +29,5 @@ public:
         mState &= ~state;
     }
 
-    s8 mState; // _4
+    s8 mState; // 0x4
 };

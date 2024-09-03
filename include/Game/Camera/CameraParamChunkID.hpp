@@ -19,7 +19,7 @@ public:
     void createEventID(long, const char *);
     void createStartID(long, unsigned short);
 
-    s8 mZoneID;     // _4
+    s8 mZoneID;     // 0x4
     u8 _5[3];
-    char *mName;    // _8
+    char *mName;    // 0x8
 };

@@ -12,6 +12,6 @@ public:
 
     bool isOnGalaxy(const char *) const;
 
-    GameDataHolder* mDataHolder;    // _0
+    GameDataHolder* mDataHolder;    // 0x0
     u32* _4;
 };

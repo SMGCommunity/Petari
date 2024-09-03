@@ -26,7 +26,7 @@ public:
     TVec3f _C;
     TVec3f _18;
     TVec3f _24;
-    f32 mLength; // _30 
+    f32 mLength; // 0x30 
 };
 
 class BezierRail {
@@ -50,14 +50,14 @@ public:
 
     
 
-    bool mIsClosed;       // _0
+    bool mIsClosed;       // 0x0
     u8 _1;
     u8 _2;
     u8 _3;
-    u32 mPointNum;        // _4  
+    u32 mPointNum;        // 0x4  
     u32 _8;
-    RailPart* mRailParts; // _C
+    RailPart* mRailParts; // 0xC
     f32* _10;
-    JMapInfoIter* mIter;  // _14
+    JMapInfoIter* mIter;  // 0x14
     JMapInfo* _18;
 };

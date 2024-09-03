@@ -13,8 +13,8 @@ public:
     void reset();
     void update();
 
-    WPad* mPad;             // _0
-    WPADInfo mPadInfo;      // _4
+    WPad* mPad;             // 0x0
+    WPADInfo mPadInfo;      // 0x4
     u32 _1C;
-    s32 mBattery;           // _20
+    s32 mBattery;           // 0x20
 };

@@ -15,10 +15,10 @@ public:
     u32 _50;
     s32 _54;
     s32 _58;
-    f32 mWPointY;   // _5C
-    f32 mAxisY;     // _60
-    f32 mWPointZ;   // _64
-    f32 mAxisZ;     // _68
-    f32 mWPointX;   // _6C
-    f32 mAxisX;     // _70
+    f32 mWPointY;   // 0x5C
+    f32 mAxisY;     // 0x60
+    f32 mWPointZ;   // 0x64
+    f32 mAxisZ;     // 0x68
+    f32 mWPointX;   // 0x6C
+    f32 mAxisX;     // 0x70
 };

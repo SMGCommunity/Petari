@@ -30,12 +30,12 @@ public:
     void exeWait();
     void exeDisappear();
 
-    s32 mStarPieceNum;                      // _20
+    s32 mStarPieceNum;                      // 0x20
     s32 _24;
     u32 _28;
-    CounterLayoutAppearer* mAppearer;       // _2C
-    CountUpPaneRumbler* mPaneRumbler;       // _30
-    TVec2f mFollowPos;                      // _34
+    CounterLayoutAppearer* mAppearer;       // 0x2C
+    CountUpPaneRumbler* mPaneRumbler;       // 0x30
+    TVec2f mFollowPos;                      // 0x34
     s32 _3C;
     int _40;
 };

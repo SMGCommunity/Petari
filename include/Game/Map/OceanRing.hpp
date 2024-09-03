@@ -38,31 +38,31 @@ public:
     void calcClippingBox();
     WaterPoint* getPoint(int, int) const;
 
-    s32 mWaterPointNum;                 // _8C
-    u32 mSegCount;                      // _90
-    s32 mStride;                        // _94
-    WaterPoint** mWaterPoints;          // _98
-    f32 mWidthMax;                      // _9C
-    s32 mObjArg1;                       // _A0
-    f32 mWaveTheta1;                    // _A4
-    f32 mWaveTheta2;                    // _A8
-    f32 mWaveHeight1;                   // _AC
-    f32 mWaveHeight2;                   // _B0
+    s32 mWaterPointNum;                 // 0x8C
+    u32 mSegCount;                      // 0x90
+    s32 mStride;                        // 0x94
+    WaterPoint** mWaterPoints;          // 0x98
+    f32 mWidthMax;                      // 0x9C
+    s32 mObjArg1;                       // 0xA0
+    f32 mWaveTheta1;                    // 0xA4
+    f32 mWaveTheta2;                    // 0xA8
+    f32 mWaveHeight1;                   // 0xAC
+    f32 mWaveHeight2;                   // 0xB0
     u8 _B4;
     u8 _B5;
     u8 _B6;
     u8 _B7;
-    f32 mNearPosToPlayer;               // _B8
-    TVec3f mNearestPos;                 // _BC
-    TVec3f mNearestDir;                 // _C8
-    OceanRingDrawer* mRingDrawer;       // _D4
-    TBox3f mBox;                        // _D8
-    TBox3f mClippingBox;                // _F0
+    f32 mNearPosToPlayer;               // 0xB8
+    TVec3f mNearestPos;                 // 0xBC
+    TVec3f mNearestDir;                 // 0xC8
+    OceanRingDrawer* mRingDrawer;       // 0xD4
+    TBox3f mBox;                        // 0xD8
+    TBox3f mClippingBox;                // 0xF0
     TVec3f _108;
-    TVec3f mNearestToWatchCam;          // _114
-    AudSoundObject* mSoundObj1;         // _120
-    TVec3f mNerarestToCam;              // _124
-    AudSoundObject* mSoundObj2;         // _130
-    OceanRingPipe* mOceanRingPipe;      // _134
-    OceanRingBloomDrawer* mBloomDrawer; // _138
+    TVec3f mNearestToWatchCam;          // 0x114
+    AudSoundObject* mSoundObj1;         // 0x120
+    TVec3f mNerarestToCam;              // 0x124
+    AudSoundObject* mSoundObj2;         // 0x130
+    OceanRingPipe* mOceanRingPipe;      // 0x134
+    OceanRingBloomDrawer* mBloomDrawer; // 0x138
 };

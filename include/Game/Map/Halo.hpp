@@ -3,10 +3,10 @@
 #include "Game/MapObj/MapObjActor.hpp"
 
 struct HaloParam {
-    const char* haloName;   // _0
+    const char* haloName;   // 0x0
     f32 _4;
     f32 _8;
-    f32 clippingRadius;     // _C
+    f32 clippingRadius;     // 0xC
 };
 
 namespace {
@@ -42,7 +42,7 @@ public:
         return NULL;
     }
     
-    f32 mDistance;  // _C4
+    f32 mDistance;  // 0xC4
 };
 
 class PowerStarHalo : public Halo {

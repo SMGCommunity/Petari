@@ -21,6 +21,6 @@ public:
     OSTime getLastModified() const;
     void updateLastModified();
 
-    u8 mData;               // _4
-    OSTime mLastModified;   // _8
+    u8 mData;               // 0x4
+    OSTime mLastModified;   // 0x8
 };

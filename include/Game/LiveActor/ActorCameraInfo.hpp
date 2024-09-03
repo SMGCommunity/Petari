@@ -7,6 +7,6 @@ public:
     ActorCameraInfo(const JMapInfoIter &);
     ActorCameraInfo(s32, s32);
 
-    s32 mCameraSetID;   // _0
-    s32 mZoneID;        // _4
+    s32 mCameraSetID;   // 0x0
+    s32 mZoneID;        // 0x4
 };

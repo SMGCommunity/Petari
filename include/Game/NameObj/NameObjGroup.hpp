@@ -18,6 +18,6 @@ public:
     }
 
     s32 _C;
-    s32 mObjectCount;   // _10
-    NameObj** mObjects; // _14
+    s32 mObjectCount;   // 0x10
+    NameObj** mObjects; // 0x14
 };

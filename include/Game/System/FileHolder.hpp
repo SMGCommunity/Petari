@@ -13,13 +13,13 @@ public:
     void waitReadDone();
     void setContext(void *, JKRHeap *);
 
-    s32 mEntryNum;              // _0
-    void* mContext;             // _4
-    JKRHeap* mHeap;             // _8
-    s32 mState;                 // _C
-    OSMessageQueue mQueue;      // _10
-    OSMessage mMessage;         // _30
-    bool mContextSet;           // _34
+    s32 mEntryNum;              // 0x0
+    void* mContext;             // 0x4
+    JKRHeap* mHeap;             // 0x8
+    s32 mState;                 // 0xC
+    OSMessageQueue mQueue;      // 0x10
+    OSMessage mMessage;         // 0x30
+    bool mContextSet;           // 0x34
 };
 
 class FileHolder {
@@ -34,5 +34,5 @@ public:
     FileHolderFileEntry** removeFile(const char *);
     FileHolderFileEntry* findEntry(const char *) const;
 
-    MR::Vector<MR::AssignableArray<FileHolderFileEntry*> > mArray; // _0
+    MR::Vector<MR::AssignableArray<FileHolderFileEntry*> > mArray; // 0x0
 };

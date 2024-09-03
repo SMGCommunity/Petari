@@ -8,7 +8,7 @@ class JPAResourceManager {
 public:
     JPAResourceManager(const void *, JKRHeap *);
 
-    JKRHeap* mHeap; // _0
+    JKRHeap* mHeap; // 0x0
     u32 _4;
     u32 _8;
     u16 _C;

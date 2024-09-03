@@ -26,5 +26,5 @@ public:
     bool _41;
     u8 _42[2];
     u32 _44;
-    CaptureScreenActor* mActor;     // _48
+    CaptureScreenActor* mActor;     // 0x48
 };

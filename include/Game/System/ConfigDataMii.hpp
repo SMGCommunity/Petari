@@ -17,6 +17,6 @@ public:
     bool getMiiId(void *) const;
 
     u8 _4;
-    u8 mIconID;         // _5
-    u8* mBuffer;        // _8
+    u8 mIconID;         // 0x5
+    u8* mBuffer;        // 0x8
 };

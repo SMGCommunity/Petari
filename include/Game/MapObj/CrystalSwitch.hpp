@@ -22,7 +22,7 @@ public:
 
     u32 _8C;
     s32 _90;
-    f32 mRotateSpeed;   // _94
+    f32 mRotateSpeed;   // 0x94
     u8 _98;
 };
 

@@ -17,7 +17,7 @@ public:
     bool isCrash() const;
 
     TVec3f _8C;
-    LiveActor* mFirePressure;       // _98
+    LiveActor* mFirePressure;       // 0x98
     f32 _9C;
     bool _A0;
     bool _A1;

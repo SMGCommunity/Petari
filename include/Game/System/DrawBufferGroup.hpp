@@ -23,7 +23,7 @@ public:
 
     MR::Vector<MR::AssignableArray<DrawBufferExecuter *> > _0;
     MR::Vector<MR::AssignableArray<DrawBufferExecuter *> > _C;
-    s32 mCount;                                                 // _18
-    s32 _1C;                                                    // _1C
-    s32 _20;                                                    // _20
+    s32 mCount;                                                 // 0x18
+    s32 _1C;                                                    // 0x1C
+    s32 _20;                                                    // 0x20
 };

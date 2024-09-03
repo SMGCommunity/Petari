@@ -30,10 +30,10 @@ public:
     u32 getCameraCode(const JMapInfoIter &);
     u32 getCameraID(const JMapInfoIter &);
 
-    CodeTable* mFloorTable;     // _0
-    CodeTable* mWallTable;      // _4
-    CodeTable* mSoundTable;     // _8
-    CodeTable* mCameraTable;    // _C
+    CodeTable* mFloorTable;     // 0x0
+    CodeTable* mWallTable;      // 0x4
+    CodeTable* mSoundTable;     // 0x8
+    CodeTable* mCameraTable;    // 0xC
 };
 
 class CodeTable {
@@ -43,9 +43,9 @@ public:
     void add(const char *, u32);
     const char* getString(u32);
 
-    u32 mNumCodes;      // _0
-    u32 mMaxNumCodes;   // _4
-    u32* mHashCodes;    // _8
+    u32 mNumCodes;      // 0x0
+    u32 mMaxNumCodes;   // 0x4
+    u32* mHashCodes;    // 0x8
     u32* _C;
-    const char** mNames; // _10
+    const char** mNames; // 0x10
 };

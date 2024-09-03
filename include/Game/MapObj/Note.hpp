@@ -14,7 +14,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void movement();
 
-    f32 mRotation;  // _18
+    f32 mRotation;  // 0x18
 };
 
 /// @brief Class that represents a single note in a NoteFairy actor.
@@ -41,10 +41,10 @@ public:
 
     /* 0x8C */  NoteFairy* mParentFairy;        ///< The parent NoteFairy that this note was spawned from.
     TVec3f _90;
-    TVec3f mRailDirection;      // _9C
+    TVec3f mRailDirection;      // 0x9C
     /* 0xA8 */  int mCounter;                   ///< The amount of steps it takes for the note to disappear.
     f32 _AC;
-    bool mIsCountdown;          // _B0            
+    bool mIsCountdown;          // 0xB0            
     /* 0xB4 */  FlashingCtrl* mFlashCtrl;       // A pointer to the FlashingCtrl instance that handles the "fading away" effects.
     u32 _B8;
 };

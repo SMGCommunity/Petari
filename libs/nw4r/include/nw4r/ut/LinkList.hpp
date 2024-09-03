@@ -38,8 +38,8 @@ namespace nw4r {
             }
 
         private:
-            Self* mNext;            // _0
-            Self* mPrev;            // _4
+            Self* mNext;            // 0x0
+            Self* mPrev;            // 0x4
 
             friend class detail::LinkListImpl;
         };
@@ -128,8 +128,8 @@ namespace nw4r {
                 Iterator Erase(Iterator, Iterator);
                 void Clear();
 
-                size_type mSize;        // _0
-                Node mNode;             // _4
+                size_type mSize;        // 0x0
+                Node mNode;             // 0x4
             };
         };
         

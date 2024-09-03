@@ -15,7 +15,7 @@ public:
 
     void controlEmitEffect();
 
-    LiveActor* mFireBarParent;  // _90
+    LiveActor* mFireBarParent;  // 0x90
 };
 
 class FireBar : public LiveActor {
@@ -33,12 +33,12 @@ public:
     void initFireBarBall(const JMapInfoIter &);
     void fixFireBarBall();
 
-    FireBarBall** mFireBalls;   // _8C
-    s32 mFireBallCount;         // _90
+    FireBarBall** mFireBalls;   // 0x8C
+    s32 mFireBallCount;         // 0x90
     TVec3f _94;
-    f32 mFireBarSpeed;          // _A0
-    s32 mStickCount;            // _A4
-    f32 mStickDistance;         // _A8
+    f32 mFireBarSpeed;          // 0xA0
+    s32 mStickCount;            // 0xA4
+    f32 mStickDistance;         // 0xA8
 };
 
 namespace NrvFireBar {

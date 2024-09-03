@@ -27,12 +27,12 @@ public:
     TVec3f _98;
     LiveActor* _A4;
     f32 _A8;
-    LiveActor* mHostActor;          // _AC
+    LiveActor* mHostActor;          // 0xAC
     bool _B0;
     bool _B1;
     bool _B2;
     u8 _B3;
-    ActorCameraInfo** mCameraInfo;   // _B4
+    ActorCameraInfo** mCameraInfo;   // 0xB4
 };
 
 namespace NrvWaterPressureBullet {

@@ -28,19 +28,19 @@ typedef NameObj* (*CreationFuncPtr)(const char *);
 class NameObjFactory {
 public:
     struct Name2CreateFunc {
-        const char* mName;                          // _0
-        NameObj* (*mCreationFunc)(const char *);    // _4
-        const char* mArchiveName;                   // _8
+        const char* mName;                          // 0x0
+        NameObj* (*mCreationFunc)(const char *);    // 0x4
+        const char* mArchiveName;                   // 0x8
     };
 
     struct Name2Archive {
-        const char* mObjectName;    // _0
-        const char* mArchiveName;   // _4
+        const char* mObjectName;    // 0x0
+        const char* mArchiveName;   // 0x4
     };
 
     struct Name2MakeArchiveListFunc {
-        const char* mName;                                                          // _0
-        void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // _4
+        const char* mName;                                                          // 0x0
+        void (*mArchiveFunc)(NameObjArchiveListCollector *, const JMapInfoIter &);  // 0x4
     };
 
     static CreationFuncPtr getCreator(const char *);

@@ -14,7 +14,7 @@ public:
         _C = 0;
     }
 
-    const NameObj* mHostActor;  // _0
+    const NameObj* mHostActor;  // 0x0
     u32 _4;
     u32 _8;
     u32 _C;
@@ -67,19 +67,19 @@ public:
     static bool isNeedBubble(const JMapInfoIter &);
     static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
 
-    CoinHostInfo* mHostInfo;    // _8C
-    FlashingCtrl* mFlashCtrl;   // _90
-    PartsModel* mAirBubble;    // _94
-    TVec3f mDropPosition;       // _98
-    TVec3f mClippingRange;      // _A4
+    CoinHostInfo* mHostInfo;    // 0x8C
+    FlashingCtrl* mFlashCtrl;   // 0x90
+    PartsModel* mAirBubble;    // 0x94
+    TVec3f mDropPosition;       // 0x98
+    TVec3f mClippingRange;      // 0xA4
     int _B0;
-    s32 mCannotTime;            // _B4
-    bool mIsInWater;            // _B8
+    s32 mCannotTime;            // 0xB4
+    bool mIsInWater;            // 0xB8
     bool _B9;                   // obj_arg3
     bool _BA;                   // obj_arg4
     bool _BB;
-    bool mIsPurpleCoin;         // _BC
-    bool mIsNeedBubble;         // _BD
+    bool mIsPurpleCoin;         // 0xBC
+    bool mIsNeedBubble;         // 0xBD
 };
 
 namespace MR {

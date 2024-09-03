@@ -13,15 +13,15 @@ public:
 
     CameraGeneralParam &operator=(const CameraGeneralParam &);
 
-    f32 mDist;                  // _0
-    TVec3f mAxis;               // _4
-    TVec3f mWPoint;             // _10
-    TVec3f mUp;                 // _1C
-    f32 mAngleA;                // _28
-    f32 mAngleB;                // _2C
-    s32 mNum1;                  // _30
-    s32 mNum2;                  // _34
-    CameraParamString mString;  // _38
+    f32 mDist;                  // 0x0
+    TVec3f mAxis;               // 0x4
+    TVec3f mWPoint;             // 0x10
+    TVec3f mUp;                 // 0x1C
+    f32 mAngleA;                // 0x28
+    f32 mAngleB;                // 0x2C
+    s32 mNum1;                  // 0x30
+    s32 mNum2;                  // 0x34
+    CameraParamString mString;  // 0x38
 };
 
 class CameraParamChunk {
@@ -32,24 +32,24 @@ public:
 
         void init();
 
-        TVec3f mWOffset;    // _0
-        f32 mLOffset;       // _C
-        f32 mLOffsetV;      // _10
-        f32 mRoll;          // _14
-        f32 mFovy;          // _18
-        s32 mCamInt;        // _1C
-        u16 mFlag;          // _20
-        u8 _22[2];          // _22
-        f32 mUpper;         // _24
-        f32 mLower;         // _28
-        s32 mGndInt;        // _2C
-        f32 mUPlay;         // _30
-        f32 mLPlay;         // _34
-        s32 mPushDelay;     // _38
-        s32 mPushDelayLow;  // _3C
-        s32 mUDown;         // _40
-        s32 mVPanUse;       // _44
-        TVec3f mVPanAxis;   // _48
+        TVec3f mWOffset;    // 0x0
+        f32 mLOffset;       // 0xC
+        f32 mLOffsetV;      // 0x10
+        f32 mRoll;          // 0x14
+        f32 mFovy;          // 0x18
+        s32 mCamInt;        // 0x1C
+        u16 mFlag;          // 0x20
+        u8 _22[2];          // 0x22
+        f32 mUpper;         // 0x24
+        f32 mLower;         // 0x28
+        s32 mGndInt;        // 0x2C
+        f32 mUPlay;         // 0x30
+        f32 mLPlay;         // 0x34
+        s32 mPushDelay;     // 0x38
+        s32 mPushDelayLow;  // 0x3C
+        s32 mUDown;         // 0x40
+        s32 mVPanUse;       // 0x44
+        TVec3f mVPanAxis;   // 0x48
     };
 
     CameraParamChunk(CameraHolder *, const CameraParamChunkID &);
@@ -75,11 +75,11 @@ public:
 
     void arrangeCamTypeName(unsigned long, const char **);
 
-    CameraParamChunkID *mParamChunkID;  // _4
-    u8 mCameraTypeIndex;                // _8
+    CameraParamChunkID *mParamChunkID;  // 0x4
+    u8 mCameraTypeIndex;                // 0x8
     u8 _9[3];
-    ExParam mExParam;                   // _C
-    CameraGeneralParam *mGeneralParam;  // _60
+    ExParam mExParam;                   // 0xC
+    CameraGeneralParam *mGeneralParam;  // 0x60
     bool _64;
 };
 
@@ -92,10 +92,10 @@ public:
     virtual void initiate();
     virtual const char *getClassName() const;
 
-    u8 mThru;               // _65
-    u8 mEnableEndErpFrame;  // _66
+    u8 mThru;               // 0x65
+    u8 mEnableEndErpFrame;  // 0x66
     u8 _67;
-    u32 mCamEndInt;         // _68
+    u32 mCamEndInt;         // 0x68
 };
 
 class CameraParamChunkEvent : public CameraParamChunk {
@@ -107,11 +107,11 @@ public:
     virtual void initiate();
     virtual const char *getClassName() const;
 
-    u8 mEnableErpFrame;     // _65
+    u8 mEnableErpFrame;     // 0x65
     u8 _66[2];
-    u32 mEvFrame;           // _68
-    u8 mEnableEndErpFrame;  // _6C
+    u32 mEvFrame;           // 0x68
+    u8 mEnableEndErpFrame;  // 0x6C
     u8 _6D[3];
-    u32 mCamEndInt;         // _70
-    u32 mEvPriority;        // _74
+    u32 mCamEndInt;         // 0x70
+    u32 mEvPriority;        // 0x74
 };

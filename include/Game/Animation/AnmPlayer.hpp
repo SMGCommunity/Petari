@@ -22,9 +22,9 @@ public:
     bool isPlaying(const char *) const;
     bool isStop() const;
 
-    void* mData;                        // _4
-    const ResTable* mResourceTable;     // _8
-    J3DFrameCtrl mFrameCtrl;            // _C
+    void* mData;                        // 0x4
+    const ResTable* mResourceTable;     // 0x8
+    J3DFrameCtrl mFrameCtrl;            // 0xC
 };
 
 class MaterialAnmPlayerBase : public AnmPlayerBase {
@@ -37,7 +37,7 @@ public:
     void beginDiff();
     void endDiff();
 
-    J3DModelData* mModelData;   // _20
+    J3DModelData* mModelData;   // 0x20
 };
 
 class BpkPlayer : public MaterialAnmPlayerBase {
@@ -79,5 +79,5 @@ public:
     void calc();
     bool getAnmVisibility();
 
-    J3DModel* mModel;   // _20
+    J3DModel* mModel;   // 0x20
 };

@@ -10,8 +10,8 @@ public:
 
     virtual void update();
 
-    TPos3f mFollowMtx;      // _14
-    AreaObj* mObj;          // _44
+    TPos3f mFollowMtx;      // 0x14
+    AreaObj* mObj;          // 0x44
 };
 
 namespace MR {

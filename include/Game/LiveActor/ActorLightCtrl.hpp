@@ -21,14 +21,14 @@ public:
     void resetCurrentLightInfo();
     const ActorLightInfo* getTargetActorLight(const AreaLightInfo *) const;
 
-    const LiveActor* mActor;        // _0
+    const LiveActor* mActor;        // 0x0
     s32 _4;
     u32 _8;
     u8 _C;
-    AreaLightInfo* mAreaLightInf;    // _10
-    ZoneLightID mLightID;           // _14
+    AreaLightInfo* mAreaLightInf;    // 0x10
+    ZoneLightID mLightID;           // 0x14
     u32 _1C;
-    ActorLightInfo mLightInfo;      // _20
-    s32 mInterpolate;               // _50
+    ActorLightInfo mLightInfo;      // 0x20
+    s32 mInterpolate;               // 0x50
     s32 _54;
 };

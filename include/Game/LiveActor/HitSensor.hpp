@@ -21,16 +21,16 @@ public:
     void invalidateBySystem();
     void addHitSensor(HitSensor *);
 
-    u32 mSensorType; // _0
-    TVec3f mPosition; // _4
-    f32 mRadius; // _10
-    u16 mSensorCount; // _14
-    u16 mGroupSize; // _16
-    HitSensor** mSensors; // _18
-    SensorGroup* mSensorGroup; // _1C
-    bool mValidBySystem; // _20
-    bool mValidByHost; // _21
+    u32 mSensorType; // 0x0
+    TVec3f mPosition; // 0x4
+    f32 mRadius; // 0x10
+    u16 mSensorCount; // 0x14
+    u16 mGroupSize; // 0x16
+    HitSensor** mSensors; // 0x18
+    SensorGroup* mSensorGroup; // 0x1C
+    bool mValidBySystem; // 0x20
+    bool mValidByHost; // 0x21
     u8 _22; // Padding?
     u8 _23; // Padding?
-    LiveActor* mActor; // _24
+    LiveActor* mActor; // 0x24
 };

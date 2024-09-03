@@ -15,7 +15,7 @@ public:
     void exeAppear();
     void exeDisappear();
 
-    f32 mEffectFrame;       // _8C
+    f32 mEffectFrame;       // 0x8C
 };
 
 namespace {

@@ -28,6 +28,6 @@ public:
     bool isSuccess(const char *, s32) const;
 
     u32 _0;
-    s32 mPowerStarNum;          // _4
-    PowerStarInfo** mInfoTbl;   // _8
+    s32 mPowerStarNum;          // 0x4
+    PowerStarInfo** mInfoTbl;   // 0x8
 };

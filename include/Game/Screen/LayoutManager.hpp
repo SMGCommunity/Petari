@@ -16,8 +16,8 @@ public:
     u32 _0;
     u32 _4;
     u32 _8;
-    nw4r::lyt::DrawInfo mDrawInfo;  // _C
-    bool mIsScreenHidden;           // _60
+    nw4r::lyt::DrawInfo mDrawInfo;  // 0xC
+    bool mIsScreenHidden;           // 0x60
     u8 _61;
     u8 _62;
     u8 _63;

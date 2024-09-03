@@ -14,7 +14,7 @@ public:
     void exeSpout();
     void switchEmitGlow();
 
-    bool mIsCoinFlower; // _C4
+    bool mIsCoinFlower; // 0xC4
 };
 
 namespace NrvTreasureSpot {

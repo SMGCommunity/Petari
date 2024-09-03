@@ -16,10 +16,10 @@ public:
     s32 start(void *);
 
     JKRHeap* _4;
-    OSThread* mThread; // _8
-    OSMessageQueue mQueue;  // _C
-    OSMessage* mMessageArray;   // _2C
-    u32 mMessageCount;      // _30
+    OSThread* mThread; // 0x8
+    OSMessageQueue mQueue;  // 0xC
+    OSMessage* mMessageArray;   // 0x2C
+    u32 mMessageCount;      // 0x30
     u8* _34;
     u32 _38;
 };

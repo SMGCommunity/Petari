@@ -44,8 +44,8 @@ namespace MR {
 
         typedef T Item;
     
-        T* mArr;        // _0
-        s32 mMaxSize;   // _4
+        T* mArr;        // 0x0
+        s32 mMaxSize;   // 0x4
     };
 
     template<class T, int C>
@@ -61,7 +61,7 @@ namespace MR {
             return C;
         }
 
-        T mArr[C];          // _0
+        T mArr[C];          // 0x0
     };
 
     template<class T>
@@ -113,8 +113,8 @@ namespace MR {
             return mArray.mArr[idx];
         }
 
-        T mArray;       // _0
-        s32 mCount;     // _8
+        T mArray;       // 0x0
+        s32 mCount;     // 0x8
     };
 
     template<class T, int S>
@@ -128,9 +128,9 @@ namespace MR {
                 mEnd = head + S;
             }
 
-            T* mHead;   // _0
-            T* mTail;   // _4
-            T* mEnd;    // _8
+            T* mHead;   // 0x0
+            T* mTail;   // 0x4
+            T* mEnd;    // 0x8
         };
     };
 };

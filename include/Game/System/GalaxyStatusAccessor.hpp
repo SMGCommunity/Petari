@@ -32,7 +32,7 @@ public:
 	bool isValidCoin100(s32) const;
 	bool isHiddenStar(s32) const;
 
-    const ScenarioData* mScenarioData; // _0
+    const ScenarioData* mScenarioData; // 0x0
 };
 
 namespace MR {

@@ -12,8 +12,8 @@ public:
     public:
         GuardStatus();
 
-        TVec3f mGuardPosLevel;      // _0
-        s32 mGuardWaitLevelID;      // _C
+        TVec3f mGuardPosLevel;      // 0x0
+        s32 mGuardWaitLevelID;      // 0xC
     };
 
     struct LevelStatus {
@@ -22,12 +22,12 @@ public:
             return &mStatusArray[idx];
         }
 
-        s32 mEnergyLevel;                                   // _0
-        f32 mSpeedLevel;                                    // _4
-        s32 mRailIDLevel;                                   // _8
-        f32 mGuardOffsLevel;                                // _C
-        s32 mGuardAppearNumLevel;                           // _10
-        SkeletalFishBossInfo::GuardStatus* mStatusArray;    // _14
+        s32 mEnergyLevel;                                   // 0x0
+        f32 mSpeedLevel;                                    // 0x4
+        s32 mRailIDLevel;                                   // 0x8
+        f32 mGuardOffsLevel;                                // 0xC
+        s32 mGuardAppearNumLevel;                           // 0x10
+        SkeletalFishBossInfo::GuardStatus* mStatusArray;    // 0x14
     };
 
     SkeletalFishBossInfo(SkeletalFishBoss *, s32, s32, const char *);
@@ -40,8 +40,8 @@ public:
     void loadLevelStatus(const JMapInfoIter &);
     void loadGuardStatus(const JMapInfoIter &, s32, s32);
 
-    SkeletalFishBoss* mFishBoss;                        // _C
-    s32 mLevelNum;                                      // _10
-    s32 mGuardNum;                                      // _14
-    LevelStatus* mLevelStatusArray;                     // _18
+    SkeletalFishBoss* mFishBoss;                        // 0xC
+    s32 mLevelNum;                                      // 0x10
+    s32 mGuardNum;                                      // 0x14
+    LevelStatus* mLevelStatusArray;                     // 0x18
 };

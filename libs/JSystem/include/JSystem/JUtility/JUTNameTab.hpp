@@ -5,7 +5,7 @@
 struct ResNTAB {
     u16 _0;
     u16 _2;
-    u16 mEntries[0x2];  // _4
+    u16 mEntries[0x2];  // 0x4
 };
 
 class JUTNameTab {
@@ -20,7 +20,7 @@ public:
     const char* getName(u16) const;
     u32 calcKeyCode(const char *) const;
 
-    const ResNTAB* mResource;   // _4
+    const ResNTAB* mResource;   // 0x4
     u8* _8;
     u16 _C;
     u16 _E;

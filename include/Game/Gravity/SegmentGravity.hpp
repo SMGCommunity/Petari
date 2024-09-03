@@ -16,18 +16,18 @@ public:
 	void updateLocalParam();
 
     // Represents the centers of each base of the cylinder
-	TVec3f mGravityPoints[2]; // _28
-	TVec3f mWorldGravityPoints[2]; // _40
+	TVec3f mGravityPoints[2]; // 0x28
+	TVec3f mWorldGravityPoints[2]; // 0x40
     
-	TVec3f mSideVector;       // _58
+	TVec3f mSideVector;       // 0x58
 	TVec3f mOppositeSideVecOrtho;
     TVec3f mWorldOppositeSideVecOrtho;
     
-	TVec3f mAxis;   // _7C
-	f32 mAxisLength;    // _88
+	TVec3f mAxis;   // 0x7C
+	f32 mAxisLength;    // 0x88
     
-	f32 mValidSideDegree;          // _8C
-	f32 mValidSideCos;  // _90
-	f32 mHemisphereExtension[2];    // _94
-	bool mEdges[2];           // _9C
+	f32 mValidSideDegree;          // 0x8C
+	f32 mValidSideCos;  // 0x90
+	f32 mHemisphereExtension[2];    // 0x94
+	bool mEdges[2];           // 0x9C
 };

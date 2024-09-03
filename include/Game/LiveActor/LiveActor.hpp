@@ -99,17 +99,17 @@ public:
     /* 0x3C */      TVec3f mGravity;                        ///< 3D vector of the actor's gravity.
     /* 0x48 */      ModelManager* mModelManager;            ///< A pointer to a ModelManager instance, used for drawing a 3D model.
     /* 0x4C */      ActorAnimKeeper* mAnimationKeeper;      ///< A pointer to a ActorAnimKeeper instance, used for storing and playing model animations.
-    Spine* mSpine;                          // _50
+    Spine* mSpine;                          // 0x50
     /* 0x54 */      HitSensorKeeper* mSensorKeeper;         ///< A pointer to a HitSensorKeeper instance, used for storing HitSensor instances.
-    Binder* mBinder;                        // _58
+    Binder* mBinder;                        // 0x58
     /* 0x5C */      RailRider* mRailRider;                  ///< A pointer to a RailRider instance, used for allowing the actor to ride on paths.
-    EffectKeeper* mEffectKeeper;            // _60
-    AudAnmSoundObject* mSoundObject;        // _64
+    EffectKeeper* mEffectKeeper;            // 0x60
+    AudAnmSoundObject* mSoundObject;        // 0x64
     /* 0x68 */      LiveActorFlag mFlags;                   ///< Flags relating to drawing, animation calculation, etc.
-    ShadowControllerList* mShadowList;      // _74
-    CollisionParts* mCollisionParts;        // _78
+    ShadowControllerList* mShadowList;      // 0x74
+    CollisionParts* mCollisionParts;        // 0x78
     /* 0x7C */      StageSwitchCtrl* mStageSwitchCtrl;      ///< A pointer to a StageSwitchCtrl instance, used for activating and deactivating switches.
-    StarPointerTarget* mStarPointerTarget;  // _80
-    ActorLightCtrl* mActorLightCtrl;        // _84
-    ActorPadAndCameraCtrl* mCameraCtrl;     // _88
+    StarPointerTarget* mStarPointerTarget;  // 0x80
+    ActorLightCtrl* mActorLightCtrl;        // 0x84
+    ActorPadAndCameraCtrl* mCameraCtrl;     // 0x88
 };

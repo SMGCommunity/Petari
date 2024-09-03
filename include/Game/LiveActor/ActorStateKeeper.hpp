@@ -21,6 +21,6 @@ public:
 
     s32 mStatesCapacity;
     s32 mLength;
-    State* mStates;           // _8
-    State* mCurrentState;           // _C
+    State* mStates;           // 0x8
+    State* mCurrentState;           // 0xC
 };

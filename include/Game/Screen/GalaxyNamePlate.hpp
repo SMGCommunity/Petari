@@ -5,8 +5,8 @@
 #include "Game/Util/MessageUtil.hpp"
 
 struct GalaxyNamePlateDrawerEntry {
-    LayoutActor* mHostActor;    // _0
-    u32 mZ;                     // _4
+    LayoutActor* mHostActor;    // 0x0
+    u32 mZ;                     // 0x4
 };
 
 class GalaxyNamePlate : public LayoutActor {
@@ -30,12 +30,12 @@ public:
     void exeAppear();
     void exeWait();
 
-    const char* mGalaxyName;                    // _20
+    const char* mGalaxyName;                    // 0x20
     bool _24;
     bool _25;
-    bool mShowBalloonNozzle;                    // _26
+    bool mShowBalloonNozzle;                    // 0x26
     u8 _27;
-    GalaxyNamePlateDrawerEntry* mDrawerEntry;   // _28
+    GalaxyNamePlateDrawerEntry* mDrawerEntry;   // 0x28
     s32 _2C;
     u8 _30;
 };

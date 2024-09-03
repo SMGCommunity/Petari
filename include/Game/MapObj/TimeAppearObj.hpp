@@ -12,7 +12,7 @@ public:
 
     void exeEnd();
 
-    s32 mTimer; // _C4
+    s32 mTimer; // 0xC4
 };
 
 namespace NrvTimeAppearObj {

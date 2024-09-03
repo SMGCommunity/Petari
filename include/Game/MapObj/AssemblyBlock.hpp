@@ -22,11 +22,11 @@ public:
     TPos3f _BC;
     TPos3f _EC;
     s32 _11C;
-    f32 mActivationRange;       // _120
+    f32 mActivationRange;       // 0x120
     TVec3f _124;
     f32 _130;
-    s32 mActivationTime;        // _134
-    PartsModel* mBloomModel;    // _138
+    s32 mActivationTime;        // 0x134
+    PartsModel* mBloomModel;    // 0x138
     bool _13C;
 };
 

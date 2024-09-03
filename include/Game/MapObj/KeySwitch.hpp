@@ -27,8 +27,8 @@ public:
     void exeWait();
     bool tryAvoid();
 
-    ActorCameraInfo* mCameraInfo;   // _8C
-    s32 mCurDemoFrame;              // _90
+    ActorCameraInfo* mCameraInfo;   // 0x8C
+    s32 mCurDemoFrame;              // 0x90
 };
 
 namespace NrvKeySwitch {

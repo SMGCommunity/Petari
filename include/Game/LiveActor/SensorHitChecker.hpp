@@ -22,12 +22,12 @@ public:
 
     void checkAttack(HitSensor *, HitSensor *) const;
 
-    SensorGroup* mPlayerGroup;    // _C
-    SensorGroup* mRideGroup;      // _10
-    SensorGroup* mEyeGroup;       // _14
-    SensorGroup* mSimpleGroup;    // _18
-    SensorGroup* mMapObjGroup;    // _1C
-    SensorGroup* mCharacterGroup; // _30
+    SensorGroup* mPlayerGroup;    // 0xC
+    SensorGroup* mRideGroup;      // 0x10
+    SensorGroup* mEyeGroup;       // 0x14
+    SensorGroup* mSimpleGroup;    // 0x18
+    SensorGroup* mMapObjGroup;    // 0x1C
+    SensorGroup* mCharacterGroup; // 0x30
 };
 
 class SensorGroup {
@@ -38,9 +38,9 @@ public:
     void remove(HitSensor *);
     void clear() const;
 
-    s32 mMaxSensors;      // _0
-    s32 mSensorCount;     // _4
-    HitSensor** mSensors; // _8
+    s32 mMaxSensors;      // 0x0
+    s32 mSensorCount;     // 0x4
+    HitSensor** mSensors; // 0x8
 };
 
 namespace MR {

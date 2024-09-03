@@ -25,7 +25,7 @@ public:
     void tidy();
 
     s32 _0;
-    u32 mNumNodes;                              // _4
+    u32 mNumNodes;                              // 0x4
     u32 _8;
     u32 _C;
     SkeletalFishBabyRailGroupNode* _10;
@@ -46,7 +46,7 @@ public:
     void add(SkeletalFishBabyRail *);
     SkeletalFishBabyRailGroupNode* createGroup(s32);
 
-    SkeletalFishBabyRailGroupNode* mNodes;      // _C
+    SkeletalFishBabyRailGroupNode* mNodes;      // 0xC
 };
 
 namespace MR {

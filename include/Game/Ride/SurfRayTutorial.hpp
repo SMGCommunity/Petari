@@ -12,11 +12,11 @@ public:
 
     virtual ~SurfRayTutorial();
 
-    LiveActor* mHostActor;      // _8
+    LiveActor* mHostActor;      // 0x8
     u8 _C;
-    TVec3f mAcceleration;       // _10
-    TalkMessageCtrl* mControl;  // _1C
-    SurfingGuidance* mGuidance; // _20
+    TVec3f mAcceleration;       // 0x10
+    TalkMessageCtrl* mControl;  // 0x1C
+    SurfingGuidance* mGuidance; // 0x20
     u32 _24;
     u32 _28;
     u32 _2C;

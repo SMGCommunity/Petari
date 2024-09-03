@@ -46,12 +46,12 @@ public:
     void calcForceMovePower(TVec3f *, const TVec3f &) const;
 
     TMtx34f *_0;
-    TMtx34f mMatrix;            // _4
-    TPos3f mBaseMatrix;         // _34
-    TPos3f mInvBaseMatrix;      // _64
-    TPos3f mPrevBaseMatrix;     // _94
-    KCollisionServer *mServer;  // _C4
-    HitSensor *mHitSensor;      // _C8
+    TMtx34f mMatrix;            // 0x4
+    TPos3f mBaseMatrix;         // 0x34
+    TPos3f mInvBaseMatrix;      // 0x64
+    TPos3f mPrevBaseMatrix;     // 0x94
+    KCollisionServer *mServer;  // 0xC4
+    HitSensor *mHitSensor;      // 0xC8
     bool _CC;
     bool _CD;
     bool _CE;
@@ -61,8 +61,8 @@ public:
     s32 _D4;
     f32 _D8;
     f32 _DC;
-    s32 mKeeperIndex;           // _E0
-    CollisionZone *mZone;       // _E4   
+    s32 mKeeperIndex;           // 0xE0
+    CollisionZone *mZone;       // 0xE4   
     f32 _E8;
     f32 _EC;
     f32 _F0;

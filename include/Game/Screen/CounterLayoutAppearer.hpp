@@ -20,10 +20,10 @@ public:
     void exeAppear();
     void exeDisappear();
 
-    LayoutActor* mLayout;   // _8
+    LayoutActor* mLayout;   // 0x8
     f32 _C;
     f32 _10;
-    TVec2f mFollowPos;      // _14
+    TVec2f mFollowPos;      // 0x14
     f32 _1C;
     f32 _20;
 };

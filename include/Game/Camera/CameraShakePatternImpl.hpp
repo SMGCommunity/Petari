@@ -33,8 +33,8 @@ public:
     void setDirection(const TVec2f &);
 
     f32 _8;
-    TVec2f mOffset;     // _C
-    TVec2f mDirection;  // _14
+    TVec2f mOffset;     // 0xC
+    TVec2f mDirection;  // 0x14
 };
 
 class CameraShakePatternVerticalSin : public CameraShakePattern {
@@ -49,5 +49,5 @@ public:
 
     f32 _8;
     f32 _C;
-    TVec2f mOffset; // _10
+    TVec2f mOffset; // 0x10
 };

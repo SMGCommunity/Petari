@@ -10,5 +10,5 @@ public:
     void setCurrentHolder(NameObjHolder *);
     void add(NameObj *);
 
-    NameObjHolder* mHolder; // _0
+    NameObjHolder* mHolder; // 0x0
 };

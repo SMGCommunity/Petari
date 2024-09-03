@@ -34,5 +34,5 @@ public:
     ClippingActorInfoList* _14;
     ClippingActorInfoList* _18;
     ClippingActorInfoList* _1C;
-    ViewGroupCtrl* mViewGroupCtrl;  // _20
+    ViewGroupCtrl* mViewGroupCtrl;  // 0x20
 };

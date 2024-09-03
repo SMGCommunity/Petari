@@ -57,8 +57,8 @@ public:
     bool canBind(HitSensor *) const;
 
     LiveActor* _8C;
-    SpinDriverShootPath* mShootPath;        // _90
-    SpinDriverCamera* mSpinDriverCamera;    // _94
+    SpinDriverShootPath* mShootPath;        // 0x90
+    SpinDriverCamera* mSpinDriverCamera;    // 0x94
     TQuat4f _98;
     TQuat4f _A8;
     TVec3f _B8;

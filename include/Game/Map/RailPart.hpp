@@ -19,8 +19,8 @@ public:
     f32 getParam(f32) const;
     f32 getNearestParam(const TVec3f &, f32) const;
 
-    LinearRailPart* mRailPartLinear; // _0
-    BezierRailPart* mRailPartBezier; // _4
+    LinearRailPart* mRailPartLinear; // 0x0
+    BezierRailPart* mRailPartBezier; // 0x4
 };
 
 class LinearRailPart {

@@ -48,9 +48,9 @@
 #include <cstring>
 
 struct CameraTableEntry {
-    const char *mName;                  // _0
-    const char *mJapaneseDescription;   // _4
-    Camera* (*mCreateFunction)(void);   // _8
+    const char *mName;                  // 0x0
+    const char *mJapaneseDescription;   // 0x4
+    Camera* (*mCreateFunction)(void);   // 0x8
     u8 _C;
     u8 _D[3];
 };

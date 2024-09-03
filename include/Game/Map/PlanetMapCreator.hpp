@@ -6,9 +6,9 @@
 #include "Game/Util.hpp"
 
 struct PlanetMapData {
-    const char* mPlanetName;            // _0
-    const char* mData[5];               // _4
-    const char* mForceScenarioData[8];  // _18
+    const char* mPlanetName;            // 0x0
+    const char* mData[5];               // 0x4
+    const char* mForceScenarioData[8];  // 0x18
 };
 
 struct UniqueEntry {
@@ -19,8 +19,8 @@ struct UniqueEntry {
 typedef NameObj* (*CreationFuncPtr)(const char *);
 
 struct PlanetEntry {
-    const char* mName;          // _0
-    CreationFuncPtr mFunction;  // _4
+    const char* mName;          // 0x0
+    CreationFuncPtr mFunction;  // 0x4
 };
 
 namespace {
@@ -61,8 +61,8 @@ public:
     PlanetMapData* getTableData(const char *) const;
     bool isScenarioForceLow(const PlanetMapData *) const;
 
-    PlanetMapData** mPlanetMapData; // _C
-    s32 mTableCount;                // _10
+    PlanetMapData** mPlanetMapData; // 0xC
+    s32 mTableCount;                // 0x10
 };
 
 class PlanetMapCreatorFunction {

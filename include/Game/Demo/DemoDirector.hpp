@@ -21,14 +21,14 @@ public:
     void registerDemoSimpleCast(LayoutActor *);
     void registerDemoSimpleCast(NameObj *);
 
-    bool mIsActive;                             // _C
-    DemoExecutor* mExecutor;                    // _10
+    bool mIsActive;                             // 0xC
+    DemoExecutor* mExecutor;                    // 0x10
     u8 _14;
     DemoCastGroupHolder* _18;
     DemoCastGroupHolder* _1C;
     DemoSimpleCastHolder* _20;
-    ResourceHolder* mResourceHolder;            // _24
-    DemoStartRequestHolder* mStartReqHolder;    // _28
+    ResourceHolder* mResourceHolder;            // 0x24
+    DemoStartRequestHolder* mStartReqHolder;    // 0x28
     NameObj* _2C;
     const char* _30;
     s32 _34;

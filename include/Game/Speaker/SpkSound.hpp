@@ -10,7 +10,7 @@ class SpkSoundHandle {
 public:
     void releaseSound();
 
-    SpkSound* mSound;   // _0
+    SpkSound* mSound;   // 0x0
 };
 
 class SpkSoundVolume {
@@ -44,7 +44,7 @@ public:
     void unlock();
     bool setWaveData(s32);
 
-    SpkSoundHandle* mSoundHandle;   // _10
+    SpkSoundHandle* mSoundHandle;   // 0x10
     s32 _14;
     u32 _18;
     u32 _1C;
@@ -56,7 +56,7 @@ public:
     s32 _34;
     s32 _38;
     s32 _3C;
-    SpkSoundVolume mVolume;         // _40
+    SpkSoundVolume mVolume;         // 0x40
 };
 
 class SpkSoundHolder : JASGlobalInstance<SpkSoundHolder> {
@@ -70,7 +70,7 @@ public:
 
     void framework();
 
-    JSUList<SpkSound> mSoundList[4];   // _0
+    JSUList<SpkSound> mSoundList[4];   // 0x0
     f32 _30[4];
     f32 _40;
     u32 _44;

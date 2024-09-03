@@ -16,7 +16,7 @@ public:
     void swap(const char *, const char *);
 
     u8 _0;
-    u32* mHashCodes;   // _4
+    u32* mHashCodes;   // 0x4
     u32* _8;
     u32* _C;
     u32* _10;

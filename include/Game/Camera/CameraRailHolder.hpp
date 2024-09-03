@@ -27,5 +27,5 @@ public:
     // getRider(long, long) const;
     // find(long, long) const;
 
-    ZoneRail *mRails;   // _C
+    ZoneRail *mRails;   // 0xC
 };

@@ -37,10 +37,10 @@ public:
     void exeFreeze();
     void initPipeHeight();
 
-    IceStepNoSlip* mIceStep;        // _8C
-    f32 mPipeHeight;                // _90
-    MtxPtr mTopMtx;                 // _94
-    MtxPtr mBottomMtx;              // _98
+    IceStepNoSlip* mIceStep;        // 0x8C
+    f32 mPipeHeight;                // 0x90
+    MtxPtr mTopMtx;                 // 0x94
+    MtxPtr mBottomMtx;              // 0x98
     TVec3f _9C;
 };
 

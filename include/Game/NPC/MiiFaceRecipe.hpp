@@ -14,10 +14,10 @@ public:
     RFLErrcode makeIcon(void *, int, int, _GXColor) const;
     RFLErrcode makeIconWithFavoriteColor(void *, int, int) const;
 
-    RFLDataSource mDataSource;  // _0
-    RFLMiddleDB* mMiddleDB;     // _4
-    u16 mIndex;                 // _8
+    RFLDataSource mDataSource;  // 0x0
+    RFLMiddleDB* mMiddleDB;     // 0x4
+    u16 mIndex;                 // 0x8
     u16 _A;
-    RFLResolution mResolution;  // _C
-    u32 mExpressionFlag;        // _10
+    RFLResolution mResolution;  // 0xC
+    u32 mExpressionFlag;        // 0x10
 };

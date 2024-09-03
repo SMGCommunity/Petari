@@ -4,16 +4,16 @@ extern void OSReport(const char *, ...);
 extern int OSEnableScheduler(void);
 
 struct gDBCommTable_t {
-    int (*init)(volatile char **, void *);      // _0
-    int (*interrupt)(void);                     // _4
-    int (*shutdown)(void);                      // _8
-    int (*peek)(void);                          // _C
-    int (*read)(char *, int);                   // _10
-    int (*write)(char *, int);                  // _14
-    int (*open)(void);                          // _18
-    int (*close)(void);                         // _1C
-    int (*pre_continue)(void);                  // _20
-    int (*stop)(void);                          // _24
+    int (*init)(volatile char **, void *);      // 0x0
+    int (*interrupt)(void);                     // 0x4
+    int (*shutdown)(void);                      // 0x8
+    int (*peek)(void);                          // 0xC
+    int (*read)(char *, int);                   // 0x10
+    int (*write)(char *, int);                  // 0x14
+    int (*open)(void);                          // 0x18
+    int (*close)(void);                         // 0x1C
+    int (*pre_continue)(void);                  // 0x20
+    int (*stop)(void);                          // 0x24
 };
 
 typedef struct OSContext {

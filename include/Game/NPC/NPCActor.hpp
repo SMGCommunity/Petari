@@ -19,60 +19,60 @@ public:
     void setIndirect();
 
     const char* _0;
-    bool mInitModel;                // _4
-    const char* mObjectName;        // _8
+    bool mInitModel;                // 0x4
+    const char* mObjectName;        // 0x8
     u8 _C;
     u8 _D;
     u8 _E;
     u8 _F;
     const char* _10;
-    TVec3f mMessageOffset;          // _14
-    MtxPtr mTalkMtx;                // _20
-    const char* mTalkJointName;     // _24
+    TVec3f mMessageOffset;          // 0x14
+    MtxPtr mTalkMtx;                // 0x20
+    const char* mTalkJointName;     // 0x24
     u8 _28;
-    bool mConnectsToScene;          // _29
-    bool mUseLightCtrl;             // _2A
-    bool mUseEffect;                // _2B
-    bool mUseSounds;                // _2C
+    bool mConnectsToScene;          // 0x29
+    bool mUseLightCtrl;             // 0x2A
+    bool mUseEffect;                // 0x2B
+    bool mUseSounds;                // 0x2C
     u8 _2D;
     u8 _2E;
     u8 _2F;
     u32 _30;
-    bool mCanBeHitByShell;          // _34
+    bool mCanBeHitByShell;          // 0x34
     u8 _35;
     u8 _36;
-    bool mUsesNerves;               // _37
+    bool mUsesNerves;               // 0x37
     u8 _38;
     u8 _39;
     u8 _3A;
     u8 _3B;
     f32 _3C;
-    bool mUseHitSensors;            // _40
+    bool mUseHitSensors;            // 0x40
     u8 _41;
     u8 _42;
     u8 _43;
     u32 _44;
-    f32 mSensorSize;                // _48
-    TVec3f mSensorOffset;           // _4C
+    f32 mSensorSize;                // 0x48
+    TVec3f mSensorOffset;           // 0x4C
     u32 _58;
     u8 _5C;
-    bool mUseShadow;                // _5D
+    bool mUseShadow;                // 0x5D
     u8 _5E;
     u8 _5F;
     f32 _60;
-    bool mUseRail;                  // _64
+    bool mUseRail;                  // 0x64
     u8 _65;
     u8 _66;
     u8 _67;
-    bool mUseStarPointer;           // _68
+    bool mUseStarPointer;           // 0x68
     u32 _6C;
     u32 _70;
-    TVec3f mStarPointerOffs;        // _74
+    TVec3f mStarPointerOffs;        // 0x74
     f32 _80;
-    u32 mSceneConnectionType;       // _84
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // _88
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // _8C
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // _90
+    u32 mSceneConnectionType;       // 0x84
+    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x88
+    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x8C
+    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x90
 };
 
 class NPCActor : public LiveActor {
@@ -120,8 +120,8 @@ public:
 
     void setInitPose();
 
-    LodCtrl* mLodCtrl;                                  // _8C
-    TalkMessageCtrl* mMsgCtrl;                          // _90
+    LodCtrl* mLodCtrl;                                  // 0x8C
+    TalkMessageCtrl* mMsgCtrl;                          // 0x90
     PartsModel* _94;
     PartsModel* _98;
     u32 _9C;
@@ -171,12 +171,12 @@ public:
     const char* _134;
     const char* _138;
     const char* _13C;
-    AnimScaleController* mScaleController;              // _140
+    AnimScaleController* mScaleController;              // 0x140
     u32 _144;
-    Nerve* mCurNerve;                                   // _148
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // _14C
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // _150
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // _154
+    Nerve* mCurNerve;                                   // 0x148
+    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x14C
+    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x150
+    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x154
     u32 _158;
 };
 
@@ -184,7 +184,7 @@ class NPCActorItem {
 public:
     NPCActorItem(const char *pName);
 
-    const char* mName;  // _0
+    const char* mName;  // 0x0
     u32* _4;
     u32* _8;
     const char* _C;

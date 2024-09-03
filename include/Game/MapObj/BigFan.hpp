@@ -32,9 +32,9 @@ public:
         return flag;
     }
 
-    ModelObj* mWindModel;   // _8C
+    ModelObj* mWindModel;   // 0x8C
     TVec3f _90;
-    f32 mWindLength;        // _9C
+    f32 mWindLength;        // 0x9C
     f32 _A0;
-    bool mIsTeresaGalaxy;   // _A4
+    bool mIsTeresaGalaxy;   // 0xA4
 };

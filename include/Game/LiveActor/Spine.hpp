@@ -16,9 +16,9 @@ public:
     void changeNerve();
     void initStateKeeper(int);
 
-    void* mExecutor; // _0
-    const Nerve* mCurNerve; // _4
-    const Nerve* mNextNerve; // _8
-    s32 mStep; // _C
-    ActorStateKeeper* mStateKeeper; // _10
+    void* mExecutor; // 0x0
+    const Nerve* mCurNerve; // 0x4
+    const Nerve* mNextNerve; // 0x8
+    s32 mStep; // 0xC
+    ActorStateKeeper* mStateKeeper; // 0x10
 };

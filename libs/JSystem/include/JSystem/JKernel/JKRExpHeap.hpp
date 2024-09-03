@@ -17,12 +17,12 @@ public:
             return (void*)(this + 1); 
         }
 
-        u16 mMagic;             // _0
-        u8 mFlags;              // _2
-        u8 mGroupId;            // _3
-        u32 mSize;              // _4
-        CMemBlock* mPrev;       // _8
-        CMemBlock* mNext;       // _C
+        u16 mMagic;             // 0x0
+        u8 mFlags;              // 0x2
+        u8 mGroupId;            // 0x3
+        u32 mSize;              // 0x4
+        CMemBlock* mPrev;       // 0x8
+        CMemBlock* mNext;       // 0xC
     };
 
     JKRExpHeap(void *, u32, JKRHeap *, bool);
@@ -63,13 +63,13 @@ public:
 
     static JKRExpHeap* createRoot(int, bool);
 
-    u8 mAllocMode;          // _6C
-    u8 mCurrentGroupId;     // _6D
+    u8 mAllocMode;          // 0x6C
+    u8 mCurrentGroupId;     // 0x6D
     u8 _6E;
     void* _70;
     u32 _74;
-    CMemBlock* mHeadFreeList;   // _78
-    CMemBlock* mTailFreeList;   // _7C
-    CMemBlock* mHeadUsedList;   // _80
-    CMemBlock* mTailUsedList;   // _84
+    CMemBlock* mHeadFreeList;   // 0x78
+    CMemBlock* mTailFreeList;   // 0x7C
+    CMemBlock* mHeadUsedList;   // 0x80
+    CMemBlock* mTailUsedList;   // 0x84
 };

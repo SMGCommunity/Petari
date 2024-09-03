@@ -23,5 +23,5 @@ public:
     const char* _18;
     TVec3f _1C;
     TVec3f _28;
-    f32 mMoveCondition; // _34
+    f32 mMoveCondition; // 0x34
 };

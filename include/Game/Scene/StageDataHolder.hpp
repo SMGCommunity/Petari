@@ -57,19 +57,19 @@ public:
 
     void calcPlacementMtx(const JMapInfoIter &);
 
-    MR::AssignableArray<JMapInfo> mPlacementObjs;   // _C
-    MR::AssignableArray<JMapInfo> mStartObjs;       // _14
-    MR::AssignableArray<JMapInfo> mGeneralPosObjs;  // _1C
-    MR::AssignableArray<JMapInfo> mChildObjs;       // _24
-    MR::AssignableArray<JMapInfo> mListObjs;        // _2C
-    MR::AssignableArray<JMapInfo> mPathObjs;        // _34
-    JMapInfo* mObjNameTbl;                          // _3C
-    s32 mStageDataHolderCount;                      // _40
-    StageDataHolder* mStageDataArray[0x18];         // _44
-    JKRArchive* mArchive;                           // _A4
+    MR::AssignableArray<JMapInfo> mPlacementObjs;   // 0xC
+    MR::AssignableArray<JMapInfo> mStartObjs;       // 0x14
+    MR::AssignableArray<JMapInfo> mGeneralPosObjs;  // 0x1C
+    MR::AssignableArray<JMapInfo> mChildObjs;       // 0x24
+    MR::AssignableArray<JMapInfo> mListObjs;        // 0x2C
+    MR::AssignableArray<JMapInfo> mPathObjs;        // 0x34
+    JMapInfo* mObjNameTbl;                          // 0x3C
+    s32 mStageDataHolderCount;                      // 0x40
+    StageDataHolder* mStageDataArray[0x18];         // 0x44
+    JKRArchive* mArchive;                           // 0xA4
     const char* _A8;
-    Mtx mPlacementMtx;                              // _AC
-    s32 mZoneID;                                    // _DC
+    Mtx mPlacementMtx;                              // 0xAC
+    s32 mZoneID;                                    // 0xDC
     u8 _E0;
     u8 _E1;
     u8 _E2;

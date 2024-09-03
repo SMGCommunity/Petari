@@ -7,7 +7,7 @@ class JAISoundHandle;
 
 class JAUSoundObject {
 public:
-    JAISoundHandle *mHandles;   // _0
+    JAISoundHandle *mHandles;   // 0x0
     u32 _4;
 
     JAUSoundObject();

@@ -22,7 +22,7 @@ namespace nw4r {
 
                 virtual ~PaneBase();
 
-                ut::LinkListNode mLink;         // _4
+                ut::LinkListNode mLink;         // 0x4
             };
         };
 
@@ -82,24 +82,24 @@ namespace nw4r {
                 return mbUserAllocated;
             }
 
-            Pane* mpParent;                     // _C
-            PaneList mChildList;                // _10
-            AnimationList mAnimList;            // _1C
-            Material* mpMaterial;               // _28
-            math::VEC3 mTranslate;              // _2C
-            math::VEC3 mRotate;                 // _38
-            math::VEC2 mScale;                  // _44
-            Size mSize;                         // _4C
-            math::MTX34 mMtx;                   // _54
-            math::MTX34 mGlbMtx;                // _84
-            u8 mAlpha;                          // _B4
-            u8 mGlbAlpha;                       // _B5
-            u8 mBasePosition;                   // _B6
-            u8 mFlag;                           // _B7
-            char mName[17];                     // _B8
-            char mUserData[9];                  // _C9
-            u8 mbUserAllocated;                 // _D2
-            u8 pad;                             // _D3
+            Pane* mpParent;                     // 0xC
+            PaneList mChildList;                // 0x10
+            AnimationList mAnimList;            // 0x1C
+            Material* mpMaterial;               // 0x28
+            math::VEC3 mTranslate;              // 0x2C
+            math::VEC3 mRotate;                 // 0x38
+            math::VEC2 mScale;                  // 0x44
+            Size mSize;                         // 0x4C
+            math::MTX34 mMtx;                   // 0x54
+            math::MTX34 mGlbMtx;                // 0x84
+            u8 mAlpha;                          // 0xB4
+            u8 mGlbAlpha;                       // 0xB5
+            u8 mBasePosition;                   // 0xB6
+            u8 mFlag;                           // 0xB7
+            char mName[17];                     // 0xB8
+            char mUserData[9];                  // 0xC9
+            u8 mbUserAllocated;                 // 0xD2
+            u8 pad;                             // 0xD3
         };
     };
 };

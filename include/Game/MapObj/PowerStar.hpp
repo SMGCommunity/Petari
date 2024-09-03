@@ -64,33 +64,33 @@ public:
         return mIsGrandStar;
     }
 
-    s32 mPowerStarId;               // _8C
-    bool mIsInDemo;                 // _90
-    TVec3f mAppearPosition;         // _94
+    s32 mPowerStarId;               // 0x8C
+    bool mIsInDemo;                 // 0x90
+    TVec3f mAppearPosition;         // 0x94
     TVec3f _A0;
     TVec3f _AC;
     TPos3f _B8;
     TMtx34f _E8;
-    ModelObj* mPowerStarModelObj;   // _118
+    ModelObj* mPowerStarModelObj;   // 0x118
     u8 _11C;
     u8 _11D;
     u8 _11E;
     u8 _11F;
 
-    // _120
+    // 0x120
     // this isn't what they wrote but oh well
     union {
         volatile s32 mColorFrame_v;
         s32 mColorFrame;
     };
 
-    volatile bool mIsGrandStar;              // _124
+    volatile bool mIsGrandStar;              // 0x124
     bool _125;                          // Obj_arg0
     bool _126;                          // Obj_arg1
     bool _127;                          // Obj_arg4
-    ActorCameraInfo* mCameraInfo;       // _128
-    PowerStarAppearPoint* mCameraActor; // _12C
-    ModelObj* mLuigiNPC;                // _130
+    ActorCameraInfo* mCameraInfo;       // 0x128
+    PowerStarAppearPoint* mCameraActor; // 0x12C
+    ModelObj* mLuigiNPC;                // 0x130
     TMtx34f _134;
     u8 _164;
 };

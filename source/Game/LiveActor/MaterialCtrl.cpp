@@ -76,3 +76,4 @@ MatColorCtrl::MatColorCtrl(J3DModelData *pModelData, const char *pName, u32 colo
 void MatColorCtrl::updateMaterial(J3DMaterial *pMaterial) {
     pMaterial->mColorBlock->setMatColor(mColorChoice, mColor);
 }
+

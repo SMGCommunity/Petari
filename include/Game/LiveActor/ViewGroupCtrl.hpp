@@ -22,9 +22,9 @@ public:
     void update();
     void startInitViewGroupTable();
 
-    AreaObjMgr* mViewCubeMgr;               // _0
-    s32 mMaxViewGroupId;                    // _4
-    ViewGroupCtrlDataEntry* mViewGroupData; // _8
-    u32 mViewCtrlCount;                     // _C
-    LodCtrl** mLodCtrls;                    // _10
+    AreaObjMgr* mViewCubeMgr;               // 0x0
+    s32 mMaxViewGroupId;                    // 0x4
+    ViewGroupCtrlDataEntry* mViewGroupData; // 0x8
+    u32 mViewCtrlCount;                     // 0xC
+    LodCtrl** mLodCtrls;                    // 0x10
 };

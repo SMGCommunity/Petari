@@ -11,7 +11,7 @@ public:
     const GameEventFlag* getFlag() const;
     bool isValid() const;
 
-    u32 mIter;  // _0
+    u32 mIter;  // 0x0
 };
 
 class GameEventFlagTableInstance {

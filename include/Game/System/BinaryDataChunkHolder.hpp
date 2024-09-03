@@ -22,9 +22,9 @@ public:
 
     BinaryDataChunkBase* findFromSignature(u32) const;
 
-    BinaryDataChunkBase** mChunks;  // _0
-    s32 mMaxChunks;                 // _4
-    s32 mNumChunks;                 // _8
-    u8* mData;                      // _C
+    BinaryDataChunkBase** mChunks;  // 0x0
+    s32 mMaxChunks;                 // 0x4
+    s32 mNumChunks;                 // 0x8
+    u8* mData;                      // 0xC
     u32 _10;
 };

@@ -48,7 +48,7 @@ public:
     bool isNerve(const Nerve *) const;
     bool isFirstStep() const;
 
-    Spine* mSpine;      // _C
-    LiveActor* mHost;   // _10
+    Spine* mSpine;      // 0xC
+    LiveActor* mHost;   // 0x10
     u8 _14;
 };

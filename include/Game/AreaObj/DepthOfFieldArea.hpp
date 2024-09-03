@@ -16,6 +16,6 @@ public:
     s32 getBlurMaxDist() const;
     s32 getBlurMinDist() const;
 
-    bool mIsPlayerSync; // _40
+    bool mIsPlayerSync; // 0x40
     u8 _41[3];
 };

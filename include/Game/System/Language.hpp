@@ -9,8 +9,8 @@
 #endif
 
 struct GameLanguage {
-    int mIdentifier;    // _0
-    const char* mName;  // _4
+    int mIdentifier;    // 0x0
+    const char* mName;  // 0x4
 };
 
 namespace MR {

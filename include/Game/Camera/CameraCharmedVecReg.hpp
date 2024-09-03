@@ -11,11 +11,11 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    const char *mString;    // _4C
-    f32 mDist;              // _50
-    f32 mAxisX;             // _54
-    f32 mAxisZ;             // _58
-    f32 mAxisY;             // _5C
-    f32 mAngleA;            // _60
-    f32 mAngleB;            // _64
+    const char *mString;    // 0x4C
+    f32 mDist;              // 0x50
+    f32 mAxisX;             // 0x54
+    f32 mAxisZ;             // 0x58
+    f32 mAxisY;             // 0x5C
+    f32 mAngleA;            // 0x60
+    f32 mAngleB;            // 0x64
 };

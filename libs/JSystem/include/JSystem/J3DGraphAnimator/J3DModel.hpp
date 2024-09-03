@@ -18,7 +18,7 @@ public:
 
     void setBaseScale(const Vec &);
 
-    J3DModelData* mModelData;       // _4
+    J3DModelData* mModelData;       // 0x4
     u32 _8;
     u32 _C;
     u32 _10;
@@ -29,8 +29,8 @@ public:
     Mtx _24;
     Mtx _54;
     u32 _84;
-    J3DVertexBuffer mVertexBuffer;  // _88
-    J3DMatPacket* mMaterialPacket;  // _C0
+    J3DVertexBuffer mVertexBuffer;  // 0x88
+    J3DMatPacket* mMaterialPacket;  // 0xC0
     u32 _C4;
     u32 _C8;
     u32 _CC;

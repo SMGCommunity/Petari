@@ -40,15 +40,15 @@ public:
         MR::deleteEffect(this, "StarPointerHolder");
     }
 
-    JointController* mControllers[4];               // _8C
-    s32* mJointIndicies;                            // _9C
+    JointController* mControllers[4];               // 0x8C
+    s32* mJointIndicies;                            // 0x9C
     f32 _A0;
     f32 _A4;
-    SkeletalFishRailControl* mRailControl;          // _A8
+    SkeletalFishRailControl* mRailControl;          // 0xA8
     TPos3f _AC;
     f32 _DC;
-    AnimScaleController* mScaleController;          // _E0 
-    LiveActor* mStarPieceTargets[4];                // _E4
+    AnimScaleController* mScaleController;          // 0xE0 
+    LiveActor* mStarPieceTargets[4];                // 0xE4
 };
 
 namespace {

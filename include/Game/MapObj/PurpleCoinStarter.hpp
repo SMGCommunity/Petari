@@ -14,6 +14,6 @@ public:
     void setHost(PurpleCoinHolder *);
     void start();
 
-    PurpleCoinHolder* mCoinHolder;  // _C
-    StageSwitchCtrl* mSwitchCtrl;   // _10
+    PurpleCoinHolder* mCoinHolder;  // 0xC
+    StageSwitchCtrl* mSwitchCtrl;   // 0x10
 };

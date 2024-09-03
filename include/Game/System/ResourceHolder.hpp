@@ -40,23 +40,23 @@ public:
 
     void mount(JKRArchive *, char *);
 
-    ResTable* mModelResTable;           // _0
-    ResTable* mMotionResTable;          // _4
-    ResTable* mBtkResTable;             // _8
-    ResTable* mBpkResTable;             // _C
-    ResTable* mBtpResTable;             // _10
-    ResTable* mBlkResTable;             // _14
-    ResTable* mBrkResTable;             // _18
-    ResTable* mBasResTable;             // _1C
-    ResTable* mBmtResTable;             // _20
-    ResTable* mBvaResTable;             // _24
-    ResTable* mBanmtResTable;           // _28
-    ResTable* mFileInfoTable;           // _2C
-    ResTable mDefaultTable;             // _30
-    MaterialAnmBuffer* mMaterialBuf;    // _38
-    BckCtrl* mBckCtrl;                  // _3C
-    void* mBackupMaterialData;          // _40
-    JKRArchive* mArchive;               // _44
-    JKRHeap* mHeap;                     // _48
+    ResTable* mModelResTable;           // 0x0
+    ResTable* mMotionResTable;          // 0x4
+    ResTable* mBtkResTable;             // 0x8
+    ResTable* mBpkResTable;             // 0xC
+    ResTable* mBtpResTable;             // 0x10
+    ResTable* mBlkResTable;             // 0x14
+    ResTable* mBrkResTable;             // 0x18
+    ResTable* mBasResTable;             // 0x1C
+    ResTable* mBmtResTable;             // 0x20
+    ResTable* mBvaResTable;             // 0x24
+    ResTable* mBanmtResTable;           // 0x28
+    ResTable* mFileInfoTable;           // 0x2C
+    ResTable mDefaultTable;             // 0x30
+    MaterialAnmBuffer* mMaterialBuf;    // 0x38
+    BckCtrl* mBckCtrl;                  // 0x3C
+    void* mBackupMaterialData;          // 0x40
+    JKRArchive* mArchive;               // 0x44
+    JKRHeap* mHeap;                     // 0x48
     u32 _4C;
 };

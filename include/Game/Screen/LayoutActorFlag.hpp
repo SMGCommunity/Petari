@@ -6,8 +6,8 @@ class LayoutActorFlag {
 public:
     LayoutActorFlag();
 
-    u8 mIsDead;             // _0
-    u8 mIsStopAnimFrame;    // _1
-    u8 mIsHidden;           // _2
-    u8 mIsOffCalcAnim;      // _3
+    u8 mIsDead;             // 0x0
+    u8 mIsStopAnimFrame;    // 0x1
+    u8 mIsHidden;           // 0x2
+    u8 mIsOffCalcAnim;      // 0x3
 };

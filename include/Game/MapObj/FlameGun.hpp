@@ -22,7 +22,7 @@ public:
     void exeRadiateOnly();
 
     TVec3f _8C;
-    s32 mState;             // _98
+    s32 mState;             // 0x98
 };
 
 namespace NrvFlameGun {

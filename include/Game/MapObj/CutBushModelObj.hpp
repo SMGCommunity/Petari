@@ -11,5 +11,5 @@ public:
     virtual void initAfterPlacement();
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mMtx;    // _8C
+    MtxPtr mMtx;    // 0x8C
 };

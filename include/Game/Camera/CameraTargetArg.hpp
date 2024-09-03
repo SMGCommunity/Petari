@@ -43,8 +43,8 @@ public:
     
     void setTarget() const;
 
-    CameraTargetObj *mTargetObj;    // _0
-    CameraTargetMtx *mTargetMtx;    // _4
-    const LiveActor *mLiveActor;    // _8
-    MarioActor *mMarioActor;        // _C
+    CameraTargetObj *mTargetObj;    // 0x0
+    CameraTargetMtx *mTargetMtx;    // 0x4
+    const LiveActor *mLiveActor;    // 0x8
+    MarioActor *mMarioActor;        // 0xC
 };

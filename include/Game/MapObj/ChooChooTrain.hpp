@@ -13,8 +13,8 @@ public:
     virtual void endClipped();
     virtual void control();
 
-    MR::Vector<MR::AssignableArray<ModelObj*> > mModelArray;    // _8C
+    MR::Vector<MR::AssignableArray<ModelObj*> > mModelArray;    // 0x8C
     TVec3f _98;
-    f32 mRailCoord;                                             // _A4
-    s32 mWhistleTimer;                                          // _A8
+    f32 mRailCoord;                                             // 0xA4
+    s32 mWhistleTimer;                                          // 0xA8
 };

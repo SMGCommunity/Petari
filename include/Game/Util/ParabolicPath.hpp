@@ -15,9 +15,9 @@ public:
     f32 getTotalLength(s32) const;
     f32 calcPathSpeedFromAverageSpeed(f32) const;
 
-    TVec3f mPosition;   // _0
-    TVec3f mAxisY;      // _C
-    TVec3f mAxisZ;      // _18
+    TVec3f mPosition;   // 0x0
+    TVec3f mAxisY;      // 0xC
+    TVec3f mAxisZ;      // 0x18
     f32 _24;
     f32 _28;
     f32 _2C;

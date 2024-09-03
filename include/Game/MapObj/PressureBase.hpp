@@ -13,7 +13,7 @@ public:
     
     void exeSync();
 
-    MsgSharedGroup* mSharedGroup;   // _8C
+    MsgSharedGroup* mSharedGroup;   // 0x8C
     s32 _90;
 };
 
@@ -45,19 +45,19 @@ public:
     bool isShotTypeOnGravity() const;
     bool isShotTypeFollow() const;
 
-    JointControlDelegator<PressureBase>* mJointController;  // _8C
-    TVec3f mFront;                                          // _90
+    JointControlDelegator<PressureBase>* mJointController;  // 0x8C
+    TVec3f mFront;                                          // 0x90
     f32 _9C;
-    f32 mNozzleRotation;                                    // _A0
-    s32 mWaitTime;                                          // _A4
-    f32 mBallSpeed;                                         // _A8
-    s32 mShotType;                                          // _AC
+    f32 mNozzleRotation;                                    // 0xA0
+    s32 mWaitTime;                                          // 0xA4
+    f32 mBallSpeed;                                         // 0xA8
+    s32 mShotType;                                          // 0xAC
     u8 _B0;
     u8 _B1;
     u8 _B2;
     u8 _B3;
-    PressureMessenger* mMessenger;                          // _B4
-    MsgSharedGroup* mGroup;                                 // _B8
+    PressureMessenger* mMessenger;                          // 0xB4
+    MsgSharedGroup* mGroup;                                 // 0xB8
     s8 _BC;
 };
 

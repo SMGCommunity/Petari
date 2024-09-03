@@ -25,7 +25,7 @@ public:
     u32 _28;
     u32 _2C;
     u32 _30;
-    J3DDrawMtxData mMatrixData; // _34
+    J3DDrawMtxData mMatrixData; // 0x34
     u32 _40;
     u32 _44;
 };

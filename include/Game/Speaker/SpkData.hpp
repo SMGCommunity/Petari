@@ -16,7 +16,7 @@ public:
     void loadWave(u16);
     bool isValid() const;
 
-    SpkTable mTable;        // _0
-    SpkWave mWave;          // _4
-    JKRArchive* mArchive;   // _14
+    SpkTable mTable;        // 0x0
+    SpkWave mWave;          // 0x4
+    JKRArchive* mArchive;   // 0x14
 };

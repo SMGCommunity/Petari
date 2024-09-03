@@ -15,5 +15,5 @@ public:
 
     u32 getAnimFrame(const CameraParamChunk *) const;
 
-    CameraAnim *mCamera;    // _4
+    CameraAnim *mCamera;    // 0x4
 };

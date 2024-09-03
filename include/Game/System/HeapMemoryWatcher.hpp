@@ -31,16 +31,16 @@ public:
     static void memoryErrorCallback(void *, u32, int);
     void checkRestMemory();
 
-    JKRExpHeap* mStationedHeapNapa;     // _0
-    JKRExpHeap* mStationedHeapGDDR;     // _4
-    JKRExpHeap* mGameHeapNapa;          // _8
-    JKRExpHeap* mGameHeapGDDR;          // _C
-    JKRHeap* mFileCacheHeap;            // _10
-    JKRSolidHeap* mSceneHeapNapa;       // _14
-    JKRSolidHeap* mSceneHeapGDDR;       // _18
-    JKRExpHeap* mWPadHeap;              // _1C
-    JKRExpHeap* mHomeButtonLayoutHeap;  // _20
-    JKRSolidHeap* mAudSystemHeap;       // _24
+    JKRExpHeap* mStationedHeapNapa;     // 0x0
+    JKRExpHeap* mStationedHeapGDDR;     // 0x4
+    JKRExpHeap* mGameHeapNapa;          // 0x8
+    JKRExpHeap* mGameHeapGDDR;          // 0xC
+    JKRHeap* mFileCacheHeap;            // 0x10
+    JKRSolidHeap* mSceneHeapNapa;       // 0x14
+    JKRSolidHeap* mSceneHeapGDDR;       // 0x18
+    JKRExpHeap* mWPadHeap;              // 0x1C
+    JKRExpHeap* mHomeButtonLayoutHeap;  // 0x20
+    JKRSolidHeap* mAudSystemHeap;       // 0x24
 
     static JKRExpHeap* sRootHeapGDDR3;
 };

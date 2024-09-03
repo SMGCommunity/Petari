@@ -21,8 +21,8 @@ public:
     void killHost();
     void exeDisappear();
 
-    s32 mSignMotionType;            // _18
-    PostureHolder* mPostureHolder;  // _1C
+    s32 mSignMotionType;            // 0x18
+    PostureHolder* mPostureHolder;  // 0x1C
     u8 _20;
 };
 

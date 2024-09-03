@@ -84,11 +84,11 @@ public:
     bool isRightToUse() const;
 
     LiveActor* _8C;
-    SpinDriverShootPath* mShootPath;        // _90
-    SpinDriverCamera* mSpinDriverCamera;    // _94
-    SpinDriverOperateRing* mOperateRing;    // _98
-    SpinDriverPathDrawer* mPathDrawer;      // _9C
-    ModelObj* mEmptyModel;                  // _A0
+    SpinDriverShootPath* mShootPath;        // 0x90
+    SpinDriverCamera* mSpinDriverCamera;    // 0x94
+    SpinDriverOperateRing* mOperateRing;    // 0x98
+    SpinDriverPathDrawer* mPathDrawer;      // 0x9C
+    ModelObj* mEmptyModel;                  // 0xA0
     TQuat4f _A4;
     TQuat4f _B4;
     TVec3f _C4;
@@ -116,7 +116,7 @@ public:
     f32 _164;
     u32 _168;
     u32 _16C;
-    s32 mColor;                             // _170
+    s32 mColor;                             // 0x170
     u8 _174;
     u8 _175;
     u8 _176;

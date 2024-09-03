@@ -19,8 +19,8 @@ public:
     void calcAxis();
     void calcSubAxis();
 
-    TVec3f mAxis;       // _8C
-    TVec3f mSubAxis;    // _98
+    TVec3f mAxis;       // 0x8C
+    TVec3f mSubAxis;    // 0x98
     u16 _A4;
     u16 _A6;
     s32 _A8;

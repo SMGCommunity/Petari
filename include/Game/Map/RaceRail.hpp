@@ -24,7 +24,7 @@ public:
 
     u32 _B0;
     u32 _B4;
-    ActorCameraInfo* mCameraInfo;   // _B8
+    ActorCameraInfo* mCameraInfo;   // 0xB8
 };
 
 class RaceRail : public NameObj {
@@ -34,5 +34,5 @@ public:
     virtual ~RaceRail();
     virtual void init(const JMapInfoIter &);
 
-    PlayerRacer* mPlayerRacer;  // _C
+    PlayerRacer* mPlayerRacer;  // 0xC
 };

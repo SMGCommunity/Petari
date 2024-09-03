@@ -45,12 +45,12 @@ public:
     const char* _8C;
     TQuat4f _90;
     TVec3f _A0;
-    BossKameckSequencer* mSequencer;                // _AC
-    KameckHolder* mKameckHolder;                    // _B0
-    ActorJointCtrl* mJointCtrl;                     // _B4
-    ActiveActorList* mActorList;                    // _B8
-    BossKameckBeamEventListener* mBeamListener;     // _BC
-    BossKameckMoveRail** mMoveRail;                 // _C0
+    BossKameckSequencer* mSequencer;                // 0xAC
+    KameckHolder* mKameckHolder;                    // 0xB0
+    ActorJointCtrl* mJointCtrl;                     // 0xB4
+    ActiveActorList* mActorList;                    // 0xB8
+    BossKameckBeamEventListener* mBeamListener;     // 0xBC
+    BossKameckMoveRail** mMoveRail;                 // 0xC0
     s32 _C4;
     TVec3f _C8;
     s32 _D4;
@@ -66,7 +66,7 @@ public:
         mBossKameck->hitBeam(type);
     }
 
-    BossKameck* mBossKameck;        // _4
+    BossKameck* mBossKameck;        // 0x4
 };
 
 namespace MR {

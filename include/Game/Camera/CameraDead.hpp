@@ -14,7 +14,7 @@ public:
     virtual CamTranslatorBase *createTranslator();
 
     u8 _4C[4];
-    f32 mDist;  // _50
+    f32 mDist;  // 0x50
     s32 _54;
     s32 _58;
     u32 _5C;

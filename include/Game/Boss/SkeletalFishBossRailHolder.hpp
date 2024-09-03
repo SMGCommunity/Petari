@@ -14,8 +14,8 @@ public:
     SkeletalFishBossRail* getInOrder(s32) const;
     SkeletalFishBossRail* getByID(s32) const;
 
-    s32 mNumRails;                          // _C
-    SkeletalFishBossRail* mRails[3];        // _10
+    s32 mNumRails;                          // 0xC
+    SkeletalFishBossRail* mRails[3];        // 0x10
 };
 
 namespace MR {

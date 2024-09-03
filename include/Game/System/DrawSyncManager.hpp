@@ -8,9 +8,9 @@ public:
     u32 getLoopIdx(u32);
     u32 getCount();
 
-    Fifo** mArray;  // _0
-    u32 mCount;     // _4
-    u32 mLoopIdx;   // _8
+    Fifo** mArray;  // 0x0
+    u32 mCount;     // 0x4
+    u32 mLoopIdx;   // 0x8
     u32 _C;
 };
 
@@ -36,11 +36,11 @@ public:
     static DrawSyncManager* sInstance;
 
     u8 _0[0x28];
-    OSThread mThread;       // _28
-    OSMessageQueue mQueue;  // _340
+    OSThread mThread;       // 0x28
+    OSMessageQueue mQueue;  // 0x340
     u32 _360;
     u32 _364;
-    Fifo* mFifo;            // _368
+    Fifo* mFifo;            // 0x368
     u16 _36C;
     u16 _36E;
     u16 _370;

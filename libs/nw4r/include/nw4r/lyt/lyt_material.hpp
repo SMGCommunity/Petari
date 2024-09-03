@@ -86,7 +86,7 @@ namespace nw4r {
                 return GetMatColAry()[0];
             }
 
-            AnimationList mAnimList;        // _4
+            AnimationList mAnimList;        // 0x4
             GXColorS10 mTevCols[3];
             ut::Color mTevKCols[4];
             detail::BitGXNums mGXMemCap;

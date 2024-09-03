@@ -16,7 +16,7 @@ public:
     bool tryEndShow();
     void setPosition();
 
-    TVec2f mFollowPosition; // _20
+    TVec2f mFollowPosition; // 0x20
 };
 
 namespace NrvCollectCounter {

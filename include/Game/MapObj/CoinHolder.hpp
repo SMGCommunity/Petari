@@ -28,8 +28,8 @@ public:
     CoinHostInfo* findHostInfo(const NameObj *) const;
     bool appearCoin(const NameObj *, const TVec3f &, const TVec3f &, s32, s32, s32, f32);
 
-    CoinHostInfo* mHostInfoArr; // _18
-    s32 mHostInfoCount;         // _1C
+    CoinHostInfo* mHostInfoArr; // 0x18
+    s32 mHostInfoCount;         // 0x1C
 };
 
 namespace MR {

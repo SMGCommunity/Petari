@@ -22,7 +22,7 @@ public:
     void exeEndDemo();
     bool isBattle() const;
 
-    BossKameckStateBattle* mStateBattle;            // _14
+    BossKameckStateBattle* mStateBattle;            // 0x14
 };
 
 namespace NrvBossKameckVs1 {

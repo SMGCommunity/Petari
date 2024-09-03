@@ -16,17 +16,17 @@ public:
     JKRDecompCommand();
 
     u8 _0[4];
-    u8 *mSrc;                       // _4
-    u8 *mDst;                       // _8
-    u32 mCompressedSize;            // _C
-    u32 mDecompressedSize;          // _10
+    u8 *mSrc;                       // 0x4
+    u8 *mDst;                       // 0x8
+    u32 mCompressedSize;            // 0xC
+    u32 mDecompressedSize;          // 0x10
     void (*_14)(u32);
-    JKRDecompCommand *mThis;        // _18
+    JKRDecompCommand *mThis;        // 0x18
     OSMessageQueue *_1C;
     s32 _20;
-    JKRAMCommand *mAmCommand;       // _24
-    OSMessageQueue mMessageQueue;   // _28
-    OSMessage mMessage;             // _48
+    JKRAMCommand *mAmCommand;       // 0x24
+    OSMessageQueue mMessageQueue;   // 0x28
+    OSMessage mMessage;             // 0x48
 };
 
 class JKRDecomp : public JKRThread {

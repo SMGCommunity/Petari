@@ -84,7 +84,7 @@ public:
     virtual void move();
     virtual bool endMove();
 
-    DemoCtrlBase* mDemoControl; // _D4
+    DemoCtrlBase* mDemoControl; // 0xD4
 };
 
 class RailRotateMoveObj : public RailMoveObj {

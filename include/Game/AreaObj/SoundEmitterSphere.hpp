@@ -12,8 +12,8 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void movement();
 
-    AudAnmSoundObject *mSoundObj;   // _3C
+    AudAnmSoundObject *mSoundObj;   // 0x3C
     TVec3f _40;
-    const char *mSoundName;         // _4C
-    s32 mSoundIndex;                // _50
+    const char *mSoundName;         // 0x4C
+    s32 mSoundIndex;                // 0x50
 };

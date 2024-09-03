@@ -25,7 +25,7 @@ public:
     void connectToDraw();
     void disconnectToDraw();
 
-    NameObj* mExecutedObject;   // _0
+    NameObj* mExecutedObject;   // 0x0
     s8 _4;
     s8 _5;
     s8 _6;
@@ -57,8 +57,8 @@ public:
     void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj *) const;
 
-    NameObjExecuteInfo* mExecuteArray;  // _C
-    s32 mExecuteCount;                  // _10
+    NameObjExecuteInfo* mExecuteArray;  // 0xC
+    s32 mExecuteCount;                  // 0x10
     u32 _14;
     u8 _18;
     u8 _19;

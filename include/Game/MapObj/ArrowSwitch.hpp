@@ -25,7 +25,7 @@ public:
     s32 getOneStep() const;
 
     f32 _8C;
-    s32 mRotationIdx;   // _90
+    s32 mRotationIdx;   // 0x90
     f32 _94;
     s32 _98;
     bool _9C;

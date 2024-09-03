@@ -12,7 +12,7 @@ public:
     void goNext();
 
     JMapInfo* _0;
-    u32 mCur;   // _4
+    u32 mCur;   // 0x4
 };
 
 class ScenarioData {
@@ -29,9 +29,9 @@ public:
     s32 getZoneNum() const;
     s32 getZoneId(const char *) const;
 
-    JMapInfo* mScenarioData; // _0
-    const char* mGalaxyName; // _4
-    JMapInfo* mZoneList;     // _8
+    JMapInfo* mScenarioData; // 0x0
+    const char* mGalaxyName; // 0x4
+    JMapInfo* mZoneList;     // 0x8
 };
 
 class ScenarioDataParser : public NameObj {

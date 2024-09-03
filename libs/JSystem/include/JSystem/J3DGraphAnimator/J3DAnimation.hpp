@@ -8,10 +8,10 @@ public:
 
     virtual ~J3DAnmBase();
 
-    u8 mLoopMode;       // _4
+    u8 mLoopMode;       // 0x4
     u8 _5;
-    s16 mLoopDuration;  // _6
-    f32 mCurrentFrame;  // _8
+    s16 mLoopDuration;  // 0x6
+    f32 mCurrentFrame;  // 0x8
 };
 
 class J3DFrameCtrl {
@@ -27,11 +27,11 @@ public:
     bool checkPass(f32);
     void update();
 
-    u8 mLoopMode;       // _4
-    u8 mFlags;          // _5
-    s16 mStartFrame;    // _6
-    s16 mEndFrame;      // _8
-    s16 mLoopFrame;     // _A
-    f32 mSpeed;         // _C
-    f32 mCurrentFrame;  // _10
+    u8 mLoopMode;       // 0x4
+    u8 mFlags;          // 0x5
+    s16 mStartFrame;    // 0x6
+    s16 mEndFrame;      // 0x8
+    s16 mLoopFrame;     // 0xA
+    f32 mSpeed;         // 0xC
+    f32 mCurrentFrame;  // 0x10
 };

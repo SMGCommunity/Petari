@@ -29,9 +29,9 @@ public:
     bool _96;
     bool _97;
     Mtx _98;
-    s32 mCoinCount;             // _C8
-    s32 mStarBitCount;          // _CC
-    ModelObj* mBrokenBoxModel;  // _D0
-    ModelObj* mStarDemoModel;   // _D4
-    BenefitItemObj* mOneUp;     // _D8
+    s32 mCoinCount;             // 0xC8
+    s32 mStarBitCount;          // 0xCC
+    ModelObj* mBrokenBoxModel;  // 0xD0
+    ModelObj* mStarDemoModel;   // 0xD4
+    BenefitItemObj* mOneUp;     // 0xD8
 };

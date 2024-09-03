@@ -14,13 +14,13 @@ public:
 
     void calcIdealPose();
 
-    f32 mAngleB;    // _4C
-    f32 mAngleA;    // _50
-    f32 mDist;      // _54
+    f32 mAngleB;    // 0x4C
+    f32 mAngleA;    // 0x50
+    f32 mDist;      // 0x54
     s32 _58;
-    f32 mAxisX;     // _5C
-    f32 mAxisY;     // _60
-    f32 mAxisZ;     // _64
+    f32 mAxisX;     // 0x5C
+    f32 mAxisY;     // 0x60
+    f32 mAxisZ;     // 0x64
     bool _68;
     u8 _69[3];
     f32 _6C;

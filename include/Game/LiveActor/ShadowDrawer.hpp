@@ -13,5 +13,5 @@ public:
     ShadowController* getController() const;
     void setShadowController(ShadowController *);
     
-    ShadowController* mController;  // _C
+    ShadowController* mController;  // 0xC
 };

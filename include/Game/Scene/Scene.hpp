@@ -18,7 +18,7 @@ public:
     void initNameObjListExecutor();
     void initSceneObjHolder();
 
-    SceneNameObjListExecutor* mListExecutor;    // _8
+    SceneNameObjListExecutor* mListExecutor;    // 0x8
     u32 _C;
-    SceneObjHolder* mSceneObjHolder;            // _10
+    SceneObjHolder* mSceneObjHolder;            // 0x10
 };

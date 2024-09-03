@@ -30,8 +30,8 @@ public:
 
     void mount(char *);
 
-    JKRArchive* mArchive;   // _4
-    ResTable mLayoutRes;    // _8
-    ResTable mAnimRes;      // _10
-    ResTable mResOther;     // _18
+    JKRArchive* mArchive;   // 0x4
+    ResTable mLayoutRes;    // 0x8
+    ResTable mAnimRes;      // 0x10
+    ResTable mResOther;     // 0x18
 };

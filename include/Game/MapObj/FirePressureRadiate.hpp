@@ -28,15 +28,15 @@ public:
     void calcRadiateEffectMtx();
     bool calcJointCannon(TPos3f *, const JointControllerInfo &);
 
-    JointController* mJointController;      // _8C
-    TMtx34f mRadiateMtx;                    // _90
-    f32 mCannonRotation;                    // _94
-    s32 mWaitTime;                          // _98
-    s32 mShootTime;                         // _9C
+    JointController* mJointController;      // 0x8C
+    TMtx34f mRadiateMtx;                    // 0x90
+    f32 mCannonRotation;                    // 0x94
+    s32 mWaitTime;                          // 0x98
+    s32 mShootTime;                         // 0x9C
     s32 _CC;
     f32 _D0;
     f32 _D4;
-    MsgSharedGroup* mGroup;                 // _D8
+    MsgSharedGroup* mGroup;                 // 0xD8
     bool _DC;
 };
 

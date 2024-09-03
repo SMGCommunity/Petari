@@ -8,9 +8,9 @@ typedef struct Cell Cell;
 typedef struct HeapDesc HeapDesc;
 
 struct Cell {
-    Cell* prev;     // _0
-    Cell* next;     // _4
-    long size;      // _8
+    Cell* prev;     // 0x0
+    Cell* next;     // 0x4
+    long size;      // 0x8
 };
 
 struct HeapDesc {

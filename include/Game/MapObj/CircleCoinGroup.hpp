@@ -11,7 +11,7 @@ public:
     virtual void placementCoin() const;
     virtual const char* getCoinName() const;
 
-    f32 mCoinRadius;    // _A0
+    f32 mCoinRadius;    // 0xA0
 };
 
 namespace MR {

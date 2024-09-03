@@ -19,8 +19,8 @@ public:
     void init(const JMapInfoIter &, LiveActor *);
     void initAppearCamera(const JMapInfoIter &, LiveActor *);
 
-    MultiEventCamera* mCamera;      // _0
-    CameraTargetMtx* mTargetMtx;    // _4
-    ActorCameraInfo* mCameraInfo;   // _8
-    u32 mAppearCameraFrame;         // _C
+    MultiEventCamera* mCamera;      // 0x0
+    CameraTargetMtx* mTargetMtx;    // 0x4
+    ActorCameraInfo* mCameraInfo;   // 0x8
+    u32 mAppearCameraFrame;         // 0xC
 };

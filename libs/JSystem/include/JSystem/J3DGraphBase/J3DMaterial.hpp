@@ -47,8 +47,8 @@ public:
     virtual void change();
 
     J3DMaterial* _4;
-    J3DShape* mShape;                   // _8
-    J3DJoint* mJoint;                   // _C
+    J3DShape* mShape;                   // 0x8
+    J3DJoint* mJoint;                   // 0xC
     u32 _10;
     u16 _14;
     u8 _16;
@@ -59,15 +59,15 @@ public:
     u8 _1E;
     u8 _1F;
     u32 _20;
-    J3DColorBlockLightOn* mColorBlock;      // _24
-    J3DTexGenBlockPatched* mTexGenBlock;    // _28
-    J3DTevBlockPatched* mTevBlock;          // _2C
-    u32 mIndBlock;                          // _30
-    J3DPEBlock* mPEBlock;                   // _34
-    J3DMaterial* mOrigMaterial;             // _38
-    J3DMaterialAnm* mMaterialAnm;           // _3C
-    J3DCurrentMtx mMtx;                     // _40
-    J3DDisplayListObj* mDisplayListObj;     // _48
+    J3DColorBlockLightOn* mColorBlock;      // 0x24
+    J3DTexGenBlockPatched* mTexGenBlock;    // 0x28
+    J3DTevBlockPatched* mTevBlock;          // 0x2C
+    u32 mIndBlock;                          // 0x30
+    J3DPEBlock* mPEBlock;                   // 0x34
+    J3DMaterial* mOrigMaterial;             // 0x38
+    J3DMaterialAnm* mMaterialAnm;           // 0x3C
+    J3DCurrentMtx mMtx;                     // 0x40
+    J3DDisplayListObj* mDisplayListObj;     // 0x48
 };
 
 class J3DPEBlock {
@@ -139,10 +139,10 @@ public:
     virtual void setFogOffset(u32);
     virtual ~J3DPEBlockFull();
 
-    J3DFogInfo mFogInfo;            // _4
-    J3DAlphaComp mAlphaComp;        // _30
-    J3DBlend mBlend;                // _34
-    J3DZMode mZMode;                // _38
-    const u8 mDither;               // _3B
-    u32 mFogOffset;                 // _3C
+    J3DFogInfo mFogInfo;            // 0x4
+    J3DAlphaComp mAlphaComp;        // 0x30
+    J3DBlend mBlend;                // 0x34
+    J3DZMode mZMode;                // 0x38
+    const u8 mDither;               // 0x3B
+    u32 mFogOffset;                 // 0x3C
 };

@@ -22,12 +22,12 @@ public:
         return MR::strcasecmp(_8, pStr) == 0;
     }
 
-    MR::FunctorBase* mFunc;     // _0
-    int mPriority;              // _4
+    MR::FunctorBase* mFunc;     // 0x0
+    int mPriority;              // 0x4
     const char* _8;
     bool _C;
-    OSMessageQueue mQueue;      // _10
-    OSMessage mMessage;         // _30
+    OSMessageQueue mQueue;      // 0x10
+    OSMessage mMessage;         // 0x30
 };
 
 class FunctionAsyncExecutorThread : public OSThreadWrapper {
@@ -37,7 +37,7 @@ public:
     virtual ~FunctionAsyncExecutorThread();
     virtual s32 run();
 
-    bool mIsSuspended;      // _3C
+    bool mIsSuspended;      // 0x3C
     const char* _40;
 };
 
@@ -51,9 +51,9 @@ public:
     u8 _1;
     u8 _2;
     u8 _3;
-    OSMessageQueue mQueue;      // _4
-    OSMessage mMsgArray[0x40];  // _24
-    OSThread* mThread;          // _124
+    OSMessageQueue mQueue;      // 0x4
+    OSMessage mMsgArray[0x40];  // 0x24
+    OSThread* mThread;          // 0x124
 };
 
 class FunctionAsyncExecutor {
@@ -77,8 +77,8 @@ public:
         return &mHolders[_40C];
     }
 
-    FunctionAsyncExecutorThread* mThreads[2];               // _0
-    FunctionAsyncExecutorOnMainThread* mMainThreadExec;     // _8
+    FunctionAsyncExecutorThread* mThreads[2];               // 0x0
+    FunctionAsyncExecutorOnMainThread* mMainThreadExec;     // 0x8
     FunctionAsyncExecInfo* mHolders[0x100];
     u32 _40C;
     JKRUnitHeap* _410;

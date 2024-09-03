@@ -13,7 +13,7 @@ public:
     void exeWait();
     void exePlay();
 
-    const LiveActor* mActor;  // _8
+    const LiveActor* mActor;  // 0x8
     const char* _C;
     const char* _10;
     s32 _14;

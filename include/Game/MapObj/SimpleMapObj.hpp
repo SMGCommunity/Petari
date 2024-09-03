@@ -4,8 +4,8 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
 struct SoundEffectDataEntry {
-    const char* objectName; // _0
-    const char* soundName;  // _4
+    const char* objectName; // 0x0
+    const char* soundName;  // 0x4
     f32 _8;
 };
 
@@ -98,7 +98,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mMtx;    // _C4
+    MtxPtr mMtx;    // 0xC4
 };
 
 class SimpleMirrorReflectionObj : public SimpleMapObj {

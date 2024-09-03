@@ -21,7 +21,7 @@ public:
     bool isOnGround() const;
     bool isMoving() const;
 
-    CameraTargetObj *mTarget;           // _4
-    CameraTargetActor *mTargetActor;    // _8
-    CameraTargetPlayer *mTargetPlayer;  // _C
+    CameraTargetObj *mTarget;           // 0x4
+    CameraTargetActor *mTargetActor;    // 0x8
+    CameraTargetPlayer *mTargetPlayer;  // 0xC
 };

@@ -27,10 +27,10 @@ public:
     void calcWorldMtx(TPos3f *) const;
 
     int _8;
-    TVec3f mTranslation;            // _C
-    TVec3f mRotation;               // _18
-    TVec3f mScale;                  // _24
-    TBox3f mBounding;               // _30
+    TVec3f mTranslation;            // 0xC
+    TVec3f mRotation;               // 0x18
+    TVec3f mScale;                  // 0x24
+    TBox3f mBounding;               // 0x30
     Mtx _48;
 };
 
@@ -44,9 +44,9 @@ public:
     void calcUpVec(TVec3f *) const;
     void calcPos(TVec3f *) const;
 
-    TVec3f mTranslation;    // _8
+    TVec3f mTranslation;    // 0x8
     f32 _14;
-    TVec3f mUp;             // _18
+    TVec3f mUp;             // 0x18
 };
 
 class AreaFormBowl : public AreaForm {
@@ -58,8 +58,8 @@ public:
 
     void calcUpVec(const TVec3f &);
 
-    TVec3f mTranslation;    // _8
-    TVec3f mUp;             // _14
+    TVec3f mTranslation;    // 0x8
+    TVec3f mUp;             // 0x14
     f32 _20;
 };
 
@@ -75,8 +75,8 @@ public:
     void calcUpVec(TVec3f *) const;
     void calcDir(const TVec3f &);
 
-    TVec3f mTranslation;    // _8
-    TVec3f mRotation;       // _14
+    TVec3f mTranslation;    // 0x8
+    TVec3f mRotation;       // 0x14
     f32 _20;
     f32 _24;
 };

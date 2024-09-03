@@ -52,8 +52,8 @@ class Pole : public LiveActor {
         bool _AC;
         f32 _B0;
         f32 _B4;
-        LiveActor* mActor; // _B8
-        ActorCameraInfo* mInfo; // _BC
+        LiveActor* mActor; // 0xB8
+        ActorCameraInfo* mInfo; // 0xBC
         TVec3f _C0;
         TVec3f _CC;
         TVec3f _D8;

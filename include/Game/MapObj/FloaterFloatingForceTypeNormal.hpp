@@ -19,11 +19,11 @@ public:
     void exeMoveFirst();
     void exeMove();
 
-    f32 mRotateAngle;   // _38
-    f32 mRotateSpeed;   // _3C
+    f32 mRotateAngle;   // 0x38
+    f32 mRotateSpeed;   // 0x3C
     f32 _40;
     f32 _44;
-    TVec3f mVelocity;   // _48
+    TVec3f mVelocity;   // 0x48
 };
 
 namespace NrvFloaterFloatingForceTypeNormal {

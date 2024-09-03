@@ -22,7 +22,7 @@ public:
     }
 
     f32 _C4;
-    TVec3f mClippingRange;  // _C8
+    TVec3f mClippingRange;  // 0xC8
     s32 _D4;                // Obj_arg0
     u8 _D8;
 };

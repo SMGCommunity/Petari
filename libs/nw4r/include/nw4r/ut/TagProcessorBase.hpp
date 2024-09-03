@@ -11,11 +11,11 @@ namespace nw4r {
 
         template<typename T>
         class PrintContext {
-            TextWriterBase<T>* mWriter; // _0
-            const T* mString;           // _4
-            f32 mXOrigin;               // _8
-            f32 mYOrigin;               // _C
-            u32 mFlags;                 // _10
+            TextWriterBase<T>* mWriter; // 0x0
+            const T* mString;           // 0x4
+            f32 mXOrigin;               // 0x8
+            f32 mYOrigin;               // 0xC
+            u32 mFlags;                 // 0x10
         };
     
         template<typename T>

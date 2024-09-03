@@ -20,8 +20,8 @@ public:
     void forceDeleteSingleEmitter(SingleEmitter *) const;
 
     u32 _C;
-    ParticleEmitterHolder* mEmitterHolder;      // _10
-    ParticleDrawExecutor* mDrawExec;            // _14
-    ParticleCalcExecutor* mCalcExec;            // _18
-    AutoEffectGroupHolder* mGroupHolder;        // _1C
+    ParticleEmitterHolder* mEmitterHolder;      // 0x10
+    ParticleDrawExecutor* mDrawExec;            // 0x14
+    ParticleCalcExecutor* mCalcExec;            // 0x18
+    AutoEffectGroupHolder* mGroupHolder;        // 0x1C
 };

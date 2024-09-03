@@ -12,7 +12,7 @@ namespace MR {
         void set(int, bool);
 
 
-        u8* mArray;         // _0
-        int mArraySize;     // _4
+        u8* mArray;         // 0x0
+        int mArraySize;     // 0x4
     };
 };

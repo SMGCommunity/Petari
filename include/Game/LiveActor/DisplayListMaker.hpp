@@ -24,12 +24,12 @@ public:
 
     bool isValidDiff();
 
-    MaterialCtrl** mMaterialCtrls;      // _0
-    u32 mNumMaterialCtrls;              // _4
+    MaterialCtrl** mMaterialCtrls;      // 0x0
+    u32 mNumMaterialCtrls;              // 0x4
     u32 _8;
-    u32 mPrgFlag;                       // _C
-    u32 mCurFlag;                       // _10
-    J3DModel* mModel;                   // _14
-    FogCtrl* mFogCtrl;                  // _18
-    ResourceHolder* mResHolder;         // _1C
+    u32 mPrgFlag;                       // 0xC
+    u32 mCurFlag;                       // 0x10
+    J3DModel* mModel;                   // 0x14
+    FogCtrl* mFogCtrl;                  // 0x18
+    ResourceHolder* mResHolder;         // 0x1C
 };

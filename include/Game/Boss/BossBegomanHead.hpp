@@ -30,7 +30,7 @@ public:
     inline void exeDemoWait();
 
     f32 _9C;
-    JointControlDelegator<BossBegomanHead>* mJointDeleg;         // _A0
+    JointControlDelegator<BossBegomanHead>* mJointDeleg;         // 0xA0
 };
 
 namespace NrvBossBegomanHead {

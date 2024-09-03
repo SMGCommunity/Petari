@@ -16,7 +16,7 @@ public:
     bool isJudgedToClipFrustum(const TVec3f &, f32, s32) const;
     void calcViewingVolume(THex3f *, f32);
 
-    THex3f mFrustum;             // _C
+    THex3f mFrustum;             // 0xC
     THex3f mClipFrustums[0x8];
     f32  mClipDistances[0x8];
 };
