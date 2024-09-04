@@ -117,7 +117,27 @@ void MagicBell::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
-// MagicBell::receiveMsgPlayerAttack
+bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
+{
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return false;
+    }
+
+    if (!isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) && (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10))) {
+
+        TVec3f v15(mPosition);
+        v15.subtract(*MR::getPlayerPos());
+        v15.y += 100.0f;
+        MR::normalizeOrZero(&v15);
+        TVec3f v14(v15);
+        v14.scale(-200.0f);
+        v14.addInline2(mPosition);
+        startRing(v15, v14);
+        return true;
+    }
+    return false;
+}
+
 // MagicBell::tryRing
 // MagicBell::startRing
 
