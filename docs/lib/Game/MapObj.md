@@ -156,7 +156,7 @@
 | [LavaSteam.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaSteam.md) | 38.47352024922118% | 14 / 22 | 63.63636363636363% | :eight_pointed_black_star: 
 | [LavaStrangeRock.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LavaStrangeRock.md) | 0.0% | 0 / 10 | 0.0% | :x: 
 | [LotusLeaf.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/LotusLeaf.md) | 0.0% | 0 / 16 | 0.0% | :x: 
-| [MagicBell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/MagicBell.md) | 40.23494860499266% | 11 / 15 | 73.33333333333333% | :eight_pointed_black_star: 
+| [MagicBell.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/MagicBell.md) | 52.71659324522761% | 12 / 15 | 80.0% | :eight_pointed_black_star: 
 | [ManholeCover.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/ManholeCover.md) | 20.96069868995633% | 1 / 13 | 7.6923076923076925% | :eight_pointed_black_star: 
 | [MapObjActor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/MapObjActor.md) | 61.95652173913043% | 58 / 59 | 98.30508474576271% | :eight_pointed_black_star: 
 | [MapObjActorInitInfo.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/MapObjActorInitInfo.md) | 22.48062015503876% | 11 / 37 | 29.72972972972973% | :eight_pointed_black_star: 

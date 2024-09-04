@@ -138,7 +138,31 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
     return false;
 }
 
-// MagicBell::tryRing
+bool MagicBell::tryRing()
+{
+    if (!MR::isExecScenarioStarter() && MR::isStarPointerPointing(this, 0, 0, "Žã")) {
+        TVec2f *v4(MR::getStarPointerScreenVelocity(0));
+        if (((v4->x * v4->x) + (v4->y * v4->y)) > 64.0f) {
+            TVec3f v12;
+            MR::getStarPointerWorldVelocityDirection(&v12, 0);
+            if (MR::isNearZero(v12, 0.001f)) {
+                v12.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
+                if (MR::isNearZero(v12, 0.001f)) {
+                    v12.set(1.0f, 0.0f, 0.0f);
+                }
+                else {
+                    MR::normalize(&v12);
+                }
+            }
+            TVec3f v11;
+            MR::calcStarPointerWorldPointingPos(&v11, mPosition, 0);
+            startRing(v12, v11);
+            return true;
+        }
+    }
+    return false;
+}
+
 // MagicBell::startRing
 
 MagicBell::~MagicBell() {

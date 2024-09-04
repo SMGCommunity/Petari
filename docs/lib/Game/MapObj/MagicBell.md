@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 11 / 15 Completed -- (73.33333333333333%)
+# 12 / 15 Completed -- (80.0%)
 # MagicBell.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -15,7 +15,7 @@
 | `exeRing__9MagicBellFv` | :x: |
 | `attackSensor__9MagicBellFP9HitSensorP9HitSensor` | :white_check_mark: |
 | `receiveMsgPlayerAttack__9MagicBellFUlP9HitSensorP9HitSensor` | :x: |
-| `tryRing__9MagicBellFv` | :x: |
+| `tryRing__9MagicBellFv` | :white_check_mark: |
 | `startRing__9MagicBellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | :x: |
 | `__dt__9MagicBellFv` | :white_check_mark: |
 | `__sinit_\MagicBell_cpp` | :white_check_mark: |

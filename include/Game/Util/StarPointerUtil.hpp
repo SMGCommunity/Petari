@@ -32,4 +32,12 @@ namespace MR {
     void createStarPointerLayout();
 
     bool isStarPointerInScreen(s32);
+
+    bool isStarPointerPointing(const LiveActor *, s32, bool, const char *);
+
+    TVec2f *getStarPointerScreenVelocity(s32);
+
+    void getStarPointerWorldVelocityDirection(TVec3f *, s32);
+
+    void calcStarPointerWorldPointingPos(TVec3f *, const TVec3f &, s32);
 };
