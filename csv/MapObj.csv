@@ -5537,10 +5537,10 @@ __ct__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvExitFv,SurprisedGalaxy.o,MapObj.
 __ct__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvWaitFv,SurprisedGalaxy.o,MapObj.a,true
 execute__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvWaitCFP5Spine,SurprisedGalaxy.o,MapObj.a,true
 execute__Q218NrvSurprisedGalaxy22SurprisedGalaxyNrvExitCFP5Spine,SurprisedGalaxy.o,MapObj.a,true
-__ct__7SwingerFPCQ29JGeometry8TVec3<f>PA4_ffffPCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,false
-update__7SwingerFv,Swinger.o,MapObj.a,false
-accel__7SwingerFRCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,false
-updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,false
+__ct__7SwingerFPCQ29JGeometry8TVec3<f>PA4_ffffPCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,true
+update__7SwingerFv,Swinger.o,MapObj.a,true
+accel__7SwingerFRCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,true
+updateSwingMtx__7SwingerFRCQ29JGeometry8TVec3<f>,Swinger.o,MapObj.a,true
 getGlaringLightModelName__24@unnamed@SwingLight_cpp@FPCc,SwingLight.o,MapObj.a,false
 __ct__13LightCylinderFPCcPA4_fRC6Color8,SwingLight.o,MapObj.a,false
 init__13LightCylinderFRC12JMapInfoIter,SwingLight.o,MapObj.a,false

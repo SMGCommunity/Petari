@@ -278,7 +278,7 @@
 | [Sun.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/Sun.md) | 100.0% | 3 / 3 | 100.0% | :white_check_mark: 
 | [SuperSpinDriver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/SuperSpinDriver.md) | 28.548644338118024% | 49 / 94 | 52.12765957446809% | :eight_pointed_black_star: 
 | [SurprisedGalaxy.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/SurprisedGalaxy.md) | 100.0% | 13 / 13 | 100.0% | :white_check_mark: 
-| [Swinger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/Swinger.md) | 0.0% | 0 / 4 | 0.0% | :x: 
+| [Swinger.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/Swinger.md) | 100.0% | 4 / 4 | 100.0% | :white_check_mark: 
 | [SwingLight.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/SwingLight.md) | 0.0% | 0 / 20 | 0.0% | :x: 
 | [SwitchBox.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/SwitchBox.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | [TimeAppearObj.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/MapObj/TimeAppearObj.md) | 100.0% | 10 / 10 | 100.0% | :white_check_mark: 
