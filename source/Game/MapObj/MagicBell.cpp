@@ -163,7 +163,20 @@ bool MagicBell::tryRing()
     return false;
 }
 
-// MagicBell::startRing
+void MagicBell::startRing(const TVec3f &a1, const TVec3f &a2)
+{
+    f32 v10 = PSVECMag(_8C->mAcceleration.toCVec());
+    TVec3f v13(_8C->mAcceleration);
+    v13.scale(-1.0f);
+    _8C->accel(v13);
+    TVec3f v12(a1);
+    v12.scale(5.0f + v10);
+    _8C->accel(v12);
+    _9C.set(a2);
+    MR::emitEffect(this, "StarWandHitMark");
+    MR::emitEffect(this, "Ring");
+    setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);
+}
 
 MagicBell::~MagicBell() {
 

@@ -2884,7 +2884,7 @@ exeRing__9MagicBellFv,MagicBell.o,MapObj.a,minor
 attackSensor__9MagicBellFP9HitSensorP9HitSensor,MagicBell.o,MapObj.a,true
 receiveMsgPlayerAttack__9MagicBellFUlP9HitSensorP9HitSensor,MagicBell.o,MapObj.a,minor
 tryRing__9MagicBellFv,MagicBell.o,MapObj.a,true
-startRing__9MagicBellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,MagicBell.o,MapObj.a,false
+startRing__9MagicBellFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>,MagicBell.o,MapObj.a,true
 __dt__9MagicBellFv,MagicBell.o,MapObj.a,true
 __sinit_\MagicBell_cpp,MagicBell.o,MapObj.a,true
 __ct__Q212NrvMagicBell16MagicBellNrvWaitFv,MagicBell.o,MapObj.a,true
