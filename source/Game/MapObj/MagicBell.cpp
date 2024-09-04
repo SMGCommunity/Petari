@@ -18,7 +18,7 @@ void MagicBell::init(const JMapInfoIter &rIter) {
     mSurface1Mtx = MR::getJointMtx(this, "polySurface1");
     MR::connectToSceneMapObjNoCalcAnim(this);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 8, 60.0f, TVec3f(0.0f, -80.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "body", 8, 70.0f, TVec3f(0.0f, -80.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     MR::addEffect(this, "StarWandHitMark");
     MR::setEffectHostSRT(this, "StarWandHitMark", &_9C, nullptr, nullptr);
