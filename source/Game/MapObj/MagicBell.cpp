@@ -1,14 +1,14 @@
 #include "Game/MapObj/MagicBell.hpp"
 
 MagicBell::MagicBell(const char *pName) : LiveActor(pName) {
-    _8C = nullptr;
+    mBellSwinger = nullptr;
     mSurface1Mtx = nullptr;
     mSurface2Mtx = nullptr;
-    _94 = nullptr;
+    mBellRodSwinger = nullptr;
     mSurface1Mtx = nullptr;
-    _9C.x = 0.0f;
-    _9C.y = 0.0f;
-    _9C.z = 0.0f;
+    mHitMarkPosition.x = 0.0f;
+    mHitMarkPosition.y = 0.0f;
+    mHitMarkPosition.z = 0.0f;
 }
 
 void MagicBell::init(const JMapInfoIter &rIter) {
@@ -21,7 +21,7 @@ void MagicBell::init(const JMapInfoIter &rIter) {
     MR::addHitSensorMapObj(this, "body", 8, 70.0f, TVec3f(0.0f, -80.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     MR::addEffect(this, "StarWandHitMark");
-    MR::setEffectHostSRT(this, "StarWandHitMark", &_9C, nullptr, nullptr);
+    MR::setEffectHostSRT(this, "StarWandHitMark", &mHitMarkPosition, nullptr, nullptr);
     initSound(4, false);
     initNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
     MR::initShadowVolumeSphere(this, 100.0f);
@@ -31,8 +31,8 @@ void MagicBell::init(const JMapInfoIter &rIter) {
     mtx.identity();
     MR::makeMtxTR(mtx.toMtxPtr(), this);
     MR::calcGravity(this);
-    _8C = new Swinger(&mPosition, mtx.toMtxPtr(), 100.0f, 0.60000002f, 0.99000001f, &mGravity);
-    _94 = new Swinger(&mPosition, mtx.toMtxPtr(), 50.0f, 0.30000001f, 0.94999999f, &mGravity);
+    mBellSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 100.0f, 0.60000002f, 0.99000001f, &mGravity);
+    mBellRodSwinger = new Swinger(&mPosition, mtx.toMtxPtr(), 50.0f, 0.30000001f, 0.94999999f, &mGravity);
     makeActorAppeared();
 }
 
@@ -40,8 +40,8 @@ void MagicBell::exeWait() {
     MR::isFirstStep(this);
 
     if (!tryRing()) {
-        PSMTXCopy(_8C->_60.toMtxPtr(), mSurface2Mtx);
-        PSMTXCopy(_94->_60.toMtxPtr(), mSurface1Mtx);
+        PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);
+        PSMTXCopy(mBellRodSwinger->_60.toMtxPtr(), mSurface1Mtx);
         TVec3f v3(0.0f, 0.0f, 0.0f);
         MR::setMtxTrans(mSurface2Mtx, v3.x, v3.y, v3.z);
         TVec3f v2(0.0f, 0.0f, 0.0f);
@@ -65,19 +65,19 @@ void MagicBell::exeRing()
         MR::startSound(this, "SE_OJ_HAPPY_BELL_RING", -1, -1);
     }
 
-    _8C->update();
-    _94->update();
+    mBellSwinger->update();
+    mBellRodSwinger->update();
 
-    if (_8C->_20.dot(_94->_20) < 0.94999999f) {
-        TVec3f v17(_8C->_20);
-        v17.subtract(_94->_20);
-        f32 v3 = _94->_20.dot(v17);
-        v17.x -= v3 * _94->_20.x;
-        v17.y -= v3 * _94->_20.y;
-        v17.z -= v3 * _94->_20.z;
+    if (mBellSwinger->_20.dot(mBellRodSwinger->_20) < 0.94999999f) {
+        TVec3f v17(mBellSwinger->_20);
+        v17.subtract(mBellRodSwinger->_20);
+        f32 v3 = mBellRodSwinger->_20.dot(v17);
+        v17.x -= v3 * mBellRodSwinger->_20.x;
+        v17.y -= v3 * mBellRodSwinger->_20.y;
+        v17.z -= v3 * mBellRodSwinger->_20.z;
         MR::normalizeOrZero(&v17);
-        f32 v4 = _8C->mAcceleration.dot(v17);
-        f32 v5 = _94->mAcceleration.dot(v17);
+        f32 v4 = mBellSwinger->mAcceleration.dot(v17);
+        f32 v5 = mBellRodSwinger->mAcceleration.dot(v17);
 
         f32 v6 = v5 >= 0.0f ? 0.0f : v5;
 
@@ -85,30 +85,36 @@ void MagicBell::exeRing()
             f32 v7 = v5 >= 0.0f ? 0.0f : v5;
 
             v17.scale(v4 - v7);
-            v17.subtract(_94->mAcceleration);
-            _94->accel(v17);
-            _9C.set(_94->_8);
-        }
-        PSMTXCopy(_8C->_60.toMtxPtr(), mSurface2Mtx);
-        PSMTXCopy(_94->_60.toMtxPtr(), mSurface1Mtx);
-        TVec3f v16(0.0f, 0.0f, 0.0f);
-        MR::setMtxTrans(mSurface2Mtx, v16.x, v16.y, v16.z);
-        TVec3f v15(0.0f, 0.0f, 0.0f);
-        MR::setMtxTrans(mSurface1Mtx, v15.x, v15.y, v15.z);
-        PSMTXScaleApply(mSurface2Mtx, mSurface2Mtx, mScale.x, mScale.y, mScale.z);
-        PSMTXScaleApply(mSurface1Mtx, mSurface1Mtx, mScale.x, mScale.y, mScale.z);
-        MR::setMtxTrans(mSurface2Mtx, mPosition.x, mPosition.y, mPosition.z);
-        MR::setMtxTrans(mSurface1Mtx, mPosition.x, mPosition.y, mPosition.z);
-
-        if ((!MR::isGreaterStep(this, 10) || !tryRing())) {
-            if (_8C->_20.y < -0.99f) {
-                if (_8C->mAcceleration.squaredInline() < 0.01f) {
-                    MR::deleteEffect(this, "Ring");
-                    setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
-                }
-            }
+            v17.subtract(mBellRodSwinger->mAcceleration);
+            mBellRodSwinger->accel(v17);
+            mHitMarkPosition.set(mBellRodSwinger->_8);
         }
     }
+    PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);
+    PSMTXCopy(mBellRodSwinger->_60.toMtxPtr(), mSurface1Mtx);
+    TVec3f v16(0.0f, 0.0f, 0.0f);
+    MR::setMtxTrans(mSurface2Mtx, v16.x, v16.y, v16.z);
+    TVec3f v15(0.0f, 0.0f, 0.0f);
+    MR::setMtxTrans(mSurface1Mtx, v15.x, v15.y, v15.z);
+    PSMTXScaleApply(mSurface2Mtx, mSurface2Mtx, mScale.x, mScale.y, mScale.z);
+    PSMTXScaleApply(mSurface1Mtx, mSurface1Mtx, mScale.x, mScale.y, mScale.z);
+    MR::setMtxTrans(mSurface2Mtx, mPosition.x, mPosition.y, mPosition.z);
+    MR::setMtxTrans(mSurface1Mtx, mPosition.x, mPosition.y, mPosition.z);
+
+    if (MR::isGreaterStep(this, 10) && tryRing()) {
+        return;
+    }
+
+    if (!(mBellSwinger->_20.y < -0.99f)) {
+        return;
+    }
+
+    if (!(mBellSwinger->mAcceleration.squaredInline() < 0.01f)) {
+        return;
+    }
+
+    MR::deleteEffect(this, "Ring");
+    setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
 }
 
 void MagicBell::attackSensor(HitSensor *a1, HitSensor *a2) {
@@ -165,14 +171,14 @@ bool MagicBell::tryRing()
 
 void MagicBell::startRing(const TVec3f &a1, const TVec3f &a2)
 {
-    f32 v10 = PSVECMag(_8C->mAcceleration.toCVec());
-    TVec3f v13(_8C->mAcceleration);
+    f32 v10 = PSVECMag(mBellSwinger->mAcceleration.toCVec());
+    TVec3f v13(mBellSwinger->mAcceleration);
     v13.scale(-1.0f);
-    _8C->accel(v13);
+    mBellSwinger->accel(v13);
     TVec3f v12(a1);
     v12.scale(5.0f + v10);
-    _8C->accel(v12);
-    _9C.set(a2);
+    mBellSwinger->accel(v12);
+    mHitMarkPosition.set(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);

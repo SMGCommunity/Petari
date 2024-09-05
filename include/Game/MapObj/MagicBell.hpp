@@ -18,11 +18,11 @@ public:
     bool tryRing();
     void startRing(const TVec3f &, const TVec3f &);
 
-    Swinger* _8C;
+    Swinger* mBellSwinger;
     MtxPtr mSurface2Mtx;        // 0x90
-    Swinger* _94;
+    Swinger* mBellRodSwinger;
     MtxPtr mSurface1Mtx;        // 0x98
-    TVec3f _9C;
+    TVec3f mHitMarkPosition;
 };
 
 namespace NrvMagicBell {
