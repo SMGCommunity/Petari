@@ -44,12 +44,8 @@ void DemoTalkAnimCtrl::updateCamera() {
     }
 }
 
-static inline s32 max(s32 a, s32 b) {
-    return a >= b ? a : b;
-}
-
 void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData *pBck, s32 totalSteps) const {
-    s16 temp_r0 = max(_24 - 1, 0);
+    s16 temp_r0 = MR::max(_24 - 1, 0);
     pBck->mLoopMode = 2;
     pBck->mStartFrame = temp_r0;
     pBck->mRepeatFrame = temp_r0 + 1;

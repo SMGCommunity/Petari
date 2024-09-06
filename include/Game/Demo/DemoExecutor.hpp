@@ -24,13 +24,13 @@ public:
     void findTalkMessageCtrl(const LiveActor *) const;
     void setTalkMessageCtrl(const LiveActor *, TalkMessageCtrl *);
 
-    inline s32 getSubPartStep(const char *name) {
-        DemoSubPartInfo *part;
+    inline s32 getSubPartStep(const char *pName) {
+        DemoSubPartInfo *subpart;
         DemoSubPartKeeper *subpartkeeper = mSubPartKeeper;
         for (int i = 0; i < subpartkeeper->mNumSubPartInfos; i++) {
-            part = &subpartkeeper->mSubPartInfos[i];
-            if (MR::isEqualString(name, part->mMainPartName) && MR::isEqualSubString(part->mSubPartName, "会話アニメループ")) {
-                return part->mMainPartStep;
+            subpart = &subpartkeeper->mSubPartInfos[i];
+            if (MR::isEqualString(pName, subpart->mMainPartName) && MR::isEqualSubString(subpart->mSubPartName, "会話アニメループ")) {
+                return subpart->mMainPartStep;
             }
         }
         return 0;

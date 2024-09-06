@@ -20,10 +20,10 @@ DemoPadRumbler::DemoPadRumbler(const char *pName) : mNumPadRumbleEntries(0), mPa
     }
 }
 
-void DemoPadRumbler::update(s32 a1) {
+void DemoPadRumbler::update(s32 frame) {
     for (int i = 0; i < mNumPadRumbleEntries; i++) {
         PadRumbleInfo *rumble = &mPadRumbleEntries[i];
-        if (rumble->mStartFrame == a1) {
+        if (rumble->mStartFrame == frame) {
             MR::tryRumblePad(this, rumble->mName, 0);
         }
     }
