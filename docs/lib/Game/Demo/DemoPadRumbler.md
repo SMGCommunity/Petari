@@ -5,9 +5,9 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 2 Completed -- (0.0%)
+# 2 / 2 Completed -- (100.0%)
 # DemoPadRumbler.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__14DemoPadRumblerFPCc` | :x: |
-| `update__14DemoPadRumblerFl` | :x: |
+| `__ct__14DemoPadRumblerFPCc` | :white_check_mark: |
+| `update__14DemoPadRumblerFl` | :white_check_mark: |

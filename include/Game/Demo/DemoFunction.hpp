@@ -2,9 +2,10 @@
 
 #include "Game/Util.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Demo/DemoExecutor.hpp"
-#include "Game/Demo/DemoExecutorFunction.hpp"
-#include "Game/Demo/DemoDirector.hpp"
+
+class DemoDirector;
+class DemoCastGroupHolder;
+class DemoExecutor;
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector();

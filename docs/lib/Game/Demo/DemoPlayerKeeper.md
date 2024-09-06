@@ -5,12 +5,12 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 5 Completed -- (0.0%)
+# 5 / 5 Completed -- (100.0%)
 # DemoPlayerKeeper.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16DemoPlayerKeeperFPC12DemoExecutor` | :x: |
-| `__ct__14DemoPlayerInfoFv` | :x: |
-| `update__16DemoPlayerKeeperFv` | :x: |
-| `isExistPosName__16DemoPlayerKeeperCFv` | :x: |
-| `executePlayer__16DemoPlayerKeeperCFPC14DemoPlayerInfo` | :x: |
+| `__ct__16DemoPlayerKeeperFPC12DemoExecutor` | :white_check_mark: |
+| `__ct__14DemoPlayerInfoFv` | :white_check_mark: |
+| `update__16DemoPlayerKeeperFv` | :white_check_mark: |
+| `isExistPosName__16DemoPlayerKeeperCFv` | :white_check_mark: |
+| `executePlayer__16DemoPlayerKeeperCFPC14DemoPlayerInfo` | :white_check_mark: |

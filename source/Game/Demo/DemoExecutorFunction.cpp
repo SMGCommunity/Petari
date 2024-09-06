@@ -1,4 +1,7 @@
 #include "Game/Demo/DemoExecutorFunction.hpp"
+#include "Game/Demo/DemoTimeKeeper.hpp"
+#include "Game/Demo/DemoActionKeeper.hpp"
+#include "Game/Demo/DemoTalkAnimCtrl.hpp"
 
 namespace DemoExecutorFunction {
     void registerDemoActionFunction(const DemoExecutor *pExecutor, const LiveActor *pActor, const MR::FunctorBase &rFunctor, const char *a4) {
@@ -57,8 +60,21 @@ namespace DemoExecutorFunction {
         return pExecutor->mActionKeeper->isRegisteredDemoActionNerve(pActor);
     }
 
-    // bool tryCreateDemoTalkAnimCtrlForActor(DemoExecutor *, LiveActor *, const char *, const char *);
-    // bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor *, LiveActor *, const JMapInfoIter &, const char *, const char *, s32, s32);
+    bool tryCreateDemoTalkAnimCtrlForActor(DemoExecutor *pExecutor, LiveActor *pActor, const char *a3, const char *a4) {
+        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a4);
+        talk->initForActor(a3);
+        pExecutor->addTalkAnimCtrl(talk);
+        return true;
+    }
+
+    bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor *pExecutor, LiveActor *pActor, const JMapInfoIter &rIter, const char *a4, const char *a5, s32 a6, s32 a7) {
+        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a5);
+        talk->initForScene(a4, a4, rIter);
+        talk->_40 = a6;
+        talk->_44 = a7;
+        pExecutor->addTalkAnimCtrl(talk);
+        return true;
+    }
 
     void registerDemoTalkMessageCtrl(DemoExecutor *pExecutor, LiveActor *pActor, TalkMessageCtrl *pTalkCtrl) {
         pExecutor->addTalkMessageCtrl(pActor, pTalkCtrl);

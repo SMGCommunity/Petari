@@ -5,21 +5,21 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 14 Completed -- (0.0%)
+# 14 / 14 Completed -- (100.0%)
 # DemoTalkAnimCtrl.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__16DemoTalkAnimCtrlFP9LiveActorPCcPCc` | :x: |
-| `initForScene__16DemoTalkAnimCtrlFPCcPCcRC12JMapInfoIter` | :x: |
-| `updateCamera__16DemoTalkAnimCtrlFv` | :x: |
-| `createBckCtrlData__16DemoTalkAnimCtrlCFP11BckCtrlDatal` | :x: |
-| `initForActor__16DemoTalkAnimCtrlFPCc` | :x: |
-| `startDemo__16DemoTalkAnimCtrlFv` | :x: |
-| `updateDemo__16DemoTalkAnimCtrlFv` | :x: |
-| `startAnim__16DemoTalkAnimCtrlFv` | :x: |
-| `startCamera__16DemoTalkAnimCtrlFv` | :x: |
-| `updateAnim__16DemoTalkAnimCtrlFRC11BckCtrlData` | :x: |
-| `updatePause__16DemoTalkAnimCtrlFv` | :x: |
-| `endCamera__16DemoTalkAnimCtrlFv` | :x: |
-| `setupStartDemoPart__16DemoTalkAnimCtrlFPCc` | :x: |
-| `__dt__16DemoTalkAnimCtrlFv` | :x: |
+| `__ct__16DemoTalkAnimCtrlFP9LiveActorPCcPCc` | :white_check_mark: |
+| `initForScene__16DemoTalkAnimCtrlFPCcPCcRC12JMapInfoIter` | :white_check_mark: |
+| `updateCamera__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `createBckCtrlData__16DemoTalkAnimCtrlCFP11BckCtrlDatal` | :white_check_mark: |
+| `initForActor__16DemoTalkAnimCtrlFPCc` | :white_check_mark: |
+| `startDemo__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `updateDemo__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `startAnim__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `startCamera__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `updateAnim__16DemoTalkAnimCtrlFRC11BckCtrlData` | :white_check_mark: |
+| `updatePause__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `endCamera__16DemoTalkAnimCtrlFv` | :white_check_mark: |
+| `setupStartDemoPart__16DemoTalkAnimCtrlFPCc` | :white_check_mark: |
+| `__dt__16DemoTalkAnimCtrlFv` | :white_check_mark: |
