@@ -1,21 +1,22 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/GameAudio/AudSeKeeper.hpp"
+
+class AudSeKeeper;
+class CollisionParts;
 
 class SeaBottomTriplePropeller : public LiveActor {
 public:
     SeaBottomTriplePropeller(const char*);
 
+    virtual ~SeaBottomTriplePropeller();
     virtual void init(const JMapInfoIter &);
     virtual void calcAnim();
     virtual void control();
 
     void exeWait();
 
-    CollisionParts* mPropeller1Collision; // 0x8C
-    CollisionParts* mPropeller2Collision; // 0x90
-    CollisionParts* mPropeller3Collision; // 0x94
+    CollisionParts* mPropellerCollision[3]; // 0x8C
     AudSeKeeper* mAudSeKeeper;            // 0x98
 };
 
