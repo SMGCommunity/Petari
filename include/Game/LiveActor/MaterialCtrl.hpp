@@ -42,8 +42,8 @@ public:
     
     virtual void update();
 
-    J3DTexMtxInfo* mEffectMtx;      // 0xC
-    u32 _10;
+    J3DTexMtxInfo** mMatricies;         // 0xC
+    s32 mNumMatricies;                  // 0x10
 };
 
 class TexMtxCtrl : public MaterialCtrl {
