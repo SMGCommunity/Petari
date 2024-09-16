@@ -5,6 +5,8 @@
 
 class CameraTargetArg;
 class LiveActor;
+class HitSensor;
+class BckCtrlData;
 
 namespace MR {
     TVec3f* getPlayerPos();
@@ -89,6 +91,8 @@ namespace MR {
     void setPlayerPos(const char *);
     void setPlayerPos(const TVec3f &);
 
+    void setPlayerPosOnGroundAndWait(const char *);
+
     void endBindAndPlayerWait(LiveActor *);
     void endBindAndPlayerJump(LiveActor *, const TVec3f &, u32);
 
@@ -102,8 +106,6 @@ namespace MR {
 
     void endBindAndPLayerForceWeakGravityJumpInputOff(LiveActor *, const TVec3f &);
 
-    void startBckPlayer(const char *, s32);
-
     void setPlayerFrontTargetVec(const TVec3f &, s32);
     void setPlayerFrontVec(const TVec3f &, s32);
 
@@ -112,6 +114,8 @@ namespace MR {
     bool isPlayerSwimming();
 
     void startBckPlayer(const char *, const char *);
+    void startBckPlayer(const char *, const BckCtrlData &);
+    void startBckPlayer(const char *, s32);
     bool isBckStoppedPlayer();
 
     f64 getBckFrameMaxPlayer();

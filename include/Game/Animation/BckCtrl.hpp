@@ -10,7 +10,8 @@ namespace {
 
 class BckCtrlData { 
 public:
-    BckCtrlData();
+    // some callers inline this and some do not
+    BckCtrlData() : _0(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(0xff) {}
 
     void operator=(const BckCtrlData &);
 
@@ -20,7 +21,7 @@ public:
     s16 mEndFrame;      // 0x8
     s16 mRepeatFrame;   // 0xA
     s16 mInterpole;     // 0xC
-    u8 _E;
+    u8 mLoopMode;       // 0xE
     u8 _F;
     u8 _10;
     u8 _11;

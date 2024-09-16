@@ -7,6 +7,7 @@ class NameObj;
 class LayoutActor;
 class LiveActor;
 class JMapInfo;
+class JMapInfoIter;
 class ResourceHolder;
 class StageSwitchCtrl;
 

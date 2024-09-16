@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 14 / 16 Completed -- (87.5%)
+# 16 / 16 Completed -- (100.0%)
 # DemoExecutorFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -18,8 +18,8 @@
 | `isRegisteredDemoActionAppear__20DemoExecutorFunctionFPC12DemoExecutorPC9LiveActor` | :white_check_mark: |
 | `isRegisteredDemoActionFunctor__20DemoExecutorFunctionFPC12DemoExecutorPC9LiveActor` | :white_check_mark: |
 | `isRegisteredDemoActionNerve__20DemoExecutorFunctionFPC12DemoExecutorPC9LiveActor` | :white_check_mark: |
-| `tryCreateDemoTalkAnimCtrlForActor__20DemoExecutorFunctionFP12DemoExecutorP9LiveActorPCcPCc` | :x: |
-| `tryCreateDemoTalkAnimCtrlForScene__20DemoExecutorFunctionFP12DemoExecutorP9LiveActorRC12JMapInfoIterPCcPCcll` | :x: |
+| `tryCreateDemoTalkAnimCtrlForActor__20DemoExecutorFunctionFP12DemoExecutorP9LiveActorPCcPCc` | :white_check_mark: |
+| `tryCreateDemoTalkAnimCtrlForScene__20DemoExecutorFunctionFP12DemoExecutorP9LiveActorRC12JMapInfoIterPCcPCcll` | :white_check_mark: |
 | `registerDemoTalkMessageCtrl__20DemoExecutorFunctionFP12DemoExecutorP9LiveActorP15TalkMessageCtrl` | :white_check_mark: |
 | `setDemoTalkMessageCtrl__20DemoExecutorFunctionFP12DemoExecutorPC9LiveActorP15TalkMessageCtrl` | :white_check_mark: |
 | `pauseTimeKeepDemo__20DemoExecutorFunctionFP12DemoExecutor` | :white_check_mark: |

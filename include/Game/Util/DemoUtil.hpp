@@ -5,6 +5,7 @@
 
 class NameObj;
 class LiveActor;
+class JMapInfoIter;
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor *, const char *, const JMapInfoIter &);
@@ -32,6 +33,8 @@ namespace MR {
 
     bool isPowerStarGetDemoActive();
 
+    const char* getCurrentDemoPartNameMain(const char *);
+
     bool isTimeKeepDemoActive();
 
     bool tryStartDemo(LiveActor *, const char *);
@@ -53,7 +56,16 @@ namespace MR {
 
     void requestStartTimeKeepDemo(LiveActor *, const char *, const Nerve *, const Nerve *, const char *);
 
+    bool isDemoPartStep(const char *, s32);
+    bool isDemoPartFirstStep(const char *);
     bool isDemoPartLastStep(const char *);
 
+    s32 getDemoPartTotalStep(const char *);
+
+    bool isDemoPartTalk(const char *);
+
     void endDemoWaitCameraInterpolating(NameObj *, const char *);
+
+    bool isSystemTalking();
+    bool isNormalTalking();
 };

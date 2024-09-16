@@ -12,7 +12,7 @@ class J3DModelData;
 typedef const char* ArchiveName;
 
 namespace {
-    const char* sModelExt[2] = { ".bdl", ".bmd"};
+    const char* sModelExt[2] = { ".bdl", ".bmd" };
     const char* sMotionExt[2] = { ".bck", ".bca" };
     const char* sBtkExt = ".btk";
     const char* sBpkExt = ".bpk";

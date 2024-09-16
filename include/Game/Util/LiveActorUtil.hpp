@@ -14,6 +14,7 @@ class ActorLightCtrl;
 class ProjmapEffectMtxSetter;
 class ModelObj;
 class BrkCtrl;
+class BckCtrlData;
 class PartsModel;
 class LodCtrl;
 class CollisionParts;
@@ -205,6 +206,7 @@ namespace MR {
     J3DFrameCtrl* getBtkCtrl(const LiveActor *);
     J3DFrameCtrl* getBpkCtrl(const LiveActor *);
     J3DFrameCtrl* getBtpCtrl(const LiveActor *);
+    J3DFrameCtrl* getBvaCtrl(const LiveActor *);
 
     void startBrkAndSetFrameAndStop(const LiveActor *, const char *, f32);
     bool tryStartBck(const LiveActor *, const char *, const char *);
@@ -216,6 +218,9 @@ namespace MR {
     f32 getBckFrameMax(const LiveActor *);
     f32 getBrkFrameMax(const LiveActor *);
     f32 getBtkFrameMax(const LiveActor *);
+
+    void reflectBckCtrlData(LiveActor *, const BckCtrlData &);
+
     void setBckFrameAndStop(const LiveActor *, f32);
 
     s16 getBrkFrameMax(const LiveActor *, const char *);
