@@ -65,6 +65,8 @@ namespace MR {
 
     void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, float, float);
 
+    void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
+
     void clampLength(TVec3f *, const TVec3f &, f32);
     f32 convergeRadian(f32, f32, f32);
     bool isInRange(f32, f32, f32);
@@ -154,10 +156,6 @@ namespace MR {
 
     // this must not be declared as inline. some callers inline it and some do not
     static f32 max(f32 x, f32 y) {
-        return x >= y ? x : y;
-    }
-
-    static inline s32 max(s32 x, s32 y) {
         return x >= y ? x : y;
     }
 

@@ -39,7 +39,7 @@
 | [HammerHeadPackun.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/HammerHeadPackun.md) | 0.0% | 0 / 61 | 0.0% | :x: 
 | [Hanachan.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/Hanachan.md) | 0.0% | 0 / 126 | 0.0% | :x: 
 | [HomingKiller.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/HomingKiller.md) | 0.0% | 0 / 69 | 0.0% | :x: 
-| [IceMerameraKing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/IceMerameraKing.md) | 0.0% | 0 / 78 | 0.0% | :x: 
+| [IceMerameraKing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/IceMerameraKing.md) | 74.63087248322148% | 72 / 78 | 92.3076923076923% | :eight_pointed_black_star: 
 | [ItemGenerator.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/ItemGenerator.md) | 0.0% | 0 / 6 | 0.0% | :x: 
 | [Jellyfish.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/Jellyfish.md) | 0.0% | 0 / 44 | 0.0% | :x: 
 | [JellyfishElectric.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy/JellyfishElectric.md) | 0.0% | 0 / 38 | 0.0% | :x: 

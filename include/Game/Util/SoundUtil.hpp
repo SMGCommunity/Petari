@@ -68,6 +68,8 @@ namespace MR {
 
     void startSystemLevelSE(const char *, s32, s32);
 
+    void playLevelMarioPinchBGM(bool);
+    void stopMarioPinchBGMSoon();
     void submitTrigSE();
     void permitTrigSE();
 };

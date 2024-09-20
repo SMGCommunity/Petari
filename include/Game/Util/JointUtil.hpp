@@ -14,6 +14,8 @@ namespace MR {
     void copyJointPos(const LiveActor *, const char *, TVec3f *);
 
     void showJoint(J3DModel *, const char *);
+
+    void copyJointScale(const LiveActor *, const char *, TVec3f *);
     void hideJoint(J3DModel *, const char *);
 
     bool isExistJoint(const LiveActor *, const char *);

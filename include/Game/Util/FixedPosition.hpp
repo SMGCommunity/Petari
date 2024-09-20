@@ -23,6 +23,6 @@ public:
 	MtxPtr mBaseMtx; // 0x0
 	TVec3f mLocalTrans; // 0x4
 	TVec3f _10;
-	TMtx34f _1C;
+	TPos3f _1C;
 	bool mNormalizeScale; // 0x4C
 };
