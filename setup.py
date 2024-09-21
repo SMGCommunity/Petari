@@ -97,4 +97,4 @@ else:
     print("Found compilers folder, continuing...")
 
 print("Done.")
-sys.exit(1)
+sys.exit(0)
