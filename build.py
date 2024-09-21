@@ -3,7 +3,7 @@ import subprocess
 import sys
 import os
 import shutil
-from ninja_syntax import Writer
+from ninja import Writer
 import pathlib
 import hashlib
 
