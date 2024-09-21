@@ -17,9 +17,13 @@
 #define SceneObj_MarioHolder                0x14
 #define SceneObj_MirrorCamera               0x16
 #define SceneObj_CameraContext              0x17
+#define SceneObj_TalkDirector               0x19
+#define SceneObj_StopSceneController        0x1B
+#define SceneObj_SceneObjMovementCtrl       0x1C
 #define SceneObj_PlayerActionGuidance       0x23
 #define SceneObj_PlacementStateChecker      0x27
 #define SceneObj_NamePosHolder              0x28
+#define SceneObj_NPCDirector                0x29
 #define SceneObj_AllLiveActorGroup          0x30
 #define SceneObj_PlanetGravityManager       0x32
 #define SceneObj_PurpleCoinHolder           0x37
