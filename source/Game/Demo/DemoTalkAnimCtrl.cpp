@@ -1,24 +1,24 @@
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
-#include "Game/Demo/DemoFunction.hpp"
+#include <cstdio>
 #include "Game/Demo/DemoExecutor.hpp"
+#include "Game/Demo/DemoFunction.hpp"
 #include "Game/System/NerveExecutor.hpp"
+#include "Game/System/ResourceHolder.hpp"
+#include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/System/ResourceInfo.hpp"
-#include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include <cstdio>
 
-DemoTalkAnimCtrl::DemoTalkAnimCtrl(LiveActor *pActor, const char *a3, const char *a4) : NerveExecutor(a3),
-    mActor(pActor), _C(a3), _10(a4), _14(nullptr), _18(""), _1C(""),
-    mCameraInfo(nullptr), _24(0), _28(0), _2C(0), _30(0), _34(true), _35(false), _36(false), _38(0), _3C(0), _40(0), _44(0),
-    _48(false), mHaveCamera(false), _4A(false), mHaveBtk(false), mHaveBpk(false), mHaveBtp(false), mHaveBrk(false), mHaveBva(false) {}
+DemoTalkAnimCtrl::DemoTalkAnimCtrl(LiveActor* pActor, const char* a3, const char* a4)
+    : NerveExecutor(a3), mActor(pActor), _C(a3), _10(a4), _14(nullptr), _18(""), _1C(""), mCameraInfo(nullptr), _24(0), _28(0), _2C(0), _30(0),
+      _34(true), _35(false), _36(false), _38(0), _3C(0), _40(0), _44(0), _48(false), mHaveCamera(false), _4A(false), mHaveBtk(false), mHaveBpk(false),
+      mHaveBtp(false), mHaveBrk(false), mHaveBva(false) {}
 
 DemoTalkAnimCtrl::~DemoTalkAnimCtrl() {}
 
-void DemoTalkAnimCtrl::initForScene(const char *a1, const char *a2, const JMapInfoIter &rIter) {
+void DemoTalkAnimCtrl::initForScene(const char* a1, const char* a2, const JMapInfoIter& rIter) {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "%s.canm", a2);
     initForActor(a1);
@@ -38,13 +38,12 @@ void DemoTalkAnimCtrl::updateCamera() {
     snprintf(buf, sizeof(buf), "%s%s", mActor->mName, _1C);
     if (DemoFunction::isPauseTimeKeepDemo(_C)) {
         MR::pauseOnAnimCamera(mCameraInfo, buf);
-    }
-    else {
+    } else {
         MR::pauseOffAnimCamera(mCameraInfo, buf);
     }
 }
 
-void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData *pBck, s32 totalSteps) const {
+void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData* pBck, s32 totalSteps) const {
     s16 temp_r0 = MR::max(_24 - 1, 0);
     pBck->mLoopMode = 2;
     pBck->mStartFrame = temp_r0;
@@ -60,7 +59,7 @@ void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData *pBck, s32 totalSteps) cons
     }
 }
 
-void DemoTalkAnimCtrl::initForActor(const char *a1) {
+void DemoTalkAnimCtrl::initForActor(const char* a1) {
     _35 = false;
     _34 = true;
     mHaveCamera = false;
@@ -99,7 +98,7 @@ bool DemoTalkAnimCtrl::updateDemo() {
         return false;
     }
 
-    const char *name = MR::getCurrentDemoPartNameMain(_C);
+    const char* name = MR::getCurrentDemoPartNameMain(_C);
     if (_14 == nullptr) {
         startAnim();
         _14 = "";
@@ -137,8 +136,7 @@ bool DemoTalkAnimCtrl::updateDemo() {
             endCamera();
         }
         return false;
-    }
-    else {
+    } else {
         if (!DemoFunction::isPauseTimeKeepDemo(_C)) {
             _30 += 1;
             _28 += 1;
@@ -173,8 +171,8 @@ void DemoTalkAnimCtrl::startCamera() {
     MR::startAnimCameraTargetSelf(mActor, mCameraInfo, _1C, _40, 1.0f);
 }
 
-void DemoTalkAnimCtrl::updateAnim(const BckCtrlData &rBck) {
-    J3DFrameCtrl *ctrls[5];
+void DemoTalkAnimCtrl::updateAnim(const BckCtrlData& rBck) {
+    J3DFrameCtrl* ctrls[5];
 
     ctrls[0] = mHaveBtk ? MR::getBtkCtrl(mActor) : nullptr;
     ctrls[1] = mHaveBpk ? MR::getBpkCtrl(mActor) : nullptr;
@@ -183,7 +181,7 @@ void DemoTalkAnimCtrl::updateAnim(const BckCtrlData &rBck) {
     ctrls[4] = mHaveBva ? MR::getBvaCtrl(mActor) : nullptr;
 
     for (int i = 0; i < 5; i++) {
-        J3DFrameCtrl *ctrl = ctrls[i];
+        J3DFrameCtrl* ctrl = ctrls[i];
         if (ctrl != nullptr) {
             ctrl->mLoopMode = rBck.mLoopMode;
             ctrl->mStartFrame = rBck.mStartFrame;
@@ -202,13 +200,12 @@ void DemoTalkAnimCtrl::updateAnim(const BckCtrlData &rBck) {
 }
 
 void DemoTalkAnimCtrl::updatePause() {
-    const char *name = MR::getCurrentDemoPartNameMain(_C);
+    const char* name = MR::getCurrentDemoPartNameMain(_C);
     if (DemoFunction::isPauseTimeKeepDemo(_C)) {
         if (!MR::isSystemTalking()) {
             DemoFunction::resumeTimeKeepDemo(_C);
         }
-    }
-    else {
+    } else {
         if (MR::isDemoPartStep(name, MR::getDemoPartTotalStep(name) - 2)) {
             DemoFunction::pauseTimeKeepDemo(_C);
         }
@@ -219,7 +216,7 @@ void DemoTalkAnimCtrl::endCamera() {
     MR::endAnimCamera(mActor, mCameraInfo, _1C, _44, true);
 }
 
-void DemoTalkAnimCtrl::setupStartDemoPart(const char *pPartName) {
+void DemoTalkAnimCtrl::setupStartDemoPart(const char* pPartName) {
     if (_10 != nullptr) {
         _34 = MR::isEqualStringCase(pPartName, _10);
     }

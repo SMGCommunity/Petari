@@ -1,11 +1,12 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
+#include <revolution.h>
 #include "Game/Animation/AnmPlayer.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include <revolution.h>
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class CollisionParts;
 class Nerve;
@@ -23,334 +24,329 @@ class MsgSharedGroup;
 class ResTIMG;
 class LiveActor;
 class TexMtxCtrl;
+class BckCtrlData;
 
 namespace MR {
-    enum CollisionScaleType {
-        UNKNOWN_0 = 0,
-        UNKNOWN_1 = 1,
-        UNKNOWN_2 = 2,
-        UNKNOWN_3 = 3
-    };
+    enum CollisionScaleType { UNKNOWN_0 = 0, UNKNOWN_1 = 1, UNKNOWN_2 = 2, UNKNOWN_3 = 3 };
 
-    bool isExistIndirectTexture(const LiveActor *);
+    bool isExistIndirectTexture(const LiveActor*);
 
-    bool isAnyAnimStopped(const LiveActor *, const char *);
+    bool isAnyAnimStopped(const LiveActor*, const char*);
 
-    void validateClipping(LiveActor *);
-    void invalidateClipping(LiveActor *);
-    void setClippingTypeSphere(LiveActor *, f32);
-    void setClippingTypeSphere(LiveActor *, f32, const TVec3f *);
-    void setClippingFarMax(LiveActor *);
-    void setClippingFar50m(LiveActor *);
-    void setClippingFar200m(LiveActor *);
-    void startBtk(const LiveActor *, const char *);
-
-    void setBaseScale(LiveActor *, const TVec3f &);
-
-    MsgSharedGroup* joinToGroupArray(LiveActor *, const JMapInfoIter &, const char *, s32);
-    LiveActorGroup* getGroupFromArray(const LiveActor *);
-
-    inline s32 getGroupCountFromArray(const LiveActor *pActor) {
-        return getGroupFromArray(pActor)->mObjectCount;
-    }
-
-    void copyTransRotateScale(const LiveActor *, LiveActor *);
-    bool isDead(const LiveActor *);
-
-    void initDefaultPos(LiveActor *, const JMapInfoIter &);
-    void initDefaultPosNoRepeat(LiveActor *, const JMapInfoIter &);
-    bool isValidMovement(const LiveActor *);
-    bool isValidCalcAnim(const LiveActor *);
-    bool isValidCalcViewAndEntry(const LiveActor *);
-    bool isValidDraw(const LiveActor *);
-
-    bool isValidCollisionParts(LiveActor *);
-    void setCollisionMtx(LiveActor *);
-
-    void invalidateClipping(LiveActor *);
-
-    bool isClipped(const LiveActor *);
-    bool isInvalidClipping(const LiveActor *);
-
-    bool isHiddenModel(const LiveActor *);
-
-    void onBind(LiveActor *);
-    void offBind(LiveActor *);
-
-    
-    bool isCalcGravity(const LiveActor *);
-
-    void showModel(LiveActor *);
-    void hideModel(LiveActor *);
-    void showModelIfHidden(LiveActor *);
-    void hideModelIfHidden(LiveActor *);
-
-    void hideModelAndOnCalcAnim(LiveActor *);
-    void stopAnimFrame(LiveActor *);
-
-    ResourceHolder* getResourceHolder(const LiveActor *);
-    ResourceHolder* getModelResourceHolder(const LiveActor *);
+    void validateClipping(LiveActor*);
+    void invalidateClipping(LiveActor*);
+    void setClippingTypeSphere(LiveActor*, f32);
+    void setClippingTypeSphere(LiveActor*, f32, const TVec3f*);
+    void setClippingFarMax(LiveActor*);
+    void setClippingFar50m(LiveActor*);
+    void setClippingFar200m(LiveActor*);
+    void startBtk(const LiveActor*, const char*);
 
-    bool isNoEntryDrawBuffer(const LiveActor *);
+    void setBaseScale(LiveActor*, const TVec3f&);
 
-    void onCalcAnim(LiveActor *);
-    void offCalcAnim(LiveActor *);
+    MsgSharedGroup* joinToGroupArray(LiveActor*, const JMapInfoIter&, const char*, s32);
+    LiveActorGroup* getGroupFromArray(const LiveActor*);
+
+    inline s32 getGroupCountFromArray(const LiveActor* pActor) { return getGroupFromArray(pActor)->mObjectCount; }
+
+    void copyTransRotateScale(const LiveActor*, LiveActor*);
+    bool isDead(const LiveActor*);
 
-    void onEntryDrawBuffer(LiveActor *);
-    void offEntryDrawBuffer(LiveActor *);
-
-    const char* getModelResName(const LiveActor *);
-    
-    void onCalcGravity(LiveActor *);
-    void offCalcGravity(LiveActor *);
-
-    void calcGravityOrZero(LiveActor *);
-
-    void calcAnimDirect(LiveActor *);
-
-    void calcGravity(LiveActor *);
-    void calcGravity(LiveActor *, const TVec3f &);
-
-    void offCalcShadow(LiveActor *, const char *);
+    void initDefaultPos(LiveActor*, const JMapInfoIter&);
+    void initDefaultPosNoRepeat(LiveActor*, const JMapInfoIter&);
+    bool isValidMovement(const LiveActor*);
+    bool isValidCalcAnim(const LiveActor*);
+    bool isValidCalcViewAndEntry(const LiveActor*);
+    bool isValidDraw(const LiveActor*);
 
-    void zeroVelocity(LiveActor *);
-
-    bool isNoBind(const LiveActor *);
-
-    void initLightCtrl(LiveActor *);
-    void initLightCtrlForPlayer(LiveActor *);
-    void initLightCtrlNoDrawEnemy(LiveActor *);
-    void initLightCtrlNoDrawMapObj(LiveActor *);
-    void updateLightCtrl(LiveActor *);
-    void updateLightCtrlDirect(LiveActor *);
-    void loadActorLight(const LiveActor *);
-    void calcLightPos0(TVec3f *, const LiveActor *);
-    void calcLightPos1(TVec3f *, const LiveActor *);
-    const GXColor* getLightAmbientColor(const LiveActor *);
-    ActorLightCtrl* getLightCtrl(const LiveActor *);
-    bool isStep(const LiveActor *, s32);
-    bool isFirstStep(const LiveActor *);
-    bool isLessStep(const LiveActor *, s32);
-    bool isLessEqualStep(const LiveActor *, s32);
-    bool isGreaterStep(const LiveActor *, s32);
-    bool isGreaterEqualStep(const LiveActor *, s32);
-    bool isIntervalStep(const LiveActor *, s32);
-    bool isNewNerve(const LiveActor *);
-    f32 calcNerveRate(const LiveActor *, s32);
-    f32 calcNerveRate(const LiveActor *, s32, s32);
-    f32 calcNerveEaseInRate(const LiveActor *, s32);
-    f32 calcNerveEaseOutRate(const LiveActor *, s32);
-    f32 calcNerveEaseOutRate(const LiveActor *, s32, s32);
-    f32 calcNerveEaseInOutRate(const LiveActor *, s32);
-    f32 calcNerveEaseInOutRate(const LiveActor *, s32, s32);
-    f32 calcNerveValue(const LiveActor *, s32, f32, f32);
-    f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
-    f32 calcNerveEaseInValue(const LiveActor *, s32, f32, f32);
-    f32 calcNerveEaseInValue(const LiveActor *, s32, s32, f32, f32);
-    f32 calcNerveEaseOutValue(const LiveActor *, s32, f32, f32);
-    f32 calcNerveEaseInOutValue(const LiveActor *, s32, f32, f32);
-    f32 calcNerveEaseInOutValue(const LiveActor *, s32, s32, f32, f32);
-    void setNerveAtStep(LiveActor *, const Nerve *, s32);
-    void setNerveAtBckStopped(LiveActor *, const Nerve *);
-    bool trySetNerve(LiveActor *, const Nerve *);
-
-    bool isNoCalcAnim(const LiveActor *);
-
-    void initCollisionParts(LiveActor *, const char *, HitSensor *, MtxPtr);
-
-    void initCollisionPartsAutoEqualScale(LiveActor *, const char *, HitSensor *, MtxPtr);
-    
-    void setBaseTRMtx(LiveActor *, MtxPtr);
-    void setBaseTRMtx(LiveActor *, const TQuat4f &);
-    void setBaseTRMtx(LiveActor *, const TPos3f &);
+    bool isValidCollisionParts(LiveActor*);
+    void setCollisionMtx(LiveActor*);
 
-    void setClippingFar(LiveActor *, f32);
-    void setClippingFar100m(LiveActor *);
-
-    void setClippingTypeSphereContainsModelBoundingBox(LiveActor *, f32);
-    
-    void validateCollisionParts(LiveActor *);
-    void validateCollisionParts(CollisionParts *);
+    void invalidateClipping(LiveActor*);
 
-    void invalidateCollisionParts(LiveActor *);
-    void invalidateCollisionParts(CollisionParts *);
-
-    void offUpdateCollisionParts(LiveActor *);
+    bool isClipped(const LiveActor*);
+    bool isInvalidClipping(const LiveActor*);
 
-    void onUpdateCollisionPartsOnetimeImmediately(LiveActor *);
+    bool isHiddenModel(const LiveActor*);
 
-    bool isExistCollisionParts(const LiveActor *);
+    void onBind(LiveActor*);
+    void offBind(LiveActor*);
 
-    void resetAllCollisionMtx(LiveActor *);
+    bool isCalcGravity(const LiveActor*);
 
-    void startAllAnim(const LiveActor *, const char *);
-    bool tryStartAllAnim(const LiveActor *, const char *);
+    void showModel(LiveActor*);
+    void hideModel(LiveActor*);
+    void showModelIfHidden(LiveActor*);
+    void hideModelIfHidden(LiveActor*);
 
-    bool isAnyAnimOneTimeAndStopped(const LiveActor *, const char *);
+    void hideModelAndOnCalcAnim(LiveActor*);
+    void stopAnimFrame(LiveActor*);
 
-    bool isBrkOneTimeAndStopped(const LiveActor *);
+    ResourceHolder* getResourceHolder(const LiveActor*);
+    ResourceHolder* getModelResourceHolder(const LiveActor*);
 
-    void setAllAnimFrame(const LiveActor *, const char *, f32);
-    void setAllAnimFrameAtEnd(const LiveActor *, const char *);
+    bool isNoEntryDrawBuffer(const LiveActor*);
 
-    void startBck(const LiveActor *, const char *, const char *);
-    void startBckNoInterpole(const LiveActor *, const char *);
-    void startBckWithInterpole(const LiveActor *, const char *, s32);
-    void startBrk(const LiveActor *, const char *);
-    void startBva(const LiveActor *, const char *);
-    void setBvaFrameAndStop(const LiveActor *, f32);
+    void onCalcAnim(LiveActor*);
+    void offCalcAnim(LiveActor*);
 
-    J3DFrameCtrl* getBckCtrl(const LiveActor *);
-    J3DFrameCtrl* getBrkCtrl(const LiveActor *);
-    J3DFrameCtrl* getBtkCtrl(const LiveActor *);
-    J3DFrameCtrl* getBpkCtrl(const LiveActor *);
-    J3DFrameCtrl* getBtpCtrl(const LiveActor *);
+    void onEntryDrawBuffer(LiveActor*);
+    void offEntryDrawBuffer(LiveActor*);
 
-    void startBrkAndSetFrameAndStop(const LiveActor *, const char *, f32);
-    bool tryStartBck(const LiveActor *, const char *, const char *);
-    void setBckRate(const LiveActor *, f32);
+    const char* getModelResName(const LiveActor*);
 
-    void setBrkRate(const LiveActor *, f32);
+    void onCalcGravity(LiveActor*);
+    void offCalcGravity(LiveActor*);
 
-    void setBckFrame(const LiveActor *, f32);
-    f32 getBckFrameMax(const LiveActor *);
-    f32 getBrkFrameMax(const LiveActor *);
-    f32 getBtkFrameMax(const LiveActor *);
-    void setBckFrameAndStop(const LiveActor *, f32);
+    void calcGravityOrZero(LiveActor*);
 
-    s16 getBrkFrameMax(const LiveActor *, const char *);
+    void calcAnimDirect(LiveActor*);
 
-    void setBtkFrame(LiveActor *, f32);
-    void setBtkFrameAndStop(const LiveActor *, f32);
+    void calcGravity(LiveActor*);
+    void calcGravity(LiveActor*, const TVec3f&);
 
-    bool isExistBck(const LiveActor *, const char *);
-    bool isExistBva(const LiveActor *, const char *);
-    bool isExistBtk(const LiveActor *, const char *);
-    bool isExistBpk(const LiveActor *, const char *);
-    bool isExistBtp(const LiveActor *, const char *);
-    bool isExistBrk(const LiveActor *, const char *);
+    void offCalcShadow(LiveActor*, const char*);
 
-    bool isBckPlaying(const LiveActor *, const char *);
+    void zeroVelocity(LiveActor*);
 
-    bool isBckStopped(const LiveActor *);
-    bool isBrkStopped(const LiveActor *);
-    bool isBtkStopped(const LiveActor *);
-    bool isBtpStopped(const LiveActor *);
-    bool isBpkStopped(const LiveActor *);
+    bool isNoBind(const LiveActor*);
 
-    bool isBckOneTimeAndStopped(const LiveActor *);
+    void initLightCtrl(LiveActor*);
+    void initLightCtrlForPlayer(LiveActor*);
+    void initLightCtrlNoDrawEnemy(LiveActor*);
+    void initLightCtrlNoDrawMapObj(LiveActor*);
+    void updateLightCtrl(LiveActor*);
+    void updateLightCtrlDirect(LiveActor*);
+    void loadActorLight(const LiveActor*);
+    void calcLightPos0(TVec3f*, const LiveActor*);
+    void calcLightPos1(TVec3f*, const LiveActor*);
+    const GXColor* getLightAmbientColor(const LiveActor*);
+    ActorLightCtrl* getLightCtrl(const LiveActor*);
+    bool isStep(const LiveActor*, s32);
+    bool isFirstStep(const LiveActor*);
+    bool isLessStep(const LiveActor*, s32);
+    bool isLessEqualStep(const LiveActor*, s32);
+    bool isGreaterStep(const LiveActor*, s32);
+    bool isGreaterEqualStep(const LiveActor*, s32);
+    bool isIntervalStep(const LiveActor*, s32);
+    bool isNewNerve(const LiveActor*);
+    f32 calcNerveRate(const LiveActor*, s32);
+    f32 calcNerveRate(const LiveActor*, s32, s32);
+    f32 calcNerveEaseInRate(const LiveActor*, s32);
+    f32 calcNerveEaseOutRate(const LiveActor*, s32);
+    f32 calcNerveEaseOutRate(const LiveActor*, s32, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor*, s32);
+    f32 calcNerveEaseInOutRate(const LiveActor*, s32, s32);
+    f32 calcNerveValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveValue(const LiveActor*, s32, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInValue(const LiveActor*, s32, s32, f32, f32);
+    f32 calcNerveEaseOutValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor*, s32, f32, f32);
+    f32 calcNerveEaseInOutValue(const LiveActor*, s32, s32, f32, f32);
+    void setNerveAtStep(LiveActor*, const Nerve*, s32);
+    void setNerveAtBckStopped(LiveActor*, const Nerve*);
+    bool trySetNerve(LiveActor*, const Nerve*);
 
+    bool isNoCalcAnim(const LiveActor*);
 
-    void setBrkFrame(const LiveActor *, f32);
-    void setBrkFrameAndStop(const LiveActor *, f32);
-    void setBrkFrameEndAndStop(const LiveActor *);
+    void initCollisionParts(LiveActor*, const char*, HitSensor*, MtxPtr);
 
-    void setBckFrameAtRandom(const LiveActor *);
+    void initCollisionPartsAutoEqualScale(LiveActor*, const char*, HitSensor*, MtxPtr);
 
-    void setBaseTRMtx(LiveActor *, const TPos3f &);
+    void setBaseTRMtx(LiveActor*, MtxPtr);
+    void setBaseTRMtx(LiveActor*, const TQuat4f&);
+    void setBaseTRMtx(LiveActor*, const TPos3f&);
 
-    void setBpkFrame(const LiveActor *, f32);
-    void stopBck(const LiveActor *);
+    void setClippingFar(LiveActor*, f32);
+    void setClippingFar100m(LiveActor*);
 
-    void startBtp(const LiveActor *, const char *);
-    void setBtpFrame(const LiveActor *, f32);
-    void setBtpFrameAndStop(const LiveActor *, f32);
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor*, f32);
 
-    void startBpk(const LiveActor *, const char *);
+    void validateCollisionParts(LiveActor*);
+    void validateCollisionParts(CollisionParts*);
 
-    ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor *);
+    void invalidateCollisionParts(LiveActor*);
+    void invalidateCollisionParts(CollisionParts*);
 
-    void newDifferedDLBuffer(LiveActor *);
+    void offUpdateCollisionParts(LiveActor*);
 
-    ModelObj* createModelObjMapObj(const char *, const char *, MtxPtr);
-    ModelObj* createModelObjMapObjStrongLight(const char *, const char *, MtxPtr);
-    ModelObj* createModelObjIndirectMapObj(const char *, const char *, MtxPtr);
-    ModelObj* createModelObjNoSilhouettedMapObj(const char *, const char *, MtxPtr);
-    ModelObj* createModelObjNpc(const char *, const char *, MtxPtr);
-    PartsModel* createPartsModelMapObj(LiveActor *, const char *, const char *, MtxPtr);
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor*);
 
-    void sendMsgToGroupMember(u32, LiveActor *, HitSensor *, const char *);
+    bool isExistCollisionParts(const LiveActor*);
 
-    void callAppearAllGroupMember(const LiveActor *);
-    void callMakeActorDeadAllGroupMember(const LiveActor *);
-    void callRequestMovementOnAllGroupMember(const LiveActor *);
+    void resetAllCollisionMtx(LiveActor*);
 
-    void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
+    void startAllAnim(const LiveActor*, const char*);
+    bool tryStartAllAnim(const LiveActor*, const char*);
 
-    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor *, const char *, const char *, MtxPtr);
+    bool isAnyAnimOneTimeAndStopped(const LiveActor*, const char*);
 
-    void startAction(const LiveActor *, const char *);
+    bool isBrkOneTimeAndStopped(const LiveActor*);
 
-    LodCtrl* createLodCtrlPlanet(LiveActor *, const JMapInfoIter &, f32, s32);
-    LodCtrl* createLodCtrlNPC(LiveActor *, const JMapInfoIter &);
+    void setAllAnimFrame(const LiveActor*, const char*, f32);
+    void setAllAnimFrameAtEnd(const LiveActor*, const char*);
 
-    bool changeShowModelFlagSyncNearClipping(LiveActor *, f32);
+    void startBck(const LiveActor*, const char*, const char*);
+    void startBckNoInterpole(const LiveActor*, const char*);
+    void startBckWithInterpole(const LiveActor*, const char*, s32);
+    void startBrk(const LiveActor*, const char*);
+    void startBva(const LiveActor*, const char*);
+    void setBvaFrameAndStop(const LiveActor*, f32);
 
-    void hideModelAndOnCalcAnimIfShown(LiveActor *);
+    J3DFrameCtrl* getBckCtrl(const LiveActor*);
+    J3DFrameCtrl* getBrkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBtkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBpkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBtpCtrl(const LiveActor*);
+    J3DFrameCtrl* getBvaCtrl(const LiveActor*);
 
-    bool tryCreateMirrorActor(LiveActor *, const char *);
+    void startBrkAndSetFrameAndStop(const LiveActor*, const char*, f32);
+    bool tryStartBck(const LiveActor*, const char*, const char*);
+    void setBckRate(const LiveActor*, f32);
 
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, CollisionScaleType);
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor *, const char *, HitSensor *, MtxPtr, CollisionScaleType);
+    void setBrkRate(const LiveActor*, f32);
 
-    bool isBinded(const LiveActor *);
-    bool isBinded(const LiveActor *, HitSensor *);
+    void setBckFrame(const LiveActor*, f32);
+    f32 getBckFrameMax(const LiveActor*);
+    f32 getBrkFrameMax(const LiveActor*);
+    f32 getBtkFrameMax(const LiveActor*);
+    void setBckFrameAndStop(const LiveActor*, f32);
 
-    bool isBindedGround(const LiveActor *);
-    bool isBindedWall(const LiveActor *);
+    s16 getBrkFrameMax(const LiveActor*, const char*);
 
-    bool isBindedGroundIce(const LiveActor *);
-    bool isBindedGroundWater(const LiveActor *);
+    void setBtkFrame(LiveActor*, f32);
+    void setBtkFrameAndStop(const LiveActor*, f32);
 
-    bool isActionEnd(const LiveActor *);
+    bool isExistBck(const LiveActor*, const char*);
+    bool isExistBva(const LiveActor*, const char*);
+    bool isExistBtk(const LiveActor*, const char*);
+    bool isExistBpk(const LiveActor*, const char*);
+    bool isExistBtp(const LiveActor*, const char*);
+    bool isExistBrk(const LiveActor*, const char*);
 
-    void setMirrorReflectionInfoFromModel(LiveActor *);
+    bool isBckPlaying(const LiveActor*, const char*);
 
-    bool isBindedRoof(const LiveActor *);
-    bool isOnGround(const LiveActor *);
+    bool isBckStopped(const LiveActor*);
+    bool isBrkStopped(const LiveActor*);
+    bool isBtkStopped(const LiveActor*);
+    bool isBtpStopped(const LiveActor*);
+    bool isBpkStopped(const LiveActor*);
 
-    bool isPressedRoofAndGround(const LiveActor *);
+    bool isBckOneTimeAndStopped(const LiveActor*);
 
-    TVec3f* getRoofNormal(const LiveActor *);
-    TVec3f* getWallNormal(const LiveActor *);
-    TVec3f* getGroundNormal(const LiveActor *);
+    void setBrkFrame(const LiveActor*, f32);
+    void setBrkFrameAndStop(const LiveActor*, f32);
+    void setBrkFrameEndAndStop(const LiveActor*);
 
-    void setBinderExceptSensorType(LiveActor *, const TVec3f *, f32);
+    void setBckFrameAtRandom(const LiveActor*);
 
-    void setBinderOffsetVec(LiveActor *, const TVec3f *, bool);
-    void setBinderRadius(LiveActor *, f32);
+    void setBaseTRMtx(LiveActor*, const TPos3f&);
 
-    void setBinderExceptActor(LiveActor *, const LiveActor *);
+    void setBpkFrame(const LiveActor*, f32);
+    void stopBck(const LiveActor*);
 
-    bool tryCreateCollisionAllOtherCategory(LiveActor *, MtxPtr, HitSensor *, CollisionParts **, CollisionParts **, CollisionParts **);
-    bool tryCreateCollisionAllOtherCategory(LiveActor *, HitSensor *, CollisionParts **, CollisionParts **, CollisionParts **);
+    void startBtp(const LiveActor*, const char*);
+    void setBtpFrame(const LiveActor*, f32);
+    void setBtpFrameAndStop(const LiveActor*, f32);
 
-    f32 getCollisionBoundingSphereRange(const LiveActor *);
+    void startBpk(const LiveActor*, const char*);
 
-    bool isExistAnim(const LiveActor *, const char *);
+    ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor*);
 
-    void setMirrorReflectionInfoFromMtxYUp(const TPos3f &);
+    void newDifferedDLBuffer(LiveActor*);
 
-    const char* createLowModelObjName(const LiveActor *);
-    const char* createMiddleModelObjName(const LiveActor *);
+    ModelObj* createModelObjMapObj(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjMapObjStrongLight(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjIndirectMapObj(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjNoSilhouettedMapObj(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjNpc(const char*, const char*, MtxPtr);
+    PartsModel* createPartsModelMapObj(LiveActor*, const char*, const char*, MtxPtr);
 
-    void addToAttributeGroupSearchTurtle(const LiveActor *);
+    void sendMsgToGroupMember(u32, LiveActor*, HitSensor*, const char*);
 
-    void stopSceneAtStep(const LiveActor *, s32, s32);
+    void callAppearAllGroupMember(const LiveActor*);
+    void callMakeActorDeadAllGroupMember(const LiveActor*);
+    void callRequestMovementOnAllGroupMember(const LiveActor*);
 
-    void tryRumblePadAndCameraDistanceStrong(const LiveActor  *, f32, f32, f32);
+    void setGroupClipping(LiveActor*, const JMapInfoIter&, int);
 
-    void initJointTransform(const LiveActor *);
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor*, const char*, const char*, MtxPtr);
 
-    void initCollisionPartsAutoEqualScaleOne(LiveActor *, const char *, HitSensor *, MtxPtr);
-    void initCollisionPartsFromResourceHolder(LiveActor *, const char *, HitSensor *, ResourceHolder *, MtxPtr);
+    void startAction(const LiveActor*, const char*);
 
-	ResTIMG* getTexFromArc(const char *, const LiveActor *);
-    PartsModel* createBloomModel(LiveActor *, MtxPtr);
+    LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
+    LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);
 
-    CollisionParts* getCollisionParts(const LiveActor *);
+    bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
-    TexMtxCtrl* initDLMakerTexMtx(LiveActor *, const char *);
+    void hideModelAndOnCalcAnimIfShown(LiveActor*);
 
-    void changeModelDataTexAll(LiveActor *, const char *, const ResTIMG &);
-};
+    bool tryCreateMirrorActor(LiveActor*, const char*);
+
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, MtxPtr, CollisionScaleType);
+
+    bool isBinded(const LiveActor*);
+    bool isBinded(const LiveActor*, HitSensor*);
+
+    bool isBindedGround(const LiveActor*);
+    bool isBindedWall(const LiveActor*);
+
+    bool isBindedGroundIce(const LiveActor*);
+    bool isBindedGroundWater(const LiveActor*);
+
+    bool isActionEnd(const LiveActor*);
+
+    void setMirrorReflectionInfoFromModel(LiveActor*);
+
+    bool isBindedRoof(const LiveActor*);
+    bool isOnGround(const LiveActor*);
+
+    bool isPressedRoofAndGround(const LiveActor*);
+
+    TVec3f* getRoofNormal(const LiveActor*);
+    TVec3f* getWallNormal(const LiveActor*);
+    TVec3f* getGroundNormal(const LiveActor*);
+
+    void setBinderExceptSensorType(LiveActor*, const TVec3f*, f32);
+
+    void setBinderOffsetVec(LiveActor*, const TVec3f*, bool);
+    void setBinderRadius(LiveActor*, f32);
+
+    void setBinderExceptActor(LiveActor*, const LiveActor*);
+
+    bool tryCreateCollisionAllOtherCategory(LiveActor*, MtxPtr, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
+    bool tryCreateCollisionAllOtherCategory(LiveActor*, HitSensor*, CollisionParts**, CollisionParts**, CollisionParts**);
+
+    f32 getCollisionBoundingSphereRange(const LiveActor*);
+
+    bool isExistAnim(const LiveActor*, const char*);
+
+    void setMirrorReflectionInfoFromMtxYUp(const TPos3f&);
+
+    const char* createLowModelObjName(const LiveActor*);
+    const char* createMiddleModelObjName(const LiveActor*);
+
+    void addToAttributeGroupSearchTurtle(const LiveActor*);
+
+    void stopSceneAtStep(const LiveActor*, s32, s32);
+
+    void tryRumblePadAndCameraDistanceStrong(const LiveActor*, f32, f32, f32);
+
+    void initJointTransform(const LiveActor*);
+
+    void initCollisionPartsAutoEqualScaleOne(LiveActor*, const char*, HitSensor*, MtxPtr);
+    void initCollisionPartsFromResourceHolder(LiveActor*, const char*, HitSensor*, ResourceHolder*, MtxPtr);
+
+    ResTIMG* getTexFromArc(const char*, const LiveActor*);
+    PartsModel* createBloomModel(LiveActor*, MtxPtr);
+
+    CollisionParts* getCollisionParts(const LiveActor*);
+
+    TexMtxCtrl* initDLMakerTexMtx(LiveActor*, const char*);
+
+    void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
+
+    void reflectBckCtrlData(LiveActor*, const BckCtrlData&);
+};  // namespace MR

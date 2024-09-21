@@ -72,6 +72,49 @@ namespace MR {
         CalcAnimType_AnimParticleIgnorePause = 0x14
     };
 
+    enum DrawBufferType {
+        DrawBufferType_ClippedMapParts = 0x00,
+        DrawBufferType_Sky = 0x01,
+        DrawBufferType_Air = 0x02,
+        DrawBufferType_Sun = 0x03,
+        DrawBufferType_Planet = 0x04,
+        DrawBufferType_PlanetLow = 0x05,
+        DrawBufferType_Environment = 0x06,
+        DrawBufferType_EnvironmentStrongLight = 0x07,
+        DrawBufferType_MapObj = 0x08,
+        DrawBufferType_MapObjWeakLight = 0x09,
+        DrawBufferType_MapObjStrongLight = 0x0A,
+        DrawBufferType_NoShadowedMapObj = 0x0B,
+        DrawBufferType_NoShadowedMapObjStrongLight = 0x0C,
+        DrawBufferType_NoSilhouettedMapObj = 0x0D,
+        DrawBufferType_NoSilhouettedMapObjWeakLight = 0x0E,
+        DrawBufferType_NoSilhouettedMapObjStrongLight = 0x0F,
+        DrawBufferType_NPC = 0x10,
+        DrawBufferType_Ride = 0x11,
+        DrawBufferType_Enemy = 0x12,
+        DrawBufferType_EnemyDecoration = 0x13,
+        DrawBufferType_Player = 0x14,
+        DrawBufferType_PlayerDecoration = 0x15,
+        DrawBufferType_CrystalBox = 0x16,
+        DrawBufferType_UNK_0x17 = 0x17,
+        DrawBufferType_UNK_0x18 = 0x18,
+        DrawBufferType_IndirectMapObj = 0x19,
+        DrawBufferType_IndirectMapObjStrongLight = 0x1A,
+        DrawBufferType_IndirectNpc = 0x1B,
+        DrawBufferType_IndirectEnemy = 0x1C,
+        DrawBufferType_IndirectPlanet = 0x1D,
+        DrawBufferType_BloomModel = 0x1E,
+        DrawBufferType_TripodBoss = 0x1F,
+        DrawBufferType_Crystal = 0x20,
+        DrawBufferType_CrystalItem = 0x21,
+        DrawBufferType_GlaringLight = 0x22,
+        DrawBufferType_AstroDomeSky = 0x23,
+        DrawBufferType_Model3DFor2D = 0x24,
+        DrawBufferType_DrawBufferType_0x25 = 0x25,
+        DrawBufferType_DrawBufferType_0x26 = 0x26,
+        DrawBufferType_MirrorMapObj = 0x27,
+    };
+
     enum DrawType {
         DrawType_SwingRope = 0x00,
         DrawType_Creeper = 0x02,
@@ -145,7 +188,9 @@ namespace MR {
     };
 };  // namespace MR
 
-class CategoryList {
+class Scene;
+
+class SceneFunction {
 public:
     static void startStageFileLoad();
     static void waitDoneStageFileLoad();
@@ -157,10 +202,19 @@ public:
     static void initForLiveActor();
     static void initEffectSystem();
     static void allocateDrawBufferActorList();
+    static void createHioBasicNode(Scene*);
+};
+
+class CategoryList {
+public:
     static void execute(MR::MovementType);
     static void execute(MR::CalcAnimType);
     static void execute(MR::DrawType);
     static void entryDrawBuffer2D();
     static void entryDrawBuffer3D();
     static void entryDrawBufferMirror();
+    static void drawOpa(MR::DrawBufferType);
+    static void drawXlu(MR::DrawBufferType);
+    static void requestMovementOn(MR::MovementType);
+    static void requestMovementOff(MR::MovementType);
 };
