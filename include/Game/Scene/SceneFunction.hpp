@@ -1,6 +1,7 @@
 #pragma once
 
 namespace MR {
+    /* thanks to https://github.com/magcius/noclip.website/blob/master/src/SuperMarioGalaxy/NameObj.ts */
     enum MovementType {
         MovementType_StopSceneDelayRequest = 0x01,
         MovementType_Camera = 0x02,
