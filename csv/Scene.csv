@@ -333,7 +333,7 @@ initAfterScenarioSelected__13SceneFunctionFv,SceneFunction.o,Scene.a,false
 initForNameObj__13SceneFunctionFv,SceneFunction.o,Scene.a,false
 initForLiveActor__13SceneFunctionFv,SceneFunction.o,Scene.a,false
 initEffectSystem__13SceneFunctionFUlUl,SceneFunction.o,Scene.a,false
-allocateDrawBufferActorList__13SceneFunctionFv,SceneFunction.o,Scene.a,false
+allocateDrawBufferActorList__13SceneFunctionFv,SceneFunction.o,Scene.a,true
 execute__12CategoryListFQ22MR12MovementType,SceneFunction.o,Scene.a,false
 execute__12CategoryListFQ22MR12CalcAnimType,SceneFunction.o,Scene.a,false
 execute__12CategoryListFQ22MR8DrawType,SceneFunction.o,Scene.a,false
@@ -344,7 +344,7 @@ drawOpa__12CategoryListFQ22MR14DrawBufferType,SceneFunction.o,Scene.a,false
 drawXlu__12CategoryListFQ22MR14DrawBufferType,SceneFunction.o,Scene.a,false
 requestMovementOn__12CategoryListFQ22MR12MovementType,SceneFunction.o,Scene.a,false
 requestMovementOff__12CategoryListFQ22MR12MovementType,SceneFunction.o,Scene.a,false
-createHioBasicNode__13SceneFunctionFP5Scene,SceneFunction.o,Scene.a,false
+createHioBasicNode__13SceneFunctionFP5Scene,SceneFunction.o,Scene.a,true
 __ct__14SceneObjHolderFv,SceneObjHolder.o,Scene.a,true
 create__14SceneObjHolderFi,SceneObjHolder.o,Scene.a,true
 getObj__14SceneObjHolderCFi,SceneObjHolder.o,Scene.a,true

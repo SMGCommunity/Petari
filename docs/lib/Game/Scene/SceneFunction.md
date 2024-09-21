@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 21 Completed -- (0.0%)
+# 2 / 21 Completed -- (9.523809523809524%)
 # SceneFunction.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -18,7 +18,7 @@
 | `initForNameObj__13SceneFunctionFv` | :x: |
 | `initForLiveActor__13SceneFunctionFv` | :x: |
 | `initEffectSystem__13SceneFunctionFUlUl` | :x: |
-| `allocateDrawBufferActorList__13SceneFunctionFv` | :x: |
+| `allocateDrawBufferActorList__13SceneFunctionFv` | :white_check_mark: |
 | `execute__12CategoryListFQ22MR12MovementType` | :x: |
 | `execute__12CategoryListFQ22MR12CalcAnimType` | :x: |
 | `execute__12CategoryListFQ22MR8DrawType` | :x: |
@@ -29,4 +29,4 @@
 | `drawXlu__12CategoryListFQ22MR14DrawBufferType` | :x: |
 | `requestMovementOn__12CategoryListFQ22MR12MovementType` | :x: |
 | `requestMovementOff__12CategoryListFQ22MR12MovementType` | :x: |
-| `createHioBasicNode__13SceneFunctionFP5Scene` | :x: |
+| `createHioBasicNode__13SceneFunctionFP5Scene` | :white_check_mark: |

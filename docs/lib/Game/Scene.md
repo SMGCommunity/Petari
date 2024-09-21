@@ -24,7 +24,7 @@
 | [SceneDataInitializer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneDataInitializer.md) | 100.0% | 9 / 9 | 100.0% | :white_check_mark: 
 | [SceneExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneExecutor.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [SceneFactory.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneFactory.md) | 0.0% | 0 / 4 | 0.0% | :x: 
-| [SceneFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneFunction.md) | 0.0% | 0 / 21 | 0.0% | :x: 
+| [SceneFunction.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneFunction.md) | 4.83271375464684% | 2 / 21 | 9.523809523809524% | :eight_pointed_black_star: 
 | [SceneObjHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneObjHolder.md) | 5.683060109289618% | 5 / 9 | 55.55555555555556% | :eight_pointed_black_star: 
 | [ScenePlayingResult.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/ScenePlayingResult.md) | 0.0% | 0 / 8 | 0.0% | :x: 
 | [SceneNameObjListExecutor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene/SceneNameObjListExecutor.md) | 100.0% | 5 / 5 | 100.0% | :white_check_mark: 
