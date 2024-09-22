@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution.h>
+
 namespace MR {
     /* thanks to https://github.com/magcius/noclip.website/blob/master/src/SuperMarioGalaxy/NameObj.ts */
     enum MovementType {
@@ -200,7 +202,7 @@ public:
     static void initAfterScenarioSelected();
     static void initForNameObj();
     static void initForLiveActor();
-    static void initEffectSystem();
+    static void initEffectSystem(u32, u32);
     static void allocateDrawBufferActorList();
     static void createHioBasicNode(Scene*);
 };
