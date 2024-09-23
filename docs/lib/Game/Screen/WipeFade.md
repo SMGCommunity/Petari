@@ -5,22 +5,22 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 0 / 15 Completed -- (0.0%)
+# 14 / 15 Completed -- (93.33333333333333%)
 # WipeFade.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
-| `__ct__8WipeFadeFPCcRC6Color8` | :x: |
-| `__dt__14WipeLayoutBaseFv` | :x: |
-| `init__8WipeFadeFRC12JMapInfoIter` | :x: |
-| `control__8WipeFadeFv` | :x: |
+| `__ct__8WipeFadeFPCcRC6Color8` | :white_check_mark: |
+| `__dt__14WipeLayoutBaseFv` | :white_check_mark: |
+| `init__8WipeFadeFRC12JMapInfoIter` | :white_check_mark: |
+| `control__8WipeFadeFv` | :white_check_mark: |
 | `draw__8WipeFadeCFv` | :x: |
-| `wipe__8WipeFadeFl` | :x: |
-| `forceClose__8WipeFadeFv` | :x: |
-| `forceOpen__8WipeFadeFv` | :x: |
-| `isOpen__8WipeFadeCFv` | :x: |
-| `isClose__8WipeFadeCFv` | :x: |
-| `isWipeIn__8WipeFadeCFv` | :x: |
-| `isWipeOut__8WipeFadeCFv` | :x: |
-| `__dt__8WipeFadeFv` | :x: |
-| `getWipeType__14WipeLayoutBaseCFv` | :x: |
-| `getWipeName__14WipeLayoutBaseCFv` | :x: |
+| `wipe__8WipeFadeFl` | :white_check_mark: |
+| `forceClose__8WipeFadeFv` | :white_check_mark: |
+| `forceOpen__8WipeFadeFv` | :white_check_mark: |
+| `isOpen__8WipeFadeCFv` | :white_check_mark: |
+| `isClose__8WipeFadeCFv` | :white_check_mark: |
+| `isWipeIn__8WipeFadeCFv` | :white_check_mark: |
+| `isWipeOut__8WipeFadeCFv` | :white_check_mark: |
+| `__dt__8WipeFadeFv` | :white_check_mark: |
+| `getWipeType__14WipeLayoutBaseCFv` | :white_check_mark: |
+| `getWipeName__14WipeLayoutBaseCFv` | :white_check_mark: |
