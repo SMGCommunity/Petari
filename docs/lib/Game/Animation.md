@@ -8,7 +8,7 @@
 
 | Object | Percentage (of Bytes) | Functions Done / Total Functions | Percentage (Functions) | Status 
 | ------------- | ------------- | ------------- | ------------- | ------------- 
-| [AnmPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation/AnmPlayer.md) | 8.843537414965986% | 10 / 32 | 31.25% | :eight_pointed_black_star: 
+| [AnmPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation/AnmPlayer.md) | 9.863945578231291% | 11 / 32 | 34.375% | :eight_pointed_black_star: 
 | [BckCtrl.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation/BckCtrl.md) | 18.295218295218298% | 3 / 9 | 33.33333333333333% | :eight_pointed_black_star: 
 | [BpkPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation/BpkPlayer.md) | 0.0% | 0 / 3 | 0.0% | :x: 
 | [BrkPlayer.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation/BrkPlayer.md) | 0.0% | 0 / 3 | 0.0% | :x: 
