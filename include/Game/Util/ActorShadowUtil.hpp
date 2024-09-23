@@ -67,4 +67,8 @@ namespace MR {
     bool isShadowProjected(const LiveActor *, const char *);
     void getShadowProjectionPos(const LiveActor *, const char *, TVec3f *);
     void getShadowProjectionNormal(const LiveActor *, const char *, TVec3f *);
+
+    void setShadowVolumeSphereRadius(LiveActor *, const char *, f32);
+
+    f32 getShadowNearProjectionLength(const LiveActor *);
 };

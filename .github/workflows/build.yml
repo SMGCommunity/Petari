@@ -1,0 +1,40 @@
+name: Build Project
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Multiarch
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+
+      - name: Install Wine and Dependencies
+        run: |
+          sudo apt-get install -y wine32
+          sudo apt-get install -y xvfb
+  
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.10'
+      - name: Download file
+        run: |
+          wget https://shibbo.net/smg/baserom.dol
+
+      - name: Run setup.py
+        run: |
+          python3 setup.py
+
+      - name: Run build.py
+        run: |
+          python3 build.py

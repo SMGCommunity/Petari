@@ -1,6 +1,8 @@
 #ifndef GXTYPES_H
 #define GXTYPES_H
 
+#include "types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -167,6 +167,7 @@ namespace MR {
     bool isMsgItemEndMove(u32);
     bool isMsgInhaleBlackHole(u32);
 
+    bool isMsgFreezeAttack(u32);
     bool isMsgInvincibleAttack(u32);
 
     bool isMsgFireBallAttack(u32);

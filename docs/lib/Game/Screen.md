@@ -112,7 +112,7 @@
 | [ReplaceTagProcessor.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ReplaceTagProcessor.md) | 0.0% | 0 / 12 | 0.0% | :x: 
 | [SaveIcon.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/SaveIcon.md) | 0.0% | 0 / 4 | 0.0% | :x: 
 | [ScenarioSelectLayout.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ScenarioSelectLayout.md) | 56.27306273062731% | 49 / 63 | 77.77777777777779% | :eight_pointed_black_star: 
-| [ScenarioTitle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ScenarioTitle.md) | 0.0% | 0 / 14 | 0.0% | :x: 
+| [ScenarioTitle.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ScenarioTitle.md) | 100.0% | 14 / 14 | 100.0% | :white_check_mark: 
 | [SceneWipeHolder.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/SceneWipeHolder.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenAlphaCapture.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ScreenAlphaCapture.md) | 0.0% | 0 / 9 | 0.0% | :x: 
 | [ScreenBlurEffect.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/ScreenBlurEffect.md) | 0.0% | 0 / 7 | 0.0% | :x: 

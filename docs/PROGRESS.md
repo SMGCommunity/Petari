@@ -8,7 +8,7 @@
 | [Camera](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Camera.md) | 34.12644987572494% |
 | [Demo](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Demo.md) | 20.796324655436447% |
 | [Effect](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Effect.md) | 2.2184743124026984% |
-| [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy.md) | 3.920409631175268% |
+| [Enemy](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Enemy.md) | 5.504240879083315% |
 | [GameAudio](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/GameAudio.md) | 0.0% |
 | [Gravity](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Gravity.md) | 100.0% |
 | [LiveActor](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/LiveActor.md) | 42.577224527431994% |
@@ -20,8 +20,8 @@
 | [Player](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Player.md) | 7.8301638397445155% |
 | [RhythmLib](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/RhythmLib.md) | 1.2661566868900025% |
 | [Ride](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Ride.md) | 6.181993549748319% |
-| [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene.md) | 17.116530156366345% |
-| [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen.md) | 8.406622845419024% |
+| [Scene](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Scene.md) | 19.62025316455696% |
+| [Screen](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen.md) | 8.636619055708742% |
 | [Speaker](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Speaker.md) | 54.75241889584519% |
 | [System](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/System.md) | 14.730098411770436% |
 | [Util](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Util.md) | 10.090099514848767% |
