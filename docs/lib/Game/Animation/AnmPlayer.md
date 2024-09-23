@@ -5,7 +5,7 @@
 | :white_check_mark: | Function is completed. 
 
 
-# 10 / 32 Completed -- (31.25%)
+# 11 / 32 Completed -- (34.375%)
 # AnmPlayer.o
 | Symbol | Decompiled? |
 | ------------- | ------------- |
@@ -15,7 +15,7 @@
 | `normalize__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>` | :x: |
 | `getEuler__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>` | :x: |
 | `__ct__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv` | :x: |
-| `identity__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Fv` | :x: |
+| `identity__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Fv` | :white_check_mark: |
 | `mult__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :x: |
 | `multTranspose__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>` | :x: |
 | `invert__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>FRCQ29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>` | :x: |

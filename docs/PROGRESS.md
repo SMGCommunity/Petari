@@ -1,7 +1,7 @@
 # Game
 | Library | Percentage |
 | ------------- | ------------- |
-| [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation.md) | 5.303240099695375% |
+| [Animation](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Animation.md) | 5.5109387981168645% |
 | [AreaObj](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/AreaObj.md) | 58.466557911908644% |
 | [AudioLib](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/AudioLib.md) | 0.0% |
 | [Boss](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Boss.md) | 13.879584746291634% |

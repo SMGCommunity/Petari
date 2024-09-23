@@ -5,7 +5,7 @@ slerp__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>f,AnmPlayer.o,Animation.a,
 normalize__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>,AnmPlayer.o,Animation.a,false
 getEuler__Q29JGeometry9TQuat4<f>CFRQ29JGeometry8TVec3<f>,AnmPlayer.o,Animation.a,false
 __ct__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Fv,AnmPlayer.o,Animation.a,false
-identity__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Fv,AnmPlayer.o,Animation.a,false
+identity__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>Fv,AnmPlayer.o,Animation.a,true
 mult__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>,AnmPlayer.o,Animation.a,false
 multTranspose__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>CFRCQ29JGeometry8TVec3<f>RQ29JGeometry8TVec3<f>,AnmPlayer.o,Animation.a,false
 invert__Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>FRCQ29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>,AnmPlayer.o,Animation.a,false
