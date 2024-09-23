@@ -139,7 +139,7 @@
 | [TitleSequenceProduct.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/TitleSequenceProduct.md) | 0.0% | 0 / 31 | 0.0% | :x: 
 | [WaterCameraFilter.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WaterCameraFilter.md) | 0.0% | 0 / 17 | 0.0% | :x: 
 | [WipeFade.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeFade.md) | 76.22377622377621% | 14 / 15 | 93.33333333333333% | :eight_pointed_black_star: 
-| [WipeGameOver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeGameOver.md) | 0.0% | 0 / 17 | 0.0% | :x: 
+| [WipeGameOver.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeGameOver.md) | 100.0% | 17 / 17 | 100.0% | :white_check_mark: 
 | [WipeHolderBase.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeHolderBase.md) | 0.0% | 0 / 13 | 0.0% | :x: 
 | [WipeKoopa.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeKoopa.md) | 0.0% | 0 / 19 | 0.0% | :x: 
 | [WipeRing.o](https://github.com/shibbo/Petari/blob/master/docs/lib/Game/Screen/WipeRing.md) | 0.0% | 0 / 28 | 0.0% | :x: 

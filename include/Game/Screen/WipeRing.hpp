@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/WipeLayoutBase.hpp"
 
-class WipeRing : public LayoutActor {
+class WipeRing : public WipeLayoutBase {
 public:
     WipeRing(bool, const char*);
 
