@@ -1,8 +1,0 @@
-Symbol Name, Object File, Library Archive, Matching
-getHashCode__7JGadgetFPCc,hashcode.o,JGadget.a,true
-__dt__Q27JGadget13TNodeLinkListFv,linklist.o,JGadget.a,true
-splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator,linklist.o,JGadget.a,true
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode,linklist.o,JGadget.a,true
-Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode,linklist.o,JGadget.a,true
-Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode,linklist.o,JGadget.a,true
-Initialize___Q27JGadget13TNodeLinkListFv,linklist.o,JGadget.a,true

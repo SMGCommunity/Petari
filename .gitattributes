@@ -1,11 +1,13 @@
-*.c text
-*.cpp text
-*.h text
-*.hpp text
-*.csv text
-*.json text
-*.md text
+# Auto detect text files and perform LF normalization
+* text=auto
 
-archive/* binary
-*.png binary
+# Explicitly declare text files
+*.py   text
 
+# Enforce platform-specific encodings
+*.bat  text eol=crlf
+*.sh   text eol=lf
+*.sha1 text eol=lf
+
+# decomp-toolkit writes files with LF
+config/**/*.txt  text eol=lf

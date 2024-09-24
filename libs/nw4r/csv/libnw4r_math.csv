@@ -1,4 +1,0 @@
-Symbol Name, Object File, Library Archive, Matching
-SinFIdx__Q24nw4r4mathFf,math_triangular.o,libnw4r_math.a,true
-CosFIdx__Q24nw4r4mathFf,math_triangular.o,libnw4r_math.a,true
-VEC3TransformNormal__Q24nw4r4mathFPQ34nw4r4math4VEC3PCQ34nw4r4math5MTX34PCQ34nw4r4math4VEC3,math_types.o,libnw4r_math.a,true
