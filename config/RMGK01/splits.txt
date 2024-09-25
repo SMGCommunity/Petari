@@ -3948,14 +3948,14 @@ Map.a/WhirlPoolAccelerator.o:
 MapObj.a/AirBubble.o:
 	.text       start:0x801A53D8 end:0x801A5D80
 	.ctors      start:0x8052EC04 end:0x8052EC08
-	.data       start:0x8058D2B8 end:0x8058D3A4
+	.data       start:0x8058D2B8 end:0x8058D370
 	.sbss       start:0x806B4CF0 end:0x806B4D00
 	.sdata2     start:0x806BC5E0 end:0x806BC618
 
 MapObj.a/AirBubbleGenerator.o:
 	.text       start:0x801A5D80 end:0x801A610C
 	.ctors      start:0x8052EC08 end:0x8052EC0C
-	.data       start:0x8058D3A4 end:0x8058D450
+	.data       start:0x8058D370 end:0x8058D450
 	.sbss       start:0x806B4D00 end:0x806B4D08
 	.sdata2     start:0x806BC618 end:0x806BC620
 
@@ -7216,14 +7216,14 @@ Ride.a/SledRopePoint.o:
 Ride.a/SlingShooter.o:
 	.text       start:0x8032BA6C end:0x8032DB5C
 	.ctors      start:0x8052F1E0 end:0x8052F1E4
-	.data       start:0x805CFE88 end:0x805D014C
+	.data       start:0x805CFE88 end:0x805CFF70
 	.sbss       start:0x806B63E8 end:0x806B6408
 	.sdata2     start:0x806C09C0 end:0x806C0A00
 
 Ride.a/SpaceCocoon.o:
 	.text       start:0x8032DB5C end:0x803306A8
 	.ctors      start:0x8052F1E4 end:0x8052F1E8
-	.data       start:0x805D014C end:0x805D02A8
+	.data       start:0x805CFF70 end:0x805D02A8
 	.sbss       start:0x806B6408 end:0x806B6448
 	.sdata2     start:0x806C0A00 end:0x806C0A78
 
@@ -7252,33 +7252,33 @@ Ride.a/SurfRay.o:
 Ride.a/SurfRayTutorial.o:
 	.text       start:0x80333BEC end:0x80334C58
 	.ctors      start:0x8052F1EC end:0x8052F1F0
-	.data       start:0x805D08A0 end:0x805D0A6C
+	.data       start:0x805D08A0 end:0x805D0990
 	.sbss       start:0x806B6488 end:0x806B64C0
 	.sdata2     start:0x806C0BB8 end:0x806C0BD0
 
 Ride.a/SwingRope.o:
 	.text       start:0x80334C58 end:0x803376B8
 	.ctors      start:0x8052F1F0 end:0x8052F1F4
-	.data       start:0x805D0A6C end:0x805D0BC8
+	.data       start:0x805D0990 end:0x805D0BC8
 	.sbss       start:0x806B64C0 end:0x806B64E8
 	.sdata2     start:0x806C0BD0 end:0x806C0C60
 
 Ride.a/SwingRopePoint.o:
 	.text       start:0x803376B8 end:0x80337D8C
-	.data       start:0x805D0BC8 end:0x805D0C04
+	.data       start:0x805D0BC8 end:0x805D0BD8
 	.sdata2     start:0x806C0C60 end:0x806C0C70
 
 Ride.a/Tamakoro.o:
 	.text       start:0x80337D8C end:0x8033B384
 	.ctors      start:0x8052F1F4 end:0x8052F1F8
-	.data       start:0x805D0C04 end:0x805D1114
+	.data       start:0x805D0BD8 end:0x805D0FC8
 	.sbss       start:0x806B64E8 end:0x806B6538
 	.sdata2     start:0x806C0C70 end:0x806C0D28
 
 Ride.a/TamakoroTutorial.o:
 	.text       start:0x8033B384 end:0x8033C42C
 	.ctors      start:0x8052F1F8 end:0x8052F1FC
-	.data       start:0x805D1114 end:0x805D1454
+	.data       start:0x805D0FC8 end:0x805D1290
 	.bss        start:0x8060B118 end:0x8060B1B0
 	.sbss       start:0x806B6538 end:0x806B6578
 	.sdata2     start:0x806C0D28 end:0x806C0D48
@@ -7286,14 +7286,14 @@ Ride.a/TamakoroTutorial.o:
 Ride.a/Trapeze.o:
 	.text       start:0x8033C42C end:0x8033EA0C
 	.ctors      start:0x8052F1FC end:0x8052F200
-	.data       start:0x805D1454 end:0x805D162C
+	.data       start:0x805D1290 end:0x805D1620
 	.sbss       start:0x806B6578 end:0x806B6588
 	.sdata2     start:0x806C0D48 end:0x806C0DC8
 
 Scene.a/GameScene.o:
 	.text       start:0x8033EA0C end:0x8033FE94
 	.ctors      start:0x8052F200 end:0x8052F204
-	.data       start:0x805D162C end:0x805D17E4
+	.data       start:0x805D1620 end:0x805D17E4
 	.sbss       start:0x806B6588 end:0x806B65C0
 	.sdata2     start:0x806C0DC8 end:0x806C0DD0
 
@@ -10377,14 +10377,14 @@ vi.a/vi.o:
 
 vi.a/i2c.o:
 	.text       start:0x804B6280 end:0x804B6C9C
-	.sdata      start:0x806B2AD8 end:0x806B2AEC
+	.sdata      start:0x806B2AD8 end:0x806B2AE0
 	.sbss       start:0x806B7850 end:0x806B7858
 
 vi.a/vi3in1.o:
 	.text       start:0x804B6C9C end:0x804B8360
 	.data       start:0x805FD7B8 end:0x805FDD60
 	.bss        start:0x80666360 end:0x80666A00
-	.sdata      start:0x806B2AEC end:0x806B2B00
+	.sdata      start:0x806B2AE0 end:0x806B2B00
 	.sbss       start:0x806B7858 end:0x806B7870
 
 mtx.a/mtx.o:
@@ -10411,14 +10411,14 @@ gx.a/GXInit.o:
 	.text       start:0x804B95B0 end:0x804BA77C
 	.data       start:0x805FDD60 end:0x805FDFA0
 	.sdata      start:0x806B2B00 end:0x806B2B08
-	.sbss       start:0x806B7870 end:0x806B789C
+	.sbss       start:0x806B7870 end:0x806B7898
 	.sdata2     start:0x806C2138 end:0x806C2160
 
 gx.a/GXFifo.o:
 	.text       start:0x804BA77C end:0x804BB420
 	.data       start:0x805FDFA0 end:0x805FDFD0
 	.bss        start:0x80666A00 end:0x80667180
-	.sbss       start:0x806B789C end:0x806B78C4
+	.sbss       start:0x806B7898 end:0x806B78B8
 
 gx.a/GXAttr.o:
 	.text       start:0x804BB420 end:0x804BBF14
@@ -10427,7 +10427,7 @@ gx.a/GXAttr.o:
 
 gx.a/GXMisc.o:
 	.text       start:0x804BBF14 end:0x804BC8B8
-	.sbss       start:0x806B78C4 end:0x806B78D0
+	.sbss       start:0x806B78B8 end:0x806B78D0
 
 gx.a/GXGeometry.o:
 	.text       start:0x804BC8B8 end:0x804BCE78
@@ -10508,13 +10508,13 @@ dvd.a/dvdDeviceError.o:
 	.rodata     start:0x80561B78 end:0x80561CE0
 	.data       start:0x805FF208 end:0x805FF3A0
 	.sdata      start:0x806B2B90 end:0x806B2B98
-	.sbss       start:0x806B79B0 end:0x806B79BC
+	.sbss       start:0x806B79B0 end:0x806B79B8
 
 dvd.a/dvd_broadway.o:
 	.text       start:0x804C7E98 end:0x804CA2E4
 	.data       start:0x805FF3A0 end:0x80600260
 	.sdata      start:0x806B2B98 end:0x806B2BA8
-	.sbss       start:0x806B79BC end:0x806B79E0
+	.sbss       start:0x806B79B8 end:0x806B79E0
 
 ai.a/ai.o:
 	.text       start:0x804CA2E4 end:0x804CA8BC
@@ -10604,14 +10604,14 @@ nand.a/NANDLogging.o:
 	.data       start:0x80600820 end:0x80600868
 	.bss        start:0x8066C400 end:0x806781C0
 	.sdata      start:0x806B2C10 end:0x806B2C18
-	.sbss       start:0x806B7A68 end:0x806B7A74
+	.sbss       start:0x806B7A68 end:0x806B7A70
 
 sc.a/scsystem.o:
 	.text       start:0x804D0274 end:0x804D1BD8
 	.rodata     start:0x80561CE0 end:0x80561D38
 	.data       start:0x80600868 end:0x80600A40
 	.sdata      start:0x806B2C18 end:0x806B2D20
-	.sbss       start:0x806B7A74 end:0x806B7A8C
+	.sbss       start:0x806B7A70 end:0x806B7A88
 
 sc.a/scapi.o:
 	.text       start:0x804D1BD8 end:0x804D205C
@@ -10632,7 +10632,7 @@ esp.a/esp.o:
 
 ipc.a/ipcMain.o:
 	.text       start:0x804D333C end:0x804D3408
-	.sbss       start:0x806B7A8C end:0x806B7AA0
+	.sbss       start:0x806B7A88 end:0x806B7AA0
 
 ipc.a/ipcclt.o:
 	.text       start:0x804D3408 end:0x804D4D78
@@ -10694,7 +10694,7 @@ wud.a/WUD.o:
 	.data       start:0x80602DC8 end:0x80603CE0
 	.bss        start:0x806789F0 end:0x806A2D28
 	.sdata      start:0x806B2D88 end:0x806B2D90
-	.sbss       start:0x806B7B50 end:0x806B7B7C
+	.sbss       start:0x806B7B50 end:0x806B7B78
 	.sdata2     start:0x806C22F8 end:0x806C2300
 
 wud.a/WUDHidHost.o:
@@ -10725,7 +10725,7 @@ bte.a/uusb_ppc.o:
 	.text       start:0x804ED06C end:0x804EDC70
 	.bss        start:0x806A2D60 end:0x806A65D0
 	.sdata      start:0x806B2D90 end:0x806B2DA0
-	.sbss       start:0x806B7B7C end:0x806B7B90
+	.sbss       start:0x806B7B78 end:0x806B7B90
 
 bte.a/bta_dm_cfg.o:
 	.rodata     start:0x80561D90 end:0x80561E20
@@ -10742,7 +10742,7 @@ bte.a/bta_sys_cfg.o:
 
 bte.a/bte_hcisu.o:
 	.text       start:0x804EDC70 end:0x804EDD28
-	.sbss       start:0x806B7B90 end:0x806B7B9C
+	.sbss       start:0x806B7B90 end:0x806B7B98
 
 bte.a/bte_init.o:
 	.text       start:0x804EDD28 end:0x804EDD54
@@ -10753,13 +10753,13 @@ bte.a/bte_logmsg.o:
 
 bte.a/bte_main.o:
 	.text       start:0x804EDEB8 end:0x804EE010
-	.sdata      start:0x806B2DD8 end:0x806B2DE4
-	.sbss       start:0x806B7B9C end:0x806B7BA0
+	.sdata      start:0x806B2DD8 end:0x806B2DE0
+	.sbss       start:0x806B7B98 end:0x806B7BA0
 
 bte.a/btu_task1.o:
 	.text       start:0x804EE010 end:0x804EE460
 	.bss        start:0x806A65D0 end:0x806A6658
-	.sdata      start:0x806B2DE4 end:0x806B2DE8
+	.sdata      start:0x806B2DE0 end:0x806B2DE8
 	.sbss       start:0x806B7BA0 end:0x806B7BB0
 
 bte.a/bd.o:
