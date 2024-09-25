@@ -2126,34 +2126,37 @@ Camera.a/GameCameraCreator.o:
 
 Camera.a/OnlyCamera.o:
 	.text       start:0x800B70D8 end:0x800B78A4
-	.data       start:0x80576BB8 end:0x80576BEC
+	.data       start:0x80576BB8 end:0x80576BE0
 	.sdata2     start:0x806B9BD0 end:0x806B9BF0
 
 Demo.a/AstroDomeDemoStarter.o:
 	.text       start:0x800B78A4 end:0x800B83A4
 	.ctors      start:0x8052EA08 end:0x8052EA0C
 	.rodata     start:0x80531998 end:0x805319B0
-	.data       start:0x80576BEC end:0x805771CC
+	.data       start:0x80576BE0 end:0x80576ED8
 	.sbss       start:0x806B3A48 end:0x806B3A60
 	.sdata2     start:0x806B9BF0 end:0x806B9C20
 
 Demo.a/AstroDemoFunction.o:
 	.text       start:0x800B83A4 end:0x800B8BE8
 	.rodata     start:0x805319B0 end:0x805319C8
+	.data       start:0x80576ED8 end:0x80577100
 
 Demo.a/DemoActionKeeper.o:
 	.text       start:0x800B8BE8 end:0x800B9604
+	.data       start:0x80577100 end:0x80577140
 
 Demo.a/DemoCameraFunction.o:
 	.text       start:0x800B9604 end:0x800B9694
 
 Demo.a/DemoCameraKeeper.o:
 	.text       start:0x800B9694 end:0x800B9CA0
+	.data       start:0x80577140 end:0x805771C0
 	.sdata2     start:0x806B9C20 end:0x806B9C28
 
 Demo.a/DemoCastGroup.o:
 	.text       start:0x800B9CA0 end:0x800B9F08
-	.data       start:0x805771CC end:0x80577218
+	.data       start:0x805771C0 end:0x80577218
 
 Demo.a/DemoCastGroupHolder.o:
 	.text       start:0x800B9F08 end:0x800BA15C
@@ -2172,37 +2175,41 @@ Demo.a/DemoDirector.o:
 
 Demo.a/DemoExecutor.o:
 	.text       start:0x800BAC3C end:0x800BB868
-	.data       start:0x805772B0 end:0x8057747C
+	.data       start:0x805772B0 end:0x80577360
 
 Demo.a/DemoExecutorFunction.o:
 	.text       start:0x800BB868 end:0x800BBB80
 
 Demo.a/DemoFunction.o:
 	.text       start:0x800BBB80 end:0x800BC874
+	.data       start:0x80577360 end:0x80577388
 
 Demo.a/DemoKoopaJrShip.o:
 	.text       start:0x800BC874 end:0x800BD0A4
 	.ctors      start:0x8052EA0C end:0x8052EA10
 	.rodata     start:0x805319C8 end:0x805319F0
-	.data       start:0x8057747C end:0x805775E4
+	.data       start:0x80577388 end:0x80577528
 	.sdata      start:0x806B1850 end:0x806B1878
 	.sbss       start:0x806B3A60 end:0x806B3A70
 	.sdata2     start:0x806B9C28 end:0x806B9C38
 
 Demo.a/DemoPadRumbler.o:
 	.text       start:0x800BD0A4 end:0x800BD200
+	.data       start:0x80577528 end:0x80577570
 
 Demo.a/DemoParamCommonDataTable.o:
 	.text       start:0x800BD200 end:0x800BD34C
 	.rodata     start:0x805319F0 end:0x80531A48
+	.data       start:0x80577570 end:0x805775B0
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
 Demo.a/DemoPlayerKeeper.o:
 	.text       start:0x800BD34C end:0x800BD550
+	.data       start:0x805775B0 end:0x805775D0
 
 Demo.a/DemoPositionController.o:
 	.text       start:0x800BD550 end:0x800BD738
-	.data       start:0x805775E4 end:0x8057768C
+	.data       start:0x805775D0 end:0x80577660
 	.sdata2     start:0x806B9C40 end:0x806B9C48
 
 Demo.a/DemoSimpleCastHolder.o:
@@ -2210,7 +2217,7 @@ Demo.a/DemoSimpleCastHolder.o:
 
 Demo.a/DemoSoundKeeper.o:
 	.text       start:0x800BD938 end:0x800BDC9C
-	.data       start:0x8057768C end:0x80577760
+	.data       start:0x80577660 end:0x80577760
 
 Demo.a/DemoStartRequestHolder.o:
 	.text       start:0x800BDC9C end:0x800BE3A4
@@ -2223,7 +2230,7 @@ Demo.a/DemoSubPartKeeper.o:
 
 Demo.a/DemoTalkAnimCtrl.o:
 	.text       start:0x800BF32C end:0x800BFC98
-	.data       start:0x80577760 end:0x805777CC
+	.data       start:0x80577760 end:0x80577798
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Demo.a/DemoTimeKeeper.o:
@@ -2231,7 +2238,7 @@ Demo.a/DemoTimeKeeper.o:
 
 Demo.a/DemoWipeKeeper.o:
 	.text       start:0x800C0000 end:0x800C02B8
-	.data       start:0x805777CC end:0x805779F8
+	.data       start:0x80577798 end:0x805779F8
 
 Demo.a/GrandStarReturnDemoStarter.o:
 	.text       start:0x800C02B8 end:0x800C1018
@@ -2243,19 +2250,20 @@ Demo.a/GrandStarReturnDemoStarter.o:
 Demo.a/PrologueDirector.o:
 	.text       start:0x800C1018 end:0x800C1CE0
 	.ctors      start:0x8052EA14 end:0x8052EA18
-	.data       start:0x80577BD8 end:0x80577E44
+	.data       start:0x80577BD8 end:0x80577D08
 	.sdata      start:0x806B1878 end:0x806B18E0
 	.sbss       start:0x806B3A90 end:0x806B3AB8
 	.sdata2     start:0x806B9C68 end:0x806B9C70
 
 Demo.a/ReturnDemoRailMove.o:
 	.text       start:0x800C1CE0 end:0x800C2310
+	.data       start:0x80577D08 end:0x80577D80
 	.sdata2     start:0x806B9C70 end:0x806B9C88
 
 Demo.a/ScenarioStarter.o:
 	.text       start:0x800C2310 end:0x800C35F8
 	.ctors      start:0x8052EA18 end:0x8052EA1C
-	.data       start:0x80577E44 end:0x805780E8
+	.data       start:0x80577D80 end:0x805780E8
 	.sbss       start:0x806B3AB8 end:0x806B3AD0
 	.sdata2     start:0x806B9C88 end:0x806B9CC0
 
@@ -2284,12 +2292,12 @@ Effect.a/AutoEffectInfo.o:
 
 Effect.a/EffectObjGravityDust.o:
 	.text       start:0x800C5328 end:0x800C54FC
-	.data       start:0x805783D0 end:0x8057846C
+	.data       start:0x805783D0 end:0x80578460
 	.sdata2     start:0x806B9CF8 end:0x806B9D10
 
 Effect.a/EffectSystem.o:
 	.text       start:0x800C54FC end:0x800C590C
-	.data       start:0x8057846C end:0x805784B8
+	.data       start:0x80578460 end:0x805784B8
 	.sdata2     start:0x806B9D10 end:0x806B9D18
 
 Effect.a/EffectSystemUtil.o:
