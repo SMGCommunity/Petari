@@ -1769,18 +1769,18 @@ Camera.a/CameraCharmedVecReg.o:
 
 Camera.a/CameraCharmedVecRegTower.o:
 	.text       start:0x80096D00 end:0x800972D8
-	.data       start:0x80574628 end:0x80574694
+	.data       start:0x80574628 end:0x80574680
 	.sdata2     start:0x806B92D0 end:0x806B92E8
 
 Camera.a/CameraContext.o:
 	.text       start:0x800972D8 end:0x800979EC
-	.data       start:0x80574694 end:0x805746D4
+	.data       start:0x80574680 end:0x805746B8
 	.sdata2     start:0x806B92E8 end:0x806B9310
 
 Camera.a/CameraCover.o:
 	.text       start:0x800979EC end:0x80097CCC
 	.ctors      start:0x8052E9E8 end:0x8052E9EC
-	.data       start:0x805746D4 end:0x805746F8
+	.data       start:0x805746B8 end:0x805746F8
 	.sbss       start:0x806B3A20 end:0x806B3A28
 	.sdata2     start:0x806B9310 end:0x806B9320
 
@@ -1796,13 +1796,13 @@ Camera.a/CameraDPD.o:
 
 Camera.a/CameraDead.o:
 	.text       start:0x80098C58 end:0x80099220
-	.data       start:0x805747A8 end:0x80574954
+	.data       start:0x805747A8 end:0x80574800
 	.sdata2     start:0x806B9390 end:0x806B93A0
 
 Camera.a/CameraDirector.o:
 	.text       start:0x80099220 end:0x8009B5E4
 	.ctors      start:0x8052E9EC end:0x8052E9F0
-	.data       start:0x80574954 end:0x80574A40
+	.data       start:0x80574800 end:0x80574A40
 	.sdata      start:0x806B17F8 end:0x806B1808
 	.sbss       start:0x806B3A28 end:0x806B3A30
 	.sdata2     start:0x806B93A0 end:0x806B93D0
@@ -1847,18 +1847,18 @@ Camera.a/CameraFrontAndBack.o:
 
 Camera.a/CameraGround.o:
 	.text       start:0x8009F1EC end:0x8009F568
-	.data       start:0x80574CB8 end:0x80574D24
+	.data       start:0x80574CB8 end:0x80574D10
 	.sdata2     start:0x806B94F8 end:0x806B9510
 
 Camera.a/CameraHeightArrange.o:
 	.text       start:0x8009F568 end:0x800A0844
-	.data       start:0x80574D24 end:0x8057563C
+	.data       start:0x80574D10 end:0x80574D48
 	.sdata2     start:0x806B9510 end:0x806B9550
 
 Camera.a/CameraHolder.o:
 	.text       start:0x800A0844 end:0x800A1468
 	.rodata     start:0x80531620 end:0x80531928
-	.data       start:0x8057563C end:0x80575660
+	.data       start:0x80574D48 end:0x80575660
 	.sdata      start:0x806B1814 end:0x806B1818
 
 Camera.a/CameraInnerCylinder.o:
@@ -1897,12 +1897,12 @@ Camera.a/CameraManGame.o:
 
 Camera.a/CameraManPause.o:
 	.text       start:0x800A6BB8 end:0x800A71E0
-	.data       start:0x80575978 end:0x805759DC
+	.data       start:0x80575978 end:0x805759D0
 	.sdata2     start:0x806B9660 end:0x806B96A8
 
 Camera.a/CameraManSubjective.o:
 	.text       start:0x800A71E0 end:0x800A7308
-	.data       start:0x805759DC end:0x80575A38
+	.data       start:0x805759D0 end:0x80575A38
 
 Camera.a/CameraMedianPlanet.o:
 	.text       start:0x800A7308 end:0x800A7F6C
@@ -1932,18 +1932,18 @@ Camera.a/CameraParallel.o:
 Camera.a/CameraParamChunk.o:
 	.text       start:0x800A97B8 end:0x800AA55C
 	.ctors      start:0x8052E9F4 end:0x8052E9F8
-	.data       start:0x80575C50 end:0x80575FBC
+	.data       start:0x80575C50 end:0x80575EE8
 	.bss        start:0x8060A6F8 end:0x8060A788
 	.sdata2     start:0x806B9770 end:0x806B97A0
 
 Camera.a/CameraParamChunkHolder.o:
 	.text       start:0x800AA55C end:0x800AAFBC
-	.data       start:0x80575FBC end:0x8057600C
+	.data       start:0x80575EE8 end:0x80575FE0
 	.sdata2     start:0x806B97A0 end:0x806B97D0
 
 Camera.a/CameraParamChunkID.o:
 	.text       start:0x800AAFBC end:0x800AB4AC
-	.data       start:0x8057600C end:0x80576018
+	.data       start:0x80575FE0 end:0x80576018
 
 Camera.a/CameraParamString.o:
 	.text       start:0x800AB4AC end:0x800AB520
@@ -2032,18 +2032,18 @@ Camera.a/CameraTargetArg.o:
 
 Camera.a/CameraTargetHolder.o:
 	.text       start:0x800AFCCC end:0x800AFEAC
-	.data       start:0x805763D8 end:0x805763F4
+	.data       start:0x805763D8 end:0x805763E8
 	.sdata2     start:0x806B9970 end:0x806B9978
 
 Camera.a/CameraTargetMtx.o:
 	.text       start:0x800AFEAC end:0x800B01C0
-	.data       start:0x805763F4 end:0x80576494
+	.data       start:0x805763E8 end:0x80576488
 	.sdata2     start:0x806B9978 end:0x806B9988
 
 Camera.a/CameraTargetObj.o:
 	.text       start:0x800B01C0 end:0x800B09A8
 	.ctors      start:0x8052EA00 end:0x8052EA04
-	.data       start:0x80576494 end:0x805766C8
+	.data       start:0x80576488 end:0x805766C8
 	.bss        start:0x8060A788 end:0x8060A798
 	.sdata2     start:0x806B9988 end:0x806B99A0
 
