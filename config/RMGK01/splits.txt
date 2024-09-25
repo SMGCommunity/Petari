@@ -8718,7 +8718,7 @@ Util.a/FurMulti.o:
 Util.a/FurShader.o:
 	.text       start:0x803D2C20 end:0x803D37FC
 	.rodata     start:0x8053EB78 end:0x8053EBD0
-	.data       start:0x805E12F0 end:0x805E1574
+	.data       start:0x805E12F0 end:0x805E1558
 	.sdata2     start:0x806C1688 end:0x806C16A0
 
 Util.a/GamePadUtil.o:
@@ -8741,7 +8741,7 @@ Util.a/JointUtil.o:
 
 Util.a/LayoutUtil.o:
 	.text       start:0x803D6EF4 end:0x803DA0AC
-	.data       start:0x805E1574 end:0x805E16D0
+	.data       start:0x805E1558 end:0x805E16D0
 	.sdata2     start:0x806C16E0 end:0x806C1700
 
 Util.a/LightUtil.o:
