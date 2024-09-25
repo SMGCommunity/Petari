@@ -2359,7 +2359,7 @@ Effect.a/SingleEmitter.o:
 
 Effect.a/SpinPullParticleCallBack.o:
 	.text       start:0x800CB43C end:0x800CB670
-	.data       start:0x80578BE0 end:0x80578C24
+	.data       start:0x80578BE0 end:0x80578C08
 	.sdata2     start:0x806B9D80 end:0x806B9D88
 
 Effect.a/SyncBckEffectChecker.o:
@@ -2373,7 +2373,7 @@ Effect.a/SyncBckEffectInfo.o:
 Enemy.a/AnimScaleController.o:
 	.text       start:0x800CBD24 end:0x800CC370
 	.ctors      start:0x8052EA24 end:0x8052EA28
-	.data       start:0x80578C24 end:0x80578C9C
+	.data       start:0x80578C08 end:0x80578C80
 	.bss        start:0x8060A798 end:0x8060A800
 	.sbss       start:0x806B3B00 end:0x806B3B18
 	.sdata2     start:0x806B9D98 end:0x806B9DE8
@@ -2381,7 +2381,7 @@ Enemy.a/AnimScaleController.o:
 Enemy.a/AnimStampController.o:
 	.text       start:0x800CC370 end:0x800CC69C
 	.ctors      start:0x8052EA28 end:0x8052EA2C
-	.data       start:0x80578C9C end:0x80578D00
+	.data       start:0x80578C80 end:0x80578D00
 	.sbss       start:0x806B3B18 end:0x806B3B20
 	.sdata2     start:0x806B9DE8 end:0x806B9E00
 
@@ -2395,14 +2395,14 @@ Enemy.a/BallBeamer.o:
 Enemy.a/Balloonfish.o:
 	.text       start:0x800CD00C end:0x800CDD78
 	.ctors      start:0x8052EA30 end:0x8052EA34
-	.data       start:0x80578E60 end:0x8057913C
+	.data       start:0x80578E60 end:0x80578FF0
 	.sbss       start:0x806B3B30 end:0x806B3B40
 	.sdata2     start:0x806B9E18 end:0x806B9E50
 
 Enemy.a/BasaBasa.o:
 	.text       start:0x800CDD78 end:0x800D013C
 	.ctors      start:0x8052EA34 end:0x8052EA38
-	.data       start:0x8057913C end:0x805792D8
+	.data       start:0x80578FF0 end:0x805792D8
 	.sbss       start:0x806B3B40 end:0x806B3B88
 	.sdata2     start:0x806B9E50 end:0x806B9EF8
 
@@ -2410,7 +2410,7 @@ Enemy.a/BegomanBaby.o:
 	.text       start:0x800D013C end:0x800D1F1C
 	.ctors      start:0x8052EA38 end:0x8052EA3C
 	.rodata     start:0x80531BF0 end:0x80531C68
-	.data       start:0x805792D8 end:0x80579724
+	.data       start:0x805792D8 end:0x805796E0
 	.sbss       start:0x806B3B88 end:0x806B3BD8
 	.sdata2     start:0x806B9EF8 end:0x806B9F68
 
@@ -2418,7 +2418,7 @@ Enemy.a/BegomanBase.o:
 	.text       start:0x800D1F1C end:0x800D5214
 	.ctors      start:0x8052EA3C end:0x8052EA40
 	.rodata     start:0x80531C68 end:0x80531CE0
-	.data       start:0x80579724 end:0x80579968
+	.data       start:0x805796E0 end:0x80579968
 	.sbss       start:0x806B3BD8 end:0x806B3BE8
 	.sdata2     start:0x806B9F68 end:0x806BA000
 
@@ -2444,21 +2444,21 @@ Enemy.a/BegomanSpring.o:
 	.text       start:0x800D7B20 end:0x800D9DC8
 	.ctors      start:0x8052EA48 end:0x8052EA4C
 	.rodata     start:0x80531D50 end:0x80531DC8
-	.data       start:0x80579FD0 end:0x8057A52C
+	.data       start:0x80579FD0 end:0x8057A4B0
 	.sbss       start:0x806B3C50 end:0x806B3CA0
 	.sdata2     start:0x806BA070 end:0x806BA0E0
 
 Enemy.a/BegomanSpringHead.o:
 	.text       start:0x800D9DC8 end:0x800DA3D8
 	.ctors      start:0x8052EA4C end:0x8052EA50
-	.data       start:0x8057A52C end:0x8057A6A4
+	.data       start:0x8057A4B0 end:0x8057A670
 	.sbss       start:0x806B3CA0 end:0x806B3CB8
 	.sdata2     start:0x806BA0E0 end:0x806BA0E8
 
 Enemy.a/Birikyu.o:
 	.text       start:0x800DA3D8 end:0x800DB234
 	.ctors      start:0x8052EA50 end:0x8052EA54
-	.data       start:0x8057A6A4 end:0x8057A958
+	.data       start:0x8057A670 end:0x8057A958
 	.sbss       start:0x806B3CB8 end:0x806B3CD0
 	.sdata2     start:0x806BA0E8 end:0x806BA118
 
@@ -2466,14 +2466,14 @@ Enemy.a/BombBird.o:
 	.text       start:0x800DB234 end:0x800DCE08
 	.ctors      start:0x8052EA54 end:0x8052EA58
 	.rodata     start:0x80531DC8 end:0x80531DE8
-	.data       start:0x8057A958 end:0x8057AB24
+	.data       start:0x8057A958 end:0x8057AAA0
 	.sbss       start:0x806B3CD0 end:0x806B3D08
 	.sdata2     start:0x806BA118 end:0x806BA168
 
 Enemy.a/BombBirdBomb.o:
 	.text       start:0x800DCE08 end:0x800DD5B0
 	.ctors      start:0x8052EA58 end:0x8052EA5C
-	.data       start:0x8057AB24 end:0x8057ABD0
+	.data       start:0x8057AAA0 end:0x8057ABD0
 	.sbss       start:0x806B3D08 end:0x806B3D18
 	.sdata2     start:0x806BA168 end:0x806BA198
 
@@ -2489,14 +2489,14 @@ Enemy.a/BombHei.o:
 Enemy.a/BombHeiLauncher.o:
 	.text       start:0x800DFDD4 end:0x800E05C4
 	.ctors      start:0x8052EA60 end:0x8052EA64
-	.data       start:0x8057AEB0 end:0x8057AFDC
+	.data       start:0x8057AEB0 end:0x8057AFD0
 	.sbss       start:0x806B3D58 end:0x806B3D60
 	.sdata2     start:0x806BA208 end:0x806BA218
 
 Enemy.a/BombTeresa.o:
 	.text       start:0x800E05C4 end:0x800E32EC
 	.ctors      start:0x8052EA64 end:0x8052EA68
-	.data       start:0x8057AFDC end:0x8057B424
+	.data       start:0x8057AFD0 end:0x8057B348
 	.sbss       start:0x806B3D60 end:0x806B3DA0
 	.sdata2     start:0x806BA218 end:0x806BA2A8
 
@@ -2507,7 +2507,7 @@ Enemy.a/CocoNutBall.o:
 	.text       start:0x800E346C end:0x800E4E14
 	.ctors      start:0x8052EA68 end:0x8052EA6C
 	.rodata     start:0x80531E30 end:0x80531E50
-	.data       start:0x8057B424 end:0x8057B70C
+	.data       start:0x8057B348 end:0x8057B500
 	.sbss       start:0x806B3DA0 end:0x806B3DB8
 	.sdata2     start:0x806BA2A8 end:0x806BA338
 
@@ -2515,7 +2515,7 @@ Enemy.a/CocoSambo.o:
 	.text       start:0x800E4E14 end:0x800E7278
 	.ctors      start:0x8052EA6C end:0x8052EA70
 	.rodata     start:0x80531E50 end:0x80531E88
-	.data       start:0x8057B70C end:0x8057B94C
+	.data       start:0x8057B500 end:0x8057B930
 	.sbss       start:0x806B3DB8 end:0x806B3E08
 	.sdata2     start:0x806BA338 end:0x806BA380
 
@@ -2523,7 +2523,7 @@ Enemy.a/DharmaSambo.o:
 	.text       start:0x800E7278 end:0x800E9E6C
 	.ctors      start:0x8052EA70 end:0x8052EA74
 	.rodata     start:0x80531E88 end:0x80531F48
-	.data       start:0x8057B94C end:0x8057BE20
+	.data       start:0x8057B930 end:0x8057BE20
 	.sbss       start:0x806B3E08 end:0x806B3E58
 	.sdata2     start:0x806BA380 end:0x806BA3E8
 
@@ -2544,14 +2544,14 @@ Enemy.a/ElectricPressureBullet.o:
 Enemy.a/EyeBeamer.o:
 	.text       start:0x800EAE38 end:0x800EC140
 	.ctors      start:0x8052EA7C end:0x8052EA80
-	.data       start:0x8057BFD8 end:0x8057C234
+	.data       start:0x8057BFD8 end:0x8057C1E0
 	.sbss       start:0x806B3E78 end:0x806B3E98
 	.sdata2     start:0x806BA428 end:0x806BA450
 
 Enemy.a/FireBall.o:
 	.text       start:0x800EC140 end:0x800ECC34
 	.ctors      start:0x8052EA80 end:0x8052EA84
-	.data       start:0x8057C234 end:0x8057C380
+	.data       start:0x8057C1E0 end:0x8057C380
 	.sbss       start:0x806B3E98 end:0x806B3EA0
 	.sdata2     start:0x806BA450 end:0x806BA488
 
@@ -2573,14 +2573,14 @@ Enemy.a/Gesso.o:
 Enemy.a/HammerHeadPackun.o:
 	.text       start:0x800EF9F4 end:0x800F17B4
 	.ctors      start:0x8052EA8C end:0x8052EA90
-	.data       start:0x8057C840 end:0x8057CBFC
+	.data       start:0x8057C840 end:0x8057C978
 	.sbss       start:0x806B3EF0 end:0x806B3F20
 	.sdata2     start:0x806BA548 end:0x806BA5A0
 
 Enemy.a/Hanachan.o:
 	.text       start:0x800F17B4 end:0x800F58F4
 	.ctors      start:0x8052EA90 end:0x8052EA94
-	.data       start:0x8057CBFC end:0x8057D100
+	.data       start:0x8057C978 end:0x8057D100
 	.sbss       start:0x806B3F20 end:0x806B3FA0
 	.sdata2     start:0x806BA5A0 end:0x806BA648
 
@@ -2615,35 +2615,35 @@ Enemy.a/Jellyfish.o:
 Enemy.a/JellyfishElectric.o:
 	.text       start:0x800FC7B0 end:0x800FD714
 	.ctors      start:0x8052EAA0 end:0x8052EAA4
-	.data       start:0x8057DAE8 end:0x8057DCA4
+	.data       start:0x8057DAE8 end:0x8057DBE0
 	.sbss       start:0x806B4040 end:0x806B4068
 	.sdata2     start:0x806BA800 end:0x806BA840
 
 Enemy.a/Jiraira.o:
 	.text       start:0x800FD714 end:0x800FE130
 	.ctors      start:0x8052EAA4 end:0x8052EAA8
-	.data       start:0x8057DCA4 end:0x8057DD80
+	.data       start:0x8057DBE0 end:0x8057DD80
 	.sbss       start:0x806B4068 end:0x806B4080
 	.sdata2     start:0x806BA840 end:0x806BA860
 
 Enemy.a/JumpBeamer.o:
 	.text       start:0x800FE130 end:0x800FF3A0
 	.ctors      start:0x8052EAA8 end:0x8052EAAC
-	.data       start:0x8057DD80 end:0x8057E1B4
+	.data       start:0x8057DD80 end:0x8057E030
 	.sbss       start:0x806B4080 end:0x806B40B0
 	.sdata2     start:0x806BA860 end:0x806BA898
 
 Enemy.a/JumpGuarder.o:
 	.text       start:0x800FF3A0 end:0x80100ED8
 	.ctors      start:0x8052EAAC end:0x8052EAB0
-	.data       start:0x8057E1B4 end:0x8057E51C
+	.data       start:0x8057E030 end:0x8057E3F8
 	.sbss       start:0x806B40B0 end:0x806B40E0
 	.sdata2     start:0x806BA898 end:0x806BA900
 
 Enemy.a/JumpSpider.o:
 	.text       start:0x80100ED8 end:0x8010243C
 	.ctors      start:0x8052EAB0 end:0x8052EAB4
-	.data       start:0x8057E51C end:0x8057E748
+	.data       start:0x8057E3F8 end:0x8057E748
 	.sbss       start:0x806B40E0 end:0x806B4120
 	.sdata2     start:0x806BA900 end:0x806BA948
 
@@ -2657,18 +2657,18 @@ Enemy.a/Kabokuri.o:
 Enemy.a/KabokuriFire.o:
 	.text       start:0x80103864 end:0x80103BC0
 	.ctors      start:0x8052EAB8 end:0x8052EABC
-	.data       start:0x8057E8A8 end:0x8057E94C
+	.data       start:0x8057E8A8 end:0x8057E930
 	.sbss       start:0x806B4148 end:0x806B4150
 	.sdata2     start:0x806BA990 end:0x806BA9A0
 
 Enemy.a/KabokuriFireHolder.o:
 	.text       start:0x80103BC0 end:0x80103DE0
-	.data       start:0x8057E94C end:0x8057E984
+	.data       start:0x8057E930 end:0x8057E970
 
 Enemy.a/Kameck.o:
 	.text       start:0x80103DE0 end:0x80105E20
 	.ctors      start:0x8052EABC end:0x8052EAC0
-	.data       start:0x8057E984 end:0x8057ECA0
+	.data       start:0x8057E970 end:0x8057ECA0
 	.sbss       start:0x806B4150 end:0x806B4190
 	.sdata2     start:0x806BA9A0 end:0x806BA9E8
 
@@ -2694,33 +2694,33 @@ Enemy.a/KameckFireBall.o:
 
 Enemy.a/KameckHolder.o:
 	.text       start:0x80107CC0 end:0x80107EF4
-	.data       start:0x8057F0B8 end:0x8057F174
+	.data       start:0x8057F0B8 end:0x8057F0E0
 
 Enemy.a/KameckTurtle.o:
 	.text       start:0x80107EF4 end:0x801088CC
 	.ctors      start:0x8052EAC8 end:0x8052EACC
-	.data       start:0x8057F174 end:0x8057F374
+	.data       start:0x8057F0E0 end:0x8057F210
 	.sbss       start:0x806B41B8 end:0x806B41C0
 	.sdata2     start:0x806BAA20 end:0x806BAA58
 
 Enemy.a/Kanina.o:
 	.text       start:0x801088CC end:0x8010B2B0
 	.ctors      start:0x8052EACC end:0x8052EAD0
-	.data       start:0x8057F374 end:0x8057F73C
+	.data       start:0x8057F210 end:0x8057F550
 	.sbss       start:0x806B41C0 end:0x806B4218
 	.sdata2     start:0x806BAA58 end:0x806BAAF8
 
 Enemy.a/Karikari.o:
 	.text       start:0x8010B2B0 end:0x8010DFDC
 	.ctors      start:0x8052EAD0 end:0x8052EAD4
-	.data       start:0x8057F73C end:0x8057F8FC
+	.data       start:0x8057F550 end:0x8057F8D8
 	.sbss       start:0x806B4218 end:0x806B4260
 	.sdata2     start:0x806BAAF8 end:0x806BAB78
 
 Enemy.a/KarikariDirector.o:
 	.text       start:0x8010DFDC end:0x8010E608
 	.rodata     start:0x805320E8 end:0x80532178
-	.data       start:0x8057F8FC end:0x8057FA40
+	.data       start:0x8057F8D8 end:0x8057FA40
 	.sdata2     start:0x806BAB78 end:0x806BAB88
 
 Enemy.a/Karon.o:
@@ -2734,20 +2734,20 @@ Enemy.a/Karon.o:
 Enemy.a/Kiraira.o:
 	.text       start:0x80110298 end:0x80111470
 	.ctors      start:0x8052EAD8 end:0x8052EADC
-	.data       start:0x8057FCB0 end:0x8057FE2C
+	.data       start:0x8057FCB0 end:0x8057FDA8
 	.sbss       start:0x806B42A0 end:0x806B42C0
 	.sdata2     start:0x806BABE0 end:0x806BAC38
 
 Enemy.a/KirairaChain.o:
 	.text       start:0x80111470 end:0x801123BC
-	.data       start:0x8057FE2C end:0x8057FF5C
+	.data       start:0x8057FDA8 end:0x8057FEA8
 	.sdata2     start:0x806BAC38 end:0x806BAC70
 
 Enemy.a/KoopaJrShip.o:
 	.text       start:0x801123BC end:0x8011479C
 	.ctors      start:0x8052EADC end:0x8052EAE0
 	.rodata     start:0x805321F8 end:0x805322B0
-	.data       start:0x8057FF5C end:0x80580498
+	.data       start:0x8057FEA8 end:0x80580498
 	.sdata      start:0x806B19B8 end:0x806B1A48
 	.sbss       start:0x806B42C0 end:0x806B42F8
 	.sdata2     start:0x806BAC70 end:0x806BACB8
@@ -2769,14 +2769,14 @@ Enemy.a/KoopaJrShipCannonShell.o:
 Enemy.a/KoteBug.o:
 	.text       start:0x80115C7C end:0x80117DA0
 	.ctors      start:0x8052EAE8 end:0x8052EAEC
-	.data       start:0x805807D0 end:0x80580BD4
+	.data       start:0x805807D0 end:0x80580AC8
 	.sbss       start:0x806B4318 end:0x806B4360
 	.sdata2     start:0x806BAD18 end:0x806BADB0
 
 Enemy.a/Kuribo.o:
 	.text       start:0x80117DA0 end:0x8011A16C
 	.ctors      start:0x8052EAEC end:0x8052EAF0
-	.data       start:0x80580BD4 end:0x80580EA8
+	.data       start:0x80580AC8 end:0x80580EA8
 	.bss        start:0x8060A818 end:0x8060A898
 	.sbss       start:0x806B4360 end:0x806B4398
 	.sdata2     start:0x806BADB0 end:0x806BAE10
@@ -2801,7 +2801,7 @@ Enemy.a/MechanicKoopaMini.o:
 	.text       start:0x8011CE88 end:0x8011EA28
 	.ctors      start:0x8052EAF8 end:0x8052EAFC
 	.rodata     start:0x805322B0 end:0x80532388
-	.data       start:0x805811B0 end:0x805814B4
+	.data       start:0x805811B0 end:0x80581480
 	.bss        start:0x8060A9E0 end:0x8060A9F0
 	.sbss       start:0x806B43E8 end:0x806B4428
 	.sdata2     start:0x806BAED8 end:0x806BAF38
@@ -2809,7 +2809,7 @@ Enemy.a/MechanicKoopaMini.o:
 Enemy.a/Meramera.o:
 	.text       start:0x8011EA28 end:0x80122D94
 	.ctors      start:0x8052EAFC end:0x8052EB00
-	.data       start:0x805814B4 end:0x80581AA4
+	.data       start:0x80581480 end:0x80581950
 	.bss        start:0x8060A9F0 end:0x8060AA00
 	.sbss       start:0x806B4428 end:0x806B4478
 	.sdata2     start:0x806BAF38 end:0x806BB008
@@ -2818,7 +2818,7 @@ Enemy.a/Metbo.o:
 	.text       start:0x80122D94 end:0x80124C6C
 	.ctors      start:0x8052EB00 end:0x8052EB04
 	.rodata     start:0x80532388 end:0x805323E8
-	.data       start:0x80581AA4 end:0x80581DF0
+	.data       start:0x80581950 end:0x80581DF0
 	.sbss       start:0x806B4478 end:0x806B44C0
 	.sdata2     start:0x806BB008 end:0x806BB058
 
@@ -2834,33 +2834,33 @@ Enemy.a/Mogucchi.o:
 	.text       start:0x801265D8 end:0x80127C74
 	.ctors      start:0x8052EB08 end:0x8052EB0C
 	.rodata     start:0x80532400 end:0x80532428
-	.data       start:0x80582058 end:0x8058215C
+	.data       start:0x80582058 end:0x80582130
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
 
 Enemy.a/MogucchiHill.o:
 	.text       start:0x80127C74 end:0x80128EE4
 	.ctors      start:0x8052EB0C end:0x8052EB10
-	.data       start:0x8058215C end:0x80582338
+	.data       start:0x80582130 end:0x80582338
 	.sbss       start:0x806B4508 end:0x806B4520
 	.sdata2     start:0x806BB120 end:0x806BB140
 
 Enemy.a/MogucchiRefuseTerritory.o:
 	.text       start:0x80128EE4 end:0x80129008
-	.data       start:0x80582338 end:0x80582444
+	.data       start:0x80582338 end:0x805823B0
 	.sdata2     start:0x806BB140 end:0x806BB148
 
 Enemy.a/MogucchiShooter.o:
 	.text       start:0x80129008 end:0x80129BDC
 	.ctors      start:0x8052EB10 end:0x8052EB14
-	.data       start:0x80582444 end:0x805825F8
+	.data       start:0x805823B0 end:0x805825F8
 	.sbss       start:0x806B4520 end:0x806B4558
 	.sdata2     start:0x806BB148 end:0x806BB160
 
 Enemy.a/MoguStone.o:
 	.text       start:0x80129BDC end:0x8012A98C
 	.ctors      start:0x8052EB14 end:0x8052EB18
-	.data       start:0x805825F8 end:0x80582744
+	.data       start:0x805825F8 end:0x80582730
 	.sbss       start:0x806B4558 end:0x806B4568
 	.sdata2     start:0x806BB160 end:0x806BB198
 
@@ -2868,7 +2868,7 @@ Enemy.a/NokonokoLand.o:
 	.text       start:0x8012A98C end:0x8012D2F0
 	.ctors      start:0x8052EB18 end:0x8052EB1C
 	.rodata     start:0x80532428 end:0x80532460
-	.data       start:0x80582744 end:0x80582B98
+	.data       start:0x80582730 end:0x80582B98
 	.sbss       start:0x806B4568 end:0x806B45C0
 	.sdata2     start:0x806BB198 end:0x806BB1E0
 
@@ -2886,21 +2886,21 @@ Enemy.a/OnimasuJump.o:
 
 Enemy.a/OnimasuPivot.o:
 	.text       start:0x8012EA88 end:0x8012F114
-	.data       start:0x80582D28 end:0x80582EDC
+	.data       start:0x80582D28 end:0x80582DC8
 	.sdata2     start:0x806BB238 end:0x806BB250
 
 Enemy.a/OtaRock.o:
 	.text       start:0x8012F114 end:0x801301B4
 	.ctors      start:0x8052EB20 end:0x8052EB24
 	.rodata     start:0x80532460 end:0x80532478
-	.data       start:0x80582EDC end:0x805830E8
+	.data       start:0x80582DC8 end:0x805830E8
 	.sbss       start:0x806B45D8 end:0x806B45F8
 	.sdata2     start:0x806BB250 end:0x806BB278
 
 Enemy.a/PackunPetit.o:
 	.text       start:0x801301B4 end:0x801319F8
 	.ctors      start:0x8052EB24 end:0x8052EB28
-	.data       start:0x805830E8 end:0x8058341C
+	.data       start:0x805830E8 end:0x80583270
 	.sbss       start:0x806B45F8 end:0x806B4640
 	.sdata2     start:0x806BB278 end:0x806BB2B8
 
@@ -2908,7 +2908,7 @@ Enemy.a/Petari.o:
 	.text       start:0x801319F8 end:0x80133FAC
 	.ctors      start:0x8052EB28 end:0x8052EB2C
 	.rodata     start:0x80532478 end:0x80532490
-	.data       start:0x8058341C end:0x80583764
+	.data       start:0x80583270 end:0x80583568
 	.sdata      start:0x806B1A48 end:0x806B1AC0
 	.sbss       start:0x806B4640 end:0x806B4678
 	.sdata2     start:0x806BB2B8 end:0x806BB350
@@ -2917,7 +2917,7 @@ Enemy.a/Poihana.o:
 	.text       start:0x80133FAC end:0x801369B0
 	.ctors      start:0x8052EB2C end:0x8052EB30
 	.rodata     start:0x80532490 end:0x805324B0
-	.data       start:0x80583764 end:0x80583AD8
+	.data       start:0x80583568 end:0x80583AD8
 	.sbss       start:0x806B4678 end:0x806B46C8
 	.sdata2     start:0x806BB350 end:0x806BB3E0
 
@@ -2925,21 +2925,21 @@ Enemy.a/Pukupuku.o:
 	.text       start:0x801369B0 end:0x80138838
 	.ctors      start:0x8052EB30 end:0x8052EB34
 	.rodata     start:0x805324B0 end:0x805324D8
-	.data       start:0x80583AD8 end:0x80583CEC
+	.data       start:0x80583AD8 end:0x80583C40
 	.sbss       start:0x806B46C8 end:0x806B46F8
 	.sdata2     start:0x806BB3E0 end:0x806BB438
 
 Enemy.a/RingBeam.o:
 	.text       start:0x80138838 end:0x80139B40
 	.ctors      start:0x8052EB34 end:0x8052EB38
-	.data       start:0x80583CEC end:0x80583DA8
+	.data       start:0x80583C40 end:0x80583DA8
 	.sbss       start:0x806B46F8 end:0x806B4700
 	.sdata2     start:0x806BB438 end:0x806BB470
 
 Enemy.a/RingBeamer.o:
 	.text       start:0x80139B40 end:0x8013A3AC
 	.ctors      start:0x8052EB38 end:0x8052EB3C
-	.data       start:0x80583DA8 end:0x80583F84
+	.data       start:0x80583DA8 end:0x80583EC8
 	.sbss       start:0x806B4700 end:0x806B4710
 	.sdata2     start:0x806BB470 end:0x806BB498
 
@@ -2950,14 +2950,14 @@ Enemy.a/SamboFunction.o:
 Enemy.a/SamboHead.o:
 	.text       start:0x8013A420 end:0x8013BD04
 	.ctors      start:0x8052EB3C end:0x8052EB40
-	.data       start:0x80583F84 end:0x80584100
+	.data       start:0x80583EC8 end:0x80584100
 	.sbss       start:0x806B4710 end:0x806B4750
 	.sdata2     start:0x806BB4B0 end:0x806BB500
 
 Enemy.a/SearchBeamer.o:
 	.text       start:0x8013BD04 end:0x8013D988
 	.ctors      start:0x8052EB40 end:0x8052EB44
-	.data       start:0x80584100 end:0x805844DC
+	.data       start:0x80584100 end:0x80584338
 	.sbss       start:0x806B4750 end:0x806B4788
 	.sdata2     start:0x806BB500 end:0x806BB558
 
@@ -2965,7 +2965,7 @@ Enemy.a/Snakehead.o:
 	.text       start:0x8013D988 end:0x8013ED60
 	.ctors      start:0x8052EB44 end:0x8052EB48
 	.rodata     start:0x805324D8 end:0x80532558
-	.data       start:0x805844DC end:0x805845E8
+	.data       start:0x80584338 end:0x805845E8
 	.sbss       start:0x806B4788 end:0x806B47A8
 	.sdata2     start:0x806BB558 end:0x806BB5D8
 
@@ -2975,42 +2975,42 @@ Enemy.a/SpinHitController.o:
 
 Enemy.a/StinkBugBase.o:
 	.text       start:0x8013F0F0 end:0x8013F72C
-	.data       start:0x805845E8 end:0x805848BC
+	.data       start:0x805845E8 end:0x80584660
 	.sdata2     start:0x806BB5E8 end:0x806BB600
 
 Enemy.a/StinkBugParent.o:
 	.text       start:0x8013F72C end:0x80140F78
 	.ctors      start:0x8052EB48 end:0x8052EB4C
 	.rodata     start:0x80532558 end:0x80532588
-	.data       start:0x805848BC end:0x80584BC4
+	.data       start:0x80584660 end:0x80584A48
 	.sbss       start:0x806B47A8 end:0x806B47F0
 	.sdata2     start:0x806BB600 end:0x806BB650
 
 Enemy.a/StinkBugSmall.o:
 	.text       start:0x80140F78 end:0x801427AC
 	.ctors      start:0x8052EB4C end:0x8052EB50
-	.data       start:0x80584BC4 end:0x80584ED0
+	.data       start:0x80584A48 end:0x80584ED0
 	.sbss       start:0x806B47F0 end:0x806B4830
 	.sdata2     start:0x806BB650 end:0x806BB698
 
 Enemy.a/StringSpider.o:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
-	.data       start:0x80584ED0 end:0x80585184
+	.data       start:0x80584ED0 end:0x805850A0
 	.sbss       start:0x806B4830 end:0x806B4868
 	.sdata2     start:0x806BB698 end:0x806BB748
 
 Enemy.a/Takobo.o:
 	.text       start:0x80145210 end:0x80146AEC
 	.ctors      start:0x8052EB54 end:0x8052EB58
-	.data       start:0x80585184 end:0x80585434
+	.data       start:0x805850A0 end:0x805852B0
 	.sbss       start:0x806B4868 end:0x806B4898
 	.sdata2     start:0x806BB748 end:0x806BB798
 
 Enemy.a/TakoHei.o:
 	.text       start:0x80146AEC end:0x8014915C
 	.ctors      start:0x8052EB58 end:0x8052EB5C
-	.data       start:0x80585434 end:0x805855F4
+	.data       start:0x805852B0 end:0x805855C0
 	.bss        start:0x8060AA00 end:0x8060AA10
 	.sbss       start:0x806B4898 end:0x806B48E0
 	.sdata2     start:0x806BB798 end:0x806BB820
@@ -3018,18 +3018,18 @@ Enemy.a/TakoHei.o:
 Enemy.a/TakoHeiInk.o:
 	.text       start:0x8014915C end:0x80149538
 	.ctors      start:0x8052EB5C end:0x8052EB60
-	.data       start:0x805855F4 end:0x8058569C
+	.data       start:0x805855C0 end:0x80585680
 	.sbss       start:0x806B48E0 end:0x806B48E8
 	.sdata2     start:0x806BB820 end:0x806BB830
 
 Enemy.a/TakoHeiInkHolder.o:
 	.text       start:0x80149538 end:0x80149710
-	.data       start:0x8058569C end:0x805856FC
+	.data       start:0x80585680 end:0x805856C0
 
 Enemy.a/Teresa.o:
 	.text       start:0x80149710 end:0x8014C790
 	.ctors      start:0x8052EB60 end:0x8052EB64
-	.data       start:0x805856FC end:0x80585AF8
+	.data       start:0x805856C0 end:0x80585AF8
 	.sbss       start:0x806B48E8 end:0x806B4938
 	.sdata2     start:0x806BB830 end:0x806BB8D8
 
@@ -3037,7 +3037,7 @@ Enemy.a/TeresaWater.o:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
 	.rodata     start:0x80532588 end:0x805325B8
-	.data       start:0x80585AF8 end:0x80585D9C
+	.data       start:0x80585AF8 end:0x80585BB0
 	.sbss       start:0x806B4938 end:0x806B4948
 	.sdata2     start:0x806BB8D8 end:0x806BB8F8
 
@@ -3048,35 +3048,35 @@ Enemy.a/TerritoryMover.o:
 Enemy.a/Unizo.o:
 	.text       start:0x8014D14C end:0x8014F86C
 	.ctors      start:0x8052EB68 end:0x8052EB6C
-	.data       start:0x80585D9C end:0x80585EC8
+	.data       start:0x80585BB0 end:0x80585EC8
 	.sbss       start:0x806B4948 end:0x806B4970
 	.sdata2     start:0x806BB900 end:0x806BB9B0
 
 Enemy.a/UnizoLauncher.o:
 	.text       start:0x8014F86C end:0x8014FBD0
 	.ctors      start:0x8052EB6C end:0x8052EB70
-	.data       start:0x80585EC8 end:0x80585F8C
+	.data       start:0x80585EC8 end:0x80585F60
 	.sbss       start:0x806B4970 end:0x806B4978
 	.sdata2     start:0x806BB9B0 end:0x806BB9B8
 
 Enemy.a/WalkerStateBindStarPointer.o:
 	.text       start:0x8014FBD0 end:0x8014FEE8
 	.ctors      start:0x8052EB70 end:0x8052EB74
-	.data       start:0x80585F8C end:0x80586008
+	.data       start:0x80585F60 end:0x80586008
 	.sbss       start:0x806B4978 end:0x806B4980
 	.sdata2     start:0x806BB9B8 end:0x806BB9C0
 
 Enemy.a/WalkerStateBlowDamage.o:
 	.text       start:0x8014FEE8 end:0x80150138
 	.ctors      start:0x8052EB74 end:0x8052EB78
-	.data       start:0x80586008 end:0x80586064
+	.data       start:0x80586008 end:0x80586048
 	.sbss       start:0x806B4980 end:0x806B4988
 	.sdata2     start:0x806BB9C0 end:0x806BB9D0
 
 Enemy.a/WalkerStateChase.o:
 	.text       start:0x80150138 end:0x801504B0
 	.ctors      start:0x8052EB78 end:0x8052EB7C
-	.data       start:0x80586064 end:0x805860DC
+	.data       start:0x80586048 end:0x805860A8
 	.bss        start:0x8060AA10 end:0x8060AA28
 	.sbss       start:0x806B4988 end:0x806B4990
 	.sdata2     start:0x806BB9D0 end:0x806BB9D8
@@ -3084,7 +3084,7 @@ Enemy.a/WalkerStateChase.o:
 Enemy.a/WalkerStateFindPlayer.o:
 	.text       start:0x801504B0 end:0x80150944
 	.ctors      start:0x8052EB7C end:0x8052EB80
-	.data       start:0x805860DC end:0x80586164
+	.data       start:0x805860A8 end:0x80586140
 	.bss        start:0x8060AA28 end:0x8060AA38
 	.sbss       start:0x806B4990 end:0x806B49A0
 	.sdata2     start:0x806BB9D8 end:0x806BB9E0
@@ -3100,7 +3100,7 @@ Enemy.a/WalkerStateParam.o:
 Enemy.a/WalkerStateRunaway.o:
 	.text       start:0x80150A08 end:0x80151154
 	.ctors      start:0x8052EB80 end:0x8052EB84
-	.data       start:0x80586164 end:0x805861EC
+	.data       start:0x80586140 end:0x805861B8
 	.bss        start:0x8060AA38 end:0x8060AA90
 	.sbss       start:0x806B49A0 end:0x806B49B0
 	.sdata2     start:0x806BBA00 end:0x806BBA40
@@ -3108,7 +3108,7 @@ Enemy.a/WalkerStateRunaway.o:
 Enemy.a/WalkerStateStagger.o:
 	.text       start:0x80151154 end:0x80151980
 	.ctors      start:0x8052EB84 end:0x8052EB88
-	.data       start:0x805861EC end:0x80586254
+	.data       start:0x805861B8 end:0x80586230
 	.bss        start:0x8060AA90 end:0x8060AAC0
 	.sbss       start:0x806B49B0 end:0x806B49B8
 	.sdata2     start:0x806BBA40 end:0x806BBA70
@@ -3116,7 +3116,7 @@ Enemy.a/WalkerStateStagger.o:
 Enemy.a/WalkerStateWander.o:
 	.text       start:0x80151980 end:0x80151CF4
 	.ctors      start:0x8052EB88 end:0x8052EB8C
-	.data       start:0x80586254 end:0x805862B8
+	.data       start:0x80586230 end:0x805862B8
 	.bss        start:0x8060AAC0 end:0x8060AAD8
 	.sbss       start:0x806B49B8 end:0x806B49C0
 	.sdata2     start:0x806BBA70 end:0x806BBA88
