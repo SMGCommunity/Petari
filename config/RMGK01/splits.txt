@@ -3147,7 +3147,7 @@ GameAudio.a/AudStageBgmWrap.o:
 
 GameAudio.a/AudSeKeeper.o:
 	.text       start:0x80155314 end:0x801557B4
-	.data       start:0x80586CF8 end:0x80586D5C
+	.data       start:0x80586CF8 end:0x80586D08
 
 GameAudio.a/AudTalkSoundData.o:
 	.text       start:0x801557B4 end:0x80155FC0
@@ -3157,16 +3157,16 @@ GameAudio.a/AudTalkSoundData.o:
 GameAudio.a/AudEffectDirector.o:
 	.text       start:0x80155FC0 end:0x80156214
 	.rodata     start:0x80532940 end:0x805329E8
-	.data       start:0x80586D5C end:0x80586DCC
+	.data       start:0x80586D08 end:0x80586D80
 
 GameAudio.a/AudBgmConductor.o:
 	.text       start:0x80156214 end:0x801566C4
-	.data       start:0x80586DCC end:0x80586F44
+	.data       start:0x80586D80 end:0x80586DF0
 	.sdata2     start:0x806BBAE0 end:0x806BBAE8
 
 GameAudio.a/AudStageBgmTable.o:
 	.text       start:0x801566C4 end:0x801567FC
-	.data       start:0x80586F44 end:0x805873B8
+	.data       start:0x80586DF0 end:0x805873B8
 
 GameAudio.a/AudTamakoroBgmCtrl.o:
 	.text       start:0x801567FC end:0x80156AD0
@@ -3236,7 +3236,7 @@ Gravity.a/SegmentGravity.o:
 
 Gravity.a/WireGravity.o:
 	.text       start:0x8015B510 end:0x8015B77C
-	.data       start:0x80587740 end:0x80587894
+	.data       start:0x80587740 end:0x80587750
 	.sdata2     start:0x806BBBC8 end:0x806BBBD0
 
 LiveActor.a/ActiveActorList.o:
@@ -3244,6 +3244,7 @@ LiveActor.a/ActiveActorList.o:
 
 LiveActor.a/ActorAnimKeeper.o:
 	.text       start:0x8015B984 end:0x8015C01C
+	.data       start:0x80587750 end:0x805877A0
 	.sdata      start:0x806B1B00 end:0x806B1B20
 
 LiveActor.a/ActorCameraInfo.o:
@@ -3257,6 +3258,7 @@ LiveActor.a/ActorLightCtrl.o:
 
 LiveActor.a/ActorPadAndCameraCtrl.o:
 	.text       start:0x8015C8C8 end:0x8015CF30
+	.data       start:0x805877A0 end:0x80587880
 	.sdata      start:0x806B1B20 end:0x806B1B30
 	.sdata2     start:0x806BBBD0 end:0x806BBBD8
 
@@ -3268,12 +3270,12 @@ LiveActor.a/ActorStateKeeper.o:
 
 LiveActor.a/AllLiveActorGroup.o:
 	.text       start:0x8015D148 end:0x8015D348
-	.data       start:0x80587894 end:0x805878B8
+	.data       start:0x80587880 end:0x805878B8
 
 LiveActor.a/AnimationRandomPlayer.o:
 	.text       start:0x8015D348 end:0x8015D5D8
 	.ctors      start:0x8052EB98 end:0x8052EB9C
-	.data       start:0x805878B8 end:0x80587904
+	.data       start:0x805878B8 end:0x805878E8
 	.sbss       start:0x806B4A10 end:0x806B4A18
 	.sdata2     start:0x806BBBD8 end:0x806BBBE0
 
@@ -3284,7 +3286,7 @@ LiveActor.a/Binder.o:
 
 LiveActor.a/ClippingActorHolder.o:
 	.text       start:0x8015EC2C end:0x8015F394
-	.data       start:0x80587904 end:0x8058794C
+	.data       start:0x805878E8 end:0x80587928
 	.sdata      start:0x806B1B38 end:0x806B1B48
 
 LiveActor.a/ClippingActorInfo.o:
@@ -3293,11 +3295,11 @@ LiveActor.a/ClippingActorInfo.o:
 
 LiveActor.a/ClippingDirector.o:
 	.text       start:0x8015F75C end:0x8015FA28
-	.data       start:0x8058794C end:0x8058798C
+	.data       start:0x80587928 end:0x80587970
 
 LiveActor.a/ClippingGroupHolder.o:
 	.text       start:0x8015FA28 end:0x8016009C
-	.data       start:0x8058798C end:0x805879D8
+	.data       start:0x80587970 end:0x805879D8
 
 LiveActor.a/ClippingJudge.o:
 	.text       start:0x8016009C end:0x80160724
@@ -3328,7 +3330,7 @@ LiveActor.a/FaceJointCtrl.o:
 
 LiveActor.a/FlashingCtrl.o:
 	.text       start:0x80163808 end:0x80163B1C
-	.data       start:0x80587BA8 end:0x80587BDC
+	.data       start:0x80587BA8 end:0x80587BD0
 
 LiveActor.a/HitSensor.o:
 	.text       start:0x80163B1C end:0x80163E20
@@ -3343,7 +3345,7 @@ LiveActor.a/HitSensorKeeper.o:
 
 LiveActor.a/IKJointCtrl.o:
 	.text       start:0x8016492C end:0x80165674
-	.data       start:0x80587BDC end:0x80587CA8
+	.data       start:0x80587BD0 end:0x80587CA8
 	.sdata      start:0x806B1B68 end:0x806B1BA8
 	.sdata2     start:0x806BBC68 end:0x806BBC78
 
@@ -3357,19 +3359,20 @@ LiveActor.a/LiveActorFlag.o:
 
 LiveActor.a/LiveActorGroup.o:
 	.text       start:0x80166540 end:0x80166758
-	.data       start:0x80587D20 end:0x80587D54
+	.data       start:0x80587D20 end:0x80587D48
 
 LiveActor.a/LiveActorGroupArray.o:
 	.text       start:0x80166758 end:0x80166C70
-	.data       start:0x80587D54 end:0x80587DFC
+	.data       start:0x80587D48 end:0x80587DA0
 
 LiveActor.a/LodCtrl.o:
 	.text       start:0x80166C70 end:0x80167868
+	.data       start:0x80587DA0 end:0x80587DF0
 	.sdata2     start:0x806BBC88 end:0x806BBC98
 
 LiveActor.a/MaterialCtrl.o:
 	.text       start:0x80167868 end:0x80168694
-	.data       start:0x80587DFC end:0x80587E80
+	.data       start:0x80587DF0 end:0x80587E80
 	.sdata2     start:0x806BBC98 end:0x806BBCB0
 
 LiveActor.a/MessageSensorHolder.o:
@@ -3378,12 +3381,12 @@ LiveActor.a/MessageSensorHolder.o:
 
 LiveActor.a/MirrorActor.o:
 	.text       start:0x80168784 end:0x80168AF4
-	.data       start:0x80587EF8 end:0x80587F7C
+	.data       start:0x80587EF8 end:0x80587F70
 	.sdata2     start:0x806BBCB0 end:0x806BBCB8
 
 LiveActor.a/MirrorCamera.o:
 	.text       start:0x80168AF4 end:0x801690B8
-	.data       start:0x80587F7C end:0x80587FA0
+	.data       start:0x80587F70 end:0x80587FA0
 	.sdata2     start:0x806BBCB8 end:0x806BBCC8
 
 LiveActor.a/MirrorReflectionModel.o:
@@ -3404,7 +3407,7 @@ LiveActor.a/Nerve.o:
 
 LiveActor.a/PartsModel.o:
 	.text       start:0x8016A46C end:0x8016AA38
-	.data       start:0x80588118 end:0x805881B4
+	.data       start:0x80588118 end:0x80588190
 	.sdata2     start:0x806BBCD0 end:0x806BBCD8
 
 LiveActor.a/RailRider.o:
@@ -3413,11 +3416,11 @@ LiveActor.a/RailRider.o:
 
 LiveActor.a/SensorHitChecker.o:
 	.text       start:0x8016B5A4 end:0x8016BDE8
-	.data       start:0x805881B4 end:0x8058821C
+	.data       start:0x80588190 end:0x805881D8
 
 LiveActor.a/ShadowController.o:
 	.text       start:0x8016BDE8 end:0x8016CD3C
-	.data       start:0x8058821C end:0x80588240
+	.data       start:0x805881D8 end:0x80588240
 	.sdata2     start:0x806BBCF0 end:0x806BBD08
 
 LiveActor.a/ShadowDrawer.o:
@@ -3440,43 +3443,43 @@ LiveActor.a/ShadowSurfaceDrawer.o:
 
 LiveActor.a/ShadowSurfaceOval.o:
 	.text       start:0x8016D704 end:0x8016DA28
-	.data       start:0x80588350 end:0x80588394
+	.data       start:0x80588350 end:0x80588378
 	.sdata2     start:0x806BBD28 end:0x806BBD38
 
 LiveActor.a/ShadowVolumeBox.o:
 	.text       start:0x8016DA28 end:0x8016E440
-	.data       start:0x80588394 end:0x805883F4
+	.data       start:0x80588378 end:0x805883C8
 	.sdata2     start:0x806BBD38 end:0x806BBD48
 
 LiveActor.a/ShadowVolumeCylinder.o:
 	.text       start:0x8016E440 end:0x8016E654
-	.data       start:0x805883F4 end:0x80588448
+	.data       start:0x805883C8 end:0x80588448
 	.sdata2     start:0x806BBD48 end:0x806BBD50
 
 LiveActor.a/ShadowVolumeDrawer.o:
 	.text       start:0x8016E654 end:0x8016EB1C
 	.ctors      start:0x8052EB9C end:0x8052EBA0
-	.data       start:0x80588448 end:0x805884BC
+	.data       start:0x80588448 end:0x805884A0
 	.sbss       start:0x806B4A18 end:0x806B4A20
 	.sdata2     start:0x806BBD50 end:0x806BBD58
 
 LiveActor.a/ShadowVolumeFlatModel.o:
 	.text       start:0x8016EB1C end:0x8016EF38
-	.data       start:0x805884BC end:0x8058850C
+	.data       start:0x805884A0 end:0x805884F0
 	.sdata2     start:0x806BBD58 end:0x806BBD60
 
 LiveActor.a/ShadowVolumeLine.o:
 	.text       start:0x8016EF38 end:0x8016F32C
-	.data       start:0x8058850C end:0x80588540
+	.data       start:0x805884F0 end:0x80588540
 	.sdata2     start:0x806BBD60 end:0x806BBD68
 
 LiveActor.a/ShadowVolumeModel.o:
 	.text       start:0x8016F32C end:0x8016F3AC
-	.data       start:0x80588540 end:0x8058859C
+	.data       start:0x80588540 end:0x80588570
 
 LiveActor.a/ShadowVolumeOval.o:
 	.text       start:0x8016F3AC end:0x8016F760
-	.data       start:0x8058859C end:0x80588600
+	.data       start:0x80588570 end:0x80588600
 	.sdata2     start:0x806BBD68 end:0x806BBD80
 
 LiveActor.a/ShadowVolumeOvalPole.o:
@@ -3491,14 +3494,14 @@ LiveActor.a/ShadowVolumeSphere.o:
 
 LiveActor.a/SimpleJ3DModelDrawer.o:
 	.text       start:0x8016FCE4 end:0x8016FF3C
-	.data       start:0x80588688 end:0x8058874C
+	.data       start:0x80588688 end:0x80588720
 
 LiveActor.a/Spine.o:
 	.text       start:0x8016FF3C end:0x801700E8
 
 LiveActor.a/SpotMarkLight.o:
 	.text       start:0x801700E8 end:0x80170310
-	.data       start:0x8058874C end:0x80588804
+	.data       start:0x80588720 end:0x805887E0
 	.sdata2     start:0x806BBDA0 end:0x806BBDB0
 
 LiveActor.a/ViewGroupCtrl.o:
@@ -3506,7 +3509,7 @@ LiveActor.a/ViewGroupCtrl.o:
 
 LiveActor.a/VolumeModelDrawer.o:
 	.text       start:0x801706C8 end:0x80170A64
-	.data       start:0x80588804 end:0x80588850
+	.data       start:0x805887E0 end:0x80588850
 
 Map.a/ActorAppearSwitchListener.o:
 	.text       start:0x80170A64 end:0x80170B58
