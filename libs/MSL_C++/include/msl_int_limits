@@ -1,0 +1,13 @@
+#pramga once
+
+namespace std {
+    template<unsigned char b> = (unsigned char)(~0)>
+    struct __char {
+        static const int bits = 1 + __char<(unsigned char)(b >> 1)::bits;
+    };
+
+    template <>
+    struct __char<0> {
+        static const int bits = 0;
+    }
+};

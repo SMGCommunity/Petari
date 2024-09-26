@@ -174,8 +174,7 @@ cflags_base = [
     "-enum int",
     "-fp hardware",
     "-Cpp_exceptions off",
-    # "-W all",
-    "-O4,p",
+    "-O4,s",
     "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
@@ -186,6 +185,36 @@ cflags_base = [
     "-str reuse",
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_game = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,s",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-i include",
+    "-i libs/JSystem/include",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C/include",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVLFaceLib/include",
+    "-i libs/RLV_SDK/include",
+    "-i libs/Runtime/include",
+    "-i libs/nw4r/include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -216,6 +245,15 @@ cflags_rel = [
 
 config.linker_version = "GC/1.3.2"
 
+def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_base,
+        "progress_category": "game",
+        "objects": objects,
+    }
+    
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
@@ -227,18 +265,6 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-
-# Helper function for REL script objects
-def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
-    return {
-        "lib": lib_name,
-        "mw_version": "GC/1.3.2",
-        "cflags": cflags_rel,
-        "progress_category": "game",
-        "objects": objects,
-    }
-
-
 Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
 Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
@@ -246,6 +272,17 @@ Equivalent = config.non_matching  # Object should be linked when configured with
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
+    {
+        "lib": "game",
+        "mw_version": "GC/3.0a3",
+        "root_dir": "",
+        "cflags": cflags_game,
+        "progress_category": "game",
+        "objects": [
+            
+        ]
+    },
+
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -261,8 +298,11 @@ config.libs = [
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game Code"),
-    ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("game", "Game"),
+    ProgressCategory("jsys", "JSystem"),
+    ProgressCategory("sdk", "SDK"),
+    ProgressCategory("nw4r", "NW4R"),
+    ProgressCategory("rfl", "RVLFaceLib")
 ]
 config.progress_each_module = args.verbose
 
