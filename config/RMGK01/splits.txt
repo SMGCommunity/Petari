@@ -6599,7 +6599,7 @@ Player.a/MarioActorRush.o:
 Player.a/MarioActorSensor.o:
 	.text       start:0x802BEAAC end:0x802BFB84
 	.ctors      start:0x8052F088 end:0x8052F08C
-	.data       start:0x805B8CE8 end:0x805B8FDC
+	.data       start:0x805B8CE8 end:0x805B8F28
 	.sdata2     start:0x806BF758 end:0x806BF7A0
 
 Player.a/MarioActorShadow.o:
@@ -6615,13 +6615,13 @@ Player.a/MarioActorSpecialDraw.o:
 Player.a/MarioActorMatrix.o:
 	.text       start:0x802C43B8 end:0x802C48A4
 	.ctors      start:0x8052F094 end:0x8052F098
-	.data       start:0x805B8FDC end:0x805BA5B8
+	.data       start:0x805B8F28 end:0x805BA5B8
 	.sdata2     start:0x806BF888 end:0x806BF890
 
 Player.a/MarioActorMorph.o:
 	.text       start:0x802C48A4 end:0x802C52CC
 	.ctors      start:0x8052F098 end:0x8052F09C
-	.data       start:0x805BA5B8 end:0x805BA854
+	.data       start:0x805BA5B8 end:0x805BA840
 	.sdata2     start:0x806BF890 end:0x806BF898
 
 Player.a/MarioActorEye.o:
@@ -6638,7 +6638,7 @@ Player.a/MarioActorOffensiveMsg.o:
 Player.a/MarioActorDefensiveMsg.o:
 	.text       start:0x802C7078 end:0x802C8830
 	.ctors      start:0x8052F0A4 end:0x8052F0A8
-	.data       start:0x805BA854 end:0x805BAD70
+	.data       start:0x805BA840 end:0x805BAD70
 	.sdata2     start:0x806BF8C8 end:0x806BF8F0
 
 Player.a/MarioActorRushMsg.o:
@@ -6659,32 +6659,32 @@ Player.a/MarioActorBlackHole.o:
 Player.a/MarioAnimator.o:
 	.text       start:0x802CAD30 end:0x802CDBC8
 	.ctors      start:0x8052F0B4 end:0x8052F0B8
-	.data       start:0x805BAD70 end:0x805C4254
+	.data       start:0x805BAD70 end:0x805C3DE0
 	.sdata      start:0x806B2288 end:0x806B22A8
 	.sdata2     start:0x806BF968 end:0x806BF9D8
 
 Player.a/MarioAnimationEfx.o:
 	.text       start:0x802CDBC8 end:0x802CE398
 	.ctors      start:0x8052F0B8 end:0x8052F0BC
-	.data       start:0x805C4254 end:0x805C4768
+	.data       start:0x805C3DE0 end:0x805C4768
 	.sdata2     start:0x806BF9D8 end:0x806BF9E8
 
 Player.a/MarioWait.o:
 	.text       start:0x802CE398 end:0x802CEF28
 	.ctors      start:0x8052F0BC end:0x8052F0C0
-	.data       start:0x805C4768 end:0x805C4874
+	.data       start:0x805C4768 end:0x805C4850
 	.sdata2     start:0x806BF9E8 end:0x806BFA08
 
 Player.a/MarioClimb.o:
 	.text       start:0x802CEF28 end:0x802CF1E4
 	.ctors      start:0x8052F0C0 end:0x8052F0C4
-	.data       start:0x805C4874 end:0x805C4B4C
+	.data       start:0x805C4850 end:0x805C4960
 	.sdata2     start:0x806BFA08 end:0x806BFA10
 
 Player.a/MarioCollision.o:
 	.text       start:0x802CF1E4 end:0x802D53E4
 	.ctors      start:0x8052F0C4 end:0x8052F0C8
-	.data       start:0x805C4B4C end:0x805C4CE8
+	.data       start:0x805C4960 end:0x805C4CE8
 	.sdata2     start:0x806BFA10 end:0x806BFAF8
 
 Player.a/MarioConst.o:
@@ -6694,48 +6694,48 @@ Player.a/MarioConst.o:
 Player.a/MarioDamage.o:
 	.text       start:0x802D5408 end:0x802D85DC
 	.ctors      start:0x8052F0C8 end:0x8052F0CC
-	.data       start:0x805C5DB8 end:0x805C605C
+	.data       start:0x805C5DB8 end:0x805C6008
 	.sdata2     start:0x806BFAF8 end:0x806BFB30
 
 Player.a/MarioDamageParalyze.o:
 	.text       start:0x802D85DC end:0x802D8AB8
 	.ctors      start:0x8052F0CC end:0x8052F0D0
-	.data       start:0x805C605C end:0x805C61BC
+	.data       start:0x805C6008 end:0x805C6148
 	.sdata2     start:0x806BFB30 end:0x806BFB38
 
 Player.a/MarioDamageFreeze.o:
 	.text       start:0x802D8AB8 end:0x802D9134
 	.ctors      start:0x8052F0D0 end:0x8052F0D4
-	.data       start:0x805C61BC end:0x805C62D4
+	.data       start:0x805C6148 end:0x805C62A8
 	.sdata2     start:0x806BFB38 end:0x806BFB50
 
 Player.a/MarioDamageStun.o:
 	.text       start:0x802D9134 end:0x802D93A4
 	.ctors      start:0x8052F0D4 end:0x8052F0D8
-	.data       start:0x805C62D4 end:0x805C63EC
+	.data       start:0x805C62A8 end:0x805C63C0
 
 Player.a/MarioDamageCrush.o:
 	.text       start:0x802D93A4 end:0x802D978C
 	.ctors      start:0x8052F0D8 end:0x8052F0DC
-	.data       start:0x805C63EC end:0x805C6520
+	.data       start:0x805C63C0 end:0x805C6520
 	.sdata2     start:0x806BFB50 end:0x806BFB58
 
 Player.a/MarioFaint.o:
 	.text       start:0x802D978C end:0x802D9E54
 	.ctors      start:0x8052F0DC end:0x8052F0E0
-	.data       start:0x805C6520 end:0x805C6684
+	.data       start:0x805C6520 end:0x805C6640
 	.sdata2     start:0x806BFB58 end:0x806BFB60
 
 Player.a/MarioFlip.o:
 	.text       start:0x802D9E54 end:0x802DAA44
 	.ctors      start:0x8052F0E0 end:0x8052F0E4
-	.data       start:0x805C6684 end:0x805C6794
+	.data       start:0x805C6640 end:0x805C6770
 	.sdata2     start:0x806BFB60 end:0x806BFB90
 
 Player.a/MarioFrontStep.o:
 	.text       start:0x802DAA44 end:0x802DB028
 	.ctors      start:0x8052F0E4 end:0x8052F0E8
-	.data       start:0x805C6794 end:0x805C6944
+	.data       start:0x805C6770 end:0x805C68E8
 	.sdata2     start:0x806BFB90 end:0x806BFBA8
 
 Player.a/MarioBee.o:
@@ -6746,7 +6746,7 @@ Player.a/MarioBee.o:
 Player.a/MarioBlown.o:
 	.text       start:0x802DBAD8 end:0x802DC258
 	.ctors      start:0x8052F0EC end:0x8052F0F0
-	.data       start:0x805C6944 end:0x805C6B28
+	.data       start:0x805C68E8 end:0x805C6B28
 	.sdata2     start:0x806BFBD8 end:0x806BFBF0
 
 Player.a/MarioEffect.o:
@@ -6765,14 +6765,14 @@ Player.a/MarioFlow.o:
 Player.a/MarioFoo.o:
 	.text       start:0x802DF14C end:0x802E1A58
 	.ctors      start:0x8052F0F8 end:0x8052F0FC
-	.data       start:0x805C8050 end:0x805C814C
+	.data       start:0x805C8050 end:0x805C8140
 	.sdata      start:0x806B22A8 end:0x806B22B0
 	.sbss       start:0x806B6290 end:0x806B62A0
 	.sdata2     start:0x806BFC10 end:0x806BFCA8
 
 Player.a/MarioHolder.o:
 	.text       start:0x802E1A58 end:0x802E1B34
-	.data       start:0x805C814C end:0x805C8378
+	.data       start:0x805C8140 end:0x805C8378
 
 Player.a/MarioInit.o:
 	.text       start:0x802E1B34 end:0x802E1D70
@@ -6835,13 +6835,13 @@ Player.a/MarioRabbit.o:
 Player.a/MarioSearchLight.o:
 	.text       start:0x802F0404 end:0x802F12C8
 	.ctors      start:0x8052F118 end:0x8052F11C
-	.data       start:0x805C91D8 end:0x805C92AC
+	.data       start:0x805C91D8 end:0x805C9268
 	.sdata2     start:0x806BFF08 end:0x806BFF48
 
 Player.a/MarioSideStep.o:
 	.text       start:0x802F12C8 end:0x802F1C44
 	.ctors      start:0x8052F11C end:0x8052F120
-	.data       start:0x805C92AC end:0x805C94C0
+	.data       start:0x805C9268 end:0x805C94C0
 	.sdata2     start:0x806BFF48 end:0x806BFF78
 
 Player.a/MarioSkate.o:
@@ -6869,12 +6869,12 @@ Player.a/MarioSpin.o:
 Player.a/MarioState.o:
 	.text       start:0x802F4324 end:0x802F47B8
 	.ctors      start:0x8052F130 end:0x8052F134
-	.data       start:0x805CB588 end:0x805CB61C
+	.data       start:0x805CB588 end:0x805CB5D0
 
 Player.a/MarioStick.o:
 	.text       start:0x802F47B8 end:0x802F5014
 	.ctors      start:0x8052F134 end:0x8052F138
-	.data       start:0x805CB61C end:0x805CB790
+	.data       start:0x805CB5D0 end:0x805CB790
 	.sdata2     start:0x806C0030 end:0x806C0040
 
 Player.a/MarioSukekiyo.o:
@@ -6937,31 +6937,31 @@ Player.a/MarioWalk.o:
 
 Player.a/MarioNullBck.o:
 	.text       start:0x80308E04 end:0x803090AC
-	.data       start:0x805CC8E8 end:0x805CC9BC
+	.data       start:0x805CC8E8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
 Player.a/MarioRecovery.o:
 	.text       start:0x803090AC end:0x80309F6C
 	.ctors      start:0x8052F160 end:0x8052F164
-	.data       start:0x805CC9BC end:0x805CCAFC
+	.data       start:0x805CC960 end:0x805CCAA8
 	.sdata2     start:0x806C0378 end:0x806C03D0
 
 Player.a/MarioSlider.o:
 	.text       start:0x80309F6C end:0x8030AAD0
 	.ctors      start:0x8052F164 end:0x8052F168
-	.data       start:0x805CCAFC end:0x805CCBF0
+	.data       start:0x805CCAA8 end:0x805CCBF0
 	.sdata2     start:0x806C03D0 end:0x806C0400
 
 Player.a/MarioStep.o:
 	.text       start:0x8030AAD0 end:0x8030B278
 	.ctors      start:0x8052F168 end:0x8052F16C
-	.data       start:0x805CCBF0 end:0x805CCC4C
+	.data       start:0x805CCBF0 end:0x805CCC38
 	.sdata2     start:0x806C0400 end:0x806C0438
 
 Player.a/MarioBump.o:
 	.text       start:0x8030B278 end:0x8030B7F8
 	.ctors      start:0x8052F16C end:0x8052F170
-	.data       start:0x805CCC4C end:0x805CCCB8
+	.data       start:0x805CCC38 end:0x805CCCB8
 	.sdata2     start:0x806C0438 end:0x806C0450
 
 Player.a/MarioEnforce.o:
@@ -6984,12 +6984,12 @@ Player.a/MarioTeresa.o:
 Player.a/MarioMagic.o:
 	.text       start:0x80310208 end:0x803105B0
 	.ctors      start:0x8052F17C end:0x8052F180
-	.data       start:0x805CD0E8 end:0x805CD2EC
+	.data       start:0x805CD0E8 end:0x805CD1D0
 
 Player.a/MarioWarp.o:
 	.text       start:0x803105B0 end:0x80311B40
 	.ctors      start:0x8052F180 end:0x8052F184
-	.data       start:0x805CD2EC end:0x805CD408
+	.data       start:0x805CD1D0 end:0x805CD408
 	.sdata2     start:0x806C0528 end:0x806C0560
 
 Player.a/MarioFpView.o:
@@ -7005,23 +7005,23 @@ Player.a/Mario2D.o:
 
 Player.a/MatrixControl.o:
 	.text       start:0x803124A0 end:0x803129E8
-	.data       start:0x805CD450 end:0x805CD4E4
+	.data       start:0x805CD450 end:0x805CD498
 
 Player.a/RushEndInfo.o:
 	.text       start:0x803129E8 end:0x80312A20
 
 Player.a/TornadoMario.o:
 	.text       start:0x80312A20 end:0x80312E38
-	.data       start:0x805CD4E4 end:0x805CD560
+	.data       start:0x805CD498 end:0x805CD560
 	.sdata2     start:0x806C05A0 end:0x806C05B8
 
 Player.a/ModelHolder.o:
 	.text       start:0x80312E38 end:0x80312F7C
-	.data       start:0x805CD560 end:0x805CD5F4
+	.data       start:0x805CD560 end:0x805CD5D8
 
 Player.a/MarioShadow.o:
 	.text       start:0x80312F7C end:0x803150CC
-	.data       start:0x805CD5F4 end:0x805CD624
+	.data       start:0x805CD5D8 end:0x805CD618
 	.sdata      start:0x806B22F8 end:0x806B2348
 	.sdata2     start:0x806C05B8 end:0x806C0618
 
@@ -7035,11 +7035,11 @@ Player.a/MarioActorWipe.o:
 
 Player.a/DrawAdaptor.o:
 	.text       start:0x803152AC end:0x803153A0
-	.data       start:0x805CD624 end:0x805CD6B4
+	.data       start:0x805CD618 end:0x805CD648
 
 Player.a/PlayerEvent.o:
 	.text       start:0x803153A0 end:0x80315BA4
-	.data       start:0x805CD6B4 end:0x805CD6E8
+	.data       start:0x805CD648 end:0x805CD6E8
 
 Player.a/PlayerEventGameOver.o:
 	.text       start:0x80315BA4 end:0x80315DD0
