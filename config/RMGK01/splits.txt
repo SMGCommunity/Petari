@@ -7293,7 +7293,7 @@ Ride.a/Trapeze.o:
 Scene.a/GameScene.o:
 	.text       start:0x8033EA0C end:0x8033FE94
 	.ctors      start:0x8052F200 end:0x8052F204
-	.data       start:0x805D1620 end:0x805D17E4
+	.data       start:0x805D1620 end:0x805D17D0
 	.sbss       start:0x806B6588 end:0x806B65C0
 	.sdata2     start:0x806C0DC8 end:0x806C0DD0
 
@@ -7303,7 +7303,7 @@ Scene.a/GameSceneFunction.o:
 Scene.a/GameScenePauseControl.o:
 	.text       start:0x803400BC end:0x803402D8
 	.ctors      start:0x8052F204 end:0x8052F208
-	.data       start:0x805D17E4 end:0x805D1840
+	.data       start:0x805D17D0 end:0x805D1840
 	.sbss       start:0x806B65C0 end:0x806B65C8
 
 Scene.a/GameSceneScenarioOpeningCameraState.o:
@@ -7401,23 +7401,23 @@ Scene.a/StageDataHolder.o:
 
 Scene.a/StageFileLoader.o:
 	.text       start:0x80348C74 end:0x80348F4C
-	.sdata2     start:0x806C0E18 end:0x806C0E2C
+	.sdata2     start:0x806C0E18 end:0x806C0E20
 
 Scene.a/StageResourceLoader.o:
 	.text       start:0x80348F4C end:0x80348F5C
 
 Scene.a/StopSceneController.o:
 	.text       start:0x80348F5C end:0x803491EC
-	.data       start:0x805D278C end:0x805D2824
+	.data       start:0x805D278C end:0x805D27D8
 
 Screen.a/THPDraw.o:
 	.text       start:0x803491EC end:0x803499F4
 	.sbss       start:0x806B6638 end:0x806B6640
-	.sdata2     start:0x806C0E2C end:0x806C0E38
+	.sdata2     start:0x806C0E20 end:0x806C0E38
 
 Screen.a/BackButton.o:
 	.text       start:0x803499F4 end:0x80349C3C
-	.data       start:0x805D2824 end:0x805D2910
+	.data       start:0x805D27D8 end:0x805D2910
 
 Screen.a/BatteryInfo.o:
 	.text       start:0x80349C3C end:0x8034A64C
@@ -7433,13 +7433,13 @@ Screen.a/BloomEffect.o:
 
 Screen.a/BloomEffectSimple.o:
 	.text       start:0x8034B964 end:0x8034BDD4
-	.data       start:0x805D2A58 end:0x805D2AD4
+	.data       start:0x805D2A58 end:0x805D2A90
 	.sdata2     start:0x806C0E68 end:0x806C0E78
 
 Screen.a/BombTimerLayout.o:
 	.text       start:0x8034BDD4 end:0x8034C288
 	.ctors      start:0x8052F224 end:0x8052F228
-	.data       start:0x805D2AD4 end:0x805D2BA8
+	.data       start:0x805D2A90 end:0x805D2BA8
 	.sbss       start:0x806B6670 end:0x806B6680
 
 Screen.a/BrosButton.o:
@@ -7451,14 +7451,14 @@ Screen.a/BrosButton.o:
 Screen.a/ButtonPaneController.o:
 	.text       start:0x8034C6B4 end:0x8034D294
 	.ctors      start:0x8052F22C end:0x8052F230
-	.data       start:0x805D2C68 end:0x805D2D4C
+	.data       start:0x805D2C68 end:0x805D2D08
 	.sbss       start:0x806B6690 end:0x806B66B8
 	.sdata2     start:0x806C0E78 end:0x806C0E80
 
 Screen.a/CameraInfo.o:
 	.text       start:0x8034D294 end:0x8034DBA4
 	.ctors      start:0x8052F230 end:0x8052F234
-	.data       start:0x805D2D4C end:0x805D2E20
+	.data       start:0x805D2D08 end:0x805D2E20
 	.sbss       start:0x806B66B8 end:0x806B66D0
 
 Screen.a/CaptureScreenDirector.o:
@@ -7469,21 +7469,21 @@ Screen.a/CaptureScreenDirector.o:
 Screen.a/CenterScreenBlur.o:
 	.text       start:0x8034DFEC end:0x8034E38C
 	.ctors      start:0x8052F234 end:0x8052F238
-	.data       start:0x805D2E78 end:0x805D2F54
+	.data       start:0x805D2E78 end:0x805D2F20
 	.sbss       start:0x806B66D0 end:0x806B66E0
 	.sdata2     start:0x806C0E80 end:0x806C0E88
 
 Screen.a/CinemaFrame.o:
 	.text       start:0x8034E38C end:0x8034EBD8
 	.ctors      start:0x8052F238 end:0x8052F23C
-	.data       start:0x805D2F54 end:0x805D304C
+	.data       start:0x805D2F20 end:0x805D2FF8
 	.sbss       start:0x806B66E0 end:0x806B6700
 	.sdata2     start:0x806C0E88 end:0x806C0E90
 
 Screen.a/CoinCounter.o:
 	.text       start:0x8034EBD8 end:0x8034F22C
 	.ctors      start:0x8052F23C end:0x8052F240
-	.data       start:0x805D304C end:0x805D31A0
+	.data       start:0x805D2FF8 end:0x805D31A0
 	.sbss       start:0x806B6700 end:0x806B6710
 	.sdata2     start:0x806C0E90 end:0x806C0EA0
 
@@ -7524,13 +7524,13 @@ Screen.a/CustomTagProcessor.o:
 Screen.a/DepthOfFieldBlur.o:
 	.text       start:0x80354D18 end:0x803556EC
 	.rodata     start:0x8053A648 end:0x8053A680
-	.data       start:0x805D3EA8 end:0x805D3F1C
+	.data       start:0x805D3EA8 end:0x805D3EE0
 	.sdata2     start:0x806C0EF0 end:0x806C0F10
 
 Screen.a/EncouragePal60Window.o:
 	.text       start:0x803556EC end:0x80355A34
 	.ctors      start:0x8052F250 end:0x8052F254
-	.data       start:0x805D3F1C end:0x805D3FD8
+	.data       start:0x805D3EE0 end:0x805D3FD8
 	.sbss       start:0x806B6740 end:0x806B6750
 
 Screen.a/ErrorMessageWindow.o:
@@ -7555,14 +7555,14 @@ Screen.a/FileSelectInfo.o:
 Screen.a/FileSelectNumber.o:
 	.text       start:0x80357478 end:0x80357C5C
 	.ctors      start:0x8052F260 end:0x8052F264
-	.data       start:0x805D4370 end:0x805D44BC
+	.data       start:0x805D4370 end:0x805D4420
 	.sbss       start:0x806B67A8 end:0x806B67C8
 	.sdata2     start:0x806C0F20 end:0x806C0F28
 
 Screen.a/FullnessMeter.o:
 	.text       start:0x80357C5C end:0x803581EC
 	.ctors      start:0x8052F264 end:0x8052F268
-	.data       start:0x805D44BC end:0x805D454C
+	.data       start:0x805D4420 end:0x805D4520
 	.sbss       start:0x806B67C8 end:0x806B67D8
 	.sdata2     start:0x806C0F28 end:0x806C0F38
 
@@ -7572,12 +7572,12 @@ Screen.a/FullScreenBlur.o:
 
 Screen.a/GalaxyCometScreenFilter.o:
 	.text       start:0x8035847C end:0x803585A8
-	.data       start:0x805D454C end:0x805D4618
+	.data       start:0x805D4520 end:0x805D4618
 
 Screen.a/GalaxyConfirmLayout.o:
 	.text       start:0x803585A8 end:0x80358A2C
 	.ctors      start:0x8052F268 end:0x8052F26C
-	.data       start:0x805D4618 end:0x805D47B4
+	.data       start:0x805D4618 end:0x805D4778
 	.sbss       start:0x806B67D8 end:0x806B67E8
 
 Screen.a/GalaxyInfoLayoutSetter.o:
@@ -7588,7 +7588,7 @@ Screen.a/GalaxyMap.o:
 	.text       start:0x80359380 end:0x8035BB4C
 	.ctors      start:0x8052F26C end:0x8052F270
 	.rodata     start:0x8053A680 end:0x8053A780
-	.data       start:0x805D47B4 end:0x805D4B50
+	.data       start:0x805D4778 end:0x805D4B50
 	.sbss       start:0x806B67E8 end:0x806B6800
 	.sdata2     start:0x806C0F68 end:0x806C0F70
 
@@ -7598,48 +7598,48 @@ Screen.a/GalaxyMapBackground.o:
 
 Screen.a/GalaxyMapCometIcon.o:
 	.text       start:0x8035BC44 end:0x8035BE9C
-	.data       start:0x805D4B98 end:0x805D4BDC
+	.data       start:0x805D4B98 end:0x805D4BC8
 
 Screen.a/GalaxyMapController.o:
 	.text       start:0x8035BE9C end:0x8035DBF4
 	.ctors      start:0x8052F270 end:0x8052F274
-	.data       start:0x805D4BDC end:0x805D4F10
+	.data       start:0x805D4BC8 end:0x805D4F10
 	.sbss       start:0x806B6800 end:0x806B6858
 	.sdata2     start:0x806C0F70 end:0x806C0F88
 
 Screen.a/GalaxyMapDomeIcon.o:
 	.text       start:0x8035DBF4 end:0x8035E4DC
-	.data       start:0x805D4F10 end:0x805D4FC4
+	.data       start:0x805D4F10 end:0x805D4F68
 
 Screen.a/GalaxyMapGalaxyDetail.o:
 	.text       start:0x8035E4DC end:0x8035EA1C
 	.ctors      start:0x8052F274 end:0x8052F278
-	.data       start:0x805D4FC4 end:0x805D5054
+	.data       start:0x805D4F68 end:0x805D5028
 	.sbss       start:0x806B6858 end:0x806B6868
 
 Screen.a/GalaxyMapGalaxyPlain.o:
 	.text       start:0x8035EA1C end:0x8035EF74
-	.data       start:0x805D5054 end:0x805D50C8
+	.data       start:0x805D5028 end:0x805D50C8
 
 Screen.a/GalaxyMapIcon.o:
 	.text       start:0x8035EF74 end:0x8035F4D8
-	.data       start:0x805D50C8 end:0x805D5114
+	.data       start:0x805D50C8 end:0x805D50F8
 	.sdata2     start:0x806C0F88 end:0x806C0F90
 
 Screen.a/GalaxyMapMarioIcon.o:
 	.text       start:0x8035F4D8 end:0x8035F6A8
-	.data       start:0x805D5114 end:0x805D51A0
+	.data       start:0x805D50F8 end:0x805D51A0
 	.sdata2     start:0x806C0F90 end:0x806C0F98
 
 Screen.a/GalaxyMapSelectButton.o:
 	.text       start:0x8035F6A8 end:0x8035FC34
 	.ctors      start:0x8052F278 end:0x8052F27C
-	.data       start:0x805D51A0 end:0x805D5284
+	.data       start:0x805D51A0 end:0x805D5250
 	.sbss       start:0x806B6868 end:0x806B6888
 
 Screen.a/GalaxyMapTicoIcon.o:
 	.text       start:0x8035FC34 end:0x8035FFC8
-	.data       start:0x805D5284 end:0x805D5320
+	.data       start:0x805D5250 end:0x805D5320
 	.sdata2     start:0x806C0F98 end:0x806C0FA0
 
 Screen.a/GalaxyMapTitle.o:
@@ -7651,46 +7651,46 @@ Screen.a/GalaxyMapTitle.o:
 Screen.a/GalaxyNamePlate.o:
 	.text       start:0x8036040C end:0x80360B04
 	.ctors      start:0x8052F280 end:0x8052F284
-	.data       start:0x805D54A0 end:0x805D551C
+	.data       start:0x805D54A0 end:0x805D5500
 	.sbss       start:0x806B68A0 end:0x806B68B0
 
 Screen.a/GalaxyNamePlateDrawer.o:
 	.text       start:0x80360B04 end:0x803613A4
-	.data       start:0x805D551C end:0x805D5578
+	.data       start:0x805D5500 end:0x805D5578
 	.sdata      start:0x806B23E8 end:0x806B2400
 
 Screen.a/GalaxySelectBackButton.o:
 	.text       start:0x803613A4 end:0x803616C0
 	.ctors      start:0x8052F284 end:0x8052F288
-	.data       start:0x805D5578 end:0x805D561C
+	.data       start:0x805D5578 end:0x805D55D8
 	.sbss       start:0x806B68B0 end:0x806B68C0
 
 Screen.a/GalaxySelectInfo.o:
 	.text       start:0x803616C0 end:0x80361BB0
 	.ctors      start:0x8052F288 end:0x8052F28C
-	.data       start:0x805D561C end:0x805D569C
+	.data       start:0x805D55D8 end:0x805D5670
 	.sbss       start:0x806B68C0 end:0x806B68C8
 
 Screen.a/GamePauseSequence.o:
 	.text       start:0x80361BB0 end:0x80361F54
 	.ctors      start:0x8052F28C end:0x8052F290
-	.data       start:0x805D569C end:0x805D5798
+	.data       start:0x805D5670 end:0x805D5798
 	.sbss       start:0x806B68C8 end:0x806B68D8
 
 Screen.a/GameSceneLayoutHolder.o:
 	.text       start:0x80361F54 end:0x80362478
-	.data       start:0x805D5798 end:0x805D5844
+	.data       start:0x805D5798 end:0x805D57C0
 
 Screen.a/GameStageClearSequence.o:
 	.text       start:0x80362478 end:0x803629F4
 	.ctors      start:0x8052F290 end:0x8052F294
-	.data       start:0x805D5844 end:0x805D58B4
+	.data       start:0x805D57C0 end:0x805D5898
 	.sbss       start:0x806B68D8 end:0x806B68E0
 	.sdata2     start:0x806C0FA0 end:0x806C0FB0
 
 Screen.a/HeatHazeEffect.o:
 	.text       start:0x803629F4 end:0x80362E84
-	.data       start:0x805D58B4 end:0x805D59C0
+	.data       start:0x805D5898 end:0x805D59C0
 	.sdata2     start:0x806C0FB0 end:0x806C0FD8
 
 Screen.a/HomeButtonLayout.o:
@@ -7703,14 +7703,14 @@ Screen.a/HomeButtonLayout.o:
 Screen.a/IconAButton.o:
 	.text       start:0x8036372C end:0x80363D28
 	.ctors      start:0x8052F298 end:0x8052F29C
-	.data       start:0x805D5AB0 end:0x805D5B2C
+	.data       start:0x805D5AB0 end:0x805D5B10
 	.sbss       start:0x806B68E8 end:0x806B68F8
 	.sdata2     start:0x806C0FF0 end:0x806C0FF8
 
 Screen.a/IconComet.o:
 	.text       start:0x80363D28 end:0x80363ED4
 	.ctors      start:0x8052F29C end:0x8052F2A0
-	.data       start:0x805D5B2C end:0x805D5B70
+	.data       start:0x805D5B10 end:0x805D5B70
 	.sbss       start:0x806B68F8 end:0x806B6900
 
 Screen.a/ImageEffectBase.o:
@@ -7734,12 +7734,12 @@ Screen.a/ImageEffectResource.o:
 
 Screen.a/ImageEffectState.o:
 	.text       start:0x80365854 end:0x803661AC
-	.data       start:0x805D5C60 end:0x805D5CF4
+	.data       start:0x805D5C60 end:0x805D5CD0
 	.sdata2     start:0x806C1050 end:0x806C1068
 
 Screen.a/ImageEffectSystemHolder.o:
 	.text       start:0x803661AC end:0x80366370
-	.data       start:0x805D5CF4 end:0x805D5DA8
+	.data       start:0x805D5CD0 end:0x805D5DA8
 
 Screen.a/InformationMessage.o:
 	.text       start:0x80366370 end:0x80366738
@@ -7750,17 +7750,17 @@ Screen.a/InformationMessage.o:
 Screen.a/InformationObserver.o:
 	.text       start:0x80366738 end:0x80366D4C
 	.ctors      start:0x8052F2A4 end:0x8052F2A8
-	.data       start:0x805D5F60 end:0x805D614C
+	.data       start:0x805D5F60 end:0x805D6110
 	.sdata      start:0x806B2400 end:0x806B2468
 	.sbss       start:0x806B6910 end:0x806B6918
 
 Screen.a/IsbnManager.o:
 	.text       start:0x80366D4C end:0x8036755C
-	.data       start:0x805D614C end:0x805D6490
+	.data       start:0x805D6110 end:0x805D6490
 
 Screen.a/LayoutActor.o:
 	.text       start:0x8036755C end:0x80367A6C
-	.data       start:0x805D6490 end:0x805D6524
+	.data       start:0x805D6490 end:0x805D64F0
 	.sdata2     start:0x806C1068 end:0x806C1070
 
 Screen.a/LayoutActorFlag.o:
@@ -7777,7 +7777,7 @@ Screen.a/LayoutGroupCtrl.o:
 Screen.a/LayoutManager.o:
 	.text       start:0x803682A8 end:0x8036A338
 	.rodata     start:0x8053A780 end:0x8053A7C8
-	.data       start:0x805D6524 end:0x805D66B8
+	.data       start:0x805D64F0 end:0x805D66B8
 	.sdata2     start:0x806C1088 end:0x806C10A0
 
 Screen.a/LayoutPaneCtrl.o:
@@ -7807,59 +7807,59 @@ Screen.a/LuigiLetter.o:
 Screen.a/Manual2P.o:
 	.text       start:0x8036C520 end:0x8036D1AC
 	.ctors      start:0x8052F2B4 end:0x8052F2B8
-	.data       start:0x805D6BD8 end:0x805D6CBC
+	.data       start:0x805D6BD8 end:0x805D6C78
 	.sbss       start:0x806B6950 end:0x806B6970
 	.sdata2     start:0x806C10D0 end:0x806C10E0
 
 Screen.a/MarioMeter.o:
 	.text       start:0x8036D1AC end:0x8036D44C
-	.data       start:0x805D6CBC end:0x805D6D0C
+	.data       start:0x805D6C78 end:0x805D6CE0
 
 Screen.a/MarioSubMeter.o:
 	.text       start:0x8036D44C end:0x8036D6D0
-	.data       start:0x805D6D0C end:0x805D6D30
+	.data       start:0x805D6CE0 end:0x805D6D30
 
 Screen.a/MessageTagSkipTagProcessor.o:
 	.text       start:0x8036D6D0 end:0x8036D7F0
-	.data       start:0x805D6D30 end:0x805D6E24
+	.data       start:0x805D6D30 end:0x805D6D48
 
 Screen.a/MeterLayout.o:
 	.text       start:0x8036D7F0 end:0x8036E9C0
 	.ctors      start:0x8052F2B8 end:0x8052F2BC
-	.data       start:0x805D6E24 end:0x805D6F6C
+	.data       start:0x805D6D48 end:0x805D6F18
 	.sbss       start:0x806B6970 end:0x806B69A0
 	.sdata2     start:0x806C10E0 end:0x806C1110
 
 Screen.a/MiiConfirmIcon.o:
 	.text       start:0x8036E9C0 end:0x8036ECE0
 	.ctors      start:0x8052F2BC end:0x8052F2C0
-	.data       start:0x805D6F6C end:0x805D7004
+	.data       start:0x805D6F18 end:0x805D6FD0
 	.sbss       start:0x806B69A0 end:0x806B69B0
 
 Screen.a/MiiSelect.o:
 	.text       start:0x8036ECE0 end:0x80370248
 	.ctors      start:0x8052F2C0 end:0x8052F2C4
-	.data       start:0x805D7004 end:0x805D71C0
+	.data       start:0x805D6FD0 end:0x805D71C0
 	.sbss       start:0x806B69B0 end:0x806B69D0
 
 Screen.a/MiiSelectIcon.o:
 	.text       start:0x80370248 end:0x80370D0C
 	.ctors      start:0x8052F2C4 end:0x8052F2C8
 	.rodata     start:0x8053A7C8 end:0x8053A7E0
-	.data       start:0x805D71C0 end:0x805D7254
+	.data       start:0x805D71C0 end:0x805D7240
 	.sbss       start:0x806B69D0 end:0x806B69E8
 	.sdata2     start:0x806C1110 end:0x806C1124
 
 Screen.a/MissLayout.o:
 	.text       start:0x80370D0C end:0x80370FC0
 	.ctors      start:0x8052F2C8 end:0x8052F2CC
-	.data       start:0x805D7254 end:0x805D7318
+	.data       start:0x805D7240 end:0x805D7318
 	.sbss       start:0x806B69E8 end:0x806B69F8
 
 Screen.a/MoviePlayerSimple.o:
 	.text       start:0x80370FC0 end:0x80371B30
 	.ctors      start:0x8052F2CC end:0x8052F2D0
-	.data       start:0x805D7318 end:0x805D7594
+	.data       start:0x805D7318 end:0x805D73A8
 	.sbss       start:0x806B69F8 end:0x806B6A10
 	.sdata2     start:0x806C1124 end:0x806C1138
 
@@ -7867,14 +7867,14 @@ Screen.a/MoviePlayingSequence.o:
 	.text       start:0x80371B30 end:0x803729B8
 	.ctors      start:0x8052F2D0 end:0x8052F2D4
 	.rodata     start:0x8053A7E0 end:0x8053A930
-	.data       start:0x805D7594 end:0x805D766C
+	.data       start:0x805D73A8 end:0x805D7648
 	.sbss       start:0x806B6A10 end:0x806B6A28
 	.sdata2     start:0x806C1138 end:0x806C1140
 
 Screen.a/MovieSubtitles.o:
 	.text       start:0x803729B8 end:0x80372C78
 	.ctors      start:0x8052F2D4 end:0x8052F2D8
-	.data       start:0x805D766C end:0x805D7960
+	.data       start:0x805D7648 end:0x805D7960
 	.sbss       start:0x806B6A28 end:0x806B6A38
 
 Screen.a/MovieSubtitlesDataTable.o:
@@ -7925,20 +7925,20 @@ Screen.a/PauseMenu.o:
 Screen.a/PeachLetter.o:
 	.text       start:0x80376734 end:0x80376B28
 	.ctors      start:0x8052F2E4 end:0x8052F2E8
-	.data       start:0x805D7EF8 end:0x805D7FC4
+	.data       start:0x805D7EF8 end:0x805D7F58
 	.sbss       start:0x806B6A70 end:0x806B6A80
 
 Screen.a/PictureBookCloseButton.o:
 	.text       start:0x80376B28 end:0x80376F30
 	.ctors      start:0x8052F2E8 end:0x8052F2EC
-	.data       start:0x805D7FC4 end:0x805D835C
+	.data       start:0x805D7F58 end:0x805D8028
 	.sbss       start:0x806B6A80 end:0x806B6A90
 
 Screen.a/PictureBookLayout.o:
 	.text       start:0x80376F30 end:0x80379130
 	.ctors      start:0x8052F2EC end:0x8052F2F0
 	.rodata     start:0x8053B190 end:0x8053B1E0
-	.data       start:0x805D835C end:0x805D8598
+	.data       start:0x805D8028 end:0x805D8598
 	.sbss       start:0x806B6A90 end:0x806B6AC0
 	.sdata2     start:0x806C11A0 end:0x806C11A8
 
@@ -7959,7 +7959,7 @@ Screen.a/PlayerLeft.o:
 Screen.a/PlayerMissLeft.o:
 	.text       start:0x8037A154 end:0x8037A614
 	.ctors      start:0x8052F2F8 end:0x8052F2FC
-	.data       start:0x805D8700 end:0x805D88CC
+	.data       start:0x805D8700 end:0x805D8770
 	.sbss       start:0x806B6AE8 end:0x806B6AF8
 	.sdata2     start:0x806C11B8 end:0x806C11C8
 
@@ -7967,7 +7967,7 @@ Screen.a/PowerStarList.o:
 	.text       start:0x8037A614 end:0x8037C78C
 	.ctors      start:0x8052F2FC end:0x8052F300
 	.rodata     start:0x8053B1E0 end:0x8053B268
-	.data       start:0x805D88CC end:0x805D8BA4
+	.data       start:0x805D8770 end:0x805D8B68
 	.sdata      start:0x806B2468 end:0x806B24A0
 	.sbss       start:0x806B6AF8 end:0x806B6B20
 	.sdata2     start:0x806C11C8 end:0x806C11D8
@@ -7975,7 +7975,7 @@ Screen.a/PowerStarList.o:
 Screen.a/PrologueLetter.o:
 	.text       start:0x8037C78C end:0x8037CB38
 	.ctors      start:0x8052F300 end:0x8052F304
-	.data       start:0x805D8BA4 end:0x805D8C58
+	.data       start:0x805D8B68 end:0x805D8C58
 	.sbss       start:0x806B6B20 end:0x806B6B30
 
 Screen.a/ProloguePictureBook.o:
@@ -7989,7 +7989,7 @@ Screen.a/ProloguePictureBook.o:
 Screen.a/PurpleCoinCounter.o:
 	.text       start:0x8037CF70 end:0x8037D3C0
 	.ctors      start:0x8052F308 end:0x8052F30C
-	.data       start:0x805D8D10 end:0x805D8DFC
+	.data       start:0x805D8D10 end:0x805D8DD0
 	.sbss       start:0x806B6B40 end:0x806B6B48
 	.sdata2     start:0x806C11E0 end:0x806C11E8
 
@@ -7999,20 +7999,20 @@ Screen.a/ReplaceTagProcessor.o:
 
 Screen.a/SaveIcon.o:
 	.text       start:0x8037DB64 end:0x8037DCAC
-	.data       start:0x805D8DFC end:0x805D90B4
+	.data       start:0x805D8DD0 end:0x805D8E30
 
 Screen.a/ScenarioSelectLayout.o:
 	.text       start:0x8037DCAC end:0x8037FE8C
 	.ctors      start:0x8052F30C end:0x8052F310
 	.rodata     start:0x8053B2C8 end:0x8053B310
-	.data       start:0x805D90B4 end:0x805D91CC
+	.data       start:0x805D8E30 end:0x805D9198
 	.sbss       start:0x806B6B48 end:0x806B6B78
 	.sdata2     start:0x806C11E8 end:0x806C1220
 
 Screen.a/ScenarioTitle.o:
 	.text       start:0x8037FE8C end:0x8038014C
 	.ctors      start:0x8052F310 end:0x8052F314
-	.data       start:0x805D91CC end:0x805D9280
+	.data       start:0x805D9198 end:0x805D9280
 	.sbss       start:0x806B6B78 end:0x806B6B88
 
 Screen.a/SceneWipeHolder.o:
@@ -8025,23 +8025,23 @@ Screen.a/ScreenAlphaCapture.o:
 
 Screen.a/ScreenBlurEffect.o:
 	.text       start:0x8038093C end:0x80381104
-	.data       start:0x805D9300 end:0x805D9344
+	.data       start:0x805D9300 end:0x805D9338
 	.sdata2     start:0x806C1220 end:0x806C1248
 
 Screen.a/ScreenPreserver.o:
 	.text       start:0x80381104 end:0x80381304
-	.data       start:0x805D9344 end:0x805D9368
+	.data       start:0x805D9338 end:0x805D9368
 	.sdata2     start:0x806C1248 end:0x806C1250
 
 Screen.a/SimpleLayout.o:
 	.text       start:0x80381304 end:0x80381434
-	.data       start:0x805D9368 end:0x805D946C
+	.data       start:0x805D9368 end:0x805D93C8
 
 Screen.a/StaffRoll.o:
 	.text       start:0x80381434 end:0x80383124
 	.ctors      start:0x8052F314 end:0x8052F318
 	.rodata     start:0x8053B310 end:0x8053B6F8
-	.data       start:0x805D946C end:0x805D9964
+	.data       start:0x805D93C8 end:0x805D9820
 	.sdata      start:0x806B24A0 end:0x806B24E8
 	.sbss       start:0x806B6B88 end:0x806B6BE0
 	.sdata2     start:0x806C1250 end:0x806C1268
@@ -8049,32 +8049,32 @@ Screen.a/StaffRoll.o:
 Screen.a/StageResultInformer.o:
 	.text       start:0x80383124 end:0x80384620
 	.ctors      start:0x8052F318 end:0x8052F31C
-	.data       start:0x805D9964 end:0x805D9B30
+	.data       start:0x805D9820 end:0x805D9B30
 	.sbss       start:0x806B6BE0 end:0x806B6C38
 
 Screen.a/StarCounter.o:
 	.text       start:0x80384620 end:0x80384AA4
 	.ctors      start:0x8052F31C end:0x8052F320
-	.data       start:0x805D9B30 end:0x805D9C84
+	.data       start:0x805D9B30 end:0x805D9BA0
 	.sbss       start:0x806B6C38 end:0x806B6C48
 	.sdata2     start:0x806C1268 end:0x806C1270
 
 Screen.a/StarPieceCounter.o:
 	.text       start:0x80384AA4 end:0x80385644
 	.ctors      start:0x8052F320 end:0x8052F324
-	.data       start:0x805D9C84 end:0x805D9D10
+	.data       start:0x805D9BA0 end:0x805D9D10
 	.sbss       start:0x806B6C48 end:0x806B6C58
 	.sdata2     start:0x806C1270 end:0x806C1288
 
 Screen.a/StarPointerBlur.o:
 	.text       start:0x80385644 end:0x80385FE8
-	.data       start:0x805D9D10 end:0x805D9D94
+	.data       start:0x805D9D10 end:0x805D9D38
 	.sdata2     start:0x806C1288 end:0x806C1298
 
 Screen.a/StarPointerCommandStream.o:
 	.text       start:0x80385FE8 end:0x80386590
 	.ctors      start:0x8052F324 end:0x8052F328
-	.data       start:0x805D9D94 end:0x805D9E1C
+	.data       start:0x805D9D38 end:0x805D9DE8
 	.sbss       start:0x806B6C58 end:0x806B6C68
 	.sdata2     start:0x806C1298 end:0x806C12C8
 
@@ -8084,7 +8084,7 @@ Screen.a/StarPointerController.o:
 
 Screen.a/StarPointerDirector.o:
 	.text       start:0x80386B18 end:0x8038771C
-	.data       start:0x805D9E1C end:0x805D9F28
+	.data       start:0x805D9DE8 end:0x805D9F28
 	.sdata2     start:0x806C12D8 end:0x806C12F0
 
 Screen.a/StarPointerGuidance.o:
@@ -8096,7 +8096,7 @@ Screen.a/StarPointerGuidance.o:
 Screen.a/StarPointerLayout.o:
 	.text       start:0x80388448 end:0x8038AA48
 	.ctors      start:0x8052F32C end:0x8052F330
-	.data       start:0x805DA100 end:0x805DA2BC
+	.data       start:0x805DA100 end:0x805DA2A0
 	.sbss       start:0x806B6C90 end:0x806B6CC0
 	.sdata2     start:0x806C12F0 end:0x806C1318
 
@@ -8106,14 +8106,14 @@ Screen.a/StarPointerTarget.o:
 
 Screen.a/SubMeterLayout.o:
 	.text       start:0x8038B3C8 end:0x8038B910
-	.data       start:0x805DA2BC end:0x805DA38C
-	.sdata      start:0x806B24E8 end:0x806B2524
+	.data       start:0x805DA2A0 end:0x805DA2F0
+	.sdata      start:0x806B24E8 end:0x806B2520
 	.sdata2     start:0x806C1338 end:0x806C1348
 
 Screen.a/SuddenDeathMeter.o:
 	.text       start:0x8038B910 end:0x8038C444
 	.ctors      start:0x8052F330 end:0x8052F334
-	.data       start:0x805DA38C end:0x805DA520
+	.data       start:0x805DA2F0 end:0x805DA520
 	.sbss       start:0x806B6CC0 end:0x806B6CE0
 	.sdata2     start:0x806C1348 end:0x806C1368
 
@@ -8154,14 +8154,14 @@ Screen.a/TimeLimitLayout.o:
 Screen.a/TitleSequenceProduct.o:
 	.text       start:0x803902E8 end:0x80390C94
 	.ctors      start:0x8052F344 end:0x8052F348
-	.data       start:0x805DABC8 end:0x805DACBC
+	.data       start:0x805DABC8 end:0x805DAC78
 	.sbss       start:0x806B6D60 end:0x806B6D80
 	.sdata2     start:0x806C13A8 end:0x806C13B0
 
 Screen.a/WaterCameraFilter.o:
 	.text       start:0x80390C94 end:0x80391838
 	.ctors      start:0x8052F348 end:0x8052F34C
-	.data       start:0x805DACBC end:0x805DAD78
+	.data       start:0x805DAC78 end:0x805DAD78
 	.sbss       start:0x806B6D80 end:0x806B6D98
 	.sdata2     start:0x806C13B0 end:0x806C13E0
 
@@ -8178,33 +8178,33 @@ Screen.a/WipeGameOver.o:
 
 Screen.a/WipeHolderBase.o:
 	.text       start:0x80392050 end:0x80392468
-	.data       start:0x805DAE60 end:0x805DAECC
+	.data       start:0x805DAE60 end:0x805DAEB8
 
 Screen.a/WipeKoopa.o:
 	.text       start:0x80392468 end:0x803927D8
 	.ctors      start:0x8052F350 end:0x8052F354
-	.data       start:0x805DAECC end:0x805DAF70
+	.data       start:0x805DAEB8 end:0x805DAF70
 	.sbss       start:0x806B6DA0 end:0x806B6DB0
 
 Screen.a/WipeRing.o:
 	.text       start:0x803927D8 end:0x80393388
 	.ctors      start:0x8052F354 end:0x8052F358
-	.data       start:0x805DAF70 end:0x805DB09C
-	.sdata      start:0x806B2524 end:0x806B2530
+	.data       start:0x805DAF70 end:0x805DB008
+	.sdata      start:0x806B2520 end:0x806B2530
 	.sbss       start:0x806B6DB0 end:0x806B6DC0
 	.sdata2     start:0x806C13F0 end:0x806C1418
 
 Screen.a/YesNoController.o:
 	.text       start:0x80393388 end:0x80393AC8
 	.ctors      start:0x8052F358 end:0x8052F35C
-	.data       start:0x805DB09C end:0x805DB124
+	.data       start:0x805DB008 end:0x805DB0F8
 	.sdata      start:0x806B2530 end:0x806B257C
 	.sbss       start:0x806B6DC0 end:0x806B6DD8
 
 Screen.a/YesNoLayout.o:
 	.text       start:0x80393AC8 end:0x80393D98
 	.ctors      start:0x8052F35C end:0x8052F360
-	.data       start:0x805DB124 end:0x805DB168
+	.data       start:0x805DB0F8 end:0x805DB168
 	.sbss       start:0x806B6DD8 end:0x806B6DE0
 
 Speaker.a/SpkSpeakerCtrl.o:
