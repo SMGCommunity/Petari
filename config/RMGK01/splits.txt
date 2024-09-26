@@ -6032,41 +6032,41 @@ NPC.a/Butler.o:
 NPC.a/ButlerExplain.o:
 	.text       start:0x8026DEA8 end:0x8026E144
 	.ctors      start:0x8052EF80 end:0x8052EF84
-	.data       start:0x805AEC80 end:0x805AEDC4
+	.data       start:0x805AEC80 end:0x805AEDA8
 	.sbss       start:0x806B5C40 end:0x806B5C48
 
 NPC.a/ButlerMap.o:
 	.text       start:0x8026E144 end:0x8026EB10
 	.ctors      start:0x8052EF84 end:0x8052EF88
-	.data       start:0x805AEDC4 end:0x805AF028
+	.data       start:0x805AEDA8 end:0x805AF028
 	.sbss       start:0x806B5C48 end:0x806B5C60
 	.sdata2     start:0x806BEA30 end:0x806BEA38
 
 NPC.a/ButlerStateStarPieceReaction.o:
 	.text       start:0x8026EB10 end:0x8026ECDC
 	.ctors      start:0x8052EF88 end:0x8052EF8C
-	.data       start:0x805AF028 end:0x805AF08C
+	.data       start:0x805AF028 end:0x805AF058
 	.sbss       start:0x806B5C60 end:0x806B5C68
 	.sdata2     start:0x806BEA38 end:0x806BEA40
 
 NPC.a/CareTaker.o:
 	.text       start:0x8026ECDC end:0x802703C4
 	.ctors      start:0x8052EF8C end:0x8052EF90
-	.data       start:0x805AF08C end:0x805AF550
+	.data       start:0x805AF058 end:0x805AF550
 	.sbss       start:0x806B5C68 end:0x806B5CA8
 	.sdata2     start:0x806BEA40 end:0x806BEA68
 
 NPC.a/CollectTico.o:
 	.text       start:0x802703C4 end:0x80270B94
 	.ctors      start:0x8052EF90 end:0x8052EF94
-	.data       start:0x805AF550 end:0x805AF6E4
+	.data       start:0x805AF550 end:0x805AF6C8
 	.sbss       start:0x806B5CA8 end:0x806B5CC0
 	.sdata2     start:0x806BEA68 end:0x806BEA70
 
 NPC.a/DemoRabbit.o:
 	.text       start:0x80270B94 end:0x80271DD0
 	.ctors      start:0x8052EF94 end:0x8052EF98
-	.data       start:0x805AF6E4 end:0x805AF9B8
+	.data       start:0x805AF6C8 end:0x805AF9B8
 	.sbss       start:0x806B5CC0 end:0x806B5CE8
 	.sdata2     start:0x806BEA70 end:0x806BEAD8
 
@@ -6101,14 +6101,14 @@ NPC.a/KinopioAstro.o:
 NPC.a/KoopaJr.o:
 	.text       start:0x80275DC0 end:0x80276744
 	.ctors      start:0x8052EFA4 end:0x8052EFA8
-	.data       start:0x805B0460 end:0x805B06BC
+	.data       start:0x805B0460 end:0x805B0670
 	.sbss       start:0x806B5D68 end:0x806B5D90
 	.sdata2     start:0x806BEBA8 end:0x806BEBC8
 
 NPC.a/LuigiNPC.o:
 	.text       start:0x80276744 end:0x8027797C
 	.ctors      start:0x8052EFA8 end:0x8052EFAC
-	.data       start:0x805B06BC end:0x805B09E0
+	.data       start:0x805B0670 end:0x805B09E0
 	.sbss       start:0x806B5D90 end:0x806B5DC0
 	.sdata2     start:0x806BEBC8 end:0x806BEC00
 
@@ -6129,7 +6129,7 @@ NPC.a/MiiFaceParts.o:
 
 NPC.a/MiiFacePartsHolder.o:
 	.text       start:0x802783AC end:0x80279118
-	.data       start:0x805B0AE0 end:0x805B0BEC
+	.data       start:0x805B0AE0 end:0x805B0BE0
 
 NPC.a/MiiFaceRecipe.o:
 	.text       start:0x80279118 end:0x80279260
@@ -6137,7 +6137,7 @@ NPC.a/MiiFaceRecipe.o:
 NPC.a/Peach.o:
 	.text       start:0x80279260 end:0x802793D0
 	.ctors      start:0x8052EFAC end:0x8052EFB0
-	.data       start:0x805B0BEC end:0x805B0D90
+	.data       start:0x805B0BE0 end:0x805B0D90
 	.sbss       start:0x806B5DC0 end:0x806B5DC8
 
 NPC.a/Penguin.o:
@@ -6150,42 +6150,42 @@ NPC.a/Penguin.o:
 NPC.a/PenguinCoach.o:
 	.text       start:0x8027A1C0 end:0x8027B0E8
 	.ctors      start:0x8052EFB4 end:0x8052EFB8
-	.data       start:0x805B0FE0 end:0x805B13AC
+	.data       start:0x805B0FE0 end:0x805B12E8
 	.sbss       start:0x806B5DD8 end:0x806B5DF8
 	.sdata2     start:0x806BEC48 end:0x806BEC88
 
 NPC.a/PenguinMaster.o:
 	.text       start:0x8027B0E8 end:0x8027B4D8
 	.ctors      start:0x8052EFB8 end:0x8052EFBC
-	.data       start:0x805B13AC end:0x805B1684
+	.data       start:0x805B12E8 end:0x805B1448
 	.sbss       start:0x806B5DF8 end:0x806B5E00
 	.sdata2     start:0x806BEC88 end:0x806BECB0
 
 NPC.a/PenguinRacer.o:
 	.text       start:0x8027B4D8 end:0x8027CBF0
 	.ctors      start:0x8052EFBC end:0x8052EFC0
-	.data       start:0x805B1684 end:0x805B1838
+	.data       start:0x805B1448 end:0x805B1838
 	.sbss       start:0x806B5E00 end:0x806B5E28
 	.sdata2     start:0x806BECB0 end:0x806BECF8
 
 NPC.a/PenguinRacerLeader.o:
 	.text       start:0x8027CBF0 end:0x8027D3D4
 	.ctors      start:0x8052EFC0 end:0x8052EFC4
-	.data       start:0x805B1838 end:0x805B1BA4
+	.data       start:0x805B1838 end:0x805B19C8
 	.sbss       start:0x806B5E28 end:0x806B5E40
 	.sdata2     start:0x806BECF8 end:0x806BED08
 
 NPC.a/PenguinSkater.o:
 	.text       start:0x8027D3D4 end:0x8027E914
 	.ctors      start:0x8052EFC4 end:0x8052EFC8
-	.data       start:0x805B1BA4 end:0x805B1D10
+	.data       start:0x805B19C8 end:0x805B1D10
 	.sbss       start:0x806B5E40 end:0x806B5E78
 	.sdata2     start:0x806BED08 end:0x806BED50
 
 NPC.a/PenguinStudent.o:
 	.text       start:0x8027E914 end:0x8027F284
 	.ctors      start:0x8052EFC8 end:0x8052EFCC
-	.data       start:0x805B1D10 end:0x805B1FF4
+	.data       start:0x805B1D10 end:0x805B1E50
 	.sbss       start:0x806B5E78 end:0x806B5E88
 	.sdata2     start:0x806BED50 end:0x806BED78
 
@@ -6195,7 +6195,7 @@ NPC.a/PowerStarEventKeeper.o:
 NPC.a/Rabbit.o:
 	.text       start:0x8027F8CC end:0x8028110C
 	.ctors      start:0x8052EFCC end:0x8052EFD0
-	.data       start:0x805B1FF4 end:0x805B2234
+	.data       start:0x805B1E50 end:0x805B2180
 	.sdata      start:0x806B2128 end:0x806B2160
 	.sbss       start:0x806B5E88 end:0x806B5EC8
 	.sdata2     start:0x806BED78 end:0x806BEDE8
@@ -6203,28 +6203,28 @@ NPC.a/Rabbit.o:
 NPC.a/RabbitStateCaught.o:
 	.text       start:0x8028110C end:0x80281750
 	.ctors      start:0x8052EFD0 end:0x8052EFD4
-	.data       start:0x805B2234 end:0x805B2394
+	.data       start:0x805B2180 end:0x805B22B8
 	.sbss       start:0x806B5EC8 end:0x806B5ED8
 	.sdata2     start:0x806BEDE8 end:0x806BEDF8
 
 NPC.a/RabbitStateWaitStart.o:
 	.text       start:0x80281750 end:0x8028217C
 	.ctors      start:0x8052EFD4 end:0x8052EFD8
-	.data       start:0x805B2394 end:0x805B2474
+	.data       start:0x805B22B8 end:0x805B2450
 	.sbss       start:0x806B5ED8 end:0x806B5EF8
 	.sdata2     start:0x806BEDF8 end:0x806BEE10
 
 NPC.a/Rosetta.o:
 	.text       start:0x8028217C end:0x80282E00
 	.ctors      start:0x8052EFD8 end:0x8052EFDC
-	.data       start:0x805B2474 end:0x805B276C
+	.data       start:0x805B2450 end:0x805B27A8
 	.sbss       start:0x806B5EF8 end:0x806B5F00
 	.sdata2     start:0x806BEE10 end:0x806BEE40
 
 NPC.a/RosettaDemoAstroDome.o:
 	.text       start:0x80282E00 end:0x80283C18
 	.ctors      start:0x8052EFDC end:0x8052EFE0
-	.data       start:0x805B276C end:0x805B2B20
+	.data       start:0x805B27A8 end:0x805B2B20
 	.sbss       start:0x806B5F00 end:0x806B5F10
 
 NPC.a/RosettaDemoEpilogue.o:
@@ -6249,7 +6249,7 @@ NPC.a/RosettaReading.o:
 NPC.a/RunawayRabbit.o:
 	.text       start:0x80284FDC end:0x80286634
 	.ctors      start:0x8052EFEC end:0x8052EFF0
-	.data       start:0x805B3080 end:0x805B33FC
+	.data       start:0x805B3080 end:0x805B3370
 	.bss        start:0x8060AE20 end:0x8060AE78
 	.sbss       start:0x806B5F40 end:0x806B5F68
 	.sdata2     start:0x806BEE70 end:0x806BEEE8
@@ -6257,28 +6257,28 @@ NPC.a/RunawayRabbit.o:
 NPC.a/RunawayRabbitCollect.o:
 	.text       start:0x80286634 end:0x80286FD8
 	.ctors      start:0x8052EFF0 end:0x8052EFF4
-	.data       start:0x805B33FC end:0x805B34BC
+	.data       start:0x805B3370 end:0x805B3498
 	.sdata      start:0x806B2160 end:0x806B2188
 	.sbss       start:0x806B5F68 end:0x806B5F70
 
 NPC.a/RunawayTico.o:
 	.text       start:0x80286FD8 end:0x80287EA0
 	.ctors      start:0x8052EFF4 end:0x8052EFF8
-	.data       start:0x805B34BC end:0x805B37A8
+	.data       start:0x805B3498 end:0x805B37A8
 	.sbss       start:0x806B5F70 end:0x806B5F90
 	.sdata2     start:0x806BEEE8 end:0x806BEEF8
 
 NPC.a/SignBoard.o:
 	.text       start:0x80287EA0 end:0x80288130
 	.ctors      start:0x8052EFF8 end:0x8052EFFC
-	.data       start:0x805B37A8 end:0x805B3914
+	.data       start:0x805B37A8 end:0x805B3830
 	.sbss       start:0x806B5F90 end:0x806B5F98
 	.sdata2     start:0x806BEEF8 end:0x806BEF20
 
 NPC.a/StrayTico.o:
 	.text       start:0x80288130 end:0x802892D0
 	.ctors      start:0x8052EFFC end:0x8052F000
-	.data       start:0x805B3914 end:0x805B3A10
+	.data       start:0x805B3830 end:0x805B3A10
 	.sbss       start:0x806B5F98 end:0x806B5FB0
 	.sdata2     start:0x806BEF20 end:0x806BEF88
 
@@ -6293,14 +6293,14 @@ NPC.a/Syati.o:
 NPC.a/TeresaRacer.o:
 	.text       start:0x8028B7A0 end:0x8028C618
 	.ctors      start:0x8052F004 end:0x8052F008
-	.data       start:0x805B3DF0 end:0x805B4094
+	.data       start:0x805B3DF0 end:0x805B4050
 	.sbss       start:0x806B6008 end:0x806B6028
 	.sdata2     start:0x806BEFF8 end:0x806BF038
 
 NPC.a/Tico.o:
 	.text       start:0x8028C618 end:0x8028DB80
 	.ctors      start:0x8052F008 end:0x8052F00C
-	.data       start:0x805B4094 end:0x805B43B0
+	.data       start:0x805B4050 end:0x805B43B0
 	.bss        start:0x8060AE78 end:0x8060AE90
 	.sbss       start:0x806B6028 end:0x806B6070
 	.sdata2     start:0x806BF038 end:0x806BF078
@@ -6334,7 +6334,7 @@ NPC.a/TicoDomeLecture.o:
 NPC.a/TicoFat.o:
 	.text       start:0x8028F4B0 end:0x80291FE8
 	.ctors      start:0x8052F018 end:0x8052F01C
-	.data       start:0x805B4AF8 end:0x805B500C
+	.data       start:0x805B4AF8 end:0x805B4FE0
 	.bss        start:0x8060AEC8 end:0x8060AF00
 	.sdata      start:0x806B2188 end:0x806B21A0
 	.sbss       start:0x806B60A8 end:0x806B60E8
@@ -6342,7 +6342,7 @@ NPC.a/TicoFat.o:
 
 NPC.a/TicoGalaxy.o:
 	.text       start:0x80291FE8 end:0x80292314
-	.data       start:0x805B500C end:0x805B5108
+	.data       start:0x805B4FE0 end:0x805B5108
 	.sdata      start:0x806B21A0 end:0x806B21E8
 
 NPC.a/TicoRail.o:
@@ -6361,20 +6361,20 @@ NPC.a/TicoReading.o:
 NPC.a/TicoShop.o:
 	.text       start:0x802933EC end:0x80293AEC
 	.ctors      start:0x8052F024 end:0x8052F028
-	.data       start:0x805B52D8 end:0x805B557C
+	.data       start:0x805B52D8 end:0x805B5508
 	.sbss       start:0x806B6118 end:0x806B6120
 	.sdata2     start:0x806BF148 end:0x806BF160
 
 NPC.a/TicoStarRing.o:
 	.text       start:0x80293AEC end:0x80293E64
 	.ctors      start:0x8052F028 end:0x8052F02C
-	.data       start:0x805B557C end:0x805B57BC
+	.data       start:0x805B5508 end:0x805B5608
 	.sbss       start:0x806B6120 end:0x806B6128
 
 NPC.a/TrickRabbit.o:
 	.text       start:0x80293E64 end:0x80296C54
 	.ctors      start:0x8052F02C end:0x8052F030
-	.data       start:0x805B57BC end:0x805B59A0
+	.data       start:0x805B5608 end:0x805B59A0
 	.sbss       start:0x806B6128 end:0x806B6180
 	.sdata2     start:0x806BF160 end:0x806BF1E0
 
@@ -6406,7 +6406,7 @@ NPC.a/TrickRabbitUtil.o:
 NPC.a/CometEventExecutorTimeLimit.o:
 	.text       start:0x80299DD4 end:0x8029A07C
 	.ctors      start:0x8052F03C end:0x8052F040
-	.data       start:0x805B60D0 end:0x805B6214
+	.data       start:0x805B60D0 end:0x805B61E8
 	.sbss       start:0x806B6208 end:0x806B6210
 
 NPC.a/CometEventKeeper.o:
@@ -6415,31 +6415,31 @@ NPC.a/CometEventKeeper.o:
 
 NPC.a/EventDirector.o:
 	.text       start:0x8029A300 end:0x8029A870
-	.data       start:0x805B6214 end:0x805B6238
+	.data       start:0x805B61E8 end:0x805B6238
 
 NPC.a/NPCActor.o:
 	.text       start:0x8029A870 end:0x8029C548
 	.ctors      start:0x8052F040 end:0x8052F044
-	.data       start:0x805B6238 end:0x805B646C
+	.data       start:0x805B6238 end:0x805B6320
 	.bss        start:0x8060AF00 end:0x8060AF38
 	.sbss       start:0x806B6210 end:0x806B6220
 	.sdata2     start:0x806BF2A0 end:0x806BF300
 
 NPC.a/NPCParameter.o:
 	.text       start:0x8029C548 end:0x8029D03C
-	.data       start:0x805B646C end:0x805B64FC
+	.data       start:0x805B6320 end:0x805B64E8
 	.sdata2     start:0x806BF300 end:0x806BF308
 
 NPC.a/NPCDirector.o:
 	.text       start:0x8029D03C end:0x8029D150
-	.data       start:0x805B64FC end:0x805B6530
+	.data       start:0x805B64E8 end:0x805B6530
 
 NPC.a/NPCFunction.o:
 	.text       start:0x8029D150 end:0x8029D258
 
 NPC.a/NPCSupportRail.o:
 	.text       start:0x8029D258 end:0x8029D35C
-	.data       start:0x805B6530 end:0x805B670C
+	.data       start:0x805B6530 end:0x805B65A8
 
 NPC.a/StageStateKeeper.o:
 	.text       start:0x8029D35C end:0x8029D368
@@ -6447,20 +6447,20 @@ NPC.a/StageStateKeeper.o:
 NPC.a/TalkBalloon.o:
 	.text       start:0x8029D368 end:0x8029EB24
 	.ctors      start:0x8052F044 end:0x8052F048
-	.data       start:0x805B670C end:0x805B69D8
+	.data       start:0x805B65A8 end:0x805B69D8
 	.sbss       start:0x806B6220 end:0x806B6240
 	.sdata2     start:0x806BF308 end:0x806BF328
 
 NPC.a/TalkDirector.o:
 	.text       start:0x8029EB24 end:0x802A0400
 	.ctors      start:0x8052F048 end:0x8052F04C
-	.data       start:0x805B69D8 end:0x805B6A9C
+	.data       start:0x805B69D8 end:0x805B6A80
 	.sbss       start:0x806B6240 end:0x806B6258
 	.sdata2     start:0x806BF328 end:0x806BF338
 
 NPC.a/TalkMessageCtrl.o:
 	.text       start:0x802A0400 end:0x802A136C
-	.data       start:0x805B6A9C end:0x805B6C98
+	.data       start:0x805B6A80 end:0x805B6C98
 	.sdata2     start:0x806BF338 end:0x806BF348
 
 NPC.a/TalkMessageInfo.o:
