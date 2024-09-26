@@ -3975,7 +3975,7 @@ MapObj.a/ArrowSwitch.o:
 	.text       start:0x801A6EF8 end:0x801A7CA0
 	.ctors      start:0x8052EC10 end:0x8052EC14
 	.rodata     start:0x80532F20 end:0x80532F40
-	.data       start:0x8058D848 end:0x8058DA44
+	.data       start:0x8058D848 end:0x8058D9B8
 	.sbss       start:0x806B4D18 end:0x806B4D28
 	.sdata2     start:0x806BC628 end:0x806BC650
 
@@ -3983,13 +3983,13 @@ MapObj.a/ArrowSwitchMulti.o:
 	.text       start:0x801A7CA0 end:0x801A85C8
 	.ctors      start:0x8052EC14 end:0x8052EC18
 	.rodata     start:0x80532F40 end:0x80532F60
-	.data       start:0x8058DA44 end:0x8058DB1C
+	.data       start:0x8058D9B8 end:0x8058DB00
 	.sbss       start:0x806B4D28 end:0x806B4D30
 	.sdata2     start:0x806BC650 end:0x806BC678
 
 MapObj.a/ArrowSwitchMultiHolder.o:
 	.text       start:0x801A85C8 end:0x801A87E0
-	.data       start:0x8058DB1C end:0x8058DC70
+	.data       start:0x8058DB00 end:0x8058DC70
 
 MapObj.a/AssemblyBlock.o:
 	.text       start:0x801A87E0 end:0x801A926C
@@ -4002,14 +4002,14 @@ MapObj.a/AstroCore.o:
 	.text       start:0x801A926C end:0x801A9774
 	.ctors      start:0x8052EC1C end:0x8052EC20
 	.rodata     start:0x80532F60 end:0x80532F88
-	.data       start:0x8058DD38 end:0x8058DE8C
+	.data       start:0x8058DD38 end:0x8058DE30
 	.sbss       start:0x806B4D48 end:0x806B4D50
 	.sdata2     start:0x806BC6A8 end:0x806BC6B0
 
 MapObj.a/AstroCountDownPlate.o:
 	.text       start:0x801A9774 end:0x801A9F40
 	.ctors      start:0x8052EC20 end:0x8052EC24
-	.data       start:0x8058DE8C end:0x8058E020
+	.data       start:0x8058DE30 end:0x8058E020
 	.sdata      start:0x806B1D10 end:0x806B1D38
 	.sbss       start:0x806B4D50 end:0x806B4D60
 	.sdata2     start:0x806BC6B0 end:0x806BC6C0
@@ -4017,13 +4017,13 @@ MapObj.a/AstroCountDownPlate.o:
 MapObj.a/AstroDome.o:
 	.text       start:0x801A9F40 end:0x801AA370
 	.ctors      start:0x8052EC24 end:0x8052EC28
-	.data       start:0x8058E020 end:0x8058E0F4
+	.data       start:0x8058E020 end:0x8058E0E0
 	.sbss       start:0x806B4D60 end:0x806B4D70
 
 MapObj.a/AstroDomeAsteroid.o:
 	.text       start:0x801AA370 end:0x801AA60C
 	.ctors      start:0x8052EC28 end:0x8052EC2C
-	.data       start:0x8058E0F4 end:0x8058E1D4
+	.data       start:0x8058E0E0 end:0x8058E180
 	.sbss       start:0x806B4D70 end:0x806B4D78
 	.sdata2     start:0x806BC6C0 end:0x806BC6C8
 
@@ -4031,7 +4031,7 @@ MapObj.a/AstroDomeBlueStar.o:
 	.text       start:0x801AA60C end:0x801ABCF4
 	.ctors      start:0x8052EC2C end:0x8052EC30
 	.rodata     start:0x80532F88 end:0x80532FA0
-	.data       start:0x8058E1D4 end:0x8058E518
+	.data       start:0x8058E180 end:0x8058E518
 	.sbss       start:0x806B4D78 end:0x806B4DA8
 	.sdata2     start:0x806BC6C8 end:0x806BC6E8
 
@@ -4053,13 +4053,13 @@ MapObj.a/AstroDomeComet.o:
 
 MapObj.a/AstroDomeDemoAstroGalaxy.o:
 	.text       start:0x801ACDA0 end:0x801ACED4
-	.data       start:0x8058E6D8 end:0x8058E7D4
+	.data       start:0x8058E6D8 end:0x8058E768
 	.sdata2     start:0x806BC710 end:0x806BC720
 
 MapObj.a/AstroDomeGalaxySelector.o:
 	.text       start:0x801ACED4 end:0x801AD954
 	.ctors      start:0x8052EC38 end:0x8052EC3C
-	.data       start:0x8058E7D4 end:0x8058E904
+	.data       start:0x8058E768 end:0x8058E8F0
 	.sbss       start:0x806B4DC8 end:0x806B4DF0
 	.sdata2     start:0x806BC720 end:0x806BC728
 
@@ -4067,7 +4067,7 @@ MapObj.a/AstroDomeOrbit.o:
 	.text       start:0x801AD954 end:0x801AE3F8
 	.ctors      start:0x8052EC3C end:0x8052EC40
 	.rodata     start:0x80532FD8 end:0x80533018
-	.data       start:0x8058E904 end:0x8058E9E4
+	.data       start:0x8058E8F0 end:0x8058E9B8
 	.sbss       start:0x806B4DF0 end:0x806B4DF8
 	.sdata2     start:0x806BC728 end:0x806BC758
 
@@ -4075,7 +4075,7 @@ MapObj.a/AstroDomeSky.o:
 	.text       start:0x801AE3F8 end:0x801AEE08
 	.ctors      start:0x8052EC40 end:0x8052EC44
 	.rodata     start:0x80533018 end:0x80533048
-	.data       start:0x8058E9E4 end:0x8058EBA0
+	.data       start:0x8058E9B8 end:0x8058EBA0
 	.sbss       start:0x806B4DF8 end:0x806B4E18
 	.sdata2     start:0x806BC758 end:0x806BC780
 
@@ -4102,12 +4102,12 @@ MapObj.a/AstroMapObjFunction.o:
 
 MapObj.a/AstroOverlookObj.o:
 	.text       start:0x801B0A1C end:0x801B0B3C
-	.data       start:0x8058F480 end:0x8058F54C
+	.data       start:0x8058F480 end:0x8058F4F8
 
 MapObj.a/BallOpener.o:
 	.text       start:0x801B0B3C end:0x801B1444
 	.ctors      start:0x8052EC4C end:0x8052EC50
-	.data       start:0x8058F54C end:0x8058F600
+	.data       start:0x8058F4F8 end:0x8058F600
 	.sbss       start:0x806B4E38 end:0x806B4E48
 	.sdata2     start:0x806BC798 end:0x806BC7C8
 
@@ -4121,47 +4121,47 @@ MapObj.a/BallRail.o:
 MapObj.a/Banekiti.o:
 	.text       start:0x801B1DA4 end:0x801B23F0
 	.ctors      start:0x8052EC54 end:0x8052EC58
-	.data       start:0x8058F708 end:0x8058F81C
+	.data       start:0x8058F708 end:0x8058F7B0
 	.sbss       start:0x806B4E58 end:0x806B4E68
 	.sdata2     start:0x806BC7E8 end:0x806BC800
 
 MapObj.a/BattleShipElevator.o:
 	.text       start:0x801B23F0 end:0x801B2714
 	.ctors      start:0x8052EC58 end:0x8052EC5C
-	.data       start:0x8058F81C end:0x8058F994
+	.data       start:0x8058F7B0 end:0x8058F8E0
 	.sbss       start:0x806B4E68 end:0x806B4E78
 
 MapObj.a/BeamGoRoundPlanet.o:
 	.text       start:0x801B2714 end:0x801B2D5C
 	.ctors      start:0x8052EC5C end:0x8052EC60
-	.data       start:0x8058F994 end:0x8058FB2C
+	.data       start:0x8058F8E0 end:0x8058FAB0
 	.sbss       start:0x806B4E78 end:0x806B4E80
 	.sdata2     start:0x806BC800 end:0x806BC810
 
 MapObj.a/BeeFlowerHover.o:
 	.text       start:0x801B2D5C end:0x801B36E4
 	.ctors      start:0x8052EC60 end:0x8052EC64
-	.data       start:0x8058FB2C end:0x8058FC74
+	.data       start:0x8058FAB0 end:0x8058FBF8
 	.sbss       start:0x806B4E80 end:0x806B4E98
 	.sdata2     start:0x806BC810 end:0x806BC830
 
 MapObj.a/BenefitItemInvincible.o:
 	.text       start:0x801B36E4 end:0x801B3DC4
 	.ctors      start:0x8052EC64 end:0x8052EC68
-	.data       start:0x8058FC74 end:0x8058FDA0
+	.data       start:0x8058FBF8 end:0x8058FDA0
 	.sdata      start:0x806B1D48 end:0x806B1D60
 	.sdata2     start:0x806BC830 end:0x806BC850
 
 MapObj.a/BenefitItemLifeUp.o:
 	.text       start:0x801B3DC4 end:0x801B4058
 	.ctors      start:0x8052EC68 end:0x8052EC6C
-	.data       start:0x8058FDA0 end:0x8058FE5C
+	.data       start:0x8058FDA0 end:0x8058FE48
 	.sdata2     start:0x806BC850 end:0x806BC858
 
 MapObj.a/BenefitItemObj.o:
 	.text       start:0x801B4058 end:0x801B5D50
 	.ctors      start:0x8052EC6C end:0x8052EC70
-	.data       start:0x8058FE5C end:0x805900CC
+	.data       start:0x8058FE48 end:0x805900B8
 	.sdata      start:0x806B1D60 end:0x806B1D80
 	.sbss       start:0x806B4E98 end:0x806B4EA0
 	.sdata2     start:0x806BC858 end:0x806BC8A0
@@ -4176,7 +4176,7 @@ MapObj.a/BigBubbleDrawer.o:
 MapObj.a/BigBubbleGenerator.o:
 	.text       start:0x801B6308 end:0x801B6A90
 	.ctors      start:0x8052EC74 end:0x8052EC78
-	.data       start:0x805900CC end:0x805901A8
+	.data       start:0x805900B8 end:0x805901A8
 	.sbss       start:0x806B4EA8 end:0x806B4EB0
 	.sdata2     start:0x806BC8B0 end:0x806BC8C8
 
@@ -4198,25 +4198,25 @@ MapObj.a/BigFan.o:
 
 MapObj.a/BigFanHolder.o:
 	.text       start:0x801B7EF4 end:0x801B81FC
-	.data       start:0x80590368 end:0x80590424
+	.data       start:0x80590368 end:0x80590390
 	.sdata2     start:0x806BC8F8 end:0x806BC908
 
 MapObj.a/BlackHole.o:
 	.text       start:0x801B81FC end:0x801B8D24
 	.ctors      start:0x8052EC7C end:0x8052EC80
-	.data       start:0x80590424 end:0x805904DC
+	.data       start:0x80590390 end:0x805904D0
 	.sbss       start:0x806B4EC0 end:0x806B4ED0
 	.sdata2     start:0x806BC908 end:0x806BC920
 
 MapObj.a/BlueChip.o:
 	.text       start:0x801B8D24 end:0x801B8E20
-	.data       start:0x805904DC end:0x80590584
+	.data       start:0x805904D0 end:0x80590558
 
 MapObj.a/BlueStarCupsulePlanet.o:
 	.text       start:0x801B8E20 end:0x801B9C78
 	.ctors      start:0x8052EC80 end:0x8052EC84
 	.rodata     start:0x80533048 end:0x80533058
-	.data       start:0x80590584 end:0x8059085C
+	.data       start:0x80590558 end:0x80590790
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
 
@@ -4224,7 +4224,7 @@ MapObj.a/BreakableCage.o:
 	.text       start:0x801B9C78 end:0x801BABB8
 	.ctors      start:0x8052EC84 end:0x8052EC88
 	.rodata     start:0x80533058 end:0x80533088
-	.data       start:0x8059085C end:0x80590910
+	.data       start:0x80590790 end:0x80590910
 	.sbss       start:0x806B4EE0 end:0x806B4EF0
 	.sdata2     start:0x806BC938 end:0x806BC968
 
@@ -4243,28 +4243,28 @@ MapObj.a/Candlestand.o:
 	.text       start:0x801BC5EC end:0x801BD31C
 	.ctors      start:0x8052EC8C end:0x8052EC90
 	.rodata     start:0x80533088 end:0x80533118
-	.data       start:0x80590CF8 end:0x80590E7C
+	.data       start:0x80590CF8 end:0x80590DE8
 	.sbss       start:0x806B4F00 end:0x806B4F18
 	.sdata2     start:0x806BC9B8 end:0x806BC9E0
 
 MapObj.a/CannonFortressBreakStep.o:
 	.text       start:0x801BD31C end:0x801BD770
 	.ctors      start:0x8052EC90 end:0x8052EC94
-	.data       start:0x80590E7C end:0x80590F94
+	.data       start:0x80590DE8 end:0x80590F68
 	.sbss       start:0x806B4F18 end:0x806B4F28
 	.sdata2     start:0x806BC9E0 end:0x806BC9E8
 
 MapObj.a/CapsuleCage.o:
 	.text       start:0x801BD770 end:0x801BDC50
 	.ctors      start:0x8052EC94 end:0x8052EC98
-	.data       start:0x80590F94 end:0x805910DC
+	.data       start:0x80590F68 end:0x80591080
 	.sdata      start:0x806B1D80 end:0x806B1D90
 	.sbss       start:0x806B4F28 end:0x806B4F38
 
 MapObj.a/ChipBase.o:
 	.text       start:0x801BDC50 end:0x801BEA88
 	.ctors      start:0x8052EC98 end:0x8052EC9C
-	.data       start:0x805910DC end:0x805911D8
+	.data       start:0x80591080 end:0x805911D8
 	.sbss       start:0x806B4F38 end:0x806B4F50
 	.sdata2     start:0x806BC9E8 end:0x806BCA08
 
@@ -4287,12 +4287,12 @@ MapObj.a/ChipHolder.o:
 
 MapObj.a/ChooChooTrain.o:
 	.text       start:0x801C0464 end:0x801C0C2C
-	.data       start:0x805914A0 end:0x80591544
+	.data       start:0x805914A0 end:0x80591518
 	.sdata2     start:0x806BCA28 end:0x806BCA50
 
 MapObj.a/CircleCoinGroup.o:
 	.text       start:0x801C0C2C end:0x801C1020
-	.data       start:0x80591544 end:0x805915C8
+	.data       start:0x80591518 end:0x805915C8
 	.sdata2     start:0x806BCA50 end:0x806BCA68
 
 MapObj.a/ClipArea.o:
@@ -4304,18 +4304,18 @@ MapObj.a/ClipArea.o:
 MapObj.a/ClipAreaDrop.o:
 	.text       start:0x801C13E8 end:0x801C169C
 	.ctors      start:0x8052ECA4 end:0x8052ECA8
-	.data       start:0x80591648 end:0x8059170C
+	.data       start:0x80591648 end:0x805916D8
 	.sbss       start:0x806B4F78 end:0x806B4F80
 	.sdata2     start:0x806BCA68 end:0x806BCA70
 
 MapObj.a/ClipAreaDropHolder.o:
 	.text       start:0x801C169C end:0x801C18D4
-	.data       start:0x8059170C end:0x80591764
+	.data       start:0x805916D8 end:0x80591730
 
 MapObj.a/ClipAreaDropLaser.o:
 	.text       start:0x801C18D4 end:0x801C1DDC
 	.ctors      start:0x8052ECA8 end:0x8052ECAC
-	.data       start:0x80591764 end:0x80591800
+	.data       start:0x80591730 end:0x80591800
 	.sbss       start:0x806B4F80 end:0x806B4F88
 	.sdata2     start:0x806BCA70 end:0x806BCA88
 
@@ -4350,44 +4350,44 @@ MapObj.a/ClipFieldSwitch.o:
 MapObj.a/CocoNut.o:
 	.text       start:0x801C3884 end:0x801C5F94
 	.ctors      start:0x8052ECAC end:0x8052ECB0
-	.data       start:0x80591BB8 end:0x80591CA4
+	.data       start:0x80591BB8 end:0x80591C90
 	.sbss       start:0x806B4F88 end:0x806B4FA0
 	.sdata2     start:0x806BCAD0 end:0x806BCB60
 
 MapObj.a/CoconutTree.o:
 	.text       start:0x801C5F94 end:0x801C60D8
-	.data       start:0x80591CA4 end:0x80591D44
+	.data       start:0x80591C90 end:0x80591D20
 	.sdata2     start:0x806BCB60 end:0x806BCB68
 
 MapObj.a/CoconutTreeLeaf.o:
 	.text       start:0x801C60D8 end:0x801C6A48
-	.data       start:0x80591D44 end:0x80591E38
+	.data       start:0x80591D20 end:0x80591E38
 	.sdata2     start:0x806BCB68 end:0x806BCBB0
 
 MapObj.a/Coin.o:
 	.text       start:0x801C6A48 end:0x801C863C
 	.ctors      start:0x8052ECB0 end:0x8052ECB4
-	.data       start:0x80591E38 end:0x80592014
+	.data       start:0x80591E38 end:0x80592000
 	.sbss       start:0x806B4FA0 end:0x806B4FC0
 	.sdata2     start:0x806BCBB0 end:0x806BCC00
 
 MapObj.a/CoinBox.o:
 	.text       start:0x801C863C end:0x801C896C
 	.ctors      start:0x8052ECB4 end:0x8052ECB8
-	.data       start:0x80592014 end:0x805920B0
+	.data       start:0x80592000 end:0x805920B0
 	.sbss       start:0x806B4FC0 end:0x806B4FC8
 	.sdata2     start:0x806BCC00 end:0x806BCC10
 
 MapObj.a/CoinGroup.o:
 	.text       start:0x801C896C end:0x801C9118
 	.ctors      start:0x8052ECB8 end:0x8052ECBC
-	.data       start:0x805920B0 end:0x80592234
+	.data       start:0x805920B0 end:0x80592200
 	.sbss       start:0x806B4FC8 end:0x806B4FD8
 	.sdata2     start:0x806BCC10 end:0x806BCC18
 
 MapObj.a/CoinHolder.o:
 	.text       start:0x801C9118 end:0x801C9A10
-	.data       start:0x80592234 end:0x80592258
+	.data       start:0x80592200 end:0x80592258
 	.sdata2     start:0x806BCC18 end:0x806BCC38
 
 MapObj.a/CoinReplica.o:
@@ -4450,11 +4450,11 @@ MapObj.a/CrystalSwitch.o:
 
 MapObj.a/CutBushModelObj.o:
 	.text       start:0x801CD324 end:0x801CD4D8
-	.data       start:0x80592B50 end:0x80592BF4
+	.data       start:0x80592B50 end:0x80592BC8
 
 MapObj.a/DashRing.o:
 	.text       start:0x801CD4D8 end:0x801CDEC0
-	.data       start:0x80592BF4 end:0x80592CA8
+	.data       start:0x80592BC8 end:0x80592CA8
 	.sdata2     start:0x806BCCF8 end:0x806BCD40
 
 MapObj.a/DeadLeaves.o:
@@ -4474,7 +4474,7 @@ MapObj.a/DesertLandMoveSwitch.o:
 MapObj.a/DesertMovingLand.o:
 	.text       start:0x801CEC3C end:0x801CF628
 	.ctors      start:0x8052ECDC end:0x8052ECE0
-	.data       start:0x80592F60 end:0x805930A4
+	.data       start:0x80592F60 end:0x80593060
 	.sdata      start:0x806B1DD8 end:0x806B1DF8
 	.sbss       start:0x806B5050 end:0x806B5070
 	.sdata2     start:0x806BCD70 end:0x806BCD80
@@ -4482,21 +4482,21 @@ MapObj.a/DesertMovingLand.o:
 MapObj.a/DragonHeadFlower.o:
 	.text       start:0x801CF628 end:0x801D00EC
 	.ctors      start:0x8052ECE0 end:0x8052ECE4
-	.data       start:0x805930A4 end:0x805931C0
+	.data       start:0x80593060 end:0x805931C0
 	.sbss       start:0x806B5070 end:0x806B5080
 	.sdata2     start:0x806BCD80 end:0x806BCDC0
 
 MapObj.a/DriftWood.o:
 	.text       start:0x801D00EC end:0x801D085C
 	.ctors      start:0x8052ECE4 end:0x8052ECE8
-	.data       start:0x805931C0 end:0x80593354
+	.data       start:0x805931C0 end:0x80593290
 	.sbss       start:0x806B5080 end:0x806B5090
 	.sdata2     start:0x806BCDC0 end:0x806BCDF8
 
 MapObj.a/DummyDisplayModel.o:
 	.text       start:0x801D085C end:0x801D119C
 	.rodata     start:0x80533150 end:0x80533320
-	.data       start:0x80593354 end:0x80593410
+	.data       start:0x80593290 end:0x80593410
 	.sdata2     start:0x806BCDF8 end:0x806BCE10
 
 MapObj.a/DynamicCollisionObj.o:
@@ -4507,14 +4507,14 @@ MapObj.a/DynamicCollisionObj.o:
 MapObj.a/EarthenPipe.o:
 	.text       start:0x801D1864 end:0x801D301C
 	.ctors      start:0x8052ECE8 end:0x8052ECEC
-	.data       start:0x80593608 end:0x8059379C
+	.data       start:0x80593608 end:0x80593768
 	.sbss       start:0x806B5090 end:0x806B50C0
 	.sdata2     start:0x806BCE18 end:0x806BCE58
 
 MapObj.a/ElectricBall.o:
 	.text       start:0x801D301C end:0x801D3C4C
 	.ctors      start:0x8052ECEC end:0x8052ECF0
-	.data       start:0x8059379C end:0x805938E0
+	.data       start:0x80593768 end:0x805938E0
 	.sbss       start:0x806B50C0 end:0x806B50D0
 	.sdata2     start:0x806BCE58 end:0x806BCE78
 
@@ -4533,7 +4533,7 @@ MapObj.a/ElectricRailHolder.o:
 MapObj.a/ElectricRailMoving.o:
 	.text       start:0x801D6464 end:0x801D80B0
 	.ctors      start:0x8052ECF4 end:0x8052ECF8
-	.data       start:0x80593C58 end:0x80593E84
+	.data       start:0x80593C58 end:0x80593E10
 	.sbss       start:0x806B50E0 end:0x806B50F0
 	.sdata2     start:0x806BCEC8 end:0x806BCF10
 
@@ -4541,14 +4541,14 @@ MapObj.a/ExterminationChecker.o:
 	.text       start:0x801D80B0 end:0x801D8708
 	.ctors      start:0x8052ECF8 end:0x8052ECFC
 	.rodata     start:0x80533320 end:0x80533360
-	.data       start:0x80593E84 end:0x80593F94
+	.data       start:0x80593E10 end:0x80593F40
 	.sbss       start:0x806B50F0 end:0x806B5100
 	.sdata2     start:0x806BCF10 end:0x806BCF18
 
 MapObj.a/FallDownBridge.o:
 	.text       start:0x801D8708 end:0x801D8F4C
 	.ctors      start:0x8052ECFC end:0x8052ED00
-	.data       start:0x80593F94 end:0x80594058
+	.data       start:0x80593F40 end:0x80594058
 	.bss        start:0x8060ADC0 end:0x8060ADD0
 	.sbss       start:0x806B5100 end:0x806B5108
 	.sdata2     start:0x806BCF18 end:0x806BCF60
@@ -4563,7 +4563,7 @@ MapObj.a/FallingSmallRock.o:
 MapObj.a/FallOutFieldDraw.o:
 	.text       start:0x801D924C end:0x801D9AD8
 	.ctors      start:0x8052ED04 end:0x8052ED08
-	.data       start:0x805940F0 end:0x8059418C
+	.data       start:0x805940F0 end:0x80594140
 	.sdata      start:0x806B1DF8 end:0x806B1E10
 	.sbss       start:0x806B5110 end:0x806B5118
 	.sdata2     start:0x806BCF68 end:0x806BCF80
@@ -4571,37 +4571,37 @@ MapObj.a/FallOutFieldDraw.o:
 MapObj.a/FireBar.o:
 	.text       start:0x801D9AD8 end:0x801DA790
 	.ctors      start:0x8052ED08 end:0x8052ED0C
-	.data       start:0x8059418C end:0x80594298
+	.data       start:0x80594140 end:0x80594298
 	.sbss       start:0x806B5118 end:0x806B5120
 	.sdata2     start:0x806BCF80 end:0x806BCFB8
 
 MapObj.a/FirePressure.o:
 	.text       start:0x801DA790 end:0x801DAA24
-	.data       start:0x80594298 end:0x8059436C
+	.data       start:0x80594298 end:0x80594318
 	.sdata2     start:0x806BCFB8 end:0x806BCFC0
 
 MapObj.a/FirePressureBullet.o:
 	.text       start:0x801DAA24 end:0x801DAF30
 	.ctors      start:0x8052ED0C end:0x8052ED10
-	.data       start:0x8059436C end:0x80594414
+	.data       start:0x80594318 end:0x805943F8
 	.sbss       start:0x806B5120 end:0x806B5128
 	.sdata2     start:0x806BCFC0 end:0x806BCFD0
 
 MapObj.a/FirePressureBulletHolder.o:
 	.text       start:0x801DAF30 end:0x801DB09C
-	.data       start:0x80594414 end:0x80594438
+	.data       start:0x805943F8 end:0x80594438
 
 MapObj.a/FirePressureRadiate.o:
 	.text       start:0x801DB09C end:0x801DC004
 	.ctors      start:0x8052ED10 end:0x8052ED14
-	.data       start:0x80594438 end:0x80594664
+	.data       start:0x80594438 end:0x80594618
 	.sbss       start:0x806B5128 end:0x806B5140
 	.sdata2     start:0x806BCFD0 end:0x806BCFF8
 
 MapObj.a/FlameGun.o:
 	.text       start:0x801DC004 end:0x801DC9D0
 	.ctors      start:0x8052ED14 end:0x8052ED18
-	.data       start:0x80594664 end:0x805947F0
+	.data       start:0x80594618 end:0x805947F0
 	.sbss       start:0x806B5140 end:0x806B5158
 	.sdata2     start:0x806BCFF8 end:0x806BD028
 
@@ -4621,21 +4621,21 @@ MapObj.a/FlipPanel.o:
 MapObj.a/Fountain.o:
 	.text       start:0x801DE334 end:0x801DEA5C
 	.ctors      start:0x8052ED1C end:0x8052ED20
-	.data       start:0x80594B80 end:0x80594C8C
+	.data       start:0x80594B80 end:0x80594C18
 	.sbss       start:0x806B5180 end:0x806B5188
 	.sdata2     start:0x806BD068 end:0x806BD090
 
 MapObj.a/FountainBig.o:
 	.text       start:0x801DEA5C end:0x801DF110
 	.ctors      start:0x8052ED20 end:0x8052ED24
-	.data       start:0x80594C8C end:0x80594E74
+	.data       start:0x80594C18 end:0x80594D58
 	.sbss       start:0x806B5188 end:0x806B51A0
 	.sdata2     start:0x806BD090 end:0x806BD0A8
 
 MapObj.a/GCapture.o:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
-	.data       start:0x80594E74 end:0x80594F88
+	.data       start:0x80594D58 end:0x80594F88
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
@@ -4661,34 +4661,34 @@ MapObj.a/GravityLight.o:
 MapObj.a/GravityLightRoad.o:
 	.text       start:0x801E2E60 end:0x801E3750
 	.ctors      start:0x8052ED30 end:0x8052ED34
-	.data       start:0x805952E0 end:0x805954BC
+	.data       start:0x805952E0 end:0x805953F8
 	.sbss       start:0x806B51E0 end:0x806B51F0
 	.sdata2     start:0x806BD178 end:0x806BD198
 
 MapObj.a/GreenCaterpillarBig.o:
 	.text       start:0x801E3750 end:0x801E42DC
 	.ctors      start:0x8052ED34 end:0x8052ED38
-	.data       start:0x805954BC end:0x805956B4
+	.data       start:0x805953F8 end:0x80595600
 	.sbss       start:0x806B51F0 end:0x806B5208
 	.sdata2     start:0x806BD198 end:0x806BD1B8
 
 MapObj.a/HatchWaterPlanet.o:
 	.text       start:0x801E42DC end:0x801E4684
 	.ctors      start:0x8052ED38 end:0x8052ED3C
-	.data       start:0x805956B4 end:0x80595760
+	.data       start:0x80595600 end:0x80595760
 	.sbss       start:0x806B5208 end:0x806B5218
 	.sdata2     start:0x806BD1B8 end:0x806BD1C8
 
 MapObj.a/HeavensDoorDemoObj.o:
 	.text       start:0x801E4684 end:0x801E4C78
 	.ctors      start:0x8052ED3C end:0x8052ED40
-	.data       start:0x80595760 end:0x80595934
+	.data       start:0x80595760 end:0x80595908
 	.sbss       start:0x806B5218 end:0x806B5228
 
 MapObj.a/HipDropMoveObj.o:
 	.text       start:0x801E4C78 end:0x801E5340
 	.ctors      start:0x8052ED40 end:0x8052ED44
-	.data       start:0x80595934 end:0x80595ADC
+	.data       start:0x80595908 end:0x80595A78
 	.sdata      start:0x806B1E30 end:0x806B1EC4
 	.sbss       start:0x806B5228 end:0x806B5238
 	.sdata2     start:0x806BD1C8 end:0x806BD1D8
@@ -4696,14 +4696,14 @@ MapObj.a/HipDropMoveObj.o:
 MapObj.a/HipDropRock.o:
 	.text       start:0x801E5340 end:0x801E59F0
 	.ctors      start:0x8052ED44 end:0x8052ED48
-	.data       start:0x80595ADC end:0x80595BD4
+	.data       start:0x80595A78 end:0x80595B88
 	.sbss       start:0x806B5238 end:0x806B5248
 	.sdata2     start:0x806BD1D8 end:0x806BD1F0
 
 MapObj.a/HipDropSwitch.o:
 	.text       start:0x801E59F0 end:0x801E6224
 	.ctors      start:0x8052ED48 end:0x8052ED4C
-	.data       start:0x80595BD4 end:0x80595D60
+	.data       start:0x80595B88 end:0x80595D60
 	.sbss       start:0x806B5248 end:0x806B5258
 	.sdata2     start:0x806BD1F0 end:0x806BD208
 
@@ -4711,21 +4711,21 @@ MapObj.a/HipDropTimerSwitch.o:
 	.text       start:0x801E6224 end:0x801E6C20
 	.ctors      start:0x8052ED4C end:0x8052ED50
 	.rodata     start:0x80533360 end:0x80533398
-	.data       start:0x80595D60 end:0x80595E7C
+	.data       start:0x80595D60 end:0x80595E18
 	.sbss       start:0x806B5258 end:0x806B5268
 	.sdata2     start:0x806BD208 end:0x806BD220
 
 MapObj.a/HitWallTimerSwitch.o:
 	.text       start:0x801E6C20 end:0x801E73E0
 	.ctors      start:0x8052ED50 end:0x8052ED54
-	.data       start:0x80595E7C end:0x80595FAC
+	.data       start:0x80595E18 end:0x80595F38
 	.sbss       start:0x806B5268 end:0x806B5278
 	.sdata2     start:0x806BD220 end:0x806BD228
 
 MapObj.a/IceStep.o:
 	.text       start:0x801E73E0 end:0x801E79DC
 	.ctors      start:0x8052ED54 end:0x8052ED58
-	.data       start:0x80595FAC end:0x80596048
+	.data       start:0x80595F38 end:0x80596048
 	.sbss       start:0x806B5278 end:0x806B5280
 	.sdata2     start:0x806BD228 end:0x806BD238
 
@@ -4741,26 +4741,26 @@ MapObj.a/InvisiblePolygonObj.o:
 
 MapObj.a/InvisiblePolygonObjGCapture.o:
 	.text       start:0x801E7EC0 end:0x801E7F64
-	.data       start:0x80596178 end:0x8059623C
+	.data       start:0x80596178 end:0x805961F0
 
 MapObj.a/IronCannonShell.o:
 	.text       start:0x801E7F64 end:0x801E8784
 	.ctors      start:0x8052ED58 end:0x8052ED5C
-	.data       start:0x8059623C end:0x80596444
+	.data       start:0x805961F0 end:0x80596408
 	.sbss       start:0x806B5280 end:0x806B5298
 	.sdata2     start:0x806BD250 end:0x806BD268
 
 MapObj.a/ItemAppearStone.o:
 	.text       start:0x801E8784 end:0x801E89D0
 	.ctors      start:0x8052ED5C end:0x8052ED60
-	.data       start:0x80596444 end:0x80596584
+	.data       start:0x80596408 end:0x805964D0
 	.sbss       start:0x806B5298 end:0x806B52A0
 	.sdata2     start:0x806BD268 end:0x806BD270
 
 MapObj.a/ItemBlock.o:
 	.text       start:0x801E89D0 end:0x801E9760
 	.ctors      start:0x8052ED60 end:0x8052ED64
-	.data       start:0x80596584 end:0x805966D8
+	.data       start:0x805964D0 end:0x805966D8
 	.sbss       start:0x806B52A0 end:0x806B52B8
 	.sdata2     start:0x806BD270 end:0x806BD290
 
@@ -4782,7 +4782,7 @@ MapObj.a/JetTurtle.o:
 MapObj.a/JumpHole.o:
 	.text       start:0x801ECF98 end:0x801EDC64
 	.ctors      start:0x8052ED6C end:0x8052ED70
-	.data       start:0x80596C38 end:0x80596E2C
+	.data       start:0x80596C38 end:0x80596CF0
 	.bss        start:0x8060ADD0 end:0x8060ADE8
 	.sbss       start:0x806B52E8 end:0x806B52F8
 	.sdata2     start:0x806BD370 end:0x806BD3B8
@@ -4790,7 +4790,7 @@ MapObj.a/JumpHole.o:
 MapObj.a/JumpStand.o:
 	.text       start:0x801EDC64 end:0x801EE87C
 	.ctors      start:0x8052ED70 end:0x8052ED74
-	.data       start:0x80596E2C end:0x80596F64
+	.data       start:0x80596CF0 end:0x80596F64
 	.sbss       start:0x806B52F8 end:0x806B5308
 	.sdata2     start:0x806BD3B8 end:0x806BD3E8
 
