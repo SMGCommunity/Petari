@@ -4790,14 +4790,14 @@ MapObj.a/JumpHole.o:
 MapObj.a/JumpStand.o:
 	.text       start:0x801EDC64 end:0x801EE87C
 	.ctors      start:0x8052ED70 end:0x8052ED74
-	.data       start:0x80596CF0 end:0x80596F64
+	.data       start:0x80596CF0 end:0x80596EE8
 	.sbss       start:0x806B52F8 end:0x806B5308
 	.sdata2     start:0x806BD3B8 end:0x806BD3E8
 
 MapObj.a/KeySwitch.o:
 	.text       start:0x801EE87C end:0x801EF14C
 	.ctors      start:0x8052ED74 end:0x8052ED78
-	.data       start:0x80596F64 end:0x805970A4
+	.data       start:0x80596EE8 end:0x80597010
 	.sbss       start:0x806B5308 end:0x806B5318
 	.sdata2     start:0x806BD3E8 end:0x806BD418
 
@@ -4805,96 +4805,96 @@ MapObj.a/KillerGunnerSingle.o:
 	.text       start:0x801EF14C end:0x801EF648
 	.ctors      start:0x8052ED78 end:0x8052ED7C
 	.rodata     start:0x805333E8 end:0x80533408
-	.data       start:0x805970A4 end:0x80597184
+	.data       start:0x80597010 end:0x80597160
 	.sbss       start:0x806B5318 end:0x806B5328
 	.sdata2     start:0x806BD418 end:0x806BD430
 
 MapObj.a/LargeChain.o:
 	.text       start:0x801EF648 end:0x801EFD10
 	.ctors      start:0x8052ED7C end:0x8052ED80
-	.data       start:0x80597184 end:0x80597264
+	.data       start:0x80597160 end:0x80597220
 	.sbss       start:0x806B5328 end:0x806B5330
 	.sdata2     start:0x806BD430 end:0x806BD440
 
 MapObj.a/LargeChainParts.o:
 	.text       start:0x801EFD10 end:0x801EFEE8
-	.data       start:0x80597264 end:0x80597324
+	.data       start:0x80597220 end:0x805972E0
 
 MapObj.a/LavaBallRisingPlanetLava.o:
 	.text       start:0x801EFEE8 end:0x801F0260
 	.ctors      start:0x8052ED80 end:0x8052ED84
-	.data       start:0x80597324 end:0x80597424
+	.data       start:0x805972E0 end:0x805973F8
 	.sbss       start:0x806B5330 end:0x806B5340
 	.sdata2     start:0x806BD440 end:0x806BD448
 
 MapObj.a/LavaBreakColumn.o:
 	.text       start:0x801F0260 end:0x801F0594
-	.data       start:0x80597424 end:0x80597610
+	.data       start:0x805973F8 end:0x80597610
 	.sdata2     start:0x806BD448 end:0x806BD458
 
 MapObj.a/LavaFloater.o:
 	.text       start:0x801F0594 end:0x801F0CD0
 	.ctors      start:0x8052ED84 end:0x8052ED88
 	.rodata     start:0x80533408 end:0x80533420
-	.data       start:0x80597610 end:0x805976DC
+	.data       start:0x80597610 end:0x805976A8
 	.sbss       start:0x806B5340 end:0x806B5348
 	.sdata2     start:0x806BD458 end:0x806BD470
 
 MapObj.a/LavaGalaxyParts.o:
 	.text       start:0x801F0CD0 end:0x801F1114
-	.data       start:0x805976DC end:0x805977F0
+	.data       start:0x805976A8 end:0x805977F0
 	.sdata2     start:0x806BD470 end:0x806BD480
 
 MapObj.a/LavaGeyser.o:
 	.text       start:0x801F1114 end:0x801F19E8
 	.ctors      start:0x8052ED88 end:0x8052ED8C
-	.data       start:0x805977F0 end:0x805978E4
+	.data       start:0x805977F0 end:0x805978C8
 	.sbss       start:0x806B5348 end:0x806B5360
 	.sdata2     start:0x806BD480 end:0x806BD498
 
 MapObj.a/LavaHomeSeesaw.o:
 	.text       start:0x801F19E8 end:0x801F1E20
-	.data       start:0x805978E4 end:0x805979CC
+	.data       start:0x805978C8 end:0x80597960
 	.sdata2     start:0x806BD498 end:0x806BD4B0
 
 MapObj.a/LavaHomeVolcanoFlow.o:
 	.text       start:0x801F1E20 end:0x801F2208
 	.ctors      start:0x8052ED8C end:0x8052ED90
-	.data       start:0x805979CC end:0x80597AA4
+	.data       start:0x80597960 end:0x80597A78
 	.sbss       start:0x806B5360 end:0x806B5370
 	.sdata2     start:0x806BD4B0 end:0x806BD4B8
 
 MapObj.a/LavaJamboSunPlanet.o:
 	.text       start:0x801F2208 end:0x801F25E4
 	.ctors      start:0x8052ED90 end:0x8052ED94
-	.data       start:0x80597AA4 end:0x80597C10
+	.data       start:0x80597A78 end:0x80597C10
 	.sbss       start:0x806B5370 end:0x806B5380
 	.sdata2     start:0x806BD4B8 end:0x806BD4D0
 
 MapObj.a/LavaProminence.o:
 	.text       start:0x801F25E4 end:0x801F3720
 	.ctors      start:0x8052ED94 end:0x8052ED98
-	.data       start:0x80597C10 end:0x80597D9C
+	.data       start:0x80597C10 end:0x80597D08
 	.sbss       start:0x806B5380 end:0x806B53A0
 	.sdata2     start:0x806BD4D0 end:0x806BD4F8
 
 MapObj.a/LavaProminenceTriple.o:
 	.text       start:0x801F3720 end:0x801F425C
 	.rodata     start:0x80533420 end:0x80533460
-	.data       start:0x80597D9C end:0x80597E18
+	.data       start:0x80597D08 end:0x80597E18
 	.sdata2     start:0x806BD4F8 end:0x806BD530
 
 MapObj.a/LavaSteam.o:
 	.text       start:0x801F425C end:0x801F4C64
 	.ctors      start:0x8052ED98 end:0x8052ED9C
-	.data       start:0x80597E18 end:0x80597FE4
+	.data       start:0x80597E18 end:0x80597F40
 	.sbss       start:0x806B53A0 end:0x806B53B0
 	.sdata2     start:0x806BD530 end:0x806BD560
 
 MapObj.a/LavaStrangeRock.o:
 	.text       start:0x801F4C64 end:0x801F5254
 	.ctors      start:0x8052ED9C end:0x8052EDA0
-	.data       start:0x80597FE4 end:0x805980A0
+	.data       start:0x80597F40 end:0x805980A0
 	.sbss       start:0x806B53B0 end:0x806B53B8
 	.sdata2     start:0x806BD560 end:0x806BD580
 
