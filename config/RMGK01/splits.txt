@@ -7309,12 +7309,12 @@ Scene.a/GameScenePauseControl.o:
 Scene.a/GameSceneScenarioOpeningCameraState.o:
 	.text       start:0x803402D8 end:0x80340638
 	.ctors      start:0x8052F208 end:0x8052F20C
-	.data       start:0x805D1840 end:0x805D1884
+	.data       start:0x805D1840 end:0x805D1870
 	.sbss       start:0x806B65C8 end:0x806B65D0
 
 Scene.a/IntermissionScene.o:
 	.text       start:0x80340638 end:0x8034091C
-	.data       start:0x805D1884 end:0x805D1958
+	.data       start:0x805D1870 end:0x805D1958
 	.sdata2     start:0x806C0DD0 end:0x806C0DD8
 
 Scene.a/LogoScene.o:
@@ -7362,7 +7362,7 @@ Scene.a/Scene.o:
 
 Scene.a/SceneDataInitializer.o:
 	.text       start:0x803441E8 end:0x803443E8
-	.data       start:0x805D1CB8 end:0x805D20DC
+	.data       start:0x805D1CB8 end:0x805D1CF8
 	.sdata2     start:0x806C0E10 end:0x806C0E18
 
 Scene.a/SceneExecutor.o:
@@ -7378,7 +7378,7 @@ Scene.a/SceneFunction.o:
 Scene.a/SceneObjHolder.o:
 	.text       start:0x8034530C end:0x80346158
 	.ctors      start:0x8052F218 end:0x8052F21C
-	.data       start:0x805D20DC end:0x805D23B8
+	.data       start:0x805D1CF8 end:0x805D23B8
 
 Scene.a/ScenePlayingResult.o:
 	.text       start:0x80346158 end:0x80346348
@@ -7397,7 +7397,7 @@ Scene.a/SceneNameObjMovementController.o:
 
 Scene.a/StageDataHolder.o:
 	.text       start:0x80346C0C end:0x80348C74
-	.data       start:0x805D2520 end:0x805D278C
+	.data       start:0x805D2520 end:0x805D2730
 
 Scene.a/StageFileLoader.o:
 	.text       start:0x80348C74 end:0x80348F4C
@@ -7408,7 +7408,7 @@ Scene.a/StageResourceLoader.o:
 
 Scene.a/StopSceneController.o:
 	.text       start:0x80348F5C end:0x803491EC
-	.data       start:0x805D278C end:0x805D27D8
+	.data       start:0x805D2730 end:0x805D27D8
 
 Screen.a/THPDraw.o:
 	.text       start:0x803491EC end:0x803499F4
