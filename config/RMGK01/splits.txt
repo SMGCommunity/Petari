@@ -8290,13 +8290,13 @@ System.a/FileRipper.o:
 
 System.a/FunctionAsyncExecutor.o:
 	.text       start:0x8039A1E8 end:0x8039AA24
-	.data       start:0x805DB208 end:0x805DB224
+	.data       start:0x805DB208 end:0x805DB218
 	.bss        start:0x8060B318 end:0x8060B330
 
 System.a/GameSystem.o:
 	.text       start:0x8039AA24 end:0x8039B53C
 	.ctors      start:0x8052F36C end:0x8052F370
-	.data       start:0x805DB224 end:0x805DB32C
+	.data       start:0x805DB218 end:0x805DB2B8
 	.bss        start:0x8060B330 end:0x8060B348
 	.sbss       start:0x806B6E18 end:0x806B6E38
 
@@ -8307,7 +8307,7 @@ System.a/GameSystemErrorWatcher.o:
 	.text       start:0x8039B618 end:0x8039BE64
 	.ctors      start:0x8052F370 end:0x8052F374
 	.rodata     start:0x8053B790 end:0x8053B7C8
-	.data       start:0x805DB32C end:0x805DB56C
+	.data       start:0x805DB2B8 end:0x805DB558
 	.sbss       start:0x806B6E38 end:0x806B6E48
 
 System.a/GameSystemException.o:
@@ -8331,7 +8331,7 @@ System.a/GameSystemObjHolder.o:
 System.a/GameSystemStationedArchiveLoader.o:
 	.text       start:0x8039D374 end:0x8039E130
 	.ctors      start:0x8052F374 end:0x8052F378
-	.data       start:0x805DB56C end:0x805DB750
+	.data       start:0x805DB558 end:0x805DB750
 	.sbss       start:0x806B6E60 end:0x806B6E80
 
 System.a/GameSystemSceneController.o:
@@ -8425,7 +8425,7 @@ System.a/ResourceInfo.o:
 
 System.a/ScenarioDataParser.o:
 	.text       start:0x803A8BC0 end:0x803A9DD0
-	.data       start:0x805DBF98 end:0x805DBFDC
+	.data       start:0x805DBF98 end:0x805DBFC0
 	.sdata      start:0x806B25A4 end:0x806B25E0
 
 System.a/ShapePacketUserData.o:
@@ -8434,7 +8434,7 @@ System.a/ShapePacketUserData.o:
 
 System.a/StarPointerOnOffController.o:
 	.text       start:0x803AA288 end:0x803AB42C
-	.data       start:0x805DBFDC end:0x805DD650
+	.data       start:0x805DBFC0 end:0x805DD650
 
 System.a/StationedArchiveLoader.o:
 	.text       start:0x803AB42C end:0x803AB6B0
@@ -8475,12 +8475,12 @@ System.a/WPadPointer.o:
 
 System.a/WPadRumble.o:
 	.text       start:0x803AD6D4 end:0x803ADD4C
-	.data       start:0x805DD650 end:0x805DD6EC
+	.data       start:0x805DD650 end:0x805DD650
 	.sbss       start:0x806B6F28 end:0x806B6F30
 
 System.a/WPadRumbleData.o:
 	.text       start:0x803ADD4C end:0x803ADE0C
-	.data       start:0x805DD6EC end:0x805DE1DC
+	.data       start:0x805DD650 end:0x805DE170
 
 System.a/WPadStick.o:
 	.text       start:0x803ADE0C end:0x803AE034
@@ -8488,7 +8488,7 @@ System.a/WPadStick.o:
 
 System.a/HomeButtonMenuWrapper.o:
 	.text       start:0x803AE034 end:0x803AE1C0
-	.data       start:0x805DE1DC end:0x805DE260
+	.data       start:0x805DE170 end:0x805DE260
 	.sbss       start:0x806B6F30 end:0x806B6F50
 
 System.a/HomeButtonStateNotifier.o:
@@ -8504,7 +8504,7 @@ System.a/ConfigDataMii.o:
 
 System.a/ConfigDataMisc.o:
 	.text       start:0x803AE988 end:0x803AEC34
-	.data       start:0x805DE2A0 end:0x805DE48C
+	.data       start:0x805DE2A0 end:0x805DE478
 
 System.a/FindingLuigiEventScheduler.o:
 	.text       start:0x803AEC34 end:0x803AF334
@@ -8516,7 +8516,7 @@ System.a/GalaxyCometScheduler.o:
 System.a/GalaxyCometState.o:
 	.text       start:0x803AFDC8 end:0x803AFFB4
 	.ctors      start:0x8052F38C end:0x8052F390
-	.data       start:0x805DE48C end:0x805DE668
+	.data       start:0x805DE478 end:0x805DE668
 	.sbss       start:0x806B6F50 end:0x806B6F58
 
 System.a/GalaxyMoveArgument.o:
@@ -8559,11 +8559,11 @@ System.a/GameEventFlagTable.o:
 
 System.a/GameEventFlagChecker.o:
 	.text       start:0x803B4D8C end:0x803B52B0
-	.data       start:0x805DF8C8 end:0x805DF934
+	.data       start:0x805DF8C8 end:0x805DF928
 
 System.a/GameEventFlagStorage.o:
 	.text       start:0x803B52B0 end:0x803B55E0
-	.data       start:0x805DF934 end:0x805DFB60
+	.data       start:0x805DF928 end:0x805DFB60
 
 System.a/GameEventValueChecker.o:
 	.text       start:0x803B55E0 end:0x803B59D4
@@ -8589,7 +8589,7 @@ System.a/LuigiLeftSupplier.o:
 System.a/SaveDataBannerCreator.o:
 	.text       start:0x803B7758 end:0x803B7B18
 	.ctors      start:0x8052F394 end:0x8052F398
-	.data       start:0x805DFD90 end:0x805DFE1C
+	.data       start:0x805DFD90 end:0x805DFDE8
 	.sbss       start:0x806B6F78 end:0x806B6F88
 
 System.a/SaveDataFileAccessor.o:
@@ -8599,13 +8599,13 @@ System.a/SaveDataHandler.o:
 	.text       start:0x803B7C68 end:0x803B8B38
 	.ctors      start:0x8052F398 end:0x8052F39C
 	.rodata     start:0x8053D8A8 end:0x8053D8D0
-	.data       start:0x805DFE1C end:0x805DFF64
+	.data       start:0x805DFDE8 end:0x805DFE88
 	.sbss       start:0x806B6F88 end:0x806B6FA0
 
 System.a/SaveDataHandleSequence.o:
 	.text       start:0x803B8B38 end:0x803BA624
 	.ctors      start:0x8052F39C end:0x8052F3A0
-	.data       start:0x805DFF64 end:0x805E0040
+	.data       start:0x805DFE88 end:0x805E0040
 	.sbss       start:0x806B6FA0 end:0x806B6FD8
 
 System.a/ScenarioProgressTestRun.o:
@@ -8622,18 +8622,18 @@ System.a/StageResultSequenceChecker.o:
 System.a/StarPieceAlmsStorage.o:
 	.text       start:0x803BB7BC end:0x803BB954
 	.rodata     start:0x8053D8D0 end:0x8053D910
-	.data       start:0x805E00A8 end:0x805E0514
+	.data       start:0x805E00A8 end:0x805E00E0
 
 System.a/StorySequenceExecutor.o:
 	.text       start:0x803BB954 end:0x803BD404
 	.ctors      start:0x8052F3A0 end:0x8052F3A4
 	.rodata     start:0x8053D910 end:0x8053EB78
-	.data       start:0x805E0514 end:0x805E080C
+	.data       start:0x805E00E0 end:0x805E07E8
 	.sbss       start:0x806B6FD8 end:0x806B7000
 
 System.a/SysConfigFile.o:
 	.text       start:0x803BD404 end:0x803BD7EC
-	.data       start:0x805E080C end:0x805E0950
+	.data       start:0x805E07E8 end:0x805E0950
 
 System.a/UserFile.o:
 	.text       start:0x803BD7EC end:0x803BDA7C
