@@ -45,7 +45,7 @@ libnw4r_ut.a/ut_ResFont.o:
 libnw4r_ut.a/ut_CharWriter.o:
 	.text       start:0x80008478 end:0x80009D40
 	.bss        start:0x8060A3C0 end:0x8060A3E0
-	.sbss       start:0x806B2E64 end:0x806B2E68
+	.sbss       start:0x806B2E60 end:0x806B2E68
 	.sdata2     start:0x806B7C28 end:0x806B7C48
 
 libnw4r_ut.a/ut_TextWriterBase.o:
@@ -1837,7 +1837,7 @@ Camera.a/CameraFooFighter.o:
 Camera.a/CameraFooFighterPlanet.o:
 	.text       start:0x8009E2FC end:0x8009EBF4
 	.data       start:0x80574C08 end:0x80574C60
-	.sdata      start:0x806B1808 end:0x806B1814
+	.sdata      start:0x806B1808 end:0x806B1808
 	.sdata2     start:0x806B94B0 end:0x806B94D8
 
 Camera.a/CameraFrontAndBack.o:
@@ -1859,7 +1859,7 @@ Camera.a/CameraHolder.o:
 	.text       start:0x800A0844 end:0x800A1468
 	.rodata     start:0x80531620 end:0x80531928
 	.data       start:0x80574D48 end:0x80575660
-	.sdata      start:0x806B1814 end:0x806B1818
+	.sdata      start:0x806B1808 end:0x806B1818
 
 Camera.a/CameraInnerCylinder.o:
 	.text       start:0x800A1468 end:0x800A1BA0
@@ -3781,7 +3781,7 @@ Map.a/PlanetMap.o:
 	.text       start:0x80194790 end:0x80195118
 	.rodata     start:0x80532C80 end:0x80532C98
 	.data       start:0x8058B2E8 end:0x8058B4E8
-	.sdata      start:0x806B1C58 end:0x806B1C6C
+	.sdata      start:0x806B1C58 end:0x806B1C68
 	.sdata2     start:0x806BC318 end:0x806BC328
 
 Map.a/PlanetMapCreator.o:
@@ -3807,7 +3807,7 @@ Map.a/RaceManager.o:
 	.ctors      start:0x8052EBE0 end:0x8052EBE4
 	.rodata     start:0x80532E38 end:0x80532F20
 	.data       start:0x8058BDC0 end:0x8058C000
-	.sdata      start:0x806B1C6C end:0x806B1C88
+	.sdata      start:0x806B1C68 end:0x806B1C88
 	.sbss       start:0x806B4BF8 end:0x806B4C38
 	.sdata2     start:0x806BC348 end:0x806BC358
 
@@ -4689,7 +4689,7 @@ MapObj.a/HipDropMoveObj.o:
 	.text       start:0x801E4C78 end:0x801E5340
 	.ctors      start:0x8052ED40 end:0x8052ED44
 	.data       start:0x80595908 end:0x80595A78
-	.sdata      start:0x806B1E30 end:0x806B1EC4
+	.sdata      start:0x806B1E30 end:0x806B1E40
 	.sbss       start:0x806B5228 end:0x806B5238
 	.sdata2     start:0x806BD1C8 end:0x806BD1D8
 
@@ -4704,6 +4704,7 @@ MapObj.a/HipDropSwitch.o:
 	.text       start:0x801E59F0 end:0x801E6224
 	.ctors      start:0x8052ED48 end:0x8052ED4C
 	.data       start:0x80595B88 end:0x80595D60
+	.sdata      start:0x806B1E40 end:0x806B1E50
 	.sbss       start:0x806B5248 end:0x806B5258
 	.sdata2     start:0x806BD1F0 end:0x806BD208
 
@@ -4712,6 +4713,7 @@ MapObj.a/HipDropTimerSwitch.o:
 	.ctors      start:0x8052ED4C end:0x8052ED50
 	.rodata     start:0x80533360 end:0x80533398
 	.data       start:0x80595D60 end:0x80595E18
+	.sdata      start:0x806B1E50 end:0x806B1E60
 	.sbss       start:0x806B5258 end:0x806B5268
 	.sdata2     start:0x806BD208 end:0x806BD220
 
@@ -4719,6 +4721,7 @@ MapObj.a/HitWallTimerSwitch.o:
 	.text       start:0x801E6C20 end:0x801E73E0
 	.ctors      start:0x8052ED50 end:0x8052ED54
 	.data       start:0x80595E18 end:0x80595F38
+	.sdata      start:0x806B1E60 end:0x806B1E70
 	.sbss       start:0x806B5268 end:0x806B5278
 	.sdata2     start:0x806BD220 end:0x806BD228
 
@@ -4726,6 +4729,7 @@ MapObj.a/IceStep.o:
 	.text       start:0x801E73E0 end:0x801E79DC
 	.ctors      start:0x8052ED54 end:0x8052ED58
 	.data       start:0x80595F38 end:0x80596048
+	.sdata      start:0x806B1E70 end:0x806B1E78
 	.sbss       start:0x806B5278 end:0x806B5280
 	.sdata2     start:0x806BD228 end:0x806BD238
 
@@ -4776,6 +4780,7 @@ MapObj.a/JetTurtle.o:
 	.ctors      start:0x8052ED68 end:0x8052ED6C
 	.rodata     start:0x80533398 end:0x805333E8
 	.data       start:0x80596A40 end:0x80596C38
+	.sdata      start:0x806B1E78 end:0x806B1E80
 	.sbss       start:0x806B52C0 end:0x806B52E8
 	.sdata2     start:0x806BD300 end:0x806BD370
 
@@ -4798,6 +4803,7 @@ MapObj.a/KeySwitch.o:
 	.text       start:0x801EE87C end:0x801EF14C
 	.ctors      start:0x8052ED74 end:0x8052ED78
 	.data       start:0x80596EE8 end:0x80597010
+	.sdata      start:0x806B1E80 end:0x806B1E88
 	.sbss       start:0x806B5308 end:0x806B5318
 	.sdata2     start:0x806BD3E8 end:0x806BD418
 
@@ -4806,6 +4812,7 @@ MapObj.a/KillerGunnerSingle.o:
 	.ctors      start:0x8052ED78 end:0x8052ED7C
 	.rodata     start:0x805333E8 end:0x80533408
 	.data       start:0x80597010 end:0x80597160
+	.sdata      start:0x806B1E88 end:0x806B1E90
 	.sbss       start:0x806B5318 end:0x806B5328
 	.sdata2     start:0x806BD418 end:0x806BD430
 
@@ -4849,6 +4856,7 @@ MapObj.a/LavaGeyser.o:
 	.text       start:0x801F1114 end:0x801F19E8
 	.ctors      start:0x8052ED88 end:0x8052ED8C
 	.data       start:0x805977F0 end:0x805978C8
+	.sdata      start:0x806B1E90 end:0x806B1E98
 	.sbss       start:0x806B5348 end:0x806B5360
 	.sdata2     start:0x806BD480 end:0x806BD498
 
@@ -4875,6 +4883,7 @@ MapObj.a/LavaProminence.o:
 	.text       start:0x801F25E4 end:0x801F3720
 	.ctors      start:0x8052ED94 end:0x8052ED98
 	.data       start:0x80597C10 end:0x80597D08
+	.sdata      start:0x806B1E98 end:0x806B1EA0
 	.sbss       start:0x806B5380 end:0x806B53A0
 	.sdata2     start:0x806BD4D0 end:0x806BD4F8
 
@@ -4901,14 +4910,15 @@ MapObj.a/LavaStrangeRock.o:
 MapObj.a/LotusLeaf.o:
 	.text       start:0x801F5254 end:0x801F586C
 	.ctors      start:0x8052EDA0 end:0x8052EDA4
-	.data       start:0x805980A0 end:0x805981C4
+	.data       start:0x805980A0 end:0x80598158
 	.sbss       start:0x806B53B8 end:0x806B53C8
 	.sdata2     start:0x806BD580 end:0x806BD5B8
 
 MapObj.a/MagicBell.o:
 	.text       start:0x801F586C end:0x801F6310
 	.ctors      start:0x8052EDA4 end:0x8052EDA8
-	.data       start:0x805981C4 end:0x80598298
+	.data       start:0x80598158 end:0x80598298
+	.sdata      start:0x806B1EA0 end:0x806B1EA8
 	.sbss       start:0x806B53C8 end:0x806B53D0
 	.sdata2     start:0x806BD5B8 end:0x806BD600
 
@@ -4922,7 +4932,8 @@ MapObj.a/ManholeCover.o:
 MapObj.a/MapObjActor.o:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
-	.data       start:0x805983C8 end:0x805989E4
+	.data       start:0x805983C8 end:0x80598868
+	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
 	.sdata2     start:0x806BD608 end:0x806BD638
 
@@ -4938,7 +4949,7 @@ MapObj.a/MapObjConnector.o:
 MapObj.a/MarblePlanet.o:
 	.text       start:0x801F8BDC end:0x801F9C7C
 	.ctors      start:0x8052EDB0 end:0x8052EDB4
-	.data       start:0x805989E4 end:0x80598BB8
+	.data       start:0x80598868 end:0x80598BB8
 	.sbss       start:0x806B53F0 end:0x806B5408
 	.sdata2     start:0x806BD650 end:0x806BD6A0
 
@@ -4981,13 +4992,13 @@ MapObj.a/MercatorRailMoveParts.o:
 
 MapObj.a/MercatorRotateParts.o:
 	.text       start:0x801FD030 end:0x801FD3C4
-	.data       start:0x805995D0 end:0x8059968C
+	.data       start:0x805995D0 end:0x80599648
 	.sdata2     start:0x806BD728 end:0x806BD730
 
 MapObj.a/MeteoContainer.o:
 	.text       start:0x801FD3C4 end:0x801FD7A0
 	.ctors      start:0x8052EDC4 end:0x8052EDC8
-	.data       start:0x8059968C end:0x80599868
+	.data       start:0x80599648 end:0x80599868
 	.sbss       start:0x806B5470 end:0x806B5478
 	.sdata2     start:0x806BD730 end:0x806BD738
 
@@ -4995,13 +5006,14 @@ MapObj.a/MeteorStrike.o:
 	.text       start:0x801FD7A0 end:0x801FE770
 	.ctors      start:0x8052EDC8 end:0x8052EDCC
 	.data       start:0x80599868 end:0x80599928
+	.sdata      start:0x806B1EB0 end:0x806B1EB8
 	.sbss       start:0x806B5478 end:0x806B5480
 	.sdata2     start:0x806BD738 end:0x806BD790
 
 MapObj.a/MeteorStrikeLauncher.o:
 	.text       start:0x801FE770 end:0x801FEDEC
 	.ctors      start:0x8052EDCC end:0x8052EDD0
-	.data       start:0x80599928 end:0x80599CD4
+	.data       start:0x80599928 end:0x805999C0
 	.sbss       start:0x806B5480 end:0x806B5488
 	.sdata2     start:0x806BD790 end:0x806BD798
 
@@ -5009,70 +5021,71 @@ MapObj.a/MiniatureGalaxy.o:
 	.text       start:0x801FEDEC end:0x80200808
 	.ctors      start:0x8052EDD0 end:0x8052EDD4
 	.rodata     start:0x80533500 end:0x80533578
-	.data       start:0x80599CD4 end:0x80599DDC
+	.data       start:0x805999C0 end:0x80599DA0
+	.sdata      start:0x806B1EB8 end:0x806B1EC0
 	.sbss       start:0x806B5488 end:0x806B54A0
 	.sdata2     start:0x806BD798 end:0x806BD7D0
 
 MapObj.a/MiniatureGalaxyHolder.o:
 	.text       start:0x80200808 end:0x80200E78
-	.data       start:0x80599DDC end:0x80599ED0
+	.data       start:0x80599DA0 end:0x80599ED0
 
 MapObj.a/MorphItemObjNeo.o:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
 	.data       start:0x80599ED0 end:0x8059A358
-	.sdata      start:0x806B1EC4 end:0x806B1F28
+	.sdata      start:0x806B1EC0 end:0x806B1F28
 	.sbss       start:0x806B54A0 end:0x806B54B8
 	.sdata2     start:0x806BD7D0 end:0x806BD830
 
 MapObj.a/NeedlePlant.o:
 	.text       start:0x80202CF8 end:0x8020332C
 	.ctors      start:0x8052EDD8 end:0x8052EDDC
-	.data       start:0x8059A358 end:0x8059A434
+	.data       start:0x8059A358 end:0x8059A408
 	.sbss       start:0x806B54B8 end:0x806B54C8
 	.sdata2     start:0x806BD830 end:0x806BD848
 
 MapObj.a/NormalMapBase.o:
 	.text       start:0x8020332C end:0x80206910
-	.data       start:0x8059A434 end:0x8059A5DC
+	.data       start:0x8059A408 end:0x8059A5C8
 	.sdata2     start:0x806BD848 end:0x806BD888
 
 MapObj.a/NormalMapTestObj.o:
 	.text       start:0x80206910 end:0x80206A10
-	.data       start:0x8059A5DC end:0x8059A6A0
+	.data       start:0x8059A5C8 end:0x8059A6A0
 
 MapObj.a/Note.o:
 	.text       start:0x80206A10 end:0x8020710C
 	.ctors      start:0x8052EDDC end:0x8052EDE0
-	.data       start:0x8059A6A0 end:0x8059A784
+	.data       start:0x8059A6A0 end:0x8059A770
 	.sbss       start:0x806B54C8 end:0x806B54D8
 	.sdata2     start:0x806BD888 end:0x806BD8A8
 
 MapObj.a/NoteFairy.o:
 	.text       start:0x8020710C end:0x802085A0
 	.ctors      start:0x8052EDE0 end:0x8052EDE4
-	.data       start:0x8059A784 end:0x8059AA0C
+	.data       start:0x8059A770 end:0x8059A960
 	.sbss       start:0x806B54D8 end:0x806B5500
 	.sdata2     start:0x806BD8A8 end:0x806BD8E0
 
 MapObj.a/OceanFloaterLandParts.o:
 	.text       start:0x802085A0 end:0x80208CFC
 	.ctors      start:0x8052EDE4 end:0x8052EDE8
-	.data       start:0x8059AA0C end:0x8059AAB8
+	.data       start:0x8059A960 end:0x8059AAB8
 	.sbss       start:0x806B5500 end:0x806B5510
 	.sdata2     start:0x806BD8E0 end:0x806BD8E8
 
 MapObj.a/OceanSmallTurtle.o:
 	.text       start:0x80208CFC end:0x80209AE4
 	.ctors      start:0x8052EDE8 end:0x8052EDEC
-	.data       start:0x8059AAB8 end:0x8059ACC4
+	.data       start:0x8059AAB8 end:0x8059AC70
 	.sbss       start:0x806B5510 end:0x806B5528
 	.sdata2     start:0x806BD8E8 end:0x806BD928
 
 MapObj.a/OceanWaveFloater.o:
 	.text       start:0x80209AE4 end:0x8020A344
 	.rodata     start:0x80533578 end:0x805335C8
-	.data       start:0x8059ACC4 end:0x8059AD88
+	.data       start:0x8059AC70 end:0x8059AD88
 	.sdata2     start:0x806BD928 end:0x806BD938
 
 MapObj.a/PalmIsland.o:
@@ -5110,14 +5123,14 @@ MapObj.a/PhantomShipHandle.o:
 MapObj.a/PhantomTorch.o:
 	.text       start:0x8020B9EC end:0x8020C3A0
 	.ctors      start:0x8052EDFC end:0x8052EE00
-	.data       start:0x8059B290 end:0x8059B4A4
+	.data       start:0x8059B290 end:0x8059B460
 	.sbss       start:0x806B5558 end:0x806B5568
 	.sdata2     start:0x806BD990 end:0x806BD9B0
 
 MapObj.a/PicketSwitch.o:
 	.text       start:0x8020C3A0 end:0x8020C7E0
 	.ctors      start:0x8052EE00 end:0x8052EE04
-	.data       start:0x8059B4A4 end:0x8059B5E8
+	.data       start:0x8059B460 end:0x8059B5E8
 	.sbss       start:0x806B5568 end:0x806B5578
 	.sdata2     start:0x806BD9B0 end:0x806BD9B8
 
@@ -5148,13 +5161,13 @@ MapObj.a/PomponPlant.o:
 MapObj.a/PowerStar.o:
 	.text       start:0x8020EE70 end:0x80211300
 	.ctors      start:0x8052EE0C end:0x8052EE10
-	.data       start:0x8059BA90 end:0x8059BBBC
+	.data       start:0x8059BA90 end:0x8059BB98
 	.sbss       start:0x806B55A0 end:0x806B55C8
 	.sdata2     start:0x806BDA58 end:0x806BDAE0
 
 MapObj.a/PowerStarAppearPoint.o:
 	.text       start:0x80211300 end:0x80211414
-	.data       start:0x8059BBBC end:0x8059BC38
+	.data       start:0x8059BB98 end:0x8059BC38
 
 MapObj.a/PowerStarHolder.o:
 	.text       start:0x80211414 end:0x80211744
@@ -5163,7 +5176,7 @@ MapObj.a/PowerStarHolder.o:
 MapObj.a/PressureBase.o:
 	.text       start:0x80211744 end:0x8021286C
 	.ctors      start:0x8052EE10 end:0x8052EE14
-	.data       start:0x8059BC68 end:0x8059BFCC
+	.data       start:0x8059BC68 end:0x8059BED0
 	.sbss       start:0x806B55C8 end:0x806B55F0
 	.sdata2     start:0x806BDAE0 end:0x806BDB08
 
@@ -5171,14 +5184,14 @@ MapObj.a/PrizeRing.o:
 	.text       start:0x8021286C end:0x80213084
 	.ctors      start:0x8052EE14 end:0x8052EE18
 	.rodata     start:0x80533600 end:0x80533650
-	.data       start:0x8059BFCC end:0x8059C0DC
+	.data       start:0x8059BED0 end:0x8059C0A8
 	.sbss       start:0x806B55F0 end:0x806B5608
 	.sdata2     start:0x806BDB08 end:0x806BDB18
 
 MapObj.a/PTimerSwitch.o:
 	.text       start:0x80213084 end:0x80213700
 	.ctors      start:0x8052EE18 end:0x8052EE1C
-	.data       start:0x8059C0DC end:0x8059C188
+	.data       start:0x8059C0A8 end:0x8059C188
 	.sbss       start:0x806B5608 end:0x806B5618
 	.sdata2     start:0x806BDB18 end:0x806BDB28
 
@@ -5192,28 +5205,28 @@ MapObj.a/PunchBox.o:
 MapObj.a/PunchingKinoko.o:
 	.text       start:0x80214278 end:0x80215EC0
 	.ctors      start:0x8052EE20 end:0x8052EE24
-	.data       start:0x8059C2B0 end:0x8059C4FC
+	.data       start:0x8059C2B0 end:0x8059C4E8
 	.sbss       start:0x806B5620 end:0x806B5640
 	.sdata2     start:0x806BDB48 end:0x806BDBB0
 
 MapObj.a/PurpleCoinHolder.o:
 	.text       start:0x80215EC0 end:0x80216010
-	.data       start:0x8059C4FC end:0x8059C520
+	.data       start:0x8059C4E8 end:0x8059C520
 
 MapObj.a/PurpleCoinStarter.o:
 	.text       start:0x80216010 end:0x802161D0
-	.data       start:0x8059C520 end:0x8059C5A4
+	.data       start:0x8059C520 end:0x8059C560
 
 MapObj.a/QuarterRollGravityRoomArrow.o:
 	.text       start:0x802161D0 end:0x802166D0
 	.ctors      start:0x8052EE24 end:0x8052EE28
-	.data       start:0x8059C5A4 end:0x8059C6EC
+	.data       start:0x8059C560 end:0x8059C6C8
 	.sbss       start:0x806B5640 end:0x806B5658
 
 MapObj.a/QuestionBoxGalleryObj.o:
 	.text       start:0x802166D0 end:0x80216DA8
 	.ctors      start:0x8052EE28 end:0x8052EE2C
-	.data       start:0x8059C6EC end:0x8059C820
+	.data       start:0x8059C6C8 end:0x8059C820
 	.sbss       start:0x806B5658 end:0x806B5668
 	.sdata2     start:0x806BDBB0 end:0x806BDBC0
 
@@ -5227,13 +5240,13 @@ MapObj.a/QuestionCoin.o:
 MapObj.a/RailBlock.o:
 	.text       start:0x80217BE8 end:0x80218260
 	.ctors      start:0x8052EE30 end:0x8052EE34
-	.data       start:0x8059C960 end:0x8059CB04
+	.data       start:0x8059C960 end:0x8059CAC8
 	.sbss       start:0x806B5678 end:0x806B5688
 	.sdata2     start:0x806BDBF8 end:0x806BDC08
 
 MapObj.a/RailCoin.o:
 	.text       start:0x80218260 end:0x8021857C
-	.data       start:0x8059CB04 end:0x8059CBB0
+	.data       start:0x8059CAC8 end:0x8059CBB0
 	.sdata2     start:0x806BDC08 end:0x806BDC10
 
 MapObj.a/RailMoveObj.o:
@@ -5247,7 +5260,7 @@ MapObj.a/RailMoveObj.o:
 MapObj.a/RainCloud.o:
 	.text       start:0x80219578 end:0x8021A6BC
 	.ctors      start:0x8052EE38 end:0x8052EE3C
-	.data       start:0x8059D1D0 end:0x8059D2C4
+	.data       start:0x8059D1D0 end:0x8059D2A8
 	.sdata      start:0x806B1F30 end:0x806B1F70
 	.sbss       start:0x806B5698 end:0x806B56B0
 	.sdata2     start:0x806BDC18 end:0x806BDC48
@@ -5255,14 +5268,14 @@ MapObj.a/RainCloud.o:
 MapObj.a/ReverseGravityRoomPlanet.o:
 	.text       start:0x8021A6BC end:0x8021AAB8
 	.ctors      start:0x8052EE3C end:0x8052EE40
-	.data       start:0x8059D2C4 end:0x8059D3D4
+	.data       start:0x8059D2A8 end:0x8059D3C0
 	.sbss       start:0x806B56B0 end:0x806B56C0
 	.sdata2     start:0x806BDC48 end:0x806BDC50
 
 MapObj.a/RevolvingWay.o:
 	.text       start:0x8021AAB8 end:0x8021ADD8
 	.ctors      start:0x8052EE40 end:0x8052EE44
-	.data       start:0x8059D3D4 end:0x8059D6EC
+	.data       start:0x8059D3C0 end:0x8059D460
 	.sbss       start:0x806B56C0 end:0x806B56C8
 	.sdata2     start:0x806BDC50 end:0x806BDC70
 
@@ -5270,7 +5283,7 @@ MapObj.a/Rock.o:
 	.text       start:0x8021ADD8 end:0x8021D5F0
 	.ctors      start:0x8052EE44 end:0x8052EE48
 	.rodata     start:0x80533650 end:0x80533678
-	.data       start:0x8059D6EC end:0x8059D7C8
+	.data       start:0x8059D460 end:0x8059D7C8
 	.sbss       start:0x806B56C8 end:0x806B56E0
 	.sdata2     start:0x806BDC70 end:0x806BDD28
 
@@ -5303,13 +5316,13 @@ MapObj.a/RotateMoveObj.o:
 MapObj.a/SandCapsuleInsidePlanet.o:
 	.text       start:0x8021EC08 end:0x8021EEA8
 	.ctors      start:0x8052EE54 end:0x8052EE58
-	.data       start:0x8059DBD8 end:0x8059DD1C
+	.data       start:0x8059DBD8 end:0x8059DCA0
 	.sbss       start:0x806B5710 end:0x806B5718
 
 MapObj.a/SandCapsulePressGround.o:
 	.text       start:0x8021EEA8 end:0x8021F714
 	.ctors      start:0x8052EE58 end:0x8052EE5C
-	.data       start:0x8059DD1C end:0x8059DF10
+	.data       start:0x8059DCA0 end:0x8059DF10
 	.sbss       start:0x806B5718 end:0x806B5740
 	.sdata2     start:0x806BDD50 end:0x806BDD68
 
@@ -5324,41 +5337,41 @@ MapObj.a/SandUpDownEffectObj.o:
 	.text       start:0x80221104 end:0x802219BC
 	.ctors      start:0x8052EE60 end:0x8052EE64
 	.rodata     start:0x80533678 end:0x805336D0
-	.data       start:0x8059E2A8 end:0x8059E3F4
+	.data       start:0x8059E2A8 end:0x8059E3D0
 	.sbss       start:0x806B5760 end:0x806B5778
 	.sdata2     start:0x806BDDC8 end:0x806BDDD8
 
 MapObj.a/SandUpDownTriRock.o:
 	.text       start:0x802219BC end:0x80221F00
 	.ctors      start:0x8052EE64 end:0x8052EE68
-	.data       start:0x8059E3F4 end:0x8059E5A8
+	.data       start:0x8059E3D0 end:0x8059E5A8
 	.sbss       start:0x806B5778 end:0x806B5790
 
 MapObj.a/ScrewSwitch.o:
 	.text       start:0x80221F00 end:0x8022263C
 	.ctors      start:0x8052EE68 end:0x8052EE6C
-	.data       start:0x8059E5A8 end:0x8059E70C
+	.data       start:0x8059E5A8 end:0x8059E660
 	.sbss       start:0x806B5790 end:0x806B57A0
 	.sdata2     start:0x806BDDD8 end:0x806BDDE8
 
 MapObj.a/ScrewSwitchReverse.o:
 	.text       start:0x8022263C end:0x80222D44
 	.ctors      start:0x8052EE6C end:0x8052EE70
-	.data       start:0x8059E70C end:0x8059E82C
+	.data       start:0x8059E660 end:0x8059E7B8
 	.sbss       start:0x806B57A0 end:0x806B57B0
 	.sdata2     start:0x806BDDE8 end:0x806BDE08
 
 MapObj.a/SeaBottomTriplePropeller.o:
 	.text       start:0x80222D44 end:0x80223160
 	.ctors      start:0x8052EE70 end:0x8052EE74
-	.data       start:0x8059E82C end:0x8059E950
+	.data       start:0x8059E7B8 end:0x8059E950
 	.sbss       start:0x806B57B0 end:0x806B57B8
 	.sdata2     start:0x806BDE08 end:0x806BDE10
 
 MapObj.a/SeesawMoveNut.o:
 	.text       start:0x80223160 end:0x80223778
 	.ctors      start:0x8052EE74 end:0x8052EE78
-	.data       start:0x8059E950 end:0x8059EBAC
+	.data       start:0x8059E950 end:0x8059EA00
 	.sbss       start:0x806B57B8 end:0x806B57C0
 	.sdata2     start:0x806BDE10 end:0x806BDE30
 
@@ -5366,14 +5379,14 @@ MapObj.a/Shellfish.o:
 	.text       start:0x80223778 end:0x8022474C
 	.ctors      start:0x8052EE78 end:0x8052EE7C
 	.rodata     start:0x805336D0 end:0x80533728
-	.data       start:0x8059EBAC end:0x8059ED5C
+	.data       start:0x8059EA00 end:0x8059ED00
 	.sbss       start:0x806B57C0 end:0x806B57E0
 	.sdata2     start:0x806BDE30 end:0x806BDE60
 
 MapObj.a/ShockWaveGenerator.o:
 	.text       start:0x8022474C end:0x80224E88
 	.ctors      start:0x8052EE7C end:0x8052EE80
-	.data       start:0x8059ED5C end:0x8059EE08
+	.data       start:0x8059ED00 end:0x8059EE08
 	.sdata      start:0x806B1F70 end:0x806B1F80
 	.sbss       start:0x806B57E0 end:0x806B57F0
 	.sdata2     start:0x806BDE60 end:0x806BDE80
@@ -5388,14 +5401,14 @@ MapObj.a/ShootingStar.o:
 MapObj.a/SideSpikeMoveStep.o:
 	.text       start:0x8022571C end:0x80225CA4
 	.ctors      start:0x8052EE84 end:0x8052EE88
-	.data       start:0x8059EFD8 end:0x8059F0AC
+	.data       start:0x8059EFD8 end:0x8059F098
 	.sbss       start:0x806B5800 end:0x806B5810
 	.sdata2     start:0x806BDEB0 end:0x806BDEC0
 
 MapObj.a/SimpleBreakableObj.o:
 	.text       start:0x80225CA4 end:0x802269FC
 	.ctors      start:0x8052EE88 end:0x8052EE8C
-	.data       start:0x8059F0AC end:0x8059F2F0
+	.data       start:0x8059F098 end:0x8059F2F0
 	.sbss       start:0x806B5810 end:0x806B5820
 	.sdata2     start:0x806BDEC0 end:0x806BDEE0
 
@@ -5409,7 +5422,7 @@ MapObj.a/SimpleFloaterObj.o:
 	.text       start:0x80226C54 end:0x80226F50
 	.ctors      start:0x8052EE90 end:0x8052EE94
 	.data       start:0x8059F3B0 end:0x8059F440
-	.sdata      start:0x806B1F80 end:0x806B1FA4
+	.sdata      start:0x806B1F80 end:0x806B1F88
 	.sbss       start:0x806B5828 end:0x806B5830
 	.sdata2     start:0x806BDEE0 end:0x806BDEF0
 
@@ -5432,26 +5445,26 @@ MapObj.a/SimpleTimerObj.o:
 
 MapObj.a/SmallStone.o:
 	.text       start:0x80227DE8 end:0x8022944C
-	.data       start:0x8059FE00 end:0x8059FF14
+	.data       start:0x8059FE00 end:0x8059FEF0
 	.sdata2     start:0x806BDF00 end:0x806BDF78
 
 MapObj.a/SnowCapsulePlanet.o:
 	.text       start:0x8022944C end:0x802296E8
 	.ctors      start:0x8052EE98 end:0x8052EE9C
-	.data       start:0x8059FF14 end:0x805A000C
+	.data       start:0x8059FEF0 end:0x8059FFD8
 	.sbss       start:0x806B5838 end:0x806B5858
 
 MapObj.a/SnowFloor.o:
 	.text       start:0x802296E8 end:0x8022B968
 	.ctors      start:0x8052EE9C end:0x8052EEA0
-	.data       start:0x805A000C end:0x805A00BC
-	.sdata      start:0x806B1FA4 end:0x806B1FF0
+	.data       start:0x8059FFD8 end:0x805A0088
+	.sdata      start:0x806B1F88 end:0x806B1FF0
 	.sdata2     start:0x806BDF78 end:0x806BDFD8
 
 MapObj.a/SnowFloorTile.o:
 	.text       start:0x8022B968 end:0x8022D3F0
 	.ctors      start:0x8052EEA0 end:0x8052EEA4
-	.data       start:0x805A00BC end:0x805A01B0
+	.data       start:0x805A0088 end:0x805A01B0
 	.sdata      start:0x806B1FF0 end:0x806B2020
 	.sdata2     start:0x806BDFD8 end:0x806BE030
 
@@ -5464,21 +5477,21 @@ MapObj.a/SnowMan.o:
 
 MapObj.a/SnowplowSwitch.o:
 	.text       start:0x8022DCA0 end:0x8022DE74
-	.data       start:0x805A02A0 end:0x805A0344
+	.data       start:0x805A02A0 end:0x805A0318
 	.sdata2     start:0x806BE040 end:0x806BE048
 
 MapObj.a/SoundEmitter.o:
 	.text       start:0x8022DE74 end:0x8022E260
 	.ctors      start:0x8052EEA8 end:0x8052EEAC
 	.rodata     start:0x805337B0 end:0x80533858
-	.data       start:0x805A0344 end:0x805A04A4
+	.data       start:0x805A0318 end:0x805A0438
 	.sbss       start:0x806B5878 end:0x806B5880
 	.sdata2     start:0x806BE048 end:0x806BE050
 
 MapObj.a/SpaceMine.o:
 	.text       start:0x8022E260 end:0x8022E950
 	.ctors      start:0x8052EEAC end:0x8052EEB0
-	.data       start:0x805A04A4 end:0x805A0608
+	.data       start:0x805A0438 end:0x805A0608
 	.sbss       start:0x806B5880 end:0x806B5888
 	.sdata2     start:0x806BE050 end:0x806BE068
 
@@ -5492,26 +5505,26 @@ MapObj.a/SpaceShipStep.o:
 MapObj.a/SphereRailDash.o:
 	.text       start:0x8022EF24 end:0x8022F560
 	.ctors      start:0x8052EEB4 end:0x8052EEB8
-	.data       start:0x805A06E0 end:0x805A079C
+	.data       start:0x805A06E0 end:0x805A0778
 	.sbss       start:0x806B5898 end:0x806B58A0
 	.sdata2     start:0x806BE080 end:0x806BE0A8
 
 MapObj.a/SpiderCoin.o:
 	.text       start:0x8022F560 end:0x8022FE24
 	.ctors      start:0x8052EEB8 end:0x8052EEBC
-	.data       start:0x805A079C end:0x805A0874
+	.data       start:0x805A0778 end:0x805A0848
 	.sbss       start:0x806B58A0 end:0x806B58B0
 	.sdata2     start:0x806BE0A8 end:0x806BE0E0
 
 MapObj.a/SpiderMapBlock.o:
 	.text       start:0x8022FE24 end:0x802300FC
-	.data       start:0x805A0874 end:0x805A0920
+	.data       start:0x805A0848 end:0x805A0920
 	.sdata2     start:0x806BE0E0 end:0x806BE0E8
 
 MapObj.a/SpiderThread.o:
 	.text       start:0x802300FC end:0x8023174C
 	.rodata     start:0x80533858 end:0x805338C0
-	.data       start:0x805A0920 end:0x805A0C0C
+	.data       start:0x805A0920 end:0x805A09B8
 	.sdata2     start:0x806BE0E8 end:0x806BE118
 
 MapObj.a/SpiderThreadHangInfo.o:
@@ -5542,7 +5555,7 @@ MapObj.a/SpiderThreadWindCtrl.o:
 MapObj.a/SpinDriver.o:
 	.text       start:0x8023493C end:0x802369B4
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
-	.data       start:0x805A0C0C end:0x805A0D30
+	.data       start:0x805A09B8 end:0x805A0D30
 	.sdata      start:0x806B2020 end:0x806B2068
 	.sbss       start:0x806B58C0 end:0x806B58E0
 	.sdata2     start:0x806BE1C0 end:0x806BE228
@@ -5641,20 +5654,20 @@ MapObj.a/StarPieceMother.o:
 
 MapObj.a/StarPieceSpot.o:
 	.text       start:0x80244ADC end:0x80244E18
-	.data       start:0x805A3F58 end:0x805A405C
+	.data       start:0x805A3F58 end:0x805A4008
 	.sdata2     start:0x806BE4F0 end:0x806BE500
 
 MapObj.a/SubmarineSteam.o:
 	.text       start:0x80244E18 end:0x80245538
 	.ctors      start:0x8052EEEC end:0x8052EEF0
-	.data       start:0x805A405C end:0x805A4174
+	.data       start:0x805A4008 end:0x805A40F8
 	.sbss       start:0x806B5980 end:0x806B5988
 	.sdata2     start:0x806BE500 end:0x806BE530
 
 MapObj.a/SubmarineVolcanoBigColumn.o:
 	.text       start:0x80245538 end:0x80245A68
 	.ctors      start:0x8052EEF0 end:0x8052EEF4
-	.data       start:0x805A4174 end:0x805A4210
+	.data       start:0x805A40F8 end:0x805A4210
 	.sbss       start:0x806B5988 end:0x806B5990
 	.sdata2     start:0x806BE530 end:0x806BE540
 
@@ -5673,30 +5686,30 @@ MapObj.a/SuperSpinDriver.o:
 MapObj.a/SurprisedGalaxy.o:
 	.text       start:0x80248C58 end:0x8024904C
 	.ctors      start:0x8052EEF8 end:0x8052EEFC
-	.data       start:0x805A4778 end:0x805A48B4
+	.data       start:0x805A4778 end:0x805A4810
 	.sbss       start:0x806B59C0 end:0x806B59C8
 	.sdata2     start:0x806BE5B0 end:0x806BE5B8
 
 MapObj.a/Swinger.o:
 	.text       start:0x8024904C end:0x80249440
-	.sdata2     start:0x806BE5B8 end:0x806BE5CC
+	.sdata2     start:0x806BE5B8 end:0x806BE5C8
 
 MapObj.a/SwingLight.o:
 	.text       start:0x80249440 end:0x80249B3C
-	.data       start:0x805A48B4 end:0x805A4A4C
-	.sdata2     start:0x806BE5CC end:0x806BE5D0
+	.data       start:0x805A4810 end:0x805A4A00
+	.sdata2     start:0x806BE5C8 end:0x806BE5D0
 
 MapObj.a/SwitchBox.o:
 	.text       start:0x80249B3C end:0x8024A284
 	.ctors      start:0x8052EEFC end:0x8052EF00
-	.data       start:0x805A4A4C end:0x805A4B24
+	.data       start:0x805A4A00 end:0x805A4AE8
 	.sbss       start:0x806B59C8 end:0x806B59D0
 	.sdata2     start:0x806BE5D0 end:0x806BE5E0
 
 MapObj.a/TimeAppearObj.o:
 	.text       start:0x8024A284 end:0x8024A53C
 	.ctors      start:0x8052EF00 end:0x8052EF04
-	.data       start:0x805A4B24 end:0x805A4C28
+	.data       start:0x805A4AE8 end:0x805A4C28
 	.sbss       start:0x806B59D0 end:0x806B59D8
 
 MapObj.a/TimerMoveWall.o:
@@ -5716,13 +5729,13 @@ MapObj.a/TrampleStar.o:
 
 MapObj.a/TransparentWall.o:
 	.text       start:0x8024CB14 end:0x8024CD84
-	.data       start:0x805A4EE8 end:0x805A514C
+	.data       start:0x805A4EE8 end:0x805A4F60
 
 MapObj.a/TreasureBoxCracked.o:
 	.text       start:0x8024CD84 end:0x8024E0E0
 	.ctors      start:0x8052EF0C end:0x8052EF10
 	.rodata     start:0x80534C80 end:0x80534D40
-	.data       start:0x805A514C end:0x805A52B0
+	.data       start:0x805A4F60 end:0x805A52B0
 	.sbss       start:0x806B59F8 end:0x806B5A10
 	.sdata2     start:0x806BE638 end:0x806BE660
 
@@ -5736,20 +5749,20 @@ MapObj.a/TreasureSpot.o:
 MapObj.a/Tsukidashikun.o:
 	.text       start:0x8024E55C end:0x8024EBCC
 	.ctors      start:0x8052EF14 end:0x8052EF18
-	.data       start:0x805A53F8 end:0x805A554C
+	.data       start:0x805A53F8 end:0x805A5528
 	.sbss       start:0x806B5A20 end:0x806B5A40
 	.sdata2     start:0x806BE678 end:0x806BE688
 
 MapObj.a/TypicalDoor.o:
 	.text       start:0x8024EBCC end:0x8024F48C
 	.ctors      start:0x8052EF18 end:0x8052EF1C
-	.data       start:0x805A554C end:0x805A5844
+	.data       start:0x805A5528 end:0x805A5768
 	.sbss       start:0x806B5A40 end:0x806B5A50
 
 MapObj.a/UFOBase.o:
 	.text       start:0x8024F48C end:0x8024FEE0
 	.ctors      start:0x8052EF1C end:0x8052EF20
-	.data       start:0x805A5844 end:0x805A5A08
+	.data       start:0x805A5768 end:0x805A5A08
 	.sbss       start:0x806B5A50 end:0x806B5A60
 	.sdata2     start:0x806BE688 end:0x806BE6A0
 
@@ -5762,13 +5775,13 @@ MapObj.a/UFOKinoko.o:
 MapObj.a/ValveSwitch.o:
 	.text       start:0x80250478 end:0x80250C1C
 	.ctors      start:0x8052EF24 end:0x8052EF28
-	.data       start:0x805A5C20 end:0x805A5D9C
+	.data       start:0x805A5C20 end:0x805A5CD8
 	.sbss       start:0x806B5A70 end:0x806B5A80
 	.sdata2     start:0x806BE6A0 end:0x806BE6B8
 
 MapObj.a/WarpPod.o:
 	.text       start:0x80250C1C end:0x802524FC
-	.data       start:0x805A5D9C end:0x805A5EC0
+	.data       start:0x805A5CD8 end:0x805A5EC0
 	.sdata      start:0x806B20A0 end:0x806B20D8
 	.sbss       start:0x806B5A80 end:0x806B5A88
 	.sdata2     start:0x806BE6B8 end:0x806BE6E0
@@ -5776,39 +5789,39 @@ MapObj.a/WarpPod.o:
 MapObj.a/WatchTowerRotateStep.o:
 	.text       start:0x802524FC end:0x80252B80
 	.ctors      start:0x8052EF28 end:0x8052EF2C
-	.data       start:0x805A5EC0 end:0x805A5FAC
+	.data       start:0x805A5EC0 end:0x805A5F68
 	.sbss       start:0x806B5A88 end:0x806B5A98
 	.sdata2     start:0x806BE6E0 end:0x806BE708
 
 MapObj.a/WaterfallCaveCover.o:
 	.text       start:0x80252B80 end:0x80252E58
 	.ctors      start:0x8052EF2C end:0x8052EF30
-	.data       start:0x805A5FAC end:0x805A60DC
+	.data       start:0x805A5F68 end:0x805A6060
 	.sbss       start:0x806B5A98 end:0x806B5AA0
 	.sdata2     start:0x806BE708 end:0x806BE718
 
 MapObj.a/WaterLeakPipe.o:
 	.text       start:0x80252E58 end:0x80253680
 	.ctors      start:0x8052EF30 end:0x8052EF34
-	.data       start:0x805A60DC end:0x805A6218
+	.data       start:0x805A6060 end:0x805A6218
 	.sbss       start:0x806B5AA0 end:0x806B5AB0
 	.sdata2     start:0x806BE718 end:0x806BE728
 
 MapObj.a/WaterPressure.o:
 	.text       start:0x80253680 end:0x802538E0
-	.data       start:0x805A6218 end:0x805A637C
+	.data       start:0x805A6218 end:0x805A6298
 	.sdata2     start:0x806BE728 end:0x806BE730
 
 MapObj.a/WaterPressureBullet.o:
 	.text       start:0x802538E0 end:0x802545C8
 	.ctors      start:0x8052EF34 end:0x8052EF38
-	.data       start:0x805A637C end:0x805A6434
+	.data       start:0x805A6298 end:0x805A6418
 	.sbss       start:0x806B5AB0 end:0x806B5AB8
 	.sdata2     start:0x806BE730 end:0x806BE758
 
 MapObj.a/WaterPressureBulletHolder.o:
 	.text       start:0x802545C8 end:0x80254734
-	.data       start:0x805A6434 end:0x805A6498
+	.data       start:0x805A6418 end:0x805A6498
 
 MapObj.a/WaveFloatingForce.o:
 	.text       start:0x80254734 end:0x802549D0
@@ -5816,30 +5829,30 @@ MapObj.a/WaveFloatingForce.o:
 
 MapObj.a/WhirlPool.o:
 	.text       start:0x802549D0 end:0x80255A48
-	.data       start:0x805A6498 end:0x805A65C4
+	.data       start:0x805A6498 end:0x805A6510
 	.sdata2     start:0x806BE778 end:0x806BE7D0
 
 MapObj.a/WoodBox.o:
 	.text       start:0x80255A48 end:0x802565E4
 	.ctors      start:0x8052EF38 end:0x8052EF3C
-	.data       start:0x805A65C4 end:0x805A66D0
+	.data       start:0x805A6510 end:0x805A66D0
 	.sbss       start:0x806B5AB8 end:0x806B5AC8
 	.sdata2     start:0x806BE7D0 end:0x806BE7F0
 
 MapObj.a/WormEatenPlanet.o:
 	.text       start:0x802565E4 end:0x80256E38
 	.ctors      start:0x8052EF3C end:0x8052EF40
-	.data       start:0x805A66D0 end:0x805A6894
+	.data       start:0x805A66D0 end:0x805A6888
 	.sbss       start:0x806B5AC8 end:0x806B5AD8
 	.sdata2     start:0x806BE7F0 end:0x806BE7F8
 
 MapObj.a/YellowChip.o:
 	.text       start:0x80256E38 end:0x80256ED8
-	.data       start:0x805A6894 end:0x805A6924
+	.data       start:0x805A6888 end:0x805A6910
 
 MapObj.a/MapParts.o:
 	.text       start:0x80256ED8 end:0x8025726C
-	.data       start:0x805A6924 end:0x805A69A8
+	.data       start:0x805A6910 end:0x805A69A8
 	.sdata      start:0x806B20D8 end:0x806B2110
 	.sdata2     start:0x806BE7F8 end:0x806BE808
 
@@ -5865,7 +5878,7 @@ MapObj.a/FloaterFloatingForceTypeNormal.o:
 MapObj.a/FloaterFloatingForceTypeSpring.o:
 	.text       start:0x80258D4C end:0x80259524
 	.ctors      start:0x8052EF48 end:0x8052EF4C
-	.data       start:0x805A6B90 end:0x805A6E7C
+	.data       start:0x805A6B90 end:0x805A6E50
 	.sbss       start:0x806B5AF8 end:0x806B5B08
 	.sdata2     start:0x806BE848 end:0x806BE860
 
@@ -5876,20 +5889,20 @@ MapObj.a/FloaterFunction.o:
 MapObj.a/LavaHomeSeesawRotator.o:
 	.text       start:0x802596CC end:0x8025A8FC
 	.ctors      start:0x8052EF4C end:0x8052EF50
-	.data       start:0x805A6E7C end:0x805A6F24
+	.data       start:0x805A6E50 end:0x805A6F18
 	.sbss       start:0x806B5B08 end:0x806B5B20
 	.sdata2     start:0x806BE860 end:0x806BE8B0
 
 MapObj.a/MapPartsAppearController.o:
 	.text       start:0x8025A8FC end:0x8025AF40
 	.ctors      start:0x8052EF50 end:0x8052EF54
-	.data       start:0x805A6F24 end:0x805A6FB4
+	.data       start:0x805A6F18 end:0x805A6FA8
 	.sbss       start:0x806B5B20 end:0x806B5B28
 
 MapObj.a/MapPartsBreaker.o:
 	.text       start:0x8025AF40 end:0x8025B194
 	.ctors      start:0x8052EF54 end:0x8052EF58
-	.data       start:0x805A6FB4 end:0x805A6FF0
+	.data       start:0x805A6FA8 end:0x805A6FF0
 	.sbss       start:0x806B5B28 end:0x806B5B38
 	.sdata2     start:0x806BE8B0 end:0x806BE8C0
 
@@ -5902,53 +5915,53 @@ MapObj.a/MapPartsFloatingForce.o:
 
 MapObj.a/MapPartsFunction.o:
 	.text       start:0x8025BCE4 end:0x8025BEEC
-	.data       start:0x805A7080 end:0x805A70D4
+	.data       start:0x805A7080 end:0x805A70B8
 
 MapObj.a/MapPartsRailGuideDrawer.o:
 	.text       start:0x8025BEEC end:0x8025C4D0
 	.ctors      start:0x8052EF5C end:0x8052EF60
-	.data       start:0x805A70D4 end:0x805A7178
+	.data       start:0x805A70B8 end:0x805A7178
 	.sbss       start:0x806B5B48 end:0x806B5B58
 	.sdata2     start:0x806BE8F0 end:0x806BE900
 
 MapObj.a/MapPartsRailGuideHolder.o:
 	.text       start:0x8025C4D0 end:0x8025C69C
-	.data       start:0x805A7178 end:0x805A71AC
+	.data       start:0x805A7178 end:0x805A71A0
 
 MapObj.a/MapPartsRailGuidePoint.o:
 	.text       start:0x8025C69C end:0x8025C8A0
-	.data       start:0x805A71AC end:0x805A7234
+	.data       start:0x805A71A0 end:0x805A7228
 	.sdata2     start:0x806BE900 end:0x806BE910
 
 MapObj.a/MapPartsRailMover.o:
 	.text       start:0x8025C8A0 end:0x8025DC7C
 	.ctors      start:0x8052EF60 end:0x8052EF64
-	.data       start:0x805A7234 end:0x805A7348
+	.data       start:0x805A7228 end:0x805A7348
 	.sbss       start:0x806B5B58 end:0x806B5B88
 	.sdata2     start:0x806BE910 end:0x806BE938
 
 MapObj.a/MapPartsRailPointPassChecker.o:
 	.text       start:0x8025DC7C end:0x8025DEA4
-	.data       start:0x805A7348 end:0x805A738C
+	.data       start:0x805A7348 end:0x805A7380
 
 MapObj.a/MapPartsRailPosture.o:
 	.text       start:0x8025DEA4 end:0x8025E28C
 	.ctors      start:0x8052EF64 end:0x8052EF68
-	.data       start:0x805A738C end:0x805A73FC
+	.data       start:0x805A7380 end:0x805A73F0
 	.sbss       start:0x806B5B88 end:0x806B5B90
 	.sdata2     start:0x806BE938 end:0x806BE948
 
 MapObj.a/MapPartsRailRotator.o:
 	.text       start:0x8025E28C end:0x8025EC6C
 	.ctors      start:0x8052EF68 end:0x8052EF6C
-	.data       start:0x805A73FC end:0x805A7484
+	.data       start:0x805A73F0 end:0x805A7478
 	.sbss       start:0x806B5B90 end:0x806B5BA0
 	.sdata2     start:0x806BE948 end:0x806BE960
 
 MapObj.a/MapPartsRotator.o:
 	.text       start:0x8025EC6C end:0x8025F98C
 	.ctors      start:0x8052EF6C end:0x8052EF70
-	.data       start:0x805A7484 end:0x805A7530
+	.data       start:0x805A7478 end:0x805A7530
 	.sbss       start:0x806B5BA0 end:0x806B5BB8
 	.sdata2     start:0x806BE960 end:0x806BE988
 
@@ -5992,14 +6005,14 @@ NameObj.a/NameObjCategoryList.o:
 
 NameObj.a/NameObjExecuteHolder.o:
 	.text       start:0x80262160 end:0x80262FEC
-	.data       start:0x805A77D8 end:0x805ADFF4
+	.data       start:0x805A77D8 end:0x805A7800
 	.sbss       start:0x806B5BE8 end:0x806B5BF0
 
 NameObj.a/NameObjFactory.o:
 	.text       start:0x80262FEC end:0x8026BD84
 	.ctors      start:0x8052EF78 end:0x8052EF7C
 	.rodata     start:0x80534F00 end:0x80539718
-	.data       start:0x805ADFF4 end:0x805AE740
+	.data       start:0x805A7800 end:0x805AE740
 	.sbss       start:0x806B5BF0 end:0x806B5C28
 	.sdata2     start:0x806BE9E8 end:0x806BEA08
 
@@ -7075,7 +7088,7 @@ Player.a/PlayerEventGhostRaceDown.o:
 RhythmLib.a/AudRhythmSeqParser.o:
 	.text       start:0x80316D30 end:0x80317C08
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B8 end:0x806B62C4
+	.sbss       start:0x806B62B8 end:0x806B62D0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 RhythmLib.a/AudBgmTempoAdjuster.o:
@@ -7087,7 +7100,7 @@ RhythmLib.a/AudMeTrack.o:
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
 	.rodata     start:0x80539CE8 end:0x80539DB8
 	.bss        start:0x8060AF38 end:0x8060AFB0
-	.sbss       start:0x806B62C4 end:0x806B62D0
+	.sbss       start:0x806B62D0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 RhythmLib.a/AudMeChannelMgr.o:
@@ -7848,7 +7861,7 @@ Screen.a/MiiSelectIcon.o:
 	.rodata     start:0x8053A7C8 end:0x8053A7E0
 	.data       start:0x805D71C0 end:0x805D7240
 	.sbss       start:0x806B69D0 end:0x806B69E8
-	.sdata2     start:0x806C1110 end:0x806C1124
+	.sdata2     start:0x806C1110 end:0x806C1120
 
 Screen.a/MissLayout.o:
 	.text       start:0x80370D0C end:0x80370FC0
@@ -7861,7 +7874,7 @@ Screen.a/MoviePlayerSimple.o:
 	.ctors      start:0x8052F2CC end:0x8052F2D0
 	.data       start:0x805D7318 end:0x805D73A8
 	.sbss       start:0x806B69F8 end:0x806B6A10
-	.sdata2     start:0x806C1124 end:0x806C1138
+	.sdata2     start:0x806C1120 end:0x806C1138
 
 Screen.a/MoviePlayingSequence.o:
 	.text       start:0x80371B30 end:0x803729B8
@@ -8198,7 +8211,7 @@ Screen.a/YesNoController.o:
 	.text       start:0x80393388 end:0x80393AC8
 	.ctors      start:0x8052F358 end:0x8052F35C
 	.data       start:0x805DB008 end:0x805DB0F8
-	.sdata      start:0x806B2530 end:0x806B257C
+	.sdata      start:0x806B2530 end:0x806B2540
 	.sbss       start:0x806B6DC0 end:0x806B6DD8
 
 Screen.a/YesNoLayout.o:
@@ -8278,6 +8291,7 @@ System.a/FileHolder.o:
 
 System.a/FileLoader.o:
 	.text       start:0x80399330 end:0x803998B8
+	.sdata      start:0x806B2540 end:0x806B2548
 
 System.a/FileLoaderThread.o:
 	.text       start:0x803998B8 end:0x80399AD4
@@ -8338,6 +8352,7 @@ System.a/GameSystemSceneController.o:
 	.text       start:0x8039E130 end:0x8039F628
 	.ctors      start:0x8052F378 end:0x8052F37C
 	.data       start:0x805DB750 end:0x805DB8B0
+	.sdata      start:0x806B2548 end:0x806B2550
 	.sbss       start:0x806B6E80 end:0x806B6EB0
 
 System.a/GameSystemResetAndPowerProcess.o:
@@ -8350,16 +8365,19 @@ System.a/GameSystemResetAndPowerProcess.o:
 
 System.a/HeapMemoryWatcher.o:
 	.text       start:0x8039FF74 end:0x803A04D8
+	.sdata      start:0x806B2550 end:0x806B2558
 	.sbss       start:0x806B6EC8 end:0x806B6ED0
 
 System.a/Language.o:
 	.text       start:0x803A04D8 end:0x803A0698
 	.rodata     start:0x8053B7F0 end:0x8053B890
+	.sdata      start:0x806B2558 end:0x806B2568
 
 System.a/LayoutHolder.o:
 	.text       start:0x803A0698 end:0x803A0D94
 	.rodata     start:0x8053B890 end:0x8053B8D0
 	.data       start:0x805DBA48 end:0x805DBA80
+	.sdata      start:0x806B2568 end:0x806B2570
 
 System.a/MainLoopFramework.o:
 	.text       start:0x803A0D94 end:0x803A2198
@@ -8380,6 +8398,7 @@ System.a/NANDErrorSequence.o:
 
 System.a/NANDManager.o:
 	.text       start:0x803A371C end:0x803A3B40
+	.sdata      start:0x806B2570 end:0x806B2578
 
 System.a/NANDManagerThread.o:
 	.text       start:0x803A3B40 end:0x803A3EAC
@@ -8398,7 +8417,7 @@ System.a/Overwrite.o:
 	.ctors      start:0x8052F388 end:0x8052F38C
 	.data       start:0x805DBD60 end:0x805DBEE8
 	.bss        start:0x8060B388 end:0x8060B3C0
-	.sdata      start:0x806B257C end:0x806B25A4
+	.sdata      start:0x806B2578 end:0x806B2590
 	.sdata2     start:0x806C1448 end:0x806C1478
 
 System.a/PauseButtonCheckerInGame.o:
@@ -8415,6 +8434,7 @@ System.a/RenderMode.o:
 System.a/ResourceHolder.o:
 	.text       start:0x803A7448 end:0x803A7FC4
 	.rodata     start:0x8053BB48 end:0x8053BBA8
+	.sdata      start:0x806B2590 end:0x806B2598
 
 System.a/ResourceHolderManager.o:
 	.text       start:0x803A7FC4 end:0x803A8890
@@ -8422,11 +8442,12 @@ System.a/ResourceHolderManager.o:
 
 System.a/ResourceInfo.o:
 	.text       start:0x803A8890 end:0x803A8BC0
+	.sdata      start:0x806B2598 end:0x806B25A0
 
 System.a/ScenarioDataParser.o:
 	.text       start:0x803A8BC0 end:0x803A9DD0
 	.data       start:0x805DBF98 end:0x805DBFC0
-	.sdata      start:0x806B25A4 end:0x806B25E0
+	.sdata      start:0x806B25A0 end:0x806B25E0
 
 System.a/ShapePacketUserData.o:
 	.text       start:0x803A9DD0 end:0x803AA288
@@ -8670,7 +8691,7 @@ Util.a/BitArray.o:
 Util.a/CameraUtil.o:
 	.text       start:0x803C8378 end:0x803CA518
 	.ctors      start:0x8052F3A4 end:0x8052F3A8
-	.sdata      start:0x806B2608 end:0x806B2614
+	.sdata      start:0x806B2608 end:0x806B2610
 	.sdata2     start:0x806C1588 end:0x806C15C0
 
 Util.a/DemoUtil.o:
@@ -8682,7 +8703,7 @@ Util.a/DrawUtil.o:
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
 	.data       start:0x805E0C20 end:0x805E1030
 	.bss        start:0x8060B3C0 end:0x8060B3F0
-	.sdata      start:0x806B2614 end:0x806B2658
+	.sdata      start:0x806B2610 end:0x806B2658
 	.sbss       start:0x806B7000 end:0x806B7008
 	.sdata2     start:0x806C15C8 end:0x806C15F8
 
@@ -8784,11 +8805,12 @@ Util.a/ModelUtil.o:
 
 Util.a/MtxUtil.o:
 	.text       start:0x803EB224 end:0x803ED75C
-	.data       start:0x805E1A58 end:0x805E1C94
+	.data       start:0x805E1A58 end:0x805E1B48
 	.sdata2     start:0x806C17E0 end:0x806C17F8
 
 Util.a/MultiEventCamera.o:
 	.text       start:0x803ED75C end:0x803EDC44
+	.data       start:0x805E1B48 end:0x805E1B60
 
 Util.a/NerveUtil.o:
 	.text       start:0x803EDC44 end:0x803EE208
@@ -8797,7 +8819,7 @@ Util.a/NerveUtil.o:
 Util.a/NPCUtil.o:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
-	.data       start:0x805E1C94 end:0x805E1DD8
+	.data       start:0x805E1B60 end:0x805E1DD8
 	.sdata      start:0x806B2668 end:0x806B26B8
 	.sbss       start:0x806B7020 end:0x806B7050
 	.sdata2     start:0x806C1800 end:0x806C1840
@@ -8947,7 +8969,7 @@ Util.a/SpringValue.o:
 
 Util.a/TriangleFilter.o:
 	.text       start:0x804081EC end:0x804082E0
-	.data       start:0x805E6F20 end:0x805E6F6C
+	.data       start:0x805E6F20 end:0x805E6F30
 
 Util.a/TriggerChecker.o:
 	.text       start:0x804082E0 end:0x80408364
@@ -8962,7 +8984,7 @@ NWC24.a/NWC24Function.o:
 NWC24.a/NWC24Messenger.o:
 	.text       start:0x804087A4 end:0x80409F04
 	.ctors      start:0x8052F3C0 end:0x8052F3C4
-	.data       start:0x805E6F6C end:0x805E7220
+	.data       start:0x805E6F30 end:0x805E7220
 	.sbss       start:0x806B7060 end:0x806B70A0
 
 NWC24.a/NWC24SendThread.o:
@@ -8980,7 +9002,7 @@ NWC24.a/UTF16Util.o:
 
 NWC24.a/LuigiMailDirector.o:
 	.text       start:0x8040A5F8 end:0x8040A9C4
-	.sdata      start:0x806B26D0 end:0x806B26DC
+	.sdata      start:0x806B26D0 end:0x806B26D8
 
 NWC24.a/ReceiverTagMail.o:
 	.text       start:0x8040A9C4 end:0x8040AB8C
@@ -8988,7 +9010,7 @@ NWC24.a/ReceiverTagMail.o:
 JKernel.a/JKRHeap.o:
 	.text       start:0x8040AB8C end:0x8040B528
 	.data       start:0x805E7220 end:0x805E75E0
-	.sdata      start:0x806B26DC end:0x806B26E8
+	.sdata      start:0x806B26D8 end:0x806B26E8
 	.sbss       start:0x806B70A8 end:0x806B70D0
 
 JKernel.a/JKRExpHeap.o:
@@ -9014,16 +9036,16 @@ JKernel.a/JKRDisposer.o:
 JKernel.a/JKRThread.o:
 	.text       start:0x8040E4FC end:0x8040EB18
 	.ctors      start:0x8052F3C4 end:0x8052F3C8
-	.data       start:0x805E78B8 end:0x805E78F4
+	.data       start:0x805E78B8 end:0x805E78C8
 	.bss        start:0x8060CE60 end:0x8060CEB8
 	.sbss       start:0x806B70E8 end:0x806B70F0
 
 JKernel.a/JKRAram.o:
 	.text       start:0x8040EB18 end:0x8040F82C
 	.ctors      start:0x8052F3C8 end:0x8052F3CC
-	.data       start:0x805E78F4 end:0x805E7908
+	.data       start:0x805E78C8 end:0x805E7908
 	.bss        start:0x8060CEB8 end:0x8060CF18
-	.sdata      start:0x806B26E8 end:0x806B26F4
+	.sdata      start:0x806B26E8 end:0x806B26F0
 	.sbss       start:0x806B70F0 end:0x806B7130
 
 JKernel.a/JKRAramHeap.o:
@@ -9034,7 +9056,7 @@ JKernel.a/JKRAramHeap.o:
 
 JKernel.a/JKRAramBlock.o:
 	.text       start:0x8040FBC8 end:0x8040FE98
-	.data       start:0x805E7918 end:0x805E79BC
+	.data       start:0x805E7918 end:0x805E7928
 
 JKernel.a/JKRAramPiece.o:
 	.text       start:0x8040FE98 end:0x804103A8
@@ -9043,7 +9065,7 @@ JKernel.a/JKRAramPiece.o:
 
 JKernel.a/JKRAramStream.o:
 	.text       start:0x804103A8 end:0x804108C4
-	.data       start:0x805E79BC end:0x805E79D0
+	.data       start:0x805E7928 end:0x805E79D0
 	.bss        start:0x8060CF60 end:0x8060CF90
 	.sbss       start:0x806B7130 end:0x806B7140
 
@@ -9060,7 +9082,7 @@ JKernel.a/JKRFileFinder.o:
 
 JKernel.a/JKRArchivePub.o:
 	.text       start:0x80410DC8 end:0x80411760
-	.data       start:0x805E7A30 end:0x805E7AA4
+	.data       start:0x805E7A30 end:0x805E7A80
 
 JKernel.a/JKRArchivePri.o:
 	.text       start:0x80411760 end:0x80411EA8
@@ -9068,15 +9090,15 @@ JKernel.a/JKRArchivePri.o:
 
 JKernel.a/JKRMemArchive.o:
 	.text       start:0x80411EA8 end:0x804125E0
-	.data       start:0x805E7AA4 end:0x805E7B20
+	.data       start:0x805E7A80 end:0x805E7B20
 
 JKernel.a/JKRAramArchive.o:
 	.text       start:0x804125E0 end:0x80413054
-	.data       start:0x805E7B20 end:0x805E7BDC
+	.data       start:0x805E7B20 end:0x805E7B70
 
 JKernel.a/JKRDvdArchive.o:
 	.text       start:0x80413054 end:0x80413B98
-	.data       start:0x805E7BDC end:0x805E7C68
+	.data       start:0x805E7B70 end:0x805E7C68
 
 JKernel.a/JKRCompArchive.o:
 	.text       start:0x80413B98 end:0x80414858
@@ -9092,14 +9114,14 @@ JKernel.a/JKRDvdRipper.o:
 	.text       start:0x80414E0C end:0x80415A34
 	.ctors      start:0x8052F3DC end:0x8052F3E0
 	.bss        start:0x8060CFD8 end:0x8060D008
-	.sdata      start:0x806B26F4 end:0x806B26FC
+	.sdata      start:0x806B26F0 end:0x806B26F8
 	.sbss       start:0x806B7150 end:0x806B7190
 
 JKernel.a/JKRDvdAramRipper.o:
 	.text       start:0x80415A34 end:0x80416798
 	.ctors      start:0x8052F3E0 end:0x8052F3E4
 	.bss        start:0x8060D008 end:0x8060D038
-	.sdata      start:0x806B26FC end:0x806B2718
+	.sdata      start:0x806B26F8 end:0x806B2718
 	.sbss       start:0x806B7190 end:0x806B71D8
 
 JKernel.a/JKRDecomp.o:
@@ -9143,7 +9165,7 @@ JUtility.a/JUTPalette.o:
 
 JUtility.a/JUTNameTab.o:
 	.text       start:0x80418454 end:0x80418644
-	.data       start:0x805E7E38 end:0x805E7F04
+	.data       start:0x805E7E38 end:0x805E7E48
 
 JUtility.a/JUTFont.o:
 	.text       start:0x80418644 end:0x804187C4
@@ -9151,7 +9173,7 @@ JUtility.a/JUTFont.o:
 JUtility.a/JUTException.o:
 	.text       start:0x804187C4 end:0x8041A0BC
 	.ctors      start:0x8052F3E4 end:0x8052F3E8
-	.data       start:0x805E7F04 end:0x805E8420
+	.data       start:0x805E7E48 end:0x805E8420
 	.bss        start:0x8060D078 end:0x8060D4F0
 	.sbss       start:0x806B71E8 end:0x806B7210
 	.sdata2     start:0x806C1A10 end:0x806C1A20
@@ -9240,13 +9262,13 @@ J3DGraphBase.a/J3DTransform.o:
 J3DGraphBase.a/J3DPacket.o:
 	.text       start:0x8042440C end:0x80424EF0
 	.data       start:0x805E8A18 end:0x805E8A90
-	.bss        start:0x8060D6D0 end:0x8060D6F4
+	.bss        start:0x8060D6D0 end:0x8060D6E0
 	.sbss       start:0x806B7260 end:0x806B7268
 
 J3DGraphBase.a/J3DShapeMtx.o:
 	.text       start:0x80424EF0 end:0x80426548
 	.data       start:0x805E8A90 end:0x805E8CC0
-	.bss        start:0x8060D6F4 end:0x8060FC28
+	.bss        start:0x8060D6E0 end:0x8060FC28
 	.sbss       start:0x806B7268 end:0x806B7280
 	.sdata2     start:0x806C1AD0 end:0x806C1AD8
 
@@ -9259,7 +9281,7 @@ J3DGraphBase.a/J3DShape.o:
 	.rodata     start:0x8055C218 end:0x8055C250
 	.data       start:0x805E8CD0 end:0x805E8CE8
 	.sbss       start:0x806B7280 end:0x806B7290
-	.sdata2     start:0x806C1AD8 end:0x806C1AE4
+	.sdata2     start:0x806C1AD8 end:0x806C1AE0
 
 J3DGraphBase.a/J3DMaterial.o:
 	.text       start:0x804272B0 end:0x80428E58
@@ -9271,7 +9293,7 @@ J3DGraphBase.a/J3DMatBlock.o:
 	.data       start:0x805E8DC8 end:0x805E9868
 	.sdata      start:0x806B2740 end:0x806B2750
 	.sbss       start:0x806B7290 end:0x806B7298
-	.sdata2     start:0x806C1AE4 end:0x806C1AE8
+	.sdata2     start:0x806C1AE0 end:0x806C1AE8
 
 J3DGraphBase.a/J3DTevs.o:
 	.text       start:0x8042FE60 end:0x80430D70
@@ -9933,7 +9955,7 @@ JAudio2.a/JASVoiceBank.o:
 	.text       start:0x80491C14 end:0x80491C98
 	.rodata     start:0x805611B8 end:0x80561218
 	.data       start:0x805ECD08 end:0x805ECD20
-	.sbss       start:0x806B7528 end:0x806B7534
+	.sbss       start:0x806B7528 end:0x806B7530
 
 JAudio2.a/JASBasicInst.o:
 	.text       start:0x80491C98 end:0x804920F4
@@ -9944,7 +9966,7 @@ JAudio2.a/JASDrumSet.o:
 	.text       start:0x804920F4 end:0x804923C4
 	.data       start:0x805ECD38 end:0x805ECD50
 	.bss        start:0x806626F0 end:0x80662708
-	.sdata      start:0x806B29C8 end:0x806B29D4
+	.sdata      start:0x806B29C8 end:0x806B29D0
 	.sdata2     start:0x806C1F20 end:0x806C1F30
 
 JAudio2.a/JASBasicWaveBank.o:
@@ -9963,7 +9985,7 @@ JAudio2.a/JASInstSense.o:
 JAudio2.a/JASInstRand.o:
 	.text       start:0x80492FD4 end:0x80493108
 	.data       start:0x805ECE08 end:0x805ECE58
-	.sbss       start:0x806B7534 end:0x806B7538
+	.sbss       start:0x806B7530 end:0x806B7538
 	.sdata2     start:0x806C1F38 end:0x806C1F48
 
 JAudio2.a/JASWSParser.o:
@@ -10003,16 +10025,16 @@ JAudio2.a/JASOscillator.o:
 JAudio2.a/JASAiCtrl.o:
 	.text       start:0x8049643C end:0x80496CF0
 	.rodata     start:0x80561338 end:0x805618C8
-	.data       start:0x805ECEE0 end:0x805ECF64
+	.data       start:0x805ECEE0 end:0x805ECF50
 	.bss        start:0x806627D0 end:0x806627E0
-	.sdata      start:0x806B29D4 end:0x806B29E0
+	.sdata      start:0x806B29D0 end:0x806B29E0
 	.sbss       start:0x806B7558 end:0x806B7588
 	.sdata2     start:0x806C1FB8 end:0x806C1FD0
 
 JAudio2.a/JASAudioThread.o:
 	.text       start:0x80496CF0 end:0x80497034
 	.ctors      start:0x8052F41C end:0x8052F420
-	.data       start:0x805ECF64 end:0x805EEEA0
+	.data       start:0x805ECF50 end:0x805EEEA0
 	.bss        start:0x806627E0 end:0x806627F0
 	.sbss       start:0x806B7588 end:0x806B7590
 
@@ -10025,7 +10047,7 @@ JAudio2.a/JASDSPChannel.o:
 
 JAudio2.a/JASDSPInterface.o:
 	.text       start:0x8049789C end:0x80497EDC
-	.sdata      start:0x806B29E0 end:0x806B29EC
+	.sdata      start:0x806B29E0 end:0x806B29E8
 	.sbss       start:0x806B7598 end:0x806B75A8
 	.sdata2     start:0x806C1FD0 end:0x806C1FD8
 
@@ -10033,7 +10055,7 @@ JAudio2.a/JASDriverIF.o:
 	.text       start:0x80497EDC end:0x8049806C
 	.ctors      start:0x8052F420 end:0x8052F424
 	.bss        start:0x806627F0 end:0x80664B60
-	.sdata      start:0x806B29EC end:0x806B29F8
+	.sdata      start:0x806B29E8 end:0x806B29F8
 
 JAudio2.a/JASSoundParams.o:
 	.text       start:0x8049806C end:0x80498CCC
@@ -10047,7 +10069,7 @@ JAudio2.a/dspproc.o:
 JAudio2.a/dsptask.o:
 	.rodata     start:0x805618F0 end:0x80561A60
 	.bss        start:0x80664B60 end:0x80664BE0
-	.sbss       start:0x806B75B0 end:0x806B75BC
+	.sbss       start:0x806B75B0 end:0x806B75C0
 
 JAudio2.a/osdsp.o:
 	.rodata     start:0x80561A60 end:0x80561A80
@@ -10055,7 +10077,7 @@ JAudio2.a/osdsp.o:
 JAudio2.a/osdsp_task.o:
 	.rodata     start:0x80561A80 end:0x80561B30
 	.bss        start:0x80664BE0 end:0x80664BF8
-	.sbss       start:0x806B75BC end:0x806B75C0
+	.sbss       start:0x806B75C0 end:0x806B75C0
 
 JAudio2.a/JAIAudible.o:
 	.text       start:0x80498CCC end:0x80498D0C
@@ -10065,13 +10087,13 @@ JAudio2.a/JAIAudience.o:
 
 JAudio2.a/JAISe.o:
 	.text       start:0x80498D4C end:0x8049952C
-	.data       start:0x805EEEA0 end:0x805EEF0C
+	.data       start:0x805EEEA0 end:0x805EEEF8
 	.sdata2     start:0x806C1FE8 end:0x806C1FF8
 
 JAudio2.a/JAISeMgr.o:
 	.text       start:0x8049952C end:0x8049A568
 	.ctors      start:0x8052F424 end:0x8052F428
-	.data       start:0x805EEF0C end:0x805EEF48
+	.data       start:0x805EEEF8 end:0x805EEF48
 	.bss        start:0x80664BF8 end:0x80664C18
 	.sbss       start:0x806B75C0 end:0x806B75E8
 	.sdata2     start:0x806C1FF8 end:0x806C2000
@@ -10089,12 +10111,12 @@ JAudio2.a/JAISeqDataMgr.o:
 JAudio2.a/JAISeqMgr.o:
 	.text       start:0x8049B1CC end:0x8049BA70
 	.ctors      start:0x8052F42C end:0x8052F430
-	.data       start:0x805EEF98 end:0x805EEFFC
+	.data       start:0x805EEF98 end:0x805EEFC0
 	.bss        start:0x80664C40 end:0x80664C60
 
 JAudio2.a/JAISound.o:
 	.text       start:0x8049BA70 end:0x8049C194
-	.data       start:0x805EEFFC end:0x805EF030
+	.data       start:0x805EEFC0 end:0x805EF030
 	.sdata2     start:0x806C2008 end:0x806C2018
 
 JAudio2.a/JAISoundChild.o:
@@ -11299,7 +11321,7 @@ TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/msghndlr.o:
 	.text       start:0x8052969C end:0x8052A778
 	.rodata     start:0x80563250 end:0x80563288
 	.data       start:0x8060A2D8 end:0x8060A310
-	.bss        start:0x806B0B58 end:0x806B0B64
+	.bss        start:0x806B0B58 end:0x806B0B60
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/support.o:
 	.text       start:0x8052A778 end:0x8052AE2C
@@ -11323,7 +11345,7 @@ TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Processor/ppc/Generic/targ
 	.text       start:0x8052AFE8 end:0x8052CA20
 	.rodata     start:0x80563288 end:0x80563310
 	.data       start:0x8060A310 end:0x8060A340
-	.bss        start:0x806B0B64 end:0x806B10E0
+	.bss        start:0x806B0B60 end:0x806B10E0
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.o:
 	.text       start:0x8052CA20 end:0x8052CD90
@@ -11338,13 +11360,13 @@ TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.o:
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/main_TRK.o:
 	.text       start:0x8052D224 end:0x8052D268
-	.bss        start:0x806B10E8 end:0x806B10F4
+	.bss        start:0x806B10E8 end:0x806B10F0
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.o:
 	.text       start:0x8052D268 end:0x8052D728
 	.rodata     start:0x80563310 end:0x80563418
 	.data       start:0x8060A380 end:0x8060A3A8
-	.bss        start:0x806B10F4 end:0x806B1100
+	.bss        start:0x806B10F0 end:0x806B1100
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/targcont.o:
 	.text       start:0x8052D728 end:0x8052D75C
