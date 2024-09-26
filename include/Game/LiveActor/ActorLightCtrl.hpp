@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
 #include "Game/Map/LightDataHolder.hpp"
+
+class LiveActor;
 
 class ActorLightCtrl {
 public:

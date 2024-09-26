@@ -5987,7 +5987,7 @@ NameObj.a/MovementOnOffGroupHolder.o:
 	.text       start:0x8026144C end:0x802616B4
 	.data       start:0x805A7730 end:0x805A7758
 
-NameObj.a/NameObj.o:
+Game/NameObj/NameObj.cpp:
 	.text       start:0x802616B4 end:0x802618B4
 	.data       start:0x805A7758 end:0x805A7780
 	.sbss       start:0x806B5BE0 end:0x806B5BE8

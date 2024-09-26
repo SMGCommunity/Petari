@@ -127,6 +127,7 @@ config.binutils_path = args.binutils
 config.compilers_path = args.compilers
 config.generate_map = args.map
 config.non_matching = args.non_matching
+config.shift_jis = False
 config.sjiswrap_path = args.sjiswrap
 if not is_windows():
     config.wrapper = args.wrapper
@@ -191,6 +192,7 @@ cflags_base = [
 
 cflags_game = [
     "-nodefaults",
+    "-lang c++",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -205,14 +207,14 @@ cflags_game = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-enc SJIS",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/MSL_C++/include",
     "-i libs/MSL_C/include",
     "-i libs/MetroTRK/include",
     "-i libs/RVLFaceLib/include",
-    "-i libs/RLV_SDK/include",
+    "-i libs/RVL_SDK/include",
     "-i libs/Runtime/include",
     "-i libs/nw4r/include",
     f"-i build/{config.version}/include",
@@ -243,13 +245,13 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/1.3.2"
+config.linker_version = "GC/3.0a5"
 
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
-        "cflags": cflags_base,
+        "cflags": cflags_game,
         "progress_category": "game",
         "objects": objects,
     }
@@ -273,17 +275,6 @@ config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
-        "lib": "game",
-        "mw_version": "GC/3.0a3",
-        "root_dir": "",
-        "cflags": cflags_game,
-        "progress_category": "game",
-        "objects": [
-            
-        ]
-    },
-
-    {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
@@ -293,6 +284,13 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+
+    GameLib(
+        "NameObj",
+        [
+            Object(Matching, "Game/NameObj/NameObj.cpp")
+        ],
+    )
 ]
 
 # Optional extra categories for progress tracking

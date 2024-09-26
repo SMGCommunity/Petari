@@ -4,8 +4,8 @@
 #include <revolution.h>
 
 namespace MR {
-void notifyRequestNameObjMovementOnOff();
-}
+  void notifyRequestNameObjMovementOnOff();
+};
 
 /// @brief The most basic form of an object.
 class NameObj {
