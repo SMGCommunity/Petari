@@ -288,7 +288,19 @@ config.libs = [
     GameLib(
         "NameObj",
         [
-            Object(Matching, "Game/NameObj/NameObj.cpp")
+            Object(NonMatching, "Game/NameObj/ModelChangableObjFactory.cpp"),
+            Object(Matching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObj.cpp"),
+            Object(Matching, "Game/NameObj/NameObjAdaptor.cpp"),
+            Object(Matching, "Game/NameObj/NameObjArchiveListCollector.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjCategoryList.cpp"),
+            Object(Matching, "Game/NameObj/NameObjExecuteHolder.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
+            Object(Matching, "Game/NameObj/NameObjFinder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjGroup.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjListExecutor.cpp"),
+            Object(Matching, "Game/NameObj/NameObjRegister.cpp")
         ],
     )
 ]

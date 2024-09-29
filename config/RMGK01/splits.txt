@@ -5979,11 +5979,11 @@ MapObj.a/MapPartsSeesaw2AxisRotator.o:
 	.sbss       start:0x806B5BD0 end:0x806B5BE0
 	.sdata2     start:0x806BE9C8 end:0x806BE9E8
 
-NameObj.a/ModelChangableObjFactory.o:
+Game/NameObj/ModelChangableObjFactory.cpp:
 	.text       start:0x80261080 end:0x8026144C
 	.rodata     start:0x80534E70 end:0x80534F00
 
-NameObj.a/MovementOnOffGroupHolder.o:
+Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x8026144C end:0x802616B4
 	.data       start:0x805A7730 end:0x805A7758
 
@@ -5992,23 +5992,23 @@ Game/NameObj/NameObj.cpp:
 	.data       start:0x805A7758 end:0x805A7780
 	.sbss       start:0x806B5BE0 end:0x806B5BE8
 
-NameObj.a/NameObjAdaptor.o:
+Game/NameObj/NameObjAdaptor.cpp:
 	.text       start:0x802618B4 end:0x80261AD8
 	.data       start:0x805A7780 end:0x805A77A8
 
-NameObj.a/NameObjArchiveListCollector.o:
+Game/NameObj/NameObjArchiveListCollector.cpp:
 	.text       start:0x80261AD8 end:0x80261B38
 
-NameObj.a/NameObjCategoryList.o:
+Game/NameObj/NameObjCategoryList.cpp:
 	.text       start:0x80261B38 end:0x80262160
 	.data       start:0x805A77A8 end:0x805A77D8
 
-NameObj.a/NameObjExecuteHolder.o:
+Game/NameObj/NameObjExecuteHolder.cpp:
 	.text       start:0x80262160 end:0x80262FEC
 	.data       start:0x805A77D8 end:0x805A7800
 	.sbss       start:0x806B5BE8 end:0x806B5BF0
 
-NameObj.a/NameObjFactory.o:
+Game/NameObj/NameObjFactory.cpp:
 	.text       start:0x80262FEC end:0x8026BD84
 	.ctors      start:0x8052EF78 end:0x8052EF7C
 	.rodata     start:0x80534F00 end:0x80539718
@@ -6016,22 +6016,22 @@ NameObj.a/NameObjFactory.o:
 	.sbss       start:0x806B5BF0 end:0x806B5C28
 	.sdata2     start:0x806BE9E8 end:0x806BEA08
 
-NameObj.a/NameObjFinder.o:
+Game/NameObj/NameObjFinder.cpp:
 	.text       start:0x8026BD84 end:0x8026BD98
 
-NameObj.a/NameObjGroup.o:
+Game/NameObj/NameObjGroup.cpp:
 	.text       start:0x8026BD98 end:0x8026BF4C
 	.data       start:0x805AE740 end:0x805AE768
 
-NameObj.a/NameObjHolder.o:
+Game/NameObj/NameObjHolder.cpp:
 	.text       start:0x8026BF4C end:0x8026C378
 	.data       start:0x805AE768 end:0x805AE778
 
-NameObj.a/NameObjListExecutor.o:
+Game/NameObj/NameObjListExecutor.cpp:
 	.text       start:0x8026C378 end:0x8026C654
 	.data       start:0x805AE778 end:0x805AE978
 
-NameObj.a/NameObjRegister.o:
+Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x8026C654 end:0x8026C670
 
 NPC.a/Butler.o:
