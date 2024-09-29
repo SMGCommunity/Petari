@@ -286,6 +286,26 @@ config.libs = [
     },
 
     GameLib(
+        "Gravity",
+        [
+            Object(Matching, "Game/Gravity/ConeGravity.cpp"),
+            Object(Matching, "Game/Gravity/CubeGravity.cpp"),
+            Object(Matching, "Game/Gravity/DiskGravity.cpp"),
+            Object(Matching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(Matching, "Game/Gravity/GlobalGravityObj.cpp"),
+            Object(Matching, "Game/Gravity/GraviryFollower.cpp"),
+            Object(Matching, "Game/Gravity/GravityCreator.cpp"),
+            Object(Matching, "Game/Gravity/GravityInfo.cpp"),
+            Object(Matching, "Game/Gravity/ParallelGravity.cpp"),
+            Object(Matching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(Matching, "Game/Gravity/PlanetGravityManager.cpp"),
+            Object(Matching, "Game/Gravity/PointGravity.cpp"),
+            Object(Matching, "Game/Gravity/SegmentGravity.cpp"),
+            Object(Matching, "Game/Gravity/WireGravity.cpp")
+        ],
+    ),
+
+    GameLib(
         "NameObj",
         [
             Object(NonMatching, "Game/NameObj/ModelChangableObjFactory.cpp"),

@@ -3172,69 +3172,69 @@ GameAudio.a/AudTamakoroBgmCtrl.o:
 	.text       start:0x801567FC end:0x80156AD0
 	.sdata      start:0x806B1AC0 end:0x806B1B00
 
-Gravity.a/ConeGravity.o:
+Game/Gravity/ConeGravity.cpp:
 	.text       start:0x80156AD0 end:0x80157120
 	.data       start:0x805873B8 end:0x805873C8
 	.sdata2     start:0x806BBAE8 end:0x806BBB00
 
-Gravity.a/CubeGravity.o:
+Game/Gravity/CubeGravity.cpp:
 	.text       start:0x80157120 end:0x80157DC4
 	.data       start:0x805873C8 end:0x805874F8
 	.sdata2     start:0x806BBB00 end:0x806BBB10
 
-Gravity.a/DiskGravity.o:
+Game/Gravity/DiskGravity.cpp:
 	.text       start:0x80157DC4 end:0x801583E8
 	.data       start:0x805874F8 end:0x80587508
 	.sdata2     start:0x806BBB10 end:0x806BBB38
 
-Gravity.a/DiskTorusGravity.o:
+Game/Gravity/DiskTorusGravity.cpp:
 	.text       start:0x801583E8 end:0x8015884C
 	.data       start:0x80587508 end:0x80587518
 	.sdata2     start:0x806BBB38 end:0x806BBB48
 
-Gravity.a/GlobalGravityObj.o:
+Game/Gravity/GlobalGravityObj.cpp:
 	.text       start:0x8015884C end:0x80159048
 	.data       start:0x80587518 end:0x80587590
 
-Gravity.a/GraviryFollower.o:
+Game/Gravity/GraviryFollower.cpp:
 	.text       start:0x80159048 end:0x801591C4
 	.data       start:0x80587590 end:0x805875A0
 
-Gravity.a/GravityCreator.o:
+Game/Gravity/GravityCreator.cpp:
 	.text       start:0x801591C4 end:0x8015A02C
 	.data       start:0x805875A0 end:0x805876D8
 	.sdata2     start:0x806BBB48 end:0x806BBB58
 
-Gravity.a/GravityInfo.o:
+Game/Gravity/GravityInfo.cpp:
 	.text       start:0x8015A02C end:0x8015A074
 	.sdata2     start:0x806BBB58 end:0x806BBB60
 
-Gravity.a/ParallelGravity.o:
+Game/Gravity/ParallelGravity.cpp:
 	.text       start:0x8015A074 end:0x8015A6FC
 	.data       start:0x805876D8 end:0x805876E8
 	.sdata2     start:0x806BBB60 end:0x806BBB78
 
-Gravity.a/PlanetGravity.o:
+Game/Gravity/PlanetGravity.cpp:
 	.text       start:0x8015A6FC end:0x8015A9DC
 	.data       start:0x805876E8 end:0x805876F8
 	.sdata2     start:0x806BBB78 end:0x806BBB88
 
-Gravity.a/PlanetGravityManager.o:
+Game/Gravity/PlanetGravityManager.cpp:
 	.text       start:0x8015A9DC end:0x8015ACBC
 	.data       start:0x805876F8 end:0x80587720
 	.sdata2     start:0x806BBB88 end:0x806BBB90
 
-Gravity.a/PointGravity.o:
+Game/Gravity/PointGravity.cpp:
 	.text       start:0x8015ACBC end:0x8015AE48
 	.data       start:0x80587720 end:0x80587730
 	.sdata2     start:0x806BBB90 end:0x806BBBA0
 
-Gravity.a/SegmentGravity.o:
+Game/Gravity/SegmentGravity.cpp:
 	.text       start:0x8015AE48 end:0x8015B510
 	.data       start:0x80587730 end:0x80587740
 	.sdata2     start:0x806BBBA0 end:0x806BBBC8
 
-Gravity.a/WireGravity.o:
+Game/Gravity/WireGravity.cpp:
 	.text       start:0x8015B510 end:0x8015B77C
 	.data       start:0x80587740 end:0x80587750
 	.sdata2     start:0x806BBBC8 end:0x806BBBD0
