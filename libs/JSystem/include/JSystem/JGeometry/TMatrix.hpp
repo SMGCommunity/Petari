@@ -271,7 +271,7 @@ typedef JGeometry::TPosition3<TMtx34f> TPos3f;
 
 
 template <>
-void JGeometry::TMatrix34<TSMtxf>::identity() {
+inline void JGeometry::TMatrix34<TSMtxf>::identity() {
     float v0 = 1.0, v1 = 0.0;
     mMtx[2][3] = v1;
     mMtx[1][3] = v1;
