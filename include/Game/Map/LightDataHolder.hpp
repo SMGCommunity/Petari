@@ -47,10 +47,6 @@ struct AreaLightInfo {
     ActorLightInfo mPlanetLight;    // 0x9C
 };
 
-namespace {
-    static const char* sDefaultAreaLightName = "デフォルト";
-};
-
 class LightDataHolder {
 public:
     LightDataHolder();

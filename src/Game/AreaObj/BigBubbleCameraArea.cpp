@@ -1,8 +1,5 @@
 #include "Game/AreaObj/BigBubbleCameraArea.hpp"
-
-SwitchArea::~SwitchArea() {
-
-}
+#include "Game/Util.hpp"
 
 BigBubbleSwitchArea::BigBubbleSwitchArea(int type, const char *pName) : SwitchArea(type, pName) {
 

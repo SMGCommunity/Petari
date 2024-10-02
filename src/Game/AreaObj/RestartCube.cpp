@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
+#include "Game/Util.hpp"
 
 RestartCube::RestartCube(int type, const char *pName) : AreaObj(type, pName) {
     mIdInfo = nullptr;

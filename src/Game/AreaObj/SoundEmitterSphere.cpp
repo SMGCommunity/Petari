@@ -1,5 +1,6 @@
 #include "Game/AreaObj/SoundEmitterSphere.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char *gSoundNameTable[6] = {

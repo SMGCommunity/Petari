@@ -1,10 +1,10 @@
-﻿#include "Game/AreaObj/WarpCube.hpp"
+#include "Game/AreaObj/WarpCube.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include <cstdio>
 #include <cstring>
 
-WarpCube::~WarpCube() {
+WarpCube::~WarpCube() { 
 
 }
 

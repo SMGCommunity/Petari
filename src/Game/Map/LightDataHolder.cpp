@@ -1,6 +1,10 @@
 #include "Game/Map/LightDataHolder.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static const char* sDefaultAreaLightName = "デフォルト";
+};
+
 LightDataHolder::LightDataHolder() {
     mLightCount = 0;
     mLights = 0;

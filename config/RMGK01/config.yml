@@ -3,3 +3,6 @@ hash: 25c5959534b3c21246c6c7e42021b916b41fb578
 symbols: config/RMGK01/symbols.txt
 splits: config/RMGK01/splits.txt
 mw_comment_version: 14
+
+block_relocations:
+- target: .data:0x805658F0

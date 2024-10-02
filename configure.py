@@ -127,7 +127,7 @@ config.binutils_path = args.binutils
 config.compilers_path = args.compilers
 config.generate_map = args.map
 config.non_matching = args.non_matching
-config.shift_jis = False
+config.shift_jis = True
 config.sjiswrap_path = args.sjiswrap
 if not is_windows():
     config.wrapper = args.wrapper
@@ -284,6 +284,67 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+
+    GameLib(
+        "Animation",
+        [
+            Object(NonMatching, "Game/Animation/AnmPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/BckCtrl.cpp"),
+            Object(NonMatching, "Game/Animation/BpkPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/BrkPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/BtkPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/BtpPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/BvaPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/LayoutAnmPlayer.cpp"),
+            Object(NonMatching, "Game/Animation/MaterialAnmBuffer.cpp"),
+            Object(NonMatching, "Game/Animation/XanimeCore.cpp"),
+            Object(NonMatching, "Game/Animation/XanimePlayer.cpp"),
+            Object(NonMatching, "Game/Animation/XanimeResource.cpp"),
+        ],
+    ),
+
+    GameLib(
+        "AreaObj",
+        [
+            Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaFormDrawer.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
+            Object(Matching, "Game/AreaObj/AreaObjContainer.cpp"),
+            Object(Matching, "Game/AreaObj/AreaObjFollower.cpp"),
+            Object(Matching, "Game/AreaObj/AstroChangeStageCube.cpp"),
+            Object(Matching, "Game/AreaObj/AudioEffectArea.cpp"),
+            Object(Matching, "Game/AreaObj/BgmProhibitArea.cpp"),
+            Object(Matching, "Game/AreaObj/BigBubbleCameraArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/BigBubbleGoalArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/BloomArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/CameraRepulsiveArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/ChangeBgmCube.cpp"),
+            Object(NonMatching, "Game/AreaObj/CollisionArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/CubeCamera.cpp"),
+            Object(Matching, "Game/AreaObj/DeathArea.cpp"),
+            Object(Matching, "Game/AreaObj/DepthOfFieldArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/FollowCollisionArea.cpp"),
+            Object(Matching, "Game/AreaObj/GlaringLightArea.cpp"),
+            Object(Matching, "Game/AreaObj/HazeCube.cpp"),
+            Object(NonMatching, "Game/AreaObj/ImageEffectArea.cpp"),
+            Object(Matching, "Game/AreaObj/LightArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/LightAreaHolder.cpp"),
+            Object(NonMatching, "Game/AreaObj/MercatorTransformCube.cpp"),
+            Object(Matching, "Game/AreaObj/MessageArea.cpp"),
+            Object(Matching, "Game/AreaObj/PlayerSeArea.cpp"),
+            Object(Matching, "Game/AreaObj/QuakeEffectArea.cpp"),
+            Object(Matching, "Game/AreaObj/RestartCube.cpp"),
+            Object(Matching, "Game/AreaObj/ScreenBlurArea.cpp"),
+            Object(Matching, "Game/AreaObj/SimpleBloomArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/SoundEmitterCube.cpp"),
+            Object(NonMatching, "Game/AreaObj/SoundEmitterSphere.cpp"),
+            Object(Matching, "Game/AreaObj/SpinGuidanceArea.cpp"),
+            Object(Matching, "Game/AreaObj/SunLightArea.cpp"),
+            Object(Matching, "Game/AreaObj/SwitchArea.cpp"),
+            Object(NonMatching, "Game/AreaObj/WarpCube.cpp"),
+            Object(Matching, "Game/AreaObj/WaterArea.cpp")
+        ],
+    ),
 
     GameLib(
         "Gravity",

@@ -1,4 +1,5 @@
 #include "Game/AreaObj/MessageArea.hpp"
+#include "Game/Util.hpp"
 
 MessageArea::MessageArea(int type, const char *pName) : AreaObj(type, pName) {
     mZoneID = -1;

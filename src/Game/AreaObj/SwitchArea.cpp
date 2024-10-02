@@ -1,5 +1,5 @@
 #include "Game/AreaObj/SwitchArea.hpp"
-#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util.hpp"
 
 SwitchArea::SwitchArea(int type, const char *pName) : AreaObj(type, pName) {
 

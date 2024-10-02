@@ -2,6 +2,8 @@
 
 #include "Game/AreaObj/AreaObj.hpp"
 
+class JMapIdInfo;
+
 class RestartCube : public AreaObj {
 public:
     RestartCube(int, const char *);

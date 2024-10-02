@@ -5,7 +5,6 @@
 class SwitchArea : public AreaObj {
 public:
     SwitchArea(int, const char *);
-    virtual ~SwitchArea();
 
     virtual void init(const JMapInfoIter &);
     virtual void movement();

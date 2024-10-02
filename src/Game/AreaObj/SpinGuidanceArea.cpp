@@ -1,6 +1,7 @@
 #include "Game/AreaObj/SpinGuidanceArea.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PlayerActionGuidance.hpp"
+#include "Game/Util.hpp"
 
 SpinGuidanceArea::SpinGuidanceArea(int type, const char *pName) : AreaObj(type, pName) {
 

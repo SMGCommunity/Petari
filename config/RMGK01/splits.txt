@@ -149,238 +149,245 @@ libnw4r_lyt.a/lyt_common.o:
 	.text       start:0x800156F8 end:0x800161D0
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 
-Animation.a/AnmPlayer.o:
+Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
 	.data       start:0x80564A00 end:0x80564A80
 	.sdata2     start:0x806B7D30 end:0x806B7D60
 
-Animation.a/BckCtrl.o:
+Game/Animation/BckCtrl.cpp:
 	.text       start:0x800178C8 end:0x8001804C
 	.sdata      start:0x806B1638 end:0x806B1650
 	.sdata2     start:0x806B7D60 end:0x806B7D68
 
-Animation.a/BpkPlayer.o:
+Game/Animation/BpkPlayer.cpp:
 	.text       start:0x8001804C end:0x8001809C
 	.data       start:0x80564A80 end:0x80564A98
 
-Animation.a/BrkPlayer.o:
+Game/Animation/BrkPlayer.cpp:
 	.text       start:0x8001809C end:0x800180EC
 	.data       start:0x80564A98 end:0x80564AB0
 
-Animation.a/BtkPlayer.o:
+Game/Animation/BtkPlayer.cpp:
 	.text       start:0x800180EC end:0x8001813C
 	.data       start:0x80564AB0 end:0x80564AC8
 
-Animation.a/BtpPlayer.o:
+Game/Animation/BtpPlayer.cpp:
 	.text       start:0x8001813C end:0x8001818C
 	.data       start:0x80564AC8 end:0x80564AE0
 
-Animation.a/BvaPlayer.o:
+Game/Animation/BvaPlayer.cpp:
 	.text       start:0x8001818C end:0x800182C0
 	.data       start:0x80564AE0 end:0x80564AF0
 
-Animation.a/LayoutAnmPlayer.o:
+Game/Animation/LayoutAnmPlayer.cpp:
 	.text       start:0x800182C0 end:0x800183F4
 	.data       start:0x80564AF0 end:0x80564B08
 	.sdata2     start:0x806B7D68 end:0x806B7D70
 
-Animation.a/MaterialAnmBuffer.o:
+Game/Animation/MaterialAnmBuffer.cpp:
 	.text       start:0x800183F4 end:0x80018DF8
 	.data       start:0x80564B08 end:0x80564B18
 
-Animation.a/XanimeCore.o:
+Game/Animation/XanimeCore.cpp:
 	.text       start:0x80018DF8 end:0x8001B148
 	.data       start:0x80564B18 end:0x80564B48
 	.sdata2     start:0x806B7D70 end:0x806B7D78
 
-Animation.a/XanimePlayer.o:
+Game/Animation/XanimePlayer.cpp:
 	.text       start:0x8001B148 end:0x8001C4D4
 	.data       start:0x80564B48 end:0x80564B88
 	.sdata      start:0x806B1650 end:0x806B16C0
 	.sdata2     start:0x806B7D78 end:0x806B7D88
 
-Animation.a/XanimeResource.o:
+Game/Animation/XanimeResource.cpp:
 	.text       start:0x8001C4D4 end:0x8001D2A8
 	.sdata2     start:0x806B7D88 end:0x806B7D90
 
-AreaObj.a/AreaForm.o:
+Game/AreaObj/AreaForm.cpp:
 	.text       start:0x8001D2A8 end:0x8001E15C
 	.data       start:0x80564B88 end:0x80564BD8
 	.sdata2     start:0x806B7D90 end:0x806B7DC0
 
-AreaObj.a/AreaFormDrawer.o:
+Game/AreaObj/AreaFormDrawer.cpp:
 	.text       start:0x8001E15C end:0x8001E214
 	.ctors      start:0x8052E81C end:0x8052E820
 	.sbss       start:0x806B2EC0 end:0x806B2EC8
 
-AreaObj.a/AreaObj.o:
+Game/AreaObj/AreaObj.cpp:
 	.text       start:0x8001E214 end:0x8001E9D4
 	.data       start:0x80564BD8 end:0x80564C60
 
-AreaObj.a/AreaObjContainer.o:
+Game/AreaObj/AreaObjContainer.cpp:
 	.text       start:0x8001E9D4 end:0x8001EEB0
-	.rodata     start:0x8052F4B0 end:0x8052F820
+	.rodata     start:0x8052F4B0 end:0x8052F7D8
 	.data       start:0x80564C60 end:0x805650E8
 
-AreaObj.a/AreaObjFollower.o:
+Game/AreaObj/AreaObjFollower.cpp:
 	.text       start:0x8001EEB0 end:0x8001EFF4
 	.data       start:0x805650E8 end:0x805650F8
 
-AreaObj.a/AstroChangeStageCube.o:
+Game/AreaObj/AstroChangeStageCube.cpp:
 	.text       start:0x8001EFF4 end:0x8001F404
 	.data       start:0x805650F8 end:0x80565178
 
-AreaObj.a/AudioEffectArea.o:
+Game/AreaObj/AudioEffectArea.cpp:
 	.text       start:0x8001F404 end:0x8001F5EC
 	.data       start:0x80565178 end:0x805651E0
 
-AreaObj.a/BgmProhibitArea.o:
+Game/AreaObj/BgmProhibitArea.cpp:
 	.text       start:0x8001F5EC end:0x8001F8BC
 	.data       start:0x805651E0 end:0x80565238
 	.sdata2     start:0x806B7DC0 end:0x806B7DC8
 
-AreaObj.a/BigBubbleCameraArea.o:
+Game/AreaObj/BigBubbleCameraArea.cpp:
 	.text       start:0x8001F8BC end:0x8001FB5C
 	.data       start:0x80565238 end:0x805652B0
 
-AreaObj.a/BigBubbleGoalArea.o:
+Game/AreaObj/BigBubbleGoalArea.cpp:
 	.text       start:0x8001FB5C end:0x8001FF30
+	.rodata     start:0x8052F7D8 end:0x8052F7E0
 	.data       start:0x805652B0 end:0x80565308
 	.sdata2     start:0x806B7DC8 end:0x806B7DE0
 
-AreaObj.a/BloomArea.o:
+Game/AreaObj/BloomArea.cpp:
 	.text       start:0x8001FF30 end:0x800200D0
 	.data       start:0x80565308 end:0x80565348
 
-AreaObj.a/CameraRepulsiveArea.o:
+Game/AreaObj/CameraRepulsiveArea.cpp:
 	.text       start:0x800200D0 end:0x80020344
 	.data       start:0x80565348 end:0x805653F8
 	.sdata2     start:0x806B7DE0 end:0x806B7DF0
 
-AreaObj.a/ChangeBgmCube.o:
+Game/AreaObj/ChangeBgmCube.cpp:
 	.text       start:0x80020344 end:0x800207B0
 	.data       start:0x805653F8 end:0x80565428
 
-AreaObj.a/CollisionArea.o:
+Game/AreaObj/CollisionArea.cpp:
 	.text       start:0x800207B0 end:0x80021DB4
+	.rodata     start:0x8052F7E0 end:0x8052F7E8
 	.data       start:0x80565428 end:0x805654E0
 	.sdata2     start:0x806B7DF0 end:0x806B7E10
 
-AreaObj.a/CubeCamera.o:
+Game/AreaObj/CubeCamera.cpp:
 	.text       start:0x80021DB4 end:0x800221F4
 	.data       start:0x805654E0 end:0x80565548
 	.sbss       start:0x806B2EC8 end:0x806B2ED0
 
-AreaObj.a/DeathArea.o:
+Game/AreaObj/DeathArea.cpp:
 	.text       start:0x800221F4 end:0x800223AC
 	.data       start:0x80565548 end:0x80565580
 
-AreaObj.a/DepthOfFieldArea.o:
+Game/AreaObj/DepthOfFieldArea.cpp:
 	.text       start:0x800223AC end:0x80022508
-	.data       start:0x80565580 end:0x805655D8
+	.rodata     start:0x8052F7E8 end:0x8052F7F0
+	.data       start:0x80565580 end:0x805655C0
 	.sdata2     start:0x806B7E10 end:0x806B7E18
 
-AreaObj.a/FollowCollisionArea.o:
+Game/AreaObj/FollowCollisionArea.cpp:
 	.text       start:0x80022508 end:0x80022F5C
-	.data       start:0x805655D8 end:0x80565610
+	.rodata     start:0x8052F7F0 end:0x8052F7F8
+	.data       start:0x805655C0 end:0x80565610
 	.sdata2     start:0x806B7E18 end:0x806B7E28
 
-AreaObj.a/GlaringLightArea.o:
+Game/AreaObj/GlaringLightArea.cpp:
 	.text       start:0x80022F5C end:0x800231F0
 	.data       start:0x80565610 end:0x80565678
 	.sdata2     start:0x806B7E28 end:0x806B7E30
 
-AreaObj.a/HazeCube.o:
+Game/AreaObj/HazeCube.cpp:
 	.text       start:0x800231F0 end:0x80023300
+	.rodata     start:0x8052F7F8 end:0x8052F800
 	.data       start:0x80565678 end:0x805656B0
 	.sdata2     start:0x806B7E30 end:0x806B7E38
 
-AreaObj.a/ImageEffectArea.o:
+Game/AreaObj/ImageEffectArea.cpp:
 	.text       start:0x80023300 end:0x80023498
 	.data       start:0x805656B0 end:0x80565708
 
-AreaObj.a/LightArea.o:
+Game/AreaObj/LightArea.cpp:
 	.text       start:0x80023498 end:0x80023588
 	.data       start:0x80565708 end:0x80565740
 
-AreaObj.a/LightAreaHolder.o:
+Game/AreaObj/LightAreaHolder.cpp:
 	.text       start:0x80023588 end:0x80023768
 	.data       start:0x80565740 end:0x80565778
 
-AreaObj.a/MercatorTransformCube.o:
+Game/AreaObj/MercatorTransformCube.cpp:
 	.text       start:0x80023768 end:0x80024984
+	.rodata     start:0x8052F800 end:0x8052F810
 	.data       start:0x80565778 end:0x805657A8
 	.sdata2     start:0x806B7E38 end:0x806B7E78
 
-AreaObj.a/MessageArea.o:
+Game/AreaObj/MessageArea.cpp:
 	.text       start:0x80024984 end:0x80024A68
 	.data       start:0x805657A8 end:0x805657D8
 
-AreaObj.a/PlayerSeArea.o:
+Game/AreaObj/PlayerSeArea.cpp:
 	.text       start:0x80024A68 end:0x80024BC0
 	.data       start:0x805657D8 end:0x80565828
 
-AreaObj.a/QuakeEffectArea.o:
+Game/AreaObj/QuakeEffectArea.cpp:
 	.text       start:0x80024BC0 end:0x80024C70
 	.data       start:0x80565828 end:0x80565890
 
-AreaObj.a/RestartCube.o:
+Game/AreaObj/RestartCube.cpp:
 	.text       start:0x80024C70 end:0x80024FA4
 	.data       start:0x80565890 end:0x805658C0
 
-AreaObj.a/ScreenBlurArea.o:
+Game/AreaObj/ScreenBlurArea.cpp:
 	.text       start:0x80024FA4 end:0x800250A8
 	.data       start:0x805658C0 end:0x80565900
 
-AreaObj.a/SimpleBloomArea.o:
+Game/AreaObj/SimpleBloomArea.cpp:
 	.text       start:0x800250A8 end:0x800251D4
 	.data       start:0x80565900 end:0x80565940
 
-AreaObj.a/SoundEmitterCube.o:
+Game/AreaObj/SoundEmitterCube.cpp:
 	.text       start:0x800251D4 end:0x800255B4
 	.data       start:0x80565940 end:0x805659D0
 	.sdata2     start:0x806B7E78 end:0x806B7E80
 
-AreaObj.a/SoundEmitterSphere.o:
+Game/AreaObj/SoundEmitterSphere.cpp:
 	.text       start:0x800255B4 end:0x8002585C
 	.data       start:0x805659D0 end:0x80565AA8
 	.sdata2     start:0x806B7E80 end:0x806B7E88
 
-AreaObj.a/SpinGuidanceArea.o:
+Game/AreaObj/SpinGuidanceArea.cpp:
 	.text       start:0x8002585C end:0x8002599C
 	.data       start:0x80565AA8 end:0x80565B18
 
-AreaObj.a/SunLightArea.o:
+Game/AreaObj/SunLightArea.cpp:
 	.text       start:0x8002599C end:0x80025A40
 	.data       start:0x80565B18 end:0x80565B58
 
-AreaObj.a/SwitchArea.o:
+Game/AreaObj/SwitchArea.cpp:
 	.text       start:0x80025A40 end:0x80025C08
 	.data       start:0x80565B58 end:0x80565B90
 
-AreaObj.a/WarpCube.o:
+Game/AreaObj/WarpCube.cpp:
 	.text       start:0x80025C08 end:0x8002607C
 	.data       start:0x80565B90 end:0x80565BD0
 	.sdata2     start:0x806B7E88 end:0x806B7E98
 
-AreaObj.a/WaterArea.o:
+Game/AreaObj/WaterArea.cpp:
 	.text       start:0x8002607C end:0x80026254
-	.data       start:0x80565BD0 end:0x80565CC8
+	.data       start:0x80565BD0 end:0x80565C20
 
 AudioLib.a/AudSystem.o:
 	.text       start:0x80026254 end:0x8002A1C0
 	.ctors      start:0x8052E820 end:0x8052E824
-	.data       start:0x80565CC8 end:0x80565F90
+	.rodata     start:0x8052F810 end:0x8052F820
+	.data       start:0x80565C20 end:0x80565F90
 	.bss        start:0x8060A418 end:0x8060A488
 	.sbss       start:0x806B2ED0 end:0x806B2EF0
 	.sdata2     start:0x806B7E98 end:0x806B7EC8
 
+AudioLib.a/AudSystemVolumeController.o:
+	.text       start:0x8002A1C0 end:0x8002A45C
+
 AudioLib.a/AudParams.o:
 	.rodata     start:0x8052F820 end:0x8052FA48
 	.sdata2     start:0x806B7EC8 end:0x806B7F98
-
-AudioLib.a/AudSystemVolumeController.o:
-	.text       start:0x8002A1C0 end:0x8002A45C
 
 AudioLib.a/AudAudience.o:
 	.text       start:0x8002A45C end:0x8002A540
