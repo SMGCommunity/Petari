@@ -373,7 +373,7 @@ Game/AreaObj/WaterArea.cpp:
 	.text       start:0x8002607C end:0x80026254
 	.data       start:0x80565BD0 end:0x80565C20
 
-AudioLib.a/AudSystem.o:
+Game/AudioLib/AudSystem.cpp:
 	.text       start:0x80026254 end:0x8002A1C0
 	.ctors      start:0x8052E820 end:0x8052E824
 	.rodata     start:0x8052F810 end:0x8052F820
@@ -382,52 +382,52 @@ AudioLib.a/AudSystem.o:
 	.sbss       start:0x806B2ED0 end:0x806B2EF0
 	.sdata2     start:0x806B7E98 end:0x806B7EC8
 
-AudioLib.a/AudSystemVolumeController.o:
-	.text       start:0x8002A1C0 end:0x8002A45C
-
-AudioLib.a/AudParams.o:
+Game/AudioLib/AudParams.cpp:
 	.rodata     start:0x8052F820 end:0x8052FA48
 	.sdata2     start:0x806B7EC8 end:0x806B7F98
 
-AudioLib.a/AudAudience.o:
+Game/AudioLib/AudSystemVolumeController.cpp:
+	.text       start:0x8002A1C0 end:0x8002A45C
+
+Game/AudioLib/AudAudience.cpp:
 	.text       start:0x8002A45C end:0x8002A540
 	.data       start:0x80565F90 end:0x80565FB0
 	.sdata2     start:0x806B7F98 end:0x806B7FA0
 
-AudioLib.a/AudSoundInfo.o:
+Game/AudioLib/AudSoundInfo.cpp:
 	.text       start:0x8002A540 end:0x8002AA50
 	.sbss       start:0x806B2EF0 end:0x806B2EF8
 
-AudioLib.a/AudWrap.o:
+Game/AudioLib/AudWrap.cpp:
 	.text       start:0x8002AA50 end:0x8002ABE0
 	.ctors      start:0x8052E824 end:0x8052E828
 	.bss        start:0x8060A488 end:0x8060A4A0
 	.sbss       start:0x806B2EF8 end:0x806B2F00
 
-AudioLib.a/AudSoundObject.o:
+Game/AudioLib/AudSoundObject.cpp:
 	.text       start:0x8002ABE0 end:0x8002BB5C
 	.data       start:0x80565FB0 end:0x80565FE8
 	.sdata2     start:0x806B7FA0 end:0x806B7FA8
 
-AudioLib.a/AudSoundObject_Kawamura.o:
+Game/AudioLib/AudSoundObject_Kawamura.cpp:
 	.text       start:0x8002BB5C end:0x8002C6D4
 	.sdata2     start:0x806B7FA8 end:0x806B8008
 
-AudioLib.a/AudSoundObject_Takezawa.o:
+Game/AudioLib/AudSoundObject_Takezawa.cpp:
 	.text       start:0x8002C6D4 end:0x8002D9F0
 	.sdata2     start:0x806B8008 end:0x806B8068
 
-AudioLib.a/AudSoundObject_Gohara.o:
+Game/AudioLib/AudSoundObject_Gohara.cpp:
 	.text       start:0x8002D9F0 end:0x8002DC60
 	.sdata2     start:0x806B8068 end:0x806B8078
 
-AudioLib.a/AudAnmSoundObject.o:
+Game/AudioLib/AudAnmSoundObject.cpp:
 	.text       start:0x8002DC60 end:0x8002E874
 	.data       start:0x80565FE8 end:0x80566048
 	.sbss       start:0x806B2F00 end:0x806B2F08
 	.sdata2     start:0x806B8078 end:0x806B8080
 
-AudioLib.a/AudBgm.o:
+Game/AudioLib/AudBgm.cpp:
 	.text       start:0x8002E874 end:0x8002FD00
 	.ctors      start:0x8052E828 end:0x8052E82C
 	.data       start:0x80566048 end:0x80566160
@@ -435,97 +435,97 @@ AudioLib.a/AudBgm.o:
 	.sbss       start:0x806B2F08 end:0x806B2F10
 	.sdata2     start:0x806B8080 end:0x806B8090
 
-AudioLib.a/AudBgmKeeper.o:
+Game/AudioLib/AudBgmKeeper.cpp:
 	.text       start:0x8002FD00 end:0x8002FF24
 
-AudioLib.a/AudBgmMgr.o:
+Game/AudioLib/AudBgmMgr.cpp:
 	.text       start:0x8002FF24 end:0x80030758
 
-AudioLib.a/AudBgmRhythmStrategy.o:
+Game/AudioLib/AudBgmRhythmStrategy.cpp:
 	.text       start:0x80030758 end:0x80030A74
 	.ctors      start:0x8052E82C end:0x8052E830
 	.data       start:0x80566160 end:0x80566170
 	.bss        start:0x8060A4B8 end:0x8060A4D0
 
-AudioLib.a/AudBgmSetting.o:
+Game/AudioLib/AudBgmSetting.cpp:
 	.text       start:0x80030A74 end:0x80030BA0
 	.rodata     start:0x8052FA48 end:0x80530A68
 
-AudioLib.a/AudBgmVolumeController.o:
+Game/AudioLib/AudBgmVolumeController.cpp:
 	.text       start:0x80030BA0 end:0x80030E0C
 	.sdata2     start:0x806B8090 end:0x806B8098
 
-AudioLib.a/AudEffector.o:
+Game/AudioLib/AudEffector.cpp:
 	.text       start:0x80030E0C end:0x80030F24
 	.data       start:0x80566170 end:0x80566398
 	.sdata2     start:0x806B8098 end:0x806B80A0
 
-AudioLib.a/AudFader.o:
+Game/AudioLib/AudFader.cpp:
 	.text       start:0x80030F24 end:0x80030FF0
 	.sdata2     start:0x806B80A0 end:0x806B80A8
 
-AudioLib.a/AudLimitedSound.o:
+Game/AudioLib/AudLimitedSound.cpp:
 	.text       start:0x80030FF0 end:0x80031070
 
-AudioLib.a/AudMeNameConverter.o:
+Game/AudioLib/AudMeNameConverter.cpp:
 	.text       start:0x80031070 end:0x8003127C
 	.ctors      start:0x8052E830 end:0x8052E834
 	.bss        start:0x8060A4D0 end:0x8060A4E8
 
-AudioLib.a/AudMicWrap.o:
+Game/AudioLib/AudMicWrap.cpp:
 	.text       start:0x8003127C end:0x80031374
 
-AudioLib.a/AudRemixMgr.o:
+Game/AudioLib/AudRemixMgr.cpp:
 	.text       start:0x80031374 end:0x80031544
 
-AudioLib.a/AudRemixSequencer.o:
+Game/AudioLib/AudRemixSequencer.cpp:
 	.text       start:0x80031544 end:0x80031A30
 	.data       start:0x80566398 end:0x80566790
 	.sdata2     start:0x806B80A8 end:0x806B80B8
 
-AudioLib.a/AudSceneMgr.o:
+Game/AudioLib/AudSceneMgr.cpp:
 	.text       start:0x80031A30 end:0x80032454
 	.ctors      start:0x8052E834 end:0x8052E838
 	.rodata     start:0x80530A68 end:0x80530E60
 	.bss        start:0x8060A4E8 end:0x8060A500
 
-AudioLib.a/AudSeStrategy.o:
+Game/AudioLib/AudSeStrategy.cpp:
 	.text       start:0x80032454 end:0x800327BC
 	.ctors      start:0x8052E838 end:0x8052E83C
 	.data       start:0x80566790 end:0x805667B8
 	.bss        start:0x8060A500 end:0x8060A510
 	.sdata2     start:0x806B80B8 end:0x806B80C0
 
-AudioLib.a/AudSoundNameConverter.o:
+Game/AudioLib/AudSoundNameConverter.cpp:
 	.text       start:0x800327BC end:0x80032D78
 	.data       start:0x805667B8 end:0x80566800
 	.sbss       start:0x806B2F10 end:0x806B2F18
 
-AudioLib.a/AudSoundObjHolder.o:
+Game/AudioLib/AudSoundObjHolder.cpp:
 	.text       start:0x80032D78 end:0x80032F04
 
-AudioLib.a/AudSpeakerWrap.o:
+Game/AudioLib/AudSpeakerWrap.cpp:
 	.text       start:0x80032F04 end:0x80033124
 	.ctors      start:0x8052E83C end:0x8052E840
 	.bss        start:0x8060A510 end:0x8060A548
 	.sbss       start:0x806B2F18 end:0x806B2F28
 	.sdata2     start:0x806B80C0 end:0x806B80C8
 
-AudioLib.a/AudTrackController.o:
+Game/AudioLib/AudTrackController.cpp:
 	.text       start:0x80033124 end:0x800334A0
 	.sdata2     start:0x806B80C8 end:0x806B80D0
 
-AudioLib.a/AudUtil.o:
+Game/AudioLib/AudUtil.cpp:
 	.text       start:0x800334A0 end:0x8003359C
 	.sdata2     start:0x806B80D0 end:0x806B80D8
 
-AudioLib.a/OverwriteJAudio.o:
+Game/AudioLib/OverwriteJAudio.cpp:
 	.text       start:0x8003359C end:0x80033CF4
 	.ctors      start:0x8052E840 end:0x8052E844
 	.bss        start:0x8060A548 end:0x8060A568
 	.sdata2     start:0x806B80D8 end:0x806B80E8
 
-AudioLib.a/CSSoundNameConverter.o:
+Game/AudioLib/CSSoundNameConverter.cpp:
 	.text       start:0x80033CF4 end:0x80033F0C
 
 Boss.a/BossAccessor.o:
