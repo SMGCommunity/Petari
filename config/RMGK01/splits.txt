@@ -528,11 +528,11 @@ Game/AudioLib/OverwriteJAudio.cpp:
 Game/AudioLib/CSSoundNameConverter.cpp:
 	.text       start:0x80033CF4 end:0x80033F0C
 
-Boss.a/BossAccessor.o:
+Game/Boss/BossAccessor.cpp:
 	.text       start:0x80033F0C end:0x80034034
 	.data       start:0x80566800 end:0x80566838
 
-Boss.a/BossBegoman.o:
+Game/Boss/BossBegoman.cpp:
 	.text       start:0x80034034 end:0x80036BE4
 	.ctors      start:0x8052E844 end:0x8052E848
 	.rodata     start:0x80530E60 end:0x80530ED8
@@ -540,69 +540,69 @@ Boss.a/BossBegoman.o:
 	.sbss       start:0x806B2F28 end:0x806B2F88
 	.sdata2     start:0x806B80E8 end:0x806B8180
 
-Boss.a/BossBegomanHead.o:
+Game/Boss/BossBegomanHead.cpp:
 	.text       start:0x80036BE4 end:0x8003754C
 	.ctors      start:0x8052E848 end:0x8052E84C
 	.data       start:0x80566D08 end:0x80566E78
 	.sbss       start:0x806B2F88 end:0x806B2FA8
 	.sdata2     start:0x806B8180 end:0x806B8190
 
-Boss.a/BossKameck.o:
+Game/Boss/BossKameck.cpp:
 	.text       start:0x8003754C end:0x80038480
 	.data       start:0x80566E78 end:0x80566FD0
 	.sdata2     start:0x806B8190 end:0x806B81C8
 
-Boss.a/BossKameckAction.o:
+Game/Boss/BossKameckAction.cpp:
 	.text       start:0x80038480 end:0x800385C4
 	.data       start:0x80566FD0 end:0x80567008
 
-Boss.a/BossKameckBarrier.o:
+Game/Boss/BossKameckBarrier.cpp:
 	.text       start:0x800385C4 end:0x800387B8
 	.ctors      start:0x8052E84C end:0x8052E850
 	.data       start:0x80567008 end:0x805670A0
 	.sbss       start:0x806B2FA8 end:0x806B2FB0
 	.sdata2     start:0x806B81C8 end:0x806B81D0
 
-Boss.a/BossKameckBattleDemo.o:
+Game/Boss/BossKameckBattleDemo.cpp:
 	.text       start:0x800387B8 end:0x80039864
 	.ctors      start:0x8052E850 end:0x8052E854
 	.data       start:0x805670A0 end:0x80567438
 	.sbss       start:0x806B2FB0 end:0x806B2FD8
 	.sdata2     start:0x806B81D0 end:0x806B81D8
 
-Boss.a/BossKameckBattlePattarn.o:
+Game/Boss/BossKameckBattlePattarn.cpp:
 	.text       start:0x80039864 end:0x80039918
 
-Boss.a/BossKameckSequencer.o:
+Game/Boss/BossKameckSequencer.cpp:
 	.text       start:0x80039918 end:0x80039ADC
 	.data       start:0x80567438 end:0x80567468
 
-Boss.a/BossKameckMoveRail.o:
+Game/Boss/BossKameckMoveRail.cpp:
 	.text       start:0x80039ADC end:0x80039D7C
 	.data       start:0x80567468 end:0x805674E0
 
-Boss.a/BossKameckVs1.o:
+Game/Boss/BossKameckVs1.cpp:
 	.text       start:0x80039D7C end:0x8003A390
 	.ctors      start:0x8052E854 end:0x8052E858
 	.data       start:0x805674E0 end:0x805675A8
 	.bss        start:0x8060A568 end:0x8060A5A8
 	.sbss       start:0x806B2FD8 end:0x806B2FF0
 
-Boss.a/BossKameckVs2.o:
+Game/Boss/BossKameckVs2.cpp:
 	.text       start:0x8003A390 end:0x8003AAF8
 	.ctors      start:0x8052E858 end:0x8052E85C
 	.data       start:0x805675A8 end:0x805676A0
 	.bss        start:0x8060A5A8 end:0x8060A5E8
 	.sbss       start:0x806B2FF0 end:0x806B3010
 
-Boss.a/BossKameckStateBattle.o:
+Game/Boss/BossKameckStateBattle.cpp:
 	.text       start:0x8003AAF8 end:0x8003BE34
 	.ctors      start:0x8052E85C end:0x8052E860
 	.data       start:0x805676A0 end:0x80567998
 	.sbss       start:0x806B3010 end:0x806B3040
 	.sdata2     start:0x806B81D8 end:0x806B8220
 
-Boss.a/BossStinkBug.o:
+Game/Boss/BossStinkBug.cpp:
 	.text       start:0x8003BE34 end:0x8003D1D8
 	.ctors      start:0x8052E860 end:0x8052E864
 	.rodata     start:0x80530ED8 end:0x80530F18
@@ -610,79 +610,79 @@ Boss.a/BossStinkBug.o:
 	.bss        start:0x8060A5E8 end:0x8060A5F8
 	.sdata2     start:0x806B8220 end:0x806B8268
 
-Boss.a/BossStinkBugActionBase.o:
+Game/Boss/BossStinkBugActionBase.cpp:
 	.text       start:0x8003D1D8 end:0x8003EF1C
 	.data       start:0x80567BC8 end:0x80567F30
 	.sdata2     start:0x806B8268 end:0x806B82D8
 
-Boss.a/BossStinkBugActionFlyHigh.o:
+Game/Boss/BossStinkBugActionFlyHigh.cpp:
 	.text       start:0x8003EF1C end:0x8003FD2C
 	.ctors      start:0x8052E864 end:0x8052E868
 	.data       start:0x80567F30 end:0x805680B8
 	.sbss       start:0x806B3040 end:0x806B3088
 	.sdata2     start:0x806B82D8 end:0x806B82F8
 
-Boss.a/BossStinkBugActionFlyLow.o:
+Game/Boss/BossStinkBugActionFlyLow.cpp:
 	.text       start:0x8003FD2C end:0x8004060C
 	.ctors      start:0x8052E868 end:0x8052E86C
 	.data       start:0x805680B8 end:0x805681C8
 	.sbss       start:0x806B3088 end:0x806B30B0
 	.sdata2     start:0x806B82F8 end:0x806B8328
 
-Boss.a/BossStinkBugActionGround.o:
+Game/Boss/BossStinkBugActionGround.cpp:
 	.text       start:0x8004060C end:0x80040F3C
 	.ctors      start:0x8052E86C end:0x8052E870
 	.data       start:0x805681C8 end:0x805682A0
 	.sbss       start:0x806B30B0 end:0x806B30D8
 	.sdata2     start:0x806B8328 end:0x806B8358
 
-Boss.a/BossStinkBugActionSequencer.o:
+Game/Boss/BossStinkBugActionSequencer.cpp:
 	.text       start:0x80040F3C end:0x80041558
 	.ctors      start:0x8052E870 end:0x8052E874
 	.data       start:0x805682A0 end:0x80568358
 	.sbss       start:0x806B30D8 end:0x806B3100
 
-Boss.a/BossStinkBugAngryDemo.o:
+Game/Boss/BossStinkBugAngryDemo.cpp:
 	.text       start:0x80041558 end:0x800418B8
 	.ctors      start:0x8052E874 end:0x8052E878
 	.data       start:0x80568358 end:0x80568548
 	.sbss       start:0x806B3100 end:0x806B3108
 
-Boss.a/BossStinkBugBomb.o:
+Game/Boss/BossStinkBugBomb.cpp:
 	.text       start:0x800418B8 end:0x80041FEC
 	.ctors      start:0x8052E878 end:0x8052E87C
 	.data       start:0x80568548 end:0x80568608
 	.sbss       start:0x806B3108 end:0x806B3110
 	.sdata2     start:0x806B8358 end:0x806B83A0
 
-Boss.a/BossStinkBugBombHolder.o:
+Game/Boss/BossStinkBugBombHolder.cpp:
 	.text       start:0x80041FEC end:0x800421A0
 	.data       start:0x80568608 end:0x805686B8
 
-Boss.a/BossStinkBugFinishDemo.o:
+Game/Boss/BossStinkBugFinishDemo.cpp:
 	.text       start:0x800421A0 end:0x80042550
 	.ctors      start:0x8052E87C end:0x8052E880
 	.data       start:0x805686B8 end:0x80568720
 	.sbss       start:0x806B3110 end:0x806B3120
 
-Boss.a/BossStinkBugFlyDemo.o:
+Game/Boss/BossStinkBugFlyDemo.cpp:
 	.text       start:0x80042550 end:0x80042938
 	.ctors      start:0x8052E880 end:0x8052E884
 	.data       start:0x80568720 end:0x80568880
 	.sbss       start:0x806B3120 end:0x806B3128
 
-Boss.a/BossStinkBugFunction.o:
+Game/Boss/BossStinkBugFunction.cpp:
 	.text       start:0x80042938 end:0x8004314C
 	.data       start:0x80568880 end:0x805688A0
 	.sdata2     start:0x806B83A0 end:0x806B83D8
 
-Boss.a/BossStinkBugOpeningDemo.o:
+Game/Boss/BossStinkBugOpeningDemo.cpp:
 	.text       start:0x8004314C end:0x800433F4
 	.ctors      start:0x8052E884 end:0x8052E888
 	.data       start:0x805688A0 end:0x80568960
 	.sbss       start:0x806B3128 end:0x806B3130
 
-Boss.a/DinoPackun.o:
+Game/Boss/DinoPackun.cpp:
 	.text       start:0x800433F4 end:0x80045064
 	.ctors      start:0x8052E888 end:0x8052E88C
 	.rodata     start:0x80530F18 end:0x80530F60
@@ -691,19 +691,19 @@ Boss.a/DinoPackun.o:
 	.sdata      start:0x806B16C0 end:0x806B16E0
 	.sdata2     start:0x806B83D8 end:0x806B8450
 
-Boss.a/DinoPackunAction.o:
+Game/Boss/DinoPackunAction.cpp:
 	.text       start:0x80045064 end:0x800457FC
 	.data       start:0x80568C68 end:0x80568CC8
 	.sdata2     start:0x806B8450 end:0x806B8460
 
-Boss.a/DinoPackunBall.o:
+Game/Boss/DinoPackunBall.cpp:
 	.text       start:0x800457FC end:0x8004684C
 	.ctors      start:0x8052E88C end:0x8052E890
 	.data       start:0x80568CC8 end:0x80568E88
 	.sbss       start:0x806B3130 end:0x806B3148
 	.sdata2     start:0x806B8460 end:0x806B84A0
 
-Boss.a/DinoPackunBattleEgg.o:
+Game/Boss/DinoPackunBattleEgg.cpp:
 	.text       start:0x8004684C end:0x80046E68
 	.ctors      start:0x8052E890 end:0x8052E894
 	.data       start:0x80568E88 end:0x80568F40
@@ -711,7 +711,7 @@ Boss.a/DinoPackunBattleEgg.o:
 	.sbss       start:0x806B3148 end:0x806B3158
 	.sdata2     start:0x806B84A0 end:0x806B84C0
 
-Boss.a/DinoPackunBattleEggVs2.o:
+Game/Boss/DinoPackunBattleEggVs2.cpp:
 	.text       start:0x80046E68 end:0x80047488
 	.ctors      start:0x8052E894 end:0x8052E898
 	.data       start:0x80568F40 end:0x80568FF8
@@ -719,21 +719,21 @@ Boss.a/DinoPackunBattleEggVs2.o:
 	.sbss       start:0x806B3158 end:0x806B3168
 	.sdata2     start:0x806B84C0 end:0x806B84E0
 
-Boss.a/DinoPackunBattleVs1Lv1.o:
+Game/Boss/DinoPackunBattleVs1Lv1.cpp:
 	.text       start:0x80047488 end:0x80047D98
 	.ctors      start:0x8052E898 end:0x8052E89C
 	.data       start:0x80568FF8 end:0x80569138
 	.sbss       start:0x806B3168 end:0x806B3188
 	.sdata2     start:0x806B84E0 end:0x806B8500
 
-Boss.a/DinoPackunBattleVs1Lv2.o:
+Game/Boss/DinoPackunBattleVs1Lv2.cpp:
 	.text       start:0x80047D98 end:0x80048758
 	.ctors      start:0x8052E89C end:0x8052E8A0
 	.data       start:0x80569138 end:0x80569270
 	.sbss       start:0x806B3188 end:0x806B31A8
 	.sdata2     start:0x806B8500 end:0x806B8520
 
-Boss.a/DinoPackunBattleVs2Lv1.o:
+Game/Boss/DinoPackunBattleVs2Lv1.cpp:
 	.text       start:0x80048758 end:0x80049968
 	.ctors      start:0x8052E8A0 end:0x8052E8A4
 	.data       start:0x80569270 end:0x805693D0
@@ -741,44 +741,44 @@ Boss.a/DinoPackunBattleVs2Lv1.o:
 	.sbss       start:0x806B31A8 end:0x806B31C8
 	.sdata2     start:0x806B8520 end:0x806B8580
 
-Boss.a/DinoPackunDemo.o:
+Game/Boss/DinoPackunDemo.cpp:
 	.text       start:0x80049968 end:0x8004A330
 	.ctors      start:0x8052E8A4 end:0x8052E8A8
 	.data       start:0x805693D0 end:0x80569678
 	.sbss       start:0x806B31C8 end:0x806B31E0
 	.sdata2     start:0x806B8580 end:0x806B8590
 
-Boss.a/DinoPackunDemoPosition.o:
+Game/Boss/DinoPackunDemoPosition.cpp:
 	.text       start:0x8004A330 end:0x8004A584
 	.ctors      start:0x8052E8A8 end:0x8052E8AC
 	.data       start:0x80569678 end:0x80569700
 	.sbss       start:0x806B31E0 end:0x806B31E8
 
-Boss.a/DinoPackunEggShell.o:
+Game/Boss/DinoPackunEggShell.cpp:
 	.text       start:0x8004A584 end:0x8004A8CC
 	.ctors      start:0x8052E8AC end:0x8052E8B0
 	.data       start:0x80569700 end:0x80569850
 	.sbss       start:0x806B31E8 end:0x806B31F0
 
-Boss.a/DinoPackunFire.o:
+Game/Boss/DinoPackunFire.cpp:
 	.text       start:0x8004A8CC end:0x8004AF74
 	.ctors      start:0x8052E8B0 end:0x8052E8B4
 	.data       start:0x80569850 end:0x80569930
 	.sbss       start:0x806B31F0 end:0x806B31F8
 	.sdata2     start:0x806B8590 end:0x806B85B0
 
-Boss.a/DinoPackunSequencer.o:
+Game/Boss/DinoPackunSequencer.cpp:
 	.text       start:0x8004AF74 end:0x8004B13C
 	.data       start:0x80569930 end:0x80569970
 
-Boss.a/DinoPackunStateAwake.o:
+Game/Boss/DinoPackunStateAwake.cpp:
 	.text       start:0x8004B13C end:0x8004B318
 	.ctors      start:0x8052E8B4 end:0x8052E8B8
 	.data       start:0x80569970 end:0x80569BE8
 	.sbss       start:0x806B31F8 end:0x806B3200
 	.sdata2     start:0x806B85B0 end:0x806B85C0
 
-Boss.a/DinoPackunStateDamage.o:
+Game/Boss/DinoPackunStateDamage.cpp:
 	.text       start:0x8004B318 end:0x8004BDAC
 	.ctors      start:0x8052E8B8 end:0x8052E8BC
 	.data       start:0x80569BE8 end:0x80569D20
@@ -786,52 +786,52 @@ Boss.a/DinoPackunStateDamage.o:
 	.sbss       start:0x806B3200 end:0x806B3218
 	.sdata2     start:0x806B85C0 end:0x806B85E0
 
-Boss.a/DinoPackunStateFire.o:
+Game/Boss/DinoPackunStateFire.cpp:
 	.text       start:0x8004BDAC end:0x8004C374
 	.ctors      start:0x8052E8BC end:0x8052E8C0
 	.data       start:0x80569D20 end:0x80569DA0
 	.sbss       start:0x806B3218 end:0x806B3228
 
-Boss.a/DinoPackunTail.o:
+Game/Boss/DinoPackunTail.cpp:
 	.text       start:0x8004C374 end:0x8004CBEC
 	.sdata2     start:0x806B85E0 end:0x806B8600
 
-Boss.a/DinoPackunTailNode.o:
+Game/Boss/DinoPackunTailNode.cpp:
 	.text       start:0x8004CBEC end:0x8004D204
 	.data       start:0x80569DA0 end:0x80569E40
 	.sdata2     start:0x806B8600 end:0x806B8630
 
-Boss.a/DinoPackunTailPart.o:
+Game/Boss/DinoPackunTailPart.cpp:
 	.text       start:0x8004D204 end:0x8004D6E0
 	.ctors      start:0x8052E8C0 end:0x8052E8C4
 	.data       start:0x80569E40 end:0x80569F08
 	.sbss       start:0x806B3228 end:0x806B3230
 	.sdata2     start:0x806B8630 end:0x806B8650
 
-Boss.a/DinoPackunTailRoot.o:
+Game/Boss/DinoPackunTailRoot.cpp:
 	.text       start:0x8004D6E0 end:0x8004DA68
 	.data       start:0x80569F08 end:0x80569FB8
 
-Boss.a/DinoPackunTrackFire.o:
+Game/Boss/DinoPackunTrackFire.cpp:
 	.text       start:0x8004DA68 end:0x8004E024
 	.ctors      start:0x8052E8C4 end:0x8052E8C8
 	.data       start:0x80569FB8 end:0x8056A0E8
 	.sbss       start:0x806B3230 end:0x806B3238
 	.sdata2     start:0x806B8650 end:0x806B8660
 
-Boss.a/DinoPackunVs1.o:
+Game/Boss/DinoPackunVs1.cpp:
 	.text       start:0x8004E024 end:0x8004E614
 	.ctors      start:0x8052E8C8 end:0x8052E8CC
 	.data       start:0x8056A0E8 end:0x8056A1B8
 	.sbss       start:0x806B3238 end:0x806B3260
 
-Boss.a/DinoPackunVs2.o:
+Game/Boss/DinoPackunVs2.cpp:
 	.text       start:0x8004E614 end:0x8004ED54
 	.ctors      start:0x8052E8CC end:0x8052E8D0
 	.data       start:0x8056A1B8 end:0x8056A3B8
 	.sbss       start:0x806B3260 end:0x806B3288
 
-Boss.a/Dodoryu.o:
+Game/Boss/Dodoryu.cpp:
 	.text       start:0x8004ED54 end:0x80051C54
 	.ctors      start:0x8052E8D0 end:0x8052E8D4
 	.rodata     start:0x80530F60 end:0x80530FC8
@@ -840,74 +840,74 @@ Boss.a/Dodoryu.o:
 	.sbss       start:0x806B3288 end:0x806B32B0
 	.sdata2     start:0x806B8660 end:0x806B86E0
 
-Boss.a/DodoryuDemo.o:
+Game/Boss/DodoryuDemo.cpp:
 	.text       start:0x80051C54 end:0x80053060
 	.ctors      start:0x8052E8D4 end:0x8052E8D8
 	.data       start:0x8056AFB0 end:0x8056B3A0
 	.sbss       start:0x806B32B0 end:0x806B32E8
 	.sdata2     start:0x806B86E0 end:0x806B86F8
 
-Boss.a/DodoryuHill.o:
+Game/Boss/DodoryuHill.cpp:
 	.text       start:0x80053060 end:0x800531B0
 	.data       start:0x8056B3A0 end:0x8056B458
 
-Boss.a/DodoryuMove.o:
+Game/Boss/DodoryuMove.cpp:
 	.text       start:0x800531B0 end:0x80053B44
 	.data       start:0x8056B458 end:0x8056B4B0
 	.sdata2     start:0x806B86F8 end:0x806B8720
 
-Boss.a/DodoryuStateBase.o:
+Game/Boss/DodoryuStateBase.cpp:
 	.text       start:0x80053B44 end:0x80053CB4
 	.sdata2     start:0x806B8720 end:0x806B8728
 
-Boss.a/DodoryuStateLv1.o:
+Game/Boss/DodoryuStateLv1.cpp:
 	.text       start:0x80053CB4 end:0x800550D8
 	.ctors      start:0x8052E8D8 end:0x8052E8DC
 	.data       start:0x8056B4B0 end:0x8056B828
 	.sbss       start:0x806B32E8 end:0x806B3310
 	.sdata2     start:0x806B8728 end:0x806B8750
 
-Boss.a/DodoryuStateLv2.o:
+Game/Boss/DodoryuStateLv2.cpp:
 	.text       start:0x800550D8 end:0x80057E04
 	.ctors      start:0x8052E8DC end:0x8052E8E0
 	.data       start:0x8056B828 end:0x8056BD38
 	.sbss       start:0x806B3310 end:0x806B3368
 	.sdata2     start:0x806B8750 end:0x806B8798
 
-Boss.a/DodoryuStateWait.o:
+Game/Boss/DodoryuStateWait.cpp:
 	.text       start:0x80057E04 end:0x80058048
 	.ctors      start:0x8052E8E0 end:0x8052E8E4
 	.data       start:0x8056BD38 end:0x8056BE78
 	.sbss       start:0x806B3368 end:0x806B3370
 	.sdata2     start:0x806B8798 end:0x806B87A0
 
-Boss.a/DodoryuUtil.o:
+Game/Boss/DodoryuUtil.cpp:
 	.text       start:0x80058048 end:0x80058778
 	.sdata2     start:0x806B87A0 end:0x806B87C0
 
-Boss.a/Koopa.o:
+Game/Boss/Koopa.cpp:
 	.text       start:0x80058778 end:0x80058B5C
 	.data       start:0x8056BE78 end:0x8056BF08
 	.sdata2     start:0x806B87C0 end:0x806B87D0
 
-Boss.a/KoopaBattleBase.o:
+Game/Boss/KoopaBattleBase.cpp:
 	.text       start:0x80058B5C end:0x800590E4
 	.data       start:0x8056BF08 end:0x8056BF58
 	.sdata2     start:0x806B87D0 end:0x806B87F0
 
-Boss.a/KoopaBattleMain.o:
+Game/Boss/KoopaBattleMain.cpp:
 	.text       start:0x800590E4 end:0x8005A1F8
 	.ctors      start:0x8052E8E4 end:0x8052E8E8
 	.data       start:0x8056BF58 end:0x8056C128
 	.sbss       start:0x806B3370 end:0x806B33A8
 	.sdata2     start:0x806B87F0 end:0x806B8800
 
-Boss.a/KoopaBattleStairsBase.o:
+Game/Boss/KoopaBattleStairsBase.cpp:
 	.text       start:0x8005A1F8 end:0x8005A450
 	.data       start:0x8056C128 end:0x8056C238
 	.sdata2     start:0x806B8800 end:0x806B8808
 
-Boss.a/KoopaBattleStairsVs1.o:
+Game/Boss/KoopaBattleStairsVs1.cpp:
 	.text       start:0x8005A450 end:0x8005B120
 	.ctors      start:0x8052E8E8 end:0x8052E8EC
 	.data       start:0x8056C238 end:0x8056C380
@@ -915,211 +915,211 @@ Boss.a/KoopaBattleStairsVs1.o:
 	.sbss       start:0x806B33A8 end:0x806B33C8
 	.sdata2     start:0x806B8808 end:0x806B8830
 
-Boss.a/KoopaBattleStairsVs3.o:
+Game/Boss/KoopaBattleStairsVs3.cpp:
 	.text       start:0x8005B120 end:0x8005B5CC
 	.ctors      start:0x8052E8EC end:0x8052E8F0
 	.data       start:0x8056C380 end:0x8056C418
 	.sbss       start:0x806B33C8 end:0x806B33D8
 	.sdata2     start:0x806B8830 end:0x806B8838
 
-Boss.a/KoopaBattleVs3Lv1.o:
+Game/Boss/KoopaBattleVs3Lv1.cpp:
 	.text       start:0x8005B5CC end:0x8005BD60
 	.ctors      start:0x8052E8F0 end:0x8052E8F4
 	.data       start:0x8056C418 end:0x8056C4F0
 	.sbss       start:0x806B33D8 end:0x806B33F8
 
-Boss.a/KoopaBattleVs3Lv2.o:
+Game/Boss/KoopaBattleVs3Lv2.cpp:
 	.text       start:0x8005BD60 end:0x8005C504
 	.ctors      start:0x8052E8F4 end:0x8052E8F8
 	.data       start:0x8056C4F0 end:0x8056C570
 	.sbss       start:0x806B33F8 end:0x806B3410
 
-Boss.a/KoopaDemoPowerUp.o:
+Game/Boss/KoopaDemoPowerUp.cpp:
 	.text       start:0x8005C504 end:0x8005C990
 	.ctors      start:0x8052E8F8 end:0x8052E8FC
 	.data       start:0x8056C570 end:0x8056C6D0
 	.sbss       start:0x806B3410 end:0x806B3418
 	.sdata2     start:0x806B8838 end:0x806B8848
 
-Boss.a/KoopaDemoFallToPlanetVs3Lv2.o:
+Game/Boss/KoopaDemoFallToPlanetVs3Lv2.cpp:
 	.text       start:0x8005C990 end:0x8005CE9C
 	.ctors      start:0x8052E8FC end:0x8052E900
 	.data       start:0x8056C6D0 end:0x8056C888
 	.sbss       start:0x806B3418 end:0x806B3430
 
-Boss.a/KoopaDemoFallToPlanetVs3Lv3.o:
+Game/Boss/KoopaDemoFallToPlanetVs3Lv3.cpp:
 	.text       start:0x8005CE9C end:0x8005D4B0
 	.ctors      start:0x8052E900 end:0x8052E904
 	.data       start:0x8056C888 end:0x8056CAA0
 	.sbss       start:0x806B3430 end:0x806B3448
 
-Boss.a/KoopaDemoJumpToPlanet.o:
+Game/Boss/KoopaDemoJumpToPlanet.cpp:
 	.text       start:0x8005D4B0 end:0x8005D994
 	.ctors      start:0x8052E904 end:0x8052E908
 	.data       start:0x8056CAA0 end:0x8056CC60
 	.sbss       start:0x806B3448 end:0x806B3458
 
-Boss.a/KoopaFigureBall.o:
+Game/Boss/KoopaFigureBall.cpp:
 	.text       start:0x8005D994 end:0x8005DE18
 	.data       start:0x8056CC60 end:0x8056CD80
 	.sdata2     start:0x806B8848 end:0x806B8860
 
-Boss.a/KoopaFireShort.o:
+Game/Boss/KoopaFireShort.cpp:
 	.text       start:0x8005DE18 end:0x8005E874
 	.ctors      start:0x8052E908 end:0x8052E90C
 	.data       start:0x8056CD80 end:0x8056CE28
 	.sbss       start:0x806B3458 end:0x806B3468
 	.sdata2     start:0x806B8860 end:0x806B8898
 
-Boss.a/KoopaFireStairs.o:
+Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
 	.data       start:0x8056CE28 end:0x8056D2B8
 	.sbss       start:0x806B3468 end:0x806B3470
 	.sdata2     start:0x806B8898 end:0x806B88D0
 
-Boss.a/KoopaFunction.o:
+Game/Boss/KoopaFunction.cpp:
 	.text       start:0x8005F0F8 end:0x8006008C
 	.sdata2     start:0x806B88D0 end:0x806B88D8
 
-Boss.a/KoopaParts.o:
+Game/Boss/KoopaParts.cpp:
 	.text       start:0x8006008C end:0x80060D44
 	.sdata2     start:0x806B88D8 end:0x806B88E0
 
-Boss.a/KoopaPowerUpSwitch.o:
+Game/Boss/KoopaPowerUpSwitch.cpp:
 	.text       start:0x80060D44 end:0x80060E38
 	.data       start:0x8056D2B8 end:0x8056D330
 
-Boss.a/KoopaPlanetShadow.o:
+Game/Boss/KoopaPlanetShadow.cpp:
 	.text       start:0x80060E38 end:0x80061038
 	.data       start:0x8056D330 end:0x8056D3D0
 	.sdata2     start:0x806B88E0 end:0x806B88E8
 
-Boss.a/KoopaRestarterVs3.o:
+Game/Boss/KoopaRestarterVs3.cpp:
 	.text       start:0x80061038 end:0x8006113C
 	.data       start:0x8056D3D0 end:0x8056D448
 
-Boss.a/KoopaRockBreak.o:
+Game/Boss/KoopaRockBreak.cpp:
 	.text       start:0x8006113C end:0x80061294
 	.data       start:0x8056D448 end:0x8056D650
 
-Boss.a/KoopaSensorCtrl.o:
+Game/Boss/KoopaSensorCtrl.cpp:
 	.text       start:0x80061294 end:0x80061898
 	.sdata2     start:0x806B88E8 end:0x806B8938
 
-Boss.a/KoopaSequencer.o:
+Game/Boss/KoopaSequencer.cpp:
 	.text       start:0x80061898 end:0x80061A18
 	.data       start:0x8056D650 end:0x8056D688
 
-Boss.a/KoopaSubSequenceBattle.o:
+Game/Boss/KoopaSubSequenceBattle.cpp:
 	.text       start:0x80061A18 end:0x80061CFC
 	.ctors      start:0x8052E910 end:0x8052E914
 	.data       start:0x8056D688 end:0x8056D6F8
 	.sbss       start:0x806B3470 end:0x806B3488
 
-Boss.a/KoopaSequencerVs1.o:
+Game/Boss/KoopaSequencerVs1.cpp:
 	.text       start:0x80061CFC end:0x80062424
 	.ctors      start:0x8052E914 end:0x8052E918
 	.data       start:0x8056D6F8 end:0x8056D960
 	.sbss       start:0x806B3488 end:0x806B34A8
 
-Boss.a/KoopaSequencerVs2.o:
+Game/Boss/KoopaSequencerVs2.cpp:
 	.text       start:0x80062424 end:0x80062A88
 	.ctors      start:0x8052E918 end:0x8052E91C
 	.data       start:0x8056D960 end:0x8056D9F8
 	.sbss       start:0x806B34A8 end:0x806B34C8
 
-Boss.a/KoopaSequencerVs3.o:
+Game/Boss/KoopaSequencerVs3.cpp:
 	.text       start:0x80062A88 end:0x80063A98
 	.ctors      start:0x8052E91C end:0x8052E920
 	.data       start:0x8056D9F8 end:0x8056DD68
 	.sbss       start:0x806B34C8 end:0x806B3508
 
-Boss.a/KoopaShockWave.o:
+Game/Boss/KoopaShockWave.cpp:
 	.text       start:0x80063A98 end:0x800643B4
 	.ctors      start:0x8052E920 end:0x8052E924
 	.data       start:0x8056DD68 end:0x8056DDF0
 	.sbss       start:0x806B3508 end:0x806B3510
 	.sdata2     start:0x806B8938 end:0x806B8968
 
-Boss.a/KoopaStateAttackFireShort.o:
+Game/Boss/KoopaStateAttackFireShort.cpp:
 	.text       start:0x800643B4 end:0x800647F0
 	.ctors      start:0x8052E924 end:0x8052E928
 	.data       start:0x8056DDF0 end:0x8056DE98
 	.sbss       start:0x806B3510 end:0x806B3518
 	.sdata2     start:0x806B8968 end:0x806B8970
 
-Boss.a/KoopaStateAttackFireLong.o:
+Game/Boss/KoopaStateAttackFireLong.cpp:
 	.text       start:0x800647F0 end:0x80064AC8
 	.ctors      start:0x8052E928 end:0x8052E92C
 	.data       start:0x8056DE98 end:0x8056DF38
 	.sbss       start:0x806B3518 end:0x806B3520
 	.sdata2     start:0x806B8970 end:0x806B8978
 
-Boss.a/KoopaStateAttackHipDrop.o:
+Game/Boss/KoopaStateAttackHipDrop.cpp:
 	.text       start:0x80064AC8 end:0x800655E8
 	.ctors      start:0x8052E92C end:0x8052E930
 	.data       start:0x8056DF38 end:0x8056E118
 	.sbss       start:0x806B3520 end:0x806B3540
 	.sdata2     start:0x806B8978 end:0x806B89A8
 
-Boss.a/KoopaStateAttackRoll.o:
+Game/Boss/KoopaStateAttackRoll.cpp:
 	.text       start:0x800655E8 end:0x80066124
 	.ctors      start:0x8052E930 end:0x8052E934
 	.data       start:0x8056E118 end:0x8056E388
 	.sbss       start:0x806B3540 end:0x806B3558
 	.sdata2     start:0x806B89A8 end:0x806B89B8
 
-Boss.a/KoopaStateAttackShockWave.o:
+Game/Boss/KoopaStateAttackShockWave.cpp:
 	.text       start:0x80066124 end:0x80066840
 	.ctors      start:0x8052E934 end:0x8052E938
 	.data       start:0x8056E388 end:0x8056E408
 	.sbss       start:0x806B3558 end:0x806B3568
 	.sdata2     start:0x806B89B8 end:0x806B89E0
 
-Boss.a/KoopaStateAttackSpin.o:
+Game/Boss/KoopaStateAttackSpin.cpp:
 	.text       start:0x80066840 end:0x800670D8
 	.ctors      start:0x8052E938 end:0x8052E93C
 	.data       start:0x8056E408 end:0x8056E578
 	.sbss       start:0x806B3568 end:0x806B3580
 	.sdata2     start:0x806B89E0 end:0x806B8A00
 
-Boss.a/KoopaStateChaseRoll.o:
+Game/Boss/KoopaStateChaseRoll.cpp:
 	.text       start:0x800670D8 end:0x80067C34
 	.ctors      start:0x8052E93C end:0x8052E940
 	.data       start:0x8056E578 end:0x8056E780
 	.sbss       start:0x806B3580 end:0x806B3598
 	.sdata2     start:0x806B8A00 end:0x806B8A10
 
-Boss.a/KoopaStateDamageEscape.o:
+Game/Boss/KoopaStateDamageEscape.cpp:
 	.text       start:0x80067C34 end:0x800692C4
 	.ctors      start:0x8052E940 end:0x8052E944
 	.data       start:0x8056E780 end:0x8056EC00
 	.sbss       start:0x806B3598 end:0x806B35D8
 	.sdata2     start:0x806B8A10 end:0x806B8A50
 
-Boss.a/KoopaStateGuard.o:
+Game/Boss/KoopaStateGuard.cpp:
 	.text       start:0x800692C4 end:0x80069740
 	.ctors      start:0x8052E944 end:0x8052E948
 	.data       start:0x8056EC00 end:0x8056ECD8
 	.sbss       start:0x806B35D8 end:0x806B35E8
 
-Boss.a/KoopaStateJumpAway.o:
+Game/Boss/KoopaStateJumpAway.cpp:
 	.text       start:0x80069740 end:0x80069BCC
 	.ctors      start:0x8052E948 end:0x8052E94C
 	.data       start:0x8056ECD8 end:0x8056EDC0
 	.sbss       start:0x806B35E8 end:0x806B35F8
 	.sdata2     start:0x806B8A50 end:0x806B8A70
 
-Boss.a/KoopaSwitchKeeper.o:
+Game/Boss/KoopaSwitchKeeper.cpp:
 	.text       start:0x80069BCC end:0x80069CD8
 	.data       start:0x8056EDC0 end:0x8056EE38
 
-Boss.a/KoopaViewSwitchKeeper.o:
+Game/Boss/KoopaViewSwitchKeeper.cpp:
 	.text       start:0x80069CD8 end:0x80069DCC
 	.data       start:0x8056EE38 end:0x8056EEB0
 
-Boss.a/OtaKing.o:
+Game/Boss/OtaKing.cpp:
 	.text       start:0x80069DCC end:0x8006D740
 	.ctors      start:0x8052E94C end:0x8052E950
 	.rodata     start:0x80530FC8 end:0x80531030
@@ -1127,7 +1127,7 @@ Boss.a/OtaKing.o:
 	.sbss       start:0x806B35F8 end:0x806B3640
 	.sdata2     start:0x806B8A70 end:0x806B8B28
 
-Boss.a/OtaKingLongFoot.o:
+Game/Boss/OtaKingLongFoot.cpp:
 	.text       start:0x8006D740 end:0x8006DD98
 	.ctors      start:0x8052E950 end:0x8052E954
 	.rodata     start:0x80531030 end:0x80531078
@@ -1135,95 +1135,95 @@ Boss.a/OtaKingLongFoot.o:
 	.sbss       start:0x806B3640 end:0x806B3650
 	.sdata2     start:0x806B8B28 end:0x806B8B40
 
-Boss.a/OtaKingMagma.o:
+Game/Boss/OtaKingMagma.cpp:
 	.text       start:0x8006DD98 end:0x8006E654
 	.ctors      start:0x8052E954 end:0x8052E958
 	.rodata     start:0x80531078 end:0x805310A0
 	.data       start:0x8056F4C8 end:0x8056F6B8
 	.sbss       start:0x806B3650 end:0x806B3670
 
-Boss.a/Polta.o:
+Game/Boss/Polta.cpp:
 	.text       start:0x8006E654 end:0x8006F3F4
 	.data       start:0x8056F6B8 end:0x8056F9A0
 	.sdata2     start:0x806B8B40 end:0x806B8B68
 
-Boss.a/PoltaActionBase.o:
+Game/Boss/PoltaActionBase.cpp:
 	.text       start:0x8006F3F4 end:0x8006F924
 	.data       start:0x8056F9A0 end:0x8056FA08
 	.sdata2     start:0x806B8B68 end:0x806B8B70
 
-Boss.a/PoltaActionSequencer.o:
+Game/Boss/PoltaActionSequencer.cpp:
 	.text       start:0x8006F924 end:0x8006FE6C
 	.ctors      start:0x8052E958 end:0x8052E95C
 	.data       start:0x8056FA08 end:0x8056FA78
 	.sbss       start:0x806B3670 end:0x806B3688
 
-Boss.a/PoltaArm.o:
+Game/Boss/PoltaArm.cpp:
 	.text       start:0x8006FE6C end:0x80070AB0
 	.ctors      start:0x8052E95C end:0x8052E960
 	.data       start:0x8056FA78 end:0x8056FC70
 	.sbss       start:0x806B3688 end:0x806B36A8
 	.sdata2     start:0x806B8B70 end:0x806B8B80
 
-Boss.a/PoltaBattleLv1.o:
+Game/Boss/PoltaBattleLv1.cpp:
 	.text       start:0x80070AB0 end:0x80071438
 	.ctors      start:0x8052E960 end:0x8052E964
 	.data       start:0x8056FC70 end:0x8056FE70
 	.sbss       start:0x806B36A8 end:0x806B36C8
 	.sdata2     start:0x806B8B80 end:0x806B8B88
 
-Boss.a/PoltaBattleLv2.o:
+Game/Boss/PoltaBattleLv2.cpp:
 	.text       start:0x80071438 end:0x800722BC
 	.ctors      start:0x8052E964 end:0x8052E968
 	.data       start:0x8056FE70 end:0x8056FF30
 	.sbss       start:0x806B36C8 end:0x806B36F0
 	.sdata2     start:0x806B8B88 end:0x806B8BA0
 
-Boss.a/PoltaDemo.o:
+Game/Boss/PoltaDemo.cpp:
 	.text       start:0x800722BC end:0x80072A08
 	.ctors      start:0x8052E968 end:0x8052E96C
 	.data       start:0x8056FF30 end:0x805700B0
 	.sbss       start:0x806B36F0 end:0x806B3700
 	.sdata2     start:0x806B8BA0 end:0x806B8BB0
 
-Boss.a/PoltaFunction.o:
+Game/Boss/PoltaFunction.cpp:
 	.text       start:0x80072A08 end:0x80073324
 	.sdata2     start:0x806B8BB0 end:0x806B8BD8
 
-Boss.a/PoltaGroundRock.o:
+Game/Boss/PoltaGroundRock.cpp:
 	.text       start:0x80073324 end:0x80073C54
 	.ctors      start:0x8052E96C end:0x8052E970
 	.data       start:0x805700B0 end:0x80570228
 	.sbss       start:0x806B3700 end:0x806B3710
 	.sdata2     start:0x806B8BD8 end:0x806B8C00
 
-Boss.a/PoltaGroundRockHolder.o:
+Game/Boss/PoltaGroundRockHolder.cpp:
 	.text       start:0x80073C54 end:0x80073DF8
 	.data       start:0x80570228 end:0x805702F8
 
-Boss.a/PoltaRock.o:
+Game/Boss/PoltaRock.cpp:
 	.text       start:0x80073DF8 end:0x800748BC
 	.ctors      start:0x8052E970 end:0x8052E974
 	.data       start:0x805702F8 end:0x805703B8
 	.sbss       start:0x806B3710 end:0x806B3720
 	.sdata2     start:0x806B8C00 end:0x806B8C38
 
-Boss.a/PoltaRockHolder.o:
+Game/Boss/PoltaRockHolder.cpp:
 	.text       start:0x800748BC end:0x80074A08
 	.data       start:0x805703B8 end:0x805704F0
 
-Boss.a/PoltaSensorCtrl.o:
+Game/Boss/PoltaSensorCtrl.cpp:
 	.text       start:0x80074A08 end:0x80074D90
 	.rodata     start:0x805310A0 end:0x80531310
 	.sdata2     start:0x806B8C38 end:0x806B8C48
 
-Boss.a/PoltaStateAttackGround.o:
+Game/Boss/PoltaStateAttackGround.cpp:
 	.text       start:0x80074D90 end:0x800751D0
 	.ctors      start:0x8052E974 end:0x8052E978
 	.data       start:0x805704F0 end:0x80570628
 	.sbss       start:0x806B3720 end:0x806B3730
 
-Boss.a/PoltaStateGenerateRock.o:
+Game/Boss/PoltaStateGenerateRock.cpp:
 	.text       start:0x800751D0 end:0x800755E8
 	.ctors      start:0x8052E978 end:0x8052E97C
 	.rodata     start:0x80531310 end:0x80531430
@@ -1231,31 +1231,31 @@ Boss.a/PoltaStateGenerateRock.o:
 	.sbss       start:0x806B3730 end:0x806B3740
 	.sdata2     start:0x806B8C48 end:0x806B8C58
 
-Boss.a/PoltaStateGroundRockAttack.o:
+Game/Boss/PoltaStateGroundRockAttack.cpp:
 	.text       start:0x800755E8 end:0x80075A10
 	.ctors      start:0x8052E97C end:0x8052E980
 	.data       start:0x805706D0 end:0x80570800
 	.sbss       start:0x806B3740 end:0x806B3750
 	.sdata2     start:0x806B8C58 end:0x806B8C68
 
-Boss.a/PoltaStatePunch.o:
+Game/Boss/PoltaStatePunch.cpp:
 	.text       start:0x80075A10 end:0x80075E94
 	.ctors      start:0x8052E980 end:0x8052E984
 	.data       start:0x80570800 end:0x80570920
 	.sbss       start:0x806B3750 end:0x806B3760
 
-Boss.a/PoltaStateStagger.o:
+Game/Boss/PoltaStateStagger.cpp:
 	.text       start:0x80075E94 end:0x80076164
 	.ctors      start:0x8052E984 end:0x8052E988
 	.data       start:0x80570920 end:0x805709A0
 	.sbss       start:0x806B3760 end:0x806B3768
 	.sdata2     start:0x806B8C68 end:0x806B8C90
 
-Boss.a/PoltaWaitStart.o:
+Game/Boss/PoltaWaitStart.cpp:
 	.text       start:0x80076164 end:0x8007624C
 	.data       start:0x805709A0 end:0x805709F0
 
-Boss.a/SkeletalFishBaby.o:
+Game/Boss/SkeletalFishBaby.cpp:
 	.text       start:0x8007624C end:0x80077248
 	.ctors      start:0x8052E988 end:0x8052E98C
 	.rodata     start:0x80531430 end:0x80531470
@@ -1263,67 +1263,69 @@ Boss.a/SkeletalFishBaby.o:
 	.sbss       start:0x806B3768 end:0x806B3778
 	.sdata2     start:0x806B8C90 end:0x806B8CC0
 
-Boss.a/SkeletalFishBabyRail.o:
+Game/Boss/SkeletalFishBabyRail.cpp:
 	.text       start:0x80077248 end:0x80077358
 	.data       start:0x80570BC8 end:0x80570C40
 
-Boss.a/SkeletalFishBabyRailHolder.o:
+Game/Boss/SkeletalFishBabyRailHolder.cpp:
 	.text       start:0x80077358 end:0x80077794
 	.data       start:0x80570C40 end:0x80570E10
 
-Boss.a/SkeletalFishBoss.o:
+Game/Boss/SkeletalFishBoss.cpp:
 	.text       start:0x80077794 end:0x8007AE78
 	.ctors      start:0x8052E98C end:0x8052E990
-	.rodata     start:0x80531470 end:0x80531540
+	.rodata     start:0x80531470 end:0x805314F8
 	.data       start:0x80570E10 end:0x805717C8
 	.sbss       start:0x806B3778 end:0x806B37B8
 	.sdata2     start:0x806B8CC0 end:0x806B8D18
 
-Boss.a/SkeletalFishBossBattleDirector.o:
+Game/Boss/SkeletalFishBossBattleDirector.cpp:
 	.text       start:0x8007AE78 end:0x8007B4A8
 	.data       start:0x805717C8 end:0x80571880
 
-Boss.a/SkeletalFishBossFunc.o:
+Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0
 	.sdata      start:0x806B1780 end:0x806B1788
 	.sdata2     start:0x806B8D18 end:0x806B8D20
 
-Boss.a/SkeletalFishBossInfo.o:
+Game/Boss/SkeletalFishBossInfo.cpp:
 	.text       start:0x8007B5B0 end:0x8007BACC
 	.data       start:0x80571880 end:0x805718A8
-	.sdata      start:0x806B1788 end:0x806B17C0
+	.sdata      start:0x806B1788 end:0x806B17B8
 	.sdata2     start:0x806B8D20 end:0x806B8D30
 
-Boss.a/SkeletalFishBossRail.o:
+Game/Boss/SkeletalFishBossRail.cpp:
 	.text       start:0x8007BACC end:0x8007BD94
 	.data       start:0x805718A8 end:0x80571920
 	.sdata2     start:0x806B8D30 end:0x806B8D38
 
-Boss.a/SkeletalFishBossRailHolder.o:
+Game/Boss/SkeletalFishBossRailHolder.cpp:
 	.text       start:0x8007BD94 end:0x8007BEE8
 	.data       start:0x80571920 end:0x80571948
 
-Boss.a/SkeletalFishGuard.o:
+Game/Boss/SkeletalFishGuard.cpp:
 	.text       start:0x8007BEE8 end:0x8007E398
 	.ctors      start:0x8052E990 end:0x8052E994
+	.rodata     start:0x805314F8 end:0x80531500
 	.data       start:0x80571948 end:0x80571BB0
+	.sdata      start:0x806B17B8 end:0x806B17C0
 	.sbss       start:0x806B37B8 end:0x806B37E0
 	.sdata2     start:0x806B8D38 end:0x806B8DA8
 
-Boss.a/SkeletalFishGuardHolder.o:
+Game/Boss/SkeletalFishGuardHolder.cpp:
 	.text       start:0x8007E398 end:0x8007EB28
 	.data       start:0x80571BB0 end:0x80571BD8
 	.sdata2     start:0x806B8DA8 end:0x806B8DB0
 
-Boss.a/SkeletalFishJointCalc.o:
+Game/Boss/SkeletalFishJointCalc.cpp:
 	.text       start:0x8007EB28 end:0x8007EBEC
 	.sdata2     start:0x806B8DB0 end:0x806B8DB8
 
-Boss.a/SkeletalFishRailControl.o:
+Game/Boss/SkeletalFishRailControl.cpp:
 	.text       start:0x8007EBEC end:0x8007F1A4
 	.sdata2     start:0x806B8DB8 end:0x806B8DC8
 
-Boss.a/TombSpider.o:
+Game/Boss/TombSpider.cpp:
 	.text       start:0x8007F1A4 end:0x8007FC58
 	.ctors      start:0x8052E994 end:0x8052E998
 	.data       start:0x80571BD8 end:0x80571DB0
@@ -1331,200 +1333,206 @@ Boss.a/TombSpider.o:
 	.sbss       start:0x806B37E0 end:0x806B3810
 	.sdata2     start:0x806B8DC8 end:0x806B8DD0
 
-Boss.a/TombSpiderAcid.o:
+Game/Boss/TombSpiderAcid.cpp:
 	.text       start:0x8007FC58 end:0x800801D0
 	.sdata2     start:0x806B8DD0 end:0x806B8DE0
 
-Boss.a/TombSpiderAction1st.o:
+Game/Boss/TombSpiderAction1st.cpp:
 	.text       start:0x800801D0 end:0x80080ACC
 	.ctors      start:0x8052E998 end:0x8052E99C
 	.data       start:0x80571DB0 end:0x80571EE0
 	.sbss       start:0x806B3810 end:0x806B3848
 	.sdata2     start:0x806B8DE0 end:0x806B8DE8
 
-Boss.a/TombSpiderAction2nd.o:
+Game/Boss/TombSpiderAction2nd.cpp:
 	.text       start:0x80080ACC end:0x80081368
 	.ctors      start:0x8052E99C end:0x8052E9A0
 	.data       start:0x80571EE0 end:0x80571FE8
 	.sbss       start:0x806B3848 end:0x806B3880
 	.sdata2     start:0x806B8DE8 end:0x806B8DF0
 
-Boss.a/TombSpiderActionBase.o:
+Game/Boss/TombSpiderActionBase.cpp:
 	.text       start:0x80081368 end:0x80082140
+	.rodata     start:0x80531500 end:0x80531508
 	.data       start:0x80571FE8 end:0x80572218
 	.sdata2     start:0x806B8DF0 end:0x806B8E00
 
-Boss.a/TombSpiderActionCocoon.o:
+Game/Boss/TombSpiderActionCocoon.cpp:
 	.text       start:0x80082140 end:0x80082484
 	.ctors      start:0x8052E9A0 end:0x8052E9A4
 	.data       start:0x80572218 end:0x805725E0
 	.sbss       start:0x806B3880 end:0x806B3888
 
-Boss.a/TombSpiderDemo.o:
+Game/Boss/TombSpiderDemo.cpp:
 	.text       start:0x80082484 end:0x8008306C
+	.rodata     start:0x80531508 end:0x80531510
 	.sdata2     start:0x806B8E00 end:0x806B8E38
 
-Boss.a/TombSpiderEnvironment.o:
+Game/Boss/TombSpiderEnvironment.cpp:
 	.text       start:0x8008306C end:0x800831CC
 	.sdata2     start:0x806B8E38 end:0x806B8E40
 
-Boss.a/TombSpiderFunction.o:
+Game/Boss/TombSpiderFunction.cpp:
 	.text       start:0x800831CC end:0x80084424
+	.rodata     start:0x80531510 end:0x80531520
 	.sdata2     start:0x806B8E40 end:0x806B8E60
 
-Boss.a/TombSpiderGland.o:
+Game/Boss/TombSpiderGland.cpp:
 	.text       start:0x80084424 end:0x800847B8
 	.ctors      start:0x8052E9A4 end:0x8052E9A8
 	.data       start:0x805725E0 end:0x80572850
 	.sbss       start:0x806B3888 end:0x806B3898
 
-Boss.a/TombSpiderParts.o:
+Game/Boss/TombSpiderParts.cpp:
 	.text       start:0x800847B8 end:0x80084FE8
 	.sdata2     start:0x806B8E60 end:0x806B8EB0
 
-Boss.a/TombSpiderSensorCtrl.o:
+Game/Boss/TombSpiderSensorCtrl.cpp:
 	.text       start:0x80084FE8 end:0x80085868
 	.sdata2     start:0x806B8EB0 end:0x806B8EE0
 
-Boss.a/TombSpiderStateSwoon.o:
+Game/Boss/TombSpiderStateSwoon.cpp:
 	.text       start:0x80085868 end:0x80085B10
 	.ctors      start:0x8052E9A8 end:0x8052E9AC
 	.data       start:0x80572850 end:0x805728A0
 	.sbss       start:0x806B3898 end:0x806B38A8
 
-Boss.a/TombSpiderThreadAttacher.o:
+Game/Boss/TombSpiderThreadAttacher.cpp:
 	.text       start:0x80085B10 end:0x80085CF4
 	.ctors      start:0x8052E9AC end:0x8052E9B0
 	.data       start:0x805728A0 end:0x805729A8
 	.sbss       start:0x806B38A8 end:0x806B38B0
 
-Boss.a/TombSpiderVitalSpot.o:
+Game/Boss/TombSpiderVitalSpot.cpp:
 	.text       start:0x80085CF4 end:0x8008618C
 	.ctors      start:0x8052E9B0 end:0x8052E9B4
 	.data       start:0x805729A8 end:0x80572A70
 	.sbss       start:0x806B38B0 end:0x806B38C8
 
-Boss.a/TripodBoss.o:
+Game/Boss/TripodBoss.cpp:
 	.text       start:0x8008618C end:0x80089410
 	.ctors      start:0x8052E9B4 end:0x8052E9B8
+	.rodata     start:0x80531520 end:0x80531530
 	.data       start:0x80572A70 end:0x80572DD0
 	.bss        start:0x8060A6A8 end:0x8060A6D0
 	.sdata      start:0x806B17E0 end:0x806B17E8
 	.sbss       start:0x806B38C8 end:0x806B3900
 	.sdata2     start:0x806B8EE0 end:0x806B8F60
 
-Boss.a/TripodBossAccesser.o:
+Game/Boss/TripodBossAccesser.cpp:
 	.text       start:0x80089410 end:0x80089CD8
 	.data       start:0x80572DD0 end:0x80572EA8
 	.sdata      start:0x806B17E8 end:0x806B17F0
 
-Boss.a/TripodBossBaseJointPosition.o:
+Game/Boss/TripodBossBaseJointPosition.cpp:
 	.text       start:0x80089CD8 end:0x80089EC4
 	.data       start:0x80572EA8 end:0x80572F20
 
-Boss.a/TripodBossBreakMovement.o:
+Game/Boss/TripodBossBreakMovement.cpp:
 	.text       start:0x80089EC4 end:0x8008A49C
 	.ctors      start:0x8052E9B8 end:0x8052E9BC
 	.data       start:0x80572F20 end:0x80572FC8
 	.sbss       start:0x806B3900 end:0x806B3910
 	.sdata2     start:0x806B8F60 end:0x806B8F98
 
-Boss.a/TripodBossCoin.o:
+Game/Boss/TripodBossCoin.cpp:
 	.text       start:0x8008A49C end:0x8008A798
 	.ctors      start:0x8052E9BC end:0x8052E9C0
 	.data       start:0x80572FC8 end:0x80573030
 	.sbss       start:0x806B3910 end:0x806B3920
 
-Boss.a/TripodBossCore.o:
+Game/Boss/TripodBossCore.cpp:
 	.text       start:0x8008A798 end:0x8008AFC0
 	.ctors      start:0x8052E9C0 end:0x8052E9C4
 	.data       start:0x80573030 end:0x80573190
 	.sbss       start:0x806B3920 end:0x806B3938
 	.sdata2     start:0x806B8F98 end:0x806B8FB0
 
-Boss.a/TripodBossFixParts.o:
+Game/Boss/TripodBossFixParts.cpp:
 	.text       start:0x8008AFC0 end:0x8008B7A8
 	.ctors      start:0x8052E9C4 end:0x8052E9C8
 	.data       start:0x80573190 end:0x805733A8
 	.sbss       start:0x806B3938 end:0x806B3948
 	.sdata2     start:0x806B8FB0 end:0x806B8FC0
 
-Boss.a/TripodBossFixPartsBase.o:
+Game/Boss/TripodBossFixPartsBase.cpp:
 	.text       start:0x8008B7A8 end:0x8008BC40
 	.data       start:0x805733A8 end:0x80573428
 	.sdata2     start:0x806B8FC0 end:0x806B8FC8
 
-Boss.a/TripodBossGuardWall.o:
+Game/Boss/TripodBossGuardWall.cpp:
 	.text       start:0x8008BC40 end:0x8008C618
 	.ctors      start:0x8052E9C8 end:0x8052E9CC
+	.rodata     start:0x80531530 end:0x80531538
 	.data       start:0x80573428 end:0x805735D0
 	.sdata      start:0x806B17F0 end:0x806B17F8
 	.sbss       start:0x806B3948 end:0x806B3958
 	.sdata2     start:0x806B8FC8 end:0x806B8FE0
 
-Boss.a/TripodBossGuardWallPart.o:
+Game/Boss/TripodBossGuardWallPart.cpp:
 	.text       start:0x8008C618 end:0x8008CC5C
 	.ctors      start:0x8052E9CC end:0x8052E9D0
+	.rodata     start:0x80531538 end:0x80531540
 	.data       start:0x805735D0 end:0x80573710
 	.sbss       start:0x806B3958 end:0x806B3970
 	.sdata2     start:0x806B8FE0 end:0x806B8FF8
 
-Boss.a/TripodBossKillerGenerater.o:
+Game/Boss/TripodBossKillerGenerater.cpp:
 	.text       start:0x8008CC5C end:0x8008D9E0
 	.ctors      start:0x8052E9D0 end:0x8052E9D4
 	.data       start:0x80573710 end:0x805738C8
 	.sbss       start:0x806B3970 end:0x806B3998
 	.sdata2     start:0x806B8FF8 end:0x806B9008
 
-Boss.a/TripodBossKillerGeneraterCircle.o:
+Game/Boss/TripodBossKillerGeneraterCircle.cpp:
 	.text       start:0x8008D9E0 end:0x8008DE98
 	.rodata     start:0x80531540 end:0x80531620
 	.data       start:0x805738C8 end:0x80573998
 	.sdata2     start:0x806B9008 end:0x806B9018
 
-Boss.a/TripodBossKinokoOneUp.o:
+Game/Boss/TripodBossKinokoOneUp.cpp:
 	.text       start:0x8008DE98 end:0x8008E2E8
 	.ctors      start:0x8052E9D4 end:0x8052E9D8
 	.data       start:0x80573998 end:0x80573BD8
 	.sbss       start:0x806B3998 end:0x806B39B8
 
-Boss.a/TripodBossLeg.o:
+Game/Boss/TripodBossLeg.cpp:
 	.text       start:0x8008E2E8 end:0x80090694
 	.ctors      start:0x8052E9D8 end:0x8052E9DC
 	.data       start:0x80573BD8 end:0x80573D00
 	.sbss       start:0x806B39B8 end:0x806B39E8
 	.sdata2     start:0x806B9018 end:0x806B9098
 
-Boss.a/TripodBossMovableArea.o:
+Game/Boss/TripodBossMovableArea.cpp:
 	.text       start:0x80090694 end:0x80090E60
 	.ctors      start:0x8052E9DC end:0x8052E9E0
 	.data       start:0x80573D00 end:0x80573D18
 	.bss        start:0x8060A6D0 end:0x8060A6F8
 	.sdata2     start:0x806B9098 end:0x806B90B8
 
-Boss.a/TripodBossRailMoveParts.o:
+Game/Boss/TripodBossRailMoveParts.cpp:
 	.text       start:0x80090E60 end:0x8009104C
 	.data       start:0x80573D18 end:0x80573DA0
 
-Boss.a/TripodBossRotateParts.o:
+Game/Boss/TripodBossRotateParts.cpp:
 	.text       start:0x8009104C end:0x8009131C
 	.data       start:0x80573DA0 end:0x80573E40
 
-Boss.a/TripodBossShell.o:
+Game/Boss/TripodBossShell.cpp:
 	.text       start:0x8009131C end:0x8009189C
 	.ctors      start:0x8052E9E0 end:0x8052E9E4
 	.data       start:0x80573E40 end:0x80573F58
 	.sbss       start:0x806B39E8 end:0x806B39F8
 	.sdata2     start:0x806B90B8 end:0x806B90D0
 
-Boss.a/TripodBossStepPoint.o:
+Game/Boss/TripodBossStepPoint.cpp:
 	.text       start:0x8009189C end:0x80091AE8
 	.data       start:0x80573F58 end:0x80573FD0
 
-Boss.a/TripodBossStepSequence.o:
+Game/Boss/TripodBossStepSequence.cpp:
 	.text       start:0x80091AE8 end:0x80091BE8
 
-Boss.a/TripodBossStepStartArea.o:
+Game/Boss/TripodBossStepStartArea.cpp:
 	.text       start:0x80091BE8 end:0x80091D24
 	.data       start:0x80573FD0 end:0x80574010
 

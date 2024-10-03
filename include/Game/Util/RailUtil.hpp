@@ -58,7 +58,7 @@ namespace MR {
 
     bool isExistRail(const LiveActor *);
 
-    void moveRailRider(const LiveActor *);
+    void moveRailRider(LiveActor *);
 
     void moveCoordToEndPos(const LiveActor *);
 
@@ -68,7 +68,7 @@ namespace MR {
 
     f32 getRailCoordSpeed(const LiveActor *);
 
-    void setRailDirectionToEnd(const LiveActor *);
+    void setRailDirectionToEnd(LiveActor *);
 
     bool isLoopRail(const LiveActor *);
 
