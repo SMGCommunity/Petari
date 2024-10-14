@@ -1,6 +1,7 @@
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Util.hpp"
 
 ActorLightCtrl::ActorLightCtrl(const LiveActor *pActor) 
     : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {

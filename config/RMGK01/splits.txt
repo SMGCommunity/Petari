@@ -3260,275 +3260,277 @@ Game/Gravity/WireGravity.cpp:
 	.data       start:0x80587740 end:0x80587750
 	.sdata2     start:0x806BBBC8 end:0x806BBBD0
 
-LiveActor.a/ActiveActorList.o:
+Game/LiveActor/ActiveActorList.cpp:
 	.text       start:0x8015B77C end:0x8015B984
 
-LiveActor.a/ActorAnimKeeper.o:
+Game/LiveActor/ActorAnimKeeper.cpp:
 	.text       start:0x8015B984 end:0x8015C01C
 	.data       start:0x80587750 end:0x805877A0
 	.sdata      start:0x806B1B00 end:0x806B1B20
 
-LiveActor.a/ActorCameraInfo.o:
+Game/LiveActor/ActorCameraInfo.cpp:
 	.text       start:0x8015C01C end:0x8015C09C
 
-LiveActor.a/ActorJointCtrl.o:
+Game/LiveActor/ActorJointCtrl.cpp:
 	.text       start:0x8015C09C end:0x8015C2E0
 
-LiveActor.a/ActorLightCtrl.o:
+Game/LiveActor/ActorLightCtrl.cpp:
 	.text       start:0x8015C2E0 end:0x8015C8C8
 
-LiveActor.a/ActorPadAndCameraCtrl.o:
+Game/LiveActor/ActorPadAndCameraCtrl.cpp:
 	.text       start:0x8015C8C8 end:0x8015CF30
 	.data       start:0x805877A0 end:0x80587880
 	.sdata      start:0x806B1B20 end:0x806B1B30
 	.sdata2     start:0x806BBBD0 end:0x806BBBD8
 
-LiveActor.a/ActorStateBase.o:
+Game/LiveActor/ActorStateBase.cpp:
 	.text       start:0x8015CF30 end:0x8015CF88
 
-LiveActor.a/ActorStateKeeper.o:
+Game/LiveActor/ActorStateKeeper.cpp:
 	.text       start:0x8015CF88 end:0x8015D148
 
-LiveActor.a/AllLiveActorGroup.o:
+Game/LiveActor/AllLiveActorGroup.cpp:
 	.text       start:0x8015D148 end:0x8015D348
 	.data       start:0x80587880 end:0x805878B8
 
-LiveActor.a/AnimationRandomPlayer.o:
+Game/LiveActor/AnimationRandomPlayer.cpp:
 	.text       start:0x8015D348 end:0x8015D5D8
 	.ctors      start:0x8052EB98 end:0x8052EB9C
 	.data       start:0x805878B8 end:0x805878E8
 	.sbss       start:0x806B4A10 end:0x806B4A18
 	.sdata2     start:0x806BBBD8 end:0x806BBBE0
 
-LiveActor.a/Binder.o:
+Game/LiveActor/Binder.cpp:
 	.text       start:0x8015D5D8 end:0x8015EC2C
 	.sdata      start:0x806B1B30 end:0x806B1B38
 	.sdata2     start:0x806BBBE0 end:0x806BBBF8
 
-LiveActor.a/ClippingActorHolder.o:
+Game/LiveActor/ClippingActorHolder.cpp:
 	.text       start:0x8015EC2C end:0x8015F394
 	.data       start:0x805878E8 end:0x80587928
 	.sdata      start:0x806B1B38 end:0x806B1B48
 
-LiveActor.a/ClippingActorInfo.o:
+Game/LiveActor/ClippingActorInfo.cpp:
 	.text       start:0x8015F394 end:0x8015F75C
 	.sdata2     start:0x806BBBF8 end:0x806BBC00
 
-LiveActor.a/ClippingDirector.o:
+Game/LiveActor/ClippingDirector.cpp:
 	.text       start:0x8015F75C end:0x8015FA28
 	.data       start:0x80587928 end:0x80587970
 
-LiveActor.a/ClippingGroupHolder.o:
+Game/LiveActor/ClippingGroupHolder.cpp:
 	.text       start:0x8015FA28 end:0x8016009C
 	.data       start:0x80587970 end:0x805879D8
 
-LiveActor.a/ClippingJudge.o:
+Game/LiveActor/ClippingJudge.cpp:
 	.text       start:0x8016009C end:0x80160724
 	.data       start:0x805879D8 end:0x80587A00
 	.sdata2     start:0x806BBC00 end:0x806BBC30
 
-LiveActor.a/DisplayListMaker.o:
+Game/LiveActor/DisplayListMaker.cpp:
 	.text       start:0x80160724 end:0x801612D8
 	.data       start:0x80587A00 end:0x80587A38
 
-LiveActor.a/DynamicJointCtrl.o:
+Game/LiveActor/DynamicJointCtrl.cpp:
 	.text       start:0x801612D8 end:0x801621C0
 	.data       start:0x80587A38 end:0x80587AE0
 	.sdata      start:0x806B1B48 end:0x806B1B50
 	.sdata2     start:0x806BBC30 end:0x806BBC40
 
-LiveActor.a/EffectKeeper.o:
+Game/LiveActor/EffectKeeper.cpp:
 	.text       start:0x801621C0 end:0x80163388
 	.data       start:0x80587AE0 end:0x80587B60
 	.sdata      start:0x806B1B50 end:0x806B1B60
 	.sdata2     start:0x806BBC40 end:0x806BBC48
 
-LiveActor.a/FaceJointCtrl.o:
+Game/LiveActor/FaceJointCtrl.cpp:
 	.text       start:0x80163388 end:0x80163808
 	.data       start:0x80587B60 end:0x80587BA8
 	.sdata      start:0x806B1B60 end:0x806B1B68
 	.sdata2     start:0x806BBC48 end:0x806BBC58
 
-LiveActor.a/FlashingCtrl.o:
+Game/LiveActor/FlashingCtrl.cpp:
 	.text       start:0x80163808 end:0x80163B1C
 	.data       start:0x80587BA8 end:0x80587BD0
 
-LiveActor.a/HitSensor.o:
+Game/LiveActor/HitSensor.cpp:
 	.text       start:0x80163B1C end:0x80163E20
 	.sdata2     start:0x806BBC58 end:0x806BBC60
 
-LiveActor.a/HitSensorInfo.o:
+Game/LiveActor/HitSensorInfo.cpp:
 	.text       start:0x80163E20 end:0x80164180
 
-LiveActor.a/HitSensorKeeper.o:
+Game/LiveActor/HitSensorKeeper.cpp:
 	.text       start:0x80164180 end:0x8016492C
 	.sdata2     start:0x806BBC60 end:0x806BBC68
 
-LiveActor.a/IKJointCtrl.o:
+Game/LiveActor/IKJointCtrl.cpp:
 	.text       start:0x8016492C end:0x80165674
 	.data       start:0x80587BD0 end:0x80587CA8
 	.sdata      start:0x806B1B68 end:0x806B1BA8
 	.sdata2     start:0x806BBC68 end:0x806BBC78
 
-LiveActor.a/LiveActor.o:
+Game/LiveActor/LiveActor.cpp:
 	.text       start:0x80165674 end:0x80166510
 	.data       start:0x80587CA8 end:0x80587D20
 	.sdata2     start:0x806BBC78 end:0x806BBC88
 
-LiveActor.a/LiveActorFlag.o:
+Game/LiveActor/LiveActorFlag.cpp:
 	.text       start:0x80166510 end:0x80166540
 
-LiveActor.a/LiveActorGroup.o:
+Game/LiveActor/LiveActorGroup.cpp:
 	.text       start:0x80166540 end:0x80166758
 	.data       start:0x80587D20 end:0x80587D48
 
-LiveActor.a/LiveActorGroupArray.o:
+Game/LiveActor/LiveActorGroupArray.cpp:
 	.text       start:0x80166758 end:0x80166C70
 	.data       start:0x80587D48 end:0x80587DA0
 
-LiveActor.a/LodCtrl.o:
+Game/LiveActor/LodCtrl.cpp:
 	.text       start:0x80166C70 end:0x80167868
 	.data       start:0x80587DA0 end:0x80587DF0
 	.sdata2     start:0x806BBC88 end:0x806BBC98
 
-LiveActor.a/MaterialCtrl.o:
+Game/LiveActor/MaterialCtrl.cpp:
 	.text       start:0x80167868 end:0x80168694
 	.data       start:0x80587DF0 end:0x80587E80
 	.sdata2     start:0x806BBC98 end:0x806BBCB0
 
-LiveActor.a/MessageSensorHolder.o:
+Game/LiveActor/MessageSensorHolder.cpp:
 	.text       start:0x80168694 end:0x80168784
 	.data       start:0x80587E80 end:0x80587EF8
 
-LiveActor.a/MirrorActor.o:
+Game/LiveActor/MirrorActor.cpp:
 	.text       start:0x80168784 end:0x80168AF4
 	.data       start:0x80587EF8 end:0x80587F70
 	.sdata2     start:0x806BBCB0 end:0x806BBCB8
 
-LiveActor.a/MirrorCamera.o:
+Game/LiveActor/MirrorCamera.cpp:
 	.text       start:0x80168AF4 end:0x801690B8
 	.data       start:0x80587F70 end:0x80587FA0
 	.sdata2     start:0x806BBCB8 end:0x806BBCC8
 
-LiveActor.a/MirrorReflectionModel.o:
+Game/LiveActor/MirrorReflectionModel.cpp:
 	.text       start:0x801690B8 end:0x801693CC
-	.data       start:0x80587FA0 end:0x80588028
+	.data       start:0x80587FA0 end:0x80588018
 
-LiveActor.a/ModelManager.o:
+Game/LiveActor/ModelManager.cpp:
 	.text       start:0x801693CC end:0x8016A0E8
+	.data       start:0x80588018 end:0x80588020
 	.bss        start:0x8060AD60 end:0x8060AD78
 	.sdata2     start:0x806BBCC8 end:0x806BBCD0
 
-LiveActor.a/ModelObj.o:
+Game/LiveActor/ModelObj.cpp:
 	.text       start:0x8016A0E8 end:0x8016A468
-	.data       start:0x80588028 end:0x80588118
+	.data       start:0x80588020 end:0x80588118
 
-LiveActor.a/Nerve.o:
+Game/LiveActor/Nerve.cpp:
 	.text       start:0x8016A468 end:0x8016A46C
 
-LiveActor.a/PartsModel.o:
+Game/LiveActor/PartsModel.cpp:
 	.text       start:0x8016A46C end:0x8016AA38
 	.data       start:0x80588118 end:0x80588190
 	.sdata2     start:0x806BBCD0 end:0x806BBCD8
 
-LiveActor.a/RailRider.o:
+Game/LiveActor/RailRider.cpp:
 	.text       start:0x8016AA38 end:0x8016B5A4
 	.sdata2     start:0x806BBCD8 end:0x806BBCF0
 
-LiveActor.a/SensorHitChecker.o:
+Game/LiveActor/SensorHitChecker.cpp:
 	.text       start:0x8016B5A4 end:0x8016BDE8
 	.data       start:0x80588190 end:0x805881D8
 
-LiveActor.a/ShadowController.o:
+Game/LiveActor/ShadowController.cpp:
 	.text       start:0x8016BDE8 end:0x8016CD3C
 	.data       start:0x805881D8 end:0x80588240
 	.sdata2     start:0x806BBCF0 end:0x806BBD08
 
-LiveActor.a/ShadowDrawer.o:
+Game/LiveActor/ShadowDrawer.cpp:
 	.text       start:0x8016CD3C end:0x8016CDE8
-	.data       start:0x80588240 end:0x80588280
+	.data       start:0x80588240 end:0x80588268
 
-LiveActor.a/ShadowSurfaceBox.o:
+Game/LiveActor/ShadowSurfaceBox.cpp:
 	.text       start:0x8016CDE8 end:0x8016D338
-	.data       start:0x80588280 end:0x805882B8
+	.data       start:0x80588268 end:0x805882B8
 	.sdata2     start:0x806BBD08 end:0x806BBD20
 
-LiveActor.a/ShadowSurfaceCircle.o:
+Game/LiveActor/ShadowSurfaceCircle.cpp:
 	.text       start:0x8016D338 end:0x8016D51C
 	.data       start:0x805882B8 end:0x805882E0
 	.sdata2     start:0x806BBD20 end:0x806BBD28
 
-LiveActor.a/ShadowSurfaceDrawer.o:
+Game/LiveActor/ShadowSurfaceDrawer.cpp:
 	.text       start:0x8016D51C end:0x8016D704
 	.data       start:0x805882E0 end:0x80588350
 
-LiveActor.a/ShadowSurfaceOval.o:
+Game/LiveActor/ShadowSurfaceOval.cpp:
 	.text       start:0x8016D704 end:0x8016DA28
 	.data       start:0x80588350 end:0x80588378
 	.sdata2     start:0x806BBD28 end:0x806BBD38
 
-LiveActor.a/ShadowVolumeBox.o:
+Game/LiveActor/ShadowVolumeBox.cpp:
 	.text       start:0x8016DA28 end:0x8016E440
 	.data       start:0x80588378 end:0x805883C8
 	.sdata2     start:0x806BBD38 end:0x806BBD48
 
-LiveActor.a/ShadowVolumeCylinder.o:
+Game/LiveActor/ShadowVolumeCylinder.cpp:
 	.text       start:0x8016E440 end:0x8016E654
 	.data       start:0x805883C8 end:0x80588448
 	.sdata2     start:0x806BBD48 end:0x806BBD50
 
-LiveActor.a/ShadowVolumeDrawer.o:
+Game/LiveActor/ShadowVolumeDrawer.cpp:
 	.text       start:0x8016E654 end:0x8016EB1C
 	.ctors      start:0x8052EB9C end:0x8052EBA0
 	.data       start:0x80588448 end:0x805884A0
 	.sbss       start:0x806B4A18 end:0x806B4A20
 	.sdata2     start:0x806BBD50 end:0x806BBD58
 
-LiveActor.a/ShadowVolumeFlatModel.o:
+Game/LiveActor/ShadowVolumeFlatModel.cpp:
 	.text       start:0x8016EB1C end:0x8016EF38
 	.data       start:0x805884A0 end:0x805884F0
 	.sdata2     start:0x806BBD58 end:0x806BBD60
 
-LiveActor.a/ShadowVolumeLine.o:
+Game/LiveActor/ShadowVolumeLine.cpp:
 	.text       start:0x8016EF38 end:0x8016F32C
 	.data       start:0x805884F0 end:0x80588540
 	.sdata2     start:0x806BBD60 end:0x806BBD68
 
-LiveActor.a/ShadowVolumeModel.o:
+Game/LiveActor/ShadowVolumeModel.cpp:
 	.text       start:0x8016F32C end:0x8016F3AC
 	.data       start:0x80588540 end:0x80588570
 
-LiveActor.a/ShadowVolumeOval.o:
+Game/LiveActor/ShadowVolumeOval.cpp:
 	.text       start:0x8016F3AC end:0x8016F760
 	.data       start:0x80588570 end:0x80588600
 	.sdata2     start:0x806BBD68 end:0x806BBD80
 
-LiveActor.a/ShadowVolumeOvalPole.o:
+Game/LiveActor/ShadowVolumeOvalPole.cpp:
 	.text       start:0x8016F760 end:0x8016FAF4
 	.data       start:0x80588600 end:0x80588658
 	.sdata2     start:0x806BBD80 end:0x806BBD98
 
-LiveActor.a/ShadowVolumeSphere.o:
+Game/LiveActor/ShadowVolumeSphere.cpp:
 	.text       start:0x8016FAF4 end:0x8016FCE4
 	.data       start:0x80588658 end:0x80588688
 	.sdata2     start:0x806BBD98 end:0x806BBDA0
 
-LiveActor.a/SimpleJ3DModelDrawer.o:
+Game/LiveActor/SimpleJ3DModelDrawer.cpp:
 	.text       start:0x8016FCE4 end:0x8016FF3C
 	.data       start:0x80588688 end:0x80588720
 
-LiveActor.a/Spine.o:
+Game/LiveActor/Spine.cpp:
 	.text       start:0x8016FF3C end:0x801700E8
 
-LiveActor.a/SpotMarkLight.o:
+Game/LiveActor/SpotMarkLight.cpp:
 	.text       start:0x801700E8 end:0x80170310
-	.data       start:0x80588720 end:0x805887E0
+	.data       start:0x80588720 end:0x805887C8
 	.sdata2     start:0x806BBDA0 end:0x806BBDB0
 
-LiveActor.a/ViewGroupCtrl.o:
+Game/LiveActor/ViewGroupCtrl.cpp:
 	.text       start:0x80170310 end:0x801706C8
+	.data       start:0x805887C8 end:0x805887E0
 
-LiveActor.a/VolumeModelDrawer.o:
+Game/LiveActor/VolumeModelDrawer.cpp:
 	.text       start:0x801706C8 end:0x80170A64
 	.data       start:0x805887E0 end:0x80588850
 
