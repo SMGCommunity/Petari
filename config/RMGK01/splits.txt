@@ -3534,22 +3534,23 @@ Game/LiveActor/VolumeModelDrawer.cpp:
 	.text       start:0x801706C8 end:0x80170A64
 	.data       start:0x805887E0 end:0x80588850
 
-Map.a/ActorAppearSwitchListener.o:
+Game/Map/ActorAppearSwitchListener.cpp:
 	.text       start:0x80170A64 end:0x80170B58
 	.data       start:0x80588850 end:0x80588868
 
-Map.a/Air.o:
+Game/Map/Air.cpp:
 	.text       start:0x80170B58 end:0x80171690
 	.ctors      start:0x8052EBA0 end:0x8052EBA4
-	.data       start:0x80588868 end:0x80588B20
+	.data       start:0x80588868 end:0x80588B10
 	.sbss       start:0x806B4A20 end:0x806B4A28
 	.sdata2     start:0x806BBDB0 end:0x806BBDC0
 
-Map.a/BezierRail.o:
+Game/Map/BezierRail.cpp:
 	.text       start:0x80171690 end:0x80172820
+	.data       start:0x80588B10 end:0x80588B20
 	.sdata2     start:0x806BBDC0 end:0x806BBDF8
 
-Map.a/Butterfly.o:
+Game/Map/Butterfly.cpp:
 	.text       start:0x80172820 end:0x80173B6C
 	.ctors      start:0x8052EBA4 end:0x8052EBA8
 	.rodata     start:0x805329E8 end:0x80532A08
@@ -3557,24 +3558,24 @@ Map.a/Butterfly.o:
 	.sbss       start:0x806B4A28 end:0x806B4A48
 	.sdata2     start:0x806BBDF8 end:0x806BBE58
 
-Map.a/CollisionCategorizedKeeper.o:
+Game/Map/CollisionCategorizedKeeper.cpp:
 	.text       start:0x80173B6C end:0x801750F8
 	.data       start:0x80588C80 end:0x80588ED8
 	.sdata2     start:0x806BBE58 end:0x806BBE68
 
-Map.a/CollisionCode.o:
+Game/Map/CollisionCode.cpp:
 	.text       start:0x801750F8 end:0x80175B98
 
-Map.a/CollisionDirector.o:
+Game/Map/CollisionDirector.cpp:
 	.text       start:0x80175B98 end:0x80175D4C
 	.data       start:0x80588ED8 end:0x80588F00
 
-Map.a/CollisionParts.o:
+Game/Map/CollisionParts.cpp:
 	.text       start:0x80175D4C end:0x80177614
 	.data       start:0x80588F00 end:0x80588F20
 	.sdata2     start:0x806BBE68 end:0x806BBE88
 
-Map.a/FileSelectCameraController.o:
+Game/Map/FileSelectCameraController.cpp:
 	.text       start:0x80177614 end:0x80177DC4
 	.ctors      start:0x8052EBA8 end:0x8052EBAC
 	.rodata     start:0x80532A08 end:0x80532A48
@@ -3582,36 +3583,36 @@ Map.a/FileSelectCameraController.o:
 	.sbss       start:0x806B4A48 end:0x806B4A60
 	.sdata2     start:0x806BBE88 end:0x806BBEA0
 
-Map.a/FileSelectEffect.o:
+Game/Map/FileSelectEffect.cpp:
 	.text       start:0x80177DC4 end:0x801782B4
 	.ctors      start:0x8052EBAC end:0x8052EBB0
 	.data       start:0x80589010 end:0x805890B8
 	.sbss       start:0x806B4A60 end:0x806B4A70
 	.sdata2     start:0x806BBEA0 end:0x806BBEA8
 
-Map.a/FileSelectFunc.o:
+Game/Map/FileSelectFunc.cpp:
 	.text       start:0x801782B4 end:0x80178378
-	.data       start:0x805890B8 end:0x805891B8
+	.data       start:0x805890B8 end:0x80589150
 
-Map.a/FileSelectIconID.o:
+Game/Map/FileSelectIconID.cpp:
 	.text       start:0x80178378 end:0x801783F8
 
-Map.a/FileSelectItem.o:
+Game/Map/FileSelectItem.cpp:
 	.text       start:0x801783F8 end:0x8017A850
 	.ctors      start:0x8052EBB0 end:0x8052EBB4
 	.rodata     start:0x80532A48 end:0x80532A68
-	.data       start:0x805891B8 end:0x80589548
+	.data       start:0x80589150 end:0x80589548
 	.sbss       start:0x806B4A70 end:0x806B4AA8
 	.sdata2     start:0x806BBEA8 end:0x806BBEF0
 
-Map.a/FileSelectModel.o:
+Game/Map/FileSelectModel.cpp:
 	.text       start:0x8017A850 end:0x8017AC3C
 	.ctors      start:0x8052EBB4 end:0x8052EBB8
 	.data       start:0x80589548 end:0x805896C0
 	.sbss       start:0x806B4AA8 end:0x806B4AB8
 	.sdata2     start:0x806BBEF0 end:0x806BBEF8
 
-Map.a/FileSelector.o:
+Game/Map/FileSelector.cpp:
 	.text       start:0x8017AC3C end:0x8017F050
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AB0
@@ -3620,14 +3621,14 @@ Map.a/FileSelector.o:
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
 
-Map.a/FileSelectSky.o:
+Game/Map/FileSelectSky.cpp:
 	.text       start:0x8017F050 end:0x8017F384
 	.ctors      start:0x8052EBBC end:0x8052EBC0
 	.data       start:0x80589EB8 end:0x80589F58
 	.sbss       start:0x806B4B78 end:0x806B4B80
 	.sdata2     start:0x806BBF30 end:0x806BBF58
 
-Map.a/FishGroup.o:
+Game/Map/FishGroup.cpp:
 	.text       start:0x8017F384 end:0x801800B8
 	.ctors      start:0x8052EBC0 end:0x8052EBC4
 	.rodata     start:0x80532AB0 end:0x80532AD0
@@ -3635,27 +3636,27 @@ Map.a/FishGroup.o:
 	.sbss       start:0x806B4B80 end:0x806B4B90
 	.sdata2     start:0x806BBF58 end:0x806BBFA0
 
-Map.a/Flag.o:
+Game/Map/Flag.cpp:
 	.text       start:0x801800B8 end:0x80181AEC
 	.rodata     start:0x80532AD0 end:0x80532AF0
 	.data       start:0x8058A198 end:0x8058A210
 	.sdata2     start:0x806BBFA0 end:0x806BC018
 
-Map.a/GravityDust.o:
+Game/Map/GravityDust.cpp:
 	.text       start:0x80181AEC end:0x80181D34
 	.data       start:0x8058A210 end:0x8058A228
 	.sdata2     start:0x806BC018 end:0x806BC028
 
-Map.a/GroundChecker.o:
+Game/Map/GroundChecker.cpp:
 	.text       start:0x80181D34 end:0x80181E54
 	.data       start:0x8058A228 end:0x8058A2A0
 	.sdata2     start:0x806BC028 end:0x806BC030
 
-Map.a/GroupSwitchWatcher.o:
+Game/Map/GroupSwitchWatcher.cpp:
 	.text       start:0x80181E54 end:0x80182094
 	.data       start:0x8058A2A0 end:0x8058A348
 
-Map.a/Halo.o:
+Game/Map/Halo.cpp:
 	.text       start:0x80182094 end:0x80182920
 	.ctors      start:0x8052EBC4 end:0x8052EBC8
 	.rodata     start:0x80532AF0 end:0x80532B28
@@ -3663,30 +3664,30 @@ Map.a/Halo.o:
 	.sbss       start:0x806B4B90 end:0x806B4BA0
 	.sdata2     start:0x806BC030 end:0x806BC040
 
-Map.a/HitInfo.o:
+Game/Map/HitInfo.cpp:
 	.text       start:0x80182920 end:0x8018300C
 	.sdata2     start:0x806BC040 end:0x806BC048
 
-Map.a/KCollision.o:
+Game/Map/KCollision.cpp:
 	.text       start:0x8018300C end:0x80185B7C
 	.sdata2     start:0x806BC048 end:0x806BC060
 
-Map.a/KCollisionPlus.o:
+Game/Map/KCollisionPlus.cpp:
 	.text       start:0x80185B7C end:0x80185D58
 
-Map.a/KoopaBattleMapCoinPlate.o:
+Game/Map/KoopaBattleMapCoinPlate.cpp:
 	.text       start:0x80185D58 end:0x80186060
 	.data       start:0x8058A4D8 end:0x8058A550
 	.sdata2     start:0x806BC060 end:0x806BC078
 
-Map.a/KoopaBattleMapDamagePlate.o:
+Game/Map/KoopaBattleMapDamagePlate.cpp:
 	.text       start:0x80186060 end:0x80186550
 	.ctors      start:0x8052EBC8 end:0x8052EBCC
 	.data       start:0x8058A550 end:0x8058A6E0
 	.sbss       start:0x806B4BA0 end:0x806B4BB0
 	.sdata2     start:0x806BC078 end:0x806BC088
 
-Map.a/KoopaBattleMapPlanet.o:
+Game/Map/KoopaBattleMapPlanet.cpp:
 	.text       start:0x80186550 end:0x80186CC4
 	.ctors      start:0x8052EBCC end:0x8052EBD0
 	.rodata     start:0x80532B28 end:0x80532B98
@@ -3694,12 +3695,12 @@ Map.a/KoopaBattleMapPlanet.o:
 	.sbss       start:0x806B4BB0 end:0x806B4BB8
 	.sdata2     start:0x806BC088 end:0x806BC0A8
 
-Map.a/KoopaBattleMapPlate.o:
+Game/Map/KoopaBattleMapPlate.cpp:
 	.text       start:0x80186CC4 end:0x80186F84
 	.data       start:0x8058A778 end:0x8058A840
 	.sdata2     start:0x806BC0A8 end:0x806BC0C0
 
-Map.a/KoopaBattleMapStair.o:
+Game/Map/KoopaBattleMapStair.cpp:
 	.text       start:0x80186F84 end:0x80187AA8
 	.ctors      start:0x8052EBD0 end:0x8052EBD4
 	.rodata     start:0x80532B98 end:0x80532BE0
@@ -3707,88 +3708,89 @@ Map.a/KoopaBattleMapStair.o:
 	.sbss       start:0x806B4BB8 end:0x806B4BD0
 	.sdata2     start:0x806BC0C0 end:0x806BC0F0
 
-Map.a/LavaShellTower.o:
+Game/Map/LavaShellTower.cpp:
 	.text       start:0x80187AA8 end:0x80187D10
 	.ctors      start:0x8052EBD4 end:0x8052EBD8
 	.data       start:0x8058A9C8 end:0x8058AA88
 	.sbss       start:0x806B4BD0 end:0x806B4BE0
 	.sdata2     start:0x806BC0F0 end:0x806BC0F8
 
-Map.a/LavaSunPlanet.o:
+Game/Map/LavaSunPlanet.cpp:
 	.text       start:0x80187D10 end:0x80188058
 	.data       start:0x8058AA88 end:0x8058AB18
 	.sdata2     start:0x806BC0F8 end:0x806BC100
 
-Map.a/LightDataHolder.o:
+Game/Map/LightDataHolder.cpp:
 	.text       start:0x80188058 end:0x801881C0
 	.data       start:0x8058AB18 end:0x8058AB40
 	.sdata      start:0x806B1BE0 end:0x806B1C58
 
-Map.a/LightDirector.o:
+Game/Map/LightDirector.cpp:
 	.text       start:0x801881C0 end:0x80188398
 	.data       start:0x8058AB40 end:0x8058AC20
 
-Map.a/LightFunction.o:
+Game/Map/LightFunction.cpp:
 	.text       start:0x80188398 end:0x80189120
 	.rodata     start:0x80532BE0 end:0x80532C80
 	.sdata2     start:0x806BC100 end:0x806BC118
 
-Map.a/LightPointCtrl.o:
+Game/Map/LightPointCtrl.cpp:
 	.text       start:0x80189120 end:0x801896C0
 	.sdata2     start:0x806BC118 end:0x806BC130
 
-Map.a/LightZoneDataHolder.o:
+Game/Map/LightZoneDataHolder.cpp:
 	.text       start:0x801896C0 end:0x801898EC
 
-Map.a/NamePosHolder.o:
+Game/Map/NamePosHolder.cpp:
 	.text       start:0x801898EC end:0x80189BF4
 	.data       start:0x8058AC20 end:0x8058AC58
 
-Map.a/OceanBowl.o:
+Game/Map/OceanBowl.cpp:
 	.text       start:0x80189BF4 end:0x8018B780
 	.data       start:0x8058AC58 end:0x8058AD28
 	.sdata2     start:0x806BC130 end:0x806BC190
 
-Map.a/OceanBowlBloomDrawer.o:
+Game/Map/OceanBowlBloomDrawer.cpp:
 	.text       start:0x8018B780 end:0x8018B9A8
 	.data       start:0x8058AD28 end:0x8058ADC8
 
-Map.a/OceanBowlPoint.o:
+Game/Map/OceanBowlPoint.cpp:
 	.text       start:0x8018B9A8 end:0x8018BBC4
 	.sdata2     start:0x806BC190 end:0x806BC1A8
 
-Map.a/OceanHomeMapCtrl.o:
+Game/Map/OceanHomeMapCtrl.cpp:
 	.text       start:0x8018BBC4 end:0x8018BE98
 	.data       start:0x8058ADC8 end:0x8058AE40
 
-Map.a/OceanRing.o:
+Game/Map/OceanRing.cpp:
 	.text       start:0x8018BE98 end:0x8018D824
 	.data       start:0x8058AE40 end:0x8058AED8
 	.sdata2     start:0x806BC1A8 end:0x806BC208
 
-Map.a/OceanRingBloomDrawer.o:
+Game/Map/OceanRingBloomDrawer.cpp:
 	.text       start:0x8018D824 end:0x8018D938
-	.data       start:0x8058AED8 end:0x8058AF30
+	.data       start:0x8058AED8 end:0x8058AF00
 
-Map.a/OceanRingDrawer.o:
+Game/Map/OceanRingDrawer.cpp:
 	.text       start:0x8018D938 end:0x8018F784
+	.data       start:0x8058AF00 end:0x8058AF30
 	.sdata2     start:0x806BC208 end:0x806BC250
 
-Map.a/OceanRingPipe.o:
+Game/Map/OceanRingPipe.cpp:
 	.text       start:0x8018F784 end:0x801900C8
 	.data       start:0x8058AF30 end:0x8058B0A0
 	.sdata2     start:0x806BC250 end:0x806BC280
 
-Map.a/OceanRingPipeInside.o:
+Game/Map/OceanRingPipeInside.cpp:
 	.text       start:0x801900C8 end:0x80190A80
 	.sdata2     start:0x806BC280 end:0x806BC2A0
 
-Map.a/OceanRingPipeOutside.o:
+Game/Map/OceanRingPipeOutside.cpp:
 	.text       start:0x80190A80 end:0x80191530
 	.data       start:0x8058B0A0 end:0x8058B1A0
 	.sdata2     start:0x806BC2A0 end:0x806BC2C0
 
-Map.a/OceanSphere.o:
+Game/Map/OceanSphere.cpp:
 	.text       start:0x80191530 end:0x801945EC
 	.ctors      start:0x8052EBD8 end:0x8052EBDC
 	.data       start:0x8058B1A0 end:0x8058B2E8
@@ -3796,36 +3798,36 @@ Map.a/OceanSphere.o:
 	.sbss       start:0x806B4BE0 end:0x806B4BE8
 	.sdata2     start:0x806BC2C0 end:0x806BC308
 
-Map.a/OceanSpherePoint.o:
+Game/Map/OceanSpherePoint.cpp:
 	.text       start:0x801945EC end:0x80194790
 	.sdata2     start:0x806BC308 end:0x806BC318
 
-Map.a/PlanetMap.o:
+Game/Map/PlanetMap.cpp:
 	.text       start:0x80194790 end:0x80195118
 	.rodata     start:0x80532C80 end:0x80532C98
 	.data       start:0x8058B2E8 end:0x8058B4E8
 	.sdata      start:0x806B1C58 end:0x806B1C68
 	.sdata2     start:0x806BC318 end:0x806BC328
 
-Map.a/PlanetMapCreator.o:
+Game/Map/PlanetMapCreator.cpp:
 	.text       start:0x80195118 end:0x80195FD8
 	.rodata     start:0x80532C98 end:0x80532E38
 	.data       start:0x8058B4E8 end:0x8058BA48
 	.sdata2     start:0x806BC328 end:0x806BC338
 
-Map.a/PlanetMapWithoutHighModel.o:
+Game/Map/PlanetMapWithoutHighModel.cpp:
 	.text       start:0x80195FD8 end:0x80196120
 	.data       start:0x8058BA48 end:0x8058BB00
 	.sdata2     start:0x806BC338 end:0x806BC340
 
-Map.a/QuakeEffectGenerator.o:
+Game/Map/QuakeEffectGenerator.cpp:
 	.text       start:0x80196120 end:0x801963F8
 	.ctors      start:0x8052EBDC end:0x8052EBE0
 	.data       start:0x8058BB00 end:0x8058BDC0
 	.sbss       start:0x806B4BE8 end:0x806B4BF8
 	.sdata2     start:0x806BC340 end:0x806BC348
 
-Map.a/RaceManager.o:
+Game/Map/RaceManager.cpp:
 	.text       start:0x801963F8 end:0x80198634
 	.ctors      start:0x8052EBE0 end:0x8052EBE4
 	.rodata     start:0x80532E38 end:0x80532F20
@@ -3834,71 +3836,71 @@ Map.a/RaceManager.o:
 	.sbss       start:0x806B4BF8 end:0x806B4C38
 	.sdata2     start:0x806BC348 end:0x806BC358
 
-Map.a/RaceRail.o:
+Game/Map/RaceRail.cpp:
 	.text       start:0x80198634 end:0x80198D90
 	.data       start:0x8058C000 end:0x8058C250
 	.sdata2     start:0x806BC358 end:0x806BC370
 
-Map.a/RailGraph.o:
+Game/Map/RailGraph.cpp:
 	.text       start:0x80198D90 end:0x80199124
 
-Map.a/RailGraphEdge.o:
+Game/Map/RailGraphEdge.cpp:
 	.text       start:0x80199124 end:0x801992E8
 	.sdata2     start:0x806BC370 end:0x806BC378
 
-Map.a/RailGraphIter.o:
+Game/Map/RailGraphIter.cpp:
 	.text       start:0x801992E8 end:0x80199524
 
-Map.a/RailGraphNode.o:
+Game/Map/RailGraphNode.cpp:
 	.text       start:0x80199524 end:0x80199548
 	.sdata2     start:0x806BC378 end:0x806BC380
 
-Map.a/RailPart.o:
+Game/Map/RailPart.cpp:
 	.text       start:0x80199548 end:0x801998CC
 	.sdata2     start:0x806BC380 end:0x806BC390
 
-Map.a/ScenarioSelectStar.o:
+Game/Map/ScenarioSelectStar.cpp:
 	.text       start:0x801998CC end:0x8019A4E0
 	.ctors      start:0x8052EBE4 end:0x8052EBE8
 	.data       start:0x8058C250 end:0x8058C2F0
 	.sbss       start:0x806B4C38 end:0x806B4C58
 	.sdata2     start:0x806BC390 end:0x806BC3C8
 
-Map.a/SeaGull.o:
+Game/Map/SeaGull.cpp:
 	.text       start:0x8019A4E0 end:0x8019B0A0
 	.ctors      start:0x8052EBE8 end:0x8052EBEC
 	.data       start:0x8058C2F0 end:0x8058C440
 	.sbss       start:0x806B4C58 end:0x806B4C68
 	.sdata2     start:0x806BC3C8 end:0x806BC410
 
-Map.a/Sky.o:
+Game/Map/Sky.cpp:
 	.text       start:0x8019B0A0 end:0x8019B7D4
 	.ctors      start:0x8052EBEC end:0x8052EBF0
 	.data       start:0x8058C440 end:0x8058C5D8
 	.sdata      start:0x806B1C88 end:0x806B1C90
 	.sbss       start:0x806B4C68 end:0x806B4C70
 
-Map.a/SleepController.o:
+Game/Map/SleepController.cpp:
 	.text       start:0x8019B7D4 end:0x8019B918
 
-Map.a/SleepControllerHolder.o:
+Game/Map/SleepControllerHolder.cpp:
 	.text       start:0x8019B918 end:0x8019BE70
 	.data       start:0x8058C5D8 end:0x8058C658
 
-Map.a/SpaceInner.o:
+Game/Map/SpaceInner.cpp:
 	.text       start:0x8019BE70 end:0x8019C140
 	.ctors      start:0x8052EBF0 end:0x8052EBF4
-	.data       start:0x8058C658 end:0x8058C840
+	.data       start:0x8058C658 end:0x8058C710
 	.sbss       start:0x806B4C70 end:0x806B4C78
 
-Map.a/SphereSelector.o:
+Game/Map/SphereSelector.cpp:
 	.text       start:0x8019C140 end:0x8019D404
 	.ctors      start:0x8052EBF4 end:0x8052EBF8
-	.data       start:0x8058C840 end:0x8058C978
+	.data       start:0x8058C710 end:0x8058C978
 	.sbss       start:0x806B4C78 end:0x806B4C98
 	.sdata2     start:0x806BC410 end:0x806BC420
 
-Map.a/SphereSelectorHandle.o:
+Game/Map/SphereSelectorHandle.cpp:
 	.text       start:0x8019D404 end:0x8019E5E8
 	.ctors      start:0x8052EBF8 end:0x8052EBFC
 	.data       start:0x8058C978 end:0x8058CAD0
@@ -3906,45 +3908,45 @@ Map.a/SphereSelectorHandle.o:
 	.sbss       start:0x806B4C98 end:0x806B4CC8
 	.sdata2     start:0x806BC420 end:0x806BC478
 
-Map.a/StageSwitch.o:
+Game/Map/StageSwitch.cpp:
 	.text       start:0x8019E5E8 end:0x8019ED8C
 	.data       start:0x8058CAD0 end:0x8058CAF8
 
-Map.a/SunshadeMapHolder.o:
+Game/Map/SunshadeMapHolder.cpp:
 	.text       start:0x8019ED8C end:0x8019EF10
 	.data       start:0x8058CAF8 end:0x8058CB48
 	.sdata2     start:0x806BC478 end:0x806BC480
 
-Map.a/SunshadeMapParts.o:
+Game/Map/SunshadeMapParts.cpp:
 	.text       start:0x8019EF10 end:0x8019F0DC
 	.data       start:0x8058CB48 end:0x8058CBC8
 
-Map.a/SwitchSynchronizer.o:
+Game/Map/SwitchSynchronizer.cpp:
 	.text       start:0x8019F0DC end:0x8019F2A8
 	.data       start:0x8058CBC8 end:0x8058CC00
 
-Map.a/SwitchWatcher.o:
+Game/Map/SwitchWatcher.cpp:
 	.text       start:0x8019F2A8 end:0x8019F4F4
 	.data       start:0x8058CC00 end:0x8058CC28
 
-Map.a/SwitchWatcherHolder.o:
+Game/Map/SwitchWatcherHolder.cpp:
 	.text       start:0x8019F4F4 end:0x8019F7CC
 	.data       start:0x8058CC28 end:0x8058CC70
 
-Map.a/TimerSwitch.o:
+Game/Map/TimerSwitch.cpp:
 	.text       start:0x8019F7CC end:0x8019F964
 	.data       start:0x8058CC70 end:0x8058CCE8
 
-Map.a/WaterAreaHolder.o:
+Game/Map/WaterAreaHolder.cpp:
 	.text       start:0x8019F964 end:0x801A0140
 	.data       start:0x8058CCE8 end:0x8058CD80
 	.sdata2     start:0x806BC480 end:0x806BC488
 
-Map.a/WaterInfo.o:
+Game/Map/WaterInfo.cpp:
 	.text       start:0x801A0140 end:0x801A0230
 	.sdata2     start:0x806BC488 end:0x806BC498
 
-Map.a/WaterPlant.o:
+Game/Map/WaterPlant.cpp:
 	.text       start:0x801A0230 end:0x801A14F4
 	.ctors      start:0x8052EBFC end:0x8052EC00
 	.data       start:0x8058CD80 end:0x8058CEC0
@@ -3952,18 +3954,18 @@ Map.a/WaterPlant.o:
 	.sdata      start:0x806B1CC0 end:0x806B1CE8
 	.sdata2     start:0x806BC498 end:0x806BC500
 
-Map.a/WaterPoint.o:
+Game/Map/WaterPoint.cpp:
 	.text       start:0x801A14F4 end:0x801A17E0
 	.sdata2     start:0x806BC500 end:0x806BC528
 
-Map.a/WaterRoad.o:
+Game/Map/WaterRoad.cpp:
 	.text       start:0x801A17E0 end:0x801A455C
 	.ctors      start:0x8052EC00 end:0x8052EC04
 	.data       start:0x8058CEC0 end:0x8058D200
 	.sbss       start:0x806B4CC8 end:0x806B4CF0
 	.sdata2     start:0x806BC528 end:0x806BC588
 
-Map.a/WhirlPoolAccelerator.o:
+Game/Map/WhirlPoolAccelerator.cpp:
 	.text       start:0x801A455C end:0x801A53D8
 	.data       start:0x8058D200 end:0x8058D2B8
 	.sdata2     start:0x806BC588 end:0x806BC5E0

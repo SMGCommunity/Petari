@@ -1,4 +1,4 @@
-﻿#include "Game/Map/CollisionCategorizedKeeper.hpp"
+#include "Game/Map/CollisionCategorizedKeeper.hpp"
 #include "Game/Map/CollisionCode.hpp"
 #include "Game/Map/CollisionDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
