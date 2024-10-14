@@ -38,7 +38,7 @@ NPCActorCaps::NPCActorCaps(const char *pName) {
     mMessageOffset.x = 0.0f;
     mMessageOffset.y = 150.0f;
     mMessageOffset.z = 0.0f;
-    mSensorOffset.set<f32>(0.0f, 50.0f, 0.0f);
+    mSensorOffset.set(0.0f, 50.0f, 0.0f);
     _10 = pName;
     mTalkMtx = 0;
     mTalkJointName = 0;
@@ -178,7 +178,7 @@ void NPCActor::setInitPose() {
     _B0.y = _A0.y;
     _B0.z = _A0.z;
     _B0.h = _A0.h;
-    _C0.set<f32>(mPosition);
+    _C0.set(mPosition);
 }
 
 void NPCActor::init(const JMapInfoIter &rIter) {

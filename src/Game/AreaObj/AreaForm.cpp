@@ -69,7 +69,7 @@ void AreaFormCube::calcWorldPos(TVec3f *pPos) const {
         return;
     }
 
-    pPos->set<f32>(mTranslation);
+    pPos->set(mTranslation);
 }
 
 // AreaFormCube::calcWorldRotate
@@ -127,8 +127,8 @@ void AreaFormCube::updateBoxParam() {
 
     TVec3f v9(v20, v21, v22);
 
-    _30.set<f32>(v10);
-    _3C.set<f32>(v9);
+    _30.set(v10);
+    _3C.set(v9);
 
     if (_8 == 1) {
         TVec3f temp;
@@ -181,7 +181,7 @@ void AreaFormSphere::calcUpVec(TVec3f *pOut) const {
         MR::normalize(pOut);
     }
     else {
-        pOut->set<f32>(mUp);
+        pOut->set(mUp);
     }
 }
 
@@ -190,7 +190,7 @@ void AreaFormSphere::calcPos(TVec3f *pOut) const {
         _4->mult(mTranslation, *pOut);
     }
     else {
-        pOut->set<f32>(mTranslation);
+        pOut->set(mTranslation);
     }
 }
 
@@ -264,7 +264,7 @@ void AreaFormCylinder::calcPos(TVec3f *pPos) const {
         return;
     }
 
-    pPos->set<f32>(mTranslation);
+    pPos->set(mTranslation);
 }
 
 void AreaFormCylinder::calcCenterPos(TVec3f *pCenterPos) const {
@@ -281,7 +281,7 @@ void AreaFormCylinder::calcUpVec(TVec3f *pUpVec) const {
         MR::normalize(pUpVec);
     }
     else {
-        pUpVec->set<f32>(mRotation);
+        pUpVec->set(mRotation);
     }
 }
 

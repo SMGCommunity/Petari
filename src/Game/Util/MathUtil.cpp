@@ -24,7 +24,7 @@ namespace MR {
         f32 v12 = getRandom();
 
         f32 dist = a3 - a2;
-        pOut->set<f32>((a2 + (dist * v12)), v11, v10);
+        pOut->set((a2 + (dist * v12)), v11, v10);
     }
 
     u8 isHalfProbability() {
