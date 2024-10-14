@@ -16,7 +16,8 @@ namespace JGeometry {
             this->w = _w;
         }
 
-        TQuat4(T _x, T _y, T _z, T _w) {
+        template<typename A>
+        TQuat4(A _x, A _y, A _z, A _w) {
             this->x = _x;
             this->y = _y;
             this->z = _z;
