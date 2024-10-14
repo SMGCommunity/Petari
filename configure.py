@@ -607,6 +607,34 @@ config.libs = [
         ],
     ),
 
+        GameLib(
+        "Effect",
+        [
+            Object(NonMatching, "Game/Effect/AstroEffectObj.cpp"),
+            Object(NonMatching, "Game/Effect/AutoEffectGroup.cpp"),
+            Object(NonMatching, "Game/Effect/AutoEffectGroupHolder.cpp"),
+            Object(NonMatching, "Game/Effect/AutoEffectInfo.cpp"),
+            Object(NonMatching, "Game/Effect/EffectObjGravityDust.cpp"),
+            Object(NonMatching, "Game/Effect/EffectSystem.cpp"),
+            Object(NonMatching, "Game/Effect/EffectSystemUtil.cpp"),
+            Object(NonMatching, "Game/Effect/MultiEmitter.cpp"),
+            Object(NonMatching, "Game/Effect/MultiEmitterAccess.cpp"),
+            Object(NonMatching, "Game/Effect/MultiEmitterCallBack.cpp"),
+            Object(Matching, "Game/Effect/MultiEmitterParticleCallBack.cpp"),
+            Object(NonMatching, "Game/Effect/ParticleCalcExecutor.cpp"),
+            Object(NonMatching, "Game/Effect/ParticleDrawExecutor.cpp"),
+            Object(Matching, "Game/Effect/ParticleEmitter.cpp"),
+            Object(NonMatching, "Game/Effect/ParticleEmitterHolder.cpp"),
+            Object(NonMatching, "Game/Effect/ParticleResourceHolder.cpp"),
+            Object(NonMatching, "Game/Effect/RandomEffectObj.cpp"),
+            Object(NonMatching, "Game/Effect/SimpleEffectObj.cpp"),
+            Object(Matching, "Game/Effect/SingleEmitter.cpp"),
+            Object(NonMatching, "Game/Effect/SpinPullParticleCallBack.cpp"),
+            Object(NonMatching, "Game/Effect/SyncBckEffectChecker.cpp"),
+            Object(NonMatching, "Game/Effect/SyncBckEffectInfo.cpp")
+        ],
+    ),
+
     GameLib(
         "Gravity",
         [
