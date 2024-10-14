@@ -65,4 +65,4 @@ namespace NrvExterminationChecker {
 namespace MR {
     NameObj* createExterminationPowerStar(const char *);
     NameObj* createExterminationKeySwitch(const char *);
-}
+};

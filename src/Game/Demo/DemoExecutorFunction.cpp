@@ -95,4 +95,4 @@ namespace DemoExecutorFunction {
     bool isPauseTimeKeepDemo(const DemoExecutor *pExecutor) {
         return pExecutor->mTimeKeeper->mIsPaused;
     }
-}
+};

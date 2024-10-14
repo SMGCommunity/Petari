@@ -136,4 +136,4 @@ namespace MR {
     void addShadowController(ShadowController *);
     void requestCalcActorShadowAppear(LiveActor *);
     void requestCalcActorShadow(LiveActor *);
-}
+};

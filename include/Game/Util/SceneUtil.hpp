@@ -89,4 +89,4 @@ namespace MR {
     s32 getCurrentStageNormalScenarioNum();
 
     const char* getJapaneseObjectName(const char *);
-}
+};

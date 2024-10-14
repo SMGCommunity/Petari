@@ -23,4 +23,4 @@ public:
 namespace NrvSeaBottomTriplePropeller {
     NERVE_DECL_EXE(SeaBottomTriplePropellerNrvWait, SeaBottomTriplePropeller, Wait);
     NERVE_DECL(SeaBottomTriplePropellerNrvBreak, SeaBottomTriplePropeller, kill);
-}
+};

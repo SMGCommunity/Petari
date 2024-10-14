@@ -2144,7 +2144,7 @@ Camera.a/OnlyCamera.o:
 	.data       start:0x80576BB8 end:0x80576BE0
 	.sdata2     start:0x806B9BD0 end:0x806B9BF0
 
-Demo.a/AstroDomeDemoStarter.o:
+Game/Demo/AstroDomeDemoStarter.cpp:
 	.text       start:0x800B78A4 end:0x800B83A4
 	.ctors      start:0x8052EA08 end:0x8052EA0C
 	.rodata     start:0x80531998 end:0x805319B0
@@ -2152,54 +2152,54 @@ Demo.a/AstroDomeDemoStarter.o:
 	.sbss       start:0x806B3A48 end:0x806B3A60
 	.sdata2     start:0x806B9BF0 end:0x806B9C20
 
-Demo.a/AstroDemoFunction.o:
+Game/Demo/AstroDemoFunction.cpp:
 	.text       start:0x800B83A4 end:0x800B8BE8
 	.rodata     start:0x805319B0 end:0x805319C8
 	.data       start:0x80576ED8 end:0x80577100
 
-Demo.a/DemoActionKeeper.o:
+Game/Demo/DemoActionKeeper.cpp:
 	.text       start:0x800B8BE8 end:0x800B9604
 	.data       start:0x80577100 end:0x80577140
 
-Demo.a/DemoCameraFunction.o:
+Game/Demo/DemoCameraFunction.cpp:
 	.text       start:0x800B9604 end:0x800B9694
 
-Demo.a/DemoCameraKeeper.o:
+Game/Demo/DemoCameraKeeper.cpp:
 	.text       start:0x800B9694 end:0x800B9CA0
 	.data       start:0x80577140 end:0x805771C0
 	.sdata2     start:0x806B9C20 end:0x806B9C28
 
-Demo.a/DemoCastGroup.o:
+Game/Demo/DemoCastGroup.cpp:
 	.text       start:0x800B9CA0 end:0x800B9F08
 	.data       start:0x805771C0 end:0x80577218
 
-Demo.a/DemoCastGroupHolder.o:
+Game/Demo/DemoCastGroupHolder.cpp:
 	.text       start:0x800B9F08 end:0x800BA15C
 	.data       start:0x80577218 end:0x80577240
 
-Demo.a/DemoCastSubGroup.o:
+Game/Demo/DemoCastSubGroup.cpp:
 	.text       start:0x800BA15C end:0x800BA2C4
 	.data       start:0x80577240 end:0x80577288
 
-Demo.a/DemoCtrlBase.o:
+Game/Demo/DemoCtrlBase.cpp:
 	.text       start:0x800BA2C4 end:0x800BA534
 
-Demo.a/DemoDirector.o:
+Game/Demo/DemoDirector.cpp:
 	.text       start:0x800BA534 end:0x800BAC3C
 	.data       start:0x80577288 end:0x805772B0
 
-Demo.a/DemoExecutor.o:
+Game/Demo/DemoExecutor.cpp:
 	.text       start:0x800BAC3C end:0x800BB868
 	.data       start:0x805772B0 end:0x80577360
 
-Demo.a/DemoExecutorFunction.o:
+Game/Demo/DemoExecutorFunction.cpp:
 	.text       start:0x800BB868 end:0x800BBB80
 
-Demo.a/DemoFunction.o:
+Game/Demo/DemoFunction.cpp:
 	.text       start:0x800BBB80 end:0x800BC874
 	.data       start:0x80577360 end:0x80577388
 
-Demo.a/DemoKoopaJrShip.o:
+Game/Demo/DemoKoopaJrShip.cpp:
 	.text       start:0x800BC874 end:0x800BD0A4
 	.ctors      start:0x8052EA0C end:0x8052EA10
 	.rodata     start:0x805319C8 end:0x805319F0
@@ -2208,61 +2208,61 @@ Demo.a/DemoKoopaJrShip.o:
 	.sbss       start:0x806B3A60 end:0x806B3A70
 	.sdata2     start:0x806B9C28 end:0x806B9C38
 
-Demo.a/DemoPadRumbler.o:
+Game/Demo/DemoPadRumbler.cpp:
 	.text       start:0x800BD0A4 end:0x800BD200
 	.data       start:0x80577528 end:0x80577570
 
-Demo.a/DemoParamCommonDataTable.o:
+Game/Demo/DemoParamCommonDataTable.cpp:
 	.text       start:0x800BD200 end:0x800BD34C
 	.rodata     start:0x805319F0 end:0x80531A48
 	.data       start:0x80577570 end:0x805775B0
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
-Demo.a/DemoPlayerKeeper.o:
+Game/Demo/DemoPlayerKeeper.cpp:
 	.text       start:0x800BD34C end:0x800BD550
 	.data       start:0x805775B0 end:0x805775D0
 
-Demo.a/DemoPositionController.o:
+Game/Demo/DemoPositionController.cpp:
 	.text       start:0x800BD550 end:0x800BD738
 	.data       start:0x805775D0 end:0x80577660
 	.sdata2     start:0x806B9C40 end:0x806B9C48
 
-Demo.a/DemoSimpleCastHolder.o:
+Game/Demo/DemoSimpleCastHolder.cpp:
 	.text       start:0x800BD738 end:0x800BD938
 
-Demo.a/DemoSoundKeeper.o:
+Game/Demo/DemoSoundKeeper.cpp:
 	.text       start:0x800BD938 end:0x800BDC9C
 	.data       start:0x80577660 end:0x80577760
 
-Demo.a/DemoStartRequestHolder.o:
+Game/Demo/DemoStartRequestHolder.cpp:
 	.text       start:0x800BDC9C end:0x800BE3A4
 
-Demo.a/DemoStartRequestUtil.o:
+Game/Demo/DemoStartRequestUtil.cpp:
 	.text       start:0x800BE3A4 end:0x800BF030
 
-Demo.a/DemoSubPartKeeper.o:
+Game/Demo/DemoSubPartKeeper.cpp:
 	.text       start:0x800BF030 end:0x800BF32C
 
-Demo.a/DemoTalkAnimCtrl.o:
+Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
 	.data       start:0x80577760 end:0x80577798
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
-Demo.a/DemoTimeKeeper.o:
+Game/Demo/DemoTimeKeeper.cpp:
 	.text       start:0x800BFC98 end:0x800C0000
 
-Demo.a/DemoWipeKeeper.o:
+Game/Demo/DemoWipeKeeper.cpp:
 	.text       start:0x800C0000 end:0x800C02B8
 	.data       start:0x80577798 end:0x805779F8
 
-Demo.a/GrandStarReturnDemoStarter.o:
+Game/Demo/GrandStarReturnDemoStarter.cpp:
 	.text       start:0x800C02B8 end:0x800C1018
 	.ctors      start:0x8052EA10 end:0x8052EA14
 	.data       start:0x805779F8 end:0x80577BD8
 	.sbss       start:0x806B3A70 end:0x806B3A90
 	.sdata2     start:0x806B9C50 end:0x806B9C68
 
-Demo.a/PrologueDirector.o:
+Game/Demo/PrologueDirector.cpp:
 	.text       start:0x800C1018 end:0x800C1CE0
 	.ctors      start:0x8052EA14 end:0x8052EA18
 	.data       start:0x80577BD8 end:0x80577D08
@@ -2270,19 +2270,19 @@ Demo.a/PrologueDirector.o:
 	.sbss       start:0x806B3A90 end:0x806B3AB8
 	.sdata2     start:0x806B9C68 end:0x806B9C70
 
-Demo.a/ReturnDemoRailMove.o:
+Game/Demo/ReturnDemoRailMove.cpp:
 	.text       start:0x800C1CE0 end:0x800C2310
 	.data       start:0x80577D08 end:0x80577D80
 	.sdata2     start:0x806B9C70 end:0x806B9C88
 
-Demo.a/ScenarioStarter.o:
+Game/Demo/ScenarioStarter.cpp:
 	.text       start:0x800C2310 end:0x800C35F8
 	.ctors      start:0x8052EA18 end:0x8052EA1C
 	.data       start:0x80577D80 end:0x805780E8
 	.sbss       start:0x806B3AB8 end:0x806B3AD0
 	.sdata2     start:0x806B9C88 end:0x806B9CC0
 
-Demo.a/StarReturnDemoStarter.o:
+Game/Demo/StarReturnDemoStarter.cpp:
 	.text       start:0x800C35F8 end:0x800C44B4
 	.ctors      start:0x8052EA1C end:0x8052EA20
 	.data       start:0x805780E8 end:0x80578200

@@ -2,6 +2,9 @@
 
 #include "Game/Demo/DemoExecutor.hpp"
 
+class LiveActor;
+class TalkMessageCtrl;
+
 namespace DemoExecutorFunction {
     void registerDemoActionFunction(const DemoExecutor *, const LiveActor *, const MR::FunctorBase &, const char *);
     void registerDemoActionNerve(const DemoExecutor *, const LiveActor *, const Nerve *, const char *);

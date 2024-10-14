@@ -187,7 +187,7 @@ cflags_base = [
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
     f"-i build/{config.version}/include",
-    f"-DVERSION={version_num}",
+    f"-DVERSION={version_num}"
 ]
 
 cflags_game = [
@@ -557,6 +557,46 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TripodBossStepPoint.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossStepSequence.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossStepStartArea.cpp")
+        ],
+    ),
+
+
+    # Camera
+
+    GameLib(
+        "Demo",
+        [
+            Object(NonMatching, "Game/Demo/AstroDomeDemoStarter.cpp"),
+            Object(NonMatching, "Game/Demo/AstroDemoFunction.cpp"),
+            Object(NonMatching, "Game/Demo/DemoActionKeeper.cpp"),
+            Object(NonMatching, "Game/Demo/DemoCameraFunction.cpp"),
+            Object(NonMatching, "Game/Demo/DemoCameraKeeper.cpp"),
+            Object(NonMatching, "Game/Demo/DemoCastGroup.cpp"),
+            Object(Matching, "Game/Demo/DemoCastGroupHolder.cpp"),
+            Object(NonMatching, "Game/Demo/DemoCastSubGroup.cpp"),
+            Object(NonMatching, "Game/Demo/DemoCtrlBase.cpp"),
+            Object(NonMatching, "Game/Demo/DemoDirector.cpp"),
+            Object(NonMatching, "Game/Demo/DemoExecutor.cpp"),
+            Object(Matching, "Game/Demo/DemoExecutorFunction.cpp"),
+            Object(Matching, "Game/Demo/DemoFunction.cpp"),
+            Object(NonMatching, "Game/Demo/DemoKoopaJrShip.cpp"),
+            Object(Matching, "Game/Demo/DemoPadRumbler.cpp"),
+            Object(Matching, "Game/Demo/DemoParamCommonDataTable.cpp"),
+            Object(Matching, "Game/Demo/DemoPlayerKeeper.cpp"),
+            Object(Matching, "Game/Demo/DemoPositionController.cpp"),
+            Object(Matching, "Game/Demo/DemoSimpleCastHolder.cpp"),
+            Object(NonMatching, "Game/Demo/DemoSoundKeeper.cpp"),
+            Object(NonMatching, "Game/Demo/DemoStartRequestHolder.cpp"),
+            Object(NonMatching, "Game/Demo/DemoStartRequestUtil.cpp"),
+            Object(Matching, "Game/Demo/DemoSubPartKeeper.cpp"),
+            Object(Matching, "Game/Demo/DemoTalkAnimCtrl.cpp"),
+            Object(NonMatching, "Game/Demo/DemoTimeKeeper.cpp"),
+            Object(NonMatching, "Game/Demo/DemoWipeKeeper.cpp"),
+            Object(NonMatching, "Game/Demo/GrandStarReturnDemoStarter.cpp"),
+            Object(NonMatching, "Game/Demo/PrologueDirector.cpp"),
+            Object(NonMatching, "Game/Demo/ReturnDemoRailMove.cpp"),
+            Object(NonMatching, "Game/Demo/ScenarioStarter.cpp"),
+            Object(NonMatching, "Game/Demo/StarReturnDemoStarter.cpp")
         ],
     ),
 

@@ -5,5 +5,5 @@
 namespace MR {
     namespace Effect {
         void requestMovementOn(EffectKeeper *);
-    }
-}
+    };
+};

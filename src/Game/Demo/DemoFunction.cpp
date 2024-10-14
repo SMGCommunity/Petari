@@ -17,7 +17,7 @@ namespace {
         DemoTimeKeeper* timekeeper = getCurrentTimeKeeper();
         return MR::isEqualString(pPartName, timekeeper->mSubPartInfos[0].mName);
     }
-}  // namespace
+};  // namespace
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() { return reinterpret_cast<DemoDirector*>(MR::getSceneObjHolder()->getObj(SceneObj_DemoDirector)); }
@@ -281,4 +281,4 @@ namespace DemoFunction {
     }
 
     bool isDemoPartTalk(const char* pDemoName) { return MR::isEqualSubString(pDemoName, "会話"); }
-}  // namespace DemoFunction
+};  // namespace DemoFunction

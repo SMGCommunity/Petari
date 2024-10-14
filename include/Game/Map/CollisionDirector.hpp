@@ -20,4 +20,4 @@ public:
 
 namespace MR {
     CollisionDirector *getCollisionDirector();
-}
+};
