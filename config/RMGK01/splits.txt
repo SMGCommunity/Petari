@@ -4369,13 +4369,13 @@ Game/MapObj/ClipFieldMapParts.cpp:
 
 Game/MapObj/ClipFieldSwitch.cpp:
 	.text       start:0x801C3694 end:0x801C3884
-	.data       start:0x805919D0 end:0x80591BB8
+	.data       start:0x805919D0 end:0x80591A48
 	.sdata2     start:0x806BCAC0 end:0x806BCAD0
 
 Game/MapObj/CocoNut.cpp:
 	.text       start:0x801C3884 end:0x801C5F94
 	.ctors      start:0x8052ECAC end:0x8052ECB0
-	.data       start:0x80591BB8 end:0x80591C90
+	.data       start:0x80591A48 end:0x80591C90
 	.sbss       start:0x806B4F88 end:0x806B4FA0
 	.sdata2     start:0x806BCAD0 end:0x806BCB60
 
@@ -4448,7 +4448,7 @@ Game/MapObj/CollectCounter.cpp:
 Game/MapObj/CollisionBlocker.cpp:
 	.text       start:0x801CAE8C end:0x801CB150
 	.data       start:0x80592578 end:0x80592660
-	.sdata      start:0x806B1DB0 end:0x806B1DD8
+	.sdata      start:0x806B1DB0 end:0x806B1DB8
 	.sdata2     start:0x806BCC70 end:0x806BCC78
 
 Game/MapObj/CrystalCage.cpp:
@@ -4463,6 +4463,7 @@ Game/MapObj/CrystalCageMoving.cpp:
 	.ctors      start:0x8052ECCC end:0x8052ECD0
 	.rodata     start:0x80533118 end:0x80533150
 	.data       start:0x80592958 end:0x80592A98
+	.sdata      start:0x806B1DB8 end:0x806B1DC0
 	.sbss       start:0x806B5008 end:0x806B5028
 	.sdata2     start:0x806BCCC0 end:0x806BCCE0
 
@@ -4470,6 +4471,7 @@ Game/MapObj/CrystalSwitch.cpp:
 	.text       start:0x801CCD78 end:0x801CD324
 	.ctors      start:0x8052ECD0 end:0x8052ECD4
 	.data       start:0x80592A98 end:0x80592B50
+	.sdata      start:0x806B1DC0 end:0x806B1DC8
 	.sbss       start:0x806B5028 end:0x806B5038
 	.sdata2     start:0x806BCCE0 end:0x806BCCF8
 
@@ -4480,19 +4482,21 @@ Game/MapObj/CutBushModelObj.cpp:
 Game/MapObj/DashRing.cpp:
 	.text       start:0x801CD4D8 end:0x801CDEC0
 	.data       start:0x80592BC8 end:0x80592CA8
+	.sdata      start:0x806B1DC8 end:0x806B1DD0
 	.sdata2     start:0x806BCCF8 end:0x806BCD40
 
 Game/MapObj/DeadLeaves.cpp:
 	.text       start:0x801CDEC0 end:0x801CE1B4
 	.ctors      start:0x8052ECD4 end:0x8052ECD8
-	.data       start:0x80592CA8 end:0x80592DF8
+	.data       start:0x80592CA8 end:0x80592D58
 	.sbss       start:0x806B5038 end:0x806B5040
 	.sdata2     start:0x806BCD40 end:0x806BCD58
 
 Game/MapObj/DesertLandMoveSwitch.cpp:
 	.text       start:0x801CE1B4 end:0x801CEC3C
 	.ctors      start:0x8052ECD8 end:0x8052ECDC
-	.data       start:0x80592DF8 end:0x80592F60
+	.data       start:0x80592D58 end:0x80592F60
+	.sdata      start:0x806B1DD0 end:0x806B1DD8
 	.sbss       start:0x806B5040 end:0x806B5050
 	.sdata2     start:0x806BCD58 end:0x806BCD70
 
@@ -5023,14 +5027,14 @@ Game/MapObj/MercatorRotateParts.cpp:
 Game/MapObj/MeteoContainer.cpp:
 	.text       start:0x801FD3C4 end:0x801FD7A0
 	.ctors      start:0x8052EDC4 end:0x8052EDC8
-	.data       start:0x80599648 end:0x80599868
+	.data       start:0x80599648 end:0x80599728
 	.sbss       start:0x806B5470 end:0x806B5478
 	.sdata2     start:0x806BD730 end:0x806BD738
 
 Game/MapObj/MeteorStrike.cpp:
 	.text       start:0x801FD7A0 end:0x801FE770
 	.ctors      start:0x8052EDC8 end:0x8052EDCC
-	.data       start:0x80599868 end:0x80599928
+	.data       start:0x80599728 end:0x80599928
 	.sdata      start:0x806B1EB0 end:0x806B1EB8
 	.sbss       start:0x806B5478 end:0x806B5480
 	.sdata2     start:0x806BD738 end:0x806BD790
@@ -5277,7 +5281,7 @@ Game/MapObj/RailCoin.cpp:
 Game/MapObj/RailMoveObj.cpp:
 	.text       start:0x8021857C end:0x80219578
 	.ctors      start:0x8052EE34 end:0x8052EE38
-	.data       start:0x8059CBB0 end:0x8059D1D0
+	.data       start:0x8059CBB0 end:0x8059D0D0
 	.sdata      start:0x806B1F28 end:0x806B1F30
 	.sbss       start:0x806B5688 end:0x806B5698
 	.sdata2     start:0x806BDC10 end:0x806BDC18
@@ -5285,7 +5289,7 @@ Game/MapObj/RailMoveObj.cpp:
 Game/MapObj/RainCloud.cpp:
 	.text       start:0x80219578 end:0x8021A6BC
 	.ctors      start:0x8052EE38 end:0x8052EE3C
-	.data       start:0x8059D1D0 end:0x8059D2A8
+	.data       start:0x8059D0D0 end:0x8059D2A8
 	.sdata      start:0x806B1F30 end:0x806B1F70
 	.sbss       start:0x806B5698 end:0x806B56B0
 	.sdata2     start:0x806BDC18 end:0x806BDC48
@@ -5453,7 +5457,7 @@ Game/MapObj/SimpleFloaterObj.cpp:
 
 Game/MapObj/SimpleMapObj.cpp:
 	.text       start:0x80226F50 end:0x80227A08
-	.rodata     start:0x80533728 end:0x805337B0
+	.rodata     start:0x80533728 end:0x80533788
 	.data       start:0x8059F440 end:0x8059FC10
 	.sdata2     start:0x806BDEF0 end:0x806BDEF8
 
@@ -5465,12 +5469,13 @@ Game/MapObj/SimpleNormalMapObj.cpp:
 Game/MapObj/SimpleTimerObj.cpp:
 	.text       start:0x80227B6C end:0x80227DE8
 	.ctors      start:0x8052EE94 end:0x8052EE98
-	.data       start:0x8059FCA8 end:0x8059FE00
+	.data       start:0x8059FCA8 end:0x8059FD48
 	.sbss       start:0x806B5830 end:0x806B5838
 
 Game/MapObj/SmallStone.cpp:
 	.text       start:0x80227DE8 end:0x8022944C
-	.data       start:0x8059FE00 end:0x8059FEF0
+	.rodata     start:0x80533788 end:0x80533790
+	.data       start:0x8059FD48 end:0x8059FEF0
 	.sdata2     start:0x806BDF00 end:0x806BDF78
 
 Game/MapObj/SnowCapsulePlanet.cpp:
@@ -5482,6 +5487,7 @@ Game/MapObj/SnowCapsulePlanet.cpp:
 Game/MapObj/SnowFloor.cpp:
 	.text       start:0x802296E8 end:0x8022B968
 	.ctors      start:0x8052EE9C end:0x8052EEA0
+	.rodata     start:0x80533790 end:0x805337B0
 	.data       start:0x8059FFD8 end:0x805A0088
 	.sdata      start:0x806B1F88 end:0x806B1FF0
 	.sdata2     start:0x806BDF78 end:0x806BDFD8
@@ -5794,13 +5800,13 @@ Game/MapObj/UFOBase.cpp:
 Game/MapObj/UFOKinoko.cpp:
 	.text       start:0x8024FEE0 end:0x80250478
 	.ctors      start:0x8052EF20 end:0x8052EF24
-	.data       start:0x805A5A08 end:0x805A5C20
+	.data       start:0x805A5A08 end:0x805A5B70
 	.sbss       start:0x806B5A60 end:0x806B5A70
 
 Game/MapObj/ValveSwitch.cpp:
 	.text       start:0x80250478 end:0x80250C1C
 	.ctors      start:0x8052EF24 end:0x8052EF28
-	.data       start:0x805A5C20 end:0x805A5CD8
+	.data       start:0x805A5B70 end:0x805A5CD8
 	.sbss       start:0x806B5A70 end:0x806B5A80
 	.sdata2     start:0x806BE6A0 end:0x806BE6B8
 
@@ -5849,7 +5855,7 @@ Game/MapObj/WaterPressureBullet.cpp:
 
 Game/MapObj/WaterPressureBulletHolder.cpp:
 	.text       start:0x802545C8 end:0x80254734
-	.data       start:0x805A6418 end:0x805A6498
+	.data       start:0x805A6418 end:0x805A6458
 
 Game/MapObj/WaveFloatingForce.cpp:
 	.text       start:0x80254734 end:0x802549D0
@@ -5857,7 +5863,7 @@ Game/MapObj/WaveFloatingForce.cpp:
 
 Game/MapObj/WhirlPool.cpp:
 	.text       start:0x802549D0 end:0x80255A48
-	.data       start:0x805A6498 end:0x805A6510
+	.data       start:0x805A6458 end:0x805A6510
 	.sdata      start:0x806B20D0 end:0x806B20D8
 	.sdata2     start:0x806BE778 end:0x806BE7D0
 
