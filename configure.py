@@ -127,7 +127,7 @@ config.binutils_path = args.binutils
 config.compilers_path = args.compilers
 config.generate_map = args.map
 config.non_matching = args.non_matching
-config.shift_jis = True
+config.shift_jis = False
 config.sjiswrap_path = args.sjiswrap
 if not is_windows():
     config.wrapper = args.wrapper

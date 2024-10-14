@@ -2214,7 +2214,7 @@ Game/Demo/DemoPadRumbler.cpp:
 
 Game/Demo/DemoParamCommonDataTable.cpp:
 	.text       start:0x800BD200 end:0x800BD34C
-	.rodata     start:0x805319F0 end:0x80531A48
+	.rodata     start:0x805319F0 end:0x80531A20
 	.data       start:0x80577570 end:0x805775B0
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
@@ -2245,20 +2245,23 @@ Game/Demo/DemoSubPartKeeper.cpp:
 
 Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
-	.data       start:0x80577760 end:0x80577798
+	.rodata     start:0x80531A20 end:0x80531A28
+	.data       start:0x80577760 end:0x80577770
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Game/Demo/DemoTimeKeeper.cpp:
 	.text       start:0x800BFC98 end:0x800C0000
+	.data       start:0x80577770 end:0x80577798
 
 Game/Demo/DemoWipeKeeper.cpp:
 	.text       start:0x800C0000 end:0x800C02B8
-	.data       start:0x80577798 end:0x805779F8
+	.data       start:0x80577798 end:0x80577838
 
 Game/Demo/GrandStarReturnDemoStarter.cpp:
 	.text       start:0x800C02B8 end:0x800C1018
 	.ctors      start:0x8052EA10 end:0x8052EA14
-	.data       start:0x805779F8 end:0x80577BD8
+	.rodata     start:0x80531A28 end:0x80531A30
+	.data       start:0x80577838 end:0x80577BD8
 	.sbss       start:0x806B3A70 end:0x806B3A90
 	.sdata2     start:0x806B9C50 end:0x806B9C68
 
@@ -2272,12 +2275,14 @@ Game/Demo/PrologueDirector.cpp:
 
 Game/Demo/ReturnDemoRailMove.cpp:
 	.text       start:0x800C1CE0 end:0x800C2310
+	.rodata     start:0x80531A30 end:0x80531A38
 	.data       start:0x80577D08 end:0x80577D80
 	.sdata2     start:0x806B9C70 end:0x806B9C88
 
 Game/Demo/ScenarioStarter.cpp:
 	.text       start:0x800C2310 end:0x800C35F8
 	.ctors      start:0x8052EA18 end:0x8052EA1C
+	.rodata     start:0x80531A38 end:0x80531A40
 	.data       start:0x80577D80 end:0x805780E8
 	.sbss       start:0x806B3AB8 end:0x806B3AD0
 	.sdata2     start:0x806B9C88 end:0x806B9CC0
@@ -2285,6 +2290,7 @@ Game/Demo/ScenarioStarter.cpp:
 Game/Demo/StarReturnDemoStarter.cpp:
 	.text       start:0x800C35F8 end:0x800C44B4
 	.ctors      start:0x8052EA1C end:0x8052EA20
+	.rodata     start:0x80531A40 end:0x80531A48
 	.data       start:0x805780E8 end:0x80578200
 	.sbss       start:0x806B3AD0 end:0x806B3AF8
 	.sdata2     start:0x806B9CC0 end:0x806B9CE0
