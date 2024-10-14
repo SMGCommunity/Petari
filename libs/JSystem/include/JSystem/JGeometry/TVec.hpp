@@ -17,7 +17,8 @@ namespace JGeometry {
         /* Constructors */
         inline TVec2() {}
 
-        TVec2(T _x, T _y)
+        template <typename A>
+        TVec2(A _x, A _y)
         {
             x = _x;
             y = _y;
@@ -30,9 +31,11 @@ namespace JGeometry {
         }*/
 
         /* General operations */
-        void set(const JGeometry::TVec2<T> &rSrc);
+        template <typename A>
+        void set(const JGeometry::TVec2<A> &rSrc);
 
-        void set(T _x, T _y);
+        template <typename A>
+        void set(A _x, A _y);
 
         void setMin(const TVec2<T> &);
         void setMax(const TVec2<T> &);
@@ -89,7 +92,8 @@ namespace JGeometry {
             z = _z;
         }
 
-        TVec3(T _x, T _y , T _z) {
+        template<typename A>
+        TVec3(A _x, A _y , A _z) {
             x = _x;
             y = _y;
             z = _z;
@@ -120,14 +124,16 @@ namespace JGeometry {
         /* General operations */
         void set(const Vec &rSrc);
 
-        void set(const JGeometry::TVec3<T> &rSrc) NO_INLINE
+        template <typename A>
+        void set(const JGeometry::TVec3<A> &rSrc) NO_INLINE
         {
             x = rSrc.x;
             y = rSrc.y;
             z = rSrc.z;
         }
 
-        void set(T _x, T _y, T _z);
+        template <typename A>
+        void set(A _x, A _y, A _z);
 
         void setZYX(T val)
         {
@@ -136,7 +142,8 @@ namespace JGeometry {
             x = val;
         }
 
-        void setAll(T val);
+        template <typename A>
+        void setAll(A val);
 
         void add(const register TVec3<T> &rSrc) NO_INLINE
         {
@@ -926,7 +933,8 @@ namespace JGeometry {
         /* Constructors */
         inline TVec4() {}
 
-        TVec4(T _x, T _y, T _z, T _h)
+        template <typename A>
+        TVec4(A _x, A _y, A _z, A _h)
         {
             x = _x;
             y = _y;
@@ -935,9 +943,11 @@ namespace JGeometry {
         }
 
         /* General operations */
-        void set(const JGeometry::TVec4<T> &);
+        template <typename A>
+        void set(const JGeometry::TVec4<A> &);
 
-        void set(T _x, T _y, T _z, T _h)
+        template <typename A>
+        void set(A _x, A _y, A _z, A _h)
         {
             x = _x;
             y = _y;
