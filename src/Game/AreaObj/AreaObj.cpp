@@ -1,4 +1,5 @@
 #include "Game/AreaObj/AreaObj.hpp"
+#include "Game/AreaObj/AreaForm.hpp"
 #include "Game/AreaObj/AreaObjFollower.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
 #include "Game/Util.hpp"

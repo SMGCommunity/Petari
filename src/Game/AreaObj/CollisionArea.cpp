@@ -1,4 +1,4 @@
-﻿#include "Game/AreaObj/CollisionArea.hpp"
+#include "Game/AreaObj/CollisionArea.hpp"
 #include "Game/MapObj/DynamicCollisionObj.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"

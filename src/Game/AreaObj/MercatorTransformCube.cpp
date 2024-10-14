@@ -1,4 +1,6 @@
 #include "Game/AreaObj/MercatorTransformCube.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 MercatorTransformCube::MercatorTransformCube(int type, const char *pName) : AreaObj(type, pName) {

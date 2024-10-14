@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class MercatorTransformCube : public AreaObj {
 public:
