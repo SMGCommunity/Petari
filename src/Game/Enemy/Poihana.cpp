@@ -1,4 +1,4 @@
-﻿#include "Game/Enemy/Poihana.hpp"
+#include "Game/Enemy/Poihana.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
