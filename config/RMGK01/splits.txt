@@ -4014,12 +4014,12 @@ Game/MapObj/ArrowSwitchMulti.cpp:
 
 Game/MapObj/ArrowSwitchMultiHolder.cpp:
 	.text       start:0x801A85C8 end:0x801A87E0
-	.data       start:0x8058DB00 end:0x8058DC70
+	.data       start:0x8058DB00 end:0x8058DB40
 
 Game/MapObj/AssemblyBlock.cpp:
 	.text       start:0x801A87E0 end:0x801A926C
 	.ctors      start:0x8052EC18 end:0x8052EC1C
-	.data       start:0x8058DC70 end:0x8058DD38
+	.data       start:0x8058DB40 end:0x8058DD38
 	.sbss       start:0x806B4D30 end:0x806B4D48
 	.sdata2     start:0x806BC678 end:0x806BC6A8
 
@@ -4978,14 +4978,14 @@ Game/MapObj/MapObjConnector.cpp:
 Game/MapObj/MarblePlanet.cpp:
 	.text       start:0x801F8BDC end:0x801F9C7C
 	.ctors      start:0x8052EDB0 end:0x8052EDB4
-	.data       start:0x80598868 end:0x80598BB8
+	.data       start:0x80598868 end:0x80598BA0
 	.sbss       start:0x806B53F0 end:0x806B5408
 	.sdata2     start:0x806BD650 end:0x806BD6A0
 
 Game/MapObj/MarioLauncher.cpp:
 	.text       start:0x801F9C7C end:0x801FB94C
 	.ctors      start:0x8052EDB4 end:0x8052EDB8
-	.data       start:0x80598BB8 end:0x80598FC8
+	.data       start:0x80598BA0 end:0x80598FC8
 	.sbss       start:0x806B5408 end:0x806B5430
 	.sdata2     start:0x806BD6A0 end:0x806BD6F0
 
@@ -5159,14 +5159,14 @@ Game/MapObj/PhantomTorch.cpp:
 Game/MapObj/PicketSwitch.cpp:
 	.text       start:0x8020C3A0 end:0x8020C7E0
 	.ctors      start:0x8052EE00 end:0x8052EE04
-	.data       start:0x8059B460 end:0x8059B5E8
+	.data       start:0x8059B460 end:0x8059B550
 	.sbss       start:0x806B5568 end:0x806B5578
 	.sdata2     start:0x806BD9B0 end:0x806BD9B8
 
 Game/MapObj/PlantGroup.cpp:
 	.text       start:0x8020C7E0 end:0x8020E394
 	.ctors      start:0x8052EE04 end:0x8052EE08
-	.data       start:0x8059B5E8 end:0x8059B728
+	.data       start:0x8059B550 end:0x8059B728
 	.sbss       start:0x806B5578 end:0x806B5590
 	.sdata2     start:0x806BD9B8 end:0x806BDA28
 
@@ -5200,12 +5200,12 @@ Game/MapObj/PowerStarAppearPoint.cpp:
 
 Game/MapObj/PowerStarHolder.cpp:
 	.text       start:0x80211414 end:0x80211744
-	.data       start:0x8059BC38 end:0x8059BC68
+	.data       start:0x8059BC38 end:0x8059BC60
 
 Game/MapObj/PressureBase.cpp:
 	.text       start:0x80211744 end:0x8021286C
 	.ctors      start:0x8052EE10 end:0x8052EE14
-	.data       start:0x8059BC68 end:0x8059BED0
+	.data       start:0x8059BC60 end:0x8059BED0
 	.sbss       start:0x806B55C8 end:0x806B55F0
 	.sdata2     start:0x806BDAE0 end:0x806BDB08
 
@@ -5325,13 +5325,13 @@ Game/MapObj/RockCreator.cpp:
 
 Game/MapObj/RosettaChair.cpp:
 	.text       start:0x8021DC68 end:0x8021E0A8
-	.data       start:0x8059D888 end:0x8059D9D0
+	.data       start:0x8059D888 end:0x8059D978
 	.sdata2     start:0x806BDD30 end:0x806BDD40
 
 Game/MapObj/RosettaPictureBook.cpp:
 	.text       start:0x8021E0A8 end:0x8021E668
 	.ctors      start:0x8052EE4C end:0x8052EE50
-	.data       start:0x8059D9D0 end:0x8059DA98
+	.data       start:0x8059D978 end:0x8059DA98
 	.sbss       start:0x806B56E8 end:0x806B5700
 	.sdata2     start:0x806BDD40 end:0x806BDD48
 
@@ -5482,7 +5482,7 @@ Game/MapObj/SnowCapsulePlanet.cpp:
 	.text       start:0x8022944C end:0x802296E8
 	.ctors      start:0x8052EE98 end:0x8052EE9C
 	.data       start:0x8059FEF0 end:0x8059FFD8
-	.sbss       start:0x806B5838 end:0x806B5858
+	.sbss       start:0x806B5838 end:0x806B5848
 
 Game/MapObj/SnowFloor.cpp:
 	.text       start:0x802296E8 end:0x8022B968
@@ -5618,14 +5618,14 @@ Game/MapObj/SpinDriverUtil.cpp:
 Game/MapObj/SpinLeverSwitch.cpp:
 	.text       start:0x80239320 end:0x802398DC
 	.ctors      start:0x8052EEC8 end:0x8052EECC
-	.data       start:0x805A0F78 end:0x805A10C8
+	.data       start:0x805A0F78 end:0x805A1020
 	.sbss       start:0x806B58E8 end:0x806B58F8
 	.sdata2     start:0x806BE2C8 end:0x806BE2D0
 
 Game/MapObj/SpinningBox.cpp:
 	.text       start:0x802398DC end:0x8023B194
 	.ctors      start:0x8052EECC end:0x8052EED0
-	.data       start:0x805A10C8 end:0x805A11F8
+	.data       start:0x805A1020 end:0x805A11F8
 	.sbss       start:0x806B58F8 end:0x806B5910
 	.sdata2     start:0x806BE2D0 end:0x806BE348
 
@@ -5773,14 +5773,14 @@ Game/MapObj/TreasureBoxCracked.cpp:
 Game/MapObj/TreasureSpot.cpp:
 	.text       start:0x8024E0E0 end:0x8024E55C
 	.ctors      start:0x8052EF10 end:0x8052EF14
-	.data       start:0x805A52B0 end:0x805A53F8
+	.data       start:0x805A52B0 end:0x805A5370
 	.sbss       start:0x806B5A10 end:0x806B5A20
 	.sdata2     start:0x806BE660 end:0x806BE678
 
 Game/MapObj/Tsukidashikun.cpp:
 	.text       start:0x8024E55C end:0x8024EBCC
 	.ctors      start:0x8052EF14 end:0x8052EF18
-	.data       start:0x805A53F8 end:0x805A5528
+	.data       start:0x805A5370 end:0x805A5528
 	.sbss       start:0x806B5A20 end:0x806B5A40
 	.sdata2     start:0x806BE678 end:0x806BE688
 
@@ -5835,14 +5835,14 @@ Game/MapObj/WaterfallCaveCover.cpp:
 Game/MapObj/WaterLeakPipe.cpp:
 	.text       start:0x80252E58 end:0x80253680
 	.ctors      start:0x8052EF30 end:0x8052EF34
-	.data       start:0x805A6060 end:0x805A6218
+	.data       start:0x805A6060 end:0x805A6210
 	.sdata      start:0x806B20B8 end:0x806B20C8
 	.sbss       start:0x806B5AA0 end:0x806B5AB0
 	.sdata2     start:0x806BE718 end:0x806BE728
 
 Game/MapObj/WaterPressure.cpp:
 	.text       start:0x80253680 end:0x802538E0
-	.data       start:0x805A6218 end:0x805A6298
+	.data       start:0x805A6210 end:0x805A6298
 	.sdata2     start:0x806BE728 end:0x806BE730
 
 Game/MapObj/WaterPressureBullet.cpp:
