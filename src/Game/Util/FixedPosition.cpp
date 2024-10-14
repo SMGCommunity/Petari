@@ -22,13 +22,13 @@ void FixedPosition::setBaseMtx(MtxPtr mtx) {
 }
 
 void FixedPosition::setLocalTrans(const TVec3f &rLocalTrans) {
-    mLocalTrans.set<f32>(rLocalTrans);
+    mLocalTrans.set(rLocalTrans);
 }
 
 void FixedPosition::init(MtxPtr mtx, const TVec3f &rLocalTrans, const TVec3f &a3) {
     mBaseMtx = mtx;
-    mLocalTrans.set<f32>(rLocalTrans);
-    _10.set<f32>(a3);
+    mLocalTrans.set(rLocalTrans);
+    _10.set(a3);
     _1C.identity();
     mNormalizeScale = true;
 }

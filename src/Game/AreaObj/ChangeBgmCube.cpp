@@ -1,6 +1,7 @@
 #include "Game/AreaObj/ChangeBgmCube.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 ChangeBgmCube::ChangeBgmCube(int a1, const char *pName) : AreaObj(a1, pName) {
     _3C = 0;

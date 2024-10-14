@@ -94,7 +94,7 @@ void BezierRailPart::calcVelocity(TVec3f *pOut, f32 a2) const {
     v12.scale(v5);
     v11.scale(v7);
 
-    pOut->set<f32>(_C);
+    pOut->set(_C);
     pOut->add(v11);
     pOut->add(v12);
     pOut->scale(3.0f);

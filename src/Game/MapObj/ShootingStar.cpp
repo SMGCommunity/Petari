@@ -55,7 +55,7 @@ void ShootingStar::init(const JMapInfoIter &rIter) {
     x = matrix.mMtx[0][1];
     y = matrix.mMtx[1][1];
     z = matrix.mMtx[2][1];
-    _98.set<f32>(x, y, z);
+    _98.set(x, y, z);
     MR::startBpk(this, "ShootingStar");
 }
 

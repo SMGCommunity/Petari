@@ -2,6 +2,7 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 BigBubbleGoalArea::BigBubbleGoalArea(int type, const char *pName) : AreaObj(type, pName) {
     mTranslation.x = 0.0f;

@@ -305,7 +305,7 @@ namespace MR {
     }
 
     inline void multAndSet(TVec3f *a1, const TVec3f &a2, f32 a3) {
-        a1->set<f32>(a2 * a3);
+        a1->set(a2 * a3);
     }
 
     inline int getRemainder(int ra, int rb) {

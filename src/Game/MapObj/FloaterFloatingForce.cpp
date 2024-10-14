@@ -26,7 +26,7 @@ void FloaterFloatingForce::start() {
     x = matrix.mMtx[0][1];
     y = matrix.mMtx[1][1];
     z = matrix.mMtx[2][1];
-    _28.set<f32>(x, y, z);
+    _28.set(x, y, z);
     MR::normalize(&_28);
 }
 

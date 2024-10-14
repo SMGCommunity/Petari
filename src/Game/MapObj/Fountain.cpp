@@ -36,7 +36,7 @@ void Fountain::init(const JMapInfoIter &rIter) {
     mtx.mMtx[2][2] = v15 * v14;
     mtx.mMtx[1][2] = ((v15 * v16) * v17) - (v19 * v13);
 
-    _90.set<f32>(v22, v21, v20);
+    _90.set(v22, v21, v20);
     MR::normalize(&_90);
     MR::getObjectName(&mFountainName, rIter);
     initEffectKeeper(0, mFountainName, false);

@@ -14,14 +14,14 @@ PartsModel::PartsModel(LiveActor *pActor, const char *pName, const char *pModelN
     }
 
     if (mMtx) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
     else {
-        mPosition.set<f32>(pActor->mPosition);
+        mPosition.set(pActor->mPosition);
     }
 
-    mRotation.set<f32>(pActor->mRotation);
-    mScale.set<f32>(pActor->mScale);
+    mRotation.set(pActor->mRotation);
+    mScale.set(pActor->mScale);
 
     initModelManagerWithAnm(pModelName, nullptr, a6);
 
@@ -132,7 +132,7 @@ void PartsModel::offFixedPosNormalizeScale() {
 
 void PartsModel::calcAndSetBaseMtx() {
     if (mMtx && mCalcOwnMtx) {
-        mPosition.set<f32>(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     }
     else {

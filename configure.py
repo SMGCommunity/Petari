@@ -113,6 +113,12 @@ parser.add_argument(
     action="store_true",
     help="builds equivalent (but non-matching) or modded objects",
 )
+parser.add_argument(
+    "--no-progress",
+    dest="progress",
+    action="store_false",
+    help="disable progress calculation",
+)
 args = parser.parse_args()
 
 config = ProjectConfig()
@@ -129,6 +135,7 @@ config.generate_map = args.map
 config.non_matching = args.non_matching
 config.shift_jis = False
 config.sjiswrap_path = args.sjiswrap
+config.progress = args.progress
 if not is_windows():
     config.wrapper = args.wrapper
 # Don't build asm unless we're --non-matching
@@ -138,8 +145,8 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v0.9.5"
-config.objdiff_tag = "v2.0.0"
+config.dtk_tag = "v1.1.2"
+config.objdiff_tag = "v2.3.2"
 config.sjiswrap_tag = "v1.1.1"
 config.wibo_tag = "0.6.11"
 

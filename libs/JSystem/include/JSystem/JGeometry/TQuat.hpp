@@ -10,18 +10,17 @@ namespace JGeometry {
         inline TQuat4() {}
 
         inline TQuat4(T xyz, T _w) {
-            x = xyz;
-            y = xyz;
-            z = xyz;
-            w = _w;
+            this->x = xyz;
+            this->y = xyz;
+            this->z = xyz;
+            this->w = _w;
         }
 
-        template<typename T>
         TQuat4(T _x, T _y, T _z, T _w) {
-            x = _x;
-            y = _y;
-            z = _z;
-            w = _w;
+            this->x = _x;
+            this->y = _y;
+            this->z = _z;
+            this->w = _w;
         }
 
         void set(T, T, T, T);

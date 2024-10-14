@@ -238,7 +238,7 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
 
         TVec3f rotate_axis_y;
         MR::getRotatedAxisY(&rotate_axis_y, mRotation);
-        _A4.set<f32>(rotate_axis_y);
+        _A4.set(rotate_axis_y);
 
         if (_DC) {
             MR::initShadowVolumeCylinder(this, 50.0f);
@@ -336,7 +336,7 @@ void BenefitItemObj::appearThrowUp() {
     runBck("Appear");
     TVec3f rotated_axis;
     MR::getRotatedAxisY(&rotated_axis, mRotation);
-    _A4.set<f32>(rotated_axis);
+    _A4.set(rotated_axis);
     setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
 
     if (!_DD) {
