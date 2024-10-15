@@ -3992,7 +3992,7 @@ Game/MapObj/AnmModelObj.cpp:
 	.text       start:0x801A6348 end:0x801A6EF8
 	.ctors      start:0x8052EC0C end:0x8052EC10
 	.data       start:0x8058D4B8 end:0x8058D848
-	.sdata      start:0x806B1CE8 end:0x806B1CFC
+	.sdata      start:0x806B1CE8 end:0x806B1CF8
 	.sbss       start:0x806B4D08 end:0x806B4D18
 	.sdata2     start:0x806BC620 end:0x806BC628
 
@@ -4035,7 +4035,7 @@ Game/MapObj/AstroCountDownPlate.cpp:
 	.text       start:0x801A9774 end:0x801A9F40
 	.ctors      start:0x8052EC20 end:0x8052EC24
 	.data       start:0x8058DE30 end:0x8058E020
-	.sdata      start:0x806B1D10 end:0x806B1D38
+	.sdata      start:0x806B1D10 end:0x806B1D28
 	.sbss       start:0x806B4D50 end:0x806B4D60
 	.sdata2     start:0x806BC6B0 end:0x806BC6C0
 
@@ -4283,7 +4283,7 @@ Game/MapObj/CapsuleCage.cpp:
 	.text       start:0x801BD770 end:0x801BDC50
 	.ctors      start:0x8052EC94 end:0x8052EC98
 	.data       start:0x80590F68 end:0x80591080
-	.sdata      start:0x806B1D80 end:0x806B1D90
+	.sdata      start:0x806B1D80 end:0x806B1D88
 	.sbss       start:0x806B4F28 end:0x806B4F38
 
 Game/MapObj/ChipBase.cpp:
@@ -4461,7 +4461,7 @@ Game/MapObj/CrystalCage.cpp:
 Game/MapObj/CrystalCageMoving.cpp:
 	.text       start:0x801CC1EC end:0x801CCD78
 	.ctors      start:0x8052ECCC end:0x8052ECD0
-	.rodata     start:0x80533118 end:0x80533150
+	.rodata     start:0x80533118 end:0x80533128
 	.data       start:0x80592958 end:0x80592A98
 	.sdata      start:0x806B1DB8 end:0x806B1DC0
 	.sbss       start:0x806B5008 end:0x806B5028
@@ -4839,7 +4839,7 @@ Game/MapObj/KeySwitch.cpp:
 Game/MapObj/KillerGunnerSingle.cpp:
 	.text       start:0x801EF14C end:0x801EF648
 	.ctors      start:0x8052ED78 end:0x8052ED7C
-	.rodata     start:0x805333E8 end:0x80533408
+	.rodata     start:0x805333E8 end:0x805333F8
 	.data       start:0x80597010 end:0x80597160
 	.sdata      start:0x806B1E88 end:0x806B1E90
 	.sbss       start:0x806B5318 end:0x806B5328
@@ -5888,7 +5888,7 @@ Game/MapObj/YellowChip.cpp:
 Game/MapObj/MapParts.cpp:
 	.text       start:0x80256ED8 end:0x8025726C
 	.data       start:0x805A6910 end:0x805A69A8
-	.sdata      start:0x806B20D8 end:0x806B20E8
+	.sdata      start:0x806B20D8 end:0x806B20E0
 	.sdata2     start:0x806BE7F8 end:0x806BE808
 
 Game/MapObj/GeneralMapParts.cpp:
@@ -7398,12 +7398,12 @@ Game/Scene/PlacementInfoOrdered.cpp:
 
 Game/Scene/PlacementStateChecker.cpp:
 	.text       start:0x80342EE0 end:0x80342FC0
-	.data       start:0x805D1B30 end:0x805D1B78
+	.data       start:0x805D1B30 end:0x805D1B58
 
 Game/Scene/ScenarioSelectScene.cpp:
 	.text       start:0x80342FC0 end:0x80344048
 	.ctors      start:0x8052F214 end:0x8052F218
-	.data       start:0x805D1B78 end:0x805D1C68
+	.data       start:0x805D1B58 end:0x805D1C68
 	.sbss       start:0x806B6608 end:0x806B6630
 	.sdata2     start:0x806C0E00 end:0x806C0E10
 
@@ -7438,7 +7438,7 @@ Game/Scene/ScenePlayingResult.cpp:
 
 Game/Scene/SceneNameObjListExecutor.cpp:
 	.text       start:0x80346348 end:0x8034654C
-	.rodata     start:0x80539DD0 end:0x8053A548
+	.rodata     start:0x80539DD0 end:0x8053A540
 	.data       start:0x805D23E0 end:0x805D2420
 
 Game/Scene/SceneNameObjMovementController.cpp:
