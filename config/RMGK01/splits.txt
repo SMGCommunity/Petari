@@ -3992,7 +3992,7 @@ Game/MapObj/AnmModelObj.cpp:
 	.text       start:0x801A6348 end:0x801A6EF8
 	.ctors      start:0x8052EC0C end:0x8052EC10
 	.data       start:0x8058D4B8 end:0x8058D848
-	.sdata      start:0x806B1CE8 end:0x806B1D10
+	.sdata      start:0x806B1CE8 end:0x806B1CFC
 	.sbss       start:0x806B4D08 end:0x806B4D18
 	.sdata2     start:0x806BC620 end:0x806BC628
 
@@ -4643,14 +4643,14 @@ Game/MapObj/FlexibleSphere.cpp:
 Game/MapObj/FlipPanel.cpp:
 	.text       start:0x801DD218 end:0x801DE334
 	.ctors      start:0x8052ED18 end:0x8052ED1C
-	.data       start:0x80594868 end:0x80594B80
+	.data       start:0x80594868 end:0x80594B68
 	.sbss       start:0x806B5158 end:0x806B5180
 	.sdata2     start:0x806BD060 end:0x806BD068
 
 Game/MapObj/Fountain.cpp:
 	.text       start:0x801DE334 end:0x801DEA5C
 	.ctors      start:0x8052ED1C end:0x8052ED20
-	.data       start:0x80594B80 end:0x80594C18
+	.data       start:0x80594B68 end:0x80594C18
 	.sbss       start:0x806B5180 end:0x806B5188
 	.sdata2     start:0x806BD068 end:0x806BD090
 
@@ -5740,13 +5740,13 @@ Game/MapObj/SwitchBox.cpp:
 Game/MapObj/TimeAppearObj.cpp:
 	.text       start:0x8024A284 end:0x8024A53C
 	.ctors      start:0x8052EF00 end:0x8052EF04
-	.data       start:0x805A4AE8 end:0x805A4C28
+	.data       start:0x805A4AE8 end:0x805A4BD8
 	.sbss       start:0x806B59D0 end:0x806B59D8
 
 Game/MapObj/TimerMoveWall.cpp:
 	.text       start:0x8024A53C end:0x8024A95C
 	.ctors      start:0x8052EF04 end:0x8052EF08
-	.data       start:0x805A4C28 end:0x805A4DC0
+	.data       start:0x805A4BD8 end:0x805A4DC0
 	.sbss       start:0x806B59D8 end:0x806B59E8
 	.sdata2     start:0x806BE5E0 end:0x806BE5E8
 
@@ -7398,12 +7398,12 @@ Game/Scene/PlacementInfoOrdered.cpp:
 
 Game/Scene/PlacementStateChecker.cpp:
 	.text       start:0x80342EE0 end:0x80342FC0
-	.data       start:0x805D1B30 end:0x805D1BA0
+	.data       start:0x805D1B30 end:0x805D1B78
 
 Game/Scene/ScenarioSelectScene.cpp:
 	.text       start:0x80342FC0 end:0x80344048
 	.ctors      start:0x8052F214 end:0x8052F218
-	.data       start:0x805D1BA0 end:0x805D1C68
+	.data       start:0x805D1B78 end:0x805D1C68
 	.sbss       start:0x806B6608 end:0x806B6630
 	.sdata2     start:0x806C0E00 end:0x806C0E10
 
@@ -7438,13 +7438,13 @@ Game/Scene/ScenePlayingResult.cpp:
 
 Game/Scene/SceneNameObjListExecutor.cpp:
 	.text       start:0x80346348 end:0x8034654C
-	.rodata     start:0x80539DD0 end:0x8053A550
-	.data       start:0x805D23E0 end:0x805D2458
+	.rodata     start:0x80539DD0 end:0x8053A548
+	.data       start:0x805D23E0 end:0x805D2420
 
 Game/Scene/SceneNameObjMovementController.cpp:
 	.text       start:0x8034654C end:0x80346C0C
 	.ctors      start:0x8052F21C end:0x8052F220
-	.data       start:0x805D2458 end:0x805D2520
+	.data       start:0x805D2420 end:0x805D2520
 	.sbss       start:0x806B6630 end:0x806B6638
 
 Game/Scene/StageDataHolder.cpp:
