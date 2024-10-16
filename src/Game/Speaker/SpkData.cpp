@@ -5,12 +5,12 @@ SpkData::SpkData(JKRArchive * archive) {
 }
 
 void SpkData::loadTable(u16 table) {
-    void* resource = FUN_8040f918(mArchive, table);
+    void* resource = mArchive->getResource(table);
     mTable.setResource(resource);
 }
 
 void SpkData::loadWave(u16 wave) {
-    void* resource = FUN_8040f918(mArchive, wave);
+    void* resource = mArchive->getResource(wave);
     mWave.setResource(resource);
 }
 
