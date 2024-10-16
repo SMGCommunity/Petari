@@ -94,12 +94,3 @@ BenefitItemInvincible::~BenefitItemInvincible() {
 void BenefitItemInvincible::runBck(const char *) {
 
 }
-
-namespace NrvBenefitItemObj {
-    INIT_NERVE(HostTypeNrvWait);
-    INIT_NERVE(HostTypeNrvShoot);
-    INIT_NERVE(HostTypeNrvCatch);
-    INIT_NERVE(HostTypeNrvAppearGround);
-    INIT_NERVE(HostTypeNrvPreEscape);
-    INIT_NERVE(HostTypeNrvEscape);
-};

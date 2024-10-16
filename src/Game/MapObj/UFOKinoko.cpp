@@ -35,7 +35,7 @@ void UFOKinoko::init(const JMapInfoIter &rIter) {
     bool arg7 = true;
     MR::getJMapInfoArg7NoInit(rIter, &arg7);
     if (arg7) {
-        info.setupNouseLodCtrl();
+        info.setupNoUseLodCtrl();
     }
     initialize(rIter, info);
     MapObjActorUtil::startRotator(this);

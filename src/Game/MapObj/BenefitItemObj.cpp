@@ -4,15 +4,6 @@
 s16 def = 600;
 static f32 zero = 0.0f;
 
-namespace NrvBenefitItemObj {
-    INIT_NERVE(HostTypeNrvWait);
-    INIT_NERVE(HostTypeNrvShoot);
-    INIT_NERVE(HostTypeNrvCatch);
-    INIT_NERVE(HostTypeNrvAppearGround);
-    INIT_NERVE(HostTypeNrvPreEscape);
-    INIT_NERVE(HostTypeNrvEscape);
-};
-
 namespace {
     const f32 cAppearThrowFwdSpd = 5.0f;
     const f32 cBoundUpSpd = 20.0f;

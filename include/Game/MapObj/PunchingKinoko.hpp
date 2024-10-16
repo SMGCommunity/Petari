@@ -25,7 +25,6 @@ public:
     void initSensor();
     void initCamera(const JMapInfoIter &);
     void initJointControl();
-    void initNerve(const Nerve *);
 
     bool requestPunch(HitSensor *, HitSensor *);
     bool requestEnemyBlow(HitSensor *, HitSensor *);

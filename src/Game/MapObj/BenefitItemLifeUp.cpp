@@ -33,15 +33,6 @@ void BenefitItemLifeUp::runEfx(const char *pName) {
     MR::emitEffect(this, str);
 }
 
-namespace NrvBenefitItemObj {
-    INIT_NERVE(HostTypeNrvWait);
-    INIT_NERVE(HostTypeNrvShoot);
-    INIT_NERVE(HostTypeNrvCatch);
-    INIT_NERVE(HostTypeNrvAppearGround);
-    INIT_NERVE(HostTypeNrvPreEscape);
-    INIT_NERVE(HostTypeNrvEscape);
-};
-
 void BenefitItemLifeUp::init(const JMapInfoIter &rIter) {
     BenefitItemObj::init(rIter);
 }

@@ -40,7 +40,7 @@ void RailMoveObj::init(const JMapInfoIter &rIter) {
     s32 condition_type = 0;
     MR::getMapPartsArgMoveConditionType(&condition_type, rIter);
 
-    if (!MR::isMoveStartUnconditional(condition_type)) {
+    if (!MR::isMoveStartTypeUnconditional(condition_type)) {
         setNerve(&NrvRailMoveObj::HostTypeWaitForPlayerOn::sInstance);
     }
 

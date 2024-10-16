@@ -18,7 +18,7 @@ void AstroMapBoard::init(const JMapInfoIter &rIter) {
     info.setupFarClipping(-1.0f);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
-    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter);
+    AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "ロゼッタトーチの炎説明デモ", rIter);
     AstroDemoFunction::tryRegisterDemo(this, "ロゼッタトーチの炎進捗デモ", rIter);
 

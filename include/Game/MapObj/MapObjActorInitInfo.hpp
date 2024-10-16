@@ -36,7 +36,7 @@ public:
     void setupSeAppear();
     void setupMirrorReflection(bool);
     void setupPrepareChangeDummyTexture(const char *);
-    void setupNouseLodCtrl();
+    void setupNoUseLodCtrl();
 
     bool mSetDefaultPosition;           // 0x0
     bool mConnectToScene;               // 0x1

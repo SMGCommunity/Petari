@@ -260,6 +260,10 @@ void AnmModelObj::startInner() {
 
 }
 
+void AnmModelObj::moveInner() {
+    
+}
+
 void AnmModelObj::stopInner() {
 
 }

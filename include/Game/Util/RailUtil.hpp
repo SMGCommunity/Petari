@@ -60,9 +60,9 @@ namespace MR {
 
     void moveRailRider(LiveActor *);
 
-    void moveCoordToEndPos(const LiveActor *);
+    void moveCoordToEndPos(LiveActor *);
 
-    void slowDownRailCoordSpeed(const LiveActor *, f32);
+    void slowDownRailCoordSpeed(LiveActor *, f32);
 
     bool isRailGoingToEnd(const LiveActor *);
 
