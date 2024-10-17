@@ -1536,285 +1536,285 @@ Game/Boss/TripodBossStepStartArea.cpp:
 	.text       start:0x80091BE8 end:0x80091D24
 	.data       start:0x80573FD0 end:0x80574010
 
-Camera.a/CamHeliEffector.o:
+Game/Camera/CamHeliEffector.cpp:
 	.text       start:0x80091D24 end:0x800921B8
 	.ctors      start:0x8052E9E4 end:0x8052E9E8
 	.data       start:0x80574010 end:0x805740B0
 	.sbss       start:0x806B39F8 end:0x806B3A20
 	.sdata2     start:0x806B90D0 end:0x806B90F0
 
-Camera.a/CamKarikariEffector.o:
+Game/Camera/CamKarikariEffector.cpp:
 	.text       start:0x800921B8 end:0x8009265C
 	.sdata2     start:0x806B90F0 end:0x806B9120
 
-Camera.a/CamPoseSphereInterpolator.o:
+Game/Camera/CamPoseSphereInterpolator.cpp:
 	.text       start:0x8009265C end:0x80092890
 	.sdata2     start:0x806B9120 end:0x806B9130
 
-Camera.a/CamTranslatorAnim.o:
+Game/Camera/CamTranslatorAnim.cpp:
 	.text       start:0x80092890 end:0x800928B8
 	.data       start:0x805740B0 end:0x805740C0
 
-Camera.a/CamTranslatorBehind.o:
+Game/Camera/CamTranslatorBehind.cpp:
 	.text       start:0x800928B8 end:0x80092914
 	.data       start:0x805740C0 end:0x805740D0
 	.sdata2     start:0x806B9130 end:0x806B9138
 
-Camera.a/CamTranslatorBlackHole.o:
+Game/Camera/CamTranslatorBlackHole.cpp:
 	.text       start:0x80092914 end:0x80092984
 	.data       start:0x805740D0 end:0x805740E0
 
-Camera.a/CamTranslatorCharmedFix.o:
+Game/Camera/CamTranslatorCharmedFix.cpp:
 	.text       start:0x80092984 end:0x80092A30
 	.data       start:0x805740E0 end:0x805740F0
 	.sdata2     start:0x806B9138 end:0x806B9148
 
-Camera.a/CamTranslatorCharmedTripodBoss.o:
+Game/Camera/CamTranslatorCharmedTripodBoss.cpp:
 	.text       start:0x80092A30 end:0x80092AE0
 	.data       start:0x805740F0 end:0x80574100
 	.sdata2     start:0x806B9148 end:0x806B9158
 
-Camera.a/CamTranslatorCharmedVecReg.o:
+Game/Camera/CamTranslatorCharmedVecReg.cpp:
 	.text       start:0x80092AE0 end:0x80092BC4
 	.data       start:0x80574100 end:0x80574110
 	.sdata2     start:0x806B9158 end:0x806B9160
 
-Camera.a/CamTranslatorCharmedVecRegTower.o:
+Game/Camera/CamTranslatorCharmedVecRegTower.cpp:
 	.text       start:0x80092BC4 end:0x80092CC4
 	.data       start:0x80574110 end:0x80574120
 	.sdata2     start:0x806B9160 end:0x806B9170
 
-Camera.a/CamTranslatorCubePlanet.o:
+Game/Camera/CamTranslatorCubePlanet.cpp:
 	.text       start:0x80092CC4 end:0x80092CF0
 	.data       start:0x80574120 end:0x80574130
 
-Camera.a/CamTranslatorDPD.o:
+Game/Camera/CamTranslatorDPD.cpp:
 	.text       start:0x80092CF0 end:0x80092D58
 	.data       start:0x80574130 end:0x80574140
 
-Camera.a/CamTranslatorDead.o:
+Game/Camera/CamTranslatorDead.cpp:
 	.text       start:0x80092D58 end:0x80092D98
 	.data       start:0x80574140 end:0x80574150
 
-Camera.a/CamTranslatorFix.o:
+Game/Camera/CamTranslatorFix.cpp:
 	.text       start:0x80092D98 end:0x80092E28
 	.data       start:0x80574150 end:0x80574160
 	.sdata2     start:0x806B9170 end:0x806B9178
 
-Camera.a/CamTranslatorFixedPoint.o:
+Game/Camera/CamTranslatorFixedPoint.cpp:
 	.text       start:0x80092E28 end:0x80092E44
 	.data       start:0x80574160 end:0x80574170
 
-Camera.a/CamTranslatorFixedThere.o:
+Game/Camera/CamTranslatorFixedThere.cpp:
 	.text       start:0x80092E44 end:0x80092E74
 	.data       start:0x80574170 end:0x80574180
 
-Camera.a/CamTranslatorFollow.o:
+Game/Camera/CamTranslatorFollow.cpp:
 	.text       start:0x80092E74 end:0x80092EC0
 	.data       start:0x80574180 end:0x80574190
 
-Camera.a/CamTranslatorFooFighter.o:
+Game/Camera/CamTranslatorFooFighter.cpp:
 	.text       start:0x80092EC0 end:0x80092F00
 	.data       start:0x80574190 end:0x805741A0
 
-Camera.a/CamTranslatorFooFighterPlanet.o:
+Game/Camera/CamTranslatorFooFighterPlanet.cpp:
 	.text       start:0x80092F00 end:0x80092F40
 	.data       start:0x805741A0 end:0x805741B0
 
-Camera.a/CamTranslatorFrontAndBack.o:
+Game/Camera/CamTranslatorFrontAndBack.cpp:
 	.text       start:0x80092F40 end:0x80093040
 	.data       start:0x805741B0 end:0x805741C0
 	.sdata2     start:0x806B9178 end:0x806B9190
 
-Camera.a/CamTranslatorGround.o:
+Game/Camera/CamTranslatorGround.cpp:
 	.text       start:0x80093040 end:0x80093094
 	.data       start:0x805741C0 end:0x805741D0
 
-Camera.a/CamTranslatorInnerCylinder.o:
+Game/Camera/CamTranslatorInnerCylinder.cpp:
 	.text       start:0x80093094 end:0x80093184
 	.data       start:0x805741D0 end:0x805741E0
 	.sdata2     start:0x806B9190 end:0x806B91A0
 
-Camera.a/CamTranslatorInwardSphere.o:
+Game/Camera/CamTranslatorInwardSphere.cpp:
 	.text       start:0x80093184 end:0x800931B0
 	.data       start:0x805741E0 end:0x805741F0
 
-Camera.a/CamTranslatorInwardTower.o:
+Game/Camera/CamTranslatorInwardTower.cpp:
 	.text       start:0x800931B0 end:0x80093288
 	.data       start:0x805741F0 end:0x80574200
 	.sdata2     start:0x806B91A0 end:0x806B91B0
 
-Camera.a/CamTranslatorMedianPlanet.o:
+Game/Camera/CamTranslatorMedianPlanet.cpp:
 	.text       start:0x80093288 end:0x80093388
 	.data       start:0x80574200 end:0x80574210
 
-Camera.a/CamTranslatorMedianTower.o:
+Game/Camera/CamTranslatorMedianTower.cpp:
 	.text       start:0x80093388 end:0x8009344C
 	.data       start:0x80574210 end:0x80574220
 
-Camera.a/CamTranslatorMtxRegParallel.o:
+Game/Camera/CamTranslatorMtxRegParallel.cpp:
 	.text       start:0x8009344C end:0x800934E0
 	.data       start:0x80574220 end:0x80574230
 
-Camera.a/CamTranslatorObjParallel.o:
+Game/Camera/CamTranslatorObjParallel.cpp:
 	.text       start:0x800934E0 end:0x8009350C
 	.data       start:0x80574230 end:0x80574240
 
-Camera.a/CamTranslatorParallel.o:
+Game/Camera/CamTranslatorParallel.cpp:
 	.text       start:0x8009350C end:0x80093574
 	.data       start:0x80574240 end:0x80574250
 	.sdata2     start:0x806B91B0 end:0x806B91B8
 
-Camera.a/CamTranslatorRaceFollow.o:
+Game/Camera/CamTranslatorRaceFollow.cpp:
 	.text       start:0x80093574 end:0x800935C8
 	.data       start:0x80574250 end:0x80574260
 	.sdata2     start:0x806B91B8 end:0x806B91C0
 
-Camera.a/CamTranslatorRailDemo.o:
+Game/Camera/CamTranslatorRailDemo.cpp:
 	.text       start:0x800935C8 end:0x8009362C
 	.data       start:0x80574260 end:0x80574270
 
-Camera.a/CamTranslatorRailFollow.o:
+Game/Camera/CamTranslatorRailFollow.cpp:
 	.text       start:0x8009362C end:0x80093690
 	.data       start:0x80574270 end:0x80574280
 
-Camera.a/CamTranslatorRailWatch.o:
+Game/Camera/CamTranslatorRailWatch.cpp:
 	.text       start:0x80093690 end:0x800936F4
 	.data       start:0x80574280 end:0x80574290
 
-Camera.a/CamTranslatorSlide.o:
+Game/Camera/CamTranslatorSlide.cpp:
 	.text       start:0x800936F4 end:0x80093924
 	.data       start:0x80574290 end:0x805742A0
 	.sdata2     start:0x806B91C0 end:0x806B91D0
 
-Camera.a/CamTranslatorSpiral.o:
+Game/Camera/CamTranslatorSpiral.cpp:
 	.text       start:0x80093924 end:0x80093980
 	.data       start:0x805742A0 end:0x805742B0
 
-Camera.a/CamTranslatorTalk.o:
+Game/Camera/CamTranslatorTalk.cpp:
 	.text       start:0x80093980 end:0x800939A4
 	.data       start:0x805742B0 end:0x805742C0
 
-Camera.a/CamTranslatorTower.o:
+Game/Camera/CamTranslatorTower.cpp:
 	.text       start:0x800939A4 end:0x80093A48
 	.data       start:0x805742C0 end:0x805742D0
 	.sdata2     start:0x806B91D0 end:0x806B91E0
 
-Camera.a/CamTranslatorTowerPos.o:
+Game/Camera/CamTranslatorTowerPos.cpp:
 	.text       start:0x80093A48 end:0x80093B04
 	.data       start:0x805742D0 end:0x805742E0
 	.sdata2     start:0x806B91E0 end:0x806B91F0
 
-Camera.a/CamTranslatorTripodBoss.o:
+Game/Camera/CamTranslatorTripodBoss.cpp:
 	.text       start:0x80093B04 end:0x80093B98
 	.data       start:0x805742E0 end:0x805742F0
 
-Camera.a/CamTranslatorTripodBossJoint.o:
+Game/Camera/CamTranslatorTripodBossJoint.cpp:
 	.text       start:0x80093B98 end:0x80093C0C
 	.data       start:0x805742F0 end:0x80574300
 	.sdata2     start:0x806B91F0 end:0x806B91F8
 
-Camera.a/CamTranslatorTripodPlanet.o:
+Game/Camera/CamTranslatorTripodPlanet.cpp:
 	.text       start:0x80093C0C end:0x80093CE4
 	.data       start:0x80574300 end:0x80574310
 	.sdata2     start:0x806B91F8 end:0x806B9208
 
-Camera.a/CamTranslatorTrundle.o:
+Game/Camera/CamTranslatorTrundle.cpp:
 	.text       start:0x80093CE4 end:0x80093DCC
 	.data       start:0x80574310 end:0x80574320
 	.sdata2     start:0x806B9208 end:0x806B9210
 
-Camera.a/CamTranslatorTwistedPassage.o:
+Game/Camera/CamTranslatorTwistedPassage.cpp:
 	.text       start:0x80093DCC end:0x80093E28
 	.data       start:0x80574320 end:0x80574330
 
-Camera.a/CamTranslatorWaterFollow.o:
+Game/Camera/CamTranslatorWaterFollow.cpp:
 	.text       start:0x80093E28 end:0x80093E68
 	.data       start:0x80574330 end:0x80574340
 
-Camera.a/CamTranslatorWaterPlanet.o:
+Game/Camera/CamTranslatorWaterPlanet.cpp:
 	.text       start:0x80093E68 end:0x80093EA8
 	.data       start:0x80574340 end:0x80574350
 
-Camera.a/CamTranslatorWaterPlanetBoss.o:
+Game/Camera/CamTranslatorWaterPlanetBoss.cpp:
 	.text       start:0x80093EA8 end:0x80093F44
 	.data       start:0x80574350 end:0x80574360
 
-Camera.a/CamTranslatorWonderPlanet.o:
+Game/Camera/CamTranslatorWonderPlanet.cpp:
 	.text       start:0x80093F44 end:0x80093F84
 	.data       start:0x80574360 end:0x80574370
 
-Camera.a/Camera.o:
+Game/Camera/Camera.cpp:
 	.text       start:0x80093F84 end:0x800941C8
 	.data       start:0x80574370 end:0x805743D8
 
-Camera.a/CameraAnim.o:
+Game/Camera/CameraAnim.cpp:
 	.text       start:0x800941C8 end:0x80094F74
 	.data       start:0x805743D8 end:0x80574470
 	.sdata2     start:0x806B9210 end:0x806B9228
 
-Camera.a/CameraBehind.o:
+Game/Camera/CameraBehind.cpp:
 	.text       start:0x80094F74 end:0x80095334
 	.data       start:0x80574470 end:0x805744C8
 	.sdata2     start:0x806B9228 end:0x806B9238
 
-Camera.a/CameraBlackHole.o:
+Game/Camera/CameraBlackHole.cpp:
 	.text       start:0x80095334 end:0x800956DC
 	.data       start:0x805744C8 end:0x80574520
 	.sdata2     start:0x806B9238 end:0x806B9250
 
-Camera.a/CameraCalc.o:
+Game/Camera/CameraCalc.cpp:
 	.text       start:0x800956DC end:0x80095D84
 	.sdata2     start:0x806B9250 end:0x806B9280
 
-Camera.a/CameraCharmedFix.o:
+Game/Camera/CameraCharmedFix.cpp:
 	.text       start:0x80095D84 end:0x800961CC
 	.data       start:0x80574520 end:0x80574578
 	.sdata2     start:0x806B9280 end:0x806B9298
 
-Camera.a/CameraCharmedTripodBoss.o:
+Game/Camera/CameraCharmedTripodBoss.cpp:
 	.text       start:0x800961CC end:0x80096718
 	.data       start:0x80574578 end:0x805745D0
 	.sdata2     start:0x806B9298 end:0x806B92B0
 
-Camera.a/CameraCharmedVecReg.o:
+Game/Camera/CameraCharmedVecReg.cpp:
 	.text       start:0x80096718 end:0x80096D00
 	.data       start:0x805745D0 end:0x80574628
 	.sdata2     start:0x806B92B0 end:0x806B92D0
 
-Camera.a/CameraCharmedVecRegTower.o:
+Game/Camera/CameraCharmedVecRegTower.cpp:
 	.text       start:0x80096D00 end:0x800972D8
 	.data       start:0x80574628 end:0x80574680
 	.sdata2     start:0x806B92D0 end:0x806B92E8
 
-Camera.a/CameraContext.o:
+Game/Camera/CameraContext.cpp:
 	.text       start:0x800972D8 end:0x800979EC
 	.data       start:0x80574680 end:0x805746B8
 	.sdata2     start:0x806B92E8 end:0x806B9310
 
-Camera.a/CameraCover.o:
+Game/Camera/CameraCover.cpp:
 	.text       start:0x800979EC end:0x80097CCC
 	.ctors      start:0x8052E9E8 end:0x8052E9EC
 	.data       start:0x805746B8 end:0x805746F8
 	.sbss       start:0x806B3A20 end:0x806B3A28
 	.sdata2     start:0x806B9310 end:0x806B9320
 
-Camera.a/CameraCubePlanet.o:
+Game/Camera/CameraCubePlanet.cpp:
 	.text       start:0x80097CCC end:0x800980F8
 	.data       start:0x805746F8 end:0x80574750
 	.sdata2     start:0x806B9320 end:0x806B9340
 
-Camera.a/CameraDPD.o:
+Game/Camera/CameraDPD.cpp:
 	.text       start:0x800980F8 end:0x80098C58
 	.data       start:0x80574750 end:0x805747A8
 	.sdata2     start:0x806B9340 end:0x806B9390
 
-Camera.a/CameraDead.o:
+Game/Camera/CameraDead.cpp:
 	.text       start:0x80098C58 end:0x80099220
 	.data       start:0x805747A8 end:0x80574800
 	.sdata2     start:0x806B9390 end:0x806B93A0
 
-Camera.a/CameraDirector.o:
+Game/Camera/CameraDirector.cpp:
 	.text       start:0x80099220 end:0x8009B5E4
 	.ctors      start:0x8052E9EC end:0x8052E9F0
 	.data       start:0x80574800 end:0x80574A40
@@ -1822,324 +1822,324 @@ Camera.a/CameraDirector.o:
 	.sbss       start:0x806B3A28 end:0x806B3A30
 	.sdata2     start:0x806B93A0 end:0x806B93D0
 
-Camera.a/CameraFix.o:
+Game/Camera/CameraFix.cpp:
 	.text       start:0x8009B5E4 end:0x8009B93C
 	.data       start:0x80574A40 end:0x80574A98
 	.sdata2     start:0x806B93D0 end:0x806B93E8
 
-Camera.a/CameraFixedPoint.o:
+Game/Camera/CameraFixedPoint.cpp:
 	.text       start:0x8009B93C end:0x8009BDDC
 	.data       start:0x80574A98 end:0x80574AF0
 	.sdata2     start:0x806B93E8 end:0x806B93F8
 
-Camera.a/CameraFixedThere.o:
+Game/Camera/CameraFixedThere.cpp:
 	.text       start:0x8009BDDC end:0x8009C5A4
 	.data       start:0x80574AF0 end:0x80574B48
 	.sdata2     start:0x806B93F8 end:0x806B9410
 
-Camera.a/CameraFollow.o:
+Game/Camera/CameraFollow.cpp:
 	.text       start:0x8009C5A4 end:0x8009DA78
 	.ctors      start:0x8052E9F0 end:0x8052E9F4
 	.data       start:0x80574B48 end:0x80574BB0
 	.sbss       start:0x806B3A30 end:0x806B3A38
 	.sdata2     start:0x806B9410 end:0x806B9480
 
-Camera.a/CameraFooFighter.o:
+Game/Camera/CameraFooFighter.cpp:
 	.text       start:0x8009DA78 end:0x8009E2FC
 	.data       start:0x80574BB0 end:0x80574C08
 	.sdata2     start:0x806B9480 end:0x806B94B0
 
-Camera.a/CameraFooFighterPlanet.o:
+Game/Camera/CameraFooFighterPlanet.cpp:
 	.text       start:0x8009E2FC end:0x8009EBF4
 	.data       start:0x80574C08 end:0x80574C60
 	.sdata      start:0x806B1808 end:0x806B1808
 	.sdata2     start:0x806B94B0 end:0x806B94D8
 
-Camera.a/CameraFrontAndBack.o:
+Game/Camera/CameraFrontAndBack.cpp:
 	.text       start:0x8009EBF4 end:0x8009F1EC
 	.data       start:0x80574C60 end:0x80574CB8
 	.sdata2     start:0x806B94D8 end:0x806B94F8
 
-Camera.a/CameraGround.o:
+Game/Camera/CameraGround.cpp:
 	.text       start:0x8009F1EC end:0x8009F568
 	.data       start:0x80574CB8 end:0x80574D10
 	.sdata2     start:0x806B94F8 end:0x806B9510
 
-Camera.a/CameraHeightArrange.o:
+Game/Camera/CameraHeightArrange.cpp:
 	.text       start:0x8009F568 end:0x800A0844
 	.data       start:0x80574D10 end:0x80574D48
 	.sdata2     start:0x806B9510 end:0x806B9550
 
-Camera.a/CameraHolder.o:
+Game/Camera/CameraHolder.cpp:
 	.text       start:0x800A0844 end:0x800A1468
 	.rodata     start:0x80531620 end:0x80531928
 	.data       start:0x80574D48 end:0x80575660
 	.sdata      start:0x806B1808 end:0x806B1818
 
-Camera.a/CameraInnerCylinder.o:
+Game/Camera/CameraInnerCylinder.cpp:
 	.text       start:0x800A1468 end:0x800A1BA0
 	.data       start:0x80575660 end:0x805756B8
 	.sdata2     start:0x806B9550 end:0x806B9568
 
-Camera.a/CameraInwardSphere.o:
+Game/Camera/CameraInwardSphere.cpp:
 	.text       start:0x800A1BA0 end:0x800A24A4
 	.data       start:0x805756B8 end:0x80575710
 	.sdata2     start:0x806B9568 end:0x806B95A0
 
-Camera.a/CameraInwardTower.o:
+Game/Camera/CameraInwardTower.cpp:
 	.text       start:0x800A24A4 end:0x800A2AB8
 	.data       start:0x80575710 end:0x80575768
 	.sdata2     start:0x806B95A0 end:0x806B95D0
 
-Camera.a/CameraLocalUtil.o:
+Game/Camera/CameraLocalUtil.cpp:
 	.text       start:0x800A2AB8 end:0x800A3C50
 	.sdata2     start:0x806B95D0 end:0x806B95F8
 
-Camera.a/CameraMan.o:
+Game/Camera/CameraMan.cpp:
 	.text       start:0x800A3C50 end:0x800A3DB8
 	.data       start:0x80575768 end:0x805757D0
 
-Camera.a/CameraManEvent.o:
+Game/Camera/CameraManEvent.cpp:
 	.text       start:0x800A3DB8 end:0x800A4F84
 	.data       start:0x805757D0 end:0x80575918
 	.sdata2     start:0x806B95F8 end:0x806B9608
 
-Camera.a/CameraManGame.o:
+Game/Camera/CameraManGame.cpp:
 	.text       start:0x800A4F84 end:0x800A6BB8
 	.data       start:0x80575918 end:0x80575978
 	.sdata      start:0x806B1818 end:0x806B1840
 	.sdata2     start:0x806B9608 end:0x806B9660
 
-Camera.a/CameraManPause.o:
+Game/Camera/CameraManPause.cpp:
 	.text       start:0x800A6BB8 end:0x800A71E0
 	.data       start:0x80575978 end:0x805759D0
 	.sdata2     start:0x806B9660 end:0x806B96A8
 
-Camera.a/CameraManSubjective.o:
+Game/Camera/CameraManSubjective.cpp:
 	.text       start:0x800A71E0 end:0x800A7308
 	.data       start:0x805759D0 end:0x80575A38
 
-Camera.a/CameraMedianPlanet.o:
+Game/Camera/CameraMedianPlanet.cpp:
 	.text       start:0x800A7308 end:0x800A7F6C
 	.data       start:0x80575A38 end:0x80575A90
 	.sdata2     start:0x806B96A8 end:0x806B96D8
 
-Camera.a/CameraMedianTower.o:
+Game/Camera/CameraMedianTower.cpp:
 	.text       start:0x800A7F6C end:0x800A8BF4
 	.data       start:0x80575A90 end:0x80575AE8
 	.sdata2     start:0x806B96D8 end:0x806B9710
 
-Camera.a/CameraMtxRegParallel.o:
+Game/Camera/CameraMtxRegParallel.cpp:
 	.text       start:0x800A8BF4 end:0x800A8EA0
 	.data       start:0x80575AE8 end:0x80575B40
 	.sdata2     start:0x806B9710 end:0x806B9728
 
-Camera.a/CameraObjParallel.o:
+Game/Camera/CameraObjParallel.cpp:
 	.text       start:0x800A8EA0 end:0x800A91C8
 	.data       start:0x80575B40 end:0x80575B98
 	.sdata2     start:0x806B9728 end:0x806B9738
 
-Camera.a/CameraParallel.o:
+Game/Camera/CameraParallel.cpp:
 	.text       start:0x800A91C8 end:0x800A97B8
 	.data       start:0x80575B98 end:0x80575C50
 	.sdata2     start:0x806B9738 end:0x806B9770
 
-Camera.a/CameraParamChunk.o:
+Game/Camera/CameraParamChunk.cpp:
 	.text       start:0x800A97B8 end:0x800AA55C
 	.ctors      start:0x8052E9F4 end:0x8052E9F8
 	.data       start:0x80575C50 end:0x80575EE8
 	.bss        start:0x8060A6F8 end:0x8060A788
 	.sdata2     start:0x806B9770 end:0x806B97A0
 
-Camera.a/CameraParamChunkHolder.o:
+Game/Camera/CameraParamChunkHolder.cpp:
 	.text       start:0x800AA55C end:0x800AAFBC
 	.data       start:0x80575EE8 end:0x80575FE0
 	.sdata2     start:0x806B97A0 end:0x806B97D0
 
-Camera.a/CameraParamChunkID.o:
+Game/Camera/CameraParamChunkID.cpp:
 	.text       start:0x800AAFBC end:0x800AB4AC
 	.data       start:0x80575FE0 end:0x80576018
 
-Camera.a/CameraParamString.o:
+Game/Camera/CameraParamString.cpp:
 	.text       start:0x800AB4AC end:0x800AB520
 
-Camera.a/CameraPolygonCodeUtil.o:
+Game/Camera/CameraPolygonCodeUtil.cpp:
 	.text       start:0x800AB520 end:0x800AB5BC
 
-Camera.a/CameraPoseParam.o:
+Game/Camera/CameraPoseParam.cpp:
 	.text       start:0x800AB5BC end:0x800AB624
 	.sdata2     start:0x806B97D0 end:0x806B97E0
 
-Camera.a/CameraRaceFollow.o:
+Game/Camera/CameraRaceFollow.cpp:
 	.text       start:0x800AB624 end:0x800ABC10
 	.data       start:0x80576018 end:0x80576070
 	.sdata2     start:0x806B97E0 end:0x806B9800
 
-Camera.a/CameraRailDemo.o:
+Game/Camera/CameraRailDemo.cpp:
 	.text       start:0x800ABC10 end:0x800AC0D8
 	.data       start:0x80576070 end:0x805760C8
 	.sdata2     start:0x806B9800 end:0x806B9810
 
-Camera.a/CameraRailFollow.o:
+Game/Camera/CameraRailFollow.cpp:
 	.text       start:0x800AC0D8 end:0x800AC648
 	.data       start:0x805760C8 end:0x80576128
 	.sdata2     start:0x806B9810 end:0x806B9830
 
-Camera.a/CameraRailHolder.o:
+Game/Camera/CameraRailHolder.cpp:
 	.text       start:0x800AC648 end:0x800ACA60
 	.data       start:0x80576128 end:0x80576150
 
-Camera.a/CameraRailWatch.o:
+Game/Camera/CameraRailWatch.cpp:
 	.text       start:0x800ACA60 end:0x800AD0E0
 	.data       start:0x80576150 end:0x805761D8
 	.sdata2     start:0x806B9830 end:0x806B9848
 
-Camera.a/CameraRegisterHolder.o:
+Game/Camera/CameraRegisterHolder.cpp:
 	.text       start:0x800AD0E0 end:0x800AD44C
 	.data       start:0x805761D8 end:0x80576200
 	.sdata      start:0x806B1840 end:0x806B1850
 	.sdata2     start:0x806B9848 end:0x806B9850
 
-Camera.a/CameraRotChecker.o:
+Game/Camera/CameraRotChecker.cpp:
 	.text       start:0x800AD44C end:0x800AD650
 	.ctors      start:0x8052E9F8 end:0x8052E9FC
 	.sbss       start:0x806B3A38 end:0x806B3A40
 	.sdata2     start:0x806B9850 end:0x806B9878
 
-Camera.a/CameraShakePatternImpl.o:
+Game/Camera/CameraShakePatternImpl.cpp:
 	.text       start:0x800AD650 end:0x800AD994
 	.data       start:0x80576200 end:0x80576238
 	.sdata2     start:0x806B9878 end:0x806B9890
 
-Camera.a/CameraShakeTask.o:
+Game/Camera/CameraShakeTask.cpp:
 	.text       start:0x800AD994 end:0x800ADBF4
 	.sdata2     start:0x806B9890 end:0x806B9898
 
-Camera.a/CameraShaker.o:
+Game/Camera/CameraShaker.cpp:
 	.text       start:0x800ADBF4 end:0x800AE3E4
 	.rodata     start:0x80531928 end:0x80531998
 	.data       start:0x80576238 end:0x80576260
 	.sdata2     start:0x806B9898 end:0x806B98A8
 
-Camera.a/CameraSlide.o:
+Game/Camera/CameraSlide.cpp:
 	.text       start:0x800AE3E4 end:0x800AE830
 	.data       start:0x80576260 end:0x805762B8
 	.sdata2     start:0x806B98A8 end:0x806B98C8
 
-Camera.a/CameraSpiral.o:
+Game/Camera/CameraSpiral.cpp:
 	.text       start:0x800AE830 end:0x800AEE34
 	.data       start:0x805762B8 end:0x80576310
 	.sdata2     start:0x806B98C8 end:0x806B98F0
 
-Camera.a/CameraSubjective.o:
+Game/Camera/CameraSubjective.cpp:
 	.text       start:0x800AEE34 end:0x800AF408
 	.data       start:0x80576310 end:0x80576368
 	.sdata2     start:0x806B98F0 end:0x806B9938
 
-Camera.a/CameraTalk.o:
+Game/Camera/CameraTalk.cpp:
 	.text       start:0x800AF408 end:0x800AFBA4
 	.data       start:0x80576368 end:0x805763D8
 	.sdata2     start:0x806B9938 end:0x806B9970
 
-Camera.a/CameraTargetArg.o:
+Game/Camera/CameraTargetArg.cpp:
 	.text       start:0x800AFBA4 end:0x800AFCCC
 	.ctors      start:0x8052E9FC end:0x8052EA00
 
-Camera.a/CameraTargetHolder.o:
+Game/Camera/CameraTargetHolder.cpp:
 	.text       start:0x800AFCCC end:0x800AFEAC
 	.data       start:0x805763D8 end:0x805763E8
 	.sdata2     start:0x806B9970 end:0x806B9978
 
-Camera.a/CameraTargetMtx.o:
+Game/Camera/CameraTargetMtx.cpp:
 	.text       start:0x800AFEAC end:0x800B01C0
 	.data       start:0x805763E8 end:0x80576488
 	.sdata2     start:0x806B9978 end:0x806B9988
 
-Camera.a/CameraTargetObj.o:
+Game/Camera/CameraTargetObj.cpp:
 	.text       start:0x800B01C0 end:0x800B09A8
 	.ctors      start:0x8052EA00 end:0x8052EA04
 	.data       start:0x80576488 end:0x805766C8
 	.bss        start:0x8060A788 end:0x8060A798
 	.sdata2     start:0x806B9988 end:0x806B99A0
 
-Camera.a/CameraTestObj.o:
+Game/Camera/CameraTestObj.cpp:
 	.text       start:0x800B09A8 end:0x800B0A4C
 	.sdata2     start:0x806B99A0 end:0x806B99B0
 
-Camera.a/CameraTower.o:
+Game/Camera/CameraTower.cpp:
 	.text       start:0x800B0A4C end:0x800B1774
 	.ctors      start:0x8052EA04 end:0x8052EA08
 	.data       start:0x805766C8 end:0x80576728
 	.sbss       start:0x806B3A40 end:0x806B3A48
 	.sdata2     start:0x806B99B0 end:0x806B99E8
 
-Camera.a/CameraTowerBase.o:
+Game/Camera/CameraTowerBase.cpp:
 	.text       start:0x800B1774 end:0x800B1C70
 	.data       start:0x80576728 end:0x80576798
 	.sdata2     start:0x806B99E8 end:0x806B9A00
 
-Camera.a/CameraTowerPos.o:
+Game/Camera/CameraTowerPos.cpp:
 	.text       start:0x800B1C70 end:0x800B250C
 	.data       start:0x80576798 end:0x80576808
 	.sdata2     start:0x806B9A00 end:0x806B9A30
 
-Camera.a/CameraTripodBoss.o:
+Game/Camera/CameraTripodBoss.cpp:
 	.text       start:0x800B250C end:0x800B27F4
 	.data       start:0x80576808 end:0x80576868
 	.sdata2     start:0x806B9A30 end:0x806B9A40
 
-Camera.a/CameraTripodBossJoint.o:
+Game/Camera/CameraTripodBossJoint.cpp:
 	.text       start:0x800B27F4 end:0x800B2D3C
 	.data       start:0x80576868 end:0x805768C0
 	.sdata2     start:0x806B9A40 end:0x806B9A78
 
-Camera.a/CameraTripodPlanet.o:
+Game/Camera/CameraTripodPlanet.cpp:
 	.text       start:0x800B2D3C end:0x800B3204
 	.data       start:0x805768C0 end:0x80576918
 	.sdata2     start:0x806B9A78 end:0x806B9A90
 
-Camera.a/CameraTrundle.o:
+Game/Camera/CameraTrundle.cpp:
 	.text       start:0x800B3204 end:0x800B35C4
 	.data       start:0x80576918 end:0x80576970
 	.sdata2     start:0x806B9A90 end:0x806B9AA8
 
-Camera.a/CameraTwistedPassage.o:
+Game/Camera/CameraTwistedPassage.cpp:
 	.text       start:0x800B35C4 end:0x800B3C48
 	.data       start:0x80576970 end:0x805769E0
 	.sdata2     start:0x806B9AA8 end:0x806B9AC8
 
-Camera.a/CameraViewInterpolator.o:
+Game/Camera/CameraViewInterpolator.cpp:
 	.text       start:0x800B3C48 end:0x800B4B0C
 	.sdata2     start:0x806B9AC8 end:0x806B9B20
 
-Camera.a/CameraWaterFollow.o:
+Game/Camera/CameraWaterFollow.cpp:
 	.text       start:0x800B4B0C end:0x800B52D0
 	.data       start:0x805769E0 end:0x80576A38
 	.sdata2     start:0x806B9B20 end:0x806B9B50
 
-Camera.a/CameraWaterPlanet.o:
+Game/Camera/CameraWaterPlanet.cpp:
 	.text       start:0x800B52D0 end:0x800B5908
 	.data       start:0x80576A38 end:0x80576A90
 	.sdata2     start:0x806B9B50 end:0x806B9B70
 
-Camera.a/CameraWaterPlanetBoss.o:
+Game/Camera/CameraWaterPlanetBoss.cpp:
 	.text       start:0x800B5908 end:0x800B6268
 	.data       start:0x80576A90 end:0x80576AE8
 	.sdata2     start:0x806B9B70 end:0x806B9BB0
 
-Camera.a/CameraWonderPlanet.o:
+Game/Camera/CameraWonderPlanet.cpp:
 	.text       start:0x800B6268 end:0x800B6A44
 	.data       start:0x80576AE8 end:0x80576B58
 	.sdata2     start:0x806B9BB0 end:0x806B9BD0
 
-Camera.a/DotCamParams.o:
+Game/Camera/DotCamParams.cpp:
 	.text       start:0x800B6A44 end:0x800B6E68
 	.data       start:0x80576B58 end:0x80576BB8
 
-Camera.a/GameCameraCreator.o:
+Game/Camera/GameCameraCreator.cpp:
 	.text       start:0x800B6E68 end:0x800B70D8
 
-Camera.a/OnlyCamera.o:
+Game/Camera/OnlyCamera.cpp:
 	.text       start:0x800B70D8 end:0x800B78A4
 	.data       start:0x80576BB8 end:0x80576BE0
 	.sdata2     start:0x806B9BD0 end:0x806B9BF0

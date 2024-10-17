@@ -1,6 +1,6 @@
 def convert_entry(entry):
     obj_name = entry.split("[")[1].split(".o")[0]
-    new_path = f"Game/Util/{obj_name}.cpp"
+    new_path = f"Game/Camera/{obj_name}.cpp"
     return f'Object(NonMatching, "{new_path}"),'
 
 def process_file(input_filename, output_filename):
