@@ -68,7 +68,7 @@ void SimpleMirrorObj::calcAndSetBaseMtx() {
         MR::setMirrorReflectionInfoFromMtxYUp(reflectionPos);
         f32 z = reflectionPos.mMtx[2][3];
         f32 y = reflectionPos.mMtx[1][3];
-        f32 x = reflectionPos.mMtx[0][3];
+        f32 x = reflectionPos.mMtx[0][3]; 
         mPosition.set(x, y, z);
         MR::setBaseTRMtx(this, mMtx);
     }
