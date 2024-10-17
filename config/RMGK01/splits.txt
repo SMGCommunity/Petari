@@ -1872,7 +1872,7 @@ Game/Camera/CameraHeightArrange.cpp:
 
 Game/Camera/CameraHolder.cpp:
 	.text       start:0x800A0844 end:0x800A1468
-	.rodata     start:0x80531620 end:0x80531928
+	.rodata     start:0x80531620 end:0x805318F0
 	.data       start:0x80574D48 end:0x80575660
 	.sdata      start:0x806B1808 end:0x806B1818
 
@@ -1897,11 +1897,11 @@ Game/Camera/CameraLocalUtil.cpp:
 
 Game/Camera/CameraMan.cpp:
 	.text       start:0x800A3C50 end:0x800A3DB8
-	.data       start:0x80575768 end:0x805757D0
+	.data       start:0x80575768 end:0x805757C0
 
 Game/Camera/CameraManEvent.cpp:
 	.text       start:0x800A3DB8 end:0x800A4F84
-	.data       start:0x805757D0 end:0x80575918
+	.data       start:0x805757C0 end:0x80575918
 	.sdata2     start:0x806B95F8 end:0x806B9608
 
 Game/Camera/CameraManGame.cpp:
