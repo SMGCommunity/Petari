@@ -530,7 +530,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
                 }
                 else {
                     TVec3f v22(mPosition);
-                    v22.subtract(*MR::getPlayerPos());
+                    v22.sub(*MR::getPlayerPos());
                     MR::vecKillElement(v22, _D8, &v22);
                     if (MR::isNearZero(v22, 0.001f)) {
                         v22.set(_E4);
@@ -553,7 +553,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
                         mRotation.y = 90.0f * temp;
                     }
                     TVec3f v21(mPosition);
-                    v21.subtract(_8C);  
+                    v21.sub(_8C);  
                     _B0 = v21.dot(_D8);     
                     f32 v16 = _A4;
                     f32 temp;
