@@ -10,7 +10,7 @@ void CollectCounter::init(const JMapInfoIter &rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("CollectCounter", 1);
     initNerve(&NrvCollectCounter::CollectCounterNrvHide::sInstance);
-    MR::setFollowPos(mFollowPosition, this, 0);
+    MR::setFollowPos(&mFollowPosition, this, 0);
     kill();
 }
 
