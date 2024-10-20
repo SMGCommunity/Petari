@@ -1852,7 +1852,7 @@ Game/Camera/CameraFooFighter.cpp:
 Game/Camera/CameraFooFighterPlanet.cpp:
 	.text       start:0x8009E2FC end:0x8009EBF4
 	.data       start:0x80574C08 end:0x80574C60
-	.sdata      start:0x806B1808 end:0x806B1808
+	.sdata      start:0x806B1808 end:0x806B1810
 	.sdata2     start:0x806B94B0 end:0x806B94D8
 
 Game/Camera/CameraFrontAndBack.cpp:
@@ -1874,7 +1874,7 @@ Game/Camera/CameraHolder.cpp:
 	.text       start:0x800A0844 end:0x800A1468
 	.rodata     start:0x80531620 end:0x805318F0
 	.data       start:0x80574D48 end:0x80575660
-	.sdata      start:0x806B1808 end:0x806B1818
+	.sdata      start:0x806B1810 end:0x806B1818
 
 Game/Camera/CameraInnerCylinder.cpp:
 	.text       start:0x800A1468 end:0x800A1BA0
