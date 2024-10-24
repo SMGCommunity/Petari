@@ -42,7 +42,7 @@ void THPGXYuv2RgbSetup(GXRenderModeObj* rmode) {
     GXSetProjection(pMtx, GX_ORTHOGRAPHIC);
     GXSetViewport(0.0F, 0.0F, (f32)scrWidth, (f32)scrHeight, 0.0F, 1.0F);
     GXSetScissor(0, 0, (u32)scrWidth, (u32)scrHeight);
-    C_MTXIdentity(mMtx);
+    PSMTXIdentity(mMtx);
     GXLoadPosMtxImm(mMtx, GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXSetZMode(GX_ENABLE, GX_ALWAYS, GX_DISABLE);
