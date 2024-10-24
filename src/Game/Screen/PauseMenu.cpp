@@ -37,14 +37,14 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Stars", 1);
     MR::createAndAddPaneCtrl(this, "Coin", 1);
     MR::createAndAddPaneCtrl(this, "Piece", 1);
-    MR::setFollowPos(_44, this, "Coin");
+    MR::setFollowPos(&_44, this, "Coin");
     MR::setFollowTypeReplace(this, "Coin");
-    MR::setFollowPos(_4C, this, "Piece");
+    MR::setFollowPos(&_4C, this, "Piece");
     MR::setFollowTypeReplace(this, "Piece");
 
     if (MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation()) {
         MR::createAndAddPaneCtrl(this, "ShaStageTitle", 1);
-        MR::setFollowPos(_3C, this, "ShaStageTitle");
+        MR::setFollowPos(&_3C, this, "ShaStageTitle");
         MR::setFollowTypeReplace(this, "ShaStageTitle");
     }
 

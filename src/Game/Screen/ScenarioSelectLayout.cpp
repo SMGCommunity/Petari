@@ -65,7 +65,7 @@ void ScenarioSelectLayout::init(const JMapInfoIter &rIter) {
 
     for (u32 i = 0; i < 2; i++) {
         MR::createAndAddPaneCtrl(this, cQuestionPaneName[i], 1);
-        MR::setFollowPos(mQuestionPane[i], this, cQuestionPaneName[i]);
+        MR::setFollowPos(&mQuestionPane[i], this, cQuestionPaneName[i]);
     }
 
     initPointingTarget(7);

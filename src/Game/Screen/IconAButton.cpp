@@ -30,7 +30,7 @@ void IconAButton::init(const JMapInfoIter &rIter) {
 void IconAButton::setFollowActorPane(LayoutActor *pActor, const char *pName) {
     mFollowActor = pActor;
     snprintf(mFollowPane, sizeof(mFollowPane), "%s", pName);
-    MR::setFollowPos(mFollowPos, this, nullptr);
+    MR::setFollowPos(&mFollowPos, this, nullptr);
 }
 
 bool IconAButton::isOpen() {
