@@ -13,139 +13,139 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
 
-libnw4r_ut.a/ut_LinkList.o:
+nw4r/ut/ut_LinkList.cpp:
 	.text       start:0x800070A0 end:0x800071C8
 
-libnw4r_ut.a/ut_binaryFileFormat.o:
+nw4r/ut/ut_binaryFileFormat.cpp:
 	.text       start:0x800071C8 end:0x8000723C
 
-libnw4r_ut.a/ut_CharStrmReader.o:
+nw4r/ut/ut_CharStrmReader.cpp:
 	.text       start:0x8000723C end:0x8000734C
 
-libnw4r_ut.a/ut_TagProcessorBase.o:
+nw4r/ut/ut_TagProcessorBase.cpp:
 	.text       start:0x8000734C end:0x80007A1C
 	.data       start:0x80563420 end:0x80563448
 
-libnw4r_ut.a/ut_Font.o:
+nw4r/ut/ut_Font.cpp:
 	.text       start:0x80007A1C end:0x80007AC4
 	.data       start:0x80563448 end:0x80563478
 
-libnw4r_ut.a/ut_RomFont.o:
+nw4r/ut/ut_RomFont.cpp:
 	.text       start:0x80007AC4 end:0x80007B04
 	.data       start:0x80563478 end:0x805634D8
 
-libnw4r_ut.a/ut_ResFontBase.o:
+nw4r/ut/ut_ResFontBase.cpp:
 	.text       start:0x80007B04 end:0x80008170
 	.data       start:0x805634D8 end:0x80563540
 
-libnw4r_ut.a/ut_ResFont.o:
+nw4r/ut/ut_ResFont.cpp:
 	.text       start:0x80008170 end:0x80008478
 	.data       start:0x80563540 end:0x805635E8
 
-libnw4r_ut.a/ut_CharWriter.o:
+nw4r/ut/ut_CharWriter.cpp:
 	.text       start:0x80008478 end:0x80009D40
 	.bss        start:0x8060A3C0 end:0x8060A3E0
 	.sbss       start:0x806B2E60 end:0x806B2E68
 	.sdata2     start:0x806B7C28 end:0x806B7C48
 
-libnw4r_ut.a/ut_TextWriterBase.o:
+nw4r/ut/ut_TextWriterBase.cpp:
 	.text       start:0x80009D40 end:0x8000B7F0
 	.ctors      start:0x8052E804 end:0x8052E808
 	.bss        start:0x8060A3E0 end:0x8060A418
 	.sbss       start:0x806B2E68 end:0x806B2E78
 	.sdata2     start:0x806B7C48 end:0x806B7C60
 
-libnw4r_db.a/db_console.o:
+nw4r/db/db_console.cpp:
 	.text       start:0x8000B7F0 end:0x8000B8C4
 
-libnw4r_db.a/db_assert.o:
+nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
 	.data       start:0x805635E8 end:0x80564678
 	.sdata      start:0x806B1620 end:0x806B1628
 	.sbss       start:0x806B2E78 end:0x806B2E80
 
-libnw4r_math.a/math_triangular.o:
+nw4r/math/math_triangular.cpp:
 	.text       start:0x8000BBA0 end:0x8000BC68
 	.sdata2     start:0x806B7C60 end:0x806B7C68
 
-libnw4r_math.a/math_types.o:
+nw4r/math/math_types.cpp:
 	.text       start:0x8000BC68 end:0x8000BCF8
 
-libnw4r_lyt.a/lyt_init.o:
+nw4r/lyt/lyt_init.cpp:
 	.text       start:0x8000BCF8 end:0x8000BD4C
 	.sdata      start:0x806B1628 end:0x806B1630
 
-libnw4r_lyt.a/lyt_pane.o:
+nw4r/lyt/lyt_pane.cpp:
 	.text       start:0x8000BD4C end:0x8000CB2C
 	.ctors      start:0x8052E808 end:0x8052E80C
 	.data       start:0x80564678 end:0x805646E0
 	.sbss       start:0x806B2E80 end:0x806B2E88
 	.sdata2     start:0x806B7C68 end:0x806B7C88
 
-libnw4r_lyt.a/lyt_group.o:
+nw4r/lyt/lyt_group.cpp:
 	.text       start:0x8000CB2C end:0x8000CDD4
 	.data       start:0x805646E0 end:0x805646F0
 
-libnw4r_lyt.a/lyt_layout.o:
+nw4r/lyt/lyt_layout.cpp:
 	.text       start:0x8000CDD4 end:0x8000DA6C
 	.data       start:0x805646F0 end:0x80564798
 	.sbss       start:0x806B2E88 end:0x806B2E90
 	.sdata2     start:0x806B7C88 end:0x806B7C90
 
-libnw4r_lyt.a/lyt_picture.o:
+nw4r/lyt/lyt_picture.cpp:
 	.text       start:0x8000DA6C end:0x8000DF94
 	.ctors      start:0x8052E80C end:0x8052E810
 	.sbss       start:0x806B2E90 end:0x806B2E98
 	.sdata2     start:0x806B7C90 end:0x806B7C98
 
-libnw4r_lyt.a/lyt_textBox.o:
+nw4r/lyt/lyt_textBox.cpp:
 	.text       start:0x8000DF94 end:0x8000ED30
 	.ctors      start:0x8052E810 end:0x8052E814
 	.data       start:0x80564798 end:0x80564810
 	.sbss       start:0x806B2E98 end:0x806B2EA0
 	.sdata2     start:0x806B7C98 end:0x806B7CB0
 
-libnw4r_lyt.a/lyt_window.o:
+nw4r/lyt/lyt_window.cpp:
 	.text       start:0x8000ED30 end:0x800112C4
 	.ctors      start:0x8052E814 end:0x8052E818
 	.data       start:0x80564810 end:0x805648C8
 	.sbss       start:0x806B2EA0 end:0x806B2EA8
 	.sdata2     start:0x806B7CB0 end:0x806B7CC8
 
-libnw4r_lyt.a/lyt_bounding.o:
+nw4r/lyt/lyt_bounding.cpp:
 	.text       start:0x800112C4 end:0x80011370
 	.ctors      start:0x8052E818 end:0x8052E81C
 	.data       start:0x805648C8 end:0x80564998
 	.sbss       start:0x806B2EA8 end:0x806B2EC0
 
-libnw4r_lyt.a/lyt_material.o:
+nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
 	.sdata2     start:0x806B7CC8 end:0x806B7CE8
 
-libnw4r_lyt.a/lyt_texMap.o:
+nw4r/lyt/lyt_texMap.cpp:
 	.text       start:0x800140C8 end:0x800143F4
 	.sdata2     start:0x806B7CE8 end:0x806B7D00
 
-libnw4r_lyt.a/lyt_drawInfo.o:
+nw4r/lyt/lyt_drawInfo.cpp:
 	.text       start:0x800143F4 end:0x800144A8
 	.data       start:0x80564998 end:0x805649A8
 	.sdata2     start:0x806B7D00 end:0x806B7D08
 
-libnw4r_lyt.a/lyt_animation.o:
+nw4r/lyt/lyt_animation.cpp:
 	.text       start:0x800144A8 end:0x800152C0
 	.data       start:0x805649A8 end:0x805649D0
 	.sdata2     start:0x806B7D08 end:0x806B7D28
 
-libnw4r_lyt.a/lyt_resourceAccessor.o:
+nw4r/lyt/lyt_resourceAccessor.cpp:
 	.text       start:0x800152C0 end:0x80015318
 	.data       start:0x805649D0 end:0x805649E8
 
-libnw4r_lyt.a/lyt_arcResourceAccessor.o:
+nw4r/lyt/lyt_arcResourceAccessor.cpp:
 	.text       start:0x80015318 end:0x800156F8
 	.data       start:0x805649E8 end:0x80564A00
 	.sdata      start:0x806B1630 end:0x806B1638
 
-libnw4r_lyt.a/lyt_common.o:
+nw4r/lyt/lyt_common.cpp:
 	.text       start:0x800156F8 end:0x800161D0
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 

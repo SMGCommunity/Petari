@@ -229,6 +229,34 @@ cflags_game = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_nw = [
+    "-nodefaults",
+    "-lang c++",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto,level=2",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C/include",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/Runtime/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -263,6 +291,15 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "game",
         "objects": objects,
     }
+
+def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_nw,
+        "progress_category": "nw4r",
+        "objects": objects,
+    }
     
 
 # Helper function for Dolphin libraries
@@ -292,6 +329,59 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+
+    NWLib(
+        "libnw4r_ut",
+        [
+            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_binaryFileFormat.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_CharStrmReader.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_Font.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_RomFont.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_ResFontBase.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_ResFont.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_CharWriter.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_TextWriterBase.cpp")
+        ]
+    ),
+
+    NWLib(
+        "libnw4r_db",
+        [
+            Object(NonMatching, "nw4r/db/db_console.cpp"),
+            Object(NonMatching, "nw4r/db/db_assert.cpp")
+        ]
+    ),
+
+    NWLib(
+        "libnw4r_math",
+        [
+            Object(NonMatching, "nw4r/math/math_triangular.cpp"),
+            Object(NonMatching, "nw4r/math/math_types.cpp")
+        ]
+    ),
+
+    NWLib(
+        "libnw4r_lyt",
+        [
+            Object(NonMatching, "nw4r/lyt/lyt_init.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_pane.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_picture.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_textBox.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_window.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_bounding.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_material.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_texMap.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_drawInfo.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_animation.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_resourceAccessor.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_arcResourceAccessor.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_common.cpp")
+        ],
+    ),
 
     GameLib(
         "Animation",
@@ -358,6 +448,7 @@ config.libs = [
         "AudioLib",
         [
             Object(NonMatching, "Game/AudioLib/AudSystem.cpp"),
+            Object(NonMatching, "Game/AudioLib/AudParams.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSystemVolumeController.cpp"),
             Object(NonMatching, "Game/AudioLib/AudAudience.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSoundInfo.cpp"),
@@ -738,7 +829,7 @@ config.libs = [
         ],
     ),
 
-        GameLib(
+    GameLib(
         "Effect",
         [
             Object(NonMatching, "Game/Effect/AstroEffectObj.cpp"),
@@ -1753,7 +1844,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxySelectBackButton.cpp"),
             Object(NonMatching, "Game/Screen/GalaxySelectInfo.cpp"),
             Object(NonMatching, "Game/Screen/GamePauseSequence.cpp"),
-            Object(NonMatching, "Game/Screen/GameScreenLayoutHolder.cpp"),
+            Object(NonMatching, "Game/Screen/GameSceneLayoutHolder.cpp"),
             Object(NonMatching, "Game/Screen/GameStageClearSequence.cpp"),
             Object(NonMatching, "Game/Screen/HeatHazeEffect.cpp"),
             Object(NonMatching, "Game/Screen/HomeButtonLayout.cpp"),
@@ -1811,7 +1902,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/SaveIcon.cpp"),
             Object(NonMatching, "Game/Screen/ScenarioSelectLayout.cpp"),
             Object(Matching, "Game/Screen/ScenarioTitle.cpp"),
-            Object(NonMatching, "Game/Screen/ScreenWipeHolder.cpp"),
+            Object(NonMatching, "Game/Screen/SceneWipeHolder.cpp"),
             Object(NonMatching, "Game/Screen/ScreenAlphaCapture.cpp"),
             Object(NonMatching, "Game/Screen/ScreenBlurEffect.cpp"),
             Object(NonMatching, "Game/Screen/ScreenPreserver.cpp"),
