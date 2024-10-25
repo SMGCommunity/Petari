@@ -11082,7 +11082,7 @@ Runtime/global_destructor_chain.c:
 MSL_C.PPCEABI.bare.H.a/errno.c:
 	.sbss       start:0x806B7BC0 end:0x806B7BC8
 
-Runtime/NMWException.c:
+Runtime/NMWException.cpp:
 	extab       start:0x80006780 end:0x800067C8
 	extabindex  start:0x80006D90 end:0x80006DCC
 	.text       start:0x80518494 end:0x80518844
@@ -11094,14 +11094,14 @@ Runtime/ptmf.c:
 Runtime/runtime.c:
 	.text       start:0x805188D8 end:0x80519034
 
-Runtime/__init_cpp_exceptions.c:
+Runtime/__init_cpp_exceptions.cpp:
 	.text       start:0x80519034 end:0x805190A4
 	.ctors      start:0x8052E800 end:0x8052E804 rename:.ctors$10
 	.dtors      start:0x8052F460 end:0x8052F464 rename:.dtors$10
 	.dtors      start:0x8052F464 end:0x8052F468 rename:.dtors$15
 	.sdata      start:0x806B2E30 end:0x806B2E38
 
-Runtime/Gecko_ExceptionPPC.c:
+Runtime/Gecko_ExceptionPPC.cpp:
 	.text       start:0x805190A4 end:0x80519108
 	.bss        start:0x806AEDF8 end:0x806AF140
 
