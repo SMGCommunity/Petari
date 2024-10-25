@@ -257,6 +257,37 @@ cflags_nw = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_sdk = [
+    "-nodefaults",
+    "-lang c++",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-sdata 8",
+    "-sdata2 8",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C/include",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVLFaceLib/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/Runtime/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -303,11 +334,11 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     
 
 # Helper function for Dolphin libraries
-def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.2.5n",
-        "cflags": cflags_base,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_sdk,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -2131,7 +2162,488 @@ config.libs = [
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
             Object(NonMatching, "Game/Util/ValueControl.cpp")
         ],
-    )
+    ),
+
+    SDKLib(
+        "ai",
+        [
+            Object(Matching, "RVL_SDK/ai/ai.c")
+        ]
+    ),
+
+    SDKLib(
+        "aralt",
+        [
+            Object(NonMatching, "RVL_SDK/aralt/aralt.c")
+        ]
+    ),
+
+    SDKLib(
+        "arc",
+        [
+            Object(NonMatching, "RVL_SDK/arc/arc.c")
+        ]
+    ),
+
+    SDKLib(
+        "ax",
+        [
+            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXVPB.c")
+        ]
+    ),
+
+    SDKLib(
+        "axfx",
+        [
+            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
+            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
+            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c")
+        ]
+    ),
+
+    SDKLib(
+        "base",
+        [
+            Object(NonMatching, "RVL_SDK/base/PPCArch.c")
+        ]
+    ),
+
+    SDKLib(
+        "bte",
+        [
+            Object(NonMatching, "RVL_SDK/bte/gki_buffer.c"),
+            Object(NonMatching, "RVL_SDK/bte/gki_time.c"),
+            Object(NonMatching, "RVL_SDK/bte/gki_ppc.c"),
+            Object(NonMatching, "RVL_SDK/bte/hcisu_h2.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_cfg.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_cfg.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_cfg.c"),
+            Object(NonMatching, "RVL_SDK/bte/uusb_ppc.c"),
+            Object(NonMatching, "RVL_SDK/bte/bte_hcisu.c"),
+            Object(NonMatching, "RVL_SDK/bte/bte_init.c"),
+            Object(NonMatching, "RVL_SDK/bte/bte_logmsg.c"),
+            Object(NonMatching, "RVL_SDK/bte/bte_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_task1.c"),
+            Object(NonMatching, "RVL_SDK/bte/bd.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/ptim.c"),
+            Object(NonMatching, "RVL_SDK/bte/utl.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_act.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_act.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_acl.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_dev.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_devctl.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_discovery.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_inq.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_sco.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_sec.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_hcif.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_init.c"),
+            Object(NonMatching, "RVL_SDK/bte/wbt_ext.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/hcicmds.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_mgmt.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidh_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidh_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_csm.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_link.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_rfc.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_l2cap_if.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_mx_fsm.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_port_fsm.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_port_if.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_ts_frames.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_db.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_discovery.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_server.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_utils.c")
+        ]
+    ),
+
+    SDKLib(
+        "db",
+        [
+            Object(NonMatching, "RVL_SDK/db/db.c")
+        ]
+    ),
+
+    SDKLib(
+        "dsp",
+        [
+            Object(NonMatching, "RVL_SDK/dsp/dsp.c"),
+            Object(NonMatching, "RVL_SDK/dsp/dsp_debug.c"),
+            Object(NonMatching, "RVL_SDK/dsp/dsp_task.c")
+        ]
+    ),
+
+    SDKLib(
+        "dvd",
+        [
+            Object(NonMatching, "RVL_SDK/dvd/dvdfs.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvd.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdqueue.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvderror.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdidutils.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdFatal.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c")
+        ]
+    ),
+
+    SDKLib(
+        "esp",
+        [
+            Object(NonMatching, "RVL_SDK/esp/esp.c")
+        ]
+    ),
+
+    SDKLib(
+        "euart",
+        [
+            Object(NonMatching, "RVL_SDK/euart/euart.c")
+        ]
+    ),
+
+    SDKLib(
+        "exi",
+        [
+            Object(NonMatching, "RVL_SDK/exi/EXIBios.c"),
+            Object(NonMatching, "RVL_SDK/exi/EXIUart.c"),
+            Object(NonMatching, "RVL_SDK/exi/EXICommon.c")
+        ]
+    ),
+
+    SDKLib(
+        "fs",
+        [
+            Object(NonMatching, "RVL_SDK/fs/fs.c")
+        ]
+    ),
+
+    SDKLib(
+        "gd",
+        [
+            Object(NonMatching, "RVL_SDK/gd/GDBase.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDGeometry.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDIndirect.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDLight.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTransform.c")
+        ]
+    ),
+
+    SDKLib(
+        "gx",
+        [
+            Object(NonMatching, "RVL_SDK/gx/GXInit.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXFifo.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXAttr.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXMisc.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXGeometry.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXFrameBuf.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXLight.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTexture.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXBump.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTev.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXPixel.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXDisplayList.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTransform.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXPerf.c")
+        ]
+    ),
+
+    SDKLib(
+        "ipc",
+        [
+            Object(NonMatching, "RVL_SDK/ipc/ipcMain.c"),
+            Object(NonMatching, "RVL_SDK/ipc/ipcclt.c"),
+            Object(NonMatching, "RVL_SDK/ipc/memory.c"),
+            Object(NonMatching, "RVL_SDK/ipc/ipcProfile.c")
+        ]
+    ),
+
+    SDKLib(
+        "kpad",
+        [
+            Object(NonMatching, "RVL_SDK/kpad/KPAD.c")
+        ]
+    ),
+
+    SDKLib(
+        "mem",
+        [
+            Object(NonMatching, "RVL_SDK/mem/mem_heapCommon.c"),
+            Object(NonMatching, "RVL_SDK/mem/mem_expHeap.c"),
+            Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
+            Object(NonMatching, "RVL_SDK/mem/mem_list.c"),
+        ]
+    ),
+
+    SDKLib(
+        "mtx",
+        [
+            Object(NonMatching, "RVL_SDK/mtx/mtx.c"),
+            Object(NonMatching, "RVL_SDK/mtx/mtxvec.c"),
+            Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
+            Object(NonMatching, "RVL_SDK/mtx/vec.c"),
+            Object(NonMatching, "RVL_SDK/mtx/quat.c")
+        ]
+    ),
+
+    SDKLib(
+        "nand",
+        [
+            Object(NonMatching, "RVL_SDK/nand/nand.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDOpenClose.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDCore.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDSecret.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
+        ]
+    ),
+
+    SDKLib(
+        "net",
+        [
+            Object(NonMatching, "RVL_SDK/net/nettime.c"),
+            Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemset.c")
+        ]
+    ),
+
+    SDKLib(
+        "nwc24",
+        [
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24StdAPI.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24FileAPI.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Config.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Utils.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Manage.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MsgObj.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MBoxCtrl.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Mime.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Parser.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MsgCommit.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Schedule.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24DateParser.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24FriendList.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24SecretFList.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24UserId.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Time.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Ipc.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Download.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c")
+        ]
+    ),
+
+    SDKLib(
+        "os",
+        [
+            Object(NonMatching, "RVL_SDK/os/OS.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAlarm.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAlloc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSArena.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAudioSystem.c"),
+            Object(NonMatching, "RVL_SDK/os/OSCache.c"),
+            Object(NonMatching, "RVL_SDK/os/OSContext.c"),
+            Object(NonMatching, "RVL_SDK/os/OSError.c"),
+            Object(NonMatching, "RVL_SDK/os/OSExec.c"),
+            Object(NonMatching, "RVL_SDK/os/OSFatal.c"),
+            Object(NonMatching, "RVL_SDK/os/OSFont.c"),
+            Object(NonMatching, "RVL_SDK/os/OSInterrupt.c"),
+            Object(NonMatching, "RVL_SDK/os/OSLink.c"),
+            Object(NonMatching, "RVL_SDK/os/OSMessage.c"),
+            Object(NonMatching, "RVL_SDK/os/OSMemory.c"),
+            Object(NonMatching, "RVL_SDK/os/OSMutex.c"),
+            Object(NonMatching, "RVL_SDK/os/OSReboot.c"),
+            Object(NonMatching, "RVL_SDK/os/OSReset.c"),
+            Object(NonMatching, "RVL_SDK/os/OSRtc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSSync.c"),
+            Object(NonMatching, "RVL_SDK/os/OSThread.c"),
+            Object(NonMatching, "RVL_SDK/os/OSTime.c"),
+            Object(NonMatching, "RVL_SDK/os/OSUtf.c"),
+            Object(NonMatching, "RVL_SDK/os/OSIpc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSStateTM.c"),
+            Object(NonMatching, "RVL_SDK/os/OSPlayRecord.c"),
+            Object(NonMatching, "RVL_SDK/os/OSStateFlags.c"),
+            Object(NonMatching, "RVL_SDK/os/OSNet.c"),
+            Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
+            Object(NonMatching, "RVL_SDK/os/OSPlayTime.c"),
+            Object(NonMatching, "RVL_SDK/os/OSLaunch.c"),
+            Object(NonMatching, "RVL_SDK/os/__ppc_eabi_init.c")
+        ]
+    ),
+
+    SDKLib(
+        "pad",
+        [
+            Object(NonMatching, "RVL_SDK/pad/Pad.c")
+        ]
+    ),
+
+    SDKLib(
+        "rso",
+        [
+            Object(NonMatching, "RVL_SDK/rso/RSOLink.c")
+        ]
+    ),
+
+    SDKLib(
+        "sc",
+        [
+            Object(NonMatching, "RVL_SDK/sc/scsystem.c"),
+            Object(NonMatching, "RVL_SDK/sc/scapi.c"),
+            Object(NonMatching, "RVL_SDK/sc/scapi_prdinfo.c"),
+        ]
+    ),
+
+    SDKLib(
+        "si",
+        [
+            Object(NonMatching, "RVL_SDK/si/SIBios.c"),
+            Object(NonMatching, "RVL_SDK/si/SISamplingRate.c")
+        ]
+    ),
+
+    SDKLib(
+        "thp",
+        [
+            Object(NonMatching, "RVL_SDK/thp/THPDec.c"),
+            Object(NonMatching, "RVL_SDK/thp/THPAudio.c")
+        ]
+    ),
+
+    SDKLib(
+        "tpl",
+        [
+            Object(NonMatching, "RVL_SDK/tpl/TPL.c")
+        ]
+    ),
+
+    SDKLib(
+        "usb",
+        [
+            Object(NonMatching, "RVL_SDK/usb/usb.c")
+        ]
+    ),
+
+    SDKLib(
+        "vf",
+        [
+            Object(NonMatching, "RVL_SDK/vf/pf_clib.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_code.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_service.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_str.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_w_clib.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_driver.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_bpb.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_disk.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_partition.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_mbr.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_dskmng.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_cache.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_cluster.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_dir.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_entry.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_entry_iterator.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat12.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat16.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat32.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fatfs.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_file.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_path.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_sector.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_volume.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_cp932.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_api_util.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_attach.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_detach.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_errnum.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fclose.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_finfo.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fopen.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fread.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fseek.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fwrite.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_getdev.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_init_prfile2.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_remove.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_unmount.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_filelock.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_system.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_vf.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_vf_sys.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_hash.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_time.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_common.c"),
+            Object(NonMatching, "RVL_SDK/vf/nand_drv.c"),
+            Object(NonMatching, "RVL_SDK/vf/sd_drv.c")
+        ]
+    ),
+
+    SDKLib(
+        "vi",
+        [
+            Object(NonMatching, "RVL_SDK/vi/vi.c"),
+            Object(NonMatching, "RVL_SDK/vi/i2c.c"),
+            Object(NonMatching, "RVL_SDK/vi/vi3in1.c")
+        ]
+    ),
+
+    SDKLib(
+        "wenc",
+        [
+            Object(NonMatching, "RVL_SDK/wenc/wenc.c")
+        ]
+    ),
+
+    SDKLib(
+        "wpad",
+        [
+            Object(NonMatching, "RVL_SDK/wpad/WPAD.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
+            Object(NonMatching, "RVL_SDK/wpad/debug_msg.c")
+        ]
+    ),
+
+    SDKLib(
+        "wud",
+        [
+            Object(NonMatching, "RVL_SDK/wud/WUD.c"),
+            Object(NonMatching, "RVL_SDK/wud/WUDHidHost.c"),
+            Object(NonMatching, "RVL_SDK/wud/debug_msg.c")
+        ]
+    ),
 ]
 
 # Optional extra categories for progress tracking
