@@ -11069,43 +11069,43 @@ RVL_SDK/bte/sdp_utils.c:
 	.text       start:0x80517310 end:0x80518350
 	.data       start:0x80609630 end:0x80609868
 
-Runtime.PPCEABI.H.a/__mem.o:
+Runtime/__mem.c:
 	.text       start:0x80518350 end:0x8051836C
 
-Runtime.PPCEABI.H.a/__va_arg.o:
+Runtime/__va_arg.c:
 	.text       start:0x8051836C end:0x80518434
 
-Runtime.PPCEABI.H.a/global_destructor_chain.o:
+Runtime/global_destructor_chain.c:
 	.text       start:0x80518434 end:0x80518494
 	.sbss       start:0x806B7BB0 end:0x806B7BC0
 
-MSL_C.PPCEABI.bare.H.a/errno.o:
+MSL_C.PPCEABI.bare.H.a/errno.c:
 	.sbss       start:0x806B7BC0 end:0x806B7BC8
 
-Runtime.PPCEABI.H.a/NMWException.o:
+Runtime/NMWException.c:
 	extab       start:0x80006780 end:0x800067C8
 	extabindex  start:0x80006D90 end:0x80006DCC
 	.text       start:0x80518494 end:0x80518844
 
-Runtime.PPCEABI.H.a/ptmf.o:
+Runtime/ptmf.c:
 	.text       start:0x80518844 end:0x805188D8
 	.rodata     start:0x805621F0 end:0x80562218
 
-Runtime.PPCEABI.H.a/runtime.o:
+Runtime/runtime.c:
 	.text       start:0x805188D8 end:0x80519034
 
-Runtime.PPCEABI.H.a/__init_cpp_exceptions.o:
+Runtime/__init_cpp_exceptions.c:
 	.text       start:0x80519034 end:0x805190A4
 	.ctors      start:0x8052E800 end:0x8052E804 rename:.ctors$10
 	.dtors      start:0x8052F460 end:0x8052F464 rename:.dtors$10
 	.dtors      start:0x8052F464 end:0x8052F468 rename:.dtors$15
 	.sdata      start:0x806B2E30 end:0x806B2E38
 
-Runtime.PPCEABI.H.a/Gecko_ExceptionPPC.o:
+Runtime/Gecko_ExceptionPPC.c:
 	.text       start:0x805190A4 end:0x80519108
 	.bss        start:0x806AEDF8 end:0x806AF140
 
-Runtime.PPCEABI.H.a/GCN_mem_alloc.o:
+Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
 	.rodata     start:0x80562218 end:0x805622A0
 
