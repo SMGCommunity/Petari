@@ -1,48 +1,50 @@
 #pragma once
 
-#include <revolution.h>
 #include "Game/Util/JMapInfo.hpp"
+#include <revolution.h>
 
 namespace MR {
-    void notifyRequestNameObjMovementOnOff();
-}
+  void notifyRequestNameObjMovementOnOff();
+};
 
 /// @brief The most basic form of an object.
 class NameObj {
 public:
-    /// @brief Constructs a new NameObj instance.
-    /// @param pName The new name assigned to the NameObj.
-    NameObj(const char *pName);
+  /// @brief Constructs a new NameObj instance.
+  /// @param pName The new name assigned to the NameObj.
+  NameObj(const char *pName);
 
-    virtual ~NameObj();
-    /// @brief Intializes the NameObj and can set various settings and construct necessary classes.
-    /// @param rIter A reference to the JMapInfoIter that supplies BCSV information.
-    virtual void init(const JMapInfoIter &rIter);
-    virtual void initAfterPlacement();
-    virtual void movement();
-    /// @brief Draws the object. Does nothing until overridden.
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
+  virtual ~NameObj();
+  /// @brief Intializes the NameObj and can set various settings and construct
+  /// necessary classes.
+  /// @param rIter A reference to the JMapInfoIter that supplies BCSV
+  /// information.
+  virtual void init(const JMapInfoIter &rIter);
+  virtual void initAfterPlacement();
+  virtual void movement();
+  /// @brief Draws the object. Does nothing until overridden.
+  virtual void draw() const;
+  virtual void calcAnim();
+  virtual void calcViewAndEntry();
 
-    /// @brief Initializes a NameObj without a JMapInfoIter instance.
-    void initWithoutIter();
-    /// @brief Sets the NameObj's mName.
-    /// @param pName The new name assigned to the NameObj.
-    void setName(const char *pName);
-    void executeMovement();
-    void requestSuspend();
-    void requestResume();
-    void syncWithFlags();
+  /// @brief Initializes a NameObj without a JMapInfoIter instance.
+  void initWithoutIter();
+  /// @brief Sets the NameObj's mName.
+  /// @param pName The new name assigned to the NameObj.
+  void setName(const char *pName);
+  void executeMovement();
+  void requestSuspend();
+  void requestResume();
+  void syncWithFlags();
 
-    /* 0x4 */   const char* mName;      ///< A string to identify the NameObj.
-    /* 0x8 */   volatile u16 mFlags;    ///< Flags in relation to movement.
-    /* 0xA */   s16 mExecutorIdx;       ///< The index into the NameObjExecuteInfo array.
+  /* 0x4 */ const char *mName;   ///< A string to identify the NameObj.
+  /* 0x8 */ volatile u16 mFlags; ///< Flags in relation to movement.
+  /* 0xA */ s16 mExecutorIdx; ///< The index into the NameObjExecuteInfo array.
 };
 
 /// @brief Contains static functions to begin and end movement in a NameObj.
 class NameObjFunction {
 public:
-    static void requestMovementOn(NameObj *);
-    static void requestMovementOff(NameObj *);
+  static void requestMovementOn(NameObj *);
+  static void requestMovementOff(NameObj *);
 };

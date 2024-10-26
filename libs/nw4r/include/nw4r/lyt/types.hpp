@@ -522,6 +522,8 @@ namespace nw4r {
 
         #ifdef __MWERKS__
         typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationList;
+        #else
+        typedef ut::LinkList<AnimationLink, 0> AnimationList;
         #endif
     };
 };

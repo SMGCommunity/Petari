@@ -29,7 +29,10 @@ namespace nw4r {
         class Pane;
         #ifdef __MWERKS__
         typedef ut::LinkList<Pane, offsetof(detail::PaneBase, mLink)> PaneList;
+        #else
+        typedef ut::LinkList<Pane, 0> PaneList;
         #endif
+
 
         class Pane : public detail::PaneBase {
         public:

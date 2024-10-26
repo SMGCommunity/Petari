@@ -2,20 +2,6 @@
 
 #include "Game/Util/JMapInfo.hpp"
 
-namespace {
-    static const char* sFollowInfoTagName[3] = {
-        "MapParts_ID",
-        "Obj_ID",
-        "ChildObjId"
-    };
-
-    static const char* sInfoNameTable[3] = {
-        "mappartsinfo",
-        "objinfo",
-        "childobjinfo"
-    };
-};
-
 class JMapLinkInfo {
 public:
     JMapLinkInfo(const JMapInfoIter &, bool);

@@ -42,8 +42,6 @@ namespace MR {
 
     bool isMapPartsShadowTypeNone(s32);
 
-    bool isMoveStartUnconditional(s32);
-
     void setBodySensorType(LiveActor *, u32);
 
     const HitSensor* getBodySensor(LiveActor *);

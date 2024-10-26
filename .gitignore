@@ -1,33 +1,25 @@
-.vs
-.vscode
-.editorconfig
-*.dat
-tools/*.exe
-tools/*.dll
-deps
-*.idb
-*.id0
-*.id1
-*.id2
-*.nam
-*.til
-*.map
+# IDE folders
+.idea/
+.vs/
+
+# Caches
+__pycache__
+.mypy_cache
+.cache/
+
+# Original files
+orig/*/*
+!orig/*/.gitkeep
+*.dol
+*.rel
 *.elf
 *.o
-*.out
-*.elf
-*.dol
-*.a
-*.d
-*.txt
-build/**
-compiler
-__pycache__
-genCsv.py
-checkObject.py
-sanity_check.py
-.ninja_log
-.ninja_deps
+*.map
+*.MAP
+
+# Build files
+build/
+.ninja_*
 build.ninja
 deps.zip
 Compilers.zip
@@ -39,3 +31,15 @@ scripts/*
 .cache/*
 compile_commands.json
 objdiff.json
+
+# decompctx output
+ctx.*
+*.ctx
+
+# Generated configs
+objdiff.json
+compile_commands.json
+
+# Miscellaneous
+/*.txt
+*.exe

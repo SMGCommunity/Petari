@@ -1,11 +1,13 @@
 #pragma once
 
 #include "revolution.h"
-
-#include "Game/AreaObj/AreaForm.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/Array.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class AreaForm;
+class StageSwitchCtrl;
 
 class AreaObj : public NameObj {
 public:

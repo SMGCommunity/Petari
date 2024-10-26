@@ -95,4 +95,4 @@ namespace NrvCocoNut {
 	NERVE(CocoNutNrvInWater)
 	NERVE(CocoNutNrvBreak)
 	NERVE(CocoNutNrvReplaceReady)
-}
+};

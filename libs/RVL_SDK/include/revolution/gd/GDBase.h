@@ -1,17 +1,17 @@
 #ifndef GDBASE_H
 #define GDBASE_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct _GDLObj {
-    u8  *start;
-    u32  length;
-    u8  *ptr;
-    u8  *top;
+  u8 *start;
+  u32 length;
+  u8 *ptr;
+  u8 *top;
 } GDLObj;
 
 typedef void (*GDOverflowCallback)(void);
@@ -27,19 +27,17 @@ void GDWrite_f32(f32);
 void GDOverflowed(void);
 
 static inline void GDOverflowCheck(u32 size) {
-    if (__GDCurrentDL->ptr + size > __GDCurrentDL->top) {
-        GDOverflowed();
-    }
+  if (__GDCurrentDL->ptr + size > __GDCurrentDL->top) {
+    GDOverflowed();
+  }
 }
 
-static inline void __GDWrite(u8 data) {
-    *__GDCurrentDL->ptr++ = data;
-}
+static inline void __GDWrite(u8 data) { *__GDCurrentDL->ptr++ = data; }
 
 static inline void GDPosition3f32(f32 x, f32 y, f32 z) {
-    GDWrite_f32(x);
-    GDWrite_f32(y);
-    GDWrite_f32(z);
+  GDWrite_f32(x);
+  GDWrite_f32(y);
+  GDWrite_f32(z);
 }
 
 void GDColor4u8(u8, u8, u8, u8);

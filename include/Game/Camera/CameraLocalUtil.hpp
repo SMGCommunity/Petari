@@ -62,4 +62,4 @@ namespace CameraLocalUtil {
     void setLocalOffset(CameraMan *, const TVec3f &);
     void setFrontOffset(CameraMan *, f32);
     void setUpperOffset(CameraMan *, f32);
-}
+};

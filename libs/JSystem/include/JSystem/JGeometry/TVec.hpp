@@ -17,8 +17,8 @@ namespace JGeometry {
         /* Constructors */
         inline TVec2() {}
 
-        template <typename T>
-        TVec2(T _x, T _y)
+        template <typename A>
+        TVec2(A _x, A _y)
         {
             x = _x;
             y = _y;
@@ -31,11 +31,11 @@ namespace JGeometry {
         }*/
 
         /* General operations */
-        template <typename T>
-        void set(const JGeometry::TVec2<T> &rSrc);
+        template <typename A>
+        void set(const JGeometry::TVec2<A> &rSrc);
 
-        template <typename T>
-        void set(T _x, T _y);
+        template <typename A>
+        void set(A _x, A _y);
 
         void setMin(const TVec2<T> &);
         void setMax(const TVec2<T> &);
@@ -92,8 +92,8 @@ namespace JGeometry {
             z = _z;
         }
 
-        template<typename T>
-        TVec3(T _x, T _y , T _z) {
+        template<typename A>
+        TVec3(A _x, A _y , A _z) {
             x = _x;
             y = _y;
             z = _z;
@@ -111,27 +111,29 @@ namespace JGeometry {
             register f32 z;
             register f32 xy;
 
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
+#endif
         }
 
         /* General operations */
         void set(const Vec &rSrc);
 
-        template <typename T>
-        void set(const JGeometry::TVec3<T> &rSrc) NO_INLINE
+        template <typename A>
+        void set(const JGeometry::TVec3<A> &rSrc) NO_INLINE
         {
             x = rSrc.x;
             y = rSrc.y;
             z = rSrc.z;
         }
 
-        template <typename T>
-        void set(T _x, T _y, T _z);
+        template <typename A>
+        void set(A _x, A _y, A _z);
 
         void setZYX(T val)
         {
@@ -140,12 +142,13 @@ namespace JGeometry {
             x = val;
         }
 
-        template <typename T>
-        void setAll(T val);
+        template <typename A>
+        void setAll(A val);
 
         void add(const register TVec3<T> &rSrc) NO_INLINE
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
+#if __MWERKS__
             __asm {
                 psq_l f3, 0(this_vec), 0, 0
                 psq_l f2, 0(rSrc), 0, 0
@@ -156,6 +159,7 @@ namespace JGeometry {
                 psq_st f2, 0(this_vec), 0, 0
                 psq_st f0, 8(this_vec), 0, 0
             };
+#endif
         }
 
         void addXY(const register TVec3<T> &rSrc) NO_INLINE
@@ -187,7 +191,7 @@ namespace JGeometry {
         T squared() const NO_INLINE
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
-
+#if __MWERKS__
             __asm {
                 psq_l f2, 0(this_vec), 0, 0
                 lfs f0, 8(this_vec)
@@ -196,6 +200,7 @@ namespace JGeometry {
                 ps_sum0 f1, f1, f2, f2
                 blr
             };
+#endif
         }
 
         inline void scaleAdd(f32 val, const TVec3<f32> &a1, const TVec3<f32> &a2) {
@@ -210,7 +215,7 @@ namespace JGeometry {
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
             register f32 _xy, _z;
-
+#if __MWERKS__
             __asm {
                 psq_l _xy, 0(this_vec), 0, 0
                 lfs _z, 8(this_vec)
@@ -218,6 +223,7 @@ namespace JGeometry {
                 ps_madd _z, _z, _z, _xy
                 ps_sum0 _z, _z, _xy, _xy
             };
+#endif
             return _z;
         }
 
@@ -236,6 +242,7 @@ namespace JGeometry {
         T dot(const register TVec3<T> &rOther) const NO_INLINE
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
+#if __MWERKS__
             __asm {
                 psq_l f2, 4(this_vec), 0, 0
                 psq_l f1, 4(rOther), 0, 0
@@ -246,6 +253,7 @@ namespace JGeometry {
                 ps_sum0 f1, f1, f2, f2
                 blr
             };
+#endif
         }
 
         void zero();
@@ -253,7 +261,7 @@ namespace JGeometry {
         void negate()
         {
             register const JGeometry::TVec3<f32> *this_vec = this;
-
+#if __MWERKS__
             __asm {
                 psq_l f1, 0(this_vec), 0, 0
                 lfs f0, 8(this_vec)
@@ -262,6 +270,7 @@ namespace JGeometry {
                 psq_st f1, 0(this_vec), 0, 0
                 stfs f0, 8(this_vec)
             };
+#endif
         }
 
         void negate(const TVec3<T> &rSrc);
@@ -348,6 +357,7 @@ namespace JGeometry {
         const TVec3<T> operator-() const NO_INLINE
         {
             register f32 z, xy;
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(r4), 0, 0
                 lfs z, 8(r4)
@@ -357,6 +367,7 @@ namespace JGeometry {
                 stfs z, 8(r3)
                 blr
             };
+#endif
         }
 
         TVec3<T> operator%(T scalar) const
@@ -408,13 +419,14 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 xy;
             register f32 z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline void setInlinePS_2(register const TVec3<T> &src)
@@ -422,26 +434,27 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 z;
             register f32 xy;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline void setInlineXYPS(register const TVec3<T> &src)
         {
             register TVec3<T> *dst = this;
             register f32 xy, scalar, _z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 lfs _z, 8(src)
                 psq_st xy, 0(dst), 0, 0
             };
-
+#endif
             scalar = 500.0f;
 
             f32 __z = _z;
@@ -461,13 +474,14 @@ namespace JGeometry {
             register const Vec *src = &gZeroVec;
             register f32 z;
             register f32 xy;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 lfs z, 8(src)
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline void scaleInline(T scale)
@@ -481,7 +495,7 @@ namespace JGeometry {
         {
             register TVec3<T> *dst = this;
             register f32 aXY, bXY, aZ, bZ;
-
+#if __MWERKS__
             __asm {
                 psq_l     aXY, 0(dst), 0, 0
                 psq_l     bXY, 0(rOther), 0, 0
@@ -492,6 +506,7 @@ namespace JGeometry {
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    bZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void addInline2(register const TVec3<T> &rOther)
@@ -516,7 +531,7 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             // register f32 _2, _1, _0;
             register f32 dstXY, dstZ, srcXY, srcZ, totalZ;
-
+#if __MWERKS__
             __asm {
                 psq_l     dstXY, 0(dst), 0, 0
                 psq_l     srcXY, 0(rOther), 0, 0
@@ -527,13 +542,14 @@ namespace JGeometry {
                 psq_st    dstXY, 0(dst), 0, 0
                 psq_st    totalZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void addInline_4(register const TVec3<T> &rOther)
         {
             register TVec3<T> *dst = this;
             register f32 bZ, bXY, aZ, aXY;
-
+#if __MWERKS__
             __asm {
                 psq_l     bXY, 0(rOther), 0, 0
                 psq_l     bZ, 0(rOther), 1, 0
@@ -544,13 +560,14 @@ namespace JGeometry {
                 psq_st    aXY, 0(dst), 0, 0
                 psq_st    aZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void addInline_5(register const TVec3<T> &rOther)
         {
             register TVec3<T> *dst = this;
             register f32 bZ, bXY, aZ, aXY;
-
+#if __MWERKS__
             __asm {
                 psq_l     bXY, 0(rOther), 0, 0
                 psq_l     aXY, 0(dst), 0, 0
@@ -561,6 +578,7 @@ namespace JGeometry {
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    aXY, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void addInline6(register const TVec3<T> &rOther)
@@ -587,7 +605,7 @@ namespace JGeometry {
         {
             register TVec3<T> *dst = this;
             register f32 sumZ, bZ, aZ, bXY, aXY;
-
+#if __MWERKS__
             __asm {
                 psq_l     bXY, 0(rOther), 0, 0
                 psq_l     aXY, 0(dst), 0, 0
@@ -598,6 +616,7 @@ namespace JGeometry {
                 psq_st    aXY, 0(dst), 0, 0
                 psq_st    sumZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline TVec3<T> _madd(const TVec3<T> &v) const {
@@ -617,7 +636,7 @@ namespace JGeometry {
             register const TVec3<T> *b = &rB;
             register f32 aXY, bZ, aZ, bXY;
             z = rA.z;
-
+#if __MWERKS__
             __asm {
                 psq_l     aXY, 0(a), 0, 0
                 psq_l     bXY, 0(b), 0, 0
@@ -628,6 +647,7 @@ namespace JGeometry {
                 psq_st    bXY, 0(dst), 0, 0
                 psq_st    aZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void subInline2(const TVec3<T> &rA, const TVec3<T> &rB)
@@ -636,7 +656,7 @@ namespace JGeometry {
             register const TVec3<T> *a = &rA;
             register const TVec3<T> *b = &rB;
             register f32 bXY, aXY, bZ, aZ;
-
+#if __MWERKS__
             __asm {
                 psq_l     aXY, 0(a), 0, 0
                 psq_l     bXY, 0(b), 0, 0
@@ -647,6 +667,7 @@ namespace JGeometry {
                 ps_sub    aZ, aZ, bZ
                 psq_st    aZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void subInline3(const TVec3<T> &rA, const TVec3<T> &rB)
@@ -655,7 +676,7 @@ namespace JGeometry {
             register const TVec3<T> *a = &rA;
             register const TVec3<T> *b = &rB;
             register f32 bZ, bXY, aXY, aZ;
-
+#if __MWERKS__
             __asm {
                 psq_l     aXY, 0(a), 0, 0
                 psq_l     bXY, 0(b), 0, 0
@@ -666,6 +687,7 @@ namespace JGeometry {
                 ps_sub    aZ, aZ, bZ
                 psq_st    aZ, 8(dst), 1, 0
             };
+#endif
         }
 
         inline void subInline(const TVec3<T> &rA)
@@ -673,7 +695,7 @@ namespace JGeometry {
             register TVec3<T> *this_vec = this;
             register const TVec3<T> *a = &rA;
             register f32 bZ, aZ, aXY, bXY;
-
+#if __MWERKS__
             __asm {
                 psq_l     aXY, 0(a), 0, 0
                 psq_l     bXY, 0(this_vec), 0, 0
@@ -684,6 +706,7 @@ namespace JGeometry {
                 ps_sub    aZ, bZ, aZ
                 psq_st    aZ, 8(this_vec), 1, 0
             };
+#endif
         }
 
         inline void subInline4(register const TVec3<T> &rVec)
@@ -691,6 +714,7 @@ namespace JGeometry {
             register const TVec3<T> *this_vec = this;
             //register const TVec3<T> *a = &rVec;
             register f32 z_2, z_1, xy_2, xy_1, z_ret, xy_ret;
+#if __MWERKS__
             __asm {
                 psq_l xy_2, 0(rVec), 0, 0
                 psq_l xy_1, 0(this_vec), 0, 0
@@ -701,6 +725,7 @@ namespace JGeometry {
                 psq_st xy_ret, 0(this_vec), 0, 0
                 psq_st z_ret, 8(this_vec), 1, 0
             };
+#endif
         }
 
         inline const TVec3<T> negateInline() const
@@ -709,7 +734,7 @@ namespace JGeometry {
             register const TVec3<T> *src = this;
             register TVec3<T> *dest = &ret;
             register f32 xy, z;
-
+#if __MWERKS__
             __asm {
                 psq_l     xy, 0(src), 0, 0
                 ps_neg    xy, xy
@@ -718,7 +743,7 @@ namespace JGeometry {
                 fneg      z, z
                 stfs      z, 8(dest)
             };
-
+#endif
             return ret;
         }
 
@@ -728,7 +753,7 @@ namespace JGeometry {
             register const TVec3<T> *src = this;
             register TVec3<T> *dest = &ret;
             register f32 xy, z;
-
+#if __MWERKS__
             __asm {
                 psq_l     xy, 0(src), 0, 0
                 ps_neg    xy, xy
@@ -737,8 +762,8 @@ namespace JGeometry {
                 fneg      z, z
                 stfs      z, 8(dest)
             };
-
-            TVec3f trueRet = TVec3f(ret);
+#endif
+            TVec3<f32> trueRet = TVec3f(ret);
             trueRet.scale(scalar);
             return trueRet;
         }
@@ -748,7 +773,7 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 xy;
             register f32 z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(rSrc), 0, 0
                 lfs z, 8(rSrc)
@@ -757,6 +782,7 @@ namespace JGeometry {
                 psq_st xy, 0(dst), 0, 0
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline void negateInline_2(register const TVec3<T> &rSrc)
@@ -764,7 +790,7 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 xy;
             register f32 z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(rSrc), 0, 0
                 ps_neg xy, xy
@@ -773,6 +799,7 @@ namespace JGeometry {
                 fneg z, z
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline TVec3<T> negateInline_2() const
@@ -787,7 +814,7 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 xy;
             register f32 z_neg, x, y, z, z_single;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(rSrc), 0, 0
                 lfs z, 8(rSrc)
@@ -803,6 +830,7 @@ namespace JGeometry {
                 stfs y, 4(rDest)
                 stfs z_single, 8(rDest)
             };
+#endif
         }
 
         inline void negateSelf()
@@ -811,7 +839,7 @@ namespace JGeometry {
             register TVec3<T> *dst = this;
             register f32 xy;
             register f32 z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(src), 0, 0
                 ps_neg xy, xy
@@ -820,6 +848,7 @@ namespace JGeometry {
                 fneg z, z
                 stfs z, 8(dst)
             };
+#endif
         }
 
         inline void setNegatedInline(register const TVec3<T> &rSrc)
@@ -827,7 +856,7 @@ namespace JGeometry {
             register TVec3<T> *rDst = this;
             register f32 xy;
             register f32 z;
-
+#if __MWERKS__
             __asm {
                 psq_l xy, 0(rSrc), 0, 0
                 ps_neg xy, xy
@@ -836,6 +865,7 @@ namespace JGeometry {
                 fneg z, z
                 stfs z, 8(rDst)
             };
+#endif
         }
 
         inline void multAndSet(TVec3<T> *pDest, T scalar)
@@ -851,7 +881,7 @@ namespace JGeometry {
             register TVec3<T> *rDst = this;
             register f32 xy_1, xy_2;
             register f32 z_1, z_2;
-
+#if __MWERKS__
             __asm {
                 psq_l xy_1, 0(rVec1), 0, 0
                 psq_l xy_2, 0(rVec2), 0, 0
@@ -862,6 +892,7 @@ namespace JGeometry {
                 fmuls z_2, z_1, z_2
                 stfs z_2, 8(rDst)
             };
+#endif
         }
 
         inline f32 squareDistancePS(const register TVec3<T> &rVec1) const
@@ -870,6 +901,7 @@ namespace JGeometry {
             register f32 yz_1, x_1;
             register f32 yz_2, x_2;
             register f32 ret;
+#if __MWERKS__
             __asm {
                 psq_l yz_1, 4(this_vec), 0, 0
                 psq_l yz_2, 4(rVec1), 0, 0
@@ -881,6 +913,7 @@ namespace JGeometry {
                 ps_madd ret, x_2, x_2, yz_2
                 ps_sum0 ret, ret, yz_2, yz_2
             };
+#endif
             return ret;
         }
 
@@ -900,8 +933,8 @@ namespace JGeometry {
         /* Constructors */
         inline TVec4() {}
 
-        template <typename T>
-        TVec4(T _x, T _y, T _z, T _h)
+        template <typename A>
+        TVec4(A _x, A _y, A _z, A _h)
         {
             x = _x;
             y = _y;
@@ -910,11 +943,11 @@ namespace JGeometry {
         }
 
         /* General operations */
-        template <typename T>
-        void set(const JGeometry::TVec4<T> &);
+        template <typename A>
+        void set(const JGeometry::TVec4<A> &);
 
-        template <typename T>
-        void set(T _x, T _y, T _z, T _h)
+        template <typename A>
+        void set(A _x, A _y, A _z, A _h)
         {
             x = _x;
             y = _y;

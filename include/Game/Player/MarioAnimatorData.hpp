@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game/Animation/XanimeResource.hpp"
+
 XanimeQuadBckTable quadAnimeTable[7] = {
     {
         {"��{"}, //mParent

@@ -39,7 +39,6 @@ namespace MR {
     f32 getPaneAnimFrame(const LayoutActor*, const char*, u32);
 
     void setFollowPos(const TVec2f*, const LayoutActor*, const char*);
-    void setFollowPos(const TVec2f&, const LayoutActor*, const char*);
 
     void setFollowTypeReplace(const LayoutActor*, const char*);
     void setFollowTypeAdd(const LayoutActor*, const char*);

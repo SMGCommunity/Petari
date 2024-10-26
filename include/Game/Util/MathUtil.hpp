@@ -155,9 +155,7 @@ namespace MR {
     f32 sinDegree(f32);
 
     // this must not be declared as inline. some callers inline it and some do not
-    static f32 max(f32 x, f32 y) {
-        return x >= y ? x : y;
-    }
+    inline f32 max(f32 x, f32 y);
 
     /* there's a couple of issues with stack ordering when it comes to vectors being created and scaled
      * this function automates this and resolves most issues
@@ -307,7 +305,7 @@ namespace MR {
     }
 
     inline void multAndSet(TVec3f *a1, const TVec3f &a2, f32 a3) {
-        a1->set<f32>(a2 * a3);
+        a1->set(a2 * a3);
     }
 
     inline int getRemainder(int ra, int rb) {
