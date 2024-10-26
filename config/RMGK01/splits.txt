@@ -11343,107 +11343,107 @@ MSL_C/PPC_EABI/SRC/math_ppc.c:
 MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c:
 	.text       start:0x8052860C end:0x80528610
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/mainloop.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c:
 	.text       start:0x80528610 end:0x80528708
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/nubevent.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c:
 	.text       start:0x80528708 end:0x80528930
 	.bss        start:0x806AF160 end:0x806AF188
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/nubinit.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c:
 	.text       start:0x80528930 end:0x80528AB4
 	.rodata     start:0x80563210 end:0x80563230
 	.bss        start:0x806AF188 end:0x806AF190
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/msg.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c:
 	.text       start:0x80528AB4 end:0x80528AE0
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/msgbuf.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c:
 	.text       start:0x80528AE0 end:0x8052931C
 	.rodata     start:0x80563230 end:0x80563250
 	.bss        start:0x806AF190 end:0x806B0B40
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/serpoll.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c:
 	.text       start:0x8052931C end:0x805294C8
 	.bss        start:0x806B0B40 end:0x806B0B58
 	.sbss       start:0x806B7BE8 end:0x806B7BF0
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/usr_put.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c:
 	.text       start:0x805294C8 end:0x80529554
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/dispatch.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c:
 	.text       start:0x80529554 end:0x8052969C
 	.data       start:0x8060A268 end:0x8060A2D8
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/msghndlr.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c:
 	.text       start:0x8052969C end:0x8052A778
 	.rodata     start:0x80563250 end:0x80563288
 	.data       start:0x8060A2D8 end:0x8060A310
 	.bss        start:0x806B0B58 end:0x806B0B60
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/support.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/support.c:
 	.text       start:0x8052A778 end:0x8052AE2C
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/mutex_TRK.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c:
 	.text       start:0x8052AE2C end:0x8052AE44
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/notify.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c:
 	.text       start:0x8052AE44 end:0x8052AEDC
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.o:
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8052AEDC end:0x8052AF14
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/mem_TRK.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
 	.text       start:0x8052AF14 end:0x8052AFCC
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/string_TRK.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c:
 	.text       start:0x8052AFCC end:0x8052AFE8
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.o:
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 	.text       start:0x8052AFE8 end:0x8052CA20
 	.rodata     start:0x80563288 end:0x80563310
 	.data       start:0x8060A310 end:0x8060A340
 	.bss        start:0x806B0B60 end:0x806B10E0
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.o:
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x8052CA20 end:0x8052CD90
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Export/mslsupp.o:
+MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.text       start:0x8052CF08 end:0x8052D224
 	.data       start:0x8060A340 end:0x8060A380
 	.bss        start:0x806B10E0 end:0x806B10E8
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/main_TRK.o:
+MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c:
 	.text       start:0x8052D224 end:0x8052D268
 	.bss        start:0x806B10E8 end:0x806B10F0
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x8052D268 end:0x8052D728
 	.rodata     start:0x80563310 end:0x80563418
 	.data       start:0x8060A380 end:0x8060A3A8
 	.bss        start:0x806B10F0 end:0x806B1100
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/targcont.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x8052D728 end:0x8052D75C
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/target_options.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x8052D75C end:0x8052D778
 
-TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.o:
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c:
 	.text       start:0x8052D778 end:0x8052D7C0
 
-TRK_Hollywood_Revolution.a/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.o:
+MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c:
 	.text       start:0x8052D7C0 end:0x8052DA80
 	.bss        start:0x806B1100 end:0x806B161C
 	.sbss       start:0x806B7BF0 end:0x806B7BF8
 
-TRK_Hollywood_Revolution.a/gamedev/cust_connection/utils/common/CircleBuffer.o:
+MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c:
 	.text       start:0x8052DA80 end:0x8052DCE8
 
-TRK_Hollywood_Revolution.a/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.o:
+MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c:
 	.text       start:0x8052DCE8 end:0x8052DD40
 
 NdevExi2A.a/DebuggerDriver.o:

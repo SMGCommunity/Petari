@@ -410,7 +410,16 @@ def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_msl,
-        "progress_category": "rfl",
+        "progress_category": "msl",
+        "objects": objects,
+    }
+
+def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_base,
+        "progress_category": "trk",
         "objects": objects,
     }
 
@@ -2807,6 +2816,39 @@ config.libs = [
             Object(NonMatching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
             Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c")
         ]
+    ),
+
+    TRKLib(
+        "MetroTRK",
+        [
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
+            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c"),
+            Object(NonMatching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
+            Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
+            Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c")
+        ]
     )
 ]
 
@@ -2817,7 +2859,9 @@ config.progress_categories = [
     ProgressCategory("jsys", "JSystem"),
     ProgressCategory("sdk", "SDK"),
     ProgressCategory("nw4r", "NW4R"),
-    ProgressCategory("rfl", "RVLFaceLib")
+    ProgressCategory("rfl", "RVLFaceLib"),
+    ProgressCategory("msl", "MSL_C"),
+    ProgressCategory("trk", "MetroTRK")
 ]
 config.progress_each_module = args.verbose
 
