@@ -1,44 +1,81 @@
+decomp-toolkit Project Template
+===============================
 
-# Petari 
-![Badge Decompiled] ![Badge JSystem Decompiled] ![Badge SDK Decompiled] ![Badge NW4R Decompiled] ![Badge MetroTRK Decompiled] ![Badge MSL Decompiled] ![Badge Runtime Decompiled] ![Badge RVLFaceLib Decompiled]
+If starting a new GameCube / Wii decompilation project, this repository can be used as a scaffold.
 
-*A **Super Mario Galaxy 1 Korean** Decompilation Project*
+See [decomp-toolkit](https://github.com/encounter/decomp-toolkit) for background on the concept and more information on the tooling used.
 
-<img src ="prog.png"/>
+Documentation
+-------------
 
-<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Animation.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AreaObj.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/AudioLib.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Boss.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Camera.json&style=flat"/> 
-<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Demo.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Effect.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Enemy.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/GameAudio.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Gravity.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/LiveActor.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Map.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/MapObj.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/NameObj.json&style=flat"/> 
-<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/NPC.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Player.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/RhythmLib.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Ride.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Scene.json&style=flat"/> 
-<img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Screen.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Speaker.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/System.json&style=flat"/> <img src ="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/json/Util.json&style=flat"/>
+- [Dependencies](docs/dependencies.md)
+- [Getting Started](docs/getting_started.md)
+- [`symbols.txt`](docs/symbols.md)
+- [`splits.txt`](docs/splits.md)
+- [GitHub Actions](docs/github_actions.md) (new!)
 
+General:
 
----
+- [Common BSS](docs/common_bss.md)
+- [`.comment` section](docs/comment_section.md)
 
- **[❮ Build ❯][Build]**
- **[❮ Contribute ❯][Contribute]**
- **[❮ CheatSheet ❯][CheatSheet]**
- **[❮ Online Documentation ❯][Docs]**
- **[❮ Progress ❯][Progress]**
- **[❮ SMG2 Decompilation ❯][SMG2]**
+References
+--------
 
----
+- [Discord: GC/Wii Decompilation](https://discord.gg/hKx3FJJgrV) (Come to `#dtk` for help!)
+- [objdiff](https://github.com/encounter/objdiff) (Local diffing tool)
+- [decomp.me](https://decomp.me) (Collaborate on matches)
+- [frogress](https://github.com/decompals/frogress) (Decompilation progress API)
+- [wibo](https://github.com/decompals/wibo) (Minimal Win32 wrapper for Linux)
+- [sjiswrap](https://github.com/encounter/sjiswrap) (UTF-8 to Shift JIS wrapper)
 
+Projects using this structure:
 
+- [zeldaret/tww](https://github.com/zeldaret/tww)
+- [zeldaret/oot-gc](https://github.com/zeldaret/oot-gc)
+- [zeldaret/ss](https://github.com/zeldaret/ss)
+- [PrimeDecomp/prime](https://github.com/PrimeDecomp/prime)
+- [PrimeDecomp/echoes](https://github.com/PrimeDecomp/echoes)
+- [DarkRTA/rb3](https://github.com/DarkRTA/rb3)
+- [doldecomp/melee](https://github.com/doldecomp/melee)
+- [doldecomp/sadx](https://github.com/doldecomp/sadx)
+- [InputEvelution/wp](https://github.com/InputEvelution/wp)
+- [NWPlayer123/AnimalCrossing-dtk](https://github.com/NWPlayer123/AnimalCrossing-dtk)
+- [Rainchus/marioparty4](https://github.com/Rainchus/marioparty4)
+- [Rainchus/ttyd_dtk](https://github.com/Rainchus/ttyd_dtk)
+- [Sage-of-Mirrors/zmansion](https://github.com/Sage-of-Mirrors/zmansion)
+- [bfbbdecomp/bfbb](https://github.com/bfbbdecomp/bfbb)
+- [EstexNT/rhf-dtk](https://github.com/EstexNT/rhf-dtk)
 
-<!----------------------------------------------------------------------------->
+Features
+--------
 
-[Contribute]: docs/CONTRIBUTING.md
-[CheatSheet]: docs/CHEATSHEET.md
-[Docs]: http://shibbo.net/smg/docs/Petari/doxygen/index.html
-[Progress]: docs/PROGRESS.md
-[Build]: docs/Build.md
-[SMG2]: https://github.com/shibbo/Garigari
+- Few external dependencies: Just `python` for the generator and `ninja` for the build system. See [Dependencies](docs/dependencies.md).
+- Simple configuration: Everything lives in `config.yml`, `symbols.txt`, and `splits.txt`.
+- Multi-version support: Separate configurations for each game version, and a `configure.py --version` flag to switch between them.
+- Feature-rich analyzer: Many time-consuming tasks are automated, allowing you to focus on the decompilation itself. See [Analyzer features](https://github.com/encounter/decomp-toolkit#analyzer-features).
+- REL support: RELs each have their own `symbols.txt` and `splits.txt`, and will automatically be built and linked against the main binary.
+- No manual assembly: decomp-toolkit handles splitting the DOL into relocatable objects based on the configuration. No game assets are committed to the repository.
+- Progress calculation and upload script for [frogress](https://github.com/decompals/frogress).
+- Integration with [objdiff](https://github.com/encounter/objdiff) for a diffing workflow.
+- CI workflow template for GitHub Actions.
 
-[Badge Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/data/Game.json&style=flat
-[Badge JSystem Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/JSystem/data/JSystem.json&style=flat
-[Badge SDK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/RVL_SDK/data/SDK.json&style=flat
-[Badge NW4R Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/nw4r/data/NW4R.json&style=flat
-[Badge MetroTRK Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/MetroTRK/data/MetroTRK.json&style=flat
-[Badge MSL Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/MSL_C/data/MSL.json&style=flat
-[Badge Runtime Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/Runtime/data/Runtime.json&style=flat
-[Badge RVLFaceLib Decompiled]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/shibbo/Petari/master/libs/RVLFaceLib/data/RVLFaceLib.json&style=flat
+Project structure
+-----------------
+
+- `configure.py` - Project configuration and generator script.
+- `config/[GAMEID]` - Configuration files for each game version.
+- `config/[GAMEID]/build.sha1` - SHA-1 hashes for each built artifact, for final verification.
+- `build/` - Build artifacts generated by the the build process. Ignored by `.gitignore`.
+- `orig/[GAMEID]` - Original game files, extracted from the disc. Ignored by `.gitignore`.
+- `orig/[GAMEID]/.gitkeep` - Empty checked-in file to ensure the directory is created on clone.
+- `src/` - C/C++ source files.
+- `include/` - C/C++ header files.
+- `tools/` - Scripts shared between projects.
+
+Temporary, delete when done:
+
+- `config/GAMEID/config.example.yml` - Example configuration file and documentation.
+- `docs/` - Documentation for decomp-toolkit configuration.
+- `README.md` - This file, replace with your own. For a template, see [`README.example.md`](README.example.md).
+- `LICENSE` - This repository is licensed under the CC0 license. Replace with your own if desired.

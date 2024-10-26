@@ -18,7 +18,7 @@ public:
     virtual bool isKilledAtMoveDone() const;
     virtual bool isRepeat() const;
     virtual void startInner();
-    virtual void moveInner();
+    virtual inline void moveInner();
     virtual void stopInner();
 
     inline void exeWait();

@@ -6,7 +6,7 @@ class LargeChainParts : public LiveActor {
 public:
     LargeChainParts(const char *pName = "でかい鎖パーツ");
 
-    virtual ~LargeChainParts();
+    inline virtual ~LargeChainParts();
     virtual void kill();
 
     void breakChainParts();

@@ -8,7 +8,9 @@ namespace JGeometry {
     template<typename T>
     struct SMatrix34C {
     public:
-        void set(const MtxPtr);
+
+        typedef f32 ArrType[4];
+        void set(const ArrType*);
         void set(const SMatrix34C<T> &rSrc);
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
@@ -125,15 +127,15 @@ namespace JGeometry {
         void identity33();
 
         void getXDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set<f32>(mMtx[0][0], mMtx[1][0], mMtx[2][0]);
+            rDest.set(mMtx[0][0], mMtx[1][0], mMtx[2][0]);
         };
 
         void getYDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set<f32>(mMtx[0][1], mMtx[1][1], mMtx[2][1]);
+            rDest.set(mMtx[0][1], mMtx[1][1], mMtx[2][1]);
         };
 
         void getZDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set<f32>(mMtx[0][2], mMtx[1][2], mMtx[2][2]);
+            rDest.set(mMtx[0][2], mMtx[1][2], mMtx[2][2]);
         };
 
         void getXYZDir(TVec3f &rDestX, TVec3f &rDestY, TVec3f &rDestZ) const;
@@ -271,7 +273,7 @@ typedef JGeometry::TPosition3<TMtx34f> TPos3f;
 
 
 template <>
-void JGeometry::TMatrix34<TSMtxf>::identity() {
+inline void JGeometry::TMatrix34<TSMtxf>::identity() {
     float v0 = 1.0, v1 = 0.0;
     mMtx[2][3] = v1;
     mMtx[1][3] = v1;

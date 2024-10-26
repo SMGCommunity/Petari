@@ -8,5 +8,5 @@ namespace MR {
         bool isExistCameraShaking(const char *);
         bool isExistPadRumble(const char *);
         const char* getStartEffect(const char *);
-    }
-}
+    };
+};

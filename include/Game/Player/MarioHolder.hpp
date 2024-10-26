@@ -17,4 +17,4 @@ public:
 
 namespace MR {
     MarioHolder *getMarioHolder();
-}
+};

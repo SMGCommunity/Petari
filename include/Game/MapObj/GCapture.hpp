@@ -2,4 +2,4 @@
 
 namespace MR {
     bool isPlayerGCaptured();
-}
+};
