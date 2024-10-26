@@ -288,6 +288,34 @@ cflags_sdk = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_rfl = [
+    "-nodefaults",
+    "-lang c",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions on",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C/include",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/Runtime/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -331,15 +359,23 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "nw4r",
         "objects": objects,
     }
-    
 
-# Helper function for Dolphin libraries
+
 def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_sdk,
         "progress_category": "sdk",
+        "objects": objects,
+    }
+
+def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_rfl,
+        "progress_category": "rfl",
         "objects": objects,
     }
 
@@ -2651,6 +2687,25 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/wud/debug_msg.c")
         ]
     ),
+
+    RFLib(
+        "RVLFaceLib",
+        [
+            Object(NonMatching, "RVLFaceLib/RFL_System.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDLoader.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDAccess.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Model.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MakeTex.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_HiddenDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Database.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Controller.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MiddleDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_DefaultDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_DataUtility.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Format.c")
+        ]
+    )
 ]
 
 # Optional extra categories for progress tracking
