@@ -1,6 +1,6 @@
 def convert_entry(entry):
     obj_name = entry.split("[")[1].split(".o")[0]
-    new_path = f"RVLFaceLib/{obj_name}.c"
+    new_path = f"MSL_C/{obj_name}.c"
     return f'Object(NonMatching, "{new_path}"),'
 
 def process_file(input_filename, output_filename):

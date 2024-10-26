@@ -316,6 +316,32 @@ cflags_rfl = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_msl = [
+    "-nodefaults",
+    "-lang c",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions on",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/Runtime/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -375,6 +401,15 @@ def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_rfl,
+        "progress_category": "rfl",
+        "objects": objects,
+    }
+
+def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_msl,
         "progress_category": "rfl",
         "objects": objects,
     }
@@ -2704,6 +2739,73 @@ config.libs = [
             Object(NonMatching, "RVLFaceLib/RFL_DefaultDatabase.c"),
             Object(NonMatching, "RVLFaceLib/RFL_DataUtility.c"),
             Object(NonMatching, "RVLFaceLib/RFL_Format.c")
+        ]
+    ),
+
+    MSLib(
+        "MSL_C",
+        [
+            Object(NonMatching, "MSL_C/alloc.c"),
+            Object(NonMatching, "MSL_C/ansi_files.c"),
+            Object(NonMatching, "MSL_C/ansi_fp.c"),
+            Object(NonMatching, "MSL_C/arith.c"),
+            Object(NonMatching, "MSL_C/buffer_io.c"),
+            Object(NonMatching, "MSL_C/ctype.c"),
+            Object(NonMatching, "MSL_C/direct_io.c"),
+            Object(NonMatching, "MSL_C/errno.c"),
+            Object(NonMatching, "MSL_C/file_io.c"),
+            Object(NonMatching, "MSL_C/FILE_POS.c"),
+            Object(NonMatching, "MSL_C/float.c"),
+            Object(NonMatching, "MSL_C/locale.c"),
+            Object(NonMatching, "MSL_C/mbstring.c"),
+            Object(NonMatching, "MSL_C/mem.c"),
+            Object(NonMatching, "MSL_C/mem_funcs.c"),
+            Object(NonMatching, "MSL_C/math_api.c"),
+            Object(NonMatching, "MSL_C/misc_io.c"),
+            Object(NonMatching, "MSL_C/printf.c"),
+            Object(NonMatching, "MSL_C/scanf.c"),
+            Object(NonMatching, "MSL_C/signal.c"),
+            Object(NonMatching, "MSL_C/string.c"),
+            Object(NonMatching, "MSL_C/strtold.c"),
+            Object(NonMatching, "MSL_C/strtoul.c"),
+            Object(NonMatching, "MSL_C/wmem.c"),
+            Object(NonMatching, "MSL_C/wprintf.c"),
+            Object(NonMatching, "MSL_C/wstring.c"),
+            Object(NonMatching, "MSL_C/wchar_io.c"),
+            Object(NonMatching, "MSL_C/uart_console_io_gcn.c"),
+            Object(NonMatching, "MSL_C/abort_exit_ppc_eabi.c"),
+            Object(NonMatching, "MSL_C/math_sun.c"),
+            Object(NonMatching, "MSL_C/extras.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
+            Object(NonMatching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
+            Object(NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c")
         ]
     )
 ]

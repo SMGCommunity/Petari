@@ -11079,7 +11079,7 @@ Runtime/global_destructor_chain.c:
 	.text       start:0x80518434 end:0x80518494
 	.sbss       start:0x806B7BB0 end:0x806B7BC0
 
-MSL_C.PPCEABI.bare.H.a/errno.c:
+MSL_C/errno.c:
 	.sbss       start:0x806B7BC0 end:0x806B7BC8
 
 Runtime/NMWException.cpp:
@@ -11109,76 +11109,76 @@ Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
 	.rodata     start:0x80562218 end:0x805622A0
 
-MSL_C.PPCEABI.bare.H.a/alloc.o:
+MSL_C/alloc.c:
 	extab       start:0x800067C8 end:0x800067E0
 	extabindex  start:0x80006DCC end:0x80006DF0
 	.text       start:0x805191C0 end:0x805196D4
 
-MSL_C.PPCEABI.bare.H.a/ansi_files.o:
+MSL_C/ansi_files.c:
 	extab       start:0x800067E0 end:0x800067F0
 	extabindex  start:0x80006DF0 end:0x80006E08
 	.text       start:0x805196D4 end:0x805197E4
 
-MSL_C.PPCEABI.bare.H.a/ansi_fp.o:
+MSL_C/ansi_fp.c:
 	extab       start:0x800067F0 end:0x80006828
 	extabindex  start:0x80006E08 end:0x80006E5C
 	.text       start:0x805197E4 end:0x8051B154
 	.rodata     start:0x805622A0 end:0x80562780
 	.data       start:0x80609868 end:0x80609AF0
 
-MSL_C.PPCEABI.bare.H.a/locale.o:
+MSL_C/locale.c:
 	.rodata     start:0x80562780 end:0x80562888
 	.data       start:0x80609AF0 end:0x80609BC8
 	.sdata2     start:0x806C2390 end:0x806C23B0
 
-MSL_C.PPCEABI.bare.H.a/arith.o:
+MSL_C/arith.c:
 	.text       start:0x8051B154 end:0x8051B164
 
-MSL_C.PPCEABI.bare.H.a/buffer_io.o:
+MSL_C/buffer_io.c:
 	extab       start:0x80006828 end:0x80006830
 	extabindex  start:0x80006E5C end:0x80006E68
 	.text       start:0x8051B164 end:0x8051B244
 
-MSL_C.PPCEABI.bare.H.a/ctype.o:
+MSL_C/ctype.c:
 	.text       start:0x8051B244 end:0x8051B27C
 
-MSL_C.PPCEABI.bare.H.a/direct_io.o:
+MSL_C/direct_io.c:
 	extab       start:0x80006830 end:0x80006838
 	extabindex  start:0x80006E68 end:0x80006E74
 	.text       start:0x8051B27C end:0x8051B584
 
-MSL_C.PPCEABI.bare.H.a/file_io.o:
+MSL_C/file_io.c:
 	extab       start:0x80006838 end:0x80006848
 	extabindex  start:0x80006E74 end:0x80006E8C
 	.text       start:0x8051B584 end:0x8051B834
 
-MSL_C.PPCEABI.bare.H.a/FILE_POS.o:
+MSL_C/FILE_POS.c:
 	extab       start:0x80006848 end:0x80006850
 	extabindex  start:0x80006E8C end:0x80006E98
 	.text       start:0x8051B834 end:0x8051BAA4
 
-MSL_C.PPCEABI.bare.H.a/mbstring.o:
+MSL_C/mbstring.c:
 	extab       start:0x80006850 end:0x80006860
 	extabindex  start:0x80006E98 end:0x80006EB0
 	.text       start:0x8051BAA4 end:0x8051BC9C
 
-MSL_C.PPCEABI.bare.H.a/mem.o:
+MSL_C/mem.c:
 	extab       start:0x80006860 end:0x80006868
 	extabindex  start:0x80006EB0 end:0x80006EBC
 	.text       start:0x8051BC9C end:0x8051BE0C
 
-MSL_C.PPCEABI.bare.H.a/mem_funcs.o:
+MSL_C/mem_funcs.c:
 	.text       start:0x8051BE0C end:0x8051C0DC
 
-MSL_C.PPCEABI.bare.H.a/math_api.o:
+MSL_C/math_api.c:
 	extab       start:0x80006868 end:0x80006880
 	extabindex  start:0x80006EBC end:0x80006EE0
 	.text       start:0x8051C0DC end:0x8051C1D8
 
-MSL_C.PPCEABI.bare.H.a/misc_io.o:
+MSL_C/misc_io.c:
 	.text       start:0x8051C1D8 end:0x8051C1E8
 
-MSL_C.PPCEABI.bare.H.a/printf.o:
+MSL_C/printf.c:
 	extab       start:0x80006880 end:0x800068E8
 	extabindex  start:0x80006EE0 end:0x80006F7C
 	.text       start:0x8051C1E8 end:0x8051E674
@@ -11186,161 +11186,161 @@ MSL_C.PPCEABI.bare.H.a/printf.o:
 	.data       start:0x80609BC8 end:0x80609E18
 	.sdata      start:0x806B2E38 end:0x806B2E40
 
-MSL_C.PPCEABI.bare.H.a/float.o:
+MSL_C/float.c:
 	.sdata      start:0x806B2E40 end:0x806B2E54
 
-MSL_C.PPCEABI.bare.H.a/scanf.o:
+MSL_C/scanf.c:
 	extab       start:0x800068E8 end:0x80006900
 	extabindex  start:0x80006F7C end:0x80006FA0
 	.text       start:0x8051E674 end:0x8051FBE0
 	.data       start:0x80609E18 end:0x80609F38
 
-MSL_C.PPCEABI.bare.H.a/signal.o:
+MSL_C/signal.c:
 	extab       start:0x80006900 end:0x80006908
 	extabindex  start:0x80006FA0 end:0x80006FAC
 	.text       start:0x8051FBE0 end:0x8051FC90
 	.bss        start:0x806AF140 end:0x806AF160
 
-MSL_C.PPCEABI.bare.H.a/string.o:
+MSL_C/string.c:
 	.text       start:0x8051FC90 end:0x80520000
 
-MSL_C.PPCEABI.bare.H.a/strtold.o:
+MSL_C/strtold.c:
 	extab       start:0x80006908 end:0x80006910
 	extabindex  start:0x80006FAC end:0x80006FB8
 	.text       start:0x80520000 end:0x805213F4
 	.rodata     start:0x805628E0 end:0x80562EF0
 	.sdata2     start:0x806C23B0 end:0x806C28E8
 
-MSL_C.PPCEABI.bare.H.a/strtoul.o:
+MSL_C/strtoul.c:
 	extab       start:0x80006910 end:0x80006930
 	extabindex  start:0x80006FB8 end:0x80006FE8
 	.text       start:0x805213F4 end:0x80521E54
 	.data       start:0x80609F38 end:0x80609FC0
 
-MSL_C.PPCEABI.bare.H.a/wmem.o:
+MSL_C/wmem.c:
 	.text       start:0x80521E54 end:0x80521E84
 
-MSL_C.PPCEABI.bare.H.a/wprintf.o:
+MSL_C/wprintf.c:
 	extab       start:0x80006930 end:0x80006970
 	extabindex  start:0x80006FE8 end:0x80007048
 	.text       start:0x80521E84 end:0x805240C8
 	.rodata     start:0x80562EF0 end:0x80563210
 	.data       start:0x80609FC0 end:0x8060A268
 
-MSL_C.PPCEABI.bare.H.a/wstring.o:
+MSL_C/wstring.c:
 	.text       start:0x805240C8 end:0x805241A4
 
-MSL_C.PPCEABI.bare.H.a/wchar_io.o:
+MSL_C/wchar_io.c:
 	.text       start:0x805241A4 end:0x80524228
 
-MSL_C.PPCEABI.bare.H.a/uart_console_io_gcn.o:
+MSL_C/uart_console_io_gcn.c:
 	extab       start:0x80006970 end:0x80006978
 	extabindex  start:0x80007048 end:0x80007054
 	.text       start:0x80524228 end:0x80524300
 	.sbss       start:0x806B7BC8 end:0x806B7BD0
 
-MSL_C.PPCEABI.bare.H.a/abort_exit_ppc_eabi.o:
+MSL_C/abort_exit_ppc_eabi.c:
 	extab       start:0x80006978 end:0x80006980
 	extabindex  start:0x80007054 end:0x80007060
 	.text       start:0x80524300 end:0x80524334
 	.sbss       start:0x806B7BD0 end:0x806B7BE8
 
-MSL_C.PPCEABI.bare.H.a/math_sun.o:
+MSL_C/math_sun.c:
 	extab       start:0x80006980 end:0x80006988
 	extabindex  start:0x80007060 end:0x8000706C
 	.text       start:0x80524334 end:0x80524374
 
-MSL_C.PPCEABI.bare.H.a/extras.o:
+MSL_C/extras.c:
 	.text       start:0x80524374 end:0x805244C8
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_acos.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c:
 	.text       start:0x805244C8 end:0x8052478C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_asin.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c:
 	.text       start:0x8052478C end:0x80524A24
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_atan2.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c:
 	.text       start:0x80524A24 end:0x80524C94
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_fmod.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c:
 	.text       start:0x80524C94 end:0x80524FC4
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_log.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c:
 	.text       start:0x80524FC4 end:0x80525278
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_log10.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c:
 	.text       start:0x80525278 end:0x8052538C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_pow.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c:
 	.text       start:0x8052538C end:0x80525BD4
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c:
 	.text       start:0x80525BD4 end:0x80525F6C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/k_cos.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c:
 	.text       start:0x80525F6C end:0x8052607C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c:
 	.text       start:0x8052607C end:0x80527788
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/k_sin.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c:
 	.text       start:0x80527788 end:0x80527848
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/k_tan.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c:
 	.text       start:0x80527848 end:0x80527AA0
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_atan.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c:
 	.text       start:0x80527AA0 end:0x80527CE0
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_ceil.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c:
 	.text       start:0x80527CE0 end:0x80527E20
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_copysign.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c:
 	.text       start:0x80527E20 end:0x80527E4C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_cos.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c:
 	.text       start:0x80527E4C end:0x80527F20
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_floor.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c:
 	.text       start:0x80527F20 end:0x80528064
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_frexp.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c:
 	.text       start:0x80528064 end:0x805280EC
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_ldexp.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c:
 	.text       start:0x805280EC end:0x80528258
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_sin.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c:
 	.text       start:0x80528258 end:0x80528330
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/s_tan.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c:
 	.text       start:0x80528330 end:0x805283A8
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_acos.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c:
 	.text       start:0x805283A8 end:0x805283AC
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_asin.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c:
 	.text       start:0x805283AC end:0x805283B0
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_atan2.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c:
 	.text       start:0x805283B0 end:0x805283B4
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_fmod.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c:
 	.text       start:0x805283B4 end:0x805283B8
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_log10.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c:
 	.text       start:0x805283B8 end:0x805283BC
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_pow.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c:
 	.text       start:0x805283BC end:0x805283C0
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/e_sqrt.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c:
 	.text       start:0x805283C0 end:0x80528608
 
-MSL_C.PPCEABI.bare.H.a/PPC_EABI/SRC/math_ppc.o:
+MSL_C/PPC_EABI/SRC/math_ppc.c:
 	.text       start:0x80528608 end:0x8052860C
 
-MSL_C.PPCEABI.bare.H.a/MSL_Common_Embedded/Math/Double_precision/w_sqrt.o:
+MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c:
 	.text       start:0x8052860C end:0x80528610
 
 TRK_Hollywood_Revolution.a/debugger/embedded/MetroTRK/Portable/mainloop.o:
