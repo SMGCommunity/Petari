@@ -36,3 +36,6 @@ Compilers/*
 *.ninja_log
 doxygen/*
 scripts/*
+.cache/*
+compile_commands.json
+objdiff.json
