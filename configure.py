@@ -423,6 +423,15 @@ def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_base,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
 Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
 Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
@@ -2732,6 +2741,14 @@ config.libs = [
         ]
     ),
 
+    SDKLib(
+        "NDEV",
+        [
+            Object(NonMatching, "NDEV/DebuggerDriver.c"),
+            Object(NonMatching, "NDEV/exi2.c")
+        ]
+    ),
+
     RFLib(
         "RVLFaceLib",
         [
@@ -2849,11 +2866,245 @@ config.libs = [
             Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
             Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c")
         ]
+    ),
+
+    JSysLib(
+        "J2DGraph",
+        [
+            Object(NonMatching, "JSystem/J2DGraph/J2DGrafContext.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DManage.cpp")
+
+        ]
+    ),
+
+    JSysLib(
+        "J3DGraphAnimator",
+        [
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DShapeTable.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DJointTree.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DModelData.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DModel.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DJoint.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "J3DGraphBase",
+        [
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DGD.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DSys.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DVertex.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DTransform.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DPacket.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DShape.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DMaterial.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DTevs.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphBase/J3DStruct.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "J3DGraphLoader",
+        [
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoader.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JAudio2",
+        [
+            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDvdThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASResArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASProbe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTrackPort.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASRegisterParam.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqReader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASVoiceBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicInst.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDrumSet.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstSense.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstRand.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWSParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWaveArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASLfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASOscillator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioReseter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/dspproc.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/dsptask.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/osdsp.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/osdsp_task.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudible.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeq.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISound.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundChild.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundHandles.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundStarter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUBankTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUInitializer.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSectionHeap.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqCollection.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundAnimator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundObject.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStdSoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStreamFileTable.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JGadget",
+        [
+            Object(NonMatching, "JSystem/JGadget/hashcode.cpp"),
+            Object(NonMatching, "JSystem/JGadget/linklist.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JKernel",
+        [
+            Object(NonMatching, "JSystem/JKernel/JKRHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRSolidHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRUnitHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDisposer.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRThread.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAram.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramBlock.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramPiece.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramStream.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRFileLoader.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRFileFinder.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePub.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePri.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRMemArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRCompArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdFile.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdRipper.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdAramRipper.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JMath",
+        [
+            Object(NonMatching, "JSystem/JMath/JMath.cpp"),
+            Object(NonMatching, "JSystem/JMath/random.cpp"),
+            Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JParticle",
+        [
+            Object(NonMatching, "JSystem/JParticle/JPAResourceManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAResource.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPABaseShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAExtraShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAChildShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAExTexShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPADynamicsBlock.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAKeyBlock.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPATexture.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAResourceLoader.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitter.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAMath.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JSupport",
+        [
+            Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUMemoryStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUFileStream.cpp")
+        ]
+    ),
+
+    JSysLib(
+        "JUtility",
+        [
+            Object(NonMatching, "JSystem/JUtility/JUTTexture.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTPalette.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTNameTab.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTFont.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTException.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTAssert.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTVideo.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTXfb.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTConsole.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTDbPrint.cpp")
+        ]
     )
 ]
 
-# Optional extra categories for progress tracking
-# Adjust as desired for your project
 config.progress_categories = [
     ProgressCategory("game", "Game"),
     ProgressCategory("jsys", "JSystem"),
