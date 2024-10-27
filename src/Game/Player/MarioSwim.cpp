@@ -120,15 +120,15 @@ void Mario::startSwim()
     if (!isStatusActive(6)) {
         if (getPlayer()->isDamaging()) {
             mSwim->_9D = 4;
-            playSound("…—‰º“Ë“ü", -1);
+            playSound("æ°´è½ä¸‹çªå…¥", -1);
         }
         else if (getPlayer()->getMovementStates()._0) {
             mSwim->_9D = 1;
-            playSound("…—‰º“Ë“ü", -1);
+            playSound("æ°´è½ä¸‹çªå…¥", -1);
         }
         else {
             mSwim->_9D = 0;
-            playSound("…•às“Ë“ü", -1);
+            playSound("æ°´æ­©è¡Œçªå…¥", -1);
         }
         changeStatus(mSwim);
         clearSlope();
@@ -300,10 +300,10 @@ bool MarioSwim::start()
     u32 r1e = 0, r1d = 0;
     _1D = 0;
     _1E = 0;
-    if (isAnimationRun("”ò‚Ñ‚İƒWƒƒƒ“ƒv")) {
+    if (isAnimationRun("é£›ã³è¾¼ã¿ã‚¸ãƒ£ãƒ³ãƒ—")) {
         r1e = 1;
     }
-    if (isAnimationRun("Œã•û”ò‚Ñ‚İƒWƒƒƒ“ƒv")) {
+    if (isAnimationRun("å¾Œæ–¹é£›ã³è¾¼ã¿ã‚¸ãƒ£ãƒ³ãƒ—")) {
         r1e = 1;
         getPlayer()->setFrontVecKeepUp(-getFrontVec(), -1.0f);
     }
@@ -322,20 +322,20 @@ bool MarioSwim::start()
         }
     }
     getPlayer()->_10._1E = false;
-    if (isAnimationRun("ƒŠƒ“ƒOƒ_ƒbƒVƒ…")) {
+    if (isAnimationRun("ãƒªãƒ³ã‚°ãƒ€ãƒƒã‚·ãƒ¥")) {
         r1e = 2;
     }
-    if (isAnimationRun("…‰jƒXƒsƒ“ˆÚ“®")) {
+    if (isAnimationRun("æ°´æ³³ã‚¹ãƒ”ãƒ³ç§»å‹•")) {
         r1e = 3;
     }
-    if (isAnimationRun("…‰jƒXƒsƒ“ƒWƒƒƒ“ƒv")) {
+    if (isAnimationRun("æ°´æ³³ã‚¹ãƒ”ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—")) {
         r1e = 3;
     }
     _60 = getFrontVec();
     MR::normalize(&_60);
     stopAnimationUpper(nullptr, nullptr);
-    changeAnimation(nullptr, "…‰jŠî–{");
-    changeAnimationNonStop("…‰jŠî–{");
+    changeAnimation(nullptr, "æ°´æ³³åŸºæœ¬");
+    changeAnimationNonStop("æ°´æ³³åŸºæœ¬");
     getPlayer()->mMovementStates._1 = false;
     f32 fr1f = _1A4;
     _2C = 0;
@@ -376,12 +376,12 @@ bool MarioSwim::start()
         else if (getPlayer()->getMovementStates()._B || r1e) {
             _54 = 10.0f;
             if (_8A) {
-                changeAnimationNonStop("…‰jƒWƒFƒbƒg");
+                changeAnimationNonStop("æ°´æ³³ã‚¸ã‚§ãƒƒãƒˆ");
             }
             else {
-                changeAnimation("…‰jƒWƒƒƒ“ƒvƒ_ƒCƒu‰ñ“]", (const char *)nullptr);
+                changeAnimation("æ°´æ³³ã‚¸ãƒ£ãƒ³ãƒ—ãƒ€ã‚¤ãƒ–å›è»¢", (const char *)nullptr);
             }
-            playEffect("…–Ê‚y’¾~");
+            playEffect("æ°´é¢ï¼ºæ²ˆé™");
             switch (r1e) {
             case 0:
             case 1:
@@ -406,13 +406,13 @@ bool MarioSwim::start()
             getPlayer()->forceSetHeadVecKeepSide(stack_38);
         }
         else if (r1d) {
-            changeAnimation("…ãƒ_ƒ[ƒW’……", (const char *)nullptr);
+            changeAnimation("æ°´ä¸Šãƒ€ãƒ¡ãƒ¼ã‚¸ç€æ°´", (const char *)nullptr);
             _2E = mActor->getConst().getConstants()->_51E;
             _AE = 0x78;
         }
         else {
             _54 = (0.2f + 0.1f * fr1f) * mActor->getConst().getConstants()->_4B4;
-            changeAnimation("…‰jƒWƒƒƒ“ƒvƒ_ƒCƒu", (const char *)nullptr);
+            changeAnimation("æ°´æ³³ã‚¸ãƒ£ãƒ³ãƒ—ãƒ€ã‚¤ãƒ–", (const char *)nullptr);
             mActor->setBlendMtxTimer(8);
             _2C = 15;
             _2E = mActor->getConst().getConstants()->_51C;
@@ -452,11 +452,11 @@ bool MarioSwim::start()
         }
     }
     if (r1e == 2) {
-        if (!isAnimationRun("…‰jƒWƒFƒbƒg")) {
-            changeAnimation("…‰jƒWƒFƒbƒgŠJn", "…‰jƒWƒFƒbƒg");
+        if (!isAnimationRun("æ°´æ³³ã‚¸ã‚§ãƒƒãƒˆ")) {
+            changeAnimation("æ°´æ³³ã‚¸ã‚§ãƒƒãƒˆé–‹å§‹", "æ°´æ³³ã‚¸ã‚§ãƒƒãƒˆ");
         }
         else {
-            changeAnimation(nullptr, "…‰jƒWƒFƒbƒg");
+            changeAnimation(nullptr, "æ°´æ³³ã‚¸ã‚§ãƒƒãƒˆ");
         }
     }
     updateLifeByTime();
@@ -538,7 +538,7 @@ bool MarioSwim::update()
         TVec3f stack_194;
         MR::vecKillElement(_16C - getTrans(), rAirGravityVec, &stack_194);
         if (PSVECMag(stack_194.toCVec()) > 100.0f || -_19C >= getPlayer()->_488 || _AE || _1B0) {
-            if (!isAnimationRun("…‰jƒWƒƒƒ“ƒvƒ_ƒCƒu")) {
+            if (!isAnimationRun("æ°´æ³³ã‚¸ãƒ£ãƒ³ãƒ—ãƒ€ã‚¤ãƒ–")) {
                 if (_8A) {
                     doJetJump(1);
                     return false;
@@ -594,11 +594,11 @@ bool MarioSwim::update()
             }
             else {
                 u32 tmp = 0x1E;
-                if (isAnimationRun("…ãˆê‘~‚«")) {
+                if (isAnimationRun("æ°´ä¸Šä¸€æ»ã")) {
                     tmp = 0x1E;
                 }
                 if (checkLvlA()) {
-                    if (_9C && (!isAnimationRun("…ãˆê‘~‚«") || !_28)) {
+                    if (_9C && (!isAnimationRun("æ°´ä¸Šä¸€æ»ã") || !_28)) {
                         _28++;
                     }
                     if ((_1B0 || _8A || getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._32) && checkTrgA()) {
@@ -643,7 +643,7 @@ bool MarioSwim::update()
     else if (_19C > -30.0f) {
         if (!_2C && !_32 && !_2E && !_8A) {
             getAnimator()->forceSetBlendWeight(cWeightTable);
-            changeAnimation("†‰jã¸ŒÄ‹z", (const char *)nullptr);
+            changeAnimation("ç‚Šæ³³ä¸Šæ˜‡å‘¼å¸", (const char *)nullptr);
         }
         if (!_2E) {
             onSurface();
@@ -662,11 +662,11 @@ bool MarioSwim::update()
             stack_188 += getGravityVec() % res2;
             getPlayer()->tryForcePowerJump(stack_188, false);
             _9E = 2;
-            if (isAnimationRun("…‰jƒXƒsƒ“ˆÚ“®")) {
-                changeAnimationNonStop("…‰jƒXƒsƒ“ˆÚ“®");
+            if (isAnimationRun("æ°´æ³³ã‚¹ãƒ”ãƒ³ç§»å‹•")) {
+                changeAnimationNonStop("æ°´æ³³ã‚¹ãƒ”ãƒ³ç§»å‹•");
             }
             else {
-                changeAnimationNonStop("…‰jƒXƒsƒ“ƒWƒƒƒ“ƒv");
+                changeAnimationNonStop("æ°´æ³³ã‚¹ãƒ”ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—");
             }
             return false;
         }
@@ -680,7 +680,7 @@ bool MarioSwim::update()
             getPlayer()->_278 = res;
             getPlayer()->tryForcePowerJump((mActor->getLastMove() % 2.0f).translate(_6C % 10.0f), false);
             _9E = 2;
-            changeAnimationNonStop("ƒŠƒ“ƒOƒ_ƒbƒVƒ…");
+            changeAnimationNonStop("ãƒªãƒ³ã‚°ãƒ€ãƒƒã‚·ãƒ¥");
             return false;
         }
     }
@@ -709,16 +709,16 @@ bool MarioSwim::update()
             }
             if (_8A && getPlayer()->_488 < 100.0f) {
                 _42 = 2;
-                playEffect("…’êÚG");
+                playEffect("æ°´åº•æ¥è§¦");
                 _54 *= mActor->getConst().getConstants()->_53C;
             }
         }
         _1F = 0;
     }
     if (_42) {
-        playSound("…’êÚG", -1);
+        playSound("æ°´åº•æ¥è§¦", -1);
         if (--_42 == 0) {
-            stopEffect("…’êÚG");
+            stopEffect("æ°´åº•æ¥è§¦");
         }
     }
     if (_32 && --_32 == 0) {
@@ -760,10 +760,10 @@ bool MarioSwim::update()
                     _50 *= fr1c;
                 }
                 else if (checkTrgZ() && !check7Aand7C()) {
-                    stopAnimationUpper("…‰j…–Ê‰ŠúˆÚ“®", nullptr);
-                    changeAnimation("…‰jö‚è", (const char *)nullptr);
-                    playEffect("…–Ê‚y’¾~");
-                    playSound("…–Êö‚è", -1);
+                    stopAnimationUpper("æ°´æ³³æ°´é¢åˆæœŸç§»å‹•", nullptr);
+                    changeAnimation("æ°´æ³³æ½œã‚Š", (const char *)nullptr);
+                    playEffect("æ°´é¢ï¼ºæ²ˆé™");
+                    playSound("æ°´é¢æ½œã‚Š", -1);
                     _32 = mActor->getConst().getConstants()->_554;
                 }
                 else if (checkLvlZ() == 0) {
@@ -780,9 +780,9 @@ bool MarioSwim::update()
         else {
             if (!_8C && _1A4 > 200.0f && checkTrgZ() && !_32 && !_2E && !_8A && !check7Aand7C()) {
                 stopAnimation(nullptr, (const char *)nullptr);
-                changeAnimation("…‰jö‚è", (const char *)nullptr);
-                playSound("…’†ö‚è", -1);
-                playEffect("…–Ê‚y’¾~");
+                changeAnimation("æ°´æ³³æ½œã‚Š", (const char *)nullptr);
+                playSound("æ°´ä¸­æ½œã‚Š", -1);
+                playEffect("æ°´é¢ï¼ºæ²ˆé™");
                 _32 = mActor->getConst().getConstants()->_554;
             }
             if (_8A) {
@@ -805,7 +805,7 @@ bool MarioSwim::update()
             _5C += res * (_4C * mActor->getConst().getConstants()->_4E0);
         }
 
-        if ((_54 < cTurnMotionSpeed || _19 || checkLvlA() || checkLvlZ()) && isAnimationRun("…‰jˆê‘~‚«") && isAnimationTerminate("…‰jˆê‘~‚«")) {
+        if ((_54 < cTurnMotionSpeed || _19 || checkLvlA() || checkLvlZ()) && isAnimationRun("æ°´æ³³ä¸€æ»ã") && isAnimationTerminate("æ°´æ³³ä¸€æ»ã")) {
             stopAnimation(nullptr, (const char *)nullptr);
         }
 
@@ -816,7 +816,7 @@ bool MarioSwim::update()
             if (!_20 && !_AE && _19C < -400.0f) {
                 _3C++;
                 if (MR::getRandom() < 0.03f) {
-                    playSound("…’†ƒEƒGƒCƒg", -1);
+                    playSound("æ°´ä¸­ã‚¦ã‚¨ã‚¤ãƒˆ", -1);
                 }
             }
             if (_3C >= 0x78) {
@@ -901,12 +901,12 @@ bool MarioSwim::update()
                 _5C = _5C * (1.0f - fr1e) + fr1d * fr1e;
             }
             if (!check7Aand7C() && !_8A) {
-                changeAnimation("…‰jƒ^[ƒ“‰º", (const char *)nullptr);
+                changeAnimation("æ°´æ³³ã‚¿ãƒ¼ãƒ³ä¸‹", (const char *)nullptr);
             }
             r1b = false;
         }
         if (r1b) {
-            stopAnimation("…‰jƒ^[ƒ“‰º", (const char *)nullptr);
+            stopAnimation("æ°´æ³³ã‚¿ãƒ¼ãƒ³ä¸‹", (const char *)nullptr);
         }
         if (_32) {
             _5C = MR::clamp(_5C, 0.523598790169f, mActor->getConst().getConstants()->_54C);
@@ -973,7 +973,7 @@ bool MarioSwim::update()
     }
     spin();
     TVec3f stack_110 = getPlayer()->_1FC;
-    if (_34 || _2E || isAnimationRun("…‰jƒWƒƒƒ“ƒvƒ_ƒCƒu‰ñ“]") || isAnimationRun("…‰jö‚è")) {
+    if (_34 || _2E || isAnimationRun("æ°´æ³³ã‚¸ãƒ£ãƒ³ãƒ—ãƒ€ã‚¤ãƒ–å›è»¢") || isAnimationRun("æ°´æ³³æ½œã‚Š")) {
         PSVECCrossProduct(stack_14C.toCVec(), stack_140.toCVec(), stack_110.toVec());
     }
     if (!_8A) {

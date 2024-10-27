@@ -146,7 +146,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
 
 bool MagicBell::tryRing()
 {
-    if (!MR::isExecScenarioStarter() && MR::isStarPointerPointing(this, 0, 0, "Žã")) {
+    if (!MR::isExecScenarioStarter() && MR::isStarPointerPointing(this, 0, 0, "å¼±")) {
         TVec2f *v4(MR::getStarPointerScreenVelocity(0));
         if (((v4->x * v4->x) + (v4->y * v4->y)) > 64.0f) {
             TVec3f v12;
