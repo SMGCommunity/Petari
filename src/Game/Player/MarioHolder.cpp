@@ -1,7 +1,7 @@
 #include "Game/Player/MarioHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-MarioHolder::MarioHolder() : NameObj("ƒ}ƒŠƒI•Û")
+MarioHolder::MarioHolder() : NameObj("ãƒãƒªã‚ªä¿æŒ")
 {
     mActor = nullptr;
 }

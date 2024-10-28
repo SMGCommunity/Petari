@@ -50,15 +50,15 @@ void MarioAnimator::init()
 
     mXanimePlayer = new XanimePlayer(MR::getJ3DModel(mActor), mResourceTable);
 
-    changeDefault("基本");
-    change("基本");
+    changeDefault("蝓ｺ譛ｬ");
+    change("蝓ｺ譛ｬ");
 
     mXanimePlayer->getCore()->enableJointTransform(MR::getJ3DModelData(mActor));
 
     mActor->mModelManager->mXanimePlayer = mXanimePlayer;
     mXanimePlayerUpper = new XanimePlayer(MR::getJ3DModel(mActor), mResourceTable, mXanimePlayer);
-    changeDefaultUpper("基本");
-    mXanimePlayerUpper->changeAnimation("基本");
+    changeDefaultUpper("蝓ｺ譛ｬ");
+    mXanimePlayerUpper->changeAnimation("蝓ｺ譛ｬ");
     mXanimePlayerUpper->mCore->shareJointTransform(mXanimePlayer->mCore);
     PSMTXCopy(MR::tmpMtxRotYRad(3.14159274101f), _DC.toMtxPtr());
 }
