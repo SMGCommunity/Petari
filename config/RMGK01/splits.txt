@@ -11123,12 +11123,12 @@ MSL_C/ansi_fp.c:
 	extab       start:0x800067F0 end:0x80006828
 	extabindex  start:0x80006E08 end:0x80006E5C
 	.text       start:0x805197E4 end:0x8051B154
-	.rodata     start:0x805622A0 end:0x80562780
-	.data       start:0x80609868 end:0x80609AF0
+	.rodata     start:0x805622A0 end:0x80562380
+	.data       start:0x80609868 end:0x806099D0
 
 MSL_C/locale.c:
-	.rodata     start:0x80562780 end:0x80562888
-	.data       start:0x80609AF0 end:0x80609BC8
+	.rodata     start:0x80562380 end:0x80562888
+	.data       start:0x806099D0 end:0x80609BC8
 	.sdata2     start:0x806C2390 end:0x806C23B0
 
 MSL_C/arith.c:
@@ -11187,7 +11187,7 @@ MSL_C/printf.c:
 	.sdata      start:0x806B2E38 end:0x806B2E40
 
 MSL_C/float.c:
-	.sdata      start:0x806B2E40 end:0x806B2E54
+	.sdata      start:0x806B2E40 end:0x806B2E50
 
 MSL_C/scanf.c:
 	extab       start:0x800068E8 end:0x80006900
