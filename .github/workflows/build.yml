@@ -8,7 +8,7 @@ jobs:
   build:
     # This is a *private* build container.
     # See docs/github_actions.md for more information.
-    container: ghcr.io/SMGCommunity/Petari-build:main
+    container: ghcr.io/smgcommunity/petari-build:main
 
     runs-on: ubuntu-latest
     strategy:
