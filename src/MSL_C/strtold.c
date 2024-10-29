@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cmath>
 #include "mem.h"
+#pragma exceptions on
 
 extern double nan(const char *);
 extern double __dec2num(const decimal *);

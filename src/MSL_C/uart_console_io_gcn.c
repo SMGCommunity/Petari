@@ -1,12 +1,13 @@
 #include "size_t.h"
 #include "UART.h"
 #include <revolution.h>
+#pragma exceptions on
 
 int __TRK_write_console(unsigned long, unsigned char *, size_t *, void *);
 
 typedef void (* __idle_proc)  (void);
 
-UARTError __init_uart_console(void) {
+static UARTError __init_uart_console(void) {
     UARTError err = kUARTNoError;
     static int initialized = 0;
 
@@ -19,11 +20,7 @@ UARTError __init_uart_console(void) {
     }
 
     return err;
-}
 
-/* this is somewhere else */
-int __read_console(unsigned long handle, unsigned char *buffer, size_t *count, __idle_proc) {
-    return 0;
 }
 
 int __write_console(unsigned long handle, unsigned char *buffer, size_t *count, void *ref) {

@@ -1,6 +1,7 @@
 #include <cstring>
 #include "mem_funcs.h"
 #include "string_api.h"
+#pragma exceptions on
 
 void* memmove(void *pDest, const void *pSource, size_t num) {
     const char* cur;

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include "ansi_fp.h"
 #include "wchar_io.h"
+#pragma exceptions on
 
 #define LDBL_MANT_DIG          24
 #define LDBL_MAX_EXP          128

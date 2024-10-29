@@ -1,6 +1,7 @@
 #include "mbstring.h"
 #include "locale.h"
 #include <cstring>
+#pragma exceptions on
 
 int mbtowc(wchar_t *pDest, const char *s, size_t num) {
     return _current_locale.ctype_cmpt_ptr->decode_mb(pDest, s, num);

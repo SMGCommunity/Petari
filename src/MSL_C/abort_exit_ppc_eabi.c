@@ -1,4 +1,5 @@
 #include <cstdlib>
+#pragma exceptions on
 
 int raise(int);
 int exit(int);

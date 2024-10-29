@@ -1,4 +1,5 @@
 #include "math_api.h"
+#pragma exceptions on
 
 int __fpclassifyf(float f) {
     int val = (*(int*)&f);

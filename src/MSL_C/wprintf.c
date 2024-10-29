@@ -8,6 +8,7 @@
 #include "wmem.h"
 #include "wstring.h"
 #include "va_list.h"
+#pragma exceptions on
 
 #define LDBL_MANT_DIG          24
 #define LDBL_MAX_EXP          128
