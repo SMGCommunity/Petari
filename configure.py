@@ -311,6 +311,7 @@ cflags_rfl = [
     "-i libs/MetroTRK/include",
     "-i libs/RVL_SDK/include",
     "-i libs/Runtime/include",
+    "-i libs/RVLFaceLib/include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -2759,11 +2760,11 @@ config.libs = [
             Object(NonMatching, "RVLFaceLib/RFL_MakeTex.c"),
             Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
             Object(NonMatching, "RVLFaceLib/RFL_HiddenDatabase.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Database.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Controller.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_MiddleDatabase.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_DefaultDatabase.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_DataUtility.c"),
+            Object(Matching, "RVLFaceLib/RFL_Database.c"),
+            Object(Matching, "RVLFaceLib/RFL_Controller.c"),
+            Object(Matching, "RVLFaceLib/RFL_MiddleDatabase.c"),
+            Object(Matching, "RVLFaceLib/RFL_DefaultDatabase.c"),
+            Object(Matching, "RVLFaceLib/RFL_DataUtility.c"),
             Object(NonMatching, "RVLFaceLib/RFL_Format.c")
         ]
     ),
