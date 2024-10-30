@@ -14,36 +14,20 @@ static SCProductAreaAndString ProductAreaAndStringTbl[] = {
     3, "AUS",
     4, "BRA",
     5, "TWN",
-    6, "ROC",
-    7, "KOR",
-    8, "HKG",
-    9, "ASI",
-    10, "LTN",
-    11, "SAF",
-    12, "CHN",
+    5, "ROC",
+    6, "KOR",
+    7, "HKG",
+    8, "ASI",
+    9, "LTN",
+    10, "SAF",
+    11, "CHN",
     -1
 };
 
-BOOL SCGetProductAreaString(char* buf, u32 bufSize) {
+static BOOL SCGetProductAreaString(char* buf, u32 bufSize) {
     return __SCF1("AREA", buf, bufSize);
 }
 
-s8 SCGetProductArea(void) {
-    char buf[4];
-    SCProductAreaAndString* p = ProductAreaAndStringTbl;
-
-    if (SCGetProductAreaString(buf, sizeof(buf))) {
-        while (p->area != -1) {
-            if (strcmp(p->string, buf) == 0) {
-                return p->area;
-            }
-
-            p++;
-        }
-    }
-
-    return -1;
-}
 
 BOOL __SCF1(const char* keyword, char* buf, u32 bufSize) {
     BOOL result = FALSE;
@@ -102,6 +86,23 @@ BOOL __SCF1(const char* keyword, char* buf, u32 bufSize) {
     }
 
     return FALSE;
+}
+
+s8 SCGetProductArea(void) {
+    char buf[4];
+    SCProductAreaAndString* p = ProductAreaAndStringTbl;
+
+    if (SCGetProductAreaString(buf, sizeof(buf))) {
+        while (p->area != -1) {
+            if (strcmp(p->string, buf) == 0) {
+                return p->area;
+            }
+
+            p++;
+        }
+    }
+
+    return -1;
 }
 
 typedef struct {

@@ -8,6 +8,13 @@ static u32 IpcReqPtrArray[32];
 static void AddReqInfo(void *, s32);
 static void DelReqInfo(void *, s32);
 
+static s32 IPCGetQueueStatus(u32 i) {
+    if (i > 32) {
+        return -1;
+    }
+    return IpcFdArray[i];
+}
+
 void IPCiProfInit(void) {
     u32 i;
 

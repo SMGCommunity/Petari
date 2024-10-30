@@ -38,7 +38,7 @@ static BOOL __VISetSDA(u32 value) {
 }
 
 static u32 __VIGetSDA(void) {
-    u32 reg = busRd32(0xCD8000C0);
+    u32 reg = busRd32(0xCD8000C8);
     return (u32)((reg >> 15) & 1);
 }
 

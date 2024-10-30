@@ -9384,7 +9384,7 @@ JSystem/J3DGraphAnimator/J3DModelData.cpp:
 JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp:
 	.text       start:0x80431CA0 end:0x804329D8
 	.data       start:0x805E9A60 end:0x805E9A68
-	.bss        start:0x8060FC28 end:0x80638CF8
+	.bss        start:0x8060FC28 end:0x80638CE0
 	.sdata      start:0x806B2750 end:0x806B2758
 	.sdata2     start:0x806C1B30 end:0x806C1B38
 
@@ -9412,7 +9412,7 @@ JSystem/J3DGraphAnimator/J3DCluster.cpp:
 
 JSystem/J3DGraphAnimator/J3DJoint.cpp:
 	.text       start:0x804383C8 end:0x80438C9C
-	.rodata     start:0x8055C370 end:0x8055C4D8
+	.rodata     start:0x8055C370 end:0x8055C3F8
 	.sbss       start:0x806B72A8 end:0x806B72B8
 	.sdata2     start:0x806C1B80 end:0x806C1BA0
 
@@ -9542,20 +9542,22 @@ RVL_SDK/gd/GDTexture.c:
 	.sdata2     start:0x806C1C98 end:0x806C1CA0
 
 RVL_SDK/kpad/KPAD.c:
-	.data       start:0x805EA578 end:0x805EA618
+	.data       start:0x805EA578 end:0x805EA5D0
 	.sdata      start:0x806B2788 end:0x806B27F8
 	.sbss       start:0x806B72C8 end:0x806B72E0
-	.sdata2     start:0x806C1CA0 end:0x806C1D10
+	.sdata2     start:0x806C1CA0 end:0x806C1D08
 
 RVL_SDK/gd/GDTransform.c:
 	.text       start:0x8044F838 end:0x80452EDC
 
 RVL_SDK/thp/THPDec.c:
 	.text       start:0x80452EDC end:0x804562AC
-	.bss        start:0x80638CF8 end:0x80639120
+	.rodata     start:0x8055C3F8 end:0x8055C488
+	.data       start:0x805EA5D0 end:0x805EA618
+	.bss        start:0x80638CE0 end:0x80638E30
 	.sdata      start:0x806B27F8 end:0x806B2800
 	.sbss       start:0x806B72E0 end:0x806B7408
-	.sdata2     start:0x806C1D10 end:0x806C1D30
+	.sdata2     start:0x806C1D08 end:0x806C1D28
 
 RVL_SDK/thp/THPAudio.c:
 	.text       start:0x804562AC end:0x80456740
@@ -9592,7 +9594,7 @@ RVLFaceLib/RFL_NANDAccess.c:
 	extabindex  start:0x80006A90 end:0x80006B44
 	.text       start:0x804598A4 end:0x8045B458
 	.data       start:0x805EA7C8 end:0x805EA820
-	.sdata2     start:0x806C1D30 end:0x806C1D38
+	.sdata2     start:0x806C1D28 end:0x806C1D38
 	.sbss2      start:0x806C2918 end:0x806C2920
 
 RVLFaceLib/RFL_Model.c:
@@ -9711,12 +9713,14 @@ RVL_SDK/nwc24/NWC24Parser.c:
 RVL_SDK/nwc24/NWC24MsgCommit.c:
 	.text       start:0x80467B88 end:0x80469DC0
 	.data       start:0x805EAE30 end:0x805EB0D8
+	.bss        start:0x80638E30 end:0x80638E60
 	.sdata      start:0x806B28A8 end:0x806B2940
 	.sbss       start:0x806B7458 end:0x806B7460
 
 RVL_SDK/nwc24/NWC24Schedule.c:
 	.text       start:0x80469DC0 end:0x8046A794
 	.data       start:0x805EB0D8 end:0x805EB138
+	.bss        start:0x80638E60 end:0x80638FE0
 	.sbss       start:0x806B7460 end:0x806B7470
 
 RVL_SDK/nwc24/NWC24DateParser.c:
@@ -10692,7 +10696,7 @@ RVL_SDK/nand/NANDCheck.c:
 RVL_SDK/nand/NANDLogging.c:
 	.text       start:0x804CFCA4 end:0x804D0274
 	.data       start:0x80600820 end:0x80600868
-	.bss        start:0x8066C400 end:0x806781C0
+	.bss        start:0x8066C400 end:0x806748A0
 	.sdata      start:0x806B2C10 end:0x806B2C18
 	.sbss       start:0x806B7A68 end:0x806B7A70
 
@@ -10726,14 +10730,17 @@ RVL_SDK/ipc/ipcMain.c:
 
 RVL_SDK/ipc/ipcclt.c:
 	.text       start:0x804D3408 end:0x804D4D78
+	.bss        start:0x806748A0 end:0x80674940
 	.sdata      start:0x806B2D48 end:0x806B2D50
 	.sbss       start:0x806B7AA0 end:0x806B7AB0
 
 RVL_SDK/ipc/memory.c:
 	.text       start:0x804D4D78 end:0x804D529C
+	.bss        start:0x80674940 end:0x806749C0
 
 RVL_SDK/ipc/ipcProfile.c:
 	.text       start:0x804D529C end:0x804D5460
+	.bss        start:0x806749C0 end:0x80674AC0
 	.sbss       start:0x806B7AB0 end:0x806B7AB8
 
 RVL_SDK/fs/fs.c:
@@ -10750,7 +10757,7 @@ RVL_SDK/wpad/WPAD.c:
 	.text       start:0x804D6B84 end:0x804DE36C
 	.rodata     start:0x80561D38 end:0x80561D78
 	.data       start:0x80600B38 end:0x80600EF0
-	.bss        start:0x806781C0 end:0x80678238
+	.bss        start:0x80674AC0 end:0x80678238
 	.sdata      start:0x806B2D60 end:0x806B2D78
 	.sbss       start:0x806B7AE0 end:0x806B7B10
 	.sdata2     start:0x806C2290 end:0x806C22A8

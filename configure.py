@@ -2415,14 +2415,14 @@ config.libs = [
     SDKLib(
         "esp",
         [
-            Object(NonMatching, "RVL_SDK/esp/esp.c")
+            Object(Matching, "RVL_SDK/esp/esp.c")
         ]
     ),
 
     SDKLib(
         "euart",
         [
-            Object(NonMatching, "RVL_SDK/euart/euart.c")
+            Object(Matching, "RVL_SDK/euart/euart.c")
         ]
     ),
 
@@ -2438,7 +2438,7 @@ config.libs = [
     SDKLib(
         "fs",
         [
-            Object(NonMatching, "RVL_SDK/fs/fs.c")
+            Object(Matching, "RVL_SDK/fs/fs.c")
         ]
     ),
 
@@ -2479,9 +2479,9 @@ config.libs = [
     SDKLib(
         "ipc",
         [
-            Object(NonMatching, "RVL_SDK/ipc/ipcMain.c"),
-            Object(NonMatching, "RVL_SDK/ipc/ipcclt.c"),
-            Object(NonMatching, "RVL_SDK/ipc/memory.c"),
+            Object(Matching, "RVL_SDK/ipc/ipcMain.c"),
+            Object(Matching, "RVL_SDK/ipc/ipcclt.c"),
+            Object(Matching, "RVL_SDK/ipc/memory.c"),
             Object(NonMatching, "RVL_SDK/ipc/ipcProfile.c")
         ]
     ),
@@ -2618,7 +2618,7 @@ config.libs = [
         [
             Object(NonMatching, "RVL_SDK/sc/scsystem.c"),
             Object(NonMatching, "RVL_SDK/sc/scapi.c"),
-            Object(NonMatching, "RVL_SDK/sc/scapi_prdinfo.c"),
+            Object(Matching, "RVL_SDK/sc/scapi_prdinfo.c"),
         ]
     ),
 
@@ -2633,8 +2633,8 @@ config.libs = [
     SDKLib(
         "thp",
         [
-            Object(NonMatching, "RVL_SDK/thp/THPDec.c"),
-            Object(NonMatching, "RVL_SDK/thp/THPAudio.c")
+            Object(Matching, "RVL_SDK/thp/THPDec.c"),
+            Object(Matching, "RVL_SDK/thp/THPAudio.c")
         ]
     ),
 
@@ -2711,7 +2711,7 @@ config.libs = [
         "vi",
         [
             Object(NonMatching, "RVL_SDK/vi/vi.c"),
-            Object(NonMatching, "RVL_SDK/vi/i2c.c"),
+            Object(Matching, "RVL_SDK/vi/i2c.c"),
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c")
         ]
     ),

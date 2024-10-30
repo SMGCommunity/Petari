@@ -166,7 +166,7 @@ err:
     return;
 }
 
-void IpcAckHandler(__OSInterrupt interrupt, OSContext* context) {
+static void IpcAckHandler(__OSInterrupt interrupt, OSContext* context) {
     IPCWriteReg(1, (IPCReadReg(1) & (1 << 5 | 1 << 4)) | 1 << 1);
     ACRWriteReg(0x30, 0x40000000);
 
