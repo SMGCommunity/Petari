@@ -234,7 +234,7 @@ static BOOL ARCConvertEntrynumToPath(ARCHandle* handle, s32 entrynum, char* path
     return TRUE;
 }
 
-BOOL ARCGetCurrentDir(ARCHandle* handle, char* path, u32 maxlen) {
+static BOOL ARCGetCurrentDir(ARCHandle* handle, char* path, u32 maxlen) {
     return ARCConvertEntrynumToPath(handle, (s32)handle->currDir, path, maxlen);
 }
 

@@ -2,7 +2,7 @@
 #include <revolution/dsp/dsp_debug.h>
 
 #define WAIT_FOR_MAIL  \
-    while (DSPCheckMailTDSP()) { }
+    while (DSPCheckMailToDSP()) { }
 
 DSPTaskInfo* __DSP_curr_task;
 DSPTaskInfo* __DSP_first_task;
@@ -61,7 +61,7 @@ void __DSP_boot_task(DSPTaskInfo *pTask) {
     volatile u32 mail;
 
     while (!DSPCheckMailFromDSP()) { }
-    mail = DSPRealMailFromDSP();
+    mail = DSPReadMailFromDSP();
 
     DSPSendMailToDSP(0x80F3A001);
     WAIT_FOR_MAIL

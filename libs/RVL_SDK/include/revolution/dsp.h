@@ -34,7 +34,7 @@ typedef struct DSPTaskStruct {
 
 u32 DSPCheckMailToDSP(void);
 u32 DSPCheckMailFromDSP(void);
-u32 DSPRealMailFromDSP(void);
+u32 DSPReadMailFromDSP(void);
 void DSPSendMailToDSP(u32);
 void DSPAssertInt(void);
 void DSPInit(void);

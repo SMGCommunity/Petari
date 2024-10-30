@@ -2278,7 +2278,7 @@ config.libs = [
     SDKLib(
         "arc",
         [
-            Object(NonMatching, "RVL_SDK/arc/arc.c")
+            Object(Matching, "RVL_SDK/arc/arc.c")
         ]
     ),
 
@@ -2385,16 +2385,16 @@ config.libs = [
     SDKLib(
         "db",
         [
-            Object(NonMatching, "RVL_SDK/db/db.c")
+            Object(Matching, "RVL_SDK/db/db.c")
         ]
     ),
 
     SDKLib(
         "dsp",
         [
-            Object(NonMatching, "RVL_SDK/dsp/dsp.c"),
-            Object(NonMatching, "RVL_SDK/dsp/dsp_debug.c"),
-            Object(NonMatching, "RVL_SDK/dsp/dsp_task.c")
+            Object(Matching, "RVL_SDK/dsp/dsp.c"),
+            Object(Matching, "RVL_SDK/dsp/dsp_debug.c"),
+            Object(Matching, "RVL_SDK/dsp/dsp_task.c")
         ]
     ),
 
@@ -2517,10 +2517,10 @@ config.libs = [
     SDKLib(
         "nand",
         [
-            Object(NonMatching, "RVL_SDK/nand/nand.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDOpenClose.c"),
+            Object(Matching, "RVL_SDK/nand/nand.c"),
+            Object(Matching, "RVL_SDK/nand/NANDOpenClose.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDCore.c"),
-            Object(NonMatching, "RVL_SDK/nand/NANDSecret.c"),
+            Object(Matching, "RVL_SDK/nand/NANDSecret.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
         ]

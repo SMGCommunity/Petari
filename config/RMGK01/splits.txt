@@ -10449,11 +10449,12 @@ RVL_SDK/si/SIBios.c:
 
 RVL_SDK/si/SISamplingRate.c:
 	.text       start:0x804B3750 end:0x804B3830
-	.data       start:0x805FD210 end:0x805FD260
+	.data       start:0x805FD210 end:0x805FD248
 	.sbss       start:0x806B7790 end:0x806B7798
 
 RVL_SDK/db/db.c:
 	.text       start:0x804B3830 end:0x804B3918
+	.data       start:0x805FD248 end:0x805FD260
 	.sbss       start:0x806B7798 end:0x806B77A0
 
 RVL_SDK/vi/vi.c:
@@ -10666,12 +10667,12 @@ RVL_SDK/dsp/dsp_task.c:
 
 RVL_SDK/nand/nand.c:
 	.text       start:0x804CCCB4 end:0x804CDE08
-	.sdata      start:0x806B2BC0 end:0x806B2BD0
+	.sdata      start:0x806B2BC0 end:0x806B2BC8
 
 RVL_SDK/nand/NANDOpenClose.c:
 	.text       start:0x804CDE08 end:0x804CEC2C
 	.data       start:0x80600608 end:0x80600620
-	.sdata      start:0x806B2BD0 end:0x806B2BD8
+	.sdata      start:0x806B2BC8 end:0x806B2BD8
 	.sbss       start:0x806B7A58 end:0x806B7A60
 
 RVL_SDK/nand/NANDCore.c:
