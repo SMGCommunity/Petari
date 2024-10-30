@@ -1,5 +1,5 @@
 #include <RVLFaceLibInternal.h>
-#include <cstdio>
+#include <mem.h>
 
 #define MAGIC_OFFICIAL_DB 'RNOD'
 #define MAGIC_HIDDEN_DB 'RNHD'

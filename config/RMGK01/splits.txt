@@ -10281,13 +10281,15 @@ RVL_SDK/base/PPCArch.c:
 
 RVL_SDK/os/OS.c:
 	.text       start:0x804A2CDC end:0x804A40EC
-	.data       start:0x805EF368 end:0x805EF7E8
+	.data       start:0x805EF368 end:0x805EF758
 	.bss        start:0x80664DE0 end:0x80664E50
 	.sdata      start:0x806B2A10 end:0x806B2A40
-	.sbss       start:0x806B7628 end:0x806B7678
+	.sbss       start:0x806B7628 end:0x806B7670
 
 RVL_SDK/os/OSAlarm.c:
 	.text       start:0x804A40EC end:0x804A48D0
+	.data       start:0x805EF758 end:0x805EF768
+	.sbss       start:0x806B7670 end:0x806B7678
 
 RVL_SDK/os/OSAlloc.c:
 	.text       start:0x804A48D0 end:0x804A4BD8
@@ -10301,6 +10303,7 @@ RVL_SDK/os/OSArena.c:
 
 RVL_SDK/os/OSAudioSystem.c:
 	.text       start:0x804A4C6C end:0x804A5120
+	.data       start:0x805EF768 end:0x805EF7E8
 
 RVL_SDK/os/OSCache.c:
 	.text       start:0x804A5120 end:0x804A5720
@@ -10325,17 +10328,18 @@ RVL_SDK/os/OSExec.c:
 
 RVL_SDK/os/OSFatal.c:
 	.text       start:0x804A7E78 end:0x804A8AB0
-	.bss        start:0x80665188 end:0x80665D70
+	.bss        start:0x80665188 end:0x806651A0
 	.sdata      start:0x806B2A68 end:0x806B2A78
 	.sdata2     start:0x806C2088 end:0x806C20D0
 
 RVL_SDK/os/OSFont.c:
 	.text       start:0x804A8AB0 end:0x804A9778
-	.data       start:0x805F0110 end:0x805F0AE0
+	.data       start:0x805F0110 end:0x805F0AA0
 	.sbss       start:0x806B76A8 end:0x806B76B8
 
 RVL_SDK/os/OSInterrupt.c:
 	.text       start:0x804A9778 end:0x804A9EFC
+	.data       start:0x805F0AA0 end:0x805F0AD0
 	.sbss       start:0x806B76B8 end:0x806B76D0
 
 RVL_SDK/os/OSLink.c:
@@ -10346,6 +10350,7 @@ RVL_SDK/os/OSMessage.c:
 
 RVL_SDK/os/OSMemory.c:
 	.text       start:0x804AA1E8 end:0x804AAAC4
+	.data       start:0x805F0AD0 end:0x805F0AE0
 
 RVL_SDK/os/OSMutex.c:
 	.text       start:0x804AAAC4 end:0x804AADC8
@@ -10356,26 +10361,30 @@ RVL_SDK/os/OSReboot.c:
 
 RVL_SDK/os/OSReset.c:
 	.text       start:0x804AAE48 end:0x804AB790
-	.data       start:0x805F0AE0 end:0x805FCC08
+	.data       start:0x805F0AE0 end:0x805F0D68
 	.sdata      start:0x806B2A78 end:0x806B2A80
 	.sbss       start:0x806B76D8 end:0x806B76E8
 
 RVL_SDK/os/OSRtc.c:
 	.text       start:0x804AB790 end:0x804AC21C
+	.bss        start:0x806651A0 end:0x806651F8
 
 RVL_SDK/os/OSSync.c:
 	.text       start:0x804AC21C end:0x804AC29C
 
 RVL_SDK/os/OSThread.c:
 	.text       start:0x804AC29C end:0x804AD9FC
+	.bss        start:0x806651F8 end:0x80665C00
 	.sdata      start:0x806B2A80 end:0x806B2A88
 	.sbss       start:0x806B76E8 end:0x806B76F8
 
 RVL_SDK/os/OSTime.c:
 	.text       start:0x804AD9FC end:0x804ADE10
+	.data       start:0x805F0D68 end:0x805F0DC8
 
 RVL_SDK/os/OSUtf.c:
 	.text       start:0x804ADE10 end:0x804AE048
+	.data       start:0x805F0DC8 end:0x805FCC08
 
 RVL_SDK/os/OSIpc.c:
 	.text       start:0x804AE048 end:0x804AE070

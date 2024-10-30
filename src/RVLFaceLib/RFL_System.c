@@ -17,12 +17,12 @@
 #define RFLGetLastReason_()                                                    \
     (RFLAvailable() ? RFLiGetLastReason_() : sRFLLastReason)
 
-const char* __RFLVersion =
+static char* __RFLVersion =
     "<< RVL_SDK - RFL \trelease build: Mar  6 2008 17:40:04 (0x4199_60831) >>";
 
-static const RFLiCoordinateData scCoordinate = {1, 2, 0, FALSE, FALSE, FALSE};
+const RFLiCoordinateData scCoordinate = {1, 2, 0, FALSE, FALSE, FALSE};
 
-static RFLiManager* sRFLiManager = NULL;
+static RFLiManager* sRFLManager = NULL;
 static RFLErrcode sRFLLastErrCode = RFLErrcode_NotAvailable;
 static u8 sRFLiFileBrokenType;
 static s32 sRFLLastReason;
@@ -49,11 +49,11 @@ RFLErrcode RFLInitResAsync(void* workBuffer, void* resBuffer, u32 resSize,
         workSize = deluxeTex ? RFL_DELUXE_WORK_SIZE : RFL_WORK_SIZE;
         memset(workBuffer, 0, workSize);
 
-        sRFLiManager = (RFLiManager*)workBuffer;
+        sRFLManager = (RFLiManager*)workBuffer;
         sRFLLastErrCode = RFLErrcode_NotAvailable;
         sRFLLastReason = NAND_RESULT_OK;
         sRFLiFileBrokenType = RFLiFileBrokenType_DBNotFound;
-        sRFLiManager->workBuffer = (u8*)workBuffer + sizeof(RFLiManager);
+        sRFLManager->workBuffer = (u8*)workBuffer + sizeof(RFLiManager);
 
         heapSize = deluxeTex ? RFL_DELUXE_WORK_SIZE - sizeof(RFLiManager)
                              : RFL_WORK_SIZE - sizeof(RFLiManager);
@@ -100,7 +100,7 @@ RFLErrcode RFLInitResAsync(void* workBuffer, void* resBuffer, u32 resSize,
     return error;
 }
 
-RFLErrcode RFLInitRes(void* workBuffer, void* resBuffer, u32 resSize,
+static RFLErrcode RFLInitRes(void* workBuffer, void* resBuffer, u32 resSize,
                       BOOL deluxeTex) {
     RFLInitResAsync(workBuffer, resBuffer, resSize, deluxeTex);
     return RFLWaitAsync();
@@ -127,7 +127,7 @@ void RFLExit(void) {
     MEMDestroyExpHeap(RFLiGetManager()->systemHeap);
     MEMDestroyExpHeap(RFLiGetManager()->rootHeap);
 
-    sRFLiManager = NULL;
+    sRFLManager = NULL;
 }
 
 static void bootloadDB2Res_(void) {
@@ -143,19 +143,19 @@ static void bootloadDB2Res_(void) {
     }
 }
 
-RFLErrcode RFLiBootLoadAsync(void) {
+static RFLErrcode RFLiBootLoadAsync(void) {
     return RFLiBootLoadDatabaseAsync(bootloadDB2Res_);
 }
 
 BOOL RFLAvailable(void) {
-    return sRFLiManager != NULL;
+    return sRFLManager != NULL;
 }
 
 static void* allocal_(u32 size, s32 align) {
     return MEMAllocFromExpHeapEx(RFLiGetManager()->tmpHeap, size, align);
 }
 
-void* RFLiAlloc(u32 size) {
+static void* RFLiAlloc(u32 size) {
     return allocal_(size, 8);
 }
 
@@ -188,7 +188,7 @@ void RFLiSetWorking(BOOL working) {
 }
 
 RFLiManager* RFLiGetManager(void) {
-    return sRFLiManager;
+    return sRFLManager;
 }
 
 RFLErrcode RFLGetAsyncStatus(void) {
@@ -211,7 +211,7 @@ s32 RFLGetLastReason(void) {
     return !RFLAvailable() ? sRFLLastReason : RFLiGetLastReason_();
 }
 
-RFLErrcode RFLWaitAsync(void) {
+static RFLErrcode RFLWaitAsync(void) {
     volatile RFLErrcode status;
 
     do {
@@ -263,7 +263,7 @@ BOOL RFLiNeedRepairError(void) {
     return *broken >> RFLiFileBrokenType_DBBroken & 1;
 }
 
-BOOL RFLiCriticalError(void) {
+static BOOL RFLiCriticalError(void) {
     u8* broken = &sRFLiFileBrokenType;
 
     if (RFLAvailable()) {

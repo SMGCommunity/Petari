@@ -258,7 +258,7 @@ cflags_nw = [
 
 cflags_sdk = [
     "-nodefaults",
-    "-lang c++",
+    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -2304,7 +2304,7 @@ config.libs = [
     SDKLib(
         "base",
         [
-            Object(NonMatching, "RVL_SDK/base/PPCArch.c")
+            Object(Matching, "RVL_SDK/base/PPCArch.c")
         ]
     ),
 
@@ -2565,27 +2565,27 @@ config.libs = [
         "os",
         [
             Object(NonMatching, "RVL_SDK/os/OS.c"),
-            Object(NonMatching, "RVL_SDK/os/OSAlarm.c"),
-            Object(NonMatching, "RVL_SDK/os/OSAlloc.c"),
-            Object(NonMatching, "RVL_SDK/os/OSArena.c"),
-            Object(NonMatching, "RVL_SDK/os/OSAudioSystem.c"),
+            Object(Matching, "RVL_SDK/os/OSAlarm.c"),
+            Object(Matching, "RVL_SDK/os/OSAlloc.c"),
+            Object(Matching, "RVL_SDK/os/OSArena.c"),
+            Object(Matching, "RVL_SDK/os/OSAudioSystem.c"),
             Object(NonMatching, "RVL_SDK/os/OSCache.c"),
             Object(NonMatching, "RVL_SDK/os/OSContext.c"),
             Object(NonMatching, "RVL_SDK/os/OSError.c"),
             Object(NonMatching, "RVL_SDK/os/OSExec.c"),
             Object(NonMatching, "RVL_SDK/os/OSFatal.c"),
             Object(NonMatching, "RVL_SDK/os/OSFont.c"),
-            Object(NonMatching, "RVL_SDK/os/OSInterrupt.c"),
-            Object(NonMatching, "RVL_SDK/os/OSLink.c"),
-            Object(NonMatching, "RVL_SDK/os/OSMessage.c"),
-            Object(NonMatching, "RVL_SDK/os/OSMemory.c"),
-            Object(NonMatching, "RVL_SDK/os/OSMutex.c"),
-            Object(NonMatching, "RVL_SDK/os/OSReboot.c"),
+            Object(Matching, "RVL_SDK/os/OSInterrupt.c"),
+            Object(Matching, "RVL_SDK/os/OSLink.c"),
+            Object(Matching, "RVL_SDK/os/OSMessage.c"),
+            Object(Matching, "RVL_SDK/os/OSMemory.c"),
+            Object(Matching, "RVL_SDK/os/OSMutex.c"),
+            Object(Matching, "RVL_SDK/os/OSReboot.c"),
             Object(NonMatching, "RVL_SDK/os/OSReset.c"),
-            Object(NonMatching, "RVL_SDK/os/OSRtc.c"),
-            Object(NonMatching, "RVL_SDK/os/OSSync.c"),
-            Object(NonMatching, "RVL_SDK/os/OSThread.c"),
-            Object(NonMatching, "RVL_SDK/os/OSTime.c"),
+            Object(Matching, "RVL_SDK/os/OSRtc.c"),
+            Object(Matching, "RVL_SDK/os/OSSync.c"),
+            Object(Matching, "RVL_SDK/os/OSThread.c"),
+            Object(Matching, "RVL_SDK/os/OSTime.c"),
             Object(NonMatching, "RVL_SDK/os/OSUtf.c"),
             Object(NonMatching, "RVL_SDK/os/OSIpc.c"),
             Object(NonMatching, "RVL_SDK/os/OSStateTM.c"),
@@ -2641,7 +2641,7 @@ config.libs = [
     SDKLib(
         "tpl",
         [
-            Object(NonMatching, "RVL_SDK/tpl/TPL.c")
+            Object(Matching, "RVL_SDK/tpl/TPL.c")
         ]
     ),
 
