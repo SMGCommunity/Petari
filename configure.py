@@ -2401,11 +2401,11 @@ config.libs = [
     SDKLib(
         "dvd",
         [
-            Object(NonMatching, "RVL_SDK/dvd/dvdfs.c"),
+            Object(Matching, "RVL_SDK/dvd/dvdfs.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvd.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvdqueue.c"),
+            Object(Matching, "RVL_SDK/dvd/dvdqueue.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvderror.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvdidutils.c"),
+            Object(Matching, "RVL_SDK/dvd/dvdidutils.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvdFatal.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
             Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c")

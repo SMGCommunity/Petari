@@ -26,15 +26,15 @@ void GDWrite_f32(f32);
 
 void GDOverflowed(void);
 
-static inline void GDOverflowCheck(u32 size) {
+static void GDOverflowCheck(u32 size) {
   if (__GDCurrentDL->ptr + size > __GDCurrentDL->top) {
     GDOverflowed();
   }
 }
 
-static inline void __GDWrite(u8 data) { *__GDCurrentDL->ptr++ = data; }
+static void __GDWrite(u8 data) { *__GDCurrentDL->ptr++ = data; }
 
-static inline void GDPosition3f32(f32 x, f32 y, f32 z) {
+static void GDPosition3f32(f32 x, f32 y, f32 z) {
   GDWrite_f32(x);
   GDWrite_f32(y);
   GDWrite_f32(z);

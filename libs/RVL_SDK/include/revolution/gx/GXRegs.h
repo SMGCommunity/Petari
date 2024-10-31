@@ -7,7 +7,11 @@ extern "C" {
 
 #include <revolution/base/PPCWGPipe.h>
 
+#ifdef __MWERKS__
 extern volatile PPCWGPipe gxfifo : 0xCC008000;
+#else
+extern volatile PPCWGPipe gxfifo;
+#endif
 extern volatile void	*__piReg;
 extern volatile void	*__cpReg;
 extern volatile void	*__peReg;
@@ -101,8 +105,9 @@ extern volatile void	*__memReg;
     GX_WRITE_U32((reg));\
 }
 
+#ifdef __MWERKS__
 #define GX_DEFINE_GX_READ_COUNTER(unit) \
-    inline u32 __GXRead##unit##CounterU32( u32 regAddrL, u32 regAddrH ) \
+    u32 __GXRead##unit##CounterU32( u32 regAddrL, u32 regAddrH ) \
     { \
         u32  ctrH0, ctrH1, ctrL; \
         ctrH0 = GX_##unit##_REG_READ_U16(regAddrH); \
@@ -114,6 +119,9 @@ extern volatile void	*__memReg;
         } while ( ctrH0 != ctrH1 ); \
         return ((ctrH0 << 16) | ctrL); \
     }
+#else
+#define GX_DEFINE_GX_READ_COUNTER(unit)
+#endif
 
 GX_DEFINE_GX_READ_COUNTER(CP)
 GX_DEFINE_GX_READ_COUNTER(PE)

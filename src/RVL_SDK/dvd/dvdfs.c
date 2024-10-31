@@ -251,7 +251,7 @@ static BOOL DVDConvertEntrynumToPath(s32 entrynum, char* path, u32 maxlen) {
     return TRUE;
 }
 
-BOOL DVDGetCurrentDir(char* path, u32 maxlen) {
+static BOOL DVDGetCurrentDir(char* path, u32 maxlen) {
     return DVDConvertEntrynumToPath((s32)currentDirectory, path, maxlen);
 }
 
