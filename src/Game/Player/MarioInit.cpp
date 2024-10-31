@@ -80,7 +80,7 @@ void Mario::initMember()
     _A40.zero();
     _A4C.zero();
     _A58.zero();
-    _A64 = 0f;
+    _A64 = 0.0f;
 
     for (int i = 0; i < 0x20; i++) {
         _A6C[i] = 0;

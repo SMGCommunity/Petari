@@ -144,8 +144,8 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.1.4"
-config.objdiff_tag = "v2.3.3"
+config.dtk_tag = "v1.2.0"
+config.objdiff_tag = "v2.3.4"
 config.sjiswrap_tag = "v1.2.0"
 config.wibo_tag = "0.6.11"
 
@@ -164,10 +164,10 @@ config.ldflags = [
     "-nodefaults",
 ]
 if args.debug:
-    config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
+    config.ldflags.append("-gdwarf-2")
 if args.map:
     config.ldflags.append("-mapunused")
-    # config.ldflags.append("-listclosure") # For Wii linkers
+    config.ldflags.append("-listclosure")
 
 # Use for any additional files that should cause a re-configure when modified
 config.reconfig_deps = []
@@ -360,19 +360,20 @@ cflags_runtime = [
     "-inline auto",
 ]
 
-# REL flags
-cflags_rel = [
-    *cflags_base,
-    "-sdata 0",
-    "-sdata2 0",
-]
+if args.debug:
+    cflags_base.append("-gdwarf-2") #includes runtime
+    cflags_game.append("-gdwarf-2")
+    cflags_nw.append("-gdwarf-2")
+    cflags_sdk.append("-gdwarf-2")
+    cflags_rfl.append("-gdwarf-2")
+    cflags_msl.append("-gdwarf-2")
 
 config.linker_version = "GC/3.0a5"
 
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_game,
         "progress_category": "game",
         "objects": objects,
@@ -381,7 +382,7 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_nw,
         "progress_category": "nw4r",
         "objects": objects,
@@ -391,7 +392,7 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_sdk,
         "progress_category": "sdk",
         "objects": objects,
@@ -400,7 +401,7 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_rfl,
         "progress_category": "rfl",
         "objects": objects,
@@ -409,7 +410,7 @@ def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_msl,
         "progress_category": "msl",
         "objects": objects,
@@ -418,7 +419,7 @@ def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_base,
         "progress_category": "trk",
         "objects": objects,
@@ -427,7 +428,7 @@ def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "GC/3.0a5",
         "cflags": cflags_base,
         "progress_category": "jsys",
         "objects": objects,
