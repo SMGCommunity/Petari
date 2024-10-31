@@ -145,7 +145,7 @@ Mario::Mario(MarioActor *actor) : MarioModule(actor)
     _38C = -_368;
     _398.setInline(0.0f, 1.0f, 0.0f);
     _344.setInline(1.0f, 0.0f, 0.0f);
-    _74C = 0f;
+    _74C = 0.0f;
     _750 = 0;
     _754 = 0;
     _40C = 0;

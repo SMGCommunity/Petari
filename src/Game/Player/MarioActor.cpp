@@ -85,7 +85,7 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
     _3AC = 0;
     _B94 = 0;
     _378 = 0;
-    _6D4 = 0f;
+    _6D4 = 0.0f;
     mSuperKinokoCollected = false;
     mPowerupCollected = false;
     mTransforming = false;
@@ -746,9 +746,9 @@ void MarioActor::movement()
                 TVec3f stack_E0;
                 Triangle *pTmp = mMario->getTmpPolygon();
 
-                if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec() % 200f)) {
+                if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec() % 200.0f)) {
                     TVec3f stack_D4;
-                    if (MR::vecKillElement(stack_E0.translateOpposite(mPosition), getGravityVec(), &stack_D4) < -5f && pTmp->mParts && !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
+                    if (MR::vecKillElement(stack_E0.translateOpposite(mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
                         mPosition = stack_E0;
                         mMario->_130 = mPosition;
                         mMario->stopJump();

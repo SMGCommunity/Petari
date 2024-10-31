@@ -1014,7 +1014,7 @@ bool MarioSwim::update()
         }
     }
     else if (_19) {
-        AreaObj *obj = MR::getAreaObj("WaterArea", getTrans().translate(getGravityVec() % 100f));
+        AreaObj *obj = MR::getAreaObj("WaterArea", getTrans().translate(getGravityVec() % 100.0f));
         if (obj) {
             TPos3f *followMtx = obj->getFollowMtx();
             if (followMtx) {

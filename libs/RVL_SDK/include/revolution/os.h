@@ -10,9 +10,6 @@ extern "C" {
 
 #define OSHalt(msg) OSPanic(__FILE__, __LINE__, msg)
 
-typedef s64         OSTime;
-typedef u32         OSTick;
-
 #ifdef __MWERKS__
 u32 __OSBusClock : (0x8000 << 16 | 0x00F8);
 u32 __MEM2End : (0x8000 << 16 | 0x3128);
@@ -60,9 +57,6 @@ u32 OSCachedToPhysical(const void* caddr);
 #define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 #define OSDiffTick(tick1, tick0) ((s32) (tick1) - (s32) (tick0))
-
-OSTick OSGetTick(void);
-OSTime OSGetTime(void);
 
 u32 OSGetConsoleType(void);
 
