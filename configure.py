@@ -172,6 +172,10 @@ if args.map:
 # Use for any additional files that should cause a re-configure when modified
 config.reconfig_deps = []
 
+# Optional numeric ID for decomp.me preset
+# Can be overridden in libraries or objects
+config.scratch_preset_id = None
+
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
@@ -181,7 +185,7 @@ cflags_base = [
     "-enum int",
     "-fp hardware",
     "-Cpp_exceptions off",
-    "-O4,s",
+    "-O4,p",
     "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
@@ -190,7 +194,7 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-enc SJIS",
     "-i include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}"
@@ -358,13 +362,8 @@ cflags_runtime = [
     "-gccinc",
     "-common off",
     "-inline auto",
-]
-
-# REL flags
-cflags_rel = [
-    *cflags_base,
-    "-sdata 0",
-    "-sdata2 0",
+    "-i libs/Runtime/include",
+    "-i libs/MSL_C/include"
 ]
 
 config.linker_version = "GC/3.0a5"
