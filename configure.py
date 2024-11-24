@@ -202,7 +202,6 @@ cflags_base = [
 
 cflags_game = [
     "-nodefaults",
-    "-lang c++",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -234,7 +233,6 @@ cflags_game = [
 
 cflags_nw = [
     "-nodefaults",
-    "-lang c++",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -262,7 +260,6 @@ cflags_nw = [
 
 cflags_sdk = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -293,7 +290,6 @@ cflags_sdk = [
 
 cflags_rfl = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -322,7 +318,6 @@ cflags_rfl = [
 
 cflags_msl = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
