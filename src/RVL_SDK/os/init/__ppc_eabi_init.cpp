@@ -27,35 +27,6 @@ asm void __init_hardware(void) {
     blr
 }
 
-/* written in assembly to generate the frame allocations */
-asm void __init_user(void) {
-    fralloc
-    bl __init_cpp
-    frfree
-    blr
-}
-
-static void __init_cpp(void) {
-    funcPtr* ctor;
-
-    for (ctor = _ctors; *ctor; ctor++) {
-        (*ctor)();
-    }
-}
-
-static void __fini_cpp(void) {
-    funcPtr* dtor;
-
-    for (dtor = _dtors; *dtor; dtor++) {
-        (*dtor)();
-    }
-}
-
-void exit(int status) {
-    __fini_cpp();
-    PPCHalt();
-}
-
 asm void __flush_cache(void *, unsigned int) {
     nofralloc
 

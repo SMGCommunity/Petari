@@ -10,23 +10,12 @@ static u8 Debug_BBA = 0;
 
 static void __init_registers(void);
 static void __init_data(void);
-
 extern void OSInit(void);
 extern void DBInit(void);
-
 extern void main(void);
-
-void InitMetroTRK(void) {
-    return;
-}
-
-void InitMetroTRK_BBA(void) {
-    return;
-}
-
-void exit(void) {
-    return;
-}
+extern void exit(void);
+extern void InitMetroTRK(void);
+extern void InitMetroTRK_BBA(void);
 
 static void __check_pad3(void) {
     if ((Pad3Button & 0xEEF) == 0xEEF) {
