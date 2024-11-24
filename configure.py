@@ -2594,6 +2594,8 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
             Object(NonMatching, "RVL_SDK/os/OSPlayTime.c"),
             Object(NonMatching, "RVL_SDK/os/OSLaunch.c"),
+            Object(NonMatching, "RVL_SDK/os/__start.c"),
+            Object(NonMatching, "RVL_SDK/os/__ppc_eabi_init.cpp"),
             Object(NonMatching, "RVL_SDK/os/__ppc_eabi_init.c")
         ]
     ),

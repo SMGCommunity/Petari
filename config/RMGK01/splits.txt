@@ -149,6 +149,12 @@ nw4r/lyt/lyt_common.cpp:
 	.text       start:0x800156F8 end:0x800161D0
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 
+RVL_SDK/os/__start.c:
+	.init       start:0x80004000 end:0x800042E0
+
+RVL_SDK/os/__ppc_eabi_init.cpp:
+	.init       start:0x800042E0 end:0x80004338
+
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
 	.data       start:0x80564A00 end:0x80564A80
@@ -11088,6 +11094,7 @@ RVL_SDK/bte/sdp_utils.c:
 	.data       start:0x80609630 end:0x80609868
 
 Runtime/__mem.c:
+	.init       start:0x80004338 end:0x8000446C
 	.text       start:0x80518350 end:0x8051836C
 
 Runtime/__va_arg.c:
@@ -11440,6 +11447,7 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8052AEDC end:0x8052AF14
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
+	.init       start:0x8000446C end:0x80006420
 	.text       start:0x8052AF14 end:0x8052AFCC
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c:
