@@ -149,10 +149,10 @@ nw4r/lyt/lyt_common.cpp:
 	.text       start:0x800156F8 end:0x800161D0
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 
-RVL_SDK/os/__start.c:
+RVL_SDK/os/init/__start.c:
 	.init       start:0x80004000 end:0x800042E0
 
-RVL_SDK/os/__ppc_eabi_init.cpp:
+RVL_SDK/os/init/__ppc_eabi_init.cpp:
 	.init       start:0x800042E0 end:0x80004338
 
 Game/Animation/AnmPlayer.cpp:
