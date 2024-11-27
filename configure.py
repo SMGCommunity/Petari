@@ -144,8 +144,8 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.1.4"
-config.objdiff_tag = "v2.3.3"
+config.dtk_tag = "v1.3.0"
+config.objdiff_tag = "v2.4.0"
 config.sjiswrap_tag = "v1.2.0"
 config.wibo_tag = "0.6.11"
 
@@ -202,7 +202,6 @@ cflags_base = [
 
 cflags_game = [
     "-nodefaults",
-    "-lang c++",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -233,7 +232,6 @@ cflags_game = [
 
 cflags_nw = [
     "-nodefaults",
-    "-lang c++",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -261,7 +259,6 @@ cflags_nw = [
 
 cflags_sdk = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -292,7 +289,6 @@ cflags_sdk = [
 
 cflags_rfl = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
@@ -321,7 +317,6 @@ cflags_rfl = [
 
 cflags_msl = [
     "-nodefaults",
-    "-lang c",
     "-proc gekko",
     "-align powerpc",
     "-enum int",
