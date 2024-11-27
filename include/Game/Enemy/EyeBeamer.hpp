@@ -50,7 +50,10 @@ public:
     TVec3f _104;
     TRot3f mWaterSurfaceMtx;                    // 0x110
     TVec3f _140;
-
+    u32 _14C;
+    u32 _150;
+    u32 _154;
+    u32 _158;
     f32 _15C;
     f32 _160;
 
