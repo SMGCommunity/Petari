@@ -116,7 +116,11 @@ void OSSaveFPUContext(OSContext *);
 
 void __OSContextInit(void);
 
+#ifdef __MWERKS__
 void OSFillFPUContext(register OSContext* context);
+#else
+void OSFillFPUContext(OSContext* context);
+#endif
 
 #ifdef __cplusplus
 }
