@@ -1,4 +1,4 @@
-#include <revolution/gd.h>
+#include <revolution/gd/GDBase.h>
 
 GDLObj* __GDCurrentDL = NULL;
 static GDOverflowCallback overflowcb = NULL;

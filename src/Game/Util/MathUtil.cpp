@@ -7,6 +7,9 @@
 
 #include <cmath>
 
+static f32 minDegree = 0.0f;
+static f32 maxDegree = 360.0f;
+
 namespace MR {
     f32 getRandom(f32 min, f32 max) {
         return (min + ((max - min) * getRandom()));

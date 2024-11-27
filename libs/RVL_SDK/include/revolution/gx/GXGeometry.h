@@ -22,8 +22,8 @@ void GXSetTexCoordGen2(GXTexCoordID, GXTexGenType, GXTexGenSrc, u32, GXBool, u32
 void GXSetNumTexGens(u8);
 
 
-static void GXEnd(void) {
-    
+static inline void GXEnd(void) {
+
 }
 
 void __GXSetSUTexRegs(void);

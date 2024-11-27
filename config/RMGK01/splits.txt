@@ -4106,14 +4106,14 @@ Game/MapObj/AstroDomeSky.cpp:
 	.text       start:0x801AE3F8 end:0x801AEE08
 	.ctors      start:0x8052EC40 end:0x8052EC44
 	.rodata     start:0x80533018 end:0x80533048
-	.data       start:0x8058E9B8 end:0x8058EBA0
+	.data       start:0x8058E9B8 end:0x8058EB60
 	.sbss       start:0x806B4DF8 end:0x806B4E18
 	.sdata2     start:0x806BC758 end:0x806BC780
 
 Game/MapObj/AstroMapBoard.cpp:
 	.text       start:0x801AEE08 end:0x801AEFF4
 	.ctors      start:0x8052EC44 end:0x8052EC48
-	.data       start:0x8058EBA0 end:0x8058EC40
+	.data       start:0x8058EB60 end:0x8058EC40
 	.sdata      start:0x806B1D38 end:0x806B1D40
 	.sbss       start:0x806B4E18 end:0x806B4E20
 	.sdata2     start:0x806BC780 end:0x806BC788

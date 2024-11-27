@@ -1,8 +1,7 @@
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-#include "Game/Util.hpp"
-
+#include <revolution/gd/GDBase.h>
 static u8 unknownVal = 1;
 
 static GXColor color1 = { 0x28, 0x28, 0x28, 0x14 };

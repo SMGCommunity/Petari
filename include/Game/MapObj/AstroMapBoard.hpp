@@ -11,7 +11,3 @@ public:
     virtual void initAfterPlacement();
     virtual void connectToScene(const MapObjActorInitInfo &);
 };
-
-namespace NrvAstroMapBoard {
-    NERVE_DECL_NULL(AstroMapBoardNrvWait);
-};

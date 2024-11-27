@@ -1,7 +1,6 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/DirectDraw.hpp"
+#include <revolution/gx/GXVert.h>
 
 
 SpinDriverPathDrawInit::SpinDriverPathDrawInit() : NameObj("スピンドライバーレール描画初期化"),

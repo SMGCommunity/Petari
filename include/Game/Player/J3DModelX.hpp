@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <revolution/gd/GDBase.h>
 
 class J3DShapeX;
 class J3DShapePacketX;

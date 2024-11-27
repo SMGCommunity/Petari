@@ -4,13 +4,7 @@
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
 
-static f32 minDegree = 0.0f;
-static f32 maxDegree = 360.0f;
-
-static f32 flt_8060FC80[1816];
-
 namespace MR {
-    
     void initAcosTable();
 
     template<typename T>

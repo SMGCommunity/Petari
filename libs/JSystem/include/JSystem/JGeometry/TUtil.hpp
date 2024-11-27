@@ -30,6 +30,8 @@ namespace JGeometry {
         }
 
         static f32 asin(f32 val) NO_INLINE {
+            
+    
             if (val >= 1.0f) {
                 return 1.5707964f;
             }

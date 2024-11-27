@@ -17,6 +17,17 @@ NrvMapObjActor::HostTypeDone NrvMapObjActor::HostTypeDone::sInstance;
 NrvMapObjActor::HostTypeMove NrvMapObjActor::HostTypeMove::sInstance;
 NrvMapObjActor::HostTypeWait NrvMapObjActor::HostTypeWait::sInstance;
 
+namespace {
+    const char* cBrkNameColorChange = "ColorChange";
+    const char* cBtpNameTexChange = "TexChange";
+    const char* cBtkNameTexChange = "TexChange";
+    const char* cEffectNameAppear = "Appear";
+    const char* cBckNameMove = "Move";
+    const char* cFollowJointName = "Move";
+    const char* cEffectNameBreak = "Break";
+    const char* cBckNameBreak = "Break";
+};
+
 MapObjActor::MapObjActor(const char *pName) : LiveActor(pName) {
     mObjectName = 0;
     mPlanetLodCtrl = 0;

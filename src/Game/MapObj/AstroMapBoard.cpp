@@ -5,6 +5,10 @@ namespace {
     static const char* cDummyTexName = "MapDummy";
 };
 
+namespace NrvAstroMapBoard {
+    NERVE_DECL_NULL(AstroMapBoardNrvWait);
+};
+
 AstroMapBoard::AstroMapBoard(const char *pName) : MapObjActor(pName) {
 
 }
@@ -14,7 +18,7 @@ void AstroMapBoard::init(const JMapInfoIter &rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupPrepareChangeDummyTexture(cDummyTexName);
-    info.setupNerve(&NrvAstroMapBoard::AstroMapBoardNrvWait::sInstance);
+    info.setupNerve(NrvAstroMapBoard::AstroMapBoardNrvWait::get());
     info.setupFarClipping(-1.0f);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);

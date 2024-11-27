@@ -19,25 +19,12 @@ namespace NrvMapObjActor {
     NERVE(HostTypeDone);
 };
 
-namespace {
-    const char* cBrkNameColorChange = "ColorChange";
-    const char* cBtpNameTexChange = "TexChange";
-    const char* cBtkNameTexChange = "TexChange";
-    const char* cEffectNameAppear = "Appear";
-    const char* cBckNameMove = "Move";
-    const char* cFollowJointName = "Move";
-    const char* cEffectNameBreak = "Break";
-    const char* cBckNameBreak = "Break";
-};
-
 class MapObjActor : public LiveActor {
 public:
     MapObjActor(const char *);
     MapObjActor(const char *, const char *);
 
-    virtual ~MapObjActor() {
-
-    }
+    inline virtual ~MapObjActor();
 
     virtual void init(const JMapInfoIter &);
     virtual void initAfterPlacement();
@@ -52,9 +39,7 @@ public:
     virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo &);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo &);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo &);
-    virtual void makeSubModels(const JMapInfoIter &, const MapObjActorInitInfo &) {
-
-    }
+    virtual void makeSubModels(const JMapInfoIter &, const MapObjActorInitInfo &);
 
     void initialize(const JMapInfoIter &, const MapObjActorInitInfo &);
     bool isObjectName(const char *) const;

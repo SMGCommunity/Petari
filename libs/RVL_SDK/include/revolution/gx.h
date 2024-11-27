@@ -21,7 +21,6 @@ extern "C" {
 #include "revolution/gx/GXTexture.h"
 #include "revolution/gx/GXTransform.h"
 #include "revolution/gx/GXTypes.h"
-#include "revolution/gx/GXVert.h"
 #include "revolution/types.h"
 
 

@@ -6,9 +6,7 @@ enum JSUStreamSeekFrom;
 
 class JSURandomInputStream : public JSUInputStream {
 public:
-    JSURandomInputStream() : JSUInputStream() {
-
-    }
+    inline JSURandomInputStream();
 
     virtual ~JSURandomInputStream();
 

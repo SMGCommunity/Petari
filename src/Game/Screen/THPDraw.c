@@ -1,4 +1,5 @@
 #include <revolution.h>
+#include <revolution/gx/GXVert.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -99,9 +99,10 @@ public:\
 class name : public Nerve\
 {\
 public:\
-    name() NO_INLINE {\
-    };\
-    virtual void execute(Spine *pSpine) const {\
-    };\
+    name() NO_INLINE {}\
+    virtual void execute(Spine *pSpine) const {}\
+    inline static name* get() {\
+        return &sInstance;\
+    }\
     static name sInstance;\
 };\

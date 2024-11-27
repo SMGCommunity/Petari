@@ -4,8 +4,8 @@
 
 class JSUMemoryOutputStream : public JSURandomOutputStream {
 public:
-    JSUMemoryOutputStream() {
-
+    inline JSUMemoryOutputStream() {
+        
     }
 
     virtual ~JSUMemoryOutputStream();
