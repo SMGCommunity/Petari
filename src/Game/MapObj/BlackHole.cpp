@@ -104,7 +104,7 @@ void BlackHole::initMapToolInfo(const JMapInfoIter &rIter) {
     else {
         TVec3f stack_C;
         stack_C.setInlineXYPS(mScale);
-        _A0 = PSVECMag(stack_C.toCVec());
+        _A0 = PSVECMag(stack_C);
     }
 
     f32 arg0;

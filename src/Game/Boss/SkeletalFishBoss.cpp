@@ -203,6 +203,7 @@ void SkeletalFishBoss::control() {
     }
 }
 
+/*
 void SkeletalFishBoss::calcAnim() {
     LiveActor::calcAnim();
     TVec3f zDir;
@@ -241,6 +242,7 @@ void SkeletalFishBoss::calcAnim() {
 
     mBossHead->updateCollisionMtx();
 }
+    */
 
 bool SkeletalFishBoss::calcJoint(TPos3f *pJointPos, const JointControllerInfo &rInfo) {
     if (mJointIndicies[rInfo._4->_14] == -1) {
@@ -296,7 +298,7 @@ void SkeletalFishBoss::exeSwim() {
     TVec3f mouthPos;
     getMouthSensorCenterPos(mouthPos, 5000.0f);
 
-    bool isClose = PSVECDistance(mouthPos.toCVec(), MR::getPlayerPos()->toCVec()) < 5000.0f;
+    bool isClose = PSVECDistance(&mouthPos, MR::getPlayerPos()) < 5000.0f;
 
     if (isClose) {
         setNerve(&::SkeletalFishBossNrvOpen::sInstance);
@@ -321,7 +323,7 @@ void SkeletalFishBoss::exeOpen() {
 void SkeletalFishBoss::exeOpenWait() {
     TVec3f mouthPos;
     getMouthSensorCenterPos(mouthPos, 7800.0f);
-    bool isClose = PSVECDistance(mouthPos.toCVec(), MR::getPlayerPos()->toCVec()) < 7000.0f;
+    bool isClose = PSVECDistance(&mouthPos, MR::getPlayerPos()) < 7000.0f;
 
     if (isClose) {
         MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
@@ -790,6 +792,7 @@ void SkeletalFishBoss::calcPlanetCenterPosition() {
     calcGravityCenter(&_180, firstPnt, secondPnt);
 }
 
+/*
 bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint, const TVec3f &rSecondPoint) {
     TVec3f firstGravityCenter(rFirstPoint);
     TVec3f firstGravityVector;
@@ -819,6 +822,7 @@ bool SkeletalFishBoss::calcGravityCenter(TVec3f *pOut, const TVec3f &rFirstPoint
     pOut->setInline(firstGravityCenter + MR::createVecAndScale(firstGravityVector, scaleFactor));
     return true; 
 }
+*/
 
 void SkeletalFishBoss::resetRail() {
     SkeletalFishBossInfo::LevelStatus* lvl = mBossInfo->getLevelStatus(_110);
@@ -868,6 +872,7 @@ void SkeletalFishBoss::startCamera(const char *pCameraName) {
     MR::startEventCamera(&cameraInfo, pCameraName, target, 0);
 }
 
+/*
 void SkeletalFishBoss::resetCamera() {
     MR::startGlobalEventCameraTargetPlayer("デモ終了後カメラ", 0);
     TPos3f mtxPos;
@@ -885,6 +890,7 @@ void SkeletalFishBoss::resetCamera() {
     mtxPos.getZDir(stack_20);
     MR::setProgrammableCameraParam("デモ終了後カメラ", pos, stack_20, stack_2C, true);
 }
+*/
 
 void SkeletalFishBoss::playDamageBrk() {
     char buf[0x80];

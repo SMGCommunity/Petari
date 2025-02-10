@@ -15,7 +15,7 @@ bool OceanRing::isInWater(const TVec3f &rVec) const {
     f32 pos = calcNearestPos(rVec, &nearPos, nullptr, nullptr);
     f32 w = (mWidthMax * calcCurrentWidthRate(pos));
 
-    if (PSVECDistance(nearPos.toCVec(), rVec.toCVec()) > w) {
+    if (PSVECDistance(nearPos, rVec) > w) {
         return false;
     }
 

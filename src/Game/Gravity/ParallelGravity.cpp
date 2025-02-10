@@ -52,8 +52,8 @@ void ParallelGravity::updateMtx(const TPos3f &rMtx) {
 void ParallelGravity::setPlane(const TVec3f &rPlaneUp, const TVec3f &rPlanePos) {
 	// Up vector
 	mPlaneUpVec.setInline(rPlaneUp);
-	PSVECMag(mPlaneUpVec.toCVec()); // unused result
-	PSVECNormalize(mPlaneUpVec.toCVec(), mPlaneUpVec.toVec());
+	PSVECMag(mPlaneUpVec); // unused result
+	PSVECNormalize(mPlaneUpVec, mPlaneUpVec);
 
 	// Position
 	mPlanePosition = rPlanePos;
@@ -168,7 +168,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) c
 	// Check radius range
 	positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
-	f32 radius = PSVECMag(positionOnWorldPlane.toCVec());
+	f32 radius = PSVECMag(positionOnWorldPlane);
 
 	if (radius > mCylinderRadius) {
 		return false;

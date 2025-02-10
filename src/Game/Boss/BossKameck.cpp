@@ -67,7 +67,7 @@ s32 BossKameck::getLivingKameckNum() const {
 void BossKameck::appearStarPieceToPlayer(s32 num) {
     TVec3f dir;
     MR::calcVecToPlayerH(&dir, this, nullptr);
-    dir.subtract(mGravity);
+    dir.sub(mGravity);
     MR::normalizeOrZero(&dir);
     MR::appearStarPieceToDirection(this, mPosition, dir, num, 30.0f, 65.0f, false);
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
@@ -84,7 +84,7 @@ void BossKameck::control() {
     }
 
     mActorList->removeDeadActor();
-    _C8.set(mVelocity);
+    _C8.set<f32>(mVelocity);
     mJointCtrl->update();
 }
 
@@ -138,17 +138,18 @@ void BossKameck::killAllBeam() {
 }
 
 /* stack is off */
+/*
 void BossKameck::updatePose() {
     TVec3f v17(-mGravity);
     TVec3f v19;
-    v19.set(v17);
+    v19.set<f32>(v17);
     TVec3f v16(mVelocity);
     v16.sub(_C8);
     TVec3f* gravPtr = &mGravity;
     f32 dot = gravPtr->dot(v16);
     TVec3f v18;
-    JMAVECScaleAdd(gravPtr->toCVec(), v16.toCVec(), v18.toVec(), -dot);
-    f32 mag = PSVECMag(v18.toCVec());
+    JMAVECScaleAdd(gravPtr, &v16, &v18, -dot);
+    f32 mag = PSVECMag(&v18);
 
     TVec3f stack_44;
     TVec3f* ptr = &stack_44;
@@ -171,6 +172,7 @@ void BossKameck::updatePose() {
 
     MR::blendQuatUpFront(&_90, stack_44, _A0, 0.039999999f, 0.2f);
 }
+*/
 
 void BossKameck::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);

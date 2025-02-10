@@ -81,7 +81,7 @@ void CrystalCageMoving::exeDemoTicoMove() {
     stack_14.subInline2(_FC, mPosition);
     f32 nerveRate = MR::calcNerveRate(this, 0x1E);
     TVec3f stack_8;
-    JMAVECScaleAdd(stack_14.toCVec(), mPosition.toCVec(), stack_8.toVec(), nerveRate);
+    JMAVECScaleAdd(stack_14, mPosition, stack_8, nerveRate);
     _C8.setTrans(stack_8);
 
     if (MR::isStep(this, 0x1E)) {
@@ -126,7 +126,7 @@ void CrystalCageMoving::control() {
         MapObjActor::control();
         _C8.set(MR::getJointMtx(this, 0));
         TVec3f trans;
-        PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset.toCVec(), trans.toVec());
+        PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset, trans);
         _C8.setTrans(trans);
     }
 }
@@ -152,8 +152,8 @@ void CrystalCageMoving::crashMario(HitSensor *a1, HitSensor *a2) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
     }
     else {
-        f32 sensorDist = PSVECDistance(a2->mPosition.toCVec(), a1->mPosition.toCVec());
-        f32 sensorObjDist = PSVECDistance(mPosition.toCVec(), a1->mPosition.toCVec());
+        f32 sensorDist = PSVECDistance(a2->mPosition, a1->mPosition);
+        f32 sensorObjDist = PSVECDistance(mPosition, a1->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);
@@ -178,9 +178,9 @@ void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
         f32 x = joint_mtx.mMtx[0][1];
         joint_pos.set(x, y, z);
         TVec3f stack_14;
-        JMAVECScaleAdd(joint_pos.toCVec(), mPosition.toCVec(), stack_14.toVec(), (-450.0f + radius));
+        JMAVECScaleAdd(joint_pos, mPosition, stack_14, (-450.0f + radius));
         TVec3f stack_8;
-        JMAVECScaleAdd(joint_pos.toCVec(), mPosition.toCVec(), stack_8.toVec(), (450.0f - radius));
+        JMAVECScaleAdd(joint_pos, mPosition, stack_8, (450.0f - radius));
         MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), stack_14, stack_8);
     }
 } 
@@ -194,7 +194,7 @@ void CrystalCageMoving::connectToScene(const MapObjActorInitInfo &rInfo) {
 void CrystalCageMoving::initDummyModel(const JMapInfoIter &rIter) {
     _C8.set(MR::getJointMtx(this, 0));
     TVec3f stack_8;
-    PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset.toCVec(), stack_8.toVec());
+    PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset, stack_8);
     _C8.setTrans(stack_8);
     mTicoModel = new ModelObj("動くクリスタルケージ中身", "Tico", _C8.toMtxPtr(), 0x21, -2, -2, false);
     mTicoModel->initWithoutIter();

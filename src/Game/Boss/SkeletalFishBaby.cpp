@@ -247,6 +247,7 @@ bool SkeletalFishBaby::damage(const TVec3f &rAirBubblePos, bool shakeCameraNorma
     return false;
 }
 
+/*
 void SkeletalFishBaby::calcAndSetBaseMtx() {
     if (mRailControl->_8 != nullptr) {
         for (s32 i = 0; i < 4; i++) {
@@ -263,6 +264,7 @@ void SkeletalFishBaby::calcAndSetBaseMtx() {
         MR::setBaseScale(this, scale);
     }
 }
+*/
 
 void SkeletalFishBaby::initRail(const JMapInfoIter &rIter) {
     if (rIter.isValid()) {

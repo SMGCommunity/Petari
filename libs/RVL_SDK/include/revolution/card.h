@@ -1,9 +1,11 @@
 #ifndef RVL_SDK_CARD_H
 #define RVL_SDK_CARD_H
-#include <types.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include <revolution.h>
 
 typedef struct CARDFileInfo {
     s32 chan;    // at 0x0
@@ -17,4 +19,5 @@ typedef struct CARDFileInfo {
 #ifdef __cplusplus
 }
 #endif
+
 #endif

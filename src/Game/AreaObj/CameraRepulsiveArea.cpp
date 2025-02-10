@@ -35,8 +35,8 @@ TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f &rRep) {
     _8.scale(dot);
     ret -= _8;
 
-    PSVECCrossProduct(ret.toVec(), upVec.toVec(), _14.toVec());
-    f32 mag = PSVECMag(_14.toVec());
+    PSVECCrossProduct(&ret, &upVec, &_14);
+    f32 mag = PSVECMag(&_14);
     f32 radius = MR::getCylinderRadius(this);
 
     f32 scale = (2.0f * mag) / radius;

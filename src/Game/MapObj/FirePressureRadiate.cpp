@@ -222,8 +222,8 @@ bool FirePressureRadiate::calcJointCannon(TPos3f *pOutPos, const JointController
     v10.mMtx[2][3] = 0.0f;
     TVec3f v8;
     v8.setInline(v9);
-    PSVECMag(v8.toCVec()); // oops ?
-    PSVECNormalize(v8.toCVec(), v8.toVec());
+    PSVECMag(v8); // oops ?
+    PSVECNormalize(v8, v8);
     f32 v5 = sin(rotDegree);
     f32 v6 = cos(rotDegree);
     v10.mMtx[0][0] = v6 + ((1.0f - v6) * (v8.x * v8.x));

@@ -49,7 +49,7 @@ void FirePressure::calcGunPointFromCannon(TPos3f *pOutPoint) {
     y = jointMtx[1][3];
     x = jointMtx[0][3];
     stack_20.set(x, y, z);
-    JMAVECScaleAdd(stack_2C.toCVec(), stack_20.toCVec(), stack_20.toVec(), 200.0f);
+    JMAVECScaleAdd(stack_2C, stack_20, stack_20, 200.0f);
     JMath::gekko_ps_copy12(pOutPoint, jointMtx);
     TVec3f stack_14;
     z = jointMtx[2][1];

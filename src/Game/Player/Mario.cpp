@@ -347,12 +347,12 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
         setFrontVec(v);
     }
     TVec3f stack_2C;
-    PSVECCrossProduct(_1F0.toCVec(), _208.toCVec(), stack_2C.toVec());
+    PSVECCrossProduct(_1F0, _208, stack_2C);
 
     if (MR::isNearZero(stack_2C, 0.001f)) {
         TVec3f stack_20;
         MR::vecBlendSphere(stack_38, v, &stack_20, 0.5f);
-        PSVECCrossProduct(_1F0.toCVec(), stack_20.toCVec(), stack_2C.toVec());
+        PSVECCrossProduct(_1F0, stack_20, stack_2C);
         setFrontVec(stack_20);
         if (MR::isNearZero(stack_2C, 0.001f)) {
             setFrontVecKeepSide(v);
@@ -363,9 +363,9 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     _310 = stack_2C;
     MR::normalize(&_310);
     TVec3f stack_14;
-    PSVECCrossProduct(_310.toCVec(), _1F0.toCVec(), stack_14.toVec());
+    PSVECCrossProduct(_310, _1F0, stack_14);
     setFrontVec(stack_14);
     _22C = _208;
-    _328 = _208 % PSVECMag(_328.toCVec());
+    _328 = _208 % PSVECMag(_328);
     _344 = _310;
 }

@@ -74,7 +74,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         return true;
     }
     
-    f32 distanceToCentralAxis = PSVECMag(positionOnBasePlane.toCVec());
+    f32 distanceToCentralAxis = PSVECMag(positionOnBasePlane);
     f32 centralAxisY = unitWorldCentralAxis.dot(relativePosition);
 
     bool isInsideCone = false;
@@ -183,7 +183,7 @@ void ConeGravity::updateMtx(const TPos3f &rMtx) {
 
 	TVec3f sideVec;
 	mWorldMtx.getXDirInline(sideVec);
-	mWorldRadius = PSVECMag(sideVec.toCVec());
+	mWorldRadius = PSVECMag(sideVec);
 
 	TVec3f axis; // unused
 	mWorldMtx.getYDir(axis);

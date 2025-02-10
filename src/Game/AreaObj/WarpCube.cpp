@@ -45,6 +45,7 @@ void WarpCube::movement() {
     }
 }
 
+/*
 void WarpCube::draw() const {
     TDDraw::setup(0, 1, 0);
     GXSetCullMode(GX_CULL_NONE);
@@ -80,6 +81,7 @@ void WarpCube::draw() const {
 
     TDDraw::drawSphere(MR::createVecAndScaleByAndAdd(up, pos), 120.0f, uVar2, 16);
 }
+*/
 
 void WarpCube::init(const JMapInfoIter &rIter) {
     AreaObj::init(rIter);

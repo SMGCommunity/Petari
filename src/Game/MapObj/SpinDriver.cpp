@@ -241,7 +241,7 @@ bool SpinDriver::tryStartShoot() {
 }
 
 bool SpinDriver::tryEndCapture() {
-    if (MR::isGreaterStep(this, 40) && PSVECDistance(_B8.toCVec(), mPosition.toCVec()) < 15.0f) {
+    if (MR::isGreaterStep(this, 40) && PSVECDistance(_B8, mPosition) < 15.0f) {
         cancelBind();
         _141 = 0;
         setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
@@ -537,7 +537,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     _8C = pSensor->mActor;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
-    f32 mag = PSVECMag(_C4.toCVec());
+    f32 mag = PSVECMag(_C4);
     if (mag > 40.0f) {
         _C4 *= 40.0f / mag;
     }

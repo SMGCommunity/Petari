@@ -159,7 +159,7 @@ void MarblePlanet::initCoreAndElectron() {
                 }
 
                 TVec3f position;
-                JMAVECScaleAdd(front.toCVec(), pos->toCVec(), position.toVec(), 1000.0f);
+                JMAVECScaleAdd(front, pos->toCVec(), position, 1000.0f);
                 TVec3f rotation;
                 rotation.setAll((360.0f * i) / mNumElectrons);
                 mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
@@ -205,7 +205,7 @@ void MarblePlanetElectron::init(const JMapInfoIter &rIter) {
 void MarblePlanetElectron::exeMove() {
     MR::turnDirectionToGround(this, &_94);
     MR::attenuateVelocity(this, 0.99000001f);
-    f32 mag = PSVECMag(mVelocity.toCVec());
+    f32 mag = PSVECMag(mVelocity);
     f32 scale = (mag >= 13.0f ? mag : 13.0f);
     mVelocity.scale(scale, _94);
     MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE", -1, -1, -1);
@@ -281,7 +281,7 @@ void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
     TVec3f stack_8;
     stack_8.sub(pSensor->mActor->mPosition, mPosition);
     MR::normalize(&stack_8);
-    JMAVECScaleAdd(stack_8.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), -5.0f);
+    JMAVECScaleAdd(stack_8, mVelocity, mVelocity, -5.0f);
     MR::normalize(mVelocity, &_94);
     mVelocity.x *= 1.2f;
     mVelocity.y *= 1.2f;

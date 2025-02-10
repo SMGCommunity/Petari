@@ -166,7 +166,7 @@ void Coin::makeActorDead() {
 void Coin::calcAndSetBaseMtx() {
     TVec3f another_vec;
     another_vec.set(MR::isNearZero(mGravity, 0.001f) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
-    JMAVECScaleAdd(another_vec.toCVec(), mPosition.toCVec(), mDropPosition.toVec(), 70.0f);
+    JMAVECScaleAdd(another_vec, mPosition, mDropPosition, 70.0f);
 
     TPos3f pos;
 

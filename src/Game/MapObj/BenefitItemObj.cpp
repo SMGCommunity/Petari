@@ -595,7 +595,7 @@ void BenefitItemObj::doEscape() {
     }
 
     if (MR::isBindedGround(this)) {
-        f32 mag = PSVECMag(_BC.toCVec());
+        f32 mag = PSVECMag(_BC);
         MR::vecKillElement(_BC, mGravity, &_BC);
         _BC.setLength(mag);
 
@@ -619,7 +619,7 @@ void BenefitItemObj::doEscape() {
             }
         } 
 
-        if (PSVECMag(_BC.toCVec()) > 7.0f) {
+        if (PSVECMag(_BC) > 7.0f) {
             _BC.setLength(7.0f);
         }
 
@@ -638,7 +638,7 @@ void BenefitItemObj::doEscape() {
         _BC.z *= 0.94999999f;
         _C8 += MR::createVecAndScale(mGravity, 1.0f); 
 
-        if (PSVECMag(_C8.toCVec()) > 20.0f) {
+        if (PSVECMag(_C8) > 20.0f) {
             _C8.setLength(20.0f);
         }
 

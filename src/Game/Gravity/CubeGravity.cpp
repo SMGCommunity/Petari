@@ -86,11 +86,11 @@ void CubeGravity::updateMtx(const TPos3f &rMtx)
     mPosition.concat(rMtx, mCube);
     TVec3f dir;
     mPosition.getXDir(dir);
-    lenX = PSVECMag(dir.toCVec());
+    lenX = PSVECMag(dir);
     mPosition.getYDir(dir);
-    lenY = PSVECMag(dir.toCVec());
+    lenY = PSVECMag(dir);
     mPosition.getZDir(dir);
-    lenZ = PSVECMag(dir.toCVec());
+    lenZ = PSVECMag(dir);
 }
 
 bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const

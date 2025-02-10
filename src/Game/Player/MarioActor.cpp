@@ -424,8 +424,8 @@ void MarioActor::calcBaseFrontVec(const TVec3f &rVec)
         if (MR::makeAxisAndCosignVecToVec(&cross, &cosine, rVec, j)) {
             TVec3f k(0.0f, 0.0f, 1.0f);
             Mtx transformation;
-            PSMTXRotAxisRad(transformation, cross.toCVec(), -JMAAcosRadian(cosine));
-            PSMTXMultVecSR(transformation, k.toCVec(), _258.toVec());
+            PSMTXRotAxisRad(transformation, cross, -JMAAcosRadian(cosine));
+            PSMTXMultVecSR(transformation, k, _258);
             MR::normalize(&_258);
         }
         else {
@@ -690,33 +690,33 @@ void MarioActor::movement()
     TVec3f stack_11C(_288);
     _288 = stack_128;
     if (MR::isOppositeDirection(_288, stack_11C, 0.01f)) {
-        f32 mag_288 = PSVECMag(_288.toCVec());
-        f32 magStack_11C = PSVECMag(stack_11C.toCVec());
+        f32 mag_288 = PSVECMag(_288);
+        f32 magStack_11C = PSVECMag(stack_11C);
         if (!MR::isNearZero(mag_288, 0.001f) && !MR::isNearZero(magStack_11C, 0.001f) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
             mPosition -= _288 % 0.5f;
         }
     }
-    if (PSVECMag(stack_128.toCVec()) > 0.1f) {
+    if (PSVECMag(stack_128) > 0.1f) {
         if (!(getMovementStates()._A)) {
             if (!MR::isNearZero(mVelocity, 0.001f)) {
-                f32 diffMag = PSVECMag(_294.translateOpposite(_270).toCVec());
-                f32 vMag = PSVECMag(mVelocity.toCVec());
-                if (PSVECMag(stack_128.toCVec()) > 2.0f * (diffMag + vMag)) {
+                f32 diffMag = PSVECMag(_294.translateOpposite(_270));
+                f32 vMag = PSVECMag(mVelocity);
+                if (PSVECMag(stack_128) > 2.0f * (diffMag + vMag)) {
                     mMario->stopWalk();
                 }
             }
         }
-        if (getMovementStates()._23 && PSVECMag(mVelocity.toCVec()) < PSVECMag(stack_134.toCVec())) {
+        if (getMovementStates()._23 && PSVECMag(mVelocity) < PSVECMag(stack_134)) {
             if (stack_134.dot(getGravityVec()) < -0.0f) {
                 TVec3f stack_110;
                 MR::vecKillElement(mVelocity, getGravityVec(), &stack_110);
                 if (MR::isNearZero(stack_110, 0.001f)) {
                     MR::vecKillElement(stack_134, getGravityVec(), &stack_110);
                 }
-                stack_110.setLength(PSVECMag(stack_134.toCVec()));
+                stack_110.setLength(PSVECMag(stack_134));
                 mMario->push(stack_110);
                 if (mMario->_3BC <= 2) {
-                    f32 scale = PSVECMag(stack_128.toCVec());
+                    f32 scale = PSVECMag(stack_128);
                     if (scale > 10.0f) {
                         scale = 10.0f;
                     }
@@ -730,7 +730,7 @@ void MarioActor::movement()
             TVec3f stack_F8;
             f32 elementA = MR::vecKillElement(stack_134, stack_104, &stack_F8);
             f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
-            if (PSVECMag(mVelocity.toCVec()) > 20.0f && elementA < elementB * 0.5f) {
+            if (PSVECMag(mVelocity) > 20.0f && elementA < elementB * 0.5f) {
                 if (mMario->isAnimationRun("坂すべり下向きあおむけ")) {
                     mMario->push(mMario->_208 % 5.0f);
                 }
@@ -776,8 +776,8 @@ void MarioActor::movement()
                     CollisionParts *parts = mMario->_45C->mParts;
                     if (parts && !mMario->_45C->mParts->_D4) {
                         TVec3f stack_C8, stack_BC, stack_B0;
-                        PSMTXMultVec(parts->mInvBaseMatrix.toMtxPtr(), mMario->_31C.toCVec(), stack_C8.toVec());
-                        PSMTXMultVec(parts->mPrevBaseMatrix.toMtxPtr(), stack_C8.toCVec(), stack_BC.toVec());
+                        PSMTXMultVec(parts->mInvBaseMatrix.toMtxPtr(), mMario->_31C, stack_C8);
+                        PSMTXMultVec(parts->mPrevBaseMatrix.toMtxPtr(), stack_C8, stack_BC);
                         stack_B0 = mMario->_31C.translateOpposite(stack_BC);
                         if (stack_B0.dot(stack_128) > 0.0f) {
                             eject = false;
@@ -1007,8 +1007,8 @@ void MarioActor::updateBehavior()
 void MarioActor::updateBindRatio()
 {
     if (!_934 && !MR::isNearZero(_978.translateOpposite(_264), 0.001f)) {
-        f32 mag = PSVECMag(_978.toCVec());
-        if (mag / PSVECMag(_978.translateOpposite(_264).toCVec()) < 2.0f) {
+        f32 mag = PSVECMag(_978);
+        if (mag / PSVECMag(_978.translateOpposite(_264)) < 2.0f) {
             _984 += 0.1f;
         }
         else {

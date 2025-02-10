@@ -85,7 +85,7 @@ void DashRing::calcAxis() {
     TVec3f stack_8(0.0f, 1.0f, 0.0f);
     Mtx mtx;
     MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, mRotation.x, mRotation.y, mRotation.z);
-    PSMTXMultVec(mtx, stack_8.toCVec(), stack_8.toVec());
+    PSMTXMultVec(mtx, stack_8, stack_8);
     mAxis = stack_8;
     calcSubAxis();
 }

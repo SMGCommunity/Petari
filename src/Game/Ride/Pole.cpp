@@ -523,7 +523,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
             else {
                 TVec3f v23(*MR::getPlayerVelocity());
                 MR::vecKillElement(v23, _D8, &v23);
-                f32 v8 = PSVECMag(v23.toCVec());
+                f32 v8 = PSVECMag(v23);
                 f32 v11 = _D8.dot(*MR::getPlayerVelocity());
                 if (__fabsf(v8) < 5.0f && v11 > 1.0f) {
                     return false;

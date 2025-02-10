@@ -23,7 +23,7 @@ void RailPart::initForBezier(const TVec3f &a1, const TVec3f &a2, const TVec3f &a
 
 void RailPart::calcPos(TVec3f *pOut, f32 a2) const {
     if (mRailPartLinear) {
-        JMAVECScaleAdd(mRailPartLinear->_C.toCVec(), mRailPartLinear->_0.toCVec(), pOut->toVec(), a2);
+        JMAVECScaleAdd(mRailPartLinear->_C, mRailPartLinear->_0, pOut->toVec(), a2);
     }
     else {
         mRailPartBezier->calcPos(pOut, a2);

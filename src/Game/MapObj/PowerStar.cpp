@@ -309,8 +309,8 @@ void PowerStar::calcAndSetBaseMtx() {
     pos.zeroTrans();
     TVec3f stack_8;
     stack_8.set(stack_14);
-    PSVECMag(stack_8.toCVec());
-    PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+    PSVECMag(stack_8);
+    PSVECNormalize(stack_8, stack_8);
     f32 _sin = sin(derp);
     f32 _cos = cos(derp);
     pos.mMtx[0][0] = _cos + ((1.0f - _cos) * (stack_8.x * stack_8.x));
@@ -511,7 +511,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const
         PowerStarAppearPoint* actor = reinterpret_cast<PowerStarAppearPoint*>(group->getActor(i));
 
         if ((LiveActor*)actor != this) {
-            f32 dist = PSVECDistance(rPos.toCVec(), actor->mPosition.toCVec());
+            f32 dist = PSVECDistance(rPos, actor->mPosition);
 
             if (dist < curDist) {
                 curNearest = actor;

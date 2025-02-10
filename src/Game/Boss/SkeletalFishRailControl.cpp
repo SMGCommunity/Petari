@@ -150,7 +150,7 @@ void SkeletalFishRailControl::getMtx(TPos3f *pOut, f32 a2) {
     if (normalRailInfo._4 < 0.0f && !MR::isLoopRail(normalRailInfo._0)) {
         MR::calcRailPosAtCoord(&railPos, normalRailInfo._0, 0.0f);
         MR::calcRailDirectionAtCoord(&railDir, normalRailInfo._0, 0.0f);
-        stack_3C.setInlinePS_2(railDir);
+        stack_3C.setPS(railDir);
         stack_3C.scale(normalRailInfo._4);
         railPos.add(stack_3C);
     }
@@ -161,9 +161,9 @@ void SkeletalFishRailControl::getMtx(TPos3f *pOut, f32 a2) {
 
     MR::normalizeOrZero(&railDir);
     MR::calcGravityVector(normalRailInfo._0, railPos, &gravityVec, nullptr, 0);
-    negVector.negateInline(gravityVec);
-    PSVECCrossProduct(negVector.toCVec(), railDir.toCVec(), v15.toVec());
-    PSVECCrossProduct(railDir.toCVec(), v15.toCVec(), v14.toVec());
+    negVector = -gravityVec;
+    PSVECCrossProduct(&negVector, &railDir, &v15);
+    PSVECCrossProduct(&railDir, &v15, &v14);
 
     MR::normalizeOrZero(&v15);
     MR::normalizeOrZero(&v14);

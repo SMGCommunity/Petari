@@ -34,8 +34,8 @@ void BgmProhibitArea::init(const JMapInfoIter &rIter) {
 void BgmProhibitArea::movement() {
     if (!MR::isStageStateScenarioOpeningCamera()) {
         TVec3f stack_8;
-        stack_8.setInlinePS(*MR::getPlayerPos());
-        f32 dist = PSVECDistance(stack_8.toCVec(), _40.toCVec());
+        stack_8.setPS(*MR::getPlayerPos());
+        f32 dist = PSVECDistance(&stack_8, &_40);
         
         if (isInVolume(*MR::getPlayerPos())) {
             _3D = 0;
@@ -69,7 +69,7 @@ void BgmProhibitArea::movement() {
             }
         }
 
-        _40.setInlinePS(stack_8);
+        _40.setPS(stack_8);
     }
 }
 

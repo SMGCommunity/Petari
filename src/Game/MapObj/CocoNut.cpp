@@ -168,7 +168,7 @@ bool CocoNut::isPossibleToHit(const TVec3f &a1, const TVec3f &a2, const TVec3f &
 }
 
 f32 CocoNut::calcMoveSpeed() const {
-	return !isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) ? 0.0f : MR::max(_8C, PSVECMag(_150.toCVec()));
+	return !isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) ? 0.0f : MR::max(_8C, PSVECMag(_150));
 }
 
 void CocoNut::initSensor() {
@@ -205,9 +205,9 @@ void CocoNut::updateRotate(float a1) {
 	negateInternalInline(mGravity, &stack_20);
 	if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
 
-		PSVECCrossProduct(stack_2C.toCVec(), stack_20.toCVec(), stack_14.toVec());
+		PSVECCrossProduct(stack_2C, stack_20, stack_14);
 
-		f32 temp1 = PSVECMag(mVelocity.toCVec()) * -180.0f;
+		f32 temp1 = PSVECMag(mVelocity) * -180.0f;
 		f32 temp2 = a1 * temp1;
 		f32 f = PI_180 * (temp2 / (PI * getSize()));
 
@@ -216,8 +216,8 @@ void CocoNut::updateRotate(float a1) {
 		stack_38.mMtx[2][3] = 0.0f;
 
 		stack_8.set(stack_14);
-		PSVECMag(stack_8.toCVec());
-		PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+		PSVECMag(stack_8);
+		PSVECNormalize(stack_8, stack_8);
 
 		f32 fsin = sin(f);
 		f32 fcos = cos(f);
@@ -325,18 +325,18 @@ void CocoNut::processMove() {
 
 	if (getWallNormal(&stack_20) && _94.dot(stack_20) < 0.0f) {
 		stack_14.set(_94);
-		PSVECMag(stack_14.toCVec());
-		PSVECNormalize(stack_14.toCVec(), stack_14.toVec());
+		PSVECMag(stack_14);
+		PSVECNormalize(stack_14, stack_14);
 
 		stack_8.set(stack_20);
-		PSVECMag(stack_8.toCVec());
-		PSVECNormalize(stack_8.toCVec(), stack_8.toVec());
+		PSVECMag(stack_8);
+		PSVECNormalize(stack_8, stack_8);
 
 		f32 ok2 = -2.0f * stack_14.dot(stack_8);
-		JMAVECScaleAdd(stack_8.toCVec(), _94.toCVec(), _94.toVec(), ok2);
+		JMAVECScaleAdd(stack_8, _94, _94, ok2);
 
-		PSVECMag(_94.toCVec());
-		PSVECNormalize(_94.toCVec(), _94.toVec());
+		PSVECMag(_94);
+		PSVECNormalize(_94, _94);
 		_94.normalize(_94);
 
 		_8C *= 0.8f;
@@ -460,7 +460,7 @@ void CocoNut::reviseFrontVec() {
 		MR::normalize(&stack_8);
 		f32 temp_f31 = stack_8.dot(_94);
 		if (MR::cosDegree(15.0f) < temp_f31) {
-			JMAVECLerp(_94.toCVec(), stack_8.toCVec(), _94.toVec(), 0.8f);
+			JMAVECLerp(_94, stack_8, _94, 0.8f);
 		}
 	}
 }
@@ -552,7 +552,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32 *arg0, f32 *arg1, TVec3f *arg2, TVec3f
 	arg3->sub(arg5, arg4);
 	MR::normalize(arg3);
 	stack_14.set(mGravity);
-	PSVECCrossProduct(arg3->toCVec(), stack_14.toCVec(), arg2->toVec());
+	PSVECCrossProduct(arg3->toCVec(), stack_14, arg2->toVec());
 	MR::normalize(arg2);
 	if (MR::normalizeOrZero(mVelocity, &stack_8)) {
 		stack_8.set(_94);
@@ -560,7 +560,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32 *arg0, f32 *arg1, TVec3f *arg2, TVec3f
 	f32 var_f30 = stack_8.dot(*arg2);
 	if (var_f30 < 0.0f) {
 		negateInternalInline(stack_14, &stack_14);
-		PSVECCrossProduct(arg3->toCVec(), stack_14.toCVec(), arg2->toVec());
+		PSVECCrossProduct(arg3->toCVec(), stack_14, arg2->toVec());
 		MR::normalize(arg2);
 		var_f30 = stack_8.dot(*arg2);
 	}
@@ -820,7 +820,7 @@ void CocoNut::statusToHide() {
 
 void CocoNut::emitEffectSpinHit(const HitSensor *pOtherSensor, const HitSensor *pMySensor) {
 	TVec3f point; // point 70% of the way between pOtherSensor and pMySensor
-	JMAVECLerp(pOtherSensor->mPosition.toCVec(), pMySensor->mPosition.toCVec(), point.toVec(), 0.7f);
+	JMAVECLerp(pOtherSensor->mPosition, pMySensor->mPosition, point, 0.7f);
 	_108.mMtx[0][0] = 1.0f;
 	_108.mMtx[1][0] = 0.0f;
 	_108.mMtx[2][0] = 0.0f;

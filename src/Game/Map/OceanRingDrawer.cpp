@@ -57,7 +57,7 @@ void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
 #endif
 
 void OceanRingPartDrawer::draw() const {
-    if (PSVECDistance(mPosition.toCVec(), MR::getPlayerPos()->toCVec()) >= 13000.0f) {
+    if (PSVECDistance(mPosition, MR::getPlayerPos()->toCVec()) >= 13000.0f) {
         GXCallDisplayList(mDispList, mDispListLength);
     }
     else {
@@ -112,7 +112,7 @@ void OceanRingDrawer::drawBloom() const {
         for (s32 i = 0; i < mDrawerCount; i++) {
             OceanRingPartDrawer* drwr = getDrawer(i);
 
-            if (PSVECDistance(drwr->mPosition.toCVec(), zDir.toCVec()) < 4000.0f) {
+            if (PSVECDistance(drwr->mPosition, zDir) < 4000.0f) {
                 drwr->drawDynamicBloom();
             }
         }

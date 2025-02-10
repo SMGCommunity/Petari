@@ -59,7 +59,7 @@ void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
         TVec3f stack_8;
         stack_8.subInline3(mPosition, railPos); 
         MR::normalize(&stack_8);
-        MR::blendVec(pOutDir->toVec(), *pOutDir->toCVec(), *stack_8.toCVec(), 0.1f);
+        MR::blendVec(pOutDir->toVec(), *pOutDir->toCVec(), *stack_8, 0.1f);
     }
 }
 

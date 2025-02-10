@@ -10,7 +10,7 @@ BossKameckStateBattle::BossKameckStateBattle(BossKameck *pBoss) : mBossKameck(pB
     mBattlePattarn = nullptr;
     mBeam = nullptr;
     mBeamListener = nullptr;
-    _20.setInline(0.0f);
+    _20.set(0.0f);
     _2C = -1;
     _30 = 1;
     _34 = 0;
@@ -140,7 +140,7 @@ bool BossKameckStateBattle::tryChargeBram() {
     }
 
     TVec3f v6;
-    v6.setInline(0.0f);
+    v6.set(0.0f);
     MtxPtr jointMtx = MR::getJointMtx(mBossKameck, "PowerStarC");
     mBeam = MR::startFollowKameckBeam(mBattlePattarn->goNextPattarn(), jointMtx, 1.0f, v6, mBeamListener);
 
@@ -188,7 +188,7 @@ void BossKameckStateBattle::exeMove() {
         selectPosition();
     }
 
-    f32 mag = (100.0f * PSVECMag(mBossKameck->mVelocity.toCVec()));
+    f32 mag = (100.0f * PSVECMag(&mBossKameck->mVelocity));
     MR::startLevelSound(mBossKameck, "SE_BM_LV_KAMECK_FLOAT", mag, -1, -1);
 
     s32 v2 = (_3C) ? 40 : 90;

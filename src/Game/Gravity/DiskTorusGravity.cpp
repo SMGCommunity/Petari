@@ -85,7 +85,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         }
 
         TVec3f nearestInnerEdgePoint;
-        JMAVECScaleAdd(dirOnTorusPlane.toCVec(), mTranslation.toCVec(), nearestInnerEdgePoint.toVec(), innerRadius);
+        JMAVECScaleAdd(dirOnTorusPlane, mTranslation, nearestInnerEdgePoint, innerRadius);
 
         gravity = nearestInnerEdgePoint - rPos;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
@@ -97,7 +97,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         }
 
         TVec3f nearestOuterEdgePoint;
-        JMAVECScaleAdd(dirOnTorusPlane.toCVec(), mTranslation.toCVec(), nearestOuterEdgePoint.toVec(), worldRadius);
+        JMAVECScaleAdd(dirOnTorusPlane, mTranslation, nearestOuterEdgePoint, worldRadius);
         gravity = nearestOuterEdgePoint - rPos;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
     }

@@ -55,7 +55,7 @@ void SkeletalFishBossInfo::createLevelStatus() {
 
         for (s32 j = 0; j < mGuardNum; j++) {
             LevelStatus* s = &mLevelStatusArray[i];
-            s->getGuardStatus(j)->mGuardPosLevel.setZYX(0.0f);
+            s->getGuardStatus(j)->mGuardPosLevel.set(0.0f);
             LevelStatus* cur = &mLevelStatusArray[i];
             cur->getGuardStatus(j)->mGuardWaitLevelID = 0;
         }

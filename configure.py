@@ -230,6 +230,31 @@ cflags_game = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_jsys = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-i include",
+    "-i libs/JSystem/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/MSL_C/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}"
+]
+
 cflags_nw = [
     "-nodefaults",
     "-proc gekko",
@@ -421,7 +446,7 @@ def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
-        "cflags": cflags_base,
+        "cflags": cflags_jsys,
         "progress_category": "jsys",
         "objects": objects,
     }

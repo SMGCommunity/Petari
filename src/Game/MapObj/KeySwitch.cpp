@@ -97,8 +97,8 @@ void KeySwitch::exeAppear() {
     bool val = false;
 
     if (MR::isBindedGround(this)) {
-        if (PSVECMag(mVelocity.toCVec()) >= 10.0f) {
-            s32 mag = PSVECMag(mVelocity.toCVec());
+        if (PSVECMag(mVelocity) >= 10.0f) {
+            s32 mag = PSVECMag(mVelocity);
             mag *= 2;
             if (mag > 0x64) {
                 mag = 0x64;
@@ -214,7 +214,7 @@ bool KeySwitch::tryAvoid() {
     TVec3f thing;
     thing.subInline2(mPosition, sensorActor->mPosition);
     TVec3f stack_8;
-    JMAVECScaleAdd(up.toCVec(), thing.toCVec(), stack_8.toVec(), -up.dot(thing));
+    JMAVECScaleAdd(up, thing, stack_8, -up.dot(thing));
 
     if (MR::normalizeOrZero(&stack_8)) {
         MR::calcFrontVec(&stack_8, sensorActor);

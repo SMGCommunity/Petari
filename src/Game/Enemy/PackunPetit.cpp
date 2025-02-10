@@ -180,7 +180,7 @@ void PackunPetit::exePunchDown() {
         MR::startBlowHitSound(this);
     }
 
-    JMAVECScaleAdd(mGravity.toCVec(), mBlownModel->mVelocity.toCVec(), mBlownModel->mVelocity.toVec(), 2.5f);
+    JMAVECScaleAdd(mGravity, mBlownModel->mVelocity, mBlownModel->mVelocity, 2.5f);
 
     if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStikeBallToMap(mBlownModel->mPosition, 50.0f))) {
         MR::emitEffect(mBlownModel, "Death");
@@ -428,12 +428,12 @@ void PackunPetit::punchDown(HitSensor *a1, HitSensor *a2) {
     v6.subtract(a2->mPosition, a1->mPosition);
     TVec3f* grav = &mGravity;
     f32 dot = grav->dot(v6);
-    JMAVECScaleAdd(grav->toCVec(), v6.toCVec(), v6.toVec(), -dot);
+    JMAVECScaleAdd(grav->toCVec(), v6, v6, -dot);
     MR::normalize(&v6);
 
     TVec3f v5;
     v5.scale(20.0f, v6);
-    JMAVECScaleAdd(mGravity.toCVec(), v5.toCVec(), v5.toVec(), -40.0f);
+    JMAVECScaleAdd(mGravity, v5, v5, -40.0f);
     mBlownModel->mVelocity.setInline(v5);
     setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 }

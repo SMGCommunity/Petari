@@ -46,11 +46,11 @@ void SkeletalFishBabyRailGroupNode::tidy() {
         SkeletalFishBabyRailSetLinkNode* v2 = curLink;
         TVec3f nearestRailPos;
         MR::calcNearestRailPos(&nearestRailPos, curLink->_4, endPointPos);
-        f32 totalDist = PSVECDistance(endPointPos.toCVec(), nearestRailPos.toCVec());
+        f32 totalDist = PSVECDistance(&endPointPos, &nearestRailPos);
 
         for (SkeletalFishBabyRailSetLinkNode* child = curLink->_10; child != nullptr; child = child->_10) {
             MR::calcNearestRailPos(&nearestRailPos, child->_4, endPointPos);
-            f32 dist = PSVECDistance(endPointPos.toCVec(), nearestRailPos.toCVec());
+            f32 dist = PSVECDistance(&endPointPos, &nearestRailPos);
 
             if (dist < totalDist) {
                 totalDist = dist;

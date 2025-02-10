@@ -17,6 +17,7 @@ namespace JGeometry {
         void scale(T);
 
         inline void setInline(const SMatrix34C<T> &rSrc) {
+            #ifdef __MWERKS__
             register const SMatrix34C<T> *pSrc = &rSrc;
             register SMatrix34C<T> *pDest = this;
             register f32 rzztz;
@@ -40,9 +41,11 @@ namespace JGeometry {
                 psq_st    rxzyz, 0x20(pDest), 0, 0
                 psq_st    rzztz, 0x28(pDest), 0, 0
             };
+            #endif
         }
 
         inline void setInline(const MtxPtr rSrc) {
+            #ifdef __MWERKS__
             register const MtxPtr pSrc = rSrc;
             register SMatrix34C<T> *pDest = this;
             register f32 rzztz;
@@ -66,9 +69,11 @@ namespace JGeometry {
                 psq_st    rxzyz, 0x20(pDest), 0, 0
                 psq_st    rzztz, 0x28(pDest), 0, 0
             };
+            #endif
         }
 
         inline void setInline_2(MtxPtr rSrc) {
+            #ifdef __MWERKS__
             register MtxPtr pSrc = rSrc;
             register SMatrix34C<T> *pDest = this;
             register f32 rzztz;
@@ -92,6 +97,7 @@ namespace JGeometry {
                 psq_st    rxzyz, 0x20(pDest), 0, 0
                 psq_st    rzztz, 0x28(pDest), 0, 0
             };
+            #endif
         }
 
         inline Mtx* toMtx() {
@@ -181,8 +187,8 @@ namespace JGeometry {
 
         inline void setRotateInline(const TVec3f &vec1, f32 r) {
             TVec3f vec;
-            PSVECMag(vec1.toCVec());
-            PSVECNormalize(vec.toCVec(), vec.toVec());
+            PSVECMag(&vec1);
+            PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
             f32 negc = (1.0f - c);
@@ -203,8 +209,8 @@ namespace JGeometry {
         void setRotateInline2(const TVec3f &vec1, f32 r) {
             // The only difference from setRotateInline is that we use setInline instead of set
             TVec3f vec;
-            PSVECMag(vec1.toCVec());
-            PSVECNormalize(vec.toCVec(), vec.toVec());
+            PSVECMag(vec1);
+            PSVECNormalize(vec, vec);
             f32 s = sin(r);
             f32 c = cos(r);
             f32 negc = (1.0f - c);

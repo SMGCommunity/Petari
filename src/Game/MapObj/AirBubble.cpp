@@ -110,7 +110,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
         TVec3f stack_8(a2->mPosition);
         stack_8 -= mPosition;
 
-        if (PSVECMag(stack_8.toCVec()) < 250.0f) {
+        if (PSVECMag(stack_8) < 250.0f) {
             setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
             return true;
         }

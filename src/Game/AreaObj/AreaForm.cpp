@@ -69,7 +69,7 @@ void AreaFormCube::calcWorldPos(TVec3f *pPos) const {
         return;
     }
 
-    pPos->set(mTranslation);
+    pPos->set<f32>(mTranslation);
 }
 
 // AreaFormCube::calcWorldRotate
@@ -91,7 +91,7 @@ void AreaFormCube::calcWorldBox(TDirBox3f *pBox) const {
     pBox->_18.z = pos.mMtx[2][2];
     pBox->_24.z = pos.mMtx[2][3];
 
-    JMathInlineVEC::PSVECSubtract(mBounding.mMax.toCVec(), mBounding.mMin.toCVec(), pBox->_30.toVec());
+    JMathInlineVEC::PSVECSubtract(&mBounding.mMax, &mBounding.mMin, &pBox->_30);
     pos.mult(mBounding.mMin, pBox->_24);
 }
 
@@ -150,7 +150,7 @@ void AreaFormCube::calcWorldMtx(register TPos3f *pPos) const {
     if (_4) {
         return pPos->concat(*_4, (const TSMtxf&)*_48);
     }
-
+    #ifdef __MWERKS__
     __asm {
         psq_l f0, 0x48(cube), 0, 0
         psq_l f1, 0x50(cube), 0, 0
@@ -165,6 +165,7 @@ void AreaFormCube::calcWorldMtx(register TPos3f *pPos) const {
         psq_st f4, 0x20(pPos), 0, 0
         psq_st f5, 0x28(pPos), 0, 0
     };
+    #endif
 }
 
 AreaFormSphere::AreaFormSphere() {
@@ -181,7 +182,7 @@ void AreaFormSphere::calcUpVec(TVec3f *pOut) const {
         MR::normalize(pOut);
     }
     else {
-        pOut->set(mUp);
+        pOut->set<f32>(mUp);
     }
 }
 
@@ -190,7 +191,7 @@ void AreaFormSphere::calcPos(TVec3f *pOut) const {
         _4->mult(mTranslation, *pOut);
     }
     else {
-        pOut->set(mTranslation);
+        pOut->set<f32>(mTranslation);
     }
 }
 
@@ -199,8 +200,8 @@ bool AreaFormSphere::isInVolume(const TVec3f &rVector) const {
     calcPos(&pos);
 
     TVec3f thing(rVector);
-    JMathInlineVEC::PSVECSubtract(thing.toCVec(), pos.toCVec(), thing.toVec());
-    return PSVECMag(thing.toCVec()) < _14;
+    JMathInlineVEC::PSVECSubtract(&thing, &pos, &thing);
+    return PSVECMag(&thing) < _14;
 }
 
 AreaFormBowl::AreaFormBowl() {
@@ -226,7 +227,7 @@ void AreaFormBowl::init(const JMapInfoIter &rIter) {
 
 bool AreaFormBowl::isInVolume(const TVec3f &rPos) const {
     TVec3f pos(rPos);
-    JMathInlineVEC::PSVECSubtract(pos.toCVec(), mTranslation.toCVec(), pos.toVec());
+    JMathInlineVEC::PSVECSubtract(&pos, &mTranslation, &pos);
     
     if (PSVECMag((const Vec*)&pos) > _20) {
         return false;
@@ -264,7 +265,7 @@ void AreaFormCylinder::calcPos(TVec3f *pPos) const {
         return;
     }
 
-    pPos->set(mTranslation);
+    pPos->set<f32>(mTranslation);
 }
 
 void AreaFormCylinder::calcCenterPos(TVec3f *pCenterPos) const {
@@ -281,7 +282,7 @@ void AreaFormCylinder::calcUpVec(TVec3f *pUpVec) const {
         MR::normalize(pUpVec);
     }
     else {
-        pUpVec->set(mRotation);
+        pUpVec->set<f32>(mRotation);
     }
 }
 

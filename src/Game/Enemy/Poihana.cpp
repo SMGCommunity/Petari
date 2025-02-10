@@ -147,7 +147,7 @@ void Poihana::calcAndSetBaseMtx() {
 
 // This inline function might be used elsewhere too? It seems unusual for it to be used once
 inline void calcRepelVector(const TVec3f &agent, const TVec3f &object, TVec3f& dst) {
-	JMAVECScaleAdd(agent.toCVec(), object.toCVec(), dst.toVec(), -agent.dot(object));
+	JMAVECScaleAdd(agent, object, dst, -agent.dot(object));
 }
 
 void Poihana::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
@@ -197,7 +197,7 @@ bool Poihana::receiveMsgPush(HitSensor *pSender, HitSensor *pReceiver) {
 	if (MR::isSensorEnemy(pSender) || MR::isSensorMapObj(pSender)) {
 		TVec3f pushOffset(mPosition - pSender->mActor->mPosition);
 		MR::normalizeOrZero(&pushOffset);
-		JMAVECScaleAdd(pushOffset.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 1.5f);
+		JMAVECScaleAdd(pushOffset, mVelocity, mVelocity, 1.5f);
 
 		return true;
 	}
@@ -362,7 +362,7 @@ void Poihana::exeWalkAround() {
 	}
 
 	MR::rotateVecDegree(&mFrontVec, mGravity, mRandDir);
-	JMAVECScaleAdd(mFrontVec.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 0.5f);
+	JMAVECScaleAdd(mFrontVec, mVelocity, mVelocity, 0.5f);
 
 	if (isNeedForBackHome()) {
 		setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
@@ -445,7 +445,7 @@ void Poihana::exeChasePlayer() {
 	}
 
 	MR::turnDirectionToTargetUseGroundNormalDegree(this, &mFrontVec, *MR::getPlayerPos(), 4.0f);
-	JMAVECScaleAdd(mFrontVec.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 0.5f);
+	JMAVECScaleAdd(mFrontVec, mVelocity, mVelocity, 0.5f);
 
 	if (isNeedForBackHome()) {
 		setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
@@ -514,7 +514,7 @@ void Poihana::exeGoBack() {
 	}
 
 	MR::turnDirectionToTargetUseGroundNormalDegree(this, &mFrontVec, mHomePos, 2.0f);
-	JMAVECScaleAdd(mFrontVec.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 0.5f);
+	JMAVECScaleAdd(mFrontVec, mVelocity, mVelocity, 0.5f);
 
 	if (MR::isNearPlayer(this, 800.0f) && MR::isGreaterStep(this, 120)) {
 		setNerve(&NrvPoihana::PoihanaNrvSearch::sInstance);
@@ -770,7 +770,7 @@ doFlip:
 		f32 dot = mFrontVec.dot(mVelocity) * -1.0f;
 
 		TVec3f addVel;
-		JMAVECScaleAdd(mFrontVec.toCVec(), mVelocity.toCVec(), addVel.toVec(), dot);
+		JMAVECScaleAdd(mFrontVec, mVelocity, addVel, dot);
 		addVel.scale(0.8f);
 
 		mVelocity.scale(mFrontVec.dot(mVelocity), mFrontVec);
@@ -778,13 +778,13 @@ doFlip:
 
 		if (mVelocity.dot(gravity) > 0.0f) {
 			dot = gravity.dot(mVelocity) * -1.0f;
-			JMAVECScaleAdd(gravity.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), dot);
+			JMAVECScaleAdd(gravity, mVelocity, mVelocity, dot);
 		}
 
 		mVelocity.scale(0.95f);
 	}
 
-	JMAVECScaleAdd(gravity.toCVec(), mVelocity.toCVec(), mVelocity.toVec(), 2.0f);
+	JMAVECScaleAdd(gravity, mVelocity, mVelocity, 2.0f);
 
 	if (!isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
 		f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
@@ -810,7 +810,7 @@ void Poihana::calcMyGravity() {
 
 	TVec3f upVec, gravityPos;
 	MR::calcUpVec(&upVec, this);
-	JMAVECScaleAdd(upVec.toCVec(), mPosition.toCVec(), gravityPos.toVec(), 20.0f);
+	JMAVECScaleAdd(upVec, mPosition, gravityPos, 20.0f);
 	MR::calcGravity(this, gravityPos);
 }
 

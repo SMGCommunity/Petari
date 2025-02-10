@@ -358,7 +358,7 @@ bool MarioSwim::start()
         _24 = 0;
         Mario *mario = getPlayer();
         MR::vecKillElement(mario->_2D4, getGravityVec(), &stack_44);
-        fr1f = PSVECMag(stack_44.toCVec());
+        fr1f = PSVECMag(stack_44);
         if (getFrontVec().dot(stack_44) < 0.0f) {
             fr1f = 0.0f;
         }
@@ -537,7 +537,7 @@ bool MarioSwim::update()
         const TVec3f &rAirGravityVec = getAirGravityVec();
         TVec3f stack_194;
         MR::vecKillElement(_16C - getTrans(), rAirGravityVec, &stack_194);
-        if (PSVECMag(stack_194.toCVec()) > 100.0f || -_19C >= getPlayer()->_488 || _AE || _1B0) {
+        if (PSVECMag(stack_194) > 100.0f || -_19C >= getPlayer()->_488 || _AE || _1B0) {
             if (!isAnimationRun("水泳ジャンプダイブ")) {
                 if (_8A) {
                     doJetJump(1);
@@ -689,8 +689,8 @@ bool MarioSwim::update()
         if (getStickY() >= 0.0f && (_1F || (_1A4 < 60.0f && _54 > 1.0f))) {
             const TVec3f &rShadowNorm = getPlayer()->getShadowNorm();
             TVec3f stack_17C, stack_170;
-            PSVECCrossProduct(_60.toCVec(), rShadowNorm.toCVec(), stack_17C.toVec());
-            PSVECCrossProduct(rShadowNorm.toCVec(), stack_17C.toCVec(), stack_170.toVec());
+            PSVECCrossProduct(_60, rShadowNorm, stack_17C);
+            PSVECCrossProduct(rShadowNorm, stack_17C, stack_170);
             if (-_19C + _1A4 > 1000.0f) {
                 _1A = 1;
             }
@@ -953,7 +953,7 @@ bool MarioSwim::update()
     MR::vecKillElement(_60, _6C, &_60);
     TVec3f stack_14C, stack_140;
     if (!MR::normalizeOrZero(&_60)) {
-        PSVECCrossProduct(_6C.toCVec(), _60.toCVec(), stack_140.toVec());
+        PSVECCrossProduct(_6C, _60, stack_140);
         MR::normalize(&stack_140);
         getPlayer()->setSideVec(stack_140);
         MR::rotAxisVecRad(_60, stack_140, &stack_14C, _5C);
@@ -974,14 +974,14 @@ bool MarioSwim::update()
     spin();
     TVec3f stack_110 = getPlayer()->_1FC;
     if (_34 || _2E || isAnimationRun("水泳ジャンプダイブ回転") || isAnimationRun("水泳潜り")) {
-        PSVECCrossProduct(stack_14C.toCVec(), stack_140.toCVec(), stack_110.toVec());
+        PSVECCrossProduct(stack_14C, stack_140, stack_110);
     }
     if (!_8A) {
         decideVelocity();
     }
     TVec3f stack_104 = createAndScale(_54, stack_110);
     if (_19 && _6C.dot(stack_110) > 0.0f) {
-        f32 mag = PSVECMag(stack_104.toCVec());
+        f32 mag = PSVECMag(stack_104);
         MR::vecKillElement(stack_104, _6C, &stack_104);
         stack_104.setLength(mag);
     }
@@ -1022,7 +1022,7 @@ bool MarioSwim::update()
                 MR::extractMtxTrans(followMtx->toMtxPtr(), &stack_F8);
                 bool cond = JGeometry::TUtil<f32>::epsilonEquals(stack_F8.x, _154.x, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.y, _154.y, 0.000003814697265625f) && JGeometry::TUtil<f32>::epsilonEquals(stack_F8.z, _154.z, 0.000003814697265625f);
                 if (!cond) {
-                    if (PSVECMag((stack_F8 - _154).toCVec()) < 10.0f) {
+                    if (PSVECMag((stack_F8 - _154)) < 10.0f) {
                         addVelocity(stack_F8 - _154);
                     }
                     _154 = stack_F8;
@@ -1044,7 +1044,7 @@ bool MarioSwim::update()
         addVelocity(_184);
     }
     TVec3f stack_EC(_184);
-    f32 fr1dv2 = PSVECMag(stack_EC.toCVec());
+    f32 fr1dv2 = PSVECMag(stack_EC);
     if (!MR::normalizeOrZero(&stack_EC)) {
         if (MR::diffAngleAbs(stack_EC, _60) < 1.57079637051f) {
             MR::vecBlendSphere(_60, stack_EC, &_60, 0.001f * fr1dv2);
@@ -1065,13 +1065,13 @@ bool MarioSwim::update()
         f32 cmp = 1.04719758034f;
         if (angleDiff > cmp) {
             Mtx stack_1D0;
-            PSMTXRotAxisRad(stack_1D0, _6C.toCVec(), angleDiff - 1.04719758034f);
-            PSMTXMultVecSR(stack_1D0, _60.toCVec(), _60.toVec());
+            PSMTXRotAxisRad(stack_1D0, _6C, angleDiff - 1.04719758034f);
+            PSMTXMultVecSR(stack_1D0, _60, _60);
         }
         else if (angleDiff < -cmp) {
             Mtx stack_1A0;
-            PSMTXRotAxisRad(stack_1A0, _6C.toCVec(), -(-angleDiff - 1.04719758034f));
-            PSMTXMultVecSR(stack_1A0, _60.toCVec(), _60.toVec());
+            PSMTXRotAxisRad(stack_1A0, _6C, -(-angleDiff - 1.04719758034f));
+            PSMTXMultVecSR(stack_1A0, _60, _60);
         }
     }
     decideAnimation();

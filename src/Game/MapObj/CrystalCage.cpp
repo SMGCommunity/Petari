@@ -124,7 +124,7 @@ void CrystalCage::initAfterPlacement() {
         TVec3f stack_20;
         MR::calcUpVec(&up_vec, this);
         // I realy do not like this, but it matches :c
-        JMathInlineVEC::PSVECAdd(mPosition.toCVec(), (Vec *) &(up_vec * (val * mScale.x)), stack_20.toVec());
+        JMathInlineVEC::PSVECAdd(mPosition, (Vec *) &(up_vec * (val * mScale.x)), stack_20);
         stack_2C.scale((-(2.0f * val) * mScale.x), up_vec);
 
         if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, 0, stack_20, stack_2C, this)) {
@@ -133,7 +133,7 @@ void CrystalCage::initAfterPlacement() {
 
         if (mHasBinding) {
             _110.sub(_F8, mPosition);
-            JMathInlineVEC::PSVECAdd(_110.toCVec(), (up_vec * 50.0f).toCVec(), _110.toVec());
+            JMathInlineVEC::PSVECAdd(_110, (up_vec * 50.0f), _110);
             mVelocity.scale(-2.0f, up_vec);
         }
     }
@@ -299,7 +299,7 @@ void CrystalCage::exeWait() {
             mRumbleCalc->calc();
             TVec3f v9;
             v9.scale(mRumbleCalc->_C.y, _D0);
-            JMathInlineVEC::PSVECAdd(_DC.toCVec(), v9.toCVec(), mPosition.toVec());
+            JMathInlineVEC::PSVECAdd(_DC, v9, mPosition);
         }
         else {
             mPosition.set(_DC);
@@ -311,10 +311,10 @@ void CrystalCage::exeWait() {
         MR::calcUpVec(&up_vec, this);
         TVec3f v6;
         v6.scale(-40.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(v6.toCVec(), mPosition.toCVec(), v6.toVec());
+        JMathInlineVEC::PSVECAdd(v6, mPosition, v6);
         TVec3f v5;
         v5.scale(140.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(v5.toCVec(), mPosition.toCVec(), v5.toVec());
+        JMathInlineVEC::PSVECAdd(v5, mPosition, v5);
         MR::calcPerpendicFootToLineInside(&_E8, *MR::getPlayerPos(), v6, v5);
     }
 }

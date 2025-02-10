@@ -397,7 +397,7 @@ void IceMerameraKing::exeEscape() {
     else {
         MR::emitEffect(this, "Rolling");
         if (MR::isOnGround(this) ){
-            f32 v11 = MR::getLinerValueFromMinMax(PSVECMag(mVelocity.toCVec()), 2.0f, 6.0f, 0.0f, 100.0f);
+            f32 v11 = MR::getLinerValueFromMinMax(PSVECMag(mVelocity), 2.0f, 6.0f, 0.0f, 100.0f);
             MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_ROLL", v11, -1, 15);
         }
 
@@ -736,7 +736,7 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
             TVec3f v10(*MR::getPlayerCenterPos());
             v10.subtract(mPosition);
             MR::vecKillElement(v10, mGravity, &v10);
-            if (PSVECMag(v10.toCVec()) > getSensor("body")->mRadius) {
+            if (PSVECMag(v10) > getSensor("body")->mRadius) {
                 return false;
             }
             else {
@@ -903,7 +903,7 @@ void IceMerameraKingShockWave::attackSensor(HitSensor *pSender, HitSensor *pRece
         v17.subtract(pSender->mPosition);
         f32 radius1 = sensor->mRadius;
         f32 radius2 = pReceiver->mRadius;
-        if (PSVECMag(v17.toCVec()) > (radius2 + radius1)) {
+        if (PSVECMag(v17) > (radius2 + radius1)) {
             TVec3f v15;
             TVec3f v16(pSender->mPosition);
             v16.subtract(pSender->mPosition);
