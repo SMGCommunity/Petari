@@ -6,6 +6,7 @@ void OceanRing::initAfterPlacement() {
     }
 }
 
+/*
 bool OceanRing::isInWater(const TVec3f &rVec) const {
     if (!mClippingBox.intersectsPoint(rVec)) {
         return false;
@@ -15,7 +16,7 @@ bool OceanRing::isInWater(const TVec3f &rVec) const {
     f32 pos = calcNearestPos(rVec, &nearPos, nullptr, nullptr);
     f32 w = (mWidthMax * calcCurrentWidthRate(pos));
 
-    if (PSVECDistance(nearPos, rVec) > w) {
+    if (PSVECDistance(&nearPos, &rVec) > w) {
         return false;
     }
 
@@ -25,3 +26,4 @@ bool OceanRing::isInWater(const TVec3f &rVec) const {
     MR::calcGravityVector(this, rVec, &gravVec, nullptr, 0);
     return !(stack_14.dot(gravVec) < 0.0f);
 }
+*/

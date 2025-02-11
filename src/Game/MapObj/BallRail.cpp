@@ -67,7 +67,6 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor *a2, HitSensor *a3) {
 // there is a minor regswap here but I'm marking it as done anyways
 // TODO -- fix regswap
 void BallRail::initRailPoints() {
-    #warning "BallRail::initRailPoints has a regswap"
     u32 numPoints = (u32)(MR::getRailTotalLength(this) / 100.0f) + 2;
     mNumPoints = numPoints;
     mRailPoints = new BallRailPoint[numPoints];
@@ -90,19 +89,19 @@ void BallRail::initRailPoints() {
 
     if (mNumPoints >= 2) {
         BallRailPoint* pnt = mRailPoints;
-        PSVECCrossProduct(pnt->_24, v17, pnt->_C);
+        PSVECCrossProduct(&pnt->_24, &v17, &pnt->_C);
         MR::normalizeOrZero(&pnt->_C);
     }
 
     for (u32 i = 0; i < mNumPoints; i++) {
         BallRailPoint* pnt = &mRailPoints[i];
-        PSVECCrossProduct(pnt->_24, v17, pnt->_C);
+        PSVECCrossProduct(&pnt->_24, &v17, &pnt->_C);
         MR::normalizeOrZero(&pnt->_C);
     }
 
     if (mNumPoints >= 2) {
         BallRailPoint* lastPnt = &mRailPoints[mNumPoints - 1];
-        PSVECCrossProduct(lastPnt->_24, v17, lastPnt->_C);
+        PSVECCrossProduct(&lastPnt->_24, &v17, &lastPnt->_C);
         MR::normalizeOrZero(&lastPnt->_C);
     }
 }
@@ -116,6 +115,7 @@ void BallRail::exeWait() {
     }
 }
 
+/*
 void BallRail::exeSetUp() {
     if (MR::isFirstStep(this)) {
         _94 = _90->mPosition;
@@ -130,12 +130,12 @@ void BallRail::exeSetUp() {
 
     if (MR::isLessStep(this, 15)) {
         TVec3f v6;
-        JMAVECScaleAdd(mGravity, mPosition, v6, -_90->mRadius);
+        JMAVECScaleAdd(&mGravity, &mPosition, &v6, -_90->mRadius);
         f32 rate = MR::calcNerveEaseInRate(this, 15);
         MR::vecBlend(_94, v6, &v7, rate);
     }
     else {
-        JMAVECScaleAdd(mGravity, mPosition, v7, -_90->mRadius);
+        JMAVECScaleAdd(&mGravity, &mPosition, &v7, -_90->mRadius);
     }
 
     if (MR::isStep(this, 15)) {
@@ -148,7 +148,9 @@ void BallRail::exeSetUp() {
         setNerve(&NrvBallRail::BallRailNrvRun::sInstance);
     }
 }
+*/
 
+/*
 void BallRail::exeRun() {
     if (MR::isFirstStep(this)) {
         MR::setRailCoordSpeed(this, 0.0f);
@@ -170,7 +172,7 @@ void BallRail::exeRun() {
 
     MR::moveRailRider(this);
     MR::moveTransToCurrentRailPos(this);
-    JMAVECScaleAdd(mGravity, mPosition, v12, -_90->mRadius);
+    JMAVECScaleAdd(&mGravity, &mPosition, &v12, -_90->mRadius);
     MR::subtractAndSet(_90->mActor->mVelocity, v12, &_90->mPosition);
 
     if (MR::isRailReachedGoal(this)) {
@@ -182,6 +184,7 @@ void BallRail::exeRun() {
         setNerve(&NrvBallRail::BallRailNrvNoBind::sInstance);
     }
 }
+*/
 
 void BallRail::exeNoBind() {
     if (getNerveStep() > 60) {

@@ -32,6 +32,6 @@ void AstroDomeOrbit::setup(s32 radiusIdx) {
         f32 y = cRotateOutermost[1];
         f32 x = cRotateOutermost[2];
         
-        mRotation.setInline(z, y, x);
+        mRotation.set(z, y, x);
     }
 }

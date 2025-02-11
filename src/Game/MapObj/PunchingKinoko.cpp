@@ -13,7 +13,7 @@ void PunchingKinoko::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("PunchingKinoko", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     MR::calcGravity(this);
-    _9C.set(mPosition);
+    _9C.set<f32>(mPosition);
 
     mGroundChecker = new GroundChecker("頭コリジョン", 70.0f, 0.0f);
     MR::calcPositionUpOffset(&mGroundChecker->mPosition, this, 130.0f);
@@ -71,7 +71,7 @@ void PunchingKinoko::initJointControl() {
 
 bool PunchingKinoko::ballMtxCallBack(TPos3f *a1, const JointControllerInfo &joint) {
     TVec3f stack_8;
-    PSVECSubtract(mGroundChecker->mPosition, mPosition, stack_8);
+    PSVECSubtract(&mGroundChecker->mPosition, &mPosition, &stack_8);
     MR::orthogonalize(a1);
     if (!MR::normalizeOrZero(&stack_8)) {
         MR::turnMtxToYDirRate(a1, stack_8, 1.0f);
@@ -117,6 +117,7 @@ void PunchingKinoko::control() {
     }
 }
 
+/*
 void PunchingKinoko::calcAndSetBaseMtx() {
     TPos3f stack_14;
     TVec3f stack_8;
@@ -125,7 +126,9 @@ void PunchingKinoko::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, stack_14);
     mDelegator->registerCallBack();
 }
+*/
 
+/*
 void PunchingKinoko::attackSensor(HitSensor *pMySensor, HitSensor *pOtherSensor) {
     if (!isCrushed()) {
         if (pMySensor == getSensor("Body")) {
@@ -184,13 +187,14 @@ void PunchingKinoko::attackSensor(HitSensor *pMySensor, HitSensor *pOtherSensor)
                 TVec3f stack_C(stack_30);
                 stack_C.scale(dot);
                 TVec3f *groundvel = &mGroundChecker->mVelocity;
-                PSVECSubtract(groundvel->toCVec(), stack_C, groundvel->toVec());
+                PSVECSubtract(groundvel, stack_C, groundvel);
                 mGroundChecker->mVelocity.scaleInline(0.3f);
                 setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
             }
         }
     }
 }
+*/
 
 bool PunchingKinoko::receiveMsgPlayerAttack(u32 a1, HitSensor *pOtherSensor, HitSensor *pMySensor) {
     if (isCrushed()) {
@@ -372,7 +376,7 @@ void PunchingKinoko::exeWait() {
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_20;
     TVec3f stack_14(stack_38);
-    PSVECSubtract(stack_14, groundCheckerPos->toCVec(), stack_14);
+    PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     stack_20 = stack_14;
     stack_20.scale(0.008f);
@@ -409,7 +413,7 @@ void PunchingKinoko::exeSwing() {
 
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_14(stack_20);
-    PSVECSubtract(stack_14, groundCheckerPos->toCVec(), stack_14);
+    PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
 
     TVec3f stack_8(stack_14);
     stack_8.scale(0.008f);
@@ -425,7 +429,7 @@ void PunchingKinoko::exeSwing() {
 
     MR::vecBlend(_9C, mPosition, &_9C, 0.05f);
 
-    if (var3 < 40.0f && PSVECMag(stack_14) < 50.0f) {
+    if (var3 < 40.0f && PSVECMag(&stack_14) < 50.0f) {
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
     }
 }
@@ -446,7 +450,7 @@ void PunchingKinoko::exePunched() {
     MR::attenuateVelocity(mGroundChecker, 0.99f);
     HitSensor *sensor = getSensor("Head");
     MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor);
-    _9C.set(mGroundChecker->mPosition);
+    _9C.set<f32>(mGroundChecker->mPosition);
     if (MR::isGreaterStep(this, 5)) {
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunchedBrake::sInstance);
     }
@@ -456,7 +460,7 @@ void PunchingKinoko::exePunchedBrake() {
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.9f);
     MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
-    _9C.set(mGroundChecker->mPosition);
+    _9C.set<f32>(mGroundChecker->mPosition);
     if (!MR::isGreaterStep(this, 40)) {
         HitSensor *sensor = getSensor("Head");
         if (!MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor)) {
@@ -489,7 +493,7 @@ void PunchingKinoko::exeCrushed() {
             mGroundChecker->mPosition.add(stack_8);
         }
         else {
-            _A8.set(mGravity);
+            _A8.set<f32>(mGravity);
         }
         MR::offBind(mGroundChecker);
         mScaleController->startCrush();
@@ -513,7 +517,7 @@ void PunchingKinoko::exeCrushedEnd() {
     TVec3f *groundCheckerPos = &mGroundChecker->mPosition;
     TVec3f stack_14;
     TVec3f stack_8(stack_20);
-    PSVECSubtract(stack_8, groundCheckerPos->toCVec(), stack_8);
+    PSVECSubtract(&stack_8, groundCheckerPos, &stack_8);
     stack_14 = stack_8;
     stack_14.scale(0.008f);
     MR::addVelocity(mGroundChecker, stack_14);

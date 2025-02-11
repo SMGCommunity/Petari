@@ -22,6 +22,7 @@
 #include "JSystem/JAudio2/JAIAudible.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+/*
 Triangle &Triangle::operator=(const Triangle &rOther)
 {
     mParts = rOther.mParts;
@@ -43,7 +44,7 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
     initMember();
     mMario = new Mario(this);
     _930 = 0;
-    _468.x = 0;
+    _468f.x = 0;
     mMaxHealth = 3;
     mHealth = 3;
     _384 = 8;
@@ -99,8 +100,8 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
 
     _3C1 = false;
     _211 = 0;
-    _468.y = 0;
-    _468.z = 0;
+    _468f.y = 0;
+    _468f.z = 0;
     _474 = 0;
     _924 = nullptr;
     _928 = 0;
@@ -1604,3 +1605,4 @@ void MarioActor::updateBaseScaleMtx()
         PSMTXIdentity(_BF8.toMtxPtr());
     }
 }
+*/

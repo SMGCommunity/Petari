@@ -229,7 +229,7 @@ void BenefitItemObj::init(const JMapInfoIter &rIter) {
 
         TVec3f rotate_axis_y;
         MR::getRotatedAxisY(&rotate_axis_y, mRotation);
-        _A4.set(rotate_axis_y);
+        _A4.set<f32>(rotate_axis_y);
 
         if (_DC) {
             MR::initShadowVolumeCylinder(this, 50.0f);
@@ -322,12 +322,13 @@ void BenefitItemObj::appearGround() {
     MR::invalidateClipping(this);
 }
 
+/*
 void BenefitItemObj::appearThrowUp() {
     MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
     runBck("Appear");
     TVec3f rotated_axis;
     MR::getRotatedAxisY(&rotated_axis, mRotation);
-    _A4.set(rotated_axis);
+    _A4.set<f32>(rotated_axis);
     setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
 
     if (!_DD) {
@@ -341,6 +342,7 @@ void BenefitItemObj::appearThrowUp() {
     
     MR::invalidateClipping(this);
 }
+*/
 
 void BenefitItemObj::shoot(const TVec3f &a2, const TVec3f &a3, bool a4) {
     mPosition = a2;
@@ -441,6 +443,7 @@ void BenefitItemObj::doRotateY() {
     }
 }
 
+/*
 void BenefitItemObj::exeShoot() {
     f32 reflect, v2, gravity, v4;
 
@@ -476,9 +479,10 @@ void BenefitItemObj::exeShoot() {
         }
 
         v9 += MR::createVecAndScale(mGravity, gravity);
-        mVelocity.set(v9);
+        mVelocity.set<f32>(v9);
     }
 }
+*/
 
 void BenefitItemObj::exeCatch() {
     if (MR::isFirstStep(this)) {
@@ -493,7 +497,7 @@ void BenefitItemObj::exeCatch() {
     mVelocity.x = 0.0f;
     mVelocity.y = 0.0f;
     mVelocity.z = 0.0f;
-    mPosition.set(mHitSensorActor->mPosition);
+    mPosition.set<f32>(mHitSensorActor->mPosition);
 }
 
 bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
@@ -587,6 +591,7 @@ void BenefitItemObj::initEscape() {
     MR::startSound(this, "SE_OJ_KINOKO_1UP_RUN_START", -1, -1);
 }
 
+/*
 void BenefitItemObj::doEscape() {
     MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN", -1, -1, -1);
     bool cond = false;
@@ -595,7 +600,7 @@ void BenefitItemObj::doEscape() {
     }
 
     if (MR::isBindedGround(this)) {
-        f32 mag = PSVECMag(_BC);
+        f32 mag = PSVECMag(&_BC);
         MR::vecKillElement(_BC, mGravity, &_BC);
         _BC.setLength(mag);
 
@@ -619,7 +624,7 @@ void BenefitItemObj::doEscape() {
             }
         } 
 
-        if (PSVECMag(_BC) > 7.0f) {
+        if (PSVECMag(&_BC) > 7.0f) {
             _BC.setLength(7.0f);
         }
 
@@ -638,7 +643,7 @@ void BenefitItemObj::doEscape() {
         _BC.z *= 0.94999999f;
         _C8 += MR::createVecAndScale(mGravity, 1.0f); 
 
-        if (PSVECMag(_C8) > 20.0f) {
+        if (PSVECMag(&_C8) > 20.0f) {
             _C8.setLength(20.0f);
         }
 
@@ -653,7 +658,7 @@ void BenefitItemObj::doEscape() {
             _E5 = 1; 
         } 
     }
-}
+}*/
 
 void BenefitItemObj::exeEscape() {
     if (MR::isFirstStep(this)) {

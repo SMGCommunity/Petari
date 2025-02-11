@@ -13,7 +13,7 @@ void LavaGalaxyParts::initAfterPlacement() {
     if (mMtxSetter != nullptr) {
         TVec3f upper;
         MR::calcMapGroundUpper(&upper, this);
-        f32 dist = PSVECDistance(mPosition, upper);
+        f32 dist = PSVECDistance(&mPosition, &upper);
         TVec3f neg = mPosition - upper;
         if (neg.dot(mGravity) < 0.0f) {
             dist *= -1.0f;

@@ -33,7 +33,7 @@ void BigFan::init(const JMapInfoIter &rIter) {
     initWindModel();
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    JMAVECScaleAdd(front, mPosition, _90, 0.5f * mWindLength);
+    JMAVECScaleAdd(&front, &mPosition, &_90, 0.5f * mWindLength);
     MR::setClippingTypeSphere(this, 400.0f + mWindLength, &_90);
     initSound(4, false);
 
@@ -65,6 +65,7 @@ void BigFan::initWindModel() {
     mWindModel->mScale.z = mWindLength / 2000.0f;
 }
 
+/*
 void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {    
     if (MR::isDead(this) || isStartOrWait()) {
         pWindInfo->zero();
@@ -87,8 +88,8 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
         }
 
         TVec3f stack_2C;
-        stack_2C.setInlinePS(stack_38 - (front_vec * dot));
-        f32 mag = PSVECMag(stack_2C);
+        stack_2C.setPS(stack_38 - (front_vec * dot));
+        f32 mag = PSVECMag(&stack_2C);
 
         if (mag >= 400.0f * mScale.x) {
             pWindInfo->zero();
@@ -105,6 +106,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
         return;
     }
 }
+*/
 
 void BigFan::control() {
 

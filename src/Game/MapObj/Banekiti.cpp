@@ -60,12 +60,14 @@ void Banekiti::endDPDSwoon() {
     mBindStarPointer->kill();
 }
 
+/*
 void Banekiti::calcAndSetBaseMtx() {
     TVec3f mtx;
     LiveActor::calcAndSetBaseMtx();
     mtx.multPS(mScale, mAnimScaleCtrl->_C);
     MR::setBaseScale(this, mtx);
 }
+*/
 
 void Banekiti::control() {
     mAnimScaleCtrl->updateNerve();

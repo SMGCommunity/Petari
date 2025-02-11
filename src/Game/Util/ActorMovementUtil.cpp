@@ -136,7 +136,7 @@ namespace MR {
     }
 
     void calcVecToTargetPosH(TVec3f *pToTargetHVec, const LiveActor *pActor, const TVec3f &a3, const TVec3f *a4) {
-        pToTargetHVec->set(a3);
+        pToTargetHVec->set<f32>(a3);
 
         TVec3f *vec = pToTargetHVec;
         PSVECSubtract((Vec*)vec, (Vec*)&pActor->mPosition, (Vec*)vec);
@@ -276,7 +276,7 @@ namespace MR {
     }
 
     void resetPosition(LiveActor *pActor, const TVec3f &rPosition) {
-        pActor->mPosition.set(rPosition);
+        pActor->mPosition.set<f32>(rPosition);
 
         MR::resetPosition(pActor);
     }
@@ -286,8 +286,8 @@ namespace MR {
         TVec3f rot(0.0f, 0.0f, 0.0f);
         MR::findNamePos(a2, &pos, &rot);
 
-        pActor->mPosition.set(pos);
-        pActor->mRotation.set(rot);
+        pActor->mPosition.set<f32>(pos);
+        pActor->mRotation.set<f32>(rot);
 
         MR::resetPosition(pActor);
     }

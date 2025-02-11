@@ -54,6 +54,7 @@ void MagicBell::exeWait() {
 }
 
 // Minor mismatch: "squaredInline" near the bottom gets its registers swapped
+/*
 void MagicBell::exeRing()
 {
     if (MR::isFirstStep(this)) {
@@ -70,7 +71,7 @@ void MagicBell::exeRing()
 
     if (mBellSwinger->_20.dot(mBellRodSwinger->_20) < 0.94999999f) {
         TVec3f v17(mBellSwinger->_20);
-        v17.subtract(mBellRodSwinger->_20);
+        v17.sub(mBellRodSwinger->_20);
         f32 v3 = mBellRodSwinger->_20.dot(v17);
         v17.x -= v3 * mBellRodSwinger->_20.x;
         v17.y -= v3 * mBellRodSwinger->_20.y;
@@ -85,9 +86,9 @@ void MagicBell::exeRing()
             f32 v7 = v5 >= 0.0f ? 0.0f : v5;
 
             v17.scale(v4 - v7);
-            v17.subtract(mBellRodSwinger->mAcceleration);
+            v17.sub(mBellRodSwinger->mAcceleration);
             mBellRodSwinger->accel(v17);
-            mHitMarkPosition.set(mBellRodSwinger->_8);
+            mHitMarkPosition.set<f32>(mBellRodSwinger->_8);
         }
     }
     PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);
@@ -116,6 +117,7 @@ void MagicBell::exeRing()
     MR::deleteEffect(this, "Ring");
     setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
 }
+*/
 
 void MagicBell::attackSensor(HitSensor *a1, HitSensor *a2) {
     if (MR::isSensorPlayer(a2)) {
@@ -123,6 +125,7 @@ void MagicBell::attackSensor(HitSensor *a1, HitSensor *a2) {
     }
 }
 
+/*
 bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver)
 {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
@@ -132,7 +135,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
     if (!isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) && (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10))) {
 
         TVec3f v15(mPosition);
-        v15.subtract(*MR::getPlayerPos());
+        v15.sub(*MR::getPlayerPos());
         v15.y += 100.0f;
         MR::normalizeOrZero(&v15);
         TVec3f v14(v15);
@@ -143,6 +146,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *p
     }
     return false;
 }
+*/
 
 bool MagicBell::tryRing()
 {
@@ -171,14 +175,14 @@ bool MagicBell::tryRing()
 
 void MagicBell::startRing(const TVec3f &a1, const TVec3f &a2)
 {
-    f32 v10 = PSVECMag(mBellSwinger->mAcceleration);
+    f32 v10 = PSVECMag(&mBellSwinger->mAcceleration);
     TVec3f v13(mBellSwinger->mAcceleration);
     v13.scale(-1.0f);
     mBellSwinger->accel(v13);
     TVec3f v12(a1);
     v12.scale(5.0f + v10);
     mBellSwinger->accel(v12);
-    mHitMarkPosition.set(a2);
+    mHitMarkPosition.set<f32>(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);

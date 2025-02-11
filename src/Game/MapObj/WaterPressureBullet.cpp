@@ -140,7 +140,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (!_B0) {
-        JMAVECScaleAdd(mGravity, mVelocity, mVelocity, 0.40000001f);
+        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 0.40000001f);
     }
 
     if (MR::isPadSwing(0) && mHostActor != nullptr && !_B2) {
@@ -166,7 +166,7 @@ void WaterPressureBullet::exeFly() {
         TVec3f* vel = &mVelocity;
         TVec3f* grav = &mGravity;
         f32 dot = grav->dot(mVelocity);
-        JMAVECScaleAdd(grav->toCVec(), vel->toCVec(), vel->toVec(), -dot);
+        JMAVECScaleAdd(grav, vel, vel, -dot);
     }
 
     if (!_B2 && MR::isGreaterEqualStep(this, 180) || _B2 && MR::isGreaterEqualStep(this, 300)) {
@@ -268,7 +268,7 @@ bool WaterPressureBullet::inviteMario(HitSensor *pSensor) {
             TVec3f* vel = &mVelocity;
             TVec3f* grav = &mGravity;
             f32 dot = grav->dot(mVelocity);
-            JMAVECScaleAdd(grav->toCVec(), vel->toCVec(), vel->toVec(), -dot);
+            JMAVECScaleAdd(grav, vel, vel, -dot);
         }
         else {
             kill();

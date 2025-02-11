@@ -21,6 +21,7 @@ SegmentGravity::SegmentGravity() :
 	}
 }
 
+/*
 bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     TVec3f relPosFromBase = rPos - mWorldGravityPoints[0];
     f32 axisY = relPosFromBase.dot(mAxis);
@@ -69,7 +70,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVe
     }
     return true;
 }
-
+*/
 
 void SegmentGravity::updateLocalParam() {
     TRot3f rot;
@@ -88,7 +89,7 @@ void SegmentGravity::updateLocalParam() {
         mOppositeSideVecOrtho.zero();
         return;
     }
-    JMAVECScaleAdd(localAxis, mSideVector, mOppositeSideVecOrtho, -localAxis.dot(mSideVector));
+    JMAVECScaleAdd(&localAxis, &mSideVector, &mOppositeSideVecOrtho, -localAxis.dot(mSideVector));
     MR::normalize(&mOppositeSideVecOrtho);
     if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
         mOppositeSideVecOrtho.zero();

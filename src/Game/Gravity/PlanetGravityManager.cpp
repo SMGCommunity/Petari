@@ -8,6 +8,7 @@ void PlanetGravityManager::init(const JMapInfoIter &rIter) {
 
 }
 
+/*
 bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo *pInfo, const TVec3f &rPosition, u32 gravityType, u32 host) const {
 	TVec3f totalGravity;
 	totalGravity.z = 0.0f;
@@ -46,7 +47,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo 
 
 			if ((*pGravities)->calcGravity(&gravityVec, rPosition)) {
 				bool storeInfo = false;
-				f32 scalar = PSVECMag(gravityVec);
+				f32 scalar = PSVECMag(&gravityVec);
 
 				// If same priority, add gravity vector to total result
 				if (priority == largestPriority) {
@@ -86,6 +87,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo 
 
 	return hasCalculated;
 }
+*/
 
 void PlanetGravityManager::registerGravity(PlanetGravity *pGravity) {
 	pGravity->mIsRegistered = true;

@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"
+#include "math_types.hpp"
 
 const GXColor lightColor[5] = { { 0x96, 0x96, 0x32, 0 },
                                         { 0x32, 0x32, 0x96, 0 },
@@ -140,7 +141,7 @@ void PowerStar::appear() {
 }
 
 void PowerStar::makeActorAppeared() {
-    _AC.set(mPosition);
+    _AC.set<f32>(mPosition);
     initPosture();
     LiveActor::makeActorAppeared();
 }
@@ -164,10 +165,10 @@ void PowerStar::setDemoAppearPos(const TVec3f &rVec) {
     bool isinArray = MR::getGroupFromArray(this);
     if (isinArray) {
         mCameraActor = getNearestAppearPoint(rVec);
-        mAppearPosition.set(mCameraActor->mPosition);
+        mAppearPosition.set<f32>(mCameraActor->mPosition);
     }
 
-    mPosition.set(rVec);
+    mPosition.set<f32>(rVec);
 }
 
 bool PowerStar::isEndAppearDemo() const {
@@ -367,8 +368,8 @@ void PowerStar::initMapToolInfo(const JMapInfoIter &rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &_125);
     MR::getJMapInfoArg2NoInit(rIter, &_126);
     MR::getJMapInfoArg4NoInit(rIter, &_127);
-    mAppearPosition.set(mPosition);
-    _A0.set(mPosition);
+    mAppearPosition.set<f32>(mPosition);
+    _A0.set<f32>(mPosition);
     MR::registerPowerStar(this, mPowerStarId);
     MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10);
 
@@ -462,6 +463,7 @@ void PowerStar::initShadow(const JMapInfoIter &rIter) {
     }
 }
 
+/*
 void PowerStar::initPosture() {
     MR::calcGravity(this, mAppearPosition);
     TMtx34f rotate;
@@ -491,6 +493,7 @@ void PowerStar::initPosture() {
     _B8.zeroTrans();
     mRotation.y = 0.0f;
 }
+*/
 
 void PowerStar::endAppearDemo() {
     if (!_11C) {
@@ -511,7 +514,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f &rPos) const
         PowerStarAppearPoint* actor = reinterpret_cast<PowerStarAppearPoint*>(group->getActor(i));
 
         if ((LiveActor*)actor != this) {
-            f32 dist = PSVECDistance(rPos, actor->mPosition);
+            f32 dist = PSVECDistance(&rPos, &actor->mPosition);
 
             if (dist < curDist) {
                 curNearest = actor;

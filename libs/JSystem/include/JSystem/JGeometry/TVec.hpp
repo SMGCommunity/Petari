@@ -125,9 +125,10 @@ namespace JGeometry {
             return *this;
         }
 
+        TVec3& operator+(const TVec3 &) const;
         TVec3& operator+=(const TVec3 &op);
 
-        TVec3& operator*(f32);
+        TVec3& operator*(f32) const;
         TVec3& operator*=(f32);
 
         TVec3& operator-() const;
@@ -159,9 +160,14 @@ namespace JGeometry {
             z = val;
         }
 
+        template<typename T>
+        void setAll(f32);
+
         void sub(const TVec3<f32> &b) {
             JMathInlineVEC::PSVECSubtract(this, &b, this);
         }
+
+        void sub(const TVec3 &, const TVec3 &);
 
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
@@ -174,6 +180,8 @@ namespace JGeometry {
         void add(const TVec3<f32> &b) {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
+
+        void add(const TVec3 &, const TVec3 &);
         
         f32 squareMag() const {
             return JMathInlineVEC::PSVECSquareMag(this);
@@ -198,6 +206,7 @@ namespace JGeometry {
         void scale(f32, const TVec3 &);
         void negate();
         f32 squared() const;
+        f32 squared(const TVec3 &) const;
         void zero();
         bool isZero() const;
         void normalize(const TVec3 &);

@@ -22,6 +22,7 @@ void WaterPoint::initAfterPlacement() {
     }
 }
 
+/*
 void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 waveHeight2, f32 a5) {
     f32 height = calcHeight(waveTheta1, waveTheta2, waveHeight1, waveHeight2, mCoordAcrossRail, mCoordOnRail);
     f32 v9 = a5 * height;
@@ -30,6 +31,7 @@ void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 
     mPosition.z = mUpVec.z * v9;
     mPosition.addInline_4(mOrigPos);
 }
+*/
 
 /* thanks to WMC for naming the vars */
 f32 WaterPoint::calcHeight(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 waveHeight2, f32 coordAcrossRail, f32 coordOnRail) const {

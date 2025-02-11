@@ -38,8 +38,8 @@ void SpinDriverShootPath::setStartPosition(const TVec3f &rStartPos) {
 
     calcPosition(&position, 0.0f);
     TVec3f startPos(rStartPos);
-    JMathInlineVEC::PSVECSubtract(startPos, position, startPos);
-    mStartPosition.setInlinePS(startPos);
+    JMathInlineVEC::PSVECSubtract(&startPos, &position, &startPos);
+    mStartPosition.setPS(startPos);
 }
 
 void SpinDriverShootPath::calcPosition(TVec3f *pOutPosition, f32 a2) const {
@@ -85,8 +85,8 @@ void SpinDriverShootPath::calcDirection(TVec3f *pOutDirection, f32 a2, f32 a3) c
     TVec3f stack_14;
     calcPosition(&stack_14, v6);
     TVec3f stack_8(stack_14);
-    JMathInlineVEC::PSVECSubtract(stack_8, stack_14, stack_8);
-    pOutDirection->set(stack_8);
+    JMathInlineVEC::PSVECSubtract(&stack_8, &stack_14, &stack_8);
+    pOutDirection->set<f32>(stack_8);
     MR::normalize(pOutDirection);
 }
 

@@ -149,7 +149,7 @@ void PowerStarHalo::appear() {
 
 f32 PowerStarHalo::getDistance() const {
     TVec3f pos = MR::getCamPos();
-    return PSVECDistance(mPosition, pos);
+    return PSVECDistance(&mPosition, &pos);
 }
 
 void PowerStarHalo::exeWaitScenarioOpeningEnd() {

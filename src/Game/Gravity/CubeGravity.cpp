@@ -34,34 +34,6 @@
 #define ENCODE_CORNER(signumx, signumy, signumz) \
     ((signumx + 1) + (signumy + 1) * 3 + (signumz + 1) * 9)
 
-template <>
-bool TVec3f::isZero() const
-{
-    register const TVec3f *rSrc = this;
-    register f32 sum;
-
-    __asm {
-		psq_l     f1, 0(rSrc), 0, 0
-		lfs       sum, 8(rSrc)
-		ps_mul    f1, f1, f1
-		ps_madd   sum, sum, sum, f1
-		ps_sum0   sum, sum, f1, f1
-    };
-
-    return sum <= 0.0000038146973f;
-}
-
-template <>
-float TVec3f::normalize(const TVec3f &rSrc)
-{
-    x = rSrc.x;
-    y = rSrc.y;
-    z = rSrc.z;
-    float magnitude = PSVECMag(toCVec());
-    PSVECNormalize(toCVec(), toVec());
-    return magnitude;
-}
-
 CubeGravity::CubeGravity() : PlanetGravity()
 {
 
@@ -86,11 +58,11 @@ void CubeGravity::updateMtx(const TPos3f &rMtx)
     mPosition.concat(rMtx, mCube);
     TVec3f dir;
     mPosition.getXDir(dir);
-    lenX = PSVECMag(dir);
+    lenX = PSVECMag(&dir);
     mPosition.getYDir(dir);
-    lenY = PSVECMag(dir);
+    lenY = PSVECMag(&dir);
     mPosition.getZDir(dir);
-    lenZ = PSVECMag(dir);
+    lenZ = PSVECMag(&dir);
 }
 
 bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const
@@ -242,6 +214,7 @@ TVec3f negate(const TVec3f &in)
     return tmp;
 }
 
+/*
 bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     // There is a mistake here: so long as area is not both even and negative, the function will not
@@ -343,7 +316,9 @@ bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 
     return true;
 }
+    */
 
+    /*
 bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     TVec3f vertex, xDir, yDir, zDir, trans;
@@ -405,3 +380,4 @@ bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *p
 
     return true;
 }
+*/

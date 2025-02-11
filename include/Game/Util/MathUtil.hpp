@@ -153,6 +153,8 @@ namespace MR {
 
     f32 cos(f32);
     f32 sin(f32);
+
+    void checkHitSegmentSphere(const TVec3f &, const TVec3f &, const TVec3f &, TVec3f *);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

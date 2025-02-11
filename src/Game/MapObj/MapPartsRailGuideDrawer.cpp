@@ -29,7 +29,7 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter &rIter) {
         while (curPointNum < MR::getRailPointNum(mHost)) {
             MapPartsRailGuidePoint* blah = new MapPartsRailGuidePoint(mHost, _424, curPointNum, hasShadow);
             blah->initWithoutIter();
-            blah->mScale.setInline(2.0f);
+            blah->mScale.set(2.0f);
             mGuidePoints.push_back(blah);
             curPointNum++;
         }

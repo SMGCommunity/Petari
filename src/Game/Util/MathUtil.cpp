@@ -72,7 +72,7 @@ namespace MR {
         addRandomVector(pOut, rOtherVec, a3);
 
         if (isNearZero(*pOut, 0.001f)) {
-            pOut->set(rOtherVec);
+            pOut->set<f32>(rOtherVec);
         }
         else {
             pOut->setLength(mag);
@@ -145,7 +145,7 @@ namespace MR {
            
         }
         else {
-            a1->set(a2);
+            a1->set<f32>(a2);
         }
     }
 
@@ -313,6 +313,7 @@ namespace MR {
     }
 
     void vecScaleAdd(const register TVec3f *a1, const register TVec3f *a2, register f32 a3) {
+        #ifdef __MWERKS__
         __asm {
             psq_l f0, 0(a1), 0, 0
             psq_l f3, 0(a2), 0, 0
@@ -323,9 +324,11 @@ namespace MR {
             psq_st f0, 0(a1), 0, 0
             psq_st f2, 8(a1), 1, 0
         }
+        #endif
     }
 
     void PSvecBlend(const register TVec3f *a1, const register TVec3f *a2, register TVec3f *a3, register f32 a4, register f32 a5) {
+        #ifdef __MWERKS__
         __asm {
             psq_l     f0, 0(a1), 0, 0
             psq_l     f3, 8(a1), 1, 0
@@ -338,6 +341,7 @@ namespace MR {
             psq_st    f4, 0(a3), 0, 0
             psq_st    f3, 8(a3), 1, 0
         }
+        #endif
     }
 
     void vecBlend(const TVec3f &a1, const TVec3f &a2, TVec3f *a3, f32 a4) {

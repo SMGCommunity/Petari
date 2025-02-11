@@ -1,14 +1,14 @@
 #include "Game/MapObj/RosettaChair.hpp"
 
 RosettaChair::RosettaChair(const char *pName) : LiveActor(pName) {
-    _8C.setInline(0.0f);
-    _98.setInline(0.0f);
+    _8C.set(0.0f);
+    _98.set(0.0f);
     _A0.identity();
 }
 
 void RosettaChair::setDefaultPose() {
-    mPosition.set(_8C);
-    mRotation.set(_98);
+    mPosition.set<f32>(_8C);
+    mRotation.set<f32>(_98);
     MR::startBck(this, "RosettaChair", nullptr);
     MR::validateCollisionParts(this);
 }
@@ -35,8 +35,8 @@ void RosettaChair::init(const JMapInfoIter &rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::startDemo), "朗読開始");
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::setDefaultPose), "キャスト入れ換え");
-    _8C.set(mPosition);
-    _98.set(mRotation);
+    _8C.set<f32>(mPosition);
+    _98.set<f32>(mRotation);
     MR::startBck(this, "RosettaChair", nullptr);
     makeActorAppeared();
 }

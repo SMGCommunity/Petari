@@ -28,12 +28,14 @@ bool CoinHolder::appearCoinFix(const NameObj *pObj, const TVec3f &a2, s32 a3) {
     return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
 
+/*
 bool CoinHolder::appearCoinPop(const NameObj *pObj, const TVec3f &a2, s32 a3) {
     TVec3f stack_20;
     MR::calcGravityVector(this, a2, &stack_20, nullptr, nullptr);
     TVec3f stack_8 = -stack_20 % 25.0f;
     return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
+*/
 
 bool CoinHolder::appearCoinToVelocity(const NameObj *pObj, const TVec3f &a2, const TVec3f &a3, s32 a4) {
     return appearCoin(pObj, a2, a3, a4, -1, -1, a4 == 1 ? 0.0f : 4.0f);

@@ -123,24 +123,24 @@ void ShadowController::setShadowDrawer(ShadowDrawer *pDrawer) {
 
 void ShadowController::getDropPos(TVec3f *pOut) const {
     if (mDropPos) {
-        pOut->set(*mDropPos);
+        pOut->set<f32>(*mDropPos);
     }
     else {
         if (_1C) {
             PSMTXMultVec(_1C, (const Vec*)&_30, (Vec*)pOut);
         }
         else {
-            pOut->set(_30);
+            pOut->set<f32>(_30);
         }
     }
 }
 
 void ShadowController::getDropDir(TVec3f *pOut) const {
     if (mDropDir) {
-        pOut->set(*mDropDir);
+        pOut->set<f32>(*mDropDir);
     }
     else {
-        pOut->set(_3C);
+        pOut->set<f32>(_3C);
     }
 }
 
@@ -150,19 +150,19 @@ f32 ShadowController::getDropLength() const {
 
 void ShadowController::getProjectionPos(TVec3f *pOut) const {
     if (mProjPos) {
-        pOut->set(*mProjPos);
+        pOut->set<f32>(*mProjPos);
     }
     else {
-        pOut->set(_48);
+        pOut->set<f32>(_48);
     }
 }
 
 void ShadowController::getProjectionNormal(TVec3f *pOut) const {
     if (mProjNorm) {
-        pOut->set(*mProjNorm);
+        pOut->set<f32>(*mProjNorm);
     }
     else {
-        pOut->set(_54);
+        pOut->set<f32>(_54);
     }
 }
 
@@ -216,7 +216,7 @@ void ShadowController::setDropPosPtr(const TVec3f *pDropPos) {
 }
 
 void ShadowController::setDropPosFix(const TVec3f &rPos) {
-    _30.set(rPos);
+    _30.set<f32>(rPos);
     mDropPos = 0;
     _1C = 0;
 }
@@ -227,7 +227,7 @@ void ShadowController::setDropDirPtr(const TVec3f *pDropDir) {
 }
 
 void ShadowController::setDropDirFix(const TVec3f &a1) {
-    _3C.set(a1);
+    _3C.set<f32>(a1);
     mDropDir = 0;
     _61= 0;
 }
@@ -249,8 +249,8 @@ void ShadowController::setDropTypeSurface() {
 }
 
 void ShadowController::setProjectionFix(const TVec3f &a1, const TVec3f &a2, bool a3) {
-    _48.set(a1);
-    _54.set(a2);
+    _48.set<f32>(a1);
+    _54.set<f32>(a2);
     _63 = a3;
     _10 = 0;
 }
@@ -270,14 +270,14 @@ void ShadowController::onCalcCollisionOneTime() {
 
 void ShadowController::onCalcDropGravity() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set(vec);
+    _3C.set<f32>(vec);
     mDropDir = 0;
     _61 = 1;
 }
 
 void ShadowController::onCalcDropGravityOneTime() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set(vec);
+    _3C.set<f32>(vec);
     mDropDir = 0;
     _61 = 2;
     _66 = 0;
@@ -289,14 +289,14 @@ void ShadowController::offCalcDropGravity() {
 
 void ShadowController::onCalcDropPrivateGravity() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set(vec);
+    _3C.set<f32>(vec);
     mDropDir = 0;
     _61 = 4;
 }
 
 void ShadowController::onCalcDropPrivateGravityOneTime() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set(vec);
+    _3C.set<f32>(vec);
     mDropDir = 0;
     _61 = 5;
     _66 = 0;

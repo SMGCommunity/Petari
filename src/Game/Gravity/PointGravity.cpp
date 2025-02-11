@@ -9,6 +9,7 @@ PointGravity::PointGravity() :
 
 }
 
+/*
 bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
 	TVec3f direction;
 	direction.subInline(mTranslation, rPosition);
@@ -41,6 +42,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 		return true;
 	}
 }
+	*/
 
 void PointGravity::updateMtx(const TPos3f &rMtx) {
 	// Converts relative zone-coordinates into worldspace

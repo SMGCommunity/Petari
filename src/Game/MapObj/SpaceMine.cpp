@@ -1,4 +1,5 @@
 #include "Game/MapObj/SpaceMine.hpp"
+#include "math_types.hpp"
 
 SpaceMine::SpaceMine(const char *pName) : MapObjActor(pName), mClippingRange(gZeroVec) {
     _C4 = 1.0f;
@@ -99,6 +100,7 @@ bool SpaceMine::receiveMsgPlayerAttack(u32 msg, HitSensor *, HitSensor *) {
     return false;
 }
 
+/*
 void SpaceMine::exeWait() {
     if (isCalcShadowAlways()) {
         MR::setClippingRangeIncludeShadow(this, &mClippingRange, 100.0f);
@@ -138,6 +140,7 @@ void SpaceMine::exeWait() {
         mRotation.y = MR::modAndAdd(0.0f, v6);
     }
 }
+*/
 
 void SpaceMine::exeAppear() {
     if (MR::isFirstStep(this)) {

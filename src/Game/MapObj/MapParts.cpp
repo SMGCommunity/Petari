@@ -11,7 +11,7 @@ MapParts::~MapParts() {
 }
 
 MapParts::MapParts(const char *pName) : LiveActor(pName) {
-    _8C.setZero();
+    _8C.zero();
 }
 
 void MapParts::init(const JMapInfoIter &rIter) {
@@ -71,12 +71,12 @@ void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
     if (MR::getJ3DModel(this)) {
         TBox3f box;
         MR::calcModelBoundingBox(&box, this);
-        JMathInlineVEC::PSVECSubtract(box.mMax, box.mMin, dist);
-        sensorRange = 0.5f * PSVECMag(dist);
-        JMAVECLerp(box.mMax, box.mMin, lerpVec, 0.5f);
+        JMathInlineVEC::PSVECSubtract(&box.mMax, &box.mMin, &dist);
+        sensorRange = 0.5f * PSVECMag(&dist);
+        JMAVECLerp(&box.mMax, &box.mMin, &lerpVec, 0.5f);
         TVec3f trueSensorOffset;
-        trueSensorOffset.setInlinePS(lerpVec);
-        JMathInlineVEC::PSVECSubtract(trueSensorOffset, mPosition, trueSensorOffset);
+        trueSensorOffset.setPS(lerpVec);
+        JMathInlineVEC::PSVECSubtract(&trueSensorOffset, &mPosition, &trueSensorOffset);
         MR::setSensorOffset(this, "body", trueSensorOffset);
     }
     else {

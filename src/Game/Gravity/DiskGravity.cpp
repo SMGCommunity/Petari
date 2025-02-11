@@ -6,8 +6,6 @@
 
 DiskGravity::DiskGravity() :
 	PlanetGravity(),
-	CALL_INLINE_FUNC(mLocalPosition, 0.0f, 50.0f, 0.0f),
-	CALL_INLINE_FUNC(mWorldPosition, 0.0f, 50.0f, 0.0f),
 	mLocalNormal(0, 1, 0),
 	mWorldNormal(0, 1, 0),
 	mSideDirection(1, 0, 0),
@@ -27,13 +25,13 @@ void DiskGravity::setLocalPosition(const TVec3f &rLocalPos) {
 }
 
 void DiskGravity::setLocalDirection(const TVec3f &rLocalDir) {
-	mLocalNormal.set(rLocalDir);
+	mLocalNormal.set<f32>(rLocalDir);
 	MR::normalizeOrZero(&mLocalNormal);
 	updateLocalParam();
 }
 
 void DiskGravity::setSideDirection(const TVec3f &rSideDir) {
-	mSideDirection.set(rSideDir);
+	mSideDirection.set<f32>(rSideDir);
 	updateLocalParam();
 }
 
@@ -54,6 +52,7 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
 	mEnableEdgeGravity = val;
 }
 
+/*
 bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
     
 	TVec3f relativePos;
@@ -105,6 +104,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 
 	return true;
 }
+*/
 
 void DiskGravity::updateLocalParam() {
     TRot3f rot;
@@ -120,7 +120,7 @@ void DiskGravity::updateLocalParam() {
         mOppositeSideVecOrtho.zero();
         return;
     }
-    JMAVECScaleAdd(mLocalNormal, mSideDirection, mOppositeSideVecOrtho, -mLocalNormal.dot(mSideDirection));
+    JMAVECScaleAdd(&mLocalNormal, &mSideDirection, &mOppositeSideVecOrtho, -mLocalNormal.dot(mSideDirection));
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
     if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
         mOppositeSideVecOrtho.zero();

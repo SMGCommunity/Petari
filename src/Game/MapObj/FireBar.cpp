@@ -226,7 +226,7 @@ void FireBar::fixFireBarBall() {
             JMathInlineVEC::PSVECAdd((const Vec*)&final_pos, (const Vec*)&scaled, (Vec*)&final_pos);
         }
 
-        mFireBalls[i]->mPosition.set(scaled);
+        mFireBalls[i]->mPosition.set<f32>(scaled);
     }
 }
 

@@ -68,7 +68,7 @@ void WaterLeakPipe::init(const JMapInfoIter &rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::calcUpVec(&upVec, this);
-    JMAVECScaleAdd(upVec, mPosition, _9C, (0.5f * mPipeHeight));
+    JMAVECScaleAdd(&upVec, &mPosition, &_9C, (0.5f * mPipeHeight));
     MR::setClippingTypeSphere(this, (0.5f * mPipeHeight), &_9C);
     mIceStep = new IceStepNoSlip(mTopMtx);
     mIceStep->initWithoutIter();
@@ -103,6 +103,7 @@ void WaterLeakPipe::exeFreeze() {
     }
 }
 
+/*
 bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2) {
     if (!MR::isPlayerElementModeIce()) {
         return false;
@@ -132,6 +133,7 @@ bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *a1, HitSensor *a2
 
     return false;
 }
+*/
 
 void WaterLeakPipe::initPipeHeight() {
     TMtx34f mtx;
@@ -139,7 +141,7 @@ void WaterLeakPipe::initPipeHeight() {
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
     TVec3f v10;
-    JMAVECScaleAdd(upVec, mPosition,v10, mPipeHeight);
+    JMAVECScaleAdd(&upVec, &mPosition, &v10, mPipeHeight);
     mtx.mMtx[0][3] = v10.x;
     mtx.mMtx[1][3] = v10.y;
     mtx.mMtx[2][3] = v10.z;

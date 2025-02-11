@@ -34,7 +34,7 @@ void SpinDriver::init(const JMapInfoIter &rIter) {
         gravityVector.set(0.0f, -1.0f, 0.0f);
     }
 
-    mGravity.set(gravityVector);
+    mGravity.set<f32>(gravityVector);
     initHitSensor(1);
     TVec3f sensorOffs;
     sensorOffs.x = 0.0f;
@@ -143,6 +143,7 @@ void SpinDriver::makeActorDead() {
     LiveActor::makeActorDead();
 }
 
+/*
 void SpinDriver::control() {
     if (!_141) {
         TVec3f* pos = MR::getPlayerPos();
@@ -163,6 +164,7 @@ void SpinDriver::control() {
     _104 = -PI + v6;
     _108 *= 0.94999999f;
 }
+*/
 
 void SpinDriver::calcAndSetBaseMtx() {
     TPos3f position;
@@ -241,7 +243,7 @@ bool SpinDriver::tryStartShoot() {
 }
 
 bool SpinDriver::tryEndCapture() {
-    if (MR::isGreaterStep(this, 40) && PSVECDistance(_B8, mPosition) < 15.0f) {
+    if (MR::isGreaterStep(this, 40) && PSVECDistance(&_B8, &mPosition) < 15.0f) {
         cancelBind();
         _141 = 0;
         setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
@@ -398,6 +400,7 @@ void SpinDriver::exeCapture() {
     }
 }
 
+/*
 void SpinDriver::exeShootStart() {
     if (!tryForceCancel()) {
         if (MR::isFirstStep(this)) {
@@ -431,6 +434,7 @@ void SpinDriver::exeShootStart() {
         } 
     }
 }
+*/
 
 void SpinDriver::exeShoot() {
     if (!tryForceCancel()) {
@@ -502,6 +506,7 @@ void SpinDriver::exeCoolDown() {
     }
 }
 
+/*
 bool SpinDriver::startBind(HitSensor *pSensor) {
     if (!canStartBind()) {
         return false;
@@ -537,7 +542,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     _8C = pSensor->mActor;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
-    f32 mag = PSVECMag(_C4);
+    f32 mag = PSVECMag(&_C4);
     if (mag > 40.0f) {
         _C4 *= 40.0f / mag;
     }
@@ -553,6 +558,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     MR::validateClipping(this);
     return true;
 }
+*/
 
 void SpinDriver::cancelBind() {
     if (_8C) {
@@ -571,6 +577,7 @@ void SpinDriver::updateBindPosition() {
     _C4 = position - stack_20;
 }
 
+/*
 void SpinDriver::moveBindPosToCenter() {
     _B8 += _C4;
     TVec3f stack_24(mPosition - _B8);
@@ -582,6 +589,7 @@ void SpinDriver::moveBindPosToCenter() {
     _C4.y *= 0.80000001f;
     _C4.z *= 0.80000001f;
 }
+*/
 
 void SpinDriver::updateBindActorMatrix(f32 a1) {
     TPos3f rotation;
@@ -672,6 +680,7 @@ bool SpinDriver::canStartBind() const {
     return isNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
 } 
 
+/*
 bool SpinDriver::canBind(HitSensor *pSensor) const {
     if (!canStartBind()) {
         return false;
@@ -689,6 +698,7 @@ bool SpinDriver::canBind(HitSensor *pSensor) const {
 
     return false;
 }
+*/
 
 SpinDriver::~SpinDriver() {
 

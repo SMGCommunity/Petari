@@ -209,8 +209,8 @@ namespace JGeometry {
         void setRotateInline2(const TVec3f &vec1, f32 r) {
             // The only difference from setRotateInline is that we use setInline instead of set
             TVec3f vec;
-            PSVECMag(vec1);
-            PSVECNormalize(vec, vec);
+            PSVECMag(&vec1);
+            PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
             f32 negc = (1.0f - c);

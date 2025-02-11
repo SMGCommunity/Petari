@@ -17,6 +17,7 @@ ArrowSwitch::ArrowSwitch(const char *pName) : LiveActor(pName) {
     _9F = 0;
 }
 
+/*
 void ArrowSwitch::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     mScale.x = 1.0f;
@@ -63,6 +64,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
 
     makeActorAppeared();
 }
+*/
 
 void ArrowSwitch::control() {
 

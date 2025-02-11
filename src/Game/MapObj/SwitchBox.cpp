@@ -16,7 +16,7 @@ void SwitchBox::init(const JMapInfoIter &rIter) {
 	f32 newScale = mScale.x * 90.0f;
 	initHitSensor(2);
 	TVec3f sensorOffset;
-	sensorOffset.setInline(0.0f, newScale, 0.0f);
+	sensorOffset.set(0.0f, newScale, 0.0f);
 	MR::addHitSensorMapObj(this, "body", 8, newScale, sensorOffset);
 
 	s32 local_38 = 1;

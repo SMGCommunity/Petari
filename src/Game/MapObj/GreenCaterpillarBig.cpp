@@ -21,7 +21,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter &rIter) {
 void GreenCaterpillarBigBody::setPosAndDirection(LiveActor *pActor) {
     TVec3f jointPos;
     MR::copyJointPos(mCaterpillar, "FollowPoint", &jointPos);
-    mPosition.setInline(jointPos);
+    mPosition.setPS(jointPos);
     calcBodyDir(pActor, &mFrontVec);
 
     mScale.x = 1.0f;
@@ -47,6 +47,7 @@ void GreenCaterpillarBigBody::calcAndSetBaseMtx() {
     }
 }
 
+/*
 void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
     f32 nearRailCoord = MR::calcNearestRailCoord(pActor, mPosition);
     f32 coord = nearRailCoord - 300.0f;
@@ -59,9 +60,10 @@ void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
         TVec3f stack_8;
         stack_8.subInline3(mPosition, railPos); 
         MR::normalize(&stack_8);
-        MR::blendVec(pOutDir->toVec(), *pOutDir->toCVec(), *stack_8, 0.1f);
+        MR::blendVec(pOutDir, *pOutDir, stack_8, 0.1f);
     }
 }
+*/
 
 GreenCaterpillarBig::GreenCaterpillarBig(const char *pName) : LiveActor(pName) {
     mBodyArray = nullptr;

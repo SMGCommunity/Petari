@@ -499,7 +499,7 @@ void CameraManGame::createDefaultWaterCamera() {
     chunk->setCameraType("CAM_TYPE_WATER_FOLLOW", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set(wOffset);
+    chunk->mExParam.mWOffset.set<f32>(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -516,7 +516,7 @@ void CameraManGame::createDefaultWaterSurfaceCamera() {
     chunk->setCameraType("CAM_TYPE_FOLLOW", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set(wOffset);
+    chunk->mExParam.mWOffset.set<f32>(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -536,7 +536,7 @@ void CameraManGame::createDefaultFooFighterCamera() {
     chunk->setCameraType("CAM_TYPE_FOO_FIGHTER", mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 170.0f, 0.0f);
-    chunk->mExParam.mWOffset.set(wOffset);
+    chunk->mExParam.mWOffset.set<f32>(wOffset);
     chunk->mExParam.mLOffset = 100.0f;
     chunk->mExParam.mFovy = 45.0f;
     chunk->mExParam.mCamInt = 120;
@@ -572,7 +572,7 @@ void CameraManGame::createZoomCamera() {
     chunk->setCameraType("CAM_TYPE_EYEPOS_FIX_THERE", director->mHolder);
 
     TVec3f wOffset = TVec3f(0.0f, 0.0f, 0.0f);
-    chunk->mExParam.mWOffset.set(wOffset);
+    chunk->mExParam.mWOffset.set<f32>(wOffset);
     chunk->mExParam.mLOffset = 0.0f;
     chunk->mExParam.mLOffsetV = 100.0f;
 

@@ -83,6 +83,7 @@ void KeySwitch::exeDemoStart() {
     }
 }
 
+/*
 void KeySwitch::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Rotation", 0);
@@ -97,8 +98,8 @@ void KeySwitch::exeAppear() {
     bool val = false;
 
     if (MR::isBindedGround(this)) {
-        if (PSVECMag(mVelocity) >= 10.0f) {
-            s32 mag = PSVECMag(mVelocity);
+        if (PSVECMag(&mVelocity) >= 10.0f) {
+            s32 mag = PSVECMag(&mVelocity);
             mag *= 2;
             if (mag > 0x64) {
                 mag = 0x64;
@@ -121,6 +122,7 @@ void KeySwitch::exeAppear() {
         }
     }
 }
+*/
 
 void KeySwitch::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -189,6 +191,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor *a1, HitSensor *a2) {
     return 0;
 }
 
+/*
 bool KeySwitch::tryAvoid() {
     LiveActor* sensorActor;
     HitSensor* sensor = 0;
@@ -214,7 +217,7 @@ bool KeySwitch::tryAvoid() {
     TVec3f thing;
     thing.subInline2(mPosition, sensorActor->mPosition);
     TVec3f stack_8;
-    JMAVECScaleAdd(up, thing, stack_8, -up.dot(thing));
+    JMAVECScaleAdd(&up, &thing, &stack_8, -up.dot(thing));
 
     if (MR::normalizeOrZero(&stack_8)) {
         MR::calcFrontVec(&stack_8, sensorActor);
@@ -223,6 +226,7 @@ bool KeySwitch::tryAvoid() {
     mVelocity.scale(10.0f, stack_8);
     return true;
 }
+*/
 
 namespace NrvKeySwitch {
     INIT_NERVE(KeySwitchNrvDemoStart);

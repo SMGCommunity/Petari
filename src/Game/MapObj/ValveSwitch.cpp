@@ -67,7 +67,7 @@ void ValveSwitch::exeAdjust() {
 
     f32 step = getNerveStep() / 3.0f;
     HitSensor* sensor = getSensor("body");
-    JMAVECLerp(_8C->mPosition, sensor->mPosition, _8C->mPosition, step);
+    JMAVECLerp(&_8C->mPosition, &sensor->mPosition, &_8C->mPosition, step);
 
     if (MR::isStep(this, 3)) {
         setNerve(&NrvValveSwitch::ValveSwitchNrvValve::sInstance);

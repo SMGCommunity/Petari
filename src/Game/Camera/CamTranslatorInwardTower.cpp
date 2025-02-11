@@ -19,8 +19,8 @@ void CamTranslatorInwardTower::setParam(const CameraParamChunk *pChunk) {
 
 	CameraInwardTower *camera = mCamera;
 
-	camera->mWPoint.set(general->mWPoint);
-	camera->mAxis.set(axis);
+	camera->mWPoint.set<f32>(general->mWPoint);
+	camera->mAxis.set<f32>(axis);
 	camera->mAngleB = angle.x;
 	camera->mAngleA = angle.y;
 	camera->mDist = dist;

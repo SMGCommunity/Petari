@@ -147,7 +147,7 @@ void SkeletalFishGuard::exeApart() {
         TVec3f* grav = &mGravity;
         f32 dot = grav->dot(_A4);
         TVec3f v15;
-        JMAVECScaleAdd(grav->toCVec(), _A4, v15, -dot);
+        JMAVECScaleAdd(grav, _A4, v15, -dot);
         _B0 = grav->dot(_A4 - v15);
         _A4.set(v15);
         MR::startBck(this, "Turn", nullptr);
@@ -212,7 +212,7 @@ void SkeletalFishGuard::exeFollow() {
         _C4 = 22.0f;
     }
 
-    f32 dist = PSVECDistance(MR::getPlayerCenterPos()->toCVec(), mPosition);
+    f32 dist = PSVECDistance(MR::getPlayerCenterPos(), mPosition);
     f32 v6 = 0.0f;
     f32 v7 = (dist - 1000.0f) / 500.0f;
     if (v7 >= 0.0f) {
@@ -576,7 +576,7 @@ void SkeletalFishGuard::calcTarget(TVec3f *a1, TVec3f *a2, TVec3f *a3, s32 a4) {
     TVec3f v22;
     MR::calcGravityVector(this, *a1, &v22, nullptr, 0);
     TVec3f v21;
-    PSVECCrossProduct(a3->toCVec(), v22, v21);
+    PSVECCrossProduct(a3, v22, v21);
     MR::normalizeOrZero(&v21);
     f32 v16 = -_94.y;
     TVec3f v18(v22);
@@ -586,7 +586,7 @@ void SkeletalFishGuard::calcTarget(TVec3f *a1, TVec3f *a2, TVec3f *a3, s32 a4) {
     v19.scale(v17);
     TVec3f v20(v19);
     JMathInlineVEC::PSVECAdd(v20, v18, v20);
-    JMathInlineVEC::PSVECAdd(a1->toCVec(), v20, a2->toVec());
+    JMathInlineVEC::PSVECAdd(a1, v20, a2);
 }
 #endif
 

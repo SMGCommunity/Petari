@@ -74,6 +74,7 @@ void CollapsePlane::exeDPDStop() {
     }
 }
 
+/*
 void CollapsePlane::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
 
@@ -87,6 +88,7 @@ void CollapsePlane::calcAndSetBaseMtx() {
         MR::setBaseScale(this, new_scale);
     }
 }
+*/
 
 void CollapsePlane::control() {
     mScaleController->updateNerve();

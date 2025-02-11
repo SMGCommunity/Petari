@@ -2,9 +2,10 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"
+#include "math_types.hpp"
 
 CrystalCage::CrystalCage(const char *pName) : LiveActor(pName), 
-    mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _D0(0.0f, 1.0f), _DC(gZeroVec), _E8(gZeroVec),
+    mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _DC(gZeroVec), _E8(gZeroVec),
     mDisplayModel(nullptr), _F8(gZeroVec), _104(0), _108(-1), mIsBreakObjVisible(false), mPlayRiddleSFX(false), mHasBinding(false), _110(gZeroVec) {
         _94.identity();
 }
@@ -17,7 +18,7 @@ void CrystalCage::init(const JMapInfoIter &rIter) {
     MR::calcGravity(this);
     initModel(obj_name);
     MR::connectToSceneCrystal(this);
-    _E8.set(mPosition);
+    _E8.set<f32>(mPosition);
     initHitSensor(1);
     MR::addHitSensorPosMapObj(this, "body", 8, (130.0f * mScale.x), &_E8, TVec3f(0.0f, 0.0f, 0.0f));
 
@@ -116,6 +117,7 @@ void CrystalCage::init(const JMapInfoIter &rIter) {
     }
 }
 
+/*
 void CrystalCage::initAfterPlacement() {
     if (!mIsBreakObjVisible || mHasBinding) {
         f32 val = mCrystalCageType == 2 ? 1000.0f : 300.0f;
@@ -124,20 +126,21 @@ void CrystalCage::initAfterPlacement() {
         TVec3f stack_20;
         MR::calcUpVec(&up_vec, this);
         // I realy do not like this, but it matches :c
-        JMathInlineVEC::PSVECAdd(mPosition, (Vec *) &(up_vec * (val * mScale.x)), stack_20);
+        JMathInlineVEC::PSVECAdd(&mPosition, (Vec *) &(up_vec * (val * mScale.x)), &stack_20);
         stack_2C.scale((-(2.0f * val) * mScale.x), up_vec);
 
         if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, 0, stack_20, stack_2C, this)) {
-            _F8.set(mPosition);
+            _F8.set<f32>(mPosition);
         }
 
         if (mHasBinding) {
             _110.sub(_F8, mPosition);
-            JMathInlineVEC::PSVECAdd(_110, (up_vec * 50.0f), _110);
+            JMathInlineVEC::PSVECAdd(&_110, &(up_vec * 50.0f), &_110);
             mVelocity.scale(-2.0f, up_vec);
         }
     }
 }
+*/
 
 void CrystalCage::kill() {
     LiveActor::kill();
@@ -168,6 +171,7 @@ void CrystalCage::attackSensor(HitSensor *a1, HitSensor *a2) {
         MR::sendMsgPush(a2, a1);
     }
 }
+
 
 bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor *a2, HitSensor *a3) {
     if (!isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
@@ -224,7 +228,7 @@ bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor *, HitSensor *) {
 
 void CrystalCage::initMapToolInfo(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
-    _DC.set(mPosition);
+    _DC.set<f32>(mPosition);
 
     if (MR::isEqualObjectName(rIter, "CrystalCageS")) {
         mCrystalCageType = 0;
@@ -254,6 +258,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter &rIter) {
     }
 }
 
+/*
 void CrystalCage::initModel(const char *pName) {
     initModelManagerWithAnm(pName, nullptr, false);
     TVec3f stack_8;
@@ -272,6 +277,7 @@ void CrystalCage::initModel(const char *pName) {
     MR::registerDemoSimpleCastAll(mBreakObj);
     mBreakObj->makeActorDead();
 }
+*/
 
 void CrystalCage::tryOnSwitchDead() {
     if (mCrystalCageType == 2 || !MR::isValidSwitchDead(this)) {
@@ -299,10 +305,10 @@ void CrystalCage::exeWait() {
             mRumbleCalc->calc();
             TVec3f v9;
             v9.scale(mRumbleCalc->_C.y, _D0);
-            JMathInlineVEC::PSVECAdd(_DC, v9, mPosition);
+            JMathInlineVEC::PSVECAdd(&_DC, &v9, &mPosition);
         }
         else {
-            mPosition.set(_DC);
+            mPosition.set<f32>(_DC);
         }
     }
 
@@ -311,10 +317,10 @@ void CrystalCage::exeWait() {
         MR::calcUpVec(&up_vec, this);
         TVec3f v6;
         v6.scale(-40.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(v6, mPosition, v6);
+        JMathInlineVEC::PSVECAdd(&v6, &mPosition, &v6);
         TVec3f v5;
         v5.scale(140.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(v5, mPosition, v5);
+        JMathInlineVEC::PSVECAdd(&v5, &mPosition, &v5);
         MR::calcPerpendicFootToLineInside(&_E8, *MR::getPlayerPos(), v6, v5);
     }
 }
@@ -326,7 +332,7 @@ void CrystalCage::exeBreak() {
         }
         else {
             MR::setBvaFrameAndStop(this, mCrystalCageType == 2 ? 2.0f : 1.0f);
-            mPosition.set(_F8);
+            mPosition.set<f32>(_F8);
         }
 
         if (mHasBinding) {

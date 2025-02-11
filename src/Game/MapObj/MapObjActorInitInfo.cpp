@@ -26,7 +26,7 @@ MapObjActorInitInfo::MapObjActorInitInfo() {
     mHioNode = 0; 
     _1C = 0;
     mSensorSize = 0.0f;
-    mSensorOffset.setZero();
+    mSensorOffset.zero();
     mHitSensorCB = 0;
     mBinderRadius = 0.0f;
     mBinderCenterY = 0.0f;

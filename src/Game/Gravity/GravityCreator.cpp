@@ -48,7 +48,7 @@ void CubeGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRot
 	// Get up vector and calculate scale
 	TVec3f upVec;
 	TVec3f scale;
-	scale.setInline(rScale * 500.0f);
+	scale.setPS(rScale * 500.0f);
 	mtx.getYDir(upVec);
 
 	// Translate and scale matrix
@@ -308,7 +308,7 @@ PlanetGravity* PointGravityCreator::createInstance() {
 
 void PointGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRotate, const TVec3f &rScale) {
 	mGravityInstance->mDistant = 500.0f * rScale.x;
-	mGravityInstance->mOrigPosition.setInlinePS(rTrans);
+	mGravityInstance->mOrigPosition.setPS(rTrans);
 }
 
 PlanetGravity* PointGravityCreator::getGravity() {

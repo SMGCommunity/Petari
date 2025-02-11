@@ -81,6 +81,7 @@ void MarioSwim::setDamage(const TVec3f &v, u16 damage)
     }
 }
 
+/*
 bool Mario::checkStartSwim()
 {
     if (isStatusActive(6)) {
@@ -114,6 +115,7 @@ bool Mario::checkStartSwim()
     mSwim->updateUnderwater();
     return false;
 }
+*/
 
 void Mario::startSwim()
 {
@@ -219,7 +221,7 @@ MarioSwim::MarioSwim(MarioActor *actor) : MarioState(actor, 6), _F4()
     _144 = 0;
     _148.zero();
     _154.zero();
-    _160.setInline(0.0f, 1.0f, 0.0f);
+    _160.set(0.0f, 1.0f, 0.0f);
     _16C.zero();
     _178.zero();
     _184.zero();
@@ -246,6 +248,7 @@ inline f32 getSpecialNumber()
     return 1.74532938004f;
 }
 
+/*
 bool MarioSwim::start()
 {
     _7C = 0;
@@ -307,7 +310,7 @@ bool MarioSwim::start()
         r1e = 1;
         getPlayer()->setFrontVecKeepUp(-getFrontVec(), -1.0f);
     }
-    if (!mActor->_468.x) {
+    if (!mActor->_468f.x) {
         _8A = 0;
     }
     if (_9D == 4) {
@@ -358,7 +361,7 @@ bool MarioSwim::start()
         _24 = 0;
         Mario *mario = getPlayer();
         MR::vecKillElement(mario->_2D4, getGravityVec(), &stack_44);
-        fr1f = PSVECMag(stack_44);
+        fr1f = PSVECMag(&stack_44);
         if (getFrontVec().dot(stack_44) < 0.0f) {
             fr1f = 0.0f;
         }
@@ -466,6 +469,7 @@ bool MarioSwim::start()
     _9E = 0;
     return true;
 }
+*/
 
 static inline f32 getTwoPi()
 {
@@ -522,6 +526,7 @@ static inline TVec3f createAndScale(f32 scalar, const TVec3f &v)
     return ret;
 }
 
+/*
 bool MarioSwim::update()
 {
     bool r1e = false;
@@ -537,7 +542,7 @@ bool MarioSwim::update()
         const TVec3f &rAirGravityVec = getAirGravityVec();
         TVec3f stack_194;
         MR::vecKillElement(_16C - getTrans(), rAirGravityVec, &stack_194);
-        if (PSVECMag(stack_194) > 100.0f || -_19C >= getPlayer()->_488 || _AE || _1B0) {
+        if (PSVECMag(&stack_194) > 100.0f || -_19C >= getPlayer()->_488 || _AE || _1B0) {
             if (!isAnimationRun("水泳ジャンプダイブ")) {
                 if (_8A) {
                     doJetJump(1);
@@ -1090,6 +1095,7 @@ bool MarioSwim::update()
     pushedByWaterWall();
     return true;
 }
+*/
 
 /*
  *

@@ -128,7 +128,7 @@ void GeneralMapParts::control() {
         }
 
         if (v9) {
-            mPosition.setInline(mRailMover->_28);
+            mPosition.setPS(mRailMover->_28);
         }
     }
 }
@@ -369,4 +369,3 @@ namespace NrvGeneralMapParts {
         part->exeWait();
     }
 };
-

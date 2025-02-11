@@ -6,6 +6,7 @@ BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", 0x20) {
 
 }
 
+/*
 void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
     s32 count = mObjectCount;
     TVec3f stack_2C;
@@ -21,7 +22,7 @@ void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
         stack_2C.addInline3(stack_14); 
     }
 
-    f32 mag = PSVECMag(stack_2C);
+    f32 mag = PSVECMag(&stack_2C);
     if (MR::isNearZero(mag, 0.001f)) {
         pWindInfo->zero();  
 
@@ -40,6 +41,7 @@ void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
         }
     }
 }
+*/
 
 void BigFanFunction::createBigFanHolder() {
     MR::createSceneObj(SceneObj_BigFanHolder);

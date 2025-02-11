@@ -30,8 +30,8 @@ void SpinDriverOperateRing::reset() {
 }
 
 void SpinDriverOperateRing::update(const TVec3f &a1, const TVec3f &a2) {
-    _8C.set(a1);
-    _98.set(a2);
+    _8C.set<f32>(a1);
+    _98.set<f32>(a2);
 
     if (mRadiusRate <= 0.0f) {
         resetVelocityAndTrans();

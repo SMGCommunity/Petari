@@ -22,7 +22,7 @@ void FountainBig::init(const JMapInfoIter &rIter) {
     initSound(4, false);
     TVec3f vec;
     MR::calcUpVec(&vec, this);
-    JMAVECScaleAdd(vec, mPosition, mClippingRadius, 300.0f);
+    JMAVECScaleAdd(&vec, &mPosition, &mClippingRadius, 300.0f);
     MR::setClippingTypeSphere(this, 600.0f, &mClippingRadius);
     MR::hideModel(this);
     MR::startBtk(this, "FountainBig");
@@ -109,8 +109,8 @@ void FountainBig::updateHitSensor(HitSensor *pSensor) {
     f32 pSensorY = pSensor->mRadius;
     TVec3f vec1, vec2, vec3;
     MR::calcUpVec(&vec1, this);
-    JMAVECScaleAdd(vec1, mPosition, vec2, pSensorY);
-    JMAVECScaleAdd(vec1, vec2, vec3, (600.0f - pSensorY));
+    JMAVECScaleAdd(&vec1, &mPosition, &vec2, pSensorY);
+    JMAVECScaleAdd(&vec1, &vec2, &vec3, (600.0f - pSensorY));
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), vec2, vec3);
 }
 

@@ -1,6 +1,7 @@
 #include "Game/Map/ScenarioSelectStar.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/Util.hpp"
+#include "math_types.hpp"
 //#include <JSystem/JMath/JMATrigonometric.hpp>
 
 ScenarioSelectStar::ScenarioSelectStar(EffectSystem *pSystem) : MultiSceneActor("シナリオ選択のスター", "PowerStar", false),
@@ -69,7 +70,7 @@ bool ScenarioSelectStar::isAppearEnd() const {
 void ScenarioSelectStar::setup(s32 a1, int a2, const TVec3f &a3, s32 a4) {
     _44 = a2;
     mFrame = a1;
-    _5C.set(a3);
+    _5C.set<f32>(a3);
     _4C = a4;
 
     mRotation.set(0.0f, 0.0f, (150.0f * a4));
@@ -77,7 +78,7 @@ void ScenarioSelectStar::setup(s32 a1, int a2, const TVec3f &a3, s32 a4) {
     _74 = 15 * v7 + 60;
     _58 = 15 * v7 + ((v7 % 2) ? 0 : 0x5A);
 }
-
+/*
 void ScenarioSelectStar::control() {
     _50 = 0;
     mRotation.z = MR::modAndSubtract(mRotation.z + _54, 360.0f, 0.0f);
@@ -89,6 +90,7 @@ void ScenarioSelectStar::control() {
         updatePos();
     }
 }
+*/
 
 bool ScenarioSelectStar::tryEndPointing() {
     if (!_50) {
@@ -148,7 +150,7 @@ void ScenarioSelectStar::exePointing() {
         f32 rate = MultiScene::calcNerveRate(this, 20);
         f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.5f, -0.25f);
         f32 linerVal = MR::getLinerValue(scale, 0.89999998f, 1.5f, 1.0f);
-        mScale.setAll(linerVal);
+        mScale.set(linerVal);
     }
     else {
         mScale.x = 1.5f;
@@ -165,7 +167,7 @@ void ScenarioSelectStar::exeEndPointing() {
     }
 
     f32 easeOut = MR::getEaseOutValue(MultiScene::calcNerveRate(this, 10), 1.5f, 0.89999998f, 1.0f);
-    mScale.setAll(easeOut);
+    mScale.set(easeOut);
     MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvNotPointing::sInstance, 10);
 }
 
@@ -173,12 +175,12 @@ void ScenarioSelectStar::exeSelected() {
     if (MultiScene::isFirstStep(this)) {
         MultiScene::emitEffect(this, "Select");
         MR::tryRumblePadMiddle(this, 0);
-        _68.set(mTranslation);
+        _68.set<f32>(mTranslation);
         _54 = 3.0f;
         _78 = mScale.x;
     }
 
-    mScale.setAll(MultiScene::calcNerveValue(this, 40, _78, 1.5f));
+    mScale.set(MultiScene::calcNerveValue(this, 40, _78, 1.5f));
     MultiScene::setNerveAtStep(this, &NrvScenarioSelectStar::ScenarioSelectStarNrvSelectedMove::sInstance, 40);
 }
 

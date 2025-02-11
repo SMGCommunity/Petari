@@ -15,7 +15,7 @@ void CamTranslatorMtxRegParallel::setParam(const CameraParamChunk *pChunk) {
 	camera->mAngleA = angle.y;
 	camera->mDist = dist;
 
-	camera->mWPoint.setInline(general->mWPoint);
+	camera->mWPoint.setPS(general->mWPoint);
 }
 
 Camera *CamTranslatorMtxRegParallel::getCamera() const {

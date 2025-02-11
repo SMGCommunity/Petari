@@ -72,7 +72,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
     _124.z *= 0.5f;
     f32 boundRadius;
     MR::calcModelBoundingRadius(&boundRadius, this);
-    f32 dist = PSVECDistance(_124, stack_24);
+    f32 dist = PSVECDistance(&_124, &stack_24);
     MR::setClippingTypeSphere(this, (boundRadius + dist), &_124);
     MR::getJMapInfoArg0NoInit(rIter, &mActivationRange);
     if (mActivationRange <= 0.0f) {

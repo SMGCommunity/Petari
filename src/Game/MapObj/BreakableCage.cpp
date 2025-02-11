@@ -146,9 +146,9 @@ void BreakableCage::calcAndSetBaseMtx() {
         stack_20.mMtx[0][3] = 0.0f;
         stack_20.mMtx[1][3] = 0.0f;
         stack_20.mMtx[2][3] = 0.0f;
-        stack_C.set(stack_14);
-        PSVECMag(stack_C);
-        PSVECNormalize(stack_C, stack_C);
+        stack_C.set<f32>(stack_14);
+        PSVECMag(&stack_C);
+        PSVECNormalize(&stack_C, &stack_C);
         TPos3f stack_50;
         f32 v3 = sin(v2);
         f32 v4 = cos(v2);
@@ -224,7 +224,7 @@ void BreakableCage::initModel(const char *pName, const JMapInfoIter &rIter) {
         ModelObj* obj = MR::createModelObjMapObjStrongLight("壊れる籠壊れモデル", "BreakableCageBreak", mMtx.toMtxPtr());
         mBreakModel = obj;
         obj->initWithoutIter();
-        mBreakModel->mScale.set(mScale);
+        mBreakModel->mScale.set<f32>(mScale);
         MR::invalidateClipping(mBreakModel);
         MR::registerDemoSimpleCastAll(mBreakModel);
         mBreakModel->makeActorDead();
@@ -243,6 +243,7 @@ void BreakableCage::initModel(const char *pName, const JMapInfoIter &rIter) {
     }
 }
 
+/*
 void BreakableCage::initBaseMtxForCage() {
     MR::calcGravity(this);
 
@@ -257,6 +258,7 @@ void BreakableCage::initBaseMtxForCage() {
     stack_8.negateInline_2(mGravity);
     MR::makeMtxUpFrontPos(&mMtx, stack_8, stack_14, mPosition);
 }
+*/
 
 bool BreakableCage::isTypeCage() const {
     bool res = true;

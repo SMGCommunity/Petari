@@ -13,7 +13,8 @@ CoinRotater::CoinRotater(const char *pName) : NameObj(pName) {
     mWaterRotateMtx.identity();
     MR::connectToSceneMapObjMovement(this);
 }
- 
+
+/*
 #ifndef NON_MATCHING
 // regalloc
 void CoinRotater::movement() {
@@ -34,6 +35,7 @@ void CoinRotater::movement() {
     MR::makeMtxRotateY(mWaterRotateMtx.mMtx, _10);
 }
 #endif
+*/
 
 namespace MR {
     void createCoinRotater() {

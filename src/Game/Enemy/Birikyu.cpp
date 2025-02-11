@@ -1,4 +1,5 @@
 #include "Game/Enemy/Birikyu.hpp"
+#include "math_types.hpp"
 
 Birikyu::Birikyu(const char *pName) : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec) { 
         _A8 = false;
@@ -45,7 +46,7 @@ void Birikyu::initAfterPlacement() {
         MR::moveCoordAndTransToNearestRailPos(this);
     }
     else {
-        _9C.set(mPosition);
+        _9C.set<f32>(mPosition);
         TPos3f matrix;
         matrix.identity();
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
@@ -61,7 +62,7 @@ void Birikyu::initAfterPlacement() {
         MR::normalize(&_B8);
         TVec3f add(_9C * 400.0f);
         TVec3f vec(_9C + add);
-        mPosition.set(vec);        
+        mPosition.set<f32>(vec);        
     }
 }
 
@@ -203,6 +204,7 @@ void Birikyu::exeMove() {
     }
 }
 
+/*
 void Birikyu::exeMoveCircle() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
     if (!tryStopPointing()) {
@@ -215,9 +217,10 @@ void Birikyu::exeMoveCircle() {
         TVec3f temp = _B8 * 400.0f;
         matrix.mult(temp, temp);
         TVec3f matrix2 = (_9C + temp);
-        mPosition.set(matrix2);
+        mPosition.set<f32>(matrix2);
     }
 }
+*/
 
 void Birikyu::exeWaitAtEdge() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);

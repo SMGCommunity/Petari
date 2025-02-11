@@ -51,7 +51,7 @@ void ParabolicPath::calcDirection(TVec3f *pOutDirection, f32 a2, f32 a3) const {
     calcPosition(&stack_20, f0);
     TVec3f stack_14;
     calcPosition(&stack_14, f31);
-    pOutDirection->set(stack_14 - stack_20);
+    pOutDirection->set<f32>(stack_14 - stack_20);
     MR::normalizeOrZero(pOutDirection);
 }
 

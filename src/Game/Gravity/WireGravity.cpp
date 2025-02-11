@@ -14,6 +14,7 @@ void WireGravity::addPoint(const TVec3f &rPoint) {
 	mPoints.mArr[mCount++] = rPoint;
 }
 
+/*
 bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
 
     f32 distance = -1.0f;
@@ -53,3 +54,4 @@ bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 
     return false;
 }
+*/

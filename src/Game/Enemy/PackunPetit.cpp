@@ -180,7 +180,7 @@ void PackunPetit::exePunchDown() {
         MR::startBlowHitSound(this);
     }
 
-    JMAVECScaleAdd(mGravity, mBlownModel->mVelocity, mBlownModel->mVelocity, 2.5f);
+    JMAVECScaleAdd(&mGravity, &mBlownModel->mVelocity, &mBlownModel->mVelocity, 2.5f);
 
     if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStikeBallToMap(mBlownModel->mPosition, 50.0f))) {
         MR::emitEffect(mBlownModel, "Death");
@@ -281,6 +281,7 @@ void PackunPetit::kill() {
     LiveActor::kill();
 }
 
+/*
 void PackunPetit::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
@@ -291,6 +292,7 @@ void PackunPetit::calcAndSetBaseMtx() {
     mult.multPS(mScale, mScaleController->_C);
     MR::setBaseScale(this, mult);
 }
+*/
 
 void PackunPetit::control() {
     mScaleController->update();
@@ -423,12 +425,13 @@ void PackunPetit::initBlowModel() {
     mBlownModel->makeActorDead();
 }
 
+/*
 void PackunPetit::punchDown(HitSensor *a1, HitSensor *a2) {
     TVec3f v6;
     v6.subtract(a2->mPosition, a1->mPosition);
     TVec3f* grav = &mGravity;
     f32 dot = grav->dot(v6);
-    JMAVECScaleAdd(grav->toCVec(), v6, v6, -dot);
+    JMAVECScaleAdd(grav, v6, v6, -dot);
     MR::normalize(&v6);
 
     TVec3f v5;
@@ -437,6 +440,7 @@ void PackunPetit::punchDown(HitSensor *a1, HitSensor *a2) {
     mBlownModel->mVelocity.setInline(v5);
     setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 }
+*/
 
 void PackunPetit::selectNrvWait() {
     if (!MR::isNearPlayer(this, 1700.0f)) {
@@ -461,6 +465,7 @@ bool PackunPetit::tryNonActive() {
     return true;
 }
 
+/*
 bool PackunPetit::tryTurn() {
     if (mDontTurn) {
         return false;
@@ -485,6 +490,7 @@ bool PackunPetit::tryTurn() {
 
     return true;
 }
+*/
 
 bool PackunPetit::tryDPDSwoon() {
     if (isNerve(&NrvPackunPetit::PackunPetitNrvDPDSwoon::sInstance)) {

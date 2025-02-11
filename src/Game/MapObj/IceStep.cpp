@@ -53,6 +53,7 @@ void IceStep::exeWait() {
 }
 
 /* matching except for assembly floats not being correct but whatever*/
+/*
 void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotation) {
     mPosition = rPosition;
     mRotation = rRotation;
@@ -80,6 +81,7 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
     MR::showModel(this);
     appear(); 
 }
+*/
 
 void IceStep::destroy() {
     MR::startBck(this, "End", nullptr);

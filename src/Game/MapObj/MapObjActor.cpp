@@ -191,7 +191,7 @@ void MapObjActor::control() {
         mRailMover->movement();
 
         if (mRailMover->isWorking()) {
-            mPosition.set(mRailMover->_28);
+            mPosition.set<f32>(mRailMover->_28);
             mRailMover->tryResetPositionRepeat();
         }
     }

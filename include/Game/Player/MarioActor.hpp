@@ -352,10 +352,7 @@ public:
     u32 _424;
     u32 _428[4];
     u8 _438[0x30];
-    union {
-        JGeometry::TVec3<long> _468;
-        TVec3f _468f;
-    };
+    TVec3f _468f;
     u32 _474;
     f32 _478;
     u32 _47C;

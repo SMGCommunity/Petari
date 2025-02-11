@@ -8,9 +8,9 @@ inline f32 yy(f32 y) {
 template<>
 void TRot3f::setRotate(const TVec3f &axis, f32 angle) {
     TVec3f v;
-    v.set(axis);
-    PSVECMag(v);
-    PSVECNormalize(v, v);
+    v.set<f32>(axis);
+    PSVECMag(&v);
+    PSVECNormalize(&v, &v);
     f32 angley = sin(angle), anglex = cos(angle);
     f32 x, y, z;
     y = v.y;

@@ -4145,14 +4145,14 @@ Game/MapObj/BallOpener.cpp:
 Game/MapObj/BallRail.cpp:
 	.text       start:0x801B1444 end:0x801B1DA4
 	.ctors      start:0x8052EC50 end:0x8052EC54
-	.data       start:0x8058F600 end:0x8058F708
+	.data       start:0x8058F600 end:0x8058F6B8
 	.sbss       start:0x806B4E48 end:0x806B4E58
 	.sdata2     start:0x806BC7C8 end:0x806BC7E8
 
 Game/MapObj/Banekiti.cpp:
 	.text       start:0x801B1DA4 end:0x801B23F0
 	.ctors      start:0x8052EC54 end:0x8052EC58
-	.data       start:0x8058F708 end:0x8058F7B0
+	.data       start:0x8058F6B8 end:0x8058F7B0
 	.sbss       start:0x806B4E58 end:0x806B4E68
 	.sdata2     start:0x806BC7E8 end:0x806BC800
 
@@ -4223,13 +4223,13 @@ Game/MapObj/BigBubbleMoveLimitter.cpp:
 Game/MapObj/BigFan.cpp:
 	.text       start:0x801B7714 end:0x801B7EF4
 	.ctors      start:0x8052EC78 end:0x8052EC7C
-	.data       start:0x805901F8 end:0x80590368
+	.data       start:0x805901F8 end:0x80590358
 	.sbss       start:0x806B4EB0 end:0x806B4EC0
 	.sdata2     start:0x806BC8D8 end:0x806BC8F8
 
 Game/MapObj/BigFanHolder.cpp:
 	.text       start:0x801B7EF4 end:0x801B81FC
-	.data       start:0x80590368 end:0x80590390
+	.data       start:0x80590358 end:0x80590390
 	.sdata2     start:0x806BC8F8 end:0x806BC908
 
 Game/MapObj/BlackHole.cpp:

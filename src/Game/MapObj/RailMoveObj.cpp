@@ -4,7 +4,7 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
 RailMoveObj::RailMoveObj(const char *pName) : MapObjActor(pName) {
-    _C4.setZero();
+    _C4.zero();
     _D0 = 0;
 }
 

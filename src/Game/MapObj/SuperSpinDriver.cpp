@@ -3,7 +3,7 @@
 /* it seems like this file was compiled with an earlier compiler version */
 
 bool SuperSpinDriver::tryEndCapture() {
-    if (MR::isGreaterStep(this, 60) && PSVECDistance(_C4, mPosition) < 15.0f) {
+    if (MR::isGreaterStep(this, 60) && PSVECDistance(&_C4, &mPosition) < 15.0f) {
         cancelBind();
         _174 = 0;
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
@@ -330,6 +330,7 @@ void SuperSpinDriver::calcShootMotionTime() {
 }
 */
 
+/*
 void SuperSpinDriver::addSwingSignRotateY() {
     bool flag = false;
 
@@ -346,6 +347,7 @@ void SuperSpinDriver::addSwingSignRotateY() {
         }
     }
 }
+*/
 
 void SuperSpinDriver::onUse() {
     if (mEmptyModel != nullptr) {

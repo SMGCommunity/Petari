@@ -116,6 +116,7 @@ u32 TalkMessageCtrl::getMessageID() const {
 // TalkMessageCtrl::endTalk
 // TalkMessageCtrl::updateBalloonPos
 
+/*
 bool TalkMessageCtrl::isNearPlayer(const TalkMessageCtrl *pCtrl) {
     if (pCtrl == nullptr) {
         return true;
@@ -124,6 +125,7 @@ bool TalkMessageCtrl::isNearPlayer(const TalkMessageCtrl *pCtrl) {
     TVec3f* playerPos = MR::getPlayerPos();
     return mHostActor->getPosPtr()->squared(*playerPos) < pCtrl->mHostActor->getPosPtr()->squared(*playerPos);
 }
+*/
 
 void TalkMessageCtrl::startCamera(s32 a1) {
     TalkMessageInfo* inf = &mNodeCtrl->mMessageInfo;

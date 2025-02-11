@@ -70,7 +70,7 @@ void MarblePlanet::exeScaleUpCore() {
 
     f32 nerveRate = MR::calcNerveRate(this, 0x1E);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(nerveRate, 0.5f, -0.5f);
-    mCorePlanetModel->mScale.setAll(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
+    mCorePlanetModel->mScale.setAll<f32>(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
     
     if (MR::isStep(this, 0x1E)) {
         setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
@@ -159,9 +159,9 @@ void MarblePlanet::initCoreAndElectron() {
                 }
 
                 TVec3f position;
-                JMAVECScaleAdd(front, pos->toCVec(), position, 1000.0f);
+                JMAVECScaleAdd(&front, pos, &position, 1000.0f);
                 TVec3f rotation;
-                rotation.setAll((360.0f * i) / mNumElectrons);
+                rotation.setAll<f32>((360.0f * i) / mNumElectrons);
                 mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
                 mPlanetElectrons[i]->initWithoutIter();
             }
@@ -174,8 +174,8 @@ MarblePlanetElectron::MarblePlanetElectron(LiveActor *pPlanet, const TVec3f &rPo
     _94.x = 0.0f;
     _94.y = 0.0f;
     _94.z = 1.0f;
-    mPosition.set(rPosition);
-    mRotation.set(rRotation);
+    mPosition.set<f32>(rPosition);
+    mRotation.set<f32>(rRotation);
 }
 
 void MarblePlanetElectron::init(const JMapInfoIter &rIter) {
@@ -205,12 +205,13 @@ void MarblePlanetElectron::init(const JMapInfoIter &rIter) {
 void MarblePlanetElectron::exeMove() {
     MR::turnDirectionToGround(this, &_94);
     MR::attenuateVelocity(this, 0.99000001f);
-    f32 mag = PSVECMag(mVelocity);
+    f32 mag = PSVECMag(&mVelocity);
     f32 scale = (mag >= 13.0f ? mag : 13.0f);
     mVelocity.scale(scale, _94);
     MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE", -1, -1, -1);
 }
 
+/*
 void MarblePlanetElectron::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_MARBLE_FLIP", -1, -1);
@@ -221,6 +222,7 @@ void MarblePlanetElectron::exeAttack() {
     MR::normalize(&velocity);
     mVelocity.scale(40.0f, velocity);
 }
+*/
 
 void MarblePlanetElectron::control() {
     MR::calcGravity(this);
@@ -277,17 +279,19 @@ bool MarblePlanetElectron::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
     return 1;
 }
 
+/*
 void MarblePlanetElectron::crashElectron(HitSensor *pSensor) {
     TVec3f stack_8;
     stack_8.sub(pSensor->mActor->mPosition, mPosition);
     MR::normalize(&stack_8);
-    JMAVECScaleAdd(stack_8, mVelocity, mVelocity, -5.0f);
+    JMAVECScaleAdd(&stack_8, &mVelocity, &mVelocity, -5.0f);
     MR::normalize(mVelocity, &_94);
     mVelocity.x *= 1.2f;
     mVelocity.y *= 1.2f;
     mVelocity.z *= 1.2f;
     MR::startSound(this, "SE_OJ_MARBLE_HIT_EACH", -1, -1);
 }
+*/
 
 MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor *pElectronPtr, const TVec3f &rVec, const char *pName) : LiveActor(pName) {
     mParentElectron = static_cast<MarblePlanetElectron*>(pElectronPtr);
@@ -301,8 +305,9 @@ void MarblePlanetElectronShadow::init(const JMapInfoIter &rIter) {
     makeActorAppeared();
 }
 
+/*
 void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
-    mPosition.set(*_90);
+    mPosition.set<f32>(*_90);
     TVec3f stack_8;
     stack_8.sub(mParentElectron->mPosition, *_90);
     MR::normalize(&stack_8);
@@ -310,6 +315,7 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
     MR::makeMtxUpNoSupportPos(&up_mtx, stack_8, *_90);
     MR::setBaseTRMtx(this, up_mtx);
 }
+*/
 
 MarblePlanet::~MarblePlanet() {
 

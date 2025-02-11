@@ -27,7 +27,7 @@ MapPartsFloatingForce::MapPartsFloatingForce(LiveActor *pActor) : MapPartsFuncti
     mRotateAngle = 0.0f;
     mRotateSpeed = 0.0f;
     mRotateAccelType = 0;
-    _30.setZero();
+    _30.zero();
     _3C = 0.0f;
     _40 = 1.0f;
     _44 = 0.0f;
@@ -161,7 +161,7 @@ void MapPartsFloatingForce::exeMoveSpring() {
     }
 
     updateVelocitySpring();
-    mHost->mVelocity.set(_50);
+    mHost->mVelocity.set<f32>(_50);
     tryReturn();
 }
 

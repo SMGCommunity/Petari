@@ -31,10 +31,10 @@ void BenefitItemInvincible::init(const JMapInfoIter &rIter) {
         _13A = 0;
         TVec3f axis_z;
         MR::getRotatedAxisZ(&axis_z, mRotation);
-        _148.set(axis_z);
+        _148.set<f32>(axis_z);
         TVec3f axis_y;
         MR::getRotatedAxisY(&axis_y, mRotation);
-        _13C.set(axis_y);
+        _13C.set<f32>(axis_y);
     }
 }
 

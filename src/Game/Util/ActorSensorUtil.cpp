@@ -312,7 +312,7 @@ namespace MR {
         TVec3f curSenderPos(pSender->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&pReceiver->mPosition, (Vec*)&rDir, (Vec*)&pSender->mPosition);
         bool ret = pReceiver->receiveMessage(msg, pSender);
-        pSender->mPosition.set(curSenderPos);
+        pSender->mPosition.set<f32>(curSenderPos);
         return ret;
     }
 

@@ -1,7 +1,7 @@
 #include "Game/LiveActor/ShadowVolumeBox.hpp"
 
 void ShadowVolumeBox::setSize(const TVec3f &rSize) {
-    mSize.set(rSize);
+    mSize.set<f32>(rSize);
 }
 
 void ShadowVolumeBox::loadModelDrawMtx() const {

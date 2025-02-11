@@ -40,6 +40,7 @@ void ChipBase::init(const JMapInfoIter &rIter) {
     }
 }
 
+/*
 void ChipBase::initModel(const JMapInfoIter &rIter) {
     mScale.scaleInline(1.0f);
     initModelManagerWithAnm(mChipName, 0, false);
@@ -51,6 +52,7 @@ void ChipBase::initModel(const JMapInfoIter &rIter) {
         MR::startBck(mAirBubble, "Move", 0);
     }
 }
+*/
 
 void ChipBase::initSensor() {
     f32 radius;

@@ -53,6 +53,7 @@ void WatchTowerRotateStep::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, baseMtx);
 }
 
+/*
 void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
     mLifts = new PartsModel*[4];
 
@@ -74,6 +75,7 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
         mLifts[i]->initWithoutIter();
     }
 }
+*/
 
 // WatchTowerRotateStep::attachLift();
 

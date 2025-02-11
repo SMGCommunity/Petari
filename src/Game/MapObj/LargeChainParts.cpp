@@ -9,9 +9,9 @@ void LargeChainParts::breakChainParts() {
 }
 
 void LargeChainParts::initChainParts(TVec3f *pPos, TVec3f *pRot, TVec3f *pScale, bool isFixedPoint) {
-    mPosition.set(*pPos);
-    mRotation.set(*pRot);
-    mScale.set(*pScale);
+    mPosition.set<f32>(*pPos);
+    mRotation.set<f32>(*pRot);
+    mScale.set<f32>(*pScale);
 
     if (isFixedPoint) {
         initModelManagerWithAnm("LargeChainFixPoint", nullptr, false);

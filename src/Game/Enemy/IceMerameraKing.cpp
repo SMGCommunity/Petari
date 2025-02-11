@@ -102,8 +102,8 @@ _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(), _100(
 void IceMerameraKing::init(const JMapInfoIter &rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
-        _C8.set(mPosition);
-        _D4.set(mRotation);
+        _C8.set<f32>(mPosition);
+        _D4.set<f32>(mRotation);
         MR::useStageSwitchWriteDead(this, rIter);
         MR::useStageSwitchReadA(this, rIter);
     }
@@ -145,11 +145,11 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
     MR::initLightCtrl(this);
     _A8 = new IceMerameraKingShockWave();
     _A8->initWithoutIter();
-    _A8->mRotation.set(mRotation);
+    _A8->mRotation.set<f32>(mRotation);
     _A8->makeActorDead();
     _AC = new ModelObj("壊れモデル", "IceMerameraKingBreak", nullptr, -2, -2, -2, false);
     _AC->initWithoutIter();
-    _AC->mScale.set(mScale);
+    _AC->mScale.set<f32>(mScale);
     _AC->makeActorDead();
     s32 childNum = MR::getChildObjNum(rIter);
     _F0 = childNum;
@@ -170,8 +170,8 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
     MR::emitEffect(this, "BodyIce");
     _F8 = new CameraTargetDemoActor(getBaseMtx(), "アクター注目");
     _F8->initWithoutIter();
-    _F8->mPosition.set(_C8);
-    _F8->mRotation.set(_D4);
+    _F8->mPosition.set<f32>(_C8);
+    _F8->mRotation.set<f32>(_D4);
     _F8->setName("メラキン注目ターゲット");
     MR::tryRegisterDemoCast(_F8, rIter);
     //major
@@ -352,6 +352,7 @@ void IceMerameraKing::tearDownThrow() {
     }
 }
 
+/*
 void IceMerameraKing::exeExtinguish() {
     hOnAirParam;
     if (MR::isFirstStep(this)) {
@@ -384,6 +385,7 @@ void IceMerameraKing::exeExtinguish() {
     }
     //minor. problems on the params
 }
+*/
 
 void IceMerameraKing::exeEscape() {
     MR::isFirstStep(this);
@@ -397,7 +399,7 @@ void IceMerameraKing::exeEscape() {
     else {
         MR::emitEffect(this, "Rolling");
         if (MR::isOnGround(this) ){
-            f32 v11 = MR::getLinerValueFromMinMax(PSVECMag(mVelocity), 2.0f, 6.0f, 0.0f, 100.0f);
+            f32 v11 = MR::getLinerValueFromMinMax(PSVECMag(&mVelocity), 2.0f, 6.0f, 0.0f, 100.0f);
             MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_ROLL", v11, -1, 15);
         }
 
@@ -555,8 +557,8 @@ void IceMerameraKing::exeAttack() {
 void IceMerameraKing::exeAttackAfter() {
     if (MR::isFirstStep(this)) {
         _A8->appear();
-        _A8->mPosition.set(mPosition);
-        _A8->mPosition.set(_D4);
+        _A8->mPosition.set<f32>(mPosition);
+        _A8->mPosition.set<f32>(_D4);
         MR::emitEffect(this, "Land");
         MR::startAction(this, "AttackEnd");
         MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP", -1, -1);
@@ -607,14 +609,14 @@ void IceMerameraKing::exeAngryDemo() {
             TVec3f v7(mGravity);
             v7.scale(200.0f);
             TVec3f v8(mPosition);
-            v8.subtract(v7);
+            v8.sub(v7);
             MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);                  
         }
         else {
             TVec3f v5(mGravity);
             v5.scale(200.0f);
             TVec3f v6(mPosition);
-            v6.subtract(v5);
+            v6.sub(v5);
             MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);      
         }
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
@@ -626,9 +628,9 @@ void IceMerameraKing::exeDeathDemo() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Death");
         MR::startSound(this, "SE_BM_ICEMERAKING_DEAD", -1, -1);
-        _F8->mPosition.set(mPosition);
+        _F8->mPosition.set<f32>(mPosition);
         _AC->appear();
-        _AC->mRotation.set(_D4);
+        _AC->mRotation.set<f32>(_D4);
         MR::resetPosition(_AC, mPosition);
         MR::startAction(_AC, "Break");
         MR::requestMovementOn(_AC);
@@ -734,9 +736,9 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
         }
         else {
             TVec3f v10(*MR::getPlayerCenterPos());
-            v10.subtract(mPosition);
+            v10.sub(mPosition);
             MR::vecKillElement(v10, mGravity, &v10);
-            if (PSVECMag(v10) > getSensor("body")->mRadius) {
+            if (PSVECMag(&v10) > getSensor("body")->mRadius) {
                 return false;
             }
             else {
@@ -750,9 +752,10 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pR
     }
 }
 
+/*
 void IceMerameraKing::addVelocityToInitPos() {
     TVec3f v12(_C8);
-    v12.subtract(mPosition);
+    v12.sub(mPosition);
     
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
@@ -770,6 +773,7 @@ void IceMerameraKing::addVelocityToInitPos() {
     }
     mVelocity.add(v12);
 }
+*/
 
 void IceMerameraKing::calcAndSetBaseMtx() {
     TPos3f v3;
@@ -798,7 +802,7 @@ bool IceMerameraKing::isEnableThrow() {
         return false;
     }
     TVec3f v10(*MR::getPlayerCenterPos());
-    v10.subtract(mPosition);
+    v10.sub(mPosition);
     MR::normalize(&v10);
     TVec3f v9;
     MR::calcUpVec(&v9, this);
@@ -900,13 +904,13 @@ void IceMerameraKingShockWave::attackSensor(HitSensor *pSender, HitSensor *pRece
     if (pSender != getSensor("circle_end") && MR::isSensorPlayer(pReceiver)) {
         HitSensor* sensor = getSensor("circle_end");
         TVec3f v17(sensor->mPosition);
-        v17.subtract(pSender->mPosition);
+        v17.sub(pSender->mPosition);
         f32 radius1 = sensor->mRadius;
         f32 radius2 = pReceiver->mRadius;
-        if (PSVECMag(v17) > (radius2 + radius1)) {
+        if (PSVECMag(&v17) > (radius2 + radius1)) {
             TVec3f v15;
             TVec3f v16(pSender->mPosition);
-            v16.subtract(pSender->mPosition);
+            v16.sub(pSender->mPosition);
             MR::calcUpVec(&v15, this);
             if (!(__fabsf(v16.dot(v15)) < 200.0f)) {
                 MR::vecKillElement(v16, v15, &v16);

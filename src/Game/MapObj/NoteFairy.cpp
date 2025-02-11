@@ -76,7 +76,7 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
         }
     }
 
-    _8C.set(mPosition);
+    _8C.set<f32>(mPosition);
     mTimeLimit *= 60;
     mHasDemo = MR::tryRegisterDemoCast(this, rIter);
     initRailRider(rIter);
@@ -139,12 +139,12 @@ void NoteFairy::init(const JMapInfoIter &rIter) {
             MR::calcRailPointPos(&stack_24, this, i);
         }
         else {
-            stack_24.set(MR::getRailPos(this));
+            stack_24.set<f32>(MR::getRailPos(this));
             MR::moveCoord(this, mNoteCoord);
         }
 
         mNoteArray[i] = new Note("音符", MR::getRailDirection(this), this);
-        mNoteArray[i]->mPosition.set(stack_24);
+        mNoteArray[i]->mPosition.set<f32>(stack_24);
         mNoteArray[i]->initWithoutIter();
         mNoteArray[i]->mCounter = mTimeLimit;
     }
@@ -226,6 +226,7 @@ void NoteFairy::exeHide() {
     }
 }
 
+/*
 void NoteFairy::exeStartAppearDemo() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
@@ -240,12 +241,13 @@ void NoteFairy::exeStartAppearDemo() {
         enterDemoAppear(&NrvNoteFairy::NoteFairyNrvDemoAppear::sInstance, true);
     }
 }
+*/
 
 void NoteFairy::exeRailMoveStart() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::emitEffect(this, "Blur");
-        mPosition.setInlinePS(MR::getRailPos(this));
+        mPosition.setPS(MR::getRailPos(this));
     }
 
     if (_CD) {

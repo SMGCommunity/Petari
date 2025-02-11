@@ -5,8 +5,8 @@
 
 Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) : LiveActor(pName) {
     mParentFairy = pParent;
-    _90.setInline(0.0f);
-    mRailDirection.setInlinePS_2(rRailDirection);
+    _90.set(0.0f);
+    mRailDirection.setPS(rRailDirection);
     mCounter = 0;
     _AC = 0.0f;
     mIsCountdown = false;
@@ -15,7 +15,7 @@ Note::Note(const char *pName, const TVec3f &rRailDirection, NoteFairy *pParent) 
 
 void Note::init(const JMapInfoIter &rIter) {
     MR::createSceneObj(SceneObj_NoteGroup);
-    _90.set(mPosition);
+    _90.set<f32>(mPosition);
     initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
@@ -45,6 +45,7 @@ void Note::startCountDown() {
     mIsCountdown = true;
 }
 
+/*
 void Note::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Note");
@@ -57,6 +58,7 @@ void Note::exeWait() {
         setNerve(&NrvNote::NoteNrvCountDown::sInstance);
     } 
 }
+*/
 
 void Note::exeCountDown() {
     if (MR::isFirstStep(this)) {
@@ -71,9 +73,10 @@ void Note::exeCountDown() {
     }
 }
 
+/*
 void Note::exeFlyUp() {
     if (MR::isFirstStep(this)) {
-        mVelocity.set(mGravity);
+        mVelocity.set<f32>(mGravity);
         mVelocity.scaleInline(-30.0f);
         MR::invalidateHitSensors(this);
         mFlashCtrl->end();
@@ -83,11 +86,13 @@ void Note::exeFlyUp() {
         kill();
     }
 }
+*/
 
 void Note::control() {
     mRotation.y = MR::getSceneObj<NoteGroup*>(SceneObj_NoteGroup)->mRotation;
 }
 
+/*
 void Note::calcAndSetBaseMtx() {
     TVec3f stack_8;
     stack_8.negateInline_2(mGravity);
@@ -102,6 +107,7 @@ void Note::calcAndSetBaseMtx() {
     stack_44.mMtx[2][3] = mPosition.z;
     MR::setBaseTRMtx(this, stack_44);
 }
+*/
 
 void Note::attackSensor(HitSensor *a1, HitSensor *a2) {
     if (MR::isSensorPlayerOrRide(a2)) {
@@ -122,11 +128,13 @@ void NoteGroup::init(const JMapInfoIter &rIter) {
     MR::connectToSceneMapObjMovement(this);
 }
 
+/*
 void NoteGroup::movement() {
     f32 v1 = MR::subtractFromSum(8.0f, mRotation, 0.0f);
     mRotation = mRotation + 8.0f;
     mRotation = MR::modAndAdd(0.0f, v1);
 }
+*/
 
 Note::~Note() {
 

@@ -139,11 +139,11 @@ namespace MR {
             }
 
             TVec3f stack_8;
-            stack_8.setInlinePS(*pOut);
+            stack_8.setPS(*pOut);
             stack_8.x *= 57.29578f;
             stack_8.y *= 57.29578f;
             stack_8.z *= 57.29578f;
-            pOut->setInlinePS(stack_8);
+            pOut->setPS(stack_8);
         }
         
         return true;

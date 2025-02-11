@@ -25,10 +25,10 @@ void Triangle::fillData(CollisionParts *pParts, unsigned long index, HitSensor *
     MtxPtr matrix;
     KC_PrismData *prism = server->getPrismData(index);
 
-    mNormals[0].set(*server->getFaceNormal(prism));
-    mNormals[1].set(*server->getEdgeNormal1(prism));
-    mNormals[2].set(*server->getEdgeNormal2(prism));
-    mNormals[3].set(*server->getEdgeNormal3(prism));
+    mNormals[0].set<f32>(*server->getFaceNormal(prism));
+    mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
+    mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
+    mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
 
     matrix = reinterpret_cast<MtxPtr>(&mParts->mBaseMatrix);
 
@@ -42,9 +42,9 @@ void Triangle::fillData(CollisionParts *pParts, unsigned long index, HitSensor *
     MR::normalize(&mNormals[2]);
     MR::normalize(&mNormals[3]);
 
-    mPos[0].set(server->getPos(prism, 0));
-    mPos[1].set(server->getPos(prism, 1));
-    mPos[2].set(server->getPos(prism, 2));
+    mPos[0].set<f32>(server->getPos(prism, 0));
+    mPos[1].set<f32>(server->getPos(prism, 1));
+    mPos[2].set<f32>(server->getPos(prism, 2));
 
     PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mPos[0]), reinterpret_cast<Vec *>(&mPos[0]));
     PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mPos[1]), reinterpret_cast<Vec *>(&mPos[1]));
@@ -91,7 +91,7 @@ const TVec3f *Triangle::calcAndGetNormal(int index) {
 
     switch (index) {
         case 0: {
-                mNormals[0].set(*server->getFaceNormal(prism));
+                mNormals[0].set<f32>(*server->getFaceNormal(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[0]), reinterpret_cast<Vec *>(&mNormals[0]));
                 MR::normalize(&mNormals[0]);
 
@@ -99,7 +99,7 @@ const TVec3f *Triangle::calcAndGetNormal(int index) {
             }
             break;
         case 1: {
-                mNormals[1].set(*server->getEdgeNormal1(prism));
+                mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[1]), reinterpret_cast<Vec *>(&mNormals[1]));
                 MR::normalize(&mNormals[1]);
 
@@ -107,7 +107,7 @@ const TVec3f *Triangle::calcAndGetNormal(int index) {
             }
             break;
         case 2: {
-                mNormals[2].set(*server->getEdgeNormal2(prism));
+                mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[2]), reinterpret_cast<Vec *>(&mNormals[2]));
                 MR::normalize(&mNormals[2]);
                 
@@ -115,7 +115,7 @@ const TVec3f *Triangle::calcAndGetNormal(int index) {
             }
             break;
         case 3: {
-                mNormals[3].set(*server->getEdgeNormal3(prism));
+                mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[3]), reinterpret_cast<Vec *>(&mNormals[3]));
                 MR::normalize(&mNormals[3]);
 
@@ -135,7 +135,7 @@ const TVec3f *Triangle::calcAndGetEdgeNormal(int index) {
 
     switch (index) {
         case 0: {
-                mNormals[1].set(*server->getEdgeNormal1(prism));
+                mNormals[1].set<f32>(*server->getEdgeNormal1(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[1]), reinterpret_cast<Vec *>(&mNormals[1]));
                 MR::normalize(&mNormals[1]);
 
@@ -143,7 +143,7 @@ const TVec3f *Triangle::calcAndGetEdgeNormal(int index) {
             }
             break;
         case 1: {
-                mNormals[2].set(*server->getEdgeNormal2(prism));
+                mNormals[2].set<f32>(*server->getEdgeNormal2(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[2]), reinterpret_cast<Vec *>(&mNormals[2]));
                 MR::normalize(&mNormals[2]);
 
@@ -151,7 +151,7 @@ const TVec3f *Triangle::calcAndGetEdgeNormal(int index) {
             }
             break;
         case 2: {
-                mNormals[3].set(*server->getEdgeNormal3(prism));
+                mNormals[3].set<f32>(*server->getEdgeNormal3(prism));
                 PSMTXMultVecSR(matrix, reinterpret_cast<Vec *>(&mNormals[3]), reinterpret_cast<Vec *>(&mNormals[3]));
                 MR::normalize(&mNormals[3]);
 
@@ -169,7 +169,7 @@ const TVec3f *Triangle::calcAndGetPos(int index) {
 
     TVec3f *pos = &mPos[index];
 
-    pos->set(server->getPos(prism, index));
+    pos->set<f32>(server->getPos(prism, index));
 
     mParts->mBaseMatrix.mult(*pos, *pos);
 

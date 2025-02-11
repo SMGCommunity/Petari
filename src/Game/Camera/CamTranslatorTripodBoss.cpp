@@ -14,8 +14,8 @@ void CamTranslatorTripodBoss::setParam(const CameraParamChunk *pChunk) {
 
 	camera = mCamera;
 
-	camera->mWPoint.set(general->mWPoint);
-	camera->mAxis.set(general->mAxis);
+	camera->mWPoint.set<f32>(general->mWPoint);
+	camera->mAxis.set<f32>(general->mAxis);
 	camera->mDist = dist;
 	camera->mAngleB = up.x;
 	camera->mAngleA = up.y;

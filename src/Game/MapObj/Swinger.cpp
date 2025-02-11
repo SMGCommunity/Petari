@@ -16,11 +16,12 @@ void Swinger::accel(const TVec3f& a1)
     mAcceleration.add(a1);
 }
 
+/*
 void Swinger::update()
 {
     TVec3f v20;
     if (_0) {
-        v20.set(*_0);
+        v20.set<f32>(*_0);
     }
     else {
         v20.set((*_4)[3], (*_4)[7], (*_4)[11]);
@@ -37,7 +38,7 @@ void Swinger::update()
     _8.add(mAcceleration);
     TVec3f v18(_8);
     v18.subInline4(v20);
-    _20.set(v18);
+    _20.set<f32>(v18);
 
     if ((_20.squaredInline() <= 0.0000038146973f) > 0) {
         _20.setInline(0.0f, -1.0f, 0.0f);
@@ -45,7 +46,7 @@ void Swinger::update()
     else {
         MR::normalize(&_20);
     }
-    _8.set(_20);
+    _8.set<f32>(_20);
     _8.scale(_2C);
     _8.add(v20);
 
@@ -58,20 +59,21 @@ void Swinger::update()
 
     updateSwingMtx(v20);
 }
+*/
 
 void Swinger::updateSwingMtx(const TVec3f &a1)
 {
-    _48.set(_20);
+    _48.set<f32>(_20);
     _48.x *= -1.0f;
     _48.y *= -1.0f;
     _48.z *= -1.0f;
     TVec3f v14(_3C);
-    PSVECCrossProduct(_48, _54, _3C);
+    PSVECCrossProduct(&_48, &_54, &_3C);
     if (MR::isNearZero(_3C, 0.001f)) {
-        _3C.set(v14);
+        _3C.set<f32>(v14);
     }
     MR::normalize(&_3C);
-    PSVECCrossProduct(_3C, _48, _54);
+    PSVECCrossProduct(&_3C, &_48, &_54);
     MR::normalize(&_54);
 
     _60.mMtx[0][0] = _3C.x;

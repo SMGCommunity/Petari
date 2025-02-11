@@ -7,8 +7,8 @@ void MirrorCamera::init(const JMapInfoIter &rIter) {
 }
 
 void MirrorCamera::setMirrorMapInfo(const TVec3f &a1, const TVec3f &a2) {
-    _18.set(a1);
-    _C.set(a2);
+    _18.set<f32>(a1);
+    _C.set<f32>(a2);
     _24 = -PSVECDotProduct((const Vec*)&_18, (const Vec*)&_C);
 }
 
@@ -16,7 +16,7 @@ f32 MirrorCamera::getDistance(const TVec3f &a1) const {
     TVec3f stack_14;
     TVec3f stack_8;
     
-    stack_8.set(_18);
+    stack_8.set<f32>(_18);
     stack_14.x = stack_8.dot(_C);
     return stack_8.dot(a1) - stack_14.x;
 }

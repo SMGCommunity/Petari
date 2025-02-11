@@ -29,7 +29,7 @@ void CrystalCageMoving::init(const JMapInfoIter &rIter) {
     vec.z = 0.0f;
     info.setupHitSensorParam(4, 350.0f, vec);
     initialize(rIter, info);
-    _FC.set(mPosition);
+    _FC.set<f32>(mPosition);
     initDummyModel(rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
     MR::startBck(this, "Wait", nullptr);
@@ -71,6 +71,7 @@ void CrystalCageMoving::exeBreakAll() {
     }
 }
 
+/*
 void CrystalCageMoving::exeDemoTicoMove() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mTicoModel, "Fly", nullptr);
@@ -81,13 +82,14 @@ void CrystalCageMoving::exeDemoTicoMove() {
     stack_14.subInline2(_FC, mPosition);
     f32 nerveRate = MR::calcNerveRate(this, 0x1E);
     TVec3f stack_8;
-    JMAVECScaleAdd(stack_14, mPosition, stack_8, nerveRate);
+    JMAVECScaleAdd(&stack_14, &mPosition, &stack_8, nerveRate);
     _C8.setTrans(stack_8);
 
     if (MR::isStep(this, 0x1E)) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance);
     }
 }
+*/
 
 void CrystalCageMoving::exeDemoTicoStop() {
     if (MR::isFirstStep(this)) {
@@ -126,7 +128,7 @@ void CrystalCageMoving::control() {
         MapObjActor::control();
         _C8.set(MR::getJointMtx(this, 0));
         TVec3f trans;
-        PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset, trans);
+        PSMTXMultVec(_C8.toMtxPtr(), &sDummyModelOffset, &trans);
         _C8.setTrans(trans);
     }
 }
@@ -152,8 +154,8 @@ void CrystalCageMoving::crashMario(HitSensor *a1, HitSensor *a2) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
     }
     else {
-        f32 sensorDist = PSVECDistance(a2->mPosition, a1->mPosition);
-        f32 sensorObjDist = PSVECDistance(mPosition, a1->mPosition);
+        f32 sensorDist = PSVECDistance(&a2->mPosition, &a1->mPosition);
+        f32 sensorObjDist = PSVECDistance(&mPosition, &a1->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);
@@ -166,7 +168,7 @@ void CrystalCageMoving::crashMario(HitSensor *a1, HitSensor *a2) {
 
 void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
     if (!_108) {
-        pSensor->mPosition.set(mPosition);
+        pSensor->mPosition.set<f32>(mPosition);
     }
     else {
         f32 radius = pSensor->mRadius;
@@ -178,9 +180,9 @@ void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
         f32 x = joint_mtx.mMtx[0][1];
         joint_pos.set(x, y, z);
         TVec3f stack_14;
-        JMAVECScaleAdd(joint_pos, mPosition, stack_14, (-450.0f + radius));
+        JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
         TVec3f stack_8;
-        JMAVECScaleAdd(joint_pos, mPosition, stack_8, (450.0f - radius));
+        JMAVECScaleAdd(&joint_pos, &mPosition, &stack_8, (450.0f - radius));
         MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), stack_14, stack_8);
     }
 } 
@@ -194,7 +196,7 @@ void CrystalCageMoving::connectToScene(const MapObjActorInitInfo &rInfo) {
 void CrystalCageMoving::initDummyModel(const JMapInfoIter &rIter) {
     _C8.set(MR::getJointMtx(this, 0));
     TVec3f stack_8;
-    PSMTXMultVec(_C8.toMtxPtr(), sDummyModelOffset, stack_8);
+    PSMTXMultVec(_C8.toMtxPtr(), &sDummyModelOffset, &stack_8);
     _C8.setTrans(stack_8);
     mTicoModel = new ModelObj("動くクリスタルケージ中身", "Tico", _C8.toMtxPtr(), 0x21, -2, -2, false);
     mTicoModel->initWithoutIter();
