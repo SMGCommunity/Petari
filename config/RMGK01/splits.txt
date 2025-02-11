@@ -1275,13 +1275,13 @@ Game/Boss/SkeletalFishBabyRail.cpp:
 
 Game/Boss/SkeletalFishBabyRailHolder.cpp:
 	.text       start:0x80077358 end:0x80077794
-	.data       start:0x80570C40 end:0x80570E10
+	.data       start:0x80570C40 end:0x80570C68
 
 Game/Boss/SkeletalFishBoss.cpp:
 	.text       start:0x80077794 end:0x8007AE78
 	.ctors      start:0x8052E98C end:0x8052E990
 	.rodata     start:0x80531470 end:0x805314F8
-	.data       start:0x80570E10 end:0x805717C8
+	.data       start:0x80570C68 end:0x805717C8
 	.sbss       start:0x806B3778 end:0x806B37B8
 	.sdata2     start:0x806B8CC0 end:0x806B8D18
 
@@ -4453,14 +4453,14 @@ Game/MapObj/CollectCounter.cpp:
 
 Game/MapObj/CollisionBlocker.cpp:
 	.text       start:0x801CAE8C end:0x801CB150
-	.data       start:0x80592578 end:0x80592660
+	.data       start:0x80592578 end:0x80592610
 	.sdata      start:0x806B1DB0 end:0x806B1DB8
 	.sdata2     start:0x806BCC70 end:0x806BCC78
 
 Game/MapObj/CrystalCage.cpp:
 	.text       start:0x801CB150 end:0x801CC1EC
 	.ctors      start:0x8052ECC8 end:0x8052ECCC
-	.data       start:0x80592660 end:0x80592958
+	.data       start:0x80592610 end:0x80592958
 	.sbss       start:0x806B4FF8 end:0x806B5008
 	.sdata2     start:0x806BCC78 end:0x806BCCC0
 
