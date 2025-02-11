@@ -99,7 +99,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        inline TVec3(const TVec3<f32> &vec) {
+        TVec3(const TVec3<f32> &vec) {
             setTVec3f(&vec.x, &x);
         }
 

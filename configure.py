@@ -217,6 +217,8 @@ cflags_game = [
     "-fp_contract on",
     "-str reuse",
     "-enc SJIS",
+    "-sdata 4",
+    "-sdata2 4",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/MSL_C++/include",

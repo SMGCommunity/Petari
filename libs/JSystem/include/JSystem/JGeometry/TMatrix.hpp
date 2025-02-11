@@ -133,15 +133,15 @@ namespace JGeometry {
         void identity33();
 
         void getXDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set(mMtx[0][0], mMtx[1][0], mMtx[2][0]);
+            rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]);
         };
 
         void getYDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set(mMtx[0][1], mMtx[1][1], mMtx[2][1]);
+            rDest.set(this->mMtx[0][1], this->mMtx[1][1], this->mMtx[2][1]);
         };
 
         void getZDir(TVec3f &rDest) const NO_INLINE {
-            rDest.set(mMtx[0][2], mMtx[1][2], mMtx[2][2]);
+            rDest.set(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]);
         };
 
         void getXYZDir(TVec3f &rDestX, TVec3f &rDestY, TVec3f &rDestZ) const;
@@ -168,16 +168,16 @@ namespace JGeometry {
         void mult33(const TVec3f &rDst, TVec3f &rSrc) const;
 
         inline void getXDirInline(TVec3f &rDest) const {
-            f32 z = mMtx[2][0];
-            f32 y = mMtx[1][0];
-            f32 x = mMtx[0][0];
+            f32 z = this->mMtx[2][0];
+            f32 y = this->mMtx[1][0];
+            f32 x = this->mMtx[0][0];
             rDest.set(x, y, z);
         }
 
         inline void zeroTrans() {
-            mMtx[0][3] = 0.0f;
-            mMtx[1][3] = 0.0f;
-            mMtx[2][3] = 0.0f;
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
         }
 
         inline void makeRotateInline(const TVec3f &rVec, f32 r) {
@@ -196,15 +196,15 @@ namespace JGeometry {
             f32 y = vec.y;
             f32 z = vec.z;
 
-            mMtx[0][0] = (negc * (x * x) + c); 
-            mMtx[0][1] = (y * (negc * x)) - (s * z);  
-            mMtx[0][2] = (z * (negc * x)) + (s * y);
-            mMtx[1][0] = (y * (negc * x)) + (s * z);
-            mMtx[1][1] = (negc * (y * y) + c);
-            mMtx[1][2] = (z * (negc * y)) - (s * x);
-            mMtx[2][0] = (z * (negc * x)) - (s * y);
-            mMtx[2][1] = (z * (negc * y)) + (s * x);
-            mMtx[2][2] = (negc * (z * z) + c);
+            this->mMtx[0][0] = (negc * (x * x) + c); 
+            this->mMtx[0][1] = (y * (negc * x)) - (s * z);  
+            this->mMtx[0][2] = (z * (negc * x)) + (s * y);
+            this->mMtx[1][0] = (y * (negc * x)) + (s * z);
+            this->mMtx[1][1] = (negc * (y * y) + c);
+            this->mMtx[1][2] = (z * (negc * y)) - (s * x);
+            this->mMtx[2][0] = (z * (negc * x)) - (s * y);
+            this->mMtx[2][1] = (z * (negc * y)) + (s * x);
+            this->mMtx[2][2] = (negc * (z * z) + c);
         }
         void setRotateInline2(const TVec3f &vec1, f32 r) {
             // The only difference from setRotateInline is that we use setInline instead of set
@@ -218,30 +218,30 @@ namespace JGeometry {
             f32 y = vec.y;
             f32 z = vec.z;
 
-            mMtx[0][0] = (negc * (x * x) + c); 
-            mMtx[0][1] = (y * (negc * x)) - (s * z);  
-            mMtx[0][2] = (z * (negc * x)) + (s * y);
-            mMtx[1][0] = (y * (negc * x)) + (s * z);
-            mMtx[1][1] = (negc * (y * y) + c);
-            mMtx[1][2] = (z * (negc * y)) - (s * x);
-            mMtx[2][0] = (z * (negc * x)) - (s * y);
-            mMtx[2][1] = (z * (negc * y)) + (s * x);
-            mMtx[2][2] = (negc * (z * z) + c);
+            this->mMtx[0][0] = (negc * (x * x) + c); 
+            this->mMtx[0][1] = (y * (negc * x)) - (s * z);  
+            this->mMtx[0][2] = (z * (negc * x)) + (s * y);
+            this->mMtx[1][0] = (y * (negc * x)) + (s * z);
+            this->mMtx[1][1] = (negc * (y * y) + c);
+            this->mMtx[1][2] = (z * (negc * y)) - (s * x);
+            this->mMtx[2][0] = (z * (negc * x)) - (s * y);
+            this->mMtx[2][1] = (z * (negc * y)) + (s * x);
+            this->mMtx[2][2] = (negc * (z * z) + c);
         }
 
 
 
         inline void mult33Inline(const TVec3f &rSrc, TVec3f &rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
-            a32 = mMtx[2][1];
-            a22 = mMtx[1][1];
-            a12 = mMtx[0][1];
-            a31 = mMtx[2][0];
-            a21 = mMtx[1][0];
-            a11 = mMtx[0][0];
-            a33 = mMtx[2][2];
-            a13 = mMtx[0][2];
-            a23 = mMtx[1][2];
+            a32 = this->mMtx[2][1];
+            a22 = this->mMtx[1][1];
+            a12 = this->mMtx[0][1];
+            a31 = this->mMtx[2][0];
+            a21 = this->mMtx[1][0];
+            a11 = this->mMtx[0][0];
+            a33 = this->mMtx[2][2];
+            a13 = this->mMtx[0][2];
+            a23 = this->mMtx[1][2];
             f32 x, y;
             vx = rSrc.x;
             vy = rSrc.y;
@@ -264,9 +264,9 @@ namespace JGeometry {
         void setQT(const TQuat4f &rSrcQuat, const TVec3f &rSrcTrans);
 
         inline void getTransInline(TVec3f &rDest) const {
-            f32 z = mMtx[2][3];
-            f32 y = mMtx[1][3];
-            f32 x = mMtx[0][3];
+            f32 z = this->mMtx[2][3];
+            f32 y = this->mMtx[1][3];
+            f32 x = this->mMtx[0][3];
             rDest.set(x, y, z);
         }
     };
