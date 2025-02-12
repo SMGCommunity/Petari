@@ -243,6 +243,10 @@ BOOL __DVDGetAutoFatalMessaging(void);
 /* dvdfs */
 void __DVDFSInit(void);
 
+DVDDiskID *DVDGetCurrentDiskID(void);
+
+void __DVDResetWithNoSpinup(void);
+
 #define DVD_RESETCOVER_TIMELAG_TICKS2  OSMillisecondsToTicks(100)
 
 #ifdef __cplusplus

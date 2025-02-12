@@ -160,7 +160,13 @@ void nandCallback(ISFSError, void *);
 
 s32 NANDPrivateGetStatus(const char *, NANDStatus *);
 s32 NANDPrivateDelete(const char *);
-s32 NANDPrivateCreate (const char *, u8, u8);
+s32 NANDPrivateCreate(const char *, u8, u8);
+
+s32 NANDGetHomeDir(char *);
+
+s32 NANDGetStatus(const char *, NANDStatus *);
+
+s32 NANDSecretGetUsage(const char *, u32 *, u32 *);
 
 #ifdef __cplusplus
 }

@@ -21,8 +21,13 @@ void OSReturnToMenu(void);
 void OSResetSystem(int, u32, BOOL);
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
 BOOL __OSCallShutdownFunctions(BOOL, u32);
+void __OSReturnToMenuForError(void);
 
 u32 OSGetResetCode(void);
+
+u8 __OSGetDiscState(u8);
+void __OSShutdownDevices(u32);
+void __OSHotResetForError(void);
 
 #define OSIsRestart()   \
             ((OSGetResetCode() & 0x80000000) ? TRUE : FALSE)

@@ -17,5 +17,6 @@ void __OSInitPlayTime(void);
 BOOL __OSWriteExpiredFlagIfSet(void);
 BOOL OSPlayTimeIsLimited(void);
 s32 __OSGetPlayTime(ESTicketView *, __OSPlayTimeType *, u32 *);
+BOOL __OSWriteExpiredFlag(void);
 
 #endif // OSPLAYTIME_H
