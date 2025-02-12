@@ -158,6 +158,10 @@ void nandGetRelativeName(char *, const char *);
 const char* nandGetHomeDir();
 void nandCallback(ISFSError, void *);
 
+s32 NANDPrivateGetStatus(const char *, NANDStatus *);
+s32 NANDPrivateDelete(const char *);
+s32 NANDPrivateCreate (const char *, u8, u8);
+
 #ifdef __cplusplus
 }
 #endif
