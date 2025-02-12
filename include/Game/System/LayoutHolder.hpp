@@ -2,7 +2,7 @@
 
 #include "Game/System/ResourceInfo.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
-#include "nw4r/lyt/lyt_resourceAccessor.hpp"
+#include "nw4r/lyt/resourceAccessor.h"
 
 typedef const char* Something;
 

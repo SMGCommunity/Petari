@@ -1,7 +1,7 @@
 #pragma once
 
-#include <nw4r/lyt/lyt_drawInfo.hpp>
-#include <nw4r/lyt/lyt_pane.hpp>
+#include <nw4r/lyt/drawInfo.h>
+#include <nw4r/lyt/pane.h>
 
 class LayoutManager {
 public:

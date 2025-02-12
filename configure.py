@@ -280,6 +280,7 @@ cflags_nw = [
     "-i libs/MetroTRK/include",
     "-i libs/RVL_SDK/include",
     "-i libs/Runtime/include",
+    "-i libs/nw4r/include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]

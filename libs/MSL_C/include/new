@@ -3,7 +3,7 @@
 #include <cstring>
 #include "ansi_params.h"
 
-void* operator new(size_t, void* ptr) _MSL_THROW { 
+void* operator new(unsigned long, void* ptr) _MSL_THROW { 
     return ptr; 
 }
 

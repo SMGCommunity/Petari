@@ -3,7 +3,7 @@
 #include "Game/System/FileRipper.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/SingletonHolder.hpp"
-#include "nw4r/lyt/lyt_init.hpp"
+#include "nw4r/lyt/init.h"
 #include "Game/Util.hpp"
 
 
