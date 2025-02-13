@@ -472,7 +472,7 @@ void LaunchCommon(OSTitleId titleId, u32 LaunchCode, char* const argv[], BOOL la
         state.lastShutdown  = 3;
         if(titleId == 0x100000002) {
             state.lastDiscState = __OSGetDiscState(state.lastDiscState);
-            state.menuMode      = 2;
+            state.menuMode = 2;
         }
         __OSWriteStateFlags(&state);
     }
@@ -482,7 +482,6 @@ void LaunchCommon(OSTitleId titleId, u32 LaunchCode, char* const argv[], BOOL la
     OSEnableScheduler();
     __OSLaunchTitle(titleId);
     __OSLaunchMenu();
-
 }
 
 void __OSReturnToMenul(u32 LaunchCode, const char *arg0, ...) {
