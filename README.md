@@ -1,81 +1,104 @@
-decomp-toolkit Project Template
-===============================
+Petari
+[![Build Status]][actions] ![Progress] [![Discord Badge]][discord]
+=============
 
-If starting a new GameCube / Wii decompilation project, this repository can be used as a scaffold.
+[Build Status]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml
 
-See [decomp-toolkit](https://github.com/encounter/decomp-toolkit) for background on the concept and more information on the tooling used.
+[Progress]: https://decomp.dev/SMGCommunity/Petari.svg?mode=shield&measure=code&label=Code
 
-Documentation
--------------
+[Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
+[discord]: https://discord.gg/ZxEqyYeZbf
 
-- [Dependencies](docs/dependencies.md)
-- [Getting Started](docs/getting_started.md)
-- [`symbols.txt`](docs/symbols.md)
-- [`splits.txt`](docs/splits.md)
-- [GitHub Actions](docs/github_actions.md) (new!)
+A work-in-progress decompilation of Some Game.
 
-General:
+This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
-- [Common BSS](docs/common_bss.md)
-- [`.comment` section](docs/comment_section.md)
+Supported versions:
 
-References
+- `RMGK01`: Rev 0 (Korea)
+
+Dependencies
+============
+
+Windows
 --------
 
-- [Discord: GC/Wii Decompilation](https://discord.gg/hKx3FJJgrV) (Come to `#dtk` for help!)
-- [objdiff](https://github.com/encounter/objdiff) (Local diffing tool)
-- [decomp.me](https://decomp.me) (Collaborate on matches)
-- [frogress](https://github.com/decompals/frogress) (Decompilation progress API)
-- [wibo](https://github.com/decompals/wibo) (Minimal Win32 wrapper for Linux)
-- [sjiswrap](https://github.com/encounter/sjiswrap) (UTF-8 to Shift JIS wrapper)
+On Windows, it's **highly recommended** to use native tooling. WSL or msys2 are **not** required.  
+When running under WSL, [objdiff](#diffing) is unable to get filesystem notifications for automatic rebuilds.
 
-Projects using this structure:
+- Install [Python](https://www.python.org/downloads/) and add it to `%PATH%`.
+  - Also available from the [Windows Store](https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K).
+- Download [ninja](https://github.com/ninja-build/ninja/releases) and add it to `%PATH%`.
+  - Quick install via pip: `pip install ninja`
 
-- [zeldaret/tww](https://github.com/zeldaret/tww)
-- [zeldaret/oot-gc](https://github.com/zeldaret/oot-gc)
-- [zeldaret/ss](https://github.com/zeldaret/ss)
-- [PrimeDecomp/prime](https://github.com/PrimeDecomp/prime)
-- [PrimeDecomp/echoes](https://github.com/PrimeDecomp/echoes)
-- [DarkRTA/rb3](https://github.com/DarkRTA/rb3)
-- [doldecomp/melee](https://github.com/doldecomp/melee)
-- [doldecomp/sadx](https://github.com/doldecomp/sadx)
-- [InputEvelution/wp](https://github.com/InputEvelution/wp)
-- [NWPlayer123/AnimalCrossing-dtk](https://github.com/NWPlayer123/AnimalCrossing-dtk)
-- [Rainchus/marioparty4](https://github.com/Rainchus/marioparty4)
-- [Rainchus/ttyd_dtk](https://github.com/Rainchus/ttyd_dtk)
-- [Sage-of-Mirrors/zmansion](https://github.com/Sage-of-Mirrors/zmansion)
-- [bfbbdecomp/bfbb](https://github.com/bfbbdecomp/bfbb)
-- [EstexNT/rhf-dtk](https://github.com/EstexNT/rhf-dtk)
+macOS
+------
 
-Features
---------
+- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
 
-- Few external dependencies: Just `python` for the generator and `ninja` for the build system. See [Dependencies](docs/dependencies.md).
-- Simple configuration: Everything lives in `config.yml`, `symbols.txt`, and `splits.txt`.
-- Multi-version support: Separate configurations for each game version, and a `configure.py --version` flag to switch between them.
-- Feature-rich analyzer: Many time-consuming tasks are automated, allowing you to focus on the decompilation itself. See [Analyzer features](https://github.com/encounter/decomp-toolkit#analyzer-features).
-- REL support: RELs each have their own `symbols.txt` and `splits.txt`, and will automatically be built and linked against the main binary.
-- No manual assembly: decomp-toolkit handles splitting the DOL into relocatable objects based on the configuration. No game assets are committed to the repository.
-- Progress calculation and upload script for [frogress](https://github.com/decompals/frogress).
-- Integration with [objdiff](https://github.com/encounter/objdiff) for a diffing workflow.
-- CI workflow template for GitHub Actions.
+  ```sh
+  brew install ninja
+  ```
 
-Project structure
------------------
+- Install [wine-crossover](https://github.com/Gcenx/homebrew-wine):
 
-- `configure.py` - Project configuration and generator script.
-- `config/[GAMEID]` - Configuration files for each game version.
-- `config/[GAMEID]/build.sha1` - SHA-1 hashes for each built artifact, for final verification.
-- `build/` - Build artifacts generated by the the build process. Ignored by `.gitignore`.
-- `orig/[GAMEID]` - Original game files, extracted from the disc. Ignored by `.gitignore`.
-- `orig/[GAMEID]/.gitkeep` - Empty checked-in file to ensure the directory is created on clone.
-- `src/` - C/C++ source files.
-- `include/` - C/C++ header files.
-- `tools/` - Scripts shared between projects.
+  ```sh
+  brew install --cask --no-quarantine gcenx/wine/wine-crossover
+  ```
 
-Temporary, delete when done:
+After OS upgrades, if macOS complains about `Wine Crossover.app` being unverified, you can unquarantine it using:
 
-- `config/GAMEID/config.example.yml` - Example configuration file and documentation.
-- `docs/` - Documentation for decomp-toolkit configuration.
-- `README.md` - This file, replace with your own. For a template, see [`README.example.md`](README.example.md).
-- `LICENSE` - This repository is licensed under the CC0 license. Replace with your own if desired.
+```sh
+sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
+```
+
+Linux
+------
+
+- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
+- For non-x86(_64) platforms: Install wine from your package manager.
+  - For x86(_64), [wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
+
+Building
+========
+
+- Clone the repository:
+
+  ```sh
+  git clone https://github.com/my/repo.git
+  ```
+
+- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/GAMEID`.
+![](assets/dolphin-extract.png)
+  - To save space, the only necessary files are the following. Any others can be deleted.
+    - `sys/main.dol`
+    - `files/rels/*.rel`
+- Configure:
+
+  ```sh
+  python configure.py
+  ```
+
+  To use a version other than `GAMEID` (USA), specify it with `--version`.
+- Build:
+
+  ```sh
+  ninja
+  ```
+
+Visual Studio Code
+==================
+
+If desired, use the recommended Visual Studio Code settings by renaming the `.vscode.example` directory to `.vscode`.
+
+Diffing
+=======
+
+Once the initial build succeeds, an `objdiff.json` should exist in the project root.
+
+Download the latest release from [encounter/objdiff](https://github.com/encounter/objdiff). Under project settings, set `Project directory`. The configuration should be loaded automatically.
+
+Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
+
+![](assets/objdiff.png)
