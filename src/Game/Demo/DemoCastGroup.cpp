@@ -29,10 +29,6 @@ void DemoCastGroup::registerDemoActor(LiveActor *pActor, const JMapInfoIter & /*
     mGroup->registerActor(pActor);
 }
 
-DemoCastGroup::~DemoCastGroup() {
-
-}
-
 void DemoCastGroup::init(const JMapInfoIter &rIter) {
     setName(MR::getDemoName(rIter));
     mGroup = new LiveActorGroup("関連者保持", 0xC0);

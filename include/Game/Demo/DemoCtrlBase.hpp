@@ -16,9 +16,9 @@ public:
     bool isExistEndFrame() const;
     bool tryStart();
 
-    LiveActor* mActor;  // 0x0
-    u32 _4;
-    const char* _8;
-    s32 _C;
-    s8 _10;
+    LiveActor* mActor;                  // 0x0
+    ActorCameraInfo* mCameraInfo;       // 0x04
+    const char* mDemoName;              // 0x08
+    s32 mCurrentFrame;                  // 0x0C
+    bool _10;
 };
