@@ -171,4 +171,49 @@
         (((unsigned long)(reserved0)) << XF_DUALTEX_F_RESERVED0_SHIFT) | \
         (((unsigned long)(normal_enable)) << XF_DUALTEX_F_NORMAL_ENABLE_SHIFT))
 
+#define XF_PERF0_F_PERF_A_SIZE	5
+#define XF_PERF0_F_PERF_A_SHIFT	0
+#define XF_PERF0_F_PERF_A_MASK	0x0000001f
+#define XF_PERF0_F_GET_PERF_A(xf_perf0_f) \
+    ((((unsigned long)(xf_perf0_f)) & XF_PERF0_F_PERF_A_MASK) >> XF_PERF0_F_PERF_A_SHIFT)
+
+#define XF_PERF0_F_PERF_B_SIZE	5
+#define XF_PERF0_F_PERF_B_SHIFT	5
+#define XF_PERF0_F_PERF_B_MASK	0x000003e0
+#define XF_PERF0_F_GET_PERF_B(xf_perf0_f) \
+    ((((unsigned long)(xf_perf0_f)) & XF_PERF0_F_PERF_B_MASK) >> XF_PERF0_F_PERF_B_SHIFT)
+
+#define XF_PERF0_F_PERF_C_SIZE	5
+#define XF_PERF0_F_PERF_C_SHIFT	10
+#define XF_PERF0_F_PERF_C_MASK	0x00007c00
+#define XF_PERF0_F_GET_PERF_C(xf_perf0_f) \
+    ((((unsigned long)(xf_perf0_f)) & XF_PERF0_F_PERF_C_MASK) >> XF_PERF0_F_PERF_C_SHIFT)
+
+#define XF_PERF0_F_PERF_D_SIZE	5
+#define XF_PERF0_F_PERF_D_SHIFT	15
+#define XF_PERF0_F_PERF_D_MASK	0x000f8000
+#define XF_PERF0_F_GET_PERF_D(xf_perf0_f) \
+    ((((unsigned long)(xf_perf0_f)) & XF_PERF0_F_PERF_D_MASK) >> XF_PERF0_F_PERF_D_SHIFT)
+
+#define XF_PERF0_F_TOTAL_SIZE	20
+#define XF_PERF0_F_UNUSED_SIZE	12
+
+#define XF_PERF0_F(perf_a, perf_b, perf_c, perf_d) \
+    ((((unsigned long)(perf_a)) << XF_PERF0_F_PERF_A_SHIFT) | \
+        (((unsigned long)(perf_b)) << XF_PERF0_F_PERF_B_SHIFT) | \
+        (((unsigned long)(perf_c)) << XF_PERF0_F_PERF_C_SHIFT) | \
+        (((unsigned long)(perf_d)) << XF_PERF0_F_PERF_D_SHIFT))
+
+#define XF_PERF1_F_PERF_TARGET_SIZE	7
+#define XF_PERF1_F_PERF_TARGET_SHIFT	0
+#define XF_PERF1_F_PERF_TARGET_MASK	0x0000007f
+#define XF_PERF1_F_GET_PERF_TARGET(xf_perf1_f) \
+    ((((unsigned long)(xf_perf1_f)) & XF_PERF1_F_PERF_TARGET_MASK) >> XF_PERF1_F_PERF_TARGET_SHIFT)
+
+#define XF_PERF1_F_TOTAL_SIZE	7
+#define XF_PERF1_F_UNUSED_SIZE	25
+
+#define XF_PERF1_F(perf_target) \
+    ((((unsigned long)(perf_target)) << XF_PERF1_F_PERF_TARGET_SHIFT))
+
 #endif // XF_MEM_H
