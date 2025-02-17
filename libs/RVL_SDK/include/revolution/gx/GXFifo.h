@@ -9,6 +9,8 @@ extern "C" {
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
 
+typedef void (*GXBreakPtCallback)(void);
+
 typedef struct _GXFifoObj {
     u8* base;
     u8* top;
@@ -45,6 +47,13 @@ void GXGetFifoPtrs(const GXFifoObj *, void **, void **);
 void GXDisableBreakPt(void);
 
 GXBool __GXIsGPFifoReady(void);
+
+void __GXFifoInit(void);
+void GXInitFifoBase(GXFifoObj *, void *, u32);
+void GXSetCPUFifo(const GXFifoObj *);
+void GXSetGPFifo(const GXFifoObj *);
+
+GXBreakPtCallback GXSetBreakPtCallback(GXBreakPtCallback);
 
 #ifdef __cplusplus
 }

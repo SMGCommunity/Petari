@@ -52,6 +52,7 @@ u32 OSCachedToPhysical(const void* caddr);
 
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
 #define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
+#define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr)& (~OS_BASE_UNCACHED)))
 #define OSPhysicalToUncached(paddr) ((void*) ((u32)(paddr) + OS_BASE_UNCACHED))
 
 #define OSIsMEM1Region(addr) (((u32)(addr) & 0x30000000) == 0x00000000)
@@ -106,6 +107,9 @@ u16* OSUTF16to32(const u16 *, u32 *);
 u8 OSUTF32toANSI(u32);
 u16 OSUTF32toSJIS(u32);
 
+extern void __RAS_OSDisableInterrupts_begin(void);
+extern void __RAS_OSDisableInterrupts_end(void);
+
 #ifndef ASSERT
 #define ASSERT(exp) ((void) 0)
 #endif
@@ -134,6 +138,8 @@ u16 OSUTF32toSJIS(u32);
 #include <revolution/os/OSReset.h>
 #include <revolution/os/OSTime.h>
 #include <revolution/os/OSThread.h>
+#include <revolution/gx.h>
+
 
 /* PRIVATE OS FUNCTIONS */
 void __OSInitSystemCall(void);
@@ -149,11 +155,6 @@ void __OSGetIOSRev(OSIOSRev *);
 int __OSInitSTM(void);
 void __OSInitNet(void);
 void __OSPromoteThread(OSThread *, OSPriority);
-
-extern void __RAS_OSDisableInterrupts_begin(void);
-extern void __RAS_OSDisableInterrupts_end(void);
-
-#include <revolution/gx.h>
 
 void OSFatal(GXColor, GXColor, const char *);
 

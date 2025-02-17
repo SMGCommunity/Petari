@@ -322,6 +322,21 @@ typedef enum _GXTexFmt {
   GX_TF_A8 = GX_CTF_A8
 } GXTexFmt;
 
+typedef enum _GXTlutSize {
+    GX_TLUT_16 = 1,
+    GX_TLUT_32 = 2,
+    GX_TLUT_64 = 4,
+    GX_TLUT_128 = 8,
+    GX_TLUT_256 = 16,
+    GX_TLUT_512 = 32,
+    GX_TLUT_1K = 64,
+    GX_TLUT_2K = 128,
+    GX_TLUT_4K = 256,
+    GX_TLUT_8K = 512,
+    GX_TLUT_16K = 1024
+
+} GXTlutSize;
+
 typedef enum _GXCullMode {
   GX_CULL_NONE,
   GX_CULL_FRONT,
@@ -675,6 +690,12 @@ typedef enum _GXZTexOp {
 
 } GXZTexOp;
 
+typedef enum _GXAlphaReadMode {
+    GX_READ_00,
+    GX_READ_FF,
+    GX_READ_NONE
+} GXAlphaReadMode;
+
 typedef enum _GXTexMtxType { GX_MTX3x4 = 0, GX_MTX2x4 } GXTexMtxType;
 
 typedef enum _GXPrimitive {
@@ -686,6 +707,16 @@ typedef enum _GXPrimitive {
   GX_TRIANGLEFAN = 0xa0,
   GX_QUADS = 0x80
 } GXPrimitive;
+
+typedef enum _GXTexOffset {
+    GX_TO_ZERO,
+    GX_TO_SIXTEENTH,
+    GX_TO_EIGHTH,
+    GX_TO_FOURTH,
+    GX_TO_HALF,
+    GX_TO_ONE,
+    GX_MAX_TEXOFFSET
+} GXTexOffset;
 
 typedef enum _GXPerf0 {
   GX_PERF0_VERTICES,
@@ -774,6 +805,18 @@ typedef enum _GXCopyMode {
   GX_COPY_INTLC_ODD = 3
 } GXCopyMode;
 
+typedef enum _GXMiscToken{
+    GX_MT_XF_FLUSH           = 1,
+    GX_MT_DL_SAVE_CONTEXT    = 2,
+    GX_MT_ABORT_WAIT_COPYOUT = 3, 
+    GX_MT_NULL               = 0
+} GXMiscToken;
+
+typedef enum _GXXFFlushVal {
+    GX_XF_FLUSH_NONE  = 0,
+    GX_XF_FLUSH_SAFE  = 8
+} GXXFFlushVal;
+
 typedef enum _GXTlutFmt {
   GX_TL_IA8 = 0x0,
   GX_TL_RGB565 = 0x1,
@@ -819,6 +862,30 @@ typedef enum _GXTexMtx {
   GX_IDENTITY = 60
 } GXTexMtx;
 
+typedef enum _GXPTTexMtx {
+    GX_PTTEXMTX0  = 64,
+    GX_PTTEXMTX1  = 67,
+    GX_PTTEXMTX2  = 70,
+    GX_PTTEXMTX3  = 73,
+    GX_PTTEXMTX4  = 76,
+    GX_PTTEXMTX5  = 79,
+    GX_PTTEXMTX6  = 82,
+    GX_PTTEXMTX7  = 85,
+    GX_PTTEXMTX8  = 88,
+    GX_PTTEXMTX9  = 91,
+    GX_PTTEXMTX10 = 94,
+    GX_PTTEXMTX11 = 97,
+    GX_PTTEXMTX12 = 100,
+    GX_PTTEXMTX13 = 103,
+    GX_PTTEXMTX14 = 106,
+    GX_PTTEXMTX15 = 109,
+    GX_PTTEXMTX16 = 112,
+    GX_PTTEXMTX17 = 115,
+    GX_PTTEXMTX18 = 118,
+    GX_PTTEXMTX19 = 121,
+    GX_PTIDENTITY = 125
+} GXPTTexMtx;
+
 typedef enum _GXTevColorChan {
   GX_CH_RED = 0,
   GX_CH_GREEN,
@@ -833,6 +900,13 @@ typedef enum _GXCITexFmt {
   GX_TF_C14X2 = 0xA
 
 } GXCITexFmt;
+
+typedef enum _GXTexCacheSize {
+    GX_TEXCACHE_32K,
+    GX_TEXCACHE_128K,
+    GX_TEXCACHE_512K,
+    GX_TEXCACHE_NONE
+} GXTexCacheSize;
 
 #ifdef __cplusplus
 }

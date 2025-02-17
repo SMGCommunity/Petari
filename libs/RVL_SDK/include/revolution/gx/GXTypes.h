@@ -1,7 +1,9 @@
 #ifndef GXTYPES_H
 #define GXTYPES_H
 
-#include "types.h"
+#include "revolution/types.h"
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -89,7 +91,6 @@ typedef struct _GXData {
     GXBool inDispList;
     GXBool dlSaveContext;
     GXBool abtWaitPECopy;
-    GXBool xfDisable;
     u8 dirtyVAT;
     u32 dirtyState;
 } GXData;
@@ -98,6 +99,8 @@ extern GXData *const __GXData;
 #define gx __GXData
 
 extern void __GXFlushTextureState();
+extern void __GXAbort();
+extern void __GXSetTmemConfig(u32);
 
 #ifdef __cplusplus
 }

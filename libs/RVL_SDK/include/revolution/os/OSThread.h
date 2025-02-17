@@ -97,20 +97,6 @@ void OSClearStack(u8);
 
 void __OSThreadInit(void);
 
-#ifdef __MWERKS__
-OSThread* __OSRecentThread : (0x8000 << 16 | 0x00E0);
-OSThread* __OSCurrentThread     : (OS_BASE_CACHED | 0x00E4);
-OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
-volatile OSContext* __OSCurrentContext : (OS_BASE_CACHED | 0xD4);
-volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | 0xD8);
-#else
-OSThread* __OSRecentThread;
-OSThread* __OSCurrentThread;
-OSThreadQueue __OSActiveThreadQueue;
-volatile OSContext* __OSCurrentContext;
-volatile OSContext* __OSFPUContext;
-#endif
-
 #ifdef __cplusplus
 }
 #endif

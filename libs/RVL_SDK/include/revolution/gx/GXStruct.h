@@ -29,6 +29,13 @@ typedef struct _GXLightObj {
     u32 dummy[16];
 } GXLightObj;
 
+typedef struct _GXVtxAttrFmtList {
+    GXAttr        attr;
+    GXCompCnt     cnt;
+    GXCompType    type;
+    u8            frac;
+} GXVtxAttrFmtList;
+
 typedef struct _GXTexRegion {
     u32 dummy[4];
 } GXTexRegion;

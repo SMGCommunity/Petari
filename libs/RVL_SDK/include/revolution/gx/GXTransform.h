@@ -26,6 +26,7 @@ void GXSetZScaleOffset(f32, f32);
 
 void GXSetScissor(u32, u32, u32, u32);
 void GXGetScissor(u32 *, u32 *, u32 *, u32 *);
+void GXSetScissorBoxOffset(s32, s32);
 
 void GXSetClipMode(GXClipMode);
 

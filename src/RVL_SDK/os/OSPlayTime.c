@@ -2,12 +2,19 @@
 #include <revolution/os.h>
 #include <revolution/esp.h>
 #include <revolution/nand.h>
+#include <private/OSLoMem.h>
 
 OSThread* __OSExpireThread;
 OSAlarm __OSExpireAlarm;
 OSTime __OSExpireTime;
 OSPlayTimeCallbackFunc __OSExpireCallback;
 BOOL __OSExpireSetExpiredFlag;
+
+#ifdef __MWERKS__
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+#else
+OSThreadQueue __OSActiveThreadQueue;
+#endif
 
 static void __OSPlayTimeRebootCallback(OSAlarm *, OSContext *);
 static void*  __OSPlayTimeRebootThread(void *);

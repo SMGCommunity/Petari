@@ -6,6 +6,25 @@ extern "C" {
 #endif
 
 #include <revolution/base/PPCWGPipe.h>
+#include <private/bp_reg.h>
+#include <private/cp_reg.h>
+#include <private/gen_reg.h>
+#include <private/pe_reg.h>
+#include <private/pi_reg.h>
+#include <private/ras_reg.h>
+#include <private/su_reg.h>
+#include <private/tev_reg.h>
+#include <private/tx_reg.h>
+#include <revolution/gx/shortcut_bp_reg.h>
+#include <revolution/gx/shortcut_cp_reg.h>
+#include <revolution/gx/shortcut_gen_reg.h>
+#include <revolution/gx/shortcut_pe_reg.h>
+#include <revolution/gx/shortcut_pi_cp_reg.h>
+#include <revolution/gx/shortcut_ras_reg.h>
+#include <revolution/gx/shortcut_su_reg.h>
+#include <revolution/gx/shortcut_tev_reg.h>
+#include <revolution/gx/shortcut_xf_mem.h>
+#include <private/xf_mem.h>
 
 #ifdef __MWERKS__
 extern volatile PPCWGPipe gxfifo : 0xCC008000;
@@ -20,10 +39,8 @@ extern volatile void	*__memReg;
 #define MEM_PE_REQCOUNTH_IDX	0x27
 #define MEM_PE_REQCOUNTL_IDX	0x28
 
-#define SET_FLAG(regOrg, newFlag, shift, size)  \
-    (regOrg) = (u32)__rlwimi((int)(regOrg), (int)(newFlag), (shift), (32 - (shift) - (size)), (31 - (shift)));   \
-
 /* GX fifo write helpers */
+
 #define GX_WRITE_U8(ub)	    \
     gxfifo.u8 = (u8)(ub)
 
@@ -36,21 +53,40 @@ extern volatile void	*__memReg;
 #define GX_WRITE_F32(f)	 	\
    gxfifo.f32 = (f32)(f);
 
-#define GX_WRITE_REG(reg)	 	\
-   GX_WRITE_U8((0x61));         \
-   GX_WRITE_U32((reg))        \
+#define GX_PI_REG_WRITE_U32(a,d)  \
+    *(vu32*)((vu8*)__piReg + (a)) = (u32)(d) 
 
-#define CP_OPCODE(index, cmd) \
-    ((((unsigned long)(index)) << 0) | \
-     (((unsigned long)(cmd)) << 3))
+#define GX_PI_REG_READ_U32(a)  \
+    *(vu32*)((vu8*)__piReg + (a)) 
 
-#define CP_STREAM_REG(index, addr) \
-    ((((unsigned long)(index)) << 0) | \
-     (((unsigned long)(addr)) << 4))
 
-#define CP_XF_LOADREGS(addr, cnt) \
-    ((((unsigned long)(addr)) << 0) | \
-     (((unsigned long)(cnt)) << 16))
+#define GX_CP_REG_WRITE_U16(a,d)  \
+    *(vu16*)((vu16*)__cpReg + (a)) = (u16)(d)
+
+#define GX_CP_REG_READ_U16(a)  \
+    *(vu16*)((vu16*)__cpReg + (a)) 
+
+
+#define GX_CP_REG_WRITE_U32(a,d)  \
+    *(vu32*)((vu16*)__cpReg + (a)) = (u32)(d)
+
+#define GX_CP_REG_READ_U32(a)  \
+    *(vu32*)((vu16*)__cpReg + (a)) 
+
+#define GX_MEM_REG_WRITE_U16(a,d)  \
+    *(vu16*)((vu16*)__memReg + (a)) = (u16)(d)
+
+#define GX_MEM_REG_READ_U16(a)  \
+    *(vu16*)((vu16*)__memReg + (a)) 
+
+#define GX_PE_REG_WRITE_U16(a,d)  \
+    *(vu16*)((vu16*)__peReg + (a)) = (u16)(d)
+ 
+#define GX_PE_REG_READ_U16(a)  \
+    *(vu16*)((vu16*)__peReg + (a))
+
+
+#define GX_CP_IDLE_REG_READ_U16(a)  GX_CP_REG_READ_U16(a)
 
 #define GX_PI_REG_WRITE_U32(a,d)  \
     *(vu32*)((vu8*)__piReg + (a)) = (u32)(d) 
@@ -127,6 +163,7 @@ GX_DEFINE_GX_READ_COUNTER(CP)
 GX_DEFINE_GX_READ_COUNTER(PE)
 GX_DEFINE_GX_READ_COUNTER(MEM)
 
+#ifdef __MWERKS__
 #define GX_CP_COUNTER_READ_U32(name) \
     __GXReadCPCounterU32(name##L, name##H)
 
@@ -144,6 +181,12 @@ GX_DEFINE_GX_READ_COUNTER(MEM)
                               (32-(shift)-(size)),          \
                               (31-(shift)));                \
    } while(0);
+#else
+#define GX_CP_COUNTER_READ_U32(name)
+#define GX_PE_COUNTER_READ_U32(name)
+#define GX_MEM_COUNTER_READ_U32(name)
+#define FAST_FLAG_SET(regOrg, newFlag, shift, size)
+#endif
 
 #ifdef __cplusplus
 }

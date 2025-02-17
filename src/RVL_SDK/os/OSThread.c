@@ -1,4 +1,5 @@
 #include <revolution/os.h>
+#include <private/OSLoMem.h>
 
 extern OSErrorHandler __OSErrorTable[];
 
@@ -16,6 +17,16 @@ static volatile s32 Reschedule;
 static OSThread IdleThread;
 static OSThread DefaultThread;
 static OSContext IdleContext;
+
+#ifdef __MWERKS__
+OSThread*            __OSCurrentThread     : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);
+OSThreadQueue        __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+volatile OSContext*  __OSFPUContext        : (OS_BASE_CACHED | OS_FPUCONTEXT_ADDR);
+#else
+OSThread* __OSCurrentThread;
+OSThreadQueue __OSActiveThreadQueue;
+volatile OSContext* __OSFPUContext;
+#endif
 
 static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 

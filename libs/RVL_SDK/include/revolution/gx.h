@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include "revolution/gx/GXBump.h"
+#include "revolution/gx/GXCpu2Efb.h"
 #include "revolution/gx/GXCull.h"
 #include "revolution/gx/GXDispList.h"
 #include "revolution/gx/GXEnum.h"
@@ -13,8 +14,11 @@ extern "C" {
 #include "revolution/gx/GXFrameBuffer.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXGet.h"
+#include "revolution/gx/GXInit.h"
 #include "revolution/gx/GXLighting.h"
 #include "revolution/gx/GXManage.h"
+#include "revolution/gx/GXPE.h"
+#include "revolution/gx/GXPerf.h"
 #include "revolution/gx/GXPixel.h"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/gx/GXTev.h"

@@ -5,11 +5,18 @@
 #include <revolution/os/OSExecParams.h>
 #include <private/flipper.h>
 #include <mem.h>
+#include <private/OSLoMem.h>
 
 extern BOOL __OSInNandBoot;
 extern BOOL __OSInReboot;
 
 extern OSExecParams __OSRebootParams;
+#ifdef __MWERKS__
+OSThreadQueue        __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+#else
+OSThreadQueue __OSActiveThreadQueue;
+#endif
+
 
 typedef struct OSShutdownFunctionQueue
 {

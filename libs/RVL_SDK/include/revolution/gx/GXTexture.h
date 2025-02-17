@@ -8,6 +8,9 @@ extern "C" {
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
 
+typedef GXTexRegion*  (*GXTexRegionCallback) (const GXTexObj*, GXTexMapID);
+typedef GXTlutRegion* (*GXTlutRegionCallback)(u32);
+
 void GXLoadTexObj(const GXTexObj *, GXTexMapID);
 
 void GXInitTlutObj(GXTlutObj *, void *, GXTlutFmt, u16);
@@ -22,6 +25,13 @@ void GXInitTexObjTlut(GXTexObj *, u32);
 void GXLoadTlut(const GXTlutObj *, u32);
 
 void GXInvalidateTexAll(void);
+
+void GXInitTexCacheRegion(GXTexRegion *, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
+
+void GXInitTlutRegion(GXTlutRegion *, u32, GXTlutSize);
+
+GXTexRegionCallback  GXSetTexRegionCallback(GXTexRegionCallback);
+GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback);
 
 #ifdef __cplusplus
 }

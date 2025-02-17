@@ -26,6 +26,9 @@ extern void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale,
 
 void GXSetTevDirect(GXTevStageID);
 
+void __GXSetIndirectMask(u32);
+void __GXFlushTextureState();
+
 #ifdef __cplusplus
 }
 #endif

@@ -14,10 +14,13 @@ typedef void (*GXDrawSyncCallback)(u16 token);
 typedef void (*GXDrawDoneCallback)(void);
 
 GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback);
+GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback);
 
 void GXFlush(void);
 void GXPixModeSync(void);
 void GXDrawDone(void);
+void GXSetMisc(GXMiscToken, u32);
+
 
 #ifdef __cplusplus
 }

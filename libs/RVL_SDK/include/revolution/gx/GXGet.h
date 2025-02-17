@@ -16,6 +16,9 @@ void GXGetTexObjAll(const GXTexObj *, void **, u16 *, u16 *, GXTexFmt *, GXTexWr
 
 void GXGetTexObjLODAll(const GXTexObj *, GXTexFilter *, GXTexFilter *, f32 *, f32 *, f32 *, GXBool *, GXBool *, GXAnisotropy *);
 
+GXTexFmt GXGetTexObjFmt(const GXTexObj *);
+GXBool GXGetTexObjMipMap(const GXTexObj *); 
+
 #ifdef __cplusplus
 }
 #endif

@@ -3,6 +3,15 @@
 #include <revolution/os/OSContext.h>
 #include <revolution/os/OSException.h>
 #include <revolution/db.h>
+#include <private/OSLoMem.h>
+
+#ifdef __MWERKS__
+volatile OSContext* __OSCurrentContext: (OS_BASE_CACHED | OS_CURRENTCONTEXT_ADDR);
+volatile OSContext* __OSFPUContext:     (OS_BASE_CACHED | OS_FPUCONTEXT_ADDR);
+#else
+volatile OSContext* __OSCurrentContext;
+volatile OSContext* __OSFPUContext;
+#endif
 
 static asm void __OSLoadFPUContext(register u32 dummy, register OSContext *pContext) {
     nofralloc

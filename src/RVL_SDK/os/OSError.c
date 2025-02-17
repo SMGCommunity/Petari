@@ -1,6 +1,17 @@
 #include <revolution/types.h>
 #include <revolution/os.h>
 #include <cstdio>
+#include <private/OSLoMem.h>
+
+#ifdef __MWERKS__
+OSThread*            __OSCurrentThread     : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);
+OSThreadQueue        __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+volatile OSContext* __OSFPUContext:     (OS_BASE_CACHED | OS_FPUCONTEXT_ADDR);
+#else
+OSThread* __OSCurrentThread;
+OSThreadQueue __OSActiveThreadQueue;
+volatile OSContext* __OSFPUContext;
+#endif
 
 OSErrorHandler __OSErrorTable[17];
 u32 __OSFpscrEnableBits = 0xF8;

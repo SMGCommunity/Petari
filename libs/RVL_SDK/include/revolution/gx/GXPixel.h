@@ -20,6 +20,9 @@ void GXSetPixelFmt(GXPixelFmt, GXZFmt16);
 void GXSetDither(GXBool);
 void GXSetDstAlpha(GXBool, u8);
 
+void GXSetFieldMask(GXBool, GXBool);
+void GXSetFieldMode(GXBool, GXBool);
+
 #ifdef __cplusplus
 }
 #endif
