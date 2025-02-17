@@ -111,4 +111,105 @@
         (((unsigned long)(pwr_en)) << SU_PERF_PWR_EN_SHIFT) | \
         (((unsigned long)(rid)) << SU_PERF_RID_SHIFT))
 
-    #endif // SU_REG_H
+#define SU_LPSIZE_LSIZE_SIZE	8
+#define SU_LPSIZE_LSIZE_SHIFT	0
+#define SU_LPSIZE_LSIZE_MASK	0x000000ff
+#define SU_LPSIZE_GET_LSIZE(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_LSIZE_MASK) >> SU_LPSIZE_LSIZE_SHIFT)
+
+#define SU_LPSIZE_PSIZE_SIZE	8
+#define SU_LPSIZE_PSIZE_SHIFT	8
+#define SU_LPSIZE_PSIZE_MASK	0x0000ff00
+#define SU_LPSIZE_GET_PSIZE(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_PSIZE_MASK) >> SU_LPSIZE_PSIZE_SHIFT)
+
+#define SU_LPSIZE_LTOFF_SIZE	3
+#define SU_LPSIZE_LTOFF_SHIFT	16
+#define SU_LPSIZE_LTOFF_MASK	0x00070000
+#define SU_LPSIZE_GET_LTOFF(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_LTOFF_MASK) >> SU_LPSIZE_LTOFF_SHIFT)
+
+#define SU_LPSIZE_PTOFF_SIZE	3
+#define SU_LPSIZE_PTOFF_SHIFT	19
+#define SU_LPSIZE_PTOFF_MASK	0x00380000
+#define SU_LPSIZE_GET_PTOFF(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_PTOFF_MASK) >> SU_LPSIZE_PTOFF_SHIFT)
+
+#define SU_LPSIZE_FIELDMODE_SIZE	1
+#define SU_LPSIZE_FIELDMODE_SHIFT	22
+#define SU_LPSIZE_FIELDMODE_MASK	0x00400000
+#define SU_LPSIZE_GET_FIELDMODE(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_FIELDMODE_MASK) >> SU_LPSIZE_FIELDMODE_SHIFT)
+
+#define SU_LPSIZE_PAD0_SIZE	1
+#define SU_LPSIZE_PAD0_SHIFT	23
+#define SU_LPSIZE_PAD0_MASK	0x00800000
+#define SU_LPSIZE_GET_PAD0(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_PAD0_MASK) >> SU_LPSIZE_PAD0_SHIFT)
+
+#define SU_LPSIZE_RID_SIZE	8
+#define SU_LPSIZE_RID_SHIFT	24
+#define SU_LPSIZE_RID_MASK	0xff000000
+#define SU_LPSIZE_GET_RID(su_lpsize) \
+    ((((unsigned long)(su_lpsize)) & SU_LPSIZE_RID_MASK) >> SU_LPSIZE_RID_SHIFT)
+
+#define SU_TS0_SSIZE_SIZE	16
+#define SU_TS0_SSIZE_SHIFT	0
+#define SU_TS0_SSIZE_MASK	0x0000ffff
+#define SU_TS0_GET_SSIZE(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_SSIZE_MASK) >> SU_TS0_SSIZE_SHIFT)
+
+#define SU_TS0_BS_SIZE	1
+#define SU_TS0_BS_SHIFT	16
+#define SU_TS0_BS_MASK	0x00010000
+#define SU_TS0_GET_BS(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_BS_MASK) >> SU_TS0_BS_SHIFT)
+
+#define SU_TS0_WS_SIZE	1
+#define SU_TS0_WS_SHIFT	17
+#define SU_TS0_WS_MASK	0x00020000
+#define SU_TS0_GET_WS(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_WS_MASK) >> SU_TS0_WS_SHIFT)
+
+#define SU_TS0_LF_SIZE	1
+#define SU_TS0_LF_SHIFT	18
+#define SU_TS0_LF_MASK	0x00040000
+#define SU_TS0_GET_LF(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_LF_MASK) >> SU_TS0_LF_SHIFT)
+
+#define SU_TS0_PF_SIZE	1
+#define SU_TS0_PF_SHIFT	19
+#define SU_TS0_PF_MASK	0x00080000
+#define SU_TS0_GET_PF(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_PF_MASK) >> SU_TS0_PF_SHIFT)
+
+#define SU_TS0_PAD0_SIZE	4
+#define SU_TS0_PAD0_SHIFT	20
+#define SU_TS0_PAD0_MASK	0x00f00000
+#define SU_TS0_GET_PAD0(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_PAD0_MASK) >> SU_TS0_PAD0_SHIFT)
+
+#define SU_TS0_RID_SIZE	8
+#define SU_TS0_RID_SHIFT	24
+#define SU_TS0_RID_MASK	0xff000000
+#define SU_TS0_GET_RID(su_ts0) \
+    ((((unsigned long)(su_ts0)) & SU_TS0_RID_MASK) >> SU_TS0_RID_SHIFT)
+
+#define SU_SSMASK_SSMASK_SIZE	24
+#define SU_SSMASK_SSMASK_SHIFT	0
+#define SU_SSMASK_SSMASK_MASK	0x00ffffff
+#define SU_SSMASK_GET_SSMASK(su_ssmask) \
+    ((((unsigned long)(su_ssmask)) & SU_SSMASK_SSMASK_MASK) >> SU_SSMASK_SSMASK_SHIFT)
+
+#define SU_SSMASK_RID_SIZE	8
+#define SU_SSMASK_RID_SHIFT	24
+#define SU_SSMASK_RID_MASK	0xff000000
+#define SU_SSMASK_GET_RID(su_ssmask) \
+    ((((unsigned long)(su_ssmask)) & SU_SSMASK_RID_MASK) >> SU_SSMASK_RID_SHIFT)
+
+#define SU_SSMASK_TOTAL_SIZE	32
+#define SU_SSMASK(ssmask, rid) \
+    ((((unsigned long)(ssmask)) << SU_SSMASK_SSMASK_SHIFT) | \
+        (((unsigned long)(rid)) << SU_SSMASK_RID_SHIFT))
+
+#endif // SU_REG_H

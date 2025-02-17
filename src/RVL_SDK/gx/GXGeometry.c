@@ -1,3 +1,4 @@
+#include "revolution/gx/GXEnum.h"
 #include <revolution/gx.h>
 #include <revolution/gx/GXRegs.h>
 
@@ -135,6 +136,69 @@ void __GXSetDirtyState() {
     }
 
     gx->dirtyState = 0;
+}
+
+void __GXSendFlushPrim(void);
+
+void GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts) {
+    if (gx->dirtyState) {
+        __GXSetDirtyState();
+    }
+
+    if (!(*(u32*)(&gx->vNumNot))) {
+        __GXSendFlushPrim();
+    }
+
+    GX_WRITE_U8((vtxfmt | type));
+    GX_WRITE_U16(nverts);
+}
+
+void __GXSendFlushPrim(void) {
+    u32 i, numD;
+    numD = (u32)(gx->vNum * gx->vLim);
+    GX_WRITE_U8((GX_VTXFMT0 | GX_TRIANGLESTRIP));
+    GX_WRITE_U16(gx->vNum);
+
+    for (i = 0; i < numD; i += 4) {
+        GX_WRITE_U32(0);
+    }
+
+    gx->bpSentNot = GX_TRUE;
+}
+
+void GXSetLineWidth(u8 width, GXTexOffset texOffsets) {
+    SC_SU_LPSIZE_SET_LSIZE(gx->lpSize, width);
+    SC_SU_LPSIZE_SET_LTOFF(gx->lpSize, texOffsets);
+    GX_WRITE_RA_REG(gx->lpSize);
+    gx->bpSentNot = GX_FALSE;
+}
+
+void GXSetPointSize(u8 pointSize, GXTexOffset texOffsets) {
+    SC_SU_LPSIZE_SET_PSIZE(gx->lpSize, pointSize);
+    SC_SU_LPSIZE_SET_PTOFF(gx->lpSize, texOffsets);
+    GX_WRITE_RA_REG(gx->lpSize);
+    gx->bpSentNot = GX_FALSE;
+}
+
+void GXEnableTexOffsets(GXTexCoordID coord, GXBool line_enable, GXBool point_enable) {
+    SC_SU_TS0_SET_LF(gx->suTs0[coord], line_enable);
+    SC_SU_TS0_SET_PF(gx->suTs0[coord], point_enable);
+    GX_WRITE_RA_REG(gx->suTs0[coord]);
+    gx->bpSentNot = GX_FALSE;
+}
+
+void GXSetCullMode(GXCullMode mode) {
+    GXCullMode hwMode = (GXCullMode)(((mode & 0x1)<<1) | ((mode & 0x2)>>1));
+    SC_GEN_MODE_SET_REJECT_EN(gx->genMode, hwMode);
+    gx->dirtyState |= 4;
+}
+
+void GXSetCoPlanar(GXBool enable) {
+    u32 reg;
+    SC_GEN_MODE_SET_ZFREEZE(gx->genMode, enable);
+    reg = SU_SSMASK(0x80000, 0xFE);
+    GX_WRITE_RA_REG(reg);
+    GX_WRITE_RA_REG(gx->genMode);
 }
 
 void __GXSetGenMode(void) {
