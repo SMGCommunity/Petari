@@ -15,7 +15,16 @@ public:
     void registerFunctor(const LiveActor *, const MR::FunctorBase &);
     void registerNerve(const LiveActor *, const Nerve *);
 
-    u8 _0[0x1C];
+    void executeActionFirst() const;
+    void executeActionLast() const;
+
+    const char* mPartName;          // 0x00
+    const char* mCastName;          // 0x04
+    s32 mCastID;                    // 0x08
+    s32 mActionType;                // 0x0C
+    const char* mPosName;           // 0x10
+    const char* mAnimName;          // 0x14
+    u32 _18;
     s32 mCastCount;                 // 0x1C
     LiveActor** mCastList;          // 0x20
     MR::FunctorBase** mFunctors;    // 0x24
@@ -24,6 +33,8 @@ public:
 
 class DemoActionKeeper {
 public:
+    DemoActionKeeper(const DemoExecutor *);
+
     void initCast(LiveActor *, const JMapInfoIter &);
     void registerFunctor(const LiveActor *, const MR::FunctorBase &, const char *);
     void registerNerve(const LiveActor *, const Nerve *, const char *);
@@ -33,5 +44,7 @@ public:
     bool isRegisteredDemoActionNerve(const LiveActor *) const;
     bool isRegisteredDemoAction(const LiveActor *, long) const;
 
-    DemoActionKeeper(const DemoExecutor *);
+    const DemoExecutor* mDemoExecutor;          // 0x00
+    s32 mNumInfos;                              // 0x04
+    DemoActionInfo** mInfoArray;                // 0x08
 };

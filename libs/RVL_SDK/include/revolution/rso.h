@@ -1,7 +1,7 @@
 #ifndef RSO_H
 #define RSO_H
 
-#include "types.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,6 +82,7 @@ int RSOGetJumpCodeSize(const RSOObjectHeader *);
 void RSOMakeJumpCode(const RSOObjectHeader *, void *);
 
 const void* RSOFindExportSymbolAddr(const RSOObjectHeader *, const char *);
+int RSOLinkJump(RSOObjectHeader *,const RSOObjectHeader *,void *);
 
 
 #ifdef __cplusplus
