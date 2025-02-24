@@ -112,6 +112,14 @@ namespace JGeometry {
             return (MtxPtr)mMtx;
         }
 
+        operator ArrType*() {
+            return mMtx;
+        }
+
+        operator const ArrType*() const {
+            return mMtx;
+        }
+
         T mMtx[3][4];
     };
 

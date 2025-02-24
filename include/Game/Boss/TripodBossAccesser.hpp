@@ -20,6 +20,7 @@ public:
 };
 
 namespace MR {
+    void addTripodBossParts(LiveActor *);
     void addTripodBossPartsMovement(NameObj *);
     bool isTripoddBossParts(const NameObj *);
     void showTripodBossParts();
