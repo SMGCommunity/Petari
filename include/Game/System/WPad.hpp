@@ -1,5 +1,6 @@
 #pragma once
 
+#include "revolution/kpad.h"
 #include <revolution.h>
 
 class WPadButton;
@@ -41,4 +42,8 @@ public:
     u8 _34;
     u8 _35;
     u8 _36;
+};
+
+namespace MR {
+    bool isDeviceFreeStyle(const KPADStatus *);
 };
