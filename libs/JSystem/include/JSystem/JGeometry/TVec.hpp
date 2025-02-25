@@ -73,6 +73,12 @@ namespace JGeometry {
             z = z_;
         }
 
+        template<typename J>
+        TVec3(J _x, J _y, J _z) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
     };
 
     __attribute__((always_inline))
@@ -108,8 +114,6 @@ namespace JGeometry {
             y = _y;
             z = _z;
         }
-
-        TVec3(int, int, int);
 
         TVec3(f32 val) {
             z = y = x = val;
