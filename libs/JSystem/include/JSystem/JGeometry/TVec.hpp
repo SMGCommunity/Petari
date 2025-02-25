@@ -99,7 +99,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(const TVec3<f32> &vec) {
+        TVec3(const TVec3<f32> &vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
 
@@ -108,6 +108,8 @@ namespace JGeometry {
             y = _y;
             z = _z;
         }
+
+        TVec3(int, int, int);
 
         TVec3(f32 val) {
             z = y = x = val;
@@ -142,7 +144,7 @@ namespace JGeometry {
         }
 
         template <typename T>
-        void set(f32 _x, f32 _y, f32 _z) {
+        void set(f32 _x, f32 _y, f32 _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
