@@ -284,21 +284,3 @@ typedef JGeometry::SMatrix34C<f32> TSMtxf;
 typedef JGeometry::TMatrix34<TSMtxf> TMtx34f;
 typedef JGeometry::TRotation3<TMtx34f> TRot3f;
 typedef JGeometry::TPosition3<TMtx34f> TPos3f;
-
-
-template <>
-inline void JGeometry::TMatrix34<TSMtxf>::identity() {
-    float v0 = 1.0, v1 = 0.0;
-    mMtx[2][3] = v1;
-    mMtx[1][3] = v1;
-    mMtx[0][3] = v1;
-    mMtx[1][2] = v1;
-    mMtx[0][2] = v1;
-    mMtx[2][1] = v1;
-    mMtx[0][1] = v1;
-    mMtx[2][0] = v1;
-    mMtx[1][0] = v1;
-    mMtx[2][2] = v0;
-    mMtx[1][1] = v0;
-    mMtx[0][0] = v0;
-}

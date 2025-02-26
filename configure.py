@@ -388,6 +388,9 @@ cflags_runtime = [
     "-i libs/MSL_C/include"
 ]
 
+cflags_megaleg = cflags_game[:]
+cflags_megaleg = ["-O4,p" if opt == "-O4,s" else opt for opt in cflags_megaleg]
+
 config.linker_version = "GC/3.0a5"
 
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:

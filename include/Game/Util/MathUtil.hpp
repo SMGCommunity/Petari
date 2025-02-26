@@ -155,6 +155,14 @@ namespace MR {
     f32 sin(f32);
 
     void checkHitSegmentSphere(const TVec3f &, const TVec3f &, const TVec3f &, TVec3f *);
+
+    inline f32 adjustAngle(f32 angle, f32 delta, f32 offset) {
+        return (angle + delta) - offset;
+    }
+
+    inline f32 normalizeAngle(f32 a, f32 b) {
+        return a + fmod(360.0 + b, 360.0);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);
