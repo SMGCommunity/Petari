@@ -4,6 +4,7 @@
 #include "JSystem/JGeometry.hpp"
 
 class LiveActor;
+class LayoutActor;
 
 namespace MR {
     void initStarPointerTarget(LiveActor *, f32, const TVec3f &);
@@ -20,6 +21,8 @@ namespace MR {
     void setStarPointerDrawSyncToken();
 
     void endStarPointerMode(void *);
+
+    void startStarPointerModeScenarioSelectScene(void *);
 
     bool isStarPointerPointing2POnPressButton(const LiveActor *, const char *, bool, bool);
 

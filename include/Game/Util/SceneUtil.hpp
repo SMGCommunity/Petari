@@ -3,6 +3,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/types.h"
 #include <revolution.h>
 
 class JMapLinkInfo;
@@ -89,4 +90,8 @@ namespace MR {
     s32 getCurrentStageNormalScenarioNum();
 
     const char* getJapaneseObjectName(const char *);
+
+    s32 getPlacedHiddenStarScenarioNo(const char *, s32);
+
+    void setCurrentScenarioNo(s32, s32);
 };

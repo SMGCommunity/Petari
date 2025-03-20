@@ -78,4 +78,6 @@ namespace MR {
     void closeSystemWipeWhiteFade(s32);
 
     void setImageEffectControlAuto();
+
+    void openSystemWipeFade(s32);
 };

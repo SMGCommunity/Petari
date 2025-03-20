@@ -10,11 +10,20 @@ class SingleEmitter;
 class MultiEmitter;
 class LayoutActor;
 class MultiEmitterParticleCallBack;
+class EffectSystem;
 
 namespace MR {
     namespace Effect {
         void deleteParticleEmitter(ParticleEmitter *);
         void setLinkSingleEmitter(ParticleEmitter *, SingleEmitter *);
+
+        void forceDeleteAllEmitters(const EffectSystem *);
+
+        void movementEffectNormal(const EffectSystem *);
+        void checkEffectSceneUpdate(const EffectSystem *);
+
+        void drawEffect3D(const EffectSystem *, const TPos3f &);
+        void drawEffect2D(const EffectSystem *);
     };
 
     bool isExistEffectKeeper(const LiveActor *);
