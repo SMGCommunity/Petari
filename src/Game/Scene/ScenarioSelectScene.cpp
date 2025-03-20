@@ -9,7 +9,9 @@
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 #include <JSystem/J3DGraphBase/J3DDrawBuffer.hpp>
 
@@ -27,7 +29,14 @@ namespace NrvScenarioSelectScene {
 };
 
 namespace {
-    bool tryResumeInitializeThread();
+    bool tryResumeInitializeThread() {
+        if (!MR::isSuspendAsyncExecuteThread("シーン初期化")) {
+            return false;
+        }
+
+        MR::resumeAsyncExecuteThread("シーン初期化");
+        return true;
+    }
 };
 
 ScenarioSelectScene::ScenarioSelectScene() : Scene("シナリオ選択シーン") {
@@ -133,6 +142,17 @@ bool ScenarioSelectScene::isActive() const {
     return ret;
 }
 
+bool ScenarioSelectScene::isExecForeground() const {
+    bool ret = false;
+    if (_14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance)) {
+        if (_15 == 0) {
+        ret = true;
+        }
+    }
+
+    return ret;
+}
+
 // ...
 
 bool ScenarioSelectScene::isResetEnd() const {
@@ -232,7 +252,7 @@ void ScenarioSelectScene::exeWaitScenarioSelect() {
     }
 }
 
-void ScenarioSelectScene::exeWaitResumeInitializeThread() {
+void ScenarioSelectScene::exeWaitResumeInitializeThread() NO_INLINE {
     tryStartScreenToFrame();
     if (::tryResumeInitializeThread()) {
         setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvWaitInitializeEnd::sInstance);
@@ -286,6 +306,16 @@ void ScenarioSelectScene::exeWaitResumeInitializeThreadIfCanceledSelect() {
             setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
         }
     }
+}
+
+void ScenarioSelectScene::exeWaitStartScenarioSelect() {
+    if (!MR::isSystemWipeActive()) {
+        setNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvStartScenarioSelect::sInstance);
+    }
+}
+
+ScenarioSelectScene::~ScenarioSelectScene() {
+
 }
 
 namespace NrvScenarioSelectScene {
