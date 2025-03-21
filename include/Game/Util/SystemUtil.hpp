@@ -9,6 +9,8 @@ namespace MR {
 
     void setLayoutDefaultAllocator();
 
+    void startFunctionAsyncExecute(const FunctorBase &, int, const char *);
+
     void startFunctionAsyncExecuteOnMainThread(const FunctorBase&, const char*);
     void waitForEndFunctionAsyncExecute(const char*);
     bool isEndFunctionAsyncExecute(const char*);
@@ -16,6 +18,8 @@ namespace MR {
     void suspendAsyncExecuteThread(const char*);
     void resumeAsyncExecuteThread(const char*);
     bool isSuspendAsyncExecuteThread(const char*);
+
+    void clearFileLoaderRequestFileInfo(bool);
 
     ParticleResourceHolder* getParticleResourceHolder();
 
