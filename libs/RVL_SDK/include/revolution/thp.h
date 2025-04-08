@@ -142,6 +142,13 @@ void __THPHuffDecodeDCTCompU(THPFileInfo *, THPCoeff *);
 void __THPHuffDecodeDCTCompV(THPFileInfo *, THPCoeff *);
 
 s32 THPVideoDecode(void *file, void *tileY, void *tileU, void *tileV, void *work);
+u32 THPAudioDecode(s16 *, u8 *, s32);
+
+BOOL THPInit(void);
+
+void THPGXYuv2RgbSetup(GXRenderModeObj *);
+void THPGXYuv2RgbDraw(u8 *, u8 *, u8 *, s16, s16, s16, s16, s16, s16); 
+void THPGXRestore(void);
 
 static const u8 __THPJpegNaturalOrder[80] = {
      0,  1,  8, 16,  9,  2,  3, 10,

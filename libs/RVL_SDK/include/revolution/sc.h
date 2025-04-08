@@ -130,6 +130,8 @@ s8 SCGetDisplayOffsetH(void);
 s8 SCGetProductArea(void);
 u8 SCGetScreenSaverMode(void);
 
+u8 SCGetSoundMode(void);
+
 #ifdef __cplusplus
 }
 #endif

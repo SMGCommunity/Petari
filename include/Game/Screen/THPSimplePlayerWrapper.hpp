@@ -5,13 +5,24 @@
 #include <revolution/gx/GXStruct.h>
 #include <revolution/thp.h>
 
+class THPSimplePlayerWrapper;
+
+class THPSimplePlayerStaticAudio {
+    public:
+        THPSimplePlayerStaticAudio();
+    
+        static s16* audioCallback(s32);
+        static THPSimplePlayerWrapper* mPlayer;
+    };
+    
+
 class THPSimplePlayerWrapper : public NerveExecutor {
 public:
     THPSimplePlayerWrapper(const char *);
 
     virtual ~THPSimplePlayerWrapper();
 
-    void init(s32);
+    bool init(s32);
     void quit();
     bool open(const char *);
     bool close();
@@ -21,7 +32,7 @@ public:
     bool preLoad(s32);
     bool loadStop();
     s32 decode(s32);
-    void drawCurrentFrame(_GXRenderModeObj *, u32, u32, u32, u32);
+    s32 drawCurrentFrame(_GXRenderModeObj *, u32, u32, u32, u32);
     bool getVideoInfo(THPVideoInfo *) const;
     f32 getFrameRate() const;
     s32 getTotalFrame() const;
@@ -30,7 +41,7 @@ public:
     void checkPrefetch();
     void dvdCallBack(s32);
     void readAsyncCallBack(s32);
-    s32 getNextBuffer(u32) const;
+    s32 getNextBuffer(u32) const NO_INLINE;
     bool tryDvdOpen(const char *);
     void setupParams();
     void exeReadHeader();
@@ -47,7 +58,7 @@ public:
     bool tryFinishDvdOpen();
     void initAudio();
     bool isAudioProcessValid();
-    void audioCallback(s32);
+    s16* audioCallback(s32);
     void mixAudio(s16 *, u32);
     void resetAudioParams();
     bool setVolume(s32, s32);
@@ -57,6 +68,8 @@ public:
     void exeWait() {
         
     }
+
+    static THPSimplePlayerStaticAudio mStaticAudioPlayer;
     
     u8 _8;
     u8 _9;
@@ -75,7 +88,7 @@ public:
     u8 mAudioExist;                     // 0xB8
     u32 mCurOffset;                     // 0xBC
     u8 mDvdError;                       // 0xC0
-    volatile u32 mReadProgress;         // 0xC4
+    u32 mReadProgress;         // 0xC4
     s32 mNextDecodeIndex;               // 0xC8
     volatile s32 mReadIndex;                     // 0xCC
     s32 mReadSize;                      // 0xD0
@@ -93,9 +106,8 @@ public:
     f32 _2F4;
     f32 _2F8;
     u32 _2FC;
-    u8* _300;
-    u8* _304;
-    u32 _308;
+    s32* mSoundBuffer[2];               // 0x300
+    u32 mSoundBufferIndex;              // 0x308
     u8 _30C;
     u8 _30D;
     u8 _30E;
