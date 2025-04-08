@@ -1,6 +1,10 @@
 #include "Game/Animation/BckCtrl.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static const char* sDefaultPlayDataName = "_default";
+};
+
 void BckCtrl::overWrite(const BckCtrlData &rNew) {
     if (MR::isEqualStringCase(rNew._0, sDefaultPlayDataName)) {
         mDefaultCtrlData = rNew;

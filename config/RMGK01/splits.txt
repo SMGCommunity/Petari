@@ -8764,7 +8764,7 @@ Game/Util/DemoUtil.cpp:
 Game/Util/DrawUtil.cpp:
 	.text       start:0x803CBA6C end:0x803CD0E0
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
-	.data       start:0x805E0C20 end:0x805E1030
+	.data       start:0x805E0C20 end:0x805E0FA8
 	.bss        start:0x8060B3C0 end:0x8060B3F0
 	.sdata      start:0x806B2610 end:0x806B2658
 	.sbss       start:0x806B7000 end:0x806B7008
@@ -8779,6 +8779,7 @@ Game/Util/EventUtil.cpp:
 
 Game/Util/FileUtil.cpp:
 	.text       start:0x803CF2A0 end:0x803CFE74
+	.data       start:0x805E0FA8 end:0x805E1030
 	.sdata2     start:0x806C1600 end:0x806C1608
 
 Game/Util/FootPrint.cpp:
