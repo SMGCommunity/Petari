@@ -399,7 +399,31 @@ bool THPSimplePlayerWrapper::videoDecode(u8 *pFile) {
     return true;
 }
 
-// THPSimplePlayerWrapper::readFrameAsync
+void THPSimplePlayerWrapper::readFrameAsync() {
+    if (!mDvdError && mPreFetchState != 0) {
+        if (mTotalReadFrame > mHeader.numFrames - 1) {
+            if (mLoop == 1) {
+                mTotalReadFrame = 0;
+                mCurOffset = mHeader.movieDataOffsets;
+                mReadSize = mHeader.firstFrameSize;
+            }
+            else {
+                return;
+            }
+        }
+
+        mReadProgress = 1;
+        mFileInfo.cb.userData = this;
+
+        if (DVDReadAsyncPrio(&mFileInfo, mReadBuffer[mReadIndex].ptr, mReadSize, mCurOffset, ::dvdCallBackFunc, 2) != 1) {
+            mReadProgress = 0;
+            mDvdError = 1;
+            
+        }
+    }
+
+    return;
+}
 
 void THPSimplePlayerWrapper::checkPrefetch() {
     BOOL in = OSDisableInterrupts();
@@ -409,6 +433,80 @@ void THPSimplePlayerWrapper::checkPrefetch() {
     }
 
     OSRestoreInterrupts(in);
+}
+
+void THPSimplePlayerWrapper::dvdCallBack(s32 result) {
+    if (result == -1) {
+        mDvdError = 1;
+        return;
+    }
+    else if (result == -3) {
+        return;
+    }
+
+    mReadProgress = 0;
+    mReadBuffer[mReadIndex].frameNumber = mTotalReadFrame;
+    mTotalReadFrame++;
+    mReadBuffer[mReadIndex].isValid = 1;
+    mCurOffset += mReadSize;
+    mReadSize = (s32)mReadBuffer[mReadIndex].ptr;
+    mReadIndex = getNextBuffer(mReadIndex);
+
+    if (!mReadBuffer[mReadIndex].isValid) {
+        readFrameAsync();
+    }
+}
+
+void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
+    if (a1 < 0) {
+        if (!isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadHeader::sInstance) &&
+            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance) &&
+            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance) &&
+            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance)) {
+                isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+        }
+    
+        DVDClose(&mFileInfo);
+        return;
+    }
+
+    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadHeader::sInstance)) {
+        endReadHeader();
+        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance);
+        return;
+    }
+
+    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance)) {
+        _10 = 0;
+        endReadFrameComp();
+        checkComponentsInFrame(_10);
+        return;
+    }
+
+    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance)) {
+        endReadVideoComp();
+        if (tryFinishDvdOpen()) {
+            return;
+        }
+
+        checkComponentsInFrame(_10);
+        return;
+    }
+
+    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance)) {
+        endReadAudioComp();
+        if (tryFinishDvdOpen()) {
+            return;
+        }
+
+        checkComponentsInFrame(_10);
+        return;
+    }
+
+    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance)) {
+        endReadPreLoadOne();
+        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+    }
 }
 
 s32 THPSimplePlayerWrapper::getNextBuffer(u32 idx) const {
@@ -608,22 +706,127 @@ s16* THPSimplePlayerWrapper::audioCallback(s32 sample) {
     return (s16*)mSoundBuffer[mSoundBufferIndex];
 }
 
-/*
-void THPSimplePlayerWrapper::mixAudio(s16 *dest, u32 sample) {
-    u32 sampleNum;
-    s16* thpSource;
-    u16 attenuation;
+/* https://decomp.me/scratch/rBNCF */
+void THPSimplePlayerWrapper::mixAudio(s16 *pDest, u32 sample) {
+    u32 sampleNum, requestSample;
     s32 mix;
+    s16 *dst, *libsrc, *thpsrc;
+    u16 attenuation;
+
     if (isAudioProcessValid()) {
         if (_2F0) {
+            s32 v7 = mAudioOutputIndex + 1;
+            s32 v8 = (mAudioOutputIndex + 1) / 0x14;
+            s32 v9 = mAudioOutputIndex + 2;
             _2F0 = 0;
             _2F4 = 0.0f;
             _2F8 = 0.001f;
             _2FC = 4800;
+
+            if (mAudioBuffer[v7 - 0x14 * v8].validSample && mAudioBuffer[v9 % 0x14].validSample) {
+                while (1) {
+                    if (mAudioBuffer[mAudioOutputIndex].validSample) {
+                        if (mAudioBuffer[mAudioOutputIndex].validSample >= sample) {
+                            sampleNum = sample;
+                        }
+                        else {
+                            sampleNum = mAudioBuffer[mAudioOutputIndex].validSample;
+                        }
+
+                        thpsrc = mAudioBuffer[mAudioOutputIndex].curPtr;
+
+                        for (u32 i = 0; i < sampleNum; i++) {
+                            if (mRampCount) {
+                                mRampCount--;
+                                mCurrentVolume += mDeltaVolume;
+                            }
+                            else {
+                                mCurrentVolume = mTargetVolume;
+                            }
+
+                            f32 vol = mCurrentVolume;
+
+                            if (_2FC <= 0) {
+                                if (_2F4 < 1.0f) {
+                                    vol = mCurrentVolume * _2F4;
+                                    f32 v20 = _2F4 + _2F8;
+                                    _2F4 += _2F8;
+
+                                    if (v20 >= 1.0f) {
+                                        _2F4 = 1.0f;
+                                        _2F8 = 0.0f;
+                                    }
+                                }
+                            }
+                            else {
+                                s32 v19 = _2FC - 1;
+                                vol = 0.0f;
+                                _2FC = v19;
+                                if (v19 < 0) {
+                                    _2FC = 0;
+                                }
+                            }
+
+                            attenuation = VolumeTable[(s32)vol];
+                            mix = (*libsrc) + ((attenuation * (*thpsrc)) >> 15);
+
+                            if (mix < -32768) {
+                                mix = -32768;
+                            }
+
+                            if (mix > 32767) {
+                                mix = 32767;
+                            }
+
+                            *dst = (s16)mix;
+                            dst++;
+                            libsrc++;
+                            thpsrc++;
+
+                            mix = (*libsrc) + ((attenuation * (*thpsrc)) >> 15);
+
+                            if (mix < -32768)
+                            {
+                                mix = -32768;
+                            }
+                            if (mix > 32767)
+                            {
+                                mix = 32767;
+                            }
+
+                            *dst = (s16)mix;
+                            dst++;
+                            libsrc++;
+                            thpsrc++;
+                        }
+
+                        requestSample -= sampleNum;
+                        mAudioBuffer[mAudioOutputIndex].validSample -= sampleNum;
+                        mAudioBuffer[mAudioOutputIndex].curPtr = thpsrc;
+
+                        if (mAudioBuffer[mAudioOutputIndex].validSample == 0) {
+                            mAudioOutputIndex++;
+                            if (mAudioOutputIndex >= 0x14) {
+                                mAudioOutputIndex = 0;
+                            }
+                        }
+
+                        if (!requestSample) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+        else {
+            MR::zeroMemory(pDest, sample * sizeof(s16*));
         }
     }
+    else {
+        MR::zeroMemory(pDest, sample * sizeof(s16*));
+    }
 }
-*/
 
 void THPSimplePlayerWrapper::resetAudioParams() {
     mAudioDecodeIndex = 0;
@@ -697,5 +900,5 @@ s16* THPSimplePlayerStaticAudio::audioCallback(s32 audio) {
 
 
 THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {
-    
+
 }
