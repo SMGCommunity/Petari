@@ -4,10 +4,6 @@
 
 class XanimePlayer;
 
-namespace {
-    static const char* sDefaultPlayDataName = "_default";
-};
-
 class BckCtrlData { 
 public:
     // some callers inline this and some do not

@@ -27,6 +27,7 @@ public:
     void createResourceHolder(char const *, CreateResourceHolderArgs *);
 
     void createAndAddLayoutHolderStationed(const char *);
+    void removeIfIsEqualHeap(JKRHeap *);
     void createAndAddStationed(const char *);
 
     ResourceHolder* createAndAdd(const char*, JKRHeap *);
