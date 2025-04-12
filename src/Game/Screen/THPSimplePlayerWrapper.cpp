@@ -706,122 +706,130 @@ s16* THPSimplePlayerWrapper::audioCallback(s32 sample) {
     return (s16*)mSoundBuffer[mSoundBufferIndex];
 }
 
-/* https://decomp.me/scratch/rBNCF */
 void THPSimplePlayerWrapper::mixAudio(s16 *pDest, u32 sample) {
     u32 sampleNum, requestSample;
     s32 mix;
-    s16 *dst, *libsrc, *thpsrc;
+    s16 *libsrc, *thpsrc;
     u16 attenuation;
 
     if (isAudioProcessValid()) {
-        if (_2F0) {
-            s32 v7 = mAudioOutputIndex + 1;
-            s32 v8 = (mAudioOutputIndex + 1) / 0x14;
-            s32 v9 = mAudioOutputIndex + 2;
+        if (_2F0) {          
             _2F0 = 0;
             _2F4 = 0.0f;
             _2F8 = 0.001f;
             _2FC = 4800;
 
-            if (mAudioBuffer[v7 - 0x14 * v8].validSample && mAudioBuffer[v9 % 0x14].validSample) {
-                while (1) {
-                    if (mAudioBuffer[mAudioOutputIndex].validSample) {
-                        if (mAudioBuffer[mAudioOutputIndex].validSample >= sample) {
-                            sampleNum = sample;
-                        }
-                        else {
-                            sampleNum = mAudioBuffer[mAudioOutputIndex].validSample;
-                        }
+            s32 idx1 = (mAudioOutputIndex + 1) % 0x14;
+            s32 idx2 = (mAudioOutputIndex + 2) % 0x14;
+            if (!mAudioBuffer[idx1].validSample || !mAudioBuffer[idx2].validSample) {
+                MR::zeroMemory(pDest, sample * sizeof(s16*));
+                return;
+            }  
+        }
+        else if (!mAudioBuffer[(mAudioOutputIndex + 1) % 0x14].validSample) {
+            MR::zeroMemory(pDest, sample * sizeof(s16*));
+            return;
+        }
 
-                        thpsrc = mAudioBuffer[mAudioOutputIndex].curPtr;
+        do {
+        if (mAudioBuffer[mAudioOutputIndex].validSample) {            
+            if (mAudioBuffer[mAudioOutputIndex].validSample >= sample) {
+                sampleNum = sample;
+            }
+            else {
+                sampleNum = mAudioBuffer[mAudioOutputIndex].validSample;
+            }
 
-                        for (u32 i = 0; i < sampleNum; i++) {
-                            if (mRampCount) {
-                                mRampCount--;
-                                mCurrentVolume += mDeltaVolume;
-                            }
-                            else {
-                                mCurrentVolume = mTargetVolume;
-                            }
+            thpsrc = mAudioBuffer[mAudioOutputIndex].curPtr;
 
-                            f32 vol = mCurrentVolume;
+            for (u32 i = 0; i < sampleNum; i++) {
+                if (mRampCount) {
+                    mRampCount--;
+                    mCurrentVolume += mDeltaVolume;
+                }
+                else {
+                    mCurrentVolume = mTargetVolume;
+                }
 
-                            if (_2FC <= 0) {
-                                if (_2F4 < 1.0f) {
-                                    vol = mCurrentVolume * _2F4;
-                                    f32 v20 = _2F4 + _2F8;
-                                    _2F4 += _2F8;
+                f32 vol = mCurrentVolume;
 
-                                    if (v20 >= 1.0f) {
-                                        _2F4 = 1.0f;
-                                        _2F8 = 0.0f;
-                                    }
-                                }
-                            }
-                            else {
-                                s32 v19 = _2FC - 1;
-                                vol = 0.0f;
-                                _2FC = v19;
-                                if (v19 < 0) {
-                                    _2FC = 0;
-                                }
-                            }
-
-                            attenuation = VolumeTable[(s32)vol];
-                            mix = (*libsrc) + ((attenuation * (*thpsrc)) >> 15);
-
-                            if (mix < -32768) {
-                                mix = -32768;
-                            }
-
-                            if (mix > 32767) {
-                                mix = 32767;
-                            }
-
-                            *dst = (s16)mix;
-                            dst++;
-                            libsrc++;
-                            thpsrc++;
-
-                            mix = (*libsrc) + ((attenuation * (*thpsrc)) >> 15);
-
-                            if (mix < -32768)
-                            {
-                                mix = -32768;
-                            }
-                            if (mix > 32767)
-                            {
-                                mix = 32767;
-                            }
-
-                            *dst = (s16)mix;
-                            dst++;
-                            libsrc++;
-                            thpsrc++;
-                        }
-
-                        requestSample -= sampleNum;
-                        mAudioBuffer[mAudioOutputIndex].validSample -= sampleNum;
-                        mAudioBuffer[mAudioOutputIndex].curPtr = thpsrc;
-
-                        if (mAudioBuffer[mAudioOutputIndex].validSample == 0) {
-                            mAudioOutputIndex++;
-                            if (mAudioOutputIndex >= 0x14) {
-                                mAudioOutputIndex = 0;
-                            }
-                        }
-
-                        if (!requestSample) {
-                            break;
-                        }
+                if (_2FC > 0) {
+                    s32 v19 = _2FC - 1;
+                    vol = 0.0f;
+                    _2FC = v19;
+                    if (v19 < 0) {
+                        _2FC = 0;
                     }
+                }
+                else  if (_2F4 < 1.0f) {
+                    vol = mCurrentVolume * _2F4;
+                    f32 v20 = _2F4 + _2F8;
+                    _2F4 += _2F8;
+
+                    if (v20 >= 1.0f) {
+                        _2F4 = 1.0f;
+                        _2F8 = 0.0f;
+                    } 
+                }
+
+                attenuation = VolumeTable[(s32)vol];
+                mix = ((attenuation * (*thpsrc)) >> 15);
+
+                if (mix < -32768) {
+                    mix = -32768;
+                }
+
+                if (mix > 32767) {
+                    mix = 32767;
+                }
+
+                
+                *pDest = (s16)mix;
+                *thpsrc = 0;
+                pDest++;
+                thpsrc++;
+
+                mix = ((attenuation * (*thpsrc)) >> 15);
+
+                if (mix < -32768)
+                {
+                    mix = -32768;
+                }
+                if (mix > 32767)
+                {
+                    mix = 32767;
+                }
+
+                *pDest = (s16)mix;
+                *thpsrc = 0;
+                pDest++;
+                thpsrc++;
+
+                if (_30C) {
+                    s32 diff = *(pDest - 2) + (*(pDest - 1));
+                    f32 v16 = (diff / 2);
+                    *(pDest - 1) =  *(pDest - 2) = 0.70700002f * v16;
                 }
             }
 
+            sample -= sampleNum;
+            mAudioBuffer[mAudioOutputIndex].validSample -= sampleNum;
+            mAudioBuffer[mAudioOutputIndex].curPtr = thpsrc;
+
+            if (mAudioBuffer[mAudioOutputIndex].validSample == 0) {
+                mAudioOutputIndex++;
+                if (mAudioOutputIndex >= 0x14) {
+                    mAudioOutputIndex = 0;
+                }
+            }
+            if (sample == 0) break;
         }
         else {
             MR::zeroMemory(pDest, sample * sizeof(s16*));
+            return;   
         }
+        } while (true);
+        
     }
     else {
         MR::zeroMemory(pDest, sample * sizeof(s16*));

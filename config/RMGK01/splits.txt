@@ -8199,13 +8199,13 @@ Game/Screen/SysInfoWindow.cpp:
 
 Game/Screen/SystemWipeHolder.cpp:
 	.text       start:0x8038D7E0 end:0x8038DE10
-	.data       start:0x805DA7A0 end:0x805DA8F8
+	.data       start:0x805DA7A0 end:0x805DA7F8
 	.sdata2     start:0x806C1378 end:0x806C1380
 
 Game/Screen/THPSimplePlayerWrapper.cpp:
 	.text       start:0x8038DE10 end:0x8038F990
 	.ctors      start:0x8052F33C end:0x8052F340
-	.data       start:0x805DA8F8 end:0x805DAA00
+	.data       start:0x805DA7F8 end:0x805DA968
 	.sdata      start:0x806B2500 end:0x806B2508
 	.sbss       start:0x806B6D20 end:0x806B6D40
 	.sdata2     start:0x806C1380 end:0x806C1398
@@ -8214,7 +8214,7 @@ Game/Screen/TimeLimitLayout.cpp:
 	.text       start:0x8038F990 end:0x803902E8
 	.ctors      start:0x8052F340 end:0x8052F344
 	.rodata     start:0x8053B710 end:0x8053B790
-	.data       start:0x805DAA00 end:0x805DABC8
+	.data       start:0x805DA968 end:0x805DABC8
 	.sbss       start:0x806B6D40 end:0x806B6D60
 	.sdata2     start:0x806C1398 end:0x806C13A8
 
