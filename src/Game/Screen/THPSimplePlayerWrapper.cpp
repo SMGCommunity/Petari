@@ -871,7 +871,7 @@ bool THPSimplePlayerWrapper::setVolume(s32 volume, s32 time) {
         time = 0;
     }
 
-    s32 en = OSDisableInterrupts();
+    s32 en = OSEnableInterrupts();
     mTargetVolume = (f32)volume;
 
     if (time) {
