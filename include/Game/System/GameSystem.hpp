@@ -7,6 +7,7 @@
 class GameSequenceDirector;
 class GameSystemObjHolder;
 class NameObjListExecutor;
+class HomeButtonStateNotifier;
 
 class GameSystem : public NerveExecutor {
 public:
@@ -21,13 +22,15 @@ public:
     u32 _14;
     u32 _18;
     u32 _1C;
-    GameSystemObjHolder* mObjHolder;              // 0x20
-    GameSystemSceneController* mSceneController;  // 0x24
+    GameSystemObjHolder* mObjHolder;                // 0x20
+    GameSystemSceneController* mSceneController;    // 0x24
     u32 _28;
     u32 _2C;
     u32 _30;
-    u32 _34;
+    HomeButtonStateNotifier* mHomeButtonStateModif; // 0x34
     u32 _38;
 };
 
+#ifdef __MWERKS__
 void main(void);
+#endif
