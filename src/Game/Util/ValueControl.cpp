@@ -1,54 +1,75 @@
 #include "Game/Util/ValueControl.hpp"
 
 ValueControl::ValueControl(int a1) {
-    _0 = 0;
-    _4 = a1;
-    _8 = 1;
+    mCurrentFrame = 0;
+    mMaxFrame = a1;
+    mDirection = DIRECTION_FORWARD;
+}
+
+inline s32 ValueControl::getDirection() const {
+    return mDirection;
 }
 
 void ValueControl::setDirToOne() {
-    _8 = 1;
+    mDirection = DIRECTION_FORWARD;
 }
 
 void ValueControl::setDirToOneResetFrame() {
-    _8 = 1;
+    mDirection = DIRECTION_FORWARD;
     resetFrame();
 }
 
 void ValueControl::setDirToZero() {
-    _8 = -1;
+    mDirection = DIRECTION_BACKWARD;
 }
 
 void ValueControl::setDirToZeroResetFrame() {
-    _8 = -1;
+    mDirection = DIRECTION_BACKWARD;
     resetFrame();
 }
 
-/*
-void ValueControl::update() {
-    if (_8 > 0 && _0 != _4 || ((-_8 & ~_8) >= 0) && _0) {
-        _0 += _8;
+void ValueControl::setMaxFrame(int newMaxFrame) {
+    float value = (f32)(mCurrentFrame) / (f32)(mMaxFrame);
+
+    mMaxFrame = newMaxFrame;
+    mCurrentFrame = static_cast<int>(value * static_cast<float>(newMaxFrame));
+}
+
+f32 ValueControl::getValue() const {
+    return (f32)mCurrentFrame / (f32)mMaxFrame;
+}
+
+inline bool ValueControl::goingBackward(s32 currentDirection) {
+    return (u32)(-currentDirection & ~currentDirection) >> 31 == 0;
+}
+
+void ValueControl::update()
+{
+    s32 currentDirection = mDirection;
+    if ((currentDirection > 0 && mCurrentFrame != mMaxFrame) ||
+    (goingBackward(currentDirection) && mCurrentFrame))
+    {
+        mCurrentFrame += getDirection();
     }
 }
-*/
 
 void ValueControl::setZero() {
-    _8 = -1;
+    mDirection = DIRECTION_BACKWARD;
     resetFrame();
-    _0 = 0;
+    mCurrentFrame = 0;
 }
 
 void ValueControl::setOne() {
-    _8 = 1;
+    mDirection = DIRECTION_FORWARD;
     resetFrame();
-    _0 = _4;
+    mCurrentFrame = mMaxFrame;
 }
 
 void ValueControl::resetFrame() {
-    if (_8 > 0) {
-        _0 = 0;
+    if (getDirection() > 0) {
+        mCurrentFrame = 0;
     }
     else {
-       _0 = _4;
+       mCurrentFrame = mMaxFrame;
     }
 }
