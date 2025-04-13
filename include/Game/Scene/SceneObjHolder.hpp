@@ -27,6 +27,7 @@
 #define SceneObj_PlacementStateChecker 0x27
 #define SceneObj_NamePosHolder 0x28
 #define SceneObj_NPCDirector 0x29
+#define SceneObj_MoviePlayer 0x2B
 #define SceneObj_AllLiveActorGroup 0x30
 #define SceneObj_PlanetGravityManager 0x32
 #define SceneObj_PurpleCoinHolder 0x37

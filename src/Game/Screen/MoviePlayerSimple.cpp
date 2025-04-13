@@ -82,8 +82,6 @@ void MoviePlayerSimple::draw() const {
         u32 v5 = (MR::getFrameBufferHeight() - ySize) >> 1u;
         THPGXSetTexObjFilter(GX_LINEAR);
         mMovie->mCurrentFrame = mPlayerWrapper->drawCurrentFrame(JUTVideo::sManager->mRenderModeObj, v4, v5, frameBufferWidth, ySize);
-
-        
     }
 }
 

@@ -39,7 +39,13 @@ namespace MR {
     bool isStageBeginFadeWipe();
     bool isStageBeginWithoutWipe();
 
+    void startMoviePlayer(const char *);
+    void stopMoviePlayer();
     bool isActiveMoviePlayer();
+    bool isMoviePlayerPlaying();
+    u32 getMovieCurrentFrame();
+    u32 getMovieTotalFrame();
+    void setMovieVolume(f32, s32);
 
     void activateDefaultGameLayout();
     void deactivateDefaultGameLayout();
