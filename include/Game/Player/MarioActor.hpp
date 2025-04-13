@@ -19,10 +19,6 @@ class J3DModelX;
 class TornadoMario;
 class ModelHolder;
 
-namespace MR {
-    unsigned int getFrameBufferWidth();
-}
-
 bool gIsLuigi;    // (cc68 - 10000)(r13)
 
 class MarioActor : public LiveActor {

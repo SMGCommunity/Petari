@@ -80,4 +80,7 @@ namespace MR {
     void setImageEffectControlAuto();
 
     void openSystemWipeFade(s32);
+
+    s32 getFrameBufferHeight();
+    s32 getFrameBufferWidth();
 };

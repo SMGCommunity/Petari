@@ -259,6 +259,7 @@ namespace JGeometry {
     };
 };    // namespace JGeometry
 
+typedef JGeometry::TVec2<s16> TVec2s;
 typedef JGeometry::TVec2<f32> TVec2f;
 typedef JGeometry::TVec3<f32> TVec3f;
 typedef JGeometry::TVec3<s16> TVec3s;

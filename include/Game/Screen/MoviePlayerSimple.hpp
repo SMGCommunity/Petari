@@ -11,11 +11,11 @@ struct Movie {
     const char* mMovieName;         // 0x00
     THPVideoInfo mVideoInfo;        // 0x04
     u8* mBuffer;                    // 0x10
-    s32 mCurrentFrame;              // 0x14
+    u32 mCurrentFrame;              // 0x14
     u8 _18;
     u8 _19;
-    u32 mFrameRateDefault;          // 0x1C
-    u32 _20;
+    s32 mFrameRateDefault;          // 0x1C
+    s32 _20;
     u32 _24;
 };
 
@@ -51,5 +51,5 @@ public:
     JKRExpHeap* mHeap;                          // 0x3C
     THPSimplePlayerWrapper* mPlayerWrapper;     // 0x40
     u8 _44;
-    u8 _45;
+    bool _45;
 };

@@ -22,6 +22,8 @@ namespace MR {
 
     void endStarPointerMode(void *);
 
+    void startStarPointerModeDemo(void *);
+
     void startStarPointerModeScenarioSelectScene(void *);
 
     bool isStarPointerPointing2POnPressButton(const LiveActor *, const char *, bool, bool);

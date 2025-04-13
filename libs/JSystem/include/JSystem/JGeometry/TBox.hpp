@@ -7,12 +7,14 @@ namespace JGeometry {
     template<typename T>
     class TBox2 {
     public:
+        TBox2(T, T, T, T);
         //void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
 
         void set(const JGeometry::TBox2<T> &, const JGeometry::TBox2<T> &);
         void operator=(const JGeometry::TBox2<T> &);
 
-        T _0, _4, _8, _C;
+        TVec2<T> _0;
+        TVec2<T> _8;
     };
 
     template<typename T>
@@ -39,6 +41,7 @@ namespace JGeometry {
     };
 };
 
+typedef JGeometry::TBox2<s16> TBox2s;
 typedef JGeometry::TBox3<f32> TBox3f;
 typedef JGeometry::TBox3<JGeometry::TVec3<f32> > TBoxVec3f;
 typedef JGeometry::TDirBox3<f32> TDirBox3f;

@@ -150,6 +150,8 @@ void THPGXYuv2RgbSetup(GXRenderModeObj *);
 void THPGXYuv2RgbDraw(u8 *, u8 *, u8 *, s16, s16, s16, s16, s16, s16); 
 void THPGXRestore(void);
 
+void THPGXSetTexObjFilter(GXTexFilter);
+
 static const u8 __THPJpegNaturalOrder[80] = {
      0,  1,  8, 16,  9,  2,  3, 10,
     17, 24, 32, 25, 18, 11,  4,  5,
