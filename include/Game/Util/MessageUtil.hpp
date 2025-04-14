@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution.h>
+
 namespace MR {
     const wchar_t* getGameMessageDirect(const char *);
     const wchar_t* getCurrentGalaxyNameOnCurrentLanguage();
