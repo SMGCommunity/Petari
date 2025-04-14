@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Screen/CustomTagProcessor.h"
+#include "Game/Screen/CustomTagProcessor.hpp"
 
 class TalkTextFormer {
 public:
