@@ -1,0 +1,86 @@
+# main/Game/System/GameSystemSceneController
+
+**Source Path:** `src/Game/System/GameSystemSceneController.cpp`
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `getAudioSystemWrapper__39@unnamed@GameSystemSceneController_cpp@Fv` | `0x8039E130` | :x: (0.0%) |
+| `__ct__16SceneControlInfoFv` | `0x8039E140` | :white_check_mark: (100.0%) |
+| `setScene__16SceneControlInfoFPCc` | `0x8039E1BC` | :white_check_mark: (100.0%) |
+| `setStage__16SceneControlInfoFPCc` | `0x8039E1D0` | :white_check_mark: (100.0%) |
+| `setStartIdInfo__16SceneControlInfoFRC10JMapIdInfo` | `0x8039E1E8` | :white_check_mark: (100.0%) |
+| `__as__10JMapIdInfoFRC10JMapIdInfo` | `0x8039E1F0` | :white_check_mark: (100.0%) |
+| `__ct__25GameSystemSceneControllerFv` | `0x8039E204` | :x: (0.0%) |
+| `initAfterStationedResourceLoaded__25GameSystemSceneControllerFv` | `0x8039E2EC` | :x: (0.0%) |
+| `requestChangeScene__25GameSystemSceneControllerFv` | `0x8039E360` | :x: (0.0%) |
+| `checkRequestAndChangeScene__25GameSystemSceneControllerFv` | `0x8039E3B4` | :x: (0.0%) |
+| `initializeScene__25GameSystemSceneControllerFv` | `0x8039E400` | :x: (0.0%) |
+| `destroyScene__25GameSystemSceneControllerFv` | `0x8039E4D4` | :x: (0.0%) |
+| `isStopSound__25GameSystemSceneControllerCFv` | `0x8039E584` | :x: (0.0%) |
+| `isReadyToStartScene__25GameSystemSceneControllerCFv` | `0x8039E71C` | :x: (0.0%) |
+| `isFirstUpdateSceneNerveNormal__25GameSystemSceneControllerCFv` | `0x8039E784` | :x: (0.0%) |
+| `startScene__25GameSystemSceneControllerFv` | `0x8039E7EC` | :x: (0.0%) |
+| `updateScene__25GameSystemSceneControllerFv` | `0x8039E838` | :x: (0.0%) |
+| `updateSceneDuringResetProcessing__25GameSystemSceneControllerFv` | `0x8039E8B0` | :x: (0.0%) |
+| `calcAnimScene__25GameSystemSceneControllerFv` | `0x8039E8D4` | :x: (0.0%) |
+| `drawScene__25GameSystemSceneControllerFv` | `0x8039E940` | :x: (0.0%) |
+| `getNameObjListExecutor__25GameSystemSceneControllerCFv` | `0x8039E9AC` | :x: (0.0%) |
+| `getSceneObjHolder__25GameSystemSceneControllerCFv` | `0x8039E9B8` | :x: (0.0%) |
+| `isExistSceneObjHolder__25GameSystemSceneControllerCFv` | `0x8039E9C4` | :x: (0.0%) |
+| `getCurrentScenarioNo__25GameSystemSceneControllerCFv` | `0x8039E9E8` | :x: (0.0%) |
+| `getCurrentSelectedScenarioNo__25GameSystemSceneControllerCFv` | `0x8039E9F0` | :x: (0.0%) |
+| `setSceneInitializeState__25GameSystemSceneControllerF20SceneInitializeState` | `0x8039E9F8` | :x: (0.0%) |
+| `isSceneInitializeState__25GameSystemSceneControllerCF20SceneInitializeState` | `0x8039EA00` | :x: (0.0%) |
+| `startScenarioSelectScene__25GameSystemSceneControllerFv` | `0x8039EA14` | :x: (0.0%) |
+| `startScenarioSelectSceneBackground__25GameSystemSceneControllerFv` | `0x8039EA28` | :x: (0.0%) |
+| `setCurrentScenarioNo__25GameSystemSceneControllerFll` | `0x8039EA30` | :x: (0.0%) |
+| `resetCurrentScenarioNo__25GameSystemSceneControllerFv` | `0x8039EA3C` | :x: (0.0%) |
+| `isScenarioDecided__25GameSystemSceneControllerCFv` | `0x8039EA48` | :x: (0.0%) |
+| `loadScenarioWaveData__25GameSystemSceneControllerFv` | `0x8039EA5C` | :x: (0.0%) |
+| `isLoadDoneScenarioWaveData__25GameSystemSceneControllerCFv` | `0x8039EA98` | :x: (0.0%) |
+| `exeNotInitialized__25GameSystemSceneControllerFv` | `0x8039EABC` | :x: (0.0%) |
+| `exeWaitDrawDoneScene__25GameSystemSceneControllerFv` | `0x8039EAE4` | :x: (0.0%) |
+| `exeDestroyScene__25GameSystemSceneControllerFv` | `0x8039EB60` | :x: (0.0%) |
+| `exeChangeWaveBank__25GameSystemSceneControllerFv` | `0x8039EC38` | :x: (0.0%) |
+| `exeInitializeScene__25GameSystemSceneControllerFv` | `0x8039ECD8` | :x: (0.0%) |
+| `exeInvalidateSystemWipe__25GameSystemSceneControllerFv` | `0x8039ED94` | :x: (0.0%) |
+| `exeDestroyed__25GameSystemSceneControllerFv` | `0x8039EE28` | :x: (0.0%) |
+| `exeReadyToStartScene__25GameSystemSceneControllerFv` | `0x8039EE50` | :x: (0.0%) |
+| `prepareReset__25GameSystemSceneControllerFv` | `0x8039EE9C` | :x: (0.0%) |
+| `isPreparedReset__25GameSystemSceneControllerFv` | `0x8039EF50` | :x: (0.0%) |
+| `restartGameAfterResetting__25GameSystemSceneControllerFv` | `0x8039EFB8` | :x: (0.0%) |
+| `isExistRequest__25GameSystemSceneControllerCFv` | `0x8039EFF8` | :x: (0.0%) |
+| `isSameAtNextSceneAndStage__25GameSystemSceneControllerCFv` | `0x8039F058` | :x: (0.0%) |
+| `updateSceneControlInfo__25GameSystemSceneControllerFv` | `0x8039F0C8` | :x: (0.0%) |
+| `getCurrentSceneForExecute__25GameSystemSceneControllerCFv` | `0x8039F150` | :x: (0.0%) |
+| `getNextNerveOnResetProcessing__25GameSystemSceneControllerCFv` | `0x8039F1AC` | :x: (0.0%) |
+| `tryDestroyFileCacheHeap__25GameSystemSceneControllerFb` | `0x8039F324` | :x: (0.0%) |
+| `requestChangeNerve__25GameSystemSceneControllerFPC5Nerve` | `0x8039F37C` | :x: (0.0%) |
+| `__sinit_\GameSystemSceneController_cpp` | `0x8039F3D8` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController39GameSystemSceneControllerNotInitializedFv` | `0x8039F44C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController31GameSystemSceneControllerNormalFv` | `0x8039F45C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController39GameSystemSceneControllerChangeWaveBankFv` | `0x8039F46C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController40GameSystemSceneControllerInitializeSceneFv` | `0x8039F47C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController45GameSystemSceneControllerInvalidateSystemWipeFv` | `0x8039F48C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController42GameSystemSceneControllerWaitDrawDoneSceneFv` | `0x8039F49C` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController37GameSystemSceneControllerDestroySceneFv` | `0x8039F4AC` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController42GameSystemSceneControllerReadyToStartSceneFv` | `0x8039F4BC` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController52GameSystemSceneControllerWaitDrawDoneSceneForDestroyFv` | `0x8039F4CC` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController47GameSystemSceneControllerDestroySceneForDestroyFv` | `0x8039F4DC` | :x: (0.0%) |
+| `__ct__Q228NrvGameSystemSceneController34GameSystemSceneControllerDestroyedFv` | `0x8039F4EC` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController34GameSystemSceneControllerDestroyedCFP5Spine` | `0x8039F4FC` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController47GameSystemSceneControllerDestroySceneForDestroyCFP5Spine` | `0x8039F504` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController52GameSystemSceneControllerWaitDrawDoneSceneForDestroyCFP5Spine` | `0x8039F50C` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController42GameSystemSceneControllerReadyToStartSceneCFP5Spine` | `0x8039F514` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController37GameSystemSceneControllerDestroySceneCFP5Spine` | `0x8039F51C` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController42GameSystemSceneControllerWaitDrawDoneSceneCFP5Spine` | `0x8039F524` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController45GameSystemSceneControllerInvalidateSystemWipeCFP5Spine` | `0x8039F52C` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController40GameSystemSceneControllerInitializeSceneCFP5Spine` | `0x8039F534` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerChangeWaveBankCFP5Spine` | `0x8039F53C` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController31GameSystemSceneControllerNormalCFP5Spine` | `0x8039F544` | :x: (0.0%) |
+| `execute__Q228NrvGameSystemSceneController39GameSystemSceneControllerNotInitializedCFP5Spine` | `0x8039F548` | :x: (0.0%) |
+| `Functor<25GameSystemSceneController>__2MRFP25GameSystemSceneControllerM25GameSystemSceneControllerFPCvPv_v_Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>` | `0x8039F550` | :x: (0.0%) |
+| `__cl__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFv` | `0x8039F590` | :x: (0.0%) |
+| `clone__Q22MR77FunctorV0M<P25GameSystemSceneController,M25GameSystemSceneControllerFPCvPv_v>CFP7JKRHeap` | `0x8039F5C0` | :x: (0.0%) |

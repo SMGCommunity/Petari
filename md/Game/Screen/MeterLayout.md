@@ -1,0 +1,59 @@
+# main/Game/Screen/MeterLayout
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__11MeterLayoutFPCcPCc` | `0x8036D7F0` | :x: (0.0%) |
+| `init__11MeterLayoutFRC12JMapInfoIter` | `0x8036D88C` | :x: (0.0%) |
+| `control__11MeterLayoutFv` | `0x8036D9E4` | :x: (0.0%) |
+| `requestActive__11MeterLayoutFv` | `0x8036DAD0` | :x: (0.0%) |
+| `requestDeactivate__11MeterLayoutFv` | `0x8036DB98` | :x: (0.0%) |
+| `requestPowerUp__11MeterLayoutFv` | `0x8036DBA8` | :x: (0.0%) |
+| `requestForceAppear__11MeterLayoutFv` | `0x8036DC1C` | :x: (0.0%) |
+| `requestPlayerMoving__11MeterLayoutFv` | `0x8036DC60` | :x: (0.0%) |
+| `requestPlayerStopped__11MeterLayoutFv` | `0x8036DCD0` | :x: (0.0%) |
+| `initCount__11MeterLayoutFl` | `0x8036DD40` | :x: (0.0%) |
+| `setCount__11MeterLayoutFl` | `0x8036DD48` | :x: (0.0%) |
+| `exeAppear__11MeterLayoutFv` | `0x8036DD9C` | :x: (0.0%) |
+| `exeWaitStart__11MeterLayoutFv` | `0x8036DE18` | :x: (0.0%) |
+| `exeWait__11MeterLayoutFv` | `0x8036DE90` | :x: (0.0%) |
+| `exePowerUp__11MeterLayoutFv` | `0x8036DF04` | :x: (0.0%) |
+| `exeMeterMove__11MeterLayoutFv` | `0x8036E068` | :x: (0.0%) |
+| `exeCounterMove__11MeterLayoutFv` | `0x8036E118` | :x: (0.0%) |
+| `exeRecover__11MeterLayoutFv` | `0x8036E200` | :x: (0.0%) |
+| `exeDamage__11MeterLayoutFv` | `0x8036E2A4` | :x: (0.0%) |
+| `exeBreakMeter__11MeterLayoutFv` | `0x8036E354` | :x: (0.0%) |
+| `exeZeroMeter__11MeterLayoutFv` | `0x8036E43C` | :x: (0.0%) |
+| `exeZeroMeterBreak__11MeterLayoutFv` | `0x8036E4C8` | :x: (0.0%) |
+| `calcMarioHeadPosition__11MeterLayoutCFPQ29JGeometry8TVec2<f>` | `0x8036E53C` | :x: (0.0%) |
+| `calcPowerUpMeterBasePosition__11MeterLayoutCFPQ29JGeometry8TVec2<f>` | `0x8036E5B0` | :x: (0.0%) |
+| `setAnimBase__11MeterLayoutFv` | `0x8036E604` | :x: (0.0%) |
+| `setCountAnimFrame__11MeterLayoutFv` | `0x8036E6B4` | :x: (0.0%) |
+| `setRecoveryCountAnimFrame__11MeterLayoutFv` | `0x8036E740` | :x: (0.0%) |
+| `__dt__11MeterLayoutFv` | `0x8036E7CC` | :x: (0.0%) |
+| `__sinit_\MeterLayout_cpp` | `0x8036E828` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout18MeterLayoutNrvHideFv` | `0x8036E8A4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout20MeterLayoutNrvAppearFv` | `0x8036E8B4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout18MeterLayoutNrvWaitFv` | `0x8036E8C4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout23MeterLayoutNrvWaitStartFv` | `0x8036E8D4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout21MeterLayoutNrvPowerUpFv` | `0x8036E8E4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout23MeterLayoutNrvMeterMoveFv` | `0x8036E8F4` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout25MeterLayoutNrvCounterMoveFv` | `0x8036E904` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout21MeterLayoutNrvRecoverFv` | `0x8036E914` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout20MeterLayoutNrvDamageFv` | `0x8036E924` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout24MeterLayoutNrvBreakMeterFv` | `0x8036E934` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout23MeterLayoutNrvZeroMeterFv` | `0x8036E944` | :x: (0.0%) |
+| `__ct__Q214NrvMeterLayout28MeterLayoutNrvZeroMeterBreakFv` | `0x8036E954` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout28MeterLayoutNrvZeroMeterBreakCFP5Spine` | `0x8036E964` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout23MeterLayoutNrvZeroMeterCFP5Spine` | `0x8036E96C` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout24MeterLayoutNrvBreakMeterCFP5Spine` | `0x8036E974` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout20MeterLayoutNrvDamageCFP5Spine` | `0x8036E97C` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout21MeterLayoutNrvRecoverCFP5Spine` | `0x8036E984` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout25MeterLayoutNrvCounterMoveCFP5Spine` | `0x8036E98C` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout23MeterLayoutNrvMeterMoveCFP5Spine` | `0x8036E994` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout21MeterLayoutNrvPowerUpCFP5Spine` | `0x8036E99C` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout23MeterLayoutNrvWaitStartCFP5Spine` | `0x8036E9A4` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout18MeterLayoutNrvWaitCFP5Spine` | `0x8036E9AC` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout20MeterLayoutNrvAppearCFP5Spine` | `0x8036E9B4` | :x: (0.0%) |
+| `execute__Q214NrvMeterLayout18MeterLayoutNrvHideCFP5Spine` | `0x8036E9BC` | :x: (0.0%) |

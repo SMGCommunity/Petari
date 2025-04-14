@@ -1,0 +1,59 @@
+# main/Game/Map/SphereSelectorHandle
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__20SphereSelectorHandleFPCc` | `0x8019D404` | :x: (0.0%) |
+| `init__20SphereSelectorHandleFRC12JMapInfoIter` | `0x8019D4C4` | :x: (0.0%) |
+| `appear__20SphereSelectorHandleFv` | `0x8019D564` | :x: (0.0%) |
+| `isPointing__20SphereSelectorHandleCFv` | `0x8019D64C` | :x: (0.0%) |
+| `isHolding__20SphereSelectorHandleCFv` | `0x8019D654` | :x: (0.0%) |
+| `validateRotate__20SphereSelectorHandleFv` | `0x8019D65C` | :x: (0.0%) |
+| `invalidateRotate__20SphereSelectorHandleFv` | `0x8019D664` | :x: (0.0%) |
+| `control__20SphereSelectorHandleFv` | `0x8019D66C` | :x: (0.0%) |
+| `receiveOtherMsg__20SphereSelectorHandleFUlP9HitSensorP9HitSensor` | `0x8019D6EC` | :x: (0.0%) |
+| `tryRelease__20SphereSelectorHandleFv` | `0x8019D864` | :x: (0.0%) |
+| `clearPointerVelocity__20SphereSelectorHandleFv` | `0x8019D8B0` | :x: (0.0%) |
+| `stackPointerVelocity__20SphereSelectorHandleFv` | `0x8019D8D8` | :x: (0.0%) |
+| `getPointerVelocity__20SphereSelectorHandleFv` | `0x8019D950` | :x: (0.0%) |
+| `resetRotateParam__20SphereSelectorHandleFv` | `0x8019D9DC` | :x: (0.0%) |
+| `rotateAxisY__20SphereSelectorHandleFv` | `0x8019D9F4` | :x: (0.0%) |
+| `rotateAxisX__20SphereSelectorHandleFv` | `0x8019DA80` | :x: (0.0%) |
+| `updateBaseMtx__20SphereSelectorHandleFv` | `0x8019DBB0` | :x: (0.0%) |
+| `changeBgmRotateState__20SphereSelectorHandleFv` | `0x8019DD2C` | :x: (0.0%) |
+| `playRotateSE__20SphereSelectorHandleFv` | `0x8019DDBC` | :x: (0.0%) |
+| `setStateConfirmStartAtFirstStep__20SphereSelectorHandleFv` | `0x8019DEB0` | :x: (0.0%) |
+| `exeWait__20SphereSelectorHandleFv` | `0x8019DEF8` | :x: (0.0%) |
+| `exeHold__20SphereSelectorHandleFv` | `0x8019DF68` | :x: (0.0%) |
+| `exeSpin__20SphereSelectorHandleFv` | `0x8019E0B4` | :x: (0.0%) |
+| `exeDemoRotate__20SphereSelectorHandleFv` | `0x8019E148` | :x: (0.0%) |
+| `exeDisappear__20SphereSelectorHandleFv` | `0x8019E1AC` | :x: (0.0%) |
+| `exeGalaxyConfirmStart__20SphereSelectorHandleFv` | `0x8019E21C` | :x: (0.0%) |
+| `exeGalaxyConfirmCancel__20SphereSelectorHandleFv` | `0x8019E284` | :x: (0.0%) |
+| `exeIdleEndForFileSelect__20SphereSelectorHandleFv` | `0x8019E330` | :x: (0.0%) |
+| `__dt__20SphereSelectorHandleFv` | `0x8019E384` | :x: (0.0%) |
+| `__sinit_\SphereSelectorHandle_cpp` | `0x8019E3E0` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvWaitFv` | `0x8019E454` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvHoldFv` | `0x8019E464` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvSpinFv` | `0x8019E474` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle33SphereSelectorHandleNrvDemoRotateFv` | `0x8019E484` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle32SphereSelectorHandleNrvDisappearFv` | `0x8019E494` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle36SphereSelectorHandleNrvInvalidRotateFv` | `0x8019E4A4` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle41SphereSelectorHandleNrvGalaxyConfirmStartFv` | `0x8019E4B4` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle40SphereSelectorHandleNrvGalaxyConfirmWaitFv` | `0x8019E4C4` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle42SphereSelectorHandleNrvGalaxyConfirmCancelFv` | `0x8019E4D4` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle40SphereSelectorHandleNrvIdleForFileSelectFv` | `0x8019E4E4` | :x: (0.0%) |
+| `__ct__Q223NrvSphereSelectorHandle43SphereSelectorHandleNrvIdleEndForFileSelectFv` | `0x8019E4F4` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle43SphereSelectorHandleNrvIdleEndForFileSelectCFP5Spine` | `0x8019E504` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle40SphereSelectorHandleNrvIdleForFileSelectCFP5Spine` | `0x8019E50C` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle42SphereSelectorHandleNrvGalaxyConfirmCancelCFP5Spine` | `0x8019E514` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle40SphereSelectorHandleNrvGalaxyConfirmWaitCFP5Spine` | `0x8019E51C` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle41SphereSelectorHandleNrvGalaxyConfirmStartCFP5Spine` | `0x8019E560` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle36SphereSelectorHandleNrvInvalidRotateCFP5Spine` | `0x8019E568` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle32SphereSelectorHandleNrvDisappearCFP5Spine` | `0x8019E5A8` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle33SphereSelectorHandleNrvDemoRotateCFP5Spine` | `0x8019E5B0` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvSpinCFP5Spine` | `0x8019E5B8` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvHoldCFP5Spine` | `0x8019E5C0` | :x: (0.0%) |
+| `execute__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvWaitCFP5Spine` | `0x8019E5C8` | :x: (0.0%) |
+| `length__Q29JGeometry8TVec2<f>CFv` | `0x8019E5D0` | :x: (0.0%) |

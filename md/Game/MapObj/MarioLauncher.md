@@ -1,0 +1,64 @@
+# main/Game/MapObj/MarioLauncher
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__13MarioLauncherFPCc` | `0x801F9C7C` | :x: (0.0%) |
+| `init__13MarioLauncherFRC12JMapInfoIter` | `0x801F9D04` | :x: (0.0%) |
+| `init__18MarioLauncherShellFRC12JMapInfoIter` | `0x801FA018` | :x: (0.0%) |
+| `init__19MarioLauncherLayoutFRC12JMapInfoIter` | `0x801FA074` | :x: (0.0%) |
+| `exeWait__13MarioLauncherFv` | `0x801FA0F4` | :x: (0.0%) |
+| `exeReady__13MarioLauncherFv` | `0x801FA148` | :x: (0.0%) |
+| `exePlayerIn__13MarioLauncherFv` | `0x801FA208` | :x: (0.0%) |
+| `exePrep__13MarioLauncherFv` | `0x801FA304` | :x: (0.0%) |
+| `exeAim__13MarioLauncherFv` | `0x801FA410` | :x: (0.0%) |
+| `exeFlight__13MarioLauncherFv` | `0x801FA514` | :x: (0.0%) |
+| `exeKill__13MarioLauncherFv` | `0x801FA64C` | :x: (0.0%) |
+| `calcBaseMtx__18MarioLauncherShellFv` | `0x801FA6DC` | :x: (0.0%) |
+| `getBaseMtx__18MarioLauncherShellCFv` | `0x801FA850` | :x: (0.0%) |
+| `exeReject__13MarioLauncherFv` | `0x801FA858` | :x: (0.0%) |
+| `exeLand__13MarioLauncherFv` | `0x801FA9B4` | :x: (0.0%) |
+| `attackSensor__13MarioLauncherFP9HitSensorP9HitSensor` | `0x801FAA0C` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__13MarioLauncherFUlP9HitSensorP9HitSensor` | `0x801FAA60` | :x: (0.0%) |
+| `receiveMsgPush__13MarioLauncherFP9HitSensorP9HitSensor` | `0x801FAAC0` | :x: (0.0%) |
+| `receiveOtherMsg__13MarioLauncherFUlP9HitSensorP9HitSensor` | `0x801FAB30` | :x: (0.0%) |
+| `doReady__13MarioLauncherFP9HitSensor` | `0x801FABE4` | :x: (0.0%) |
+| `doPrep__13MarioLauncherFv` | `0x801FAC7C` | :x: (0.0%) |
+| `doAim__13MarioLauncherFv` | `0x801FAD78` | :x: (0.0%) |
+| `doReject__13MarioLauncherFv` | `0x801FAEA0` | :x: (0.0%) |
+| `kill__19MarioLauncherLayoutFv` | `0x801FAF70` | :x: (0.0%) |
+| `doEject__13MarioLauncherFv` | `0x801FAFB4` | :x: (0.0%) |
+| `doFlight__13MarioLauncherFv` | `0x801FB16C` | :x: (0.0%) |
+| `doLanding__13MarioLauncherFl` | `0x801FB3D8` | :x: (0.0%) |
+| `testHitCollision__13MarioLauncherFv` | `0x801FB528` | :x: (0.0%) |
+| `isBreak__13MarioLauncherFPC8Triangle` | `0x801FB554` | :x: (0.0%) |
+| `onSwitchA__13MarioLauncherFv` | `0x801FB5C4` | :x: (0.0%) |
+| `offSwitchA__13MarioLauncherFv` | `0x801FB5D0` | :x: (0.0%) |
+| `calcAndSetBaseMtx__18MarioLauncherShellFv` | `0x801FB5DC` | :x: (0.0%) |
+| `__sinit_\MarioLauncher_cpp` | `0x801FB5E0` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher20MarioLauncherNrvWaitFv` | `0x801FB644` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher21MarioLauncherNrvReadyFv` | `0x801FB654` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher24MarioLauncherNrvPlayerInFv` | `0x801FB664` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher20MarioLauncherNrvPrepFv` | `0x801FB674` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher19MarioLauncherNrvAimFv` | `0x801FB684` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher22MarioLauncherNrvFlightFv` | `0x801FB694` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher20MarioLauncherNrvKillFv` | `0x801FB6A4` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher20MarioLauncherNrvLandFv` | `0x801FB6B4` | :x: (0.0%) |
+| `__ct__Q216NrvMarioLauncher22MarioLauncherNrvRejectFv` | `0x801FB6C4` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher22MarioLauncherNrvRejectCFP5Spine` | `0x801FB6D4` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher20MarioLauncherNrvLandCFP5Spine` | `0x801FB6DC` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher20MarioLauncherNrvKillCFP5Spine` | `0x801FB6E4` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher22MarioLauncherNrvFlightCFP5Spine` | `0x801FB6EC` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher19MarioLauncherNrvAimCFP5Spine` | `0x801FB6F4` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher20MarioLauncherNrvPrepCFP5Spine` | `0x801FB6FC` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher24MarioLauncherNrvPlayerInCFP5Spine` | `0x801FB704` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher21MarioLauncherNrvReadyCFP5Spine` | `0x801FB70C` | :x: (0.0%) |
+| `execute__Q216NrvMarioLauncher20MarioLauncherNrvWaitCFP5Spine` | `0x801FB714` | :x: (0.0%) |
+| `Functor<13MarioLauncher>__2MRFP13MarioLauncherM13MarioLauncherFPCvPv_v_Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>` | `0x801FB71C` | :x: (0.0%) |
+| `__cl__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFv` | `0x801FB75C` | :x: (0.0%) |
+| `clone__Q22MR53FunctorV0M<P13MarioLauncher,M13MarioLauncherFPCvPv_v>CFP7JKRHeap` | `0x801FB78C` | :x: (0.0%) |
+| `__dt__13MarioLauncherFv` | `0x801FB7F4` | :x: (0.0%) |
+| `__dt__19MarioLauncherLayoutFv` | `0x801FB864` | :x: (0.0%) |
+| `__dt__18MarioLauncherShellFv` | `0x801FB8C0` | :x: (0.0%) |
+| `isInvalidTriangle__40TriangleFilterDelegator<13MarioLauncher>CFPC8Triangle` | `0x801FB91C` | :x: (0.0%) |

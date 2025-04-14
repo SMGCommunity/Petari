@@ -1,0 +1,63 @@
+# main/Game/AudioLib/AudBgm
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__6AudBgmFv` | `0x8002E874` | :x: (0.0%) |
+| `resetAuxVolume__6AudBgmFv` | `0x8002E8A4` | :x: (0.0%) |
+| `__ct__12AudSingleBgmFv` | `0x8002E8F8` | :x: (0.0%) |
+| `init__12AudSingleBgmFv` | `0x8002E978` | :x: (0.0%) |
+| `movement__12AudSingleBgmFv` | `0x8002E984` | :x: (0.0%) |
+| `start__12AudSingleBgmFUlb` | `0x8002E9F8` | :x: (0.0%) |
+| `stop__12AudSingleBgmFUl` | `0x8002EB1C` | :x: (0.0%) |
+| `isPreparedPlay__12AudSingleBgmFv` | `0x8002EB6C` | :x: (0.0%) |
+| `playAfterPrepared__12AudSingleBgmFv` | `0x8002EB98` | :x: (0.0%) |
+| `getRhythmHandle__12AudSingleBgmFv` | `0x8002EBB0` | :x: (0.0%) |
+| `moveVolume__12AudSingleBgmFfUl` | `0x8002EBE8` | :x: (0.0%) |
+| `moveVolumeForNoteFairy__12AudSingleBgmFfUl` | `0x8002EC34` | :x: (0.0%) |
+| `changeTrackMuteState__12AudSingleBgmFll` | `0x8002EC80` | :x: (0.0%) |
+| `initTrackController__12AudSingleBgmFv` | `0x8002EDA0` | :x: (0.0%) |
+| `startTrackControl__12AudSingleBgmFv` | `0x8002EDC8` | :x: (0.0%) |
+| `stopTrackControl__12AudSingleBgmFv` | `0x8002EE20` | :x: (0.0%) |
+| `updateTrackControl__12AudSingleBgmFv` | `0x8002EE74` | :x: (0.0%) |
+| `__ct__11AudMultiBgmFv` | `0x8002EED4` | :x: (0.0%) |
+| `init__11AudMultiBgmFv` | `0x8002EF88` | :x: (0.0%) |
+| `start__11AudMultiBgmFUlb` | `0x8002EFE8` | :x: (0.0%) |
+| `stop__11AudMultiBgmFUl` | `0x8002F060` | :x: (0.0%) |
+| `isPreparedPlay__11AudMultiBgmFv` | `0x8002F0CC` | :x: (0.0%) |
+| `playAfterPrepared__11AudMultiBgmFv` | `0x8002F0D0` | :x: (0.0%) |
+| `sendToSyncStream__11AudMultiBgmFv` | `0x8002F0DC` | :x: (0.0%) |
+| `rejectFromSyncStream__11AudMultiBgmFv` | `0x8002F1D8` | :x: (0.0%) |
+| `movement__11AudMultiBgmFv` | `0x8002F238` | :x: (0.0%) |
+| `moveVolume__11AudMultiBgmFfUl` | `0x8002F35C` | :x: (0.0%) |
+| `moveVolumeForNoteFairy__11AudMultiBgmFfUl` | `0x8002F3B4` | :x: (0.0%) |
+| `changeTrackMuteState__11AudMultiBgmFll` | `0x8002F40C` | :x: (0.0%) |
+| `getHandle__11AudMultiBgmFv` | `0x8002F60C` | :x: (0.0%) |
+| `getRhythmHandle__11AudMultiBgmFv` | `0x8002F614` | :x: (0.0%) |
+| `isSoundAttached__11AudMultiBgmCFv` | `0x8002F61C` | :x: (0.0%) |
+| `pause__11AudMultiBgmFb` | `0x8002F62C` | :x: (0.0%) |
+| `isStopping__11AudMultiBgmCFv` | `0x8002F648` | :x: (0.0%) |
+| `isPaused__11AudMultiBgmCFv` | `0x8002F660` | :x: (0.0%) |
+| `getSoundID__11AudMultiBgmCFv` | `0x8002F688` | :x: (0.0%) |
+| `initTrackController__11AudMultiBgmFv` | `0x8002F6AC` | :x: (0.0%) |
+| `startTrackControl__11AudMultiBgmFv` | `0x8002F6D4` | :x: (0.0%) |
+| `updateTrackControl__11AudMultiBgmFv` | `0x8002F72C` | :x: (0.0%) |
+| `prepare__11AudMultiBgmFUl` | `0x8002F780` | :x: (0.0%) |
+| `isPrepared__11AudMultiBgmFv` | `0x8002F900` | :x: (0.0%) |
+| `unlock__11AudMultiBgmFv` | `0x8002F964` | :x: (0.0%) |
+| `updateSyncProcess__11AudMultiBgmFv` | `0x8002F9C8` | :x: (0.0%) |
+| `pauseSyncProcess__11AudMultiBgmFv` | `0x8002FA18` | :x: (0.0%) |
+| `setStreamVolume__11AudMultiBgmFff` | `0x8002FAAC` | :x: (0.0%) |
+| `isStopping__8JAISoundCFv` | `0x8002FB7C` | :x: (0.0%) |
+| `getRhythmStrategy__6AudBgmFv` | `0x8002FBBC` | :x: (0.0%) |
+| `setVolumeController__6AudBgmFP22AudBgmVolumeController` | `0x8002FBC4` | :x: (0.0%) |
+| `rejectFromSyncStream__12AudSingleBgmFv` | `0x8002FBCC` | :x: (0.0%) |
+| `sendToSyncStream__12AudSingleBgmFv` | `0x8002FBD0` | :x: (0.0%) |
+| `getSoundID__12AudSingleBgmCFv` | `0x8002FBD4` | :x: (0.0%) |
+| `isPaused__12AudSingleBgmCFv` | `0x8002FBF8` | :x: (0.0%) |
+| `isStopping__12AudSingleBgmCFv` | `0x8002FC20` | :x: (0.0%) |
+| `pause__12AudSingleBgmFb` | `0x8002FC38` | :x: (0.0%) |
+| `isSoundAttached__12AudSingleBgmCFv` | `0x8002FC54` | :x: (0.0%) |
+| `getHandle__12AudSingleBgmFv` | `0x8002FC64` | :x: (0.0%) |
+| `__sinit_\AudBgm_cpp` | `0x8002FC6C` | :x: (0.0%) |

@@ -1,0 +1,86 @@
+# main/Game/Enemy/IceMerameraKing
+
+**Source Path:** `src/Game/Enemy/IceMerameraKing.cpp`
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__dt__Q22MR46Vector<Q22MR31AssignableArray<P11ThrowingIce>>Fv` | `0x800F84E0` | :white_check_mark: (100.0%) |
+| `__ct__15IceMerameraKingFPCc` | `0x800F8538` | :x: (50.7%) |
+| `init__15IceMerameraKingFRC12JMapInfoIter` | `0x800F8644` | :x: (84.9%) |
+| `initAfterPlacement__15IceMerameraKingFv` | `0x800F8BA4` | :x: (2.9%) |
+| `kill__15IceMerameraKingFv` | `0x800F8C2C` | :white_check_mark: (100.0%) |
+| `control__15IceMerameraKingFv` | `0x800F8CC8` | :x: (95.3%) |
+| `exeSearch__15IceMerameraKingFv` | `0x800F8EC8` | :x: (97.6%) |
+| `exeThrow__15IceMerameraKingFv` | `0x800F9010` | :x: (80.3%) |
+| `tearDownThrow__15IceMerameraKingFv` | `0x800F9238` | :white_check_mark: (100.0%) |
+| `exeExtinguish__15IceMerameraKingFv` | `0x800F92AC` | :x: (0.0%) |
+| `exeEscape__15IceMerameraKingFv` | `0x800F9484` | :x: (76.7%) |
+| `exeEscapeJump__15IceMerameraKingFv` | `0x800F9654` | :x: (77.8%) |
+| `exeDamage__15IceMerameraKingFv` | `0x800F97E0` | :x: (94.7%) |
+| `exePreRecover__15IceMerameraKingFv` | `0x800F9958` | :x: (96.8%) |
+| `exeRecover__15IceMerameraKingFv` | `0x800F9AD4` | :x: (93.7%) |
+| `exePreAttack__15IceMerameraKingFv` | `0x800F9BD0` | :white_check_mark: (100.0%) |
+| `exeAttack__15IceMerameraKingFv` | `0x800F9C78` | :white_check_mark: (100.0%) |
+| `exeAttackAfter__15IceMerameraKingFv` | `0x800F9D64` | :x: (93.7%) |
+| `exeAngryDemo__15IceMerameraKingFv` | `0x800F9E60` | :x: (87.7%) |
+| `exeDeathDemo__15IceMerameraKingFv` | `0x800FA10C` | :x: (96.3%) |
+| `attackSensor__15IceMerameraKingFP9HitSensorP9HitSensor` | `0x800FA32C` | :white_check_mark: (100.0%) |
+| `receiveMsgPlayerAttack__15IceMerameraKingFUlP9HitSensorP9HitSensor` | `0x800FA478` | :white_check_mark: (100.0%) |
+| `receiveOtherMsg__15IceMerameraKingFUlP9HitSensorP9HitSensor` | `0x800FA5AC` | :x: (99.0%) |
+| `addVelocityToInitPos__15IceMerameraKingFv` | `0x800FA72C` | :x: (0.0%) |
+| `calcAndSetBaseMtx__15IceMerameraKingFv` | `0x800FA7F8` | :x: (95.5%) |
+| `isDeadAllIce__15IceMerameraKingFv` | `0x800FA850` | :white_check_mark: (100.0%) |
+| `isEnableThrow__15IceMerameraKingFv` | `0x800FA8C0` | :white_check_mark: (100.0%) |
+| `getDeadWeaponAndAppear__15IceMerameraKingFv` | `0x800FA978` | :x: (42.6%) |
+| `calcJoint__15IceMerameraKingFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800FAA44` | :x: (0.0%) |
+| `__ct__24IceMerameraKingShockWaveFv` | `0x800FAB60` | :x: (92.2%) |
+| `appear__24IceMerameraKingShockWaveFv` | `0x800FAC2C` | :white_check_mark: (100.0%) |
+| `control__24IceMerameraKingShockWaveFv` | `0x800FAC80` | :x: (91.8%) |
+| `attackSensor__24IceMerameraKingShockWaveFP9HitSensorP9HitSensor` | `0x800FAD44` | :x: (80.6%) |
+| `__sinit_\IceMerameraKing_cpp` | `0x800FAE64` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing17HostTypeNrvSearchFv` | `0x800FAF38` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing20HostTypeNrvBeginDemoFv` | `0x800FAF48` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing16HostTypeNrvThrowFv` | `0x800FAF58` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing19HostTypeNrvThrow2ndFv` | `0x800FAF68` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing21HostTypeNrvExtinguishFv` | `0x800FAF78` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing17HostTypeNrvEscapeFv` | `0x800FAF88` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing21HostTypeNrvEscapeJumpFv` | `0x800FAF98` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing17HostTypeNrvDamageFv` | `0x800FAFA8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing21HostTypeNrvPreRecoverFv` | `0x800FAFB8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing18HostTypeNrvRecoverFv` | `0x800FAFC8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing20HostTypeNrvPreAttackFv` | `0x800FAFD8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing17HostTypeNrvAttackFv` | `0x800FAFE8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing22HostTypeNrvAttackAfterFv` | `0x800FAFF8` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing23HostTypeNrvAngryDemo1stFv` | `0x800FB008` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing23HostTypeNrvAngryDemo2ndFv` | `0x800FB018` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing24HostTypeNrvDeathDemoWaitFv` | `0x800FB028` | :white_check_mark: (100.0%) |
+| `__ct__Q218NrvIceMerameraKing20HostTypeNrvDeathDemoFv` | `0x800FB038` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing20HostTypeNrvDeathDemoCFP5Spine` | `0x800FB048` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing24HostTypeNrvDeathDemoWaitCFP5Spine` | `0x800FB050` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing23HostTypeNrvAngryDemo2ndCFP5Spine` | `0x800FB098` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing23HostTypeNrvAngryDemo1stCFP5Spine` | `0x800FB0A0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing22HostTypeNrvAttackAfterCFP5Spine` | `0x800FB0A8` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing17HostTypeNrvAttackCFP5Spine` | `0x800FB0B0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing20HostTypeNrvPreAttackCFP5Spine` | `0x800FB0B8` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing18HostTypeNrvRecoverCFP5Spine` | `0x800FB0C0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing21HostTypeNrvPreRecoverCFP5Spine` | `0x800FB0C8` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing17HostTypeNrvDamageCFP5Spine` | `0x800FB0D0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing21HostTypeNrvEscapeJumpCFP5Spine` | `0x800FB0D8` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q218NrvIceMerameraKing17HostTypeNrvEscapeCFP5Spine` | `0x800FB0E0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing17HostTypeNrvEscapeCFP5Spine` | `0x800FB0F0` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing21HostTypeNrvExtinguishCFP5Spine` | `0x800FB0F8` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q218NrvIceMerameraKing19HostTypeNrvThrow2ndCFP5Spine` | `0x800FB100` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing19HostTypeNrvThrow2ndCFP5Spine` | `0x800FB108` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q218NrvIceMerameraKing16HostTypeNrvThrowCFP5Spine` | `0x800FB110` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing16HostTypeNrvThrowCFP5Spine` | `0x800FB118` | :white_check_mark: (100.0%) |
+| `executeOnEnd__Q218NrvIceMerameraKing20HostTypeNrvBeginDemoCFP5Spine` | `0x800FB120` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing20HostTypeNrvBeginDemoCFP5Spine` | `0x800FB128` | :white_check_mark: (100.0%) |
+| `execute__Q218NrvIceMerameraKing17HostTypeNrvSearchCFP5Spine` | `0x800FB130` | :white_check_mark: (100.0%) |
+| `__dt__40JointControlDelegator<15IceMerameraKing>Fv` | `0x800FB138` | :white_check_mark: (100.0%) |
+| `calcJointMatrix__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800FB178` | :white_check_mark: (100.0%) |
+| `calcJointMatrixAfterChild__40JointControlDelegator<15IceMerameraKing>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x800FB1E0` | :white_check_mark: (100.0%) |
+| `__dt__Q22MR31AssignableArray<P11ThrowingIce>Fv` | `0x800FB248` | :white_check_mark: (100.0%) |
+| `__dt__15IceMerameraKingFv` | `0x800FB2A8` | :x: (89.3%) |
+| `__dt__24IceMerameraKingShockWaveFv` | `0x800FB318` | :white_check_mark: (100.0%) |

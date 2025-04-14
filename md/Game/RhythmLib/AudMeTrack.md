@@ -1,0 +1,62 @@
+# main/Game/RhythmLib/AudMeTrack
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__10AudMeTrackFv` | `0x80317F70` | :x: (0.0%) |
+| `__dt__10AudMeTrackFv` | `0x8031800C` | :x: (0.0%) |
+| `init__10AudMeTrackFv` | `0x803180C0` | :x: (0.0%) |
+| `__as__Q213JASOscillator4DataFRCQ213JASOscillator4Data` | `0x803181BC` | :x: (0.0%) |
+| `__as__Q213JASOscillator5PointFRCQ213JASOscillator5Point` | `0x803181F0` | :x: (0.0%) |
+| `initPlayParam__10AudMeTrackFv` | `0x8031820C` | :x: (0.0%) |
+| `inherit__10AudMeTrackFP10AudMeTrack` | `0x80318230` | :x: (0.0%) |
+| `newChild__10AudMeTrackFl` | `0x80318364` | :x: (0.0%) |
+| `deleteChild__10AudMeTrackFl` | `0x80318400` | :x: (0.0%) |
+| `isHaveChild__10AudMeTrackCFv` | `0x80318460` | :x: (0.0%) |
+| `setSeqData__10AudMeTrackFPvUl` | `0x80318494` | :x: (0.0%) |
+| `startSeq__10AudMeTrackFv` | `0x803184D8` | :x: (0.0%) |
+| `stopSeq__10AudMeTrackFv` | `0x80318530` | :x: (0.0%) |
+| `suspendSeq__10AudMeTrackFv` | `0x803185C4` | :x: (0.0%) |
+| `stopAtCurrentNoteEnd__10AudMeTrackFv` | `0x80318648` | :x: (0.0%) |
+| `rhythmProc__10AudMeTrackFll` | `0x803186D4` | :x: (0.0%) |
+| `setPauseFlag__10AudMeTrackFb` | `0x80318838` | :x: (0.0%) |
+| `channelStart__10AudMeTrackFP15AudMeChannelMgrUlUlUl` | `0x803188E4` | :x: (0.0%) |
+| `noteOn__10AudMeTrackFUlUlUl` | `0x803189BC` | :x: (0.0%) |
+| `noteOff__10AudMeTrackFUlUs` | `0x80318A6C` | :x: (0.0%) |
+| `noteOffAll__10AudMeTrackFUs` | `0x80318AF4` | :x: (0.0%) |
+| `startNote__10AudMeTrackFv` | `0x80318B48` | :x: (0.0%) |
+| `channelUpdateCallback__10AudMeTrackFUlP10JASChannelPQ26JASDsp8TChannelPv` | `0x80318C28` | :x: (0.0%) |
+| `initRegister__10AudMeTrackFv` | `0x80318CDC` | :x: (0.0%) |
+| `overwriteOsc__10AudMeTrackFP10JASChannel` | `0x80318D00` | :x: (0.0%) |
+| `setOscAdsr__10AudMeTrackFssssUs` | `0x80318D6C` | :x: (0.0%) |
+| `updateChannelParams__10AudMeTrackFv` | `0x80318DDC` | :x: (0.0%) |
+| `gframeProc__10AudMeTrackFv` | `0x80318F28` | :x: (0.0%) |
+| `setBaseNoteFromChord__10AudMeTrackFPUclb` | `0x80318FA0` | :x: (0.0%) |
+| `setBaseNoteFromScale__10AudMeTrackFPUclb` | `0x80319200` | :x: (0.0%) |
+| `setBaseNoteFromChromatic__10AudMeTrackFPUclb` | `0x803192DC` | :x: (0.0%) |
+| `setBaseNoteFromOtherPart__10AudMeTrackFl` | `0x8031935C` | :x: (0.0%) |
+| `setBaseNoteFromUpperPart__10AudMeTrackFv` | `0x80319390` | :x: (0.0%) |
+| `setBaseNoteFix__10AudMeTrackFUc` | `0x803193D4` | :x: (0.0%) |
+| `setBaseNoteFromRegister__10AudMeTrackFl` | `0x803193DC` | :x: (0.0%) |
+| `adjustNote__10AudMeTrackFll` | `0x803193F0` | :x: (0.0%) |
+| `modifyNote__10AudMeTrackFlll` | `0x80319520` | :x: (0.0%) |
+| `modifyNoteRnd__10AudMeTrackFlll` | `0x803196BC` | :x: (0.0%) |
+| `getRandom__10AudMeTrackFUl` | `0x80319710` | :x: (0.0%) |
+| `makeRandomSearchList__10AudMeTrackFPllb` | `0x80319784` | :x: (0.0%) |
+| `adjustInNoteRange__10AudMeTrackFRUc` | `0x80319830` | :x: (0.0%) |
+| `adjustInStartNoteRange__10AudMeTrackFRUc` | `0x80319874` | :x: (0.0%) |
+| `getMyOrderInBrother__10AudMeTrackFv` | `0x803198D8` | :x: (0.0%) |
+| `getBrother__10AudMeTrackFl` | `0x803198F4` | :x: (0.0%) |
+| `init__Q210AudMeTrack10TTrackInfoFv` | `0x8031991C` | :x: (0.0%) |
+| `cbSeqMain__Q210AudMeTrack5TListFllPv` | `0x80319968` | :x: (0.0%) |
+| `append__Q210AudMeTrack5TListFP10AudMeTrack` | `0x803199A0` | :x: (0.0%) |
+| `seqMain__Q210AudMeTrack5TListFll` | `0x80319A20` | :x: (0.0%) |
+| `getSameME__Q210AudMeTrack5TListFP10AudMeTrackUl` | `0x80319AB4` | :x: (0.0%) |
+| `__sinit_\AudMeTrack_cpp` | `0x80319B40` | :x: (0.0%) |
+| `setParams__10JASChannelFRC16JASChannelParams` | `0x80319BC4` | :x: (0.0%) |
+| `begin__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv` | `0x80319BF8` | :x: (0.0%) |
+| `end__Q27JGadget28TLinkList<10AudMeTrack,-384>Fv` | `0x80319C00` | :x: (0.0%) |
+| `__ne__7JGadgetFQ37JGadget28TLinkList<10AudMeTrack,-384>8iteratorQ37JGadget28TLinkList<10AudMeTrack,-384>8iterator` | `0x80319C08` | :x: (0.0%) |
+| `__ct__Q210AudMeTrack5TListFv` | `0x80319C20` | :x: (0.0%) |
+| `__dt__Q210AudMeTrack5TListFv` | `0x80319C3C` | :x: (0.0%) |

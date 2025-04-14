@@ -1,0 +1,65 @@
+# main/Game/Boss/DinoPackun
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `set<f>__Q29JGeometry8TVec4<f>FRCQ29JGeometry8TVec4<f>_v` | `0x800433F4` | :x: (0.0%) |
+| `__ct__Q224@unnamed@DinoPackun_cpp@15DinoPackunParamFv` | `0x80043418` | :x: (0.0%) |
+| `__ct__10DinoPackunFPCc` | `0x80043488` | :x: (0.0%) |
+| `init__10DinoPackunFRC12JMapInfoIter` | `0x80043554` | :x: (0.0%) |
+| `initTail__10DinoPackunFv` | `0x800437F8` | :x: (0.0%) |
+| `initFootPrint__10DinoPackunFv` | `0x800439C0` | :x: (0.0%) |
+| `initDemoPosition__10DinoPackunFRC12JMapInfoIter` | `0x80043A5C` | :x: (0.0%) |
+| `initEggShell__10DinoPackunFv` | `0x80043AC4` | :x: (0.0%) |
+| `initBall__10DinoPackunFv` | `0x80043C14` | :x: (0.0%) |
+| `initCamera__10DinoPackunFRC12JMapInfoIter` | `0x80043CC0` | :x: (0.0%) |
+| `initScaleJointController__10DinoPackunFv` | `0x80043DB0` | :x: (0.0%) |
+| `makeActorDead__10DinoPackunFv` | `0x80043EAC` | :x: (0.0%) |
+| `startHitReaction__10DinoPackunFv` | `0x80043EF8` | :x: (0.0%) |
+| `isHitReaction__10DinoPackunCFl` | `0x80043F44` | :x: (0.0%) |
+| `hitScaleJoint__10DinoPackunFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80043F5C` | :x: (0.0%) |
+| `getEggShell__10DinoPackunFv` | `0x80043FBC` | :x: (0.0%) |
+| `getEggBrokenModel__10DinoPackunFv` | `0x80043FC4` | :x: (0.0%) |
+| `getBallModel__10DinoPackunFv` | `0x80043FCC` | :x: (0.0%) |
+| `attackSensor__10DinoPackunFP9HitSensorP9HitSensor` | `0x80043FD4` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__10DinoPackunFUlP9HitSensorP9HitSensor` | `0x80043FF4` | :x: (0.0%) |
+| `receiveMsgPush__10DinoPackunFP9HitSensorP9HitSensor` | `0x80044018` | :x: (0.0%) |
+| `receiveOtherMsg__10DinoPackunFUlP9HitSensorP9HitSensor` | `0x8004403C` | :x: (0.0%) |
+| `attackSensorTail__10DinoPackunFP9HitSensorP9HitSensor` | `0x80044060` | :x: (0.0%) |
+| `receiveMsgPlayerAttackTail__10DinoPackunFUlP9HitSensorP9HitSensor` | `0x80044080` | :x: (0.0%) |
+| `startSequence__10DinoPackunFv` | `0x800440A4` | :x: (0.0%) |
+| `control__10DinoPackunFv` | `0x800440F8` | :x: (0.0%) |
+| `calcAndSetBaseMtx__10DinoPackunFv` | `0x8004418C` | :x: (0.0%) |
+| `updatePose__10DinoPackunFv` | `0x800441F8` | :x: (0.0%) |
+| `updateFootPrintNerve__10DinoPackunFll` | `0x8004429C` | :x: (0.0%) |
+| `updateCameraInfo__10DinoPackunFv` | `0x80044488` | :x: (0.0%) |
+| `updateNormalVelocity__10DinoPackunFv` | `0x800445D0` | :x: (0.0%) |
+| `updateRunVelocity__10DinoPackunFv` | `0x80044640` | :x: (0.0%) |
+| `appearStarPiece__10DinoPackunFl` | `0x80044644` | :x: (0.0%) |
+| `isSensorEgg__10DinoPackunCFPC9HitSensor` | `0x800446CC` | :x: (0.0%) |
+| `resetPosition__10DinoPackunFv` | `0x80044708` | :x: (0.0%) |
+| `adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3<f>f` | `0x80044894` | :x: (0.0%) |
+| `activateParts__10DinoPackunFv` | `0x80044A68` | :x: (0.0%) |
+| `onMovementParts__10DinoPackunFv` | `0x80044A70` | :x: (0.0%) |
+| `onAimTailBall__10DinoPackunFl` | `0x80044AE0` | :x: (0.0%) |
+| `offAimTailBall__10DinoPackunFl` | `0x80044B34` | :x: (0.0%) |
+| `startDemo__10DinoPackunFv` | `0x80044B84` | :x: (0.0%) |
+| `startDemoAndReset__10DinoPackunFv` | `0x80044BA8` | :x: (0.0%) |
+| `endDemo__10DinoPackunFPCc` | `0x80044BF4` | :x: (0.0%) |
+| `startDamageCamera__10DinoPackunFv` | `0x80044C18` | :x: (0.0%) |
+| `endDamageCamera__10DinoPackunFv` | `0x80044C78` | :x: (0.0%) |
+| `createDinoPackunVs1__2MRFPCc` | `0x80044CC8` | :x: (0.0%) |
+| `createDinoPackunVs2__2MRFPCc` | `0x80044D38` | :x: (0.0%) |
+| `__sinit_\DinoPackun_cpp` | `0x80044DA8` | :x: (0.0%) |
+| `getVsCount__19DinoPackunSequencerCFv` | `0x80044E2C` | :x: (0.0%) |
+| `isUseEggShell__19DinoPackunSequencerCFv` | `0x80044E34` | :x: (0.0%) |
+| `init__19DinoPackunSequencerFv` | `0x80044E3C` | :x: (0.0%) |
+| `start__19DinoPackunSequencerFv` | `0x80044E40` | :x: (0.0%) |
+| `setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>` | `0x80044E44` | :x: (0.0%) |
+| `__dt__35JointControlDelegator<10DinoPackun>Fv` | `0x80044E60` | :x: (0.0%) |
+| `calcJointMatrix__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80044EA0` | :x: (0.0%) |
+| `calcJointMatrixAfterChild__35JointControlDelegator<10DinoPackun>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x80044F08` | :x: (0.0%) |
+| `__cl__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFv` | `0x80044F70` | :x: (0.0%) |
+| `clone__Q22MR47FunctorV0M<P10DinoPackun,M10DinoPackunFPCvPv_v>CFP7JKRHeap` | `0x80044FA0` | :x: (0.0%) |
+| `__dt__10DinoPackunFv` | `0x80045008` | :x: (0.0%) |

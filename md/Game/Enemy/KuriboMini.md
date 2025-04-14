@@ -1,0 +1,67 @@
+# main/Game/Enemy/KuriboMini
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__Q224@unnamed@KuriboMini_cpp@15KuriboMiniParamFv` | `0x8011B5CC` | :x: (0.0%) |
+| `__ct__10KuriboMiniFPCc` | `0x8011B680` | :x: (0.0%) |
+| `init__10KuriboMiniFRC12JMapInfoIter` | `0x8011B700` | :x: (0.0%) |
+| `initAfterPlacement__10KuriboMiniFv` | `0x8011B974` | :x: (0.0%) |
+| `initState__10KuriboMiniFv` | `0x8011B978` | :x: (0.0%) |
+| `makeActorAppeared__10KuriboMiniFv` | `0x8011BA70` | :x: (0.0%) |
+| `kill__10KuriboMiniFv` | `0x8011BAA8` | :x: (0.0%) |
+| `control__10KuriboMiniFv` | `0x8011BB20` | :x: (0.0%) |
+| `calcAndSetBaseMtx__10KuriboMiniFv` | `0x8011BB68` | :x: (0.0%) |
+| `attackSensor__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011BBC8` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__10KuriboMiniFUlP9HitSensorP9HitSensor` | `0x8011BCCC` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__10KuriboMiniFUlP9HitSensorP9HitSensor` | `0x8011BE4C` | :x: (0.0%) |
+| `receiveMsgPush__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011BF44` | :x: (0.0%) |
+| `receiveOtherMsg__10KuriboMiniFUlP9HitSensorP9HitSensor` | `0x8011C01C` | :x: (0.0%) |
+| `requestHipDropDown__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011C0F0` | :x: (0.0%) |
+| `requestFlatDown__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011C190` | :x: (0.0%) |
+| `requestPressDown__10KuriboMiniFv` | `0x8011C20C` | :x: (0.0%) |
+| `requestBlowDown__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011C288` | :x: (0.0%) |
+| `requestStagger__10KuriboMiniFP9HitSensorP9HitSensor` | `0x8011C31C` | :x: (0.0%) |
+| `requestAttackSuccess__10KuriboMiniFv` | `0x8011C3A4` | :x: (0.0%) |
+| `tryFind__10KuriboMiniFv` | `0x8011C408` | :x: (0.0%) |
+| `tryPointBind__10KuriboMiniFv` | `0x8011C458` | :x: (0.0%) |
+| `tryDeadMap__10KuriboMiniFv` | `0x8011C4A8` | :x: (0.0%) |
+| `exeWander__10KuriboMiniFv` | `0x8011C540` | :x: (0.0%) |
+| `exeFindPlayer__10KuriboMiniFv` | `0x8011C59C` | :x: (0.0%) |
+| `exeChase__10KuriboMiniFv` | `0x8011C61C` | :x: (0.0%) |
+| `exeStagger__10KuriboMiniFv` | `0x8011C6AC` | :x: (0.0%) |
+| `exeAttackSuccess__10KuriboMiniFv` | `0x8011C780` | :x: (0.0%) |
+| `exeHipDropDown__10KuriboMiniFv` | `0x8011C81C` | :x: (0.0%) |
+| `exeFlatDown__10KuriboMiniFv` | `0x8011C898` | :x: (0.0%) |
+| `exePressDown__10KuriboMiniFv` | `0x8011C914` | :x: (0.0%) |
+| `exeBlowDown__10KuriboMiniFv` | `0x8011C990` | :x: (0.0%) |
+| `calcPassiveMovement__10KuriboMiniFv` | `0x8011CA50` | :x: (0.0%) |
+| `isEnableAttack__10KuriboMiniCFv` | `0x8011CAE0` | :x: (0.0%) |
+| `isEnableKick__10KuriboMiniCFv` | `0x8011CB4C` | :x: (0.0%) |
+| `isDown__10KuriboMiniCFv` | `0x8011CB54` | :x: (0.0%) |
+| `__sinit_\KuriboMini_cpp` | `0x8011CBD4` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini19KuriboMiniNrvWanderFv` | `0x8011CC4C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini23KuriboMiniNrvFindPlayerFv` | `0x8011CC5C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini18KuriboMiniNrvChaseFv` | `0x8011CC6C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini20KuriboMiniNrvStaggerFv` | `0x8011CC7C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini28KuriboMiniNrvBindStarPointerFv` | `0x8011CC8C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini26KuriboMiniNrvAttackSuccessFv` | `0x8011CC9C` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini24KuriboMiniNrvHipDropDownFv` | `0x8011CCAC` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini22KuriboMiniNrvPressDownFv` | `0x8011CCBC` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini21KuriboMiniNrvFlatDownFv` | `0x8011CCCC` | :x: (0.0%) |
+| `__ct__Q213NrvKuriboMini21KuriboMiniNrvBlowDownFv` | `0x8011CCDC` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini21KuriboMiniNrvBlowDownCFP5Spine` | `0x8011CCEC` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini21KuriboMiniNrvFlatDownCFP5Spine` | `0x8011CCF4` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini22KuriboMiniNrvPressDownCFP5Spine` | `0x8011CCFC` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini24KuriboMiniNrvHipDropDownCFP5Spine` | `0x8011CD04` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini26KuriboMiniNrvAttackSuccessCFP5Spine` | `0x8011CD0C` | :x: (0.0%) |
+| `executeOnEnd__Q213NrvKuriboMini28KuriboMiniNrvBindStarPointerCFP5Spine` | `0x8011CD14` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini28KuriboMiniNrvBindStarPointerCFP5Spine` | `0x8011CD2C` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini20KuriboMiniNrvStaggerCFP5Spine` | `0x8011CD74` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini18KuriboMiniNrvChaseCFP5Spine` | `0x8011CD7C` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini23KuriboMiniNrvFindPlayerCFP5Spine` | `0x8011CD84` | :x: (0.0%) |
+| `execute__Q213NrvKuriboMini19KuriboMiniNrvWanderCFP5Spine` | `0x8011CD8C` | :x: (0.0%) |
+| `__cl__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFv` | `0x8011CD94` | :x: (0.0%) |
+| `clone__Q22MR47FunctorV0M<P10KuriboMini,M10KuriboMiniFPCvPv_v>CFP7JKRHeap` | `0x8011CDC4` | :x: (0.0%) |
+| `__dt__10KuriboMiniFv` | `0x8011CE2C` | :x: (0.0%) |

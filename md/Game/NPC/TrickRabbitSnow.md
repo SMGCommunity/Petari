@@ -1,0 +1,65 @@
+# main/Game/NPC/TrickRabbitSnow
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct<f>__Q29JGeometry9TQuat4<f>Fffff_Pv` | `0x802989EC` | :x: (0.0%) |
+| `__ct__23TrickRabbitSnowListenerFv` | `0x80298A00` | :x: (0.0%) |
+| `__ct__15TrickRabbitSnowFPCc` | `0x80298A10` | :x: (0.0%) |
+| `setListener__15TrickRabbitSnowFP23TrickRabbitSnowListener` | `0x80298ACC` | :x: (0.0%) |
+| `init__15TrickRabbitSnowFRC12JMapInfoIter` | `0x80298AD4` | :x: (0.0%) |
+| `initAfterPlacement__15TrickRabbitSnowFv` | `0x80298CCC` | :x: (0.0%) |
+| `initSensor__15TrickRabbitSnowFv` | `0x80298CD0` | :x: (0.0%) |
+| `initState__15TrickRabbitSnowFv` | `0x80298D94` | :x: (0.0%) |
+| `clearFootPrint__15TrickRabbitSnowFv` | `0x80298EB4` | :x: (0.0%) |
+| `control__15TrickRabbitSnowFv` | `0x80298EBC` | :x: (0.0%) |
+| `calcAndSetBaseMtx__15TrickRabbitSnowFv` | `0x80298F1C` | :x: (0.0%) |
+| `attackSensor__15TrickRabbitSnowFP9HitSensorP9HitSensor` | `0x80298F24` | :x: (0.0%) |
+| `receiveMsgPush__15TrickRabbitSnowFP9HitSensorP9HitSensor` | `0x80298FC0` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__15TrickRabbitSnowFUlP9HitSensorP9HitSensor` | `0x80299034` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__15TrickRabbitSnowFUlP9HitSensorP9HitSensor` | `0x80299094` | :x: (0.0%) |
+| `receiveOtherMsg__15TrickRabbitSnowFUlP9HitSensorP9HitSensor` | `0x80299190` | :x: (0.0%) |
+| `receiveMsgBlowDamage__15TrickRabbitSnowFP9HitSensorP9HitSensor` | `0x80299264` | :x: (0.0%) |
+| `requestCaught__15TrickRabbitSnowFv` | `0x802992D8` | :x: (0.0%) |
+| `requestStartHideSnow__15TrickRabbitSnowFv` | `0x80299350` | :x: (0.0%) |
+| `setFinishPosition__15TrickRabbitSnowFv` | `0x802993B0` | :x: (0.0%) |
+| `setNotCaughtable__15TrickRabbitSnowFv` | `0x80299498` | :x: (0.0%) |
+| `exeWaitSnow__15TrickRabbitSnowFv` | `0x802994A4` | :x: (0.0%) |
+| `exeStartHideSnow__15TrickRabbitSnowFv` | `0x80299500` | :x: (0.0%) |
+| `exeVanish__15TrickRabbitSnowFv` | `0x802995A0` | :x: (0.0%) |
+| `exeHideSnow__15TrickRabbitSnowFv` | `0x802996A0` | :x: (0.0%) |
+| `exeAppearFromSnow__15TrickRabbitSnowFv` | `0x80299728` | :x: (0.0%) |
+| `exeRunaway__15TrickRabbitSnowFv` | `0x8029980C` | :x: (0.0%) |
+| `exeCaught__15TrickRabbitSnowFv` | `0x802998CC` | :x: (0.0%) |
+| `isGiveUp__15TrickRabbitSnowCFv` | `0x802999DC` | :x: (0.0%) |
+| `isHideSnow__15TrickRabbitSnowCFv` | `0x802999E4` | :x: (0.0%) |
+| `isEnableCaught__15TrickRabbitSnowCFv` | `0x802999EC` | :x: (0.0%) |
+| `isEnableBlowDamage__15TrickRabbitSnowCFv` | `0x80299A58` | :x: (0.0%) |
+| `startJumpSound__15TrickRabbitSnowFv` | `0x80299A60` | :x: (0.0%) |
+| `__sinit_\TrickRabbitSnow_cpp` | `0x80299AF4` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun26TrickRabbitSnowNrvWaitSnowFv` | `0x80299B58` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun31TrickRabbitSnowNrvStartHideSnowFv` | `0x80299B68` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvVanishFv` | `0x80299B78` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun26TrickRabbitSnowNrvHideSnowFv` | `0x80299B88` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun32TrickRabbitSnowNrvAppearFromSnowFv` | `0x80299B98` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun25TrickRabbitSnowNrvRunawayFv` | `0x80299BA8` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun28TrickRabbitSnowNrvBlowDamageFv` | `0x80299BB8` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvCaughtFv` | `0x80299BC8` | :x: (0.0%) |
+| `__ct__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvGiveUpFv` | `0x80299BD8` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvGiveUpCFP5Spine` | `0x80299BE8` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvCaughtCFP5Spine` | `0x80299BF4` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun28TrickRabbitSnowNrvBlowDamageCFP5Spine` | `0x80299BFC` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun25TrickRabbitSnowNrvRunawayCFP5Spine` | `0x80299C0C` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun32TrickRabbitSnowNrvAppearFromSnowCFP5Spine` | `0x80299C14` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun26TrickRabbitSnowNrvHideSnowCFP5Spine` | `0x80299C1C` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun24TrickRabbitSnowNrvVanishCFP5Spine` | `0x80299C24` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun31TrickRabbitSnowNrvStartHideSnowCFP5Spine` | `0x80299C2C` | :x: (0.0%) |
+| `execute__Q221NrvTrickRabbitFreeRun26TrickRabbitSnowNrvWaitSnowCFP5Spine` | `0x80299C34` | :x: (0.0%) |
+| `noticeCaught__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | `0x80299C3C` | :x: (0.0%) |
+| `noticeGiveUp__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | `0x80299C40` | :x: (0.0%) |
+| `noticeAppear__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | `0x80299C44` | :x: (0.0%) |
+| `noticeStart__23TrickRabbitSnowListenerFP15TrickRabbitSnow` | `0x80299C48` | :x: (0.0%) |
+| `__cl__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFv` | `0x80299C4C` | :x: (0.0%) |
+| `clone__Q22MR57FunctorV0M<P15TrickRabbitSnow,M15TrickRabbitSnowFPCvPv_v>CFP7JKRHeap` | `0x80299C7C` | :x: (0.0%) |
+| `__dt__15TrickRabbitSnowFv` | `0x80299CE4` | :x: (0.0%) |

@@ -1,0 +1,64 @@
+# main/Game/MapObj/MapPartsRailMover
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__17MapPartsRailMoverFP9LiveActor` | `0x8025C8A0` | :x: (0.0%) |
+| `init__17MapPartsRailMoverFRC12JMapInfoIter` | `0x8025C930` | :x: (0.0%) |
+| `movement__17MapPartsRailMoverFv` | `0x8025CA40` | :x: (0.0%) |
+| `start__17MapPartsRailMoverFv` | `0x8025CAD4` | :x: (0.0%) |
+| `end__17MapPartsRailMoverFv` | `0x8025CB40` | :x: (0.0%) |
+| `isWorking__17MapPartsRailMoverCFv` | `0x8025CB88` | :x: (0.0%) |
+| `receiveMsg__17MapPartsRailMoverFUl` | `0x8025CBE8` | :x: (0.0%) |
+| `moveToInitPos__17MapPartsRailMoverFv` | `0x8025CC3C` | :x: (0.0%) |
+| `startWithSignalMotion__17MapPartsRailMoverFv` | `0x8025CCBC` | :x: (0.0%) |
+| `cancelSignalMotion__17MapPartsRailMoverFv` | `0x8025CCC4` | :x: (0.0%) |
+| `tryResetPositionRepeat__17MapPartsRailMoverFv` | `0x8025CD18` | :x: (0.0%) |
+| `resetToInitPos__17MapPartsRailMoverFv` | `0x8025CD90` | :x: (0.0%) |
+| `passPoint__17MapPartsRailMoverFv` | `0x8025CDD4` | :x: (0.0%) |
+| `reachedEnd__17MapPartsRailMoverFv` | `0x8025CE70` | :x: (0.0%) |
+| `reachedEndPlayerOn__17MapPartsRailMoverFv` | `0x8025CED0` | :x: (0.0%) |
+| `isReachedEnd__17MapPartsRailMoverCFv` | `0x8025CF28` | :x: (0.0%) |
+| `isDone__17MapPartsRailMoverCFv` | `0x8025CF98` | :x: (0.0%) |
+| `setStateStopAtEndBeforeRotate__17MapPartsRailMoverFv` | `0x8025CFBC` | :x: (0.0%) |
+| `calcTimeToNextRailPoint__17MapPartsRailMoverCFPf` | `0x8025D054` | :x: (0.0%) |
+| `endRotateAtPoint__17MapPartsRailMoverFv` | `0x8025D1E4` | :x: (0.0%) |
+| `calcMoveSpeed__17MapPartsRailMoverCFPf` | `0x8025D24C` | :x: (0.0%) |
+| `calcMoveSpeedDirect__17MapPartsRailMoverCFPf` | `0x8025D2E8` | :x: (0.0%) |
+| `calcMoveSpeedTime__17MapPartsRailMoverCFPf` | `0x8025D338` | :x: (0.0%) |
+| `updateAccel__17MapPartsRailMoverFv` | `0x8025D3E4` | :x: (0.0%) |
+| `tryPassPoint__17MapPartsRailMoverFv` | `0x8025D498` | :x: (0.0%) |
+| `tryRestartAtEnd__17MapPartsRailMoverFv` | `0x8025D524` | :x: (0.0%) |
+| `restartAtEnd__17MapPartsRailMoverFv` | `0x8025D5EC` | :x: (0.0%) |
+| `exeMove__17MapPartsRailMoverFv` | `0x8025D6A8` | :x: (0.0%) |
+| `exeMoveStart__17MapPartsRailMoverFv` | `0x8025D758` | :x: (0.0%) |
+| `exeStopAtPoint__17MapPartsRailMoverFv` | `0x8025D8CC` | :x: (0.0%) |
+| `exeStopAtEnd__17MapPartsRailMoverFv` | `0x8025D97C` | :x: (0.0%) |
+| `__dt__17MapPartsRailMoverFv` | `0x8025DA14` | :x: (0.0%) |
+| `__sinit_\MapPartsRailMover_cpp` | `0x8025DA70` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover12HostTypeWaitFv` | `0x8025DAEC` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover12HostTypeMoveFv` | `0x8025DAFC` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover17HostTypeMoveStartFv` | `0x8025DB0C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover31HostTypeStopAtPointBeforeRotateFv` | `0x8025DB1C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover30HostTypeStopAtPointAfterRotateFv` | `0x8025DB2C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover29HostTypeStopAtEndBeforeRotateFv` | `0x8025DB3C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover28HostTypeStopAtEndAfterRotateFv` | `0x8025DB4C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover29HostTypeStopAtEndWithPlayerOnFv` | `0x8025DB5C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover32HostTypeWaitForRestartByPlayerOnFv` | `0x8025DB6C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover21HostTypeRotateAtPointFv` | `0x8025DB7C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover24HostTypeRotateAtEndPointFv` | `0x8025DB8C` | :x: (0.0%) |
+| `__ct__Q220NrvMapPartsRailMover14HostTypeVanishFv` | `0x8025DB9C` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover14HostTypeVanishCFP5Spine` | `0x8025DBAC` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover24HostTypeRotateAtEndPointCFP5Spine` | `0x8025DBF0` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover21HostTypeRotateAtPointCFP5Spine` | `0x8025DBF4` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover32HostTypeWaitForRestartByPlayerOnCFP5Spine` | `0x8025DBF8` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover29HostTypeStopAtEndWithPlayerOnCFP5Spine` | `0x8025DBFC` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover28HostTypeStopAtEndAfterRotateCFP5Spine` | `0x8025DC44` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover29HostTypeStopAtEndBeforeRotateCFP5Spine` | `0x8025DC4C` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover30HostTypeStopAtPointAfterRotateCFP5Spine` | `0x8025DC54` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover31HostTypeStopAtPointBeforeRotateCFP5Spine` | `0x8025DC5C` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover17HostTypeMoveStartCFP5Spine` | `0x8025DC64` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover12HostTypeMoveCFP5Spine` | `0x8025DC6C` | :x: (0.0%) |
+| `execute__Q220NrvMapPartsRailMover12HostTypeWaitCFP5Spine` | `0x8025DC74` | :x: (0.0%) |
+| `end__28MapPartsRailPointPassCheckerFv` | `0x8025DC78` | :x: (0.0%) |

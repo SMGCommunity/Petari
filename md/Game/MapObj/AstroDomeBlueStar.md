@@ -1,0 +1,61 @@
+# main/Game/MapObj/AstroDomeBlueStar
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__Q217AstroDomeBlueStar12CaptureActorFv` | `0x801AA60C` | :x: (0.0%) |
+| `init__Q217AstroDomeBlueStar12CaptureActorFRC12JMapInfoIter` | `0x801AA658` | :x: (0.0%) |
+| `kill__Q217AstroDomeBlueStar12CaptureActorFv` | `0x801AA6FC` | :x: (0.0%) |
+| `updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | `0x801AA748` | :x: (0.0%) |
+| `__ct__17AstroDomeBlueStarFPCc` | `0x801AA8D0` | :x: (0.0%) |
+| `init__17AstroDomeBlueStarFRC12JMapInfoIter` | `0x801AA944` | :x: (0.0%) |
+| `appear__17AstroDomeBlueStarFv` | `0x801AAC04` | :x: (0.0%) |
+| `kill__17AstroDomeBlueStarFv` | `0x801AAC3C` | :x: (0.0%) |
+| `draw__17AstroDomeBlueStarCFv` | `0x801AAC7C` | :x: (0.0%) |
+| `waitAppear__17AstroDomeBlueStarFv` | `0x801AAC90` | :x: (0.0%) |
+| `forceKill__17AstroDomeBlueStarFv` | `0x801AACC8` | :x: (0.0%) |
+| `control__17AstroDomeBlueStarFv` | `0x801AAD10` | :x: (0.0%) |
+| `receiveOtherMsg__17AstroDomeBlueStarFUlP9HitSensorP9HitSensor` | `0x801AAE10` | :x: (0.0%) |
+| `tryStartBind__17AstroDomeBlueStarFPC9LiveActor` | `0x801AAF20` | :x: (0.0%) |
+| `isActiveBind__17AstroDomeBlueStarCFv` | `0x801AAF9C` | :x: (0.0%) |
+| `isValidBindStart__17AstroDomeBlueStarCFv` | `0x801AB04C` | :x: (0.0%) |
+| `calcZoomInPos__17AstroDomeBlueStarCFPQ29JGeometry8TVec3<f>` | `0x801AB0B4` | :x: (0.0%) |
+| `exeAppear__17AstroDomeBlueStarFv` | `0x801AB160` | :x: (0.0%) |
+| `exeWait__17AstroDomeBlueStarFv` | `0x801AB1F0` | :x: (0.0%) |
+| `exePointing__17AstroDomeBlueStarFv` | `0x801AB320` | :x: (0.0%) |
+| `exeTryStartBind__17AstroDomeBlueStarFv` | `0x801AB408` | :x: (0.0%) |
+| `exeBindTraction__17AstroDomeBlueStarFv` | `0x801AB59C` | :x: (0.0%) |
+| `exeBindHold__17AstroDomeBlueStarFv` | `0x801AB720` | :x: (0.0%) |
+| `exeBindEnd__17AstroDomeBlueStarFv` | `0x801AB818` | :x: (0.0%) |
+| `exeGalaxySelect__17AstroDomeBlueStarFv` | `0x801AB898` | :x: (0.0%) |
+| `exeGalaxyConfirmStart__17AstroDomeBlueStarFv` | `0x801AB8DC` | :x: (0.0%) |
+| `exeGalaxyConfirmCancel__17AstroDomeBlueStarFv` | `0x801AB948` | :x: (0.0%) |
+| `__sinit_\AstroDomeBlueStar_cpp` | `0x801AB9B0` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar26AstroDomeBlueStarNrvAppearFv` | `0x801ABA24` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar24AstroDomeBlueStarNrvWaitFv` | `0x801ABA34` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvPointingFv` | `0x801ABA44` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvTryStartBindFv` | `0x801ABA54` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvBindTractionFv` | `0x801ABA64` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvBindHoldFv` | `0x801ABA74` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar27AstroDomeBlueStarNrvBindEndFv` | `0x801ABA84` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvGalaxySelectFv` | `0x801ABA94` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar38AstroDomeBlueStarNrvGalaxyConfirmStartFv` | `0x801ABAA4` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar33AstroDomeBlueStarNrvGalaxyConfirmFv` | `0x801ABAB4` | :x: (0.0%) |
+| `__ct__Q220NrvAstroDomeBlueStar39AstroDomeBlueStarNrvGalaxyConfirmCancelFv` | `0x801ABAC4` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar39AstroDomeBlueStarNrvGalaxyConfirmCancelCFP5Spine` | `0x801ABAD4` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar33AstroDomeBlueStarNrvGalaxyConfirmCFP5Spine` | `0x801ABADC` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar38AstroDomeBlueStarNrvGalaxyConfirmStartCFP5Spine` | `0x801ABB1C` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvGalaxySelectCFP5Spine` | `0x801ABB24` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar27AstroDomeBlueStarNrvBindEndCFP5Spine` | `0x801ABB2C` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvBindHoldCFP5Spine` | `0x801ABB34` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvBindTractionCFP5Spine` | `0x801ABB3C` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar32AstroDomeBlueStarNrvTryStartBindCFP5Spine` | `0x801ABB44` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar28AstroDomeBlueStarNrvPointingCFP5Spine` | `0x801ABB4C` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar24AstroDomeBlueStarNrvWaitCFP5Spine` | `0x801ABB54` | :x: (0.0%) |
+| `execute__Q220NrvAstroDomeBlueStar26AstroDomeBlueStarNrvAppearCFP5Spine` | `0x801ABB5C` | :x: (0.0%) |
+| `Functor<17AstroDomeBlueStar>__2MRFP17AstroDomeBlueStarM17AstroDomeBlueStarFPCvPv_v_Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>` | `0x801ABB64` | :x: (0.0%) |
+| `__cl__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFv` | `0x801ABBA4` | :x: (0.0%) |
+| `clone__Q22MR61FunctorV0M<P17AstroDomeBlueStar,M17AstroDomeBlueStarFPCvPv_v>CFP7JKRHeap` | `0x801ABBD4` | :x: (0.0%) |
+| `__dt__Q217AstroDomeBlueStar12CaptureActorFv` | `0x801ABC3C` | :x: (0.0%) |
+| `__dt__17AstroDomeBlueStarFv` | `0x801ABC98` | :x: (0.0%) |

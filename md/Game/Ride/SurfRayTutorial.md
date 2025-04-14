@@ -1,0 +1,62 @@
+# main/Game/Ride/SurfRayTutorial
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__15SurfRayTutorialFP9LiveActorP15TalkMessageCtrlRC12JMapInfoIter` | `0x80333BEC` | :x: (0.0%) |
+| `update__15SurfRayTutorialFv` | `0x80333CA4` | :x: (0.0%) |
+| `exeTutorialAllStart__15SurfRayTutorialFv` | `0x80333CE4` | :x: (0.0%) |
+| `exeTutorialStraightStart__15SurfRayTutorialFv` | `0x80333D74` | :x: (0.0%) |
+| `exeTutorialStraightFailure__15SurfRayTutorialFv` | `0x80333DEC` | :x: (0.0%) |
+| `exeTutorialStraightUpkeep__15SurfRayTutorialFv` | `0x80333E68` | :x: (0.0%) |
+| `exeTutorialStraightSuccess__15SurfRayTutorialFv` | `0x80333F80` | :x: (0.0%) |
+| `exeTutorialTurnLeftStart__15SurfRayTutorialFv` | `0x80333FEC` | :x: (0.0%) |
+| `exeTutorialTurnLeftFailure__15SurfRayTutorialFv` | `0x80334064` | :x: (0.0%) |
+| `exeTutorialTurnLeftUpkeep__15SurfRayTutorialFv` | `0x803340E0` | :x: (0.0%) |
+| `exeTutorialTurnLeftSuccess__15SurfRayTutorialFv` | `0x803341F8` | :x: (0.0%) |
+| `exeTutorialTurnRightStart__15SurfRayTutorialFv` | `0x80334264` | :x: (0.0%) |
+| `exeTutorialTurnRightFailure__15SurfRayTutorialFv` | `0x803342DC` | :x: (0.0%) |
+| `exeTutorialTurnRightUpkeep__15SurfRayTutorialFv` | `0x80334358` | :x: (0.0%) |
+| `exeTutorialTurnRightSuccess__15SurfRayTutorialFv` | `0x80334470` | :x: (0.0%) |
+| `exeTutorialAllEnd__15SurfRayTutorialFv` | `0x803344DC` | :x: (0.0%) |
+| `isSuccessStraight__15SurfRayTutorialCFv` | `0x8033456C` | :x: (0.0%) |
+| `isSuccessTurnLeft__15SurfRayTutorialCFv` | `0x803345A4` | :x: (0.0%) |
+| `isSuccessTurnRight__15SurfRayTutorialCFv` | `0x803345F4` | :x: (0.0%) |
+| `isFailureTwistLeftMore__15SurfRayTutorialCFv` | `0x80334644` | :x: (0.0%) |
+| `isFailureTwistRightMore__15SurfRayTutorialCFv` | `0x8033465C` | :x: (0.0%) |
+| `isFailureStand__15SurfRayTutorialCFv` | `0x80334674` | :x: (0.0%) |
+| `omitTutorial__15SurfRayTutorialCFv` | `0x8033468C` | :x: (0.0%) |
+| `nextTutorial__15SurfRayTutorialFv` | `0x803346D8` | :x: (0.0%) |
+| `prevTutorial__15SurfRayTutorialFv` | `0x803348F0` | :x: (0.0%) |
+| `startTimerSound__15SurfRayTutorialFll` | `0x803349A0` | :x: (0.0%) |
+| `__dt__15SurfRayTutorialFv` | `0x80334A24` | :x: (0.0%) |
+| `__sinit_\SurfRayTutorial_cpp` | `0x80334A7C` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial34SurfRayTutorialNrvTutorialAllStartFv` | `0x80334B08` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial39SurfRayTutorialNrvTutorialStraightStartFv` | `0x80334B18` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialStraightFailureFv` | `0x80334B28` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialStraightUpkeepFv` | `0x80334B38` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialStraightSuccessFv` | `0x80334B48` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial39SurfRayTutorialNrvTutorialTurnLeftStartFv` | `0x80334B58` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnLeftFailureFv` | `0x80334B68` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialTurnLeftUpkeepFv` | `0x80334B78` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnLeftSuccessFv` | `0x80334B88` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialTurnRightStartFv` | `0x80334B98` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial42SurfRayTutorialNrvTutorialTurnRightFailureFv` | `0x80334BA8` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnRightUpkeepFv` | `0x80334BB8` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial42SurfRayTutorialNrvTutorialTurnRightSuccessFv` | `0x80334BC8` | :x: (0.0%) |
+| `__ct__Q218NrvSurfRayTutorial32SurfRayTutorialNrvTutorialAllEndFv` | `0x80334BD8` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial32SurfRayTutorialNrvTutorialAllEndCFP5Spine` | `0x80334BE8` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial42SurfRayTutorialNrvTutorialTurnRightSuccessCFP5Spine` | `0x80334BF0` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnRightUpkeepCFP5Spine` | `0x80334BF8` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial42SurfRayTutorialNrvTutorialTurnRightFailureCFP5Spine` | `0x80334C00` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialTurnRightStartCFP5Spine` | `0x80334C08` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnLeftSuccessCFP5Spine` | `0x80334C10` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialTurnLeftUpkeepCFP5Spine` | `0x80334C18` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialTurnLeftFailureCFP5Spine` | `0x80334C20` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial39SurfRayTutorialNrvTutorialTurnLeftStartCFP5Spine` | `0x80334C28` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialStraightSuccessCFP5Spine` | `0x80334C30` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial40SurfRayTutorialNrvTutorialStraightUpkeepCFP5Spine` | `0x80334C38` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial41SurfRayTutorialNrvTutorialStraightFailureCFP5Spine` | `0x80334C40` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial39SurfRayTutorialNrvTutorialStraightStartCFP5Spine` | `0x80334C48` | :x: (0.0%) |
+| `execute__Q218NrvSurfRayTutorial34SurfRayTutorialNrvTutorialAllStartCFP5Spine` | `0x80334C50` | :x: (0.0%) |

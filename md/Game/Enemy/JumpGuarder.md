@@ -1,0 +1,62 @@
+# main/Game/Enemy/JumpGuarder
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__11JumpEmitterFPCc` | `0x800FF3A0` | :x: (0.0%) |
+| `kill__11JumpEmitterFv` | `0x800FF40C` | :x: (0.0%) |
+| `initEventCamera__11JumpEmitterFRC12JMapInfoIter` | `0x800FF440` | :x: (0.0%) |
+| `startEventCamera__11JumpEmitterFv` | `0x800FF4CC` | :x: (0.0%) |
+| `updateEventCamera__11JumpEmitterFv` | `0x800FF520` | :x: (0.0%) |
+| `endEventCamera__11JumpEmitterFv` | `0x800FF5D8` | :x: (0.0%) |
+| `updateRotate__11JumpEmitterFv` | `0x800FF604` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__11JumpGuarderFUlP9HitSensorP9HitSensor` | `0x800FF7CC` | :x: (0.0%) |
+| `receiveOtherMsg__11JumpGuarderFUlP9HitSensorP9HitSensor` | `0x800FF8E0` | :x: (0.0%) |
+| `control__11JumpGuarderFv` | `0x800FF944` | :x: (0.0%) |
+| `exeHide__11JumpGuarderFv` | `0x800FF9F0` | :x: (0.0%) |
+| `exeUp__11JumpGuarderFv` | `0x800FFAA8` | :x: (0.0%) |
+| `exeWait__11JumpGuarderFv` | `0x800FFB8C` | :x: (0.0%) |
+| `exeDown__11JumpGuarderFv` | `0x800FFC1C` | :x: (0.0%) |
+| `exeHopStart__11JumpGuarderFv` | `0x800FFCFC` | :x: (0.0%) |
+| `exeHopWait__11JumpGuarderFv` | `0x800FFE1C` | :x: (0.0%) |
+| `exeHopJump__11JumpGuarderFv` | `0x800FFEC0` | :x: (0.0%) |
+| `exeHopEnd__11JumpGuarderFv` | `0x800FFF3C` | :x: (0.0%) |
+| `exePreOpen__11JumpGuarderFv` | `0x80100010` | :x: (0.0%) |
+| `exeOpen__11JumpGuarderFv` | `0x801000A4` | :x: (0.0%) |
+| `exeClose__11JumpGuarderFv` | `0x801004AC` | :x: (0.0%) |
+| `exeInter__11JumpGuarderFv` | `0x8010052C` | :x: (0.0%) |
+| `__ct__11JumpGuarderFPCc` | `0x801005AC` | :x: (0.0%) |
+| `init__11JumpGuarderFRC12JMapInfoIter` | `0x80100610` | :x: (0.0%) |
+| `__ct__15JumpGuarderBabyFv` | `0x8010093C` | :x: (0.0%) |
+| `__dt__15JumpGuarderBabyFv` | `0x80100980` | :x: (0.0%) |
+| `attackSensor__11JumpGuarderFP9HitSensorP9HitSensor` | `0x801009D8` | :x: (0.0%) |
+| `enableAttack__11JumpGuarderFv` | `0x80100B1C` | :x: (0.0%) |
+| `isHit__11JumpGuarderCFPC9LiveActor` | `0x80100BA8` | :x: (0.0%) |
+| `enableGroupAttack__2MRFP9LiveActorff` | `0x80100BE4` | :x: (0.0%) |
+| `__dt__11JumpGuarderFv` | `0x80100CE4` | :x: (0.0%) |
+| `__sinit_\JumpGuarder_cpp` | `0x80100D3C` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder18JumpGuarderNrvHideFv` | `0x80100DB8` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder16JumpGuarderNrvUpFv` | `0x80100DC8` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder18JumpGuarderNrvWaitFv` | `0x80100DD8` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder18JumpGuarderNrvDownFv` | `0x80100DE8` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder22JumpGuarderNrvHopStartFv` | `0x80100DF8` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder21JumpGuarderNrvHopWaitFv` | `0x80100E08` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder21JumpGuarderNrvHopJumpFv` | `0x80100E18` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder20JumpGuarderNrvHopEndFv` | `0x80100E28` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder21JumpGuarderNrvPreOpenFv` | `0x80100E38` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder18JumpGuarderNrvOpenFv` | `0x80100E48` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder19JumpGuarderNrvCloseFv` | `0x80100E58` | :x: (0.0%) |
+| `__ct__Q214NrvJumpGuarder19JumpGuarderNrvInterFv` | `0x80100E68` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder19JumpGuarderNrvInterCFP5Spine` | `0x80100E78` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder19JumpGuarderNrvCloseCFP5Spine` | `0x80100E80` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder18JumpGuarderNrvOpenCFP5Spine` | `0x80100E88` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder21JumpGuarderNrvPreOpenCFP5Spine` | `0x80100E90` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder20JumpGuarderNrvHopEndCFP5Spine` | `0x80100E98` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder21JumpGuarderNrvHopJumpCFP5Spine` | `0x80100EA0` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder21JumpGuarderNrvHopWaitCFP5Spine` | `0x80100EA8` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder22JumpGuarderNrvHopStartCFP5Spine` | `0x80100EB0` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder18JumpGuarderNrvDownCFP5Spine` | `0x80100EB8` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder18JumpGuarderNrvWaitCFP5Spine` | `0x80100EC0` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder16JumpGuarderNrvUpCFP5Spine` | `0x80100EC8` | :x: (0.0%) |
+| `execute__Q214NrvJumpGuarder18JumpGuarderNrvHideCFP5Spine` | `0x80100ED0` | :x: (0.0%) |

@@ -1,0 +1,64 @@
+# main/Game/Enemy/Gesso
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__5GessoFPCc` | `0x800EDDCC` | :x: (0.0%) |
+| `init__5GessoFRC12JMapInfoIter` | `0x800EDE64` | :x: (0.0%) |
+| `kill__5GessoFv` | `0x800EE088` | :x: (0.0%) |
+| `control__5GessoFv` | `0x800EE0D4` | :x: (0.0%) |
+| `calcAndSetBaseMtx__5GessoFv` | `0x800EE270` | :x: (0.0%) |
+| `exeComeFromBox__5GessoFv` | `0x800EE2E8` | :x: (0.0%) |
+| `exeWait__5GessoFv` | `0x800EE3EC` | :x: (0.0%) |
+| `exeSearch__5GessoFv` | `0x800EE4F4` | :x: (0.0%) |
+| `exeWalkCharge__5GessoFv` | `0x800EE5F8` | :x: (0.0%) |
+| `exeWalk__5GessoFv` | `0x800EE6EC` | :x: (0.0%) |
+| `exeSink__5GessoFv` | `0x800EE774` | :x: (0.0%) |
+| `exeLostPlayer__5GessoFv` | `0x800EE83C` | :x: (0.0%) |
+| `exeAttack__5GessoFv` | `0x800EE900` | :x: (0.0%) |
+| `exePunchDown__5GessoFv` | `0x800EEA44` | :x: (0.0%) |
+| `exeComeBack__5GessoFv` | `0x800EEB24` | :x: (0.0%) |
+| `exeRotate__5GessoFv` | `0x800EEC78` | :x: (0.0%) |
+| `attackSensor__5GessoFP9HitSensorP9HitSensor` | `0x800EECFC` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__5GessoFUlP9HitSensorP9HitSensor` | `0x800EEDDC` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__5GessoFUlP9HitSensorP9HitSensor` | `0x800EEE98` | :x: (0.0%) |
+| `receiveMsgPush__5GessoFP9HitSensorP9HitSensor` | `0x800EEF3C` | :x: (0.0%) |
+| `selectNextNerve__5GessoFv` | `0x800EEFCC` | :x: (0.0%) |
+| `knockOut__5GessoFP9HitSensorP9HitSensor` | `0x800EF074` | :x: (0.0%) |
+| `clipAndInitPos__5GessoFv` | `0x800EF0F4` | :x: (0.0%) |
+| `calcWalkMove__5GessoFl` | `0x800EF1A4` | :x: (0.0%) |
+| `calcSinkMove__5GessoFl` | `0x800EF3E4` | :x: (0.0%) |
+| `calcAndSetVelocity__5GessoFfff` | `0x800EF538` | :x: (0.0%) |
+| `calcAndSetUpVecTarget__5GessoFfff` | `0x800EF5D8` | :x: (0.0%) |
+| `isMarioUp__5GessoCFv` | `0x800EF620` | :x: (0.0%) |
+| `isMarioLeft__5GessoCFv` | `0x800EF680` | :x: (0.0%) |
+| `tryChangeHighSpeedMode__5GessoFv` | `0x800EF6E0` | :x: (0.0%) |
+| `tryDPDSwoon__5GessoFv` | `0x800EF73C` | :x: (0.0%) |
+| `__dt__5GessoFv` | `0x800EF7DC` | :x: (0.0%) |
+| `__sinit_\Gesso_cpp` | `0x800EF838` | :x: (0.0%) |
+| `__ct__Q28NrvGesso19GessoNrvComeFromBoxFv` | `0x800EF8B4` | :x: (0.0%) |
+| `__ct__Q28NrvGesso12GessoNrvWaitFv` | `0x800EF8C4` | :x: (0.0%) |
+| `__ct__Q28NrvGesso14GessoNrvSearchFv` | `0x800EF8D4` | :x: (0.0%) |
+| `__ct__Q28NrvGesso18GessoNrvWalkChargeFv` | `0x800EF8E4` | :x: (0.0%) |
+| `__ct__Q28NrvGesso12GessoNrvWalkFv` | `0x800EF8F4` | :x: (0.0%) |
+| `__ct__Q28NrvGesso12GessoNrvSinkFv` | `0x800EF904` | :x: (0.0%) |
+| `__ct__Q28NrvGesso18GessoNrvLostPlayerFv` | `0x800EF914` | :x: (0.0%) |
+| `__ct__Q28NrvGesso14GessoNrvAttackFv` | `0x800EF924` | :x: (0.0%) |
+| `__ct__Q28NrvGesso17GessoNrvPunchDownFv` | `0x800EF934` | :x: (0.0%) |
+| `__ct__Q28NrvGesso16GessoNrvComeBackFv` | `0x800EF944` | :x: (0.0%) |
+| `__ct__Q28NrvGesso16GessoNrvDPDSwoonFv` | `0x800EF954` | :x: (0.0%) |
+| `__ct__Q28NrvGesso14GessoNrvRotateFv` | `0x800EF964` | :x: (0.0%) |
+| `execute__Q28NrvGesso14GessoNrvRotateCFP5Spine` | `0x800EF974` | :x: (0.0%) |
+| `executeOnEnd__Q28NrvGesso16GessoNrvDPDSwoonCFP5Spine` | `0x800EF97C` | :x: (0.0%) |
+| `execute__Q28NrvGesso16GessoNrvDPDSwoonCFP5Spine` | `0x800EF994` | :x: (0.0%) |
+| `execute__Q28NrvGesso16GessoNrvComeBackCFP5Spine` | `0x800EF9A4` | :x: (0.0%) |
+| `execute__Q28NrvGesso17GessoNrvPunchDownCFP5Spine` | `0x800EF9AC` | :x: (0.0%) |
+| `execute__Q28NrvGesso14GessoNrvAttackCFP5Spine` | `0x800EF9B4` | :x: (0.0%) |
+| `execute__Q28NrvGesso18GessoNrvLostPlayerCFP5Spine` | `0x800EF9BC` | :x: (0.0%) |
+| `execute__Q28NrvGesso12GessoNrvSinkCFP5Spine` | `0x800EF9C4` | :x: (0.0%) |
+| `execute__Q28NrvGesso12GessoNrvWalkCFP5Spine` | `0x800EF9CC` | :x: (0.0%) |
+| `execute__Q28NrvGesso18GessoNrvWalkChargeCFP5Spine` | `0x800EF9D4` | :x: (0.0%) |
+| `execute__Q28NrvGesso14GessoNrvSearchCFP5Spine` | `0x800EF9DC` | :x: (0.0%) |
+| `execute__Q28NrvGesso12GessoNrvWaitCFP5Spine` | `0x800EF9E4` | :x: (0.0%) |
+| `execute__Q28NrvGesso19GessoNrvComeFromBoxCFP5Spine` | `0x800EF9EC` | :x: (0.0%) |

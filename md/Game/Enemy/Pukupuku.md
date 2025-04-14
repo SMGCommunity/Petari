@@ -1,0 +1,66 @@
+# main/Game/Enemy/Pukupuku
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__20PukupukuStateLandingFP8Pukupuku` | `0x801369B0` | :x: (0.0%) |
+| `exeLandingMoveLand__20PukupukuStateLandingFv` | `0x80136A68` | :x: (0.0%) |
+| `exeLandingJumpFromWater__20PukupukuStateLandingFv` | `0x80136B84` | :x: (0.0%) |
+| `exeLandingJumpFromLand__20PukupukuStateLandingFv` | `0x80136CD0` | :x: (0.0%) |
+| `updatePoseByJumpPath__20PukupukuStateLandingFf` | `0x80136DD8` | :x: (0.0%) |
+| `setNerveAfterJumpAccordingToNextPoint__20PukupukuStateLandingFv` | `0x80136E80` | :x: (0.0%) |
+| `setupJumping__20PukupukuStateLandingFff` | `0x80136ED4` | :x: (0.0%) |
+| `updateJumping__20PukupukuStateLandingFv` | `0x80137004` | :x: (0.0%) |
+| `emitWaterColumIfNeed__20PukupukuStateLandingFbb` | `0x80137060` | :x: (0.0%) |
+| `emitGroundHitEffect__20PukupukuStateLandingFv` | `0x80137180` | :x: (0.0%) |
+| `__ct__8PukupukuFPCc` | `0x80137244` | :x: (0.0%) |
+| `init__8PukupukuFRC12JMapInfoIter` | `0x801372D0` | :x: (0.0%) |
+| `kill__8PukupukuFv` | `0x801374EC` | :x: (0.0%) |
+| `updatePoseByRailIgnoreUpScale__8PukupukuFv` | `0x80137640` | :x: (0.0%) |
+| `rotatePoseByLocalZ__8PukupukuFv` | `0x801376BC` | :x: (0.0%) |
+| `calcGroundHitMtx__8PukupukuCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x8013773C` | :x: (0.0%) |
+| `isReadyToJumpFromLand__8PukupukuCFv` | `0x801377E4` | :x: (0.0%) |
+| `exeWait__8PukupukuFv` | `0x80137838` | :x: (0.0%) |
+| `exeMoveWater__8PukupukuFv` | `0x80137910` | :x: (0.0%) |
+| `exeMoveWaterAfterJump__8PukupukuFv` | `0x80137A24` | :x: (0.0%) |
+| `exeLanding__8PukupukuFv` | `0x80137AAC` | :x: (0.0%) |
+| `exeTrampled__8PukupukuFv` | `0x80137B10` | :x: (0.0%) |
+| `exeBlownOff__8PukupukuFv` | `0x80137C28` | :x: (0.0%) |
+| `exeBindStarPointer__8PukupukuFv` | `0x80137D60` | :x: (0.0%) |
+| `updatePoseByRail__8PukupukuFv` | `0x80137E40` | :x: (0.0%) |
+| `updateMoveWaterAfterJump__8PukupukuFv` | `0x80137F10` | :x: (0.0%) |
+| `tryBindStarPointer__8PukupukuFv` | `0x80137F68` | :x: (0.0%) |
+| `exeMoveWaterCommon__8PukupukuFv` | `0x80138054` | :x: (0.0%) |
+| `getBlownOffSpeedRate__8PukupukuCFv` | `0x801380F0` | :x: (0.0%) |
+| `control__8PukupukuFv` | `0x8013814C` | :x: (0.0%) |
+| `attackSensor__8PukupukuFP9HitSensorP9HitSensor` | `0x801381FC` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__8PukupukuFUlP9HitSensorP9HitSensor` | `0x80138358` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__8PukupukuFUlP9HitSensorP9HitSensor` | `0x80138478` | :x: (0.0%) |
+| `calcAndSetBaseMtx__8PukupukuFv` | `0x80138540` | :x: (0.0%) |
+| `__dt__20PukupukuStateLandingFv` | `0x801385AC` | :x: (0.0%) |
+| `__dt__8PukupukuFv` | `0x80138604` | :x: (0.0%) |
+| `__sinit_\Pukupuku_cpp` | `0x80138660` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@35PukupukuStateLandingLandingMoveLandFv` | `0x801386D4` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@40PukupukuStateLandingLandingJumpFromWaterFv` | `0x801386E4` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@39PukupukuStateLandingLandingJumpFromLandFv` | `0x801386F4` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@12PukupukuWaitFv` | `0x80138704` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@17PukupukuMoveWaterFv` | `0x80138714` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@26PukupukuMoveWaterAfterJumpFv` | `0x80138724` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@39PukupukuMoveWaterAfterJumpAfterPointingFv` | `0x80138734` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@15PukupukuLandingFv` | `0x80138744` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@16PukupukuTrampledFv` | `0x80138754` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@16PukupukuBlownOffFv` | `0x80138764` | :x: (0.0%) |
+| `__ct__Q222@unnamed@Pukupuku_cpp@23PukupukuBindStarPointerFv` | `0x80138774` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@23PukupukuBindStarPointerCFP5Spine` | `0x80138784` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@16PukupukuBlownOffCFP5Spine` | `0x8013878C` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@16PukupukuTrampledCFP5Spine` | `0x80138794` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@15PukupukuLandingCFP5Spine` | `0x8013879C` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@39PukupukuMoveWaterAfterJumpAfterPointingCFP5Spine` | `0x801387A4` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@26PukupukuMoveWaterAfterJumpCFP5Spine` | `0x801387AC` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@17PukupukuMoveWaterCFP5Spine` | `0x801387B4` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@12PukupukuWaitCFP5Spine` | `0x801387BC` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@39PukupukuStateLandingLandingJumpFromLandCFP5Spine` | `0x801387C4` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@40PukupukuStateLandingLandingJumpFromWaterCFP5Spine` | `0x801387CC` | :x: (0.0%) |
+| `execute__Q222@unnamed@Pukupuku_cpp@35PukupukuStateLandingLandingMoveLandCFP5Spine` | `0x801387D4` | :x: (0.0%) |
+| `__dt__25ActorStateBase<8Pukupuku>Fv` | `0x801387DC` | :x: (0.0%) |

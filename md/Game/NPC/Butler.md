@@ -1,0 +1,59 @@
+# main/Game/NPC/Butler
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__6ButlerFPCc` | `0x8026C670` | :x: (0.0%) |
+| `__dt__8NPCActorFv` | `0x8026C6CC` | :x: (0.0%) |
+| `init__6ButlerFRC12JMapInfoIter` | `0x8026C728` | :x: (0.0%) |
+| `appear__6ButlerFv` | `0x8026C89C` | :x: (0.0%) |
+| `kill__6ButlerFv` | `0x8026C8E8` | :x: (0.0%) |
+| `killIfBatlerMapAppear__6ButlerFv` | `0x8026C92C` | :x: (0.0%) |
+| `startDemoButlerReport__6ButlerFPCc` | `0x8026C990` | :x: (0.0%) |
+| `startDemoDomeLecture1__6ButlerFv` | `0x8026CA50` | :x: (0.0%) |
+| `startDemoDomeLecture2__6ButlerFv` | `0x8026CA94` | :x: (0.0%) |
+| `startDemoStarPiece1__6ButlerFv` | `0x8026CB30` | :x: (0.0%) |
+| `startDemoStarPiece2__6ButlerFv` | `0x8026CBA4` | :x: (0.0%) |
+| `tryStartShowGalaxyMap__6ButlerFv` | `0x8026CC3C` | :x: (0.0%) |
+| `resetStatus__6ButlerFv` | `0x8026CC84` | :x: (0.0%) |
+| `messageBranchFunc__6ButlerFUl` | `0x8026CCC0` | :x: (0.0%) |
+| `control__6ButlerFv` | `0x8026CD48` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__6ButlerFUlP9HitSensorP9HitSensor` | `0x8026CE74` | :x: (0.0%) |
+| `receiveOtherMsg__6ButlerFUlP9HitSensorP9HitSensor` | `0x8026CFA8` | :x: (0.0%) |
+| `initTalkCtrlArray__6ButlerFRC12JMapInfoIter` | `0x8026CFEC` | :x: (0.0%) |
+| `initForAstroDome__6ButlerFRC12JMapInfoIter` | `0x8026D064` | :x: (0.0%) |
+| `initForAstroGalaxy__6ButlerFRC12JMapInfoIter` | `0x8026D438` | :x: (0.0%) |
+| `createTalkCtrl__6ButlerFRC12JMapInfoIterPCc` | `0x8026D584` | :x: (0.0%) |
+| `forceNerveToWait__6ButlerFv` | `0x8026D5FC` | :x: (0.0%) |
+| `tryReplaceStarPieceIfExecLecture__6ButlerFv` | `0x8026D644` | :x: (0.0%) |
+| `tryStartStarPieceReaction__6ButlerFv` | `0x8026D6DC` | :x: (0.0%) |
+| `exeStarPieceReaction__6ButlerFv` | `0x8026D838` | :x: (0.0%) |
+| `exeDemo__6ButlerFv` | `0x8026D90C` | :x: (0.0%) |
+| `exeDemoDomeLecture2__6ButlerFv` | `0x8026D958` | :x: (0.0%) |
+| `exeDemoStarPiece2__6ButlerFv` | `0x8026D9D8` | :x: (0.0%) |
+| `exeDemoShowGalaxyMap__6ButlerFv` | `0x8026DA58` | :x: (0.0%) |
+| `__sinit_\Butler_cpp` | `0x8026DAD4` | :x: (0.0%) |
+| `__ct__Q29NrvButler26ButlerNrvStarPieceReactionFv` | `0x8026DB20` | :x: (0.0%) |
+| `__ct__Q29NrvButler13ButlerNrvDemoFv` | `0x8026DB30` | :x: (0.0%) |
+| `__ct__Q29NrvButler25ButlerNrvDemoDomeLecture2Fv` | `0x8026DB40` | :x: (0.0%) |
+| `__ct__Q29NrvButler23ButlerNrvDemoStarPiece2Fv` | `0x8026DB50` | :x: (0.0%) |
+| `__ct__Q29NrvButler26ButlerNrvDemoShowGalaxyMapFv` | `0x8026DB60` | :x: (0.0%) |
+| `__ct__Q29NrvButler22ButlerNrvWaitStartDemoFv` | `0x8026DB70` | :x: (0.0%) |
+| `execute__Q29NrvButler22ButlerNrvWaitStartDemoCFP5Spine` | `0x8026DB80` | :x: (0.0%) |
+| `execute__Q29NrvButler26ButlerNrvDemoShowGalaxyMapCFP5Spine` | `0x8026DB84` | :x: (0.0%) |
+| `execute__Q29NrvButler23ButlerNrvDemoStarPiece2CFP5Spine` | `0x8026DB8C` | :x: (0.0%) |
+| `execute__Q29NrvButler25ButlerNrvDemoDomeLecture2CFP5Spine` | `0x8026DB94` | :x: (0.0%) |
+| `execute__Q29NrvButler13ButlerNrvDemoCFP5Spine` | `0x8026DB9C` | :x: (0.0%) |
+| `execute__Q29NrvButler26ButlerNrvStarPieceReactionCFP5Spine` | `0x8026DBA4` | :x: (0.0%) |
+| `Functor<6Butler>__2MRFP6ButlerM6ButlerFPCvPv_v_Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v>` | `0x8026DBAC` | :x: (0.0%) |
+| `Functor<6Butler,PCc>__2MRFP6ButlerM6ButlerFPCvPvPCc_vPCc_Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>` | `0x8026DBEC` | :x: (0.0%) |
+| `__cl__Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>CFv` | `0x8026DC30` | :x: (0.0%) |
+| `clone__Q22MR44FunctorV1M<P6Butler,M6ButlerFPCvPvPCc_v,PCc>CFP7JKRHeap` | `0x8026DC64` | :x: (0.0%) |
+| `__cl__Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v>CFv` | `0x8026DCD4` | :x: (0.0%) |
+| `clone__Q22MR37FunctorV0M<P6Butler,M6ButlerFPCvPv_v>CFP7JKRHeap` | `0x8026DD04` | :x: (0.0%) |
+| `__ct__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>FRC45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>` | `0x8026DD6C` | :x: (0.0%) |
+| `__dt__6ButlerFv` | `0x8026DD9C` | :x: (0.0%) |
+| `__cl__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFUl` | `0x8026DDF4` | :x: (0.0%) |
+| `clone__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFv` | `0x8026DE24` | :x: (0.0%) |
+| `clone__45TalkMessageFuncM<P6Butler,M6ButlerFPCvPvUl_b>CFP7JKRHeap` | `0x8026DE64` | :x: (0.0%) |

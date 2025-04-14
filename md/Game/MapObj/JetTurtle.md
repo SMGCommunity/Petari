@@ -1,0 +1,61 @@
+# main/Game/MapObj/JetTurtle
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__9JetTurtleFPCc` | `0x801EA864` | :x: (0.0%) |
+| `init__9JetTurtleFRC12JMapInfoIter` | `0x801EA8A8` | :x: (0.0%) |
+| `init2__9JetTurtleFRC12JMapInfoIterl` | `0x801EA8B0` | :x: (0.0%) |
+| `initAfterPlacement__9JetTurtleFv` | `0x801EAC30` | :x: (0.0%) |
+| `becomeSlowType__9JetTurtleFv` | `0x801EAC70` | :x: (0.0%) |
+| `becomeFastType__9JetTurtleFv` | `0x801EACD0` | :x: (0.0%) |
+| `appear__9JetTurtleFv` | `0x801EAD30` | :x: (0.0%) |
+| `appearAndTryTaken__9JetTurtleFv` | `0x801EAE68` | :x: (0.0%) |
+| `control__9JetTurtleFv` | `0x801EAEC8` | :x: (0.0%) |
+| `resetPosition__9JetTurtleFv` | `0x801EAEEC` | :x: (0.0%) |
+| `resetPositionAndVanish__9JetTurtleFv` | `0x801EAF88` | :x: (0.0%) |
+| `exeWait__9JetTurtleFv` | `0x801EB040` | :x: (0.0%) |
+| `exeThrowWait__9JetTurtleFv` | `0x801EB278` | :x: (0.0%) |
+| `reset__9JetTurtleFUl` | `0x801EB398` | :x: (0.0%) |
+| `boundDrop__9JetTurtleFv` | `0x801EB568` | :x: (0.0%) |
+| `bound__9JetTurtleFv` | `0x801EB6C0` | :x: (0.0%) |
+| `exeThrowing__9JetTurtleFv` | `0x801EB8BC` | :x: (0.0%) |
+| `exeTakenReserve__9JetTurtleFv` | `0x801EBFA4` | :x: (0.0%) |
+| `exeTakenStart__9JetTurtleFv` | `0x801EC120` | :x: (0.0%) |
+| `exeRestart__9JetTurtleFv` | `0x801EC234` | :x: (0.0%) |
+| `exeDrop__9JetTurtleFv` | `0x801EC3BC` | :x: (0.0%) |
+| `attackSensor__9JetTurtleFP9HitSensorP9HitSensor` | `0x801EC4B0` | :x: (0.0%) |
+| `receiveOtherMsg__9JetTurtleFUlP9HitSensorP9HitSensor` | `0x801EC69C` | :x: (0.0%) |
+| `receiveMsgThrow__9JetTurtleFP9HitSensorP9HitSensor` | `0x801EC8E4` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__9JetTurtleFUlP9HitSensorP9HitSensor` | `0x801EC9F4` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__9JetTurtleFUlP9HitSensorP9HitSensor` | `0x801ECAF4` | :x: (0.0%) |
+| `isWait__9JetTurtleCFv` | `0x801ECBA4` | :x: (0.0%) |
+| `isRestart__9JetTurtleCFv` | `0x801ECC04` | :x: (0.0%) |
+| `init__12GoldenTurtleFRC12JMapInfoIter` | `0x801ECC0C` | :x: (0.0%) |
+| `resetPosition__12GoldenTurtleFv` | `0x801ECC64` | :x: (0.0%) |
+| `exeThrowing__12GoldenTurtleFv` | `0x801ECCA8` | :x: (0.0%) |
+| `reset__12GoldenTurtleFUl` | `0x801ECD18` | :x: (0.0%) |
+| `__dt__9JetTurtleFv` | `0x801ECD5C` | :x: (0.0%) |
+| `__dt__12GoldenTurtleFv` | `0x801ECDB8` | :x: (0.0%) |
+| `__sinit_\JetTurtle_cpp` | `0x801ECE10` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle16JetTurtleNrvWaitFv` | `0x801ECE74` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle17JetTurtleNrvWait2Fv` | `0x801ECE84` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle21JetTurtleNrvThrowWaitFv` | `0x801ECE94` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle20JetTurtleNrvThrowingFv` | `0x801ECEA4` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle24JetTurtleNrvTakenReserveFv` | `0x801ECEB4` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle25JetTurtleNrvTakenReserveDFv` | `0x801ECEC4` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle22JetTurtleNrvTakenStartFv` | `0x801ECED4` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle19JetTurtleNrvRestartFv` | `0x801ECEE4` | :x: (0.0%) |
+| `__ct__Q212NrvJetTurtle16JetTurtleNrvDropFv` | `0x801ECEF4` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle16JetTurtleNrvDropCFP5Spine` | `0x801ECF04` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle19JetTurtleNrvRestartCFP5Spine` | `0x801ECF0C` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle22JetTurtleNrvTakenStartCFP5Spine` | `0x801ECF14` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle25JetTurtleNrvTakenReserveDCFP5Spine` | `0x801ECF1C` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle24JetTurtleNrvTakenReserveCFP5Spine` | `0x801ECF24` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle20JetTurtleNrvThrowingCFP5Spine` | `0x801ECF2C` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle21JetTurtleNrvThrowWaitCFP5Spine` | `0x801ECF40` | :x: (0.0%) |
+| `executeOnEnd__Q212NrvJetTurtle17JetTurtleNrvWait2CFP5Spine` | `0x801ECF48` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle17JetTurtleNrvWait2CFP5Spine` | `0x801ECF68` | :x: (0.0%) |
+| `executeOnEnd__Q212NrvJetTurtle16JetTurtleNrvWaitCFP5Spine` | `0x801ECF70` | :x: (0.0%) |
+| `execute__Q212NrvJetTurtle16JetTurtleNrvWaitCFP5Spine` | `0x801ECF90` | :x: (0.0%) |

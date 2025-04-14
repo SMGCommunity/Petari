@@ -1,0 +1,62 @@
+# main/Game/Player/MarioDamage
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `isDamaging__5MarioCFv` | `0x802D5408` | :x: (0.0%) |
+| `damageLarge__5MarioFRCQ29JGeometry8TVec3<f>` | `0x802D552C` | :x: (0.0%) |
+| `__sinit_\MarioDamage_cpp` | `0x802D55C8` | :x: (0.0%) |
+| `decDamageAfterTimer__5MarioFv` | `0x802D5634` | :x: (0.0%) |
+| `checkDamage__5MarioFv` | `0x802D56D8` | :x: (0.0%) |
+| `getDamageAfterTimer__5MarioCFv` | `0x802D5904` | :x: (0.0%) |
+| `damageFloorCheck__5MarioFv` | `0x802D5984` | :x: (0.0%) |
+| `damageWallCheck__5MarioFv` | `0x802D5B38` | :x: (0.0%) |
+| `damagePolygonCheck__5MarioFPC8Triangle` | `0x802D5CE8` | :x: (0.0%) |
+| `flipLarge__5MarioFRCQ29JGeometry8TVec3<f>` | `0x802D5E64` | :x: (0.0%) |
+| `isEnableAddDamage__5MarioCFv` | `0x802D5EFC` | :x: (0.0%) |
+| `damage__5MarioFRCQ29JGeometry8TVec3<f>` | `0x802D5F94` | :x: (0.0%) |
+| `__ct__11MarioDamageFP10MarioActor` | `0x802D6080` | :x: (0.0%) |
+| `start__11MarioDamageFv` | `0x802D60F0` | :x: (0.0%) |
+| `setVec__11MarioDamageFRCQ29JGeometry8TVec3<f>` | `0x802D6340` | :x: (0.0%) |
+| `setVecSize__11MarioDamageFff` | `0x802D639C` | :x: (0.0%) |
+| `stopHead__11MarioDamageFRCQ29JGeometry8TVec3<f>` | `0x802D640C` | :x: (0.0%) |
+| `update__11MarioDamageFv` | `0x802D658C` | :x: (0.0%) |
+| `close__11MarioDamageFv` | `0x802D69E0` | :x: (0.0%) |
+| `notice__11MarioDamageFv` | `0x802D6A4C` | :x: (0.0%) |
+| `__ct__15MarioFireDamageFP10MarioActor` | `0x802D6AA4` | :x: (0.0%) |
+| `decAfterTimer__15MarioFireDamageFv` | `0x802D6AEC` | :x: (0.0%) |
+| `doAbyssDamage__5MarioFv` | `0x802D6B50` | :x: (0.0%) |
+| `__ct__16MarioAbyssDamageFP10MarioActor` | `0x802D6BBC` | :x: (0.0%) |
+| `start__16MarioAbyssDamageFv` | `0x802D6C10` | :x: (0.0%) |
+| `update__16MarioAbyssDamageFv` | `0x802D6C44` | :x: (0.0%) |
+| `close__16MarioAbyssDamageFv` | `0x802D6CE4` | :x: (0.0%) |
+| `connectToFireRun__5MarioFv` | `0x802D6CEC` | :x: (0.0%) |
+| `__ct__12MarioFireRunFP10MarioActor` | `0x802D6D40` | :x: (0.0%) |
+| `start__12MarioFireRunFv` | `0x802D6D94` | :x: (0.0%) |
+| `move__12MarioFireRunFv` | `0x802D6E44` | :x: (0.0%) |
+| `update__12MarioFireRunFv` | `0x802D6F24` | :x: (0.0%) |
+| `close__12MarioFireRunFv` | `0x802D74E8` | :x: (0.0%) |
+| `notice__12MarioFireRunFv` | `0x802D75BC` | :x: (0.0%) |
+| `doFireDanceWithInitialDamage__5MarioFUc` | `0x802D75C4` | :x: (0.0%) |
+| `doFireObjHitWithInitialDamage__5MarioFv` | `0x802D7654` | :x: (0.0%) |
+| `doNeedleWithInitialDamage__5MarioFUc` | `0x802D769C` | :x: (0.0%) |
+| `doNeedleWithInitialDamage__5MarioFPC8Triangle` | `0x802D7764` | :x: (0.0%) |
+| `doNeedle__5MarioFPC8Triangle` | `0x802D7818` | :x: (0.0%) |
+| `doFireDance__5MarioFv` | `0x802D7950` | :x: (0.0%) |
+| `__ct__14MarioFireDanceFP10MarioActor` | `0x802D7A84` | :x: (0.0%) |
+| `start__14MarioFireDanceFv` | `0x802D7AE8` | :x: (0.0%) |
+| `impact__14MarioFireDanceFv` | `0x802D7C98` | :x: (0.0%) |
+| `impactEffect__14MarioFireDanceFv` | `0x802D7D88` | :x: (0.0%) |
+| `update__14MarioFireDanceFv` | `0x802D7E64` | :x: (0.0%) |
+| `close__14MarioFireDanceFv` | `0x802D825C` | :x: (0.0%) |
+| `checkKarikariDamage__5MarioFv` | `0x802D82BC` | :x: (0.0%) |
+| `doDarkDamage__5MarioFv` | `0x802D83EC` | :x: (0.0%) |
+| `__ct__15MarioDarkDamageFP10MarioActor` | `0x802D8484` | :x: (0.0%) |
+| `start__15MarioDarkDamageFv` | `0x802D84D0` | :x: (0.0%) |
+| `update__15MarioDarkDamageFv` | `0x802D84E4` | :x: (0.0%) |
+| `close__10MarioStateFv` | `0x802D85B4` | :x: (0.0%) |
+| `update__10MarioStateFv` | `0x802D85BC` | :x: (0.0%) |
+| `start__10MarioStateFv` | `0x802D85C4` | :x: (0.0%) |
+| `notice__15MarioDarkDamageFv` | `0x802D85CC` | :x: (0.0%) |
+| `notice__16MarioAbyssDamageFv` | `0x802D85D4` | :x: (0.0%) |

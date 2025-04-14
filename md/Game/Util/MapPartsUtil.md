@@ -1,0 +1,64 @@
+# main/Game/Util/MapPartsUtil
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `getBodySensor__2MRFP9LiveActor` | `0x803E0ECC` | :x: (0.0%) |
+| `setBodySensorType__2MRFP9LiveActorUl` | `0x803E0ED8` | :x: (0.0%) |
+| `setBodySensorTypeMapObj__2MRFP9LiveActor` | `0x803E0F14` | :x: (0.0%) |
+| `setBodySensorTypePress__2MRFP9LiveActor` | `0x803E0F44` | :x: (0.0%) |
+| `setBodySensorTypeMoveCollision__2MRFP9LiveActor` | `0x803E0F74` | :x: (0.0%) |
+| `isBodySensorTypeMapObj__2MRFPC9LiveActor` | `0x803E0FA4` | :x: (0.0%) |
+| `receiveMapPartsRotateMsg__2MRFP9LiveActorUlP17MapPartsRailMoverP19MapPartsRailRotator` | `0x803E0FD4` | :x: (0.0%) |
+| `tryStartMapPartsRotateAtPoint__2MRFP9LiveActorP17MapPartsRailMoverP19MapPartsRailRotator` | `0x803E1018` | :x: (0.0%) |
+| `tryEndMapPartsRotateAtPoint__2MRFP9LiveActorP17MapPartsRailMoverP19MapPartsRailRotator` | `0x803E10A8` | :x: (0.0%) |
+| `tryStartMapPartsRotateBetweenPoints__2MRFP9LiveActorP17MapPartsRailMoverP19MapPartsRailRotator` | `0x803E10F0` | :x: (0.0%) |
+| `isMapPartsRailMovePassedStartPointRepeat__2MRFPC17MapPartsRailMover` | `0x803E1198` | :x: (0.0%) |
+| `isMapPartsRailMovePassedEndPointRepeat__2MRFPC17MapPartsRailMover` | `0x803E11B4` | :x: (0.0%) |
+| `getMapPartsObjectName__2MRFPcUlRC12JMapInfoIter` | `0x803E11D0` | :x: (0.0%) |
+| `getMapPartsObjectNameIfExistShapeID__2MRFPcUlRC12JMapInfoIter` | `0x803E1250` | :x: (0.0%) |
+| `getMapPartsObjectName__2MRFPcUlPCcl` | `0x803E12F4` | :x: (0.0%) |
+| `initMapPartsClipping__2MRFP9LiveActorRC12JMapInfoIterPQ29JGeometry8TVec3<f>b` | `0x803E1310` | :x: (0.0%) |
+| `isMapPartsPressOn__2MRFRC12JMapInfoIter` | `0x803E1450` | :x: (0.0%) |
+| `createMapPartsRailGuideDrawer__2MRFP9LiveActorPCcRC12JMapInfoIter` | `0x803E1494` | :x: (0.0%) |
+| `initMapPartsShadow__2MRFP9LiveActorRC12JMapInfoIter` | `0x803E14E4` | :x: (0.0%) |
+| `getJMapInfoArgNoInit__26@unnamed@MapPartsUtil_cpp@FRC12JMapInfoIterPCcPl` | `0x803E15E0` | :x: (0.0%) |
+| `getJMapInfoArgNoInit__26@unnamed@MapPartsUtil_cpp@FRC12JMapInfoIterPCcPf` | `0x803E1670` | :x: (0.0%) |
+| `getMapPartsArgMoveConditionType__2MRFPlRC12JMapInfoIter` | `0x803E16DC` | :x: (0.0%) |
+| `getMapPartsArgRotateSpeed__2MRFPfRC12JMapInfoIter` | `0x803E16F0` | :x: (0.0%) |
+| `getMapPartsArgRotateTime__2MRFPlRC12JMapInfoIter` | `0x803E1704` | :x: (0.0%) |
+| `getMapPartsArgRotateAngle__2MRFPfRC12JMapInfoIter` | `0x803E1718` | :x: (0.0%) |
+| `getMapPartsArgRotateAxis__2MRFPlRC12JMapInfoIter` | `0x803E172C` | :x: (0.0%) |
+| `getMapPartsArgRotateAccelType__2MRFPlRC12JMapInfoIter` | `0x803E1740` | :x: (0.0%) |
+| `getMapPartsArgRotateStopTime__2MRFPlRC12JMapInfoIter` | `0x803E1754` | :x: (0.0%) |
+| `getMapPartsArgRotateType__2MRFPlRC12JMapInfoIter` | `0x803E1768` | :x: (0.0%) |
+| `getMapPartsArgShadowType__2MRFPlRC12JMapInfoIter` | `0x803E177C` | :x: (0.0%) |
+| `getMapPartsArgSignMotionType__2MRFPlRC12JMapInfoIter` | `0x803E1790` | :x: (0.0%) |
+| `getMapPartsArgMovePosture__2MRFPlPC9LiveActor` | `0x803E17A4` | :x: (0.0%) |
+| `getMapPartsArgMoveStopType__2MRFPlPC9LiveActor` | `0x803E17B4` | :x: (0.0%) |
+| `getMapPartsArgRailGuideType__2MRFPlPC9LiveActor` | `0x803E17C4` | :x: (0.0%) |
+| `getMapPartsArgRailInitPosType__2MRFPlPC9LiveActor` | `0x803E17D4` | :x: (0.0%) |
+| `getMapPartsArgMoveSpeed__2MRFPfPC9LiveActor` | `0x803E17E4` | :x: (0.0%) |
+| `getMapPartsArgStopTime__2MRFPlPC9LiveActor` | `0x803E17F4` | :x: (0.0%) |
+| `getMapPartsArgAccelTime__2MRFPlPC9LiveActor` | `0x803E1804` | :x: (0.0%) |
+| `getMapPartsArgSpeedCalcType__2MRFPlPC9LiveActor` | `0x803E1814` | :x: (0.0%) |
+| `getMapPartsArgRailRotateSpeed__2MRFPfPC9LiveActorl` | `0x803E1824` | :x: (0.0%) |
+| `getMapPartsArgRailRotateTime__2MRFPlPC9LiveActorl` | `0x803E1838` | :x: (0.0%) |
+| `getMapPartsArgRailRotateAngle__2MRFPfPC9LiveActorl` | `0x803E184C` | :x: (0.0%) |
+| `getMapPartsArgRailRotateAxis__2MRFPlPC9LiveActorl` | `0x803E1860` | :x: (0.0%) |
+| `getMapPartsArgRailRotateType__2MRFPlPC9LiveActorl` | `0x803E1874` | :x: (0.0%) |
+| `getMapPartsArgSpeedCalcType__2MRFPlPC9LiveActorl` | `0x803E1888` | :x: (0.0%) |
+| `getMapPartsArgMoveTimeToNextPoint__2MRFPlPC9LiveActor` | `0x803E189C` | :x: (0.0%) |
+| `isMapPartsSignMotionTypeMoveStart__2MRFl` | `0x803E18AC` | :x: (0.0%) |
+| `isMapPartsSignMotionTypeMoveWait__2MRFl` | `0x803E18CC` | :x: (0.0%) |
+| `hasMapPartsMoveStartSignMotion__2MRFl` | `0x803E18EC` | :x: (0.0%) |
+| `hasMapPartsVanishSignMotion__2MRFl` | `0x803E1930` | :x: (0.0%) |
+| `isMapPartsShadowTypeNone__2MRFl` | `0x803E1960` | :x: (0.0%) |
+| `hasMapPartsShadow__2MRFl` | `0x803E196C` | :x: (0.0%) |
+| `isMoveStartTypeUnconditional__2MRFl` | `0x803E1978` | :x: (0.0%) |
+| `isMoveStartTypePlayerOnStopEnd__2MRFl` | `0x803E1984` | :x: (0.0%) |
+| `isMapPartsRailInitPosTypeRailPos__2MRFl` | `0x803E1994` | :x: (0.0%) |
+| `isMapPartsRailInitPosTypeRailPoint__2MRFl` | `0x803E19A0` | :x: (0.0%) |
+| `isMapPartsRailInitPosTypePoint0__2MRFl` | `0x803E19B0` | :x: (0.0%) |
+| `isMapPartsRailSpeedCalcTypeTime__2MRFl` | `0x803E19C0` | :x: (0.0%) |

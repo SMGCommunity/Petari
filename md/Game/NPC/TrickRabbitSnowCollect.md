@@ -1,0 +1,67 @@
+# main/Game/NPC/TrickRabbitSnowCollect
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__22TrickRabbitSnowCollectFPCc` | `0x80297A28` | :x: (0.0%) |
+| `init__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297A94` | :x: (0.0%) |
+| `initRabbits__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297BC8` | :x: (0.0%) |
+| `initTalk__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297CB4` | :x: (0.0%) |
+| `getBaseMtx__22TrickRabbitSnowCollectCFv` | `0x80297D08` | :x: (0.0%) |
+| `setStartPosition__22TrickRabbitSnowCollectFv` | `0x80297D10` | :x: (0.0%) |
+| `setFinishPosition__22TrickRabbitSnowCollectFv` | `0x80297D7C` | :x: (0.0%) |
+| `noticeCaught__22TrickRabbitSnowCollectFP15TrickRabbitSnow` | `0x80297DE8` | :x: (0.0%) |
+| `noticeGiveUp__22TrickRabbitSnowCollectFP15TrickRabbitSnow` | `0x80297E50` | :x: (0.0%) |
+| `startSuccessDemo__22TrickRabbitSnowCollectFv` | `0x80297EC8` | :x: (0.0%) |
+| `startFailedDemo__22TrickRabbitSnowCollectFv` | `0x80297F30` | :x: (0.0%) |
+| `exeStartWipeOut__22TrickRabbitSnowCollectFv` | `0x80297F5C` | :x: (0.0%) |
+| `exeStartWipeIn__22TrickRabbitSnowCollectFv` | `0x80297FBC` | :x: (0.0%) |
+| `exeStartTalk__22TrickRabbitSnowCollectFv` | `0x80298044` | :x: (0.0%) |
+| `exeWaitHideSnow__22TrickRabbitSnowCollectFv` | `0x8029809C` | :x: (0.0%) |
+| `exeStart__22TrickRabbitSnowCollectFv` | `0x80298184` | :x: (0.0%) |
+| `exeFailedWipeOut__22TrickRabbitSnowCollectFv` | `0x802982E0` | :x: (0.0%) |
+| `exeFailedWipeIn__22TrickRabbitSnowCollectFv` | `0x80298358` | :x: (0.0%) |
+| `exeFailedTalk__22TrickRabbitSnowCollectFv` | `0x802983E8` | :x: (0.0%) |
+| `exeSuccessWipeOut__22TrickRabbitSnowCollectFv` | `0x80298470` | :x: (0.0%) |
+| `exeSuccessWipeIn__22TrickRabbitSnowCollectFv` | `0x802984DC` | :x: (0.0%) |
+| `exeTakeOutStar__22TrickRabbitSnowCollectFv` | `0x80298578` | :x: (0.0%) |
+| `exeAppearPowerStar__22TrickRabbitSnowCollectFv` | `0x80298624` | :x: (0.0%) |
+| `noticeGiveUp__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986DC` | :x: (0.0%) |
+| `noticeCaught__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986E4` | :x: (0.0%) |
+| `noticeAppear__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986EC` | :x: (0.0%) |
+| `noticeStart__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986F0` | :x: (0.0%) |
+| `__dt__22TrickRabbitSnowCollectFv` | `0x802986F4` | :x: (0.0%) |
+| `__sinit_\TrickRabbitSnowCollect_cpp` | `0x80298750` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect32TrickRabbitSnowCollectNrvTryDemoFv` | `0x802987EC` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect29TrickRabbitSnowCollectNrvWaitFv` | `0x802987FC` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvStartWipeOutFv` | `0x8029880C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvStartWipeInFv` | `0x8029881C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect34TrickRabbitSnowCollectNrvStartTalkFv` | `0x8029882C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvWaitHideSnowFv` | `0x8029883C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect30TrickRabbitSnowCollectNrvStartFv` | `0x8029884C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect38TrickRabbitSnowCollectNrvFailedWipeOutFv` | `0x8029885C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvFailedWipeInFv` | `0x8029886C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect35TrickRabbitSnowCollectNrvFailedTalkFv` | `0x8029887C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect39TrickRabbitSnowCollectNrvSuccessWipeOutFv` | `0x8029888C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect38TrickRabbitSnowCollectNrvSuccessWipeInFv` | `0x8029889C` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvSuccessTalkFv` | `0x802988AC` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvTakeOutStarFv` | `0x802988BC` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect40TrickRabbitSnowCollectNrvAppearPowerStarFv` | `0x802988CC` | :x: (0.0%) |
+| `__ct__Q228NrvTrickRabbitFreeRunCollect28TrickRabbitSnowCollectNrvEndFv` | `0x802988DC` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect28TrickRabbitSnowCollectNrvEndCFP5Spine` | `0x802988EC` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect40TrickRabbitSnowCollectNrvAppearPowerStarCFP5Spine` | `0x802988F0` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvTakeOutStarCFP5Spine` | `0x802988F8` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvSuccessTalkCFP5Spine` | `0x80298900` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect38TrickRabbitSnowCollectNrvSuccessWipeInCFP5Spine` | `0x80298944` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect39TrickRabbitSnowCollectNrvSuccessWipeOutCFP5Spine` | `0x8029894C` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect35TrickRabbitSnowCollectNrvFailedTalkCFP5Spine` | `0x80298954` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvFailedWipeInCFP5Spine` | `0x8029895C` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect38TrickRabbitSnowCollectNrvFailedWipeOutCFP5Spine` | `0x80298964` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect30TrickRabbitSnowCollectNrvStartCFP5Spine` | `0x8029896C` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvWaitHideSnowCFP5Spine` | `0x80298974` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect34TrickRabbitSnowCollectNrvStartTalkCFP5Spine` | `0x8029897C` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect36TrickRabbitSnowCollectNrvStartWipeInCFP5Spine` | `0x80298984` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect37TrickRabbitSnowCollectNrvStartWipeOutCFP5Spine` | `0x8029898C` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect29TrickRabbitSnowCollectNrvWaitCFP5Spine` | `0x80298994` | :x: (0.0%) |
+| `execute__Q228NrvTrickRabbitFreeRunCollect32TrickRabbitSnowCollectNrvTryDemoCFP5Spine` | `0x802989E8` | :x: (0.0%) |

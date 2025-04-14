@@ -1,0 +1,61 @@
+# main/Game/Boss/DodoryuStateLv1
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `negateInternal__9JGeometryFPCfPf` | `0x80053CB4` | :x: (0.0%) |
+| `__ct__15DodoryuStateLv1FP7DodoryuPCc` | `0x80053CD0` | :x: (0.0%) |
+| `init__15DodoryuStateLv1FRC12JMapInfoIter` | `0x80053D54` | :x: (0.0%) |
+| `control__15DodoryuStateLv1Fv` | `0x80053DA0` | :x: (0.0%) |
+| `exeHide__15DodoryuStateLv1Fv` | `0x80053E1C` | :x: (0.0%) |
+| `exeAppearSign__15DodoryuStateLv1Fv` | `0x80053F14` | :x: (0.0%) |
+| `exeAppearStart__15DodoryuStateLv1Fv` | `0x80053F78` | :x: (0.0%) |
+| `exeAppear__15DodoryuStateLv1Fv` | `0x80054018` | :x: (0.0%) |
+| `exeAppearEnd__15DodoryuStateLv1Fv` | `0x800540A8` | :x: (0.0%) |
+| `exeJumpOut__15DodoryuStateLv1Fv` | `0x80054118` | :x: (0.0%) |
+| `exeDamage__15DodoryuStateLv1Fv` | `0x800541E8` | :x: (0.0%) |
+| `exeDive__15DodoryuStateLv1Fv` | `0x8005429C` | :x: (0.0%) |
+| `exeSpinOut__15DodoryuStateLv1Fv` | `0x80054358` | :x: (0.0%) |
+| `start__15DodoryuStateLv1Fv` | `0x800544B8` | :x: (0.0%) |
+| `catchAttackSensor__15DodoryuStateLv1FP9HitSensorP9HitSensor` | `0x80054508` | :x: (0.0%) |
+| `catchHipDrop__15DodoryuStateLv1Fv` | `0x800545F8` | :x: (0.0%) |
+| `catchPlayerAttack__15DodoryuStateLv1FUlP9HitSensorP9HitSensor` | `0x800546D0` | :x: (0.0%) |
+| `catchStartClipped__15DodoryuStateLv1Fv` | `0x800548D4` | :x: (0.0%) |
+| `isAttackable__15DodoryuStateLv1CFv` | `0x800548D8` | :x: (0.0%) |
+| `executeHideJump__15DodoryuStateLv1Fv` | `0x8005499C` | :x: (0.0%) |
+| `startPop__15DodoryuStateLv1Fv` | `0x80054A18` | :x: (0.0%) |
+| `updatePop__15DodoryuStateLv1Fv` | `0x80054A34` | :x: (0.0%) |
+| `isHipDropReactionJumpOut__15DodoryuStateLv1CFv` | `0x80054B40` | :x: (0.0%) |
+| `isHipDropReactionPop__15DodoryuStateLv1CFv` | `0x80054BDC` | :x: (0.0%) |
+| `isHipDropReactionNothing__15DodoryuStateLv1CFv` | `0x80054C34` | :x: (0.0%) |
+| `setRailSpeed__15DodoryuStateLv1Ff` | `0x80054CE4` | :x: (0.0%) |
+| `startAnimAppear__15DodoryuStateLv1Fv` | `0x80054CFC` | :x: (0.0%) |
+| `startAnimWalk__15DodoryuStateLv1Fv` | `0x80054D84` | :x: (0.0%) |
+| `startAnimHide__15DodoryuStateLv1Fv` | `0x80054DE4` | :x: (0.0%) |
+| `startAnimEffectWalkAppear__15DodoryuStateLv1Fv` | `0x80054E34` | :x: (0.0%) |
+| `startAnimEffectWalk__15DodoryuStateLv1Fv` | `0x80054E84` | :x: (0.0%) |
+| `startAnimEffectWalkHide__15DodoryuStateLv1Fv` | `0x80054ED4` | :x: (0.0%) |
+| `__dt__15DodoryuStateLv1Fv` | `0x80054F24` | :x: (0.0%) |
+| `__sinit_\DodoryuStateLv1_cpp` | `0x80054F7C` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvHideFv` | `0x80054FE0` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@28DodoryuStateLv1NrvAppearSignFv` | `0x80054FF0` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@29DodoryuStateLv1NrvAppearStartFv` | `0x80055000` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@24DodoryuStateLv1NrvAppearFv` | `0x80055010` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@27DodoryuStateLv1NrvAppearEndFv` | `0x80055020` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@25DodoryuStateLv1NrvJumpOutFv` | `0x80055030` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@24DodoryuStateLv1NrvDamageFv` | `0x80055040` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvDiveFv` | `0x80055050` | :x: (0.0%) |
+| `__ct__Q229@unnamed@DodoryuStateLv1_cpp@25DodoryuStateLv1NrvSpinOutFv` | `0x80055060` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@25DodoryuStateLv1NrvSpinOutCFP5Spine` | `0x80055070` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvDiveCFP5Spine` | `0x80055078` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@24DodoryuStateLv1NrvDamageCFP5Spine` | `0x80055080` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@25DodoryuStateLv1NrvJumpOutCFP5Spine` | `0x80055088` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@27DodoryuStateLv1NrvAppearEndCFP5Spine` | `0x80055090` | :x: (0.0%) |
+| `executeOnEnd__Q229@unnamed@DodoryuStateLv1_cpp@24DodoryuStateLv1NrvAppearCFP5Spine` | `0x80055098` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@24DodoryuStateLv1NrvAppearCFP5Spine` | `0x800550A4` | :x: (0.0%) |
+| `executeOnEnd__Q229@unnamed@DodoryuStateLv1_cpp@29DodoryuStateLv1NrvAppearStartCFP5Spine` | `0x800550AC` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@29DodoryuStateLv1NrvAppearStartCFP5Spine` | `0x800550B8` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@28DodoryuStateLv1NrvAppearSignCFP5Spine` | `0x800550C0` | :x: (0.0%) |
+| `executeOnEnd__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvHideCFP5Spine` | `0x800550C8` | :x: (0.0%) |
+| `execute__Q229@unnamed@DodoryuStateLv1_cpp@22DodoryuStateLv1NrvHideCFP5Spine` | `0x800550D0` | :x: (0.0%) |

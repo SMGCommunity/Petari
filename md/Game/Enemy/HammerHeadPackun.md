@@ -1,0 +1,67 @@
+# main/Game/Enemy/HammerHeadPackun
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__16HammerHeadPackunFPCc` | `0x800EF9F4` | :x: (0.0%) |
+| `init__16HammerHeadPackunFRC12JMapInfoIter` | `0x800EFA70` | :x: (0.0%) |
+| `makeActorAppeared__16HammerHeadPackunFv` | `0x800EFBD8` | :x: (0.0%) |
+| `kill__16HammerHeadPackunFv` | `0x800EFC10` | :x: (0.0%) |
+| `control__16HammerHeadPackunFv` | `0x800EFCB8` | :x: (0.0%) |
+| `exeWait__16HammerHeadPackunFv` | `0x800EFCC0` | :x: (0.0%) |
+| `exeSearch__16HammerHeadPackunFv` | `0x800EFD50` | :x: (0.0%) |
+| `exeAttack__16HammerHeadPackunFv` | `0x800EFDC8` | :x: (0.0%) |
+| `exeRest__16HammerHeadPackunFv` | `0x800EFEB4` | :x: (0.0%) |
+| `exeRecover__16HammerHeadPackunFv` | `0x800EFF40` | :x: (0.0%) |
+| `exeDamage__16HammerHeadPackunFv` | `0x800EFFDC` | :x: (0.0%) |
+| `exeRise__16HammerHeadPackunFv` | `0x800F00EC` | :x: (0.0%) |
+| `exeCrow__16HammerHeadPackunFv` | `0x800F01E8` | :x: (0.0%) |
+| `exeSmashKill__16HammerHeadPackunFv` | `0x800F028C` | :x: (0.0%) |
+| `exeBlowKill__16HammerHeadPackunFv` | `0x800F0340` | :x: (0.0%) |
+| `exeNumb__16HammerHeadPackunFv` | `0x800F0400` | :x: (0.0%) |
+| `calcAndSetBaseMtx__16HammerHeadPackunFv` | `0x800F04F0` | :x: (0.0%) |
+| `attackSensor__16HammerHeadPackunFP9HitSensorP9HitSensor` | `0x800F0594` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__16HammerHeadPackunFUlP9HitSensorP9HitSensor` | `0x800F07AC` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__16HammerHeadPackunFUlP9HitSensorP9HitSensor` | `0x800F09DC` | :x: (0.0%) |
+| `initPosture__16HammerHeadPackunFv` | `0x800F0AEC` | :x: (0.0%) |
+| `initSensor__16HammerHeadPackunFv` | `0x800F0B48` | :x: (0.0%) |
+| `initShadow__16HammerHeadPackunFv` | `0x800F0CA8` | :x: (0.0%) |
+| `initLeaf__16HammerHeadPackunFRC12JMapInfoIter` | `0x800F0D00` | :x: (0.0%) |
+| `isTargetInRange__16HammerHeadPackunCFv` | `0x800F0E78` | :x: (0.0%) |
+| `isInFieldOfView__16HammerHeadPackunCFRCQ29JGeometry8TVec3<f>` | `0x800F0F44` | :x: (0.0%) |
+| `isAttackSensorValid__16HammerHeadPackunCFv` | `0x800F0FCC` | :x: (0.0%) |
+| `isChance__16HammerHeadPackunCFv` | `0x800F10DC` | :x: (0.0%) |
+| `calcPlayerDir__16HammerHeadPackunCFPQ29JGeometry8TVec3<f>` | `0x800F11B0` | :x: (0.0%) |
+| `turnTo__16HammerHeadPackunFRCQ29JGeometry8TVec3<f>f` | `0x800F124C` | :x: (0.0%) |
+| `turnToAttackVec__16HammerHeadPackunFl` | `0x800F1324` | :x: (0.0%) |
+| `verticalizeFrontVec__16HammerHeadPackunFv` | `0x800F13DC` | :x: (0.0%) |
+| `tryShiftNumb__16HammerHeadPackunFv` | `0x800F142C` | :x: (0.0%) |
+| `receiveMsgPlayerAttackChance__16HammerHeadPackunFUlP9HitSensorP9HitSensor` | `0x800F1484` | :x: (0.0%) |
+| `__dt__16HammerHeadPackunFv` | `0x800F1570` | :x: (0.0%) |
+| `__sinit_\HammerHeadPackun_cpp` | `0x800F15CC` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvWaitFv` | `0x800F1648` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvSearchFv` | `0x800F1658` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvAttackFv` | `0x800F1668` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvRestFv` | `0x800F1678` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@26HammerHeadPackunNrvRecoverFv` | `0x800F1688` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvDamageFv` | `0x800F1698` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvRiseFv` | `0x800F16A8` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@22HammerHeadPackunNrvHitFv` | `0x800F16B8` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvCrowFv` | `0x800F16C8` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@28HammerHeadPackunNrvSmashKillFv` | `0x800F16D8` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@27HammerHeadPackunNrvBlowKillFv` | `0x800F16E8` | :x: (0.0%) |
+| `__ct__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvNumbFv` | `0x800F16F8` | :x: (0.0%) |
+| `executeOnEnd__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvNumbCFP5Spine` | `0x800F1708` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvNumbCFP5Spine` | `0x800F1718` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@27HammerHeadPackunNrvBlowKillCFP5Spine` | `0x800F1720` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@28HammerHeadPackunNrvSmashKillCFP5Spine` | `0x800F1728` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvCrowCFP5Spine` | `0x800F1730` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@22HammerHeadPackunNrvHitCFP5Spine` | `0x800F1738` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvRiseCFP5Spine` | `0x800F177C` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvDamageCFP5Spine` | `0x800F1784` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@26HammerHeadPackunNrvRecoverCFP5Spine` | `0x800F178C` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvRestCFP5Spine` | `0x800F1794` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvAttackCFP5Spine` | `0x800F179C` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@25HammerHeadPackunNrvSearchCFP5Spine` | `0x800F17A4` | :x: (0.0%) |
+| `execute__Q230@unnamed@HammerHeadPackun_cpp@23HammerHeadPackunNrvWaitCFP5Spine` | `0x800F17AC` | :x: (0.0%) |

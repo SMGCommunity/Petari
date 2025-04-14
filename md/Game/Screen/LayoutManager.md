@@ -1,0 +1,60 @@
+# main/Game/Screen/LayoutManager
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ml__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorCFv` | `0x803682A8` | :x: (0.0%) |
+| `__pp__Q44nw4r2ut28LinkList<Q34nw4r3lyt4Pane,4>8IteratorFi` | `0x8036831C` | :x: (0.0%) |
+| `GetBeginIter__Q34nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>Fv` | `0x80368330` | :x: (0.0%) |
+| `__rf__Q44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorCFv` | `0x80368338` | :x: (0.0%) |
+| `__pp__Q44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorFi` | `0x80368388` | :x: (0.0%) |
+| `GetEndIter__Q34nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>Fv` | `0x8036839C` | :x: (0.0%) |
+| `__ne__Q24nw4r2utFQ44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8IteratorQ44nw4r2ut29LinkList<Q34nw4r3lyt5Group,4>8Iterator` | `0x803683A4` | :x: (0.0%) |
+| `__ct__13LayoutManagerFPCcbUlUl` | `0x803683BC` | :x: (0.0%) |
+| `movement__13LayoutManagerFv` | `0x80368594` | :x: (0.0%) |
+| `calcAnim__13LayoutManagerFv` | `0x80368630` | :x: (0.0%) |
+| `draw__13LayoutManagerCFv` | `0x803686A8` | :x: (0.0%) |
+| `addPaneCtrl__13LayoutManagerFP14LayoutPaneCtrl` | `0x80368700` | :x: (0.0%) |
+| `createAndAddRootPaneCtrl__13LayoutManagerFUl` | `0x80368768` | :x: (0.0%) |
+| `createAndAddPaneCtrl__13LayoutManagerFPCcUl` | `0x80368808` | :x: (0.0%) |
+| `getPaneCtrl__13LayoutManagerCFPCc` | `0x80368898` | :x: (0.0%) |
+| `getIndexOfPane__13LayoutManagerCFPCc` | `0x803688E8` | :x: (0.0%) |
+| `isExistPaneCtrl__13LayoutManagerCFPCc` | `0x80368960` | :x: (0.0%) |
+| `addGroupCtrl__13LayoutManagerFP15LayoutGroupCtrl` | `0x803689C0` | :x: (0.0%) |
+| `isPointing__13LayoutManagerCFPCQ34nw4r3lyt4PaneRCQ29JGeometry8TVec2<f>` | `0x80368A70` | :x: (0.0%) |
+| `createAndAddGroupCtrl__13LayoutManagerFPCcUl` | `0x80368C40` | :x: (0.0%) |
+| `getIndexOfGroupCtrl__13LayoutManagerCFPCc` | `0x80368CB0` | :x: (0.0%) |
+| `createPaneMtxRef__13LayoutManagerFPCc` | `0x80368D5C` | :x: (0.0%) |
+| `getPaneMtxRef__13LayoutManagerCFPCc` | `0x80368DB8` | :x: (0.0%) |
+| `isExistPaneMtxRef__13LayoutManagerCFPCc` | `0x80368E04` | :x: (0.0%) |
+| `isPointing__13LayoutManagerCFPCcRCQ29JGeometry8TVec2<f>` | `0x80368E58` | :x: (0.0%) |
+| `getAnimTransform__13LayoutManagerCFPCc` | `0x80368EA0` | :x: (0.0%) |
+| `bindPaneCtrlAnim__13LayoutManagerFP14LayoutPaneCtrlPQ34nw4r3lyt13AnimTransform` | `0x80368F3C` | :x: (0.0%) |
+| `bindPaneCtrlAnimSub__13LayoutManagerFRUlPQ34nw4r3lyt13AnimTransform` | `0x80369010` | :x: (0.0%) |
+| `unbindPaneCtrlAnim__13LayoutManagerFP14LayoutPaneCtrlPQ34nw4r3lyt13AnimTransform` | `0x803690F8` | :x: (0.0%) |
+| `unbindPaneCtrlAnimSub__13LayoutManagerFRUlPQ34nw4r3lyt13AnimTransform` | `0x803691A0` | :x: (0.0%) |
+| `calcAnimWithoutLocationAdjust__13LayoutManagerFRCQ34nw4r3lyt8DrawInfo` | `0x8036925C` | :x: (0.0%) |
+| `getGroup__13LayoutManagerCFPCc` | `0x803693B8` | :x: (0.0%) |
+| `initArc__13LayoutManagerFPCcPCc` | `0x8036948C` | :x: (0.0%) |
+| `initDrawInfo__13LayoutManagerFv` | `0x803695C0` | :x: (0.0%) |
+| `initPaneInfo__13LayoutManagerFv` | `0x80369658` | :x: (0.0%) |
+| `initPaneInfoRecursive__13LayoutManagerFRUlPQ34nw4r3lyt4Pane` | `0x803696B8` | :x: (0.0%) |
+| `countPanes__13LayoutManagerFPQ34nw4r3lyt4Pane` | `0x803697D8` | :x: (0.0%) |
+| `initGroupCtrlList__13LayoutManagerFv` | `0x80369870` | :x: (0.0%) |
+| `initTextBoxRecursive__13LayoutManagerFPQ34nw4r3lyt4PanePQ34nw4r3lyt4PanePCcUl` | `0x803698E0` | :x: (0.0%) |
+| `animateRecursive__13LayoutManagerFRUlPQ34nw4r3lyt4Pane` | `0x80369A38` | :x: (0.0%) |
+| `findPaneByName__13LayoutManagerCFPCc` | `0x80369B3C` | :x: (0.0%) |
+| `replaceIndDummyTexture__13LayoutManagerFv` | `0x80369BBC` | :x: (0.0%) |
+| `removeUnnecessaryPanes__13LayoutManagerFPQ34nw4r3lyt4Pane` | `0x80369E9C` | :x: (0.0%) |
+| `__ct__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fv` | `0x8036A1B8` | :x: (0.0%) |
+| `__dt__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fv` | `0x8036A1FC` | :x: (0.0%) |
+| `isAnythingTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>CFv` | `0x8036A23C` | :x: (0.0%) |
+| `onBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fi` | `0x8036A270` | :x: (0.0%) |
+| `offBit__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>Fi` | `0x8036A2A0` | :x: (0.0%) |
+| `isTrue__Q327@unnamed@LayoutManager_cpp@5Local12BitFlag<128>CFi` | `0x8036A2D0` | :x: (0.0%) |
+| `SetLocationAdjustScale__Q34nw4r3lyt8DrawInfoFRCQ34nw4r4math4VEC2` | `0x8036A304` | :x: (0.0%) |
+| `isExistResOther__12LayoutHolderCFPCc` | `0x8036A318` | :x: (0.0%) |
+| `getResOther__12LayoutHolderCFPCc` | `0x8036A320` | :x: (0.0%) |
+| `getResOther__12LayoutHolderCFUl` | `0x8036A328` | :x: (0.0%) |
+| `getResOtherNum__12LayoutHolderCFv` | `0x8036A330` | :x: (0.0%) |

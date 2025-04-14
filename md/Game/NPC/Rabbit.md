@@ -1,0 +1,60 @@
+# main/Game/NPC/Rabbit
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__6RabbitFPCc` | `0x8027F8CC` | :x: (0.0%) |
+| `init__6RabbitFRC12JMapInfoIter` | `0x8027F908` | :x: (0.0%) |
+| `control__6RabbitFv` | `0x8027FD94` | :x: (0.0%) |
+| `exeAppear__6RabbitFv` | `0x8027FE40` | :x: (0.0%) |
+| `exeAppearLand__6RabbitFv` | `0x8027FF60` | :x: (0.0%) |
+| `exeWait__6RabbitFv` | `0x8027FFC0` | :x: (0.0%) |
+| `exeGoal__6RabbitFv` | `0x80280180` | :x: (0.0%) |
+| `exeFinish__6RabbitFv` | `0x8028024C` | :x: (0.0%) |
+| `calcAndSetBaseMtx__6RabbitFv` | `0x80280304` | :x: (0.0%) |
+| `calcRailPos__6RabbitFPQ29JGeometry8TVec3<f>` | `0x80280368` | :x: (0.0%) |
+| `isNeedTurn__6RabbitFRCQ29JGeometry8TVec3<f>` | `0x80280478` | :x: (0.0%) |
+| `updateJump__6RabbitFv` | `0x80280520` | :x: (0.0%) |
+| `exeForwardLand__6RabbitFv` | `0x8028063C` | :x: (0.0%) |
+| `exePreJump__6RabbitFv` | `0x802806CC` | :x: (0.0%) |
+| `exeMove__6RabbitFv` | `0x80280788` | :x: (0.0%) |
+| `exeBackwardLand__6RabbitFv` | `0x80280984` | :x: (0.0%) |
+| `exePreJumpBack__6RabbitFv` | `0x80280A0C` | :x: (0.0%) |
+| `exeNear__6RabbitFv` | `0x80280A90` | :x: (0.0%) |
+| `exeReaction__6RabbitFv` | `0x80280C30` | :x: (0.0%) |
+| `exeTalk__6RabbitFv` | `0x80280D44` | :x: (0.0%) |
+| `exeJumpV__6RabbitFv` | `0x80280E00` | :x: (0.0%) |
+| `exeJumpH__6RabbitFv` | `0x80280E5C` | :x: (0.0%) |
+| `__dt__6RabbitFv` | `0x80280EB8` | :x: (0.0%) |
+| `__sinit_\Rabbit_cpp` | `0x80280F10` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit15RabbitNrvAppearFv` | `0x80280FA4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit19RabbitNrvAppearLandFv` | `0x80280FB4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit13RabbitNrvWaitFv` | `0x80280FC4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit20RabbitNrvForwardLandFv` | `0x80280FD4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit16RabbitNrvPreJumpFv` | `0x80280FE4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit13RabbitNrvMoveFv` | `0x80280FF4` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit13RabbitNrvGoalFv` | `0x80281004` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit15RabbitNrvFinishFv` | `0x80281014` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit17RabbitNrvReactionFv` | `0x80281024` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit13RabbitNrvTalkFv` | `0x80281034` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit14RabbitNrvJumpVFv` | `0x80281044` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit14RabbitNrvJumpHFv` | `0x80281054` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit21RabbitNrvBackwardLandFv` | `0x80281064` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit20RabbitNrvPreJumpBackFv` | `0x80281074` | :x: (0.0%) |
+| `__ct__Q29NrvRabbit13RabbitNrvNearFv` | `0x80281084` | :x: (0.0%) |
+| `execute__Q29NrvRabbit13RabbitNrvNearCFP5Spine` | `0x80281094` | :x: (0.0%) |
+| `execute__Q29NrvRabbit20RabbitNrvPreJumpBackCFP5Spine` | `0x8028109C` | :x: (0.0%) |
+| `execute__Q29NrvRabbit21RabbitNrvBackwardLandCFP5Spine` | `0x802810A4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit14RabbitNrvJumpHCFP5Spine` | `0x802810AC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit14RabbitNrvJumpVCFP5Spine` | `0x802810B4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit13RabbitNrvTalkCFP5Spine` | `0x802810BC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit17RabbitNrvReactionCFP5Spine` | `0x802810C4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit15RabbitNrvFinishCFP5Spine` | `0x802810CC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit13RabbitNrvGoalCFP5Spine` | `0x802810D4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit13RabbitNrvMoveCFP5Spine` | `0x802810DC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit16RabbitNrvPreJumpCFP5Spine` | `0x802810E4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit20RabbitNrvForwardLandCFP5Spine` | `0x802810EC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit13RabbitNrvWaitCFP5Spine` | `0x802810F4` | :x: (0.0%) |
+| `execute__Q29NrvRabbit19RabbitNrvAppearLandCFP5Spine` | `0x802810FC` | :x: (0.0%) |
+| `execute__Q29NrvRabbit15RabbitNrvAppearCFP5Spine` | `0x80281104` | :x: (0.0%) |

@@ -1,0 +1,64 @@
+# main/Game/Screen/CustomTagProcessor
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `setGXColor__32@unnamed@CustomTagProcessor_cpp@F11_GXColorS10` | `0x803508E4` | :x: (0.0%) |
+| `clampU8__32@unnamed@CustomTagProcessor_cpp@Fl` | `0x8035095C` | :x: (0.0%) |
+| `getTextColor__32@unnamed@CustomTagProcessor_cpp@Fl` | `0x80350984` | :x: (0.0%) |
+| `setTextColor__32@unnamed@CustomTagProcessor_cpp@FPQ34nw4r2ut17TextWriterBase<w>l` | `0x803509D4` | :x: (0.0%) |
+| `__ct__18CustomTagAlphaCtrlFv` | `0x80350A4C` | :x: (0.0%) |
+| `init__18CustomTagAlphaCtrlFUlffll` | `0x80350A7C` | :x: (0.0%) |
+| `alpha__18CustomTagAlphaCtrlCFv` | `0x80350AC8` | :x: (0.0%) |
+| `update__18CustomTagAlphaCtrlFv` | `0x80350B8C` | :x: (0.0%) |
+| `isEnd__18CustomTagAlphaCtrlCFv` | `0x80350C14` | :x: (0.0%) |
+| `findGroupFunctionInfo__Q218CustomTagProcessor4ImplFi` | `0x80350C9C` | :x: (0.0%) |
+| `PrintImpl__Q34nw4r2ut17TextWriterBase<w>FPCwi` | `0x80350D04` | :x: (0.0%) |
+| `__ct__18CustomTagProcessorFPQ34nw4r3lyt7TextBox` | `0x80351A74` | :x: (0.0%) |
+| `__dt__26MessageTagSkipTagProcessorFv` | `0x80351BC0` | :x: (0.0%) |
+| `CalcRect__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext<w>` | `0x80351C18` | :x: (0.0%) |
+| `Process__18CustomTagProcessorFUsPQ34nw4r2ut15PrintContext<w>` | `0x80351D0C` | :x: (0.0%) |
+| `setArgNumber__18CustomTagProcessorFll` | `0x80351DF0` | :x: (0.0%) |
+| `setArgString__18CustomTagProcessorFPCwl` | `0x80351E70` | :x: (0.0%) |
+| `initAlpha__18CustomTagProcessorFffll` | `0x80351EF0` | :x: (0.0%) |
+| `reset__18CustomTagProcessorFPCw` | `0x80351F78` | :x: (0.0%) |
+| `getReplaceTag__18CustomTagProcessorCFPCwlll` | `0x80351FA4` | :x: (0.0%) |
+| `isIgnoreTag__18CustomTagProcessorCFUsPQ34nw4r2ut15PrintContext<w>` | `0x80352068` | :x: (0.0%) |
+| `writeString__18CustomTagProcessorFPQ34nw4r2ut4RectPCwPQ34nw4r2ut15PrintContext<w>` | `0x803520B4` | :x: (0.0%) |
+| `exeDisplayGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x8035222C` | :x: (0.0%) |
+| `exeSoundGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803522D8` | :x: (0.0%) |
+| `exePictureGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803523BC` | :x: (0.0%) |
+| `exeFontSizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x8035251C` | :x: (0.0%) |
+| `exeSystemGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x80352614` | :x: (0.0%) |
+| `exeLocalizeGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803526A8` | :x: (0.0%) |
+| `exeNumberGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x80352704` | :x: (0.0%) |
+| `exeStringGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x80352834` | :x: (0.0%) |
+| `exeSystemGroupColor__18CustomTagProcessorFPQ34nw4r2ut4RectiPQ34nw4r2ut15PrintContext<w>` | `0x803528B8` | :x: (0.0%) |
+| `exeSystemGroupRuby__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803529CC` | :x: (0.0%) |
+| `exeDisplayGroupWait__18CustomTagProcessorFPQ34nw4r2ut4RectUsPQ34nw4r2ut15PrintContext<w>` | `0x8035309C` | :x: (0.0%) |
+| `exeDisplayGroupOffset__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803530B8` | :x: (0.0%) |
+| `exeDisplayGroupCenter__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x8035316C` | :x: (0.0%) |
+| `exeFontGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x80353240` | :x: (0.0%) |
+| `exePatchimuGroup__18CustomTagProcessorFPQ34nw4r2ut4RectRC23MessageEditorMessageTagPQ34nw4r2ut15PrintContext<w>` | `0x803533A0` | :x: (0.0%) |
+| `__dt__18CustomTagProcessorFv` | `0x8035357C` | :x: (0.0%) |
+| `__sinit_\CustomTagProcessor_cpp` | `0x803535D8` | :x: (0.0%) |
+| `GetTextColor__Q34nw4r2ut10CharWriterCFv` | `0x80353600` | :x: (0.0%) |
+| `GetFont__Q34nw4r2ut10CharWriterCFv` | `0x80353740` | :x: (0.0%) |
+| `GetCursorX__Q34nw4r2ut10CharWriterCFv` | `0x80353858` | :x: (0.0%) |
+| `GetCursorY__Q34nw4r2ut10CharWriterCFv` | `0x80353970` | :x: (0.0%) |
+| `SetCursorX__Q34nw4r2ut10CharWriterFf` | `0x80353A88` | :x: (0.0%) |
+| `SetAlpha__Q34nw4r2ut10CharWriterFUc` | `0x80353BAC` | :x: (0.0%) |
+| `MoveCursorX__Q34nw4r2ut10CharWriterFf` | `0x80353CD8` | :x: (0.0%) |
+| `MoveCursorY__Q34nw4r2ut10CharWriterFf` | `0x80353E0C` | :x: (0.0%) |
+| `SetCursorY__Q34nw4r2ut10CharWriterFf` | `0x80353F40` | :x: (0.0%) |
+| `__ct__Q34nw4r2ut17TextWriterBase<w>FRCQ34nw4r2ut17TextWriterBase<w>` | `0x80354064` | :x: (0.0%) |
+| `SetFont__Q34nw4r2ut10CharWriterFRCQ34nw4r2ut4Font` | `0x803542C8` | :x: (0.0%) |
+| `ResetColorMapping__Q34nw4r2ut10CharWriterFv` | `0x803544D8` | :x: (0.0%) |
+| `Set__Q34nw4r2ut14CharStrmReaderFPCw` | `0x8035460C` | :x: (0.0%) |
+| `Next__Q34nw4r2ut14CharStrmReaderFv` | `0x80354878` | :x: (0.0%) |
+| `GetCurrentPos__Q34nw4r2ut14CharStrmReaderCFv` | `0x8035499C` | :x: (0.0%) |
+| `__ct__Q34nw4r2ut4RectFv` | `0x80354AB4` | :x: (0.0%) |
+| `SetHeight__Q34nw4r2ut4RectFf` | `0x80354ACC` | :x: (0.0%) |
+| `GetLineSpace__Q34nw4r2ut17TextWriterBase<w>CFv` | `0x80354ADC` | :x: (0.0%) |
+| `SetCharSpace__Q34nw4r2ut17TextWriterBase<w>Ff` | `0x80354BF4` | :x: (0.0%) |

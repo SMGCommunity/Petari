@@ -1,0 +1,66 @@
+# main/Game/Enemy/JumpSpider
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__10JumpSpiderFPCc` | `0x80100ED8` | :x: (0.0%) |
+| `init__10JumpSpiderFRC12JMapInfoIter` | `0x80100F48` | :x: (0.0%) |
+| `initAfterPlacement__10JumpSpiderFv` | `0x80101170` | :x: (0.0%) |
+| `kill__10JumpSpiderFv` | `0x80101274` | :x: (0.0%) |
+| `startClipped__10JumpSpiderFv` | `0x801012C8` | :x: (0.0%) |
+| `endClipped__10JumpSpiderFv` | `0x80101304` | :x: (0.0%) |
+| `control__10JumpSpiderFv` | `0x80101340` | :x: (0.0%) |
+| `exeWait__10JumpSpiderFv` | `0x80101424` | :x: (0.0%) |
+| `exePreJump__10JumpSpiderFv` | `0x801014A4` | :x: (0.0%) |
+| `exeJump__10JumpSpiderFv` | `0x80101538` | :x: (0.0%) |
+| `exeJumpEnd__10JumpSpiderFv` | `0x80101660` | :x: (0.0%) |
+| `exeHitToPlayer__10JumpSpiderFv` | `0x801016D8` | :x: (0.0%) |
+| `exeStampFall__10JumpSpiderFv` | `0x801017B4` | :x: (0.0%) |
+| `exeStampDeath__10JumpSpiderFv` | `0x8010183C` | :x: (0.0%) |
+| `exeHitBlow__10JumpSpiderFv` | `0x801018F0` | :x: (0.0%) |
+| `exeDpdPointed__10JumpSpiderFv` | `0x80101990` | :x: (0.0%) |
+| `exeNoPowerStart__10JumpSpiderFv` | `0x80101A24` | :x: (0.0%) |
+| `exeNoPowerLand__10JumpSpiderFv` | `0x80101B40` | :x: (0.0%) |
+| `exeNoPowerWait__10JumpSpiderFv` | `0x80101BC8` | :x: (0.0%) |
+| `exeNoPowerEnd__10JumpSpiderFv` | `0x80101C60` | :x: (0.0%) |
+| `attackSensor__10JumpSpiderFP9HitSensorP9HitSensor` | `0x80101CE8` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__10JumpSpiderFUlP9HitSensorP9HitSensor` | `0x80101ED8` | :x: (0.0%) |
+| `receiveOtherMsg__10JumpSpiderFUlP9HitSensorP9HitSensor` | `0x80102064` | :x: (0.0%) |
+| `calcAndSetBaseMtx__10JumpSpiderFv` | `0x80102114` | :x: (0.0%) |
+| `__dt__10JumpSpiderFv` | `0x8010218C` | :x: (0.0%) |
+| `__sinit_\JumpSpider_cpp` | `0x801021E8` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider15HostTypeNrvWaitFv` | `0x8010227C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider18HostTypeNrvPreJumpFv` | `0x8010228C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider15HostTypeNrvJumpFv` | `0x8010229C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider18HostTypeNrvJumpEndFv` | `0x801022AC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider22HostTypeNrvHitToPlayerFv` | `0x801022BC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider20HostTypeNrvStampFallFv` | `0x801022CC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider21HostTypeNrvStampDeathFv` | `0x801022DC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider18HostTypeNrvHitBlowFv` | `0x801022EC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider21HostTypeNrvDpdPointedFv` | `0x801022FC` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider24HostTypeNrvDpdPointedEndFv` | `0x8010230C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider23HostTypeNrvStarPieceHitFv` | `0x8010231C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider25HostTypeNrvDpdPointedLandFv` | `0x8010232C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider27HostTypeNrvStarPieceHitLandFv` | `0x8010233C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider27HostTypeNrvStarPieceHitWaitFv` | `0x8010234C` | :x: (0.0%) |
+| `__ct__Q213NrvJumpSpider21HostTypeNrvNoPowerEndFv` | `0x8010235C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider21HostTypeNrvNoPowerEndCFP5Spine` | `0x8010236C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider27HostTypeNrvStarPieceHitWaitCFP5Spine` | `0x80102374` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider27HostTypeNrvStarPieceHitLandCFP5Spine` | `0x8010237C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider25HostTypeNrvDpdPointedLandCFP5Spine` | `0x80102384` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider23HostTypeNrvStarPieceHitCFP5Spine` | `0x8010238C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider24HostTypeNrvDpdPointedEndCFP5Spine` | `0x80102394` | :x: (0.0%) |
+| `executeOnEnd__Q213NrvJumpSpider21HostTypeNrvDpdPointedCFP5Spine` | `0x8010239C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider21HostTypeNrvDpdPointedCFP5Spine` | `0x801023DC` | :x: (0.0%) |
+| `executeOnEnd__Q213NrvJumpSpider18HostTypeNrvHitBlowCFP5Spine` | `0x801023E4` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider18HostTypeNrvHitBlowCFP5Spine` | `0x801023EC` | :x: (0.0%) |
+| `executeOnEnd__Q213NrvJumpSpider21HostTypeNrvStampDeathCFP5Spine` | `0x801023F4` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider21HostTypeNrvStampDeathCFP5Spine` | `0x801023FC` | :x: (0.0%) |
+| `executeOnEnd__Q213NrvJumpSpider20HostTypeNrvStampFallCFP5Spine` | `0x80102404` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider20HostTypeNrvStampFallCFP5Spine` | `0x8010240C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider22HostTypeNrvHitToPlayerCFP5Spine` | `0x80102414` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider18HostTypeNrvJumpEndCFP5Spine` | `0x8010241C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider15HostTypeNrvJumpCFP5Spine` | `0x80102424` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider18HostTypeNrvPreJumpCFP5Spine` | `0x8010242C` | :x: (0.0%) |
+| `execute__Q213NrvJumpSpider15HostTypeNrvWaitCFP5Spine` | `0x80102434` | :x: (0.0%) |

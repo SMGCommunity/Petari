@@ -1,0 +1,67 @@
+# main/Game/NPC/RunawayRabbit
+
+## Functions
+
+| Name | Address | Match % |
+|------|---------|---------|
+| `__ct__13RunawayRabbitFPCcP20RunawayRabbitCollect` | `0x80284FDC` | :x: (0.0%) |
+| `init__13RunawayRabbitFRC12JMapInfoIter` | `0x802850C4` | :x: (0.0%) |
+| `initAfterPlacement__13RunawayRabbitFv` | `0x802853B4` | :x: (0.0%) |
+| `initSensor__13RunawayRabbitFv` | `0x802853B8` | :x: (0.0%) |
+| `appear__13RunawayRabbitFv` | `0x80285480` | :x: (0.0%) |
+| `control__13RunawayRabbitFv` | `0x802854BC` | :x: (0.0%) |
+| `calcAndSetBaseMtx__13RunawayRabbitFv` | `0x80285528` | :x: (0.0%) |
+| `updatePose__13RunawayRabbitFv` | `0x80285530` | :x: (0.0%) |
+| `updateBindActorMatrix__13RunawayRabbitFv` | `0x8028557C` | :x: (0.0%) |
+| `activate__13RunawayRabbitFv` | `0x80285654` | :x: (0.0%) |
+| `startRunnaway__13RunawayRabbitFv` | `0x80285698` | :x: (0.0%) |
+| `incrementRunawayLevel__13RunawayRabbitFv` | `0x802856F8` | :x: (0.0%) |
+| `setLastMessage__13RunawayRabbitFv` | `0x80285710` | :x: (0.0%) |
+| `setMessage__13RunawayRabbitFv` | `0x80285718` | :x: (0.0%) |
+| `setNotCaughtable__13RunawayRabbitFv` | `0x80285720` | :x: (0.0%) |
+| `startJumpSound__13RunawayRabbitFv` | `0x8028572C` | :x: (0.0%) |
+| `setMsgCtrl__13RunawayRabbitFP15TalkMessageCtrl` | `0x80285794` | :x: (0.0%) |
+| `attackSensor__13RunawayRabbitFP9HitSensorP9HitSensor` | `0x8028579C` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__13RunawayRabbitFUlP9HitSensorP9HitSensor` | `0x80285864` | :x: (0.0%) |
+| `receiveMsgEnemyAttack__13RunawayRabbitFUlP9HitSensorP9HitSensor` | `0x80285964` | :x: (0.0%) |
+| `receiveMsgPush__13RunawayRabbitFP9HitSensorP9HitSensor` | `0x802859EC` | :x: (0.0%) |
+| `receiveOtherMsg__13RunawayRabbitFUlP9HitSensorP9HitSensor` | `0x80285A64` | :x: (0.0%) |
+| `exeHide__13RunawayRabbitFv` | `0x80285A6C` | :x: (0.0%) |
+| `exeAppear__13RunawayRabbitFv` | `0x80285B5C` | :x: (0.0%) |
+| `exeRunaway__13RunawayRabbitFv` | `0x80285CA0` | :x: (0.0%) |
+| `exeCaught__13RunawayRabbitFv` | `0x80285E40` | :x: (0.0%) |
+| `exeCaughtTalk__13RunawayRabbitFv` | `0x80285FA4` | :x: (0.0%) |
+| `exeCaughtEnd__13RunawayRabbitFv` | `0x80286058` | :x: (0.0%) |
+| `exeStop__13RunawayRabbitFv` | `0x8028610C` | :x: (0.0%) |
+| `isCaught__13RunawayRabbitCFv` | `0x8028619C` | :x: (0.0%) |
+| `isCaughtable__13RunawayRabbitCFv` | `0x802861A4` | :x: (0.0%) |
+| `isRunnaway__13RunawayRabbitCFv` | `0x802861F0` | :x: (0.0%) |
+| `isChasing__13RunawayRabbitCFv` | `0x80286298` | :x: (0.0%) |
+| `isEnableBlow__13RunawayRabbitCFv` | `0x80286304` | :x: (0.0%) |
+| `isValidFollow__13RunawayRabbitCFl` | `0x8028630C` | :x: (0.0%) |
+| `__sinit_\RunawayRabbit_cpp` | `0x80286378` | :x: (0.0%) |
+| `__ct__Q227@unnamed@RunawayRabbit_cpp@18RunawayRabbitParamFv` | `0x802863F0` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit24RunawayRabbitNrvNoActiveFv` | `0x80286420` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit20RunawayRabbitNrvHideFv` | `0x80286430` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit22RunawayRabbitNrvAppearFv` | `0x80286440` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit23RunawayRabbitNrvRunawayFv` | `0x80286450` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit29RunawayRabbitNrvTryCaughtDemoFv` | `0x80286460` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit22RunawayRabbitNrvCaughtFv` | `0x80286470` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit26RunawayRabbitNrvCaughtTalkFv` | `0x80286480` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit25RunawayRabbitNrvCaughtEndFv` | `0x80286490` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit20RunawayRabbitNrvStopFv` | `0x802864A0` | :x: (0.0%) |
+| `__ct__Q216NrvRunawayRabbit26RunawayRabbitNrvBlowDamageFv` | `0x802864B0` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit26RunawayRabbitNrvBlowDamageCFP5Spine` | `0x802864C0` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit20RunawayRabbitNrvStopCFP5Spine` | `0x802864D0` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit25RunawayRabbitNrvCaughtEndCFP5Spine` | `0x802864D8` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit26RunawayRabbitNrvCaughtTalkCFP5Spine` | `0x802864E0` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit22RunawayRabbitNrvCaughtCFP5Spine` | `0x802864E8` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit29RunawayRabbitNrvTryCaughtDemoCFP5Spine` | `0x802864F0` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit23RunawayRabbitNrvRunawayCFP5Spine` | `0x802864F4` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit22RunawayRabbitNrvAppearCFP5Spine` | `0x802864FC` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit20RunawayRabbitNrvHideCFP5Spine` | `0x80286504` | :x: (0.0%) |
+| `execute__Q216NrvRunawayRabbit24RunawayRabbitNrvNoActiveCFP5Spine` | `0x8028650C` | :x: (0.0%) |
+| `isValid__50BaseMatrixFollowValidateDelegator<13RunawayRabbit>CFl` | `0x80286510` | :x: (0.0%) |
+| `__cl__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFv` | `0x80286540` | :x: (0.0%) |
+| `clone__Q22MR53FunctorV0M<P13RunawayRabbit,M13RunawayRabbitFPCvPv_v>CFP7JKRHeap` | `0x80286570` | :x: (0.0%) |
+| `__dt__13RunawayRabbitFv` | `0x802865D8` | :x: (0.0%) |
