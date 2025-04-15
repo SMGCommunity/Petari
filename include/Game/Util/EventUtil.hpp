@@ -2,6 +2,8 @@
 
 #include <revolution.h>
 
+class JMapInfoIter;
+
 namespace MR {
     bool isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(s32);
 
@@ -89,4 +91,6 @@ namespace MR {
 
     bool isOnGameEventFlagViewNormalEnding();
     bool isButlerMapAppear();
+
+    bool isAlreadyVisitedStage(const char *);
 };

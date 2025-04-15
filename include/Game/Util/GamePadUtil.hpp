@@ -8,6 +8,8 @@ namespace MR {
     bool testCorePadButtonUp(s32);
     bool testCorePadButtonDown(s32);
 
+    bool testCorePadButtonA(s32);
+
     bool testCorePadTriggerA(s32);
     bool testCorePadTriggerB(s32);
     bool testSystemPadTriggerDecide();

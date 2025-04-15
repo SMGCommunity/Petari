@@ -31,9 +31,18 @@ namespace MR {
     void forceOpenWipeCircle();
 
     void forceOpenWipeFade();
-    void openWipeFade(f32);
+    void openWipeFade(s32);
 
     void openSystemWipeWhiteFade(s32);
+
+    void forceOpenWipeWhiteFade();
+    void forceCloseWipeWhiteFade();
+
+    void forceCloseSystemWipeWhiteFade();
+
+    void forceCloseWipeFade();
+
+    void closeWipeFade(s32);
 
     bool isStageBeginTitleWipe();
     bool isStageBeginFadeWipe();

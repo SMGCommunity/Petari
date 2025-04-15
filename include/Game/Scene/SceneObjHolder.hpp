@@ -51,6 +51,7 @@
 #define SceneObj_GalaxyNamePlateDrawer 0x70
 #define SceneObj_PlanetMapCreator 0x74
 #define SceneObj_PriorDrawAirHolder 0x75
+#define SceneObj_MoviePlayingSequenceHolder 0x78
 
 class NameObj;
 

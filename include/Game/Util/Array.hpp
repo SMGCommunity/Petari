@@ -32,7 +32,7 @@ namespace MR {
             return &mArr[mMaxSize];
         }
 
-        ~AssignableArray() {
+        ~AssignableArray() NO_INLINE {
             if (mArr) {
                 delete[] mArr;
             }
@@ -72,7 +72,7 @@ namespace MR {
         }
 
 
-        inline ~Vector() {
+        ~Vector() NO_INLINE {
             
         }
 

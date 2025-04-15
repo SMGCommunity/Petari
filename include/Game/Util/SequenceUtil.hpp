@@ -3,6 +3,7 @@
 #include "Game/Util/JMapIdInfo.hpp"
 
 namespace MR {
+    void requestChangeStageInGameMoving(const char *, s32);
     void requestChangeStageInGameMoving(const char *, s32, const JMapIdInfo &);
 
     void requestStartScenarioSelect(const char *);

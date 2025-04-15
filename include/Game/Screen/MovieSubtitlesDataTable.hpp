@@ -17,7 +17,7 @@ namespace MovieSubtitlesUtil {
     SubtitleMessageInfo* getSubtitlesMessageInfo(const char *, s32);
     bool isExistSubtitles(const char *, s32);
     const char* getSubtitlesMessageId(const char *, s32);
-    u32 getSubtitleStartStep(const char *, s32);
+    u32 getSubtitlesStartStep(const char *, s32);
     u32 getSubtitlesAppearTime(const char *, s32);
     u32 getSubtitlesMessageNum(const char *);
 };
