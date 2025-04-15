@@ -93,4 +93,9 @@ namespace MR {
     bool isButlerMapAppear();
 
     bool isAlreadyVisitedStage(const char *);
+
+    bool isOnGameEventFlagPlayMoviePrologueA();
+
+    void onGameEventFlagPlayMoviePrologueA();
+    void onGameEventFlagPlayMoviePrologueB();
 };
