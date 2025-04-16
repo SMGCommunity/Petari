@@ -30,6 +30,7 @@ from tools.project import (
 DEFAULT_VERSION = 0
 VERSIONS = [
     "RMGK01",  # 0
+    "RMGK02"
 ]
 
 parser = argparse.ArgumentParser()

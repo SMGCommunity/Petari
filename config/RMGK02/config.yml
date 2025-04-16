@@ -1,0 +1,9 @@
+object_base: orig/RMGK02
+object: sys/main.dol
+hash: 54b71431af0d509097bfdef4ec28617afc487e89
+symbols: config/RMGK01/symbols.txt
+splits: config/RMGK01/splits.txt
+mw_comment_version: 14
+
+block_relocations:
+- target: .data:0x805658F0

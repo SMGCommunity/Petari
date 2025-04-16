@@ -14,6 +14,7 @@ public:
     }
 
     void enterPauseMenu();
+    void exitPauseMenu();
 
     u8 _814;
     u8 _815;

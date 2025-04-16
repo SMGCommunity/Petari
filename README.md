@@ -17,6 +17,7 @@ This repository does **not** contain any game assets or assembly whatsoever. An 
 Supported versions:
 
 - `RMGK01`: Rev 0 (Korea)
+- `RMGK02`: Rev 1 (Korea)
 
 Dependencies
 ============
