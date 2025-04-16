@@ -214,7 +214,6 @@ cflags_game = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-fp_contract on",
     "-str reuse",
     "-enc SJIS",
     "-sdata 4",

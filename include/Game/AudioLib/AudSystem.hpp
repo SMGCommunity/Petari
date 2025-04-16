@@ -13,6 +13,8 @@ public:
         _830 = var;
     }
 
+    void enterPauseMenu();
+
     u8 _814;
     u8 _815;
     u8 _816;

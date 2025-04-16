@@ -15,4 +15,7 @@ public:
     static bool isLoadedAudioStaticWaveData();
 
     static bool setPermissionToCheckWiiRemoteConnectAndScreenDimming(bool);
+
+    static void onPauseBeginAllRumble();
+    static void onPauseEndAllRumble();
 };
