@@ -94,4 +94,6 @@ namespace MR {
     s32 getPlacedHiddenStarScenarioNo(const char *, s32);
 
     void setCurrentScenarioNo(s32, s32);
+
+    void stopSceneForScenarioOpeningCamera();
 };

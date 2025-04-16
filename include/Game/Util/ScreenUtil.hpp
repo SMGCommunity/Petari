@@ -98,4 +98,6 @@ namespace MR {
 
     s32 getFrameBufferHeight();
     s32 getFrameBufferWidth();
+
+    bool isStopCinemaFrame();
 };

@@ -7360,13 +7360,13 @@ Game/Scene/GameSceneFunction.cpp:
 Game/Scene/GameScenePauseControl.cpp:
 	.text       start:0x803400BC end:0x803402D8
 	.ctors      start:0x8052F204 end:0x8052F208
-	.data       start:0x805D17D0 end:0x805D1840
+	.data       start:0x805D17D0 end:0x805D1800
 	.sbss       start:0x806B65C0 end:0x806B65C8
 
 Game/Scene/GameSceneScenarioOpeningCameraState.cpp:
 	.text       start:0x803402D8 end:0x80340638
 	.ctors      start:0x8052F208 end:0x8052F20C
-	.data       start:0x805D1840 end:0x805D1870
+	.data       start:0x805D1800 end:0x805D1870
 	.sbss       start:0x806B65C8 end:0x806B65D0
 
 Game/Scene/IntermissionScene.cpp:

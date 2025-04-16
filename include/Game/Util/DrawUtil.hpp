@@ -7,6 +7,9 @@
 class J3DModelData;
 
 namespace MR {
+    void drawInit();
+    void reinitGX();
+
     void setupShadowVolumeDraw();
 
     void drawSimpleModel(J3DModelData*);

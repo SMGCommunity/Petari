@@ -10,10 +10,14 @@ public:
     u32 _10;
 };
 
+class AudSystem;
+
 class AudWrap {
 public:
     static AudBgmMgr* getBgmMgr();
     static AudBgm* getStageBgm();
+
+    static AudSystem* getSystem();
 
     static void setNextIdStageBgm(u32);
 

@@ -93,4 +93,7 @@ namespace MR {
     bool isEventCameraActive(const ActorCameraInfo *, const char *);
 
     void endGlobalEventCamera(const char *, s32, bool);
+
+    void startStartAnimCamera();
+    s32 getStartAnimCameraFrame();
 };

@@ -98,4 +98,6 @@ namespace MR {
 
     void onGameEventFlagPlayMoviePrologueA();
     void onGameEventFlagPlayMoviePrologueB();
+
+    bool isAlreadyVisitedCurrentStageAndScenario();
 };

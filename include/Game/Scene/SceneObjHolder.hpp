@@ -17,9 +17,12 @@
 #define SceneObj_LiveActorGroupArray 0xE
 #define SceneObj_MovementOnOffGroupHolder 0xF
 #define SceneObj_CaptureScreenActor 0x10
+#define SceneObj_AudCameraWatcher   0x11
+#define SceneObj_AudEffectDirector  0x12
 #define SceneObj_MarioHolder 0x14
 #define SceneObj_MirrorCamera 0x16
 #define SceneObj_CameraContext 0x17
+#define SceneObj_IgnorePauseObj 0x18
 #define SceneObj_TalkDirector 0x19
 #define SceneObj_StopSceneController 0x1B
 #define SceneObj_SceneObjMovementCtrl 0x1C
