@@ -2172,7 +2172,7 @@ config.libs = [
             Object(NonMatching, "Game/System/ConfigDataMisc.cpp"),
             Object(NonMatching, "Game/System/FindingLuigiEventScheduler.cpp"),
             Object(NonMatching, "Game/System/GalaxyCometScheduler.cpp"),
-            Object(Matching, "Game/System/GalaxyCometState.cpp"),
+            Object(NonMatching, "Game/System/GalaxyCometState.cpp"),
             Object(NonMatching, "Game/System/GalaxyMoveArgument.cpp"),
             Object(NonMatching, "Game/System/GalaxyNameSortTable.cpp"),
             Object(NonMatching, "Game/System/GalaxyStatusAccessor.cpp"),
