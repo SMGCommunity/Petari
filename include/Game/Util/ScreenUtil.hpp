@@ -100,4 +100,10 @@ namespace MR {
     s32 getFrameBufferWidth();
 
     bool isStopCinemaFrame();
+
+    void resetGlobalTimer();
+
+    void closeWipeCircle(s32);
+
+    bool isWipeActive();
 };

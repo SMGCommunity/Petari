@@ -15,4 +15,6 @@ namespace MR {
     bool isExecScenarioStarter();
 
     void executeOnWelcomeAndRetry();
+
+    void requestChangeStageAfterStageClear();
 };

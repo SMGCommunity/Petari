@@ -100,4 +100,6 @@ namespace MR {
     void onGameEventFlagPlayMoviePrologueB();
 
     bool isAlreadyVisitedCurrentStageAndScenario();
+
+    void endGalaxyCometEvent();
 };

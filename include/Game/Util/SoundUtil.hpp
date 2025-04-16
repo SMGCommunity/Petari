@@ -76,4 +76,8 @@ namespace MR {
     void permitTrigSE();
 
     void permitSE();
+
+    void setSoundVolumeSetting(s32, u32);
+
+    void startSubBGM(const char *, bool);
 };
