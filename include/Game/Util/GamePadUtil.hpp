@@ -10,6 +10,11 @@ namespace MR {
 
     bool testCorePadButtonA(s32);
 
+    bool testCorePadButtonPlus(s32);
+    bool testCorePadButtonMinus(s32);
+
+    bool isOperatingWPad(s32);
+
     bool testCorePadTriggerA(s32);
     bool testCorePadTriggerB(s32);
     bool testSystemPadTriggerDecide();
