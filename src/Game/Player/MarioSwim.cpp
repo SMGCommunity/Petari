@@ -240,7 +240,7 @@ MarioSwim::MarioSwim(MarioActor *actor) : MarioState(actor, 6), _F4()
 
 void MarioSwim::init()
 {
-    _EA = mActor->getConst().getConstants()->_528;
+    _EA = mActor->getConst().getTable()->mOxygenMax;
 }
 
 inline f32 getSpecialNumber()
