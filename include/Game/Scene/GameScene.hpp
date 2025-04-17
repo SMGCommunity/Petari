@@ -23,7 +23,7 @@ public:
     void requestStartGameOverDemo();
     void requestEndGameOverDemo();
     void requestEndMissDemo();
-    void requestPowerStarDemoGet();
+    void requestPowerStarGetDemo();
     void requestGrandStarGetDemo();
     void setNerveAfterPauseMenu();
     bool isExecScenarioOpeningCamera() const;
@@ -47,7 +47,7 @@ public:
     void drawMirror() const;
     void draw3D() const;
     void draw2D() const;
-    bool isValidScenarioOpeningCamera() const;
+    bool isValidScenarioOpeningCamera() const NO_INLINE;
     void drawOdhCapture() const;
     void startStagePlayFirst();
     void startStagePlayRetry();

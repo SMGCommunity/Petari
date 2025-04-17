@@ -11,6 +11,7 @@ public:
 };
 
 class AudSystem;
+class AudSceneMgr;
 
 class AudWrap {
 public:
@@ -18,6 +19,8 @@ public:
     static AudBgm* getStageBgm();
 
     static AudSystem* getSystem();
+
+    static AudSceneMgr* getSceneMgr();
 
     static void setNextIdStageBgm(u32);
 

@@ -17,4 +17,10 @@ namespace MR {
     void executeOnWelcomeAndRetry();
 
     void requestChangeStageAfterStageClear();
+
+    bool hasRetryGalaxySequence();
+
+    void requestChangeStageAfterMiss();
+
+    void requestChangeSceneAfterGameOver();
 };

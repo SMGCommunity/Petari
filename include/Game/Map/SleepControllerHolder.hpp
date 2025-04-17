@@ -7,4 +7,6 @@ class AreaObj;
 class SleepControlFunc {
 public:
     static void addSleepControl(AreaObj *, const JMapInfoIter&);
+
+    static void initSyncSleepController();
 };

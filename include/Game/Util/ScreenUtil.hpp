@@ -109,4 +109,8 @@ namespace MR {
     bool isWipeBlank();
 
     void startGlobalTimerTimeUp();
+
+    bool isGlobalTimerEnd();
+
+    void forceCloseWipeCircle();
 };

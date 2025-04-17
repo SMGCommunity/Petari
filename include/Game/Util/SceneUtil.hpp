@@ -96,4 +96,6 @@ namespace MR {
     void setCurrentScenarioNo(s32, s32);
 
     void stopSceneForScenarioOpeningCamera();
+
+    bool isStageEpilogueDemo();
 };

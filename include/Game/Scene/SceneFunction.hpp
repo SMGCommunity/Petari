@@ -226,6 +226,14 @@ public:
     static void executeDrawAfterIndirect();
     static void executeDrawImageEffect();
     static void executeDrawBufferListNormalOpaBeforeSilhouette();
+
+    static void executeCalcAnimListOnPlayingMovie();
+
+    static void executeCalcAnimList();
+
+    static void executeCalcViewAndEntryList();
+
+    static void executeMovementListOnPlayingMovie();
 };
 
 class CategoryList {

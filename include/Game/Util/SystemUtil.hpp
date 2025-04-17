@@ -2,8 +2,11 @@
 
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class ParticleResourceHolder;
+
+typedef void (NameObj::*MethodFunc)();
 
 namespace MR {
     bool isScreen16Per9();
@@ -29,5 +32,11 @@ namespace MR {
     void requestChangeArchivePlayer(bool);
 
     JMapIdInfo* getPlayerRestartIdInfo();
+
+    void waitEndChangeArchivePlayer();
+
+    void initSceneMessage();
+
+    void callMethodAllSceneNameObj(MethodFunc);
 
 };  // namespace MR

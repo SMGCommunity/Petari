@@ -102,4 +102,8 @@ namespace MR {
     bool isAlreadyVisitedCurrentStageAndScenario();
 
     void endGalaxyCometEvent();
+
+    bool isGalaxyAnyCometAppearInCurrentStage();
+
+    void incPlayerGameOverNum();
 };

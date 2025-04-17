@@ -1,18 +1,35 @@
 #include "Game/Scene/GameScene.hpp"
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/AudioLib/AudSceneMgr.hpp"
+#include "Game/AudioLib/AudWrap.hpp"
+#include "Game/Map/LightFunction.hpp"
+#include "Game/MapObj/StarPieceDirector.hpp"
+#include "Game/Map/SleepControllerHolder.hpp"
+#include "Game/Screen/CometRetryButton.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Scene/GameSceneFunction.hpp"
+#include "Game/Scene/GameSceneScenarioOpeningCameraState.hpp"
 #include "Game/Screen/GamePauseSequence.hpp"
 #include "Game/Screen/GameStageClearSequence.hpp"
+#include "Game/Scene/GameScenePauseControl.hpp"
 #include "Game/Scene/SceneExecutor.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
+#include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Screen/MoviePlayingSequence.hpp"
 #include "Game/Screen/OdhConverter.hpp"
 #include "Game/Screen/LensFlare.hpp"
+#include "Game/System/GalaxyMapController.hpp"
+#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/NPCFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
 #include "Game/Util/LightUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -21,6 +38,8 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "revolution/gx/GXPixel.h"
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 namespace NrvGameScene {
     NEW_NERVE(GameSceneScenarioOpeningCamera, GameScene, ScenarioOpeningCamera);
@@ -54,16 +73,313 @@ GameScene::~GameScene() {
     MR::onStarPointerSceneOut();
 }
 
-/*
 void GameScene::init() {
     SceneFunction::createHioBasicNode(this);
     SceneFunction::startStageFileLoad();
     MR::requestChangeArchivePlayer(MR::isPlayerLuigi() == false);
-}
-*/
+    initNerve(&NrvGameScene::GameSceneScenarioOpeningCamera::sInstance);
+    SceneFunction::initForNameObj();
+    SceneFunction::initForLiveActor();
+    initEffect();
+    MR::createSceneObj(SceneObj_CameraContext);
+    MR::createSceneObj(SceneObj_NameObjGroup);
+    MR::createSceneObj(SceneObj_PlanetGravityManager);
+    MR::createSceneObj(SceneObj_MarioHolder);
+    MR::createSceneObj(SceneObj_AudCameraWatcher);
+    MR::createSceneObj(SceneObj_AudEffectDirector);
+    MR::createSceneObj(SceneObj_AudBgmConductor);
+    MR::createSceneObj(SceneObj_ResourceShare);
+    MR::createSceneObj(SceneObj_EventSequencer);
+    MR::createSceneObj(SceneObj_ScenePlayingResult);
+    MR::createSceneObj(SceneObj_FurDrawManager);
+    MR::createSceneObj(SceneObj_PlacementStateChecker);
+    MR::createScreenAlphaSceneObj(0, 1.0f);
+    MR::createSceneObj(SceneObj_GroupCheckManager);
+    MR::createSceneObj(SceneObj_CinemaFrame);
+    MR::createSceneObj(SceneObj_PlanetMapCreator);
 
-// GameScene::initEffect
-// GameScene::drawMirror
+    if (MR::isStageEpilogueDemo()) {
+        MR::createSceneObj(SceneObj_StaffRoll);
+    }
+
+    if (MR::isStageEpilogueDemo() || GameSequenceFunction::isNeedMoviePlayerForStorySequenceEvent()) {
+        MR::createMoviePlayingSequence();
+    }
+
+    SceneFunction::waitDoneStageFileLoad();
+    MR::waitEndChangeArchivePlayer();
+    SceneFunction::startActorFileLoadCommon();
+    MR::suspendAsyncExecuteThread("シーン初期化");
+
+    if (!MR::isScenarioDecided()) {
+        MR::receiveAllRequestedFile();
+    }
+    else {
+        SceneFunction::initAfterScenarioSelected();
+        NPCFunction::createNPCData();
+        SceneFunction::startActorFileLoadScenario();
+        MR::createSceneObj(SceneObj_EventDirector);
+        MR::initSceneMessage();
+        MR::createSceneObj(SceneObj_CameraDirector);
+        MR::createSceneObj(SceneObj_GameSceneLayoutHolder);
+        MR::createSceneObj(SceneObj_StarPieceDirector);
+        MR::createSceneObj(SceneObj_SceneWipeHolder);
+        MR::createSceneObj(SceneObj_NamePosHolder);
+        MR::createSceneObj(SceneObj_InformationObserver);
+
+        if (MR::isGalaxyAnyCometAppearInCurrentStage()) {
+            MR::createSceneObj(SceneObj_CometRetryButton);
+        }
+
+        LightFunction::initLightData();
+        initSequences();
+        SceneFunction::startActorPlacement();
+        GameSceneFunction::loadScenarioWaveData();
+        MR::createStarPiece();
+        MR::completeCameraParameters();
+        MR::initStarPointerGameScene();
+        MR::initEventSystemAfterPlacement();
+        MR::endInitLiveActorSystemInfo();
+        MR::setInitializeStateAfterPlacement();
+        MR::callMethodAllSceneNameObj(&NameObj::initAfterPlacement);
+        SleepControlFunc::initSyncSleepController();
+
+        while (1) {
+            if (GameSceneFunction::isLoadDoneScenarioWaveData()) {
+                break;
+            }
+        }
+    }
+}
+
+void GameScene::start() {
+    AudWrap::getSceneMgr()->startScene();
+
+    if (MR::isGlobalTimerEnd()) {
+        MR::forceCloseWipeCircle();
+    }
+    else if (!MR::hasRetryGalaxySequence()) {
+        startStagePlayFirst();
+    }
+    else {
+        startStagePlayRetry();
+    }
+}
+
+void GameScene::update() {
+    mPauseCtrl->updateNerve();
+    updateNerve();
+
+    bool v2 = false;
+    if (MR::isGlobalTimerEnd() && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)) {
+        if (MR::isGreaterEqualStep(this, 2)) {
+            v2 = true;
+        }
+    }
+
+    if (v2) {
+        setNerve(&NrvGameScene::GameSceneTimeUp::sInstance);
+    }
+}
+
+void GameScene::draw() const {
+    MR::drawInit();
+    LightFunction::initLightRegisterAll();
+    drawOdhCapture();
+    CategoryList::execute(MR::DrawType_MiiFaceIcon);
+    CategoryList::execute(MR::DrawType_MiiFaceNew);
+    drawMirror();
+    draw3D();
+    draw2D();
+    MR::reinitGX();
+}
+
+void GameScene::calcAnim() {
+    if (isPlayMovie()) {
+        SceneFunction::executeCalcAnimListOnPlayingMovie();
+    }
+    else {
+        SceneFunction::executeCalcAnimList();
+    }
+
+    if (!isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)) {
+        CategoryList::execute(MR::CalcAnimType_AnimParticleIgnorePause);
+    }
+
+    SceneFunction::executeCalcViewAndEntryList();
+}
+
+void GameScene::notifyEndScenarioStarter() {
+    setNerve(&NrvGameScene::GameSceneAction::sInstance);
+}
+
+void GameScene::requestPlayMovieDemo() {
+    setNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
+}
+
+void GameScene::requestStartGameOverDemo() {
+    if (!isNerve(&NrvGameScene::GameSceneGameOver::sInstance)) {
+        setNerve(&NrvGameScene::GameSceneGameOver::sInstance);
+    }
+}
+
+void GameScene::requestEndGameOverDemo() {
+    setNerve(&NrvGameScene::GameSceneSaveAfterGameOver::sInstance);
+}
+
+void GameScene::requestEndMissDemo() {
+    if (MR::isExistSceneObj(SceneObj_CometRetryButton)) {
+        setNerve(&NrvGameScene::GameSceneCometRetryAfterMiss::sInstance);
+    }
+    else {
+        MR::requestChangeStageAfterMiss();
+    }
+}
+
+void GameScene::requestPowerStarGetDemo() {
+    setNerve(&NrvGameScene::GameScenePowerStarGet::sInstance);
+}
+
+void GameScene::requestGrandStarGetDemo() {
+    setNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
+}
+
+void GameScene::setNerveAfterPauseMenu() {
+    setNerve(&NrvGameScene::GameSceneAction::sInstance);
+}
+
+bool GameScene::isExecScenarioOpeningCamera() const {
+    return isNerve(&NrvGameScene::GameSceneScenarioOpeningCamera::sInstance);
+}
+
+bool GameScene::isExecScenarioStarter() const {
+    return isNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
+}
+
+bool GameScene::isExecStageClearDemo() const {
+    bool ret = false;
+    if (isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance) || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance)) {
+        ret= true;
+    }
+    return ret;
+}
+
+void GameScene::exeScenarioOpeningCamera() {
+    mScenarioCamera->update();
+    SceneFunction::movementStopSceneController();
+    SceneFunction::executeMovementList();
+    
+    if (mScenarioCamera->isDone()) {
+
+        if (!MR::isBeginScenarioStarter()) {
+            MR::activateDefaultGameLayout();
+            MR::tryFrameToScreenCinemaFrame();
+            MR::stopSubBGM(0);
+            MR::stopStageBGM(0);
+            MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
+            setNerve(&NrvGameScene::GameSceneAction::sInstance);
+        }
+        else {
+            setNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
+        }
+    }
+}
+
+void GameScene::exeCometRetryAfterMiss() {
+    CometRetryButton* retry = MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+
+    if (MR::isFirstStep(this)) {
+        MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton)->appear();
+        MR::forceOpenWipeCircle();
+    }
+
+    retry->movement();
+}
+
+void GameScene::exeSaveAfterGameOver() {
+    if (MR::isFirstStep(this)) {
+        MR::incPlayerGameOverNum();
+        GameSequenceFunction::startGameDataSaveSequence(true, true);
+        MR::startStarPointerModePauseMenu(this);
+    }
+
+    if (!GameSequenceFunction::isActiveSaveDataHandleSequence()) {
+        MR::endStarPointerMode(this);
+        MR::requestChangeSceneAfterGameOver();
+    }
+}
+
+void GameScene::exePlayMovie() {
+    if (!MR::isActiveMoviePlayer() && !MR::isMoviePlayingOnSequence()) {
+        setNerve(&NrvGameScene::GameSceneAction::sInstance);
+        SceneFunction::movementStopSceneController();
+        SceneFunction::executeMovementList();
+    }
+    else {
+        SceneFunction::executeMovementListOnPlayingMovie();
+    }
+}
+
+void GameScene::exeGalaxyMap() {
+    if (MR::isFirstStep(this)) {
+        MR::startStarPointerModePauseMenu(this);
+    }
+
+    if (!MR::isActiveGalaxyMapLayout()) {
+        MR::endStarPointerMode(this);
+        setNerve(&NrvGameScene::GameSceneAction::sInstance);
+    }
+    else {
+        CategoryList::execute(MR::MovementType_LayoutOnPause);
+    }
+}
+
+void GameScene::initSequences() {
+    GameStageClearSequence* clearSeq = new GameStageClearSequence();
+    clearSeq->initWithoutIter();
+    mStageClearSeq = clearSeq;
+
+    GamePauseSequence* pauseSeq = new GamePauseSequence();
+    pauseSeq->initWithoutIter();
+    mPauseSeq = pauseSeq;
+
+    mScenarioCamera = new GameSceneScenarioOpeningCameraState();
+    mPauseCtrl = new GameScenePauseControl(this);
+    mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
+    MR::FunctorV0M<GameScenePauseControl *, void (GameScenePauseControl::*)()> func = MR::Functor_Inline<GameScenePauseControl>(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff);
+    mPauseSeq->initWindowMenu(func);
+}
+
+void GameScene::initEffect() {
+    if (MR::isEqualStageName("CosmosGardenGalaxy")) {
+        SceneFunction::initEffectSystem(5120, 384);
+    }
+    else if (MR::isEqualStageName("KoopaBattleVs1Galaxy")) {
+        SceneFunction::initEffectSystem(6144, 512);
+    }
+    else if (MR::isEqualStageName("AstroGalaxy")) {
+        SceneFunction::initEffectSystem(3072, 512);
+    }
+    else {
+        SceneFunction::initEffectSystem(3072, 256);
+    }
+}
+
+void GameScene::drawMirror() const {
+    if (isDrawMirror()) {
+        PSMTXCopy(MR::getMirrorCameraViewMtx(), j3dSys.mViewMtx);
+        MR::loadProjectionMtx();
+        CategoryList::entryDrawBufferMirror();
+        GXSetAlphaUpdate(GX_FALSE);
+        GXSetColorUpdate(GX_TRUE);
+        CategoryList::drawOpa(MR::DrawBufferType_MirrorMapObj);
+        CategoryList::drawXlu(MR::DrawBufferType_MirrorMapObj);
+        CategoryList::execute(MR::DrawType_CaptureScreenIndirect);
+        MR::clearZBuffer();
+        GXColor c = { 0, 0, -1, 0 };
+        MR::fillScreen(c);
+    }
+}
 
 // inline
 bool GameScene::isPlayMovie() const {
@@ -279,6 +595,11 @@ void GameScene::exeTimeUp() {
     if (MR::isFirstStep(this)) {
         MR::startGlobalTimerTimeUp();
     }
+}
+
+void GameScene::exeGameOver() {
+    SceneFunction::movementStopSceneController();
+    SceneFunction::executeMovementList();
 }
 
 void GameScene::exeGrandStarGet() {

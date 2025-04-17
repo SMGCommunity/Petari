@@ -49,4 +49,6 @@ namespace MR {
     void calcStarPointerWorldPointingPos(TVec3f *, const TVec3f &, s32);
 
     void onStarPointerSceneOut();
+
+    void initStarPointerGameScene();
 };
