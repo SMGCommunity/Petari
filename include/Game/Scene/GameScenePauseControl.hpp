@@ -9,13 +9,15 @@ class GameScenePauseControl : public NerveExecutor {
 public:
     GameScenePauseControl(GameScene *);
 
+    virtual ~GameScenePauseControl();
+
     void registerNervePauseMenu(const Nerve *);
     void requestPauseMenuOff();
     void exeNormal();
     bool tryStartPauseMenu();
-    
 
-    PauseButtonCheckerInGame* mPauseChecker;        // 0xC
+    GameScene* mScene;                              // 0x08
+    PauseButtonCheckerInGame* mPauseChecker;        // 0x0C
     bool mPauseMenuOff;                             // 0x10
     const Nerve* mPauseMenuNerve;                   // 0x14
 };
