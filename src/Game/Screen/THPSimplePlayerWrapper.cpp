@@ -31,6 +31,8 @@ static u16 VolumeTable[] =
 
 static s32 WorkBuffer[16] __attribute__((aligned(32)));
 
+THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
+
 namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeWait, THPSimplePlayerWrapper, Wait);
     NEW_NERVE(HostTypeReadHeader, THPSimplePlayerWrapper, ReadHeader);

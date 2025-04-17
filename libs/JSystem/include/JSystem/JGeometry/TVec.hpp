@@ -121,7 +121,7 @@ namespace JGeometry {
             z = _z;
         }
 
-        TVec3(f32 val) {
+        TVec3(f32 val) NO_INLINE {
             z = y = x = val;
         }
 

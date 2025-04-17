@@ -7,7 +7,6 @@ static u8 unknownVal = 1;
 static GXColor color1 = { 0x28, 0x28, 0x28, 0x14 };
 static GXColor color2 = { 0x76, 0xD7, 0xFF, 0xFF };
 
-#ifdef NON_MATCHING
 /* functionally matches, tiny instruction swap in the beginning */
 OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4, bool a5, f32 *a6, f32 *a7, f32 *a8) {
     mOceanRing = pRing;
@@ -37,9 +36,7 @@ OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing *pRing, int a3, int a4,
 
     mPosition.scale(1.0f / a4);
 }
-#endif
 
-#ifndef NON_MATCHING
 void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
 
@@ -54,7 +51,6 @@ void OceanRingPartDrawer::initDisplayList(f32 *a1, f32 *a2, f32 *a3) {
     mDispListLength = obj.ptr - obj.start;
     DCStoreRange(mDispList, size);
 }
-#endif
 
 void OceanRingPartDrawer::draw() const {
     if (PSVECDistance(&mPosition, MR::getPlayerPos()) >= 13000.0f) {

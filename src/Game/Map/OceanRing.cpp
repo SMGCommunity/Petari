@@ -227,8 +227,36 @@ void OceanRing::endClipped() {
 }
 
 // OceanRing::initPoints
+
 // OceanRing::updatePoints
-// OceanRing::updatePointsInLine
+
+void OceanRing::updatePointsInLine(s32 a1, s32 a2, s32 a3, s32 a4) {
+    s32 v11;
+    s32 v12;
+    s32 v10;
+    s32 i;
+    
+    v10 = a1;
+    v11 = a1 + a3;
+    v12 = a2 - a4;
+
+    while (v10 < a2) {
+        f32 v13 = 1.0f;
+        if (v10 < v11) {
+            v13 = (f32)(v10 - a1) / (f32)a3;
+        }
+
+        if (v10 >= v12) {
+            v13 = ((f32)(a2 - 1 - v10) / (f32)a4);
+        }
+
+        for (i = 0; i < mStride; i++) {
+            getPoint(i, v10)->updatePos(mWaveTheta1, mWaveTheta2, mWaveHeight1, mWaveHeight2, v13);
+        }
+
+        v10++;
+    }
+}
 
 f32 OceanRing::calcCurrentWidthRate(f32 a1) const {
     f32 v8 = 0.0f;
@@ -268,7 +296,40 @@ f32 OceanRing::calcCurrentFlowSpeedRate(f32 a1) const {
     return ((((v7 * v8) + (v6 * v9)) / v4) / 100.0f);
 }
 
-// OceanRing::calcClippingBox
+void OceanRing::calcClippingBox() {
+    f32 v1 = 1200.0f;
+    for (s32 i = 0; i < MR::getRailPointNum(this); i++) {
+        f32 v6 = 0.0f;
+        MR::getRailPointArg1NoInit(this, i, &v6);
+        f32 v4 = (100.0f * v6);
+
+        if (v4 >= v1) {
+            v4 = v4;
+        }
+        else {
+            v4 = v1;
+        }
+
+        v1 = v4;
+    }
+
+    MR::calcBoundingBox(this, &mClippingBox, 200.0f);
+    TVec3f v9(v1);
+    mClippingBox.mMin.sub(v9);
+    mClippingBox.mMax.add(v9);
+    mBox.mMin.set<f32>(mClippingBox.mMin);
+    mBox.mMax.set<f32>(mClippingBox.mMax);
+    TVec3f v8(5000.0f);
+    mBox.mMin.sub(v8);
+    mBox.mMax.add(v8);
+    TVec3f v7(mWidthMax);
+    mClippingBox.mMin.sub(v7);
+    mClippingBox.mMax.add(v7);
+    JMAVECLerp(&mClippingBox.mMax, &mClippingBox.mMin, &_108, 0.5f);
+    f32 dist = PSVECDistance(&_108, &mClippingBox.mMin);
+    MR::setClippingTypeSphere(this, (100.0f + dist), &_108);
+    MR::setClippingFarMax(this);
+}
 
 void OceanRing::draw() const {
     if (MR::isValidDraw(this)) {

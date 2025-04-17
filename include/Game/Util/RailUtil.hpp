@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TBox.hpp"
 
 class LiveActor;
 class RailRider;
@@ -74,6 +75,8 @@ namespace MR {
 
     bool isLoopRail(const LiveActor *);
 
+    bool getRailPointArg1NoInit(const LiveActor *, s32, f32 *);
+
     bool getCurrentRailPointArg0WithInit(const LiveActor *, s32 *);
     bool getCurrentRailPointArg1WithInit(const LiveActor *, s32 *);
     bool getCurrentRailPointArg0NoInit(const LiveActor *, s32 *);
@@ -91,4 +94,6 @@ namespace MR {
     void calcNearestRailPos(TVec3f *, const LiveActor *, const TVec3f &);
 
     void calcRailPosAndDirectionAtCoord(TVec3f *, TVec3f *, const LiveActor *, f32);
+
+    void calcBoundingBox(const LiveActor *, TBox3f *, f32);
 };
