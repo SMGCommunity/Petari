@@ -1,11 +1,12 @@
 #pragma once
 
 #include "JSystem/JAudio2/JAUSoundObject.hpp"
+#include "JSystem/JKernel/JKRDisposer.hpp"
 
 class JAISoundHandle;
 class JKRHeap;
 
-class AudSoundObject : public JAUSoundObject {
+class AudSoundObject : public JAUSoundObject, JKRDisposer {
 public:
     AudSoundObject(TVec3f *, unsigned char, JKRHeap *);    
     virtual ~AudSoundObject();

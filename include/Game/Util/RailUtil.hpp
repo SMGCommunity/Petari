@@ -35,6 +35,8 @@ namespace MR {
     void setRailCoordSpeed(LiveActor *, f32);
     void accelerateRailCoordSpeed(LiveActor *, f32);
 
+    void calcDistanceToCurrentAndNextRailPoint(const LiveActor *, f32 *, f32 *);
+
     void moveCoord(LiveActor *, f32);
     
     void moveTransToOtherActorRailPos(LiveActor *, const LiveActor *);
@@ -76,6 +78,13 @@ namespace MR {
     bool getCurrentRailPointArg1WithInit(const LiveActor *, s32 *);
     bool getCurrentRailPointArg0NoInit(const LiveActor *, s32 *);
     bool getCurrentRailPointArg1NoInit(const LiveActor *, s32 *);
+
+    bool getCurrentRailPointArg0NoInit(const LiveActor *, f32 *);
+
+    bool getCurrentRailPointArg1NoInit(const LiveActor *, f32 *);
+
+    bool getNextRailPointArg0NoInit(const LiveActor *, f32 *);
+    bool getNextRailPointArg1NoInit(const LiveActor *, f32 *);
 
     const TVec3f& getRailPointPosEnd(const LiveActor *);
     void calcRailEndPointPos(TVec3f *, const LiveActor *);

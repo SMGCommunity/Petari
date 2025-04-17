@@ -1,4 +1,6 @@
 #include "Game/Map/OceanRing.hpp"
+#include "Game/Map/OceanRingDrawer.hpp"
+#include "Game/Map/OceanRingPipe.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
@@ -186,3 +188,98 @@ f32 OceanRing::calcWaveHeight(const TVec3f &a1, f32 a2, TVec3f *a3) const {
     v35.y += v23;
 }
 */
+
+void OceanRing::calcStreamVec(const TVec3f &a1, f32 a2, TVec3f *pStreamVec) const {
+    pStreamVec->zero();
+    f32 v8 = (mWidthMax * calcCurrentWidthRate(a2));
+    f32 v9 = (10.0f * calcCurrentFlowSpeedRate(a2));
+    TVec3f near(mNearestPos);
+    near.sub(a1);
+    if (PSVECMag(&near) < v8) {
+        pStreamVec->set<f32>(mNearestDir);
+        pStreamVec->scale(v9);
+    }
+}
+/*
+void OceanRing::movement() {
+    mWaveTheta1 += -0.039999999f;
+    mWaveTheta2 += -0.059999999f;
+    updatePoints();
+    mRingDrawer->update();
+    f32 nearPos = calcNearestPos(MR::getCameraWatch)
+}
+*/
+
+void OceanRing::startClipped() {
+    LiveActor::startClipped();
+
+    if (mOceanRingPipe != nullptr) {
+        mOceanRingPipe->startClipped();
+    }
+}
+
+void OceanRing::endClipped() {
+    LiveActor::endClipped();
+
+    if (mOceanRingPipe != nullptr) {
+        mOceanRingPipe->endClipped();
+    }
+}
+
+// OceanRing::initPoints
+// OceanRing::updatePoints
+// OceanRing::updatePointsInLine
+
+f32 OceanRing::calcCurrentWidthRate(f32 a1) const {
+    f32 v8 = 0.0f;
+    f32 v7 = 0.0f;
+    MR::setRailCoord((OceanRing*)this, a1);
+    MR::calcDistanceToCurrentAndNextRailPoint(this, &v8, &v7);
+    f32 rate = 1.0f;
+    f32 v4 = (v8 + v7);
+
+    if (v4 < 1.0f) {
+        return rate;
+    }
+
+    f32 v6 = 12.0f;
+    f32 v5 = 12.0f;
+    MR::getCurrentRailPointArg1NoInit(this, &v6);
+    MR::getNextRailPointArg1NoInit(this, &v5);
+    return ((((v6 * v7) + (v5 * v8)) / v4) / 12.0f);
+}
+
+f32 OceanRing::calcCurrentFlowSpeedRate(f32 a1) const {
+    f32 v9 = 0.0f;
+    f32 v8 = 0.0f;
+    MR::setRailCoord((OceanRing*)this, a1);
+    MR::calcDistanceToCurrentAndNextRailPoint(this, &v9, &v8);
+    f32 rate = 1.0f;
+    f32 v4 = (v9 + v8);
+
+    if (v4 < 1.0f) {
+        return rate;
+    }
+
+    f32 v7 = 100.0f;
+    f32 v6 = 100.0f;
+    MR::getCurrentRailPointArg0NoInit(this, &v7);
+    MR::getNextRailPointArg0NoInit(this, &v6);
+    return ((((v7 * v8) + (v6 * v9)) / v4) / 100.0f);
+}
+
+// OceanRing::calcClippingBox
+
+void OceanRing::draw() const {
+    if (MR::isValidDraw(this)) {
+        mRingDrawer->draw();
+    }
+}
+
+OceanRing::~OceanRing() {
+    
+}
+
+WaterPoint* OceanRing::getPoint(int a1, int a2) const {
+    return mWaterPoints[a1 + a2 * mStride];
+}
