@@ -148,9 +148,11 @@ namespace MR {
         DrawType_AstroDomeOrbit = 0x1F,
         DrawType_OceanBowlBloomDrawer = 0x21,
         DrawType_Player = 0x22,
+        DrawType_0x24 = 0x24,
         DrawType_MiiFacePartsHolder = 0x25,
         DrawType_ShadowSurface = 0x26,
         DrawType_ShadowVolume = 0x27,
+        DrawType_0x28 = 0x28,
         DrawType_AlphaShadow = 0x29,
         DrawType_ClipArea = 0x2A,
         DrawType_FallOutFieldDraw = 0x2B,
@@ -159,6 +161,7 @@ namespace MR {
         DrawType_CaptureScreenCamera = 0x2E,
         DrawType_CenterScreenBlur = 0x2F,
         DrawType_Fur = 0x31,
+        DrawType_0x33 = 0x33,
         DrawType_BloomEffectPreDraw = 0x34,
         DrawType_BloomEffectPostDraw = 0x35,
         DrawType_BloomModel = 0x36,
@@ -166,6 +169,7 @@ namespace MR {
         DrawType_DashRing = 0x38,
         DrawType_BrightSun = 0x39,
         DrawType_WaterCameraFilter = 0x3A,
+        DrawType_0x3B = 0x3B,
         DrawType_Layout = 0x3C,
         DrawType_LayoutDecoration = 0x3D,
         DrawType_LayoutOnPause = 0x3E,
@@ -205,6 +209,23 @@ public:
     static void initEffectSystem(u32, u32);
     static void allocateDrawBufferActorList();
     static void createHioBasicNode(Scene*);
+
+    static void movementStopSceneController();
+    static void executeMovementList();
+
+    static void executeDrawList2DNormal();
+    static void executeDrawList2DMovie();
+
+    static void executeDrawBufferListNormalOpaBeforeVolumeShadow();
+    static void executeDrawSilhouetteAndFillShadow();
+    static void executeDrawAlphaShadow();
+    static void executeDrawBufferListNormalOpa();
+    static void executeDrawListOpa();
+    static void executeDrawBufferListNormalXlu();
+    static void executeDrawListXlu();
+    static void executeDrawAfterIndirect();
+    static void executeDrawImageEffect();
+    static void executeDrawBufferListNormalOpaBeforeSilhouette();
 };
 
 class CategoryList {

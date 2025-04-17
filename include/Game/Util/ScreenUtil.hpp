@@ -106,4 +106,7 @@ namespace MR {
     void closeWipeCircle(s32);
 
     bool isWipeActive();
+    bool isWipeBlank();
+
+    void startGlobalTimerTimeUp();
 };

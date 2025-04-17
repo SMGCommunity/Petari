@@ -22,6 +22,7 @@ namespace MR {
     const MtxPtr getCameraViewMtx();
     TPos3f *getCameraInvViewMtx();
 
+    void loadViewMtx();
     void loadProjectionMtx();
 
     void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, long);

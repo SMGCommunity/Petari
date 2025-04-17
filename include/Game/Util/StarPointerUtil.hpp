@@ -47,4 +47,6 @@ namespace MR {
     void getStarPointerWorldVelocityDirection(TVec3f *, s32);
 
     void calcStarPointerWorldPointingPos(TVec3f *, const TVec3f &, s32);
+
+    void onStarPointerSceneOut();
 };

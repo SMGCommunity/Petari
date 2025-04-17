@@ -40,6 +40,8 @@ public:
     inline void exePauseMenu();
     inline void exeSceneAction();
     inline void exeScenarioStarter();
+    inline void exePowerStarGet();
+    inline void exeGrandStarGet();
     void initSequences();
     void initEffect();
     void drawMirror() const;
@@ -54,12 +56,13 @@ public:
     void requestStaffRoll();
     bool isDrawMirror() const;
     void stageClear();
+    inline bool isPlayMovie() const;
 
     u32 _14;
     GameSceneScenarioOpeningCameraState* mScenarioCamera;       // 0x18
     GameScenePauseControl* mPauseCtrl;                          // 0x1C
     GamePauseSequence* mPauseSeq;                               // 0x20
     GameStageClearSequence* mStageClearSeq;                     // 0x24
-    u8 _28;
+    bool mDraw3D;                                               // 0x28
     u8 _29;
 };

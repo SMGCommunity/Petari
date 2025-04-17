@@ -25,4 +25,6 @@ namespace MR {
     void fillScreenArea(const TVec2s &, const TVec2s &);
 
     void clearZBuffer();
+
+    void setDefaultViewportAndScissor();
 };  // namespace MR

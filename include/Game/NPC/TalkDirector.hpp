@@ -100,4 +100,6 @@ public:
 
 namespace MR {
     bool isActiveTalkBalloonShort();
+
+    void setTalkDirectorDrawSyncToken();
 };

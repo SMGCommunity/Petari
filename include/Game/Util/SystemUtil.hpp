@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
 
 class ParticleResourceHolder;
 
@@ -22,5 +23,11 @@ namespace MR {
     void clearFileLoaderRequestFileInfo(bool);
 
     ParticleResourceHolder* getParticleResourceHolder();
+
+    void destroySceneMessage();
+
+    void requestChangeArchivePlayer(bool);
+
+    JMapIdInfo* getPlayerRestartIdInfo();
 
 };  // namespace MR
