@@ -5,20 +5,20 @@
 
 namespace MR {
     void startMoviePlayer(const char *pThpFile) {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->startMovie(pThpFile, false);
+        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->startMovie(pThpFile, false);
         GameSceneFunction::requestPlayMovieDemo();
     }
 
     void stopMoviePlayer() {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->stopMovie();
+        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->stopMovie();
     }
 
     bool isActiveMoviePlayer() {
-        if (!MR::isExistSceneObj(SceneObj_MoviePlayer)) {
+        if (!MR::isExistSceneObj(SceneObj_MoviePlayerSimple)) {
             return false;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->isMovieActive();
+        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->isMovieActive();
     }
 
     bool isMoviePlayerPlaying() {
@@ -26,7 +26,7 @@ namespace MR {
             return false;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->isMoviePlaying();
+        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->isMoviePlaying();
     }
 
     u32 getMovieCurrentFrame() {
@@ -34,14 +34,14 @@ namespace MR {
             return -1;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->getCurrentFrame();
+        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->getCurrentFrame();
     }
 
     u32 getMovieTotalFrame() {
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->getTotalFrame();
+        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->getTotalFrame();
     }
 
     void setMovieVolume(f32 volume, s32 time) {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayer)->setVolume(volume, time);
+        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->setVolume(volume, time);
     }
 };

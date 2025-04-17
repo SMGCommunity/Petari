@@ -41,7 +41,7 @@ void SceneFunction::initAfterScenarioSelected() {
 void SceneFunction::initForNameObj() {
     MR::createSceneObj(SceneObj_NameObjExecuteHolder);
     MR::createSceneObj(SceneObj_StopSceneController);
-    MR::createSceneObj(SceneObj_SceneObjMovementCtrl);
+    MR::createSceneObj(SceneObj_SceneNameObjMovementController);
 }
 
 void SceneFunction::initForLiveActor() {
