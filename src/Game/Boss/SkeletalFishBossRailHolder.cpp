@@ -31,11 +31,11 @@ SkeletalFishBossRail* SkeletalFishBossRailHolder::getByID(s32 id) const {
 
 namespace MR {
     SkeletalFishBossRailHolder* getSkeletalFishBossRailHolder() {
-        return MR::getSceneObj<SkeletalFishBossRailHolder*>(SceneObj_SkeletalFishRailHolder);
+        return MR::getSceneObj<SkeletalFishBossRailHolder*>(SceneObj_SkeletalFishBossRailHolder);
     }
 
     void createSkeletalFishBossRailHolder() {
-        MR::createSceneObj(SceneObj_SkeletalFishRailHolder);
+        MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
     }
 };
 

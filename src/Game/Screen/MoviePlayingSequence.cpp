@@ -120,7 +120,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) : L
     mInfo = &sInfoTable[movieType];
     mSubtitles.mCount = 0;
     mPadRumbler = new DemoPadRumbler(MoviePlayingSequence::getMovieName((MovieType)movieType));
-    MR::createSceneObj(SceneObj_MoviePlayer);
+    MR::createSceneObj(SceneObj_MoviePlayerSimple);
     MR::connectToSceneLayoutMovement(this);
     initNerve(&NrvMoviePlayingSequence::HostTypeWait::sInstance);
 
