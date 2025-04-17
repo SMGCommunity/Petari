@@ -29,7 +29,7 @@ SpinDriverPathDrawer::SpinDriverPathDrawer(SpinDriverShootPath *pShootPath) : Li
     _B8 = 0.0f;
     mFadeScale = 1.0f;
     mMaskLength = 5000.0f;
-    MR::createSceneObj(SceneObj_SpinDrawerPathDrawInit);
+    MR::createSceneObj(SceneObj_SpinDriverPathDrawInit);
 }
 
 #ifdef NON_MATCHING
@@ -69,31 +69,31 @@ void SpinDriverPathDrawInit::initDraw() {
 
 namespace MR {
     void setSpinDriverPathColorNormal() {
-        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mOrangeTexture->load(GX_TEXMAP0);
+        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mOrangeTexture->load(GX_TEXMAP0);
     }
 
     void setSpinDriverPathColorGreen() {
-        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
+        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mGreenTexture->load(GX_TEXMAP0);
     }
     
     void setSpinDriverPathColorPink() {
-        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mPinkTexture->load(GX_TEXMAP0);
+        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mPinkTexture->load(GX_TEXMAP0);
     }
 
     bool isDrawSpinDriverPathAtOpa() {
-        if (!MR::isExistSceneObj(SceneObj_SpinDrawerPathDrawInit)) {
+        if (!MR::isExistSceneObj(SceneObj_SpinDriverPathDrawInit)) {
             return false;
         }
 
-        return MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mIsPathAtOpa;
+        return MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa;
     }
 
     void onDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mIsPathAtOpa = true;
+        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = true;
     }
 
     void offDrawSpinDriverPathAtOpa() {
-        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDrawerPathDrawInit)->mIsPathAtOpa = false;
+        MR::getSceneObj<SpinDriverPathDrawInit*>(SceneObj_SpinDriverPathDrawInit)->mIsPathAtOpa = false;
     }
 };
 
