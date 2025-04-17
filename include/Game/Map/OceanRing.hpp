@@ -26,10 +26,10 @@ public:
     virtual void endClipped();
 
     bool isInWater(const TVec3f &) const;
-    bool calcWaterInfo(const TVec3f &, const TVec3f &, WaterInfo *);
+    bool calcWaterInfo(const TVec3f &, const TVec3f &, WaterInfo *) const;
     f32 calcNearestPos(const TVec3f &, TVec3f *, TVec3f *, TVec3f *) const;
-    f32 calcWaveHeight(const TVec3f &, f32, TVec3f *);
-    void calcStreamVec(const TVec3f &, f32, TVec3f *);
+    f32 calcWaveHeight(const TVec3f &, f32, TVec3f *) const;
+    void calcStreamVec(const TVec3f &, f32, TVec3f *) const;
     void initPoints();
     void updatePoints();
     void updatePointsInLine(s32, s32, s32, s32);

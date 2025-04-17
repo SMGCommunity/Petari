@@ -61,6 +61,12 @@ namespace JGeometry {
         T y;
         T z;
 
+        TVec3<T>(T _x, T _y, T _z) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+
         inline TVec3(T val) {
             x = val;
             y = val;
@@ -109,7 +115,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        inline TVec3(f32 _x, f32 _y, f32 _z) {
+        TVec3(f32 _x, f32 _y, f32 _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
@@ -137,7 +143,7 @@ namespace JGeometry {
         TVec3& operator*(f32) const;
         TVec3& operator*=(f32);
 
-        TVec3& operator-() const;
+        const TVec3 operator-() const;
         TVec3& operator-(const TVec3 &op) const;
 
         template <typename T>
@@ -169,7 +175,7 @@ namespace JGeometry {
         template<typename T>
         void setAll(f32);
 
-        void sub(const TVec3<f32> &b) {
+        void sub(const TVec3<f32> &b) NO_INLINE {
             JMathInlineVEC::PSVECSubtract(this, &b, this);
         }
 
