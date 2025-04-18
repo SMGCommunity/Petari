@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/AudioLib/AudBgm.hpp"
+#include "Game/AudioLib/AudSystem.hpp"
 #include <revolution.h>
 
 // temp
@@ -10,7 +11,6 @@ public:
     u32 _10;
 };
 
-class AudSystem;
 class AudSceneMgr;
 
 class AudWrap {

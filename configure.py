@@ -1133,7 +1133,7 @@ config.libs = [
             Object(NonMatching, "Game/GameAudio/AudStageBgmWrap.cpp"),
             Object(NonMatching, "Game/GameAudio/AudSeKeeper.cpp"),
             Object(NonMatching, "Game/GameAudio/AudTalkSoundData.cpp"),
-            Object(NonMatching, "Game/GameAudio/AudEffectDirector.cpp"),
+            Object(Matching, "Game/GameAudio/AudEffectDirector.cpp"),
             Object(NonMatching, "Game/GameAudio/AudBgmConductor.cpp"),
             Object(NonMatching, "Game/GameAudio/AudStageBgmTable.cpp"),
             Object(NonMatching, "Game/GameAudio/AudTamakoroBgmCtrl.cpp")
