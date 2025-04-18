@@ -14,6 +14,7 @@ namespace MR {
     void startStageBGMFromStageName(const char *, const char * , s32);
 
     void startAtmosphereSE(const char *, s32, s32);
+    void startAtmosphereLevelSE(const char *, s32, s32);
 
     void stopStageBGM(u32);
     void unlockStageBGM();
