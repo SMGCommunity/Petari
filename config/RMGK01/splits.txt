@@ -7739,12 +7739,12 @@ Game/Screen/GalaxySelectInfo.cpp:
 Game/Screen/GamePauseSequence.cpp:
 	.text       start:0x80361BB0 end:0x80361F54
 	.ctors      start:0x8052F28C end:0x8052F290
-	.data       start:0x805D5670 end:0x805D5798
+	.data       start:0x805D5670 end:0x805D5710
 	.sbss       start:0x806B68C8 end:0x806B68D8
 
 Game/Screen/GameSceneLayoutHolder.cpp:
 	.text       start:0x80361F54 end:0x80362478
-	.data       start:0x805D5798 end:0x805D57C0
+	.data       start:0x805D5710 end:0x805D57C0
 
 Game/Screen/GameStageClearSequence.cpp:
 	.text       start:0x80362478 end:0x803629F4
@@ -7949,12 +7949,12 @@ Game/Screen/MovieSubtitlesDataTable.cpp:
 
 Game/Screen/MovieStarter.cpp:
 	.text       start:0x80372E28 end:0x80373124
-	.data       start:0x805D7960 end:0x805D7A10
+	.data       start:0x805D7960 end:0x805D79F8
 
 Game/Screen/NoteCounter.cpp:
 	.text       start:0x80373124 end:0x80373794
 	.ctors      start:0x8052F2D8 end:0x8052F2DC
-	.data       start:0x805D7A10 end:0x805D7AA0
+	.data       start:0x805D79F8 end:0x805D7AA0
 	.sbss       start:0x806B6A38 end:0x806B6A50
 	.sdata2     start:0x806C1140 end:0x806C1150
 
