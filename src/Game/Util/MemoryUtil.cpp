@@ -78,7 +78,9 @@ namespace MR {
         return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapNapa(pHeap);
     }
 
-    // MR::getHeapGDDR3
+    JKRHeap* getHeapGDDR3(const JKRHeap* pHeap) {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapGDDR3(pHeap);
+    }
 
     void becomeCurrentHeap(JKRHeap *pHeap) {
         OSLockMutex(&MR::MutexHolder<1>::sMutex);
