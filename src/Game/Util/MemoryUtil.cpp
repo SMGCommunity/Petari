@@ -46,8 +46,8 @@ namespace MR {
         return new u8[size];
     }
 
-    void NewDeleteAllocator::free(MEMAllocator *pAllocator, void *pData) {
-        delete[] (u8*)pData;
+    void NewDeleteAllocator::free(MEMAllocator* pAllocator, void* pPtr) {
+        delete static_cast<u8*>(pPtr);
     }
 
     // MR::getHomeButtonLayoutAllocator
