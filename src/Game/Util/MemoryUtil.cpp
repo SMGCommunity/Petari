@@ -84,7 +84,7 @@ namespace MR {
     }
 
     bool isEqualCurrentHeap(JKRHeap *pHeap) {
-        return pHeap == JKRHeap::sCurrentHeap;
+        return JKRHeap::sCurrentHeap == pHeap;
     }
 
     // MR::adjustHeapSize
