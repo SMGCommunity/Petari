@@ -1,10 +1,7 @@
-#include "Game/Util.hpp"
-#include "Game/System/HeapMemoryWatcher.hpp"
-#include "Game/SingletonHolder.hpp"
-#include <cstdio>
-#include <cstring>
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/MutexHolder.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <mem.h>
-#include <size_t.h>
 
 namespace MR {
     CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap* pHeap) {
@@ -81,7 +78,7 @@ namespace MR {
     // MR::adjustHeapSize
     // MR::copyMemory
 
-    void fillMemory(void* pDest, u8 a2, size_t size) {
+    void fillMemory(void* pDest, u8 a2, u32 size) {
         if (a2 == 0) {
             MR::zeroMemory(pDest, size);
         }

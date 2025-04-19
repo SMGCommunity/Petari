@@ -1,12 +1,8 @@
 #pragma once
 
-#include <revolution.h>
-#include <revolution/mem.h>
-#include <cstring>
-#include <size_t.h>
-#include "JSystem/JKernel/JKRHeap.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
+#include <revolution/mem.h>
 
 class JKRHeap;
 class JKRExpHeap;

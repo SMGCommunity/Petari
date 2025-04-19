@@ -1,4 +1,5 @@
 #include "Game/MapObj/SurprisedGalaxy.hpp"
+#include <cstring>
 
 SurprisedGalaxy::SurprisedGalaxy(const char *pName) : LiveActor(pName) {
 
