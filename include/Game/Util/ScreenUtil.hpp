@@ -113,4 +113,6 @@ namespace MR {
     bool isGlobalTimerEnd();
 
     void forceCloseWipeCircle();
+
+    bool isNormalBloomForEachModel();
 };

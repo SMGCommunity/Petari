@@ -51,4 +51,6 @@ namespace MR {
     void onStarPointerSceneOut();
 
     void initStarPointerGameScene();
+
+    void setStarPointerCameraMtxAtGameScene();
 };

@@ -27,4 +27,8 @@ namespace MR {
     void clearZBuffer();
 
     void setDefaultViewportAndScissor();
+
+    void resetTextureCacheSize();
+
+    void fillSilhouetteColor();
 };  // namespace MR

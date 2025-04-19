@@ -119,7 +119,9 @@ namespace MR {
 
     enum DrawType {
         DrawType_SwingRope = 0x00,
+        DrawType_0x1 = 0x01,
         DrawType_Creeper = 0x02,
+        DrawType_0x3 = 0x03,
         DrawType_PlantStalk = 0x04,
         DrawType_Plant = 0x05,
         DrawType_Trapeze = 0x06,
@@ -133,11 +135,13 @@ namespace MR {
         DrawType_ElectricRailHolder = 0x0E,
         DrawType_DrawType_BigBubble = 0x0F,
         DrawType_BigBubbleGoal = 0x10,
+        DrawType_0x11 = 0x11,
         DrawType_SpinDriverPathDrawer = 0x12,
         DrawType_GCapture = 0x13,
         DrawType_ClipAreaDropLaser = 0x14,
         DrawType_SpiderThread = 0x15,
         DrawType_SpaceCocoon = 0x16,
+        DrawType_0x17 = 0x17,
         DrawType_WarpPodPath = 0x18,
         DrawType_FlexibleSphere = 0x19,
         DrawType_KirairaChain = 0x1A,
@@ -146,8 +150,10 @@ namespace MR {
         DrawType_Flag = 0x1D,
         DrawType_AstroDomeSkyClear = 0x1E,
         DrawType_AstroDomeOrbit = 0x1F,
+        DrawType_0x20 = 0x20,
         DrawType_OceanBowlBloomDrawer = 0x21,
         DrawType_Player = 0x22,
+        DrawType_0x23 = 0x23,
         DrawType_0x24 = 0x24,
         DrawType_MiiFacePartsHolder = 0x25,
         DrawType_ShadowSurface = 0x26,
@@ -160,7 +166,9 @@ namespace MR {
         DrawType_CaptureScreenIndirect = 0x2D,
         DrawType_CaptureScreenCamera = 0x2E,
         DrawType_CenterScreenBlur = 0x2F,
+        DrawType_0x30 = 0x30,
         DrawType_Fur = 0x31,
+        DrawType_0x32 = 0x32,
         DrawType_0x33 = 0x33,
         DrawType_BloomEffectPreDraw = 0x34,
         DrawType_BloomEffectPostDraw = 0x35,
@@ -178,6 +186,7 @@ namespace MR {
         DrawType_CometScreenFilter = 0x41,
         DrawType_WipeLayout = 0x42,
         DrawType_TalkLayout = 0x43,
+        DrawType_0x44 = 0x44,
         DrawType_CinemaFrame = 0x45,
         DrawType_GalaxyNamePlate = 0x46,
         DrawType_EffectDraw3D = 0x47,
@@ -191,6 +200,7 @@ namespace MR {
         DrawType_MiiFaceIcon = 0x4F,
         DrawType_MiiFaceNew = 0x50,
         DrawType_CameraCover = 0x51,
+        DrawType_0x52 = 0x52,
     };
 };  // namespace MR
 
@@ -234,6 +244,8 @@ public:
     static void executeCalcViewAndEntryList();
 
     static void executeMovementListOnPlayingMovie();
+
+    static void executeCalcViewAndEntryList2D();
 };
 
 class CategoryList {
