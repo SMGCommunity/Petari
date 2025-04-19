@@ -1942,7 +1942,7 @@ config.libs = [
             Object(NonMatching, "Game/Scene/SceneNameObjMovementController.cpp"),
             Object(NonMatching, "Game/Scene/StageDataHolder.cpp"),
             Object(Matching, "Game/Scene/StageFileLoader.cpp"),
-            Object(NonMatching, "Game/Scene/StageResourceLoader.cpp"),
+            Object(Matching, "Game/Scene/StageResourceLoader.cpp"),
             Object(NonMatching, "Game/Scene/StopSceneController.cpp")
         ],
     ),

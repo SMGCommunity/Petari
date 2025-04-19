@@ -27,6 +27,7 @@ public:
     ParticleDrawExecutor* mDrawExec;        // 0x14
     ParticleCalcExecutor* mCalcExec;        // 0x18
     AutoEffectGroupHolder* mGroupHolder;    // 0x1C
+    u32 _20;
 };
 
 namespace MR {

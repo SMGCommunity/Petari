@@ -29,13 +29,21 @@ namespace NrvScenarioSelectScene {
 };
 
 namespace {
+    J3DDrawBuffer* createDrawBuffer() {
+        J3DDrawBuffer* buffer = new J3DDrawBuffer();
+        buffer->_C = 5;
+        return buffer;
+    }
+
     bool tryResumeInitializeThread() {
-        if (!MR::isSuspendAsyncExecuteThread("シーン初期化")) {
-            return false;
+        const char* thread = "シーン初期化";
+        if (MR::isSuspendAsyncExecuteThread(thread)) {
+            MR::resumeAsyncExecuteThread(thread);
+            return true;
         }
 
-        MR::resumeAsyncExecuteThread("シーン初期化");
-        return true;
+        
+        return false;
     }
 };
 
@@ -50,7 +58,15 @@ ScenarioSelectScene::ScenarioSelectScene() : Scene("シナリオ選択シーン"
     mCameraContext = nullptr;
 }
 
-// ScenarioSelectScene::init
+void ScenarioSelectScene::init() {
+    _20 = createDrawBuffer();
+    _24 = createDrawBuffer();
+    mEffectSystem = new EffectSystem("エフェクトシステム", false);
+    mEffectSystem->initWithoutIter();
+    mEffectSystem->entry(MR::getParticleResourceHolder(), 0x300, 0x20);
+    mCameraContext = new CameraContext();
+    // todo
+}
 
 void ScenarioSelectScene::start() {
     _15 = 0;
