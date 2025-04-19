@@ -4,8 +4,8 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include <revolution/mem.h>
 
-class JKRHeap;
 class JKRExpHeap;
+class JKRHeap;
 class JKRSolidHeap;
 
 namespace MR {
@@ -14,7 +14,8 @@ namespace MR {
         CurrentHeapRestorer(JKRHeap*);
         ~CurrentHeapRestorer();
 
-        JKRHeap* _0;
+    private:
+        /* 0x00 */ JKRHeap* _0;
     };
 
     class NewDeleteAllocator {
