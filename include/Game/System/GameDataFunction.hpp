@@ -15,4 +15,10 @@ public:
     static bool isOnJustGameEventFlag(const char *);
     static void updateGalaxyCometStatus(s32, s16, u16);
     static void restoreGalaxyCometStatus(s32, u16 *, u16 *);
+
+    static s32 getStarPieceNum();
+    static void addStarPiece(int);
+    static s32 getLast1upStarPieceNum();
+
+    static void setLast1upStarPieceNum(int);
 };

@@ -115,4 +115,6 @@ namespace MR {
     void forceCloseWipeCircle();
 
     bool isNormalBloomForEachModel();
+
+    void requestOneUp();
 };
