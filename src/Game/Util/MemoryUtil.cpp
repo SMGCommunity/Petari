@@ -106,5 +106,9 @@ namespace MR {
         return SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->alloc(size, 0);
     }
 
-    // MR::freeFromWPadHeap
+    u8 freeFromWPadHeap(void* pPtr) {
+        SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->free(pPtr);
+
+        return 1;
+    }
 };
