@@ -101,6 +101,10 @@ namespace MR {
 
     // MR::zeroMemory
     // MR::calcCheckSum
-    // MR::allocFromWPadHeap
+
+    void* allocFromWPadHeap(u32 size) {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->alloc(size, 0);
+    }
+
     // MR::freeFromWPadHeap
 };
