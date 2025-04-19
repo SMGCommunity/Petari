@@ -29,6 +29,7 @@ namespace MR {
     JKRExpHeap* getStationedHeapGDDR3();
     JKRSolidHeap* getSceneHeapNapa();
     JKRSolidHeap* getSceneHeapGDDR3();
+    JKRHeap* getHeapNapa(const JKRHeap* pHeap);
 
     JKRHeap* getAproposHeapForSceneArchive(f32);
 
