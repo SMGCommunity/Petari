@@ -13,22 +13,23 @@ namespace MR {
     };
     MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
 
-    #ifdef NON_MATCHING
-    // shrug
-    s32 calcCheckSum(const void *pData, u32 a2) {
-        u32 v2 = 0;
-        u32 v3 = 0;
-        
-        for (int i = a2 >> 1; i; i--) {
-            u16 curData = *(u16*)pData;
-            pData = (s8*)pData + 2;
-            v3 += curData;
-            v2 += ~curData;
+    u32 calcCheckSum(const void* pPtr, u32 size) {
+        u16 sum;
+        u16 invSum;
+
+        invSum = 0;
+        sum = 0;
+
+        const u16* p = static_cast<const u16*>(pPtr);
+        u32 checkSize = size / sizeof(u16);
+
+        for (int i = 0; i < checkSize; i++, p++) {
+            sum += *p;
+            invSum += ~(*p);
         }
 
-        return (v3 << 16) | v2;
+        return (sum << 16) | invSum;
     }
-    #endif
 
     CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap *pHeap) {
         _0 = JKRHeap::sCurrentHeap;
