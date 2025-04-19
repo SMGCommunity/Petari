@@ -4,6 +4,7 @@
 #include "Game/Util.hpp"
 
 class NameObjListExecutor;
+class SceneObjHolder;
 
 class SceneControlInfo {
 public:
@@ -23,6 +24,10 @@ public:
 class GameSystemSceneController {
 public:
     NameObjListExecutor* getNameObjListExecutor() const;
+
+    SceneObjHolder* getSceneObjHolder() const;
+
+    bool isExistSceneObjHolder() const;
 
     u8 _0[0xA8];
     NameObjHolder* mObjHolder;     // 0xA8

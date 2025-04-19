@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Inline.hpp"
+
 #define SceneObj_SensorHitChecker 0x0
 #define SceneObj_CollisionDirector 0x1
 #define SceneObj_ClippingDirector 0x2
@@ -146,7 +148,7 @@ public:
     /// @brief Determines if the requested object has been created.
     /// @param id The index of the object.
     /// @return `true` if the object has been created, `false` otherwise.
-    bool isExist(int id) const;
+    bool isExist(int id) const NO_INLINE;
 
     /// @brief Creates the requested object.
     /// @param id The index of the object.
@@ -166,7 +168,7 @@ namespace MR {
 
     /// @brief Returns the container for global scene objects.
     /// @return The pointer to the container for global scene objects.
-    SceneObjHolder* getSceneObjHolder();
+    SceneObjHolder* getSceneObjHolder() NO_INLINE;
 
     /// @brief Determines if the requested global scene object has been created.
     /// @param id The index of the object.

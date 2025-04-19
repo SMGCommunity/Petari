@@ -1,5 +1,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/System/GameSystem.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 
 /*
 #include "Game/AreaObj/AreaObjContainer.hpp"
@@ -400,17 +402,14 @@ namespace MR {
         return getSceneObjHolder()->create(id);
     }
 
-    /*
     SceneObjHolder* getSceneObjHolder() {
-        return SingletonHolder<GameSystemSceneController>::sInstance->getSceneObjHolder();
+        return SingletonHolder<GameSystem>::sInstance->mSceneController->getSceneObjHolder();
     }
-    */
 
-    /*
     bool isExistSceneObj(int id) {
-        GameSystemSceneController* pSceneController = SingletonHolder<GameSystemSceneController>::sInstance;
+        GameSystemSceneController* pSceneController = SingletonHolder<GameSystem>::sInstance->mSceneController;
 
-        if (pSceneController == NULL) {
+        if (pSceneController == nullptr) {
             return false;
         }
 
@@ -418,7 +417,6 @@ namespace MR {
             return false;
         }
 
-        return getSceneObjHolder()->isExist(id);
+        return MR::getSceneObjHolder()->isExist(id);
     }
-    */
 };
