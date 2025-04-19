@@ -50,7 +50,11 @@ namespace MR {
         delete static_cast<u8*>(pPtr);
     }
 
-    // MR::getHomeButtonLayoutAllocator
+    MEMAllocator* getHomeButtonLayoutAllocator() {
+        JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::sInstance->mHomeButtonLayoutHeap;
+
+        return &JKRHeapAllocator<0>::sAllocator;
+    }
 
     JKRHeap* getCurrentHeap() {
         return JKRHeap::sCurrentHeap;

@@ -13,6 +13,7 @@ class JKRExpHeap;
 class JKRSolidHeap;
 
 namespace MR {
+    MEMAllocator* getHomeButtonLayoutAllocator();
     void becomeCurrentHeap(JKRHeap *);
     JKRHeap* getCurrentHeap();
     bool isEqualCurrentHeap(JKRHeap *);
@@ -69,6 +70,8 @@ namespace MR {
             JKRHeapAllocator<T>::sHeap->free(pData);
         }
 
+        static MEMAllocator sAllocator;
+        static MEMAllocatorFunc sAllocatorFunc;
         static JKRHeap* sHeap;
     };
 };
