@@ -47,6 +47,7 @@ namespace JGeometry {
     };
 };
 
+typedef JGeometry::TBox2<f32> TBox2f;
 typedef JGeometry::TBox2<s16> TBox2s;
 typedef JGeometry::TBox3<f32> TBox3f;
 typedef JGeometry::TBox3<JGeometry::TVec3<f32> > TBoxVec3f;

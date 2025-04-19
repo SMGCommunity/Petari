@@ -3,8 +3,20 @@
 #include "revolution/gx/GXStruct.h"
 #include <revolution.h>
 #include <JSystem/JGeometry.hpp>
+#include <JSystem/J2DGraph/J2DGrafContext.hpp>
 
 class J3DModelData;
+
+class J2DOrthoGraphSimple : public J2DOrthoGraph {
+    public:
+        J2DOrthoGraphSimple();
+
+        ~J2DOrthoGraphSimple() {
+            
+        }
+    
+        void setPort();
+    };
 
 namespace MR {
     void drawInit();

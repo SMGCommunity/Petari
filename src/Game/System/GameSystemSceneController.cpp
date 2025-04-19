@@ -6,8 +6,8 @@ SceneControlInfo::SceneControlInfo() {
     _48 = nullptr;
     mScene[0] = 0;
     mStage[0] = 0;
-    _40 = 1;
-    _44 = 1;
+    mCurrentScenarioNo = 1;
+    mCurrentSelectedScenarioNo = 1;
     _48 = new JMapIdInfo(MR::getInitializeStartIdInfo());
     
 }

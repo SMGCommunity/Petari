@@ -1,10 +1,16 @@
 #pragma once
 
+#include "Game/Map/KCollision.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
 #include "Game/Util.hpp"
 
 class NameObjListExecutor;
 class SceneObjHolder;
+class PlayTimerScene;
+class ScenarioSelectScene;
+class ScenarioDataParser;
+class Scene;
+class IntermissionScene;
 
 class SceneControlInfo {
 public:
@@ -14,21 +20,81 @@ public:
     void setStage(const char *);
     void setStartIdInfo(const JMapIdInfo &);
 
-    char mScene[0x20];  // 0x0
-    char mStage[0x20];  // 0x20
-    u32 _40;
-    u32 _44;
+    char mScene[0x20];                      // 0x0
+    char mStage[0x20];                      // 0x20
+    u32 mCurrentScenarioNo;                 // 0x40
+    u32 mCurrentSelectedScenarioNo;         // 0x44
     JMapIdInfo* _48;
+};
+
+enum SceneInitializeState {
+    State_PlacementPlayer = 2,
+    State_PlacementHighPrio = 3,
+    State_Placement = 4,
+    State_AfterPlacement = 5,
+    State_End = 6
 };
 
 class GameSystemSceneController {
 public:
+    GameSystemSceneController();
+
+    void initAfterStationedResourceLoaded();
+    void requestChangeScene();
+    void checkRequestAndChangeScene();
+    void initializeScene();
+    void destroyScene();
+    bool isStopSound() const;
+    bool isReadyToStartScene() const;
+    bool isFirstUpdateSceneNerveNormal() const;
+    void startScene();
+    void updateScene();
+    void updateeSceneDuringResetProcessing();
+    void calcAnimScene();
+    void drawScene();
     NameObjListExecutor* getNameObjListExecutor() const;
-
     SceneObjHolder* getSceneObjHolder() const;
-
     bool isExistSceneObjHolder() const;
+    s32 getCurrentScenarioNo() const;
+    s32 getCurrentSelectedScenarioNo() const;
+    void setSceneInitializeState(SceneInitializeState);
+    bool isSceneInitializeState(SceneInitializeState) const;
+    void startScenarioSelectScene();
+    void startScenarioSelectSceneBackground();
+    void setCurrentScenarioNo(s32, s32);
+    void resetCurrentScenarioNo();
+    bool isScenarioDecided() const;
+    void loadScenarioWaveData();
+    bool isLoadDoneScenarioWaveData() const;
+    void exeNotInitialized();
+    void exeWaitDrawDoneScene();
+    void exeDestroyScene();
+    void exeChangeWaveBank();
+    void exeInitializeScene();
+    void exeInvalidateSystemWipe();
+    void exeDestroyed();
+    void exeReadyToStartScene();
+    void prepareReset();
+    bool isPreparedReset();
+    void restartGameAfterResetting();
+    bool isExistRequest() const;
+    bool isSameAtNextSceneAndStage() const;
+    void updateSceneControlInfo();
+    Scene* getCurrentSceneForExecute() const;
+    Nerve* getNextNerveOnResetProcessing() const;
+    bool tryDestroyFileCacheHeap(bool);
+    bool requestChangeNerve(const Nerve *);
 
-    u8 _0[0xA8];
-    NameObjHolder* mObjHolder;     // 0xA8
+    SceneControlInfo _0;
+    SceneControlInfo _4C;
+    Spine* _98;
+    Nerve* _9C;
+    bool _A0;
+    ScenarioDataParser* mScenarioParser;        // 0xA4
+    NameObjHolder* mObjHolder;                  // 0xA8
+    Scene* _AC;
+    SceneInitializeState mInitState;            // 0xB0
+    IntermissionScene* mIntermissionScene;      // 0xB4
+    PlayTimerScene* mPlayTimerScene;            // 0xB8
+    ScenarioSelectScene* mScenarioScene;        // 0xBC
 };
