@@ -46,7 +46,7 @@ void MultiSceneActor::calcAnim() {
         TMtx34f mtx;
         mtx.identity();
         MR::makeMtxTR(mtx.toMtxPtr(), mTranslation, mRotation);
-        PSMTXCopy(mtx.toMtxPtr(), mModelMgr->getJ3DModel()->_24);
+        PSMTXCopy(mtx.toMtxPtr(), mModelMgr->getJ3DModel()->mBaseTransformMtx);
         J3DModel* model = mModelMgr->getJ3DModel();
         model->_18 = mScale.x;
         model->_1C = mScale.y;
