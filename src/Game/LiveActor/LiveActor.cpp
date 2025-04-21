@@ -123,7 +123,7 @@ MtxPtr LiveActor::getBaseMtx() const {
         return 0;
     }
 
-    return MR::getJ3DModel(this)->_24;
+    return MR::getJ3DModel(this)->mBaseTransformMtx;
 }
 
 #ifdef NON_MATCHING
