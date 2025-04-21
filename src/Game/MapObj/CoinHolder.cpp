@@ -44,7 +44,7 @@ bool CoinHolder::appearCoinToVelocity(const NameObj *pObj, const TVec3f &a2, con
 // CoinHolder::appearCoinCircle
 
 CoinHostInfo* CoinHolder::declare(const NameObj *pObj, s32 a2) {
-    if (a2 < 0) {
+    if (a2 <= 0) {
         return nullptr;
     }
 

@@ -26,7 +26,7 @@ void CoinBox::init(const JMapInfoIter &rIter) {
     initEffectKeeper(1, "Coin", false);
 }
 
-#ifdef NON_MATCHING
+// https://decomp.me/scratch/2bcHZ
 void CoinBox::exeHit() {
     if (!getNerveStep()) {
         getSensor("body")->invalidate();
@@ -41,17 +41,15 @@ void CoinBox::exeHit() {
         f32 val = MR::vecKillElement(axis_y, mGravity, &stack_38);
         TVec3f stack_8 = stack_38 * 10.0f;
         TVec3f stack_2C((mGravity * val) * 30.0f);
-        
-        //TVec3f stack_2C(stack_20);
-        stack_2C.addInline(stack_8);
+
+        stack_2C.add(stack_8);
         MR::appearCoinToVelocity(this, mPosition, axis_y, 1);
         kill();
     }
 }
-#endif
 
 bool CoinBox::receiveOtherMsg(u32 msg, HitSensor *, HitSensor *) {
-    if (msg - 0x31 < 2) {
+    if (msg - 0x31 <= 2) {
         setNerve(&NrvCoinBox::CoinBoxNrvHit::sInstance);
         return 1;
     }
