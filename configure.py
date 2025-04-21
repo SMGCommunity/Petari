@@ -1391,7 +1391,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/CoinReplica.cpp"),
             Object(NonMatching, "Game/MapObj/CoinRotater.cpp"),
             Object(Matching, "Game/MapObj/CoinSpot.cpp"),
-            Object(NonMatching, "Game/MapObj/CollapsePlane.cpp"),
+            Object(Matching, "Game/MapObj/CollapsePlane.cpp"),
             Object(Matching, "Game/MapObj/CollectCounter.cpp"),
             Object(Matching, "Game/MapObj/CollisionBlocker.cpp"),
             Object(NonMatching, "Game/MapObj/CrystalCage.cpp"),

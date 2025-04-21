@@ -172,6 +172,28 @@ namespace JGeometry {
             z = val;
         }
 
+        #ifdef __MWERKS__
+        inline void mulInternal(register const f32 *vec1, register const f32 *vec2, register f32 *dst) 
+        {
+    
+            register f32 xy1, xy2, res;
+            __asm {
+                psq_l xy1, 0(vec1), 0, 0
+                psq_l xy2, 0(vec2), 0, 0
+                ps_mul res, xy1, xy2
+                psq_st res, 0(dst), 0, 0
+            }
+            dst[2] = vec1[2] * vec2[2];
+    
+        }
+        #else
+        void mulInternal(const f32 *vec1, const f32 *vec2, f32 *dst) ;
+        #endif
+
+        void mult(const Vec &src1, const Vec &src2, Vec &dest) {
+            mulInternal(&src1.x, &src2.x, &dest.x);
+        }
+
         template<typename T>
         void setAll(f32);
 

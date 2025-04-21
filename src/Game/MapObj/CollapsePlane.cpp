@@ -65,16 +65,15 @@ void CollapsePlane::exeDPDStop() {
     }
 
     if (MR::updateActorState(this, mStarPointerBind)) {
-        if (_D0 == -1) {
-            setNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
+        if (_D0 != -1) {
+            setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
         }
         else {
-            setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
+            setNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
         }
     }
 }
 
-/*
 void CollapsePlane::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
 
@@ -84,11 +83,10 @@ void CollapsePlane::calcAndSetBaseMtx() {
 
     if (MR::isInitializeStateEnd()) {
         TVec3f new_scale;
-        new_scale.multPS(mScaleController->_C, mScale);
+        new_scale.mult(mScaleController->_C, mScale, new_scale);
         MR::setBaseScale(this, new_scale);
     }
 }
-*/
 
 void CollapsePlane::control() {
     mScaleController->updateNerve();
