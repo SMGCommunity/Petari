@@ -119,6 +119,14 @@ namespace JGeometry {
         operator const ArrType*() const {
             return mMtx;
         }
+        
+        f32 get(int x, int y) const { 
+            return mMtx[x][y];
+        }
+
+        f32 operator()(int x, int y) const {
+            return get(x, y);
+        }
 
         T mMtx[3][4];
     };

@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DMatPacket.hpp"
 #include "JSystem/J3DGraphBase/J3DMatBlock.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include "JSystem/J3DGraphBase/J3DShape.hpp"
 
 class J3DShape;
 class J3DJoint;
@@ -23,14 +24,6 @@ public:
     u8 _3;
 
     static u16 sUnk;
-};
-
-class J3DCurrentMtx {
-public:
-    void setCurrentTexMtx(u8, u8, u8, u8, u8, u8, u8, u8);
-
-    u32 _0;
-    u32 _4;
 };
 
 class J3DMaterial {

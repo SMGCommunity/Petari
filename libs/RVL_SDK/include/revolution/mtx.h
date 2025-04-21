@@ -29,6 +29,8 @@ typedef f32 (*MtxPtr)[4];
 typedef f32 Mtx44[4][4];
 typedef f32 (*Mtx44Ptr)[4];
 
+typedef f32 Mtx33[3][3];
+
 /* C Matrix */
 void C_MTXIdentity(Mtx);
 void C_MTXCopy(const Mtx, Mtx);
