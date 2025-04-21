@@ -27,7 +27,12 @@ class TexMtxCtrl;
 class BckCtrlData;
 
 namespace MR {
-    enum CollisionScaleType { UNKNOWN_0 = 0, UNKNOWN_1 = 1, UNKNOWN_2 = 2, UNKNOWN_3 = 3 };
+    enum CollisionScaleType { 
+        AutoEqualScale = 0, 
+        NoScale = 1, 
+        UNKNOWN_2 = 2, 
+        UNKNOWN_3 = 3 
+    };
 
     bool isExistIndirectTexture(const LiveActor*);
 

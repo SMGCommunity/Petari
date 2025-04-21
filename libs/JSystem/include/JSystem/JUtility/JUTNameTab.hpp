@@ -16,7 +16,7 @@ public:
     virtual ~JUTNameTab();
 
     void setResource(const ResNTAB *);
-    u16 getIndex(const char *) const;
+    s32 getIndex(const char *) const;
     const char* getName(u16) const;
     u32 calcKeyCode(const char *) const;
 

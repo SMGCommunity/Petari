@@ -1,10 +1,51 @@
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/Map/LightFunction.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Map/CollisionParts.hpp"
+#include "Game/System/ResourceHolder.hpp"
+#include <JSystem/JUtility/JUTNameTab.hpp>
+#include <cstdio>
+
+namespace {
+    CollisionParts* createCollisionParts(ResourceHolder *pResHolder, const char *pName, HitSensor *pSensor, const TPos3f &rMtx, MR::CollisionScaleType scaleType, s32 unk) {
+        CollisionParts* parts = new CollisionParts();
+        char kcl[0x80];
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+        char pa[0x80];
+        snprintf(pa, sizeof(pa), "%s.pa", pName);
+        void* paRes = nullptr;
+        void* kclRes = pResHolder->mFileInfoTable->getRes(kcl);
+        if (pResHolder->mFileInfoTable->isExistRes(pa)) {
+            paRes = pResHolder->mFileInfoTable->getRes(pa);
+        }
+
+        switch (scaleType) {
+            case 0:
+                parts->initWithAutoEqualScale(rMtx, pSensor, kclRes, paRes, unk, false);
+                break;
+            case 1:
+                parts->initWithNotUsingScale(rMtx, pSensor, kclRes, paRes, unk, false);
+                break;
+            case 2:
+            case 3:
+                parts->init(rMtx, pSensor, kclRes, paRes, unk, false);
+                break;
+        }
+
+        return parts;
+    }
+};
 
 namespace MR {
+    bool isExistIndirectTexture(const LiveActor *pActor) {
+        const char* name = "IndDummy";
+        return MR::getJ3DModelData(pActor)->mMaterialTable.mTextureNameTable->getIndex(name) != -1;
+    }
+
     void initDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {
         if (!rIter.isValid()) {
             return;
@@ -77,7 +118,7 @@ namespace MR {
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor *pActor, f32 a2) {
         f32 radius = 0.0f;
         MR::calcModelBoundingRadius(&radius, pActor);
-        f32 rad = radius * a2;
+        f32 rad = radius + a2;
         MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0);
     }
 

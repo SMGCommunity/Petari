@@ -14,6 +14,7 @@ void IntermissionScene::update() {
     _54++;
 }
 
+// https://decomp.me/scratch/smCaD
 void IntermissionScene::draw() const {
     J2DOrthoGraphSimple graph;
     graph.setPort();
