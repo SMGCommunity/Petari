@@ -144,7 +144,7 @@ void FireBar::init(const JMapInfoIter &rIter) {
 void FireBar::exeWait() {
     TVec3f up_vec;
     MR::calcUpVec(&up_vec, this);
-    MR::rotateVecDegree(&up_vec, _94, mFireBarSpeed);
+    MR::rotateVecDegree(&_94, up_vec, mFireBarSpeed);
     MR::startLevelSound(this, "SE_OJ_LV_FIRE_BAR_CENTER", -1, -1, -1);
     fixFireBarBall();
 }

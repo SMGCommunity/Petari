@@ -5,7 +5,7 @@
 #include "math_types.hpp"
 
 CrystalCage::CrystalCage(const char *pName) : LiveActor(pName), 
-    mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _DC(gZeroVec), _E8(gZeroVec),
+    mCrystalCageType(0), mBreakObj(nullptr), _C4(1), _C8(0), mRumbleCalc(nullptr), _D0(0.0f, 0.0f, 1.0f), _DC(gZeroVec), _E8(gZeroVec),
     mDisplayModel(nullptr), _F8(gZeroVec), _104(0), _108(-1), mIsBreakObjVisible(false), mPlayRiddleSFX(false), mHasBinding(false), _110(gZeroVec) {
         _94.identity();
 }
@@ -247,7 +247,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter &rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadA(this, rIter)) {
-            MR::FunctorV0M<CrystalCage *, void (CrystalCage::*)()> forceFunc = MR::Functor<CrystalCage>(this, &CrystalCage::forceBreak);
+            MR::FunctorV0M<CrystalCage *, void (CrystalCage::*)()> forceFunc = MR::Functor_Inline<CrystalCage>(this, &CrystalCage::forceBreak);
             MR::listenStageSwitchOnA(this, forceFunc);
         }
 

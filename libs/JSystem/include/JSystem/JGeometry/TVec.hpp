@@ -115,7 +115,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(f32 _x, f32 _y, f32 _z) NO_INLINE {
+        TVec3(f32 _x, f32 _y, f32 _z) {
             x = _x;
             y = _y;
             z = _z;

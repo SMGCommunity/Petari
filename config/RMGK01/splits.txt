@@ -4636,13 +4636,13 @@ Game/MapObj/FirePressureRadiate.cpp:
 Game/MapObj/FlameGun.cpp:
 	.text       start:0x801DC004 end:0x801DC9D0
 	.ctors      start:0x8052ED14 end:0x8052ED18
-	.data       start:0x80594618 end:0x805947F0
+	.data       start:0x80594618 end:0x80594740
 	.sbss       start:0x806B5140 end:0x806B5158
 	.sdata2     start:0x806BCFF8 end:0x806BD028
 
 Game/MapObj/FlexibleSphere.cpp:
 	.text       start:0x801DC9D0 end:0x801DD218
-	.data       start:0x805947F0 end:0x80594868
+	.data       start:0x80594740 end:0x80594868
 	.sdata      start:0x806B1E10 end:0x806B1E30
 	.sdata2     start:0x806BD028 end:0x806BD060
 

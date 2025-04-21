@@ -178,7 +178,7 @@ void CrystalCageMoving::updateHitSensor(HitSensor *pSensor) {
         f32 z = joint_mtx.mMtx[2][1];
         f32 y = joint_mtx.mMtx[1][1];
         f32 x = joint_mtx.mMtx[0][1];
-        joint_pos.set(x, y, z);
+        joint_pos.set<f32>(x, y, z);
         TVec3f stack_14;
         JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
         TVec3f stack_8;

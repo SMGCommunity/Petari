@@ -27,7 +27,9 @@ public:
     /// @param pName The new name assigned to the LiveActor.
     LiveActor(const char *pName);
 
-    virtual inline ~LiveActor();
+    virtual inline ~LiveActor() {
+        
+    }
 
     virtual void init(JMapInfoIter const &);
     virtual void movement();
