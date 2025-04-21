@@ -8,6 +8,7 @@
 #include "revolution/thp.h"
 #include "revolution/sc.h"
 #include <JSystem/JAudio2/JASAiCtrl.hpp>
+#include <cstring>
 
 static u16 VolumeTable[] =
 {

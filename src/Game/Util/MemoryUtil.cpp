@@ -1,36 +1,10 @@
-#include "Game/Util.hpp"
-#include "Game/System/HeapMemoryWatcher.hpp"
-#include "Game/SingletonHolder.hpp"
-#include <cstdio>
-#include <cstring>
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/MutexHolder.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <mem.h>
-#include <size_t.h>
 
 namespace MR {
-    MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
-        NewDeleteAllocator::alloc, 
-        NewDeleteAllocator::free, 
-    };
-    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
-
-    #ifdef NON_MATCHING
-    // shrug
-    s32 calcCheckSum(const void *pData, u32 a2) {
-        u32 v2 = 0;
-        u32 v3 = 0;
-        
-        for (int i = a2 >> 1; i; i--) {
-            u16 curData = *(u16*)pData;
-            pData = (s8*)pData + 2;
-            v3 += curData;
-            v2 += ~curData;
-        }
-
-        return (v3 << 16) | v2;
-    }
-    #endif
-
-    CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap *pHeap) {
+    CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap* pHeap) {
         _0 = JKRHeap::sCurrentHeap;
         OSLockMutex(&MR::MutexHolder<1>::sMutex);
         MR::becomeCurrentHeap(pHeap);
@@ -41,15 +15,25 @@ namespace MR {
         OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
     }
 
-    void* NewDeleteAllocator::alloc(MEMAllocator *pAllocator, u32 size) {
+    void* NewDeleteAllocator::alloc(MEMAllocator* pAllocator, u32 size) {
         return new u8[size];
     }
 
-    void NewDeleteAllocator::free(MEMAllocator *pAllocator, void *pData) {
-        delete[] (u8*)pData;
+    void NewDeleteAllocator::free(MEMAllocator* pAllocator, void* pPtr) {
+        delete static_cast<u8*>(pPtr);
     }
 
-    // MR::getHomeButtonLayoutAllocator
+    MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
+        NewDeleteAllocator::alloc,
+        NewDeleteAllocator::free,
+    };
+    MEMAllocator NewDeleteAllocator::sAllocator = { &sAllocatorFunc };
+
+    MEMAllocator* getHomeButtonLayoutAllocator() {
+        JKRHeapAllocator<0>::sHeap = SingletonHolder<HeapMemoryWatcher>::sInstance->mHomeButtonLayoutHeap;
+
+        return &JKRHeapAllocator<0>::sAllocator;
+    }
 
     JKRHeap* getCurrentHeap() {
         return JKRHeap::sCurrentHeap;
@@ -57,7 +41,7 @@ namespace MR {
 
     // MR::getAproposHeapForSceneArchive
     
-    JKRExpHeap* MR::getStationedHeapNapa() {
+    JKRExpHeap* getStationedHeapNapa() {
         return SingletonHolder<HeapMemoryWatcher>::sInstance->mStationedHeapNapa;
     }
 
@@ -73,33 +57,82 @@ namespace MR {
         return SingletonHolder<HeapMemoryWatcher>::sInstance->mSceneHeapGDDR;
     }
 
-    // MR::getHeapNapa
-    // MR::getHeapGDDR3
+    JKRHeap* getHeapNapa(const JKRHeap* pHeap) {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapNapa(pHeap);
+    }
 
-    void becomeCurrentHeap(JKRHeap *pHeap) {
+    JKRHeap* getHeapGDDR3(const JKRHeap* pHeap) {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->getHeapGDDR3(pHeap);
+    }
+
+    void becomeCurrentHeap(JKRHeap* pHeap) {
         OSLockMutex(&MR::MutexHolder<1>::sMutex);
         pHeap->becomeCurrentHeap();
         OSUnlockMutex(&MR::MutexHolder<1>::sMutex);
     }
 
-    bool isEqualCurrentHeap(JKRHeap *pHeap) {
-        return pHeap == JKRHeap::sCurrentHeap;
+    bool isEqualCurrentHeap(JKRHeap* pHeap) {
+        return JKRHeap::sCurrentHeap == pHeap;
     }
 
     // MR::adjustHeapSize
     // MR::copyMemory
 
-    void fillMemory(void *pDest, u8 a2, size_t size) {
-        if (a2 == 0) {
-            MR::zeroMemory(pDest, size);
+    void fillMemory(void* pDst, u8 ch, u32 size) {
+        if (ch == 0) {
+            zeroMemory(pDst, size);
         }
         else {
-            memset(pDest, a2, size);
+            memset(pDst, ch, size);
         }
     }
 
     // MR::zeroMemory
-    // MR::calcCheckSum
-    // MR::allocFromWPadHeap
-    // MR::freeFromWPadHeap
+
+    u32 calcCheckSum(const void* pPtr, u32 size) {
+        u16 sum;
+        u16 invSum;
+
+        invSum = 0;
+        sum = 0;
+
+        const u16* p = static_cast<const u16*>(pPtr);
+        u32 checkSize = size / sizeof(u16);
+
+        for (int i = 0; i < checkSize; i++, p++) {
+            sum += *p;
+            invSum += ~(*p);
+        }
+
+        return (sum << 16) | invSum;
+    }
+
+    void* allocFromWPadHeap(u32 size) {
+        return SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->alloc(size, 0);
+    }
+
+    u8 freeFromWPadHeap(void* pPtr) {
+        SingletonHolder<HeapMemoryWatcher>::sInstance->mWPadHeap->free(pPtr);
+
+        return 1;
+    }
+
+    template<int N>
+    void* JKRHeapAllocator<N>::alloc(MEMAllocator* pAllocator, u32 size) {
+        return JKRHeapAllocator<N>::sHeap->alloc(size, 0);
+    }
+
+    template<int N>
+    void JKRHeapAllocator<N>::free(MEMAllocator* pAllocator, void* pPtr) {
+        JKRHeapAllocator<N>::sHeap->free(pPtr);
+    }
+
+    template<int N>
+    MEMAllocator JKRHeapAllocator<N>::sAllocator = { &sAllocatorFunc, NULL, 4, 0 };
+
+    template<int N>
+    MEMAllocatorFunc JKRHeapAllocator<N>::sAllocatorFunc = {
+        JKRHeapAllocator::alloc,
+        JKRHeapAllocator::free,
+    };
 };
