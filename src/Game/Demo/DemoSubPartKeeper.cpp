@@ -1,6 +1,7 @@
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Util.hpp"
+#include <cstring>
 
 DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumSubPartInfos(0), mSubPartInfos(nullptr) {
     JMapInfo* map = nullptr;

@@ -1,72 +1,83 @@
 #pragma once
 
-#include <revolution.h>
-#include <revolution/mem.h>
-#include <cstring>
-#include <size_t.h>
-#include "JSystem/JKernel/JKRHeap.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
+#include <revolution/mem.h>
 
-class JKRHeap;
 class JKRExpHeap;
+class JKRHeap;
 class JKRSolidHeap;
 
 namespace MR {
-    void becomeCurrentHeap(JKRHeap *);
-    JKRHeap* getCurrentHeap();
-    bool isEqualCurrentHeap(JKRHeap *);
-
-    void copyMemory(void *, const void *, u32);
-    void fillMemory(void *, u8, u32);
-    void zeroMemory(void *, u32);
-    s32 calcCheckSum(const void *, u32);
-
-    void* allocFromWPadHeap(u32);
-    u8 freeFromWPadHeap(void *);
-
-    JKRExpHeap* getStationedHeapNapa();
-    JKRExpHeap* getStationedHeapGDDR3();
-    JKRSolidHeap* getSceneHeapNapa();
-    JKRSolidHeap* getSceneHeapGDDR3();
-
-    JKRHeap* getAproposHeapForSceneArchive(f32);
-
-    void adjustHeapSize(JKRExpHeap *, const char *);
-
-    inline JKRSolidHeap* getAudHeap() {
-        return SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap;
-    }
-
     class CurrentHeapRestorer {
     public:
-        CurrentHeapRestorer(JKRHeap *);
+        CurrentHeapRestorer(JKRHeap*);
         ~CurrentHeapRestorer();
 
-        JKRHeap* _0;
+    private:
+        /* 0x00 */ JKRHeap* _0;
     };
 
     class NewDeleteAllocator {
     public:
-        static void* alloc(MEMAllocator *, u32);
-        static void free(MEMAllocator *, void *);
+        static void* alloc(MEMAllocator* pAllocator, u32 size);
+        static void free(MEMAllocator* pAllocator, void* pPtr);
 
         static MEMAllocatorFunc sAllocatorFunc;
-
         static MEMAllocator sAllocator;
     };
 
-    template<int T>
+    MEMAllocator* getHomeButtonLayoutAllocator();
+    JKRHeap* getCurrentHeap();
+    JKRHeap* getAproposHeapForSceneArchive(f32);
+    JKRExpHeap* getStationedHeapNapa();
+    JKRExpHeap* getStationedHeapGDDR3();
+    JKRSolidHeap* getSceneHeapNapa();
+    JKRSolidHeap* getSceneHeapGDDR3();
+    JKRHeap* getHeapNapa(const JKRHeap* pHeap);
+    JKRHeap* getHeapGDDR3(const JKRHeap* pHeap);
+    void becomeCurrentHeap(JKRHeap* pHeap);
+    bool isEqualCurrentHeap(JKRHeap* pHeap);
+    void adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2);
+
+    /// @brief Copies `size` bytes from `pSrc` to `pDst`.
+    /// @param pDst The pointer to the memory to copy to.
+    /// @param pSrc The pointer to the memory to copy from.
+    /// @param size The number of bytes to copy.
+    void copyMemory(void* pDst, const void* pSrc, u32 size);
+
+    /// @brief Fills `size` bytes at `pDst` with `ch`.
+    /// @param pDst The pointer to the memory to fill.
+    /// @param ch The value to copy.
+    /// @param size The number of bytes to fill.
+    void fillMemory(void* pDst, u8 ch, u32 size);
+
+    /// @brief Fills `size` bytes at `pDst` with `0`.
+    /// @param pDst The pointer to the memory to fill.
+    /// @param size The number of bytes to fill.
+    void zeroMemory(void* pDst, u32 size);
+
+    /// @brief Computes a checksum from the given block of memory.
+    /// @param pPtr The pointer to the memory to process.
+    /// @param size The number of bytes to process.
+    /// @return The computed checksum.
+    u32 calcCheckSum(const void* pPtr, u32 size);
+
+    void* allocFromWPadHeap(u32 size);
+    u8 freeFromWPadHeap(void* pPtr);
+
+    template<int N>
     class JKRHeapAllocator {
     public:
-        static void* alloc(MEMAllocator *pAllocator, u32 size) {
-            return JKRHeapAllocator<T>::sHeap->alloc(size, 0);
-        }
+        static void* alloc(MEMAllocator* pAllocator, u32 size);
+        static void free(MEMAllocator* pAllocator, void* pPtr);
 
-        static void free(MEMAllocator *pAllocator, void *pData) {
-            JKRHeapAllocator<T>::sHeap->free(pData);
-        }
-
+        static MEMAllocator sAllocator;
+        static MEMAllocatorFunc sAllocatorFunc;
         static JKRHeap* sHeap;
     };
+
+    inline JKRSolidHeap* getAudHeap() {
+        return SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap;
+    }
 };

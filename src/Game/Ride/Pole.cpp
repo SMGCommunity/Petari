@@ -1,5 +1,6 @@
 #include "Game/Ride/Pole.hpp"
 #include <JSystem/JMath.hpp>
+#include <cstring>
 
 Pole::Pole(const char *pName) : LiveActor(pName) {
     _8C.x = 0.0f;
