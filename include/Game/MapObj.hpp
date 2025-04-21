@@ -99,6 +99,7 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/MapObj/Sun.hpp"
 #include "Game/MapObj/SuperSpinDriver.hpp"
+#include "Game/MapObj/SwitchBox.hpp"
 #include "Game/MapObj/TreasureBoxCracked.hpp"
 #include "Game/MapObj/TreasureSpot.hpp"
 #include "Game/MapObj/UFOKinoko.hpp"
