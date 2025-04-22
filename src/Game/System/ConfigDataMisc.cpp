@@ -55,8 +55,7 @@ u32 ConfigDataMisc::getSignature() const {
 }
 
 s32 ConfigDataMisc::serialize(u8 *pData, u32 len) const {
-    JSUMemoryOutputStream stream;
-    stream.setBuffer(pData, len);
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pData, len);
     u8 stack_8 = mData;
     stream.write(&stack_8, 1);
     OSTime stack_10 = mLastModified;

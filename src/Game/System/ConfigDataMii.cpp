@@ -42,8 +42,7 @@ u32 ConfigDataMii::getSignature() const {
 }
 
 s32 ConfigDataMii::serialize(u8 *pData, u32 len) const {
-    JSUMemoryOutputStream stream;
-    stream.setBuffer(pData, len);
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pData, len);
     u8 stack_9 = _4;
     stream.write(&stack_9, 1);
     stream.write(mBuffer, 8);
