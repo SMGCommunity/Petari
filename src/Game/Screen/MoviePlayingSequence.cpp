@@ -69,16 +69,11 @@ namespace {
 
     // https://decomp.me/scratch/JwRGa
     const char* getMovieName(const MoviePlayingInfo *pInfo) NO_INLINE {
-        if (MR::isPlayerLuigi()) {
+        if (MR::isPlayerLuigi() && pInfo->mMovieNameLuigi != nullptr) {
             return pInfo->mMovieNameLuigi;
         }
         else {
-            const char* name = pInfo->mMovieNameLuigi;
-            if (pInfo->mMovieNameLuigi != nullptr) {
-                name = pInfo->mMovieName;
-            }
-
-            return name;
+           return pInfo->mMovieName;
         }
     }
 };

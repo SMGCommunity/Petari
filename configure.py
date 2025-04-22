@@ -1197,7 +1197,7 @@ config.libs = [
             Object(Matching, "Game/LiveActor/MessageSensorHolder.cpp"),
             Object(NonMatching, "Game/LiveActor/MirrorActor.cpp"),
             Object(NonMatching, "Game/LiveActor/MirrorCamera.cpp"),
-            Object(NonMatching, "Game/LiveActor/MirrorReflectionModel.cpp"),
+            Object(Matching, "Game/LiveActor/MirrorReflectionModel.cpp"),
             Object(NonMatching, "Game/LiveActor/ModelManager.cpp"),
             Object(Matching, "Game/LiveActor/ModelObj.cpp"),
             Object(Matching, "Game/LiveActor/Nerve.cpp"),
