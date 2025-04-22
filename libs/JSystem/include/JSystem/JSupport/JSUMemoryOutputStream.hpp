@@ -4,8 +4,10 @@
 
 class JSUMemoryOutputStream : public JSURandomOutputStream {
 public:
-    inline JSUMemoryOutputStream() {
-        
+    JSUMemoryOutputStream(void* pBuffer, s32 size) :
+        JSURandomOutputStream()
+    {
+        setBuffer(pBuffer, size);
     }
 
     virtual ~JSUMemoryOutputStream();

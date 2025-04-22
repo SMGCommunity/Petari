@@ -2,11 +2,9 @@
 
 #include "JSystem/JSupport/JSUInputStream.hpp"
 
-enum JSUStreamSeekFrom;
-
 class JSURandomInputStream : public JSUInputStream {
 public:
-    inline JSURandomInputStream();
+    JSURandomInputStream() {}
 
     virtual ~JSURandomInputStream();
 

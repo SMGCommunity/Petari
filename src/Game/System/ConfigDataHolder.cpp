@@ -16,8 +16,7 @@ u32 ConfigDataCreateChunk::getSignature() const {
 }
 
 s32 ConfigDataCreateChunk::serialize(u8 *pData, u32 len) const {
-    JSUMemoryOutputStream stream;
-    stream.setBuffer(pData, len);
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pData, len);
     u8 data = -(mData != 0); 
     stream.write(&data, 1);
     return stream.mPosition;
@@ -25,8 +24,7 @@ s32 ConfigDataCreateChunk::serialize(u8 *pData, u32 len) const {
 
 s32 ConfigDataCreateChunk::deserialize(const u8 *pData, u32 len) {
     initializeData();
-    JSUMemoryInputStream stream;
-    stream.setBuffer(pData, len);
+    JSUMemoryInputStream stream = JSUMemoryInputStream(pData, len);
     u8 data;
     stream.read(&data, 1);
     mData = data != 0;
