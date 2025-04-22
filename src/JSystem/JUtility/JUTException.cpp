@@ -3,6 +3,8 @@
 #include <revolution/os.h>
 #include <cstdio>
 
+OSMessageQueue JUTException::sMessageQueue = { 0 };
+JUTException* JUTException::sErrorManager;
 
 struct CallbackObject {
     CallbackFunc callback;                  // 0x0
@@ -83,7 +85,7 @@ void JUTException::errorHandler(u16 err, OSContext *pContext, u32 a3, u32 a4) {
 
 void JUTException::panic_f_va(const char* file, int line, const char* format, va_list args) {
     char buffer[256];
-    vsnprintf(buffer, 0xFF, format, args);
+    vsnprintf(buffer, sizeof(buffer) - 1, format, args);
 
     if (sErrorManager == nullptr) {
         OSPanic((char*)file, line, buffer);

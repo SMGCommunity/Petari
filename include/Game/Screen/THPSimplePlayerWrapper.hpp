@@ -88,9 +88,9 @@ public:
     u8 mAudioExist;                     // 0xB8
     u32 mCurOffset;                     // 0xBC
     u8 mDvdError;                       // 0xC0
-    u32 mReadProgress;         // 0xC4
+    u32 mReadProgress;                  // 0xC4
     s32 mNextDecodeIndex;               // 0xC8
-    volatile s32 mReadIndex;                     // 0xCC
+    volatile s32 mReadIndex;            // 0xCC
     s32 mReadSize;                      // 0xD0
     s32 mTotalReadFrame;                // 0xD4
     f32 mCurrentVolume;                 // 0xD8

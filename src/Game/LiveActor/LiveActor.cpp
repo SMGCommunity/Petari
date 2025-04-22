@@ -126,8 +126,6 @@ MtxPtr LiveActor::getBaseMtx() const {
     return MR::getJ3DModel(this)->mBaseTransformMtx;
 }
 
-#ifdef NON_MATCHING
-// prologue refuses to schedule right for both of these
 void LiveActor::startClipped() {
     HitSensorKeeper* keeper = mSensorKeeper;
 
@@ -149,8 +147,12 @@ void LiveActor::startClipped() {
     }
 }
 
+void LiveActor::setValidClipping(bool a) {
+    mFlags.mIsClipped = a;
+}
+
 void LiveActor::endClipped() {
-    mFlags.mIsClipped = false;
+    setValidClipping(false);
 
     if (mSensorKeeper) {
         mSensorKeeper->validateBySystem();
@@ -167,7 +169,6 @@ void LiveActor::endClipped() {
         MR::connectToDrawTemporarily(this);
     }
 }
-#endif
 
 void LiveActor::initModelManagerWithAnm(const char *pName, const char *a2, bool a3) {
     mModelManager = new ModelManager();

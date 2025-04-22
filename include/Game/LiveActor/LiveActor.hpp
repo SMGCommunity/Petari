@@ -28,7 +28,7 @@ public:
     LiveActor(const char *pName);
 
     virtual inline ~LiveActor() {
-        
+
     }
 
     virtual void init(JMapInfoIter const &);
@@ -85,6 +85,8 @@ public:
     void initActorLightCtrl();
     void addToSoundObjHolder();
     void updateBinder();
+
+    inline void setValidClipping(bool arg);
 
     inline bool isBinderValid(Binder *pBinder) {
         return pBinder;

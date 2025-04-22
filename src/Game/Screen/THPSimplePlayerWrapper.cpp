@@ -83,8 +83,8 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char *pName) : NerveExecuto
     mSoundBufferIndex = 0;
     _30C = 0;
     _310 = 0;
-    mSoundBuffer[0] = new(32) s32[0x460];
-    mSoundBuffer[1] = new(32) s32[0x8C0];
+    mSoundBuffer[0] = new(32) s32[0x230];
+    mSoundBuffer[1] = new(32) s32[0x230];
     MR::zeroMemory(mSoundBuffer[0], 0x8C0);
     MR::zeroMemory(mSoundBuffer[1], 0x8C0);
     DCFlushRange(mSoundBuffer[0], 0x8C0);
@@ -421,7 +421,6 @@ void THPSimplePlayerWrapper::readFrameAsync() {
         if (DVDReadAsyncPrio(&mFileInfo, mReadBuffer[mReadIndex].ptr, mReadSize, mCurOffset, ::dvdCallBackFunc, 2) != 1) {
             mReadProgress = 0;
             mDvdError = 1;
-            
         }
     }
 
@@ -452,10 +451,14 @@ void THPSimplePlayerWrapper::dvdCallBack(s32 result) {
     mTotalReadFrame++;
     mReadBuffer[mReadIndex].isValid = 1;
     mCurOffset += mReadSize;
-    mReadSize = (s32)mReadBuffer[mReadIndex].ptr;
-    mReadIndex = getNextBuffer(mReadIndex);
+    mReadSize = *(u32*)mReadBuffer[mReadIndex].ptr;
+    int index = mReadIndex;
+    index = getNextBuffer(index);
+    mReadIndex = index;
 
-    if (!mReadBuffer[mReadIndex].isValid) {
+    bool valid = mReadBuffer[index].isValid == TRUE;
+
+    if (!valid) {
         readFrameAsync();
     }
 }
