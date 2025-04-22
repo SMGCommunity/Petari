@@ -40,7 +40,7 @@ void GreenCaterpillarBigBody::calcAndSetBaseMtx() {
     else {
         MtxPtr jointMtx = MR::getJointMtx(mCaterpillar, "FollowPoint");
         TVec3f pos;
-        pos.set(jointMtx[0][1], jointMtx[1][1], jointMtx[2][1]);
+        pos.set<f32>(jointMtx[0][1], jointMtx[1][1], jointMtx[2][1]);
         TPos3f frontUpPos;
         MR::makeMtxFrontUpPos(&frontUpPos, mFrontVec, pos, mPosition);
         MR::setBaseTRMtx(this, frontUpPos);  

@@ -17,7 +17,7 @@ public:
     LargeChainParts* _8C;
     LargeChainParts* _90;
     /* 0x94 */  LargeChainParts* mChainArray;   ///< The array of LargeChainParts
-    /* 0x98 */  s32 mChainCount;                ///< The number of chain parts.
+    /* 0x98 */  u32 mChainCount;                ///< The number of chain parts.
 };
 
 namespace NrvLargeChain {

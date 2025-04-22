@@ -159,8 +159,8 @@ namespace NrvLavaSteam {
             pActor->setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
     }
 
-    HostTypeSteamEnd(HostTypeSteamEnd::sInstance);
-    HostTypeSteam(HostTypeSteam::sInstance);
     HostTypeWait(HostTypeWait::sInstance);
     HostTypeWaitForSwitchOn(HostTypeWaitForSwitchOn::sInstance);
+    HostTypeSteam(HostTypeSteam::sInstance);
+    HostTypeSteamEnd(HostTypeSteamEnd::sInstance);
 }

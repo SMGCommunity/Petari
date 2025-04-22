@@ -161,7 +161,7 @@ void ItemBlock::appear() {
 	LiveActor::appear();
 	initNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance);
 
-	if (mKind > 6 || mKind < 1) {
+	if (mKind >= 6 || mKind < 1) {
 		return;
 	}
 

@@ -107,7 +107,7 @@ namespace JGeometry {
 
     template<>
     struct TVec3<f32> : public Vec {
-        inline TVec3(const Vec& vec) {
+        inline TVec3(const Vec& vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
 

@@ -121,6 +121,6 @@ void IceStep::control() {
 }
 
 namespace NrvIceStep {
-    INIT_NERVE(IceStepNrvHit);
     INIT_NERVE(IceStepNrvWait);
+    INIT_NERVE(IceStepNrvHit);
 }; 
