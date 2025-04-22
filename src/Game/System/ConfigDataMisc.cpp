@@ -66,8 +66,7 @@ s32 ConfigDataMisc::serialize(u8 *pData, u32 len) const {
 
 s32 ConfigDataMisc::deserialize(const u8 *pData, u32 len) {
     initializeData();
-    JSUMemoryInputStream stream;
-    stream.setBuffer(pData, len);
+    JSUMemoryInputStream stream = JSUMemoryInputStream(pData, len);
     u8 stack_8;
     stream.read(&stack_8, 1);
     mData = stack_8;
