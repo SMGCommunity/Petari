@@ -42,8 +42,8 @@ public:
     J3DMaterial* _4;
     J3DShape* mShape;                   // 0x8
     J3DJoint* mJoint;                   // 0xC
-    u32 _10;
-    u16 _14;
+    u32 mMaterialIndex;                 // 0x10
+    u16 mIndex;                         // 0x14
     u8 _16;
     u8 _17;
     u32 _18;

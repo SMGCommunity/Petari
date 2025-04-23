@@ -131,6 +131,7 @@ public:
 };
 
 #ifdef __MWERKS__
+void* operator new(u32, int);
 void* operator new(u32, JKRHeap *);
 void* operator new(u32, JKRHeap *, int);
 void* operator new[](u32, int);

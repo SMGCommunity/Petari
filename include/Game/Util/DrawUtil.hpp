@@ -6,6 +6,8 @@
 #include <JSystem/J2DGraph/J2DGrafContext.hpp>
 
 class J3DModelData;
+class J3DModel;
+class J3DMaterial;
 
 class J2DOrthoGraphSimple : public J2DOrthoGraph {
     public:
@@ -43,4 +45,6 @@ namespace MR {
     void resetTextureCacheSize();
 
     void fillSilhouetteColor();
+
+    void simpleDraw(J3DModel *, J3DMaterial *);
 };  // namespace MR
