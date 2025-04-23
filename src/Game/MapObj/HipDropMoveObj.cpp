@@ -154,7 +154,7 @@ void HipDropDemoMoveObj::moving() {
         f32 z = stack_8.mMtx[2][3];
         f32 y = stack_8.mMtx[1][3];
         f32 x = stack_8.mMtx[0][3];
-        demoActor->mPosition.set(x, y, z);
+        demoActor->mPosition.set<f32>(x, y, z);
         MR::setPlayerBaseMtx((MtxPtr)&stack_8);
     }
 }

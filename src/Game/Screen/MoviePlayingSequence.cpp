@@ -176,7 +176,7 @@ void MoviePlayingSequence::exePlayWait() {
         }
     }
 
-    if (MR::isStep(this, mInfo->_10)) {
+    if (MR::isStep(this, mInfo->mPlayWaitTime)) {
         setNerve(&NrvMoviePlayingSequence::HostTypePlayStart::sInstance);
     }
 }

@@ -11,7 +11,7 @@ struct MoviePlayingInfo {
     const char* mMovieNameLuigi;        // 0x04
     const char* mGalaxyName;            // 0x08
     const char* mMusic;                 // 0x0C
-    s32 _10;
+    s32 mPlayWaitTime;
     s32 _14;
     s32 _18;
     s32 _1C;
