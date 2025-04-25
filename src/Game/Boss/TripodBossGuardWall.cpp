@@ -6,7 +6,9 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
 
 struct WallPart2Angle {
     f32 angle;
@@ -48,6 +50,10 @@ TripodBossGuardWallPart::~TripodBossGuardWallPart() {
     
 }
 
+void TripodBossGuardWall::makeActorAppeared() {
+    LiveActor::makeActorAppeared();
+}
+
 void TripodBossGuardWall::makeActorDead() {
     for (s32 i = 0; i < 8; i++) {
         mWallParts[i].makeActorDead();
@@ -64,7 +70,6 @@ void TripodBossGuardWall::kill() {
     LiveActor::kill();
 }
 
-/* functor inline issue */
 void TripodBossGuardWall::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjDecorationMovement(this);
@@ -78,7 +83,7 @@ void TripodBossGuardWall::init(const JMapInfoIter &rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M<TripodBossGuardWall *, void (TripodBossGuardWall::*)()> validateFunc = MR::Functor<TripodBossGuardWall>(this, &TripodBossGuardWall::requestStart);
+        MR::FunctorV0M<TripodBossGuardWall *, void (TripodBossGuardWall::*)()> validateFunc = MR::Functor_Inline<TripodBossGuardWall>(this, &TripodBossGuardWall::requestStart);
         MR::listenStageSwitchOnAppear(this, validateFunc);
     }
 
@@ -161,14 +166,18 @@ void TripodBossGuardWall::exeDemo() {
     }
 }
 
-/* floating point math errors? */
 void TripodBossGuardWall::exeRotate() {
-    f32 offs = MR::adjustAngle(mRotation.y, -0.2f, 0.0f);
     mRotation.y += -0.2f;
-    mRotation.y = MR::normalizeAngle(0.0f, offs);
+    mRotation.y = MR::wrapAngleTowards(0.0f, mRotation.y);
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE", -1, -1, -1);
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();
+    }
+}
+
+void TripodBossGuardWall::exeTryDemo() {
+    if (MR::tryDamageDemoTripodBoss()) {
+        setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
     }
 }
 
@@ -182,13 +191,14 @@ void TripodBossGuardWall::updateMatrix() {
 }
 
 void TripodBossGuardWall::updateCameraTarget() {
+    TVec3f front;
+    TVec3f up;
     TVec3f blah;
     JMathInlineVEC::PSVECSubtract(MR::getPlayerPos(), &mPosition, &blah);
-    TVec3f front;
     front.x = blah.x;
     front.y = blah.y;
     front.z = blah.z;
-    TVec3f up;
+    
     f32 z = mBaseMtx.mMtx[2][1];
     f32 y = mBaseMtx.mMtx[1][1];
     f32 x = mBaseMtx.mMtx[0][1];
@@ -209,5 +219,9 @@ void TripodBossGuardWall::updateCameraTarget() {
     TPos3f pos;
     pos.identity();
     MR::makeMtxUpFrontPos(&pos, up, front, mPosition);
-    mBaseMtx.setInline(pos);
+    mCameraTargetMtx->mMatrix.setInline(pos);
+}
+
+MtxPtr TripodBossGuardWall::getBaseMtx() const {
+    return (MtxPtr)mBaseMtx.mMtx;
 }
