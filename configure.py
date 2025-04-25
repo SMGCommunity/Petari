@@ -789,9 +789,9 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TombSpiderVitalSpot.cpp"),
             Object(NonMatching, "Game/Boss/TripodBoss.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossAccesser.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossBaseJointPosition.cpp"),
+            Object(Matching, "Game/Boss/TripodBossBaseJointPosition.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossBreakMovement.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossCoin.cpp"),
+            Object(Matching, "Game/Boss/TripodBossCoin.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossCore.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossFixParts.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossFixPartsBase.cpp"),
@@ -803,11 +803,11 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TripodBossLeg.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossMovableArea.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossRailMoveParts.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossRotateParts.cpp"),
+            Object(Matching, "Game/Boss/TripodBossRotateParts.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossShell.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossStepPoint.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossStepSequence.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossStepStartArea.cpp")
+            Object(Matching, "Game/Boss/TripodBossStepSequence.cpp"),
+            Object(Matching, "Game/Boss/TripodBossStepStartArea.cpp")
         ],
     ),
 

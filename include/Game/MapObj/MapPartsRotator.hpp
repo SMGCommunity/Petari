@@ -8,7 +8,7 @@ class MapPartsRotatorBase : public MapPartsFunction {
 public:
     virtual ~MapPartsRotatorBase();
 
-    virtual TMtx34f& getRotateMtx() const = 0;
+    virtual const TMtx34f& getRotateMtx() const = 0;
 
     virtual bool isMoving() const {
         return false;
@@ -36,7 +36,9 @@ public:
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
-    virtual TMtx34f& getRotateMtx() const;
+    virtual const TMtx34f& getRotateMtx() const {
+        return _70;
+    }
     virtual bool isMoving() const;
     virtual bool isOnReverse() const;
     virtual f32 getRotateSpeed() const;
