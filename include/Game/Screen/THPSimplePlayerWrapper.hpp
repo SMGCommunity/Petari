@@ -105,7 +105,7 @@ public:
     u8 _2F0;
     f32 _2F4;
     f32 _2F8;
-    u32 _2FC;
+    s32 _2FC;
     s32* mSoundBuffer[2];               // 0x300
     u32 mSoundBufferIndex;              // 0x308
     u8 _30C;

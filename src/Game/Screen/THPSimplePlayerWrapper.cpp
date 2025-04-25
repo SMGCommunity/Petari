@@ -32,6 +32,7 @@ static u16 VolumeTable[] =
 
 static s32 WorkBuffer[16] __attribute__((aligned(32)));
 
+THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
 THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
 
 namespace NrvTHPSimplePlayerWrapper {
@@ -43,7 +44,7 @@ namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeReadPreLoad, THPSimplePlayerWrapper, ReadPreLoad);
 };
 
-THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
+
 
 namespace {
     void dvdCallBackFunc(long a1, DVDFileInfo *pFileInfo) {
@@ -880,7 +881,7 @@ bool THPSimplePlayerWrapper::setVolume(s32 volume, s32 time) {
     s32 en = OSEnableInterrupts();
     mTargetVolume = (f32)volume;
 
-    if (time) {
+    if (time > 0) {
         mRampCount = 32 * time;
         mDeltaVolume = (mTargetVolume - mCurrentVolume) / (f32)mRampCount;
     }
