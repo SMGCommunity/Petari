@@ -201,6 +201,23 @@ namespace JGeometry {
             setRotateInline(rVec, r);
         }
 
+        inline void setRotateInline(f32 r) {
+            f32 c, s, angle;
+            angle = 0.017453292f * r;
+            s = sin(angle);
+            c = cos(angle);
+
+            this->mMtx[0][2] = s;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[0][0] = c;
+            this->mMtx[2][0] = -s;
+            this->mMtx[2][2] = c;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[0][1] = 0.0f; 
+        }
+
         inline void setRotateInline(const TVec3f &vec1, f32 r) {
             TVec3f vec;
             PSVECMag(&vec1);
@@ -278,6 +295,14 @@ namespace JGeometry {
         void makeQuat(const TQuat4f &rSrc);
         void setPositionFromLookAt(const TPosition3<T> &rLookAt);
         void setQT(const TQuat4f &rSrcQuat, const TVec3f &rSrcTrans);
+
+        f32 get(int x, int y) const { 
+            return this->mMtx[x][y];
+        }
+
+        f32 operator()(int x, int y) const {
+            return get(x, y);
+        }
 
         inline void getTransInline(TVec3f &rDest) const {
             f32 z = this->mMtx[2][3];

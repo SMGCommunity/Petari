@@ -165,6 +165,10 @@ namespace MR {
     inline f32 normalizeAngle(f32 a, f32 b) {
         return a + fmod(360.0 + b, 360.0);
     }
+
+    inline f32 wrapAngleTowards(f32 a, f32 b) {
+        return a + (f32)fmod(360.0f + (b - a), 360.0f);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

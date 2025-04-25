@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
+#include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
@@ -378,7 +380,7 @@ namespace {
 		{ "TurtleBeamKameck", NULL, "Kameck" },
 		{ "TripodBoss", NULL, "TripodBoss" },
 		{ "Tripod2Boss", NULL, "Tripod2Boss" },
-		{ "TripodBossBaseJointPosition", NULL, 0 },
+		{ "TripodBossBaseJointPosition", createNameObj<TripodBossBaseJointPosition>, 0 },
 		{ "TripodBossKillerGenerater", NULL, "TripodBossKillerCannon" },
 		{ "TripodBossStepPoint", createNameObj<TripodBossStepPoint>, 0 },
 		{ "TripodBossCore", NULL, "TripodBossCore" },
@@ -401,13 +403,13 @@ namespace {
 		{ "TriPodBossLegBottom", createNameObj<TripodBossFixParts>, "TriPodBossLegBottom" },
 		{ "TripodBossEyeLight", createNameObj<TripodBossFixParts>, "TripodBossEyeLight" },
 		{ "TripodBossEyeLightBloom", createNameObj<TripodBossFixParts>, "TripodBossEyeLightBloom" },
-		{ "TriPodBossGearA", NULL, "TriPodBossGearA" },
-		{ "TriPodBossGearB", NULL, "TriPodBossGearB" },
-		{ "TriPodBossGearC", NULL, "TriPodBossGearC" },
-		{ "TriPodBossGearSmallA", NULL, "TriPodBossGearSmallA" },
-		{ "TriPodBossGearSmallB", NULL, "TriPodBossGearSmallB" },
-		{ "TriPodBossGearSmallC", NULL, "TriPodBossGearSmallC" },
-		{ "TriPodBossGearBody", NULL, "TriPodBossGearBody" },
+		{ "TriPodBossGearA", createNameObj<TripodBossRotateParts>, "TriPodBossGearA" },
+		{ "TriPodBossGearB", createNameObj<TripodBossRotateParts>, "TriPodBossGearB" },
+		{ "TriPodBossGearC", createNameObj<TripodBossRotateParts>, "TriPodBossGearC" },
+		{ "TriPodBossGearSmallA", createNameObj<TripodBossRotateParts>, "TriPodBossGearSmallA" },
+		{ "TriPodBossGearSmallB", createNameObj<TripodBossRotateParts>, "TriPodBossGearSmallB" },
+		{ "TriPodBossGearSmallC", createNameObj<TripodBossRotateParts>, "TriPodBossGearSmallC" },
+		{ "TriPodBossGearBody", createNameObj<TripodBossRotateParts>, "TriPodBossGearBody" },
 		{ "TripodBossUpperKillerCannon", NULL, "TripodBossKillerCannon" },
 		{ "TripodBossUnderKillerCannon", NULL, "TripodBossKillerCannon" },
 		{ "TripodBossBottomKillerCannon", NULL, "TripodBossKillerCannon" },

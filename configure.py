@@ -796,7 +796,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TripodBossFixParts.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossFixPartsBase.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossGuardWall.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossGuardWallPart.cpp"),
+            Object(Matching, "Game/Boss/TripodBossGuardWallPart.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossKillerGenerater.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossKillerGeneraterCircle.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossKinokoOneUp.cpp"),
