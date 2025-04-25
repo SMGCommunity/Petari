@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossBreakMovement.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <JSystem/JMath.hpp>
 
 TripodBossFixPartsBase::TripodBossFixPartsBase(const char *pName) : LiveActor(pName) {
@@ -93,7 +94,22 @@ void TripodBossFixPartsBase::updateBreakMovementMatrix() {
     _8C.getTrans(mPosition);
 }
 
-// TripodBossFixPartsBase::updateTripodMatrix
+void TripodBossFixPartsBase::updateTripodMatrix() {
+    TVec3f mul;
+    calcTripodLocalMatrix(&_8C);
+    MR::concatTripodBossAttachJointMatrix(&_8C, _CC);
+    _8C.getTrans(mPosition);
+
+    if (_E0) {
+        _8C.mult(_D0, mul);
+        if (MR::isJudgedToClipFrustum(mul, mClippingDistance)) {
+            MR::hideModelAndOnCalcAnim(this);
+        }
+        else {
+            MR::showModel(this);
+        }
+    }
+}
 
 void TripodBossFixPartsBase::initBreakMovement(s32 level) {
     mBreakMovement = new TripodBossBreakMovement("三脚ボスパーツ破壊挙動");

@@ -354,4 +354,6 @@ namespace MR {
     void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
     void reflectBckCtrlData(LiveActor*, const BckCtrlData&);
+
+    bool isExistKcl(LiveActor *, const char *);
 };  // namespace MR

@@ -3,7 +3,7 @@
 
 TripodBossStepSequence::TripodBossStepSequence() {
     mCurrentPoint = 0;
-    _84 = 0;
+    mPointNum = 0;
     _88 = 1;
 
     for (s32 i = 0; i < 0x20; i++) {
@@ -11,15 +11,20 @@ TripodBossStepSequence::TripodBossStepSequence() {
     }
 }
 
-// https://decomp.me/scratch/r7kc5
-// not really sure what this is doing
 void TripodBossStepSequence::addStepPoint(TripodBossStepPoint *pPoint) {
-    for (s32 i = 0; i < _84; i++) {
-        if (mStepPoints[i] == nullptr) {
+    int temp = pPoint->_B4;
+    int pointNum = mPointNum++;
+    
+    for (int i = mPointNum - 1; i > 0; i--) {
+        if (mStepPoints[i - 1]->_B4 < temp) {
             mStepPoints[i] = pPoint;
             return;
+        } else {
+            mStepPoints[i] = mStepPoints[i - 1];
         }
     }
+
+    mStepPoints[0] = pPoint;
 }
 
 s32 TripodBossStepSequence::getCurrentLeg() const {
@@ -36,7 +41,7 @@ TripodBossStepPoint* TripodBossStepSequence::getCurrentStepPoint() {
 
 void TripodBossStepSequence::nextStep() {
     mCurrentPoint++;
-    if (mCurrentPoint >= _84) {
+    if (mCurrentPoint >= mPointNum) {
         mCurrentPoint = 0;
     }
 }

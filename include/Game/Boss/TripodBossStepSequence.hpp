@@ -18,6 +18,6 @@ public:
 
     TripodBossStepPoint* mStepPoints[0x20];         // 0x00
     s32 mCurrentPoint;                              // 0x80
-    s32 _84;
+    s32 mPointNum;                                  // 0x84
     u8 _88;
 };

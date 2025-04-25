@@ -173,6 +173,7 @@ namespace MR {
 
     void requestAppearPowerStarCoin100();
 
+    void shakeCameraVeryWeak();
     void shakeCameraWeak();
     void shakeCameraNormal();
     void shakeCameraNormalWeak();

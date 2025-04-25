@@ -81,4 +81,6 @@ namespace MR {
     void setSoundVolumeSetting(s32, u32);
 
     void startSubBGM(const char *, bool);
+
+    void stopSound(const LiveActor *, const char *, u32);
 };
