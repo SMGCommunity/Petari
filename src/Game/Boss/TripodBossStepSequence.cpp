@@ -30,7 +30,7 @@ s32 TripodBossStepSequence::getCurrentWaitTime() const {
     return mStepPoints[mCurrentPoint]->mWaitTime;
 }
 
-TripodBossStepPoint* TripodBossStepSequence::getCurrentStepPoint() const {
+TripodBossStepPoint* TripodBossStepSequence::getCurrentStepPoint() {
     return mStepPoints[mCurrentPoint];
 }
 

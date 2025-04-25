@@ -11,7 +11,7 @@ public:
     void addStepPoint(TripodBossStepPoint *);
     s32 getCurrentLeg() const;
     s32 getCurrentWaitTime() const;
-    TripodBossStepPoint* getCurrentStepPoint() const;
+    TripodBossStepPoint* getCurrentStepPoint();
     void nextStep();
     bool isEmpty() const;
     void reset();
