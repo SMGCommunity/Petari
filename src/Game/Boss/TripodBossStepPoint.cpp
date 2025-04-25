@@ -3,10 +3,10 @@
 #include "Game/Util/JMapUtil.hpp"
 
 TripodBossStepPoint::TripodBossStepPoint(const char *pName) : LiveActor(pName), mStepPosition(0, 0, 0), mStepNormal(0, 1, 0), mStepFront(0, 0, 1) {
-    _B0 = 0;
+    mLeg = 0;
     _B4 = 0;
     _B8 = -1;
-    _BC = 120;
+    mWaitTime = 120;
 }
 
 void TripodBossStepPoint::init(const JMapInfoIter &rIter) {
@@ -17,8 +17,8 @@ void TripodBossStepPoint::init(const JMapInfoIter &rIter) {
         mStepNormal.set<f32>(mtx(0, 1), mtx(1, 1), mtx(2, 1));
         mStepFront.set<f32>(mtx(0, 2), mtx(1, 2), mtx(2, 2));
         MR::getJMapInfoArg0NoInit(rIter, &_B4);
-        MR::getJMapInfoArg1NoInit(rIter, &_B0);
-        MR::getJMapInfoArg2NoInit(rIter, &_BC);
+        MR::getJMapInfoArg1NoInit(rIter, &mLeg);
+        MR::getJMapInfoArg2NoInit(rIter, &mWaitTime);
         MR::getJMapInfoArg3NoInit(rIter, &_B8);
     }
 
