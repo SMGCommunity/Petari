@@ -1252,7 +1252,7 @@ config.libs = [
             Object(Matching, "Game/Map/GroundChecker.cpp"),
             Object(NonMatching, "Game/Map/GroupSwitchWatcher.cpp"),
             Object(NonMatching, "Game/Map/Halo.cpp"),
-            Object(Matching, "Game/Map/HitInfo.cpp"),
+            Object(NonMatching, "Game/Map/HitInfo.cpp"),
             Object(NonMatching, "Game/Map/KCollision.cpp"),
             Object(NonMatching, "Game/Map/KCollisionPlus.cpp"),
             Object(NonMatching, "Game/Map/KoopaBattleMapCoinPlate.cpp"),

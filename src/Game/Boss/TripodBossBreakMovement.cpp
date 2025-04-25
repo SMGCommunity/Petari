@@ -10,7 +10,7 @@ namespace NrvTripodBossBreakMovement {
 };
 
 TripodBossBreakMovement::TripodBossBreakMovement(const char *pName) : 
-    LiveActor(pName), mSpring(nullptr), _CC(0u, 0u, 0u), _D8(0, 0, 0),
+    LiveActor(pName), mSpring(nullptr), _CC(0, 0, 0), _D8(0, 0, 0),
     _E4(0, 1, 0) {
 
     _F0 = 0.30000001f;
