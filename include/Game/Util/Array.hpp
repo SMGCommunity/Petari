@@ -40,11 +40,19 @@ namespace MR {
             mArr[where] = what;
         }
 
-        inline T* begin() {
-            return mArr;
+        T* begin() {
+            return &mArr[0];
         }
 
-        inline T* end() {
+        const T* begin() const {
+            return &mArr[0];
+        }
+
+        T* end() {
+            return &mArr[mMaxSize];
+        }
+
+        const T* end() const {
             return &mArr[mMaxSize];
         }
     
@@ -71,6 +79,22 @@ namespace MR {
 
         inline int getSize() {
             return C;
+        }
+
+        T* begin() {
+            return &mArr[0];
+        }
+
+        const T* begin() const {
+            return &mArr[0];
+        }
+
+        T* end() {
+            return &mArr[C];
+        }
+
+        const T* end() const {
+            return &mArr[C];
         }
 
         T mArr[C];          // 0x0
@@ -127,11 +151,19 @@ namespace MR {
         }
 
         T::Item* begin() {
-            return &mArray.mArr[0];
+            return &mArray[0];
+        }
+
+        const T::Item* begin() const {
+            return &mArray[0];
         }
 
         T::Item* end() {
-            return &mArray.mArr[mCount];
+            return &mArray[mCount];
+        }
+
+        const T::Item* end() const {
+            return &mArray[mCount];
         }
 
         T mArray;       // 0x0
