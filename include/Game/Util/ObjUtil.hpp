@@ -203,4 +203,7 @@ namespace MR {
     bool tryFindNamePos(const char *, TVec3f *, TVec3f *);
     bool tryFindNamePos(const char *, MtxPtr);
     bool tryFindLinkNamePos(const NameObj *, const char *, MtxPtr);
+
+    void joinToMovementOnOffGroup(const char *, NameObj *, u32);
+    void onMovementOnOffGroup(const char *);
 };

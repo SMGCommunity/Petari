@@ -14,9 +14,11 @@ public:
     void hideTripodBossParts();
     void activeTripodBossParts();
     bool isTripoddBossParts(const NameObj *) const;
-    static void createSceneObj();
+    static TripodBossAccesser* createSceneObj();
 
-    TripodBoss* mBoss;      // 0xC
+    TripodBoss* mBoss;                  // 0xC
+    LiveActor* mParts[0x100];           // 0x10
+    s32 mNumParts;                      // 0x410
 };
 
 namespace MR {
@@ -43,8 +45,8 @@ namespace MR {
     void requestStartTripodBossStepSequence(s32);
     void addTripodBossStepPoint(TripodBossStepPoint *);
     void getTripodBossJointMatrix(TPos3f *, s32);
-    void getTripodBossAttachJointMatrix(TPos3f *, s32);
+    void getTripodBossAttachJointMatrix(TPos3f *, s32) NO_INLINE;
     void concatTripodBossAttachJointMatrix(TPos3f *, s32);
-    bool isSteppingTripodBossLegID(s32);
+    bool isSteppingTripodBossLegID(s32) NO_INLINE;
     bool isSteppingTripodBossJointID(s32);
 };

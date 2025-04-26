@@ -65,7 +65,7 @@ public:
     void exePainDemo();
     void exeBreakDownDemo();
     void exeExplosionDemo();
-    bool isStopLeg(u32) const;
+    bool isStopLeg(s32) const;
     bool isStopAllLeg() const;
     bool isStarted() const;
     bool isDemo() const;
@@ -81,9 +81,9 @@ public:
     void setJointAttachBaseMatrix(const TPos3f &, s32);
     void addStepPoint(TripodBossStepPoint *);
     void getBodyMatrix(TPos3f *) const;
-    void getJointMatrix(TPos3f *) const;
+    void getJointMatrix(TPos3f *, s32) const;
     void getJointAttachMatrix(TPos3f *, s32) const;
-    void requestStartSequence(s32);
+    void requestStartStepSequence(s32);
     TripodBossStepSequence* getCurrentStepSequence();
     TripodBossStepSequence* getNextStepSequence();
     void calcLegUpVector(TVec3f *, const TVec3f &);
@@ -98,7 +98,7 @@ public:
     void checkRideMario();
     MtxPtr getLegMatrixPtr(PART_ID, SUB_PART_ID) const;
     void changeBgmState();
-    PART_ID getPartIDFromBoneID(s32);
+    static PART_ID getPartIDFromBoneID(s32);
     void setAttachBaseMatrix(const TPos3f &);
 
     Mtx _8C;

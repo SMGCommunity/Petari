@@ -111,6 +111,8 @@ namespace MR {
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorHorizonNormalize(TVec3f *, const TVec3f &, const HitSensor *, const HitSensor *);
 
+    bool sendSimpleMsgToActor(u32, LiveActor *);
+
     bool sendArbitraryMsg(u32, HitSensor *, HitSensor *);
     bool sendMsgPush(HitSensor *, HitSensor *);
     bool sendMsgPlayerTrample(HitSensor *, HitSensor *);

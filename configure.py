@@ -788,7 +788,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/TombSpiderThreadAttacher.cpp"),
             Object(NonMatching, "Game/Boss/TombSpiderVitalSpot.cpp"),
             Object(NonMatching, "Game/Boss/TripodBoss.cpp"),
-            Object(NonMatching, "Game/Boss/TripodBossAccesser.cpp"),
+            Object(Matching, "Game/Boss/TripodBossAccesser.cpp"),
             Object(Matching, "Game/Boss/TripodBossBaseJointPosition.cpp"),
             Object(NonMatching, "Game/Boss/TripodBossBreakMovement.cpp"),
             Object(Matching, "Game/Boss/TripodBossCoin.cpp"),

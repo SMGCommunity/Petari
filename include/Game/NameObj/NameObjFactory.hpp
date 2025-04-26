@@ -5,6 +5,7 @@
 #include "Game/Boss/TripodBossGuardWall.hpp"
 #include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
 #include "Game/Boss/TripodBossKillerGenerator.hpp"
+#include "Game/Boss/TripodBossKinokoOneUp.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
@@ -387,9 +388,9 @@ namespace {
 		{ "TripodBossBaseJointPosition", createNameObj<TripodBossBaseJointPosition>, 0 },
 		{ "TripodBossKillerGenerater", createNameObj<TripodBossKillerGenerater>, "TripodBossKillerCannon" },
 		{ "TripodBossStepPoint", createNameObj<TripodBossStepPoint>, 0 },
-		{ "TripodBossCore", NULL, "TripodBossCore" },
+		{ "TripodBossCore", createNameObj<TripodBossCore>, "TripodBossCore" },
 		{ "TripodBossCoin", createNameObj<TripodBossCoin>, 0 },
-		{ "TripodBossKinokoOneUp", NULL, "KinokoOneUp" },
+		{ "TripodBossKinokoOneUp", createNameObj<TripodBossKinokoOneUp>, "KinokoOneUp" },
 		{ "TripodBossShell", createNameObj<TripodBossShell>, "TripodBossShell" },
 		{ "TripodBossGuardWall", createNameObj<TripodBossGuardWall>, "TripodBossGuardWall" },
 		{ "TriPodBossBodyA", createNameObj<TripodBossFixParts>, "TriPodBossBodyA" },
