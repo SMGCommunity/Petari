@@ -129,6 +129,7 @@ namespace JGeometry {
 
     template<>
     struct TVec3<f32> : public Vec {
+
         inline TVec3(const Vec& vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
@@ -137,7 +138,7 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(f32 _x, f32 _y, f32 _z) {
+        TVec3(f32 _x, f32 _y, f32 _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
@@ -239,6 +240,12 @@ namespace JGeometry {
 
         template<typename T>
         void setAll(f32);
+
+        inline void mult(f32 val) {
+            x *= val;
+            y *= val;
+            z *= val;
+        }
 
         void sub(const TVec3<f32> &b) NO_INLINE {
             JMathInlineVEC::PSVECSubtract(this, &b, this);

@@ -14,6 +14,16 @@ public:
 
     void update(MtxPtr, MtxPtr, MtxPtr, const TVec3f &);
 
+    void getRootJointPosition(TVec3f *) const;
+    void getEndJointPosition(TVec3f *) const;
+
+    f32 getMaxLimitDistance() const;
+    f32 getMinLimitDistance() const;
+    
+    void updateByLocalRootAndWorldTarget(const TPos3f &, const TVec3f &, const TVec3f &);
+
+    void updateByUpVector(const TVec3f &, const TVec3f &, const TVec3f &);
+
     TPos3f _0;
     TPos3f _30;
     TPos3f _60;

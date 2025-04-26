@@ -95,11 +95,37 @@ namespace JMathInlineVEC {
             stfs z, 8(dst)
         }
     }
+
+    __attribute__((always_inline))
+    inline f32 PSVECSquareDistance(const register Vec *a, const register Vec *b)
+    {
+        
+        register f32 dyz, dxy, sqdist;
+        register f32 v1yz, v0yz, v0xy, v1xy;
+
+        asm
+        {
+            psq_l    v0yz, 4(a), 0, 0 
+            psq_l    v1yz, 4(b), 0, 0
+            ps_sub   dyz, v0yz, v1yz
+        
+            psq_l    v0xy, 0(a), 0, 0
+            psq_l    v1xy, 0(b), 0, 0
+            ps_mul   dyz, dyz, dyz
+            ps_sub   dxy, v0xy, v1xy
+        
+            ps_madd  sqdist, dxy, dxy, dyz
+            ps_sum0  sqdist, sqdist, dyz, dyz
+        }    
+
+        return sqdist;
+    }
     #else
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
     f32 PSVECDotProduct(const Vec *, const Vec *);
     f32 PSVECSquareMag(const Vec *);
     void PSVECNegate(const Vec *, Vec *);
+    f32 PSVECSquareDistance(const Vec *, const Vec *);
 #endif
 };
