@@ -2,7 +2,9 @@
 
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
+#include "Game/Boss/TripodBossGuardWall.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
+#include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
@@ -386,8 +388,8 @@ namespace {
 		{ "TripodBossCore", NULL, "TripodBossCore" },
 		{ "TripodBossCoin", createNameObj<TripodBossCoin>, 0 },
 		{ "TripodBossKinokoOneUp", NULL, "KinokoOneUp" },
-		{ "TripodBossShell", NULL, "TripodBossShell" },
-		{ "TripodBossGuardWall", NULL, "TripodBossGuardWall" },
+		{ "TripodBossShell", createNameObj<TripodBossShell>, "TripodBossShell" },
+		{ "TripodBossGuardWall", createNameObj<TripodBossGuardWall>, "TripodBossGuardWall" },
 		{ "TriPodBossBodyA", createNameObj<TripodBossFixParts>, "TriPodBossBodyA" },
 		{ "TripodBossBodyABloom", createNameObj<TripodBossFixParts>, "TripodBossBodyABloom" },
 		{ "TriPodBossLeg1A", createNameObj<TripodBossFixParts>, "TriPodBossLeg1A" },

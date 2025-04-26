@@ -7,6 +7,7 @@
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
 #include "Game/Boss/TripodBossFixParts.hpp"
-#include "Game/Boss/TripodBossGuardWallPart.hpp"
+#include "Game/Boss/TripodBossGuardWall.hpp"
+#include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
