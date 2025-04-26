@@ -93,7 +93,17 @@ namespace MR {
             assign(pItem, mCount);
         }
 
-        T::Item* erase(T::Item *pItem);
+        T::Item* erase(T::Item* pItem) NO_INLINE {
+            if (end() - pItem - 1 > 0) {
+                for (T::Item* p = pItem; p + 1 != end(); p++) {
+                    *p = *(p + 1);
+                }
+            }
+
+            mCount--;
+
+            return pItem;
+        }
 
         void push_back(const T::Item &rItem) NO_INLINE {
             u32 count = mCount;
@@ -101,12 +111,12 @@ namespace MR {
             mArray.mArr[count] = rItem;
         }
 
-        T::Item begin() {
-            return mArray.mArr[0];
+        T::Item* begin() {
+            return &mArray.mArr[0];
         }
 
-        T::Item end() {
-            return mArray.mArr[mCount];
+        T::Item* end() {
+            return &mArray.mArr[mCount];
         }
 
         inline T::Item operator[](int idx) const {
