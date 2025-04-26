@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
 #include "Game/Boss/TripodBossGuardWall.hpp"
+#include "Game/Boss/TripodBossKillerGenerator.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
@@ -383,7 +384,7 @@ namespace {
 		{ "TripodBoss", NULL, "TripodBoss" },
 		{ "Tripod2Boss", NULL, "Tripod2Boss" },
 		{ "TripodBossBaseJointPosition", createNameObj<TripodBossBaseJointPosition>, 0 },
-		{ "TripodBossKillerGenerater", NULL, "TripodBossKillerCannon" },
+		{ "TripodBossKillerGenerater", createNameObj<TripodBossKillerGenerater>, "TripodBossKillerCannon" },
 		{ "TripodBossStepPoint", createNameObj<TripodBossStepPoint>, 0 },
 		{ "TripodBossCore", NULL, "TripodBossCore" },
 		{ "TripodBossCoin", createNameObj<TripodBossCoin>, 0 },
