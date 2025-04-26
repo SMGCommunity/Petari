@@ -1,5 +1,6 @@
 #pragma once
 
+#include "revolution/types.h"
 #include <revolution.h>
 
 f32 JMAAsinRadian(f32);
@@ -80,10 +81,25 @@ namespace JMathInlineVEC {
         }
         return ret;
     }
+
+    __attribute__((always_inline))
+    inline void PSVECNegate(register const Vec* src, register Vec* dst)
+    {
+        register f32 xy, z;
+        __asm {
+            psq_l xy, 0(src), 0, 0
+            lfs z, 8(src)
+            ps_neg xy, xy
+            fneg z, z
+            psq_st xy, 0(dst), 0, 0
+            stfs z, 8(dst)
+        }
+    }
     #else
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
     f32 PSVECDotProduct(const Vec *, const Vec *);
     f32 PSVECSquareMag(const Vec *);
+    void PSVECNegate(const Vec *, Vec *);
 #endif
 };

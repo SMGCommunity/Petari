@@ -67,6 +67,8 @@ namespace JGeometry {
             z = _z;
         }
 
+        TVec3<T>(int x, int y, int Z);
+
         inline TVec3(T val) {
             x = val;
             y = val;
@@ -139,10 +141,10 @@ namespace JGeometry {
             return *this;
         }
 
-        TVec3& operator+(const TVec3 &) const;
+        TVec3 operator+(const TVec3 &) const;
         TVec3& operator+=(const TVec3 &op);
 
-        TVec3& operator*(f32) const;
+        TVec3 operator*(f32) const;
         TVec3& operator*=(f32);
 
         const TVec3 operator-() const;
@@ -161,6 +163,9 @@ namespace JGeometry {
             y = _y;
             z = _z;
         }
+
+        template<typename T>
+        void set(int x, int y, int z);
 
         void set(f32 x_, f32 y_, f32 z_) {
             x = x_;
@@ -191,6 +196,22 @@ namespace JGeometry {
         #else
         void mulInternal(const f32 *vec1, const f32 *vec2, f32 *dst) ;
         #endif
+
+        #ifdef __MEWRKS__
+        inline void negate(register const f32 *src, register f32 *dst)
+        {
+            register f32 xy;
+            __asm {
+                psq_l xy, 0(src), 0, 0
+                ps_neg xy, xy
+                psq_st xy, 0(dst), 0, 0
+            }
+            dst[2] = -src[2];
+        }
+        #else
+        void negate(const f32 *, f32 *);
+        #endif
+
 
         void mult(const Vec &src1, const Vec &src2, Vec &dest) {
             mulInternal(&src1.x, &src2.x, &dest.x);
