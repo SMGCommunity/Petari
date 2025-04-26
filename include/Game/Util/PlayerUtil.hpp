@@ -123,4 +123,6 @@ namespace MR {
     f64 getBckFrameMaxPlayer();
 
     LiveActor* getCurrentRushActor();
+
+    void forceJumpPlayer(const TVec3f &);
 };

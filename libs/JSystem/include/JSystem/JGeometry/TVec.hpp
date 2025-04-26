@@ -9,6 +9,26 @@
 namespace JGeometry {
     void negateInternal(const f32 *rSrc, f32 *rDest);
 
+    #ifdef __MWERKS__
+    inline static void subInternal(register const f32 *vec1, register const f32 *vec2, register f32 *dst) 
+    {
+        register f32 xy2, z1, xy1, z2;
+        __asm {
+            psq_l xy1, 0(vec1), 0, 0
+            psq_l xy2, 0(vec2), 0, 0
+            psq_l z1, 8(vec1), 1, 0
+            ps_sub xy1, xy1, xy2
+            psq_st xy1, 0(dst), 0, 0
+            psq_l z2, 8(vec2), 1, 0
+            ps_sub z1, z2, z1
+            psq_st z1, 8(dst), 1, 0
+        }
+
+    }
+    #else
+    static void subInternal(const f32 *vec1, const f32 *vec2, f32 *dst) ;
+    #endif
+
     template <typename T>
     struct TVec2 {
     public:
