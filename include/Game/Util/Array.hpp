@@ -105,7 +105,7 @@ namespace MR {
             return pItem;
         }
 
-        void push_back(const T::Item &rItem) NO_INLINE {
+        void push_back(const T::Item &rItem) {
             u32 count = mCount;
             mCount++;
             mArray.mArr[count] = rItem;
