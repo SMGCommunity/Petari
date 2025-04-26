@@ -201,9 +201,31 @@ namespace JGeometry {
             setRotateInline(rVec, r);
         }
 
-        inline void setRotateInline(f32 r) {
+        inline void setRotateInline2(f32 y, f32 p) {
+            f32 v9 = (0.017453292 * y);
+            f32 v10 = -(0.017453292f * p);
+
+            f32 v11 = cos(0.0f);
+            f32 v12 = cos(v9);
+            f32 v13 = cos(v10);
+            f32 v14 = sin(0.0f);
+            f32 v15 = sin(v9);
+            f32 v16 = sin(v10);
+
+            this->mMtx[0][0] = v12 * v13;
+            this->mMtx[0][1] = (v16 * v11) - (v15 * v14);
+            this->mMtx[0][2] = (v15 * v11) + (v16 * v14);
+            this->mMtx[1][0] = v15;
+            this->mMtx[1][1] = v12 * v11;
+            this->mMtx[1][2] = -v12 * v14;
+            this->mMtx[2][0] = -v14;
+            this->mMtx[2][1] = v13 * v14;
+            this->mMtx[2][2] = v13 * v11;
+        }
+
+        inline void setRotateInline(f32 r, f32 n) {
             f32 c, s, angle;
-            angle = 0.017453292f * r;
+            angle = n * r;
             s = sin(angle);
             c = cos(angle);
 

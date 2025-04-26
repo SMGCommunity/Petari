@@ -53,7 +53,7 @@ void TripodBossGuardWallPart::control() {
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {
     TPos3f mtx;
     mtx.identity();
-    mtx.setRotateInline(mPlacementAngle);
+    mtx.setRotateInline(mPlacementAngle, 0.017453292f);
     mtx.concat(*mHostMtx, mtx);
     MR::setBaseTRMtx(this, mtx);
 }

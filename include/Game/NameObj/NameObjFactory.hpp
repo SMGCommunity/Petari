@@ -3,6 +3,7 @@
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
 #include "Game/Boss/TripodBossGuardWall.hpp"
+#include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
 #include "Game/Boss/TripodBossKillerGenerator.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
@@ -413,9 +414,9 @@ namespace {
 		{ "TriPodBossGearSmallB", createNameObj<TripodBossRotateParts>, "TriPodBossGearSmallB" },
 		{ "TriPodBossGearSmallC", createNameObj<TripodBossRotateParts>, "TriPodBossGearSmallC" },
 		{ "TriPodBossGearBody", createNameObj<TripodBossRotateParts>, "TriPodBossGearBody" },
-		{ "TripodBossUpperKillerCannon", NULL, "TripodBossKillerCannon" },
-		{ "TripodBossUnderKillerCannon", NULL, "TripodBossKillerCannon" },
-		{ "TripodBossBottomKillerCannon", NULL, "TripodBossKillerCannon" },
+		{ "TripodBossUpperKillerCannon", createNameObj<TripodBossKillerGeneraterCircle>, "TripodBossKillerCannon" },
+		{ "TripodBossUnderKillerCannon", createNameObj<TripodBossKillerGeneraterCircle>, "TripodBossKillerCannon" },
+		{ "TripodBossBottomKillerCannon", createNameObj<TripodBossKillerGeneraterCircle>, "TripodBossKillerCannon" },
 		{ "SpiderAttachPoint", NULL, "SpiderThreadAttachPoint" },
 		{ "SpiderCoin", NULL, "Coin" },
 		{ "SpiderMapBlock", NULL, "SpiderMapBlock" },

@@ -9,6 +9,7 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/Boss/TripodBossGuardWall.hpp"
 #include "Game/Boss/TripodBossKillerGenerator.hpp"
+#include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"

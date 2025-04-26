@@ -81,6 +81,17 @@ public:
     u16 _13A;
 };
 
+class BenefitItemOneUp : public BenefitItemObj {
+public:
+    inline BenefitItemOneUp(const char *a1, const char *a2) : BenefitItemObj(a1, a2) {
+
+    }
+
+    virtual ~BenefitItemOneUp() {
+        
+    }
+};
+
 class ShadowClipActor : public LiveActor {
 public:
     virtual ~ShadowClipActor() {

@@ -7,7 +7,7 @@ class HomingKiller;
 
 class TripodBossKillerGenerater : public TripodBossFixPartsBase {
 public:
-    TripodBossKillerGenerater(const char *);
+    TripodBossKillerGenerater(const char *pName = "三脚ボスキラー発生源");
 
     virtual ~TripodBossKillerGenerater();
     virtual void init(const JMapInfoIter &);
