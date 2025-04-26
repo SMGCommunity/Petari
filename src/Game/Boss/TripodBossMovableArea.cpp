@@ -105,7 +105,6 @@ bool TripodBossMovableArea::collideSphere(HitResult *pResult, const TVec3f &a2, 
     return true;
 }
 
-// https://decomp.me/scratch/omByc
 void TripodBossMovableArea::calcNearLandingPosition(TVec3f *pPos, const TVec3f &a2) const {
     f32 v6, v8, x, v7;
     TVec3f v16(a2);
@@ -141,7 +140,8 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f *pPos, const TVec3f &
 
         MR::normalizeOrZero(&v15);
         v7 = MR::sqrt<f32>((1.0f - (x * x)));
-        pPos->set<f32>(((mBaseAxis * x) + (v15 * v7)) * mRadius);
+        TVec3f sp48((mBaseAxis * x) + (v15 * v7));
+        pPos->set<f32>(sp48 * mRadius);
     }
 }
 
