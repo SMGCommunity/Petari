@@ -23,6 +23,14 @@ namespace MR {
             }
         }
 
+        T& operator[](int idx) {
+            return mArr[idx];
+        }
+
+        const T& operator[](int idx) const {
+            return mArr[idx];
+        }
+
         inline void init(s32 cnt) {
             mArr = new T[cnt];
             mMaxSize = cnt;
@@ -53,6 +61,14 @@ namespace MR {
 
         }
 
+        T& operator[](int idx) {
+            return mArr[idx];
+        }
+
+        const T& operator[](int idx) const {
+            return mArr[idx];
+        }
+
         inline int getSize() {
             return C;
         }
@@ -71,8 +87,12 @@ namespace MR {
             
         }
 
-        inline T::Item operator[](int idx) const {
-            return mArray.mArr[idx];
+        T::Item& operator[](int idx) {
+            return mArray[idx];
+        }
+
+        const T::Item& operator[](int idx) const {
+            return mArray[idx];
         }
 
         inline void init(s32 cnt) {
