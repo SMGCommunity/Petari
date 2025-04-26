@@ -107,6 +107,7 @@ namespace JGeometry {
 
     template<>
     struct TVec3<f32> : public Vec {
+
         inline TVec3(const Vec& vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
@@ -121,7 +122,8 @@ namespace JGeometry {
             z = _z;
         }
 
-        TVec3(int, int, int);
+        template<typename U>
+        TVec3(U, U, U);
 
         TVec3(f32 val) NO_INLINE {
             z = y = x = val;
@@ -139,14 +141,14 @@ namespace JGeometry {
             return *this;
         }
 
-        TVec3& operator+(const TVec3 &) const;
+        TVec3 operator+(const TVec3 &) const;
         TVec3& operator+=(const TVec3 &op);
 
-        TVec3& operator*(f32) const;
+        TVec3 operator*(f32) const;
         TVec3& operator*=(f32);
 
-        const TVec3 operator-() const;
-        TVec3& operator-(const TVec3 &op) const;
+        TVec3 operator-() const;
+        TVec3 operator-(const TVec3 &op) const;
 
         template <typename T>
         void set(const TVec3<f32>& rVec) {
@@ -212,6 +214,20 @@ namespace JGeometry {
         inline void setPS(const TVec3<f32>& rVec) {
             setTVec3f(&rVec.x, &x);
         }
+        inline void setPS2(const TVec3<f32>& rVec) {
+        const register Vec* v_a = &rVec;
+        register Vec* v_b = this;
+
+        register f32 b_x;
+        register f32 a_x;
+
+        asm {
+            psq_l a_x, 0(v_a), 0, 0
+            lfs b_x, 8(v_a)
+            psq_st a_x, 0(v_b), 0, 0
+            stfs b_x, 8(v_b)
+        };
+        }
 
         void add(const TVec3<f32> &b) {
             JMathInlineVEC::PSVECAdd(this, &b, this);
@@ -238,6 +254,13 @@ namespace JGeometry {
             return ret;
         }
 
+        TVec3<f32> translate(const TVec3<f32> &rSrc) const
+        {
+            TVec3<f32> tmp(*this);
+            tmp += rSrc;
+            return tmp;
+        }
+
         void scale(f32);
         void scale(f32, const TVec3 &);
         void negate();
@@ -245,7 +268,7 @@ namespace JGeometry {
         f32 squared(const TVec3 &) const;
         void zero();
         bool isZero() const;
-        void normalize(const TVec3 &);
+        f32 normalize(const TVec3 &);
         void setLength(f32);
         f32 setLength(const TVec3 &, f32);
 

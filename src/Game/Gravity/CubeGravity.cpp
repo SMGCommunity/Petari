@@ -214,7 +214,10 @@ TVec3f negate(const TVec3f &in)
     return tmp;
 }
 
-/*
+inline void rejection(const TVec3f &rVec, const TVec3f &rNormal, TVec3f &rDst) {
+    JMAVECScaleAdd(&rNormal, &rVec, &rDst, -rNormal.dot(rVec));
+}
+
 bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     // There is a mistake here: so long as area is not both even and negative, the function will not
@@ -304,7 +307,7 @@ bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 
     MR::normalizeOrZero(&edgeVector);
 
-    positionOppositeInOrthogonalPlane.rejection(edgeTranslation - rPosition, edgeVector);
+    rejection(edgeTranslation - rPosition, edgeVector, positionOppositeInOrthogonalPlane);
 
     if (positionOppositeInOrthogonalPlane.isZero()) {
         pDest->normalize(edgeTranslation - trans);
@@ -316,9 +319,9 @@ bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 
     return true;
 }
-    */
+    
 
-    /*
+    
 bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     TVec3f vertex, xDir, yDir, zDir, trans;
@@ -380,4 +383,4 @@ bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *p
 
     return true;
 }
-*/
+

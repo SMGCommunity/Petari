@@ -220,7 +220,8 @@ namespace JGeometry {
 
         inline void setRotateInline(const TVec3f &vec1, f32 r) {
             TVec3f vec;
-            PSVECMag(&vec1);
+            vec.set<f32>(vec1);
+            PSVECMag(&vec);
             PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
@@ -242,7 +243,10 @@ namespace JGeometry {
         void setRotateInline2(const TVec3f &vec1, f32 r) {
             // The only difference from setRotateInline is that we use setInline instead of set
             TVec3f vec;
-            PSVECMag(&vec1);
+            vec.x = vec1.x;
+            vec.y = vec1.y;
+            vec.z = vec1.z;
+            PSVECMag(&vec);
             PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
@@ -308,7 +312,7 @@ namespace JGeometry {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
             f32 x = this->mMtx[0][3];
-            rDest.set(x, y, z);
+            rDest.set<f32>(x, y, z);
         }
     };
 };

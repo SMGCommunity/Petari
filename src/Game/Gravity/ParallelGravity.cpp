@@ -3,11 +3,13 @@
 #include "JSystem/JMath.hpp"
 #include "Inline.hpp"
 
-/*
+
 ParallelGravity::ParallelGravity() :
 	PlanetGravity(),
 	mPlanePosition(0, 0, 0),
+    mPlaneUpVec(0.0f, 1.0f, 0.0f),
 	mWorldPlanePosition(0, 0, 0),
+    mWorldPlaneUpVec(0.0f, 1.0f, 0.0f)
 {
 	mCylinderHeight = 1000.0f;
 	mCylinderRadius = 500.0f;
@@ -17,7 +19,6 @@ ParallelGravity::ParallelGravity() :
 	mLocalMtx.identity();
 	mWorldMtx.identity();
 }
-	*/
 
 bool ParallelGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
 	if (!isInRange(rPosition, pScalar)) {
@@ -156,7 +157,10 @@ bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const 
 	return true;
 }
 
-/*
+inline void rejection(const TVec3f &rVec, const TVec3f &rNormal, TVec3f &rDst) {
+    JMAVECScaleAdd(&rNormal, &rVec, &rDst, -rNormal.dot(rVec));
+}
+
 bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const {
 	f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
@@ -167,9 +171,9 @@ bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) c
 	TVec3f positionOnWorldPlane;
 
 	// Check radius range
-	positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
+	rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec, positionOnWorldPlane);
 
-	f32 radius = PSVECMag(positionOnWorldPlane);
+	f32 radius = PSVECMag(&positionOnWorldPlane);
 
 	if (radius > mCylinderRadius) {
 		return false;
@@ -180,7 +184,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) c
 
 	return true;
 }
-*/
+
 
 bool ParallelGravity::isInRange(const TVec3f &rPosition, f32 *pScalar) const {
 	switch (mRangeType) {

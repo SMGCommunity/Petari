@@ -9,11 +9,19 @@ PointGravity::PointGravity() :
 
 }
 
-/*
+inline TVec3f sub(const TVec3f &mTranslation, const TVec3f &rPosition) {
+TVec3f direction;
+    direction.setPS(mTranslation);
+    /*direction.x = mTranslation.x;
+    direction.y = mTranslation.y;
+    direction.z = mTranslation.z;*/
+	JMathInlineVEC::PSVECSubtract(&direction, &rPosition, &direction);
+    return direction;
+}
+
 bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPosition) const {
-	TVec3f direction;
-	direction.subInline(mTranslation, rPosition);
-	f32 scalar = PSVECMag((Vec*)&direction);
+	TVec3f direction = sub(mTranslation, rPosition);
+	f32 scalar = PSVECMag(&direction);
 
 	// Epsilon-equals zero? If so, direction is the zero vector.
 	if (MR::isNearZero(scalar, 0.01f)) {
@@ -23,7 +31,10 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 	}
 	// Otherwise, it's a proper direction and it should be normalized.
 	else {
-		direction.scaleInline(1.0f / scalar);
+        f32 trueScalar = 1.0f / scalar;
+		direction.x *= trueScalar;
+		direction.y *= trueScalar;
+		direction.z *= trueScalar;
 	}
 
 	// Out of range? If so, don't update result vector & scalar
@@ -33,7 +44,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 	// Update result vector & scalar if applicable
 	else {
 		if (pDest) {
-			pDest->setInlinePS_2(direction);
+			pDest->setPS2(direction);
 		}
 		if (pScalar) {
 			*pScalar = scalar;
@@ -42,7 +53,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 		return true;
 	}
 }
-	*/
+	
 
 void PointGravity::updateMtx(const TPos3f &rMtx) {
 	// Converts relative zone-coordinates into worldspace

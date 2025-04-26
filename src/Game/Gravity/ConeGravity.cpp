@@ -28,7 +28,10 @@ inline f32 absfInline(f32 &orig, f32 v) {
     return __fabsf(v);
 }
 
-/*
+inline void rejection(const TVec3f &rVec, const TVec3f &rNormal, TVec3f &rDst) {
+    JMAVECScaleAdd(&rNormal, &rVec, &rDst, -rNormal.dot(rVec));
+}
+
 bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     
     TVec3f worldBaseCenter, worldCentralAxis;
@@ -42,7 +45,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 
     TVec3f relativePosition = rPos - worldBaseCenter;
     TVec3f positionOnBasePlane;
-    positionOnBasePlane.rejection(relativePosition, unitWorldCentralAxis);
+    rejection(relativePosition, unitWorldCentralAxis, positionOnBasePlane);
 
     if(MR::isNearZero(positionOnBasePlane, 0.00100000005f)) {
         
@@ -65,17 +68,17 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         }
 
         if(positionOnCentralAxis > 0.0f) {
-            pDest->set(-unitWorldCentralAxis);
+            pDest->set<f32>(-unitWorldCentralAxis);
         }
         else {
-            pDest->set(unitWorldCentralAxis);
+            pDest->set<f32>(unitWorldCentralAxis);
         }
 
         *pScalar = distance;
         return true;
     }
     
-    f32 distanceToCentralAxis = PSVECMag(positionOnBasePlane);
+    f32 distanceToCentralAxis = PSVECMag(&positionOnBasePlane);
     f32 centralAxisY = unitWorldCentralAxis.dot(relativePosition);
 
     bool isInsideCone = false;
@@ -123,10 +126,10 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     else {
 
         TVec3f generatrixTermination;
-        generatrixTermination.set(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
+        generatrixTermination.set<f32>(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
 
         TVec3f frustumBaseCenter;
-        frustumBaseCenter.set(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
+        frustumBaseCenter.set<f32>(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
 
         if((rPos - generatrixTermination).dot(generatrixTermination - frustumBaseCenter) <= 0.0f) {
 
@@ -157,7 +160,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         MR::normalizeOrZero(&generatrixDirection);
 
         TVec3f gravity;
-        gravity.rejection(-positionOnBasePlane, generatrixDirection);
+        rejection(-positionOnBasePlane, generatrixDirection, gravity);
 
         if(MR::isNearZero(gravity, 0.00100000005f)) {
             *pDest = -unitWorldCentralAxis;
@@ -178,7 +181,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     
     return calcGravityFromMassPosition(pDest, pScalar, rPos, pointOfAttraction);
 }
-*/
+
 
 void ConeGravity::updateMtx(const TPos3f &rMtx) {
 	mWorldMtx.concat(rMtx, mLocalMtx);
