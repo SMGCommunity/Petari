@@ -40,6 +40,10 @@ namespace MR {
             mArr[where] = what;
         }
 
+        int size() const {
+            return mMaxSize;
+        }
+
         T* begin() {
             return &mArr[0];
         }
@@ -77,7 +81,7 @@ namespace MR {
             return mArr[idx];
         }
 
-        inline int getSize() {
+        int size() const {
             return C;
         }
 
@@ -124,7 +128,7 @@ namespace MR {
             mArray.mMaxSize = cnt;
         }
 
-        inline s32 getCount() {
+        int size() const {
             return mCount;
         }
 

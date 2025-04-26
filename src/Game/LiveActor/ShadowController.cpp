@@ -17,25 +17,26 @@ void ShadowControllerHolder::movement() {
 }
 
 void ShadowControllerHolder::initAfterPlacement() {
-    u32 count = _C.getCount();
-    for (u32 i = 0; i < count; i++) {
-        ShadowController* ctrl = _C[i];
-        ctrl->updateDirection();
-        ctrl->updateProjection();
+    ShadowController* pController;
+    int size = _C.size();
+
+    for (u32 i = 0; i < size; i++) {
+        pController = _C[i];
+
+        pController->updateDirection();
+        pController->updateProjection();
     }
 }
 
 void ShadowControllerHolder::updateController() {
-    u32 count = _18.getCount();
+    int size = _18.size();
 
-    for (u32 i = 0; i < count; i++) {
+    for (u32 i = 0; i < size; i++) {
         if (_24) {
-            ShadowController* ctrl = _18[i];
-            ctrl->updateFarClipping(mFarClip);
+            _18[i]->updateFarClipping(mFarClip);
         }
 
-        ShadowController* ctrl = _18[i];
-        ctrl->update();
+        _18[i]->update();
     }
 
     _18.mCount = 0;
@@ -72,7 +73,7 @@ ShadowController* ShadowControllerList::getController(const char *pName) const {
 }
 
 void ShadowControllerList::resetCalcCount() {
-    for (u32 i = 0; i < mShadowList.getCount(); i++) {
+    for (u32 i = 0; i < mShadowList.size(); i++) {
         ShadowController* controller = mShadowList[i];
         controller->_65 = 0;
         controller->_66 = 0;
@@ -80,7 +81,7 @@ void ShadowControllerList::resetCalcCount() {
 }
 
 void ShadowControllerList::requestCalc() {
-    for (u32 i = 0; i < mShadowList.getCount(); i++) {
+    for (u32 i = 0; i < mShadowList.size(); i++) {
         mShadowList[i]->requestCalc();
     }
 }
