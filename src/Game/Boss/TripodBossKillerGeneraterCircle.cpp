@@ -88,25 +88,30 @@ void TripodBossKillerGeneraterCircle::init(const JMapInfoIter &rIter) {
 
 // https://decomp.me/scratch/kbnGV
 void TripodBossKillerGeneraterCircle::placementGenerater() {
+    
     for (s32 i = 0; i < mNumAngles; i++) {
         TPos3f mtx;
         mtx.identity();
-        
-        f32 v5 = -(0.017453292 * _3C);
+        f32 v5 = -(0.017453292f * _3C);
         f32 v6 = sin(v5);
         f32 v7 = cos(v5);
+        
         mtx.mMtx[0][0] = 1.0f;
         mtx.mMtx[2][1] = v6;
         mtx.mMtx[1][1] = v7;
         mtx.mMtx[1][2] = -v6;
         mtx.mMtx[2][2] = v7;
+        
         mtx.mMtx[2][0] = 0.0f;
         mtx.mMtx[0][2] = 0.0f;
         mtx.mMtx[1][0] = 0.0f;
         mtx.mMtx[0][1] = 0.0f;
+        // might be a fake temp, as it causes regswaps, but is the only way i found to get 
+        // the load in the correct position
+        f32 temp = _34;
         mtx.mMtx[0][3] = 0.0f;
         mtx.mMtx[1][3] = 0.0f;
-        mtx.mMtx[2][3] = _34;
+        mtx.mMtx[2][3] = temp;
 
         TPos3f mtx2;
         mtx2.identity();
