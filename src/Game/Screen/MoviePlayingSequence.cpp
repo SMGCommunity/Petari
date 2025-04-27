@@ -110,9 +110,11 @@ const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType t
 }
 
 // https://decomp.me/scratch/O5orZ
-MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) : LayoutActor(pName, true) {
+MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) :
+    LayoutActor(pName, true),
+    mSubtitles()
+{
     mInfo = &sInfoTable[movieType];
-    mSubtitles.mCount = 0;
     mPadRumbler = new DemoPadRumbler(MoviePlayingSequence::getMovieName((MovieType)movieType));
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
     MR::connectToSceneLayoutMovement(this);
@@ -121,14 +123,13 @@ MoviePlayingSequence::MoviePlayingSequence(const char *pName, s32 movieType) : L
     s32 subtitleNum = MovieSubtitlesUtil::getSubtitlesMessageNum(mInfo->mMovieName);
 
     if (subtitleNum > 0) {
-        mSubtitles.mArray.mArr = new MovieSubtitles*[subtitleNum];
-        mSubtitles.mArray.mMaxSize = subtitleNum;
+        mSubtitles.init(subtitleNum);
 
         for (s32 i = 0; i < subtitleNum; i++) {
             if (MovieSubtitlesUtil::isExistSubtitles(mInfo->mMovieName, i)) {
-                const MoviePlayingInfo* info = mInfo;
-                MovieSubtitles* sub = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(info->mMovieName, i), MovieSubtitlesUtil::getSubtitlesAppearTime(info->mMovieName, i));
-                mSubtitles.assign(sub, mSubtitles.mCount++);
+                const MoviePlayingInfo* pInfo = mInfo;
+                MovieSubtitles* pSubtitles = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i), MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
+                mSubtitles.push_back(pSubtitles);
             }
         }
     }
@@ -212,16 +213,15 @@ void MoviePlayingSequence::exePlay() {
 }
 
 bool MoviePlayingSequence::tryStartSubtitles() {
-    MovieSubtitles** entry = mSubtitles.mArray.mArr;
+    for (MovieSubtitles** pSubtitles = mSubtitles.begin(); pSubtitles != mSubtitles.end(); pSubtitles++) {
+        s32 index = pSubtitles - mSubtitles.begin();
 
-    while (entry != mSubtitles.mArray.mArr + mSubtitles.mCount) {
-        s32 index = entry - mSubtitles.mArray.mArr;
         if ((s32)MR::getMovieCurrentFrame() == (s32)MovieSubtitlesUtil::getSubtitlesStartStep(mInfo->mMovieName, index)) {
-            MR::requestMovementOn(*entry);
-            (*entry)->appear();
+            MR::requestMovementOn(*pSubtitles);
+            (*pSubtitles)->appear();
+
             return true;
         }
-        ++entry;
     }
 
     return false;
@@ -250,7 +250,6 @@ bool MoviePlayingSequence::tryEnd() {
         else {
             return false;
         }
-    
     }
 }
 
@@ -333,24 +332,26 @@ void MoviePlayingSequence::exeWait() {
 
 namespace {
     MoviePlayingSequence* getMoviePlayingSequence(int idx) NO_INLINE {
-        MoviePlayingSequenceHolder* holder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        return holder->mSequences.mArr[idx];
+        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+
+        return pHolder->mSequences[idx];
     }
 };
 
 MoviePlayingSequenceHolder::MoviePlayingSequenceHolder(const char *pName) : NameObj(pName) {
-    mSequences.mArr = new MoviePlayingSequence*[7];
-    mSequences.mMaxSize = 7;
     s32 diff;
 
-    for (MoviePlayingSequence** seqs = mSequences.begin(); seqs != mSequences.end(); ++seqs) {
-        diff = seqs - mSequences.mArr;
-        const char* movieName = MoviePlayingSequence::getMovieName((MoviePlayingSequence::MovieType)diff);
-        if (movieName == nullptr) {
-            *seqs = nullptr;
+    mSequences.init(7);
+
+    for (MoviePlayingSequence** pSequence = mSequences.begin(); pSequence != mSequences.end(); pSequence++) {
+        diff = pSequence - mSequences.begin();
+        const char* pMovieName = MoviePlayingSequence::getMovieName((MoviePlayingSequence::MovieType)diff);
+
+        if (pMovieName == nullptr) {
+            *pSequence = nullptr;
         }
         else {
-            *seqs = new MoviePlayingSequence(movieName, diff);
+            *pSequence = new MoviePlayingSequence(pMovieName, diff);
         }
     }
 }
@@ -369,30 +370,30 @@ namespace MR {
     }
 
     void startMovieEpilogueA() {
-        MoviePlayingSequenceHolder* holder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        holder->mSequences.mArr[3]->appear();
+        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+        pHolder->mSequences[3]->appear();
     }
 
     void startMovieEndingA() {
-        MoviePlayingSequenceHolder* holder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        holder->mSequences.mArr[5]->appear();
+        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+        pHolder->mSequences[5]->appear();
     }
 
     void startMovieEndingB() {
-        MoviePlayingSequenceHolder* holder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
-        holder->mSequences.mArr[6]->appear();
+        MoviePlayingSequenceHolder* pHolder = MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder);
+        pHolder->mSequences[6]->appear();
     }
 
     bool isEndMovieEpilogueA() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.mArr[3]);
+        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[3]);
     }
 
     bool isEndMovieEndingA() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.mArr[5]);
+        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[5]);
     }
 
     bool isEndMovieEndingB() {
-        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.mArr[6]);
+        return MR::isDead(MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences[6]);
     }
 
     bool isMoviePlayingOnSequence() {
@@ -400,15 +401,12 @@ namespace MR {
             return false;
         }
 
-        int i = 0;
+        for (int i = 0; i < MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.size(); i++) {
+            MoviePlayingSequence* pSequence = ::getMoviePlayingSequence(i);
 
-        while (i < MR::getSceneObj<MoviePlayingSequenceHolder*>(SceneObj_MoviePlayingSequenceHolder)->mSequences.mMaxSize) {
-            MoviePlayingSequence* seq = ::getMoviePlayingSequence(i);
-            if (seq != nullptr && !MR::isDead(seq)) {
+            if (pSequence != nullptr && !MR::isDead(pSequence)) {
                 return true;
             }
-
-            i++;
         }
 
         return false;

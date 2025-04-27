@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
 
 class LayoutActor;
 class LiveActor;
@@ -15,10 +15,8 @@ public:
     void registerNameObj(NameObj *);
     void movementOnAllCasts();
 
-    MR::AssignableArray<LiveActor *> mLiveActors;       // 0x0
-    s32 mMaxLiveActorCount;                             // 0x8
-    MR::AssignableArray<LayoutActor *> mLayoutActors;   // 0xC
-    s32 mMaxLayoutActorCount;                           // 0x14
-    MR::AssignableArray<NameObj *>  mNameObjs;          // 0x18
-    s32 mMaxNameObjCount;                               // 0x20
+private:
+    MR::Vector<MR::AssignableArray<LiveActor *> > mLiveActors;      // 0x0
+    MR::Vector<MR::AssignableArray<LayoutActor *> > mLayoutActors;  // 0xC
+    MR::Vector<MR::AssignableArray<NameObj *> > mNameObjs;          // 0x18
 };

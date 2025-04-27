@@ -36,10 +36,6 @@ namespace MR {
             mMaxSize = cnt;
         }
 
-        inline void assign(T what, s32 where) {
-            mArr[where] = what;
-        }
-
         int size() const {
             return mMaxSize;
         }
@@ -130,10 +126,6 @@ namespace MR {
 
         int size() const {
             return mCount;
-        }
-
-        inline void assign(T::Item &pItem, int where) {
-            mArray.mArr[where] = pItem;
         }
 
         void push_back(const T::Item &rItem) {
