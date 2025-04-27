@@ -39,7 +39,7 @@ void ShadowControllerHolder::updateController() {
         _18[i]->update();
     }
 
-    _18.mCount = 0;
+    _18.clear();
 }
 
 ShadowControllerList::ShadowControllerList(LiveActor *pActor, u32 listCount) : mShadowList(), mHost(pActor) {

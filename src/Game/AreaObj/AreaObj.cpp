@@ -117,7 +117,6 @@ TPos3f* AreaObj::getFollowMtx() const {
 }
 
 AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() {
-    mArray.mCount = 0;
     _18 = count;
 }
 

@@ -142,7 +142,7 @@ namespace MR {
     public:
         /// @brief Creates a new `Vector`.
         Vector() {
-            mCount = 0;
+            clear();
         }
 
         /// @brief Destroys the `Vector`.
@@ -198,6 +198,11 @@ namespace MR {
             mCount--;
 
             return pIter;
+        }
+
+        /// @brief Removes all values from the container.
+        void clear() {
+            mCount = 0;
         }
 
         /// @brief Returns an iterator to the first element.

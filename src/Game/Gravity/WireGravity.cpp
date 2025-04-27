@@ -2,16 +2,16 @@
 #include "Game/Util.hpp"
 
 WireGravity::WireGravity() {
-	mCount = 0;
+    
 }
 
 void WireGravity::setPointListSize(u32 numPoints) {
 	mPoints.init(numPoints);
-	mCount = 0;
+	mPoints.clear();
 }
 
 void WireGravity::addPoint(const TVec3f &rPoint) {
-	mPoints.mArr[mCount++] = rPoint;
+	mPoints.mArray.mArr[mPoints.mCount++] = rPoint;
 }
 
 /*
