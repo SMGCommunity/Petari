@@ -229,7 +229,7 @@ namespace JGeometry {
         };
         }
 
-        void add(const TVec3<f32> &b) {
+        void add(const TVec3<f32> &b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
 

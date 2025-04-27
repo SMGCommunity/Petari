@@ -40,7 +40,7 @@ namespace JMathInlineVEC {
 
     __attribute__((always_inline))
     inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
-        /*register f32 v1xy, v2xy, dxy, v1z, v2z, dz;
+        /*register f32 v2z, v1z, dz, v2xy, v1xy, dxy;
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
             psq_l     v2xy, 0(vec2), 0, 0
@@ -52,7 +52,7 @@ namespace JMathInlineVEC {
             psq_st    dz,  8(dst), 1, 0            
         }*/
         
-        register f32 v2xy, v1z, v2z, v1xy, dxy, dz;
+        register f32 v1xy, v2xy, v1z, v2z, dxy, dz;
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
             psq_l     v2xy, 0(vec2), 0, 0
