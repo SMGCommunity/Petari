@@ -176,6 +176,12 @@ namespace MR {
             return mCount;
         }
 
+        /// @brief Returns the number of elements that can be stored without reallocating.
+        /// @return The number of elements that can be stored.
+        int capacity() const {
+            return mArray.size();
+        }
+
         /// @brief Appends a copy of `rItem` to the end of the container.
         /// @param rItem The reference to the value to append.
         void push_back(const T::Item &rItem) {

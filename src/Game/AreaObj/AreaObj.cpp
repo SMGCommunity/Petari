@@ -121,7 +121,7 @@ AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() 
 }
 
 void AreaObjMgr::entry(AreaObj *pAreaObj) {
-    if (!mArray.mCount) {
+    if (mArray.capacity() == 0) {
         u32 cnt = _18;
         mArray.mArray.mArr = new AreaObj*[cnt];
         mArray.mArray.mMaxSize = cnt;
