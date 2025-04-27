@@ -1,24 +1,21 @@
 #pragma once
 
-#include "revolution.h"
 #include "Inline.hpp"
+#include <revolution.h>
 
 namespace MR {
-    template<class T>
-    class Vector;
-
     template<class T>
     class AssignableArray {
     public:
         typedef T Item;
 
-        inline AssignableArray() {
+        AssignableArray() {
             mArr = 0;
             mMaxSize = 0;
         }
 
-        ~AssignableArray() NO_INLINE {
-            if (mArr) {
+        ~AssignableArray() {
+            if (mArr != NULL) {
                 delete[] mArr;
             }
         }
@@ -31,7 +28,7 @@ namespace MR {
             return mArr[idx];
         }
 
-        inline void init(s32 cnt) {
+        void init(s32 cnt) {
             mArr = new T[cnt];
             mMaxSize = cnt;
         }
@@ -55,19 +52,15 @@ namespace MR {
         const T* end() const {
             return &mArr[mMaxSize];
         }
-    
-        T* mArr;        // 0x0
-        s32 mMaxSize;   // 0x4
+
+        /* 0x0 */ T* mArr;
+        /* 0x4 */ s32 mMaxSize;
     };
 
-    template<class T, int C>
+    template<class T, int N>
     class FixedArray {
     public:
         typedef T Item;
-
-        inline ~FixedArray() {
-
-        }
 
         T& operator[](int idx) {
             return mArr[idx];
@@ -78,7 +71,7 @@ namespace MR {
         }
 
         int size() const {
-            return C;
+            return N;
         }
 
         T* begin() {
@@ -90,24 +83,25 @@ namespace MR {
         }
 
         T* end() {
-            return &mArr[C];
+            return &mArr[N];
         }
 
         const T* end() const {
-            return &mArr[C];
+            return &mArr[N];
         }
 
-        T mArr[C];          // 0x0
+    private:
+        /* 0x0 */ T mArr[N];
     };
 
     template<class T>
     class Vector {
     public:
-        inline Vector() {
+        Vector() {
             mCount = 0;
         }
 
-        ~Vector() NO_INLINE {
+        ~Vector() {
             
         }
 
@@ -119,7 +113,7 @@ namespace MR {
             return mArray[idx];
         }
 
-        inline void init(s32 cnt) {
+        void init(s32 cnt) {
             mArray.mArr = new T::Item[cnt];
             mArray.mMaxSize = cnt;
         }
@@ -129,21 +123,22 @@ namespace MR {
         }
 
         void push_back(const T::Item &rItem) {
-            u32 count = mCount;
+            u32 index = mCount;
+
             mCount++;
-            mArray.mArr[count] = rItem;
+            mArray[index] = rItem;
         }
 
-        T::Item* erase(T::Item* pItem) NO_INLINE {
-            if (end() - pItem - 1 > 0) {
-                for (T::Item* p = pItem; p + 1 != end(); p++) {
+        T::Item* erase(T::Item* pIter) NO_INLINE {
+            if (end() - pIter - 1 > 0) {
+                for (T::Item* p = pIter; p + 1 != end(); p++) {
                     *p = *(p + 1);
                 }
             }
 
             mCount--;
 
-            return pItem;
+            return pIter;
         }
 
         T::Item* begin() {
@@ -162,8 +157,8 @@ namespace MR {
             return &mArray[mCount];
         }
 
-        T mArray;       // 0x0
-        s32 mCount;     // 0x8
+        /* 0x0 */ T mArray;
+        /* 0x? */ s32 mCount;
     };
 
     template<class T, int S>
@@ -171,7 +166,7 @@ namespace MR {
     public:
         class iterator {
         public:
-            iterator(T *head, T *tail) {
+            iterator(T* head, T* tail) {
                 mHead = head;
                 mTail = tail;
                 mEnd = head + S;
