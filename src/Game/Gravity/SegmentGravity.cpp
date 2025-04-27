@@ -21,13 +21,6 @@ SegmentGravity::SegmentGravity() :
 	}
 }
 
-inline TVec3f madd(const TVec3f &self, f32 scale, const TVec3f &v)  {
-    const TVec3f tmp = v * scale;
-    TVec3f ret(self);
-    JMathInlineVEC::PSVECAdd(&ret, &tmp, &ret);
-    return ret;
-}
-
 bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     TVec3f relPosFromBase = rPos - mWorldGravityPoints[0];
     f32 axisY = relPosFromBase.dot(mAxis);
@@ -58,7 +51,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVe
             attraction = mWorldGravityPoints[1];
         }
         else {
-            attraction = madd(mWorldGravityPoints[0], axisY, mAxis);
+            attraction = mWorldGravityPoints[0] + mAxis * axisY;
             
         }
     }

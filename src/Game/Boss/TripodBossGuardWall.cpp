@@ -190,17 +190,10 @@ void TripodBossGuardWall::updateMatrix() {
     mPosition.set<f32>(x, y, z);
 }
 
-inline TVec3f sub(const TVec3f &mTranslation, const TVec3f &rPosition) {
-TVec3f direction;
-    direction.setPS2(mTranslation);
-	JMathInlineVEC::PSVECSubtract(&direction, &rPosition, &direction);
-    return direction;
-}
-
 void TripodBossGuardWall::updateCameraTarget() {
     TVec3f front;
     TVec3f up;
-    TVec3f fromPlayer = sub(mPosition, *MR::getPlayerPos());
+    TVec3f fromPlayer = mPosition - *MR::getPlayerPos();
     front.x = fromPlayer.x;
     front.y = fromPlayer.y;
     front.z = fromPlayer.z;

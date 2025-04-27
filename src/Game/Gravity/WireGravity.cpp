@@ -14,16 +14,6 @@ void WireGravity::addPoint(const TVec3f &rPoint) {
 	mPoints.mArr[mCount++] = rPoint;
 }
 
-inline TVec3f sub2(const TVec3f &mTranslation, const TVec3f &rPosition) {
-TVec3f direction(mTranslation);
-    
-    /*direction.x = mTranslation.x;
-    direction.y = mTranslation.y;
-    direction.z = mTranslation.z;*/
-	JMathInlineVEC::PSVECSubtract(&direction, &rPosition, &direction);
-    return direction;
-}
-
 bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
 
     f32 distance = -1.0f;
@@ -53,10 +43,7 @@ bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 
     if(distance >= 0.0f) {
         
-        /*TVec3f gravity(pointOfAttraction);
-        JMathInlineVEC::PSVECSubtract(&gravity, &rPos, &gravity);*/
-        
-        MR::separateScalarAndDirection(pScalar, pDest, sub2(pointOfAttraction, rPos));
+        MR::separateScalarAndDirection(pScalar, pDest, pointOfAttraction - rPos);
         
         return true;
     }

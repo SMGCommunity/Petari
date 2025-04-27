@@ -48,35 +48,6 @@ void DiskTorusGravity::setBothSide(bool val) {
 	mEnableBothSide = val;
 }
 
-inline TVec3f multInline2(const TVec3f &v, f32 s) {
-    TVec3f ret(v);
-    ret.x *= s;
-    ret.y *= s;
-    ret.z *= s;
-    return ret;
-}
-
-        inline void negateInline_2(TVec3f *self, register const TVec3f &rSrc)
-        {
-            register TVec3f *dst = self;
-            register f32 xy;
-            register f32 z;
- 
-            __asm {
-                psq_l xy, 0(rSrc), 0, 0
-                ps_neg xy, xy
-                psq_st xy, 0(dst), 0, 0
-                lfs z, 8(rSrc)
-                fneg z, z
-                stfs z, 8(dst)
-            };
-        }
-        inline TVec3f negateInline_2(const TVec3f &self) {
-            TVec3f ret;
-            negateInline_2(&ret, self);
-            return ret;
-        }
-        
 bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     
     TVec3f relativePosition;
@@ -88,7 +59,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         return false;
     }
     
-    TVec3f dirOnTorusPlane = relativePosition - multInline2(mRotation, centralAxisY);
+    TVec3f dirOnTorusPlane = relativePosition - mRotation * centralAxisY;
     f32 distanceToCentralAxis;
     MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnTorusPlane, dirOnTorusPlane);
     if(MR::isNearZero(distanceToCentralAxis, 0.00100000005f)) {
@@ -129,7 +100,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
     }
     else {
-        gravity = centralAxisY >= 0.0f ? negateInline_2(mRotation) : mRotation;
+        gravity = centralAxisY >= 0.0f ? -mRotation : mRotation;
         distance = __fabsf(centralAxisY);
     }
     

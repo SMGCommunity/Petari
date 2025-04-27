@@ -157,10 +157,6 @@ bool ParallelGravity::isInBoxRange(const TVec3f &rPosition, f32 *pScalar) const 
 	return true;
 }
 
-inline void rejection(const TVec3f &rVec, const TVec3f &rNormal, TVec3f &rDst) {
-    JMAVECScaleAdd(&rNormal, &rVec, &rDst, -rNormal.dot(rVec));
-}
-
 bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) const {
 	f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
@@ -171,7 +167,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f &rPosition, f32 *pScalar) c
 	TVec3f positionOnWorldPlane;
 
 	// Check radius range
-	rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec, positionOnWorldPlane);
+	positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
 	f32 radius = PSVECMag(&positionOnWorldPlane);
 

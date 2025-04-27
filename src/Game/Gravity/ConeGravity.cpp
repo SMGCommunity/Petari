@@ -28,10 +28,6 @@ inline f32 absfInline(f32 &orig, f32 v) {
     return __fabsf(v);
 }
 
-inline void rejection(const TVec3f &rVec, const TVec3f &rNormal, TVec3f &rDst) {
-    JMAVECScaleAdd(&rNormal, &rVec, &rDst, -rNormal.dot(rVec));
-}
-
 bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     
     TVec3f worldBaseCenter, worldCentralAxis;
@@ -45,7 +41,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
 
     TVec3f relativePosition = rPos - worldBaseCenter;
     TVec3f positionOnBasePlane;
-    rejection(relativePosition, unitWorldCentralAxis, positionOnBasePlane);
+    positionOnBasePlane.rejection(relativePosition, unitWorldCentralAxis);
 
     if(MR::isNearZero(positionOnBasePlane, 0.00100000005f)) {
         
@@ -160,7 +156,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         MR::normalizeOrZero(&generatrixDirection);
 
         TVec3f gravity;
-        rejection(-positionOnBasePlane, generatrixDirection, gravity);
+        gravity.rejection(-positionOnBasePlane, generatrixDirection);
 
         if(MR::isNearZero(gravity, 0.00100000005f)) {
             *pDest = -unitWorldCentralAxis;

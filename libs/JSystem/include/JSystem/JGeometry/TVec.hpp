@@ -112,8 +112,19 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(const TVec3<f32> &vec) NO_INLINE {
-            setTVec3f(&vec.x, &x);
+        TVec3(const TVec3<f32> &vec) {
+            const register Vec* v_a = &vec;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
         }
 
         TVec3(f32 _x, f32 _y, f32 _z) {
@@ -122,8 +133,8 @@ namespace JGeometry {
             z = _z;
         }
 
-        template<typename U>
-        TVec3(U, U, U);
+        template<typename T>
+        TVec3(T, T, T);
 
         TVec3(f32 val) NO_INLINE {
             z = y = x = val;
@@ -141,24 +152,44 @@ namespace JGeometry {
             return *this;
         }
 
-        TVec3 operator+(const TVec3 &) const;
+        TVec3 operator+(const TVec3 &rVec) const {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECAdd(&ret, &rVec, &ret);
+            return ret;
+        }
         TVec3& operator+=(const TVec3 &op);
 
-        TVec3 operator*(f32) const;
+        TVec3 operator*(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.x *= scalar;
+            ret.y *= scalar;
+            ret.z *= scalar;
+            return ret;
+        }
+        
         TVec3& operator*=(f32);
 
-        TVec3 operator-() const;
-        TVec3 operator-(const TVec3 &op) const;
+        TVec3 operator-() const {
+            TVec3 ret;
+            JMathInlineVEC::PSVECNegate(this, &ret);
+            return ret;
+        }
+        
+        TVec3 operator-(const TVec3 &op) const  {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
+            return ret;
+        }
 
         template <typename T>
-        void set(const TVec3<f32>& rVec) {
+        void set(const TVec3<T>& rVec) {
             x = rVec.x;
             y = rVec.y;
             z = rVec.z;
         }
 
         template <typename T>
-        void set(f32 _x, f32 _y, f32 _z) NO_INLINE {
+        void set(T _x, T _y, T _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
@@ -214,20 +245,6 @@ namespace JGeometry {
         inline void setPS(const TVec3<f32>& rVec) {
             setTVec3f(&rVec.x, &x);
         }
-        inline void setPS2(const TVec3<f32>& rVec) {
-        const register Vec* v_a = &rVec;
-        register Vec* v_b = this;
-
-        register f32 b_x;
-        register f32 a_x;
-
-        asm {
-            psq_l a_x, 0(v_a), 0, 0
-            lfs b_x, 8(v_a)
-            psq_st a_x, 0(v_b), 0, 0
-            stfs b_x, 8(v_b)
-        };
-        }
 
         void add(const TVec3<f32> &b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
@@ -254,11 +271,16 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3<f32> translate(const TVec3<f32> &rSrc) const
+        // Needs to be part of TVec to schedule instructions correctly in CubeGravity
+        TVec3 translate(const TVec3 &rSrc) const
         {
-            TVec3<f32> tmp(*this);
-            tmp += rSrc;
-            return tmp;
+            TVec3 ret(*this);
+            ret += rSrc;
+            return ret;
+        }
+
+        inline void rejection(const TVec3 &rVec, const TVec3 &rNormal) {
+            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
         }
 
         void scale(f32);
