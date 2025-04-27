@@ -234,8 +234,7 @@ public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::AssignableArray<NameObj *> mNameObjArr; // 0x0
-        u32 _8;
+        MR::Vector<MR::AssignableArray<NameObj *> > mNameObjArr; // 0x0
         MR::FunctorBase* _C;
         u32 mCheck;                                 // 0x10
     };

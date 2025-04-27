@@ -40,16 +40,15 @@ void FileHolderFileEntry::setContext(void *pData, JKRHeap *pHeap) {
 }
 
 FileHolder::FileHolder() {
-    mArray.mArray.mArr = new FileHolderFileEntry*[0x180];
-    mArray.mArray.mMaxSize = 0x180;
+    mArray.init(0x180);
 }
 
 FileHolderFileEntry* FileHolder::add(const char *pName, JKRHeap *pHeap, void *pData) {
-    FileHolderFileEntry* entry = new(pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
-    s32 count = mArray.mCount;
-    mArray.mCount++;
-    mArray.mArray.mArr[count] = entry;
-    return entry;
+    FileHolderFileEntry* pEntry = new(pHeap, 0) FileHolderFileEntry(pName, pHeap, pData);
+
+    mArray.push_back(pEntry);
+
+    return pEntry;
 }
 
 bool FileHolder::isExist(const char *pFile) const {
@@ -63,27 +62,26 @@ void* FileHolder::getContext(const char *pFile) const {
 // FileHolder::removeIfIsEqualHeap
 
 FileHolderFileEntry** FileHolder::removeFile(const char *pFile) {
-    FileHolderFileEntry* entry = findEntry(pFile);
-    FileHolderFileEntry** i;
+    FileHolderFileEntry** p;
+    FileHolderFileEntry* pEntry = findEntry(pFile);
 
-    for (i = mArray.mArray.mArr; i != &mArray.mArray.mArr[mArray.mCount] && *i != entry; i++) {
+    for (p = mArray.begin(); p != mArray.end() && *p != pEntry; p++) {
+        
     }
 
-    delete *i;
+    delete *p;
 
-    return mArray.erase(i);
+    return mArray.erase(p);
 }
 
 FileHolderFileEntry* FileHolder::findEntry(const char *pFile) const {
     s32 entryNum = DVDConvertPathToEntrynum(pFile);
 
-    FileHolderFileEntry** curEntry;
-
-    for (curEntry = mArray.mArray.mArr; curEntry != &mArray.mArray.mArr[mArray.mCount]; curEntry++) {
-        if (entryNum == (*(curEntry))->mEntryNum) {
-            return *curEntry;
+    for (FileHolderFileEntry* const* pEntry = mArray.begin(); pEntry != mArray.end(); pEntry++) {
+        if (entryNum == (*pEntry)->mEntryNum) {
+            return *pEntry;
         }
     }
 
-    return 0;
+    return NULL;
 }

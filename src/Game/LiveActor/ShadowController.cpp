@@ -51,7 +51,7 @@ void ShadowControllerList::addController(ShadowController *pController) {
 }
 
 u32 ShadowControllerList::getControllerCount() const {
-    return mShadowList.mCount;
+    return mShadowList.size();
 }
 
 ShadowController* ShadowControllerList::getController(u32 idx) const {
@@ -59,11 +59,11 @@ ShadowController* ShadowControllerList::getController(u32 idx) const {
 }
 
 ShadowController* ShadowControllerList::getController(const char *pName) const {
-    if (mShadowList.mCount == 1) {
+    if (mShadowList.size() == 1) {
         return mShadowList[0];
     }
 
-    for (u32 i = 0; i < mShadowList.mCount; i++) {
+    for (u32 i = 0; i < mShadowList.size(); i++) {
         if (MR::isEqualString(pName, mShadowList[i]->mName)) {
             return mShadowList[i];
         }

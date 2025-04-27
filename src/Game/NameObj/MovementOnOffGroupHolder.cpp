@@ -1,49 +1,51 @@
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
-MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char *pName) : NameObj(pName) {
-    mCount = 0;
-}
+MovementOnOffGroupHolder::MovementOnOffGroupHolder(const char *pName) :
+    NameObj(pName),
+    mGroups()
+{}
 
 NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char *pName, NameObj *pobj, u32 a3) {
-    NameObjGroup* group = findGroupFromName(pName);
+    NameObjGroup* pGroup = findGroupFromName(pName);
 
-    if (!group) {
-        group = createGroup(pName, a3);
+    if (pGroup == NULL) {
+        pGroup = createGroup(pName, a3);
     }
 
-    group->registerObj(pobj);
-    return group;
+    pGroup->registerObj(pobj);
+
+    return pGroup;
 }
 
 void MovementOnOffGroupHolder::onMovementGroup(const char *pGroupName) {
-    NameObjGroup* group = findGroupFromName(pGroupName);
+    NameObjGroup* pGroup = findGroupFromName(pGroupName);
 
-    for (s32 i = 0; i < group->mObjectCount; i++) {
-        MR::requestMovementOn(group->mObjects[i]);
+    for (int i = 0; i < pGroup->mObjectCount; i++) {
+        MR::requestMovementOn(pGroup->mObjects[i]);
     }
 }
 
 NameObjGroup* MovementOnOffGroupHolder::createGroup(const char *pGroupName, u32 count) {
-    NameObjGroup* group = new NameObjGroup(pGroupName, count);
-    group->initWithoutIter();
-    s32 c = mCount;
-    mCount = c + 1;
-    mGroups[c] = group;
-    return group;
+    NameObjGroup* pGroup = new NameObjGroup(pGroupName, count);
+    pGroup->initWithoutIter();
+
+    mGroups.push_back(pGroup);
+
+    return pGroup;
 }
 
 NameObjGroup* MovementOnOffGroupHolder::findGroupFromName(const char *pName) const {
-    for (u32 i = 0; i < mCount; i++) {
-        NameObjGroup* cur = mGroups[i];
-        if (MR::isEqualString(cur->mName, pName)) {
+    for (u32 i = 0; i < mGroups.size(); i++) {
+        if (MR::isEqualString(mGroups[i]->mName, pName)) {
             return mGroups[i];
         }
     }
 
-    return 0;
+    return NULL;
 }
 
 MovementOnOffGroupHolder::~MovementOnOffGroupHolder() {
-
+    
 }

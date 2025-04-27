@@ -22,33 +22,32 @@ bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     for(s32 i = 0; i < mCount - 1; i++) {
 
         // unused
-        TVec3f wireBegin(mPoints.mArr[i]);
-        TVec3f wireEnd(mPoints.mArr[i + 1]);
+        TVec3f wireBegin(mPoints[i]);
+        TVec3f wireEnd(mPoints[i + 1]);
 
-        
+
         TVec3f positionProjectedOntoWire;
-        MR::calcPerpendicFootToLineInside(&positionProjectedOntoWire, rPos, mPoints.mArr[i], mPoints.mArr[i + 1]);
-        
+        MR::calcPerpendicFootToLineInside(&positionProjectedOntoWire, rPos, mPoints[i], mPoints[i + 1]);
+
         f32 squareDistance = rPos.squareDistancePS(positionProjectedOntoWire);
         if(squareDistance < distance || distance < 0.0f) {
-            
+
             pointOfAttraction = positionProjectedOntoWire;
             distance = squareDistance;
-            
+
         }
     }
-    
+
     if(!isInRangeSquare(distance)) {
         return false;
     }
 
     if(distance >= 0.0f) {
-        
         TVec3f gravity(pointOfAttraction);
         gravity.subInline4(rPos);
-        
+
         MR::separateScalarAndDirection(pScalar, pDest, gravity);
-        
+
         return true;
     }
 

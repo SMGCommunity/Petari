@@ -51,7 +51,7 @@ void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo) {
     ContainerSwitch sw;
     sw.mData = rInfo.mIDInfo->mZoneID;
     sw.mSwitch = s;
-    mSwitches[mCount++] = sw;
+    mSwitches.push_back(sw);
 }
 
 ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
@@ -63,16 +63,15 @@ ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
 }
 
 ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo &rInfo) {
-    for (int i = 0; i < mCount; i++)
-    {
-        ContainerSwitch* s = &mSwitches[i];
+    for (int i = 0; i < mSwitches.size(); i++) {
+        ContainerSwitch* pContainer = &mSwitches[i];
 
-        if (s->mData == rInfo.mIDInfo->mZoneID) {
-            return s->mSwitch;
+        if (pContainer->mData == rInfo.mIDInfo->mZoneID) {
+            return pContainer->mSwitch;
         }
     }
 
-    return 0;
+    return NULL;
 }
 
 void StageSwitchCtrl::onSwitchA() {
@@ -175,7 +174,7 @@ void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) 
 
     ZoneSwitch* zoneSwitch = container->getZoneSwitch(rSwitchId);
 
-    if (zoneSwitch->get(switchNo)) {
+    if (!zoneSwitch->get(switchNo)) {
         zoneSwitch->set(switchNo, true);
     }
 }
@@ -212,15 +211,22 @@ StageSwitchContainer::~StageSwitchContainer() {
 
 }
 
-StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ") {
-    mCount = 0;
+StageSwitchContainer::StageSwitchContainer() :
+    NameObj("ステージスイッチ"),
+    mSwitches(),
+    mGlobalSwitches()
+{
     mGlobalSwitches = new ZoneSwitch();
 }
 
-StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter &rIter)
-    : mSW_A(nullptr), mSW_B(nullptr), mSW_Appear(nullptr), mSW_Dead(nullptr) {
+StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter &rIter) :
+    mSW_A(nullptr),
+    mSW_B(nullptr),
+    mSW_Appear(nullptr),
+    mSW_Dead(nullptr)
+{
     mSW_A = StageSwitchFunction::createSwitchIdInfo("SW_A", rIter, true);
     mSW_B = StageSwitchFunction::createSwitchIdInfo("SW_B", rIter, true);
-    mSW_Appear = StageSwitchFunction::createSwitchIdInfo("SW_APPEAR", rIter, true);
-    mSW_Dead = StageSwitchFunction::createSwitchIdInfo("SW_DEAD", rIter, true);
+    mSW_Appear = StageSwitchFunction::createSwitchIdInfo("SW_APPEAR", rIter, false);
+    mSW_Dead = StageSwitchFunction::createSwitchIdInfo("SW_DEAD", rIter, false);
 }

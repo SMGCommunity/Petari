@@ -131,15 +131,13 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
     mFixedPos = new FixedPosition(this, "Top", TVec3f(0, 0, 0), TVec3f(0.0f, 0.0f, 0.0f));
     MR::tryRegisterDemoCast(this, rIter);
     mActor = new ThrowingIce*[0x6]; //
-    s32 i = 0;
     _A0 = 6;
 
-    while (i < 6) {
+    for (int i = 0; i < 6; i++) {
         mActor[i] = new ThrowingIce("投擲用の氷");
         mActor[i]->initWithoutIter();
         _A4 += 1;
         MR::tryRegisterDemoCast(mActor[i], rIter);
-        i++;
     }
 
     MR::initLightCtrl(this);
@@ -156,10 +154,10 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
     mModelArray.mArray.mArr = new ThrowingIce*[childNum];
 
     for (s32 i = 0; i < _F0; i++) {
-        mModelArray.mArray.mArr[i] = new ThrowingIce("メラメラ"); //wrong
-        MR::initChildObj(mModelArray.mArray.mArr[i], rIter, i);
-        mModelArray.mArray.mArr[i]->appear();
-        MR::tryRegisterDemoCast(mModelArray.mArray.mArr[i], rIter);
+        mModelArray[i] = new ThrowingIce("メラメラ"); //wrong
+        MR::initChildObj(mModelArray[i], rIter, i);
+        mModelArray[i]->appear();
+        MR::tryRegisterDemoCast(mModelArray[i], rIter);
     }
 
     MR::tryRegisterDemoCast(_AC, rIter);
@@ -179,18 +177,19 @@ void IceMerameraKing::init(const JMapInfoIter &rIter) {
 
 void IceMerameraKing::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);  
-    for (s32 i = 0; i < _F0; i++) {
+
+    for (int i = 0; i < _F0; i++) {
         bool cChar;
         bool cc = mBinder->_1EC._0;
-        mModelArray.mArray.mArr[i]->makeActorAppeared();
         mModelArray.mCount = mBinder->_24;
-        //mModelArray.mArray.init();
+
         if (mBinder->_24) {
             cChar = cc & 0xDF;            
         }
         else {
             cChar = cc | 0x20;
         }
+
         cc = cChar;
     }
     //major
@@ -591,8 +590,8 @@ void IceMerameraKing::exeAngryDemo() {
     MR::addVelocityKeepHeightUseShadow(this, 400.0f, 1.5f, 300.0f, nullptr);
 
     if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) && MR::isStep(this, 90)) {
-        for (s32 i = 0; i < _F0; i++) {
-            mModelArray.mArray.mArr[i]->makeActorAppeared();
+        for (int i = 0; i < _F0; i++) {
+            mModelArray[i]->makeActorAppeared();
         }
     }
 
@@ -634,11 +633,14 @@ void IceMerameraKing::exeDeathDemo() {
         MR::resetPosition(_AC, mPosition);
         MR::startAction(_AC, "Break");
         MR::requestMovementOn(_AC);
+
         for (s32 i = 0; i < _F0; i++) {
-            mModelArray.mArray.mArr[i]->kill();
+            mModelArray[i]->kill();
         }
+
         MR::invalidateShadow(this, nullptr);
     }
+
     s32 frame = MR::getBckFrameMax(this);
 
     if (MR::isOnGround(this)) {

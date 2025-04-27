@@ -9,21 +9,19 @@ DrawBufferGroup::DrawBufferGroup() : _0(), _C() {
 }
 
 void DrawBufferGroup::init(s32 count) {
-    _0.mArray.mArr = new DrawBufferExecuter*[count];
-    _0.mArray.mMaxSize = count;
-    _C.mArray.mArr = new DrawBufferExecuter*[count];
-    _C.mArray.mMaxSize = count;
+    _0.init(count);
+    _C.init(count);
 }
 
 s32 DrawBufferGroup::registerDrawBuffer(LiveActor *pActor) {
-    const char* modelName = MR::getModelResName(pActor);
-    s32 idx = findExecuterIndex(modelName);
+    const char* pModelName = MR::getModelResName(pActor);
+    s32 idx = findExecuterIndex(pModelName);
 
     // executer does not exist
     if (idx < 0) {
-        DrawBufferExecuter* exec = new DrawBufferExecuter(modelName, MR::getJ3DModel(pActor), 0x10);
+        DrawBufferExecuter* exec = new DrawBufferExecuter(pModelName, MR::getJ3DModel(pActor), 0x10);
 
-        idx = _0.mCount;
+        idx = _0.size();
         _0.push_back(exec);
 
         if (_20 == -1) {
@@ -31,18 +29,18 @@ s32 DrawBufferGroup::registerDrawBuffer(LiveActor *pActor) {
         }
     }
 
-    _0.mArray.mArr[idx]->mDrawBufferCount++;
+    _0[idx]->mDrawBufferCount++;
 
     return idx;
 }
 
 void DrawBufferGroup::active(LiveActor *pActor, s32 a2) {
-    DrawBufferExecuter* exec = _0.mArray.mArr[a2];
+    DrawBufferExecuter* exec = _0[a2];
     bool isEmpty = !(exec->_8 != 0);
     exec->add(pActor);
 
     if (isEmpty) {
-        _C.push_back(_0.mArray.mArr[a2]);
+        _C.push_back(_0[a2]);
     }
 }
 
@@ -50,23 +48,23 @@ void DrawBufferGroup::active(LiveActor *pActor, s32 a2) {
 
 void DrawBufferGroup::findLightInfo(LiveActor *pActor, s32 a2) {
     MR::initActorLightInfoLightType(pActor, _1C);
-    _0.mArray.mArr[a2]->findLightInfo(pActor);
+    _0[a2]->findLightInfo(pActor);
 
     if (_20 != -1) {
-        for (u32 i = 0; i < _0.mCount; i++) {
-            _0.mArray.mArr[i]->onExecuteLight(_1C);
+        for (u32 i = 0; i < _0.size(); i++) {
+            _0[i]->onExecuteLight(_1C);
         }
 
         _20 = -1;
     }
 
-    _0.mArray.mArr[a2]->offExecuteLight();
+    _0[a2]->offExecuteLight();
 }
 
 #ifdef NON_MATCHING
 // mem_fun doesn't get inlined...why? 
 void DrawBufferGroup::entry() {
-    for_each(_C.mArray.mArr, &_C.mArray.mArr[_C.mArray.mMaxSize], mem_fun(&DrawBufferExecuter::calcViewAndEntry));
+    for_each(_C.begin(), _C.end(), mem_fun(&DrawBufferExecuter::calcViewAndEntry));
 }
 #endif
 
@@ -83,8 +81,8 @@ void DrawBufferGroup::setLightType(s32 type) {
 }
 
 s32 DrawBufferGroup::findExecuterIndex(const char *pName) const {
-    for (u32 i = 0; i < _0.mCount; i++) {
-        if (MR::isEqualString(_0.mArray.mArr[i]->mName, pName)) {
+    for (u32 i = 0; i < _0.size(); i++) {
+        if (MR::isEqualString(_0[i]->mName, pName)) {
             return i;
         }
     }

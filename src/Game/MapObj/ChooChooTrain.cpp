@@ -13,16 +13,16 @@ ChooChooTrain::ChooChooTrain(const char *pName) : LiveActor(pName), mModelArray(
 void ChooChooTrain::startClipped() {
     LiveActor::startClipped();
 
-    for (s32 i = 0; i < mModelArray.mCount; i++) {
-        mModelArray.mArray.mArr[i]->startClipped();
+    for (int i = 0; i < mModelArray.size(); i++) {
+        mModelArray[i]->startClipped();
     }
 }
 
 void ChooChooTrain::endClipped() {
     LiveActor::endClipped();
 
-    for (s32 i = 0; i < mModelArray.mCount; i++) {
-        mModelArray.mArray.mArr[i]->endClipped();
+    for (int i = 0; i < mModelArray.size(); i++) {
+        mModelArray[i]->endClipped();
     }
 }
 
@@ -59,19 +59,16 @@ void ChooChooTrain::init(const JMapInfoIter &rIter) {
         mRailCoord = temp_var;
     }
 
-    mModelArray.mArray.mArr = new ModelObj*[defTrainParts];
-    mModelArray.mArray.mMaxSize = defTrainParts;
+    mModelArray.init(defTrainParts);
 
-    s32 curIdx = 0;
-    while (curIdx < defTrainParts) {
-        ModelObj* obj = new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", 0, -2, 0x1E, 2, false);
-        obj->initWithoutIter();
-        MR::initCollisionParts(obj, "ChooChooTrainBody", getSensor("body"), 0);
-        MR::invalidateClipping(obj);
-        s32 curCount = mModelArray.mCount;
-        mModelArray.mCount = curCount + 1;
-        mModelArray.mArray.mArr[curCount] = obj;
-        curIdx++;
+    int i;
+
+    for (i = 0; i < defTrainParts; i++) {
+        ModelObj* pObj = new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", 0, -2, 0x1E, 2, false);
+        pObj->initWithoutIter();
+        MR::initCollisionParts(pObj, "ChooChooTrainBody", getSensor("body"), 0);
+        MR::invalidateClipping(pObj);
+        mModelArray.push_back(pObj);
     }
 
     makeActorAppeared();
@@ -80,14 +77,12 @@ void ChooChooTrain::init(const JMapInfoIter &rIter) {
     f32 railCoord = MR::getRailCoord(this);
     MR::reverseRailDirection(this);
 
-    curIdx = 0;
-    while (curIdx < defTrainParts) {
+    for (i = 0; i < defTrainParts; i++) {
         MR::moveCoord(this, 1080.0f * mScale.y);
-        MR::moveTransToOtherActorRailPos(mModelArray.mArray.mArr[curIdx], this);
-        MR::onCalcGravity(mModelArray.mArray.mArr[curIdx]);
-        mModelArray.mArray.mArr[curIdx]->makeActorAppeared();
-        MR::startBck(mModelArray.mArray.mArr[curIdx], "Run", 0);
-        curIdx++;
+        MR::moveTransToOtherActorRailPos(mModelArray[i], this);
+        MR::onCalcGravity(mModelArray[i]);
+        mModelArray[i]->makeActorAppeared();
+        MR::startBck(mModelArray[i], "Run", 0);
     }
 
     MR::reverseRailDirection(this);
@@ -109,18 +104,16 @@ void ChooChooTrain::control() {
     MR::reverseRailDirection(this);
 
     TVec3f* vec;
-    s32 curIdx = 0;
 
-    while (curIdx < mModelArray.mCount) {
+    for (int i = 0; i < mModelArray.size(); i++) {
         MR::moveCoord(this, 1080.0f * mScale.y);
-        MR::moveTransToOtherActorRailPos(mModelArray.mArray.mArr[curIdx], this);
-        stack_74 = (stack_5C - mModelArray.mArray.mArr[curIdx]->mPosition);
-        MR::turnDirectionAndGravityH(mModelArray.mArray.mArr[curIdx], stack_74, 0.5f, 1.0f);
-        MR::calcFrontVec(&stack_68, mModelArray.mArray.mArr[curIdx]);
+        MR::moveTransToOtherActorRailPos(mModelArray[i], this);
+        stack_74 = (stack_5C - mModelArray[i]->mPosition);
+        MR::turnDirectionAndGravityH(mModelArray[i], stack_74, 0.5f, 1.0f);
+        MR::calcFrontVec(&stack_68, mModelArray[i]);
 
-        vec = &mModelArray.mArray.mArr[curIdx]->mPosition;
+        vec = &mModelArray[i]->mPosition;
         stack_5C = (*vec - ((stack_68 * 532.0f) * mScale.y));
-        curIdx++;
     }
 
     MR::reverseRailDirection(this);

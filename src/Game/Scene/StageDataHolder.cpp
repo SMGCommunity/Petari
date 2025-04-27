@@ -15,16 +15,15 @@ namespace {
     }
 
     static void calcPlacementInfoNum(int *a1, int *a2, const MR::AssignableArray<JMapInfo> &rArray) NO_INLINE {
-        JMapInfo* cur = rArray.mArr;
         *a1 = 0;
         *a2 = 0;
 
-        while (cur != &rArray.mArr[rArray.mMaxSize]) {
-            if (::isPrioPlacementObjInfo(cur->getName())) {
+        for (const JMapInfo* pInfo = rArray.begin(); pInfo != rArray.end(); pInfo++) {
+            if (::isPrioPlacementObjInfo(pInfo->getName())) {
                 int size;
                 
-                if (cur->mData != nullptr) {
-                    size = cur->mData->mNumEntries;
+                if (pInfo->mData != nullptr) {
+                    size = pInfo->mData->mNumEntries;
                 }
                 else {
                     size = 0;
@@ -35,8 +34,8 @@ namespace {
             else {
                 int size;
 
-                if (cur->mData != nullptr) {
-                    size = cur->mData->mNumEntries;
+                if (pInfo->mData != nullptr) {
+                    size = pInfo->mData->mNumEntries;
                 }
                 else {
                     size = 0;
@@ -44,23 +43,17 @@ namespace {
 
                 *a2 += size;
             }
-
-            cur++;
         }
     }
 
     static void attachJmpInfoToPlacementInfoOrdered(PlacementInfoOrdered *a1, PlacementInfoOrdered *a2, PlacementInfoOrdered *a3, const MR::AssignableArray<JMapInfo> &rArray) NO_INLINE {
-        JMapInfo* cur = rArray.mArr;
-
-        while (cur != &rArray.mArr[rArray.mMaxSize]) {
-            if (::isPrioPlacementObjInfo(cur->getName())) {
-                a1->attach(cur, nullptr);
+        for (const JMapInfo* pInfo = rArray.begin(); pInfo != rArray.end(); pInfo++) {
+            if (::isPrioPlacementObjInfo(pInfo->getName())) {
+                a1->attach(pInfo, nullptr);
             }
             else {
-                a2->attach(cur, a3);
+                a2->attach(pInfo, a3);
             }
-            
-            cur++;
         }
     }
 };
@@ -152,18 +145,18 @@ void StageDataHolder::initPlacement() {
     _10C->initPlacement();
 }
 
-JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **pOut, int idx) const {
-    JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
-    JMapInfoIter pathIter = inf->findElement<s32>("l_id", idx, 0);
-    return getCommonPathPointInfoFromRailDataIndex(pOut, pathIter._4);
+JMapInfo StageDataHolder::getCommonPathPointInfo(const JMapInfo **ppOut, int idx) const {
+    const JMapInfo* pInfo = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
+    JMapInfoIter pathIter = pInfo->findElement<s32>("l_id", idx, 0);
+    return getCommonPathPointInfoFromRailDataIndex(ppOut, pathIter._4);
 }
 
-JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo **pInfo, int idx) const {
-    JMapInfo* inf = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
+JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo **ppInfo, int idx) const {
+    const JMapInfo* pInfo = findJmpInfoFromArray(&mPathObjs, "CommonPathInfo");
     char buf[0x80];
     snprintf(buf, sizeof(buf), "CommonPathPointInfo.%d", idx);
-    *pInfo = findJmpInfoFromArray(&mPathObjs, buf);
-    return *inf;
+    *ppInfo = findJmpInfoFromArray(&mPathObjs, buf);
+    return *pInfo;
 }
 
 s32 StageDataHolder::getCurrentStartCameraId() const {
@@ -195,10 +188,10 @@ const StageDataHolder* StageDataHolder::findPlacedStageDataHolder(const JMapInfo
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
-        const StageDataHolder* holder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
+        const StageDataHolder* pHolder = mStageDataArray[i]->findPlacedStageDataHolder(rIter);
 
-        if (holder) {
-            return holder; 
+        if (pHolder != nullptr) {
+            return pHolder; 
         }
     }
 
@@ -211,15 +204,15 @@ const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID)
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
-        StageDataHolder* holder = mStageDataArray[i];
-        s32 curZoneID = holder->mZoneID;
+        StageDataHolder* pHolder = mStageDataArray[i];
+        s32 curZoneID = pHolder->mZoneID;
 
         if (zoneID == curZoneID) {
-            return holder;
+            return pHolder;
         }
     }
 
-    return 0;
+    return nullptr;
 }
 
 const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) {
@@ -311,62 +304,52 @@ void StageDataHolder::initPlacementInfoOrderedCommon() {
     _100->sort();
 }
 
-JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *pInfoArr, const char *pName) const {
-    JMapInfo* inf = pInfoArr->mArr;
-    while (inf != pInfoArr->mArr + pInfoArr->mMaxSize) {
-        if (MR::isEqualStringCase(inf->getName(), pName)) {
-            return inf;
+const JMapInfo* StageDataHolder::findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *pInfoArr, const char *pName) const {
+    for (const JMapInfo* pInfo = pInfoArr->begin(); pInfo != pInfoArr->end(); pInfo++) {
+        if (MR::isEqualStringCase(pInfo->getName(), pName)) {
+            return pInfo;
         }
-
-        inf++;
     }
 
-    return 0;
+    return nullptr;
 }
 
 JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) const {
     int idx = idx_;
-    int curIdx;
-    JMapInfo* pEnd = mStartObjs.mArr + mStartObjs.mMaxSize;
-    bool isValid;
-    s32 i;
-    JMapInfo* inf = mStartObjs.mArr;
-    StageDataHolder* locHolder;
     
-    while (inf != pEnd)
-    {
-        const JMapData * curData = inf->mData;
-        isValid = curData;
-
-        curIdx = isValid ? curData->mNumEntries : 0;
+    for (JMapInfo* pInfo = mStartObjs.mArr; pInfo != mStartObjs.end(); pInfo++) {
+        const JMapData* curData = pInfo->mData;
+        bool isValid = curData;
+        int curIdx = isValid ? curData->mNumEntries : 0;
     
         if (idx < curIdx) {
             JMapInfoIter iter;
-            iter.mInfo = inf;
+            iter.mInfo = pInfo;
             iter._4 = idx;
+
             return iter;
         }
 
         curIdx = isValid ? curData->mNumEntries : 0;
 
         idx -= curIdx;
-
-        inf++;
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
-        locHolder = mStageDataArray[i];
-        int startPosNum = locHolder->getStartPosNum();
+        StageDataHolder* pHolder = mStageDataArray[i];
+        int startPosNum = pHolder->getStartPosNum();
 
         if (idx < startPosNum) {
-            return locHolder->getStartJMapInfoIterFromStartDataIndex(idx);
+            return pHolder->getStartJMapInfoIterFromStartDataIndex(idx);
         }
+
         idx -= startPosNum;
     }
 
     JMapInfoIter iter;
-    iter.mInfo = 0;
+    iter.mInfo = nullptr;
     iter._4 = -1;
+
     return iter;
 }
 
@@ -395,19 +378,15 @@ void StageDataHolder::calcPlacementMtx(const JMapInfoIter &rIter) {
 }
 
 void StageDataHolder::updateDataAddress(const MR::AssignableArray<JMapInfo> *pInfoArray) {
-    JMapInfo* inf = pInfoArray->mArr;
-
-    while (inf != pInfoArray->mArr + pInfoArray->mMaxSize) {
-        if ((u32)inf->mData < _E4) {
-            _E4 = (u32)inf->mData;
+    for (const JMapInfo* pInfo = pInfoArray->begin(); pInfo != pInfoArray->end(); pInfo++) {
+        if ((u32)pInfo->mData < _E4) {
+            _E4 = (u32)pInfo->mData;
         }
 
-        u32 addr = (inf->mData->mEntrySize * inf->mData->mNumEntries) + ((s32)inf->mData + inf->mData->mDataOffset);
+        u32 addr = (pInfo->mData->mEntrySize * pInfo->mData->mNumEntries) + ((s32)pInfo->mData + pInfo->mData->mDataOffset);
 
         if (_E8 < addr) {
             _E8 = addr;
         }
-
-        inf++;
     }
 }

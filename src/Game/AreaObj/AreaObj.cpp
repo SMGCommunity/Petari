@@ -122,14 +122,10 @@ AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray() 
 
 void AreaObjMgr::entry(AreaObj *pAreaObj) {
     if (mArray.capacity() == 0) {
-        u32 cnt = _18;
-        mArray.mArray.mArr = new AreaObj*[cnt];
-        mArray.mArray.mMaxSize = cnt;
+        mArray.init(_18);
     }
 
-    u32 count = mArray.mCount;
-    mArray.mCount = count + 1;
-    mArray.mArray.mArr[count] = pAreaObj;
+    mArray.push_back(pAreaObj);
 }
 
 // AreaObjMgr::find_in

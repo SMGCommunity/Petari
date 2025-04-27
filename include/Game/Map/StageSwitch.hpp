@@ -3,6 +3,7 @@
 #include <revolution.h>
 
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Array.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
 
 class BitFlag128 {
@@ -50,9 +51,9 @@ public:
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo &);
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo &);
 
-    ContainerSwitch mSwitches[20];  // 0xC
-    s32 mCount;                     // 0xAC
-    ZoneSwitch* mGlobalSwitches;    // 0xB0
+private:
+    MR::Vector<MR::FixedArray<ContainerSwitch, 20> > mSwitches; // 0x0C
+    ZoneSwitch* mGlobalSwitches;                                // 0xB0
 };
 
 class StageSwitchFunction {

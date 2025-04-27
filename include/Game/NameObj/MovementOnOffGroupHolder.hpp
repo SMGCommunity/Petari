@@ -2,6 +2,7 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/Util/Array.hpp"
 
 class MovementOnOffGroupHolder : public NameObj {
 public:
@@ -13,6 +14,6 @@ public:
     NameObjGroup* createGroup(const char *, u32);
     NameObjGroup* findGroupFromName(const char *) const;
 
-    NameObjGroup* mGroups[0x20];    // 0xC
-    s32 mCount;                     // 0x8C
+private:
+    MR::Vector<MR::FixedArray<NameObjGroup*, 32> > mGroups;
 };

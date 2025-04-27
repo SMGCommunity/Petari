@@ -12,7 +12,7 @@ void SceneDataInitializer::startStageFileLoad() {
     mFileLoader->startLoadingStageFile();
 
     if (!MR::isStageDisablePauseMenu()) {
-        MR::mountAsyncArchive("/LayoutData/PauseMenu.arc", MR::getAproposHeapForSceneArchive(0.029999999f));
+        MR::mountAsyncArchive("/LayoutData/PauseMenu.arc", MR::getAproposHeapForSceneArchive(0.03f));
     }
 }
 
@@ -21,12 +21,11 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
     JMapInfoIter iter;
     iter.mInfo = nullptr;
     iter._4 = -1;
+
     LuigiLetter::makeArchiveListForMenu(&collector, iter);
 
-    s32 curArchive = 0;
-    while (curArchive < collector.mCount) {
-        MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(curArchive), nullptr);
-        curArchive++;
+    for (int i = 0; i < collector.mCount; i++) {
+        MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(i), nullptr);
     }
 }
 

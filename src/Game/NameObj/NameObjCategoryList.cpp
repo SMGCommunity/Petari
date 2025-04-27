@@ -19,33 +19,34 @@ NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTab
 }
 
 void NameObjCategoryList::execute(int idx) {
-    NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[idx];
+    CategoryInfo* pCategoryInfo = &mCategoryInfo[idx];
 
-    if (inf->_8 && inf->_C) {
-        (*inf->_C)();
+    if (pCategoryInfo->mNameObjArr.size() == 0) {
+        return;
     }
 
-    NameObj** arr = inf->mNameObjArr.mArr;
+    if (pCategoryInfo->_C != NULL) {
+        (*pCategoryInfo->_C)();
+    }
 
-    while (arr != &inf->mNameObjArr.mArr[inf->_8]) {
-        (*mDelegator)(*arr);
-        arr++;
+    for (NameObj** pNameObj = pCategoryInfo->mNameObjArr.begin(); pNameObj != pCategoryInfo->mNameObjArr.end(); pNameObj++) {
+        (*mDelegator)(*pNameObj);
     }
 }
 
 void NameObjCategoryList::incrementCheck(NameObj */*unused*/, int index) {
-    mCategoryInfo.mArr[index].mCheck++;
+    mCategoryInfo[index].mCheck++;
 }
 
 void NameObjCategoryList::allocateBuffer() {
     if (_D) {
-        for (s32 i = 0; i < mCategoryInfo.mMaxSize; i++) {
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[i];
+        for (int i = 0; i < mCategoryInfo.size(); i++) {
+            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[i];
             u32 size = inf->mCheck;
             NameObj** nameObjArr = new NameObj*[size];
-            MR::AssignableArray<NameObj*>* arr = &mCategoryInfo.mArr[i].mNameObjArr;
-            arr->mArr = nameObjArr;
-            arr->mMaxSize = size;
+            MR::Vector<MR::AssignableArray<NameObj*> >* arr = &mCategoryInfo[i].mNameObjArr;
+            arr->mArray.mArr = nameObjArr;
+            arr->mArray.mMaxSize = size;
         }
 
         _C = 1;
@@ -53,52 +54,41 @@ void NameObjCategoryList::allocateBuffer() {
 }
 
 void NameObjCategoryList::add(NameObj *pObj, int idx) {
-    NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[idx];
-    s32 cnt = inf->_8++;
-    inf->mNameObjArr.mArr[cnt] = pObj;
+    mCategoryInfo[idx].mNameObjArr.push_back(pObj);
 }
 
 // NameObjCategoryList::remove
 
 void NameObjCategoryList::registerExecuteBeforeFunction(const MR::FunctorBase &rFunc, int idx) {
-    NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[idx];
-    inf->_C = rFunc.clone(0);
+    NameObjCategoryList::CategoryInfo* pCategoryInfo = &mCategoryInfo[idx];
+
+    pCategoryInfo->_C = rFunc.clone(0);
 }
 
 void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable *pTable) {
-    mCategoryInfo.mArr = new CategoryInfo[count];
-    mCategoryInfo.mMaxSize = count;
+    mCategoryInfo.init(count);
 
-    NameObjCategoryList::CategoryInfo* curInf = &mCategoryInfo.mArr[0];
-
-    while ((curInf != &mCategoryInfo.mArr[mCategoryInfo.mMaxSize])) {
-        curInf->_C = 0;
-        curInf++;
+    for (CategoryInfo* pCategoryInfo = mCategoryInfo.begin(); pCategoryInfo != mCategoryInfo.end(); pCategoryInfo++) {
+        pCategoryInfo->_C = NULL;
     }
 
-    const CategoryListInitialTable* ent = &pTable[0];
-
-    while(ent->mIndex != -1) {
+    for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {
         if (!_D) {
-            u32 size = ent->mCount;
+            u32 size = pEntry->mCount;
             NameObj** arr = new NameObj*[size];
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo.mArr[ent->mIndex];
-            inf->mNameObjArr.mArr = arr;
-            inf->mNameObjArr.mMaxSize = size;
+            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[pEntry->mIndex];
+            inf->mNameObjArr.mArray.mArr = arr;
+            inf->mNameObjArr.mArray.mMaxSize = size;
             _C = 1;
         }
 
-        mCategoryInfo.mArr[ent->mIndex].mCheck = 0;
-
-        ent++;
+        mCategoryInfo[pEntry->mIndex].mCheck = 0;
     }
 }
 
-NameObjCategoryList::CategoryInfo::CategoryInfo() {
-    mNameObjArr.mArr = 0;
-    mNameObjArr.mMaxSize = 0;
-    _8 = 0;
-}
+NameObjCategoryList::CategoryInfo::CategoryInfo() :
+    mNameObjArr()
+{}
 
 NameObjCategoryList::CategoryInfo::~CategoryInfo() {
     

@@ -52,7 +52,7 @@ public:
     void initAllLayerJmpInfo(MR::AssignableArray<JMapInfo> *, const char *, const char *);
     void initAllLayerJmpInfo(MR::AssignableArray<JMapInfo> *, const char *);
 
-    JMapInfo* findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *, const char *) const;
+    const JMapInfo* findJmpInfoFromArray(const MR::AssignableArray<JMapInfo> *, const char *) const;
     JMapInfoIter getStartJMapInfoIterFromStartDataIndex(int) const;
 
     void calcPlacementMtx(const JMapInfoIter &);
