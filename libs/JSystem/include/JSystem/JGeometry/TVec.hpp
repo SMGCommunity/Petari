@@ -235,7 +235,7 @@ namespace JGeometry {
         }
 
         template <typename T>
-        void set(const TVec3<f32>& rVec) NO_INLINE {
+        void set(const TVec3<T>& rVec) {
             x = rVec.x;
             y = rVec.y;
             z = rVec.z;
