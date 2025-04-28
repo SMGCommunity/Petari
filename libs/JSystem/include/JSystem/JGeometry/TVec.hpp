@@ -134,17 +134,30 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(const TVec3<f32> &vec) NO_INLINE {
-            setTVec3f(&vec.x, &x);
+        TVec3(const TVec3<f32> &vec) {
+            const register Vec* v_a = &vec;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
         }
 
-        TVec3(f32 _x, f32 _y, f32 _z) NO_INLINE {
+        // Can't be NO_INLINE (gets inlined in DiskGravity::DiskGravity())
+        TVec3(f32 _x, f32 _y, f32 _z) {
             x = _x;
             y = _y;
             z = _z;
         }
 
-        TVec3(int, int, int);
+        template<typename T>
+        TVec3(T, T, T);
 
         TVec3(f32 val) NO_INLINE {
             z = y = x = val;
@@ -162,24 +175,68 @@ namespace JGeometry {
             return *this;
         }
 
-        TVec3 operator+(const TVec3 &) const;
+        TVec3 operator+(const TVec3 &rVec) const {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECAdd(&ret, &rVec, &ret);
+            return ret;
+        }
         TVec3& operator+=(const TVec3 &op);
+        
+        // Needs to be part of TVec to schedule instructions correctly in CubeGravity
+        // Also, this seems like it should be merged with operator+(), but then how is
+        // it that sometimes operator+() gets inlined several times without operator+= getting
+        // inlined while other times, operator+() doesn't get inlined, and other times yet,
+        // both operator+() and operator+=() both get inlined?
+        TVec3 translate(const TVec3 &rSrc) const
+        {
+            TVec3 ret(*this);
+            ret += rSrc;
+            return ret;
+        }
 
-        TVec3 operator*(f32) const;
+        TVec3 operator*(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.x *= scalar;
+            ret.y *= scalar;
+            ret.z *= scalar;
+            return ret;
+        }
+        
         TVec3& operator*=(f32);
 
-        const TVec3 operator-() const;
-        TVec3& operator-(const TVec3 &op) const;
+        // Same reason to expect to merge as translate()
+        TVec3 multiplyOperatorInline(f32 scalar) const {
+            TVec3 ret(*this);
+            ret *= scalar;
+            return ret;
+        }
+
+        TVec3 operator-() const;
+
+        // This should probably be merged with operator-(), but ParallelGravity doesn't inline
+        // operator-() despite only referencing it once. So if we can match that, the two functions
+        // can be merged.
+        inline TVec3 negateInline() const {
+            TVec3 ret;
+            JMathInlineVEC::PSVECNegate(this, &ret);
+            return ret;
+        }
+        
+        TVec3 operator-(const TVec3 &op) const  {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
+            return ret;
+        }
 
         template <typename T>
-        void set(const TVec3<f32>& rVec) {
+        void set(const TVec3<T>& rVec) {
             x = rVec.x;
             y = rVec.y;
             z = rVec.z;
         }
 
         template <typename T>
-        void set(f32 _x, f32 _y, f32 _z) NO_INLINE {
+        void set(T _x, T _y, T _z) NO_INLINE {
             x = _x;
             y = _y;
             z = _z;
@@ -218,21 +275,6 @@ namespace JGeometry {
         void mulInternal(const f32 *vec1, const f32 *vec2, f32 *dst) ;
         #endif
 
-        #ifdef __MEWRKS__
-        inline void negate(register const f32 *src, register f32 *dst)
-        {
-            register f32 xy;
-            __asm {
-                psq_l xy, 0(src), 0, 0
-                ps_neg xy, xy
-                psq_st xy, 0(dst), 0, 0
-            }
-            dst[2] = -src[2];
-        }
-        #else
-        void negate(const f32 *, f32 *);
-        #endif
-
 
         void mult(const Vec &src1, const Vec &src2, Vec &dest) {
             mulInternal(&src1.x, &src2.x, &dest.x);
@@ -258,10 +300,26 @@ namespace JGeometry {
         }
 
         inline void setPS(const TVec3<f32>& rVec) {
-            setTVec3f(&rVec.x, &x);
+            JGeometry::setTVec3f(&rVec.x, &this->x);
         }
 
-        void add(const TVec3<f32> &b) {
+        // Point gravity doesn't match if we use setPS
+        inline void setPS2(const TVec3<f32>& rVec) {
+            const register Vec* v_a = &rVec;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
+        }
+
+        void add(const TVec3<f32> &b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
 
@@ -286,6 +344,10 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void rejection(const TVec3 &rVec, const TVec3 &rNormal) {
+            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
+        }
+
         void scale(f32);
         void scale(f32, const TVec3 &);
         void negate();
@@ -293,7 +355,7 @@ namespace JGeometry {
         f32 squared(const TVec3 &) const;
         void zero();
         bool isZero() const;
-        void normalize(const TVec3 &);
+        f32 normalize(const TVec3 &);
         void setLength(f32);
         f32 setLength(const TVec3 &, f32);
 

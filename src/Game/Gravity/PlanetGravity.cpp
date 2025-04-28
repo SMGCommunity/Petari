@@ -20,7 +20,6 @@ void PlanetGravity::setPriority(s32 priority) {
 	mPriority = priority;
 }
 
-/*
 bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
 	// Calculate raw gravity vector
 	f32 radius = 0.0f;
@@ -40,12 +39,15 @@ bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
 	}
 
 	// Apply gravity speed
-	gravity.scaleInline(4000000.0f / (radius * radius));
+    f32 scalar = 4000000.0f / (radius * radius);
+	gravity.x *= scalar;
+	gravity.y *= scalar;
+	gravity.z *= scalar;
 
 	// Invert vector if necessary
 	if (mIsInverse) {
 		TVec3f inverse;
-		inverse.negateInline(gravity);
+        JMathInlineVEC::PSVECNegate(&gravity, &inverse);
 		gravity = inverse;
 	}
 
@@ -56,7 +58,7 @@ bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
 
 	return true;
 }
-*/
+
 
 bool PlanetGravity::isInRangeSquare(f32 radius) const {
 	f32 range = mRange;
@@ -82,12 +84,10 @@ bool PlanetGravity::isInRangeDistance(f32 radius) const {
 	}
 }
 
-/*
 bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar, const TVec3f &rPosition, const TVec3f &rMassPosition) const {
-	TVec3f direction;
+	TVec3f direction = rMassPosition - rPosition;
 	f32 scalar;
 
-	direction.subInline(rMassPosition, rPosition);
 	MR::separateScalarAndDirection(&scalar, &direction, direction);
 
 	if (!isInRangeDistance(scalar))
@@ -102,7 +102,7 @@ bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar
 
 	return true;
 }
-*/
+
 
 void PlanetGravity::updateIdentityMtx() {
 	TPos3f mtx;

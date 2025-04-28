@@ -21,12 +21,11 @@ SegmentGravity::SegmentGravity() :
 	}
 }
 
-/*
 bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     TVec3f relPosFromBase = rPos - mWorldGravityPoints[0];
     f32 axisY = relPosFromBase.dot(mAxis);
     if(-1.0f < mValidSideCos) {
-        bool cmp = mWorldOppositeSideVecOrtho.squaredInline() <= 3.81469727e-06f;
+        bool cmp = mWorldOppositeSideVecOrtho.squareMag() <= 3.81469727e-06f;
         if(!cmp) {
             TVec3f dirOnBasePlane = relPosFromBase - mAxis * axisY;
             MR::normalizeOrZero(&dirOnBasePlane);
@@ -52,7 +51,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVe
             attraction = mWorldGravityPoints[1];
         }
         else {
-            attraction = mWorldGravityPoints[0].madd(axisY, mAxis);
+            attraction = mWorldGravityPoints[0] + mAxis * axisY;
             
         }
     }
@@ -70,13 +69,14 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVe
     }
     return true;
 }
-*/
+
+
 
 void SegmentGravity::updateLocalParam() {
     TRot3f rot;
 
     // Both of these variables are present because the codegen indicates they should be.
-    // In the final game, however, they have no behavioral effect and are not given any memory.
+    // In the final game, however, they have no behavioral effect and are not given any storage.
     bool artifact = true;
     bool &rArtifact = artifact;
 
@@ -90,7 +90,7 @@ void SegmentGravity::updateLocalParam() {
         return;
     }
     JMAVECScaleAdd(&localAxis, &mSideVector, &mOppositeSideVecOrtho, -localAxis.dot(mSideVector));
-    MR::normalize(&mOppositeSideVecOrtho);
+    MR::normalizeOrZero(&mOppositeSideVecOrtho);
     if(MR::isNearZero(mOppositeSideVecOrtho, 0.00100000005f)) {
         mOppositeSideVecOrtho.zero();
         return;

@@ -6,6 +6,8 @@
 
 DiskGravity::DiskGravity() :
 	PlanetGravity(),
+    mLocalPosition(0.0f, 50.0f, 0.0f),
+    mWorldPosition(0.0f, 50.0f, 0.0f),
 	mLocalNormal(0, 1, 0),
 	mWorldNormal(0, 1, 0),
 	mSideDirection(1, 0, 0),
@@ -52,7 +54,6 @@ void DiskGravity::setEnableEdgeGravity(bool val) {
 	mEnableEdgeGravity = val;
 }
 
-/*
 bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
     
 	TVec3f relativePos;
@@ -74,7 +75,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 	f32 distance = 0.0f;
 
 	if (distanceToCentralAxis <= mWorldRadius) {
-		gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline_2() : mWorldNormal;
+		gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline() : mWorldNormal;
 		distance = __fabsf(centralAxisY);
 	}
 	else {
@@ -83,8 +84,8 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 		}
         
 		TVec3f closestEdgePoint;
-		closestEdgePoint.set(dirOnDiskPlane * mWorldRadius);
-		closestEdgePoint.addInline2(mWorldPosition);
+		closestEdgePoint.set<f32>(dirOnDiskPlane * mWorldRadius);
+		JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
 
 		gravity = closestEdgePoint - rPosition;
 		MR::separateScalarAndDirection(&distance, &gravity, gravity);
@@ -104,7 +105,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 
 	return true;
 }
-*/
+
 
 void DiskGravity::updateLocalParam() {
     TRot3f rot;

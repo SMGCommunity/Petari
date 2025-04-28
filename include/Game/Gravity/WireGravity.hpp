@@ -12,6 +12,5 @@ public:
 	void setPointListSize(u32);
 	void addPoint(const TVec3f &);
 
-private:
 	MR::Vector<MR::AssignableArray<TVec3f> > mPoints; // 0x28
 };

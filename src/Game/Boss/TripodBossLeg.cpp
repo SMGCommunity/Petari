@@ -351,10 +351,7 @@ void TripodBossLeg::exeMove() {
 
 void TripodBossLeg::exeMoveToLandingPos() {
     if (MR::isFirstStep(this)) {
-        TVec3f v13(_98->mStepNormal);
-        v13 *= 1000.0f;
-        TVec3f v14(_98->mStepPosition);
-        v14 += v13;
+        TVec3f v14 = _98->mStepPosition.translate(_98->mStepNormal.multiplyOperatorInline(1000.0f));
         _240 = v14;
     }
 

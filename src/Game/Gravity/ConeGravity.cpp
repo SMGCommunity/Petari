@@ -28,7 +28,6 @@ inline f32 absfInline(f32 &orig, f32 v) {
     return __fabsf(v);
 }
 
-/*
 bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     
     TVec3f worldBaseCenter, worldCentralAxis;
@@ -65,17 +64,17 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         }
 
         if(positionOnCentralAxis > 0.0f) {
-            pDest->set(-unitWorldCentralAxis);
+            pDest->set<f32>(-unitWorldCentralAxis);
         }
         else {
-            pDest->set(unitWorldCentralAxis);
+            pDest->set<f32>(unitWorldCentralAxis);
         }
 
         *pScalar = distance;
         return true;
     }
     
-    f32 distanceToCentralAxis = PSVECMag(positionOnBasePlane);
+    f32 distanceToCentralAxis = PSVECMag(&positionOnBasePlane);
     f32 centralAxisY = unitWorldCentralAxis.dot(relativePosition);
 
     bool isInsideCone = false;
@@ -123,10 +122,10 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     else {
 
         TVec3f generatrixTermination;
-        generatrixTermination.set(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
+        generatrixTermination.set<f32>(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
 
         TVec3f frustumBaseCenter;
-        frustumBaseCenter.set(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
+        frustumBaseCenter.set<f32>(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
 
         if((rPos - generatrixTermination).dot(generatrixTermination - frustumBaseCenter) <= 0.0f) {
 
@@ -178,7 +177,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     
     return calcGravityFromMassPosition(pDest, pScalar, rPos, pointOfAttraction);
 }
-*/
+
 
 void ConeGravity::updateMtx(const TPos3f &rMtx) {
 	mWorldMtx.concat(rMtx, mLocalMtx);
