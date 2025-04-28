@@ -111,8 +111,8 @@ void SysInfoWindow::appear(const char* pStr, SysInfoType type, SysInfoTextPos te
     if (type == INFOTYPE_2) {
         char bufYes[48];
         char bufNo[48];
-        snprintf(bufYes, 48, "%s_Yes", pStr);
-        snprintf(bufNo, 48, "%s_No", pStr);
+        snprintf(bufYes, sizeof(bufYes), "%s_Yes", pStr);
+        snprintf(bufNo, sizeof(bufNo), "%s_No", pStr);
         funcptr(this, "Right", bufYes);
         funcptr(this, "Left", bufNo);
     }

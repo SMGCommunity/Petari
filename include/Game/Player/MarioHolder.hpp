@@ -4,7 +4,7 @@
 
 class MarioActor;
 
-class MarioHolder : NameObj {
+class MarioHolder : public NameObj {
 public:
     MarioHolder();
     ~MarioHolder();

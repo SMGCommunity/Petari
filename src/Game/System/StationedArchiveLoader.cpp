@@ -90,7 +90,7 @@ void StationedArchiveLoader::loadScenarioData(JKRHeap* pHeap) {
         }
 
         char name[0x100];
-        MR::makeScenarioArchiveFileName(name, 0x100, entry.name);
+        MR::makeScenarioArchiveFileName(name, sizeof(name), entry.name);
 
         if (MR::isFileExist(name, false)) {
             MR::mountArchive(name, pHeap);

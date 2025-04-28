@@ -304,14 +304,14 @@ ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
     const char* res = MR::getModelResName(mActor);
     const char* type = isLowModel ? "Low" : "Middle";
     char buf[0x100];
-    snprintf(buf, 0x100, "/ObjectData/%s%s.arc", res, type);
+    snprintf(buf, sizeof(buf), "/ObjectData/%s%s.arc", res, type);
 
     if (!MR::isFileExist(buf, false)) {
         return nullptr;
     }
 
     const char* objName = isLowModel ? MR::createLowModelObjName(mActor) : MR::createMiddleModelObjName(mActor);
-    snprintf(buf, 0x100, "%s%s", res, type);
+    snprintf(buf, sizeof(buf), "%s%s", res, type);
     ModelObj* obj = new ModelObj(objName, buf, mActor->getBaseMtx(), a1, a2, a3, false);
     obj->initWithoutIter();
     obj->makeActorDead();
@@ -322,6 +322,6 @@ ModelObj* LodCtrl::initLodModel(int a1, int a2, int a3, bool isLowModel) const {
 
 bool LodCtrlFunction::isExistLodLowModel(const char *pName) {
     char buf[0x100];
-    snprintf(buf, 0x100, "/ObjectData/%sLow.arc", pName);
+    snprintf(buf, sizeof(buf), "/ObjectData/%sLow.arc", pName);
     return MR::isFileExist(buf, false);
 }

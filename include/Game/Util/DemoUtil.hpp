@@ -55,6 +55,8 @@ namespace MR {
 
     bool tryStartDemoMarioPuppetable(LiveActor*, const char*);
 
+    bool requestStartDemoMarioPuppetable(LiveActor *, const char *, const Nerve *, const Nerve *);
+
     void requestStartTimeKeepDemoMarioPuppetable(LiveActor*, const char*, const Nerve*, const Nerve*, const char*);
 
     void requestStartTimeKeepDemo(LiveActor*, const char*, const Nerve*, const Nerve*, const char*);

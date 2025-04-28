@@ -7,35 +7,28 @@
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->startStageFileLoad();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->startStageFileLoad();
 }
 
 void SceneFunction::waitDoneStageFileLoad() {
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->waitDoneStageFileLoad();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->waitDoneStageFileLoad();
 }
 
 void SceneFunction::startActorFileLoadCommon() {
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->startActorFileLoadCommon();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->startActorFileLoadCommon();
 }
 
 void SceneFunction::startActorFileLoadScenario() {
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->startActorFileLoadScenario();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->startActorFileLoadScenario();
 }
 
 void SceneFunction::startActorPlacement() {
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->startActorPlacement();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->startActorPlacement();
 }
 
 void SceneFunction::initAfterScenarioSelected() {
-    SceneDataInitializer* init = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init->startStageFileLoadAfterScenarioSelected();
-    SceneDataInitializer* init_again = MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer);
-    init_again->initAfterScenarioSelected();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->startStageFileLoadAfterScenarioSelected();
+    MR::getSceneObj<SceneDataInitializer*>(SceneObj_SceneDataInitializer)->initAfterScenarioSelected();
 }
 
 void SceneFunction::initForNameObj() {

@@ -71,7 +71,7 @@ LiveActorGroup* LiveActorGroupArray::entry(LiveActor *pActor, const JMapInfoIter
 
     if (!pName) {
         char buf[0x20];
-        snprintf(buf, 0x20, "group%02d", groupID);
+        snprintf(buf, sizeof(buf), "group%02d", groupID);
         pName = buf;
     }
 

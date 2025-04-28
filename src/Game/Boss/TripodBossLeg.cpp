@@ -153,11 +153,11 @@ void TripodBossLeg::setDemoEffectTiming(bool timg) {
     }
 }
 
-TMtx34f& TripodBossLeg::getRootJointMatrix() const {
+const TPos3f& TripodBossLeg::getRootJointMatrix() const {
     return mJoint->_30;
 }
 
-TMtx34f& TripodBossLeg::getMiddleJointMatrix() const {
+const TPos3f& TripodBossLeg::getMiddleJointMatrix() const {
     return mJoint->_60;
 }
 

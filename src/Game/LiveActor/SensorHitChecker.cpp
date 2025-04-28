@@ -136,7 +136,7 @@ void SensorHitChecker::checkAttack(HitSensor *pSensor1, HitSensor *pSensor2) con
 
 namespace MR {
     void initHitSensorGroup(HitSensor *pSensor) {
-        reinterpret_cast<SensorHitChecker*>(MR::getSceneObjHolder()->getObj(0))->initGroup(pSensor);
+        MR::getSceneObj<SensorHitChecker*>(SceneObj_SensorHitChecker)->initGroup(pSensor);
     }
 };
 

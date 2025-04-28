@@ -99,7 +99,7 @@ void PlanetMapCreator::addTableData(const JMapInfo *pInfo, s32 idx) {
 
     for (int i = 0; i < 8; i++) {
         char data[0x20];
-        snprintf(data, 0x20, "ForceLowScenarioName%d", i);
+        snprintf(data, sizeof(data), "ForceLowScenarioName%d", i);
         MR::getCsvDataStr(&curData->mForceScenarioData[i], pInfo, data, idx);
     }
 }
@@ -122,7 +122,7 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
     }
 
     char name[0x40];
-    snprintf(name, 0x40, "%s_%d", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
+    snprintf(name, sizeof(name), "%s_%d", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
 
     for (int i = 0; i < 8; i++) {
         if (MR::isEqualString(pData->mForceScenarioData[i], "Low")) {
@@ -138,23 +138,23 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
 }
 
 void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector *pArchiveList, const JMapInfoIter &rIter, const char *pName) {
-    reinterpret_cast<PlanetMapCreator*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetMapCreator))->makeArchiveListPlanet(pArchiveList, rIter, pName);
+    MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
 }
 
 // PlanetMapCreatorFunction::getPlanetMapCreator
 
 bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char *pArchive) {
-    PlanetMapCreator* creator = reinterpret_cast<PlanetMapCreator*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetMapCreator));
-    bool doesHaveTableData = creator->getTableData(pArchive);
+    bool isExistTableData = MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 
-    return (!doesHaveTableData) ? false : isDataForceLow(reinterpret_cast<PlanetMapCreator*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetMapCreator))->getTableData(pArchive));
+    if (!isExistTableData) {
+        return false;
+    }
 
-    return false;
+    return isDataForceLow(MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive));
 }
 
 bool PlanetMapCreatorFunction::isRegisteredObj(const char *pArchive) {
-    PlanetMapCreator* creator = reinterpret_cast<PlanetMapCreator*>(MR::getSceneObjHolder()->getObj(SceneObj_PlanetMapCreator));
-    return creator->getTableData(pArchive);
+    return MR::getSceneObj<PlanetMapCreator*>(SceneObj_PlanetMapCreator)->getTableData(pArchive);
 }
 
 PlanetMapCreator::~PlanetMapCreator() {

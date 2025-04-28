@@ -20,7 +20,9 @@ namespace {
 };  // namespace
 
 namespace DemoFunction {
-    DemoDirector* getDemoDirector() { return reinterpret_cast<DemoDirector*>(MR::getSceneObjHolder()->getObj(SceneObj_DemoDirector)); }
+    DemoDirector* getDemoDirector() {
+        return MR::getSceneObj<DemoDirector*>(SceneObj_DemoDirector);
+    }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() { return getDemoDirector()->_1C; }
 
@@ -262,7 +264,7 @@ namespace DemoFunction {
 
     ResourceHolder* loadDemoArchive() {
         char buf[0x100];
-        snprintf(buf, 0x100, "DemoSheet.arc");
+        snprintf(buf, sizeof(buf), "DemoSheet.arc");
         return MR::createAndAddResourceHolder(buf);
     }
 

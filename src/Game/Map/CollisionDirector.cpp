@@ -38,8 +38,6 @@ void CollisionDirector::movement() {
     }
 }
 
-CollisionDirector *MR::getCollisionDirector() {
-    NameObj *nameObj = MR::getSceneObjHolder()->getObj(SceneObj_CollisionDirector);
-
-    return reinterpret_cast<CollisionDirector *>(nameObj);
+CollisionDirector* MR::getCollisionDirector() {
+    return MR::getSceneObj<CollisionDirector*>(SceneObj_CollisionDirector);
 }

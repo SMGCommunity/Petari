@@ -17,7 +17,7 @@ void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter &rIter) {
         return;
     }
 
-    while (cnt != mObjectCount) {
+    while (cnt < mObjectCount) {
         LiveActor* actor = getActor(_18);
         MR::getClippingDirector()->initActorSystemInfo(actor, rIter);
         cnt++;
@@ -27,21 +27,24 @@ void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter &rIter) {
 
 namespace MR {
     AllLiveActorGroup* getAllLiveActorGroup() {
-        return (AllLiveActorGroup*)MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
+        return MR::getSceneObj<AllLiveActorGroup*>(SceneObj_AllLiveActorGroup);
     }
 
     void startInitLiveActorSystemInfo() {
-        AllLiveActorGroup* allLiveActorGroup = (AllLiveActorGroup*)MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
-        allLiveActorGroup->_18 = allLiveActorGroup->mObjectCount;
+        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
+
+        pAllLiveActorGroup->_18 = pAllLiveActorGroup->mObjectCount;
     }
 
     void initLiveActorSystemInfo(const JMapInfoIter &rIter) {
-        AllLiveActorGroup* group = (AllLiveActorGroup*)MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
-        group->initActorSystemInfo(rIter);
+        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
+
+        pAllLiveActorGroup->initActorSystemInfo(rIter);
     }
 
     void endInitLiveActorSystemInfo() {
-        MR::getSceneObjHolder()->getObj(SceneObj_AllLiveActorGroup);
+        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
+
         MR::getClippingDirector()->endInitActorSystemInfo();
     }
 };

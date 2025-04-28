@@ -32,7 +32,7 @@ void StageFileLoader::makeStageArchiveNameList() {
     for (int i = 0; i < mZoneCount; i++) {
         const char* zoneName = access.getZoneName(i);
         char path[0x100];
-        snprintf(path, 0x100, "/StageData/%s.arc", zoneName);
+        snprintf(path, sizeof(path), "/StageData/%s.arc", zoneName);
         u32 len = strlen(path) + 1;
         mStageFiles[i] = new char[len];
         MR::copyString(mStageFiles[i], path, len);

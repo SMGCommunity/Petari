@@ -131,9 +131,9 @@ bool StageSwitchCtrl::isValidSwitchDead() const {
 bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
     for (s32 i = 0; i < idx; i++) {
         s32 switchNo = i + mSW_B->getSwitchNo();
-        StageSwitchContainer* container = static_cast<StageSwitchContainer*>(MR::getSceneObjHolder()->getObj(0xA));
+        StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
         
-        if (!container->getZoneSwitch(*mSW_B)->get(switchNo)) {
+        if (!pContainer->getZoneSwitch(*mSW_B)->get(switchNo)) {
             return false;
         }
     }
@@ -159,9 +159,9 @@ SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char *pSwitchName, c
     SwitchIdInfo* inf = new SwitchIdInfo(switchNo, rIter);
 
     if (switchNo < 0x3E8) {
-        SceneObjHolder* objHolder = MR::getSceneObjHolder();
-        StageSwitchContainer* container = static_cast<StageSwitchContainer*>(objHolder->getObj(0xA));
-        container->createAndAddZone(*inf); 
+        StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+
+        pContainer->createAndAddZone(*inf); 
     }
 
     return inf;
@@ -169,36 +169,33 @@ SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char *pSwitchName, c
 
 void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    SceneObjHolder* objHolder = MR::getSceneObjHolder();
-    StageSwitchContainer* container = static_cast<StageSwitchContainer*>(objHolder->getObj(0xA));
+    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
 
-    ZoneSwitch* zoneSwitch = container->getZoneSwitch(rSwitchId);
+    ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
-    if (!zoneSwitch->get(switchNo)) {
-        zoneSwitch->set(switchNo, true);
+    if (!pZoneSwitch->get(switchNo)) {
+        pZoneSwitch->set(switchNo, true);
     }
 }
 
 void StageSwitchFunction::offSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    SceneObjHolder* objHolder = MR::getSceneObjHolder();
-    StageSwitchContainer* container = static_cast<StageSwitchContainer*>(objHolder->getObj(0xA));
+    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
 
-    ZoneSwitch* zoneSwitch = container->getZoneSwitch(rSwitchId);
+    ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
-    if (zoneSwitch->get(switchNo)) {
-        zoneSwitch->set(switchNo, false);
+    if (pZoneSwitch->get(switchNo)) {
+        pZoneSwitch->set(switchNo, false);
     }
 }
 
 bool StageSwitchFunction::isOnSwitchBySwitchIdInfo(const SwitchIdInfo &rSwitchId) {
     s32 switchNo = rSwitchId.getSwitchNo();
-    SceneObjHolder* objHolder = MR::getSceneObjHolder();
-    StageSwitchContainer* container = static_cast<StageSwitchContainer*>(objHolder->getObj(0xA));
+    StageSwitchContainer* pContainer = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
 
-    ZoneSwitch* zoneSwitch = container->getZoneSwitch(rSwitchId);
+    ZoneSwitch* pZoneSwitch = pContainer->getZoneSwitch(rSwitchId);
 
-    return zoneSwitch->get(switchNo);
+    return pZoneSwitch->get(switchNo);
 }
 
 namespace MR {

@@ -31,10 +31,10 @@ void AirBubbleHolder::appearAirBubble(const TVec3f &a1, s32 a2) {
 
 namespace MR {
     AirBubbleHolder* createAirBubbleHolder() {
-        return reinterpret_cast<AirBubbleHolder*>(MR::createSceneObj(SceneObj_AirBubbleHolder));
+        return static_cast<AirBubbleHolder*>(MR::createSceneObj(SceneObj_AirBubbleHolder));
     }
 
     void appearAirBubble(const TVec3f &a1, s32 a2) {
-        reinterpret_cast<AirBubbleHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_AirBubbleHolder))->appearAirBubble(a1, a2);
+        MR::getSceneObj<AirBubbleHolder*>(SceneObj_AirBubbleHolder)->appearAirBubble(a1, a2);
     }
 };

@@ -232,7 +232,7 @@ void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
 void TalkNodeCtrl::createFlowNode(TalkMessageCtrl *pMsgCtrl, const JMapInfoIter &rIter, const char *pName, ActorCameraInfo **pCameraInf) {
     char buf[0x100];
     s32 msgID = MR::getMessageID(rIter);
-    snprintf(buf, 0x100, "%s_%s%03d", MR::getCurrentPlacementZoneName(), pName, msgID);
+    snprintf(buf, sizeof(buf), "%s_%s%03d", MR::getCurrentPlacementZoneName(), pName, msgID);
     createFlowNodeDirect(pMsgCtrl, rIter, buf, pCameraInf);
 }
 #endif

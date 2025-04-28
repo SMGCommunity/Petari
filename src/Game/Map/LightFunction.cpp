@@ -7,12 +7,12 @@
 #include <cstring>
 
 void LightFunction::initLightData() {
-    reinterpret_cast<LightDirector*>(MR::getSceneObjHolder()->getObj(SceneObj_LightDirector))->initData();
+    MR::getSceneObj<LightDirector*>(SceneObj_LightDirector)->initData();
 }
 
 ResourceHolder* LightFunction::loadLightArchive() {
     char buf[0x100];
-    snprintf(buf, 0x100, "LightData.arc");
+    snprintf(buf, sizeof(buf), "LightData.arc");
     return MR::createAndAddResourceHolder(buf);
 }
 
