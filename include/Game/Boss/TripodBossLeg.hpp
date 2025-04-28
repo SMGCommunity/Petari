@@ -29,8 +29,8 @@ public:
     void setWait();
     void setForceEndPoint(const TVec3f &);
     void setDemoEffectTiming(bool);
-    TMtx34f& getRootJointMatrix() const;
-    TMtx34f& getMiddleJointMatrix() const;
+    const TPos3f& getRootJointMatrix() const;
+    const TPos3f& getMiddleJointMatrix() const;
     const TPos3f& getEndJointMatrix() const;
     const TPos3f& getRootLocalYMatrix() const;
     const TPos3f& getRootLocalYZMatrix() const;

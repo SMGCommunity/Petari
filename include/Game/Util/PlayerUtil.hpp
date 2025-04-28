@@ -125,4 +125,6 @@ namespace MR {
     LiveActor* getCurrentRushActor();
 
     void forceJumpPlayer(const TVec3f &);
+
+    bool isPlayerOnPress();
 };

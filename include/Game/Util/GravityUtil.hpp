@@ -30,6 +30,8 @@ namespace MR {
 	bool calcGravityAndDropShadowVectorOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *rInfo, u32 host);
 	bool calcAttractMarioLauncherOrZero(const LiveActor *pActor, TVec3f *pDest, GravityInfo *rInfo, u32 host);
 
+	bool calcGravityAndMagnetVector(const NameObj *, const TVec3f &, TVec3f &, GravityInfo *, u32);
+
 	bool isZeroGravity(const LiveActor *pActor);
 	bool isLightGravity(const GravityInfo &rInfo);
 
