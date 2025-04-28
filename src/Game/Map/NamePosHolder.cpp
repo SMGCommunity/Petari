@@ -22,7 +22,7 @@ NamePosInfo::NamePosInfo() {
 
 namespace MR {
     NamePosHolder* getNamePosHolder() {
-        return reinterpret_cast<NamePosHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NamePosHolder));
+        return MR::getSceneObj<NamePosHolder*>(SceneObj_NamePosHolder);
     }
 };
 

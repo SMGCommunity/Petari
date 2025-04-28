@@ -342,62 +342,62 @@ NameObjExecuteInfo* NameObjExecuteHolder::getConnectToSceneInfo(const NameObj *p
 /* these functions were likely placed here via the linker */
 namespace MR {
     void registerNameObjToExecuteHolder(NameObj *pObj, int a2, int a3, int a4, int a5) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->registerActor(pObj, a2, a3, a4, a5);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->registerActor(pObj, a2, a3, a4, a5);
     }
 
     void initConnectting() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->initConnectting();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->initConnectting();
     }
 
     void connectToSceneTemporarily(NameObj *pObj) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->connectToScene(pObj);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->connectToScene(pObj);
     }
 
     void disconnectToSceneTemporarily(NameObj *pObj) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->disconnectToScene(pObj);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->disconnectToScene(pObj);
     }
 
     void connectToDrawTemporarily(NameObj *pObj) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->connectToDraw(pObj);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->connectToDraw(pObj);
     }
 
     void disconnectToDrawTemporarily(NameObj *pObj) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->disconnectToDraw(pObj);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->disconnectToDraw(pObj);
     }
     
     bool isConnectToDrawTemporarily(const NameObj *pObj) {
-        return reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->isConnectToDraw(pObj);
+        return MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->isConnectToDraw(pObj);
     }
 
     void executeRequirementConnectMovement() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->executeRequirementConnectMovement();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementConnectMovement();
     }
 
     void executeRequirementDisconnectMovement() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->executeRequirementDisconnectMovement();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectMovement();
     }
 
     void executeRequirementConnectDraw() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->executeRequirementConnectDraw();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementConnectDraw();
     }
 
     void executeRequirementDisconnectDraw() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->executeRequirementDisconnectDraw();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectDraw();
     }
 
     void executeRequirementDisconnectDrawDelay() {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->executeRequirementDisconnectDrawDelay();
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->executeRequirementDisconnectDrawDelay();
     }
 
     void requestMovementOnWithCategory(int category) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->requestMovementOn(category);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->requestMovementOn(category);
     }
 
     void requestMovementOffWithCategory(int category) {
-        reinterpret_cast<NameObjExecuteHolder*>(MR::getSceneObjHolder()->getObj(SceneObj_NameObjExecuteHolder))->requestMovementOff(category);
+        MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->requestMovementOff(category);
     }
 
-    void MR::findActorLightInfo(const LiveActor *pActor) {
+    void findActorLightInfo(const LiveActor *pActor) {
         MR::getSceneObj<NameObjExecuteHolder*>(SceneObj_NameObjExecuteHolder)->getConnectToSceneInfo(pActor)->findLightInfo();
     }
 };

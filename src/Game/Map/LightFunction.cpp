@@ -7,7 +7,7 @@
 #include <cstring>
 
 void LightFunction::initLightData() {
-    reinterpret_cast<LightDirector*>(MR::getSceneObjHolder()->getObj(SceneObj_LightDirector))->initData();
+    MR::getSceneObj<LightDirector*>(SceneObj_LightDirector)->initData();
 }
 
 ResourceHolder* LightFunction::loadLightArchive() {

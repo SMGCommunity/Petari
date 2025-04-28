@@ -1,26 +1,26 @@
 #include "Game/Player/MarioHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-MarioHolder::MarioHolder() : NameObj("マリオ保持")
+MarioHolder::MarioHolder() :
+    NameObj("マリオ保持")
 {
     mActor = nullptr;
 }
 
-MarioHolder::~MarioHolder() {}
-
-void MarioHolder::setMarioActor(MarioActor *actor)
-{
-    mActor = actor;
+MarioHolder::~MarioHolder() {
+    
 }
 
-MarioActor *MarioHolder::getMarioActor() const
-{
+void MarioHolder::setMarioActor(MarioActor *pActor) {
+    mActor = pActor;
+}
+
+MarioActor *MarioHolder::getMarioActor() const {
     return mActor;
 }
 
 namespace MR {
-    MarioHolder *getMarioHolder()
-    {
-        return (MarioHolder *)MR::getSceneObjHolder()->getObj(SceneObj_MarioHolder);
+    MarioHolder *getMarioHolder() {
+        return MR::getSceneObj<MarioHolder*>(SceneObj_MarioHolder);
     }
-}    // namespace MR
+} // namespace MR

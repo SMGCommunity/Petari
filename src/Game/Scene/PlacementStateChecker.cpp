@@ -19,7 +19,7 @@ int PlacementStateChecker::getCurrentPlacementZoneId() const {
 
 namespace MR {
     PlacementStateChecker* getPlacementStateChecker() {
-        return reinterpret_cast<PlacementStateChecker*>(MR::getSceneObjHolder()->getObj(SceneObj_PlacementStateChecker));
+        return MR::getSceneObj<PlacementStateChecker*>(SceneObj_PlacementStateChecker);
     }
 };
 

@@ -23,11 +23,11 @@ f32 MirrorCamera::getDistance(const TVec3f &a1) const {
 
 namespace MR {
     MirrorCamera* getMirrorCamera() {
-        return reinterpret_cast<MirrorCamera*>(MR::getSceneObjHolder()->getObj(SceneObj_MirrorCamera));
+        return MR::getSceneObj<MirrorCamera*>(SceneObj_MirrorCamera);
     }
 
     f32 getDistanceToMirror(const TVec3f &rVec) {
-        return reinterpret_cast<MirrorCamera*>(MR::getSceneObjHolder()->getObj(SceneObj_MirrorCamera))->getDistance(rVec);
+        return getMirrorCamera()->getDistance(rVec);
     }
 };
 
