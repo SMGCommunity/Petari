@@ -51,10 +51,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
 
@@ -80,10 +80,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         SingletonHolder<FileLoader>::sInstance->requestLoadToMainRAM(
@@ -104,10 +104,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         SingletonHolder<FileLoader>::sInstance->requestMountArchive(buf, pHeap, false);
@@ -126,7 +126,7 @@ namespace MR {
         char objArch[0x100];
         bool objArchiveName = MR::makeObjectArchiveFileNameFromPrefix(
             objArch, 
-            0x100, 
+            sizeof(objArch), 
             pFile, 
             false
         );
@@ -134,7 +134,7 @@ namespace MR {
         char layArch[0x100];
         bool layoutArchiveName = MR::makeLayoutArchiveFileNameFromPrefix(
             layArch, 
-            0x100, 
+            sizeof(layArch), 
             pFile, 
             false
         );
@@ -151,10 +151,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         return SingletonHolder<FileLoader>::sInstance->receiveFile(buf);
@@ -164,10 +164,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         return SingletonHolder<FileLoader>::sInstance->receiveArchive(buf);
@@ -185,10 +185,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         SingletonHolder<FileLoader>::sInstance->getMountedArchiveAndHeap(buf, pArchive, pHeap);
@@ -198,10 +198,10 @@ namespace MR {
         const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         SingletonHolder<FileLoader>::sInstance->removeFile(buf);
@@ -256,10 +256,10 @@ namespace MR {
        const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         return SingletonHolder<FileLoader>::sInstance->isLoaded(buf);
@@ -269,10 +269,10 @@ namespace MR {
        const char* langPrefix = getCurrentLanguagePrefix();
 
         char buf[0x100];
-        MR::addFilePrefix(buf, 0x100, pFile, langPrefix);
+        MR::addFilePrefix(buf, sizeof(buf), pFile, langPrefix);
 
         if (!isFileExist(buf, false)) {
-            snprintf(buf, 0x100, "%s", pFile);
+            snprintf(buf, sizeof(buf), "%s", pFile);
         }
 
         return SingletonHolder<FileLoader>::sInstance->isMountedArchive(buf);
@@ -280,10 +280,10 @@ namespace MR {
 
     bool isLoadedObjectOrLayoutArchive(const char *pFile) {
         char objFile[0x100];
-        bool obj_arch = MR::makeObjectArchiveFileNameFromPrefix(objFile, 0x100, pFile, false);
+        bool obj_arch = MR::makeObjectArchiveFileNameFromPrefix(objFile, sizeof(objFile), pFile, false);
 
         char archFile[0x100];
-        bool lay_arch = MR::makeLayoutArchiveFileNameFromPrefix(archFile, 0x100, pFile, false);
+        bool lay_arch = MR::makeLayoutArchiveFileNameFromPrefix(archFile, sizeof(archFile), pFile, false);
 
         if (obj_arch) {
             return MR::isLoadedFile(objFile);
@@ -327,7 +327,7 @@ namespace MR {
         bool /*unused*/
     ) {
         char buf[0x100];
-        snprintf(buf, 0x100, "%s.arc", pFile);
+        snprintf(buf, sizeof(buf), "%s.arc", pFile);
         return MR::makeObjectArchiveFileName(pName, length, buf);
     }
 

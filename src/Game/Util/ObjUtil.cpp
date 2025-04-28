@@ -10,16 +10,17 @@ class LiveActor;
  
 namespace {
     JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
-            char buf[0x100];
-            vsnprintf(buf, 0x100, pArchive, pFormat);
+        char buf[0x100];
+        vsnprintf(buf, sizeof(buf), pArchive, pFormat);
 
-            if (!pHolder->mFileInfoTable->isExistRes(buf)) {
-                return nullptr;
-            }
+        if (!pHolder->mFileInfoTable->isExistRes(buf)) {
+            return nullptr;
+        }
 
-            JMapInfo* inf = new JMapInfo();
-            inf->attach(pHolder->mFileInfoTable->getRes(buf));
-            return inf;
+        JMapInfo* inf = new JMapInfo();
+        inf->attach(pHolder->mFileInfoTable->getRes(buf));
+
+        return inf;
     }
 };
 
@@ -248,9 +249,9 @@ namespace MR {
 
     const ResTIMG* loadTexFromArc(const char* pArchive) {
         char arcBuf[0x100];
-        snprintf(arcBuf, 0x100, "%s.arc", pArchive);
+        snprintf(arcBuf, sizeof(arcBuf), "%s.arc", pArchive);
         char texBuf[0x100];
-        snprintf(texBuf, 0x100, "%s.bti", pArchive);
+        snprintf(texBuf, sizeof(texBuf), "%s.bti", pArchive);
         return loadTexFromArc(arcBuf, texBuf);
     }
 

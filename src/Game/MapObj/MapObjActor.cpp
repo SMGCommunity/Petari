@@ -302,10 +302,10 @@ bool MapObjActor::tryCreateBreakModel(const MapObjActorInitInfo &rInfo) {
     char buf[0x100];
 
     if (rInfo._80) {
-        snprintf(buf, 0x100, "%s", rInfo._80);
+        snprintf(buf, sizeof(buf), "%s", rInfo._80);
     }
     else {
-        snprintf(buf, 0x100, "%sBreak", mObjectName);
+        snprintf(buf, sizeof(buf), "%sBreak", mObjectName);
     }
 
     if (!MR::isExistModel(buf)) {
@@ -595,7 +595,7 @@ void MapObjActorUtil::killBloomModel(MapObjActor *pActor) {
 void MapObjActorUtil::appearBloomModel(MapObjActor *pActor) {
     pActor->mBloomModel->appear();
     char buf[0x100];
-    snprintf(buf, 0x100, "%sBloom", pActor->mObjectName);
+    snprintf(buf, sizeof(buf), "%sBloom", pActor->mObjectName);
     MR::tryStartAllAnim(pActor->mBloomModel, buf);
 }
 

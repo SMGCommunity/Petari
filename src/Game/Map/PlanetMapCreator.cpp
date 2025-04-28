@@ -99,7 +99,7 @@ void PlanetMapCreator::addTableData(const JMapInfo *pInfo, s32 idx) {
 
     for (int i = 0; i < 8; i++) {
         char data[0x20];
-        snprintf(data, 0x20, "ForceLowScenarioName%d", i);
+        snprintf(data, sizeof(data), "ForceLowScenarioName%d", i);
         MR::getCsvDataStr(&curData->mForceScenarioData[i], pInfo, data, idx);
     }
 }
@@ -122,7 +122,7 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData *pData) const {
     }
 
     char name[0x40];
-    snprintf(name, 0x40, "%s_%d", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
+    snprintf(name, sizeof(name), "%s_%d", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
 
     for (int i = 0; i < 8; i++) {
         if (MR::isEqualString(pData->mForceScenarioData[i], "Low")) {

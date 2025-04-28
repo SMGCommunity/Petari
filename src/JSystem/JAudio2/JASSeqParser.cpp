@@ -769,7 +769,7 @@ s32 JASSeqParser::cmdPrintf(JASTrack *track, u32 *args) {
 	u32 stack_C[4];
 	u8 stack_8[4];
 	u32 r1f = 0, i;
-	for(i = 0; i < 0x80; i++) {
+	for(i = 0; i < sizeof(stack_1C); i++) {
 		char currChar = *(((char *)track->mSeqCursor)++);
 		stack_1C[i] = currChar;
 		if(!currChar) break; 

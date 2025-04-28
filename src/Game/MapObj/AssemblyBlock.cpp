@@ -39,7 +39,7 @@ void AssemblyBlock::init(const JMapInfoIter &rIter) {
         _EC.setTrans(stack_3C);
     }
 
-    MR::getMapPartsObjectNameIfExistShapeID(name, 0x100, rIter);
+    MR::getMapPartsObjectNameIfExistShapeID(name, sizeof(name), rIter);
     initModelManagerWithAnm(name, nullptr, false);
 
     if (MR::isEqualString(name, "AssemblyBlockPartsTimerA")) {

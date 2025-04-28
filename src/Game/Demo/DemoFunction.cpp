@@ -264,7 +264,7 @@ namespace DemoFunction {
 
     ResourceHolder* loadDemoArchive() {
         char buf[0x100];
-        snprintf(buf, 0x100, "DemoSheet.arc");
+        snprintf(buf, sizeof(buf), "DemoSheet.arc");
         return MR::createAndAddResourceHolder(buf);
     }
 

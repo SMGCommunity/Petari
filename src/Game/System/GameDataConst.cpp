@@ -44,7 +44,7 @@ bool GameDataConst::isGalaxyLuigiArrested(const char *pGalaxy, s32 starId) {
  
 bool GameDataConst::isGalaxyAppearGreenDriver(const char *pGalaxyName) {
     char buf[0x30];
-    snprintf(buf, 0x30, "Appear%s", pGalaxyName);
+    snprintf(buf, sizeof(buf), "Appear%s", pGalaxyName);
     return !GameEventFlagTable::isExist(buf) ? false : GameEventFlagTable::isDependedAnother(buf, "SpecialStarGreenAll");
 }
 

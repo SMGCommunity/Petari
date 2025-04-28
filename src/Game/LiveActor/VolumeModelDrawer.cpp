@@ -22,7 +22,7 @@ VolumeModelDrawer::VolumeModelDrawer(const char *pName, const char *pFileName, M
     MR::createSceneObj(SceneObj_VolumeModelDrawInit);
     mMtx = mtx;
     char buf[0x100];
-    snprintf(buf, 0x100, "%s.arc", pFileName);
+    snprintf(buf, sizeof(buf), "%s.arc", pFileName);
     ResourceHolder* resHolder = MR::createAndAddResourceHolder(buf);
     mModelData = (J3DModelData*)resHolder->mModelResTable->getRes(pFileName);
 }

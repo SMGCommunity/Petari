@@ -46,7 +46,7 @@ void MapParts::connectToScene() {
 
 void MapParts::initModelAndCollision(const JMapInfoIter &rIter) {
     char name[0x30];
-    MR::getMapPartsObjectName(name, 0x30, rIter);
+    MR::getMapPartsObjectName(name, sizeof(name), rIter);
     initModelManagerWithAnm(name, nullptr, false);
     initHitSensor(2);
     TVec3f dist;
