@@ -12,6 +12,7 @@ namespace CameraLocalUtil {
 
     CameraDirector *getCameraDirector();
     CameraTargetObj *getTarget(const CameraMan *);
+    CameraTargetObj* getTarget(const Camera *);
     
     void calcSafePose(CameraMan *, Camera *);
 
@@ -62,4 +63,11 @@ namespace CameraLocalUtil {
     void setLocalOffset(CameraMan *, const TVec3f &);
     void setFrontOffset(CameraMan *, f32);
     void setUpperOffset(CameraMan *, f32);
+
+    void makeWatchPoint(TVec3f *, Camera *, CameraTargetObj *, f32);
+
+    bool tryCameraReset();
+
+    bool testCameraPadTriggerRoundLeft();
+    bool testCameraPadTriggerRoundRight();
 };
