@@ -8,7 +8,7 @@ void PlanetGravityManager::init(const JMapInfoIter &rIter) {
 
 }
 
-/*
+
 bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo *pInfo, const TVec3f &rPosition, u32 gravityType, u32 host) const {
 	TVec3f totalGravity;
 	totalGravity.z = 0.0f;
@@ -51,7 +51,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo 
 
 				// If same priority, add gravity vector to total result
 				if (priority == largestPriority) {
-					totalGravity.addInline(gravityVec);
+					JMathInlineVEC::PSVECAdd(&totalGravity, &gravityVec, &totalGravity);
 					hasCalculated = true;
 
 					if (largestScalar < scalar) {
@@ -87,7 +87,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f *pGravity, GravityInfo 
 
 	return hasCalculated;
 }
-*/
+
 
 void PlanetGravityManager::registerGravity(PlanetGravity *pGravity) {
 	pGravity->mIsRegistered = true;

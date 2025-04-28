@@ -34,6 +34,33 @@
 #define ENCODE_CORNER(signumx, signumy, signumz) \
     ((signumx + 1) + (signumy + 1) * 3 + (signumz + 1) * 9)
 
+bool TVec3f::isZero() const
+{
+    register const Vec *rSrc = this;
+    register f32 sum;
+
+    __asm {
+       psq_l     f1, 0(rSrc), 0, 0
+       lfs       sum, 8(rSrc)
+       ps_mul    f1, f1, f1
+       ps_madd   sum, sum, sum, f1
+       ps_sum0   sum, sum, f1, f1
+    };
+
+    return sum <= 0.0000038146973f;
+}
+
+
+float TVec3f::normalize(const TVec3f &rSrc)
+{
+    x = rSrc.x;
+    y = rSrc.y;
+    z = rSrc.z;
+    float magnitude = PSVECMag(this);
+    PSVECNormalize(this, this);
+    return magnitude;
+}
+
 CubeGravity::CubeGravity() : PlanetGravity()
 {
 
@@ -73,11 +100,11 @@ bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     }
     TVec3f gravityForce;
     float scalar;
-    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar)) {
+    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
         return false;
     }
 
-    if (isInRangeDistance(scalar)) {
+    if (!isInRangeDistance(scalar)) {
         return false;
     }
 

@@ -46,7 +46,8 @@ bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
 
 	// Invert vector if necessary
 	if (mIsInverse) {
-		TVec3f inverse = -gravity;
+		TVec3f inverse;
+        JMathInlineVEC::PSVECNegate(&gravity, &inverse);
 		gravity = inverse;
 	}
 

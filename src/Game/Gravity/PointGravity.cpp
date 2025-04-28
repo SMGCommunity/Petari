@@ -34,7 +34,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3
 	// Update result vector & scalar if applicable
 	else {
 		if (pDest) {
-			pDest->setPS(direction);
+			pDest->setPS2(direction);
 		}
 		if (pScalar) {
 			*pScalar = distance;

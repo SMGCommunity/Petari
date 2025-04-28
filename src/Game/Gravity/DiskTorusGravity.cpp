@@ -9,6 +9,8 @@
 
 DiskTorusGravity::DiskTorusGravity() :
 	PlanetGravity(),
+    mLocalPosition(0.0f, 50.0f, 0.0f),
+    mTranslation(0.0f, 50.0f, 0.0f),
 	mLocalDirection(0, 1, 0),
 	mRotation(0, 1, 0)
 {
@@ -100,7 +102,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
     }
     else {
-        gravity = centralAxisY >= 0.0f ? -mRotation : mRotation;
+        gravity = centralAxisY >= 0.0f ? mRotation.negateInline() : mRotation;
         distance = __fabsf(centralAxisY);
     }
     

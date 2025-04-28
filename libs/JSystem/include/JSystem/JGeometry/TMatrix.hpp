@@ -187,7 +187,7 @@ namespace JGeometry {
             f32 z = this->mMtx[2][0];
             f32 y = this->mMtx[1][0];
             f32 x = this->mMtx[0][0];
-            rDest.set(x, y, z);
+            rDest.set<f32>(x, y, z);
         }
 
         inline void zeroTrans() {

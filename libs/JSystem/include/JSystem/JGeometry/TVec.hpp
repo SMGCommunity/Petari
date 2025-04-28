@@ -169,7 +169,11 @@ namespace JGeometry {
         
         TVec3& operator*=(f32);
 
-        TVec3 operator-() const {
+        TVec3 operator-() const;
+
+        // This should probably be merged with operator-(), but ParallelGravity doesn't inline
+        // operator-() despite only referencing it once.
+        inline TVec3 negateInline() const {
             TVec3 ret;
             JMathInlineVEC::PSVECNegate(this, &ret);
             return ret;
@@ -243,7 +247,23 @@ namespace JGeometry {
         }
 
         inline void setPS(const TVec3<f32>& rVec) {
-            setTVec3f(&rVec.x, &x);
+            JGeometry::setTVec3f(&rVec.x, &this->x);
+        }
+
+        // Point gravity doesn't match if we use setPS
+        inline void setPS2(const TVec3<f32>& rVec) {
+            const register Vec* v_a = &rVec;
+            register Vec* v_b = this;
+    
+            register f32 b_x;
+            register f32 a_x;
+    
+            asm {
+                psq_l a_x, 0(v_a), 0, 0
+                lfs b_x, 8(v_a)
+                psq_st a_x, 0(v_b), 0, 0
+                stfs b_x, 8(v_b)
+            };
         }
 
         void add(const TVec3<f32> &b) NO_INLINE {

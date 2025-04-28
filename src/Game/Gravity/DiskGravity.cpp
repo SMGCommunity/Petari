@@ -6,6 +6,8 @@
 
 DiskGravity::DiskGravity() :
 	PlanetGravity(),
+    mLocalPosition(0.0f, 50.0f, 0.0f),
+    mWorldPosition(0.0f, 50.0f, 0.0f),
 	mLocalNormal(0, 1, 0),
 	mWorldNormal(0, 1, 0),
 	mSideDirection(1, 0, 0),
@@ -73,7 +75,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec
 	f32 distance = 0.0f;
 
 	if (distanceToCentralAxis <= mWorldRadius) {
-		gravity = centralAxisY >= 0.0f ? -mWorldNormal : mWorldNormal;
+		gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline() : mWorldNormal;
 		distance = __fabsf(centralAxisY);
 	}
 	else {

@@ -48,7 +48,7 @@ void CubeGravityCreator::settingFromSRT(const TVec3f &rTrans, const TVec3f &rRot
 	// Get up vector and calculate scale
 	TVec3f upVec;
 	TVec3f scale;
-	scale.setPS(rScale * 500.0f);
+	scale.set(rScale * 500.0f);
 	mtx.getYDir(upVec);
 
 	// Translate and scale matrix
