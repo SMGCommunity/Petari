@@ -892,12 +892,11 @@ void TripodBoss::calcLegUpVector(TVec3f *pUp, const TVec3f &a2) {
     pUp->set<f32>(v8);
 }
 
-/*
 void TripodBoss::calcDemoMovement() {
     TPos3f mtx;
     JMath::gekko_ps_copy12(&mtx, MR::getJointMtx(this, "Body"));
-    MR::blendMtx(_EC, mtx, _600, _8C);
-    _8C.getTrans(_5D4);
+    MR::blendMtx(_EC, mtx, _600, mBodyMtx);
+    mBodyMtx.getTrans(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
         MtxPtr jointMtx = MR::getJointMtx(this, sLegBoneNameTable[i]);
@@ -905,10 +904,16 @@ void TripodBoss::calcDemoMovement() {
         JMath::gekko_ps_copy12(&v8, jointMtx);
         TVec3f v7;
         v8.getTrans(v7);
-        f32 v6 = JGeometry::TUtil<f32>::sqrt(((v8.mMtx[2][0] * v8.mMtx[2][0]) + ((v8.mMtx[0][0] * v8.mMtx[0][0]) + (v8.mMtx[1][0] * v8.mMtx[1][0]))));
+        TVec3f v6;
+        v6.x = JGeometry::TUtil<f32>::sqrt(v8.dotX());
+        v6.y = JGeometry::TUtil<f32>::sqrt(v8.dotY());
+        v6.z = JGeometry::TUtil<f32>::sqrt(v8.dotZ());
+        mLegs[i]->setForceEndPoint(v7);
+        mLegs[i]->setDemoEffectTiming(v6.x > 1.5f);
     }
+
+    calcLegMovement();
 }
-*/
 
 void TripodBoss::calcBodyMovement() {
     addAccelToWeightPosition();
@@ -1189,11 +1194,11 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f &rPos) {
 }
 
 namespace MR {
-    TripodBoss* createTripodBoss(const char *pName) {
+    NameObj* createTripodBoss(const char *pName) {
         return new TripodBoss(pName);
     }
 
-    TripodBoss* createTripod2Boss(const char *pName) {
+    NameObj* createTripod2Boss(const char *pName) {
         return new TripodBoss(pName);
     }
 };

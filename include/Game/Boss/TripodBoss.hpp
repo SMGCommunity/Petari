@@ -170,6 +170,6 @@ public:
 };
 
 namespace MR {
-    TripodBoss* createTripodBoss(const char *);
-    TripodBoss* createTripod2Boss(const char *);
+    NameObj* createTripodBoss(const char *);
+    NameObj* createTripod2Boss(const char *);
 };
