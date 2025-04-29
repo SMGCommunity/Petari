@@ -1172,7 +1172,7 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f &rPos) {
     _0.invert(rPos);
     JGeometry::TUtil<f32>::sqrt(_0.dot());
 
-    if (this) {
+    if (_0) {
         f32 v3 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
         _0.mMtx[0][0] = v3 * _0.mMtx[0][0];
         _0.mMtx[1][0] = v3 * _0.mMtx[1][0];
