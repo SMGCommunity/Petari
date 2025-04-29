@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
 #include "Game/Boss/TripodBossGuardWall.hpp"
@@ -379,12 +380,12 @@ namespace {
 		{ "SkeletalFishBabyRail", createNameObj<SkeletalFishBabyRail>, 0 },
 		{ "SkeletalFishBossRail", createNameObj<SkeletalFishBossRail>, 0 },
 		{ "TombSpider", NULL, "TombSpider" },
-		{ "BossKameck", NULL, "BossKameck" },
-		{ "BossKameck2", NULL, "BossKameck" },
+		{ "BossKameck", MR::createBossKameck1, "BossKameck" },
+		{ "BossKameck2", MR::createBossKameck2, "BossKameck" },
 		{ "FireBallBeamKameck", NULL, "Kameck" },
 		{ "TurtleBeamKameck", NULL, "Kameck" },
-		{ "TripodBoss", NULL, "TripodBoss" },
-		{ "Tripod2Boss", NULL, "Tripod2Boss" },
+		{ "TripodBoss", MR::createTripodBoss, "TripodBoss" },
+		{ "Tripod2Boss", MR::createTripod2Boss, "Tripod2Boss" },
 		{ "TripodBossBaseJointPosition", createNameObj<TripodBossBaseJointPosition>, 0 },
 		{ "TripodBossKillerGenerater", createNameObj<TripodBossKillerGenerater>, "TripodBossKillerCannon" },
 		{ "TripodBossStepPoint", createNameObj<TripodBossStepPoint>, 0 },
