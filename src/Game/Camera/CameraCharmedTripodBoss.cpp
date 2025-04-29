@@ -87,8 +87,8 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
         v14.x *= z;
         v14.y *= z;
         v14.z *= z;
-        v14 = -v14;
-        v25.setPS(v14);
+        -v14;
+        JMathInlineVEC::PSVECCopy(&v14, &v25);
         CameraLocalUtil::setPos(this, v20);
         CameraLocalUtil::setWatchPos(this, v25);
         CameraLocalUtil::setUpVec(this, v24);

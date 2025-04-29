@@ -21,6 +21,18 @@ namespace JMath {
 
 namespace JMathInlineVEC {
     #ifdef __MWERKS__
+
+    __attribute__((always_inline))
+    inline void PSVECCopy(register const Vec *src, register Vec *dest) {
+        register f32 xy, z;
+        __asm {
+            lfs z, 8(src)
+            psq_l xy, 0(src), 0, 0
+            stfs z, 8(dest)
+            psq_st xy, 0(dest), 0, 0
+        }
+    }
+
     __attribute__((always_inline))
     inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
     {
@@ -120,6 +132,7 @@ namespace JMathInlineVEC {
         return sqdist;
     }
     #else
+    void PSVECCopy(const Vec *, Vec *);
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
     f32 PSVECDotProduct(const Vec *, const Vec *);
