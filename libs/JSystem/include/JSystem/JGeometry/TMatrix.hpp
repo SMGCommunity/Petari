@@ -128,6 +128,22 @@ namespace JGeometry {
             return get(x, y);
         }
 
+        
+        __attribute__((always_inline))
+        inline f32 dot() const {
+            return(
+                (this->mMtx[1][0] * this->mMtx[1][0]) +
+                (this->mMtx[0][0] * this->mMtx[0][0]) +
+                (this->mMtx[2][0] * this->mMtx[2][0]) +
+                (this->mMtx[0][1] * this->mMtx[0][1]) +
+                (this->mMtx[1][1] * this->mMtx[1][1]) +
+                (this->mMtx[2][1] * this->mMtx[2][1]) +
+                (this->mMtx[0][2] * this->mMtx[0][2]) +
+                (this->mMtx[1][2] * this->mMtx[1][2]) +
+                (this->mMtx[2][2] * this->mMtx[2][2])
+            );
+        }
+
         T mMtx[3][4];
     };
 
