@@ -25,8 +25,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVe
     TVec3f relPosFromBase = rPos - mWorldGravityPoints[0];
     f32 axisY = relPosFromBase.dot(mAxis);
     if(-1.0f < mValidSideCos) {
-        bool cmp = mWorldOppositeSideVecOrtho.squareMag() <= 3.81469727e-06f;
-        if(!cmp) {
+        if(!mWorldOppositeSideVecOrtho.isNearZero()) {
             TVec3f dirOnBasePlane = relPosFromBase - mAxis * axisY;
             MR::normalizeOrZero(&dirOnBasePlane);
             if(dirOnBasePlane.dot(mWorldOppositeSideVecOrtho) < mValidSideCos) {

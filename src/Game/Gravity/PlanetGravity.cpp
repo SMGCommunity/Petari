@@ -2,110 +2,110 @@
 #include "Game/Util.hpp"
 
 PlanetGravity::PlanetGravity() {
-	mRange = -1.0f;
-	mDistant = 0.0f;
-	mPriority = 0;
-	mGravityId = -1;
-	mHost = this;
-	mGravityType = GRAVITY_TYPE_NORMAL;
-	mGravityPower = GRAVITY_POWER_NORMAL;
-	mActivated = true;
-	mIsInverse = false;
-	mValidFollower = true;
-	mIsRegistered = false;
-	mAppeared = true;
+    mRange = -1.0f;
+    mDistant = 0.0f;
+    mPriority = 0;
+    mGravityId = -1;
+    mHost = this;
+    mGravityType = GRAVITY_TYPE_NORMAL;
+    mGravityPower = GRAVITY_POWER_NORMAL;
+    mActivated = true;
+    mIsInverse = false;
+    mValidFollower = true;
+    mIsRegistered = false;
+    mAppeared = true;
 }
 
 void PlanetGravity::setPriority(s32 priority) {
-	mPriority = priority;
+    mPriority = priority;
 }
 
 bool PlanetGravity::calcGravity(TVec3f *pDest, const TVec3f &rPosition) const {
-	// Calculate raw gravity vector
-	f32 radius = 0.0f;
-	TVec3f gravity;
-	gravity.x = 0.0f;
-	gravity.y = 0.0f;
-	gravity.z = 0.0f;
+    // Calculate raw gravity vector
+    f32 radius = 0.0f;
+    TVec3f gravity;
+    gravity.x = 0.0f;
+    gravity.y = 0.0f;
+    gravity.z = 0.0f;
 
-	if (!calcOwnGravityVector(&gravity, &radius, rPosition))
-		return false;
+    if (!calcOwnGravityVector(&gravity, &radius, rPosition))
+        return false;
 
-	// Adjust radius
-	radius -= mDistant;
+    // Adjust radius
+    radius -= mDistant;
 
-	if (radius < 1.0f) {
-		radius = 1.0f;
-	}
+    if (radius < 1.0f) {
+        radius = 1.0f;
+    }
 
-	// Apply gravity speed
+    // Apply gravity speed
     f32 scalar = 4000000.0f / (radius * radius);
-	gravity.x *= scalar;
-	gravity.y *= scalar;
-	gravity.z *= scalar;
+    gravity.x *= scalar;
+    gravity.y *= scalar;
+    gravity.z *= scalar;
 
-	// Invert vector if necessary
-	if (mIsInverse) {
-		TVec3f inverse;
+    // Invert vector if necessary
+    if (mIsInverse) {
+        TVec3f inverse;
         JMathInlineVEC::PSVECNegate(&gravity, &inverse);
-		gravity = inverse;
-	}
+        gravity = inverse;
+    }
 
-	// Set result vector
-	pDest->x = gravity.x;
-	pDest->y = gravity.y;
-	pDest->z = gravity.z;
+    // Set result vector
+    pDest->x = gravity.x;
+    pDest->y = gravity.y;
+    pDest->z = gravity.z;
 
-	return true;
+    return true;
 }
 
 
 bool PlanetGravity::isInRangeSquare(f32 radius) const {
-	f32 range = mRange;
+    f32 range = mRange;
 
-	if (range < 0.0f) {
-		return true;
-	}
-	else {
-		f32 distance = range + mDistant;
-		return radius < distance * distance;
-	}
+    if (range < 0.0f) {
+        return true;
+    }
+    else {
+        f32 distance = range + mDistant;
+        return radius < distance * distance;
+    }
 }
 
 bool PlanetGravity::isInRangeDistance(f32 radius) const {
-	f32 range = mRange;
+    f32 range = mRange;
 
-	if (range < 0.0f) {
-		return true;
-	}
-	else {
-		f32 distance = range + mDistant;
-		return radius < distance;
-	}
+    if (range < 0.0f) {
+        return true;
+    }
+    else {
+        f32 distance = range + mDistant;
+        return radius < distance;
+    }
 }
 
 bool PlanetGravity::calcGravityFromMassPosition(TVec3f *pDirection, f32 *pScalar, const TVec3f &rPosition, const TVec3f &rMassPosition) const {
-	TVec3f direction = rMassPosition - rPosition;
-	f32 scalar;
+    TVec3f direction = rMassPosition - rPosition;
+    f32 scalar;
 
-	MR::separateScalarAndDirection(&scalar, &direction, direction);
+    MR::separateScalarAndDirection(&scalar, &direction, direction);
 
-	if (!isInRangeDistance(scalar))
-		return false;
+    if (!isInRangeDistance(scalar))
+        return false;
 
-	if (pDirection) {
-		*pDirection = direction;
-	}
-	if (pScalar) {
-		*pScalar = scalar;
-	}
+    if (pDirection) {
+        *pDirection = direction;
+    }
+    if (pScalar) {
+        *pScalar = scalar;
+    }
 
-	return true;
+    return true;
 }
 
 
 void PlanetGravity::updateIdentityMtx() {
-	TPos3f mtx;
-	mtx.identity();
-	updateMtx(mtx);
+    TPos3f mtx;
+    mtx.identity();
+    updateMtx(mtx);
 }

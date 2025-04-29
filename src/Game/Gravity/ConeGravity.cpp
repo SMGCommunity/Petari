@@ -64,10 +64,10 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         }
 
         if(positionOnCentralAxis > 0.0f) {
-            pDest->set<f32>(-unitWorldCentralAxis);
+            pDest->set(-unitWorldCentralAxis);
         }
         else {
-            pDest->set<f32>(unitWorldCentralAxis);
+            pDest->set(unitWorldCentralAxis);
         }
 
         *pScalar = distance;
@@ -122,10 +122,10 @@ bool ConeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     else {
 
         TVec3f generatrixTermination;
-        generatrixTermination.set<f32>(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
+        generatrixTermination.set(apex * (1.0f - mTopCutRate) + dirOnDirectrix * mTopCutRate);
 
         TVec3f frustumBaseCenter;
-        frustumBaseCenter.set<f32>(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
+        frustumBaseCenter.set(worldBaseCenter + worldCentralAxis * (1.0f - mTopCutRate));
 
         if((rPos - generatrixTermination).dot(generatrixTermination - frustumBaseCenter) <= 0.0f) {
 

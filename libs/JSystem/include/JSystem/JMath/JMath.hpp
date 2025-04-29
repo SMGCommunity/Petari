@@ -92,7 +92,7 @@ namespace JMathInlineVEC {
             ps_neg xy, xy
             psq_st xy, 0(dst), 0, 0
         }
-            dst->z = -src->z;
+        dst->z = -src->z;
     }
     
     __attribute__((always_inline))
@@ -122,7 +122,6 @@ namespace JMathInlineVEC {
     #else
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
-    void PSVECNegate(const Vec *, Vec *);
     f32 PSVECDotProduct(const Vec *, const Vec *);
     f32 PSVECSquareMag(const Vec *);
     void PSVECNegate(const Vec *, Vec *);
