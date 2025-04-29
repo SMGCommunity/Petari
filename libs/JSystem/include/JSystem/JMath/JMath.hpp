@@ -72,7 +72,7 @@ namespace JMathInlineVEC {
     __attribute__((always_inline))
     inline f32 PSVECSquareMag(register const Vec* src)
     {
-        register f32 z, xy, ret;
+        register f32 xy, z, ret;
         __asm {
             psq_l xy, 0(src), 0, 0
             ps_mul xy, xy, xy
