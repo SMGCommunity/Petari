@@ -25,6 +25,8 @@ namespace CameraLocalUtil {
 
     void setWatchPos(Camera *, const TVec3f &);
 
+    void setWatchUpVec(Camera *, const TVec3f &);
+
     void setUpVecAndWatchUpVec(Camera *, const TVec3f &);
 
     f32 getFovy(const Camera *);
@@ -53,6 +55,8 @@ namespace CameraLocalUtil {
     void setUpVec(CameraMan *, const TVec3f &);
     void setWatchUpVec(CameraMan *, const TVec3f &);
     void setUsedTarget(const CameraMan *, CameraTargetObj *);
+
+    void setUpVec(Camera *, const TVec3f &);
 
     void setFovy(CameraMan *, f32);
     void setRoll(CameraMan *, f32);
