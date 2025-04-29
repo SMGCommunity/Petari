@@ -1189,11 +1189,11 @@ void TripodBossBone::setAttachBaseMatrix(const TPos3f &rPos) {
 }
 
 namespace MR {
-    TripodBoss* createTripodBoss(const char *pName) {
+    NameObj* createTripodBoss(const char *pName) {
         return new TripodBoss(pName);
     }
 
-    TripodBoss* createTripod2Boss(const char *pName) {
+    NameObj* createTripod2Boss(const char *pName) {
         return new TripodBoss(pName);
     }
 };

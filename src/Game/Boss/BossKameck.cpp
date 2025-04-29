@@ -303,13 +303,13 @@ void BossKameck::hitBeam(s32 beamType) {
 
 
 namespace MR {
-    BossKameck* createBossKameck1(const char *pName) {
+    NameObj* createBossKameck1(const char *pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs1();
         return boss;
     }
 
-    BossKameck* createBossKameck2(const char *pName) {
+    NameObj* createBossKameck2(const char *pName) {
         BossKameck* boss = new BossKameck(pName, "BossKameck");
         boss->mSequencer = new BossKameckVs2();
         return boss;

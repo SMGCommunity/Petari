@@ -70,6 +70,6 @@ public:
 };
 
 namespace MR {
-    BossKameck* createBossKameck1(const char *);
-    BossKameck* createBossKameck2(const char *);
+    NameObj* createBossKameck1(const char *);
+    NameObj* createBossKameck2(const char *);
 };
