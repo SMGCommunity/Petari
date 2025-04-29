@@ -240,6 +240,32 @@ cflags_jsys = [
     "-enum int",
     "-fp hardware",
     "-Cpp_exceptions off",
+    "-O4,s",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract off",
+    "-str reuse",
+    "-enc SJIS",
+    "-use_lmw_stmw off",
+    "-i include",
+    "-i libs/JSystem/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/MSL_C/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}"
+]
+
+cflags_trk = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
     "-O4,p",
     "-inline auto",
     '-pragma "cats off"',
@@ -248,10 +274,10 @@ cflags_jsys = [
     "-nosyspath",
     "-RTTI off",
     "-fp_contract on",
-    "-str reuse",
-    "-enc SJIS",
-    "-i include",
-    "-i libs/JSystem/include",
+    "-str reuse,pool,readonly",
+    "-use_lmw_stmw on",
+    "-sdata 0",
+    "-i libs/MetroTRK/include",
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
     f"-i build/{config.version}/include",
@@ -358,7 +384,7 @@ cflags_msl = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-str reuse",
+    "-str reuse,pool,readonly",
     "-enc SJIS",
     "-ipa file",
     "-use_lmw_stmw on",
@@ -443,8 +469,8 @@ def MSLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
-        "cflags": cflags_base,
+        "mw_version": "GC/2.7",
+        "cflags": cflags_trk,
         "progress_category": "trk",
         "objects": objects,
     }
@@ -471,7 +497,7 @@ config.libs = [
         "cflags": cflags_runtime,
         "progress_category": "sdk",  # str | List[str]
         "objects": [
-            Object(NonMatching, "Runtime/__mem.c"),
+            Object(Matching, "Runtime/__mem.c"),
             Object(Matching, "Runtime/__va_arg.c"),
             Object(NonMatching, "Runtime/global_destructor_chain.c"),
             Object(NonMatching, "Runtime/NMWException.cpp"),
@@ -2611,15 +2637,15 @@ config.libs = [
             Object(Matching, "RVL_SDK/os/OSSync.c"),
             Object(Matching, "RVL_SDK/os/OSThread.c"),
             Object(Matching, "RVL_SDK/os/OSTime.c"),
-            Object(NonMatching, "RVL_SDK/os/OSUtf.c"),
-            Object(NonMatching, "RVL_SDK/os/OSIpc.c"),
+            Object(Matching, "RVL_SDK/os/OSUtf.c"),
+            Object(Matching, "RVL_SDK/os/OSIpc.c"),
             Object(NonMatching, "RVL_SDK/os/OSStateTM.c"),
             Object(NonMatching, "RVL_SDK/os/OSPlayRecord.c"),
-            Object(NonMatching, "RVL_SDK/os/OSStateFlags.c"),
-            Object(NonMatching, "RVL_SDK/os/OSNet.c"),
-            Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
+            Object(Matching, "RVL_SDK/os/OSStateFlags.c"),
+            Object(Matching, "RVL_SDK/os/OSNet.c"),
+            Object(Matching, "RVL_SDK/os/OSNandbootInfo.c"),
             Object(NonMatching, "RVL_SDK/os/OSPlayTime.c"),
-            Object(NonMatching, "RVL_SDK/os/OSLaunch.c"),
+            Object(Matching, "RVL_SDK/os/OSLaunch.c"),
             Object(NonMatching, "RVL_SDK/os/init/__start.c"),
             Object(Matching, "RVL_SDK/os/init/__ppc_eabi_init.cpp"),
             Object(Matching, "RVL_SDK/os/__ppc_eabi_init.c")
@@ -2675,7 +2701,7 @@ config.libs = [
     SDKLib(
         "usb",
         [
-            Object(NonMatching, "RVL_SDK/usb/usb.c")
+            Object(Matching, "RVL_SDK/usb/usb.c")
         ]
     ),
 
@@ -2764,8 +2790,8 @@ config.libs = [
         "wud",
         [
             Object(NonMatching, "RVL_SDK/wud/WUD.c"),
-            Object(NonMatching, "RVL_SDK/wud/WUDHidHost.c"),
-            Object(NonMatching, "RVL_SDK/wud/debug_msg.c")
+            Object(Matching, "RVL_SDK/wud/WUDHidHost.c"),
+            Object(Matching, "RVL_SDK/wud/debug_msg.c")
         ]
     ),
 
@@ -2866,32 +2892,32 @@ config.libs = [
     TRKLib(
         "MetroTRK",
         [
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
             Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c"),
             Object(NonMatching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
-            Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
+            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
             Object(NonMatching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c")
         ]
     ),
