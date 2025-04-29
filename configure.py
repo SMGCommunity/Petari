@@ -383,7 +383,7 @@ cflags_msl = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-str reuse",
+    "-str reuse,pool,readonly",
     "-enc SJIS",
     "-ipa file",
     "-use_lmw_stmw on",

@@ -69,13 +69,13 @@ struct _loc_num_cmpt {
 
 struct _loc_time_cmpt {
     char CmptName[8];
-    char* am_pm;
-    char* DateTime_Format;
-    char* Twelve_hr_format;
-    char* Date_Format;
-    char* Time_Format;
-    char* Day_Names;
-    char* MonthNames;
+    const char* am_pm;
+    const char* DateTime_Format;
+    const char* Twelve_hr_format;
+    const char* Date_Format;
+    const char* Time_Format;
+    const char* Day_Names;
+    const char* MonthNames;
     char* TimeZone;
 };
 

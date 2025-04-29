@@ -19,6 +19,7 @@ typedef struct FramingState {
     FCSType fFCS;
 } FramingState;
 
+static void* gTRKInputPendingPtr;
 static FramingState gTRKFramingState;
 
 int TRKInitializeSerialHandler(void) {
