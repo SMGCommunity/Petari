@@ -530,8 +530,9 @@ void TripodBoss::exeWait() {
 void TripodBoss::exeStep() {
     if (MR::isFirstStep(this)) {
         TripodBossStepSequence* stepSeq = getCurrentStepSequence();
-        if (getLeg(stepSeq->getCurrentLeg())->canStep()) {
-            mLegs[0]->requestStepTarget(stepSeq->getCurrentStepPoint());
+        s32 curr = stepSeq->getCurrentLeg();
+        if (mLegs[curr]->canStep()) {
+            mLegs[curr]->requestStepTarget(stepSeq->getCurrentStepPoint());
         }
         else {
             stepSeq->nextStep();  
@@ -1167,7 +1168,25 @@ s32 TripodBoss::getPartIDFromBoneID(s32 boneID) {
     }
 }
 
-// TripodBossBone::setAttachBaseMatrix
+void TripodBossBone::setAttachBaseMatrix(const TPos3f &rPos) {
+    _0.invert(rPos);
+    JGeometry::TUtil<f32>::sqrt(_0.dot());
+
+    if (this) {
+        f32 v3 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
+        _0.mMtx[0][0] = v3 * _0.mMtx[0][0];
+        _0.mMtx[1][0] = v3 * _0.mMtx[1][0];
+        _0.mMtx[2][0] = v3 * _0.mMtx[2][0];
+        f32 v8 = JGeometry::TUtil<f32>::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
+        _0.mMtx[0][1] = v8 * _0.mMtx[0][1];
+        _0.mMtx[1][1] = v8 * _0.mMtx[1][1];
+        _0.mMtx[2][1] = v8 * _0.mMtx[2][1];
+        f32 v13 = JGeometry::TUtil<f32>::inv_sqrt( (_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
+        _0.mMtx[0][2] = v13 * _0.mMtx[0][2];
+        _0.mMtx[1][2] = v13 * _0.mMtx[1][2];
+        _0.mMtx[2][2] = v13 * _0.mMtx[2][2];
+    }
+}
 
 namespace MR {
     TripodBoss* createTripodBoss(const char *pName) {

@@ -20,7 +20,7 @@ namespace JGeometry {
             return ret;
         }
 
-        static T sqrt(T val) {
+        static T sqrt(T val) NO_INLINE {
             if (val <= 0.0f) {
                 return 0.0f;
             }
