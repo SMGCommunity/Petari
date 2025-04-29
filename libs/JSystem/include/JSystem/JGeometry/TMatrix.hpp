@@ -231,7 +231,7 @@ namespace JGeometry {
             f32 z = this->mMtx[2][0];
             f32 y = this->mMtx[1][0];
             f32 x = this->mMtx[0][0];
-            rDest.set(x, y, z);
+            rDest.set<f32>(x, y, z);
         }
 
         inline void zeroTrans() {
@@ -286,7 +286,8 @@ namespace JGeometry {
 
         inline void setRotateInline(const TVec3f &vec1, f32 r) {
             TVec3f vec;
-            PSVECMag(&vec1);
+            vec.set(vec1);
+            PSVECMag(&vec);
             PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
@@ -308,7 +309,10 @@ namespace JGeometry {
         void setRotateInline2(const TVec3f &vec1, f32 r) {
             // The only difference from setRotateInline is that we use setInline instead of set
             TVec3f vec;
-            PSVECMag(&vec1);
+            vec.x = vec1.x;
+            vec.y = vec1.y;
+            vec.z = vec1.z;
+            PSVECMag(&vec);
             PSVECNormalize(&vec, &vec);
             f32 s = sin(r);
             f32 c = cos(r);
@@ -345,7 +349,7 @@ namespace JGeometry {
             vx = rSrc.x;
             vy = rSrc.y;
             x = (vx * a11 + vy * a12);
-            rDst.set(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+            rDst.set<f32>(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
         }
     };
 
@@ -374,7 +378,7 @@ namespace JGeometry {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
             f32 x = this->mMtx[0][3];
-            rDest.set(x, y, z);
+            rDest.set<f32>(x, y, z);
         }
 
         inline void setVec(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3) {

@@ -5,106 +5,107 @@
 #include <math_types.hpp>
 
 DiskGravity::DiskGravity() :
-	PlanetGravity(),
-	mLocalNormal(0, 1, 0),
-	mWorldNormal(0, 1, 0),
-	mSideDirection(1, 0, 0),
-	mOppositeSideVecOrtho(1, 0, 0),
-	mWorldOppositeSideVecOrtho(1, 0, 0)
+    PlanetGravity(),
+    mLocalPosition(0.0f, 50.0f, 0.0f),
+    mWorldPosition(0.0f, 50.0f, 0.0f),
+    mLocalNormal(0, 1, 0),
+    mWorldNormal(0, 1, 0),
+    mSideDirection(1, 0, 0),
+    mOppositeSideVecOrtho(1, 0, 0),
+    mWorldOppositeSideVecOrtho(1, 0, 0)
 {
-	mLocalRadius = 2500.0f;
-	mWorldRadius = 2500.0f;
-	mValidDegree = 360.0f;
-	mValidCos = -1.0f;
-	mEnableBothSide = true;
-	mEnableEdgeGravity = true;
+    mLocalRadius = 2500.0f;
+    mWorldRadius = 2500.0f;
+    mValidDegree = 360.0f;
+    mValidCos = -1.0f;
+    mEnableBothSide = true;
+    mEnableEdgeGravity = true;
 }
 
 void DiskGravity::setLocalPosition(const TVec3f &rLocalPos) {
-	mLocalPosition = rLocalPos;
+    mLocalPosition = rLocalPos;
 }
 
 void DiskGravity::setLocalDirection(const TVec3f &rLocalDir) {
-	mLocalNormal.set<f32>(rLocalDir);
-	MR::normalizeOrZero(&mLocalNormal);
-	updateLocalParam();
+    mLocalNormal.set(rLocalDir);
+    MR::normalizeOrZero(&mLocalNormal);
+    updateLocalParam();
 }
 
 void DiskGravity::setSideDirection(const TVec3f &rSideDir) {
-	mSideDirection.set<f32>(rSideDir);
-	updateLocalParam();
+    mSideDirection.set<f32>(rSideDir);
+    updateLocalParam();
 }
 
 void DiskGravity::setRadius(f32 val) {
-	mLocalRadius = val;
+    mLocalRadius = val;
 }
 
 void DiskGravity::setValidDegee(f32 val) {
-	mValidDegree = val;
-	updateLocalParam();
+    mValidDegree = val;
+    updateLocalParam();
 }
 
 void DiskGravity::setBothSide(bool val) {
-	mEnableBothSide = val;
+    mEnableBothSide = val;
 }
 
 void DiskGravity::setEnableEdgeGravity(bool val) {
-	mEnableEdgeGravity = val;
+    mEnableEdgeGravity = val;
 }
 
-/*
 bool DiskGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pDistance, const TVec3f &rPosition) const {
     
-	TVec3f relativePos;
-	relativePos = rPosition - mWorldPosition;
+    TVec3f relativePos;
+    relativePos = rPosition - mWorldPosition;
 
     f32 centralAxisY = relativePos.dot(mWorldNormal);
 
-	if (!mEnableBothSide && centralAxisY < 0.0f)
-		return false;
+    if (!mEnableBothSide && centralAxisY < 0.0f)
+        return false;
 
-	TVec3f dirOnDiskPlane = relativePos - mWorldNormal * centralAxisY;
-	f32 distanceToCentralAxis;
-	MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnDiskPlane, dirOnDiskPlane);
+    TVec3f dirOnDiskPlane = relativePos - mWorldNormal * centralAxisY;
+    f32 distanceToCentralAxis;
+    MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnDiskPlane, dirOnDiskPlane);
 
-	if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldOppositeSideVecOrtho) < mValidCos)
-		return false;
+    if (mValidCos > -1.0f && dirOnDiskPlane.dot(mWorldOppositeSideVecOrtho) < mValidCos)
+        return false;
 
-	TVec3f gravity(0, 0, 0);
-	f32 distance = 0.0f;
+    TVec3f gravity(0, 0, 0);
+    f32 distance = 0.0f;
 
-	if (distanceToCentralAxis <= mWorldRadius) {
-		gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline_2() : mWorldNormal;
-		distance = __fabsf(centralAxisY);
-	}
-	else {
-		if (!mEnableEdgeGravity) {
-			return false;
-		}
+    if (distanceToCentralAxis <= mWorldRadius) {
+        gravity = centralAxisY >= 0.0f ? mWorldNormal.negateInline() : mWorldNormal;
+        distance = __fabsf(centralAxisY);
+    }
+    else {
+        if (!mEnableEdgeGravity) {
+            return false;
+        }
         
-		TVec3f closestEdgePoint;
-		closestEdgePoint.set(dirOnDiskPlane * mWorldRadius);
-		closestEdgePoint.addInline2(mWorldPosition);
+        TVec3f closestEdgePoint;
+        closestEdgePoint.set<f32>(dirOnDiskPlane * mWorldRadius);
+        JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
 
-		gravity = closestEdgePoint - rPosition;
-		MR::separateScalarAndDirection(&distance, &gravity, gravity);
-	}
+        gravity = closestEdgePoint - rPosition;
+        MR::separateScalarAndDirection(&distance, &gravity, gravity);
+    }
 
-	if (!isInRangeDistance(distance)) {
-		return false;
-	}
+    if (!isInRangeDistance(distance)) {
+        return false;
+    }
 
-	// Set gravity and scalar results
-	if (pDest) {
-		*pDest = gravity;
-	}
-	if (pDistance) {
-		*pDistance = distance;
-	}
+    // Set gravity and scalar results
+    if (pDest) {
+        *pDest = gravity;
+    }
+    if (pDistance) {
+        *pDistance = distance;
+    }
 
-	return true;
+    return true;
 }
-*/
+
 
 void DiskGravity::updateLocalParam() {
     TRot3f rot;
@@ -136,11 +137,11 @@ void DiskGravity::updateLocalParam() {
 }
 
 void DiskGravity::updateMtx(const TPos3f &rMtx) {
-	rMtx.mult(mLocalPosition, mWorldPosition);
-	rMtx.mult33(mLocalNormal, mWorldNormal);
-	rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
+    rMtx.mult(mLocalPosition, mWorldPosition);
+    rMtx.mult33(mLocalNormal, mWorldNormal);
+    rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
 
-	f32 axisScale;
-	MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);
-	mWorldRadius = mLocalRadius * axisScale;
+    f32 axisScale;
+    MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);
+    mWorldRadius = mLocalRadius * axisScale;
 }

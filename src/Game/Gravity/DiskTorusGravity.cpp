@@ -8,47 +8,48 @@
 #define DISK_TORUS_DISABLE_INNER_EDGE_GRAVITY 2
 
 DiskTorusGravity::DiskTorusGravity() :
-	PlanetGravity(),
-	mLocalDirection(0, 1, 0),
-	mRotation(0, 1, 0)
+    PlanetGravity(),
+    mLocalPosition(0.0f, 50.0f, 0.0f),
+    mTranslation(0.0f, 50.0f, 0.0f),
+    mLocalDirection(0, 1, 0),
+    mRotation(0, 1, 0)
 {
-	mRadius = 2000.0f;
-	mWorldRadius = 2000.0f;
-	mDiskRadius = 0.0f;
-	mEdgeType = 3;
-	mEnableBothSide = true;
+    mRadius = 2000.0f;
+    mWorldRadius = 2000.0f;
+    mDiskRadius = 0.0f;
+    mEdgeType = 3;
+    mEnableBothSide = true;
 }
 
 void DiskTorusGravity::setPosition(const TVec3f &rPosition) {
-	mLocalPosition = rPosition;
+    mLocalPosition = rPosition;
 }
 
 void DiskTorusGravity::setDirection(const TVec3f &rDirection) {
-	mLocalDirection = rDirection;
+    mLocalDirection = rDirection;
 }
 
 void DiskTorusGravity::setRadius(f32 val) {
-	mRadius = val;
+    mRadius = val;
 }
 
 void DiskTorusGravity::setDiskRadius(f32 val) {
-	if (val < 0.0f) {
-		mDiskRadius = 0.0f;
-	}
-	else {
-		mDiskRadius = val;
-	}
+    if (val < 0.0f) {
+        mDiskRadius = 0.0f;
+    }
+    else {
+        mDiskRadius = val;
+    }
 }
 
 void DiskTorusGravity::setEdgeType(s32 val) {
-	mEdgeType = val;
+    mEdgeType = val;
 }
 
 void DiskTorusGravity::setBothSide(bool val) {
-	mEnableBothSide = val;
+    mEnableBothSide = val;
 }
 
-/*
 bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
     
     TVec3f relativePosition;
@@ -60,7 +61,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         return false;
     }
     
-    TVec3f dirOnTorusPlane = relativePosition - mRotation.multInline2(centralAxisY);
+    TVec3f dirOnTorusPlane = relativePosition - mRotation * centralAxisY;
     f32 distanceToCentralAxis;
     MR::separateScalarAndDirection(&distanceToCentralAxis, &dirOnTorusPlane, dirOnTorusPlane);
     if(MR::isNearZero(distanceToCentralAxis, 0.00100000005f)) {
@@ -84,7 +85,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         }
 
         TVec3f nearestInnerEdgePoint;
-        JMAVECScaleAdd(dirOnTorusPlane, mTranslation, nearestInnerEdgePoint, innerRadius);
+        JMAVECScaleAdd(&dirOnTorusPlane, &mTranslation, &nearestInnerEdgePoint, innerRadius);
 
         gravity = nearestInnerEdgePoint - rPos;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
@@ -96,12 +97,12 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
         }
 
         TVec3f nearestOuterEdgePoint;
-        JMAVECScaleAdd(dirOnTorusPlane, mTranslation, nearestOuterEdgePoint, worldRadius);
+        JMAVECScaleAdd(&dirOnTorusPlane, &mTranslation, &nearestOuterEdgePoint, worldRadius);
         gravity = nearestOuterEdgePoint - rPos;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
     }
     else {
-        gravity = centralAxisY >= 0.0f ? mRotation.negateInline_2() : mRotation;
+        gravity = centralAxisY >= 0.0f ? mRotation.negateInline() : mRotation;
         distance = __fabsf(centralAxisY);
     }
     
@@ -118,7 +119,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const T
     return true;
     
 }
-*/
+
 
 void DiskTorusGravity::updateMtx(const TPos3f &rMtx) {
     rMtx.mult(mLocalPosition, mTranslation);

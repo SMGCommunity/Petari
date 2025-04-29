@@ -14,12 +14,11 @@ void WireGravity::addPoint(const TVec3f &rPoint) {
 	mPoints.mArray.mArr[mPoints.mCount++] = rPoint;
 }
 
-/*
 bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f &rPos) const {
 
     f32 distance = -1.0f;
     TVec3f pointOfAttraction;
-    for(s32 i = 0; i < mCount - 1; i++) {
+    for(s32 i = 0; i < mPoints.size() - 1; i++) {
 
         // unused
         TVec3f wireBegin(mPoints[i]);
@@ -29,7 +28,7 @@ bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         TVec3f positionProjectedOntoWire;
         MR::calcPerpendicFootToLineInside(&positionProjectedOntoWire, rPos, mPoints[i], mPoints[i + 1]);
 
-        f32 squareDistance = rPos.squareDistancePS(positionProjectedOntoWire);
+        f32 squareDistance = JMathInlineVEC::PSVECSquareDistance(&rPos, &positionProjectedOntoWire);
         if(squareDistance < distance || distance < 0.0f) {
 
             pointOfAttraction = positionProjectedOntoWire;
@@ -43,14 +42,11 @@ bool WireGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     }
 
     if(distance >= 0.0f) {
-        TVec3f gravity(pointOfAttraction);
-        gravity.subInline4(rPos);
-
-        MR::separateScalarAndDirection(pScalar, pDest, gravity);
-
+        
+        MR::separateScalarAndDirection(pScalar, pDest, pointOfAttraction - rPos);
+        
         return true;
     }
 
     return false;
 }
-*/

@@ -73,11 +73,11 @@ bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
     }
     TVec3f gravityForce;
     float scalar;
-    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar)) {
+    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
         return false;
     }
 
-    if (isInRangeDistance(scalar)) {
+    if (!isInRangeDistance(scalar)) {
         return false;
     }
 
@@ -214,7 +214,6 @@ TVec3f negate(const TVec3f &in)
     return tmp;
 }
 
-/*
 bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     // There is a mistake here: so long as area is not both even and negative, the function will not
@@ -316,9 +315,9 @@ bool CubeGravity::calcEdgeGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
 
     return true;
 }
-    */
+    
 
-    /*
+    
 bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *pDest, f32 *pScalar) const
 {
     TVec3f vertex, xDir, yDir, zDir, trans;
@@ -380,4 +379,4 @@ bool CubeGravity::calcCornerGravity(const TVec3f &rPosition, s32 area, TVec3f *p
 
     return true;
 }
-*/
+
