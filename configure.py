@@ -2611,15 +2611,15 @@ config.libs = [
             Object(Matching, "RVL_SDK/os/OSSync.c"),
             Object(Matching, "RVL_SDK/os/OSThread.c"),
             Object(Matching, "RVL_SDK/os/OSTime.c"),
-            Object(NonMatching, "RVL_SDK/os/OSUtf.c"),
-            Object(NonMatching, "RVL_SDK/os/OSIpc.c"),
+            Object(Matching, "RVL_SDK/os/OSUtf.c"),
+            Object(Matching, "RVL_SDK/os/OSIpc.c"),
             Object(NonMatching, "RVL_SDK/os/OSStateTM.c"),
             Object(NonMatching, "RVL_SDK/os/OSPlayRecord.c"),
-            Object(NonMatching, "RVL_SDK/os/OSStateFlags.c"),
-            Object(NonMatching, "RVL_SDK/os/OSNet.c"),
-            Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
+            Object(Matching, "RVL_SDK/os/OSStateFlags.c"),
+            Object(Matching, "RVL_SDK/os/OSNet.c"),
+            Object(Matching, "RVL_SDK/os/OSNandbootInfo.c"),
             Object(NonMatching, "RVL_SDK/os/OSPlayTime.c"),
-            Object(NonMatching, "RVL_SDK/os/OSLaunch.c"),
+            Object(Matching, "RVL_SDK/os/OSLaunch.c"),
             Object(NonMatching, "RVL_SDK/os/init/__start.c"),
             Object(Matching, "RVL_SDK/os/init/__ppc_eabi_init.cpp"),
             Object(Matching, "RVL_SDK/os/__ppc_eabi_init.c")
@@ -2675,7 +2675,7 @@ config.libs = [
     SDKLib(
         "usb",
         [
-            Object(NonMatching, "RVL_SDK/usb/usb.c")
+            Object(Matching, "RVL_SDK/usb/usb.c")
         ]
     ),
 
@@ -2764,8 +2764,8 @@ config.libs = [
         "wud",
         [
             Object(NonMatching, "RVL_SDK/wud/WUD.c"),
-            Object(NonMatching, "RVL_SDK/wud/WUDHidHost.c"),
-            Object(NonMatching, "RVL_SDK/wud/debug_msg.c")
+            Object(Matching, "RVL_SDK/wud/WUDHidHost.c"),
+            Object(Matching, "RVL_SDK/wud/debug_msg.c")
         ]
     ),
 

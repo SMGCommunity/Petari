@@ -10434,7 +10434,7 @@ RVL_SDK/os/OSPlayTime.c:
 
 RVL_SDK/os/OSLaunch.c:
 	.text       start:0x804AFB80 end:0x804B0940
-	.data       start:0x805FCF08 end:0x805FD140
+	.data       start:0x805FCF08 end:0x805FD0F8
 	.sbss       start:0x806B7760 end:0x806B7768
 
 RVL_SDK/os/__ppc_eabi_init.c:
@@ -10442,6 +10442,7 @@ RVL_SDK/os/__ppc_eabi_init.c:
 
 RVL_SDK/exi/EXIBios.c:
 	.text       start:0x804B09F4 end:0x804B2288
+	.data       start:0x805FD0F8 end:0x805FD140
 	.sdata      start:0x806B2AA8 end:0x806B2AB0
 	.sbss       start:0x806B7768 end:0x806B7770
 
