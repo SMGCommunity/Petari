@@ -181,9 +181,9 @@ namespace JGeometry {
             return *this;
         }
 
-        TVec3 operator+(const TVec3 &rVec) const {
+        TVec3 operator+(const TVec3 &op) const {
             TVec3 ret(*this);
-            JMathInlineVEC::PSVECAdd(&ret, &rVec, &ret);
+            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
             return ret;
         }
         TVec3& operator+=(const TVec3 &op);
@@ -193,10 +193,10 @@ namespace JGeometry {
         // it that sometimes operator+() gets inlined several times without operator+= getting
         // inlined while other times, operator+() doesn't get inlined, and other times yet,
         // both operator+() and operator+=() both get inlined?
-        TVec3 translate(const TVec3 &rSrc) const
+        TVec3 translate(const TVec3 &op) const
         {
             TVec3 ret(*this);
-            ret += rSrc;
+            ret += op;
             return ret;
         }
 
@@ -305,13 +305,13 @@ namespace JGeometry {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
         }
 
-        inline void setPS(const TVec3<f32>& rVec) {
-            JGeometry::setTVec3f(&rVec.x, &this->x);
+        inline void setPS(const TVec3<f32>& rSrc) {
+            JGeometry::setTVec3f(&rSrc.x, &x);
         }
 
         // Point gravity doesn't match if we use setPS
-        inline void setPS2(const TVec3<f32>& rVec) {
-            const register Vec* v_a = &rVec;
+        inline void setPS2(const TVec3<f32>& rSrc) {
+            const register Vec* v_a = &rSrc;
             register Vec* v_b = this;
     
             register f32 b_x;
@@ -360,8 +360,20 @@ namespace JGeometry {
         f32 squared() const;
         f32 squared(const TVec3 &) const;
         void zero();
-        bool isZero() const;
-        f32 normalize(const TVec3 &);
+        
+        bool isZero() const {
+            return squareMag() <= 0.0000038146973f;
+        }
+        
+        f32 normalize(const TVec3 &rSrc) {
+            x = rSrc.x;
+            y = rSrc.y;
+            z = rSrc.z;
+            float magnitude = PSVECMag(this);
+            PSVECNormalize(this, this);
+            return magnitude;
+        }
+        
         void setLength(f32);
         f32 setLength(const TVec3 &, f32);
 
