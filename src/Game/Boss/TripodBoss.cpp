@@ -166,29 +166,29 @@ void TripodBoss::initLeg(const JMapInfoIter &rIter) {
 
 // https://decomp.me/scratch/UDA4k
 void TripodBoss::initLegIKPlacement() {
-    f32 dot = _618 * _618;
-    f32 v3 = (1.0f - (dot));
+    f32 temp618 = _618;
+    f32 v3 = (1.0f - (temp618 * temp618));
     f32 v5;
     if (v3 > 0.0f) {
-        f32 v4 = (f32)__frsqrte(v3);
-        
-        v5 = ((-(((v4 * (1.0f - (dot))) * v4) - 3.0f) * (v4 * (1.0f - (dot)))) * 0.5f);
+        f32 v4 = __frsqrte(v3);
+        v5 = ((-(((v4 * v3) * v4) - 3.0f) * (v4 * v3)) * 0.5f);
     }
     else {
-        v5 = (1.0f - (dot));
+        v5 = v3;
     }
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
     TVec3f v27;
     PSVECCrossProduct(&v29, &v28, &v27);
-    v29 *= (_618 * mMovableArea->mRadius);
+    v29 *= (temp618 * mMovableArea->mRadius);
     v28 *= (v5 * mMovableArea->mRadius);
     v27 *= (v5 * mMovableArea->mRadius);
 
-    for (s32 i = 0; i < 3; i++) {
-        f32 cur = -(f32)i * 2.0943952f;
-        f32 v8 = ((0.5f * 2.0943952f) + cur);
+    f32 ONEPOINTFIVEPI = 2.0943952f;
+    for (u32 i = 0; i < 3; i++) {
+        f32 cur = -(f32)i * ONEPOINTFIVEPI;
+        f32 v8 = ((0.5f * ONEPOINTFIVEPI) + cur);
         f32 v9 = JMath::sSinCosTable.sinLap2(v8);
 
         if (v8 < 0.0f) {
@@ -226,9 +226,9 @@ void TripodBoss::initLegIKPlacement() {
         mMovableArea->calcLandingNormal(&v22, v23);
         TVec3f v21;
         mMovableArea->calcLandingFront(&v21, v23);
-        mStepPoints[i]->setStepPosition(v23);
-        mStepPoints[i]->setStepNormal(v22);
-        mStepPoints[i]->setStepFront(v21);
+        getStepPoint(i)->setStepPosition(v23);
+        getStepPoint(i)->setStepNormal(v22);
+        getStepPoint(i)->setStepFront(v21);
         mLegs[i]->setStepTarget(mStepPoints[i]);
         mLegs[i]->setWait();
     }
@@ -342,7 +342,37 @@ bool TripodBoss::tryStartStep() {
     }
 }
 
-// TripodBoss::tryChangeSequence
+bool TripodBoss::tryChangeSequence() {
+    if (mNextStepSeq == -1 || mNextStepSeq == mCurrentStepSeq || isStateSomething()) {
+        return false;
+    }
+
+    s32 legIdx = getCurrentStepSequence()->getCurrentLeg();
+    if (!mLegs[legIdx]->canCancelStep()) {
+        return false;
+    }
+
+    TripodBossStepSequence* seq = getNextStepSequence();
+    seq->reset();
+    s32 v9 = seq->getCurrentLeg();
+    bool v10 = false;
+    for (u32 i = 0; i < 3; i++) {
+        if (i != v9 && !mLegs[i]->isStop()) {
+            mLegs[i]->requestStepTarget(mStepPoints[i]);
+            v10 = true;
+        }
+    }
+
+    mCurrentStepSeq = mNextStepSeq;
+    if (!v10) {
+        setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+    }
+    else {
+        setNerve(&NrvTripodBoss::TripodBossNrvChangeSequence::sInstance);
+    }
+
+    return true;
+}
 
 bool TripodBoss::tryEndSequence() {
     if (mNextStepSeq != -1) {

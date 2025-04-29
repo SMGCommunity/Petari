@@ -124,6 +124,10 @@ public:
         return mLegs[idx];
     }
 
+    inline TripodBossStepPoint* getStepPoint(int idx) const {
+        return mStepPoints[idx];
+    }
+
     inline bool isStateSomething() {
         return (_634 == 0) || (_634 == 1);
     }

@@ -87,18 +87,18 @@ void* memset(void *pDest, int val, size_t num) {
 
 #pragma section code_type ".text"
 
-__declspec(weak) size_t (strlen)(const char * str);
+__declspec(weak) size_t (strlen)(const char* str);
 size_t (strlen)(const char * str)
 {
-	size_t	len = -1;
-		
-	unsigned char * p = (unsigned char *) str - 1;
-	
-	do
+	size_t len = -1;
+	unsigned char *p = (unsigned char*)str - 1;
+
+	do {
 		len++;
+	}
 	while (*++p);
 		
-	return(len);
+	return len;
 }
 
 #pragma section code_type
