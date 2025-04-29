@@ -144,6 +144,34 @@ namespace JGeometry {
             );
         }
 
+        inline f32 dotX() const {
+            f32 _10 = this->mMtx[1][0] * this->mMtx[1][0];
+            f32 _20 = this->mMtx[2][0] * this->mMtx[2][0];
+            f32 _00 = this->mMtx[0][0] * this->mMtx[0][0];
+            
+            return _10 + _00 + _20;
+        }
+
+        inline f32 dotY() const {
+            f32 _11 = this->mMtx[1][1] * this->mMtx[1][1];
+            f32 _21 = this->mMtx[2][1] * this->mMtx[2][1];
+            f32 _01 = this->mMtx[0][1] * this->mMtx[0][1];
+            
+            return _11 + _01 + _21;
+        }
+
+        inline f32 dotZ() const {
+            f32 _12 = this->mMtx[1][2] * this->mMtx[1][2];
+            f32 _22 = this->mMtx[2][2] * this->mMtx[2][2];
+            f32 _02 = this->mMtx[0][2] * this->mMtx[0][2];
+            
+            return _12 + _02 + _22;
+        }
+
+        inline f32 dot(int x, int y) const {
+            return (this->mMtx[x][y] * this->mMtx[x][y]);
+        }
+
         T mMtx[3][4];
     };
 
