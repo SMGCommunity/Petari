@@ -50,7 +50,7 @@ public:
 
     static void waitTime(s32);
 
-    static void readPad(u32 *, u32 *);
+    void readPad(u32 *, u32 *);
 
     static u32 msr;
     static u32 fpscr;

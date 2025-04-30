@@ -49,7 +49,6 @@ void GameSystemException::init() {
     GameSystemException::sMapFileUsingBuffer = new u8[0x10];
 }
 
-// https://decomp.me/scratch/d3ZwP
 void GameSystemException::handleException(u16 a1, OSContext *pContext, u32 a3, u32 a4) {
     if (!JUTVideo::sManager) {
         JUTException::sConsole->mOutput = 2;
@@ -65,8 +64,8 @@ void GameSystemException::handleException(u16 a1, OSContext *pContext, u32 a3, u
             WPADControlMotor(i, 0);
         }
 
-        JUTException::sErrorManager->_84 = -1;
         JUTException* exception = JUTException::sErrorManager;
+        JUTException::sErrorManager->_84 = -1;
         exception->mGamePadPort = JUTGamePad::Port_Unknown;
     }
 
@@ -76,17 +75,17 @@ void GameSystemException::handleException(u16 a1, OSContext *pContext, u32 a3, u
         s32 v3 = 0;
         u32 v6 = 0;
         u32 v5 = 0;
-        while (true) {
-            s32 v4 = cDispExceptionCommand[v3];
-            if (v4 == 0) {
-                break;
-            }
-
+        s32 v4;
+        while (cDispExceptionCommand[v3]) {
             JUTException::waitTime(100);
             JUTException::sErrorManager->readPad(&v6, &v5);
 
             if (v6 != 0) {
-                v3 = v4  != (v4 & v6) ? 0 : v3 + 1;
+                if ((cDispExceptionCommand[v3] & v6) == cDispExceptionCommand[v3]) {
+                    v3++;
+                } else {
+                    v3 = 0;
+                }
             }
         }
     }

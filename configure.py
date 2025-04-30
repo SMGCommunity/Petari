@@ -2150,7 +2150,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameSystem.cpp"),
             Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
             Object(NonMatching, "Game/System/GameSystemErrorWatcher.cpp"),
-            Object(NonMatching, "Game/System/GameSystemException.cpp"),
+            Object(Matching, "Game/System/GameSystemException.cpp"),
             Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
             Object(NonMatching, "Game/System/GameSystemFunction.cpp"),
