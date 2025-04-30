@@ -2148,7 +2148,7 @@ config.libs = [
             Object(NonMatching, "Game/System/FileRipper.cpp"),
             Object(Matching, "Game/System/FunctionAsyncExecutor.cpp"),
             Object(NonMatching, "Game/System/GameSystem.cpp"),
-            Object(NonMatching, "Game/System/GameSystemDimmingWatcher.cpp"),
+            Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
             Object(NonMatching, "Game/System/GameSystemErrorWatcher.cpp"),
             Object(NonMatching, "Game/System/GameSystemException.cpp"),
             Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),

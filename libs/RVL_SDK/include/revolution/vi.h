@@ -5,6 +5,11 @@
 #include <revolution/vi/vifuncs.h>
 #include <revolution/vi/vitypes.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 typedef struct {
     u8 equ;
     u16 acv;
@@ -181,6 +186,8 @@ void VIConfigurePan(u16, u16, u16, u16);
 
 void __VISetRevolutionModeSimple();
 
+void VIEnableDimming(BOOL);
+
 typedef u8 VIBool;
 #define VI_FALSE ((VIBool)0) 
 #define VI_TRUE ((VIBool)1) 
@@ -202,6 +209,10 @@ typedef u8 VIBool;
 
 #define VI_HD720 8
 #define VI_TVMODE_HD720_PROG ((VITVMode)VI_TVMODE(VI_HD720, VI_PROGRESSIVE))
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif // VI_H
