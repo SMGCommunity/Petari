@@ -235,3 +235,7 @@ void TripodBossFixParts::exeNonActive() {
 TripodBossFixParts::~TripodBossFixParts() {
 
 }
+
+void TripodBossFixParts::exeWaitOwn() {
+    
+}

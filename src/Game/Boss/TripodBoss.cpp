@@ -502,7 +502,7 @@ bool TripodBoss::tryDamageDemo() {
 }
 
 void TripodBoss::requestEndDamageDemo() {
-    endDemo("");
+    endDemo("ダメージ");
     setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
     TVec3f appearOffs;
     mBodyMtx.mult(sAppearStarPieceOffset,appearOffs);
@@ -516,7 +516,7 @@ void TripodBoss::exeWait() {
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
     calcBodyMovement();
     calcLegMovement();
-    if (tryBreak()) {
+    if (!tryBreak()) {
         if (tryStartStep()) {
             return;
         }
@@ -582,10 +582,10 @@ void TripodBoss::exeDamage() {
         TVec3f v5(_5D4);
         v5 -= *center;
         MR::normalizeOrZero(&v5);
-        if (getNerveStep() % 6 >= 3) {
+        if (getNerveStep() % 6 < 3) {
             TVec3f v3(v5);
             v3 *= 80.0f;
-            _5E0 += v3;
+            _5E0 -= v3;
         }
         else {
             TVec3f v4(v5);
