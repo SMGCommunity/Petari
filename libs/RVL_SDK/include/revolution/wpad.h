@@ -49,6 +49,8 @@ void WPADSetAutoSleepTime(u8);
 BOOL WPADCanSendStreamData(s32);
 s32 WPADSendStreamData(s32, void *, u16);
 
+void WPADControlMotor(s32, u32);
+
 #ifdef __cplusplus
 }
 #endif

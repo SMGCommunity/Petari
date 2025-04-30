@@ -26,4 +26,6 @@ namespace MR {
     bool testDPDMenuPadDecideTrigger();	
 
     bool isPadSwing(s32);
+
+    u32 getWPadMaxCount();
 };

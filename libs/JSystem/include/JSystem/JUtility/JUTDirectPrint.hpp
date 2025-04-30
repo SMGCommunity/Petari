@@ -1,10 +1,13 @@
 #pragma once
 
 #include <revolution.h>
+#include <cstdio>
 #include "JSystem/JUtility/TColor.hpp"
 
 class JUTDirectPrint {
 public:
+
+    static JUTDirectPrint* start();
 
     void changeFrameBuffer(void *, u16, u16);
 

@@ -36,10 +36,21 @@ public:
     void printContext(u16, OSContext *, u32, u32);
     bool isEnablePad() const;
 
+    static void create(JUTDirectPrint *);
+    static void createConsole(void *, u32);
+
     static void setPreUserCallback(CallbackFunc);
     static void errorHandler(u16, OSContext *, u32, u32);
     static void panic_f_va(char const*, int, char const*, va_list);
     static void panic_f(const char *, int, const char *, ...);
+
+    static JUTConsole* getConsole() NO_INLINE {
+        return sConsole;
+    }
+
+    static void waitTime(s32);
+
+    static void readPad(u32 *, u32 *);
 
     static u32 msr;
     static u32 fpscr;
