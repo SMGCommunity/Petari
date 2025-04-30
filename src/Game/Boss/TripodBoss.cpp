@@ -327,19 +327,15 @@ void TripodBoss::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
 }
 
-// https://decomp.me/scratch/PzYJU
 bool TripodBoss::tryStartStep() {
-    if (mNextStepSeq == -1) {
+    if (mNextStepSeq == -1 || isStateSomething()) {
         return false;
     }
 
-    bool v4 = (_634 == 0) || (_634 == 1);
-    if (!v4) {
-        mCurrentStepSeq = mNextStepSeq;
-        mStepSequence[mNextStepSeq].reset();
-        setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
-        return true;
-    }
+    mCurrentStepSeq = mNextStepSeq;
+    mStepSequence[mCurrentStepSeq].reset();
+    setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+    return true;
 }
 
 bool TripodBoss::tryChangeSequence() {
