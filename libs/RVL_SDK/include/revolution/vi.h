@@ -186,7 +186,7 @@ void VIConfigurePan(u16, u16, u16, u16);
 
 void __VISetRevolutionModeSimple();
 
-void VIEnableDimming(BOOL);
+BOOL VIEnableDimming(BOOL);
 
 typedef u8 VIBool;
 #define VI_FALSE ((VIBool)0) 
