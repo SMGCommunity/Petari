@@ -2550,21 +2550,21 @@ Game/Enemy/DharmaSambo.cpp:
 	.text       start:0x800E7278 end:0x800E9E6C
 	.ctors      start:0x8052EA70 end:0x8052EA74
 	.rodata     start:0x80531E88 end:0x80531F48
-	.data       start:0x8057B930 end:0x8057BE20
+	.data       start:0x8057B930 end:0x8057BD80
 	.sbss       start:0x806B3E08 end:0x806B3E58
 	.sdata2     start:0x806BA380 end:0x806BA3E8
 
 Game/Enemy/Dossun.cpp:
 	.text       start:0x800E9E6C end:0x800EA8F8
 	.ctors      start:0x8052EA74 end:0x8052EA78
-	.data       start:0x8057BE20 end:0x8057BF50
+	.data       start:0x8057BD80 end:0x8057BEF8
 	.sbss       start:0x806B3E58 end:0x806B3E70
 	.sdata2     start:0x806BA3E8 end:0x806BA418
 
 Game/Enemy/ElectricPressureBullet.cpp:
 	.text       start:0x800EA8F8 end:0x800EAE38
 	.ctors      start:0x8052EA78 end:0x8052EA7C
-	.data       start:0x8057BF50 end:0x8057BFD8
+	.data       start:0x8057BEF8 end:0x8057BFD8
 	.sbss       start:0x806B3E70 end:0x806B3E78
 	.sdata2     start:0x806BA418 end:0x806BA428
 

@@ -326,7 +326,7 @@ namespace {
 		{ "TeresaChief", NULL, "Teresa" },
 		{ "TeresaWater", NULL, "TeresaWater" },
 		{ "Torpedo", NULL, "Torpedo" },
-		{ "Dossun", NULL, "Dossun" },
+		{ "Dossun", createNameObj<Dossun>, "Dossun" },
 		{ "Onimasu", NULL, "Onimasu" },
 		{ "OnimasuPivot", NULL, "Onimasu" },
 		{ "Unizo", NULL, "Unizo" },

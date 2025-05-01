@@ -133,7 +133,7 @@ void Dossun::exeFallSign() {
             MR::setBvaRate(this, 2.5f);
         }
 
-        MR::startSound(this, "SE_OJ_BOSSUN_FALL_SIGN", -1, -1);
+        MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN", -1, -1);
     }
     
     if (MR::isBckStopped(this)) {
