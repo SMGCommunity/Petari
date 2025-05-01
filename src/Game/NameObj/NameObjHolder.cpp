@@ -1,53 +1,47 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-NameObjHolder::NameObjHolder(int a1) : 
-    mObjs(0), _4(0), mObjCount(0), _4C(0) {
-        mObjs = new NameObj*[a1];
-        _4 = a1;
-    }
+NameObjHolder::NameObjHolder(int num) {
+    mObjArray1.init(num);
+}
 
-void NameObjHolder::add(NameObj *pObj) {
-    u32 count = mObjCount;
-    mObjCount = count + 1;
-    mObjs[count] = pObj;
+void NameObjHolder::add(NameObj* pObj) {
+    mObjArray1.push_back(pObj);
 }
 
 void NameObjHolder::suspendAllObj() {
-    for (int i = 0; i < mObjCount; i++) {
-        MR::requestMovementOff(mObjs[i]);
+    for (int i = 0; i < mObjArray1.size(); i++) {
+        MR::requestMovementOff(mObjArray1[i]);
     }
 }
 
 void NameObjHolder::resumeAllObj() {
-    for (int i = 0; i < mObjCount; i++) {
-        MR::requestMovementOn(mObjs[i]);
+    for (int i = 0; i < mObjArray1.size(); i++) {
+        MR::requestMovementOn(mObjArray1[i]);
     }
 }
-
 
 void NameObjHolder::syncWithFlags() {
     callMethodAllObj(&NameObj::syncWithFlags);
 }
 
 #ifdef NON_MATCHING
-// some weird register usage and ordering
-void NameObjHolder::callMethodAllObj(func functionPtr) {
-    func function = functionPtr;
+// Missing stack variables?
+void NameObjHolder::callMethodAllObj(NameObjMethod pMethod) {
+    NameObjMethod method = pMethod;
+    NameObj** begin = mObjArray1.begin();
+    NameObj** end = mObjArray1.end();
 
-    NameObj** start = mObjs;
-    NameObj** end = &mObjs[mObjCount];
-    function = functionPtr;
-
-    while (start != end) {
-        (*start->*function)();
-        start++;
+    for (NameObj** p = begin; p != end; p++) {
+        (*p->*method)();
     }
 }
 #endif
 
 void NameObjHolder::clearArray() {
-    mObjCount = 0;
-    _4C = 0;
+    mObjArray1.clear();
+    mObjArray2.clear();
 }
+
+// NameObjHolder::find

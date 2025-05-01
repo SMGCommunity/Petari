@@ -1,18 +1,18 @@
 #include "Game/NameObj/NameObjCategoryList.hpp"
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, func func_ptr, bool a4, const char * /* unused */) {
-    func new_ptr;
-    new_ptr = func_ptr;
-    mDelegator = new NameObjRealDelegator<func>(new_ptr);
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, NameObjMethod pMethod, bool a4, const char * /* unused */) {
+    NameObjMethod method;
+    method = pMethod;
+    mDelegator = new NameObjRealDelegator<NameObjMethod>(method);
     _D = a4;
     _C = 0;
     initTable(count, pTable);
 }
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, func_const func_ptr, bool a4, const char * /* unused */) {
-    func_const new_ptr;
-    new_ptr = func_ptr;
-    mDelegatorConst = new NameObjRealDelegator<func_const>(new_ptr);
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable *pTable, NameObjMethodConst pMethod, bool a4, const char * /* unused */) {
+    NameObjMethodConst method;
+    method = pMethod;
+    mDelegatorConst = new NameObjRealDelegator<NameObjMethodConst>(method);
     _D = a4;
     _C = 0;
     initTable(count, pTable);

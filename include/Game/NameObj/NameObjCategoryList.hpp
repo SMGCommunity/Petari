@@ -239,8 +239,8 @@ public:
         u32 mCheck;                                 // 0x10
     };
 
-    NameObjCategoryList(u32, const CategoryListInitialTable *, func, bool, const char *);
-    NameObjCategoryList(u32, const CategoryListInitialTable *, func_const, bool, const char *);
+    NameObjCategoryList(u32, const CategoryListInitialTable *, NameObjMethod, bool, const char *);
+    NameObjCategoryList(u32, const CategoryListInitialTable *, NameObjMethodConst, bool, const char *);
     ~NameObjCategoryList();
 
     void execute(int);
@@ -254,8 +254,8 @@ public:
     MR::AssignableArray<NameObjCategoryList::CategoryInfo> mCategoryInfo;   // 0x0
 
     union {
-        NameObjRealDelegator<func>* mDelegator;
-        NameObjRealDelegator<func_const>* mDelegatorConst;
+        NameObjRealDelegator<NameObjMethod>* mDelegator;
+        NameObjRealDelegator<NameObjMethodConst>* mDelegatorConst;
     };
 
     u8 _C;
