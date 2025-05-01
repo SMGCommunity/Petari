@@ -1,28 +1,26 @@
 #pragma once
 
+#include "Game/Util/Array.hpp"
 #include <revolution.h>
 
 class NameObj;
 
-typedef void (NameObj::*func)(void);
-typedef void (NameObj::*func_const)(void) const;
+typedef void (NameObj::*NameObjMethod)(void);
+typedef void (NameObj::*NameObjMethodConst)(void) const;
 
 class NameObjHolder {
 public:
     NameObjHolder(int);
 
-    void add(NameObj *);
+    void add(NameObj*);
     void suspendAllObj();
     void resumeAllObj();
     void syncWithFlags();
-    void callMethodAllObj(func);
+    void callMethodAllObj(NameObjMethod);
     void clearArray();
+    NameObj* find(const char*);
 
-    NameObj* find(const char *);
-
-    NameObj** mObjs; // 0x0
-    u32 _4;
-    u32 mObjCount; // 0x8
-    u8 _C[0x4C-0xC];
-    u32 _4C;
+private:
+    /* 0x00 */ MR::Vector<MR::AssignableArray<NameObj*> > mObjArray1;
+    /* 0x0C */ MR::Vector<MR::FixedArray<NameObj*, 16> > mObjArray2;
 };
