@@ -99,7 +99,7 @@ void GameSystemObjHolder::initDvd() {
     JKRMemArchive archive;
     JKRFileLoader::initializeVolumeList();
 
-    if (!SingletonHolder<NANDManager>::exists()) {
+    if (!SingletonHolder<FileLoader>::exists()) {
         SingletonHolder<FileLoader>::set(new FileLoader());
     }
 }
