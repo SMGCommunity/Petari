@@ -4,7 +4,7 @@
 
 XanimeQuadBckTable quadAnimeTable[7] = {
     {
-        {"��{"}, //mParent
+        {"基本"}, //mParent
         "WalkSoft", //fileName1
         0.00000000000f, // 0x8
         "Walk", //fileName2
@@ -15,7 +15,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
         1.00000000000f, // 0x20
     },
     {
-        {"���j��{"}, //mParent
+        {"水泳基本"}, //mParent
         "SwimWait", //fileName1
         1.00000000000f, // 0x8
         "SwimFlutterSurface", //fileName2
@@ -26,7 +26,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
         0.00000000000f, // 0x20
     },
     {
-        {"�e�j�X��{"}, //mParent
+        {"テニス基本"}, //mParent
         "WalkSoft", //fileName1
         0.00000000000f, // 0x8
         "Walk", //fileName2
@@ -37,7 +37,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
         1.00000000000f, // 0x20
     },
     {
-        {"�X���C�_�[�K"}, //mParent
+        {"スライダー尻"}, //mParent
         "SlideHipForWard", //fileName1
         0.300000011921f, // 0x8
         "SlideHipBackward", //fileName2
@@ -48,7 +48,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
         0.250000000000f, // 0x20
     },
     {
-        {"�₷�ׂ艺���������ނ�"}, //mParent
+        {"坂すべり下向きあおむけ"}, //mParent
         "SlideHipForWard", //fileName1
         0.300000011921f, // 0x8
         "SlideHipBackward", //fileName2
@@ -59,7 +59,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
         0.250000000000f, // 0x20
     },
     {
-        {"�^�}�R���ړ�"}, //mParent
+        {"タマコロ移動"}, //mParent
         "BallIdle", //fileName1
         1.00000000000f, // 0x8
         "BallWalkSoft", //fileName2
@@ -84,7 +84,7 @@ XanimeQuadBckTable quadAnimeTable[7] = {
 
 XanimeTripleBckTable tripleAnimeTable[8] = {
     {
-        {"�⍶�E�E�G�C�g"}, //mParent
+        {"坂左右ウエイト"}, //mParent
         "Wait", //fileName1
         1.00000000000f, // 0x8
         "WaitSlopeL", //fileName2
@@ -93,7 +93,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"��O��E�G�C�g"}, //mParent
+        {"坂前後ウエイト"}, //mParent
         "Wait", //fileName1
         1.00000000000f, // 0x8
         "WaitSlopeD", //fileName2
@@ -102,7 +102,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"�T�[�t�B��"}, //mParent
+        {"サーフィン"}, //mParent
         "SurfRideLoop", //fileName1
         1.00000000000f, // 0x8
         "SurfRideLoopL", //fileName2
@@ -111,7 +111,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"�T�[�t�B���i�����j"}, //mParent
+        {"サーフィン（加速）"}, //mParent
         "SurfRideDashLoop", //fileName1
         1.00000000000f, // 0x8
         "SurfRideDashLoopL", //fileName2
@@ -120,7 +120,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"�T�[�t�B���X���J�n"}, //mParent
+        {"サーフィン傾き開始"}, //mParent
         "SurfRide", //fileName1
         1.00000000000f, // 0x8
         "SurfRideL", //fileName2
@@ -129,7 +129,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"�T�[�t�B���X���J�n�i�����j"}, //mParent
+        {"サーフィン傾き開始（加速）"}, //mParent
         "SurfRideDash", //fileName1
         1.00000000000f, // 0x8
         "SurfRideDashL", //fileName2
@@ -138,7 +138,7 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
         0.00000000000f, // 0x18
     },
     {
-        {"�T�[�t�B������"}, //mParent
+        {"サーフィン落下"}, //mParent
         "SurfFall", //fileName1
         1.00000000000f, // 0x8
         "SurfFallL", //fileName2
@@ -159,21 +159,21 @@ XanimeTripleBckTable tripleAnimeTable[8] = {
 
 XanimeDoubleBckTable doubleAnimeTable[4] = {
     {
-        {"���Ⴊ�݊�{"}, //mParent
+        {"しゃがみ基本"}, //mParent
         "SquatWait", //fileName1
         1.00000000000f, // 0x8
         "SquatWalk", //fileName2
         0.00000000000f, // 0x10
     },
     {
-        {"���̏ꑫ����"}, //mParent
+        {"その場足踏み"}, //mParent
         "Run", //fileName1
         0.750000000000f, // 0x8
         "Wait", //fileName2
         0.250000000000f, // 0x10
     },
     {
-        {"�^�}�R�����Ⴊ��"}, //mParent
+        {"タマコロしゃがみ"}, //mParent
         "BallSquat", //fileName1
         1.00000000000f, // 0x8
         "BallWalk", //fileName2
@@ -190,1747 +190,1747 @@ XanimeDoubleBckTable doubleAnimeTable[4] = {
 
 XanimeSingleBckTable singleAnimeTable[0x124] = {
     {
-        {"�W�����v"}, //mParent
+        {"ジャンプ"}, //mParent
         "Jump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����vB"}, //mParent
+        {"ジャンプB"}, //mParent
         "Jump2", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����vC"}, //mParent
+        {"ジャンプC"}, //mParent
         "JumpRoll", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�^�[���W�����v"}, //mParent
+        {"ターンジャンプ"}, //mParent
         "JumpTurn", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�󒆈��]"}, //mParent
+        {"空中一回転"}, //mParent
         "AirControl", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t���[�W�����v"}, //mParent
+        {"フリージャンプ"}, //mParent
         "Rise", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�w���R�v�^�[�W�����v"}, //mParent
+        {"ヘリコプタージャンプ"}, //mParent
         "FlickAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�_�b�V���W�����v"}, //mParent
+        {"ダッシュジャンプ"}, //mParent
         "Rolling", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��т�����W�����v"}, //mParent
+        {"飛びすさりジャンプ"}, //mParent
         "Bounce", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�V���[�g�W�����v"}, //mParent
+        {"ショートジャンプ"}, //mParent
         "GravityChange", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�J�C���u�W�����v"}, //mParent
+        {"スカイラブジャンプ"}, //mParent
         "JumpTwin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�L��"}, //mParent
+        {"スケキヨ"}, //mParent
         "Bury", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�L���E�o"}, //mParent
+        {"スケキヨ脱出"}, //mParent
         "Bury", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�"}, //mParent
+        {"埋まり"}, //mParent
         "BuryStandWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�E�o"}, //mParent
+        {"埋まり脱出"}, //mParent
         "BuryStandEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t���n"}, //mParent
+        {"逆着地"}, //mParent
         "CannonFlyLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�W�����vA"}, //mParent
+        {"ホッパージャンプA"}, //mParent
         "HopperWaitA", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�W�����vB"}, //mParent
+        {"ホッパージャンプB"}, //mParent
         "HopperWaitB", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vA"}, //mParent
+        {"ホッパーふみジャンプA"}, //mParent
         "HopperWaitA", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vB"}, //mParent
+        {"ホッパーふみジャンプB"}, //mParent
         "HopperWaitB", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�ړ�A"}, //mParent
+        {"ホッパー移動A"}, //mParent
         "HopperRunA", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�ړ�B"}, //mParent
+        {"ホッパー移動B"}, //mParent
         "HopperRunB", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�n�C�W�����vA"}, //mParent
+        {"ホッパーハイジャンプA"}, //mParent
         "HopperJumpA", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�n�C�W�����vB"}, //mParent
+        {"ホッパーハイジャンプB"}, //mParent
         "HopperJumpB", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�ǃW�����v"}, //mParent
+        {"ホッパー壁ジャンプ"}, //mParent
         "HopperWallJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�q�b�v�h���b�v�J�n"}, //mParent
+        {"ホッパーヒップドロップ開始"}, //mParent
         "HopperMarioHipDropStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�z�b�p�[�q�b�v�h���b�v"}, //mParent
+        {"ホッパーヒップドロップ"}, //mParent
         "HopperMarioHipDrop", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����v�ӂ�1"}, //mParent
+        {"ジャンプふみ1"}, //mParent
         "Jump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����v�ӂ�2"}, //mParent
+        {"ジャンプふみ2"}, //mParent
         "JumpPress2nd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����v�ӂ�3"}, //mParent
+        {"ジャンプふみ3"}, //mParent
         "JumpPress3rd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����߂�"}, //mParent
+        {"引き戻し"}, //mParent
         "PullBack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����߂����n"}, //mParent
+        {"引き戻し着地"}, //mParent
         "PullBackLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�|�b�h���[�v�J�n"}, //mParent
+        {"ポッドワープ開始"}, //mParent
         "WarpPodStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�|�b�h���[�v�I��"}, //mParent
+        {"ポッドワープ終了"}, //mParent
         "WarpPodEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ƃ�"}, //mParent
+        {"幅とび"}, //mParent
         "JumpBroad", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���n"}, //mParent
+        {"着地"}, //mParent
         "Land", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���nB"}, //mParent
+        {"着地B"}, //mParent
         "Jump2Land", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���nC"}, //mParent
+        {"着地C"}, //mParent
         "JumpRollLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���n�^�[��"}, //mParent
+        {"着地ターン"}, //mParent
         "JumpTurnLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���n���Ƃ�"}, //mParent
+        {"着地幅とび"}, //mParent
         "JumpBroadLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�[�h���n"}, //mParent
+        {"ハード着地"}, //mParent
         "LandStiffen", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���ׂ蒅�n"}, //mParent
+        {"すべり着地"}, //mParent
         "LandSlope", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�V���[�g���n"}, //mParent
+        {"ショート着地"}, //mParent
         "Land", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�q�b�v�h���b�v�J�n"}, //mParent
+        {"ヒップドロップ開始"}, //mParent
         "HipDropStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�q�b�v�h���b�v"}, //mParent
+        {"ヒップドロップ"}, //mParent
         "HipDrop", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�q�b�v�h���b�v���n"}, //mParent
+        {"ヒップドロップ着地"}, //mParent
         "HipDropLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�q�b�v�h���b�v����"}, //mParent
+        {"ヒップドロップ滑り"}, //mParent
         "LandRotation", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����v������"}, //mParent
+        {"ジャンプ順滑り"}, //mParent
         "LandRotation", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�W�����v�t����"}, //mParent
+        {"ジャンプ逆滑り"}, //mParent
         "Fall", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���q�b�v�h���b�v�J�n"}, //mParent
+        {"スピンヒップドロップ開始"}, //mParent
         "HipDropHomingStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���q�b�v�h���b�v"}, //mParent
+        {"スピンヒップドロップ"}, //mParent
         "HipDropHoming", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���q�b�v�h���b�v���n"}, //mParent
+        {"スピンヒップドロップ着地"}, //mParent
         "HipDropHomingLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X���b�v�A�b�v"}, //mParent
+        {"スリップアップ"}, //mParent
         "SlipUp", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�X���b�v�A�b�v����"}, //mParent
+        {"つかまりスリップアップ準備"}, //mParent
         "HangSlipUpStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�X���b�v�A�b�v"}, //mParent
+        {"つかまりスリップアップ"}, //mParent
         "HangSlipUp", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`��s��"}, //mParent
+        {"ハチ飛行中"}, //mParent
         "BeeFly", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`��s��������"}, //mParent
+        {"ハチ飛行中無入力"}, //mParent
         "BeeFlyWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�ǂ�����"}, //mParent
+        {"ハチ壁くっつき"}, //mParent
         "BeeLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�ǂ�������"}, //mParent
+        {"ハチ壁くっつき中"}, //mParent
         "BeeWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�Ԉړ�"}, //mParent
+        {"ハチ花移動"}, //mParent
         "BeeCreepWallWalk", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�W�����v"}, //mParent
+        {"ハチジャンプ"}, //mParent
         "BeeJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�ǃW�����v"}, //mParent
+        {"ハチ壁ジャンプ"}, //mParent
         "BeeWallJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�����E�G�C�g"}, //mParent
+        {"ハチ匍匐ウエイト"}, //mParent
         "BeeCreepWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�����O�i"}, //mParent
+        {"ハチ匍匐前進"}, //mParent
         "BeeCreepWalk", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�������n"}, //mParent
+        {"ハチ匍匐着地"}, //mParent
         "BeeCreepLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�q�b�v�h���b�v�J�n"}, //mParent
+        {"ハチヒップドロップ開始"}, //mParent
         "BeeHipDropStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�q�b�v�h���b�v"}, //mParent
+        {"ハチヒップドロップ"}, //mParent
         "BeeHipDrop", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�q�b�v�h���b�v���n"}, //mParent
+        {"ハチヒップドロップ着地"}, //mParent
         "BeeHipDropLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�q�b�v�h���b�v�ǒ��n"}, //mParent
+        {"ハチヒップドロップ壁着地"}, //mParent
         "BeeHipDropLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�D�ᑬ���s"}, //mParent
+        {"泥低速歩行"}, //mParent
         "WalkSoft", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�D�������s"}, //mParent
+        {"泥高速歩行"}, //mParent
         "WalkBury", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����"}, //mParent
+        {"落下"}, //mParent
         "Fall", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[��s�J�n"}, //mParent
+        {"フーファイター飛行開始"}, //mParent
         "FooStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[��s"}, //mParent
+        {"フーファイター飛行"}, //mParent
         "FooFly", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[��s�ĊJ"}, //mParent
+        {"フーファイター飛行再開"}, //mParent
         "FooFlyStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[�Î~"}, //mParent
+        {"フーファイター静止"}, //mParent
         "FooWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[����"}, //mParent
+        {"フーファイター解除"}, //mParent
         "FooEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[���n"}, //mParent
+        {"フーファイター着地"}, //mParent
         "LandSlope", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�[�t�@�C�^�[�X�s��"}, //mParent
+        {"フーファイタースピン"}, //mParent
         "FooSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǃW�����v"}, //mParent
+        {"壁ジャンプ"}, //mParent
         "WallJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǂ��ׂ�"}, //mParent
+        {"壁すべり"}, //mParent
         "WallSlide", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǂ�����"}, //mParent
+        {"壁くっつき"}, //mParent
         "WallKeep", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǉ���"}, //mParent
+        {"壁押し"}, //mParent
         "Push", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ǎ�����"}, //mParent
+        {"壁左歩き"}, //mParent
         "WallWalkL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǉE����"}, //mParent
+        {"壁右歩き"}, //mParent
         "WallWalkR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǃE�G�C�g"}, //mParent
+        {"壁ウエイト"}, //mParent
         "WallWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�O�ǃE�G�C�g"}, //mParent
+        {"前壁ウエイト"}, //mParent
         "Push", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǃq�b�g"}, //mParent
+        {"壁ヒット"}, //mParent
         "WallHit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǃq�b�g���n"}, //mParent
+        {"壁ヒット着地"}, //mParent
         "WallHitLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ǂ͂���"}, //mParent
+        {"壁はじき"}, //mParent
         "WallHit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R�ӂ�΂�"}, //mParent
+        {"崖ふんばり"}, //mParent
         "Stagger", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�J���J�����E"}, //mParent
+        {"カリカリ限界"}, //mParent
         "WaitHold", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�⍶�E�G�C�g"}, //mParent
+        {"坂左ウエイト"}, //mParent
         "WaitSlopeL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��E�E�G�C�g"}, //mParent
+        {"坂右ウエイト"}, //mParent
         "WaitSlopeR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��O�E�G�C�g"}, //mParent
+        {"坂前ウエイト"}, //mParent
         "WaitSlopeD", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���E�G�C�g"}, //mParent
+        {"坂後ウエイト"}, //mParent
         "WaitSlopeU", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����"}, //mParent
+        {"ラン"}, //mParent
         "Run", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���s"}, //mParent
+        {"歩行"}, //mParent
         "Walk", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ݍs"}, //mParent
+        {"鈍行"}, //mParent
         "WalkSoft", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���^���_�b�V��"}, //mParent
+        {"メタルダッシュ"}, //mParent
         "RunDash", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂���s"}, //mParent
+        {"埋まり歩行"}, //mParent
         "WalkBury", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�W�����vA"}, //mParent
+        {"埋まりジャンプA"}, //mParent
         "WalkBuryJumpLow", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�W�����vB"}, //mParent
+        {"埋まりジャンプB"}, //mParent
         "WalkBuryJumpLow2", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�E�o�W�����v"}, //mParent
+        {"埋まり脱出ジャンプ"}, //mParent
         "WalkBuryJumpHi", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ԃ�"}, //mParent
+        {"つぶれ"}, //mParent
         "Press", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ԃꕜ�A"}, //mParent
+        {"つぶれ復帰"}, //mParent
         "PressRecover", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ԃ����"}, //mParent
+        {"つぶれ解除"}, //mParent
         "Jump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�u���[�L"}, //mParent
+        {"ブレーキ"}, //mParent
         "Brake", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�u���[�L���菰"}, //mParent
+        {"ブレーキ滑り床"}, //mParent
         "Run", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�^�[���u���[�L"}, //mParent
+        {"ターンブレーキ"}, //mParent
         "Turn", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�^�[���u���[�L���菰"}, //mParent
+        {"ターンブレーキ滑り床"}, //mParent
         "Run", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���s�����u���[�L"}, //mParent
+        {"歩行制動ブレーキ"}, //mParent
         "RunEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�㊵�����s"}, //mParent
+        {"氷上慣性走行"}, //mParent
         "Brake", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��͍s��"}, //mParent
+        {"氷上力行左"}, //mParent
         "SkateL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��͍s�E"}, //mParent
+        {"氷上力行右"}, //mParent
         "SkateR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��ؑ֍�"}, //mParent
+        {"氷上切替左"}, //mParent
         "SkateSwitchL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��ؑ։E"}, //mParent
+        {"氷上切替右"}, //mParent
         "SkateSwitchR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X���s��"}, //mParent
+        {"氷上後行左"}, //mParent
         "SkateBackL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X���s�E"}, //mParent
+        {"氷上後行右"}, //mParent
         "SkateBackR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��^�[��"}, //mParent
+        {"氷上ターン"}, //mParent
         "SkateTurn", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ��"}, //mParent
+        {"しゃがみ"}, //mParent
         "SquatWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�݊J�n"}, //mParent
+        {"しゃがみ開始"}, //mParent
         "SquatStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�ݏI��"}, //mParent
+        {"しゃがみ終了"}, //mParent
         "SquatEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�₷�ׂ��������Ԃ�"}, //mParent
+        {"坂すべり上向きうつぶせ"}, //mParent
         "SlideStmach", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�₷�ׂ������I��"}, //mParent
+        {"坂すべり上向き終了"}, //mParent
         "SlideStmachEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�₷�ׂ艺�����I��"}, //mParent
+        {"坂すべり下向き終了"}, //mParent
         "SlideHipEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����E�G�C�g1A"}, //mParent
+        {"特殊ウエイト1A"}, //mParent
         "Sleep", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����E�G�C�g1B"}, //mParent
+        {"特殊ウエイト1B"}, //mParent
         "SleepLie", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�퓬�E�G�C�g"}, //mParent
+        {"戦闘ウエイト"}, //mParent
         "BattleWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��]"}, //mParent
+        {"空転"}, //mParent
         "Run", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ђ낢"}, //mParent
+        {"ひろい"}, //mParent
         "CarryStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ђ낢��"}, //mParent
+        {"ひろい空中"}, //mParent
         "CarryAirStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ђ낢�N�C�b�N"}, //mParent
+        {"ひろいクイック"}, //mParent
         "CarryStartShort", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ђ낢�E�G�C�g"}, //mParent
+        {"ひろいウエイト"}, //mParent
         "CarryWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�J�u����"}, //mParent
+        {"カブ抜き"}, //mParent
         "PullOut", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�J�u�E�G�C�g"}, //mParent
+        {"カブウエイト"}, //mParent
         "PullOutWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n���}�[������]��"}, //mParent
+        {"ハンマー投げ回転中"}, //mParent
         "Swing", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n���}�[���������[�X"}, //mParent
+        {"ハンマー投げリリース"}, //mParent
         "SwingThrow", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R�C���Q�b�g"}, //mParent
+        {"コインゲット"}, //mParent
         "CoinGet", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�p���`"}, //mParent
+        {"パンチ"}, //mParent
         "Spin2nd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��p���`"}, //mParent
+        {"空パンチ"}, //mParent
         "Spin2nd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���p���`"}, //mParent
+        {"左パンチ"}, //mParent
         "Spin2nd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����p���`"}, //mParent
+        {"左空パンチ"}, //mParent
         "Spin2nd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����j���O�L�b�N"}, //mParent
+        {"ランニングキック"}, //mParent
         "Kick", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�A�b�p�[�p���`"}, //mParent
+        {"アッパーパンチ"}, //mParent
         "Jump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�݃A�b�p�["}, //mParent
+        {"しゃがみアッパー"}, //mParent
         "SquatEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�T�}�[�\���g"}, //mParent
+        {"サマーソルト"}, //mParent
         "SpinLow", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����"}, //mParent
+        {"投げ"}, //mParent
         "Throw", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�@�C�A����"}, //mParent
+        {"ファイア投げ"}, //mParent
         "Throw", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���蓊��"}, //mParent
+        {"両手投げ"}, //mParent
         "ThrowBoth", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�@�C�A�X�s��"}, //mParent
+        {"ファイアスピン"}, //mParent
         "FireSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�@�C�A�X�s����"}, //mParent
+        {"ファイアスピン空中"}, //mParent
         "FireSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R���܂�J�n"}, //mParent
+        {"崖つかまり開始"}, //mParent
         "HangStartUnder", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R���܂蒆"}, //mParent
+        {"崖つかまり中"}, //mParent
         "HangWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R���܂�I��"}, //mParent
+        {"崖つかまり終了"}, //mParent
         "HangUp", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R���܂�I����"}, //mParent
+        {"崖つかまり終了坂"}, //mParent
         "HangUp", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�R���܂�~��"}, //mParent
+        {"崖つかまり降り"}, //mParent
         "HangStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�݃W�����v"}, //mParent
+        {"しゃがみジャンプ"}, //mParent
         "JumpBack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�݃W�����v���n"}, //mParent
+        {"しゃがみジャンプ着地"}, //mParent
         "JumpBackLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���Ⴊ�ݕ���"}, //mParent
+        {"しゃがみ歩き"}, //mParent
         "SquatWalk", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����΂葖��"}, //mParent
+        {"がんばり走り"}, //mParent
         "RunSlope", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���΂��W�����v"}, //mParent
+        {"腹ばいジャンプ"}, //mParent
         "SlideStomachRecover", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�K����W�����v"}, //mParent
+        {"尻滑りジャンプ"}, //mParent
         "SlideHipRecover", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"������������"}, //mParent
+        {"向かい風走り"}, //mParent
         "RunSlope", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���������ӂ�΂�"}, //mParent
+        {"向かい風ふんばり"}, //mParent
         "Stagger", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���̏ꑫ���ݏ㔼�g"}, //mParent
+        {"その場足踏み上半身"}, //mParent
         "Walk", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�E�G�C�g"}, //mParent
+        {"水泳ウエイト"}, //mParent
         "SwimWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j��~��"}, //mParent
+        {"水泳一掻き"}, //mParent
         "SwimBreast", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����~��"}, //mParent
+        {"水上一掻き"}, //mParent
         "SwimBreastSurface", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j����"}, //mParent
+        {"水泳潜り"}, //mParent
         "SwimDive", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�����v�_�C�u"}, //mParent
+        {"水泳ジャンプダイブ"}, //mParent
         "LandWater", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�����v�_�C�u��]"}, //mParent
+        {"水泳ジャンプダイブ回転"}, //mParent
         "LandWaterDive", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�㏸�ċz"}, //mParent
+        {"水泳上昇呼吸"}, //mParent
         "SwimRise", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j���ʏ����ړ�"}, //mParent
+        {"水泳水面初期移動"}, //mParent
         "SwimStartSurface", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����X�s��"}, //mParent
+        {"水上スピン"}, //mParent
         "SwimSpinSurface", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�X�s��"}, //mParent
+        {"水泳スピン"}, //mParent
         "SwimSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�X�s���ړ�"}, //mParent
+        {"水泳スピン移動"}, //mParent
         "SwimSpinAttack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����X�s���ړ�"}, //mParent
+        {"水上スピン移動"}, //mParent
         "SwimSpinAttackSurface", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�X�s���W�����v"}, //mParent
+        {"水泳スピンジャンプ"}, //mParent
         "SwimJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�_���[�W"}, //mParent
+        {"水泳ダメージ"}, //mParent
         "SwimDamageSmall", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�_���[�W�T"}, //mParent
+        {"水泳ダメージ亀"}, //mParent
         "SwimFlutterBoardDamageSmall", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�_���[�W��"}, //mParent
+        {"水泳ダメージ中"}, //mParent
         "SwimDamageMiddle", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_���[�W��"}, //mParent
+        {"水上ダメージ中"}, //mParent
         "SwimDamageMiddleSurface", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_���[�W����"}, //mParent
+        {"水上ダメージ着水"}, //mParent
         "SwimDamageMiddleSurfaceLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�F�b�g"}, //mParent
+        {"水泳ジェット"}, //mParent
         "SwimFlutterboard", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�F�b�g�I��"}, //mParent
+        {"水泳ジェット終了"}, //mParent
         "SwimDamageMiddle", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�T����"}, //mParent
+        {"水泳亀投げ"}, //mParent
         "SwimFlutterboardThrow", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�F�b�g�J�n"}, //mParent
+        {"水泳ジェット開始"}, //mParent
         "SwimFlutterboardStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�W�F�b�g�ǃ^�[��"}, //mParent
+        {"水泳ジェット壁ターン"}, //mParent
         "SwimFlutterboardTurn", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�_�E��"}, //mParent
+        {"水泳ダウン"}, //mParent
         "SwimDie", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�^�[����"}, //mParent
+        {"水泳ターン左"}, //mParent
         "SwimTurnL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�^�[���E"}, //mParent
+        {"水泳ターン右"}, //mParent
         "SwimTurnR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�ǃq�b�g"}, //mParent
+        {"水泳壁ヒット"}, //mParent
         "SwimWallHit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j�^�[����"}, //mParent
+        {"水泳ターン下"}, //mParent
         "SwimTurnForward", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���j����������"}, //mParent
+        {"水泳陸うちあげ"}, //mParent
         "SlideStmachEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��э��ݏ���"}, //mParent
+        {"飛び込み準備"}, //mParent
         "DiveWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��э��݃W�����v"}, //mParent
+        {"飛び込みジャンプ"}, //mParent
         "Dive", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����э��݃W�����v"}, //mParent
+        {"後方飛び込みジャンプ"}, //mParent
         "DiveBack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��э��ݎ��s���n"}, //mParent
+        {"飛び込み失敗着地"}, //mParent
         "Land", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��э��ݎ��s��]���n"}, //mParent
+        {"飛び込み失敗回転着地"}, //mParent
         "LandRotation", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����O�_�b�V��"}, //mParent
+        {"リングダッシュ"}, //mParent
         "SwimDashRing", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����O�_�b�V������"}, //mParent
+        {"リングダッシュ準備"}, //mParent
         "SwimDashRingStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�J�����������O����"}, //mParent
+        {"カメ持ちリング準備"}, //mParent
         "SwimFlutterBoardDashRingStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�J�����������O"}, //mParent
+        {"カメ持ちリング"}, //mParent
         "SwimFlutterBoardDashRing", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����O�i"}, //mParent
+        {"匍匐前進"}, //mParent
         "SwimGetUp", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�O�����_���[�W"}, //mParent
+        {"前方小ダメージ"}, //mParent
         "DamageSmallFront", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"������_���[�W"}, //mParent
+        {"後方小ダメージ"}, //mParent
         "DamageSmallBack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����W�����v"}, //mParent
+        {"強制ジャンプ"}, //mParent
         "Rise", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���_���[�W"}, //mParent
+        {"中ダメージ"}, //mParent
         "DamageMiddleFront", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���_���[�W��"}, //mParent
+        {"中ダメージ空中"}, //mParent
         "DamageMiddleFrontAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���_���[�W���n"}, //mParent
+        {"中ダメージ着地"}, //mParent
         "DamageMiddleFrontLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_���[�W"}, //mParent
+        {"中後ダメージ"}, //mParent
         "DamageMiddleBack", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_���[�W��"}, //mParent
+        {"中後ダメージ空中"}, //mParent
         "DamageMiddleBackAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_���[�W���n"}, //mParent
+        {"中後ダメージ着地"}, //mParent
         "DamageMiddleBackLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���_���[�W"}, //mParent
+        {"炎ダメージ"}, //mParent
         "DamageFire", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�m�[�_���[�W"}, //mParent
+        {"ノーダメージ"}, //mParent
         "DamageBit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���̃����i�["}, //mParent
+        {"炎のランナー"}, //mParent
         "FireRun", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�@�C�A�����O��"}, //mParent
+        {"ファイアラン前兆"}, //mParent
         "FireRunStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�d�C�_���[�W"}, //mParent
+        {"電気ダメージ"}, //mParent
         "DamageElectric", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�d�C�_���[�W�I��"}, //mParent
+        {"電気ダメージ終了"}, //mParent
         "DamageElectricEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�t�@�C�A�_���X"}, //mParent
+        {"ファイアダンス"}, //mParent
         "FireRun", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�_���[�W"}, //mParent
+        {"ダメージ"}, //mParent
         "DamageStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�_���[�W���n"}, //mParent
+        {"ダメージ着地"}, //mParent
         "Land", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�_���[�W�E�G�C�g"}, //mParent
+        {"ダメージウエイト"}, //mParent
         "DamageWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�m�[�}���E�G�C�g"}, //mParent
+        {"ノーマルウエイト"}, //mParent
         "Wait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X��"}, //mParent
+        {"氷結"}, //mParent
         "Freeze", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X������"}, //mParent
+        {"氷結解除"}, //mParent
         "IceFlick", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���т�"}, //mParent
+        {"しびれ"}, //mParent
         "DamageNumb", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���т��"}, //mParent
+        {"しびれ回復"}, //mParent
         "DamageNumbEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�͂˂Ƃ΂���"}, //mParent
+        {"はねとばされ"}, //mParent
         "DamageFlick", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�͂˂Ƃ΂���I��"}, //mParent
+        {"はねとばされ終了"}, //mParent
         "DamageFlickEnd", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��]�ӂ��Ƃ�"}, //mParent
+        {"後転ふっとび"}, //mParent
         "DamageWeakFront", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��]�ӂ��Ƃы�"}, //mParent
+        {"後転ふっとび空中"}, //mParent
         "DamageWeakFrontAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"��]�ӂ��Ƃђ��n"}, //mParent
+        {"後転ふっとび着地"}, //mParent
         "DamageWeakFrontLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����_�E��"}, //mParent
+        {"座りダウン"}, //mParent
         "DieSit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���d�_�E��"}, //mParent
+        {"感電ダウン"}, //mParent
         "DieElectric", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���_�E��"}, //mParent
+        {"炎ダウン"}, //mParent
         "DieFire", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�����_�E��"}, //mParent
+        {"仰向けダウン"}, //mParent
         "DieOver", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�낹�_�E��"}, //mParent
+        {"俯せダウン"}, //mParent
         "DieUnder", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�ޗ��_�E��"}, //mParent
+        {"奈落ダウン"}, //mParent
         "DieFall", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�u���b�N�z�[������"}, //mParent
+        {"ブラックホール落下"}, //mParent
         "DieBlackHole", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Ԃ�_�E��"}, //mParent
+        {"つぶれダウン"}, //mParent
         "DieSit", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�Q�[���I�[�o�["}, //mParent
+        {"ゲームオーバー"}, //mParent
         "DieOver", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���[�X����"}, //mParent
+        {"レース負け"}, //mParent
         "DieEvent", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�������[�X����"}, //mParent
+        {"水中レース負け"}, //mParent
         "DieSwimEvent", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���܂�_�E��"}, //mParent
+        {"埋まりダウン"}, //mParent
         "DieBury", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット左"}, //mParent
         "TennisShotL", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�e�j�X�V���b�g�E"}, //mParent
+        {"テニスショット右"}, //mParent
         "TennisShotR", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット中"}, //mParent
         "TennisShotM", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット空"}, //mParent
         "TennisShotAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�e�j�X�E�G�C�g"}, //mParent
+        {"テニスウエイト"}, //mParent
         "TennisWait", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�G�������g�Q�b�g"}, //mParent
+        {"エレメントゲット"}, //mParent
         "ElementGet", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�G�������g�Q�b�g�ڒn��"}, //mParent
+        {"エレメントゲット接地中"}, //mParent
         "ElementGetGround", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�󒆂Ђ˂�"}, //mParent
+        {"空中ひねり"}, //mParent
         "Spin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n��Ђ˂�"}, //mParent
+        {"地上ひねり"}, //mParent
         "SpinGround", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�A�C�X�Ђ˂�"}, //mParent
+        {"アイスひねり"}, //mParent
         "IceSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�A�C�X�Ђ˂�ړ�"}, //mParent
+        {"アイスひねり移動"}, //mParent
         "IceSkateSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�A�C�X�Ђ˂�Î~"}, //mParent
+        {"アイスひねり静止"}, //mParent
         "IceSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�X�s����"}, //mParent
+        {"ハチスピン空中"}, //mParent
         "BeeSpin", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�n�`�X�s��"}, //mParent
+        {"ハチスピン"}, //mParent
         "BeeSpinGround", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�A�C�X�Ђ˂��"}, //mParent
+        {"アイスひねり空中"}, //mParent
         "IceSpinAir", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�[�g�A�N�Z���W�����v"}, //mParent
+        {"スケートアクセルジャンプ"}, //mParent
         "IceJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�[�g�W�����v2"}, //mParent
+        {"スケートジャンプ2"}, //mParent
         "IceJump2", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�[�g�W�����v3"}, //mParent
+        {"スケートジャンプ3"}, //mParent
         "IceJump3", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�[�g���n"}, //mParent
+        {"スケート着地"}, //mParent
         "IceJumpLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�P�[�g�Î~���n"}, //mParent
+        {"スケート静止着地"}, //mParent
         "IceJumpStopLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�T�[�t�B���W�����v"}, //mParent
+        {"サーフィンジャンプ"}, //mParent
         "SurfJump", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�T�[�t�B���n�C�W�����v"}, //mParent
+        {"サーフィンハイジャンプ"}, //mParent
         "SurfJumpHigh", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�T�[�t�B�����n"}, //mParent
+        {"サーフィン着地"}, //mParent
         "SurfLand", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"����"}, //mParent
+        {"見る"}, //mParent
         "Watch", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���[�X����"}, //mParent
+        {"レース見る"}, //mParent
         "Watch", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�e�[�W�C��A"}, //mParent
+        {"ステージインA"}, //mParent
         "StageStartGround", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�e�[�W�C��B"}, //mParent
+        {"ステージインB"}, //mParent
         "LandScenarioStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�E�H�[�N�C��"}, //mParent
+        {"ウォークイン"}, //mParent
         "GoThrough", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��1]"}, //mParent
+        {"スピンゲット[デモ1]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[��b1]"}, //mParent
+        {"スピンゲット[会話1]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��2]"}, //mParent
+        {"スピンゲット[デモ2]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[��b2]"}, //mParent
+        {"スピンゲット[会話2]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��3]"}, //mParent
+        {"スピンゲット[デモ3]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[��b3]"}, //mParent
+        {"スピンゲット[会話3]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��4]"}, //mParent
+        {"スピンゲット[デモ4]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��5]"}, //mParent
+        {"スピンゲット[デモ5]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[��b4]"}, //mParent
+        {"スピンゲット[会話4]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��6]"}, //mParent
+        {"スピンゲット[デモ6]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��7]"}, //mParent
+        {"スピンゲット[デモ7]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�X�s���Q�b�g[�f��8]"}, //mParent
+        {"スピンゲット[デモ8]"}, //mParent
         "DemoGetPower", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���[�X�J�n"}, //mParent
+        {"レース開始"}, //mParent
         "RaceStart", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"���[�X�N���E�`���O�J�n"}, //mParent
+        {"レースクラウチング開始"}, //mParent
         "RaceStartCrouch", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�S�[�X�g���[�X�J�n"}, //mParent
+        {"ゴーストレース開始"}, //mParent
         "RaceStartGhost", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�S�[�X�g����"}, //mParent
+        {"ゴースト勝利"}, //mParent
         "WinGhost", //fileName
         0, // animationHash
         0, // fileHash
     },
     {
-        {"�S�[�X�g�o��"}, //mParent
+        {"ゴースト出現"}, //mParent
         "AppearGhost", //fileName
         0, // animationHash
         0, // fileHash
@@ -1945,7 +1945,7 @@ XanimeSingleBckTable singleAnimeTable[0x124] = {
 
 XanimeGroupInfo marioAnimeTable[0x134] = {
     {
-        {"��{"}, // mParent
+        {"基本"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -1971,7 +1971,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�݊�{"}, // mParent
+        {"しゃがみ基本"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -1997,7 +1997,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j��{"}, // mParent
+        {"水泳基本"}, // mParent
         1.00000000000f, // 0x4
         0x1e, // 0x8
         0.00000000000f, // 0xC
@@ -2023,7 +2023,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X��{"}, // mParent
+        {"テニス基本"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2049,7 +2049,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�⍶�E�E�G�C�g"}, // mParent
+        {"坂左右ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2075,7 +2075,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��O��E�G�C�g"}, // mParent
+        {"坂前後ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2101,7 +2101,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�⍶�E�G�C�g"}, // mParent
+        {"坂左ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2127,7 +2127,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��E�E�G�C�g"}, // mParent
+        {"坂右ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2153,7 +2153,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��O�E�G�C�g"}, // mParent
+        {"坂前ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2179,7 +2179,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���E�G�C�g"}, // mParent
+        {"坂後ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2205,7 +2205,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����"}, // mParent
+        {"ラン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2231,7 +2231,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���s"}, // mParent
+        {"歩行"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2257,7 +2257,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ݍs"}, // mParent
+        {"鈍行"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2283,7 +2283,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���^���_�b�V��"}, // mParent
+        {"メタルダッシュ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2309,7 +2309,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�_�b�V���W�����v"}, // mParent
+        {"ダッシュジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2335,7 +2335,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��т�����W�����v"}, // mParent
+        {"飛びすさりジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2361,7 +2361,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�V���[�g�W�����v"}, // mParent
+        {"ショートジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2387,7 +2387,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂���s"}, // mParent
+        {"埋まり歩行"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2413,7 +2413,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�W�����vA"}, // mParent
+        {"埋まりジャンプA"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -2439,7 +2439,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�W�����vB"}, // mParent
+        {"埋まりジャンプB"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -2465,7 +2465,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�E�o�W�����v"}, // mParent
+        {"埋まり脱出ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -2491,7 +2491,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t���n"}, // mParent
+        {"逆着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2517,7 +2517,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ��"}, // mParent
+        {"しゃがみ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2543,7 +2543,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�u���[�L"}, // mParent
+        {"ブレーキ"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -2569,7 +2569,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�u���[�L���菰"}, // mParent
+        {"ブレーキ滑り床"}, // mParent
         4.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -2595,7 +2595,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�^�[���u���[�L"}, // mParent
+        {"ターンブレーキ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -2621,7 +2621,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�^�[���u���[�L���菰"}, // mParent
+        {"ターンブレーキ滑り床"}, // mParent
         3.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -2647,7 +2647,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���s�����u���[�L"}, // mParent
+        {"歩行制動ブレーキ"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -2673,7 +2673,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�㊵�����s"}, // mParent
+        {"氷上慣性走行"}, // mParent
         1.00000000000f, // 0x4
         0x10, // 0x8
         0.00000000000f, // 0xC
@@ -2699,7 +2699,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��͍s��"}, // mParent
+        {"氷上力行左"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2725,7 +2725,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��͍s�E"}, // mParent
+        {"氷上力行右"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2751,7 +2751,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��ؑ֍�"}, // mParent
+        {"氷上切替左"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2777,7 +2777,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��ؑ։E"}, // mParent
+        {"氷上切替右"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2803,7 +2803,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X���s��"}, // mParent
+        {"氷上後行左"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2829,7 +2829,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X���s�E"}, // mParent
+        {"氷上後行右"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2855,7 +2855,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��^�[��"}, // mParent
+        {"氷上ターン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2881,7 +2881,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����E�G�C�g1A"}, // mParent
+        {"特殊ウエイト1A"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2907,7 +2907,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����E�G�C�g1B"}, // mParent
+        {"特殊ウエイト1B"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2933,7 +2933,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�퓬�E�G�C�g"}, // mParent
+        {"戦闘ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x1e, // 0x8
         0.00000000000f, // 0xC
@@ -2959,7 +2959,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����O�i"}, // mParent
+        {"匍匐前進"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -2985,7 +2985,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v"}, // mParent
+        {"ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -3011,7 +3011,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����vB"}, // mParent
+        {"ジャンプB"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -3037,7 +3037,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����vC"}, // mParent
+        {"ジャンプC"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -3063,7 +3063,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�^�[���W�����v"}, // mParent
+        {"ターンジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3089,7 +3089,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t���[�W�����v"}, // mParent
+        {"フリージャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3115,7 +3115,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v�ӂ�1"}, // mParent
+        {"ジャンプふみ1"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3141,7 +3141,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v�ӂ�2"}, // mParent
+        {"ジャンプふみ2"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3167,7 +3167,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v�ӂ�3"}, // mParent
+        {"ジャンプふみ3"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3193,7 +3193,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����߂�"}, // mParent
+        {"引き戻し"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3219,7 +3219,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����߂����n"}, // mParent
+        {"引き戻し着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3245,7 +3245,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�|�b�h���[�v�J�n"}, // mParent
+        {"ポッドワープ開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3271,7 +3271,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�|�b�h���[�v�I��"}, // mParent
+        {"ポッドワープ終了"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3297,7 +3297,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�J�C���u�W�����v"}, // mParent
+        {"スカイラブジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -3323,7 +3323,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�󒆈��]"}, // mParent
+        {"空中一回転"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3349,7 +3349,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�L��"}, // mParent
+        {"スケキヨ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3375,7 +3375,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�L���E�o"}, // mParent
+        {"スケキヨ脱出"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3401,7 +3401,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�"}, // mParent
+        {"埋まり"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3427,7 +3427,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�E�o"}, // mParent
+        {"埋まり脱出"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3453,7 +3453,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�W�����vA"}, // mParent
+        {"ホッパージャンプA"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3479,7 +3479,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�W�����vB"}, // mParent
+        {"ホッパージャンプB"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3505,7 +3505,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vA"}, // mParent
+        {"ホッパーふみジャンプA"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3531,7 +3531,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vB"}, // mParent
+        {"ホッパーふみジャンプB"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3557,7 +3557,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�ړ�A"}, // mParent
+        {"ホッパー移動A"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3583,7 +3583,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�ړ�B"}, // mParent
+        {"ホッパー移動B"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3609,7 +3609,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�n�C�W�����vA"}, // mParent
+        {"ホッパーハイジャンプA"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3635,7 +3635,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�n�C�W�����vB"}, // mParent
+        {"ホッパーハイジャンプB"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -3661,7 +3661,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�ǃW�����v"}, // mParent
+        {"ホッパー壁ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3687,7 +3687,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�q�b�v�h���b�v�J�n"}, // mParent
+        {"ホッパーヒップドロップ開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3713,7 +3713,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�z�b�p�[�q�b�v�h���b�v"}, // mParent
+        {"ホッパーヒップドロップ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3739,7 +3739,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ƃ�"}, // mParent
+        {"幅とび"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3765,7 +3765,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�q�b�v�h���b�v�J�n"}, // mParent
+        {"ヒップドロップ開始"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -3791,7 +3791,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�q�b�v�h���b�v"}, // mParent
+        {"ヒップドロップ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -3817,7 +3817,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�q�b�v�h���b�v���n"}, // mParent
+        {"ヒップドロップ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3843,7 +3843,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�q�b�v�h���b�v����"}, // mParent
+        {"ヒップドロップ滑り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3869,7 +3869,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v������"}, // mParent
+        {"ジャンプ順滑り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3895,7 +3895,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�W�����v�t����"}, // mParent
+        {"ジャンプ逆滑り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3921,7 +3921,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X���b�v�A�b�v"}, // mParent
+        {"スリップアップ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -3947,7 +3947,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�X���b�v�A�b�v����"}, // mParent
+        {"つかまりスリップアップ準備"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -3973,7 +3973,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�X���b�v�A�b�v"}, // mParent
+        {"つかまりスリップアップ"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -3999,7 +3999,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���q�b�v�h���b�v�J�n"}, // mParent
+        {"スピンヒップドロップ開始"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -4025,7 +4025,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���q�b�v�h���b�v"}, // mParent
+        {"スピンヒップドロップ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4051,7 +4051,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���q�b�v�h���b�v���n"}, // mParent
+        {"スピンヒップドロップ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4077,7 +4077,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����"}, // mParent
+        {"落下"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -4103,7 +4103,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���n"}, // mParent
+        {"着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4129,7 +4129,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���nB"}, // mParent
+        {"着地B"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4155,7 +4155,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�[�h���n"}, // mParent
+        {"ハード着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4181,7 +4181,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���ׂ蒅�n"}, // mParent
+        {"すべり着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4207,7 +4207,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�V���[�g���n"}, // mParent
+        {"ショート着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4233,7 +4233,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`��s��"}, // mParent
+        {"ハチ飛行中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4259,7 +4259,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`��s��������"}, // mParent
+        {"ハチ飛行中無入力"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4285,7 +4285,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�ǂ�����"}, // mParent
+        {"ハチ壁くっつき"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4311,7 +4311,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�ǂ�������"}, // mParent
+        {"ハチ壁くっつき中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4337,7 +4337,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�W�����v"}, // mParent
+        {"ハチジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4363,7 +4363,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�ǃW�����v"}, // mParent
+        {"ハチ壁ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4389,7 +4389,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�����E�G�C�g"}, // mParent
+        {"ハチ匍匐ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4415,7 +4415,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�����O�i"}, // mParent
+        {"ハチ匍匐前進"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4441,7 +4441,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�������n"}, // mParent
+        {"ハチ匍匐着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4467,7 +4467,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�Ԉړ�"}, // mParent
+        {"ハチ花移動"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4493,7 +4493,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�q�b�v�h���b�v�J�n"}, // mParent
+        {"ハチヒップドロップ開始"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -4519,7 +4519,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�q�b�v�h���b�v"}, // mParent
+        {"ハチヒップドロップ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4545,7 +4545,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�q�b�v�h���b�v���n"}, // mParent
+        {"ハチヒップドロップ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4571,7 +4571,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�q�b�v�h���b�v�ǒ��n"}, // mParent
+        {"ハチヒップドロップ壁着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4597,7 +4597,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[��s�J�n"}, // mParent
+        {"フーファイター飛行開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4623,7 +4623,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[��s"}, // mParent
+        {"フーファイター飛行"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4649,7 +4649,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[��s�ĊJ"}, // mParent
+        {"フーファイター飛行再開"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4675,7 +4675,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[�Î~"}, // mParent
+        {"フーファイター静止"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4701,7 +4701,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[����"}, // mParent
+        {"フーファイター解除"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4727,7 +4727,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[���n"}, // mParent
+        {"フーファイター着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4753,7 +4753,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�[�t�@�C�^�[�X�s��"}, // mParent
+        {"フーファイタースピン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4779,7 +4779,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�D�ᑬ���s"}, // mParent
+        {"泥低速歩行"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4805,7 +4805,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�D�������s"}, // mParent
+        {"泥高速歩行"}, // mParent
         2.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4831,7 +4831,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǂ�����"}, // mParent
+        {"壁くっつき"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4857,7 +4857,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǂ��ׂ�"}, // mParent
+        {"壁すべり"}, // mParent
         1.00000000000f, // 0x4
         0xa, // 0x8
         0.00000000000f, // 0xC
@@ -4883,7 +4883,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǃW�����v"}, // mParent
+        {"壁ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -4909,7 +4909,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǉ���"}, // mParent
+        {"壁押し"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4935,7 +4935,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ǎ�����"}, // mParent
+        {"壁左歩き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4961,7 +4961,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǉE����"}, // mParent
+        {"壁右歩き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -4987,7 +4987,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǃE�G�C�g"}, // mParent
+        {"壁ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5013,7 +5013,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�O�ǃE�G�C�g"}, // mParent
+        {"前壁ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5039,7 +5039,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǃq�b�g"}, // mParent
+        {"壁ヒット"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5065,7 +5065,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǃq�b�g���n"}, // mParent
+        {"壁ヒット着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5091,7 +5091,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ǂ͂���"}, // mParent
+        {"壁はじき"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5117,7 +5117,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�_���[�W"}, // mParent
+        {"ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5143,7 +5143,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�_���[�W���n"}, // mParent
+        {"ダメージ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5169,7 +5169,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�_���[�W�E�G�C�g"}, // mParent
+        {"ダメージウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5195,7 +5195,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�m�[�}���E�G�C�g"}, // mParent
+        {"ノーマルウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5221,7 +5221,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X��"}, // mParent
+        {"氷結"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -5247,7 +5247,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X������"}, // mParent
+        {"氷結解除"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -5273,7 +5273,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���т�"}, // mParent
+        {"しびれ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -5299,7 +5299,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���т��"}, // mParent
+        {"しびれ回復"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5325,7 +5325,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R�C���Q�b�g"}, // mParent
+        {"コインゲット"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5351,7 +5351,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�p���`"}, // mParent
+        {"パンチ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5377,7 +5377,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��p���`"}, // mParent
+        {"空パンチ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5403,7 +5403,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���p���`"}, // mParent
+        {"左パンチ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5429,7 +5429,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����p���`"}, // mParent
+        {"左空パンチ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5455,7 +5455,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����j���O�L�b�N"}, // mParent
+        {"ランニングキック"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -5481,7 +5481,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�A�b�p�[�p���`"}, // mParent
+        {"アッパーパンチ"}, // mParent
         1.00000000000f, // 0x4
         0x3, // 0x8
         0.00000000000f, // 0xC
@@ -5507,7 +5507,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�݃A�b�p�["}, // mParent
+        {"しゃがみアッパー"}, // mParent
         1.00000000000f, // 0x4
         0x3, // 0x8
         0.00000000000f, // 0xC
@@ -5533,7 +5533,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�}�[�\���g"}, // mParent
+        {"サマーソルト"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -5559,7 +5559,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Q�[���I�[�o�["}, // mParent
+        {"ゲームオーバー"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5585,7 +5585,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ԃ�"}, // mParent
+        {"つぶれ"}, // mParent
         0.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5611,7 +5611,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ԃꕜ�A"}, // mParent
+        {"つぶれ復帰"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5637,7 +5637,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ԃ����"}, // mParent
+        {"つぶれ解除"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5663,7 +5663,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��]"}, // mParent
+        {"空転"}, // mParent
         4.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5689,7 +5689,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�₷�ׂ��������Ԃ�"}, // mParent
+        {"坂すべり上向きうつぶせ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5715,7 +5715,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�₷�ׂ艺���������ނ�"}, // mParent
+        {"坂すべり下向きあおむけ"}, // mParent
         2.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5741,7 +5741,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"������������"}, // mParent
+        {"向かい風走り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5767,7 +5767,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���������ӂ�΂�"}, // mParent
+        {"向かい風ふんばり"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5793,7 +5793,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B��"}, // mParent
+        {"サーフィン"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -5819,7 +5819,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B���i�����j"}, // mParent
+        {"サーフィン（加速）"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -5845,7 +5845,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B���X���J�n"}, // mParent
+        {"サーフィン傾き開始"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -5871,7 +5871,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B���X���J�n�i�����j"}, // mParent
+        {"サーフィン傾き開始（加速）"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -5897,7 +5897,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B���W�����v"}, // mParent
+        {"サーフィンジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -5923,7 +5923,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B���n�C�W�����v"}, // mParent
+        {"サーフィンハイジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -5949,7 +5949,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B������"}, // mParent
+        {"サーフィン落下"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -5975,7 +5975,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�T�[�t�B�����n"}, // mParent
+        {"サーフィン着地"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6001,7 +6001,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�^�}�R���ړ�"}, // mParent
+        {"タマコロ移動"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -6027,7 +6027,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�^�}�R�����Ⴊ��"}, // mParent
+        {"タマコロしゃがみ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6053,7 +6053,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X���C�_�[�K"}, // mParent
+        {"スライダー尻"}, // mParent
         2.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6079,7 +6079,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���̏ꑫ����"}, // mParent
+        {"その場足踏み"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -6105,7 +6105,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���̏ꑫ���ݏ㔼�g"}, // mParent
+        {"その場足踏み上半身"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -6131,7 +6131,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j��~��"}, // mParent
+        {"水泳一掻き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6157,7 +6157,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����~��"}, // mParent
+        {"水上一掻き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6183,7 +6183,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j����"}, // mParent
+        {"水泳潜り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6209,7 +6209,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�����v�_�C�u"}, // mParent
+        {"水泳ジャンプダイブ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6235,7 +6235,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�����v�_�C�u��]"}, // mParent
+        {"水泳ジャンプダイブ回転"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6261,7 +6261,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�㏸�ċz"}, // mParent
+        {"水泳上昇呼吸"}, // mParent
         1.00000000000f, // 0x4
         0x10, // 0x8
         0.00000000000f, // 0xC
@@ -6287,7 +6287,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j���ʏ����ړ�"}, // mParent
+        {"水泳水面初期移動"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6313,7 +6313,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����X�s��"}, // mParent
+        {"水上スピン"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6339,7 +6339,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�X�s��"}, // mParent
+        {"水泳スピン"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6365,7 +6365,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�X�s���ړ�"}, // mParent
+        {"水泳スピン移動"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6391,7 +6391,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����X�s���ړ�"}, // mParent
+        {"水上スピン移動"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -6417,7 +6417,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�_���[�W"}, // mParent
+        {"水泳ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6443,7 +6443,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�_���[�W�T"}, // mParent
+        {"水泳ダメージ亀"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6469,7 +6469,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�_���[�W��"}, // mParent
+        {"水泳ダメージ中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6495,7 +6495,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_���[�W��"}, // mParent
+        {"水上ダメージ中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6521,7 +6521,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_���[�W����"}, // mParent
+        {"水上ダメージ着水"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6547,7 +6547,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�_�E��"}, // mParent
+        {"水泳ダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6573,7 +6573,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�^�[����"}, // mParent
+        {"水泳ターン左"}, // mParent
         1.00000000000f, // 0x4
         0x14, // 0x8
         0.00000000000f, // 0xC
@@ -6599,7 +6599,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�^�[���E"}, // mParent
+        {"水泳ターン右"}, // mParent
         1.00000000000f, // 0x4
         0x14, // 0x8
         0.00000000000f, // 0xC
@@ -6625,7 +6625,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�^�[����"}, // mParent
+        {"水泳ターン下"}, // mParent
         1.00000000000f, // 0x4
         0x14, // 0x8
         0.00000000000f, // 0xC
@@ -6651,7 +6651,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�E�G�C�g"}, // mParent
+        {"水泳ウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6677,7 +6677,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�F�b�g"}, // mParent
+        {"水泳ジェット"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6703,7 +6703,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�F�b�g�J�n"}, // mParent
+        {"水泳ジェット開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6729,7 +6729,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�F�b�g�I��"}, // mParent
+        {"水泳ジェット終了"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6755,7 +6755,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�T����"}, // mParent
+        {"水泳亀投げ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6781,7 +6781,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�ǃq�b�g"}, // mParent
+        {"水泳壁ヒット"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6807,7 +6807,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�W�F�b�g�ǃ^�[��"}, // mParent
+        {"水泳ジェット壁ターン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6833,7 +6833,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j����������"}, // mParent
+        {"水泳陸うちあげ"}, // mParent
         1.00000000000f, // 0x4
         0x10, // 0x8
         0.00000000000f, // 0xC
@@ -6859,7 +6859,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��э��ݏ���"}, // mParent
+        {"飛び込み準備"}, // mParent
         1.00000000000f, // 0x4
         0x14, // 0x8
         0.00000000000f, // 0xC
@@ -6885,7 +6885,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��э��݃W�����v"}, // mParent
+        {"飛び込みジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6911,7 +6911,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����э��݃W�����v"}, // mParent
+        {"後方飛び込みジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6937,7 +6937,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��э��ݎ��s���n"}, // mParent
+        {"飛び込み失敗着地"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -6963,7 +6963,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��э��ݎ��s��]���n"}, // mParent
+        {"飛び込み失敗回転着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -6989,7 +6989,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���j�X�s���W�����v"}, // mParent
+        {"水泳スピンジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7015,7 +7015,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����O�_�b�V��"}, // mParent
+        {"リングダッシュ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7041,7 +7041,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����O�_�b�V������"}, // mParent
+        {"リングダッシュ準備"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7067,7 +7067,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�J�����������O����"}, // mParent
+        {"カメ持ちリング準備"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7093,7 +7093,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�J�����������O"}, // mParent
+        {"カメ持ちリング"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7119,7 +7119,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���nC"}, // mParent
+        {"着地C"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7145,7 +7145,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���n�^�[��"}, // mParent
+        {"着地ターン"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7171,7 +7171,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���n���Ƃ�"}, // mParent
+        {"着地幅とび"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7197,7 +7197,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�݊J�n"}, // mParent
+        {"しゃがみ開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7223,7 +7223,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�ݏI��"}, // mParent
+        {"しゃがみ終了"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7249,7 +7249,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�₷�ׂ������I��"}, // mParent
+        {"坂すべり上向き終了"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -7275,7 +7275,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�₷�ׂ艺�����I��"}, // mParent
+        {"坂すべり下向き終了"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -7301,7 +7301,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ђ낢"}, // mParent
+        {"ひろい"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7327,7 +7327,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ђ낢��"}, // mParent
+        {"ひろい空中"}, // mParent
         1.00000000000f, // 0x4
         0x3, // 0x8
         0.00000000000f, // 0xC
@@ -7353,7 +7353,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ђ낢�N�C�b�N"}, // mParent
+        {"ひろいクイック"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7379,7 +7379,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ђ낢�E�G�C�g"}, // mParent
+        {"ひろいウエイト"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7405,7 +7405,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�J�u����"}, // mParent
+        {"カブ抜き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7431,7 +7431,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�J�u�E�G�C�g"}, // mParent
+        {"カブウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7457,7 +7457,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n���}�[������]��"}, // mParent
+        {"ハンマー投げ回転中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7483,7 +7483,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n���}�[���������[�X"}, // mParent
+        {"ハンマー投げリリース"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7509,7 +7509,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����"}, // mParent
+        {"投げ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7535,7 +7535,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�@�C�A����"}, // mParent
+        {"ファイア投げ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7561,7 +7561,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���蓊��"}, // mParent
+        {"両手投げ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7587,7 +7587,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�@�C�A�X�s��"}, // mParent
+        {"ファイアスピン"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7613,7 +7613,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�@�C�A�X�s����"}, // mParent
+        {"ファイアスピン空中"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -7639,7 +7639,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R���܂�J�n"}, // mParent
+        {"崖つかまり開始"}, // mParent
         1.00000000000f, // 0x4
         0x5, // 0x8
         0.00000000000f, // 0xC
@@ -7665,7 +7665,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R���܂蒆"}, // mParent
+        {"崖つかまり中"}, // mParent
         1.00000000000f, // 0x4
         0x5, // 0x8
         0.00000000000f, // 0xC
@@ -7691,7 +7691,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R���܂�I��"}, // mParent
+        {"崖つかまり終了"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -7717,7 +7717,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R���܂�I����"}, // mParent
+        {"崖つかまり終了坂"}, // mParent
         1.00000000000f, // 0x4
         0x4, // 0x8
         0.00000000000f, // 0xC
@@ -7743,7 +7743,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R���܂�~��"}, // mParent
+        {"崖つかまり降り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7769,7 +7769,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�R�ӂ�΂�"}, // mParent
+        {"崖ふんばり"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -7795,7 +7795,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�݃W�����v"}, // mParent
+        {"しゃがみジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7821,7 +7821,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�݃W�����v���n"}, // mParent
+        {"しゃがみジャンプ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7847,7 +7847,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���Ⴊ�ݕ���"}, // mParent
+        {"しゃがみ歩き"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7873,7 +7873,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����΂葖��"}, // mParent
+        {"がんばり走り"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7899,7 +7899,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���΂��W�����v"}, // mParent
+        {"腹ばいジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7925,7 +7925,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�K����W�����v"}, // mParent
+        {"尻滑りジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7951,7 +7951,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�O�����_���[�W"}, // mParent
+        {"前方小ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -7977,7 +7977,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"������_���[�W"}, // mParent
+        {"後方小ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8003,7 +8003,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����W�����v"}, // mParent
+        {"強制ジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8029,7 +8029,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�w���R�v�^�[�W�����v"}, // mParent
+        {"ヘリコプタージャンプ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8055,7 +8055,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���_���[�W"}, // mParent
+        {"中ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8081,7 +8081,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���_���[�W��"}, // mParent
+        {"中ダメージ空中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8107,7 +8107,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���_���[�W���n"}, // mParent
+        {"中ダメージ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8133,7 +8133,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_���[�W"}, // mParent
+        {"中後ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8159,7 +8159,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_���[�W��"}, // mParent
+        {"中後ダメージ空中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8185,7 +8185,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_���[�W���n"}, // mParent
+        {"中後ダメージ着地"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8211,7 +8211,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�m�[�_���[�W"}, // mParent
+        {"ノーダメージ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8237,7 +8237,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���_���[�W"}, // mParent
+        {"炎ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8263,7 +8263,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���̃����i�["}, // mParent
+        {"炎のランナー"}, // mParent
         8.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8289,7 +8289,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�@�C�A�����O��"}, // mParent
+        {"ファイアラン前兆"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8315,7 +8315,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�d�C�_���[�W"}, // mParent
+        {"電気ダメージ"}, // mParent
         1.00000000000f, // 0x4
         0x1, // 0x8
         0.00000000000f, // 0xC
@@ -8341,7 +8341,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�d�C�_���[�W�I��"}, // mParent
+        {"電気ダメージ終了"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8367,7 +8367,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�t�@�C�A�_���X"}, // mParent
+        {"ファイアダンス"}, // mParent
         6.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8393,7 +8393,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��]�ӂ��Ƃ�"}, // mParent
+        {"後転ふっとび"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -8419,7 +8419,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��]�ӂ��Ƃы�"}, // mParent
+        {"後転ふっとび空中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8445,7 +8445,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"��]�ӂ��Ƃђ��n"}, // mParent
+        {"後転ふっとび着地"}, // mParent
         1.00000000000f, // 0x4
         0x2, // 0x8
         0.00000000000f, // 0xC
@@ -8471,7 +8471,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����_�E��"}, // mParent
+        {"座りダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8497,7 +8497,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���d�_�E��"}, // mParent
+        {"感電ダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8523,7 +8523,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���_�E��"}, // mParent
+        {"炎ダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8549,7 +8549,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�����_�E��"}, // mParent
+        {"仰向けダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8575,7 +8575,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�낹�_�E��"}, // mParent
+        {"俯せダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8601,7 +8601,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�ޗ��_�E��"}, // mParent
+        {"奈落ダウン"}, // mParent
         1.00000000000f, // 0x4
         0x14, // 0x8
         0.00000000000f, // 0xC
@@ -8627,7 +8627,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�u���b�N�z�[������"}, // mParent
+        {"ブラックホール落下"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8653,7 +8653,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���[�X����"}, // mParent
+        {"レース負け"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -8679,7 +8679,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�������[�X����"}, // mParent
+        {"水中レース負け"}, // mParent
         1.00000000000f, // 0x4
         0xf, // 0x8
         0.00000000000f, // 0xC
@@ -8705,7 +8705,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���܂�_�E��"}, // mParent
+        {"埋まりダウン"}, // mParent
         1.00000000000f, // 0x4
         0x1e, // 0x8
         0.00000000000f, // 0xC
@@ -8731,7 +8731,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�Ԃ�_�E��"}, // mParent
+        {"つぶれダウン"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8757,7 +8757,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�͂˂Ƃ΂���"}, // mParent
+        {"はねとばされ"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8783,7 +8783,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�͂˂Ƃ΂���I��"}, // mParent
+        {"はねとばされ終了"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8809,7 +8809,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X�V���b�g��"}, // mParent
+        {"テニスショット左"}, // mParent
         1.25000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8835,7 +8835,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X�V���b�g�E"}, // mParent
+        {"テニスショット右"}, // mParent
         1.25000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8861,7 +8861,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X�V���b�g��"}, // mParent
+        {"テニスショット中"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8887,7 +8887,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X�V���b�g��"}, // mParent
+        {"テニスショット空"}, // mParent
         1.25000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -8913,7 +8913,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�e�j�X�E�G�C�g"}, // mParent
+        {"テニスウエイト"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8939,7 +8939,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�G�������g�Q�b�g"}, // mParent
+        {"エレメントゲット"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8965,7 +8965,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�G�������g�Q�b�g�ڒn��"}, // mParent
+        {"エレメントゲット接地中"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -8991,7 +8991,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�󒆂Ђ˂�"}, // mParent
+        {"空中ひねり"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9017,7 +9017,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n��Ђ˂�"}, // mParent
+        {"地上ひねり"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9043,7 +9043,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�X�s��"}, // mParent
+        {"ハチスピン"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9069,7 +9069,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�n�`�X�s����"}, // mParent
+        {"ハチスピン空中"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9095,7 +9095,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�A�C�X�Ђ˂�"}, // mParent
+        {"アイスひねり"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9121,7 +9121,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�A�C�X�Ђ˂�ړ�"}, // mParent
+        {"アイスひねり移動"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9147,7 +9147,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�A�C�X�Ђ˂�Î~"}, // mParent
+        {"アイスひねり静止"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9173,7 +9173,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�A�C�X�Ђ˂��"}, // mParent
+        {"アイスひねり空中"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9199,7 +9199,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�[�g�A�N�Z���W�����v"}, // mParent
+        {"スケートアクセルジャンプ"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9225,7 +9225,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�[�g�W�����v2"}, // mParent
+        {"スケートジャンプ2"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9251,7 +9251,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�[�g�W�����v3"}, // mParent
+        {"スケートジャンプ3"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9277,7 +9277,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�[�g���n"}, // mParent
+        {"スケート着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9303,7 +9303,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�P�[�g�Î~���n"}, // mParent
+        {"スケート静止着地"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9329,7 +9329,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"����"}, // mParent
+        {"見る"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9355,7 +9355,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���[�X����"}, // mParent
+        {"レース見る"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9381,7 +9381,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�J���J�����E"}, // mParent
+        {"カリカリ限界"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9407,7 +9407,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�e�[�W�C��A"}, // mParent
+        {"ステージインA"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9433,7 +9433,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�e�[�W�C��B"}, // mParent
+        {"ステージインB"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9459,7 +9459,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�E�H�[�N�C��"}, // mParent
+        {"ウォークイン"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9485,7 +9485,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��1]"}, // mParent
+        {"スピンゲット[デモ1]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9511,7 +9511,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[��b1]"}, // mParent
+        {"スピンゲット[会話1]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9537,7 +9537,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��2]"}, // mParent
+        {"スピンゲット[デモ2]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9563,7 +9563,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[��b2]"}, // mParent
+        {"スピンゲット[会話2]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9589,7 +9589,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��3]"}, // mParent
+        {"スピンゲット[デモ3]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9615,7 +9615,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[��b3]"}, // mParent
+        {"スピンゲット[会話3]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9641,7 +9641,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��4]"}, // mParent
+        {"スピンゲット[デモ4]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9667,7 +9667,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��5]"}, // mParent
+        {"スピンゲット[デモ5]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9693,7 +9693,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[��b4]"}, // mParent
+        {"スピンゲット[会話4]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9719,7 +9719,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��6]"}, // mParent
+        {"スピンゲット[デモ6]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9745,7 +9745,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��7]"}, // mParent
+        {"スピンゲット[デモ7]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9771,7 +9771,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�X�s���Q�b�g[�f��8]"}, // mParent
+        {"スピンゲット[デモ8]"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9797,7 +9797,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���[�X�J�n"}, // mParent
+        {"レース開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9823,7 +9823,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"���[�X�N���E�`���O�J�n"}, // mParent
+        {"レースクラウチング開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9849,7 +9849,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�S�[�X�g���[�X�J�n"}, // mParent
+        {"ゴーストレース開始"}, // mParent
         1.00000000000f, // 0x4
         0x6, // 0x8
         0.00000000000f, // 0xC
@@ -9875,7 +9875,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�S�[�X�g����"}, // mParent
+        {"ゴースト勝利"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9901,7 +9901,7 @@ XanimeGroupInfo marioAnimeTable[0x134] = {
         nullptr, // 0x48
     },
     {
-        {"�S�[�X�g�o��"}, // mParent
+        {"ゴースト出現"}, // mParent
         1.00000000000f, // 0x4
         0, // 0x8
         0.00000000000f, // 0xC
@@ -9958,238 +9958,238 @@ XanimeAuxInfo marioAnimeAuxTable[1] = {{""}};
 
 XanimeOfsInfo marioAnimeOfsTable[35] = {
     {
-        {"�_���[�W"}, //mParent
+        {"ダメージ"}, //mParent
         0.00000000000f, // 0x4
         10.0000000000f, // 0x8
         10.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�₷�ׂ艺���������ނ�"}, //mParent
+        {"坂すべり下向きあおむけ"}, //mParent
         0.00000000000f, // 0x4
         2.00000000000f, // 0x8
         2.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�₷�ׂ��������Ԃ�"}, //mParent
+        {"坂すべり上向きうつぶせ"}, //mParent
         0.00000000000f, // 0x4
         2.00000000000f, // 0x8
         2.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�^�[���u���[�L"}, //mParent
+        {"ターンブレーキ"}, //mParent
         0.00000000000f, // 0x4
         20.0000000000f, // 0x8
         20.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�W�����v"}, //mParent
+        {"ジャンプ"}, //mParent
         0.00000000000f, // 0x4
         24.0000000000f, // 0x8
         24.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�ǃq�b�g"}, //mParent
+        {"壁ヒット"}, //mParent
         0.00000000000f, // 0x4
         25.0000000000f, // 0x8
         25.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�ǃq�b�g���n"}, //mParent
+        {"壁ヒット着地"}, //mParent
         0.00000000000f, // 0x4
         67.0000000000f, // 0x8
         0.00000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�J�u����"}, //mParent
+        {"カブ抜き"}, //mParent
         0.00000000000f, // 0x4
         49.0000000000f, // 0x8
         49.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"����"}, //mParent
+        {"落下"}, //mParent
         0.00000000000f, // 0x4
         29.0000000000f, // 0x8
         29.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�q�b�v�h���b�v�J�n"}, //mParent
+        {"ヒップドロップ開始"}, //mParent
         0.00000000000f, // 0x4
         13.0000000000f, // 0x8
         13.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�q�b�v�h���b�v"}, //mParent
+        {"ヒップドロップ"}, //mParent
         0.00000000000f, // 0x4
         9.00000000000f, // 0x8
         9.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�X�s���q�b�v�h���b�v"}, //mParent
+        {"スピンヒップドロップ"}, //mParent
         0.00000000000f, // 0x4
         19.0000000000f, // 0x8
         19.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�n�`�q�b�v�h���b�v�ǒ��n"}, //mParent
+        {"ハチヒップドロップ壁着地"}, //mParent
         0.00000000000f, // 0x4
         20.0000000000f, // 0x8
         20.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vA"}, //mParent
+        {"ホッパーふみジャンプA"}, //mParent
         10.0000000000f, // 0x4
         50.0000000000f, // 0x8
         0.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�z�b�p�[�ӂ݃W�����vB"}, //mParent
+        {"ホッパーふみジャンプB"}, //mParent
         10.0000000000f, // 0x4
         50.0000000000f, // 0x8
         0.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット左"}, //mParent
         4.00000000000f, // 0x4
         26.0000000000f, // 0x8
         26.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�e�j�X�V���b�g�E"}, //mParent
+        {"テニスショット右"}, //mParent
         4.00000000000f, // 0x4
         26.0000000000f, // 0x8
         26.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット中"}, //mParent
         3.00000000000f, // 0x4
         38.0000000000f, // 0x8
         38.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�e�j�X�V���b�g��"}, //mParent
+        {"テニスショット空"}, //mParent
         5.00000000000f, // 0x4
         26.0000000000f, // 0x8
         26.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"���̏ꑫ����"}, //mParent
+        {"その場足踏み"}, //mParent
         0.00000000000f, // 0x4
         17.0000000000f, // 0x8
         8.00000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�u���[�L"}, //mParent
+        {"ブレーキ"}, //mParent
         0.00000000000f, // 0x4
         2.00000000000f, // 0x8
         0.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�V���[�g���n"}, //mParent
+        {"ショート着地"}, //mParent
         0.00000000000f, // 0x4
         5.00000000000f, // 0x8
         0.00000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�A�b�p�[�p���`"}, //mParent
+        {"アッパーパンチ"}, //mParent
         22.0000000000f, // 0x4
         23.0000000000f, // 0x8
         0.00000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"���Ⴊ�݃A�b�p�["}, //mParent
+        {"しゃがみアッパー"}, //mParent
         0.00000000000f, // 0x4
         6.00000000000f, // 0x8
         0.00000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�X�P�L��"}, //mParent
+        {"スケキヨ"}, //mParent
         0.00000000000f, // 0x4
         59.0000000000f, // 0x8
         30.0000000000f, // 0xC
         0x2, // 0x10
     },
     {
-        {"�X�P�L���E�o"}, //mParent
+        {"スケキヨ脱出"}, //mParent
         60.0000000000f, // 0x4
         120.000000000f, // 0x8
         0.00000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"����E�G�C�g1A"}, //mParent
+        {"特殊ウエイト1A"}, //mParent
         0.00000000000f, // 0x4
         494.000000000f, // 0x8
         375.000000000f, // 0xC
         0x2, // 0x10
     },
     {
-        {"����E�G�C�g1B"}, //mParent
+        {"特殊ウエイト1B"}, //mParent
         0.00000000000f, // 0x4
         254.000000000f, // 0x8
         135.000000000f, // 0xC
         0x2, // 0x10
     },
     {
-        {"�A�C�X�Ђ˂�"}, //mParent
+        {"アイスひねり"}, //mParent
         0.00000000000f, // 0x4
         35.0000000000f, // 0x8
         35.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�t�@�C�A�X�s����"}, //mParent
+        {"ファイアスピン空中"}, //mParent
         0.00000000000f, // 0x4
         30.0000000000f, // 0x8
         30.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�R���܂�I����"}, //mParent
+        {"崖つかまり終了坂"}, //mParent
         0.00000000000f, // 0x4
         27.0000000000f, // 0x8
         27.0000000000f, // 0xC
         0, // 0x10
     },
     {
-        {"�O�ǃE�G�C�g"}, //mParent
+        {"前壁ウエイト"}, //mParent
         57.0000000000f, // 0x4
         59.0000000000f, // 0x8
         57.0000000000f, // 0xC
         0x1, // 0x10
     },
     {
-        {"�t�[�t�@�C�^�[�Î~"}, //mParent
+        {"フーファイター静止"}, //mParent
         0.00000000000f, // 0x4
         159.000000000f, // 0x8
         40.0000000000f, // 0xC
         0x2, // 0x10
     },
     {
-        {"�Ђ낢�N�C�b�N"}, //mParent
+        {"ひろいクイック"}, //mParent
         0.00000000000f, // 0x4
         26.0000000000f, // 0x8
         0.00000000000f, // 0xC
