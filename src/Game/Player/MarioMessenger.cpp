@@ -2,7 +2,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-#define ARRAY_SIZE
+#define ARRAY_SIZE 32
 
 MarioMessenger::MarioMessenger(HitSensor* pSender) :
     NameObj("マリオメッセンジャー"),
