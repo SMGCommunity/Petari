@@ -106,6 +106,17 @@ typedef struct {
 
 s32 SCReloadConfFileAsync(u8 *, u32, SCReloadConfFileCallback);
 
+#define SC_LANG_JAPANESE 0u
+#define SC_LANG_ENGLISH 1u
+#define SC_LANG_GERMAN 2u
+#define SC_LANG_FRENCH 3u
+#define SC_LANG_SPANISH 4u
+#define SC_LANG_ITALIAN 5u
+#define SC_LANG_DUTCH 6u
+#define SC_LANG_SIMP_CHINESE 7u
+#define SC_LANG_TRAD_CHINESE 8u
+#define SC_LANG_KOREAN 9u
+
 extern u8 SCGetLanguage(void);
 
 u8* __SCGetConfBuf(void);
