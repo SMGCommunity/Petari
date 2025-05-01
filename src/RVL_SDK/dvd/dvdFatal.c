@@ -9,86 +9,128 @@ extern u16 OSSetFontEncode(u16);
 static void (*FatalFunc)(void) = NULL;
 
 const char* const __DVDErrorMessageDefault[] = {
-    "\n\n\nエラーが発生しました。\n"
+    "\n"
+    "\n"
+    "\n"
+    "エラーが発生しました。\n"
     "\n"
     "イジェクトボタンを押してディスクを取り出してか\n"
     "ら、本体の電源をOFFにして、本体の取扱説明書の\n"
     "指示に従ってください。",
 
-    "\n\n\nAn error has occurred.\n"
+    "\n"
+    "\n"
+    "\n"
+    "An error has occurred.\n"
     "Press the Eject Button, remove the\n"
     "Game Disc, and turn the power off.\n"
     "Please read the Wii Operations Manual\n"
     "for more information.",
 
-    "\n\n\nEin Fehler ist aufgetreten.\n"
-    "Dr・ke den Ausgabeknopf, entnimm die\n"
+    "\n"
+    "\n"
+    "\n"
+    "Ein Fehler ist aufgetreten.\n"
+    "Drücke den Ausgabeknopf, entnimm die\n"
     "Disc und schalte die Wii-Konsole aus.\n"
     "Bitte lies die Wii-Bedienungsanleitung,\n"
     "um weitere Informationen zu erhalten.",
 
-    "\n\n\nUne erreur est survenue.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Une erreur est survenue.\n"
     "Appuyez sur le bouton EJECT, retirez\n"
-    "le disque et 騁eignez la console.\n"
-    "Veuillez vous r馭駻er au mode d'emploi\n"
-    "Wii pour plus de d騁ails.",
+    "le disque et éteignez la console.\n"
+    "Veuillez vous référer au mode d'emploi\n"
+    "Wii pour plus de détails.",
 
-    "\n\n\nSe ha producido un error.\n"
-    "Pulsa el Bot EJECT, extrae el disco y\n"
+    "\n"
+    "\n"
+    "\n"
+    "Se ha producido un error.\n"
+    "Pulsa el Botón EJECT, extrae el disco y\n"
     "apaga la consola. Consulta el manual de\n"
     "instrucciones de la consola Wii para\n"
-    "obtener m疽 informaci.",
+    "obtener más información.",
 
-    "\n\n\nSi ・verificato un errore.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Si è verificato un errore.\n"
     "Premi il pulsante EJECT, estrai il disco\n"
     "e spegni la console. Per maggiori\n"
     "informazioni, consulta il manuale di\n"
     "istruzioni della console Wii.",
 
-    "\n\n\nEr is een fout opgetreden.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Er is een fout opgetreden.\n"
     "Druk op de EJECT-knop, verwijder de\n"
     "disk en zet het Wii-systeem uit. Lees\n"
     "de handleiding voor meer informatie."
 };
 
 const char* const __DVDErrorMessageEurope[] = {
-    "\n\n\nエラーが発生しました。\n"
+    "\n"
+    "\n"
+    "\n"
+    "エラーが発生しました。\n"
     "\n"
     "イジェクトボタンを押してディスクを取り出してか\n"
     "ら、本体の電源をOFFにして、本体の取扱説明書の\n"
     "指示に従ってください。",
 
-    "\n\n\nAn error has occurred.\n"
+    "\n"
+    "\n"
+    "\n"
+    "An error has occurred.\n"
     "Press the EJECT Button, remove the\n"
     "Game Disc, and turn the power off.\n"
     "Please read the Wii Operations Manual\n"
     "for more information.",
 
-    "\n\n\nEin Fehler ist aufgetreten.\n"
-    "Dr・ke den Ausgabeknopf, entnimm die\n"
+    "\n"
+    "\n"
+    "\n"
+    "Ein Fehler ist aufgetreten.\n"
+    "Drücke den Ausgabeknopf, entnimm die\n"
     "Disc und schalte die Wii-Konsole aus.\n"
     "Bitte lies die Wii-Bedienungsanleitung,\n"
     "um weitere Informationen zu erhalten.",
 
-    "\n\n\nUne erreur est survenue.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Une erreur est survenue.\n"
     "Appuyez sur le bouton EJECT, retirez\n"
-    "le disque et 騁eignez la console.\n"
-    "Veuillez vous r馭駻er au mode d'emploi\n"
-    "Wii pour plus de d騁ails.",
+    "le disque et éteignez la console.\n"
+    "Veuillez vous référer au mode d'emploi\n"
+    "Wii pour plus de détails.",
 
-    "\n\n\nSe ha producido un error.\n"
-    "Pulsa el Bot EJECT, extrae el disco y\n"
+    "\n"
+    "\n"
+    "\n"
+    "Se ha producido un error.\n"
+    "Pulsa el Botón EJECT, extrae el disco y\n"
     "apaga la consola. Consulta el manual de\n"
     "instrucciones de la consola Wii para\n"
-    "obtener m疽 informaci.",
+    "obtener más información.",
 
-    "\n\n\nSi ・verificato un errore.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Si è verificato un errore.\n"
     "Premi il pulsante EJECT, estrai il disco\n"
     "e spegni la console. Per maggiori\n"
     "informazioni, consulta il manuale di\n"
     "istruzioni della console Wii.",
 
-    "\n\n\nEr is een fout opgetreden.\n"
+    "\n"
+    "\n"
+    "\n"
+    "Er is een fout opgetreden.\n"
     "Druk op de EJECT-knop, verwijder de\n"
     "disk en zet het Wii-systeem uit. Lees\n"
     "de handleiding voor meer informatie."
