@@ -40,5 +40,7 @@ namespace MR {
 
     void startRumbleWithShakeCameraWeak(const LiveActor *, const char *, const char *, f32, f32);
 
+    void startRumbleWithShakeCameraNormalWeak(const LiveActor *, const char *, const char *, f32, f32);
+
     void endAnimCamera(const LiveActor *, const ActorCameraInfo *, const char *, s32, bool);
 };

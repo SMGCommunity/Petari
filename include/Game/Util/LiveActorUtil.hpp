@@ -212,6 +212,8 @@ namespace MR {
 
     void setBrkRate(const LiveActor*, f32);
 
+    void setBvaRate(const LiveActor *, f32);
+
     void setBckFrame(const LiveActor*, f32);
     f32 getBckFrameMax(const LiveActor*);
     f32 getBrkFrameMax(const LiveActor*);
