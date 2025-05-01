@@ -50,7 +50,7 @@ void PartsModel::makeActorDead() {
     mIsDead = true;
 }
 
-// 99.9% sure the call to makeActorAppered is meant to be inlined but ¯\_(ツ)_/¯ this matches
+// 99.9% sure the call to makeActorAppered is meant to be inlined but this matches
 void PartsModel::init(const JMapInfoIter &rIter) {
     initEffectKeeper(8, nullptr, false);
     initSound(8, false);
