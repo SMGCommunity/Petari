@@ -2992,17 +2992,18 @@ Game/Enemy/Snakehead.cpp:
 	.text       start:0x8013D988 end:0x8013ED60
 	.ctors      start:0x8052EB44 end:0x8052EB48
 	.rodata     start:0x805324D8 end:0x80532558
-	.data       start:0x80584338 end:0x805845E8
+	.data       start:0x80584338 end:0x805845C8
 	.sbss       start:0x806B4788 end:0x806B47A8
 	.sdata2     start:0x806BB558 end:0x806BB5D8
 
 Game/Enemy/SpinHitController.cpp:
 	.text       start:0x8013ED60 end:0x8013F0F0
+	.data       start:0x805845C8 end:0x805845E0
 	.sdata2     start:0x806BB5D8 end:0x806BB5E8
 
 Game/Enemy/StinkBugBase.cpp:
 	.text       start:0x8013F0F0 end:0x8013F72C
-	.data       start:0x805845E8 end:0x80584660
+	.data       start:0x805845E0 end:0x80584660
 	.sdata2     start:0x806BB5E8 end:0x806BB600
 
 Game/Enemy/StinkBugParent.cpp:

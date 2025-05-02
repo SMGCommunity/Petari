@@ -36,7 +36,7 @@ namespace JMathInlineVEC {
     __attribute__((always_inline))
     inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst)
     {
-        register f32 v1xy, v2xy, d1xy, d1z, v1z, v2z;
+        register f32 v1z, v2z, d1xy, v2xy, v1xy, d1z;
         
         __asm {            
             psq_l     v1xy, 0(vec1), 0, 0
