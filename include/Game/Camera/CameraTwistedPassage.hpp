@@ -11,10 +11,10 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    void setParam(long, long, float, float);
+    void setParam(s32, s32, f32, f32);
     void initStartPos();
     void calcNearestCoord(const TVec3f &) const;
-    void calcNearestCoordBetweenTwoRailCoord(float, float, const TVec3f &) const;
+    void calcNearestCoordBetweenTwoRailCoord(f32, f32, const TVec3f &) const;
 
     u32 _4C;
     f32 _50;

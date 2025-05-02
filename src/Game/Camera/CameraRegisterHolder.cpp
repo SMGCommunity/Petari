@@ -45,7 +45,7 @@ const TVec3f *CameraRegisterHolder::getVec(const char *pName) const {
     return mVectors[index];
 }
 
-void CameraRegisterHolder::declareFloatReg(const char *pName, const float *pValue) {
+void CameraRegisterHolder::declareFloatReg(const char *pName, const f32 *pValue) {
     mFloats[mNrFloats] = pValue;
     mFloatNames[mNrFloats] = pName;
     mNrFloats++;
@@ -95,7 +95,7 @@ void CameraRegisterHolder::initDummyRegister() {
     declareFloatReg(sDummyFloatName, &mDummyFloat);
 }
 
-s32 CameraRegisterHolder::searchName(const char *const *pNames, unsigned long count, const char *pName) const {
+s32 CameraRegisterHolder::searchName(const char *const *pNames, u32 count, const char *pName) const {
     if (pName == nullptr) {
         return -1;
     }

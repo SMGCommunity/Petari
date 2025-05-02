@@ -6,13 +6,13 @@ class CameraShakeTask {
 public:
     CameraShakeTask(CameraShakePattern *);
 
-    void start(unsigned long, unsigned long);
-    void startInfinity(unsigned long);
+    void start(u32, u32);
+    void startInfinity(u32);
     void endForce();
     void movement();
     void getOffset(TVec2f *) const;
     bool isEnd() const;
-    void startCommon(unsigned long);
+    void startCommon(u32);
     void updatePattern();
     void updateInterval();
 

@@ -101,7 +101,7 @@ void Dossun::calcParameters() {
 
 s32 Dossun::getUpperFrame() const {
     if (MR::isGalaxyQuickCometAppearInCurrentStage()) {
-        float frame = MR::getBckFrameMax(this, "FallStart") / 2.5f;
+        f32 frame = MR::getBckFrameMax(this, "FallStart") / 2.5f;
         int r5 = mRisenWaitTime / 2.5f;
         if (r5 - (int)frame <= 0) {
             return 0;

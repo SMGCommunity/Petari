@@ -458,7 +458,7 @@ void CameraManGame::setSafePose() {
 // Stack issues
 void CameraManGame::keepAwayWatchPos(TVec3f *watchPos, const TVec3f &pos) {
     TVec3f dir = *watchPos - pos;
-    float length = PSVECMag(reinterpret_cast<Vec *>(&dir));
+    f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
 
     if (length < 300.0f) {
         if (length < 1.0f) {
@@ -471,7 +471,7 @@ void CameraManGame::keepAwayWatchPos(TVec3f *watchPos, const TVec3f &pos) {
             watchPos->set(newWatchPos2);
         }
         else {
-            float length2 = PSVECMag(reinterpret_cast<Vec *>(&dir));
+            f32 length2 = PSVECMag(reinterpret_cast<Vec *>(&dir));
             PSVECNormalize(reinterpret_cast<Vec *>(&dir), reinterpret_cast<Vec *>(&dir));
 
             TVec3f dirCopy = TVec3f(dir);

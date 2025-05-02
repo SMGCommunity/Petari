@@ -70,7 +70,7 @@ CamTranslatorBase *Camera::createTranslator() {
 
 #ifdef NON_MATCHING
 // mVPan is placed in r3 instead of r0 when comparing with nullptr
-void Camera::setZoneMtx(long zoneID) {
+void Camera::setZoneMtx(s32 zoneID) {
     if (zoneID <= 0) {
         mZoneMatrix.identity();
     }

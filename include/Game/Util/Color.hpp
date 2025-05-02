@@ -35,7 +35,7 @@ public:
         return *this;
     }
 
-    void set(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a);
+    void set(u8 _r, u8 _g, u8 _b, u8 _a);
 
     union {
         struct {

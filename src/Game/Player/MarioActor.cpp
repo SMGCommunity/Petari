@@ -225,11 +225,11 @@ MarioActor::MarioActor(const char *pName) : LiveActor(pName), _1B0(0xFFFFFFFF)
     _1E0 = false;
 }
 
-static float BASE_ROTATION = 0.0f;
+static f32 BASE_ROTATION = 0.0f;
 
 void MarioActor::init(const JMapInfoIter &rInfo)
 {
-    long initialAnimation = -1;
+    s32 initialAnimation = -1;
     if (!MR::isValidInfo(rInfo)) {
         return;
     }
@@ -253,7 +253,7 @@ struct DUMMY {
     u8 _0[0x30];
 };
 
-void MarioActor::init2(const TVec3f &a, const TVec3f &b, long initialAnimation)
+void MarioActor::init2(const TVec3f &a, const TVec3f &b, s32 initialAnimation)
 {
     _8C = 1;
     gIsLuigi = false;
@@ -435,7 +435,7 @@ void MarioActor::calcBaseFrontVec(const TVec3f &rVec)
     }
 }
 
-void MarioActor::playSound(const char *pName, long duration)
+void MarioActor::playSound(const char *pName, s32 duration)
 {
     mMario->playSound(pName, duration);
 }
@@ -471,7 +471,7 @@ bool MarioActor::isAnimationRun(const char *pName) const
     return mMario->isAnimationRun(pName);
 }
 
-void MarioActor::changeNullAnimation(const char *pName, signed char num)
+void MarioActor::changeNullAnimation(const char *pName, s8 num)
 {
     mNullAnimation->appear();
     MR::startBck(mNullAnimation, pName, nullptr);
@@ -1141,7 +1141,7 @@ void MarioActor::updateSwingTimer()
             _94E = 5;
         }
         if (_94E && --_94E == 0) {
-            mMario->startPadVib((unsigned long)0);
+            mMario->startPadVib((u32)0);
             mMario->playSound("スピン回復終了", -1);
             Color8 stack_8;
             stack_8.set(0x50, 0x80, 0xc8, 0);
@@ -1365,7 +1365,7 @@ void MarioActor::updateRealMtx()
     _2AC = stack_44;
 }
 
-void MarioActor::decLife(unsigned short amt)
+void MarioActor::decLife(u16 amt)
 {
     if (getMovementStates()._1F) {
         return;
@@ -1436,7 +1436,7 @@ void MarioActor::updateLife()
 
 static const char *sMiddleWaterLifeReduction = "水中ライフ減少";
 
-void MarioActor::incLife(unsigned long amt)
+void MarioActor::incLife(u32 amt)
 {
     if (isEnableNerveChange() && !_3E4) {
         const u32 health = getHealth();
@@ -1457,7 +1457,7 @@ void MarioActor::incLife(unsigned long amt)
     }
 }
 
-void MarioActor::changeMaxLife(long max)
+void MarioActor::changeMaxLife(s32 max)
 {
     mMaxHealth = max;
     while (mHealth != max) {

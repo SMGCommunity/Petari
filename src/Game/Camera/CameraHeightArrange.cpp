@@ -81,7 +81,7 @@ void CameraHeightArrange::resetParameter() {
 void CameraHeightArrange::chase() {
     TVec3f globalAxis = *getGlobalAxis();
 
-    f32 fVar1 = (float)_50 / (float)mLPlay;
+    f32 fVar1 = (f32)_50 / (f32)mLPlay;
 
     if (fVar1 > 1.0f) {
         fVar1 = 1.0f;
@@ -107,7 +107,7 @@ void CameraHeightArrange::updateHeightAndOffset() {
 
     _38 += -_38 * fVar1;
     _3C += -_3C * fVar1;
-    float dVar4 = globalAxis.dot(_14->_C);
+    f32 dVar4 = globalAxis.dot(_14->_C);
     _30 += fVar1 * (dVar4 - _30);
     dVar4 = globalAxis.dot(_14->_24);
     _34 += fVar1 * (dVar4 - _34);
@@ -122,9 +122,9 @@ TVec3f *CameraHeightArrange::getGlobalAxis() {
         mGlobalAxis.set(mVPanAxis);
         TMtx34f &matrix = mCamera->mZoneMatrix;
 
-        float axisX = mGlobalAxis.x;
-        float axisY = mGlobalAxis.y;
-        float axisZ = mGlobalAxis.z;
+        f32 axisX = mGlobalAxis.x;
+        f32 axisY = mGlobalAxis.y;
+        f32 axisZ = mGlobalAxis.z;
 
         mGlobalAxis.set(
             axisZ * matrix.mMtx[0][2] + axisX * matrix.mMtx[0][0] + axisY * matrix.mMtx[0][1],

@@ -69,7 +69,7 @@ namespace MR {
 
     void setPlayerBaseMtx(MtxPtr);
 
-    void startLevelSoundPlayer(const char *, long);
+    void startLevelSoundPlayer(const char *, s32);
     void incPlayerOxygen(u32);
 
     void scatterStarPiecePlayer(u32);

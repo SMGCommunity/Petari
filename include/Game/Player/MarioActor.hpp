@@ -32,18 +32,18 @@ public:
     virtual void getFrontVec(TVec3f *) const;
 
     void init(const JMapInfoIter &);
-    void init2(const TVec3f &, const TVec3f &, long);
+    void init2(const TVec3f &, const TVec3f &, s32);
     void initAfterPlacement();
     void initAfterOpeningDemo();
     void calcBaseFrontVec(const TVec3f &);
-    void playSound(const char *, long);
+    void playSound(const char *, s32);
     void changeAnimation(const char *, const char *);
     void changeAnimationNonStop(const char *);
     void changeAnimationUpper(const char *);
     void stopAnimation(const char *);
     bool isAnimationRun(const char *) const;
-    void changeNullAnimation(const char *, signed char);
-    void clearNullAnimation(signed char);
+    void changeNullAnimation(const char *, s8);
+    void clearNullAnimation(s8);
     void changeSpecialModeAnimation(const char *);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
@@ -64,14 +64,14 @@ public:
     bool checkClapCatchStart();
     void updateRealMtx();
     void setUpperRotateY(f32);
-    void decLife(unsigned short);
+    void decLife(u16);
     void decLifeLarge();
     void decLifeMiddle();
     void decLifeSmall();
     void resetWaterLife();
     void updateLife();
-    void incLife(unsigned long);
-    void changeMaxLife(long);
+    void incLife(u32);
+    void changeMaxLife(s32);
     bool doPressing();
     void careMovingObject();
     bool doStun();
@@ -83,7 +83,7 @@ public:
     void forceSetBaseMtx(f32 (*)[4]);
     void calcAnim();
     void calcAndSetBaseMtx();
-    void setBlendMtxTimer(unsigned short);
+    void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f *dst) const;
     void getShadowPos() const;
 
@@ -103,7 +103,7 @@ public:
     void jumpHop();
     void calcCenterPos();
     void calcHeadPos();
-    void setPress(unsigned char, int);
+    void setPress(u8, int);
     void getResourceTable() const;
 
     bool isEnableMoveMario() const;
@@ -118,7 +118,7 @@ public:
     void updateCameraInfo();
     bool binderFilter(const Triangle *);
 
-    void setPunchHitTimer(unsigned char);
+    void setPunchHitTimer(u8);
     void initEffect();
     void addSoundObjHolder();
     void initParts();
@@ -147,7 +147,7 @@ public:
     TVec3f &getGravityVec();
     TVec3f &getGravityVector();
     void updateGravityVec(bool, bool);
-    void changeTeresaAnimation(const char *, long);
+    void changeTeresaAnimation(const char *, s32);
 
     void playEffect(const char *);
     void stopEffect(const char *);
@@ -174,7 +174,7 @@ public:
     bool tryThrow();
     bool tryStandardRush();
     void checkPriorRushTarget();
-    unsigned char selectAction(const char *) const;
+    u8 selectAction(const char *) const;
     bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char *) const;
@@ -320,7 +320,7 @@ public:
     u16 _3AA;
     u16 _3AC;
     // padding
-    float _3B0;
+    f32 _3B0;
     TVec3f _3B4;
     bool _3C0;
     bool _3C1;

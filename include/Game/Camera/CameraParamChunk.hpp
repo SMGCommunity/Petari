@@ -73,7 +73,7 @@ public:
     void setLOfsErpOff(bool);
     void setCollisionOff(bool);
 
-    void arrangeCamTypeName(unsigned long, const char **);
+    void arrangeCamTypeName(u32, const char **);
 
     CameraParamChunkID *mParamChunkID;  // 0x4
     u8 mCameraTypeIndex;                // 0x8

@@ -47,7 +47,7 @@ namespace NrvTHPSimplePlayerWrapper {
 
 
 namespace {
-    void dvdCallBackFunc(long a1, DVDFileInfo *pFileInfo) {
+    void dvdCallBackFunc(s32 a1, DVDFileInfo *pFileInfo) {
         THPSimplePlayerWrapper* player = (THPSimplePlayerWrapper*)pFileInfo->cb.userData;
         player->dvdCallBack(a1);
     }

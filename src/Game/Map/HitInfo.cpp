@@ -16,7 +16,7 @@ Triangle::Triangle() {
     mPos[2].zero();
 }
 
-void Triangle::fillData(CollisionParts *pParts, unsigned long index, HitSensor *pSensor) {
+void Triangle::fillData(CollisionParts *pParts, u32 index, HitSensor *pSensor) {
     mParts = pParts;
     mIdx = index;
     mSensor = pSensor;

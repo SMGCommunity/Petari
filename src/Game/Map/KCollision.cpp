@@ -88,7 +88,7 @@ TVec3f *KCollisionServer::getEdgeNormal3(const KC_PrismData *pPrism) const {
     return &mFile->mNorms[pPrism->mEdgeIndices[2]];
 }
 
-TVec3f *KCollisionServer::getNormal(unsigned long index) const {
+TVec3f *KCollisionServer::getNormal(u32 index) const {
     return &mFile->mNorms[index];
 }
 
@@ -150,7 +150,7 @@ TVec3f KCollisionServer::getPos(const KC_PrismData *pPrism, int vertexIndex) con
     }
 }
 
-KC_PrismData *KCollisionServer::getPrismData(unsigned long index) const {
+KC_PrismData *KCollisionServer::getPrismData(u32 index) const {
     return &mFile->mPrisms[1 + index];
 }
 
@@ -158,7 +158,7 @@ s32 KCollisionServer::getTriangleNum() const {
     return (reinterpret_cast<u8 *>(mFile->mOctree) - reinterpret_cast<u8 *>(mFile->mPrisms + 1)) / sizeof(KC_PrismData);
 }
 
-JMapInfoIter KCollisionServer::getAttributes(unsigned long index) const {
+JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
     KC_PrismData *prism = &mFile->mPrisms[1 + index];
 
     JMapInfoIter iter;
@@ -170,7 +170,7 @@ JMapInfoIter KCollisionServer::getAttributes(unsigned long index) const {
 
 #ifdef NON_MATCHING
 // Register mismatch
-s32 *KCollisionServer::searchBlock(long *a1, const unsigned long &rX, const unsigned long &rY, const unsigned long &rZ) const {
+s32 *KCollisionServer::searchBlock(s32 *a1, const u32 &rX, const u32 &rY, const u32 &rZ) const {
     KCLFile *file = mFile;
     s32 blockWidthShift = file->mBlockWidthShift;
     u8 *octree = reinterpret_cast<u8 *>(file->mOctree);

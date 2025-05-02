@@ -55,7 +55,7 @@ public:
     virtual bool isEnableToReset() const;
     virtual CamTranslatorBase *createTranslator();
 
-    void setZoneMtx(long);
+    void setZoneMtx(s32);
     void createVPanObj();
 
     CameraMan *mCameraMan;      // 0xC

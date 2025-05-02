@@ -13,12 +13,12 @@ GameCameraCreator::GameCameraCreator(CameraParamChunkHolder *pChunkHolder) {
     memset(&mCodes[0], 0, sizeof(mCodes));
 }
 
-void GameCameraCreator::initCameraCodeCollection(const char *a1, long a2) {
+void GameCameraCreator::initCameraCodeCollection(const char *a1, s32 a2) {
     _4 = a1;
     _8 = a2;
 }
 
-void GameCameraCreator::registerCameraCode(unsigned long code) {
+void GameCameraCreator::registerCameraCode(u32 code) {
     if (code >= 0xFF) {
         return;
     }

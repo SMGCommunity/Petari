@@ -129,8 +129,8 @@ void NormalMapBase::standardDraw(J3DModel *pModel) const {
 
 // ...
 
-static short width = 0x100;
-static short height = 0x100;
+static s16 width = 0x100;
+static s16 height = 0x100;
 
 void NormalMapBase::loadDiffuseGradTex(_GXTexMapID mapID) const {
     GXTexObj obj;

@@ -57,12 +57,12 @@ void DotCamReaderInBin::nextToChunk() {
     }
 }
 
-bool DotCamReaderInBin::getValueInt(const char *pName, long *pOut) {
-    return mMapIter.getValue<long>(pName, pOut);
+bool DotCamReaderInBin::getValueInt(const char *pName, s32 *pOut) {
+    return mMapIter.getValue<s32>(pName, pOut);
 }
 
-bool DotCamReaderInBin::getValueFloat(const char *pName, float *pOut) {
-    return mMapIter.getValue<float>(pName, pOut);
+bool DotCamReaderInBin::getValueFloat(const char *pName, f32 *pOut) {
+    return mMapIter.getValue<f32>(pName, pOut);
 }
 
 bool DotCamReaderInBin::getValueVec(const char *pName, TVec3f *pOut) {
@@ -74,13 +74,13 @@ bool DotCamReaderInBin::getValueVec(const char *pName, TVec3f *pOut) {
     f32 x;
 
     snprintf(pBuffer, sizeof(buffer), "%s.X", pName);
-    bool success = mMapIter.getValue<float>(pBuffer, &x) & 1;
+    bool success = mMapIter.getValue<f32>(pBuffer, &x) & 1;
 
     snprintf(pBuffer, sizeof(buffer), "%s.Y", pName);
-    success &= mMapIter.getValue<float>(pBuffer, &y);
+    success &= mMapIter.getValue<f32>(pBuffer, &y);
 
     snprintf(pBuffer, sizeof(buffer), "%s.Z", pName);
-    success &= mMapIter.getValue<float>(pBuffer, &z);
+    success &= mMapIter.getValue<f32>(pBuffer, &z);
 
     if (success) {
         pOut->x = x;

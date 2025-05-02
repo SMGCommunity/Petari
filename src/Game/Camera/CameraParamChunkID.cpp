@@ -56,11 +56,11 @@ bool CameraParamChunkID::operator==(const CameraParamChunkID &other) const {
 }
 
 
-char *CameraParamChunkID::getBuffer(unsigned long length) {
+char *CameraParamChunkID::getBuffer(u32 length) {
     return new char[length];
 }
 
-bool CameraParamChunkID::equals(long zoneID, const char *pName) const {
+bool CameraParamChunkID::equals(s32 zoneID, const char *pName) const {
     if (mName != nullptr) {
         return zoneID == mZoneID && strcmp(mName, pName) == 0;
     }
@@ -68,7 +68,7 @@ bool CameraParamChunkID::equals(long zoneID, const char *pName) const {
     return false;
 }
 
-void CameraParamChunkID::createCubeID(long zoneID, unsigned short id) {
+void CameraParamChunkID::createCubeID(s32 zoneID, u16 id) {
     mZoneID = static_cast<s8>(zoneID);
 
     const u32 formatSize = 7;
@@ -78,7 +78,7 @@ void CameraParamChunkID::createCubeID(long zoneID, unsigned short id) {
     mName = buffer;
 }
 
-void CameraParamChunkID::createGroupID(long zoneID, const char *a2, unsigned long a3, unsigned long a4) {
+void CameraParamChunkID::createGroupID(s32 zoneID, const char *a2, u32 a3, u32 a4) {
     mZoneID = static_cast<s8>(zoneID);
 
     char buffer[0x100];
@@ -91,7 +91,7 @@ void CameraParamChunkID::createGroupID(long zoneID, const char *a2, unsigned lon
     mName = buffer2;
 }
 
-void CameraParamChunkID::createOtherID(long zoneID, const char *a2) {
+void CameraParamChunkID::createOtherID(s32 zoneID, const char *a2) {
     mZoneID = static_cast<s8>(zoneID);
 
     char buffer[0x100];
@@ -104,7 +104,7 @@ void CameraParamChunkID::createOtherID(long zoneID, const char *a2) {
     mName = buffer2;
 }
 
-void CameraParamChunkID::createEventID(long zoneID, const char *a2) {
+void CameraParamChunkID::createEventID(s32 zoneID, const char *a2) {
     mZoneID = static_cast<s8>(zoneID);
 
     char buffer[0x100];
@@ -117,7 +117,7 @@ void CameraParamChunkID::createEventID(long zoneID, const char *a2) {
     mName = buffer2;
 }
 
-void CameraParamChunkID::createStartID(long zoneID, unsigned short id) {
+void CameraParamChunkID::createStartID(s32 zoneID, u16 id) {
     mZoneID = static_cast<s8>(zoneID);
 
     char buffer[0x100];

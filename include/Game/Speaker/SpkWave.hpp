@@ -14,11 +14,11 @@ public:
     SpkWave();
 
     void setResource(void *);
-    u32 getWaveSize(long) const;
-    u32 getLoopStartPos(long) const;
-    u32 getLoopEndPos(long) const;
-    u8** getWave(long) const;
-    WaveData* getWaveData(long) const;
+    u32 getWaveSize(s32) const;
+    u32 getLoopStartPos(s32) const;
+    u32 getLoopEndPos(s32) const;
+    u8** getWave(s32) const;
+    WaveData* getWaveData(s32) const;
 
     void* mResource;    // 0x0, Raw data of AudioRes/SpkRes/SpkRes.arc
 };

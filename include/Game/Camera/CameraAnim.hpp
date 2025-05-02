@@ -58,10 +58,10 @@ public:
     }
 
     virtual void set(void *, void *) = 0;
-    virtual void getPos(TVec3f *, float) const = 0;
-    virtual void getWatchPos(TVec3f *, float) const = 0;
-    virtual float getTwist(float) const = 0;
-    virtual float getFovy(float) const = 0;
+    virtual void getPos(TVec3f *, f32) const = 0;
+    virtual void getWatchPos(TVec3f *, f32) const = 0;
+    virtual f32 getTwist(f32) const = 0;
+    virtual f32 getFovy(f32) const = 0;
 };
 
 class KeyCamAnmDataAccessor : public BaseCamAnmDataAccessor {
@@ -74,16 +74,16 @@ public:
     virtual ~KeyCamAnmDataAccessor();
     
     virtual void set(void *, void *);
-    virtual void getPos(TVec3f *, float) const;
-    virtual void getWatchPos(TVec3f *, float) const;
-    virtual float getTwist(float) const;
-    virtual float getFovy(float) const;
+    virtual void getPos(TVec3f *, f32) const;
+    virtual void getWatchPos(TVec3f *, f32) const;
+    virtual f32 getTwist(f32) const;
+    virtual f32 getFovy(f32) const;
 
-    float get(float, unsigned long, unsigned long, unsigned long) const;
-    u32 searchKeyFrameIndex(float, unsigned long, unsigned long, unsigned long) const;
-    float get3f(float, unsigned long, unsigned long) const;
-    float get4f(float, unsigned long, unsigned long) const;
-    float calcHermite(float, float, float, float, float, float, float) const;
+    f32 get(f32, u32, u32, u32) const;
+    u32 searchKeyFrameIndex(f32, u32, u32, u32) const;
+    f32 get3f(f32, u32, u32) const;
+    f32 get4f(f32, u32, u32) const;
+    f32 calcHermite(f32, f32, f32, f32, f32, f32, f32) const;
 
     CanmKeyFrameInfo *mInfo;    // 0x4
     f32 *mValues;               // 0x8
@@ -99,12 +99,12 @@ public:
     virtual ~CamAnmDataAccessor();
     
     virtual void set(void *, void *);
-    virtual void getPos(TVec3f *, float) const;
-    virtual void getWatchPos(TVec3f *, float) const;
-    virtual float getTwist(float) const;
-    virtual float getFovy(float) const;
+    virtual void getPos(TVec3f *, f32) const;
+    virtual void getWatchPos(TVec3f *, f32) const;
+    virtual f32 getTwist(f32) const;
+    virtual f32 getFovy(f32) const;
 
-    float get(float, unsigned long, unsigned long) const;
+    f32 get(f32, u32, u32) const;
 
     CanmFrameInfo *mInfo;   // 0x4
     f32 *mValues;           // 0x8
@@ -122,10 +122,10 @@ public:
     virtual bool isInterpolationOff() const;
     virtual CamTranslatorBase *createTranslator();
 
-    void setParam(unsigned char *, float);
+    void setParam(u8 *, f32);
     bool isAnimEnd() const;
-    static u32 getAnimFrame(unsigned char *);
-    bool loadBin(unsigned char *);
+    static u32 getAnimFrame(u8 *);
+    bool loadBin(u8 *);
     
     s32 _4C;
     s32 _50;

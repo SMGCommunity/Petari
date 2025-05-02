@@ -196,7 +196,7 @@ void CocoNut::initEffect() {
 
 #ifdef NON_MATCHING
 // hell function
-void CocoNut::updateRotate(float a1) {
+void CocoNut::updateRotate(f32 a1) {
 	TMtx34f stack_38;
 	TVec3f stack_2C;
 	TVec3f stack_20;

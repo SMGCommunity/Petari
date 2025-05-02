@@ -1,9 +1,11 @@
 #pragma once
 
+#include <revolution.h>
+
 namespace MR {
     namespace Demo {
-        float getCameraShakeIntensity(const char *);
-        float getCameraShakeSpeed(const char *);
+        f32 getCameraShakeIntensity(const char *);
+        f32 getCameraShakeSpeed(const char *);
         const char* getPadRumble(const char *);
         bool isExistCameraShaking(const char *);
         bool isExistPadRumble(const char *);

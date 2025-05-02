@@ -1675,9 +1675,9 @@ SoundSwapList soundswaplist[1] = {{"", 0, 0, 0}};
 
 void Mario::initSound()
 {
-    unsigned long length = initSoundTable(soundlist, 0);
+    u32 length = initSoundTable(soundlist, 0);
     _96C = new HashSortTable(length);
-    for (unsigned long i = 0; i < length; i++) {
+    for (u32 i = 0; i < length; i++) {
         _96C->add(soundlist[i].name, i, false);
     }
     _96C->sort();

@@ -31,23 +31,23 @@ namespace MR {
     void calcVecFromPlayerH(TVec3f *, const LiveActor *);
     void calcVecToTargetPosH(TVec3f *, const LiveActor *, const TVec3f &, const TVec3f *);
     void calcVecFromTargetPosH(TVec3f *, const LiveActor *, const TVec3f &, const TVec3f *);
-    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, const TVec3f &, float);
-    bool isFaceToPlayerDegree(const LiveActor *, const TVec3f &, float);
-    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, float);
-    bool isFaceToPlayerDegree(const LiveActor *, float);
-    bool isFaceToPlayerDegreeHV(const LiveActor *, const TVec3f&, float, float);
-    bool isFaceToTargetHorizontalDegree(const LiveActor *, const TVec3f &, const TVec3f &, float);
-    bool isFaceToPlayerHorizontalDegree(const LiveActor *, const TVec3f &, float);
+    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, const TVec3f &, f32);
+    bool isFaceToPlayerDegree(const LiveActor *, const TVec3f &, f32);
+    bool isFaceToTargetDegree(const LiveActor *, const TVec3f &, f32);
+    bool isFaceToPlayerDegree(const LiveActor *, f32);
+    bool isFaceToPlayerDegreeHV(const LiveActor *, const TVec3f&, f32, f32);
+    bool isFaceToTargetHorizontalDegree(const LiveActor *, const TVec3f &, const TVec3f &, f32);
+    bool isFaceToPlayerHorizontalDegree(const LiveActor *, const TVec3f &, f32);
     bool isClockwiseToDir(const LiveActor *, const TVec3f &, const TVec3f &);
     bool isClockwiseToPlayer(const LiveActor *, const TVec3f &);
     bool isPlayerLeftSide(const LiveActor *);
     bool isLeftSideFromPlayer(const LiveActor *);
-    bool isInSightConePlayer(const LiveActor *, const TVec3f &, float, float);
-    bool isInSightFanPlayer(const LiveActor *, const TVec3f &, float, float, float);
-    bool isBindedWallFront(const LiveActor *, const TVec3f &, float);
-    bool isPlayerExistSide(const LiveActor *, float, float);
-    bool isPlayerExistUp(const LiveActor *, float, float);
-    bool isPlayerExistDown(const LiveActor *, float, float);
+    bool isInSightConePlayer(const LiveActor *, const TVec3f &, f32, f32);
+    bool isInSightFanPlayer(const LiveActor *, const TVec3f &, f32, f32, f32);
+    bool isBindedWallFront(const LiveActor *, const TVec3f &, f32);
+    bool isPlayerExistSide(const LiveActor *, f32, f32);
+    bool isPlayerExistUp(const LiveActor *, f32, f32);
+    bool isPlayerExistDown(const LiveActor *, f32, f32);
     bool isInWater(const LiveActor *, const TVec3f &);
     bool isInDeath(const LiveActor *, const TVec3f &);
 
@@ -59,7 +59,7 @@ namespace MR {
     void makeMtxTRS(MtxPtr, const LiveActor *);
     void makeMtxTransRotateY(MtxPtr, const LiveActor *);
 
-    void blendQuatFromGroundAndFront(TQuat4f *, const LiveActor *, const TVec3f &, float, float);
+    void blendQuatFromGroundAndFront(TQuat4f *, const LiveActor *, const TVec3f &, f32, f32);
 
     void resetPosition(LiveActor *);
     void resetPosition(LiveActor *, const TVec3f &);

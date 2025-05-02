@@ -10,7 +10,7 @@ void SpkWave::setResource(void * pResource) {
     OSEnableInterrupts();
 }
 
-u32 SpkWave::getWaveSize(long wave) const {
+u32 SpkWave::getWaveSize(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
     } else {
@@ -18,7 +18,7 @@ u32 SpkWave::getWaveSize(long wave) const {
     }
 }
 
-u32 SpkWave::getLoopStartPos(long wave) const {
+u32 SpkWave::getLoopStartPos(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
     } else {
@@ -26,7 +26,7 @@ u32 SpkWave::getLoopStartPos(long wave) const {
     }
 }
 
-u32 SpkWave::getLoopEndPos(long wave) const {
+u32 SpkWave::getLoopEndPos(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
     } else {
@@ -34,7 +34,7 @@ u32 SpkWave::getLoopEndPos(long wave) const {
     }
 }
 
-u8** SpkWave::getWave(long wave) const {
+u8** SpkWave::getWave(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
     } else {
@@ -42,6 +42,6 @@ u8** SpkWave::getWave(long wave) const {
     }
 }
 
-WaveData* SpkWave::getWaveData(long wave) const {
+WaveData* SpkWave::getWaveData(s32 wave) const {
     return (WaveData*)((u32)mResource + *(u32*)((u32)mResource + wave * 4 + 8));
 }

@@ -69,13 +69,13 @@ AreaPolygon::~AreaPolygon() {
     makeActorAppeared();
 }*/
 
-void AreaPolygon::setMtx(MtxPtr matrix, const TVec3f &a2, float a3) {
+void AreaPolygon::setMtx(MtxPtr matrix, const TVec3f &a2, f32 a3) {
     _128 = matrix;
     _12C = a2;
     _138 = a3;
 }
 
-void AreaPolygon::setSurfaceAndSync(long a1) {
+void AreaPolygon::setSurfaceAndSync(s32 a1) {
     setSurface(a1);
 
     if (a1 != -1) {

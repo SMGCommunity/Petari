@@ -40,8 +40,8 @@ void LogoFader::exeDisplay() {
 #ifdef NON_MATCHING
 // Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeIn() {
-    float step = getNerveStep();
-    float maxStep = mMaxStep;
+    f32 step = getNerveStep();
+    f32 maxStep = mMaxStep;
 
     mRate = RATE_MAX - (step / maxStep);
 
@@ -58,8 +58,8 @@ void LogoFader::exeFadeIn() {
 #ifdef NON_MATCHING
 // Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeOut() {
-    float step = getNerveStep();
-    float maxStep = mMaxStep;
+    f32 step = getNerveStep();
+    f32 maxStep = mMaxStep;
 
     mRate = step / maxStep;
 

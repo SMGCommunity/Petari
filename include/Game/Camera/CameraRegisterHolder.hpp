@@ -15,7 +15,7 @@ public:
 
     void declareVecReg(const char *, const TVec3f *);
     const TVec3f *getVec(const char *) const;
-    void declareFloatReg(const char *, const float *);
+    void declareFloatReg(const char *, const f32 *);
     const char *getDummyVecRegName() const;
 
     void initMtx();
@@ -23,7 +23,7 @@ public:
     void initFloat();
     void initDummyRegister();
 
-    s32 searchName(const char *const *, unsigned long, const char *) const;
+    s32 searchName(const char *const *, u32, const char *) const;
 
     u32 mNrMatrices;                            // 0xC
     MtxPtr mMatrices[NR_REGISTERS];             // 0x10
@@ -32,7 +32,7 @@ public:
     const TVec3f *mVectors[NR_REGISTERS];       // 0x214
     const char *mVectorNames[NR_REGISTERS];     // 0x314
     u32 mNrFloats;                              // 0x414
-    const float *mFloats[NR_REGISTERS];         // 0x418
+    const f32 *mFloats[NR_REGISTERS];           // 0x418
     const char *mFloatNames[NR_REGISTERS];      // 0x518
     TMtx34f mDummyMatrix;                       // 0x618
     TVec3f mDummyVector;                        // 0x648

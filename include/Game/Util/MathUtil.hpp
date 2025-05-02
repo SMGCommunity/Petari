@@ -57,7 +57,7 @@ namespace MR {
      */
     f32 calcPerpendicFootToLineInside(TVec3f *pOut, const TVec3f &rPoint, const TVec3f &rTip, const TVec3f &rTail);
 
-    void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, float, float);
+    void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, f32, f32);
 
     void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
 
@@ -74,7 +74,7 @@ namespace MR {
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
 
-    bool isSameDirection(const TVec3f &, const TVec3f &, float);
+    bool isSameDirection(const TVec3f &, const TVec3f &, f32);
     bool isOppositeDirection(const TVec3f &, const TVec3f &, f32);
 
     f32 diffAngleAbs(f32, f32);
@@ -87,8 +87,8 @@ namespace MR {
     u8 lerp(u8, u8, f32);
     _GXColor lerp(_GXColor, _GXColor, f32);
 
-    // MR::sortSmall(long, float *, long *)
-    // MR::sortSmall(long, unsigned long *, long *)
+    // MR::sortSmall(s32, f32 *, s32 *)
+    // MR::sortSmall(s32, u32 *, s32 *)
 
     f32 vecKillElement(const TVec3f &, const TVec3f &, TVec3f *);
     void vecScaleAdd(const TVec3f *, const TVec3f *, f32);
@@ -107,10 +107,10 @@ namespace MR {
     int getMaxAbsElementIndex(const TVec3f &);
     f32 diffAngleAbsFast(const TVec3f &, const TVec3f &);
 
-    bool isNearAngleRadian(const TVec3f &, const TVec3f &, float);
-    bool isNearAngleDegree(const TVec3f &, const TVec3f &, float);
-    bool isNearAngleRadianHV(const TVec3f &, const TVec3f &, const TVec3f &, float, float);
-    bool isNearAngleDegreeHV(const TVec3f &, const TVec3f &, const TVec3f &, float, float);
+    bool isNearAngleRadian(const TVec3f &, const TVec3f &, f32);
+    bool isNearAngleDegree(const TVec3f &, const TVec3f &, f32);
+    bool isNearAngleRadianHV(const TVec3f &, const TVec3f &, const TVec3f &, f32, f32);
+    bool isNearAngleDegreeHV(const TVec3f &, const TVec3f &, const TVec3f &, f32, f32);
 
     f32 mod(f32, f32);
 

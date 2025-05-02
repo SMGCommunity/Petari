@@ -30,7 +30,7 @@ CollisionParts::CollisionParts() {
     PSMTXInverse(reinterpret_cast<MtxPtr>(&mBaseMatrix), reinterpret_cast<MtxPtr>(&mInvBaseMatrix));
 }
 
-void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, long keeperIndex, bool a6) {
+void CollisionParts::init(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
     mServer->init(const_cast<void *>(pKclData), pMapInfo);
     mHitSensor = pHitSensor;
 
@@ -69,14 +69,14 @@ void CollisionParts::removeFromBelongZone() {
     director->mKeepers[index]->removeFromZone(this, zoneID);
 }
 
-void CollisionParts::initWithAutoEqualScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, long keeperIndex, bool a6) {
+void CollisionParts::initWithAutoEqualScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
     _CF = true;
     _D0 = false;
 
     init(a1, pHitSensor, pKclData, pMapInfo, keeperIndex, a6);
 }
 
-void CollisionParts::initWithNotUsingScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, long keeperIndex, bool a6) {
+void CollisionParts::initWithNotUsingScale(const TPos3f &a1, HitSensor *pHitSensor, const void *pKclData, const void *pMapInfo, s32 keeperIndex, bool a6) {
     _CF = false;
     _D0 = true;
 
@@ -239,7 +239,7 @@ void CollisionParts::updateBoundingSphereRange(TVec3f a1) {
     updateBoundingSphereRangePrivate(range);
 }
 
-void CollisionParts::updateBoundingSphereRangePrivate(float scale) {
+void CollisionParts::updateBoundingSphereRangePrivate(f32 scale) {
     _DC = scale;
     _D8 = scale * mServer->mMaxVertexDistance;
 }

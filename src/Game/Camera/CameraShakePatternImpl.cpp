@@ -2,7 +2,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 
-CameraShakePatternSingly::CameraShakePatternSingly(float a1)  : CameraShakePattern() {
+CameraShakePatternSingly::CameraShakePatternSingly(f32 a1)  : CameraShakePattern() {
     _8 = a1;
     mDirection.x = 0.0f;
     mDirection.y = 1.0f;
@@ -59,7 +59,7 @@ void CameraShakePatternSingly::setDirection(const TVec2f &rDir) {
     MR::normalize(&mDirection);
 }
 
-CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(float a1, float a2) {
+CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 a1, f32 a2) {
     _8 = a1;
     _C = a2;
     mOffset.x = 0.0f;

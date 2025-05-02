@@ -11,7 +11,7 @@ public:
     virtual CameraTargetObj *calc();
     virtual CamTranslatorBase *createTranslator();
 
-    void setParam(long, long, long, long, float);
+    void setParam(s32, s32, s32, s32, f32);
     void calcLinear();
     void calcEaseInOut();
     void calcDamp();

@@ -29,10 +29,10 @@ void ValueControl::setDirToZeroResetFrame() {
 }
 
 void ValueControl::setMaxFrame(int newMaxFrame) {
-    float value = (f32)(mCurrentFrame) / (f32)(mMaxFrame);
+    f32 value = (f32)(mCurrentFrame) / (f32)(mMaxFrame);
 
     mMaxFrame = newMaxFrame;
-    mCurrentFrame = static_cast<int>(value * static_cast<float>(newMaxFrame));
+    mCurrentFrame = static_cast<int>(value * static_cast<f32>(newMaxFrame));
 }
 
 f32 ValueControl::getValue() const {

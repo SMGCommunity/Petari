@@ -9,8 +9,8 @@ public:
 
     }
 
-    JMapIdInfo(long, long);
-    JMapIdInfo(long, const JMapInfoIter &);
+    JMapIdInfo(s32, s32);
+    JMapIdInfo(s32, const JMapInfoIter &);
     JMapIdInfo(const JMapIdInfo &rInf) {
         _0 = rInf._0;
         mZoneID = rInf.mZoneID;

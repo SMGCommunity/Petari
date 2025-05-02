@@ -22,7 +22,7 @@ public:
 
 class CameraShakePatternSingly : public CameraShakePattern {
 public:
-    CameraShakePatternSingly(float);
+    CameraShakePatternSingly(f32);
     virtual ~CameraShakePatternSingly();
 
     virtual bool isEnd() const;
@@ -39,7 +39,7 @@ public:
 
 class CameraShakePatternVerticalSin : public CameraShakePattern {
 public:
-    CameraShakePatternVerticalSin(float, float);
+    CameraShakePatternVerticalSin(f32, f32);
     virtual ~CameraShakePatternVerticalSin();
 
     virtual bool isEnd() const;

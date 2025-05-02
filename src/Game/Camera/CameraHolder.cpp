@@ -347,7 +347,7 @@ CameraHolder::~CameraHolder() {
 
 }
 
-CamTranslatorBase *CameraHolder::getTranslator(long index) {
+CamTranslatorBase *CameraHolder::getTranslator(s32 index) {
     return mTranslators[index];
 }
 
@@ -389,6 +389,6 @@ void CameraHolder::createCameras() {
     }
 }
 
-Camera *CameraHolder::getCameraInner(long index) const {
+Camera *CameraHolder::getCameraInner(s32 index) const {
     return mCameras[index];
 }

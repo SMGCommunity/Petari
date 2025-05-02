@@ -407,7 +407,7 @@ void PunchingKinoko::exeWait() {
 }
 
 void PunchingKinoko::exeSwing() {
-    float var2 = MR::calcVelocityLength(mGroundChecker);
+    f32 var2 = MR::calcVelocityLength(mGroundChecker);
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
 
@@ -420,9 +420,9 @@ void PunchingKinoko::exeSwing() {
 
     MR::addVelocity(mGroundChecker, stack_8);
     MR::attenuateVelocity(mGroundChecker, 0.97f);
-    float var3 = MR::calcVelocityLength(mGroundChecker);
+    f32 var3 = MR::calcVelocityLength(mGroundChecker);
 
-    const float f0 = 20.0f;
+    const f32 f0 = 20.0f;
     if (var2 < f0 && var3 >= f0) {
         MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
     }

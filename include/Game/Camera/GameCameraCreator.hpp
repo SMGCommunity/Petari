@@ -8,8 +8,8 @@ class GameCameraCreator {
 public:
     GameCameraCreator(CameraParamChunkHolder *);
 
-    void initCameraCodeCollection(const char *, long);
-    void registerCameraCode(unsigned long);
+    void initCameraCodeCollection(const char *, s32);
+    void registerCameraCode(u32);
     void termCameraCodeCollection();
     void scanStartPos(); // TODO
     void scanArea(); // TODO

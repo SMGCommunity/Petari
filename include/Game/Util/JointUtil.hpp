@@ -20,7 +20,7 @@ namespace MR {
 
     bool isExistJoint(const LiveActor *, const char *);
 
-    unsigned long getJointNum(const LiveActor *);
+    u32 getJointNum(const LiveActor *);
 
     u16 getJointIndex(const LiveActor *, const char *) NO_INLINE;
     

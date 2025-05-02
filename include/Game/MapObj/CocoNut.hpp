@@ -23,11 +23,11 @@ public:
 	void initModel() NO_INLINE;
 	void initSensor();
 	void initEffect();
-	void updateRotate(float);
+	void updateRotate(f32);
 	void updateGravity();
 	void processMove();
 	bool isOnGround() const;
-	float calcMoveSpeed() const;
+	f32 calcMoveSpeed() const;
 	void setFrontVec(const TVec3f &);
 	bool getWallNormal(TVec3f *) const;
 
@@ -36,8 +36,8 @@ public:
 
 	bool tryHit(HitSensor *, HitSensor *);
 	bool isPossibleToHit(const TVec3f &, const TVec3f &, const TVec3f &) const;
-	void calcHitSpeedAndFrontVec(float *, float *, TVec3f *, TVec3f *, const TVec3f &, const TVec3f &) const;
-	void hit(const TVec3f &, float);
+	void calcHitSpeedAndFrontVec(f32 *, f32 *, TVec3f *, TVec3f *, const TVec3f &, const TVec3f &) const;
+	void hit(const TVec3f &, f32);
 	bool tryPushedFromActor(HitSensor *, HitSensor *);
 
 	void reviseFrontVec();
@@ -69,11 +69,11 @@ public:
 	inline f32 getSize() { return _D0; }
 
 private:
-	float _8C;
-	float _90;
+	f32 _8C;
+	f32 _90;
 	TVec3f _94;
 	TPos3f _A0;
-	float _D0;
+	f32 _D0;
 	bool _D4;
 	TPos3f _D8;
 	TPos3f _108;

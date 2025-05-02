@@ -38,7 +38,7 @@ public:
     virtual bool isBeeMode() const;
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(unsigned long) const;
+    virtual bool isCameraStateOn(u32) const;
     virtual CubeCameraArea *getCubeCameraArea() const;
     virtual Triangle *getGroundTriangle() const;
     virtual GravityInfo *getGravityInfo() const;
@@ -101,7 +101,7 @@ public:
     virtual bool isOnWaterSurface() const;
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(unsigned long) const;
+    virtual bool isCameraStateOn(u32) const;
     virtual CubeCameraArea *getCubeCameraArea() const;
     virtual Triangle *getGroundTriangle() const;
     virtual GravityInfo *getGravityInfo() const;

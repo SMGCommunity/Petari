@@ -42,7 +42,7 @@ public:
     bool isRegisteredDemoActionAppear(const LiveActor *) const;
     bool isRegisteredDemoActionFunctor(const LiveActor *) const;
     bool isRegisteredDemoActionNerve(const LiveActor *) const;
-    bool isRegisteredDemoAction(const LiveActor *, long) const;
+    bool isRegisteredDemoAction(const LiveActor *, s32) const;
 
     const DemoExecutor* mDemoExecutor;          // 0x00
     s32 mNumInfos;                              // 0x04

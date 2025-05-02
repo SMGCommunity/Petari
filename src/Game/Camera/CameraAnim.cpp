@@ -10,7 +10,7 @@ void KeyCamAnmDataAccessor::set(void *pInfo, void *pValues) {
     mValues = reinterpret_cast<f32 *>(pValues);
 }
 
-void KeyCamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
+void KeyCamAnmDataAccessor::getPos(TVec3f *pPos, f32 key) const {
     CanmKeyFrameComponentInfo &infoZ = mInfo->mPosZ;
     CanmKeyFrameComponentInfo &infoY = mInfo->mPosY;
     CanmKeyFrameComponentInfo &infoX = mInfo->mPosX;
@@ -26,7 +26,7 @@ void KeyCamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
     pPos->set(x, y, z);
 }
 
-void KeyCamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, float key) const {
+void KeyCamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, f32 key) const {
     CanmKeyFrameComponentInfo &infoZ = mInfo->mWatchPosZ;
     CanmKeyFrameComponentInfo &infoY = mInfo->mWatchPosY;
     CanmKeyFrameComponentInfo &infoX = mInfo->mWatchPosX;
@@ -42,19 +42,19 @@ void KeyCamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, float key) const {
     pWatchPos->set(x, y, z);
 }
 
-float KeyCamAnmDataAccessor::getTwist(float key) const {
+f32 KeyCamAnmDataAccessor::getTwist(f32 key) const {
     CanmKeyFrameComponentInfo &info = mInfo->mTwist;
     
     return get(key, info.mOffset, info.mCount, info.mType);
 }
 
-float KeyCamAnmDataAccessor::getFovy(float key) const {
+f32 KeyCamAnmDataAccessor::getFovy(f32 key) const {
     CanmKeyFrameComponentInfo &info = mInfo->mFovy;
     
     return get(key, info.mOffset, info.mCount, info.mType);
 }
 
-float KeyCamAnmDataAccessor::get(float key, unsigned long offset, unsigned long count, unsigned long type) const {
+f32 KeyCamAnmDataAccessor::get(f32 key, u32 offset, u32 count, u32 type) const {
     if (count == 1) {
         return mValues[offset];
     }
@@ -67,7 +67,7 @@ float KeyCamAnmDataAccessor::get(float key, unsigned long offset, unsigned long 
     }
 }
 
-u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, unsigned long count, unsigned long stride) const {
+u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(f32 key, u32 offset, u32 count, u32 stride) const {
     u32 low = 0;
     u32 high = count;
 
@@ -85,14 +85,14 @@ u32 KeyCamAnmDataAccessor::searchKeyFrameIndex(float key, unsigned long offset, 
     return low - 1;
 }
 
-float KeyCamAnmDataAccessor::get3f(float key, unsigned long offset, unsigned long count) const {
+f32 KeyCamAnmDataAccessor::get3f(f32 key, u32 offset, u32 count) const {
     u32 index = searchKeyFrameIndex(key, offset, count, 3);
     f32 *values = mValues + offset + index * 3;
 
     return calcHermite(key, values[0], values[1], values[2], values[3], values[4], values[5]);
 }
 
-float KeyCamAnmDataAccessor::get4f(float key, unsigned long offset, unsigned long count) const {
+f32 KeyCamAnmDataAccessor::get4f(f32 key, u32 offset, u32 count) const {
     u32 index = searchKeyFrameIndex(key, offset, count, 4);
     f32 *values = mValues + offset + index * 4;
 
@@ -101,10 +101,10 @@ float KeyCamAnmDataAccessor::get4f(float key, unsigned long offset, unsigned lon
 
 #ifdef NON_MATCHING
 // Float instruction order, register mismatch
-float KeyCamAnmDataAccessor::calcHermite(float key, float a2, float a3, float a4, float a5, float a6, float a7) const {
-    float fVar1 = a4 / 30.0f;
-    float fVar2 = (key - a2) / (a5 - a2);
-    float fVar3 = fVar2 * fVar2 - fVar2;
+f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7) const {
+    f32 fVar1 = a4 / 30.0f;
+    f32 fVar2 = (key - a2) / (a5 - a2);
+    f32 fVar3 = fVar2 * fVar2 - fVar2;
 
     return -(key - a2) * (fVar2 * fVar1 - a7 / 30.0f * fVar3 + fVar1 * fVar3 + fVar1) - (((fVar2 + fVar2) * fVar3 - fVar2 * fVar2) * (a3 - a6) + a3);
 }
@@ -119,7 +119,7 @@ void CamAnmDataAccessor::set(void *pInfo, void *pValues) {
     mValues = reinterpret_cast<f32 *>(pValues);
 }
 
-void CamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
+void CamAnmDataAccessor::getPos(TVec3f *pPos, f32 key) const {
     CamnFrameComponentInfo &infoZ = mInfo->mPosZ;
     CamnFrameComponentInfo &infoY = mInfo->mPosY;
     CamnFrameComponentInfo &infoX = mInfo->mPosX;
@@ -135,7 +135,7 @@ void CamAnmDataAccessor::getPos(TVec3f *pPos, float key) const {
     pPos->set(x, y, z);
 }
 
-void CamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, float key) const {
+void CamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, f32 key) const {
     CamnFrameComponentInfo &infoZ = mInfo->mWatchPosZ;
     CamnFrameComponentInfo &infoY = mInfo->mWatchPosY;
     CamnFrameComponentInfo &infoX = mInfo->mWatchPosX;
@@ -151,19 +151,19 @@ void CamAnmDataAccessor::getWatchPos(TVec3f *pWatchPos, float key) const {
     pWatchPos->set(x, y, z);
 }
 
-float CamAnmDataAccessor::getTwist(float key) const {
+f32 CamAnmDataAccessor::getTwist(f32 key) const {
     CamnFrameComponentInfo &info = mInfo->mTwist;
 
     return get(key, info.mOffset, info.mCount);
 }
 
-float CamAnmDataAccessor::getFovy(float key) const {
+f32 CamAnmDataAccessor::getFovy(f32 key) const {
     CamnFrameComponentInfo &info = mInfo->mFovy;
 
     return get(key, info.mOffset, info.mCount);
 }
 
-/*float CamAnmDataAccessor::get(float key, unsigned long offset, unsigned long count) const {
+/*f32 CamAnmDataAccessor::get(f32 key, u32 offset, u32 count) const {
     u32 intKey = static_cast<u32>(key);
     f32 fKey = static_cast<f32>(intKey);
 
@@ -209,7 +209,7 @@ CamTranslatorBase *CameraAnim::createTranslator() {
     return new CamTranslatorAnim(this);
 }
 
-void CameraAnim::setParam(unsigned char *pFile, float speed) {
+void CameraAnim::setParam(u8 *pFile, f32 speed) {
     loadBin(pFile);
     mFileData = pFile;
     mSpeed = speed;
@@ -228,7 +228,7 @@ bool CameraAnim::isAnimEnd() const {
     return hasEnded;
 }
 
-u32 CameraAnim::getAnimFrame(unsigned char *pFile) {
+u32 CameraAnim::getAnimFrame(u8 *pFile) {
     if (pFile == nullptr) {
         return 0;
     }
@@ -251,7 +251,7 @@ u32 CameraAnim::getAnimFrame(unsigned char *pFile) {
     return pHeader->mNrFrames;
 }
 
-bool CameraAnim::loadBin(unsigned char *pFile) {
+bool CameraAnim::loadBin(u8 *pFile) {
     CanmFileHeader *pHeader = reinterpret_cast<CanmFileHeader *>(pFile);
 
     if (pHeader->mMagic[0] != 'A' || pHeader->mMagic[1] != 'N' || pHeader->mMagic[2] != 'D' || pHeader->mMagic[3] != 'O') {

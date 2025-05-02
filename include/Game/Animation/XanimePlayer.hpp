@@ -24,7 +24,7 @@ public:
 
     void changeInterpoleFrame(s32);
 
-    void changeTrackAnimation(unsigned char, const char *);
+    void changeTrackAnimation(u8, const char *);
 
     const char *getCurrentAnimationName() const;
 

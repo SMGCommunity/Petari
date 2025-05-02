@@ -10,14 +10,14 @@ CameraShakeTask::CameraShakeTask(CameraShakePattern *pPattern) {
     _10 = 0;
 }
 
-void CameraShakeTask::start(unsigned long a1, unsigned long a2) {
+void CameraShakeTask::start(u32 a1, u32 a2) {
     _8 = a1;
     mIsInfinite = false;
 
     startCommon(a2);
 }
 
-void CameraShakeTask::startInfinity(unsigned long a1) {
+void CameraShakeTask::startInfinity(u32 a1) {
     mIsInfinite = true;
 
     startCommon(a1);
@@ -53,7 +53,7 @@ bool CameraShakeTask::isEnd() const {
     return mHasEnded;
 }
 
-void CameraShakeTask::startCommon(unsigned long a1) {
+void CameraShakeTask::startCommon(u32 a1) {
     _C = a1;
     CameraShakePattern *pattern = mPattern;
     mHasEnded = false;

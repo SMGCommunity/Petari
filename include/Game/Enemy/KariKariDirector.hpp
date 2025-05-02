@@ -1,5 +1,5 @@
 #pragma once
 
 namespace MR {
-    unsigned long getKariKariClingNum();
+    u32 getKariKariClingNum();
 };

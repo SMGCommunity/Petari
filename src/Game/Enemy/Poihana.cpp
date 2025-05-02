@@ -68,7 +68,7 @@ Poihana::Poihana(const char *pName) : LiveActor(pName) {
 	// Calculate launch intensity, thanks to Shibbo for helping me on that one
 	s32 launchIntensity = 1000;
 	MR::getJMapInfoArg0NoInit(rIter, &launchIntensity);
-	float launchIntensityF = 2.0f * launchIntensity;
+	f32 launchIntensityF = 2.0f * launchIntensity;
 
 	if (launchIntensityF > 0) {
 		f32 factor;

@@ -10,13 +10,13 @@ public:
     CameraHolder(const char *);
     virtual ~CameraHolder();
 
-    CamTranslatorBase *getTranslator(long);
+    CamTranslatorBase *getTranslator(s32);
     s32 getIndexOf(const char *) const;
     Camera *getDefaultCamera();
     s32 getIndexOfDefault() const;
     s32 getIndexOf(Camera *) const;
     void createCameras();
-    Camera *getCameraInner(long) const;
+    Camera *getCameraInner(s32) const;
 
     s32 mDefaultCameraIndex;                // 0xC
     Camera **mCameras;                      // 0x10

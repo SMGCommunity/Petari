@@ -100,8 +100,8 @@ namespace MR {
         return sqr < (dist * dist);
     }
 
-    // MR::isNearPlayerPose((LiveActor const *, float, float))
-    // MR::isNearPlayerHorizontal((LiveActor const *, float))
+    // MR::isNearPlayerPose((LiveActor const *, f32, f32))
+    // MR::isNearPlayerHorizontal((LiveActor const *, f32))
 
     void calcFrontVec(TVec3f *pFrontVec, const LiveActor *pActor) {
         MtxPtr mtx = pActor->getBaseMtx();
@@ -156,7 +156,7 @@ namespace MR {
         pFromTargetHVec->scale(-1.0f);
     }
 
-    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, float a4) {
+    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, f32 a4) {
         TVec3f stack_8(a2);
 
         PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -164,7 +164,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, a3, a4);
     }
 
-    bool isFaceToPlayerDegree(const LiveActor *pActor, const TVec3f &a2, float a3) {
+    bool isFaceToPlayerDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
         TVec3f stack_8(*MR::getPlayerPos());
 
         PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -172,7 +172,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, a2, a3);
     }
 
-    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, float a3) {
+    bool isFaceToTargetDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
         TVec3f stack_14;
         MR::calcFrontVec(&stack_14, pActor);
 
@@ -182,7 +182,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, stack_14, a3);
     }
 
-    bool isFaceToPlayerDegree(const LiveActor *pActor, float a2) {
+    bool isFaceToPlayerDegree(const LiveActor *pActor, f32 a2) {
         TVec3f stack_14;
         MR::calcFrontVec(&stack_14, pActor);
 
@@ -192,7 +192,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_8, stack_14, a2);
     }
 
-    bool isFaceToPlayerDegreeHV(const LiveActor *pActor, const TVec3f &a2, float a3, float a4) {
+    bool isFaceToPlayerDegreeHV(const LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4) {
         TVec3f stack_8(*MR::getPlayerPos());
 
         PSVECSubtract((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)&stack_8);
@@ -200,7 +200,7 @@ namespace MR {
         return MR::isNearAngleDegreeHV(stack_8, a2, pActor->mGravity, a3, a4);
     }
 
-    bool isFaceToTargetHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, float a4) {
+    bool isFaceToTargetHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, const TVec3f &a3, f32 a4) {
         TVec3f stack_20;
         TVec3f stack_14;
 
@@ -214,7 +214,7 @@ namespace MR {
         return MR::isNearAngleDegree(stack_20, stack_14, a4);
     }
 
-    bool isFaceToPlayerHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, float a3) {
+    bool isFaceToPlayerHorizontalDegree(const LiveActor *pActor, const TVec3f &a2, f32 a3) {
         return MR::isFaceToTargetHorizontalDegree(pActor, *MR::getPlayerPos(), a2, a3);
     }
 
@@ -251,7 +251,7 @@ namespace MR {
             pActor->mRotation.y);
     }
 
-    void blendQuatFromGroundAndFront(TQuat4f *a1, const LiveActor *pActor, const TVec3f &a3, float a4, float a5) {
+    void blendQuatFromGroundAndFront(TQuat4f *a1, const LiveActor *pActor, const TVec3f &a3, f32 a4, f32 a5) {
         MR::blendQuatUpFront(a1, MR::isBindedGround(pActor) ? *MR::getGroundNormal(pActor) : -pActor->mGravity, a3, a4, a5);
     }
 

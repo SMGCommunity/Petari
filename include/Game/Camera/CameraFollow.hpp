@@ -14,12 +14,12 @@ public:
     virtual bool isEnableToReset() const;
     virtual CamTranslatorBase *createTranslator();
 
-    void setParam(float, float, float, float, float, bool);
+    void setParam(f32, f32, f32, f32, f32, bool);
     void calcIdealPos();
     void calcRotPos();
     void constrainDistance(TVec3f *, const TVec3f &);
-    void constrainAngleX(float *);
-    void constrainAngleY(float *, const TVec3f &, float);
+    void constrainAngleX(f32 *);
+    void constrainAngleY(f32 *, const TVec3f &, f32);
     f32 getMagnitudeOfMovingRound() const;
     void checkShiftStateToRound(const TVec3f &, const TVec3f &);
     void arrangeHeight();
@@ -29,7 +29,7 @@ public:
     void checkAscent(TVec3f *) const;
     void arrangeLookDown();
     void checkDescent(TVec3f *) const;
-    void startRound(float, float);
+    void startRound(f32, f32);
     void checkValidityOfRound(const TVec3f &, const TVec3f &);
     bool isUpsideDownByRoll() const;
 

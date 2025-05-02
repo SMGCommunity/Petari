@@ -18,8 +18,8 @@ public:
     void loadCameraParameters();
     bool isNewAttribute(const CameraParamChunkID &);
     CameraParamChunk *findChunk(const CameraParamChunkID &);
-    CameraParamChunk *findChunk(long, const char *);
-    void loadFile(long);
+    CameraParamChunk *findChunk(s32, const char *);
+    void loadFile(s32);
     void arrangeChunk(CameraParamChunk *);
 
     CameraHolder *mCameraHolder;    // 0xC

@@ -72,7 +72,7 @@ bool CubeGravity::calcOwnGravityVector(TVec3f *pDest, f32 *pScalar, const TVec3f
         return false;
     }
     TVec3f gravityForce;
-    float scalar;
+    f32 scalar;
     if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) && !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
         return false;
     }
@@ -100,7 +100,7 @@ int CubeGravity::calcGravityArea(const TVec3f &rPosition) const
     mPosition.getTrans(trans);
     TVec3f relativePosition = rPosition - trans;
     int area;    // Region of the cube
-    float xDirDistance = relativePosition.dot(dirX) / lenX, yDirDistance = relativePosition.dot(dirY) / lenY, zDirDistance = relativePosition.dot(dirZ) / lenZ;
+    f32 xDirDistance = relativePosition.dot(dirX) / lenX, yDirDistance = relativePosition.dot(dirY) / lenY, zDirDistance = relativePosition.dot(dirZ) / lenZ;
 
     if (xDirDistance < -lenX) {
         if ((mActiveFaces & 2) != 2) {
@@ -198,7 +198,7 @@ bool CubeGravity::calcFaceGravity(const TVec3f &rPosition, s32 area, TVec3f *pDe
     f32 length;
     mPosition.getTrans(trans);
     MR::separateScalarAndDirection(&length, &antiFaceDir, antiFaceDir);
-    float height = antiFaceDir.dot(trans - rPosition) - length;
+    f32 height = antiFaceDir.dot(trans - rPosition) - length;
     if (height < 0.0f) {
         height = 0.0f;
     }

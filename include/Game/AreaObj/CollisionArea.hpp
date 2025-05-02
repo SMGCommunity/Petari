@@ -10,9 +10,9 @@ public:
 
     virtual void init(const JMapInfoIter &);
 
-    void setMtx(MtxPtr, const TVec3f &, float a3);
-    void setSurfaceAndSync(long);
-    void setSurface(long);
+    void setMtx(MtxPtr, const TVec3f &, f32 a3);
+    void setSurfaceAndSync(s32);
+    void setSurface(s32);
     void invalidate();
     void validate();
 
@@ -31,7 +31,7 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void movement();
     
-    bool hitCheck(const TVec3f &, float, TVec3f *, TVec3f *);
+    bool hitCheck(const TVec3f &, f32, TVec3f *, TVec3f *);
 
     u32 _3C;
     f32 _40;

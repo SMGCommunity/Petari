@@ -9,16 +9,16 @@ class JAUSoundAnimationSound;
 
 class AudAnmSoundObject : public AudSoundObject, JAUSoundAnimator {
 public:
-    AudAnmSoundObject(TVec3f *, unsigned char, JKRHeap *);
+    AudAnmSoundObject(TVec3f *, u8, JKRHeap *);
 
-    void update(float);
-    void modifySoundParams(JASSoundParams *, const JAUSoundAnimationSound *, float);
-    void playsSound(const JAUSoundAnimationSound *, const TVec3f &, float);
-    s32 getSoundID(const JAUSoundAnimationSound *, const TVec3f &, float);
+    void update(f32);
+    void modifySoundParams(JASSoundParams *, const JAUSoundAnimationSound *, f32);
+    void playsSound(const JAUSoundAnimationSound *, const TVec3f &, f32);
+    s32 getSoundID(const JAUSoundAnimationSound *, const TVec3f &, f32);
     u32* getFreeHandle(const JAUSoundAnimationSound *);
-    void skip(float);
-    void setStartPos(float);
-    void updateAnimSound(float, const TVec3f &, JAISoundStarter *);
-    void startAnimSound(const TVec3f &, float, JAISoundStarter *);
-    void releaseHandleIfNecessary(JAISoundHandle *, unsigned long);
+    void skip(f32);
+    void setStartPos(f32);
+    void updateAnimSound(f32, const TVec3f &, JAISoundStarter *);
+    void startAnimSound(const TVec3f &, f32, JAISoundStarter *);
+    void releaseHandleIfNecessary(JAISoundHandle *, u32);
 };

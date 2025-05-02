@@ -13,9 +13,9 @@ public:
     const TPos3f *getInvViewMtx() const;
     f32 getAspect() const;
     //setViewMtx(const TPos3f &, bool, bool, const TVec3f &);
-    void setNearZ(float);
-    void setFovy(float);
-    void setShakeOffset(float, float);
+    void setNearZ(f32);
+    void setFovy(f32);
+    void setShakeOffset(f32, f32);
     void updateProjectionMtx();
 
     TPos3f mView;          // 0xC

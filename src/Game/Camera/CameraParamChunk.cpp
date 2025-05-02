@@ -249,7 +249,7 @@ void CameraParamChunk::setCollisionOff(bool value) {
     mExParam.mFlag |= 1 << 4;
 }
 
-void CameraParamChunk::arrangeCamTypeName(unsigned long version, const char **ppType) {
+void CameraParamChunk::arrangeCamTypeName(u32 version, const char **ppType) {
     const char *&type = *ppType;
 
     if (version < 0x30004) {

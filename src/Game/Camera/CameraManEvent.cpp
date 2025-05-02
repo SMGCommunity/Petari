@@ -101,13 +101,13 @@ bool CameraManEvent::isCorrectingErpPositionOff() const {
     return off;
 }
 
-void CameraManEvent::start(long zoneID, const char *pName, const CameraTargetArg &rTargetArg, long a4) {
+void CameraManEvent::start(s32 zoneID, const char *pName, const CameraTargetArg &rTargetArg, s32 a4) {
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
     requestChunk(chunk, static_cast<EPriority>(chunk->mEvPriority), rTargetArg, a4);
     rTargetArg.setTarget();
 }
 
-void CameraManEvent::end(long zoneID, const char *pName, long a3) {
+void CameraManEvent::end(s32 zoneID, const char *pName, s32 a3) {
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
     searchPriority(chunk);
 
@@ -121,7 +121,7 @@ void CameraManEvent::end(long zoneID, const char *pName, long a3) {
     }
 }
 
-bool CameraManEvent::isEventActive(long zoneID, const char *pName) const {
+bool CameraManEvent::isEventActive(s32 zoneID, const char *pName) const {
     if (mCamera != nullptr) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
         chunkID.createEventID(zoneID, pName);
@@ -168,7 +168,7 @@ bool CameraManEvent::doesNextChunkHaveInterpolation() const {
     return false;
 }
 
-u32 CameraManEvent::getAnimCameraFrame(long zoneID, const char *pName) const {
+u32 CameraManEvent::getAnimCameraFrame(s32 zoneID, const char *pName) const {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
     CamTranslatorAnim *translator = reinterpret_cast<CamTranslatorAnim *>(mHolder->getTranslator(chunk->mCameraTypeIndex));
@@ -176,7 +176,7 @@ u32 CameraManEvent::getAnimCameraFrame(long zoneID, const char *pName) const {
     return translator->getAnimFrame(chunk);
 }
 
-void CameraManEvent::pauseOnAnimCamera(long zoneID, const char *pName) {
+void CameraManEvent::pauseOnAnimCamera(s32 zoneID, const char *pName) {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
 
@@ -186,7 +186,7 @@ void CameraManEvent::pauseOnAnimCamera(long zoneID, const char *pName) {
     }
 }
 
-void CameraManEvent::pauseOffAnimCamera(long zoneID, const char *pName) {
+void CameraManEvent::pauseOffAnimCamera(s32 zoneID, const char *pName) {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
 
@@ -336,7 +336,7 @@ void CameraManEvent::resetCameraIfRequested() {
 
     TVec3f dir = watchPos - pos;
     
-    float length = PSVECMag(reinterpret_cast<Vec *>(&dir));
+    f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
 
     if (length < 300.0f) {
         if (length < 1.0f) {
@@ -345,14 +345,14 @@ void CameraManEvent::resetCameraIfRequested() {
     }
 }*/
 
-CameraParamChunkEvent *CameraManEvent::findChunk(long zoneID, const char *pName) const {
+CameraParamChunkEvent *CameraManEvent::findChunk(s32 zoneID, const char *pName) const {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(zoneID, pName);
 
     return reinterpret_cast<CameraParamChunkEvent *>(mChunkHolder->getChunk(chunkID));
 }
 
-void CameraManEvent::requestChunk(CameraParamChunkEvent *pChunk, EPriority priority, const CameraTargetArg &rArg, long a4) {
+void CameraManEvent::requestChunk(CameraParamChunkEvent *pChunk, EPriority priority, const CameraTargetArg &rArg, s32 a4) {
     mItems[priority].mSecond.mChunk = pChunk;
     mItems[priority].mSecond.mTargetArg.mTargetObj = rArg.mTargetObj;
     mItems[priority].mSecond.mTargetArg.mTargetMtx = rArg.mTargetMtx;
@@ -398,7 +398,7 @@ bool CameraManEvent::isChunkFIFOEmpty() const {
     return true;
 }
 
-void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent *pChunk, long a2) {
+void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent *pChunk, s32 a2) {
     u32 frames = getInterpolateFrame(pChunk, a2); 
 
     if (frames == 0) {
@@ -408,7 +408,7 @@ void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent *pChunk, lo
     mDirector->setInterpolation(frames);
 }
 
-s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent *pChunk, long a2) const {
+s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent *pChunk, s32 a2) const {
     s32 frames = -1;
 
     if (pChunk->mEnableErpFrame != 0) {
@@ -426,7 +426,7 @@ s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent *pChunk, long a2) 
     return frames;
 }
 
-void CameraManEvent::sendFinishInterpolateFrame(CameraParamChunkEvent *pChunk, long a2) {
+void CameraManEvent::sendFinishInterpolateFrame(CameraParamChunkEvent *pChunk, s32 a2) {
     s32 frames = -1;
 
     if (pChunk->mEnableEndErpFrame) {
@@ -473,7 +473,7 @@ bool CameraManEvent::isInFIFO(CameraParamChunk *pChunk) const {
     return false;
 }
 
-bool CameraManEvent::isAnimCameraEnd(long zoneID, const char *pName) const {
+bool CameraManEvent::isAnimCameraEnd(s32 zoneID, const char *pName) const {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent *chunk = findChunk(zoneID, pName);
 

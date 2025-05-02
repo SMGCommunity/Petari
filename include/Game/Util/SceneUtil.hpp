@@ -33,10 +33,10 @@ namespace MR {
 
     const char* getZoneNameFromZoneId(s32);
 
-    TMtx34f *getZonePlacementMtx(long);
+    TMtx34f *getZonePlacementMtx(s32);
     TMtx34f *getZonePlacementMtx(const JMapInfoIter &);
 
-    void getStageCameraData(void **, long *, long);
+    void getStageCameraData(void **, s32 *, s32);
 
     void getRailInfo(JMapInfoIter *, const JMapInfo **, const JMapInfoIter &);
 
@@ -50,7 +50,7 @@ namespace MR {
     s32 getGeneralPosNum();
     void getGeneralPosData(const char **, TVec3f *, TVec3f *, JMapLinkInfo **, int);
 
-    void getCurrentScenarioStartAnimCameraData(void **, long *);
+    void getCurrentScenarioStartAnimCameraData(void **, s32 *);
 
     void playSceneForScenarioOpeningCamera();
 

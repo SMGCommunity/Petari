@@ -48,7 +48,7 @@ class MarioState;
 
 class Mario : public MarioModule {
 public:
-    typedef bool (Mario::*Task)(const void *, void *, unsigned long);
+    typedef bool (Mario::*Task)(const void *, void *, u32);
     Mario(MarioActor *);
 
     virtual bool postureCtrl(MtxPtr);
@@ -61,10 +61,10 @@ public:
     void clear2DStick();
     void initSound();
     void recordRelativePosition();
-    unsigned long initSoundTable(SoundList *list, unsigned long);
+    u32 initSoundTable(SoundList *list, u32);
     void initTask();
     bool isIgnoreTriangle(const Triangle *);
-    bool isStatusActive(unsigned long) const;
+    bool isStatusActive(u32) const;
     bool isSwimming() const;
     bool isOnimasuBinderPressSkip() const;
     void closeStatus(MarioState *);
@@ -83,8 +83,8 @@ public:
     bool forceExitSwim();
     bool forceStartSwimAndShoot(const TVec3f &);
     bool isForceStopRush() const;
-    unsigned long getCurrentStatus() const;
-    bool trySpinJump(unsigned char);
+    u32 getCurrentStatus() const;
+    bool trySpinJump(u8);
     void startTeresaDisappear();
     void startBas(const char *, bool, f32, f32);
     bool checkVerticalPress(bool);

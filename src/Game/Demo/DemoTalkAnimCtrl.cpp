@@ -185,9 +185,9 @@ void DemoTalkAnimCtrl::updateAnim(const BckCtrlData& rBck) {
         if (ctrl != nullptr) {
             ctrl->mLoopMode = rBck.mLoopMode;
             ctrl->mStartFrame = rBck.mStartFrame;
-            ctrl->mCurrentFrame = (float)rBck.mStartFrame;
+            ctrl->mCurrentFrame = (f32)rBck.mStartFrame;
             ctrl->mLoopFrame = rBck.mRepeatFrame;
-            ctrl->mCurrentFrame = (float)rBck.mStartFrame;
+            ctrl->mCurrentFrame = (f32)rBck.mStartFrame;
             ctrl->mEndFrame = rBck.mEndFrame;
             ctrl->mSpeed = 1.0f;
         }

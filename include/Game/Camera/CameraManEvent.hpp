@@ -49,14 +49,14 @@ public:
     virtual bool isZeroFrameMoveOff() const;
     virtual bool isCorrectingErpPositionOff() const;
 
-    void start(long, const char *, const CameraTargetArg &, long);
-    void end(long, const char *, long);
-    bool isEventActive(long, const char *) const;
+    void start(s32, const char *, const CameraTargetArg &, s32);
+    void end(s32, const char *, s32);
+    bool isEventActive(s32, const char *) const;
     bool isActive() const;
     bool doesNextChunkHaveInterpolation() const;
-    u32 getAnimCameraFrame(long, const char *) const;
-    void pauseOnAnimCamera(long, const char *);
-    void pauseOffAnimCamera(long, const char *);
+    u32 getAnimCameraFrame(s32, const char *) const;
+    void pauseOnAnimCamera(s32, const char *);
+    void pauseOffAnimCamera(s32, const char *);
     void updateChunkFIFO();
     void applyChunk();
     void checkReset(ChunkFIFOItem *);
@@ -65,16 +65,16 @@ public:
     void setVPanParam();
     void resetCameraIfRequested();
     void setSafePose();
-    CameraParamChunkEvent *findChunk(long, const char *) const NO_INLINE;
-    void requestChunk(CameraParamChunkEvent *, EPriority, const CameraTargetArg &, long);
+    CameraParamChunkEvent *findChunk(s32, const char *) const NO_INLINE;
+    void requestChunk(CameraParamChunkEvent *, EPriority, const CameraTargetArg &, s32);
     bool cleanChunkFIFO(CameraParamChunk *);
     bool isChunkFIFOEmpty() const;
-    void sendStartInterpolateFrame(CameraParamChunkEvent *, long);
-    s32 getInterpolateFrame(CameraParamChunkEvent *, long) const;
-    void sendFinishInterpolateFrame(CameraParamChunkEvent *, long);
+    void sendStartInterpolateFrame(CameraParamChunkEvent *, s32);
+    s32 getInterpolateFrame(CameraParamChunkEvent *, s32) const;
+    void sendFinishInterpolateFrame(CameraParamChunkEvent *, s32);
     s32 searchPriority(CameraParamChunk *) const;
     bool isInFIFO(CameraParamChunk *) const;
-    bool isAnimCameraEnd(long, const char *) const;
+    bool isAnimCameraEnd(s32, const char *) const;
 
     CameraHolder *mHolder;                      // 0x48
     CameraParamChunkHolder *mChunkHolder;       // 0x4C

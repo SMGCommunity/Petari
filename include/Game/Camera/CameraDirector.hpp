@@ -39,7 +39,7 @@ public:
         
     }
      
-    virtual char *getBuffer(unsigned long);
+    virtual char *getBuffer(u32);
 
     char mBuffer[0x100]; // 0xC
 };
@@ -81,18 +81,18 @@ public:
     void switchAntiOscillation();
     void createViewMtx();
     void checkStartCondition();
-    void startEvent(long, const char *, const CameraTargetArg &, long);
-    void endEvent(long, const char *, bool, long);
-    void endEventAtLanding(long, const char *, long); // TODO, need more info on _5C
-    CameraParamChunkEvent *getEventParameter(long, const char *);
+    void startEvent(s32, const char *, const CameraTargetArg &, s32);
+    void endEvent(s32, const char *, bool, s32);
+    void endEventAtLanding(s32, const char *, s32); // TODO, need more info on _5C
+    CameraParamChunkEvent *getEventParameter(s32, const char *);
     void requestToResetCameraMan();
-    void setInterpolation(unsigned long);
-    void cover(unsigned long);
+    void setInterpolation(u32);
+    void cover(u32);
     void closeCreatingCameraChunk();
-    void initCameraCodeCollection(const char *, long);
-    void registerCameraCode(unsigned long);
+    void initCameraCodeCollection(const char *, s32);
+    void registerCameraCode(u32);
     void termCameraCodeCollection();
-    void declareEvent(long, const char *);
+    void declareEvent(s32, const char *);
     void started();
     void setTargetActor(const LiveActor *);
     void setTargetPlayer(const MarioActor *);
@@ -102,7 +102,7 @@ public:
     bool isEnableToRoundLeft() const;
     bool isEnableToRoundRight() const;
     bool isEnableToReset() const;
-    bool isEventCameraActive(long, const char *) const;
+    bool isEventCameraActive(s32, const char *) const;
     bool isEventCameraActive() const;
     void startStartPosCamera(bool);
     bool isInterpolatingNearlyEnd() const;
@@ -112,19 +112,19 @@ public:
     bool isStartAnimCameraEnd() const;
     u32 getStartAnimCameraFrame() const;
     void endStartAnimCamera();
-    void startTalkCamera(const TVec3f &, const TVec3f &, float, float, long);
-    void endTalkCamera(bool, long);
-    void startSubjectiveCamera(long);
-    void endSubjectiveCamera(long);
-    bool isAnimCameraEnd(long, const char *) const;
-    u32 getAnimCameraFrame(long, const char *) const;
-    void pauseOnAnimCamera(long, const char *);
-    void pauseOffAnimCamera(long, const char *);
+    void startTalkCamera(const TVec3f &, const TVec3f &, f32, f32, s32);
+    void endTalkCamera(bool, s32);
+    void startSubjectiveCamera(s32);
+    void endSubjectiveCamera(s32);
+    bool isAnimCameraEnd(s32, const char *) const;
+    u32 getAnimCameraFrame(s32, const char *) const;
+    void pauseOnAnimCamera(s32, const char *);
+    void pauseOffAnimCamera(s32, const char *);
     void zoomInGameCamera();
     void zoomOutGameCamera();
     void checkEndOfEventCamera(); // TODO
     void controlCameraSE(); // TODO
-    void removeEndEventAtLanding(long, const char *); // TODO
+    void removeEndEventAtLanding(s32, const char *); // TODO
     void calcViewMtxFromPoseParam(TPos3f *, const CameraPoseParam *); // TODO
     bool isPlayableCameraSE(bool);
     void resetCameraMan();

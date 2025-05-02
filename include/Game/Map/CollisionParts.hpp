@@ -16,11 +16,11 @@ public:
     CollisionParts();
 
     TVec3f getTrans();
-    void init(const TPos3f &, HitSensor *, const void *, const void *, long, bool);
+    void init(const TPos3f &, HitSensor *, const void *, const void *, s32, bool);
     void addToBelongZone();
     void removeFromBelongZone();
-    void initWithAutoEqualScale(const TPos3f &, HitSensor *, const void *, const void *, long, bool);
-    void initWithNotUsingScale(const TPos3f &, HitSensor *, const void *, const void *, long, bool);
+    void initWithAutoEqualScale(const TPos3f &, HitSensor *, const void *, const void *, s32, bool);
+    void initWithNotUsingScale(const TPos3f &, HitSensor *, const void *, const void *, s32, bool);
     void resetAllMtx(const TPos3f &);
     void resetAllMtx();
     void forceResetAllMtxAndSetUpdateMtxOneTime();
@@ -31,18 +31,18 @@ public:
     f32 makeEqualScale(MtxPtr);
     void updateBoundingSphereRange();
     void updateBoundingSphereRange(TVec3f);
-    void updateBoundingSphereRangePrivate(float);
+    void updateBoundingSphereRangePrivate(f32);
     const char *getHostName() const;
     s32 getPlacementZoneID() const;
     void checkStrikePoint(HitInfo *, const TVec3f &);
-    bool checkStrikeBall(HitInfo *, unsigned long, const TVec3f &, float, bool, const TriangleFilterBase *);
-    void checkStrikeBallCore(HitInfo *, unsigned long, const TVec3f &, const TVec3f &, float, float, float, KC_PrismData **, float *, unsigned char *, const TriangleFilterBase *, const TVec3f *);
-    void checkStrikeBallWithThickness(HitInfo *, unsigned long, const TVec3f &, float, float, const TriangleFilterBase *);
-    void calcCollidePosition(TVec3f *, const KC_PrismData &, unsigned char);
+    bool checkStrikeBall(HitInfo *, u32, const TVec3f &, f32, bool, const TriangleFilterBase *);
+    void checkStrikeBallCore(HitInfo *, u32, const TVec3f &, const TVec3f &, f32, f32, f32, KC_PrismData **, f32 *, u8 *, const TriangleFilterBase *, const TVec3f *);
+    void checkStrikeBallWithThickness(HitInfo *, u32, const TVec3f &, f32, f32, const TriangleFilterBase *);
+    void calcCollidePosition(TVec3f *, const KC_PrismData &, u8);
     void projectToPlane(TVec3f *, const TVec3f &, const TVec3f &, const TVec3f &);
-    void checkStrikeLine(HitInfo *, unsigned long, const TVec3f &, const TVec3f &, const TriangleFilterBase *);
-    void createAreaPolygonList(Triangle *, unsigned long, const TVec3f &, const TVec3f &);
-    void createAreaPolygonListArray(Triangle *, unsigned long, TVec3f *, unsigned long);
+    void checkStrikeLine(HitInfo *, u32, const TVec3f &, const TVec3f &, const TriangleFilterBase *);
+    void createAreaPolygonList(Triangle *, u32, const TVec3f &, const TVec3f &);
+    void createAreaPolygonListArray(Triangle *, u32, TVec3f *, u32);
     void calcForceMovePower(TVec3f *, const TVec3f &) const;
 
     TMtx34f *_0;

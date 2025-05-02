@@ -57,8 +57,8 @@ public:
     const bool getValue(int, const char *, T *) const;
 
     bool getValueFast(int, int, const char **) const;
-    bool getValueFast(int, int, unsigned long *) const;
-    bool getValueFast(int, int, long *) const;
+    bool getValueFast(int, int, u32 *) const;
+    bool getValueFast(int, int, s32 *) const;
 
     const JMapData* mData; // 0x0
     const char* mName; // 0x4

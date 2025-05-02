@@ -42,7 +42,7 @@ void CameraShaker::shakeVertical(ESinglyVerticalPower power) {
     }
 }
 
-void CameraShaker::shakeInfinity(NameObj *pNameObj, float a2, float a3) {
+void CameraShaker::shakeInfinity(NameObj *pNameObj, f32 a2, f32 a3) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (mInfinityTasks[i]->isEnd()) {
             startInfinity(i, a2, a3);
@@ -168,7 +168,7 @@ void CameraShaker::addInfinityTaskOffset(TVec2f *pOffset) {
     }
 }
 
-void CameraShaker::startInfinity(unsigned long index, float a2, float a3) {
+void CameraShaker::startInfinity(u32 index, f32 a2, f32 a3) {
     CameraShakePatternVerticalSin *sin = reinterpret_cast<CameraShakePatternVerticalSin *>(mInfinityTasks[index]->mPattern);
 
     sin->_8 = a2;

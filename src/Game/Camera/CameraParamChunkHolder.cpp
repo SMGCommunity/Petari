@@ -121,7 +121,7 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(const CameraParamChunkID &rI
     return nullptr;
 }
 
-CameraParamChunk *CameraParamChunkHolder::findChunk(long zoneID, const char *pName) {
+CameraParamChunk *CameraParamChunkHolder::findChunk(s32 zoneID, const char *pName) {
     for (s32 i = 0; i < mNrChunks; i++) {
         if (mChunks[i]->mParamChunkID->equals(zoneID, pName)) {
             return mChunks[i];
@@ -133,9 +133,9 @@ CameraParamChunk *CameraParamChunkHolder::findChunk(long zoneID, const char *pNa
 
 #ifdef NON_MATCHING
 // Stack is 0x10 bytes smaller
-void CameraParamChunkHolder::loadFile(long zoneID) {
+void CameraParamChunkHolder::loadFile(s32 zoneID) {
     void *data;
-    long local44;
+    s32 local44;
     MR::getStageCameraData(&data, &local44, zoneID);
 
     if (local44 != 0) {

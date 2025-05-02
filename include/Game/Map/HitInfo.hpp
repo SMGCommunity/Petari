@@ -13,7 +13,7 @@ public:
 
     Triangle &operator=(const Triangle &);
 
-    void fillData(CollisionParts *, unsigned long, HitSensor *);
+    void fillData(CollisionParts *, u32, HitSensor *);
     const char *getHostName() const;
     s32 getHostPlacementZoneID() const;
     bool isHostMoved() const;

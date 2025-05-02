@@ -4,8 +4,8 @@
 namespace {
     struct Param {
         const char *mParamName;         // 0x0
-        float mCameraShakeIntensity;    // 0x4
-        float mCameraShakeSpeed;        // 0x8
+        f32 mCameraShakeIntensity;    // 0x4
+        f32 mCameraShakeSpeed;        // 0x8
         const char *pRumbleName;        // 0xC
     };
 
@@ -27,10 +27,10 @@ namespace {
 
 namespace MR {
     namespace Demo {
-        float getCameraShakeIntensity(const char *pParamName) {
+        f32 getCameraShakeIntensity(const char *pParamName) {
             return getParam(pParamName)->mCameraShakeIntensity;
         }
-        float getCameraShakeSpeed(const char *pParamName) {
+        f32 getCameraShakeSpeed(const char *pParamName) {
             return getParam(pParamName)->mCameraShakeSpeed;
         }
         const char* getPadRumble(const char *pParamName) {

@@ -16,7 +16,7 @@ public:
     void constrainDipAngle(TVec3f *);
     void makeTargetMtx(TPos3f *);
     void peepMtx(TPos3f *);
-    void rotate33(TPos3f *, const TVec3f &, float);
+    void rotate33(TPos3f *, const TVec3f &, f32);
     void constrainLength(TVec3f *);
     void getMaxRate();
     void getRegisterUpVec(TVec3f *);

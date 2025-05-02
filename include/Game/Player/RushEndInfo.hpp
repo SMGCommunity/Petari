@@ -4,6 +4,6 @@
 
 class RushEndInfo {
 public:
-    RushEndInfo(LiveActor *, unsigned long, const TVec3f &, bool, unsigned long);
+    RushEndInfo(LiveActor *, u32, const TVec3f &, bool, u32);
     u8 _0[0x24];
 };

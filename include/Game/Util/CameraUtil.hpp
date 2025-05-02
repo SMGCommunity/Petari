@@ -15,7 +15,7 @@ namespace MR {
 
     bool isCameraInterpolateNearlyEnd();
 
-    void setShakeOffset(float, float);
+    void setShakeOffset(f32, f32);
 
     void cleanEventCameraTarget_temporally();
 
@@ -26,7 +26,7 @@ namespace MR {
     void loadViewMtx();
     void loadProjectionMtx();
 
-    void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, long);
+    void startEventCamera(const ActorCameraInfo *, const char *, const CameraTargetArg &, s32);
     void startEventCameraNoTarget(const ActorCameraInfo *, const char *, s32);
 
     f32 getAspect();
@@ -47,7 +47,7 @@ namespace MR {
     void resetCameraMan();
     void startCameraInterpolation(u32);
     void declareEventCamera(const ActorCameraInfo *, const char *);
-    void endEventCamera(const ActorCameraInfo *,const char *, bool, long);
+    void endEventCamera(const ActorCameraInfo *,const char *, bool, s32);
     void declareGlobalEventCameraAbyss(const char *);
     void declareGlobalEventCameraFixedThere(const char *, bool, f32);
     void declareGlobalEventCameraDead(const char *, f32, s32, s32);

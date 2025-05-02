@@ -16,17 +16,17 @@ const TPos3f *CameraContext::getInvViewMtx() const {
     return &mViewInv;
 }
 
-void CameraContext::setNearZ(float near) {
+void CameraContext::setNearZ(f32 near) {
     mNearZ = near;
     updateProjectionMtx();
 }
 
-void CameraContext::setFovy(float fovy) {
+void CameraContext::setFovy(f32 fovy) {
     mFovy = fovy;
     updateProjectionMtx();
 }
 
-void CameraContext::setShakeOffset(float x, float y) {
+void CameraContext::setShakeOffset(f32 x, f32 y) {
     mShakeOffsetX = x;
     mShakeOffsetY = y;
 
