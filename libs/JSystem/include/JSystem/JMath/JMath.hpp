@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 #include <revolution.h>
 
@@ -62,6 +63,22 @@ namespace JMathInlineVEC {
             psq_l     v2z,   8(vec2), 1, 0
             ps_sub    dz, v1z, v2z
             psq_st    dxy, 0(dst), 0, 0
+            psq_st    dz,  8(dst), 1, 0            
+        }
+    }
+
+    __attribute__((always_inline))
+    inline void PSVECSubtract2(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+        register f32 v1xy, v2xy, v1z, v2z, dxy, dz;
+        __asm {
+            psq_l     v2xy, 0(vec1), 0, 0
+            psq_l     v1xy, 0(vec2), 0, 0
+            ps_sub    dxy, v2xy, v1xy
+            psq_st    dxy, 0(dst), 0, 0
+            
+            psq_l     v2z,   8(vec1), 1, 0
+            psq_l     v1z,   8(vec2), 1, 0
+            ps_sub    dz, v2z, v1z
             psq_st    dz,  8(dst), 1, 0            
         }
     }
@@ -135,6 +152,7 @@ namespace JMathInlineVEC {
     void PSVECCopy(const Vec *, Vec *);
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     void PSVECSubtract(const Vec *, const Vec *, Vec *);
+    void PSVECSubtract2(const Vec *, const Vec *, Vec *);
     f32 PSVECDotProduct(const Vec *, const Vec *);
     f32 PSVECSquareMag(const Vec *);
     void PSVECNegate(const Vec *, Vec *);

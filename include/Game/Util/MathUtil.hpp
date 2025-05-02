@@ -3,6 +3,7 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace MR {
     void initAcosTable();
@@ -144,6 +145,8 @@ namespace MR {
     void getRotatedAxisY(TVec3f *, const TVec3f &);
 
     void turnVecToVecCosOnPlane(TVec3f *, const TVec3f &, const TVec3f &, f32);
+
+    void turnVecToVecDegree(TVec3f *, const TVec3f &, const TVec3f &, f32, const TVec3f &);
 
     void turnVecToPlane(TVec3f *, const TVec3f &, const TVec3f &);
 
