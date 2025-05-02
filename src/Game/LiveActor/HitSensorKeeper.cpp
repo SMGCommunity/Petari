@@ -48,7 +48,7 @@ HitSensor* HitSensorKeeper::getSensor(const char *pSensorName) const {
     u32 hashCode = MR::getHashCode(pSensorName);
 
     for (s32 i = 0; i < mSensorInfosSize; i++) {
-        if (hashCode == mSensorInfos[i]->mHashCode && !strstr(mSensorInfos[i]->mName, pSensorName)) {
+        if (hashCode == mSensorInfos[i]->mHashCode && !strcmp(mSensorInfos[i]->mName, pSensorName)) {
             return mSensorInfos[i]->mSensor;
         }
     }
@@ -111,7 +111,7 @@ HitSensorInfo* HitSensorKeeper::getSensorInfo(const char *pSensorName) const {
     u32 hashCode = MR::getHashCode(pSensorName);
 
     for (s32 i = 0; i < mSensorInfosSize; i++) {
-        if (hashCode == mSensorInfos[i]->mHashCode && !strstr(mSensorInfos[i]->mName, pSensorName)) {
+        if (hashCode == mSensorInfos[i]->mHashCode && !strcmp(mSensorInfos[i]->mName, pSensorName)) {
             return mSensorInfos[i];
         }
     }
