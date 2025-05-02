@@ -50,9 +50,9 @@ void ElectricPressureBullet::kill() {
 void ElectricPressureBullet::shotElectricBullet(LiveActor *actor, const TPos3f &pos, const f32 &value) {
     _98 = actor;
     _9C = value;
-    _8C.set(pos.get(0, 2), pos.get(1, 2), pos.get(2, 2));
+    _8C.set<f32>(pos.get(0, 2), pos.get(1, 2), pos.get(2, 2));
     mVelocity.scale(_9C, _8C);
-    mPosition.set(pos.get(0, 3), pos.get(1, 3), pos.get(2, 3));
+    mPosition.set<f32>(pos.get(0, 3), pos.get(1, 3), pos.get(2, 3));
     mRotation.z = 0.0f;
     mRotation.y = 0.0f;
     mRotation.x = 0.0f;

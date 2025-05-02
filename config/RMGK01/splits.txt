@@ -2509,7 +2509,7 @@ Game/Enemy/BombHei.cpp:
 	.ctors      start:0x8052EA5C end:0x8052EA60
 	.rodata     start:0x80531DE8 end:0x80531E30
 	.data       start:0x8057ABD0 end:0x8057AEB0
-	.sdata      start:0x806B18E0 end:0x806B19B8
+	.sdata      start:0x806B18E0 end:0x806B18F0
 	.sbss       start:0x806B3D18 end:0x806B3D58
 	.sdata2     start:0x806BA198 end:0x806BA208
 
@@ -2558,6 +2558,7 @@ Game/Enemy/Dossun.cpp:
 	.text       start:0x800E9E6C end:0x800EA8F8
 	.ctors      start:0x8052EA74 end:0x8052EA78
 	.data       start:0x8057BD80 end:0x8057BEF8
+	.sdata      start:0x806B1910 end:0x806B1918
 	.sbss       start:0x806B3E58 end:0x806B3E70
 	.sdata2     start:0x806BA3E8 end:0x806BA418
 
@@ -2565,6 +2566,7 @@ Game/Enemy/ElectricPressureBullet.cpp:
 	.text       start:0x800EA8F8 end:0x800EAE38
 	.ctors      start:0x8052EA78 end:0x8052EA7C
 	.data       start:0x8057BEF8 end:0x8057BFD8
+	.sdata      start:0x806B1918 end:0x806B1920
 	.sbss       start:0x806B3E70 end:0x806B3E78
 	.sdata2     start:0x806BA418 end:0x806BA428
 
@@ -2578,7 +2580,7 @@ Game/Enemy/EyeBeamer.cpp:
 Game/Enemy/FireBall.cpp:
 	.text       start:0x800EC140 end:0x800ECC34
 	.ctors      start:0x8052EA80 end:0x8052EA84
-	.data       start:0x8057C1E0 end:0x8057C380
+	.data       start:0x8057C1E0 end:0x8057C2D0
 	.sbss       start:0x806B3E98 end:0x806B3EA0
 	.sdata2     start:0x806BA450 end:0x806BA488
 
@@ -2586,7 +2588,7 @@ Game/Enemy/FireBubble.cpp:
 	.text       start:0x800ECC34 end:0x800EDDCC
 	.ctors      start:0x8052EA84 end:0x8052EA88
 	.rodata     start:0x80531F48 end:0x80531F78
-	.data       start:0x8057C380 end:0x8057C558
+	.data       start:0x8057C2D0 end:0x8057C558
 	.sbss       start:0x806B3EA0 end:0x806B3EC0
 	.sdata2     start:0x806BA488 end:0x806BA4C0
 
