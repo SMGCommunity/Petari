@@ -2182,7 +2182,7 @@ config.libs = [
             Object(Matching, "Game/System/StationedFileInfo.cpp"),
             Object(NonMatching, "Game/System/WPad.cpp"),
             Object(NonMatching, "Game/System/WPadAcceleration.cpp"),
-            Object(NonMatching, "Game/System/WPadButton.cpp"),
+            Object(Matching, "Game/System/WPadButton.cpp"),
             Object(NonMatching, "Game/System/WPadHolder.cpp"),
             Object(NonMatching, "Game/System/WPadHVSwing.cpp"),
             Object(NonMatching, "Game/System/WPadInfoChecker.cpp"),
