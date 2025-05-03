@@ -8,6 +8,9 @@
 extern "C" {
 #endif
 
+#define KPAD_BUTTON_MASK 0x0000ffff
+#define KPAD_BUTTON_RPT 0x80000000
+
 typedef struct Vec2 {
     f32 x;
     f32 y;

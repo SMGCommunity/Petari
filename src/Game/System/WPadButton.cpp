@@ -15,129 +15,128 @@ void WPadButton::update() {
     KPADStatus* status = mPad->getKPadStatus(0);
 
     if (status != nullptr) {
-        u32 v3;
         if (mHold != 0) {
-            _8 = status->trig & ~mHold & 0xFFFF;
+            _8 = status->trig & ~mHold & KPAD_BUTTON_MASK;
         }
         else {
             _8 = status->trig;
         }
 
-        if (!status->wpad_err || status->wpad_err == -2) {
+        if (status->wpad_err == WPAD_ERR_NONE || status->wpad_err == WPAD_ERR_BUSY) {
             mHold = status->hold;
             mRelease = status->release;
         }
 
         _10 = _8;
 
-        if ((status->hold & 0x80000000) != 0) {
+        if ((status->hold & KPAD_BUTTON_RPT) != 0) {
             _10 = _8 | mHold;
         }
     }
 }
 
 bool WPadButton::testButtonUp() const {
-    return (mHold >> 3) & 0x1;
+    return (mHold & WPAD_BUTTON_UP) != 0;
 }
 
 bool WPadButton::testButtonDown() const {
-    return (mHold >> 2) & 0x1;
+    return (mHold & WPAD_BUTTON_DOWN) != 0;
 }
 
 bool WPadButton::testButtonLeft() const {
-    return mHold & 0x1;
+    return (mHold & WPAD_BUTTON_LEFT) != 0;
 }
 
 bool WPadButton::testButtonRight() const {
-    return (mHold >> 1) & 0x1;
+    return (mHold & WPAD_BUTTON_RIGHT) != 0;
 }
 
 bool WPadButton::testButtonA() const {
-    return (mHold >> 11) & 0x1;
+    return (mHold & WPAD_BUTTON_A) != 0;
 }
 
 bool WPadButton::testButtonB() const {
-    return (mHold >> 10) & 0x1;
+    return (mHold & WPAD_BUTTON_B) != 0;
 }
 
 bool WPadButton::testButtonMinus() const {
-    return (mHold >> 12) & 0x1;
+    return (mHold & WPAD_BUTTON_MINUS) != 0;
 }
 
 bool WPadButton::testButtonPlus() const {
-    return (mHold >> 4) & 0x1;
+    return (mHold & WPAD_BUTTON_PLUS) != 0;
 }
 
 bool WPadButton::testButton1() const {
-    return (mHold >> 9) & 0x1;
+    return (mHold & WPAD_BUTTON_1) != 0;
 }
 
 bool WPadButton::testButton2() const {
-    return (mHold >> 8) & 0x1;
+    return (mHold & WPAD_BUTTON_2) != 0;
 }
 
 bool WPadButton::testButtonC() const {
-    return (mHold >> 14) & 0x1;
+    return (mHold & WPAD_BUTTON_C) != 0;
 }
 
 bool WPadButton::testButtonZ() const {
-    return (mHold >> 13) & 0x1;
+    return (mHold & WPAD_BUTTON_Z) != 0;
 }
 
 bool WPadButton::testTriggerUp() const {
-    return (mHold >> 3) & 0x1;
+    return (_8 & WPAD_BUTTON_UP) != 0;
 }
 
 bool WPadButton::testTriggerDown() const {
-    return (mHold >> 2) & 0x1;
+    return (_8 & WPAD_BUTTON_DOWN) != 0;
 }
 
 bool WPadButton::testTriggerLeft() const {
-    return _8 & 0x1;
+    return (_8 & WPAD_BUTTON_LEFT) != 0;
 }
 
 bool WPadButton::testTriggerRight() const {
-    return (_8 >> 1) & 0x1;
+    return (_8 & WPAD_BUTTON_RIGHT) != 0;
 }
 
 bool WPadButton::testTriggerA() const {
-    return (_8 >> 11) & 0x1;
+    return (_8 & WPAD_BUTTON_A) != 0;
 }
 
 bool WPadButton::testTriggerB() const {
-    return (_8 >> 10) & 0x1;
+    return (_8 & WPAD_BUTTON_B) != 0;
 }
 
 bool WPadButton::testTriggerMinus() const {
-    return (_8 >> 12) & 0x1;
+    return (_8 & WPAD_BUTTON_MINUS) != 0;
 }
 
 bool WPadButton::testTriggerHome() const {
-    return (_8 >> 15) & 0x1;
+    return (_8 & WPAD_BUTTON_HOME) != 0;
 }
 
 bool WPadButton::testTriggerPlus() const {
-    return (_8 >> 4) & 0x1;
+    return (_8 & WPAD_BUTTON_PLUS) != 0;
 }
 
 bool WPadButton::testTrigger1() const {
-    return (_8 >> 9) & 0x1;
+    return (_8 & WPAD_BUTTON_1) != 0;
 }
 
 bool WPadButton::testTrigger2() const {
-    return (_8 >> 8) & 0x1;
+    return (_8 & WPAD_BUTTON_2) != 0;
 }
 
 bool WPadButton::testTriggerC() const {
-    return (_8 >> 14) & 0x1;
+    return (_8 & WPAD_BUTTON_C) != 0;
 }
 
 bool WPadButton::testTriggerZ() const {
-    return (_8 >> 13) & 0x1;
+    return (_8 & WPAD_BUTTON_Z) != 0;
 }
 
 bool WPadButton::testReleaseZ() const {
-    return (mRelease >> 13) & 0x1;
+    return (mRelease & WPAD_BUTTON_Z) != 0;
 }
 
 bool WPadButton::isChangeAnyState() const {
