@@ -4741,7 +4741,7 @@ Game/MapObj/HipDropRock.cpp:
 Game/MapObj/HipDropSwitch.cpp:
 	.text       start:0x801E59F0 end:0x801E6224
 	.ctors      start:0x8052ED48 end:0x8052ED4C
-	.data       start:0x80595B88 end:0x80595D60
+	.data       start:0x80595B88 end:0x80595C80
 	.sdata      start:0x806B1E40 end:0x806B1E50
 	.sbss       start:0x806B5248 end:0x806B5258
 	.sdata2     start:0x806BD1F0 end:0x806BD208
@@ -4750,7 +4750,7 @@ Game/MapObj/HipDropTimerSwitch.cpp:
 	.text       start:0x801E6224 end:0x801E6C20
 	.ctors      start:0x8052ED4C end:0x8052ED50
 	.rodata     start:0x80533360 end:0x80533398
-	.data       start:0x80595D60 end:0x80595E18
+	.data       start:0x80595C80 end:0x80595E18
 	.sdata      start:0x806B1E50 end:0x806B1E60
 	.sbss       start:0x806B5258 end:0x806B5268
 	.sdata2     start:0x806BD208 end:0x806BD220

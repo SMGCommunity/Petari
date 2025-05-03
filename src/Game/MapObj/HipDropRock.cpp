@@ -1,4 +1,12 @@
 #include "Game/MapObj/HipDropRock.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/mtx.h"
 
 
 HipDropRock::HipDropRock(const char *pName) : LiveActor(pName) {
@@ -39,6 +47,24 @@ bool HipDropRock::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor 
         return true;
     }
     return false;
+}
+
+void HipDropRock::initBreakModel() {
+    MtxPtr baseMtx = getBaseMtx();
+    _90.setInline(baseMtx);
+    TVec3f v1;
+    TVec3f v2;
+    v1.x = 0.0f;
+    v1.y = 1.0f;
+    v1.z = 0.0f;
+    v2.scale(MR::getRandom(0.0f, 180.0f), v1);
+    TPos3f v3;
+    MR::makeMtxMoment(&v3, v2);
+    _90.concat(v3);
+    mModel = MR::createModelObjMapObj("ヒビ石壊れモデル", "HipDropRockBreak", _90);
+    mModel->initWithoutIter();
+    MR::invalidateClipping(mModel);
+    mModel->makeActorDead();
 }
 
 void HipDropRock::initItem(const JMapInfoIter &rIter) {
