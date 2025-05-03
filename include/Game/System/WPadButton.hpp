@@ -1,10 +1,12 @@
 #pragma once
 
-#include "Game/System/WPad.hpp"
+#include <revolution.h>
+
+class WPad;
 
 class WPadButton {
 public:
-    WPadButton(const WPad *);
+    WPadButton(const WPad*);
 
     void update();
     bool testButtonUp() const;
@@ -35,11 +37,12 @@ public:
     bool testReleaseZ() const;
     bool isChangeAnyState() const;
 
-    const WPad* mPad;       // 0x0
-    u32 mHold;              // 0x4
-    u32 _8;
-    u32 mRelease;           // 0xC
-    u32 _10;
-    f32 mDelaySec;          // 0x14
-    f32 mPulseSec;          // 0x18
+private:
+    /* 0x00 */ const WPad* mPad;
+    /* 0x04 */ u32 mHold;
+    /* 0x08 */ u32 mTrigger;
+    /* 0x0C */ u32 mRelease;
+    /* 0x10 */ u32 mRepeat;
+    /* 0x14 */ f32 mDelaySec;
+    /* 0x18 */ f32 mPulseSec;
 };
