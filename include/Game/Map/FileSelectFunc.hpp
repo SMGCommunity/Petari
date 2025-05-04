@@ -12,8 +12,7 @@ namespace {
     };
 };
 
-class FileSelectFunc {
-public:
-    static u32 getMiiNameBufferSize();
-    static void copyMiiName(u16 *, const FileSelectIconID &);
+namespace FileSelectFunc {
+    u32 getMiiNameBufferSize();
+    void copyMiiName(u16*, const FileSelectIconID&);
 };
