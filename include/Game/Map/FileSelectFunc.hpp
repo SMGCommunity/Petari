@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Game/Map/FileSelectIconID.hpp"
+#include <revolution.h>
+
+class FileSelectIconID;
 
 namespace { 
-    static const char* sIconNameMessageID[5] = {
+    static const char* sIconNameMessageID[] = {
         "System_FileSelect_Icon000",
         "System_FileSelect_Icon001",
         "System_FileSelect_Icon002",
