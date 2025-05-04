@@ -23,6 +23,6 @@ namespace FileSelectFunc {
 
     /// @brief Returns the name of the given icon by pointer.
     /// @param pName The output pointer for the null-terminated wide name.
-    /// @param rIcon The reference to the File Selection Screen icon.
+    /// @param rIcon The reference to the identifier of a File Selection Screen icon.
     void copyMiiName(u16* pName, const FileSelectIconID& rIcon);
 };
