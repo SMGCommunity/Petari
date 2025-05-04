@@ -1,42 +1,42 @@
 #include "Game/Map/FileSelectIconID.hpp"
 
-FileSelectIconID::FileSelectIconID() {
-    _0 = false;
-    _2 = 0;
+FileSelectIconID::FileSelectIconID() :
+    mIsMii(false),
+    mData(0)
+{}
+
+FileSelectIconID::FileSelectIconID(const FileSelectIconID& rOther) {
+    mIsMii = rOther.mIsMii;
+    mData = rOther.mData;
 }
 
-FileSelectIconID::FileSelectIconID(const FileSelectIconID &rOther) {
-    _0 = rOther._0;
-    _2 = rOther._2;
+void FileSelectIconID::set(const FileSelectIconID& rOther) {
+    mIsMii = rOther.mIsMii;
+    mData = rOther.mData;
 }
 
-void FileSelectIconID::set(const FileSelectIconID &rOther) {
-    _0 = rOther._0;
-    _2 = rOther._2;
-}
-
-void FileSelectIconID::setMiiIndex(u16 idIdx) {
-    _2 = idIdx;
-    _0 = true;
+void FileSelectIconID::setMiiIndex(u16 miiIndex) {
+    mData = miiIndex;
+    mIsMii = true;
 }
 
 bool FileSelectIconID::isMii() const {
-    return _0;
+    return mIsMii;
 }
 
 u16 FileSelectIconID::getMiiIndex() const {
-    return _2;
+    return mData;
 }
 
-void FileSelectIconID::setFellowID(FileSelectIconID::EFellowID fellowID) {
-    _2 = (u16)fellowID;
-    _0 = 0;
+void FileSelectIconID::setFellowID(EFellowID fellowID) {
+    mData = fellowID;
+    mIsMii = false;
 }
 
 bool FileSelectIconID::isFellow() const {
-    return !_0;
+    return !mIsMii;
 }
 
 FileSelectIconID::EFellowID FileSelectIconID::getFellowID() const {
-    return (EFellowID)_2;
+    return static_cast<EFellowID>(mData);
 }

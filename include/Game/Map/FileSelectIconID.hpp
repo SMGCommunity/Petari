@@ -5,20 +5,25 @@
 class FileSelectIconID {
 public:
     enum EFellowID {
-
+        Mario,
+        Luigi,
+        Yoshi,
+        Kinopio,
+        Peach,
     };
 
     FileSelectIconID();
-    FileSelectIconID(const FileSelectIconID &);
+    FileSelectIconID(const FileSelectIconID&);
 
-    void set(const FileSelectIconID &);
+    void set(const FileSelectIconID&);
     void setMiiIndex(u16);
     bool isMii() const;
     u16 getMiiIndex() const;
-    void setFellowID(FileSelectIconID::EFellowID);
+    void setFellowID(EFellowID);
     bool isFellow() const;
-    FileSelectIconID::EFellowID getFellowID() const;
+    EFellowID getFellowID() const;
 
-    bool _0;
-    u16 _2;
+private:
+    bool mIsMii;
+    u16 mData;
 };
