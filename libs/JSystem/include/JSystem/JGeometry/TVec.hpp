@@ -200,7 +200,7 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3 operator*(f32 scalar) const {
+        TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
             ret.x *= scalar;
             ret.y *= scalar;
@@ -228,7 +228,7 @@ namespace JGeometry {
             return ret;
         }
         
-        TVec3 operator-(const TVec3 &op) const  {
+        TVec3 operator-(const TVec3 &op) const NO_INLINE {
             TVec3 ret(*this);
             JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
             return ret;

@@ -22,7 +22,11 @@ public:
     
     void updateByLocalRootAndWorldTarget(const TPos3f &, const TVec3f &, const TVec3f &);
 
-    void updateByUpVector(const TVec3f &, const TVec3f &, const TVec3f &);
+    void updateByLocalRootAndDirection(const TPos3f &, const TVec3f &, const TVec3f &);
+
+    s32 updateByUpVector(const TVec3f &, const TVec3f &, const TVec3f &);
+
+    s32 updateByDistanceOnly(f32);
 
     TPos3f _0;
     TPos3f _30;
