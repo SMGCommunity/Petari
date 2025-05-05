@@ -7,6 +7,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/mtx.h"
 
 class CollisionParts;
 class Nerve;
@@ -287,6 +288,7 @@ namespace MR {
 
     LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
     LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);
+    LodCtrl* createLodCtrlMapObj(LiveActor*, const JMapInfoIter&, f32);
 
     bool changeShowModelFlagSyncNearClipping(LiveActor*, f32);
 
@@ -296,6 +298,8 @@ namespace MR {
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, CollisionScaleType);
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor*, const char*, HitSensor*, MtxPtr, CollisionScaleType);
+
+    CollisionParts* tryCreateCollisionMoveLimit(LiveActor*, MtxPtr, HitSensor*);
 
     bool isBinded(const LiveActor*);
     bool isBinded(const LiveActor*, HitSensor*);
