@@ -20,12 +20,14 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 #include <cstddef>
+#include <cstdio>
 
 UFOBase::UFOBase(const char *pName) : LiveActor(pName) {
     mCollisionParts = nullptr;
     mLODCtrl = nullptr;
-    mRailMover2 = nullptr;
-    mRailMover1 = nullptr;
+    mModel = nullptr;
+    mRailMover = nullptr;
+    f32 v1 = 1.0f; // ???
     _9C.x = 0.0f;
     _9C.y = 0.0f;
     _9C.z = 1.0f;
@@ -43,16 +45,18 @@ void UFOBase::init(const JMapInfoIter &rIter) {
     _B4 = name;
     MR::connectToSceneCollisionMapObj(this);
     initHitSensor(1);
-    //
+    initSensorType();
     MR::initCollisionParts(this, name, getSensor(nullptr), nullptr);
     mCollisionParts = MR::tryCreateCollisionMoveLimit(this, getBaseMtx(), getSensor(nullptr));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
+
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
-        mRailMover1 = new MapPartsRailMover(this);
-        mRailMover1->init(rIter);
+        mRailMover = new MapPartsRailMover(this);
+        mRailMover->init(rIter);
     }
+
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, rIter, 32);
     MR::useStageSwitchReadB(this, rIter);
@@ -66,6 +70,7 @@ void UFOBase::init(const JMapInfoIter &rIter) {
     _A8 *= 0.0099999998f;
     MR::getMapPartsArgMoveConditionType(&_AC, rIter);
     MR::tryStartAllAnim(this, name);
+
     if (MR::isMoveStartTypeUnconditional(_AC)) {
         initNerve(&NrvUFOBase::UFOBaseNrvWait::sInstance);
     }
@@ -83,8 +88,8 @@ void UFOBase::exeWaitForPlayerOn() {
 
 void UFOBase::exeMove() {
     if (MR::isFirstStep(this)) {
-        if (mRailMover1) {
-            mRailMover1->start();
+        if (mRailMover) {
+            mRailMover->start();
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
                 MR::startSound(this, "SE_OJ_UFO_BTL_C_START", -1, -1);
             }
@@ -98,10 +103,10 @@ void UFOBase::initSensorType() {
 }
 
 void UFOBase::makeActorDead() {
-    if (mRailMover2) {
-        u32 msg;
-        mRailMover2->receiveMsg(msg);
+    if (mModel) {
+        mModel->makeActorDead();
     }
+
     LiveActor::makeActorDead();
 }
 
@@ -109,6 +114,7 @@ void UFOBase::kill() {
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
+
     LiveActor::kill();
 }
 
@@ -117,18 +123,20 @@ void UFOBase::control() {
         mCollisionParts->setMtx();
     }
     mLODCtrl->update();
+
     if (MR::isEqualString("UFONormalB", _B4)) {
         MR::startLevelSound(this, "SE_OJ_LV_UFO_NORM_B_WORK", -1, -1, -1);
     }
     else if (MR::isEqualString("UFOBattleStageD", _B4)) {
         MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_D_ROTATE", -1, -1, -1);
     }
-    if (mRailMover1) {
-        mRailMover1->movement();
-        mPosition.x = mRailMover1->_28.x;
-        mPosition.y = mRailMover1->_28.y;
-        mPosition.z = mRailMover1->_28.z;
-        if (mRailMover1->isWorking()) {
+    
+    if (mRailMover) {
+        mRailMover->movement();
+        mPosition.x = mRailMover->_28.x;
+        mPosition.y = mRailMover->_28.y;
+        mPosition.z = mRailMover->_28.z;
+        if (mRailMover->isWorking()) {
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
                 MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_C_MOVE", -1, -1, -1);
             }
@@ -136,7 +144,7 @@ void UFOBase::control() {
                 MR::startLevelSound(this, "SE_OJ_LV_UFO_MOVE", -1, -1, -1);
             }
         }
-        if (mRailMover1->isDone() && !_B0) {
+        if (mRailMover->isDone() && !_B0) {
             MR::tryRumblePadMiddle(this, 0);
             MR::shakeCameraNormal();
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
@@ -159,11 +167,18 @@ void UFOBase::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-void UFOBase::initSubModel(const JMapInfoIter &riter, const char *name) {
-    mLODCtrl = MR::createLodCtrlMapObj(this, riter, 100.0f);
+void UFOBase::initSubModel(const JMapInfoIter &rIter, const char *name) {
+    mLODCtrl = MR::createLodCtrlMapObj(this, rIter, 100.0f);
     if (MR::isExistSubModel(name, "Bloom")) {
-        char pChar;
-        //snprintf(pChar, 0x100u, "sBloom", name);
+        char pChar[0x100];
+        snprintf(pChar, 0x100u, "%sBloom", name);
+        const char *name2 = mName; 
+        mModel = MR::createModelObjBloomModel(name2, pChar, getBaseMtx());
+        f32 num = 500.0f;
+        MR::calcModelBoundingRadius(&num, this);
+        MR::setClippingFarMax(mModel);
+        MR::setClippingTypeSphere(mModel, num);
+        MR::startBpk(mModel, pChar);
     }
 }
 
@@ -171,6 +186,30 @@ void UFOBase::exeWait() {
     if (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) {
         setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
     }
+}
+
+UFOSolid::UFOSolid(const char *pName) : UFOBase(pName) {
+
+}
+
+UFOBreakable::UFOBreakable(const char *pName) : UFOBase(pName) {
+
+}
+
+void UFOBreakable::initSensorType() {
+    TVec3f vec;
+    vec.x = 0.0f;
+    vec.y = 0.0f;
+    vec.z = 0.0f;
+    MR::addHitSensor(this, "body", 84, 8, 100.0f, vec);
+}
+
+bool UFOBreakable::receiveMsgEnemyAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+    if (MR::isMsgExplosionAttack(msg) && !isNerve(&NrvUFOBase::UFOBaseNrvBreak::sInstance)) {
+        setNerve(&NrvUFOBase::UFOBaseNrvBreak::sInstance);
+        return true;
+    }
+    return false;
 }
 
 namespace NrvUFOBase {
