@@ -3,10 +3,11 @@
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
 
-class Layout;
-class Nerve;
-class LayoutActor;
 class IconAButton;
+class J3DFrameCtrl;
+class Layout;
+class LayoutActor;
+class Nerve;
 
 namespace MR {
     void setEffectRate(LayoutActor*, const char*, f32);
@@ -20,7 +21,10 @@ namespace MR {
 
     void showPaneRecursive(LayoutActor*, const char*);
 
+    J3DFrameCtrl* getAnimCtrl(LayoutActor*, u32);
+
     void startAnim(LayoutActor*, const char*, u32);
+    void startAnimAtFirstStep(LayoutActor*, const char*, u32);
 
     void setAnimFrameAndStop(LayoutActor*, f32, u32);
     void setPaneAnimFrameAndStop(LayoutActor*, const char*, f32, u32);
