@@ -10,6 +10,7 @@
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
+#include "Game/Map/KoopaBattleMapStair.hpp"
 #include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
@@ -961,11 +962,11 @@ namespace {
 		{ "KoopaPowerUpSwitch", NULL, 0 },
 		{ "KoopaSwitchKeeper", NULL, 0 },
 		{ "KoopaViewSwitchKeeper", NULL, 0 },
-		{ "KoopaBattleMapStair", NULL, "KoopaBattleMapStair" },
+		{ "KoopaBattleMapStair", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStair" },
 		{ "KoopaBattleMapPlate", NULL, "KoopaPlate" },
 		{ "KoopaBattleMapCoinPlate", NULL, "KoopaPlateCoin" },
-		{ "KoopaBattleMapStairBig", NULL, "KoopaBattleMapStairBig" },
-		{ "KoopaBattleMapStairTurn", NULL, "KoopaBattleMapStairTurn" },
+		{ "KoopaBattleMapStairBig", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStairBig" },
+		{ "KoopaBattleMapStairTurn", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStairTurn" },
 		{ "KoopaBattleMapStairturnAppear", NULL, "KoopaBattleMapStairTurn" },
 		{ "KoopaVS1PartsSpiralRoad", createNameObj<SimpleMapObj>, "KoopaVS1PartsSpiralRoad" },
 		{ "KoopaVS1PartsMoveStepA", NULL, "KoopaVS1PartsMoveStepA" },
