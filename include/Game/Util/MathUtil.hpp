@@ -179,15 +179,19 @@ namespace MR {
         __asm {
                 frsqrte recip, val
             }
-        return recip;
+        return recip * val;
     }
     
     inline f32 speedySqrtf(register f32 x) {
-        f32 recip;
+        register f32 recip;
 
         if (x > 0.0f) {
-            f32 recip = frsqrte(x);
-            return -(((recip * x) * recip) - 3.0f) * (recip * x) * 0.5f;
+            __asm { frsqrte recip, x }
+            f32 v = recip * x;
+            recip =  -((v*recip) - 3.0f);
+            recip = (recip * v);
+            recip *= 0.5f;
+            return recip;
         }
         return x;
     }

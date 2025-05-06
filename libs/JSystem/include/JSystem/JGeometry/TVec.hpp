@@ -377,6 +377,10 @@ namespace JGeometry {
         void setLength(f32);
         f32 setLength(const TVec3 &, f32);
 
+        f32 length() const { 
+            return PSVECMag(this);
+        }
+
         template <typename T>
         void cubic(const TVec3 &, const TVec3 &, const TVec3 &, const TVec3 &, f32);
 

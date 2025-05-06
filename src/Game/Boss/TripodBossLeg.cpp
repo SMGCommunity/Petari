@@ -754,17 +754,18 @@ namespace MR {
             a2->set(*a1);
         }
         else {
-            f32 v11 = PSVECMag(&v16);
+            f32 v11 = v16.length();
             f32 v12 = (v10 / v11);
+            f32 v14 = (v16.y / v11);
+            f32 v15 = (v16.x / v10);
             f32 v13 = (v16.z / v10);
-            f32 v14 = (v16.x / v10);
-            f32 v15 = (v16.y / v11);
-            a1->setXDir(v14, 0.0f, v13);
+        
+            a1->setXDir(v15, 0.0f, v13);
             a1->setYDir(0.0f, 1.0f, 0.0f);
-            a1->setZDir(-v13, 0.0f, v14);
+            a1->setZDir(-v13, 0.0f, v15);
             a1->setTrans(0.0f, 0.0f, 0.0f);
-            a2->setXDir(v12, v15, 0.0f);
-            a2->setYDir(-v15, v12, 0.0f);
+            a2->setXDir(v12, v14, 0.0f);
+            a2->setYDir(-v14, v12, 0.0f);
             a2->setZDir(0.0f, 0.0f, 1.0f);
             a2->setTrans(0.0f, 0.0f, 0.0f);
             a1->concat(a3, *a1);
