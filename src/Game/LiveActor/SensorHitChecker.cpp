@@ -14,7 +14,7 @@ void SensorHitChecker::initGroup(HitSensor *pSensor) {
         pSensor->mSensorGroup = mRideGroup;
     }
     else if (pSensor->isType(0x7F)) {
-        pSensor->mSensorGroup = mRideGroup;
+        pSensor->mSensorGroup = mEyeGroup;
     }
     else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) 
             || pSensor->isType(0x15) || pSensor->isType(0x47) 

@@ -9,7 +9,7 @@ MirrorActor::~MirrorActor() {
 
 MirrorActor::MirrorActor(LiveActor *pActor, const char *a2, const char *a3) : LiveActor(a2) {
     _8C = pActor;
-    _A0 = 0;
+    _A0 = false;
     initModelManagerWithAnm(a3, 0, 0);
 }
 
@@ -56,8 +56,8 @@ void MirrorActor::init(const JMapInfoIter &rIter) {
 
 void MirrorActor::movement() {
     if (MR::isDead(this) || MR::isDead(_8C) || MR::isClipped(_8C) || MR::isHiddenModel(_8C) || isHostInTheOtherSideOfMirror()) {
-        if (_A0) {
-            _A0 = 1;
+        if (!_A0) {
+            _A0 = true;
 
             if (!MR::isHiddenModel(this)) {
                 MR::disconnectToDrawTemporarily(this);
@@ -66,7 +66,7 @@ void MirrorActor::movement() {
     }
     else {
         if (_A0) {
-            _A0 = 0;
+            _A0 = false;
 
             if (!MR::isHiddenModel(this)) {
                 MR::connectToDrawTemporarily(this);

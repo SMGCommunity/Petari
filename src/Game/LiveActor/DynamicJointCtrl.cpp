@@ -60,8 +60,8 @@ void JointCtrlRate::endCtrl(s32 val) {
         val = 0xA;
     }
 
-    _8 = val;
-    _C = -1;
+    _C = val;
+    _8 = -1;
     _4 = val;
     _0 = 1.0f;
 }
