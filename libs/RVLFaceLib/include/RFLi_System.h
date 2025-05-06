@@ -34,6 +34,7 @@ typedef struct RFLiManager {
     RFLCallback iconDrawCb;                // at 0x1F14
     RFLCallback modelDrawCb;               // at 0x1F18
     char UNK_0x1F1C[0x4];
+    u32 _1F20;
 } RFLiManager;
 
 RFLErrcode RFLiBootLoadAsync(void);
