@@ -172,6 +172,29 @@ namespace MR {
     inline f32 wrapAngleTowards(f32 a, f32 b) {
         return a + (f32)fmod(360.0f + (b - a), 360.0f);
     }
+
+    #ifdef __MWERKS__
+    inline f32 frsqrte(register f32 val) {
+        register f32 recip;
+        __asm {
+                frsqrte recip, val
+            }
+        return recip;
+    }
+    
+    inline f32 speedySqrtf(register f32 x) {
+        f32 recip;
+
+        if (x > 0.0f) {
+            f32 recip = frsqrte(x);
+            return -(((recip * x) * recip) - 3.0f) * (recip * x) * 0.5f;
+        }
+        return x;
+    }
+    #else
+    f32 frsqrte(f32 val);
+    f32 speedySqrtf(f32);
+    #endif
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

@@ -724,3 +724,51 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     v3 -= v2;
     _1C0.setTrans(v3);
 }
+
+namespace MR {
+    void separateMatrixRotateYZX(TPos3f *a1, TPos3f *a2, const TPos3f &a3, const TPos3f &a4) {
+        TPos3f v17;
+        v17.invert(a3);
+        v17.concat(v17, a4);
+        TVec3f v16;
+        f32 z = v17.mMtx[2][0];
+        f32 y = v17.mMtx[1][0];
+        f32 x = v17.mMtx[0][0];
+        v16.set<f32>(x, y, z);
+        f32 v10 = MR::speedySqrtf((v16.x * v16.x) + (v16.z * v16.z));
+
+        if (MR::isNearZero(v10, 0.000001f)) {
+            if (v16.y >= 0.0f) {
+                a1->setXDir(0.0f, 1.0f, 0.0f);
+                a1->setYDir(-1.0f, 0.0f, 0.0f);
+                
+            }
+            else {
+                a1->setXDir(0.0f, -1.0f, 0.0f);
+                a1->setYDir(1.0f, 0.0f, 0.0f);
+            }
+
+            
+            a1->setZDir(0.0f, 0.0f, 1.0f);
+            a1->concat(a3, *a1);
+            a2->set(*a1);
+        }
+        else {
+            f32 v11 = PSVECMag(&v16);
+            f32 v12 = (v10 / v11);
+            f32 v13 = (v16.z / v10);
+            f32 v14 = (v16.x / v10);
+            f32 v15 = (v16.y / v11);
+            a1->setXDir(v14, 0.0f, v13);
+            a1->setYDir(0.0f, 1.0f, 0.0f);
+            a1->setZDir(-v13, 0.0f, v14);
+            a1->setTrans(0.0f, 0.0f, 0.0f);
+            a2->setXDir(v12, v15, 0.0f);
+            a2->setYDir(-v15, v12, 0.0f);
+            a2->setZDir(0.0f, 0.0f, 1.0f);
+            a2->setTrans(0.0f, 0.0f, 0.0f);
+            a1->concat(a3, *a1);
+            a2->concat(*a1, *a2);
+        }
+    }
+};
