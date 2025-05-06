@@ -10,6 +10,7 @@
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
+#include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
 #include "revolution.h"
@@ -547,7 +548,7 @@ namespace {
 		{ "LavaBreakRockC", createNameObj<AnmModelGroundOnMove>, "LavaBreakRockC" },
 		{ "LavaBreakRockD", createNameObj<AnmModelGroundOnMove>, "LavaBreakRockD" },
 		{ "LavaBreakColumn", NULL, "LavaBreakColumn" },
-		{ "LavaShellTower", NULL, "LavaShellTower" },
+		{ "LavaShellTower", createNameObj<LavaShellTower>, "LavaShellTower" },
 		{ "LavaFallDownColumnA", createNameObj<AnmModelSwitchMove>, "LavaFallDownColumnA" },
 		{ "LavaFallDownColumnB", createNameObj<AnmModelSwitchMove>, "LavaFallDownColumnB" },
 		{ "LavaShellTowerStep", NULL, "LavaShellTowerStep" },
