@@ -51,6 +51,7 @@ namespace MR {
     void connectToSceneIndirectMapObj(LiveActor *);
     void connectToSceneIndirectMapObjStrongLight(LiveActor *);
     void connectToSceneAreaObj(NameObj *);
+    void connectToSceneLayoutDecoration(NameObj *);
 
     void connectToSceneSun(LiveActor *);
 
