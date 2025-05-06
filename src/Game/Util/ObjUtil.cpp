@@ -1,5 +1,13 @@
+#include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/NameObj/NameObjFinder.hpp"
+#include "Game/NameObj/MovementOnOffGroupHolder.hpp"
+#include "Game/NameObj/NameObjListExecutor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/LayoutActor.hpp"
+#include "Game/SingletonHolder.hpp"
+#include "Game/System/GameSystem.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -322,10 +330,68 @@ namespace MR {
         MR::registerNameObjToExecuteHolder(pActor, -1, 0x5, 0xE, -1);
     }
 
+    void connectToSceneSky(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x1, -1);
+    }
+
+    void connectToSceneAir(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x2, -1);
+    }
+
+    void connectToSceneSun(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x24, 0x5, 0x3, -1);
+    }
+
+    void connectToSceneCrystal(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0x20, -1);
+    }
+
+    void connectToSceneNormalMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, -1, 0x18);
+    }
+
     NameObjAdaptor* createDrawAdaptor(const char *pName, const MR::FunctorBase &rFunctor) {
         NameObjAdaptor* adaptor = new NameObjAdaptor(pName);
         adaptor->connectToDraw(rFunctor);
         return adaptor;
+    }
+
+    void requestMovementOn(NameObj *pObj) {
+        NameObjFunction::requestMovementOn(pObj);
+    }
+
+    void requestMovementOn(LiveActor *pActor) {
+        NameObjFunction::requestMovementOn(pActor);
+        if (MR::isExistEffectKeeper(pActor)) {
+            MR::Effect::requestMovementOn(pActor->mEffectKeeper);
+        }
+    }
+
+    void requestMovementOn(LayoutActor *pActor) {
+        NameObjFunction::requestMovementOn(pActor);
+    }
+
+    void requestMovementOff(NameObj *pObj) {
+        NameObjFunction::requestMovementOff(pObj);
+    }
+
+    NameObj* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
+        NameObjGroup* objGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
+        objGroup->registerObj(pObj);
+        return objGroup;
+    }
+
+    void joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
+        MovementOnOffGroupHolder* holder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
+        holder->joinToGroup(pName, pObj, a3);
+    }
+
+    void onMovementOnOffGroup(const char *pGroupName) {
+        MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder)->onMovementGroup(pGroupName);
+    }
+
+    void registerPreDrawFunction(const MR::FunctorBase &rFunc, int a2) {
+        SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->registerPreDrawFunction(rFunc, a2);
     }
 
     NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char *pName, const MR::FunctorBase &rFunctor) {

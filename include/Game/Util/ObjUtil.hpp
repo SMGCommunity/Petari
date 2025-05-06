@@ -195,7 +195,7 @@ namespace MR {
 
     const ResTIMG* loadTexFromArc(const char *, const char *);
 
-    void joinToNameObjGroup(NameObj *, const char *);
+    NameObj* joinToNameObjGroup(NameObj *, const char *);
 
     bool isEndPowerStarAppearDemo(const NameObj *);
 
