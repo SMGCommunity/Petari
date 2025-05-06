@@ -4,14 +4,13 @@
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
-
 class ButtonPaneController : public NerveExecutor {
 public:
     ButtonPaneController(LayoutActor* pHost, const char* pPaneName, const char* pBoxButtonName, u32 u, bool b);
     virtual ~ButtonPaneController();
-    virtual void update();
-    virtual void appear();
-    virtual void disappear();
+    void update();
+    void appear();
+    void disappear();
     bool trySelect();
     bool isHidden() const;
     bool isPointing() const;
