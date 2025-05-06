@@ -17,7 +17,7 @@ public:
 
 class CameraRepulsiveSphere : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveSphere(int type, const char *pName) : CameraRepulsiveArea(type, pName) {
+    inline CameraRepulsiveSphere(const char *pName) : CameraRepulsiveArea(2, pName) {
 
     }
 
@@ -28,7 +28,7 @@ public:
 
 class CameraRepulsiveCylinder : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveCylinder(int type, const char *pName) : CameraRepulsiveArea(type, pName) {
+    inline CameraRepulsiveCylinder(const char *pName) : CameraRepulsiveArea(3, pName) {
 
     }
 

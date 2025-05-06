@@ -4,6 +4,7 @@
 #include "Game/NameObj/NameObjFinder.hpp"
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
+#include "Game/Map/NamePosHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/SingletonHolder.hpp"
@@ -487,4 +488,26 @@ namespace MR {
     
     // MR::getCsvDataBool
 
+
+    bool isName(const NameObj *pObj, const char *pName) {
+        return strcmp(pObj->mName, pName) == 0;
+    }
+
+    bool isSame(const NameObj *a1, const NameObj *a2) {
+        return a1 == a2;
+    }
+
+    bool tryRegisterNamePosLinkObj(const NameObj *pObj, const JMapInfoIter &rIter) {
+        return MR::getNamePosHolder()->tryRegisterLinkObj(pObj, rIter);
+    }
+
+    void findNamePos(const char *pName, MtxPtr mtx) {
+        MR::tryFindLinkNamePos(nullptr, pName, mtx);
+    }
+
+    void findNamePos(const char *pName, TVec3f *a2, TVec3f *a3) {
+        MR::getNamePosHolder()->find(nullptr, pName, a2, a3);
+    }
+
+    // MR::findNamePosOnGround
 };

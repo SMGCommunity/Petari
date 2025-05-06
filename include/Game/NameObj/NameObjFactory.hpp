@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Game/AreaObj/AstroChangeStageCube.hpp"
+#include "Game/AreaObj/BigBubbleCameraArea.hpp"
+#include "Game/AreaObj/BigBubbleGoalArea.hpp"
 #include "Game/Boss/BossKameck.hpp"
 #include "Game/Boss/TripodBossBaseJointPosition.hpp"
 #include "Game/Boss/TripodBossCoin.hpp"
@@ -10,21 +13,13 @@
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
+#include "Game/Boss/TripodBossStepStartArea.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
 #include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
 #include "revolution.h"
-#include "Game/AreaObj/AstroChangeStageCube.hpp"
-#include "Game/AreaObj/AudioEffectArea.hpp"
-#include "Game/AreaObj/BigBubbleCameraArea.hpp"
-#include "Game/AreaObj/BgmProhibitArea.hpp"
-#include "Game/AreaObj/ChangeBgmCube.hpp"
-#include "Game/AreaObj/CubeCamera.hpp"
-#include "Game/AreaObj/DeathArea.hpp"
-#include "Game/AreaObj/DepthOfFieldArea.hpp"
-#include "Game/AreaObj/LightArea.hpp"
-#include "Game/AreaObj/SwitchArea.hpp"
+#include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Gravity/GlobalGravityObj.hpp"
 #include "Game/Enemy.hpp"
@@ -125,7 +120,7 @@ namespace {
 		{ "PullBackCylinder", NULL, 0 },
 		{ "RestartCube", NULL, 0 },
 		{ "WarpCube", NULL, 0 },
-		{ "TripodBossStepStartArea", NULL, 0 },
+		{ "TripodBossStepStartArea", createSphere<TripodBossStepStartArea>, 0 },
 		{ "ChangeBgmCube", NULL, 0 },
 		{ "BgmProhibitArea", NULL, 0 },
 		{ "SoundEmitterCube", NULL, 0 },
@@ -147,65 +142,65 @@ namespace {
 		{ "ScreenBlurCube", NULL, 0 },
 		{ "ScreenBlurSphere", NULL, 0 },
 		{ "ScreenBlurCylinder", NULL, 0 },
-		{ "DepthOfFieldCube", NULL, 0 },
-		{ "DepthOfFieldSphere", NULL, 0 },
-		{ "DepthOfFieldCylinder", NULL, 0 },
+		{ "DepthOfFieldCube", createCenterOriginCube<DepthOfFieldArea>, 0 },
+		{ "DepthOfFieldSphere", createSphere<DepthOfFieldArea>, 0 },
+		{ "DepthOfFieldCylinder", createBaseOriginCylinder<DepthOfFieldArea>, 0 },
 		{ "ClipAreaCenterBox", NULL, "ClipVolumeBox" },
 		{ "ClipAreaBottomBox", NULL, "ClipVolumeBox" },
 		{ "ClipAreaTopCone", NULL, "ClipVolumeSphere" },
 		{ "ClipAreaBottomCone", NULL, "ClipVolumeSphere" },
 		{ "ClipAreaSphere", NULL, "ClipVolumeSphere" },
-		{ "LightCtrlCube", NULL, 0 },
-		{ "LightCtrlCylinder", NULL, 0 },
+		{ "LightCtrlCube", createBaseOriginCube<LightArea>, 0 },
+		{ "LightCtrlCylinder", createBaseOriginCylinder<LightArea>, 0 },
 		{ "PlaneCollisionCube", NULL, 0 },
 		{ "ForbidTriangleJumpCube", NULL, 0 },
 		{ "ForbidWaterSearchCube", NULL, 0 },
 		{ "QuakeEffectAreaCube", NULL, 0 },
-		{ "HazeCube", NULL, 0 },
-		{ "LensFlareArea", NULL, 0 },
-		{ "CameraRepulsiveSphere", NULL, 0 },
-		{ "CameraRepulsiveCylinder", NULL, 0 },
-		{ "SunLightAreaBox", NULL, 0 },
+		{ "HazeCube", createBaseOriginCube<HazeCube>, 0 },
+		{ "LensFlareArea", createBaseOriginCube<AreaObj>, 0 },
+		{ "CameraRepulsiveSphere", createNameObj<CameraRepulsiveSphere>, 0 },
+		{ "CameraRepulsiveCylinder", createNameObj<CameraRepulsiveCylinder>, 0 },
+		{ "SunLightAreaBox", createBaseOriginCube<SunLightArea>, 0 },
 		{ "GlaringLightAreaCylinder", NULL, 0 },
-		{ "BigBubbleGoalAreaBox", NULL, 0 },
-		{ "BigBubbleGoalAreaCylinder", NULL, 0 },
-		{ "BigBubbleGoalAreaSphere", NULL, 0 },
-		{ "BigBubbleCameraBox", NULL, 0 },
-		{ "BigBubbleCameraCylinder", NULL, 0 },
-		{ "BigBubbleCameraSphere", NULL, 0 },
+		{ "BigBubbleGoalAreaBox", createBaseOriginCube<BigBubbleGoalArea>, 0 },
+		{ "BigBubbleGoalAreaCylinder", createBaseOriginCylinder<BigBubbleGoalArea>, 0 },
+		{ "BigBubbleGoalAreaSphere", createSphere<BigBubbleGoalArea>, 0 },
+		{ "BigBubbleCameraBox", createBaseOriginCube<BigBubbleCameraArea>, 0 },
+		{ "BigBubbleCameraCylinder", createBaseOriginCylinder<BigBubbleCameraArea>, 0 },
+		{ "BigBubbleCameraSphere", createSphere<BigBubbleCameraArea>, 0 },
 		{ "BigBubbleSwitchBox", NULL, 0 },
 		{ "BigBubbleSwitchCylinder", NULL, 0 },
 		{ "BigBubbleSwitchSphere", NULL, 0 },
 		{ "ViewGroupCtrlCube", NULL, 0 },
-		{ "AudioEffectCube", NULL, 0 },
-		{ "AudioEffectSphere", NULL, 0 },
-		{ "AudioEffectCylinder", NULL, 0 },
+		{ "AudioEffectCube", createBaseOriginCube<AudioEffectArea>, 0 },
+		{ "AudioEffectSphere", createSphere<AudioEffectArea>, 0 },
+		{ "AudioEffectCylinder", createBaseOriginCylinder<AudioEffectArea>, 0 },
 		{ "PlayerSeCube", NULL, 0 },
 		{ "PlayerSeSphere", NULL, 0 },
 		{ "PlayerSeCylinder", NULL, 0 },
 		{ "MercatorCube", NULL, 0 },
-		{ "AstroChangeStageCube", NULL, 0 },
+		{ "AstroChangeStageCube", createBaseOriginCube<AstroChangeStageCube>, 0 },
 		{ "BlueStarGuidanceCube", NULL, 0 },
 		{ "TicoSeedGuidanceCube", NULL, 0 },
-		{ "MessageAreaCube", NULL, 0 },
-		{ "MessageAreaCylinder", NULL, 0 },
-		{ "SmokeEffectColorAreaCube", NULL, 0 },
-		{ "BeeWallShortDistAreaCube", NULL, 0 },
-		{ "ExtraWallCheckArea", NULL, 0 },
-		{ "ExtraWallCheckCylinder", NULL, 0 },
-		{ "MirrorAreaCube", NULL, 0 },
+		{ "MessageAreaCube", createBaseOriginCube<MessageArea>, 0 },
+		{ "MessageAreaCylinder", createBaseOriginCylinder<MessageArea>, 0 },
+		{ "SmokeEffectColorAreaCube", createBaseOriginCube<AreaObj>, 0 },
+		{ "BeeWallShortDistAreaCube", createBaseOriginCube<AreaObj>, 0 },
+		{ "ExtraWallCheckArea", createBaseOriginCube<AreaObj>, 0 },
+		{ "ExtraWallCheckCylinder", createBaseOriginCylinder<AreaObj>, 0 },
+		{ "MirrorAreaCube", createBaseOriginCube<AreaObj>, 0 },
 		{ "SpinGuidanceCube", NULL, "SpinGuidance" },
 		{ "TamakoroMoveGuidanceCube", NULL, "BallGuidance" },
 		{ "TamakoroJumpGuidanceCube", NULL, "BallGuidance" },
-		{ "HeavySteeringCube", NULL, 0 },
-		{ "NonSleepCube", NULL, 0 },
-		{ "AreaMoveSphere", NULL, 0 },
+		{ "HeavySteeringCube", createBaseOriginCube<AreaObj>, 0 },
+		{ "NonSleepCube", createBaseOriginCube<AreaObj>, 0 },
+		{ "AreaMoveSphere", createSphere<AreaObj>, 0 },
 		{ "DodoryuClosedCylinder", NULL, 0 },
 		{ "DashChargeCylinder", NULL, 0 },
 		{ "RasterScrollCube", NULL, 0 },
 		{ "OnimasuCube", NULL, 0 },
 		{ "ForbidJumpCube", NULL, 0 },
-		{ "CollisionArea", NULL, 0 },
+		{ "CollisionArea", createCenterOriginCube<CollisionArea>, 0 },
 		{ "AstroOverlookAreaCylinder", NULL, 0 },
 		{ "CelestrialSphere", NULL, 0 },
 		{ "DarkMatterCube", NULL, 0 },

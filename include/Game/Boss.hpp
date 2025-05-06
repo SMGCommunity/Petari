@@ -17,3 +17,4 @@
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/Boss/TripodBossRotateParts.hpp"
+#include "Game/Boss/TripodBossStepStartArea.hpp"
