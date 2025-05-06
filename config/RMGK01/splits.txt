@@ -11239,8 +11239,8 @@ MSL_C/strtold.c:
 	extab       start:0x80006908 end:0x80006910
 	extabindex  start:0x80006FAC end:0x80006FB8
 	.text       start:0x80520000 end:0x805213F4
-	.rodata     start:0x805628E0 end:0x80562EF0
-	.sdata2     start:0x806C23B0 end:0x806C23D8
+	.rodata     start:0x805628E0 end:0x805628F0
+	.sdata2     start:0x806C23B0 end:0x806C23D0
 
 MSL_C/strtoul.c:
 	extab       start:0x80006910 end:0x80006930
@@ -11255,8 +11255,9 @@ MSL_C/wprintf.c:
 	extab       start:0x80006930 end:0x80006970
 	extabindex  start:0x80006FE8 end:0x80007048
 	.text       start:0x80521E84 end:0x805240C8
-	.rodata     start:0x80562EF0 end:0x80562EF8
+	.rodata     start:0x805628F0 end:0x80562EF8
 	.data       start:0x80609FC0 end:0x8060A268
+	.sdata2     start:0x806C23D0 end:0x806C23D8
 
 MSL_C/wstring.c:
 	.text       start:0x805240C8 end:0x805241A4

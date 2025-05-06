@@ -2846,7 +2846,7 @@ config.libs = [
             Object(NonMatching, "MSL_C/scanf.c"),
             Object(Matching, "MSL_C/signal.c"),
             Object(Matching, "MSL_C/string.c"),
-            Object(NonMatching, "MSL_C/strtold.c"),
+            Object(Matching, "MSL_C/strtold.c"),
             Object(Matching, "MSL_C/strtoul.c"),
             Object(Matching, "MSL_C/wmem.c"),
             Object(NonMatching, "MSL_C/wprintf.c"),
