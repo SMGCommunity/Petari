@@ -22,7 +22,7 @@ void CinemaFrame::appear() {
     setNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance);
 }
 
-bool CinemaFrame::tryScreenToFrame() {
+void CinemaFrame::tryScreenToFrame() {
     bool result;
 
     if (MR::isDead(this)) {
@@ -38,7 +38,7 @@ bool CinemaFrame::tryScreenToFrame() {
     }
 }
 
-bool CinemaFrame::tryFrameToBlank() {
+void CinemaFrame::tryFrameToBlank() {
     bool result;
 
     if (MR::isDead(this)) {
@@ -53,7 +53,7 @@ bool CinemaFrame::tryFrameToBlank() {
     }
 }
 
-bool CinemaFrame::tryBlankToFrame() {
+void CinemaFrame::tryBlankToFrame() {
     bool result;
 
     if (MR::isDead(this)) {
@@ -69,7 +69,7 @@ bool CinemaFrame::tryBlankToFrame() {
     }
 }
 
-bool CinemaFrame::tryFrameToScreen() {
+void CinemaFrame::tryFrameToScreen() {
     bool result;
 
     if (MR::isDead(this)) {

@@ -11,10 +11,10 @@ public:
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 
-    bool tryScreenToFrame();
-    bool tryFrameToBlank();
-    bool tryBlankToFrame();
-    bool tryFrameToScreen();
+    void tryScreenToFrame();
+    void tryFrameToBlank();
+    void tryBlankToFrame();
+    void tryFrameToScreen();
     void forceToScreen();
     void forceToFrame();
     void forceToBlank();
