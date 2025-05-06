@@ -173,7 +173,7 @@ namespace MR {
     }
 
     void connectToSceneEnemyDecorationMovementCalcAnim(NameObj *pObj) {
-        MR::registerNameObjToExecuteHolder(pObj, 0x2B, 0x11, -1, -1);
+        MR::registerNameObjToExecuteHolder(pObj, 0x2B, 0xB, -1, -1);
         MR::connectToSceneTemporarily(pObj);
         MR::connectToDrawTemporarily(pObj);
     }
@@ -212,6 +212,114 @@ namespace MR {
         MR::registerNameObjToExecuteHolder(pObj, 0xD, -1, -1, -1);
         MR::connectToSceneTemporarily(pObj);
         MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToScene3DModelFor2D(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0xE, 0xD, 0x24, -1);
+    }
+
+    void connectToSceneLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, 0x3C);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutMovementCalcAnim(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutDecoration(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xF, 0xE, -1, 0x3D);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneTalkLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, 0xD, -1, 0x43);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneTalkLayoutNoMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, -1, 0xD, -1, 0x43);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneWipeLayout(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x11, 0xD, -1, 0x42);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPause(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x12, 0xD, -1, 0x3E);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPauseNoMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, -1, 0xD, -1, 0x3E);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutOnPauseMovementCalcAnim(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x12, 0xD, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneLayoutMovement(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0xE, -1, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneMovie(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x10, -1, -1, 0x3F);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneMirrorMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneMirrorMapObjDecoration(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x23, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneMirrorMapObjNoMovement(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, -1, 0xC, 0x27, -1);
+    }
+
+    void connectToSceneCamera(NameObj *pObj) {
+        MR::registerNameObjToExecuteHolder(pObj, 0x2, -1, -1, -1);
+        MR::connectToSceneTemporarily(pObj);
+        MR::connectToDrawTemporarily(pObj);
+    }
+
+    void connectToSceneNoShadowedMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xB, -1);
+    }
+
+    void connectToSceneNoShadowedMapObjStrongLight(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xC, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObj(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xD, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObjStrongLight(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, 0x22, 0x5, 0xF, -1);
+    }
+
+    void connectToSceneNoSilhouettedMapObjWeakLightNoMovement(LiveActor *pActor) {
+        MR::registerNameObjToExecuteHolder(pActor, -1, 0x5, 0xE, -1);
     }
 
     NameObjAdaptor* createDrawAdaptor(const char *pName, const MR::FunctorBase &rFunctor) {
