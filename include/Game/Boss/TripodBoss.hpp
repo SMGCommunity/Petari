@@ -3,9 +3,9 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
+#include "Game/Boss/TripodBossStepPoint.hpp"
 
 class TripodBossLeg;
-class TripodBossStepPoint;
 class TripodBossMovableArea;
 class TripodBossStepSequence;
 class DummyDisplayModel;
@@ -122,6 +122,10 @@ public:
 
     inline TripodBossLeg* getLeg(s32 idx) const {
         return mLegs[idx];
+    }
+
+    inline void setStepPosition(int idx, const TVec3f &rPos) const {
+        getStepPoint(idx)->setStepPosition(rPos);
     }
 
     inline TripodBossStepPoint* getStepPoint(int idx) const {

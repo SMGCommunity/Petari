@@ -168,14 +168,7 @@ void TripodBoss::initLeg(const JMapInfoIter &rIter) {
 void TripodBoss::initLegIKPlacement() {
     f32 temp618 = _618;
     f32 v3 = (1.0f - (temp618 * temp618));
-    f32 v5;
-    if (v3 > 0.0f) {
-        f32 v4 = __frsqrte(v3);
-        v5 = ((-(((v4 * v3) * v4) - 3.0f) * (v4 * v3)) * 0.5f);
-    }
-    else {
-        v5 = v3;
-    }
+    f32 v5 = MR::speedySqrtf(v3);
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
