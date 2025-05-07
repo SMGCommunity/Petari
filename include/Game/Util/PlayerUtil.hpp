@@ -54,6 +54,8 @@ namespace MR {
 
     f32 getPlayerHitRadius();
 
+    bool offPlayerControl();
+
     void pushPlayerFromArea(const TVec3f &);
     bool isOnPlayer(const LiveActor *);
     bool isOnPlayer(const HitSensor *);

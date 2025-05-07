@@ -108,12 +108,14 @@ public:
     void pushNerve(const Nerve *);
     Nerve* popAndPushNerve(const Nerve *);
     Nerve* popNerve();
-    bool tryPulNullNerve();
+    bool tryPullNullNerve();
     bool isEmptyNerve() const;
     bool isScaleAnim() const;
     bool isPointingSe() const;
     void updateReaction();
     void updateScaleCtrl();
+
+    bool tryPushNullNerve();
 
     void exeWait();
     void exeTalk();

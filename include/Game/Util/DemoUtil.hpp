@@ -67,6 +67,8 @@ namespace MR {
 
     void endDemoWaitCameraInterpolating(NameObj*, const char*);
 
+    bool canStartDemo();
+
     bool tryStartTimeKeepDemoMarioPuppetable(NameObj*, const char*, const char*);
     bool tryStartTimeKeepDemoMarioPuppetable(LiveActor*, const char*, const char*);
 };  // namespace MR

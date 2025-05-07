@@ -10,6 +10,7 @@ class JMapInfo;
 class JMapInfoIter;
 class ResourceHolder;
 class StageSwitchCtrl;
+class ModelObj;
 
 class ResTIMG;
 
@@ -207,4 +208,6 @@ namespace MR {
 
     void joinToMovementOnOffGroup(const char *, NameObj *, u32);
     void onMovementOnOffGroup(const char *);
+
+    ModelObj* createPowerStarDemoModel(const NameObj *, const char *, MtxPtr);
 };
