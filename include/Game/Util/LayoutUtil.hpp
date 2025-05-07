@@ -118,4 +118,6 @@ namespace MR {
     f32 calcNerveEaseInValue(const LayoutActor*, s32, s32, f32, f32);
 
     void setNerveAtAnimStopped(LayoutActor*, const Nerve*, u32);
+
+    void setLayoutScalePosAtPaneScaleTransIfExecCalcAnim(LayoutActor*, const LayoutActor*, const char*);
 };  // namespace MR
