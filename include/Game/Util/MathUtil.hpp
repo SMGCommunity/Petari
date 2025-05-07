@@ -8,9 +8,6 @@
 namespace MR {
     void initAcosTable();
 
-    template<typename T>
-    T sqrt(T val);
-
     f32 getRandom();
     f32 getRandom(f32, f32);
     s32 getRandom(s32, s32);
@@ -199,6 +196,11 @@ namespace MR {
     f32 frsqrte(f32 val);
     f32 speedySqrtf(f32);
     #endif
+
+    template<typename T>
+    T sqrt(T val) {
+        return speedySqrtf(val);
+    }
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);
