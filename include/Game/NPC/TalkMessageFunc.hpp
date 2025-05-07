@@ -5,7 +5,7 @@
 
 class TalkMessageFuncBase {
 public:
-    virtual void operator()() const = 0;
+    virtual void operator()(u32) const = 0;
     virtual TalkMessageFuncBase* clone() const = 0;
     virtual TalkMessageFuncBase* clone(JKRHeap *) const = 0;
 };
@@ -13,7 +13,6 @@ public:
 template<typename T, typename U>
 class TalkMessageFuncM : public TalkMessageFuncBase {
 public:
-
     inline TalkMessageFuncM(T call, U callee) 
         : mCaller(call), mCallee(callee) {
     }
@@ -22,8 +21,8 @@ public:
         
     }
 
-    virtual void operator()() const {
-        (mCaller->*mCallee)();
+    virtual void operator()(u32 arg) const {
+        (mCaller->*mCallee)(arg);
     }
 
     virtual TalkMessageFuncM* clone() const {
@@ -39,6 +38,6 @@ public:
 };
 
 template<class T>
-static TalkMessageFuncM<T *, void (T::*)()> TalkMessageFunc(T* a1, void (T::*a2)()) NO_INLINE {
-    return TalkMessageFuncM<T *, void (T::*)()>(a1, a2);
+static TalkMessageFuncM<T *, bool (T::*)(u32)> TalkMessageFunc(T* a1, bool (T::*a2)(u32)) NO_INLINE {
+    return TalkMessageFuncM<T *, bool (T::*)(u32)>(a1, a2);
 }

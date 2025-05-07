@@ -15,7 +15,15 @@ namespace MR {
 
     void startNPCTalkCamera(const TalkMessageCtrl *, MtxPtr, f32, s32);
 
+    bool tryStartReactionAndPushNerve(NPCActor *, const Nerve *);
+
     bool tryTalkNearPlayerAtEndAndStartTalkAction(NPCActor *);
+
+    bool tryTalkForceAndStartMoveTalkAction(NPCActor *);
+
+    f32 calcFloatOffset(const NPCActor *, f32, f32);
+
+    void calcAndSetFloatBaseMtx(NPCActor *, f32);
 };
 
 class DemoStarter : public NerveExecutor {

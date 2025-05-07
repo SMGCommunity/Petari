@@ -51,7 +51,7 @@ public:
     u8 _41;
     u8 _42;
     u8 _43;
-    u32 _44;
+    const char* _44;
     f32 mSensorSize;                // 0x48
     TVec3f mSensorOffset;           // 0x4C
     u32 _58;
@@ -65,14 +65,14 @@ public:
     u8 _66;
     u8 _67;
     bool mUseStarPointer;           // 0x68
-    u32 _6C;
+    const char* _6C;
     u32 _70;
     TVec3f mStarPointerOffs;        // 0x74
     f32 _80;
     u32 mSceneConnectionType;       // 0x84
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x88
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x8C
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x90
+    Nerve* mWaitNerve;           // 0x88
+    Nerve* mTalkNerve;           // 0x8C
+    Nerve* mReactionNerve;   // 0x90
 };
 
 class NPCActor : public LiveActor {
@@ -122,6 +122,8 @@ public:
 
     void setInitPose();
 
+    void initialize(const JMapInfoIter &, const NPCActorCaps &);
+
     LodCtrl* mLodCtrl;                                  // 0x8C
     TalkMessageCtrl* mMsgCtrl;                          // 0x90
     PartsModel* _94;
@@ -157,8 +159,8 @@ public:
     const char* _100;
     const char* _104;
     const char* _108;
-    u32 _10C;
-    u32 _110;
+    f32 _10C;
+    f32 _110;
     u32 _114;
     u32 _118;
     const char* _11C;

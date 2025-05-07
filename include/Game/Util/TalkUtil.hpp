@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include <JSystem/JGeometry.hpp>
 
+class LiveActor;
 class TalkMessageCtrl;
 
 namespace MR {
@@ -16,4 +19,10 @@ namespace MR {
     void resetAndForwardNode(TalkMessageCtrl *, s32);
 
     bool tryTalkForceWithoutDemoMarioPuppetableAtEnd(TalkMessageCtrl *);
+
+    void setDistanceToTalk(TalkMessageCtrl *, f32);
+
+    void offRootNodeAutomatic(TalkMessageCtrl *);
+
+    TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
 };

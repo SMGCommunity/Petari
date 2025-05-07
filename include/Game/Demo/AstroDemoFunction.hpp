@@ -20,4 +20,6 @@ public:
     static const char* getGrandStarReturnDemoName(int);
     static s32 getActiveGrandStarReturnDemoIndex();
     static bool tryRegisterDemo(LiveActor *, const char *, const JMapInfoIter &);
+
+    static bool tryRegisterDemoForTico(LiveActor *, const JMapInfoIter &);
 };

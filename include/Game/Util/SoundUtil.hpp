@@ -85,4 +85,6 @@ namespace MR {
 
     void stopSound(const LiveActor *, const char *, u32);
     void startSoundObjectLevel(AudSoundObject *, const char *, s32);
+
+    void limitedStarPieceHitSound();
 };
