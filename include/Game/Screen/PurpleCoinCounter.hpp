@@ -1,0 +1,29 @@
+#pragma once
+
+#include "Game/Screen/LayoutActor.hpp"
+
+class CountUpPaneRumbler;
+class CounterLayoutAppearer;
+
+class PurpleCoinCounter : LayoutActor {
+public:
+    PurpleCoinCounter(const char* pName);
+
+    virtual ~PurpleCoinCounter();
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void appear();
+    virtual void control();
+
+    void validate();
+    void updateCounter();
+    void exeAppear();
+    void exeWait();
+
+private:
+    /* 0x20 */ s32 mPurpleCoinNum;
+    /* 0x24 */ s32 mPurpleCoinDisplayNum;
+    /* 0x28 */ s32 mDisplayUpdateFrame;
+    /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
+    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x34 */ bool mIsValid;
+};
