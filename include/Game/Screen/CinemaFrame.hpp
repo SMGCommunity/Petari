@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class CinemaFrame : public LayoutActor {
@@ -26,14 +25,4 @@ public:
     void exeFrameToBlank();
     void exeBlankToFrame();
     void exeFrameToScreen();
-};
-
-namespace NrvCinemaFrame {
-    NERVE_DECL(CinemaFrameNrvScreen, CinemaFrame, CinemaFrame::exeScreen);
-    NERVE_DECL(CinemaFrameNrvFrame, CinemaFrame, CinemaFrame::exeFrame);
-    NERVE_DECL(CinemaFrameNrvBlank, CinemaFrame, CinemaFrame::exeBlank);
-    NERVE_DECL(CinemaFrameNrvScreenToFrame, CinemaFrame, CinemaFrame::exeScreenToFrame);
-    NERVE_DECL(CinemaFrameNrvFrameToBlank, CinemaFrame, CinemaFrame::exeFrameToBlank);
-    NERVE_DECL(CinemaFrameNrvBlankToFrame, CinemaFrame, CinemaFrame::exeBlankToFrame);
-    NERVE_DECL(CinemaFrameNrvFrameToScreen, CinemaFrame, CinemaFrame::exeFrameToScreen);
 };

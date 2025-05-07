@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class BombTimerLayout : LayoutActor {
@@ -29,11 +28,4 @@ private:
     /* 0x24 */ u32 mDangerTime;
     /* 0x28 */ u32 mTime;
     /* 0x2C */ bool mIsSuspend;
-};
-
-namespace NrvBombTimerLayout {
-    NERVE_DECL(BombTimerLayoutNrvAppear, BombTimerLayout, BombTimerLayout::exeAppear);
-    NERVE_DECL(BombTimerLayoutNrvWait, BombTimerLayout, BombTimerLayout::exeWait);
-    NERVE_DECL(BombTimerLayoutNrvDanger, BombTimerLayout, BombTimerLayout::exeDanger);
-    NERVE_DECL(BombTimerLayoutNrvEnd, BombTimerLayout, BombTimerLayout::exeEnd);
 };

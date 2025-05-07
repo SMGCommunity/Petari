@@ -1,6 +1,14 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BombTimerLayout.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+
+namespace NrvBombTimerLayout {
+    NEW_NERVE(BombTimerLayoutNrvAppear, BombTimerLayout, Appear);
+    NEW_NERVE(BombTimerLayoutNrvWait, BombTimerLayout, Wait);
+    NEW_NERVE(BombTimerLayoutNrvDanger, BombTimerLayout, Danger);
+    NEW_NERVE(BombTimerLayoutNrvEnd, BombTimerLayout, End);
+};
 
 BombTimerLayout::BombTimerLayout(bool param1) :
     LayoutActor("ボムタイマーレイアウト", true),
@@ -124,10 +132,3 @@ void BombTimerLayout::exeEnd() {
 BombTimerLayout::~BombTimerLayout() {
     
 }
-
-namespace NrvBombTimerLayout {
-    INIT_NERVE(BombTimerLayoutNrvAppear);
-    INIT_NERVE(BombTimerLayoutNrvWait);
-    INIT_NERVE(BombTimerLayoutNrvDanger);
-    INIT_NERVE(BombTimerLayoutNrvEnd);
-};

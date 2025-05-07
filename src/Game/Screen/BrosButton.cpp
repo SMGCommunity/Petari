@@ -1,8 +1,16 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/BrosButton.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    NEW_NERVE(BrosButtonNrvAppear, BrosButton, Appear);
+    NEW_NERVE(BrosButtonNrvSelect, BrosButton, Select);
+    NEW_NERVE(BrosButtonNrvDecide, BrosButton, Decide);
+    NEW_NERVE(BrosButtonNrvDisappear, BrosButton, Disappear);
+};
 
 BrosButton::BrosButton(const char* pName) :
     LayoutActor(pName, true),
@@ -102,10 +110,3 @@ void BrosButton::control() {
 BrosButton::~BrosButton() {
     
 }
-
-namespace {
-    INIT_NERVE(BrosButtonNrvAppear);
-    INIT_NERVE(BrosButtonNrvSelect);
-    INIT_NERVE(BrosButtonNrvDecide);
-    INIT_NERVE(BrosButtonNrvDisappear);
-};

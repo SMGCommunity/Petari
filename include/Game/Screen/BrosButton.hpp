@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class ButtonPaneController;
@@ -27,11 +26,4 @@ public:
 private:
     /* 0x20 */ bool mIsSelectedMario;
     /* 0x24 */ ButtonPaneController* mPaneCtrl;
-};
-
-namespace {
-    NERVE_DECL(BrosButtonNrvAppear, BrosButton, BrosButton::exeAppear);
-    NERVE_DECL(BrosButtonNrvSelect, BrosButton, BrosButton::exeSelect);
-    NERVE_DECL(BrosButtonNrvDecide, BrosButton, BrosButton::exeDecide);
-    NERVE_DECL(BrosButtonNrvDisappear, BrosButton, BrosButton::exeDisappear);
 };

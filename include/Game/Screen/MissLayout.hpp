@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 
 class MissLayout : LayoutActor {
@@ -19,10 +18,4 @@ public:
     void exeWait();
     void exeActive();
     void exeEnd();
-};
-
-namespace {
-    NERVE_DECL(MissLayoutNrvWait, MissLayout, MissLayout::exeWait);
-    NERVE_DECL(MissLayoutNrvActive, MissLayout, MissLayout::exeActive);
-    NERVE_DECL(MissLayoutNrvEnd, MissLayout, MissLayout::exeEnd);
 };

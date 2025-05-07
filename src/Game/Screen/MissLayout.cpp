@@ -1,6 +1,13 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/MissLayout.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+
+namespace {
+    NEW_NERVE(MissLayoutNrvWait, MissLayout, Wait);
+    NEW_NERVE(MissLayoutNrvActive, MissLayout, Active);
+    NEW_NERVE(MissLayoutNrvEnd, MissLayout, End);
+};
 
 MissLayout::MissLayout() :
     LayoutActor("ミス!", true)
@@ -59,9 +66,3 @@ void MissLayout::exeEnd() {
 MissLayout::~MissLayout() {
     
 }
-
-namespace {
-    INIT_NERVE(MissLayoutNrvWait);
-    INIT_NERVE(MissLayoutNrvActive);
-    INIT_NERVE(MissLayoutNrvEnd);
-};

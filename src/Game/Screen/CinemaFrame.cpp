@@ -1,7 +1,18 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CinemaFrame.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+
+namespace NrvCinemaFrame {
+    NEW_NERVE(CinemaFrameNrvScreen, CinemaFrame, Screen);
+    NEW_NERVE(CinemaFrameNrvFrame, CinemaFrame, Frame);
+    NEW_NERVE(CinemaFrameNrvBlank, CinemaFrame, Blank);
+    NEW_NERVE(CinemaFrameNrvScreenToFrame, CinemaFrame, ScreenToFrame);
+    NEW_NERVE(CinemaFrameNrvFrameToBlank, CinemaFrame, FrameToBlank);
+    NEW_NERVE(CinemaFrameNrvBlankToFrame, CinemaFrame, BlankToFrame);
+    NEW_NERVE(CinemaFrameNrvFrameToScreen, CinemaFrame, FrameToScreen);
+};
 
 CinemaFrame::CinemaFrame(bool param1) :
     LayoutActor("シネマフレーム", true)
@@ -161,13 +172,3 @@ void CinemaFrame::exeFrameToScreen() {
 CinemaFrame::~CinemaFrame() {
     
 }
-
-namespace NrvCinemaFrame {
-    INIT_NERVE(CinemaFrameNrvScreen);
-    INIT_NERVE(CinemaFrameNrvFrame);
-    INIT_NERVE(CinemaFrameNrvBlank);
-    INIT_NERVE(CinemaFrameNrvScreenToFrame);
-    INIT_NERVE(CinemaFrameNrvFrameToBlank);
-    INIT_NERVE(CinemaFrameNrvBlankToFrame);
-    INIT_NERVE(CinemaFrameNrvFrameToScreen);
-};
