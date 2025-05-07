@@ -14,6 +14,8 @@ namespace MR {
     bool isNPCItemFileExist(const char *);
 
     void startNPCTalkCamera(const TalkMessageCtrl *, MtxPtr, f32, s32);
+
+    bool tryTalkNearPlayerAtEndAndStartTalkAction(NPCActor *);
 };
 
 class DemoStarter : public NerveExecutor {
