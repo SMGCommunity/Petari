@@ -57,6 +57,7 @@
 #include "Game/MapObj/HatchWaterPlanet.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
 #include "Game/MapObj/ItemAppearStone.hpp"
+#include "Game/MapObj/ItemBlock.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/MapObj/LargeChain.hpp"

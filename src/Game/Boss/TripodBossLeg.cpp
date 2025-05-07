@@ -694,8 +694,9 @@ void TripodBossLeg::updateAnkleSlerpToBasePose() {
 }
 
 void TripodBossLeg::updateAnkleLanding() {
+    TVec3f* stepPos = &_98->mStepPosition;
     TVec3f v6(mForceEndPoint);
-    v6 -= _98->mStepPosition;
+    v6 -= *stepPos;
     f32 v3 = v6.dot(_98->mStepNormal);
     f32 v4 = MR::normalize((v3 / _250), 0.15000001f, 1.0f);
     TQuat4f quat;

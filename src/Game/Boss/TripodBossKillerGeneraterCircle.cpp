@@ -115,7 +115,7 @@ void TripodBossKillerGeneraterCircle::placementGenerater() {
 
         TPos3f mtx2;
         mtx2.identity();
-        mtx2.setRotateInline2(mAngleTable[i], _38);
+        mtx2.someInlineMatrixFunction(mAngleTable[i], _38);
         mtx2.concat(mtx2, mtx);
         TVec3f v18(0.0f, _30, 0.0f);
         MR::addTransMtx(mtx2, v18);

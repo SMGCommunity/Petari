@@ -284,6 +284,29 @@ namespace JGeometry {
             this->mMtx[0][1] = 0.0f; 
         }
 
+        inline void someInlineMatrixFunction(f32 y, f32 p) {
+            f32 HUNDERDEIGHTIETHPI = 0.017453292f;
+            f32 v9 = (HUNDERDEIGHTIETHPI * y); // f25
+            f32 v10 = -(HUNDERDEIGHTIETHPI * p); //f24
+
+            f32 v11 = cos(0.0f); //f28
+            f32 v12 = cos(v9); // f27
+            f32 v13 = cos(v10); // f26
+            f32 v14 = sin(0.0f); //f23
+            f32 v15 = sin(v9); // f25
+            f32 v16 = sin(v10); //f9
+
+            this->mMtx[0][0] = v12 * v11;
+            this->mMtx[0][1] = ( v16 * v15 * v11) - (v13 * v14);
+            this->mMtx[1][0] = v12 * v14;
+            this->mMtx[1][1] = (v13 * v11) + (v16 * v15 * v14) ;
+            this->mMtx[2][0] = -v15;
+            this->mMtx[2][1] = v16 * v12;
+            this->mMtx[0][2] = (v13 * v11 * v15) + (v16 * v14);
+            this->mMtx[1][2] = (v13 * v14 * v15) - (v16 * v11);
+            this->mMtx[2][2] = v12 * v13;
+        }
+
         inline void setRotateInline(const TVec3f &vec1, f32 r) {
             TVec3f vec;
             vec.set(vec1);
