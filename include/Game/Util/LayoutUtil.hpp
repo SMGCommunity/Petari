@@ -21,7 +21,7 @@ namespace MR {
 
     void showPaneRecursive(LayoutActor*, const char*);
 
-    J3DFrameCtrl* getAnimCtrl(LayoutActor*, u32);
+    J3DFrameCtrl* getAnimCtrl(const LayoutActor*, u32);
 
     void startAnim(LayoutActor*, const char*, u32);
     void startAnimAtFirstStep(LayoutActor*, const char*, u32);
