@@ -1712,7 +1712,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/Syati.cpp"),
             Object(NonMatching, "Game/NPC/TeresaRacer.cpp"),
             Object(NonMatching, "Game/NPC/Tico.cpp"),
-            Object(NonMatching, "Game/NPC/TicoAstro.cpp"),
+            Object(Matching, "Game/NPC/TicoAstro.cpp"),
             Object(NonMatching, "Game/NPC/TicoComet.cpp"),
             Object(NonMatching, "Game/NPC/TicoDemoGetPower.cpp"),
             Object(NonMatching, "Game/NPC/TicoDomeLecture.cpp"),

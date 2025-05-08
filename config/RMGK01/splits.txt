@@ -6366,12 +6366,12 @@ Game/NPC/Tico.cpp:
 
 Game/NPC/TicoAstro.cpp:
 	.text       start:0x8028DB80 end:0x8028DCF0
-	.data       start:0x805B43B0 end:0x805B44B0
+	.data       start:0x805B43B0 end:0x805B4428
 
 Game/NPC/TicoComet.cpp:
 	.text       start:0x8028DCF0 end:0x8028EC24
 	.ctors      start:0x8052F00C end:0x8052F010
-	.data       start:0x805B44B0 end:0x805B47B0
+	.data       start:0x805B4428 end:0x805B47B0
 	.bss        start:0x8060AE90 end:0x8060AEC8
 	.sbss       start:0x806B6070 end:0x806B6090
 	.sdata2     start:0x806BF078 end:0x806BF0A8

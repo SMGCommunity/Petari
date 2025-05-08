@@ -106,4 +106,6 @@ namespace MR {
     bool isGalaxyAnyCometAppearInCurrentStage();
 
     void incPlayerGameOverNum();
+
+    s32 calcCurrentGreenStarNum();
 };
