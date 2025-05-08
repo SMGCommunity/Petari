@@ -26,6 +26,7 @@ namespace MR {
 
     const char* getCurrentStageName();
 
+    s32 getPowerStarNum();
     s32 getCurrentStagePowerStarNum();
     s32 getZoneNum();
 
