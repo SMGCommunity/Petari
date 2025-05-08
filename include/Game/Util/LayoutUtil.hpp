@@ -27,6 +27,7 @@ namespace MR {
     void startAnimAtFirstStep(LayoutActor*, const char*, u32);
 
     void setAnimFrameAndStop(LayoutActor*, f32, u32);
+    void setAnimFrameAndStopAdjustTextHeight(LayoutActor*, const char*, u32);
     void setPaneAnimFrameAndStop(LayoutActor*, const char*, f32, u32);
 
     void setAnimRate(LayoutActor*, f32, u32);
@@ -118,6 +119,7 @@ namespace MR {
     f32 calcNerveEaseInValue(const LayoutActor*, s32, s32, f32, f32);
 
     void setNerveAtAnimStopped(LayoutActor*, const Nerve*, u32);
+    void killAtAnimStopped(LayoutActor*, u32);
 
     void setLayoutScalePosAtPaneScaleTransIfExecCalcAnim(LayoutActor*, const LayoutActor*, const char*);
 };  // namespace MR
