@@ -202,7 +202,7 @@ void TripodBoss::initLegIKPlacement() {
         v20 *= other_val;
         TVec3f v24(v20);
         v24 += v19;
-        mLegs[i]->setIKParam(_608, _60C, v24, v26, v25);
+        getLeg(i)->setIKParam(_608, _60C, v24, v26, v25);
         TVec3f* center = &mMovableArea->mCenter;
         TVec3f v15(v28);
         v15 *= v11;
@@ -218,13 +218,11 @@ void TripodBoss::initLegIKPlacement() {
         mMovableArea->calcLandingNormal(&v22, v23);
         TVec3f v21;
         mMovableArea->calcLandingFront(&v21, v23);
-        TripodBossStepPoint* pnt = mStepPoints[i];
-        pnt->setStepPosition(v23);
+        getStepPoint(i)->setStepPosition(v23);
         getStepPoint(i)->setStepNormal(v22);
-        pnt = mStepPoints[i];
-        pnt->setStepFront(v21);
-        mLegs[i]->setStepTarget(mStepPoints[i]);
-        mLegs[i]->setWait();
+        getStepPoint(i)->setStepFront(v21);
+        getLeg(i)->setStepTarget(getStepPoint(i));
+        getLeg(i)->setWait();
     }
 }
 

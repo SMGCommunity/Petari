@@ -455,7 +455,7 @@ void TripodBossLeg::exeLanding() {
         }
 
         MR::emitEffect(this, "LegSmoke");
-        mForceEndPoint = v15;
+        mForceEndPoint = hitResult._0;
         _234.zero();
         if (_254) {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance);
