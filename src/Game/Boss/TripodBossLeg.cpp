@@ -543,12 +543,12 @@ void TripodBossLeg::addIKLimitPower() {
     MR::separateScalarAndDirection(&v8, &v12, v12);
     f32 maxDist = mJoint->getMaxLimitDistance();
     f32 minDist = mJoint->getMinLimitDistance();
-    f32 v4 = MR::normalize(v8, minDist, maxDist);
+    f32 v4 = (f32)MR::normalize(v8, minDist, maxDist);
     v8 = v4;
     f32 v5, v6;
 
-    if (v4 < 0.5f) {
-        v8 = 1.0f - v4;
+    if (v8 < 0.5f) {
+        v8 = 1.0f - v8;
         v12 = -v12;
         v5 = 0.5f;
         v6 = 0.0f;
