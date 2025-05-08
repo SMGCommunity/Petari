@@ -121,5 +121,6 @@ namespace MR {
     void setNerveAtAnimStopped(LayoutActor*, const Nerve*, u32);
     void killAtAnimStopped(LayoutActor*, u32);
 
+    void setLayoutScalePosAtPaneScaleTrans(LayoutActor*, const LayoutActor*, const char*);
     void setLayoutScalePosAtPaneScaleTransIfExecCalcAnim(LayoutActor*, const LayoutActor*, const char*);
 };  // namespace MR
