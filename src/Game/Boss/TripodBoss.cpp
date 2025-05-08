@@ -167,8 +167,7 @@ void TripodBoss::initLeg(const JMapInfoIter &rIter) {
 // https://decomp.me/scratch/UDA4k
 void TripodBoss::initLegIKPlacement() {
     f32 temp618 = _618;
-    f32 v3 = (1.0f - (temp618 * temp618));
-    f32 v5 = MR::speedySqrtf(v3);
+    f32 v5 = MR::speedySqrtf((1.0f - (_618 * _618)));
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
@@ -219,9 +218,11 @@ void TripodBoss::initLegIKPlacement() {
         mMovableArea->calcLandingNormal(&v22, v23);
         TVec3f v21;
         mMovableArea->calcLandingFront(&v21, v23);
-        getStepPoint(i)->setStepPosition(v23);
+        TripodBossStepPoint* pnt = mStepPoints[i];
+        pnt->setStepPosition(v23);
         getStepPoint(i)->setStepNormal(v22);
-        getStepPoint(i)->setStepFront(v21);
+        pnt = mStepPoints[i];
+        pnt->setStepFront(v21);
         mLegs[i]->setStepTarget(mStepPoints[i]);
         mLegs[i]->setWait();
     }

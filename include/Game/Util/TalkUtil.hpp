@@ -24,5 +24,11 @@ namespace MR {
 
     void offRootNodeAutomatic(TalkMessageCtrl *);
 
+    bool tryTalkForce(TalkMessageCtrl *);
+
+    void forwardNode(TalkMessageCtrl *);
+
+    bool isExistNextNode(const TalkMessageCtrl *);
+
     TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
 };

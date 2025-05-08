@@ -124,11 +124,7 @@ public:
         return mLegs[idx];
     }
 
-    inline void setStepPosition(int idx, const TVec3f &rPos) const {
-        getStepPoint(idx)->setStepPosition(rPos);
-    }
-
-    inline TripodBossStepPoint* getStepPoint(int idx) const {
+    inline TripodBossStepPoint* getStepPoint(int idx) {
         return mStepPoints[idx];
     }
 
