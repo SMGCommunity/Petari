@@ -4,6 +4,16 @@
 #include <revolution.h>
 
 namespace JGeometry {
+    template <class T>
+    struct TBox {
+        TBox() : mMin(), mMax() {}
+        TBox(const TBox& other) : mMin(other.i), mMax(other.f) {}
+    
+        void extend(const TVec3f &);
+
+        T mMin, mMax;
+    };
+
     template<typename T>
     class TBox2 {
     public:
@@ -24,18 +34,13 @@ namespace JGeometry {
     };
 
     template<typename T>
-    class TBox3 {
+    class TBox3 : public TBox<TVec3<T> > {
     public:
         TBox3() {
 
         }
 
         bool intersectsPoint(const TVec3f &) const;
-
-        void extend(const TVec3f &);
-
-        JGeometry::TVec3<T> mMin;   // 0x0
-        JGeometry::TVec3<T> mMax;   // 0xC
     };
 
     template<typename T>
