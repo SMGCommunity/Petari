@@ -530,7 +530,7 @@ void TripodBossLeg::addToTargetPower(const TVec3f &a1, f32 a2) {
         v8 *= v6;
         TVec3f v9(v8);
         v9 *= 0.1f;
-        _234 = v9;
+        _234 -= v9;
     }
 }
 
