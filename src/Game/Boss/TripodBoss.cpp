@@ -243,7 +243,10 @@ void TripodBoss::initMovableArea(const TPos3f &rPos) {
 }
 
 void TripodBoss::initBodyPosition() {
-    f32 v3 = _604 + mMovableArea->mRadius;
+    f32 xxx = _604;
+    f32 yyy = mMovableArea->mRadius;
+    f32 v3 = xxx + yyy;
+    
     TVec3f v4(mMovableArea->mBaseAxis);
     v4 *= v3;
     TVec3f v5(mMovableArea->mCenter);
