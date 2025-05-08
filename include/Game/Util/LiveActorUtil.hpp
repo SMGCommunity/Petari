@@ -365,4 +365,7 @@ namespace MR {
     void reflectBckCtrlData(LiveActor*, const BckCtrlData&);
 
     bool isExistKcl(LiveActor *, const char *);
+
+    s32 countShowGroupMember(const LiveActor *);
+    s32 countHideGroupMember(const LiveActor *);
 };  // namespace MR

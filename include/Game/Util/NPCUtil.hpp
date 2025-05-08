@@ -15,14 +15,21 @@ namespace MR {
 
     void startNPCTalkCamera(const TalkMessageCtrl *, MtxPtr, f32, s32);
 
-    bool tryStartReactionAndPushNerve(NPCActor *, const Nerve *);
-
+    void invalidateLodCtrl(const NPCActor *);
+    void startMoveAction(NPCActor *);
+    bool tryStartTurnAction(NPCActor *);
+    bool tryStartMoveTurnAction(NPCActor *);
+    bool tryStartReaction(NPCActor *);
+    bool tryTalkNearPlayerAndStartTalkAction(NPCActor *);
+    bool tryTalkNearPlayerAndStartMoveTalkAction(NPCActor *);
     bool tryTalkNearPlayerAtEndAndStartTalkAction(NPCActor *);
-
+    bool tryTalkNearPlayerAtEndAndStartMoveTalkAction(NPCActor *);
     bool tryTalkForceAndStartMoveTalkAction(NPCActor *);
-
+    bool tryTalkForceAtEndAndStartTalkAction(NPCActor *);
+    bool tryStartReactionAndPushNerve(NPCActor *, const Nerve *);
+    bool tryStartReactionAndPopNerve(NPCActor *);
+    bool tryChangeTalkActionRandom(NPCActor *, const char *, const char *, const char *);
     f32 calcFloatOffset(const NPCActor *, f32, f32);
-
     void calcAndSetFloatBaseMtx(NPCActor *, f32);
 };
 

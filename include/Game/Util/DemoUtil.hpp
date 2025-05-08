@@ -69,6 +69,8 @@ namespace MR {
 
     bool canStartDemo();
 
+    void startTimeKeepDemo(NameObj *, const char *, const char *);
+
     bool isRegisteredDemoActionAppear(const LiveActor *);
 
     bool tryStartTimeKeepDemoMarioPuppetable(NameObj*, const char*, const char*);

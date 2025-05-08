@@ -6,8 +6,10 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
@@ -284,6 +286,191 @@ void Tico::setNerveWait() {
 bool Tico::killFunc(u32) {
     setNerve(_180);
     return true;
+}
+
+void Tico::exeReaction() {
+    if (_D8) {
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SV_TICO_TRAMPLED", -1, -1);
+    }
+
+    if (isPointingSe()) {
+        MR::startDPDHitSound();
+        MR::startSound(this, "SE_SV_TICO_POINT", -1, -1);
+    }
+    
+    if (_DB) {
+        MR::limitedStarPieceHitSound();
+        MR::startSound(this, "SE_BM_BUTLER_ABSORB", -1, -1);
+    }
+
+    MR::tryStartReactionAndPopNerve(this);
+}
+
+void Tico::exeDelight() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, _13C);
+        MR::resetAndForwardNode(_174, MR::getRandom(0l, 5l));
+    }
+
+    MR::tryTalkForce(_174);
+    if (MR::isActionEnd(this)) {
+        popNerve();
+    }
+}
+
+void Tico::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Appear");
+    }
+
+    if (MR::isBckStopped(this)) {
+        popNerve();
+    }
+}
+
+void Tico::exeNoReaction() {
+    if (mMsgCtrl != nullptr) {
+        if (MR::tryTalkNearPlayerAndStartTalkAction(this)) {
+            setNerve(&NrvTico::TicoNrvWait::sInstance);
+        }
+    }
+    else {
+        MR::tryStartTurnAction(this);
+    }
+}
+
+void Tico::exeWait() {
+    if (!tryReaction()) {
+        if (mMsgCtrl != nullptr) {
+            MR::tryTalkNearPlayerAndStartTalkAction(this);
+        }
+        else {
+            MR::tryStartTurnAction(this);
+        }
+    }
+}
+
+void Tico::exeMeta() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Metamorphosis");
+    }
+
+    if (MR::isBckStopped(this)) {
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        kill();
+    }
+}
+
+void Tico::exeBlue0() {
+    if (!tryReaction()) {
+        if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
+            setNerve(&NrvTico::TicoNrvBlue1::sInstance);
+            MR::startTimeKeepDemo(this, "青チコ変身", nullptr);
+        }
+    }
+}
+
+void Tico::exeBlue1() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Fly");
+        MR::setRailCoordSpeed(this, (MR::getRailTotalLength(this) / MR::getDemoPartTotalStep("青チコ変身[移動]")));
+    }
+
+    MR::moveCoordAndFollowTrans(this);
+
+    if (MR::isRailReachedGoal(this)) {
+        setNerve(&NrvTico::TicoNrvMeta::sInstance);
+    }
+}
+
+void Tico::exeRed1() {
+    if (!tryReaction()) {
+        MR::tryStartTurnAction(this);
+        if (MR::isNearPlayer(this, 400.0f)) {
+            setNerve(&NrvTico::TicoNrvRed2::sInstance);
+        }
+    }
+}
+
+void Tico::exeRed2() {
+    if (MR::isFirstStep(this)) {
+        mDemoStarter.start();
+    }
+
+    if (mDemoStarter.update()) {
+        MR::tryStartTimeKeepDemoMarioPuppetable(this, "赤いスター", "赤いスター[開始]");
+        setNerve(&NrvTico::TicoNrvWait::sInstance);
+    }
+}
+
+void Tico::exeGuide0() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Appear");
+    }
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvTico::TicoNrvGuide1::sInstance);
+    }
+}
+
+void Tico::exeGuide1() {
+    if (MR::countShowGroupMember(this) == 0) {
+        MR::forwardNode(mMsgCtrl);
+        MR::forwardNode(mMsgCtrl);
+        setNerve(&NrvTico::TicoNrvGuide2::sInstance);
+    }
+    else {
+        if (MR::countHideGroupMember(this) != 0) {
+            MR::forwardNode(mMsgCtrl);
+            setNerve(&NrvTico::TicoNrvGuide2::sInstance);
+        }
+        else {
+            MR::tryTalkNearPlayerAndStartTalkAction(this);
+            if (tryReaction()) {
+                return;
+            }
+        }
+    }
+}
+
+void Tico::exeGuide2() {
+    if (MR::countShowGroupMember(this) == 0) {
+        MR::forwardNode(mMsgCtrl);
+        setNerve(&NrvTico::TicoNrvGuide3::sInstance);
+    }
+    else {
+        MR::tryTalkNearPlayerAndStartTalkAction(this);
+        if (tryReaction()) {
+            return;
+        }
+    }
+}
+
+void Tico::exeGuide3() {
+    if (!MR::isFirstStep(this)) {
+        if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this) && MR::isExistNextNode(mMsgCtrl)) {
+            MR::forwardNode(mMsgCtrl);
+        }
+        else {
+            if (tryReaction()) {
+                return;
+            }
+        }
+    }
+}
+
+void Tico::exeLead0() {
+    if (mMsgCtrl != nullptr) {
+        MR::tryTalkForceAndStartMoveTalkAction(this);
+    }
+    else {
+        MR::tryStartMoveTurnAction(this);
+    }
+
+    if (!tryReaction() && !MR::isRailGoingToEnd(this)) {
+        setNerve(mWaitNerve);
+    }
 }
 
 void Tico::exeSpin0() {
