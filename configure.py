@@ -2065,7 +2065,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/NoteCounter.cpp"),
             Object(NonMatching, "Game/Screen/odh.cpp"),
             Object(NonMatching, "Game/Screen/OdhConverter.cpp"),
-            Object(NonMatching, "Game/Screen/OneUpBoard.cpp"),
+            Object(Matching, "Game/Screen/OneUpBoard.cpp"),
             Object(NonMatching, "Game/Screen/PaneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Screen/PauseMenu.cpp"),
             Object(NonMatching, "Game/Screen/PeachLetter.cpp"),
