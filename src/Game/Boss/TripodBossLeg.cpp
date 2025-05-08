@@ -711,15 +711,15 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     TVec3f landingNormal;
     
     mMoveArea->calcNearLandingPosition(&landingPosition, mForceEndPoint);
-    mMoveArea->calcLandingNormal(&landingNormal, mForceEndPoint);
+    mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
 
-    MR::setShadowDropDirection(this, nullptr, -landingPosition);
+    MR::setShadowDropDirection(this, nullptr, -landingNormal);
     v9.set<f32>(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
     v8.set<f32>(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
     v7.set<f32>(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
     _1C0.setVec(-v7, -v9, v8);
 
-    TVec3f v2(landingPosition);
+    TVec3f v2(landingNormal);
     v2 *= 630.0f;
     TVec3f v3(mForceEndPoint);
     v3 -= v2;
