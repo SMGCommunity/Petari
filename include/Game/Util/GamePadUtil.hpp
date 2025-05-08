@@ -17,6 +17,7 @@ namespace MR {
 
     bool testCorePadTriggerA(s32);
     bool testCorePadTriggerB(s32);
+    bool testCorePadTriggerAnyWithoutHome(s32);
     bool testSystemPadTriggerDecide();
     bool testSystemTriggerA();
 
