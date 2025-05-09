@@ -21,5 +21,7 @@ public:
     static s32 getActiveGrandStarReturnDemoIndex();
     static bool tryRegisterDemo(LiveActor *, const char *, const JMapInfoIter &);
 
+    static bool tryRegisterSimpleCastIfAstroGalaxy(LiveActor *);
+
     static bool tryRegisterDemoForTico(LiveActor *, const JMapInfoIter &);
 };

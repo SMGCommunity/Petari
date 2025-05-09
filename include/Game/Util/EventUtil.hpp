@@ -27,6 +27,8 @@ namespace MR {
     bool isKinopioExplorerTalkGetGrandStar2();
     bool isUFOKinokoBeforeConstruction();
 
+    bool isRosettaTalkTrickComet();
+
     bool isOnGameEventFlagUseAstroDome();
     bool isOnGameEventFlagGreenDriver();
 
@@ -108,4 +110,6 @@ namespace MR {
     void incPlayerGameOverNum();
 
     s32 calcCurrentGreenStarNum();
+
+    void forceToNextStateGalaxyCometScheduler();
 };

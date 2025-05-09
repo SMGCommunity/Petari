@@ -27,3 +27,19 @@ public:
     s32 _194;
     s32 _198;    
 };
+
+class TicoComet : public TicoEat {
+public:
+    TicoComet(const char *);
+
+    virtual ~TicoComet();
+    virtual void init(const JMapInfoIter &);
+    virtual void startReactionSound();
+
+    bool branchFunc(u32);
+    bool tryDemo();
+    bool eventFunc(u32);
+    void exeDemoAnim();
+    void exeDemoFade();
+    inline void exeDemoEnd();
+};

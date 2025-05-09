@@ -1,4 +1,5 @@
 #include "Game/NPC/NPCActor.hpp"
+#include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util.hpp"
 
 NPCActorCaps::NPCActorCaps(const char *pName) {
@@ -153,12 +154,12 @@ void NPCActor::makeArchiveList(NameObjArchiveListCollector *pCollector, const JM
 }
 
 void NPCActor::addArchive(NameObjArchiveListCollector *pCollector, const NPCActorItem &rItem) {
-    if (!MR::isNullOrEmptyString(rItem.mName) && MR::isNPCItemFileExist(rItem.mName)) {
-        pCollector->addArchive(rItem.mName);
+    if (!MR::isNullOrEmptyString(rItem.mActor) && MR::isNPCItemFileExist(rItem.mActor)) {
+        pCollector->addArchive(rItem.mActor);
     }
 
-    if (!MR::isNullOrEmptyString(rItem._C) && MR::isNPCItemFileExist(rItem._C)) {
-        pCollector->addArchive(rItem._C);
+    if (!MR::isNullOrEmptyString(rItem.mArchive) && MR::isNPCItemFileExist(rItem.mArchive)) {
+        pCollector->addArchive(rItem.mArchive);
     }
 }
 

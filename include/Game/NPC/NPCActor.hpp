@@ -6,6 +6,11 @@
 #include "Game/Util/JointController.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
 
+static const char* ReactionDefault = "Reaction";
+static const char* PointingDefault = "Pointing";
+static const char* TrampledDefault = "Trampled";
+static const char* SpinDefault = "Spin";
+
 namespace NrvNPCActor {
     NERVE(NPCActorNrvWait);
     NERVE(NPCActorNrvTalk);
@@ -125,6 +130,15 @@ public:
 
     void initialize(const JMapInfoIter &, const NPCActorCaps &);
 
+    void equipment(const NPCActorItem &, bool);
+
+    inline void setDefaults() {
+        _130 = "Spin";
+        _134 = "Trampled";
+        _138 = "Pointing";
+        _13C = "Reaction";
+    }
+
     LodCtrl* mLodCtrl;                                  // 0x8C
     TalkMessageCtrl* mMsgCtrl;                          // 0x90
     PartsModel* _94;
@@ -183,15 +197,4 @@ public:
     Nerve* mTalkNerve;           // 0x150
     Nerve* mReactionNerve;   // 0x154
     u32 _158;
-};
-
-class NPCActorItem {
-public:
-    NPCActorItem(const char *pName);
-
-    const char* mName;  // 0x0
-    u32* _4;
-    u32* _8;
-    const char* _C;
-    u32* _10;
 };
