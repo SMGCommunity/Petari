@@ -1673,7 +1673,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/ButlerMap.cpp"),
             Object(NonMatching, "Game/NPC/ButlerStateStarPieceReaction.cpp"),
             Object(NonMatching, "Game/NPC/CareTaker.cpp"),
-            Object(NonMatching, "Game/NPC/CollectTico.cpp"),
+            Object(Matching, "Game/NPC/CollectTico.cpp"),
             Object(NonMatching, "Game/NPC/DemoRabbit.cpp"),
             Object(NonMatching, "Game/NPC/HoneyBee.cpp"),
             Object(NonMatching, "Game/NPC/HoneyQueen.cpp"),
