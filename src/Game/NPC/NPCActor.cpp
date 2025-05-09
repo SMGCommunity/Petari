@@ -177,7 +177,7 @@ void NPCActor::setInitPose() {
     _B0.x = _A0.x;
     _B0.y = _A0.y;
     _B0.z = _A0.z;
-    _B0.h = _A0.h;
+    _B0.h = _A0.w;
     _C0.set<f32>(mPosition);
 }
 

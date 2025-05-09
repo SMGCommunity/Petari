@@ -368,4 +368,6 @@ namespace MR {
 
     s32 countShowGroupMember(const LiveActor *);
     s32 countHideGroupMember(const LiveActor *);
+
+    f32 getBckFrame(const LiveActor *);
 };  // namespace MR

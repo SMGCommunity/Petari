@@ -117,4 +117,7 @@ namespace MR {
     bool isNormalBloomForEachModel();
 
     void requestOneUp();
+
+    void forceAppearStarPieceCounterForTicoFat();
+    void disappearStarPieceCounterForTicoFat();
 };

@@ -89,6 +89,8 @@ namespace MR {
     bool isMsgIsRushTakeOver(u32);
     bool isMsgFloorTouch(u32);
 
+    bool isMsgStarPieceGift(u32);
+
     bool isSensorEnemy(const HitSensor *);
 
     bool isSensorMapObj(const HitSensor *);

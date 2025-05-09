@@ -3,6 +3,7 @@
 #include <cmath>
 #include <revolution.h>
 #include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace MR {
@@ -201,6 +202,8 @@ namespace MR {
     T sqrt(T val) {
         return speedySqrtf(val);
     }
+
+    bool turnQuatZDirRad(TQuat4f *, const TQuat4f &, const TVec3f &, f32);
 };
 
 f32 PSVECKillElement(const Vec *, const Vec *, const Vec *);

@@ -4,6 +4,7 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Util/JointController.hpp"
+#include "JSystem/JGeometry/TQuat.hpp"
 
 namespace NrvNPCActor {
     NERVE(NPCActorNrvWait);
@@ -129,7 +130,7 @@ public:
     PartsModel* _94;
     PartsModel* _98;
     u32 _9C;
-    TVec4f _A0;
+    TQuat4f _A0;
     TVec4f _B0;
     TVec3f _C0;
     TVec3f _CC;
@@ -178,9 +179,9 @@ public:
     AnimScaleController* mScaleController;              // 0x140
     u32 _144;
     Nerve* mCurNerve;                                   // 0x148
-    NrvNPCActor::NPCActorNrvWait* mWaitNerve;           // 0x14C
-    NrvNPCActor::NPCActorNrvTalk* mTalkNerve;           // 0x150
-    NrvNPCActor::NPCActorNrvReaction* mReactionNerve;   // 0x154
+    Nerve* mWaitNerve;           // 0x14C
+    Nerve* mTalkNerve;           // 0x150
+    Nerve* mReactionNerve;   // 0x154
     u32 _158;
 };
 
