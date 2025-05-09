@@ -18,6 +18,7 @@
 #include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/NPC/TicoAstro.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -26,6 +27,7 @@
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/Map/PlanetMapCreator.hpp"
+#include "Game/NPC.hpp"
 
 class AreaObj;
 class NameObj;
@@ -210,7 +212,7 @@ namespace {
 		{ "Caretaker", NULL, "Caretaker" },
 		{ "Rabbit", NULL, "MoonRabbit" },
 		{ "TalkSyati", NULL, "Syati" },
-		{ "CollectTico", NULL, "StrayTico" },
+		{ "CollectTico", createNameObj<CollectTico>, "StrayTico" },
 		{ "TrickRabbit", NULL, "TrickRabbit" },
 		{ "TrickRabbitFreeRun", NULL, "TrickRabbit" },
 		{ "TrickRabbitFreeRunCollect", NULL, "TrickRabbit" },
@@ -230,11 +232,11 @@ namespace {
 		{ "PenguinStudent", NULL, "Penguin" },
 		{ "SignBoard", NULL, "SignBoard" },
 		{ "Syati", NULL, "Syati" },
-		{ "Tico", NULL, 0 },
-		{ "TicoComet", NULL, "TicoComet" },
+		{ "Tico", createNameObj<Tico>, 0 },
+		{ "TicoComet", createNameObj<TicoComet>, "TicoComet" },
 		{ "TicoShop", NULL, "TicoShop" },
 		{ "TicoStarRing", NULL, "Tico" },
-		{ "TicoAstro", NULL, 0 },
+		{ "TicoAstro", createNameObj<TicoAstro>, 0 },
 		{ "TicoBaby", NULL, 0 },
 		{ "DemoRabbit", NULL, 0 },
 		{ "TicoFat", NULL, "TicoFat" },
