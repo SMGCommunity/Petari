@@ -3,7 +3,6 @@
 #include <revolution.h>
 
 namespace MR {
-    
     class BitArray {
     public:
         BitArray(int);
@@ -15,7 +14,8 @@ namespace MR {
             return mArraySize;
         }
 
-        u8* mArray;         // 0x0
-        int mArraySize;     // 0x4
+    private:
+        /* 0x0 */ u8* mArray;
+        /* 0x4 */ s32 mArraySize;
     };
 };
