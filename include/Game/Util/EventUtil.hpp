@@ -112,4 +112,6 @@ namespace MR {
     s32 calcCurrentGreenStarNum();
 
     void forceToNextStateGalaxyCometScheduler();
+
+    bool isAppearGalaxy(const char *);
 };

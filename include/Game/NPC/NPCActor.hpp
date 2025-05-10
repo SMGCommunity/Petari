@@ -132,6 +132,8 @@ public:
 
     void equipment(const NPCActorItem &, bool);
 
+    void setBaseMtx(MtxPtr);
+
     inline void setDefaults() {
         _130 = "Spin";
         _134 = "Trampled";

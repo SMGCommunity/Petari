@@ -10,5 +10,7 @@ namespace MR {
 
     const wchar_t* getLayoutMessageDirect(const char *);
 
+    const wchar_t* getGalaxyNameOnCurrentLanguage(const char *);
+
     void makeCometMessageID(char *, u32, const char *);
 };

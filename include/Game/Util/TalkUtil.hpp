@@ -2,6 +2,7 @@
 
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/MessageUtil.hpp"
 #include <JSystem/JGeometry.hpp>
 
 class TalkMessageCtrl;
@@ -30,5 +31,13 @@ namespace MR {
 
     bool isExistNextNode(const TalkMessageCtrl *);
 
+    bool tryTalkRequest(TalkMessageCtrl *);
+    bool tryTalkSelectLeft(TalkMessageCtrl *);
+    bool tryTalkSelectRight(TalkMessageCtrl *);
+
     TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
+
+    inline void setMessageArgToCurrentGalaxyName(TalkMessageCtrl *pCtrl, const char *pName) {
+        MR::setMessageArg(pCtrl, MR::getGalaxyNameOnCurrentLanguage(pName));
+    }
 };
