@@ -11,6 +11,9 @@ class JMapInfoIter;
 class ResourceHolder;
 class StageSwitchCtrl;
 class ModelObj;
+class BenefitItemObj;
+class BenefitItemLifeUp;
+class BenefitItemOneUp;
 
 class ResTIMG;
 
@@ -162,6 +165,13 @@ namespace MR {
     void hopStarPiece(const NameObj *, const TVec3f &, const TVec3f &);
     bool appearStarPiece(const NameObj *, const TVec3f &, s32, f32, f32, bool);
     bool appearStarPieceToDirection(const NameObj *, const TVec3f &, const TVec3f &, s32, f32, f32, bool);
+
+    void appearKinokoOneUpPop(BenefitItemObj *, MtxPtr, f32);
+
+    void appearKinokoSuper(BenefitItemLifeUp *, MtxPtr, f32);
+
+    BenefitItemOneUp* createKinokoOneUp();
+    BenefitItemLifeUp* createKinokoSuper();
 
     void declarePowerStar(const NameObj *);
     void declarePowerStar(const NameObj *, s32);
