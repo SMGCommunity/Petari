@@ -4,8 +4,8 @@
 #include "Game/Util/JMapInfo.hpp"
 #include <JSystem/JGeometry.hpp>
 
-class LiveActor;
 class TalkMessageCtrl;
+class LiveActor;
 
 namespace MR {
 
