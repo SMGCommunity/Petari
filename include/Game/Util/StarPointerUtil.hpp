@@ -53,4 +53,8 @@ namespace MR {
     void initStarPointerGameScene();
 
     void setStarPointerCameraMtxAtGameScene();
+
+    void startStarPointerModeStarPieceTarget(void *);
+
+    const TVec2f& getStarPointerScreenPositionOrEdge(s32);
 };

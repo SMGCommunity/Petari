@@ -8,6 +8,7 @@ class J3DFrameCtrl;
 class Layout;
 class LayoutActor;
 class Nerve;
+class SimpleLayout;
 
 namespace MR {
     void setEffectRate(LayoutActor*, const char*, f32);
@@ -123,4 +124,9 @@ namespace MR {
 
     void setLayoutScalePosAtPaneScaleTrans(LayoutActor*, const LayoutActor*, const char*);
     void setLayoutScalePosAtPaneScaleTransIfExecCalcAnim(LayoutActor*, const LayoutActor*, const char*);
+
+    SimpleLayout* createSimpleLayoutTalkParts(const char *, const char *, u32);
+
+    void showScreen(LayoutActor *);
+    void hideScreen(LayoutActor *);
 };  // namespace MR

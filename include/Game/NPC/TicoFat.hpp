@@ -5,6 +5,7 @@
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 
 class FullnessMeter;
@@ -29,6 +30,8 @@ public:
     virtual void addStarPieceSaveData(s32);
     virtual void disappear(bool);
     virtual void appearInformation() const;
+
+    static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
 
     ActorCameraInfo* mCameraInfo;               // 0x15C
     BenefitItemObj* mItem;                      // 0x160

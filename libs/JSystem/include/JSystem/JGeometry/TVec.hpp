@@ -43,10 +43,10 @@ namespace JGeometry {
         }
 
         // inline
-        TVec2(const TVec2<T> &rSrc); /*{
+        inline TVec2(const TVec2<T> &rSrc) {
             x = rSrc.x;
             y = rSrc.y;
-        }*/
+        }
 
         /* General operations */
         template <typename A>
