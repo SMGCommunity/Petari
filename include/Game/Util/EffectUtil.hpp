@@ -52,7 +52,9 @@ namespace MR {
     void addEffectHitNormal(LiveActor *, const char *);
 
     void setEffectHostMtx(LiveActor *, const char *, MtxPtr);
+    void setEffectBaseScale(LiveActor*, const char *, f32);
 
+    void emitEffectHit(LiveActor*, const TVec3f &, const char *);
     void emitEffectHitBetweenSensors(LiveActor *, const HitSensor *, const HitSensor *, f32, const char *);
 
     void initEffectAfterPlacement(LiveActor *);

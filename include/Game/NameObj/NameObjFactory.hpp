@@ -14,6 +14,7 @@
 #include "Game/Boss/TripodBossShell.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/Boss/TripodBossStepStartArea.hpp"
+#include "Game/Map/KoopaBattleMapPlate.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
 #include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
@@ -960,7 +961,7 @@ namespace {
 		{ "KoopaSwitchKeeper", NULL, 0 },
 		{ "KoopaViewSwitchKeeper", NULL, 0 },
 		{ "KoopaBattleMapStair", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStair" },
-		{ "KoopaBattleMapPlate", NULL, "KoopaPlate" },
+		{ "KoopaBattleMapPlate", createNameObj<KoopaBattleMapPlate>, "KoopaPlate" },
 		{ "KoopaBattleMapCoinPlate", NULL, "KoopaPlateCoin" },
 		{ "KoopaBattleMapStairBig", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStairBig" },
 		{ "KoopaBattleMapStairTurn", createNameObj<KoopaBattleMapStair>, "KoopaBattleMapStairTurn" },
