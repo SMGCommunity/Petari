@@ -41,7 +41,7 @@ s32 GameEventFlagStorage::serialize(u8 *pData, u32 size) const {
 // GameEventFlagStorage::deserialize
 
 void GameEventFlagStorage::initializeData() {
-    for (int i = 0; i < mFlagBitArray->mArraySize; i++) {
+    for (int i = 0; i < mFlagBitArray->size(); i++) {
         mFlagBitArray->set(i, false);
     }
 }
