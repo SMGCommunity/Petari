@@ -1,7 +1,13 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/GalaxyCometState.hpp"
 
 #define STATE_HIDE 0
 #define STATE_LAND 1
+
+namespace {
+    NEW_NERVE(GalaxyCometStateHide, GalaxyCometState, Hide);
+    NEW_NERVE(GalaxyCometStateLand, GalaxyCometState, Land);
+};
 
 GalaxyCometState::GalaxyCometState() :
     NerveExecutor("GalaxyCometState"),
@@ -59,7 +65,10 @@ void GalaxyCometState::setStateAndPastSecond(int state, u16 pastSecond) {
     }
 }
 
-namespace {
-    INIT_NERVE(GalaxyCometStateHide);
-    INIT_NERVE(GalaxyCometStateLand);
-};
+void GalaxyCometState::exeHide() {
+    
+}
+
+void GalaxyCometState::exeLand() {
+    
+}
