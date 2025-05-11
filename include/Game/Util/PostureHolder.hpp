@@ -1,15 +1,18 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+class LiveActor;
 
 class PostureHolder {
 public:
-    PostureHolder(const LiveActor *);
+    PostureHolder(const LiveActor* pActor);
 
-    void store(const LiveActor *);
-    void restore(LiveActor *);
+    void store(const LiveActor* pActor);
+    void restore(LiveActor* pActor);
 
-    TVec3f mScale;      // 0x0
-    TVec3f mRotation;   // 0xC
-    TVec3f mPosition;   // 0x18
+private:
+    /* 0x00 */ TVec3f mScale;
+    /* 0x0C */ TVec3f mRotation;
+    /* 0x18 */ TVec3f mPosition;
 };

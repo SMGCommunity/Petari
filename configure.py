@@ -2304,7 +2304,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/JointController.cpp"),
             Object(NonMatching, "Game/Util/JointRumbler.cpp"),
             Object(NonMatching, "Game/Util/OctahedronBezierSurface.cpp"),
-            Object(NonMatching, "Game/Util/PostureHolder.cpp"),
+            Object(Matching, "Game/Util/PostureHolder.cpp"),
             Object(NonMatching, "Game/Util/RumbleCalculator.cpp"),
             Object(NonMatching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/TriangleFilter.cpp"),

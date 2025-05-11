@@ -1,4 +1,7 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/PostureHolder.hpp"
 
 MapPartsAppearController::MapPartsAppearController(LiveActor *pActor) : MapPartsFunction(pActor, "出現制御") {
     mSignMotionType = 0;
