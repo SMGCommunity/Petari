@@ -354,6 +354,12 @@ namespace JGeometry {
             JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
         }
 
+        inline void invert() {
+            this->x *= -1.0f;
+            this->y *= -1.0f;
+            this->z *= -1.0f;
+        }
+
         void scale(f32);
         void scale(f32, const TVec3 &);
         void negate();

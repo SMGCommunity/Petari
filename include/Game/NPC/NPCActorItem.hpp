@@ -8,7 +8,7 @@ public:
         
     }
 
-    NPCActorItem(const char *pName) {
+    NPCActorItem(const char *pName) NO_INLINE {
         mActor = pName;
         _4 = "";
         _8 = "";

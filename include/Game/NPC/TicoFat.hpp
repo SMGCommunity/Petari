@@ -33,6 +33,36 @@ public:
 
     static void makeArchiveList(NameObjArchiveListCollector *, const JMapInfoIter &);
 
+    const char* getActionName(const char *);
+    void setCameraParam();
+    bool eventFunc(u32);
+    f32 calcScale();
+    void setScale(f32);
+    void setMessage(s32);
+    bool tryMetamorphosis();
+    void emitScreenEffect();
+    void updateScreenEffect();
+    s32 getDanceSeTranspose() const;
+    void startAbsorbSound();
+    void updateGuidance();
+    void updatePointing();
+    void updateGoods();
+    void exeReaction();
+    void exePrep();
+    void exeWait();
+    void exePoint();
+    void exeEat();
+    void exeChem();
+    void exeTest();
+    void exeFullness();
+    void exeMeta();
+    void exeDemo();
+    void exeFly();
+    void exeWipeOut();
+    void exeWipeIn();
+    void exeInfo();
+    void exeAfter();
+
     ActorCameraInfo* mCameraInfo;               // 0x15C
     BenefitItemObj* mItem;                      // 0x160
     FullnessMeter* mMeter;                      // 0x164

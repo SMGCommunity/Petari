@@ -41,3 +41,8 @@ template<class T>
 static TalkMessageFuncM<T *, bool (T::*)(u32)> TalkMessageFunc(T* a1, bool (T::*a2)(u32)) NO_INLINE {
     return TalkMessageFuncM<T *, bool (T::*)(u32)>(a1, a2);
 }
+
+template<class T>
+static inline TalkMessageFuncM<T *, bool (T::*)(u32)> TalkMessageFunc_Inline(T* a1, bool (T::*a2)(u32)) {
+    return TalkMessageFuncM<T *, bool (T::*)(u32)>(a1, a2);
+}

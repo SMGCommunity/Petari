@@ -23,11 +23,14 @@ namespace MR {
 
     void setDistanceToTalk(TalkMessageCtrl *, f32);
 
+    void onRootNodeAutomatic(TalkMessageCtrl *);
     void offRootNodeAutomatic(TalkMessageCtrl *);
 
     bool tryTalkForce(TalkMessageCtrl *);
 
     void forwardNode(TalkMessageCtrl *);
+
+    void onStartOnlyFront(TalkMessageCtrl *);
 
     bool isExistNextNode(const TalkMessageCtrl *);
 
@@ -40,4 +43,6 @@ namespace MR {
     inline void setMessageArgToCurrentGalaxyName(TalkMessageCtrl *pCtrl, const char *pName) {
         MR::setMessageArg(pCtrl, MR::getGalaxyNameOnCurrentLanguage(pName));
     }
+
+    
 };
