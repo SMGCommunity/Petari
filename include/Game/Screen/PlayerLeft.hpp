@@ -5,14 +5,14 @@
 class CountUpPaneRumbler;
 class CounterLayoutAppearer;
 
-class CoinCounter : public LayoutActor {
+class PlayerLeft : public LayoutActor {
 public:
-    /// @brief Creates a new `CoinCounter`.
+    /// @brief Creates a new `PlayerLeft`.
     /// @param pName The pointer to the null-terminated name of the object.
-    CoinCounter(const char* pName);
+    PlayerLeft(const char* pName);
 
-    /// @brief Destroys the `CoinCounter`.
-    virtual ~CoinCounter();
+    /// @brief Destroys the `PlayerLeft`.
+    virtual ~PlayerLeft();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -22,17 +22,15 @@ public:
     void disappear();
     bool isWait() const;
     void updateCounter();
+    bool isValidAppearSituation() const;
     void exeHide();
     void exeAppear();
     void exeWait();
     void exeDisappear();
 
 private:
-    /* 0x20 */ s32 mCoinNum;
-    /* 0x24 */ s32 mCoinDisplayNum;
-    /* 0x28 */ s32 mDisplayUpdateFrame;
-    /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
-    /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
-    /* 0x34 */ bool mIsForceAppear;
-    /* 0x38 */ TVec2f mFollowPos;
+    /* 0x20 */ s32 mPlayerLeft;
+    /* 0x24 */ CounterLayoutAppearer* mLayoutAppearer;
+    /* 0x28 */ CountUpPaneRumbler* mPaneRumbler;
+    /* 0x2C */ bool mIsForceAppear;
 };
