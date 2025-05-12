@@ -158,7 +158,7 @@ void TicoEat::exeEatPre() {
 
     
     TVec3f neg;
-    TVec3f dir = MR::getCamZDir();
+    TVec3f dir = MR::getCamZdir();
     
     JMathInlineVEC::PSVECNegate(&dir, &neg);
     if (MR::turnQuatZDirRad(&_A0, _A0, neg, 0.034906585f)) {
