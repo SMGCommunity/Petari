@@ -553,6 +553,14 @@ LiveActor* PowerStar::getAppearCameraActor() {
     return mCameraActor;
 }
 
+ActorCameraInfo* PowerStar::getAppearCameraInfo() const {
+    if (mCameraActor == NULL) {
+        return mCameraInfo;
+    }
+
+    return mCameraActor->mCameraInfo;
+}
+
 void PowerStar::requestAppearOrWait() {
     if (MR::isDemoCast(this, 0)) {
         setNerve(&NrvPowerStar::PowerStarNrvWeak::sInstance);
