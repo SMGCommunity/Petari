@@ -8,6 +8,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
@@ -70,7 +71,7 @@ void CounterLayoutController::setHPMeter(MarioMeter* pHPMeter) {
 }
 
 void CounterLayoutController::requestedTicoEat(bool param1) {
-    if (mStarPieceCounter->_40 == 0 && mStarPieceCounter->tryOnModeTicoEat(param1)) {
+    if (mStarPieceCounter->mMode == 0 && mStarPieceCounter->tryOnModeTicoEat(param1)) {
         mCoinCounter->kill();
         mPlayerLeft->kill();
         mStarCounter->kill();
@@ -163,7 +164,7 @@ void CounterLayoutController::killAllCoounter() {
 }
 
 bool CounterLayoutController::tryEndTicoEatStarPiece() {
-    if (mStarPieceCounter->_40 != 0 && !_24) {
+    if (mStarPieceCounter->mMode != 0 && !_24) {
         if (mStarPieceCounter->tryOffModeTicoEat()) {
             mCoinCounter->appear();
             mPlayerLeft->appear();
