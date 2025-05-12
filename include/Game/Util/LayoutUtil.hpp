@@ -10,6 +10,12 @@ class LayoutActor;
 class Nerve;
 class SimpleLayout;
 
+namespace nw4r {
+    namespace lyt {
+        class DrawInfo;
+    };
+};
+
 namespace MR {
     void setEffectRate(LayoutActor*, const char*, f32);
     void setEffectDirectionalSpeed(LayoutActor*, const char*, f32);
@@ -129,4 +135,6 @@ namespace MR {
 
     void showScreen(LayoutActor *);
     void hideScreen(LayoutActor *);
+
+    void calcAnimLayoutWithDrawInfo(const LayoutActor*, const nw4r::lyt::DrawInfo&);
 };  // namespace MR
