@@ -120,4 +120,6 @@ namespace MR {
 
     void forceAppearStarPieceCounterForTicoFat();
     void disappearStarPieceCounterForTicoFat();
+
+    void appearInformationMessage(const wchar_t *, bool);
 };

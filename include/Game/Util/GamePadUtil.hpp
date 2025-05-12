@@ -9,6 +9,7 @@ namespace MR {
     bool testCorePadButtonDown(s32);
 
     bool testCorePadButtonA(s32);
+    bool testCorePadButtonB(s32);
 
     bool testCorePadButtonPlus(s32);
     bool testCorePadButtonMinus(s32);

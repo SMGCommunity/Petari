@@ -114,4 +114,7 @@ namespace MR {
     void forceToNextStateGalaxyCometScheduler();
 
     bool isAppearGalaxy(const char *);
+
+    s32 getStarPieceNumGivingToTicoSeed(int);
+    void addStarPieceGivingToTicoSeed(int, int);
 };

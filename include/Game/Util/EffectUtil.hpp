@@ -38,7 +38,7 @@ namespace MR {
     void deleteEffect(LiveActor *, const char *);
     void deleteEffectAll(LiveActor *);
 
-    void emitEffect(LiveActor *, const char *);
+    MultiEmitter* emitEffect(LiveActor *, const char *);
 
     MultiEmitter* getEffect(const LayoutActor *, const char *);
 

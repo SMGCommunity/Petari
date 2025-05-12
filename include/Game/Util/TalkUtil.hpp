@@ -26,6 +26,8 @@ namespace MR {
     void onRootNodeAutomatic(TalkMessageCtrl *);
     void offRootNodeAutomatic(TalkMessageCtrl *);
 
+    void resetNode(TalkMessageCtrl *);
+
     bool tryTalkForce(TalkMessageCtrl *);
 
     void forwardNode(TalkMessageCtrl *);
@@ -37,6 +39,8 @@ namespace MR {
     bool tryTalkRequest(TalkMessageCtrl *);
     bool tryTalkSelectLeft(TalkMessageCtrl *);
     bool tryTalkSelectRight(TalkMessageCtrl *);
+
+    void setMessageBalloonFollowOffset(TalkMessageCtrl *, const TVec3f &);
 
     TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
 

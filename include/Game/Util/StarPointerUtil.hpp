@@ -56,5 +56,7 @@ namespace MR {
 
     void startStarPointerModeStarPieceTarget(void *);
 
+    void setStarPointerTargetRadius3d(LiveActor *, f32);
+
     const TVec2f& getStarPointerScreenPositionOrEdge(s32);
 };

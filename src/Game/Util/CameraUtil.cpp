@@ -49,7 +49,7 @@ namespace MR {
         return -dir;
     }
 
-    TVec3f getCamYDir() {
+    TVec3f getCamYdir() {
         TPos3f viewMtx = *MR::getSceneObj<CameraContext*>(SceneObj_CameraContext)->getInvViewMtx();
         TVec3f dir;
         viewMtx.getYDir(dir);

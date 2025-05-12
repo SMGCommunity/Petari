@@ -22,6 +22,8 @@ namespace MR {
 
     MtxPtr getPlayerBaseMtx();
 
+    bool isPlayerElementModeInvincible();
+
     bool isPlayerDead();
 
     bool isPlayerInBind();
@@ -47,6 +49,8 @@ namespace MR {
     bool isPlayerTeresaDisappear();
 
     bool isPlayerInRush();
+
+    bool isPlayerFlying();
 
     bool isPlayerHipDropFalling();
 
