@@ -1,6 +1,8 @@
 #include "Game/Screen/CountUpPaneRumbler.hpp"
 #include "Game/Screen/CounterLayoutAppearer.hpp"
+#include "Game/Screen/CounterLayoutController.hpp"
 #include "Game/Screen/StarPieceCounter.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace NrvStarPieceCounter {
     NEW_NERVE(StarPieceCounterNrvHide, StarPieceCounter, Hide);
@@ -86,4 +88,237 @@ void StarPieceCounter::disappear(bool param1) {
 
 bool StarPieceCounter::isWait() const {
     return !MR::isDead(this) && isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+}
+
+void StarPieceCounter::forceSync() {
+    mDisplayUpdateFrame = 0;
+    mStarPieceNum = MR::getStarPieceNum();
+    mStarPieceDisplayNum = mStarPieceNum;
+}
+
+bool StarPieceCounter::tryOnModeTicoEat(bool param1) {
+    int mode = 1;
+
+    if (param1) {
+        mode = 2;
+    }
+
+    return tryChangeModeTicoEat(mode);
+}
+
+bool StarPieceCounter::tryOffModeTicoEat() {
+    return tryChangeModeTicoEat(0);
+}
+
+void StarPieceCounter::control() {
+    updateCounter();
+    mLayoutAppearer->update();
+    mPaneRumbler->update();
+}
+
+void StarPieceCounter::updateCounter() {
+    const char* pPaneName;
+
+    mStarPieceNum = MR::getStarPieceNum();
+
+    updateCounterValue();
+
+    if (isDispCenter()) {
+        if (mStarPieceDisplayNum >= 1000) {
+            pPaneName = "TPosition1000";
+        }
+        else if (mStarPieceDisplayNum >= 100) {
+            pPaneName = "TPosition0100";
+        }
+        else if (mStarPieceDisplayNum >= 10) {
+            pPaneName = "TPosition0010";
+        }
+        else {
+            pPaneName = "TPosition0001";
+        }
+
+        MR::setTextBoxNumberRecursive(this, "TCounter", mStarPieceDisplayNum);
+    }
+    else {
+        if (mStarPieceDisplayNum >= 100) {
+            pPaneName = "Position100";
+        }
+        else if (mStarPieceDisplayNum >= 10) {
+            pPaneName = "Position010";
+        }
+        else {
+            pPaneName = "Position001";
+        }
+
+        MR::setTextBoxNumberRecursive(this, "Counter", mStarPieceDisplayNum);
+    }
+
+    MR::copyPaneTrans(&mFollowPos, this, pPaneName);
+}
+
+void StarPieceCounter::updateCounterValue() {
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
+        return;
+    }
+
+    if (mDisplayUpdateFrame > 0) {
+        mDisplayUpdateFrame--;
+    }
+    else if (mStarPieceDisplayNum != mStarPieceNum) {
+        if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
+            if (mStarPieceDisplayNum < mStarPieceNum) {
+                mStarPieceDisplayNum++;
+
+                MR::startAnim(this, "Flash", 0);
+                MR::emitEffect(this, MR::isStageAstroLocation()
+                    ? "TStarPieceCounterLight"
+                    : "StarPieceCounterLight");
+            }
+            else if (mMode == 1) {
+                if (mStarPieceDisplayNum - mStarPieceNum > 10) {
+                    mStarPieceDisplayNum -= 10;
+                }
+                else {
+                    mStarPieceDisplayNum = mStarPieceNum;
+                }
+            }
+            else {
+                mStarPieceDisplayNum--;
+            }
+
+            mDisplayUpdateFrame = 3;
+
+            mPaneRumbler->start();
+        }
+
+        if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance)) {
+            if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
+                setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
+            }
+            else {
+                setNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+            }
+        }
+    }
+}
+
+bool StarPieceCounter::isValidAppearSituation() const {
+    if (mMode != 0) {
+        return !MR::isExistStarPointerGuidanceFrame1P();
+    }
+
+    return MR::isStarPointerInScreenAnyPort(0)
+        && !CounterLayoutController::isInvalidSystemStateShowCounter();
+}
+
+bool StarPieceCounter::isDispCenter() const {
+    return MR::isStageAstroLocation() || mMode != 0 || _3C == 2;
+}
+
+bool StarPieceCounter::tryChangeModeTicoEat(int mode) {
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance)
+        || isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance))
+    {
+        return false;
+    }
+
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance);
+
+        return false;
+    }
+
+    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance)) {
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+    }
+
+    forceSync();
+
+    mMode = mode;
+
+    return true;
+}
+
+void StarPieceCounter::exeHide() {
+    if (MR::isFirstStep(this)) {
+        mDisplayUpdateFrame = 0;
+
+        MR::hideLayout(this);
+    }
+
+    s32 step = mMode != 0 ? 20 : 3;
+
+    if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
+    }
+}
+
+void StarPieceCounter::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::showLayout(this);
+        MR::startAnim(this, "Wait", 1);
+
+        if (isDispCenter()) {
+            MR::showPaneRecursive(this, "TSPieceCounter");
+            MR::hidePaneRecursive(this, "StarPieceCounter");
+            mLayoutAppearer->setAppearOffset(TVec2f(0.0f, 30.0f));
+
+            if (MR::isStageAstroLocation()) {
+                MR::showPaneRecursive(this, "PicTStarPiece");
+                MR::hidePaneRecursive(this, "PicNStarPiece");
+            }
+            else {
+                MR::showPaneRecursive(this, "PicNStarPiece");
+                MR::hidePaneRecursive(this, "PicTStarPiece");
+            }
+        }
+        else {
+            MR::showPaneRecursive(this, "StarPieceCounter");
+            MR::hidePaneRecursive(this, "TSPieceCounter");
+            mLayoutAppearer->setAppearOffset(TVec2f(50.0f, 0.0f));
+        }
+
+        f32 y = 0.0f;
+
+        if (mMode != 0) {
+            y = -94.0f;
+        }
+        else if (_3C == 2) {
+            y = -120.0f;
+        }
+
+        mLayoutAppearer->appear(TVec2f(0.0f, y));
+    }
+
+    if (mLayoutAppearer->isAppeared()) {
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+    }
+}
+
+void StarPieceCounter::exeWait() {
+    if (isValidAppearSituation()) {
+        return;
+    }
+
+    if (mMode != 0 || (_3C == 0 && mStarPieceDisplayNum == mStarPieceNum && CounterLayoutController::isWaitToDisappearCounter(this))) {
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance);
+    }
+}
+
+void StarPieceCounter::exeDisappear() {
+    if (MR::isFirstStep(this)) {
+        mLayoutAppearer->disappear();
+    }
+
+    if (mLayoutAppearer->isDisappeared()) {
+        if (_3C == 2) {
+            _3C = 0;
+        }
+
+        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+    }
+}
+
+StarPieceCounter::~StarPieceCounter() {
+    
 }
