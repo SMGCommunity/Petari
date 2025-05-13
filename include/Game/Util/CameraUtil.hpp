@@ -57,7 +57,10 @@ namespace MR {
     void declareEventCameraProgrammable(const char *);
     void setGameCameraTargetToPlayer();
 
+    void startGlobalEventCameraNoTarget(const char *, s32);
+
     void setProgrammableCameraParam(const char *, const TVec3f &, const TVec3f &, const TVec3f &, bool);
+    void setProgrammableCameraParamFovy(const char *, f32);
 
     bool calcScreenPosition(TVec2f *, const TVec3f &);
 
@@ -68,8 +71,8 @@ namespace MR {
     void pauseOnAnimCamera(const ActorCameraInfo *, const char *);
     void pauseOffAnimCamera(const ActorCameraInfo *, const char *);
 
-    bool createActorCameraInfoIfExist(const JMapInfoIter &, ActorCameraInfo **);
-    void endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
+
+    bool endActorCamera(const LiveActor *, const ActorCameraInfo *, bool, s32);
 
     bool isStartAnimCameraEnd();
 
@@ -98,4 +101,10 @@ namespace MR {
 
     void startStartAnimCamera();
     s32 getStartAnimCameraFrame();
+
+    void startEventCameraAnim(const ActorCameraInfo *, const char *, const CameraTargetArg &, long, float);
+
+    s32 getAnimCameraFrame(const ActorCameraInfo *, const char *);
+
+    bool isAnimCameraEnd(const ActorCameraInfo *, const char *);
 };

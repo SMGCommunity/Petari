@@ -220,4 +220,6 @@ namespace MR {
     void onMovementOnOffGroup(const char *);
 
     ModelObj* createPowerStarDemoModel(const NameObj *, const char *, MtxPtr);
+
+    void loadResourceFromArc (const char *, const char *);
 };
