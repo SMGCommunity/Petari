@@ -2,9 +2,12 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int a1, const char *pName) : AreaObj(a1, pName) {
-    _3C = 0;
-    mZoneID = 0;
+CubeCameraArea::CubeCameraArea(int type, const char *pName) :
+    AreaObj(type, pName),
+    _3C(0),
+    mZoneID(0)
+{
+    
 }
 
 /*
@@ -26,12 +29,12 @@ void CubeCameraArea::init(const JMapInfoIter &rIter) {
 
     if (retVal) {
         if (!strcmp(valid, "Invalid")) {
-            mValid = false;
+            mIsValid = false;
         }
     }
 
     if (isValidSwitchA()) {
-        mValid = false;
+        mIsValid = false;
     }
 
     int r4 = 0;
@@ -52,23 +55,17 @@ void CubeCameraArea::init(const JMapInfoIter &rIter) {
 void CubeCameraArea::movement() {
     bool val = false;
 
-    if (mValid && _15 && mAwake) {
+    if (mIsValid && _15 && mIsAwake) {
         val = true;
     }
 
     if (!val) {
-        if (isValidSwitchA()) {
-            if (isOnSwitchA()) {
-                mValid = true;
-            }
+        if (isValidSwitchA() && isOnSwitchA()) {
+            mIsValid = true;
         }
     }
-    else {
-        if (isValidSwitchB()) {
-            if (isOnSwitchB()) {
-                mValid = false;
-            }
-        }
+    else if (isValidSwitchB() && isOnSwitchB()) {
+        mIsValid = false;
     }
 }
 
@@ -81,15 +78,7 @@ u16 CubeCameraArea::getCameraID() const {
 }
 
 bool CubeCameraArea::isInVolume(const TVec3f &rVec) const {
-    bool ret = false;
-
-    if ((_3C & sCubeCategory)) {
-        if (AreaObj::isInVolume(rVec)) {
-            ret = true;
-        }
-    }
-
-    return ret;
+    return (_3C & sCubeCategory) != 0 && AreaObj::isInVolume(rVec);
 }
 
 void CubeCameraArea::setCurrentCategory(s32 category) {

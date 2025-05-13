@@ -12,7 +12,7 @@ WarpCube::~WarpCube() {
 
 void WarpCubeMgr::setInvalidateTimer(AreaObj *pObj, u16 a2) {
     reinterpret_cast<WarpCube*>(pObj)->_48 = a2;
-    reinterpret_cast<WarpCube*>(pObj)->mValid = false;
+    reinterpret_cast<WarpCube*>(pObj)->mIsValid = false;
 }
 
 void WarpCubeMgr::startEventCamera(const AreaObj *pAreaObj) {
@@ -40,7 +40,7 @@ void WarpCube::movement() {
         }
 
         if (--_48 == 0) {
-            mValid = true;
+            mIsValid = true;
         }
     }
 }

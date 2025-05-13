@@ -39,7 +39,7 @@ void BigBubbleGoalArea::movement() {
     if (_4C >= _48) {
         _4C = _48;
         onSwitchA();
-        mValid = false;
+        mIsValid = false;
     }
     else if (_50 < _4C) {
         _4C = _50;

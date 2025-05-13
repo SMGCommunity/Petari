@@ -1,18 +1,32 @@
+#include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/ChipBase.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 
-ChipBase::ChipBase(const char *pName, s32 chipType, const char *pChipName) : LiveActor(pName) {
-    mFlashingCtrl = 0;
-    mRailMover = 0;
-    mAirBubble = 0;
-    mChipName = pChipName;
-    mHost = 0;
-    mClippingRange.x = 0.0f;
-    mClippingRange.y = 0.0f;
-    mClippingRange.z = 0.0f;
-    mGroupID = -1;
-    mChipType = chipType;
-    _B5 = false;
+namespace NrvChipBase {
+    NEW_NERVE(ChipBaseNrvDeactive, ChipBase, Deactive);
+    NEW_NERVE(ChipBaseNrvWait, ChipBase, Wait);
+    NEW_NERVE(ChipBaseNrvControled, ChipBase, Controled);
+    NEW_NERVE(ChipBaseNrvFlashing, ChipBase, Flashing);
+    NEW_NERVE(ChipBaseNrvHide, ChipBase, Hide);
+    NEW_NERVE(ChipBaseNrvGot, ChipBase, Got);
+};
+
+ChipBase::ChipBase(const char *pName, s32 chipType, const char *pChipName) :
+    LiveActor(pName),
+    mFlashingCtrl(NULL),
+    mRailMover(NULL),
+    mAirBubble(NULL),
+    mChipName(pChipName),
+    mHost(NULL),
+    mClippingRange(0.0f, 0.0f, 0.0f),
+    mGroupID(-1),
+    mChipType(chipType),
+    _B5(false)
+{
+    
 }
 
 void ChipBase::init(const JMapInfoIter &rIter) {
@@ -30,8 +44,8 @@ void ChipBase::init(const JMapInfoIter &rIter) {
     }
 
     mFlashingCtrl = new FlashingCtrl(this, true);
-    bool uses = MR::useStageSwitchReadAppear(this, rIter);
-    if (uses) {
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
     }
@@ -56,18 +70,18 @@ void ChipBase::initModel(const JMapInfoIter &rIter) {
 
 void ChipBase::initSensor() {
     f32 radius;
-    f32 scale_x = mScale.x;
+    f32 xScale = mScale.x;
+
     initHitSensor(1);
 
-    if (mAirBubble) {
+    if (mAirBubble != NULL) {
         radius = 150.0f;
     }
     else {
         radius = 80.0f;
     }
 
-    TVec3f sensor(0.0f, 0.0f, 0.0f);
-    MR::addHitSensorEnemy(this, "body", 8, radius * scale_x, sensor);    
+    MR::addHitSensorEnemy(this, "body", 8, radius * xScale, TVec3f(0.0f, 0.0f, 0.0f));
 }
 
 #ifdef NON_MATCHING
@@ -140,16 +154,19 @@ void ChipBase::setHost(LiveActor *pActor) {
 }
 
 void ChipBase::makeActorAppeared() {
-    if (!isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
-        LiveActor::makeActorAppeared();
-        if (mRailMover) {
-            mRailMover->start();
-        }
+    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+        return;
+    }
+
+    LiveActor::makeActorAppeared();
+
+    if (mRailMover != NULL) {
+        mRailMover->start();
     }
 }
 
 void ChipBase::makeActorDead() {
-    if (mRailMover) {
+    if (mRailMover != NULL) {
         mRailMover->end();
     }
 
@@ -157,7 +174,7 @@ void ChipBase::makeActorDead() {
 }
 
 void ChipBase::control() {
-    if (mRailMover) {
+    if (mRailMover != NULL) {
         mRailMover->movement();
         mPosition.x = mRailMover->_28.x;
         mPosition.y = mRailMover->_28.y;
@@ -167,20 +184,24 @@ void ChipBase::control() {
 }
 
 void ChipBase::appearWait() {
-    if (!isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
-        makeActorAppeared();
-        MR::validateClipping(this);
-        setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+        return;
     }
+
+    makeActorAppeared();
+    MR::validateClipping(this);
+    setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
 }
 
 void ChipBase::appearFlashing(s32 a1) {
-    if (!isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
-        appear();
-        MR::invalidateClipping(this);
-        mFlashingCtrl->start(a1);
-        setNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
+    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+        return;
     }
+
+    appear();
+    MR::invalidateClipping(this);
+    mFlashingCtrl->start(a1);
+    setNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
 }
 
 bool ChipBase::requestGet(HitSensor *a1, HitSensor *a2) {
@@ -188,7 +209,7 @@ bool ChipBase::requestGet(HitSensor *a1, HitSensor *a2) {
         MR::noticeGetChip(mChipType, this, mGroupID);
         setNerve(&NrvChipBase::ChipBaseNrvGot::sInstance);
 
-        if (mHost) {
+        if (mHost != NULL) {
             mHost->receiveMessage(0x87, a1, a2);
         }
 
@@ -203,6 +224,7 @@ bool ChipBase::requestShow() {
         MR::startBck(this, "Wait", 0);
         MR::showModel(this);
         setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+
         return true;
     }
 
@@ -216,6 +238,7 @@ bool ChipBase::requestHide() {
         MR::stopBck(this);
         MR::forceDeleteEffectAll(this);
         setNerve(&NrvChipBase::ChipBaseNrvHide::sInstance);
+
         return true;
     }
 
@@ -225,6 +248,7 @@ bool ChipBase::requestHide() {
 bool ChipBase::requestStartControl() {
     if (isNerve(&NrvChipBase::ChipBaseNrvWait::sInstance)) {
         setNerve(&NrvChipBase::ChipBaseNrvControled::sInstance);
+
         return true;
     }
 
@@ -234,10 +258,26 @@ bool ChipBase::requestStartControl() {
 bool ChipBase::requestEndControl() {
     if (isNerve(&NrvChipBase::ChipBaseNrvControled::sInstance)) {
         setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+
         return true;
     }
-    
+
     return false;
+}
+
+void ChipBase::exeDeactive() {
+
+}
+
+void ChipBase::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Wait", 0);
+        MR::validateHitSensors(this);
+    }
+}
+
+void ChipBase::exeControled() {
+    MR::zeroVelocity(this);
 }
 
 void ChipBase::exeFlashing() {
@@ -249,6 +289,10 @@ void ChipBase::exeFlashing() {
     if (mFlashingCtrl->mIsEnded) {
         kill();
     }
+}
+
+void ChipBase::exeHide() {
+
 }
 
 #ifdef NON_MATCHING
@@ -268,10 +312,8 @@ void ChipBase::exeGot() {
         if (!mChipType) {
             MR::startSystemSE("SE_SY_BLUECHIP_GET", MR::getGotChipCount(mChipType, mGroupID), -1);
         }
-        else {
-            if (mChipType == 1) {
-                MR::startSystemSE("SE_SY_YELLOWCHIP_GET", MR::getGotChipCount(mChipType, mGroupID), -1);
-            }
+        else if (mChipType == 1) {
+            MR::startSystemSE("SE_SY_YELLOWCHIP_GET", MR::getGotChipCount(mChipType, mGroupID), -1);
         }
     }
 
@@ -284,19 +326,12 @@ bool ChipBase::isGettable() const {
         return false;
     }
 
-    bool ret;
-
-    if (MR::isLessStep(this, 0x28)) {
-        ret = false;
-    }
-    else {
-        ret = false;
-        if (isNerve(&NrvChipBase::ChipBaseNrvWait::sInstance) || isNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance)) {
-            ret = true;
-        }
+    if (MR::isLessStep(this, 40)) {
+        return false;
     }
 
-    return ret;
+    return isNerve(&NrvChipBase::ChipBaseNrvWait::sInstance)
+        || isNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
 }
 
 bool ChipBase::isNeedBubble(const JMapInfoIter &rIter) {
@@ -304,54 +339,14 @@ bool ChipBase::isNeedBubble(const JMapInfoIter &rIter) {
         return false;
     }
 
-    bool val = false;
-    MR::getJMapInfoArg3WithInit(rIter, &val);
-    return val;
+    bool arg3 = false;
+    MR::getJMapInfoArg3WithInit(rIter, &arg3);
+
+    return arg3;
 }
 
 void ChipBase::makeArchiveList(NameObjArchiveListCollector *pList, const JMapInfoIter &rIter) {
     if (ChipBase::isNeedBubble(rIter)) {
         pList->addArchive("AirBubble");
-    } 
+    }
 }
-
-namespace NrvChipBase {
-    ChipBaseNrvDeactive ChipBaseNrvDeactive::sInstance;
-    ChipBaseNrvWait ChipBaseNrvWait::sInstance;
-    ChipBaseNrvControled ChipBaseNrvControled::sInstance;
-    ChipBaseNrvFlashing ChipBaseNrvFlashing::sInstance;
-    ChipBaseNrvHide ChipBaseNrvHide::sInstance;
-    ChipBaseNrvGot ChipBaseNrvGot::sInstance;
-
-    void ChipBaseNrvGot::execute(Spine *pSpine) const {
-        ChipBase* base = reinterpret_cast<ChipBase*>(pSpine->mExecutor);
-        base->exeGot();
-    }
-
-    void ChipBaseNrvHide::execute(Spine *pSpine) const {
-
-    }
-
-    void ChipBaseNrvFlashing::execute(Spine *pSpine) const {
-        ChipBase* base = reinterpret_cast<ChipBase*>(pSpine->mExecutor);
-        base->exeFlashing();
-    }
-
-    void ChipBaseNrvControled::execute(Spine *pSpine) const {
-        ChipBase* base = reinterpret_cast<ChipBase*>(pSpine->mExecutor);
-        MR::zeroVelocity(base);
-    }
-
-    void ChipBaseNrvWait::execute(Spine *pSpine) const {
-        ChipBase* base = reinterpret_cast<ChipBase*>(pSpine->mExecutor);
-        
-        if (MR::isFirstStep(base)) {
-            MR::startBck(base, "Wait", 0);
-            MR::validateHitSensors(base);
-        }
-    }
-
-    void ChipBaseNrvDeactive::execute(Spine *pSpine) const {
-
-    }
-};

@@ -21,7 +21,7 @@ void ChangeBgmCube::init(const JMapInfoIter &rIter) {
 void ChangeBgmCube::movement() {
     bool valid = false;
 
-    if (mValid && _15 && _16) {
+    if (mIsValid && _15 && _16) {
         valid = true;
     }
 
@@ -34,22 +34,22 @@ void ChangeBgmCube::movement() {
     }
 
     if (MR::isPowerStarGetDemoActive()) {
-        mValid = false;
+        mIsValid = false;
         return;
     }
 
     if (MR::isPlayingStageBgmID(0x2000014)) {
-        mValid = false;
+        mIsValid = false;
         return;
     }
 
     if (MR::isPlayingStageBgmID(0x200003E)) {
-        mValid = false;
+        mIsValid = false;
         return;
     }
 
     if (MR::isPlayerDead()) {
-        mValid = false;
+        mIsValid = false;
     }
 
     if (MR::isStageStateScenarioOpeningCamera()) {
