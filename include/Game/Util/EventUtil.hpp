@@ -185,39 +185,5 @@ namespace MR {
     bool isStarPieceCounterStop();
     bool isOnGameEventFlagAstroGalaxyBgmBright();
     bool isOnMessageAlreadyRead(s8);
-    void onMessageAlreadyRead(s8);
-
-    bool isGalaxyCometLandInStage(const char *);
-
-    int getEncounterGalaxyCometNameId(const char *);
-
-    const char* getCometNameFromId(int);
-
-    s32 getEncounterGalaxyCometPowerStarId(const char *);
-
-    s32 getPowerStarLeftToDisplayCountDownPlate();
-
-    bool isOnGameEventFlagViewNormalEnding();
-    bool isButlerMapAppear();
-
-    bool isAlreadyVisitedStage(const char *);
-
-    bool isOnGameEventFlagPlayMoviePrologueA();
-
-    void onGameEventFlagPlayMoviePrologueA();
-    void onGameEventFlagPlayMoviePrologueB();
-
-    bool isAlreadyVisitedCurrentStageAndScenario();
-
-    void endGalaxyCometEvent();
-
-    bool isGalaxyAnyCometAppearInCurrentStage();
-
-    void incPlayerGameOverNum();
-
-    s32 calcCurrentGreenStarNum();
-
-    void forceToNextStateGalaxyCometScheduler();
-
-    bool isAppearGalaxy(const char *);
+    void onMsgLedPattern();
 };
