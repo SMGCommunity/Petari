@@ -377,4 +377,6 @@ namespace MR {
     f32 getBckFrame(const LiveActor *);
 
     f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
+
+    LiveActor* getPairedGroupMember(const LiveActor *);
 };  // namespace MR

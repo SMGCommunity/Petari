@@ -125,4 +125,6 @@ namespace MR {
     void disappearInformationMessage();
 
     void requestCounterLayoutAppearanceForTicoEat(bool);
+
+    void setInformationMessageReplaceString(const wchar_t *, s32);
 };
