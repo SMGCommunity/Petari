@@ -39,6 +39,8 @@ namespace MR {
 
     bool isDemoLastStep();
 
+    s32 getDemoPartStep(const char *);
+
     const char* getCurrentDemoPartNameMain(const char*);
     s32 getDemoPartTotalStep(const char*);
 
