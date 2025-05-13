@@ -56,3 +56,4 @@
 #include "Game/Util/TalkUtil.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 #include "Game/Util/ValueControl.hpp"
+#include "Game/Util/VectorUtil.hpp"

@@ -5,6 +5,7 @@
 #include "Game/NPC/TicoComet.hpp"
 #include "Game/NPC/CollectTico.hpp"
 #include "Game/NPC/Peach.hpp"
+#include "Game/NPC/SignBoard.hpp"
 #include "Game/NPC/TicoDomeLecture.hpp"
 #include "Game/NPC/TicoFat.hpp"
 #include "Game/NPC/TicoGalaxy.hpp"

@@ -232,7 +232,7 @@ namespace {
 		{ "PenguinRacerLeader", NULL, "Penguin" },
 		{ "PenguinSkater", NULL, "Penguin" },
 		{ "PenguinStudent", NULL, "Penguin" },
-		{ "SignBoard", NULL, "SignBoard" },
+		{ "SignBoard", createNameObj<SignBoard>, "SignBoard" },
 		{ "Syati", NULL, "Syati" },
 		{ "Tico", createNameObj<Tico>, 0 },
 		{ "TicoComet", createNameObj<TicoComet>, "TicoComet" },
