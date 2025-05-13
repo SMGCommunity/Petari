@@ -235,6 +235,8 @@ namespace MR {
 
     bool isBckPlaying(const LiveActor*, const char*);
 
+    bool isBckLooped(const LiveActor *);
+
     bool isBckStopped(const LiveActor*);
     bool isBrkStopped(const LiveActor*);
     bool isBtkStopped(const LiveActor*);
@@ -286,6 +288,8 @@ namespace MR {
     PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor*, const char*, const char*, MtxPtr);
 
     void startAction(const LiveActor*, const char*);
+
+    bool tryStartAction(const LiveActor *, const char *);
 
     LodCtrl* createLodCtrlPlanet(LiveActor*, const JMapInfoIter&, f32, s32);
     LodCtrl* createLodCtrlNPC(LiveActor*, const JMapInfoIter&);

@@ -57,6 +57,7 @@ namespace MR {
     f32 calcPerpendicFootToLineInside(TVec3f *pOut, const TVec3f &rPoint, const TVec3f &rTip, const TVec3f &rTail);
 
     void blendQuatUpFront(TQuat4f *, const TVec3f &, const TVec3f &, f32, f32);
+    void blendQuatFrontUp(TQuat4f *, const TQuat4f &, const TVec3f &, const TVec3f &, f32, f32);
 
     void rotateQuatRollBall(TQuat4f *, const TVec3f &, const TVec3f &, f32);
 

@@ -1,12 +1,14 @@
 #pragma once
 
 #include <revolution.h>
+#include <JSystem/JGeometry.hpp>
 #include "Game/System/NerveExecutor.hpp"
 
 class NPCActorItem;
 class TalkMessageCtrl;
 class NPCActor;
 class ModelObj;
+class LiveActor;
 
 namespace MR {
     bool getNPCItemData(NPCActorItem *, s32);
@@ -31,6 +33,12 @@ namespace MR {
     bool tryChangeTalkActionRandom(NPCActor *, const char *, const char *, const char *);
     f32 calcFloatOffset(const NPCActor *, f32, f32);
     void calcAndSetFloatBaseMtx(NPCActor *, f32);
+
+    bool tryStartTalkAction(NPCActor *);
+
+    void turnPlayerToActor(const LiveActor *, f32);
+
+    void setNPCActorPos(NPCActor *, const TVec3f &);
 };
 
 class DemoStarter : public NerveExecutor {

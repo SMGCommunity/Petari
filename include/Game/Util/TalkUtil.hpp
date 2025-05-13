@@ -48,5 +48,10 @@ namespace MR {
         MR::setMessageArg(pCtrl, MR::getGalaxyNameOnCurrentLanguage(pName));
     }
 
-    
+    bool isNearPlayer(const TalkMessageCtrl *, f32);
+
+    bool tryTalkNearPlayer(TalkMessageCtrl *);
+
+    bool tryTalkForceWithoutDemo(TalkMessageCtrl *);
+    bool tryTalkForceWithoutDemoAtEnd(TalkMessageCtrl *);
 };

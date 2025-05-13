@@ -122,4 +122,7 @@ namespace MR {
     void disappearStarPieceCounterForTicoFat();
 
     void appearInformationMessage(const wchar_t *, bool);
+    void disappearInformationMessage();
+
+    void requestCounterLayoutAppearanceForTicoEat(bool);
 };
