@@ -224,7 +224,7 @@ namespace {
 		{ "KinopioAstro", NULL, "Kinopio" },
 		{ "HoneyBee", NULL, "HoneyBee" },
 		{ "HoneyQueen", NULL, "HoneyQueen" },
-		{ "Peach", NULL, "Peach" },
+		{ "Peach", createNameObj<Peach>, "Peach" },
 		{ "Penguin", NULL, "Penguin" },
 		{ "PenguinCoach", NULL, "PenguinCoach" },
 		{ "PenguinMaster", NULL, "PenguinMaster" },

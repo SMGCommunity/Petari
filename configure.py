@@ -1687,7 +1687,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/MiiFaceParts.cpp"),
             Object(NonMatching, "Game/NPC/MiiFacePartsHolder.cpp"),
             Object(NonMatching, "Game/NPC/MiiFaceRecipe.cpp"),
-            Object(NonMatching, "Game/NPC/Peach.cpp"),
+            Object(Matching, "Game/NPC/Peach.cpp"),
             Object(NonMatching, "Game/NPC/Penguin.cpp"),
             Object(NonMatching, "Game/NPC/PenguinCoach.cpp"),
             Object(NonMatching, "Game/NPC/PenguinMaster.cpp"),

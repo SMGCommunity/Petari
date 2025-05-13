@@ -6196,13 +6196,13 @@ Game/NPC/MiiFaceRecipe.cpp:
 Game/NPC/Peach.cpp:
 	.text       start:0x80279260 end:0x802793D0
 	.ctors      start:0x8052EFAC end:0x8052EFB0
-	.data       start:0x805B0BE0 end:0x805B0D90
+	.data       start:0x805B0BE0 end:0x805B0C78
 	.sbss       start:0x806B5DC0 end:0x806B5DC8
 
 Game/NPC/Penguin.cpp:
 	.text       start:0x802793D0 end:0x8027A1C0
 	.ctors      start:0x8052EFB0 end:0x8052EFB4
-	.data       start:0x805B0D90 end:0x805B0FE0
+	.data       start:0x805B0C78 end:0x805B0FE0
 	.sbss       start:0x806B5DC8 end:0x806B5DD8
 	.sdata2     start:0x806BEC00 end:0x806BEC48
 
