@@ -303,7 +303,7 @@ void EarthenPipe::exePlayerOut() {
         MR::startSound(mHostActor, "SE_PM_JUMP_M", -1, -1);
         MR::startSound(mHostActor, "SE_PV_JUMP_JOY", -1, -1);
         MR::startBckPlayer("EarthenPipeJump", (const char*)nullptr);
-        MR::endBindAndPLayerForceWeakGravityJumpInputOff(this, v4);
+        MR::endBindAndPlayerForceWeakGravityJumpInputOff(this, v4);
         mHostActor = nullptr;
         _B0->tryHideDown();
 

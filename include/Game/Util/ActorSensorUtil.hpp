@@ -211,4 +211,6 @@ namespace MR {
     void invalidateHitSensor(LiveActor *, const char *);
 
     bool isInSpinStormRange(u32, HitSensor *, HitSensor *, f32);
+
+    u32 getNumStarPieceGift(u32);
 };

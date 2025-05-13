@@ -5,11 +5,14 @@
 class CountUpPaneRumbler;
 class CounterLayoutAppearer;
 
-class StarCounter : LayoutActor {
+class StarCounter : public LayoutActor {
 public:
+    /// @brief Creates a new `StarCounter`.
     StarCounter();
 
+    /// @brief Destroys the `StarCounter`.
     virtual ~StarCounter();
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();

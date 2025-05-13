@@ -1,9 +1,11 @@
+#pragma once
+
 #include "Game/Screen/LayoutActor.hpp"
 
 class CountUpPaneRumbler;
 class CounterLayoutAppearer;
 
-class PlayerLeft : LayoutActor {
+class PlayerLeft : public LayoutActor {
 public:
     /// @brief Creates a new `PlayerLeft`.
     /// @param pName The pointer to the null-terminated name of the object.

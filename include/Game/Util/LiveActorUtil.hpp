@@ -279,6 +279,7 @@ namespace MR {
     void callAppearAllGroupMember(const LiveActor*);
     void callMakeActorDeadAllGroupMember(const LiveActor*);
     void callRequestMovementOnAllGroupMember(const LiveActor*);
+    void callMakeActorAppearedAllGroupMember(const LiveActor*);
 
     void setGroupClipping(LiveActor*, const JMapInfoIter&, int);
 
@@ -370,4 +371,6 @@ namespace MR {
     s32 countHideGroupMember(const LiveActor *);
 
     f32 getBckFrame(const LiveActor *);
+
+    f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
 };  // namespace MR

@@ -72,14 +72,14 @@ public:
     bool mStartEat;                             // 0x171
     u8 _172;
     u8 _173;
-    u32 _174;
-    u32 _178;
-    TMtx34f _17C;
-    TMtx34f _1AC;
+    s32 _174;
+    s32 _178;
+    TPos3f _17C;
+    TPos3f _1AC;
     s32 _1DC;
     s32 _1E0;
     s32 _1E4;
-    s32 _1E8;
+    s32 mCurrentFed;                            // 0x1E8
     s32 _1EC;
     u32 _1F0;
     s32 _1F4;
