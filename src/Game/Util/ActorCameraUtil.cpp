@@ -275,9 +275,9 @@ namespace MR {
         return isAnimCameraEnd(pInfo, pNewName);
     } */
 
-    s32 getActorCameraFrames(const LiveActor *pActor, const ActorCameraInfo *pInfo) {
+    /* s32 getActorCameraFrames(const LiveActor *pActor, const ActorCameraInfo *pInfo) {
         getMultiActorCameraFrames(pActor, pInfo, nullptr);
-    }
+    } */
 
     /* bool getMultiActorCameraFrames(const LiveActor *pActor, const ActorCameraInfo *pInfo, const char *pName {
         char *pNewName;
