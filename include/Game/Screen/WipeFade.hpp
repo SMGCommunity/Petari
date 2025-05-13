@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Screen/WipeLayoutBase.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Color.hpp"
 
 class WipeFade : public WipeLayoutBase {
 public:

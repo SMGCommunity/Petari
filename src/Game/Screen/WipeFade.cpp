@@ -1,4 +1,5 @@
 #include "Game/Screen/WipeFade.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 
 WipeFade::WipeFade(const char* pName, const Color8& rColor) : WipeLayoutBase(pName) {
     _20 = false;
@@ -50,13 +51,10 @@ void WipeFade::wipe(s32 a1) {
 
     if (a1 < 0) {
         _24 = 30;
+    } else if (a1 == 0) {
+        _24 = 1;
     } else {
-        if (a1 == 0) {
-            _24 = 1;
-
-        } else {
-            _24 = a1;
-        }
+        _24 = a1;
     }
 
     _28 = 0;
@@ -78,41 +76,26 @@ void WipeFade::forceClose() {
 void WipeFade::forceOpen() {
     _20 = 1;
     _28 = _24;
+
     kill();
 }
 
 bool WipeFade::isOpen() const {
-    bool ret = false;
-    if (_20 && _28 >= _24) {
-        ret = true;
-    }
-
-    return ret;
+    return _20 && _28 >= _24;
 }
 
 bool WipeFade::isClose() const {
-    bool ret = false;
-    if (!_20 && _28 >= _24) {
-        ret = true;
-    }
-
-    return ret;
+    return !_20 && _28 >= _24;
 }
 
 bool WipeFade::isWipeIn() const {
-    bool ret = false;
-    if (_20 && _28 < _24) {
-        ret = true;
-    }
-    return ret;
+    return _20 && _28 < _24;
 }
 
 bool WipeFade::isWipeOut() const {
-    bool ret = false;
-    if (!_20 && _28 < _24) {
-        ret = true;
-    }
-    return ret;
+    return !_20 && _28 < _24;
 }
 
-WipeFade::~WipeFade() {}
+WipeFade::~WipeFade() {
+    
+}
