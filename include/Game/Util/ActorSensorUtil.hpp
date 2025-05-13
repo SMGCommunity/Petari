@@ -66,6 +66,7 @@ namespace MR {
     bool isSensorPlayer(const HitSensor *);
     bool isSensorBinder(const HitSensor *);
     bool isSensorRide(const HitSensor *);
+    bool isSensorNpc(const HitSensor *);
 
     bool isSensorPlayerOrRide(const HitSensor *);
 

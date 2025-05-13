@@ -242,7 +242,7 @@ namespace {
 		{ "DemoRabbit", NULL, 0 },
 		{ "TicoFat", createNameObj<TicoFat>, "TicoFat" },
 		{ "TicoGalaxy", createNameObj<TicoGalaxy>, "TicoFat" },
-		{ "TicoRail", NULL, "Tico" },
+		{ "TicoRail", createNameObj<TicoRail>, "Tico" },
 		{ "TicoReading", NULL, "Tico" },
 		{ "TicoDomeLecture", NULL, "Tico" },
 		{ "Rosetta", NULL, 0 },

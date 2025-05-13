@@ -219,6 +219,8 @@ namespace JGeometry {
 
         TVec3 operator-() const;
 
+        bool operator==(const TVec3 &) const;
+
         // This should probably be merged with operator-(), but ParallelGravity doesn't inline
         // operator-() despite only referencing it once. So if we can match that, the two functions
         // can be merged.

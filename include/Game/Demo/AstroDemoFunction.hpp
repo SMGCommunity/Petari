@@ -24,4 +24,6 @@ public:
     static bool tryRegisterSimpleCastIfAstroGalaxy(LiveActor *);
 
     static bool tryRegisterDemoForTico(LiveActor *, const JMapInfoIter &);
+
+    static bool tryRegisterGrandStarReturnAndSimpleCast(LiveActor *, const JMapInfoIter &);
 };

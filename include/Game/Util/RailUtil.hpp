@@ -45,6 +45,8 @@ namespace MR {
     const TVec3f& getRailPos(const LiveActor *);
     const TVec3f& getRailDirection(const LiveActor *);
 
+    const TVec3f& getRailPointPosStart(const LiveActor *);
+
     void moveCoordToStartPos(LiveActor *);
 
     bool getJMapInfoRailArg0NoInit(const LiveActor *, s32 *);
