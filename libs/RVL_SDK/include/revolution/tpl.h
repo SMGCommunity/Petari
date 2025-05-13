@@ -1,6 +1,11 @@
-#pragma once
+#ifndef TPL_H
+#define TPL_H
 
 #include "revolution/gx.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
     u16 numEntries;
@@ -39,3 +44,9 @@ typedef struct {
 
 void TPLBind(TPLPalettePtr);
 TPLDescriptorPtr TPLGet(TPLPalettePtr, u32);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // TPL_H
