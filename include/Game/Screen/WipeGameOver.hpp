@@ -18,6 +18,6 @@ public:
     virtual bool isWipeOut() const;
     virtual s32 getWipeType() const;
 
-    inline void exeActive();
-    inline void exeWait();
+    void exeActive();
+    void exeWait();
 };
