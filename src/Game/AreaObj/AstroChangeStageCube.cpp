@@ -59,7 +59,7 @@ bool AstroChangeStageCube::isInVolume(const TVec3f &rVec) const {
 void AstroChangeStageCube::movement() {
     bool isValid = false;
 
-    if (mValid && _15 && mAwake) {
+    if (mIsValid && _15 && mIsAwake) {
         isValid = true;
     }
 
@@ -70,7 +70,7 @@ void AstroChangeStageCube::movement() {
             return;
         }
 
-        mValid = false;
+        mIsValid = false;
         MR::stopStageBGM(5);
         MR::stopSubBGM(5);
 
