@@ -10,6 +10,6 @@ public:
     virtual void init(const JMapInfoIter &);
     virtual void appear();
     virtual void kill();
-
-    inline void exeWait();  
+    
+    void exeWait();
 };

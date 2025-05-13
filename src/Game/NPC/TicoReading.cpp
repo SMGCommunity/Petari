@@ -38,13 +38,13 @@ void TicoReading::kill() {
     LiveActor::kill();
 }
 
-TicoReading::~TicoReading() {
-
-}
-
-inline void TicoReading::exeWait() {
+void TicoReading::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "DemoRosettaReadingWait", nullptr);
         MR::setBckFrameAtRandom(this);
     }
+}
+
+TicoReading::~TicoReading() {
+
 }

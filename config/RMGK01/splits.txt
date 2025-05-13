@@ -6379,21 +6379,22 @@ Game/NPC/TicoComet.cpp:
 Game/NPC/TicoDemoGetPower.cpp:
 	.text       start:0x8028EC24 end:0x8028F008
 	.ctors      start:0x8052F010 end:0x8052F014
-	.data       start:0x805B47B0 end:0x805B49B8
+	.data       start:0x805B47B0 end:0x805B4940
 	.sbss       start:0x806B6090 end:0x806B6098
 
 Game/NPC/TicoDomeLecture.cpp:
 	.text       start:0x8028F008 end:0x8028F4B0
 	.ctors      start:0x8052F014 end:0x8052F018
-	.rodata     start:0x80539810 end:0x80539848
-	.data       start:0x805B49B8 end:0x805B4AF8
+	.rodata     start:0x80539810 end:0x80539828
+	.data       start:0x805B4940 end:0x805B4A60
 	.sbss       start:0x806B6098 end:0x806B60A8
 	.sdata2     start:0x806BF0A8 end:0x806BF0B0
 
 Game/NPC/TicoFat.cpp:
 	.text       start:0x8028F4B0 end:0x80291FE8
 	.ctors      start:0x8052F018 end:0x8052F01C
-	.data       start:0x805B4AF8 end:0x805B4FE0
+	.rodata     start:0x80539828 end:0x80539830
+	.data       start:0x805B4A60 end:0x805B4FE0
 	.bss        start:0x8060AEC8 end:0x8060AF00
 	.sdata      start:0x806B2188 end:0x806B21A0
 	.sbss       start:0x806B60A8 end:0x806B60E8
@@ -6401,20 +6402,22 @@ Game/NPC/TicoFat.cpp:
 
 Game/NPC/TicoGalaxy.cpp:
 	.text       start:0x80291FE8 end:0x80292314
-	.data       start:0x805B4FE0 end:0x805B5108
-	.sdata      start:0x806B21A0 end:0x806B21E8
+	.data       start:0x805B4FE0 end:0x805B50A8
+	.sdata      start:0x806B21A0 end:0x806B21A8
 
 Game/NPC/TicoRail.cpp:
 	.text       start:0x80292314 end:0x80293180
 	.ctors      start:0x8052F01C end:0x8052F020
-	.data       start:0x805B5108 end:0x805B5250
+	.rodata     start:0x80539830 end:0x80539838
+	.data       start:0x805B50A8 end:0x805B5220
 	.sbss       start:0x806B60E8 end:0x806B6110
 	.sdata2     start:0x806BF120 end:0x806BF148
 
 Game/NPC/TicoReading.cpp:
 	.text       start:0x80293180 end:0x802933EC
 	.ctors      start:0x8052F020 end:0x8052F024
-	.data       start:0x805B5250 end:0x805B52D8
+	.rodata     start:0x80539838 end:0x80539840
+	.data       start:0x805B5220 end:0x805B52D8
 	.sbss       start:0x806B6110 end:0x806B6118
 
 Game/NPC/TicoShop.cpp:
@@ -6433,7 +6436,9 @@ Game/NPC/TicoStarRing.cpp:
 Game/NPC/TrickRabbit.cpp:
 	.text       start:0x80293E64 end:0x80296C54
 	.ctors      start:0x8052F02C end:0x8052F030
+	.rodata     start:0x80539840 end:0x80539848
 	.data       start:0x805B5608 end:0x805B59A0
+	.sdata      start:0x806B21A8 end:0x806B21B0
 	.sbss       start:0x806B6128 end:0x806B6180
 	.sdata2     start:0x806BF160 end:0x806BF1E0
 
@@ -6441,6 +6446,7 @@ Game/NPC/TrickRabbitFreeRun.cpp:
 	.text       start:0x80296C54 end:0x80297A28
 	.ctors      start:0x8052F030 end:0x8052F034
 	.data       start:0x805B59A0 end:0x805B5C60
+	.sdata      start:0x806B21B0 end:0x806B21B8
 	.sbss       start:0x806B6180 end:0x806B61A0
 	.sdata2     start:0x806BF1E0 end:0x806BF228
 
@@ -6455,6 +6461,7 @@ Game/NPC/TrickRabbitSnow.cpp:
 	.text       start:0x802989EC end:0x80299D40
 	.ctors      start:0x8052F038 end:0x8052F03C
 	.data       start:0x805B5DF0 end:0x805B60D0
+	.sdata      start:0x806B21B8 end:0x806B21C0
 	.sbss       start:0x806B61E0 end:0x806B6208
 	.sdata2     start:0x806BF238 end:0x806BF290
 
@@ -6471,6 +6478,7 @@ Game/NPC/CometEventExecutorTimeLimit.cpp:
 Game/NPC/CometEventKeeper.cpp:
 	.text       start:0x8029A07C end:0x8029A300
 	.rodata     start:0x80539848 end:0x805398D0
+	.sdata      start:0x806B21C0 end:0x806B21C8
 
 Game/NPC/EventDirector.cpp:
 	.text       start:0x8029A300 end:0x8029A870
@@ -6481,17 +6489,20 @@ Game/NPC/NPCActor.cpp:
 	.ctors      start:0x8052F040 end:0x8052F044
 	.data       start:0x805B6238 end:0x805B6320
 	.bss        start:0x8060AF00 end:0x8060AF38
+	.sdata      start:0x806B21C8 end:0x806B21D0
 	.sbss       start:0x806B6210 end:0x806B6220
 	.sdata2     start:0x806BF2A0 end:0x806BF300
 
 Game/NPC/NPCParameter.cpp:
 	.text       start:0x8029C548 end:0x8029D03C
 	.data       start:0x805B6320 end:0x805B64E8
+	.sdata      start:0x806B21D0 end:0x806B21D8
 	.sdata2     start:0x806BF300 end:0x806BF308
 
 Game/NPC/NPCDirector.cpp:
 	.text       start:0x8029D03C end:0x8029D150
 	.data       start:0x805B64E8 end:0x805B6530
+	.sdata      start:0x806B21D8 end:0x806B21E0
 
 Game/NPC/NPCFunction.cpp:
 	.text       start:0x8029D150 end:0x8029D258
@@ -6507,6 +6518,7 @@ Game/NPC/TalkBalloon.cpp:
 	.text       start:0x8029D368 end:0x8029EB24
 	.ctors      start:0x8052F044 end:0x8052F048
 	.data       start:0x805B65A8 end:0x805B69D8
+	.sdata      start:0x806B21E0 end:0x806B21E8
 	.sbss       start:0x806B6220 end:0x806B6240
 	.sdata2     start:0x806BF308 end:0x806BF328
 

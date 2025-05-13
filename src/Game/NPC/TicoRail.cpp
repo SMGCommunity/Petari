@@ -9,15 +9,15 @@
 
 namespace NrvTicoRail {
     NEW_NERVE(TicoRailNrvWait, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvLookAround, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvMoveSign, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvMoveSignAndTurn, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvMove, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvStop, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvTalkStart, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvTalk, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvTalkCancel, TicoRail, Wait);
-    NEW_NERVE(TicoRailNrvGoodBye, TicoRail, Wait);
+    NEW_NERVE(TicoRailNrvLookAround, TicoRail, LookAround);
+    NEW_NERVE(TicoRailNrvMoveSign, TicoRail, MoveSign);
+    NEW_NERVE(TicoRailNrvMoveSignAndTurn, TicoRail, MoveSign);
+    NEW_NERVE(TicoRailNrvMove, TicoRail, Move);
+    NEW_NERVE(TicoRailNrvStop, TicoRail, Stop);
+    NEW_NERVE(TicoRailNrvTalkStart, TicoRail, TalkStart);
+    NEW_NERVE(TicoRailNrvTalk, TicoRail, Talk);
+    NEW_NERVE(TicoRailNrvTalkCancel, TicoRail, TalkCancel);
+    NEW_NERVE(TicoRailNrvGoodBye, TicoRail, GoodBye);
 };
 
 TicoRail::TicoRail(const char *pName) : LiveActor(pName) {

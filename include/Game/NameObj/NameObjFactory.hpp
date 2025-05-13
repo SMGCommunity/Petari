@@ -20,6 +20,7 @@
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
 #include "Game/NPC/TicoAstro.hpp"
+#include "Game/NPC/TicoDomeLecture.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
@@ -238,13 +239,13 @@ namespace {
 		{ "TicoShop", createNameObj<TicoShop>, "TicoShop" },
 		{ "TicoStarRing", createNameObj<TicoStarRing>, "Tico" },
 		{ "TicoAstro", createNameObj<TicoAstro>, 0 },
-		{ "TicoBaby", NULL, 0 },
+		{ "TicoBaby", createNameObj<Tico>, 0 },
 		{ "DemoRabbit", NULL, 0 },
 		{ "TicoFat", createNameObj<TicoFat>, "TicoFat" },
 		{ "TicoGalaxy", createNameObj<TicoGalaxy>, "TicoFat" },
 		{ "TicoRail", createNameObj<TicoRail>, "Tico" },
 		{ "TicoReading", createNameObj<TicoReading>, "Tico" },
-		{ "TicoDomeLecture", NULL, "Tico" },
+		{ "TicoDomeLecture", createNameObj<TicoDomeLecture>, "Tico" },
 		{ "Rosetta", NULL, 0 },
 		{ "RosettaReading", NULL, "RosettaReading" },
 		{ "RosettaPictureBook", NULL, "RosettaPictureBook" },

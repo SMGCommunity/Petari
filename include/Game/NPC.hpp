@@ -4,6 +4,7 @@
 #include "Game/NPC/TicoAstro.hpp"
 #include "Game/NPC/TicoComet.hpp"
 #include "Game/NPC/CollectTico.hpp"
+#include "Game/NPC/TicoDomeLecture.hpp"
 #include "Game/NPC/TicoFat.hpp"
 #include "Game/NPC/TicoGalaxy.hpp"
 #include "Game/NPC/TicoRail.hpp"

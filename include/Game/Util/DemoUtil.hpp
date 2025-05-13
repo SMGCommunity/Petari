@@ -33,6 +33,7 @@ namespace MR {
 
     bool isDemoExist(const char*);
     bool isDemoPartTalk(const char*);
+    bool isDemoPartActive(const char *);
     bool isDemoPartStep(const char*, s32);
     bool isDemoPartFirstStep(const char*);
 
