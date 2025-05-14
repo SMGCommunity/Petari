@@ -2486,9 +2486,9 @@ config.libs = [
     SDKLib(
         "exi",
         [
-            Object(NonMatching, "RVL_SDK/exi/EXIBios.c", cflags=cflags_sdk_exi),
-            Object(NonMatching, "RVL_SDK/exi/EXIUart.c"),
-            Object(NonMatching, "RVL_SDK/exi/EXICommon.c")
+            Object(Matching, "RVL_SDK/exi/EXIBios.c", cflags=cflags_sdk_exi),
+            Object(Matching, "RVL_SDK/exi/EXIUart.c"),
+            Object(Matching, "RVL_SDK/exi/EXICommon.c")
         ]
     ),
 
