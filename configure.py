@@ -343,6 +343,11 @@ cflags_sdk = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_sdk_exi = [
+    "-O3" if flag == "-O4,p" else flag
+    for flag in cflags_sdk
+]
+
 cflags_rfl = [
     "-nodefaults",
     "-proc gekko",
@@ -2481,7 +2486,7 @@ config.libs = [
     SDKLib(
         "exi",
         [
-            Object(NonMatching, "RVL_SDK/exi/EXIBios.c"),
+            Object(NonMatching, "RVL_SDK/exi/EXIBios.c", cflags=cflags_sdk_exi),
             Object(NonMatching, "RVL_SDK/exi/EXIUart.c"),
             Object(NonMatching, "RVL_SDK/exi/EXICommon.c")
         ]
