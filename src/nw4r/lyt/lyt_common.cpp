@@ -3,6 +3,7 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
 #include "revolution/gx/GXVert.h"
+#include <cstdio>
 
 namespace nw4r {
     namespace lyt {

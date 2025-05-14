@@ -1,10 +1,9 @@
 #ifndef NEW_H
 #define NEW_H
 
-#include <cstring>
 #include "ansi_params.h"
 
-void* operator new(unsigned long, void* ptr) _MSL_THROW { 
+inline void* operator new(unsigned long, void* ptr) _MSL_THROW { 
     return ptr; 
 }
 
