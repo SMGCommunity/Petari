@@ -87,4 +87,7 @@ namespace MR {
     void startSoundObjectLevel(AudSoundObject *, const char *, s32);
 
     void limitedStarPieceHitSound();
+
+    void submitLevelSE();
+    void permitLevelSE();
 };

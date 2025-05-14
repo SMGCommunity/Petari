@@ -127,4 +127,6 @@ namespace MR {
     void requestCounterLayoutAppearanceForTicoEat(bool);
 
     void setInformationMessageReplaceString(const wchar_t *, s32);
+
+    void forceOffImageEffect();
 };
