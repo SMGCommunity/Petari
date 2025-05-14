@@ -34,6 +34,12 @@ namespace nw4r {
 
         struct VEC2 : public _VEC2 {
         public:
+            VEC2() {}
+
+            VEC2(const _VEC2& v) { 
+                x = v.x; y = v.y;
+            }
+
             VEC2(f32 fx, f32 fy) { 
                 x = fx; y = fy;
             }
@@ -58,3 +64,6 @@ namespace nw4r {
         }
     };
 };
+
+typedef nw4r::math::VEC2 (*TexCoordQuad)[4];
+typedef const nw4r::math::VEC2 (*ConstTexCoordQuad)[4];
