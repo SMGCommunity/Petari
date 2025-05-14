@@ -4,7 +4,7 @@
 
 class IconAButton;
 
-class ProloguePictureBook : LayoutActor {
+class ProloguePictureBook : public LayoutActor {
 public:
     ProloguePictureBook();
 

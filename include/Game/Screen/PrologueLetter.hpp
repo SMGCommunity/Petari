@@ -5,7 +5,7 @@
 class IconAButton;
 
 /// @brief The actor for the letter from Princess Peach during the beginning of the game.
-class PrologueLetter : LayoutActor {
+class PrologueLetter : public LayoutActor {
 public:
     /// @brief Creates a new `PrologueLetter`.
     /// @param pName The pointer to the null-terminated name of the object.

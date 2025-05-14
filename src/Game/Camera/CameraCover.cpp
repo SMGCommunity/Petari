@@ -39,7 +39,7 @@ void CameraCover::movement() {
 
 void CameraCover::draw() const {
     if (_3C) {
-        ResTIMG* timg = MR::getScreenResTIMG();
+        const ResTIMG* timg = MR::getScreenResTIMG();
         JUTTexture texture;
         texture._28 = 0;
         texture.storeTIMG(timg, (u8)0);
