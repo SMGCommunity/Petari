@@ -1,16 +1,22 @@
-#include "Game/Util/ScreenUtil.hpp"
-#include "Game/Screen/MoviePlayerSimple.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/MoviePlayerSimple.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+
+namespace {
+    MoviePlayerSimple* getMoviePlayer() {
+        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple);
+    }
+};
 
 namespace MR {
     void startMoviePlayer(const char *pThpFile) {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->startMovie(pThpFile, false);
+        getMoviePlayer()->startMovie(pThpFile, false);
         GameSceneFunction::requestPlayMovieDemo();
     }
 
     void stopMoviePlayer() {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->stopMovie();
+        getMoviePlayer()->stopMovie();
     }
 
     bool isActiveMoviePlayer() {
@@ -18,7 +24,7 @@ namespace MR {
             return false;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->isMovieActive();
+        return getMoviePlayer()->isMovieActive();
     }
 
     bool isMoviePlayerPlaying() {
@@ -26,7 +32,7 @@ namespace MR {
             return false;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->isMoviePlaying();
+        return getMoviePlayer()->isMoviePlaying();
     }
 
     s32 getMovieCurrentFrame() {
@@ -34,14 +40,14 @@ namespace MR {
             return -1;
         }
 
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->getCurrentFrame();
+        return getMoviePlayer()->getCurrentFrame();
     }
 
     u32 getMovieTotalFrame() {
-        return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->getTotalFrame();
+        return getMoviePlayer()->getTotalFrame();
     }
 
     void setMovieVolume(f32 volume, s32 time) {
-        MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->setVolume(volume, time);
+        getMoviePlayer()->setVolume(volume, time);
     }
 };
