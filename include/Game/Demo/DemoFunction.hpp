@@ -18,6 +18,8 @@ namespace DemoFunction {
     void registerDemoActionFunctorFunction(const LiveActor *, const MR::FunctorBase &, const char *, const char *);
     void registerDemoActionNerveFunction(const LiveActor *, const Nerve *, const char *);
 
+    bool tryCreateDemoTalkAnimCtrlForActor(LiveActor *, const char *, const char *);
+
     bool tryCreateDemoTalkAnimCtrlForScene(LiveActor *, const JMapInfoIter &, const char *, const char *, s32, s32);
 
     bool tryStartDemoRegistered(LiveActor *, const char *);
