@@ -33,7 +33,10 @@ namespace nw4r {
         struct MTX34;
 
         struct VEC2 : public _VEC2 {
-
+        public:
+            VEC2(f32 fx, f32 fy) { 
+                x = fx; y = fy;
+            }
         };
 
         struct VEC3 : public _VEC3 {
@@ -41,7 +44,17 @@ namespace nw4r {
         };
 
         struct MTX34 : public _MTX34 {
+        public:
+            typedef const f32 (*ConstMtxPtr)[4];
 
+            operator f32*() { return &_00; }
+            operator MtxPtr() { return (MtxPtr)&_00; }
+            operator ConstMtxPtr() const { return (ConstMtxPtr)&_00; }
         };
+
+        inline MTX34* MTX34Identity(MTX34* pOut) {
+            PSMTXIdentity(*pOut);
+            return pOut;
+        }
     };
 };

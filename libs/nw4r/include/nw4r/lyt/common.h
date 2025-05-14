@@ -5,6 +5,12 @@
 
 namespace nw4r {
     namespace lyt {
+        namespace detail {
+            inline bool IsCITexelFormat(_GXTexFmt fmt) {
+                return fmt == GX_TF_C4 || fmt == GX_TF_C8 || fmt == GX_TF_C14X2;
+            }
+        };
+
         class ResourceAccessor;
 
         struct ResBlockSet {
