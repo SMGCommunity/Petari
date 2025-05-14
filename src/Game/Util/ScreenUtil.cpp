@@ -29,7 +29,7 @@ namespace MR {
         return MR::getSceneObj<MoviePlayerSimple*>(SceneObj_MoviePlayerSimple)->isMoviePlaying();
     }
 
-    u32 getMovieCurrentFrame() {
+    s32 getMovieCurrentFrame() {
         if (!MR::isActiveMoviePlayer()) {
             return -1;
         }
