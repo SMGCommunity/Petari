@@ -32,6 +32,12 @@ namespace nw4r {
                 u8 mNum;
                 math::VEC2 (*mData)[4];
             };
+
+            inline const char* GetStrTableStr(const void *pTable, int idx) {
+                const u32* offs = static_cast<const u32*>(pTable);
+                const char* pool = static_cast<const char *>(pTable);
+                return &pool[offs[idx]];
+            }
         };
 
         class ResourceAccessor;

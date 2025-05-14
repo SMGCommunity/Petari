@@ -90,6 +90,9 @@ namespace nw4r {
             template<typename T>
             static void DeleteArray(T objAry[], u32 num);
 
+            template<typename T>
+            static void DeletePrimArray(T objAry[]);
+
             AnimTransformList mAnimTransList;
             Pane* mpRootPane;
             GroupContainer* mpGroupContainer;
@@ -143,10 +146,20 @@ namespace nw4r {
 
         template<typename T>
         inline void Layout::DeleteArray(T objAry[], u32 num) {
-            for (u32 i = 0; i < num; ++i) {
-                objAry[i].~T();
+            if (objAry) {
+                for (u32 i = 0; i < num; ++i) {
+                    objAry[i].~T();
+                }
+                FreeMemory(objAry);
             }
-            FreeMemory(objAry);
+        }
+
+        template<typename T>
+        inline void Layout::DeletePrimArray(T objAry[])
+        {
+            if (objAry) {
+                FreeMemory(objAry);
+            }
         }
     };
 };
