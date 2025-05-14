@@ -13,6 +13,7 @@ class SimpleLayout;
 namespace nw4r {
     namespace lyt {
         class DrawInfo;
+        class TexMap;
     };
 };
 
@@ -137,4 +138,5 @@ namespace MR {
     void hideScreen(LayoutActor *);
 
     void calcAnimLayoutWithDrawInfo(const LayoutActor*, const nw4r::lyt::DrawInfo&);
+    void replacePaneTexture(LayoutActor*, const char*, const nw4r::lyt::TexMap*, u8);
 };  // namespace MR
