@@ -2,9 +2,7 @@
 #include "nw4r/lyt/layout.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXTypes.h"
 #include "revolution/gx/GXVert.h"
-#include <cstdio>
 
 namespace nw4r {
     namespace lyt {
@@ -86,7 +84,6 @@ namespace nw4r {
                 return false;
             }
 
-            // https://decomp.me/scratch/D0AHp
             const ut::Color MultipleAlpha(const ut::Color col, u8 alpha) {
                 ut::Color ret = col;
                 if (alpha != ut::Color::ALPHA_MAX) {
@@ -94,6 +91,12 @@ namespace nw4r {
                 }
 
                 return ret;
+            }
+
+            void MultipleAlpha(ut::Color *dst, const ut::Color *src, u8 a) {
+                for (s32 i = 0; i < 4; i++) {
+                    dst[i] = MultipleAlpha(src[i], a);
+                }
             }
 
             void SetVertexFormat(bool a1, u8 num) {
@@ -104,7 +107,7 @@ namespace nw4r {
                 }
 
                 for (int i = 0; i < num; i++) {
-                    GXSetVtxDesc(GXAttr(GX_VA_TEX0 + 1), GX_DIRECT);
+                    GXSetVtxDesc(GXAttr(GX_VA_TEX0 + i), GX_DIRECT);
                 }
 
                 GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
@@ -162,15 +165,13 @@ namespace nw4r {
                 GXEnd();
             }
 
-            /*
             void DrawQuad(const math::VEC2 &basePt, const Size& size, u8 num, const math::VEC2 (*texCoords)[4], const ut::Color *vtxColors, u8 alpha) {
                 ut::Color colors[4];
                 if (vtxColors) {
                     MultipleAlpha(colors, vtxColors, alpha);
                 }
-                DrawQuad(basePt, size, num, texCoords, vtxColors);
+                DrawQuad(basePt, size, num, texCoords, vtxColors ? colors : 0);
             }
-            */
         };
     };
 };

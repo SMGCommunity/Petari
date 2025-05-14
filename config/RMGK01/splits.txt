@@ -51,7 +51,7 @@ nw4r/ut/ut_CharWriter.cpp:
 nw4r/ut/ut_TextWriterBase.cpp:
 	.text       start:0x80009D40 end:0x8000B7F0
 	.ctors      start:0x8052E804 end:0x8052E808
-	.bss        start:0x8060A3E0 end:0x8060A418
+	.bss        start:0x8060A3E0 end:0x8060A3F8
 	.sbss       start:0x806B2E68 end:0x806B2E78
 	.sdata2     start:0x806B7C48 end:0x806B7C60
 
@@ -116,7 +116,7 @@ nw4r/lyt/lyt_bounding.cpp:
 	.text       start:0x800112C4 end:0x80011370
 	.ctors      start:0x8052E818 end:0x8052E81C
 	.data       start:0x805648C8 end:0x80564998
-	.sbss       start:0x806B2EA8 end:0x806B2EC0
+	.sbss       start:0x806B2EA8 end:0x806B2EB0
 
 nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
@@ -147,6 +147,8 @@ nw4r/lyt/lyt_arcResourceAccessor.cpp:
 
 nw4r/lyt/lyt_common.cpp:
 	.text       start:0x800156F8 end:0x800161D0
+	.bss        start:0x8060A3F8 end:0x8060A418
+	.sbss       start:0x806B2EB0 end:0x806B2EB8
 	.sdata2     start:0x806B7D28 end:0x806B7D30
 
 RVL_SDK/os/init/__start.c:
@@ -207,6 +209,7 @@ Game/Animation/XanimePlayer.cpp:
 
 Game/Animation/XanimeResource.cpp:
 	.text       start:0x8001C4D4 end:0x8001D2A8
+	.sbss       start:0x806B2EB8 end:0x806B2EC0
 	.sdata2     start:0x806B7D88 end:0x806B7D90
 
 Game/AreaObj/AreaForm.cpp:

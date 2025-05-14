@@ -8,6 +8,10 @@ namespace nw4r {
         public:
             static const int ALPHA_MAX = 255;
 
+            Color() {
+                *this = 0xFFFFFFFF;
+            }
+
             Color(u32 color) {
                 *this = color;
             }
@@ -17,13 +21,15 @@ namespace nw4r {
             }
 
             Color& operator =(u32 color) {
-                *this = *reinterpret_cast<const u32*>(&color);
+                ToU32ref() = color;
                 return *this;
             }
 
             Color& operator =(const GXColor& color) {
                 return operator =(*reinterpret_cast<const u32*>(&color));
             }
+
+            ~Color() { }
 
             operator u32() const {
                 return ToU32ref();

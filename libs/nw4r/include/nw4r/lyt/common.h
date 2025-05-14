@@ -14,6 +14,7 @@ namespace nw4r {
 
             bool IsModulateVertexColor(ut::Color *, u8);
             const ut::Color MultipleAlpha(const ut::Color, u8);
+            void MultipleAlpha(ut::Color *, const ut::Color *, u8);
             void SetVertexFormat(bool, u8);
             void DrawQuad(const math::VEC2 &, const Size &, u8, const math::VEC2 (*)[4], const ut::Color *);
             void DrawQuad(const math::VEC2 &, const Size &, u8, const math::VEC2(*)[4], const ut::Color *, u8);

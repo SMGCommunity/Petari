@@ -1,5 +1,4 @@
 #include <NMWException.h>
-#include <new>
 
 class __partial_array_destructor {
 public:

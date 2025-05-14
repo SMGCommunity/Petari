@@ -559,7 +559,7 @@ config.libs = [
             Object(NonMatching, "nw4r/lyt/lyt_animation.cpp"),
             Object(Matching, "nw4r/lyt/lyt_resourceAccessor.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_arcResourceAccessor.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_common.cpp")
+            Object(Matching, "nw4r/lyt/lyt_common.cpp")
         ],
     ),
 
