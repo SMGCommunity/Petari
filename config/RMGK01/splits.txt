@@ -6099,14 +6099,14 @@ Game/NPC/ButlerExplain.cpp:
 Game/NPC/ButlerMap.cpp:
 	.text       start:0x8026E144 end:0x8026EB10
 	.ctors      start:0x8052EF84 end:0x8052EF88
-	.data       start:0x805AEDA8 end:0x805AF028
+	.data       start:0x805AEDA8 end:0x805AEFE8
 	.sbss       start:0x806B5C48 end:0x806B5C60
 	.sdata2     start:0x806BEA30 end:0x806BEA38
 
 Game/NPC/ButlerStateStarPieceReaction.cpp:
 	.text       start:0x8026EB10 end:0x8026ECDC
 	.ctors      start:0x8052EF88 end:0x8052EF8C
-	.data       start:0x805AF028 end:0x805AF058
+	.data       start:0x805AEFE8 end:0x805AF058
 	.sbss       start:0x806B5C60 end:0x806B5C68
 	.sdata2     start:0x806BEA38 end:0x806BEA40
 
