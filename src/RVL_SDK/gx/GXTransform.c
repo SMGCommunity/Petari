@@ -153,22 +153,21 @@ void GXLoadPosMtxImm(const f32 mtx[3][4], u32 id) {
     WriteMTXPS4x3(mtx, wgpipe);
 }
 
-void GXSetScissor(u32 left, u32 top, u32 width, u32 height) {
-    u32 _top, _left, bottom, right;
+void GXSetScissor(u32 left, u32 top, u32 wd, u32 ht) {
+    u32 tp, lf, bm, rt;
+    tp = top + (u32)342.0f;
+    lf = left + (u32)342.0f;
+    bm = tp + ht - 1;
+    rt = lf + wd - 1;
 
-    _top = top + (u32)342.0f;
-    _left = left + (u32)342.0f;
-    bottom = _top + height - 1;
-    right = _left + width - 1;
+    SC_SU_SCIS0_SET_SY0(gx->suScis0, tp);
+    SC_SU_SCIS0_SET_SX0(gx->suScis0, lf);
 
-    SET_FLAG(gx->suScis0, _top, 0, 11);
-    SET_FLAG(gx->suScis0, _left, 12, 11);
+    SC_SU_SCIS1_SET_SY1(gx->suScis1, bm);
+    SC_SU_SCIS1_SET_SX1(gx->suScis1, rt);
 
-    SET_FLAG(gx->suScis1, bottom, 0, 11);
-    SET_FLAG(gx->suScis1, right, 12, 11);
-
-    GX_WRITE_REG(gx->suScis0);
-    GX_WRITE_REG(gx->suScis1);
+    GX_WRITE_RA_REG(gx->suScis0);
+    GX_WRITE_RA_REG(gx->suScis1);
     gx->bpSentNot = GX_FALSE;
 }
 
