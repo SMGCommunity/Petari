@@ -329,7 +329,6 @@ void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorS
     gx->chanCtrl[idx] = reg;
     gx->dirtyState |= (0x1000<<idx);
 
-    // if combination Id, then also load the alpha controls.
     if (chan == GX_COLOR0A0) {
         gx->chanCtrl[GX_ALPHA0] = reg;
         gx->dirtyState |= (0x00001000|0x00004000);
