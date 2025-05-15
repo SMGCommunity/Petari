@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/Functor.hpp"
 
 class NameObj;
 class LiveActor;
 class JMapInfoIter;
+class TalkMessageCtrl;
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor*, const char*, const JMapInfoIter&);
