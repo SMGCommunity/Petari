@@ -39,6 +39,8 @@ namespace MR {
     void turnPlayerToActor(const LiveActor *, f32);
 
     void setNPCActorPos(NPCActor *, const TVec3f &);
+
+    void setDefaultPose(NPCActor *);
 };
 
 class DemoStarter : public NerveExecutor {

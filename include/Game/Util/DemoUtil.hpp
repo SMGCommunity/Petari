@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/Functor.hpp"
 
 class NameObj;
@@ -41,6 +42,9 @@ namespace MR {
 
     s32 getDemoPartStep(const char *);
 
+    void pauseTimeKeepDemo(LiveActor *);
+    void resumeTimeKeepDemo(LiveActor *);
+
     const char* getCurrentDemoPartNameMain(const char*);
     s32 getDemoPartTotalStep(const char*);
 
@@ -72,6 +76,7 @@ namespace MR {
 
     bool canStartDemo();
 
+    bool tryInitDemoSheetTalkAnim(LiveActor *, const JMapInfoIter&, const char *, const char *, TalkMessageCtrl *);
     void startTimeKeepDemo(NameObj *, const char *, const char *);
 
     bool isRegisteredDemoActionAppear(const LiveActor *);
