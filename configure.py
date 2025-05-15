@@ -2520,7 +2520,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/gx/GXFifo.c"),
             Object(NonMatching, "RVL_SDK/gx/GXAttr.c"),
             Object(Matching, "RVL_SDK/gx/GXMisc.c"),
-            Object(NonMatching, "RVL_SDK/gx/GXGeometry.c"),
+            Object(Matching, "RVL_SDK/gx/GXGeometry.c"),
             Object(NonMatching, "RVL_SDK/gx/GXFrameBuf.c"),
             Object(NonMatching, "RVL_SDK/gx/GXLight.c"),
             Object(NonMatching, "RVL_SDK/gx/GXTexture.c"),
@@ -2529,7 +2529,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/gx/GXPixel.c"),
             Object(NonMatching, "RVL_SDK/gx/GXDisplayList.c"),
             Object(NonMatching, "RVL_SDK/gx/GXTransform.c"),
-            Object(NonMatching, "RVL_SDK/gx/GXPerf.c")
+            Object(Matching, "RVL_SDK/gx/GXPerf.c")
         ]
     ),
 

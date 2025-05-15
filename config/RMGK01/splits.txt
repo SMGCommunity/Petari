@@ -10537,7 +10537,7 @@ RVL_SDK/gx/GXInit.c:
 RVL_SDK/gx/GXFifo.c:
 	.text       start:0x804BA77C end:0x804BB420
 	.data       start:0x805FDFA0 end:0x805FDFD0
-	.bss        start:0x80666A00 end:0x80667180
+	.bss        start:0x80666A00 end:0x80666A48
 	.sbss       start:0x806B7898 end:0x806B78B8
 
 RVL_SDK/gx/GXAttr.c:
@@ -10582,6 +10582,7 @@ RVL_SDK/gx/GXPixel.c:
 
 RVL_SDK/gx/GXDisplayList.c:
 	.text       start:0x804C01CC end:0x804C03A4
+	.bss        start:0x80666A48 end:0x80667180
 
 RVL_SDK/gx/GXTransform.c:
 	.text       start:0x804C03A4 end:0x804C0AD4
