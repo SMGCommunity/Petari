@@ -3,6 +3,8 @@
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/MessageUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/mtx.h"
 #include <JSystem/JGeometry.hpp>
 
 class TalkMessageCtrl;
@@ -43,6 +45,7 @@ namespace MR {
     void setMessageBalloonFollowOffset(TalkMessageCtrl *, const TVec3f &);
 
     TalkMessageCtrl* createTalkCtrlDirect(LiveActor *, const JMapInfoIter &, const char *,const TVec3f &, MtxPtr);
+    TalkMessageCtrl* createTalkCtrlDirectOnRootNodeAutomatic(LiveActor *, const JMapInfoIter &, const char *, const TVec3f &, MtxPtr);
 
     inline void setMessageArgToCurrentGalaxyName(TalkMessageCtrl *pCtrl, const char *pName) {
         MR::setMessageArg(pCtrl, MR::getGalaxyNameOnCurrentLanguage(pName));
