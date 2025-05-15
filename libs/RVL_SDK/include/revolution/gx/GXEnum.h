@@ -908,6 +908,23 @@ typedef enum _GXTexCacheSize {
     GX_TEXCACHE_NONE
 } GXTexCacheSize;
 
+typedef enum _GXSpotFn {
+  GX_SP_OFF = 0,
+  GX_SP_FLAT,
+  GX_SP_COS,
+  GX_SP_COS2,
+	GX_SP_SHARP,
+	GX_SP_RING1,
+	GX_SP_RING2
+} GXSpotFn;
+
+typedef enum _GXDistAttnFn {
+    GX_DA_OFF = 0,
+    GX_DA_GENTLE,
+    GX_DA_MEDIUM,
+    GX_DA_STEEP
+} GXDistAttnFn;
+
 #ifdef __cplusplus
 }
 #endif

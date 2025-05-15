@@ -102,6 +102,19 @@ extern void __GXFlushTextureState();
 extern void __GXAbort();
 extern void __GXSetTmemConfig(u32);
 
+typedef struct __GXLightObjInt_struct {
+    u32 reserved[3];
+    u32 Color;
+    f32 a[3];
+    f32 k[3];
+    f32 lpos[3];
+    f32 ldir[3];
+} GXLightObjInt;
+
+#define GX_SETUP_LIGHT(l,p) \
+    GXLightObjInt  *l;    \
+    l = (GXLightObjInt *)p;\
+
 #ifdef __cplusplus
 }
 #endif
