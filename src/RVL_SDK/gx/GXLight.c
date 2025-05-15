@@ -257,3 +257,85 @@ void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color) {
     gx->dirtyState |= (0x100 << colIdx);
     gx->ambColor[colIdx] = reg;
 }
+
+void GXSetChanMatColor(GXChannelID chan, GXColor mat_color) {
+    u32 reg = 0, rgb, colIdx;
+
+    switch (chan) {
+        case GX_COLOR0:
+            reg = gx->matColor[GX_COLOR0];
+            rgb = ((*(u32*)(&mat_color)) >> 8);
+            SC_XF_MATERIAL0_F_SET_RGB(reg, rgb);
+            colIdx = 0;
+            break;
+
+        case GX_COLOR1:
+            reg = gx->matColor[GX_COLOR1];
+            rgb = ((*(u32*)(&mat_color)) >> 8);
+            SC_XF_MATERIAL1_F_SET_RGB(reg, rgb);
+            colIdx = 1;
+            break;
+
+        case GX_ALPHA0:
+            reg = gx->matColor[GX_COLOR0];
+            SC_XF_MATERIAL0_F_SET_ALPHA(reg, mat_color.a);
+            colIdx = 0;
+            break;
+
+        case GX_ALPHA1:
+            reg = gx->matColor[GX_COLOR1];
+            SC_XF_MATERIAL1_F_SET_ALPHA(reg, mat_color.a);
+            colIdx = 1;
+            break;
+
+        case GX_COLOR0A0:
+            SC_XF_MATERIAL0_F_SET_RGBA(reg, *(u32*)(&mat_color));
+            colIdx = 0;
+            break;
+
+        case GX_COLOR1A1:
+            SC_XF_MATERIAL1_F_SET_RGBA(reg, *(u32*)(&mat_color));
+            colIdx = 1;
+            break;
+
+        default:
+            return;
+    }
+
+    gx->dirtyState |= (0x400 << colIdx);
+    gx->matColor[colIdx] = reg;
+}
+
+void GXSetNumChans(u8 nChans) {
+    SC_GEN_MODE_SET_NCOL(gx->genMode, nChans);
+    gx->dirtyState |= 0x1000004;
+}
+
+void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, u32 light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) {
+    u32 reg, idx;
+    idx = (u32)(chan & 0x0003);
+ 
+    reg = 0;
+    SC_XF_COLOR0CNTRL_F_SET_LIGHTFUNC(reg, enable);
+    SC_XF_COLOR0CNTRL_F_SET_MATERIAL_SRC(reg, mat_src);
+    SC_XF_COLOR0CNTRL_F_SET_AMBIENT_SRC(reg, amb_src);
+    SC_XF_COLOR0CNTRL_F_SET_DIFFUSEATTEN(reg, 
+                           ((attn_fn == GX_AF_SPEC) ? GX_DF_NONE : diff_fn)); 
+    SC_XF_COLOR0CNTRL_F_SET_ATTENENABLE(reg, (attn_fn != GX_AF_NONE));
+    SC_XF_COLOR0CNTRL_F_SET_ATTENSELECT(reg, (attn_fn != GX_AF_SPEC));
+    SC_XF_COLOR0CNTRL_F_SET_LIGHT0123(reg, (light_mask & 0x000F));
+    SC_XF_COLOR0CNTRL_F_SET_LIGHT4567(reg, ((light_mask & 0x00F0)>>4));
+
+    gx->chanCtrl[idx] = reg;
+    gx->dirtyState |= (0x1000<<idx);
+
+    // if combination Id, then also load the alpha controls.
+    if (chan == GX_COLOR0A0) {
+        gx->chanCtrl[GX_ALPHA0] = reg;
+        gx->dirtyState |= (0x00001000|0x00004000);
+    }
+    else if (chan == GX_COLOR1A1) {
+        gx->chanCtrl[GX_ALPHA1] = reg;
+        gx->dirtyState |= (0x00002000|0x00008000);
+    }
+}
