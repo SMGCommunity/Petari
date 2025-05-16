@@ -1,17 +1,21 @@
 #pragma once
 
-#include "Game/Effect/ParticleResourceHolder.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/NameObj/NameObjRegister.hpp"
-#include "Game/Screen/CaptureScreenDirector.hpp"
-#include "Game/Screen/ScreenPreserver.hpp"
-#include "Game/Screen/StarPointerDirector.hpp"
-#include "Game/System/AudSystemWrapper.hpp"
-#include "Game/System/FunctionAsyncExecutor.hpp"
-#include "Game/System/MessageHolder.hpp"
-#include "Game/System/WPadHolder.hpp"
 #include <JSystem/JMath/random.hpp>
+#include <revolution.h>
+
+namespace JMath {
+    struct TRandom_fast_;
+};
+
+class AudSystemWrapper;
+class CaptureScreenDirector;
+class FunctionAsyncExecutor;
+class MessageHolder;
+class NameObjHolder;
+class ParticleResourceHolder;
+class ScreenPreserver;
+class StarPointerDirector;
+class WPadHolder;
 
 class GameSystemObjHolder {
 public:
@@ -33,8 +37,11 @@ public:
     void initAudio();
     void initRenderMode();
     void initNameObj();
+    void initFunctionAsyncExecutor();
     void initResourceHolderManager();
     void initGameController();
+    void initWPad();
+    void initStarPointerDirector();
     void initDisplay();
 
     NameObjHolder* mObjHolder;                      // 0x0
