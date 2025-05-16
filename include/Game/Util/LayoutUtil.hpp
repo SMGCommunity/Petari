@@ -27,6 +27,9 @@ namespace MR {
 
     void createAndAddPaneCtrl(LayoutActor*, const char*, u32);
     bool isExistPaneCtrl(LayoutActor*, const char*);
+    u8 getPaneAlpha(const LayoutActor*, const char*);
+    void setInfluencedAlphaToChild(const LayoutActor*);
+    void setLayoutAlpha(const LayoutActor*, u8);
 
     void startPaneAnim(LayoutActor*, const char*, const char*, u32);
     void startPaneAnimAtStep(LayoutActor*, const char*, const char*, s32, u32);
