@@ -1,19 +1,26 @@
 #pragma once
 
-#include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapIdInfo.hpp"
-#include "Game/NameObj/NameObj.hpp"
-
-class ParticleResourceHolder;
-
 typedef void (NameObj::*MethodFunc)();
+
+namespace nw4r {
+    namespace ut {
+        class Font;
+    };
+};
+
+namespace MR {
+    class FunctorBase;
+};
+
+class JMapIdInfo;
+class ParticleResourceHolder;
 
 namespace MR {
     bool isScreen16Per9();
 
     void setLayoutDefaultAllocator();
 
-    void startFunctionAsyncExecute(const FunctorBase &, int, const char *);
+    void startFunctionAsyncExecute(const FunctorBase&, int, const char*);
 
     void startFunctionAsyncExecuteOnMainThread(const FunctorBase&, const char*);
     void waitForEndFunctionAsyncExecute(const char*);
@@ -39,4 +46,5 @@ namespace MR {
 
     void callMethodAllSceneNameObj(MethodFunc);
 
+    nw4r::ut::Font* getFontOnCurrentLanguage();
 };  // namespace MR

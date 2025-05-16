@@ -1,7 +1,7 @@
 #pragma once
 
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
-#include "JSystem/JGeometry.hpp"
 
 class IconAButton;
 class J3DFrameCtrl;
@@ -14,6 +14,10 @@ namespace nw4r {
     namespace lyt {
         class DrawInfo;
         class TexMap;
+    };
+
+    namespace ut {
+        class Font;
     };
 };
 
@@ -61,6 +65,7 @@ namespace MR {
     void convertLayoutPosToScreenPos(TVec2f*, const TVec2f&);
 
     void setTextBoxNumberRecursive(LayoutActor*, const char*, s32);
+    void setTextBoxFontRecursive(LayoutActor*, const char*, nw4r::ut::Font*);
     void clearTextBoxMessageRecursive(LayoutActor*, const char*);
 
     void setTextBoxGameMessageRecursive(LayoutActor*, const char*, const char*);
