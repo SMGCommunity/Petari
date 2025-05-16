@@ -41,6 +41,7 @@ namespace MR {
     void startAnim(LayoutActor*, const char*, u32);
     void startAnimAtFirstStep(LayoutActor*, const char*, u32);
 
+    void setAnimFrame(LayoutActor*, f32, u32);
     void setAnimFrameAndStop(LayoutActor*, f32, u32);
     void setAnimFrameAndStopAdjustTextHeight(LayoutActor*, const char*, u32);
     void setPaneAnimFrameAndStop(LayoutActor*, const char*, f32, u32);
@@ -147,4 +148,6 @@ namespace MR {
 
     void calcAnimLayoutWithDrawInfo(const LayoutActor*, const nw4r::lyt::DrawInfo&);
     void replacePaneTexture(LayoutActor*, const char*, const nw4r::lyt::TexMap*, u8);
+
+    void invalidateParentAnim(LayoutActor*);
 };  // namespace MR
