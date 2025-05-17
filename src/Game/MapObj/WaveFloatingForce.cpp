@@ -23,7 +23,7 @@ void WaveFloatingForce::update() {
 
 #ifdef NON_MATCHING
 f32 WaveFloatingForce::getCurrentValue() const {
-    return _8 * JMath::sSinCosTable.sinLap(_C);
+    return _8 * JMath::sSinCosTable.sinLapRad(_C);
 }
 #endif
 

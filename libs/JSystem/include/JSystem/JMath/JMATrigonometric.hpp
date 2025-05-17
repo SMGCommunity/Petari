@@ -26,28 +26,25 @@ namespace JMath {
         f32 sinShort(s8 v) const { return table[static_cast<u8>(v) >> 3].a1; }
         f32 cosShort(s8 v) const { return table[static_cast<u8>(v) >> 3].b1; }
 
-        inline f32 sinLap(f32 v)
+        inline f32 sinLapRad(f32 v)
         {
             if (v < 0.0f) {
-                f32 tmp = v * -LEN / TWO_PI;
+                f32 tmp = v * (-LEN / TWO_PI);
                 return -table[(u16)tmp & LEN - 1].a1;
             }
             else {
-                f32 tmp = v * LEN / TWO_PI;
+                f32 tmp = v * (LEN / TWO_PI);
                 return table[(u16)tmp & LEN - 1].a1;
             }
         }
 
-        inline f32 sinLap2(f32 v)
-        {
-            if (v < 0.0f) {
-                f32 tmp = v * -LEN;
-                return -table[(u16)tmp & LEN - 1].a1;
+        inline f32 cosLapRad(f32 v) {
+            if(v < 0.0f) {
+                v = -v;
             }
-            else {
-                f32 tmp = v * LEN;
-                return table[(u16)tmp & LEN - 1].a1;
-            }
+            
+            v *= (LEN / TWO_PI);
+            return table[(u16)v & LEN - 1].b1; 
         }
 
         inline f32 cosLap(f32 v) {
@@ -59,12 +56,8 @@ namespace JMath {
     
             return table[(u16)v & LEN - 1].b1;
         }
+        
         inline f32 get(f32 v) { return table[(u16)v & LEN - 1].b1; }
-
-        inline f32 getMult(f32 v) { 
-            v *= LEN;
-            return table[(u16)v & LEN - 1].b1; 
-        }
     };
 
     template <s32 Len, typename T>

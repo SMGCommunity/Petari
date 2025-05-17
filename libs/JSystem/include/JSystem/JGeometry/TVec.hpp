@@ -150,14 +150,12 @@ namespace JGeometry {
         }
 
         // Can't be NO_INLINE (gets inlined in DiskGravity::DiskGravity())
-        TVec3(f32 _x, f32 _y, f32 _z) {
+        template<typename T>
+        TVec3(T _x, T _y, T _z) {
             x = _x;
             y = _y;
             z = _z;
         }
-
-        template<typename T>
-        TVec3(T, T, T);
         
         TVec3(f32 xz, f32 _y) {
             x = xz;
