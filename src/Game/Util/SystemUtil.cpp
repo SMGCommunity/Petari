@@ -1,9 +1,7 @@
-#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystem.hpp"
-#include "Game/Util/SystemUtil.hpp"
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "nw4r/lyt/layout.h"
-#include "revolution/vi.h"
+#include <nw4r/lyt/layout.h>
 
 namespace MR {
     GameSystemObjHolder* getGameSystemObjHolder() {
