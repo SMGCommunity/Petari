@@ -1,7 +1,6 @@
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Spine.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -11,9 +10,18 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
-/*BigBubble::BigBubble(const char *pName)
-    : LiveActor(pName), _8C(0), _90(0), _94(0), _98(0), _9C(0),
-      _148(0, 0, 0, 1), _158(0, 0, 0, 1) {
+namespace NrvBigBubble {
+  NEW_NERVE(BigBubbleNrvAppear, BigBubble, Appear);
+  NEW_NERVE(BigBubbleNrvWait, BigBubble, Wait);
+  NEW_NERVE_ONEND(BigBubbleNrvCapture, BigBubble, Capture, Capture);
+  NEW_NERVE(BigBubbleNrvBreak, BigBubble, Break);
+  NEW_NERVE(BigBubbleNrvEscape, BigBubble, Escape);
+  NEW_NERVE(BigBubbleNrvGoal, BigBubble, Goal);
+  NEW_NERVE(BigBubbleNrvMerged, BigBubble, Merged);
+};
+
+/*
+BigBubble::BigBubble(const char *pName) : LiveActor(pName), _8C(0), _90(0), _94(0), _98(0), _9C(0), _148(0, 0, 0, 1), _158(0, 0, 0, 1) {
   _174.x = 0;
   _174.y = 0;
   _174.z = 0;
@@ -28,7 +36,6 @@
   _1B0.z = 0;
   _1F8 = 0;
   _1FC = 0;
-  _218 = 0;
   _228 = 255;
   _229 = false;
   _22A = false;
@@ -44,9 +51,11 @@
   _8C = new OctahedronBezierSurface(3);
   _B8.identity();
   _118.identity();
-}*/
+}
+*/
 
-/*void BigBubble::init(const JMapInfoIter &rIter) {
+/*
+void BigBubble::init(const JMapInfoIter &rIter) {
   MR::initDefaultPos(this, rIter);
   _118.setTrans(mPosition);
   MR::connectToScene(this, 41, 5, -1, -1);
@@ -67,12 +76,17 @@
   else
     makeActorDead();
   MR::invalidateClipping(this);
-}*/
+}
+*/
 
-void BigBubble::setHost(LiveActor *mActor) { this->_94 = mActor; }
+void BigBubble::setHost(LiveActor *mActor) { 
+  this->_94 = mActor;
+}
+
 bool BigBubble::requestCancelBind() {
-  if (_98)
+  if (_98) {
     _98 = 0;
+  }
   _22B = 0;
   MR::emitEffect(this, "Break");
   MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
@@ -82,6 +96,7 @@ bool BigBubble::requestCancelBind() {
   kill();
   return true;
 }
+
 bool BigBubble::tryAppearEnd() {
   if (MR::isGreaterEqualStep(this, 30)) {
     setNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance);
@@ -89,32 +104,39 @@ bool BigBubble::tryAppearEnd() {
   }
   return false;
 }
+
 void BigBubble::exeWait() {
   if (MR::isFirstStep(this))
     _1A4.zero();
   addCoriolisAccel();
-  if (_22C)
+  if (_22C) {
     MR::zeroVelocity(this);
-  else
+  }
+  else {
     updateNormalVelocity();
-  if (tryAutoBreak())
+  }
+  if (tryAutoBreak()) {
     return;
+  }
 }
+
 void BigBubble::exeGoal() {
   if (MR::isFirstStep(this)) {
     MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
   }
   updateNormalVelocity();
-  if (tryBreakEnd())
+  if (tryBreakEnd()) {
     return;
+  }
 }
-bool BigBubble::isPushable() const {
 
-  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) ||
-      isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance))
+bool BigBubble::isPushable() const {
+  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
     return true;
+  }
   return false;
 }
+
 bool BigBubble::tryAutoBreak() {
   if (!_22C && MR::isGreaterStep(this, 1200) || _22F) {
     if (_98) {
@@ -126,6 +148,7 @@ bool BigBubble::tryAutoBreak() {
   }
   return false;
 }
+
 void BigBubble::exeBreak() {
   if (MR::isFirstStep(this)) {
     if (_98) {
@@ -145,18 +168,25 @@ void BigBubble::exeBreak() {
     return;
 }
 
-bool BigBubble::isBindMario() const { return _98; }
-bool BigBubble::isDraw() const { return (!_22E && !_230 && !MR::isDead(this)); }
+bool BigBubble::isBindMario() const {
+  return _98;
+}
+
+bool BigBubble::isDraw() const { 
+  return (!_22E && !_230 && !MR::isDead(this));
+}
 
 bool BigBubble::isMerged() {
   return isNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance);
 }
+
 bool BigBubble::isEnemyAttackBreakable() const {
-  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) ||
-      isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance))
+  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
     return true;
+  }
   return false;
 }
+
 bool BigBubble::tryBreakEnd() {
   if (MR::isGreaterStep(this, 20)) {
     kill();
@@ -164,6 +194,7 @@ bool BigBubble::tryBreakEnd() {
   }
   return false;
 }
+
 bool BigBubble::tryMergeEnd() {
   if (MR::isGreaterStep(this, 45)) {
     if (_9C->receiveMessage(62, getSensor("body"), _9C->getSensor("body"))) {
@@ -174,6 +205,7 @@ bool BigBubble::tryMergeEnd() {
   }
   return false;
 }
+
 bool BigBubble::tryMergedCancel() {
   if (MR::isDead(_9C)) {
     kill();
@@ -181,7 +213,9 @@ bool BigBubble::tryMergedCancel() {
   }
   return false;
 }
-/*void BigBubble::exeEscape()
+
+/*
+void BigBubble::exeEscape()
 {
   if (MR::isFirstStep(this))
   {
@@ -197,9 +231,11 @@ bool BigBubble::tryMergedCancel() {
     _158.getYDir(vec);
     
   }
-}*/
+}
+*/
 
-/*void BigBubble::exeAppear() {
+/*
+void BigBubble::exeAppear() {
   if (MR::isFirstStep(this)) {
 
     _180 = mPosition;
@@ -217,7 +253,9 @@ bool BigBubble::tryMergedCancel() {
       MR::invalidateHitSensor(this, "ride");
     }
   }
-}*/
+}
+*/
+
 bool BigBubble::tryEscapeEnd()
 {
   if (MR::isGreaterStep(this, 30))
@@ -238,6 +276,7 @@ bool BigBubble::tryEscapeEnd()
   }
   return false;
 }
+
 bool BigBubble::tryEscape()
 {
   if (MR::testSubPadTriggerZ(0))
@@ -248,50 +287,8 @@ bool BigBubble::tryEscape()
   return false;
 }
 
-MtxPtr BigBubble::getBaseMtx() const { return (MtxPtr)&_118; }
+MtxPtr BigBubble::getBaseMtx() const { 
+  return (MtxPtr)&_118;
+}
+
 BigBubble::~BigBubble() {}
-
-
-namespace NrvBigBubble {
-INIT_NERVE(BigBubbleNrvAppear);
-INIT_NERVE(BigBubbleNrvWait);
-INIT_NERVE(BigBubbleNrvCapture);
-INIT_NERVE(BigBubbleNrvBreak);
-INIT_NERVE(BigBubbleNrvEscape);
-INIT_NERVE(BigBubbleNrvGoal);
-INIT_NERVE(BigBubbleNrvMerged);
-
-void BigBubbleNrvMerged::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeMerged();
-}
-void BigBubbleNrvGoal::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeGoal();
-}
-void BigBubbleNrvEscape::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeEscape();
-}
-void BigBubbleNrvBreak::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeBreak();
-}
-void BigBubbleNrvCapture::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeCapture();
-}
-void BigBubbleNrvCapture::executeOnEnd(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  MR::invalidateHitSensor(pActor, "const char *");
-  pActor->_1F8 = 0;
-}
-void BigBubbleNrvWait::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeWait();
-}
-void BigBubbleNrvAppear::execute(Spine *pSpine) const {
-  BigBubble *pActor = (BigBubble *)pSpine->mExecutor;
-  pActor->exeAppear();
-}
-}; // namespace NrvBigBubble
