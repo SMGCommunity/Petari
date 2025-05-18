@@ -29,9 +29,9 @@ namespace DemoExecutorFunction {
     }
 
     bool isExistDemoPartSub(const DemoExecutor *pExecutor, const char *pPartName) {
-        DemoTimeKeeper *timekeeper = pExecutor->mTimeKeeper;
-        for (s32 i = 0; i < timekeeper->mNumPartInfos; i++) {
-            if (MR::isEqualString(timekeeper->mSubPartInfos[i].mName, pPartName)) {
+        DemoSubPartKeeper *subpartkeeper = pExecutor->mSubPartKeeper;
+        for (s32 i = 0; i < subpartkeeper->mNumSubPartInfos; i++) {
+            if (MR::isEqualString(subpartkeeper->mSubPartInfos[i].mSubPartName, pPartName)) {
                 return true;
             }
         }
@@ -61,14 +61,14 @@ namespace DemoExecutorFunction {
     }
 
     bool tryCreateDemoTalkAnimCtrlForActor(DemoExecutor *pExecutor, LiveActor *pActor, const char *a3, const char *a4) {
-        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a4);
+        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mName, a4);
         talk->initForActor(a3);
         pExecutor->addTalkAnimCtrl(talk);
         return true;
     }
 
     bool tryCreateDemoTalkAnimCtrlForScene(DemoExecutor *pExecutor, LiveActor *pActor, const JMapInfoIter &rIter, const char *a4, const char *a5, s32 a6, s32 a7) {
-        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mSheetName, a5);
+        DemoTalkAnimCtrl *talk = new DemoTalkAnimCtrl(pActor, pExecutor->mName, a5);
         talk->initForScene(a4, a4, rIter);
         talk->_40 = a6;
         talk->_44 = a7;
