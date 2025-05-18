@@ -30,6 +30,7 @@ namespace MR {
     u8 getPaneAlpha(const LayoutActor*, const char*);
     void setInfluencedAlphaToChild(const LayoutActor*);
     void setLayoutAlpha(const LayoutActor*, u8);
+    void setLayoutAlphaFloat(const LayoutActor*, f32);
 
     void startPaneAnim(LayoutActor*, const char*, const char*, u32);
     void startPaneAnimAtStep(LayoutActor*, const char*, const char*, s32, u32);
@@ -150,4 +151,8 @@ namespace MR {
     void replacePaneTexture(LayoutActor*, const char*, const nw4r::lyt::TexMap*, u8);
 
     void invalidateParentAnim(LayoutActor*);
+
+    void updateMinuteAndSecondTextBox(LayoutActor*, const char*, u32);
+
+    void setPaneScale(const LayoutActor*, f32, f32, const char*);
 };  // namespace MR
