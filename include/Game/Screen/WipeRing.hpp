@@ -10,10 +10,27 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void wipe(s32);
     virtual void forceClose();
+    virtual void forceOpen();
+    virtual bool isOpen() const;
+    virtual bool isClose() const;
+    virtual bool isWipeIn() const;
+    virtual bool isWipeOut() const;
 
-    TVec2f mFollowPos;  // 0x20
-    s32 mWipeStep;      // 0x28
-    f32 _2C;
-    f32 _30;
-    u8 _34;
+    void setCenterPos(const TVec3f&);
+    void startAnim(const char*);
+    bool getMarioCenterPos(TVec3f*);
+    f32 calcRadius() const;
+    f32 calcMaxRadius() const;
+    void updatePlayerPos();
+    void exeWipeClose();
+    void exeWipeIn();
+    void exeOpen();
+    void exeWipeOut();
+
+private:
+    /* 0x20 */ TVec2f _20;
+    /* 0x28 */ s32 mStepNum;
+    /* 0x2C */ f32 _2C;
+    /* 0x30 */ f32 _30;
+    /* 0x24 */ bool _34;
 };
