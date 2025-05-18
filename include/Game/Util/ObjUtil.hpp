@@ -91,7 +91,9 @@ namespace MR {
     void connectToSceneMovie(NameObj *);
 
     void connectToSceneLayoutMovement(NameObj *);
-    
+
+    void connectToSceneWipeLayout(NameObj *);
+
     bool isName(const NameObj *, const char *);
     bool isSame(const NameObj *, const NameObj *);
 
