@@ -105,6 +105,76 @@ bool BigBubble::tryAppearEnd() {
   return false;
 }
 
+bool BigBubble::tryAutoBreak() {
+  if (!_22C && MR::isGreaterStep(this, 1200) || _22F) {
+    if (_98) {
+      MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
+      _98 = false;
+    }
+    setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
+    return true;
+  }
+  return false;
+}
+
+bool BigBubble::tryBreakEnd() {
+  if (MR::isGreaterStep(this, 20)) {
+    kill();
+    return true;
+  }
+  return false;
+}
+
+bool BigBubble::tryEscape()
+{
+  if (MR::testSubPadTriggerZ(0))
+  {
+    setNerve(&NrvBigBubble::BigBubbleNrvEscape::sInstance);
+    return true;
+  }
+  return false;
+}
+
+bool BigBubble::tryEscapeEnd()
+{
+  if (MR::isGreaterStep(this, 30))
+  {
+    if (_98)
+    {
+      MR::calcGravity(this);
+      TVec3f vec;
+      vec = mGravity;
+      vec *= 30;
+      MR::endBindAndPlayerJump(this, vec, 30);
+      _98 = false;
+    }
+    MR::emitEffect(this, "Break");
+    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+    kill();
+    return true;
+  }
+  return false;
+}
+
+bool BigBubble::tryMergedCancel() {
+  if (MR::isDead(_9C)) {
+    kill();
+    return true;
+  }
+  return false;
+}
+
+bool BigBubble::tryMergeEnd() {
+  if (MR::isGreaterStep(this, 45)) {
+    if (_9C->receiveMessage(62, getSensor("body"), _9C->getSensor("body"))) {
+      _9C = 0;
+      kill();
+      return true;
+    }
+  }
+  return false;
+}
+
 void BigBubble::exeWait() {
   if (MR::isFirstStep(this))
     _1A4.zero();
@@ -118,35 +188,6 @@ void BigBubble::exeWait() {
   if (tryAutoBreak()) {
     return;
   }
-}
-
-void BigBubble::exeGoal() {
-  if (MR::isFirstStep(this)) {
-    MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
-  }
-  updateNormalVelocity();
-  if (tryBreakEnd()) {
-    return;
-  }
-}
-
-bool BigBubble::isPushable() const {
-  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
-    return true;
-  }
-  return false;
-}
-
-bool BigBubble::tryAutoBreak() {
-  if (!_22C && MR::isGreaterStep(this, 1200) || _22F) {
-    if (_98) {
-      MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
-      _98 = false;
-    }
-    setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
-    return true;
-  }
-  return false;
 }
 
 void BigBubble::exeBreak() {
@@ -168,6 +209,23 @@ void BigBubble::exeBreak() {
     return;
 }
 
+void BigBubble::exeGoal() {
+  if (MR::isFirstStep(this)) {
+    MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+  }
+  updateNormalVelocity();
+  if (tryBreakEnd()) {
+    return;
+  }
+}
+
+bool BigBubble::isPushable() const {
+  if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
+    return true;
+  }
+  return false;
+}
+
 bool BigBubble::isBindMario() const {
   return _98;
 }
@@ -182,33 +240,6 @@ bool BigBubble::isMerged() {
 
 bool BigBubble::isEnemyAttackBreakable() const {
   if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
-    return true;
-  }
-  return false;
-}
-
-bool BigBubble::tryBreakEnd() {
-  if (MR::isGreaterStep(this, 20)) {
-    kill();
-    return true;
-  }
-  return false;
-}
-
-bool BigBubble::tryMergeEnd() {
-  if (MR::isGreaterStep(this, 45)) {
-    if (_9C->receiveMessage(62, getSensor("body"), _9C->getSensor("body"))) {
-      _9C = 0;
-      kill();
-      return true;
-    }
-  }
-  return false;
-}
-
-bool BigBubble::tryMergedCancel() {
-  if (MR::isDead(_9C)) {
-    kill();
     return true;
   }
   return false;
@@ -256,39 +287,8 @@ void BigBubble::exeAppear() {
 }
 */
 
-bool BigBubble::tryEscapeEnd()
-{
-  if (MR::isGreaterStep(this, 30))
-  {
-    if (_98)
-    {
-      MR::calcGravity(this);
-      TVec3f vec;
-      vec = mGravity;
-      vec *= 30;
-      MR::endBindAndPlayerJump(this, vec, 30);
-      _98 = false;
-    }
-    MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
-    kill();
-    return true;
-  }
-  return false;
-}
-
-bool BigBubble::tryEscape()
-{
-  if (MR::testSubPadTriggerZ(0))
-  {
-    setNerve(&NrvBigBubble::BigBubbleNrvEscape::sInstance);
-    return true;
-  }
-  return false;
-}
+BigBubble::~BigBubble() {}
 
 MtxPtr BigBubble::getBaseMtx() const { 
   return (MtxPtr)&_118;
 }
-
-BigBubble::~BigBubble() {}

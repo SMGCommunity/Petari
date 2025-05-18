@@ -15,13 +15,20 @@ class BigBubble : public LiveActor {
     public:
         BigBubble(const char*);
         
-        virtual ~BigBubble();
         virtual void init(const JMapInfoIter&);
         virtual void initSensor();
-        virtual void attackSensor(HitSensor*, HitSensor*);
+        virtual void makeActorAppeared();
         virtual void makeActorDead();
-        virtual MtxPtr getBaseMtx() const;
+        virtual void control();
+        virtual void calcAnim();
         virtual void draw() const;
+        virtual void attackSensor(HitSensor *, HitSensor *);
+        virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
+        virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
+        virtual bool receiveMsgPush(HitSensor *, HitSensor *);
+        virtual bool receiveOtherMsg(u32, HitSensor *, HitSensor *);
+        virtual MtxPtr getBaseMtx() const;
+        virtual ~BigBubble();
 
         void exeMerged();
         void exeGoal();
@@ -50,7 +57,7 @@ class BigBubble : public LiveActor {
         void setHost(LiveActor*);
         void addCoriolisAccel();
         void calcLocalDirection(TVec3f*, long);
-        void setScale(float);
+        void setScale(f32);
         void resetDeformVelocity();
         inline void exeOnEndCapture() {
             MR::invalidateHitSensor(this, "ride");
