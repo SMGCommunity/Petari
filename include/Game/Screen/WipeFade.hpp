@@ -7,7 +7,7 @@ class WipeFade : public WipeLayoutBase {
 public:
     WipeFade(const char*, const Color8&);
 
-    virtual ~WipeFade();
+    virtual ~WipeFade() {}
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
@@ -19,8 +19,9 @@ public:
     virtual bool isWipeIn() const;
     virtual bool isWipeOut() const;
 
-    bool _20;
-    s32 _24;
-    s32 _28;
-    Color8 _2C;
+private:
+    /* 0x20 */ bool mIsWipeIn;
+    /* 0x24 */ s32 mStepNum;
+    /* 0x28 */ s32 mStep;
+    /* 0x2C */ Color8 mFillColor;
 };
