@@ -23,7 +23,7 @@ void WipeGameOver::kill() {
     setNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
 }
 
-void WipeGameOver::wipe(s32 a1) {
+void WipeGameOver::wipe(s32 step) {
     if (isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance)) {
         return;
     }
@@ -67,12 +67,4 @@ void WipeGameOver::exeActive() {
         MR::showLayout(this);
         MR::startAnim(this, "GameOver", 0);
     }
-}
-
-WipeGameOver::~WipeGameOver() {
-    
-}
-
-s32 WipeGameOver::getWipeType() const {
-    return 2;
 }
