@@ -148,6 +148,7 @@ namespace MR {
     void hideScreen(LayoutActor *);
 
     void calcAnimLayoutWithDrawInfo(const LayoutActor*, const nw4r::lyt::DrawInfo&);
+    nw4r::lyt::TexMap* createLytTexMap(const char*, const char*);
     void replacePaneTexture(LayoutActor*, const char*, const nw4r::lyt::TexMap*, u8);
 
     void invalidateParentAnim(LayoutActor*);
