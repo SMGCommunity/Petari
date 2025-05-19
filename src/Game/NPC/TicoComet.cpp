@@ -50,11 +50,11 @@ void TicoEat::init(const JMapInfoIter &rIter) {
     mScaleController = new AnimScaleController(&sParam);
     mReactionNerve = &NrvTicoEat::TicoEatNrvReaction::sInstance;
     _178 = MR::getJointMtx(this, "Center");
-    _FC = "Wait";
-    _100 = "Wait";
-    _104 = "Talk";
-    _108 = "Talk";
-    _EC = 3000.0f;
+    mParam._14 = "Wait";
+    mParam._18 = "Wait";
+    mParam._1C = "Talk";
+    mParam._20 = "Talk";
+    mParam._4 = 3000.0f;
     setDefaults();
     _12C = 1000.0f;
 }
@@ -183,8 +183,8 @@ void TicoEat::exeEatNow() {
 
 void TicoEat::exeEatPst() {
     if (MR::isGreaterEqualStep(this, 4)) {
-        _104 = "Joy2";
-        _108 = "Joy2";
+        mParam._1C = "Joy2";
+        mParam._20 = "Joy2";
         popAndPushNerve(&NrvTicoEat::TicoEatNrvEatEnd::sInstance);
     }
 }
@@ -313,8 +313,8 @@ void TicoComet::exeDemoFade() {
     }
 
     if (!MR::isWipeActive()) {
-        _104 = "Talk";
-        _108 = "Talk";
+        mParam._1C = "Talk";
+        mParam._20 = "Talk";
         MR::forceOpenWipeWhiteFade();
         MR::forceToNextStateGalaxyCometScheduler();
         MR::startGalaxyMapLayoutForTicoComet();

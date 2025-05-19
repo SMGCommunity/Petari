@@ -1683,7 +1683,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/HoneyQueen.cpp"),
             Object(NonMatching, "Game/NPC/Kinopio.cpp"),
             Object(NonMatching, "Game/NPC/KinopioAstro.cpp"),
-            Object(NonMatching, "Game/NPC/KoopaJr.cpp"),
+            Object(Matching, "Game/NPC/KoopaJr.cpp"),
             Object(NonMatching, "Game/NPC/LuigiNPC.cpp"),
             Object(NonMatching, "Game/NPC/MiiDatabase.cpp"),
             Object(NonMatching, "Game/NPC/MiiFaceIcon.cpp"),

@@ -189,11 +189,11 @@ void NPCActor::init(const JMapInfoIter &rIter) {
 void NPCActor::initAfterPlacement() {
     MR::calcGravity(this);
 
-    if (!MR::isNullOrEmptyString(_FC)) {
-        MR::startAction(this, _FC);
+    if (!MR::isNullOrEmptyString(mParam._14)) {
+        MR::startAction(this, mParam._14);
 
-        if (MR::isExistBck(this, _FC)) {
-            MR::startBckNoInterpole(this, _FC);
+        if (MR::isExistBck(this, mParam._14)) {
+            MR::startBckNoInterpole(this, mParam._14);
         }
 
         MR::setBckFrameAtRandom(this);

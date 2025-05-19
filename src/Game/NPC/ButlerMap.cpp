@@ -59,10 +59,10 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
     _134 = "Trampled";
     _138 = "Pointing";
     _13C = "Spin";
-    _FC = "Wait";
-    _100 = "Wait";
-    _104 = "Talk";
-    _108 = "Talk";
+    mParam._14 = "Wait";
+    mParam._18 = "Wait";
+    mParam._1C = "Talk";
+    mParam._20 = "Talk";
     MR::createSceneObj(119);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
