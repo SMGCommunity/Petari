@@ -1,3 +1,4 @@
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
