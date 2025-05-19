@@ -15,8 +15,6 @@
 #include <cstdio>
 #include <va_list.h>
 
-class LiveActor;
- 
 namespace {
     JMapInfo* tryCreateCsvParserLocal(const ResourceHolder* pHolder, const char* pArchive, va_list pFormat) NO_INLINE {
         char buf[0x100];
@@ -376,15 +374,18 @@ namespace MR {
         NameObjFunction::requestMovementOff(pObj);
     }
 
-    NameObj* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
-        NameObjGroup* objGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
-        objGroup->registerObj(pObj);
-        return objGroup;
+    NameObjGroup* joinToNameObjGroup(NameObj *pObj, const char* pGroupName) {
+        NameObjGroup* pObjGroup = static_cast<NameObjGroup*>(NameObjFinder::find(pGroupName));
+
+        pObjGroup->registerObj(pObj);
+
+        return pObjGroup;
     }
 
-    void joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
-        MovementOnOffGroupHolder* holder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
-        holder->joinToGroup(pName, pObj, a3);
+    NameObjGroup* joinToMovementOnOffGroup(const char *pName, NameObj *pObj, u32 a3) {
+        MovementOnOffGroupHolder* pGroupHolder = MR::getSceneObj<MovementOnOffGroupHolder*>(SceneObj_MovementOnOffGroupHolder);
+
+        return pGroupHolder->joinToGroup(pName, pObj, a3);
     }
 
     void onMovementOnOffGroup(const char *pGroupName) {
