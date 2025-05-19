@@ -3,6 +3,7 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/MapObj/AirBubbleGenerator.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/ArrowSwitch.hpp"
 #include "Game/MapObj/ArrowSwitchMulti.hpp"
 #include "Game/MapObj/AssemblyBlock.hpp"

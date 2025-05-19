@@ -1,36 +1,14 @@
 #pragma once
 
-#include "Game/AreaObj/AstroChangeStageCube.hpp"
-#include "Game/AreaObj/BigBubbleCameraArea.hpp"
-#include "Game/AreaObj/BigBubbleGoalArea.hpp"
-#include "Game/Boss/BossKameck.hpp"
-#include "Game/Boss/TripodBossBaseJointPosition.hpp"
-#include "Game/Boss/TripodBossCoin.hpp"
-#include "Game/Boss/TripodBossGuardWall.hpp"
-#include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
-#include "Game/Boss/TripodBossKillerGenerator.hpp"
-#include "Game/Boss/TripodBossKinokoOneUp.hpp"
-#include "Game/Boss/TripodBossRotateParts.hpp"
-#include "Game/Boss/TripodBossShell.hpp"
-#include "Game/Boss/TripodBossStepPoint.hpp"
-#include "Game/Boss/TripodBossStepStartArea.hpp"
-#include "Game/Map/KoopaBattleMapPlate.hpp"
-#include "Game/Map/KoopaBattleMapStair.hpp"
-#include "Game/Map/LavaShellTower.hpp"
-#include "Game/MapObj/AnmModelObj.hpp"
-#include "Game/MapObj/HipDropMoveObj.hpp"
-#include "Game/NPC/ButlerExplain.hpp"
-#include "Game/NPC/TicoAstro.hpp"
-#include "Game/NPC/TicoDomeLecture.hpp"
 #include "revolution.h"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
-#include "Game/Gravity/GlobalGravityObj.hpp"
 #include "Game/Enemy.hpp"
+#include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
-#include "Game/Map/PlanetMapCreator.hpp"
 #include "Game/NPC.hpp"
+#include "Game/Ride.hpp"
 
 class AreaObj;
 class NameObj;
@@ -268,15 +246,15 @@ namespace {
 		{ "GoldenTurtle", NULL, "KouraShine" },
 		{ "JumpBranch", NULL, "JumpBranch" },
 		{ "Plant", NULL, "Plant" },
-		{ "Pole", NULL, "Pole" },
-		{ "PoleNoModel", NULL, "Pole" },
-		{ "PoleSquare", NULL, "PoleSquare" },
-		{ "PoleSquareNoModel", NULL, "PoleSquare" },
+		{ "Pole", createNameObj<Pole>, "Pole" },
+		{ "PoleNoModel", createNameObj<Pole>, "Pole" },
+		{ "PoleSquare", createNameObj<Pole>, "PoleSquare" },
+		{ "PoleSquareNoModel", createNameObj<Pole>, "PoleSquare" },
 		{ "SurfRay", NULL, "SurfRay" },
 		{ "SwingRope", NULL, "SwingRope" },
 		{ "SpaceCocoon", NULL, "SpaceCocoon" },
 		{ "Trapeze", NULL, "Trapeze" },
-		{ "TreeCube", NULL, "TreeCube" },
+		{ "TreeCube", createNameObj<Pole>, "TreeCube" },
 		{ "WaterRoad", NULL, "WaterWave" },
 		{ "WarpPod", NULL, "WarpPod" },
 		{ "CoinBox", createNameObj<CoinBox>, 0 },
