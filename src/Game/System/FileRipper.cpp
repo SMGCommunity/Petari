@@ -1,5 +1,6 @@
 #include "Game/System/FileRipper.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
 
 namespace {
     OSMutex sDecompMutex;
@@ -18,8 +19,7 @@ void FileRipper::setup(u32 size, JKRHeap *pHeap) {
     OSInitMutex(&sDecompMutex);
 }
 
-s32 FileRipper::checkCompressed(const u8 *pData)
-{
+s32 FileRipper::checkCompressed(const u8 *pData) {
     if (pData[0] == 'Y' && pData[1] == 'a' && pData[3] == '0') {
         if (pData[2] == 'y') {
             return 1;
@@ -31,6 +31,108 @@ s32 FileRipper::checkCompressed(const u8 *pData)
     }
 
     return 0;
+}
+
+void* FileRipper::loadToMainRAM(const char *fpath, u8 *dest, bool decompress, JKRHeap *pHeap, AllocDirection allocDir) {
+    bool alloced = false;
+    s32 compression = 0;
+    u8 *copySrc = 0;
+    u32 decompressedSize;
+    
+    if (!MR::isFileExist(fpath, false)) {
+        OSPanic(__FILE__, 0x70, "File isn't exist.");
+    }
+
+    u32 fsize = (MR::getFileSize(fpath, false) + 0x1f) / 0x20 * 0x20;
+
+    DVDFileInfo fileInfo;
+    if (!DVDOpen(fpath, &fileInfo)) {
+        OSPanic(__FILE__, 0x77, "DVDOpen() failed");
+    }
+
+    if (decompress) {
+        u8 buf[0x60];
+        copySrc = (u8 *)((u32)(buf + 0x3f) / 0x40 * 0x40);
+        while (true) {
+            s32 result = DVDReadPrio(&fileInfo, copySrc, 0x20, 0, 2);
+            if (result >= 0) {
+                break;
+            }
+            else if (result == -3) {
+                return 0;
+            }
+            VIWaitForRetrace();
+        }
+        DCInvalidateRange(copySrc, 0x20);
+        compression = checkCompressed(copySrc);
+        decompressedSize = (copySrc[4] << 24) | (copySrc[5] << 16) | (copySrc[6] << 8) | copySrc[7];
+    }
+
+    if (decompress && compression) {
+        if (!dest) {
+            int align = allocDir == 0 ? 0x40 : -0x40;
+            dest = (u8 *)JKRHeap::alloc(decompressedSize, align, pHeap);
+            alloced = true;
+        }
+        if (!dest) {
+            return 0;
+        }
+    }
+    else {
+        if (!dest) {
+            int align = allocDir == 0 ? 0x40 : -0x40;
+            dest = (u8 *)JKRHeap::alloc(fsize, align, pHeap);
+            alloced = true;
+        }
+        if (!dest) {
+            return 0;
+        }
+    }
+
+    if (!compression) {
+        u8* readDest;
+        s32 readOffset;
+        u32 readSize;
+        while (true) {
+            readDest = dest;
+            readSize = fsize;
+            readOffset = 0;
+            if (copySrc) {
+                readDest += 0x20;
+                readSize -= 0x20;
+                readOffset = 0x20;
+                MR::copyMemory(dest, copySrc, 0x20);
+            }
+            s32 result = DVDReadPrio(&fileInfo, readDest, readSize, readOffset, 2);
+            if (result >= 0) {
+                break;
+            }
+            if (result == -3) {
+                if (alloced == true) {
+                    JKRHeap::free(dest, 0);
+                }
+                return 0;
+            }
+            VIWaitForRetrace();
+        }
+        return dest;
+    }
+    else if (compression == 2) {
+        bool success = decompressFromDVD(&fileInfo, dest, fsize, decompressedSize, copySrc, copySrc ? 0x20 : 0);
+        if (!success) {
+            if (alloced) {
+                JKRHeap::free(dest, 0);
+            }
+            dest = 0;
+        }
+        return dest;
+    }
+    else {
+        if (alloced) {
+            JKRHeap::free(dest, 0);
+        }
+        return 0;
+    }
 }
 
 bool FileRipper::decompressFromDVD(
