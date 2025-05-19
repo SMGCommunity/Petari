@@ -16,5 +16,6 @@ public:
     static s32 checkCompressed(const u8 *);
     static void* loadToMainRAM(const char *, u8 *, bool, JKRHeap *, AllocDirection);
     static bool decompressSzsSub(u8 *, u8 *);
+    static u8* readSrcDataFirst();
     static u8* readSrcDataNext(u8 *);
 };

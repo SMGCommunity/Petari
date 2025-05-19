@@ -88,6 +88,28 @@ bool FileRipper::decompressSzsSub(u8 *src, u8 *dest) {
     return true;
 }
 
+u8* FileRipper::readSrcDataFirst() {
+    u8 *readBuf = sReadBuffer;
+    u32 readSize = sReadBufferEnd - sReadBuffer;
+    if (sReadDvdLeftSize < readSize) {
+        readSize = sReadDvdLeftSize;
+    }
+    while(true) {
+        s32 result = DVDReadPrio(sSrcFileInfo, readBuf, readSize, sReadDvdOffset, 2);
+        if (result >= 0) {
+            break;
+        }
+        else if (result == -3) {
+            return 0;
+        }
+        VIWaitForRetrace();
+    }
+    DCInvalidateRange(readBuf, readSize);
+    sReadDvdOffset += readSize;
+    sReadDvdLeftSize -= readSize;
+    return readBuf;
+}
+
 u8* FileRipper::readSrcDataNext(u8 *buf) {
     u32 size = sReadBufferEnd - buf;
     u8 *start;
