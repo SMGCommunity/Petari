@@ -2,6 +2,10 @@
 #include "Game/Util/MemoryUtil.hpp"
 
 namespace {
+    OSMutex sDecompMutex;
+}
+
+namespace {
     u8 *sReadBuffer;
     u8 *sReadBufferEnd;
     u8 *sReadBufferLimit;
@@ -23,6 +27,46 @@ s32 FileRipper::checkCompressed(const u8 *pData)
     }
 
     return 0;
+}
+
+bool FileRipper::decompressFromDVD(
+    DVDFileInfo *fileInfo,
+    void *dest,
+    u32 readSize,
+    u32 bufSize,
+    const u8 *currentPos,
+    u32 copySize
+) {
+    OSLockMutex(&sDecompMutex);
+    
+    sSrcFileInfo = fileInfo;
+    sReadDvdOffset = 0;
+    sReadDvdLeftSize = readSize;
+    sReadBufferLimit = sReadBufferEnd - 0x19;
+    
+    u8 *buf;
+    if (currentPos) {
+        MR::copyMemory(sReadBufferEnd - copySize, currentPos, copySize);
+        sReadDvdOffset += copySize;
+        sReadDvdLeftSize -= copySize;
+        buf = readSrcDataNext(sReadBufferEnd - copySize);
+    }
+    else {
+        buf = readSrcDataFirst();
+    }
+
+    bool result;
+    if (buf) {
+        result = decompressSzsSub(buf, (u8 *)dest);
+    }
+    else {
+        result = false;
+    }
+
+    DCStoreRangeNoSync(dest, bufSize);
+    OSUnlockMutex(&sDecompMutex);
+
+    return result;
 }
 
 bool FileRipper::decompressSzsSub(u8 *src, u8 *dest) {
