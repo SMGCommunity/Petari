@@ -458,7 +458,7 @@ Game/AudioLib/AudBgmRhythmStrategy.cpp:
 
 Game/AudioLib/AudBgmSetting.cpp:
 	.text       start:0x80030A74 end:0x80030BA0
-	.rodata     start:0x8052FA48 end:0x80530A68
+	.rodata     start:0x8052FA48 end:0x80530A60
 
 Game/AudioLib/AudBgmVolumeController.cpp:
 	.text       start:0x80030BA0 end:0x80030E0C
@@ -466,7 +466,7 @@ Game/AudioLib/AudBgmVolumeController.cpp:
 
 Game/AudioLib/AudEffector.cpp:
 	.text       start:0x80030E0C end:0x80030F24
-	.data       start:0x80566170 end:0x80566398
+	.data       start:0x80566170 end:0x805661F0
 	.sdata2     start:0x806B8098 end:0x806B80A0
 
 Game/AudioLib/AudFader.cpp:
@@ -489,7 +489,8 @@ Game/AudioLib/AudRemixMgr.cpp:
 
 Game/AudioLib/AudRemixSequencer.cpp:
 	.text       start:0x80031544 end:0x80031A30
-	.data       start:0x80566398 end:0x80566790
+	.rodata     start:0x80530A60 end:0x80530A68
+	.data       start:0x805661F0 end:0x805663D8
 	.sdata2     start:0x806B80A8 end:0x806B80B8
 
 Game/AudioLib/AudSceneMgr.cpp:
@@ -501,7 +502,7 @@ Game/AudioLib/AudSceneMgr.cpp:
 Game/AudioLib/AudSeStrategy.cpp:
 	.text       start:0x80032454 end:0x800327BC
 	.ctors      start:0x8052E838 end:0x8052E83C
-	.data       start:0x80566790 end:0x805667B8
+	.data       start:0x805663D8 end:0x805667B8
 	.bss        start:0x8060A500 end:0x8060A510
 	.sdata2     start:0x806B80B8 end:0x806B80C0
 

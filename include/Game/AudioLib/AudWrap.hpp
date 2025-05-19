@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Game/AudioLib/AudBgm.hpp"
+#include "Game/AudioLib/AudRemixSequencer.hpp"
+#include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include <revolution.h>
 
@@ -25,4 +27,8 @@ public:
     static void setNextIdStageBgm(u32);
 
     static void startStageBgm(u32, bool);
+
+    static AudRemixSequencer *getRemixSequencer();
+    static AudSoundObject *getRemixSeqObject();
+    static AudSoundObject *getSystemSeObject();
 };

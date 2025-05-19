@@ -11,8 +11,8 @@ public:
     AudSoundObject(TVec3f *, u8, JKRHeap *);
     virtual ~AudSoundObject();
 
-    virtual void startSound(JAISoundID);
-    virtual void startLevelSound(JAISoundID);
+    virtual JAISoundHandle *startSound(JAISoundID);
+    virtual JAISoundHandle *startLevelSound(JAISoundID);
 
     void addToSoundObjHolder();
     void setTrans(TVec3f *);
@@ -41,7 +41,6 @@ public:
     void modifyLimitedSound_Takezawa(JAISoundID);
     void modifySe_Gohara(JAISoundHandle *, s32, s32);
 
-    u8 _18[0x18];
     u32 _30;
     u32 _34;
     u32 _38;
