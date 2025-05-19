@@ -1,6 +1,7 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <nw4r/lyt/layout.h>
 
 namespace MR {
