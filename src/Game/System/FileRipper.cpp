@@ -1,8 +1,13 @@
 #include "Game/System/FileRipper.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 
 namespace {
-    u32 sReadBufferLimit;
+    u8 *sReadBuffer;
+    u8 *sReadBufferEnd;
+    u8 *sReadBufferLimit;
+    s32 sReadDvdOffset;
     u32 sReadDvdLeftSize;
+    DVDFileInfo *sSrcFileInfo;
 }
 
 s32 FileRipper::checkCompressed(const u8 *pData)
@@ -35,7 +40,7 @@ bool FileRipper::decompressSzsSub(u8 *src, u8 *dest) {
 
     do {
         if (!group_count) {
-            if ((u32)src > sReadBufferLimit && sReadDvdLeftSize) {
+            if (src > sReadBufferLimit && sReadDvdLeftSize) {
                 if (!(src = readSrcDataNext(src))) {
                     return false;
                 }
@@ -81,4 +86,38 @@ bool FileRipper::decompressSzsSub(u8 *src, u8 *dest) {
     } while (dest < dest_end);
     
     return true;
+}
+
+u8* FileRipper::readSrcDataNext(u8 *buf) {
+    u32 size = sReadBufferEnd - buf;
+    u8 *start;
+    if ((size & 0x1f) != 0) {
+        start = sReadBuffer + 0x20 - (size & 0x1f);
+    }
+    else {
+        start = sReadBuffer;
+    }
+    MR::copyMemory(start, buf, size);
+    u8 *readBuf = start + size;
+    u32 readSize = sReadBufferEnd - readBuf;
+    if (sReadDvdLeftSize < readSize) {
+        readSize = sReadDvdLeftSize;
+    }
+    while(true) {
+        s32 result = DVDReadPrio(sSrcFileInfo, readBuf, readSize, sReadDvdOffset, 2);
+        if (result >= 0) {
+            break;
+        }
+        else if (result == -3) {
+            return 0;
+        }
+        VIWaitForRetrace();
+    }
+    DCInvalidateRange(readBuf, readSize);
+    sReadDvdOffset += readSize;
+    sReadDvdLeftSize -= readSize;
+    if (!sReadDvdLeftSize) {
+        sReadBufferLimit = readBuf + readSize;
+    }
+    return start;
 }
