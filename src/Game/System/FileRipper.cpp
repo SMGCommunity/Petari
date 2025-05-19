@@ -3,15 +3,19 @@
 
 namespace {
     OSMutex sDecompMutex;
-}
 
-namespace {
     u8 *sReadBuffer;
     u8 *sReadBufferEnd;
     u8 *sReadBufferLimit;
     s32 sReadDvdOffset;
     u32 sReadDvdLeftSize;
     DVDFileInfo *sSrcFileInfo;
+}
+
+void FileRipper::setup(u32 size, JKRHeap *pHeap) {
+    sReadBuffer = new (pHeap, 0x40) u8[size];
+    sReadBufferEnd = sReadBuffer + size;
+    OSInitMutex(&sDecompMutex);
 }
 
 s32 FileRipper::checkCompressed(const u8 *pData)
@@ -33,7 +37,7 @@ bool FileRipper::decompressFromDVD(
     DVDFileInfo *fileInfo,
     void *dest,
     u32 readSize,
-    u32 bufSize,
+    u32 destSize,
     const u8 *currentPos,
     u32 copySize
 ) {
@@ -63,7 +67,7 @@ bool FileRipper::decompressFromDVD(
         result = false;
     }
 
-    DCStoreRangeNoSync(dest, bufSize);
+    DCStoreRangeNoSync(dest, destSize);
     OSUnlockMutex(&sDecompMutex);
 
     return result;
