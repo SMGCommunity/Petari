@@ -9,6 +9,7 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
+#include "revolution/types.h"
 
 namespace NrvBigBubble {
   NEW_NERVE(BigBubbleNrvAppear, BigBubble, Appear);
@@ -70,7 +71,7 @@ void BigBubble::init(const JMapInfoIter &rIter) {
   getBaseRadius();
   MR::initShadowVolumeSphere(this, 0.8f);
   getBaseRadius();
-  MR::initStarPointerTarget(this, 0, TVec3f(0.0, 0, 0));
+  MR::initStarPointerTarget(this, 0, 0);
   if (MR::isValidInfo(rIter))
     makeActorAppeared();
   else
@@ -78,6 +79,22 @@ void BigBubble::init(const JMapInfoIter &rIter) {
   MR::invalidateClipping(this);
 }
 */
+
+void BigBubble::setActionType(s32 v1) {
+  switch (v1) {
+    case 0: {
+      _231 = false;
+      _232 = true;
+    }
+    default: {
+      return;
+    }
+    case 1: {
+      _231 = false;
+      _232 = false;
+    }
+  }
+}
 
 void BigBubble::setHost(LiveActor *mActor) { 
   this->_94 = mActor;

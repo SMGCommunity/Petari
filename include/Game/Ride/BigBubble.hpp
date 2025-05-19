@@ -30,6 +30,7 @@ class BigBubble : public LiveActor {
         virtual MtxPtr getBaseMtx() const;
         virtual ~BigBubble();
 
+        void setActionType(s32);
         void exeMerged();
         void exeGoal();
         void exeEscape();
