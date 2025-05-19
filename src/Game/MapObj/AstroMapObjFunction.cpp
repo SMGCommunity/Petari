@@ -1,5 +1,9 @@
-#include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
+#include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
 namespace {
