@@ -19,6 +19,7 @@
 #include "Game/Map/LavaShellTower.hpp"
 #include "Game/MapObj/AnmModelObj.hpp"
 #include "Game/MapObj/HipDropMoveObj.hpp"
+#include "Game/NPC/ButlerExplain.hpp"
 #include "Game/NPC/TicoAstro.hpp"
 #include "Game/NPC/TicoDomeLecture.hpp"
 #include "revolution.h"
@@ -254,9 +255,9 @@ namespace {
 		{ "TeresaRacer", NULL, "TeresaRacer" },
 		{ "NPCSupportRail", NULL, 0 },
 		{ "GhostPlayer", NULL, 0 },
-		{ "Butler", NULL, "Butler" },
-		{ "ButlerMap", NULL, "Butler" },
-		{ "ButlerExplain", NULL, "Butler" },
+		{ "Butler", createNameObj<Butler>, "Butler" },
+		{ "ButlerMap", createNameObj<ButlerMap>, "Butler" },
+		{ "ButlerExplain", createNameObj<ButlerExplain>, "Butler" },
 		{ "DemoKoopaJrShip", NULL, "KoopaJrShip" },
 		{ "Creeper", NULL, "Creeper" },
 		{ "JetTurtle", NULL, "Koura" },

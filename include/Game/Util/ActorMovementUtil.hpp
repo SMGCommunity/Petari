@@ -111,4 +111,6 @@ namespace MR {
     void makeQuatAndFrontFromRotate(TQuat4f *, TVec3f *, const LiveActor *);
 
     void moveAndTurnToPlayer(LiveActor *, TVec3f *, f32, f32, f32, f32);
+
+    void turnDirectionDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
 };

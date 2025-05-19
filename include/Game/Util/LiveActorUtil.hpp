@@ -271,6 +271,7 @@ namespace MR {
     ModelObj* createModelObjIndirectMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjNoSilhouettedMapObj(const char*, const char*, MtxPtr);
     ModelObj* createModelObjNpc(const char*, const char*, MtxPtr);
+    ModelObj* createModelObjEnemy(const char *, const char *, MtxPtr);
 
     ModelObj* createModelObjBloomModel(const char *, const char *, MtxPtr);
 
