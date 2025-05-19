@@ -90,7 +90,7 @@ namespace MR {
 
     bool isDead(const LayoutActor*);
 
-    bool isStoppedAnimFrame(const LayoutActor*);
+    bool isStopAnimFrame(const LayoutActor*);
 
     bool isExecuteCalcAnimLayout(const LayoutActor*);
     bool isExecuteDrawLayout(const LayoutActor*);
