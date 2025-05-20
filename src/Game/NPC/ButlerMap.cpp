@@ -72,8 +72,8 @@ void ButlerMap::init(const JMapInfoIter &rIter) {
     TalkMessageCtrl *talkMessage = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, car1, "DemoButlerMapLecture", talkMessage)) {
         const char* car = cDemoNameMapLecture;
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::startLectureDemo), car1, "開始");
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), car, "バトラーリセット");
+        MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::startLectureDemo), car1, "開始");
+        MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), car, "バトラーリセット");
     }
     AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "バトラーグリーンドライバ説明", rIter);
