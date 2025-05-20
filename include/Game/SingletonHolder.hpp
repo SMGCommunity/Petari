@@ -13,6 +13,7 @@ public:
         return sInstance;
     }
 
+private:
     static T* sInstance;
 };
 
@@ -32,6 +33,7 @@ public:
         return sInstance;
     }
 
+private:
     static T* sInstance;
 };
 

@@ -1,6 +1,7 @@
 #include "Game/System/FileRipper.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace {
     OSMutex sDecompMutex;

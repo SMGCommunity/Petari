@@ -24,7 +24,7 @@ void NameObjExecuteInfo::setConnectInfo(NameObj *pObj, int a2, int a3, int a4, i
     _7 = a3;
     _9 = a4;
     _8 = a5;
-    NameObjListExecutor* exec = SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* exec = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (a4 != -1) {
         _A = exec->registerDrawBuffer((LiveActor*)pObj, a4);
@@ -153,12 +153,12 @@ void NameObjExecuteInfo::requestMovementOff(int a1) {
 }
 
 void NameObjExecuteInfo::findLightInfo() const {
-    SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor()->findLightInfo(reinterpret_cast<LiveActor*>(mExecutedObject), _9, _A);
+    SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor()->findLightInfo(reinterpret_cast<LiveActor*>(mExecutedObject), _9, _A);
 }
 
 void NameObjExecuteInfo::connectToScene() {
     _4 = 3;
-    NameObjListExecutor* exec = SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* exec = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_6 != -1) {
         exec->addToMovement(mExecutedObject, _6);
@@ -171,7 +171,7 @@ void NameObjExecuteInfo::connectToScene() {
 
 void NameObjExecuteInfo::disconnectToScene() {
     _4 = 5;
-    NameObjListExecutor* exec = SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* exec = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_5 != -1) {
         exec->removeToMovement(mExecutedObject, _5);
@@ -184,7 +184,7 @@ void NameObjExecuteInfo::disconnectToScene() {
 
 void NameObjExecuteInfo::connectToDraw() {
     _5 = 3;
-    NameObjListExecutor* exec = SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* exec = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_8 != -1) {
         exec->addToDraw(mExecutedObject, _8);
@@ -197,7 +197,7 @@ void NameObjExecuteInfo::connectToDraw() {
 
 void NameObjExecuteInfo::disconnectToDraw() {
     _5 = 5;
-    NameObjListExecutor* exec = SingletonHolder<GameSystem>::sInstance->mSceneController->getNameObjListExecutor();
+    NameObjListExecutor* exec = SingletonHolder<GameSystem>::get()->mSceneController->getNameObjListExecutor();
 
     if (_8 != -1) {
         exec->removeToDraw(mExecutedObject, _8);

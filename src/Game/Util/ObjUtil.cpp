@@ -406,7 +406,7 @@ namespace MR {
     }
 
     ResourceHolder* createAndAddResourceHolder(const char* pResource) {
-        return SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pResource, nullptr);
+        return SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pResource, nullptr);
     }
 
     void* loadResourceFromArc(const char* pArchive, const char* pFile) {
@@ -438,7 +438,7 @@ namespace MR {
     }
 
     JMapInfo* createCsvParser(const char *pArchive, const char *pFormat, ...) {
-        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::sInstance->createAndAdd(pArchive, nullptr);
+        ResourceHolder* holder = SingletonHolder<ResourceHolderManager>::get()->createAndAdd(pArchive, nullptr);
         return MR::createCsvParser(holder, pFormat);   
     }
 

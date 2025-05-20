@@ -7,12 +7,14 @@
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "Game/System/NANDManager.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/RenderMode.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 GameSystemObjHolder::GameSystemObjHolder() :
@@ -123,7 +125,9 @@ void GameSystemObjHolder::initNAND() {
 }
 
 void GameSystemObjHolder::initAudio() {
-    mSysWrapper = new AudSystemWrapper(MR::getAudHeap(), MR::getStationedHeapNapa());
+    mSysWrapper = new AudSystemWrapper(
+        SingletonHolder<HeapMemoryWatcher>::get()->mAudSystemHeap,
+        MR::getStationedHeapNapa());
     mSysWrapper->requestResourceForInitialize();
 }
 

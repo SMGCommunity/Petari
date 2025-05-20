@@ -1,9 +1,10 @@
-#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/System/GameSystem.hpp"
+#include "Game/SingletonHolder.hpp"
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);

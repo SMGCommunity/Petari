@@ -1,5 +1,7 @@
 #include "Game/System/FileLoader.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include <JSystem/JKernel/JKRExpHeap.hpp>
 
 FileLoader::FileLoader() {
     mLoaderThread = nullptr;

@@ -4,6 +4,7 @@
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "Game/SingletonHolder.hpp"
 #include <nw4r/lyt/layout.h>
 
 namespace MR {

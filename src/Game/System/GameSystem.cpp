@@ -33,15 +33,15 @@ void main(void) {
     /*
     MR::setLayoutDefaultAllocator();
     SingletonHolder<HeapMemoryWatcher>::init();
-    SingletonHolder<HeapMemoryWatcher>::sInstance->setCurrentHeapToStationedHeap();
+    SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToStationedHeap();
     JKRHeap* napaHeap = MR::getStationedHeapNapa();
     FileRipper::setup(0x20000, napaHeap);
     GameSystemException::init();
     MR::initAcosTable();
     SingletonHolder<GameSystem>::init();
-    SingletonHolder<GameSystem>::sInstance->init();
+    SingletonHolder<GameSystem>::get()->init();
 
-    GameSystem* gameSystem = SingletonHolder<GameSystem>::sInstance;
+    GameSystem* gameSystem = SingletonHolder<GameSystem>::get();
 
     while (true) {
         gameSystem->frameLoop();
