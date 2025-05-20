@@ -117,6 +117,7 @@ namespace MR {
 
     void createAndAddLayoutHolderRawData(const char*);
 
+    void deleteEffectAll(LayoutActor*);
     void setEffectHostMtx(LayoutActor*, const char*, MtxPtr);
 
     void addStarPointerTargetCircle(LayoutActor*, const char*, f32, const TVec2f&, const char*);
