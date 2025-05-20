@@ -3,16 +3,14 @@
 template<typename T>
 class SingletonHolder {
 public:
+    static void init() {
+        if (sInstance == nullptr) {
+            sInstance = new T();
+        }
+    }
+
     static T* get() {
         return sInstance;
-    }
-
-    static void set(T *p) {
-        sInstance = p;
-    }
-
-    static bool exists() {
-        return sInstance != nullptr;
     }
 
     static T* sInstance;
@@ -22,22 +20,20 @@ template<typename T>
 T* SingletonHolder<T>::sInstance;
 
 template<typename T>
-class AudSingletonHolder
-{
+class AudSingletonHolder {
 public:
+    static void init() {
+        if (sInstance == nullptr) {
+            sInstance = new T();
+        }
+    }
+
     static T* get() {
         return sInstance;
     }
 
-    static void set(T *p) {
-        sInstance = p;
-    }
-
-    static bool exists() {
-        return sInstance != nullptr;
-    }
-
     static T* sInstance;
 };
+
 template<typename T>
 T* AudSingletonHolder<T>::sInstance;

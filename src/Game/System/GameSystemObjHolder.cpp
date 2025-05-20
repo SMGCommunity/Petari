@@ -115,16 +115,11 @@ void GameSystemObjHolder::initDvd() {
     JKRMemArchive archive;
 
     JKRFileLoader::initializeVolumeList();
-
-    if (!SingletonHolder<FileLoader>::exists()) {
-        SingletonHolder<FileLoader>::set(new FileLoader());
-    }
+    SingletonHolder<FileLoader>::init();
 }
 
 void GameSystemObjHolder::initNAND() {
-    if (!SingletonHolder<NANDManager>::exists()) {
-        SingletonHolder<NANDManager>::set(new NANDManager());
-    }
+    SingletonHolder<NANDManager>::init();
 }
 
 void GameSystemObjHolder::initAudio() {
@@ -171,10 +166,7 @@ void GameSystemObjHolder::initRenderMode() {
 void GameSystemObjHolder::initNameObj() {
     mObjHolder = new NameObjHolder(256);
 
-    if (!SingletonHolder<NameObjRegister>::exists()) {
-        SingletonHolder<NameObjRegister>::set(new NameObjRegister());
-    }
-
+    SingletonHolder<NameObjRegister>::init();
     SingletonHolder<NameObjRegister>::get()->setCurrentHolder(mObjHolder);
 }
 
@@ -183,9 +175,7 @@ void GameSystemObjHolder::initFunctionAsyncExecutor() {
 }
 
 void GameSystemObjHolder::initResourceHolderManager() {
-    if (!SingletonHolder<ResourceHolderManager>::exists()) {
-        SingletonHolder<ResourceHolderManager>::set(new ResourceHolderManager());
-    }
+    SingletonHolder<ResourceHolderManager>::init();
 }
 
 void GameSystemObjHolder::initGameController() {

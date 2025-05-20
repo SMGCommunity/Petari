@@ -30,26 +30,21 @@ void main(void) {
     OSInitMutex(&MR::MutexHolder<1>::sMutex);
     OSInitMutex(&MR::MutexHolder<2>::sMutex);
     nw4r::lyt::LytInit();
-    /*MR::setLayoutDefaultAllocator();
-
-    if (!SingletonHolder<HeapMemoryWatcher>::sInstance) {
-        SingletonHolder<HeapMemoryWatcher>::sInstance = new HeapMemoryWatcher();
-    }
-
+    /*
+    MR::setLayoutDefaultAllocator();
+    SingletonHolder<HeapMemoryWatcher>::init();
     SingletonHolder<HeapMemoryWatcher>::sInstance->setCurrentHeapToStationedHeap();
     JKRHeap* napaHeap = MR::getStationedHeapNapa();
-    //FileRipper::setup(0x20000, napaHeap);
-    //GameSystemException::init();
-    //MR::initAcosTable();
-
-    if (!SingletonHolder<GameSystem>::sInstance) {
-        SingletonHolder<GameSystem>::sInstance = new GameSystem();
-    }
-
+    FileRipper::setup(0x20000, napaHeap);
+    GameSystemException::init();
+    MR::initAcosTable();
+    SingletonHolder<GameSystem>::init();
     SingletonHolder<GameSystem>::sInstance->init();
+
     GameSystem* gameSystem = SingletonHolder<GameSystem>::sInstance;
 
     while (true) {
         gameSystem->frameLoop();
-    }*/
+    }
+    */
 }
