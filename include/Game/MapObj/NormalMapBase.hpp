@@ -3,6 +3,7 @@
 #include "Game/Animation/AnmPlayer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
+#include "revolution/gx/GXEnum.h"
 
 class NormalMapBase : public LiveActor {
 public:
@@ -38,6 +39,7 @@ public:
     void drawSettingForCapture(MtxPtr) const;
 
     void loadDiffuseGradTex(_GXTexMapID) const;
+    void loadNormalTex(const JUTTexture *, _GXTexMapID) const;
 
     u32 _8C;
     JUTTexture* _90;
