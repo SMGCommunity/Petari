@@ -1,11 +1,13 @@
+#include "Game/System/FileRipper.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemException.hpp"
-#include "Game/System/FileRipper.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/MutexHolder.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"
-#include "nw4r/lyt/init.h"
-#include "Game/Util.hpp"
-
+#include <nw4r/lyt/init.h>
 
 void main(void) {
     __asm {
@@ -30,21 +32,18 @@ void main(void) {
     OSInitMutex(&MR::MutexHolder<1>::sMutex);
     OSInitMutex(&MR::MutexHolder<2>::sMutex);
     nw4r::lyt::LytInit();
-    /*
     MR::setLayoutDefaultAllocator();
     SingletonHolder<HeapMemoryWatcher>::init();
     SingletonHolder<HeapMemoryWatcher>::get()->setCurrentHeapToStationedHeap();
-    JKRHeap* napaHeap = MR::getStationedHeapNapa();
-    FileRipper::setup(0x20000, napaHeap);
+    FileRipper::setup(0x20000, MR::getStationedHeapNapa());
     GameSystemException::init();
     MR::initAcosTable();
     SingletonHolder<GameSystem>::init();
     SingletonHolder<GameSystem>::get()->init();
 
-    GameSystem* gameSystem = SingletonHolder<GameSystem>::get();
+    GameSystem* pGameSystem = SingletonHolder<GameSystem>::get();
 
     while (true) {
-        gameSystem->frameLoop();
+        pGameSystem->frameLoop();
     }
-    */
 }
