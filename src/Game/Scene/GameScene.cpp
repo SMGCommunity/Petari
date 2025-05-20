@@ -24,6 +24,12 @@
 #include "Game/System/GameSequenceFunction.hpp"
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
+namespace {
+    CometRetryButton* getCometRetryButton() {
+        return MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+    }
+};
+
 namespace NrvGameScene {
     NEW_NERVE(GameSceneScenarioOpeningCamera, GameScene, ScenarioOpeningCamera);
     NEW_NERVE(GameSceneScenarioStarter, GameScene, ScenarioStarter);
@@ -265,10 +271,10 @@ void GameScene::exeScenarioOpeningCamera() {
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* pCometRetryButton = MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton);
+    CometRetryButton* pCometRetryButton = getCometRetryButton();;
 
     if (MR::isFirstStep(this)) {
-        MR::getSceneObj<CometRetryButton*>(SceneObj_CometRetryButton)->appear();
+        getCometRetryButton()->appear();
         MR::forceOpenWipeCircle();
     }
 
