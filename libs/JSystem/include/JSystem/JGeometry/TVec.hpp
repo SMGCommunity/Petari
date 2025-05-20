@@ -215,6 +215,13 @@ namespace JGeometry {
             return ret;
         }
 
+        // appears to be needed in RingBeam to match stack in some places
+        TVec3 scaleInline(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.scale(scalar);
+            return ret;
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3 &) const;
@@ -380,7 +387,16 @@ namespace JGeometry {
             return magnitude;
         }
         
-        void setLength(f32);
+        f32 setLength(f32 newlength){
+            f32 oldlength = squareMag();
+            if(oldlength <=  0.0000038146973f){
+                return 0.0f;
+            }
+            f32 lengthinv = JGeometry::TUtil<f32>::inv_sqrt(oldlength);
+            scale(lengthinv * newlength);
+            return lengthinv * oldlength;
+        };
+
         f32 setLength(const TVec3 &, f32);
 
         f32 length() const { 
