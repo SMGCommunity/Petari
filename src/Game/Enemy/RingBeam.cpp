@@ -260,7 +260,11 @@ void RingBeam::attackSensor(HitSensor *pSender, HitSensor *pReceiver){
     TVec3f sensordiff = pReceiver->mPosition;
     sensordiff -= pSender->mPosition;
     MR::makeMtxTR((MtxPtr)&mtx,this);
-    mtx.getYDirInline(temp);
+    //this is 100% certainly an inline
+    f32 x = mtx.mMtx[0][1];
+    f32 y = mtx.mMtx[1][1];
+    f32 z = mtx.mMtx[2][1];
+    temp.set<f32>(x, y, z);
     MR::vecKillElement(sensordiff,temp,&temp2);
     temp2.setLength(pSender->mRadius);
     
