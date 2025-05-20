@@ -2,6 +2,7 @@
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/SingletonHolder.hpp"

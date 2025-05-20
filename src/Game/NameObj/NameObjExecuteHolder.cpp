@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/GameSystem.hpp" 
+#include "Game/System/GameSystemSceneController.hpp"
 #include "Game/SingletonHolder.hpp"
 
 NameObjExecuteInfo::NameObjExecuteInfo() {
