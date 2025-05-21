@@ -8647,7 +8647,7 @@ Game/System/GameDataHolder.cpp:
 
 Game/System/GameDataPlayerStatus.cpp:
 	.text       start:0x803B37C0 end:0x803B3A5C
-	.data       start:0x805DE738 end:0x805DF8C8
+	.data       start:0x805DE738 end:0x805DE758
 
 Game/System/GameDataTemporaryInGalaxy.cpp:
 	.text       start:0x803B3A5C end:0x803B3CA8
