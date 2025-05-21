@@ -113,4 +113,8 @@ namespace MR {
     void moveAndTurnToPlayer(LiveActor *, TVec3f *, f32, f32, f32, f32);
 
     void turnDirectionDegree(const LiveActor *, TVec3f *, const TVec3f &, f32);
+
+    void addVelocityMoveToDirection(LiveActor *, const TVec3f &, f32);
+
+    void reboundVelocityFromEachCollision(LiveActor *, f32, f32, f32, f32);
 };

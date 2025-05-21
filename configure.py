@@ -1145,7 +1145,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/UnizoLauncher.cpp"),
             Object(Matching, "Game/Enemy/WalkerStateBindStarPointer.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateBlowDamage.cpp"),
-            Object(NonMatching, "Game/Enemy/WalkerStateChase.cpp"),
+            Object(Matching, "Game/Enemy/WalkerStateChase.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateFindPlayer.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateFunction.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateParam.cpp"),

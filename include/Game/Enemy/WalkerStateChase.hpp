@@ -9,7 +9,7 @@ class WalkerStateChaseParam {
 public:
     WalkerStateChaseParam();
 
-    u32 _0;
+    f32 _0;
     u32 _4;
     u32 _8;
     f32 _C;
