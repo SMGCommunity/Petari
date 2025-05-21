@@ -24,6 +24,8 @@ public:
     void update();
     void resetPad();
 
+    s32 getBattery() const;
+
     static void getInfoCallback(s32, s32);
 
     s32 mChannel;                           // 0x0

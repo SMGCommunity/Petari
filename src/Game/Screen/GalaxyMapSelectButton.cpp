@@ -1,3 +1,4 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/GalaxyMapSelectButton.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -51,7 +52,7 @@ bool GalaxyMapSelectButton::isPointingAnything() const {
 }
 
 bool GalaxyMapSelectButton::isDecidedList() const {
-    return mPaneCtrl->_20 != NULL && mPaneCtrl->isDecidedWait();
+    return mPaneCtrl->mIsSelected != NULL && mPaneCtrl->isDecidedWait();
 }
 
 void GalaxyMapSelectButton::changeToStarList() {
