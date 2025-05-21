@@ -16,7 +16,7 @@ void BallBeamer::makeArchiveList(NameObjArchiveListCollector *pCollector, const 
     }
 }
 
-#ifdef NON_MATCHING
+
 void BallBeamer::init(const JMapInfoIter &rIter) {
     initModelManagerWithAnm("BallBeamer", nullptr, nullptr);
     MR::initDefaultPos(this, rIter);
@@ -35,24 +35,40 @@ void BallBeamer::init(const JMapInfoIter &rIter) {
     initNerve(&NrvBallBeamer::BallBeamerNrvWait::sInstance);
     makeActorAppeared();
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::FunctorV0M<BallBeamer *, void (BallBeamer::*)()> functor1 = MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOffA);
-        MR::FunctorV0M<BallBeamer *, void (BallBeamer::*)()> functor2 = MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnA);
-        MR::listenStageSwitchOnOffA(this, functor1, functor2);
+
+        MR::listenStageSwitchOnOffA(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOffA), 
+        MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnA));
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::FunctorV0M<BallBeamer *, void (BallBeamer::*)()> functor3 = MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnB);
-        MR::listenStageSwitchOnB(this, functor3);
+        MR::listenStageSwitchOnB(this, MR::Functor<BallBeamer>(this, &BallBeamer::syncSwitchOnB));
     }
 
-
-
-
-
+    mBeams = new RingBeam*[12];
+    for(int i = 0; i < 12; i++){
+        mBeams[i] = nullptr; 
+    }
+    f32 arg0 = 12.0f;
+    s32 arg1 = 530;
+    s32 arg2 = -1;
+    MR::getJMapInfoArg0NoInit(rIter,&arg0);
+    MR::getJMapInfoArg1NoInit(rIter,&arg1);
+    MR::getJMapInfoArg2NoInit(rIter,&arg2);
+    for(int i = 0; i < 12; i++){
+        if(arg2 == 0){
+            mBeams[i] = new RingBeam("リングビーム",this,true,true);
+        }else{
+            mBeams[i] = new RingBeam("リングビーム",this,true,false);
+        }
+        mBeams[i]->init(rIter);
+        mBeams[i]->setSpeed(arg0);
+        mBeams[i]->setLife(arg1);
+    }
+    _98.setInline(MR::getJointMtx(this,"Head"));
     MR::initCollisionParts(this, "Head", getSensor("Body"), _98.toMtxPtr());
     MR::validateCollisionParts(this);
 }
-#endif
+
 
 void BallBeamer::syncSwitchOnA() {
     _90 = true;
@@ -64,7 +80,15 @@ void BallBeamer::syncSwitchOffA() {
 }
 
 void BallBeamer::syncSwitchOnB() {
-    
+    MR::deleteEffect(this,"Charge");
+    MR::emitEffect(this,"Vanish");
+    kill();
+    for(int i = 0; i < 12; i++){
+        if(mBeams[i]){
+            mBeams[i]->kill();
+        }
+    }
+
 }
 
 void BallBeamer::setupAttack() {
@@ -76,8 +100,14 @@ void BallBeamer::setupAttack() {
     }
 }
 
-void BallBeamer::tryAttack() {
-
+bool BallBeamer::tryAttack() {
+   for(int i = 0; i < 12; i++){
+        if(MR::isDead(mBeams[i])){
+            mBeams[i]->appear();
+            return true;
+        }
+   }
+   return false;
 }
 
 void BallBeamer::exeWait() {
