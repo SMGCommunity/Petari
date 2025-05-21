@@ -7494,12 +7494,12 @@ Game/Screen/THPDraw.c:
 
 Game/Screen/BackButton.cpp:
 	.text       start:0x803499F4 end:0x80349C3C
-	.data       start:0x805D27D8 end:0x805D2910
+	.data       start:0x805D27D8 end:0x805D2858
 
 Game/Screen/BatteryInfo.cpp:
 	.text       start:0x80349C3C end:0x8034A64C
 	.ctors      start:0x8052F220 end:0x8052F224
-	.data       start:0x805D2910 end:0x805D2A10
+	.data       start:0x805D2858 end:0x805D2A10
 	.sbss       start:0x806B6640 end:0x806B6670
 
 Game/Screen/BloomEffect.cpp:

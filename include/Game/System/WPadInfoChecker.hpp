@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/System/WPad.hpp"
 #include <revolution.h>
+#include "Game/System/WPad.hpp"
 
 class WPadInfoChecker {
 public:

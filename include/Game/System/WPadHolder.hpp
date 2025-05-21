@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Game/System/WPad.hpp"
 #include <revolution.h>
 
-class WPad;
 
 class WPadReadDataInfo {
 public:
@@ -32,3 +32,7 @@ public:
     WPadReadDataInfo* mDataInfoArray;           // 0x8
     u32 mHolderMode;                            // 0xC
 };
+
+namespace MR {
+    WPad* getWPad(s32 channel);
+}
