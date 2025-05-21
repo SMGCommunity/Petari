@@ -6077,7 +6077,7 @@ Game/NameObj/NameObjHolder.cpp:
 
 Game/NameObj/NameObjListExecutor.cpp:
 	.text       start:0x8026C378 end:0x8026C654
-	.data       start:0x805AE778 end:0x805AE978
+	.data       start:0x805AE778 end:0x805AE798
 
 Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x8026C654 end:0x8026C670
@@ -6085,8 +6085,8 @@ Game/NameObj/NameObjRegister.cpp:
 Game/NPC/Butler.cpp:
 	.text       start:0x8026C670 end:0x8026DEA8
 	.ctors      start:0x8052EF7C end:0x8052EF80
-	.rodata     start:0x80539718 end:0x80539798
-	.data       start:0x805AE978 end:0x805AEC80
+	.rodata     start:0x80539718 end:0x80539738
+	.data       start:0x805AE798 end:0x805AEC80
 	.sdata      start:0x806B20E8 end:0x806B20F0
 	.sbss       start:0x806B5C28 end:0x806B5C40
 	.sdata2     start:0x806BEA08 end:0x806BEA30
