@@ -29,6 +29,8 @@ class TextBoxRecursiveOperation {
 public:
     /// @brief Destroys the `TextBoxRecursiveOperation`.
     virtual ~TextBoxRecursiveOperation();
+
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const = 0;
 };
 
 class TextBoxRecursiveSetMessage : public TextBoxRecursiveOperation {
@@ -41,7 +43,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetMessage`.
     virtual ~TextBoxRecursiveSetMessage();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ const wchar_t* mMessage;
@@ -58,7 +60,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetArgNumber`.
     virtual ~TextBoxRecursiveSetArgNumber();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ s32 mArg;
@@ -76,7 +78,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetArgString`.
     virtual ~TextBoxRecursiveSetArgString();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ const wchar_t* mArg;
@@ -93,7 +95,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetVerticalPosition`.
     virtual ~TextBoxRecursiveSetVerticalPosition();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ u8 mPosition;
@@ -109,7 +111,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetHorizontalPosition`.
     virtual ~TextBoxRecursiveSetHorizontalPosition();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ u8 mPosition;
@@ -125,7 +127,7 @@ public:
     /// @brief Destroys the `TextBoxRecursiveSetFont`.
     virtual ~TextBoxRecursiveSetFont();
 
-    virtual void execute() const;
+    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ nw4r::ut::Font* mFont;
