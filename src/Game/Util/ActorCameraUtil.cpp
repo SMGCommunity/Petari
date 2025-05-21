@@ -108,48 +108,6 @@ namespace MR {
         setProgrammableCameraParamFovy(pActor->mName, fov);
         return;
     }
-     
-    void startRumbleWithShakeCameraWeak(const LiveActor *pActor, const char *pName1, const char *pName2, f32 range1, f32 range2) {
-        if (calcDistanceToPlayer(pActor) <= range1) {
-
-                tryRumblePad((void*) pActor, pName1, 0);
-                shakeCameraNormal();
-            
-        }
-        else if (calcDistanceToPlayer(pActor) <= range2) {
-            tryRumblePad((void*) pActor, pName2, 0);
-            shakeCameraWeak();
-        }
-    }
-
-    void startRumbleWithShakeCameraNormalWeak(const LiveActor *pActor, const char *pName1, const char *pName2, f32 range1, f32 range2) {
-        if (calcDistanceToPlayer(pActor) <= range1) {
-
-                tryRumblePad((void*) pActor, pName1, 0);
-                shakeCameraNormalWeak();
-            
-        }
-        else if (calcDistanceToPlayer(pActor) <= range2) {
-            tryRumblePad((void*) pActor, pName2, 0);
-            shakeCameraWeak();
-        }
-    }
-
-    void startRumbleWithShakeCameraStrong(const LiveActor *pActor, const char *pName1, const char *pName2, f32 range1, f32 range2) {
-        if (calcDistanceToPlayer(pActor) <= range1) {
-
-                tryRumblePad((void*) pActor, pName1, 0);
-                shakeCameraStrong();
-            
-        }
-        else if (calcDistanceToPlayer(pActor) <= range2) {
-            tryRumblePad((void*) pActor, pName2, 0);
-            shakeCameraNormal();
-        }
-    }
-
-
-
 };
 
 CameraTargetArg::CameraTargetArg() {
