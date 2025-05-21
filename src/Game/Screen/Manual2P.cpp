@@ -106,7 +106,7 @@ void Manual2P::exeWait() {
     if (_30) {
         mLeftPaneCtrl->trySelect();
 
-        if (mLeftPaneCtrl->_20) {
+        if (mLeftPaneCtrl->mIsSelected) {
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
             setNerve(&Manual2PNrvScrollLeft::sInstance);
             return;
@@ -124,7 +124,7 @@ void Manual2P::exeWait() {
     if (_31) {
         mRightPaneCtrl->trySelect();
 
-        if (mRightPaneCtrl->_20) {
+        if (mRightPaneCtrl->mIsSelected) {
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
             setNerve(&Manual2PNrvScrollRight::sInstance);
             return;

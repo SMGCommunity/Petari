@@ -1,3 +1,4 @@
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyConfirmLayout.hpp"
 #include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
@@ -43,7 +44,7 @@ bool GalaxyConfirmLayout::isSelected() const {
 }
 
 bool GalaxyConfirmLayout::isSelectedYes() const {
-    return mPaneCtrl->_20;
+    return mPaneCtrl->mIsSelected;
 }
 
 void GalaxyConfirmLayout::requestMovementOn() {
