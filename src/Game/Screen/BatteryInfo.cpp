@@ -75,7 +75,7 @@ void BatteryInfo::exeLow() {
 }
 
 void BatteryInfo::exeLowDisappear() {
-    this->exeStartAnimAndSetNerveIfStopped(
+    exeStartAnimAndSetNerveIfStopped(
         "EndLow",
         &::BatteryInfoLowHide::sInstance
     );
@@ -126,7 +126,7 @@ void BatteryInfo::exeCritical() {
 }
 
 void BatteryInfo::exeDisappear() {
-    this->exeStartAnimAndSetNerveIfStopped(
+    exeStartAnimAndSetNerveIfStopped(
         "EndCritical",
         &::BatteryInfoEnought::sInstance
     );
@@ -150,7 +150,7 @@ void BatteryInfo::exeNone() {
 }
 
 void BatteryInfo::exeNoneDisappear() {
-    this->exeStartAnimAndSetNerveIfStopped(
+    exeStartAnimAndSetNerveIfStopped(
         "EndNone",
         &::BatteryInfoNoneHide::sInstance
     );
