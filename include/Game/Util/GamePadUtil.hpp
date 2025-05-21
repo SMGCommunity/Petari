@@ -263,8 +263,6 @@ namespace MR {
     void calcWorldStickDirectionXZ(f32* pDirX, f32* pDirZ, s32 channel);
     void calcWorldStickDirectionXZ(TVec3f* pDir, s32 channel);
 
-    WPad* getWPad(s32 channel);
-
     /// @brief Returns the maximum number of allowed controllers.
     /// @return The maximum number of allowed controllers.
     u32 getWPadMaxCount();
