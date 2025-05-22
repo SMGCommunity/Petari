@@ -51,14 +51,21 @@ public:
 
     template<typename T>
     JMapInfoIter findElement(const char *, s32, int) const;
-    JMapInfoIter end() const;
-
-    template<typename T>
-    const bool getValue(int, const char *, T *) const;
 
     bool getValueFast(int, int, const char **) const;
     bool getValueFast(int, int, u32 *) const;
     bool getValueFast(int, int, s32 *) const;
+
+    template<typename T>
+    const bool getValue(int entryIndex, const char* key, T* outValue) const NO_INLINE {
+        s32 itemIndex = searchItemInfo(key);
+        if (itemIndex < 0) {
+            return false;
+        }
+        return getValueFast(entryIndex, itemIndex, outValue);
+    }
+
+    JMapInfoIter end() const;
 
     const JMapData* mData; // 0x0
     const char* mName; // 0x4
