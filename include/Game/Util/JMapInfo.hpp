@@ -26,7 +26,7 @@ struct JMapData {
     s32 mNumFields;     // 0x4
     s32 mDataOffset;    // 0x8
     u32 mEntrySize;     // 0xC
-    const JMapItem mItems;   // 0x10
+    const JMapItem mItems[];   // 0x10
 };
 
 class JMapInfo {
