@@ -31,9 +31,9 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
   info.setupAffectedScale();
   info.setupHitSensor();
   TVec3f vec;
-  vec.set(0, 150 * mScale.x, 0);
+  vec.set(0.0f, 150 * mScale.x, 0.0f);
 
-  info.setupHitSensorParam(4, 180.0, vec);
+  info.setupHitSensorParam(4, 180.0f, vec);
   info.setupShadow(nullptr);
   info.setupNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
   initialize(rIter, info);
@@ -41,8 +41,8 @@ void NeedlePlant::init(const JMapInfoIter &rIter) {
   MR::addEffectHitNormal(this, nullptr);
   initSound(4, 0);
   TVec3f vec2;
-  vec2.set(0, 150 * mScale.x, 0);
-  MR::initStarPointerTarget(this, 150 * mScale.x, vec2);
+  vec2.set(0.0f, 150.0f * mScale.x, 0.0f);
+  MR::initStarPointerTarget(this, 150.0f * mScale.x, vec2);
   u8 result = MR::getJMapInfoArg0NoInit(rIter, &_C4);
 
   s32 v7 = _C4;
@@ -60,7 +60,7 @@ void NeedlePlant::kill() {
   s32 v1 = _C4;
   if (v1 == 0) {
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
-    MR::appearStarPiece(this, this->mPosition, 3, 10.0, 40.0, false);
+    MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, false);
   } else if (v1 == -1) {
     MR::appearCoinPop(this, this->mPosition, 1);
   }
@@ -70,15 +70,15 @@ void NeedlePlant::kill() {
 
 void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
   // TODO: Possible inline. https://decomp.me/scratch/zwlUm
-  if (MR::calcDistance(a1, a2, nullptr) > 70 * mScale.x + a2->mRadius)
+  if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius)
     return;
   if (MR::isSensorPlayerOrRide(a2) && MR::sendMsgEnemyAttack(a2, a1)) {
-    MR::emitEffectHitBetweenSensors(this, a1, a2, 0, nullptr);
+    MR::emitEffectHitBetweenSensors(this, a1, a2, 0.0f, nullptr);
     setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
   } else if (MR::isSensorPlayerOrRide(a2) || MR::isSensorEnemy(a2)) {
     f32 mRadius;
     mRadius = getSensor(nullptr)->mRadius;
-    getSensor(nullptr)->mRadius = 70 * mScale.x;
+    getSensor(nullptr)->mRadius = 70.0f * mScale.x;
     MR::sendMsgPush(a2, a1);
     getSensor(nullptr)->mRadius = mRadius;
   }

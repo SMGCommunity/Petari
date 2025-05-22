@@ -37,7 +37,7 @@ void PalmIsland::init(const JMapInfoIter &rIter) {
   MR::initCollisionParts(this, "PalmIsland", sensor, nullptr);
   initEffectKeeper(0, nullptr, false);
   initSound(2, false);
-  MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0);
+  MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
   _8C = MR::getRandom(0l, 60);
   initNerve(&NrvPalmIsland::PalmIslandNrvWait::sInstance);
   makeActorAppeared();
