@@ -63,8 +63,8 @@ public:
     /* 0x24 */ bool _24;
     /* 0x28 */ const char* mAppearAnimName;
     /* 0x2C */ const char* mWaitAnimName;
-    /* 0x28 */ const char* mDecideAnimName;
-    /* 0x24 */ const char* mPointingAnimName;
-    /* 0x20 */ const char* mNotPointingAnimName;
-    /* 0x2C */ const char* mDisappearAnimName;
+    /* 0x30 */ const char* mDecideAnimName;
+    /* 0x34 */ const char* mPointingAnimName;
+    /* 0x38 */ const char* mNotPointingAnimName;
+    /* 0x3C */ const char* mDisappearAnimName;
 };
