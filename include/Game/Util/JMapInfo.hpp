@@ -56,6 +56,8 @@ public:
     bool getValueFast(int, int, u32 *) const;
     bool getValueFast(int, int, s32 *) const;
 
+    JMapInfoIter findElementBinary(const char *, const char *) const;
+
     template<typename T>
     const bool getValue(int entryIndex, const char* key, T* outValue) const NO_INLINE {
         s32 itemIndex = searchItemInfo(key);

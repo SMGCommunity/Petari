@@ -1,5 +1,6 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGadget/hashcode.hpp"
+#include <cstring>
 
 JMapInfo::JMapInfo() {
     mData = nullptr;
@@ -35,7 +36,7 @@ s32 JMapInfo::searchItemInfo(const char *key) const {
     u32 hash = JGadget::getHashCode(key);
 
     for (int i = 0; i < nFields; ++i) {
-        if ((&mData->mItems + i)->mHash == hash) {
+        if ((&mData->mItems)[i].mHash == hash) {
             return i;
         }
     }
@@ -49,7 +50,27 @@ s32 JMapInfo::getValueType(const char *pItem) const {
     if (itemId < 0) {
         return JMAP_VALUE_TYPE_NULL;
     }
-    else {
-        return static_cast<const JMapItem*>(&mData->mItems)[itemId].mType;
+    return (&mData->mItems)[itemId].mType;
+}
+
+JMapInfoIter JMapInfo::findElementBinary(const char *key, const char *value) const {
+    int low = 0;
+    int high = mData ? mData->mNumEntries : 0;
+
+    const char *nextVal;
+    while (low < high) {
+        int mid = (low + high) / 2;
+        getValue<const char *>(mid, key, &nextVal);
+        int comparison = strcmp(nextVal, value);
+        if (comparison == 0) {
+            return JMapInfoIter(this, mid);
+        }
+        else if (comparison < 0) {
+            low = mid + 1;
+        }
+        else {
+            high = mid;
+        }
     }
+    return end();
 }
