@@ -1,7 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
-#include "Game/System/WPad.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class WPadRumble;
 
