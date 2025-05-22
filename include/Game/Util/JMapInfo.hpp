@@ -68,7 +68,7 @@ class JMapInfoIter {
 public:
     inline JMapInfoIter() { }
 
-    inline JMapInfoIter(JMapInfo* pInfo, s32 val) {
+    inline JMapInfoIter(const JMapInfo* pInfo, s32 val) {
         mInfo = pInfo;
         _4 = val;
     }
@@ -85,7 +85,7 @@ public:
     bool isValid() const NO_INLINE{
         bool valid = false;
         bool v3 = false;
-        JMapInfo* info = mInfo;
+        const JMapInfo* info = mInfo;
         if (info && _4 >= 0) {
             v3 = true;
         }
@@ -108,10 +108,8 @@ public:
         return valid;
     }
 
-    
-
     bool operator==(const JMapInfoIter &) const;
 
-    JMapInfo* mInfo; // 0x0
+    const JMapInfo* mInfo; // 0x0
     s32 _4;
 };

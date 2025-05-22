@@ -8993,7 +8993,7 @@ Game/Util/BothDirList.cpp:
 
 Game/Util/CollisionPartsFilter.cpp:
 	.text       start:0x80401F44 end:0x80401F78
-	.data       start:0x805E6E30 end:0x805E6E98
+	.data       start:0x805E6E30 end:0x805E6E68
 
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
@@ -9021,10 +9021,11 @@ Game/Util/JMapIdInfo.cpp:
 
 Game/Util/JMapInfo.cpp:
 	.text       start:0x804060D0 end:0x80406564
+	.data       start:0x805E6E68 end:0x805E6E78
 
 Game/Util/JMapLinkInfo.cpp:
 	.text       start:0x80406564 end:0x8040679C
-	.data       start:0x805E6E98 end:0x805E6EE0
+	.data       start:0x805E6E78 end:0x805E6EE0
 
 Game/Util/JointController.cpp:
 	.text       start:0x8040679C end:0x80406A48
