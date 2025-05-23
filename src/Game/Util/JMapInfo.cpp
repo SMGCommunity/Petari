@@ -10,7 +10,7 @@ JMapInfo::~JMapInfo() {
 
 }
 
-bool JMapInfo::attach(const void *pData) {
+bool JMapInfo::attach(const void* pData) {
     if (pData == nullptr) {
         return false;
     }
@@ -18,7 +18,7 @@ bool JMapInfo::attach(const void *pData) {
     return true;
 }
 
-void JMapInfo::setName(const char *pName) {
+void JMapInfo::setName(const char* pName) {
     mName = pName;
 }
 
@@ -26,7 +26,7 @@ const char* JMapInfo::getName() const {
     return mName;
 }
 
-s32 JMapInfo::searchItemInfo(const char *key) const {
+s32 JMapInfo::searchItemInfo(const char* key) const {
     if (!dataExists()) {
         return -1;
     }
@@ -43,7 +43,7 @@ s32 JMapInfo::searchItemInfo(const char *key) const {
     return -1;
 }
 
-s32 JMapInfo::getValueType(const char *pItem) const {
+s32 JMapInfo::getValueType(const char* pItem) const {
     s32 itemId = searchItemInfo(pItem);
 
     if (itemId < 0) {
@@ -52,14 +52,14 @@ s32 JMapInfo::getValueType(const char *pItem) const {
     return mData->mItems[itemId].mType;
 }
 
-bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char **outValue) const {
-    const JMapItem *item = &mData->mItems[itemIndex];
-    const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char** outValue) const {
+    const JMapItem* item = &mData->mItems[itemIndex];
+    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     switch (item->mType) {
         case JMAP_VALUE_TYPE_STRING_PTR:
             s32 nEntries = mData ? mData->mNumEntries : 0;
-            const char *stringTableOffset = getEntryAddress(mData, mData->mDataOffset, nEntries);
+            const char* stringTableOffset = getEntryAddress(mData, mData->mDataOffset, nEntries);
             *outValue = stringTableOffset + *reinterpret_cast<const u32*>(valuePtr);
             break;
         default:
@@ -70,9 +70,9 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char **outValue
     return true;
 }
 
-bool JMapInfo::getValueFast(int entryIndex, int itemIndex, u32 *outValue) const {
-    const JMapItem *item = &mData->mItems[itemIndex];
-    const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+bool JMapInfo::getValueFast(int entryIndex, int itemIndex, u32* outValue) const {
+    const JMapItem* item = &mData->mItems[itemIndex];
+    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
 
     u32 rawValue;
     switch (item->mType) {
@@ -94,12 +94,12 @@ bool JMapInfo::getValueFast(int entryIndex, int itemIndex, u32 *outValue) const 
     return true;
 }
 
-bool JMapInfo::getValueFast(int entryIndex, int itemIndex, s32 *outValue) const {
+bool JMapInfo::getValueFast(int entryIndex, int itemIndex, s32* outValue) const {
     const JMapItem* item = &mData->mItems[itemIndex];
     if (item->mShift != 0) {
         goto FAIL;
     }
-    const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+    const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
     
     switch (item->mType) {
         case JMAP_VALUE_TYPE_LONG:
@@ -128,14 +128,14 @@ FAIL:
     return false;
 }
 
-JMapInfoIter JMapInfo::findElementBinary(const char *key, const char *value) const {
+JMapInfoIter JMapInfo::findElementBinary(const char* key, const char* value) const {
     int low = 0;
     int high = mData ? mData->mNumEntries : 0;
 
-    const char *nextVal;
+    const char* nextVal;
     while (low < high) {
         int mid = (low + high) / 2;
-        getValue<const char *>(mid, key, &nextVal);
+        getValue<const char*>(mid, key, &nextVal);
         int comparison = strcmp(nextVal, value);
         if (comparison == 0) {
             return JMapInfoIter(this, mid);

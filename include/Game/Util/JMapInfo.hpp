@@ -40,7 +40,7 @@ inline bool compareValues<const char*>(const char* a, const char* b) {
     return strcmp(a, b) == 0;
 }
 
-inline const char* getEntryAddress(const JMapData *data, s32 dataOffset, int entryIndex) {
+inline const char* getEntryAddress(const JMapData* data, s32 dataOffset, int entryIndex) {
     return reinterpret_cast<const char*>(data) + dataOffset + entryIndex * data->mEntrySize;
 }
 
@@ -59,21 +59,21 @@ public:
         return mData == rhs.mData;
     }
 
-    bool attach(const void *);
-    void setName(const char *pName);
+    bool attach(const void*);
+    void setName(const char*);
     const char* getName() const;
-    s32 searchItemInfo(const char *pItem) const;
-    s32 getValueType(const char *) const;
-    bool getValueFast(int, int, const char **) const;
-    bool getValueFast(int, int, u32 *) const;
-    bool getValueFast(int, int, s32 *) const;
-    bool getValueFast(int entryIndex, int itemIndex, f32 *outValue) const {
+    s32 searchItemInfo(const char*) const;
+    s32 getValueType(const char*) const;
+    bool getValueFast(int, int, const char**) const;
+    bool getValueFast(int, int, u32*) const;
+    bool getValueFast(int, int, s32*) const;
+    bool getValueFast(int entryIndex, int itemIndex, f32* outValue) const {
         const JMapItem* item = &mData->mItems[itemIndex];
-        const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+        const char* valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
         *outValue = *reinterpret_cast<const f32*>(valuePtr);
         return true;
     }
-    JMapInfoIter findElementBinary(const char *, const char *) const;
+    JMapInfoIter findElementBinary(const char*, const char*) const;
 
     template<typename T>
     const bool getValue(int entryIndex, const char* key, T* outValue) const NO_INLINE {
@@ -85,7 +85,7 @@ public:
     }
 
     template<typename T>
-    JMapInfoIter findElement(const char *key, T searchValue, int startIndex) const NO_INLINE {
+    JMapInfoIter findElement(const char* key, T searchValue, int startIndex) const NO_INLINE {
         int entryIndex = startIndex;
         T value;
         while (entryIndex < (mData ? mData->mNumEntries : 0)) {
@@ -136,8 +136,8 @@ public:
     }
 
     template<typename T>
-    bool getValue(const char *key, T *outValue) const {
-        const JMapInfo *info = mInfo;
+    bool getValue(const char* key, T* outValue) const {
+        const JMapInfo* info = mInfo;
         s32 entryIndex = index;
         
         s32 itemIndex = info->searchItemInfo(key);
@@ -151,6 +151,6 @@ public:
     s32 index; // 0x4
 };
 
-JMapInfoIter JMapInfo::end() const {
-    return JMapInfoIter(this, mData ? mData->mNumEntries : 0);
+namespace MR {
+    JMapInfoIter findJMapInfoElementNoCase(const JMapInfo*, const char*, const char*, int);
 }
