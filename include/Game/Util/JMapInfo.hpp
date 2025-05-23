@@ -40,6 +40,10 @@ inline bool compareValues<const char*>(const char* a, const char* b) {
     return strcmp(a, b) == 0;
 }
 
+inline const char* getEntryAddress(const JMapData *data, s32 dataOffset, int entryIndex) {
+    return reinterpret_cast<const char*>(data) + dataOffset + entryIndex * data->mEntrySize;
+}
+
 class JMapInfo {
 public:
     JMapInfo();
@@ -63,6 +67,12 @@ public:
     bool getValueFast(int, int, const char **) const;
     bool getValueFast(int, int, u32 *) const;
     bool getValueFast(int, int, s32 *) const;
+    bool getValueFast(int entryIndex, int itemIndex, f32 *outValue) const {
+        const JMapItem* item = &mData->mItems[itemIndex];
+        const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
+        *outValue = *reinterpret_cast<const f32*>(valuePtr);
+        return true;
+    }
     JMapInfoIter findElementBinary(const char *, const char *) const;
 
     template<typename T>
@@ -113,39 +123,34 @@ public:
         return *this;
     }
 
-    bool operator==(const JMapInfoIter &rhs) const NO_INLINE {
+    bool operator==(const JMapInfoIter &rhs) const {
         return index == rhs.index && mInfo && rhs.mInfo && *mInfo == *rhs.mInfo;
+    }
+    
+    bool operator!=(const JMapInfoIter &rhs) const {
+        return !(*this == rhs);
+    }
+
+    bool isValid() const {
+        return mInfo && index >= 0 && index < (mInfo->mData ? mInfo->mData->mNumEntries : 0);
     }
 
     template<typename T>
-    bool getValue(const char *, T *) const;
-
-    bool isValid() const NO_INLINE{
-        bool valid = false;
-        bool v3 = false;
-        const JMapInfo* info = mInfo;
-        if (info && index >= 0) {
-            v3 = true;
+    bool getValue(const char *key, T *outValue) const {
+        const JMapInfo *info = mInfo;
+        s32 entryIndex = index;
+        
+        s32 itemIndex = info->searchItemInfo(key);
+        if (itemIndex < 0) {
+            return false;
         }
-
-        if (v3) {        
-            s32 pos = index;
-            s32 num;
-            if (info->mData) {
-                num = info->mData->mNumEntries;
-            }
-            else {
-                num = 0;
-            }
-
-            if (pos < num) {
-                valid = true;
-            }
-        }
-
-        return valid;
+        return info->getValueFast(entryIndex, itemIndex, outValue);
     }
 
     const JMapInfo* mInfo; // 0x0
     s32 index; // 0x4
 };
+
+JMapInfoIter JMapInfo::end() const {
+    return JMapInfoIter(this, mData ? mData->mNumEntries : 0);
+}

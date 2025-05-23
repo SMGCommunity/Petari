@@ -52,10 +52,6 @@ s32 JMapInfo::getValueType(const char *pItem) const {
     return mData->mItems[itemId].mType;
 }
 
-inline const char* getEntryAddress(const JMapData *data, s32 dataOffset, int entryIndex) {
-    return reinterpret_cast<const char*>(data) + dataOffset + entryIndex * data->mEntrySize;
-}
-
 bool JMapInfo::getValueFast(int entryIndex, int itemIndex, const char **outValue) const {
     const JMapItem *item = &mData->mItems[itemIndex];
     const char *valuePtr = getEntryAddress(mData, mData->mDataOffset, entryIndex) + item->mOffsData;
