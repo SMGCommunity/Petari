@@ -16,11 +16,11 @@
 
 namespace NrvNeedlePlant {
     NEW_NERVE(NeedlePlantNrvWait, NeedlePlant, Wait);
-  NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
+    NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
 }; // namespace NrvNeedlePlant
 
 NeedlePlant::NeedlePlant(const char *pName) : MapObjActor(pName) {
-   _C4 = -1; 
+    _C4 = -1; 
 }
 NeedlePlant::~NeedlePlant() {}
 
@@ -69,7 +69,7 @@ void NeedlePlant::kill() {
 }
 
 void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
-  // TODO: Possible inline. https://decomp.me/scratch/zwlUm
+    // TODO: Possible inline. https://decomp.me/scratch/zwlUm
     if (MR::calcDistance(a1, a2, nullptr) > 70.0f * mScale.x + a2->mRadius)
         return;
     if (MR::isSensorPlayerOrRide(a2) && MR::sendMsgEnemyAttack(a2, a1)) {
@@ -81,7 +81,7 @@ void NeedlePlant::attackSensor(HitSensor *a1, HitSensor *a2) {
         getSensor(nullptr)->mRadius = 70.0f * mScale.x;
         MR::sendMsgPush(a2, a1);
         getSensor(nullptr)->mRadius = mRadius;
-  }
+    }
 }
 
 bool NeedlePlant::receiveMsgPush(HitSensor *a1, HitSensor *a2) {
