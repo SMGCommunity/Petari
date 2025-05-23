@@ -27,7 +27,7 @@ public:
 
 class WalkerStateStagger : public ActorStateBase<LiveActor> {
 public:
-    WalkerStateStagger(LiveActor *, const TVec3f *, WalkerStateParam *, WalkerStateStaggerParam *);
+    WalkerStateStagger(LiveActor *, TVec3f *, WalkerStateParam *, WalkerStateStaggerParam *);
 
     virtual ~WalkerStateStagger();
     virtual void appear();

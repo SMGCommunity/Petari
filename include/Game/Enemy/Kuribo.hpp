@@ -27,7 +27,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor *, HitSensor *);
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerPAttack(u32, HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor *, HitSensor *);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor *, HitSensor *);
     virtual bool recieveMsgOtherMsg(u32, HitSensor *, HitSensor *);
 
@@ -87,6 +87,6 @@ public:
     WalkerStateChase* mStateChase;                      // 0xA4
     TQuat4f _A8;
     TVec3f _B8;
-    u8 _C4;
+    bool _C4;
     u8 _C5;
 };

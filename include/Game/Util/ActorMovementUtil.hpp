@@ -117,4 +117,12 @@ namespace MR {
     void addVelocityMoveToDirection(LiveActor *, const TVec3f &, f32);
 
     void reboundVelocityFromEachCollision(LiveActor *, f32, f32, f32, f32);
+
+    void turnQuatUpToGravity(TQuat4f *, const TQuat4f &, const LiveActor *);
+
+    bool calcVelocityAreaOrRailMoveOnGround(TVec3f *, const LiveActor *);
+
+    bool sendMsgPushAndKillVelocityToTarget(LiveActor *, HitSensor *, HitSensor *);
+
+    void addVelocityFromPush(LiveActor *, f32, HitSensor *, HitSensor *);
 };

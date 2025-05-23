@@ -189,6 +189,8 @@ namespace MR {
 
     bool isMsgUpdateBaseMtx(u32);
 
+    bool isMsgToEnemyAttackShockWave(u32);
+
     bool receiveItemShowMsg(u32, HitSensor *, HitSensor *);
     bool receiveItemHideMsg(u32, HitSensor *, HitSensor *);
 

@@ -17,7 +17,7 @@ public:
 
 class WalkerStateFindPlayer : public ActorStateBase<LiveActor> {
 public:
-    WalkerStateFindPlayer(LiveActor *, TVec3f , WalkerStateParam *, WalkerStateFindPlayerParam *);
+    WalkerStateFindPlayer(LiveActor *, TVec3f * , WalkerStateParam *, WalkerStateFindPlayerParam *);
 
     virtual ~WalkerStateFindPlayer();
     virtual void appear();

@@ -5075,7 +5075,7 @@ Game/MapObj/MiniatureGalaxyHolder.cpp:
 Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
-	.data       start:0x80599ED0 end:0x8059A358
+	.data       start:0x80599ED0 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1F28
 	.sbss       start:0x806B54A0 end:0x806B54B8
 	.sdata2     start:0x806BD7D0 end:0x806BD830
@@ -5083,7 +5083,7 @@ Game/MapObj/MorphItemObjNeo.cpp:
 Game/MapObj/NeedlePlant.cpp:
 	.text       start:0x80202CF8 end:0x8020332C
 	.ctors      start:0x8052EDD8 end:0x8052EDDC
-	.data       start:0x8059A358 end:0x8059A408
+	.data       start:0x8059A2F0 end:0x8059A408
 	.sbss       start:0x806B54B8 end:0x806B54C8
 	.sdata2     start:0x806BD830 end:0x806BD848
 

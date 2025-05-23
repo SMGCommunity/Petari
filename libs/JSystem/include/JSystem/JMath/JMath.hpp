@@ -106,12 +106,12 @@ namespace JMathInlineVEC {
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
             psq_l     v2xy, 0(vec2), 0, 0
-            psq_l     v1z,   8(vec1), 1, 0
-            ps_sub    dxy, v1xy, v2xy
-            psq_l     v2z,   8(vec2), 1, 0
-            ps_sub    dz, v1z, v2z
+            ps_mul    dxy, v1xy, v2xy
             psq_st    dxy, 0(dst), 0, 0
-            psq_st    dz,  8(dst), 1, 0            
+            lfs v1z, 8(vec1)
+            lfs v2z, 8(vec2)
+            fmuls v2z, v1z, v2z
+            stfs v2z, 8(dst)
         }
     }
 
@@ -175,5 +175,6 @@ namespace JMathInlineVEC {
     f32 PSVECSquareMag(const Vec *);
     void PSVECNegate(const Vec *, Vec *);
     f32 PSVECSquareDistance(const Vec *, const Vec *);
+    void PSVECMultiply(const Vec*, const Vec*, Vec*);
 #endif
 };

@@ -91,4 +91,8 @@ namespace MR {
 
     void submitLevelSE();
     void permitLevelSE();
+
+    void setSeVersion(const LiveActor *, u32);
+
+    void startSoundSeVer(const LiveActor *, const char *, s32, s32);
 };
