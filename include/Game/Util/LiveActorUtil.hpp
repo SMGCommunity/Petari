@@ -373,4 +373,6 @@ namespace MR {
     f32 getBckFrame(const LiveActor *);
 
     f32 calcNerveValue(const LiveActor *, s32, s32, f32, f32);
+
+    TVec3f* getBindedFixReactionVector(const LiveActor *);
 };  // namespace MR

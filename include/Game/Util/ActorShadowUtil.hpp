@@ -65,8 +65,10 @@ namespace MR {
     void setShadowDropDirectionPtr(LiveActor *, const char *, const TVec3f *);
     void addShadowVolumeLine(LiveActor *, const char *, LiveActor *, const char *, f32, LiveActor *, const char *, f32);
     bool isShadowProjected(const LiveActor *, const char *);
+    bool isShadowProjectedAny(const LiveActor *);
     void getShadowProjectionPos(const LiveActor *, const char *, TVec3f *);
     void getShadowProjectionNormal(const LiveActor *, const char *, TVec3f *);
+    f32 getShadowProjectionLength(const LiveActor *, const char *);
 
     void setShadowVolumeSphereRadius(LiveActor *, const char *, f32);
 
