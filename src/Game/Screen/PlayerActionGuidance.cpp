@@ -9,6 +9,11 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sSuspendFrame = 60;
+    static const s32 sChangeSoundFrame = 40;
+};
+
 namespace MR {
     PlayerActionGuidance* getPlayerActionGuidance() {
         return MR::getSceneObj<PlayerActionGuidance*>(SceneObj_PlayerActionGuidance);
@@ -164,7 +169,7 @@ void PlayerActionGuidance::exeDisplay() {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
         }
 
-        if (MR::getAnimFrame(mCurrentLayout, 0) == 40.0f) {
+        if (MR::getAnimFrame(mCurrentLayout, 0) == sChangeSoundFrame) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000, -1);
         }
     }
@@ -179,7 +184,7 @@ void PlayerActionGuidance::exeDisplay() {
 }
 
 void PlayerActionGuidance::exeSuspend() {
-    if (MR::isStep(this, 60)) {
+    if (MR::isStep(this, sSuspendFrame)) {
         if (!_35) {
             hideAllLayout();
             setNerve(&PlayerActionGuidanceWaitFocusIn::sInstance);

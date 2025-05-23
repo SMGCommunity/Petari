@@ -7,6 +7,12 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
+    static const s32 sDisplayFrameBatteryLow = 120;
+    static const s32 sLowIntervalFrame = 18000;
+    static const s32 sDisplayFrameBatteryNone = 450;
+};
+
+namespace {
     NEW_NERVE(BatteryInfoEnought, BatteryInfo, Enought);
     NEW_NERVE(BatteryInfoLowAppear, BatteryInfo, LowAppear);
     NEW_NERVE(BatteryInfoLow, BatteryInfo, Low);
@@ -64,7 +70,7 @@ void BatteryInfo::exeLow() {
 
     tryChangeNerveWithBatteryLeftAlreadyAppear();
 
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, sDisplayFrameBatteryLow)) {
         setNerve(&BatteryInfoLowDisappear::sInstance);
     }
 }
@@ -92,7 +98,7 @@ void BatteryInfo::exeLowHide() {
     else if (MR::getWPad(mChannel)->getBattery() > 1) {
         setNerve(&BatteryInfoEnought::sInstance);
     }
-    else if (MR::isGreaterStep(this, 18000)) {
+    else if (MR::isGreaterStep(this, sLowIntervalFrame)) {
         setNerve(&BatteryInfoLowAppear::sInstance);
     }
 }
@@ -132,7 +138,7 @@ void BatteryInfo::exeNone() {
         MR::startPaneAnim(mHost, mPaneName, "WaitNone", 0);
     }
 
-    if (MR::isGreaterStep(this, 450)) {
+    if (MR::isGreaterStep(this, sDisplayFrameBatteryNone)) {
         setNerve(&BatteryInfoNoneDisappear::sInstance);
     }
 }

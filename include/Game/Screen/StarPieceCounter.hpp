@@ -36,7 +36,7 @@ public:
 
     /* 0x20 */ s32 mStarPieceNum;
     /* 0x24 */ s32 mStarPieceDisplayNum;
-    /* 0x28 */ s32 mDisplayUpdateFrame;
+    /* 0x28 */ s32 mInvalidCountUpFrame;
     /* 0x2C */ CounterLayoutAppearer* mLayoutAppearer;
     /* 0x30 */ CountUpPaneRumbler* mPaneRumbler;
     /* 0x34 */ TVec2f mFollowPos;
